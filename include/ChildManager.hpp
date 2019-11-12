@@ -1,0 +1,4 @@
+#ifndef CHILDMANAGER_HPP
+#define CHILDMANAGER_HPP
+
+#endif // CHILDMANAGER_HPP

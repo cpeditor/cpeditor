@@ -1,0 +1,50 @@
+# NOTES FOR END-USER
+# You can manually edit this file to apply changes using licenser update
+# To put a comment use a # before the begining of a line.
+# If any value contains space like author name, project name
+# Please do not put " around the those values
+
+# This is the name of the project author
+# You can separate the authors by putting "," between names.
+# Like author=Naruto, Sasuke, Sakura
+# You can also write an Organization name here like Tensorflow Team or Similar
+# ========================================================
+author=Ashar Khan
+# ========================================================
+
+# This is the email of the author (optional)
+# It is used in License headers. It can be comma separated for multiple values
+# You can leave it empty by writing email= 
+# ========================================================
+email=ashar786khan@gmail.com
+# ========================================================
+
+# This is the short name for the license.
+# We follow standard shortnames for the Licenses.
+# This is case-insensitive and shortname spaces are replaced with "_"
+# Like Creative Commons Version 3 shortname is CC By 3, Here it will be CC_BY_3
+# Before changing this value please ensure that updated value is indeed a license shortname
+# A list of all the shortnames can be retrieved by running licenser list-license
+# ========================================================
+license=GPLv3
+# ========================================================
+
+# This value tells that the project is still under active and 
+# this is used to set the period of the project in the license header
+# If a project was started in 2018 and is still going in 2019, setting this
+# value to true makes sure that in license header we write 2018-2019
+# ========================================================
+ongoing_project=true
+# ========================================================
+
+# This is the name of the project, It is required and should be non-empty
+# This value is also used to write about project in the license header.
+# ========================================================
+project=CPEditor
+# ========================================================
+
+# This is the starting year of your project
+# It must be after 1900 and cannot exceed your current year
+# ========================================================
+year=2019
+# ========================================================
