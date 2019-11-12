@@ -27,6 +27,7 @@ SettingManager::SettingManager() {
       QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/" +
       SETTINGS_FILE;
   mSettings = new QSettings(mSettingsFile, QSettings::NativeFormat);
+//  Log::MessageLogger::info("Settings","saved under " + mSettingsFile.toStdString());
 }
 
 bool SettingManager::isDarkTheme() {

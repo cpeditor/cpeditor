@@ -13,7 +13,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 
 find_package(Qt5 COMPONENTS Widgets REQUIRED)
-link_directories("third_party/QCodeEditor/lib")
+
+add_subdirectory(third_party/QCodeEditor)
 add_executable(CPEditor
     src/main.cc
     src/mainwindow.cc
@@ -32,4 +33,4 @@ include_directories("third_party/QCodeEditor/include")
 include_directories("include/")
 
 target_link_libraries(CPEditor PRIVATE Qt5::Widgets)
-target_link_libraries(CPEditor PRIVATE libQCodeEditor.a)
+target_link_libraries(CPEditor PRIVATE QCodeEditor)

@@ -1,0 +1,3 @@
+[submodule "third_party/QCodeEditor"]
+	path = third_party/QCodeEditor
+	url = https://github.com/Megaxela/QCodeEditor
