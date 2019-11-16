@@ -34,7 +34,8 @@ add_executable(CPEditor
     include/BaseFiles.hpp
     src/MessageLogger.cpp
 
-    resources/resources.qrc)
+    resources/resources.qrc
+    appicon.rc)
 
 include_directories("third_party/QCodeEditor/include")
 include_directories("include/")
