@@ -11,11 +11,19 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+if(WIN32)
+    SET(GUI_TYPE WIN32)
+endif()
+if(APPLE)
+    SET(GUI_TYPE MACOSX_BUNDLE)
+endif()
+
 
 find_package(Qt5 COMPONENTS Widgets REQUIRED)
 
 add_subdirectory(third_party/QCodeEditor)
 add_executable(CPEditor
+    ${GUI_TYPE}
     src/main.cc
     src/mainwindow.cc
     ui/mainwindow.ui

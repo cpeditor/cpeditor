@@ -42,10 +42,10 @@ Name: "quicklaunchicon"; Description: "{cm:CreateQuickLaunchIcon}"; GroupDescrip
 
 [Files]
 Source: "C:\Users\Ashar\Projects\release\CPEditor.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\Ashar\Projects\release\iconengines\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "C:\Users\Ashar\Projects\release\imageformats\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "C:\Users\Ashar\Projects\release\platforms\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "C:\Users\Ashar\Projects\release\styles\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "C:\Users\Ashar\Projects\release\iconengines\*"; DestDir: "{app}\iconengines\"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "C:\Users\Ashar\Projects\release\imageformats\*"; DestDir: "{app}\imageformats\"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "C:\Users\Ashar\Projects\release\platforms\*"; DestDir: "{app}\platforms\"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "C:\Users\Ashar\Projects\release\styles\*"; DestDir: "{app}\styles\"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "C:\Users\Ashar\Projects\release\D3Dcompiler_47.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\Users\Ashar\Projects\release\libEGL.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\Users\Ashar\Projects\release\libGLESV2.dll"; DestDir: "{app}"; Flags: ignoreversion
