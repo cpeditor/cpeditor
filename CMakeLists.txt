@@ -22,9 +22,16 @@ add_executable(CPEditor
     include/mainwindow.hpp
     include/MessageLogger.hpp
     include/SettingsManager.hpp
-    include/ChildManager.hpp
+    include/Core.hpp
+    include/IO.hpp
+    src/IO.cpp
+    include/Runner.hpp
+    src/Runner.cpp
     src/SettngsManager.cpp
-    src/ChildManager.cpp
+    src/Core.cpp
+    include/Formatter.hpp
+    src/Formatter.cpp
+    include/BaseFiles.hpp
     src/MessageLogger.cpp
 
     resources/resources.qrc)

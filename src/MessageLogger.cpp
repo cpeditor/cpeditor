@@ -18,7 +18,6 @@
 
 #include <MessageLogger.hpp>
 #include <QDateTime>
-
 namespace Log {
 
 QPlainTextEdit* MessageLogger::box = nullptr;
@@ -55,7 +54,7 @@ void MessageLogger::warn(std::string head, std::string body) {
 
   box->appendHtml(QString::fromStdString(ans));
 }
-void MessageLogger::error(std::string head, std::string body) {
+void MessageLogger::error(std::string head, std::string body, bool multiline) {
   std::string ans = "<b>[";
   auto timestamp = QDateTime::currentSecsSinceEpoch();
   auto val = QDateTime::fromSecsSinceEpoch(timestamp).time();
@@ -64,9 +63,12 @@ void MessageLogger::error(std::string head, std::string body) {
   ans += head;
   ans += "] </b>";
   ans += "<font color=red>[";
-  ans += body;
+  if (multiline) {
+    ans += "<br>";
+    ans += QString::fromStdString(body).replace("\n", "<br>").toStdString();
+  } else
+    ans += body;
   ans += "]</font>";
-
   box->appendHtml(QString::fromStdString(ans));
 }
 void MessageLogger::clear() {

@@ -90,10 +90,10 @@
              <widget class="QPlainTextEdit" name="in1"/>
             </item>
             <item>
-             <widget class="QPlainTextEdit" name="in3"/>
+             <widget class="QPlainTextEdit" name="in2"/>
             </item>
             <item>
-             <widget class="QPlainTextEdit" name="in2"/>
+             <widget class="QPlainTextEdit" name="in3"/>
             </item>
            </layout>
           </item>
@@ -106,20 +106,32 @@
              </font>
             </property>
             <property name="text">
-             <string>Output or stdout (Expected)</string>
+             <string>Output or stdout (Expected) [For Expected click the checkbox below]</string>
             </property>
            </widget>
           </item>
           <item>
            <layout class="QHBoxLayout" name="output">
             <item>
-             <widget class="QPlainTextEdit" name="out2"/>
+             <widget class="QPlainTextEdit" name="out1">
+              <property name="readOnly">
+               <bool>true</bool>
+              </property>
+             </widget>
             </item>
             <item>
-             <widget class="QPlainTextEdit" name="out3"/>
+             <widget class="QPlainTextEdit" name="out2">
+              <property name="readOnly">
+               <bool>true</bool>
+              </property>
+             </widget>
             </item>
             <item>
-             <widget class="QPlainTextEdit" name="out1"/>
+             <widget class="QPlainTextEdit" name="out3">
+              <property name="readOnly">
+               <bool>true</bool>
+              </property>
+             </widget>
             </item>
            </layout>
           </item>
@@ -168,6 +180,7 @@
     </property>
     <addaction name="actionAbout"/>
     <addaction name="actionAbout_Qt"/>
+    <addaction name="actionReset_Settings"/>
    </widget>
    <widget class="QMenu" name="menuActions">
     <property name="title">
@@ -301,44 +314,6 @@
     <string>Ctrl+Q</string>
    </property>
   </action>
-  <action name="actionOn">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
-   <property name="text">
-    <string>On</string>
-   </property>
-  </action>
-  <action name="actionOff">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
-   <property name="checked">
-    <bool>true</bool>
-   </property>
-   <property name="text">
-    <string>Off</string>
-   </property>
-  </action>
-  <action name="actionOn_3">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
-   <property name="checked">
-    <bool>true</bool>
-   </property>
-   <property name="text">
-    <string>On</string>
-   </property>
-  </action>
-  <action name="actionOff_3">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
-   <property name="text">
-    <string>Off</string>
-   </property>
-  </action>
   <action name="actionDark_Theme">
    <property name="checkable">
     <bool>true</bool>
@@ -383,6 +358,11 @@
   <action name="actionAbout_Qt">
    <property name="text">
     <string>About Qt</string>
+   </property>
+  </action>
+  <action name="actionReset_Settings">
+   <property name="text">
+    <string>Reset Settings</string>
    </property>
   </action>
  </widget>

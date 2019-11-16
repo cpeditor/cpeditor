@@ -19,9 +19,13 @@
 #ifndef MAINWINDOW_HPP
 #define MAINWINDOW_HPP
 
+#include <Core.hpp>
+#include <Formatter.hpp>
+#include <IO.hpp>
 #include <QCodeEditor>
 #include <QFile>
 #include <QMainWindow>
+#include <Runner.hpp>
 #include <SettingsManager.hpp>
 
 QT_BEGIN_NAMESPACE
@@ -68,15 +72,37 @@ class MainWindow : public QMainWindow {
 
   void on_run_clicked();
 
+  void on_actionChange_compile_command_triggered();
+
+  void on_actionChange_run_command_triggered();
+
+  void on_actionChange_format_command_triggered();
+
+  void on_actionReset_Settings_triggered();
+
+  void on_expected_clicked(bool checked);
+
+  void firstExecutionFinished(QString, QString);
+  void secondExecutionFinished(QString, QString);
+  void thirdExecutionFinished(QString, QString);
+
  private:
   Ui::MainWindow* ui;
   QCodeEditor* editor;
   QFile* openFile = nullptr;
   Settings::SettingManager* setting = nullptr;
+  Core::Formatter* formatter = nullptr;
+  Core::IO::InputReader* inputReader = nullptr;
+  Core::IO::OutputReader* outputReader = nullptr;
+  Core::IO::OutputWriter* outputWriter = nullptr;
+  Core::Compiler* compiler = nullptr;
+  Core::Runner* runner = nullptr;
   void setEditor();
   void setLogger();
+  void runEditorDiagonistics();
   void setSettingsManager();
   void saveSettings();
   void restoreSettings();
+  void setupCore();
 };
 #endif  // MAINWINDOW_HPP

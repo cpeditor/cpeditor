@@ -18,12 +18,13 @@
 
 #include "mainwindow.hpp"
 
+#include <Core.hpp>
 #include <MessageLogger.hpp>
 #include <QCXXHighlighter>
 #include <QFileDialog>
+#include <QInputDialog>
 #include <QMessageBox>
 #include <QSyntaxStyle>
-#include <iostream>
 
 #include "../ui/ui_mainwindow.h"
 
@@ -34,6 +35,8 @@ MainWindow::MainWindow(QWidget* parent)
   setLogger();
   setSettingsManager();
   restoreSettings();
+  runEditorDiagonistics();
+  setupCore();
 }
 
 MainWindow::~MainWindow() {
@@ -43,6 +46,12 @@ MainWindow::~MainWindow() {
   if (openFile != nullptr && openFile->isOpen())
     openFile->close();
   delete openFile;
+  delete inputReader;
+  delete outputReader;
+  delete outputWriter;
+  delete formatter;
+  delete compiler;
+  delete runner;
 }
 
 void MainWindow::setEditor() {
@@ -74,8 +83,6 @@ void MainWindow::saveSettings() {
   setting->setWrapText(ui->actionWrap_Text->isChecked());
   setting->setAutoIndent(ui->actionAuto_Indentation->isChecked());
   setting->setAutoParenthesis(ui->actionAuto_Parenthesis->isChecked());
-
-  // TODO (coder3101) : Add other two settins as well in this section.
 }
 
 void MainWindow::restoreSettings() {
@@ -95,6 +102,43 @@ void MainWindow::restoreSettings() {
     ui->actionAuto_Parenthesis->setChecked(false);
     on_actionAuto_Parenthesis_triggered(false);
   }
+}
+
+void MainWindow::runEditorDiagonistics() {
+  if (!Core::Formatter::check(
+          QString::fromStdString(setting->getFormatCommand()))) {
+    Log::MessageLogger::error(
+        "Formatter",
+        "Format feature will not work as your format command is not valid");
+  }
+  if (!Core::Compiler::check(
+          QString::fromStdString(setting->getCompileCommand()))) {
+    Log::MessageLogger::error("Compiler",
+                              "Compiler will not work, Change Compile command "
+                              "and make sure it is in path");
+  }
+}
+
+void MainWindow::setupCore() {
+  formatter =
+      new Core::Formatter(QString::fromStdString(setting->getFormatCommand()));
+  outputReader = new Core::IO::OutputReader(ui->out1, ui->out2, ui->out3);
+  outputWriter = new Core::IO::OutputWriter(ui->out1, ui->out2, ui->out3);
+  inputReader = new Core::IO::InputReader(ui->in1, ui->in2, ui->in3);
+  compiler =
+      new Core::Compiler(QString::fromStdString(setting->getCompileCommand()));
+  runner =
+      new Core::Runner(QString::fromStdString(setting->getRunCommand()),
+                       QString::fromStdString(setting->getCompileCommand()));
+
+  QObject::connect(runner, SIGNAL(firstExecutionFinished(QString, QString)),
+                   this, SLOT(firstExecutionFinished(QString, QString)));
+
+  QObject::connect(runner, SIGNAL(secondExecutionFinished(QString, QString)),
+                   this, SLOT(secondExecutionFinished(QString, QString)));
+
+  QObject::connect(runner, SIGNAL(thirdExecutionFinished(QString, QString)),
+                   this, SLOT(thirdExecutionFinished(QString, QString)));
 }
 
 void MainWindow::on_actionQuit_triggered() {
@@ -233,11 +277,24 @@ void MainWindow::closeEvent(QCloseEvent* event) {
     event->ignore();
 }
 
-void MainWindow::on_actionFormat_triggered() {}
+void MainWindow::on_actionFormat_triggered() {
+  formatter->format(editor);
+}
 
-void MainWindow::on_actionRun_triggered() {}
+void MainWindow::on_actionRun_triggered() {
+  Log::MessageLogger::clear();
+  inputReader->readToFile();
+  if (ui->expected->isChecked())
+    outputReader->readToFile();
+  runner->run(editor, !ui->in1->toPlainText().trimmed().isEmpty(),
+              !ui->in2->toPlainText().trimmed().isEmpty(),
+              !ui->in3->toPlainText().trimmed().isEmpty());
+}
 
-void MainWindow::on_actionCompile_triggered() {}
+void MainWindow::on_actionCompile_triggered() {
+  Log::MessageLogger::clear();
+  compiler->compile(editor);
+}
 
 void MainWindow::on_compile_clicked() {
   on_actionCompile_triggered();
@@ -245,4 +302,159 @@ void MainWindow::on_compile_clicked() {
 
 void MainWindow::on_run_clicked() {
   on_actionRun_triggered();
+}
+
+void MainWindow::on_actionChange_compile_command_triggered() {
+  bool ok = false;
+  QString text = QInputDialog::getText(
+      this, "Set Compile command",
+      "Enter new Compile command (source path will be appended to end of this "
+      "file)",
+      QLineEdit::Normal, QString::fromStdString(setting->getCompileCommand()),
+      &ok);
+  if (ok && !text.isEmpty()) {
+    setting->setCompileCommands(text.toStdString());
+    runEditorDiagonistics();
+    compiler->updateCommand(
+        QString::fromStdString(setting->getCompileCommand()));
+    runner->updateCompileCommand(
+        QString::fromStdString(setting->getCompileCommand()));
+    //    runner->updateCompileCommand(
+    //        QString::fromStdString(setting->getCompileCommand()));
+  }
+}
+
+void MainWindow::on_actionChange_run_command_triggered() {
+  bool ok = false;
+  QString text = QInputDialog::getText(
+      this, "Set Run command",
+      "Enter new run command (filename.out will be appended to the end of "
+      "command)",
+      QLineEdit::Normal, QString::fromStdString(setting->getRunCommand()), &ok);
+  if (ok && !text.isEmpty()) {
+    setting->setRunCommand(text.toStdString());
+    runner->updateRunCommand(QString::fromStdString(setting->getRunCommand()));
+  }
+}
+
+void MainWindow::on_actionChange_format_command_triggered() {
+  bool ok = false;
+  QString text = QInputDialog::getText(
+      this, "Set Format command",
+      "Enter new format command (filename will be appended to end of this "
+      "command)",
+      QLineEdit::Normal, QString::fromStdString(setting->getFormatCommand()),
+      &ok);
+  if (ok && !text.isEmpty()) {
+    setting->setFormatCommand(text.toStdString());
+    runEditorDiagonistics();
+    formatter->updateCommand(
+        QString::fromStdString(setting->getFormatCommand()));
+  }
+}
+
+void MainWindow::on_actionReset_Settings_triggered() {
+  auto res = QMessageBox::question(this, "Reset settings?",
+                                   "Are you sure you want to reset the"
+                                   " settings?",
+                                   QMessageBox::Yes | QMessageBox::No);
+  if (res == QMessageBox::Yes) {
+    setting->setDarkTheme(false);
+    setting->setWrapText(false);
+    setting->setAutoIndent(true);
+    setting->setAutoParenthesis(true);
+    setting->setFormatCommand("clang-format -i");
+    setting->setCompileCommands("g++ -Wall");
+    setting->setRunCommand("");
+
+    formatter->updateCommand(
+        QString::fromStdString(setting->getFormatCommand()));
+    compiler->updateCommand(
+        QString::fromStdString(setting->getCompileCommand()));
+
+    runner->updateRunCommand(QString::fromStdString(setting->getRunCommand()));
+    runner->updateCompileCommand(
+        QString::fromStdString(setting->getCompileCommand()));
+    runEditorDiagonistics();
+  }
+}
+
+void MainWindow::firstExecutionFinished(QString Stdout, QString Stderr) {
+  //  if (!Stdout.isEmpty())
+  //    Log::MessageLogger::info(
+  //        "Runner[1]-stderr",
+  //        Stderr.replace('\n', "<br>").prepend("<br>").toStdString());
+  if (ui->expected->isChecked()) {
+    ui->out1->clear();
+    outputWriter->writeFromFile(1);
+    if (ui->out1->toPlainText().trimmed() == Stdout.trimmed()) {
+      ui->out1->appendHtml(
+          "<br><b><font color=blue>Success (GOT)</font></b><br>" +
+          Stdout.replace('\n', "<br>"));
+    } else {
+      ui->out1->appendHtml(
+          "<br><b><font color=red>Failed (GOT)</font></b><br>" +
+          Stdout.replace('\n', "<br>"));
+    }
+  } else {
+    ui->out1->clear();
+    ui->out1->setPlainText(Stdout);
+    // Log::MessageLogger::info("Runner[1]", "Stdout emitted");
+  }
+}
+void MainWindow::secondExecutionFinished(QString Stdout, QString Stderr) {
+  //  if (!Stdout.isEmpty())
+  //    Log::MessageLogger::info(
+  //        "Runner[2]-stderr",
+  //        Stderr.replace('\n', "<br>").prepend("<br>").toStdString());
+  if (ui->expected->isChecked()) {
+    ui->out2->clear();
+    outputWriter->writeFromFile(2);
+    if (ui->out2->toPlainText().trimmed() == Stdout.trimmed()) {
+      ui->out2->appendHtml(
+          "<br><b><font color=blue>Success (GOT)</font></b><br>" +
+          Stdout.replace('\n', "<br>"));
+    } else {
+      ui->out2->appendHtml(
+          "<br><b><font color=red>Failed (GOT)</font></b><br>" +
+          Stdout.replace('\n', "<br>"));
+    }
+  } else {
+    ui->out2->clear();
+    ui->out2->setPlainText(Stdout);
+    //    Log::MessageLogger::info("Runner[2]", "Stdout emitted");
+  }
+}
+
+void MainWindow::thirdExecutionFinished(QString Stdout, QString Stderr) {
+  //  if (!Stdout.isEmpty())
+  //    Log::MessageLogger::info(
+  //        "Runner[3]-stderr",
+  //        Stderr.replace('\n', "<br>").prepend("<br>").toStdString());
+  if (ui->expected->isChecked()) {
+    ui->out3->clear();
+    outputWriter->writeFromFile(3);
+    if (ui->out3->toPlainText().trimmed() == Stdout.trimmed()) {
+      ui->out3->appendHtml(
+          "<br><b><font color=blue>Success (GOT)</font></b><br>" +
+          Stdout.replace('\n', "<br>"));
+    } else {
+      ui->out3->appendHtml(
+          "<br><b><font color=red>Failed (GOT)</font></b><br>" +
+          Stdout.replace('\n', "<br>"));
+    }
+  } else {
+    ui->out3->clear();
+    ui->out3->setPlainText(Stdout);
+    //    Log::MessageLogger::info("Runner[3]", "Stdout emitted");
+  }
+}
+
+void MainWindow::on_expected_clicked(bool checked) {
+  ui->out1->clear();
+  ui->out2->clear();
+  ui->out3->clear();
+  ui->out1->setReadOnly(!checked);
+  ui->out2->setReadOnly(!checked);
+  ui->out3->setReadOnly(!checked);
 }

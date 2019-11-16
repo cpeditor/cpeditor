@@ -16,3 +16,26 @@
 */
 
 
+#ifndef FORMATTER_HPP
+#define FORMATTER_HPP
+#include <BaseFiles.hpp>
+#include <QCodeEditor>
+#include <QFile>
+#include <QString>
+
+namespace Core {
+class Formatter : private Base::Files {
+ public:
+  Formatter(QString runCommand);
+  ~Formatter();
+  void format(QCodeEditor* editor);
+  static bool check(QString command);
+  void updateCommand(QString newCommand);
+
+ private:
+  QFile* file;
+  QString command;
+};
+
+}  // namespace Core
+#endif  // FORMATTER_HPP
