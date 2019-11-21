@@ -1,3 +1,4 @@
 [submodule "third_party/QCodeEditor"]
 	path = third_party/QCodeEditor
-	url = https://github.com/Megaxela/QCodeEditor
+	url = https://github.com/coder3101/QCodeEditor
+	branch = coder3101-patched-editor

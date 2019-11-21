@@ -20,7 +20,6 @@ endif()
 
 
 find_package(Qt5 COMPONENTS Widgets REQUIRED)
-
 add_subdirectory(third_party/QCodeEditor)
 add_executable(CPEditor
     ${GUI_TYPE}
