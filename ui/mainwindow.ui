@@ -41,9 +41,16 @@
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="run">
+           <widget class="QPushButton" name="runOnly">
             <property name="text">
              <string>Run</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="run">
+            <property name="text">
+             <string>Compile and Run</string>
             </property>
            </widget>
           </item>
@@ -169,6 +176,7 @@
     <property name="title">
      <string>File</string>
     </property>
+    <addaction name="actionNew"/>
     <addaction name="actionOpen"/>
     <addaction name="actionSave"/>
     <addaction name="actionSave_as"/>
@@ -187,6 +195,7 @@
      <string>Actions</string>
     </property>
     <addaction name="actionCompile"/>
+    <addaction name="onlyRun"/>
     <addaction name="actionRun"/>
     <addaction name="actionFormat"/>
    </widget>
@@ -197,6 +206,7 @@
     <addaction name="actionChange_compile_command"/>
     <addaction name="actionChange_run_command"/>
     <addaction name="actionChange_format_command"/>
+    <addaction name="actionSet_Code_Template"/>
    </widget>
    <widget class="QMenu" name="menuEditor">
     <property name="title">
@@ -363,6 +373,27 @@
   <action name="actionReset_Settings">
    <property name="text">
     <string>Reset Settings</string>
+   </property>
+  </action>
+  <action name="onlyRun">
+   <property name="text">
+    <string>Run</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+R</string>
+   </property>
+  </action>
+  <action name="actionNew">
+   <property name="text">
+    <string>New Session</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+N</string>
+   </property>
+  </action>
+  <action name="actionSet_Code_Template">
+   <property name="text">
+    <string>Set Code Template</string>
    </property>
   </action>
  </widget>
