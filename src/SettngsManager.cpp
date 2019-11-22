@@ -1,20 +1,19 @@
 /*
-* Copyright (C) 2019 Ashar Khan <ashar786khan@gmail.com> 
-* 
-* This file is part of CPEditor.
-*  
-* CPEditor is free software: you can redistribute it and/or modify
-* it under the terms of the GNU General Public License as published by
-* the Free Software Foundation, either version 3 of the License, or
-* (at your option) any later version.
-* 
-* I will not be responsible if CPEditor behaves in unexpected way and
-* causes your ratings to go down and or loose any important contest.
-* 
-* Believe Software is "Software" and it isn't not immune to bugs.
-* 
-*/
-
+ * Copyright (C) 2019 Ashar Khan <ashar786khan@gmail.com>
+ *
+ * This file is part of CPEditor.
+ *
+ * CPEditor is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * I will not be responsible if CPEditor behaves in unexpected way and
+ * causes your ratings to go down and or loose any important contest.
+ *
+ * Believe Software is "Software" and it isn't not immune to bugs.
+ *
+ */
 
 #include <MessageLogger.hpp>
 #include <QApplication>
@@ -27,7 +26,8 @@ SettingManager::SettingManager() {
       QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/" +
       SETTINGS_FILE;
   mSettings = new QSettings(mSettingsFile, QSettings::IniFormat);
- // Log::MessageLogger::info("Settings","saved under " + mSettingsFile.toStdString());
+  // Log::MessageLogger::info("Settings","saved under " +
+  // mSettingsFile.toStdString());
 }
 
 bool SettingManager::isDarkTheme() {
@@ -54,6 +54,12 @@ std::string SettingManager::getCompileCommand() {
 }
 std::string SettingManager::getFormatCommand() {
   return mSettings->value("format", "clang-format -i").toString().toStdString();
+}
+std::string SettingManager::getPrependRunCommand() {
+  return mSettings->value("prepend_run", "").toString().toStdString();
+}
+std::string SettingManager::getTemplatePath() {
+  return mSettings->value("template", "").toString().toStdString();
 }
 
 void SettingManager::setDarkTheme(bool value) {
@@ -93,9 +99,15 @@ void SettingManager::setCompileCommands(std::string command) {
 void SettingManager::setFormatCommand(std::string value) {
   mSettings->setValue("format", QString::fromStdString(value));
 }
+void SettingManager::setTemplatePath(std::string path) {
+  mSettings->setValue("template", QString::fromStdString(path));
+}
+void SettingManager::setPrependRunCommand(std::string command) {
+  mSettings->setValue("prepend_run", QString::fromStdString(command));
+}
 
 SettingManager::~SettingManager() {
-    mSettings->sync();
+  mSettings->sync();
   delete mSettings;
 }
 

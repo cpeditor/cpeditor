@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.5)
 
-project(CPEditor LANGUAGES CXX)
+project(CPEditor LANGUAGES CXX VERSION 1.50.1)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
@@ -21,6 +21,9 @@ endif()
 
 find_package(Qt5 COMPONENTS Widgets REQUIRED)
 add_subdirectory(third_party/QCodeEditor)
+
+configure_file(version.hpp.in ${CMAKE_BINARY_DIR}/generated/version.hpp)
+
 add_executable(CPEditor
     ${GUI_TYPE}
     src/main.cc
@@ -41,11 +44,14 @@ add_executable(CPEditor
     include/BaseFiles.hpp
     src/MessageLogger.cpp
 
+    ${CMAKE_BINARY_DIR}/generated/version.hpp
+
     resources/resources.qrc
     appicon.rc)
 
 include_directories("third_party/QCodeEditor/include")
 include_directories("include/")
+include_directories("generated/")
 
 target_link_libraries(CPEditor PRIVATE Qt5::Widgets)
 target_link_libraries(CPEditor PRIVATE QCodeEditor)

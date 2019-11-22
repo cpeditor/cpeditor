@@ -1,20 +1,19 @@
 /*
-* Copyright (C) 2019 Ashar Khan <ashar786khan@gmail.com> 
-* 
-* This file is part of CPEditor.
-*  
-* CPEditor is free software: you can redistribute it and/or modify
-* it under the terms of the GNU General Public License as published by
-* the Free Software Foundation, either version 3 of the License, or
-* (at your option) any later version.
-* 
-* I will not be responsible if CPEditor behaves in unexpected way and
-* causes your ratings to go down and or loose any important contest.
-* 
-* Believe Software is "Software" and it isn't not immune to bugs.
-* 
-*/
-
+ * Copyright (C) 2019 Ashar Khan <ashar786khan@gmail.com>
+ *
+ * This file is part of CPEditor.
+ *
+ * CPEditor is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * I will not be responsible if CPEditor behaves in unexpected way and
+ * causes your ratings to go down and or loose any important contest.
+ *
+ * Believe Software is "Software" and it isn't not immune to bugs.
+ *
+ */
 
 #include "mainwindow.hpp"
 
@@ -28,6 +27,7 @@
 
 #include "../ui/ui_mainwindow.h"
 
+// ***************************** RAII  ****************************
 MainWindow::MainWindow(QWidget* parent)
     : QMainWindow(parent), ui(new Ui::MainWindow) {
   ui->setupUi(this);
@@ -37,6 +37,7 @@ MainWindow::MainWindow(QWidget* parent)
   restoreSettings();
   runEditorDiagonistics();
   setupCore();
+  launchSession();
 }
 
 MainWindow::~MainWindow() {
@@ -53,6 +54,8 @@ MainWindow::~MainWindow() {
   delete compiler;
   delete runner;
 }
+
+// ************************* RAII HELPER *****************************
 
 void MainWindow::setEditor() {
   editor = new QCodeEditor();
@@ -117,6 +120,12 @@ void MainWindow::runEditorDiagonistics() {
                               "Compiler will not work, Change Compile command "
                               "and make sure it is in path");
   }
+  if (setting->getTemplatePath().size() != 0 &&
+      !QFile::exists(QString::fromStdString(setting->getTemplatePath()))) {
+    Log::MessageLogger::error(
+        "Template",
+        "The specified template file does not exists or is not readable");
+  }
 }
 
 void MainWindow::setupCore() {
@@ -141,6 +150,106 @@ void MainWindow::setupCore() {
                    this, SLOT(thirdExecutionFinished(QString, QString)));
 }
 
+void MainWindow::launchSession() {
+  if (setting->getTemplatePath().size() == 0)
+    return;
+  if (QFile::exists(QString::fromStdString(setting->getTemplatePath()))) {
+    QFile f(QString::fromStdString(setting->getTemplatePath()));
+    f.open(QIODevice::ReadOnly | QFile::Text);
+    editor->setPlainText(f.readAll());
+    Log::MessageLogger::info("Template", "Template was successfully loaded");
+  } else {
+    Log::MessageLogger::error("Template",
+                              "Template could not be loaded from the file " +
+                                  setting->getTemplatePath());
+  }
+}
+
+// ******************* STATUS::ACTIONS FILE **************************
+void MainWindow::on_actionNew_triggered() {
+  auto res =
+      QMessageBox::question(this, "End Session?",
+                            "Are you sure you want to start a new session. All "
+                            "your code and binaries will be erased?",
+                            QMessageBox::Yes | QMessageBox::No);
+  if (res == QMessageBox::No)
+    return;
+
+  editor->clear();
+  runner->removeExecutable();
+  launchSession();
+}
+void MainWindow::on_actionOpen_triggered() {
+  auto fileName = QFileDialog::getOpenFileName(
+      this, tr("Open File"), "", "C++ Files (*.cpp *.hpp *.h *.cc *.cxx *.c)");
+  if (fileName.isEmpty())
+    return;
+  QFile* newFile = new QFile(fileName);
+  newFile->open(QFile::Text | QIODevice::ReadWrite);
+
+  if (editor->toPlainText().size() != 0) {
+    QMessageBox::StandardButton reply = QMessageBox::question(
+        this, "Overwrite?", "Opening a new file will overwrite this file?",
+        QMessageBox::Yes | QMessageBox::No);
+    if (reply == QMessageBox::No)
+      return;
+  }
+  if (newFile->isOpen()) {
+    editor->setPlainText(newFile->readAll());
+    if (openFile != nullptr && openFile->isOpen())
+      openFile->close();
+    openFile = newFile;
+    Log::MessageLogger::info("Open",
+                             "Opened " + openFile->fileName().toStdString());
+  } else {
+    Log::MessageLogger::error(
+        "Open", "Cannot Open, Do I have read and write permissions?");
+  }
+}
+
+void MainWindow::on_actionSave_triggered() {
+  if (openFile == nullptr) {
+    auto filename = QFileDialog::getSaveFileName(
+        this, tr("Save File"), "",
+        "C++ Files (*.cpp *.hpp *.h *.cc *.cxx *.c)");
+    if (filename.isEmpty())
+      return;
+    auto savedFile = new QFile(filename);
+    savedFile->open(QIODevice::ReadWrite | QFile::Text);
+    if (savedFile->isOpen()) {
+      openFile = savedFile;
+      openFile->write(editor->toPlainText().toStdString().c_str());
+    } else {
+      Log::MessageLogger::error(
+          "Save", "Cannot Save file. Do I have write permission?");
+    }
+  } else {
+    openFile->resize(0);
+    openFile->write(editor->toPlainText().toStdString().c_str());
+    Log::MessageLogger::info(
+        "Save", "Saved with file name " + openFile->fileName().toStdString());
+  }
+}
+
+void MainWindow::on_actionSave_as_triggered() {
+  auto filename = QFileDialog::getSaveFileName(
+      this, tr("Save as File"), "",
+      "C++ Files (*.cpp *.hpp *.h *.cc *.cxx *.c)");
+  if (filename.isEmpty())
+    return;
+  QFile savedFile(filename);
+  savedFile.open(QIODevice::ReadWrite | QFile::Text);
+  if (savedFile.isOpen()) {
+    savedFile.write(editor->toPlainText().toStdString().c_str());
+    Log::MessageLogger::info(
+        "Save as", "Saved new file name " + savedFile.fileName().toStdString());
+  } else {
+    Log::MessageLogger::error(
+        "Save as",
+        "Cannot Save as new file, Is write permission allowed to me?");
+  }
+}
+
 void MainWindow::on_actionQuit_triggered() {
   saveSettings();
   auto res = QMessageBox::question(this, "Exit?",
@@ -150,6 +259,7 @@ void MainWindow::on_actionQuit_triggered() {
     QApplication::quit();
 }
 
+// *********************** ACTIONS::EDITOR ******************************
 void MainWindow::on_actionDark_Theme_triggered(bool checked) {
   if (checked) {
     auto qFile = new QFile(":/styles/drakula.xml");
@@ -183,88 +293,50 @@ void MainWindow::on_actionAuto_Parenthesis_triggered(bool checked) {
     editor->setAutoParentheses(false);
 }
 
-void MainWindow::on_actionOpen_triggered() {
-  auto fileName = QFileDialog::getOpenFileName(this, tr("Open File"), "",
-                                               "C++ Files (*.cpp *.h)");
-  if (fileName.isEmpty())
-    return;
-  QFile* newFile = new QFile(fileName);
-  newFile->open(QFile::Text | QIODevice::ReadWrite);
-
-  if (editor->toPlainText().size() != 0) {
-    QMessageBox::StandardButton reply = QMessageBox::question(
-        this, "Overwrite?", "Opening a new file will overwrite this file?",
-        QMessageBox::Yes | QMessageBox::No);
-    if (reply == QMessageBox::No)
-      return;
-  }
-  if (newFile->isOpen()) {
-    editor->setPlainText(newFile->readAll());
-    if (openFile != nullptr && openFile->isOpen())
-      openFile->close();
-    openFile = newFile;
-    Log::MessageLogger::info("Open",
-                             "Opened " + openFile->fileName().toStdString());
-  } else {
-    Log::MessageLogger::error(
-        "Open", "Cannot Open, Do I have read and write permissions?");
-  }
-}
-
-void MainWindow::on_actionSave_triggered() {
-  if (openFile == nullptr) {
-    auto filename = QFileDialog::getSaveFileName(this, tr("Save File"), "",
-                                                 "C++ Files (*.cpp *.h)");
-    if (filename.isEmpty())
-      return;
-    auto savedFile = new QFile(filename);
-    savedFile->open(QIODevice::ReadWrite | QFile::Text);
-    if (savedFile->isOpen()) {
-      openFile = savedFile;
-      openFile->write(editor->toPlainText().toStdString().c_str());
-    } else {
-      Log::MessageLogger::error(
-          "Save", "Cannot Save file. Do I have write permission?");
-    }
-  } else {
-    openFile->resize(0);
-    openFile->write(editor->toPlainText().toStdString().c_str());
-    Log::MessageLogger::info(
-        "Save", "Saved with file name " + openFile->fileName().toStdString());
-  }
-}
-
-void MainWindow::on_actionSave_as_triggered() {
-  auto filename = QFileDialog::getSaveFileName(this, tr("Save File"), "",
-                                               "C++ Files (*.cpp *.h)");
-  if (filename.isEmpty())
-    return;
-  QFile savedFile(filename);
-  savedFile.open(QIODevice::ReadWrite | QFile::Text);
-  if (savedFile.isOpen()) {
-    savedFile.write(editor->toPlainText().toStdString().c_str());
-    Log::MessageLogger::info(
-        "Save as", "Saved new file name " + savedFile.fileName().toStdString());
-  } else {
-    Log::MessageLogger::error(
-        "Save as",
-        "Cannot Save as new file, Is write permission allowed to me?");
-  }
-}
-
+// ************************************* ACTION::ABOUT ************************
 void MainWindow::on_actionAbout_triggered() {
   QMessageBox::about(
-      this, tr("About CP Editor"),
-      tr("<p>The <b>CP Editor</b> is a competitive programmer's editor "
-         "which can ease the task of compiling, testing and running a program"
-         "so that you (a great programmer) can focus fully on your algorithms "
-         "designs. </p>"));
+      this,
+      QString::fromStdString(std::string("About CP Editor ") +
+                             std::to_string(APP_VERSION_MAJOR) + "." +
+                             std::to_string(APP_VERSION_MINOR) + "." +
+                             std::to_string(APP_VERSION_PATCH)),
+      "<p>The <b>CP Editor</b> is a competitive programmer's editor "
+      "which can ease the task of compiling, testing and running a program"
+      "so that you (a great programmer) can focus fully on your algorithms "
+      "designs. </p>");
 }
 
 void MainWindow::on_actionAbout_Qt_triggered() {
   QApplication::aboutQt();
 }
+void MainWindow::on_actionReset_Settings_triggered() {
+  auto res = QMessageBox::question(this, "Reset settings?",
+                                   "Are you sure you want to reset the"
+                                   " settings?",
+                                   QMessageBox::Yes | QMessageBox::No);
+  if (res == QMessageBox::Yes) {
+    setting->setDarkTheme(false);
+    setting->setWrapText(false);
+    setting->setAutoIndent(true);
+    setting->setAutoParenthesis(true);
+    setting->setFormatCommand("clang-format -i");
+    setting->setCompileCommands("g++ -Wall");
+    setting->setRunCommand("");
 
+    formatter->updateCommand(
+        QString::fromStdString(setting->getFormatCommand()));
+    compiler->updateCommand(
+        QString::fromStdString(setting->getCompileCommand()));
+
+    runner->updateRunCommand(QString::fromStdString(setting->getRunCommand()));
+    runner->updateCompileCommand(
+        QString::fromStdString(setting->getCompileCommand()));
+    runEditorDiagonistics();
+  }
+}
+
+// ********************** GLOBAL::WINDOW **********************************
 void MainWindow::closeEvent(QCloseEvent* event) {
   saveSettings();
   auto res = QMessageBox::question(this, "Exit?",
@@ -276,6 +348,35 @@ void MainWindow::closeEvent(QCloseEvent* event) {
   else
     event->ignore();
 }
+
+void MainWindow::on_compile_clicked() {
+  on_actionCompile_triggered();
+}
+
+void MainWindow::on_run_clicked() {
+  on_actionRun_triggered();
+}
+
+void MainWindow::on_expected_clicked(bool checked) {
+  ui->out1->clear();
+  ui->out2->clear();
+  ui->out3->clear();
+  ui->out1->setReadOnly(!checked);
+  ui->out2->setReadOnly(!checked);
+  ui->out3->setReadOnly(!checked);
+}
+
+void MainWindow::on_runOnly_clicked() {
+  Log::MessageLogger::clear();
+  inputReader->readToFile();
+  if (ui->expected->isChecked())
+    outputReader->readToFile();
+  runner->run(!ui->in1->toPlainText().trimmed().isEmpty(),
+              !ui->in2->toPlainText().trimmed().isEmpty(),
+              !ui->in3->toPlainText().trimmed().isEmpty());
+}
+
+// ************************ ACTIONS::ACTIONS ******************
 
 void MainWindow::on_actionFormat_triggered() {
   formatter->format(editor);
@@ -296,14 +397,11 @@ void MainWindow::on_actionCompile_triggered() {
   compiler->compile(editor);
 }
 
-void MainWindow::on_compile_clicked() {
-  on_actionCompile_triggered();
+void MainWindow::on_onlyRun_triggered() {
+  on_runOnly_clicked();
 }
 
-void MainWindow::on_run_clicked() {
-  on_actionRun_triggered();
-}
-
+// ************************ ACTIONS::SETTINGS *************************
 void MainWindow::on_actionChange_compile_command_triggered() {
   bool ok = false;
   QString text = QInputDialog::getText(
@@ -319,8 +417,6 @@ void MainWindow::on_actionChange_compile_command_triggered() {
         QString::fromStdString(setting->getCompileCommand()));
     runner->updateCompileCommand(
         QString::fromStdString(setting->getCompileCommand()));
-    //    runner->updateCompileCommand(
-    //        QString::fromStdString(setting->getCompileCommand()));
   }
 }
 
@@ -353,37 +449,27 @@ void MainWindow::on_actionChange_format_command_triggered() {
   }
 }
 
-void MainWindow::on_actionReset_Settings_triggered() {
-  auto res = QMessageBox::question(this, "Reset settings?",
-                                   "Are you sure you want to reset the"
-                                   " settings?",
-                                   QMessageBox::Yes | QMessageBox::No);
-  if (res == QMessageBox::Yes) {
-    setting->setDarkTheme(false);
-    setting->setWrapText(false);
-    setting->setAutoIndent(true);
-    setting->setAutoParenthesis(true);
-    setting->setFormatCommand("clang-format -i");
-    setting->setCompileCommands("g++ -Wall");
-    setting->setRunCommand("");
-
-    formatter->updateCommand(
-        QString::fromStdString(setting->getFormatCommand()));
-    compiler->updateCommand(
-        QString::fromStdString(setting->getCompileCommand()));
-
-    runner->updateRunCommand(QString::fromStdString(setting->getRunCommand()));
-    runner->updateCompileCommand(
-        QString::fromStdString(setting->getCompileCommand()));
-    runEditorDiagonistics();
-  }
+void MainWindow::on_actionSet_Code_Template_triggered() {
+  auto filename = QFileDialog::getOpenFileName(
+      this, tr("Choose template File"), "",
+      "C++ Files (*.cpp *.hpp *.h *.cc *.cxx *.c)");
+  if (filename.isEmpty())
+    return;
+  setting->setTemplatePath(filename.toStdString());
+  runEditorDiagonistics();
+  Log::MessageLogger::info(
+      "Template",
+      "Template path updated. It will be effective from Next Session");
 }
 
+// ************************ SLOTS ******************************************
 void MainWindow::firstExecutionFinished(QString Stdout, QString Stderr) {
   //  if (!Stdout.isEmpty())
   //    Log::MessageLogger::info(
   //        "Runner[1]-stderr",
   //        Stderr.replace('\n', "<br>").prepend("<br>").toStdString());
+  Log::MessageLogger::info("Runner[1]", "Execution for first case completed");
+
   if (ui->expected->isChecked()) {
     ui->out1->clear();
     outputWriter->writeFromFile(1);
@@ -407,6 +493,8 @@ void MainWindow::secondExecutionFinished(QString Stdout, QString Stderr) {
   //    Log::MessageLogger::info(
   //        "Runner[2]-stderr",
   //        Stderr.replace('\n', "<br>").prepend("<br>").toStdString());
+  Log::MessageLogger::info("Runner[2]", "Execution for second case completed");
+
   if (ui->expected->isChecked()) {
     ui->out2->clear();
     outputWriter->writeFromFile(2);
@@ -431,6 +519,7 @@ void MainWindow::thirdExecutionFinished(QString Stdout, QString Stderr) {
   //    Log::MessageLogger::info(
   //        "Runner[3]-stderr",
   //        Stderr.replace('\n', "<br>").prepend("<br>").toStdString());
+  Log::MessageLogger::info("Runner[3]", "Execution for third case completed");
   if (ui->expected->isChecked()) {
     ui->out3->clear();
     outputWriter->writeFromFile(3);
@@ -448,13 +537,4 @@ void MainWindow::thirdExecutionFinished(QString Stdout, QString Stderr) {
     ui->out3->setPlainText(Stdout);
     //    Log::MessageLogger::info("Runner[3]", "Stdout emitted");
   }
-}
-
-void MainWindow::on_expected_clicked(bool checked) {
-  ui->out1->clear();
-  ui->out2->clear();
-  ui->out3->clear();
-  ui->out1->setReadOnly(!checked);
-  ui->out2->setReadOnly(!checked);
-  ui->out3->setReadOnly(!checked);
 }

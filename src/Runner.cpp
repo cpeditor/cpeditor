@@ -1,20 +1,19 @@
 /*
-* Copyright (C) 2019 Ashar Khan <ashar786khan@gmail.com> 
-* 
-* This file is part of CPEditor.
-*  
-* CPEditor is free software: you can redistribute it and/or modify
-* it under the terms of the GNU General Public License as published by
-* the Free Software Foundation, either version 3 of the License, or
-* (at your option) any later version.
-* 
-* I will not be responsible if CPEditor behaves in unexpected way and
-* causes your ratings to go down and or loose any important contest.
-* 
-* Believe Software is "Software" and it isn't not immune to bugs.
-* 
-*/
-
+ * Copyright (C) 2019 Ashar Khan <ashar786khan@gmail.com>
+ *
+ * This file is part of CPEditor.
+ *
+ * CPEditor is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * I will not be responsible if CPEditor behaves in unexpected way and
+ * causes your ratings to go down and or loose any important contest.
+ *
+ * Believe Software is "Software" and it isn't not immune to bugs.
+ *
+ */
 
 #include <MessageLogger.hpp>
 #include <QTimer>
@@ -66,6 +65,41 @@ void Runner::run(QCodeEditor* editor, bool runA, bool runB, bool runC) {
   b_ = runB;
   c_ = runC;
   compiler->compile(editor);
+}
+
+void Runner::run(bool runA, bool runB, bool runC) {
+  if (first != nullptr) {
+    first->kill();
+    delete first;
+    first = nullptr;
+  }
+  if (second != nullptr) {
+    second->kill();
+    delete second;
+    second = nullptr;
+  }
+  if (third != nullptr) {
+    third->kill();
+    delete third;
+    third = nullptr;
+  }
+  a_ = runA;
+  b_ = runB;
+  c_ = runC;
+
+  if (QFile::exists(getBinaryOutput())) {
+    Log::MessageLogger::info("Runner", "Reusuing executable");
+    compilationFinished(true);
+  } else {
+    Log::MessageLogger::error(
+        "Runner",
+        "Cannot run, have you successfully compiled your code earlier?");
+  }
+}
+
+void Runner::removeExecutable() {
+  if (QFile::exists(getBinaryOutput()))
+    QFile::remove(getBinaryOutput());
 }
 
 void Runner::compilationFinished(bool success) {
