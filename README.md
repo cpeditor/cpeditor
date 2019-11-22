@@ -15,7 +15,7 @@ CP Editor is a Native Qt based code editor writter in C++. It make you only focu
 <img src=https://i.imgur.com/ACTrdoW.jpg width="49%" height="50%"> <img src=https://i.imgur.com/VlZ5vW2.jpg width="49%" height="50%"> 
 
 ### Installation
-> Optionally You need clang and clang-format. You can install from [here](http://releases.llvm.org/download.html#9.0.0).
+> Optionally You need clang/gcc and clang-format. You can install from [here](http://releases.llvm.org/download.html#9.0.0).
 
 Head over to the [release page](https://github.com/coder3101/cp-editor2/releases) and download the binary/installer depending upon your OS.
 - Windows users can find an `Installer` install it and start to code.
@@ -44,6 +44,4 @@ $ cmake --build .
 License
 ----
 
-GNU General Public Licenser Version 3.0
-
-**Free Software, Hell Yeah!**
+[GNU General Public Licenser Version 3.0](https://github.com/coder3101/cp-editor2/blob/master/LICENSE)
