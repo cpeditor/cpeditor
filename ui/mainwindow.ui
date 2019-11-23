@@ -144,6 +144,9 @@
           </item>
           <item>
            <widget class="QCheckBox" name="expected">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
             <property name="font">
              <font>
               <weight>75</weight>
