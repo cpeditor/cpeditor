@@ -74,6 +74,12 @@ class MainWindow : public QMainWindow {
   void secondExecutionFinished(QString, QString);
   void thirdExecutionFinished(QString, QString);
 
+  void on_actionC_C_triggered(bool checked);
+  void on_actionPython_triggered(bool checked);
+  void on_actionJava_triggered(bool checked);
+
+  void on_actionRun_Command_triggered();
+
  private:
   Ui::MainWindow* ui;
   QCodeEditor* editor;

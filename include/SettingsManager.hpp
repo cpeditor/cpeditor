@@ -39,6 +39,7 @@ class SettingManager {
   std::string getRunCommand();
   std::string getPrependRunCommand();
   std::string getTemplatePath();
+  std::string getDefaultLang();
 
   void setDarkTheme(bool value);
   void setAutoParenthesis(bool value);
@@ -50,6 +51,7 @@ class SettingManager {
   void setFormatCommand(std::string command);
   void setPrependRunCommand(std::string command);
   void setTemplatePath(std::string path);
+  void setDefaultLanguage(std::string lang);
 
   ~SettingManager();
 

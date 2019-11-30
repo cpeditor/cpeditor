@@ -23,6 +23,8 @@
 #include <QFileDialog>
 #include <QInputDialog>
 #include <QMessageBox>
+#include <QPythonCompleter>
+#include <QPythonHighlighter>
 #include <QSyntaxStyle>
 
 #include "../ui/ui_mainwindow.h"
@@ -37,6 +39,7 @@ MainWindow::MainWindow(QWidget* parent)
   restoreSettings();
   runEditorDiagonistics();
   setupCore();
+  runner->removeExecutable();
   launchSession();
 }
 
@@ -63,12 +66,22 @@ void MainWindow::setEditor() {
   editor->setMinimumHeight(400);
 
   editor->setSyntaxStyle(QSyntaxStyle::defaultStyle());  // default is white
-  editor->setHighlighter(new QCXXHighlighter());
+  editor->setHighlighter(new QPythonHighlighter);
+  // editor->setCompleter(new QPythonCompleter);
   editor->setAutoIndentation(true);
   editor->setAutoParentheses(true);
   editor->setWordWrapMode(QTextOption::NoWrap);
 
   ui->verticalLayout_8->addWidget(editor);
+
+  ui->in1->setWordWrapMode(QTextOption::NoWrap);
+  ui->in2->setWordWrapMode(QTextOption::NoWrap);
+  ui->in3->setWordWrapMode(QTextOption::NoWrap);
+  ui->out1->setWordWrapMode(QTextOption::NoWrap);
+  ui->out2->setWordWrapMode(QTextOption::NoWrap);
+  ui->out3->setWordWrapMode(QTextOption::NoWrap);
+
+  ui->expected->hide();
 }
 
 void MainWindow::setLogger() {
@@ -104,6 +117,36 @@ void MainWindow::restoreSettings() {
   if (!setting->isAutoParenthesis()) {
     ui->actionAuto_Parenthesis->setChecked(false);
     on_actionAuto_Parenthesis_triggered(false);
+  }
+  auto lang = setting->getDefaultLang();
+
+  if (lang == "Java") {
+    ui->actionC_C->setChecked(false);
+    ui->actionJava->setChecked(true);
+    ui->actionPython->setChecked(false);
+    editor->setHighlighter(new QCXXHighlighter);
+    editor->setCompleter(nullptr);
+    // TODO(Add Java Highlighter)
+
+  } else if (lang == "Python") {
+    ui->actionC_C->setChecked(false);
+    ui->actionJava->setChecked(false);
+    ui->actionPython->setChecked(true);
+
+    editor->setCompleter(new QPythonCompleter);
+    editor->setHighlighter(new QPythonHighlighter);
+  } else {
+    if (lang != "Cpp")
+      Log::MessageLogger::warn(
+          "Settings",
+          "File was distrubed, Cannot load default language, fall back to C++");
+    ui->actionC_C->setChecked(true);
+    ui->actionJava->setChecked(false);
+    ui->actionPython->setChecked(false);
+
+    // TODO(Add C++ Completer)
+    editor->setHighlighter(new QCXXHighlighter);
+    editor->setCompleter(nullptr);
   }
 }
 
@@ -369,6 +412,11 @@ void MainWindow::on_expected_clicked(bool checked) {
 void MainWindow::on_runOnly_clicked() {
   Log::MessageLogger::clear();
   inputReader->readToFile();
+
+  ui->out1->clear();
+  ui->out2->clear();
+  ui->out3->clear();
+
   if (ui->expected->isChecked())
     outputReader->readToFile();
   runner->run(!ui->in1->toPlainText().trimmed().isEmpty(),
@@ -384,6 +432,9 @@ void MainWindow::on_actionFormat_triggered() {
 
 void MainWindow::on_actionRun_triggered() {
   Log::MessageLogger::clear();
+  ui->out1->clear();
+  ui->out2->clear();
+  ui->out3->clear();
   inputReader->readToFile();
   if (ui->expected->isChecked())
     outputReader->readToFile();
@@ -423,8 +474,9 @@ void MainWindow::on_actionChange_compile_command_triggered() {
 void MainWindow::on_actionChange_run_command_triggered() {
   bool ok = false;
   QString text = QInputDialog::getText(
-      this, "Set Run command",
-      "Enter new run command (filename.out will be appended to the end of "
+      this, "Set Run command arguments",
+      "Enter new run command arguments (filename.out will be appended to the "
+      "end of "
       "command)",
       QLineEdit::Normal, QString::fromStdString(setting->getRunCommand()), &ok);
   if (ok && !text.isEmpty()) {
@@ -462,12 +514,21 @@ void MainWindow::on_actionSet_Code_Template_triggered() {
       "Template path updated. It will be effective from Next Session");
 }
 
+void MainWindow::on_actionRun_Command_triggered() {
+  bool ok = false;
+  QString text = QInputDialog::getText(
+      this, "Set Run Command",
+      "Enter new run command (use only when using python or java "
+      "language)",
+      QLineEdit::Normal,
+      QString::fromStdString(setting->getPrependRunCommand()), &ok);
+  if (ok && !text.isEmpty()) {
+    setting->setPrependRunCommand(text.toStdString());
+  }
+}
+
 // ************************ SLOTS ******************************************
 void MainWindow::firstExecutionFinished(QString Stdout, QString Stderr) {
-  //  if (!Stdout.isEmpty())
-  //    Log::MessageLogger::info(
-  //        "Runner[1]-stderr",
-  //        Stderr.replace('\n', "<br>").prepend("<br>").toStdString());
   Log::MessageLogger::info("Runner[1]", "Execution for first case completed");
 
   if (ui->expected->isChecked()) {
@@ -485,14 +546,12 @@ void MainWindow::firstExecutionFinished(QString Stdout, QString Stderr) {
   } else {
     ui->out1->clear();
     ui->out1->setPlainText(Stdout);
-    // Log::MessageLogger::info("Runner[1]", "Stdout emitted");
+    if (!Stderr.isEmpty())
+      ui->out1->appendHtml("<br><font color=red><b>stderr:</b><br>" +
+                           Stderr.replace('\n', "<br>") + "</font><br>");
   }
 }
 void MainWindow::secondExecutionFinished(QString Stdout, QString Stderr) {
-  //  if (!Stdout.isEmpty())
-  //    Log::MessageLogger::info(
-  //        "Runner[2]-stderr",
-  //        Stderr.replace('\n', "<br>").prepend("<br>").toStdString());
   Log::MessageLogger::info("Runner[2]", "Execution for second case completed");
 
   if (ui->expected->isChecked()) {
@@ -510,15 +569,13 @@ void MainWindow::secondExecutionFinished(QString Stdout, QString Stderr) {
   } else {
     ui->out2->clear();
     ui->out2->setPlainText(Stdout);
-    //    Log::MessageLogger::info("Runner[2]", "Stdout emitted");
+    if (!Stderr.isEmpty())
+      ui->out2->appendHtml("<br><font color=red><b>stderr:</b><br>" +
+                           Stderr.replace('\n', "<br>") + "</font><br>");
   }
 }
 
 void MainWindow::thirdExecutionFinished(QString Stdout, QString Stderr) {
-  //  if (!Stdout.isEmpty())
-  //    Log::MessageLogger::info(
-  //        "Runner[3]-stderr",
-  //        Stderr.replace('\n', "<br>").prepend("<br>").toStdString());
   Log::MessageLogger::info("Runner[3]", "Execution for third case completed");
   if (ui->expected->isChecked()) {
     ui->out3->clear();
@@ -535,6 +592,44 @@ void MainWindow::thirdExecutionFinished(QString Stdout, QString Stderr) {
   } else {
     ui->out3->clear();
     ui->out3->setPlainText(Stdout);
-    //    Log::MessageLogger::info("Runner[3]", "Stdout emitted");
+    if (!Stderr.isEmpty())
+      ui->out3->appendHtml("<br><font color=red><b>stderr:</b><br>" +
+                           Stderr.replace('\n', "<br>") + "</font><br>");
+  }
+}
+
+// **************************** LANGUAGE ***********************************
+
+void MainWindow::on_actionC_C_triggered(bool checked) {
+  if (checked) {
+    ui->actionC_C->setChecked(true);
+    ui->actionPython->setChecked(false);
+    ui->actionJava->setChecked(false);
+    setting->setDefaultLanguage("Cpp");
+    runner->removeExecutable();
+    editor->setHighlighter(new QCXXHighlighter);
+    editor->setCompleter(nullptr);
+  }
+}
+void MainWindow::on_actionPython_triggered(bool checked) {
+  if (checked) {
+    ui->actionC_C->setChecked(false);
+    ui->actionPython->setChecked(true);
+    ui->actionJava->setChecked(false);
+    setting->setDefaultLanguage("Python");
+    runner->removeExecutable();
+    editor->setHighlighter(new QPythonHighlighter);
+    editor->setCompleter(new QPythonCompleter);
+  }
+}
+void MainWindow::on_actionJava_triggered(bool checked) {
+  if (checked) {
+    ui->actionC_C->setChecked(false);
+    ui->actionPython->setChecked(false);
+    ui->actionJava->setChecked(true);
+    setting->setDefaultLanguage("Java");
+    runner->removeExecutable();
+    editor->setHighlighter(new QCXXHighlighter);
+    editor->setCompleter(nullptr);
   }
 }

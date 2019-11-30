@@ -113,7 +113,7 @@
              </font>
             </property>
             <property name="text">
-             <string>Output or stdout (Expected) [For Expected click the checkbox below]</string>
+             <string>Output (stdout and stderr)</string>
             </property>
            </widget>
           </item>
@@ -145,7 +145,7 @@
           <item>
            <widget class="QCheckBox" name="expected">
             <property name="enabled">
-             <bool>false</bool>
+             <bool>true</bool>
             </property>
             <property name="font">
              <font>
@@ -207,18 +207,28 @@
      <string>Settings</string>
     </property>
     <addaction name="actionChange_compile_command"/>
-    <addaction name="actionChange_run_command"/>
-    <addaction name="actionChange_format_command"/>
     <addaction name="actionSet_Code_Template"/>
+    <addaction name="actionChange_format_command"/>
+    <addaction name="actionRun_Command"/>
+    <addaction name="actionChange_run_command"/>
    </widget>
    <widget class="QMenu" name="menuEditor">
     <property name="title">
      <string>Editor</string>
     </property>
-    <addaction name="actionDark_Theme"/>
-    <addaction name="actionWrap_Text"/>
+    <widget class="QMenu" name="menuLanguage_2">
+     <property name="title">
+      <string>Language</string>
+     </property>
+     <addaction name="actionC_C"/>
+     <addaction name="actionJava"/>
+     <addaction name="actionPython"/>
+    </widget>
+    <addaction name="menuLanguage_2"/>
     <addaction name="actionAuto_Indentation"/>
     <addaction name="actionAuto_Parenthesis"/>
+    <addaction name="actionDark_Theme"/>
+    <addaction name="actionWrap_Text"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuEditor"/>
@@ -300,17 +310,17 @@
   </action>
   <action name="actionChange_compile_command">
    <property name="text">
-    <string>Change compile command</string>
+    <string>Compile Command</string>
    </property>
   </action>
   <action name="actionChange_run_command">
    <property name="text">
-    <string>Change run command</string>
+    <string>Runtime Argument</string>
    </property>
   </action>
   <action name="actionChange_format_command">
    <property name="text">
-    <string>Change format command</string>
+    <string>Format command</string>
    </property>
   </action>
   <action name="actionQuit">
@@ -396,7 +406,36 @@
   </action>
   <action name="actionSet_Code_Template">
    <property name="text">
-    <string>Set Code Template</string>
+    <string>Choose Template</string>
+   </property>
+  </action>
+  <action name="actionJava">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Java</string>
+   </property>
+  </action>
+  <action name="actionC_C">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>C/C++</string>
+   </property>
+  </action>
+  <action name="actionPython">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Python</string>
+   </property>
+  </action>
+  <action name="actionRun_Command">
+   <property name="text">
+    <string>Run Command</string>
    </property>
   </action>
  </widget>

@@ -58,6 +58,9 @@ std::string SettingManager::getFormatCommand() {
 std::string SettingManager::getPrependRunCommand() {
   return mSettings->value("prepend_run", "").toString().toStdString();
 }
+std::string SettingManager::getDefaultLang() {
+  return mSettings->value("lang", "Cpp").toString().toStdString();
+}
 std::string SettingManager::getTemplatePath() {
   return mSettings->value("template", "").toString().toStdString();
 }
@@ -104,6 +107,9 @@ void SettingManager::setTemplatePath(std::string path) {
 }
 void SettingManager::setPrependRunCommand(std::string command) {
   mSettings->setValue("prepend_run", QString::fromStdString(command));
+}
+void SettingManager::setDefaultLanguage(std::string lang) {
+  mSettings->setValue("lang", QString::fromStdString(lang));
 }
 
 SettingManager::~SettingManager() {
