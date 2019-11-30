@@ -65,6 +65,8 @@ $ cmake --build .
     - Editor does not saves your files if you don't Save them yourself. You can find your binary executable at `C://Users/<NAME>/AppData/Local/Temp/a.exe` in windows and on NIX in `/tmp/a.out`. At those location the source file could also be located with name `sol.cpp`. 
 - I code in Other than C++/C. Will you add support for it?
    - Maybe I will in future but there should not be any ETA. It should automatically work for other languages that are compiled like `Rust`, `GoLang` etc (except Java) if you intelligently change the compile and run commands. However the syntax highlighting support will be not correct.
+- I get DLL Missing error while launching application?
+   - Please download  [Microsoft Visual C++ Redistributable for Visual Studio 2015, 2017 and 2019](https://support.microsoft.com/en-us/help/2977003/the-latest-supported-visual-c-downloads).
 
 
 
