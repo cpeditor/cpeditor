@@ -83,6 +83,7 @@ class MainWindow : public QMainWindow {
  private:
   Ui::MainWindow* ui;
   QCodeEditor* editor;
+  QString language;
   QFile* openFile = nullptr;
   Settings::SettingManager* setting = nullptr;
   Core::Formatter* formatter = nullptr;

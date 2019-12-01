@@ -127,6 +127,7 @@ void MainWindow::restoreSettings() {
     editor->setHighlighter(new QCXXHighlighter);
     editor->setCompleter(nullptr);
     // TODO(Add Java Highlighter)
+    language = "Java";
 
   } else if (lang == "Python") {
     ui->actionC_C->setChecked(false);
@@ -135,6 +136,7 @@ void MainWindow::restoreSettings() {
 
     editor->setCompleter(new QPythonCompleter);
     editor->setHighlighter(new QPythonHighlighter);
+    language = "Python";
   } else {
     if (lang != "Cpp")
       Log::MessageLogger::warn(
@@ -147,6 +149,7 @@ void MainWindow::restoreSettings() {
     // TODO(Add C++ Completer)
     editor->setHighlighter(new QCXXHighlighter);
     editor->setCompleter(nullptr);
+    language = "Cpp";
   }
 }
 
@@ -366,6 +369,9 @@ void MainWindow::on_actionReset_Settings_triggered() {
     setting->setFormatCommand("clang-format -i");
     setting->setCompileCommands("g++ -Wall");
     setting->setRunCommand("");
+    setting->setDefaultLanguage("Cpp");
+    setting->setTemplatePath("");
+    setting->setPrependRunCommand("");
 
     formatter->updateCommand(
         QString::fromStdString(setting->getFormatCommand()));
@@ -609,6 +615,7 @@ void MainWindow::on_actionC_C_triggered(bool checked) {
     runner->removeExecutable();
     editor->setHighlighter(new QCXXHighlighter);
     editor->setCompleter(nullptr);
+    language = "Cpp";
   }
 }
 void MainWindow::on_actionPython_triggered(bool checked) {
@@ -620,6 +627,7 @@ void MainWindow::on_actionPython_triggered(bool checked) {
     runner->removeExecutable();
     editor->setHighlighter(new QPythonHighlighter);
     editor->setCompleter(new QPythonCompleter);
+    language = "Python";
   }
 }
 void MainWindow::on_actionJava_triggered(bool checked) {
@@ -631,5 +639,6 @@ void MainWindow::on_actionJava_triggered(bool checked) {
     runner->removeExecutable();
     editor->setHighlighter(new QCXXHighlighter);
     editor->setCompleter(nullptr);
+    language = "Java";
   }
 }

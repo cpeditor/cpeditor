@@ -129,10 +129,10 @@ void Runner::compilationFinished(bool success) {
     if (b_) {
       second = new QProcess();
 
-      QTimer* killtimer = new QTimer(second);
-      killtimer->setSingleShot(true);
-      killtimer->setInterval(5000);
-      QObject::connect(killtimer, SIGNAL(timeout()), second, SLOT(terminate()));
+      QTimer* killtimer2 = new QTimer(second);
+      killtimer2->setSingleShot(true);
+      killtimer2->setInterval(5000);
+      QObject::connect(killtimer2, SIGNAL(timeout()), second, SLOT(terminate()));
 
       second->setProgram(getBinaryOutput());
       second->setStandardInputFile(getInputSecond());
@@ -146,14 +146,14 @@ void Runner::compilationFinished(bool success) {
       QObject::connect(second, SIGNAL(started(void)), this,
                        SLOT(secondStarted()));
       second->start();
-      killtimer->start();
+      killtimer2->start();
     }
     if (c_) {
       third = new QProcess();
-      QTimer* killtimer = new QTimer(third);
-      killtimer->setSingleShot(true);
-      killtimer->setInterval(5000);
-      QObject::connect(killtimer, SIGNAL(timeout()), third, SLOT(terminate()));
+      QTimer* killtimer3 = new QTimer(third);
+      killtimer3->setSingleShot(true);
+      killtimer3->setInterval(5000);
+      QObject::connect(killtimer3, SIGNAL(timeout()), third, SLOT(terminate()));
       third->setProgram(getBinaryOutput());
       third->setStandardInputFile(getInputThird());
       if (!runCommand.trimmed().isEmpty())
@@ -166,7 +166,7 @@ void Runner::compilationFinished(bool success) {
       QObject::connect(third, SIGNAL(started(void)), this,
                        SLOT(thirdStarted()));
       third->start();
-      killtimer->start();
+      killtimer3->start();
     }
 
   } else {
