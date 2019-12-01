@@ -34,9 +34,9 @@ void MessageLogger::info(std::string head, std::string body) {
   ans += "] [";
   ans += head;
   ans += "] </b>";
-  ans += "<font color=blue>[";
+  ans += "[";
   ans += body;
-  ans += "]</font>";
+  ans += "]";
 
   box->appendHtml(QString::fromStdString(ans));
 }

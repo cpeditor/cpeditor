@@ -6,7 +6,7 @@
     <style name="LineNumber" foreground="#6272a4"/>
     <style name="SearchResult" foreground="#d57544" bold="true"/>
     <style name="SearchScope" foreground="#000000" background="#f8f8f2"/>
-    <style name="Parentheses" foreground="#f8f8f2" bold="true"/>
+    <style name="Parentheses" foreground="#f8f8f2" background="#7700aa" bold="true"/>
     <style name="ParenthesesMismatch" foreground="#f8f8f2"/>
     <style name="AutoComplete" foreground="#f8f8f2"/>
     <style name="CurrentLine" foreground="#000000" background="#383b4c"/>

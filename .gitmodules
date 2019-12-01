@@ -1,3 +1,6 @@
 [submodule "third_party/QCodeEditor"]
 	path = third_party/QCodeEditor
 	url = https://github.com/Megaxela/QCodeEditor
+[submodule "third_party/qdarkstyle"]
+	path = third_party/qdarkstyle
+	url = http://github.com/ColinDuquesnoy/QDarkStyleSheet

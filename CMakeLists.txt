@@ -47,6 +47,7 @@ add_executable(CPEditor
     ${CMAKE_BINARY_DIR}/generated/version.hpp
 
     resources/resources.qrc
+    third_party/qdarkstyle/qdarkstyle/style.qrc
     appicon.rc)
 
 include_directories("third_party/QCodeEditor/include")

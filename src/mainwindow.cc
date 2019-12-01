@@ -26,6 +26,8 @@
 #include <QPythonCompleter>
 #include <QPythonHighlighter>
 #include <QSyntaxStyle>
+#include <QTextStream>
+#include <QThread>
 
 #include "../ui/ui_mainwindow.h"
 
@@ -304,17 +306,26 @@ void MainWindow::on_actionQuit_triggered() {
   if (res == QMessageBox::Yes)
     QApplication::quit();
 }
-
 // *********************** ACTIONS::EDITOR ******************************
 void MainWindow::on_actionDark_Theme_triggered(bool checked) {
   if (checked) {
+    QFile fullDark(":/qdarkstyle/style.qss");
+    fullDark.open(QFile::ReadOnly | QFile::Text);
+    QTextStream ts(&fullDark);
+
     auto qFile = new QFile(":/styles/drakula.xml");
     qFile->open(QIODevice::ReadOnly);
     auto darkTheme = new QSyntaxStyle(this);
     darkTheme->load(qFile->readAll());
+
+    qApp->setStyleSheet(ts.readAll());
     editor->setSyntaxStyle(darkTheme);
+
   } else {
+    qApp->setStyleSheet("");
     editor->setSyntaxStyle(QSyntaxStyle::defaultStyle());
+    auto oldbackground = editor->styleSheet();
+    Log::MessageLogger::info("CP Editor", "If theme is not set correctly. Please again change theme");
   }
 }
 
