@@ -45,8 +45,11 @@ bool SettingManager::isAutoIndent() {
 bool SettingManager::isAutoParenthesis() {
   return mSettings->value("auto_parenthesis", "true").toBool();
 }
-bool SettingManager::isAutoSave(){
-    return mSettings->value("autosave", "false").toBool();
+bool SettingManager::isAutoSave() {
+  return mSettings->value("autosave", "false").toBool();
+}
+bool SettingManager::isBeta() {
+  return mSettings->value("beta", "false").toBool();
 }
 
 std::string SettingManager::getRunCommand() {
@@ -67,8 +70,8 @@ std::string SettingManager::getDefaultLang() {
 std::string SettingManager::getTemplatePath() {
   return mSettings->value("template", "").toString().toStdString();
 }
-std::string SettingManager::getFont(){
-    return mSettings->value("font", "").toString().toStdString();
+std::string SettingManager::getFont() {
+  return mSettings->value("font", "").toString().toStdString();
 }
 
 void SettingManager::setDarkTheme(bool value) {
@@ -99,11 +102,18 @@ void SettingManager::setAutoParenthesis(bool value) {
     mSettings->setValue("auto_parenthesis", QString::fromStdString("false"));
 }
 
-void SettingManager::setAutoSave(bool value){
-    if(value)
-        mSettings->setValue("autosave", QString::fromStdString("true"));
-    else
-        mSettings->setValue("autosave", QString::fromStdString("false"));
+void SettingManager::setAutoSave(bool value) {
+  if (value)
+    mSettings->setValue("autosave", QString::fromStdString("true"));
+  else
+    mSettings->setValue("autosave", QString::fromStdString("false"));
+}
+
+void SettingManager::setBeta(bool value) {
+  if (value)
+    mSettings->setValue("beta", QString::fromStdString("true"));
+  else
+    mSettings->setValue("beta", QString::fromStdString("false"));
 }
 
 void SettingManager::setRunCommand(std::string command) {
@@ -124,8 +134,8 @@ void SettingManager::setPrependRunCommand(std::string command) {
 void SettingManager::setDefaultLanguage(std::string lang) {
   mSettings->setValue("lang", QString::fromStdString(lang));
 }
-void SettingManager::setFont(std::string font){
-    mSettings->setValue("font", QString::fromStdString(font));
+void SettingManager::setFont(std::string font) {
+  mSettings->setValue("font", QString::fromStdString(font));
 }
 
 SettingManager::~SettingManager() {

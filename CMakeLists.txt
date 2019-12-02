@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.5)
 
-project(CPEditor LANGUAGES CXX VERSION 1.50.2)
+project(CPEditor LANGUAGES CXX VERSION 1.46.3)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
@@ -20,6 +20,8 @@ endif()
 
 
 find_package(Qt5 COMPONENTS Widgets REQUIRED)
+find_package(Qt5 COMPONENTS Network REQUIRED)
+
 add_subdirectory(third_party/QCodeEditor)
 
 configure_file(version.hpp.in ${CMAKE_BINARY_DIR}/generated/version.hpp)
@@ -57,4 +59,5 @@ include_directories("include/")
 include_directories("generated/")
 
 target_link_libraries(CPEditor PRIVATE Qt5::Widgets)
+target_link_libraries(CPEditor PRIVATE Qt5::Network)
 target_link_libraries(CPEditor PRIVATE QCodeEditor)

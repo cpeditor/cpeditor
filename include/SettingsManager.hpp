@@ -34,6 +34,7 @@ class SettingManager {
   bool isAutoParenthesis();
   bool isWrapText();
   bool isAutoSave();
+  bool isBeta();
 
   std::string getFormatCommand();
   std::string getCompileCommand();
@@ -48,6 +49,7 @@ class SettingManager {
   void setAutoIndent(bool value);
   void setWrapText(bool value);
   void setAutoSave(bool value);
+  void setBeta(bool value);
 
   void setCompileCommands(std::string command);
   void setRunCommand(std::string command);

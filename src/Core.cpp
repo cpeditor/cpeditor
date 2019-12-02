@@ -1,20 +1,19 @@
 /*
-* Copyright (C) 2019 Ashar Khan <ashar786khan@gmail.com> 
-* 
-* This file is part of CPEditor.
-*  
-* CPEditor is free software: you can redistribute it and/or modify
-* it under the terms of the GNU General Public License as published by
-* the Free Software Foundation, either version 3 of the License, or
-* (at your option) any later version.
-* 
-* I will not be responsible if CPEditor behaves in unexpected way and
-* causes your ratings to go down and or loose any important contest.
-* 
-* Believe Software is "Software" and it isn't not immune to bugs.
-* 
-*/
-
+ * Copyright (C) 2019 Ashar Khan <ashar786khan@gmail.com>
+ *
+ * This file is part of CPEditor.
+ *
+ * CPEditor is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * I will not be responsible if CPEditor behaves in unexpected way and
+ * causes your ratings to go down and or loose any important contest.
+ *
+ * Believe Software is "Software" and it isn't not immune to bugs.
+ *
+ */
 
 #include <Core.hpp>
 #include <MessageLogger.hpp>
@@ -26,10 +25,31 @@ Compiler::Compiler(QString command) {
   file = new QFile(getProgramFile());
   file->open(QIODevice::ReadWrite | QFile::Text);
   if (!file->isOpen()) {
-    Log::MessageLogger::error("Compiler",
-                              "Cannot create temporary compilation file");
+    Log::MessageLogger::error(
+        "Compiler",
+        "Cannot create temporary compilation file for C/C++ language");
   } else {
     file->resize(0);
+  }
+
+  pyFile = new QFile(getProgramFile(".py"));
+  pyFile->open(QIODevice::ReadWrite | QFile::Text);
+  if (!pyFile->isOpen()) {
+    Log::MessageLogger::error(
+        "Compiler",
+        "Cannot create temporary compilation file for python language");
+  } else {
+    pyFile->resize(0);
+  }
+
+  javaFile = new QFile(getProgramFile(".java"));
+  javaFile->open(QIODevice::ReadWrite | QFile::Text);
+  if (!javaFile->isOpen()) {
+    Log::MessageLogger::error(
+        "Compiler",
+        "Cannot create temporary compilation file for java language");
+  } else {
+    javaFile->resize(0);
   }
 }
 
@@ -37,11 +57,20 @@ Compiler::~Compiler() {
   if (file->isOpen())
     file->close();
   delete file;
+
+  if (pyFile->isOpen())
+    pyFile->close();
+  delete pyFile;
+
+  if (javaFile->isOpen())
+    javaFile->close();
+  delete javaFile;
+
   if (compilationProcess != nullptr)
     delete compilationProcess;
 }
 
-void Compiler::compile(QCodeEditor* editor) {
+void Compiler::compile(QCodeEditor* editor, QString lang) {
   if (compilationProcess != nullptr) {
     compilationProcess->kill();
     delete compilationProcess;  // calls sigkill
@@ -51,19 +80,49 @@ void Compiler::compile(QCodeEditor* editor) {
   if (!file->isOpen())
     file->open(QIODevice::ReadWrite | QFile::Text);
 
+  if (!pyFile->isOpen())
+    pyFile->open(QIODevice::ReadWrite | QFile::Text);
+
+  if (!javaFile->isOpen())
+    javaFile->open(QIODevice::ReadWrite | QFile::Text);
+
   Log::MessageLogger::info("Compiler", "Compilation requested");
+
   file->resize(0);
   file->write(editor->toPlainText().toUtf8().toStdString().c_str());
   file->close();
+
+  pyFile->resize(0);
+  pyFile->write(editor->toPlainText().toUtf8().toStdString().c_str());
+  pyFile->close();
+
+  javaFile->resize(0);
+  javaFile->write(editor->toPlainText().toUtf8().toStdString().c_str());
+  javaFile->close();
+
+  if (lang == "Python") {
+    emit compilationFinished(true);
+    return;
+  }
+
+  QString extension;
+  if (lang == "Java")
+    extension = ".java";
+  else if (extension == ".py")
+    extension = ".py";
 
   compilationProcess = new QProcess();
 
   auto lists = runCommand.trimmed().split(" ");
   compilationProcess->setProgram(lists[0]);
   lists.removeAt(0);
-  lists.append(getProgramFile());
-  lists.append("-o");
-  lists.append(getBinaryOutput());
+  lists.append(getProgramFile(extension));
+
+  if (lang == "Cpp") {
+    lists.append("-o");
+    lists.append(getBinaryOutput(extension));
+  }
+
   compilationProcess->setArguments(lists);
 
   QObject::connect(compilationProcess,

@@ -1,29 +1,29 @@
 /*
-* Copyright (C) 2019 Ashar Khan <ashar786khan@gmail.com> 
-* 
-* This file is part of CPEditor.
-*  
-* CPEditor is free software: you can redistribute it and/or modify
-* it under the terms of the GNU General Public License as published by
-* the Free Software Foundation, either version 3 of the License, or
-* (at your option) any later version.
-* 
-* I will not be responsible if CPEditor behaves in unexpected way and
-* causes your ratings to go down and or loose any important contest.
-* 
-* Believe Software is "Software" and it isn't not immune to bugs.
-* 
-*/
-
+ * Copyright (C) 2019 Ashar Khan <ashar786khan@gmail.com>
+ *
+ * This file is part of CPEditor.
+ *
+ * CPEditor is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * I will not be responsible if CPEditor behaves in unexpected way and
+ * causes your ratings to go down and or loose any important contest.
+ *
+ * Believe Software is "Software" and it isn't not immune to bugs.
+ *
+ */
 
 #include <MessageLogger.hpp>
 #include <QDateTime>
 namespace Log {
 
-QPlainTextEdit* MessageLogger::box = nullptr;
+QTextBrowser* MessageLogger::box = nullptr;
 
-void MessageLogger::setContainer(QPlainTextEdit* value) {
+void MessageLogger::setContainer(QTextBrowser* value) {
   MessageLogger::box = value;
+  box->setOpenExternalLinks(true);
 }
 
 void MessageLogger::info(std::string head, std::string body) {
@@ -37,8 +37,10 @@ void MessageLogger::info(std::string head, std::string body) {
   ans += "[";
   ans += body;
   ans += "]";
-
-  box->appendHtml(QString::fromStdString(ans));
+  if (box->toPlainText().isEmpty())
+    box->insertHtml(QString::fromStdString(ans));
+  else
+    box->insertHtml("<br>" + QString::fromStdString(ans));
 }
 void MessageLogger::warn(std::string head, std::string body) {
   std::string ans = "<b>[";
@@ -52,7 +54,10 @@ void MessageLogger::warn(std::string head, std::string body) {
   ans += body;
   ans += "]</font>";
 
-  box->appendHtml(QString::fromStdString(ans));
+  if (box->toPlainText().isEmpty())
+    box->insertHtml(QString::fromStdString(ans));
+  else
+    box->insertHtml("<br>" + QString::fromStdString(ans));
 }
 void MessageLogger::error(std::string head, std::string body, bool multiline) {
   std::string ans = "<b>[";
@@ -69,7 +74,11 @@ void MessageLogger::error(std::string head, std::string body, bool multiline) {
   } else
     ans += body;
   ans += "]</font>";
-  box->appendHtml(QString::fromStdString(ans));
+
+  if (box->toPlainText().isEmpty())
+    box->insertHtml(QString::fromStdString(ans));
+  else
+    box->insertHtml("<br>" + QString::fromStdString(ans));
 }
 void MessageLogger::clear() {
   box->clear();

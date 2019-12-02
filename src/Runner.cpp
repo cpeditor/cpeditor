@@ -45,33 +45,50 @@ void Runner::updateCompileCommand(QString newCommand) {
   this->compiler->updateCommand(newCommand);
 }
 
-void Runner::killAll(){
-    if (first != nullptr) {
-      if(first->state() == QProcess::Running)
-          Log::MessageLogger::info("Runner", "Killed Program executing first testcase");
-      first->kill();
-      delete first;
-      first = nullptr;
+QString Runner::getLatestModifiedBinaryLang() {
+  //    QFile a(getBinaryOutput()), b(getProgramFile(".py")),
+  //    c(getBinaryOutput(".class"));
 
-    }
-    if (second != nullptr) {
-        if(second->state() == QProcess::Running)
-            Log::MessageLogger::info("Runner", "Killed Program executing second testcase");
-      second->kill();
-      delete second;
-      second = nullptr;
+  //    a.open(QIODevice::ReadOnly);
+  //    b.open(QIODevice::ReadOnly);
+  //    c.open(QIODevice::ReadOnly);
 
-    }
-    if (third != nullptr) {
-        if(third->state() == QProcess::Running)
-            Log::MessageLogger::info("Runner", "Killed Program executing third testcase");
-      third->kill();
-      delete third;
-      third = nullptr;
-    }
+  //    a.
+  return "QString";
 }
 
-void Runner::run(QCodeEditor* editor, bool runA, bool runB, bool runC) {
+void Runner::killAll() {
+  if (first != nullptr) {
+    if (first->state() == QProcess::Running)
+      Log::MessageLogger::info("Runner",
+                               "Killed Program executing first testcase");
+    first->kill();
+    delete first;
+    first = nullptr;
+  }
+  if (second != nullptr) {
+    if (second->state() == QProcess::Running)
+      Log::MessageLogger::info("Runner",
+                               "Killed Program executing second testcase");
+    second->kill();
+    delete second;
+    second = nullptr;
+  }
+  if (third != nullptr) {
+    if (third->state() == QProcess::Running)
+      Log::MessageLogger::info("Runner",
+                               "Killed Program executing third testcase");
+    third->kill();
+    delete third;
+    third = nullptr;
+  }
+}
+
+void Runner::run(QCodeEditor* editor,
+                 bool runA,
+                 bool runB,
+                 bool runC,
+                 QString lang) {
   if (first != nullptr) {
     first->kill();
     delete first;
@@ -90,10 +107,11 @@ void Runner::run(QCodeEditor* editor, bool runA, bool runB, bool runC) {
   a_ = runA;
   b_ = runB;
   c_ = runC;
-  compiler->compile(editor);
+
+  compiler->compile(editor, lang);
 }
 
-void Runner::run(bool runA, bool runB, bool runC) {
+void Runner::run(bool runA, bool runB, bool runC, QString lang) {
   if (first != nullptr) {
     first->terminate();
     delete first;
@@ -123,13 +141,56 @@ void Runner::run(bool runA, bool runB, bool runC) {
   }
 }
 
+void Runner::runDetached(QCodeEditor* editor, QString lang) {
+#if defined(__unix__)
+  if (std::system("xterm -version") != 0) {
+    Log::MessageLogger::error(
+        "Detached Execution",
+        "This requires xterm to be installed on your system");
+    return;
+  }
+#endif
+  if (detachedHandle != nullptr) {
+    if (detachedHandle->state() == QProcess::Running)
+      Log::MessageLogger::info(
+          "Detached Runner",
+          "Already running a detached process. Killing it now");
+    detachedHandle->kill();
+    delete detachedHandle;
+    detachedHandle = nullptr;
+  }
+
+  detached = true;
+  compiler->compile(editor, lang);
+}
+
 void Runner::removeExecutable() {
   if (QFile::exists(getBinaryOutput()))
     QFile::remove(getBinaryOutput());
+  if (QFile::exists(getBinaryOutput(".class")))
+    QFile::remove(getBinaryOutput(".class"));
 }
 
 void Runner::compilationFinished(bool success) {
   if (success) {
+    if (detached) {
+      detachedHandle = new QProcess();
+#if defined(__unix__)
+      detachedHandle->setProgram("xterm");
+      QString command =
+          "-e," + getBinaryOutput() +
+          "; echo '\nExecution Done\nPress any key to exit'; read";
+      detachedHandle->setArguments(command.split(","));
+
+      detachedHandle->start();
+#else
+      detachedHandle->setProgram("cmd");
+#endif
+
+      detached = false;
+      return;
+    }
+
     if (a_) {
       first = new QProcess();
 
@@ -158,7 +219,8 @@ void Runner::compilationFinished(bool success) {
       QTimer* killtimer2 = new QTimer(second);
       killtimer2->setSingleShot(true);
       killtimer2->setInterval(5000);
-      QObject::connect(killtimer2, SIGNAL(timeout()), second, SLOT(terminate()));
+      QObject::connect(killtimer2, SIGNAL(timeout()), second,
+                       SLOT(terminate()));
 
       second->setProgram(getBinaryOutput());
       second->setStandardInputFile(getInputSecond());
@@ -234,13 +296,13 @@ void Runner::firstFinished(int exitCode, QProcess::ExitStatus exitStatus) {
     Log::MessageLogger::error("Runner[1]",
                               "Timeout 5 sec, your program didn't returned");
   } else {
-      auto stderrMsg = QString::fromLocal8Bit(first->readAllStandardError()).toStdString();
+    auto stderrMsg =
+        QString::fromLocal8Bit(first->readAllStandardError()).toStdString();
 
     Log::MessageLogger::error("Runner[1]",
                               "Non-zero exit code " + std::to_string(exitCode));
-    if(!stderrMsg.empty())
-        Log::MessageLogger::error("Runner[1]/STDERR", stderrMsg, true);
-
+    if (!stderrMsg.empty())
+      Log::MessageLogger::error("Runner[1]/STDERR", stderrMsg, true);
   }
 }
 void Runner::secondFinished(int exitCode, QProcess::ExitStatus exitStatus) {
@@ -253,13 +315,13 @@ void Runner::secondFinished(int exitCode, QProcess::ExitStatus exitStatus) {
     Log::MessageLogger::error("Runner[2]",
                               "Timeout 5 sec, your program didn't returned");
   } else {
-      auto stderrMsg = QString::fromLocal8Bit(second->readAllStandardError()).toStdString();
+    auto stderrMsg =
+        QString::fromLocal8Bit(second->readAllStandardError()).toStdString();
 
     Log::MessageLogger::error("Runner[2]",
                               "Non-zero exit code " + std::to_string(exitCode));
-    if(!stderrMsg.empty())
-        Log::MessageLogger::error("Runner[2]/STDERR", stderrMsg, true);
-
+    if (!stderrMsg.empty())
+      Log::MessageLogger::error("Runner[2]/STDERR", stderrMsg, true);
   }
 }
 void Runner::thirdFinished(int exitCode, QProcess::ExitStatus exitStatus) {
@@ -272,11 +334,12 @@ void Runner::thirdFinished(int exitCode, QProcess::ExitStatus exitStatus) {
     Log::MessageLogger::error("Runner[3]",
                               "Timeout 5 sec, your program didn't returned");
   } else {
-      auto stderrMsg = QString::fromLocal8Bit(third->readAllStandardError()).toStdString();
+    auto stderrMsg =
+        QString::fromLocal8Bit(third->readAllStandardError()).toStdString();
     Log::MessageLogger::error("Runner[3]",
                               "Non-zero exit code " + std::to_string(exitCode));
-    if(!stderrMsg.empty())
-        Log::MessageLogger::error("Runner[3]/STDERR", stderrMsg, true);
+    if (!stderrMsg.empty())
+      Log::MessageLogger::error("Runner[3]/STDERR", stderrMsg, true);
   }
 }
 

@@ -45,6 +45,7 @@ MainWindow::MainWindow(QWidget* parent)
   setupCore();
   runner->removeExecutable();
   launchSession();
+  checkUpdates();
 }
 
 MainWindow::~MainWindow() {
@@ -61,6 +62,7 @@ MainWindow::~MainWindow() {
   delete compiler;
   delete runner;
   delete saveTimer;
+  delete updater;
 }
 
 // ************************* RAII HELPER *****************************
@@ -71,8 +73,7 @@ void MainWindow::setEditor() {
   editor->setMinimumHeight(400);
 
   editor->setSyntaxStyle(QSyntaxStyle::defaultStyle());  // default is white
-  editor->setHighlighter(new QPythonHighlighter);
-  // editor->setCompleter(new QPythonCompleter);
+  editor->setHighlighter(new QCXXHighlighter);
   editor->setAutoIndentation(true);
   editor->setAutoParentheses(true);
   editor->setWordWrapMode(QTextOption::NoWrap);
@@ -90,7 +91,7 @@ void MainWindow::setEditor() {
 
   saveTimer = new QTimer();
   saveTimer->setSingleShot(false);
-  saveTimer->setInterval(10000); // every 10 sec save
+  saveTimer->setInterval(10000);  // every 10 sec save
 }
 
 void MainWindow::setLogger() {
@@ -110,6 +111,11 @@ void MainWindow::saveSettings() {
   setting->setAutoParenthesis(ui->actionAuto_Parenthesis->isChecked());
   setting->setFont(editor->font().toString().toStdString());
   setting->setAutoSave(ui->actionAuto_Save->isChecked());
+}
+
+void MainWindow::checkUpdates() {
+  if (updater != nullptr)
+    updater->checkUpdate();
 }
 
 void MainWindow::restoreSettings() {
@@ -163,15 +169,15 @@ void MainWindow::restoreSettings() {
     language = "Cpp";
   }
 
-  if(!setting->getFont().empty()){
-      auto font = QFont();
-      if(font.fromString(QString::fromStdString(setting->getFont()))){
-          editor->setFont(font);
-      }
+  if (!setting->getFont().empty()) {
+    auto font = QFont();
+    if (font.fromString(QString::fromStdString(setting->getFont()))) {
+      editor->setFont(font);
+    }
   }
-  if(setting->isAutoSave()){
-      ui->actionAuto_Save->setChecked(true);
-      on_actionAuto_Save_triggered(true);
+  if (setting->isAutoSave()) {
+    ui->actionAuto_Save->setChecked(true);
+    on_actionAuto_Save_triggered(true);
   }
 }
 
@@ -208,6 +214,8 @@ void MainWindow::setupCore() {
       new Core::Runner(QString::fromStdString(setting->getRunCommand()),
                        QString::fromStdString(setting->getCompileCommand()));
 
+  updater = new Telemetry::UpdateNotifier(setting->isBeta());
+
   QObject::connect(runner, SIGNAL(firstExecutionFinished(QString, QString)),
                    this, SLOT(firstExecutionFinished(QString, QString)));
 
@@ -217,19 +225,19 @@ void MainWindow::setupCore() {
   QObject::connect(runner, SIGNAL(thirdExecutionFinished(QString, QString)),
                    this, SLOT(thirdExecutionFinished(QString, QString)));
 
-  QObject::connect(saveTimer, SIGNAL(timeout()), this, SLOT(onSaveTimerElapsed()));
-
+  QObject::connect(saveTimer, SIGNAL(timeout()), this,
+                   SLOT(onSaveTimerElapsed()));
 }
 
 void MainWindow::launchSession() {
-  if(openFile != nullptr){
-      if(openFile->isOpen()){
-          openFile->resize(0);
-          openFile->write(editor->toPlainText().toStdString().c_str());
-          openFile->close();
-      }
-      delete openFile;
-      openFile = nullptr;
+  if (openFile != nullptr) {
+    if (openFile->isOpen()) {
+      openFile->resize(0);
+      openFile->write(editor->toPlainText().toStdString().c_str());
+      openFile->close();
+    }
+    delete openFile;
+    openFile = nullptr;
   }
 
   if (setting->getTemplatePath().size() == 0)
@@ -262,7 +270,8 @@ void MainWindow::on_actionNew_triggered() {
 }
 void MainWindow::on_actionOpen_triggered() {
   auto fileName = QFileDialog::getOpenFileName(
-      this, tr("Open File"), "", "C++ Files (*.cpp *.hpp *.h *.cc *.cxx *.c)");
+      this, tr("Open File"), "",
+      "Source Files (*.cpp *.hpp *.h *.cc *.cxx *.c *.py *.py3 *.java)");
   if (fileName.isEmpty())
     return;
   QFile* newFile = new QFile(fileName);
@@ -292,7 +301,7 @@ void MainWindow::on_actionSave_triggered() {
   if (openFile == nullptr) {
     auto filename = QFileDialog::getSaveFileName(
         this, tr("Save File"), "",
-        "C++ Files (*.cpp *.hpp *.h *.cc *.cxx *.c)");
+        "Source Files (*.cpp *.hpp *.h *.cc *.cxx *.c *.py *.py3 *.java)");
     if (filename.isEmpty())
       return;
     auto savedFile = new QFile(filename);
@@ -315,7 +324,7 @@ void MainWindow::on_actionSave_triggered() {
 void MainWindow::on_actionSave_as_triggered() {
   auto filename = QFileDialog::getSaveFileName(
       this, tr("Save as File"), "",
-      "C++ Files (*.cpp *.hpp *.h *.cc *.cxx *.c)");
+      "Source Files (*.cpp *.hpp *.h *.cc *.cxx *.c *.py *.py3 *.java)");
   if (filename.isEmpty())
     return;
   QFile savedFile(filename);
@@ -331,14 +340,12 @@ void MainWindow::on_actionSave_as_triggered() {
   }
 }
 
-void MainWindow::on_actionAuto_Save_triggered(bool checked)
-{
-    if(checked){
-        saveTimer->start();
-    }
-    else{
-        saveTimer->stop();
-    }
+void MainWindow::on_actionAuto_Save_triggered(bool checked) {
+  if (checked) {
+    saveTimer->start();
+  } else {
+    saveTimer->stop();
+  }
 }
 
 void MainWindow::on_actionQuit_triggered() {
@@ -368,7 +375,9 @@ void MainWindow::on_actionDark_Theme_triggered(bool checked) {
     qApp->setStyleSheet("");
     editor->setSyntaxStyle(QSyntaxStyle::defaultStyle());
     auto oldbackground = editor->styleSheet();
-    Log::MessageLogger::info("CP Editor", "If theme is not set correctly. Please again change theme");
+    Log::MessageLogger::info(
+        "CP Editor",
+        "If theme is not set correctly. Please again change theme");
   }
 }
 
@@ -393,16 +402,26 @@ void MainWindow::on_actionAuto_Parenthesis_triggered(bool checked) {
     editor->setAutoParentheses(false);
 }
 
-void MainWindow::on_actionFont_triggered(){
-    bool ok;
-    QFont font = QFontDialog::getFont(&ok, editor->font());
-    if(ok){
-        editor->setFont(font);
-    }
+void MainWindow::on_actionFont_triggered() {
+  bool ok;
+  QFont font = QFontDialog::getFont(&ok, editor->font());
+  if (ok) {
+    editor->setFont(font);
+  }
 }
 
-
 // ************************************* ACTION::ABOUT ************************
+
+void MainWindow::on_actionBeta_Updates_triggered(bool checked) {
+  if (checked) {
+    updater->setBeta(true);
+    updater->checkUpdate();
+    setting->setBeta(true);
+  } else {
+    updater->setBeta(false);
+    setting->setBeta(true);
+  }
+}
 void MainWindow::on_actionAbout_triggered() {
   QMessageBox::about(
       this,
@@ -493,6 +512,11 @@ void MainWindow::on_runOnly_clicked() {
               !ui->in3->toPlainText().trimmed().isEmpty());
 }
 
+void MainWindow::on_actionDetached_Execution_triggered() {
+  Log::MessageLogger::clear();
+  runner->runDetached(editor, language);
+}
+
 // ************************ ACTIONS::ACTIONS ******************
 
 void MainWindow::on_actionFormat_triggered() {
@@ -509,20 +533,20 @@ void MainWindow::on_actionRun_triggered() {
     outputReader->readToFile();
   runner->run(editor, !ui->in1->toPlainText().trimmed().isEmpty(),
               !ui->in2->toPlainText().trimmed().isEmpty(),
-              !ui->in3->toPlainText().trimmed().isEmpty());
+              !ui->in3->toPlainText().trimmed().isEmpty(), language);
 }
 
 void MainWindow::on_actionCompile_triggered() {
   Log::MessageLogger::clear();
-  compiler->compile(editor);
+  compiler->compile(editor, language);
 }
 
 void MainWindow::on_onlyRun_triggered() {
   on_runOnly_clicked();
 }
 
-void MainWindow::on_actionKill_Processes_triggered(){
-    runner->killAll();
+void MainWindow::on_actionKill_Processes_triggered() {
+  runner->killAll();
 }
 
 // ************************ ACTIONS::SETTINGS *************************
@@ -577,7 +601,7 @@ void MainWindow::on_actionChange_format_command_triggered() {
 void MainWindow::on_actionSet_Code_Template_triggered() {
   auto filename = QFileDialog::getOpenFileName(
       this, tr("Choose template File"), "",
-      "C++ Files (*.cpp *.hpp *.h *.cc *.cxx *.c)");
+      "Source Files (*.cpp *.hpp *.h *.cc *.cxx *.c *.py *.py3 *.java)");
   if (filename.isEmpty())
     return;
   setting->setTemplatePath(filename.toStdString());
@@ -671,12 +695,14 @@ void MainWindow::thirdExecutionFinished(QString Stdout, QString Stderr) {
   }
 }
 
-void MainWindow::onSaveTimerElapsed(){
-   if(openFile != nullptr && openFile->isOpen()){
-      openFile->resize(0);
-      openFile->write(editor->toPlainText().toStdString().c_str());
-      Log::MessageLogger::info("AutoSave", "AutoSaved to file : " + openFile->fileName().toStdString());
-   }
+void MainWindow::onSaveTimerElapsed() {
+  if (openFile != nullptr && openFile->isOpen()) {
+    openFile->resize(0);
+    openFile->write(editor->toPlainText().toStdString().c_str());
+    Log::MessageLogger::info(
+        "AutoSave",
+        "AutoSaved to file : " + openFile->fileName().toStdString());
+  }
 }
 
 // **************************** LANGUAGE ***********************************

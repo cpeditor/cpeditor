@@ -76,7 +76,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QPlainTextEdit" name="compiler_edit"/>
+           <widget class="QTextBrowser" name="compiler_edit"/>
           </item>
           <item>
            <widget class="QLabel" name="input_text">
@@ -172,7 +172,7 @@
      <x>0</x>
      <y>0</y>
      <width>1203</width>
-     <height>17</height>
+     <height>23</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -188,8 +188,9 @@
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
-     <string>Help</string>
+     <string>Misc</string>
     </property>
+    <addaction name="actionBeta_Updates"/>
     <addaction name="actionAbout"/>
     <addaction name="actionAbout_Qt"/>
     <addaction name="actionReset_Settings"/>
@@ -201,6 +202,7 @@
     <addaction name="actionCompile"/>
     <addaction name="onlyRun"/>
     <addaction name="actionRun"/>
+    <addaction name="actionDetached_Execution"/>
     <addaction name="actionFormat"/>
     <addaction name="actionKill_Processes"/>
    </widget>
@@ -460,6 +462,22 @@
    </property>
    <property name="text">
     <string>Auto Save</string>
+   </property>
+  </action>
+  <action name="actionBeta_Updates">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Use Beta</string>
+   </property>
+  </action>
+  <action name="actionDetached_Execution">
+   <property name="text">
+    <string>Detached Execution</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+D</string>
    </property>
   </action>
  </widget>

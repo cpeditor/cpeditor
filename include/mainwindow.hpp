@@ -26,6 +26,7 @@
 #include <QMainWindow>
 #include <Runner.hpp>
 #include <SettingsManager.hpp>
+#include <UpdateNotifier.hpp>
 #include <generated/version.hpp>
 
 QT_BEGIN_NAMESPACE
@@ -87,7 +88,11 @@ class MainWindow : public QMainWindow {
 
   void on_actionAuto_Save_triggered(bool checked);
 
-private:
+  void on_actionBeta_Updates_triggered(bool checked);
+
+  void on_actionDetached_Execution_triggered();
+
+ private:
   Ui::MainWindow* ui;
   QCodeEditor* editor;
   QString language;
@@ -99,7 +104,8 @@ private:
   Core::IO::OutputWriter* outputWriter = nullptr;
   Core::Compiler* compiler = nullptr;
   Core::Runner* runner = nullptr;
-  QTimer *saveTimer = nullptr;
+  QTimer* saveTimer = nullptr;
+  Telemetry::UpdateNotifier* updater = nullptr;
   void setEditor();
   void setLogger();
   void runEditorDiagonistics();
@@ -108,5 +114,6 @@ private:
   void restoreSettings();
   void setupCore();
   void launchSession();
+  void checkUpdates();
 };
 #endif  // MAINWINDOW_HPP

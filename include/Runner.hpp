@@ -29,11 +29,20 @@ class Runner : public QObject, private Base::Files {
  public:
   Runner(QString runCommand, QString compileCommand);
   ~Runner();
-  void run(QCodeEditor* editor, bool runA, bool runB, bool runC);
-  void run(bool runA, bool runB, bool runC);
+
+  void run(QCodeEditor* editor,
+           bool runA,
+           bool runB,
+           bool runC,
+           QString lang = "Cpp");
+  void run(bool runA, bool runB, bool runC, QString lang = "Cpp");
+
+  void runDetached(QCodeEditor* editor, QString lang = "Cpp");
+
   void removeExecutable();
   void updateRunCommand(QString newCommand);
   void updateCompileCommand(QString newCommand);
+
   void killAll();
  private slots:
   void compilationFinished(bool success);
@@ -57,9 +66,11 @@ class Runner : public QObject, private Base::Files {
 
  private:
   QString runCommand;
+  QString getLatestModifiedBinaryLang();
   Core::Compiler* compiler = nullptr;
-  bool a_ = false, b_ = false, c_ = false;
-  QProcess *first = nullptr, *second = nullptr, *third = nullptr;
+  bool a_ = false, b_ = false, c_ = false, detached = false;
+  QProcess *first = nullptr, *second = nullptr, *third = nullptr,
+           *detachedHandle = nullptr;
 };
 
 }  // namespace Core
