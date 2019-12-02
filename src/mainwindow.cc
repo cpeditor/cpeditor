@@ -21,6 +21,7 @@
 #include <MessageLogger.hpp>
 #include <QCXXHighlighter>
 #include <QFileDialog>
+#include <QFontDialog>
 #include <QInputDialog>
 #include <QMessageBox>
 #include <QPythonCompleter>
@@ -28,6 +29,7 @@
 #include <QSyntaxStyle>
 #include <QTextStream>
 #include <QThread>
+#include <QTimer>
 
 #include "../ui/ui_mainwindow.h"
 
@@ -58,6 +60,7 @@ MainWindow::~MainWindow() {
   delete formatter;
   delete compiler;
   delete runner;
+  delete saveTimer;
 }
 
 // ************************* RAII HELPER *****************************
@@ -84,6 +87,10 @@ void MainWindow::setEditor() {
   ui->out3->setWordWrapMode(QTextOption::NoWrap);
 
   ui->expected->hide();
+
+  saveTimer = new QTimer();
+  saveTimer->setSingleShot(false);
+  saveTimer->setInterval(10000); // every 10 sec save
 }
 
 void MainWindow::setLogger() {
@@ -101,6 +108,8 @@ void MainWindow::saveSettings() {
   setting->setWrapText(ui->actionWrap_Text->isChecked());
   setting->setAutoIndent(ui->actionAuto_Indentation->isChecked());
   setting->setAutoParenthesis(ui->actionAuto_Parenthesis->isChecked());
+  setting->setFont(editor->font().toString().toStdString());
+  setting->setAutoSave(ui->actionAuto_Save->isChecked());
 }
 
 void MainWindow::restoreSettings() {
@@ -153,6 +162,17 @@ void MainWindow::restoreSettings() {
     editor->setCompleter(nullptr);
     language = "Cpp";
   }
+
+  if(!setting->getFont().empty()){
+      auto font = QFont();
+      if(font.fromString(QString::fromStdString(setting->getFont()))){
+          editor->setFont(font);
+      }
+  }
+  if(setting->isAutoSave()){
+      ui->actionAuto_Save->setChecked(true);
+      on_actionAuto_Save_triggered(true);
+  }
 }
 
 void MainWindow::runEditorDiagonistics() {
@@ -196,9 +216,22 @@ void MainWindow::setupCore() {
 
   QObject::connect(runner, SIGNAL(thirdExecutionFinished(QString, QString)),
                    this, SLOT(thirdExecutionFinished(QString, QString)));
+
+  QObject::connect(saveTimer, SIGNAL(timeout()), this, SLOT(onSaveTimerElapsed()));
+
 }
 
 void MainWindow::launchSession() {
+  if(openFile != nullptr){
+      if(openFile->isOpen()){
+          openFile->resize(0);
+          openFile->write(editor->toPlainText().toStdString().c_str());
+          openFile->close();
+      }
+      delete openFile;
+      openFile = nullptr;
+  }
+
   if (setting->getTemplatePath().size() == 0)
     return;
   if (QFile::exists(QString::fromStdString(setting->getTemplatePath()))) {
@@ -298,6 +331,16 @@ void MainWindow::on_actionSave_as_triggered() {
   }
 }
 
+void MainWindow::on_actionAuto_Save_triggered(bool checked)
+{
+    if(checked){
+        saveTimer->start();
+    }
+    else{
+        saveTimer->stop();
+    }
+}
+
 void MainWindow::on_actionQuit_triggered() {
   saveSettings();
   auto res = QMessageBox::question(this, "Exit?",
@@ -349,6 +392,15 @@ void MainWindow::on_actionAuto_Parenthesis_triggered(bool checked) {
   else
     editor->setAutoParentheses(false);
 }
+
+void MainWindow::on_actionFont_triggered(){
+    bool ok;
+    QFont font = QFontDialog::getFont(&ok, editor->font());
+    if(ok){
+        editor->setFont(font);
+    }
+}
+
 
 // ************************************* ACTION::ABOUT ************************
 void MainWindow::on_actionAbout_triggered() {
@@ -467,6 +519,10 @@ void MainWindow::on_actionCompile_triggered() {
 
 void MainWindow::on_onlyRun_triggered() {
   on_runOnly_clicked();
+}
+
+void MainWindow::on_actionKill_Processes_triggered(){
+    runner->killAll();
 }
 
 // ************************ ACTIONS::SETTINGS *************************
@@ -613,6 +669,14 @@ void MainWindow::thirdExecutionFinished(QString Stdout, QString Stderr) {
       ui->out3->appendHtml("<br><font color=red><b>stderr:</b><br>" +
                            Stderr.replace('\n', "<br>") + "</font><br>");
   }
+}
+
+void MainWindow::onSaveTimerElapsed(){
+   if(openFile != nullptr && openFile->isOpen()){
+      openFile->resize(0);
+      openFile->write(editor->toPlainText().toStdString().c_str());
+      Log::MessageLogger::info("AutoSave", "AutoSaved to file : " + openFile->fileName().toStdString());
+   }
 }
 
 // **************************** LANGUAGE ***********************************

@@ -172,7 +172,7 @@
      <x>0</x>
      <y>0</y>
      <width>1203</width>
-     <height>23</height>
+     <height>17</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -183,6 +183,7 @@
     <addaction name="actionOpen"/>
     <addaction name="actionSave"/>
     <addaction name="actionSave_as"/>
+    <addaction name="actionAuto_Save"/>
     <addaction name="actionQuit"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
@@ -201,6 +202,7 @@
     <addaction name="onlyRun"/>
     <addaction name="actionRun"/>
     <addaction name="actionFormat"/>
+    <addaction name="actionKill_Processes"/>
    </widget>
    <widget class="QMenu" name="menuSettings">
     <property name="title">
@@ -224,11 +226,12 @@
      <addaction name="actionJava"/>
      <addaction name="actionPython"/>
     </widget>
-    <addaction name="menuLanguage_2"/>
     <addaction name="actionAuto_Indentation"/>
     <addaction name="actionAuto_Parenthesis"/>
     <addaction name="actionDark_Theme"/>
     <addaction name="actionWrap_Text"/>
+    <addaction name="actionFont"/>
+    <addaction name="menuLanguage_2"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuEditor"/>
@@ -436,6 +439,27 @@
   <action name="actionRun_Command">
    <property name="text">
     <string>Run Command</string>
+   </property>
+  </action>
+  <action name="actionKill_Processes">
+   <property name="text">
+    <string>Kill Processes</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+K</string>
+   </property>
+  </action>
+  <action name="actionFont">
+   <property name="text">
+    <string>Font</string>
+   </property>
+  </action>
+  <action name="actionAuto_Save">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Auto Save</string>
    </property>
   </action>
  </widget>

@@ -34,6 +34,7 @@ class Runner : public QObject, private Base::Files {
   void removeExecutable();
   void updateRunCommand(QString newCommand);
   void updateCompileCommand(QString newCommand);
+  void killAll();
  private slots:
   void compilationFinished(bool success);
 

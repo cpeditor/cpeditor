@@ -33,6 +33,7 @@ class SettingManager {
   bool isAutoIndent();
   bool isAutoParenthesis();
   bool isWrapText();
+  bool isAutoSave();
 
   std::string getFormatCommand();
   std::string getCompileCommand();
@@ -40,11 +41,13 @@ class SettingManager {
   std::string getPrependRunCommand();
   std::string getTemplatePath();
   std::string getDefaultLang();
+  std::string getFont();
 
   void setDarkTheme(bool value);
   void setAutoParenthesis(bool value);
   void setAutoIndent(bool value);
   void setWrapText(bool value);
+  void setAutoSave(bool value);
 
   void setCompileCommands(std::string command);
   void setRunCommand(std::string command);
@@ -52,6 +55,7 @@ class SettingManager {
   void setPrependRunCommand(std::string command);
   void setTemplatePath(std::string path);
   void setDefaultLanguage(std::string lang);
+  void setFont(std::string font);
 
   ~SettingManager();
 

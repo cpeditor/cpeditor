@@ -45,6 +45,32 @@ void Runner::updateCompileCommand(QString newCommand) {
   this->compiler->updateCommand(newCommand);
 }
 
+void Runner::killAll(){
+    if (first != nullptr) {
+      if(first->state() == QProcess::Running)
+          Log::MessageLogger::info("Runner", "Killed Program executing first testcase");
+      first->kill();
+      delete first;
+      first = nullptr;
+
+    }
+    if (second != nullptr) {
+        if(second->state() == QProcess::Running)
+            Log::MessageLogger::info("Runner", "Killed Program executing second testcase");
+      second->kill();
+      delete second;
+      second = nullptr;
+
+    }
+    if (third != nullptr) {
+        if(third->state() == QProcess::Running)
+            Log::MessageLogger::info("Runner", "Killed Program executing third testcase");
+      third->kill();
+      delete third;
+      third = nullptr;
+    }
+}
+
 void Runner::run(QCodeEditor* editor, bool runA, bool runB, bool runC) {
   if (first != nullptr) {
     first->kill();
@@ -69,17 +95,17 @@ void Runner::run(QCodeEditor* editor, bool runA, bool runB, bool runC) {
 
 void Runner::run(bool runA, bool runB, bool runC) {
   if (first != nullptr) {
-    first->kill();
+    first->terminate();
     delete first;
     first = nullptr;
   }
   if (second != nullptr) {
-    second->kill();
+    second->terminate();
     delete second;
     second = nullptr;
   }
   if (third != nullptr) {
-    third->kill();
+    third->terminate();
     delete third;
     third = nullptr;
   }
@@ -208,8 +234,13 @@ void Runner::firstFinished(int exitCode, QProcess::ExitStatus exitStatus) {
     Log::MessageLogger::error("Runner[1]",
                               "Timeout 5 sec, your program didn't returned");
   } else {
+      auto stderrMsg = QString::fromLocal8Bit(first->readAllStandardError()).toStdString();
+
     Log::MessageLogger::error("Runner[1]",
                               "Non-zero exit code " + std::to_string(exitCode));
+    if(!stderrMsg.empty())
+        Log::MessageLogger::error("Runner[1]/STDERR", stderrMsg, true);
+
   }
 }
 void Runner::secondFinished(int exitCode, QProcess::ExitStatus exitStatus) {
@@ -222,8 +253,13 @@ void Runner::secondFinished(int exitCode, QProcess::ExitStatus exitStatus) {
     Log::MessageLogger::error("Runner[2]",
                               "Timeout 5 sec, your program didn't returned");
   } else {
+      auto stderrMsg = QString::fromLocal8Bit(second->readAllStandardError()).toStdString();
+
     Log::MessageLogger::error("Runner[2]",
                               "Non-zero exit code " + std::to_string(exitCode));
+    if(!stderrMsg.empty())
+        Log::MessageLogger::error("Runner[2]/STDERR", stderrMsg, true);
+
   }
 }
 void Runner::thirdFinished(int exitCode, QProcess::ExitStatus exitStatus) {
@@ -236,8 +272,11 @@ void Runner::thirdFinished(int exitCode, QProcess::ExitStatus exitStatus) {
     Log::MessageLogger::error("Runner[3]",
                               "Timeout 5 sec, your program didn't returned");
   } else {
+      auto stderrMsg = QString::fromLocal8Bit(third->readAllStandardError()).toStdString();
     Log::MessageLogger::error("Runner[3]",
                               "Non-zero exit code " + std::to_string(exitCode));
+    if(!stderrMsg.empty())
+        Log::MessageLogger::error("Runner[3]/STDERR", stderrMsg, true);
   }
 }
 

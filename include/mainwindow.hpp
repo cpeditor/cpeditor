@@ -73,6 +73,7 @@ class MainWindow : public QMainWindow {
   void firstExecutionFinished(QString, QString);
   void secondExecutionFinished(QString, QString);
   void thirdExecutionFinished(QString, QString);
+  void onSaveTimerElapsed();
 
   void on_actionC_C_triggered(bool checked);
   void on_actionPython_triggered(bool checked);
@@ -80,7 +81,13 @@ class MainWindow : public QMainWindow {
 
   void on_actionRun_Command_triggered();
 
- private:
+  void on_actionKill_Processes_triggered();
+
+  void on_actionFont_triggered();
+
+  void on_actionAuto_Save_triggered(bool checked);
+
+private:
   Ui::MainWindow* ui;
   QCodeEditor* editor;
   QString language;
@@ -92,6 +99,7 @@ class MainWindow : public QMainWindow {
   Core::IO::OutputWriter* outputWriter = nullptr;
   Core::Compiler* compiler = nullptr;
   Core::Runner* runner = nullptr;
+  QTimer *saveTimer = nullptr;
   void setEditor();
   void setLogger();
   void runEditorDiagonistics();

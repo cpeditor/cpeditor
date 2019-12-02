@@ -34,10 +34,12 @@ add_executable(CPEditor
     include/SettingsManager.hpp
     include/Core.hpp
     include/IO.hpp
+    include/UpdateNotifier.hpp
+    src/UpdateNotifier.cpp
     src/IO.cpp
     include/Runner.hpp
     src/Runner.cpp
-    src/SettngsManager.cpp
+    src/SettingsManager.cpp
     src/Core.cpp
     include/Formatter.hpp
     src/Formatter.cpp
