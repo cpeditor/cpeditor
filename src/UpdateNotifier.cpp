@@ -1,20 +1,19 @@
 /*
-* Copyright (C) 2019 Ashar Khan <ashar786khan@gmail.com> 
-* 
-* This file is part of CPEditor.
-*  
-* CPEditor is free software: you can redistribute it and/or modify
-* it under the terms of the GNU General Public License as published by
-* the Free Software Foundation, either version 3 of the License, or
-* (at your option) any later version.
-* 
-* I will not be responsible if CPEditor behaves in unexpected way and
-* causes your ratings to go down and or loose any important contest.
-* 
-* Believe Software is "Software" and it isn't not immune to bugs.
-* 
-*/
-
+ * Copyright (C) 2019 Ashar Khan <ashar786khan@gmail.com>
+ *
+ * This file is part of CPEditor.
+ *
+ * CPEditor is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * I will not be responsible if CPEditor behaves in unexpected way and
+ * causes your ratings to go down and or loose any important contest.
+ *
+ * Believe Software is "Software" and it isn't not immune to bugs.
+ *
+ */
 
 #include <MessageLogger.hpp>
 #include <QJsonDocument>
@@ -52,7 +51,6 @@ void UpdateNotifier::managerFinished(QNetworkReply* reply) {
     return;
   }
   QString jsonReply = reply->readAll();
-  QTextStream out(stdout);
 
   QJsonDocument doc = QJsonDocument::fromJson(jsonReply.toLocal8Bit());
 
@@ -63,10 +61,8 @@ void UpdateNotifier::managerFinished(QNetworkReply* reply) {
   QList<QString> latestSplit = latestRelease.split(".");
   QList<QString> currenSplit = currentVersionStr().split(".");
 
-  bool isUpdateAvailable =
-      (currenSplit[0].toInt() < latestSplit[0].toInt()) ||  // Major update
-      (currenSplit[1].toInt() < latestSplit[1].toInt()) ||  // Minor Update
-      (currenSplit[2].toInt() < latestSplit[2].toInt());    // Patch Update
+  bool isUpdateAvailable = latestRelease > currentVersionStr();
+  qDebug() << "Update is : " << isUpdateAvailable << "\n";
 
   bool showMessage = (isUpdateAvailable && (beta || !isBeta));
   if (showMessage) {

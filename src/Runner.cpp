@@ -1,27 +1,28 @@
 /*
-* Copyright (C) 2019 Ashar Khan <ashar786khan@gmail.com> 
-* 
-* This file is part of CPEditor.
-*  
-* CPEditor is free software: you can redistribute it and/or modify
-* it under the terms of the GNU General Public License as published by
-* the Free Software Foundation, either version 3 of the License, or
-* (at your option) any later version.
-* 
-* I will not be responsible if CPEditor behaves in unexpected way and
-* causes your ratings to go down and or loose any important contest.
-* 
-* Believe Software is "Software" and it isn't not immune to bugs.
-* 
-*/
-
+ * Copyright (C) 2019 Ashar Khan <ashar786khan@gmail.com>
+ *
+ * This file is part of CPEditor.
+ *
+ * CPEditor is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * I will not be responsible if CPEditor behaves in unexpected way and
+ * causes your ratings to go down and or loose any important contest.
+ *
+ * Believe Software is "Software" and it isn't not immune to bugs.
+ *
+ */
 
 #include <MessageLogger.hpp>
 #include <QTimer>
 #include <Runner.hpp>
 namespace Core {
 
-Runner::Runner(QString runCommand, QString compileCommand, QString runCommandStart) {
+Runner::Runner(QString runCommand,
+               QString compileCommand,
+               QString runCommandStart) {
   this->runCommand = runCommand;
   this->startRunCommand = runCommandStart;
   compiler = new Core::Compiler(compileCommand);
@@ -37,8 +38,8 @@ Runner::~Runner() {
   if (third != nullptr)
     delete third;
   delete compiler;
-  if(detachedHandle != nullptr)
-  delete detachedHandle;
+  if (detachedHandle != nullptr)
+    delete detachedHandle;
 }
 
 void Runner::updateRunCommand(QString newCommand) {
@@ -49,8 +50,8 @@ void Runner::updateCompileCommand(QString newCommand) {
   this->compiler->updateCommand(newCommand);
 }
 
-void Runner::updateRunStartCommand(QString newCommand){
-    this->startRunCommand = newCommand;
+void Runner::updateRunStartCommand(QString newCommand) {
+  this->startRunCommand = newCommand;
 }
 
 void Runner::killAll() {
@@ -79,13 +80,13 @@ void Runner::killAll() {
     third = nullptr;
   }
 
-  if(detachedHandle != nullptr){
-      if(detachedHandle->state() == QProcess::Running){
-          Log::MessageLogger::info("Detached", "Killing detached process");
-      }
-      detachedHandle->kill();
-      delete  detachedHandle;
-      detachedHandle = nullptr;
+  if (detachedHandle != nullptr) {
+    if (detachedHandle->state() == QProcess::Running) {
+      Log::MessageLogger::info("Detached", "Killing detached process");
+    }
+    detachedHandle->kill();
+    delete detachedHandle;
+    detachedHandle = nullptr;
   }
 }
 
@@ -142,16 +143,15 @@ void Runner::run(bool runA, bool runB, bool runC, QString lang) {
   if (language == "Cpp" && QFile::exists(getBinaryOutput())) {
     Log::MessageLogger::info("Runner", "Reusuing executable");
     compilationFinished(true);
-  }
-  else if(language == "Python" && QFile::exists(getProgramFile(".py"))){
-      Log::MessageLogger::warn("Runner", "Running last buffered script. To run current script use Compile and Run");
-      compilationFinished(true);
-  }
-  else if(language == "Java" && QFile::exists(getBinaryOutput(".class"))){
-      Log::MessageLogger::info("Runner", "Re-using same old class");
-      compilationFinished(true);
-  }
-  else {
+  } else if (language == "Python" && QFile::exists(getProgramFile(".py"))) {
+    Log::MessageLogger::warn("Runner",
+                             "Running last buffered script. To run current "
+                             "script use Compile and Run");
+    compilationFinished(true);
+  } else if (language == "Java" && QFile::exists(getBinaryOutput(".class"))) {
+    Log::MessageLogger::info("Runner", "Re-using same old class");
+    compilationFinished(true);
+  } else {
     Log::MessageLogger::error(
         "Runner",
         "Cannot run, Have you successfully compiled your code earlier?");
@@ -196,39 +196,50 @@ void Runner::compilationFinished(bool success) {
 #if defined(__unix__)
       detachedHandle->setProgram("xterm");
       QString command;
-      if(language == "Cpp")
-      command =
-          "-e," + getBinaryOutput() + runCommand +
-          "; echo '\nExecution Done\nPress any key to exit'; read";
-      else if(language == "Python")
-          command =
-              "-e," + startRunCommand + getProgramFile(".py") + runCommand +
-              "; echo '\nExecution Done\nPress any key to exit'; read";
-      else if(language == "Java")
-          command =
-              "-e," + startRunCommand + getProgramFile(".class") + runCommand +
-              "; echo '\nExecution Done\nPress any key to exit'; read";
-      else
-      {
-       Log::MessageLogger::error("Language Error", "Execution language was not identified. Restart");
-       return;
+      QString runCommandLine;
+      if (!runCommand.trimmed().isEmpty())
+        runCommandLine = "," + runCommand.trimmed().replace(" ", ",");
+
+      if (language == "Cpp")
+        command = "-e," + getBinaryOutput() + runCommandLine +
+                  "; echo '\nExecution Done\nPress any key to exit'; read";
+
+      else if (language == "Python")
+        command = "-e," + startRunCommand + "," + getProgramFile(".py") +
+                  runCommandLine; /*+
+                  "; echo '\nExecution Done\nPress any key to exit'; read";*/
+
+      else if (language == "Java")
+        command = "-e," + startRunCommand + ",-classpath," +
+                  getBaseDirectory() + ",a" + runCommandLine; /* +
+                   "; echo '\nExecution Done\nPress any key to exit'; read";*/
+
+      else {
+        Log::MessageLogger::error(
+            "Language Error", "Execution language was not identified. Restart");
+        return;
       }
       detachedHandle->setArguments(command.split(","));
 #else
       detachedHandle->setProgram("cmd.exe");
       QString command;
       QString runCommandLine;
-      if(!runCommand.trimmed().isEmpty())
+      if (!runCommand.trimmed().isEmpty())
         runCommandLine = "," + runCommand.trimmed().replace(" ", ",");
 
-      if(language == "Cpp") command = "/C,start,"+ getBinaryOutput() + runCommandLine;
-      else if(language == "Python") command = "/C,start," + startRunCommand + "," + getProgramFile(".py") + runCommandLine;
-      else if(language == "Java") command = "/C,start," + startRunCommand + ",-classpath," + getBaseDirectory()+",a" + runCommandLine;
+      if (language == "Cpp")
+        command = "/C,start," + getBinaryOutput() + runCommandLine;
+      else if (language == "Python")
+        command = "/C,start," + startRunCommand + "," + getProgramFile(".py") +
+                  runCommandLine;
+      else if (language == "Java")
+        command = "/C,start," + startRunCommand + ",-classpath," +
+                  getBaseDirectory() + ",a" + runCommandLine;
 
-      else
-      {
-       Log::MessageLogger::error("Language Error", "Execution language was not identified. Restart");
-       return;
+      else {
+        Log::MessageLogger::error(
+            "Language Error", "Execution language was not identified. Restart");
+        return;
       }
       detachedHandle->setArguments(command.split(","));
 
@@ -248,18 +259,19 @@ void Runner::compilationFinished(bool success) {
 
       QString args;
 
-      if(language == "Cpp")
-          first->setProgram(getBinaryOutput());
-      else if(language == "Python" || language == "Java"){
-          first->setProgram(startRunCommand);
-          if(language == "Python") args += getProgramFile(".py");
-          else args += "-classpath," + getBaseDirectory() + ",a";
+      if (language == "Cpp")
+        first->setProgram(getBinaryOutput());
+      else if (language == "Python" || language == "Java") {
+        first->setProgram(startRunCommand);
+        if (language == "Python")
+          args += getProgramFile(".py");
+        else
+          args += "-classpath," + getBaseDirectory() + ",a";
+      } else {
+        Log::MessageLogger::error(
+            "Language Error", "Execution language was not identified. Restart");
+        return;
       }
-      else {
-          Log::MessageLogger::error("Language Error", "Execution language was not identified. Restart");
-          return;
-      }
-
 
       first->setStandardInputFile(getInputFirst());
       if (!runCommand.trimmed().isEmpty())
@@ -287,18 +299,19 @@ void Runner::compilationFinished(bool success) {
 
       QString args;
 
-      if(language == "Cpp")
-          second->setProgram(getBinaryOutput());
-      else if(language == "Python" || language == "Java"){
-          second->setProgram(startRunCommand);
-          if(language == "Python") args += getProgramFile(".py");
-         else args += "-classpath," + getBaseDirectory() + ",a";
+      if (language == "Cpp")
+        second->setProgram(getBinaryOutput());
+      else if (language == "Python" || language == "Java") {
+        second->setProgram(startRunCommand);
+        if (language == "Python")
+          args += getProgramFile(".py");
+        else
+          args += "-classpath," + getBaseDirectory() + ",a";
+      } else {
+        Log::MessageLogger::error(
+            "Language Error", "Execution language was not identified. Restart");
+        return;
       }
-      else {
-          Log::MessageLogger::error("Language Error", "Execution language was not identified. Restart");
-          return;
-      }
-
 
       second->setStandardInputFile(getInputSecond());
       if (!runCommand.trimmed().isEmpty())
@@ -322,18 +335,19 @@ void Runner::compilationFinished(bool success) {
       QObject::connect(killtimer3, SIGNAL(timeout()), third, SLOT(terminate()));
       QString args;
 
-      if(language == "Cpp")
-          third->setProgram(getBinaryOutput());
-      else if(language == "Python" || language == "Java"){
-          third->setProgram(startRunCommand);
-          if(language == "Python") args += getProgramFile(".py");
-          else args += "-classpath," + getBaseDirectory() + ",a";
+      if (language == "Cpp")
+        third->setProgram(getBinaryOutput());
+      else if (language == "Python" || language == "Java") {
+        third->setProgram(startRunCommand);
+        if (language == "Python")
+          args += getProgramFile(".py");
+        else
+          args += "-classpath," + getBaseDirectory() + ",a";
+      } else {
+        Log::MessageLogger::error(
+            "Language Error", "Execution language was not identified. Restart");
+        return;
       }
-      else {
-          Log::MessageLogger::error("Language Error", "Execution language was not identified. Restart");
-          return;
-      }
-
 
       third->setStandardInputFile(getInputThird());
       if (!runCommand.trimmed().isEmpty())
