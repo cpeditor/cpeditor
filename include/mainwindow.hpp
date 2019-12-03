@@ -40,7 +40,7 @@ class MainWindow : public QMainWindow {
   Q_OBJECT
 
  public:
-  MainWindow(QWidget* parent = nullptr);
+  MainWindow(QString fileOpen, QWidget* parent = nullptr);
   ~MainWindow() override;
   void closeEvent(QCloseEvent* event) override;
  private slots:
@@ -82,15 +82,10 @@ class MainWindow : public QMainWindow {
   void on_actionJava_triggered(bool checked);
 
   void on_actionRun_Command_triggered();
-
   void on_actionKill_Processes_triggered();
-
   void on_actionFont_triggered();
-
   void on_actionAuto_Save_triggered(bool checked);
-
   void on_actionBeta_Updates_triggered(bool checked);
-
   void on_actionDetached_Execution_triggered();
 
  private:

@@ -102,6 +102,7 @@ void Compiler::compile(QCodeEditor* editor, QString lang) {
   javaFile->close();
 
   if (lang == "Python") {
+    Log::MessageLogger::info("Compiler", "Internal buffer updated");
     emit compilationFinished(true);
     return;
   }
@@ -147,8 +148,10 @@ void Compiler::updateCommand(QString newCommand) {
 bool Compiler::check(QString comm) {
   auto lst = comm.trimmed().split(" ");
   auto com = lst[0] + " --version";
-  auto status = std::system(com.toStdString().c_str());
-  return status == 0;
+  auto com2 = lst[0] + " -version";
+  auto status1 = std::system(com.toStdString().c_str());
+  auto status2 = std::system(com2.toStdString().c_str());
+  return status1 == 0 || status2 == 0;
 }
 
 void Compiler::started() {

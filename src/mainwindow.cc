@@ -35,7 +35,7 @@
 #include "../ui/ui_mainwindow.h"
 
 // ***************************** RAII  ****************************
-MainWindow::MainWindow(QWidget* parent)
+MainWindow::MainWindow(QString filePath, QWidget* parent)
     : QMainWindow(parent), ui(new Ui::MainWindow) {
   ui->setupUi(this);
   setEditor();
@@ -47,6 +47,21 @@ MainWindow::MainWindow(QWidget* parent)
   runner->removeExecutable();
   launchSession();
   checkUpdates();
+
+  if(!filePath.isEmpty()){
+      openFile = new QFile(filePath);
+      openFile->open(QIODevice::ReadWrite | QFile::Text);
+      if(openFile->isOpen()){
+          this->window()->setWindowTitle("CP Editor : "+ openFile->fileName());
+          editor->setPlainText(openFile->readAll());
+      }
+      else{
+          Log::MessageLogger::warn("Loader", "The filepath was not loaded. Read/Write permission missing");
+          openFile->close();
+          delete openFile;
+          openFile = nullptr;
+      }
+  }
 }
 
 MainWindow::~MainWindow() {
@@ -213,7 +228,8 @@ void MainWindow::setupCore() {
       new Core::Compiler(QString::fromStdString(setting->getCompileCommand()));
   runner =
       new Core::Runner(QString::fromStdString(setting->getRunCommand()),
-                       QString::fromStdString(setting->getCompileCommand()));
+                       QString::fromStdString(setting->getCompileCommand()),
+                       QString::fromStdString(setting->getPrependRunCommand()));
 
   updater = new Telemetry::UpdateNotifier(setting->isBeta());
 
@@ -253,6 +269,8 @@ void MainWindow::launchSession() {
                               "Template could not be loaded from the file " +
                                   setting->getTemplatePath());
   }
+
+  this->window()->setWindowTitle("CP Editor: Temporary buffer");
 }
 
 // ******************* STATUS::ACTIONS FILE **************************
@@ -292,6 +310,8 @@ void MainWindow::on_actionOpen_triggered() {
     openFile = newFile;
     Log::MessageLogger::info("Open",
                              "Opened " + openFile->fileName().toStdString());
+    this->window()->setWindowTitle("CP Editor: " + openFile->fileName());
+
   } else {
     Log::MessageLogger::error(
         "Open", "Cannot Open, Do I have read and write permissions?");
@@ -305,12 +325,16 @@ void MainWindow::on_actionSave_triggered() {
         "Source Files (*.cpp *.hpp *.h *.cc *.cxx *.c *.py *.py3 *.java)");
     if (filename.isEmpty())
       return;
-    auto savedFile = new QFile(filename);
-    savedFile->open(QIODevice::ReadWrite | QFile::Text);
-    if (savedFile->isOpen()) {
-      openFile = savedFile;
-      openFile->write(editor->toPlainText().toStdString().c_str());
-    } else {
+
+    openFile = new QFile(filename);
+    openFile->open(QIODevice::ReadWrite | QFile::Text);
+    if (openFile->isOpen()) {
+      if(openFile->write(editor->toPlainText().toStdString().c_str()) != -1)
+      Log::MessageLogger::info("Save", "Saved file : " + openFile->fileName().toStdString());
+      else Log::MessageLogger::warn("Save",  "File was not saved successfully");
+      this->window()->setWindowTitle("CP Editor : "+ openFile->fileName());
+    }
+     else {
       Log::MessageLogger::error(
           "Save", "Cannot Save file. Do I have write permission?");
     }
@@ -445,10 +469,6 @@ void MainWindow::on_actionReset_Settings_triggered() {
                                    " settings?",
                                    QMessageBox::Yes | QMessageBox::No);
   if (res == QMessageBox::Yes) {
-    setting->setDarkTheme(false);
-    setting->setWrapText(false);
-    setting->setAutoIndent(true);
-    setting->setAutoParenthesis(true);
     setting->setFormatCommand("clang-format -i");
     setting->setCompileCommands("g++ -Wall");
     setting->setRunCommand("");
@@ -464,7 +484,9 @@ void MainWindow::on_actionReset_Settings_triggered() {
     runner->updateRunCommand(QString::fromStdString(setting->getRunCommand()));
     runner->updateCompileCommand(
         QString::fromStdString(setting->getCompileCommand()));
+    runner->updateRunStartCommand(QString::fromStdString(setting->getPrependRunCommand()));
     runEditorDiagonistics();
+
   }
 }
 
@@ -510,7 +532,7 @@ void MainWindow::on_runOnly_clicked() {
     outputReader->readToFile();
   runner->run(!ui->in1->toPlainText().trimmed().isEmpty(),
               !ui->in2->toPlainText().trimmed().isEmpty(),
-              !ui->in3->toPlainText().trimmed().isEmpty());
+              !ui->in3->toPlainText().trimmed().isEmpty(), language);
 }
 
 void MainWindow::on_actionDetached_Execution_triggered() {
@@ -622,6 +644,7 @@ void MainWindow::on_actionRun_Command_triggered() {
       QString::fromStdString(setting->getPrependRunCommand()), &ok);
   if (ok && !text.isEmpty()) {
     setting->setPrependRunCommand(text.toStdString());
+    runner->updateRunStartCommand(QString::fromStdString(setting->getPrependRunCommand()));
   }
 }
 

@@ -28,7 +28,7 @@ namespace Core {
 class Runner : public QObject, private Base::Files {
   Q_OBJECT
  public:
-  Runner(QString runCommand, QString compileCommand);
+  Runner(QString runCommand, QString compileCommand, QString startRunCommand);
   ~Runner();
 
   void run(QCodeEditor* editor,
@@ -43,6 +43,7 @@ class Runner : public QObject, private Base::Files {
   void removeExecutable();
   void updateRunCommand(QString newCommand);
   void updateCompileCommand(QString newCommand);
+  void updateRunStartCommand(QString newCommand);
 
   void killAll();
  private slots:
@@ -67,7 +68,8 @@ class Runner : public QObject, private Base::Files {
 
  private:
   QString runCommand;
-  QString getLatestModifiedBinaryLang();
+  QString startRunCommand;
+  QString language;
   Core::Compiler* compiler = nullptr;
   bool a_ = false, b_ = false, c_ = false, detached = false;
   QProcess *first = nullptr, *second = nullptr, *third = nullptr,

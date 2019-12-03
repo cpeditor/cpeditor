@@ -22,7 +22,8 @@
 
 int main(int argc, char* argv[]) {
   QApplication a(argc, argv);
-  MainWindow w;
+  QString filePath = argc > 1 ? argv[1]: "";
+  MainWindow w(filePath);
   w.show();
   return a.exec();
 }

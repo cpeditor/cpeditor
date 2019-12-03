@@ -68,8 +68,6 @@ void UpdateNotifier::managerFinished(QNetworkReply* reply) {
       (currenSplit[1].toInt() < latestSplit[1].toInt()) ||  // Minor Update
       (currenSplit[2].toInt() < latestSplit[2].toInt());    // Patch Update
 
-  qDebug() << isUpdateAvailable;
-
   bool showMessage = (isUpdateAvailable && (beta || !isBeta));
   if (showMessage) {
     Log::MessageLogger::info(

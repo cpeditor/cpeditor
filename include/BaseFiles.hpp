@@ -39,12 +39,13 @@ class Files {
   QString getOutputFirst() { return base_ + "/cp_editor_temp_out1_file"; }
   QString getOutputSecond() { return base_ + "/cp_editor_temp_out2_file"; }
   QString getOutputThird() { return base_ + "/cp_editor_temp_out3_file"; }
+  QString getBaseDirectory() {return base_;}
 #ifndef _WIN32
   QString getBinaryOutput(QString ext = "") {
     return base_ + "/a" + (ext.isEmpty() ? ".out" : ext);
   }
 #else
-  QString getBinaryOutput() {
+  QString getBinaryOutput(QString ext = "") {
     return base_ + "/a" + (ext.isEmpty() ? ".exe" : ext);
   }
 #endif
