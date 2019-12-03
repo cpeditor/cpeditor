@@ -5,19 +5,11 @@
 
 CP Editor is a Native Qt based code editor writter in C++. It make you only focus on your code and automates the compilation, executing and testing.
 
-  - Very Very Fast 
-  - Dark theme code editor
-  - Code formatting with `clang-format`
-  - Checking and validating `stdout` with Expected values
-  - Automatically Format code on braces
-  - Ability to add source template file
-
 
 ### Screenshots
 <img src=https://i.imgur.com/ACTrdoW.jpg width="49%" height="50%"> <img src=https://i.imgur.com/VlZ5vW2.jpg width="49%" height="50%"> 
 
 ### Installation
-> Optionally You need clang/gcc and clang-format. You can install from [here](http://releases.llvm.org/download.html#9.0.0).
 
 Head over to the [release page](https://github.com/coder3101/cp-editor2/releases) and download the binary/installer depending upon your OS.
 - Windows users can find an `Installer` install it and start to code.
@@ -27,13 +19,35 @@ Head over to the [release page](https://github.com/coder3101/cp-editor2/releases
 - Mac users please install from source for the time being.
 
 ### Initial setup
-- By default the editor uses `clang++` as compiler. You may need to change it to something like minGW `g++` or `gcc`for windows if you don't have clang installed. For that `Settings => Change Compile command`. Any compiler of your choice will work as long as **its added to PATH** and works.
+
+#### C/C++ Setup
+
+- By default the editor uses `g++` as compiler. You can change your compiler command to change the way editor will compile your code (Settings => Compile Command). Any compiler of your choice will work as long as **its added to PATH** and works.
 
 > Do not use `-o` option while changing compile command. Let editor itself generate the executable name.
 
 - To use `code-format` you need to have `clang-format` (recommended) installed and **added to PATH**. If you want to use something else you can use, If you don't want to use code-format then ignore the *Formatter Error*.
 
 > Any Error if occurs will be reported in `Message Section`. Try to read it and mitigate if possible. In most cases it will be related with your compiler or things not in PATH. 
+
+#### Python Setup
+- Since Python is interpreted language, we will need to change `Run Command`. By default it is empty, From Settings => Run Command, set it to `python`. Make sure Python is in PATH and is working. If newly added to PATH, A reboot may be needed for Editor to recognize it.
+
+- Now Change Editor Language to Python. From Editor => Language => [Check] Python. This will enable Python syntax Highlighting and keyword completer.
+
+- Now, start typing your wonderful code. Make sure you always use "Compile and Run", "Run" uses buffered script.
+
+#### Java Setup
+- Assuming that you have `javac` and `java` to your PATH, Enable Editor to use Java by Enabling Editor => Language => [Check] Java.
+
+- Now change the Compile command to something like `javac`
+
+- Now Change Run Command to `java`
+
+- Now start to code.
+
+> You **must not make your Java class public or give any other name apart from `a`**.
+
 
 ### Standard Keyboard Shortcuts
 
@@ -48,6 +62,8 @@ Head over to the [release page](https://github.com/coder3101/cp-editor2/releases
 | CTRL+Shift+R | Compile and Run                                              |
 | CTRL+Shift+C | Compile only                                                 |
 | CTRL+R       | Run                                                          |
+| CTRL+K       | Kill all running Testcases / Samples                         |
+| CTRL+Shift+D | Run the program in separate window (Detached mode)           |
 
 
 #### Building for source
@@ -63,11 +79,10 @@ $ cmake --build .
 #### FAQ 
 - Where does the editor saves my code and binary executable?
     - Editor does not saves your files if you don't Save them yourself. You can find your binary executable at `C://Users/<NAME>/AppData/Local/Temp/a.exe` in windows and on NIX in `/tmp/a.out`. At those location the source file could also be located with name `sol.cpp`. 
-- I code in Other than C++/C. Will you add support for it?
-   - Maybe I will in future but there should not be any ETA. It should automatically work for other languages that are compiled like `Rust`, `GoLang` etc (except Java) if you intelligently change the compile and run commands. However the syntax highlighting support will be not correct.
+- I am using it in Java and editor is not working.
+   - Make sure `java` and `javac` are in PATH variables. Please Log/Restart your machine if it does not recognizes the Java Compiler. Now make sure your source code has **non-public class named a**. 
 - I get DLL Missing error while launching application?
    - Please download  [Microsoft Visual C++ Redistributable for Visual Studio 2015, 2017 and 2019](https://support.microsoft.com/en-us/help/2977003/the-latest-supported-visual-c-downloads).
-
 
 
 License
