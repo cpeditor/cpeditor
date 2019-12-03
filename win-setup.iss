@@ -42,6 +42,7 @@ Name: "quicklaunchicon"; Description: "{cm:CreateQuickLaunchIcon}"; GroupDescrip
 
 [Files]
 Source: "C:\Users\Ashar\Projects\release\CPEditor.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\Ashar\Projects\release\bearer\*"; DestDir: "{app}\bearer\"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "C:\Users\Ashar\Projects\release\iconengines\*"; DestDir: "{app}\iconengines\"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "C:\Users\Ashar\Projects\release\imageformats\*"; DestDir: "{app}\imageformats\"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "C:\Users\Ashar\Projects\release\platforms\*"; DestDir: "{app}\platforms\"; Flags: ignoreversion recursesubdirs createallsubdirs
@@ -54,6 +55,8 @@ Source: "C:\Users\Ashar\Projects\release\Qt5Core.dll"; DestDir: "{app}"; Flags: 
 Source: "C:\Users\Ashar\Projects\release\Qt5Gui.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\Users\Ashar\Projects\release\Qt5Svg.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\Users\Ashar\Projects\release\Qt5Widgets.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\Ashar\Projects\release\Qt5Network.dll"; DestDir: "{app}"; Flags: ignoreversion
+
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
