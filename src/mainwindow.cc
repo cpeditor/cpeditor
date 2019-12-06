@@ -271,6 +271,13 @@ void MainWindow::launchSession() {
   }
 
   this->window()->setWindowTitle("CP Editor: Temporary buffer");
+  ui->in1->clear();
+  ui->in2->clear();
+  ui->in3->clear();
+
+  ui->out1->clear();
+  ui->out2->clear();
+  ui->out3->clear();
 }
 
 // ******************* STATUS::ACTIONS FILE **************************
