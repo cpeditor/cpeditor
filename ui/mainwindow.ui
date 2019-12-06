@@ -172,7 +172,7 @@
      <x>0</x>
      <y>0</y>
      <width>1203</width>
-     <height>23</height>
+     <height>17</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -231,6 +231,7 @@
     <addaction name="actionAuto_Indentation"/>
     <addaction name="actionAuto_Parenthesis"/>
     <addaction name="actionDark_Theme"/>
+    <addaction name="actionUse_Tabs"/>
     <addaction name="actionWrap_Text"/>
     <addaction name="actionFont"/>
     <addaction name="menuLanguage_2"/>
@@ -478,6 +479,14 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+Shift+D</string>
+   </property>
+  </action>
+  <action name="actionUse_Tabs">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Use Tabs</string>
    </property>
   </action>
  </widget>

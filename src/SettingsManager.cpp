@@ -53,6 +53,10 @@ bool SettingManager::isBeta() {
   return mSettings->value("beta", "false").toBool();
 }
 
+bool SettingManager::isTabs(){
+    return mSettings->value("use_tabs", "false").toBool();
+}
+
 std::string SettingManager::getRunCommand() {
   return mSettings->value("run", "").toString().toStdString();
 }
@@ -73,6 +77,10 @@ std::string SettingManager::getTemplatePath() {
 }
 std::string SettingManager::getFont() {
   return mSettings->value("font", "").toString().toStdString();
+}
+
+QRect SettingManager::getGeometry(){
+    return mSettings->value("geometry").toRect();
 }
 
 void SettingManager::setDarkTheme(bool value) {
@@ -117,6 +125,13 @@ void SettingManager::setBeta(bool value) {
     mSettings->setValue("beta", QString::fromStdString("false"));
 }
 
+void SettingManager::setTabs(bool value){
+    if(value)
+        mSettings->setValue("use_tabs", QString::fromStdString("true"));
+    else
+        mSettings->setValue("use_tabs", QString::fromStdString("false"));
+}
+
 void SettingManager::setRunCommand(std::string command) {
   mSettings->setValue("run", QString::fromStdString(command));
 }
@@ -137,6 +152,10 @@ void SettingManager::setDefaultLanguage(std::string lang) {
 }
 void SettingManager::setFont(std::string font) {
   mSettings->setValue("font", QString::fromStdString(font));
+}
+
+void SettingManager::setGeometry(QRect rect){
+    mSettings->setValue("geometry", rect);
 }
 
 SettingManager::~SettingManager() {

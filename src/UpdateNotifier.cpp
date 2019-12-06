@@ -16,6 +16,7 @@
  */
 
 #include <MessageLogger.hpp>
+#include <QJsonArray>
 #include <QJsonDocument>
 #include <UpdateNotifier.hpp>
 
@@ -35,14 +36,15 @@ void UpdateNotifier::setBeta(bool value) {
 
 void UpdateNotifier::checkUpdate() {
   request.setUrl(QUrl(
-      "https://api.github.com/repos/coder3101/cp-editor2/releases/latest"));
+      "https://api.github.com/repos/coder3101/cp-editor2/releases"));
   manager->get(request);
 }
 
 QString UpdateNotifier::currentVersionStr() {
-  std::string version = std::to_string(APP_VERSION_MAJOR) + "." +
-                        std::to_string(APP_VERSION_MINOR) + "." +
-                        std::to_string(APP_VERSION_PATCH);
+  std::string version = std::string(APP_VERSION_MAJOR) + "." +
+                        APP_VERSION_MINOR + "." +
+                        APP_VERSION_PATCH;
+
   return QString::fromStdString(version);
 }
 void UpdateNotifier::managerFinished(QNetworkReply* reply) {
@@ -53,16 +55,14 @@ void UpdateNotifier::managerFinished(QNetworkReply* reply) {
   QString jsonReply = reply->readAll();
 
   QJsonDocument doc = QJsonDocument::fromJson(jsonReply.toLocal8Bit());
+  doc = QJsonDocument::fromVariant(doc.array().at(0).toVariant());
 
   QString latestRelease = doc["tag_name"].toString();
   bool isBeta = doc["prerelease"].toBool();
+  bool isDraft = doc["draft"].toBool();
   QString downloadUrl = doc["html_url"].toString();
 
-  QList<QString> latestSplit = latestRelease.split(".");
-  QList<QString> currenSplit = currentVersionStr().split(".");
-
-  bool isUpdateAvailable = latestRelease > currentVersionStr();
-  qDebug() << "Update is : " << isUpdateAvailable << "\n";
+  bool isUpdateAvailable = (latestRelease > currentVersionStr()) && !isDraft;
 
   bool showMessage = (isUpdateAvailable && (beta || !isBeta));
   if (showMessage) {

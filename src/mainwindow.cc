@@ -127,6 +127,8 @@ void MainWindow::saveSettings() {
   setting->setAutoParenthesis(ui->actionAuto_Parenthesis->isChecked());
   setting->setFont(editor->font().toString().toStdString());
   setting->setAutoSave(ui->actionAuto_Save->isChecked());
+  setting->setGeometry(this->geometry());
+  setting->setTabs(ui->actionUse_Tabs->isChecked());
 }
 
 void MainWindow::checkUpdates() {
@@ -195,6 +197,16 @@ void MainWindow::restoreSettings() {
     ui->actionAuto_Save->setChecked(true);
     on_actionAuto_Save_triggered(true);
   }
+
+  if(!setting->getGeometry().isEmpty() &&
+          !setting->getGeometry().isNull() &&
+          setting->getGeometry().isValid()){
+      this->setGeometry(setting->getGeometry());
+  }
+
+  ui->actionUse_Tabs->setChecked(setting->isTabs());
+  editor->setTabReplace(!ui->actionUse_Tabs->isChecked());
+
 }
 
 void MainWindow::runEditorDiagonistics() {
@@ -340,6 +352,7 @@ void MainWindow::on_actionSave_triggered() {
       Log::MessageLogger::info("Save", "Saved file : " + openFile->fileName().toStdString());
       else Log::MessageLogger::warn("Save",  "File was not saved successfully");
       this->window()->setWindowTitle("CP Editor : "+ openFile->fileName());
+      openFile->flush();
     }
      else {
       Log::MessageLogger::error(
@@ -348,6 +361,7 @@ void MainWindow::on_actionSave_triggered() {
   } else {
     openFile->resize(0);
     openFile->write(editor->toPlainText().toStdString().c_str());
+    openFile->flush();
     Log::MessageLogger::info(
         "Save", "Saved with file name " + openFile->fileName().toStdString());
   }
@@ -427,6 +441,12 @@ void MainWindow::on_actionAuto_Indentation_triggered(bool checked) {
     editor->setAutoIndentation(false);
 }
 
+void MainWindow::on_actionUse_Tabs_triggered(bool checked)
+{
+    editor->setTabReplace(!checked);
+}
+
+
 void MainWindow::on_actionAuto_Parenthesis_triggered(bool checked) {
   if (checked)
     editor->setAutoParentheses(true);
@@ -458,9 +478,10 @@ void MainWindow::on_actionAbout_triggered() {
   QMessageBox::about(
       this,
       QString::fromStdString(std::string("About CP Editor ") +
-                             std::to_string(APP_VERSION_MAJOR) + "." +
-                             std::to_string(APP_VERSION_MINOR) + "." +
-                             std::to_string(APP_VERSION_PATCH)),
+                             APP_VERSION_MAJOR + "." +
+                             APP_VERSION_MINOR + "." +
+                             APP_VERSION_PATCH),
+
       "<p>The <b>CP Editor</b> is a competitive programmer's editor "
       "which can ease the task of compiling, testing and running a program"
       "so that you (a great programmer) can focus fully on your algorithms "

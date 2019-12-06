@@ -43,16 +43,21 @@ void MessageLogger::info(std::string head, std::string body) {
   else
     box->insertHtml("<br>" + QString::fromStdString(ans));
 }
-void MessageLogger::warn(std::string head, std::string body) {
+
+void MessageLogger::warn(std::string head, std::string body, bool multiline) {
   std::string ans = "<b>[";
-  int long long timestamp = QDateTime::currentSecsSinceEpoch();
+  auto timestamp = QDateTime::currentSecsSinceEpoch();
   auto val = QDateTime::fromSecsSinceEpoch(timestamp).time();
   ans += val.toString().toStdString();
   ans += "] [";
   ans += head;
   ans += "] </b>";
   ans += "<font color=green>[";
-  ans += body;
+  if (multiline) {
+    ans += "<br>";
+    ans += QString::fromStdString(body).replace("\n", "<br>").toStdString();
+  } else
+    ans += body;
   ans += "]</font>";
 
   if (box->toPlainText().isEmpty())

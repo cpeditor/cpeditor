@@ -36,6 +36,7 @@ class SettingManager {
   bool isWrapText();
   bool isAutoSave();
   bool isBeta();
+  bool isTabs();
 
   std::string getFormatCommand();
   std::string getCompileCommand();
@@ -44,6 +45,7 @@ class SettingManager {
   std::string getTemplatePath();
   std::string getDefaultLang();
   std::string getFont();
+  QRect getGeometry();
 
   void setDarkTheme(bool value);
   void setAutoParenthesis(bool value);
@@ -51,6 +53,7 @@ class SettingManager {
   void setWrapText(bool value);
   void setAutoSave(bool value);
   void setBeta(bool value);
+  void setTabs(bool value);
 
   void setCompileCommands(std::string command);
   void setRunCommand(std::string command);
@@ -59,6 +62,7 @@ class SettingManager {
   void setTemplatePath(std::string path);
   void setDefaultLanguage(std::string lang);
   void setFont(std::string font);
+  void setGeometry(QRect);
 
   ~SettingManager();
 

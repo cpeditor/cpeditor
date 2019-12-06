@@ -209,8 +209,14 @@ void Compiler::finished(int exitCode, QProcess::ExitStatus exitStatus) {
         QString::fromLocal8Bit(compilationProcess->readAllStandardError())
             .toStdString(),
         true);
+
     emit compilationFinished(false);
   } else {
+    Log::MessageLogger::warn(
+          "Compiler Warnings",
+          QString::fromLocal8Bit(compilationProcess->readAllStandardError())
+              .toStdString(),
+          true);
     emit compilationFinished(true);
   }
 }

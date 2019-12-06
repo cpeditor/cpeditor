@@ -26,7 +26,7 @@ class MessageLogger {
  public:
   MessageLogger() = delete;
 
-  static void warn(std::string head, std::string body);
+  static void warn(std::string head, std::string body, bool multiline = false);
   static void info(std::string head, std::string body);
   static void error(std::string head, std::string body, bool multiline = false);
   static void clear();

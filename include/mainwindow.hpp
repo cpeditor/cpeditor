@@ -88,7 +88,9 @@ class MainWindow : public QMainWindow {
   void on_actionBeta_Updates_triggered(bool checked);
   void on_actionDetached_Execution_triggered();
 
- private:
+  void on_actionUse_Tabs_triggered(bool checked);
+
+private:
   Ui::MainWindow* ui;
   QCodeEditor* editor;
   QString language;
