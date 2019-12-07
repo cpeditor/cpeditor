@@ -583,6 +583,16 @@ void MainWindow::on_actionFormat_triggered() {
 
 void MainWindow::on_actionRun_triggered() {
   Log::MessageLogger::clear();
+
+  if (openFile != nullptr && openFile->isOpen()) {
+      openFile->resize(0);
+    if(openFile->write(editor->toPlainText().toStdString().c_str()) != -1)
+    Log::MessageLogger::info("Save", "Saved file : " + openFile->fileName().toStdString());
+    else Log::MessageLogger::warn("Save",  "File was not saved successfully");
+    this->window()->setWindowTitle("CP Editor : "+ openFile->fileName());
+    openFile->flush();
+  }
+
   ui->out1->clear();
   ui->out2->clear();
   ui->out3->clear();
@@ -596,6 +606,14 @@ void MainWindow::on_actionRun_triggered() {
 
 void MainWindow::on_actionCompile_triggered() {
   Log::MessageLogger::clear();
+  if (openFile != nullptr && openFile->isOpen()) {
+      openFile->resize(0);
+    if(openFile->write(editor->toPlainText().toStdString().c_str()) != -1)
+    Log::MessageLogger::info("Save", "Saved file : " + openFile->fileName().toStdString());
+    else Log::MessageLogger::warn("Save",  "File was not saved successfully");
+    this->window()->setWindowTitle("CP Editor : "+ openFile->fileName());
+    openFile->flush();
+  }
   compiler->compile(editor, language);
 }
 
