@@ -148,10 +148,18 @@ void Compiler::updateCommand(QString newCommand) {
 bool Compiler::check(QString comm) {
   auto lst = comm.trimmed().split(" ");
   auto com = lst[0] + " --version";
-  auto com2 = lst[0] + " -version";
-  auto status1 = std::system(com.toStdString().c_str());
-  auto status2 = std::system(com2.toStdString().c_str());
-  return status1 == 0 || status2 == 0;
+  QProcess program;
+  QString commandToStart= com;
+  QStringList environment = program.systemEnvironment();
+  program.start(commandToStart);
+  bool started = program.waitForStarted();
+  if (started) // 10 Second timeout
+      program.kill();
+
+  int exitCode = program.exitCode();
+  QString stdOutput = QString::fromLocal8Bit(program.readAllStandardOutput());
+  QString stdError = QString::fromLocal8Bit(program.readAllStandardError());
+  return started;
 }
 
 void Compiler::started() {

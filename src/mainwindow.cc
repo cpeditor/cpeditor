@@ -221,12 +221,14 @@ void MainWindow::runEditorDiagonistics() {
         "Formatter",
         "Format feature will not work as your format command is not valid");
   }
+
   if (!Core::Compiler::check(
           QString::fromStdString(setting->getCompileCommand()))) {
     Log::MessageLogger::error("Compiler",
                               "Compiler will not work, Change Compile command "
                               "and make sure it is in path");
   }
+
   if (setting->getTemplatePath().size() != 0 &&
       !QFile::exists(QString::fromStdString(setting->getTemplatePath()))) {
     Log::MessageLogger::error(

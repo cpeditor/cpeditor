@@ -18,6 +18,7 @@
 
 #include <Formatter.hpp>
 #include <MessageLogger.hpp>
+#include <QProcess>
 
 namespace Core {
 Formatter::Formatter(QString runCommand) {
@@ -40,8 +41,19 @@ Formatter::~Formatter() {
 
 bool Formatter::check(QString command) {
   auto results = command.trimmed().split(" ");
-  auto runs = results[0] + " --version";
-  return std::system(runs.toStdString().c_str()) == 0;
+  QProcess program;
+  QString commandToStart= results[0];
+  QStringList environment = program.systemEnvironment();
+  program.start(commandToStart + " --version");
+  bool started = program.waitForStarted();
+  if (started) // 10 Second timeout
+      program.kill();
+
+  int exitCode = program.exitCode();
+  QString stdOutput = QString::fromLocal8Bit(program.readAllStandardOutput());
+  QString stdError = QString::fromLocal8Bit(program.readAllStandardError());
+
+  return started;
 }
 
 void Formatter::updateCommand(QString newCommand) {
