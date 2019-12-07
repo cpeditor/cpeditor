@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "CP Editor"
-#define MyAppVersion "2.0.2"
+#define MyAppVersion "2.0.3"
 #define MyAppPublisher "Ashar Khan <coder3101>"
 #define MyAppURL "https://github.com/coder3101/cp-editor2"
 #define MyAppExeName "CPEditor.exe"

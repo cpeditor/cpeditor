@@ -786,16 +786,16 @@ void MainWindow::onSaveTimerElapsed() {
 // **************************** LANGUAGE ***********************************
 
 void MainWindow::on_actionC_C_triggered(bool checked) {
-  if (checked) {
-    ui->actionC_C->setChecked(true);
-    ui->actionPython->setChecked(false);
-    ui->actionJava->setChecked(false);
-    setting->setDefaultLanguage("Cpp");
-    runner->removeExecutable();
-    editor->setHighlighter(new QCXXHighlighter);
-    editor->setCompleter(nullptr);
-    language = "Cpp";
-  }
+    if (checked) {
+      ui->actionC_C->setChecked(true);
+      ui->actionPython->setChecked(false);
+      ui->actionJava->setChecked(false);
+      setting->setDefaultLanguage("Cpp");
+      runner->removeExecutable();
+      editor->setHighlighter(new QCXXHighlighter);
+      editor->setCompleter(nullptr);
+      language = "Cpp";
+    }
 }
 void MainWindow::on_actionPython_triggered(bool checked) {
   if (checked) {
