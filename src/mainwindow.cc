@@ -127,8 +127,9 @@ void MainWindow::saveSettings() {
   setting->setAutoParenthesis(ui->actionAuto_Parenthesis->isChecked());
   setting->setFont(editor->font().toString().toStdString());
   setting->setAutoSave(ui->actionAuto_Save->isChecked());
-  setting->setGeometry(this->geometry());
+  if(!this->isMaximized()) setting->setGeometry(this->geometry());
   setting->setTabs(ui->actionUse_Tabs->isChecked());
+  setting->setMaximizedWindow(this->isMaximized());
 }
 
 void MainWindow::checkUpdates() {
@@ -200,8 +201,12 @@ void MainWindow::restoreSettings() {
 
   if(!setting->getGeometry().isEmpty() &&
           !setting->getGeometry().isNull() &&
-          setting->getGeometry().isValid()){
+          setting->getGeometry().isValid() && !setting->isMaximizedWindow()){
       this->setGeometry(setting->getGeometry());
+  }
+
+  if(setting->isMaximizedWindow()){
+      this->showMaximized();
   }
 
   ui->actionUse_Tabs->setChecked(setting->isTabs());

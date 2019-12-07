@@ -37,6 +37,7 @@ class SettingManager {
   bool isAutoSave();
   bool isBeta();
   bool isTabs();
+  bool isMaximizedWindow();
 
   std::string getFormatCommand();
   std::string getCompileCommand();
@@ -47,6 +48,7 @@ class SettingManager {
   std::string getFont();
   QRect getGeometry();
 
+
   void setDarkTheme(bool value);
   void setAutoParenthesis(bool value);
   void setAutoIndent(bool value);
@@ -54,6 +56,7 @@ class SettingManager {
   void setAutoSave(bool value);
   void setBeta(bool value);
   void setTabs(bool value);
+  void setMaximizedWindow(bool value);
 
   void setCompileCommands(std::string command);
   void setRunCommand(std::string command);

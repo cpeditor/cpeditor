@@ -57,6 +57,10 @@ bool SettingManager::isTabs(){
     return mSettings->value("use_tabs", "false").toBool();
 }
 
+bool SettingManager::isMaximizedWindow(){
+    return mSettings->value("win_max", "false").toBool();
+}
+
 std::string SettingManager::getRunCommand() {
   return mSettings->value("run", "").toString().toStdString();
 }
@@ -130,6 +134,13 @@ void SettingManager::setTabs(bool value){
         mSettings->setValue("use_tabs", QString::fromStdString("true"));
     else
         mSettings->setValue("use_tabs", QString::fromStdString("false"));
+}
+
+void SettingManager::setMaximizedWindow(bool value){
+    if(value)
+        mSettings->setValue("win_max", QString::fromStdString("true"));
+    else
+        mSettings->setValue("win_max", QString::fromStdString("false"));
 }
 
 void SettingManager::setRunCommand(std::string command) {
