@@ -338,6 +338,7 @@ void MainWindow::on_actionOpen_triggered() {
                              "Opened " + openFile->fileName().toStdString());
     this->window()->setWindowTitle("CP Editor: " + openFile->fileName());
 
+
   } else {
     Log::MessageLogger::error(
         "Open", "Cannot Open, Do I have read and write permissions?");
