@@ -1,13 +1,12 @@
 # CP Editor
 
-<img src=https://i.imgur.com/k9BdVwZ.png height="80" width="80">
-
+<img src=https://i.imgur.com/31n9t8i.png height="80" width="80">
 
 CP Editor is a Native Qt based code editor writter in C++. It make you only focus on your code and automates the compilation, executing and testing.
 
 
 ### Screenshots
-<img src=https://i.imgur.com/ACTrdoW.jpg width="49%" height="50%"> <img src=https://i.imgur.com/VlZ5vW2.jpg width="49%" height="50%"> 
+<img src=https://i.imgur.com/NoZscV9.png width="85%">  
 
 ### Installation
 
