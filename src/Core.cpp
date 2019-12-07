@@ -212,11 +212,10 @@ void Compiler::finished(int exitCode, QProcess::ExitStatus exitStatus) {
 
     emit compilationFinished(false);
   } else {
-    Log::MessageLogger::warn(
-          "Compiler Warnings",
-          QString::fromLocal8Bit(compilationProcess->readAllStandardError())
-              .toStdString(),
-          true);
+      QString StdErr = QString::fromLocal8Bit(compilationProcess->readAllStandardError());
+     if(!StdErr.isEmpty()){
+      Log::MessageLogger::warn("Compiler Warnings", StdErr.toStdString(), true);
+    }
     emit compilationFinished(true);
   }
 }
