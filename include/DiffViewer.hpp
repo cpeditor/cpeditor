@@ -7,16 +7,22 @@ namespace Ui {
 class DiffViewer;
 }
 
-class DiffViewer : public QMainWindow
-{
-    Q_OBJECT
+class DiffViewer : public QMainWindow {
+  Q_OBJECT
 
-public:
-    explicit DiffViewer(QWidget *parent = nullptr);
-    ~DiffViewer();
+ public:
+  explicit DiffViewer(QWidget* parent = nullptr);
+  ~DiffViewer();
 
-private:
-    Ui::DiffViewer *ui;
+ private slots:
+  void on_exit_clicked();
+
+  void on_read_clicked();
+
+  void on_update_clicked();
+
+ private:
+  Ui::DiffViewer* ui;
 };
 
-#endif // DIFFVIEWER_HPP
+#endif  // DIFFVIEWER_HPP

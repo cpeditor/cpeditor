@@ -136,34 +136,100 @@
           <item>
            <layout class="QHBoxLayout" name="output">
             <item>
-             <widget class="QPlainTextEdit" name="out1">
-              <property name="contextMenuPolicy">
-               <enum>Qt::CustomContextMenu</enum>
-              </property>
-              <property name="readOnly">
-               <bool>true</bool>
-              </property>
-             </widget>
+             <layout class="QVBoxLayout" name="verticalLayout">
+              <item>
+               <widget class="QPlainTextEdit" name="out1">
+                <property name="contextMenuPolicy">
+                 <enum>Qt::CustomContextMenu</enum>
+                </property>
+                <property name="readOnly">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <layout class="QHBoxLayout" name="horizontalLayout_3">
+                <item>
+                 <widget class="QLabel" name="out1_verdict">
+                  <property name="text">
+                   <string>Verdict : Accepted</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="out1_diff">
+                  <property name="text">
+                   <string>Show Diff</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+             </layout>
             </item>
             <item>
-             <widget class="QPlainTextEdit" name="out2">
-              <property name="contextMenuPolicy">
-               <enum>Qt::CustomContextMenu</enum>
-              </property>
-              <property name="readOnly">
-               <bool>true</bool>
-              </property>
-             </widget>
+             <layout class="QVBoxLayout" name="verticalLayout_2">
+              <item>
+               <widget class="QPlainTextEdit" name="out2">
+                <property name="contextMenuPolicy">
+                 <enum>Qt::CustomContextMenu</enum>
+                </property>
+                <property name="readOnly">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <layout class="QHBoxLayout" name="horizontalLayout_4">
+                <item>
+                 <widget class="QLabel" name="out2_verdict">
+                  <property name="text">
+                   <string>Verdict : Accepted</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="out2_diff">
+                  <property name="text">
+                   <string>Show Diff</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+             </layout>
             </item>
             <item>
-             <widget class="QPlainTextEdit" name="out3">
-              <property name="contextMenuPolicy">
-               <enum>Qt::CustomContextMenu</enum>
-              </property>
-              <property name="readOnly">
-               <bool>true</bool>
-              </property>
-             </widget>
+             <layout class="QVBoxLayout" name="verticalLayout_3">
+              <item>
+               <widget class="QPlainTextEdit" name="out3">
+                <property name="contextMenuPolicy">
+                 <enum>Qt::CustomContextMenu</enum>
+                </property>
+                <property name="readOnly">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <layout class="QHBoxLayout" name="horizontalLayout_5">
+                <item>
+                 <widget class="QLabel" name="out3_verdict">
+                  <property name="text">
+                   <string>Verdict : Unknown</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="out3_diff">
+                  <property name="text">
+                   <string>Show Diff</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+             </layout>
             </item>
            </layout>
           </item>

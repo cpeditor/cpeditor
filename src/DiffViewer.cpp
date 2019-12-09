@@ -10,3 +10,11 @@ DiffViewer::DiffViewer(QWidget* parent)
 DiffViewer::~DiffViewer() {
   delete ui;
 }
+
+void DiffViewer::on_exit_clicked() {
+  this->close();
+}
+
+void DiffViewer::on_read_clicked() {}
+
+void DiffViewer::on_update_clicked() {}
