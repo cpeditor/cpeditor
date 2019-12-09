@@ -76,7 +76,11 @@
            </widget>
           </item>
           <item>
-           <widget class="QTextBrowser" name="compiler_edit"/>
+           <widget class="QTextBrowser" name="compiler_edit">
+            <property name="contextMenuPolicy">
+             <enum>Qt::CustomContextMenu</enum>
+            </property>
+           </widget>
           </item>
           <item>
            <widget class="QLabel" name="input_text">
@@ -94,13 +98,25 @@
           <item>
            <layout class="QHBoxLayout" name="input">
             <item>
-             <widget class="QPlainTextEdit" name="in1"/>
+             <widget class="QPlainTextEdit" name="in1">
+              <property name="contextMenuPolicy">
+               <enum>Qt::CustomContextMenu</enum>
+              </property>
+             </widget>
             </item>
             <item>
-             <widget class="QPlainTextEdit" name="in2"/>
+             <widget class="QPlainTextEdit" name="in2">
+              <property name="contextMenuPolicy">
+               <enum>Qt::CustomContextMenu</enum>
+              </property>
+             </widget>
             </item>
             <item>
-             <widget class="QPlainTextEdit" name="in3"/>
+             <widget class="QPlainTextEdit" name="in3">
+              <property name="contextMenuPolicy">
+               <enum>Qt::CustomContextMenu</enum>
+              </property>
+             </widget>
             </item>
            </layout>
           </item>
@@ -121,6 +137,9 @@
            <layout class="QHBoxLayout" name="output">
             <item>
              <widget class="QPlainTextEdit" name="out1">
+              <property name="contextMenuPolicy">
+               <enum>Qt::CustomContextMenu</enum>
+              </property>
               <property name="readOnly">
                <bool>true</bool>
               </property>
@@ -128,6 +147,9 @@
             </item>
             <item>
              <widget class="QPlainTextEdit" name="out2">
+              <property name="contextMenuPolicy">
+               <enum>Qt::CustomContextMenu</enum>
+              </property>
               <property name="readOnly">
                <bool>true</bool>
               </property>
@@ -135,28 +157,15 @@
             </item>
             <item>
              <widget class="QPlainTextEdit" name="out3">
+              <property name="contextMenuPolicy">
+               <enum>Qt::CustomContextMenu</enum>
+              </property>
               <property name="readOnly">
                <bool>true</bool>
               </property>
              </widget>
             </item>
            </layout>
-          </item>
-          <item>
-           <widget class="QCheckBox" name="expected">
-            <property name="enabled">
-             <bool>true</bool>
-            </property>
-            <property name="font">
-             <font>
-              <weight>75</weight>
-              <bold>true</bold>
-             </font>
-            </property>
-            <property name="text">
-             <string>Check Program's output against above provided outputs</string>
-            </property>
-           </widget>
           </item>
          </layout>
         </item>

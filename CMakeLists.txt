@@ -31,6 +31,7 @@ add_executable(CPEditor
     src/main.cc
     src/mainwindow.cc
     ui/mainwindow.ui
+    ui/expand.ui
     include/mainwindow.hpp
     include/MessageLogger.hpp
     include/SettingsManager.hpp
@@ -47,6 +48,11 @@ add_executable(CPEditor
     src/Formatter.cpp
     include/BaseFiles.hpp
     src/MessageLogger.cpp
+    include/Expand.hpp
+    src/Expand.cpp
+    ui/diffviewer.ui
+    include/DiffViewer.hpp
+    src/DiffViewer.cpp
 
     ${CMAKE_BINARY_DIR}/generated/version.hpp
 

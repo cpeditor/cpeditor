@@ -68,7 +68,6 @@ class MainWindow : public QMainWindow {
   void on_compile_clicked();
   void on_run_clicked();
   void on_actionReset_Settings_triggered();
-  void on_expected_clicked(bool checked);
   void on_runOnly_clicked();
 
   void firstExecutionFinished(QString, QString);
@@ -86,10 +85,16 @@ class MainWindow : public QMainWindow {
   void on_actionAuto_Save_triggered(bool checked);
   void on_actionBeta_Updates_triggered(bool checked);
   void on_actionDetached_Execution_triggered();
-
   void on_actionUse_Tabs_triggered(bool checked);
-
   void on_actionSet_Tab_Size_triggered();
+
+  void on_in1_customContextMenuRequested(const QPoint& pos);
+  void on_in2_customContextMenuRequested(const QPoint& pos);
+  void on_in3_customContextMenuRequested(const QPoint& pos);
+  void on_compiler_edit_customContextMenuRequested(const QPoint& pos);
+  void on_out3_customContextMenuRequested(const QPoint& pos);
+  void on_out2_customContextMenuRequested(const QPoint& pos);
+  void on_out1_customContextMenuRequested(const QPoint& pos);
 
  private:
   Ui::MainWindow* ui;

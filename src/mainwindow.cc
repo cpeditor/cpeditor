@@ -18,6 +18,7 @@
 #include "mainwindow.hpp"
 
 #include <Core.hpp>
+#include <Expand.hpp>
 #include <MessageLogger.hpp>
 #include <QCXXHighlighter>
 #include <QFileDialog>
@@ -102,8 +103,6 @@ void MainWindow::setEditor() {
   ui->out1->setWordWrapMode(QTextOption::NoWrap);
   ui->out2->setWordWrapMode(QTextOption::NoWrap);
   ui->out3->setWordWrapMode(QTextOption::NoWrap);
-
-  ui->expected->hide();
 
   saveTimer = new QTimer();
   saveTimer->setSingleShot(false);
@@ -549,15 +548,6 @@ void MainWindow::on_run_clicked() {
   on_actionRun_triggered();
 }
 
-void MainWindow::on_expected_clicked(bool checked) {
-  ui->out1->clear();
-  ui->out2->clear();
-  ui->out3->clear();
-  ui->out1->setReadOnly(!checked);
-  ui->out2->setReadOnly(!checked);
-  ui->out3->setReadOnly(!checked);
-}
-
 void MainWindow::on_runOnly_clicked() {
   Log::MessageLogger::clear();
   inputReader->readToFile();
@@ -566,8 +556,6 @@ void MainWindow::on_runOnly_clicked() {
   ui->out2->clear();
   ui->out3->clear();
 
-  if (ui->expected->isChecked())
-    outputReader->readToFile();
   runner->run(!ui->in1->toPlainText().trimmed().isEmpty(),
               !ui->in2->toPlainText().trimmed().isEmpty(),
               !ui->in3->toPlainText().trimmed().isEmpty(), language);
@@ -602,8 +590,6 @@ void MainWindow::on_actionRun_triggered() {
   ui->out2->clear();
   ui->out3->clear();
   inputReader->readToFile();
-  if (ui->expected->isChecked())
-    outputReader->readToFile();
   runner->run(editor, !ui->in1->toPlainText().trimmed().isEmpty(),
               !ui->in2->toPlainText().trimmed().isEmpty(),
               !ui->in3->toPlainText().trimmed().isEmpty(), language);
@@ -726,71 +712,29 @@ void MainWindow::on_actionSet_Tab_Size_triggered() {
 void MainWindow::firstExecutionFinished(QString Stdout, QString Stderr) {
   Log::MessageLogger::info("Runner[1]", "Execution for first case completed");
 
-  if (ui->expected->isChecked()) {
-    ui->out1->clear();
-    outputWriter->writeFromFile(1);
-    if (ui->out1->toPlainText().trimmed() == Stdout.trimmed()) {
-      ui->out1->appendHtml(
-          "<br><b><font color=blue>Success (GOT)</font></b><br>" +
-          Stdout.replace('\n', "<br>"));
-    } else {
-      ui->out1->appendHtml(
-          "<br><b><font color=red>Failed (GOT)</font></b><br>" +
-          Stdout.replace('\n', "<br>"));
-    }
-  } else {
-    ui->out1->clear();
-    ui->out1->setPlainText(Stdout);
-    if (!Stderr.isEmpty())
-      ui->out1->appendHtml("<br><font color=red><b>stderr:</b><br>" +
-                           Stderr.replace('\n', "<br>") + "</font><br>");
-  }
+  ui->out1->clear();
+  ui->out1->setPlainText(Stdout);
+  if (!Stderr.isEmpty())
+    ui->out1->appendHtml("<br><font color=red><b>stderr:</b><br>" +
+                         Stderr.replace('\n', "<br>") + "</font><br>");
 }
 void MainWindow::secondExecutionFinished(QString Stdout, QString Stderr) {
   Log::MessageLogger::info("Runner[2]", "Execution for second case completed");
 
-  if (ui->expected->isChecked()) {
-    ui->out2->clear();
-    outputWriter->writeFromFile(2);
-    if (ui->out2->toPlainText().trimmed() == Stdout.trimmed()) {
-      ui->out2->appendHtml(
-          "<br><b><font color=blue>Success (GOT)</font></b><br>" +
-          Stdout.replace('\n', "<br>"));
-    } else {
-      ui->out2->appendHtml(
-          "<br><b><font color=red>Failed (GOT)</font></b><br>" +
-          Stdout.replace('\n', "<br>"));
-    }
-  } else {
-    ui->out2->clear();
-    ui->out2->setPlainText(Stdout);
-    if (!Stderr.isEmpty())
-      ui->out2->appendHtml("<br><font color=red><b>stderr:</b><br>" +
-                           Stderr.replace('\n', "<br>") + "</font><br>");
-  }
+  ui->out2->clear();
+  ui->out2->setPlainText(Stdout);
+  if (!Stderr.isEmpty())
+    ui->out2->appendHtml("<br><font color=red><b>stderr:</b><br>" +
+                         Stderr.replace('\n', "<br>") + "</font><br>");
 }
 
 void MainWindow::thirdExecutionFinished(QString Stdout, QString Stderr) {
   Log::MessageLogger::info("Runner[3]", "Execution for third case completed");
-  if (ui->expected->isChecked()) {
-    ui->out3->clear();
-    outputWriter->writeFromFile(3);
-    if (ui->out3->toPlainText().trimmed() == Stdout.trimmed()) {
-      ui->out3->appendHtml(
-          "<br><b><font color=blue>Success (GOT)</font></b><br>" +
-          Stdout.replace('\n', "<br>"));
-    } else {
-      ui->out3->appendHtml(
-          "<br><b><font color=red>Failed (GOT)</font></b><br>" +
-          Stdout.replace('\n', "<br>"));
-    }
-  } else {
-    ui->out3->clear();
-    ui->out3->setPlainText(Stdout);
-    if (!Stderr.isEmpty())
-      ui->out3->appendHtml("<br><font color=red><b>stderr:</b><br>" +
-                           Stderr.replace('\n', "<br>") + "</font><br>");
-  }
+  ui->out3->clear();
+  ui->out3->setPlainText(Stdout);
+  if (!Stderr.isEmpty())
+    ui->out3->appendHtml("<br><font color=red><b>stderr:</b><br>" +
+                         Stderr.replace('\n', "<br>") + "</font><br>");
 }
 
 void MainWindow::onSaveTimerElapsed() {
@@ -840,4 +784,84 @@ void MainWindow::on_actionJava_triggered(bool checked) {
     editor->setCompleter(nullptr);
     language = "Java";
   }
+}
+
+// ****************************** Context Menus **************************/
+
+void MainWindow::on_in1_customContextMenuRequested(const QPoint& pos) {
+  QMenu* stdMenu = ui->in1->createStandardContextMenu(pos);
+  QAction* newAction = new QAction("Expand");
+
+  QObject::connect(newAction, &QAction::triggered, this,
+                   [this] { qDebug() << "1 Expand requested"; });
+
+  stdMenu->insertAction(stdMenu->actions().first(), newAction);
+  stdMenu->popup(ui->in1->viewport()->mapToGlobal(pos));
+}
+
+void MainWindow::on_in2_customContextMenuRequested(const QPoint& pos) {
+  QMenu* stdMenu = ui->in2->createStandardContextMenu(pos);
+  QAction* newAction = new QAction("Expand");
+
+  QObject::connect(newAction, &QAction::triggered, this,
+                   [this] { qDebug() << "2 Expand requested"; });
+
+  stdMenu->insertAction(stdMenu->actions().first(), newAction);
+  stdMenu->popup(ui->in2->viewport()->mapToGlobal(pos));
+}
+
+void MainWindow::on_in3_customContextMenuRequested(const QPoint& pos) {
+  QMenu* stdMenu = ui->in3->createStandardContextMenu(pos);
+  QAction* newAction = new QAction("Expand");
+
+  QObject::connect(newAction, &QAction::triggered, this,
+                   [this] { qDebug() << "3 Expand requested"; });
+
+  stdMenu->insertAction(stdMenu->actions().first(), newAction);
+  stdMenu->popup(ui->in3->viewport()->mapToGlobal(pos));
+}
+
+void MainWindow::on_compiler_edit_customContextMenuRequested(
+    const QPoint& pos) {
+  QMenu* stdMenu = ui->compiler_edit->createStandardContextMenu(pos);
+  QAction* newAction = new QAction("Expand");
+
+  QObject::connect(newAction, &QAction::triggered, this, [this] {
+    auto ptr = new Expand(this->ui->compiler_edit);
+    ptr->show();
+  });
+
+  stdMenu->insertAction(stdMenu->actions().first(), newAction);
+  stdMenu->popup(ui->compiler_edit->viewport()->mapToGlobal(pos));
+}
+void MainWindow::on_out1_customContextMenuRequested(const QPoint& pos) {
+  QMenu* stdMenu = ui->out1->createStandardContextMenu(pos);
+  QAction* newAction = new QAction("Expand");
+
+  QObject::connect(newAction, &QAction::triggered, this,
+                   [this] { qDebug() << "5 Output"; });
+
+  stdMenu->insertAction(stdMenu->actions().first(), newAction);
+  stdMenu->popup(ui->out1->viewport()->mapToGlobal(pos));
+}
+void MainWindow::on_out2_customContextMenuRequested(const QPoint& pos) {
+  QMenu* stdMenu = ui->out2->createStandardContextMenu(pos);
+  QAction* newAction = new QAction("Expand");
+
+  QObject::connect(newAction, &QAction::triggered, this,
+                   [this] { qDebug() << "6 Output"; });
+
+  stdMenu->insertAction(stdMenu->actions().first(), newAction);
+  stdMenu->popup(ui->out2->viewport()->mapToGlobal(pos));
+}
+
+void MainWindow::on_out3_customContextMenuRequested(const QPoint& pos) {
+  QMenu* stdMenu = ui->out3->createStandardContextMenu(pos);
+  QAction* newAction = new QAction("Expand");
+
+  QObject::connect(newAction, &QAction::triggered, this,
+                   [this] { qDebug() << "7 Output"; });
+
+  stdMenu->insertAction(stdMenu->actions().first(), newAction);
+  stdMenu->popup(ui->out3->viewport()->mapToGlobal(pos));
 }
