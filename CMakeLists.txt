@@ -48,8 +48,8 @@ add_executable(CPEditor
     src/Formatter.cpp
     include/BaseFiles.hpp
     src/MessageLogger.cpp
-    include/Expand.hpp
-    src/Expand.cpp
+    include/expand.hpp
+    src/expand.cpp
     ui/diffviewer.ui
     include/DiffViewer.hpp
     src/DiffViewer.cpp

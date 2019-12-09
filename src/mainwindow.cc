@@ -18,7 +18,6 @@
 #include "mainwindow.hpp"
 
 #include <Core.hpp>
-#include <Expand.hpp>
 #include <MessageLogger.hpp>
 #include <QCXXHighlighter>
 #include <QFileDialog>
@@ -31,6 +30,7 @@
 #include <QTextStream>
 #include <QThread>
 #include <QTimer>
+#include <expand.hpp>
 
 #include "../ui/ui_mainwindow.h"
 
@@ -792,8 +792,13 @@ void MainWindow::on_in1_customContextMenuRequested(const QPoint& pos) {
   QMenu* stdMenu = ui->in1->createStandardContextMenu(pos);
   QAction* newAction = new QAction("Expand");
 
-  QObject::connect(newAction, &QAction::triggered, this,
-                   [this] { qDebug() << "1 Expand requested"; });
+  QObject::connect(newAction, &QAction::triggered, this, [this] {
+    auto ptr = new Expand(ui->in1);
+    ptr->setTitle("Input 1");
+    ptr->setUpdate(true);
+    ptr->setReadFile(true);
+    ptr->show();
+  });
 
   stdMenu->insertAction(stdMenu->actions().first(), newAction);
   stdMenu->popup(ui->in1->viewport()->mapToGlobal(pos));
@@ -803,8 +808,13 @@ void MainWindow::on_in2_customContextMenuRequested(const QPoint& pos) {
   QMenu* stdMenu = ui->in2->createStandardContextMenu(pos);
   QAction* newAction = new QAction("Expand");
 
-  QObject::connect(newAction, &QAction::triggered, this,
-                   [this] { qDebug() << "2 Expand requested"; });
+  QObject::connect(newAction, &QAction::triggered, this, [this] {
+    auto ptr = new Expand(ui->in2);
+    ptr->setTitle("Input 2");
+    ptr->setUpdate(true);
+    ptr->setReadFile(true);
+    ptr->show();
+  });
 
   stdMenu->insertAction(stdMenu->actions().first(), newAction);
   stdMenu->popup(ui->in2->viewport()->mapToGlobal(pos));
@@ -814,8 +824,13 @@ void MainWindow::on_in3_customContextMenuRequested(const QPoint& pos) {
   QMenu* stdMenu = ui->in3->createStandardContextMenu(pos);
   QAction* newAction = new QAction("Expand");
 
-  QObject::connect(newAction, &QAction::triggered, this,
-                   [this] { qDebug() << "3 Expand requested"; });
+  QObject::connect(newAction, &QAction::triggered, this, [this] {
+    auto ptr = new Expand(ui->in3);
+    ptr->setTitle("Input 3");
+    ptr->setUpdate(true);
+    ptr->setReadFile(true);
+    ptr->show();
+  });
 
   stdMenu->insertAction(stdMenu->actions().first(), newAction);
   stdMenu->popup(ui->in3->viewport()->mapToGlobal(pos));
@@ -834,12 +849,18 @@ void MainWindow::on_compiler_edit_customContextMenuRequested(
   stdMenu->insertAction(stdMenu->actions().first(), newAction);
   stdMenu->popup(ui->compiler_edit->viewport()->mapToGlobal(pos));
 }
+
 void MainWindow::on_out1_customContextMenuRequested(const QPoint& pos) {
   QMenu* stdMenu = ui->out1->createStandardContextMenu(pos);
   QAction* newAction = new QAction("Expand");
 
-  QObject::connect(newAction, &QAction::triggered, this,
-                   [this] { qDebug() << "5 Output"; });
+  QObject::connect(newAction, &QAction::triggered, this, [this] {
+    auto ptr = new Expand(ui->out1);
+    ptr->setTitle("Output 1");
+    ptr->setUpdate(false);
+    ptr->setReadFile(false);
+    ptr->show();
+  });
 
   stdMenu->insertAction(stdMenu->actions().first(), newAction);
   stdMenu->popup(ui->out1->viewport()->mapToGlobal(pos));
@@ -848,8 +869,13 @@ void MainWindow::on_out2_customContextMenuRequested(const QPoint& pos) {
   QMenu* stdMenu = ui->out2->createStandardContextMenu(pos);
   QAction* newAction = new QAction("Expand");
 
-  QObject::connect(newAction, &QAction::triggered, this,
-                   [this] { qDebug() << "6 Output"; });
+  QObject::connect(newAction, &QAction::triggered, this, [this] {
+    auto ptr = new Expand(ui->out2);
+    ptr->setTitle("Output 2");
+    ptr->setUpdate(false);
+    ptr->setReadFile(false);
+    ptr->show();
+  });
 
   stdMenu->insertAction(stdMenu->actions().first(), newAction);
   stdMenu->popup(ui->out2->viewport()->mapToGlobal(pos));
@@ -859,8 +885,13 @@ void MainWindow::on_out3_customContextMenuRequested(const QPoint& pos) {
   QMenu* stdMenu = ui->out3->createStandardContextMenu(pos);
   QAction* newAction = new QAction("Expand");
 
-  QObject::connect(newAction, &QAction::triggered, this,
-                   [this] { qDebug() << "7 Output"; });
+  QObject::connect(newAction, &QAction::triggered, this, [this] {
+    auto ptr = new Expand(ui->out3);
+    ptr->setTitle("Output 3");
+    ptr->setUpdate(false);
+    ptr->setReadFile(false);
+    ptr->show();
+  });
 
   stdMenu->insertAction(stdMenu->actions().first(), newAction);
   stdMenu->popup(ui->out3->viewport()->mapToGlobal(pos));
