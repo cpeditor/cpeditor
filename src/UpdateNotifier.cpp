@@ -35,15 +35,14 @@ void UpdateNotifier::setBeta(bool value) {
 }
 
 void UpdateNotifier::checkUpdate() {
-  request.setUrl(QUrl(
-      "https://api.github.com/repos/coder3101/cp-editor2/releases"));
+  request.setUrl(
+      QUrl("https://api.github.com/repos/coder3101/cp-editor2/releases"));
   manager->get(request);
 }
 
 QString UpdateNotifier::currentVersionStr() {
   std::string version = std::string(APP_VERSION_MAJOR) + "." +
-                        APP_VERSION_MINOR + "." +
-                        APP_VERSION_PATCH;
+                        APP_VERSION_MINOR + "." + APP_VERSION_PATCH;
 
   return QString::fromStdString(version);
 }
@@ -59,15 +58,18 @@ void UpdateNotifier::managerFinished(QNetworkReply* reply) {
 
   QString latestRelease = doc["tag_name"].toString();
   bool isBeta = doc["prerelease"].toBool();
-  bool isDraft = doc["draft"].toBool();
   QString downloadUrl = doc["html_url"].toString();
 
-  bool isUpdateAvailable = (latestRelease > currentVersionStr()) && !isDraft;
+  bool isUpdateAvailable = (latestRelease > currentVersionStr());
 
-  bool showMessage = (isUpdateAvailable && (beta || !isBeta));
-  if (showMessage) {
+  if (beta && isBeta && isUpdateAvailable) {
     Log::MessageLogger::info(
-        "Updater", "A new update " + latestRelease.toStdString() +
+        "Updater", "A new beta update " + latestRelease.toStdString() +
+                       " is available. <a href = " + downloadUrl.toStdString() +
+                       ">Please Download" + "</a>");
+  } else if (!isBeta && isUpdateAvailable) {
+    Log::MessageLogger::info(
+        "Updater", "A new stable update " + latestRelease.toStdString() +
                        " is available. <a href = " + downloadUrl.toStdString() +
                        ">Please Download" + "</a>");
   }

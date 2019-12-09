@@ -1,20 +1,19 @@
 /*
-* Copyright (C) 2019 Ashar Khan <ashar786khan@gmail.com> 
-* 
-* This file is part of CPEditor.
-*  
-* CPEditor is free software: you can redistribute it and/or modify
-* it under the terms of the GNU General Public License as published by
-* the Free Software Foundation, either version 3 of the License, or
-* (at your option) any later version.
-* 
-* I will not be responsible if CPEditor behaves in unexpected way and
-* causes your ratings to go down and or loose any important contest.
-* 
-* Believe Software is "Software" and it isn't not immune to bugs.
-* 
-*/
-
+ * Copyright (C) 2019 Ashar Khan <ashar786khan@gmail.com>
+ *
+ * This file is part of CPEditor.
+ *
+ * CPEditor is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * I will not be responsible if CPEditor behaves in unexpected way and
+ * causes your ratings to go down and or loose any important contest.
+ *
+ * Believe Software is "Software" and it isn't not immune to bugs.
+ *
+ */
 
 #include <MessageLogger.hpp>
 #include <QApplication>
@@ -53,12 +52,12 @@ bool SettingManager::isBeta() {
   return mSettings->value("beta", "false").toBool();
 }
 
-bool SettingManager::isTabs(){
-    return mSettings->value("use_tabs", "false").toBool();
+bool SettingManager::isTabs() {
+  return mSettings->value("use_tabs", "false").toBool();
 }
 
-bool SettingManager::isMaximizedWindow(){
-    return mSettings->value("win_max", "false").toBool();
+bool SettingManager::isMaximizedWindow() {
+  return mSettings->value("win_max", "false").toBool();
 }
 
 std::string SettingManager::getRunCommand() {
@@ -83,8 +82,12 @@ std::string SettingManager::getFont() {
   return mSettings->value("font", "").toString().toStdString();
 }
 
-QRect SettingManager::getGeometry(){
-    return mSettings->value("geometry").toRect();
+QRect SettingManager::getGeometry() {
+  return mSettings->value("geometry").toRect();
+}
+
+int SettingManager::getTabStop() {
+  return mSettings->value("tab_stop", 4).toInt();
 }
 
 void SettingManager::setDarkTheme(bool value) {
@@ -129,18 +132,22 @@ void SettingManager::setBeta(bool value) {
     mSettings->setValue("beta", QString::fromStdString("false"));
 }
 
-void SettingManager::setTabs(bool value){
-    if(value)
-        mSettings->setValue("use_tabs", QString::fromStdString("true"));
-    else
-        mSettings->setValue("use_tabs", QString::fromStdString("false"));
+void SettingManager::setTabs(bool value) {
+  if (value)
+    mSettings->setValue("use_tabs", QString::fromStdString("true"));
+  else
+    mSettings->setValue("use_tabs", QString::fromStdString("false"));
 }
 
-void SettingManager::setMaximizedWindow(bool value){
-    if(value)
-        mSettings->setValue("win_max", QString::fromStdString("true"));
-    else
-        mSettings->setValue("win_max", QString::fromStdString("false"));
+void SettingManager::setMaximizedWindow(bool value) {
+  if (value)
+    mSettings->setValue("win_max", QString::fromStdString("true"));
+  else
+    mSettings->setValue("win_max", QString::fromStdString("false"));
+}
+
+void SettingManager::setTabStop(int num) {
+  mSettings->setValue("tab_stop", num);
 }
 
 void SettingManager::setRunCommand(std::string command) {
@@ -165,8 +172,8 @@ void SettingManager::setFont(std::string font) {
   mSettings->setValue("font", QString::fromStdString(font));
 }
 
-void SettingManager::setGeometry(QRect rect){
-    mSettings->setValue("geometry", rect);
+void SettingManager::setGeometry(QRect rect) {
+  mSettings->setValue("geometry", rect);
 }
 
 SettingManager::~SettingManager() {

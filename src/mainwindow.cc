@@ -1,20 +1,19 @@
 /*
-* Copyright (C) 2019 Ashar Khan <ashar786khan@gmail.com> 
-* 
-* This file is part of CPEditor.
-*  
-* CPEditor is free software: you can redistribute it and/or modify
-* it under the terms of the GNU General Public License as published by
-* the Free Software Foundation, either version 3 of the License, or
-* (at your option) any later version.
-* 
-* I will not be responsible if CPEditor behaves in unexpected way and
-* causes your ratings to go down and or loose any important contest.
-* 
-* Believe Software is "Software" and it isn't not immune to bugs.
-* 
-*/
-
+ * Copyright (C) 2019 Ashar Khan <ashar786khan@gmail.com>
+ *
+ * This file is part of CPEditor.
+ *
+ * CPEditor is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * I will not be responsible if CPEditor behaves in unexpected way and
+ * causes your ratings to go down and or loose any important contest.
+ *
+ * Believe Software is "Software" and it isn't not immune to bugs.
+ *
+ */
 
 #include "mainwindow.hpp"
 
@@ -48,19 +47,20 @@ MainWindow::MainWindow(QString filePath, QWidget* parent)
   launchSession();
   checkUpdates();
 
-  if(!filePath.isEmpty()){
-      openFile = new QFile(filePath);
-      openFile->open(QIODevice::ReadWrite | QFile::Text);
-      if(openFile->isOpen()){
-          this->window()->setWindowTitle("CP Editor : "+ openFile->fileName());
-          editor->setPlainText(openFile->readAll());
-      }
-      else{
-          Log::MessageLogger::warn("Loader", "The filepath was not loaded. Read/Write permission missing");
-          openFile->close();
-          delete openFile;
-          openFile = nullptr;
-      }
+  if (!filePath.isEmpty()) {
+    openFile = new QFile(filePath);
+    openFile->open(QIODevice::ReadWrite | QFile::Text);
+    if (openFile->isOpen()) {
+      this->window()->setWindowTitle("CP Editor : " + openFile->fileName());
+      editor->setPlainText(openFile->readAll());
+    } else {
+      Log::MessageLogger::warn(
+          "Loader",
+          "The filepath was not loaded. Read/Write permission missing");
+      openFile->close();
+      delete openFile;
+      openFile = nullptr;
+    }
   }
 }
 
@@ -127,7 +127,8 @@ void MainWindow::saveSettings() {
   setting->setAutoParenthesis(ui->actionAuto_Parenthesis->isChecked());
   setting->setFont(editor->font().toString().toStdString());
   setting->setAutoSave(ui->actionAuto_Save->isChecked());
-  if(!this->isMaximized()) setting->setGeometry(this->geometry());
+  if (!this->isMaximized())
+    setting->setGeometry(this->geometry());
   setting->setTabs(ui->actionUse_Tabs->isChecked());
   setting->setMaximizedWindow(this->isMaximized());
 }
@@ -199,19 +200,22 @@ void MainWindow::restoreSettings() {
     on_actionAuto_Save_triggered(true);
   }
 
-  if(!setting->getGeometry().isEmpty() &&
-          !setting->getGeometry().isNull() &&
-          setting->getGeometry().isValid() && !setting->isMaximizedWindow()){
-      this->setGeometry(setting->getGeometry());
+  if (!setting->getGeometry().isEmpty() && !setting->getGeometry().isNull() &&
+      setting->getGeometry().isValid() && !setting->isMaximizedWindow()) {
+    this->setGeometry(setting->getGeometry());
   }
 
-  if(setting->isMaximizedWindow()){
-      this->showMaximized();
+  if (setting->isMaximizedWindow()) {
+    this->showMaximized();
   }
 
   ui->actionUse_Tabs->setChecked(setting->isTabs());
   editor->setTabReplace(!ui->actionUse_Tabs->isChecked());
 
+  const int tabStop = setting->getTabStop();
+  QFontMetrics metric(editor->font());
+  editor->setTabReplaceSize(tabStop);
+  editor->setTabStopDistance(tabStop * metric.horizontalAdvance(" "));
 }
 
 void MainWindow::runEditorDiagonistics() {
@@ -338,7 +342,6 @@ void MainWindow::on_actionOpen_triggered() {
                              "Opened " + openFile->fileName().toStdString());
     this->window()->setWindowTitle("CP Editor: " + openFile->fileName());
 
-
   } else {
     Log::MessageLogger::error(
         "Open", "Cannot Open, Do I have read and write permissions?");
@@ -356,13 +359,14 @@ void MainWindow::on_actionSave_triggered() {
     openFile = new QFile(filename);
     openFile->open(QIODevice::ReadWrite | QFile::Text);
     if (openFile->isOpen()) {
-      if(openFile->write(editor->toPlainText().toStdString().c_str()) != -1)
-      Log::MessageLogger::info("Save", "Saved file : " + openFile->fileName().toStdString());
-      else Log::MessageLogger::warn("Save",  "File was not saved successfully");
-      this->window()->setWindowTitle("CP Editor : "+ openFile->fileName());
+      if (openFile->write(editor->toPlainText().toStdString().c_str()) != -1)
+        Log::MessageLogger::info(
+            "Save", "Saved file : " + openFile->fileName().toStdString());
+      else
+        Log::MessageLogger::warn("Save", "File was not saved successfully");
+      this->window()->setWindowTitle("CP Editor : " + openFile->fileName());
       openFile->flush();
-    }
-     else {
+    } else {
       Log::MessageLogger::error(
           "Save", "Cannot Save file. Do I have write permission?");
     }
@@ -449,11 +453,9 @@ void MainWindow::on_actionAuto_Indentation_triggered(bool checked) {
     editor->setAutoIndentation(false);
 }
 
-void MainWindow::on_actionUse_Tabs_triggered(bool checked)
-{
-    editor->setTabReplace(!checked);
+void MainWindow::on_actionUse_Tabs_triggered(bool checked) {
+  editor->setTabReplace(!checked);
 }
-
 
 void MainWindow::on_actionAuto_Parenthesis_triggered(bool checked) {
   if (checked)
@@ -486,8 +488,7 @@ void MainWindow::on_actionAbout_triggered() {
   QMessageBox::about(
       this,
       QString::fromStdString(std::string("About CP Editor ") +
-                             APP_VERSION_MAJOR + "." +
-                             APP_VERSION_MINOR + "." +
+                             APP_VERSION_MAJOR + "." + APP_VERSION_MINOR + "." +
                              APP_VERSION_PATCH),
 
       "<p>The <b>CP Editor</b> is a competitive programmer's editor "
@@ -511,6 +512,7 @@ void MainWindow::on_actionReset_Settings_triggered() {
     setting->setDefaultLanguage("Cpp");
     setting->setTemplatePath("");
     setting->setPrependRunCommand("");
+    setting->setTabStop(4);
 
     formatter->updateCommand(
         QString::fromStdString(setting->getFormatCommand()));
@@ -520,9 +522,9 @@ void MainWindow::on_actionReset_Settings_triggered() {
     runner->updateRunCommand(QString::fromStdString(setting->getRunCommand()));
     runner->updateCompileCommand(
         QString::fromStdString(setting->getCompileCommand()));
-    runner->updateRunStartCommand(QString::fromStdString(setting->getPrependRunCommand()));
+    runner->updateRunStartCommand(
+        QString::fromStdString(setting->getPrependRunCommand()));
     runEditorDiagonistics();
-
   }
 }
 
@@ -586,11 +588,13 @@ void MainWindow::on_actionRun_triggered() {
   Log::MessageLogger::clear();
 
   if (openFile != nullptr && openFile->isOpen()) {
-      openFile->resize(0);
-    if(openFile->write(editor->toPlainText().toStdString().c_str()) != -1)
-    Log::MessageLogger::info("Save", "Saved file : " + openFile->fileName().toStdString());
-    else Log::MessageLogger::warn("Save",  "File was not saved successfully");
-    this->window()->setWindowTitle("CP Editor : "+ openFile->fileName());
+    openFile->resize(0);
+    if (openFile->write(editor->toPlainText().toStdString().c_str()) != -1)
+      Log::MessageLogger::info(
+          "Save", "Saved file : " + openFile->fileName().toStdString());
+    else
+      Log::MessageLogger::warn("Save", "File was not saved successfully");
+    this->window()->setWindowTitle("CP Editor : " + openFile->fileName());
     openFile->flush();
   }
 
@@ -608,11 +612,13 @@ void MainWindow::on_actionRun_triggered() {
 void MainWindow::on_actionCompile_triggered() {
   Log::MessageLogger::clear();
   if (openFile != nullptr && openFile->isOpen()) {
-      openFile->resize(0);
-    if(openFile->write(editor->toPlainText().toStdString().c_str()) != -1)
-    Log::MessageLogger::info("Save", "Saved file : " + openFile->fileName().toStdString());
-    else Log::MessageLogger::warn("Save",  "File was not saved successfully");
-    this->window()->setWindowTitle("CP Editor : "+ openFile->fileName());
+    openFile->resize(0);
+    if (openFile->write(editor->toPlainText().toStdString().c_str()) != -1)
+      Log::MessageLogger::info(
+          "Save", "Saved file : " + openFile->fileName().toStdString());
+    else
+      Log::MessageLogger::warn("Save", "File was not saved successfully");
+    this->window()->setWindowTitle("CP Editor : " + openFile->fileName());
     openFile->flush();
   }
   compiler->compile(editor, language);
@@ -698,7 +704,21 @@ void MainWindow::on_actionRun_Command_triggered() {
       QString::fromStdString(setting->getPrependRunCommand()), &ok);
   if (ok && !text.isEmpty()) {
     setting->setPrependRunCommand(text.toStdString());
-    runner->updateRunStartCommand(QString::fromStdString(setting->getPrependRunCommand()));
+    runner->updateRunStartCommand(
+        QString::fromStdString(setting->getPrependRunCommand()));
+  }
+}
+void MainWindow::on_actionSet_Tab_Size_triggered() {
+  bool ok = false;
+  int newSize = QInputDialog::getInt(
+      this, "Tab Size", "Set the number of chars to include under tab",
+      setting->getTabStop(), 1, 20, 1, &ok);
+  if (ok) {
+    setting->setTabStop(newSize);
+    const int tabStop = newSize;
+    QFontMetrics metric(editor->font());
+    editor->setTabReplaceSize(tabStop);
+    editor->setTabStopDistance(tabStop * metric.horizontalAdvance(" "));
   }
 }
 
@@ -786,16 +806,16 @@ void MainWindow::onSaveTimerElapsed() {
 // **************************** LANGUAGE ***********************************
 
 void MainWindow::on_actionC_C_triggered(bool checked) {
-    if (checked) {
-      ui->actionC_C->setChecked(true);
-      ui->actionPython->setChecked(false);
-      ui->actionJava->setChecked(false);
-      setting->setDefaultLanguage("Cpp");
-      runner->removeExecutable();
-      editor->setHighlighter(new QCXXHighlighter);
-      editor->setCompleter(nullptr);
-      language = "Cpp";
-    }
+  if (checked) {
+    ui->actionC_C->setChecked(true);
+    ui->actionPython->setChecked(false);
+    ui->actionJava->setChecked(false);
+    setting->setDefaultLanguage("Cpp");
+    runner->removeExecutable();
+    editor->setHighlighter(new QCXXHighlighter);
+    editor->setCompleter(nullptr);
+    language = "Cpp";
+  }
 }
 void MainWindow::on_actionPython_triggered(bool checked) {
   if (checked) {

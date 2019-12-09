@@ -172,7 +172,7 @@
      <x>0</x>
      <y>0</y>
      <width>1203</width>
-     <height>17</height>
+     <height>23</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -215,6 +215,7 @@
     <addaction name="actionChange_format_command"/>
     <addaction name="actionRun_Command"/>
     <addaction name="actionChange_run_command"/>
+    <addaction name="actionSet_Tab_Size"/>
    </widget>
    <widget class="QMenu" name="menuEditor">
     <property name="title">
@@ -487,6 +488,11 @@
    </property>
    <property name="text">
     <string>Use Tabs</string>
+   </property>
+  </action>
+  <action name="actionSet_Tab_Size">
+   <property name="text">
+    <string>Set Tab Size</string>
    </property>
   </action>
  </widget>
