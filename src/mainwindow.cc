@@ -224,6 +224,13 @@ void MainWindow::restoreSettings() {
   QFontMetrics metric(editor->font());
   editor->setTabReplaceSize(tabStop);
   editor->setTabStopDistance(tabStop * metric.horizontalAdvance(" "));
+
+  if (setting->isCompetitiveCompanionActive()) {
+    createAndAttachServer();
+  }
+
+  ui->actionEnable_Companion->setChecked(
+      setting->isCompetitiveCompanionActive());
 }
 
 void MainWindow::runEditorDiagonistics() {
@@ -288,17 +295,17 @@ void MainWindow::launchSession() {
     openFile = nullptr;
   }
 
-  if (setting->getTemplatePath().size() == 0)
-    return;
-  if (QFile::exists(QString::fromStdString(setting->getTemplatePath()))) {
-    QFile f(QString::fromStdString(setting->getTemplatePath()));
-    f.open(QIODevice::ReadOnly | QFile::Text);
-    editor->setPlainText(f.readAll());
-    Log::MessageLogger::info("Template", "Template was successfully loaded");
-  } else {
-    Log::MessageLogger::error("Template",
-                              "Template could not be loaded from the file " +
-                                  setting->getTemplatePath());
+  if (setting->getTemplatePath().size() != 0) {
+    if (QFile::exists(QString::fromStdString(setting->getTemplatePath()))) {
+      QFile f(QString::fromStdString(setting->getTemplatePath()));
+      f.open(QIODevice::ReadOnly | QFile::Text);
+      editor->setPlainText(f.readAll());
+      Log::MessageLogger::info("Template", "Template was successfully loaded");
+    } else {
+      Log::MessageLogger::error("Template",
+                                "Template could not be loaded from the file " +
+                                    setting->getTemplatePath());
+    }
   }
 
   this->window()->setWindowTitle("CP Editor: Temporary buffer");
@@ -348,6 +355,49 @@ void MainWindow::updateVerdict(Core::Verdict verdict, int target) {
       else if (target == 3)
         ui->out3_verdict->setText("Verdict : **");
       break;
+  }
+}
+
+void MainWindow::createAndAttachServer() {
+  if (server == nullptr) {
+    server = new Network::CompanionServer(setting->getConnectionPort());
+    QObject::connect(server, &Network::CompanionServer::onRequestArrived, this,
+                     &MainWindow::onCompanionRequest);
+  }
+}
+
+void MainWindow::launchCompanionSession(Network::CompanionData data) {
+  launchSession();
+  QString meta = data.toMetaString();
+  meta.prepend("\n");
+  meta.append("Powered by CP Editor (https://github.com/coder3101/cp-editor2)");
+
+  if (language == "Python")
+    meta.replace('\n', "\n# ");
+  else
+    meta.replace('\n', "\n// ");
+
+  editor->setPlainText(meta + "\n\n" + editor->toPlainText());
+
+  if (data.testcases.size() > 3) {
+    Log::MessageLogger::warn(
+        "CP Editor",
+        "More than 3 testcase were produced. Only First 3 will be used");
+  }
+
+  if (data.testcases.size() >= 1) {
+    ui->in1->setPlainText(data.testcases[0].input);
+    expected1->operator=(data.testcases[0].output);
+  }
+
+  if (data.testcases.size() >= 2) {
+    ui->in2->setPlainText(data.testcases[1].input);
+    expected2->operator=(data.testcases[1].output);
+  }
+
+  if (data.testcases.size() >= 3) {
+    ui->in3->setPlainText(data.testcases[2].input);
+    expected3->operator=(data.testcases[2].output);
   }
 }
 
@@ -523,14 +573,9 @@ void MainWindow::on_actionFont_triggered() {
 // ************************************* ACTION::ABOUT ************************
 
 void MainWindow::on_actionBeta_Updates_triggered(bool checked) {
-  if (checked) {
-    updater->setBeta(true);
-    updater->checkUpdate();
-    setting->setBeta(true);
-  } else {
-    updater->setBeta(false);
-    setting->setBeta(true);
-  }
+  setting->setBeta(checked);
+  updater->setBeta(checked);
+  updater->checkUpdate();
 }
 void MainWindow::on_actionAbout_triggered() {
   QMessageBox::about(
@@ -825,6 +870,12 @@ void MainWindow::onSaveTimerElapsed() {
   }
 }
 
+void MainWindow::onCompanionRequest(Network::CompanionData data) {
+  launchCompanionSession(data);
+  Log::MessageLogger::info("Companion",
+                           "Established the testcases. Start Coding");
+}
+
 // **************************** LANGUAGE ***********************************
 
 void MainWindow::on_actionC_C_triggered(bool checked) {
@@ -975,6 +1026,8 @@ void MainWindow::on_out3_customContextMenuRequested(const QPoint& pos) {
   stdMenu->popup(ui->out3->viewport()->mapToGlobal(pos));
 }
 
+//********************* DIFF Showers ******************
+
 void MainWindow::on_out1_diff_clicked() {
   auto ptr = new DiffViewer(expected1, ui->out1);
   ptr->setTitle("Diffviewer for Case 1");
@@ -991,4 +1044,40 @@ void MainWindow::on_out3_diff_clicked() {
   auto ptr = new DiffViewer(expected3, ui->out3);
   ptr->setTitle("Diffviewer for Case 3");
   ptr->show();
+}
+
+//******************** COMPANION SETTINGS ************
+
+void MainWindow::on_actionEnable_Companion_triggered(bool checked) {
+  if (checked && server == nullptr) {
+    Log::MessageLogger::info("Companion", "Starting competitive Companion");
+    createAndAttachServer();
+  } else if (checked && server != nullptr) {
+    Log::MessageLogger::info("Companion", "Already running");
+  } else {
+    if (server != nullptr) {
+      delete server;
+      server = nullptr;
+    }
+  }
+  setting->setCompetitiveCompanionActive(checked);
+}
+
+void MainWindow::on_actionChange_Port_triggered() {
+  bool ok;
+  int newPort =
+      QInputDialog::getInt(this, "Change companion port",
+                           "Enter the port on which Editor will listen",
+                           setting->getConnectionPort(), 10001, 65530, 1, &ok);
+  if (ok) {
+    if (server == nullptr) {
+      Log::MessageLogger::info("Companion", "Updated port");
+    } else {
+      Log::MessageLogger::info("Companion",
+                               "Changing port to " + std::to_string(newPort));
+      delete server;
+      createAndAttachServer();
+    }
+    setting->setConnectionPort(newPort);
+  }
 }

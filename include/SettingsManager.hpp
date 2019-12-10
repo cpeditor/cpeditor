@@ -37,6 +37,7 @@ class SettingManager {
   bool isBeta();
   bool isTabs();
   bool isMaximizedWindow();
+  bool isCompetitiveCompanionActive();
 
   std::string getFormatCommand();
   std::string getCompileCommand();
@@ -47,6 +48,7 @@ class SettingManager {
   std::string getFont();
   QRect getGeometry();
   int getTabStop();
+  int getConnectionPort();
 
   void setDarkTheme(bool value);
   void setAutoParenthesis(bool value);
@@ -56,6 +58,7 @@ class SettingManager {
   void setBeta(bool value);
   void setTabs(bool value);
   void setMaximizedWindow(bool value);
+  void setCompetitiveCompanionActive(bool value);
 
   void setCompileCommands(std::string command);
   void setRunCommand(std::string command);
@@ -66,6 +69,7 @@ class SettingManager {
   void setFont(std::string font);
   void setGeometry(QRect);
   void setTabStop(int num);
+  void setConnectionPort(int num);
 
   ~SettingManager();
 

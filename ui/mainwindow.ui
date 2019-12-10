@@ -330,10 +330,18 @@
     <addaction name="actionFont"/>
     <addaction name="menuLanguage_2"/>
    </widget>
+   <widget class="QMenu" name="menuCompetitive_Companion">
+    <property name="title">
+     <string>Competitive Companion</string>
+    </property>
+    <addaction name="actionEnable_Companion"/>
+    <addaction name="actionChange_Port"/>
+   </widget>
    <addaction name="menuFile"/>
    <addaction name="menuEditor"/>
    <addaction name="menuActions"/>
    <addaction name="menuSettings"/>
+   <addaction name="menuCompetitive_Companion"/>
    <addaction name="menuHelp"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
@@ -586,6 +594,19 @@
   <action name="actionSet_Tab_Size">
    <property name="text">
     <string>Set Tab Size</string>
+   </property>
+  </action>
+  <action name="actionEnable_Companion">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Enable Companion</string>
+   </property>
+  </action>
+  <action name="actionChange_Port">
+   <property name="text">
+    <string>Change Port</string>
    </property>
   </action>
  </widget>

@@ -53,7 +53,7 @@ void UpdateNotifier::managerFinished(QNetworkReply* reply) {
   }
   QString jsonReply = reply->readAll();
 
-  QJsonDocument doc = QJsonDocument::fromJson(jsonReply.toLocal8Bit());
+  QJsonDocument doc = QJsonDocument::fromJson(jsonReply.toUtf8());
   doc = QJsonDocument::fromVariant(doc.array().at(0).toVariant());
 
   QString latestRelease = doc["tag_name"].toString();

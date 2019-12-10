@@ -18,6 +18,7 @@
 #ifndef MAINWINDOW_HPP
 #define MAINWINDOW_HPP
 
+#include <CompanionServer.hpp>
 #include <Core.hpp>
 #include <Formatter.hpp>
 #include <IO.hpp>
@@ -74,6 +75,7 @@ class MainWindow : public QMainWindow {
   void secondExecutionFinished(QString, QString);
   void thirdExecutionFinished(QString, QString);
   void onSaveTimerElapsed();
+  void onCompanionRequest(Network::CompanionData data);
 
   void on_actionC_C_triggered(bool checked);
   void on_actionPython_triggered(bool checked);
@@ -97,10 +99,11 @@ class MainWindow : public QMainWindow {
   void on_out1_customContextMenuRequested(const QPoint& pos);
 
   void on_out1_diff_clicked();
-
   void on_out2_diff_clicked();
-
   void on_out3_diff_clicked();
+
+  void on_actionEnable_Companion_triggered(bool checked);
+  void on_actionChange_Port_triggered();
 
  private:
   Ui::MainWindow* ui;
@@ -121,6 +124,8 @@ class MainWindow : public QMainWindow {
   QString* expected2 = nullptr;
   QString* expected3 = nullptr;
 
+  Network::CompanionServer* server = nullptr;
+
   void setEditor();
   void setLogger();
   void runEditorDiagonistics();
@@ -129,7 +134,9 @@ class MainWindow : public QMainWindow {
   void restoreSettings();
   void setupCore();
   void launchSession();
+  void launchCompanionSession(Network::CompanionData);
   void checkUpdates();
-  void updateVerdict(Core::Verdict verdict, int target);
+  void createAndAttachServer();
+  void updateVerdict(Core::Verdict, int);
 };
 #endif  // MAINWINDOW_HPP

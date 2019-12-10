@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.5)
 
-project(CPEditor LANGUAGES CXX VERSION 2.0.3)
+project(CPEditor LANGUAGES CXX VERSION 3.0.0)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
@@ -53,6 +53,8 @@ add_executable(CPEditor
     ui/diffviewer.ui
     include/DiffViewer.hpp
     src/DiffViewer.cpp
+    src/CompanionServer.cpp
+    include/CompanionServer.hpp
 
     ${CMAKE_BINARY_DIR}/generated/version.hpp
 

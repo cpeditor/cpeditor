@@ -60,6 +60,10 @@ bool SettingManager::isMaximizedWindow() {
   return mSettings->value("win_max", "false").toBool();
 }
 
+bool SettingManager::isCompetitiveCompanionActive() {
+  return mSettings->value("competitive_use", "false").toBool();
+}
+
 std::string SettingManager::getRunCommand() {
   return mSettings->value("run", "").toString().toStdString();
 }
@@ -90,6 +94,10 @@ int SettingManager::getTabStop() {
   return mSettings->value("tab_stop", 4).toInt();
 }
 
+int SettingManager::getConnectionPort() {
+  return mSettings->value("companion_port", 10045).toInt();
+}
+
 void SettingManager::setDarkTheme(bool value) {
   if (value)
     mSettings->setValue("dark_theme", QString::fromStdString("true"));
@@ -102,6 +110,10 @@ void SettingManager::setAutoIndent(bool value) {
     mSettings->setValue("auto_indent", QString::fromStdString("true"));
   else
     mSettings->setValue("auto_indent", QString::fromStdString("false"));
+}
+
+void SettingManager::setCompetitiveCompanionActive(bool value) {
+  mSettings->setValue("competitive_use", value);
 }
 
 void SettingManager::setWrapText(bool value) {
@@ -148,6 +160,10 @@ void SettingManager::setMaximizedWindow(bool value) {
 
 void SettingManager::setTabStop(int num) {
   mSettings->setValue("tab_stop", num);
+}
+
+void SettingManager::setConnectionPort(int num) {
+  mSettings->setValue("companion_port", num);
 }
 
 void SettingManager::setRunCommand(std::string command) {
