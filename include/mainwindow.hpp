@@ -96,6 +96,12 @@ class MainWindow : public QMainWindow {
   void on_out2_customContextMenuRequested(const QPoint& pos);
   void on_out1_customContextMenuRequested(const QPoint& pos);
 
+  void on_out1_diff_clicked();
+
+  void on_out2_diff_clicked();
+
+  void on_out3_diff_clicked();
+
  private:
   Ui::MainWindow* ui;
   QCodeEditor* editor;
@@ -110,6 +116,11 @@ class MainWindow : public QMainWindow {
   Core::Runner* runner = nullptr;
   QTimer* saveTimer = nullptr;
   Telemetry::UpdateNotifier* updater = nullptr;
+
+  QString* expected1 = nullptr;
+  QString* expected2 = nullptr;
+  QString* expected3 = nullptr;
+
   void setEditor();
   void setLogger();
   void runEditorDiagonistics();
@@ -119,5 +130,6 @@ class MainWindow : public QMainWindow {
   void setupCore();
   void launchSession();
   void checkUpdates();
+  void updateVerdict(Core::Verdict verdict, int target);
 };
 #endif  // MAINWINDOW_HPP

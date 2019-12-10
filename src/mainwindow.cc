@@ -18,6 +18,7 @@
 #include "mainwindow.hpp"
 
 #include <Core.hpp>
+#include <DiffViewer.hpp>
 #include <MessageLogger.hpp>
 #include <QCXXHighlighter>
 #include <QFileDialog>
@@ -80,6 +81,10 @@ MainWindow::~MainWindow() {
   delete runner;
   delete saveTimer;
   delete updater;
+
+  delete expected1;
+  delete expected2;
+  delete expected3;
 }
 
 // ************************* RAII HELPER *****************************
@@ -107,6 +112,10 @@ void MainWindow::setEditor() {
   saveTimer = new QTimer();
   saveTimer->setSingleShot(false);
   saveTimer->setInterval(10000);  // every 10 sec save
+
+  expected1 = new QString;
+  expected2 = new QString;
+  expected3 = new QString;
 }
 
 void MainWindow::setLogger() {
@@ -300,6 +309,46 @@ void MainWindow::launchSession() {
   ui->out1->clear();
   ui->out2->clear();
   ui->out3->clear();
+
+  expected1->clear();
+  expected2->clear();
+  expected3->clear();
+
+  updateVerdict(Core::Verdict::UNKNOWN, 1);
+  updateVerdict(Core::Verdict::UNKNOWN, 2);
+  updateVerdict(Core::Verdict::UNKNOWN, 3);
+}
+
+void MainWindow::updateVerdict(Core::Verdict verdict, int target) {
+  switch (verdict) {
+    case Core::Verdict::ACCEPTED:
+
+      if (target == 1)
+        ui->out1_verdict->setText("Verdict : AC");
+      else if (target == 2)
+        ui->out2_verdict->setText("Verdict : AC");
+      else if (target == 3)
+        ui->out3_verdict->setText("Verdict : AC");
+      break;
+    case Core::Verdict::WRONG_ANSWER:
+
+      if (target == 1)
+        ui->out1_verdict->setText("Verdict : WA");
+      else if (target == 2)
+        ui->out2_verdict->setText("Verdict : WA");
+      else if (target == 3)
+        ui->out3_verdict->setText("Verdict : WA");
+      break;
+    case Core::Verdict::UNKNOWN:
+
+      if (target == 1)
+        ui->out1_verdict->setText("Verdict : **");
+      else if (target == 2)
+        ui->out2_verdict->setText("Verdict : **");
+      else if (target == 3)
+        ui->out3_verdict->setText("Verdict : **");
+      break;
+  }
 }
 
 // ******************* STATUS::ACTIONS FILE **************************
@@ -552,6 +601,10 @@ void MainWindow::on_runOnly_clicked() {
   Log::MessageLogger::clear();
   inputReader->readToFile();
 
+  updateVerdict(Core::Verdict::UNKNOWN, 1);
+  updateVerdict(Core::Verdict::UNKNOWN, 2);
+  updateVerdict(Core::Verdict::UNKNOWN, 3);
+
   ui->out1->clear();
   ui->out2->clear();
   ui->out3->clear();
@@ -574,6 +627,10 @@ void MainWindow::on_actionFormat_triggered() {
 
 void MainWindow::on_actionRun_triggered() {
   Log::MessageLogger::clear();
+
+  updateVerdict(Core::Verdict::UNKNOWN, 1);
+  updateVerdict(Core::Verdict::UNKNOWN, 2);
+  updateVerdict(Core::Verdict::UNKNOWN, 3);
 
   if (openFile != nullptr && openFile->isOpen()) {
     openFile->resize(0);
@@ -715,8 +772,15 @@ void MainWindow::firstExecutionFinished(QString Stdout, QString Stderr) {
   ui->out1->clear();
   ui->out1->setPlainText(Stdout);
   if (!Stderr.isEmpty())
-    ui->out1->appendHtml("<br><font color=red><b>stderr:</b><br>" +
-                         Stderr.replace('\n', "<br>") + "</font><br>");
+    Log::MessageLogger::error("Runner[1]:[STDERR]", Stderr.toStdString(), true);
+  if (Stdout.isEmpty() || expected1->isEmpty())
+    return;
+  bool isSame = Stdout == expected1;
+
+  if (isSame)
+    updateVerdict(Core::Verdict::ACCEPTED, 1);
+  else
+    updateVerdict(Core::Verdict::WRONG_ANSWER, 1);
 }
 void MainWindow::secondExecutionFinished(QString Stdout, QString Stderr) {
   Log::MessageLogger::info("Runner[2]", "Execution for second case completed");
@@ -724,8 +788,15 @@ void MainWindow::secondExecutionFinished(QString Stdout, QString Stderr) {
   ui->out2->clear();
   ui->out2->setPlainText(Stdout);
   if (!Stderr.isEmpty())
-    ui->out2->appendHtml("<br><font color=red><b>stderr:</b><br>" +
-                         Stderr.replace('\n', "<br>") + "</font><br>");
+    Log::MessageLogger::error("Runner[2]:[STDERR]", Stderr.toStdString(), true);
+  if (Stdout.isEmpty() || expected2->isEmpty())
+    return;
+  bool isSame = Stdout == expected2;
+
+  if (isSame)
+    updateVerdict(Core::Verdict::ACCEPTED, 2);
+  else
+    updateVerdict(Core::Verdict::WRONG_ANSWER, 2);
 }
 
 void MainWindow::thirdExecutionFinished(QString Stdout, QString Stderr) {
@@ -733,8 +804,15 @@ void MainWindow::thirdExecutionFinished(QString Stdout, QString Stderr) {
   ui->out3->clear();
   ui->out3->setPlainText(Stdout);
   if (!Stderr.isEmpty())
-    ui->out3->appendHtml("<br><font color=red><b>stderr:</b><br>" +
-                         Stderr.replace('\n', "<br>") + "</font><br>");
+    Log::MessageLogger::error("Runner[3]:[STDERR]", Stderr.toStdString(), true);
+  if (Stdout.isEmpty() || expected3->isEmpty())
+    return;
+  bool isSame = Stdout == expected3;
+
+  if (isSame)
+    updateVerdict(Core::Verdict::ACCEPTED, 3);
+  else
+    updateVerdict(Core::Verdict::WRONG_ANSWER, 3);
 }
 
 void MainWindow::onSaveTimerElapsed() {
@@ -895,4 +973,22 @@ void MainWindow::on_out3_customContextMenuRequested(const QPoint& pos) {
 
   stdMenu->insertAction(stdMenu->actions().first(), newAction);
   stdMenu->popup(ui->out3->viewport()->mapToGlobal(pos));
+}
+
+void MainWindow::on_out1_diff_clicked() {
+  auto ptr = new DiffViewer(expected1, ui->out1);
+  ptr->setTitle("Diffviewer for Case 1");
+  ptr->show();
+}
+
+void MainWindow::on_out2_diff_clicked() {
+  auto ptr = new DiffViewer(expected2, ui->out2);
+  ptr->setTitle("Diffviewer for Case 2");
+  ptr->show();
+}
+
+void MainWindow::on_out3_diff_clicked() {
+  auto ptr = new DiffViewer(expected3, ui->out3);
+  ptr->setTitle("Diffviewer for Case 3");
+  ptr->show();
 }
