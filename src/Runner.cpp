@@ -397,8 +397,8 @@ void Runner::thirdError(QProcess::ProcessError e) {
 void Runner::firstFinished(int exitCode, QProcess::ExitStatus exitStatus) {
   if (exitCode == 0 && exitStatus == QProcess::ExitStatus::NormalExit) {
     emit firstExecutionFinished(
-        QString::fromLocal8Bit(first->readAllStandardOutput()),
-        QString::fromLocal8Bit(first->readAllStandardError()));
+        QString::fromUtf8(first->readAllStandardOutput()),
+        QString::fromUtf8(first->readAllStandardError()));
   } else if (exitCode == 15) {
     // Sigterm is called by timeout timer;
     Log::MessageLogger::error("Runner[1]",
