@@ -8,6 +8,7 @@ namespace Network {
 
 struct CompanionData {
   struct TestCases {
+    TestCases() = default;
     TestCases(QString in, QString out) : input(in), output(out) {}
     QString input;
     QString output;
