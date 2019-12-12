@@ -70,7 +70,7 @@ Head over to the [release page](https://github.com/coder3101/cp-editor2/releases
 
 ```sh
 $ mkdir build
-$ cmake build
+$ cd build
 $ cmake .. -DCMAKE_BUILD_TYPE=Release
 $ cmake --build .
 ```
