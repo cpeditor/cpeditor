@@ -409,7 +409,7 @@ void MainWindow::launchCompanionSession(Network::CompanionData data) {
 
 // ******************* STATUS::ACTIONS FILE **************************
 void MainWindow::on_actionNew_triggered() {
-  if (confirmUnchanged())
+  if (confirmCloseChanged())
     launchSession();
 }
 void MainWindow::on_actionOpen_triggered() {
@@ -476,7 +476,7 @@ void MainWindow::on_actionAuto_Save_triggered(bool checked) {
 }
 
 void MainWindow::on_actionQuit_triggered() {
-  if (confirmUnchanged())
+  if (confirmCloseChanged())
     QApplication::quit();
 }
 
@@ -607,7 +607,7 @@ void MainWindow::on_actionReset_Settings_triggered() {
 
 // ********************** GLOBAL::WINDOW **********************************
 void MainWindow::closeEvent(QCloseEvent* event) {
-  if (confirmUnchanged())
+  if (confirmCloseChanged())
     event->accept();
   else
     event->ignore();
@@ -1132,7 +1132,7 @@ bool MainWindow::isTextChanged() {
   }
 }
 
-bool MainWindow::confirmUnchanged() {
+bool MainWindow::confirmCloseChanged() {
   saveSettings();
   bool isChanged = isTextChanged();
   bool confirmed = !isChanged;

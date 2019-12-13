@@ -144,6 +144,6 @@ class MainWindow : public QMainWindow {
   bool isVerdictPass(QString, QString);
   bool saveFile(bool);
   bool isTextChanged();
-  bool confirmUnchanged();
+  bool confirmCloseChanged();
 };
 #endif  // MAINWINDOW_HPP
