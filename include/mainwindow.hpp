@@ -134,6 +134,7 @@ class MainWindow : public QMainWindow {
   void restoreSettings();
   void setupCore();
   void launchSession();
+  bool isVerdictPass(QString, QString);
   void launchCompanionSession(Network::CompanionData);
   void checkUpdates();
   void createAndAttachServer();

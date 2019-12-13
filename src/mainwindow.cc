@@ -329,6 +329,46 @@ void MainWindow::launchSession() {
   updateVerdict(Core::Verdict::UNKNOWN, 3);
 }
 
+bool MainWindow::isVerdictPass(QString output, QString expected) {
+  output = output.remove('\r');
+  expected = expected.remove('\r');
+  auto a_lines = output.split('\n');
+  auto b_lines = expected.split('\n');
+  for (int i = 0; i < a_lines.size() || i < b_lines.size(); ++i) {
+    if (i >= a_lines.size()) {
+      if (b_lines[i].trimmed().isEmpty())
+        continue;
+      else
+        return false;
+    }
+    if (i >= b_lines.size()) {
+      if (a_lines[i].trimmed().isEmpty())
+        continue;
+      else
+        return false;
+    }
+    auto a_words = a_lines[i].split(' ');
+    auto b_words = b_lines[i].split(' ');
+    for (int j = 0; j < a_words.size() || j < b_words.size(); ++j) {
+      if (j >= a_words.size()) {
+        if (b_words[j].trimmed().isEmpty())
+          continue;
+        else
+          return false;
+      }
+      if (j >= b_words.size()) {
+        if (a_words[j].trimmed().isEmpty())
+          continue;
+        else
+          return false;
+      }
+      if (a_words[j] != b_words[j])
+        return false;
+    }
+  }
+  return true;
+}
+
 void MainWindow::updateVerdict(Core::Verdict verdict, int target) {
   QString verdict_text, style_sheet;
 
@@ -823,9 +863,8 @@ void MainWindow::firstExecutionFinished(QString Stdout, QString Stderr) {
     Log::MessageLogger::error("Runner[1]:[STDERR]", Stderr.toStdString(), true);
   if (Stdout.isEmpty() || expected1->isEmpty())
     return;
-  bool isSame = Stdout.trimmed() == expected1->trimmed();
 
-  if (isSame)
+  if (isVerdictPass(Stdout, *expected1))
     updateVerdict(Core::Verdict::ACCEPTED, 1);
   else
     updateVerdict(Core::Verdict::WRONG_ANSWER, 1);
@@ -839,9 +878,8 @@ void MainWindow::secondExecutionFinished(QString Stdout, QString Stderr) {
     Log::MessageLogger::error("Runner[2]:[STDERR]", Stderr.toStdString(), true);
   if (Stdout.isEmpty() || expected2->isEmpty())
     return;
-  bool isSame = Stdout.trimmed() == expected2->trimmed();
 
-  if (isSame)
+  if (isVerdictPass(Stdout, *expected2))
     updateVerdict(Core::Verdict::ACCEPTED, 2);
   else
     updateVerdict(Core::Verdict::WRONG_ANSWER, 2);
@@ -855,9 +893,8 @@ void MainWindow::thirdExecutionFinished(QString Stdout, QString Stderr) {
     Log::MessageLogger::error("Runner[3]:[STDERR]", Stderr.toStdString(), true);
   if (Stdout.isEmpty() || expected3->isEmpty())
     return;
-  bool isSame = Stdout.trimmed() == expected3->trimmed();
 
-  if (isSame)
+  if (isVerdictPass(Stdout, *expected3))
     updateVerdict(Core::Verdict::ACCEPTED, 3);
   else
     updateVerdict(Core::Verdict::WRONG_ANSWER, 3);
