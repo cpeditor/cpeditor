@@ -116,6 +116,9 @@ void MainWindow::setEditor() {
   expected1 = new QString;
   expected2 = new QString;
   expected3 = new QString;
+
+  QObject::connect(editor, SIGNAL(textChanged()),
+                   this, SLOT(on_textChanged_triggered()));
 }
 
 void MainWindow::setLogger() {
@@ -287,8 +290,6 @@ void MainWindow::setupCore() {
 void MainWindow::launchSession() {
   if (openFile != nullptr) {
     if (openFile->isOpen()) {
-      openFile->resize(0);
-      openFile->write(editor->toPlainText().toStdString().c_str());
       openFile->close();
     }
     delete openFile;
@@ -327,46 +328,6 @@ void MainWindow::launchSession() {
   updateVerdict(Core::Verdict::UNKNOWN, 1);
   updateVerdict(Core::Verdict::UNKNOWN, 2);
   updateVerdict(Core::Verdict::UNKNOWN, 3);
-}
-
-bool MainWindow::isVerdictPass(QString output, QString expected) {
-  output = output.remove('\r');
-  expected = expected.remove('\r');
-  auto a_lines = output.split('\n');
-  auto b_lines = expected.split('\n');
-  for (int i = 0; i < a_lines.size() || i < b_lines.size(); ++i) {
-    if (i >= a_lines.size()) {
-      if (b_lines[i].trimmed().isEmpty())
-        continue;
-      else
-        return false;
-    }
-    if (i >= b_lines.size()) {
-      if (a_lines[i].trimmed().isEmpty())
-        continue;
-      else
-        return false;
-    }
-    auto a_words = a_lines[i].split(' ');
-    auto b_words = b_lines[i].split(' ');
-    for (int j = 0; j < a_words.size() || j < b_words.size(); ++j) {
-      if (j >= a_words.size()) {
-        if (b_words[j].trimmed().isEmpty())
-          continue;
-        else
-          return false;
-      }
-      if (j >= b_words.size()) {
-        if (a_words[j].trimmed().isEmpty())
-          continue;
-        else
-          return false;
-      }
-      if (a_words[j] != b_words[j])
-        return false;
-    }
-  }
-  return true;
 }
 
 void MainWindow::updateVerdict(Core::Verdict verdict, int target) {
@@ -448,15 +409,8 @@ void MainWindow::launchCompanionSession(Network::CompanionData data) {
 
 // ******************* STATUS::ACTIONS FILE **************************
 void MainWindow::on_actionNew_triggered() {
-  auto res =
-      QMessageBox::question(this, "End Session?",
-                            "Are you sure you want to start a new session. All "
-                            "your code and binaries will be erased?",
-                            QMessageBox::Yes | QMessageBox::No);
-  if (res == QMessageBox::No)
-    return;
-
-  launchSession();
+  if (confirmUnchanged())
+    launchSession();
 }
 void MainWindow::on_actionOpen_triggered() {
   auto fileName = QFileDialog::getOpenFileName(
@@ -490,34 +444,7 @@ void MainWindow::on_actionOpen_triggered() {
 }
 
 void MainWindow::on_actionSave_triggered() {
-  if (openFile == nullptr) {
-    auto filename = QFileDialog::getSaveFileName(
-        this, tr("Save File"), "",
-        "Source Files (*.cpp *.hpp *.h *.cc *.cxx *.c *.py *.py3 *.java)");
-    if (filename.isEmpty())
-      return;
-
-    openFile = new QFile(filename);
-    openFile->open(QIODevice::ReadWrite | QFile::Text);
-    if (openFile->isOpen()) {
-      if (openFile->write(editor->toPlainText().toStdString().c_str()) != -1)
-        Log::MessageLogger::info(
-            "Save", "Saved file : " + openFile->fileName().toStdString());
-      else
-        Log::MessageLogger::warn("Save", "File was not saved successfully");
-      this->window()->setWindowTitle("CP Editor : " + openFile->fileName());
-      openFile->flush();
-    } else {
-      Log::MessageLogger::error(
-          "Save", "Cannot Save file. Do I have write permission?");
-    }
-  } else {
-    openFile->resize(0);
-    openFile->write(editor->toPlainText().toStdString().c_str());
-    openFile->flush();
-    Log::MessageLogger::info(
-        "Save", "Saved with file name " + openFile->fileName().toStdString());
-  }
+  saveFile(true);
 }
 
 void MainWindow::on_actionSave_as_triggered() {
@@ -537,6 +464,7 @@ void MainWindow::on_actionSave_as_triggered() {
         "Save as",
         "Cannot Save as new file, Is write permission allowed to me?");
   }
+  on_textChanged_triggered();
 }
 
 void MainWindow::on_actionAuto_Save_triggered(bool checked) {
@@ -548,13 +476,26 @@ void MainWindow::on_actionAuto_Save_triggered(bool checked) {
 }
 
 void MainWindow::on_actionQuit_triggered() {
-  saveSettings();
-  auto res = QMessageBox::question(this, "Exit?",
-                                   "Are you sure you want to exit the editor?",
-                                   QMessageBox::Yes | QMessageBox::No);
-  if (res == QMessageBox::Yes)
+  if (confirmUnchanged())
     QApplication::quit();
 }
+
+void MainWindow::on_textChanged_triggered() {
+  bool isChanged = isTextChanged();
+  if (openFile == nullptr) {
+    if (isChanged)
+      this->window()->setWindowTitle("CP Editor: Temporary buffer *");
+    else
+      this->window()->setWindowTitle("CP Editor: Temporary buffer");
+  }
+  else {
+    if (isChanged)
+      this->window()->setWindowTitle("CP Editor : " + openFile->fileName() + " *");
+    else
+      this->window()->setWindowTitle("CP Editor : " + openFile->fileName());
+  }
+}
+
 // *********************** ACTIONS::EDITOR ******************************
 void MainWindow::on_actionDark_Theme_triggered(bool checked) {
   if (checked) {
@@ -666,12 +607,7 @@ void MainWindow::on_actionReset_Settings_triggered() {
 
 // ********************** GLOBAL::WINDOW **********************************
 void MainWindow::closeEvent(QCloseEvent* event) {
-  saveSettings();
-  auto res = QMessageBox::question(this, "Exit?",
-                                   "Are you sure you want to exit the"
-                                   " editor?",
-                                   QMessageBox::Yes | QMessageBox::No);
-  if (res == QMessageBox::Yes)
+  if (confirmUnchanged())
     event->accept();
   else
     event->ignore();
@@ -720,16 +656,7 @@ void MainWindow::on_actionRun_triggered() {
   updateVerdict(Core::Verdict::UNKNOWN, 2);
   updateVerdict(Core::Verdict::UNKNOWN, 3);
 
-  if (openFile != nullptr && openFile->isOpen()) {
-    openFile->resize(0);
-    if (openFile->write(editor->toPlainText().toStdString().c_str()) != -1)
-      Log::MessageLogger::info(
-          "Save", "Saved file : " + openFile->fileName().toStdString());
-    else
-      Log::MessageLogger::warn("Save", "File was not saved successfully");
-    this->window()->setWindowTitle("CP Editor : " + openFile->fileName());
-    openFile->flush();
-  }
+  saveFile(false);
 
   ui->out1->clear();
   ui->out2->clear();
@@ -742,16 +669,7 @@ void MainWindow::on_actionRun_triggered() {
 
 void MainWindow::on_actionCompile_triggered() {
   Log::MessageLogger::clear();
-  if (openFile != nullptr && openFile->isOpen()) {
-    openFile->resize(0);
-    if (openFile->write(editor->toPlainText().toStdString().c_str()) != -1)
-      Log::MessageLogger::info(
-          "Save", "Saved file : " + openFile->fileName().toStdString());
-    else
-      Log::MessageLogger::warn("Save", "File was not saved successfully");
-    this->window()->setWindowTitle("CP Editor : " + openFile->fileName());
-    openFile->flush();
-  }
+  saveFile(false);
   compiler->compile(editor, language);
 }
 
@@ -901,14 +819,10 @@ void MainWindow::thirdExecutionFinished(QString Stdout, QString Stderr) {
 }
 
 void MainWindow::onSaveTimerElapsed() {
-  if (openFile != nullptr && openFile->isOpen()) {
-    openFile->resize(0);
-    openFile->write(editor->toPlainText().toStdString().c_str());
-    openFile->flush();
-    Log::MessageLogger::info(
-        "AutoSave",
-        "AutoSaved to file : " + openFile->fileName().toStdString());
-  }
+  saveFile(false);
+  Log::MessageLogger::info(
+      "AutoSave",
+      "AutoSaved to file : " + openFile->fileName().toStdString());
 }
 
 void MainWindow::onCompanionRequest(Network::CompanionData data) {
@@ -1121,4 +1035,116 @@ void MainWindow::on_actionChange_Port_triggered() {
     }
     setting->setConnectionPort(newPort);
   }
+}
+
+//***************** HELPER FUNCTIONS *****************
+
+bool MainWindow::isVerdictPass(QString output, QString expected) {
+  output = output.remove('\r');
+  expected = expected.remove('\r');
+  auto a_lines = output.split('\n');
+  auto b_lines = expected.split('\n');
+  for (int i = 0; i < a_lines.size() || i < b_lines.size(); ++i) {
+    if (i >= a_lines.size()) {
+      if (b_lines[i].trimmed().isEmpty())
+        continue;
+      else
+        return false;
+    }
+    if (i >= b_lines.size()) {
+      if (a_lines[i].trimmed().isEmpty())
+        continue;
+      else
+        return false;
+    }
+    auto a_words = a_lines[i].split(' ');
+    auto b_words = b_lines[i].split(' ');
+    for (int j = 0; j < a_words.size() || j < b_words.size(); ++j) {
+      if (j >= a_words.size()) {
+        if (b_words[j].trimmed().isEmpty())
+          continue;
+        else
+          return false;
+      }
+      if (j >= b_words.size()) {
+        if (a_words[j].trimmed().isEmpty())
+          continue;
+        else
+          return false;
+      }
+      if (a_words[j] != b_words[j])
+        return false;
+    }
+  }
+  return true;
+}
+
+bool MainWindow::saveFile(bool force) {
+  if (openFile == nullptr) {
+    if (force) {
+      auto filename = QFileDialog::getSaveFileName(
+          this, tr("Save File"), "",
+          "Source Files (*.cpp *.hpp *.h *.cc *.cxx *.c *.py *.py3 *.java)");
+      if (filename.isEmpty())
+        return false;
+
+      openFile = new QFile(filename);
+      openFile->open(QIODevice::ReadWrite | QFile::Text);
+      if (openFile->isOpen()) {
+        if (openFile->write(editor->toPlainText().toStdString().c_str()) != -1)
+          Log::MessageLogger::info(
+              "Save", "Saved file : " + openFile->fileName().toStdString());
+        else
+          Log::MessageLogger::warn("Save", "File was not saved successfully");
+        this->window()->setWindowTitle("CP Editor : " + openFile->fileName());
+        openFile->flush();
+      } else {
+        Log::MessageLogger::error(
+            "Save", "Cannot Save file. Do I have write permission?");
+      }
+    }
+  } else {
+    openFile->resize(0);
+    openFile->write(editor->toPlainText().toStdString().c_str());
+    openFile->flush();
+    Log::MessageLogger::info(
+        "Save", "Saved with file name " + openFile->fileName().toStdString());
+  }
+  on_textChanged_triggered();
+  return true;
+}
+
+bool MainWindow::isTextChanged() {
+  if (openFile == nullptr) {
+    if (setting->getTemplatePath().size() != 0 &&
+        QFile::exists(QString::fromStdString(setting->getTemplatePath()))) {
+        QFile f(QString::fromStdString(setting->getTemplatePath()));
+        f.open(QIODevice::ReadOnly | QFile::Text);
+        return editor->toPlainText() != f.readAll();
+    }
+    else {
+      return !editor->toPlainText().isEmpty();
+    }
+  }
+  else {
+    openFile->seek(0);
+    return openFile->readAll() != editor->toPlainText();
+  }
+}
+
+bool MainWindow::confirmUnchanged() {
+  saveSettings();
+  bool isChanged = isTextChanged();
+  bool confirmed = !isChanged;
+  if (!confirmed) {
+    auto res = QMessageBox::warning(this, "Exit?",
+                                    "The file has been modified.\nDo you want to save your changes?",
+                                    QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel,
+                                    QMessageBox::Save);
+    if (res == QMessageBox::Save)
+      confirmed = saveFile(true);
+    else if (res == QMessageBox::Discard)
+      confirmed = true;
+  }
+  return confirmed;
 }
