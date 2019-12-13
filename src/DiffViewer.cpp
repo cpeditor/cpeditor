@@ -32,7 +32,7 @@ void DiffViewer::on_exit_clicked() {
 }
 
 void DiffViewer::on_read_clicked() {
-  QString filename = QFileDialog::getOpenFileName(this, "Choose file", "", ".");
+  QString filename = QFileDialog::getOpenFileName(this, "Choose file", "", "*.*");
   if (filename.isEmpty())
     return;
   QFile* file = new QFile(filename);
