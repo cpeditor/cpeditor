@@ -327,33 +327,35 @@ void MainWindow::launchSession() {
 }
 
 void MainWindow::updateVerdict(Core::Verdict verdict, int target) {
+  QString verdict_text, style_sheet;
+
   switch (verdict) {
     case Core::Verdict::ACCEPTED:
-
-      if (target == 1)
-        ui->out1_verdict->setText("Verdict : AC");
-      else if (target == 2)
-        ui->out2_verdict->setText("Verdict : AC");
-      else if (target == 3)
-        ui->out3_verdict->setText("Verdict : AC");
+      verdict_text = "Verdict : AC";
+      style_sheet = "QLabel { color : rgb(0, 180, 0); }";
       break;
     case Core::Verdict::WRONG_ANSWER:
-
-      if (target == 1)
-        ui->out1_verdict->setText("Verdict : WA");
-      else if (target == 2)
-        ui->out2_verdict->setText("Verdict : WA");
-      else if (target == 3)
-        ui->out3_verdict->setText("Verdict : WA");
+      verdict_text = "Verdict : WA";
+      style_sheet = "QLabel { color : rgb(255, 0, 0); }";
       break;
     case Core::Verdict::UNKNOWN:
+      verdict_text = "Verdict : **";
+      style_sheet = "";
+      break;
+  }
 
-      if (target == 1)
-        ui->out1_verdict->setText("Verdict : **");
-      else if (target == 2)
-        ui->out2_verdict->setText("Verdict : **");
-      else if (target == 3)
-        ui->out3_verdict->setText("Verdict : **");
+  switch (target) {
+    case 1:
+      ui->out1_verdict->setText(verdict_text);
+      ui->out1_verdict->setStyleSheet(style_sheet);
+      break;
+    case 2:
+      ui->out2_verdict->setText(verdict_text);
+      ui->out2_verdict->setStyleSheet(style_sheet);
+      break;
+    case 3:
+      ui->out3_verdict->setText(verdict_text);
+      ui->out3_verdict->setStyleSheet(style_sheet);
       break;
   }
 }
