@@ -823,7 +823,7 @@ void MainWindow::firstExecutionFinished(QString Stdout, QString Stderr) {
     Log::MessageLogger::error("Runner[1]:[STDERR]", Stderr.toStdString(), true);
   if (Stdout.isEmpty() || expected1->isEmpty())
     return;
-  bool isSame = Stdout.simplified() == expected1->simplified();
+  bool isSame = Stdout.trimmed() == expected1->trimmed();
 
   if (isSame)
     updateVerdict(Core::Verdict::ACCEPTED, 1);
@@ -839,7 +839,7 @@ void MainWindow::secondExecutionFinished(QString Stdout, QString Stderr) {
     Log::MessageLogger::error("Runner[2]:[STDERR]", Stderr.toStdString(), true);
   if (Stdout.isEmpty() || expected2->isEmpty())
     return;
-  bool isSame = Stdout.simplified() == expected2->simplified();
+  bool isSame = Stdout.trimmed() == expected2->trimmed();
 
   if (isSame)
     updateVerdict(Core::Verdict::ACCEPTED, 2);
@@ -855,7 +855,7 @@ void MainWindow::thirdExecutionFinished(QString Stdout, QString Stderr) {
     Log::MessageLogger::error("Runner[3]:[STDERR]", Stderr.toStdString(), true);
   if (Stdout.isEmpty() || expected3->isEmpty())
     return;
-  bool isSame = Stdout.simplified() == expected3->simplified();
+  bool isSame = Stdout.trimmed() == expected3->trimmed();
 
   if (isSame)
     updateVerdict(Core::Verdict::ACCEPTED, 3);
