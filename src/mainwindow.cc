@@ -295,6 +295,9 @@ void MainWindow::launchSession() {
     openFile = nullptr;
   }
 
+  editor->clear();
+  runner->removeExecutable();
+
   if (setting->getTemplatePath().size() != 0) {
     if (QFile::exists(QString::fromStdString(setting->getTemplatePath()))) {
       QFile f(QString::fromStdString(setting->getTemplatePath()));
@@ -411,8 +414,6 @@ void MainWindow::on_actionNew_triggered() {
   if (res == QMessageBox::No)
     return;
 
-  editor->clear();
-  runner->removeExecutable();
   launchSession();
 }
 void MainWindow::on_actionOpen_triggered() {
@@ -864,6 +865,7 @@ void MainWindow::onSaveTimerElapsed() {
   if (openFile != nullptr && openFile->isOpen()) {
     openFile->resize(0);
     openFile->write(editor->toPlainText().toStdString().c_str());
+    openFile->flush();
     Log::MessageLogger::info(
         "AutoSave",
         "AutoSaved to file : " + openFile->fileName().toStdString());
