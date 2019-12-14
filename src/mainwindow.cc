@@ -46,7 +46,7 @@ MainWindow::MainWindow(QString filePath, QWidget* parent)
   runEditorDiagonistics();
   setupCore();
   runner->removeExecutable();
-  launchSession();
+  launchSession(false);
   checkUpdates();
 
   if (!filePath.isEmpty()) {
@@ -287,7 +287,28 @@ void MainWindow::setupCore() {
                    SLOT(onSaveTimerElapsed()));
 }
 
-void MainWindow::launchSession() {
+void MainWindow::clearTests() {
+  ui->in1->clear();
+  ui->in2->clear();
+  ui->in3->clear();
+
+  ui->out1->clear();
+  ui->out2->clear();
+  ui->out3->clear();
+
+  expected1->clear();
+  expected2->clear();
+  expected3->clear();
+
+  updateVerdict(Core::Verdict::UNKNOWN, 1);
+  updateVerdict(Core::Verdict::UNKNOWN, 2);
+  updateVerdict(Core::Verdict::UNKNOWN, 3);
+}
+
+void MainWindow::launchSession(bool confirm) {
+  if (confirm && !closeChangedConfirm())
+    return;
+
   if (openFile != nullptr) {
     if (openFile->isOpen()) {
       openFile->close();
@@ -313,21 +334,8 @@ void MainWindow::launchSession() {
   }
 
   this->window()->setWindowTitle("CP Editor: Temporary buffer");
-  ui->in1->clear();
-  ui->in2->clear();
-  ui->in3->clear();
 
-  ui->out1->clear();
-  ui->out2->clear();
-  ui->out3->clear();
-
-  expected1->clear();
-  expected2->clear();
-  expected3->clear();
-
-  updateVerdict(Core::Verdict::UNKNOWN, 1);
-  updateVerdict(Core::Verdict::UNKNOWN, 2);
-  updateVerdict(Core::Verdict::UNKNOWN, 3);
+  clearTests();
 }
 
 void MainWindow::updateVerdict(Core::Verdict verdict, int target) {
@@ -372,18 +380,27 @@ void MainWindow::createAndAttachServer() {
   }
 }
 
-void MainWindow::launchCompanionSession(Network::CompanionData data) {
-  launchSession();
-  QString meta = data.toMetaString();
-  meta.prepend("\n");
-  meta.append("Powered by CP Editor (https://github.com/coder3101/cp-editor2)");
+void MainWindow::applyCompanion(Network::CompanionData data) {
+  auto res = QMessageBox::warning(this, tr("New Session?"),
+                                  tr("A request from competitive companion received,\nopen a new session?"),
+                                  QMessageBox::Yes | QMessageBox::No,
+                                  QMessageBox::Yes);
 
-  if (language == "Python")
-    meta.replace('\n', "\n# ");
-  else
-    meta.replace('\n', "\n// ");
+  if (res == QMessageBox::Yes) {
+    launchSession(true);
+    QString meta = data.toMetaString();
+    meta.prepend("\n");
+    meta.append("Powered by CP Editor (https://github.com/coder3101/cp-editor2)");
 
-  editor->setPlainText(meta + "\n\n" + editor->toPlainText());
+    if (language == "Python")
+      meta.replace('\n', "\n# ");
+    else
+      meta.replace('\n', "\n// ");
+
+    editor->setPlainText(meta + "\n\n" + editor->toPlainText());
+  }
+
+  clearTests();
 
   if (data.testcases.size() > 3) {
     Log::MessageLogger::warn(
@@ -409,9 +426,9 @@ void MainWindow::launchCompanionSession(Network::CompanionData data) {
 
 // ******************* STATUS::ACTIONS FILE **************************
 void MainWindow::on_actionNew_triggered() {
-  if (closeChangedConfirm())
-    launchSession();
+  launchSession(true);
 }
+
 void MainWindow::on_actionOpen_triggered() {
   auto fileName = QFileDialog::getOpenFileName(
       this, tr("Open File"), "",
@@ -819,7 +836,7 @@ void MainWindow::onSaveTimerElapsed() {
 }
 
 void MainWindow::onCompanionRequest(Network::CompanionData data) {
-  launchCompanionSession(data);
+  applyCompanion(data);
   Log::MessageLogger::info("Companion",
                            "Established the testcases. Start Coding");
 }
@@ -1117,14 +1134,13 @@ bool MainWindow::isTextChanged() {
         f.open(QIODevice::ReadOnly | QFile::Text);
         return editor->toPlainText() != f.readAll();
     }
-    else {
-      return !editor->toPlainText().isEmpty();
-    }
+    return !editor->toPlainText().isEmpty();
   }
-  else {
+  if (openFile->isOpen()) {
     openFile->seek(0);
     return openFile->readAll() != editor->toPlainText();
   }
+  return true;
 }
 
 bool MainWindow::closeChangedConfirm() {

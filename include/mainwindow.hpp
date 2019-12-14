@@ -135,8 +135,9 @@ class MainWindow : public QMainWindow {
   void saveSettings();
   void restoreSettings();
   void setupCore();
-  void launchSession();
-  void launchCompanionSession(Network::CompanionData);
+  void clearTests();
+  void launchSession(bool);
+  void applyCompanion(Network::CompanionData);
   void checkUpdates();
   void createAndAttachServer();
   void updateVerdict(Core::Verdict, int);
