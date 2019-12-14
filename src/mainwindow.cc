@@ -381,13 +381,8 @@ void MainWindow::createAndAttachServer() {
 }
 
 void MainWindow::applyCompanion(Network::CompanionData data) {
-  auto res = QMessageBox::warning(this, tr("New Session?"),
-                                  tr("A request from competitive companion received,\nopen a new session?"),
-                                  QMessageBox::Yes | QMessageBox::No,
-                                  QMessageBox::Yes);
-
-  if (res == QMessageBox::Yes) {
-    launchSession(true);
+  if (openFile == nullptr && !isTextChanged()) {
+    launchSession(false);
     QString meta = data.toMetaString();
     meta.prepend("\n");
     meta.append("Powered by CP Editor (https://github.com/coder3101/cp-editor2)");
