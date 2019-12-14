@@ -1143,7 +1143,7 @@ bool MainWindow::closeChangedConfirm() {
   bool isChanged = isTextChanged();
   bool confirmed = !isChanged;
   if (!confirmed) {
-    auto res = QMessageBox::warning(this, "Exit?",
+    auto res = QMessageBox::warning(this, "Save?",
                                     "The file has been modified.\nDo you want to save your changes?",
                                     QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel,
                                     QMessageBox::Cancel);
