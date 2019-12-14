@@ -409,7 +409,7 @@ void MainWindow::launchCompanionSession(Network::CompanionData data) {
 
 // ******************* STATUS::ACTIONS FILE **************************
 void MainWindow::on_actionNew_triggered() {
-  if (confirmCloseChanged())
+  if (closeChangedConfirm())
     launchSession();
 }
 void MainWindow::on_actionOpen_triggered() {
@@ -421,13 +421,9 @@ void MainWindow::on_actionOpen_triggered() {
   QFile* newFile = new QFile(fileName);
   newFile->open(QFile::Text | QIODevice::ReadWrite);
 
-  if (editor->toPlainText().size() != 0) {
-    QMessageBox::StandardButton reply = QMessageBox::question(
-        this, "Overwrite?", "Opening a new file will overwrite this file?",
-        QMessageBox::Yes | QMessageBox::No);
-    if (reply == QMessageBox::No)
-      return;
-  }
+  if (!closeChangedConfirm())
+    return;
+
   if (newFile->isOpen()) {
     editor->setPlainText(newFile->readAll());
     if (openFile != nullptr && openFile->isOpen())
@@ -444,7 +440,7 @@ void MainWindow::on_actionOpen_triggered() {
 }
 
 void MainWindow::on_actionSave_triggered() {
-  saveFile(true);
+  saveFile(true, "Save");
 }
 
 void MainWindow::on_actionSave_as_triggered() {
@@ -476,7 +472,7 @@ void MainWindow::on_actionAuto_Save_triggered(bool checked) {
 }
 
 void MainWindow::on_actionQuit_triggered() {
-  if (confirmCloseChanged())
+  if (closeChangedConfirm())
     QApplication::quit();
 }
 
@@ -607,7 +603,7 @@ void MainWindow::on_actionReset_Settings_triggered() {
 
 // ********************** GLOBAL::WINDOW **********************************
 void MainWindow::closeEvent(QCloseEvent* event) {
-  if (confirmCloseChanged())
+  if (closeChangedConfirm())
     event->accept();
   else
     event->ignore();
@@ -656,7 +652,7 @@ void MainWindow::on_actionRun_triggered() {
   updateVerdict(Core::Verdict::UNKNOWN, 2);
   updateVerdict(Core::Verdict::UNKNOWN, 3);
 
-  saveFile(false);
+  saveFile(false, "Compiler");
 
   ui->out1->clear();
   ui->out2->clear();
@@ -669,7 +665,7 @@ void MainWindow::on_actionRun_triggered() {
 
 void MainWindow::on_actionCompile_triggered() {
   Log::MessageLogger::clear();
-  saveFile(false);
+  saveFile(false, "Compiler");
   compiler->compile(editor, language);
 }
 
@@ -819,10 +815,7 @@ void MainWindow::thirdExecutionFinished(QString Stdout, QString Stderr) {
 }
 
 void MainWindow::onSaveTimerElapsed() {
-  saveFile(false);
-  Log::MessageLogger::info(
-      "AutoSave",
-      "AutoSaved to file : " + openFile->fileName().toStdString());
+  saveFile(false, "AutoSave");
 }
 
 void MainWindow::onCompanionRequest(Network::CompanionData data) {
@@ -1079,7 +1072,7 @@ bool MainWindow::isVerdictPass(QString output, QString expected) {
   return true;
 }
 
-bool MainWindow::saveFile(bool force) {
+bool MainWindow::saveFile(bool force, std::string head) {
   if (openFile == nullptr) {
     if (force) {
       auto filename = QFileDialog::getSaveFileName(
@@ -1093,22 +1086,24 @@ bool MainWindow::saveFile(bool force) {
       if (openFile->isOpen()) {
         if (openFile->write(editor->toPlainText().toStdString().c_str()) != -1)
           Log::MessageLogger::info(
-              "Save", "Saved file : " + openFile->fileName().toStdString());
+              head, "Saved file : " + openFile->fileName().toStdString());
         else
-          Log::MessageLogger::warn("Save", "File was not saved successfully");
+          Log::MessageLogger::warn(head, "File was not saved successfully");
         this->window()->setWindowTitle("CP Editor : " + openFile->fileName());
         openFile->flush();
       } else {
         Log::MessageLogger::error(
-            "Save", "Cannot Save file. Do I have write permission?");
+            head, "Cannot Save file. Do I have write permission?");
       }
     }
+    else
+      return false;
   } else {
     openFile->resize(0);
     openFile->write(editor->toPlainText().toStdString().c_str());
     openFile->flush();
     Log::MessageLogger::info(
-        "Save", "Saved with file name " + openFile->fileName().toStdString());
+        head, "Saved with file name " + openFile->fileName().toStdString());
   }
   on_textChanged_triggered();
   return true;
@@ -1132,7 +1127,7 @@ bool MainWindow::isTextChanged() {
   }
 }
 
-bool MainWindow::confirmCloseChanged() {
+bool MainWindow::closeChangedConfirm() {
   saveSettings();
   bool isChanged = isTextChanged();
   bool confirmed = !isChanged;
@@ -1142,7 +1137,7 @@ bool MainWindow::confirmCloseChanged() {
                                     QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel,
                                     QMessageBox::Save);
     if (res == QMessageBox::Save)
-      confirmed = saveFile(true);
+      confirmed = saveFile(true, "Save");
     else if (res == QMessageBox::Discard)
       confirmed = true;
   }
