@@ -1151,7 +1151,7 @@ bool MainWindow::closeChangedConfirm() {
     auto res = QMessageBox::warning(this, "Exit?",
                                     "The file has been modified.\nDo you want to save your changes?",
                                     QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel,
-                                    QMessageBox::Save);
+                                    QMessageBox::Cancel);
     if (res == QMessageBox::Save)
       confirmed = saveFile(true, "Save");
     else if (res == QMessageBox::Discard)
