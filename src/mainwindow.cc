@@ -1117,6 +1117,7 @@ void MainWindow::on_actionChange_Port_triggered() {
       Log::MessageLogger::info("Companion",
                                "Changing port to " + std::to_string(newPort));
       delete server;
+      server = nullptr;
       createAndAttachServer();
     }
     setting->setConnectionPort(newPort);
