@@ -9,9 +9,9 @@ before_install:
   - git submodule update --init --recursive
 
 install:
-  - sudo apt-get install qt597base qt597svg qt597network
+  - sudo apt-get install qt59base qt59svg qt59network qt59imageformat
   - sudo apt-get install cmake
-  - source /opt/qt597/bin/qt597-env.sh
+  - source /opt/qt597/bin/qt59-env.sh
 
 
 script:
