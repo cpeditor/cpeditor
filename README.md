@@ -1,5 +1,7 @@
 # CP Editor
 
+[![Build Status](https://travis-ci.org/coder3101/cp-editor2.svg?branch=master)](https://travis-ci.org/coder3101/cp-editor2)
+
 <img src=https://i.imgur.com/31n9t8i.png height="80" width="80">
 
 CP Editor is a Native Qt based code editor writter in C++. It make you only focus on your code and automates the compilation, executing and testing. It even fetches testcases for you from web!
