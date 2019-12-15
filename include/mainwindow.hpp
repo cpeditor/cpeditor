@@ -44,6 +44,8 @@ class MainWindow : public QMainWindow {
   ~MainWindow() override;
   void closeEvent(QCloseEvent* event) override;
  private slots:
+  void on_textChanged_triggered();
+
   void on_actionQuit_triggered();
 
   void on_actionDark_Theme_triggered(bool checked);
@@ -133,11 +135,16 @@ class MainWindow : public QMainWindow {
   void saveSettings();
   void restoreSettings();
   void setupCore();
-  void launchSession();
-  bool isVerdictPass(QString, QString);
-  void launchCompanionSession(Network::CompanionData);
+  void clearTests();
+  void launchSession(bool);
+  void applyCompanion(Network::CompanionData);
   void checkUpdates();
   void createAndAttachServer();
   void updateVerdict(Core::Verdict, int);
+
+  bool isVerdictPass(QString, QString);
+  bool saveFile(bool, std::string);
+  bool isTextChanged();
+  bool closeChangedConfirm();
 };
 #endif  // MAINWINDOW_HPP
