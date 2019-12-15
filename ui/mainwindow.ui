@@ -71,7 +71,7 @@
              </font>
             </property>
             <property name="text">
-             <string>Compiler Messages and stderr</string>
+             <string>Editor Messages and stderr</string>
             </property>
            </widget>
           </item>
@@ -91,7 +91,7 @@
              </font>
             </property>
             <property name="text">
-             <string>Input or stdin</string>
+             <string>Input (stdin)</string>
             </property>
            </widget>
           </item>
@@ -129,7 +129,7 @@
              </font>
             </property>
             <property name="text">
-             <string>Output (stdout and stderr)</string>
+             <string>Output (stdout)</string>
             </property>
            </widget>
           </item>
