@@ -1,0 +1,35 @@
+language: cpp
+dist: trusty
+compiler: g++
+sudo: required
+
+before_install:
+  - sudo add-apt-repository ppa:beineri/opt-qt597-trusty -y
+  - sudo apt-get update
+  - git submodule update --init --recursive
+
+install:
+  - sudo apt-get install qt597base qt597svg qt597network
+  - sudo apt-get install cmake
+  - source /opt/qt597/bin/qt597-env.sh
+
+
+script:
+  - mkdir build
+  - cd build
+  - cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr
+  - make -j$(nproc)
+  
+  - # Generate AppImage
+  - wget -c "https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage" 
+  - chmod a+x linuxdeployqt*.AppImage
+  - export VERSION=$(git rev-parse --short HEAD)
+  - mv ../default.desktop .
+  - mv ../icon.ico .
+  - ./linuxdeployqt*.AppImage ./CPEditor -appimage 
+  - curl --upload-file ./CPEditor*.AppImage https://transfer.sh/CPEditor-git.$(git rev-parse --short HEAD)-x86_64.AppImage 
+
+# Temporarily disabled so that AppImage generation can be tested
+# branches:
+#   only:
+#    - master
