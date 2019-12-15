@@ -3,5 +3,5 @@ Type=Application
 Name=CP Editor
 Comment=Editor for Competitive Programming
 Exec=CPEditor
-Icon=icon.ico
+Icon=icon
 Categories=Development;
