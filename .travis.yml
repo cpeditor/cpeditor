@@ -8,7 +8,7 @@ before_install:
   - sudo apt-get update -qq
 
 install:
-  - sudo apt-get -y install qt510base libgl1-mesa-dev qt59svg qt59imageformats
+  - sudo apt-get -y install qt510base libgl1-mesa-dev qt510svg qt510imageformats
   - source /opt/qt*/bin/qt*-env.sh  
   - git submodule update --init --recursive
 
@@ -22,8 +22,8 @@ script:
   - wget -c "https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage" 
   - chmod a+x linuxdeployqt*.AppImage
   - export VERSION=$(git rev-parse --short HEAD)
-  # - mv ../default.desktop .
-  # - mv ../icon.ico .
+  - mv ../default.desktop .
+  - mv ../icon.ico .
   - ./linuxdeployqt*.AppImage ./CPEditor -appimage 
   - curl --upload-file ./CPEditor*.AppImage https://transfer.sh/CPEditor-git.$(git rev-parse --short HEAD)-x86_64.AppImage 
 
