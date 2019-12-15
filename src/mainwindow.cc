@@ -231,6 +231,9 @@ void MainWindow::restoreSettings() {
 
   ui->actionEnable_Companion->setChecked(
       setting->isCompetitiveCompanionActive());
+
+  ui->actionBeta_Updates->setChecked(
+      setting->isBeta());
 }
 
 void MainWindow::runEditorDiagonistics() {
