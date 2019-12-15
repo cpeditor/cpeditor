@@ -8,7 +8,7 @@ before_install:
   - sudo apt-get update -qq
 
 install:
-  - sudo apt-get -y install qt512base libgl1-mesa-dev qt512svg qt512imageformats qt512-meta
+  - sudo apt-get -y install qt512base libgl1-mesa-dev qt512svg qt512imageformats
   - source /opt/qt*/bin/qt*-env.sh  
   - git submodule update --init --recursive
 
