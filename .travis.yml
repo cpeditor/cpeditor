@@ -8,7 +8,7 @@ before_install:
   - sudo apt-get update -qq
 
 install:
-  - sudo apt-get -y install qt512base libgl1-mesa-dev qt512svg qt512imageformats
+  - sudo apt-get -y install qt512base libgl1-mesa-dev qt512svg qt512imageformats qt512-meta
   - source /opt/qt*/bin/qt*-env.sh  
   - git submodule update --init --recursive
 
@@ -25,7 +25,7 @@ script:
   - mv ../default.desktop .
   - mv ../icon.png .
   - ./linuxdeployqt*.AppImage ./CPEditor -appimage 
-  - curl --upload-file ./CPEditor*.AppImage https://transfer.sh/CPEditor-git.$(git rev-parse --short HEAD)-x86_64.AppImage 
+  - curl --upload-file ./CP_Editor*.AppImage https://transfer.sh/CPEditor-git.$(git rev-parse --short HEAD)-x86_64.AppImage 
 
 # Temporarily disabled so that AppImage generation can be tested
 # branches:
