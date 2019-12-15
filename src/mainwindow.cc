@@ -459,23 +459,19 @@ void MainWindow::on_actionSave_triggered() {
 }
 
 void MainWindow::on_actionSave_as_triggered() {
-  auto filename = QFileDialog::getSaveFileName(
-      this, tr("Save as File"), "",
-      "Source Files (*.cpp *.hpp *.h *.cc *.cxx *.c *.py *.py3 *.java)");
-  if (filename.isEmpty())
-    return;
-  QFile savedFile(filename);
-  savedFile.open(QIODevice::ReadWrite | QFile::Text);
-  if (savedFile.isOpen()) {
-    savedFile.write(editor->toPlainText().toStdString().c_str());
-    Log::MessageLogger::info(
-        "Save as", "Saved new file name " + savedFile.fileName().toStdString());
+  if (openFile == nullptr) {
+    saveFile(true, "Save as");
   } else {
-    Log::MessageLogger::error(
-        "Save as",
-        "Cannot Save as new file, Is write permission allowed to me?");
+    auto oldFile = openFile;
+    openFile->close();
+    openFile = nullptr;
+    if (!saveFile(true, "Save as")) {
+      openFile = oldFile;
+      openFile->open(QIODevice::ReadWrite | QFile::Text);
+    } else {
+      delete oldFile;
+    }
   }
-  on_textChanged_triggered();
 }
 
 void MainWindow::on_actionAuto_Save_triggered(bool checked) {
@@ -1101,6 +1097,7 @@ bool MainWindow::saveFile(bool force, std::string head) {
       openFile = new QFile(filename);
       openFile->open(QIODevice::ReadWrite | QFile::Text);
       if (openFile->isOpen()) {
+        openFile->resize(0);
         if (openFile->write(editor->toPlainText().toStdString().c_str()) != -1)
           Log::MessageLogger::info(
               head, "Saved file : " + openFile->fileName().toStdString());
@@ -1112,9 +1109,9 @@ bool MainWindow::saveFile(bool force, std::string head) {
         Log::MessageLogger::error(
             head, "Cannot Save file. Do I have write permission?");
       }
-    }
-    else
+    } else {
       return false;
+    }
   } else {
     openFile->resize(0);
     openFile->write(editor->toPlainText().toStdString().c_str());
