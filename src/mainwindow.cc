@@ -749,6 +749,7 @@ void MainWindow::on_actionSet_Code_Template_triggered() {
   Log::MessageLogger::info(
       "Template",
       "Template path updated. It will be effective from Next Session");
+  on_textChanged_triggered();
 }
 
 void MainWindow::on_actionRun_Command_triggered() {
