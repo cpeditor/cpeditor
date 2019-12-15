@@ -88,4 +88,4 @@ $ cmake --build .
 License
 ----
 
-[GNU General Public Licenser Version 3.0](https://github.com/coder3101/cp-editor2/blob/master/LICENSE)
+[GNU General Public License Version 3.0](https://github.com/coder3101/cp-editor2/blob/master/LICENSE)
