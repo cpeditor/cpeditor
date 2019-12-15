@@ -578,7 +578,9 @@ void MainWindow::on_actionAbout_triggered() {
       "<p>The <b>CP Editor</b> is a competitive programmer's editor "
       "which can ease the task of compiling, testing and running a program"
       "so that you (a great programmer) can focus fully on your algorithms "
-      "designs. </p>");
+      "designs. </p>"
+      "<p>The code repository: <a href=\"https://github.com/coder3101/cp-editor2\">"
+      "https://github.com/coder3101/cp-editor2</a></p>");
 }
 
 void MainWindow::on_actionAbout_Qt_triggered() {
