@@ -23,7 +23,7 @@ script:
   - chmod a+x linuxdeployqt*.AppImage
   - export VERSION=$(git rev-parse --short HEAD)
   - mv ../default.desktop .
-  - mv ../icon.ico .
+  - mv ../icon.png .
   - ./linuxdeployqt*.AppImage ./CPEditor -appimage 
   - curl --upload-file ./CPEditor*.AppImage https://transfer.sh/CPEditor-git.$(git rev-parse --short HEAD)-x86_64.AppImage 
 
