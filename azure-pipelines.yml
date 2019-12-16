@@ -37,7 +37,7 @@ steps:
 
 - task: GitHubRelease@1
   inputs:
-    gitHubConnection: cpeditor-azure
+    gitHubConnection: github.com_coder3101
     repositoryName: '$(Build.Repository.Name)'
     action: 'edit'
     target: '$(Build.SourceVersion)'
