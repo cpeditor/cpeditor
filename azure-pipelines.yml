@@ -35,7 +35,7 @@ steps:
     cd $(Build.SourcesDirectory)/build
     wget -c "https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage" 
     chmod a+x linuxdeployqt*.AppImage
-    export VERSION=$(git describe --abbrev=0)
+    export VERSION=`git describe --tags`
     mv ../default.desktop . && mv ../icon.png .
     ./linuxdeployqt*.AppImage ./CPEditor -appimage
   displayName: 'Package to AppImage'
@@ -47,6 +47,6 @@ steps:
     action: 'create'
     target: '$(Build.SourceVersion)'
     title: 'CP Editor'
-    assets: $(Build.SourcesDirectory)/build/*.AppImage
+    assets: $(Build.SourcesDirectory)/build/CP*
     changeLogCompareToRelease: 'lastFullRelease'
     changeLogType: 'commitBased'
