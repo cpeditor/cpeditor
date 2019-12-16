@@ -35,6 +35,7 @@ steps:
     wget -c "https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage" 
     chmod a+x linuxdeployqt*.AppImage
     export VERSION=$(git describe --abbrev=0)
+    mv ../default.desktop . && mv ../icon.png .
     ./linuxdeployqt*.AppImage ./CPEditor -appimage
   displayName: 'Package to AppImage'
 
