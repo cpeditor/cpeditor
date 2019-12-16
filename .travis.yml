@@ -15,19 +15,5 @@ install:
 script:
   - mkdir build
   - cd build
-  - cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr
+  - cmake .. -DCMAKE_BUILD_TYPE=Release
   - make -j$(nproc)
-  
-  - # Generate AppImage
-  - wget -c "https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage" 
-  - chmod a+x linuxdeployqt*.AppImage
-  - export VERSION=$(git rev-parse --short HEAD)
-  - mv ../default.desktop .
-  - mv ../icon.png .
-  - ./linuxdeployqt*.AppImage ./CPEditor -appimage 
-  - curl --upload-file ./CP_Editor*.AppImage https://transfer.sh/CPEditor-git.$(git rev-parse --short HEAD)-x86_64.AppImage 
-
-# Temporarily disabled so that AppImage generation can be tested
-# branches:
-#   only:
-#    - master
