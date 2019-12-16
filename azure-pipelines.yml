@@ -44,10 +44,9 @@ steps:
   inputs:
     gitHubConnection: github.com_coder3101
     repositoryName: '$(Build.Repository.Name)'
-    action: 'edit'
+    action: 'create'
     target: '$(Build.SourceVersion)'
-    tag: '3.1.0'
     title: 'CP Editor'
-    assets: '$(Build.SourceDirecectory)/*.AppImage'
+    assets: $(Build.SourceDirecectory)/*.AppImage
     changeLogCompareToRelease: 'lastFullRelease'
     changeLogType: 'commitBased'
