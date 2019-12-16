@@ -27,6 +27,9 @@ steps:
     cmakeArgs: '.. -DCMAKE_BUILD_TYPE=Release'
 
 
+- script: cd $(Build.SourcesDirectory)/build && make -j 8
+  displayName: 'Make'
+
 - script: |
     cd $(Build.SourcesDirectory)
     wget -c "https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage" 
