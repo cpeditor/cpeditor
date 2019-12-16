@@ -16,18 +16,14 @@ steps:
 - script: git submodule update --init --recursive
   displayName: 'Fetch third party dependency'
 
-- script: mkdir build && cd build
-  displayName: 'Create build directory'
-
-- script: cmake .. -DCMAKE_BUILD_TYPE=Release
-  displayName: 'Generate make files'
-
-- script: make -j 8
-  displayName: 'Compilation started'
+- task: CMake@1
+  displayName: 'Generate make-files'
+  inputs:
+    cmakeArgs: '.. -DCMAKE_BUILD_TYPE=Release'
 
 
 - script: |
-    mv ../icon.png . && mv ../default.desktop ..
+    cd $(Build.SourcesDirectory)
     wget -c "https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage" 
     chmod a+x linuxdeployqt*.AppImage
     export VERSION=$(git describe --abbrev=0)
