@@ -16,6 +16,11 @@ steps:
 - script: git submodule update --init --recursive
   displayName: 'Fetch third party dependency'
 
+- script: |
+    sudo add-apt-repository ppa:beineri/opt-qt-5.12.0-xenial -y
+    sudo apt-get update -qq
+    sudo apt-get -y install qt512base libgl1-mesa-dev qt512svg qt512imageformats
+    source /opt/qt*/bin/qt*-env.sh
 - task: CMake@1
   displayName: 'Generate make-files'
   inputs:
@@ -29,3 +34,15 @@ steps:
     export VERSION=$(git describe --abbrev=0)
     ./linuxdeployqt*.AppImage ./CPEditor -appimage
   displayName: 'Package to AppImage'
+
+- task: GitHubRelease@1
+  inputs:
+    gitHubConnection: cpeditor-azure
+    repositoryName: '$(Build.Repository.Name)'
+    action: 'edit'
+    target: '$(Build.SourceVersion)'
+    tag: '$(git describe --abbrev=0)'
+    title: 'CP Editor'
+    assets: '$(Build.SourceDirecectory)/*.AppImage'
+    changeLogCompareToRelease: 'lastFullRelease'
+    changeLogType: 'commitBased'
