@@ -18,7 +18,7 @@ Head over to the [release page](https://github.com/coder3101/cp-editor2/releases
   >See google on how to run AppImages if you are new to AppImages.
 - Mac users please install from source for the time being.
 
-For Chinese users who are not convenient to download on Github, there is an [alternative download link](https://pan.wzf2000.top/s/md70l8h0).
+For Chinese users who are not convenient to download on Github, there is an [alternative download link](https://pan.wzf2000.top/s/md70l8h0) (it's not guaranteed to be up to date).
 
 ### Initial setup
 
