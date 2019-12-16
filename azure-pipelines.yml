@@ -31,7 +31,7 @@ steps:
   displayName: 'Make'
 
 - script: |
-    cd $(Build.SourcesDirectory)
+    cd $(Build.SourcesDirectory)/build
     wget -c "https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage" 
     chmod a+x linuxdeployqt*.AppImage
     export VERSION=$(git describe --abbrev=0)
