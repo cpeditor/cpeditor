@@ -56,6 +56,10 @@ bool SettingManager::isTabs() {
   return mSettings->value("use_tabs", "false").toBool();
 }
 
+bool SettingManager::isSaveTests() {
+  return mSettings->value("save_tests", "false").toBool();
+}
+
 bool SettingManager::isMaximizedWindow() {
   return mSettings->value("win_max", "false").toBool();
 }
@@ -149,6 +153,13 @@ void SettingManager::setTabs(bool value) {
     mSettings->setValue("use_tabs", QString::fromStdString("true"));
   else
     mSettings->setValue("use_tabs", QString::fromStdString("false"));
+}
+
+void SettingManager::setSaveTests(bool value) {
+  if (value)
+    mSettings->setValue("save_tests", QString::fromStdString("true"));
+  else
+    mSettings->setValue("save_tests", QString::fromStdString("false"));
 }
 
 void SettingManager::setMaximizedWindow(bool value) {

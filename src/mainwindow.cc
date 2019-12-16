@@ -63,6 +63,7 @@ MainWindow::MainWindow(QString filePath, QWidget* parent)
       delete openFile;
       openFile = nullptr;
     }
+    loadTests();
   }
 }
 
@@ -74,17 +75,14 @@ MainWindow::~MainWindow() {
     openFile->close();
   delete openFile;
   delete inputReader;
-  delete outputReader;
-  delete outputWriter;
   delete formatter;
   delete compiler;
   delete runner;
   delete saveTimer;
   delete updater;
 
-  delete expected1;
-  delete expected2;
-  delete expected3;
+  for (int i = 0; i < 3; ++i)
+    delete expected[i];
 }
 
 // ************************* RAII HELPER *****************************
@@ -102,20 +100,27 @@ void MainWindow::setEditor() {
 
   ui->verticalLayout_8->addWidget(editor);
 
-  ui->in1->setWordWrapMode(QTextOption::NoWrap);
-  ui->in2->setWordWrapMode(QTextOption::NoWrap);
-  ui->in3->setWordWrapMode(QTextOption::NoWrap);
-  ui->out1->setWordWrapMode(QTextOption::NoWrap);
-  ui->out2->setWordWrapMode(QTextOption::NoWrap);
-  ui->out3->setWordWrapMode(QTextOption::NoWrap);
+  input[0] = ui->in1;
+  input[1] = ui->in2;
+  input[2] = ui->in3;
+
+  output[0] = ui->out1;
+  output[1] = ui->out2;
+  output[2] = ui->out3;
+
+  verdict[0] = ui->out1_verdict;
+  verdict[1] = ui->out2_verdict;
+  verdict[2] = ui->out3_verdict;
+
+  for (int i = 0; i < 3; ++i){
+      expected[i] = new QString;
+      input[i]->setWordWrapMode(QTextOption::NoWrap);
+      output[i]->setWordWrapMode(QTextOption::NoWrap);
+  }
 
   saveTimer = new QTimer();
   saveTimer->setSingleShot(false);
   saveTimer->setInterval(10000);  // every 10 sec save
-
-  expected1 = new QString;
-  expected2 = new QString;
-  expected3 = new QString;
 
   QObject::connect(editor, SIGNAL(textChanged()),
                    this, SLOT(on_textChanged_triggered()));
@@ -265,9 +270,7 @@ void MainWindow::runEditorDiagonistics() {
 void MainWindow::setupCore() {
   formatter =
       new Core::Formatter(QString::fromStdString(setting->getFormatCommand()));
-  outputReader = new Core::IO::OutputReader(ui->out1, ui->out2, ui->out3);
-  outputWriter = new Core::IO::OutputWriter(ui->out1, ui->out2, ui->out3);
-  inputReader = new Core::IO::InputReader(ui->in1, ui->in2, ui->in3);
+  inputReader = new Core::IO::InputReader(input);
   compiler =
       new Core::Compiler(QString::fromStdString(setting->getCompileCommand()));
   runner =
@@ -277,35 +280,110 @@ void MainWindow::setupCore() {
 
   updater = new Telemetry::UpdateNotifier(setting->isBeta());
 
-  QObject::connect(runner, SIGNAL(firstExecutionFinished(QString, QString)),
-                   this, SLOT(firstExecutionFinished(QString, QString)));
-
-  QObject::connect(runner, SIGNAL(secondExecutionFinished(QString, QString)),
-                   this, SLOT(secondExecutionFinished(QString, QString)));
-
-  QObject::connect(runner, SIGNAL(thirdExecutionFinished(QString, QString)),
-                   this, SLOT(thirdExecutionFinished(QString, QString)));
+  QObject::connect(runner, SIGNAL(executionFinished(int, QString)),
+                   this, SLOT(executionFinished(int, QString)));
 
   QObject::connect(saveTimer, SIGNAL(timeout()), this,
                    SLOT(onSaveTimerElapsed()));
 }
 
-void MainWindow::clearTests() {
-  ui->in1->clear();
-  ui->in2->clear();
-  ui->in3->clear();
+void MainWindow::clearTests(bool outputOnly) {
+  for (int i = 0; i < 3; ++i) {
+    if (!outputOnly) {
+      input[i]->clear();
+      expected[i]->clear();
+    }
+    output[i]->clear();
+    updateVerdict(Core::Verdict::UNKNOWN, i);
+  }
+}
 
-  ui->out1->clear();
-  ui->out2->clear();
-  ui->out3->clear();
+void MainWindow::loadTests() {
+  if (openFile == nullptr || !setting->isSaveTests())
+    return;
 
-  expected1->clear();
-  expected2->clear();
-  expected3->clear();
+  QFileInfo fileInfo(*openFile);
+  QString testFile = fileInfo.dir().absolutePath() + "/" + fileInfo.completeBaseName();
 
-  updateVerdict(Core::Verdict::UNKNOWN, 1);
-  updateVerdict(Core::Verdict::UNKNOWN, 2);
-  updateVerdict(Core::Verdict::UNKNOWN, 3);
+  for (int i = 0; i < 3; ++i) {
+    if (QFile::exists(testFile + QString::number(i + 1) + ".in")) {
+      QFile* inputFile = new QFile(testFile + QString::number(i + 1) + ".in");
+      inputFile->open(QIODevice::ReadOnly | QFile::Text);
+      if (inputFile->isOpen()) {
+        input[i]->setPlainText(inputFile->readAll());
+        inputFile->close();
+        Log::MessageLogger::info(
+            "Tests", "Input #" + std::to_string(i + 1) + " successfully loaded");
+      } else {
+        Log::MessageLogger::error(
+            "Tests", "Cannot Open" + inputFile->fileName().toStdString() + ", Do I have read permissions?");
+      }
+      delete inputFile;
+    }
+
+    if (QFile::exists(testFile + QString::number(i + 1) + ".ans")) {
+      QFile* answerFile = new QFile(testFile + QString::number(i + 1) + ".ans");
+      answerFile->open(QIODevice::ReadOnly | QFile::Text);
+      if (answerFile->isOpen()) {
+        expected[i]->operator=(answerFile->readAll());
+        answerFile->close();
+        Log::MessageLogger::info(
+            "Tests", "Expected #" + std::to_string(i + 1) + " successfully loaded");
+      } else {
+        Log::MessageLogger::error(
+            "Tests", "Cannot Open" + answerFile->fileName().toStdString() + ", Do I have read permissions?");
+      }
+      delete answerFile;
+    }
+  }
+}
+
+void MainWindow::saveTests() {
+  if (openFile == nullptr || !setting->isSaveTests())
+    return;
+
+  QFileInfo fileInfo(*openFile);
+  QString testFile = fileInfo.dir().absolutePath() + "/" + fileInfo.completeBaseName();
+
+  for (int i = 0; i < 3; ++i) {
+    if (!input[i]->toPlainText().trimmed().isEmpty()) {
+      QFile* inputFile = new QFile(testFile + QString::number(i + 1) + ".in");
+      inputFile->open(QIODevice::WriteOnly | QFile::Text);
+      if (inputFile->isOpen()) {
+        if (inputFile->write(input[i]->toPlainText().toStdString().c_str()) != -1) {
+          Log::MessageLogger::info(
+              "Tests", "Input #" + std::to_string(i + 1) + " successfully saved");
+        } else {
+          Log::MessageLogger::error(
+              "Tests", "Input #" + std::to_string(i + 1) + " was not successfully saved");
+        }
+        inputFile->close();
+      } else {
+        Log::MessageLogger::error("Tests",
+            "Cannot save Input #" + std::to_string(i + 1) + ", Do I have write permission?");
+      }
+      delete inputFile;
+    }
+
+    if (!expected[i]->trimmed().isEmpty()) {
+      QFile* answerFile = new QFile(testFile + QString::number(i + 1) + ".ans");
+      answerFile->open(QIODevice::WriteOnly | QFile::Text);
+      if (answerFile->isOpen()) {
+        if (answerFile->write(expected[i]->toStdString().c_str()) != -1) {
+          Log::MessageLogger::info(
+              "Tests", "Expected #" + std::to_string(i + 1) + " successfully saved");
+        } else {
+          Log::MessageLogger::error(
+              "Tests", "Expected #" + std::to_string(i + 1) + " was not successfully saved");
+        }
+        answerFile->close();
+      } else {
+        Log::MessageLogger::error("Tests",
+            "Cannot save Expected #" + std::to_string(i + 1) + ", Do I have write permission?");
+      }
+      delete answerFile;
+    }
+  }
 }
 
 void MainWindow::launchSession(bool confirm) {
@@ -341,10 +419,10 @@ void MainWindow::launchSession(bool confirm) {
   clearTests();
 }
 
-void MainWindow::updateVerdict(Core::Verdict verdict, int target) {
+void MainWindow::updateVerdict(Core::Verdict _verdict, int id) {
   QString verdict_text, style_sheet;
 
-  switch (verdict) {
+  switch (_verdict) {
     case Core::Verdict::ACCEPTED:
       verdict_text = "Verdict : AC";
       style_sheet = "QLabel { color : rgb(0, 180, 0); }";
@@ -359,20 +437,8 @@ void MainWindow::updateVerdict(Core::Verdict verdict, int target) {
       break;
   }
 
-  switch (target) {
-    case 1:
-      ui->out1_verdict->setText(verdict_text);
-      ui->out1_verdict->setStyleSheet(style_sheet);
-      break;
-    case 2:
-      ui->out2_verdict->setText(verdict_text);
-      ui->out2_verdict->setStyleSheet(style_sheet);
-      break;
-    case 3:
-      ui->out3_verdict->setText(verdict_text);
-      ui->out3_verdict->setStyleSheet(style_sheet);
-      break;
-  }
+  verdict[id]->setText(verdict_text);
+  verdict[id]->setStyleSheet(style_sheet);
 }
 
 void MainWindow::createAndAttachServer() {
@@ -406,19 +472,9 @@ void MainWindow::applyCompanion(Network::CompanionData data) {
         "More than 3 testcase were produced. Only First 3 will be used");
   }
 
-  if (data.testcases.size() >= 1) {
-    ui->in1->setPlainText(data.testcases[0].input);
-    expected1->operator=(data.testcases[0].output);
-  }
-
-  if (data.testcases.size() >= 2) {
-    ui->in2->setPlainText(data.testcases[1].input);
-    expected2->operator=(data.testcases[1].output);
-  }
-
-  if (data.testcases.size() >= 3) {
-    ui->in3->setPlainText(data.testcases[2].input);
-    expected3->operator=(data.testcases[2].output);
+  for (int i = 0; i < data.testcases.size() && i < 3; ++i) {
+    input[i]->setPlainText(data.testcases[i].input);
+    expected[i]->operator=(data.testcases[i].output);
   }
 }
 
@@ -452,6 +508,8 @@ void MainWindow::on_actionOpen_triggered() {
     Log::MessageLogger::error(
         "Open", "Cannot Open, Do I have read and write permissions?");
   }
+
+  loadTests();
 }
 
 void MainWindow::on_actionSave_triggered() {
@@ -629,20 +687,7 @@ void MainWindow::on_run_clicked() {
 }
 
 void MainWindow::on_runOnly_clicked() {
-  Log::MessageLogger::clear();
-  inputReader->readToFile();
-
-  updateVerdict(Core::Verdict::UNKNOWN, 1);
-  updateVerdict(Core::Verdict::UNKNOWN, 2);
-  updateVerdict(Core::Verdict::UNKNOWN, 3);
-
-  ui->out1->clear();
-  ui->out2->clear();
-  ui->out3->clear();
-
-  runner->run(!ui->in1->toPlainText().trimmed().isEmpty(),
-              !ui->in2->toPlainText().trimmed().isEmpty(),
-              !ui->in3->toPlainText().trimmed().isEmpty(), language);
+  on_actionRunOnly_triggered();
 }
 
 void MainWindow::on_actionDetached_Execution_triggered() {
@@ -658,20 +703,17 @@ void MainWindow::on_actionFormat_triggered() {
 
 void MainWindow::on_actionRun_triggered() {
   Log::MessageLogger::clear();
-
-  updateVerdict(Core::Verdict::UNKNOWN, 1);
-  updateVerdict(Core::Verdict::UNKNOWN, 2);
-  updateVerdict(Core::Verdict::UNKNOWN, 3);
-
+  clearTests(true);
   saveFile(false, "Compiler");
-
-  ui->out1->clear();
-  ui->out2->clear();
-  ui->out3->clear();
   inputReader->readToFile();
-  runner->run(editor, !ui->in1->toPlainText().trimmed().isEmpty(),
-              !ui->in2->toPlainText().trimmed().isEmpty(),
-              !ui->in3->toPlainText().trimmed().isEmpty(), language);
+
+  QVector<bool> isRun;
+  for (int i = 0; i < 3; ++i) {
+    output[i]->clear();
+    isRun.push_back(!input[i]->toPlainText().trimmed().isEmpty());
+  }
+
+  runner->run(editor, isRun, language);
 }
 
 void MainWindow::on_actionCompile_triggered() {
@@ -680,8 +722,19 @@ void MainWindow::on_actionCompile_triggered() {
   compiler->compile(editor, language);
 }
 
-void MainWindow::on_onlyRun_triggered() {
-  on_runOnly_clicked();
+void MainWindow::on_actionRunOnly_triggered() {
+  Log::MessageLogger::clear();
+  clearTests(true);
+  saveFile(false, "Compiler");
+  inputReader->readToFile();
+
+  QVector<bool> isRun;
+  for (int i = 0; i < 3; ++i) {
+    output[i]->clear();
+    isRun.push_back(!input[i]->toPlainText().trimmed().isEmpty());
+  }
+
+  runner->run(isRun, language);
 }
 
 void MainWindow::on_actionKill_Processes_triggered() {
@@ -779,51 +832,25 @@ void MainWindow::on_actionSet_Tab_Size_triggered() {
   }
 }
 
+void MainWindow::on_actionSave_Tests_triggered(bool checked) {
+  setting->setSaveTests(checked);
+}
+
 // ************************ SLOTS ******************************************
-void MainWindow::firstExecutionFinished(QString Stdout, QString Stderr) {
-  Log::MessageLogger::info("Runner[1]", "Execution for first case completed");
+void MainWindow::executionFinished(int id, QString Stdout) {
+  Log::MessageLogger::info("Runner[" + std::to_string(id + 1) + "]",
+                           "Execution for case #" + std::to_string(id + 1) + " completed");
 
-  ui->out1->clear();
-  ui->out1->setPlainText(Stdout);
-  if (!Stderr.isEmpty())
-    Log::MessageLogger::error("Runner[1]:[STDERR]", Stderr.toStdString(), true);
-  if (Stdout.isEmpty() || expected1->isEmpty())
+  output[id]->clear();
+  output[id]->setPlainText(Stdout);
+
+  if (Stdout.isEmpty() || expected[id]->isEmpty())
     return;
 
-  if (isVerdictPass(Stdout, *expected1))
-    updateVerdict(Core::Verdict::ACCEPTED, 1);
+  if (isVerdictPass(Stdout, *expected[id]))
+    updateVerdict(Core::Verdict::ACCEPTED, id);
   else
-    updateVerdict(Core::Verdict::WRONG_ANSWER, 1);
-}
-void MainWindow::secondExecutionFinished(QString Stdout, QString Stderr) {
-  Log::MessageLogger::info("Runner[2]", "Execution for second case completed");
-
-  ui->out2->clear();
-  ui->out2->setPlainText(Stdout);
-  if (!Stderr.isEmpty())
-    Log::MessageLogger::error("Runner[2]:[STDERR]", Stderr.toStdString(), true);
-  if (Stdout.isEmpty() || expected2->isEmpty())
-    return;
-
-  if (isVerdictPass(Stdout, *expected2))
-    updateVerdict(Core::Verdict::ACCEPTED, 2);
-  else
-    updateVerdict(Core::Verdict::WRONG_ANSWER, 2);
-}
-
-void MainWindow::thirdExecutionFinished(QString Stdout, QString Stderr) {
-  Log::MessageLogger::info("Runner[3]", "Execution for third case completed");
-  ui->out3->clear();
-  ui->out3->setPlainText(Stdout);
-  if (!Stderr.isEmpty())
-    Log::MessageLogger::error("Runner[3]:[STDERR]", Stderr.toStdString(), true);
-  if (Stdout.isEmpty() || expected3->isEmpty())
-    return;
-
-  if (isVerdictPass(Stdout, *expected3))
-    updateVerdict(Core::Verdict::ACCEPTED, 3);
-  else
-    updateVerdict(Core::Verdict::WRONG_ANSWER, 3);
+    updateVerdict(Core::Verdict::WRONG_ANSWER, id);
 }
 
 void MainWindow::onSaveTimerElapsed() {
@@ -989,20 +1016,20 @@ void MainWindow::on_out3_customContextMenuRequested(const QPoint& pos) {
 //********************* DIFF Showers ******************
 
 void MainWindow::on_out1_diff_clicked() {
-  auto ptr = new DiffViewer(expected1, ui->out1);
-  ptr->setTitle("Diffviewer for Case 1");
+  auto ptr = new DiffViewer(expected[0], ui->out1);
+  ptr->setTitle("Diffviewer for Case #1");
   ptr->show();
 }
 
 void MainWindow::on_out2_diff_clicked() {
-  auto ptr = new DiffViewer(expected2, ui->out2);
-  ptr->setTitle("Diffviewer for Case 2");
+  auto ptr = new DiffViewer(expected[1], ui->out2);
+  ptr->setTitle("Diffviewer for Case #2");
   ptr->show();
 }
 
 void MainWindow::on_out3_diff_clicked() {
-  auto ptr = new DiffViewer(expected3, ui->out3);
-  ptr->setTitle("Diffviewer for Case 3");
+  auto ptr = new DiffViewer(expected[2], ui->out3);
+  ptr->setTitle("Diffviewer for Case #3");
   ptr->show();
 }
 
@@ -1109,6 +1136,7 @@ bool MainWindow::saveFile(bool force, std::string head) {
         Log::MessageLogger::error(
             head, "Cannot Save file. Do I have write permission?");
       }
+      saveTests();
     } else {
       return false;
     }
@@ -1118,6 +1146,7 @@ bool MainWindow::saveFile(bool force, std::string head) {
     openFile->flush();
     Log::MessageLogger::info(
         head, "Saved with file name " + openFile->fileName().toStdString());
+    saveTests();
   }
   on_textChanged_triggered();
   return true;

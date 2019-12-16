@@ -32,11 +32,9 @@ class Runner : public QObject, private Base::Files {
   ~Runner();
 
   void run(QCodeEditor* editor,
-           bool runA,
-           bool runB,
-           bool runC,
+           QVector<bool> _isRun,
            QString lang = "Cpp");
-  void run(bool runA, bool runB, bool runC, QString lang = "Cpp");
+  void run(QVector<bool> _isRun, QString lang = "Cpp");
 
   void runDetached(QCodeEditor* editor, QString lang = "Cpp");
 
@@ -49,31 +47,22 @@ class Runner : public QObject, private Base::Files {
  private slots:
   void compilationFinished(bool success);
 
-  void firstError(QProcess::ProcessError);
-  void firstFinished(int, QProcess::ExitStatus);
-  void firstStarted();
-
-  void secondError(QProcess::ProcessError);
-  void secondFinished(int, QProcess::ExitStatus);
-  void secondStarted();
-
-  void thirdError(QProcess::ProcessError);
-  void thirdFinished(int, QProcess::ExitStatus);
-  void thirdStarted();
+  void runError(int, QProcess::ProcessError);
+  void runFinished(int, int, QProcess::ExitStatus);
+  void runStarted(int);
 
  signals:
-  void firstExecutionFinished(QString, QString);
-  void secondExecutionFinished(QString, QString);
-  void thirdExecutionFinished(QString, QString);
+  void executionFinished(int, QString);
 
  private:
   QString runCommand;
   QString startRunCommand;
   QString language;
   Core::Compiler* compiler = nullptr;
-  bool a_ = false, b_ = false, c_ = false, detached = false;
-  QProcess *first = nullptr, *second = nullptr, *third = nullptr,
-           *detachedHandle = nullptr;
+  QVector<bool> isRun = QVector<bool>(3, false);
+  bool detached = false;
+  QProcess *detachedHandle = nullptr;
+  QVector<QProcess*> runner = QVector<QProcess*>(3, nullptr);
 };
 
 }  // namespace Core

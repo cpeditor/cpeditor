@@ -31,12 +31,11 @@ Runner::Runner(QString runCommand,
 }
 
 Runner::~Runner() {
-  if (first != nullptr)
-    delete first;
-  if (second != nullptr)
-    delete second;
-  if (third != nullptr)
-    delete third;
+  for (int i = 0; i < 3; ++i) {
+    if (runner[i] != nullptr) {
+      delete runner[i];
+    }
+  }
   delete compiler;
   if (detachedHandle != nullptr)
     delete detachedHandle;
@@ -55,29 +54,16 @@ void Runner::updateRunStartCommand(QString newCommand) {
 }
 
 void Runner::killAll() {
-  if (first != nullptr) {
-    if (first->state() == QProcess::Running)
-      Log::MessageLogger::info("Runner",
-                               "Killed Program executing first testcase");
-    first->kill();
-    delete first;
-    first = nullptr;
-  }
-  if (second != nullptr) {
-    if (second->state() == QProcess::Running)
-      Log::MessageLogger::info("Runner",
-                               "Killed Program executing second testcase");
-    second->kill();
-    delete second;
-    second = nullptr;
-  }
-  if (third != nullptr) {
-    if (third->state() == QProcess::Running)
-      Log::MessageLogger::info("Runner",
-                               "Killed Program executing third testcase");
-    third->kill();
-    delete third;
-    third = nullptr;
+  for (int i = 0; i < 3; ++i) {
+    if (runner[i] != nullptr) {
+      if (runner[i]->state() == QProcess::Running)
+        Log::MessageLogger::info("Runner[" + std::to_string(i + 1) + "]",
+                                 "Program running on case #" +
+                                  std::to_string(i + 1) + " is killed");
+      runner[i]->kill();
+      delete runner[i];
+      runner[i] = nullptr;
+    }
   }
 
   if (detachedHandle != nullptr) {
@@ -91,52 +77,32 @@ void Runner::killAll() {
 }
 
 void Runner::run(QCodeEditor* editor,
-                 bool runA,
-                 bool runB,
-                 bool runC,
+                 QVector<bool> _isRun,
                  QString lang) {
-  if (first != nullptr) {
-    first->kill();
-    delete first;
-    first = nullptr;
+  for (int i = 0; i < 3; ++i) {
+    if (runner[i] != nullptr) {
+      runner[i]->kill();
+      delete runner[i];
+      runner[i] = nullptr;
+    }
   }
-  if (second != nullptr) {
-    second->kill();
-    delete second;
-    second = nullptr;
-  }
-  if (third != nullptr) {
-    third->kill();
-    delete third;
-    third = nullptr;
-  }
-  a_ = runA;
-  b_ = runB;
-  c_ = runC;
+
+  isRun = _isRun;
 
   this->language = lang;
   compiler->compile(editor, lang);
 }
 
-void Runner::run(bool runA, bool runB, bool runC, QString lang) {
-  if (first != nullptr) {
-    first->terminate();
-    delete first;
-    first = nullptr;
+void Runner::run(QVector<bool> _isRun, QString lang) {
+  for (int i = 0; i < 3; ++i) {
+    if (runner[i] != nullptr) {
+      runner[i]->terminate();
+      delete runner[i];
+      runner[i] = nullptr;
+    }
   }
-  if (second != nullptr) {
-    second->terminate();
-    delete second;
-    second = nullptr;
-  }
-  if (third != nullptr) {
-    third->terminate();
-    delete third;
-    third = nullptr;
-  }
-  a_ = runA;
-  b_ = runB;
-  c_ = runC;
+
+  isRun = _isRun;
 
   this->language = lang;
 
@@ -249,122 +215,49 @@ void Runner::compilationFinished(bool success) {
       return;
     }
 
-    if (a_) {
-      first = new QProcess();
+    for (int i = 0; i < 3; ++i) {
+      if (isRun[i]) {
+        runner[i] = new QProcess();
 
-      QTimer* killtimer = new QTimer(first);
-      killtimer->setSingleShot(true);
-      killtimer->setInterval(5000);
-      QObject::connect(killtimer, SIGNAL(timeout()), first, SLOT(terminate()));
+        QTimer* killtimer = new QTimer(runner[i]);
+        killtimer->setSingleShot(true);
+        killtimer->setInterval(5000);
+        QObject::connect(killtimer, SIGNAL(timeout()), runner[i], SLOT(terminate()));
 
-      QString args;
+        QString args;
 
-      if (language == "Cpp")
-        first->setProgram(getBinaryOutput());
-      else if (language == "Python" || language == "Java") {
-        first->setProgram(startRunCommand);
-        if (language == "Python")
-          args += getProgramFile(".py");
-        else
-          args += "-classpath," + getBaseDirectory() + ",a";
-      } else {
-        Log::MessageLogger::error(
-            "Language Error", "Execution language was not identified. Restart");
-        return;
+        if (language == "Cpp")
+          runner[i]->setProgram(getBinaryOutput());
+        else if (language == "Python" || language == "Java") {
+          runner[i]->setProgram(startRunCommand);
+          if (language == "Python")
+            args += getProgramFile(".py");
+          else
+            args += "-classpath," + getBaseDirectory() + ",a";
+        } else {
+          Log::MessageLogger::error(
+              "Language Error", "Execution language was not identified. Restart");
+          return;
+        }
+
+        runner[i]->setStandardInputFile(getInput(i));
+        if (!runCommand.trimmed().isEmpty())
+          args += "," + runCommand.trimmed().replace(" ", ",");
+
+        runner[i]->setArguments(args.split(","));
+
+        QObject::connect(runner[i], QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished), this,
+                         [this, i](int exitCode, QProcess::ExitStatus exitStatus) {
+                           runFinished(i, exitCode, exitStatus);
+                         });
+        QObject::connect(runner[i], &QProcess::errorOccurred,
+                         this, [this, i](QProcess::ProcessError e) { runError(i, e); });
+        QObject::connect(runner[i], &QProcess::started,
+                         this, [this, i]() { runStarted(i); });
+        runner[i]->start();
+        killtimer->start();
       }
-
-      first->setStandardInputFile(getInputFirst());
-      if (!runCommand.trimmed().isEmpty())
-        args += "," + runCommand.trimmed().replace(" ", ",");
-
-      first->setArguments(args.split(","));
-
-      QObject::connect(first, SIGNAL(finished(int, QProcess::ExitStatus)), this,
-                       SLOT(firstFinished(int, QProcess::ExitStatus)));
-      QObject::connect(first, SIGNAL(errorOccurred(QProcess::ProcessError)),
-                       this, SLOT(firstError(QProcess::ProcessError)));
-      QObject::connect(first, SIGNAL(started(void)), this,
-                       SLOT(firstStarted()));
-      first->start();
-      killtimer->start();
     }
-    if (b_) {
-      second = new QProcess();
-
-      QTimer* killtimer2 = new QTimer(second);
-      killtimer2->setSingleShot(true);
-      killtimer2->setInterval(5000);
-      QObject::connect(killtimer2, SIGNAL(timeout()), second,
-                       SLOT(terminate()));
-
-      QString args;
-
-      if (language == "Cpp")
-        second->setProgram(getBinaryOutput());
-      else if (language == "Python" || language == "Java") {
-        second->setProgram(startRunCommand);
-        if (language == "Python")
-          args += getProgramFile(".py");
-        else
-          args += "-classpath," + getBaseDirectory() + ",a";
-      } else {
-        Log::MessageLogger::error(
-            "Language Error", "Execution language was not identified. Restart");
-        return;
-      }
-
-      second->setStandardInputFile(getInputSecond());
-      if (!runCommand.trimmed().isEmpty())
-        args += "," + runCommand.trimmed().replace(" ", ",");
-
-      second->setArguments(args.split(","));
-      QObject::connect(second, SIGNAL(finished(int, QProcess::ExitStatus)),
-                       this, SLOT(secondFinished(int, QProcess::ExitStatus)));
-      QObject::connect(second, SIGNAL(errorOccurred(QProcess::ProcessError)),
-                       this, SLOT(secondError(QProcess::ProcessError)));
-      QObject::connect(second, SIGNAL(started(void)), this,
-                       SLOT(secondStarted()));
-      second->start();
-      killtimer2->start();
-    }
-    if (c_) {
-      third = new QProcess();
-      QTimer* killtimer3 = new QTimer(third);
-      killtimer3->setSingleShot(true);
-      killtimer3->setInterval(5000);
-      QObject::connect(killtimer3, SIGNAL(timeout()), third, SLOT(terminate()));
-      QString args;
-
-      if (language == "Cpp")
-        third->setProgram(getBinaryOutput());
-      else if (language == "Python" || language == "Java") {
-        third->setProgram(startRunCommand);
-        if (language == "Python")
-          args += getProgramFile(".py");
-        else
-          args += "-classpath," + getBaseDirectory() + ",a";
-      } else {
-        Log::MessageLogger::error(
-            "Language Error", "Execution language was not identified. Restart");
-        return;
-      }
-
-      third->setStandardInputFile(getInputThird());
-      if (!runCommand.trimmed().isEmpty())
-        args += "," + runCommand.trimmed().replace(" ", ",");
-
-      third->setArguments(args.split(","));
-
-      QObject::connect(third, SIGNAL(finished(int, QProcess::ExitStatus)), this,
-                       SLOT(thirdFinished(int, QProcess::ExitStatus)));
-      QObject::connect(third, SIGNAL(errorOccurred(QProcess::ProcessError)),
-                       this, SLOT(thirdError(QProcess::ProcessError)));
-      QObject::connect(third, SIGNAL(started(void)), this,
-                       SLOT(thirdStarted()));
-      third->start();
-      killtimer3->start();
-    }
-
   } else {
     Log::MessageLogger::warn(
         "Runner",
@@ -372,92 +265,33 @@ void Runner::compilationFinished(bool success) {
   }
 }
 
-void Runner::firstError(QProcess::ProcessError e) {
+void Runner::runError(int id, QProcess::ProcessError e) {
   if (e == QProcess::ProcessError::Timedout)
-    Log::MessageLogger::error("Runner[1]", "Time Limit of 5 sec reached");
+    Log::MessageLogger::error("Runner[" + std::to_string(id + 1) + "]",
+                              "Time Limit of 5 sec reached");
   else
-    Log::MessageLogger::error(
-        "Runner[1]", "Error occurred during execution on first testcase");
-}
-void Runner::secondError(QProcess::ProcessError e) {
-  if (e == QProcess::ProcessError::Timedout)
-    Log::MessageLogger::error("Runner[1]", "Time Limit of 5 sec reached");
-  else
-    Log::MessageLogger::error(
-        "Runner[2]", "Error occurred during execution on second testcase");
-}
-void Runner::thirdError(QProcess::ProcessError e) {
-  if (e == QProcess::ProcessError::Timedout)
-    Log::MessageLogger::error("Runner[1]", "Time Limit of 5 sec reached");
-  else
-    Log::MessageLogger::error(
-        "Runner[3]", "Error occurred during execution on third testcase");
+    Log::MessageLogger::error("Runner[" + std::to_string(id + 1) + "]",
+                              "Error occurred during execution");
 }
 
-void Runner::firstFinished(int exitCode, QProcess::ExitStatus exitStatus) {
+void Runner::runFinished(int id, int exitCode, QProcess::ExitStatus exitStatus) {
+  auto stderrMsg = QString::fromLocal8Bit(runner[id]->readAllStandardError()).toStdString();
+  if (!stderrMsg.empty())
+    Log::MessageLogger::error("Runner[" + std::to_string(id + 1) + "]/stderr", stderrMsg, true);
   if (exitCode == 0 && exitStatus == QProcess::ExitStatus::NormalExit) {
-    emit firstExecutionFinished(
-        QString::fromUtf8(first->readAllStandardOutput()),
-        QString::fromUtf8(first->readAllStandardError()));
+    emit executionFinished(id,
+        QString::fromUtf8(runner[id]->readAllStandardOutput()));
   } else if (exitCode == 15) {
     // Sigterm is called by timeout timer;
-    Log::MessageLogger::error("Runner[1]",
+    Log::MessageLogger::error("Runner[" + std::to_string(id + 1) + "]",
                               "Timeout 5 sec, your program didn't returned");
   } else {
-    auto stderrMsg =
-        QString::fromLocal8Bit(first->readAllStandardError()).toStdString();
-
-    Log::MessageLogger::error("Runner[1]",
+    Log::MessageLogger::error("Runner[" + std::to_string(id + 1) + "]",
                               "Non-zero exit code " + std::to_string(exitCode));
-    if (!stderrMsg.empty())
-      Log::MessageLogger::error("Runner[1]/STDERR", stderrMsg, true);
-  }
-}
-void Runner::secondFinished(int exitCode, QProcess::ExitStatus exitStatus) {
-  if (exitCode == 0 && exitStatus == QProcess::ExitStatus::NormalExit) {
-    emit secondExecutionFinished(
-        QString::fromLocal8Bit(second->readAllStandardOutput()),
-        QString::fromLocal8Bit(second->readAllStandardError()));
-  } else if (exitCode == 15) {
-    // Sigterm is called by timeout timer;
-    Log::MessageLogger::error("Runner[2]",
-                              "Timeout 5 sec, your program didn't returned");
-  } else {
-    auto stderrMsg =
-        QString::fromLocal8Bit(second->readAllStandardError()).toStdString();
-
-    Log::MessageLogger::error("Runner[2]",
-                              "Non-zero exit code " + std::to_string(exitCode));
-    if (!stderrMsg.empty())
-      Log::MessageLogger::error("Runner[2]/STDERR", stderrMsg, true);
-  }
-}
-void Runner::thirdFinished(int exitCode, QProcess::ExitStatus exitStatus) {
-  if (exitCode == 0 && exitStatus == QProcess::ExitStatus::NormalExit) {
-    emit thirdExecutionFinished(
-        QString::fromLocal8Bit(third->readAllStandardOutput()),
-        QString::fromLocal8Bit(third->readAllStandardError()));
-  } else if (exitCode == 15) {
-    // Sigterm is called by timeout timer;
-    Log::MessageLogger::error("Runner[3]",
-                              "Timeout 5 sec, your program didn't returned");
-  } else {
-    auto stderrMsg =
-        QString::fromLocal8Bit(third->readAllStandardError()).toStdString();
-    Log::MessageLogger::error("Runner[3]",
-                              "Non-zero exit code " + std::to_string(exitCode));
-    if (!stderrMsg.empty())
-      Log::MessageLogger::error("Runner[3]/STDERR", stderrMsg, true);
   }
 }
 
-void Runner::firstStarted() {
-  Log::MessageLogger::info("Runner[1]", "Started execution");
-}
-void Runner::secondStarted() {
-  Log::MessageLogger::info("Runner[2]", "Started execution");
-}
-void Runner::thirdStarted() {
-  Log::MessageLogger::info("Runner[3]", "Started execution");
+void Runner::runStarted(int id) {
+  Log::MessageLogger::info("Runner[" + std::to_string(id + 1) + "]", "Started execution");
 }
 }  // namespace Core

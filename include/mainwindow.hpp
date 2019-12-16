@@ -24,6 +24,7 @@
 #include <IO.hpp>
 #include <QCodeEditor>
 #include <QFile>
+#include <QLabel>
 #include <QMainWindow>
 #include <Runner.hpp>
 #include <SettingsManager.hpp>
@@ -62,20 +63,18 @@ class MainWindow : public QMainWindow {
   void on_actionFormat_triggered();
   void on_actionRun_triggered();
   void on_actionCompile_triggered();
+  void on_actionRunOnly_triggered();
   void on_actionChange_compile_command_triggered();
   void on_actionChange_run_command_triggered();
   void on_actionChange_format_command_triggered();
   void on_actionSet_Code_Template_triggered();
 
-  void on_onlyRun_triggered();
   void on_compile_clicked();
   void on_run_clicked();
-  void on_actionReset_Settings_triggered();
   void on_runOnly_clicked();
+  void on_actionReset_Settings_triggered();
 
-  void firstExecutionFinished(QString, QString);
-  void secondExecutionFinished(QString, QString);
-  void thirdExecutionFinished(QString, QString);
+  void executionFinished(int, QString);
   void onSaveTimerElapsed();
   void onCompanionRequest(Network::CompanionData data);
 
@@ -91,6 +90,7 @@ class MainWindow : public QMainWindow {
   void on_actionDetached_Execution_triggered();
   void on_actionUse_Tabs_triggered(bool checked);
   void on_actionSet_Tab_Size_triggered();
+  void on_actionSave_Tests_triggered(bool checked);
 
   void on_in1_customContextMenuRequested(const QPoint& pos);
   void on_in2_customContextMenuRequested(const QPoint& pos);
@@ -115,16 +115,15 @@ class MainWindow : public QMainWindow {
   Settings::SettingManager* setting = nullptr;
   Core::Formatter* formatter = nullptr;
   Core::IO::InputReader* inputReader = nullptr;
-  Core::IO::OutputReader* outputReader = nullptr;
-  Core::IO::OutputWriter* outputWriter = nullptr;
   Core::Compiler* compiler = nullptr;
   Core::Runner* runner = nullptr;
   QTimer* saveTimer = nullptr;
   Telemetry::UpdateNotifier* updater = nullptr;
 
-  QString* expected1 = nullptr;
-  QString* expected2 = nullptr;
-  QString* expected3 = nullptr;
+  QVector<QPlainTextEdit*> input = QVector<QPlainTextEdit*>(3, nullptr);
+  QVector<QPlainTextEdit*> output = QVector<QPlainTextEdit*>(3, nullptr);
+  QVector<QLabel*> verdict = QVector<QLabel*>(3, nullptr);
+  QVector<QString*> expected = QVector<QString*>(3, nullptr);
 
   Network::CompanionServer* server = nullptr;
 
@@ -135,7 +134,9 @@ class MainWindow : public QMainWindow {
   void saveSettings();
   void restoreSettings();
   void setupCore();
-  void clearTests();
+  void clearTests(bool outputOnly = false);
+  void loadTests();
+  void saveTests();
   void launchSession(bool);
   void applyCompanion(Network::CompanionData);
   void checkUpdates();

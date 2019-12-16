@@ -36,6 +36,7 @@ class SettingManager {
   bool isAutoSave();
   bool isBeta();
   bool isTabs();
+  bool isSaveTests();
   bool isMaximizedWindow();
   bool isCompetitiveCompanionActive();
 
@@ -57,6 +58,7 @@ class SettingManager {
   void setAutoSave(bool value);
   void setBeta(bool value);
   void setTabs(bool value);
+  void setSaveTests(bool value);
   void setMaximizedWindow(bool value);
   void setCompetitiveCompanionActive(bool value);
 

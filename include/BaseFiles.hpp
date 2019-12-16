@@ -33,13 +33,8 @@ class Files {
   QString getProgramFile(QString ext = "") {
     return base_ + "/sol" + (ext.isEmpty() ? ".cpp" : ext);
   }
-  QString getInputFirst() { return base_ + "/cp_editor_temp_in1_file"; }
-  QString getInputSecond() { return base_ + "/cp_editor_temp_in2_file"; }
-  QString getInputThird() { return base_ + "/cp_editor_temp_in3_file"; }
-  QString getOutputFirst() { return base_ + "/cp_editor_temp_out1_file"; }
-  QString getOutputSecond() { return base_ + "/cp_editor_temp_out2_file"; }
-  QString getOutputThird() { return base_ + "/cp_editor_temp_out3_file"; }
-  QString getBaseDirectory() {return base_;}
+  QString getInput(int id) { return base_ + "/cp_editor_temp_in" + QString::number(id + 1) + "_file"; }
+  QString getBaseDirectory() { return base_; }
 #ifndef _WIN32
   QString getBinaryOutput(QString ext = "") {
     return base_ + "/a" + (ext.isEmpty() ? ".out" : ext);
