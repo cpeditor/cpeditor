@@ -46,7 +46,7 @@ steps:
     repositoryName: '$(Build.Repository.Name)'
     action: 'edit'
     target: '$(Build.SourceVersion)'
-    tag: '$(git describe --abbrev=0)'
+    tag: '3.1.0'
     title: 'CP Editor'
     assets: '$(Build.SourceDirecectory)/*.AppImage'
     changeLogCompareToRelease: 'lastFullRelease'
