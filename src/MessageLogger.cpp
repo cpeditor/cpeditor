@@ -38,10 +38,7 @@ void MessageLogger::info(std::string head, std::string body) {
   ans += "[";
   ans += body;
   ans += "]";
-  if (box->toPlainText().isEmpty())
-    box->insertHtml(QString::fromStdString(ans));
-  else
-    box->insertHtml("<br>" + QString::fromStdString(ans));
+  box->append(QString::fromStdString(ans));
 }
 
 void MessageLogger::warn(std::string head, std::string body, bool multiline) {
@@ -60,10 +57,7 @@ void MessageLogger::warn(std::string head, std::string body, bool multiline) {
     ans += body;
   ans += "]</font>";
 
-  if (box->toPlainText().isEmpty())
-    box->insertHtml(QString::fromStdString(ans));
-  else
-    box->insertHtml("<br>" + QString::fromStdString(ans));
+  box->append(QString::fromStdString(ans));
 }
 void MessageLogger::error(std::string head, std::string body, bool multiline) {
   std::string ans = "<b>[";
@@ -81,10 +75,7 @@ void MessageLogger::error(std::string head, std::string body, bool multiline) {
     ans += body;
   ans += "]</font>";
 
-  if (box->toPlainText().isEmpty())
-    box->insertHtml(QString::fromStdString(ans));
-  else
-    box->insertHtml("<br>" + QString::fromStdString(ans));
+  box->append(QString::fromStdString(ans));
 }
 void MessageLogger::clear() {
   box->clear();
