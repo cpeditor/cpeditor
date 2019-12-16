@@ -1,0 +1,35 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+# specific tag
+trigger:
+  tags:
+    include:
+    - '*'
+
+pool:
+  vmImage: 'Ubuntu-16.04'
+
+steps:
+- script: git submodule update --init --recursive
+  displayName: 'Fetch third party dependency'
+
+- script: mkdir build && cd build
+  displayName: 'Create build directory'
+
+- script: cmake .. -DCMAKE_BUILD_TYPE=Release
+  displayName: 'Generate make files'
+
+- script: make -j 8
+  displayName: 'Compilation started'
+
+
+- script: |
+    mv ../icon.png . && mv ../default.desktop ..
+    wget -c "https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage" 
+    chmod a+x linuxdeployqt*.AppImage
+    export VERSION=$(git describe --abbrev=0)
+    ./linuxdeployqt*.AppImage ./CPEditor -appimage
+  displayName: 'Package to AppImage'
