@@ -25,34 +25,13 @@ namespace Core {
 namespace IO {
 class InputReader : private Core::Base::Files {
  public:
-  InputReader(QPlainTextEdit* a, QPlainTextEdit* b, QPlainTextEdit* c);
+  InputReader(QVector<QPlainTextEdit*> _a);
   void readToFile();
   ~InputReader();
 
  private:
-  QPlainTextEdit *a_, *b_, *c_;
-  QFile *f_a, *f_b, *f_c;
-};
-class OutputReader : private Core::Base::Files {
- public:
-  OutputReader(QPlainTextEdit* a, QPlainTextEdit* b, QPlainTextEdit* c);
-  void readToFile();
-  ~OutputReader();
-
- private:
-  QPlainTextEdit *a_, *b_, *c_;
-  QFile *f_a, *f_b, *f_c;
-};
-class OutputWriter : private Core::Base::Files {
- public:
-  OutputWriter(QPlainTextEdit* a, QPlainTextEdit* b, QPlainTextEdit* c);
-  void writeFromFile();
-  void writeFromFile(int);
-  ~OutputWriter();
-
- private:
-  QPlainTextEdit *a_, *b_, *c_;
-  QFile *f_a, *f_b, *f_c;
+  QVector<QPlainTextEdit*> a = QVector<QPlainTextEdit*>(3, nullptr);
+  QVector<QFile*> f = QVector<QFile*>(3, nullptr);
 };
 }  // namespace IO
 }  // namespace Core

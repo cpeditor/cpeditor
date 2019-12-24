@@ -21,167 +21,29 @@
 namespace Core {
 namespace IO {
 
-InputReader::InputReader(QPlainTextEdit* a,
-                         QPlainTextEdit* b,
-                         QPlainTextEdit* c) {
-  a_ = a;
-  b_ = b;
-  c_ = c;
-
-  f_a = new QFile(getInputFirst());
-  f_b = new QFile(getInputSecond());
-  f_c = new QFile(getInputThird());
+InputReader::InputReader(QVector<QPlainTextEdit*> _a) {
+  a = _a;
+  for (int i = 0; i < 3; ++i){
+    f[i] = new QFile(getInput(i));
+  }
 }
 
 InputReader::~InputReader() {
-  if (f_a->isOpen())
-    f_a->close();
-  if (f_b->isOpen())
-    f_b->close();
-  if (f_c->isOpen())
-    f_c->close();
-
-  delete f_a;
-  delete f_b;
-  delete f_c;
+  for (int i = 0; i < 3; ++i) {
+    if (f[i]->isOpen())
+      f[i]->close();
+    delete f[i];
+  }
 }
 
 void InputReader::readToFile() {
-  if (!f_a->isOpen())
-    f_a->open(QIODevice::ReadWrite | QFile::Text);
-  if (!f_b->isOpen())
-    f_b->open(QIODevice::ReadWrite | QFile::Text);
-  if (!f_c->isOpen())
-    f_c->open(QIODevice::ReadWrite | QFile::Text);
-
-  f_a->resize(0);
-  f_b->resize(0);
-  f_c->resize(0);
-
-  f_a->write(a_->toPlainText().toStdString().c_str());
-  f_b->write(b_->toPlainText().toStdString().c_str());
-  f_c->write(c_->toPlainText().toStdString().c_str());
-
-  f_a->close();
-  f_b->close();
-  f_c->close();
-}
-
-OutputReader::OutputReader(QPlainTextEdit* a,
-                           QPlainTextEdit* b,
-                           QPlainTextEdit* c) {
-  a_ = a;
-  b_ = b;
-  c_ = c;
-
-  f_a = new QFile(getOutputFirst());
-  f_b = new QFile(getOutputSecond());
-  f_c = new QFile(getOutputThird());
-}
-
-OutputReader::~OutputReader() {
-  if (f_a->isOpen())
-    f_a->close();
-  if (f_b->isOpen())
-    f_b->close();
-  if (f_c->isOpen())
-    f_c->close();
-
-  delete f_a;
-  delete f_b;
-  delete f_c;
-}
-
-void OutputReader::readToFile() {
-  if (!f_a->isOpen())
-    f_a->open(QIODevice::ReadWrite | QFile::Text);
-  if (!f_b->isOpen())
-    f_b->open(QIODevice::ReadWrite | QFile::Text);
-  if (!f_c->isOpen())
-    f_c->open(QIODevice::ReadWrite | QFile::Text);
-
-  f_a->resize(0);
-  f_b->resize(0);
-  f_c->resize(0);
-
-  f_a->write(a_->toPlainText().toStdString().c_str());
-  f_b->write(b_->toPlainText().toStdString().c_str());
-  f_c->write(c_->toPlainText().toStdString().c_str());
-
-  f_a->close();
-  f_b->close();
-  f_c->close();
-}
-
-OutputWriter::OutputWriter(QPlainTextEdit* a,
-                           QPlainTextEdit* b,
-                           QPlainTextEdit* c) {
-  a_ = a;
-  b_ = b;
-  c_ = c;
-
-  f_a = new QFile(getOutputFirst());
-  f_b = new QFile(getOutputSecond());
-  f_c = new QFile(getOutputThird());
-}
-
-OutputWriter::~OutputWriter() {
-  if (f_a->isOpen())
-    f_a->close();
-  if (f_b->isOpen())
-    f_b->close();
-  if (f_c->isOpen())
-    f_c->close();
-
-  delete f_a;
-  delete f_b;
-  delete f_c;
-}
-
-void OutputWriter::writeFromFile() {
-  if (!f_a->isOpen())
-    f_a->open(QIODevice::ReadWrite | QFile::Text);
-  if (!f_b->isOpen())
-    f_b->open(QIODevice::ReadWrite | QFile::Text);
-  if (!f_c->isOpen())
-    f_c->open(QIODevice::ReadWrite | QFile::Text);
-
-  a_->setPlainText(f_a->readAll());
-  b_->setPlainText(f_b->readAll());
-  c_->setPlainText(f_c->readAll());
-
-  f_a->resize(0);
-  f_b->resize(0);
-  f_c->resize(0);
-
-  f_a->close();
-  f_b->close();
-  f_c->close();
-}
-
-void OutputWriter::writeFromFile(int n) {
-  if (n == 1) {
-    if (!f_a->isOpen())
-      f_a->open(QIODevice::ReadWrite | QFile::Text);
-  } else if (n == 2) {
-    if (!f_b->isOpen())
-      f_b->open(QIODevice::ReadWrite | QFile::Text);
-  } else if (!f_c->isOpen())
-    f_c->open(QIODevice::ReadWrite | QFile::Text);
-
-  if (n == 1)
-    a_->setPlainText(f_a->readAll());
-  if (n == 2)
-    b_->setPlainText(f_b->readAll());
-  if (n == 3)
-    c_->setPlainText(f_c->readAll());
-
-  if (f_a->isOpen())
-    f_a->close();
-  if (f_b->isOpen())
-    f_b->close();
-  if (f_c->isOpen())
-    f_c->close();
+  for (int i = 0; i < 3; ++i) {
+    if (!f[i]->isOpen())
+      f[i]->open(QIODevice::WriteOnly | QFile::Text);
+    f[i]->resize(0);
+    f[i]->write(a[i]->toPlainText().toStdString().c_str());
+    f[i]->close();
+  }
 }
 
 }  // namespace IO

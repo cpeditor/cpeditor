@@ -293,7 +293,7 @@
      <string>Actions</string>
     </property>
     <addaction name="actionCompile"/>
-    <addaction name="onlyRun"/>
+    <addaction name="actionRunOnly"/>
     <addaction name="actionRun"/>
     <addaction name="actionDetached_Execution"/>
     <addaction name="actionFormat"/>
@@ -309,6 +309,7 @@
     <addaction name="actionRun_Command"/>
     <addaction name="actionChange_run_command"/>
     <addaction name="actionSet_Tab_Size"/>
+    <addaction name="actionSave_Tests"/>
    </widget>
    <widget class="QMenu" name="menuEditor">
     <property name="title">
@@ -428,7 +429,7 @@
   </action>
   <action name="actionChange_format_command">
    <property name="text">
-    <string>Format command</string>
+    <string>Format Command</string>
    </property>
   </action>
   <action name="actionQuit">
@@ -496,7 +497,7 @@
     <string>Reset Settings</string>
    </property>
   </action>
-  <action name="onlyRun">
+  <action name="actionRunOnly">
    <property name="text">
     <string>Run</string>
    </property>
@@ -594,6 +595,14 @@
   <action name="actionSet_Tab_Size">
    <property name="text">
     <string>Set Tab Size</string>
+   </property>
+  </action>
+  <action name="actionSave_Tests">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Save Input and Expected</string>
    </property>
   </action>
   <action name="actionEnable_Companion">
