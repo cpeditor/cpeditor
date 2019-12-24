@@ -242,6 +242,9 @@ void MainWindow::restoreSettings() {
 
   ui->actionBeta_Updates->setChecked(
       setting->isBeta());
+
+  ui->actionSave_Tests->setChecked(
+      setting->isSaveTests());
 }
 
 void MainWindow::runEditorDiagonistics() {
