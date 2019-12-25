@@ -24,61 +24,63 @@
 
 #define SETTINGS_FILE "cp_editor_settings.ini"
 
-namespace Settings {
-class SettingManager {
- public:
-  SettingManager();
+namespace Settings
+{
+class SettingManager
+{
+  public:
+    SettingManager();
 
-  bool isDarkTheme();
-  bool isAutoIndent();
-  bool isAutoParenthesis();
-  bool isWrapText();
-  bool isAutoSave();
-  bool isBeta();
-  bool isTabs();
-  bool isSaveTests();
-  bool isMaximizedWindow();
-  bool isCompetitiveCompanionActive();
+    bool isDarkTheme();
+    bool isAutoIndent();
+    bool isAutoParenthesis();
+    bool isWrapText();
+    bool isAutoSave();
+    bool isBeta();
+    bool isTabs();
+    bool isSaveTests();
+    bool isMaximizedWindow();
+    bool isCompetitiveCompanionActive();
 
-  std::string getFormatCommand();
-  std::string getCompileCommand();
-  std::string getRunCommand();
-  std::string getPrependRunCommand();
-  std::string getTemplatePath();
-  std::string getDefaultLang();
-  std::string getFont();
-  QRect getGeometry();
-  int getTabStop();
-  int getConnectionPort();
+    std::string getFormatCommand();
+    std::string getCompileCommand();
+    std::string getRunCommand();
+    std::string getPrependRunCommand();
+    std::string getTemplatePath();
+    std::string getDefaultLang();
+    std::string getFont();
+    QRect getGeometry();
+    int getTabStop();
+    int getConnectionPort();
 
-  void setDarkTheme(bool value);
-  void setAutoParenthesis(bool value);
-  void setAutoIndent(bool value);
-  void setWrapText(bool value);
-  void setAutoSave(bool value);
-  void setBeta(bool value);
-  void setTabs(bool value);
-  void setSaveTests(bool value);
-  void setMaximizedWindow(bool value);
-  void setCompetitiveCompanionActive(bool value);
+    void setDarkTheme(bool value);
+    void setAutoParenthesis(bool value);
+    void setAutoIndent(bool value);
+    void setWrapText(bool value);
+    void setAutoSave(bool value);
+    void setBeta(bool value);
+    void setTabs(bool value);
+    void setSaveTests(bool value);
+    void setMaximizedWindow(bool value);
+    void setCompetitiveCompanionActive(bool value);
 
-  void setCompileCommands(std::string command);
-  void setRunCommand(std::string command);
-  void setFormatCommand(std::string command);
-  void setPrependRunCommand(std::string command);
-  void setTemplatePath(std::string path);
-  void setDefaultLanguage(std::string lang);
-  void setFont(std::string font);
-  void setGeometry(QRect);
-  void setTabStop(int num);
-  void setConnectionPort(int num);
+    void setCompileCommands(std::string command);
+    void setRunCommand(std::string command);
+    void setFormatCommand(std::string command);
+    void setPrependRunCommand(std::string command);
+    void setTemplatePath(std::string path);
+    void setDefaultLanguage(std::string lang);
+    void setFont(std::string font);
+    void setGeometry(QRect);
+    void setTabStop(int num);
+    void setConnectionPort(int num);
 
-  ~SettingManager();
+    ~SettingManager();
 
- private:
-  QString mSettingsFile;
-  QSettings* mSettings;
+  private:
+    QString mSettingsFile;
+    QSettings *mSettings;
 };
-}  // namespace Settings
+} // namespace Settings
 
-#endif  // SETTINGSMANAGER_HPP
+#endif // SETTINGSMANAGER_HPP

@@ -32,120 +32,122 @@
 #include <generated/version.hpp>
 
 QT_BEGIN_NAMESPACE
-namespace Ui {
+namespace Ui
+{
 class MainWindow;
 }
 QT_END_NAMESPACE
 
-class MainWindow : public QMainWindow {
-  Q_OBJECT
+class MainWindow : public QMainWindow
+{
+    Q_OBJECT
 
- public:
-  MainWindow(QString fileOpen, QWidget* parent = nullptr);
-  ~MainWindow() override;
-  void closeEvent(QCloseEvent* event) override;
- private slots:
-  void on_textChanged_triggered();
+  public:
+    MainWindow(QString fileOpen, QWidget *parent = nullptr);
+    ~MainWindow() override;
+    void closeEvent(QCloseEvent *event) override;
+  private slots:
+    void on_textChanged_triggered();
 
-  void on_actionQuit_triggered();
+    void on_actionQuit_triggered();
 
-  void on_actionDark_Theme_triggered(bool checked);
-  void on_actionWrap_Text_triggered(bool checked);
-  void on_actionAuto_Indentation_triggered(bool checked);
-  void on_actionAuto_Parenthesis_triggered(bool checked);
+    void on_actionDark_Theme_triggered(bool checked);
+    void on_actionWrap_Text_triggered(bool checked);
+    void on_actionAuto_Indentation_triggered(bool checked);
+    void on_actionAuto_Parenthesis_triggered(bool checked);
 
-  void on_actionNew_triggered();
-  void on_actionOpen_triggered();
-  void on_actionSave_triggered();
-  void on_actionSave_as_triggered();
-  void on_actionAbout_triggered();
-  void on_actionAbout_Qt_triggered();
-  void on_actionFormat_triggered();
-  void on_actionRun_triggered();
-  void on_actionCompile_triggered();
-  void on_actionRunOnly_triggered();
-  void on_actionChange_compile_command_triggered();
-  void on_actionChange_run_command_triggered();
-  void on_actionChange_format_command_triggered();
-  void on_actionSet_Code_Template_triggered();
+    void on_actionNew_triggered();
+    void on_actionOpen_triggered();
+    void on_actionSave_triggered();
+    void on_actionSave_as_triggered();
+    void on_actionAbout_triggered();
+    void on_actionAbout_Qt_triggered();
+    void on_actionFormat_triggered();
+    void on_actionRun_triggered();
+    void on_actionCompile_triggered();
+    void on_actionRunOnly_triggered();
+    void on_actionChange_compile_command_triggered();
+    void on_actionChange_run_command_triggered();
+    void on_actionChange_format_command_triggered();
+    void on_actionSet_Code_Template_triggered();
 
-  void on_compile_clicked();
-  void on_run_clicked();
-  void on_runOnly_clicked();
-  void on_actionReset_Settings_triggered();
+    void on_compile_clicked();
+    void on_run_clicked();
+    void on_runOnly_clicked();
+    void on_actionReset_Settings_triggered();
 
-  void executionFinished(int, QString);
-  void onSaveTimerElapsed();
-  void onCompanionRequest(Network::CompanionData data);
+    void executionFinished(int, QString);
+    void onSaveTimerElapsed();
+    void onCompanionRequest(Network::CompanionData data);
 
-  void on_actionC_C_triggered(bool checked);
-  void on_actionPython_triggered(bool checked);
-  void on_actionJava_triggered(bool checked);
+    void on_actionC_C_triggered(bool checked);
+    void on_actionPython_triggered(bool checked);
+    void on_actionJava_triggered(bool checked);
 
-  void on_actionRun_Command_triggered();
-  void on_actionKill_Processes_triggered();
-  void on_actionFont_triggered();
-  void on_actionAuto_Save_triggered(bool checked);
-  void on_actionBeta_Updates_triggered(bool checked);
-  void on_actionDetached_Execution_triggered();
-  void on_actionUse_Tabs_triggered(bool checked);
-  void on_actionSet_Tab_Size_triggered();
-  void on_actionSave_Tests_triggered(bool checked);
+    void on_actionRun_Command_triggered();
+    void on_actionKill_Processes_triggered();
+    void on_actionFont_triggered();
+    void on_actionAuto_Save_triggered(bool checked);
+    void on_actionBeta_Updates_triggered(bool checked);
+    void on_actionDetached_Execution_triggered();
+    void on_actionUse_Tabs_triggered(bool checked);
+    void on_actionSet_Tab_Size_triggered();
+    void on_actionSave_Tests_triggered(bool checked);
 
-  void on_in1_customContextMenuRequested(const QPoint& pos);
-  void on_in2_customContextMenuRequested(const QPoint& pos);
-  void on_in3_customContextMenuRequested(const QPoint& pos);
-  void on_compiler_edit_customContextMenuRequested(const QPoint& pos);
-  void on_out3_customContextMenuRequested(const QPoint& pos);
-  void on_out2_customContextMenuRequested(const QPoint& pos);
-  void on_out1_customContextMenuRequested(const QPoint& pos);
+    void on_in1_customContextMenuRequested(const QPoint &pos);
+    void on_in2_customContextMenuRequested(const QPoint &pos);
+    void on_in3_customContextMenuRequested(const QPoint &pos);
+    void on_compiler_edit_customContextMenuRequested(const QPoint &pos);
+    void on_out3_customContextMenuRequested(const QPoint &pos);
+    void on_out2_customContextMenuRequested(const QPoint &pos);
+    void on_out1_customContextMenuRequested(const QPoint &pos);
 
-  void on_out1_diff_clicked();
-  void on_out2_diff_clicked();
-  void on_out3_diff_clicked();
+    void on_out1_diff_clicked();
+    void on_out2_diff_clicked();
+    void on_out3_diff_clicked();
 
-  void on_actionEnable_Companion_triggered(bool checked);
-  void on_actionChange_Port_triggered();
+    void on_actionEnable_Companion_triggered(bool checked);
+    void on_actionChange_Port_triggered();
 
- private:
-  Ui::MainWindow* ui;
-  QCodeEditor* editor;
-  QString language;
-  QFile* openFile = nullptr;
-  Settings::SettingManager* setting = nullptr;
-  Core::Formatter* formatter = nullptr;
-  Core::IO::InputReader* inputReader = nullptr;
-  Core::Compiler* compiler = nullptr;
-  Core::Runner* runner = nullptr;
-  QTimer* saveTimer = nullptr;
-  Telemetry::UpdateNotifier* updater = nullptr;
+  private:
+    Ui::MainWindow *ui;
+    QCodeEditor *editor;
+    QString language;
+    QFile *openFile = nullptr;
+    Settings::SettingManager *setting = nullptr;
+    Core::Formatter *formatter = nullptr;
+    Core::IO::InputReader *inputReader = nullptr;
+    Core::Compiler *compiler = nullptr;
+    Core::Runner *runner = nullptr;
+    QTimer *saveTimer = nullptr;
+    Telemetry::UpdateNotifier *updater = nullptr;
 
-  QVector<QPlainTextEdit*> input = QVector<QPlainTextEdit*>(3, nullptr);
-  QVector<QPlainTextEdit*> output = QVector<QPlainTextEdit*>(3, nullptr);
-  QVector<QLabel*> verdict = QVector<QLabel*>(3, nullptr);
-  QVector<QString*> expected = QVector<QString*>(3, nullptr);
+    QVector<QPlainTextEdit *> input = QVector<QPlainTextEdit *>(3, nullptr);
+    QVector<QPlainTextEdit *> output = QVector<QPlainTextEdit *>(3, nullptr);
+    QVector<QLabel *> verdict = QVector<QLabel *>(3, nullptr);
+    QVector<QString *> expected = QVector<QString *>(3, nullptr);
 
-  Network::CompanionServer* server = nullptr;
+    Network::CompanionServer *server = nullptr;
 
-  void setEditor();
-  void setLogger();
-  void runEditorDiagonistics();
-  void setSettingsManager();
-  void saveSettings();
-  void restoreSettings();
-  void setupCore();
-  void clearTests(bool outputOnly = false);
-  void loadTests();
-  void saveTests();
-  void launchSession(bool);
-  void applyCompanion(Network::CompanionData);
-  void checkUpdates();
-  void createAndAttachServer();
-  void updateVerdict(Core::Verdict, int);
+    void setEditor();
+    void setLogger();
+    void runEditorDiagonistics();
+    void setSettingsManager();
+    void saveSettings();
+    void restoreSettings();
+    void setupCore();
+    void clearTests(bool outputOnly = false);
+    void loadTests();
+    void saveTests();
+    void launchSession(bool);
+    void applyCompanion(Network::CompanionData);
+    void checkUpdates();
+    void createAndAttachServer();
+    void updateVerdict(Core::Verdict, int);
 
-  bool isVerdictPass(QString, QString);
-  bool saveFile(bool, std::string);
-  bool isTextChanged();
-  bool closeChangedConfirm();
+    bool isVerdictPass(QString, QString);
+    bool saveFile(bool, std::string);
+    bool isTextChanged();
+    bool closeChangedConfirm();
 };
-#endif  // MAINWINDOW_HPP
+#endif // MAINWINDOW_HPP

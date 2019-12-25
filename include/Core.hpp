@@ -23,37 +23,40 @@
 #include <QCodeEditor>
 #include <QFile>
 #include <QProcess>
-namespace Core {
+namespace Core
+{
 
-class Compiler : public QObject, private Core::Base::Files {
-  Q_OBJECT
- public:
-  Compiler(QString command);
-  void compile(QCodeEditor* editor, QString lang = "Cpp");
-  void updateCommand(QString newCommand);
-  static bool check(QString command);
-  ~Compiler();
+class Compiler : public QObject, private Core::Base::Files
+{
+    Q_OBJECT
+  public:
+    Compiler(QString command);
+    void compile(QCodeEditor *editor, QString lang = "Cpp");
+    void updateCommand(QString newCommand);
+    static bool check(QString command);
+    ~Compiler();
 
- signals:
-  void compilationFinished(bool okay);
-  void compilationError();
-  void compilationStarted();
+  signals:
+    void compilationFinished(bool okay);
+    void compilationError();
+    void compilationStarted();
 
- private slots:
-  void finished(int, QProcess::ExitStatus);
-  void errorOccurred(QProcess::ProcessError);
-  void started();
+  private slots:
+    void finished(int, QProcess::ExitStatus);
+    void errorOccurred(QProcess::ProcessError);
+    void started();
 
- private:
-  QString runCommand;
-  QProcess* compilationProcess = nullptr;
-  QFile *file, *pyFile, *javaFile;
+  private:
+    QString runCommand;
+    QProcess *compilationProcess = nullptr;
+    QFile *file, *pyFile, *javaFile;
 };
 
-enum Verdict {
-  ACCEPTED,
-  WRONG_ANSWER,
-  UNKNOWN,
+enum Verdict
+{
+    ACCEPTED,
+    WRONG_ANSWER,
+    UNKNOWN,
 };
-}  // namespace Core
-#endif  // CORE_CP_EDITOR_HPP
+} // namespace Core
+#endif // CORE_CP_EDITOR_HPP

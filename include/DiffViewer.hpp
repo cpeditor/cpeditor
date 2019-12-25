@@ -3,30 +3,32 @@
 
 #include <QMainWindow>
 #include <QPlainTextEdit>
-namespace Ui {
+namespace Ui
+{
 class DiffViewer;
 }
 
-class DiffViewer : public QMainWindow {
-  Q_OBJECT
+class DiffViewer : public QMainWindow
+{
+    Q_OBJECT
 
- public:
-  explicit DiffViewer(QWidget* parent = nullptr);
-  DiffViewer(QString* expected, QPlainTextEdit* ui);
-  void setTitle(QString title);
-  ~DiffViewer();
+  public:
+    explicit DiffViewer(QWidget *parent = nullptr);
+    DiffViewer(QString *expected, QPlainTextEdit *ui);
+    void setTitle(QString title);
+    ~DiffViewer();
 
- private slots:
-  void on_exit_clicked();
+  private slots:
+    void on_exit_clicked();
 
-  void on_read_clicked();
+    void on_read_clicked();
 
-  void on_update_clicked();
+    void on_update_clicked();
 
- private:
-  Ui::DiffViewer* ui;
-  QString* exp;
-  QPlainTextEdit* res;
+  private:
+    Ui::DiffViewer *ui;
+    QString *exp;
+    QPlainTextEdit *res;
 };
 
-#endif  // DIFFVIEWER_HPP
+#endif // DIFFVIEWER_HPP
