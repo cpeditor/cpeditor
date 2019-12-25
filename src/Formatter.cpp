@@ -54,10 +54,6 @@ bool Formatter::check(QString command)
     if (started) // 10 Second timeout
         program.kill();
 
-    int exitCode = program.exitCode();
-    QString stdOutput = QString::fromLocal8Bit(program.readAllStandardOutput());
-    QString stdError = QString::fromLocal8Bit(program.readAllStandardError());
-
     return started;
 }
 
@@ -75,14 +71,31 @@ void Formatter::format(QCodeEditor *editor)
         file->resize(0);
         file->write(old.c_str());
         file->close();
-        std::string comm = (command + " " + getTempFormatFile()).toStdString();
-        int status = std::system(comm.c_str());
-        if (status != 0)
+        auto result = command.trimmed().split(" ");
+        QProcess formatProcess;
+        QString programName = result[0];
+        result.removeAt(0);
+        result.append(getTempFormatFile());
+
+        formatProcess.start(programName, result);
+        formatProcess.waitForFinished(2000); // BLOCKS main Thread
+
+        if (formatProcess.state() == QProcess::Running)
         {
-            Log::MessageLogger::error("Formatter", "Failed to format document at Formatter::format()");
+            Log::MessageLogger::warn("Formatter",
+                                     "It seems the format command took more than 2 seconds to complete. Skipped");
             file->open(QIODevice::ReadWrite | QFile::Text);
             return;
         }
+
+        if (formatProcess.exitCode() != 0)
+        {
+            Log::MessageLogger::error("Formatter", "Format command returned non-zero exit code " +
+                                                       std::to_string(formatProcess.exitCode()));
+            file->open(QIODevice::ReadWrite | QFile::Text);
+            return;
+        }
+
         file->open(QIODevice::ReadWrite | QFile::Text);
         editor->setPlainText(file->readAll());
         editor->setTextCursor(old_pos);

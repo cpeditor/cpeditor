@@ -6,7 +6,6 @@
 
 CP Editor is a Native Qt based code editor writter in C++. It make you only focus on your code and automates the compilation, executing and testing. It even fetches testcases for you from web!
 
-### Screenshots
 <img src=https://i.imgur.com/BSQ7d0K.jpg width="85%">  
 
 ### Installation
@@ -15,7 +14,7 @@ Head over to the [release page](https://github.com/coder3101/cp-editor2/releases
 - Windows users can find an `Installer` install it and start to code.
 - Linux users can find an `AppImage` install or directly run it. 
   
-  >See google on how to run AppImages if you are new to AppImages.
+  >Google on how to run App Images.
 - Mac users please install from source for the time being.
 
 For Chinese users who are not convenient to download on Github, there is an [alternative download link](https://pan.wzf2000.top/s/md70l8h0) (it's not guaranteed to be up to date).
@@ -64,7 +63,7 @@ For Chinese users who are not convenient to download on Github, there is an [alt
 | CTRL+Shift+R | Compile and Run                                              |
 | CTRL+Shift+C | Compile only                                                 |
 | CTRL+R       | Run                                                          |
-| CTRL+K       | Kill all running Testcases / Samples                         |
+| CTRL+K       | Kill all running Test cases / Samples                        |
 | CTRL+Shift+D | Run the program in separate window (Detached mode)           |
 
 
@@ -78,12 +77,16 @@ $ cmake .. -DCMAKE_BUILD_TYPE=Release
 $ cmake --build .
 ```
 
+#### Contribution
+Contributors and contributions are welcomed! However to maintain the quality of code, we use `Coding Style`. So make sure that your changes are formatted using `clang-format`, using the format-file provided in the root of the directory.
+
 #### FAQ 
+
 - Where does the editor saves my code and binary executable?
     - Editor does not saves your files if you don't Save them yourself. You can find your binary executable at `C://Users/<NAME>/AppData/Local/Temp/a.exe` in windows and on NIX in `/tmp/a.out`. At those location the source file could also be located with name `sol.cpp`. 
 - I am using it in Java and editor is not working.
    - Make sure `java` and `javac` are in PATH variables. Please Log/Restart your machine if it does not recognizes the Java Compiler. Now make sure your source code has **non-public class named a**. 
-- I get DLL Missing error while launching application?
+- I get **DLL Missing error** while launching application?
    - Please download  [Microsoft Visual C++ Redistributable for Visual Studio 2015, 2017 and 2019](https://support.microsoft.com/en-us/help/2977003/the-latest-supported-visual-c-downloads).
 
 

@@ -35,8 +35,8 @@ struct CompanionData
         ans += "Problem : " + name + "\n";
         ans += "Contest : " + contest + "\n";
         ans += "URL : " + url + "\n";
-        ans += "Memory Limit : " + QString::fromStdString(std::to_string(memoryLimit)) + "MB \n";
-        ans += "Time Limit : " + QString::fromStdString(std::to_string(timeLimit)) + "milisec \n";
+        ans += "Memory Limit : " + QString::fromStdString(std::to_string(memoryLimit)) + " MB \n";
+        ans += "Time Limit : " + QString::fromStdString(std::to_string(timeLimit)) + " milisec \n";
         return ans;
     }
 };
