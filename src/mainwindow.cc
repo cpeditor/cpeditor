@@ -25,6 +25,7 @@
 #include <QFontDialog>
 #include <QInputDialog>
 #include <QMessageBox>
+#include <QMimeData>
 #include <QPythonCompleter>
 #include <QPythonHighlighter>
 #include <QSyntaxStyle>
@@ -67,6 +68,8 @@ MainWindow::MainWindow(QString filePath, QWidget *parent) : QMainWindow(parent),
         }
         loadTests();
     }
+
+    setAcceptDrops(true);
 }
 
 MainWindow::~MainWindow()
@@ -752,6 +755,45 @@ void MainWindow::closeEvent(QCloseEvent *event)
         event->accept();
     else
         event->ignore();
+}
+
+void MainWindow::dragEnterEvent(QDragEnterEvent *event)
+{
+    if (event->mimeData()->hasUrls())
+    {
+        event->acceptProposedAction();
+    }
+}
+
+void MainWindow::dropEvent(QDropEvent *event)
+{
+    auto files = event->mimeData()->urls();
+    if (files.size() > 1)
+    {
+        Log::MessageLogger::warn("CP Editor", "Multiple files were dropped, only first will be opened");
+    }
+    auto fileName = files[0].toLocalFile();
+    QFile *newFile = new QFile(fileName);
+    newFile->open(QFile::Text | QIODevice::ReadWrite);
+
+    if (!closeChangedConfirm())
+        return;
+
+    if (newFile->isOpen())
+    {
+        editor->setPlainText(newFile->readAll());
+        if (openFile != nullptr && openFile->isOpen())
+            openFile->close();
+        openFile = newFile;
+        Log::MessageLogger::info("Open", "Opened " + openFile->fileName().toStdString());
+        this->window()->setWindowTitle("CP Editor: " + openFile->fileName());
+    }
+    else
+    {
+        Log::MessageLogger::error("Open", "Cannot Open, Do I have read and write permissions?");
+    }
+
+    loadTests();
 }
 
 void MainWindow::on_compile_clicked()

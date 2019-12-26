@@ -46,6 +46,8 @@ class MainWindow : public QMainWindow
     MainWindow(QString fileOpen, QWidget *parent = nullptr);
     ~MainWindow() override;
     void closeEvent(QCloseEvent *event) override;
+    void dropEvent(QDropEvent *event) override;
+    void dragEnterEvent(QDragEnterEvent *event);
   private slots:
     void on_textChanged_triggered();
 
