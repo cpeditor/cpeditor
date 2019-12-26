@@ -66,6 +66,19 @@ For Chinese users who are not convenient to download on Github, there is an [alt
 | CTRL+K       | Kill all running Test cases / Samples                        |
 | CTRL+Shift+D | Run the program in separate window (Detached mode)           |
 
+### Hotkeys
+
+To use these keys, enable `Hotkeys` from `Settings => [check] Enable Hotkeys`
+
+| Key   | Action                                           |
+| ----- | ------------------------------------------------ |
+| `F5`  | Compile \| Equivalent to CTRL+Shift+C            |
+| `F6`  | Compile and Run \| Equivalent to CTRL+Shift+R    |
+| `F7`  | Run only  \| Equivalent to CTRL+R                |
+| `F9`  | Detached Execution \| Equivalent to CTRL+Shift+D |
+| `F11` | Kill \| Equivalent to CTRL+K                     |
+
+These keys cannot be changed manually, so get used to them!
 
 #### Building for source
 > **Qt must be installed in order to compile from source**

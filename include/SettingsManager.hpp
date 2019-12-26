@@ -41,6 +41,7 @@ class SettingManager
     bool isSaveTests();
     bool isMaximizedWindow();
     bool isCompetitiveCompanionActive();
+    bool isHotkeyInUse();
 
     std::string getFormatCommand();
     std::string getCompileCommand();
@@ -63,6 +64,7 @@ class SettingManager
     void setSaveTests(bool value);
     void setMaximizedWindow(bool value);
     void setCompetitiveCompanionActive(bool value);
+    void setHotKeyInUse(bool value);
 
     void setCompileCommands(std::string command);
     void setRunCommand(std::string command);

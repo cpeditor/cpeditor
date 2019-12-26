@@ -26,6 +26,7 @@
 #include <QFile>
 #include <QLabel>
 #include <QMainWindow>
+#include <QShortcut>
 #include <Runner.hpp>
 #include <SettingsManager.hpp>
 #include <UpdateNotifier.hpp>
@@ -111,6 +112,8 @@ class MainWindow : public QMainWindow
     void on_actionEnable_Companion_triggered(bool checked);
     void on_actionChange_Port_triggered();
 
+    void on_actionEnable_HotKeys_triggered(bool checked);
+
   private:
     Ui::MainWindow *ui;
     QCodeEditor *editor;
@@ -130,6 +133,8 @@ class MainWindow : public QMainWindow
     QVector<QString *> expected = QVector<QString *>(3, nullptr);
 
     Network::CompanionServer *server = nullptr;
+
+    QVector<QShortcut *> hotkeys;
 
     void setEditor();
     void setLogger();

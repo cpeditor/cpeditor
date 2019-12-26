@@ -77,6 +77,10 @@ bool SettingManager::isCompetitiveCompanionActive()
 {
     return mSettings->value("competitive_use", "false").toBool();
 }
+bool SettingManager::isHotkeyInUse()
+{
+    return mSettings->value("hotkey_use", "false").toBool();
+}
 
 std::string SettingManager::getRunCommand()
 {
@@ -197,6 +201,14 @@ void SettingManager::setMaximizedWindow(bool value)
         mSettings->setValue("win_max", QString::fromStdString("true"));
     else
         mSettings->setValue("win_max", QString::fromStdString("false"));
+}
+
+void SettingManager::setHotKeyInUse(bool value)
+{
+    if (value)
+        mSettings->setValue("hotkey_use", QString::fromStdString("true"));
+    else
+        mSettings->setValue("hotkey_use", QString::fromStdString("false"));
 }
 
 void SettingManager::setTabStop(int num)

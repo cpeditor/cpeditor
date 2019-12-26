@@ -28,6 +28,7 @@
 #include <QMimeData>
 #include <QPythonCompleter>
 #include <QPythonHighlighter>
+#include <QShortcut>
 #include <QSyntaxStyle>
 #include <QTextStream>
 #include <QThread>
@@ -266,6 +267,18 @@ void MainWindow::restoreSettings()
     ui->actionBeta_Updates->setChecked(setting->isBeta());
 
     ui->actionSave_Tests->setChecked(setting->isSaveTests());
+
+    if (setting->isHotkeyInUse())
+    {
+        hotkeys.clear();
+        hotkeys.append(new QShortcut(QKeySequence(Qt::Key_F5), this, SLOT(on_actionCompile_triggered())));
+        hotkeys.append(new QShortcut(QKeySequence(Qt::Key_F6), this, SLOT(on_actionRun_triggered())));
+        hotkeys.append(new QShortcut(QKeySequence(Qt::Key_F7), this, SLOT(on_actionRunOnly_triggered())));
+        hotkeys.append(new QShortcut(QKeySequence(Qt::Key_F9), this, SLOT(on_actionDetached_Execution_triggered())));
+        hotkeys.append(new QShortcut(QKeySequence(Qt::Key_F11), this, SLOT(on_actionKill_Processes_triggered())));
+    }
+
+    ui->actionEnable_HotKeys->setChecked(setting->isHotkeyInUse());
 }
 
 void MainWindow::runEditorDiagonistics()
@@ -868,6 +881,28 @@ void MainWindow::on_actionRunOnly_triggered()
 void MainWindow::on_actionKill_Processes_triggered()
 {
     runner->killAll();
+}
+
+void MainWindow::on_actionEnable_HotKeys_triggered(bool checked)
+{
+    setting->setHotKeyInUse(checked);
+    if (checked)
+    {
+        hotkeys.clear();
+        hotkeys.append(new QShortcut(QKeySequence(Qt::Key_F5), this, SLOT(on_actionCompile_triggered())));
+        hotkeys.append(new QShortcut(QKeySequence(Qt::Key_F6), this, SLOT(on_actionRun_triggered())));
+        hotkeys.append(new QShortcut(QKeySequence(Qt::Key_F7), this, SLOT(on_actionRunOnly_triggered())));
+        hotkeys.append(new QShortcut(QKeySequence(Qt::Key_F9), this, SLOT(on_actionDetached_Execution_triggered())));
+        hotkeys.append(new QShortcut(QKeySequence(Qt::Key_F11), this, SLOT(on_actionKill_Processes_triggered())));
+    }
+    else
+    {
+        for (auto e : hotkeys)
+        {
+            if (e != nullptr)
+                delete e;
+        }
+    }
 }
 
 // ************************ ACTIONS::SETTINGS *************************

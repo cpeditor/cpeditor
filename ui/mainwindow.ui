@@ -310,6 +310,7 @@
     <addaction name="actionChange_run_command"/>
     <addaction name="actionSet_Tab_Size"/>
     <addaction name="actionSave_Tests"/>
+    <addaction name="actionEnable_HotKeys"/>
    </widget>
    <widget class="QMenu" name="menuEditor">
     <property name="title">
@@ -616,6 +617,14 @@
   <action name="actionChange_Port">
    <property name="text">
     <string>Change Port</string>
+   </property>
+  </action>
+  <action name="actionEnable_HotKeys">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Enable HotKeys</string>
    </property>
   </action>
  </widget>
