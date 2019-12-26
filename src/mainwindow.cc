@@ -295,7 +295,8 @@ void MainWindow::setupCore()
 
     updater = new Telemetry::UpdateNotifier(setting->isBeta());
 
-    QObject::connect(runner, SIGNAL(executionFinished(int, QString)), this, SLOT(executionFinished(int, QString)));
+    QObject::connect(runner, SIGNAL(executionFinished(int, int, QString)), this,
+                     SLOT(executionFinished(int, int, QString)));
 
     QObject::connect(saveTimer, SIGNAL(timeout()), this, SLOT(onSaveTimerElapsed()));
 }
@@ -921,10 +922,11 @@ void MainWindow::on_actionSave_Tests_triggered(bool checked)
 }
 
 // ************************ SLOTS ******************************************
-void MainWindow::executionFinished(int id, QString Stdout)
+void MainWindow::executionFinished(int id, int msec, QString Stdout)
 {
-    Log::MessageLogger::info("Runner[" + std::to_string(id + 1) + "]",
-                             "Execution for case #" + std::to_string(id + 1) + " completed");
+    Log::MessageLogger::info("Runner[" + std::to_string(id + 1) + "]", "Execution for case #" + std::to_string(id + 1) +
+                                                                           " completed and took " +
+                                                                           std::to_string(msec) + " miliseconds.");
 
     output[id]->clear();
     output[id]->setPlainText(Stdout);

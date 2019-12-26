@@ -16,6 +16,7 @@
  */
 
 #include <MessageLogger.hpp>
+#include <QDateTime>
 #include <QTimer>
 #include <Runner.hpp>
 namespace Core
@@ -111,6 +112,11 @@ void Runner::run(QVector<bool> _isRun, QString lang)
         {
             runner[i]->terminate();
             delete runner[i];
+            runner[i] = nullptr;
+        }
+        if (timers[i] != nullptr)
+        {
+            delete timers[i];
             runner[i] = nullptr;
         }
     }
@@ -238,6 +244,7 @@ void Runner::compilationFinished(bool success)
             if (isRun[i])
             {
                 runner[i] = new QProcess();
+                timers[i] = new QTime();
 
                 QTimer *killtimer = new QTimer(runner[i]);
                 killtimer->setSingleShot(true);
@@ -275,6 +282,7 @@ void Runner::compilationFinished(bool success)
                                  [this, i](QProcess::ProcessError e) { runError(i, e); });
                 QObject::connect(runner[i], &QProcess::started, this, [this, i]() { runStarted(i); });
                 runner[i]->start();
+                timers[i]->start();
                 killtimer->start();
             }
         }
@@ -300,7 +308,7 @@ void Runner::runFinished(int id, int exitCode, QProcess::ExitStatus exitStatus)
         Log::MessageLogger::error("Runner[" + std::to_string(id + 1) + "]/stderr", stderrMsg, true);
     if (exitCode == 0 && exitStatus == QProcess::ExitStatus::NormalExit)
     {
-        emit executionFinished(id, QString::fromUtf8(runner[id]->readAllStandardOutput()));
+        emit executionFinished(id, timers[id]->elapsed(), QString::fromUtf8(runner[id]->readAllStandardOutput()));
     }
     else if (exitCode == 15)
     {

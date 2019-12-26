@@ -76,7 +76,7 @@ class MainWindow : public QMainWindow
     void on_runOnly_clicked();
     void on_actionReset_Settings_triggered();
 
-    void executionFinished(int, QString);
+    void executionFinished(int, int, QString);
     void onSaveTimerElapsed();
     void onCompanionRequest(Network::CompanionData data);
 

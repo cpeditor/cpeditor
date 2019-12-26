@@ -51,7 +51,7 @@ class Runner : public QObject, private Base::Files
     void runStarted(int);
 
   signals:
-    void executionFinished(int, QString);
+    void executionFinished(int, int, QString);
 
   private:
     QString runCommand;
@@ -62,6 +62,7 @@ class Runner : public QObject, private Base::Files
     bool detached = false;
     QProcess *detachedHandle = nullptr;
     QVector<QProcess *> runner = QVector<QProcess *>(3, nullptr);
+    QVector<QTime *> timers = QVector<QTime *>(3, nullptr);
 };
 
 } // namespace Core
