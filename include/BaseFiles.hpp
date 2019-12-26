@@ -28,39 +28,45 @@ namespace Base
 class Files
 {
   public:
-    Files()
+    Files(int index)
     {
         base_ = QStandardPaths::writableLocation(QStandardPaths::TempLocation);
+        this->index = index;
     }
     QString getTempFormatFile()
     {
-        return base_ + "/cp_editor_temp_format_file";
+        return base_ + "/cp_editor_temp_format_file_" + QString::number(index);
     }
     QString getProgramFile(QString ext = "")
     {
-        return base_ + "/sol" + (ext.isEmpty() ? ".cpp" : ext);
+        return base_ + "/sol_" + QString::number(index) + (ext.isEmpty() ? ".cpp" : ext);
     }
     QString getInput(int id)
     {
-        return base_ + "/cp_editor_temp_in" + QString::number(id + 1) + "_file";
+        return base_ + "/cp_editor_temp_in" + QString::number(id + 1) + "_file_" + QString::number(index);
     }
     QString getBaseDirectory()
     {
         return base_;
     }
+    int getIndex()
+    {
+        return index;
+    }
 #ifndef _WIN32
     QString getBinaryOutput(QString ext = "")
     {
-        return base_ + "/a" + (ext.isEmpty() ? ".out" : ext);
+        return base_ + "/a_" + QString::number(index) + (ext.isEmpty() ? ".out" : ext);
     }
 #else
     QString getBinaryOutput(QString ext = "")
     {
-        return base_ + "/a" + (ext.isEmpty() ? ".exe" : ext);
+        return base_ + "/a_" + QString::number(index) + (ext.isEmpty() ? ".exe" : ext);
     }
 #endif
   private:
     QString base_;
+    int index;
 };
 } // namespace Base
 

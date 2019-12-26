@@ -27,7 +27,7 @@ namespace IO
 class InputReader : private Core::Base::Files
 {
   public:
-    InputReader(QVector<QPlainTextEdit *> _a);
+    InputReader(QVector<QPlainTextEdit *> _a, int index);
     void readToFile();
     ~InputReader();
 

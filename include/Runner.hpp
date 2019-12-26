@@ -29,7 +29,7 @@ class Runner : public QObject, private Base::Files
 {
     Q_OBJECT
   public:
-    Runner(QString runCommand, QString compileCommand, QString startRunCommand);
+    Runner(QString runCommand, QString compileCommand, QString startRunCommand, int index);
     ~Runner();
 
     void run(QCodeEditor *editor, QVector<bool> _isRun, QString lang = "Cpp");

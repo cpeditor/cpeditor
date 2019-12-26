@@ -22,11 +22,11 @@
 namespace Core
 {
 
-Runner::Runner(QString runCommand, QString compileCommand, QString runCommandStart)
+Runner::Runner(QString runCommand, QString compileCommand, QString runCommandStart, int index) : Base::Files(index)
 {
     this->runCommand = runCommand;
     this->startRunCommand = runCommandStart;
-    compiler = new Core::Compiler(compileCommand);
+    compiler = new Core::Compiler(compileCommand, index);
     QObject::connect(compiler, SIGNAL(compilationFinished(bool)), this, SLOT(compilationFinished(bool)));
 }
 

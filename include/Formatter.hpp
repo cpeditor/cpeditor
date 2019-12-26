@@ -27,7 +27,7 @@ namespace Core
 class Formatter : private Base::Files
 {
   public:
-    Formatter(QString runCommand);
+    Formatter(QString runCommand, int index);
     ~Formatter();
     void format(QCodeEditor *editor);
     static bool check(QString command);

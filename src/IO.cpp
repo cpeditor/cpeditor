@@ -22,7 +22,7 @@ namespace Core
 namespace IO
 {
 
-InputReader::InputReader(QVector<QPlainTextEdit *> _a)
+InputReader::InputReader(QVector<QPlainTextEdit *> _a, int index) : Core::Base::Files(index)
 {
     a = _a;
     for (int i = 0; i < 3; ++i)

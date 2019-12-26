@@ -30,7 +30,7 @@ class Compiler : public QObject, private Core::Base::Files
 {
     Q_OBJECT
   public:
-    Compiler(QString command);
+    Compiler(QString command, int index);
     void compile(QCodeEditor *editor, QString lang = "Cpp");
     void updateCommand(QString newCommand);
     static bool check(QString command);

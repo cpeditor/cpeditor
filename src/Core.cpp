@@ -21,7 +21,7 @@
 
 namespace Core
 {
-Compiler::Compiler(QString command)
+Compiler::Compiler(QString command, int index) : Core::Base::Files(index)
 {
     runCommand = command;
     file = new QFile(getProgramFile());

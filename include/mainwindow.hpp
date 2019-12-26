@@ -44,7 +44,7 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
   public:
-    MainWindow(QString fileOpen, QWidget *parent = nullptr);
+    MainWindow(int index, QString fileOpen, QWidget *parent = nullptr);
     ~MainWindow() override;
     void closeEvent(QCloseEvent *event) override;
     void dropEvent(QDropEvent *event) override;
@@ -115,6 +115,7 @@ class MainWindow : public QMainWindow
     void on_actionEnable_HotKeys_triggered(bool checked);
 
   private:
+    const int windowIndex;
     Ui::MainWindow *ui;
     QCodeEditor *editor;
     QString language;

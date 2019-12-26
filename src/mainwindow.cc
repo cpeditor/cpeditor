@@ -38,7 +38,8 @@
 #include "../ui/ui_mainwindow.h"
 
 // ***************************** RAII  ****************************
-MainWindow::MainWindow(QString filePath, QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
+MainWindow::MainWindow(int index, QString filePath, QWidget *parent)
+    : QMainWindow(parent), windowIndex(index), ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
     setEditor();
@@ -302,12 +303,12 @@ void MainWindow::runEditorDiagonistics()
 
 void MainWindow::setupCore()
 {
-    formatter = new Core::Formatter(QString::fromStdString(setting->getFormatCommand()));
-    inputReader = new Core::IO::InputReader(input);
-    compiler = new Core::Compiler(QString::fromStdString(setting->getCompileCommand()));
+    formatter = new Core::Formatter(QString::fromStdString(setting->getFormatCommand()), windowIndex);
+    inputReader = new Core::IO::InputReader(input, windowIndex);
+    compiler = new Core::Compiler(QString::fromStdString(setting->getCompileCommand()), windowIndex);
     runner = new Core::Runner(QString::fromStdString(setting->getRunCommand()),
                               QString::fromStdString(setting->getCompileCommand()),
-                              QString::fromStdString(setting->getPrependRunCommand()));
+                              QString::fromStdString(setting->getPrependRunCommand()), windowIndex);
 
     updater = new Telemetry::UpdateNotifier(setting->isBeta());
 

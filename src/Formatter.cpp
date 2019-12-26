@@ -21,7 +21,7 @@
 
 namespace Core
 {
-Formatter::Formatter(QString runCommand)
+Formatter::Formatter(QString runCommand, int index) : Base::Files(index)
 {
     command = runCommand;
     file = new QFile(getTempFormatFile());
