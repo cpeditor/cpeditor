@@ -17,6 +17,7 @@
 
 #include <QApplication>
 
+#include "appwindow.hpp"
 #include "mainwindow.hpp"
 
 int main(int argc, char *argv[])
@@ -24,7 +25,9 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
     QStringList args = a.arguments();
     QString filePath = args.size() > 1 ? args[1] : "";
-    MainWindow w(0, filePath);
+    // MainWindow w(0, filePath);
+    // w.show();
+    AppWindow w;
     w.show();
     return a.exec();
 }

@@ -55,6 +55,9 @@ add_executable(CPEditor
     src/DiffViewer.cpp
     src/CompanionServer.cpp
     include/CompanionServer.hpp
+    src/appwindow.cpp
+    include/appwindow.hpp
+    ui/appwindow.ui
 
     ${CMAKE_BINARY_DIR}/generated/version.hpp
 
