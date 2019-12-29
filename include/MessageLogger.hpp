@@ -20,22 +20,19 @@
 #include <QTextBrowser>
 #include <string>
 
-namespace Log
-{
 class MessageLogger
 {
   public:
-    MessageLogger() = delete;
+    MessageLogger() = default;
 
-    static void warn(std::string head, std::string body, bool multiline = false);
-    static void info(std::string head, std::string body);
-    static void error(std::string head, std::string body, bool multiline = false);
-    static void clear();
-    static void setContainer(QTextBrowser *value);
+    void warn(std::string head, std::string body, bool multiline = false);
+    void info(std::string head, std::string body);
+    void error(std::string head, std::string body, bool multiline = false);
+    void clear();
+    void setContainer(QTextBrowser *value);
 
   private:
-    static QTextBrowser *box;
+    QTextBrowser *box;
 };
-} // namespace Log
 
 #endif // MESSAGELOGGER_HPP

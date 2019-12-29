@@ -10,11 +10,12 @@ DiffViewer::DiffViewer(QWidget *parent) : QMainWindow(parent), ui(new Ui::DiffVi
     ui->setupUi(this);
 }
 
-DiffViewer::DiffViewer(QString *expected, QPlainTextEdit *ui) : DiffViewer()
+DiffViewer::DiffViewer(QString *expected, QPlainTextEdit *ui, MessageLogger* log) : DiffViewer()
 {
     this->ui->expected->setPlainText(*expected);
     this->ui->resulted->setPlainText(ui->toPlainText());
     res = ui;
+    this->log = log;
     exp = expected;
     this->ui->expected->setWordWrapMode(QTextOption::NoWrap);
     this->ui->resulted->setWordWrapMode(QTextOption::NoWrap);
@@ -43,7 +44,7 @@ void DiffViewer::on_read_clicked()
     QFile *file = new QFile(filename);
     if (!file->open(QIODevice::ReadOnly | QFile::Text))
     {
-        Log::MessageLogger::info("IO Operation", "Cannot open file for read.");
+        log->info("IO Operation", "Cannot open file for read.");
         delete file;
         return;
     }

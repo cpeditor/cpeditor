@@ -58,6 +58,9 @@ add_executable(CPEditor
     src/appwindow.cpp
     include/appwindow.hpp
     ui/appwindow.ui
+    include/preferencewindow.hpp
+    src/preferencewindow.cpp
+    ui/preferencewindow.ui
 
     ${CMAKE_BINARY_DIR}/generated/version.hpp
 

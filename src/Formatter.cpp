@@ -16,19 +16,19 @@
  */
 
 #include <Formatter.hpp>
-#include <MessageLogger.hpp>
 #include <QProcess>
 
 namespace Core
 {
-Formatter::Formatter(QString runCommand, int index) : Base::Files(index)
+Formatter::Formatter(QString runCommand, int index, MessageLogger* log) : Base::Files(index)
 {
+    this->log = log;
     command = runCommand;
     file = new QFile(getTempFormatFile());
     file->open(QIODevice::ReadWrite | QFile::Text);
     if (!file->isOpen())
     {
-        Log::MessageLogger::warn("Formatter", "Cannot create temporary format file");
+        log->warn("Formatter", "Cannot create temporary format file");
     }
     else
     {
@@ -82,7 +82,7 @@ void Formatter::format(QCodeEditor *editor)
 
         if (formatProcess.state() == QProcess::Running)
         {
-            Log::MessageLogger::warn("Formatter",
+            log->warn("Formatter",
                                      "It seems the format command took more than 2 seconds to complete. Skipped");
             file->open(QIODevice::ReadWrite | QFile::Text);
             return;
@@ -90,7 +90,7 @@ void Formatter::format(QCodeEditor *editor)
 
         if (formatProcess.exitCode() != 0)
         {
-            Log::MessageLogger::error("Formatter", "Format command returned non-zero exit code " +
+            log->error("Formatter", "Format command returned non-zero exit code " +
                                                        std::to_string(formatProcess.exitCode()));
             file->open(QIODevice::ReadWrite | QFile::Text);
             return;
@@ -99,7 +99,7 @@ void Formatter::format(QCodeEditor *editor)
         file->open(QIODevice::ReadWrite | QFile::Text);
         editor->setPlainText(file->readAll());
         editor->setTextCursor(old_pos);
-        Log::MessageLogger::info("Formatter", "Formatting completed");
+        log->info("Formatter", "Formatting completed");
     }
 };
 } // namespace Core

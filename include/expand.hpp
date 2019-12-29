@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QPlainTextEdit>
 #include <QTextBrowser>
+#include "MessageLogger.hpp"
 
 namespace Ui
 {
@@ -15,8 +16,8 @@ class Expand : public QMainWindow
     Q_OBJECT
 
   public:
-    Expand(QPlainTextEdit *editor);
-    Expand(QTextBrowser *browser);
+    Expand(QPlainTextEdit *editor, MessageLogger* log);
+    Expand(QTextBrowser *browser, MessageLogger* log);
     explicit Expand(QWidget *parent = nullptr);
 
     void setTitle(QString);
@@ -37,6 +38,7 @@ class Expand : public QMainWindow
     Ui::Expand *ui;
     QPlainTextEdit *source = nullptr;
     QTextBrowser *current = nullptr;
+    MessageLogger* log;
 };
 
 #endif // EXPAND_HPP

@@ -13,20 +13,19 @@ CompanionServer::CompanionServer(int port)
     portNumber = port;
     server->setMaxPendingConnections(1);
     QObject::connect(server, SIGNAL(newConnection()), this, SLOT(onNewConnection()));
-    server->listen(QHostAddress::LocalHost, static_cast<unsigned short>(port));
+    server->listen(QHostAddress::LocalHost, static_cast<unsigned short>(port));        
+}
 
+void CompanionServer::setMessageLogger(MessageLogger *log){
+    this->log = log;
     if (server->serverPort() == 0)
-        Log::MessageLogger::error("Companion", "Failed to listen to " + std::to_string(port) +
+        log->error("Companion", "Failed to listen to specified "
                                                    " port. Is another process listening there?");
-    else
-        Log::MessageLogger::info("Companion", "Server is listening on " +
-                                                  server->serverAddress().toString().toStdString() + ":" +
-                                                  std::to_string(server->serverPort()));
 }
 
 CompanionServer::~CompanionServer()
 {
-    Log::MessageLogger::info("Companion", "Stopped Server");
+    log->info("Companion", "Stopped Server");
     delete server;
 }
 
@@ -43,7 +42,7 @@ void CompanionServer::onReadReady()
     QString request = socket->readAll();
     if (request.startsWith("POST") && request.contains("Content-Type: application/json"))
     {
-        Log::MessageLogger::info("Companion", "Got a POST Request");
+        log->info("Companion", "Got a POST Request");
 
         socket->write("HTTP/1.1  OK\r\n"); // \r needs to be before \n
         socket->write("Content-Type: text/html\r\n");
@@ -84,13 +83,13 @@ void CompanionServer::onReadReady()
         }
         else
         {
-            Log::MessageLogger::error("Companion", "JSONParser reported errors. \n" + error.errorString().toStdString(),
+            log->error("Companion", "JSONParser reported errors. \n" + error.errorString().toStdString(),
                                       true);
         }
     }
     else
     {
-        Log::MessageLogger::warn("Companion", "An Invalid Payload was delivered on the listening port");
+        log->warn("Companion", "An Invalid Payload was delivered on the listening port");
         socket->write("HTTP/1.1  OK\r\n"); // \r needs to be before \n
         socket->write("Content-Type: text/html\r\n");
         socket->write("Connection: close\r\n");

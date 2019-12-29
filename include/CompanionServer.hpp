@@ -3,6 +3,7 @@
 #include <QObject>
 #include <QTcpServer>
 #include <QTcpSocket>
+#include "MessageLogger.hpp"
 
 namespace Network
 {
@@ -47,6 +48,7 @@ class CompanionServer : public QObject
 
   public:
     CompanionServer(int port);
+    void setMessageLogger(MessageLogger* log);
     ~CompanionServer();
 
   signals:
@@ -61,6 +63,7 @@ class CompanionServer : public QObject
     QTcpServer *server = nullptr;
     QTcpSocket *socket = nullptr;
     int portNumber;
+    MessageLogger* log;
 };
 } // namespace Network
 #endif // COMPANIONSERVER_HPP

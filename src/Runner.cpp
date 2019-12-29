@@ -22,11 +22,12 @@
 namespace Core
 {
 
-Runner::Runner(QString runCommand, QString compileCommand, QString runCommandStart, int index) : Base::Files(index)
+Runner::Runner(QString runCommand, QString compileCommand, QString runCommandStart, int index, MessageLogger *log) : Base::Files(index)
 {
     this->runCommand = runCommand;
     this->startRunCommand = runCommandStart;
-    compiler = new Core::Compiler(compileCommand, index);
+    this->log = log;
+    compiler = new Core::Compiler(compileCommand, index, log);
     QObject::connect(compiler, SIGNAL(compilationFinished(bool)), this, SLOT(compilationFinished(bool)));
 }
 
@@ -66,7 +67,7 @@ void Runner::killAll()
         if (runner[i] != nullptr)
         {
             if (runner[i]->state() == QProcess::Running)
-                Log::MessageLogger::info("Runner[" + std::to_string(i + 1) + "]",
+               log->info("Runner[" + std::to_string(i + 1) + "]",
                                          "Program running on case #" + std::to_string(i + 1) + " is killed");
             runner[i]->kill();
             delete runner[i];
@@ -78,7 +79,7 @@ void Runner::killAll()
     {
         if (detachedHandle->state() == QProcess::Running)
         {
-            Log::MessageLogger::info("Detached", "Killing detached process");
+            log->info("Detached", "Killing detached process");
         }
         detachedHandle->kill();
         delete detachedHandle;
@@ -127,23 +128,23 @@ void Runner::run(QVector<bool> _isRun, QString lang)
 
     if (language == "Cpp" && QFile::exists(getBinaryOutput()))
     {
-        Log::MessageLogger::info("Runner", "Reusuing executable");
+        log->info("Runner", "Reusuing executable");
         compilationFinished(true);
     }
     else if (language == "Python" && QFile::exists(getProgramFile(".py")))
     {
-        Log::MessageLogger::warn("Runner", "Running last buffered script. To run current "
+        log->warn("Runner", "Running last buffered script. To run current "
                                            "script use Compile and Run");
         compilationFinished(true);
     }
     else if (language == "Java" && QFile::exists(getBinaryOutput(".class")))
     {
-        Log::MessageLogger::info("Runner", "Re-using same old class");
+        log->info("Runner", "Re-using same old class");
         compilationFinished(true);
     }
     else
     {
-        Log::MessageLogger::error("Runner", "Cannot run, Have you successfully compiled your code earlier?");
+        log->error("Runner", "Cannot run, Have you successfully compiled your code earlier?");
     }
 }
 
@@ -152,14 +153,14 @@ void Runner::runDetached(QCodeEditor *editor, QString lang)
 #if defined(__unix__)
     if (std::system("xterm -version") != 0)
     {
-        Log::MessageLogger::error("Detached Execution", "This requires xterm to be installed on your system");
+        log->error("Detached Execution", "This requires xterm to be installed on your system");
         return;
     }
 #endif
     if (detachedHandle != nullptr)
     {
         if (detachedHandle->state() == QProcess::Running)
-            Log::MessageLogger::info("Detached Runner", "Already running a detached process. Killing it now");
+            log->info("Detached Runner", "Already running a detached process. Killing it now");
         detachedHandle->kill();
         delete detachedHandle;
         detachedHandle = nullptr;
@@ -208,7 +209,7 @@ void Runner::compilationFinished(bool success)
 
             else
             {
-                Log::MessageLogger::error("Language Error", "Execution language was not identified. Restart");
+                log->error("Language Error", "Execution language was not identified. Restart");
                 return;
             }
             detachedHandle->setArguments(command.split(","));
@@ -228,7 +229,7 @@ void Runner::compilationFinished(bool success)
 
             else
             {
-                Log::MessageLogger::error("Language Error", "Execution language was not identified. Restart");
+                log->error("Language Error", "Execution language was not identified. Restart");
                 return;
             }
             detachedHandle->setArguments(command.split(","));
@@ -265,7 +266,7 @@ void Runner::compilationFinished(bool success)
                 }
                 else
                 {
-                    Log::MessageLogger::error("Language Error", "Execution language was not identified. Restart");
+                    log->error("Language Error", "Execution language was not identified. Restart");
                     return;
                 }
 
@@ -289,23 +290,23 @@ void Runner::compilationFinished(bool success)
     }
     else
     {
-        Log::MessageLogger::warn("Runner", "Compiler reported errors. No executables were produced to run");
+        log->warn("Runner", "Compiler reported errors. No executables were produced to run");
     }
 }
 
 void Runner::runError(int id, QProcess::ProcessError e)
 {
     if (e == QProcess::ProcessError::Timedout)
-        Log::MessageLogger::error("Runner[" + std::to_string(id + 1) + "]", "Time Limit of 5 sec reached");
+        log->error("Runner[" + std::to_string(id + 1) + "]", "Time Limit of 5 sec reached");
     else
-        Log::MessageLogger::error("Runner[" + std::to_string(id + 1) + "]", "Error occurred during execution");
+        log->error("Runner[" + std::to_string(id + 1) + "]", "Error occurred during execution");
 }
 
 void Runner::runFinished(int id, int exitCode, QProcess::ExitStatus exitStatus)
 {
     auto stderrMsg = QString::fromLocal8Bit(runner[id]->readAllStandardError()).toStdString();
     if (!stderrMsg.empty())
-        Log::MessageLogger::error("Runner[" + std::to_string(id + 1) + "]/stderr", stderrMsg, true);
+        log->error("Runner[" + std::to_string(id + 1) + "]/stderr", stderrMsg, true);
     if (exitCode == 0 && exitStatus == QProcess::ExitStatus::NormalExit)
     {
         emit executionFinished(id, timers[id]->elapsed(), QString::fromUtf8(runner[id]->readAllStandardOutput()));
@@ -313,18 +314,18 @@ void Runner::runFinished(int id, int exitCode, QProcess::ExitStatus exitStatus)
     else if (exitCode == 15)
     {
         // Sigterm is called by timeout timer;
-        Log::MessageLogger::error("Runner[" + std::to_string(id + 1) + "]",
+        log->error("Runner[" + std::to_string(id + 1) + "]",
                                   "Timeout 5 sec, your program didn't returned");
     }
     else
     {
-        Log::MessageLogger::error("Runner[" + std::to_string(id + 1) + "]",
+        log->error("Runner[" + std::to_string(id + 1) + "]",
                                   "Non-zero exit code " + std::to_string(exitCode));
     }
 }
 
 void Runner::runStarted(int id)
 {
-    Log::MessageLogger::info("Runner[" + std::to_string(id + 1) + "]", "Started execution");
+    log->info("Runner[" + std::to_string(id + 1) + "]", "Started execution");
 }
 } // namespace Core

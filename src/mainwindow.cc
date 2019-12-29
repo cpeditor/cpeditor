@@ -52,7 +52,7 @@ MainWindow::MainWindow(int index, QString filePath, QWidget *parent)
     if (openFile->isOpen()) {
       editor->setPlainText(openFile->readAll());
     } else {
-      Log::MessageLogger::warn(
+      log.warn(
           "Loader",
           "The filepath was not loaded. Read/Write permission missing");
       openFile->close();
@@ -82,14 +82,15 @@ MainWindow::~MainWindow() {
 
 void MainWindow::setEditor() {
   editor = new QCodeEditor();
-  editor->setMinimumWidth(500);
+  editor->setMinimumWidth(600);
   editor->setMinimumHeight(300);
+  editor->setAcceptDrops(false);
 
-  editor->setSyntaxStyle(QSyntaxStyle::defaultStyle()); // default is white
-  editor->setHighlighter(new QCXXHighlighter);
-  editor->setAutoIndentation(true);
-  editor->setAutoParentheses(true);
-  editor->setWordWrapMode(QTextOption::NoWrap);
+  //editor->setSyntaxStyle(QSyntaxStyle::defaultStyle()); // default is white
+  //editor->setHighlighter(new QCXXHighlighter);
+  //editor->setAutoIndentation(true);
+  //editor->setAutoParentheses(true);
+  //editor->setWordWrapMode(QTextOption::NoWrap);
 
   ui->verticalLayout_8->addWidget(editor);
 
@@ -112,18 +113,20 @@ void MainWindow::setEditor() {
   }
 
   QObject::connect(editor, SIGNAL(textChanged()), this,
-                   SLOT(on_textChanged_triggered()));
+                   SLOT(onTextChangedTriggered()));
 
   for (auto i : {0, 1, 2})
     updateVerdict(Core::Verdict::UNKNOWN, i);
 }
 
 void MainWindow::setupCore() {
-  formatter = new Core::Formatter(formatCommand, windowIndex);
-  inputReader = new Core::IO::InputReader(input, windowIndex);
-  compiler = new Core::Compiler(compileCommand, windowIndex);
+  using namespace Core;
+  formatter = new Formatter(formatCommand, windowIndex, &log);
+  inputReader = new IO::InputReader(input, windowIndex);
+  compiler = new Compiler(compileCommand, windowIndex, &log);
   runner =
-      new Core::Runner(runCommand, compileCommand, prependCommand, windowIndex);
+      new Runner(runCommand, compileCommand, prependCommand, windowIndex, &log);
+  log.setContainer(ui->compiler_edit);
 
   QObject::connect(runner, SIGNAL(executionFinished(int, int, QString)), this,
                    SLOT(executionFinished(int, int, QString)));
@@ -138,6 +141,20 @@ void MainWindow::clearTests(bool outputOnly) {
     output[i]->clear();
     updateVerdict(Core::Verdict::UNKNOWN, i);
   }
+}
+
+void MainWindow::maybeLoadTemplate(){
+    if(openFile == nullptr && editor->toPlainText().isEmpty()){
+        QFile tmp(templatePath);
+        tmp.open(QIODevice::ReadOnly | QFile::Text);
+
+        if(tmp.isOpen()){
+            editor->setPlainText(tmp.readAll());
+            log.info("Template", "Template was loaded sucessfully");
+        }
+        else
+            log.warn("Template", "Failed to load template. Do I have read permission?");
+    }
 }
 
 void MainWindow::loadTests() {
@@ -155,10 +172,10 @@ void MainWindow::loadTests() {
       if (inputFile->isOpen()) {
         input[i]->setPlainText(inputFile->readAll());
         inputFile->close();
-        Log::MessageLogger::info("Tests", "Input #" + std::to_string(i + 1) +
+        log.info("Tests", "Input #" + std::to_string(i + 1) +
                                               " successfully loaded");
       } else {
-        Log::MessageLogger::error(
+        log.error(
             "Tests", "Cannot Open" + inputFile->fileName().toStdString() +
                          ", Do I have read permissions?");
       }
@@ -171,10 +188,10 @@ void MainWindow::loadTests() {
       if (answerFile->isOpen()) {
         expected[i]->operator=(answerFile->readAll());
         answerFile->close();
-        Log::MessageLogger::info("Tests", "Expected #" + std::to_string(i + 1) +
+        log.info("Tests", "Expected #" + std::to_string(i + 1) +
                                               " successfully loaded");
       } else {
-        Log::MessageLogger::error(
+        log.error(
             "Tests", "Cannot Open" + answerFile->fileName().toStdString() +
                          ", Do I have read permissions?");
       }
@@ -198,15 +215,15 @@ void MainWindow::saveTests() {
       if (inputFile->isOpen()) {
         if (inputFile->write(input[i]->toPlainText().toStdString().c_str()) !=
             -1) {
-          Log::MessageLogger::info("Tests", "Input #" + std::to_string(i + 1) +
+          log.info("Tests", "Input #" + std::to_string(i + 1) +
                                                 " successfully saved");
         } else {
-          Log::MessageLogger::error("Tests", "Input #" + std::to_string(i + 1) +
+          log.error("Tests", "Input #" + std::to_string(i + 1) +
                                                  " was not successfully saved");
         }
         inputFile->close();
       } else {
-        Log::MessageLogger::error("Tests", "Cannot save Input #" +
+        log.error("Tests", "Cannot save Input #" +
                                                std::to_string(i + 1) +
                                                ", Do I have write permission?");
       }
@@ -218,17 +235,17 @@ void MainWindow::saveTests() {
       answerFile->open(QIODevice::WriteOnly | QFile::Text);
       if (answerFile->isOpen()) {
         if (answerFile->write(expected[i]->toStdString().c_str()) != -1) {
-          Log::MessageLogger::info("Tests", "Expected #" +
+          log.info("Tests", "Expected #" +
                                                 std::to_string(i + 1) +
                                                 " successfully saved");
         } else {
-          Log::MessageLogger::error("Tests", "Expected #" +
+          log.error("Tests", "Expected #" +
                                                  std::to_string(i + 1) +
                                                  " was not successfully saved");
         }
         answerFile->close();
       } else {
-        Log::MessageLogger::error("Tests", "Cannot save Expected #" +
+        log.error("Tests", "Cannot save Expected #" +
                                                std::to_string(i + 1) +
                                                ", Do I have write permission?");
       }
@@ -241,6 +258,12 @@ QString MainWindow::fileName() const {
   return openFile == nullptr || !openFile->isOpen()
              ? "Unsaved file"
              : QFileInfo(*openFile).fileName();
+}
+
+QString MainWindow::filePath() const {
+  return openFile == nullptr || !openFile->isOpen()
+             ? ""
+             : openFile->fileName();
 }
 
 void MainWindow::updateVerdict(Core::Verdict _verdict, int id) {
@@ -283,7 +306,7 @@ void MainWindow::applyCompanion(Network::CompanionData data) {
   clearTests();
 
   if (data.testcases.size() > 3) {
-    Log::MessageLogger::warn(
+    log.warn(
         "CP Editor",
         "More than 3 testcase were produced. Only First 3 will be used");
   }
@@ -294,13 +317,26 @@ void MainWindow::applyCompanion(Network::CompanionData data) {
   }
 }
 
-void MainWindow::setCompileCommand(QString s) { compileCommand = s; }
+void MainWindow::setCompileCommand(QString s) {
+    compileCommand = s;
+    compiler->updateCommand(s);
+    runner->updateCompileCommand(s);
+}
 
-void MainWindow::setFormatCommand(QString s) { formatCommand = s; }
+void MainWindow::setFormatCommand(QString s) {
+    formatCommand = s;
+    formatter->updateCommand(s);
+}
 
-void MainWindow::setRunCommand(QString s) { runCommand = s; }
+void MainWindow::setRunCommand(QString s) {
+    runCommand = s;
+    runner->updateRunStartCommand(s);
+}
 
-void MainWindow::setPreprendRunCommand(QString s) { prependCommand = s; }
+void MainWindow::setPreprendRunCommand(QString s) {
+    prependCommand = s;
+    runner->updateRunCommand(s);
+}
 
 void MainWindow::setTemplatePath(QString s) { templatePath = s; }
 
@@ -326,18 +362,18 @@ void MainWindow::saveAs() {
 
 int MainWindow::windowIndeX() const { return windowIndex; }
 
-void MainWindow::on_textChanged_triggered() {
-  bool isChanged = isTextChanged();
+void MainWindow::onTextChangedTriggered() {
+  emit editorTextChanged(isTextChanged());
 }
 
 void MainWindow::on_compile_clicked() {
-  Log::MessageLogger::clear();
+  log.clear();
   saveFile(false, "Compiler");
   compiler->compile(editor, language);
 }
 
 void MainWindow::on_run_clicked() {
-  Log::MessageLogger::clear();
+  log.clear();
   clearTests(true);
   saveFile(false, "Compiler");
   inputReader->readToFile();
@@ -359,8 +395,44 @@ void MainWindow::compile() { on_compile_clicked(); }
 
 void MainWindow::formatSource() { formatter->format(editor); }
 
+void MainWindow::setLanguage(QString lang){
+    language = lang;
+    if(lang == "Python"){
+        editor->setHighlighter(new QPythonHighlighter);
+        editor->setCompleter(new QPythonCompleter);
+    }
+    else if(lang == "Java"){
+        editor->setHighlighter(new QCXXHighlighter);
+        editor->setCompleter(nullptr);
+    }
+    else{
+        language = "Cpp";
+        if(lang != "Cpp") log.warn("CP Editor", "Unknown lanague set, fallback to Cpp");
+        editor->setHighlighter(new QCXXHighlighter);
+        editor->setCompleter(nullptr);
+    }
+}
+MessageLogger* MainWindow::getLogger(){
+    return &log;
+}
+Core::Compiler* MainWindow::getCompiler(){
+    return compiler;
+}
+Core::Runner* MainWindow::getRunner(){
+    return runner;
+}
+Core::Formatter* MainWindow::getFormatter(){
+    return formatter;
+}
+
+QCodeEditor* MainWindow::getEditor(){
+    return editor;
+}
+QFile* MainWindow::getOpenFile(){
+    return openFile;
+}
 void MainWindow::on_runOnly_clicked() {
-  Log::MessageLogger::clear();
+  log.clear();
   clearTests(true);
   saveFile(false, "Compiler");
   inputReader->readToFile();
@@ -375,14 +447,14 @@ void MainWindow::on_runOnly_clicked() {
 }
 
 void MainWindow::detachedExecution() {
-  Log::MessageLogger::clear();
+  log.clear();
   runner->runDetached(editor, language);
 }
 
 void MainWindow::killProcesses() { runner->killAll(); }
 
 void MainWindow::executionFinished(int id, int msec, QString Stdout) {
-  Log::MessageLogger::info("Runner[" + std::to_string(id + 1) + "]",
+  log.info("Runner[" + std::to_string(id + 1) + "]",
                            "Execution for case #" + std::to_string(id + 1) +
                                " completed and took " + std::to_string(msec) +
                                " miliseconds.");
@@ -513,19 +585,19 @@ void MainWindow::on_out3_customContextMenuRequested(const QPoint &pos) {
 //********************* DIFF Showers ******************
 
 void MainWindow::on_out1_diff_clicked() {
-  auto ptr = new DiffViewer(expected[0], ui->out1);
+  auto ptr = new DiffViewer(expected[0], ui->out1, &log);
   ptr->setTitle("Diffviewer for Case #1");
   ptr->show();
 }
 
 void MainWindow::on_out2_diff_clicked() {
-  auto ptr = new DiffViewer(expected[1], ui->out2);
+  auto ptr = new DiffViewer(expected[1], ui->out2, &log);
   ptr->setTitle("Diffviewer for Case #2");
   ptr->show();
 }
 
 void MainWindow::on_out3_diff_clicked() {
-  auto ptr = new DiffViewer(expected[2], ui->out3);
+  auto ptr = new DiffViewer(expected[2], ui->out3, &log);
   ptr->setTitle("Diffviewer for Case #3");
   ptr->show();
 }
@@ -585,14 +657,11 @@ bool MainWindow::saveFile(bool force, std::string head) {
       openFile->open(QIODevice::ReadWrite | QFile::Text);
       if (openFile->isOpen()) {
         openFile->resize(0);
-        if (openFile->write(editor->toPlainText().toStdString().c_str()) != -1)
-          Log::MessageLogger::info(
-              head, "Saved file : " + openFile->fileName().toStdString());
-        else
-          Log::MessageLogger::warn(head, "File was not saved successfully");
+        if (openFile->write(editor->toPlainText().toStdString().c_str()) == -1)
+          log.warn(head, "File was not saved successfully");
         openFile->flush();
       } else {
-        Log::MessageLogger::error(
+        log.error(
             head, "Cannot Save file. Do I have write permission?");
       }
       saveTests();
@@ -603,11 +672,9 @@ bool MainWindow::saveFile(bool force, std::string head) {
     openFile->resize(0);
     openFile->write(editor->toPlainText().toStdString().c_str());
     openFile->flush();
-    Log::MessageLogger::info(head, "Saved with file name " +
-                                       openFile->fileName().toStdString());
     saveTests();
   }
-  on_textChanged_triggered();
+  onTextChangedTriggered();
   return true;
 }
 

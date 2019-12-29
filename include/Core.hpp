@@ -30,7 +30,7 @@ class Compiler : public QObject, private Core::Base::Files
 {
     Q_OBJECT
   public:
-    Compiler(QString command, int index);
+    Compiler(QString command, int index, MessageLogger* log);
     void compile(QCodeEditor *editor, QString lang = "Cpp");
     void updateCommand(QString newCommand);
     static bool check(QString command);
@@ -50,6 +50,7 @@ class Compiler : public QObject, private Core::Base::Files
     QString runCommand;
     QProcess *compilationProcess = nullptr;
     QFile *file, *pyFile, *javaFile;
+    MessageLogger *log;
 };
 
 enum Verdict

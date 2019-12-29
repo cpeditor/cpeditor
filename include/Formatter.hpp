@@ -21,13 +21,15 @@
 #include <QCodeEditor>
 #include <QFile>
 #include <QString>
+#include <MessageLogger.hpp>
+
 
 namespace Core
 {
 class Formatter : private Base::Files
 {
   public:
-    Formatter(QString runCommand, int index);
+    Formatter(QString runCommand, int index, MessageLogger* log);
     ~Formatter();
     void format(QCodeEditor *editor);
     static bool check(QString command);
@@ -36,6 +38,7 @@ class Formatter : private Base::Files
   private:
     QFile *file;
     QString command;
+    MessageLogger* log;
 };
 
 } // namespace Core

@@ -10,17 +10,19 @@ Expand::Expand(QWidget *parent) : QMainWindow(parent), ui(new Ui::Expand)
     ui->plainTextEdit->setWordWrapMode(QTextOption::NoWrap);
 }
 
-Expand::Expand(QPlainTextEdit *text) : Expand()
+Expand::Expand(QPlainTextEdit *text, MessageLogger* log) : Expand()
 {
     this->source = text;
+    this->log = log;
     ui->plainTextEdit->setPlainText(text->toPlainText());
 }
 
-Expand::Expand(QTextBrowser *browser) : Expand()
+Expand::Expand(QTextBrowser *browser, MessageLogger* log) : Expand()
 {
     this->window()->setWindowTitle("Compiler Messages");
     ui->plainTextEdit->hide();
     current = new QTextBrowser();
+    this->log = log;
     ui->verticalLayout->insertWidget(0, current);
 
     ui->update->setEnabled(false);
@@ -76,7 +78,7 @@ void Expand::on_read_clicked()
     QFile *file = new QFile(filename);
     if (!file->open(QIODevice::ReadOnly | QFile::Text))
     {
-        Log::MessageLogger::info("IO Operation", "Cannot open file for read.");
+        log->info("IO Operation", "Cannot open file for read.");
         delete file;
         return;
     }

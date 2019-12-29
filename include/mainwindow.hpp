@@ -46,14 +46,13 @@ public:
   ~MainWindow() override;
 
   QString fileName() const;
-
+  QString filePath() const;
   void save();
   void saveAs();
 
   int windowIndeX() const;
 
   bool closeChangedConfirm();
-  bool isTextChanged();
 
   void killProcesses();
   void detachedExecution();
@@ -63,18 +62,25 @@ public:
   void formatSource();
 
   void applyCompanion(Network::CompanionData data);
+  void maybeLoadTemplate();
 
   void setCompileCommand(QString);
   void setFormatCommand(QString);
   void setRunCommand(QString);
   void setPreprendRunCommand(QString);
-
   void setTemplatePath(QString);
-
   void setSaveTests(bool);
+  void setLanguage(QString);
+
+  MessageLogger* getLogger();
+  Core::Compiler* getCompiler();
+  Core::Runner* getRunner();
+  Core::Formatter* getFormatter();
+  QCodeEditor* getEditor();
+  QFile* getOpenFile();
 
 private slots:
-  void on_textChanged_triggered();
+  void onTextChangedTriggered();
 
   void on_compile_clicked();
   void on_run_clicked();
@@ -94,6 +100,9 @@ private slots:
   void on_out2_diff_clicked();
   void on_out3_diff_clicked();
 
+signals:
+    void editorTextChanged(bool isUnsaved);
+
 private:
   const int windowIndex;
   Ui::MainWindow *ui;
@@ -109,6 +118,7 @@ private:
   Core::IO::InputReader *inputReader = nullptr;
   Core::Compiler *compiler = nullptr;
   Core::Runner *runner = nullptr;
+  MessageLogger log;
 
   QVector<QPlainTextEdit *> input = QVector<QPlainTextEdit *>(3, nullptr);
   QVector<QPlainTextEdit *> output = QVector<QPlainTextEdit *>(3, nullptr);
@@ -121,6 +131,7 @@ private:
   void loadTests();
   void saveTests();
   void updateVerdict(Core::Verdict, int);
+  bool isTextChanged();
 
   bool isVerdictPass(QString, QString);
   bool saveFile(bool, std::string);

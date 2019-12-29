@@ -3,7 +3,9 @@
 #include <QDesktopServices>
 #include <QFileDialog>
 #include <QMessageBox>
+#include <QMetaMethod>
 #include <QMimeData>
+#include <QTimer>
 #include <QUrl>
 
 AppWindow::AppWindow(QVector<MainWindow *> tabs, QWidget *parent)
@@ -39,7 +41,18 @@ AppWindow::~AppWindow() {
 
 /******************* PUBLIC METHODS ***********************/
 
-void AppWindow::closeEvent(QCloseEvent *event) {}
+void AppWindow::closeEvent(QCloseEvent *event)  {
+    for (int t = 0; t < ui->tabWidget->count(); t++) {
+      auto tmp = dynamic_cast<MainWindow *>(ui->tabWidget->widget(t));
+      if (tmp->closeChangedConfirm()){
+        ui->tabWidget->removeTab(t);
+        t--;
+      }
+    }
+    if(ui->tabWidget->count() == 0)
+    event->accept();
+    else event->ignore();
+}
 
 void AppWindow::dragEnterEvent(QDragEnterEvent *event) {
   if (event->mimeData()->hasUrls()) {
@@ -61,16 +74,25 @@ void AppWindow::setConnections() {
           SLOT(onTabCloseRequested(int)));
   connect(ui->tabWidget, SIGNAL(currentChanged(int)), this,
           SLOT(onTabChanged(int)));
+  connect(timer, SIGNAL(timeout()), this, SLOT(onSaveTimerElapsed()));
+
+  connect(preferenceWindow, SIGNAL(settingsApplied()), this, SLOT( onSettingsApplied() ));
 }
 
 void AppWindow::allocate() {
   settingManager = new Settings::SettingManager();
+  timer = new QTimer();
   updater = new Telemetry::UpdateNotifier(settingManager->isBeta());
+  preferenceWindow = new PreferenceWindow(this);
+
+  timer->setInterval(3000);
+  timer->setSingleShot(false);
 }
 
 void AppWindow::applySettings() {
   ui->actionAutosave->setChecked(settingManager->isAutoSave());
-  // Start auto-save daemon now.
+  if(settingManager->isAutoSave())
+      timer->start();
 }
 
 /***************** ABOUT SECTION ***************************/
@@ -98,41 +120,30 @@ void AppWindow::on_actionAbout_triggered() {
 
 /******************* FILES SECTION *************************/
 
-void AppWindow::on_actionClose_Current_triggered() {
-  if (ui->tabWidget->count() == 0)
-    return;
-  int currentIndex = ui->tabWidget->currentIndex();
-
-  if (dynamic_cast<MainWindow *>(ui->tabWidget->widget(currentIndex))
-          ->closeChangedConfirm())
-    ui->tabWidget->removeTab(currentIndex);
-}
-
 void AppWindow::on_actionClose_All_triggered() {
-  QVector<int> removed;
   for (int t = 0; t < ui->tabWidget->count(); t++) {
     auto tmp = dynamic_cast<MainWindow *>(ui->tabWidget->widget(t));
-    if (tmp->closeChangedConfirm())
-      removed.push_back(t);
+    if (tmp->closeChangedConfirm()){
+      ui->tabWidget->removeTab(t);
+      t--;
+    }
   }
-  for (auto idx : removed)
-    ui->tabWidget->removeTab(idx);
 }
 
 void AppWindow::on_actionAutosave_triggered(bool checked) {
   settingManager->setAutoSave(checked);
-  // toggleAutoSave Daemon;
+  if(checked) timer->start();
+  else timer->stop();
 }
 
 void AppWindow::on_actionQuit_triggered() {
-  QVector<int> removed;
-  for (int t = 0; t < ui->tabWidget->count(); t++) {
-    auto tmp = dynamic_cast<MainWindow *>(ui->tabWidget->widget(t));
-    if (tmp->closeChangedConfirm())
-      removed.push_back(t);
-  }
-  for (auto idx : removed)
-    ui->tabWidget->removeTab(idx);
+    for (int t = 0; t < ui->tabWidget->count(); t++) {
+      auto tmp = dynamic_cast<MainWindow *>(ui->tabWidget->widget(t));
+      if (tmp->closeChangedConfirm()){
+        ui->tabWidget->removeTab(t);
+        t--;
+      }
+    }
   if (ui->tabWidget->count() == 0)
     QApplication::exit();
 }
@@ -140,6 +151,7 @@ void AppWindow::on_actionQuit_triggered() {
 void AppWindow::on_actionNew_Tab_triggered() {
   auto temp = new MainWindow(ui->tabWidget->count(), "");
   ui->tabWidget->addTab(temp, temp->fileName());
+  ui->tabWidget->setCurrentIndex(ui->tabWidget->count()-1);
 }
 
 void AppWindow::on_actionOpen_triggered() {
@@ -148,20 +160,33 @@ void AppWindow::on_actionOpen_triggered() {
       "Source Files (*.cpp *.hpp *.h *.cc *.cxx *.c *.py *.py3 *.java)");
   if (fileName.isEmpty())
     return;
+
+  for(int t=0;t<ui->tabWidget->count(); t++){
+      auto tmp = dynamic_cast<MainWindow*>(ui->tabWidget->widget(t));
+      if(fileName == tmp->filePath()) {
+          ui->tabWidget->setCurrentIndex(t);
+          return ;
+      }
+  }
+
   auto tmp = new MainWindow(ui->tabWidget->count(), fileName);
   ui->tabWidget->addTab(tmp, tmp->fileName());
+  ui->tabWidget->setCurrentIndex(ui->tabWidget->count()-1);
 }
 
 void AppWindow::on_actionSave_triggered() {
   int currentIdx = ui->tabWidget->currentIndex();
   auto tmp = dynamic_cast<MainWindow *>(ui->tabWidget->widget(currentIdx));
   tmp->save();
+  onEditorTextChanged(false);
 }
 
 void AppWindow::on_actionSave_as_triggered() {
   int currentIdx = ui->tabWidget->currentIndex();
   auto tmp = dynamic_cast<MainWindow *>(ui->tabWidget->widget(currentIdx));
   tmp->saveAs();
+  onEditorTextChanged(false);
+
 }
 
 /************************ PREFERENCES SECTION **********************/
@@ -172,10 +197,13 @@ void AppWindow::on_actionRestore_Settings_triggered() {
                                    " all preferences to default?",
                                    QMessageBox::Yes | QMessageBox::No);
   if (res == QMessageBox::Yes) {
+      preferenceWindow->resetSettings();
   }
 }
 
-void AppWindow::on_actionSettings_triggered() {}
+void AppWindow::on_actionSettings_triggered() {
+    preferenceWindow->show();
+}
 
 /************************** SLOTS *********************************/
 
@@ -186,11 +214,55 @@ void AppWindow::onTabCloseRequested(int index) {
 }
 
 void AppWindow::onTabChanged(int index){
+    if(index == -1) {
+        activeLogger = nullptr;
+        return ;
+    }
+
+    disconnect(activeTextChangeConnections);
+
     auto tmp = dynamic_cast<MainWindow*>(ui->tabWidget->widget(index));
-    // use this to put astrick on the tab name for unsaved changes.
+    activeLogger = tmp->getLogger();
+    tmp->setSaveTests(settingManager->isSaveTests());
+    tmp->setRunCommand(QString::fromStdString(settingManager->getRunCommand()));
+    tmp->setTemplatePath(QString::fromStdString(settingManager->getTemplatePath()));
+    tmp->setFormatCommand(QString::fromStdString(settingManager->getFormatCommand()));
+    tmp->setCompileCommand(QString::fromStdString(settingManager->getCompileCommand()));
+    tmp->setPreprendRunCommand(QString::fromStdString(settingManager->getPrependRunCommand()));
+    tmp->setLanguage(QString::fromStdString(settingManager->getDefaultLang()));
+    tmp->maybeLoadTemplate();
+
+    activeTextChangeConnections = connect(tmp, SIGNAL(editorTextChanged(bool)), this, SLOT(onEditorTextChanged(bool)));
 }
 
-// Todo : Make Logger unstatic
+void AppWindow::onEditorTextChanged(bool isUnsaved){
+    auto current = ui->tabWidget->currentIndex();
+    if(isUnsaved){
+        if(!ui->tabWidget->tabText(current).endsWith("*"))
+        ui->tabWidget->setTabText(current, ui->tabWidget->tabText(current) + "*");
+    }
+    else{
+        if(ui->tabWidget->tabText(current).endsWith("*")){
+           auto name = dynamic_cast<MainWindow*>(ui->tabWidget->widget(current))->fileName();
+           ui->tabWidget->setTabText(current, name);
+        }
+    }
+}
+
+void AppWindow::onSaveTimerElapsed(){
+    for (int t=0;t<ui->tabWidget->count();t++) {
+        auto tmp = dynamic_cast<MainWindow*>(ui->tabWidget->widget(t));
+        if(tmp->getOpenFile() != nullptr && tmp->getOpenFile()->isOpen()){
+            ui->tabWidget->setTabText(t, tmp->fileName());
+            tmp->save();
+        }
+    }
+}
+
+void AppWindow::onSettingsApplied(){
+
+}
+
 // Implement all actions accordingly
 // Make the Preferences window
 // Add other themes

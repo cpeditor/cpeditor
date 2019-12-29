@@ -21,14 +21,14 @@
 
 namespace Core
 {
-Compiler::Compiler(QString command, int index) : Core::Base::Files(index)
+Compiler::Compiler(QString command, int index, MessageLogger *log) : Core::Base::Files(index), log(log)
 {
     runCommand = command;
     file = new QFile(getProgramFile());
     file->open(QIODevice::ReadWrite | QFile::Text);
     if (!file->isOpen())
     {
-        Log::MessageLogger::error("Compiler", "Cannot create temporary compilation file for C/C++ language");
+        log->error("Compiler", "Cannot create temporary compilation file for C/C++ language");
     }
     else
     {
@@ -39,7 +39,7 @@ Compiler::Compiler(QString command, int index) : Core::Base::Files(index)
     pyFile->open(QIODevice::ReadWrite | QFile::Text);
     if (!pyFile->isOpen())
     {
-        Log::MessageLogger::error("Compiler", "Cannot create temporary compilation file for python language");
+        log->error("Compiler", "Cannot create temporary compilation file for python language");
     }
     else
     {
@@ -50,7 +50,7 @@ Compiler::Compiler(QString command, int index) : Core::Base::Files(index)
     javaFile->open(QIODevice::ReadWrite | QFile::Text);
     if (!javaFile->isOpen())
     {
-        Log::MessageLogger::error("Compiler", "Cannot create temporary compilation file for java language");
+        log->error("Compiler", "Cannot create temporary compilation file for java language");
     }
     else
     {
@@ -94,7 +94,7 @@ void Compiler::compile(QCodeEditor *editor, QString lang)
     if (!javaFile->isOpen())
         javaFile->open(QIODevice::ReadWrite | QFile::Text);
 
-    Log::MessageLogger::info("Compiler", "Compilation requested");
+    log->info("Compiler", "Compilation requested");
 
     file->resize(0);
     file->write(editor->toPlainText().toUtf8().toStdString().c_str());
@@ -110,7 +110,7 @@ void Compiler::compile(QCodeEditor *editor, QString lang)
 
     if (lang == "Python")
     {
-        Log::MessageLogger::info("Compiler", "Internal buffer updated");
+        log->info("Compiler", "Internal buffer updated");
         emit compilationFinished(true);
         return;
     }
@@ -164,7 +164,6 @@ bool Compiler::check(QString comm)
     if (started) // 10 Second timeout
         program.kill();
 
-    int exitCode = program.exitCode();
     QString stdOutput = QString::fromLocal8Bit(program.readAllStandardOutput());
     QString stdError = QString::fromLocal8Bit(program.readAllStandardError());
     return started;
@@ -172,7 +171,7 @@ bool Compiler::check(QString comm)
 
 void Compiler::started()
 {
-    Log::MessageLogger::info("Compiler", "Compilation has started...");
+    log->info("Compiler", "Compilation has started...");
     emit compilationStarted();
 }
 
@@ -181,22 +180,22 @@ void Compiler::errorOccurred(QProcess::ProcessError e)
     switch (e)
     {
     case QProcess::ProcessError::Crashed:
-        Log::MessageLogger::error("Compiler", "Compiler process crashed");
+        log->error("Compiler", "Compiler process crashed");
         break;
     case QProcess::ProcessError::Timedout:
-        Log::MessageLogger::error("Compiler", "Compiler process timedout");
+        log->error("Compiler", "Compiler process timedout");
         break;
     case QProcess::ProcessError::ReadError:
-        Log::MessageLogger::error("Compiler", "Compiler process readError. Is compiler command correct?");
+        log->error("Compiler", "Compiler process readError. Is compiler command correct?");
         break;
     case QProcess::ProcessError::WriteError:
-        Log::MessageLogger::error("Compiler", "Compiler process writeError");
+        log->error("Compiler", "Compiler process writeError");
         break;
     case QProcess::ProcessError::UnknownError:
-        Log::MessageLogger::error("Compiler", "An unknown error caused the compiler process to abort");
+        log->error("Compiler", "An unknown error caused the compiler process to abort");
         break;
     case QProcess::ProcessError::FailedToStart:
-        Log::MessageLogger::error("Compiler", "Failed to start the compiler process");
+        log->error("Compiler", "Failed to start the compiler process " + runCommand.toStdString());
     }
     emit compilationError();
 }
@@ -206,18 +205,18 @@ void Compiler::finished(int exitCode, QProcess::ExitStatus exitStatus)
     if (exitStatus == QProcess::ExitStatus::NormalExit)
     {
         if (exitCode != 0)
-            Log::MessageLogger::error("Compiler", "Failed!! process returned exit code " + std::to_string(exitCode));
+            log->error("Compiler", "Failed!! process returned exit code " + std::to_string(exitCode));
         else
-            Log::MessageLogger::info("Compiler", "Success!! process returned exit code " + std::to_string(exitCode));
+            log->info("Compiler", "Success!! process returned exit code " + std::to_string(exitCode));
     }
     else
     {
-        Log::MessageLogger::error("Compiler", "Crashed!! process returned exit code " + std::to_string(exitCode));
+        log->error("Compiler", "Crashed!! process returned exit code " + std::to_string(exitCode));
     }
 
     if (exitCode != 0 && compilationProcess != nullptr)
     {
-        Log::MessageLogger::error(
+        log->error(
             "Compiler Message", QString::fromLocal8Bit(compilationProcess->readAllStandardError()).toStdString(), true);
 
         emit compilationFinished(false);
@@ -227,7 +226,7 @@ void Compiler::finished(int exitCode, QProcess::ExitStatus exitStatus)
         QString StdErr = QString::fromLocal8Bit(compilationProcess->readAllStandardError());
         if (!StdErr.isEmpty())
         {
-            Log::MessageLogger::warn("Compiler Warnings", StdErr.toStdString(), true);
+            log->warn("Compiler Warnings", StdErr.toStdString(), true);
         }
         emit compilationFinished(true);
     }
