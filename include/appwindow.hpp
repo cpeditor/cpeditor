@@ -73,6 +73,7 @@ private:
     void setConnections();
     void allocate();
     void applySettings();
+    void saveSettings();
 
 };
 

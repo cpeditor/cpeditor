@@ -203,23 +203,24 @@ void Runner::compilationFinished(bool success)
 #if defined(__unix__)
             detachedHandle->setProgram("xterm");
             QString command;
-            QString runCommandLine;
-            if (!runCommand.trimmed().isEmpty())
-                runCommandLine = "," + runCommand.trimmed().replace(" ", ",");
 
             if (language == "Cpp")
-                command = "-e," + getBinaryOutput() + runCommandLine +
+            {
+                command = "-e," + getBinaryOutput() + runtimeArgsCpp.trimmed().replace(" ",",") +
                           "; echo '\nExecution Done\nPress any key to exit'; read";
+            }
 
             else if (language == "Python")
-                command = "-e," + startRunCommand + "," + getProgramFile(".py") +
-                          runCommandLine; /*+
-                          "; echo '\nExecution Done\nPress any key to exit'; read";*/
+            {
+                command = "-e," + runCommandPython.trimmed().replace(" ", ",") + "," + getProgramFile(".py") + runtimeArgsPython.trimmed().replace(" ", ",") +
+                          "; echo '\nExecution Done\nPress any key to exit'; read";
+            }
 
             else if (language == "Java")
-                command = "-e," + startRunCommand + ",-classpath," + getBaseDirectory() + ",a" +
-                          runCommandLine; /* +
-"; echo '\nExecution Done\nPress any key to exit'; read";*/
+            {
+                command = "-e," + runCommandJava.trimmed().replace(" ", ",") + ",-classpath," + getBaseDirectory() + ",a" + runtimeArgsJava.trimmed().replace(" ", ",") +
+                          "; echo '\nExecution Done\nPress any key to exit'; read";
+            }
 
             else
             {

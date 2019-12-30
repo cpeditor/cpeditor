@@ -37,6 +37,7 @@ AppWindow::AppWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::AppWindo
 
 AppWindow::~AppWindow()
 {
+    saveSettings();
     delete settingManager;
     delete ui;
 }
@@ -109,6 +110,28 @@ void AppWindow::applySettings()
     ui->actionAutosave->setChecked(settingManager->isAutoSave());
     if (settingManager->isAutoSave())
         timer->start();
+
+    if (!settingManager->getGeometry().isEmpty() &&
+        !settingManager->getGeometry().isNull() &&
+        settingManager->getGeometry().isValid() &&
+        !settingManager->isMaximizedWindow())
+     {
+         this->setGeometry(settingManager->getGeometry());
+     }
+
+     if (settingManager->isMaximizedWindow())
+     {
+         this->showMaximized();
+     }
+
+}
+
+void AppWindow::saveSettings()
+{
+    if (!this->isMaximized())
+            settingManager->setGeometry(this->geometry());
+    settingManager->setMaximizedWindow(this->isMaximized());
+
 }
 
 /***************** ABOUT SECTION ***************************/
