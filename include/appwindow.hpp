@@ -59,6 +59,18 @@ private slots:
     void onSplitterMoved(int, int);
 
 
+    void on_actionCompile_triggered();
+
+    void on_actionCompile_Run_triggered();
+
+    void on_actionRun_triggered();
+
+    void on_actionFormat_code_triggered();
+
+    void on_actionRun_Detached_triggered();
+
+    void on_actionKill_Processes_triggered();
+
 private:
     Ui::AppWindow *ui;
     MessageLogger* activeLogger = nullptr;

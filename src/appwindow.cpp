@@ -339,12 +339,54 @@ void AppWindow::onSplitterMoved(int _,int __){
     splitterState = splitter->saveState();
 }
 
-// Implement all actions accordingly
 // Make the Preferences window
 // Add other themes
 // Make companion, parse contests
 
+/************************* ACTIONS ************************/
 void AppWindow::on_actionCheck_for_updates_triggered()
 {
     updater->checkUpdate(true);
+}
+
+void AppWindow::on_actionCompile_triggered()
+{
+    int current = ui->tabWidget->currentIndex();
+    auto tmp = dynamic_cast<MainWindow*>(ui->tabWidget->widget(current));
+    tmp->compile();
+}
+
+void AppWindow::on_actionCompile_Run_triggered()
+{
+    int current = ui->tabWidget->currentIndex();
+    auto tmp = dynamic_cast<MainWindow*>(ui->tabWidget->widget(current));
+    tmp->runAndCompile();
+}
+
+void AppWindow::on_actionRun_triggered()
+{
+    int current = ui->tabWidget->currentIndex();
+    auto tmp = dynamic_cast<MainWindow*>(ui->tabWidget->widget(current));
+    tmp->run();
+}
+
+void AppWindow::on_actionFormat_code_triggered()
+{
+    int current = ui->tabWidget->currentIndex();
+    auto tmp = dynamic_cast<MainWindow*>(ui->tabWidget->widget(current));
+    tmp->formatSource();
+}
+
+void AppWindow::on_actionRun_Detached_triggered()
+{
+    int current = ui->tabWidget->currentIndex();
+    auto tmp = dynamic_cast<MainWindow*>(ui->tabWidget->widget(current));
+    tmp->detachedExecution();
+}
+
+void AppWindow::on_actionKill_Processes_triggered()
+{
+    int current = ui->tabWidget->currentIndex();
+    auto tmp = dynamic_cast<MainWindow*>(ui->tabWidget->widget(current));
+    tmp->killProcesses();
 }
