@@ -27,6 +27,7 @@
 #include <QLabel>
 #include <QMainWindow>
 #include <QShortcut>
+#include <QSplitter>
 #include <Runner.hpp>
 #include <SettingsManager.hpp>
 #include <UpdateNotifier.hpp>
@@ -78,6 +79,7 @@ public:
   Core::Formatter* getFormatter();
   QCodeEditor* getEditor();
   QFile* getOpenFile();
+  QSplitter* getSplitter();
 
 private slots:
   void onTextChangedTriggered();
@@ -99,6 +101,8 @@ private slots:
   void on_out1_diff_clicked();
   void on_out2_diff_clicked();
   void on_out3_diff_clicked();
+
+  void on_changeLanguageButoon_clicked();
 
 signals:
     void editorTextChanged(bool isUnsaved);

@@ -53,15 +53,18 @@ private slots:
     void onEditorTextChanged(bool);
     void onSaveTimerElapsed();
     void onSettingsApplied();
+    void onSplitterMoved(int, int);
 
 private:
     Ui::AppWindow *ui;
     MessageLogger* activeLogger = nullptr;
     QTimer* timer = nullptr;
     QMetaObject::Connection activeTextChangeConnections;
+    QMetaObject::Connection activeSplitterMoveConnections;
     Settings::SettingManager *settingManager = nullptr;
     Telemetry::UpdateNotifier *updater = nullptr;
-    PreferenceWindow* preferenceWindow = nullptr;;
+    PreferenceWindow* preferenceWindow = nullptr;
+    QByteArray splitterState;
 
     void setConnections();
     void allocate();
