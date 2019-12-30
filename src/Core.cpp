@@ -21,9 +21,10 @@
 
 namespace Core
 {
-Compiler::Compiler(QString command, int index, MessageLogger *log) : Core::Base::Files(index), log(log)
+Compiler::Compiler(QString commandCpp, QString commandJava, int index, MessageLogger *log) : Core::Base::Files(index), log(log)
 {
-    runCommand = command;
+    runCommandJava = commandJava;
+    runCommandCpp = commandCpp;
     file = new QFile(getProgramFile());
     file->open(QIODevice::ReadWrite | QFile::Text);
     if (!file->isOpen())
@@ -118,23 +119,32 @@ void Compiler::compile(QCodeEditor *editor, QString lang)
     QString extension;
     if (lang == "Java")
         extension = ".java";
-    else if (extension == ".py")
-        extension = ".py";
 
     compilationProcess = new QProcess();
 
-    auto lists = runCommand.trimmed().split(" ");
-    compilationProcess->setProgram(lists[0]);
-    lists.removeAt(0);
-    lists.append(getProgramFile(extension));
-
-    if (lang == "Cpp")
+    if(lang == "Cpp")
     {
+        auto lists = runCommandCpp.trimmed().split(" ");
+        compilationProcess->setProgram(lists[0]);
+        lists.removeAt(0);
+        lists.append(getProgramFile(extension));
         lists.append("-o");
         lists.append(getBinaryOutput(extension));
+        compilationProcess->setArguments(lists);
     }
-
-    compilationProcess->setArguments(lists);
+    else if(lang == "Java")
+    {
+        auto lists = runCommandJava.trimmed().split(" ");
+        compilationProcess->setProgram(lists[0]);
+        lists.removeAt(0);
+        lists.append(getProgramFile(extension));
+        compilationProcess->setArguments(lists);
+    }
+    else
+    {
+        emit compilationFinished(true);
+        return ;
+    }
 
     QObject::connect(compilationProcess, SIGNAL(finished(int, QProcess::ExitStatus)), this,
                      SLOT(finished(int, QProcess::ExitStatus)));
@@ -147,9 +157,12 @@ void Compiler::compile(QCodeEditor *editor, QString lang)
     compilationProcess->start();
 }
 
-void Compiler::updateCommand(QString newCommand)
+void Compiler::updateCommandCpp(QString newCommand)
 {
-    runCommand = newCommand;
+    runCommandCpp = newCommand;
+}
+void Compiler::updateCommandJava(QString newCommand){
+    runCommandJava = newCommand;
 }
 
 bool Compiler::check(QString comm)
@@ -195,7 +208,7 @@ void Compiler::errorOccurred(QProcess::ProcessError e)
         log->error("Compiler", "An unknown error caused the compiler process to abort");
         break;
     case QProcess::ProcessError::FailedToStart:
-        log->error("Compiler", "Failed to start the compiler process " + runCommand.toStdString());
+        log->error("Compiler", "Failed to start the compiler process");
     }
     emit compilationError();
 }

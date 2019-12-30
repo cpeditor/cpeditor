@@ -29,7 +29,7 @@ class Runner : public QObject, private Base::Files
 {
     Q_OBJECT
   public:
-    Runner(QString runCommand, QString compileCommand, QString startRunCommand, int index, MessageLogger* log);
+    Runner(int index, MessageLogger* log);
     ~Runner();
 
     void run(QCodeEditor *editor, QVector<bool> _isRun, QString lang = "Cpp");
@@ -38,9 +38,16 @@ class Runner : public QObject, private Base::Files
     void runDetached(QCodeEditor *editor, QString lang = "Cpp");
 
     void removeExecutable();
-    void updateRunCommand(QString newCommand);
-    void updateCompileCommand(QString newCommand);
-    void updateRunStartCommand(QString newCommand);
+
+    void updateRunCommandPython(QString newCommand);
+    void updateRunCommandJava(QString newCommand);
+
+    void updateCompileCommandCpp(QString newCommand);
+    void updateCompileCommandJava(QString newCommand);
+
+    void updateRuntimeArgumentsCommandCpp(QString newCommand);
+    void updateRuntimeArgumentsCommandJava(QString newCommand);
+    void updateRuntimeArgumentsCommandPython(QString newCommand);
 
     void killAll();
   private slots:
@@ -54,9 +61,10 @@ class Runner : public QObject, private Base::Files
     void executionFinished(int, int, QString);
 
   private:
-    QString runCommand;
-    QString startRunCommand;
+    QString runCommandPython, runCommandJava;
     QString language;
+    QString runtimeArgsCpp, runtimeArgsJava, runtimeArgsPython;
+
     Core::Compiler *compiler = nullptr;
     QVector<bool> isRun = QVector<bool>(3, false);
     bool detached = false;

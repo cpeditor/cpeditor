@@ -18,6 +18,7 @@
 #ifndef SETTINGSMANAGER_HPP
 #define SETTINGSMANAGER_HPP
 
+#include <QRect>
 #include <QSettings>
 #include <QString>
 #include <string>
@@ -26,63 +27,139 @@
 
 namespace Settings
 {
+
+struct SettingsData{
+    int companionPort;
+    int tabStop;
+    QRect geometry;
+    QString font;
+    QString defaultLanguage;
+
+    QString templateCpp;
+    QString templatePython;
+    QString templateJava;
+
+    QString runtimeArgumentsCpp;
+    QString runtimeArgumentsJava;
+    QString runtimeArgumentsPython;
+
+    QString formatCommand;
+
+    QString compileCommandJava;
+    QString compileCommandCpp;
+
+    QString runCommandJava;
+    QString runCommandPython;
+
+    QString editorTheme;
+
+    bool isSystemThemeDark;
+    bool isHotKeyInUse;
+    bool isAutoParenthesis;
+    bool isAutoIndent;
+    bool isAutoSave;
+    bool isWrapText;
+    bool isBeta;
+    bool isTabsBeingUsed;
+    bool shouldSaveTests;
+    bool isCompanionActive;
+    bool isWindowMaximized;
+};
+
 class SettingManager
 {
   public:
     SettingManager();
 
-    bool isDarkTheme();
-    bool isAutoIndent();
-    bool isAutoParenthesis();
-    bool isWrapText();
-    bool isAutoSave();
-    bool isBeta();
-    bool isTabs();
-    bool isSaveTests();
-    bool isMaximizedWindow();
-    bool isCompetitiveCompanionActive();
-    bool isHotkeyInUse();
-
-    std::string getFormatCommand();
-    std::string getCompileCommand();
-    std::string getRunCommand();
-    std::string getPrependRunCommand();
-    std::string getTemplatePath();
-    std::string getDefaultLang();
-    std::string getFont();
-    QRect getGeometry();
-    int getTabStop();
     int getConnectionPort();
+    void setConnectionPort(int port);
 
-    void setDarkTheme(bool value);
-    void setAutoParenthesis(bool value);
-    void setAutoIndent(bool value);
-    void setWrapText(bool value);
-    void setAutoSave(bool value);
-    void setBeta(bool value);
-    void setTabs(bool value);
-    void setSaveTests(bool value);
-    void setMaximizedWindow(bool value);
-    void setCompetitiveCompanionActive(bool value);
+    int getTabStop();
+    void setTabStop(int num);
+
+    QRect getGeometry();
+    void setGeometry(QRect);
+
+    QString getFont();
+    void setFont(QString font);
+
+    QString getDefaultLang();
+    void setDefaultLanguage(QString lang);
+
+    QString getTemplatePathCpp();
+    QString getTemplatePathJava();
+    QString getTemplatePathPython();
+    void setTemplatePathCpp(QString path);
+    void setTemplatePathJava(QString path);
+    void setTemplatePathPython(QString path);
+
+    QString getRuntimeArgumentsCpp();
+    QString getRuntimeArgumentsJava();
+    QString getRuntimeArgumentsPython();
+    void setRuntimeArgumentsCpp(QString command);
+    void setRuntimeArgumentsJava(QString command);
+    void setRuntimeArgumentsPython(QString command);
+
+    QString getFormatCommand();
+    void setFormatCommand(QString command);
+
+    QString getCompileCommandCpp();
+    QString getCompileCommandJava();
+    void setCompileCommandsCpp(QString command);
+    void setCompileCommandsJava(QString command);
+
+    QString getRunCommandJava();
+    QString getRunCommandPython();
+    void setRunCommandJava(QString command);
+    void setRunCommandPython(QString command);
+
+    QString getEditorTheme();
+    void setEditorTheme(QString theme);
+
+
+    bool isSystemThemeDark();
+    void setSystemThemeDark(bool value);
+
+    bool isHotkeyInUse();
     void setHotKeyInUse(bool value);
 
-    void setCompileCommands(std::string command);
-    void setRunCommand(std::string command);
-    void setFormatCommand(std::string command);
-    void setPrependRunCommand(std::string command);
-    void setTemplatePath(std::string path);
-    void setDefaultLanguage(std::string lang);
-    void setFont(std::string font);
-    void setGeometry(QRect);
-    void setTabStop(int num);
-    void setConnectionPort(int num);
+    bool isAutoParenthesis();
+    void setAutoParenthesis(bool value);
 
+    bool isAutoIndent();
+    void setAutoIndent(bool value);
+
+    bool isAutoSave();
+    void setAutoSave(bool value);
+
+
+    bool isWrapText();
+    void setWrapText(bool value);
+
+
+    bool isBeta();
+    void setBeta(bool value);
+
+    bool isTabs();
+    void setTabs(bool value);
+
+    bool isSaveTests();
+    void setSaveTests(bool value);
+
+    bool isCompetitiveCompanionActive();
+    void setCompetitiveCompanionActive(bool value);
+
+    bool isMaximizedWindow();
+    void setMaximizedWindow(bool value);
+
+    SettingsData toData();
     ~SettingManager();
 
   private:
     QString mSettingsFile;
     QSettings *mSettings;
 };
+
 } // namespace Settings
 
 #endif // SETTINGSMANAGER_HPP

@@ -30,7 +30,8 @@ UpdateNotifier::UpdateNotifier(bool useBeta) {
 UpdateNotifier::~UpdateNotifier() { delete manager; }
 void UpdateNotifier::setBeta(bool value) { beta = value; }
 
-void UpdateNotifier::checkUpdate() {
+void UpdateNotifier::checkUpdate(bool force) {
+    this->force = force;
   request.setUrl(
       QUrl("https://api.github.com/repos/coder3101/cp-editor2/releases"));
   manager->get(request);
@@ -75,6 +76,11 @@ void UpdateNotifier::managerFinished(QNetworkReply *reply) {
             "A new stable update " + latestRelease.toStdString() +
             " is available. <a href = " + downloadUrl.toStdString() +
             ">Please Download" + "</a>"));
+  } else if(force){
+        QMessageBox::about(nullptr,
+                           QString::fromStdString("No new update"),
+                           QString::fromStdString("You are already running latest release. Keep checking so you dont miss on important update."));
+    force = false;
   }
-}
+  }
 } // namespace Telemetry

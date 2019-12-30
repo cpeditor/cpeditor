@@ -48,12 +48,16 @@ private slots:
 
     void on_actionSave_as_triggered();
 
+    void on_actionCheck_for_updates_triggered();
+
+
     void onTabCloseRequested(int);
     void onTabChanged(int);
     void onEditorTextChanged(bool);
     void onSaveTimerElapsed();
     void onSettingsApplied();
     void onSplitterMoved(int, int);
+
 
 private:
     Ui::AppWindow *ui;

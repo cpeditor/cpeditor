@@ -73,8 +73,13 @@ void AppWindow::dropEvent(QDropEvent *event)
     auto files = event->mimeData()->urls();
     for (auto e : files)
     {
-        auto fsp = new MainWindow(ui->tabWidget->count(), e.toLocalFile());
+        auto fileName = e.toLocalFile();
+        auto fsp = new MainWindow(ui->tabWidget->count(), fileName);
+        QString lang = "Cpp";
+        if(fileName.endsWith(".java")) lang = "Java";
+        else if(fileName.endsWith(".py") || fileName.endsWith(".py3")) lang = "Python";
         ui->tabWidget->addTab(fsp, fsp->fileName());
+        fsp->setLanguage(lang);
     }
 }
 
@@ -93,7 +98,7 @@ void AppWindow::allocate()
     settingManager = new Settings::SettingManager();
     timer = new QTimer();
     updater = new Telemetry::UpdateNotifier(settingManager->isBeta());
-    preferenceWindow = new PreferenceWindow(this);
+    preferenceWindow = new PreferenceWindow(settingManager, this);
 
     timer->setInterval(3000);
     timer->setSingleShot(false);
@@ -181,6 +186,10 @@ void AppWindow::on_actionOpen_triggered()
     if (fileName.isEmpty())
         return;
 
+    QString lang = "Cpp";
+    if(fileName.endsWith(".java")) lang = "Java";
+    else if(fileName.endsWith(".py") || fileName.endsWith(".py3")) lang = "Python";
+
     for (int t = 0; t < ui->tabWidget->count(); t++)
     {
         auto tmp = dynamic_cast<MainWindow *>(ui->tabWidget->widget(t));
@@ -193,6 +202,7 @@ void AppWindow::on_actionOpen_triggered()
 
     auto tmp = new MainWindow(ui->tabWidget->count(), fileName);
     ui->tabWidget->addTab(tmp, tmp->fileName());
+    tmp->setLanguage(lang);
     ui->tabWidget->setCurrentIndex(ui->tabWidget->count() - 1);
 }
 
@@ -200,7 +210,7 @@ void AppWindow::on_actionSave_triggered()
 {
     int currentIdx = ui->tabWidget->currentIndex();
     auto tmp = dynamic_cast<MainWindow *>(ui->tabWidget->widget(currentIdx));
-    tmp->save();
+    tmp->save(true);
     onEditorTextChanged(false);
 }
 
@@ -223,6 +233,7 @@ void AppWindow::on_actionRestore_Settings_triggered()
     if (res == QMessageBox::Yes)
     {
         preferenceWindow->resetSettings();
+        onSettingsApplied();
     }
 }
 
@@ -254,13 +265,7 @@ void AppWindow::onTabChanged(int index)
 
     auto tmp = dynamic_cast<MainWindow *>(ui->tabWidget->widget(index));
     activeLogger = tmp->getLogger();
-    tmp->setSaveTests(settingManager->isSaveTests());
-    tmp->setRunCommand(QString::fromStdString(settingManager->getRunCommand()));
-    tmp->setTemplatePath(QString::fromStdString(settingManager->getTemplatePath()));
-    tmp->setFormatCommand(QString::fromStdString(settingManager->getFormatCommand()));
-    tmp->setCompileCommand(QString::fromStdString(settingManager->getCompileCommand()));
-    tmp->setPreprendRunCommand(QString::fromStdString(settingManager->getPrependRunCommand()));
-    tmp->setLanguage(QString::fromStdString(settingManager->getDefaultLang()));
+    tmp->setSettingsData(settingManager->toData());
     tmp->maybeLoadTemplate();
 
     if (!splitterState.isEmpty())
@@ -296,7 +301,7 @@ void AppWindow::onSaveTimerElapsed()
         if (tmp->getOpenFile() != nullptr && tmp->getOpenFile()->isOpen())
         {
             ui->tabWidget->setTabText(t, tmp->fileName());
-            tmp->save();
+            tmp->save(false);
         }
     }
 }
@@ -315,3 +320,8 @@ void AppWindow::onSplitterMoved(int _,int __){
 // Make the Preferences window
 // Add other themes
 // Make companion, parse contests
+
+void AppWindow::on_actionCheck_for_updates_triggered()
+{
+    updater->checkUpdate(true);
+}

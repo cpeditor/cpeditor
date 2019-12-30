@@ -48,7 +48,7 @@ public:
 
   QString fileName() const;
   QString filePath() const;
-  void save();
+  void save(bool force);
   void saveAs();
 
   int windowIndeX() const;
@@ -65,13 +65,8 @@ public:
   void applyCompanion(Network::CompanionData data);
   void maybeLoadTemplate();
 
-  void setCompileCommand(QString);
-  void setFormatCommand(QString);
-  void setRunCommand(QString);
-  void setPreprendRunCommand(QString);
-  void setTemplatePath(QString);
-  void setSaveTests(bool);
-  void setLanguage(QString);
+  void setLanguage(QString lang);
+  void setSettingsData(Settings::SettingsData data);
 
   MessageLogger* getLogger();
   Core::Compiler* getCompiler();
@@ -113,10 +108,8 @@ private:
   QCodeEditor *editor;
   QString language;
   QFile *openFile = nullptr;
-
-  QString formatCommand, compileCommand, runCommand, prependCommand;
-  QString templatePath;
-  bool shouldSaveTests;
+  Settings::SettingsData data;
+  bool isLanguageSet = false;
 
   Core::Formatter *formatter = nullptr;
   Core::IO::InputReader *inputReader = nullptr;
@@ -139,5 +132,6 @@ private:
 
   bool isVerdictPass(QString, QString);
   bool saveFile(bool, std::string);
+  void performCoreDiagonistics();
 };
 #endif // MAINWINDOW_HPP

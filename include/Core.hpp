@@ -30,9 +30,14 @@ class Compiler : public QObject, private Core::Base::Files
 {
     Q_OBJECT
   public:
-    Compiler(QString command, int index, MessageLogger* log);
+    Compiler(QString compileCpp, QString compileJava ,int index, MessageLogger* log);
+
     void compile(QCodeEditor *editor, QString lang = "Cpp");
-    void updateCommand(QString newCommand);
+
+    void updateCommandCpp(QString newCommand);
+    void updateCommandJava(QString newCommand);
+    void updateLanguage(QString newLang);
+
     static bool check(QString command);
     ~Compiler();
 
@@ -47,7 +52,7 @@ class Compiler : public QObject, private Core::Base::Files
     void started();
 
   private:
-    QString runCommand;
+    QString runCommandJava, runCommandCpp;
     QProcess *compilationProcess = nullptr;
     QFile *file, *pyFile, *javaFile;
     MessageLogger *log;

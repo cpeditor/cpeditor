@@ -22,12 +22,10 @@
 namespace Core
 {
 
-Runner::Runner(QString runCommand, QString compileCommand, QString runCommandStart, int index, MessageLogger *log) : Base::Files(index)
+Runner::Runner(int index, MessageLogger *log) : Base::Files(index)
 {
-    this->runCommand = runCommand;
-    this->startRunCommand = runCommandStart;
     this->log = log;
-    compiler = new Core::Compiler(compileCommand, index, log);
+    compiler = new Core::Compiler("", "", index, log);
     QObject::connect(compiler, SIGNAL(compilationFinished(bool)), this, SLOT(compilationFinished(bool)));
 }
 
@@ -45,19 +43,35 @@ Runner::~Runner()
         delete detachedHandle;
 }
 
-void Runner::updateRunCommand(QString newCommand)
+void Runner::updateRunCommandPython(QString newCommand)
 {
-    this->runCommand = newCommand;
+    this->runCommandPython = newCommand;
+}
+void Runner::updateRunCommandJava(QString newCommand)
+{
+    this->runCommandJava = newCommand;
 }
 
-void Runner::updateCompileCommand(QString newCommand)
+void Runner::updateCompileCommandCpp(QString newCommand)
 {
-    this->compiler->updateCommand(newCommand);
+    this->compiler->updateCommandCpp(newCommand);
+}
+void Runner::updateCompileCommandJava(QString newCommand)
+{
+    this->compiler->updateCommandJava(newCommand);
 }
 
-void Runner::updateRunStartCommand(QString newCommand)
+void Runner::updateRuntimeArgumentsCommandCpp(QString newCommand)
 {
-    this->startRunCommand = newCommand;
+    this->runtimeArgsCpp = newCommand;
+}
+void Runner::updateRuntimeArgumentsCommandPython(QString newCommand)
+{
+    this->runtimeArgsPython = newCommand;
+}
+void Runner::updateRuntimeArgumentsCommandJava(QString newCommand)
+{
+    this->runtimeArgsJava = newCommand;
 }
 
 void Runner::killAll()
@@ -216,16 +230,13 @@ void Runner::compilationFinished(bool success)
 #else
             detachedHandle->setProgram("cmd.exe");
             QString command;
-            QString runCommandLine;
-            if (!runCommand.trimmed().isEmpty())
-                runCommandLine = "," + runCommand.trimmed().replace(" ", ",");
 
             if (language == "Cpp")
-                command = "/C,start," + getBinaryOutput() + runCommandLine;
+                command = "/C,start," + getBinaryOutput() + runtimeArgsCpp.trimmed().replace(" ", ",");
             else if (language == "Python")
-                command = "/C,start," + startRunCommand + "," + getProgramFile(".py") + runCommandLine;
+                command = "/C,start," + runCommandPython.trimmed().replace(" ", ",") + "," + getProgramFile(".py") + runtimeArgsPython.trimmed().replace(" ", ",");
             else if (language == "Java")
-                command = "/C,start," + startRunCommand + ",-classpath," + getBaseDirectory() + ",a" + runCommandLine;
+                command = "/C,start," + runCommandJava.trimmed().replace(" ", ",") + ",-classpath," + getBaseDirectory() + ",a" + runtimeArgsJava.trimmed().replace(" ", ",");
 
             else
             {
@@ -252,18 +263,31 @@ void Runner::compilationFinished(bool success)
                 killtimer->setInterval(5000);
                 QObject::connect(killtimer, SIGNAL(timeout()), runner[i], SLOT(terminate()));
 
-                QString args;
+                QList<QString> args;
 
                 if (language == "Cpp")
-                    runner[i]->setProgram(getBinaryOutput());
-                else if (language == "Python" || language == "Java")
                 {
-                    runner[i]->setProgram(startRunCommand);
-                    if (language == "Python")
-                        args += getProgramFile(".py");
-                    else
-                        args += "-classpath," + getBaseDirectory() + ",a";
+                    runner[i]->setProgram(getBinaryOutput());
+                    args.append(runtimeArgsCpp.trimmed().split(" "));
                 }
+                else if(language == "Python")
+                {
+                    auto list = runCommandPython.trimmed();
+                    runner[i]->setProgram(list);
+                    args.append( getProgramFile(".py") );
+                    args.append(runtimeArgsPython.split(" "));
+
+                }
+                else if(language == "Java")
+                {
+                    auto list = runCommandJava.trimmed();
+                    runner[i]->setProgram(list);
+                    args.append("-classpath");
+                    args.append(getBaseDirectory());
+                    args.append("a");
+                    args.append(runtimeArgsJava.split(" "));
+                }
+
                 else
                 {
                     log->error("Language Error", "Execution language was not identified. Restart");
@@ -271,10 +295,7 @@ void Runner::compilationFinished(bool success)
                 }
 
                 runner[i]->setStandardInputFile(getInput(i));
-                if (!runCommand.trimmed().isEmpty())
-                    args += "," + runCommand.trimmed().replace(" ", ",");
-
-                runner[i]->setArguments(args.split(","));
+                runner[i]->setArguments(args);
 
                 QObject::connect(
                     runner[i], QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished), this,

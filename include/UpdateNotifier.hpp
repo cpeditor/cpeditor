@@ -30,7 +30,7 @@ class UpdateNotifier : public QObject
     Q_OBJECT
   public:
     UpdateNotifier(bool useBeta);
-    void checkUpdate();
+    void checkUpdate(bool force = false);
     ~UpdateNotifier();
     void setBeta(bool value);
 
@@ -43,6 +43,7 @@ class UpdateNotifier : public QObject
     QNetworkRequest request;
     QString currentVersionStr();
     bool beta;
+    bool force;
 };
 } // namespace Telemetry
 

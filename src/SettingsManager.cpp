@@ -26,11 +26,9 @@ SettingManager::SettingManager()
 {
     mSettingsFile = QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/" + SETTINGS_FILE;
     mSettings = new QSettings(mSettingsFile, QSettings::IniFormat);
-    // Log::MessageLogger::info("Settings","saved under " +
-    // mSettingsFile.toStdString());
 }
 
-bool SettingManager::isDarkTheme()
+bool SettingManager::isSystemThemeDark()
 {
     return mSettings->value("dark_theme", "false").toBool();
 }
@@ -82,33 +80,57 @@ bool SettingManager::isHotkeyInUse()
     return mSettings->value("hotkey_use", "false").toBool();
 }
 
-std::string SettingManager::getRunCommand()
+QString SettingManager::getRunCommandJava()
 {
-    return mSettings->value("run", "").toString().toStdString();
+    return mSettings->value("run_java", "").toString();
 }
-std::string SettingManager::getCompileCommand()
+QString SettingManager::getRunCommandPython()
 {
-    return mSettings->value("compile", "g++ -Wall").toString().toStdString();
+    return mSettings->value("run_python", "").toString();
 }
-std::string SettingManager::getFormatCommand()
+QString SettingManager::getCompileCommandCpp()
 {
-    return mSettings->value("format", "clang-format -i").toString().toStdString();
+    return mSettings->value("compile_cpp", "g++ -Wall").toString();
 }
-std::string SettingManager::getPrependRunCommand()
+QString SettingManager::getCompileCommandJava()
 {
-    return mSettings->value("prepend_run", "").toString().toStdString();
+    return mSettings->value("compile_java", "javac").toString();
 }
-std::string SettingManager::getDefaultLang()
+QString SettingManager::getFormatCommand()
 {
-    return mSettings->value("lang", "Cpp").toString().toStdString();
+    return mSettings->value("format", "clang-format -i").toString();
 }
-std::string SettingManager::getTemplatePath()
+QString SettingManager::getRuntimeArgumentsCpp()
 {
-    return mSettings->value("template", "").toString().toStdString();
+    return mSettings->value("runtime_cpp", "").toString();
 }
-std::string SettingManager::getFont()
+QString SettingManager::getRuntimeArgumentsJava()
 {
-    return mSettings->value("font", "").toString().toStdString();
+    return mSettings->value("runtime_java", "").toString();
+}
+QString SettingManager::getRuntimeArgumentsPython()
+{
+    return mSettings->value("runtime_python", "").toString();
+}
+QString SettingManager::getDefaultLang()
+{
+    return mSettings->value("lang", "Cpp").toString();
+}
+QString SettingManager::getTemplatePathCpp()
+{
+    return mSettings->value("template_cpp", "").toString();
+}
+QString SettingManager::getTemplatePathJava()
+{
+    return mSettings->value("template_java", "").toString();
+}
+QString SettingManager::getTemplatePathPython()
+{
+    return mSettings->value("template_python", "").toString();
+}
+QString SettingManager::getFont()
+{
+    return mSettings->value("font", "").toString();
 }
 
 QRect SettingManager::getGeometry()
@@ -126,7 +148,7 @@ int SettingManager::getConnectionPort()
     return mSettings->value("companion_port", 10045).toInt();
 }
 
-void SettingManager::setDarkTheme(bool value)
+void SettingManager::setSystemThemeDark(bool value)
 {
     if (value)
         mSettings->setValue("dark_theme", QString::fromStdString("true"));
@@ -221,33 +243,65 @@ void SettingManager::setConnectionPort(int num)
     mSettings->setValue("companion_port", num);
 }
 
-void SettingManager::setRunCommand(std::string command)
+void SettingManager::setRunCommandJava(QString command)
 {
-    mSettings->setValue("run", QString::fromStdString(command));
+    mSettings->setValue("run_java", command);
 }
-void SettingManager::setCompileCommands(std::string command)
+void SettingManager::setRunCommandPython(QString command)
 {
-    mSettings->setValue("compile", QString::fromStdString(command));
+    mSettings->setValue("run_python", command);
 }
-void SettingManager::setFormatCommand(std::string value)
+void SettingManager::setCompileCommandsCpp(QString command)
 {
-    mSettings->setValue("format", QString::fromStdString(value));
+    mSettings->setValue("compile_cpp", command);
 }
-void SettingManager::setTemplatePath(std::string path)
+void SettingManager::setEditorTheme(QString themeName)
 {
-    mSettings->setValue("template", QString::fromStdString(path));
+    mSettings->setValue("editor_theme", themeName);
 }
-void SettingManager::setPrependRunCommand(std::string command)
+QString SettingManager::getEditorTheme()
 {
-    mSettings->setValue("prepend_run", QString::fromStdString(command));
+    return mSettings->value("editor_theme", "Light").toString();
 }
-void SettingManager::setDefaultLanguage(std::string lang)
+void SettingManager::setCompileCommandsJava(QString command)
 {
-    mSettings->setValue("lang", QString::fromStdString(lang));
+    mSettings->setValue("compile_java", command);
 }
-void SettingManager::setFont(std::string font)
+void SettingManager::setFormatCommand(QString value)
 {
-    mSettings->setValue("font", QString::fromStdString(font));
+    mSettings->setValue("format", value);
+}
+void SettingManager::setTemplatePathCpp(QString path)
+{
+    mSettings->setValue("template_cpp", path);
+}
+void SettingManager::setTemplatePathJava(QString path)
+{
+    mSettings->setValue("template_java", path);
+}
+void SettingManager::setTemplatePathPython(QString path)
+{
+    mSettings->setValue("template_python", path);
+}
+void SettingManager::setRuntimeArgumentsCpp(QString command)
+{
+    mSettings->setValue("runtime_cpp", command);
+}
+void SettingManager::setRuntimeArgumentsJava(QString command)
+{
+    mSettings->setValue("runtime_java", command);
+}
+void SettingManager::setRuntimeArgumentsPython(QString command)
+{
+    mSettings->setValue("runtime_python", command);
+}
+void SettingManager::setDefaultLanguage(QString lang)
+{
+    mSettings->setValue("lang", lang);
+}
+void SettingManager::setFont(QString font)
+{
+    mSettings->setValue("font",font);
 }
 
 void SettingManager::setGeometry(QRect rect)
@@ -259,6 +313,41 @@ SettingManager::~SettingManager()
 {
     mSettings->sync();
     delete mSettings;
+}
+
+SettingsData SettingManager::toData()
+{
+     SettingsData data;
+     data.companionPort = getConnectionPort();
+     data.tabStop = getTabStop();
+     data.geometry = getGeometry();
+     data.font = getFont();
+     data.defaultLanguage = getDefaultLang();
+     data.templateCpp = getTemplatePathCpp();
+     data.templateJava = getTemplatePathJava();
+     data.templatePython = getTemplatePathPython();
+     data.runtimeArgumentsCpp = getRuntimeArgumentsCpp();
+     data.runtimeArgumentsJava = getRuntimeArgumentsJava();
+     data.runtimeArgumentsPython = getRuntimeArgumentsPython();
+     data.formatCommand = getFormatCommand();
+     data.compileCommandCpp = getCompileCommandCpp();
+     data.compileCommandJava = getCompileCommandJava();
+     data.runCommandJava = getRunCommandJava();
+     data.runCommandPython = getRunCommandPython();
+     data.editorTheme = getEditorTheme();
+     data.isSystemThemeDark = isSystemThemeDark();
+     data.isHotKeyInUse = isHotkeyInUse();
+     data.isAutoParenthesis = isAutoParenthesis();
+     data.isAutoIndent = isAutoIndent();
+     data.isAutoSave = isAutoSave();
+     data.isWrapText = isWrapText();
+     data.isBeta = isBeta();
+     data.isTabsBeingUsed = isTabs();
+     data.shouldSaveTests = isSaveTests();
+     data.isCompanionActive = isCompetitiveCompanionActive();
+     data.isWindowMaximized = isMaximizedWindow();
+     return data;
+
 }
 
 } // namespace Settings

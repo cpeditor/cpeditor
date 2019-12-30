@@ -16,8 +16,8 @@ class Expand : public QMainWindow
     Q_OBJECT
 
   public:
-    Expand(QPlainTextEdit *editor, MessageLogger* log);
-    Expand(QTextBrowser *browser, MessageLogger* log);
+    Expand(QPlainTextEdit *editor, MessageLogger* log, QWidget* parent = nullptr);
+    Expand(QTextBrowser *browser, MessageLogger* log, QWidget* parent = nullptr);
     explicit Expand(QWidget *parent = nullptr);
 
     void setTitle(QString);
