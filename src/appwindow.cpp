@@ -26,13 +26,13 @@ AppWindow::AppWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::AppWindo
     setAcceptDrops(true);
 
     allocate();
-    applySettings();
     setConnections();
 
     auto windowTemp = new MainWindow(0, "");
     ui->tabWidget->addTab(windowTemp, windowTemp->fileName());
 
     updater->checkUpdate();
+    applySettings();
 }
 
 AppWindow::~AppWindow()
@@ -40,6 +40,9 @@ AppWindow::~AppWindow()
     saveSettings();
     delete settingManager;
     delete ui;
+    delete preferenceWindow;
+    delete timer;
+    delete updater;
 }
 
 /******************* PUBLIC METHODS ***********************/
@@ -116,14 +119,13 @@ void AppWindow::applySettings()
         settingManager->getGeometry().isValid() &&
         !settingManager->isMaximizedWindow())
      {
-         this->setGeometry(settingManager->getGeometry());
+         setGeometry(settingManager->getGeometry());
      }
 
      if (settingManager->isMaximizedWindow())
      {
          this->showMaximized();
      }
-
 }
 
 void AppWindow::saveSettings()

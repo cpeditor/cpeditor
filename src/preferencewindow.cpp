@@ -1,12 +1,20 @@
 #include "include/preferencewindow.hpp"
 #include "../ui/ui_preferencewindow.h"
 
+#include <QAction>
+#include <QDesktopWidget>
+
 PreferenceWindow::PreferenceWindow(Settings::SettingManager* manager ,QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::PreferenceWindow){
     ui->setupUi(this);
     this->manager = manager;
     setWindowTitle("Preferences");
+    applySettingsToui();
+    resize(QDesktopWidget().availableGeometry(this).size() * 0.35);
+}
+void PreferenceWindow::applySettingsToui(){
+
 }
 
 void PreferenceWindow::resetSettings(){
@@ -57,8 +65,13 @@ void PreferenceWindow::on_exit_clicked()
     close();
 }
 
+void PreferenceWindow::extractSettingsFromUi(){
+
+}
+
 void PreferenceWindow::on_apply_clicked()
 {
-    emit settingsApplied();
+    extractSettingsFromUi();
     close();
+    emit settingsApplied();
 }

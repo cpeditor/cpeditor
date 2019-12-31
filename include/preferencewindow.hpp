@@ -1,6 +1,7 @@
 #ifndef PREFERENCEWINDOW_HPP
 #define PREFERENCEWINDOW_HPP
 
+#include <QListWidget>
 #include <QMainWindow>
 #include "SettingsManager.hpp"
 
@@ -28,6 +29,9 @@ private slots:
 private:
     Ui::PreferenceWindow *ui;
     Settings::SettingManager* manager;
+
+    void extractSettingsFromUi();
+    void applySettingsToui();
 };
 
 #endif // PREFERENCEWINDOW_HPP
