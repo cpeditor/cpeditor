@@ -69,10 +69,6 @@ public:
   void setSettingsData(Settings::SettingsData data);
 
   MessageLogger* getLogger();
-  Core::Compiler* getCompiler();
-  Core::Runner* getRunner();
-  Core::Formatter* getFormatter();
-  QCodeEditor* getEditor();
   QFile* getOpenFile();
   QSplitter* getSplitter();
 

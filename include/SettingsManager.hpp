@@ -18,6 +18,7 @@
 #ifndef SETTINGSMANAGER_HPP
 #define SETTINGSMANAGER_HPP
 
+#include <QKeySequence>
 #include <QRect>
 #include <QSettings>
 #include <QString>
@@ -64,6 +65,15 @@ struct SettingsData{
     bool shouldSaveTests;
     bool isCompanionActive;
     bool isWindowMaximized;
+    bool isCheckUpdateOnStartup;
+    bool isUpdateCheckOnStartup;
+    bool isCompanionParsingContest;
+
+    QKeySequence hotkeyRun;
+    QKeySequence hotkeyCompile;
+    QKeySequence hotkeyCompileRun;
+    QKeySequence hotkeyFormat;
+    QKeySequence hotkeyKill;
 };
 
 class SettingManager
@@ -152,10 +162,26 @@ class SettingManager
     bool isMaximizedWindow();
     void setMaximizedWindow(bool value);
 
+    bool isCheckUpdateOnStartup();
+    void checkUpdateOnStartup(bool value);
+
+    bool isCompanionParsingContests();
+    void setCompetitiveCompanionParseContests(bool value);
+
     SettingsData toData();
     ~SettingManager();
 
-  private:
+    void setHotkeyFormat(QKeySequence sequence);
+    void setHotkeyKill(QKeySequence sequence);
+    void setHotkeyCompileRun(QKeySequence sequence);
+    void setHotkeyRun(QKeySequence sequence);
+    void setHotkeyCompile(QKeySequence sequence);
+    QKeySequence getHotkeyFormat();
+    QKeySequence getHotkeyKill();
+    QKeySequence getHotkeyCompileRun();
+    QKeySequence getHotkeyRun();
+    QKeySequence getHotkeyCompile();
+private:
     QString mSettingsFile;
     QSettings *mSettings;
 };

@@ -7,6 +7,7 @@
 #include <QMimeData>
 #include <QTimer>
 #include <QUrl>
+#include <EditorTheme.hpp>
 
 AppWindow::AppWindow(QVector<MainWindow *> tabs, QWidget *parent) : AppWindow(parent)
 {
@@ -14,8 +15,16 @@ AppWindow::AppWindow(QVector<MainWindow *> tabs, QWidget *parent) : AppWindow(pa
     if (tabs.size() > 0)
     {
         ui->tabWidget->clear();
-        for (auto e : tabs)
+        int i=0;
+        for (auto e : tabs){
             ui->tabWidget->addTab(e, e->fileName());
+            QString lang = "Cpp";
+            if(e->fileName().endsWith(".java")) lang = "Java";
+            else if(e->fileName().endsWith(".py") || e->fileName().endsWith("py3")) lang = "Python";
+            e->setLanguage(lang);
+            ui->tabWidget->setCurrentIndex(i);
+            i++;
+        }
     }
 }
 
@@ -31,13 +40,15 @@ AppWindow::AppWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::AppWindo
     auto windowTemp = new MainWindow(0, "");
     ui->tabWidget->addTab(windowTemp, windowTemp->fileName());
 
-    updater->checkUpdate();
+    if(settingManager->isCheckUpdateOnStartup()) updater->checkUpdate();
+
     applySettings();
 }
 
 AppWindow::~AppWindow()
 {
     saveSettings();
+    Themes::EditorTheme::release();
     delete settingManager;
     delete ui;
     delete preferenceWindow;
@@ -75,6 +86,7 @@ void AppWindow::dragEnterEvent(QDragEnterEvent *event)
 void AppWindow::dropEvent(QDropEvent *event)
 {
     auto files = event->mimeData()->urls();
+    int t = ui->tabWidget->count();
     for (auto e : files)
     {
         auto fileName = e.toLocalFile();
@@ -84,6 +96,8 @@ void AppWindow::dropEvent(QDropEvent *event)
         else if(fileName.endsWith(".py") || fileName.endsWith(".py3")) lang = "Python";
         ui->tabWidget->addTab(fsp, fsp->fileName());
         fsp->setLanguage(lang);
+        ui->tabWidget->setCurrentIndex(t);
+        t++;
     }
 }
 
@@ -264,7 +278,7 @@ void AppWindow::on_actionRestore_Settings_triggered()
 
 void AppWindow::on_actionSettings_triggered()
 {
-    preferenceWindow->show();
+    preferenceWindow->updateShow();
 }
 
 /************************** SLOTS *********************************/
@@ -333,6 +347,8 @@ void AppWindow::onSaveTimerElapsed()
 
 void AppWindow::onSettingsApplied()
 {
+    // Apply universal settings here and below call will apply tab settings
+    onTabChanged(ui->tabWidget->currentIndex());
 }
 
 void AppWindow::onSplitterMoved(int _,int __){
@@ -340,10 +356,6 @@ void AppWindow::onSplitterMoved(int _,int __){
     auto splitter = dynamic_cast<MainWindow*>(ui->tabWidget->widget(current))->getSplitter();
     splitterState = splitter->saveState();
 }
-
-// Make the Preferences window
-// Add other themes
-// Make companion, parse contests
 
 /************************* ACTIONS ************************/
 void AppWindow::on_actionCheck_for_updates_triggered()

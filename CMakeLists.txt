@@ -61,6 +61,8 @@ add_executable(CPEditor
     include/preferencewindow.hpp
     src/preferencewindow.cpp
     ui/preferencewindow.ui
+    src/EditorTheme.cpp
+    include/EditorTheme.hpp
 
     ${CMAKE_BINARY_DIR}/generated/version.hpp
 

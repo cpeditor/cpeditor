@@ -36,6 +36,7 @@
 #include <QThread>
 #include <QTimer>
 #include <expand.hpp>
+#include <EditorTheme.hpp>
 
 #include "../ui/ui_mainwindow.h"
 
@@ -91,8 +92,6 @@ void MainWindow::setEditor()
     editor->setMinimumWidth(600);
     editor->setMinimumHeight(300);
     editor->setAcceptDrops(false);
-
-    // editor->setSyntaxStyle(QSyntaxStyle::defaultStyle()); // default is white
 
     ui->verticalLayout_8->addWidget(editor);
 
@@ -176,7 +175,7 @@ void MainWindow::maybeLoadTemplate()
 
 void MainWindow::loadTests()
 {
-    if (openFile == nullptr || data.shouldSaveTests)
+    if (openFile == nullptr || !data.shouldSaveTests)
         return;
 
     QFileInfo fileInfo(*openFile);
@@ -224,7 +223,7 @@ void MainWindow::loadTests()
 
 void MainWindow::saveTests()
 {
-    if (openFile == nullptr || data.shouldSaveTests)
+    if (openFile == nullptr || !data.shouldSaveTests)
         return;
 
     QFileInfo fileInfo(*openFile);
@@ -257,11 +256,7 @@ void MainWindow::saveTests()
             answerFile->open(QIODevice::WriteOnly | QFile::Text);
             if (answerFile->isOpen())
             {
-                if (answerFile->write(expected[i]->toStdString().c_str()) != -1)
-                {
-                    log.info("Tests", "Expected #" + std::to_string(i + 1) + " successfully saved");
-                }
-                else
+                if (answerFile->write(expected[i]->toStdString().c_str()) == -1)
                 {
                     log.error("Tests", "Expected #" + std::to_string(i + 1) + " was not successfully saved");
                 }
@@ -344,7 +339,7 @@ void MainWindow::setSettingsData(Settings::SettingsData data)
     this->data = data;
     formatter->updateCommand(data.formatCommand);
 
-    editor->setTabReplace(!data.isTabsBeingUsed);
+    editor->setTabReplace(data.isTabsBeingUsed);
     editor->setTabReplaceSize(data.tabStop);
     editor->setAutoIndentation(data.isAutoIndent);
     editor->setAutoParentheses(data.isAutoParenthesis);
@@ -358,10 +353,12 @@ void MainWindow::setSettingsData(Settings::SettingsData data)
     const int tabStop = data.tabStop;
     QFontMetrics metric(editor->font());
     editor->setTabReplaceSize(tabStop);
-    editor->setTabStopDistance(tabStop * metric.horizontalAdvance(" "));
+    editor->setTabStopDistance(tabStop * metric.horizontalAdvance("9"));
 
-    if(data.isWrapText) editor->setWordWrapMode(QTextOption::WordWrap);
-    else editor->setWordWrapMode(QTextOption::NoWrap);
+    if(data.isWrapText)
+        editor->setWordWrapMode(QTextOption::WordWrap);
+    else
+        editor->setWordWrapMode(QTextOption::NoWrap);
 
     // TODO Update some commands;
     compiler->updateCommandCpp(data.compileCommandCpp);
@@ -376,12 +373,30 @@ void MainWindow::setSettingsData(Settings::SettingsData data)
     runner->updateRuntimeArgumentsCommandJava(data.runtimeArgumentsJava);
     runner->updateRuntimeArgumentsCommandPython(data.runtimeArgumentsPython);
 
+    if(data.editorTheme == "Light")
+        editor->setSyntaxStyle(Themes::EditorTheme::getLightTheme());
+     else if(data.editorTheme == "Drakula")
+        editor->setSyntaxStyle(Themes::EditorTheme::getDrakulaTheme());
+     else if(data.editorTheme == "Monkai")
+        editor->setSyntaxStyle(Themes::EditorTheme::getMonkaiTheme());
+     else if(data.editorTheme == "Solarised")
+        editor->setSyntaxStyle(Themes::EditorTheme::getSolarisedTheme());
+     else if(data.editorTheme == "Solarised Dark")
+        editor->setSyntaxStyle(Themes::EditorTheme::getSolarisedDarkTheme());
+     else{
+        log.warn("Themes", "Editor theme is set to invalid value. Fallback to Light");
+        editor->setSyntaxStyle(Themes::EditorTheme::getLightTheme());
+    }
+
+
+
     if(!isLanguageSet){
         setLanguage(data.defaultLanguage);
         isLanguageSet = true;
     }
     else
         performCoreDiagonistics();
+
 
 }
 void MainWindow::save(bool force)
@@ -494,27 +509,12 @@ void MainWindow::setLanguage(QString lang)
     performCoreDiagonistics();
     isLanguageSet = true;
 }
+
 MessageLogger *MainWindow::getLogger()
 {
     return &log;
 }
-Core::Compiler *MainWindow::getCompiler()
-{
-    return compiler;
-}
-Core::Runner *MainWindow::getRunner()
-{
-    return runner;
-}
-Core::Formatter *MainWindow::getFormatter()
-{
-    return formatter;
-}
 
-QCodeEditor *MainWindow::getEditor()
-{
-    return editor;
-}
 QFile *MainWindow::getOpenFile()
 {
     return openFile;
@@ -866,6 +866,7 @@ QSplitter *MainWindow::getSplitter()
 
 void MainWindow::performCoreDiagonistics()
 {
+    log.clear();
     bool formatResult = Core::Formatter::check(data.formatCommand);
     bool compilerResult = true;
     bool runResults = true;

@@ -71,6 +71,14 @@ bool SettingManager::isMaximizedWindow()
     return mSettings->value("win_max", "false").toBool();
 }
 
+bool SettingManager::isCheckUpdateOnStartup(){
+    return mSettings->value("update_start_check", "true").toBool();
+
+}
+bool SettingManager::isCompanionParsingContests(){
+    return mSettings->value("companion_use_contest", "false").toBool();
+}
+
 bool SettingManager::isCompetitiveCompanionActive()
 {
     return mSettings->value("competitive_use", "false").toBool();
@@ -225,6 +233,22 @@ void SettingManager::setMaximizedWindow(bool value)
         mSettings->setValue("win_max", QString::fromStdString("false"));
 }
 
+void SettingManager::checkUpdateOnStartup(bool value)
+{
+    if (value)
+        mSettings->setValue("update_start_check", QString::fromStdString("true"));
+    else
+        mSettings->setValue("update_start_check", QString::fromStdString("false"));
+}
+
+void SettingManager::setCompetitiveCompanionParseContests(bool value)
+{
+    if (value)
+        mSettings->setValue("companion_use_contest", QString::fromStdString("true"));
+    else
+        mSettings->setValue("companion_use_contest", QString::fromStdString("false"));
+}
+
 void SettingManager::setHotKeyInUse(bool value)
 {
     if (value)
@@ -309,6 +333,47 @@ void SettingManager::setGeometry(QRect rect)
     mSettings->setValue("geometry", rect);
 }
 
+QKeySequence SettingManager::getHotkeyCompile()
+{
+    return QKeySequence::fromString( mSettings->value("hotkey_compile", "").toString() );
+}
+QKeySequence SettingManager::getHotkeyRun()
+{
+    return QKeySequence::fromString( mSettings->value("hotkey_run", "").toString() );
+}
+QKeySequence SettingManager::getHotkeyCompileRun()
+{
+    return QKeySequence::fromString ( mSettings->value("hotkey_compile_run", "").toString() );
+}
+QKeySequence SettingManager::getHotkeyKill()
+{
+    return QKeySequence::fromString ( mSettings->value("hotkey_kill", "").toString() );
+}
+QKeySequence SettingManager::getHotkeyFormat()
+{
+    return QKeySequence::fromString( mSettings->value("hotkey_format", "").toString() );
+}
+void SettingManager::setHotkeyCompile(QKeySequence sequence)
+{
+    mSettings->setValue("hotkey_compile", sequence.toString());
+}
+void SettingManager::setHotkeyRun(QKeySequence sequence)
+{
+    mSettings->setValue("hotkey_run", sequence.toString());
+}
+void SettingManager::setHotkeyCompileRun(QKeySequence sequence)
+{
+    mSettings->setValue("hotkey_compile_run", sequence.toString());
+}
+void SettingManager::setHotkeyKill(QKeySequence sequence)
+{
+    mSettings->setValue("hotkey_kill", sequence.toString());
+}
+void SettingManager::setHotkeyFormat(QKeySequence sequence)
+{
+    mSettings->setValue("hotkey_format", sequence.toString());
+}
+
 SettingManager::~SettingManager()
 {
     mSettings->sync();
@@ -346,6 +411,14 @@ SettingsData SettingManager::toData()
      data.shouldSaveTests = isSaveTests();
      data.isCompanionActive = isCompetitiveCompanionActive();
      data.isWindowMaximized = isMaximizedWindow();
+     data.isCheckUpdateOnStartup = isCheckUpdateOnStartup();
+     data.isCompanionParsingContest = isCompanionParsingContests();
+     data.hotkeyCompile = getHotkeyCompile();
+     data.hotkeyRun = getHotkeyRun();
+     data.hotkeyCompileRun = getHotkeyCompileRun();
+     data.hotkeyKill = getHotkeyKill();
+     data.hotkeyFormat = getHotkeyFormat();
+
      return data;
 
 }

@@ -32,7 +32,7 @@
          <enum>QTabWidget::Rounded</enum>
         </property>
         <property name="currentIndex">
-         <number>1</number>
+         <number>4</number>
         </property>
         <widget class="QWidget" name="editor">
          <attribute name="title">
@@ -65,7 +65,7 @@
                </widget>
               </item>
               <item row="2" column="1">
-               <widget class="QComboBox" name="comboBox">
+               <widget class="QComboBox" name="systemwide_theme">
                 <property name="font">
                  <font>
                   <weight>50</weight>
@@ -98,7 +98,7 @@
                </widget>
               </item>
               <item row="3" column="1">
-               <widget class="QComboBox" name="comboBox_2">
+               <widget class="QComboBox" name="editor_theme">
                 <property name="font">
                  <font>
                   <weight>50</weight>
@@ -140,7 +140,7 @@
                </widget>
               </item>
               <item row="4" column="1">
-               <widget class="QSpinBox" name="spinBox"/>
+               <widget class="QSpinBox" name="tab_length"/>
               </item>
               <item row="5" column="0">
                <widget class="QLabel" name="label_6">
@@ -150,7 +150,7 @@
                </widget>
               </item>
               <item row="5" column="1">
-               <widget class="QPushButton" name="pushButton">
+               <widget class="QPushButton" name="font_button">
                 <property name="text">
                  <string>Current font</string>
                 </property>
@@ -173,28 +173,28 @@
               <item row="7" column="1">
                <layout class="QFormLayout" name="behaviour">
                 <item row="2" column="0">
-                 <widget class="QCheckBox" name="checkBox_4">
+                 <widget class="QCheckBox" name="indent">
                   <property name="text">
                    <string>Automatically indent code</string>
                   </property>
                  </widget>
                 </item>
                 <item row="3" column="0">
-                 <widget class="QCheckBox" name="checkBox_3">
+                 <widget class="QCheckBox" name="parentheses">
                   <property name="text">
                    <string>Automatically close opening braces</string>
                   </property>
                  </widget>
                 </item>
                 <item row="4" column="0">
-                 <widget class="QCheckBox" name="checkBox_2">
+                 <widget class="QCheckBox" name="wrap">
                   <property name="text">
                    <string>Wrap text into next line</string>
                   </property>
                  </widget>
                 </item>
                 <item row="6" column="0">
-                 <widget class="QCheckBox" name="checkBox">
+                 <widget class="QCheckBox" name="tabs">
                   <property name="text">
                    <string>Always Replace tabs with spaces</string>
                   </property>
@@ -208,7 +208,7 @@
                  </widget>
                 </item>
                 <item row="8" column="0">
-                 <widget class="QCheckBox" name="checkBox_5">
+                 <widget class="QCheckBox" name="savetest">
                   <property name="text">
                    <string>Save and Load Input and Expected along with Source</string>
                   </property>
@@ -216,6 +216,9 @@
                 </item>
                 <item row="7" column="0">
                  <widget class="QCheckBox" name="checkBox_9">
+                  <property name="enabled">
+                   <bool>false</bool>
+                  </property>
                   <property name="text">
                    <string>Automatically Format source on save</string>
                   </property>
@@ -267,6 +270,8 @@
               <property name="font">
                <font>
                 <pointsize>12</pointsize>
+                <weight>50</weight>
+                <bold>false</bold>
                </font>
               </property>
               <property name="text">
@@ -291,10 +296,10 @@
                </widget>
               </item>
               <item row="0" column="1">
-               <widget class="QComboBox" name="comboBox_3">
+               <widget class="QComboBox" name="defaultLang">
                 <item>
                  <property name="text">
-                  <string>C++</string>
+                  <string>Cpp</string>
                  </property>
                 </item>
                 <item>
@@ -317,7 +322,7 @@
                </widget>
               </item>
               <item row="1" column="1">
-               <widget class="QLineEdit" name="lineEdit_3"/>
+               <widget class="QLineEdit" name="format_cmd"/>
               </item>
              </layout>
             </item>
@@ -326,6 +331,8 @@
               <property name="font">
                <font>
                 <pointsize>12</pointsize>
+                <weight>50</weight>
+                <bold>false</bold>
                </font>
               </property>
               <property name="text">
@@ -350,7 +357,7 @@
                </widget>
               </item>
               <item row="0" column="1">
-               <widget class="QLineEdit" name="lineEdit"/>
+               <widget class="QLineEdit" name="cpp_compiler_cmd"/>
               </item>
               <item row="1" column="0">
                <widget class="QLabel" name="label_30">
@@ -360,7 +367,7 @@
                </widget>
               </item>
               <item row="1" column="1">
-               <widget class="QLineEdit" name="lineEdit_2"/>
+               <widget class="QLineEdit" name="cpp_args_cmd"/>
               </item>
              </layout>
             </item>
@@ -369,6 +376,8 @@
               <property name="font">
                <font>
                 <pointsize>12</pointsize>
+                <weight>50</weight>
+                <bold>false</bold>
                </font>
               </property>
               <property name="text">
@@ -388,6 +397,8 @@
               <property name="font">
                <font>
                 <pointsize>12</pointsize>
+                <weight>50</weight>
+                <bold>false</bold>
                </font>
               </property>
               <property name="text">
@@ -426,13 +437,13 @@
                </widget>
               </item>
               <item row="0" column="1">
-               <widget class="QLineEdit" name="lineEdit_4"/>
+               <widget class="QLineEdit" name="java_compiler_cmd"/>
               </item>
               <item row="1" column="1">
-               <widget class="QLineEdit" name="lineEdit_5"/>
+               <widget class="QLineEdit" name="java_args_cmd"/>
               </item>
               <item row="2" column="1">
-               <widget class="QLineEdit" name="lineEdit_6"/>
+               <widget class="QLineEdit" name="java_start_cmd"/>
               </item>
              </layout>
             </item>
@@ -453,10 +464,10 @@
                </widget>
               </item>
               <item row="0" column="1">
-               <widget class="QLineEdit" name="lineEdit_7"/>
+               <widget class="QLineEdit" name="python_args_cmd"/>
               </item>
               <item row="1" column="1">
-               <widget class="QLineEdit" name="lineEdit_8"/>
+               <widget class="QLineEdit" name="python_start_cmd"/>
               </item>
              </layout>
             </item>
@@ -476,6 +487,8 @@
               <property name="font">
                <font>
                 <pointsize>12</pointsize>
+                <weight>50</weight>
+                <bold>false</bold>
                </font>
               </property>
               <property name="text">
@@ -493,14 +506,14 @@
             <item row="1" column="1">
              <layout class="QFormLayout" name="formLayout_7">
               <item row="0" column="0">
-               <widget class="QCheckBox" name="checkBox_10">
+               <widget class="QCheckBox" name="companion_use">
                 <property name="text">
                  <string>Enable Competitive Companion Server</string>
                 </property>
                </widget>
               </item>
               <item row="1" column="0">
-               <widget class="QCheckBox" name="checkBox_11">
+               <widget class="QCheckBox" name="companion_contests">
                 <property name="text">
                  <string>Enable Companion to Parse Contests</string>
                 </property>
@@ -514,7 +527,7 @@
                </widget>
               </item>
               <item row="2" column="1">
-               <widget class="QSpinBox" name="spinBox_2"/>
+               <widget class="QSpinBox" name="companion_port"/>
               </item>
              </layout>
             </item>
@@ -548,6 +561,8 @@ p, li { white-space: pre-wrap; }
               <property name="font">
                <font>
                 <pointsize>12</pointsize>
+                <weight>50</weight>
+                <bold>false</bold>
                </font>
               </property>
               <property name="text">
@@ -565,9 +580,12 @@ p, li { white-space: pre-wrap; }
             <item row="1" column="1">
              <layout class="QFormLayout" name="formLayout_4">
               <item row="0" column="0">
-               <widget class="QCheckBox" name="checkBox_8">
+               <widget class="QCheckBox" name="hotkeys">
                 <property name="text">
                  <string>Enable hotkeys (disabling this does not affects standard keys)</string>
+                </property>
+                <property name="tristate">
+                 <bool>false</bool>
                 </property>
                </widget>
               </item>
@@ -578,6 +596,8 @@ p, li { white-space: pre-wrap; }
               <property name="font">
                <font>
                 <pointsize>12</pointsize>
+                <weight>50</weight>
+                <bold>false</bold>
                </font>
               </property>
               <property name="text">
@@ -602,19 +622,19 @@ p, li { white-space: pre-wrap; }
                </widget>
               </item>
               <item row="0" column="1">
-               <widget class="QKeySequenceEdit" name="keySequenceEdit"/>
+               <widget class="QKeySequenceEdit" name="compile_hotkey"/>
               </item>
               <item row="4" column="1">
-               <widget class="QKeySequenceEdit" name="keySequenceEdit_2"/>
+               <widget class="QKeySequenceEdit" name="kill_hotkey"/>
               </item>
               <item row="1" column="1">
-               <widget class="QKeySequenceEdit" name="keySequenceEdit_3"/>
+               <widget class="QKeySequenceEdit" name="run_hotkey"/>
               </item>
               <item row="2" column="1">
-               <widget class="QKeySequenceEdit" name="keySequenceEdit_4"/>
+               <widget class="QKeySequenceEdit" name="compileRun_hotkey"/>
               </item>
               <item row="3" column="1">
-               <widget class="QKeySequenceEdit" name="keySequenceEdit_5"/>
+               <widget class="QKeySequenceEdit" name="format_hotkey"/>
               </item>
               <item row="1" column="0">
                <widget class="QLabel" name="label_14">
@@ -701,14 +721,14 @@ p, li { white-space: pre-wrap; }
               <item row="1" column="1">
                <layout class="QFormLayout" name="formLayout_2">
                 <item row="0" column="0">
-                 <widget class="QCheckBox" name="checkBox_6">
+                 <widget class="QCheckBox" name="update_startup">
                   <property name="text">
                    <string>Check for updates on startup</string>
                   </property>
                  </widget>
                 </item>
                 <item row="1" column="0">
-                 <widget class="QCheckBox" name="checkBox_7">
+                 <widget class="QCheckBox" name="beta_update">
                   <property name="text">
                    <string>Notify of beta updates as well</string>
                   </property>
@@ -721,6 +741,8 @@ p, li { white-space: pre-wrap; }
                 <property name="font">
                  <font>
                   <pointsize>12</pointsize>
+                  <weight>50</weight>
+                  <bold>false</bold>
                  </font>
                 </property>
                 <property name="text">
@@ -745,7 +767,7 @@ p, li { white-space: pre-wrap; }
                  </widget>
                 </item>
                 <item row="0" column="1">
-                 <widget class="QPushButton" name="pushButton_2">
+                 <widget class="QPushButton" name="cpp_template">
                   <property name="text">
                    <string>filePath</string>
                   </property>
@@ -759,7 +781,7 @@ p, li { white-space: pre-wrap; }
                  </widget>
                 </item>
                 <item row="1" column="1">
-                 <widget class="QPushButton" name="pushButton_3">
+                 <widget class="QPushButton" name="py_template">
                   <property name="text">
                    <string>filePath</string>
                   </property>
@@ -773,7 +795,7 @@ p, li { white-space: pre-wrap; }
                  </widget>
                 </item>
                 <item row="2" column="1">
-                 <widget class="QPushButton" name="pushButton_4">
+                 <widget class="QPushButton" name="java_template">
                   <property name="text">
                    <string>filePath</string>
                   </property>
