@@ -1,5 +1,8 @@
 <RCC>
     <qresource prefix="/">
         <file>styles/drakula.xml</file>
+	<file>styles/monkai.xml</file>
+	<file>styles/solarised.xml</file>
+	<file>styles/solarisedDark.xml</file>
     </qresource>
 </RCC>
