@@ -67,7 +67,6 @@ struct SettingsData{
     bool isWindowMaximized;
     bool isCheckUpdateOnStartup;
     bool isUpdateCheckOnStartup;
-    bool isCompanionParsingContest;
 
     QKeySequence hotkeyRun;
     QKeySequence hotkeyCompile;
@@ -164,9 +163,6 @@ class SettingManager
 
     bool isCheckUpdateOnStartup();
     void checkUpdateOnStartup(bool value);
-
-    bool isCompanionParsingContests();
-    void setCompetitiveCompanionParseContests(bool value);
 
     SettingsData toData();
     ~SettingManager();

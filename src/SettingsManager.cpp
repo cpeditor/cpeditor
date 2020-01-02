@@ -75,9 +75,6 @@ bool SettingManager::isCheckUpdateOnStartup(){
     return mSettings->value("update_start_check", "true").toBool();
 
 }
-bool SettingManager::isCompanionParsingContests(){
-    return mSettings->value("companion_use_contest", "false").toBool();
-}
 
 bool SettingManager::isCompetitiveCompanionActive()
 {
@@ -241,13 +238,6 @@ void SettingManager::checkUpdateOnStartup(bool value)
         mSettings->setValue("update_start_check", QString::fromStdString("false"));
 }
 
-void SettingManager::setCompetitiveCompanionParseContests(bool value)
-{
-    if (value)
-        mSettings->setValue("companion_use_contest", QString::fromStdString("true"));
-    else
-        mSettings->setValue("companion_use_contest", QString::fromStdString("false"));
-}
 
 void SettingManager::setHotKeyInUse(bool value)
 {
@@ -412,7 +402,6 @@ SettingsData SettingManager::toData()
      data.isCompanionActive = isCompetitiveCompanionActive();
      data.isWindowMaximized = isMaximizedWindow();
      data.isCheckUpdateOnStartup = isCheckUpdateOnStartup();
-     data.isCompanionParsingContest = isCompanionParsingContests();
      data.hotkeyCompile = getHotkeyCompile();
      data.hotkeyRun = getHotkeyRun();
      data.hotkeyCompileRun = getHotkeyCompileRun();

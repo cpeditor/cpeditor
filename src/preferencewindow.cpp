@@ -57,7 +57,6 @@ void PreferenceWindow::applySettingsToui()
 
     ui->companion_use->setChecked(manager->isCompetitiveCompanionActive());
     ui->companion_port->setValue(manager->getConnectionPort());
-    ui->companion_contests->setChecked(manager->isCompanionParsingContests());
 
     cppTemplatePath = manager->getTemplatePathCpp();
     pythonTemplatePath = manager->getTemplatePathPython();
@@ -110,7 +109,6 @@ void PreferenceWindow::extractSettingsFromUi()
 
     manager->setCompetitiveCompanionActive(ui->companion_use->isChecked());
     manager->setConnectionPort(ui->companion_port->value());
-    manager->setCompetitiveCompanionParseContests(ui->companion_contests->isChecked());
 
     manager->setBeta(ui->beta_update->isChecked());
     manager->checkUpdateOnStartup(ui->update_startup->isChecked());
@@ -168,7 +166,6 @@ void PreferenceWindow::resetSettings(){
     manager->setCompetitiveCompanionActive(false);
     manager->setMaximizedWindow(false);
     manager->checkUpdateOnStartup(true);
-    manager->setCompetitiveCompanionParseContests(false);
 
     manager->setHotkeyRun(QKeySequence());
     manager->setHotkeyKill(QKeySequence());

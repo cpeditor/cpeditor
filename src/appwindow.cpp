@@ -43,6 +43,7 @@ AppWindow::AppWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::AppWindo
     if(settingManager->isCheckUpdateOnStartup()) updater->checkUpdate();
 
     applySettings();
+    onSettingsApplied();
 }
 
 AppWindow::~AppWindow()
@@ -54,6 +55,7 @@ AppWindow::~AppWindow()
     delete preferenceWindow;
     delete timer;
     delete updater;
+    delete server;
 }
 
 /******************* PUBLIC METHODS ***********************/
@@ -109,6 +111,9 @@ void AppWindow::setConnections()
     connect(timer, SIGNAL(timeout()), this, SLOT(onSaveTimerElapsed()));
 
     connect(preferenceWindow, SIGNAL(settingsApplied()), this, SLOT(onSettingsApplied()));
+
+    if(settingManager->isCompetitiveCompanionActive())
+    companionEditorConnections = connect(server, &Network::CompanionServer::onRequestArrived, this, &AppWindow::onIncomingCompanionRequest);
 }
 
 void AppWindow::allocate()
@@ -117,6 +122,7 @@ void AppWindow::allocate()
     timer = new QTimer();
     updater = new Telemetry::UpdateNotifier(settingManager->isBeta());
     preferenceWindow = new PreferenceWindow(settingManager, this);
+    server = new Network::CompanionServer(settingManager->getConnectionPort());
 
     timer->setInterval(3000);
     timer->setSingleShot(false);
@@ -140,6 +146,43 @@ void AppWindow::applySettings()
      {
          this->showMaximized();
      }
+
+     maybeSetHotkeys();
+
+}
+
+void AppWindow::maybeSetHotkeys()
+{
+    for(auto e : hotkeyObjects) delete e;
+    hotkeyObjects.clear();
+
+    if(!settingManager->isHotkeyInUse()) return ;
+
+    if(!settingManager->getHotkeyRun().isEmpty())
+    {
+        hotkeyObjects.push_back(new QShortcut(settingManager->getHotkeyRun(), this, SLOT(on_actionRun_triggered())));
+    }
+    if(!settingManager->getHotkeyCompile().isEmpty())
+    {
+        hotkeyObjects.push_back(new QShortcut(settingManager->getHotkeyCompile(), this, SLOT(on_actionCompile_triggered())));
+
+    }
+    if(!settingManager->getHotkeyCompileRun().isEmpty())
+    {
+        hotkeyObjects.push_back(new QShortcut(settingManager->getHotkeyRun(), this, SLOT(on_actionCompile_Run_triggered())));
+
+    }
+    if(!settingManager->getHotkeyFormat().isEmpty())
+    {
+        hotkeyObjects.push_back(new QShortcut(settingManager->getHotkeyRun(), this, SLOT(on_actionFormat_code_triggered())));
+
+    }
+    if(!settingManager->getHotkeyKill().isEmpty())
+    {
+        hotkeyObjects.push_back(new QShortcut(settingManager->getHotkeyRun(), this, SLOT(on_actionKill_Processes_triggered())));
+
+    }
+
 }
 
 void AppWindow::saveSettings()
@@ -296,6 +339,7 @@ void AppWindow::onTabChanged(int index)
     if (index == -1)
     {
         activeLogger = nullptr;
+        server->setMessageLogger(nullptr);
         return;
     }
 
@@ -303,7 +347,10 @@ void AppWindow::onTabChanged(int index)
     disconnect(activeSplitterMoveConnections);
 
     auto tmp = dynamic_cast<MainWindow *>(ui->tabWidget->widget(index));
+
     activeLogger = tmp->getLogger();
+    server->setMessageLogger(activeLogger);
+
     tmp->setSettingsData(settingManager->toData());
     tmp->maybeLoadTemplate();
 
@@ -347,8 +394,39 @@ void AppWindow::onSaveTimerElapsed()
 
 void AppWindow::onSettingsApplied()
 {
-    // Apply universal settings here and below call will apply tab settings
+    if(settingManager->isSystemThemeDark())
+    {
+        QMessageBox::warning(this,
+                           "Don't use dark theme",
+                           "System-wide dark theme is not officially supported by Qt or the developer"
+                           ". It has some serious UI/UX issues and should not be used. Instead you can"
+                           " turn system theme dark on your PC settings.");
+
+        settingManager->setSystemThemeDark(false);
+    }
+
+    updater->setBeta(settingManager->isBeta());
+    maybeSetHotkeys();
+
+    disconnect(companionEditorConnections);
+
+    server->updatePort(settingManager->getConnectionPort());
+
+
+    if(settingManager->isCompetitiveCompanionActive())
+        companionEditorConnections = connect(server, &Network::CompanionServer::onRequestArrived, this, &AppWindow::onIncomingCompanionRequest);
+
     onTabChanged(ui->tabWidget->currentIndex());
+}
+
+void AppWindow::onIncomingCompanionRequest(Network::CompanionData data)
+{
+    auto newTab = new MainWindow(ui->tabWidget->currentIndex(), "");
+    newTab->setSettingsData(settingManager->toData());
+    newTab->maybeLoadTemplate();
+    newTab->applyCompanion(data);
+    ui->tabWidget->addTab(newTab, newTab->fileName());
+    ui->tabWidget->setCurrentIndex(ui->tabWidget->count()-1);
 }
 
 void AppWindow::onSplitterMoved(int _,int __){

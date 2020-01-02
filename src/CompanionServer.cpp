@@ -11,35 +11,53 @@ CompanionServer::CompanionServer(int port)
 {
     server = new QTcpServer(this);
     portNumber = port;
-    server->setMaxPendingConnections(1);
+    // server->setMaxPendingConnections(1);
     QObject::connect(server, SIGNAL(newConnection()), this, SLOT(onNewConnection()));
-    server->listen(QHostAddress::LocalHost, static_cast<unsigned short>(port));        
+    server->listen(QHostAddress::LocalHost, static_cast<unsigned short>(port));
 }
 
 void CompanionServer::setMessageLogger(MessageLogger *log){
     this->log = log;
-    if (server->serverPort() == 0)
+    if(log != nullptr){
+
+        if (server->serverPort() == 0){
         log->error("Companion", "Failed to listen to specified "
                                                    " port. Is another process listening there?");
+        }
+        else{
+            log->info("Companion", "Listening for request on " + server->serverAddress().toString().toStdString() + std::to_string(server->serverPort()));
+        }
+    }
+}
+
+void CompanionServer::updatePort(int port)
+{
+    this->portNumber = port;
+    delete server;
+    server = new QTcpServer(this);
+    portNumber = port;
+    // server->setMaxPendingConnections(1);
+    QObject::connect(server, SIGNAL(newConnection()), this, SLOT(onNewConnection()));
+    server->listen(QHostAddress::LocalHost, static_cast<unsigned short>(port));
+    log->warn("Companion", "Port changed to " + std::to_string(port));
 }
 
 CompanionServer::~CompanionServer()
 {
-    log->info("Companion", "Stopped Server");
+    if(log != nullptr) log->info("Companion", "Stopped Server");
     delete server;
 }
 
 void CompanionServer::onNewConnection()
 {
-    qDebug() << "New Connection request arrived\n";
     socket = server->nextPendingConnection();
     QObject::connect(socket, SIGNAL(readyRead()), this, SLOT(onReadReady()));
     QObject::connect(socket, SIGNAL(disconnected()), this, SLOT(onTerminateConnection()));
 }
-
 void CompanionServer::onReadReady()
 {
     QString request = socket->readAll();
+
     if (request.startsWith("POST") && request.contains("Content-Type: application/json"))
     {
         log->info("Companion", "Got a POST Request");

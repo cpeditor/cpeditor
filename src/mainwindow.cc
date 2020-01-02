@@ -158,7 +158,7 @@ void MainWindow::maybeLoadTemplate()
 
     if(target.isEmpty()) return ;
 
-    if (openFile == nullptr && editor->toPlainText().isEmpty())
+    if (openFile == nullptr && editor->toPlainText().trimmed().isEmpty())
     {
         QFile tmp(target);
         tmp.open(QIODevice::ReadOnly | QFile::Text);
@@ -333,6 +333,7 @@ void MainWindow::applyCompanion(Network::CompanionData data)
         input[i]->setPlainText(data.testcases[i].input);
         expected[i]->operator=(data.testcases[i].output);
     }
+    onTextChangedTriggered();
 }
 void MainWindow::setSettingsData(Settings::SettingsData data)
 {

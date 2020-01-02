@@ -57,6 +57,7 @@ private slots:
     void onSaveTimerElapsed();
     void onSettingsApplied();
     void onSplitterMoved(int, int);
+    void onIncomingCompanionRequest(Network::CompanionData);
 
 
     void on_actionCompile_triggered();
@@ -77,15 +78,19 @@ private:
     QTimer* timer = nullptr;
     QMetaObject::Connection activeTextChangeConnections;
     QMetaObject::Connection activeSplitterMoveConnections;
+    QMetaObject::Connection companionEditorConnections;
     Settings::SettingManager *settingManager = nullptr;
     Telemetry::UpdateNotifier *updater = nullptr;
     PreferenceWindow* preferenceWindow = nullptr;
     QByteArray splitterState;
+    Network::CompanionServer *server;
 
     void setConnections();
     void allocate();
     void applySettings();
     void saveSettings();
+    QVector<QShortcut*> hotkeyObjects;
+    void maybeSetHotkeys();
 
 };
 
