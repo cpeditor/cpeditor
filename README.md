@@ -46,17 +46,7 @@ You have to ability to change compile command and run other commands by navigati
 
 ### Hotkeys
 
-To use these keys, enable `Hotkeys` from `Settings => [check] Enable Hotkeys`
-
-| Key   | Action                                           |
-| ----- | ------------------------------------------------ |
-| `F5`  | Compile \| Equivalent to CTRL+Shift+C            |
-| `F6`  | Compile and Run \| Equivalent to CTRL+Shift+R    |
-| `F7`  | Run only  \| Equivalent to CTRL+R                |
-| `F9`  | Detached Execution \| Equivalent to CTRL+Shift+D |
-| `F11` | Kill \| Equivalent to CTRL+K                     |
-
-These keys cannot be changed manually, so get used to them!
+You can also set hotkeys for all of the above actions manually from `Preferences`. However the standard keys are fixed and cannot be changed, hotkys are additional shortcuts.
 
 #### Building for source
 > **Qt must be installed in order to compile from source**
