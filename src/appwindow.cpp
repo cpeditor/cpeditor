@@ -176,17 +176,17 @@ void AppWindow::maybeSetHotkeys()
     if (!settingManager->getHotkeyCompileRun().isEmpty())
     {
         hotkeyObjects.push_back(
-            new QShortcut(settingManager->getHotkeyRun(), this, SLOT(on_actionCompile_Run_triggered())));
+            new QShortcut(settingManager->getHotkeyCompileRun(), this, SLOT(on_actionCompile_Run_triggered())));
     }
     if (!settingManager->getHotkeyFormat().isEmpty())
     {
         hotkeyObjects.push_back(
-            new QShortcut(settingManager->getHotkeyRun(), this, SLOT(on_actionFormat_code_triggered())));
+            new QShortcut(settingManager->getHotkeyFormat(), this, SLOT(on_actionFormat_code_triggered())));
     }
     if (!settingManager->getHotkeyKill().isEmpty())
     {
         hotkeyObjects.push_back(
-            new QShortcut(settingManager->getHotkeyRun(), this, SLOT(on_actionKill_Processes_triggered())));
+            new QShortcut(settingManager->getHotkeyKill(), this, SLOT(on_actionKill_Processes_triggered())));
     }
 }
 
