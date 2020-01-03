@@ -10,14 +10,14 @@ Expand::Expand(QWidget *parent) : QMainWindow(parent), ui(new Ui::Expand)
     ui->plainTextEdit->setWordWrapMode(QTextOption::NoWrap);
 }
 
-Expand::Expand(QPlainTextEdit *text, MessageLogger* log, QWidget* parent) : Expand(parent)
+Expand::Expand(QPlainTextEdit *text, MessageLogger *log, QWidget *parent) : Expand(parent)
 {
     this->source = text;
     this->log = log;
     ui->plainTextEdit->setPlainText(text->toPlainText());
 }
 
-Expand::Expand(QTextBrowser *browser, MessageLogger* log, QWidget* parent) : Expand(parent)
+Expand::Expand(QTextBrowser *browser, MessageLogger *log, QWidget *parent) : Expand(parent)
 {
     this->window()->setWindowTitle("Compiler Messages");
     ui->plainTextEdit->hide();

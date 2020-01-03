@@ -29,7 +29,7 @@ class Runner : public QObject, private Base::Files
 {
     Q_OBJECT
   public:
-    Runner(int index, MessageLogger* log);
+    Runner(int index, MessageLogger *log);
     ~Runner();
 
     void run(QCodeEditor *editor, QVector<bool> _isRun, QString lang = "Cpp");
@@ -69,7 +69,7 @@ class Runner : public QObject, private Base::Files
     QVector<bool> isRun = QVector<bool>(3, false);
     bool detached = false;
     QProcess *detachedHandle = nullptr;
-    MessageLogger* log;
+    MessageLogger *log;
     QVector<QProcess *> runner = QVector<QProcess *>(3, nullptr);
     QVector<QTime *> timers = QVector<QTime *>(3, nullptr);
 };

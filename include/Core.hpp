@@ -30,7 +30,7 @@ class Compiler : public QObject, private Core::Base::Files
 {
     Q_OBJECT
   public:
-    Compiler(QString compileCpp, QString compileJava ,int index, MessageLogger* log);
+    Compiler(QString compileCpp, QString compileJava, int index, MessageLogger *log);
 
     void compile(QCodeEditor *editor, QString lang = "Cpp");
 

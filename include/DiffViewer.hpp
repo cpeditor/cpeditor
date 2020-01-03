@@ -1,9 +1,9 @@
 #ifndef DIFFVIEWER_HPP
 #define DIFFVIEWER_HPP
 
+#include "MessageLogger.hpp"
 #include <QMainWindow>
 #include <QPlainTextEdit>
-#include "MessageLogger.hpp"
 
 namespace Ui
 {
@@ -16,7 +16,7 @@ class DiffViewer : public QMainWindow
 
   public:
     explicit DiffViewer(QWidget *parent = nullptr);
-    DiffViewer(QString *expected, QPlainTextEdit *ui, MessageLogger* log);
+    DiffViewer(QString *expected, QPlainTextEdit *ui, MessageLogger *log);
     void setTitle(QString title);
     ~DiffViewer();
 
@@ -31,7 +31,7 @@ class DiffViewer : public QMainWindow
     Ui::DiffViewer *ui;
     QString *exp;
     QPlainTextEdit *res;
-    MessageLogger * log;
+    MessageLogger *log;
 };
 
 #endif // DIFFVIEWER_HPP

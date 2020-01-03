@@ -16,16 +16,21 @@ CompanionServer::CompanionServer(int port)
     server->listen(QHostAddress::LocalHost, static_cast<unsigned short>(port));
 }
 
-void CompanionServer::setMessageLogger(MessageLogger *log){
+void CompanionServer::setMessageLogger(MessageLogger *log)
+{
     this->log = log;
-    if(log != nullptr){
+    if (log != nullptr)
+    {
 
-        if (server->serverPort() == 0){
-        log->error("Companion", "Failed to listen to specified "
-                                                   " port. Is another process listening there?");
+        if (server->serverPort() == 0)
+        {
+            log->error("Companion", "Failed to listen to specified "
+                                    " port. Is another process listening there?");
         }
-        else{
-            log->info("Companion", "Listening for request on " + server->serverAddress().toString().toStdString() + std::to_string(server->serverPort()));
+        else
+        {
+            log->info("Companion", "Listening for request on " + server->serverAddress().toString().toStdString() +
+                                       std::to_string(server->serverPort()));
         }
     }
 }
@@ -44,7 +49,8 @@ void CompanionServer::updatePort(int port)
 
 CompanionServer::~CompanionServer()
 {
-    if(log != nullptr) log->info("Companion", "Stopped Server");
+    if (log != nullptr)
+        log->info("Companion", "Stopped Server");
     delete server;
 }
 
@@ -101,8 +107,7 @@ void CompanionServer::onReadReady()
         }
         else
         {
-            log->error("Companion", "JSONParser reported errors. \n" + error.errorString().toStdString(),
-                                      true);
+            log->error("Companion", "JSONParser reported errors. \n" + error.errorString().toStdString(), true);
         }
     }
     else

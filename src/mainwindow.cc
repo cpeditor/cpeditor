@@ -19,6 +19,7 @@
 
 #include <Core.hpp>
 #include <DiffViewer.hpp>
+#include <EditorTheme.hpp>
 #include <MessageLogger.hpp>
 #include <QCXXHighlighter>
 #include <QFileDialog>
@@ -36,7 +37,6 @@
 #include <QThread>
 #include <QTimer>
 #include <expand.hpp>
-#include <EditorTheme.hpp>
 
 #include "../ui/ui_mainwindow.h"
 
@@ -151,12 +151,17 @@ void MainWindow::maybeLoadTemplate()
 {
     QString target;
 
-    if(language == "Java") target = data.templateJava;
-    else if(language == "Python") target = data.templatePython;
-    else if(language == "Cpp") target = data.templateCpp;
-    else return;
+    if (language == "Java")
+        target = data.templateJava;
+    else if (language == "Python")
+        target = data.templatePython;
+    else if (language == "Cpp")
+        target = data.templateCpp;
+    else
+        return;
 
-    if(target.isEmpty()) return ;
+    if (target.isEmpty())
+        return;
 
     if (openFile == nullptr && editor->toPlainText().trimmed().isEmpty())
     {
@@ -345,7 +350,8 @@ void MainWindow::setSettingsData(Settings::SettingsData data)
     editor->setAutoIndentation(data.isAutoIndent);
     editor->setAutoParentheses(data.isAutoParenthesis);
 
-    if(!data.font.isEmpty()){
+    if (!data.font.isEmpty())
+    {
         QFont font;
         font.fromString(data.font);
         editor->setFont(font);
@@ -356,7 +362,7 @@ void MainWindow::setSettingsData(Settings::SettingsData data)
     editor->setTabReplaceSize(tabStop);
     editor->setTabStopDistance(tabStop * metric.horizontalAdvance("9"));
 
-    if(data.isWrapText)
+    if (data.isWrapText)
         editor->setWordWrapMode(QTextOption::WordWrap);
     else
         editor->setWordWrapMode(QTextOption::NoWrap);
@@ -374,31 +380,29 @@ void MainWindow::setSettingsData(Settings::SettingsData data)
     runner->updateRuntimeArgumentsCommandJava(data.runtimeArgumentsJava);
     runner->updateRuntimeArgumentsCommandPython(data.runtimeArgumentsPython);
 
-    if(data.editorTheme == "Light")
+    if (data.editorTheme == "Light")
         editor->setSyntaxStyle(Themes::EditorTheme::getLightTheme());
-     else if(data.editorTheme == "Drakula")
+    else if (data.editorTheme == "Drakula")
         editor->setSyntaxStyle(Themes::EditorTheme::getDrakulaTheme());
-     else if(data.editorTheme == "Monkai")
+    else if (data.editorTheme == "Monkai")
         editor->setSyntaxStyle(Themes::EditorTheme::getMonkaiTheme());
-     else if(data.editorTheme == "Solarised")
+    else if (data.editorTheme == "Solarised")
         editor->setSyntaxStyle(Themes::EditorTheme::getSolarisedTheme());
-     else if(data.editorTheme == "Solarised Dark")
+    else if (data.editorTheme == "Solarised Dark")
         editor->setSyntaxStyle(Themes::EditorTheme::getSolarisedDarkTheme());
-     else{
+    else
+    {
         log.warn("Themes", "Editor theme is set to invalid value. Fallback to Light");
         editor->setSyntaxStyle(Themes::EditorTheme::getLightTheme());
     }
 
-
-
-    if(!isLanguageSet){
+    if (!isLanguageSet)
+    {
         setLanguage(data.defaultLanguage);
         isLanguageSet = true;
     }
     else
         performCoreDiagonistics();
-
-
 }
 void MainWindow::save(bool force)
 {
@@ -591,7 +595,7 @@ void MainWindow::on_in2_customContextMenuRequested(const QPoint &pos)
     QAction *newAction = new QAction("Expand");
 
     QObject::connect(newAction, &QAction::triggered, this, [this] {
-        auto ptr = new Expand(ui->in2,  &this->log, this);
+        auto ptr = new Expand(ui->in2, &this->log, this);
         ptr->setTitle("Input 2");
         ptr->setUpdate(true);
         ptr->setReadFile(true);
@@ -608,7 +612,7 @@ void MainWindow::on_in3_customContextMenuRequested(const QPoint &pos)
     QAction *newAction = new QAction("Expand");
 
     QObject::connect(newAction, &QAction::triggered, this, [this] {
-        auto ptr = new Expand(ui->in3,  &this->log, this);
+        auto ptr = new Expand(ui->in3, &this->log, this);
         ptr->setTitle("Input 3");
         ptr->setUpdate(true);
         ptr->setReadFile(true);
@@ -625,7 +629,7 @@ void MainWindow::on_compiler_edit_customContextMenuRequested(const QPoint &pos)
     QAction *newAction = new QAction("Expand");
 
     QObject::connect(newAction, &QAction::triggered, this, [this] {
-        auto ptr = new Expand(this->ui->compiler_edit,  &this->log, this);
+        auto ptr = new Expand(this->ui->compiler_edit, &this->log, this);
         ptr->show();
     });
 
@@ -639,7 +643,7 @@ void MainWindow::on_out1_customContextMenuRequested(const QPoint &pos)
     QAction *newAction = new QAction("Expand");
 
     QObject::connect(newAction, &QAction::triggered, this, [this] {
-        auto ptr = new Expand(ui->out1,  &this->log, this);
+        auto ptr = new Expand(ui->out1, &this->log, this);
         ptr->setTitle("Output 1");
         ptr->setUpdate(false);
         ptr->setReadFile(false);
@@ -655,7 +659,7 @@ void MainWindow::on_out2_customContextMenuRequested(const QPoint &pos)
     QAction *newAction = new QAction("Expand");
 
     QObject::connect(newAction, &QAction::triggered, this, [this] {
-        auto ptr = new Expand(ui->out2,  &this->log, this);
+        auto ptr = new Expand(ui->out2, &this->log, this);
         ptr->setTitle("Output 2");
         ptr->setUpdate(false);
         ptr->setReadFile(false);
@@ -672,7 +676,7 @@ void MainWindow::on_out3_customContextMenuRequested(const QPoint &pos)
     QAction *newAction = new QAction("Expand");
 
     QObject::connect(newAction, &QAction::triggered, this, [this] {
-        auto ptr = new Expand(ui->out3,  &this->log, this);
+        auto ptr = new Expand(ui->out3, &this->log, this);
         ptr->setTitle("Output 3");
         ptr->setUpdate(false);
         ptr->setReadFile(false);
@@ -801,10 +805,14 @@ bool MainWindow::isTextChanged()
 {
     QString templatePath;
 
-    if(language == "Cpp") templatePath = data.templateCpp;
-    else if(language == "Java") templatePath = data.templateJava;
-    else if(language == "Python") templatePath = data.templatePython;
-    else return false;
+    if (language == "Cpp")
+        templatePath = data.templateCpp;
+    else if (language == "Java")
+        templatePath = data.templateJava;
+    else if (language == "Python")
+        templatePath = data.templatePython;
+    else
+        return false;
 
     if (openFile == nullptr)
     {

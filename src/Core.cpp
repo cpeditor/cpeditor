@@ -21,7 +21,8 @@
 
 namespace Core
 {
-Compiler::Compiler(QString commandCpp, QString commandJava, int index, MessageLogger *log) : Core::Base::Files(index), log(log)
+Compiler::Compiler(QString commandCpp, QString commandJava, int index, MessageLogger *log)
+    : Core::Base::Files(index), log(log)
 {
     runCommandJava = commandJava;
     runCommandCpp = commandCpp;
@@ -122,7 +123,7 @@ void Compiler::compile(QCodeEditor *editor, QString lang)
 
     compilationProcess = new QProcess();
 
-    if(lang == "Cpp")
+    if (lang == "Cpp")
     {
         auto lists = runCommandCpp.trimmed().split(" ");
         compilationProcess->setProgram(lists[0]);
@@ -132,7 +133,7 @@ void Compiler::compile(QCodeEditor *editor, QString lang)
         lists.append(getBinaryOutput(extension));
         compilationProcess->setArguments(lists);
     }
-    else if(lang == "Java")
+    else if (lang == "Java")
     {
         auto lists = runCommandJava.trimmed().split(" ");
         compilationProcess->setProgram(lists[0]);
@@ -143,7 +144,7 @@ void Compiler::compile(QCodeEditor *editor, QString lang)
     else
     {
         emit compilationFinished(true);
-        return ;
+        return;
     }
 
     QObject::connect(compilationProcess, SIGNAL(finished(int, QProcess::ExitStatus)), this,
@@ -161,7 +162,8 @@ void Compiler::updateCommandCpp(QString newCommand)
 {
     runCommandCpp = newCommand;
 }
-void Compiler::updateCommandJava(QString newCommand){
+void Compiler::updateCommandJava(QString newCommand)
+{
     runCommandJava = newCommand;
 }
 
@@ -229,8 +231,8 @@ void Compiler::finished(int exitCode, QProcess::ExitStatus exitStatus)
 
     if (exitCode != 0 && compilationProcess != nullptr)
     {
-        log->error(
-            "Compiler Message", QString::fromLocal8Bit(compilationProcess->readAllStandardError()).toStdString(), true);
+        log->error("Compiler Message", QString::fromLocal8Bit(compilationProcess->readAllStandardError()).toStdString(),
+                   true);
 
         emit compilationFinished(false);
     }

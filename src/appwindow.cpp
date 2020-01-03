@@ -1,5 +1,6 @@
 #include "appwindow.hpp"
 #include "../ui/ui_appwindow.h"
+#include <EditorTheme.hpp>
 #include <QDesktopServices>
 #include <QFileDialog>
 #include <QMessageBox>
@@ -7,7 +8,6 @@
 #include <QMimeData>
 #include <QTimer>
 #include <QUrl>
-#include <EditorTheme.hpp>
 
 AppWindow::AppWindow(QVector<MainWindow *> tabs, QWidget *parent) : AppWindow(parent)
 {
@@ -15,12 +15,15 @@ AppWindow::AppWindow(QVector<MainWindow *> tabs, QWidget *parent) : AppWindow(pa
     if (tabs.size() > 0)
     {
         ui->tabWidget->clear();
-        int i=0;
-        for (auto e : tabs){
+        int i = 0;
+        for (auto e : tabs)
+        {
             ui->tabWidget->addTab(e, e->fileName());
             QString lang = "Cpp";
-            if(e->fileName().endsWith(".java")) lang = "Java";
-            else if(e->fileName().endsWith(".py") || e->fileName().endsWith("py3")) lang = "Python";
+            if (e->fileName().endsWith(".java"))
+                lang = "Java";
+            else if (e->fileName().endsWith(".py") || e->fileName().endsWith("py3"))
+                lang = "Python";
             e->setLanguage(lang);
             ui->tabWidget->setCurrentIndex(i);
             i++;
@@ -40,7 +43,8 @@ AppWindow::AppWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::AppWindo
     auto windowTemp = new MainWindow(0, "");
     ui->tabWidget->addTab(windowTemp, windowTemp->fileName());
 
-    if(settingManager->isCheckUpdateOnStartup()) updater->checkUpdate();
+    if (settingManager->isCheckUpdateOnStartup())
+        updater->checkUpdate();
 
     applySettings();
     onSettingsApplied();
@@ -94,8 +98,10 @@ void AppWindow::dropEvent(QDropEvent *event)
         auto fileName = e.toLocalFile();
         auto fsp = new MainWindow(ui->tabWidget->count(), fileName);
         QString lang = "Cpp";
-        if(fileName.endsWith(".java")) lang = "Java";
-        else if(fileName.endsWith(".py") || fileName.endsWith(".py3")) lang = "Python";
+        if (fileName.endsWith(".java"))
+            lang = "Java";
+        else if (fileName.endsWith(".py") || fileName.endsWith(".py3"))
+            lang = "Python";
         ui->tabWidget->addTab(fsp, fsp->fileName());
         fsp->setLanguage(lang);
         ui->tabWidget->setCurrentIndex(t);
@@ -112,8 +118,9 @@ void AppWindow::setConnections()
 
     connect(preferenceWindow, SIGNAL(settingsApplied()), this, SLOT(onSettingsApplied()));
 
-    if(settingManager->isCompetitiveCompanionActive())
-    companionEditorConnections = connect(server, &Network::CompanionServer::onRequestArrived, this, &AppWindow::onIncomingCompanionRequest);
+    if (settingManager->isCompetitiveCompanionActive())
+        companionEditorConnections =
+            connect(server, &Network::CompanionServer::onRequestArrived, this, &AppWindow::onIncomingCompanionRequest);
 }
 
 void AppWindow::allocate()
@@ -134,63 +141,60 @@ void AppWindow::applySettings()
     if (settingManager->isAutoSave())
         timer->start();
 
-    if (!settingManager->getGeometry().isEmpty() &&
-        !settingManager->getGeometry().isNull() &&
-        settingManager->getGeometry().isValid() &&
-        !settingManager->isMaximizedWindow())
-     {
-         setGeometry(settingManager->getGeometry());
-     }
+    if (!settingManager->getGeometry().isEmpty() && !settingManager->getGeometry().isNull() &&
+        settingManager->getGeometry().isValid() && !settingManager->isMaximizedWindow())
+    {
+        setGeometry(settingManager->getGeometry());
+    }
 
-     if (settingManager->isMaximizedWindow())
-     {
-         this->showMaximized();
-     }
+    if (settingManager->isMaximizedWindow())
+    {
+        this->showMaximized();
+    }
 
-     maybeSetHotkeys();
-
+    maybeSetHotkeys();
 }
 
 void AppWindow::maybeSetHotkeys()
 {
-    for(auto e : hotkeyObjects) delete e;
+    for (auto e : hotkeyObjects)
+        delete e;
     hotkeyObjects.clear();
 
-    if(!settingManager->isHotkeyInUse()) return ;
+    if (!settingManager->isHotkeyInUse())
+        return;
 
-    if(!settingManager->getHotkeyRun().isEmpty())
+    if (!settingManager->getHotkeyRun().isEmpty())
     {
         hotkeyObjects.push_back(new QShortcut(settingManager->getHotkeyRun(), this, SLOT(on_actionRun_triggered())));
     }
-    if(!settingManager->getHotkeyCompile().isEmpty())
+    if (!settingManager->getHotkeyCompile().isEmpty())
     {
-        hotkeyObjects.push_back(new QShortcut(settingManager->getHotkeyCompile(), this, SLOT(on_actionCompile_triggered())));
-
+        hotkeyObjects.push_back(
+            new QShortcut(settingManager->getHotkeyCompile(), this, SLOT(on_actionCompile_triggered())));
     }
-    if(!settingManager->getHotkeyCompileRun().isEmpty())
+    if (!settingManager->getHotkeyCompileRun().isEmpty())
     {
-        hotkeyObjects.push_back(new QShortcut(settingManager->getHotkeyRun(), this, SLOT(on_actionCompile_Run_triggered())));
-
+        hotkeyObjects.push_back(
+            new QShortcut(settingManager->getHotkeyRun(), this, SLOT(on_actionCompile_Run_triggered())));
     }
-    if(!settingManager->getHotkeyFormat().isEmpty())
+    if (!settingManager->getHotkeyFormat().isEmpty())
     {
-        hotkeyObjects.push_back(new QShortcut(settingManager->getHotkeyRun(), this, SLOT(on_actionFormat_code_triggered())));
-
+        hotkeyObjects.push_back(
+            new QShortcut(settingManager->getHotkeyRun(), this, SLOT(on_actionFormat_code_triggered())));
     }
-    if(!settingManager->getHotkeyKill().isEmpty())
+    if (!settingManager->getHotkeyKill().isEmpty())
     {
-        hotkeyObjects.push_back(new QShortcut(settingManager->getHotkeyRun(), this, SLOT(on_actionKill_Processes_triggered())));
-
+        hotkeyObjects.push_back(
+            new QShortcut(settingManager->getHotkeyRun(), this, SLOT(on_actionKill_Processes_triggered())));
     }
-
 }
 
 void AppWindow::saveSettings()
 {
     if (!this->isMaximized())
-            settingManager->setGeometry(this->geometry());
+        settingManager->setGeometry(this->geometry());
     settingManager->setMaximizedWindow(this->isMaximized());
-
 }
 
 /***************** ABOUT SECTION ***************************/
@@ -269,8 +273,10 @@ void AppWindow::on_actionOpen_triggered()
         return;
 
     QString lang = "Cpp";
-    if(fileName.endsWith(".java")) lang = "Java";
-    else if(fileName.endsWith(".py") || fileName.endsWith(".py3")) lang = "Python";
+    if (fileName.endsWith(".java"))
+        lang = "Java";
+    else if (fileName.endsWith(".py") || fileName.endsWith(".py3"))
+        lang = "Python";
 
     for (int t = 0; t < ui->tabWidget->count(); t++)
     {
@@ -328,7 +334,7 @@ void AppWindow::on_actionSettings_triggered()
 
 void AppWindow::onTabCloseRequested(int index)
 {
-    //splitterState.clear();
+    // splitterState.clear();
     auto tmp = dynamic_cast<MainWindow *>(ui->tabWidget->widget(index));
     if (tmp->closeChangedConfirm())
         ui->tabWidget->removeTab(index);
@@ -358,7 +364,8 @@ void AppWindow::onTabChanged(int index)
         tmp->getSplitter()->restoreState(splitterState);
 
     activeTextChangeConnections = connect(tmp, SIGNAL(editorTextChanged(bool)), this, SLOT(onEditorTextChanged(bool)));
-    activeSplitterMoveConnections = connect(tmp->getSplitter(), SIGNAL(splitterMoved(int,int)), this, SLOT(onSplitterMoved(int,int)));
+    activeSplitterMoveConnections =
+        connect(tmp->getSplitter(), SIGNAL(splitterMoved(int, int)), this, SLOT(onSplitterMoved(int, int)));
 }
 
 void AppWindow::onEditorTextChanged(bool isUnsaved)
@@ -394,13 +401,12 @@ void AppWindow::onSaveTimerElapsed()
 
 void AppWindow::onSettingsApplied()
 {
-    if(settingManager->isSystemThemeDark())
+    if (settingManager->isSystemThemeDark())
     {
-        QMessageBox::warning(this,
-                           "Don't use dark theme",
-                           "System-wide dark theme is not officially supported by Qt or the developer"
-                           ". It has some serious UI/UX issues and should not be used. Instead you can"
-                           " turn system theme dark on your PC settings.");
+        QMessageBox::warning(this, "Don't use dark theme",
+                             "System-wide dark theme is not officially supported by Qt or the developer"
+                             ". It has some serious UI/UX issues and should not be used. Instead you can"
+                             " turn system theme dark on your PC settings.");
 
         settingManager->setSystemThemeDark(false);
     }
@@ -412,9 +418,9 @@ void AppWindow::onSettingsApplied()
 
     server->updatePort(settingManager->getConnectionPort());
 
-
-    if(settingManager->isCompetitiveCompanionActive())
-        companionEditorConnections = connect(server, &Network::CompanionServer::onRequestArrived, this, &AppWindow::onIncomingCompanionRequest);
+    if (settingManager->isCompetitiveCompanionActive())
+        companionEditorConnections =
+            connect(server, &Network::CompanionServer::onRequestArrived, this, &AppWindow::onIncomingCompanionRequest);
 
     onTabChanged(ui->tabWidget->currentIndex());
 }
@@ -426,12 +432,13 @@ void AppWindow::onIncomingCompanionRequest(Network::CompanionData data)
     newTab->maybeLoadTemplate();
     newTab->applyCompanion(data);
     ui->tabWidget->addTab(newTab, newTab->fileName());
-    ui->tabWidget->setCurrentIndex(ui->tabWidget->count()-1);
+    ui->tabWidget->setCurrentIndex(ui->tabWidget->count() - 1);
 }
 
-void AppWindow::onSplitterMoved(int _,int __){
+void AppWindow::onSplitterMoved(int _, int __)
+{
     int current = ui->tabWidget->currentIndex();
-    auto splitter = dynamic_cast<MainWindow*>(ui->tabWidget->widget(current))->getSplitter();
+    auto splitter = dynamic_cast<MainWindow *>(ui->tabWidget->widget(current))->getSplitter();
     splitterState = splitter->saveState();
 }
 
@@ -444,41 +451,41 @@ void AppWindow::on_actionCheck_for_updates_triggered()
 void AppWindow::on_actionCompile_triggered()
 {
     int current = ui->tabWidget->currentIndex();
-    auto tmp = dynamic_cast<MainWindow*>(ui->tabWidget->widget(current));
+    auto tmp = dynamic_cast<MainWindow *>(ui->tabWidget->widget(current));
     tmp->compile();
 }
 
 void AppWindow::on_actionCompile_Run_triggered()
 {
     int current = ui->tabWidget->currentIndex();
-    auto tmp = dynamic_cast<MainWindow*>(ui->tabWidget->widget(current));
+    auto tmp = dynamic_cast<MainWindow *>(ui->tabWidget->widget(current));
     tmp->runAndCompile();
 }
 
 void AppWindow::on_actionRun_triggered()
 {
     int current = ui->tabWidget->currentIndex();
-    auto tmp = dynamic_cast<MainWindow*>(ui->tabWidget->widget(current));
+    auto tmp = dynamic_cast<MainWindow *>(ui->tabWidget->widget(current));
     tmp->run();
 }
 
 void AppWindow::on_actionFormat_code_triggered()
 {
     int current = ui->tabWidget->currentIndex();
-    auto tmp = dynamic_cast<MainWindow*>(ui->tabWidget->widget(current));
+    auto tmp = dynamic_cast<MainWindow *>(ui->tabWidget->widget(current));
     tmp->formatSource();
 }
 
 void AppWindow::on_actionRun_Detached_triggered()
 {
     int current = ui->tabWidget->currentIndex();
-    auto tmp = dynamic_cast<MainWindow*>(ui->tabWidget->widget(current));
+    auto tmp = dynamic_cast<MainWindow *>(ui->tabWidget->widget(current));
     tmp->detachedExecution();
 }
 
 void AppWindow::on_actionKill_Processes_triggered()
 {
     int current = ui->tabWidget->currentIndex();
-    auto tmp = dynamic_cast<MainWindow*>(ui->tabWidget->widget(current));
+    auto tmp = dynamic_cast<MainWindow *>(ui->tabWidget->widget(current));
     tmp->killProcesses();
 }

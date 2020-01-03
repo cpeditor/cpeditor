@@ -81,8 +81,8 @@ void Runner::killAll()
         if (runner[i] != nullptr)
         {
             if (runner[i]->state() == QProcess::Running)
-               log->info("Runner[" + std::to_string(i + 1) + "]",
-                                         "Program running on case #" + std::to_string(i + 1) + " is killed");
+                log->info("Runner[" + std::to_string(i + 1) + "]",
+                          "Program running on case #" + std::to_string(i + 1) + " is killed");
             runner[i]->kill();
             delete runner[i];
             runner[i] = nullptr;
@@ -148,7 +148,7 @@ void Runner::run(QVector<bool> _isRun, QString lang)
     else if (language == "Python" && QFile::exists(getProgramFile(".py")))
     {
         log->warn("Runner", "Running last buffered script. To run current "
-                                           "script use Compile and Run");
+                            "script use Compile and Run");
         compilationFinished(true);
     }
     else if (language == "Java" && QFile::exists(getBinaryOutput(".class")))
@@ -206,19 +206,21 @@ void Runner::compilationFinished(bool success)
 
             if (language == "Cpp")
             {
-                command = "-e," + getBinaryOutput() + runtimeArgsCpp.trimmed().replace(" ",",") +
+                command = "-e," + getBinaryOutput() + runtimeArgsCpp.trimmed().replace(" ", ",") +
                           "; echo '\nExecution Done\nPress any key to exit'; read";
             }
 
             else if (language == "Python")
             {
-                command = "-e," + runCommandPython.trimmed().replace(" ", ",") + "," + getProgramFile(".py") + runtimeArgsPython.trimmed().replace(" ", ",") +
+                command = "-e," + runCommandPython.trimmed().replace(" ", ",") + "," + getProgramFile(".py") +
+                          runtimeArgsPython.trimmed().replace(" ", ",") +
                           "; echo '\nExecution Done\nPress any key to exit'; read";
             }
 
             else if (language == "Java")
             {
-                command = "-e," + runCommandJava.trimmed().replace(" ", ",") + ",-classpath," + getBaseDirectory() + ",a" + runtimeArgsJava.trimmed().replace(" ", ",") +
+                command = "-e," + runCommandJava.trimmed().replace(" ", ",") + ",-classpath," + getBaseDirectory() +
+                          ",a" + runtimeArgsJava.trimmed().replace(" ", ",") +
                           "; echo '\nExecution Done\nPress any key to exit'; read";
             }
 
@@ -235,9 +237,11 @@ void Runner::compilationFinished(bool success)
             if (language == "Cpp")
                 command = "/C,start," + getBinaryOutput() + runtimeArgsCpp.trimmed().replace(" ", ",");
             else if (language == "Python")
-                command = "/C,start," + runCommandPython.trimmed().replace(" ", ",") + "," + getProgramFile(".py") + runtimeArgsPython.trimmed().replace(" ", ",");
+                command = "/C,start," + runCommandPython.trimmed().replace(" ", ",") + "," + getProgramFile(".py") +
+                          runtimeArgsPython.trimmed().replace(" ", ",");
             else if (language == "Java")
-                command = "/C,start," + runCommandJava.trimmed().replace(" ", ",") + ",-classpath," + getBaseDirectory() + ",a" + runtimeArgsJava.trimmed().replace(" ", ",");
+                command = "/C,start," + runCommandJava.trimmed().replace(" ", ",") + ",-classpath," +
+                          getBaseDirectory() + ",a" + runtimeArgsJava.trimmed().replace(" ", ",");
 
             else
             {
@@ -271,15 +275,14 @@ void Runner::compilationFinished(bool success)
                     runner[i]->setProgram(getBinaryOutput());
                     args.append(runtimeArgsCpp.trimmed().split(" "));
                 }
-                else if(language == "Python")
+                else if (language == "Python")
                 {
                     auto list = runCommandPython.trimmed();
                     runner[i]->setProgram(list);
-                    args.append( getProgramFile(".py") );
+                    args.append(getProgramFile(".py"));
                     args.append(runtimeArgsPython.split(" "));
-
                 }
-                else if(language == "Java")
+                else if (language == "Java")
                 {
                     auto list = runCommandJava.trimmed();
                     runner[i]->setProgram(list);
@@ -336,13 +339,11 @@ void Runner::runFinished(int id, int exitCode, QProcess::ExitStatus exitStatus)
     else if (exitCode == 15)
     {
         // Sigterm is called by timeout timer;
-        log->error("Runner[" + std::to_string(id + 1) + "]",
-                                  "Timeout 5 sec, your program didn't returned");
+        log->error("Runner[" + std::to_string(id + 1) + "]", "Timeout 5 sec, your program didn't returned");
     }
     else
     {
-        log->error("Runner[" + std::to_string(id + 1) + "]",
-                                  "Non-zero exit code " + std::to_string(exitCode));
+        log->error("Runner[" + std::to_string(id + 1) + "]", "Non-zero exit code " + std::to_string(exitCode));
     }
 }
 

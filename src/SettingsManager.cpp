@@ -71,9 +71,9 @@ bool SettingManager::isMaximizedWindow()
     return mSettings->value("win_max", "false").toBool();
 }
 
-bool SettingManager::isCheckUpdateOnStartup(){
+bool SettingManager::isCheckUpdateOnStartup()
+{
     return mSettings->value("update_start_check", "true").toBool();
-
 }
 
 bool SettingManager::isCompetitiveCompanionActive()
@@ -238,7 +238,6 @@ void SettingManager::checkUpdateOnStartup(bool value)
         mSettings->setValue("update_start_check", QString::fromStdString("false"));
 }
 
-
 void SettingManager::setHotKeyInUse(bool value)
 {
     if (value)
@@ -315,7 +314,7 @@ void SettingManager::setDefaultLanguage(QString lang)
 }
 void SettingManager::setFont(QString font)
 {
-    mSettings->setValue("font",font);
+    mSettings->setValue("font", font);
 }
 
 void SettingManager::setGeometry(QRect rect)
@@ -325,23 +324,23 @@ void SettingManager::setGeometry(QRect rect)
 
 QKeySequence SettingManager::getHotkeyCompile()
 {
-    return QKeySequence::fromString( mSettings->value("hotkey_compile", "").toString() );
+    return QKeySequence::fromString(mSettings->value("hotkey_compile", "").toString());
 }
 QKeySequence SettingManager::getHotkeyRun()
 {
-    return QKeySequence::fromString( mSettings->value("hotkey_run", "").toString() );
+    return QKeySequence::fromString(mSettings->value("hotkey_run", "").toString());
 }
 QKeySequence SettingManager::getHotkeyCompileRun()
 {
-    return QKeySequence::fromString ( mSettings->value("hotkey_compile_run", "").toString() );
+    return QKeySequence::fromString(mSettings->value("hotkey_compile_run", "").toString());
 }
 QKeySequence SettingManager::getHotkeyKill()
 {
-    return QKeySequence::fromString ( mSettings->value("hotkey_kill", "").toString() );
+    return QKeySequence::fromString(mSettings->value("hotkey_kill", "").toString());
 }
 QKeySequence SettingManager::getHotkeyFormat()
 {
-    return QKeySequence::fromString( mSettings->value("hotkey_format", "").toString() );
+    return QKeySequence::fromString(mSettings->value("hotkey_format", "").toString());
 }
 void SettingManager::setHotkeyCompile(QKeySequence sequence)
 {
@@ -372,44 +371,43 @@ SettingManager::~SettingManager()
 
 SettingsData SettingManager::toData()
 {
-     SettingsData data;
-     data.companionPort = getConnectionPort();
-     data.tabStop = getTabStop();
-     data.geometry = getGeometry();
-     data.font = getFont();
-     data.defaultLanguage = getDefaultLang();
-     data.templateCpp = getTemplatePathCpp();
-     data.templateJava = getTemplatePathJava();
-     data.templatePython = getTemplatePathPython();
-     data.runtimeArgumentsCpp = getRuntimeArgumentsCpp();
-     data.runtimeArgumentsJava = getRuntimeArgumentsJava();
-     data.runtimeArgumentsPython = getRuntimeArgumentsPython();
-     data.formatCommand = getFormatCommand();
-     data.compileCommandCpp = getCompileCommandCpp();
-     data.compileCommandJava = getCompileCommandJava();
-     data.runCommandJava = getRunCommandJava();
-     data.runCommandPython = getRunCommandPython();
-     data.editorTheme = getEditorTheme();
-     data.isSystemThemeDark = isSystemThemeDark();
-     data.isHotKeyInUse = isHotkeyInUse();
-     data.isAutoParenthesis = isAutoParenthesis();
-     data.isAutoIndent = isAutoIndent();
-     data.isAutoSave = isAutoSave();
-     data.isWrapText = isWrapText();
-     data.isBeta = isBeta();
-     data.isTabsBeingUsed = isTabs();
-     data.shouldSaveTests = isSaveTests();
-     data.isCompanionActive = isCompetitiveCompanionActive();
-     data.isWindowMaximized = isMaximizedWindow();
-     data.isCheckUpdateOnStartup = isCheckUpdateOnStartup();
-     data.hotkeyCompile = getHotkeyCompile();
-     data.hotkeyRun = getHotkeyRun();
-     data.hotkeyCompileRun = getHotkeyCompileRun();
-     data.hotkeyKill = getHotkeyKill();
-     data.hotkeyFormat = getHotkeyFormat();
+    SettingsData data;
+    data.companionPort = getConnectionPort();
+    data.tabStop = getTabStop();
+    data.geometry = getGeometry();
+    data.font = getFont();
+    data.defaultLanguage = getDefaultLang();
+    data.templateCpp = getTemplatePathCpp();
+    data.templateJava = getTemplatePathJava();
+    data.templatePython = getTemplatePathPython();
+    data.runtimeArgumentsCpp = getRuntimeArgumentsCpp();
+    data.runtimeArgumentsJava = getRuntimeArgumentsJava();
+    data.runtimeArgumentsPython = getRuntimeArgumentsPython();
+    data.formatCommand = getFormatCommand();
+    data.compileCommandCpp = getCompileCommandCpp();
+    data.compileCommandJava = getCompileCommandJava();
+    data.runCommandJava = getRunCommandJava();
+    data.runCommandPython = getRunCommandPython();
+    data.editorTheme = getEditorTheme();
+    data.isSystemThemeDark = isSystemThemeDark();
+    data.isHotKeyInUse = isHotkeyInUse();
+    data.isAutoParenthesis = isAutoParenthesis();
+    data.isAutoIndent = isAutoIndent();
+    data.isAutoSave = isAutoSave();
+    data.isWrapText = isWrapText();
+    data.isBeta = isBeta();
+    data.isTabsBeingUsed = isTabs();
+    data.shouldSaveTests = isSaveTests();
+    data.isCompanionActive = isCompetitiveCompanionActive();
+    data.isWindowMaximized = isMaximizedWindow();
+    data.isCheckUpdateOnStartup = isCheckUpdateOnStartup();
+    data.hotkeyCompile = getHotkeyCompile();
+    data.hotkeyRun = getHotkeyRun();
+    data.hotkeyCompileRun = getHotkeyCompileRun();
+    data.hotkeyKill = getHotkeyKill();
+    data.hotkeyFormat = getHotkeyFormat();
 
-     return data;
-
+    return data;
 }
 
 } // namespace Settings

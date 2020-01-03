@@ -10,7 +10,7 @@ DiffViewer::DiffViewer(QWidget *parent) : QMainWindow(parent), ui(new Ui::DiffVi
     ui->setupUi(this);
 }
 
-DiffViewer::DiffViewer(QString *expected, QPlainTextEdit *ui, MessageLogger* log) : DiffViewer()
+DiffViewer::DiffViewer(QString *expected, QPlainTextEdit *ui, MessageLogger *log) : DiffViewer()
 {
     this->ui->expected->setPlainText(*expected);
     this->ui->resulted->setPlainText(ui->toPlainText());

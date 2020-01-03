@@ -18,18 +18,17 @@
 #ifndef FORMATTER_HPP
 #define FORMATTER_HPP
 #include <BaseFiles.hpp>
+#include <MessageLogger.hpp>
 #include <QCodeEditor>
 #include <QFile>
 #include <QString>
-#include <MessageLogger.hpp>
-
 
 namespace Core
 {
 class Formatter : private Base::Files
 {
   public:
-    Formatter(QString runCommand, int index, MessageLogger* log);
+    Formatter(QString runCommand, int index, MessageLogger *log);
     ~Formatter();
     void format(QCodeEditor *editor);
     static bool check(QString command);
@@ -38,7 +37,7 @@ class Formatter : private Base::Files
   private:
     QFile *file;
     QString command;
-    MessageLogger* log;
+    MessageLogger *log;
 };
 
 } // namespace Core
