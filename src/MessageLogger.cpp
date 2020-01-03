@@ -24,7 +24,8 @@ void MessageLogger::setContainer(QTextBrowser *value)
     box->setOpenExternalLinks(true);
 }
 
-void MessageLogger::info(std::string head, std::string body){
+void MessageLogger::info(std::string head, std::string body)
+{
     std::string ans = "<b>[";
     int long long timestamp = QDateTime::currentSecsSinceEpoch();
     auto val = QDateTime::fromSecsSinceEpoch(timestamp).time();

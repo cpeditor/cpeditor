@@ -1,10 +1,10 @@
 #ifndef EXPAND_HPP
 #define EXPAND_HPP
 
+#include "MessageLogger.hpp"
 #include <QMainWindow>
 #include <QPlainTextEdit>
 #include <QTextBrowser>
-#include "MessageLogger.hpp"
 
 namespace Ui
 {
@@ -16,8 +16,8 @@ class Expand : public QMainWindow
     Q_OBJECT
 
   public:
-    Expand(QPlainTextEdit *editor, MessageLogger* log, QWidget* parent = nullptr);
-    Expand(QTextBrowser *browser, MessageLogger* log, QWidget* parent = nullptr);
+    Expand(QPlainTextEdit *editor, MessageLogger *log, QWidget *parent = nullptr);
+    Expand(QTextBrowser *browser, MessageLogger *log, QWidget *parent = nullptr);
     explicit Expand(QWidget *parent = nullptr);
 
     void setTitle(QString);
@@ -38,7 +38,7 @@ class Expand : public QMainWindow
     Ui::Expand *ui;
     QPlainTextEdit *source = nullptr;
     QTextBrowser *current = nullptr;
-    MessageLogger* log;
+    MessageLogger *log;
 };
 
 #endif // EXPAND_HPP

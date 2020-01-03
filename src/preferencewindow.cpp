@@ -6,9 +6,9 @@
 #include <QFileDialog>
 #include <QFontDialog>
 
-PreferenceWindow::PreferenceWindow(Settings::SettingManager* manager ,QWidget *parent) :
-    QMainWindow(parent),
-    ui(new Ui::PreferenceWindow){
+PreferenceWindow::PreferenceWindow(Settings::SettingManager *manager, QWidget *parent)
+    : QMainWindow(parent), ui(new Ui::PreferenceWindow)
+{
     ui->setupUi(this);
     this->manager = manager;
     setWindowTitle("Preferences");
@@ -17,7 +17,8 @@ PreferenceWindow::PreferenceWindow(Settings::SettingManager* manager ,QWidget *p
     setConstraints();
 }
 
-void PreferenceWindow::setConstraints(){
+void PreferenceWindow::setConstraints()
+{
     ui->tab_length->setMinimum(1);
     ui->tab_length->setMaximum(20);
 
@@ -33,7 +34,8 @@ void PreferenceWindow::applySettingsToui()
     ui->editor_theme->setCurrentText(manager->getEditorTheme());
     ui->tab_length->setValue(manager->getTabStop());
 
-    if(!manager->getFont().isEmpty()) currentFont.fromString(manager->getFont());
+    if (!manager->getFont().isEmpty())
+        currentFont.fromString(manager->getFont());
     ui->font_button->setText(currentFont.family() + " " + QString::number(currentFont.pointSize()));
 
     ui->savetest->setChecked(manager->isSaveTests());
@@ -65,9 +67,9 @@ void PreferenceWindow::applySettingsToui()
     ui->update_startup->setChecked(manager->isCheckUpdateOnStartup());
     ui->beta_update->setChecked(manager->isBeta());
 
-    ui->cpp_template->setText(cppTemplatePath.isEmpty()? "<Not selected>" : "..." + cppTemplatePath.right(30));
-    ui->py_template->setText(pythonTemplatePath.isEmpty()? "<Not selected>" : "..." + pythonTemplatePath.right(30));
-    ui->java_template->setText(javaTemplatePath.isEmpty()? "<Not selected>" : "..." + javaTemplatePath.right(30));
+    ui->cpp_template->setText(cppTemplatePath.isEmpty() ? "<Not selected>" : "..." + cppTemplatePath.right(30));
+    ui->py_template->setText(pythonTemplatePath.isEmpty() ? "<Not selected>" : "..." + pythonTemplatePath.right(30));
+    ui->java_template->setText(javaTemplatePath.isEmpty() ? "<Not selected>" : "..." + javaTemplatePath.right(30));
 
     ui->hotkeys->setChecked(manager->isHotkeyInUse());
     on_hotkeys_clicked(manager->isHotkeyInUse());
@@ -77,9 +79,7 @@ void PreferenceWindow::applySettingsToui()
     ui->format_hotkey->setKeySequence(manager->getHotkeyFormat());
     ui->compileRun_hotkey->setKeySequence(manager->getHotkeyCompileRun());
     ui->kill_hotkey->setKeySequence(manager->getHotkeyKill());
-
 }
-
 
 void PreferenceWindow::extractSettingsFromUi()
 {
@@ -126,7 +126,8 @@ void PreferenceWindow::extractSettingsFromUi()
     manager->setHotkeyCompileRun(ui->compileRun_hotkey->keySequence());
 }
 
-void PreferenceWindow::resetSettings(){
+void PreferenceWindow::resetSettings()
+{
     QFont defaultFont;
     currentFont = defaultFont;
 
@@ -174,7 +175,8 @@ void PreferenceWindow::resetSettings(){
     manager->setHotkeyFormat(QKeySequence());
 }
 
-void PreferenceWindow::updateShow(){
+void PreferenceWindow::updateShow()
+{
     applySettingsToui();
     show();
 }
@@ -183,7 +185,6 @@ PreferenceWindow::~PreferenceWindow()
 {
     delete ui;
 }
-
 
 void PreferenceWindow::on_exit_clicked()
 {
@@ -211,7 +212,7 @@ void PreferenceWindow::on_font_button_clicked()
     bool ok = false;
     QFont fp = QFontDialog::getFont(&ok, currentFont);
 
-    if(ok)
+    if (ok)
     {
         currentFont = fp;
         ui->font_button->setText(currentFont.family() + " " + QString::number(currentFont.pointSize()));
@@ -220,27 +221,28 @@ void PreferenceWindow::on_font_button_clicked()
 
 void PreferenceWindow::on_cpp_template_clicked()
 {
-   auto filename = QFileDialog::getOpenFileName(this, tr("Choose C++ template File"), "",
-                                                    "C++ Files (*.cpp *.hpp *.h *.cc *.cxx *.c)");
-   if (filename.isEmpty()) return;
-   cppTemplatePath = filename;
-   ui->cpp_template->setText("..."+ cppTemplatePath.right(30));
+    auto filename = QFileDialog::getOpenFileName(this, tr("Choose C++ template File"), "",
+                                                 "C++ Files (*.cpp *.hpp *.h *.cc *.cxx *.c)");
+    if (filename.isEmpty())
+        return;
+    cppTemplatePath = filename;
+    ui->cpp_template->setText("..." + cppTemplatePath.right(30));
 }
 
 void PreferenceWindow::on_py_template_clicked()
 {
-    auto filename = QFileDialog::getOpenFileName(this, tr("Choose Python template File"), "",
-                                                     "Python Files (*.py)");
-    if(filename.isEmpty()) return ;
+    auto filename = QFileDialog::getOpenFileName(this, tr("Choose Python template File"), "", "Python Files (*.py)");
+    if (filename.isEmpty())
+        return;
     pythonTemplatePath = filename;
-    ui->py_template->setText("..."+ pythonTemplatePath.right(30));
+    ui->py_template->setText("..." + pythonTemplatePath.right(30));
 }
 
 void PreferenceWindow::on_java_template_clicked()
 {
-    auto filename = QFileDialog::getOpenFileName(this, tr("Choose Java template File"), "",
-                                                     "Java Files (*.java)");
-    if(filename.isEmpty()) return ;
+    auto filename = QFileDialog::getOpenFileName(this, tr("Choose Java template File"), "", "Java Files (*.java)");
+    if (filename.isEmpty())
+        return;
     javaTemplatePath = filename;
-    ui->java_template->setText("..."+ javaTemplatePath.right(30));
+    ui->java_template->setText("..." + javaTemplatePath.right(30));
 }

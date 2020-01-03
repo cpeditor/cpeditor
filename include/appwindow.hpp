@@ -3,12 +3,13 @@
 
 #include <QMainWindow>
 
-#include "mainwindow.hpp"
 #include "SettingsManager.hpp"
 #include "UpdateNotifier.hpp"
+#include "mainwindow.hpp"
 #include "preferencewindow.hpp"
 
-namespace Ui {
+namespace Ui
+{
 class AppWindow;
 }
 
@@ -16,16 +17,16 @@ class AppWindow : public QMainWindow
 {
     Q_OBJECT
 
-public:
+  public:
     explicit AppWindow(QWidget *parent = nullptr);
-    explicit AppWindow(QVector<MainWindow*> tabs, QWidget* parent = nullptr);
+    explicit AppWindow(QVector<MainWindow *> tabs, QWidget *parent = nullptr);
     ~AppWindow() override;
 
     void closeEvent(QCloseEvent *event) override;
     void dropEvent(QDropEvent *event) override;
     void dragEnterEvent(QDragEnterEvent *event) override;
 
-private slots:
+  private slots:
     void on_actionSupport_me_triggered();
 
     void on_actionAbout_triggered();
@@ -50,7 +51,6 @@ private slots:
 
     void on_actionCheck_for_updates_triggered();
 
-
     void onTabCloseRequested(int);
     void onTabChanged(int);
     void onEditorTextChanged(bool);
@@ -58,7 +58,6 @@ private slots:
     void onSettingsApplied();
     void onSplitterMoved(int, int);
     void onIncomingCompanionRequest(Network::CompanionData);
-
 
     void on_actionCompile_triggered();
 
@@ -72,16 +71,16 @@ private slots:
 
     void on_actionKill_Processes_triggered();
 
-private:
+  private:
     Ui::AppWindow *ui;
-    MessageLogger* activeLogger = nullptr;
-    QTimer* timer = nullptr;
+    MessageLogger *activeLogger = nullptr;
+    QTimer *timer = nullptr;
     QMetaObject::Connection activeTextChangeConnections;
     QMetaObject::Connection activeSplitterMoveConnections;
     QMetaObject::Connection companionEditorConnections;
     Settings::SettingManager *settingManager = nullptr;
     Telemetry::UpdateNotifier *updater = nullptr;
-    PreferenceWindow* preferenceWindow = nullptr;
+    PreferenceWindow *preferenceWindow = nullptr;
     QByteArray splitterState;
     Network::CompanionServer *server;
 
@@ -89,9 +88,8 @@ private:
     void allocate();
     void applySettings();
     void saveSettings();
-    QVector<QShortcut*> hotkeyObjects;
+    QVector<QShortcut *> hotkeyObjects;
     void maybeSetHotkeys();
-
 };
 
 #endif // APPWINDOW_HPP

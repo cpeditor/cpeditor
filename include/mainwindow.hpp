@@ -34,100 +34,102 @@
 #include <generated/version.hpp>
 
 QT_BEGIN_NAMESPACE
-namespace Ui {
+namespace Ui
+{
 class MainWindow;
 }
 QT_END_NAMESPACE
 
-class MainWindow : public QMainWindow {
-  Q_OBJECT
+class MainWindow : public QMainWindow
+{
+    Q_OBJECT
 
-public:
-  MainWindow(int index, QString fileOpen, QWidget *parent = nullptr);
-  ~MainWindow() override;
+  public:
+    MainWindow(int index, QString fileOpen, QWidget *parent = nullptr);
+    ~MainWindow() override;
 
-  QString fileName() const;
-  QString filePath() const;
-  void save(bool force);
-  void saveAs();
+    QString fileName() const;
+    QString filePath() const;
+    void save(bool force);
+    void saveAs();
 
-  int windowIndeX() const;
+    int windowIndeX() const;
 
-  bool closeChangedConfirm();
+    bool closeChangedConfirm();
 
-  void killProcesses();
-  void detachedExecution();
-  void compile();
-  void run();
-  void runAndCompile();
-  void formatSource();
+    void killProcesses();
+    void detachedExecution();
+    void compile();
+    void run();
+    void runAndCompile();
+    void formatSource();
 
-  void applyCompanion(Network::CompanionData data);
-  void maybeLoadTemplate();
+    void applyCompanion(Network::CompanionData data);
+    void maybeLoadTemplate();
 
-  void setLanguage(QString lang);
-  void setSettingsData(Settings::SettingsData data);
+    void setLanguage(QString lang);
+    void setSettingsData(Settings::SettingsData data);
 
-  MessageLogger* getLogger();
-  QFile* getOpenFile();
-  QSplitter* getSplitter();
+    MessageLogger *getLogger();
+    QFile *getOpenFile();
+    QSplitter *getSplitter();
 
-private slots:
-  void onTextChangedTriggered();
+  private slots:
+    void onTextChangedTriggered();
 
-  void on_compile_clicked();
-  void on_run_clicked();
-  void on_runOnly_clicked();
+    void on_compile_clicked();
+    void on_run_clicked();
+    void on_runOnly_clicked();
 
-  void executionFinished(int, int, QString);
+    void executionFinished(int, int, QString);
 
-  void on_in1_customContextMenuRequested(const QPoint &pos);
-  void on_in2_customContextMenuRequested(const QPoint &pos);
-  void on_in3_customContextMenuRequested(const QPoint &pos);
-  void on_compiler_edit_customContextMenuRequested(const QPoint &pos);
-  void on_out3_customContextMenuRequested(const QPoint &pos);
-  void on_out2_customContextMenuRequested(const QPoint &pos);
-  void on_out1_customContextMenuRequested(const QPoint &pos);
+    void on_in1_customContextMenuRequested(const QPoint &pos);
+    void on_in2_customContextMenuRequested(const QPoint &pos);
+    void on_in3_customContextMenuRequested(const QPoint &pos);
+    void on_compiler_edit_customContextMenuRequested(const QPoint &pos);
+    void on_out3_customContextMenuRequested(const QPoint &pos);
+    void on_out2_customContextMenuRequested(const QPoint &pos);
+    void on_out1_customContextMenuRequested(const QPoint &pos);
 
-  void on_out1_diff_clicked();
-  void on_out2_diff_clicked();
-  void on_out3_diff_clicked();
+    void on_out1_diff_clicked();
+    void on_out2_diff_clicked();
+    void on_out3_diff_clicked();
 
-  void on_changeLanguageButoon_clicked();
+    void on_changeLanguageButoon_clicked();
 
-signals:
+  signals:
     void editorTextChanged(bool isUnsaved);
 
-private:
-  const int windowIndex;
-  Ui::MainWindow *ui;
-  QCodeEditor *editor;
-  QString language;
-  QFile *openFile = nullptr;
-  Settings::SettingsData data;
-  bool isLanguageSet = false;
+  private:
+    const int windowIndex;
+    Ui::MainWindow *ui;
+    QCodeEditor *editor;
+    QString language;
+    QFile *openFile = nullptr;
+    Settings::SettingsData data;
+    bool isLanguageSet = false;
 
-  Core::Formatter *formatter = nullptr;
-  Core::IO::InputReader *inputReader = nullptr;
-  Core::Compiler *compiler = nullptr;
-  Core::Runner *runner = nullptr;
-  MessageLogger log;
+    Core::Formatter *formatter = nullptr;
+    Core::IO::InputReader *inputReader = nullptr;
+    Core::Compiler *compiler = nullptr;
+    Core::Runner *runner = nullptr;
+    MessageLogger log;
 
-  QVector<QPlainTextEdit *> input = QVector<QPlainTextEdit *>(3, nullptr);
-  QVector<QPlainTextEdit *> output = QVector<QPlainTextEdit *>(3, nullptr);
-  QVector<QLabel *> verdict = QVector<QLabel *>(3, nullptr);
-  QVector<QString *> expected = QVector<QString *>(3, nullptr);
+    QVector<QPlainTextEdit *> input = QVector<QPlainTextEdit *>(3, nullptr);
+    QVector<QPlainTextEdit *> output = QVector<QPlainTextEdit *>(3, nullptr);
+    QVector<QLabel *> verdict = QVector<QLabel *>(3, nullptr);
+    QVector<QString *> expected = QVector<QString *>(3, nullptr);
 
-  void setEditor();
-  void setupCore();
-  void clearTests(bool outputOnly = false);
-  void loadTests();
-  void saveTests();
-  void updateVerdict(Core::Verdict, int);
-  bool isTextChanged();
+    void setEditor();
+    void setupCore();
+    void clearTests(bool outputOnly = false);
+    void loadTests();
+    void saveTests();
+    void updateVerdict(Core::Verdict, int);
+    bool isTextChanged();
 
-  bool isVerdictPass(QString, QString);
-  bool saveFile(bool, std::string);
-  void performCoreDiagonistics();
+    bool isVerdictPass(QString, QString);
+    bool saveFile(bool, std::string);
+    void performCoreDiagonistics();
 };
 #endif // MAINWINDOW_HPP

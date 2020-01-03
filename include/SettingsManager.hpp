@@ -29,7 +29,8 @@
 namespace Settings
 {
 
-struct SettingsData{
+struct SettingsData
+{
     int companionPort;
     int tabStop;
     QRect geometry;
@@ -125,7 +126,6 @@ class SettingManager
     QString getEditorTheme();
     void setEditorTheme(QString theme);
 
-
     bool isSystemThemeDark();
     void setSystemThemeDark(bool value);
 
@@ -141,10 +141,8 @@ class SettingManager
     bool isAutoSave();
     void setAutoSave(bool value);
 
-
     bool isWrapText();
     void setWrapText(bool value);
-
 
     bool isBeta();
     void setBeta(bool value);
@@ -177,7 +175,8 @@ class SettingManager
     QKeySequence getHotkeyCompileRun();
     QKeySequence getHotkeyRun();
     QKeySequence getHotkeyCompile();
-private:
+
+  private:
     QString mSettingsFile;
     QSettings *mSettings;
 };

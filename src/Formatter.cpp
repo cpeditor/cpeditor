@@ -20,7 +20,7 @@
 
 namespace Core
 {
-Formatter::Formatter(QString runCommand, int index, MessageLogger* log) : Base::Files(index)
+Formatter::Formatter(QString runCommand, int index, MessageLogger *log) : Base::Files(index)
 {
     this->log = log;
     command = runCommand;
@@ -82,16 +82,15 @@ void Formatter::format(QCodeEditor *editor)
 
         if (formatProcess.state() == QProcess::Running)
         {
-            log->warn("Formatter",
-                                     "It seems the format command took more than 2 seconds to complete. Skipped");
+            log->warn("Formatter", "It seems the format command took more than 2 seconds to complete. Skipped");
             file->open(QIODevice::ReadWrite | QFile::Text);
             return;
         }
 
         if (formatProcess.exitCode() != 0)
         {
-            log->error("Formatter", "Format command returned non-zero exit code " +
-                                                       std::to_string(formatProcess.exitCode()));
+            log->error("Formatter",
+                       "Format command returned non-zero exit code " + std::to_string(formatProcess.exitCode()));
             file->open(QIODevice::ReadWrite | QFile::Text);
             return;
         }

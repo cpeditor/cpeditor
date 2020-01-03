@@ -197,7 +197,7 @@
     <string>Format code</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+Alt+L, Ctrl+Alt+</string>
+    <string>Ctrl+Alt+L</string>
    </property>
   </action>
   <action name="actionRun_Detached">

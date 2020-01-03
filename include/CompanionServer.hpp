@@ -1,9 +1,9 @@
 #ifndef COMPANIONSERVER_HPP
 #define COMPANIONSERVER_HPP
+#include "MessageLogger.hpp"
 #include <QObject>
 #include <QTcpServer>
 #include <QTcpSocket>
-#include "MessageLogger.hpp"
 
 namespace Network
 {
@@ -48,7 +48,7 @@ class CompanionServer : public QObject
 
   public:
     CompanionServer(int port);
-    void setMessageLogger(MessageLogger* log);
+    void setMessageLogger(MessageLogger *log);
 
     void updatePort(int port);
     ~CompanionServer();
@@ -65,7 +65,7 @@ class CompanionServer : public QObject
     QTcpServer *server = nullptr;
     QTcpSocket *socket = nullptr;
     int portNumber;
-    MessageLogger* log;
+    MessageLogger *log;
 };
 } // namespace Network
 #endif // COMPANIONSERVER_HPP

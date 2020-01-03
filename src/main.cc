@@ -20,16 +20,17 @@
 #include "appwindow.hpp"
 #include "mainwindow.hpp"
 
-int main(int argc, char *argv[]) {
-  QApplication a(argc, argv);
-  QStringList args = a.arguments();
-  QVector<MainWindow *> windows;
-  if (args.size() > 1)
-    for (int t = 1; t < args.size(); t++)
-      windows.push_back(new MainWindow(t - 1, args[t]));
+int main(int argc, char *argv[])
+{
+    QApplication a(argc, argv);
+    QStringList args = a.arguments();
+    QVector<MainWindow *> windows;
+    if (args.size() > 1)
+        for (int t = 1; t < args.size(); t++)
+            windows.push_back(new MainWindow(t - 1, args[t]));
 
-  AppWindow w(windows);
-  w.setWindowTitle("CP Editor: Competitive Programmers Editor");
-  w.show();
-  return a.exec();
+    AppWindow w(windows);
+    w.setWindowTitle("CP Editor: Competitive Programmers Editor");
+    w.show();
+    return a.exec();
 }
