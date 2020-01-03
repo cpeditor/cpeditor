@@ -6,7 +6,7 @@
 
 CP Editor is a Native Qt based code editor writter in C++. It make you only focus on your code and automates the compilation, executing and testing. It even fetches testcases for you from web!
 
-<img src=https://i.imgur.com/BSQ7d0K.jpg width="85%">  
+<img src=https://i.imgur.com/jKOtf6W.jpg width="85%">  
 
 ### Installation
 
@@ -21,33 +21,11 @@ For Chinese users who are not convenient to download on Github, there is an [alt
 
 ### Initial setup
 
-#### C/C++ Setup
-
-- By default the editor uses `g++` as compiler. You can change your compiler command to change the way editor will compile your code (Settings => Compile Command). Any compiler of your choice will work as long as **its added to PATH** and works.
-
-> Do not use `-o` option while changing compile command. Let editor itself generate the executable name.
-
-- To use `code-format` you need to have `clang-format` (recommended) installed and **added to PATH**. If you want to use something else you can use, If you don't want to use code-format then ignore the *Formatter Error*.
-
-> Any Error if occurs will be reported in `Message Section`. Try to read it and mitigate if possible. In most cases it will be related with your compiler or things not in PATH. 
-
-#### Python Setup
-- Since Python is interpreted language, we will need to change `Run Command`. By default it is empty, From Settings => Run Command, set it to `python`. Make sure Python is in PATH and is working. If newly added to PATH, A reboot may be needed for Editor to recognize it.
-
-- Now Change Editor Language to Python. From Editor => Language => [Check] Python. This will enable Python syntax Highlighting and keyword completer.
-
-- Now, start typing your wonderful code. Make sure you always use "Compile and Run", "Run" uses buffered script.
-
-#### Java Setup
-- Assuming that you have `javac` and `java` to your PATH, Enable Editor to use Java by Enabling Editor => Language => [Check] Java.
-
-- Now change the Compile command to something like `javac`
-
-- Now Change Run Command to `java`
-
-- Now start to code.
+Just install `gcc`, `python` and `java` and put them in Environment PATH. Now you can use any language you want to use in the editor, If you want to use only one language, you can optionally install only one of the above programs. **You must install atleast one from above**.
 
 > You **must not make your Java class public or give any other name apart from `a`**.
+
+You have to ability to change compile command and run other commands by navigating to `Preferences => Languages`.
 
 
 ### Standard Keyboard Shortcuts
