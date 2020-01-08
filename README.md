@@ -49,7 +49,7 @@ You have to ability to change compile command and run other commands by navigati
 You can also set hotkeys for all of the above actions manually from `Preferences`. However the standard keys are fixed and cannot be changed, hotkys are additional shortcuts.
 
 #### Building for source
-> **Qt must be installed in order to compile from source**
+> **Qt5.12 or higher must be installed in order to compile from source**
 
 ```sh
 $ mkdir build
