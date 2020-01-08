@@ -79,6 +79,7 @@ void PreferenceWindow::applySettingsToui()
     ui->format_hotkey->setKeySequence(manager->getHotkeyFormat());
     ui->compileRun_hotkey->setKeySequence(manager->getHotkeyCompileRun());
     ui->kill_hotkey->setKeySequence(manager->getHotkeyKill());
+    ui->toggle_hotkey->setKeySequence(manager->getHotkeyViewModeToggler());
 }
 
 void PreferenceWindow::extractSettingsFromUi()
@@ -124,6 +125,7 @@ void PreferenceWindow::extractSettingsFromUi()
     manager->setHotkeyFormat(ui->format_hotkey->keySequence());
     manager->setHotkeyCompile(ui->compile_hotkey->keySequence());
     manager->setHotkeyCompileRun(ui->compileRun_hotkey->keySequence());
+    manager->setHotkeyViewModeToggler(ui->toggle_hotkey->keySequence());
 }
 
 void PreferenceWindow::resetSettings()
@@ -173,6 +175,7 @@ void PreferenceWindow::resetSettings()
     manager->setHotkeyCompile(QKeySequence());
     manager->setHotkeyCompileRun(QKeySequence());
     manager->setHotkeyFormat(QKeySequence());
+    manager->setHotkeyViewModeToggler(QKeySequence());
 }
 
 void PreferenceWindow::updateShow()
@@ -205,6 +208,7 @@ void PreferenceWindow::on_hotkeys_clicked(bool checked)
     ui->run_hotkey->setEnabled(checked);
     ui->kill_hotkey->setEnabled(checked);
     ui->format_hotkey->setEnabled(checked);
+    ui->toggle_hotkey->setEnabled(checked);
 }
 
 void PreferenceWindow::on_font_button_clicked()

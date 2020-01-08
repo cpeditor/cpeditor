@@ -138,6 +138,21 @@ void AppWindow::allocate()
 void AppWindow::applySettings()
 {
     ui->actionAutosave->setChecked(settingManager->isAutoSave());
+    Settings::ViewMode mode = settingManager->getViewMode();
+
+
+    switch(mode)
+    {
+    case Settings::ViewMode::FULL_EDITOR :
+        on_actionEditor_Mode_triggered();
+        break;
+    case Settings::ViewMode::FULL_IO :
+        on_actionIO_Mode_triggered();
+        break;
+    case Settings::ViewMode::SPLIT :
+        on_actionSplit_Mode_triggered();
+    }
+
     if (settingManager->isAutoSave())
         timer->start();
 
@@ -187,6 +202,11 @@ void AppWindow::maybeSetHotkeys()
     {
         hotkeyObjects.push_back(
             new QShortcut(settingManager->getHotkeyKill(), this, SLOT(on_actionKill_Processes_triggered())));
+    }
+    if(!settingManager->getHotkeyViewModeToggler().isEmpty())
+    {
+        hotkeyObjects.push_back(
+                    new QShortcut(settingManager->getHotkeyViewModeToggler(), this, SLOT(onViewModeToggle())));
     }
 }
 
@@ -435,6 +455,25 @@ void AppWindow::onIncomingCompanionRequest(Network::CompanionData data)
     ui->tabWidget->setCurrentIndex(ui->tabWidget->count() - 1);
 }
 
+void AppWindow::onViewModeToggle(){
+    if(ui->actionEditor_Mode->isChecked())
+    {
+        on_actionIO_Mode_triggered();
+        return ;
+    }
+    if(ui->actionSplit_Mode->isChecked())
+    {
+        on_actionEditor_Mode_triggered();
+        return ;
+    }
+    if(ui->actionIO_Mode->isChecked())
+    {
+        on_actionSplit_Mode_triggered();
+        return ;
+    }
+
+}
+
 void AppWindow::onSplitterMoved(int _, int __)
 {
     int current = ui->tabWidget->currentIndex();
@@ -488,4 +527,31 @@ void AppWindow::on_actionKill_Processes_triggered()
     int current = ui->tabWidget->currentIndex();
     auto tmp = dynamic_cast<MainWindow *>(ui->tabWidget->widget(current));
     tmp->killProcesses();
+}
+
+void AppWindow::on_actionEditor_Mode_triggered()
+{
+    settingManager->setViewMode(Settings::ViewMode::FULL_EDITOR);
+    ui->actionEditor_Mode->setChecked(true);
+    ui->actionIO_Mode->setChecked(false);
+    ui->actionSplit_Mode->setChecked(false);
+    onTabChanged(ui->tabWidget->currentIndex());
+}
+
+void AppWindow::on_actionIO_Mode_triggered()
+{
+    settingManager->setViewMode(Settings::ViewMode::FULL_IO);
+    ui->actionEditor_Mode->setChecked(false);
+    ui->actionIO_Mode->setChecked(true);
+    ui->actionSplit_Mode->setChecked(false);
+    onTabChanged(ui->tabWidget->currentIndex());
+}
+
+void AppWindow::on_actionSplit_Mode_triggered()
+{
+    settingManager->setViewMode(Settings::ViewMode::SPLIT);
+    ui->actionEditor_Mode->setChecked(false);
+    ui->actionIO_Mode->setChecked(false);
+    ui->actionSplit_Mode->setChecked(true);
+    onTabChanged(ui->tabWidget->currentIndex());
 }

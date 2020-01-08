@@ -342,6 +342,14 @@ QKeySequence SettingManager::getHotkeyFormat()
 {
     return QKeySequence::fromString(mSettings->value("hotkey_format", "").toString());
 }
+QKeySequence SettingManager::getHotkeyViewModeToggler()
+{
+    return QKeySequence::fromString(mSettings->value("hotkey_mode_toggle", "").toString());
+}
+void SettingManager::setHotkeyViewModeToggler(QKeySequence sequence)
+{
+    mSettings->setValue("hotkey_mode_toggle", sequence.toString());
+}
 void SettingManager::setHotkeyCompile(QKeySequence sequence)
 {
     mSettings->setValue("hotkey_compile", sequence.toString());
@@ -361,6 +369,23 @@ void SettingManager::setHotkeyKill(QKeySequence sequence)
 void SettingManager::setHotkeyFormat(QKeySequence sequence)
 {
     mSettings->setValue("hotkey_format", sequence.toString());
+}
+
+ViewMode SettingManager::getViewMode()
+{
+    QString strings = mSettings->value("view_mode", "split").toString();
+    if(strings == "split") return Settings::ViewMode::SPLIT;
+    else if(strings == "code") return Settings::ViewMode::FULL_EDITOR;
+    else return Settings::ViewMode::FULL_IO;
+}
+
+void SettingManager::setViewMode(ViewMode v)
+{
+    QString ans;
+    if(v == Settings::FULL_EDITOR) ans = "code";
+    else if(v == Settings::FULL_IO) ans = "io";
+    else ans = "split";
+    mSettings->setValue("view_mode", ans);
 }
 
 SettingManager::~SettingManager()
@@ -406,6 +431,8 @@ SettingsData SettingManager::toData()
     data.hotkeyCompileRun = getHotkeyCompileRun();
     data.hotkeyKill = getHotkeyKill();
     data.hotkeyFormat = getHotkeyFormat();
+    data.hotkeyViewModeToggler = getHotkeyViewModeToggler();
+    data.viewMode = getViewMode();
 
     return data;
 }

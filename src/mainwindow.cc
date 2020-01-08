@@ -367,7 +367,22 @@ void MainWindow::setSettingsData(Settings::SettingsData data)
     else
         editor->setWordWrapMode(QTextOption::NoWrap);
 
-    // TODO Update some commands;
+    if(data.viewMode == Settings::ViewMode::FULL_EDITOR)
+    {
+        ui->splitter->restoreState("");
+        ui->splitter->setSizes({1,0});
+    }
+    else if(data.viewMode == Settings::ViewMode::FULL_IO)
+    {
+        ui->splitter->restoreState("");
+        ui->splitter->setSizes({0,1});
+    }
+    else
+    {
+        ui->splitter->restoreState("");
+        ui->splitter->setSizes({1,1});
+    }
+
     compiler->updateCommandCpp(data.compileCommandCpp);
     compiler->updateCommandJava(data.compileCommandJava);
     runner->updateCompileCommandCpp(data.compileCommandCpp);

@@ -29,6 +29,12 @@
 namespace Settings
 {
 
+enum ViewMode{
+    FULL_EDITOR,
+    FULL_IO,
+    SPLIT
+};
+
 struct SettingsData
 {
     int companionPort;
@@ -74,6 +80,9 @@ struct SettingsData
     QKeySequence hotkeyCompileRun;
     QKeySequence hotkeyFormat;
     QKeySequence hotkeyKill;
+    QKeySequence hotkeyViewModeToggler;
+
+    ViewMode viewMode;
 };
 
 class SettingManager
@@ -162,6 +171,9 @@ class SettingManager
     bool isCheckUpdateOnStartup();
     void checkUpdateOnStartup(bool value);
 
+    ViewMode getViewMode();
+    void setViewMode(ViewMode v);
+
     SettingsData toData();
     ~SettingManager();
 
@@ -170,11 +182,14 @@ class SettingManager
     void setHotkeyCompileRun(QKeySequence sequence);
     void setHotkeyRun(QKeySequence sequence);
     void setHotkeyCompile(QKeySequence sequence);
+    void setHotkeyViewModeToggler(QKeySequence sequence);
     QKeySequence getHotkeyFormat();
     QKeySequence getHotkeyKill();
     QKeySequence getHotkeyCompileRun();
     QKeySequence getHotkeyRun();
     QKeySequence getHotkeyCompile();
+    QKeySequence getHotkeyViewModeToggler();
+
 
   private:
     QString mSettingsFile;

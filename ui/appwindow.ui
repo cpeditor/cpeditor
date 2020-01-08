@@ -58,7 +58,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>26</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -100,7 +100,16 @@
     <addaction name="actionCheck_for_updates"/>
     <addaction name="actionSupport_me"/>
    </widget>
+   <widget class="QMenu" name="menuView">
+    <property name="title">
+     <string>View</string>
+    </property>
+    <addaction name="actionEditor_Mode"/>
+    <addaction name="actionIO_Mode"/>
+    <addaction name="actionSplit_Mode"/>
+   </widget>
    <addaction name="menuFile"/>
+   <addaction name="menuView"/>
    <addaction name="menuEditor"/>
    <addaction name="menuActions"/>
    <addaction name="menuSettings"/>
@@ -250,6 +259,30 @@
   <action name="actionSupport_me">
    <property name="text">
     <string>Support me</string>
+   </property>
+  </action>
+  <action name="actionEditor_Mode">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Editor Mode</string>
+   </property>
+  </action>
+  <action name="actionIO_Mode">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>IO Mode</string>
+   </property>
+  </action>
+  <action name="actionSplit_Mode">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Split Mode</string>
    </property>
   </action>
  </widget>

@@ -58,6 +58,7 @@ class AppWindow : public QMainWindow
     void onSettingsApplied();
     void onSplitterMoved(int, int);
     void onIncomingCompanionRequest(Network::CompanionData);
+    void onViewModeToggle();
 
     void on_actionCompile_triggered();
 
@@ -71,7 +72,13 @@ class AppWindow : public QMainWindow
 
     void on_actionKill_Processes_triggered();
 
-  private:
+    void on_actionEditor_Mode_triggered();
+
+    void on_actionIO_Mode_triggered();
+
+    void on_actionSplit_Mode_triggered();
+
+private:
     Ui::AppWindow *ui;
     MessageLogger *activeLogger = nullptr;
     QTimer *timer = nullptr;

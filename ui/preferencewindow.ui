@@ -32,7 +32,7 @@
          <enum>QTabWidget::Rounded</enum>
         </property>
         <property name="currentIndex">
-         <number>2</number>
+         <number>3</number>
         </property>
         <widget class="QWidget" name="editor">
          <attribute name="title">
@@ -530,8 +530,8 @@
                <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:9.6pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2';&quot;&gt;You must &lt;/span&gt;&lt;a href=&quot;https://github.com/jmerle/competitive-companion&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; text-decoration: underline; color:#0000ff;&quot;&gt;download&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2';&quot;&gt; the Browser extension that parses and sends the testcases to the editor on the port specified above. You may need to change the port from Browser extension setting to match above value. &lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-weight:600;&quot;&gt;Restart is required, if you change the port&lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2';&quot;&gt;. Competitive Companion is a separate project by other developer and any issue or feature requests you want in browser extension should be done on above URL.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Inter'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:9.6pt;&quot;&gt;You must &lt;/span&gt;&lt;a href=&quot;https://github.com/jmerle/competitive-companion&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:9.6pt; text-decoration: underline; color:#0000ff;&quot;&gt;download&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:9.6pt;&quot;&gt; the Browser extension that parses and sends the testcases to the editor on the port specified above. You may need to change the port from Browser extension setting to match above value. &lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:9.6pt; font-weight:600;&quot;&gt;Restart is required, if you change the port&lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:9.6pt;&quot;&gt;. Competitive Companion is a separate project by other developer and any issue or feature requests you want in browser extension should be done on above URL.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
               </property>
              </widget>
             </item>
@@ -657,6 +657,16 @@ p, li { white-space: pre-wrap; }
                 </property>
                </widget>
               </item>
+              <item row="5" column="0">
+               <widget class="QLabel" name="label_44">
+                <property name="text">
+                 <string>Hotkey for Toggling View Mode</string>
+                </property>
+               </widget>
+              </item>
+              <item row="5" column="1">
+               <widget class="QKeySequenceEdit" name="toggle_hotkey"/>
+              </item>
              </layout>
             </item>
             <item row="4" column="0">
@@ -672,8 +682,8 @@ p, li { white-space: pre-wrap; }
                <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:9.6pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2';&quot;&gt;Please do not type any standard shortcuts like &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New';&quot;&gt;CTRL+R, CTRL+Shift+R, CTRL+C&lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2';&quot;&gt; etc that are already in use by the editor. It will cause disambiguity and no shortcuts will work.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Inter'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:9.6pt;&quot;&gt;Please do not type any standard shortcuts like &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:9.6pt;&quot;&gt;CTRL+R, CTRL+Shift+R, CTRL+C&lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:9.6pt;&quot;&gt; etc that are already in use by the editor. It will cause disambiguity and no shortcuts will work.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
               </property>
              </widget>
             </item>
@@ -800,8 +810,8 @@ p, li { white-space: pre-wrap; }
                    <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:9.6pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2';&quot;&gt;The file you choose here will be made available to you in the code editor. Every new Tab will be populated with contents from files of default language. If you change language from a tab to other (non-default) language and your files are saved, the editor will load corresponding templates.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Inter'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:9.6pt;&quot;&gt;The file you choose here will be made available to you in the code editor. Every new Tab will be populated with contents from files of default language. If you change language from a tab to other (non-default) language and your files are saved, the editor will load corresponding templates.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                   </property>
                  </widget>
                 </item>
