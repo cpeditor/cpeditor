@@ -9,25 +9,13 @@
 #include <QTimer>
 #include <QUrl>
 
-AppWindow::AppWindow(QVector<MainWindow *> tabs, QWidget *parent) : AppWindow(parent)
+AppWindow::AppWindow(QStringList args, QWidget *parent) : AppWindow(parent)
 {
-
-    if (tabs.size() > 0)
+    if (args.size() > 1)
     {
         ui->tabWidget->clear();
-        int i = 0;
-        for (auto e : tabs)
-        {
-            ui->tabWidget->addTab(e, e->fileName());
-            QString lang = "Cpp";
-            if (e->fileName().endsWith(".java"))
-                lang = "Java";
-            else if (e->fileName().endsWith(".py") || e->fileName().endsWith("py3"))
-                lang = "Python";
-            e->setLanguage(lang);
-            ui->tabWidget->setCurrentIndex(i);
-            i++;
-        }
+        for (int i = 1; i < args.size(); ++i)
+            openFile(args[i]);
     }
 }
 
@@ -89,23 +77,37 @@ void AppWindow::dragEnterEvent(QDragEnterEvent *event)
     }
 }
 
+void AppWindow::openFile(QString fileName)
+{
+    for (int t = 0; t < ui->tabWidget->count(); t++)
+    {
+        auto tmp = dynamic_cast<MainWindow *>(ui->tabWidget->widget(t));
+        if (fileName == tmp->filePath())
+        {
+            ui->tabWidget->setCurrentIndex(t);
+            return;
+        }
+    }
+
+    int t = ui->tabWidget->count();
+    auto fsp = new MainWindow(t, fileName);
+    QString lang = "Cpp";
+    if (fileName.endsWith(".java"))
+        lang = "Java";
+    else if (fileName.endsWith(".py") || fileName.endsWith(".py3"))
+        lang = "Python";
+    ui->tabWidget->addTab(fsp, fsp->fileName());
+    fsp->setLanguage(lang);
+    ui->tabWidget->setCurrentIndex(t);
+}
+
 void AppWindow::dropEvent(QDropEvent *event)
 {
     auto files = event->mimeData()->urls();
-    int t = ui->tabWidget->count();
     for (auto e : files)
     {
         auto fileName = e.toLocalFile();
-        auto fsp = new MainWindow(ui->tabWidget->count(), fileName);
-        QString lang = "Cpp";
-        if (fileName.endsWith(".java"))
-            lang = "Java";
-        else if (fileName.endsWith(".py") || fileName.endsWith(".py3"))
-            lang = "Python";
-        ui->tabWidget->addTab(fsp, fsp->fileName());
-        fsp->setLanguage(lang);
-        ui->tabWidget->setCurrentIndex(t);
-        t++;
+        openFile(fileName);
     }
 }
 
@@ -291,26 +293,7 @@ void AppWindow::on_actionOpen_triggered()
     if (fileName.isEmpty())
         return;
 
-    QString lang = "Cpp";
-    if (fileName.endsWith(".java"))
-        lang = "Java";
-    else if (fileName.endsWith(".py") || fileName.endsWith(".py3"))
-        lang = "Python";
-
-    for (int t = 0; t < ui->tabWidget->count(); t++)
-    {
-        auto tmp = dynamic_cast<MainWindow *>(ui->tabWidget->widget(t));
-        if (fileName == tmp->filePath())
-        {
-            ui->tabWidget->setCurrentIndex(t);
-            return;
-        }
-    }
-
-    auto tmp = new MainWindow(ui->tabWidget->count(), fileName);
-    ui->tabWidget->addTab(tmp, tmp->fileName());
-    tmp->setLanguage(lang);
-    ui->tabWidget->setCurrentIndex(ui->tabWidget->count() - 1);
+    openFile(fileName);
 }
 
 void AppWindow::on_actionSave_triggered()

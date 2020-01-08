@@ -19,12 +19,13 @@ class AppWindow : public QMainWindow
 
   public:
     explicit AppWindow(QWidget *parent = nullptr);
-    explicit AppWindow(QVector<MainWindow *> tabs, QWidget *parent = nullptr);
+    explicit AppWindow(QStringList args, QWidget *parent = nullptr);
     ~AppWindow() override;
 
     void closeEvent(QCloseEvent *event) override;
     void dropEvent(QDropEvent *event) override;
     void dragEnterEvent(QDragEnterEvent *event) override;
+    void openFile(QString fileName);
 
   private slots:
     void on_actionSupport_me_triggered();
@@ -78,7 +79,7 @@ class AppWindow : public QMainWindow
 
     void on_actionSplit_Mode_triggered();
 
-private:
+  private:
     Ui::AppWindow *ui;
     MessageLogger *activeLogger = nullptr;
     QTimer *timer = nullptr;
