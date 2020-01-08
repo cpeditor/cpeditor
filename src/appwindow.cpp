@@ -29,6 +29,7 @@ AppWindow::AppWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::AppWindo
     setConnections();
 
     auto windowTemp = new MainWindow(0, "");
+    connect(windowTemp, SIGNAL(closeChangedConfirmTriggered(int)), this, SLOT(on_closeChangedConfirmTriggered(int)));
     ui->tabWidget->addTab(windowTemp, windowTemp->fileName());
 
     if (settingManager->isCheckUpdateOnStartup())
@@ -54,15 +55,7 @@ AppWindow::~AppWindow()
 
 void AppWindow::closeEvent(QCloseEvent *event)
 {
-    for (int t = 0; t < ui->tabWidget->count(); t++)
-    {
-        auto tmp = dynamic_cast<MainWindow *>(ui->tabWidget->widget(t));
-        if (tmp->closeChangedConfirm())
-        {
-            ui->tabWidget->removeTab(t);
-            t--;
-        }
-    }
+    closeAll();
     if (ui->tabWidget->count() == 0)
         event->accept();
     else
@@ -91,6 +84,7 @@ void AppWindow::openFile(QString fileName)
 
     int t = ui->tabWidget->count();
     auto fsp = new MainWindow(t, fileName);
+    connect(fsp, SIGNAL(closeChangedConfirmTriggered(int)), this, SLOT(on_closeChangedConfirmTriggered(int)));
     QString lang = "Cpp";
     if (fileName.endsWith(".java"))
         lang = "Java";
@@ -211,6 +205,29 @@ void AppWindow::maybeSetHotkeys()
     }
 }
 
+void AppWindow::updateIndexes()
+{
+    for (int i = 0; i < ui->tabWidget->count(); ++i)
+    {
+        auto tmp = dynamic_cast<MainWindow *>(ui->tabWidget->widget(i));
+        tmp->windowIndex = i;
+    }
+}
+
+void AppWindow::closeAll()
+{
+    for (int t = 0; t < ui->tabWidget->count(); t++)
+    {
+        auto tmp = dynamic_cast<MainWindow *>(ui->tabWidget->widget(t));
+        if (tmp->closeChangedConfirm())
+        {
+            ui->tabWidget->removeTab(t);
+            t--;
+            updateIndexes();
+        }
+    }
+}
+
 void AppWindow::saveSettings()
 {
     if (!this->isMaximized())
@@ -244,15 +261,7 @@ void AppWindow::on_actionAbout_triggered()
 
 void AppWindow::on_actionClose_All_triggered()
 {
-    for (int t = 0; t < ui->tabWidget->count(); t++)
-    {
-        auto tmp = dynamic_cast<MainWindow *>(ui->tabWidget->widget(t));
-        if (tmp->closeChangedConfirm())
-        {
-            ui->tabWidget->removeTab(t);
-            t--;
-        }
-    }
+    closeAll();
 }
 
 void AppWindow::on_actionAutosave_triggered(bool checked)
@@ -266,15 +275,7 @@ void AppWindow::on_actionAutosave_triggered(bool checked)
 
 void AppWindow::on_actionQuit_triggered()
 {
-    for (int t = 0; t < ui->tabWidget->count(); t++)
-    {
-        auto tmp = dynamic_cast<MainWindow *>(ui->tabWidget->widget(t));
-        if (tmp->closeChangedConfirm())
-        {
-            ui->tabWidget->removeTab(t);
-            t--;
-        }
-    }
+    closeAll();
     if (ui->tabWidget->count() == 0)
         QApplication::exit();
 }
@@ -282,6 +283,7 @@ void AppWindow::on_actionQuit_triggered()
 void AppWindow::on_actionNew_Tab_triggered()
 {
     auto temp = new MainWindow(ui->tabWidget->count(), "");
+    connect(temp, SIGNAL(closeChangedConfirmTriggered(int)), this, SLOT(on_closeChangedConfirmTriggered(int)));
     ui->tabWidget->addTab(temp, temp->fileName());
     ui->tabWidget->setCurrentIndex(ui->tabWidget->count() - 1);
 }
@@ -339,7 +341,10 @@ void AppWindow::onTabCloseRequested(int index)
     // splitterState.clear();
     auto tmp = dynamic_cast<MainWindow *>(ui->tabWidget->widget(index));
     if (tmp->closeChangedConfirm())
+    {
         ui->tabWidget->removeTab(index);
+        updateIndexes();
+    }
 }
 
 void AppWindow::onTabChanged(int index)
@@ -538,4 +543,9 @@ void AppWindow::on_actionSplit_Mode_triggered()
     ui->actionIO_Mode->setChecked(false);
     ui->actionSplit_Mode->setChecked(true);
     onTabChanged(ui->tabWidget->currentIndex());
+}
+
+void AppWindow::on_closeChangedConfirmTriggered(int index)
+{
+    ui->tabWidget->setCurrentIndex(index);
 }

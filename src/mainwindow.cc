@@ -447,11 +447,6 @@ void MainWindow::saveAs()
     }
 }
 
-int MainWindow::windowIndeX() const
-{
-    return windowIndex;
-}
-
 void MainWindow::onTextChangedTriggered()
 {
     emit editorTextChanged(isTextChanged());
@@ -853,6 +848,7 @@ bool MainWindow::closeChangedConfirm()
     bool confirmed = !isChanged;
     if (!confirmed)
     {
+        closeChangedConfirmTriggered(windowIndex);
         auto res =
             QMessageBox::warning(this, "Save?", fileName() + " has been modified.\nDo you want to save your changes?",
                                  QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel, QMessageBox::Cancel);

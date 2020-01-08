@@ -53,8 +53,6 @@ class MainWindow : public QMainWindow
     void save(bool force);
     void saveAs();
 
-    int windowIndeX() const;
-
     bool closeChangedConfirm();
 
     void killProcesses();
@@ -70,6 +68,7 @@ class MainWindow : public QMainWindow
     void setLanguage(QString lang);
     void setSettingsData(Settings::SettingsData data);
 
+    int windowIndex;
     MessageLogger *getLogger();
     QFile *getOpenFile();
     QSplitter *getSplitter();
@@ -99,9 +98,9 @@ class MainWindow : public QMainWindow
 
   signals:
     void editorTextChanged(bool isUnsaved);
+    void closeChangedConfirmTriggered(int index);
 
   private:
-    const int windowIndex;
     Ui::MainWindow *ui;
     QCodeEditor *editor;
     QString language;

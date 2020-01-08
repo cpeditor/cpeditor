@@ -79,6 +79,8 @@ class AppWindow : public QMainWindow
 
     void on_actionSplit_Mode_triggered();
 
+    void on_closeChangedConfirmTriggered(int index);
+
   private:
     Ui::AppWindow *ui;
     MessageLogger *activeLogger = nullptr;
@@ -98,6 +100,8 @@ class AppWindow : public QMainWindow
     void saveSettings();
     QVector<QShortcut *> hotkeyObjects;
     void maybeSetHotkeys();
+    void updateIndexes();
+    void closeAll();
 };
 
 #endif // APPWINDOW_HPP
