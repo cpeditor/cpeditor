@@ -196,7 +196,7 @@
                 <item row="6" column="0">
                  <widget class="QCheckBox" name="tabs">
                   <property name="text">
-                   <string>Always Replace tabs with spaces</string>
+                   <string>Always replace tabs with spaces</string>
                   </property>
                  </widget>
                 </item>
@@ -210,7 +210,7 @@
                 <item row="8" column="0">
                  <widget class="QCheckBox" name="savetest">
                   <property name="text">
-                   <string>Save and Load Input and Expected along with Source</string>
+                   <string>Save and load input and expected along with source</string>
                   </property>
                  </widget>
                 </item>
@@ -220,7 +220,7 @@
                    <bool>false</bool>
                   </property>
                   <property name="text">
-                   <string>Automatically Format source on save</string>
+                   <string>Automatically format source on save</string>
                   </property>
                  </widget>
                 </item>
