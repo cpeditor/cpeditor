@@ -447,12 +447,9 @@ void AppWindow::onSettingsApplied()
 
 void AppWindow::onIncomingCompanionRequest(Network::CompanionData data)
 {
-    auto newTab = new MainWindow(ui->tabWidget->currentIndex(), "");
-    newTab->setSettingsData(settingManager->toData());
-    newTab->maybeLoadTemplate();
-    newTab->applyCompanion(data);
-    ui->tabWidget->addTab(newTab, newTab->fileName());
-    ui->tabWidget->setCurrentIndex(ui->tabWidget->count() - 1);
+    auto current = ui->tabWidget->currentIndex();
+    auto tmp = dynamic_cast<MainWindow *>(ui->tabWidget->widget(current));
+    tmp->applyCompanion(data);
 }
 
 void AppWindow::onViewModeToggle(){
