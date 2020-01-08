@@ -140,16 +140,15 @@ void AppWindow::applySettings()
     ui->actionAutosave->setChecked(settingManager->isAutoSave());
     Settings::ViewMode mode = settingManager->getViewMode();
 
-
-    switch(mode)
+    switch (mode)
     {
-    case Settings::ViewMode::FULL_EDITOR :
+    case Settings::ViewMode::FULL_EDITOR:
         on_actionEditor_Mode_triggered();
         break;
-    case Settings::ViewMode::FULL_IO :
+    case Settings::ViewMode::FULL_IO:
         on_actionIO_Mode_triggered();
         break;
-    case Settings::ViewMode::SPLIT :
+    case Settings::ViewMode::SPLIT:
         on_actionSplit_Mode_triggered();
     }
 
@@ -203,10 +202,10 @@ void AppWindow::maybeSetHotkeys()
         hotkeyObjects.push_back(
             new QShortcut(settingManager->getHotkeyKill(), this, SLOT(on_actionKill_Processes_triggered())));
     }
-    if(!settingManager->getHotkeyViewModeToggler().isEmpty())
+    if (!settingManager->getHotkeyViewModeToggler().isEmpty())
     {
         hotkeyObjects.push_back(
-                    new QShortcut(settingManager->getHotkeyViewModeToggler(), this, SLOT(onViewModeToggle())));
+            new QShortcut(settingManager->getHotkeyViewModeToggler(), this, SLOT(onViewModeToggle())));
     }
 }
 
@@ -452,23 +451,23 @@ void AppWindow::onIncomingCompanionRequest(Network::CompanionData data)
     tmp->applyCompanion(data);
 }
 
-void AppWindow::onViewModeToggle(){
-    if(ui->actionEditor_Mode->isChecked())
+void AppWindow::onViewModeToggle()
+{
+    if (ui->actionEditor_Mode->isChecked())
     {
         on_actionIO_Mode_triggered();
-        return ;
+        return;
     }
-    if(ui->actionSplit_Mode->isChecked())
+    if (ui->actionSplit_Mode->isChecked())
     {
         on_actionEditor_Mode_triggered();
-        return ;
+        return;
     }
-    if(ui->actionIO_Mode->isChecked())
+    if (ui->actionIO_Mode->isChecked())
     {
         on_actionSplit_Mode_triggered();
-        return ;
+        return;
     }
-
 }
 
 void AppWindow::onSplitterMoved(int _, int __)
