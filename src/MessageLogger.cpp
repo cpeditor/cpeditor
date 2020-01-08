@@ -26,57 +26,63 @@ void MessageLogger::setContainer(QTextBrowser *value)
 
 void MessageLogger::info(std::string head, std::string body)
 {
+    auto qHead = QString::fromStdString(head).toHtmlEscaped();
+    auto qBody = QString::fromStdString(body).toHtmlEscaped();
     std::string ans = "<b>[";
     int long long timestamp = QDateTime::currentSecsSinceEpoch();
     auto val = QDateTime::fromSecsSinceEpoch(timestamp).time();
     ans += val.toString().toStdString();
     ans += "] [";
-    ans += head;
+    ans += qHead.toStdString();
     ans += "] </b>";
     ans += "[";
-    ans += body;
+    ans += qBody.toStdString();
     ans += "]";
     box->append(QString::fromStdString(ans));
 }
 
 void MessageLogger::warn(std::string head, std::string body, bool multiline)
 {
+    auto qHead = QString::fromStdString(head).toHtmlEscaped();
+    auto qBody = QString::fromStdString(body).toHtmlEscaped();
     std::string ans = "<b>[";
     auto timestamp = QDateTime::currentSecsSinceEpoch();
     auto val = QDateTime::fromSecsSinceEpoch(timestamp).time();
     ans += val.toString().toStdString();
     ans += "] [";
-    ans += head;
+    ans += qHead.toStdString();
     ans += "] </b>";
     ans += "<font color=green>[";
     if (multiline)
     {
         ans += "<br>";
-        ans += QString::fromStdString(body).replace("\n", "<br>").toStdString();
+        ans += qBody.replace("\n", "<br>").toStdString();
     }
     else
-        ans += body;
+        ans += qBody.toStdString();
     ans += "]</font>";
 
     box->append(QString::fromStdString(ans));
 }
 void MessageLogger::error(std::string head, std::string body, bool multiline)
 {
+    auto qHead = QString::fromStdString(head).toHtmlEscaped();
+    auto qBody = QString::fromStdString(body).toHtmlEscaped();
     std::string ans = "<b>[";
     auto timestamp = QDateTime::currentSecsSinceEpoch();
     auto val = QDateTime::fromSecsSinceEpoch(timestamp).time();
     ans += val.toString().toStdString();
     ans += "] [";
-    ans += head;
+    ans += qHead.toStdString();
     ans += "] </b>";
     ans += "<font color=red>[";
     if (multiline)
     {
         ans += "<br>";
-        ans += QString::fromStdString(body).replace("\n", "<br>").toStdString();
+        ans += qBody.replace("\n", "<br>").toStdString();
     }
     else
-        ans += body;
+        ans += qBody.toStdString();
     ans += "]</font>";
 
     box->append(QString::fromStdString(ans));
