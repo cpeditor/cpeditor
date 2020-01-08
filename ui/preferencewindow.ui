@@ -842,20 +842,27 @@ p, li { white-space: pre-wrap; }
         </property>
        </spacer>
       </item>
-      <item>
-       <widget class="QPushButton" name="apply">
-        <property name="text">
-         <string>Apply</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="exit">
-        <property name="text">
-         <string>Exit</string>
-        </property>
-       </widget>
-      </item>
+       <item>
+         <widget class="QPushButton" name="ok">
+           <property name="text">
+             <string>OK</string>
+           </property>
+         </widget>
+       </item>
+       <item>
+         <widget class="QPushButton" name="cancel">
+           <property name="text">
+             <string>Cancel</string>
+           </property>
+         </widget>
+       </item>
+       <item>
+         <widget class="QPushButton" name="apply">
+           <property name="text">
+             <string>Apply</string>
+           </property>
+         </widget>
+       </item>
      </layout>
     </item>
    </layout>

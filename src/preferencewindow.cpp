@@ -189,7 +189,14 @@ PreferenceWindow::~PreferenceWindow()
     delete ui;
 }
 
-void PreferenceWindow::on_exit_clicked()
+void PreferenceWindow::on_ok_clicked()
+{
+    extractSettingsFromUi();
+    close();
+    emit settingsApplied();
+}
+
+void PreferenceWindow::on_cancel_clicked()
 {
     close();
 }
@@ -197,7 +204,6 @@ void PreferenceWindow::on_exit_clicked()
 void PreferenceWindow::on_apply_clicked()
 {
     extractSettingsFromUi();
-    close();
     emit settingsApplied();
 }
 

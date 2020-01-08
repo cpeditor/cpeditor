@@ -25,7 +25,9 @@ class PreferenceWindow : public QMainWindow
 
   private slots:
 
-    void on_exit_clicked();
+    void on_ok_clicked();
+
+    void on_cancel_clicked();
 
     void on_apply_clicked();
 
