@@ -278,7 +278,7 @@ void MainWindow::saveTests()
 
 QString MainWindow::fileName() const
 {
-    return openFile == nullptr || !openFile->isOpen() ? "Unsaved file" : QFileInfo(*openFile).fileName();
+    return openFile == nullptr || !openFile->isOpen() ? "untitled" : QFileInfo(*openFile).fileName();
 }
 
 QString MainWindow::filePath() const

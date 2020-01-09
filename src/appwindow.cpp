@@ -363,7 +363,7 @@ void AppWindow::onTabChanged(int index)
     auto tmp = dynamic_cast<MainWindow *>(ui->tabWidget->widget(index));
 
     if (tmp->getOpenFile() == nullptr)
-        setWindowTitle("CP Editor: Unsaved file");
+        setWindowTitle("CP Editor: " + tmp->fileName());
     else
         setWindowTitle("CP Editor: " + tmp->filePath());
 
