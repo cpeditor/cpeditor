@@ -212,13 +212,16 @@ void AppWindow::saveSettings()
 
 void AppWindow::openFile(QString fileName)
 {
-    for (int t = 0; t < ui->tabWidget->count(); t++)
+    if (!fileName.isEmpty())
     {
-        auto tmp = dynamic_cast<MainWindow *>(ui->tabWidget->widget(t));
-        if (fileName == tmp->filePath())
+        for (int t = 0; t < ui->tabWidget->count(); t++)
         {
-            ui->tabWidget->setCurrentIndex(t);
-            return;
+            auto tmp = dynamic_cast<MainWindow *>(ui->tabWidget->widget(t));
+            if (fileName == tmp->filePath())
+            {
+                ui->tabWidget->setCurrentIndex(t);
+                return;
+            }
         }
     }
 
@@ -282,10 +285,7 @@ void AppWindow::on_actionQuit_triggered()
 
 void AppWindow::on_actionNew_Tab_triggered()
 {
-    auto temp = new MainWindow(ui->tabWidget->count(), "");
-    connect(temp, SIGNAL(closeChangedConfirmTriggered(int)), this, SLOT(on_closeChangedConfirmTriggered(int)));
-    ui->tabWidget->addTab(temp, temp->fileName());
-    ui->tabWidget->setCurrentIndex(ui->tabWidget->count() - 1);
+    openFile("");
 }
 
 void AppWindow::on_actionOpen_triggered()
