@@ -222,6 +222,7 @@ void AppWindow::openFile(QString fileName)
 
     int t = ui->tabWidget->count();
     auto fsp = new MainWindow(t, fileName);
+    fsp->setSettingsData(settingManager->toData(), true);
     connect(fsp, SIGNAL(confirmTriggered(MainWindow *)), this, SLOT(on_confirmTriggered(MainWindow *)));
     connect(fsp, SIGNAL(editorTextChanged(bool, MainWindow *)), this, SLOT(onEditorTextChanged(bool, MainWindow *)));
     QString lang = "Cpp";
@@ -433,14 +434,6 @@ void AppWindow::onSettingsApplied()
 
 void AppWindow::onIncomingCompanionRequest(Network::CompanionData data)
 {
-<<<<<<< HEAD
-    auto newTab = new MainWindow(ui->tabWidget->currentIndex(), "");
-    newTab->setSettingsData(settingManager->toData(), true);
-    newTab->maybeLoadTemplate();
-    newTab->applyCompanion(data);
-    ui->tabWidget->addTab(newTab, newTab->fileName());
-    ui->tabWidget->setCurrentIndex(ui->tabWidget->count() - 1);
-=======
     auto current = ui->tabWidget->currentIndex();
     if (current == -1)
     {
@@ -449,7 +442,6 @@ void AppWindow::onIncomingCompanionRequest(Network::CompanionData data)
     }
     auto tmp = dynamic_cast<MainWindow *>(ui->tabWidget->widget(current));
     tmp->applyCompanion(data);
->>>>>>> 3fa4eb0dfc10c8ec8626611469623afbb7eb7db1
 }
 
 void AppWindow::onViewModeToggle()
@@ -532,7 +524,10 @@ void AppWindow::on_actionEditor_Mode_triggered()
     ui->actionEditor_Mode->setChecked(true);
     ui->actionIO_Mode->setChecked(false);
     ui->actionSplit_Mode->setChecked(false);
-    onTabChanged(ui->tabWidget->currentIndex());
+
+    auto tmp = dynamic_cast<MainWindow*>(ui->tabWidget->widget(ui->tabWidget->currentIndex()));
+    tmp->getSplitter()->restoreState(defaultState);
+    tmp->getSplitter()->setSizes({1, 0});
 }
 
 void AppWindow::on_actionIO_Mode_triggered()
@@ -541,7 +536,11 @@ void AppWindow::on_actionIO_Mode_triggered()
     ui->actionEditor_Mode->setChecked(false);
     ui->actionIO_Mode->setChecked(true);
     ui->actionSplit_Mode->setChecked(false);
-    onTabChanged(ui->tabWidget->currentIndex());
+
+    auto tmp = dynamic_cast<MainWindow*>(ui->tabWidget->widget(ui->tabWidget->currentIndex()));
+    tmp->getSplitter()->restoreState(defaultState);
+    tmp->getSplitter()->setSizes({0, 1});
+
 }
 
 void AppWindow::on_actionSplit_Mode_triggered()
@@ -550,7 +549,12 @@ void AppWindow::on_actionSplit_Mode_triggered()
     ui->actionEditor_Mode->setChecked(false);
     ui->actionIO_Mode->setChecked(false);
     ui->actionSplit_Mode->setChecked(true);
-    onTabChanged(ui->tabWidget->currentIndex());
+
+    auto tmp = dynamic_cast<MainWindow*>(ui->tabWidget->widget(ui->tabWidget->currentIndex()));
+    tmp->getSplitter()->restoreState(defaultState);
+    splitterState = defaultState;
+    tmp->getSplitter()->setSizes({1,1});
+
 }
 
 void AppWindow::on_confirmTriggered(MainWindow *widget)

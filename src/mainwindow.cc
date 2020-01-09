@@ -316,7 +316,7 @@ void MainWindow::applyCompanion(Network::CompanionData data)
     {
         QString meta = data.toMetaString();
         meta.prepend("\n");
-        meta.append("Powered by CP Editor (https://github.com/coder3101/cp-editor2)");
+        meta.append("Powered by CP Editor (https://github.com/coder3101/cp-editor)");
 
         if (language == "Python")
             meta.replace('\n', "\n# ");
@@ -367,21 +367,6 @@ void MainWindow::setSettingsData(Settings::SettingsData data, bool shouldPerform
     else
         editor->setWordWrapMode(QTextOption::NoWrap);
 
-    if (data.viewMode == Settings::ViewMode::FULL_EDITOR)
-    {
-        ui->splitter->restoreState("");
-        ui->splitter->setSizes({1, 0});
-    }
-    else if (data.viewMode == Settings::ViewMode::FULL_IO)
-    {
-        ui->splitter->restoreState("");
-        ui->splitter->setSizes({0, 1});
-    }
-    else
-    {
-        ui->splitter->restoreState("");
-        ui->splitter->setSizes({1, 1});
-    }
 
     compiler->updateCommandCpp(data.compileCommandCpp);
     compiler->updateCommandJava(data.compileCommandJava);
@@ -416,7 +401,9 @@ void MainWindow::setSettingsData(Settings::SettingsData data, bool shouldPerform
         setLanguage(data.defaultLanguage);
     }
     if(shouldPerformDigonistic)
+    {
         performCoreDiagonistics();
+    }
 }
 void MainWindow::save(bool force)
 {
@@ -522,6 +509,7 @@ void MainWindow::setLanguage(QString lang)
     }
     performCoreDiagonistics();
     isLanguageSet = true;
+
 }
 
 MessageLogger *MainWindow::getLogger()

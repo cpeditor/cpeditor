@@ -91,7 +91,7 @@ class AppWindow : public QMainWindow
     Settings::SettingManager *settingManager = nullptr;
     Telemetry::UpdateNotifier *updater = nullptr;
     PreferenceWindow *preferenceWindow = nullptr;
-    QByteArray splitterState;
+    QByteArray splitterState, defaultState;
     Network::CompanionServer *server;
 
     void setConnections();
