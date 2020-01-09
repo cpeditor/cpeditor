@@ -225,8 +225,10 @@ void AppWindow::openFile(QString fileName)
     fsp->setSettingsData(settingManager->toData(), true);
     connect(fsp, SIGNAL(confirmTriggered(MainWindow *)), this, SLOT(on_confirmTriggered(MainWindow *)));
     connect(fsp, SIGNAL(editorTextChanged(bool, MainWindow *)), this, SLOT(onEditorTextChanged(bool, MainWindow *)));
-    QString lang = "Cpp";
-    if (fileName.endsWith(".java"))
+    QString lang = settingManager->getDefaultLang();
+    if (fileName.endsWith(".cpp") || fileName.endsWith(".cc") || fileName.endsWith(".c") || fileName.endsWith(".cxx"))
+        lang = "Cpp";
+    else if (fileName.endsWith(".java"))
         lang = "Java";
     else if (fileName.endsWith(".py") || fileName.endsWith(".py3"))
         lang = "Python";
