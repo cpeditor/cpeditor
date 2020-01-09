@@ -253,8 +253,8 @@ void AppWindow::on_actionAbout_triggered()
                        "so that you (a great programmer) can focus fully on your algorithm "
                        "designs. </p>"
                        "<p>The code repository: <a "
-                       "href=\"https://github.com/coder3101/cp-editor2\">"
-                       "https://github.com/coder3101/cp-editor2</a></p>");
+                       "href=\"https://github.com/coder3101/cp-editor\">"
+                       "https://github.com/coder3101/cp-editor</a></p>");
 }
 
 /******************* FILES SECTION *************************/

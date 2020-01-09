@@ -40,7 +40,7 @@ void UpdateNotifier::setBeta(bool value)
 void UpdateNotifier::checkUpdate(bool force)
 {
     this->force = force;
-    request.setUrl(QUrl("https://api.github.com/repos/coder3101/cp-editor2/releases"));
+    request.setUrl(QUrl("https://api.github.com/repos/coder3101/cp-editor/releases"));
     manager->get(request);
 }
 
