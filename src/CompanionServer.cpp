@@ -19,6 +19,10 @@ CompanionServer::CompanionServer(int port)
 void CompanionServer::setMessageLogger(MessageLogger *log)
 {
     this->log = log;
+}
+
+void CompanionServer::checkServer()
+{
     if (log != nullptr)
     {
 
@@ -29,8 +33,8 @@ void CompanionServer::setMessageLogger(MessageLogger *log)
         }
         else
         {
-            log->info("Companion", "Listening for request on " + server->serverAddress().toString().toStdString() +
-                                       std::to_string(server->serverPort()));
+            log->info("Companion", "Listening for requests on " + server->serverAddress().toString().toStdString() + ":" +
+                      std::to_string(server->serverPort()));
         }
     }
 }

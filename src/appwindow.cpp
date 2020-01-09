@@ -377,7 +377,11 @@ void AppWindow::onTabChanged(int index)
     activeLogger = tmp->getLogger();
     server->setMessageLogger(activeLogger);
 
-    tmp->setSettingsData(settingManager->toData());
+    if(settingManager->isCompetitiveCompanionActive())
+        server->checkServer();
+
+    tmp->setSettingsData(settingManager->toData(), diagonistics);
+    diagonistics = false;
     tmp->maybeLoadTemplate();
 
     if (!splitterState.isEmpty())
@@ -441,14 +445,14 @@ void AppWindow::onSettingsApplied()
     if (settingManager->isCompetitiveCompanionActive())
         companionEditorConnections =
             connect(server, &Network::CompanionServer::onRequestArrived, this, &AppWindow::onIncomingCompanionRequest);
-
+    diagonistics = true;
     onTabChanged(ui->tabWidget->currentIndex());
 }
 
 void AppWindow::onIncomingCompanionRequest(Network::CompanionData data)
 {
     auto newTab = new MainWindow(ui->tabWidget->currentIndex(), "");
-    newTab->setSettingsData(settingManager->toData());
+    newTab->setSettingsData(settingManager->toData(), true);
     newTab->maybeLoadTemplate();
     newTab->applyCompanion(data);
     ui->tabWidget->addTab(newTab, newTab->fileName());

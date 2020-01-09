@@ -68,7 +68,7 @@ class MainWindow : public QMainWindow
     void maybeLoadTemplate();
 
     void setLanguage(QString lang);
-    void setSettingsData(Settings::SettingsData data);
+    void setSettingsData(Settings::SettingsData data, bool);
 
     MessageLogger *getLogger();
     QFile *getOpenFile();

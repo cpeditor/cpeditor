@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.5)
 
-project(CPEditor LANGUAGES CXX VERSION 4.0.3)
+project(CPEditor LANGUAGES CXX VERSION 4.1.0)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
@@ -63,6 +63,8 @@ add_executable(CPEditor
     ui/preferencewindow.ui
     include/EditorTheme.hpp
     src/editortheme.cpp
+    include/cftools.hpp
+    src/cftools.cpp
 
     ${CMAKE_BINARY_DIR}/generated/version.hpp
 

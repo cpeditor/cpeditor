@@ -340,7 +340,7 @@ void MainWindow::applyCompanion(Network::CompanionData data)
     }
     onTextChangedTriggered();
 }
-void MainWindow::setSettingsData(Settings::SettingsData data)
+void MainWindow::setSettingsData(Settings::SettingsData data, bool shouldPerformDigonistic)
 {
     this->data = data;
     formatter->updateCommand(data.formatCommand);
@@ -369,17 +369,17 @@ void MainWindow::setSettingsData(Settings::SettingsData data)
 
     if(data.viewMode == Settings::ViewMode::FULL_EDITOR)
     {
-        ui->splitter->restoreState("");
+        ui->splitter->restoreGeometry("");
         ui->splitter->setSizes({1,0});
     }
     else if(data.viewMode == Settings::ViewMode::FULL_IO)
     {
-        ui->splitter->restoreState("");
+        ui->splitter->restoreGeometry("");
         ui->splitter->setSizes({0,1});
     }
     else
     {
-        ui->splitter->restoreState("");
+        ui->splitter->restoreGeometry("");
         ui->splitter->setSizes({1,1});
     }
 
@@ -414,9 +414,8 @@ void MainWindow::setSettingsData(Settings::SettingsData data)
     if (!isLanguageSet)
     {
         setLanguage(data.defaultLanguage);
-        isLanguageSet = true;
     }
-    else
+    if(shouldPerformDigonistic)
         performCoreDiagonistics();
 }
 void MainWindow::save(bool force)

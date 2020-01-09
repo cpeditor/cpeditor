@@ -95,6 +95,7 @@ private:
     void allocate();
     void applySettings();
     void saveSettings();
+    bool diagonistics;
     QVector<QShortcut *> hotkeyObjects;
     void maybeSetHotkeys();
 };
