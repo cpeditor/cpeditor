@@ -191,6 +191,11 @@ class SettingManager
     QKeySequence getHotkeyCompile();
     QKeySequence getHotkeyViewModeToggler();
 
+    QString getSnippet(QString lang, QString name);
+    void setSnippet(QString lang, QString name, QString content);
+    void removeSnippet(QString lang, QString name);
+    QStringList getSnippetsNames(QString lang);
+
   private:
     QString mSettingsFile;
     QSettings *mSettings;

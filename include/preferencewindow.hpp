@@ -2,6 +2,7 @@
 #define PREFERENCEWINDOW_HPP
 
 #include "SettingsManager.hpp"
+#include <QCodeEditor>
 #include <QListWidget>
 #include <QMainWindow>
 
@@ -41,15 +42,32 @@ class PreferenceWindow : public QMainWindow
 
     void on_java_template_clicked();
 
+    void on_save_snippet_clicked();
+
+    void on_new_snippet_clicked();
+
+    void on_delete_snippet_clicked();
+
+    void on_rename_snippet_clicked();
+
+    void on_snippets_lang_changed(const QString &text);
+
+    void on_current_snippet_changed(const QString &text);
+
+    void applySettingsToEditor();
+
   private:
     Ui::PreferenceWindow *ui;
     QFont currentFont;
     QString cppTemplatePath, pythonTemplatePath, javaTemplatePath;
     Settings::SettingManager *manager;
+    QCodeEditor *editor = nullptr; // for snippets
 
     void extractSettingsFromUi();
     void applySettingsToui();
     void setConstraints();
+    void updateSnippets();
+    void switchToSnippet(const QString &text);
 };
 
 #endif // PREFERENCEWINDOW_HPP

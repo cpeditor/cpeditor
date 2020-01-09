@@ -1,10 +1,13 @@
 #include "include/preferencewindow.hpp"
 #include "../ui/ui_preferencewindow.h"
 
+#include <EditorTheme.hpp>
 #include <QAction>
 #include <QDesktopWidget>
 #include <QFileDialog>
 #include <QFontDialog>
+#include <QInputDialog>
+#include <QMessageBox>
 
 PreferenceWindow::PreferenceWindow(Settings::SettingManager *manager, QWidget *parent)
     : QMainWindow(parent), ui(new Ui::PreferenceWindow)
@@ -12,9 +15,19 @@ PreferenceWindow::PreferenceWindow(Settings::SettingManager *manager, QWidget *p
     ui->setupUi(this);
     this->manager = manager;
     setWindowTitle("Preferences");
+
+    editor = new QCodeEditor();
+    ui->verticalLayout_3->addWidget(editor);
+
+    connect(ui->snippets, SIGNAL(currentTextChanged(const QString &)), this,
+            SLOT(on_current_snippet_changed(const QString &)));
+    connect(ui->snippets_lang, SIGNAL(currentTextChanged(const QString &)), this,
+            SLOT(on_snippets_lang_changed(const QString &)));
+
     applySettingsToui();
     resize(QDesktopWidget().availableGeometry(this).size() * 0.35);
     setConstraints();
+    applySettingsToEditor();
 }
 
 void PreferenceWindow::setConstraints()
@@ -24,6 +37,22 @@ void PreferenceWindow::setConstraints()
 
     ui->companion_port->setMinimum(10000);
     ui->companion_port->setMaximum(65535);
+}
+
+void PreferenceWindow::updateSnippets()
+{
+    ui->snippets->clear();
+    auto lang = ui->snippets_lang->currentText();
+    auto names = manager->getSnippetsNames(lang);
+    ui->snippets->addItems(names);
+}
+
+void PreferenceWindow::switchToSnippet(const QString &text)
+{
+    updateSnippets();
+    int index = ui->snippets->findText(text);
+    if (index != -1)
+        ui->snippets->setCurrentIndex(index);
 }
 
 void PreferenceWindow::applySettingsToui()
@@ -80,6 +109,12 @@ void PreferenceWindow::applySettingsToui()
     ui->compileRun_hotkey->setKeySequence(manager->getHotkeyCompileRun());
     ui->kill_hotkey->setKeySequence(manager->getHotkeyKill());
     ui->toggle_hotkey->setKeySequence(manager->getHotkeyViewModeToggler());
+
+    int lang_index = ui->snippets_lang->findText(manager->getDefaultLang());
+    if (lang_index != -1)
+        ui->snippets_lang->setCurrentIndex(lang_index);
+
+    updateSnippets();
 }
 
 void PreferenceWindow::extractSettingsFromUi()
@@ -255,4 +290,124 @@ void PreferenceWindow::on_java_template_clicked()
         return;
     javaTemplatePath = filename;
     ui->java_template->setText("..." + javaTemplatePath.right(30));
+}
+
+void PreferenceWindow::on_save_snippet_clicked()
+{
+    if (ui->snippets->currentIndex() != -1)
+    {
+        auto name = ui->snippets->currentText();
+        auto lang = ui->snippets_lang->currentText();
+        manager->setSnippet(lang, name, editor->toPlainText());
+    }
+}
+
+void PreferenceWindow::on_new_snippet_clicked()
+{
+    auto name = QInputDialog::getText(this, tr("New name"), tr("Name:"));
+    if (name.isEmpty())
+        return;
+    int index = ui->snippets->findText(name);
+    if (index != -1)
+    {
+        ui->snippets->setCurrentIndex(index);
+    }
+    else
+    {
+        auto lang = ui->snippets_lang->currentText();
+        manager->setSnippet(lang, name, "");
+        switchToSnippet(name);
+    }
+}
+
+void PreferenceWindow::on_delete_snippet_clicked()
+{
+    int index = ui->snippets->currentIndex();
+    if (index != -1)
+    {
+        auto name = ui->snippets->currentText();
+        auto res = QMessageBox::question(this, "Delete?", "Do you want to delete the snippet " + name + "?");
+        if (res == QMessageBox::Yes)
+        {
+            auto lang = ui->snippets_lang->currentText();
+            ui->snippets->removeItem(index);
+            manager->removeSnippet(lang, name);
+        }
+    }
+}
+
+void PreferenceWindow::on_rename_snippet_clicked()
+{
+    if (ui->snippets->currentIndex() != -1)
+    {
+        auto name = QInputDialog::getText(this, tr("New name"), tr("Name:"));
+        if (name.isEmpty())
+            return;
+        int index = ui->snippets->findText(name);
+        if (index != -1)
+        {
+            ui->snippets->setCurrentIndex(index);
+        }
+        else
+        {
+            auto content = editor->toPlainText();
+            auto currentName = ui->snippets->currentText();
+            auto lang = ui->snippets_lang->currentText();
+            manager->removeSnippet(lang, currentName);
+            manager->setSnippet(lang, name, content);
+            switchToSnippet(name);
+        }
+    }
+}
+
+void PreferenceWindow::on_snippets_lang_changed(const QString &text)
+{
+    updateSnippets();
+}
+
+void PreferenceWindow::on_current_snippet_changed(const QString &text)
+{
+    auto lang = ui->snippets_lang->currentText();
+    auto content = manager->getSnippet(lang, text);
+    editor->setPlainText(content);
+}
+
+void PreferenceWindow::applySettingsToEditor()
+{
+    auto data = manager->toData();
+
+    editor->setTabReplace(data.isTabsBeingUsed);
+    editor->setTabReplaceSize(data.tabStop);
+    editor->setAutoIndentation(data.isAutoIndent);
+    editor->setAutoParentheses(data.isAutoParenthesis);
+
+    if (!data.font.isEmpty())
+    {
+        QFont font;
+        font.fromString(data.font);
+        editor->setFont(font);
+    }
+
+    const int tabStop = data.tabStop;
+    QFontMetrics metric(editor->font());
+    editor->setTabReplaceSize(tabStop);
+    editor->setTabStopDistance(tabStop * metric.horizontalAdvance("9"));
+
+    if (data.isWrapText)
+        editor->setWordWrapMode(QTextOption::WordWrap);
+    else
+        editor->setWordWrapMode(QTextOption::NoWrap);
+
+    if (data.editorTheme == "Light")
+        editor->setSyntaxStyle(Themes::EditorTheme::getLightTheme());
+    else if (data.editorTheme == "Drakula")
+        editor->setSyntaxStyle(Themes::EditorTheme::getDrakulaTheme());
+    else if (data.editorTheme == "Monkai")
+        editor->setSyntaxStyle(Themes::EditorTheme::getMonkaiTheme());
+    else if (data.editorTheme == "Solarised")
+        editor->setSyntaxStyle(Themes::EditorTheme::getSolarisedTheme());
+    else if (data.editorTheme == "Solarised Dark")
+        editor->setSyntaxStyle(Themes::EditorTheme::getSolarisedDarkTheme());
+    else
+        editor->setSyntaxStyle(Themes::EditorTheme::getLightTheme());
 }
