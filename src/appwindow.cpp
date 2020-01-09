@@ -70,31 +70,6 @@ void AppWindow::dragEnterEvent(QDragEnterEvent *event)
     }
 }
 
-void AppWindow::openFile(QString fileName)
-{
-    for (int t = 0; t < ui->tabWidget->count(); t++)
-    {
-        auto tmp = dynamic_cast<MainWindow *>(ui->tabWidget->widget(t));
-        if (fileName == tmp->filePath())
-        {
-            ui->tabWidget->setCurrentIndex(t);
-            return;
-        }
-    }
-
-    int t = ui->tabWidget->count();
-    auto fsp = new MainWindow(t, fileName);
-    connect(fsp, SIGNAL(closeChangedConfirmTriggered(int)), this, SLOT(on_closeChangedConfirmTriggered(int)));
-    QString lang = "Cpp";
-    if (fileName.endsWith(".java"))
-        lang = "Java";
-    else if (fileName.endsWith(".py") || fileName.endsWith(".py3"))
-        lang = "Python";
-    ui->tabWidget->addTab(fsp, fsp->fileName());
-    fsp->setLanguage(lang);
-    ui->tabWidget->setCurrentIndex(t);
-}
-
 void AppWindow::dropEvent(QDropEvent *event)
 {
     auto files = event->mimeData()->urls();
@@ -233,6 +208,31 @@ void AppWindow::saveSettings()
     if (!this->isMaximized())
         settingManager->setGeometry(this->geometry());
     settingManager->setMaximizedWindow(this->isMaximized());
+}
+
+void AppWindow::openFile(QString fileName)
+{
+    for (int t = 0; t < ui->tabWidget->count(); t++)
+    {
+        auto tmp = dynamic_cast<MainWindow *>(ui->tabWidget->widget(t));
+        if (fileName == tmp->filePath())
+        {
+            ui->tabWidget->setCurrentIndex(t);
+            return;
+        }
+    }
+
+    int t = ui->tabWidget->count();
+    auto fsp = new MainWindow(t, fileName);
+    connect(fsp, SIGNAL(closeChangedConfirmTriggered(int)), this, SLOT(on_closeChangedConfirmTriggered(int)));
+    QString lang = "Cpp";
+    if (fileName.endsWith(".java"))
+        lang = "Java";
+    else if (fileName.endsWith(".py") || fileName.endsWith(".py3"))
+        lang = "Python";
+    ui->tabWidget->addTab(fsp, fsp->fileName());
+    fsp->setLanguage(lang);
+    ui->tabWidget->setCurrentIndex(t);
 }
 
 /***************** ABOUT SECTION ***************************/

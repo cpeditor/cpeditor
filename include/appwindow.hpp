@@ -25,7 +25,6 @@ class AppWindow : public QMainWindow
     void closeEvent(QCloseEvent *event) override;
     void dropEvent(QDropEvent *event) override;
     void dragEnterEvent(QDragEnterEvent *event) override;
-    void openFile(QString fileName);
 
   private slots:
     void on_actionSupport_me_triggered();
@@ -102,6 +101,7 @@ class AppWindow : public QMainWindow
     void maybeSetHotkeys();
     void updateIndexes();
     void closeAll();
+    void openFile(QString fileName);
 };
 
 #endif // APPWINDOW_HPP
