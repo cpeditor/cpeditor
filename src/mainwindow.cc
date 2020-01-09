@@ -112,6 +112,7 @@ void MainWindow::setEditor()
         expected[i] = new QString;
         input[i]->setWordWrapMode(QTextOption::NoWrap);
         output[i]->setWordWrapMode(QTextOption::NoWrap);
+        input[i]->setAcceptDrops(false);
     }
 
     QObject::connect(editor, SIGNAL(textChanged()), this, SLOT(onTextChangedTriggered()));
@@ -278,7 +279,29 @@ void MainWindow::saveTests()
 
 void MainWindow::setCFToolsUI()
 {
-    ui->horizontalLayout_9->addWidget(new QPushButton("Submit on Codeforces", this));
+    if (submitToCodeforces == nullptr)
+    {
+        submitToCodeforces = new QPushButton("Submit Solution", this);
+        cftools = new Network::CFTools(windowIndex);
+        ui->horizontalLayout_9->addWidget(submitToCodeforces);
+        connect(submitToCodeforces, &QPushButton::clicked, this, [this] {
+            auto response = QMessageBox::warning(
+                this, "Sure to submit",
+                "Are you sure you want to submit this solution to codeforces?\nContest URL: " + companionData.url +
+                    "\n Language : " + language,
+                QMessageBox::Yes | QMessageBox::No);
+
+            if (response == QMessageBox::Yes)
+                cftools->submit(companionData.url, language);
+        });
+
+    }
+    if (!Network::CFTools::check())
+    {
+        submitToCodeforces->setEnabled(false);
+        log.error("CFTools",
+                  "You will not be able to submit code to codeforces because CFTools is not installed or is not on SYSTEM PATH");
+    }
 }
 
 QString MainWindow::fileName() const

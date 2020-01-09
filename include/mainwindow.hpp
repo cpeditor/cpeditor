@@ -26,6 +26,7 @@
 #include <QFile>
 #include <QLabel>
 #include <QMainWindow>
+#include <QPushButton>
 #include <QShortcut>
 #include <QSplitter>
 #include <Runner.hpp>
@@ -121,6 +122,8 @@ class MainWindow : public QMainWindow
     QVector<QLabel *> verdict = QVector<QLabel *>(3, nullptr);
     QVector<QString *> expected = QVector<QString *>(3, nullptr);
     Network::CompanionData companionData;
+    QPushButton *submitToCodeforces = nullptr;
+    Network::CFTools *cftools = nullptr;
 
     void setEditor();
     void setupCore();
