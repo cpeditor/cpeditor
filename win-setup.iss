@@ -4,7 +4,7 @@
 #define MyAppName "CP Editor"
 #define MyAppVersion "4.1.0"
 #define MyAppPublisher "Ashar Khan <coder3101>"
-#define MyAppURL "https://github.com/coder3101/cp-editor2"
+#define MyAppURL "https://github.com/coder3101/cp-editor"
 #define MyAppExeName "CPEditor.exe"
 
 [Setup]

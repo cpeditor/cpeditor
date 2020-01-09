@@ -1,6 +1,6 @@
 # CP Editor
 
-[![Build Status](https://travis-ci.org/coder3101/cp-editor2.svg?branch=master)](https://travis-ci.org/coder3101/cp-editor2)
+[![Build Status](https://travis-ci.org/coder3101/cp-editor.svg?branch=master)](https://travis-ci.org/coder3101/cp-editor)
 
 <img src=https://i.imgur.com/31n9t8i.png height="80" width="80">
 
@@ -10,7 +10,7 @@ CP Editor is a Native Qt based code editor writter in C++. It make you only focu
 
 ### Installation
 
-Head over to the [release page](https://github.com/coder3101/cp-editor2/releases) and download the binary/installer depending upon your OS.
+Head over to the [release page](https://github.com/coder3101/cp-editor/releases) and download the binary/installer depending upon your OS.
 - Windows users can find an `Installer` install it and start to code.
 - Linux users can find an `AppImage` install or directly run it. 
   
@@ -74,4 +74,4 @@ Contributors and contributions are welcomed! However to maintain the quality of 
 License
 ----
 
-[GNU General Public License Version 3.0](https://github.com/coder3101/cp-editor2/blob/master/LICENSE)
+[GNU General Public License Version 3.0](https://github.com/coder3101/cp-editor/blob/master/LICENSE)
