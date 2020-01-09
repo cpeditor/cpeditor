@@ -103,7 +103,7 @@ class AppWindow : public QMainWindow
     void maybeSetHotkeys();
     void closeAll();
     bool closeTab(int index);
-    void openFile(QString fileName);
+    void openTab(QString fileName, bool isCompanionTab = false);
 };
 
 #endif // APPWINDOW_HPP

@@ -14,9 +14,9 @@ AppWindow::AppWindow(QStringList args, QWidget *parent) : AppWindow(parent)
     ui->tabWidget->clear();
     if (args.size() > 1)
         for (int i = 1; i < args.size(); ++i)
-            openFile(args[i]);
+            openTab(args[i]);
     else
-        openFile("");
+        openTab("");
 }
 
 AppWindow::AppWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::AppWindow)
@@ -76,7 +76,7 @@ void AppWindow::dropEvent(QDropEvent *event)
     for (auto e : files)
     {
         auto fileName = e.toLocalFile();
-        openFile(fileName);
+        openTab(fileName);
     }
 }
 
@@ -205,34 +205,64 @@ void AppWindow::saveSettings()
     settingManager->setMaximizedWindow(this->isMaximized());
 }
 
-void AppWindow::openFile(QString fileName)
+void AppWindow::openTab(QString fileName, bool iscompanionOpenedTab)
 {
-    if (!fileName.isEmpty())
+    if (!iscompanionOpenedTab)
+    {
+        if (!fileName.isEmpty())
+        {
+            for (int t = 0; t < ui->tabWidget->count(); t++)
+            {
+                auto tmp = dynamic_cast<MainWindow *>(ui->tabWidget->widget(t));
+                if (fileName == tmp->filePath())
+                {
+                    ui->tabWidget->setCurrentIndex(t);
+                    return;
+                }
+            }
+        }
+
+        int t = ui->tabWidget->count();
+        auto fsp = new MainWindow(t, fileName);
+        fsp->setSettingsData(settingManager->toData(), true);
+        connect(fsp, SIGNAL(confirmTriggered(MainWindow *)), this, SLOT(on_confirmTriggered(MainWindow *)));
+        connect(fsp, SIGNAL(editorTextChanged(bool, MainWindow *)), this,
+                SLOT(onEditorTextChanged(bool, MainWindow *)));
+        QString lang = settingManager->getDefaultLang();
+
+        if (fileName.endsWith(".java"))
+            lang = "Java";
+        else if (fileName.endsWith(".py") || fileName.endsWith(".py3"))
+            lang = "Python";
+        else if (fileName.endsWith(".cpp") || fileName.endsWith(".cxx") || fileName.endsWith(".c") ||
+                 fileName.endsWith(".cc") || fileName.endsWith(".hpp") || fileName.endsWith(".h"))
+            lang = "Cpp";
+
+        ui->tabWidget->addTab(fsp, fsp->fileName());
+        fsp->setLanguage(lang);
+        ui->tabWidget->setCurrentIndex(t);
+    }
+    else
     {
         for (int t = 0; t < ui->tabWidget->count(); t++)
         {
             auto tmp = dynamic_cast<MainWindow *>(ui->tabWidget->widget(t));
-            if (fileName == tmp->filePath())
+            if (fileName == tmp->problemURL())
             {
                 ui->tabWidget->setCurrentIndex(t);
                 return;
             }
         }
-    }
 
-    int t = ui->tabWidget->count();
-    auto fsp = new MainWindow(t, fileName);
-    fsp->setSettingsData(settingManager->toData(), true);
-    connect(fsp, SIGNAL(confirmTriggered(MainWindow *)), this, SLOT(on_confirmTriggered(MainWindow *)));
-    connect(fsp, SIGNAL(editorTextChanged(bool, MainWindow *)), this, SLOT(onEditorTextChanged(bool, MainWindow *)));
-    QString lang = "Cpp";
-    if (fileName.endsWith(".java"))
-        lang = "Java";
-    else if (fileName.endsWith(".py") || fileName.endsWith(".py3"))
-        lang = "Python";
-    ui->tabWidget->addTab(fsp, fsp->fileName());
-    fsp->setLanguage(lang);
-    ui->tabWidget->setCurrentIndex(t);
+        int t = ui->tabWidget->count();
+        auto fsp = new MainWindow(t, "");
+        fsp->setSettingsData(settingManager->toData(), true);
+        connect(fsp, SIGNAL(confirmTriggered(MainWindow *)), this, SLOT(on_confirmTriggered(MainWindow *)));
+        connect(fsp, SIGNAL(editorTextChanged(bool, MainWindow *)), this,
+                SLOT(onEditorTextChanged(bool, MainWindow *)));
+        ui->tabWidget->addTab(fsp, fsp->fileName());
+        ui->tabWidget->setCurrentIndex(t);
+    }
 }
 
 /***************** ABOUT SECTION ***************************/
@@ -282,7 +312,7 @@ void AppWindow::on_actionQuit_triggered()
 
 void AppWindow::on_actionNew_Tab_triggered()
 {
-    openFile("");
+    openTab("");
 }
 
 void AppWindow::on_actionOpen_triggered()
@@ -292,7 +322,7 @@ void AppWindow::on_actionOpen_triggered()
     if (fileName.isEmpty())
         return;
 
-    openFile(fileName);
+    openTab(fileName);
 }
 
 void AppWindow::on_actionSave_triggered()
@@ -367,7 +397,7 @@ void AppWindow::onTabChanged(int index)
     activeLogger = tmp->getLogger();
     server->setMessageLogger(activeLogger);
 
-    if (settingManager->isCompetitiveCompanionActive())
+    if (settingManager->isCompetitiveCompanionActive() && diagonistics)
         server->checkServer();
 
     tmp->setSettingsData(settingManager->toData(), diagonistics);
@@ -434,12 +464,8 @@ void AppWindow::onSettingsApplied()
 
 void AppWindow::onIncomingCompanionRequest(Network::CompanionData data)
 {
-    auto current = ui->tabWidget->currentIndex();
-    if (current == -1)
-    {
-        openFile("");
-        current = 0;
-    }
+    openTab(data.url, true);
+    int current = ui->tabWidget->currentIndex();
     auto tmp = dynamic_cast<MainWindow *>(ui->tabWidget->widget(current));
     tmp->applyCompanion(data);
 }

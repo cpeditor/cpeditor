@@ -31,6 +31,7 @@
 #include <Runner.hpp>
 #include <SettingsManager.hpp>
 #include <UpdateNotifier.hpp>
+#include <cftools.hpp>
 #include <generated/version.hpp>
 
 QT_BEGIN_NAMESPACE
@@ -50,6 +51,7 @@ class MainWindow : public QMainWindow
 
     QString fileName() const;
     QString filePath() const;
+    QString problemURL() const;
     void save(bool force);
     void saveAs();
 
@@ -118,12 +120,14 @@ class MainWindow : public QMainWindow
     QVector<QPlainTextEdit *> output = QVector<QPlainTextEdit *>(3, nullptr);
     QVector<QLabel *> verdict = QVector<QLabel *>(3, nullptr);
     QVector<QString *> expected = QVector<QString *>(3, nullptr);
+    Network::CompanionData companionData;
 
     void setEditor();
     void setupCore();
     void clearTests(bool outputOnly = false);
     void loadTests();
     void saveTests();
+    void setCFToolsUI();
     void updateVerdict(Core::Verdict, int);
     bool isTextChanged();
 

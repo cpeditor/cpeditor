@@ -276,6 +276,11 @@ void MainWindow::saveTests()
     }
 }
 
+void MainWindow::setCFToolsUI()
+{
+    ui->horizontalLayout_9->addWidget(new QPushButton("Submit on Codeforces", this));
+}
+
 QString MainWindow::fileName() const
 {
     return openFile == nullptr || !openFile->isOpen() ? "untitled" : QFileInfo(*openFile).fileName();
@@ -284,6 +289,10 @@ QString MainWindow::fileName() const
 QString MainWindow::filePath() const
 {
     return openFile == nullptr || !openFile->isOpen() ? "" : openFile->fileName();
+}
+QString MainWindow::problemURL() const
+{
+    return companionData.url;
 }
 
 void MainWindow::updateVerdict(Core::Verdict _verdict, int id)
@@ -338,6 +347,9 @@ void MainWindow::applyCompanion(Network::CompanionData data)
         input[i]->setPlainText(data.testcases[i].input);
         expected[i]->operator=(data.testcases[i].output);
     }
+    companionData = data;
+    if (data.url.contains("codeforces.com"))
+        setCFToolsUI();
     onTextChangedTriggered();
 }
 void MainWindow::setSettingsData(Settings::SettingsData data, bool shouldPerformDigonistic)

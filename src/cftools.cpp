@@ -17,7 +17,14 @@ void CFTools::submit()
 
 bool CFTools::check()
 {
-    return true;
+    QProcess program;
+    QString commandToStart = "cf";
+    QStringList environment = program.systemEnvironment();
+    program.start(commandToStart + " --version");
+    bool started = program.waitForStarted();
+    if (started) // 10 Second timeout
+        program.kill();
+    return started;
 }
 
 } // namespace Network
