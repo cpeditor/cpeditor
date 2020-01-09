@@ -23,6 +23,7 @@ AppWindow::AppWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::AppWindo
 {
     ui->setupUi(this);
     ui->tabWidget->clear();
+    ui->tabWidget->setMovable(true);
     setAcceptDrops(true);
 
     allocate();
