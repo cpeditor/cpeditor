@@ -47,13 +47,15 @@ class AppWindow : public QMainWindow
 
     void on_actionSave_triggered();
 
-    void on_actionSave_as_triggered();
+    void on_actionSave_As_triggered();
+
+    void on_actionSave_All_triggered();
 
     void on_actionCheck_for_updates_triggered();
 
     void onTabCloseRequested(int);
     void onTabChanged(int);
-    void onEditorTextChanged(bool);
+    void onEditorTextChanged(bool, int);
     void onSaveTimerElapsed();
     void onSettingsApplied();
     void onSplitterMoved(int, int);
@@ -78,13 +80,12 @@ class AppWindow : public QMainWindow
 
     void on_actionSplit_Mode_triggered();
 
-    void on_closeChangedConfirmTriggered(int index);
+    void on_confirmTriggered(int index);
 
   private:
     Ui::AppWindow *ui;
     MessageLogger *activeLogger = nullptr;
     QTimer *timer = nullptr;
-    QMetaObject::Connection activeTextChangeConnections;
     QMetaObject::Connection activeSplitterMoveConnections;
     QMetaObject::Connection companionEditorConnections;
     Settings::SettingManager *settingManager = nullptr;

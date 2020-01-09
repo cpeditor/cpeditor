@@ -449,7 +449,7 @@ void MainWindow::saveAs()
 
 void MainWindow::onTextChangedTriggered()
 {
-    emit editorTextChanged(isTextChanged());
+    emit editorTextChanged(isTextChanged(), windowIndex);
 }
 
 void MainWindow::on_compile_clicked()
@@ -775,6 +775,7 @@ bool MainWindow::saveFile(bool force, std::string head)
     {
         if (force)
         {
+            emit confirmTriggered(windowIndex);
             auto filename = QFileDialog::getSaveFileName(
                 this, tr("Save File"), "", "Source Files (*.cpp *.hpp *.h *.cc *.cxx *.c *.py *.py3 *.java)");
             if (filename.isEmpty())
@@ -842,13 +843,13 @@ bool MainWindow::isTextChanged()
     return true;
 }
 
-bool MainWindow::closeChangedConfirm()
+bool MainWindow::closeConfirm()
 {
     bool isChanged = isTextChanged();
     bool confirmed = !isChanged;
     if (!confirmed)
     {
-        closeChangedConfirmTriggered(windowIndex);
+        emit confirmTriggered(windowIndex);
         auto res =
             QMessageBox::warning(this, "Save?", fileName() + " has been modified.\nDo you want to save your changes?",
                                  QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel, QMessageBox::Cancel);

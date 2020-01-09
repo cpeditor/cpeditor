@@ -11,12 +11,12 @@
 
 AppWindow::AppWindow(QStringList args, QWidget *parent) : AppWindow(parent)
 {
+    ui->tabWidget->clear();
     if (args.size() > 1)
-    {
-        ui->tabWidget->clear();
         for (int i = 1; i < args.size(); ++i)
             openFile(args[i]);
-    }
+    else
+        openFile("");
 }
 
 AppWindow::AppWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::AppWindow)
@@ -29,7 +29,6 @@ AppWindow::AppWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::AppWindo
     setConnections();
 
     auto windowTemp = new MainWindow(0, "");
-    connect(windowTemp, SIGNAL(closeChangedConfirmTriggered(int)), this, SLOT(on_closeChangedConfirmTriggered(int)));
     ui->tabWidget->addTab(windowTemp, windowTemp->fileName());
 
     if (settingManager->isCheckUpdateOnStartup())
@@ -194,7 +193,7 @@ void AppWindow::closeAll()
     for (int t = 0; t < ui->tabWidget->count(); t++)
     {
         auto tmp = dynamic_cast<MainWindow *>(ui->tabWidget->widget(t));
-        if (tmp->closeChangedConfirm())
+        if (tmp->closeConfirm())
         {
             ui->tabWidget->removeTab(t);
             t--;
@@ -227,7 +226,8 @@ void AppWindow::openFile(QString fileName)
 
     int t = ui->tabWidget->count();
     auto fsp = new MainWindow(t, fileName);
-    connect(fsp, SIGNAL(closeChangedConfirmTriggered(int)), this, SLOT(on_closeChangedConfirmTriggered(int)));
+    connect(fsp, SIGNAL(confirmTriggered(int)), this, SLOT(on_confirmTriggered(int)));
+    connect(fsp, SIGNAL(editorTextChanged(bool, int)), this, SLOT(onEditorTextChanged(bool, int)));
     QString lang = "Cpp";
     if (fileName.endsWith(".java"))
         lang = "Java";
@@ -303,15 +303,22 @@ void AppWindow::on_actionSave_triggered()
     int currentIdx = ui->tabWidget->currentIndex();
     auto tmp = dynamic_cast<MainWindow *>(ui->tabWidget->widget(currentIdx));
     tmp->save(true);
-    onEditorTextChanged(false);
 }
 
-void AppWindow::on_actionSave_as_triggered()
+void AppWindow::on_actionSave_As_triggered()
 {
     int currentIdx = ui->tabWidget->currentIndex();
     auto tmp = dynamic_cast<MainWindow *>(ui->tabWidget->widget(currentIdx));
     tmp->saveAs();
-    onEditorTextChanged(false);
+}
+
+void AppWindow::on_actionSave_All_triggered()
+{
+    for (int t = 0; t < ui->tabWidget->count(); ++t)
+    {
+        auto tmp = dynamic_cast<MainWindow *>(ui->tabWidget->widget(t));
+        tmp->save(true);
+    }
 }
 
 /************************ PREFERENCES SECTION **********************/
@@ -340,7 +347,7 @@ void AppWindow::onTabCloseRequested(int index)
 {
     // splitterState.clear();
     auto tmp = dynamic_cast<MainWindow *>(ui->tabWidget->widget(index));
-    if (tmp->closeChangedConfirm())
+    if (tmp->closeConfirm())
     {
         ui->tabWidget->removeTab(index);
         updateIndexes();
@@ -357,7 +364,6 @@ void AppWindow::onTabChanged(int index)
         return;
     }
 
-    disconnect(activeTextChangeConnections);
     disconnect(activeSplitterMoveConnections);
 
     auto tmp = dynamic_cast<MainWindow *>(ui->tabWidget->widget(index));
@@ -376,27 +382,17 @@ void AppWindow::onTabChanged(int index)
     if (!splitterState.isEmpty())
         tmp->getSplitter()->restoreState(splitterState);
 
-    activeTextChangeConnections = connect(tmp, SIGNAL(editorTextChanged(bool)), this, SLOT(onEditorTextChanged(bool)));
     activeSplitterMoveConnections =
         connect(tmp->getSplitter(), SIGNAL(splitterMoved(int, int)), this, SLOT(onSplitterMoved(int, int)));
 }
 
-void AppWindow::onEditorTextChanged(bool isUnsaved)
+void AppWindow::onEditorTextChanged(bool isUnsaved, int index)
 {
-    auto current = ui->tabWidget->currentIndex();
+    auto name = dynamic_cast<MainWindow *>(ui->tabWidget->widget(index))->fileName();
     if (isUnsaved)
-    {
-        if (!ui->tabWidget->tabText(current).endsWith("*"))
-            ui->tabWidget->setTabText(current, ui->tabWidget->tabText(current) + "*");
-    }
+        ui->tabWidget->setTabText(index, name + " *");
     else
-    {
-        if (ui->tabWidget->tabText(current).endsWith("*"))
-        {
-            auto name = dynamic_cast<MainWindow *>(ui->tabWidget->widget(current))->fileName();
-            ui->tabWidget->setTabText(current, name);
-        }
-    }
+        ui->tabWidget->setTabText(index, name);
 }
 
 void AppWindow::onSaveTimerElapsed()
@@ -551,7 +547,7 @@ void AppWindow::on_actionSplit_Mode_triggered()
     onTabChanged(ui->tabWidget->currentIndex());
 }
 
-void AppWindow::on_closeChangedConfirmTriggered(int index)
+void AppWindow::on_confirmTriggered(int index)
 {
     ui->tabWidget->setCurrentIndex(index);
 }

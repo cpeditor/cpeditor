@@ -68,7 +68,8 @@
     <addaction name="actionNew_Tab"/>
     <addaction name="actionOpen"/>
     <addaction name="actionSave"/>
-    <addaction name="actionSave_as"/>
+    <addaction name="actionSave_As"/>
+    <addaction name="actionSave_All"/>
     <addaction name="actionClose_All"/>
     <addaction name="actionAutosave"/>
     <addaction name="actionQuit"/>
@@ -136,9 +137,9 @@
     <string>Ctrl+S</string>
    </property>
   </action>
-  <action name="actionSave_as">
+  <action name="actionSave_As">
    <property name="text">
-    <string>Save as</string>
+    <string>Save As</string>
    </property>
    <property name="toolTip">
     <string>Save as new file</string>
@@ -147,6 +148,17 @@
     <string>Ctrl+Shift+S</string>
    </property>
   </action>
+   <action name="actionSave_All">
+     <property name="text">
+       <string>Save All</string>
+     </property>
+     <property name="toolTip">
+       <string>Save all opened files</string>
+     </property>
+     <property name="shortcut">
+       <string>Ctrl+Alt+Shift+S</string>
+     </property>
+   </action>
   <action name="actionAutosave">
    <property name="checkable">
     <bool>true</bool>

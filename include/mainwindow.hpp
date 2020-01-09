@@ -53,7 +53,7 @@ class MainWindow : public QMainWindow
     void save(bool force);
     void saveAs();
 
-    bool closeChangedConfirm();
+    bool closeConfirm();
 
     void killProcesses();
     void detachedExecution();
@@ -97,8 +97,8 @@ class MainWindow : public QMainWindow
     void on_changeLanguageButoon_clicked();
 
   signals:
-    void editorTextChanged(bool isUnsaved);
-    void closeChangedConfirmTriggered(int index);
+    void editorTextChanged(bool isUnsaved, int index);
+    void confirmTriggered(int index);
 
   private:
     Ui::MainWindow *ui;
