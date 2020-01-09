@@ -222,8 +222,8 @@ void AppWindow::openFile(QString fileName)
 
     int t = ui->tabWidget->count();
     auto fsp = new MainWindow(t, fileName);
-    connect(fsp, SIGNAL(confirmTriggered(int)), this, SLOT(on_confirmTriggered(int)));
-    connect(fsp, SIGNAL(editorTextChanged(bool, int)), this, SLOT(onEditorTextChanged(bool, int)));
+    connect(fsp, SIGNAL(confirmTriggered(MainWindow *)), this, SLOT(on_confirmTriggered(MainWindow *)));
+    connect(fsp, SIGNAL(editorTextChanged(bool, MainWindow *)), this, SLOT(onEditorTextChanged(bool, MainWindow *)));
     QString lang = "Cpp";
     if (fileName.endsWith(".java"))
         lang = "Java";
@@ -346,12 +346,6 @@ void AppWindow::onTabCloseRequested(int index)
 
 void AppWindow::onTabChanged(int index)
 {
-    for (int i = 0; i < ui->tabWidget->count(); ++i)
-    {
-        auto tmp = dynamic_cast<MainWindow *>(ui->tabWidget->widget(i));
-        tmp->windowIndex = i;
-    }
-
     if (index == -1)
     {
         activeLogger = nullptr;
@@ -382,8 +376,11 @@ void AppWindow::onTabChanged(int index)
         connect(tmp->getSplitter(), SIGNAL(splitterMoved(int, int)), this, SLOT(onSplitterMoved(int, int)));
 }
 
-void AppWindow::onEditorTextChanged(bool isUnsaved, int index)
+void AppWindow::onEditorTextChanged(bool isUnsaved, MainWindow *widget)
 {
+    int index = ui->tabWidget->indexOf(widget);
+    if (index == -1)
+        return;
     auto name = dynamic_cast<MainWindow *>(ui->tabWidget->widget(index))->fileName();
     if (isUnsaved)
         ui->tabWidget->setTabText(index, name + " *");
@@ -543,7 +540,9 @@ void AppWindow::on_actionSplit_Mode_triggered()
     onTabChanged(ui->tabWidget->currentIndex());
 }
 
-void AppWindow::on_confirmTriggered(int index)
+void AppWindow::on_confirmTriggered(MainWindow *widget)
 {
-    ui->tabWidget->setCurrentIndex(index);
+    int index = ui->tabWidget->indexOf(widget);
+    if (index != -1)
+        ui->tabWidget->setCurrentIndex(index);
 }

@@ -55,7 +55,7 @@ class AppWindow : public QMainWindow
 
     void onTabCloseRequested(int);
     void onTabChanged(int);
-    void onEditorTextChanged(bool, int);
+    void onEditorTextChanged(bool, MainWindow *);
     void onSaveTimerElapsed();
     void onSettingsApplied();
     void onSplitterMoved(int, int);
@@ -80,7 +80,7 @@ class AppWindow : public QMainWindow
 
     void on_actionSplit_Mode_triggered();
 
-    void on_confirmTriggered(int index);
+    void on_confirmTriggered(MainWindow *widget);
 
   private:
     Ui::AppWindow *ui;

@@ -68,7 +68,6 @@ class MainWindow : public QMainWindow
     void setLanguage(QString lang);
     void setSettingsData(Settings::SettingsData data);
 
-    int windowIndex;
     MessageLogger *getLogger();
     QFile *getOpenFile();
     QSplitter *getSplitter();
@@ -97,10 +96,11 @@ class MainWindow : public QMainWindow
     void on_changeLanguageButoon_clicked();
 
   signals:
-    void editorTextChanged(bool isUnsaved, int index);
-    void confirmTriggered(int index);
+    void editorTextChanged(bool isUnsaved, MainWindow *widget);
+    void confirmTriggered(MainWindow *widget);
 
   private:
+    const int windowIndex;
     Ui::MainWindow *ui;
     QCodeEditor *editor;
     QString language;
