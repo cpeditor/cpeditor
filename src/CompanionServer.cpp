@@ -33,8 +33,8 @@ void CompanionServer::checkServer()
         }
         else
         {
-            log->info("Companion", "Listening for requests on " + server->serverAddress().toString().toStdString() + ":" +
-                      std::to_string(server->serverPort()));
+            log->info("Companion", "Listening for requests on " + server->serverAddress().toString().toStdString() +
+                                       ":" + std::to_string(server->serverPort()));
         }
     }
 }

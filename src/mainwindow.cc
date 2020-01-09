@@ -367,7 +367,6 @@ void MainWindow::setSettingsData(Settings::SettingsData data, bool shouldPerform
     else
         editor->setWordWrapMode(QTextOption::NoWrap);
 
-
     compiler->updateCommandCpp(data.compileCommandCpp);
     compiler->updateCommandJava(data.compileCommandJava);
     runner->updateCompileCommandCpp(data.compileCommandCpp);
@@ -400,7 +399,7 @@ void MainWindow::setSettingsData(Settings::SettingsData data, bool shouldPerform
     {
         setLanguage(data.defaultLanguage);
     }
-    if(shouldPerformDigonistic)
+    if (shouldPerformDigonistic)
     {
         performCoreDiagonistics();
     }
@@ -509,7 +508,6 @@ void MainWindow::setLanguage(QString lang)
     }
     performCoreDiagonistics();
     isLanguageSet = true;
-
 }
 
 MessageLogger *MainWindow::getLogger()

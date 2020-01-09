@@ -367,7 +367,7 @@ void AppWindow::onTabChanged(int index)
     activeLogger = tmp->getLogger();
     server->setMessageLogger(activeLogger);
 
-    if(settingManager->isCompetitiveCompanionActive())
+    if (settingManager->isCompetitiveCompanionActive())
         server->checkServer();
 
     tmp->setSettingsData(settingManager->toData(), diagonistics);
@@ -525,7 +525,7 @@ void AppWindow::on_actionEditor_Mode_triggered()
     ui->actionIO_Mode->setChecked(false);
     ui->actionSplit_Mode->setChecked(false);
 
-    auto tmp = dynamic_cast<MainWindow*>(ui->tabWidget->widget(ui->tabWidget->currentIndex()));
+    auto tmp = dynamic_cast<MainWindow *>(ui->tabWidget->widget(ui->tabWidget->currentIndex()));
     tmp->getSplitter()->restoreState(defaultState);
     tmp->getSplitter()->setSizes({1, 0});
 }
@@ -537,10 +537,9 @@ void AppWindow::on_actionIO_Mode_triggered()
     ui->actionIO_Mode->setChecked(true);
     ui->actionSplit_Mode->setChecked(false);
 
-    auto tmp = dynamic_cast<MainWindow*>(ui->tabWidget->widget(ui->tabWidget->currentIndex()));
+    auto tmp = dynamic_cast<MainWindow *>(ui->tabWidget->widget(ui->tabWidget->currentIndex()));
     tmp->getSplitter()->restoreState(defaultState);
     tmp->getSplitter()->setSizes({0, 1});
-
 }
 
 void AppWindow::on_actionSplit_Mode_triggered()
@@ -550,11 +549,10 @@ void AppWindow::on_actionSplit_Mode_triggered()
     ui->actionIO_Mode->setChecked(false);
     ui->actionSplit_Mode->setChecked(true);
 
-    auto tmp = dynamic_cast<MainWindow*>(ui->tabWidget->widget(ui->tabWidget->currentIndex()));
+    auto tmp = dynamic_cast<MainWindow *>(ui->tabWidget->widget(ui->tabWidget->currentIndex()));
     tmp->getSplitter()->restoreState(defaultState);
     splitterState = defaultState;
-    tmp->getSplitter()->setSizes({1,1});
-
+    tmp->getSplitter()->setSizes({1, 1});
 }
 
 void AppWindow::on_confirmTriggered(MainWindow *widget)
