@@ -179,27 +179,22 @@ void AppWindow::maybeSetHotkeys()
     }
 }
 
-void AppWindow::updateIndexes()
-{
-    for (int i = 0; i < ui->tabWidget->count(); ++i)
-    {
-        auto tmp = dynamic_cast<MainWindow *>(ui->tabWidget->widget(i));
-        tmp->windowIndex = i;
-    }
-}
-
 void AppWindow::closeAll()
 {
     for (int t = 0; t < ui->tabWidget->count(); t++)
+        if (closeTab(t))
+            --t;
+}
+
+bool AppWindow::closeTab(int index)
+{
+    auto tmp = dynamic_cast<MainWindow *>(ui->tabWidget->widget(index));
+    if (tmp->closeConfirm())
     {
-        auto tmp = dynamic_cast<MainWindow *>(ui->tabWidget->widget(t));
-        if (tmp->closeConfirm())
-        {
-            ui->tabWidget->removeTab(t);
-            t--;
-            updateIndexes();
-        }
+        ui->tabWidget->removeTab(index);
+        return true;
     }
+    return false;
 }
 
 void AppWindow::saveSettings()
@@ -345,17 +340,17 @@ void AppWindow::on_actionSettings_triggered()
 
 void AppWindow::onTabCloseRequested(int index)
 {
-    // splitterState.clear();
-    auto tmp = dynamic_cast<MainWindow *>(ui->tabWidget->widget(index));
-    if (tmp->closeConfirm())
-    {
-        ui->tabWidget->removeTab(index);
-        updateIndexes();
-    }
+    closeTab(index);
 }
 
 void AppWindow::onTabChanged(int index)
 {
+    for (int i = 0; i < ui->tabWidget->count(); ++i)
+    {
+        auto tmp = dynamic_cast<MainWindow *>(ui->tabWidget->widget(i));
+        tmp->windowIndex = i;
+    }
+
     if (index == -1)
     {
         activeLogger = nullptr;

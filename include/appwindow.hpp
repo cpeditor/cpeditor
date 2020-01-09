@@ -100,8 +100,8 @@ class AppWindow : public QMainWindow
     void saveSettings();
     QVector<QShortcut *> hotkeyObjects;
     void maybeSetHotkeys();
-    void updateIndexes();
     void closeAll();
+    bool closeTab(int index);
     void openFile(QString fileName);
 };
 
