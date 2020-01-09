@@ -19,7 +19,7 @@ class AppWindow : public QMainWindow
 
   public:
     explicit AppWindow(QWidget *parent = nullptr);
-    explicit AppWindow(QVector<MainWindow *> tabs, QWidget *parent = nullptr);
+    explicit AppWindow(QStringList args, QWidget *parent = nullptr);
     ~AppWindow() override;
 
     void closeEvent(QCloseEvent *event) override;
@@ -47,13 +47,15 @@ class AppWindow : public QMainWindow
 
     void on_actionSave_triggered();
 
-    void on_actionSave_as_triggered();
+    void on_actionSave_As_triggered();
+
+    void on_actionSave_All_triggered();
 
     void on_actionCheck_for_updates_triggered();
 
     void onTabCloseRequested(int);
     void onTabChanged(int);
-    void onEditorTextChanged(bool);
+    void onEditorTextChanged(bool, MainWindow *);
     void onSaveTimerElapsed();
     void onSettingsApplied();
     void onSplitterMoved(int, int);
@@ -78,11 +80,12 @@ class AppWindow : public QMainWindow
 
     void on_actionSplit_Mode_triggered();
 
-private:
+    void on_confirmTriggered(MainWindow *widget);
+
+  private:
     Ui::AppWindow *ui;
     MessageLogger *activeLogger = nullptr;
     QTimer *timer = nullptr;
-    QMetaObject::Connection activeTextChangeConnections;
     QMetaObject::Connection activeSplitterMoveConnections;
     QMetaObject::Connection companionEditorConnections;
     Settings::SettingManager *settingManager = nullptr;
@@ -98,6 +101,9 @@ private:
     bool diagonistics;
     QVector<QShortcut *> hotkeyObjects;
     void maybeSetHotkeys();
+    void closeAll();
+    bool closeTab(int index);
+    void openFile(QString fileName);
 };
 
 #endif // APPWINDOW_HPP

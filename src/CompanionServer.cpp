@@ -48,7 +48,8 @@ void CompanionServer::updatePort(int port)
     // server->setMaxPendingConnections(1);
     QObject::connect(server, SIGNAL(newConnection()), this, SLOT(onNewConnection()));
     server->listen(QHostAddress::LocalHost, static_cast<unsigned short>(port));
-    log->warn("Companion", "Port changed to " + std::to_string(port));
+    if (log != nullptr)
+        log->warn("Companion", "Port changed to " + std::to_string(port));
 }
 
 CompanionServer::~CompanionServer()
@@ -70,7 +71,8 @@ void CompanionServer::onReadReady()
 
     if (request.startsWith("POST") && request.contains("Content-Type: application/json"))
     {
-        log->info("Companion", "Got a POST Request");
+        if (log != nullptr)
+            log->info("Companion", "Got a POST Request");
 
         socket->write("HTTP/1.1  OK\r\n"); // \r needs to be before \n
         socket->write("Content-Type: text/html\r\n");
@@ -111,12 +113,14 @@ void CompanionServer::onReadReady()
         }
         else
         {
-            log->error("Companion", "JSONParser reported errors. \n" + error.errorString().toStdString(), true);
+            if (log != nullptr)
+                log->error("Companion", "JSONParser reported errors. \n" + error.errorString().toStdString(), true);
         }
     }
     else
     {
-        log->warn("Companion", "An Invalid Payload was delivered on the listening port");
+        if (log != nullptr)
+            log->warn("Companion", "An Invalid Payload was delivered on the listening port");
         socket->write("HTTP/1.1  OK\r\n"); // \r needs to be before \n
         socket->write("Content-Type: text/html\r\n");
         socket->write("Connection: close\r\n");

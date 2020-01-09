@@ -278,7 +278,7 @@ void MainWindow::saveTests()
 
 QString MainWindow::fileName() const
 {
-    return openFile == nullptr || !openFile->isOpen() ? "Unsaved file" : QFileInfo(*openFile).fileName();
+    return openFile == nullptr || !openFile->isOpen() ? "untitled" : QFileInfo(*openFile).fileName();
 }
 
 QString MainWindow::filePath() const
@@ -367,20 +367,20 @@ void MainWindow::setSettingsData(Settings::SettingsData data, bool shouldPerform
     else
         editor->setWordWrapMode(QTextOption::NoWrap);
 
-    if(data.viewMode == Settings::ViewMode::FULL_EDITOR)
+    if (data.viewMode == Settings::ViewMode::FULL_EDITOR)
     {
-        ui->splitter->restoreGeometry("");
-        ui->splitter->setSizes({1,0});
+        ui->splitter->restoreState("");
+        ui->splitter->setSizes({1, 0});
     }
-    else if(data.viewMode == Settings::ViewMode::FULL_IO)
+    else if (data.viewMode == Settings::ViewMode::FULL_IO)
     {
-        ui->splitter->restoreGeometry("");
-        ui->splitter->setSizes({0,1});
+        ui->splitter->restoreState("");
+        ui->splitter->setSizes({0, 1});
     }
     else
     {
-        ui->splitter->restoreGeometry("");
-        ui->splitter->setSizes({1,1});
+        ui->splitter->restoreState("");
+        ui->splitter->setSizes({1, 1});
     }
 
     compiler->updateCommandCpp(data.compileCommandCpp);
@@ -446,14 +446,9 @@ void MainWindow::saveAs()
     }
 }
 
-int MainWindow::windowIndeX() const
-{
-    return windowIndex;
-}
-
 void MainWindow::onTextChangedTriggered()
 {
-    emit editorTextChanged(isTextChanged());
+    emit editorTextChanged(isTextChanged(), this);
 }
 
 void MainWindow::on_compile_clicked()
@@ -779,6 +774,7 @@ bool MainWindow::saveFile(bool force, std::string head)
     {
         if (force)
         {
+            emit confirmTriggered(this);
             auto filename = QFileDialog::getSaveFileName(
                 this, tr("Save File"), "", "Source Files (*.cpp *.hpp *.h *.cc *.cxx *.c *.py *.py3 *.java)");
             if (filename.isEmpty())
@@ -846,12 +842,13 @@ bool MainWindow::isTextChanged()
     return true;
 }
 
-bool MainWindow::closeChangedConfirm()
+bool MainWindow::closeConfirm()
 {
     bool isChanged = isTextChanged();
     bool confirmed = !isChanged;
     if (!confirmed)
     {
+        emit confirmTriggered(this);
         auto res =
             QMessageBox::warning(this, "Save?", fileName() + " has been modified.\nDo you want to save your changes?",
                                  QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel, QMessageBox::Cancel);
