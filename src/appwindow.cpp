@@ -353,6 +353,7 @@ void AppWindow::onTabChanged(int index)
     {
         activeLogger = nullptr;
         server->setMessageLogger(nullptr);
+        setWindowTitle("CP Editor: Competitive Programmers Editor");
         return;
     }
 
