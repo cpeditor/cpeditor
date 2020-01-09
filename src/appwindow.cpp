@@ -441,6 +441,11 @@ void AppWindow::onSettingsApplied()
 void AppWindow::onIncomingCompanionRequest(Network::CompanionData data)
 {
     auto current = ui->tabWidget->currentIndex();
+    if (current == -1)
+    {
+        openFile("");
+        current = 0;
+    }
     auto tmp = dynamic_cast<MainWindow *>(ui->tabWidget->widget(current));
     tmp->applyCompanion(data);
 }
