@@ -29,7 +29,8 @@
 namespace Settings
 {
 
-enum ViewMode{
+enum ViewMode
+{
     FULL_EDITOR,
     FULL_IO,
     SPLIT
@@ -189,7 +190,6 @@ class SettingManager
     QKeySequence getHotkeyRun();
     QKeySequence getHotkeyCompile();
     QKeySequence getHotkeyViewModeToggler();
-
 
   private:
     QString mSettingsFile;

@@ -9,32 +9,21 @@
 #include <QTimer>
 #include <QUrl>
 
-AppWindow::AppWindow(QVector<MainWindow *> tabs, QWidget *parent) : AppWindow(parent)
+AppWindow::AppWindow(QStringList args, QWidget *parent) : AppWindow(parent)
 {
-
-    if (tabs.size() > 0)
-    {
-        ui->tabWidget->clear();
-        int i = 0;
-        for (auto e : tabs)
-        {
-            ui->tabWidget->addTab(e, e->fileName());
-            QString lang = "Cpp";
-            if (e->fileName().endsWith(".java"))
-                lang = "Java";
-            else if (e->fileName().endsWith(".py") || e->fileName().endsWith("py3"))
-                lang = "Python";
-            e->setLanguage(lang);
-            ui->tabWidget->setCurrentIndex(i);
-            i++;
-        }
-    }
+    ui->tabWidget->clear();
+    if (args.size() > 1)
+        for (int i = 1; i < args.size(); ++i)
+            openFile(args[i]);
+    else
+        openFile("");
 }
 
 AppWindow::AppWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::AppWindow)
 {
     ui->setupUi(this);
     ui->tabWidget->clear();
+    ui->tabWidget->setMovable(true);
     setAcceptDrops(true);
 
     allocate();
@@ -66,15 +55,7 @@ AppWindow::~AppWindow()
 
 void AppWindow::closeEvent(QCloseEvent *event)
 {
-    for (int t = 0; t < ui->tabWidget->count(); t++)
-    {
-        auto tmp = dynamic_cast<MainWindow *>(ui->tabWidget->widget(t));
-        if (tmp->closeChangedConfirm())
-        {
-            ui->tabWidget->removeTab(t);
-            t--;
-        }
-    }
+    closeAll();
     if (ui->tabWidget->count() == 0)
         event->accept();
     else
@@ -92,20 +73,10 @@ void AppWindow::dragEnterEvent(QDragEnterEvent *event)
 void AppWindow::dropEvent(QDropEvent *event)
 {
     auto files = event->mimeData()->urls();
-    int t = ui->tabWidget->count();
     for (auto e : files)
     {
         auto fileName = e.toLocalFile();
-        auto fsp = new MainWindow(ui->tabWidget->count(), fileName);
-        QString lang = "Cpp";
-        if (fileName.endsWith(".java"))
-            lang = "Java";
-        else if (fileName.endsWith(".py") || fileName.endsWith(".py3"))
-            lang = "Python";
-        ui->tabWidget->addTab(fsp, fsp->fileName());
-        fsp->setLanguage(lang);
-        ui->tabWidget->setCurrentIndex(t);
-        t++;
+        openFile(fileName);
     }
 }
 
@@ -140,16 +111,15 @@ void AppWindow::applySettings()
     ui->actionAutosave->setChecked(settingManager->isAutoSave());
     Settings::ViewMode mode = settingManager->getViewMode();
 
-
-    switch(mode)
+    switch (mode)
     {
-    case Settings::ViewMode::FULL_EDITOR :
+    case Settings::ViewMode::FULL_EDITOR:
         on_actionEditor_Mode_triggered();
         break;
-    case Settings::ViewMode::FULL_IO :
+    case Settings::ViewMode::FULL_IO:
         on_actionIO_Mode_triggered();
         break;
-    case Settings::ViewMode::SPLIT :
+    case Settings::ViewMode::SPLIT:
         on_actionSplit_Mode_triggered();
     }
 
@@ -203,11 +173,29 @@ void AppWindow::maybeSetHotkeys()
         hotkeyObjects.push_back(
             new QShortcut(settingManager->getHotkeyKill(), this, SLOT(on_actionKill_Processes_triggered())));
     }
-    if(!settingManager->getHotkeyViewModeToggler().isEmpty())
+    if (!settingManager->getHotkeyViewModeToggler().isEmpty())
     {
         hotkeyObjects.push_back(
-                    new QShortcut(settingManager->getHotkeyViewModeToggler(), this, SLOT(onViewModeToggle())));
+            new QShortcut(settingManager->getHotkeyViewModeToggler(), this, SLOT(onViewModeToggle())));
     }
+}
+
+void AppWindow::closeAll()
+{
+    for (int t = 0; t < ui->tabWidget->count(); t++)
+        if (closeTab(t))
+            --t;
+}
+
+bool AppWindow::closeTab(int index)
+{
+    auto tmp = dynamic_cast<MainWindow *>(ui->tabWidget->widget(index));
+    if (tmp->closeConfirm())
+    {
+        ui->tabWidget->removeTab(index);
+        return true;
+    }
+    return false;
 }
 
 void AppWindow::saveSettings()
@@ -215,6 +203,35 @@ void AppWindow::saveSettings()
     if (!this->isMaximized())
         settingManager->setGeometry(this->geometry());
     settingManager->setMaximizedWindow(this->isMaximized());
+}
+
+void AppWindow::openFile(QString fileName)
+{
+    if (!fileName.isEmpty())
+    {
+        for (int t = 0; t < ui->tabWidget->count(); t++)
+        {
+            auto tmp = dynamic_cast<MainWindow *>(ui->tabWidget->widget(t));
+            if (fileName == tmp->filePath())
+            {
+                ui->tabWidget->setCurrentIndex(t);
+                return;
+            }
+        }
+    }
+
+    int t = ui->tabWidget->count();
+    auto fsp = new MainWindow(t, fileName);
+    connect(fsp, SIGNAL(confirmTriggered(MainWindow *)), this, SLOT(on_confirmTriggered(MainWindow *)));
+    connect(fsp, SIGNAL(editorTextChanged(bool, MainWindow *)), this, SLOT(onEditorTextChanged(bool, MainWindow *)));
+    QString lang = "Cpp";
+    if (fileName.endsWith(".java"))
+        lang = "Java";
+    else if (fileName.endsWith(".py") || fileName.endsWith(".py3"))
+        lang = "Python";
+    ui->tabWidget->addTab(fsp, fsp->fileName());
+    fsp->setLanguage(lang);
+    ui->tabWidget->setCurrentIndex(t);
 }
 
 /***************** ABOUT SECTION ***************************/
@@ -243,15 +260,7 @@ void AppWindow::on_actionAbout_triggered()
 
 void AppWindow::on_actionClose_All_triggered()
 {
-    for (int t = 0; t < ui->tabWidget->count(); t++)
-    {
-        auto tmp = dynamic_cast<MainWindow *>(ui->tabWidget->widget(t));
-        if (tmp->closeChangedConfirm())
-        {
-            ui->tabWidget->removeTab(t);
-            t--;
-        }
-    }
+    closeAll();
 }
 
 void AppWindow::on_actionAutosave_triggered(bool checked)
@@ -265,24 +274,14 @@ void AppWindow::on_actionAutosave_triggered(bool checked)
 
 void AppWindow::on_actionQuit_triggered()
 {
-    for (int t = 0; t < ui->tabWidget->count(); t++)
-    {
-        auto tmp = dynamic_cast<MainWindow *>(ui->tabWidget->widget(t));
-        if (tmp->closeChangedConfirm())
-        {
-            ui->tabWidget->removeTab(t);
-            t--;
-        }
-    }
+    closeAll();
     if (ui->tabWidget->count() == 0)
         QApplication::exit();
 }
 
 void AppWindow::on_actionNew_Tab_triggered()
 {
-    auto temp = new MainWindow(ui->tabWidget->count(), "");
-    ui->tabWidget->addTab(temp, temp->fileName());
-    ui->tabWidget->setCurrentIndex(ui->tabWidget->count() - 1);
+    openFile("");
 }
 
 void AppWindow::on_actionOpen_triggered()
@@ -292,26 +291,7 @@ void AppWindow::on_actionOpen_triggered()
     if (fileName.isEmpty())
         return;
 
-    QString lang = "Cpp";
-    if (fileName.endsWith(".java"))
-        lang = "Java";
-    else if (fileName.endsWith(".py") || fileName.endsWith(".py3"))
-        lang = "Python";
-
-    for (int t = 0; t < ui->tabWidget->count(); t++)
-    {
-        auto tmp = dynamic_cast<MainWindow *>(ui->tabWidget->widget(t));
-        if (fileName == tmp->filePath())
-        {
-            ui->tabWidget->setCurrentIndex(t);
-            return;
-        }
-    }
-
-    auto tmp = new MainWindow(ui->tabWidget->count(), fileName);
-    ui->tabWidget->addTab(tmp, tmp->fileName());
-    tmp->setLanguage(lang);
-    ui->tabWidget->setCurrentIndex(ui->tabWidget->count() - 1);
+    openFile(fileName);
 }
 
 void AppWindow::on_actionSave_triggered()
@@ -319,15 +299,22 @@ void AppWindow::on_actionSave_triggered()
     int currentIdx = ui->tabWidget->currentIndex();
     auto tmp = dynamic_cast<MainWindow *>(ui->tabWidget->widget(currentIdx));
     tmp->save(true);
-    onEditorTextChanged(false);
 }
 
-void AppWindow::on_actionSave_as_triggered()
+void AppWindow::on_actionSave_As_triggered()
 {
     int currentIdx = ui->tabWidget->currentIndex();
     auto tmp = dynamic_cast<MainWindow *>(ui->tabWidget->widget(currentIdx));
     tmp->saveAs();
-    onEditorTextChanged(false);
+}
+
+void AppWindow::on_actionSave_All_triggered()
+{
+    for (int t = 0; t < ui->tabWidget->count(); ++t)
+    {
+        auto tmp = dynamic_cast<MainWindow *>(ui->tabWidget->widget(t));
+        tmp->save(true);
+    }
 }
 
 /************************ PREFERENCES SECTION **********************/
@@ -354,10 +341,7 @@ void AppWindow::on_actionSettings_triggered()
 
 void AppWindow::onTabCloseRequested(int index)
 {
-    // splitterState.clear();
-    auto tmp = dynamic_cast<MainWindow *>(ui->tabWidget->widget(index));
-    if (tmp->closeChangedConfirm())
-        ui->tabWidget->removeTab(index);
+    closeTab(index);
 }
 
 void AppWindow::onTabChanged(int index)
@@ -366,13 +350,18 @@ void AppWindow::onTabChanged(int index)
     {
         activeLogger = nullptr;
         server->setMessageLogger(nullptr);
+        setWindowTitle("CP Editor: Competitive Programmers Editor");
         return;
     }
 
-    disconnect(activeTextChangeConnections);
     disconnect(activeSplitterMoveConnections);
 
     auto tmp = dynamic_cast<MainWindow *>(ui->tabWidget->widget(index));
+
+    if (tmp->getOpenFile() == nullptr)
+        setWindowTitle("CP Editor: " + tmp->fileName());
+    else
+        setWindowTitle("CP Editor: " + tmp->filePath());
 
     activeLogger = tmp->getLogger();
     server->setMessageLogger(activeLogger);
@@ -383,27 +372,20 @@ void AppWindow::onTabChanged(int index)
     if (!splitterState.isEmpty())
         tmp->getSplitter()->restoreState(splitterState);
 
-    activeTextChangeConnections = connect(tmp, SIGNAL(editorTextChanged(bool)), this, SLOT(onEditorTextChanged(bool)));
     activeSplitterMoveConnections =
         connect(tmp->getSplitter(), SIGNAL(splitterMoved(int, int)), this, SLOT(onSplitterMoved(int, int)));
 }
 
-void AppWindow::onEditorTextChanged(bool isUnsaved)
+void AppWindow::onEditorTextChanged(bool isUnsaved, MainWindow *widget)
 {
-    auto current = ui->tabWidget->currentIndex();
+    int index = ui->tabWidget->indexOf(widget);
+    if (index == -1)
+        return;
+    auto name = dynamic_cast<MainWindow *>(ui->tabWidget->widget(index))->fileName();
     if (isUnsaved)
-    {
-        if (!ui->tabWidget->tabText(current).endsWith("*"))
-            ui->tabWidget->setTabText(current, ui->tabWidget->tabText(current) + "*");
-    }
+        ui->tabWidget->setTabText(index, name + " *");
     else
-    {
-        if (ui->tabWidget->tabText(current).endsWith("*"))
-        {
-            auto name = dynamic_cast<MainWindow *>(ui->tabWidget->widget(current))->fileName();
-            ui->tabWidget->setTabText(current, name);
-        }
-    }
+        ui->tabWidget->setTabText(index, name);
 }
 
 void AppWindow::onSaveTimerElapsed()
@@ -447,31 +429,33 @@ void AppWindow::onSettingsApplied()
 
 void AppWindow::onIncomingCompanionRequest(Network::CompanionData data)
 {
-    auto newTab = new MainWindow(ui->tabWidget->currentIndex(), "");
-    newTab->setSettingsData(settingManager->toData());
-    newTab->maybeLoadTemplate();
-    newTab->applyCompanion(data);
-    ui->tabWidget->addTab(newTab, newTab->fileName());
-    ui->tabWidget->setCurrentIndex(ui->tabWidget->count() - 1);
+    auto current = ui->tabWidget->currentIndex();
+    if (current == -1)
+    {
+        openFile("");
+        current = 0;
+    }
+    auto tmp = dynamic_cast<MainWindow *>(ui->tabWidget->widget(current));
+    tmp->applyCompanion(data);
 }
 
-void AppWindow::onViewModeToggle(){
-    if(ui->actionEditor_Mode->isChecked())
+void AppWindow::onViewModeToggle()
+{
+    if (ui->actionEditor_Mode->isChecked())
     {
         on_actionIO_Mode_triggered();
-        return ;
+        return;
     }
-    if(ui->actionSplit_Mode->isChecked())
+    if (ui->actionSplit_Mode->isChecked())
     {
         on_actionEditor_Mode_triggered();
-        return ;
+        return;
     }
-    if(ui->actionIO_Mode->isChecked())
+    if (ui->actionIO_Mode->isChecked())
     {
         on_actionSplit_Mode_triggered();
-        return ;
+        return;
     }
-
 }
 
 void AppWindow::onSplitterMoved(int _, int __)
@@ -554,4 +538,11 @@ void AppWindow::on_actionSplit_Mode_triggered()
     ui->actionIO_Mode->setChecked(false);
     ui->actionSplit_Mode->setChecked(true);
     onTabChanged(ui->tabWidget->currentIndex());
+}
+
+void AppWindow::on_confirmTriggered(MainWindow *widget)
+{
+    int index = ui->tabWidget->indexOf(widget);
+    if (index != -1)
+        ui->tabWidget->setCurrentIndex(index);
 }
