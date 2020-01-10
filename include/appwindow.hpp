@@ -74,6 +74,8 @@ class AppWindow : public QMainWindow
 
     void on_actionKill_Processes_triggered();
 
+    void on_actionUse_Snippets_triggered();
+
     void on_actionEditor_Mode_triggered();
 
     void on_actionIO_Mode_triggered();

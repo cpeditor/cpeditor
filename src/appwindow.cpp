@@ -3,6 +3,7 @@
 #include <EditorTheme.hpp>
 #include <QDesktopServices>
 #include <QFileDialog>
+#include <QInputDialog>
 #include <QMessageBox>
 #include <QMetaMethod>
 #include <QMimeData>
@@ -497,6 +498,32 @@ void AppWindow::on_actionKill_Processes_triggered()
     currentWindow()->killProcesses();
 }
 
+void AppWindow::on_actionUse_Snippets_triggered()
+{
+    auto current = currentWindow();
+    if (current != nullptr)
+    {
+        auto lang = current->getLanguage();
+        auto names = settingManager->getSnippetsNames(lang);
+        if (names.isEmpty())
+        {
+            activeLogger->warn("Snippets", "There are no snippets for " + lang.toStdString()
+                + ". Please add snippets in the preference window.");
+        }
+        else
+        {
+            auto ok = new bool;
+            auto name = QInputDialog::getItem(this, tr("Use Snippets"),
+                tr("Choose a snippet:"), names, 0, true, ok);
+            if (*ok)
+            {
+                auto content = settingManager->getSnippet(lang, name);
+                current->insertText(content);
+            }
+        }
+    }
+}
+
 void AppWindow::on_actionEditor_Mode_triggered()
 {
     settingManager->setViewMode(Settings::ViewMode::FULL_EDITOR);
@@ -544,10 +571,14 @@ void AppWindow::on_confirmTriggered(MainWindow *widget)
 MainWindow *AppWindow::currentWindow()
 {
     int current = ui->tabWidget->currentIndex();
+    if (current == -1)
+        return nullptr;
     return dynamic_cast<MainWindow *>(ui->tabWidget->widget(current));
 }
 
 MainWindow *AppWindow::windowIndex(int index)
 {
+    if (index == -1)
+        return nullptr;
     return dynamic_cast<MainWindow *>(ui->tabWidget->widget(index));
 }
