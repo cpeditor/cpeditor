@@ -373,6 +373,7 @@ void PreferenceWindow::on_current_snippet_changed(const QString &text)
     auto lang = ui->snippets_lang->currentText();
     auto content = manager->getSnippet(lang, text);
     editor->setPlainText(content);
+    editor->setFocus(Qt::OtherFocusReason);
 }
 
 void PreferenceWindow::applySettingsToEditor()
