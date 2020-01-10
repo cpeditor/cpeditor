@@ -605,7 +605,7 @@ p, li { white-space: pre-wrap; }
                <widget class="QPushButton" name="save_snippet">
                 <property name="maximumSize">
                  <size>
-                  <width>60</width>
+                  <width>80</width>
                   <height>16777215</height>
                  </size>
                 </property>
@@ -621,7 +621,7 @@ p, li { white-space: pre-wrap; }
                <widget class="QPushButton" name="new_snippet">
                 <property name="maximumSize">
                  <size>
-                  <width>60</width>
+                  <width>80</width>
                   <height>16777215</height>
                  </size>
                 </property>
@@ -637,7 +637,7 @@ p, li { white-space: pre-wrap; }
                <widget class="QPushButton" name="delete_snippet">
                 <property name="maximumSize">
                  <size>
-                  <width>60</width>
+                  <width>80</width>
                   <height>16777215</height>
                  </size>
                 </property>
@@ -653,7 +653,7 @@ p, li { white-space: pre-wrap; }
                <widget class="QPushButton" name="rename_snippet">
                 <property name="maximumSize">
                  <size>
-                  <width>60</width>
+                  <width>80</width>
                   <height>16777215</height>
                  </size>
                 </property>
