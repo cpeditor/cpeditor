@@ -346,6 +346,10 @@ QKeySequence SettingManager::getHotkeyViewModeToggler()
 {
     return QKeySequence::fromString(mSettings->value("hotkey_mode_toggle", "").toString());
 }
+QKeySequence SettingManager::getHotkeySnippets()
+{
+    return QKeySequence::fromString(mSettings->value("hotkey_snippets", "").toString());
+}
 
 QString SettingManager::getSnippet(QString lang, QString name)
 {
@@ -393,6 +397,10 @@ void SettingManager::setHotkeyKill(QKeySequence sequence)
 void SettingManager::setHotkeyFormat(QKeySequence sequence)
 {
     mSettings->setValue("hotkey_format", sequence.toString());
+}
+void SettingManager::setHotkeySnippets(QKeySequence sequence)
+{
+    mSettings->setValue("hotkey_snippets", sequence.toString());
 }
 
 ViewMode SettingManager::getViewMode()
@@ -462,6 +470,7 @@ SettingsData SettingManager::toData()
     data.hotkeyKill = getHotkeyKill();
     data.hotkeyFormat = getHotkeyFormat();
     data.hotkeyViewModeToggler = getHotkeyViewModeToggler();
+    data.hotkeySnippets = getHotkeySnippets();
     data.viewMode = getViewMode();
 
     return data;

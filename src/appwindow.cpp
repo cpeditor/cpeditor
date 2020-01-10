@@ -179,6 +179,11 @@ void AppWindow::maybeSetHotkeys()
         hotkeyObjects.push_back(
             new QShortcut(settingManager->getHotkeyViewModeToggler(), this, SLOT(onViewModeToggle())));
     }
+    if (!settingManager->getHotkeySnippets().isEmpty())
+    {
+        hotkeyObjects.push_back(
+            new QShortcut(settingManager->getHotkeySnippets(), this, SLOT(on_actionUse_Snippets_triggered())));
+    }
 }
 
 void AppWindow::closeAll()

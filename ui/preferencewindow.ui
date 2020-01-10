@@ -816,6 +816,16 @@ p, li { white-space: pre-wrap; }
               <item row="5" column="1">
                <widget class="QKeySequenceEdit" name="toggle_hotkey"/>
               </item>
+              <item row="6" column="0">
+               <widget class="QLabel" name="label_100">
+                <property name="text">
+                 <string>Hotkey for Using Snippets</string>
+                </property>
+               </widget>
+              </item>
+              <item row="6" column="1">
+               <widget class="QKeySequenceEdit" name="snippets_hotkey"/>
+              </item>
              </layout>
             </item>
             <item row="4" column="0">

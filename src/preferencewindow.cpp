@@ -112,6 +112,7 @@ void PreferenceWindow::applySettingsToui()
     ui->compileRun_hotkey->setKeySequence(manager->getHotkeyCompileRun());
     ui->kill_hotkey->setKeySequence(manager->getHotkeyKill());
     ui->toggle_hotkey->setKeySequence(manager->getHotkeyViewModeToggler());
+    ui->snippets_hotkey->setKeySequence(manager->getHotkeySnippets());
 
     auto lang = manager->getDefaultLang();
     int lang_index = ui->snippets_lang->findText(lang);
@@ -164,6 +165,7 @@ void PreferenceWindow::extractSettingsFromUi()
     manager->setHotkeyCompile(ui->compile_hotkey->keySequence());
     manager->setHotkeyCompileRun(ui->compileRun_hotkey->keySequence());
     manager->setHotkeyViewModeToggler(ui->toggle_hotkey->keySequence());
+    manager->setHotkeySnippets(ui->snippets_hotkey->keySequence());
 }
 
 void PreferenceWindow::resetSettings()
@@ -214,6 +216,7 @@ void PreferenceWindow::resetSettings()
     manager->setHotkeyCompileRun(QKeySequence());
     manager->setHotkeyFormat(QKeySequence());
     manager->setHotkeyViewModeToggler(QKeySequence());
+    manager->setHotkeySnippets(QKeySequence());
 }
 
 void PreferenceWindow::updateShow()
@@ -256,6 +259,7 @@ void PreferenceWindow::on_hotkeys_clicked(bool checked)
     ui->kill_hotkey->setEnabled(checked);
     ui->format_hotkey->setEnabled(checked);
     ui->toggle_hotkey->setEnabled(checked);
+    ui->snippets_hotkey->setEnabled(checked);
 }
 
 void PreferenceWindow::on_font_button_clicked()
