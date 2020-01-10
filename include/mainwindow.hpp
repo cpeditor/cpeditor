@@ -69,11 +69,14 @@ class MainWindow : public QMainWindow
     void maybeLoadTemplate();
 
     void setLanguage(QString lang);
+    QString getLanguage();
     void setSettingsData(Settings::SettingsData data, bool);
 
     MessageLogger *getLogger();
     QFile *getOpenFile();
     QSplitter *getSplitter();
+
+    void insertText(QString text);
 
   private slots:
     void onTextChangedTriggered();

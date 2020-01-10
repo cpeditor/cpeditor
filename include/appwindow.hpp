@@ -74,6 +74,8 @@ class AppWindow : public QMainWindow
 
     void on_actionKill_Processes_triggered();
 
+    void on_actionUse_Snippets_triggered();
+
     void on_actionEditor_Mode_triggered();
 
     void on_actionIO_Mode_triggered();
@@ -104,6 +106,9 @@ class AppWindow : public QMainWindow
     void closeAll();
     bool closeTab(int index);
     void openTab(QString fileName, bool isCompanionTab = false);
+    
+    MainWindow *currentWindow();
+    MainWindow *windowIndex(int index);
 };
 
 #endif // APPWINDOW_HPP

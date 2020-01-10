@@ -82,6 +82,7 @@ struct SettingsData
     QKeySequence hotkeyFormat;
     QKeySequence hotkeyKill;
     QKeySequence hotkeyViewModeToggler;
+    QKeySequence hotkeySnippets;
 
     ViewMode viewMode;
 };
@@ -184,12 +185,19 @@ class SettingManager
     void setHotkeyRun(QKeySequence sequence);
     void setHotkeyCompile(QKeySequence sequence);
     void setHotkeyViewModeToggler(QKeySequence sequence);
+    void setHotkeySnippets(QKeySequence sequence);
     QKeySequence getHotkeyFormat();
     QKeySequence getHotkeyKill();
     QKeySequence getHotkeyCompileRun();
     QKeySequence getHotkeyRun();
     QKeySequence getHotkeyCompile();
     QKeySequence getHotkeyViewModeToggler();
+    QKeySequence getHotkeySnippets();
+
+    QString getSnippet(QString lang, QString name);
+    void setSnippet(QString lang, QString name, QString content);
+    void removeSnippet(QString lang, QString name);
+    QStringList getSnippetsNames(QString lang);
 
   private:
     QString mSettingsFile;

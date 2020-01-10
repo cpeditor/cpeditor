@@ -84,6 +84,7 @@
     <addaction name="actionRun_Detached"/>
     <addaction name="actionFormat_code"/>
     <addaction name="actionKill_Processes"/>
+    <addaction name="actionUse_Snippets"/>
    </widget>
    <widget class="QMenu" name="menuActions">
     <property name="title">
@@ -235,6 +236,14 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+K</string>
+   </property>
+  </action>
+  <action name="actionUse_Snippets">
+   <property name="text">
+    <string>Use Snippets</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+T</string>
    </property>
   </action>
   <action name="actionSettings">

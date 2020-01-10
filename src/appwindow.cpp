@@ -3,6 +3,7 @@
 #include <EditorTheme.hpp>
 #include <QDesktopServices>
 #include <QFileDialog>
+#include <QInputDialog>
 #include <QMessageBox>
 #include <QMetaMethod>
 #include <QMimeData>
@@ -178,6 +179,11 @@ void AppWindow::maybeSetHotkeys()
         hotkeyObjects.push_back(
             new QShortcut(settingManager->getHotkeyViewModeToggler(), this, SLOT(onViewModeToggle())));
     }
+    if (!settingManager->getHotkeySnippets().isEmpty())
+    {
+        hotkeyObjects.push_back(
+            new QShortcut(settingManager->getHotkeySnippets(), this, SLOT(on_actionUse_Snippets_triggered())));
+    }
 }
 
 void AppWindow::closeAll()
@@ -189,7 +195,7 @@ void AppWindow::closeAll()
 
 bool AppWindow::closeTab(int index)
 {
-    auto tmp = dynamic_cast<MainWindow *>(ui->tabWidget->widget(index));
+    auto tmp = currentWindow();
     if (tmp->closeConfirm())
     {
         ui->tabWidget->removeTab(index);
@@ -246,7 +252,7 @@ void AppWindow::openTab(QString fileName, bool iscompanionOpenedTab)
     {
         for (int t = 0; t < ui->tabWidget->count(); t++)
         {
-            auto tmp = dynamic_cast<MainWindow *>(ui->tabWidget->widget(t));
+            auto tmp = windowIndex(t);
             if (fileName == tmp->problemURL())
             {
                 ui->tabWidget->setCurrentIndex(t);
@@ -327,23 +333,19 @@ void AppWindow::on_actionOpen_triggered()
 
 void AppWindow::on_actionSave_triggered()
 {
-    int currentIdx = ui->tabWidget->currentIndex();
-    auto tmp = dynamic_cast<MainWindow *>(ui->tabWidget->widget(currentIdx));
-    tmp->save(true);
+    currentWindow()->save(true);
 }
 
 void AppWindow::on_actionSave_As_triggered()
 {
-    int currentIdx = ui->tabWidget->currentIndex();
-    auto tmp = dynamic_cast<MainWindow *>(ui->tabWidget->widget(currentIdx));
-    tmp->saveAs();
+    currentWindow()->saveAs();
 }
 
 void AppWindow::on_actionSave_All_triggered()
 {
     for (int t = 0; t < ui->tabWidget->count(); ++t)
     {
-        auto tmp = dynamic_cast<MainWindow *>(ui->tabWidget->widget(t));
+        auto tmp = windowIndex(t);
         tmp->save(true);
     }
 }
@@ -387,7 +389,7 @@ void AppWindow::onTabChanged(int index)
 
     disconnect(activeSplitterMoveConnections);
 
-    auto tmp = dynamic_cast<MainWindow *>(ui->tabWidget->widget(index));
+    auto tmp = windowIndex(index);
 
     if (tmp->getOpenFile() == nullptr)
         setWindowTitle("CP Editor: " + tmp->fileName());
@@ -416,7 +418,7 @@ void AppWindow::onEditorTextChanged(bool isUnsaved, MainWindow *widget)
     int index = ui->tabWidget->indexOf(widget);
     if (index == -1)
         return;
-    auto name = dynamic_cast<MainWindow *>(ui->tabWidget->widget(index))->fileName();
+    auto name = windowIndex(index)->fileName();
     if (isUnsaved)
         ui->tabWidget->setTabText(index, name + " *");
     else
@@ -427,7 +429,7 @@ void AppWindow::onSaveTimerElapsed()
 {
     for (int t = 0; t < ui->tabWidget->count(); t++)
     {
-        auto tmp = dynamic_cast<MainWindow *>(ui->tabWidget->widget(t));
+        auto tmp = windowIndex(t);
         if (tmp->getOpenFile() != nullptr && tmp->getOpenFile()->isOpen())
         {
             ui->tabWidget->setTabText(t, tmp->fileName());
@@ -466,8 +468,7 @@ void AppWindow::onIncomingCompanionRequest(Network::CompanionData data)
 {
     openTab(data.url, true);
     int current = ui->tabWidget->currentIndex();
-    auto tmp = dynamic_cast<MainWindow *>(ui->tabWidget->widget(current));
-    tmp->applyCompanion(data);
+    currentWindow()->applyCompanion(data);
 }
 
 void AppWindow::onViewModeToggle()
@@ -491,8 +492,7 @@ void AppWindow::onViewModeToggle()
 
 void AppWindow::onSplitterMoved(int _, int __)
 {
-    int current = ui->tabWidget->currentIndex();
-    auto splitter = dynamic_cast<MainWindow *>(ui->tabWidget->widget(current))->getSplitter();
+    auto splitter = currentWindow()->getSplitter();
     splitterState = splitter->saveState();
 }
 
@@ -504,44 +504,58 @@ void AppWindow::on_actionCheck_for_updates_triggered()
 
 void AppWindow::on_actionCompile_triggered()
 {
-    int current = ui->tabWidget->currentIndex();
-    auto tmp = dynamic_cast<MainWindow *>(ui->tabWidget->widget(current));
-    tmp->compile();
+    currentWindow()->compile();
 }
 
 void AppWindow::on_actionCompile_Run_triggered()
 {
-    int current = ui->tabWidget->currentIndex();
-    auto tmp = dynamic_cast<MainWindow *>(ui->tabWidget->widget(current));
-    tmp->runAndCompile();
+    currentWindow()->runAndCompile();
 }
 
 void AppWindow::on_actionRun_triggered()
 {
-    int current = ui->tabWidget->currentIndex();
-    auto tmp = dynamic_cast<MainWindow *>(ui->tabWidget->widget(current));
-    tmp->run();
+    currentWindow()->run();
 }
 
 void AppWindow::on_actionFormat_code_triggered()
 {
-    int current = ui->tabWidget->currentIndex();
-    auto tmp = dynamic_cast<MainWindow *>(ui->tabWidget->widget(current));
-    tmp->formatSource();
+    currentWindow()->formatSource();
 }
 
 void AppWindow::on_actionRun_Detached_triggered()
 {
-    int current = ui->tabWidget->currentIndex();
-    auto tmp = dynamic_cast<MainWindow *>(ui->tabWidget->widget(current));
-    tmp->detachedExecution();
+    currentWindow()->detachedExecution();
 }
 
 void AppWindow::on_actionKill_Processes_triggered()
 {
-    int current = ui->tabWidget->currentIndex();
-    auto tmp = dynamic_cast<MainWindow *>(ui->tabWidget->widget(current));
-    tmp->killProcesses();
+    currentWindow()->killProcesses();
+}
+
+void AppWindow::on_actionUse_Snippets_triggered()
+{
+    auto current = currentWindow();
+    if (current != nullptr)
+    {
+        auto lang = current->getLanguage();
+        auto names = settingManager->getSnippetsNames(lang);
+        if (names.isEmpty())
+        {
+            activeLogger->warn("Snippets", "There are no snippets for " + lang.toStdString()
+                + ". Please add snippets in the preference window.");
+        }
+        else
+        {
+            auto ok = new bool;
+            auto name = QInputDialog::getItem(this, tr("Use Snippets"),
+                tr("Choose a snippet:"), names, 0, true, ok);
+            if (*ok)
+            {
+                auto content = settingManager->getSnippet(lang, name);
+                current->insertText(content);
+            }
+        }
+    }
 }
 
 void AppWindow::on_actionEditor_Mode_triggered()
@@ -551,7 +565,7 @@ void AppWindow::on_actionEditor_Mode_triggered()
     ui->actionIO_Mode->setChecked(false);
     ui->actionSplit_Mode->setChecked(false);
 
-    auto tmp = dynamic_cast<MainWindow *>(ui->tabWidget->widget(ui->tabWidget->currentIndex()));
+    auto tmp = currentWindow();
     tmp->getSplitter()->restoreState(defaultState);
     tmp->getSplitter()->setSizes({1, 0});
 }
@@ -563,7 +577,7 @@ void AppWindow::on_actionIO_Mode_triggered()
     ui->actionIO_Mode->setChecked(true);
     ui->actionSplit_Mode->setChecked(false);
 
-    auto tmp = dynamic_cast<MainWindow *>(ui->tabWidget->widget(ui->tabWidget->currentIndex()));
+    auto tmp = currentWindow();
     tmp->getSplitter()->restoreState(defaultState);
     tmp->getSplitter()->setSizes({0, 1});
 }
@@ -575,7 +589,7 @@ void AppWindow::on_actionSplit_Mode_triggered()
     ui->actionIO_Mode->setChecked(false);
     ui->actionSplit_Mode->setChecked(true);
 
-    auto tmp = dynamic_cast<MainWindow *>(ui->tabWidget->widget(ui->tabWidget->currentIndex()));
+    auto tmp = currentWindow();
     tmp->getSplitter()->restoreState(defaultState);
     splitterState = defaultState;
     tmp->getSplitter()->setSizes({1, 1});
@@ -586,4 +600,19 @@ void AppWindow::on_confirmTriggered(MainWindow *widget)
     int index = ui->tabWidget->indexOf(widget);
     if (index != -1)
         ui->tabWidget->setCurrentIndex(index);
+}
+
+MainWindow *AppWindow::currentWindow()
+{
+    int current = ui->tabWidget->currentIndex();
+    if (current == -1)
+        return nullptr;
+    return dynamic_cast<MainWindow *>(ui->tabWidget->widget(current));
+}
+
+MainWindow *AppWindow::windowIndex(int index)
+{
+    if (index == -1)
+        return nullptr;
+    return dynamic_cast<MainWindow *>(ui->tabWidget->widget(index));
 }

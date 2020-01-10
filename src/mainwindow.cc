@@ -548,6 +548,11 @@ void MainWindow::setLanguage(QString lang)
     isLanguageSet = true;
 }
 
+QString MainWindow::getLanguage()
+{
+    return language;
+}
+
 MessageLogger *MainWindow::getLogger()
 {
     return &log;
@@ -557,6 +562,12 @@ QFile *MainWindow::getOpenFile()
 {
     return openFile;
 }
+
+void MainWindow::insertText(QString text)
+{
+    editor->insertPlainText(text);
+}
+
 void MainWindow::on_runOnly_clicked()
 {
     log.clear();
