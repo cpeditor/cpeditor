@@ -222,6 +222,7 @@ void PreferenceWindow::updateShow()
 PreferenceWindow::~PreferenceWindow()
 {
     delete ui;
+    delete editor;
 }
 
 void PreferenceWindow::on_ok_clicked()
