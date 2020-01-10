@@ -4,7 +4,20 @@
 
 <img src=https://i.imgur.com/31n9t8i.png height="80" width="80">
 
-CP Editor is a Native Qt based code editor writter in C++. It make you only focus on your code and automates the compilation, executing and testing. It even fetches testcases for you from web!
+CP Editor is a Native Qt based code editor writter in C++. It make you only focus on your code and automates the compilation, executing and testing. It even fetches testcases for you from web and submit code on codeforces!
+
+Features:
+
+- Submit code on codeforces from Editor itself in any of 3 languages C++, Python or Java (requires cf-tools)
+- Parse any problem testcases from over 30+ online platforms (requires competitive companion browser extension)
+- Editor gives you veridict directly `AC`, `WA` or `**`(unknown).
+- Code formating using any tools of your choice like clang-format (requires the tool)
+- Fast and memory efficient. Runs flawless on low end devices.
+- Supports unlimited snippets in all 3 languages.
+- Cutomizable Hotkeys for every action in the editor. 
+- Over 5 themes to choose from (Drakula, Monkai, Solarised, Solarised Dark and Light)
+- Open and manage as many tabs as you want.
+
 
 <img src=https://i.imgur.com/jKOtf6W.jpg width="85%">  
 
@@ -43,6 +56,7 @@ You have to ability to change compile command and run other commands by navigati
 | CTRL+R       | Run                                                          |
 | CTRL+K       | Kill all running Test cases / Samples                        |
 | CTRL+Shift+D | Run the program in separate window (Detached mode)           |
+| CTRL+T       | Use any saved snippet codes                                  |
 
 ### Hotkeys
 
@@ -69,7 +83,14 @@ Contributors and contributions are welcomed! However to maintain the quality of 
    - Make sure `java` and `javac` are in PATH variables. Please Log/Restart your machine if it does not recognizes the Java Compiler. Now make sure your source code has **non-public class named a**. 
 - I get **DLL Missing error** while launching application?
    - Please download  [Microsoft Visual C++ Redistributable for Visual Studio 2015, 2017 and 2019](https://support.microsoft.com/en-us/help/2977003/the-latest-supported-visual-c-downloads).
-
+- What is Competitive Companion and how do I set it up to parse testcases from websites?
+   - Please read this [blog](https://codeforces.com/blog/entry/72067) carefully. It has detailed instruction on setting up the competitive companion to parse testcases.
+- What is CF-Tool and where to download it?
+   - CF tools provide you to perform many actions like submiting code on codeforces from Command line. It is a CLI application which can be downloaded from [here](https://github.com/xalanq/cf-tool/releases). It is a standalone executable, simply keep it in a directory and add that directory to PATH.
+- I am using it on codeforces but submit button is not clickable.
+   - Please reboot if you have already added `cf` to your PATH. If you haven't already, add `cf` to your PATH. Submit button will be active only if CP Editor finds that `cf` tool is on path and invokable.
+ - When I click on Submit on Codeforces, I get some message saying template is required?
+    - `cf` tool requires that you first configure it before you use it. Please read this [blog](https://codeforces.com/blog/entry/72952) carefully to configure it for your device.
 
 License
 ----
