@@ -112,6 +112,7 @@ void MainWindow::setEditor()
         expected[i] = new QString;
         input[i]->setWordWrapMode(QTextOption::NoWrap);
         output[i]->setWordWrapMode(QTextOption::NoWrap);
+        input[i]->setAcceptDrops(false);
     }
 
     QObject::connect(editor, SIGNAL(textChanged()), this, SLOT(onTextChangedTriggered()));
@@ -276,6 +277,33 @@ void MainWindow::saveTests()
     }
 }
 
+void MainWindow::setCFToolsUI()
+{
+    if (submitToCodeforces == nullptr)
+    {
+        submitToCodeforces = new QPushButton("Submit Solution", this);
+        cftools = new Network::CFTools(windowIndex);
+        ui->horizontalLayout_9->addWidget(submitToCodeforces);
+        connect(submitToCodeforces, &QPushButton::clicked, this, [this] {
+            auto response = QMessageBox::warning(
+                this, "Sure to submit",
+                "Are you sure you want to submit this solution to codeforces?\nContest URL: " + companionData.url +
+                    "\n Language : " + language,
+                QMessageBox::Yes | QMessageBox::No);
+
+            if (response == QMessageBox::Yes)
+                cftools->submit(companionData.url, language);
+        });
+
+    }
+    if (!Network::CFTools::check())
+    {
+        submitToCodeforces->setEnabled(false);
+        log.error("CFTools",
+                  "You will not be able to submit code to codeforces because CFTools is not installed or is not on SYSTEM PATH");
+    }
+}
+
 QString MainWindow::fileName() const
 {
     return openFile == nullptr || !openFile->isOpen() ? "untitled" : QFileInfo(*openFile).fileName();
@@ -284,6 +312,10 @@ QString MainWindow::fileName() const
 QString MainWindow::filePath() const
 {
     return openFile == nullptr || !openFile->isOpen() ? "" : openFile->fileName();
+}
+QString MainWindow::problemURL() const
+{
+    return companionData.url;
 }
 
 void MainWindow::updateVerdict(Core::Verdict _verdict, int id)
@@ -338,6 +370,9 @@ void MainWindow::applyCompanion(Network::CompanionData data)
         input[i]->setPlainText(data.testcases[i].input);
         expected[i]->operator=(data.testcases[i].output);
     }
+    companionData = data;
+    if (data.url.contains("codeforces.com"))
+        setCFToolsUI();
     onTextChangedTriggered();
 }
 void MainWindow::setSettingsData(Settings::SettingsData data, bool shouldPerformDigonistic)
