@@ -541,18 +541,25 @@ void AppWindow::on_actionUse_Snippets_triggered()
         auto names = settingManager->getSnippetsNames(lang);
         if (names.isEmpty())
         {
-            activeLogger->warn("Snippets", "There are no snippets for " + lang.toStdString()
-                + ". Please add snippets in the preference window.");
+            activeLogger->warn("Snippets", "There are no snippets for " + lang.toStdString() +
+                                               ". Please add snippets in the preference window.");
         }
         else
         {
             auto ok = new bool;
-            auto name = QInputDialog::getItem(this, tr("Use Snippets"),
-                tr("Choose a snippet:"), names, 0, true, ok);
+            auto name = QInputDialog::getItem(this, tr("Use Snippets"), tr("Choose a snippet:"), names, 0, true, ok);
             if (*ok)
             {
-                auto content = settingManager->getSnippet(lang, name);
-                current->insertText(content);
+                if (names.contains(name))
+                {
+                    auto content = settingManager->getSnippet(lang, name);
+                    current->insertText(content);
+                }
+                else
+                {
+                    activeLogger->warn("Snippets", "There is no snippet named " + name.toStdString() + " for " +
+                                                       lang.toStdString());
+                }
             }
         }
     }
