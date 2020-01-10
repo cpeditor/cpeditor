@@ -104,6 +104,8 @@ class AppWindow : public QMainWindow
     void closeAll();
     bool closeTab(int index);
     void openFile(QString fileName);
+    MainWindow *currentWindow();
+    MainWindow *windowIndex(int index);
 };
 
 #endif // APPWINDOW_HPP
