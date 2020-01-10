@@ -21,8 +21,10 @@
 #include <Core.hpp>
 #include <IO.hpp>
 #include <QCodeEditor>
+#include <QElapsedTimer>
 #include <QObject>
 #include <QProcess>
+
 namespace Core
 {
 class Runner : public QObject, private Base::Files
@@ -71,7 +73,7 @@ class Runner : public QObject, private Base::Files
     QProcess *detachedHandle = nullptr;
     MessageLogger *log;
     QVector<QProcess *> runner = QVector<QProcess *>(3, nullptr);
-    QVector<QTime *> timers = QVector<QTime *>(3, nullptr);
+    QVector<QElapsedTimer *> timers = QVector<QElapsedTimer *>(3, nullptr);
 };
 
 } // namespace Core

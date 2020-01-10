@@ -261,7 +261,7 @@ void Runner::compilationFinished(bool success)
             if (isRun[i])
             {
                 runner[i] = new QProcess();
-                timers[i] = new QTime();
+                timers[i] = new QElapsedTimer();
 
                 QTimer *killtimer = new QTimer(runner[i]);
                 killtimer->setSingleShot(true);
