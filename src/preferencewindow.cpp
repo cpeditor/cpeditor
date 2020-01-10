@@ -303,6 +303,16 @@ void PreferenceWindow::on_save_snippet_clicked()
         auto lang = ui->snippets_lang->currentText();
         manager->setSnippet(lang, name, editor->toPlainText());
     }
+    else
+    {
+        auto name = QInputDialog::getText(this, tr("New name"), tr("Name:"));
+        if (name.isEmpty())
+            return;
+        auto lang = ui->snippets_lang->currentText();
+        auto content = editor->toPlainText();
+        manager->setSnippet(lang, name, content);
+        switchToSnippet(name);
+    }
 }
 
 void PreferenceWindow::on_new_snippet_clicked()
