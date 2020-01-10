@@ -230,6 +230,7 @@ void PreferenceWindow::on_ok_clicked()
     extractSettingsFromUi();
     close();
     emit settingsApplied();
+    applySettingsToEditor();
 }
 
 void PreferenceWindow::on_cancel_clicked()
@@ -241,6 +242,7 @@ void PreferenceWindow::on_apply_clicked()
 {
     extractSettingsFromUi();
     emit settingsApplied();
+    applySettingsToEditor();
 }
 
 void PreferenceWindow::on_hotkeys_clicked(bool checked)
