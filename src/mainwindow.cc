@@ -282,17 +282,20 @@ void MainWindow::setCFToolsUI()
     if (submitToCodeforces == nullptr)
     {
         submitToCodeforces = new QPushButton("Submit Solution", this);
-        cftools = new Network::CFTools(windowIndex);
+        cftools = new Network::CFTools(windowIndex, &log);
         ui->horizontalLayout_9->addWidget(submitToCodeforces);
         connect(submitToCodeforces, &QPushButton::clicked, this, [this] {
             auto response = QMessageBox::warning(
                 this, "Sure to submit",
-                "Are you sure you want to submit this solution to codeforces?\nContest URL: " + companionData.url +
+                "Are you sure you want to submit this solution to codeforces?\n\n URL: " + companionData.url +
                     "\n Language : " + language,
                 QMessageBox::Yes | QMessageBox::No);
 
             if (response == QMessageBox::Yes)
+            {
+                compiler->syncToBuffer(editor);
                 cftools->submit(companionData.url, language);
+            }
         });
 
     }

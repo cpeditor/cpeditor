@@ -78,15 +78,8 @@ Compiler::~Compiler()
         delete compilationProcess;
 }
 
-void Compiler::compile(QCodeEditor *editor, QString lang)
+void Compiler::syncToBuffer(QCodeEditor *editor)
 {
-    if (compilationProcess != nullptr)
-    {
-        compilationProcess->kill();
-        delete compilationProcess; // calls sigkill
-        compilationProcess = nullptr;
-    }
-
     if (!file->isOpen())
         file->open(QIODevice::ReadWrite | QFile::Text);
 
@@ -95,8 +88,6 @@ void Compiler::compile(QCodeEditor *editor, QString lang)
 
     if (!javaFile->isOpen())
         javaFile->open(QIODevice::ReadWrite | QFile::Text);
-
-    log->info("Compiler", "Compilation requested");
 
     file->resize(0);
     file->write(editor->toPlainText().toUtf8().toStdString().c_str());
@@ -109,6 +100,19 @@ void Compiler::compile(QCodeEditor *editor, QString lang)
     javaFile->resize(0);
     javaFile->write(editor->toPlainText().toUtf8().toStdString().c_str());
     javaFile->close();
+}
+
+void Compiler::compile(QCodeEditor *editor, QString lang)
+{
+    if (compilationProcess != nullptr)
+    {
+        compilationProcess->kill();
+        delete compilationProcess; // calls sigkill
+        compilationProcess = nullptr;
+    }
+
+    syncToBuffer(editor);
+    log->info("Compiler", "Compilation requested");
 
     if (lang == "Python")
     {

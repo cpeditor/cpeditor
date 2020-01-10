@@ -3,12 +3,15 @@
 
 #include <QProcess>
 #include <BaseFiles.hpp>
+#include <MessageLogger.hpp>
 namespace Network
 {
-class CFTools : private Core::Base::Files
+class CFTools : public QObject, private Core::Base::Files
 {
+    Q_OBJECT
+
   public:
-    CFTools(int index);
+    CFTools(int index, MessageLogger* logger);
 
     void submit(QString url, QString lang);
     void killProcess();
@@ -16,8 +19,12 @@ class CFTools : private Core::Base::Files
     static bool check();
     ~CFTools();
 
+private slots:
+    void onReadReady();
+
   private:
     QProcess *cftool = nullptr;
+    MessageLogger* log;
     int index;
 };
 } // namespace Network

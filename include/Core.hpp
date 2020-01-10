@@ -33,7 +33,7 @@ class Compiler : public QObject, private Core::Base::Files
     Compiler(QString compileCpp, QString compileJava, int index, MessageLogger *log);
 
     void compile(QCodeEditor *editor, QString lang = "Cpp");
-
+    void syncToBuffer(QCodeEditor *editor);
     void updateCommandCpp(QString newCommand);
     void updateCommandJava(QString newCommand);
     void updateLanguage(QString newLang);
