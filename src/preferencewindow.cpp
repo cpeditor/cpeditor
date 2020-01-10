@@ -3,11 +3,14 @@
 
 #include <EditorTheme.hpp>
 #include <QAction>
+#include <QCXXHighlighter>
 #include <QDesktopWidget>
 #include <QFileDialog>
 #include <QFontDialog>
 #include <QInputDialog>
 #include <QMessageBox>
+#include <QPythonCompleter>
+#include <QPythonHighlighter>
 
 PreferenceWindow::PreferenceWindow(Settings::SettingManager *manager, QWidget *parent)
     : QMainWindow(parent), ui(new Ui::PreferenceWindow)
@@ -110,11 +113,11 @@ void PreferenceWindow::applySettingsToui()
     ui->kill_hotkey->setKeySequence(manager->getHotkeyKill());
     ui->toggle_hotkey->setKeySequence(manager->getHotkeyViewModeToggler());
 
-    int lang_index = ui->snippets_lang->findText(manager->getDefaultLang());
+    auto lang = manager->getDefaultLang();
+    int lang_index = ui->snippets_lang->findText(lang);
     if (lang_index != -1)
         ui->snippets_lang->setCurrentIndex(lang_index);
-
-    updateSnippets();
+    on_snippets_lang_changed(lang);
 }
 
 void PreferenceWindow::extractSettingsFromUi()
@@ -373,9 +376,24 @@ void PreferenceWindow::on_rename_snippet_clicked()
     }
 }
 
-void PreferenceWindow::on_snippets_lang_changed(const QString &text)
+void PreferenceWindow::on_snippets_lang_changed(const QString &lang)
 {
     updateSnippets();
+    if (lang == "Python")
+    {
+        editor->setHighlighter(new QPythonHighlighter);
+        editor->setCompleter(new QPythonCompleter);
+    }
+    else if (lang == "Java")
+    {
+        editor->setHighlighter(new QCXXHighlighter);
+        editor->setCompleter(nullptr);
+    }
+    else
+    {
+        editor->setHighlighter(new QCXXHighlighter);
+        editor->setCompleter(nullptr);
+    }
 }
 
 void PreferenceWindow::on_current_snippet_changed(const QString &text)

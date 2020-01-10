@@ -50,7 +50,7 @@ class PreferenceWindow : public QMainWindow
 
     void on_rename_snippet_clicked();
 
-    void on_snippets_lang_changed(const QString &text);
+    void on_snippets_lang_changed(const QString &lang);
 
     void on_current_snippet_changed(const QString &text);
 
