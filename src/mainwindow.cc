@@ -297,13 +297,12 @@ void MainWindow::setCFToolsUI()
                 cftools->submit(companionData.url, language);
             }
         });
-
     }
     if (!Network::CFTools::check())
     {
         submitToCodeforces->setEnabled(false);
-        log.error("CFTools",
-                  "You will not be able to submit code to codeforces because CFTools is not installed or is not on SYSTEM PATH");
+        log.error("CFTools", "You will not be able to submit code to codeforces because CFTools is not installed or is "
+                             "not on SYSTEM PATH");
     }
 }
 
@@ -383,7 +382,7 @@ void MainWindow::setSettingsData(Settings::SettingsData data, bool shouldPerform
     this->data = data;
     formatter->updateCommand(data.formatCommand);
 
-    editor->setTabReplace(data.isTabsBeingUsed);
+    editor->setTabReplace(data.isTabsReplaced);
     editor->setTabReplaceSize(data.tabStop);
     editor->setAutoIndentation(data.isAutoIndent);
     editor->setAutoParentheses(data.isAutoParenthesis);

@@ -56,9 +56,9 @@ bool SettingManager::isBeta()
     return mSettings->value("beta", "false").toBool();
 }
 
-bool SettingManager::isTabs()
+bool SettingManager::isTabsReplaced()
 {
-    return mSettings->value("use_tabs", "false").toBool();
+    return mSettings->value("replace_tabs", "false").toBool();
 }
 
 bool SettingManager::isSaveTests()
@@ -206,12 +206,12 @@ void SettingManager::setBeta(bool value)
         mSettings->setValue("beta", QString::fromStdString("false"));
 }
 
-void SettingManager::setTabs(bool value)
+void SettingManager::setTabsReplaced(bool value)
 {
     if (value)
-        mSettings->setValue("use_tabs", QString::fromStdString("true"));
+        mSettings->setValue("replace_tabs", QString::fromStdString("true"));
     else
-        mSettings->setValue("use_tabs", QString::fromStdString("false"));
+        mSettings->setValue("replace_tabs", QString::fromStdString("false"));
 }
 
 void SettingManager::setSaveTests(bool value)
@@ -459,7 +459,7 @@ SettingsData SettingManager::toData()
     data.isAutoSave = isAutoSave();
     data.isWrapText = isWrapText();
     data.isBeta = isBeta();
-    data.isTabsBeingUsed = isTabs();
+    data.isTabsReplaced = isTabsReplaced();
     data.shouldSaveTests = isSaveTests();
     data.isCompanionActive = isCompetitiveCompanionActive();
     data.isWindowMaximized = isMaximizedWindow();
