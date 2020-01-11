@@ -297,13 +297,12 @@ void MainWindow::setCFToolsUI()
                 cftools->submit(companionData.url, language);
             }
         });
-
     }
     if (!Network::CFTools::check())
     {
         submitToCodeforces->setEnabled(false);
-        log.error("CFTools",
-                  "You will not be able to submit code to codeforces because CFTools is not installed or is not on SYSTEM PATH");
+        log.error("CFTools", "You will not be able to submit code to codeforces because CFTools is not installed or is "
+                             "not on SYSTEM PATH");
     }
 }
 

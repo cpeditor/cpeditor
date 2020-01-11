@@ -426,6 +426,16 @@ void SettingManager::setViewMode(ViewMode v)
     mSettings->setValue("view_mode", ans);
 }
 
+QByteArray SettingManager::getSplitterSizes()
+{
+    return mSettings->value("splitter_sizes").toByteArray();
+}
+
+void SettingManager::setSplitterSizes(QByteArray state)
+{
+    mSettings->setValue("splitter_sizes", state);
+}
+
 SettingManager::~SettingManager()
 {
     mSettings->sync();
@@ -472,6 +482,7 @@ SettingsData SettingManager::toData()
     data.hotkeyViewModeToggler = getHotkeyViewModeToggler();
     data.hotkeySnippets = getHotkeySnippets();
     data.viewMode = getViewMode();
+    data.splitterSizes = getSplitterSizes();
 
     return data;
 }

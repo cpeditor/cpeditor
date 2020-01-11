@@ -406,8 +406,12 @@ void AppWindow::onTabChanged(int index)
     diagonistics = false;
     tmp->maybeLoadTemplate();
 
-    if (!splitterState.isEmpty())
-        tmp->getSplitter()->restoreState(splitterState);
+    if (ui->actionEditor_Mode->isChecked())
+        on_actionEditor_Mode_triggered();
+    else if (ui->actionIO_Mode->isChecked())
+        on_actionIO_Mode_triggered();
+    else if (ui->actionSplit_Mode->isChecked())
+        on_actionSplit_Mode_triggered();
 
     activeSplitterMoveConnections =
         connect(tmp->getSplitter(), SIGNAL(splitterMoved(int, int)), this, SLOT(onSplitterMoved(int, int)));
@@ -493,7 +497,7 @@ void AppWindow::onViewModeToggle()
 void AppWindow::onSplitterMoved(int _, int __)
 {
     auto splitter = currentWindow()->getSplitter();
-    splitterState = splitter->saveState();
+    settingManager->setSplitterSizes(splitter->saveState());
 }
 
 /************************* ACTIONS ************************/
@@ -571,10 +575,7 @@ void AppWindow::on_actionEditor_Mode_triggered()
     ui->actionEditor_Mode->setChecked(true);
     ui->actionIO_Mode->setChecked(false);
     ui->actionSplit_Mode->setChecked(false);
-
-    auto tmp = currentWindow();
-    tmp->getSplitter()->restoreState(defaultState);
-    tmp->getSplitter()->setSizes({1, 0});
+    currentWindow()->getSplitter()->setSizes({1, 0});
 }
 
 void AppWindow::on_actionIO_Mode_triggered()
@@ -583,10 +584,7 @@ void AppWindow::on_actionIO_Mode_triggered()
     ui->actionEditor_Mode->setChecked(false);
     ui->actionIO_Mode->setChecked(true);
     ui->actionSplit_Mode->setChecked(false);
-
-    auto tmp = currentWindow();
-    tmp->getSplitter()->restoreState(defaultState);
-    tmp->getSplitter()->setSizes({0, 1});
+    currentWindow()->getSplitter()->setSizes({0, 1});
 }
 
 void AppWindow::on_actionSplit_Mode_triggered()
@@ -595,11 +593,8 @@ void AppWindow::on_actionSplit_Mode_triggered()
     ui->actionEditor_Mode->setChecked(false);
     ui->actionIO_Mode->setChecked(false);
     ui->actionSplit_Mode->setChecked(true);
-
-    auto tmp = currentWindow();
-    tmp->getSplitter()->restoreState(defaultState);
-    splitterState = defaultState;
-    tmp->getSplitter()->setSizes({1, 1});
+    auto state = settingManager->getSplitterSizes();
+    currentWindow()->getSplitter()->restoreState(state);
 }
 
 void AppWindow::on_confirmTriggered(MainWindow *widget)

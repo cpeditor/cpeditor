@@ -93,7 +93,6 @@ class AppWindow : public QMainWindow
     Settings::SettingManager *settingManager = nullptr;
     Telemetry::UpdateNotifier *updater = nullptr;
     PreferenceWindow *preferenceWindow = nullptr;
-    QByteArray splitterState, defaultState;
     Network::CompanionServer *server;
 
     void setConnections();
@@ -106,7 +105,7 @@ class AppWindow : public QMainWindow
     void closeAll();
     bool closeTab(int index);
     void openTab(QString fileName, bool isCompanionTab = false);
-    
+
     MainWindow *currentWindow();
     MainWindow *windowIndex(int index);
 };
