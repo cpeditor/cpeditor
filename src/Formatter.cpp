@@ -96,7 +96,7 @@ void Formatter::format(QCodeEditor *editor)
         }
 
         file->open(QIODevice::ReadWrite | QFile::Text);
-        editor->setPlainText(file->readAll());
+        editor->setPlainText(formatProcess.readAllStandardOutput());
         editor->setTextCursor(old_pos);
         log->info("Formatter", "Formatting completed");
     }

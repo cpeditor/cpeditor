@@ -187,7 +187,7 @@ void PreferenceWindow::resetSettings()
     manager->setRuntimeArgumentsJava("");
     manager->setRuntimeArgumentsPython("");
 
-    manager->setFormatCommand("clang-format -i");
+    manager->setFormatCommand("clang-format");
 
     manager->setCompileCommandsJava("javac");
     manager->setCompileCommandsCpp("g++ -Wall");

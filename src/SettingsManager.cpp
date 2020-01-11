@@ -103,7 +103,7 @@ QString SettingManager::getCompileCommandJava()
 }
 QString SettingManager::getFormatCommand()
 {
-    return mSettings->value("format", "clang-format -i").toString();
+    return mSettings->value("format", "clang-format").toString();
 }
 QString SettingManager::getRuntimeArgumentsCpp()
 {
