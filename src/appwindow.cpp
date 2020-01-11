@@ -508,16 +508,22 @@ void AppWindow::on_actionCheck_for_updates_triggered()
 
 void AppWindow::on_actionCompile_triggered()
 {
+    if (ui->actionEditor_Mode->isChecked())
+        on_actionSplit_Mode_triggered();
     currentWindow()->compile();
 }
 
 void AppWindow::on_actionCompile_Run_triggered()
 {
+    if (ui->actionEditor_Mode->isChecked())
+        on_actionSplit_Mode_triggered();
     currentWindow()->runAndCompile();
 }
 
 void AppWindow::on_actionRun_triggered()
 {
+    if (ui->actionEditor_Mode->isChecked())
+        on_actionSplit_Mode_triggered();
     currentWindow()->run();
 }
 
