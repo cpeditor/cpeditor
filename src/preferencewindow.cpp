@@ -74,7 +74,7 @@ void PreferenceWindow::applySettingsToui()
     ui->wrap->setChecked(manager->isWrapText());
     ui->indent->setChecked(manager->isAutoIndent());
     ui->parentheses->setChecked(manager->isAutoParenthesis());
-    ui->tabs->setChecked(manager->isTabs());
+    ui->replace_tabs->setChecked(manager->isTabsReplaced());
 
     ui->defaultLang->setCurrentText(manager->getDefaultLang());
     ui->format_cmd->setText(manager->getFormatCommand());
@@ -132,7 +132,7 @@ void PreferenceWindow::extractSettingsFromUi()
     manager->setWrapText(ui->wrap->isChecked());
     manager->setAutoIndent(ui->indent->isChecked());
     manager->setAutoParenthesis(ui->parentheses->isChecked());
-    manager->setTabs(ui->tabs->isChecked());
+    manager->setTabsReplaced(ui->replace_tabs->isChecked());
 
     manager->setDefaultLanguage(ui->defaultLang->currentText());
     manager->setFormatCommand(ui->format_cmd->text());
@@ -371,7 +371,7 @@ void PreferenceWindow::applySettingsToEditor()
 {
     auto data = manager->toData();
 
-    editor->setTabReplace(data.isTabsBeingUsed);
+    editor->setTabReplace(data.isTabsReplaced);
     editor->setTabReplaceSize(data.tabStop);
     editor->setAutoIndentation(data.isAutoIndent);
     editor->setAutoParentheses(data.isAutoParenthesis);

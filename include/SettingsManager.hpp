@@ -69,7 +69,7 @@ struct SettingsData
     bool isAutoSave;
     bool isWrapText;
     bool isBeta;
-    bool isTabsBeingUsed;
+    bool isTabsReplaced;
     bool shouldSaveTests;
     bool isCompanionActive;
     bool isWindowMaximized;
@@ -158,8 +158,8 @@ class SettingManager
     bool isBeta();
     void setBeta(bool value);
 
-    bool isTabs();
-    void setTabs(bool value);
+    bool isTabsReplaced();
+    void setTabsReplaced(bool value);
 
     bool isSaveTests();
     void setSaveTests(bool value);

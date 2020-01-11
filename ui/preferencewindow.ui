@@ -194,7 +194,7 @@
                  </widget>
                 </item>
                 <item row="6" column="0">
-                 <widget class="QCheckBox" name="tabs">
+                 <widget class="QCheckBox" name="replace_tabs">
                   <property name="text">
                    <string>Always replace tabs with spaces</string>
                   </property>
