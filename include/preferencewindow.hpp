@@ -20,7 +20,6 @@ class PreferenceWindow : public QMainWindow
 
   public:
     explicit PreferenceWindow(Settings::SettingManager *manager, QWidget *parent = nullptr);
-    void resetSettings();
     void updateShow();
     ~PreferenceWindow();
 

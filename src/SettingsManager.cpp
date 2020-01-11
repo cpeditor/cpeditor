@@ -476,4 +476,9 @@ SettingsData SettingManager::toData()
     return data;
 }
 
+void SettingManager::resetSettings()
+{
+    mSettings->clear();
+}
+
 } // namespace Settings

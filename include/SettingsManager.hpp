@@ -199,6 +199,8 @@ class SettingManager
     void removeSnippet(QString lang, QString name);
     QStringList getSnippetsNames(QString lang);
 
+    void resetSettings();
+
   private:
     QString mSettingsFile;
     QSettings *mSettings;

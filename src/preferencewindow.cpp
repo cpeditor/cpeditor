@@ -168,57 +168,6 @@ void PreferenceWindow::extractSettingsFromUi()
     manager->setHotkeySnippets(ui->snippets_hotkey->keySequence());
 }
 
-void PreferenceWindow::resetSettings()
-{
-    QFont defaultFont;
-    currentFont = defaultFont;
-
-    manager->setConnectionPort(10045);
-    manager->setTabStop(4);
-    manager->setGeometry(QRect{});
-    manager->setFont("");
-    manager->setDefaultLanguage("Cpp");
-
-    manager->setTemplatePathCpp("");
-    manager->setTemplatePathJava("");
-    manager->setTemplatePathPython("");
-
-    manager->setRuntimeArgumentsCpp("");
-    manager->setRuntimeArgumentsJava("");
-    manager->setRuntimeArgumentsPython("");
-
-    manager->setFormatCommand("clang-format -i");
-
-    manager->setCompileCommandsJava("javac");
-    manager->setCompileCommandsCpp("g++ -Wall");
-
-    manager->setRunCommandJava("java");
-    manager->setRunCommandPython("python");
-
-    manager->setEditorTheme("Light");
-
-    manager->setSystemThemeDark(false);
-    manager->setHotKeyInUse(false);
-    manager->setAutoParenthesis(true);
-    manager->setAutoIndent(true);
-    manager->setAutoSave(false);
-    manager->setWrapText(false);
-    manager->setBeta(false);
-    manager->setTabs(false);
-    manager->setSaveTests(false);
-    manager->setCompetitiveCompanionActive(false);
-    manager->setMaximizedWindow(false);
-    manager->checkUpdateOnStartup(true);
-
-    manager->setHotkeyRun(QKeySequence());
-    manager->setHotkeyKill(QKeySequence());
-    manager->setHotkeyCompile(QKeySequence());
-    manager->setHotkeyCompileRun(QKeySequence());
-    manager->setHotkeyFormat(QKeySequence());
-    manager->setHotkeyViewModeToggler(QKeySequence());
-    manager->setHotkeySnippets(QKeySequence());
-}
-
 void PreferenceWindow::updateShow()
 {
     applySettingsToui();
