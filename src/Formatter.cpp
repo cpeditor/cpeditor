@@ -96,7 +96,10 @@ void Formatter::format(QCodeEditor *editor)
         }
 
         file->open(QIODevice::ReadWrite | QFile::Text);
-        editor->setPlainText(formatProcess.readAllStandardOutput());
+        auto doc = editor->document();
+        QTextCursor cursor(doc);
+        cursor.select(QTextCursor::Document);
+        cursor.insertText(formatProcess.readAllStandardOutput());
         editor->setTextCursor(old_pos);
         log->info("Formatter", "Formatting completed");
     }
