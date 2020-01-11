@@ -85,6 +85,7 @@ struct SettingsData
     QKeySequence hotkeySnippets;
 
     ViewMode viewMode;
+    QByteArray splitterSizes;
 };
 
 class SettingManager
@@ -175,6 +176,9 @@ class SettingManager
 
     ViewMode getViewMode();
     void setViewMode(ViewMode v);
+
+    QByteArray getSplitterSizes();
+    void setSplitterSizes(QByteArray state);
 
     SettingsData toData();
     ~SettingManager();
