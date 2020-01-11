@@ -217,6 +217,9 @@ void PreferenceWindow::resetSettings()
     manager->setHotkeyFormat(QKeySequence());
     manager->setHotkeyViewModeToggler(QKeySequence());
     manager->setHotkeySnippets(QKeySequence());
+
+    manager->setViewMode(Settings::SPLIT);
+    manager->setSplitterSizes(QByteArray());
 }
 
 void PreferenceWindow::updateShow()
