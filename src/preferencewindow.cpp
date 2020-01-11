@@ -324,20 +324,25 @@ void PreferenceWindow::on_save_snippet_clicked()
 
 void PreferenceWindow::on_new_snippet_clicked()
 {
-    auto name = QInputDialog::getText(this, tr("New name"), tr("Name:"));
-    if (name.isEmpty())
-        return;
-    int index = ui->snippets->findText(name);
-    if (index != -1)
+    QString name;
+    auto lang = ui->snippets_lang->currentText();
+
+    while (1)
     {
-        ui->snippets->setCurrentIndex(index);
+        name = QInputDialog::getText(this, tr("New"), tr("Name:"));
+        if (name.isEmpty())
+            return;
+        int index = ui->snippets->findText(name);
+        if (index != -1)
+        {
+            QMessageBox::warning(this, "Name used", "The snippet name " + name + " is used for " + lang);
+            continue;
+        }
+        break;
     }
-    else
-    {
-        auto lang = ui->snippets_lang->currentText();
-        manager->setSnippet(lang, name, "");
-        switchToSnippet(name);
-    }
+
+    manager->setSnippet(lang, name, "");
+    switchToSnippet(name);
 }
 
 void PreferenceWindow::on_delete_snippet_clicked()
@@ -360,23 +365,28 @@ void PreferenceWindow::on_rename_snippet_clicked()
 {
     if (ui->snippets->currentIndex() != -1)
     {
-        auto name = QInputDialog::getText(this, tr("New name"), tr("Name:"));
-        if (name.isEmpty())
-            return;
-        int index = ui->snippets->findText(name);
-        if (index != -1)
+        QString name;
+        auto lang = ui->snippets_lang->currentText();
+
+        while (1)
         {
-            ui->snippets->setCurrentIndex(index);
+            name = QInputDialog::getText(this, tr("Rename"), tr("Name:"));
+            if (name.isEmpty())
+                return;
+            int index = ui->snippets->findText(name);
+            if (index != -1)
+            {
+                QMessageBox::warning(this, "Name used", "The snippet name " + name + " is used for " + lang);
+                continue;
+            }
+            break;
         }
-        else
-        {
-            auto content = editor->toPlainText();
-            auto currentName = ui->snippets->currentText();
-            auto lang = ui->snippets_lang->currentText();
-            manager->removeSnippet(lang, currentName);
-            manager->setSnippet(lang, name, content);
-            switchToSnippet(name);
-        }
+
+        auto content = editor->toPlainText();
+        auto currentName = ui->snippets->currentText();
+        manager->removeSnippet(lang, currentName);
+        manager->setSnippet(lang, name, content);
+        switchToSnippet(name);
     }
 }
 
