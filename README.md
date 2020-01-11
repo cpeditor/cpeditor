@@ -67,19 +67,28 @@ You can also set hotkeys for all of the above actions manually from `Preferences
 
 ### Build from source
 
-1. Install Qt (5.12 or higher) and CMake.
+1. Clone this repo:
 
-2. Set environment variable `CMAKE_PREFIX_PATH=%QtPath%/%QtVersion%/%Compiler%/lib/cmake`.
+	```sh
+	git clone https://github.com/coder3101/cp-editor.git
+	cd cp-editor
+	git submodule init
+	git submodule update
+	```
 
-3. Run the following commands:
+2. Install Qt (5.12 or higher) and CMake.
+
+3. Set environment variable `CMAKE_PREFIX_PATH=%QtPath%/%QtVersion%/%Compiler%/lib/cmake`.
+
+4. Run the following commands:
 	
 	- Linux:
 
 		```sh
-		$ mkdir build
-		$ cd build
-		$ cmake .. -DCMAKE_BUILD_TYPE=Release
-		$ cmake --build .
+		mkdir build
+		cd build
+		cmake .. -DCMAKE_BUILD_TYPE=Release
+		cmake --build .
 		```
 
 	- Windows:
