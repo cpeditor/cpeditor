@@ -359,7 +359,7 @@ void AppWindow::on_actionRestore_Settings_triggered()
                                      QMessageBox::Yes | QMessageBox::No);
     if (res == QMessageBox::Yes)
     {
-        preferenceWindow->resetSettings();
+        settingManager->resetSettings();
         onSettingsApplied();
     }
 }
