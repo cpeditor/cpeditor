@@ -453,6 +453,9 @@ void AppWindow::onSettingsApplied()
         settingManager->setSystemThemeDark(false);
     }
 
+    if (settingManager->getFormatCommand().contains(QRegularExpression(" -i(?: |$)")))
+        QMessageBox::warning(this, "Formatter", "Please don't use -i in the format command.");
+
     updater->setBeta(settingManager->isBeta());
     maybeSetHotkeys();
 
