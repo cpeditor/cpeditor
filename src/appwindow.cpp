@@ -284,12 +284,11 @@ void AppWindow::on_actionAbout_triggered()
                        QString::fromStdString(std::string("About CP Editor ") + APP_VERSION_MAJOR + "." +
                                               APP_VERSION_MINOR + "." + APP_VERSION_PATCH),
 
-                       "<p>The <b>CP Editor</b> is a competitive programmer's editor "
-                       "which can ease the task of compiling, testing and running a program "
-                       "so that you (a great programmer) can focus fully on your algorithm "
-                       "designs. </p>"
-                       "<p>The code repository: <a "
-                       "href=\"https://github.com/coder3101/cp-editor\">"
+                       "<p><b>CP Editor</b> is a native Qt-based code editor written in C++. It's specially designed "
+                       "for competitive programming, unlike other editors/IDEs which are mainly for developers. It "
+                       "helps you focus on your coding and automates the compilation, executing and testing. It even "
+                       "fetches test cases for you from webpages and submits codes on Codeforces!</p>"
+                       "<p>The code repository: <a href=\"https://github.com/coder3101/cp-editor\"> "
                        "https://github.com/coder3101/cp-editor</a></p>");
 }
 
