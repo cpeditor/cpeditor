@@ -526,7 +526,7 @@ p, li { white-space: pre-wrap; }
                </font>
               </property>
               <property name="text">
-               <string>Language for snippet</string>
+               <string>Language for snippets</string>
               </property>
              </widget>
             </item>
@@ -593,12 +593,18 @@ p, li { white-space: pre-wrap; }
                   <property name="text">
                    <string>Save</string>
                   </property>
+                  <property name="shortcut">
+                   <string>Ctrl+S</string>
+                  </property>
                  </widget>
                 </item>
                 <item>
                  <widget class="QPushButton" name="snippet_new">
                   <property name="text">
                    <string>New</string>
+                  </property>
+                  <property name="shortcut">
+                   <string>Ctrl+N</string>
                   </property>
                  </widget>
                 </item>
@@ -607,12 +613,18 @@ p, li { white-space: pre-wrap; }
                   <property name="text">
                    <string>Delete</string>
                   </property>
+                  <property name="shortcut">
+                   <string>Ctrl+D</string>
+                  </property>
                  </widget>
                 </item>
                 <item>
                  <widget class="QPushButton" name="snippet_rename">
                   <property name="text">
                    <string>Rename</string>
+                  </property>
+                  <property name="shortcut">
+                   <string>Ctrl+R</string>
                   </property>
                  </widget>
                 </item>
@@ -623,7 +635,7 @@ p, li { white-space: pre-wrap; }
             <item row="4" column="1">
              <widget class="QPushButton" name="load_snippets_from_file">
               <property name="text">
-               <string>Load Snippets From File</string>
+               <string>Load Snippets From Files</string>
               </property>
              </widget>
             </item>
