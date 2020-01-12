@@ -20,7 +20,8 @@ PreferenceWindow::PreferenceWindow(Settings::SettingManager *manager, QWidget *p
     setWindowTitle("Preferences");
 
     editor = new QCodeEditor();
-    ui->verticalLayout_3->addWidget(editor);
+    editor->setMinimumHeight(300);
+    ui->verticalLayout_3->insertWidget(0, editor);
 
     connect(ui->snippets, SIGNAL(currentTextChanged(const QString &)), this,
             SLOT(on_current_snippet_changed(const QString &)));
@@ -28,7 +29,7 @@ PreferenceWindow::PreferenceWindow(Settings::SettingManager *manager, QWidget *p
             SLOT(on_snippets_lang_changed(const QString &)));
 
     applySettingsToui();
-    resize(QDesktopWidget().availableGeometry(this).size() * 0.35);
+    resize(QDesktopWidget().availableGeometry(this).size() * 0.40);
     setConstraints();
     applySettingsToEditor();
 }
@@ -62,7 +63,6 @@ void PreferenceWindow::applySettingsToui()
 {
     ui->tabWidget->setCurrentIndex(0);
 
-    ui->systemwide_theme->setCurrentIndex(!manager->isSystemThemeDark());
     ui->editor_theme->setCurrentText(manager->getEditorTheme());
     ui->tab_length->setValue(manager->getTabStop());
 
@@ -123,7 +123,6 @@ void PreferenceWindow::applySettingsToui()
 
 void PreferenceWindow::extractSettingsFromUi()
 {
-    manager->setSystemThemeDark(ui->systemwide_theme->currentText() == "Dark");
     manager->setEditorTheme(ui->editor_theme->currentText());
     manager->setTabStop(ui->tab_length->value());
     manager->setFont(currentFont.toString());
@@ -251,70 +250,6 @@ void PreferenceWindow::on_java_template_clicked()
     ui->java_template->setText("..." + javaTemplatePath.right(30));
 }
 
-void PreferenceWindow::on_save_snippet_clicked()
-{
-    auto lang = ui->snippets_lang->currentText();
-    if (ui->snippets->currentIndex() != -1)
-    {
-        auto name = ui->snippets->currentText();
-        manager->setSnippet(lang, name, editor->toPlainText());
-    }
-    else
-    {
-        auto name = getNewSnippetName(lang);
-        if (!name.isEmpty())
-        {
-            auto content = editor->toPlainText();
-            manager->setSnippet(lang, name, content);
-            switchToSnippet(name);
-        }
-    }
-}
-
-void PreferenceWindow::on_new_snippet_clicked()
-{
-    auto lang = ui->snippets_lang->currentText();
-    auto name = getNewSnippetName(lang);
-    if (!name.isEmpty())
-    {
-        manager->setSnippet(lang, name, "");
-        switchToSnippet(name);
-    }
-}
-
-void PreferenceWindow::on_delete_snippet_clicked()
-{
-    int index = ui->snippets->currentIndex();
-    if (index != -1)
-    {
-        auto name = ui->snippets->currentText();
-        auto res = QMessageBox::question(this, "Delete?", "Do you want to delete the snippet " + name + "?");
-        if (res == QMessageBox::Yes)
-        {
-            auto lang = ui->snippets_lang->currentText();
-            ui->snippets->removeItem(index);
-            manager->removeSnippet(lang, name);
-        }
-    }
-}
-
-void PreferenceWindow::on_rename_snippet_clicked()
-{
-    if (ui->snippets->currentIndex() != -1)
-    {
-        auto lang = ui->snippets_lang->currentText();
-        auto name = getNewSnippetName(lang);
-        if (!name.isEmpty())
-        {
-            auto content = editor->toPlainText();
-            auto currentName = ui->snippets->currentText();
-            manager->removeSnippet(lang, currentName);
-            manager->setSnippet(lang, name, content);
-            switchToSnippet(name);
-        }
-    }
-}
-
 void PreferenceWindow::on_load_snippets_from_file_clicked()
 {
     auto lang = ui->snippets_lang->currentText();
@@ -323,8 +258,8 @@ void PreferenceWindow::on_load_snippets_from_file_clicked()
         fileType = "Java Files (*.java)";
     else if (lang == "Python")
         fileType = "Python Files (*.py)";
-    QStringList filenames = QFileDialog::getOpenFileNames(this,
-        "Select one or more files to be loaded as snippets for " + lang, "", fileType);
+    QStringList filenames = QFileDialog::getOpenFileNames(
+        this, "Select one or more files to be loaded as snippets for " + lang, "", fileType);
     for (auto &filename : filenames)
     {
         QFile file(filename);
@@ -413,9 +348,75 @@ void PreferenceWindow::applySettingsToEditor()
         editor->setSyntaxStyle(Themes::EditorTheme::getLightTheme());
 }
 
+
+void PreferenceWindow::on_snippet_save_clicked()
+{
+    auto lang = ui->snippets_lang->currentText();
+    if (ui->snippets->currentIndex() != -1)
+    {
+        auto name = ui->snippets->currentText();
+        manager->setSnippet(lang, name, editor->toPlainText());
+    }
+    else
+    {
+        auto name = getNewSnippetName(lang);
+        if (!name.isEmpty())
+        {
+            auto content = editor->toPlainText();
+            manager->setSnippet(lang, name, content);
+            switchToSnippet(name);
+        }
+    }
+}
+
+void PreferenceWindow::on_snippet_new_clicked()
+{
+    auto lang = ui->snippets_lang->currentText();
+    auto name = getNewSnippetName(lang);
+    if (!name.isEmpty())
+    {
+        manager->setSnippet(lang, name, "");
+        switchToSnippet(name);
+    }
+}
+
+void PreferenceWindow::on_snippet_delete_clicked()
+{
+    int index = ui->snippets->currentIndex();
+    if (index != -1)
+    {
+        auto name = ui->snippets->currentText();
+        auto res = QMessageBox::question(this, "Delete?", "Do you want to delete the snippet " + name + "?");
+        if (res == QMessageBox::Yes)
+        {
+            auto lang = ui->snippets_lang->currentText();
+            ui->snippets->removeItem(index);
+            manager->removeSnippet(lang, name);
+        }
+    }
+}
+
+void PreferenceWindow::on_snippet_rename_clicked()
+{
+    if (ui->snippets->currentIndex() != -1)
+    {
+        auto lang = ui->snippets_lang->currentText();
+        auto name = getNewSnippetName(lang);
+        if (!name.isEmpty())
+        {
+            auto content = editor->toPlainText();
+            auto currentName = ui->snippets->currentText();
+            manager->removeSnippet(lang, currentName);
+            manager->setSnippet(lang, name, content);
+            switchToSnippet(name);
+        }
+    }
+}
+
+
 QString PreferenceWindow::getNewSnippetName(const QString &lang, const QString &old)
 {
-    if (ui->snippets->findText(old) == -1)
+    if (ui->snippets->findText(old) != -1)
         return old;
     QString label = "New name:";
     if (!old.isNull())

@@ -28,11 +28,6 @@ SettingManager::SettingManager()
     mSettings = new QSettings(mSettingsFile, QSettings::IniFormat);
 }
 
-bool SettingManager::isSystemThemeDark()
-{
-    return mSettings->value("dark_theme", "false").toBool();
-}
-
 bool SettingManager::isWrapText()
 {
     return mSettings->value("wrap_text", "false").toBool();
@@ -151,14 +146,6 @@ int SettingManager::getTabStop()
 int SettingManager::getConnectionPort()
 {
     return mSettings->value("companion_port", 10045).toInt();
-}
-
-void SettingManager::setSystemThemeDark(bool value)
-{
-    if (value)
-        mSettings->setValue("dark_theme", QString::fromStdString("true"));
-    else
-        mSettings->setValue("dark_theme", QString::fromStdString("false"));
 }
 
 void SettingManager::setAutoIndent(bool value)
@@ -462,7 +449,6 @@ SettingsData SettingManager::toData()
     data.runCommandJava = getRunCommandJava();
     data.runCommandPython = getRunCommandPython();
     data.editorTheme = getEditorTheme();
-    data.isSystemThemeDark = isSystemThemeDark();
     data.isHotKeyInUse = isHotkeyInUse();
     data.isAutoParenthesis = isAutoParenthesis();
     data.isAutoIndent = isAutoIndent();

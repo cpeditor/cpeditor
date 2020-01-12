@@ -62,7 +62,6 @@ struct SettingsData
 
     QString editorTheme;
 
-    bool isSystemThemeDark;
     bool isHotKeyInUse;
     bool isAutoParenthesis;
     bool isAutoIndent;
@@ -137,9 +136,6 @@ class SettingManager
 
     QString getEditorTheme();
     void setEditorTheme(QString theme);
-
-    bool isSystemThemeDark();
-    void setSystemThemeDark(bool value);
 
     bool isHotkeyInUse();
     void setHotKeyInUse(bool value);

@@ -41,14 +41,6 @@ class PreferenceWindow : public QMainWindow
 
     void on_java_template_clicked();
 
-    void on_save_snippet_clicked();
-
-    void on_new_snippet_clicked();
-
-    void on_delete_snippet_clicked();
-
-    void on_rename_snippet_clicked();
-
     void on_load_snippets_from_file_clicked();
 
     void on_snippets_lang_changed(const QString &lang);
@@ -57,7 +49,15 @@ class PreferenceWindow : public QMainWindow
 
     void applySettingsToEditor();
 
-  private:
+    void on_snippet_save_clicked();
+
+    void on_snippet_new_clicked();
+
+    void on_snippet_delete_clicked();
+
+    void on_snippet_rename_clicked();
+
+private:
     Ui::PreferenceWindow *ui;
     QFont currentFont;
     QString cppTemplatePath, pythonTemplatePath, javaTemplatePath;

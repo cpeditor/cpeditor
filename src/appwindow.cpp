@@ -443,15 +443,6 @@ void AppWindow::onSaveTimerElapsed()
 
 void AppWindow::onSettingsApplied()
 {
-    if (settingManager->isSystemThemeDark())
-    {
-        QMessageBox::warning(this, "Don't use dark theme",
-                             "System-wide dark theme is not officially supported by Qt or the developer"
-                             ". It has some serious UI/UX issues and should not be used. Instead you can"
-                             " turn system theme dark on your PC settings.");
-
-        settingManager->setSystemThemeDark(false);
-    }
 
     if (settingManager->getFormatCommand().contains(QRegularExpression(" -i(?: |$)")))
         QMessageBox::warning(this, "Formatter", "Please don't use -i in the format command.");
