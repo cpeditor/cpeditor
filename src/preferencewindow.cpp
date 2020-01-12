@@ -253,45 +253,33 @@ void PreferenceWindow::on_java_template_clicked()
 
 void PreferenceWindow::on_save_snippet_clicked()
 {
+    auto lang = ui->snippets_lang->currentText();
     if (ui->snippets->currentIndex() != -1)
     {
         auto name = ui->snippets->currentText();
-        auto lang = ui->snippets_lang->currentText();
         manager->setSnippet(lang, name, editor->toPlainText());
     }
     else
     {
-        auto name = QInputDialog::getText(this, tr("New name"), tr("Name:"));
-        if (name.isEmpty())
-            return;
-        auto lang = ui->snippets_lang->currentText();
-        auto content = editor->toPlainText();
-        manager->setSnippet(lang, name, content);
-        switchToSnippet(name);
+        auto name = getNewSnippetName(lang);
+        if (!name.isEmpty())
+        {
+            auto content = editor->toPlainText();
+            manager->setSnippet(lang, name, content);
+            switchToSnippet(name);
+        }
     }
 }
 
 void PreferenceWindow::on_new_snippet_clicked()
 {
-    QString name;
     auto lang = ui->snippets_lang->currentText();
-
-    while (1)
+    auto name = getNewSnippetName(lang);
+    if (!name.isEmpty())
     {
-        name = QInputDialog::getText(this, tr("New"), tr("Name:"));
-        if (name.isEmpty())
-            return;
-        int index = ui->snippets->findText(name);
-        if (index != -1)
-        {
-            QMessageBox::warning(this, "Name used", "The snippet name " + name + " is used for " + lang);
-            continue;
-        }
-        break;
+        manager->setSnippet(lang, name, "");
+        switchToSnippet(name);
     }
-
-    manager->setSnippet(lang, name, "");
-    switchToSnippet(name);
 }
 
 void PreferenceWindow::on_delete_snippet_clicked()
@@ -314,28 +302,16 @@ void PreferenceWindow::on_rename_snippet_clicked()
 {
     if (ui->snippets->currentIndex() != -1)
     {
-        QString name;
         auto lang = ui->snippets_lang->currentText();
-
-        while (1)
+        auto name = getNewSnippetName(lang);
+        if (!name.isEmpty())
         {
-            name = QInputDialog::getText(this, tr("Rename"), tr("Name:"));
-            if (name.isEmpty())
-                return;
-            int index = ui->snippets->findText(name);
-            if (index != -1)
-            {
-                QMessageBox::warning(this, "Name used", "The snippet name " + name + " is used for " + lang);
-                continue;
-            }
-            break;
+            auto content = editor->toPlainText();
+            auto currentName = ui->snippets->currentText();
+            manager->removeSnippet(lang, currentName);
+            manager->setSnippet(lang, name, content);
+            switchToSnippet(name);
         }
-
-        auto content = editor->toPlainText();
-        auto currentName = ui->snippets->currentText();
-        manager->removeSnippet(lang, currentName);
-        manager->setSnippet(lang, name, content);
-        switchToSnippet(name);
     }
 }
 
@@ -405,4 +381,18 @@ void PreferenceWindow::applySettingsToEditor()
         editor->setSyntaxStyle(Themes::EditorTheme::getSolarisedDarkTheme());
     else
         editor->setSyntaxStyle(Themes::EditorTheme::getLightTheme());
+}
+
+QString PreferenceWindow::getNewSnippetName(const QString &lang, const QString &used)
+{
+    QString label = "New name:";
+    if (!used.isNull())
+        label = "The name " + used + " is used for " + lang + "\n" + label;
+    auto name = QInputDialog::getText(this, tr("Snippet Name"), label);
+    if (name.isEmpty())
+        return QString();
+    else if (ui->snippets->findText(name) == -1)
+        return name;
+    else
+        return getNewSnippetName(lang, name);
 }

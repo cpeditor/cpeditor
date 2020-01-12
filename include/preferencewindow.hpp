@@ -67,6 +67,8 @@ class PreferenceWindow : public QMainWindow
     void setConstraints();
     void updateSnippets();
     void switchToSnippet(const QString &text);
+
+    QString getNewSnippetName(const QString& lang, const QString &used = QString());
 };
 
 #endif // PREFERENCEWINDOW_HPP
