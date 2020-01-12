@@ -82,11 +82,11 @@ bool SettingManager::isHotkeyInUse()
 
 QString SettingManager::getRunCommandJava()
 {
-    return mSettings->value("run_java", "").toString();
+    return mSettings->value("run_java", "java").toString();
 }
 QString SettingManager::getRunCommandPython()
 {
-    return mSettings->value("run_python", "").toString();
+    return mSettings->value("run_python", "python").toString();
 }
 QString SettingManager::getCompileCommandCpp()
 {
