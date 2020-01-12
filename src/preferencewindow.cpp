@@ -315,6 +315,36 @@ void PreferenceWindow::on_rename_snippet_clicked()
     }
 }
 
+void PreferenceWindow::on_load_snippets_from_file_clicked()
+{
+    auto lang = ui->snippets_lang->currentText();
+    QString fileType = "C++ Files (*.cpp *.hpp *.h *.cc *.cxx *.c)";
+    if (lang == "Java")
+        fileType = "Java Files (*.java)";
+    else if (lang == "Python")
+        fileType = "Python Files (*.py)";
+    QStringList filenames = QFileDialog::getOpenFileNames(this,
+        "Select one or more files to be loaded as snippets for " + lang, "", fileType);
+    for (auto &filename : filenames)
+    {
+        QFile file(filename);
+        if (!file.open(QIODevice::ReadOnly | QFile::Text))
+        {
+            QMessageBox::warning(this, "File load error", "Failed to read " + filename);
+        }
+        else
+        {
+            auto snippetName = getNewSnippetName(lang, QFileInfo(file).baseName());
+            if (!snippetName.isEmpty())
+            {
+                manager->setSnippet(lang, snippetName, file.readAll());
+                switchToSnippet(snippetName);
+            }
+            file.close();
+        }
+    }
+}
+
 void PreferenceWindow::on_snippets_lang_changed(const QString &lang)
 {
     updateSnippets();
@@ -383,11 +413,13 @@ void PreferenceWindow::applySettingsToEditor()
         editor->setSyntaxStyle(Themes::EditorTheme::getLightTheme());
 }
 
-QString PreferenceWindow::getNewSnippetName(const QString &lang, const QString &used)
+QString PreferenceWindow::getNewSnippetName(const QString &lang, const QString &old)
 {
+    if (ui->snippets->findText(old) == -1)
+        return old;
     QString label = "New name:";
-    if (!used.isNull())
-        label = "The name " + used + " is used for " + lang + "\n" + label;
+    if (!old.isNull())
+        label = "The name " + old + " is used for " + lang + "\n" + label;
     auto name = QInputDialog::getText(this, tr("Snippet Name"), label);
     if (name.isEmpty())
         return QString();

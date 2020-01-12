@@ -684,6 +684,27 @@ p, li { white-space: pre-wrap; }
             <item row="2" column="1">
              <layout class="QVBoxLayout" name="verticalLayout_3"/>
             </item>
+            <item row="3" column="0">
+             <widget class="QLabel" name="label_233">
+              <property name="font">
+               <font>
+                <pointsize>12</pointsize>
+                <weight>50</weight>
+                <bold>false</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>Load From File</string>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="1">
+             <widget class="QPushButton" name="load_snippets_from_file">
+              <property name="text">
+               <string>Load Snippets From File</string>
+              </property>
+             </widget>
+            </item>
            </layout>
           </item>
          </layout>

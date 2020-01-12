@@ -49,6 +49,8 @@ class PreferenceWindow : public QMainWindow
 
     void on_rename_snippet_clicked();
 
+    void on_load_snippets_from_file_clicked();
+
     void on_snippets_lang_changed(const QString &lang);
 
     void on_current_snippet_changed(const QString &text);
@@ -68,7 +70,7 @@ class PreferenceWindow : public QMainWindow
     void updateSnippets();
     void switchToSnippet(const QString &text);
 
-    QString getNewSnippetName(const QString& lang, const QString &used = QString());
+    QString getNewSnippetName(const QString& lang, const QString &old = QString());
 };
 
 #endif // PREFERENCEWINDOW_HPP
