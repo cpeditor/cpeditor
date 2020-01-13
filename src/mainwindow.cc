@@ -41,7 +41,7 @@
 #include "../ui/ui_mainwindow.h"
 
 // ***************************** RAII  ****************************
-MainWindow::MainWindow(int index, QString filePath, QWidget *parent)
+MainWindow::MainWindow(int index, QString fileOpen, QWidget *parent)
     : QMainWindow(parent), windowIndex(index), ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
@@ -49,36 +49,21 @@ MainWindow::MainWindow(int index, QString filePath, QWidget *parent)
     setupCore();
     runner->removeExecutable();
 
-    if (!filePath.isEmpty())
-    {
-        openFile = new QFile(filePath);
-        openFile->open(QIODevice::ReadWrite | QFile::Text);
-        if (openFile->isOpen())
-        {
-            editor->setPlainText(openFile->readAll());
-        }
-        else
-        {
-            log.warn("Loader", "The filepath was not loaded. Read/Write permission missing");
-            openFile->close();
-            delete openFile;
-            openFile = nullptr;
-        }
-        loadTests();
-    }
+    fileWatcher = new QFileSystemWatcher(this);
+    connect(fileWatcher, SIGNAL(fileChanged(const QString &)), this, SLOT(onFileWatcherChanged(const QString &)));
+
+    loadFile(fileOpen);
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
     delete editor;
-    if (openFile != nullptr && openFile->isOpen())
-        openFile->close();
-    delete openFile;
     delete inputReader;
     delete formatter;
     delete compiler;
     delete runner;
+    delete fileWatcher;
 
     for (int i = 0; i < 3; ++i)
         delete expected[i];
@@ -158,21 +143,19 @@ void MainWindow::maybeLoadTemplate()
         target = data.templatePython;
     else if (language == "Cpp")
         target = data.templateCpp;
-    else
-        return;
 
     if (target.isEmpty())
         return;
 
-    if (openFile == nullptr && editor->toPlainText().trimmed().isEmpty())
+    if (isUntitled() && editor->toPlainText().trimmed().isEmpty())
     {
         QFile tmp(target);
         tmp.open(QIODevice::ReadOnly | QFile::Text);
 
         if (tmp.isOpen())
         {
-            editor->setPlainText(tmp.readAll());
-            log.info("Template", "Template was loaded sucessfully");
+            setText(tmp.readAll());
+            log.info("Template", "Template has been loaded sucessfully");
         }
         else
             log.warn("Template", "Failed to load template. Do I have read permission?");
@@ -181,98 +164,75 @@ void MainWindow::maybeLoadTemplate()
 
 void MainWindow::loadTests()
 {
-    if (openFile == nullptr || !data.shouldSaveTests)
+    if (isUntitled() || !data.shouldSaveTests)
         return;
 
-    QFileInfo fileInfo(*openFile);
+    QFileInfo fileInfo(filePath);
     QString testFile = fileInfo.dir().absolutePath() + "/" + fileInfo.completeBaseName();
 
     for (int i = 0; i < 3; ++i)
     {
         if (QFile::exists(testFile + QString::number(i + 1) + ".in"))
         {
-            QFile *inputFile = new QFile(testFile + QString::number(i + 1) + ".in");
-            inputFile->open(QIODevice::ReadOnly | QFile::Text);
-            if (inputFile->isOpen())
+            QFile inputFile(testFile + QString::number(i + 1) + ".in");
+            inputFile.open(QIODevice::ReadOnly | QFile::Text);
+            if (inputFile.isOpen())
             {
-                input[i]->setPlainText(inputFile->readAll());
-                inputFile->close();
-                log.info("Tests", "Input #" + std::to_string(i + 1) + " successfully loaded");
+                input[i]->setPlainText(inputFile.readAll());
             }
             else
             {
                 log.error("Tests",
-                          "Cannot Open" + inputFile->fileName().toStdString() + ", Do I have read permissions?");
+                          "Failed to open" + inputFile.fileName().toStdString() + ". Do I have read permissions?");
             }
-            delete inputFile;
         }
 
         if (QFile::exists(testFile + QString::number(i + 1) + ".ans"))
         {
-            QFile *answerFile = new QFile(testFile + QString::number(i + 1) + ".ans");
-            answerFile->open(QIODevice::ReadOnly | QFile::Text);
-            if (answerFile->isOpen())
+            QFile answerFile(testFile + QString::number(i + 1) + ".ans");
+            answerFile.open(QIODevice::ReadOnly | QFile::Text);
+            if (answerFile.isOpen())
             {
-                expected[i]->operator=(answerFile->readAll());
-                answerFile->close();
-                log.info("Tests", "Expected #" + std::to_string(i + 1) + " successfully loaded");
+                expected[i]->operator=(answerFile.readAll());
             }
             else
             {
                 log.error("Tests",
-                          "Cannot Open" + answerFile->fileName().toStdString() + ", Do I have read permissions?");
+                          "Failed to open" + answerFile.fileName().toStdString() + ". Do I have read permissions?");
             }
-            delete answerFile;
         }
     }
 }
 
 void MainWindow::saveTests()
 {
-    if (openFile == nullptr || !data.shouldSaveTests)
+    if (isUntitled() || !data.shouldSaveTests)
         return;
 
-    QFileInfo fileInfo(*openFile);
+    QFileInfo fileInfo(filePath);
     QString testFile = fileInfo.dir().absolutePath() + "/" + fileInfo.completeBaseName();
 
     for (int i = 0; i < 3; ++i)
     {
         if (!input[i]->toPlainText().trimmed().isEmpty())
         {
-            QFile *inputFile = new QFile(testFile + QString::number(i + 1) + ".in");
-            inputFile->open(QIODevice::WriteOnly | QFile::Text);
-            if (inputFile->isOpen())
+            QFile inputFile(testFile + QString::number(i + 1) + ".in");
+            inputFile.open(QIODevice::WriteOnly | QFile::Text);
+            if (!inputFile.isOpen() || inputFile.write(input[i]->toPlainText().toStdString().c_str()) == -1)
             {
-                if (inputFile->write(input[i]->toPlainText().toStdString().c_str()) == -1)
-                {
-                    log.error("Tests", "Input #" + std::to_string(i + 1) + " was not successfully saved");
-                }
-                inputFile->close();
+                log.error("Tests", "Failed to save Input #" + std::to_string(i + 1) + ". Do I have write permission?");
             }
-            else
-            {
-                log.error("Tests", "Cannot save Input #" + std::to_string(i + 1) + ", Do I have write permission?");
-            }
-            delete inputFile;
         }
 
         if (!expected[i]->trimmed().isEmpty())
         {
-            QFile *answerFile = new QFile(testFile + QString::number(i + 1) + ".ans");
-            answerFile->open(QIODevice::WriteOnly | QFile::Text);
-            if (answerFile->isOpen())
+            QFile answerFile(testFile + QString::number(i + 1) + ".ans");
+            answerFile.open(QIODevice::WriteOnly | QFile::Text);
+            if (!answerFile.isOpen() || answerFile.write(expected[i]->toStdString().c_str()) == -1)
             {
-                if (answerFile->write(expected[i]->toStdString().c_str()) == -1)
-                {
-                    log.error("Tests", "Expected #" + std::to_string(i + 1) + " was not successfully saved");
-                }
-                answerFile->close();
+                log.error("Tests",
+                          "Failed to save Expected #" + std::to_string(i + 1) + ". Do I have write permission?");
             }
-            else
-            {
-                log.error("Tests", "Cannot save Expected #" + std::to_string(i + 1) + ", Do I have write permission?");
-            }
-            delete answerFile;
         }
     }
 }
@@ -287,37 +247,51 @@ void MainWindow::setCFToolsUI()
         connect(submitToCodeforces, &QPushButton::clicked, this, [this] {
             auto response = QMessageBox::warning(
                 this, "Sure to submit",
-                "Are you sure you want to submit this solution to codeforces?\n\n URL: " + companionData.url +
+                "Are you sure you want to submit this solution to Codeforces?\n\n URL: " + problemURL +
                     "\n Language : " + language,
                 QMessageBox::Yes | QMessageBox::No);
 
             if (response == QMessageBox::Yes)
             {
                 compiler->syncToBuffer(editor);
-                cftools->submit(companionData.url, language);
+                cftools->submit(problemURL, language);
             }
         });
     }
     if (!Network::CFTools::check())
     {
         submitToCodeforces->setEnabled(false);
-        log.error("CFTools", "You will not be able to submit code to codeforces because CFTools is not installed or is "
+        log.error("CFTools", "You will not be able to submit code to Codeforces because CFTools is not installed or is "
                              "not on SYSTEM PATH");
     }
 }
 
-QString MainWindow::fileName() const
+QString MainWindow::getFileName() const
 {
-    return openFile == nullptr || !openFile->isOpen() ? "untitled" : QFileInfo(*openFile).fileName();
+    return isUntitled() ? "untitled" : QFileInfo(filePath).fileName();
 }
 
-QString MainWindow::filePath() const
+QString MainWindow::getFilePath() const
 {
-    return openFile == nullptr || !openFile->isOpen() ? "" : openFile->fileName();
+    return filePath;
 }
-QString MainWindow::problemURL() const
+
+QString MainWindow::getProblemURL() const
 {
-    return companionData.url;
+    return problemURL;
+}
+
+QString MainWindow::getTabTitle(bool complete) const
+{
+    auto tabTitle = complete ? (isUntitled() ? "untitled" : filePath) : getFileName();
+    if (isTextChanged())
+        tabTitle += " *";
+    return tabTitle;
+}
+
+bool MainWindow::isUntitled() const
+{
+    return filePath.isEmpty();
 }
 
 void MainWindow::updateVerdict(Core::Verdict _verdict, int id)
@@ -346,7 +320,7 @@ void MainWindow::updateVerdict(Core::Verdict _verdict, int id)
 
 void MainWindow::applyCompanion(Network::CompanionData data)
 {
-    if (openFile == nullptr && !isTextChanged())
+    if (isUntitled() && !isTextChanged())
     {
         QString meta = data.toMetaString();
         meta.prepend("\n");
@@ -372,8 +346,8 @@ void MainWindow::applyCompanion(Network::CompanionData data)
         input[i]->setPlainText(data.testcases[i].input);
         expected[i]->operator=(data.testcases[i].output);
     }
-    companionData = data;
-    if (data.url.contains("codeforces.com"))
+    problemURL = data.url;
+    if (problemURL.contains("codeforces.com"))
         setCFToolsUI();
     onTextChangedTriggered();
 }
@@ -441,43 +415,26 @@ void MainWindow::setSettingsData(Settings::SettingsData data, bool shouldPerform
         performCoreDiagonistics();
     }
 }
+
 void MainWindow::save(bool force)
 {
-    saveFile(force, "Save");
+    saveFile(force ? SaveUntitled : IgnoreUntitled, "Save");
 }
 
 void MainWindow::saveAs()
 {
-    if (openFile == nullptr)
-    {
-        saveFile(true, "Save as");
-    }
-    else
-    {
-        auto oldFile = openFile;
-        openFile->close();
-        openFile = nullptr;
-        if (!saveFile(true, "Save as"))
-        {
-            openFile = oldFile;
-            openFile->open(QIODevice::ReadWrite | QFile::Text);
-        }
-        else
-        {
-            delete oldFile;
-        }
-    }
+    saveFile(SaveAs, "Save as");
 }
 
 void MainWindow::onTextChangedTriggered()
 {
-    emit editorTextChanged(isTextChanged(), this);
+    emit editorChanged(this);
 }
 
 void MainWindow::on_compile_clicked()
 {
     log.clear();
-    saveFile(false, "Compiler");
+    saveFile(IgnoreUntitled, "Compiler");
     compiler->compile(editor, language);
 }
 
@@ -485,7 +442,7 @@ void MainWindow::on_run_clicked()
 {
     log.clear();
     clearTests(true);
-    saveFile(false, "Compiler");
+    saveFile(IgnoreUntitled, "Compiler");
     inputReader->readToFile();
 
     QVector<bool> isRun;
@@ -526,13 +483,13 @@ void MainWindow::setLanguage(QString lang)
     {
         editor->setHighlighter(new QPythonHighlighter);
         editor->setCompleter(new QPythonCompleter);
-        ui->changeLanguageButoon->setText("Python");
+        ui->changeLanguageButton->setText("Python");
     }
     else if (lang == "Java")
     {
         editor->setHighlighter(new QCXXHighlighter);
         editor->setCompleter(nullptr);
-        ui->changeLanguageButoon->setText("Java");
+        ui->changeLanguageButton->setText("Java");
     }
     else
     {
@@ -541,7 +498,7 @@ void MainWindow::setLanguage(QString lang)
             log.warn("CP Editor", "Unknown lanague set, fallback to Cpp");
         editor->setHighlighter(new QCXXHighlighter);
         editor->setCompleter(nullptr);
-        ui->changeLanguageButoon->setText("Cpp");
+        ui->changeLanguageButton->setText("Cpp");
     }
     performCoreDiagonistics();
     isLanguageSet = true;
@@ -557,11 +514,6 @@ MessageLogger *MainWindow::getLogger()
     return &log;
 }
 
-QFile *MainWindow::getOpenFile()
-{
-    return openFile;
-}
-
 void MainWindow::insertText(QString text)
 {
     editor->insertPlainText(text);
@@ -571,7 +523,7 @@ void MainWindow::on_runOnly_clicked()
 {
     log.clear();
     clearTests(true);
-    saveFile(false, "Compiler");
+    saveFile(IgnoreUntitled, "Compiler");
     inputReader->readToFile();
 
     QVector<bool> isRun;
@@ -802,50 +754,111 @@ bool MainWindow::isVerdictPass(QString output, QString expected)
     return true;
 }
 
-bool MainWindow::saveFile(bool force, std::string head)
+void MainWindow::setText(const QString &text, bool saveCursor)
 {
-    if (openFile == nullptr)
+    if (saveCursor)
     {
-        if (force)
-        {
-            emit confirmTriggered(this);
-            auto filename = QFileDialog::getSaveFileName(
-                this, tr("Save File"), "", "Source Files (*.cpp *.hpp *.h *.cc *.cxx *.c *.py *.py3 *.java)");
-            if (filename.isEmpty())
-                return false;
-
-            openFile = new QFile(filename);
-            openFile->open(QIODevice::ReadWrite | QFile::Text);
-            if (openFile->isOpen())
-            {
-                openFile->resize(0);
-                if (openFile->write(editor->toPlainText().toStdString().c_str()) == -1)
-                    log.warn(head, "File was not saved successfully");
-                openFile->flush();
-            }
-            else
-            {
-                log.error(head, "Cannot Save file. Do I have write permission?");
-            }
-            saveTests();
-        }
-        else
-        {
-            return false;
-        }
+        int old_pos = editor->textCursor().position();
+        auto doc = editor->document();
+        QTextCursor cursor(doc);
+        cursor.select(QTextCursor::Document);
+        cursor.insertText(text);
+        cursor.setPosition(old_pos);
+        editor->setTextCursor(cursor);
     }
     else
     {
-        openFile->resize(0);
-        openFile->write(editor->toPlainText().toStdString().c_str());
-        openFile->flush();
+        auto doc = editor->document();
+        QTextCursor cursor(doc);
+        cursor.select(QTextCursor::Document);
+        cursor.insertText(text);
+    }
+}
+
+void MainWindow::loadFile(const QString &path)
+{
+    bool samePath = filePath == path;
+
+    fileWatcher->removePaths(fileWatcher->files());
+
+    if (!path.isEmpty())
+    {
+        fileWatcher->addPath(path);
+        QFile openFile(path);
+        openFile.open(QIODevice::ReadOnly | QFile::Text);
+        if (openFile.isOpen())
+        {
+            savedText = openFile.readAll();
+            setText(savedText, samePath);
+        }
+        else
+        {
+            log.warn("Loader", "Failed to load " + path.toStdString() + ". Do I have read permission?");
+            return;
+        }
+        loadTests();
+    }
+
+    filePath = path;
+    if (!samePath)
+        emit editorChanged(this);
+}
+
+bool MainWindow::saveFile(SaveMode mode, std::string head)
+{
+    if (mode == SaveAs || (isUntitled() && (mode & 1)))
+    {
+        emit confirmTriggered(this);
+        auto newFilePath = QFileDialog::getSaveFileName(
+            this, tr("Save File"), "", "Source Files (*.cpp *.hpp *.h *.cc *.cxx *.c *.py *.py3 *.java)");
+        if (newFilePath.isEmpty())
+            return false;
+
+        QFile openFile(newFilePath);
+        openFile.open(QIODevice::WriteOnly | QFile::Text);
+
+        if (!openFile.isOpen() || openFile.write(editor->toPlainText().toStdString().c_str()) == -1)
+        {
+            log.error(head, "Cannot save file. Do I have write permission?");
+            return false;
+        }
+
+        fileWatcher->removePaths(fileWatcher->files());
+        filePath = newFilePath;
+        fileWatcher->addPath(filePath);
+        emit editorChanged(this);
+
+        auto suffix = QFileInfo(filePath).suffix();
+        if (suffix == ".cpp" || suffix == ".hpp" || suffix == ".h" || suffix == ".cc" || suffix == ".cxx" ||
+            suffix == ".c")
+            setLanguage("Cpp");
+        else if (suffix == "java")
+            setLanguage("Java");
+        else if (suffix == "py" || suffix == "py3")
+            setLanguage("Python");
+
         saveTests();
     }
-    onTextChangedTriggered();
+    else if (!isUntitled())
+    {
+        QFile openFile(filePath);
+        openFile.open(QFileDevice::WriteOnly | QFile::Text);
+        if (!openFile.isOpen() || openFile.write(editor->toPlainText().toStdString().c_str()) == -1)
+        {
+            log.error(head, "Cannot save file. Do I have write permission?");
+            return false;
+        }
+        saveTests();
+    }
+    else
+    {
+        return false;
+    }
+
     return true;
 }
 
-bool MainWindow::isTextChanged()
+bool MainWindow::isTextChanged() const
 {
     QString templatePath;
 
@@ -858,7 +871,7 @@ bool MainWindow::isTextChanged()
     else
         return false;
 
-    if (openFile == nullptr)
+    if (isUntitled())
     {
         if (templatePath.size() != 0 && QFile::exists(templatePath))
         {
@@ -868,12 +881,16 @@ bool MainWindow::isTextChanged()
         }
         return !editor->toPlainText().isEmpty();
     }
-    if (openFile->isOpen())
+    else
     {
-        openFile->seek(0);
-        return openFile->readAll() != editor->toPlainText();
+        QFile openFile(filePath);
+        openFile.open(QIODevice::ReadOnly | QFile::Text);
+
+        if (openFile.isOpen())
+            return openFile.readAll() != editor->toPlainText();
+        else
+            return true;
     }
-    return true;
 }
 
 bool MainWindow::closeConfirm()
@@ -883,18 +900,19 @@ bool MainWindow::closeConfirm()
     if (!confirmed)
     {
         emit confirmTriggered(this);
-        auto res =
-            QMessageBox::warning(this, "Save?", fileName() + " has been modified.\nDo you want to save your changes?",
-                                 QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel, QMessageBox::Cancel);
+        auto res = QMessageBox::warning(
+            this, "Save changes?",
+            "Save changes to " + (isUntitled() ? QString("New File") : getFileName()) + " before closing?",
+            QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel, QMessageBox::Cancel);
         if (res == QMessageBox::Save)
-            confirmed = saveFile(true, "Save");
+            confirmed = saveFile(SaveUntitled, "Save");
         else if (res == QMessageBox::Discard)
             confirmed = true;
     }
     return confirmed;
 }
 
-void MainWindow::on_changeLanguageButoon_clicked()
+void MainWindow::on_changeLanguageButton_clicked()
 {
     bool ok = false;
     int curr = 0;
@@ -911,6 +929,46 @@ void MainWindow::on_changeLanguageButoon_clicked()
 
     if (ok)
         setLanguage(response);
+}
+
+void MainWindow::onFileWatcherChanged(const QString &path)
+{
+    onTextChangedTriggered();
+
+    auto currentText = editor->toPlainText();
+
+    QString fileText;
+    QFile openFile(path);
+
+    if (openFile.exists())
+    {
+        openFile.open(QIODevice::ReadOnly | QIODevice::Text);
+        if (openFile.isOpen())
+        {
+            fileText = openFile.readAll();
+
+            if (fileText == currentText)
+            {
+                savedText = fileText;
+                return;
+            }
+
+            if (savedText == currentText)
+            {
+                loadFile(path);
+                return;
+            }
+
+            auto reload = QMessageBox::question(
+                this, "Reload?", "\"" + filePath + "\"\n\nhas been changed on disk.\nDo you want to reload it?");
+
+            if (reload == QMessageBox::StandardButton::Yes)
+            {
+                loadFile(path);
+                return;
+            }
+        }
+    }
 }
 
 QSplitter *MainWindow::getSplitter()
