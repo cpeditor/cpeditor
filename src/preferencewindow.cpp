@@ -38,7 +38,6 @@ PreferenceWindow::PreferenceWindow(Settings::SettingManager *manager, QWidget *p
     setWindowTitle("Preferences");
 
     editor = new QCodeEditor();
-    editor->setMinimumHeight(300);
     ui->verticalLayout_3->insertWidget(0, editor);
 
     connect(ui->snippets, SIGNAL(currentTextChanged(const QString &)), this,
@@ -287,7 +286,11 @@ void PreferenceWindow::on_load_snippets_from_file_clicked()
         }
         else
         {
-            auto snippetName = getNewSnippetName(lang, QFileInfo(file).baseName());
+            auto snippetName = QFileInfo(file).baseName();
+            if (snippetName.isEmpty())
+                snippetName = QFileInfo(file).fileName();
+            if (ui->snippets->findText(snippetName) != -1)
+                snippetName = getNewSnippetName(lang, snippetName);
             if (!snippetName.isEmpty())
             {
                 manager->setSnippet(lang, snippetName, file.readAll());
@@ -366,7 +369,6 @@ void PreferenceWindow::applySettingsToEditor()
         editor->setSyntaxStyle(Themes::EditorTheme::getLightTheme());
 }
 
-
 void PreferenceWindow::on_snippet_save_clicked()
 {
     auto lang = ui->snippets_lang->currentText();
@@ -431,13 +433,10 @@ void PreferenceWindow::on_snippet_rename_clicked()
     }
 }
 
-
 QString PreferenceWindow::getNewSnippetName(const QString &lang, const QString &old)
 {
-    if (ui->snippets->findText(old) != -1)
-        return old;
     QString label = "New name:";
-    if (!old.isNull())
+    if (!old.isEmpty())
         label = "The name " + old + " is used for " + lang + "\n" + label;
     auto name = QInputDialog::getText(this, tr("Snippet Name"), label);
     if (name.isEmpty())
