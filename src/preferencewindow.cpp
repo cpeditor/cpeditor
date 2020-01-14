@@ -1,20 +1,19 @@
 /*
-* Copyright (C) 2019-2020 Ashar Khan <ashar786khan@gmail.com> 
-* 
-* This file is part of CPEditor.
-*  
-* CPEditor is free software: you can redistribute it and/or modify
-* it under the terms of the GNU General Public License as published by
-* the Free Software Foundation, either version 3 of the License, or
-* (at your option) any later version.
-* 
-* I will not be responsible if CPEditor behaves in unexpected way and
-* causes your ratings to go down and or loose any important contest.
-* 
-* Believe Software is "Software" and it isn't immune to bugs.
-* 
-*/
-
+ * Copyright (C) 2019-2020 Ashar Khan <ashar786khan@gmail.com>
+ *
+ * This file is part of CPEditor.
+ *
+ * CPEditor is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * I will not be responsible if CPEditor behaves in unexpected way and
+ * causes your ratings to go down and or loose any important contest.
+ *
+ * Believe Software is "Software" and it isn't immune to bugs.
+ *
+ */
 
 #include "include/preferencewindow.hpp"
 #include "../ui/ui_preferencewindow.h"
@@ -41,9 +40,9 @@ PreferenceWindow::PreferenceWindow(Settings::SettingManager *manager, QWidget *p
     ui->verticalLayout_3->insertWidget(0, editor);
 
     connect(ui->snippets, SIGNAL(currentTextChanged(const QString &)), this,
-            SLOT(on_current_snippet_changed(const QString &)));
+            SLOT(onCurrentSnippetChanged(const QString &)));
     connect(ui->snippets_lang, SIGNAL(currentTextChanged(const QString &)), this,
-            SLOT(on_snippets_lang_changed(const QString &)));
+            SLOT(onSnippetsLangChanged(const QString &)));
 
     applySettingsToui();
     resize(QDesktopWidget().availableGeometry(this).size() * 0.40);
@@ -92,9 +91,9 @@ void PreferenceWindow::applySettingsToui()
     ui->indent->setChecked(manager->isAutoIndent());
     ui->parentheses->setChecked(manager->isAutoParenthesis());
     ui->replace_tabs->setChecked(manager->isTabsReplaced());
+    ui->format_on_save->setChecked(manager->isFormatOnSave());
 
     ui->defaultLang->setCurrentText(manager->getDefaultLang());
-    ui->format_cmd->setText(manager->getFormatCommand());
 
     ui->cpp_compiler_cmd->setText(manager->getCompileCommandCpp());
     ui->cpp_args_cmd->setText(manager->getRuntimeArgumentsCpp());
@@ -108,6 +107,9 @@ void PreferenceWindow::applySettingsToui()
 
     ui->companion_use->setChecked(manager->isCompetitiveCompanionActive());
     ui->companion_port->setValue(manager->getConnectionPort());
+
+    ui->clang_format_binary->setText(manager->getClangFormatBinary());
+    ui->clang_format_style->setPlainText(manager->getClangFormatStyle());
 
     cppTemplatePath = manager->getTemplatePathCpp();
     pythonTemplatePath = manager->getTemplatePathPython();
@@ -135,7 +137,7 @@ void PreferenceWindow::applySettingsToui()
     int lang_index = ui->snippets_lang->findText(lang);
     if (lang_index != -1)
         ui->snippets_lang->setCurrentIndex(lang_index);
-    on_snippets_lang_changed(lang);
+    onSnippetsLangChanged(lang);
 }
 
 void PreferenceWindow::extractSettingsFromUi()
@@ -149,9 +151,9 @@ void PreferenceWindow::extractSettingsFromUi()
     manager->setAutoIndent(ui->indent->isChecked());
     manager->setAutoParenthesis(ui->parentheses->isChecked());
     manager->setTabsReplaced(ui->replace_tabs->isChecked());
+    manager->formatOnSave(ui->format_on_save->isChecked());
 
     manager->setDefaultLanguage(ui->defaultLang->currentText());
-    manager->setFormatCommand(ui->format_cmd->text());
 
     manager->setCompileCommandsCpp(ui->cpp_compiler_cmd->text());
     manager->setRuntimeArgumentsCpp(ui->cpp_args_cmd->text());
@@ -162,6 +164,9 @@ void PreferenceWindow::extractSettingsFromUi()
 
     manager->setRunCommandPython(ui->python_start_cmd->text());
     manager->setRuntimeArgumentsPython(ui->python_args_cmd->text());
+
+    manager->setClangFormatBinary(ui->clang_format_binary->text());
+    manager->setClangFormatStyle(ui->clang_format_style->toPlainText());
 
     manager->setCompetitiveCompanionActive(ui->companion_use->isChecked());
     manager->setConnectionPort(ui->companion_port->value());
@@ -301,7 +306,7 @@ void PreferenceWindow::on_load_snippets_from_file_clicked()
     }
 }
 
-void PreferenceWindow::on_snippets_lang_changed(const QString &lang)
+void PreferenceWindow::onSnippetsLangChanged(const QString &lang)
 {
     updateSnippets();
     if (lang == "Python")
@@ -321,7 +326,7 @@ void PreferenceWindow::on_snippets_lang_changed(const QString &lang)
     }
 }
 
-void PreferenceWindow::on_current_snippet_changed(const QString &text)
+void PreferenceWindow::onCurrentSnippetChanged(const QString &text)
 {
     auto lang = ui->snippets_lang->currentText();
     auto content = manager->getSnippet(lang, text);

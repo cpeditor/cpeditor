@@ -12,7 +12,7 @@
 - Parse problem example test cases from over 30+ online platforms, and test on them with verdict feedback.
 - You can use code snippets conveniently.
 - Fast and memory efficient. Runs flawlessly on low-end devices.
-- Code formating using tools like clang-format.
+- Code formating using clang-format.
 - Customizable hotkeys for actions in the editor. 
 - Over 5 themes to choose from (Drakula, Monkai, Solarised, Solarised Dark and Light).
 - Supports Multi tabs.
@@ -48,12 +48,12 @@ You **must not** make your Java class public, and the name of the class should b
 
 | Shortcut     | Description                                                  |
 | ------------ | ------------------------------------------------------------ |
-| CTRL+N       | Launches a new Session and resets the editor. Once you solved a problem you need to Launch a new Session for the next Problem. |
-| CTRL+Q       | Quit and Exit Application                                    |
-| CTRL+O       | Opens a new Source File into Editor                          |
+| CTRL+N       | Launches a new session and resets the editor. Once you solved a problem you need to launch a new session for the next problem. |
+| CTRL+Q       | Quit and exit application                                    |
+| CTRL+O       | Opens a new source file into the editor                      |
 | CTRL+S       | Saves the current content of editor to a File                |
 | CTRL+Shift+S | Saves as                                                     |
-| CTRL+Alt+L   | Formats the editor using `format_command`                    |
+| CTRL+Alt+L   | Formats the editor using clang-format, format selection only if there is a selection |
 | CTRL+Shift+R | Compile and Run                                              |
 | CTRL+Shift+C | Compile only                                                 |
 | CTRL+R       | Run                                                          |

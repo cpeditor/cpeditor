@@ -1,20 +1,19 @@
 /*
-* Copyright (C) 2019-2020 Ashar Khan <ashar786khan@gmail.com> 
-* 
-* This file is part of CPEditor.
-*  
-* CPEditor is free software: you can redistribute it and/or modify
-* it under the terms of the GNU General Public License as published by
-* the Free Software Foundation, either version 3 of the License, or
-* (at your option) any later version.
-* 
-* I will not be responsible if CPEditor behaves in unexpected way and
-* causes your ratings to go down and or loose any important contest.
-* 
-* Believe Software is "Software" and it isn't immune to bugs.
-* 
-*/
-
+ * Copyright (C) 2019-2020 Ashar Khan <ashar786khan@gmail.com>
+ *
+ * This file is part of CPEditor.
+ *
+ * CPEditor is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * I will not be responsible if CPEditor behaves in unexpected way and
+ * causes your ratings to go down and or loose any important contest.
+ *
+ * Believe Software is "Software" and it isn't immune to bugs.
+ *
+ */
 
 #ifndef SETTINGSMANAGER_HPP
 #define SETTINGSMANAGER_HPP
@@ -53,7 +52,8 @@ struct SettingsData
     QString runtimeArgumentsJava;
     QString runtimeArgumentsPython;
 
-    QString formatCommand;
+    QString clangFormatBinary;
+    QString clangFormatStyle;
 
     QString compileCommandJava;
     QString compileCommandCpp;
@@ -75,6 +75,7 @@ struct SettingsData
     bool isWindowMaximized;
     bool isCheckUpdateOnStartup;
     bool isUpdateCheckOnStartup;
+    bool isFormatOnSave;
 
     QKeySequence hotkeyRun;
     QKeySequence hotkeyCompile;
@@ -122,8 +123,10 @@ class SettingManager
     void setRuntimeArgumentsJava(QString command);
     void setRuntimeArgumentsPython(QString command);
 
-    QString getFormatCommand();
-    void setFormatCommand(QString command);
+    QString getClangFormatBinary();
+    void setClangFormatBinary(QString binary);
+    QString getClangFormatStyle();
+    void setClangFormatStyle(const QString &style);
 
     QString getCompileCommandCpp();
     QString getCompileCommandJava();
@@ -170,6 +173,9 @@ class SettingManager
 
     bool isCheckUpdateOnStartup();
     void checkUpdateOnStartup(bool value);
+
+    bool isFormatOnSave();
+    void formatOnSave(bool value);
 
     ViewMode getViewMode();
     void setViewMode(ViewMode v);
