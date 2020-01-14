@@ -19,8 +19,8 @@
 #define FORMATTER_HPP
 #include <MessageLogger.hpp>
 #include <QCodeEditor>
-#include <QString>
 #include <QPair>
+#include <QString>
 
 namespace Core
 {
