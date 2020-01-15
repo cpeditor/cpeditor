@@ -433,9 +433,9 @@
          <attribute name="title">
           <string>Formatting</string>
          </attribute>
-         <layout class="QHBoxLayout" name="horizontalLayout_6">
+         <layout class="QHBoxLayout" name="horizontalLayout_9">
           <item>
-           <layout class="QFormLayout" name="formLayout_8">
+           <layout class="QFormLayout" name="formLayout_12">
             <item row="0" column="0">
              <widget class="QLabel" name="label_34">
               <property name="text">
@@ -447,7 +447,7 @@
              <widget class="QLineEdit" name="clang_format_binary"/>
             </item>
             <item row="1" column="0">
-             <widget class="QLabel" name="label_34">
+             <widget class="QLabel" name="label_48">
               <property name="text">
                <string>Clang Format Style</string>
               </property>
