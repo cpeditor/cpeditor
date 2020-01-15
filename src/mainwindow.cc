@@ -178,7 +178,9 @@ void MainWindow::loadTests()
             inputFile.open(QIODevice::ReadOnly | QFile::Text);
             if (inputFile.isOpen())
             {
-                input[i]->setPlainText(inputFile.readAll());
+                auto cursor = input[i]->textCursor();
+                cursor.select(QTextCursor::Document);
+                cursor.insertText(inputFile.readAll());
             }
             else
             {
@@ -759,9 +761,8 @@ void MainWindow::setText(const QString &text, bool saveCursor)
 {
     if (saveCursor)
     {
-        int old_pos = editor->textCursor().position();
-        auto doc = editor->document();
-        QTextCursor cursor(doc);
+        auto cursor = editor->textCursor();
+        int old_pos = cursor.position();
         cursor.select(QTextCursor::Document);
         cursor.insertText(text);
         cursor.setPosition(old_pos);
@@ -769,8 +770,7 @@ void MainWindow::setText(const QString &text, bool saveCursor)
     }
     else
     {
-        auto doc = editor->document();
-        QTextCursor cursor(doc);
+        auto cursor = editor->textCursor();
         cursor.select(QTextCursor::Document);
         cursor.insertText(text);
     }
@@ -797,12 +797,14 @@ void MainWindow::loadFile(const QString &path)
             log.warn("Loader", "Failed to load " + path.toStdString() + ". Do I have read permission?");
             return;
         }
-        loadTests();
     }
 
     filePath = path;
     if (!samePath)
         emit editorChanged(this);
+
+    if (!isUntitled())
+        loadTests();
 }
 
 bool MainWindow::saveFile(SaveMode mode, std::string head)
@@ -840,8 +842,6 @@ bool MainWindow::saveFile(SaveMode mode, std::string head)
             setLanguage("Java");
         else if (suffix == "py" || suffix == "py3")
             setLanguage("Python");
-
-        saveTests();
     }
     else if (!isUntitled())
     {
@@ -852,12 +852,13 @@ bool MainWindow::saveFile(SaveMode mode, std::string head)
             log.error(head, "Cannot save file. Do I have write permission?");
             return false;
         }
-        saveTests();
     }
     else
     {
         return false;
     }
+
+    saveTests();
 
     return true;
 }
