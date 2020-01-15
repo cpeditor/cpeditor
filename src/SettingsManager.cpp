@@ -1,20 +1,19 @@
 /*
-* Copyright (C) 2019-2020 Ashar Khan <ashar786khan@gmail.com> 
-* 
-* This file is part of CPEditor.
-*  
-* CPEditor is free software: you can redistribute it and/or modify
-* it under the terms of the GNU General Public License as published by
-* the Free Software Foundation, either version 3 of the License, or
-* (at your option) any later version.
-* 
-* I will not be responsible if CPEditor behaves in unexpected way and
-* causes your ratings to go down and or loose any important contest.
-* 
-* Believe Software is "Software" and it isn't immune to bugs.
-* 
-*/
-
+ * Copyright (C) 2019-2020 Ashar Khan <ashar786khan@gmail.com>
+ *
+ * This file is part of CPEditor.
+ *
+ * CPEditor is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * I will not be responsible if CPEditor behaves in unexpected way and
+ * causes your ratings to go down and or loose any important contest.
+ *
+ * Believe Software is "Software" and it isn't immune to bugs.
+ *
+ */
 
 #include <MessageLogger.hpp>
 #include <QApplication>
@@ -80,6 +79,10 @@ bool SettingManager::isHotkeyInUse()
 {
     return mSettings->value("hotkey_use", "false").toBool();
 }
+bool SettingManager::isFormatOnSave()
+{
+    return mSettings->value("format_on_save", "false").toBool();
+}
 
 QString SettingManager::getRunCommandJava()
 {
@@ -97,9 +100,13 @@ QString SettingManager::getCompileCommandJava()
 {
     return mSettings->value("compile_java", "javac").toString();
 }
-QString SettingManager::getFormatCommand()
+QString SettingManager::getClangFormatBinary()
 {
-    return mSettings->value("format", "clang-format").toString();
+    return mSettings->value("clang_format_binary", "clang-format").toString();
+}
+QString SettingManager::getClangFormatStyle()
+{
+    return mSettings->value("clang_format_style", "BasedOnStyle: Google").toString();
 }
 QString SettingManager::getRuntimeArgumentsCpp()
 {
@@ -234,6 +241,14 @@ void SettingManager::setHotKeyInUse(bool value)
         mSettings->setValue("hotkey_use", QString::fromStdString("false"));
 }
 
+void SettingManager::formatOnSave(bool value)
+{
+    if (value)
+        mSettings->setValue("format_on_save", QString::fromStdString("true"));
+    else
+        mSettings->setValue("format_on_save", QString::fromStdString("false"));
+}
+
 void SettingManager::setTabStop(int num)
 {
     mSettings->setValue("tab_stop", num);
@@ -268,9 +283,13 @@ void SettingManager::setCompileCommandsJava(QString command)
 {
     mSettings->setValue("compile_java", command);
 }
-void SettingManager::setFormatCommand(QString value)
+void SettingManager::setClangFormatBinary(QString binary)
 {
-    mSettings->setValue("format", value);
+    mSettings->setValue("clang_format_binary", binary);
+}
+void SettingManager::setClangFormatStyle(const QString &style)
+{
+    mSettings->setValue("clang_format_style", style);
 }
 void SettingManager::setTemplatePathCpp(QString path)
 {
@@ -444,7 +463,8 @@ SettingsData SettingManager::toData()
     data.runtimeArgumentsCpp = getRuntimeArgumentsCpp();
     data.runtimeArgumentsJava = getRuntimeArgumentsJava();
     data.runtimeArgumentsPython = getRuntimeArgumentsPython();
-    data.formatCommand = getFormatCommand();
+    data.clangFormatBinary = getClangFormatBinary();
+    data.clangFormatStyle = getClangFormatStyle();
     data.compileCommandCpp = getCompileCommandCpp();
     data.compileCommandJava = getCompileCommandJava();
     data.runCommandJava = getRunCommandJava();
@@ -461,6 +481,7 @@ SettingsData SettingManager::toData()
     data.isCompanionActive = isCompetitiveCompanionActive();
     data.isWindowMaximized = isMaximizedWindow();
     data.isCheckUpdateOnStartup = isCheckUpdateOnStartup();
+    data.isFormatOnSave = isFormatOnSave();
     data.hotkeyCompile = getHotkeyCompile();
     data.hotkeyRun = getHotkeyRun();
     data.hotkeyCompileRun = getHotkeyCompileRun();

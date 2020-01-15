@@ -1,20 +1,19 @@
 /*
-* Copyright (C) 2019-2020 Ashar Khan <ashar786khan@gmail.com> 
-* 
-* This file is part of CPEditor.
-*  
-* CPEditor is free software: you can redistribute it and/or modify
-* it under the terms of the GNU General Public License as published by
-* the Free Software Foundation, either version 3 of the License, or
-* (at your option) any later version.
-* 
-* I will not be responsible if CPEditor behaves in unexpected way and
-* causes your ratings to go down and or loose any important contest.
-* 
-* Believe Software is "Software" and it isn't immune to bugs.
-* 
-*/
-
+ * Copyright (C) 2019-2020 Ashar Khan <ashar786khan@gmail.com>
+ *
+ * This file is part of CPEditor.
+ *
+ * CPEditor is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * I will not be responsible if CPEditor behaves in unexpected way and
+ * causes your ratings to go down and or loose any important contest.
+ *
+ * Believe Software is "Software" and it isn't immune to bugs.
+ *
+ */
 
 #include "mainwindow.hpp"
 
@@ -125,7 +124,7 @@ void MainWindow::setEditor()
 void MainWindow::setupCore()
 {
     using namespace Core;
-    formatter = new Formatter(data.formatCommand, windowIndex, &log);
+    formatter = new Formatter(data.clangFormatBinary, data.clangFormatStyle, &log);
     inputReader = new IO::InputReader(input, windowIndex);
     compiler = new Compiler("", "", windowIndex, &log);
     runner = new Runner(windowIndex, &log);
@@ -381,7 +380,8 @@ void MainWindow::applyCompanion(Network::CompanionData data)
 void MainWindow::setSettingsData(Settings::SettingsData data, bool shouldPerformDigonistic)
 {
     this->data = data;
-    formatter->updateCommand(data.formatCommand);
+    formatter->updateBinary(data.clangFormatBinary);
+    formatter->updateStyle(data.clangFormatStyle);
 
     editor->setTabReplace(data.isTabsReplaced);
     editor->setTabReplaceSize(data.tabStop);
@@ -516,7 +516,7 @@ void MainWindow::compile()
 
 void MainWindow::formatSource()
 {
-    formatter->format(editor);
+    formatter->format(editor, filePath(), language, true);
 }
 
 void MainWindow::setLanguage(QString lang)
@@ -805,6 +805,9 @@ bool MainWindow::isVerdictPass(QString output, QString expected)
 
 bool MainWindow::saveFile(bool force, std::string head)
 {
+    if (data.isFormatOnSave)
+        formatter->format(editor, filePath(), language, false);
+
     if (openFile == nullptr)
     {
         if (force)
@@ -922,7 +925,7 @@ QSplitter *MainWindow::getSplitter()
 void MainWindow::performCoreDiagonistics()
 {
     log.clear();
-    bool formatResult = Core::Formatter::check(data.formatCommand);
+    bool formatResult = Core::Formatter::check(data.clangFormatBinary, data.clangFormatStyle);
     bool compilerResult = true;
     bool runResults = true;
 
@@ -939,7 +942,8 @@ void MainWindow::performCoreDiagonistics()
         compilerResult = Core::Compiler::check(data.runCommandPython);
 
     if (!formatResult)
-        log.warn("Format", "Code formating will not work as format command is not valid");
+        log.warn("Formatter", "Code formatting failed to work. Please check whether the clang-format binary is in the "
+                              "PATH and the style is valid.");
     if (!compilerResult)
         log.error("Compiler", "Compiler command for " + language.toStdString() + " is invalid. Is compiler on PATH?");
     if (!runResults)
