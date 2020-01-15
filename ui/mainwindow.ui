@@ -133,7 +133,7 @@
              </spacer>
             </item>
             <item>
-             <widget class="QPushButton" name="changeLanguageButton">
+             <widget class="QPushButton" name="changeLanguageButoon">
               <property name="sizePolicy">
                <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
                 <horstretch>0</horstretch>
