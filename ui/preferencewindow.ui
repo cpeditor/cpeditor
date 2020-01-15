@@ -208,10 +208,7 @@
                  </widget>
                 </item>
                 <item row="7" column="0">
-                 <widget class="QCheckBox" name="checkBox_9">
-                  <property name="enabled">
-                   <bool>false</bool>
-                  </property>
+                 <widget class="QCheckBox" name="format_on_save">
                   <property name="text">
                    <string>Automatically format source on save</string>
                   </property>
@@ -280,16 +277,6 @@
                  </property>
                 </item>
                </widget>
-              </item>
-              <item row="1" column="0">
-               <widget class="QLabel" name="label_34">
-                <property name="text">
-                 <string>Format command</string>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="1">
-               <widget class="QLineEdit" name="format_cmd"/>
               </item>
              </layout>
             </item>
@@ -437,6 +424,37 @@
                <widget class="QLineEdit" name="python_start_cmd"/>
               </item>
              </layout>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="formatting">
+         <attribute name="title">
+          <string>Formatting</string>
+         </attribute>
+         <layout class="QHBoxLayout" name="horizontalLayout_6">
+          <item>
+           <layout class="QFormLayout" name="formLayout_8">
+            <item row="0" column="0">
+             <widget class="QLabel" name="label_34">
+              <property name="text">
+               <string>Clang Format Binary</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1">
+             <widget class="QLineEdit" name="clang_format_binary"/>
+            </item>
+            <item row="1" column="0">
+             <widget class="QLabel" name="label_34">
+              <property name="text">
+               <string>Clang Format Style</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="1">
+             <widget class="QPlainTextEdit" name="clang_format_style"/>
             </item>
            </layout>
           </item>

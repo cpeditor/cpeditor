@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2019 Ashar Khan <ashar786khan@gmail.com>
+ * Copyright (C) 2019-2020 Ashar Khan <ashar786khan@gmail.com>
  *
  * This file is part of CPEditor.
  *
@@ -11,7 +11,7 @@
  * I will not be responsible if CPEditor behaves in unexpected way and
  * causes your ratings to go down and or loose any important contest.
  *
- * Believe Software is "Software" and it isn't not immune to bugs.
+ * Believe Software is "Software" and it isn't immune to bugs.
  *
  */
 
@@ -52,7 +52,8 @@ struct SettingsData
     QString runtimeArgumentsJava;
     QString runtimeArgumentsPython;
 
-    QString formatCommand;
+    QString clangFormatBinary;
+    QString clangFormatStyle;
 
     QString compileCommandJava;
     QString compileCommandCpp;
@@ -74,6 +75,7 @@ struct SettingsData
     bool isWindowMaximized;
     bool isCheckUpdateOnStartup;
     bool isUpdateCheckOnStartup;
+    bool isFormatOnSave;
 
     QKeySequence hotkeyRun;
     QKeySequence hotkeyCompile;
@@ -121,8 +123,10 @@ class SettingManager
     void setRuntimeArgumentsJava(QString command);
     void setRuntimeArgumentsPython(QString command);
 
-    QString getFormatCommand();
-    void setFormatCommand(QString command);
+    QString getClangFormatBinary();
+    void setClangFormatBinary(QString binary);
+    QString getClangFormatStyle();
+    void setClangFormatStyle(const QString &style);
 
     QString getCompileCommandCpp();
     QString getCompileCommandJava();
@@ -169,6 +173,9 @@ class SettingManager
 
     bool isCheckUpdateOnStartup();
     void checkUpdateOnStartup(bool value);
+
+    bool isFormatOnSave();
+    void formatOnSave(bool value);
 
     ViewMode getViewMode();
     void setViewMode(ViewMode v);

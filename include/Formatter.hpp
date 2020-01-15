@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2019 Ashar Khan <ashar786khan@gmail.com>
+ * Copyright (C) 2019-2020 Ashar Khan <ashar786khan@gmail.com>
  *
  * This file is part of CPEditor.
  *
@@ -11,33 +11,34 @@
  * I will not be responsible if CPEditor behaves in unexpected way and
  * causes your ratings to go down and or loose any important contest.
  *
- * Believe Software is "Software" and it isn't not immune to bugs.
+ * Believe Software is "Software" and it isn't immune to bugs.
  *
  */
 
 #ifndef FORMATTER_HPP
 #define FORMATTER_HPP
-#include <BaseFiles.hpp>
 #include <MessageLogger.hpp>
 #include <QCodeEditor>
-#include <QFile>
+#include <QPair>
 #include <QString>
 
 namespace Core
 {
-class Formatter : private Base::Files
+class Formatter
 {
   public:
-    Formatter(QString runCommand, int index, MessageLogger *log);
-    ~Formatter();
-    void format(QCodeEditor *editor);
-    static bool check(QString command);
-    void updateCommand(QString newCommand);
+    Formatter(QString clangFormatBinary, const QString &clangFormatStyle, MessageLogger *log);
+    void format(QCodeEditor *editor, const QString &filePath, const QString &lang, bool selectionOnly);
+    static bool check(QString checkBinary, const QString &checkStyle);
+    void updateBinary(QString newBinary);
+    void updateStyle(const QString &newStyle);
 
   private:
-    QFile *file;
-    QString command;
+    QString binary;
+    QString style;
     MessageLogger *log;
+
+    QPair<int, QString> getFormatResult(const QStringList &args);
 };
 
 } // namespace Core
