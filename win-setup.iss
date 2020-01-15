@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "CP Editor"
-#define MyAppVersion "5.0.1"
+#define MyAppVersion "5.1.0"
 #define MyAppPublisher "Ashar Khan <coder3101>"
 #define MyAppURL "https://github.com/coder3101/cp-editor"
 #define MyAppExeName "CPEditor.exe"
@@ -22,13 +22,13 @@ DefaultDirName={autopf}\CPEditor
 DisableProgramGroupPage=yes
 ; The [Icons] "quicklaunchicon" entry uses {userappdata} but its [Tasks] entry has a proper IsAdminInstallMode Check.
 UsedUserAreasWarning=no
-LicenseFile=C:\Users\Ashar\Projects\cp-editor2\LICENSE
+LicenseFile=C:\Users\Ashar\Projects\cp-editor\LICENSE
 ; Uncomment the following line to run in non administrative install mode (install for current user only.)
 ;PrivilegesRequired=lowest
 PrivilegesRequiredOverridesAllowed=dialog
-OutputDir=C:\Users\Ashar\Projects\cp-editor2
+OutputDir=C:\Users\Ashar\Projects\cp-editor
 OutputBaseFilename=cpeditor-setup
-SetupIconFile=C:\Users\Ashar\Projects\cp-editor2\icon.ico
+SetupIconFile=C:\Users\Ashar\Projects\cp-editor\icon.ico
 Compression=lzma
 SolidCompression=yes
 WizardStyle=modern
