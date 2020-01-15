@@ -21,7 +21,6 @@
 #include <QDesktopServices>
 #include <QFileDialog>
 #include <QInputDialog>
-#include <QMap>
 #include <QMessageBox>
 #include <QMetaMethod>
 #include <QMimeData>
@@ -49,7 +48,7 @@ AppWindow::AppWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::AppWindo
     setConnections();
 
     auto windowTemp = new MainWindow(0, "");
-    ui->tabWidget->addTab(windowTemp, windowTemp->getFileName());
+    ui->tabWidget->addTab(windowTemp, windowTemp->fileName());
 
     if (settingManager->isCheckUpdateOnStartup())
         updater->checkUpdate();
@@ -238,7 +237,7 @@ void AppWindow::openTab(QString fileName, bool iscompanionOpenedTab)
             for (int t = 0; t < ui->tabWidget->count(); t++)
             {
                 auto tmp = dynamic_cast<MainWindow *>(ui->tabWidget->widget(t));
-                if (fileName == tmp->getFilePath())
+                if (fileName == tmp->filePath())
                 {
                     ui->tabWidget->setCurrentIndex(t);
                     return;
@@ -250,7 +249,8 @@ void AppWindow::openTab(QString fileName, bool iscompanionOpenedTab)
         auto fsp = new MainWindow(t, fileName);
         fsp->setSettingsData(settingManager->toData(), true);
         connect(fsp, SIGNAL(confirmTriggered(MainWindow *)), this, SLOT(on_confirmTriggered(MainWindow *)));
-        connect(fsp, SIGNAL(editorChanged(MainWindow *)), this, SLOT(onEditorChanged(MainWindow *)));
+        connect(fsp, SIGNAL(editorTextChanged(bool, MainWindow *)), this,
+                SLOT(onEditorTextChanged(bool, MainWindow *)));
         QString lang = settingManager->getDefaultLang();
 
         if (fileName.endsWith(".java"))
@@ -261,7 +261,7 @@ void AppWindow::openTab(QString fileName, bool iscompanionOpenedTab)
                  fileName.endsWith(".cc") || fileName.endsWith(".hpp") || fileName.endsWith(".h"))
             lang = "Cpp";
 
-        ui->tabWidget->addTab(fsp, fsp->getFileName());
+        ui->tabWidget->addTab(fsp, fsp->fileName());
         fsp->setLanguage(lang);
         ui->tabWidget->setCurrentIndex(t);
     }
@@ -270,7 +270,7 @@ void AppWindow::openTab(QString fileName, bool iscompanionOpenedTab)
         for (int t = 0; t < ui->tabWidget->count(); t++)
         {
             auto tmp = windowIndex(t);
-            if (fileName == tmp->getProblemURL())
+            if (fileName == tmp->problemURL())
             {
                 ui->tabWidget->setCurrentIndex(t);
                 return;
@@ -281,8 +281,9 @@ void AppWindow::openTab(QString fileName, bool iscompanionOpenedTab)
         auto fsp = new MainWindow(t, "");
         fsp->setSettingsData(settingManager->toData(), true);
         connect(fsp, SIGNAL(confirmTriggered(MainWindow *)), this, SLOT(on_confirmTriggered(MainWindow *)));
-        connect(fsp, SIGNAL(editorChanged(MainWindow *)), this, SLOT(onEditorChanged(MainWindow *)));
-        ui->tabWidget->addTab(fsp, fsp->getFileName());
+        connect(fsp, SIGNAL(editorTextChanged(bool, MainWindow *)), this,
+                SLOT(onEditorTextChanged(bool, MainWindow *)));
+        ui->tabWidget->addTab(fsp, fsp->fileName());
         ui->tabWidget->setCurrentIndex(t);
     }
 }
@@ -398,7 +399,7 @@ void AppWindow::onTabChanged(int index)
     {
         activeLogger = nullptr;
         server->setMessageLogger(nullptr);
-        setWindowTitle("CP Editor: An editor specially designed for competitive programming");
+        setWindowTitle("CP Editor: Competitive Programmers Editor");
         return;
     }
 
@@ -406,10 +407,10 @@ void AppWindow::onTabChanged(int index)
 
     auto tmp = windowIndex(index);
 
-    if (tmp->isUntitled())
-        setWindowTitle("CP Editor: " + tmp->getFileName());
+    if (tmp->getOpenFile() == nullptr)
+        setWindowTitle("CP Editor: " + tmp->fileName());
     else
-        setWindowTitle("CP Editor: " + tmp->getFilePath());
+        setWindowTitle("CP Editor: " + tmp->filePath());
 
     activeLogger = tmp->getLogger();
     server->setMessageLogger(activeLogger);
@@ -432,30 +433,16 @@ void AppWindow::onTabChanged(int index)
         connect(tmp->getSplitter(), SIGNAL(splitterMoved(int, int)), this, SLOT(onSplitterMoved(int, int)));
 }
 
-void AppWindow::onEditorChanged(MainWindow *widget)
+void AppWindow::onEditorTextChanged(bool isUnsaved, MainWindow *widget)
 {
-    if (widget == currentWindow())
-    {
-        if (widget->isUntitled())
-            setWindowTitle("CP Editor: " + widget->getFileName());
-        else
-            setWindowTitle("CP Editor: " + widget->getFilePath());
-    }
-
-    QMap<QString, QVector<int>> tabsByName;
-
-    for (int t = 0; t < ui->tabWidget->count(); ++t)
-    {
-        tabsByName[windowIndex(t)->getFileName()].push_back(t);
-    }
-
-    for (auto tabs : tabsByName)
-    {
-        for (auto index : tabs)
-        {
-            ui->tabWidget->setTabText(index, windowIndex(index)->getTabTitle(tabs.size() > 1));
-        }
-    }
+    int index = ui->tabWidget->indexOf(widget);
+    if (index == -1)
+        return;
+    auto name = windowIndex(index)->fileName();
+    if (isUnsaved)
+        ui->tabWidget->setTabText(index, name + " *");
+    else
+        ui->tabWidget->setTabText(index, name);
 }
 
 void AppWindow::onSaveTimerElapsed()
@@ -463,8 +450,9 @@ void AppWindow::onSaveTimerElapsed()
     for (int t = 0; t < ui->tabWidget->count(); t++)
     {
         auto tmp = windowIndex(t);
-        if (!tmp->isUntitled())
+        if (tmp->getOpenFile() != nullptr && tmp->getOpenFile()->isOpen())
         {
+            ui->tabWidget->setTabText(t, tmp->fileName());
             tmp->save(false);
         }
     }

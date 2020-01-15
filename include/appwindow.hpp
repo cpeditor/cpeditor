@@ -72,7 +72,7 @@ class AppWindow : public QMainWindow
 
     void onTabCloseRequested(int);
     void onTabChanged(int);
-    void onEditorChanged(MainWindow *);
+    void onEditorTextChanged(bool, MainWindow *);
     void onSaveTimerElapsed();
     void onSettingsApplied();
     void onSplitterMoved(int, int);

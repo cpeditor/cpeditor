@@ -25,7 +25,6 @@
 #include <IO.hpp>
 #include <QCodeEditor>
 #include <QFile>
-#include <QFileSystemWatcher>
 #include <QLabel>
 #include <QMainWindow>
 #include <QPushButton>
@@ -49,21 +48,12 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
   public:
-    enum SaveMode
-    {
-        IgnoreUntitled = 0, // save only when filePath is not empty
-        SaveUntitled = 1,   // save to filePath if it's not empty, otherwise ask for new path
-        SaveAs = 3          // ask for new path no matter filePath is empty or not
-    };
-
     MainWindow(int index, QString fileOpen, QWidget *parent = nullptr);
     ~MainWindow() override;
 
-    QString getFileName() const;
-    QString getFilePath() const;
-    QString getProblemURL() const;
-    QString getTabTitle(bool complete) const;
-    bool isUntitled() const;
+    QString fileName() const;
+    QString filePath() const;
+    QString problemURL() const;
     void save(bool force);
     void saveAs();
 
@@ -84,6 +74,7 @@ class MainWindow : public QMainWindow
     void setSettingsData(Settings::SettingsData data, bool);
 
     MessageLogger *getLogger();
+    QFile *getOpenFile();
     QSplitter *getSplitter();
 
     void insertText(QString text);
@@ -109,12 +100,10 @@ class MainWindow : public QMainWindow
     void on_out2_diff_clicked();
     void on_out3_diff_clicked();
 
-    void on_changeLanguageButton_clicked();
-
-    void onFileWatcherChanged(const QString &);
+    void on_changeLanguageButoon_clicked();
 
   signals:
-    void editorChanged(MainWindow *widget);
+    void editorTextChanged(bool isUnsaved, MainWindow *widget);
     void confirmTriggered(MainWindow *widget);
 
   private:
@@ -122,6 +111,7 @@ class MainWindow : public QMainWindow
     Ui::MainWindow *ui;
     QCodeEditor *editor;
     QString language;
+    QFile *openFile = nullptr;
     Settings::SettingsData data;
     bool isLanguageSet = false;
 
@@ -131,15 +121,11 @@ class MainWindow : public QMainWindow
     Core::Runner *runner = nullptr;
     MessageLogger log;
 
-    QString problemURL;
-    QString filePath;
-    QString savedText;
-    QFileSystemWatcher *fileWatcher = nullptr;
-
     QVector<QPlainTextEdit *> input = QVector<QPlainTextEdit *>(3, nullptr);
     QVector<QPlainTextEdit *> output = QVector<QPlainTextEdit *>(3, nullptr);
     QVector<QLabel *> verdict = QVector<QLabel *>(3, nullptr);
     QVector<QString *> expected = QVector<QString *>(3, nullptr);
+    Network::CompanionData companionData;
     QPushButton *submitToCodeforces = nullptr;
     Network::CFTools *cftools = nullptr;
 
@@ -150,11 +136,10 @@ class MainWindow : public QMainWindow
     void saveTests();
     void setCFToolsUI();
     void updateVerdict(Core::Verdict, int);
-    bool isTextChanged() const;
+    bool isTextChanged();
+
     bool isVerdictPass(QString, QString);
-    void setText(const QString &text, bool saveCursor = false);
-    void loadFile(const QString &path);
-    bool saveFile(SaveMode, std::string);
+    bool saveFile(bool, std::string);
     void performCoreDiagonistics();
 };
 #endif // MAINWINDOW_HPP
