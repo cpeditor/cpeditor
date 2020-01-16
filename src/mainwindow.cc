@@ -131,35 +131,6 @@ void MainWindow::clearTests(bool outputOnly)
     }
 }
 
-void MainWindow::maybeLoadTemplate()
-{
-    QString target;
-
-    if (language == "Java")
-        target = data.templateJava;
-    else if (language == "Python")
-        target = data.templatePython;
-    else if (language == "Cpp")
-        target = data.templateCpp;
-
-    if (target.isEmpty())
-        return;
-
-    if (isUntitled() && editor->toPlainText().trimmed().isEmpty())
-    {
-        QFile tmp(target);
-        tmp.open(QIODevice::ReadOnly | QFile::Text);
-
-        if (tmp.isOpen())
-        {
-            setText(tmp.readAll());
-            log.info("Template", "Template has been loaded sucessfully");
-        }
-        else
-            log.warn("Template", "Failed to load template. Do I have read permission?");
-    }
-}
-
 void MainWindow::loadTests()
 {
     if (isUntitled() || !data.shouldSaveTests)
@@ -775,42 +746,63 @@ void MainWindow::setText(const QString &text, bool saveCursor)
     }
 }
 
+void MainWindow::updateWatcher()
+{
+    onTextChangedTriggered();
+    if (!fileWatcher->files().isEmpty())
+        fileWatcher->removePaths(fileWatcher->files());
+    fileWatcher->addPath(filePath);
+}
+
 void MainWindow::loadFile(QString path)
 {
-    if (!QFile::exists(path))
-    {
-        filePath = path;
-        return;
-    }
-
     path = QFileInfo(path).canonicalFilePath();
 
     bool samePath = filePath == path;
+    filePath = path;
+    updateWatcher();
+    if (!samePath)
+        emit editorChanged(this);
 
-    if (!fileWatcher->files().isEmpty())
-        fileWatcher->removePaths(fileWatcher->files());
-
-    if (!path.isEmpty())
+    if (!QFile::exists(path))
     {
-        fileWatcher->addPath(path);
-        QFile openFile(path);
-        openFile.open(QIODevice::ReadOnly | QFile::Text);
-        if (openFile.isOpen())
+        if (isUntitled())
         {
-            savedText = openFile.readAll();
-            setText(savedText, samePath);
+            QString templatePath;
+
+            if (language == "Cpp")
+                templatePath = data.templateCpp;
+            else if (language == "Java")
+                templatePath = data.templateJava;
+            else if (language == "Python")
+                templatePath = data.templatePython;
+
+            QFile f(templatePath);
+            f.open(QIODevice::ReadOnly | QIODevice::Text);
+
+            if (f.isOpen())
+                path = QFileInfo(templatePath).canonicalFilePath();
+            else
+                return;
         }
         else
         {
-            log.warn("Loader", "Failed to load " + path.toStdString() + ". Do I have read permission?");
             return;
         }
     }
 
-    filePath = path;
-
-    if (!samePath)
-        emit editorChanged(this);
+    QFile openFile(path);
+    openFile.open(QIODevice::ReadOnly | QFile::Text);
+    if (openFile.isOpen())
+    {
+        savedText = openFile.readAll();
+        setText(savedText, samePath);
+    }
+    else
+    {
+        log.warn("Loader", "Failed to load " + path.toStdString() + ". Do I have read permission?");
+        return;
+    }
 
     loadTests();
 }
@@ -839,10 +831,8 @@ bool MainWindow::saveFile(SaveMode mode, std::string head)
             return false;
         }
 
-        if (!fileWatcher->files().isEmpty())
-            fileWatcher->removePaths(fileWatcher->files());
         filePath = newFilePath;
-        fileWatcher->addPath(filePath);
+        updateWatcher();
         emit editorChanged(this);
 
         auto suffix = QFileInfo(filePath).suffix();
@@ -863,6 +853,7 @@ bool MainWindow::saveFile(SaveMode mode, std::string head)
             log.error(head, "Cannot save file. Do I have write permission?");
             return false;
         }
+        updateWatcher();
     }
     else
     {
@@ -889,13 +880,12 @@ bool MainWindow::isTextChanged() const
 
     if (isUntitled())
     {
-        if (templatePath.size() != 0 && QFile::exists(templatePath))
-        {
-            QFile f(templatePath);
-            f.open(QIODevice::ReadOnly | QFile::Text);
+        QFile f(templatePath);
+        f.open(QIODevice::ReadOnly | QFile::Text);
+        if (f.isOpen())
             return editor->toPlainText() != f.readAll();
-        }
-        return !editor->toPlainText().isEmpty();
+        else
+            return !editor->toPlainText().isEmpty();
     }
     else
     {

@@ -419,7 +419,6 @@ void AppWindow::onTabChanged(int index)
 
     tmp->setSettingsData(settingManager->toData(), diagonistics);
     diagonistics = false;
-    tmp->maybeLoadTemplate();
 
     if (ui->actionEditor_Mode->isChecked())
         on_actionEditor_Mode_triggered();

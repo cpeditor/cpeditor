@@ -76,7 +76,6 @@ class MainWindow : public QMainWindow
     void formatSource();
 
     void applyCompanion(Network::CompanionData data);
-    void maybeLoadTemplate();
 
     void setLanguage(QString lang);
     QString getLanguage();
@@ -152,6 +151,7 @@ class MainWindow : public QMainWindow
     bool isTextChanged() const;
     bool isVerdictPass(QString, QString);
     void setText(const QString &text, bool saveCursor = false);
+    void updateWatcher();
     void loadFile(QString path);
     bool saveFile(SaveMode, std::string);
     void performCoreDiagonistics();
