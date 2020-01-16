@@ -234,10 +234,11 @@ void AppWindow::openTab(QString fileName, bool iscompanionOpenedTab)
     {
         if (!fileName.isEmpty())
         {
+            auto fileInfo = QFileInfo(fileName);
             for (int t = 0; t < ui->tabWidget->count(); t++)
             {
                 auto tmp = dynamic_cast<MainWindow *>(ui->tabWidget->widget(t));
-                if (fileName == tmp->getFilePath())
+                if (fileInfo == QFileInfo(tmp->getFilePath()))
                 {
                     ui->tabWidget->setCurrentIndex(t);
                     return;
