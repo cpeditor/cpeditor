@@ -298,13 +298,15 @@ void AppWindow::on_actionAbout_triggered()
     QMessageBox::about(this,
                        QString::fromStdString(std::string("About CP Editor ") + APP_VERSION_MAJOR + "." +
                                               APP_VERSION_MINOR + "." + APP_VERSION_PATCH),
-
                        "<p><b>CP Editor</b> is a native Qt-based code editor written in C++. It's specially designed "
                        "for competitive programming, unlike other editors/IDEs which are mainly for developers. It "
                        "helps you focus on your coding and automates the compilation, executing and testing. It even "
                        "fetches test cases for you from webpages and submits codes on Codeforces!</p>"
-                       "<p>The code repository: <a href=\"https://github.com/coder3101/cp-editor\"> "
-                       "https://github.com/coder3101/cp-editor</a></p>");
+                       "<p>Copyright (C) 2019-2020 Ashar Khan &lt;ashar786khan@gmail.com&gt;</p>"
+                       "<p>This is free software; see the source for copying conditions. There is NO warranty; not "
+                       "even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. The source code for CP Editor is "
+                       "available at <a href=\"https://github.com/coder3101/cp-editor\"> "
+                       "https://github.com/coder3101/cp-editor</a>.</p>");
 }
 
 /******************* FILES SECTION *************************/
