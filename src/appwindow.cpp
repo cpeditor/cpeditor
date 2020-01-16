@@ -47,7 +47,7 @@ AppWindow::AppWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::AppWindo
     allocate();
     setConnections();
 
-    auto windowTemp = new MainWindow(0, "");
+    auto windowTemp = new MainWindow(0, "", settingManager->toData());
     ui->tabWidget->addTab(windowTemp, windowTemp->getFileName());
 
     if (settingManager->isCheckUpdateOnStartup())
@@ -246,8 +246,7 @@ void AppWindow::openTab(QString fileName, bool iscompanionOpenedTab)
         }
 
         int t = ui->tabWidget->count();
-        auto fsp = new MainWindow(t, fileName);
-        fsp->setSettingsData(settingManager->toData(), true);
+        auto fsp = new MainWindow(t, fileName, settingManager->toData());
         connect(fsp, SIGNAL(confirmTriggered(MainWindow *)), this, SLOT(on_confirmTriggered(MainWindow *)));
         connect(fsp, SIGNAL(editorChanged(MainWindow *)), this, SLOT(onEditorChanged(MainWindow *)));
         QString lang = settingManager->getDefaultLang();
@@ -277,8 +276,7 @@ void AppWindow::openTab(QString fileName, bool iscompanionOpenedTab)
         }
 
         int t = ui->tabWidget->count();
-        auto fsp = new MainWindow(t, "");
-        fsp->setSettingsData(settingManager->toData(), true);
+        auto fsp = new MainWindow(t, "", settingManager->toData());
         connect(fsp, SIGNAL(confirmTriggered(MainWindow *)), this, SLOT(on_confirmTriggered(MainWindow *)));
         connect(fsp, SIGNAL(editorChanged(MainWindow *)), this, SLOT(onEditorChanged(MainWindow *)));
         ui->tabWidget->addTab(fsp, fsp->getFileName());

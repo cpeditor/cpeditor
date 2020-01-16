@@ -55,7 +55,7 @@ class MainWindow : public QMainWindow
         SaveAs = 3          // ask for new path no matter filePath is empty or not
     };
 
-    MainWindow(int index, QString fileOpen, QWidget *parent = nullptr);
+    MainWindow(int index, QString fileOpen, const Settings::SettingsData &data, QWidget *parent = nullptr);
     ~MainWindow() override;
 
     QString getFileName() const;
@@ -80,7 +80,7 @@ class MainWindow : public QMainWindow
 
     void setLanguage(QString lang);
     QString getLanguage();
-    void setSettingsData(Settings::SettingsData data, bool);
+    void setSettingsData(const Settings::SettingsData &data, bool);
 
     MessageLogger *getLogger();
     QSplitter *getSplitter();

@@ -41,7 +41,7 @@
 #include "../ui/ui_mainwindow.h"
 
 // ***************************** RAII  ****************************
-MainWindow::MainWindow(int index, QString fileOpen, QWidget *parent)
+MainWindow::MainWindow(int index, QString fileOpen, const Settings::SettingsData &data, QWidget *parent)
     : QMainWindow(parent), windowIndex(index), ui(new Ui::MainWindow), fileWatcher(new QFileSystemWatcher(this))
 {
     ui->setupUi(this);
@@ -49,6 +49,7 @@ MainWindow::MainWindow(int index, QString fileOpen, QWidget *parent)
     setupCore();
     runner->removeExecutable();
     connect(fileWatcher, SIGNAL(fileChanged(const QString &)), this, SLOT(onFileWatcherChanged(const QString &)));
+    setSettingsData(data, true);
     loadFile(fileOpen);
 }
 
@@ -350,7 +351,8 @@ void MainWindow::applyCompanion(Network::CompanionData data)
         setCFToolsUI();
     onTextChangedTriggered();
 }
-void MainWindow::setSettingsData(Settings::SettingsData data, bool shouldPerformDigonistic)
+
+void MainWindow::setSettingsData(const Settings::SettingsData &data, bool shouldPerformDigonistic)
 {
     this->data = data;
     formatter->updateBinary(data.clangFormatBinary);
