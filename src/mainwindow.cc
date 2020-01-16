@@ -900,8 +900,7 @@ bool MainWindow::isTextChanged() const
 
 bool MainWindow::closeConfirm()
 {
-    bool isChanged = isTextChanged();
-    bool confirmed = !isChanged;
+    bool confirmed = !isTextChanged();
     if (!confirmed)
     {
         emit confirmTriggered(this);
