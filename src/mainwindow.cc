@@ -777,6 +777,12 @@ void MainWindow::setText(const QString &text, bool saveCursor)
 
 void MainWindow::loadFile(QString path)
 {
+    if (!QFile::exists(path))
+    {
+        filePath = path;
+        return;
+    }
+
     path = QFileInfo(path).canonicalFilePath();
 
     bool samePath = filePath == path;
