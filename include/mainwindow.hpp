@@ -1,20 +1,19 @@
 /*
-* Copyright (C) 2019-2020 Ashar Khan <ashar786khan@gmail.com> 
-* 
-* This file is part of CPEditor.
-*  
-* CPEditor is free software: you can redistribute it and/or modify
-* it under the terms of the GNU General Public License as published by
-* the Free Software Foundation, either version 3 of the License, or
-* (at your option) any later version.
-* 
-* I will not be responsible if CPEditor behaves in unexpected way and
-* causes your ratings to go down and or loose any important contest.
-* 
-* Believe Software is "Software" and it isn't immune to bugs.
-* 
-*/
-
+ * Copyright (C) 2019-2020 Ashar Khan <ashar786khan@gmail.com>
+ *
+ * This file is part of CPEditor.
+ *
+ * CPEditor is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * I will not be responsible if CPEditor behaves in unexpected way and
+ * causes your ratings to go down and or loose any important contest.
+ *
+ * Believe Software is "Software" and it isn't immune to bugs.
+ *
+ */
 
 #ifndef MAINWINDOW_HPP
 #define MAINWINDOW_HPP
@@ -134,7 +133,7 @@ class MainWindow : public QMainWindow
     QString problemURL;
     QString filePath;
     QString savedText;
-    QFileSystemWatcher *fileWatcher = nullptr;
+    QFileSystemWatcher *fileWatcher;
 
     QVector<QPlainTextEdit *> input = QVector<QPlainTextEdit *>(3, nullptr);
     QVector<QPlainTextEdit *> output = QVector<QPlainTextEdit *>(3, nullptr);
@@ -153,7 +152,7 @@ class MainWindow : public QMainWindow
     bool isTextChanged() const;
     bool isVerdictPass(QString, QString);
     void setText(const QString &text, bool saveCursor = false);
-    void loadFile(const QString &path);
+    void loadFile(QString path);
     bool saveFile(SaveMode, std::string);
     void performCoreDiagonistics();
 };

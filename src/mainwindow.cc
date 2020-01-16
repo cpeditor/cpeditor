@@ -42,16 +42,13 @@
 
 // ***************************** RAII  ****************************
 MainWindow::MainWindow(int index, QString fileOpen, QWidget *parent)
-    : QMainWindow(parent), windowIndex(index), ui(new Ui::MainWindow)
+    : QMainWindow(parent), windowIndex(index), ui(new Ui::MainWindow), fileWatcher(new QFileSystemWatcher(this))
 {
     ui->setupUi(this);
     setEditor();
     setupCore();
     runner->removeExecutable();
-
-    fileWatcher = new QFileSystemWatcher(this);
     connect(fileWatcher, SIGNAL(fileChanged(const QString &)), this, SLOT(onFileWatcherChanged(const QString &)));
-
     loadFile(fileOpen);
 }
 
@@ -168,7 +165,7 @@ void MainWindow::loadTests()
         return;
 
     QFileInfo fileInfo(filePath);
-    QString testFile = fileInfo.dir().absolutePath() + "/" + fileInfo.completeBaseName();
+    QString testFile = fileInfo.canonicalPath() + "/" + fileInfo.completeBaseName();
 
     for (int i = 0; i < 3; ++i)
     {
@@ -212,7 +209,7 @@ void MainWindow::saveTests()
         return;
 
     QFileInfo fileInfo(filePath);
-    QString testFile = fileInfo.dir().absolutePath() + "/" + fileInfo.completeBaseName();
+    QString testFile = fileInfo.canonicalPath() + "/" + fileInfo.completeBaseName();
 
     for (int i = 0; i < 3; ++i)
     {
@@ -776,11 +773,14 @@ void MainWindow::setText(const QString &text, bool saveCursor)
     }
 }
 
-void MainWindow::loadFile(const QString &path)
+void MainWindow::loadFile(QString path)
 {
+    path = QFileInfo(path).canonicalFilePath();
+
     bool samePath = filePath == path;
 
-    fileWatcher->removePaths(fileWatcher->files());
+    if (!fileWatcher->files().isEmpty())
+        fileWatcher->removePaths(fileWatcher->files());
 
     if (!path.isEmpty())
     {
@@ -800,11 +800,11 @@ void MainWindow::loadFile(const QString &path)
     }
 
     filePath = path;
+
     if (!samePath)
         emit editorChanged(this);
 
-    if (!isUntitled())
-        loadTests();
+    loadTests();
 }
 
 bool MainWindow::saveFile(SaveMode mode, std::string head)
@@ -820,6 +820,8 @@ bool MainWindow::saveFile(SaveMode mode, std::string head)
         if (newFilePath.isEmpty())
             return false;
 
+        newFilePath = QFileInfo(newFilePath).canonicalFilePath();
+
         QFile openFile(newFilePath);
         openFile.open(QIODevice::WriteOnly | QFile::Text);
 
@@ -829,7 +831,8 @@ bool MainWindow::saveFile(SaveMode mode, std::string head)
             return false;
         }
 
-        fileWatcher->removePaths(fileWatcher->files());
+        if (!fileWatcher->files().isEmpty())
+            fileWatcher->removePaths(fileWatcher->files());
         filePath = newFilePath;
         fileWatcher->addPath(filePath);
         emit editorChanged(this);
