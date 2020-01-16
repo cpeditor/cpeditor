@@ -212,7 +212,7 @@ void AppWindow::closeAll()
 
 bool AppWindow::closeTab(int index)
 {
-    auto tmp = currentWindow();
+    auto tmp = windowIndex(index);
     if (tmp->closeConfirm())
     {
         ui->tabWidget->removeTab(index);
