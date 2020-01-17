@@ -492,6 +492,11 @@ void MainWindow::insertText(QString text)
     editor->insertPlainText(text);
 }
 
+void MainWindow::focusOnEditor()
+{
+    editor->setFocus();
+}
+
 void MainWindow::on_runOnly_clicked()
 {
     log.clear();

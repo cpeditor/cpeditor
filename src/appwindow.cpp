@@ -283,6 +283,7 @@ void AppWindow::openTab(QString fileName, bool iscompanionOpenedTab)
         ui->tabWidget->addTab(fsp, fsp->getFileName());
         ui->tabWidget->setCurrentIndex(t);
     }
+    currentWindow()->focusOnEditor();
 }
 
 /***************** ABOUT SECTION ***************************/

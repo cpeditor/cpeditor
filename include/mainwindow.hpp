@@ -86,6 +86,8 @@ class MainWindow : public QMainWindow
 
     void insertText(QString text);
 
+    void focusOnEditor();
+
   private slots:
     void onTextChangedTriggered();
 
