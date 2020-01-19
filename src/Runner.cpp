@@ -83,8 +83,6 @@ void Runner::run(const QString &filePath, const QString &lang, const QString &ru
 
 void Runner::runDetached(const QString &filePath, const QString &lang, const QString &runCommand, const QString &args)
 {
-    QString command;
-
 #if defined(__unix__)
     QProcess testProcess;
     testProcess.start("xterm -v");
@@ -94,13 +92,15 @@ void Runner::runDetached(const QString &filePath, const QString &lang, const QSt
         emit runErrorOccured(runnerIndex, "Please install xterm in order to use Detached Run");
         return;
     }
-    command = "xterm -e \"" + getCommand(filePath, lang, runCommand, args) +
-              "; echo '\nExecution Done\nPress any key to exit'; read\"";
+    runProcess->setProgram("xterm");
+    runProcess->setArguments({"-e", getCommand(filePath, lang, runCommand, args) +
+                                        "; echo '\nExecution Done\nPress any key to exit'; read"});
 #else
-    command = "start cmd /C " + getCommand(filePath, lang, runCommand, args) + "^& pause";
+    runProcess->setProgram("cmd");
+    runProcess->setArguments({"/C", "start cmd /C" + getCommand(filePath, lang, runCommand, args) + " ^& pause"});
 #endif
 
-    runProcess->start(command);
+    runProcess->start();
 }
 
 void Runner::onFinished(int exitCode, QProcess::ExitStatus exitStatus)
