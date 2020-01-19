@@ -138,12 +138,6 @@ void MainWindow::run()
 {
     killProcesses();
 
-    if (!QFile::exists(tmpPath()))
-    {
-        log.warn("Runner", "Can't find the executable, please compile again");
-        return;
-    }
-
     QString command, args;
     if (language == "Cpp")
     {
@@ -165,10 +159,13 @@ void MainWindow::run()
         return;
     }
 
+    bool isRun = false;
+
     for (int i = 0; i < 3; ++i)
     {
         if (!input[i]->toPlainText().trimmed().isEmpty())
         {
+            isRun = true;
             runner[i] = new Core::Runner(i);
             connect(runner[i], SIGNAL(runStarted(int)), this, SLOT(onRunStarted(int)));
             connect(runner[i], SIGNAL(runFinished(int, const QString &, const QString &, int, int)), this,
@@ -180,6 +177,9 @@ void MainWindow::run()
             runner[i]->run(tmpPath(), language, command, args, input[i]->toPlainText(), data.timeLimit);
         }
     }
+
+    if (!isRun)
+        log.warn("Runner", "All inputs are empty, nothing to run");
 }
 
 void MainWindow::clearTests(bool outputOnly)
@@ -936,8 +936,10 @@ QString MainWindow::tmpPath()
         return filePath;
     if (tmpDir == nullptr || !tmpDir->isValid())
     {
-        log.error("Temp Directory", "Error reading temp path. It's probably a bug");
-        return "";
+        if (!saveTemp("Temp Saver"))
+        {
+            return "";
+        }
     }
     QString name;
     if (!isUntitled())
@@ -950,7 +952,7 @@ QString MainWindow::tmpPath()
         name = "sol.py";
     else
     {
-        log.error("Temp Directory", "Please set the language");
+        log.error("Temp Saver", "Please set the language");
         return "";
     }
     return tmpDir->filePath(name);

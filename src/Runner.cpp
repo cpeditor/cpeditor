@@ -77,6 +77,13 @@ void Runner::run(const QString &filePath, const QString &lang, const QString &ru
     runTimer->start();
 
     runProcess->start(command);
+    bool started = runProcess->waitForStarted(2000);
+    if (!started)
+    {
+        emit runErrorOccured(runnerIndex, "Failed to start running. Please try to compile again");
+        runProcess->kill();
+        return;
+    }
     runProcess->write(input.toStdString().c_str());
     runProcess->closeWriteChannel();
 }
