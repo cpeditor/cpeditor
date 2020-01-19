@@ -47,7 +47,7 @@ AppWindow::AppWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::AppWindo
     allocate();
     setConnections();
 
-    auto windowTemp = new MainWindow(0, "", settingManager->toData());
+    auto windowTemp = new MainWindow("", settingManager->toData());
     ui->tabWidget->addTab(windowTemp, windowTemp->getFileName());
 
     if (settingManager->isCheckUpdateOnStartup())
@@ -247,7 +247,7 @@ void AppWindow::openTab(QString fileName, bool iscompanionOpenedTab)
         }
 
         int t = ui->tabWidget->count();
-        auto fsp = new MainWindow(t, fileName, settingManager->toData());
+        auto fsp = new MainWindow(fileName, settingManager->toData());
         connect(fsp, SIGNAL(confirmTriggered(MainWindow *)), this, SLOT(on_confirmTriggered(MainWindow *)));
         connect(fsp, SIGNAL(editorChanged(MainWindow *)), this, SLOT(onEditorChanged(MainWindow *)));
         QString lang = settingManager->getDefaultLang();
@@ -277,7 +277,7 @@ void AppWindow::openTab(QString fileName, bool iscompanionOpenedTab)
         }
 
         int t = ui->tabWidget->count();
-        auto fsp = new MainWindow(t, "", settingManager->toData());
+        auto fsp = new MainWindow("", settingManager->toData());
         connect(fsp, SIGNAL(confirmTriggered(MainWindow *)), this, SLOT(on_confirmTriggered(MainWindow *)));
         connect(fsp, SIGNAL(editorChanged(MainWindow *)), this, SLOT(onEditorChanged(MainWindow *)));
         ui->tabWidget->addTab(fsp, fsp->getFileName());
@@ -528,21 +528,21 @@ void AppWindow::on_actionCompile_triggered()
 {
     if (ui->actionEditor_Mode->isChecked())
         on_actionSplit_Mode_triggered();
-    currentWindow()->compile();
+    currentWindow()->compileOnly();
 }
 
 void AppWindow::on_actionCompile_Run_triggered()
 {
     if (ui->actionEditor_Mode->isChecked())
         on_actionSplit_Mode_triggered();
-    currentWindow()->runAndCompile();
+    currentWindow()->compileAndRun();
 }
 
 void AppWindow::on_actionRun_triggered()
 {
     if (ui->actionEditor_Mode->isChecked())
         on_actionSplit_Mode_triggered();
-    currentWindow()->run();
+    currentWindow()->runOnly();
 }
 
 void AppWindow::on_actionFormat_code_triggered()

@@ -17,7 +17,7 @@
 
 #include "mainwindow.hpp"
 
-#include <Core.hpp>
+#include <Compiler.hpp>
 #include <DiffViewer.hpp>
 #include <EditorTheme.hpp>
 #include <MessageLogger.hpp>
@@ -36,18 +36,18 @@
 #include <QTextStream>
 #include <QThread>
 #include <QTimer>
+#include <Runner.hpp>
 #include <expand.hpp>
 
 #include "../ui/ui_mainwindow.h"
 
 // ***************************** RAII  ****************************
-MainWindow::MainWindow(int index, QString fileOpen, const Settings::SettingsData &data, QWidget *parent)
-    : QMainWindow(parent), windowIndex(index), ui(new Ui::MainWindow), fileWatcher(new QFileSystemWatcher(this))
+MainWindow::MainWindow(QString fileOpen, const Settings::SettingsData &data, QWidget *parent)
+    : QMainWindow(parent), ui(new Ui::MainWindow), fileWatcher(new QFileSystemWatcher(this))
 {
     ui->setupUi(this);
     setEditor();
     setupCore();
-    runner->removeExecutable();
     connect(fileWatcher, SIGNAL(fileChanged(const QString &)), this, SLOT(onFileWatcherChanged(const QString &)));
     setSettingsData(data, true);
     loadFile(fileOpen);
@@ -55,16 +55,17 @@ MainWindow::MainWindow(int index, QString fileOpen, const Settings::SettingsData
 
 MainWindow::~MainWindow()
 {
+    killProcesses();
+
+    if (cftools != nullptr)
+        delete cftools;
+    if (tmpDir != nullptr)
+        delete tmpDir;
+
     delete ui;
     delete editor;
-    delete inputReader;
     delete formatter;
-    delete compiler;
-    delete runner;
     delete fileWatcher;
-
-    for (int i = 0; i < 3; ++i)
-        delete expected[i];
 }
 
 // ************************* RAII HELPER *****************************
@@ -92,29 +93,93 @@ void MainWindow::setEditor()
 
     for (int i = 0; i < 3; ++i)
     {
-        expected[i] = new QString;
         input[i]->setWordWrapMode(QTextOption::NoWrap);
         output[i]->setWordWrapMode(QTextOption::NoWrap);
         input[i]->setAcceptDrops(false);
+        expected[i] = new QString;
     }
 
     QObject::connect(editor, SIGNAL(textChanged()), this, SLOT(onTextChangedTriggered()));
 
     for (auto i : {0, 1, 2})
-        updateVerdict(Core::Verdict::UNKNOWN, i);
+        updateVerdict(UNKNOWN, i);
 }
 
 void MainWindow::setupCore()
 {
     using namespace Core;
     formatter = new Formatter(data.clangFormatBinary, data.clangFormatStyle, &log);
-    inputReader = new IO::InputReader(input, windowIndex);
-    compiler = new Compiler("", "", windowIndex, &log);
-    runner = new Runner(windowIndex, &log);
     log.setContainer(ui->compiler_edit);
+}
 
-    QObject::connect(runner, SIGNAL(executionFinished(int, int, QString)), this,
-                     SLOT(executionFinished(int, int, QString)));
+void MainWindow::compile()
+{
+    killProcesses();
+    compiler = new Core::Compiler();
+    if (saveTemp("Compiler"))
+    {
+        QString command;
+        if (language == "Cpp")
+            command = data.compileCommandCpp;
+        else if (language == "Python")
+            command = data.compileCommandJava;
+        else
+            return;
+        connect(compiler, SIGNAL(compilationStarted()), this, SLOT(onCompilationStarted()));
+        connect(compiler, SIGNAL(compilationFinished(const QString &)), this,
+                SLOT(onCompilationFinished(const QString &)));
+        connect(compiler, SIGNAL(compilationErrorOccured(const QString &)), this,
+                SLOT(onCompilationErrorOccured(const QString &)));
+        compiler->start(tmpPath(), command, language);
+    }
+}
+
+void MainWindow::run()
+{
+    killProcesses();
+
+    if (!QFile::exists(tmpPath()))
+    {
+        log.warn("Runner", "Can't find the executable, please compile again");
+        return;
+    }
+
+    QString command, args;
+    if (language == "Cpp")
+    {
+        args = data.runtimeArgumentsCpp;
+    }
+    else if (language == "Java")
+    {
+        command = data.runCommandJava;
+        args = data.runtimeArgumentsJava;
+    }
+    else if (language == "Python")
+    {
+        command = data.runCommandPython;
+        args = data.runtimeArgumentsPython;
+    }
+    else
+    {
+        log.warn("Runner", "Wrong language, please set the language");
+        return;
+    }
+
+    for (int i = 0; i < 3; ++i)
+    {
+        if (!input[i]->toPlainText().trimmed().isEmpty())
+        {
+            runner[i] = new Core::Runner(i);
+            connect(runner[i], SIGNAL(runStarted(int)), this, SLOT(onRunStarted(int)));
+            connect(runner[i], SIGNAL(runFinished(int, const QString &, const QString &, int, int)), this,
+                    SLOT(onRunFinished(int, const QString &, const QString &, int, int)));
+            connect(runner[i], SIGNAL(runErrorOccured(int, const QString &)), this,
+                    SLOT(onRunErrorOccured(int, const QString &)));
+            connect(runner[i], SIGNAL(runTimeout(int)), this, SLOT(onRunTimeout(int)));
+            connect(runner[i], SIGNAL(runKilled(int)), this, SLOT(onRunKilled(int)));
+            runner[i]->run(tmpPath(), language, command, args, input[i]->toPlainText(), data.timeLimit);
+        }
+    }
 }
 
 void MainWindow::clearTests(bool outputOnly)
@@ -127,7 +192,7 @@ void MainWindow::clearTests(bool outputOnly)
             expected[i]->clear();
         }
         output[i]->clear();
-        updateVerdict(Core::Verdict::UNKNOWN, i);
+        updateVerdict(UNKNOWN, i);
     }
 }
 
@@ -164,7 +229,7 @@ void MainWindow::loadTests()
             answerFile.open(QIODevice::ReadOnly | QFile::Text);
             if (answerFile.isOpen())
             {
-                expected[i]->operator=(answerFile.readAll());
+                *expected[i] = (answerFile.readAll());
             }
             else
             {
@@ -213,7 +278,7 @@ void MainWindow::setCFToolsUI()
     if (submitToCodeforces == nullptr)
     {
         submitToCodeforces = new QPushButton("Submit Solution", this);
-        cftools = new Network::CFTools(windowIndex, &log);
+        cftools = new Network::CFTools(&log);
         ui->horizontalLayout_9->addWidget(submitToCodeforces);
         connect(submitToCodeforces, &QPushButton::clicked, this, [this] {
             auto response = QMessageBox::warning(
@@ -224,8 +289,8 @@ void MainWindow::setCFToolsUI()
 
             if (response == QMessageBox::Yes)
             {
-                compiler->syncToBuffer(editor);
-                cftools->submit(problemURL, language);
+                if (saveTemp("CF Tool Saver"))
+                    cftools->submit(tmpPath(), problemURL, language);
             }
         });
     }
@@ -265,21 +330,21 @@ bool MainWindow::isUntitled() const
     return filePath.isEmpty();
 }
 
-void MainWindow::updateVerdict(Core::Verdict _verdict, int id)
+void MainWindow::updateVerdict(Verdict _verdict, int id)
 {
     QString verdict_text, style_sheet;
 
     switch (_verdict)
     {
-    case Core::Verdict::ACCEPTED:
+    case ACCEPTED:
         verdict_text = "Verdict : AC";
         style_sheet = "QLabel { color : rgb(0, 180, 0); }";
         break;
-    case Core::Verdict::WRONG_ANSWER:
+    case WRONG_ANSWER:
         verdict_text = "Verdict : WA";
         style_sheet = "QLabel { color : rgb(255, 0, 0); }";
         break;
-    case Core::Verdict::UNKNOWN:
+    case UNKNOWN:
         verdict_text = "Verdict : **";
         style_sheet = "";
         break;
@@ -315,7 +380,7 @@ void MainWindow::applyCompanion(Network::CompanionData data)
     for (int i = 0; i < data.testcases.size() && i < 3; ++i)
     {
         input[i]->setPlainText(data.testcases[i].input);
-        expected[i]->operator=(data.testcases[i].output);
+        *expected[i] = (data.testcases[i].output);
     }
     problemURL = data.url;
     if (problemURL.contains("codeforces.com"))
@@ -350,18 +415,6 @@ void MainWindow::setSettingsData(const Settings::SettingsData &data, bool should
         editor->setWordWrapMode(QTextOption::WordWrap);
     else
         editor->setWordWrapMode(QTextOption::NoWrap);
-
-    compiler->updateCommandCpp(data.compileCommandCpp);
-    compiler->updateCommandJava(data.compileCommandJava);
-    runner->updateCompileCommandCpp(data.compileCommandCpp);
-    runner->updateCompileCommandJava(data.compileCommandJava);
-
-    runner->updateRunCommandJava(data.runCommandJava);
-    runner->updateRunCommandPython(data.runCommandPython);
-
-    runner->updateRuntimeArgumentsCommandCpp(data.runtimeArgumentsCpp);
-    runner->updateRuntimeArgumentsCommandJava(data.runtimeArgumentsJava);
-    runner->updateRuntimeArgumentsCommandPython(data.runtimeArgumentsPython);
 
     if (data.editorTheme == "Light")
         editor->setSyntaxStyle(Themes::EditorTheme::getLightTheme());
@@ -406,41 +459,37 @@ void MainWindow::onTextChangedTriggered()
 
 void MainWindow::on_compile_clicked()
 {
-    log.clear();
-    saveFile(IgnoreUntitled, "Compiler");
-    compiler->compile(editor, language);
+    compileOnly();
+}
+
+void MainWindow::on_runOnly_clicked()
+{
+    runOnly();
 }
 
 void MainWindow::on_run_clicked()
 {
+    compileAndRun();
+}
+
+void MainWindow::compileOnly()
+{
+    afterCompile = Nothing;
     log.clear();
-    clearTests(true);
-    saveFile(IgnoreUntitled, "Compiler");
-    inputReader->readToFile();
-
-    QVector<bool> isRun;
-    for (int i = 0; i < 3; ++i)
-    {
-        output[i]->clear();
-        isRun.push_back(!input[i]->toPlainText().trimmed().isEmpty());
-    }
-
-    runner->run(editor, isRun, language);
+    compile();
 }
 
-void MainWindow::run()
+void MainWindow::runOnly()
 {
-    on_runOnly_clicked();
+    log.clear();
+    run();
 }
 
-void MainWindow::runAndCompile()
+void MainWindow::compileAndRun()
 {
-    on_run_clicked();
-}
-
-void MainWindow::compile()
-{
-    on_compile_clicked();
+    afterCompile = Run;
+    log.clear();
+    compile();
 }
 
 void MainWindow::formatSource()
@@ -497,50 +546,35 @@ void MainWindow::focusOnEditor()
     editor->setFocus();
 }
 
-void MainWindow::on_runOnly_clicked()
-{
-    log.clear();
-    clearTests(true);
-    saveFile(IgnoreUntitled, "Compiler");
-    inputReader->readToFile();
-
-    QVector<bool> isRun;
-    for (int i = 0; i < 3; ++i)
-    {
-        output[i]->clear();
-        isRun.push_back(!input[i]->toPlainText().trimmed().isEmpty());
-    }
-
-    runner->run(isRun, language);
-}
-
 void MainWindow::detachedExecution()
 {
+    afterCompile = RunDetached;
     log.clear();
-    runner->runDetached(editor, language);
+    compile();
 }
 
 void MainWindow::killProcesses()
 {
-    runner->killAll();
-}
+    if (compiler != nullptr)
+    {
+        delete compiler;
+        compiler = nullptr;
+    }
 
-void MainWindow::executionFinished(int id, int msec, QString Stdout)
-{
-    log.info("Runner[" + std::to_string(id + 1) + "]", "Execution for case #" + std::to_string(id + 1) +
-                                                           " completed and took " + std::to_string(msec) +
-                                                           " miliseconds.");
+    for (auto &t : runner)
+    {
+        if (t != nullptr)
+        {
+            delete t;
+            t = nullptr;
+        }
+    }
 
-    output[id]->clear();
-    output[id]->setPlainText(Stdout);
-
-    if (Stdout.isEmpty() || expected[id]->isEmpty())
-        return;
-
-    if (isVerdictPass(Stdout, *expected[id]))
-        updateVerdict(Core::Verdict::ACCEPTED, id);
-    else
-        updateVerdict(Core::Verdict::WRONG_ANSWER, id);
+    if (detachedRunner != nullptr)
+    {
+        delete detachedRunner;
+        detachedRunner = nullptr;
+    }
 }
 
 // ****************************** Context Menus **************************/
@@ -756,7 +790,8 @@ void MainWindow::updateWatcher()
     onTextChangedTriggered();
     if (!fileWatcher->files().isEmpty())
         fileWatcher->removePaths(fileWatcher->files());
-    fileWatcher->addPath(filePath);
+    if (!isUntitled())
+        fileWatcher->addPath(filePath);
 }
 
 void MainWindow::loadFile(QString path)
@@ -817,7 +852,7 @@ bool MainWindow::saveFile(SaveMode mode, std::string head)
     if (data.isFormatOnSave)
         formatter->format(editor, filePath, language, false);
 
-    if (mode == SaveAs || (isUntitled() && (mode & 1)))
+    if (mode == SaveAs || (isUntitled() && mode == SaveUntitled))
     {
         emit confirmTriggered(this);
         auto newFilePath = QFileDialog::getSaveFileName(
@@ -825,18 +860,16 @@ bool MainWindow::saveFile(SaveMode mode, std::string head)
         if (newFilePath.isEmpty())
             return false;
 
-        newFilePath = QFileInfo(newFilePath).canonicalFilePath();
-
         QFile openFile(newFilePath);
         openFile.open(QIODevice::WriteOnly | QFile::Text);
 
         if (!openFile.isOpen() || openFile.write(editor->toPlainText().toStdString().c_str()) == -1)
         {
-            log.error(head, "Cannot save file. Do I have write permission?");
+            log.error(head, "Failed to save file to [" + newFilePath.toStdString() + "]. Do I have write permission?");
             return false;
         }
 
-        filePath = newFilePath;
+        filePath = QFileInfo(newFilePath).canonicalFilePath();
         updateWatcher();
         emit editorChanged(this);
 
@@ -855,7 +888,7 @@ bool MainWindow::saveFile(SaveMode mode, std::string head)
         openFile.open(QFileDevice::WriteOnly | QFile::Text);
         if (!openFile.isOpen() || openFile.write(editor->toPlainText().toStdString().c_str()) == -1)
         {
-            log.error(head, "Cannot save file. Do I have write permission?");
+            log.error(head, "Failed to save file to [" + filePath.toStdString() + "]. Do I have write permission?");
             return false;
         }
         updateWatcher();
@@ -868,6 +901,61 @@ bool MainWindow::saveFile(SaveMode mode, std::string head)
     saveTests();
 
     return true;
+}
+
+bool MainWindow::saveTemp(std::string head)
+{
+    if (!saveFile(IgnoreUntitled, head))
+    {
+        if (tmpDir != nullptr)
+        {
+            delete tmpDir;
+        }
+
+        tmpDir = new QTemporaryDir();
+        if (!tmpDir->isValid())
+        {
+            log.error(head, "Failed to create temporary directory");
+            return false;
+        }
+
+        QFile tmpFile(tmpPath());
+        tmpFile.open(QIODevice::WriteOnly | QIODevice::Text);
+
+        if (!tmpFile.isOpen() || tmpFile.write(editor->toPlainText().toStdString().c_str()) == -1)
+        {
+            log.error(head, "Failed to save to " + tmpFile.fileName().toStdString());
+            return false;
+        }
+    }
+
+    return true;
+}
+
+QString MainWindow::tmpPath()
+{
+    if (!isUntitled())
+        return filePath;
+    if (tmpDir == nullptr || !tmpDir->isValid())
+    {
+        log.error("Temp Directory", "Error reading temp path. It's probably a bug");
+        return "";
+    }
+    QString name;
+    if (!isUntitled())
+        name = getFileName();
+    else if (language == "Cpp")
+        name = "sol.cpp";
+    else if (language == "Java")
+        name = "sol.java";
+    else if (language == "Python")
+        name = "sol.py";
+    else
+    {
+        log.error("Temp Directory", "Please set the language");
+        return "";
+    }
+    return tmpDir->filePath(name);
 }
 
 bool MainWindow::isTextChanged() const
@@ -1013,4 +1101,131 @@ void MainWindow::performCoreDiagonistics()
     if (!runResults)
         log.error("Runner",
                   "Binary or Script won't be executed because its corresponding program or VM could not be loaded");
+}
+
+// -------------------- COMPILER SLOTS ---------------------------
+
+void MainWindow::onCompilationStarted()
+{
+    log.info("Compiler", "Compilation has started");
+}
+
+void MainWindow::onCompilationFinished(const QString &warning)
+{
+    log.info("Compiler", "Compilation has finished");
+    if (!warning.trimmed().isEmpty())
+    {
+        log.warn("Compile Warnings", warning.toStdString());
+    }
+
+    if (afterCompile == Run)
+    {
+        run();
+    }
+    else if (afterCompile == RunDetached)
+    {
+        killProcesses();
+
+        if (!QFile::exists(tmpPath()))
+        {
+            log.warn("Runner", "Can't find the executable, please compile again");
+            return;
+        }
+
+        QString command, args;
+        if (language == "Cpp")
+        {
+            args = data.runtimeArgumentsCpp;
+        }
+        else if (language == "Java")
+        {
+            command = data.runCommandJava;
+            args = data.runtimeArgumentsJava;
+        }
+        else if (language == "Python")
+        {
+            command = data.runCommandPython;
+            args = data.runtimeArgumentsPython;
+        }
+        else
+        {
+            log.warn("Runner", "Wrong language, please set the language");
+            return;
+        }
+
+        detachedRunner = new Core::Runner(-1);
+        connect(detachedRunner, SIGNAL(runErrorOccured(int)), this, SLOT(onRunErrorOccured(int)));
+        connect(detachedRunner, SIGNAL(runKilled(int)), this, SLOT(onRunKilled(int)));
+        detachedRunner->runDetached(tmpPath(), language, command, args);
+    }
+
+    afterCompile = Nothing;
+}
+
+void MainWindow::onCompilationErrorOccured(const QString &error)
+{
+    log.error("Complier", "Error occured while compiling");
+    if (!error.trimmed().isEmpty())
+        log.error("Compile Errors", error.toStdString());
+}
+
+// --------------------- RUNNER SLOTS ----------------------------
+
+std::string MainWindow::getRunnerHead(int index)
+{
+    if (index == -1)
+        return "Detached Runner";
+    return "Runner[" + std::to_string(index + 1) + "]";
+}
+
+void MainWindow::onRunStarted(int index)
+{
+    log.info(getRunnerHead(index), "Execution has started");
+}
+
+void MainWindow::onRunFinished(int index, const QString &out, const QString &err, int exitCode, int timeUsed)
+{
+    auto head = getRunnerHead(index);
+
+    if (exitCode == 0)
+    {
+        log.info(head, "Execution for test case #" + std::to_string(index + 1) + " has finished in " +
+                           std::to_string(timeUsed) + "ms");
+        if (!err.trimmed().isEmpty())
+            log.error(head + "/stderr", err.toStdString());
+        output[index]->setPlainText(out);
+        if (!expected[index]->isEmpty())
+        {
+            if (isVerdictPass(out, *expected[index]))
+                updateVerdict(ACCEPTED, index);
+            else
+                updateVerdict(WRONG_ANSWER, index);
+        }
+    }
+
+    else
+    {
+        log.error(head, "Execution for test case #" + std::to_string(index + 1) +
+                            " has finished with non-zero exitcode " + std::to_string(exitCode) + " in " +
+                            std::to_string(timeUsed) + "ms");
+        if (!err.trimmed().isEmpty())
+            log.error(head + "/stderr", err.toStdString());
+    }
+}
+
+void MainWindow::onRunErrorOccured(int index, const QString &error)
+{
+    log.error(getRunnerHead(index), error.toStdString());
+}
+
+void MainWindow::onRunTimeout(int index)
+{
+    log.warn(getRunnerHead(index), "Time Limit Exceeded");
+}
+
+void MainWindow::onRunKilled(int index)
+{
+    log.info(getRunnerHead(index),
+             (index == -1 ? "Detached runner" : "Runner for test case #" + std::to_string(index + 1)) +
+                 " has been killed");
 }

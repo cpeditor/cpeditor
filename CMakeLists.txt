@@ -35,7 +35,7 @@ add_executable(CPEditor
     include/mainwindow.hpp
     include/MessageLogger.hpp
     include/SettingsManager.hpp
-    include/Core.hpp
+    include/Compiler.hpp
     include/IO.hpp
     include/UpdateNotifier.hpp
     src/UpdateNotifier.cpp
@@ -43,7 +43,7 @@ add_executable(CPEditor
     include/Runner.hpp
     src/Runner.cpp
     src/SettingsManager.cpp
-    src/Core.cpp
+    src/Compiler.cpp
     include/Formatter.hpp
     src/Formatter.cpp
     include/BaseFiles.hpp

@@ -132,7 +132,7 @@ void CompanionServer::onReadReady()
         else
         {
             if (log != nullptr)
-                log->error("Companion", "JSONParser reported errors. \n" + error.errorString().toStdString(), true);
+                log->error("Companion", "JSONParser reported errors. \n" + error.errorString().toStdString());
         }
     }
     else

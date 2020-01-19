@@ -19,7 +19,7 @@
 #define MAINWINDOW_HPP
 
 #include <CompanionServer.hpp>
-#include <Core.hpp>
+#include <Compiler.hpp>
 #include <Formatter.hpp>
 #include <IO.hpp>
 #include <QCodeEditor>
@@ -30,6 +30,7 @@
 #include <QPushButton>
 #include <QShortcut>
 #include <QSplitter>
+#include <QTemporaryDir>
 #include <Runner.hpp>
 #include <SettingsManager.hpp>
 #include <UpdateNotifier.hpp>
@@ -50,12 +51,19 @@ class MainWindow : public QMainWindow
   public:
     enum SaveMode
     {
-        IgnoreUntitled = 0, // save only when filePath is not empty
-        SaveUntitled = 1,   // save to filePath if it's not empty, otherwise ask for new path
-        SaveAs = 3          // ask for new path no matter filePath is empty or not
+        IgnoreUntitled, // save only when filePath is not empty
+        SaveUntitled,   // save to filePath if it's not empty, otherwise ask for new path
+        SaveAs,         // ask for new path no matter filePath is empty or not
     };
 
-    MainWindow(int index, QString fileOpen, const Settings::SettingsData &data, QWidget *parent = nullptr);
+    enum AfterCompile
+    {
+        Nothing,
+        Run,
+        RunDetached
+    };
+
+    MainWindow(QString fileOpen, const Settings::SettingsData &data, QWidget *parent = nullptr);
     ~MainWindow() override;
 
     QString getFileName() const;
@@ -70,9 +78,9 @@ class MainWindow : public QMainWindow
 
     void killProcesses();
     void detachedExecution();
-    void compile();
-    void run();
-    void runAndCompile();
+    void compileOnly();
+    void runOnly();
+    void compileAndRun();
     void formatSource();
 
     void applyCompanion(Network::CompanionData data);
@@ -92,10 +100,18 @@ class MainWindow : public QMainWindow
     void onTextChangedTriggered();
 
     void on_compile_clicked();
-    void on_run_clicked();
     void on_runOnly_clicked();
+    void on_run_clicked();
 
-    void executionFinished(int, int, QString);
+    void onCompilationStarted();
+    void onCompilationFinished(const QString &warning);
+    void onCompilationErrorOccured(const QString &error);
+
+    void onRunStarted(int index);
+    void onRunFinished(int index, const QString &out, const QString &err, int exitCode, int timeUsed);
+    void onRunErrorOccured(int index, const QString &error);
+    void onRunTimeout(int index);
+    void onRunKilled(int index);
 
     void on_in1_customContextMenuRequested(const QPoint &pos);
     void on_in2_customContextMenuRequested(const QPoint &pos);
@@ -118,7 +134,13 @@ class MainWindow : public QMainWindow
     void confirmTriggered(MainWindow *widget);
 
   private:
-    const int windowIndex;
+    enum Verdict
+    {
+        ACCEPTED,
+        WRONG_ANSWER,
+        UNKNOWN
+    };
+
     Ui::MainWindow *ui;
     QCodeEditor *editor;
     QString language;
@@ -126,9 +148,12 @@ class MainWindow : public QMainWindow
     bool isLanguageSet = false;
 
     Core::Formatter *formatter = nullptr;
-    Core::IO::InputReader *inputReader = nullptr;
     Core::Compiler *compiler = nullptr;
-    Core::Runner *runner = nullptr;
+    QVector<Core::Runner *> runner = QVector<Core::Runner *>(3, nullptr);
+    Core::Runner *detachedRunner = nullptr;
+    QTemporaryDir *tmpDir = nullptr;
+    AfterCompile afterCompile = Nothing;
+
     MessageLogger log;
 
     QString problemURL;
@@ -145,17 +170,22 @@ class MainWindow : public QMainWindow
 
     void setEditor();
     void setupCore();
+    void compile();
+    void run();
     void clearTests(bool outputOnly = false);
     void loadTests();
     void saveTests();
     void setCFToolsUI();
-    void updateVerdict(Core::Verdict, int);
+    void updateVerdict(Verdict, int);
     bool isTextChanged() const;
     bool isVerdictPass(QString, QString);
     void setText(const QString &text, bool saveCursor = false);
     void updateWatcher();
     void loadFile(QString path);
     bool saveFile(SaveMode, std::string);
+    bool saveTemp(std::string);
+    QString tmpPath();
     void performCoreDiagonistics();
+    std::string getRunnerHead(int index);
 };
 #endif // MAINWINDOW_HPP

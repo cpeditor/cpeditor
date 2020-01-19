@@ -8,16 +8,16 @@
 
 ### Features
 
+- Parse sample test cases from over 30+ online platforms (including Codeforces, AtCoder, CodeChef, Yandex...), load test cases from files, or type manually.
+- One click for either running on the test cases / running in the terminal.
 - Submit code on Codeforces inside the editor.
-- Parse problem example test cases from over 30+ online platforms, and test on them with verdict feedback.
-- You can use code snippets conveniently.
+- Set/Use code snippets conveniently.
 - Fast and memory efficient. Runs flawlessly on low-end devices.
-- Code formating using clang-format.
-- Customizable hotkeys for actions in the editor. 
-- Over 5 themes to choose from (Drakula, Monkai, Solarised, Solarised Dark and Light).
-- Supports Multi tabs.
+- Code formating using clang-format. You can edit the `.clang-format` config in the editor.
+- Customizable hotkeys for actions in the editor.
+- Over 5 editor themes to choose from (Drakula, Monkai, Solarised, Solarised Dark and Light).
 
-<img src=https://i.imgur.com/jKOtf6W.jpg width="85%">  
+<img src=https://i.imgur.com/jKOtf6W.jpg width="85%">
 
 ### Installation
 
@@ -34,7 +34,7 @@ For Chinese users who are not convenient to download on Github, there is an [alt
 
 - Install `g++` / `python` / `java` depending on which language you are using. Make sure that they are in the system PATH so that you can run them directly in the command line.
 
-- Set the preferences in the preference window. Make sure that `clang-format` is in the system PATH if you want to use it.
+- Set preferences in the preference window.
 
 - If you want to use the Competitive Companion for parsing examples from online platforms like Codeforces, install it [here](https://github.com/jmerle/competitive-companion). Don't forget to set the same port for the editor and the browser extension.
 
@@ -46,24 +46,11 @@ You **must not** make your Java class public, and the name of the class should b
 
 ### Keyboard Shortcuts
 
-| Shortcut     | Description                                                  |
-| ------------ | ------------------------------------------------------------ |
-| CTRL+N       | Launches a new session and resets the editor. Once you solved a problem you need to launch a new session for the next problem. |
-| CTRL+Q       | Quit and exit application                                    |
-| CTRL+O       | Opens a new source file into the editor                      |
-| CTRL+S       | Saves the current content of editor to a File                |
-| CTRL+Shift+S | Saves as                                                     |
-| CTRL+Alt+L   | Formats the editor using clang-format, format selection only if there is a selection |
-| CTRL+Shift+R | Compile and Run                                              |
-| CTRL+Shift+C | Compile only                                                 |
-| CTRL+R       | Run                                                          |
-| CTRL+K       | Kill all running Test cases / Samples                        |
-| CTRL+Shift+D | Run the program in a separate window (Detached mode)         |
-| CTRL+T       | Use any saved snippet codes                                  |
+You can get the shortcuts in the menu.
 
 The key bindings for the code editor are [here](https://doc.qt.io/qt-5.14/qtextedit.html#read-only-key-bindings) and [here](https://doc.qt.io/qt-5.14/qtextedit.html#editing-key-bindings).
 
-You can also set hotkeys for all of the above actions manually from `Preferences`. However the standard keys are fixed and cannot be changed, hotkeys are additional shortcuts.
+You can also set hotkeys for some actions manually in `Preferences`. However the standard keys are fixed and cannot be changed, hotkeys are additional shortcuts.
 
 ### Build from source
 
@@ -78,7 +65,7 @@ You can also set hotkeys for all of the above actions manually from `Preferences
 
 2. Install Qt (5.12 or higher) and CMake.
 
-3. Set environment variable `CMAKE_PREFIX_PATH=%QtPath%/%QtVersion%/%Compiler%/lib/cmake`.
+3. Set environment variable `CMAKE_PREFIX_PATH=%QtPath%/%QtVersion%/%Compiler%/lib/cmake`. (Only necessary in some systems)
 
 4. Run the following commands:
 	
@@ -106,7 +93,7 @@ If you found any bugs or have any feature requests, please open an issue [here](
 
 If you want a try on developing, you can install Qt and CMake, then fix bugs / make new features by yourself! After finishing the coding, just open a pull request [here](https://github.com/coder3101/cp-editor/pulls). Don't worry if you are not familiar with Qt / GUI programming, Google is your friend, and Qt is a [well documented](https://doc.qt.io/) library. Don't forget to use `.clang-format` file in the root directory to format the codes.
 
-Contributions are always welcomed. Together we can build the best editor for ourselves.
+Contributions are always welcomed. Together we can build a better editor for ourselves.
 
 ### Telegram group
 
@@ -114,8 +101,6 @@ You can join the [Telegram group](https://t.me/cpeditor) for asking quetions abo
 
 ### FAQ
 
-- Where does the editor save my code and binary executable?
-    - The editor does not save your files if you don't save them yourself. You can find your binary executable at `C://Users/<NAME>/AppData/Local/Temp/a.exe` in windows and on NIX in `/tmp/a.out`. At those locations, the source file could also be located with the name `sol.cpp`. 
 - I am using it in Java and the editor is not working.
    - Make sure `java` and `javac` are in PATH variables. Please Log/Restart your machine if it does not recognize the Java Compiler. Now make sure your source code has **non-public class named a**.
 - I get **DLL Missing error** while launching the application?

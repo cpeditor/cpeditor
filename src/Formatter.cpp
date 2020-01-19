@@ -149,10 +149,10 @@ QPair<int, QString> Formatter::getFormatResult(const QStringList &args)
         log->warn("Formatter", "The format command is: " + binary.toStdString() + " " + args.join(' ').toStdString());
         auto stdOut = formatProcess.readAllStandardOutput();
         if (!stdOut.isEmpty())
-            log->warn("Formatter[stdout]", stdOut.toStdString(), true);
+            log->warn("Formatter[stdout]", stdOut.toStdString());
         auto stdError = formatProcess.readAllStandardError();
         if (!stdError.isEmpty())
-            log->error("Formatter[stderr]", stdError.toStdString(), true);
+            log->error("Formatter[stderr]", stdError.toStdString());
         return QPair<int, QString>(-1, QString());
     }
 

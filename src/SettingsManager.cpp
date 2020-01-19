@@ -156,6 +156,11 @@ int SettingManager::getConnectionPort()
     return mSettings->value("companion_port", 10045).toInt();
 }
 
+int SettingManager::getTimeLimit()
+{
+    return mSettings->value("time_limit", 5000).toInt();
+}
+
 void SettingManager::setAutoIndent(bool value)
 {
     if (value)
@@ -257,6 +262,11 @@ void SettingManager::setTabStop(int num)
 void SettingManager::setConnectionPort(int num)
 {
     mSettings->setValue("companion_port", num);
+}
+
+void SettingManager::setTimeLimit(int val)
+{
+    mSettings->setValue("time_limit", val);
 }
 
 void SettingManager::setRunCommandJava(QString command)
@@ -454,6 +464,7 @@ SettingsData SettingManager::toData()
     SettingsData data;
     data.companionPort = getConnectionPort();
     data.tabStop = getTabStop();
+    data.timeLimit = getTimeLimit();
     data.geometry = getGeometry();
     data.font = getFont();
     data.defaultLanguage = getDefaultLang();
