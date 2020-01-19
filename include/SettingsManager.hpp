@@ -40,6 +40,8 @@ struct SettingsData
 {
     int companionPort;
     int tabStop;
+    int timeLimit;
+
     QRect geometry;
     QString font;
     QString defaultLanguage;
@@ -99,6 +101,9 @@ class SettingManager
 
     int getTabStop();
     void setTabStop(int num);
+
+    int getTimeLimit();
+    void setTimeLimit(int ms);
 
     QRect getGeometry();
     void setGeometry(QRect);
@@ -183,9 +188,6 @@ class SettingManager
     QByteArray getSplitterSizes();
     void setSplitterSizes(QByteArray state);
 
-    SettingsData toData();
-    ~SettingManager();
-
     void setHotkeyFormat(QKeySequence sequence);
     void setHotkeyKill(QKeySequence sequence);
     void setHotkeyCompileRun(QKeySequence sequence);
@@ -207,6 +209,9 @@ class SettingManager
     QStringList getSnippetsNames(QString lang);
 
     void resetSettings();
+
+    SettingsData toData();
+    ~SettingManager();
 
   private:
     QString mSettingsFile;

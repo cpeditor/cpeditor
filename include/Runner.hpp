@@ -1,81 +1,63 @@
 /*
-* Copyright (C) 2019-2020 Ashar Khan <ashar786khan@gmail.com> 
-* 
-* This file is part of CPEditor.
-*  
-* CPEditor is free software: you can redistribute it and/or modify
-* it under the terms of the GNU General Public License as published by
-* the Free Software Foundation, either version 3 of the License, or
-* (at your option) any later version.
-* 
-* I will not be responsible if CPEditor behaves in unexpected way and
-* causes your ratings to go down and or loose any important contest.
-* 
-* Believe Software is "Software" and it isn't immune to bugs.
-* 
-*/
-
+ * Copyright (C) 2019-2020 Ashar Khan <ashar786khan@gmail.com>
+ *
+ * This file is part of CPEditor.
+ *
+ * CPEditor is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * I will not be responsible if CPEditor behaves in unexpected way and
+ * causes your ratings to go down and or loose any important contest.
+ *
+ * Believe Software is "Software" and it isn't immune to bugs.
+ *
+ */
 
 #ifndef RUNNER_HPP
 #define RUNNER_HPP
 
-#include <Core.hpp>
-#include <IO.hpp>
-#include <QCodeEditor>
 #include <QElapsedTimer>
-#include <QObject>
 #include <QProcess>
+#include <QTimer>
 
 namespace Core
 {
-class Runner : public QObject, private Base::Files
+
+class Runner : public QObject
 {
     Q_OBJECT
+
   public:
-    Runner(int index, MessageLogger *log);
+    Runner(int index);
     ~Runner();
-
-    void run(QCodeEditor *editor, QVector<bool> _isRun, QString lang = "Cpp");
-    void run(QVector<bool> _isRun, QString lang = "Cpp");
-
-    void runDetached(QCodeEditor *editor, QString lang = "Cpp");
-
-    void removeExecutable();
-
-    void updateRunCommandPython(QString newCommand);
-    void updateRunCommandJava(QString newCommand);
-
-    void updateCompileCommandCpp(QString newCommand);
-    void updateCompileCommandJava(QString newCommand);
-
-    void updateRuntimeArgumentsCommandCpp(QString newCommand);
-    void updateRuntimeArgumentsCommandJava(QString newCommand);
-    void updateRuntimeArgumentsCommandPython(QString newCommand);
-
-    void killAll();
-  private slots:
-    void compilationFinished(bool success);
-
-    void runError(int, QProcess::ProcessError);
-    void runFinished(int, int, QProcess::ExitStatus);
-    void runStarted(int);
+    void run(const QString &filePath, const QString &lang, const QString &runCommand, const QString &args,
+             const QString &input, int timeLimit);
+    void runDetached(const QString &filePath, const QString &lang, const QString &runCommand, const QString &args);
 
   signals:
-    void executionFinished(int, int, QString);
+    void runStarted(int index);
+    void runFinished(int index, const QString &out, const QString &err, int exitCode, int timeUsed);
+    void runErrorOccured(int index, const QString &error);
+    void runTimeout(int index);
+    void runKilled(int index);
+
+  private slots:
+    void onFinished(int exitCode, QProcess::ExitStatus exitStatus);
+    void onStarted();
+    void onTimeout();
 
   private:
-    QString runCommandPython, runCommandJava;
-    QString language;
-    QString runtimeArgsCpp, runtimeArgsJava, runtimeArgsPython;
+    const int runnerIndex;
+    QString runCommand;
+    QProcess *runProcess = nullptr;
+    QTimer *killTimer = nullptr;
+    QElapsedTimer *runTimer = nullptr;
 
-    Core::Compiler *compiler = nullptr;
-    QVector<bool> isRun = QVector<bool>(3, false);
-    bool detached = false;
-    QProcess *detachedHandle = nullptr;
-    MessageLogger *log;
-    QVector<QProcess *> runner = QVector<QProcess *>(3, nullptr);
-    QVector<QElapsedTimer *> timers = QVector<QElapsedTimer *>(3, nullptr);
+    QString getCommand(const QString &filePath, const QString &lang, const QString &runCommand, const QString &args);
 };
 
 } // namespace Core
+
 #endif // RUNNER_HPP

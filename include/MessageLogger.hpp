@@ -26,9 +26,9 @@ class MessageLogger
   public:
     MessageLogger() = default;
 
-    void warn(std::string head, std::string body, bool multiline = false);
+    void warn(std::string head, std::string body);
     void info(std::string head, std::string body);
-    void error(std::string head, std::string body, bool multiline = false);
+    void error(std::string head, std::string body);
     void clear();
     void setContainer(QTextBrowser *value);
 

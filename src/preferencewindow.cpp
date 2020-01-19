@@ -55,6 +55,9 @@ void PreferenceWindow::setConstraints()
     ui->tab_length->setMinimum(1);
     ui->tab_length->setMaximum(20);
 
+    ui->time_limit->setMinimum(1);
+    ui->time_limit->setMaximum(3600000);
+
     ui->companion_port->setMinimum(10000);
     ui->companion_port->setMaximum(65535);
 }
@@ -118,6 +121,8 @@ void PreferenceWindow::applySettingsToui()
     ui->update_startup->setChecked(manager->isCheckUpdateOnStartup());
     ui->beta_update->setChecked(manager->isBeta());
 
+    ui->time_limit->setValue(manager->getTimeLimit());
+
     ui->cpp_template->setText(cppTemplatePath.isEmpty() ? "<Not selected>" : "..." + cppTemplatePath.right(30));
     ui->py_template->setText(pythonTemplatePath.isEmpty() ? "<Not selected>" : "..." + pythonTemplatePath.right(30));
     ui->java_template->setText(javaTemplatePath.isEmpty() ? "<Not selected>" : "..." + javaTemplatePath.right(30));
@@ -173,6 +178,8 @@ void PreferenceWindow::extractSettingsFromUi()
 
     manager->setBeta(ui->beta_update->isChecked());
     manager->checkUpdateOnStartup(ui->update_startup->isChecked());
+
+    manager->setTimeLimit(ui->time_limit->value());
 
     manager->setTemplatePathCpp(cppTemplatePath);
     manager->setTemplatePathJava(javaTemplatePath);

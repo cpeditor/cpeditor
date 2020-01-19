@@ -16,90 +16,49 @@
  */
 
 #include "cftools.hpp"
-#include <QDebug>
 #include <QUrl>
+
 namespace Network
 {
 
-CFTools::CFTools(int index, MessageLogger *logger) : Core::Base::Files(index)
+CFTools::CFTools(MessageLogger *logger)
 {
     log = logger;
+    CFToolProcess = new QProcess();
 }
 
 CFTools::~CFTools()
 {
-    if (cftool != nullptr)
+    if (CFToolProcess != nullptr)
     {
-        delete cftool;
+        delete CFToolProcess;
     }
 }
 
-void CFTools::killProcess()
+void CFTools::submit(const QString &filePath, const QString &url, const QString &lang)
 {
-}
+    QRegularExpression regex(".*://codeforces.com/contest/([1-9][0-9]*)/problem/([A-Z][1-9]?)");
+    auto match = regex.match(url);
+    auto problemContestId = match.captured(1);
+    auto problemCode = match.captured(2);
 
-void CFTools::submit(QString url, QString language)
-{
-    if (cftool != nullptr)
-    {
-        delete cftool;
-        cftool = nullptr;
-    }
-
-    QString filePath;
-    if (language == "Cpp")
-    {
-        filePath = getProgramFile();
-    }
-    else if (language == "Java")
-    {
-        filePath = getProgramFile(".java");
-    }
-    else if (language == "Python")
-    {
-        filePath = getProgramFile(".py");
-    }
-    else
-    {
-        return;
-    }
-
-    auto problemCode = url.right(url.size() - 1 - url.lastIndexOf('/'));
-    auto splitRes = url.split('/');
-    QString problemContestId;
-    for (auto e : splitRes)
-    {
-        if (!e.isEmpty() && e.toInt())
-        {
-            problemContestId = e;
-            break;
-        }
-    }
-
-    cftool = new QProcess();
-    cftool->setProgram("cf");
-    cftool->setArguments({"submit", problemContestId, problemCode, filePath});
-    connect(cftool, SIGNAL(readyReadStandardOutput()), this, SLOT(onReadReady()));
-    cftool->start();
-
-    // Todo : Invoke cf-tools here.
+    CFToolProcess->setProgram("cf");
+    CFToolProcess->setArguments({"submit", problemContestId, problemCode, filePath});
+    connect(CFToolProcess, SIGNAL(readyReadStandardOutput()), this, SLOT(onReadReady()));
+    CFToolProcess->start();
 }
 
 bool CFTools::check()
 {
-    QProcess program;
-    QString commandToStart = "cf";
-    QStringList environment = program.systemEnvironment();
-    program.start(commandToStart);
-    bool started = program.waitForStarted();
-    if (started) // 10 Second timeout
-        program.kill();
-    return started;
+    QProcess checkProcess;
+    checkProcess.start("cf");
+    bool finished = checkProcess.waitForFinished(2000);
+    return finished && checkProcess.exitCode() == 0;
 }
 
 void CFTools::onReadReady()
 {
-    QString newResponse = cftool->readAll();
+    QString newResponse = CFToolProcess->readAll();
     auto shortStatus = newResponse.right(newResponse.size() - newResponse.indexOf("status:") - 8).toStdString();
     if (newResponse.contains("status: Happy New Year") || newResponse.contains("status: Accepted"))
     {
@@ -112,7 +71,7 @@ void CFTools::onReadReady()
     }
     else
     {
-        log->error("CFTool", newResponse.toStdString(), newResponse.contains("status:"));
+        log->error("CFTool", newResponse.toStdString());
     }
 }
 
