@@ -484,6 +484,7 @@ void AppWindow::onSettingsApplied()
             connect(server, &Network::CompanionServer::onRequestArrived, this, &AppWindow::onIncomingCompanionRequest);
     diagonistics = true;
     onTabChanged(ui->tabWidget->currentIndex());
+    onEditorChanged(currentWindow());
 }
 
 void AppWindow::onIncomingCompanionRequest(Network::CompanionData data)
