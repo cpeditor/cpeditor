@@ -1129,12 +1129,6 @@ void MainWindow::onCompilationFinished(const QString &warning)
     {
         killProcesses();
 
-        if (!QFile::exists(tmpPath()))
-        {
-            log.warn("Runner", "Can't find the executable, please compile again");
-            return;
-        }
-
         QString command, args;
         if (language == "Cpp")
         {

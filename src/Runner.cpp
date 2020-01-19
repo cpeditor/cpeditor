@@ -80,7 +80,7 @@ void Runner::run(const QString &filePath, const QString &lang, const QString &ru
     bool started = runProcess->waitForStarted(2000);
     if (!started)
     {
-        emit runErrorOccured(runnerIndex, "Failed to start running. Please try to compile again");
+        emit runErrorOccured(runnerIndex, "Failed to start running. Please compile first");
         runProcess->kill();
         return;
     }
