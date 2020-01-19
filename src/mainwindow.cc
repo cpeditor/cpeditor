@@ -121,7 +121,7 @@ void MainWindow::compile()
         QString command;
         if (language == "Cpp")
             command = data.compileCommandCpp;
-        else if (language == "Python")
+        else if (language == "Java")
             command = data.compileCommandJava;
         else
             return;
