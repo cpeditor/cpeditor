@@ -69,7 +69,7 @@ class MainWindow : public QMainWindow
     QString getFileName() const;
     QString getFilePath() const;
     QString getProblemURL() const;
-    QString getTabTitle(bool complete) const;
+    QString getTabTitle(bool complete);
     bool isUntitled() const;
     void save(bool force);
     void saveAs();
@@ -177,7 +177,7 @@ class MainWindow : public QMainWindow
     void saveTests();
     void setCFToolsUI();
     void updateVerdict(Verdict, int);
-    bool isTextChanged() const;
+    bool isTextChanged();
     bool isVerdictPass(QString, QString);
     void setText(const QString &text, bool saveCursor = false);
     void updateWatcher();

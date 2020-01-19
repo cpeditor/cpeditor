@@ -317,7 +317,7 @@ QString MainWindow::getProblemURL() const
     return problemURL;
 }
 
-QString MainWindow::getTabTitle(bool complete) const
+QString MainWindow::getTabTitle(bool complete)
 {
     auto tabTitle = complete ? (isUntitled() ? "untitled" : filePath) : getFileName();
     if (isTextChanged())
@@ -829,8 +829,6 @@ void MainWindow::loadFile(QString path)
         }
     }
 
-    filePath = QFileInfo(filePath).canonicalFilePath();
-
     QFile openFile(path);
     openFile.open(QIODevice::ReadOnly | QFile::Text);
     if (openFile.isOpen())
@@ -869,7 +867,7 @@ bool MainWindow::saveFile(SaveMode mode, std::string head)
             return false;
         }
 
-        filePath = QFileInfo(newFilePath).canonicalFilePath();
+        filePath = newFilePath;
         updateWatcher();
         emit editorChanged(this);
 
@@ -958,8 +956,11 @@ QString MainWindow::tmpPath()
     return tmpDir->filePath(name);
 }
 
-bool MainWindow::isTextChanged() const
+bool MainWindow::isTextChanged()
 {
+    if (QFile::exists(filePath))
+        filePath = QFileInfo(filePath).canonicalFilePath();
+
     QString templatePath;
 
     if (language == "Cpp")
