@@ -74,7 +74,12 @@ bool Compiler::check(const QString &compileCommand)
 {
     QProcess checkProcess;
     checkProcess.start(compileCommand.trimmed().split(' ').front() + " --version");
-    bool finished = checkProcess.waitForFinished(2000);
+    bool finished = checkProcess.waitForFinished(1000);
+    if (finished && checkProcess.exitCode() == 0)
+        return true;
+    checkProcess.kill();
+    checkProcess.start(compileCommand.trimmed().split(' ').front() + " -version");
+    finished = checkProcess.waitForFinished(1000);
     return finished && checkProcess.exitCode() == 0;
 }
 
