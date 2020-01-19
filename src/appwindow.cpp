@@ -228,13 +228,13 @@ void AppWindow::saveSettings()
     settingManager->setMaximizedWindow(this->isMaximized());
 }
 
-void AppWindow::openTab(QString fileName, bool iscompanionOpenedTab)
+void AppWindow::openTab(QString path, bool iscompanionOpenedTab)
 {
     if (!iscompanionOpenedTab)
     {
-        if (!fileName.isEmpty())
+        if (QFile::exists(path))
         {
-            auto fileInfo = QFileInfo(fileName);
+            auto fileInfo = QFileInfo(path);
             for (int t = 0; t < ui->tabWidget->count(); t++)
             {
                 auto tmp = dynamic_cast<MainWindow *>(ui->tabWidget->widget(t));
@@ -247,17 +247,17 @@ void AppWindow::openTab(QString fileName, bool iscompanionOpenedTab)
         }
 
         int t = ui->tabWidget->count();
-        auto fsp = new MainWindow(fileName, settingManager->toData());
+        auto fsp = new MainWindow(path, settingManager->toData());
         connect(fsp, SIGNAL(confirmTriggered(MainWindow *)), this, SLOT(on_confirmTriggered(MainWindow *)));
         connect(fsp, SIGNAL(editorChanged(MainWindow *)), this, SLOT(onEditorChanged(MainWindow *)));
         QString lang = settingManager->getDefaultLang();
 
-        if (fileName.endsWith(".java"))
+        if (path.endsWith(".java"))
             lang = "Java";
-        else if (fileName.endsWith(".py") || fileName.endsWith(".py3"))
+        else if (path.endsWith(".py") || path.endsWith(".py3"))
             lang = "Python";
-        else if (fileName.endsWith(".cpp") || fileName.endsWith(".cxx") || fileName.endsWith(".c") ||
-                 fileName.endsWith(".cc") || fileName.endsWith(".hpp") || fileName.endsWith(".h"))
+        else if (path.endsWith(".cpp") || path.endsWith(".cxx") || path.endsWith(".c") || path.endsWith(".cc") ||
+                 path.endsWith(".hpp") || path.endsWith(".h"))
             lang = "Cpp";
 
         ui->tabWidget->addTab(fsp, fsp->getFileName());
@@ -269,7 +269,7 @@ void AppWindow::openTab(QString fileName, bool iscompanionOpenedTab)
         for (int t = 0; t < ui->tabWidget->count(); t++)
         {
             auto tmp = windowIndex(t);
-            if (fileName == tmp->getProblemURL())
+            if (path == tmp->getProblemURL())
             {
                 ui->tabWidget->setCurrentIndex(t);
                 return;

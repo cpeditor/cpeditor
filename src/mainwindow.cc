@@ -796,8 +796,6 @@ void MainWindow::updateWatcher()
 
 void MainWindow::loadFile(QString path)
 {
-    path = QFileInfo(path).canonicalFilePath();
-
     bool samePath = filePath == path;
     filePath = path;
     updateWatcher();
@@ -821,7 +819,7 @@ void MainWindow::loadFile(QString path)
             f.open(QIODevice::ReadOnly | QIODevice::Text);
 
             if (f.isOpen())
-                path = QFileInfo(templatePath).canonicalFilePath();
+                path = templatePath;
             else
                 return;
         }
@@ -830,6 +828,8 @@ void MainWindow::loadFile(QString path)
             return;
         }
     }
+
+    filePath = QFileInfo(filePath).canonicalFilePath();
 
     QFile openFile(path);
     openFile.open(QIODevice::ReadOnly | QFile::Text);
