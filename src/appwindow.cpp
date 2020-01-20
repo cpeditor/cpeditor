@@ -216,6 +216,7 @@ bool AppWindow::closeTab(int index)
     if (tmp->closeConfirm())
     {
         ui->tabWidget->removeTab(index);
+        onEditorChanged(currentWindow());
         return true;
     }
     return false;
@@ -247,7 +248,21 @@ void AppWindow::openTab(QString path, bool iscompanionOpenedTab)
         }
 
         int t = ui->tabWidget->count();
-        auto fsp = new MainWindow(path, settingManager->toData());
+        int index = 0;
+        if (path.isEmpty())
+        {
+            QSet<int> vis;
+            for (int t = 0; t < ui->tabWidget->count(); ++t)
+            {
+                if (windowIndex(t)->isUntitled())
+                {
+                    vis.insert(windowIndex(t)->untitledIndex);
+                }
+            }
+            for (index = 1; vis.contains(index); ++index)
+                ;
+        }
+        auto fsp = new MainWindow(path, settingManager->toData(), index);
         connect(fsp, SIGNAL(confirmTriggered(MainWindow *)), this, SLOT(on_confirmTriggered(MainWindow *)));
         connect(fsp, SIGNAL(editorChanged(MainWindow *)), this, SLOT(onEditorChanged(MainWindow *)));
         QString lang = settingManager->getDefaultLang();
@@ -277,7 +292,18 @@ void AppWindow::openTab(QString path, bool iscompanionOpenedTab)
         }
 
         int t = ui->tabWidget->count();
-        auto fsp = new MainWindow("", settingManager->toData());
+        int index = 0;
+        QSet<int> vis;
+        for (int t = 0; t < ui->tabWidget->count(); ++t)
+        {
+            if (windowIndex(t)->isUntitled())
+            {
+                vis.insert(windowIndex(t)->untitledIndex);
+            }
+        }
+        for (index = 1; vis.contains(index); ++index)
+            ;
+        auto fsp = new MainWindow("", settingManager->toData(), index);
         connect(fsp, SIGNAL(confirmTriggered(MainWindow *)), this, SLOT(on_confirmTriggered(MainWindow *)));
         connect(fsp, SIGNAL(editorChanged(MainWindow *)), this, SLOT(onEditorChanged(MainWindow *)));
         ui->tabWidget->addTab(fsp, fsp->getFileName());

@@ -63,7 +63,9 @@ class MainWindow : public QMainWindow
         RunDetached
     };
 
-    MainWindow(QString fileOpen, const Settings::SettingsData &data, QWidget *parent = nullptr);
+    const int untitledIndex;
+
+    MainWindow(QString fileOpen, const Settings::SettingsData &data, int index = 0, QWidget *parent = nullptr);
     ~MainWindow() override;
 
     QString getFileName() const;

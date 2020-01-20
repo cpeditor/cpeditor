@@ -42,8 +42,8 @@
 #include "../ui/ui_mainwindow.h"
 
 // ***************************** RAII  ****************************
-MainWindow::MainWindow(QString fileOpen, const Settings::SettingsData &data, QWidget *parent)
-    : QMainWindow(parent), ui(new Ui::MainWindow), fileWatcher(new QFileSystemWatcher(this))
+MainWindow::MainWindow(QString fileOpen, const Settings::SettingsData &data, int index, QWidget *parent)
+    : QMainWindow(parent), untitledIndex(index), ui(new Ui::MainWindow), fileWatcher(new QFileSystemWatcher(this))
 {
     ui->setupUi(this);
     setEditor();
@@ -304,7 +304,7 @@ void MainWindow::setCFToolsUI()
 
 QString MainWindow::getFileName() const
 {
-    return isUntitled() ? "untitled" : QFileInfo(filePath).fileName();
+    return isUntitled() ? "Untitled-" + QString::number(untitledIndex) : QFileInfo(filePath).fileName();
 }
 
 QString MainWindow::getFilePath() const
@@ -319,7 +319,7 @@ QString MainWindow::getProblemURL() const
 
 QString MainWindow::getTabTitle(bool complete)
 {
-    auto tabTitle = complete ? (isUntitled() ? "untitled" : filePath) : getFileName();
+    auto tabTitle = complete && !isUntitled() ? filePath : getFileName();
     if (isTextChanged())
         tabTitle += " *";
     return tabTitle;
