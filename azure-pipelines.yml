@@ -50,3 +50,4 @@ steps:
     assets: $(Build.SourcesDirectory)/build/CP_*
     changeLogCompareToRelease: 'lastFullRelease'
     changeLogType: 'commitBased'
+    isPreRelease: and(startsWith(variables['Build.SourceBranch'], 'refs/tags/'), endsWith(variables['Build.SourceBranch'], 'beta'))
