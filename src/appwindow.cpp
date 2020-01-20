@@ -460,7 +460,7 @@ void AppWindow::onTabChanged(int index)
 
 void AppWindow::onEditorChanged(MainWindow *widget)
 {
-    if (widget == currentWindow())
+    if (widget != nullptr && widget == currentWindow())
     {
         if (widget->isUntitled())
             setWindowTitle(widget->getFileName() + " - CP Editor");
