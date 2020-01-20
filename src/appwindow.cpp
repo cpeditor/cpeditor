@@ -408,9 +408,9 @@ void AppWindow::onTabChanged(int index)
     auto tmp = windowIndex(index);
 
     if (tmp->isUntitled())
-        setWindowTitle("CP Editor: " + tmp->getFileName());
+        setWindowTitle(tmp->getFileName() + " - CP Editor");
     else
-        setWindowTitle("CP Editor: " + tmp->getFilePath());
+        setWindowTitle(tmp->getFilePath() + " - CP Editor");
 
     activeLogger = tmp->getLogger();
     server->setMessageLogger(activeLogger);
@@ -437,9 +437,9 @@ void AppWindow::onEditorChanged(MainWindow *widget)
     if (widget == currentWindow())
     {
         if (widget->isUntitled())
-            setWindowTitle("CP Editor: " + widget->getFileName());
+            setWindowTitle(widget->getFileName() + " - CP Editor");
         else
-            setWindowTitle("CP Editor: " + widget->getFilePath());
+            setWindowTitle(widget->getFilePath() + " - CP Editor");
     }
 
     QMap<QString, QVector<int>> tabsByName;
