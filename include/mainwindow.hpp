@@ -49,20 +49,6 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
   public:
-    enum SaveMode
-    {
-        IgnoreUntitled, // save only when filePath is not empty
-        SaveUntitled,   // save to filePath if it's not empty, otherwise ask for new path
-        SaveAs,         // ask for new path no matter filePath is empty or not
-    };
-
-    enum AfterCompile
-    {
-        Nothing,
-        Run,
-        RunDetached
-    };
-
     const int untitledIndex;
 
     MainWindow(QString fileOpen, const Settings::SettingsData &data, int index = 0, QWidget *parent = nullptr);
@@ -136,6 +122,18 @@ class MainWindow : public QMainWindow
     void confirmTriggered(MainWindow *widget);
 
   private:
+    enum SaveMode
+    {
+        IgnoreUntitled, // save only when filePath is not empty
+        SaveUntitled,   // save to filePath if it's not empty, otherwise ask for new path
+        SaveAs,         // ask for new path no matter filePath is empty or not
+    };
+    enum AfterCompile
+    {
+        Nothing,
+        Run,
+        RunDetached
+    };
     enum Verdict
     {
         ACCEPTED,
