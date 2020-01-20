@@ -137,6 +137,7 @@ void MainWindow::compile()
 void MainWindow::run()
 {
     killProcesses();
+    clearTests(true);
 
     QString command, args;
     if (language == "Cpp")
