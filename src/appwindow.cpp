@@ -379,12 +379,14 @@ void AppWindow::on_actionOpen_triggered()
 
 void AppWindow::on_actionSave_triggered()
 {
-    currentWindow()->save(true);
+    if (currentWindow() != nullptr)
+        currentWindow()->save(true);
 }
 
 void AppWindow::on_actionSave_As_triggered()
 {
-    currentWindow()->saveAs();
+    if (currentWindow() != nullptr)
+        currentWindow()->saveAs();
 }
 
 void AppWindow::on_actionSave_All_triggered()
@@ -552,38 +554,50 @@ void AppWindow::on_actionCheck_for_updates_triggered()
 
 void AppWindow::on_actionCompile_triggered()
 {
-    if (ui->actionEditor_Mode->isChecked())
-        on_actionSplit_Mode_triggered();
-    currentWindow()->compileOnly();
+    if (currentWindow() != nullptr)
+    {
+        if (ui->actionEditor_Mode->isChecked())
+            on_actionSplit_Mode_triggered();
+        currentWindow()->compileOnly();
+    }
 }
 
 void AppWindow::on_actionCompile_Run_triggered()
 {
-    if (ui->actionEditor_Mode->isChecked())
-        on_actionSplit_Mode_triggered();
-    currentWindow()->compileAndRun();
+    if (currentWindow() != nullptr)
+    {
+        if (ui->actionEditor_Mode->isChecked())
+            on_actionSplit_Mode_triggered();
+        currentWindow()->compileAndRun();
+    }
 }
 
 void AppWindow::on_actionRun_triggered()
 {
-    if (ui->actionEditor_Mode->isChecked())
-        on_actionSplit_Mode_triggered();
-    currentWindow()->runOnly();
+    if (currentWindow() != nullptr)
+    {
+        if (ui->actionEditor_Mode->isChecked())
+            on_actionSplit_Mode_triggered();
+        currentWindow()->runOnly();
+    }
 }
 
 void AppWindow::on_actionFormat_code_triggered()
 {
-    currentWindow()->formatSource();
+    if (currentWindow() != nullptr)
+        currentWindow()->formatSource();
 }
 
 void AppWindow::on_actionRun_Detached_triggered()
 {
-    currentWindow()->detachedExecution();
+    if (currentWindow() != nullptr)
+        currentWindow()->detachedExecution();
 }
 
 void AppWindow::on_actionKill_Processes_triggered()
 {
-    currentWindow()->killProcesses();
+    if (currentWindow() != nullptr)
+        currentWindow()->killProcesses();
 }
 
 void AppWindow::on_actionUse_Snippets_triggered()
@@ -624,7 +638,8 @@ void AppWindow::on_actionEditor_Mode_triggered()
     ui->actionEditor_Mode->setChecked(true);
     ui->actionIO_Mode->setChecked(false);
     ui->actionSplit_Mode->setChecked(false);
-    currentWindow()->getSplitter()->setSizes({1, 0});
+    if (currentWindow() != nullptr)
+        currentWindow()->getSplitter()->setSizes({1, 0});
 }
 
 void AppWindow::on_actionIO_Mode_triggered()
@@ -633,7 +648,8 @@ void AppWindow::on_actionIO_Mode_triggered()
     ui->actionEditor_Mode->setChecked(false);
     ui->actionIO_Mode->setChecked(true);
     ui->actionSplit_Mode->setChecked(false);
-    currentWindow()->getSplitter()->setSizes({0, 1});
+    if (currentWindow() != nullptr)
+        currentWindow()->getSplitter()->setSizes({0, 1});
 }
 
 void AppWindow::on_actionSplit_Mode_triggered()
@@ -643,7 +659,8 @@ void AppWindow::on_actionSplit_Mode_triggered()
     ui->actionIO_Mode->setChecked(false);
     ui->actionSplit_Mode->setChecked(true);
     auto state = settingManager->getSplitterSizes();
-    currentWindow()->getSplitter()->restoreState(state);
+    if (currentWindow() != nullptr)
+        currentWindow()->getSplitter()->restoreState(state);
 }
 
 void AppWindow::on_confirmTriggered(MainWindow *widget)
