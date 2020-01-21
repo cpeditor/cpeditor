@@ -60,6 +60,8 @@ void PreferenceWindow::setConstraints()
 
     ui->companion_port->setMinimum(10000);
     ui->companion_port->setMaximum(65535);
+
+    ui->transparency_slider->setMinimum(60);
 }
 
 void PreferenceWindow::updateSnippets()
@@ -140,7 +142,6 @@ void PreferenceWindow::applySettingsToui()
     ui->snippets_hotkey->setKeySequence(manager->getHotkeySnippets());
 
     ui->transparency_slider->setValue(manager->getTransparency());
-    ui->transparency_label->setText(QString::number(manager->getTransparency()));
 
     auto lang = manager->getDefaultLang();
     int lang_index = ui->snippets_lang->findText(lang);
@@ -454,7 +455,6 @@ void PreferenceWindow::on_snippet_rename_clicked()
 void PreferenceWindow::on_transparency_slider_valueChanged(int value)
 {
     manager->setTransparency(value);
-    ui->transparency_label->setText(QString::number(value));
     parentWidget()->setWindowOpacity(value / 100.0);
 }
 
