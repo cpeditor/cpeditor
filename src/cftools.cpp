@@ -41,6 +41,8 @@ void CFTools::submit(const QString &filePath, const QString &url, const QString 
     auto match = regex.match(url);
     auto problemContestId = match.captured(1);
     auto problemCode = match.captured(2);
+    if (problemCode == "0")
+        problemCode = "A";
 
     CFToolProcess->setProgram("cf");
     CFToolProcess->setArguments({"submit", problemContestId, problemCode, filePath});
