@@ -1145,8 +1145,6 @@ void MainWindow::onCompilationFinished(const QString &warning)
         connect(detachedRunner, SIGNAL(runKilled(int)), this, SLOT(onRunKilled(int)));
         detachedRunner->runDetached(tmpPath(), language, command, args);
     }
-
-    afterCompile = Nothing;
 }
 
 void MainWindow::onCompilationErrorOccured(const QString &error)
