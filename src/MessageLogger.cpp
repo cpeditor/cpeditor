@@ -26,19 +26,17 @@ void MessageLogger::setContainer(QTextBrowser *value)
 
 void MessageLogger::message(const QString &head, const QString &body, const QString &color)
 {
-    auto newHead = head.toHtmlEscaped();
-    auto newBody = body.toHtmlEscaped();
-    QString res = "<b>[" + QTime::currentTime().toString() + "] [" + newHead + "] </b>";
+    auto newHead = head.toHtmlEscaped().replace(" ", "&nbsp;");
+    auto newBody = body.toHtmlEscaped().replace(" ", "&nbsp;");
+    QString res = "<b>[" + QTime::currentTime().toString() + "] [" + newHead + "] </b><font face=monospace";
     if (!color.isEmpty())
-        res += "<font color=" + color + ">";
-    res += "[";
+        res += " color=" + color;
+    res += ">[";
     if (newBody.contains('\n'))
         res += "<br>" + newBody.replace("\n", "<br>");
     else
         res += newBody;
-    res += "]";
-    if (!color.isEmpty())
-        res += "</font>";
+    res += "]</font>";
     box->append(res);
 }
 
