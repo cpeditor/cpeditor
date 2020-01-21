@@ -933,7 +933,7 @@ bool MainWindow::saveTemp(std::string head)
 
 QString MainWindow::tmpPath()
 {
-    if (!isUntitled())
+    if (!isUntitled() && !isTextChanged())
         return filePath;
     if (tmpDir == nullptr || !tmpDir->isValid())
     {
@@ -943,9 +943,7 @@ QString MainWindow::tmpPath()
         }
     }
     QString name;
-    if (!isUntitled())
-        name = getFileName();
-    else if (language == "Cpp")
+    if (language == "Cpp")
         name = "sol.cpp";
     else if (language == "Java")
         name = "sol.java";
