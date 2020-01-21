@@ -598,8 +598,8 @@ void AppWindow::on_actionUse_Snippets_triggered()
         auto names = settingManager->getSnippetsNames(lang);
         if (names.isEmpty())
         {
-            activeLogger->warn("Snippets", "There are no snippets for " + lang.toStdString() +
-                                               ". Please add snippets in the preference window.");
+            activeLogger->warn("Snippets",
+                               "There are no snippets for " + lang + ". Please add snippets in the preference window.");
         }
         else
         {
@@ -614,8 +614,7 @@ void AppWindow::on_actionUse_Snippets_triggered()
                 }
                 else
                 {
-                    activeLogger->warn("Snippets", "There is no snippet named " + name.toStdString() + " for " +
-                                                       lang.toStdString());
+                    activeLogger->warn("Snippets", "There is no snippet named " + name + " for " + lang);
                 }
             }
         }

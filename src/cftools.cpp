@@ -59,11 +59,10 @@ bool CFTools::check()
 void CFTools::onReadReady()
 {
     QString newResponse = CFToolProcess->readAll();
-    auto shortStatus = newResponse.right(newResponse.size() - newResponse.indexOf("status:") - 8).toStdString();
+    auto shortStatus = newResponse.right(newResponse.size() - newResponse.indexOf("status:") - 8);
     if (newResponse.contains("status: Happy New Year") || newResponse.contains("status: Accepted"))
     {
-        // Warnings are green so its a hack to look green
-        log->warn("CFTool", shortStatus);
+        log->message("CFTool", shortStatus, "green");
     }
     else if (newResponse.contains("status: Running on"))
     {
@@ -71,7 +70,7 @@ void CFTools::onReadReady()
     }
     else
     {
-        log->error("CFTool", newResponse.toStdString());
+        log->error("CFTool", newResponse);
     }
 }
 

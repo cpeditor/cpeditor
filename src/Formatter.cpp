@@ -139,20 +139,20 @@ QPair<int, QString> Formatter::getFormatResult(const QStringList &args)
     if (formatProcess.state() == QProcess::Running)
     {
         formatProcess.kill();
-        log->warn("Formatter", "The format command is: " + binary.toStdString() + " " + args.join(' ').toStdString());
+        log->warn("Formatter", "The format command is: " + binary + " " + args.join(' '));
         log->warn("Formatter", "It seems the formatting took more than 2 seconds to complete. Skipped");
         return QPair<int, QString>(-1, QString());
     }
 
     if (formatProcess.exitCode() != 0)
     {
-        log->warn("Formatter", "The format command is: " + binary.toStdString() + " " + args.join(' ').toStdString());
+        log->warn("Formatter", "The format command is: " + binary + " " + args.join(' '));
         auto stdOut = formatProcess.readAllStandardOutput();
         if (!stdOut.isEmpty())
-            log->warn("Formatter[stdout]", stdOut.toStdString());
+            log->warn("Formatter[stdout]", stdOut);
         auto stdError = formatProcess.readAllStandardError();
         if (!stdError.isEmpty())
-            log->error("Formatter[stderr]", stdError.toStdString());
+            log->error("Formatter[stderr]", stdError);
         return QPair<int, QString>(-1, QString());
     }
 

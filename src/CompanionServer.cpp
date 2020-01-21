@@ -1,20 +1,19 @@
 /*
-* Copyright (C) 2019-2020 Ashar Khan <ashar786khan@gmail.com> 
-* 
-* This file is part of CPEditor.
-*  
-* CPEditor is free software: you can redistribute it and/or modify
-* it under the terms of the GNU General Public License as published by
-* the Free Software Foundation, either version 3 of the License, or
-* (at your option) any later version.
-* 
-* I will not be responsible if CPEditor behaves in unexpected way and
-* causes your ratings to go down and or loose any important contest.
-* 
-* Believe Software is "Software" and it isn't immune to bugs.
-* 
-*/
-
+ * Copyright (C) 2019-2020 Ashar Khan <ashar786khan@gmail.com>
+ *
+ * This file is part of CPEditor.
+ *
+ * CPEditor is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * I will not be responsible if CPEditor behaves in unexpected way and
+ * causes your ratings to go down and or loose any important contest.
+ *
+ * Believe Software is "Software" and it isn't immune to bugs.
+ *
+ */
 
 #include <CompanionServer.hpp>
 #include <MessageLogger.hpp>
@@ -51,8 +50,8 @@ void CompanionServer::checkServer()
         }
         else
         {
-            log->info("Companion", "Listening for requests on " + server->serverAddress().toString().toStdString() +
-                                       ":" + std::to_string(server->serverPort()));
+            log->info("Companion", "Listening for requests on " + server->serverAddress().toString() + ":" +
+                                       QString::number(server->serverPort()));
         }
     }
 }
@@ -67,7 +66,7 @@ void CompanionServer::updatePort(int port)
     QObject::connect(server, SIGNAL(newConnection()), this, SLOT(onNewConnection()));
     server->listen(QHostAddress::LocalHost, static_cast<unsigned short>(port));
     if (log != nullptr)
-        log->warn("Companion", "Port changed to " + std::to_string(port));
+        log->warn("Companion", "Port changed to " + QString::number(port));
 }
 
 CompanionServer::~CompanionServer()
@@ -132,7 +131,7 @@ void CompanionServer::onReadReady()
         else
         {
             if (log != nullptr)
-                log->error("Companion", "JSONParser reported errors. \n" + error.errorString().toStdString());
+                log->error("Companion", "JSONParser reported errors. \n" + error.errorString());
         }
     }
     else

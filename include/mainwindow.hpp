@@ -182,10 +182,10 @@ class MainWindow : public QMainWindow
     void setText(const QString &text, bool saveCursor = false);
     void updateWatcher();
     void loadFile(QString path);
-    bool saveFile(SaveMode, std::string);
-    bool saveTemp(std::string);
+    bool saveFile(SaveMode, const QString &head);
+    bool saveTemp(const QString &head);
     QString tmpPath();
     void performCoreDiagonistics();
-    std::string getRunnerHead(int index);
+    QString getRunnerHead(int index);
 };
 #endif // MAINWINDOW_HPP

@@ -219,8 +219,7 @@ void MainWindow::loadTests()
             }
             else
             {
-                log.error("Tests",
-                          "Failed to open" + inputFile.fileName().toStdString() + ". Do I have read permissions?");
+                log.error("Tests", "Failed to open" + inputFile.fileName() + ". Do I have read permissions?");
             }
         }
 
@@ -234,8 +233,7 @@ void MainWindow::loadTests()
             }
             else
             {
-                log.error("Tests",
-                          "Failed to open" + answerFile.fileName().toStdString() + ". Do I have read permissions?");
+                log.error("Tests", "Failed to open" + answerFile.fileName() + ". Do I have read permissions?");
             }
         }
     }
@@ -257,7 +255,7 @@ void MainWindow::saveTests()
             inputFile.open(QIODevice::WriteOnly | QFile::Text);
             if (!inputFile.isOpen() || inputFile.write(input[i]->toPlainText().toStdString().c_str()) == -1)
             {
-                log.error("Tests", "Failed to save Input #" + std::to_string(i + 1) + ". Do I have write permission?");
+                log.error("Tests", "Failed to save Input #" + QString::number(i + 1) + ". Do I have write permission?");
             }
         }
 
@@ -268,7 +266,7 @@ void MainWindow::saveTests()
             if (!answerFile.isOpen() || answerFile.write(expected[i]->toStdString().c_str()) == -1)
             {
                 log.error("Tests",
-                          "Failed to save Expected #" + std::to_string(i + 1) + ". Do I have write permission?");
+                          "Failed to save Expected #" + QString::number(i + 1) + ". Do I have write permission?");
             }
         }
     }
@@ -832,14 +830,14 @@ void MainWindow::loadFile(QString path)
     }
     else
     {
-        log.warn("Loader", "Failed to load " + path.toStdString() + ". Do I have read permission?");
+        log.warn("Loader", "Failed to load " + path + ". Do I have read permission?");
         return;
     }
 
     loadTests();
 }
 
-bool MainWindow::saveFile(SaveMode mode, std::string head)
+bool MainWindow::saveFile(SaveMode mode, const QString &head)
 {
     if (data.isFormatOnSave)
         formatter->format(editor, filePath, language, false);
@@ -857,7 +855,7 @@ bool MainWindow::saveFile(SaveMode mode, std::string head)
 
         if (!openFile.isOpen() || openFile.write(editor->toPlainText().toStdString().c_str()) == -1)
         {
-            log.error(head, "Failed to save file to [" + newFilePath.toStdString() + "]. Do I have write permission?");
+            log.error(head, "Failed to save file to [" + newFilePath + "]. Do I have write permission?");
             return false;
         }
 
@@ -880,7 +878,7 @@ bool MainWindow::saveFile(SaveMode mode, std::string head)
         openFile.open(QFileDevice::WriteOnly | QFile::Text);
         if (!openFile.isOpen() || openFile.write(editor->toPlainText().toStdString().c_str()) == -1)
         {
-            log.error(head, "Failed to save file to [" + filePath.toStdString() + "]. Do I have write permission?");
+            log.error(head, "Failed to save file to [" + filePath + "]. Do I have write permission?");
             return false;
         }
         updateWatcher();
@@ -895,7 +893,7 @@ bool MainWindow::saveFile(SaveMode mode, std::string head)
     return true;
 }
 
-bool MainWindow::saveTemp(std::string head)
+bool MainWindow::saveTemp(const QString &head)
 {
     if (!saveFile(IgnoreUntitled, head))
     {
@@ -916,7 +914,7 @@ bool MainWindow::saveTemp(std::string head)
 
         if (!tmpFile.isOpen() || tmpFile.write(editor->toPlainText().toStdString().c_str()) == -1)
         {
-            log.error(head, "Failed to save to " + tmpFile.fileName().toStdString());
+            log.error(head, "Failed to save to " + tmpFile.fileName());
             return false;
         }
     }
@@ -1092,7 +1090,7 @@ void MainWindow::performCoreDiagonistics()
         log.warn("Formatter", "Code formatting failed to work. Please check whether the clang-format binary is in the "
                               "PATH and the style is valid.");
     if (!compilerResult)
-        log.error("Compiler", "Compiler command for " + language.toStdString() + " is invalid. Is compiler on PATH?");
+        log.error("Compiler", "Compiler command for " + language + " is invalid. Is compiler on PATH?");
     if (!runResults)
         log.error("Runner",
                   "Binary or Script won't be executed because its corresponding program or VM could not be loaded");
@@ -1110,7 +1108,7 @@ void MainWindow::onCompilationFinished(const QString &warning)
     log.info("Compiler", "Compilation has finished");
     if (!warning.trimmed().isEmpty())
     {
-        log.warn("Compile Warnings", warning.toStdString());
+        log.warn("Compile Warnings", warning);
     }
 
     if (afterCompile == Run)
@@ -1155,16 +1153,16 @@ void MainWindow::onCompilationErrorOccured(const QString &error)
 {
     log.error("Complier", "Error occured while compiling");
     if (!error.trimmed().isEmpty())
-        log.error("Compile Errors", error.toStdString());
+        log.error("Compile Errors", error);
 }
 
 // --------------------- RUNNER SLOTS ----------------------------
 
-std::string MainWindow::getRunnerHead(int index)
+QString MainWindow::getRunnerHead(int index)
 {
     if (index == -1)
         return "Detached Runner";
-    return "Runner[" + std::to_string(index + 1) + "]";
+    return "Runner[" + QString::number(index + 1) + "]";
 }
 
 void MainWindow::onRunStarted(int index)
@@ -1178,10 +1176,10 @@ void MainWindow::onRunFinished(int index, const QString &out, const QString &err
 
     if (exitCode == 0)
     {
-        log.info(head, "Execution for test case #" + std::to_string(index + 1) + " has finished in " +
-                           std::to_string(timeUsed) + "ms");
+        log.info(head, "Execution for test case #" + QString::number(index + 1) + " has finished in " +
+                           QString::number(timeUsed) + "ms");
         if (!err.trimmed().isEmpty())
-            log.error(head + "/stderr", err.toStdString());
+            log.error(head + "/stderr", err);
         output[index]->setPlainText(out);
         if (!expected[index]->isEmpty())
         {
@@ -1194,17 +1192,17 @@ void MainWindow::onRunFinished(int index, const QString &out, const QString &err
 
     else
     {
-        log.error(head, "Execution for test case #" + std::to_string(index + 1) +
-                            " has finished with non-zero exitcode " + std::to_string(exitCode) + " in " +
-                            std::to_string(timeUsed) + "ms");
+        log.error(head, "Execution for test case #" + QString::number(index + 1) +
+                            " has finished with non-zero exitcode " + QString::number(exitCode) + " in " +
+                            QString::number(timeUsed) + "ms");
         if (!err.trimmed().isEmpty())
-            log.error(head + "/stderr", err.toStdString());
+            log.error(head + "/stderr", err);
     }
 }
 
 void MainWindow::onRunErrorOccured(int index, const QString &error)
 {
-    log.error(getRunnerHead(index), error.toStdString());
+    log.error(getRunnerHead(index), error);
 }
 
 void MainWindow::onRunTimeout(int index)
@@ -1215,6 +1213,6 @@ void MainWindow::onRunTimeout(int index)
 void MainWindow::onRunKilled(int index)
 {
     log.info(getRunnerHead(index),
-             (index == -1 ? "Detached runner" : "Runner for test case #" + std::to_string(index + 1)) +
+             (index == -1 ? "Detached runner" : "Runner for test case #" + QString::number(index + 1)) +
                  " has been killed");
 }
