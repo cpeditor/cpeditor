@@ -57,7 +57,7 @@ class MainWindow : public QMainWindow
     QString getFileName() const;
     QString getFilePath() const;
     QString getProblemURL() const;
-    QString getTabTitle(bool complete);
+    QString getTabTitle(bool complete, bool star);
     bool isUntitled() const;
     void save(bool force);
     void saveAs();

@@ -256,9 +256,10 @@ void AppWindow::openTab(QString path, bool iscompanionOpenedTab)
             QSet<int> vis;
             for (int t = 0; t < ui->tabWidget->count(); ++t)
             {
-                if (windowIndex(t)->isUntitled())
+                auto tmp = windowIndex(t);
+                if (tmp->isUntitled() && tmp->getProblemURL().isEmpty())
                 {
-                    vis.insert(windowIndex(t)->untitledIndex);
+                    vis.insert(tmp->untitledIndex);
                 }
             }
             for (index = 1; vis.contains(index); ++index)
@@ -298,9 +299,10 @@ void AppWindow::openTab(QString path, bool iscompanionOpenedTab)
         QSet<int> vis;
         for (int t = 0; t < ui->tabWidget->count(); ++t)
         {
-            if (windowIndex(t)->isUntitled())
+            auto tmp = windowIndex(t);
+            if (tmp->isUntitled() && tmp->getProblemURL().isEmpty())
             {
-                vis.insert(windowIndex(t)->untitledIndex);
+                vis.insert(tmp->untitledIndex);
             }
         }
         for (index = 1; vis.contains(index); ++index)
@@ -435,10 +437,7 @@ void AppWindow::onTabChanged(int index)
 
     auto tmp = windowIndex(index);
 
-    if (tmp->isUntitled())
-        setWindowTitle(tmp->getFileName() + " - CP Editor");
-    else
-        setWindowTitle(tmp->getFilePath() + " - CP Editor");
+    setWindowTitle(tmp->getTabTitle(true, false) + " - CP Editor");
 
     activeLogger = tmp->getLogger();
     server->setMessageLogger(activeLogger);
@@ -464,24 +463,21 @@ void AppWindow::onEditorChanged(MainWindow *widget)
 {
     if (widget != nullptr && widget == currentWindow())
     {
-        if (widget->isUntitled())
-            setWindowTitle(widget->getFileName() + " - CP Editor");
-        else
-            setWindowTitle(widget->getFilePath() + " - CP Editor");
+        setWindowTitle(widget->getTabTitle(true, false) + " - CP Editor");
     }
 
     QMap<QString, QVector<int>> tabsByName;
 
     for (int t = 0; t < ui->tabWidget->count(); ++t)
     {
-        tabsByName[windowIndex(t)->getFileName()].push_back(t);
+        tabsByName[windowIndex(t)->getTabTitle(false, false)].push_back(t);
     }
 
     for (auto tabs : tabsByName)
     {
         for (auto index : tabs)
         {
-            ui->tabWidget->setTabText(index, windowIndex(index)->getTabTitle(tabs.size() > 1));
+            ui->tabWidget->setTabText(index, windowIndex(index)->getTabTitle(tabs.size() > 1, true));
         }
     }
 }

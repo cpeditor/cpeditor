@@ -303,7 +303,11 @@ void MainWindow::setCFToolsUI()
 
 QString MainWindow::getFileName() const
 {
-    return isUntitled() ? "Untitled-" + QString::number(untitledIndex) : QFileInfo(filePath).fileName();
+    if (!isUntitled())
+        return QFileInfo(filePath).fileName();
+    if (!problemURL.isEmpty())
+        return problemURL.mid(problemURL.lastIndexOf('/') + 1);
+    return "Untitled-" + QString::number(untitledIndex);
 }
 
 QString MainWindow::getFilePath() const
@@ -316,10 +320,16 @@ QString MainWindow::getProblemURL() const
     return problemURL;
 }
 
-QString MainWindow::getTabTitle(bool complete)
+QString MainWindow::getTabTitle(bool complete, bool star)
 {
-    auto tabTitle = complete && !isUntitled() ? filePath : getFileName();
-    if (isTextChanged())
+    QString tabTitle;
+    if (!complete || (isUntitled() && problemURL.isEmpty()))
+        tabTitle = getFileName();
+    else if (!isUntitled())
+        tabTitle = filePath;
+    else
+        tabTitle = problemURL;
+    if (star && isTextChanged())
         tabTitle += " *";
     return tabTitle;
 }
