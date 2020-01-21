@@ -391,6 +391,16 @@ QStringList SettingManager::getSnippetsNames(QString lang)
     return ret;
 }
 
+int SettingManager::getTransparency()
+{
+    return mSettings->value("transparency", 100).toInt();
+}
+
+void SettingManager::setTransparency(int val)
+{
+    mSettings->setValue("transparency", val);
+}
+
 void SettingManager::setHotkeyViewModeToggler(QKeySequence sequence)
 {
     mSettings->setValue("hotkey_mode_toggle", sequence.toString());

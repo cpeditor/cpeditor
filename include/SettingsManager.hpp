@@ -208,6 +208,9 @@ class SettingManager
     void removeSnippet(QString lang, QString name);
     QStringList getSnippetsNames(QString lang);
 
+    int getTransparency();
+    void setTransparency(int val);
+
     void resetSettings();
 
     SettingsData toData();

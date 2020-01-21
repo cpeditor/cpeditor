@@ -32,7 +32,7 @@
          <enum>QTabWidget::Rounded</enum>
         </property>
         <property name="currentIndex">
-         <number>3</number>
+         <number>0</number>
         </property>
         <widget class="QWidget" name="editor">
          <attribute name="title">
@@ -44,27 +44,13 @@
             <item>
              <layout class="QFormLayout" name="appearance">
               <item row="0" column="0">
-               <widget class="QLabel" name="label">
-                <property name="font">
-                 <font>
-                  <pointsize>12</pointsize>
-                  <weight>50</weight>
-                  <bold>false</bold>
-                 </font>
-                </property>
-                <property name="text">
-                 <string>Appearance</string>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="0">
                <widget class="Line" name="line">
                 <property name="orientation">
                  <enum>Qt::Horizontal</enum>
                 </property>
                </widget>
               </item>
-              <item row="2" column="0">
+              <item row="1" column="0">
                <widget class="QLabel" name="label_4">
                 <property name="font">
                  <font>
@@ -77,7 +63,7 @@
                 </property>
                </widget>
               </item>
-              <item row="2" column="1">
+              <item row="1" column="1">
                <widget class="QComboBox" name="editor_theme">
                 <property name="font">
                  <font>
@@ -112,44 +98,31 @@
                 </item>
                </widget>
               </item>
-              <item row="3" column="0">
+              <item row="2" column="0">
                <widget class="QLabel" name="label_5">
                 <property name="text">
                  <string>Tab Length</string>
                 </property>
                </widget>
               </item>
-              <item row="3" column="1">
+              <item row="2" column="1">
                <widget class="QSpinBox" name="tab_length"/>
               </item>
-              <item row="4" column="0">
+              <item row="3" column="0">
                <widget class="QLabel" name="label_6">
                 <property name="text">
                  <string>Font</string>
                 </property>
                </widget>
               </item>
-              <item row="4" column="1">
+              <item row="3" column="1">
                <widget class="QPushButton" name="font_button">
                 <property name="text">
                  <string>Current font</string>
                 </property>
                </widget>
               </item>
-              <item row="5" column="0">
-               <spacer name="verticalSpacer">
-                <property name="orientation">
-                 <enum>Qt::Vertical</enum>
-                </property>
-                <property name="sizeHint" stdset="0">
-                 <size>
-                  <width>20</width>
-                  <height>40</height>
-                 </size>
-                </property>
-               </spacer>
-              </item>
-              <item row="6" column="0">
+              <item row="4" column="0">
                <widget class="QLabel" name="label_2">
                 <property name="font">
                  <font>
@@ -163,7 +136,7 @@
                 </property>
                </widget>
               </item>
-              <item row="6" column="1">
+              <item row="4" column="1">
                <layout class="QFormLayout" name="behaviour">
                 <item row="2" column="0">
                  <widget class="QCheckBox" name="indent">
@@ -515,7 +488,7 @@
                <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:8pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Noto Sans'; font-size:12pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:9.6pt;&quot;&gt;You must &lt;/span&gt;&lt;a href=&quot;https://github.com/jmerle/competitive-companion&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:9.6pt; text-decoration: underline; color:#0000ff;&quot;&gt;download&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:9.6pt;&quot;&gt; the Browser extension that parses and sends the testcases to the editor on the port specified above. You may need to change the port from Browser extension setting to match above value. &lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:9.6pt; font-weight:600;&quot;&gt;Restart is required, if you change the port&lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:9.6pt;&quot;&gt;. Competitive Companion is a separate project by other developer and any issue or feature requests you want in browser extension should be done on above URL.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
               </property>
              </widget>
@@ -814,7 +787,7 @@ p, li { white-space: pre-wrap; }
                <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:8pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Noto Sans'; font-size:12pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:9.6pt;&quot;&gt;Please do not type any standard shortcuts like &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:9.6pt;&quot;&gt;CTRL+R, CTRL+Shift+R, CTRL+C&lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:9.6pt;&quot;&gt; etc that are already in use by the editor. It will cause disambiguity and no shortcuts will work.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
               </property>
              </widget>
@@ -853,24 +826,6 @@ p, li { white-space: pre-wrap; }
                 </property>
                </widget>
               </item>
-              <item row="1" column="1">
-               <layout class="QFormLayout" name="formLayout_2">
-                <item row="0" column="0">
-                 <widget class="QCheckBox" name="update_startup">
-                  <property name="text">
-                   <string>Check for updates on startup</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="1" column="0">
-                 <widget class="QCheckBox" name="beta_update">
-                  <property name="text">
-                   <string>Notify of beta updates as well</string>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
-              </item>
               <item row="2" column="0">
                <widget class="QLabel" name="label_49">
                 <property name="text">
@@ -882,6 +837,52 @@ p, li { white-space: pre-wrap; }
                <widget class="QSpinBox" name="time_limit"/>
               </item>
               <item row="3" column="0">
+               <widget class="QLabel" name="label_3">
+                <property name="text">
+                 <string>Transparency</string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="1">
+               <layout class="QHBoxLayout" name="horizontalLayout_10">
+                <item>
+                 <widget class="QSlider" name="transparency_slider">
+                  <property name="minimum">
+                   <number>20</number>
+                  </property>
+                  <property name="maximum">
+                   <number>100</number>
+                  </property>
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="transparency_label">
+                  <property name="minimumSize">
+                   <size>
+                    <width>80</width>
+                    <height>0</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>80</width>
+                    <height>16777215</height>
+                   </size>
+                  </property>
+                  <property name="text">
+                   <string>100</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignCenter</set>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+              <item row="4" column="0">
                <widget class="QLabel" name="label_22">
                 <property name="font">
                  <font>
@@ -895,14 +896,14 @@ p, li { white-space: pre-wrap; }
                 </property>
                </widget>
               </item>
-              <item row="4" column="0">
+              <item row="5" column="0">
                <widget class="QLabel" name="label_23">
                 <property name="text">
                  <string/>
                 </property>
                </widget>
               </item>
-              <item row="4" column="1">
+              <item row="5" column="1">
                <layout class="QFormLayout" name="formLayout_9">
                 <item row="0" column="0">
                  <widget class="QLabel" name="label_24">
@@ -952,8 +953,26 @@ p, li { white-space: pre-wrap; }
                    <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:8pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Noto Sans'; font-size:12pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:9.6pt;&quot;&gt;The file you choose here will be made available to you in the code editor. Every new Tab will be populated with contents from files of default language. If you change language from a tab to other (non-default) language and your files are saved, the editor will load corresponding templates.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+              <item row="1" column="1">
+               <layout class="QFormLayout" name="formLayout_2">
+                <item row="0" column="0">
+                 <widget class="QCheckBox" name="update_startup">
+                  <property name="text">
+                   <string>Check for updates on startup</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="0">
+                 <widget class="QCheckBox" name="beta_update">
+                  <property name="text">
+                   <string>Notify of beta updates as well</string>
                   </property>
                  </widget>
                 </item>

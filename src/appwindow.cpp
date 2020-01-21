@@ -53,6 +53,8 @@ AppWindow::AppWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::AppWindo
     if (settingManager->isCheckUpdateOnStartup())
         updater->checkUpdate();
 
+    setWindowOpacity(settingManager->getTransparency() / 100.0);
+
     applySettings();
     onSettingsApplied();
 }

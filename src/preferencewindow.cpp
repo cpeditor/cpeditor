@@ -138,6 +138,9 @@ void PreferenceWindow::applySettingsToui()
     ui->toggle_hotkey->setKeySequence(manager->getHotkeyViewModeToggler());
     ui->snippets_hotkey->setKeySequence(manager->getHotkeySnippets());
 
+    ui->transparency_slider->setValue(manager->getTransparency());
+    ui->transparency_label->setText(QString::number(manager->getTransparency()));
+
     auto lang = manager->getDefaultLang();
     int lang_index = ui->snippets_lang->findText(lang);
     if (lang_index != -1)
@@ -200,6 +203,7 @@ void PreferenceWindow::updateShow()
 {
     applySettingsToui();
     show();
+    raise();
 }
 
 PreferenceWindow::~PreferenceWindow()
@@ -443,6 +447,13 @@ void PreferenceWindow::on_snippet_rename_clicked()
             switchToSnippet(name);
         }
     }
+}
+
+void PreferenceWindow::on_transparency_slider_valueChanged(int value)
+{
+    manager->setTransparency(value);
+    ui->transparency_label->setText(QString::number(value));
+    parentWidget()->setWindowOpacity(value / 100.0);
 }
 
 QString PreferenceWindow::getNewSnippetName(const QString &lang, const QString &old)
