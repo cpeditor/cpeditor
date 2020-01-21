@@ -517,9 +517,10 @@ void AppWindow::onSettingsApplied()
 
 void AppWindow::onIncomingCompanionRequest(Network::CompanionData data)
 {
-    openTab(data.url, true);
-    int current = ui->tabWidget->currentIndex();
-    currentWindow()->applyCompanion(data);
+    if (settingManager->isCompetitiveCompanionOpenNewTab())
+        openTab(data.url, true);
+    if (currentWindow() != nullptr)
+        currentWindow()->applyCompanion(data);
 }
 
 void AppWindow::onViewModeToggle()

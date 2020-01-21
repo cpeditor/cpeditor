@@ -173,6 +173,9 @@ class SettingManager
     bool isCompetitiveCompanionActive();
     void setCompetitiveCompanionActive(bool value);
 
+    bool isCompetitiveCompanionOpenNewTab();
+    void setCompetitiveCompanionOpenNewTab(bool value);
+
     bool isMaximizedWindow();
     void setMaximizedWindow(bool value);
 

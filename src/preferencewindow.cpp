@@ -109,6 +109,7 @@ void PreferenceWindow::applySettingsToui()
     ui->python_start_cmd->setText(manager->getRunCommandPython());
 
     ui->companion_use->setChecked(manager->isCompetitiveCompanionActive());
+    ui->companion_new_tab->setChecked(manager->isCompetitiveCompanionOpenNewTab());
     ui->companion_port->setValue(manager->getConnectionPort());
 
     ui->clang_format_binary->setText(manager->getClangFormatBinary());
@@ -177,6 +178,7 @@ void PreferenceWindow::extractSettingsFromUi()
     manager->setClangFormatStyle(ui->clang_format_style->toPlainText());
 
     manager->setCompetitiveCompanionActive(ui->companion_use->isChecked());
+    manager->setCompetitiveCompanionOpenNewTab(ui->companion_new_tab->isChecked());
     manager->setConnectionPort(ui->companion_port->value());
 
     manager->setBeta(ui->beta_update->isChecked());

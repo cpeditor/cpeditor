@@ -75,6 +75,12 @@ bool SettingManager::isCompetitiveCompanionActive()
 {
     return mSettings->value("competitive_use", "false").toBool();
 }
+
+bool SettingManager::isCompetitiveCompanionOpenNewTab()
+{
+    return mSettings->value("companion_new_tab", "true").toBool();
+}
+
 bool SettingManager::isHotkeyInUse()
 {
     return mSettings->value("hotkey_use", "false").toBool();
@@ -172,6 +178,11 @@ void SettingManager::setAutoIndent(bool value)
 void SettingManager::setCompetitiveCompanionActive(bool value)
 {
     mSettings->setValue("competitive_use", value);
+}
+
+void SettingManager::setCompetitiveCompanionOpenNewTab(bool value)
+{
+    mSettings->setValue("companion_new_tab", value);
 }
 
 void SettingManager::setWrapText(bool value)

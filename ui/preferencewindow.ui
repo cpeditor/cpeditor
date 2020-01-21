@@ -462,23 +462,34 @@
              </widget>
             </item>
             <item row="1" column="1">
-             <layout class="QFormLayout" name="formLayout_7">
-              <item row="0" column="0">
+             <layout class="QVBoxLayout" name="verticalLayout_6">
+              <item>
                <widget class="QCheckBox" name="companion_use">
                 <property name="text">
                  <string>Enable Competitive Companion Server</string>
                 </property>
                </widget>
               </item>
-              <item row="1" column="0">
-               <widget class="QLabel" name="label_21">
+              <item>
+               <widget class="QCheckBox" name="companion_new_tab">
                 <property name="text">
-                 <string>Set Competitive Companion Port</string>
+                 <string>Open new tabs for Competitive Companion</string>
                 </property>
                </widget>
               </item>
-              <item row="1" column="1">
-               <widget class="QSpinBox" name="companion_port"/>
+              <item>
+               <layout class="QFormLayout" name="formLayout_7">
+                <item row="0" column="0">
+                 <widget class="QLabel" name="label_21">
+                  <property name="text">
+                   <string>Set Competitive Companion Port</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="0" column="1">
+                 <widget class="QSpinBox" name="companion_port"/>
+                </item>
+               </layout>
               </item>
              </layout>
             </item>
@@ -511,7 +522,7 @@ p, li { white-space: pre-wrap; }
              <widget class="QLabel" name="label_47">
               <property name="font">
                <font>
-                <pointsize>10</pointsize>
+                <pointsize>12</pointsize>
                 <weight>50</weight>
                 <bold>false</bold>
                </font>
@@ -544,7 +555,7 @@ p, li { white-space: pre-wrap; }
              <widget class="QLabel" name="label_45">
               <property name="font">
                <font>
-                <pointsize>10</pointsize>
+                <pointsize>12</pointsize>
                 <weight>50</weight>
                 <bold>false</bold>
                </font>
@@ -565,7 +576,7 @@ p, li { white-space: pre-wrap; }
              <widget class="QLabel" name="label_46">
               <property name="font">
                <font>
-                <pointsize>10</pointsize>
+                <pointsize>12</pointsize>
                 <weight>50</weight>
                 <bold>false</bold>
                </font>
