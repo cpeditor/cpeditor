@@ -805,29 +805,22 @@ void MainWindow::loadFile(QString path)
 
     if (!QFile::exists(path))
     {
-        if (isUntitled())
-        {
-            QString templatePath;
+        QString templatePath;
 
-            if (language == "Cpp")
-                templatePath = data.templateCpp;
-            else if (language == "Java")
-                templatePath = data.templateJava;
-            else if (language == "Python")
-                templatePath = data.templatePython;
+        if (language == "Cpp")
+            templatePath = data.templateCpp;
+        else if (language == "Java")
+            templatePath = data.templateJava;
+        else if (language == "Python")
+            templatePath = data.templatePython;
 
-            QFile f(templatePath);
-            f.open(QIODevice::ReadOnly | QIODevice::Text);
+        QFile f(templatePath);
+        f.open(QIODevice::ReadOnly | QIODevice::Text);
 
-            if (f.isOpen())
-                path = templatePath;
-            else
-                return;
-        }
+        if (f.isOpen())
+            path = templatePath;
         else
-        {
             return;
-        }
     }
 
     QFile openFile(path);
