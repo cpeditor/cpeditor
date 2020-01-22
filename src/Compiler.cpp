@@ -49,12 +49,12 @@ void Compiler::start(const QString &filePath, const QString &compileCommand, con
 
     if (lang == "Cpp")
     {
-        command = compileCommand + " " + filePath + " -o " + QFileInfo(filePath).canonicalPath() + "/" +
-                  QFileInfo(filePath).completeBaseName();
+        command = compileCommand + " " + QFileInfo(filePath).canonicalFilePath() + " -o " +
+                  QFileInfo(filePath).canonicalPath() + "/" + QFileInfo(filePath).completeBaseName();
     }
     else if (lang == "Java")
     {
-        command = compileCommand + " " + filePath;
+        command = compileCommand + " " + QFileInfo(filePath).canonicalFilePath();
     }
     else if (lang == "Python")
     {
