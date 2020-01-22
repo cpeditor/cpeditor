@@ -218,6 +218,7 @@ bool AppWindow::closeTab(int index)
     {
         ui->tabWidget->removeTab(index);
         onEditorChanged(currentWindow());
+        delete tmp;
         return true;
     }
     return false;
