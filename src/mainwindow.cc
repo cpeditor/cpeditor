@@ -31,6 +31,7 @@
 #include <QMimeData>
 #include <QPythonCompleter>
 #include <QPythonHighlighter>
+#include <QScrollBar>
 #include <QShortcut>
 #include <QSyntaxStyle>
 #include <QTextStream>
@@ -43,7 +44,7 @@
 
 // ***************************** RAII  ****************************
 MainWindow::MainWindow(QString fileOpen, const Settings::SettingsData &data, int index, QWidget *parent)
-    : QMainWindow(parent), untitledIndex(index), ui(new Ui::MainWindow), fileWatcher(new QFileSystemWatcher(this))
+    : QMainWindow(parent), ui(new Ui::MainWindow), untitledIndex(index), fileWatcher(new QFileSystemWatcher(this))
 {
     ui->setupUi(this);
     setEditor();
@@ -301,6 +302,11 @@ void MainWindow::setCFToolsUI()
     }
 }
 
+int MainWindow::getUntitledIndex() const
+{
+    return untitledIndex;
+}
+
 QString MainWindow::getFileName() const
 {
     if (!isUntitled())
@@ -337,6 +343,97 @@ QString MainWindow::getTabTitle(bool complete, bool star)
 bool MainWindow::isUntitled() const
 {
     return filePath.isEmpty();
+}
+
+#define FROMSTATUS(x) x = status[#x]
+MainWindow::EditorStatus::EditorStatus(const QMap<QString, QVariant> &status)
+{
+    FROMSTATUS(isLanguageSet).toInt();
+    FROMSTATUS(filePath).toString();
+    FROMSTATUS(savedText).toString();
+    FROMSTATUS(problemURL).toString();
+    FROMSTATUS(editorText).toString();
+    FROMSTATUS(language).toString();
+    FROMSTATUS(editorCursor).toInt();
+    FROMSTATUS(editorAnchor).toInt();
+    FROMSTATUS(horizontalScrollBarValue).toInt();
+    FROMSTATUS(verticalScrollbarValue).toInt();
+    FROMSTATUS(untitledIndex).toInt();
+    FROMSTATUS(input).toStringList();
+    FROMSTATUS(expected).toStringList();
+}
+#undef FROMSTATUS
+
+#define TOSTATUS(x) status[#x] = x
+QMap<QString, QVariant> MainWindow::EditorStatus::toMap() const
+{
+    QMap<QString, QVariant> status;
+    TOSTATUS(isLanguageSet);
+    TOSTATUS(filePath);
+    TOSTATUS(savedText);
+    TOSTATUS(problemURL);
+    TOSTATUS(editorText);
+    TOSTATUS(language);
+    TOSTATUS(editorCursor);
+    TOSTATUS(editorAnchor);
+    TOSTATUS(horizontalScrollBarValue);
+    TOSTATUS(verticalScrollbarValue);
+    TOSTATUS(untitledIndex);
+    TOSTATUS(input);
+    TOSTATUS(expected);
+    return status;
+}
+#undef TOSTATUS
+
+MainWindow::EditorStatus MainWindow::toStatus() const
+{
+    EditorStatus status;
+
+    status.isLanguageSet = isLanguageSet;
+    status.filePath = filePath;
+    status.savedText = savedText;
+    status.problemURL = problemURL;
+    status.editorText = editor->toPlainText();
+    status.language = language;
+    status.editorCursor = editor->textCursor().position();
+    status.editorAnchor = editor->textCursor().anchor();
+    status.horizontalScrollBarValue = editor->horizontalScrollBar()->value();
+    status.verticalScrollbarValue = editor->verticalScrollBar()->value();
+    status.untitledIndex = untitledIndex;
+    for (int i = 0; i < 3; ++i)
+    {
+        status.input.push_back(input[i]->toPlainText());
+        status.expected.push_back(*expected[i]);
+    }
+
+    return status;
+}
+
+void MainWindow::loadStatus(const EditorStatus &status)
+{
+    filePath = status.filePath;
+    updateWatcher();
+    savedText = status.savedText;
+    problemURL = status.problemURL;
+    editor->setPlainText(status.editorText);
+    if (status.isLanguageSet)
+        setLanguage(status.language);
+    auto cursor = editor->textCursor();
+    cursor.setPosition(status.editorAnchor);
+    cursor.setPosition(status.editorCursor, QTextCursor::KeepAnchor);
+    editor->setTextCursor(cursor);
+    editor->horizontalScrollBar()->setValue(status.horizontalScrollBarValue);
+    editor->verticalScrollBar()->setValue(status.verticalScrollbarValue);
+    untitledIndex = status.untitledIndex;
+    for (int i = 0; i < 3; ++i)
+    {
+        if (status.input.length() > i)
+            input[i]->setPlainText(status.input[i]);
+        if (status.expected.length() > i)
+            *expected[i] = status.expected[i];
+    }
+    if (problemURL.contains("codeforces.com"))
+        setCFToolsUI();
 }
 
 void MainWindow::updateVerdict(Verdict _verdict, int id)

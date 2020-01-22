@@ -31,10 +31,21 @@
 AppWindow::AppWindow(QStringList args, QWidget *parent) : AppWindow(parent)
 {
     ui->tabWidget->clear();
+    for (int i = 0; i < settingManager->getNumberOfTabs(); ++i)
+    {
+        openTab("");
+        currentWindow()->loadStatus(MainWindow::EditorStatus(settingManager->getEditorStatus(i)));
+    }
+
+    int index = settingManager->getCurrentIndex();
+    if (index >= 0 && index < settingManager->getNumberOfTabs())
+        ui->tabWidget->setCurrentIndex(index);
+
     if (args.size() > 1)
         for (int i = 1; i < args.size(); ++i)
             openTab(args[i]);
-    else
+
+    if (ui->tabWidget->count() == 0)
         openTab("");
 }
 
@@ -75,11 +86,8 @@ AppWindow::~AppWindow()
 
 void AppWindow::closeEvent(QCloseEvent *event)
 {
-    closeAll();
-    if (ui->tabWidget->count() == 0)
-        event->accept();
-    else
-        event->ignore();
+    saveStatus();
+    event->accept();
 }
 
 void AppWindow::dragEnterEvent(QDragEnterEvent *event)
@@ -259,7 +267,7 @@ void AppWindow::openTab(QString path, bool iscompanionOpenedTab)
                 auto tmp = windowIndex(t);
                 if (tmp->isUntitled() && tmp->getProblemURL().isEmpty())
                 {
-                    vis.insert(tmp->untitledIndex);
+                    vis.insert(tmp->getUntitledIndex());
                 }
             }
             for (index = 1; vis.contains(index); ++index)
@@ -302,7 +310,7 @@ void AppWindow::openTab(QString path, bool iscompanionOpenedTab)
             auto tmp = windowIndex(t);
             if (tmp->isUntitled() && tmp->getProblemURL().isEmpty())
             {
-                vis.insert(tmp->untitledIndex);
+                vis.insert(tmp->getUntitledIndex());
             }
         }
         for (index = 1; vis.contains(index); ++index)
@@ -314,6 +322,17 @@ void AppWindow::openTab(QString path, bool iscompanionOpenedTab)
         ui->tabWidget->setCurrentIndex(t);
     }
     currentWindow()->focusOnEditor();
+}
+
+void AppWindow::saveStatus()
+{
+    settingManager->clearEditorStatus();
+    settingManager->setNumberOfTabs(ui->tabWidget->count());
+    settingManager->setCurrentIndex(ui->tabWidget->currentIndex());
+    for (int i = 0; i < ui->tabWidget->count(); ++i)
+    {
+        settingManager->setEditorStatus(i, windowIndex(i)->toStatus().toMap());
+    }
 }
 
 /***************** ABOUT SECTION ***************************/
@@ -357,9 +376,8 @@ void AppWindow::on_actionAutosave_triggered(bool checked)
 
 void AppWindow::on_actionQuit_triggered()
 {
-    closeAll();
-    if (ui->tabWidget->count() == 0)
-        QApplication::exit();
+    saveStatus();
+    QApplication::exit();
 }
 
 void AppWindow::on_actionNew_Tab_triggered()

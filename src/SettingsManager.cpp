@@ -402,6 +402,35 @@ QStringList SettingManager::getSnippetsNames(QString lang)
     return ret;
 }
 
+int SettingManager::getNumberOfTabs()
+{
+    return mSettings->value("number_of_tabs", 0).toInt();
+}
+void SettingManager::setNumberOfTabs(int value)
+{
+    mSettings->setValue("number_of_tabs", value);
+}
+int SettingManager::getCurrentIndex()
+{
+    return mSettings->value("current_index", -1).toInt();
+}
+void SettingManager::setCurrentIndex(int index)
+{
+    mSettings->setValue("current_index", index);
+}
+void SettingManager::clearEditorStatus()
+{
+    mSettings->remove("editor_status");
+}
+QMap<QString, QVariant> SettingManager::getEditorStatus(int index)
+{
+    return mSettings->value("editor_status/" + QString::number(index)).toMap();
+}
+void SettingManager::setEditorStatus(int index, const QMap<QString, QVariant> &status)
+{
+    mSettings->setValue("editor_status/" + QString::number(index), status);
+}
+
 int SettingManager::getTransparency()
 {
     return mSettings->value("transparency", 100).toInt();

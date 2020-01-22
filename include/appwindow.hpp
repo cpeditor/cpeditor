@@ -122,6 +122,7 @@ class AppWindow : public QMainWindow
     void closeAll();
     bool closeTab(int index);
     void openTab(QString path, bool isCompanionTab = false);
+    void saveStatus();
 
     MainWindow *currentWindow();
     MainWindow *windowIndex(int index);

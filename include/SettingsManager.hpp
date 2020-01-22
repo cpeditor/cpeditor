@@ -185,6 +185,9 @@ class SettingManager
     bool isFormatOnSave();
     void formatOnSave(bool value);
 
+    int getTransparency();
+    void setTransparency(int val);
+
     ViewMode getViewMode();
     void setViewMode(ViewMode v);
 
@@ -211,8 +214,13 @@ class SettingManager
     void removeSnippet(QString lang, QString name);
     QStringList getSnippetsNames(QString lang);
 
-    int getTransparency();
-    void setTransparency(int val);
+    int getNumberOfTabs();
+    void setNumberOfTabs(int value);
+    int getCurrentIndex();
+    void setCurrentIndex(int index);
+    void clearEditorStatus();
+    QMap<QString, QVariant> getEditorStatus(int index);
+    void setEditorStatus(int index, const QMap<QString, QVariant> &status);
 
     void resetSettings();
 
