@@ -102,12 +102,11 @@ void Runner::runDetached(const QString &filePath, const QString &lang, const QSt
     runProcess->setProgram("xterm");
     runProcess->setArguments({"-e", getCommand(filePath, lang, runCommand, args) +
                                         "; read -n 1 -s -r -p '\nExecution Done\nPress any key to exit'"});
-#else
-    runProcess->setProgram("cmd");
-    runProcess->setArguments({"/C", "start cmd /C" + getCommand(filePath, lang, runCommand, args) + " ^& pause"});
-#endif
-
     runProcess->start();
+#else
+    runProcess->start("cmd /C \"start cmd /C " + getCommand(filePath, lang, runCommand, args).replace("\"", "^\"") +
+                      " ^& pause\"");
+#endif
 }
 
 void Runner::onFinished(int exitCode, QProcess::ExitStatus exitStatus)
