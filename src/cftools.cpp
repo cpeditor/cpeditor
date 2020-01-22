@@ -53,7 +53,7 @@ void CFTools::submit(const QString &filePath, const QString &url, const QString 
 bool CFTools::check()
 {
     QProcess checkProcess;
-    checkProcess.start("cf");
+    checkProcess.start("cf --version");
     bool finished = checkProcess.waitForFinished(2000);
     return finished && checkProcess.exitCode() == 0;
 }
