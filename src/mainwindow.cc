@@ -100,7 +100,7 @@ void MainWindow::setEditor()
         expected[i] = new QString;
     }
 
-    QObject::connect(editor, SIGNAL(textChanged()), this, SLOT(onTextChangedTriggered()));
+    QObject::connect(editor, SIGNAL(textChanged()), this, SIGNAL(editorChanged()));
 
     for (auto i : {0, 1, 2})
         updateVerdict(UNKNOWN, i);
@@ -491,7 +491,7 @@ void MainWindow::applyCompanion(Network::CompanionData data)
     problemURL = data.url;
     if (problemURL.contains("codeforces.com"))
         setCFToolsUI();
-    onTextChangedTriggered();
+    emit editorChanged();
 }
 
 void MainWindow::setSettingsData(const Settings::SettingsData &data, bool shouldPerformDigonistic)
@@ -556,11 +556,6 @@ void MainWindow::save(bool force)
 void MainWindow::saveAs()
 {
     saveFile(SaveAs, "Save as");
-}
-
-void MainWindow::onTextChangedTriggered()
-{
-    emit editorChanged(this);
 }
 
 void MainWindow::on_compile_clicked()
@@ -893,7 +888,7 @@ void MainWindow::setText(const QString &text, bool saveCursor)
 
 void MainWindow::updateWatcher()
 {
-    onTextChangedTriggered();
+    emit editorChanged();
     if (!fileWatcher->files().isEmpty())
         fileWatcher->removePaths(fileWatcher->files());
     if (!isUntitled())
@@ -905,8 +900,6 @@ void MainWindow::loadFile(QString path)
     bool samePath = filePath == path;
     filePath = path;
     updateWatcher();
-    if (!samePath)
-        emit editorChanged(this);
 
     if (!QFile::exists(path))
     {
@@ -968,7 +961,6 @@ bool MainWindow::saveFile(SaveMode mode, const QString &head)
 
         filePath = newFilePath;
         updateWatcher();
-        emit editorChanged(this);
 
         auto suffix = QFileInfo(filePath).suffix();
         if (suffix == ".cpp" || suffix == ".hpp" || suffix == ".h" || suffix == ".cc" || suffix == ".cxx" ||
@@ -1131,7 +1123,7 @@ void MainWindow::on_changeLanguageButton_clicked()
 
 void MainWindow::onFileWatcherChanged(const QString &path)
 {
-    onTextChangedTriggered();
+    emit editorChanged();
 
     auto currentText = editor->toPlainText();
 

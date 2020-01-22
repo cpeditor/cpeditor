@@ -109,6 +109,7 @@ void AppWindow::setConnections()
     connect(ui->tabWidget->tabBar(), SIGNAL(customContextMenuRequested(const QPoint &)), this,
             SLOT(onTabContextMenuRequested(const QPoint &)));
     connect(timer, SIGNAL(timeout()), this, SLOT(onSaveTimerElapsed()));
+    connect(editorChangeApply, SIGNAL(timeout()), this, SLOT(applyEditorChanged()));
 
     connect(preferenceWindow, SIGNAL(settingsApplied()), this, SLOT(onSettingsApplied()));
 
@@ -124,9 +125,11 @@ void AppWindow::allocate()
     updater = new Telemetry::UpdateNotifier(settingManager->isBeta());
     preferenceWindow = new PreferenceWindow(settingManager, this);
     server = new Network::CompanionServer(settingManager->getConnectionPort());
+    editorChangeApply = new QTimer();
 
     timer->setInterval(3000);
     timer->setSingleShot(false);
+    editorChangeApply->setSingleShot(true);
 }
 
 void AppWindow::applySettings()
@@ -214,7 +217,7 @@ bool AppWindow::closeTab(int index)
     if (tmp->closeConfirm())
     {
         ui->tabWidget->removeTab(index);
-        onEditorChanged(currentWindow());
+        onEditorChanged();
         delete tmp;
         return true;
     }
@@ -264,7 +267,7 @@ void AppWindow::openTab(QString path, bool iscompanionOpenedTab)
         }
         auto fsp = new MainWindow(path, settingManager->toData(), index);
         connect(fsp, SIGNAL(confirmTriggered(MainWindow *)), this, SLOT(on_confirmTriggered(MainWindow *)));
-        connect(fsp, SIGNAL(editorChanged(MainWindow *)), this, SLOT(onEditorChanged(MainWindow *)));
+        connect(fsp, SIGNAL(editorChanged()), this, SLOT(onEditorChanged()));
         QString lang = settingManager->getDefaultLang();
 
         if (path.endsWith(".java"))
@@ -306,7 +309,7 @@ void AppWindow::openTab(QString path, bool iscompanionOpenedTab)
             ;
         auto fsp = new MainWindow("", settingManager->toData(), index);
         connect(fsp, SIGNAL(confirmTriggered(MainWindow *)), this, SLOT(on_confirmTriggered(MainWindow *)));
-        connect(fsp, SIGNAL(editorChanged(MainWindow *)), this, SLOT(onEditorChanged(MainWindow *)));
+        connect(fsp, SIGNAL(editorChanged()), this, SLOT(onEditorChanged()));
         ui->tabWidget->addTab(fsp, fsp->getFileName());
         ui->tabWidget->setCurrentIndex(t);
     }
@@ -477,25 +480,30 @@ void AppWindow::onTabChanged(int index)
         connect(tmp->getSplitter(), SIGNAL(splitterMoved(int, int)), this, SLOT(onSplitterMoved(int, int)));
 }
 
-void AppWindow::onEditorChanged(MainWindow *widget)
+void AppWindow::onEditorChanged()
 {
-    if (widget != nullptr && widget == currentWindow())
-    {
-        setWindowTitle(widget->getTabTitle(true, false) + " - CP Editor");
-    }
+    editorChangeApply->start(10);
+}
 
-    QMap<QString, QVector<int>> tabsByName;
-
-    for (int t = 0; t < ui->tabWidget->count(); ++t)
+void AppWindow::applyEditorChanged()
+{
+    if (currentWindow() != nullptr)
     {
-        tabsByName[windowIndex(t)->getTabTitle(false, false)].push_back(t);
-    }
+        setWindowTitle(currentWindow()->getTabTitle(true, false) + " - CP Editor");
 
-    for (auto tabs : tabsByName)
-    {
-        for (auto index : tabs)
+        QMap<QString, QVector<int>> tabsByName;
+
+        for (int t = 0; t < ui->tabWidget->count(); ++t)
         {
-            ui->tabWidget->setTabText(index, windowIndex(index)->getTabTitle(tabs.size() > 1, true));
+            tabsByName[windowIndex(t)->getTabTitle(false, false)].push_back(t);
+        }
+
+        for (auto tabs : tabsByName)
+        {
+            for (auto index : tabs)
+            {
+                ui->tabWidget->setTabText(index, windowIndex(index)->getTabTitle(tabs.size() > 1, true));
+            }
         }
     }
 }
@@ -526,7 +534,7 @@ void AppWindow::onSettingsApplied()
             connect(server, &Network::CompanionServer::onRequestArrived, this, &AppWindow::onIncomingCompanionRequest);
     diagonistics = true;
     onTabChanged(ui->tabWidget->currentIndex());
-    onEditorChanged(currentWindow());
+    onEditorChanged();
 }
 
 void AppWindow::onIncomingCompanionRequest(Network::CompanionData data)

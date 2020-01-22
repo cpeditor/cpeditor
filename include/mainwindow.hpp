@@ -103,8 +103,6 @@ class MainWindow : public QMainWindow
     void focusOnEditor();
 
   private slots:
-    void onTextChangedTriggered();
-
     void on_compile_clicked();
     void on_runOnly_clicked();
     void on_run_clicked();
@@ -136,7 +134,7 @@ class MainWindow : public QMainWindow
     void onFileWatcherChanged(const QString &);
 
   signals:
-    void editorChanged(MainWindow *widget);
+    void editorChanged();
     void confirmTriggered(MainWindow *widget);
 
   private:

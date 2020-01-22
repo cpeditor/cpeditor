@@ -71,13 +71,22 @@ class AppWindow : public QMainWindow
 
     void on_actionCheck_for_updates_triggered();
 
+    void onEditorChanged();
+
+    void applyEditorChanged();
+
     void onTabCloseRequested(int);
+
     void onTabChanged(int);
-    void onEditorChanged(MainWindow *);
+
     void onSaveTimerElapsed();
+
     void onSettingsApplied();
+
     void onSplitterMoved(int, int);
+
     void onIncomingCompanionRequest(Network::CompanionData);
+
     void onViewModeToggle();
 
     void on_actionCompile_triggered();
@@ -114,6 +123,7 @@ class AppWindow : public QMainWindow
     Telemetry::UpdateNotifier *updater = nullptr;
     PreferenceWindow *preferenceWindow = nullptr;
     Network::CompanionServer *server;
+    QTimer *editorChangeApply = nullptr;
 
     void setConnections();
     void allocate();
