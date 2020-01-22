@@ -136,15 +136,15 @@ QString Runner::getCommand(const QString &filePath, const QString &lang, const Q
 
     if (lang == "Cpp")
     {
-        return fileInfo.canonicalPath() + "/" + fileInfo.completeBaseName() + " " + args;
+        return "\"" + fileInfo.canonicalPath() + "/" + fileInfo.completeBaseName() + "\" " + args;
     }
     else if (lang == "Java")
     {
-        return runCommand + " -classpath " + fileInfo.canonicalPath() + " a " + args;
+        return runCommand + " -classpath \"" + fileInfo.canonicalPath() + "\" a " + args;
     }
     else if (lang == "Python")
     {
-        return runCommand + " " + fileInfo.canonicalFilePath() + " " + args;
+        return runCommand + " \"" + fileInfo.canonicalFilePath() + "\" " + args;
     }
     else
     {
