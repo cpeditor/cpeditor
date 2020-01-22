@@ -28,9 +28,18 @@
 #include <QTimer>
 #include <QUrl>
 
-AppWindow::AppWindow(QStringList args, QWidget *parent) : AppWindow(parent)
+AppWindow::AppWindow(QStringList args, QWidget *parent) : QMainWindow(parent), ui(new Ui::AppWindow)
 {
-    ui->tabWidget->clear();
+    ui->setupUi(this);
+    setAcceptDrops(true);
+    allocate();
+    setConnections();
+
+    if (settingManager->isCheckUpdateOnStartup())
+        updater->checkUpdate();
+
+    setWindowOpacity(settingManager->getTransparency() / 100.0);
+
     for (int i = 0; i < settingManager->getNumberOfTabs(); ++i)
     {
         openTab("");
@@ -47,24 +56,6 @@ AppWindow::AppWindow(QStringList args, QWidget *parent) : AppWindow(parent)
 
     if (ui->tabWidget->count() == 0)
         openTab("");
-}
-
-AppWindow::AppWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::AppWindow)
-{
-    ui->setupUi(this);
-    ui->tabWidget->clear();
-    setAcceptDrops(true);
-
-    allocate();
-    setConnections();
-
-    auto windowTemp = new MainWindow("", settingManager->toData());
-    ui->tabWidget->addTab(windowTemp, windowTemp->getFileName());
-
-    if (settingManager->isCheckUpdateOnStartup())
-        updater->checkUpdate();
-
-    setWindowOpacity(settingManager->getTransparency() / 100.0);
 
     applySettings();
     onSettingsApplied();

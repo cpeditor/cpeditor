@@ -20,9 +20,6 @@
       <property name="tabShape">
        <enum>QTabWidget::Triangular</enum>
       </property>
-      <property name="currentIndex">
-       <number>1</number>
-      </property>
       <property name="elideMode">
        <enum>Qt::ElideNone</enum>
       </property>
@@ -38,16 +35,6 @@
       <property name="tabBarAutoHide">
        <bool>false</bool>
       </property>
-      <widget class="QWidget" name="dummyTab">
-       <attribute name="title">
-        <string>Tab 1</string>
-       </attribute>
-      </widget>
-      <widget class="QWidget" name="dummyTab2">
-       <attribute name="title">
-        <string>Tab 2</string>
-       </attribute>
-      </widget>
      </widget>
     </item>
    </layout>

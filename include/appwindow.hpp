@@ -35,7 +35,6 @@ class AppWindow : public QMainWindow
     Q_OBJECT
 
   public:
-    explicit AppWindow(QWidget *parent = nullptr);
     explicit AppWindow(QStringList args, QWidget *parent = nullptr);
     ~AppWindow() override;
 
