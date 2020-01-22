@@ -76,7 +76,7 @@ class MainWindow : public QMainWindow
     EditorStatus toStatus() const;
     void loadStatus(const EditorStatus &status);
 
-    void save(bool force);
+    void save(bool force, const QString &head);
     void saveAs();
 
     bool isTextChanged();

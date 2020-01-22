@@ -551,9 +551,9 @@ void MainWindow::setSettingsData(const Settings::SettingsData &data, bool should
     }
 }
 
-void MainWindow::save(bool force)
+void MainWindow::save(bool force, const QString &head)
 {
-    saveFile(force ? SaveUntitled : IgnoreUntitled, "Save");
+    saveFile(force ? SaveUntitled : IgnoreUntitled, head);
 }
 
 void MainWindow::saveAs()

@@ -385,7 +385,7 @@ void AppWindow::on_actionOpen_triggered()
 void AppWindow::on_actionSave_triggered()
 {
     if (currentWindow() != nullptr)
-        currentWindow()->save(true);
+        currentWindow()->save(true, "Save");
 }
 
 void AppWindow::on_actionSave_As_triggered()
@@ -399,7 +399,7 @@ void AppWindow::on_actionSave_All_triggered()
     for (int t = 0; t < ui->tabWidget->count(); ++t)
     {
         auto tmp = windowIndex(t);
-        tmp->save(true);
+        tmp->save(true, "Save All");
     }
 }
 
@@ -522,7 +522,7 @@ void AppWindow::onSaveTimerElapsed()
         auto tmp = windowIndex(t);
         if (!tmp->isUntitled())
         {
-            tmp->save(false);
+            tmp->save(false, "Auto Save");
         }
     }
 }
