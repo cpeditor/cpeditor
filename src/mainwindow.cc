@@ -31,6 +31,7 @@
 #include <QMimeData>
 #include <QPythonCompleter>
 #include <QPythonHighlighter>
+#include <QSaveFile>
 #include <QShortcut>
 #include <QSyntaxStyle>
 #include <QTextStream>
@@ -251,9 +252,10 @@ void MainWindow::saveTests()
     {
         if (!input[i]->toPlainText().trimmed().isEmpty())
         {
-            QFile inputFile(testFile + QString::number(i + 1) + ".in");
+            QSaveFile inputFile(testFile + QString::number(i + 1) + ".in");
             inputFile.open(QIODevice::WriteOnly | QFile::Text);
-            if (!inputFile.isOpen() || inputFile.write(input[i]->toPlainText().toStdString().c_str()) == -1)
+            inputFile.write(input[i]->toPlainText().toStdString().c_str());
+            if (!inputFile.commit())
             {
                 log.error("Tests", "Failed to save Input #" + QString::number(i + 1) + ". Do I have write permission?");
             }
@@ -261,9 +263,10 @@ void MainWindow::saveTests()
 
         if (!expected[i]->trimmed().isEmpty())
         {
-            QFile answerFile(testFile + QString::number(i + 1) + ".ans");
+            QSaveFile answerFile(testFile + QString::number(i + 1) + ".ans");
             answerFile.open(QIODevice::WriteOnly | QFile::Text);
-            if (!answerFile.isOpen() || answerFile.write(expected[i]->toStdString().c_str()) == -1)
+            answerFile.write(expected[i]->toStdString().c_str());
+            if (!answerFile.commit())
             {
                 log.error("Tests",
                           "Failed to save Expected #" + QString::number(i + 1) + ". Do I have write permission?");
@@ -860,10 +863,11 @@ bool MainWindow::saveFile(SaveMode mode, const QString &head)
         if (newFilePath.isEmpty())
             return false;
 
-        QFile openFile(newFilePath);
+        QSaveFile openFile(newFilePath);
         openFile.open(QIODevice::WriteOnly | QFile::Text);
+        openFile.write(editor->toPlainText().toStdString().c_str());
 
-        if (!openFile.isOpen() || openFile.write(editor->toPlainText().toStdString().c_str()) == -1)
+        if (!openFile.commit())
         {
             log.error(head, "Failed to save file to [" + newFilePath + "]. Do I have write permission?");
             return false;
@@ -884,9 +888,10 @@ bool MainWindow::saveFile(SaveMode mode, const QString &head)
     }
     else if (!isUntitled())
     {
-        QFile openFile(filePath);
+        QSaveFile openFile(filePath);
         openFile.open(QFileDevice::WriteOnly | QFile::Text);
-        if (!openFile.isOpen() || openFile.write(editor->toPlainText().toStdString().c_str()) == -1)
+        openFile.write(editor->toPlainText().toStdString().c_str());
+        if (!openFile.commit())
         {
             log.error(head, "Failed to save file to [" + filePath + "]. Do I have write permission?");
             return false;
@@ -919,10 +924,11 @@ bool MainWindow::saveTemp(const QString &head)
             return false;
         }
 
-        QFile tmpFile(tmpPath());
+        QSaveFile tmpFile(tmpPath());
         tmpFile.open(QIODevice::WriteOnly | QIODevice::Text);
+        tmpFile.write(editor->toPlainText().toStdString().c_str());
 
-        if (!tmpFile.isOpen() || tmpFile.write(editor->toPlainText().toStdString().c_str()) == -1)
+        if (!tmpFile.commit())
         {
             log.error(head, "Failed to save to " + tmpFile.fileName());
             return false;
