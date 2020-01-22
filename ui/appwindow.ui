@@ -57,6 +57,7 @@
     <addaction name="actionSave"/>
     <addaction name="actionSave_As"/>
     <addaction name="actionSave_All"/>
+    <addaction name="actionClose_Saved"/>
     <addaction name="actionClose_All"/>
     <addaction name="actionAutosave"/>
     <addaction name="actionQuit"/>
@@ -147,6 +148,28 @@
        <string>Ctrl+Alt+Shift+S</string>
      </property>
    </action>
+  <action name="actionClose_Saved">
+   <property name="text">
+    <string>Close Saved</string>
+   </property>
+   <property name="toolTip">
+    <string>Close saved tabs</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Alt+W</string>
+   </property>
+  </action>
+  <action name="actionClose_All">
+   <property name="text">
+    <string>Close All</string>
+   </property>
+   <property name="toolTip">
+    <string>Close All the tabs</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+W</string>
+   </property>
+  </action>
   <action name="actionAutosave">
    <property name="checkable">
     <bool>true</bool>
@@ -241,17 +264,6 @@
   <action name="actionRestore_Settings">
    <property name="text">
     <string>Reset Preferences</string>
-   </property>
-  </action>
-  <action name="actionClose_All">
-   <property name="text">
-    <string>Close All</string>
-   </property>
-   <property name="toolTip">
-    <string>Close All the tabs</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+Shift+W</string>
    </property>
   </action>
   <action name="actionAbout">

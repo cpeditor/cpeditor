@@ -18,6 +18,7 @@
 #include "appwindow.hpp"
 #include "../ui/ui_appwindow.h"
 #include <EditorTheme.hpp>
+#include <QClipboard>
 #include <QDesktopServices>
 #include <QFileDialog>
 #include <QInputDialog>
@@ -104,6 +105,9 @@ void AppWindow::setConnections()
 {
     connect(ui->tabWidget, SIGNAL(tabCloseRequested(int)), this, SLOT(onTabCloseRequested(int)));
     connect(ui->tabWidget, SIGNAL(currentChanged(int)), this, SLOT(onTabChanged(int)));
+    ui->tabWidget->tabBar()->setContextMenuPolicy(Qt::CustomContextMenu);
+    connect(ui->tabWidget->tabBar(), SIGNAL(customContextMenuRequested(const QPoint &)), this,
+            SLOT(onTabContextMenuRequested(const QPoint &)));
     connect(timer, SIGNAL(timeout()), this, SLOT(onSaveTimerElapsed()));
 
     connect(preferenceWindow, SIGNAL(settingsApplied()), this, SLOT(onSettingsApplied()));
@@ -202,13 +206,6 @@ void AppWindow::maybeSetHotkeys()
         hotkeyObjects.push_back(
             new QShortcut(settingManager->getHotkeySnippets(), this, SLOT(on_actionUse_Snippets_triggered())));
     }
-}
-
-void AppWindow::closeAll()
-{
-    for (int t = 0; t < ui->tabWidget->count(); t++)
-        if (closeTab(t))
-            --t;
 }
 
 bool AppWindow::closeTab(int index)
@@ -352,11 +349,6 @@ void AppWindow::on_actionAbout_triggered()
 
 /******************* FILES SECTION *************************/
 
-void AppWindow::on_actionClose_All_triggered()
-{
-    closeAll();
-}
-
 void AppWindow::on_actionAutosave_triggered(bool checked)
 {
     settingManager->setAutoSave(checked);
@@ -406,6 +398,20 @@ void AppWindow::on_actionSave_All_triggered()
         auto tmp = windowIndex(t);
         tmp->save(true);
     }
+}
+
+void AppWindow::on_actionClose_All_triggered()
+{
+    for (int t = 0; t < ui->tabWidget->count(); t++)
+        if (closeTab(t))
+            --t;
+}
+
+void AppWindow::on_actionClose_Saved_triggered()
+{
+    for (int t = 0; t < ui->tabWidget->count(); t++)
+        if (!windowIndex(t)->isTextChanged() && closeTab(t))
+            --t;
 }
 
 /************************ PREFERENCES SECTION **********************/
@@ -678,6 +684,68 @@ void AppWindow::on_confirmTriggered(MainWindow *widget)
     int index = ui->tabWidget->indexOf(widget);
     if (index != -1)
         ui->tabWidget->setCurrentIndex(index);
+}
+
+void AppWindow::onTabContextMenuRequested(const QPoint &pos)
+{
+    int index = ui->tabWidget->tabBar()->tabAt(pos);
+    if (index != -1)
+    {
+        auto widget = windowIndex(index);
+        auto menu = new QMenu();
+        menu->addAction("Close", [index, this] { closeTab(index); });
+        menu->addAction("Close Others", [widget, this] {
+            for (int i = 0; i < ui->tabWidget->count(); ++i)
+                if (windowIndex(i) != widget && closeTab(i))
+                    --i;
+        });
+        menu->addAction("Close to the Right", [index, this] {
+            for (int i = index + 1; i < ui->tabWidget->count(); ++i)
+                if (closeTab(i))
+                    --i;
+        });
+        menu->addAction("Close Saved", [this] { on_actionClose_Saved_triggered(); });
+        menu->addAction("Close All", [this] { on_actionClose_All_triggered(); });
+        QString filePath = widget->getFilePath();
+        if (!widget->isUntitled() && QFile::exists(filePath))
+        {
+            menu->addSeparator();
+            menu->addAction("Copy path", [filePath] {
+                auto clipboard = QGuiApplication::clipboard();
+                clipboard->setText(filePath);
+            });
+            // Mac and Win codes are from http://lynxline.com/show-in-finder-show-in-explorer/
+#if defined(Q_OS_MACOS)
+            menu->addAction("Reveal in Explorer", [filePath] {
+                QStringList args;
+                args << "-e";
+                args << "tell application \"Finder\"";
+                args << "-e";
+                args << "activate";
+                args << "-e";
+                args << "select POSIX file \"" + filePath + "\"";
+                args << "-e";
+                args << "end tell";
+                QProcess::startDetached("osascript", args);
+            });
+#elif defined(Q_OS_WIN)
+            menu->addAction("Reveal in Explorer", [filePath] {
+                QStringList args;
+                args << "/select," << QDir::toNativeSeparators(filePath);
+                QProcess::startDetached("explorer", args);
+            });
+#else
+            menu->addAction("Open Containing Folder",
+                            [filePath] { QDesktopServices::openUrl(QUrl::fromLocalFile(QFileInfo(filePath).path())); });
+#endif
+        }
+        else if (!widget->isUntitled() && QFile::exists(QFileInfo(widget->getFilePath()).path()))
+        {
+            menu->addAction("Open Containing Folder",
+                            [filePath] { QDesktopServices::openUrl(QUrl::fromLocalFile(QFileInfo(filePath).path())); });
+        }
+        menu->popup(ui->tabWidget->tabBar()->mapToGlobal(pos));
+    }
 }
 
 MainWindow *AppWindow::currentWindow()

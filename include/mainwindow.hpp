@@ -79,6 +79,7 @@ class MainWindow : public QMainWindow
     void save(bool force);
     void saveAs();
 
+    bool isTextChanged();
     bool closeConfirm();
 
     void killProcesses();
@@ -195,7 +196,6 @@ class MainWindow : public QMainWindow
     void saveTests();
     void setCFToolsUI();
     void updateVerdict(Verdict, int);
-    bool isTextChanged();
     bool isVerdictPass(QString, QString);
     void setText(const QString &text, bool saveCursor = false);
     void updateWatcher();

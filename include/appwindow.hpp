@@ -47,8 +47,6 @@ class AppWindow : public QMainWindow
 
     void on_actionAbout_triggered();
 
-    void on_actionClose_All_triggered();
-
     void on_actionAutosave_triggered(bool checked);
 
     void on_actionQuit_triggered();
@@ -66,6 +64,10 @@ class AppWindow : public QMainWindow
     void on_actionSave_As_triggered();
 
     void on_actionSave_All_triggered();
+
+    void on_actionClose_All_triggered();
+
+    void on_actionClose_Saved_triggered();
 
     void on_actionCheck_for_updates_triggered();
 
@@ -100,6 +102,8 @@ class AppWindow : public QMainWindow
 
     void on_confirmTriggered(MainWindow *widget);
 
+    void onTabContextMenuRequested(const QPoint &pos);
+
   private:
     Ui::AppWindow *ui;
     MessageLogger *activeLogger = nullptr;
@@ -118,7 +122,6 @@ class AppWindow : public QMainWindow
     bool diagonistics;
     QVector<QShortcut *> hotkeyObjects;
     void maybeSetHotkeys();
-    void closeAll();
     bool closeTab(int index);
     void openTab(QString path, bool isCompanionTab = false);
     void saveStatus();
