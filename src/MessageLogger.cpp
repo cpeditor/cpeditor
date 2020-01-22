@@ -28,10 +28,11 @@ void MessageLogger::message(const QString &head, const QString &body, const QStr
 {
     auto newHead = head.toHtmlEscaped().replace(" ", "&nbsp;");
     auto newBody = body.toHtmlEscaped().replace(" ", "&nbsp;");
-    QString res = "<b>[" + QTime::currentTime().toString() + "] [" + newHead + "] </b><font face=monospace";
+    QString res = "<b>[" + QTime::currentTime().toString() + "] [" + newHead +
+                  "] </b><span style=\"font-family:Consolas,Courier,monospace;";
     if (!color.isEmpty())
-        res += " color=" + color;
-    res += ">[";
+        res += "color:" + color;
+    res += "\">[";
     if (newBody.contains('\n'))
         res += "<br>" + newBody.replace("\n", "<br>");
     else
