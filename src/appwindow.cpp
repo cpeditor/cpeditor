@@ -41,15 +41,18 @@ AppWindow::AppWindow(QStringList args, QWidget *parent) : QMainWindow(parent), u
 
     setWindowOpacity(settingManager->getTransparency() / 100.0);
 
-    for (int i = 0; i < settingManager->getNumberOfTabs(); ++i)
+    if (settingManager->isUseHotExit())
     {
-        openTab("");
-        currentWindow()->loadStatus(MainWindow::EditorStatus(settingManager->getEditorStatus(i)));
-    }
+        for (int i = 0; i < settingManager->getNumberOfTabs(); ++i)
+        {
+            openTab("");
+            currentWindow()->loadStatus(MainWindow::EditorStatus(settingManager->getEditorStatus(i)));
+        }
 
-    int index = settingManager->getCurrentIndex();
-    if (index >= 0 && index < settingManager->getNumberOfTabs())
-        ui->tabWidget->setCurrentIndex(index);
+        int index = settingManager->getCurrentIndex();
+        if (index >= 0 && index < settingManager->getNumberOfTabs())
+            ui->tabWidget->setCurrentIndex(index);
+    }
 
     if (args.size() > 1)
         for (int i = 1; i < args.size(); ++i)
@@ -78,8 +81,10 @@ AppWindow::~AppWindow()
 
 void AppWindow::closeEvent(QCloseEvent *event)
 {
-    saveStatus();
-    event->accept();
+    if (quit())
+        event->accept();
+    else
+        event->ignore();
 }
 
 void AppWindow::dragEnterEvent(QDragEnterEvent *event)
@@ -316,14 +321,23 @@ void AppWindow::openTab(QString path, bool iscompanionOpenedTab)
     currentWindow()->focusOnEditor();
 }
 
-void AppWindow::saveStatus()
+bool AppWindow::quit()
 {
     settingManager->clearEditorStatus();
-    settingManager->setNumberOfTabs(ui->tabWidget->count());
-    settingManager->setCurrentIndex(ui->tabWidget->currentIndex());
-    for (int i = 0; i < ui->tabWidget->count(); ++i)
+    if (settingManager->isUseHotExit())
     {
-        settingManager->setEditorStatus(i, windowIndex(i)->toStatus().toMap());
+        settingManager->setNumberOfTabs(ui->tabWidget->count());
+        settingManager->setCurrentIndex(ui->tabWidget->currentIndex());
+        for (int i = 0; i < ui->tabWidget->count(); ++i)
+        {
+            settingManager->setEditorStatus(i, windowIndex(i)->toStatus().toMap());
+        }
+        return true;
+    }
+    else
+    {
+        on_actionClose_All_triggered();
+        return ui->tabWidget->count() == 0;
     }
 }
 
@@ -363,8 +377,8 @@ void AppWindow::on_actionAutosave_triggered(bool checked)
 
 void AppWindow::on_actionQuit_triggered()
 {
-    saveStatus();
-    QApplication::exit();
+    if (quit())
+        QApplication::exit();
 }
 
 void AppWindow::on_actionNew_Tab_triggered()

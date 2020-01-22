@@ -136,7 +136,7 @@ class AppWindow : public QMainWindow
     void maybeSetHotkeys();
     bool closeTab(int index);
     void openTab(QString path, bool isCompanionTab = false);
-    void saveStatus();
+    bool quit();
 
     MainWindow *currentWindow();
     MainWindow *windowIndex(int index);

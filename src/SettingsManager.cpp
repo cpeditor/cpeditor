@@ -61,6 +61,11 @@ bool SettingManager::isSaveTests()
     return mSettings->value("save_tests", "false").toBool();
 }
 
+bool SettingManager::isUseHotExit()
+{
+    return mSettings->value("use_hot_exit", "true").toBool();
+}
+
 bool SettingManager::isMaximizedWindow()
 {
     return mSettings->value("win_max", "false").toBool();
@@ -231,6 +236,14 @@ void SettingManager::setSaveTests(bool value)
         mSettings->setValue("save_tests", QString::fromStdString("true"));
     else
         mSettings->setValue("save_tests", QString::fromStdString("false"));
+}
+
+void SettingManager::setUseHotExit(bool value)
+{
+    if (value)
+        mSettings->setValue("use_hot_exit", QString::fromStdString("true"));
+    else
+        mSettings->setValue("use_hot_exit", QString::fromStdString("false"));
 }
 
 void SettingManager::setMaximizedWindow(bool value)

@@ -99,6 +99,7 @@ void PreferenceWindow::applySettingsToui()
     ui->parentheses->setChecked(manager->isAutoParenthesis());
     ui->replace_tabs->setChecked(manager->isTabsReplaced());
     ui->format_on_save->setChecked(manager->isFormatOnSave());
+    ui->use_hot_exit->setChecked(manager->isUseHotExit());
 
     ui->defaultLang->setCurrentText(manager->getDefaultLang());
 
@@ -164,6 +165,7 @@ void PreferenceWindow::extractSettingsFromUi()
     manager->setAutoParenthesis(ui->parentheses->isChecked());
     manager->setTabsReplaced(ui->replace_tabs->isChecked());
     manager->formatOnSave(ui->format_on_save->isChecked());
+    manager->setUseHotExit(ui->use_hot_exit->isChecked());
 
     manager->setDefaultLanguage(ui->defaultLang->currentText());
 

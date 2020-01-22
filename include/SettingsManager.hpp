@@ -170,6 +170,9 @@ class SettingManager
     bool isSaveTests();
     void setSaveTests(bool value);
 
+    bool isUseHotExit();
+    void setUseHotExit(bool value);
+
     bool isCompetitiveCompanionActive();
     void setCompetitiveCompanionActive(bool value);
 
