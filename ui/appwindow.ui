@@ -57,6 +57,7 @@
     <addaction name="actionSave"/>
     <addaction name="actionSave_As"/>
     <addaction name="actionSave_All"/>
+    <addaction name="actionClose_Current"/>
     <addaction name="actionClose_Saved"/>
     <addaction name="actionClose_All"/>
     <addaction name="actionAutosave"/>
@@ -148,6 +149,17 @@
        <string>Ctrl+Alt+Shift+S</string>
      </property>
    </action>
+  <action name="actionClose_Current">
+   <property name="text">
+    <string>Close Current</string>
+   </property>
+   <property name="toolTip">
+    <string>Close current tab</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+W</string>
+   </property>
+  </action>
   <action name="actionClose_Saved">
    <property name="text">
     <string>Close Saved</string>

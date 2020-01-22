@@ -65,6 +65,8 @@ class AppWindow : public QMainWindow
 
     void on_actionSave_All_triggered();
 
+    void on_actionClose_Current_triggered();
+
     void on_actionClose_All_triggered();
 
     void on_actionClose_Saved_triggered();

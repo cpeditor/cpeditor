@@ -403,6 +403,13 @@ void AppWindow::on_actionSave_All_triggered()
     }
 }
 
+void AppWindow::on_actionClose_Current_triggered()
+{
+    int index = ui->tabWidget->currentIndex();
+    if (index != -1)
+        closeTab(index);
+}
+
 void AppWindow::on_actionClose_All_triggered()
 {
     for (int t = 0; t < ui->tabWidget->count(); t++)
