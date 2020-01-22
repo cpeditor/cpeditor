@@ -61,7 +61,8 @@ void PreferenceWindow::setConstraints()
     ui->companion_port->setMinimum(10000);
     ui->companion_port->setMaximum(65535);
 
-    ui->transparency_slider->setMinimum(60);
+    ui->transparency_slider->setMinimum(40);
+    ui->transparency_slider->setMaximum(100);
 }
 
 void PreferenceWindow::updateSnippets()
