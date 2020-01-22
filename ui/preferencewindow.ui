@@ -635,11 +635,22 @@ p, li { white-space: pre-wrap; }
              </layout>
             </item>
             <item row="3" column="1">
-             <widget class="QPushButton" name="load_snippets_from_file">
-              <property name="text">
-               <string>Load Snippets From Files</string>
-              </property>
-             </widget>
+             <layout class="QHBoxLayout" name="horizontalLayout_11">
+              <item>
+               <widget class="QPushButton" name="load_snippets_from_files">
+                <property name="text">
+                 <string>Load Snippets From Files</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="extract_snippets_to_files">
+                <property name="text">
+                 <string>Extract Snippets to Files</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
             </item>
            </layout>
           </item>

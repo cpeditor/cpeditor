@@ -28,6 +28,7 @@
 #include <QMessageBox>
 #include <QPythonCompleter>
 #include <QPythonHighlighter>
+#include <QSaveFile>
 
 PreferenceWindow::PreferenceWindow(Settings::SettingManager *manager, QWidget *parent)
     : QMainWindow(parent), ui(new Ui::PreferenceWindow)
@@ -287,7 +288,7 @@ void PreferenceWindow::on_java_template_clicked()
     ui->java_template->setText("..." + javaTemplatePath.right(30));
 }
 
-void PreferenceWindow::on_load_snippets_from_file_clicked()
+void PreferenceWindow::on_load_snippets_from_files_clicked()
 {
     auto lang = ui->snippets_lang->currentText();
     QString fileType = "C++ Files (*.cpp *.hpp *.h *.cc *.cxx *.c)";
@@ -317,6 +318,46 @@ void PreferenceWindow::on_load_snippets_from_file_clicked()
                 switchToSnippet(snippetName);
             }
             file.close();
+        }
+    }
+}
+
+void PreferenceWindow::on_extract_snippets_to_files_clicked()
+{
+    auto lang = ui->snippets_lang->currentText();
+    QString suffix = ".cpp";
+    QString fileType = "C++ Files (*.cpp *.hpp *.h *.cc *.cxx *.c)";
+    if (lang == "Java")
+    {
+        suffix = ".java";
+        fileType = "Java Files (*.java)";
+    }
+    else if (lang == "Python")
+    {
+        suffix = ".py";
+        fileType = "Python Files (*.py)";
+    }
+    auto dirPath = QFileDialog::getExistingDirectory(this, "Choose a directory to extract snippets to");
+    if (QFile::exists(dirPath))
+    {
+        QDir dir(dirPath);
+        auto names = manager->getSnippetsNames(lang);
+        for (auto name : names)
+        {
+            auto content = manager->getSnippet(lang, name);
+            auto filePath = dir.filePath(name + suffix);
+            if (QFile::exists(filePath))
+                filePath = QFileDialog::getSaveFileName(this, "Save snippet " + name + " to:", dirPath, fileType);
+            while (!filePath.isEmpty())
+            {
+                QSaveFile saveFile(filePath);
+                saveFile.open(QIODevice::WriteOnly | QIODevice::Text);
+                saveFile.write(content.toStdString().c_str());
+                if (saveFile.commit())
+                    break;
+                QMessageBox::warning(this, "File save error", "Failed to save to " + filePath);
+                filePath = QFileDialog::getSaveFileName(this, "Save snippet " + name + " to:", dirPath, fileType);
+            }
         }
     }
 }
