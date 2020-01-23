@@ -728,6 +728,11 @@ void AppWindow::onTabContextMenuRequested(const QPoint &pos)
                 if (windowIndex(i) != widget && closeTab(i))
                     --i;
         });
+        menu->addAction("Close to the Left", [widget, this] {
+            for (int i = 0; i < ui->tabWidget->count() && windowIndex(i) != widget; ++i)
+                if (closeTab(i))
+                    --i;
+        });
         menu->addAction("Close to the Right", [index, this] {
             for (int i = index + 1; i < ui->tabWidget->count(); ++i)
                 if (closeTab(i))
