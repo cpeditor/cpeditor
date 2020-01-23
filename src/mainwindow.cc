@@ -604,6 +604,25 @@ void MainWindow::formatSource()
 void MainWindow::setLanguage(QString lang)
 {
     log.clear();
+    if (!QFile::exists(filePath))
+    {
+        QString templateContent, templatePath;
+        if (language == "Cpp")
+            templatePath = data.templateCpp;
+        else if (language == "Java")
+            templatePath = data.templateJava;
+        else if (language == "Python")
+            templatePath = data.templatePython;
+        QFile templateFile(templatePath);
+        templateFile.open(QIODevice::ReadOnly | QIODevice::Text);
+        if (templateFile.isOpen())
+            templateContent = templateFile.readAll();
+        if (templateContent == editor->toPlainText())
+        {
+            language = lang;
+            loadFile(filePath);
+        }
+    }
     language = lang;
     if (lang == "Python")
     {
@@ -919,9 +938,14 @@ void MainWindow::loadFile(QString path)
         f.open(QIODevice::ReadOnly | QIODevice::Text);
 
         if (f.isOpen())
+        {
             path = templatePath;
+        }
         else
+        {
+            setText("");
             return;
+        }
     }
 
     QFile openFile(path);
