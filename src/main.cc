@@ -17,7 +17,7 @@
 
 #include <QApplication>
 #include <QCommandLineParser>
-#include <iostream>
+#include <QTextStream>
 
 #include "appwindow.hpp"
 #include "mainwindow.hpp"
@@ -27,6 +27,8 @@ int main(int argc, char *argv[])
     QApplication app(argc, argv);
     QCoreApplication::setApplicationName("CP Editor");
     QCoreApplication::setApplicationVersion(APP_VERSION_MAJOR "." APP_VERSION_MINOR "." APP_VERSION_PATCH);
+
+    QTextStream cerr(stderr, QIODevice::WriteOnly);
 
     QCommandLineParser parser;
     parser.addVersionOption();
@@ -60,18 +62,15 @@ CPEditor [-c/--contest] [--cpp] [--java] [--python] [--no-hot-exit] <number of p
 
         if (args.length() != 2)
         {
-            std::cerr << "CPEditor [-c/--contest] [--cpp] [--java] [--python] [--no-hot-exit] <number of problems> "
-                         "<contest directory>"
-                      << std::endl;
+            cerr << "CPEditor [-c/--contest] [--cpp] [--java] [--python] [--no-hot-exit] <number of problems> "
+                    "<contest directory>\n\n";
             return 1;
         }
 
         if (!ok || number < 0 || number > 26)
         {
-            std::cerr << "CPEditor [-c/--contest] [--cpp] [--java] [--python] [--no-hot-exit] <number of problems> "
-                         "<contest directory>"
-                      << std::endl;
-            std::cerr << "Number of problems should be an integer in 0~26." << std::endl;
+            cerr << "CPEditor [-c/--contest] [--cpp] [--java] [--python] [--no-hot-exit] <number of problems> "
+                    "<contest directory>\n\nNumber of problems should be an integer in 0~26.\n\n";
             return 1;
         }
 
@@ -86,10 +85,8 @@ CPEditor [-c/--contest] [--cpp] [--java] [--python] [--no-hot-exit] <number of p
 
         if (!ok || depth < -1)
         {
-            std::cerr
-                << "CPEditor [-d/--depth <depth>] [--cpp] [--java] [--python] [--no-hot-exit] [<path1> [<path2> [...]]]"
-                << std::endl;
-            std::cerr << "Depth should be a non-negative integer." << std::endl;
+            cerr << "CPEditor [-d/--depth <depth>] [--cpp] [--java] [--python] [--no-hot-exit] [<path1> [<path2> "
+                    "[...]]]\n\nDepth should be a non-negative integer.\n\n";
             return 1;
         }
 
