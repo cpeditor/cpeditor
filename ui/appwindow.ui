@@ -45,7 +45,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>22</height>
+     <height>35</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -55,10 +55,12 @@
     <addaction name="actionNew_Tab"/>
     <addaction name="actionOpen"/>
     <addaction name="actionOpenContest"/>
+    <addaction name="separator"/>
     <addaction name="actionSave"/>
     <addaction name="actionSave_As"/>
     <addaction name="actionSave_All"/>
     <addaction name="actionAutosave"/>
+    <addaction name="separator"/>
     <addaction name="actionClose_Current"/>
     <addaction name="actionClose_Saved"/>
     <addaction name="actionClose_All"/>
@@ -72,8 +74,9 @@
     <addaction name="actionCompile_Run"/>
     <addaction name="actionRun"/>
     <addaction name="actionRun_Detached"/>
-    <addaction name="actionFormat_code"/>
     <addaction name="actionKill_Processes"/>
+    <addaction name="separator"/>
+    <addaction name="actionFormat_code"/>
     <addaction name="actionUse_Snippets"/>
    </widget>
    <widget class="QMenu" name="menuActions">
@@ -139,17 +142,17 @@
     <string>Ctrl+Shift+S</string>
    </property>
   </action>
-   <action name="actionSave_All">
-     <property name="text">
-       <string>Save All</string>
-     </property>
-     <property name="toolTip">
-       <string>Save all opened files</string>
-     </property>
-     <property name="shortcut">
-       <string>Ctrl+Alt+Shift+S</string>
-     </property>
-   </action>
+  <action name="actionSave_All">
+   <property name="text">
+    <string>Save All</string>
+   </property>
+   <property name="toolTip">
+    <string>Save all opened files</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Alt+Shift+S</string>
+   </property>
+  </action>
   <action name="actionClose_Current">
    <property name="text">
     <string>Close Current</string>
