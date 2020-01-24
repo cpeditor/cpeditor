@@ -121,7 +121,7 @@ void MainWindow::compile()
     if (saveTemp("Compiler"))
     {
         QString command;
-        if (language == "Cpp")
+        if (language == "C++")
             command = data.compileCommandCpp;
         else if (language == "Java")
             command = data.compileCommandJava;
@@ -142,7 +142,7 @@ void MainWindow::run()
     clearTests(true);
 
     QString command, args;
-    if (language == "Cpp")
+    if (language == "C++")
     {
         args = data.runtimeArgumentsCpp;
     }
@@ -607,7 +607,7 @@ void MainWindow::setLanguage(QString lang)
     if (!QFile::exists(filePath))
     {
         QString templateContent, templatePath;
-        if (language == "Cpp")
+        if (language == "C++")
             templatePath = data.templateCpp;
         else if (language == "Java")
             templatePath = data.templateJava;
@@ -638,12 +638,12 @@ void MainWindow::setLanguage(QString lang)
     }
     else
     {
-        language = "Cpp";
-        if (lang != "Cpp")
-            log.warn("CP Editor", "Unknown lanague set, fallback to Cpp");
+        language = "C++";
+        if (lang != "C++")
+            log.warn("CP Editor", "Unknown lanague set, fallback to C++");
         editor->setHighlighter(new QCXXHighlighter);
         editor->setCompleter(nullptr);
-        ui->changeLanguageButton->setText("Cpp");
+        ui->changeLanguageButton->setText("C++");
     }
     performCoreDiagonistics();
     isLanguageSet = true;
@@ -927,7 +927,7 @@ void MainWindow::loadFile(QString path)
     {
         QString templatePath;
 
-        if (language == "Cpp")
+        if (language == "C++")
             templatePath = data.templateCpp;
         else if (language == "Java")
             templatePath = data.templateJava;
@@ -993,7 +993,7 @@ bool MainWindow::saveFile(SaveMode mode, const QString &head)
         auto suffix = QFileInfo(filePath).suffix();
         if (suffix == ".cpp" || suffix == ".hpp" || suffix == ".h" || suffix == ".cc" || suffix == ".cxx" ||
             suffix == ".c")
-            setLanguage("Cpp");
+            setLanguage("C++");
         else if (suffix == "java")
             setLanguage("Java");
         else if (suffix == "py" || suffix == "py3")
@@ -1063,7 +1063,7 @@ QString MainWindow::tmpPath()
         }
     }
     QString name;
-    if (language == "Cpp")
+    if (language == "C++")
         name = "sol.cpp";
     else if (language == "Java")
         name = "sol.java";
@@ -1084,7 +1084,7 @@ bool MainWindow::isTextChanged()
 
     QString templatePath;
 
-    if (language == "Cpp")
+    if (language == "C++")
         templatePath = data.templateCpp;
     else if (language == "Java")
         templatePath = data.templateJava;
@@ -1137,7 +1137,7 @@ void MainWindow::on_changeLanguageButton_clicked()
     bool ok = false;
     int curr = 0;
 
-    if (language == "Cpp")
+    if (language == "C++")
         curr = 0;
     else if (language == "Java")
         curr = 1;
@@ -1145,7 +1145,7 @@ void MainWindow::on_changeLanguageButton_clicked()
         curr = 2;
 
     auto response = QInputDialog::getItem(this, "Set Tab language", "Set the language to use in this Tab",
-                                          {"Cpp", "Java", "Python"}, curr, false, &ok);
+                                          {"C++", "Java", "Python"}, curr, false, &ok);
 
     if (ok)
         setLanguage(response);
@@ -1203,7 +1203,7 @@ void MainWindow::performCoreDiagonistics()
     bool compilerResult = true;
     bool runResults = true;
 
-    if (language == "Cpp")
+    if (language == "C++")
         compilerResult = Core::Compiler::check(data.compileCommandCpp);
 
     if (language == "Java")
@@ -1249,7 +1249,7 @@ void MainWindow::onCompilationFinished(const QString &warning)
         killProcesses();
 
         QString command, args;
-        if (language == "Cpp")
+        if (language == "C++")
         {
             args = data.runtimeArgumentsCpp;
         }

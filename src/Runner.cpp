@@ -133,7 +133,7 @@ QString Runner::getCommand(const QString &filePath, const QString &lang, const Q
 {
     QFileInfo fileInfo(filePath);
 
-    if (lang == "Cpp")
+    if (lang == "C++")
     {
         return "\"" + fileInfo.canonicalPath() + "/" + fileInfo.completeBaseName() + "\" " + args;
     }

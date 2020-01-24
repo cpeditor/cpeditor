@@ -281,7 +281,7 @@ void AppWindow::openTab(QString path, bool iscompanionOpenedTab)
             lang = "Python";
         else if (path.endsWith(".cpp") || path.endsWith(".cxx") || path.endsWith(".c") || path.endsWith(".cc") ||
                  path.endsWith(".hpp") || path.endsWith(".h"))
-            lang = "Cpp";
+            lang = "C++";
 
         ui->tabWidget->addTab(fsp, fsp->getFileName());
         fsp->setLanguage(lang);
@@ -319,6 +319,48 @@ void AppWindow::openTab(QString path, bool iscompanionOpenedTab)
         ui->tabWidget->setCurrentIndex(t);
     }
     currentWindow()->focusOnEditor();
+}
+
+void AppWindow::openFolder(const QString &path, bool chooseCpp, bool chooseJava, bool choosePython, int depth)
+{
+    QDir dir(path);
+    if (dir.exists())
+    {
+        auto entries = dir.entryInfoList();
+        for (auto entry : entries)
+        {
+            if (entry.isDir())
+            {
+                if (depth > 0)
+                    openFolder(entry.dir().canonicalPath(), chooseCpp, chooseJava, choosePython, depth - 1);
+                else if (depth == -1)
+                    openFolder(entry.dir().canonicalPath(), chooseCpp, chooseJava, choosePython, -1);
+            }
+            else if (chooseCpp && QStringList({"cpp", "hpp", "h", "cc", "cxx", "c"}).contains(entry.suffix()) ||
+                     chooseJava && QStringList({"java"}).contains(entry.suffix()) ||
+                     choosePython && QStringList({"py", "py3"}).contains(entry.suffix()))
+            {
+                openTab(entry.canonicalFilePath());
+            }
+        }
+    }
+}
+
+void AppWindow::openContest(const QString &path, const QString &lang, int number)
+{
+    auto language = lang.isEmpty() ? settingManager->getDefaultLang() : lang;
+
+    for (int i = 0; i < number; ++i)
+    {
+        QString name('A' + i);
+        if (language == "C++")
+            name += ".cpp";
+        else if (language == "Java")
+            name += ".java";
+        else if (language == "Python")
+            name += ".py";
+        openTab(QDir(path).filePath(name));
+    }
 }
 
 bool AppWindow::quit()
@@ -394,6 +436,31 @@ void AppWindow::on_actionOpen_triggered()
         return;
 
     openTab(fileName);
+}
+
+void AppWindow::on_actionOpenContest_triggered()
+{
+    auto path = QFileDialog::getExistingDirectory(this, "Open Contest");
+    if (QFile::exists(path) && QFileInfo(path).isDir())
+    {
+        bool ok = false;
+        int number =
+            QInputDialog::getInt(this, "Open Contest", "Number of problems in this contest:", 5, 0, 26, 1, &ok);
+        if (ok)
+        {
+            int current = 0;
+            if (settingManager->getDefaultLang() == "Java")
+                current = 1;
+            else if (settingManager->getDefaultLang() == "Python")
+                current = 2;
+            auto lang = QInputDialog::getItem(this, "Open Contest", "Choose a language", {"C++", "Java", "Python"},
+                                              current, false, &ok);
+            if (ok)
+            {
+                openContest(path, lang, number);
+            }
+        }
+    }
 }
 
 void AppWindow::on_actionSave_triggered()

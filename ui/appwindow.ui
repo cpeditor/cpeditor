@@ -54,13 +54,14 @@
     </property>
     <addaction name="actionNew_Tab"/>
     <addaction name="actionOpen"/>
+    <addaction name="actionOpenContest"/>
     <addaction name="actionSave"/>
     <addaction name="actionSave_As"/>
     <addaction name="actionSave_All"/>
+    <addaction name="actionAutosave"/>
     <addaction name="actionClose_Current"/>
     <addaction name="actionClose_Saved"/>
     <addaction name="actionClose_All"/>
-    <addaction name="actionAutosave"/>
     <addaction name="actionQuit"/>
    </widget>
    <widget class="QMenu" name="menuEditor">
@@ -203,13 +204,24 @@
   </action>
   <action name="actionOpen">
    <property name="text">
-    <string>Open</string>
+    <string>Open File</string>
    </property>
    <property name="toolTip">
-    <string>Opens a new File in a Tab</string>
+    <string>Open a File</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+O</string>
+   </property>
+  </action>
+  <action name="actionOpenContest">
+   <property name="text">
+    <string>Open Contest</string>
+   </property>
+   <property name="toolTip">
+    <string>Open a Contest</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+O</string>
    </property>
   </action>
   <action name="actionCompile">

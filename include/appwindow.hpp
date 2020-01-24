@@ -55,6 +55,8 @@ class AppWindow : public QMainWindow
 
     void on_actionOpen_triggered();
 
+    void on_actionOpenContest_triggered();
+
     void on_actionRestore_Settings_triggered();
 
     void on_actionSettings_triggered();
@@ -136,6 +138,8 @@ class AppWindow : public QMainWindow
     void maybeSetHotkeys();
     bool closeTab(int index);
     void openTab(QString path, bool isCompanionTab = false);
+    void openFolder(const QString &path, bool chooseCpp, bool chooseJava, bool choosePython, int depth = -1);
+    void openContest(const QString &path, const QString &lang, int number);
     bool quit();
 
     MainWindow *currentWindow();

@@ -26,6 +26,16 @@ SettingManager::SettingManager()
 {
     mSettingsFile = QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/" + SETTINGS_FILE;
     mSettings = new QSettings(mSettingsFile, QSettings::IniFormat);
+
+    // backwords compatibility
+
+    if (getDefaultLang() == "Cpp")
+        setDefaultLanguage("C++");
+
+    auto names = getSnippetsNames("Cpp");
+    for (auto name : names)
+        setSnippet("C++", name, getSnippet("Cpp", name));
+    mSettings->remove("snippets/Cpp");
 }
 
 bool SettingManager::isWrapText()
@@ -133,7 +143,8 @@ QString SettingManager::getRuntimeArgumentsPython()
 }
 QString SettingManager::getDefaultLang()
 {
-    return mSettings->value("lang", "Cpp").toString();
+    auto res = mSettings->value("lang", "C++").toString();
+    return res;
 }
 QString SettingManager::getTemplatePathCpp()
 {
