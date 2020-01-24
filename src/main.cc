@@ -16,17 +16,26 @@
  */
 
 #include <QApplication>
+#include <QCommandLineParser>
 
 #include "appwindow.hpp"
 #include "mainwindow.hpp"
 
 int main(int argc, char *argv[])
 {
-    QApplication a(argc, argv);
-    QStringList args = a.arguments();
+    QApplication app(argc, argv);
+    QCoreApplication::setApplicationName("CP Editor");
+    QCoreApplication::setApplicationVersion(APP_VERSION_MAJOR "." APP_VERSION_MINOR "." APP_VERSION_PATCH);
+
+    QCommandLineParser parser;
+    parser.addVersionOption();
+    parser.addHelpOption();
+    parser.process(app);
+
+    QStringList args = app.arguments();
 
     AppWindow w(args);
     w.show();
 
-    return a.exec();
+    return app.exec();
 }
