@@ -12,9 +12,10 @@
 - One click for either running on the test cases / running in the terminal.
 - Submit code on Codeforces inside the editor.
 - Set/Use code snippets conveniently.
-- Fast and memory efficient. Runs flawlessly on low-end devices.
+- Supports Hot Exit. You can close the editor and keep all tabs in the next session.
 - Code formating using clang-format. You can edit the `.clang-format` config in the editor.
-- Customizable hotkeys for actions in the editor.
+- You can set transparency of the editor.
+- Fast and memory efficient. Runs flawlessly on low-end devices.
 - Over 5 editor themes to choose from (Drakula, Monkai, Solarised, Solarised Dark and Light).
 
 <img src=https://i.imgur.com/jKOtf6W.jpg width="85%">
