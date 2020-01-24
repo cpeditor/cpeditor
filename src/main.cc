@@ -17,6 +17,7 @@
 
 #include <QApplication>
 #include <QCommandLineParser>
+#include <iostream>
 
 #include "appwindow.hpp"
 #include "mainwindow.hpp"
@@ -30,12 +31,73 @@ int main(int argc, char *argv[])
     QCommandLineParser parser;
     parser.addVersionOption();
     parser.addHelpOption();
+    parser.setApplicationDescription(R"(
+CPEditor [-d/--depth <depth>] [--cpp] [--java] [--python] [--no-hot-exit] [<path1> [<path2> [...]]]
+CPEditor [-c/--contest] [--cpp] [--java] [--python] [--no-hot-exit] <number of problems> <contest directory>)");
+    parser.addOptions(
+        {{{"d", "depth"}, "Maximum depth when opening files in directories. No limit if not specified.", "depth", "-1"},
+         {{"c", "contest"}, "Open a contest. i.e. Open files named A, B, ..., Z in a given directory."},
+         {"cpp", "Open C++ files in given directories. / Use C++ for open contests."},
+         {"java", "Open Java files in given directories. / Use Java for open contests."},
+         {"python", "Open Python files in given directories. / Use Python for open contests."},
+         {"no-hot-exit", "Do not load hot exit in this session. You won't be able to load the last session again."}});
+    parser.setOptionsAfterPositionalArgumentsMode(QCommandLineParser::ParseAsOptions);
     parser.process(app);
 
-    QStringList args = app.arguments();
+#define GETSET(x) bool x = parser.isSet(#x)
+    GETSET(cpp);
+    GETSET(java);
+    GETSET(python);
+    GETSET(contest);
+#undef GETSET
+    bool noHotExit = parser.isSet("no-hot-exit");
+    auto args = parser.positionalArguments();
 
-    AppWindow w(args);
-    w.show();
+    if (contest)
+    {
+        bool ok = false;
+        int number = args[0].toInt(&ok);
 
-    return app.exec();
+        if (args.length() != 2)
+        {
+            std::cerr << "CPEditor [-c/--contest] [--cpp] [--java] [--python] [--no-hot-exit] <number of problems> "
+                         "<contest directory>"
+                      << std::endl;
+            return 1;
+        }
+
+        if (!ok || number < 0 || number > 26)
+        {
+            std::cerr << "CPEditor [-c/--contest] [--cpp] [--java] [--python] [--no-hot-exit] <number of problems> "
+                         "<contest directory>"
+                      << std::endl;
+            std::cerr << "Number of problems should be an integer in 0~26." << std::endl;
+            return 1;
+        }
+
+        AppWindow w(cpp, java, python, noHotExit, number, args[1]);
+        w.show();
+        return app.exec();
+    }
+    else
+    {
+        bool ok = false;
+        int depth = parser.value("depth").toInt(&ok);
+
+        if (!ok || depth < -1)
+        {
+            std::cerr
+                << "CPEditor [-d/--depth <depth>] [--cpp] [--java] [--python] [--no-hot-exit] [<path1> [<path2> [...]]]"
+                << std::endl;
+            std::cerr << "Depth should be a non-negative integer." << std::endl;
+            return 1;
+        }
+
+        if (!cpp && !java && !python)
+            cpp = java = python = true;
+
+        AppWindow w(depth, cpp, java, python, noHotExit, args);
+        w.show();
+        return app.exec();
+    }
 }

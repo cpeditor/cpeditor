@@ -29,7 +29,7 @@
 #include <QTimer>
 #include <QUrl>
 
-AppWindow::AppWindow(QStringList args, QWidget *parent) : QMainWindow(parent), ui(new Ui::AppWindow)
+AppWindow::AppWindow(bool noHotExit, QWidget *parent) : QMainWindow(parent), ui(new Ui::AppWindow)
 {
     ui->setupUi(this);
     setAcceptDrops(true);
@@ -41,7 +41,10 @@ AppWindow::AppWindow(QStringList args, QWidget *parent) : QMainWindow(parent), u
 
     setWindowOpacity(settingManager->getTransparency() / 100.0);
 
-    if (settingManager->isUseHotExit())
+    applySettings();
+    onSettingsApplied();
+
+    if (!noHotExit && settingManager->isUseHotExit())
     {
         for (int i = 0; i < settingManager->getNumberOfTabs(); ++i)
         {
@@ -53,16 +56,32 @@ AppWindow::AppWindow(QStringList args, QWidget *parent) : QMainWindow(parent), u
         if (index >= 0 && index < settingManager->getNumberOfTabs())
             ui->tabWidget->setCurrentIndex(index);
     }
+}
 
-    if (args.size() > 1)
-        for (int i = 1; i < args.size(); ++i)
-            openTab(args[i]);
+AppWindow::AppWindow(int depth, bool cpp, bool java, bool python, bool noHotExit, const QStringList &paths,
+                     QWidget *parent)
+    : AppWindow(noHotExit, parent)
+{
+    for (auto path : paths)
+    {
+        if (QDir(path).exists())
+            openFolder(path, cpp, java, python, depth);
+        else
+            openTab(path);
+    }
+}
 
-    if (ui->tabWidget->count() == 0)
-        openTab("");
-
-    applySettings();
-    onSettingsApplied();
+AppWindow::AppWindow(bool cpp, bool java, bool python, bool noHotExit, int number, const QString &path, QWidget *parent)
+    : AppWindow(noHotExit, parent)
+{
+    QString lang = settingManager->getDefaultLang();
+    if (cpp)
+        lang = "C++";
+    else if (java)
+        lang = "Java";
+    else if (python)
+        lang = "Python";
+    openContest(path, lang, number);
 }
 
 AppWindow::~AppWindow()
@@ -321,33 +340,34 @@ void AppWindow::openTab(QString path, bool iscompanionOpenedTab)
     currentWindow()->focusOnEditor();
 }
 
-void AppWindow::openFolder(const QString &path, bool chooseCpp, bool chooseJava, bool choosePython, int depth)
+void AppWindow::openFolder(const QString &path, bool cpp, bool java, bool python, int depth)
 {
-    QDir dir(path);
-    if (dir.exists())
+    auto entries = QDir(path).entryInfoList(QDir::NoDotAndDotDot | QDir::AllEntries);
+    for (auto entry : entries)
     {
-        auto entries = dir.entryInfoList();
-        for (auto entry : entries)
+        if (entry.isDir())
         {
-            if (entry.isDir())
-            {
-                if (depth > 0)
-                    openFolder(entry.dir().canonicalPath(), chooseCpp, chooseJava, choosePython, depth - 1);
-                else if (depth == -1)
-                    openFolder(entry.dir().canonicalPath(), chooseCpp, chooseJava, choosePython, -1);
-            }
-            else if (chooseCpp && QStringList({"cpp", "hpp", "h", "cc", "cxx", "c"}).contains(entry.suffix()) ||
-                     chooseJava && QStringList({"java"}).contains(entry.suffix()) ||
-                     choosePython && QStringList({"py", "py3"}).contains(entry.suffix()))
-            {
-                openTab(entry.canonicalFilePath());
-            }
+            if (depth > 0)
+                openFolder(entry.canonicalFilePath(), cpp, java, python, depth - 1);
+            else if (depth == -1)
+                openFolder(entry.canonicalFilePath(), cpp, java, python, -1);
+        }
+        else if (cpp && QStringList({"cpp", "hpp", "h", "cc", "cxx", "c"}).contains(entry.suffix()) ||
+                 java && QStringList({"java"}).contains(entry.suffix()) ||
+                 python && QStringList({"py", "py3"}).contains(entry.suffix()))
+        {
+            openTab(entry.canonicalFilePath());
         }
     }
 }
 
 void AppWindow::openContest(const QString &path, const QString &lang, int number)
 {
+    QDir dir(path), parent(path);
+    parent.cdUp();
+    if (!dir.exists() && parent.exists())
+        parent.mkdir(dir.dirName());
+
     auto language = lang.isEmpty() ? settingManager->getDefaultLang() : lang;
 
     for (int i = 0; i < number; ++i)

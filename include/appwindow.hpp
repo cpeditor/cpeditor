@@ -35,7 +35,11 @@ class AppWindow : public QMainWindow
     Q_OBJECT
 
   public:
-    explicit AppWindow(QStringList args, QWidget *parent = nullptr);
+    explicit AppWindow(bool noHotExit, QWidget *parent = nullptr);
+    explicit AppWindow(int depth, bool cpp, bool java, bool python, bool noHotExit, const QStringList &paths,
+                       QWidget *parent = nullptr);
+    explicit AppWindow(bool cpp, bool java, bool python, bool noHotExit, int number, const QString &path,
+                       QWidget *parent = nullptr);
     ~AppWindow() override;
 
     void closeEvent(QCloseEvent *event) override;
@@ -138,7 +142,7 @@ class AppWindow : public QMainWindow
     void maybeSetHotkeys();
     bool closeTab(int index);
     void openTab(QString path, bool isCompanionTab = false);
-    void openFolder(const QString &path, bool chooseCpp, bool chooseJava, bool choosePython, int depth = -1);
+    void openFolder(const QString &path, bool cpp, bool java, bool python, int depth);
     void openContest(const QString &path, const QString &lang, int number);
     bool quit();
 
