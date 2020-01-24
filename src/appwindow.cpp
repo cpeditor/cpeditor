@@ -494,8 +494,12 @@ void AppWindow::on_actionClose_Current_triggered()
 void AppWindow::on_actionClose_All_triggered()
 {
     for (int t = 0; t < ui->tabWidget->count(); t++)
+    {
         if (closeTab(t))
             --t;
+        else
+            break;
+    }
 }
 
 void AppWindow::on_actionClose_Saved_triggered()
