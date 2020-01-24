@@ -37,7 +37,7 @@ CFTools::~CFTools()
 
 void CFTools::submit(const QString &filePath, const QString &url, const QString &lang)
 {
-    QRegularExpression regex(".*://codeforces.com/contest/([1-9][0-9]*)/problem/([A-Z][1-9]?)");
+    QRegularExpression regex(".*://codeforces.com/contest/([1-9][0-9]*)/problem/(0|[A-Z][1-9]?)");
     auto match = regex.match(url);
     auto problemContestId = match.captured(1);
     auto problemCode = match.captured(2);
