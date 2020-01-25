@@ -957,6 +957,20 @@ p, li { white-space: pre-wrap; }
                 <item row="0" column="1">
                  <widget class="QSpinBox" name="time_limit"/>
                 </item>
+                <item row="1" column="0">
+                 <widget class="QLabel" name="label_49">
+                  <property name="text">
+                   <string>Codeforces Tools  Path</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="1">
+                 <widget class="QPushButton" name="cfpath_button">
+                  <property name="text">
+                   <string>&lt;Not Selected&gt;</string>
+                  </property>
+                 </widget>
+                </item>
                </layout>
               </item>
               <item row="5" column="0">

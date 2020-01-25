@@ -159,6 +159,7 @@ class MainWindow : public QMainWindow
     QString problemURL;
     QString filePath;
     QString savedText;
+    QString cftoolPath;
     QFileSystemWatcher *fileWatcher;
 
     QVector<QPlainTextEdit *> input = QVector<QPlainTextEdit *>(3, nullptr);

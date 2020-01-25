@@ -16,12 +16,13 @@
  */
 
 #include "cftools.hpp"
+#include <QFileInfo>
 #include <QUrl>
 
 namespace Network
 {
 
-CFTools::CFTools(MessageLogger *logger)
+CFTools::CFTools(QString path, MessageLogger *logger) : path(path)
 {
     log = logger;
     CFToolProcess = new QProcess();
@@ -62,19 +63,45 @@ void CFTools::submit(const QString &filePath, const QString &url, const QString 
             return;
         }
     }
-
-    CFToolProcess->setProgram("cf");
+    if(path != "cf")
+    {
+        QFileInfo fileInfo(path);
+        CFToolProcess->setProgram(fileInfo.canonicalFilePath());
+    }
+    else
+    {
+        CFToolProcess->setProgram("cf");
+    }
     CFToolProcess->setArguments({"submit", problemContestId, problemCode, filePath});
     connect(CFToolProcess, SIGNAL(readyReadStandardOutput()), this, SLOT(onReadReady()));
     CFToolProcess->start();
 }
 
-bool CFTools::check()
+bool CFTools::check(QString path)
 {
     QProcess checkProcess;
-    checkProcess.start("cf --version");
+
+    if(path != "cf")
+    {
+        QFileInfo pathInfo(path);
+        checkProcess.setProgram(pathInfo.canonicalFilePath());
+        checkProcess.setArguments({"--version"});
+        checkProcess.start();
+    }
+    else
+    {
+        checkProcess.start("cf", {"--version"});
+    }
+
     bool finished = checkProcess.waitForFinished(2000);
     return finished && checkProcess.exitCode() == 0;
+
+
+}
+
+void CFTools::updatePath(QString p)
+{
+    path = p;
 }
 
 void CFTools::onReadReady()

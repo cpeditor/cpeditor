@@ -29,17 +29,19 @@ class CFTools : public QObject
     Q_OBJECT
 
   public:
-    CFTools(MessageLogger *logger);
+    CFTools(QString path, MessageLogger *logger);
     ~CFTools();
     void submit(const QString &filePath, const QString &url, const QString &lang);
-    static bool check();
+    static bool check(QString path);
 
-  private slots:
+    void updatePath(QString p);
+private slots:
     void onReadReady();
 
   private:
     QProcess *CFToolProcess = nullptr;
     MessageLogger *log;
+    QString path;
 };
 } // namespace Network
 

@@ -89,6 +89,8 @@ struct SettingsData
 
     ViewMode viewMode;
     QByteArray splitterSizes;
+
+    QString cfPath;
 };
 
 class SettingManager
@@ -213,6 +215,9 @@ class SettingManager
 
     int getTransparency();
     void setTransparency(int val);
+
+    QString getCFPath();
+    void setCFPath(QString path);
 
     void resetSettings();
 
