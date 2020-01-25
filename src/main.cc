@@ -57,14 +57,20 @@ CPEditor [-c/--contest] [--cpp] [--java] [--python] [--no-hot-exit] <number of p
 
     if (contest)
     {
-        bool ok = false;
-        int number = args[0].toInt(&ok);
-
         if (args.length() != 2)
         {
             cerr << "CPEditor [-c/--contest] [--cpp] [--java] [--python] [--no-hot-exit] <number of problems> "
                     "<contest directory>\n\n";
             return 1;
+        }
+
+        bool ok = false;
+        int number = args[0].toInt(&ok);
+
+        if (!ok || number < 0 || number > 26)
+        {
+            swap(args[0], args[1]);
+            number = args[0].toInt(&ok);
         }
 
         if (!ok || number < 0 || number > 26)
