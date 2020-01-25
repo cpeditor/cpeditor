@@ -70,7 +70,7 @@ void CFTools::submit(const QString &filePath, const QString &url, const QString 
         }
     }
 
-    CFToolProcess->setProgram(cftool_prefix + "cf");
+    CFToolProcess->setProgram((cftool_prefix + "cf").c_str());
     CFToolProcess->setArguments({"submit", problemContestId, problemCode, filePath});
     connect(CFToolProcess, SIGNAL(readyReadStandardOutput()), this, SLOT(onReadReady()));
     CFToolProcess->start();
@@ -79,7 +79,7 @@ void CFTools::submit(const QString &filePath, const QString &url, const QString 
 bool CFTools::check()
 {
     QProcess checkProcess;
-    checkProcess.start(cftool_prefix + "cf --version");
+    checkProcess.start((cftool_prefix + "cf --version").c_str());
     bool finished = checkProcess.waitForFinished(2000);
     return finished && checkProcess.exitCode() == 0;
 }
