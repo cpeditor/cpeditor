@@ -450,12 +450,10 @@ void AppWindow::on_actionNew_Tab_triggered()
 
 void AppWindow::on_actionOpen_triggered()
 {
-    auto fileName = QFileDialog::getOpenFileName(this, tr("Open File"), "",
-                                                 "Source Files (*.cpp *.hpp *.h *.cc *.cxx *.c *.py *.py3 *.java)");
-    if (fileName.isEmpty())
-        return;
-
-    openTab(fileName);
+    auto fileNames = QFileDialog::getOpenFileNames(this, tr("Open Files"), "",
+                                                   "Source Files (*.cpp *.hpp *.h *.cc *.cxx *.c *.py *.py3 *.java)");
+    for (auto fileName : fileNames)
+        openTab(fileName);
 }
 
 void AppWindow::on_actionOpenContest_triggered()
