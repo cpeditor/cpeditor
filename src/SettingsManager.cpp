@@ -465,6 +465,16 @@ void SettingManager::setTransparency(int val)
     mSettings->setValue("transparency", val);
 }
 
+QString SettingManager::getCFPath()
+{
+    return mSettings->value("cf_path", "cf").toString();
+}
+
+void SettingManager::setCFPath(QString path)
+{
+    mSettings->setValue("cf_path", path);
+}
+
 void SettingManager::setHotkeyViewModeToggler(QKeySequence sequence)
 {
     mSettings->setValue("hotkey_mode_toggle", sequence.toString());
@@ -576,6 +586,7 @@ SettingsData SettingManager::toData()
     data.hotkeySnippets = getHotkeySnippets();
     data.viewMode = getViewMode();
     data.splitterSizes = getSplitterSizes();
+    data.cfPath = getCFPath();
 
     return data;
 }

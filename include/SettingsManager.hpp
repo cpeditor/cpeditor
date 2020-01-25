@@ -89,6 +89,8 @@ struct SettingsData
 
     ViewMode viewMode;
     QByteArray splitterSizes;
+
+    QString cfPath;
 };
 
 class SettingManager
@@ -224,6 +226,9 @@ class SettingManager
     void clearEditorStatus();
     QMap<QString, QVariant> getEditorStatus(int index);
     void setEditorStatus(int index, const QMap<QString, QVariant> &status);
+
+    QString getCFPath();
+    void setCFPath(QString path);
 
     void resetSettings();
 

@@ -280,7 +280,7 @@ void MainWindow::setCFToolsUI()
     if (submitToCodeforces == nullptr)
     {
         submitToCodeforces = new QPushButton("Submit Solution", this);
-        cftools = new Network::CFTools(&log);
+        cftools = new Network::CFTools(cftoolPath, &log);
         ui->horizontalLayout_9->addWidget(submitToCodeforces);
         connect(submitToCodeforces, &QPushButton::clicked, this, [this] {
             auto response = QMessageBox::warning(
@@ -296,12 +296,13 @@ void MainWindow::setCFToolsUI()
             }
         });
     }
-    if (!Network::CFTools::check())
+    if (!Network::CFTools::check(cftoolPath))
     {
         submitToCodeforces->setEnabled(false);
         log.error("CFTools", "You will not be able to submit code to Codeforces because CFTools is not installed or is "
-                             "not on SYSTEM PATH");
+                             "not on SYSTEM PATH. You can set it manually in settings.");
     }
+
 }
 
 int MainWindow::getUntitledIndex() const
@@ -501,6 +502,15 @@ void MainWindow::setSettingsData(const Settings::SettingsData &data, bool should
     this->data = data;
     formatter->updateBinary(data.clangFormatBinary);
     formatter->updateStyle(data.clangFormatStyle);
+
+    cftoolPath = data.cfPath;
+
+    if(cftools != nullptr && Network::CFTools::check(cftoolPath))
+    {
+        cftools->updatePath(cftoolPath);
+        if(submitToCodeforces != nullptr)
+            submitToCodeforces->setEnabled(true);
+    }
 
     editor->setTabReplace(data.isTabsReplaced);
     editor->setTabReplaceSize(data.tabStop);
