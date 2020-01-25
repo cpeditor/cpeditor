@@ -19,7 +19,7 @@
 #include <QUrl>
 #include <string>
 
-#ifdef CFTOOL_ON_MAC
+#ifdef __APPLE__
 const std::string cftool_prefix = "/usr/local/bin/";
 #else
 const std::string cftool_prefix = "";
