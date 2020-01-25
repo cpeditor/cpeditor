@@ -75,8 +75,7 @@ MainWindow::~MainWindow()
 void MainWindow::setEditor()
 {
     editor = new QCodeEditor();
-    editor->setMinimumWidth(600);
-    editor->setMinimumHeight(300);
+    editor->setSizePolicy(QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Expanding);
     editor->setAcceptDrops(false);
 
     ui->verticalLayout_8->addWidget(editor);
@@ -446,15 +445,15 @@ void MainWindow::updateVerdict(Verdict _verdict, int id)
     switch (_verdict)
     {
     case ACCEPTED:
-        verdict_text = "Verdict : AC";
+        verdict_text = "AC";
         style_sheet = "QLabel { color : rgb(0, 180, 0); }";
         break;
     case WRONG_ANSWER:
-        verdict_text = "Verdict : WA";
+        verdict_text = "WA";
         style_sheet = "QLabel { color : rgb(255, 0, 0); }";
         break;
     case UNKNOWN:
-        verdict_text = "Verdict : **";
+        verdict_text = "**";
         style_sheet = "";
         break;
     }
