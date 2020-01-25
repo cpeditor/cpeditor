@@ -30,12 +30,15 @@ int main(int argc, char *argv[])
 
     QTextStream cerr(stderr, QIODevice::WriteOnly);
 
+    QString programName(argv[0]);
+
     QCommandLineParser parser;
     parser.addVersionOption();
     parser.addHelpOption();
-    parser.setApplicationDescription(R"(
-CPEditor [-d/--depth <depth>] [--cpp] [--java] [--python] [--no-hot-exit] [<path1> [<path2> [...]]]
-CPEditor [-c/--contest] [--cpp] [--java] [--python] [--no-hot-exit] <number of problems> <contest directory>)");
+    parser.setApplicationDescription(
+        programName + " [-d/--depth <depth>] [--cpp] [--java] [--python] [--no-hot-exit] [<path1> [<path2> [...]]]\n" +
+        programName +
+        " [-c/--contest] [--cpp] [--java] [--python] [--no-hot-exit] <number of problems> <contest directory>");
     parser.addOptions(
         {{{"d", "depth"}, "Maximum depth when opening files in directories. No limit if not specified.", "depth", "-1"},
          {{"c", "contest"}, "Open a contest. i.e. Open files named A, B, ..., Z in a given directory."},
@@ -44,6 +47,7 @@ CPEditor [-c/--contest] [--cpp] [--java] [--python] [--no-hot-exit] <number of p
          {"python", "Open Python files in given directories. / Use Python for open contests."},
          {"no-hot-exit", "Do not load hot exit in this session. You won't be able to load the last session again."}});
     parser.setOptionsAfterPositionalArgumentsMode(QCommandLineParser::ParseAsOptions);
+    parser.setSingleDashWordOptionMode(QCommandLineParser::ParseAsLongOptions);
     parser.process(app);
 
 #define GETSET(x) bool x = parser.isSet(#x)
@@ -59,8 +63,8 @@ CPEditor [-c/--contest] [--cpp] [--java] [--python] [--no-hot-exit] <number of p
     {
         if (args.length() != 2)
         {
-            cerr << "CPEditor [-c/--contest] [--cpp] [--java] [--python] [--no-hot-exit] <number of problems> "
-                    "<contest directory>\n\n";
+            cerr << "Invalid Arguments\n\n"
+                 << "See " + programName + " --help for more infomation.\n\n";
             return 1;
         }
 
@@ -75,8 +79,8 @@ CPEditor [-c/--contest] [--cpp] [--java] [--python] [--no-hot-exit] <number of p
 
         if (!ok || number < 0 || number > 26)
         {
-            cerr << "CPEditor [-c/--contest] [--cpp] [--java] [--python] [--no-hot-exit] <number of problems> "
-                    "<contest directory>\n\nNumber of problems should be an integer in 0~26.\n\n";
+            cerr << "Number of problems should be an integer in 0~26.\n\n"
+                 << "See " + programName + " --help for more infomation.\n\n";
             return 1;
         }
 
@@ -91,8 +95,8 @@ CPEditor [-c/--contest] [--cpp] [--java] [--python] [--no-hot-exit] <number of p
 
         if (!ok || depth < -1)
         {
-            cerr << "CPEditor [-d/--depth <depth>] [--cpp] [--java] [--python] [--no-hot-exit] [<path1> [<path2> "
-                    "[...]]]\n\nDepth should be a non-negative integer.\n\n";
+            cerr << "Depth should be a non-negative integer.\n\n"
+                 << "See " + programName + " --help for more infomation.\n\n";
             return 1;
         }
 
