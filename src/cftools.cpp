@@ -37,12 +37,31 @@ CFTools::~CFTools()
 
 void CFTools::submit(const QString &filePath, const QString &url, const QString &lang)
 {
-    QRegularExpression regex(".*://codeforces.com/contest/([1-9][0-9]*)/problem/(0|[A-Z][1-9]?)");
-    auto match = regex.match(url);
-    auto problemContestId = match.captured(1);
-    auto problemCode = match.captured(2);
-    if (problemCode == "0")
-        problemCode = "A";
+    QString problemContestId, problemCode;
+    QRegularExpression regexContest(".*://codeforces.com/contest/([1-9][0-9]*)/problem/(0|[A-Z][1-9]?)");
+    auto matchContest = regexContest.match(url);
+    if (matchContest.hasMatch())
+    {
+        problemContestId = matchContest.captured(1);
+        problemCode = matchContest.captured(2);
+        if (problemCode == "0")
+            problemCode = "A";
+    }
+    else
+    {
+        QRegularExpression regexProblemSet(".*://codeforces.com/problemset/problem/([1-9][0-9]*)/([A-Z][1-9]?)");
+        auto matchProblemSet = regexProblemSet.match(url);
+        if (matchProblemSet.hasMatch())
+        {
+            problemContestId = matchProblemSet.captured(1);
+            problemCode = matchProblemSet.captured(2);
+        }
+        else
+        {
+            log->error("CF Tool", "Failed to parse the problem URL " + url);
+            return;
+        }
+    }
 
     CFToolProcess->setProgram("cf");
     CFToolProcess->setArguments({"submit", problemContestId, problemCode, filePath});
