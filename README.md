@@ -64,9 +64,9 @@ You can also set hotkeys for some actions manually in `Preferences`. However the
 	git submodule update
 	```
 
-2. Install Qt (5.12 or higher) and CMake.
+2. Install Qt (5.12 or higher) and CMake. On Mac, run `brew install qt5`.
 
-3. Set environment variable `CMAKE_PREFIX_PATH=%QtPath%/%QtVersion%/%Compiler%/lib/cmake`. (Only necessary in some systems)
+3. Set environment variable `CMAKE_PREFIX_PATH=%QtPath%/%QtVersion%/%Compiler%/lib/cmake` if necessary (i.e. cmake can't find the Qt installation path.) On Mac, run `export CMAKE_PREFIX_PATH="/usr/local/Cellar/qt/5.13.0"`.
 
 4. Run the following commands:
 	
