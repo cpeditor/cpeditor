@@ -69,6 +69,8 @@ AppWindow::AppWindow(int depth, bool cpp, bool java, bool python, bool noHotExit
         else
             openTab(path);
     }
+    if (ui->tabWidget->count() == 0)
+        openTab("");
 }
 
 AppWindow::AppWindow(bool cpp, bool java, bool python, bool noHotExit, int number, const QString &path, QWidget *parent)
@@ -82,6 +84,8 @@ AppWindow::AppWindow(bool cpp, bool java, bool python, bool noHotExit, int numbe
     else if (python)
         lang = "Python";
     openContest(path, lang, number);
+    if (ui->tabWidget->count() == 0)
+        openTab("");
 }
 
 AppWindow::~AppWindow()
@@ -388,11 +392,19 @@ bool AppWindow::quit()
     settingManager->clearEditorStatus();
     if (settingManager->isUseHotExit())
     {
-        settingManager->setNumberOfTabs(ui->tabWidget->count());
-        settingManager->setCurrentIndex(ui->tabWidget->currentIndex());
-        for (int i = 0; i < ui->tabWidget->count(); ++i)
+        if (ui->tabWidget->count() == 1 && windowIndex(0)->isUntitled() && !windowIndex(0)->isTextChanged())
         {
-            settingManager->setEditorStatus(i, windowIndex(i)->toStatus().toMap());
+            settingManager->setNumberOfTabs(0);
+            settingManager->setCurrentIndex(-1);
+        }
+        else
+        {
+            settingManager->setNumberOfTabs(ui->tabWidget->count());
+            settingManager->setCurrentIndex(ui->tabWidget->currentIndex());
+            for (int i = 0; i < ui->tabWidget->count(); ++i)
+            {
+                settingManager->setEditorStatus(i, windowIndex(i)->toStatus().toMap());
+            }
         }
         return true;
     }
