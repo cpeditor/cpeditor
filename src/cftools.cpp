@@ -17,6 +17,13 @@
 
 #include "cftools.hpp"
 #include <QUrl>
+#include <string>
+
+#ifdef CFTOOL_ON_MAC
+const std::string cftool_prefix = "/usr/local/bin/";
+#else
+const std::string cftool_prefix = "";
+#endif
 
 namespace Network
 {
@@ -63,7 +70,7 @@ void CFTools::submit(const QString &filePath, const QString &url, const QString 
         }
     }
 
-    CFToolProcess->setProgram("/usr/local/bin/cf");
+    CFToolProcess->setProgram(cftool_prefix + "cf");
     CFToolProcess->setArguments({"submit", problemContestId, problemCode, filePath});
     connect(CFToolProcess, SIGNAL(readyReadStandardOutput()), this, SLOT(onReadReady()));
     CFToolProcess->start();
@@ -72,7 +79,7 @@ void CFTools::submit(const QString &filePath, const QString &url, const QString 
 bool CFTools::check()
 {
     QProcess checkProcess;
-    checkProcess.start("/usr/local/bin/cf --version");
+    checkProcess.start(cftool_prefix + "cf --version");
     bool finished = checkProcess.waitForFinished(2000);
     return finished && checkProcess.exitCode() == 0;
 }
