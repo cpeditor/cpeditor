@@ -85,7 +85,6 @@ jobs:
       
 
       dir $(Build.BinariesDirectory)\Qt
-  # dir $(Build.BinariesDirectory)\Qt\5.14.0\msvc2017\lib\cmake
       
       mkdir build
       cd build
