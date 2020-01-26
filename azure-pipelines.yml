@@ -12,6 +12,8 @@ trigger:
 jobs:
 - job:
   displayName: 'Linux'
+  variables:
+    currentTag: `git describe --tags`
   pool:
     vmImage: 'Ubuntu-16.04'
 
@@ -48,6 +50,7 @@ jobs:
       gitHubConnection: github.com_coder3101
       repositoryName: '$(Build.Repository.Name)'
       action: 'edit'
+      tag: $(currentTag)
       target: '$(Build.SourceVersion)'
       title: 'CP Editor'
       isPreRelease: endsWith(variables['Build.SourceBranch'], 'dev'))
@@ -57,6 +60,8 @@ jobs:
 
 - job:
   displayName: 'Windows'
+  variables:
+    currentTag: `git describe --tags`
   pool:
     vmImage: 'vs2017-win2016'
   steps:
@@ -102,7 +107,7 @@ jobs:
 
   - script: |
       cd $(Build.SourcesDirectory)
-      iscc .ci\win\win-setup.iss -DMyAppVersion=`git describe --tags` -DMyProjectRoot=$(Build.SourcesDirectory) -DMyRootOut=$(Build.SourcesDirectory)\build\Release\out
+      iscc .ci\win\win-setup.iss -DMyAppVersion=$(currentTag) -DMyProjectRoot=$(Build.SourcesDirectory) -DMyRootOut=$(Build.SourcesDirectory)\build\Release\out
       dir . 
     displayName: 'Inno setup compile'
 
@@ -113,6 +118,7 @@ jobs:
       action: 'edit'
       target: '$(Build.SourceVersion)'
       title: 'CP Editor'
+      tag: `git describe --tags`
       isPreRelease: endsWith(variables['Build.SourceBranch'], 'dev'))
       assets: $(Build.SourcesDirectory)/*.exe
       changeLogCompareToRelease: 'lastFullRelease'
