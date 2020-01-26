@@ -84,7 +84,7 @@ jobs:
       set CMAKE_PREFIX_PATH $(Build.BinariesDirectory)\Qt\5.14.0\msvc2017_64\lib\cmake
       
 
-      dir $(Build.BinariesDirectory)\Qt\5.14.0\
+      dir $(Build.BinariesDirectory)\Qt\5.14.0\msvc2017_64
       
       mkdir build
       cd build
