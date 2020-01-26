@@ -82,6 +82,11 @@ jobs:
       cd $(Build.SourcesDirectory)
       call "C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\Enterprise\\VC\\Auxiliary\\Build\\vcvars64.bat"
       set CMAKE_PREFIX_PATH $(Build.BinariesDirectory)\Qt\5.14.0\msvc2017\lib\cmake
+      
+      echo %CMAKE_PREFIX_PATH%
+      dir $(Build.BinariesDirectory)
+      dir $(Build.BinariesDirectory)\Qt\5.14.0\msvc2017\lib\cmake
+      
       mkdir build
       cd build
       cmake .. -DCMAKE_BUILD_TYPE=Release
