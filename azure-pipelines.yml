@@ -112,7 +112,7 @@ jobs:
 
   - script: |
       cd $(Build.SourcesDirectory)
-      iscc .ci\win\win-setup.iss -DMyAppVersion=$(CI_BUILD_TAG) -DMyProjectRoot=$(Build.SourcesDirectory) -DMyRootOut=$(Build.SourcesDirectory)\build\Release\out
+      iscc .ci\win\win-setup.iss -DMyAppVersion=$(CI_BUILD_TAG) -DMyProjectRoot=$(Build.SourcesDirectory) -DMyOutRoot=$(Build.SourcesDirectory)\build\Release\out
       dir . 
     displayName: 'Inno setup compile'
 
