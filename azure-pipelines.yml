@@ -106,15 +106,15 @@ jobs:
       dir . 
     displayName: 'Inno setup compile'
 
-    - task: GitHubRelease@1
-      inputs:
-        gitHubConnection: github.com_coder3101
-        repositoryName: '$(Build.Repository.Name)'
-        action: 'edit'
-        target: '$(Build.SourceVersion)'
-        title: 'CP Editor'
-        isPreRelease: endsWith(variables['Build.SourceBranch'], 'dev'))
-        assets: $(Build.SourcesDirectory)/*.exe
-        changeLogCompareToRelease: 'lastFullRelease'
-        changeLogType: 'commitBased'
+  - task: GitHubRelease@1
+    inputs:
+      gitHubConnection: github.com_coder3101
+      repositoryName: '$(Build.Repository.Name)'
+      action: 'edit'
+      target: '$(Build.SourceVersion)'
+      title: 'CP Editor'
+      isPreRelease: endsWith(variables['Build.SourceBranch'], 'dev'))
+      assets: $(Build.SourcesDirectory)/*.exe
+      changeLogCompareToRelease: 'lastFullRelease'
+      changeLogType: 'commitBased'
 
