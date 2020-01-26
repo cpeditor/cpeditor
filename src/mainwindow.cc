@@ -899,21 +899,12 @@ bool MainWindow::isVerdictPass(QString output, QString expected)
 
 void MainWindow::setText(const QString &text, bool saveCursor)
 {
-    if (saveCursor)
-    {
-        auto cursor = editor->textCursor();
-        int old_pos = cursor.position();
-        cursor.select(QTextCursor::Document);
-        cursor.insertText(text);
-        cursor.setPosition(old_pos);
-        editor->setTextCursor(cursor);
-    }
-    else
-    {
-        auto cursor = editor->textCursor();
-        cursor.select(QTextCursor::Document);
-        cursor.insertText(text);
-    }
+    auto cursor = editor->textCursor();
+    int old_pos = saveCursor ? cursor.position() : 0;
+    cursor.select(QTextCursor::Document);
+    cursor.insertText(text);
+    cursor.setPosition(old_pos);
+    editor->setTextCursor(cursor);
 }
 
 void MainWindow::updateWatcher()
