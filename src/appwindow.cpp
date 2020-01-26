@@ -609,6 +609,7 @@ void AppWindow::on_actionSettings_triggered()
 
 void AppWindow::onReceivedMessage(quint32 instanceId, QByteArray message)
 {
+    message = message.mid(message.indexOf("NOLOSTDATA") + 10);
     auto json = QJsonDocument::fromBinaryData(message);
     FROMJSON(cpp).toBool();
     FROMJSON(java).toBool();

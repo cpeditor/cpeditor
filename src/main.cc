@@ -103,7 +103,7 @@ int main(int argc, char *argv[])
             TOJSON(python);
             TOJSON(number);
             TOJSON(path);
-            if (app.sendMessage(QJsonDocument(json).toBinaryData()))
+            if (app.sendMessage("AAAAAAAAAAAAAAAAAAAANOLOSTDATA" + QJsonDocument(json).toBinaryData()))
                 return 0;
         }
 
@@ -137,7 +137,7 @@ int main(int argc, char *argv[])
             TOJSON(java);
             TOJSON(python);
             json["paths"] = QJsonArray::fromStringList(args);
-            if (app.sendMessage(QJsonDocument(json).toBinaryData()))
+            if (app.sendMessage("AAAAAAAAAAAAAAAAAAAANOLOSTDATA" + QJsonDocument(json).toBinaryData()))
                 return 0;
         }
 
