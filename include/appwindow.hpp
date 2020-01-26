@@ -84,8 +84,6 @@ class AppWindow : public QMainWindow
 
     void onEditorChanged();
 
-    void applyEditorChanged();
-
     void onTabCloseRequested(int);
 
     void onTabChanged(int);
@@ -134,7 +132,6 @@ class AppWindow : public QMainWindow
     Telemetry::UpdateNotifier *updater = nullptr;
     PreferenceWindow *preferenceWindow = nullptr;
     Network::CompanionServer *server;
-    QTimer *editorChangeApply = nullptr;
 
     void setConnections();
     void allocate();
@@ -145,7 +142,9 @@ class AppWindow : public QMainWindow
     void maybeSetHotkeys();
     bool closeTab(int index);
     void openTab(QString path, bool isCompanionTab = false);
-    void openFolder(const QString &path, bool cpp = true, bool java = true, bool python = true, int depth = -1);
+    void openTabs(const QStringList &paths);
+    void openPaths(const QStringList &paths, bool cpp = true, bool java = true, bool python = true, int depth = -1);
+    QStringList openFolder(const QString &path, bool cpp, bool java, bool python, int depth);
     void openContest(const QString &path, const QString &lang, int number);
     bool quit();
 

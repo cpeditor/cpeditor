@@ -27,6 +27,7 @@
 #include <QMessageBox>
 #include <QMetaMethod>
 #include <QMimeData>
+#include <QProgressDialog>
 #include <QTimer>
 #include <QUrl>
 
@@ -47,14 +48,27 @@ AppWindow::AppWindow(bool noHotExit, QWidget *parent) : QMainWindow(parent), ui(
 
     if (!noHotExit && settingManager->isUseHotExit())
     {
-        for (int i = 0; i < settingManager->getNumberOfTabs(); ++i)
+        int length = settingManager->getNumberOfTabs();
+
+        QProgressDialog progress(this);
+        progress.setWindowModality(Qt::WindowModal);
+        progress.setLabelText("Restoring Last Session...");
+        progress.setMaximum(length);
+        progress.setValue(0);
+
+        for (int i = 0; i < length; ++i)
         {
+            if (progress.wasCanceled())
+                break;
+            progress.setValue(i);
             openTab("");
             currentWindow()->loadStatus(MainWindow::EditorStatus(settingManager->getEditorStatus(i)));
         }
 
+        progress.setValue(length);
+
         int index = settingManager->getCurrentIndex();
-        if (index >= 0 && index < settingManager->getNumberOfTabs())
+        if (index >= 0 && index < ui->tabWidget->count())
             ui->tabWidget->setCurrentIndex(index);
     }
 }
@@ -63,13 +77,7 @@ AppWindow::AppWindow(int depth, bool cpp, bool java, bool python, bool noHotExit
                      QWidget *parent)
     : AppWindow(noHotExit, parent)
 {
-    for (auto path : paths)
-    {
-        if (QDir(path).exists())
-            openFolder(path, cpp, java, python, depth);
-        else
-            openTab(path);
-    }
+    openPaths(paths, cpp, java, python, depth);
     if (ui->tabWidget->count() == 0)
         openTab("");
 }
@@ -122,14 +130,10 @@ void AppWindow::dragEnterEvent(QDragEnterEvent *event)
 void AppWindow::dropEvent(QDropEvent *event)
 {
     auto urls = event->mimeData()->urls();
-    for (auto e : urls)
-    {
-        auto path = e.toLocalFile();
-        if (QDir(path).exists())
-            openFolder(path);
-        else
-            openTab(path);
-    }
+    QStringList paths;
+    for (auto &e : urls)
+        paths.append(e.toLocalFile());
+    openPaths(paths);
 }
 
 /******************** PRIVATE METHODS ********************/
@@ -141,7 +145,6 @@ void AppWindow::setConnections()
     connect(ui->tabWidget->tabBar(), SIGNAL(customContextMenuRequested(const QPoint &)), this,
             SLOT(onTabContextMenuRequested(const QPoint &)));
     connect(timer, SIGNAL(timeout()), this, SLOT(onSaveTimerElapsed()));
-    connect(editorChangeApply, SIGNAL(timeout()), this, SLOT(applyEditorChanged()));
 
     connect(preferenceWindow, SIGNAL(settingsApplied()), this, SLOT(onSettingsApplied()));
 
@@ -157,11 +160,9 @@ void AppWindow::allocate()
     updater = new Telemetry::UpdateNotifier(settingManager->isBeta());
     preferenceWindow = new PreferenceWindow(settingManager, this);
     server = new Network::CompanionServer(settingManager->getConnectionPort());
-    editorChangeApply = new QTimer();
 
     timer->setInterval(3000);
     timer->setSingleShot(false);
-    editorChangeApply->setSingleShot(true);
 }
 
 void AppWindow::applySettings()
@@ -348,25 +349,61 @@ void AppWindow::openTab(QString path, bool iscompanionOpenedTab)
     currentWindow()->focusOnEditor();
 }
 
-void AppWindow::openFolder(const QString &path, bool cpp, bool java, bool python, int depth)
+void AppWindow::openTabs(const QStringList &paths)
+{
+    int length = paths.length();
+
+    QProgressDialog progress(this);
+    progress.setWindowModality(Qt::WindowModal);
+    progress.setLabelText("Opening Files...");
+    progress.setMaximum(length);
+    progress.setValue(0);
+
+    for (int i = 0; i < length; ++i)
+    {
+        if (progress.wasCanceled())
+            break;
+        progress.setValue(i);
+        openTab(paths[i]);
+    }
+
+    progress.setValue(length);
+}
+
+void AppWindow::openPaths(const QStringList &paths, bool cpp, bool java, bool python, int depth)
+{
+    QStringList res;
+    for (auto &path : paths)
+    {
+        if (QDir(path).exists())
+            res.append(openFolder(path, cpp, java, python, depth));
+        else
+            res.append(path);
+    }
+    openTabs(res);
+}
+
+QStringList AppWindow::openFolder(const QString &path, bool cpp, bool java, bool python, int depth)
 {
     auto entries = QDir(path).entryInfoList(QDir::NoDotAndDotDot | QDir::AllEntries);
-    for (auto entry : entries)
+    QStringList res;
+    for (auto &entry : entries)
     {
         if (entry.isDir())
         {
             if (depth > 0)
-                openFolder(entry.canonicalFilePath(), cpp, java, python, depth - 1);
+                res.append(openFolder(entry.canonicalFilePath(), cpp, java, python, depth - 1));
             else if (depth == -1)
-                openFolder(entry.canonicalFilePath(), cpp, java, python, -1);
+                res.append(openFolder(entry.canonicalFilePath(), cpp, java, python, -1));
         }
         else if (cpp && QStringList({"cpp", "hpp", "h", "cc", "cxx", "c"}).contains(entry.suffix()) ||
                  java && QStringList({"java"}).contains(entry.suffix()) ||
                  python && QStringList({"py", "py3"}).contains(entry.suffix()))
         {
-            openTab(entry.canonicalFilePath());
+            res.append(entry.canonicalFilePath());
         }
     }
+    return res;
 }
 
 void AppWindow::openContest(const QString &path, const QString &lang, int number)
@@ -378,6 +415,8 @@ void AppWindow::openContest(const QString &path, const QString &lang, int number
 
     auto language = lang.isEmpty() ? settingManager->getDefaultLang() : lang;
 
+    QStringList tabs;
+
     for (int i = 0; i < number; ++i)
     {
         QString name('A' + i);
@@ -387,8 +426,10 @@ void AppWindow::openContest(const QString &path, const QString &lang, int number
             name += ".java";
         else if (language == "Python")
             name += ".py";
-        openTab(QDir(path).filePath(name));
+        tabs.append(QDir(path).filePath(name));
     }
+
+    openTabs(tabs);
 }
 
 bool AppWindow::quit()
@@ -468,8 +509,7 @@ void AppWindow::on_actionOpen_triggered()
 {
     auto fileNames = QFileDialog::getOpenFileNames(this, tr("Open Files"), "",
                                                    "Source Files (*.cpp *.hpp *.h *.cc *.cxx *.c *.py *.py3 *.java)");
-    for (auto fileName : fileNames)
-        openTab(fileName);
+    openTabs(fileNames);
 }
 
 void AppWindow::on_actionOpenContest_triggered()
@@ -578,13 +618,7 @@ void AppWindow::onReceivedMessage(quint32 instanceId, QByteArray message)
     {
         FROMJSON(depth).toInt();
         FROMJSON(paths).toVariant().toStringList();
-        for (auto path : paths)
-        {
-            if (QDir(path).exists())
-                openFolder(path, cpp, java, python, depth);
-            else
-                openTab(path);
-        }
+        openPaths(paths);
     }
     else if (json["type"] == "contest")
     {
@@ -645,11 +679,6 @@ void AppWindow::onTabChanged(int index)
 }
 
 void AppWindow::onEditorChanged()
-{
-    editorChangeApply->start(10);
-}
-
-void AppWindow::applyEditorChanged()
 {
     if (currentWindow() != nullptr)
     {
