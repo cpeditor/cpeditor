@@ -52,20 +52,26 @@ AppWindow::AppWindow(bool noHotExit, QWidget *parent) : QMainWindow(parent), ui(
 
         QProgressDialog progress(this);
         progress.setWindowModality(Qt::WindowModal);
-        progress.setLabelText("Restoring Last Session...");
+        progress.setWindowTitle("Restoring Last Session");
         progress.setMaximum(length);
         progress.setValue(0);
+
+        setUpdatesEnabled(false);
 
         for (int i = 0; i < length; ++i)
         {
             if (progress.wasCanceled())
                 break;
+            auto status = MainWindow::EditorStatus(settingManager->getEditorStatus(i));
             progress.setValue(i);
             openTab("");
-            currentWindow()->loadStatus(MainWindow::EditorStatus(settingManager->getEditorStatus(i)));
+            currentWindow()->loadStatus(status);
+            progress.setLabelText(currentWindow()->getTabTitle(true, false));
         }
 
         progress.setValue(length);
+
+        setUpdatesEnabled(true);
 
         int index = settingManager->getCurrentIndex();
         if (index >= 0 && index < ui->tabWidget->count())
@@ -355,9 +361,11 @@ void AppWindow::openTabs(const QStringList &paths)
 
     QProgressDialog progress(this);
     progress.setWindowModality(Qt::WindowModal);
-    progress.setLabelText("Opening Files...");
+    progress.setWindowTitle("Opening Files");
     progress.setMaximum(length);
     progress.setValue(0);
+
+    setUpdatesEnabled(false);
 
     for (int i = 0; i < length; ++i)
     {
@@ -365,7 +373,10 @@ void AppWindow::openTabs(const QStringList &paths)
             break;
         progress.setValue(i);
         openTab(paths[i]);
+        progress.setLabelText(currentWindow()->getTabTitle(true, false));
     }
+
+    setUpdatesEnabled(true);
 
     progress.setValue(length);
 }
