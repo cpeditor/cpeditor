@@ -33,6 +33,10 @@ jobs:
   - script: cd $(Build.SourcesDirectory)/build && make -j 8
     displayName: 'Make'
 
+  - script: VERSION_TAG=`git describe --tags` && echo "##vso[task.setvariable variable=VERSION_TAG]$VERSION_TAG"
+    displayName: Set the tag name as an environment variable
+
+
   - script: |
       source /opt/qt*/bin/qt*-env.sh
       cd $(Build.SourcesDirectory)/build
@@ -47,10 +51,10 @@ jobs:
     inputs:
       gitHubConnection: github.com_coder3101
       repositoryName: '$(Build.Repository.Name)'
-      action: 'create'
+      action: 'edit'
+      tag: $(VERSION_TAG)
       target: '$(Build.SourceVersion)'
       title: 'CP Editor'
-      isPreRelease: endsWith(variables['Build.SourceBranch'], 'dev'))
       assets: $(Build.SourcesDirectory)/build/CP_*
       changeLogCompareToRelease: 'lastFullRelease'
       changeLogType: 'commitBased'
@@ -64,14 +68,61 @@ jobs:
       git submodule update --recursive --init
     displayName: 'Fetch dependencies'
 
-
-
-  - task: CMake@1
+  - task: UsePythonVersion@0
     inputs:
-      cmakeArgs: '.. $(CMakeArgs) -DCMAKE_BUILD_TYPE=Release'
+      versionSpec: '3.x'
+  
+  - script: |
+      cd $(Build.SourcesDirectory)
+      python -m pip install aqtinstall
+    displayName: 'Install aqtinstall'
 
-  - task: MSBuild@1
-    displayName: 'Build solution build/CPEditor.sln'
+  - script: |
+      cd $(Build.SourcesDirectory)
+      python -m aqt install --outputdir $(Build.BinariesDirectory)\\Qt 5.14.0 windows desktop win64_msvc2017_64
+    displayName: 'Install Qt 5.14.0'
+
+  - script: |
+      cd $(Build.SourcesDirectory)
+      call "C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\Enterprise\\VC\\Auxiliary\\Build\\vcvars64.bat"
+      set CMAKE_PREFIX_PATH=$(Build.BinariesDirectory)\Qt\5.14.0\msvc2017_64\lib\cmake      
+      mkdir build
+      cd build
+      cmake .. -G"Visual Studio 15 2017 Win64"
+      cmake --build . --config Release 
+    displayName: 'Generate scripts and Make'
+
+  - script: |
+      cd $(Build.SourcesDirectory)\build\Release
+      mkdir out
+      mv CPEditor.exe out/
+      $(Build.BinariesDirectory)\Qt\5.14.0\msvc2017_64\bin\windeployqt.exe out\CPEditor.exe --no-translations
+    displayName: 'Gather EXE dependencies'
+
+  - task: ChocolateyCommand@0
     inputs:
-      solution: build/CPEditor.sln
-      msbuildArguments: '/m /p:Configuration=Release'
+      command: 'install'
+      installPackageId: 'innosetup'
+
+  - powershell: |
+      $CI_BUILD_TAG = git describe --tags
+      Write-Host "##vso[task.setvariable variable=CI_BUILD_TAG]$CI_BUILD_TAG"
+    displayName: 'Set the tag name as an environment variable'
+
+  - script: |
+      cd $(Build.SourcesDirectory)
+      iscc .ci\win\win-setup.iss -DMyAppVersion=$(CI_BUILD_TAG) -DMyProjectRoot=$(Build.SourcesDirectory) -DMyOutRoot=$(Build.SourcesDirectory)\build\Release\out
+      dir . 
+    displayName: 'Inno setup compile'
+  - task: GitHubRelease@1
+    inputs:
+      gitHubConnection: github.com_coder3101
+      repositoryName: '$(Build.Repository.Name)'
+      action: 'edit'
+      target: '$(Build.SourceVersion)'
+      title: 'CP Editor'
+      tag: $(CI_BUILD_TAG)
+      assets: $(Build.SourcesDirectory)/*.exe
+      changeLogCompareToRelease: 'lastFullRelease'
+      changeLogType: 'commitBased'
+
