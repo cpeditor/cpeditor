@@ -75,3 +75,4 @@ jobs:
     inputs:
       solution: build/CPEditor.sln
       msbuildArguments: '/m /p:Configuration=Release'
+      
