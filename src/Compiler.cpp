@@ -47,7 +47,7 @@ void Compiler::start(const QString &filePath, const QString &compileCommand, con
 
     QString command;
 
-    if (lang == "Cpp")
+    if (lang == "C++")
     {
         command = compileCommand + " \"" + QFileInfo(filePath).canonicalFilePath() + "\" -o \"" +
                   QFileInfo(filePath).canonicalPath() + "/" + QFileInfo(filePath).completeBaseName() + "\"";

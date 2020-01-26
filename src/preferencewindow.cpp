@@ -28,6 +28,7 @@
 #include <QMessageBox>
 #include <QPythonCompleter>
 #include <QPythonHighlighter>
+#include <QSaveFile>
 
 PreferenceWindow::PreferenceWindow(Settings::SettingManager *manager, QWidget *parent)
     : QMainWindow(parent), ui(new Ui::PreferenceWindow)
@@ -98,6 +99,7 @@ void PreferenceWindow::applySettingsToui()
     ui->parentheses->setChecked(manager->isAutoParenthesis());
     ui->replace_tabs->setChecked(manager->isTabsReplaced());
     ui->format_on_save->setChecked(manager->isFormatOnSave());
+    ui->use_hot_exit->setChecked(manager->isUseHotExit());
 
     ui->defaultLang->setCurrentText(manager->getDefaultLang());
 
@@ -150,10 +152,7 @@ void PreferenceWindow::applySettingsToui()
         ui->snippets_lang->setCurrentIndex(lang_index);
     onSnippetsLangChanged(lang);
 
-    if(manager->getCFPath() == "cf")
-        ui->cfpath_button->setText("<Search on System Environment>");
-    else
-        ui->cfpath_button->setText(manager->getCFPath());
+    ui->cf_path->setText(manager->getCFPath());
 }
 
 void PreferenceWindow::extractSettingsFromUi()
@@ -168,6 +167,7 @@ void PreferenceWindow::extractSettingsFromUi()
     manager->setAutoParenthesis(ui->parentheses->isChecked());
     manager->setTabsReplaced(ui->replace_tabs->isChecked());
     manager->formatOnSave(ui->format_on_save->isChecked());
+    manager->setUseHotExit(ui->use_hot_exit->isChecked());
 
     manager->setDefaultLanguage(ui->defaultLang->currentText());
 
@@ -207,7 +207,7 @@ void PreferenceWindow::extractSettingsFromUi()
     manager->setHotkeyViewModeToggler(ui->toggle_hotkey->keySequence());
     manager->setHotkeySnippets(ui->snippets_hotkey->keySequence());
 
-    manager->setCFPath(ui->cfpath_button->text());
+    manager->setCFPath(ui->cf_path->text());
 }
 
 void PreferenceWindow::updateShow()
@@ -294,7 +294,7 @@ void PreferenceWindow::on_java_template_clicked()
     ui->java_template->setText("..." + javaTemplatePath.right(30));
 }
 
-void PreferenceWindow::on_load_snippets_from_file_clicked()
+void PreferenceWindow::on_load_snippets_from_files_clicked()
 {
     auto lang = ui->snippets_lang->currentText();
     QString fileType = "C++ Files (*.cpp *.hpp *.h *.cc *.cxx *.c)";
@@ -324,6 +324,46 @@ void PreferenceWindow::on_load_snippets_from_file_clicked()
                 switchToSnippet(snippetName);
             }
             file.close();
+        }
+    }
+}
+
+void PreferenceWindow::on_extract_snippets_to_files_clicked()
+{
+    auto lang = ui->snippets_lang->currentText();
+    QString suffix = ".cpp";
+    QString fileType = "C++ Files (*.cpp *.hpp *.h *.cc *.cxx *.c)";
+    if (lang == "Java")
+    {
+        suffix = ".java";
+        fileType = "Java Files (*.java)";
+    }
+    else if (lang == "Python")
+    {
+        suffix = ".py";
+        fileType = "Python Files (*.py)";
+    }
+    auto dirPath = QFileDialog::getExistingDirectory(this, "Choose a directory to extract snippets to");
+    if (QFile::exists(dirPath))
+    {
+        QDir dir(dirPath);
+        auto names = manager->getSnippetsNames(lang);
+        for (auto name : names)
+        {
+            auto content = manager->getSnippet(lang, name);
+            auto filePath = dir.filePath(name + suffix);
+            if (QFile::exists(filePath))
+                filePath = QFileDialog::getSaveFileName(this, "Save snippet " + name + " to:", dirPath, fileType);
+            while (!filePath.isEmpty())
+            {
+                QSaveFile saveFile(filePath);
+                saveFile.open(QIODevice::WriteOnly | QIODevice::Text);
+                saveFile.write(content.toStdString().c_str());
+                if (saveFile.commit())
+                    break;
+                QMessageBox::warning(this, "File save error", "Failed to save to " + filePath);
+                filePath = QFileDialog::getSaveFileName(this, "Save snippet " + name + " to:", dirPath, fileType);
+            }
         }
     }
 }
@@ -478,21 +518,4 @@ QString PreferenceWindow::getNewSnippetName(const QString &lang, const QString &
         return name;
     else
         return getNewSnippetName(lang, name);
-}
-
-void PreferenceWindow::on_cfpath_button_clicked()
-{
-#if defined (_WIN32)
-    auto filename = QFileDialog::getOpenFileName(this, tr("Choose CF tools"), "",
-                                                 "Executable File (*.exe)");
-    if (filename.isEmpty())
-        return;
-#else
-    auto filename = QFileDialog::getOpenFileName(this, tr("Choose CF tools"), "",
-                                                 "Executable File (*.*)");
-    if (filename.isEmpty())
-        return;
-#endif
-    ui->cfpath_button->setText(filename);
-
 }

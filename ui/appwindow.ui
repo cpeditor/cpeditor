@@ -20,9 +20,6 @@
       <property name="tabShape">
        <enum>QTabWidget::Triangular</enum>
       </property>
-      <property name="currentIndex">
-       <number>1</number>
-      </property>
       <property name="elideMode">
        <enum>Qt::ElideNone</enum>
       </property>
@@ -38,16 +35,6 @@
       <property name="tabBarAutoHide">
        <bool>false</bool>
       </property>
-      <widget class="QWidget" name="dummyTab">
-       <attribute name="title">
-        <string>Tab 1</string>
-       </attribute>
-      </widget>
-      <widget class="QWidget" name="dummyTab2">
-       <attribute name="title">
-        <string>Tab 2</string>
-       </attribute>
-      </widget>
      </widget>
     </item>
    </layout>
@@ -58,7 +45,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>22</height>
+     <height>35</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -67,11 +54,16 @@
     </property>
     <addaction name="actionNew_Tab"/>
     <addaction name="actionOpen"/>
+    <addaction name="actionOpenContest"/>
+    <addaction name="separator"/>
     <addaction name="actionSave"/>
     <addaction name="actionSave_As"/>
     <addaction name="actionSave_All"/>
-    <addaction name="actionClose_All"/>
     <addaction name="actionAutosave"/>
+    <addaction name="separator"/>
+    <addaction name="actionClose_Current"/>
+    <addaction name="actionClose_Saved"/>
+    <addaction name="actionClose_All"/>
     <addaction name="actionQuit"/>
    </widget>
    <widget class="QMenu" name="menuEditor">
@@ -82,8 +74,9 @@
     <addaction name="actionCompile_Run"/>
     <addaction name="actionRun"/>
     <addaction name="actionRun_Detached"/>
-    <addaction name="actionFormat_code"/>
     <addaction name="actionKill_Processes"/>
+    <addaction name="separator"/>
+    <addaction name="actionFormat_code"/>
     <addaction name="actionUse_Snippets"/>
    </widget>
    <widget class="QMenu" name="menuActions">
@@ -140,7 +133,7 @@
   </action>
   <action name="actionSave_As">
    <property name="text">
-    <string>Save As</string>
+    <string>Save As...</string>
    </property>
    <property name="toolTip">
     <string>Save as new file</string>
@@ -149,17 +142,50 @@
     <string>Ctrl+Shift+S</string>
    </property>
   </action>
-   <action name="actionSave_All">
-     <property name="text">
-       <string>Save All</string>
-     </property>
-     <property name="toolTip">
-       <string>Save all opened files</string>
-     </property>
-     <property name="shortcut">
-       <string>Ctrl+Alt+Shift+S</string>
-     </property>
-   </action>
+  <action name="actionSave_All">
+   <property name="text">
+    <string>Save All</string>
+   </property>
+   <property name="toolTip">
+    <string>Save all opened files</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Alt+Shift+S</string>
+   </property>
+  </action>
+  <action name="actionClose_Current">
+   <property name="text">
+    <string>Close Current</string>
+   </property>
+   <property name="toolTip">
+    <string>Close current tab</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+W</string>
+   </property>
+  </action>
+  <action name="actionClose_Saved">
+   <property name="text">
+    <string>Close Saved</string>
+   </property>
+   <property name="toolTip">
+    <string>Close saved tabs</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Alt+W</string>
+   </property>
+  </action>
+  <action name="actionClose_All">
+   <property name="text">
+    <string>Close All</string>
+   </property>
+   <property name="toolTip">
+    <string>Close All the tabs</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+W</string>
+   </property>
+  </action>
   <action name="actionAutosave">
    <property name="checkable">
     <bool>true</bool>
@@ -181,13 +207,24 @@
   </action>
   <action name="actionOpen">
    <property name="text">
-    <string>Open</string>
+    <string>Open File...</string>
    </property>
    <property name="toolTip">
-    <string>Opens a new File in a Tab</string>
+    <string>Open files</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+O</string>
+   </property>
+  </action>
+  <action name="actionOpenContest">
+   <property name="text">
+    <string>Open Contest...</string>
+   </property>
+   <property name="toolTip">
+    <string>Open a Contest</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+O</string>
    </property>
   </action>
   <action name="actionCompile">
@@ -240,7 +277,7 @@
   </action>
   <action name="actionUse_Snippets">
    <property name="text">
-    <string>Use Snippets</string>
+    <string>Use Snippet...</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+T</string>
@@ -250,21 +287,13 @@
    <property name="text">
     <string>Preferences</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+P</string>
+   </property>
   </action>
   <action name="actionRestore_Settings">
    <property name="text">
     <string>Reset Preferences</string>
-   </property>
-  </action>
-  <action name="actionClose_All">
-   <property name="text">
-    <string>Close All</string>
-   </property>
-   <property name="toolTip">
-    <string>Close All the tabs</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+Shift+W</string>
    </property>
   </action>
   <action name="actionAbout">

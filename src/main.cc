@@ -16,17 +16,95 @@
  */
 
 #include <QApplication>
+#include <QCommandLineParser>
+#include <QTextStream>
 
 #include "appwindow.hpp"
 #include "mainwindow.hpp"
 
 int main(int argc, char *argv[])
 {
-    QApplication a(argc, argv);
-    QStringList args = a.arguments();
+    QApplication app(argc, argv);
+    QCoreApplication::setApplicationName("CP Editor");
+    QCoreApplication::setApplicationVersion(APP_VERSION_MAJOR "." APP_VERSION_MINOR "." APP_VERSION_PATCH);
 
-    AppWindow w(args);
-    w.show();
+    QTextStream cerr(stderr, QIODevice::WriteOnly);
 
-    return a.exec();
+    QString programName(argv[0]);
+
+    QCommandLineParser parser;
+    parser.addVersionOption();
+    parser.addHelpOption();
+    parser.setApplicationDescription(
+        programName + " [-d/--depth <depth>] [--cpp] [--java] [--python] [--no-hot-exit] [<path1> [<path2> [...]]]\n" +
+        programName +
+        " [-c/--contest] [--cpp] [--java] [--python] [--no-hot-exit] <number of problems> <contest directory>");
+    parser.addOptions(
+        {{{"d", "depth"}, "Maximum depth when opening files in directories. No limit if not specified.", "depth", "-1"},
+         {{"c", "contest"}, "Open a contest. i.e. Open files named A, B, ..., Z in a given directory."},
+         {"cpp", "Open C++ files in given directories. / Use C++ for open contests."},
+         {"java", "Open Java files in given directories. / Use Java for open contests."},
+         {"python", "Open Python files in given directories. / Use Python for open contests."},
+         {"no-hot-exit", "Do not load hot exit in this session. You won't be able to load the last session again."}});
+    parser.setOptionsAfterPositionalArgumentsMode(QCommandLineParser::ParseAsOptions);
+    parser.setSingleDashWordOptionMode(QCommandLineParser::ParseAsLongOptions);
+    parser.process(app);
+
+#define GETSET(x) bool x = parser.isSet(#x)
+    GETSET(cpp);
+    GETSET(java);
+    GETSET(python);
+    GETSET(contest);
+#undef GETSET
+    bool noHotExit = parser.isSet("no-hot-exit");
+    auto args = parser.positionalArguments();
+
+    if (contest)
+    {
+        if (args.length() != 2)
+        {
+            cerr << "Invalid Arguments\n\n"
+                 << "See " + programName + " --help for more infomation.\n\n";
+            return 1;
+        }
+
+        bool ok = false;
+        int number = args[0].toInt(&ok);
+
+        if (!ok || number < 0 || number > 26)
+        {
+            swap(args[0], args[1]);
+            number = args[0].toInt(&ok);
+        }
+
+        if (!ok || number < 0 || number > 26)
+        {
+            cerr << "Number of problems should be an integer in 0~26.\n\n"
+                 << "See " + programName + " --help for more infomation.\n\n";
+            return 1;
+        }
+
+        AppWindow w(cpp, java, python, noHotExit, number, args[1]);
+        w.show();
+        return app.exec();
+    }
+    else
+    {
+        bool ok = false;
+        int depth = parser.value("depth").toInt(&ok);
+
+        if (!ok || depth < -1)
+        {
+            cerr << "Depth should be a non-negative integer.\n\n"
+                 << "See " + programName + " --help for more infomation.\n\n";
+            return 1;
+        }
+
+        if (!cpp && !java && !python)
+            cpp = java = python = true;
+
+        AppWindow w(depth, cpp, java, python, noHotExit, args);
+        w.show();
+        return app.exec();
+    }
 }

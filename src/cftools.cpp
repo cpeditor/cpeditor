@@ -63,15 +63,7 @@ void CFTools::submit(const QString &filePath, const QString &url, const QString 
             return;
         }
     }
-    if(path != "cf")
-    {
-        QFileInfo fileInfo(path);
-        CFToolProcess->setProgram(fileInfo.canonicalFilePath());
-    }
-    else
-    {
-        CFToolProcess->setProgram("cf");
-    }
+    CFToolProcess->setProgram(path);
     CFToolProcess->setArguments({"submit", problemContestId, problemCode, filePath});
     connect(CFToolProcess, SIGNAL(readyReadStandardOutput()), this, SLOT(onReadReady()));
     CFToolProcess->start();
@@ -81,22 +73,10 @@ bool CFTools::check(QString path)
 {
     QProcess checkProcess;
 
-    if(path != "cf")
-    {
-        QFileInfo pathInfo(path);
-        checkProcess.setProgram(pathInfo.canonicalFilePath());
-        checkProcess.setArguments({"--version"});
-        checkProcess.start();
-    }
-    else
-    {
-        checkProcess.start("cf", {"--version"});
-    }
+    checkProcess.start(path, {"--version"});
 
     bool finished = checkProcess.waitForFinished(2000);
     return finished && checkProcess.exitCode() == 0;
-
-
 }
 
 void CFTools::updatePath(QString p)

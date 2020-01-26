@@ -58,7 +58,9 @@ class PreferenceWindow : public QMainWindow
 
     void on_java_template_clicked();
 
-    void on_load_snippets_from_file_clicked();
+    void on_load_snippets_from_files_clicked();
+
+    void on_extract_snippets_to_files_clicked();
 
     void onSnippetsLangChanged(const QString &lang);
 
@@ -76,9 +78,7 @@ class PreferenceWindow : public QMainWindow
 
     void on_transparency_slider_valueChanged(int value);
 
-    void on_cfpath_button_clicked();
-
-private:
+  private:
     Ui::PreferenceWindow *ui;
     QFont currentFont;
     QString cppTemplatePath, pythonTemplatePath, javaTemplatePath;

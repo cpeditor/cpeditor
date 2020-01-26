@@ -32,6 +32,7 @@
 #include <QPythonCompleter>
 #include <QPythonHighlighter>
 #include <QSaveFile>
+#include <QScrollBar>
 #include <QShortcut>
 #include <QSyntaxStyle>
 #include <QTextStream>
@@ -44,7 +45,7 @@
 
 // ***************************** RAII  ****************************
 MainWindow::MainWindow(QString fileOpen, const Settings::SettingsData &data, int index, QWidget *parent)
-    : QMainWindow(parent), untitledIndex(index), ui(new Ui::MainWindow), fileWatcher(new QFileSystemWatcher(this))
+    : QMainWindow(parent), ui(new Ui::MainWindow), untitledIndex(index), fileWatcher(new QFileSystemWatcher(this))
 {
     ui->setupUi(this);
     setEditor();
@@ -74,8 +75,7 @@ MainWindow::~MainWindow()
 void MainWindow::setEditor()
 {
     editor = new QCodeEditor();
-    editor->setMinimumWidth(600);
-    editor->setMinimumHeight(300);
+    editor->setSizePolicy(QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Expanding);
     editor->setAcceptDrops(false);
 
     ui->verticalLayout_8->addWidget(editor);
@@ -100,7 +100,7 @@ void MainWindow::setEditor()
         expected[i] = new QString;
     }
 
-    QObject::connect(editor, SIGNAL(textChanged()), this, SLOT(onTextChangedTriggered()));
+    QObject::connect(editor, SIGNAL(textChanged()), this, SIGNAL(editorChanged()));
 
     for (auto i : {0, 1, 2})
         updateVerdict(UNKNOWN, i);
@@ -120,7 +120,7 @@ void MainWindow::compile()
     if (saveTemp("Compiler"))
     {
         QString command;
-        if (language == "Cpp")
+        if (language == "C++")
             command = data.compileCommandCpp;
         else if (language == "Java")
             command = data.compileCommandJava;
@@ -141,7 +141,7 @@ void MainWindow::run()
     clearTests(true);
 
     QString command, args;
-    if (language == "Cpp")
+    if (language == "C++")
     {
         args = data.runtimeArgumentsCpp;
     }
@@ -302,7 +302,11 @@ void MainWindow::setCFToolsUI()
         log.error("CFTools", "You will not be able to submit code to Codeforces because CFTools is not installed or is "
                              "not on SYSTEM PATH. You can set it manually in settings.");
     }
+}
 
+int MainWindow::getUntitledIndex() const
+{
+    return untitledIndex;
 }
 
 QString MainWindow::getFileName() const
@@ -343,6 +347,97 @@ bool MainWindow::isUntitled() const
     return filePath.isEmpty();
 }
 
+#define FROMSTATUS(x) x = status[#x]
+MainWindow::EditorStatus::EditorStatus(const QMap<QString, QVariant> &status)
+{
+    FROMSTATUS(isLanguageSet).toInt();
+    FROMSTATUS(filePath).toString();
+    FROMSTATUS(savedText).toString();
+    FROMSTATUS(problemURL).toString();
+    FROMSTATUS(editorText).toString();
+    FROMSTATUS(language).toString();
+    FROMSTATUS(editorCursor).toInt();
+    FROMSTATUS(editorAnchor).toInt();
+    FROMSTATUS(horizontalScrollBarValue).toInt();
+    FROMSTATUS(verticalScrollbarValue).toInt();
+    FROMSTATUS(untitledIndex).toInt();
+    FROMSTATUS(input).toStringList();
+    FROMSTATUS(expected).toStringList();
+}
+#undef FROMSTATUS
+
+#define TOSTATUS(x) status[#x] = x
+QMap<QString, QVariant> MainWindow::EditorStatus::toMap() const
+{
+    QMap<QString, QVariant> status;
+    TOSTATUS(isLanguageSet);
+    TOSTATUS(filePath);
+    TOSTATUS(savedText);
+    TOSTATUS(problemURL);
+    TOSTATUS(editorText);
+    TOSTATUS(language);
+    TOSTATUS(editorCursor);
+    TOSTATUS(editorAnchor);
+    TOSTATUS(horizontalScrollBarValue);
+    TOSTATUS(verticalScrollbarValue);
+    TOSTATUS(untitledIndex);
+    TOSTATUS(input);
+    TOSTATUS(expected);
+    return status;
+}
+#undef TOSTATUS
+
+MainWindow::EditorStatus MainWindow::toStatus() const
+{
+    EditorStatus status;
+
+    status.isLanguageSet = isLanguageSet;
+    status.filePath = filePath;
+    status.savedText = savedText;
+    status.problemURL = problemURL;
+    status.editorText = editor->toPlainText();
+    status.language = language;
+    status.editorCursor = editor->textCursor().position();
+    status.editorAnchor = editor->textCursor().anchor();
+    status.horizontalScrollBarValue = editor->horizontalScrollBar()->value();
+    status.verticalScrollbarValue = editor->verticalScrollBar()->value();
+    status.untitledIndex = untitledIndex;
+    for (int i = 0; i < 3; ++i)
+    {
+        status.input.push_back(input[i]->toPlainText());
+        status.expected.push_back(*expected[i]);
+    }
+
+    return status;
+}
+
+void MainWindow::loadStatus(const EditorStatus &status)
+{
+    filePath = status.filePath;
+    updateWatcher();
+    savedText = status.savedText;
+    problemURL = status.problemURL;
+    editor->setPlainText(status.editorText);
+    if (status.isLanguageSet)
+        setLanguage(status.language);
+    auto cursor = editor->textCursor();
+    cursor.setPosition(status.editorAnchor);
+    cursor.setPosition(status.editorCursor, QTextCursor::KeepAnchor);
+    editor->setTextCursor(cursor);
+    editor->horizontalScrollBar()->setValue(status.horizontalScrollBarValue);
+    editor->verticalScrollBar()->setValue(status.verticalScrollbarValue);
+    untitledIndex = status.untitledIndex;
+    for (int i = 0; i < 3; ++i)
+    {
+        if (status.input.length() > i)
+            input[i]->setPlainText(status.input[i]);
+        if (status.expected.length() > i)
+            *expected[i] = status.expected[i];
+    }
+    if (problemURL.contains("codeforces.com"))
+        setCFToolsUI();
+}
+
 void MainWindow::updateVerdict(Verdict _verdict, int id)
 {
     QString verdict_text, style_sheet;
@@ -350,15 +445,15 @@ void MainWindow::updateVerdict(Verdict _verdict, int id)
     switch (_verdict)
     {
     case ACCEPTED:
-        verdict_text = "Verdict : AC";
+        verdict_text = "AC";
         style_sheet = "QLabel { color : rgb(0, 180, 0); }";
         break;
     case WRONG_ANSWER:
-        verdict_text = "Verdict : WA";
+        verdict_text = "WA";
         style_sheet = "QLabel { color : rgb(255, 0, 0); }";
         break;
     case UNKNOWN:
-        verdict_text = "Verdict : **";
+        verdict_text = "**";
         style_sheet = "";
         break;
     }
@@ -398,7 +493,7 @@ void MainWindow::applyCompanion(Network::CompanionData data)
     problemURL = data.url;
     if (problemURL.contains("codeforces.com"))
         setCFToolsUI();
-    onTextChangedTriggered();
+    emit editorChanged();
 }
 
 void MainWindow::setSettingsData(const Settings::SettingsData &data, bool shouldPerformDigonistic)
@@ -409,10 +504,10 @@ void MainWindow::setSettingsData(const Settings::SettingsData &data, bool should
 
     cftoolPath = data.cfPath;
 
-    if(cftools != nullptr && Network::CFTools::check(cftoolPath))
+    if (cftools != nullptr && Network::CFTools::check(cftoolPath))
     {
         cftools->updatePath(cftoolPath);
-        if(submitToCodeforces != nullptr)
+        if (submitToCodeforces != nullptr)
             submitToCodeforces->setEnabled(true);
     }
 
@@ -464,19 +559,14 @@ void MainWindow::setSettingsData(const Settings::SettingsData &data, bool should
     }
 }
 
-void MainWindow::save(bool force)
+void MainWindow::save(bool force, const QString &head)
 {
-    saveFile(force ? SaveUntitled : IgnoreUntitled, "Save");
+    saveFile(force ? SaveUntitled : IgnoreUntitled, head);
 }
 
 void MainWindow::saveAs()
 {
     saveFile(SaveAs, "Save as");
-}
-
-void MainWindow::onTextChangedTriggered()
-{
-    emit editorChanged(this);
 }
 
 void MainWindow::on_compile_clicked()
@@ -522,6 +612,25 @@ void MainWindow::formatSource()
 void MainWindow::setLanguage(QString lang)
 {
     log.clear();
+    if (!QFile::exists(filePath))
+    {
+        QString templateContent, templatePath;
+        if (language == "C++")
+            templatePath = data.templateCpp;
+        else if (language == "Java")
+            templatePath = data.templateJava;
+        else if (language == "Python")
+            templatePath = data.templatePython;
+        QFile templateFile(templatePath);
+        templateFile.open(QIODevice::ReadOnly | QIODevice::Text);
+        if (templateFile.isOpen())
+            templateContent = templateFile.readAll();
+        if (templateContent == editor->toPlainText())
+        {
+            language = lang;
+            loadFile(filePath);
+        }
+    }
     language = lang;
     if (lang == "Python")
     {
@@ -537,12 +646,12 @@ void MainWindow::setLanguage(QString lang)
     }
     else
     {
-        language = "Cpp";
-        if (lang != "Cpp")
-            log.warn("CP Editor", "Unknown lanague set, fallback to Cpp");
+        language = "C++";
+        if (lang != "C++")
+            log.warn("CP Editor", "Unknown lanague set, fallback to C++");
         editor->setHighlighter(new QCXXHighlighter);
         editor->setCompleter(nullptr);
-        ui->changeLanguageButton->setText("Cpp");
+        ui->changeLanguageButton->setText("C++");
     }
     performCoreDiagonistics();
     isLanguageSet = true;
@@ -809,7 +918,7 @@ void MainWindow::setText(const QString &text, bool saveCursor)
 
 void MainWindow::updateWatcher()
 {
-    onTextChangedTriggered();
+    emit editorChanged();
     if (!fileWatcher->files().isEmpty())
         fileWatcher->removePaths(fileWatcher->files());
     if (!isUntitled())
@@ -821,14 +930,12 @@ void MainWindow::loadFile(QString path)
     bool samePath = filePath == path;
     filePath = path;
     updateWatcher();
-    if (!samePath)
-        emit editorChanged(this);
 
     if (!QFile::exists(path))
     {
         QString templatePath;
 
-        if (language == "Cpp")
+        if (language == "C++")
             templatePath = data.templateCpp;
         else if (language == "Java")
             templatePath = data.templateJava;
@@ -839,9 +946,14 @@ void MainWindow::loadFile(QString path)
         f.open(QIODevice::ReadOnly | QIODevice::Text);
 
         if (f.isOpen())
+        {
             path = templatePath;
+        }
         else
+        {
+            setText("");
             return;
+        }
     }
 
     QFile openFile(path);
@@ -885,12 +997,11 @@ bool MainWindow::saveFile(SaveMode mode, const QString &head)
 
         filePath = newFilePath;
         updateWatcher();
-        emit editorChanged(this);
 
         auto suffix = QFileInfo(filePath).suffix();
         if (suffix == ".cpp" || suffix == ".hpp" || suffix == ".h" || suffix == ".cc" || suffix == ".cxx" ||
             suffix == ".c")
-            setLanguage("Cpp");
+            setLanguage("C++");
         else if (suffix == "java")
             setLanguage("Java");
         else if (suffix == "py" || suffix == "py3")
@@ -960,7 +1071,7 @@ QString MainWindow::tmpPath()
         }
     }
     QString name;
-    if (language == "Cpp")
+    if (language == "C++")
         name = "sol.cpp";
     else if (language == "Java")
         name = "sol.java";
@@ -981,7 +1092,7 @@ bool MainWindow::isTextChanged()
 
     QString templatePath;
 
-    if (language == "Cpp")
+    if (language == "C++")
         templatePath = data.templateCpp;
     else if (language == "Java")
         templatePath = data.templateJava;
@@ -1034,7 +1145,7 @@ void MainWindow::on_changeLanguageButton_clicked()
     bool ok = false;
     int curr = 0;
 
-    if (language == "Cpp")
+    if (language == "C++")
         curr = 0;
     else if (language == "Java")
         curr = 1;
@@ -1042,7 +1153,7 @@ void MainWindow::on_changeLanguageButton_clicked()
         curr = 2;
 
     auto response = QInputDialog::getItem(this, "Set Tab language", "Set the language to use in this Tab",
-                                          {"Cpp", "Java", "Python"}, curr, false, &ok);
+                                          {"C++", "Java", "Python"}, curr, false, &ok);
 
     if (ok)
         setLanguage(response);
@@ -1050,7 +1161,7 @@ void MainWindow::on_changeLanguageButton_clicked()
 
 void MainWindow::onFileWatcherChanged(const QString &path)
 {
-    onTextChangedTriggered();
+    emit editorChanged();
 
     auto currentText = editor->toPlainText();
 
@@ -1100,7 +1211,7 @@ void MainWindow::performCoreDiagonistics()
     bool compilerResult = true;
     bool runResults = true;
 
-    if (language == "Cpp")
+    if (language == "C++")
         compilerResult = Core::Compiler::check(data.compileCommandCpp);
 
     if (language == "Java")
@@ -1146,7 +1257,7 @@ void MainWindow::onCompilationFinished(const QString &warning)
         killProcesses();
 
         QString command, args;
-        if (language == "Cpp")
+        if (language == "C++")
         {
             args = data.runtimeArgumentsCpp;
         }
