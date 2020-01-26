@@ -62,8 +62,6 @@ jobs:
 
 - job:
   displayName: 'Windows'
-  variables:
-    currentTag: `git describe --tags`
   pool:
     vmImage: 'vs2017-win2016'
   steps:
