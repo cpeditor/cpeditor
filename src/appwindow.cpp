@@ -56,6 +56,7 @@ AppWindow::AppWindow(bool noHotExit, QWidget *parent) : QMainWindow(parent), ui(
         progress.setMaximum(length);
         progress.setValue(0);
 
+        auto oldSize = size();
         setUpdatesEnabled(false);
 
         for (int i = 0; i < length; ++i)
@@ -72,6 +73,7 @@ AppWindow::AppWindow(bool noHotExit, QWidget *parent) : QMainWindow(parent), ui(
         progress.setValue(length);
 
         setUpdatesEnabled(true);
+        resize(oldSize);
 
         int index = settingManager->getCurrentIndex();
         if (index >= 0 && index < ui->tabWidget->count())
@@ -365,6 +367,7 @@ void AppWindow::openTabs(const QStringList &paths)
     progress.setMaximum(length);
     progress.setValue(0);
 
+    auto oldSize = size();
     setUpdatesEnabled(false);
 
     for (int i = 0; i < length; ++i)
@@ -377,6 +380,7 @@ void AppWindow::openTabs(const QStringList &paths)
     }
 
     setUpdatesEnabled(true);
+    resize(oldSize);
 
     progress.setValue(length);
 }
