@@ -145,7 +145,7 @@ class AppWindow : public QMainWindow
     void maybeSetHotkeys();
     bool closeTab(int index);
     void openTab(QString path, bool isCompanionTab = false);
-    void openFolder(const QString &path, bool cpp, bool java, bool python, int depth);
+    void openFolder(const QString &path, bool cpp = true, bool java = true, bool python = true, int depth = -1);
     void openContest(const QString &path, const QString &lang, int number);
     bool quit();
 

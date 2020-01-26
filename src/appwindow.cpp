@@ -121,11 +121,14 @@ void AppWindow::dragEnterEvent(QDragEnterEvent *event)
 
 void AppWindow::dropEvent(QDropEvent *event)
 {
-    auto files = event->mimeData()->urls();
-    for (auto e : files)
+    auto urls = event->mimeData()->urls();
+    for (auto e : urls)
     {
-        auto fileName = e.toLocalFile();
-        openTab(fileName);
+        auto path = e.toLocalFile();
+        if (QDir(path).exists())
+            openFolder(path);
+        else
+            openTab(path);
     }
 }
 
