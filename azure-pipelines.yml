@@ -75,7 +75,7 @@ jobs:
 
   - script: |
       cd $(Build.SourcesDirectory)
-      python -m aqt install --outputdir $(Build.BinariesDirectory)\\Qt 5.14.0 windows desktop win64_msvc2017_64 -m qtcore qtgui qtxml qtwidgets
+      python -m aqt install --outputdir $(Build.BinariesDirectory)\\Qt 5.14.0 windows desktop win64_msvc2017_64
     displayName: 'Install Qt 5.14.0'
 
   - script: |
