@@ -86,9 +86,16 @@ jobs:
       cd build
       cmake .. -G"Visual Studio 15 2017 Win64"
       cmake --build . --config Release 
-      dir $(Build.SourceDirectory)
-      dir $(Build.SourceDirectory)\build
     displayName: 'Generate scripts and Make'
+
+    - scripts: |
+      cd $(Build.SourcesDirectory)\build\Release
+      mkdir out
+      mv CPEditor.exe out/
+      $(Build.BinariesDirectory)\Qt\5.14.0\msvc2017_64\bin\windeployqt.exe out/CPEditor.exe --no-translations
+      dir .
+    displayName: 'Gather EXE dependencies'
+      
 
 
   # - task: CMake@1
