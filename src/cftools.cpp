@@ -25,15 +25,16 @@ namespace Network
 CFTools::CFTools(QString path, MessageLogger *logger) : path(path)
 {
     log = logger;
+    icon = new QSystemTrayIcon();
     CFToolProcess = new QProcess();
 }
 
 CFTools::~CFTools()
 {
+    if (icon != nullptr)
+        delete icon;
     if (CFToolProcess != nullptr)
-    {
         delete CFToolProcess;
-    }
 }
 
 void CFTools::submit(const QString &filePath, const QString &url, const QString &lang)
@@ -90,7 +91,10 @@ void CFTools::onReadReady()
     auto shortStatus = newResponse.right(newResponse.size() - newResponse.indexOf("status:") - 8);
     if (newResponse.contains("status: Happy New Year") || newResponse.contains("status: Accepted"))
     {
-        log->message("CFTool", shortStatus, "green");
+        log->message("CF Tool", shortStatus, "green");
+        icon->show();
+        icon->showMessage("CF Tool", shortStatus);
+        icon->hide();
     }
     else if (newResponse.contains("status: Running on"))
     {
@@ -98,7 +102,10 @@ void CFTools::onReadReady()
     }
     else
     {
-        log->error("CFTool", newResponse);
+        log->error("CF Tool", newResponse);
+        icon->show();
+        icon->showMessage("CF Tool", newResponse, QSystemTrayIcon::Warning);
+        icon->hide();
     }
 }
 
