@@ -56,6 +56,7 @@ jobs:
       target: '$(Build.SourceVersion)'
       title: 'CP Editor'
       assets: $(Build.SourcesDirectory)/build/CP_*
+      assetUploadMode: 'replace' # Optional. Options: delete, replace
       changeLogCompareToRelease: 'lastFullRelease'
       changeLogType: 'commitBased'
 
@@ -122,6 +123,7 @@ jobs:
       target: '$(Build.SourceVersion)'
       title: 'CP Editor'
       tag: $(CI_BUILD_TAG)
+      assetUploadMode: 'replace' # Optional. Options: delete, replace
       assets: $(Build.SourcesDirectory)/*.exe
       changeLogCompareToRelease: 'lastFullRelease'
       changeLogType: 'commitBased'
