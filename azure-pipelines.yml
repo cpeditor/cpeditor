@@ -92,7 +92,8 @@ jobs:
       cd $(Build.SourcesDirectory)\build\Release
       mkdir out
       mv CPEditor.exe out/
-      $(Build.BinariesDirectory)\Qt\5.14.0\msvc2017_64\bin\windeployqt.exe out/CPEditor.exe --no-translations
+      $(Build.BinariesDirectory)\Qt\5.14.0\msvc2017_64\bin\windeployqt.exe out\CPEditor.exe --no-translations
       dir .
+      dir .\out\
     displayName: 'Gather EXE dependencies'
 
