@@ -41,13 +41,15 @@ int main(int argc, char *argv[])
     QCommandLineParser parser;
     parser.addVersionOption();
     parser.addHelpOption();
-    parser.setApplicationDescription(
-        programName + " [-d/--depth <depth>] [--cpp] [--java] [--python] [--no-hot-exit] [<path1> [<path2> [...]]]\n" +
-        programName +
-        " [-c/--contest] [--cpp] [--java] [--python] [--no-hot-exit] <number of problems> <contest directory>");
+    parser.setApplicationDescription(programName + " [-d/--depth <depth>] [options] [<path1> [<path2> [...]]]\n" +
+                                     programName +
+                                     " [-c/--contest] [options] <number of problems> <contest directory>");
     parser.addOptions(
         {{{"d", "depth"}, "Maximum depth when opening files in directories. No limit if not specified.", "depth", "-1"},
          {{"c", "contest"}, "Open a contest. i.e. Open files named A, B, ..., Z in a given directory."},
+         {{"n", "new"},
+          "Open a new window instead of open tabs in an existing window. This may cause error of the competitive "
+          "companion server."},
          {"cpp", "Open C++ files in given directories. / Use C++ for open contests."},
          {"java", "Open Java files in given directories. / Use Java for open contests."},
          {"python", "Open Python files in given directories. / Use Python for open contests."},
@@ -92,7 +94,7 @@ int main(int argc, char *argv[])
 
         auto path = args[1];
 
-        if (app.isSecondary())
+        if (!parser.isSet("new") && app.isSecondary())
         {
             QJsonObject json;
             json["type"] = "contest";
@@ -126,7 +128,7 @@ int main(int argc, char *argv[])
         if (!cpp && !java && !python)
             cpp = java = python = true;
 
-        if (app.isSecondary())
+        if (!parser.isSet("new") && app.isSecondary())
         {
             QJsonObject json;
             json["type"] = "normal";
