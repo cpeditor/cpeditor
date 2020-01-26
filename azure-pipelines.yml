@@ -75,9 +75,15 @@ jobs:
 
   - script: |
       cd $(Build.SourcesDirectory)
-      python -m aqt install --outputdir $(Build.BinariesDirectory)\\Qt 5.14.0 windows desktop win_msvc2017 -m qtcore qtgui qtxml qtwidgets
-      SET CMAKE_PREFIX_PATH=$(Build.BinariesDirectory)\\Qt\\5.14.0\\msvc2017\\lib\\cmake
+      python -m aqt install --outputdir $(Build.BinariesDirectory)\\Qt 5.14.0 windows desktop win64_msvc2017_64 -m qtcore qtgui qtxml qtwidgets
     displayName: 'Install Qt 5.14.0'
+
+  - script: |
+      cd $(Build.SourcesDirectory)
+      call "C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\Enterprise\\VC\\Auxiliary\\Build\\vcvars64.bat"
+      set CMAKE_PREFIX_PATH=$(Build.BinariesDirectory)\\Qt\\5.14.0\\msvc2017\\lib\\cmake
+      cmake 
+
 
   - task: CMake@1
     inputs:
