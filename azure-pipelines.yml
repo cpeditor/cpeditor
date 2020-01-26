@@ -68,11 +68,11 @@ jobs:
 
   - task: CMake@1
     inputs:
-      cmakeArgs: '.. $(CMakeArgs) -DCMAKE_BUILD_TYPE=Release'
+      cmakeArgs: '.. -DCMAKE_BUILD_TYPE=Release'
 
   - task: MSBuild@1
     displayName: 'Build solution build/CPEditor.sln'
     inputs:
       solution: build/CPEditor.sln
       msbuildArguments: '/m /p:Configuration=Release'
-      
+
