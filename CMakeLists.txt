@@ -31,48 +31,52 @@ configure_file(version.hpp.in ${CMAKE_BINARY_DIR}/generated/version.hpp)
 
 add_executable(CPEditor
     ${GUI_TYPE}
-    src/main.cc
-    src/mainwindow.cc
-    ui/mainwindow.ui
-    ui/expand.ui
+
     include/mainwindow.hpp
     include/MessageLogger.hpp
     include/SettingsManager.hpp
     include/Compiler.hpp
     include/IO.hpp
-    include/UpdateNotifier.hpp
-    src/UpdateNotifier.cpp
-    src/IO.cpp
-    include/Runner.hpp
-    src/Runner.cpp
-    src/SettingsManager.cpp
-    src/Compiler.cpp
-    include/Formatter.hpp
-    src/Formatter.cpp
     include/BaseFiles.hpp
-    src/MessageLogger.cpp
+    include/UpdateNotifier.hpp
+    include/Runner.hpp
+    include/Formatter.hpp
     include/expand.hpp
-    src/expand.cpp
-    ui/diffviewer.ui
-    include/DiffViewer.hpp
-    src/DiffViewer.cpp
-    src/CompanionServer.cpp
     include/CompanionServer.hpp
-    src/appwindow.cpp
-    include/appwindow.hpp
-    ui/appwindow.ui
-    include/preferencewindow.hpp
-    src/preferencewindow.cpp
-    ui/preferencewindow.ui
-    include/EditorTheme.hpp
-    src/editortheme.cpp
     include/cftools.hpp
+    include/EditorTheme.hpp
+    include/preferencewindow.hpp
+    include/appwindow.hpp
+    include/DiffViewer.hpp
+
+
+    src/mainwindow.cc
+    src/MessageLogger.cpp
+    src/SettingsManager.cpp
+    src/main.cc
+    src/Compiler.cpp
+    src/IO.cpp
+    src/UpdateNotifier.cpp
+    src/Runner.cpp
+    src/Formatter.cpp
+    src/expand.cpp
+    src/CompanionServer.cpp
     src/cftools.cpp
+    src/editortheme.cpp
+    src/preferencewindow.cpp
+    src/appwindow.cpp
+    src/DiffViewer.cpp
+
+    ui/expand.ui
+    ui/mainwindow.ui
+    ui/preferencewindow.ui
+    ui/appwindow.ui
+    ui/diffviewer.ui
 
     ${CMAKE_BINARY_DIR}/generated/version.hpp
 
     resources/resources.qrc
-    appicon.rc)
+    assets/appicon.rc)
 
 include_directories("third_party/QCodeEditor/include")
 include_directories("include/")

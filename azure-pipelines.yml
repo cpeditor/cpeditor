@@ -9,45 +9,69 @@ trigger:
     include:
     - '*'
 
-pool:
-  vmImage: 'Ubuntu-16.04'
+jobs:
+- job:
+  displayName: 'Linux'
+  pool:
+    vmImage: 'Ubuntu-16.04'
 
-steps:
-- script: git submodule update --init --recursive
-  displayName: 'Fetch third party dependency'
+  steps:
+  - script: git submodule update --init --recursive
+    displayName: 'Fetch third party dependency'
 
-- script: |
-    sudo add-apt-repository ppa:beineri/opt-qt-5.12.0-xenial -y
-    sudo apt-get update -qq
-    sudo apt-get -y install qt512base libgl1-mesa-dev qt512svg qt512imageformats
-    source /opt/qt*/bin/qt*-env.sh
-- task: CMake@1
-  displayName: 'Generate make-files'
-  inputs:
-    cmakeArgs: '.. -DCMAKE_BUILD_TYPE=Release'
+  - script: |
+      sudo add-apt-repository ppa:beineri/opt-qt-5.12.0-xenial -y
+      sudo apt-get update -qq
+      sudo apt-get -y install qt512base libgl1-mesa-dev qt512svg qt512imageformats
+      source /opt/qt*/bin/qt*-env.sh
+  - task: CMake@1
+    displayName: 'Generate make-files'
+    inputs:
+      cmakeArgs: '.. -DCMAKE_BUILD_TYPE=Release'
 
 
-- script: cd $(Build.SourcesDirectory)/build && make -j 8
-  displayName: 'Make'
+  - script: cd $(Build.SourcesDirectory)/build && make -j 8
+    displayName: 'Make'
 
-- script: |
-    source /opt/qt*/bin/qt*-env.sh
-    cd $(Build.SourcesDirectory)/build
-    wget -c "https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage" 
-    chmod a+x linuxdeployqt*.AppImage
-    export VERSION=`git describe --tags`
-    mv ../default.desktop . && mv ../icon.png .
-    ./linuxdeployqt*.AppImage ./CPEditor -appimage
-  displayName: 'Package to AppImage'
+  - script: |
+      source /opt/qt*/bin/qt*-env.sh
+      cd $(Build.SourcesDirectory)/build
+      wget -c "https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage" 
+      chmod a+x linuxdeployqt*.AppImage
+      export VERSION=`git describe --tags`
+      mv ../.ci/linux/default.desktop . && mv ../.ci/linux/icon.png .
+      ./linuxdeployqt*.AppImage ./CPEditor -appimage
+    displayName: 'Package to AppImage'
 
-- task: GitHubRelease@1
-  inputs:
-    gitHubConnection: github.com_coder3101
-    repositoryName: '$(Build.Repository.Name)'
-    action: 'create'
-    target: '$(Build.SourceVersion)'
-    title: 'CP Editor'
-    isPreRelease: endsWith(variables['Build.SourceBranch'], 'dev'))
-    assets: $(Build.SourcesDirectory)/build/CP_*
-    changeLogCompareToRelease: 'lastFullRelease'
-    changeLogType: 'commitBased'
+  - task: GitHubRelease@1
+    inputs:
+      gitHubConnection: github.com_coder3101
+      repositoryName: '$(Build.Repository.Name)'
+      action: 'create'
+      target: '$(Build.SourceVersion)'
+      title: 'CP Editor'
+      isPreRelease: endsWith(variables['Build.SourceBranch'], 'dev'))
+      assets: $(Build.SourcesDirectory)/build/CP_*
+      changeLogCompareToRelease: 'lastFullRelease'
+      changeLogType: 'commitBased'
+
+- job:
+  displayName: 'Windows'
+  pool:
+    vmImage: 'vs2017-win2016'
+  steps:
+  - script: |
+      git submodule update --recursive --init
+    displayName: 'Fetch dependencies'
+
+
+
+  - task: CMake@1
+    inputs:
+      cmakeArgs: '.. $(CMakeArgs) -DCMAKE_BUILD_TYPE=Release'
+
+  - task: MSBuild@1
+    displayName: 'Build solution build/CPEditor.sln'
+    inputs:
+      solution: build/CPEditor.sln
+      msbuildArguments: '/m /p:Configuration=Release'
