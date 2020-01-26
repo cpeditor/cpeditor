@@ -319,7 +319,7 @@ void AppWindow::openTab(QString path, bool iscompanionOpenedTab)
                  path.endsWith(".hpp") || path.endsWith(".h"))
             lang = "C++";
 
-        ui->tabWidget->addTab(fsp, fsp->getFileName());
+        ui->tabWidget->addTab(fsp, fsp->getTabTitle(false, true));
         fsp->setLanguage(lang);
         ui->tabWidget->setCurrentIndex(t);
     }
@@ -336,22 +336,10 @@ void AppWindow::openTab(QString path, bool iscompanionOpenedTab)
         }
 
         int t = ui->tabWidget->count();
-        int index = 0;
-        QSet<int> vis;
-        for (int t = 0; t < ui->tabWidget->count(); ++t)
-        {
-            auto tmp = windowIndex(t);
-            if (tmp->isUntitled() && tmp->getProblemURL().isEmpty())
-            {
-                vis.insert(tmp->getUntitledIndex());
-            }
-        }
-        for (index = 1; vis.contains(index); ++index)
-            ;
-        auto fsp = new MainWindow("", settingManager->toData(), index);
+        auto fsp = new MainWindow("", settingManager->toData(), 0);
         connect(fsp, SIGNAL(confirmTriggered(MainWindow *)), this, SLOT(on_confirmTriggered(MainWindow *)));
         connect(fsp, SIGNAL(editorChanged()), this, SLOT(onEditorChanged()));
-        ui->tabWidget->addTab(fsp, fsp->getFileName());
+        ui->tabWidget->addTab(fsp, fsp->getTabTitle(false, true));
         ui->tabWidget->setCurrentIndex(t);
     }
     currentWindow()->focusOnEditor();
@@ -748,10 +736,9 @@ void AppWindow::onSettingsApplied()
 
 void AppWindow::onIncomingCompanionRequest(Network::CompanionData data)
 {
-    if (settingManager->isCompetitiveCompanionOpenNewTab())
+    if (settingManager->isCompetitiveCompanionOpenNewTab() || currentWindow() == nullptr)
         openTab(data.url, true);
-    if (currentWindow() != nullptr)
-        currentWindow()->applyCompanion(data);
+    currentWindow()->applyCompanion(data);
 }
 
 void AppWindow::onViewModeToggle()
