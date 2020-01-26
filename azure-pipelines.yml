@@ -64,7 +64,20 @@ jobs:
       git submodule update --recursive --init
     displayName: 'Fetch dependencies'
 
+  - task: UsePythonVersion@0
+    inputs:
+      versionSpec: '3.x'
+  
+  - script: |
+      cd $(Build.SourcesDirectory)
+      python -m pip install aqtinstall
+    displayName: 'Install aqtinstall'
 
+  - script: |
+      cd $(Build.SourcesDirectory)
+      python -m aqt install --outputdir $(Build.BinariesDirectory)\\Qt 5.14.0 windows desktop win_msvc2017 -m qtcore qtgui qtxml qtwidgets
+      SET CMAKE_PREFIX_PATH=$(Build.BinariesDirectory)\\Qt\\5.14.0\\msvc2017\\lib\\cmake
+    displayName: 'Install Qt 5.14.0'
 
   - task: CMake@1
     inputs:
