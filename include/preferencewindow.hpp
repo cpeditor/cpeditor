@@ -78,10 +78,9 @@ class PreferenceWindow : public QMainWindow
 
     void on_transparency_slider_valueChanged(int value);
 
-  private:
     void on_cfpath_button_clicked();
 
-private:
+  private:
     Ui::PreferenceWindow *ui;
     QFont currentFont;
     QString cppTemplatePath, pythonTemplatePath, javaTemplatePath;
