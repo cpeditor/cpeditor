@@ -105,14 +105,14 @@ jobs:
       command: 'install'
       installPackageId: 'innosetup'
 
-  - script: |
-      cd $(Build.SourcesDirectory)
-      iscc .ci\win\win-setup.iss -DMyAppVersion=$(currentTag) -DMyProjectRoot=$(Build.SourcesDirectory) -DMyRootOut=$(Build.SourcesDirectory)\build\Release\out
-      dir . 
-    displayName: 'Inno setup compile'
-
   - script: VERSION_TAG=`git describe --tags` && echo "##vso[task.setvariable variable=VERSION_TAG]$VERSION_TAG"
     displayName: Set the tag name as an environment variable
+
+  - script: |
+      cd $(Build.SourcesDirectory)
+      iscc .ci\win\win-setup.iss -DMyAppVersion=$(VERSION_TAG) -DMyProjectRoot=$(Build.SourcesDirectory) -DMyRootOut=$(Build.SourcesDirectory)\build\Release\out
+      dir . 
+    displayName: 'Inno setup compile'
 
   - task: GitHubRelease@1
     inputs:
