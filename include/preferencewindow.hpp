@@ -78,8 +78,6 @@ class PreferenceWindow : public QMainWindow
 
     void on_transparency_slider_valueChanged(int value);
 
-    void on_cfpath_button_clicked();
-
   private:
     Ui::PreferenceWindow *ui;
     QFont currentFont;

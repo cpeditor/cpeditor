@@ -302,7 +302,6 @@ void MainWindow::setCFToolsUI()
         log.error("CFTools", "You will not be able to submit code to Codeforces because CFTools is not installed or is "
                              "not on SYSTEM PATH. You can set it manually in settings.");
     }
-
 }
 
 int MainWindow::getUntitledIndex() const
@@ -505,10 +504,10 @@ void MainWindow::setSettingsData(const Settings::SettingsData &data, bool should
 
     cftoolPath = data.cfPath;
 
-    if(cftools != nullptr && Network::CFTools::check(cftoolPath))
+    if (cftools != nullptr && Network::CFTools::check(cftoolPath))
     {
         cftools->updatePath(cftoolPath);
-        if(submitToCodeforces != nullptr)
+        if (submitToCodeforces != nullptr)
             submitToCodeforces->setEnabled(true);
     }
 

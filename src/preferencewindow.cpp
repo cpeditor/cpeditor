@@ -152,10 +152,7 @@ void PreferenceWindow::applySettingsToui()
         ui->snippets_lang->setCurrentIndex(lang_index);
     onSnippetsLangChanged(lang);
 
-    if(manager->getCFPath() == "cf")
-        ui->cfpath_button->setText("<Search on System Environment>");
-    else
-        ui->cfpath_button->setText(manager->getCFPath());
+    ui->cf_path->setText(manager->getCFPath());
 }
 
 void PreferenceWindow::extractSettingsFromUi()
@@ -210,7 +207,7 @@ void PreferenceWindow::extractSettingsFromUi()
     manager->setHotkeyViewModeToggler(ui->toggle_hotkey->keySequence());
     manager->setHotkeySnippets(ui->snippets_hotkey->keySequence());
 
-    manager->setCFPath(ui->cfpath_button->text());
+    manager->setCFPath(ui->cf_path->text());
 }
 
 void PreferenceWindow::updateShow()
@@ -521,21 +518,4 @@ QString PreferenceWindow::getNewSnippetName(const QString &lang, const QString &
         return name;
     else
         return getNewSnippetName(lang, name);
-}
-
-void PreferenceWindow::on_cfpath_button_clicked()
-{
-#if defined (_WIN32)
-    auto filename = QFileDialog::getOpenFileName(this, tr("Choose CF tools"), "",
-                                                 "Executable File (*.exe)");
-    if (filename.isEmpty())
-        return;
-#else
-    auto filename = QFileDialog::getOpenFileName(this, tr("Choose CF tools"), "",
-                                                 "Executable File (*.*)");
-    if (filename.isEmpty())
-        return;
-#endif
-    ui->cfpath_button->setText(filename);
-
 }
