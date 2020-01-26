@@ -93,7 +93,14 @@ jobs:
       mkdir out
       mv CPEditor.exe out/
       $(Build.BinariesDirectory)\Qt\5.14.0\msvc2017_64\bin\windeployqt.exe out\CPEditor.exe --no-translations
-      dir .
-      dir .\out\
     displayName: 'Gather EXE dependencies'
+
+  - task: ChocolateyCommand@0
+    inputs:
+      command: 'install'
+      installPackageId: 'innosetup'
+
+  - script: |
+      iscc
+    displayName: 'Inno setup install details'
 
