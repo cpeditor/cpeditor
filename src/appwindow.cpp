@@ -22,6 +22,7 @@
 #include <QDesktopServices>
 #include <QFileDialog>
 #include <QInputDialog>
+#include <QJsonDocument>
 #include <QMap>
 #include <QMessageBox>
 #include <QMetaMethod>
@@ -560,6 +561,44 @@ void AppWindow::on_actionSettings_triggered()
 }
 
 /************************** SLOTS *********************************/
+
+#define FROMJSON(x) auto x = json[#x]
+
+void AppWindow::onReceivedMessage(quint32 instanceId, QByteArray message)
+{
+    auto json = QJsonDocument::fromBinaryData(message);
+    FROMJSON(cpp).toBool();
+    FROMJSON(java).toBool();
+    FROMJSON(python).toBool();
+
+    if (json["type"] == "normal")
+    {
+        FROMJSON(depth).toInt();
+        FROMJSON(paths).toVariant().toStringList();
+        for (auto path : paths)
+        {
+            if (QDir(path).exists())
+                openFolder(path, cpp, java, python, depth);
+            else
+                openTab(path);
+        }
+    }
+    else if (json["type"] == "contest")
+    {
+        FROMJSON(number).toInt();
+        FROMJSON(path).toString();
+        QString lang = settingManager->getDefaultLang();
+        if (cpp)
+            lang = "C++";
+        else if (java)
+            lang = "Java";
+        else if (python)
+            lang = "Python";
+        openContest(path, lang, number);
+    }
+}
+
+#undef FROMJSON
 
 void AppWindow::onTabCloseRequested(int index)
 {

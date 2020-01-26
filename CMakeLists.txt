@@ -24,6 +24,9 @@ find_package(Qt5 COMPONENTS Network REQUIRED)
 
 add_subdirectory(third_party/QCodeEditor)
 
+set(QAPPLICATION_CLASS QApplication CACHE STRING "Inheritance class for SingleApplication")
+add_subdirectory(third_party/singleapplication)
+
 configure_file(version.hpp.in ${CMAKE_BINARY_DIR}/generated/version.hpp)
 
 add_executable(CPEditor
@@ -78,3 +81,4 @@ include_directories("generated/")
 target_link_libraries(CPEditor PRIVATE Qt5::Widgets)
 target_link_libraries(CPEditor PRIVATE Qt5::Network)
 target_link_libraries(CPEditor PRIVATE QCodeEditor)
+target_link_libraries(CPEditor PRIVATE SingleApplication)

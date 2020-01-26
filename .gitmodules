@@ -1,3 +1,6 @@
 [submodule "third_party/QCodeEditor"]
 	path = third_party/QCodeEditor
 	url = https://github.com/Megaxela/QCodeEditor
+[submodule "third_party/singleapplication"]
+	path = third_party/singleapplication
+	url = git@github.com:itay-grudev/SingleApplication.git

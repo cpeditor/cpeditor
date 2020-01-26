@@ -17,16 +17,22 @@
 
 #include <QApplication>
 #include <QCommandLineParser>
+#include <QJsonArray>
+#include <QJsonDocument>
+#include <QJsonObject>
 #include <QTextStream>
+#include <singleapplication.h>
 
 #include "appwindow.hpp"
 #include "mainwindow.hpp"
 
+#define TOJSON(x) json[#x] = x
+
 int main(int argc, char *argv[])
 {
-    QApplication app(argc, argv);
-    QCoreApplication::setApplicationName("CP Editor");
-    QCoreApplication::setApplicationVersion(APP_VERSION_MAJOR "." APP_VERSION_MINOR "." APP_VERSION_PATCH);
+    SingleApplication app(argc, argv, true, SingleApplication::Mode::SecondaryNotification);
+    SingleApplication::setApplicationName("CP Editor");
+    SingleApplication::setApplicationVersion(APP_VERSION_MAJOR "." APP_VERSION_MINOR "." APP_VERSION_PATCH);
 
     QTextStream cerr(stderr, QIODevice::WriteOnly);
 
@@ -84,7 +90,24 @@ int main(int argc, char *argv[])
             return 1;
         }
 
-        AppWindow w(cpp, java, python, noHotExit, number, args[1]);
+        auto path = args[1];
+
+        if (app.isSecondary())
+        {
+            QJsonObject json;
+            json["type"] = "contest";
+            TOJSON(cpp);
+            TOJSON(java);
+            TOJSON(python);
+            TOJSON(number);
+            TOJSON(path);
+            if (app.sendMessage(QJsonDocument(json).toBinaryData()))
+                return 0;
+        }
+
+        AppWindow w(cpp, java, python, noHotExit, number, path);
+        QObject::connect(&app, &SingleApplication::instanceStarted, &w, &AppWindow::raise);
+        QObject::connect(&app, &SingleApplication::receivedMessage, &w, &AppWindow::onReceivedMessage);
         w.show();
         return app.exec();
     }
@@ -103,8 +126,25 @@ int main(int argc, char *argv[])
         if (!cpp && !java && !python)
             cpp = java = python = true;
 
+        if (app.isSecondary())
+        {
+            QJsonObject json;
+            json["type"] = "normal";
+            TOJSON(depth);
+            TOJSON(cpp);
+            TOJSON(java);
+            TOJSON(python);
+            json["paths"] = QJsonArray::fromStringList(args);
+            if (app.sendMessage(QJsonDocument(json).toBinaryData()))
+                return 0;
+        }
+
         AppWindow w(depth, cpp, java, python, noHotExit, args);
+        QObject::connect(&app, &SingleApplication::instanceStarted, &w, &AppWindow::raise);
+        QObject::connect(&app, &SingleApplication::receivedMessage, &w, &AppWindow::onReceivedMessage);
         w.show();
         return app.exec();
     }
 }
+
+#undef TOJSON
