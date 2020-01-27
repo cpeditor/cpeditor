@@ -73,6 +73,8 @@ class MainWindow : public QMainWindow
     QString getTabTitle(bool complete, bool star);
     bool isUntitled() const;
 
+    void setProblemURL(const QString &url);
+
     EditorStatus toStatus() const;
     void loadStatus(const EditorStatus &status);
 

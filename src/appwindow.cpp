@@ -1016,6 +1016,15 @@ void AppWindow::onTabContextMenuRequested(const QPoint &pos)
             menu->addAction("Open Containing Folder",
                             [filePath] { QDesktopServices::openUrl(QUrl::fromLocalFile(QFileInfo(filePath).path())); });
         }
+        menu->addSeparator();
+        menu->addAction("Set Problem URL", [widget, this] {
+            bool ok = false;
+            auto url =
+                QInputDialog::getText(this, "Set Problem URL", "Enter the new problem URL here:", QLineEdit::Normal,
+                                      "https://codeforces.com/contest//problem/", &ok);
+            if (ok)
+                widget->setProblemURL(url);
+        });
         menu->popup(ui->tabWidget->tabBar()->mapToGlobal(pos));
     }
 }

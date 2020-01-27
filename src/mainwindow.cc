@@ -347,6 +347,14 @@ bool MainWindow::isUntitled() const
     return filePath.isEmpty();
 }
 
+void MainWindow::setProblemURL(const QString &url)
+{
+    problemURL = url;
+    if (problemURL.contains("codeforces.com"))
+        setCFToolsUI();
+    emit editorChanged();
+}
+
 #define FROMSTATUS(x) x = status[#x]
 MainWindow::EditorStatus::EditorStatus(const QMap<QString, QVariant> &status)
 {
@@ -416,7 +424,7 @@ void MainWindow::loadStatus(const EditorStatus &status)
     filePath = status.filePath;
     updateWatcher();
     savedText = status.savedText;
-    problemURL = status.problemURL;
+    setProblemURL(status.problemURL);
     editor->setPlainText(status.editorText);
     if (status.isLanguageSet)
         setLanguage(status.language);
@@ -434,8 +442,6 @@ void MainWindow::loadStatus(const EditorStatus &status)
         if (status.expected.length() > i)
             *expected[i] = status.expected[i];
     }
-    if (problemURL.contains("codeforces.com"))
-        setCFToolsUI();
 }
 
 void MainWindow::updateVerdict(Verdict _verdict, int id)
@@ -490,10 +496,7 @@ void MainWindow::applyCompanion(Network::CompanionData data)
         input[i]->setPlainText(data.testcases[i].input);
         *expected[i] = (data.testcases[i].output);
     }
-    problemURL = data.url;
-    if (problemURL.contains("codeforces.com"))
-        setCFToolsUI();
-    emit editorChanged();
+    setProblemURL(data.url);
 }
 
 void MainWindow::setSettingsData(const Settings::SettingsData &data, bool shouldPerformDigonistic)
