@@ -900,14 +900,19 @@ bool MainWindow::isVerdictPass(QString output, QString expected)
     return true;
 }
 
-void MainWindow::setText(const QString &text, bool saveCursor)
+void MainWindow::setText(const QString &text, bool keep)
 {
-    auto cursor = editor->textCursor();
-    int old_pos = saveCursor ? cursor.position() : 0;
-    cursor.select(QTextCursor::Document);
-    cursor.insertText(text);
-    cursor.setPosition(old_pos);
-    editor->setTextCursor(cursor);
+    if (keep)
+    {
+        auto cursor = editor->textCursor();
+        int old_pos = cursor.position();
+        cursor.select(QTextCursor::Document);
+        cursor.insertText(text);
+        cursor.setPosition(old_pos);
+        editor->setTextCursor(cursor);
+    }
+    else
+        editor->setPlainText(text);
 }
 
 void MainWindow::updateWatcher()
@@ -921,7 +926,7 @@ void MainWindow::updateWatcher()
 
 void MainWindow::loadFile(QString path)
 {
-    bool samePath = filePath == path;
+    bool samePath = !isUntitled() && filePath == path;
     filePath = path;
     updateWatcher();
 
