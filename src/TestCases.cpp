@@ -284,7 +284,7 @@ void TestCase::onEditTextChanged()
         return edit->fontMetrics().lineSpacing() * (edit->document()->lineCount() + 2) + 5;
     };
     int newHeight = qMin(qMax(calcHeight(inputEdit), qMax(calcHeight(outputEdit), calcHeight(expectedEdit))), 300);
-    if (newHeight != inputEdit->height())
+    if (newHeight != inputEdit->minimumHeight())
     {
         QPropertyAnimation *animation = new QPropertyAnimation(inputEdit, "minimumHeight", this);
         animation->setDuration(200);
