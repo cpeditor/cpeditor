@@ -183,7 +183,7 @@ class MainWindow : public QMainWindow
     void loadTests();
     void saveTests();
     void setCFToolsUI();
-    void setText(const QString &text, bool saveCursor = false);
+    void setText(const QString &text, bool keep = false);
     void updateWatcher();
     void loadFile(QString path);
     bool saveFile(SaveMode, const QString &head);
