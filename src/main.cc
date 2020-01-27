@@ -30,7 +30,7 @@
 
 int main(int argc, char *argv[])
 {
-    SingleApplication app(argc, argv, true, SingleApplication::Mode::SecondaryNotification);
+    SingleApplication app(argc, argv, true);
     SingleApplication::setApplicationName("CP Editor");
     SingleApplication::setApplicationVersion(APP_VERSION_MAJOR "." APP_VERSION_MINOR "." APP_VERSION_PATCH);
 
@@ -108,7 +108,6 @@ int main(int argc, char *argv[])
         }
 
         AppWindow w(cpp, java, python, noHotExit, number, path);
-        QObject::connect(&app, &SingleApplication::instanceStarted, &w, &AppWindow::raise);
         QObject::connect(&app, &SingleApplication::receivedMessage, &w, &AppWindow::onReceivedMessage);
         w.show();
         return app.exec();
@@ -142,7 +141,6 @@ int main(int argc, char *argv[])
         }
 
         AppWindow w(depth, cpp, java, python, noHotExit, args);
-        QObject::connect(&app, &SingleApplication::instanceStarted, &w, &AppWindow::raise);
         QObject::connect(&app, &SingleApplication::receivedMessage, &w, &AppWindow::onReceivedMessage);
         w.show();
         return app.exec();
