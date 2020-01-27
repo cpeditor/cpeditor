@@ -51,6 +51,7 @@ class TestCase : public QWidget
     void on_loadInputButton_clicked();
     void on_diffButton_clicked();
     void on_loadExpectedButton_clicked();
+    void onEditTextChanged();
 
   private:
     QHBoxLayout *mainLayout = nullptr, *inputUpLayout = nullptr, *outputUpLayout = nullptr, *expectedUpLayout = nullptr;

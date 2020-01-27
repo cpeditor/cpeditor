@@ -20,6 +20,7 @@
 #include <QFileDialog>
 #include <QMainWindow>
 #include <QMessageBox>
+#include <QPropertyAnimation>
 #include <QRegularExpression>
 #include <QSaveFile>
 #include <QScrollBar>
@@ -74,6 +75,11 @@ TestCase::TestCase(MessageLogger *logger, QWidget *parent, const QString &input,
     connect(loadInputButton, SIGNAL(clicked()), this, SLOT(on_loadInputButton_clicked()));
     connect(diffButton, SIGNAL(clicked()), SLOT(on_diffButton_clicked()));
     connect(loadExpectedButton, SIGNAL(clicked()), this, SLOT(on_loadExpectedButton_clicked()));
+    connect(inputEdit, SIGNAL(textChanged()), this, SLOT(onEditTextChanged()));
+    connect(outputEdit, SIGNAL(textChanged()), this, SLOT(onEditTextChanged()));
+    connect(expectedEdit, SIGNAL(textChanged()), this, SLOT(onEditTextChanged()));
+
+    onEditTextChanged();
 }
 
 void TestCase::setInput(const QString &text)
@@ -270,6 +276,22 @@ void TestCase::on_loadExpectedButton_clicked()
         setExpected(file.readAll());
     else
         log->warn("Tests", "Failed to load expected file " + res);
+}
+
+void TestCase::onEditTextChanged()
+{
+    auto calcHeight = [](QPlainTextEdit *edit) {
+        return edit->fontMetrics().lineSpacing() * (edit->document()->lineCount() + 2) + 5;
+    };
+    int newHeight = qMin(qMax(calcHeight(inputEdit), qMax(calcHeight(outputEdit), calcHeight(expectedEdit))), 300);
+    if (newHeight != inputEdit->height())
+    {
+        QPropertyAnimation *animation = new QPropertyAnimation(inputEdit, "minimumHeight", this);
+        animation->setDuration(200);
+        animation->setStartValue(inputEdit->minimumHeight());
+        animation->setEndValue(newHeight);
+        animation->start(QAbstractAnimation::DeleteWhenStopped);
+    }
 }
 
 bool TestCase::isPass()
