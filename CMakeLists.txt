@@ -41,14 +41,13 @@ add_executable(CPEditor
     include/UpdateNotifier.hpp
     include/Runner.hpp
     include/Formatter.hpp
-    include/expand.hpp
+    include/TestCases.hpp
     include/CompanionServer.hpp
     include/cftools.hpp
     include/EditorTheme.hpp
     include/preferencewindow.hpp
     include/appwindow.hpp
-    include/DiffViewer.hpp
-
+    third_party/diff_match_patch/diff_match_patch.h
 
     src/mainwindow.cc
     src/MessageLogger.cpp
@@ -59,19 +58,17 @@ add_executable(CPEditor
     src/UpdateNotifier.cpp
     src/Runner.cpp
     src/Formatter.cpp
-    src/expand.cpp
+    src/TestCases.cpp
     src/CompanionServer.cpp
     src/cftools.cpp
     src/editortheme.cpp
     src/preferencewindow.cpp
     src/appwindow.cpp
-    src/DiffViewer.cpp
+    third_party/diff_match_patch/diff_match_patch.cpp
 
-    ui/expand.ui
     ui/mainwindow.ui
     ui/preferencewindow.ui
     ui/appwindow.ui
-    ui/diffviewer.ui
 
     ${CMAKE_BINARY_DIR}/generated/version.hpp
 
@@ -79,6 +76,7 @@ add_executable(CPEditor
     assets/appicon.rc)
 
 include_directories("third_party/QCodeEditor/include")
+include_directories("third_party/diff_match_patch")
 include_directories("include/")
 include_directories("generated/")
 

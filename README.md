@@ -10,6 +10,7 @@
 
 - Parse sample test cases from over 30+ online platforms (including Codeforces, AtCoder, CodeChef, Yandex...), load test cases from files, or type manually.
 - One click for either running on the test cases / running in the terminal.
+- Diff Viewer for the running result.
 - Submit code on Codeforces inside the editor.
 - Set/Use code snippets conveniently.
 - Supports Hot Exit. You can close the editor and keep all tabs in the next session.

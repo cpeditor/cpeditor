@@ -18,7 +18,6 @@
 #include "mainwindow.hpp"
 
 #include <Compiler.hpp>
-#include <DiffViewer.hpp>
 #include <EditorTheme.hpp>
 #include <MessageLogger.hpp>
 #include <QCXXHighlighter>
@@ -39,20 +38,23 @@
 #include <QThread>
 #include <QTimer>
 #include <Runner.hpp>
-#include <expand.hpp>
 
 #include "../ui/ui_mainwindow.h"
 
 // ***************************** RAII  ****************************
+
 MainWindow::MainWindow(QString fileOpen, const Settings::SettingsData &data, int index, QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow), untitledIndex(index), fileWatcher(new QFileSystemWatcher(this))
 {
     ui->setupUi(this);
+    setTestCases();
     setEditor();
     setupCore();
     connect(fileWatcher, SIGNAL(fileChanged(const QString &)), this, SLOT(onFileWatcherChanged(const QString &)));
     setSettingsData(data, true);
     loadFile(fileOpen);
+    if (testcases->count() == 0)
+        testcases->addTestCase();
 }
 
 MainWindow::~MainWindow()
@@ -66,11 +68,18 @@ MainWindow::~MainWindow()
 
     delete ui;
     delete editor;
+    delete testcases;
     delete formatter;
     delete fileWatcher;
 }
 
 // ************************* RAII HELPER *****************************
+
+void MainWindow::setTestCases()
+{
+    testcases = new TestCases(&log, this);
+    ui->test_cases_layout->addWidget(testcases);
+}
 
 void MainWindow::setEditor()
 {
@@ -80,30 +89,7 @@ void MainWindow::setEditor()
 
     ui->verticalLayout_8->addWidget(editor);
 
-    input[0] = ui->in1;
-    input[1] = ui->in2;
-    input[2] = ui->in3;
-
-    output[0] = ui->out1;
-    output[1] = ui->out2;
-    output[2] = ui->out3;
-
-    verdict[0] = ui->out1_verdict;
-    verdict[1] = ui->out2_verdict;
-    verdict[2] = ui->out3_verdict;
-
-    for (int i = 0; i < 3; ++i)
-    {
-        input[i]->setWordWrapMode(QTextOption::NoWrap);
-        output[i]->setWordWrapMode(QTextOption::NoWrap);
-        input[i]->setAcceptDrops(false);
-        expected[i] = new QString;
-    }
-
     QObject::connect(editor, SIGNAL(textChanged()), this, SIGNAL(editorChanged()));
-
-    for (auto i : {0, 1, 2})
-        updateVerdict(UNKNOWN, i);
 }
 
 void MainWindow::setupCore()
@@ -138,7 +124,7 @@ void MainWindow::compile()
 void MainWindow::run()
 {
     killProcesses();
-    clearTests(true);
+    testcases->clearOutput();
 
     QString command, args;
     if (language == "C++")
@@ -162,10 +148,11 @@ void MainWindow::run()
     }
 
     bool isRun = false;
+    runner.resize(testcases->count());
 
-    for (int i = 0; i < 3; ++i)
+    for (int i = 0; i < testcases->count(); ++i)
     {
-        if (!input[i]->toPlainText().trimmed().isEmpty())
+        if (!testcases->input(i).trimmed().isEmpty())
         {
             isRun = true;
             runner[i] = new Core::Runner(i);
@@ -176,7 +163,7 @@ void MainWindow::run()
                     SLOT(onRunErrorOccured(int, const QString &)));
             connect(runner[i], SIGNAL(runTimeout(int)), this, SLOT(onRunTimeout(int)));
             connect(runner[i], SIGNAL(runKilled(int)), this, SLOT(onRunKilled(int)));
-            runner[i]->run(tmpPath(), language, command, args, input[i]->toPlainText(), data.timeLimit);
+            runner[i]->run(tmpPath(), language, command, args, testcases->input(i), data.timeLimit);
         }
     }
 
@@ -184,95 +171,16 @@ void MainWindow::run()
         log.warn("Runner", "All inputs are empty, nothing to run");
 }
 
-void MainWindow::clearTests(bool outputOnly)
-{
-    for (int i = 0; i < 3; ++i)
-    {
-        if (!outputOnly)
-        {
-            input[i]->clear();
-            expected[i]->clear();
-        }
-        output[i]->clear();
-        updateVerdict(UNKNOWN, i);
-    }
-}
-
 void MainWindow::loadTests()
 {
-    if (isUntitled() || !data.shouldSaveTests)
-        return;
-
-    QFileInfo fileInfo(filePath);
-    QString testFile = fileInfo.canonicalPath() + "/" + fileInfo.completeBaseName();
-
-    for (int i = 0; i < 3; ++i)
-    {
-        if (QFile::exists(testFile + QString::number(i + 1) + ".in"))
-        {
-            QFile inputFile(testFile + QString::number(i + 1) + ".in");
-            inputFile.open(QIODevice::ReadOnly | QFile::Text);
-            if (inputFile.isOpen())
-            {
-                auto cursor = input[i]->textCursor();
-                cursor.select(QTextCursor::Document);
-                cursor.insertText(inputFile.readAll());
-            }
-            else
-            {
-                log.error("Tests", "Failed to open" + inputFile.fileName() + ". Do I have read permissions?");
-            }
-        }
-
-        if (QFile::exists(testFile + QString::number(i + 1) + ".ans"))
-        {
-            QFile answerFile(testFile + QString::number(i + 1) + ".ans");
-            answerFile.open(QIODevice::ReadOnly | QFile::Text);
-            if (answerFile.isOpen())
-            {
-                *expected[i] = (answerFile.readAll());
-            }
-            else
-            {
-                log.error("Tests", "Failed to open" + answerFile.fileName() + ". Do I have read permissions?");
-            }
-        }
-    }
+    if (!isUntitled() && data.shouldSaveTests)
+        testcases->loadFromFile(filePath);
 }
 
 void MainWindow::saveTests()
 {
-    if (isUntitled() || !data.shouldSaveTests)
-        return;
-
-    QFileInfo fileInfo(filePath);
-    QString testFile = fileInfo.canonicalPath() + "/" + fileInfo.completeBaseName();
-
-    for (int i = 0; i < 3; ++i)
-    {
-        if (!input[i]->toPlainText().trimmed().isEmpty())
-        {
-            QSaveFile inputFile(testFile + QString::number(i + 1) + ".in");
-            inputFile.open(QIODevice::WriteOnly | QFile::Text);
-            inputFile.write(input[i]->toPlainText().toStdString().c_str());
-            if (!inputFile.commit())
-            {
-                log.error("Tests", "Failed to save Input #" + QString::number(i + 1) + ". Do I have write permission?");
-            }
-        }
-
-        if (!expected[i]->trimmed().isEmpty())
-        {
-            QSaveFile answerFile(testFile + QString::number(i + 1) + ".ans");
-            answerFile.open(QIODevice::WriteOnly | QFile::Text);
-            answerFile.write(expected[i]->toStdString().c_str());
-            if (!answerFile.commit())
-            {
-                log.error("Tests",
-                          "Failed to save Expected #" + QString::number(i + 1) + ". Do I have write permission?");
-            }
-        }
-    }
+    if (!isUntitled() && data.shouldSaveTests)
+        testcases->save(filePath);
 }
 
 void MainWindow::setCFToolsUI()
@@ -410,11 +318,8 @@ MainWindow::EditorStatus MainWindow::toStatus() const
     status.horizontalScrollBarValue = editor->horizontalScrollBar()->value();
     status.verticalScrollbarValue = editor->verticalScrollBar()->value();
     status.untitledIndex = untitledIndex;
-    for (int i = 0; i < 3; ++i)
-    {
-        status.input.push_back(input[i]->toPlainText());
-        status.expected.push_back(*expected[i]);
-    }
+    status.input = testcases->inputs();
+    status.expected = testcases->expecteds();
 
     return status;
 }
@@ -435,37 +340,7 @@ void MainWindow::loadStatus(const EditorStatus &status)
     editor->horizontalScrollBar()->setValue(status.horizontalScrollBarValue);
     editor->verticalScrollBar()->setValue(status.verticalScrollbarValue);
     untitledIndex = status.untitledIndex;
-    for (int i = 0; i < 3; ++i)
-    {
-        if (status.input.length() > i)
-            input[i]->setPlainText(status.input[i]);
-        if (status.expected.length() > i)
-            *expected[i] = status.expected[i];
-    }
-}
-
-void MainWindow::updateVerdict(Verdict _verdict, int id)
-{
-    QString verdict_text, style_sheet;
-
-    switch (_verdict)
-    {
-    case ACCEPTED:
-        verdict_text = "AC";
-        style_sheet = "QLabel { color : rgb(0, 180, 0); }";
-        break;
-    case WRONG_ANSWER:
-        verdict_text = "WA";
-        style_sheet = "QLabel { color : rgb(255, 0, 0); }";
-        break;
-    case UNKNOWN:
-        verdict_text = "**";
-        style_sheet = "";
-        break;
-    }
-
-    verdict[id]->setText(verdict_text);
-    verdict[id]->setStyleSheet(style_sheet);
+    testcases->loadStatus(status.input, status.expected);
 }
 
 void MainWindow::applyCompanion(Network::CompanionData data)
@@ -484,18 +359,11 @@ void MainWindow::applyCompanion(Network::CompanionData data)
         editor->setPlainText(meta + "\n\n" + editor->toPlainText());
     }
 
-    clearTests();
+    testcases->clear();
 
-    if (data.testcases.size() > 3)
-    {
-        log.warn("CP Editor", "More than 3 testcase were produced. Only First 3 will be used");
-    }
+    for (int i = 0; i < data.testcases.size(); ++i)
+        testcases->addTestCase(data.testcases[i].input, data.testcases[i].output);
 
-    for (int i = 0; i < data.testcases.size() && i < 3; ++i)
-    {
-        input[i]->setPlainText(data.testcases[i].input);
-        *expected[i] = (data.testcases[i].output);
-    }
     setProblemURL(data.url);
 }
 
@@ -700,9 +568,9 @@ void MainWindow::killProcesses()
         if (t != nullptr)
         {
             delete t;
-            t = nullptr;
         }
     }
+    runner.clear();
 
     if (detachedRunner != nullptr)
     {
@@ -711,194 +579,7 @@ void MainWindow::killProcesses()
     }
 }
 
-// ****************************** Context Menus **************************/
-
-void MainWindow::on_in1_customContextMenuRequested(const QPoint &pos)
-{
-    QMenu *stdMenu = ui->in1->createStandardContextMenu(pos);
-    QAction *newAction = new QAction("Expand");
-
-    QObject::connect(newAction, &QAction::triggered, this, [this] {
-        auto ptr = new Expand(ui->in1, &this->log, this);
-        ptr->setTitle("Input 1");
-        ptr->setUpdate(true);
-        ptr->setReadFile(true);
-        ptr->show();
-    });
-
-    stdMenu->insertAction(stdMenu->actions().first(), newAction);
-    stdMenu->popup(ui->in1->viewport()->mapToGlobal(pos));
-}
-
-void MainWindow::on_in2_customContextMenuRequested(const QPoint &pos)
-{
-    QMenu *stdMenu = ui->in2->createStandardContextMenu(pos);
-    QAction *newAction = new QAction("Expand");
-
-    QObject::connect(newAction, &QAction::triggered, this, [this] {
-        auto ptr = new Expand(ui->in2, &this->log, this);
-        ptr->setTitle("Input 2");
-        ptr->setUpdate(true);
-        ptr->setReadFile(true);
-        ptr->show();
-    });
-
-    stdMenu->insertAction(stdMenu->actions().first(), newAction);
-    stdMenu->popup(ui->in2->viewport()->mapToGlobal(pos));
-}
-
-void MainWindow::on_in3_customContextMenuRequested(const QPoint &pos)
-{
-    QMenu *stdMenu = ui->in3->createStandardContextMenu(pos);
-    QAction *newAction = new QAction("Expand");
-
-    QObject::connect(newAction, &QAction::triggered, this, [this] {
-        auto ptr = new Expand(ui->in3, &this->log, this);
-        ptr->setTitle("Input 3");
-        ptr->setUpdate(true);
-        ptr->setReadFile(true);
-        ptr->show();
-    });
-
-    stdMenu->insertAction(stdMenu->actions().first(), newAction);
-    stdMenu->popup(ui->in3->viewport()->mapToGlobal(pos));
-}
-
-void MainWindow::on_compiler_edit_customContextMenuRequested(const QPoint &pos)
-{
-    QMenu *stdMenu = ui->compiler_edit->createStandardContextMenu(pos);
-    QAction *newAction = new QAction("Expand");
-
-    QObject::connect(newAction, &QAction::triggered, this, [this] {
-        auto ptr = new Expand(this->ui->compiler_edit, &this->log, this);
-        ptr->show();
-    });
-
-    stdMenu->insertAction(stdMenu->actions().first(), newAction);
-    stdMenu->popup(ui->compiler_edit->viewport()->mapToGlobal(pos));
-}
-
-void MainWindow::on_out1_customContextMenuRequested(const QPoint &pos)
-{
-    QMenu *stdMenu = ui->out1->createStandardContextMenu(pos);
-    QAction *newAction = new QAction("Expand");
-
-    QObject::connect(newAction, &QAction::triggered, this, [this] {
-        auto ptr = new Expand(ui->out1, &this->log, this);
-        ptr->setTitle("Output 1");
-        ptr->setUpdate(false);
-        ptr->setReadFile(false);
-        ptr->show();
-    });
-
-    stdMenu->insertAction(stdMenu->actions().first(), newAction);
-    stdMenu->popup(ui->out1->viewport()->mapToGlobal(pos));
-}
-void MainWindow::on_out2_customContextMenuRequested(const QPoint &pos)
-{
-    QMenu *stdMenu = ui->out2->createStandardContextMenu(pos);
-    QAction *newAction = new QAction("Expand");
-
-    QObject::connect(newAction, &QAction::triggered, this, [this] {
-        auto ptr = new Expand(ui->out2, &this->log, this);
-        ptr->setTitle("Output 2");
-        ptr->setUpdate(false);
-        ptr->setReadFile(false);
-        ptr->show();
-    });
-
-    stdMenu->insertAction(stdMenu->actions().first(), newAction);
-    stdMenu->popup(ui->out2->viewport()->mapToGlobal(pos));
-}
-
-void MainWindow::on_out3_customContextMenuRequested(const QPoint &pos)
-{
-    QMenu *stdMenu = ui->out3->createStandardContextMenu(pos);
-    QAction *newAction = new QAction("Expand");
-
-    QObject::connect(newAction, &QAction::triggered, this, [this] {
-        auto ptr = new Expand(ui->out3, &this->log, this);
-        ptr->setTitle("Output 3");
-        ptr->setUpdate(false);
-        ptr->setReadFile(false);
-        ptr->show();
-    });
-
-    stdMenu->insertAction(stdMenu->actions().first(), newAction);
-    stdMenu->popup(ui->out3->viewport()->mapToGlobal(pos));
-}
-
-//********************* DIFF Showers ******************
-
-void MainWindow::on_out1_diff_clicked()
-{
-    auto ptr = new DiffViewer(expected[0], ui->out1, &log);
-    ptr->setTitle("Diffviewer for Case #1");
-    ptr->show();
-}
-
-void MainWindow::on_out2_diff_clicked()
-{
-    auto ptr = new DiffViewer(expected[1], ui->out2, &log);
-    ptr->setTitle("Diffviewer for Case #2");
-    ptr->show();
-}
-
-void MainWindow::on_out3_diff_clicked()
-{
-    auto ptr = new DiffViewer(expected[2], ui->out3, &log);
-    ptr->setTitle("Diffviewer for Case #3");
-    ptr->show();
-}
-
 //***************** HELPER FUNCTIONS *****************
-
-bool MainWindow::isVerdictPass(QString output, QString expected)
-{
-    output = output.remove('\r');
-    expected = expected.remove('\r');
-    auto a_lines = output.split('\n');
-    auto b_lines = expected.split('\n');
-    for (int i = 0; i < a_lines.size() || i < b_lines.size(); ++i)
-    {
-        if (i >= a_lines.size())
-        {
-            if (b_lines[i].trimmed().isEmpty())
-                continue;
-            else
-                return false;
-        }
-        if (i >= b_lines.size())
-        {
-            if (a_lines[i].trimmed().isEmpty())
-                continue;
-            else
-                return false;
-        }
-        auto a_words = a_lines[i].split(' ');
-        auto b_words = b_lines[i].split(' ');
-        for (int j = 0; j < a_words.size() || j < b_words.size(); ++j)
-        {
-            if (j >= a_words.size())
-            {
-                if (b_words[j].trimmed().isEmpty())
-                    continue;
-                else
-                    return false;
-            }
-            if (j >= b_words.size())
-            {
-                if (a_words[j].trimmed().isEmpty())
-                    continue;
-                else
-                    return false;
-            }
-            if (a_words[j] != b_words[j])
-                return false;
-        }
-    }
-    return true;
-}
 
 void MainWindow::setText(const QString &text, bool saveCursor)
 {
@@ -1309,14 +990,7 @@ void MainWindow::onRunFinished(int index, const QString &out, const QString &err
                            QString::number(timeUsed) + "ms");
         if (!err.trimmed().isEmpty())
             log.error(head + "/stderr", err);
-        output[index]->setPlainText(out);
-        if (!expected[index]->isEmpty())
-        {
-            if (isVerdictPass(out, *expected[index]))
-                updateVerdict(ACCEPTED, index);
-            else
-                updateVerdict(WRONG_ANSWER, index);
-        }
+        testcases->setOutput(index, out);
     }
 
     else

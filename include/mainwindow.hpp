@@ -33,6 +33,7 @@
 #include <QTemporaryDir>
 #include <Runner.hpp>
 #include <SettingsManager.hpp>
+#include <TestCases.hpp>
 #include <UpdateNotifier.hpp>
 #include <cftools.hpp>
 #include <generated/version.hpp>
@@ -119,18 +120,6 @@ class MainWindow : public QMainWindow
     void onRunTimeout(int index);
     void onRunKilled(int index);
 
-    void on_in1_customContextMenuRequested(const QPoint &pos);
-    void on_in2_customContextMenuRequested(const QPoint &pos);
-    void on_in3_customContextMenuRequested(const QPoint &pos);
-    void on_compiler_edit_customContextMenuRequested(const QPoint &pos);
-    void on_out3_customContextMenuRequested(const QPoint &pos);
-    void on_out2_customContextMenuRequested(const QPoint &pos);
-    void on_out1_customContextMenuRequested(const QPoint &pos);
-
-    void on_out1_diff_clicked();
-    void on_out2_diff_clicked();
-    void on_out3_diff_clicked();
-
     void on_changeLanguageButton_clicked();
 
     void onFileWatcherChanged(const QString &);
@@ -167,7 +156,7 @@ class MainWindow : public QMainWindow
 
     Core::Formatter *formatter = nullptr;
     Core::Compiler *compiler = nullptr;
-    QVector<Core::Runner *> runner = QVector<Core::Runner *>(3, nullptr);
+    QVector<Core::Runner *> runner;
     Core::Runner *detachedRunner = nullptr;
     QTemporaryDir *tmpDir = nullptr;
     AfterCompile afterCompile = Nothing;
@@ -181,23 +170,19 @@ class MainWindow : public QMainWindow
     QString cftoolPath;
     QFileSystemWatcher *fileWatcher;
 
-    QVector<QPlainTextEdit *> input = QVector<QPlainTextEdit *>(3, nullptr);
-    QVector<QPlainTextEdit *> output = QVector<QPlainTextEdit *>(3, nullptr);
-    QVector<QLabel *> verdict = QVector<QLabel *>(3, nullptr);
-    QVector<QString *> expected = QVector<QString *>(3, nullptr);
     QPushButton *submitToCodeforces = nullptr;
     Network::CFTools *cftools = nullptr;
 
+    TestCases *testcases = nullptr;
+
+    void setTestCases();
     void setEditor();
     void setupCore();
     void compile();
     void run();
-    void clearTests(bool outputOnly = false);
     void loadTests();
     void saveTests();
     void setCFToolsUI();
-    void updateVerdict(Verdict, int);
-    bool isVerdictPass(QString, QString);
     void setText(const QString &text, bool saveCursor = false);
     void updateWatcher();
     void loadFile(QString path);
