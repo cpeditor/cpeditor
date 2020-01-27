@@ -21,7 +21,6 @@
 #include <QMainWindow>
 #include <QMessageBox>
 #include <QPropertyAnimation>
-#include <QRegularExpression>
 #include <QSaveFile>
 #include <QScrollBar>
 
