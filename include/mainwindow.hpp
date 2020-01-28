@@ -21,7 +21,6 @@
 #include <CompanionServer.hpp>
 #include <Compiler.hpp>
 #include <Formatter.hpp>
-#include <IO.hpp>
 #include <QCodeEditor>
 #include <QFile>
 #include <QFileSystemWatcher>
