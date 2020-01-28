@@ -440,10 +440,18 @@ void TestCases::setExpected(int index, const QString &expected)
 
 void TestCases::addTestCase(const QString &input, const QString &expected)
 {
-    auto testcase = new TestCase(log, this, input, expected);
-    connect(testcase, SIGNAL(deleted(TestCase *)), this, SLOT(onChildDeleted(TestCase *)));
-    testcases.push_back(testcase);
-    scrollAreaLayout->addWidget(testcase);
+    if (count() >= MAX_NUMBER_OF_TESTCASES)
+    {
+        QMessageBox::warning(this, "Add Test Case",
+                             "There are already " + QString::number(count()) + " test cases, you can't add more.");
+    }
+    else
+    {
+        auto testcase = new TestCase(log, this, input, expected);
+        connect(testcase, SIGNAL(deleted(TestCase *)), this, SLOT(onChildDeleted(TestCase *)));
+        testcases.push_back(testcase);
+        scrollAreaLayout->addWidget(testcase);
+    }
 }
 
 void TestCases::clearOutput()
@@ -504,11 +512,8 @@ void TestCases::loadFromFile(const QString &filePath)
     int maxIndex = 0;
     auto entries = dir.entryInfoList({name + "*.in", name + "*.ans"}, QDir::Files);
     for (auto entry : entries)
-    {
-        int number = numberOfTestFile(name, entry);
-        if (number > maxIndex)
-            maxIndex = number;
-    }
+        maxIndex = qMax(maxIndex, numberOfTestFile(name, entry));
+    maxIndex = qMin(maxIndex, MAX_NUMBER_OF_TESTCASES);
     clear();
     for (int i = 0; i < maxIndex; ++i)
     {
@@ -528,7 +533,7 @@ void TestCases::save(const QString &filePath)
     for (auto entry : entries)
     {
         int number = numberOfTestFile(name, entry);
-        if (number > count())
+        if (number > count() && number <= MAX_NUMBER_OF_TESTCASES)
         {
             auto res = QMessageBox::question(this, "Save Tests",
                                              entry.fileName() + " is deleted in the editor, delete it on the disk?");

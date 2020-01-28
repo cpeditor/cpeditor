@@ -114,6 +114,7 @@ class TestCases : public QWidget
     void onChildDeleted(TestCase *widget);
 
   private:
+    static const int MAX_NUMBER_OF_TESTCASES = 100;
     QVBoxLayout *mainLayout = nullptr, *scrollAreaLayout = nullptr;
     QHBoxLayout *titleLayout = nullptr;
     QPushButton *addButton = nullptr;
