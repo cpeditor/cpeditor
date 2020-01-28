@@ -1,10 +1,10 @@
 # CP Editor
 
 [![Build Status](https://travis-ci.org/coder3101/cp-editor.svg?branch=master)](https://travis-ci.org/coder3101/cp-editor)
-[![Latest Stable](https://img.shields.io/github/v/release/coder3101/cp-editor?label=Latest%20Stable&style=flat-square)](https://github.com/coder3101/cp-editor/releases/latest)
-[![Latest Beta](https://img.shields.io/github/v/release/coder3101/cp-editor?include_prereleases&label=Latest%20Beta&style=flat-square)](https://github.com/coder3101/cp-editor/releases)
+[![Latest Stable](https://img.shields.io/github/v/release/coder3101/cp-editor?label=latest%20stable)](https://github.com/coder3101/cp-editor/releases/latest)
+[![Latest Release](https://img.shields.io/github/v/release/coder3101/cp-editor?include_prereleases&label=latest%20release&sort=semver)](https://github.com/coder3101/cp-editor/releases)
 
-<img src=https://i.imgur.com/31n9t8i.png height="80" width="80">
+<img src=assets/icon.ico height="80" width="80">
 
 **CP Editor** is a native Qt-based code editor written in C++. It's specially designed for competitive programming, unlike other editors/IDEs which are mainly for developers. It helps you focus on your coding and automates the compilation, executing and testing. It even fetches test cases for you from webpages and submits codes on Codeforces!
 
