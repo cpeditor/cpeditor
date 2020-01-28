@@ -1023,7 +1023,9 @@ void AppWindow::onTabContextMenuRequested(const QPoint &pos)
             bool ok = false;
             auto url =
                 QInputDialog::getText(this, "Set Problem URL", "Enter the new problem URL here:", QLineEdit::Normal,
-                                      "https://codeforces.com/contest//problem/", &ok);
+                                      widget->getProblemURL().isEmpty() ? "https://codeforces.com/contest//problem/"
+                                                                        : widget->getProblemURL(),
+                                      &ok);
             if (ok)
                 widget->setProblemURL(url);
         });
