@@ -19,7 +19,7 @@
 - Fast and memory efficient. Runs flawlessly on low-end devices.
 - Over 5 editor themes to choose from (Drakula, Monkai, Solarised, Solarised Dark and Light).
 
-<img src=https://i.imgur.com/jKOtf6W.jpg width="85%">
+![screenshot](screenshot.png)
 
 ### Installation
 
