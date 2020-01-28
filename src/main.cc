@@ -104,7 +104,10 @@ int main(int argc, char *argv[])
             TOJSON(number);
             TOJSON(path);
             if (app.sendMessage("AAAAAAAAAAAAAAAAAAAANOLOSTDATA" + QJsonDocument(json).toBinaryData()))
+            {
+                cerr << "There is already a CP Editor running. New tabs are opened there.\n";
                 return 0;
+            }
         }
 
         AppWindow w(cpp, java, python, noHotExit, number, path);
@@ -137,7 +140,10 @@ int main(int argc, char *argv[])
             TOJSON(python);
             json["paths"] = QJsonArray::fromStringList(args);
             if (app.sendMessage("AAAAAAAAAAAAAAAAAAAANOLOSTDATA" + QJsonDocument(json).toBinaryData()))
+            {
+                cerr << "There is already a CP Editor running. New tabs are opened there.\n";
                 return 0;
+            }
         }
 
         AppWindow w(depth, cpp, java, python, noHotExit, args);
