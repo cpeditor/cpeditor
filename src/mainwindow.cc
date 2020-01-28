@@ -884,6 +884,11 @@ QSplitter *MainWindow::getSplitter()
     return ui->splitter;
 }
 
+QSplitter *MainWindow::getRightSplitter()
+{
+    return ui->right_splitter;
+}
+
 void MainWindow::performCoreDiagonistics()
 {
     log.clear();

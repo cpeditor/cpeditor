@@ -99,6 +99,7 @@ class MainWindow : public QMainWindow
 
     MessageLogger *getLogger();
     QSplitter *getSplitter();
+    QSplitter *getRightSplitter();
 
     void insertText(QString text);
 

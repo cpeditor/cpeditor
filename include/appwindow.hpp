@@ -94,6 +94,8 @@ class AppWindow : public QMainWindow
 
     void onSplitterMoved(int, int);
 
+    void onRightSplitterMoved(int, int);
+
     void onIncomingCompanionRequest(Network::CompanionData);
 
     void onViewModeToggle();
@@ -126,8 +128,9 @@ class AppWindow : public QMainWindow
     Ui::AppWindow *ui;
     MessageLogger *activeLogger = nullptr;
     QTimer *timer = nullptr;
-    QMetaObject::Connection activeSplitterMoveConnections;
-    QMetaObject::Connection companionEditorConnections;
+    QMetaObject::Connection activeSplitterMoveConnection;
+    QMetaObject::Connection activeRightSplitterMoveConnection;
+    QMetaObject::Connection companionEditorConnection;
     Settings::SettingManager *settingManager = nullptr;
     Telemetry::UpdateNotifier *updater = nullptr;
     PreferenceWindow *preferenceWindow = nullptr;

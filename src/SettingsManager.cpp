@@ -537,6 +537,16 @@ void SettingManager::setSplitterSizes(QByteArray state)
     mSettings->setValue("splitter_sizes", state);
 }
 
+QByteArray SettingManager::getRightSplitterSizes()
+{
+    return mSettings->value("right_splitter_sizes").toByteArray();
+}
+
+void SettingManager::setRightSplitterSizes(QByteArray state)
+{
+    mSettings->setValue("right_splitter_sizes", state);
+}
+
 SettingManager::~SettingManager()
 {
     mSettings->sync();

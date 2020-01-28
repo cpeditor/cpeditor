@@ -199,6 +199,9 @@ class SettingManager
     QByteArray getSplitterSizes();
     void setSplitterSizes(QByteArray state);
 
+    QByteArray getRightSplitterSizes();
+    void setRightSplitterSizes(QByteArray state);
+
     void setHotkeyFormat(QKeySequence sequence);
     void setHotkeyKill(QKeySequence sequence);
     void setHotkeyCompileRun(QKeySequence sequence);

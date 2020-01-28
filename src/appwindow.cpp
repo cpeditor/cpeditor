@@ -157,7 +157,7 @@ void AppWindow::setConnections()
     connect(preferenceWindow, SIGNAL(settingsApplied()), this, SLOT(onSettingsApplied()));
 
     if (settingManager->isCompetitiveCompanionActive())
-        companionEditorConnections =
+        companionEditorConnection =
             connect(server, &Network::CompanionServer::onRequestArrived, this, &AppWindow::onIncomingCompanionRequest);
 }
 
@@ -658,7 +658,8 @@ void AppWindow::onTabChanged(int index)
         return;
     }
 
-    disconnect(activeSplitterMoveConnections);
+    disconnect(activeSplitterMoveConnection);
+    disconnect(activeRightSplitterMoveConnection);
 
     auto tmp = windowIndex(index);
 
@@ -680,8 +681,12 @@ void AppWindow::onTabChanged(int index)
     else if (ui->actionSplit_Mode->isChecked())
         on_actionSplit_Mode_triggered();
 
-    activeSplitterMoveConnections =
+    tmp->getRightSplitter()->restoreState(settingManager->getRightSplitterSizes());
+
+    activeSplitterMoveConnection =
         connect(tmp->getSplitter(), SIGNAL(splitterMoved(int, int)), this, SLOT(onSplitterMoved(int, int)));
+    activeRightSplitterMoveConnection =
+        connect(tmp->getRightSplitter(), SIGNAL(splitterMoved(int, int)), this, SLOT(onRightSplitterMoved(int, int)));
 }
 
 void AppWindow::onEditorChanged()
@@ -724,12 +729,12 @@ void AppWindow::onSettingsApplied()
     updater->setBeta(settingManager->isBeta());
     maybeSetHotkeys();
 
-    disconnect(companionEditorConnections);
+    disconnect(companionEditorConnection);
 
     server->updatePort(settingManager->getConnectionPort());
 
     if (settingManager->isCompetitiveCompanionActive())
-        companionEditorConnections =
+        companionEditorConnection =
             connect(server, &Network::CompanionServer::onRequestArrived, this, &AppWindow::onIncomingCompanionRequest);
     diagonistics = true;
     onTabChanged(ui->tabWidget->currentIndex());
@@ -766,6 +771,12 @@ void AppWindow::onSplitterMoved(int _, int __)
 {
     auto splitter = currentWindow()->getSplitter();
     settingManager->setSplitterSizes(splitter->saveState());
+}
+
+void AppWindow::onRightSplitterMoved(int _, int __)
+{
+    auto splitter = currentWindow()->getRightSplitter();
+    settingManager->setRightSplitterSizes(splitter->saveState());
 }
 
 /************************* ACTIONS ************************/

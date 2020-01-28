@@ -115,17 +115,15 @@
            </layout>
           </item>
           <item>
-           <widget class="QTextBrowser" name="compiler_edit">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
+           <widget class="QSplitter" name="right_splitter">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
             </property>
+            <widget class="QTextBrowser" name="compiler_edit"/>
+            <widget class="QWidget" name="test_cases_widget">
+             <layout class="QVBoxLayout" name="test_cases_layout"/>
+            </widget>
            </widget>
-          </item>
-          <item>
-           <layout class="QVBoxLayout" name="test_cases_layout"/>
           </item>
          </layout>
         </item>
