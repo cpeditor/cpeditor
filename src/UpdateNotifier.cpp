@@ -50,6 +50,35 @@ QString UpdateNotifier::currentVersionStr()
 
     return QString::fromStdString(version);
 }
+
+bool compareVersion(QString const & a, QString const & b)
+{
+    // returns true if a is higher version than b;
+
+    auto aV = a.split(".");
+    auto bV = b.split(".");
+
+    if (aV.size() < 3 && bV.size() < 3)
+        return false; // invalid versions;
+
+    int aMajor = aV[0].toInt();
+    int aMinor = aV[1].toInt();
+    int aPatch = aV[2].toInt();
+
+    int bMajor = bV[0].toInt();
+    int bMinor = bV[1].toInt();
+    int bPatch = bV[2].toInt();
+
+    if (aMajor > bMajor)
+        return true;
+    if (aMinor > bMinor)
+        return true;
+    if (aPatch > bPatch)
+        return true;
+
+    return false;
+}
+
 void UpdateNotifier::managerFinished(QNetworkReply *reply)
 {
     if (reply->error())
@@ -66,7 +95,7 @@ void UpdateNotifier::managerFinished(QNetworkReply *reply)
     bool isBeta = false;
     QString latestRelease = "0.0.0";
 
-    for (auto e : doc.array().toVariantList())
+    for (auto const &e : doc.array().toVariantList())
     {
         release = QJsonDocument::fromVariant(e);
 
@@ -74,7 +103,7 @@ void UpdateNotifier::managerFinished(QNetworkReply *reply)
         {
             if (beta)
             {
-                latestRelease = release["tag_name"].toString();
+                latestRelease = release["tag_name"].toString().remove("-beta").remove("-rc");
                 isBeta = true;
                 downloadUrl = release["html_url"].toString();
                 break;
@@ -82,13 +111,14 @@ void UpdateNotifier::managerFinished(QNetworkReply *reply)
         }
         else // stable
         {
-            latestRelease = release["tag_name"].toString();
+            latestRelease = release["tag_name"].toString().remove("-stable");
             isBeta = false;
             downloadUrl = release["html_url"].toString();
             break;
         }
     }
-    bool isUpdateAvailable = (latestRelease > currentVersionStr());
+
+    bool isUpdateAvailable = compareVersion(latestRelease, currentVersionStr());
 
     if (beta && isBeta && isUpdateAvailable)
     {
