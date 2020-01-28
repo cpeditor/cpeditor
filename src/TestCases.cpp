@@ -89,7 +89,7 @@ void TestCaseEdit::startAnimation()
     }
 }
 
-TestCase::TestCase(MessageLogger *logger, QWidget *parent, const QString &input, const QString &expected)
+TestCase::TestCase(int index, MessageLogger *logger, QWidget *parent, const QString &input, const QString &expected)
     : QWidget(parent), log(logger)
 {
     mainLayout = new QHBoxLayout(this);
@@ -110,6 +110,7 @@ TestCase::TestCase(MessageLogger *logger, QWidget *parent, const QString &input,
     outputEdit = new TestCaseEdit(false);
     expectedEdit = new TestCaseEdit(true, expected);
 
+    setID(index);
     outputEdit->setReadOnly(true);
     inputEdit->setWordWrapMode(QTextOption::NoWrap);
     outputEdit->setWordWrapMode(QTextOption::NoWrap);
@@ -200,7 +201,7 @@ void TestCase::loadFromFile(const QString &pathPrefix)
         if (inputFile.open(QIODevice::ReadOnly | QIODevice::Text))
             setInput(inputFile.readAll());
         else
-            log->warn("Tests", "Failed to load Input #" + QString::number(id() + 1) + ". Do I have write permission?");
+            log->warn("Tests", "Failed to load Input #" + QString::number(id + 1) + ". Do I have read permission?");
     }
     QFile expectedFile(pathPrefix + ".ans");
     if (expectedFile.exists())
@@ -208,8 +209,7 @@ void TestCase::loadFromFile(const QString &pathPrefix)
         if (expectedFile.open(QIODevice::ReadOnly | QIODevice::Text))
             setExpected(expectedFile.readAll());
         else
-            log->warn("Tests",
-                      "Failed to load Expected #" + QString::number(id() + 1) + ". Do I have write permission?");
+            log->warn("Tests", "Failed to load Expected #" + QString::number(id + 1) + ". Do I have read permission?");
     }
 }
 
@@ -221,7 +221,7 @@ void TestCase::save(const QString &pathPrefix)
         inputFile.open(QIODevice::WriteOnly | QIODevice::Text);
         inputFile.write(input().toUtf8());
         if (!inputFile.commit())
-            log->warn("Tests", "Failed to save Input #" + QString::number(id() + 1) + ". Do I have write permission?");
+            log->warn("Tests", "Failed to save Input #" + QString::number(id + 1) + ". Do I have write permission?");
     }
     if (!expected().isEmpty() || QFile::exists(pathPrefix + ".ans"))
     {
@@ -229,9 +229,16 @@ void TestCase::save(const QString &pathPrefix)
         expectedFile.open(QIODevice::WriteOnly | QIODevice::Text);
         expectedFile.write(expected().toUtf8());
         if (!expectedFile.commit())
-            log->warn("Tests",
-                      "Failed to save Expected #" + QString::number(id() + 1) + ". Do I have write permission?");
+            log->warn("Tests", "Failed to save Expected #" + QString::number(id + 1) + ". Do I have write permission?");
     }
+}
+
+void TestCase::setID(int index)
+{
+    id = index;
+    inputLabel->setText("Input #" + QString::number(id + 1));
+    outputLabel->setText("Output #" + QString::number(id + 1));
+    expectedLabel->setText("Expected #" + QString::number(id + 1));
 }
 
 void TestCase::on_deleteButton_clicked()
@@ -398,11 +405,6 @@ bool TestCase::isPass()
     return true;
 }
 
-int TestCase::id()
-{
-    return dynamic_cast<TestCases *>(parent())->id(this);
-}
-
 TestCases::TestCases(MessageLogger *logger, QWidget *parent) : QWidget(parent), log(logger)
 {
     mainLayout = new QVBoxLayout(this);
@@ -447,7 +449,7 @@ void TestCases::addTestCase(const QString &input, const QString &expected)
     }
     else
     {
-        auto testcase = new TestCase(log, this, input, expected);
+        auto testcase = new TestCase(count(), log, this, input, expected);
         connect(testcase, SIGNAL(deleted(TestCase *)), this, SLOT(onChildDeleted(TestCase *)));
         testcases.push_back(testcase);
         scrollAreaLayout->addWidget(testcase);
@@ -564,6 +566,8 @@ void TestCases::onChildDeleted(TestCase *widget)
     widget->hide();
     scrollAreaLayout->removeWidget(widget);
     delete widget;
+    for (int i = 0; i < count(); ++i)
+        testcases[i]->setID(i);
 }
 
 QString TestCases::testFilePathPrefix(const QFileInfo &fileInfo, int index)

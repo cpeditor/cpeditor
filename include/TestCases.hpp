@@ -52,7 +52,7 @@ class TestCase : public QWidget
     Q_OBJECT
 
   public:
-    explicit TestCase(MessageLogger *logger, QWidget *parent = nullptr, const QString &input = QString(),
+    explicit TestCase(int index, MessageLogger *logger, QWidget *parent = nullptr, const QString &input = QString(),
                       const QString &expected = QString());
     void setInput(const QString &text);
     void setOutput(const QString &text);
@@ -63,6 +63,7 @@ class TestCase : public QWidget
     QString expected() const;
     void loadFromFile(const QString &pathPrefix);
     void save(const QString &pathPrefix);
+    void setID(int index);
 
   signals:
     void deleted(TestCase *widget);
@@ -81,9 +82,9 @@ class TestCase : public QWidget
                 *loadExpectedButton = nullptr;
     TestCaseEdit *inputEdit = nullptr, *outputEdit = nullptr, *expectedEdit = nullptr;
     MessageLogger *log;
+    int id;
 
     bool isPass();
-    int id();
 };
 
 class TestCases : public QWidget
