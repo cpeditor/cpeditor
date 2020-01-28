@@ -260,30 +260,6 @@ void TestCase::on_loadInputButton_clicked()
 
 void TestCase::on_diffButton_clicked()
 {
-    diff_match_patch differ;
-    differ.Diff_EditCost = 10;
-    auto diffs = differ.diff_main(expected(), output());
-    differ.diff_cleanupEfficiency(diffs);
-
-    QString expectedHTML, outputHTML;
-    for (auto diff : diffs)
-    {
-        QString text = diff.text.toHtmlEscaped().replace("\n", "&para;<br>");
-        switch (diff.operation)
-        {
-        case INSERT:
-            outputHTML += QString("<ins style=\"background:#8f8;\">") + text + QString("</ins>");
-            break;
-        case DELETE:
-            expectedHTML += "<s style=\"background:#f88;\">" + text + "</s>";
-            break;
-        case EQUAL:
-            expectedHTML += "<span>" + text + "</span>";
-            outputHTML += "<span>" + text + "</span>";
-            break;
-        }
-    }
-
     auto window = new QMainWindow(this);
     auto widget = new QWidget(window);
     auto layout = new QHBoxLayout();
@@ -291,6 +267,7 @@ void TestCase::on_diffButton_clicked()
     window->setCentralWidget(widget);
     window->setWindowTitle("Diff Viewer");
     window->resize(800, 600);
+    window->setAttribute(Qt::WA_DeleteOnClose);
 
     auto leftLayout = new QVBoxLayout();
     auto expectedLabel = new QLabel("Expected", widget);
@@ -298,11 +275,6 @@ void TestCase::on_diffButton_clicked()
     auto expectedEdit = new QTextEdit(widget);
     expectedEdit->setReadOnly(true);
     expectedEdit->setWordWrapMode(QTextOption::NoWrap);
-    QPalette p = expectedEdit->palette();
-    p.setColor(QPalette::Base, Qt::white); // for system dark theme
-    p.setColor(QPalette::Text, Qt::black);
-    expectedEdit->setPalette(p);
-    expectedEdit->setHtml(expectedHTML);
     leftLayout->addWidget(expectedEdit);
     layout->addLayout(leftLayout);
 
@@ -312,10 +284,50 @@ void TestCase::on_diffButton_clicked()
     auto outputEdit = new QTextEdit(widget);
     outputEdit->setReadOnly(true);
     outputEdit->setWordWrapMode(QTextOption::NoWrap);
-    outputEdit->setPalette(p);
-    outputEdit->setHtml(outputHTML);
     rightLayout->addWidget(outputEdit);
     layout->addLayout(rightLayout);
+
+    if (output().length() <= 100000 && expected().length() <= 100000)
+    {
+        diff_match_patch differ;
+        differ.Diff_EditCost = 10;
+        auto diffs = differ.diff_main(expected(), output());
+        differ.diff_cleanupEfficiency(diffs);
+
+        QString expectedHTML, outputHTML;
+        for (auto diff : diffs)
+        {
+            QString text = diff.text.toHtmlEscaped().replace("\n", "&para;<br>");
+            switch (diff.operation)
+            {
+            case INSERT:
+                outputHTML += QString("<ins style=\"background:#8f8;\">") + text + QString("</ins>");
+                break;
+            case DELETE:
+                expectedHTML += "<s style=\"background:#f88;\">" + text + "</s>";
+                break;
+            case EQUAL:
+                expectedHTML += "<span>" + text + "</span>";
+                outputHTML += "<span>" + text + "</span>";
+                break;
+            }
+        }
+        QPalette p = expectedEdit->palette();
+        p.setColor(QPalette::Base, Qt::white); // for system dark theme
+        p.setColor(QPalette::Text, Qt::black);
+        expectedEdit->setPalette(p);
+        expectedEdit->setHtml(expectedHTML);
+        outputEdit->setPalette(p);
+        outputEdit->setHtml(outputHTML);
+    }
+    else
+    {
+        QMessageBox::warning(this, "Diff Viewer", "The output/expected is too large, use plain diff.");
+        expectedEdit->setPlainText(expected());
+        outputEdit->setPlainText(output());
+        rightLayout->addWidget(outputEdit);
+        layout->addLayout(rightLayout);
+    }
 
     connect(expectedEdit->horizontalScrollBar(), SIGNAL(valueChanged(int)), outputEdit->horizontalScrollBar(),
             SLOT(setValue(int)));
