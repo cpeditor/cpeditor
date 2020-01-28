@@ -304,7 +304,7 @@ void TestCase::on_diffButton_clicked()
         QString expectedHTML, outputHTML;
         for (auto diff : diffs)
         {
-            QString text = diff.text.toHtmlEscaped().replace("\n", "&para;<br>");
+            QString text = diff.text.toHtmlEscaped().replace("\n", "&para;<br>").replace(" ", "&nbsp;");
             switch (diff.operation)
             {
             case INSERT:
