@@ -36,7 +36,6 @@ jobs:
   - script: VERSION_TAG=`git describe --tags` && echo "##vso[task.setvariable variable=VERSION_TAG]$VERSION_TAG"
     displayName: Set the tag name as an environment variable
 
-
   - script: |
       source /opt/qt*/bin/qt*-env.sh
       cd $(Build.SourcesDirectory)/build
@@ -48,16 +47,32 @@ jobs:
     displayName: 'Package to AppImage'
 
   - task: GitHubRelease@1
+    condition: endsWith(variables['Build.SourceBranch'], 'dev')
     inputs:
       gitHubConnection: github.com_coder3101
       repositoryName: '$(Build.Repository.Name)'
       action: 'edit'
       tag: $(VERSION_TAG)
       target: '$(Build.SourceVersion)'
-      title: 'CP Editor'
-      isPreRelease: endsWith(variables['Build.SourceBranch'], 'dev')
+      title: 'CP Editor Beta'
+      isPreRelease: true
       assets: $(Build.SourcesDirectory)/build/CP_*
-      assetUploadMode: 'replace' # Optional. Options: delete, replace
+      assetUploadMode: 'replace'
+      changeLogCompareToRelease: 'lastNonDraftRelease'
+      changeLogType: 'commitBased'
+
+  - task: GitHubRelease@1
+    condition:  endsWith(variables['Build.SourceBranch'], 'master')
+    inputs:
+      gitHubConnection: github.com_coder3101
+      repositoryName: '$(Build.Repository.Name)'
+      action: 'edit'
+      tag: $(VERSION_TAG)
+      target: '$(Build.SourceVersion)'
+      title: 'CP Editor - Stable'
+      isPreRelease: false
+      assets: $(Build.SourcesDirectory)/build/CP_*
+      assetUploadMode: 'replace'
       changeLogCompareToRelease: 'lastFullRelease'
       changeLogType: 'commitBased'
 
@@ -117,14 +132,30 @@ jobs:
       dir . 
     displayName: 'Inno setup compile'
   - task: GitHubRelease@1
+    condition: endsWith(variables['Build.SourceBranch'], 'dev')
     inputs:
       gitHubConnection: github.com_coder3101
       repositoryName: '$(Build.Repository.Name)'
       action: 'edit'
       target: '$(Build.SourceVersion)'
-      title: 'CP Editor'
+      title: 'CP Editor - Beta'
       tag: $(CI_BUILD_TAG)
-      isPreRelease: endsWith(variables['Build.SourceBranch'], 'dev')
+      isPreRelease: true
+      assetUploadMode: 'replace' # Optional. Options: delete, replace
+      assets: $(Build.SourcesDirectory)/*.exe
+      changeLogCompareToRelease: 'lastNonDraftRelease'
+      changeLogType: 'commitBased'
+
+  - task: GitHubRelease@1
+    condition: endsWith(variables['Build.SourceBranch'], 'master')
+    inputs:
+      gitHubConnection: github.com_coder3101
+      repositoryName: '$(Build.Repository.Name)'
+      action: 'edit'
+      target: '$(Build.SourceVersion)'
+      title: 'CP Editor - Stable'
+      tag: $(CI_BUILD_TAG)
+      isPreRelease: false
       assetUploadMode: 'replace' # Optional. Options: delete, replace
       assets: $(Build.SourcesDirectory)/*.exe
       changeLogCompareToRelease: 'lastFullRelease'
