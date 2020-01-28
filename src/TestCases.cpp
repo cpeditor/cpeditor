@@ -20,9 +20,74 @@
 #include <QFileDialog>
 #include <QMainWindow>
 #include <QMessageBox>
-#include <QPropertyAnimation>
+#include <QMimeData>
 #include <QSaveFile>
 #include <QScrollBar>
+
+TestCaseEdit::TestCaseEdit(bool autoAnimation, const QString &text, QWidget *parent) : QPlainTextEdit(text, parent)
+{
+    animation = new QPropertyAnimation(this, "minimumHeight", this);
+    if (autoAnimation)
+        connect(this, SIGNAL(textChanged()), this, SLOT(startAnimation()));
+    startAnimation();
+}
+
+TestCaseEdit::TestCaseEdit(bool autoAnimation, QWidget *parent) : QPlainTextEdit(parent)
+{
+    animation = new QPropertyAnimation(this, "minimumHeight", this);
+    if (autoAnimation)
+        connect(this, SIGNAL(textChanged()), this, SLOT(startAnimation()));
+    startAnimation();
+}
+
+void TestCaseEdit::dragEnterEvent(QDragEnterEvent *event)
+{
+    if (event->mimeData()->hasUrls())
+    {
+        event->accept();
+        event->acceptProposedAction();
+    }
+}
+
+void TestCaseEdit::dragMoveEvent(QDragMoveEvent *event)
+{
+    if (event->mimeData()->hasUrls())
+    {
+        event->accept();
+        event->acceptProposedAction();
+    }
+}
+
+void TestCaseEdit::dropEvent(QDropEvent *event)
+{
+    auto urls = event->mimeData()->urls();
+    if (!isReadOnly() && !urls.isEmpty())
+    {
+        QFile file(urls[0].toLocalFile());
+        if (file.open(QIODevice::ReadOnly | QIODevice::Text))
+            modifyText(file.readAll());
+        event->acceptProposedAction();
+    }
+}
+
+void TestCaseEdit::modifyText(const QString &text)
+{
+    auto cursor = textCursor();
+    cursor.select(QTextCursor::Document);
+    cursor.insertText(text);
+}
+
+void TestCaseEdit::startAnimation()
+{
+    int newHeight = qMin(fontMetrics().lineSpacing() * (document()->lineCount() + 2) + 5, 300);
+    if (newHeight != minimumHeight())
+    {
+        animation->stop();
+        animation->setStartValue(minimumHeight());
+        animation->setEndValue(newHeight);
+        animation->start();
+    }
+}
 
 TestCase::TestCase(MessageLogger *logger, QWidget *parent, const QString &input, const QString &expected)
     : QWidget(parent), log(logger)
@@ -41,13 +106,11 @@ TestCase::TestCase(MessageLogger *logger, QWidget *parent, const QString &input,
     loadInputButton = new QPushButton("Load");
     diffButton = new QPushButton("**");
     loadExpectedButton = new QPushButton("Load");
-    inputEdit = new QPlainTextEdit(input);
-    outputEdit = new QPlainTextEdit();
-    expectedEdit = new QPlainTextEdit(expected);
+    inputEdit = new TestCaseEdit(true, input);
+    outputEdit = new TestCaseEdit(false);
+    expectedEdit = new TestCaseEdit(true, expected);
 
-    inputEdit->setAcceptDrops(false);
     outputEdit->setReadOnly(true);
-    expectedEdit->setAcceptDrops(false);
     inputEdit->setWordWrapMode(QTextOption::NoWrap);
     outputEdit->setWordWrapMode(QTextOption::NoWrap);
     expectedEdit->setWordWrapMode(QTextOption::NoWrap);
@@ -74,23 +137,17 @@ TestCase::TestCase(MessageLogger *logger, QWidget *parent, const QString &input,
     connect(loadInputButton, SIGNAL(clicked()), this, SLOT(on_loadInputButton_clicked()));
     connect(diffButton, SIGNAL(clicked()), SLOT(on_diffButton_clicked()));
     connect(loadExpectedButton, SIGNAL(clicked()), this, SLOT(on_loadExpectedButton_clicked()));
-    connect(inputEdit, SIGNAL(textChanged()), this, SLOT(onEditTextChanged()));
-    connect(outputEdit, SIGNAL(textChanged()), this, SLOT(onEditTextChanged()));
-    connect(expectedEdit, SIGNAL(textChanged()), this, SLOT(onEditTextChanged()));
-
-    onEditTextChanged();
 }
 
 void TestCase::setInput(const QString &text)
 {
-    auto cursor = inputEdit->textCursor();
-    cursor.select(QTextCursor::Document);
-    cursor.insertText(text);
+    inputEdit->modifyText(text);
 }
 
 void TestCase::setOutput(const QString &text)
 {
-    outputEdit->setPlainText(text);
+    outputEdit->modifyText(text);
+    outputEdit->startAnimation();
     if (input().trimmed().isEmpty() || expected().trimmed().isEmpty() || text.trimmed().isEmpty())
     {
         diffButton->setStyleSheet("");
@@ -110,9 +167,14 @@ void TestCase::setOutput(const QString &text)
 
 void TestCase::setExpected(const QString &text)
 {
-    auto cursor = expectedEdit->textCursor();
-    cursor.select(QTextCursor::Document);
-    cursor.insertText(text);
+    expectedEdit->modifyText(text);
+}
+
+void TestCase::clearOutput()
+{
+    outputEdit->modifyText(QString());
+    diffButton->setStyleSheet("");
+    diffButton->setText("**");
 }
 
 QString TestCase::input() const
@@ -277,22 +339,6 @@ void TestCase::on_loadExpectedButton_clicked()
         log->warn("Tests", "Failed to load expected file " + res);
 }
 
-void TestCase::onEditTextChanged()
-{
-    auto calcHeight = [](QPlainTextEdit *edit) {
-        return edit->fontMetrics().lineSpacing() * (edit->document()->lineCount() + 2) + 5;
-    };
-    int newHeight = qMin(qMax(calcHeight(inputEdit), qMax(calcHeight(outputEdit), calcHeight(expectedEdit))), 300);
-    if (newHeight != inputEdit->minimumHeight())
-    {
-        QPropertyAnimation *animation = new QPropertyAnimation(inputEdit, "minimumHeight", this);
-        animation->setDuration(200);
-        animation->setStartValue(inputEdit->minimumHeight());
-        animation->setEndValue(newHeight);
-        animation->start(QAbstractAnimation::DeleteWhenStopped);
-    }
-}
-
 bool TestCase::isPass()
 {
     auto out = output().remove('\r');
@@ -391,7 +437,7 @@ void TestCases::addTestCase(const QString &input, const QString &expected)
 void TestCases::clearOutput()
 {
     for (int i = 0; i < count(); ++i)
-        setOutput(i, QString());
+        testcases[i]->clearOutput();
 }
 
 void TestCases::clear()

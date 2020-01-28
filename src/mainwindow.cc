@@ -993,9 +993,6 @@ void MainWindow::onRunFinished(int index, const QString &out, const QString &err
     {
         log.info(head, "Execution for test case #" + QString::number(index + 1) + " has finished in " +
                            QString::number(timeUsed) + "ms");
-        if (!err.trimmed().isEmpty())
-            log.error(head + "/stderr", err);
-        testcases->setOutput(index, out);
     }
 
     else
@@ -1003,9 +1000,11 @@ void MainWindow::onRunFinished(int index, const QString &out, const QString &err
         log.error(head, "Execution for test case #" + QString::number(index + 1) +
                             " has finished with non-zero exitcode " + QString::number(exitCode) + " in " +
                             QString::number(timeUsed) + "ms");
-        if (!err.trimmed().isEmpty())
-            log.error(head + "/stderr", err);
     }
+
+    if (!err.trimmed().isEmpty())
+        log.error(head + "/stderr", err);
+    testcases->setOutput(index, out);
 }
 
 void MainWindow::onRunErrorOccured(int index, const QString &error)

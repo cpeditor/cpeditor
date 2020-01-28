@@ -23,20 +23,41 @@
 #include <QHBoxLayout>
 #include <QLabel>
 #include <QPlainTextEdit>
+#include <QPropertyAnimation>
 #include <QPushButton>
 #include <QScrollArea>
 #include <QVBoxLayout>
+
+class TestCaseEdit : public QPlainTextEdit
+{
+    Q_OBJECT
+
+  public:
+    explicit TestCaseEdit(bool autoAnimation, const QString &text, QWidget *parent = nullptr);
+    explicit TestCaseEdit(bool autoAnimation, QWidget *parent = nullptr);
+    void dragEnterEvent(QDragEnterEvent *event) override;
+    void dragMoveEvent(QDragMoveEvent *event) override;
+    void dropEvent(QDropEvent *event) override;
+    void modifyText(const QString &text);
+
+  public slots:
+    void startAnimation();
+
+  private:
+    QPropertyAnimation *animation;
+};
 
 class TestCase : public QWidget
 {
     Q_OBJECT
 
   public:
-    TestCase(MessageLogger *logger, QWidget *parent = nullptr, const QString &input = QString(),
-             const QString &expected = QString());
+    explicit TestCase(MessageLogger *logger, QWidget *parent = nullptr, const QString &input = QString(),
+                      const QString &expected = QString());
     void setInput(const QString &text);
     void setOutput(const QString &text);
     void setExpected(const QString &text);
+    void clearOutput();
     QString input() const;
     QString output() const;
     QString expected() const;
@@ -51,7 +72,6 @@ class TestCase : public QWidget
     void on_loadInputButton_clicked();
     void on_diffButton_clicked();
     void on_loadExpectedButton_clicked();
-    void onEditTextChanged();
 
   private:
     QHBoxLayout *mainLayout = nullptr, *inputUpLayout = nullptr, *outputUpLayout = nullptr, *expectedUpLayout = nullptr;
@@ -59,7 +79,7 @@ class TestCase : public QWidget
     QLabel *inputLabel = nullptr, *outputLabel = nullptr, *expectedLabel = nullptr;
     QPushButton *deleteButton = nullptr, *loadInputButton = nullptr, *diffButton = nullptr,
                 *loadExpectedButton = nullptr;
-    QPlainTextEdit *inputEdit = nullptr, *outputEdit = nullptr, *expectedEdit = nullptr;
+    TestCaseEdit *inputEdit = nullptr, *outputEdit = nullptr, *expectedEdit = nullptr;
     MessageLogger *log;
 
     bool isPass();
@@ -71,7 +91,7 @@ class TestCases : public QWidget
     Q_OBJECT
 
   public:
-    TestCases(MessageLogger *logger, QWidget *parent = nullptr);
+    explicit TestCases(MessageLogger *logger, QWidget *parent = nullptr);
     void setInput(int index, const QString &input);
     void setOutput(int index, const QString &output);
     void setExpected(int index, const QString &expected);
