@@ -110,8 +110,16 @@ void MainWindow::compile()
             command = data.compileCommandCpp;
         else if (language == "Java")
             command = data.compileCommandJava;
-        else
+        else if (language == "Python")
+        {
+            onCompilationFinished("");
             return;
+        }
+        else
+        {
+            log.warn("Compiler", "Please set the language");
+            return;
+        }
         connect(compiler, SIGNAL(compilationStarted()), this, SLOT(onCompilationStarted()));
         connect(compiler, SIGNAL(compilationFinished(const QString &)), this,
                 SLOT(onCompilationFinished(const QString &)));
