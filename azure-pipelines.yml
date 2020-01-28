@@ -55,6 +55,7 @@ jobs:
       tag: $(VERSION_TAG)
       target: '$(Build.SourceVersion)'
       title: 'CP Editor'
+      isPreRelease: endsWith(variables['Build.SourceBranch'], 'dev')
       assets: $(Build.SourcesDirectory)/build/CP_*
       assetUploadMode: 'replace' # Optional. Options: delete, replace
       changeLogCompareToRelease: 'lastFullRelease'
@@ -123,6 +124,7 @@ jobs:
       target: '$(Build.SourceVersion)'
       title: 'CP Editor'
       tag: $(CI_BUILD_TAG)
+      isPreRelease: endsWith(variables['Build.SourceBranch'], 'dev')
       assetUploadMode: 'replace' # Optional. Options: delete, replace
       assets: $(Build.SourcesDirectory)/*.exe
       changeLogCompareToRelease: 'lastFullRelease'

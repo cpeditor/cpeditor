@@ -475,7 +475,7 @@ void AppWindow::on_actionAbout_triggered()
     QMessageBox::about(this,
                        QString::fromStdString(std::string("About CP Editor ") + APP_VERSION_MAJOR + "." +
                                               APP_VERSION_MINOR + "." + APP_VERSION_PATCH),
-                       "<p><b>CP Editor</b> is a native Qt-based code editor written in C++. It's specially designed "
+                       "<p><b>CP Editor</b> is a native Qt-based Code Editor. It's specially designed "
                        "for competitive programming, unlike other editors/IDEs which are mainly for developers. It "
                        "helps you focus on your coding and automates the compilation, executing and testing. It even "
                        "fetches test cases for you from webpages and submits codes on Codeforces!</p>"
