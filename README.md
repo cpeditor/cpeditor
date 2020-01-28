@@ -1,6 +1,8 @@
 # CP Editor
 
 [![Build Status](https://travis-ci.org/coder3101/cp-editor.svg?branch=master)](https://travis-ci.org/coder3101/cp-editor)
+[![Latest Stable](https://img.shields.io/github/v/release/coder3101/cp-editor?label=Latest%20Stable&style=flat-square)](https://github.com/coder3101/cp-editor/releases/latest)
+[![Latest Beta](https://img.shields.io/github/v/release/coder3101/cp-editor?include_prereleases&label=Latest%20Beta&style=flat-square)](https://github.com/coder3101/cp-editor/releases)
 
 <img src=https://i.imgur.com/31n9t8i.png height="80" width="80">
 
