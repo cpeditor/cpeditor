@@ -41,8 +41,8 @@ struct CompanionData
     QString contest;
     QString url;
     bool interactive;
-    double memoryLimit;
-    double timeLimit;
+    int memoryLimit;
+    int timeLimit;
     bool isInputstdin;
     bool isOutputstdout;
     QVector<TestCases> testcases;
@@ -53,8 +53,8 @@ struct CompanionData
         ans += "Problem : " + name + "\n";
         ans += "Contest : " + contest + "\n";
         ans += "URL : " + url + "\n";
-        ans += "Memory Limit : " + QString::fromStdString(std::to_string(memoryLimit)) + " MB \n";
-        ans += "Time Limit : " + QString::fromStdString(std::to_string(timeLimit)) + " milisec \n";
+        ans += "Memory Limit : " + QString::number(memoryLimit) + " MB\n";
+        ans += "Time Limit : " + QString::number(timeLimit) + " ms\n";
         return ans;
     }
 };

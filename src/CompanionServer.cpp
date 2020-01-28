@@ -114,8 +114,8 @@ void CompanionServer::onReadReady()
             payload.contest = doc["group"].toString();
             payload.url = doc["url"].toString();
             payload.interactive = doc["interactive"].toBool();
-            payload.memoryLimit = doc["memoryLimit"].toDouble();
-            payload.timeLimit = doc["timeLimit"].toDouble();
+            payload.memoryLimit = doc["memoryLimit"].toInt();
+            payload.timeLimit = doc["timeLimit"].toInt();
             payload.isInputstdin = doc["input"].toObject()["type"].toString() == "stdin";
             payload.isOutputstdout = doc["output"].toObject()["type"].toString() == "stdout";
 
