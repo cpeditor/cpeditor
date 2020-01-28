@@ -47,7 +47,7 @@ jobs:
     displayName: 'Package to AppImage'
 
   - task: GitHubRelease@1
-    condition: endsWith(variables['Build.SourceBranch'], 'dev')
+    condition: endsWith(variables['Build.SourceBranch'], 'beta')
     inputs:
       gitHubConnection: github.com_coder3101
       repositoryName: '$(Build.Repository.Name)'
@@ -62,7 +62,7 @@ jobs:
       changeLogType: 'commitBased'
 
   - task: GitHubRelease@1
-    condition:  endsWith(variables['Build.SourceBranch'], 'master')
+    condition:  endsWith(variables['Build.SourceBranch'], 'stable')
     inputs:
       gitHubConnection: github.com_coder3101
       repositoryName: '$(Build.Repository.Name)'
@@ -132,7 +132,7 @@ jobs:
       dir . 
     displayName: 'Inno setup compile'
   - task: GitHubRelease@1
-    condition: endsWith(variables['Build.SourceBranch'], 'dev')
+    condition: endsWith(variables['Build.SourceBranch'], 'beta')
     inputs:
       gitHubConnection: github.com_coder3101
       repositoryName: '$(Build.Repository.Name)'
@@ -147,7 +147,7 @@ jobs:
       changeLogType: 'commitBased'
 
   - task: GitHubRelease@1
-    condition: endsWith(variables['Build.SourceBranch'], 'master')
+    condition: endsWith(variables['Build.SourceBranch'], 'stable')
     inputs:
       gitHubConnection: github.com_coder3101
       repositoryName: '$(Build.Repository.Name)'
