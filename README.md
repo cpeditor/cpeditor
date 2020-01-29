@@ -6,7 +6,7 @@
 
 <img src=assets/icon.ico height="80" width="80">
 
-**CP Editor** is a native Qt-based code editor written in C++. It's specially designed for competitive programming, unlike other editors/IDEs which are mainly for developers. It helps you focus on your coding and automates the compilation, executing and testing. It even fetches test cases for you from webpages and submits codes on Codeforces!
+**CP Editor** is a native Qt-based code editor. It's specially designed for competitive programming, unlike other editors/IDEs which are mainly for developers. It helps you focus on your coding and automates the compilation, executing and testing. It even fetches test cases for you from webpages and submits codes on Codeforces!
 
 ### Features
 
@@ -98,6 +98,8 @@ If you found any bugs or have any feature requests, please open an issue [here](
 If you want a try on developing, you can install Qt and CMake, then fix bugs / make new features by yourself! After finishing the coding, just open a pull request [here](https://github.com/coder3101/cp-editor/pulls). Don't worry if you are not familiar with Qt / GUI programming, Google is your friend, and Qt is a [well documented](https://doc.qt.io/) library. Don't forget to use `.clang-format` file in the root directory to format the codes.
 
 Contributions are always welcomed. Together we can build a better editor for ourselves.
+
+For more information, please read [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ### Telegram group
 
