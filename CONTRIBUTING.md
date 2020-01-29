@@ -22,6 +22,14 @@ Following these guidelines helps to communicate that you respect the time of the
 
 **Don't know where to start?** You can start by looking through the [issues](https://github.com/coder3101/cp-editor/issues) and find one you are interested in. Ask in the [Telegram group](https://t.me/cpeditor) or under the issues if you have any questions.
 
+## Before Writing Codes
+
+Please open an issue (describe the feature/bug like normal issues, and say that you are going to work on it, probably with a draft on how you would like to implement it) before writing codes for a pull request, for these reasons:
+
+1. You may get help from others.
+2. Others can know you are working on it, this will save possible duplicate works.
+3. You will be notified if this feature is not going to be accepted, or the "bug" is actually not a bug, etc., thus saving your time.
+
 ## Contributing rules
 
 - Remember that the goal is to build an editor for competitive programmers, not for developers.
