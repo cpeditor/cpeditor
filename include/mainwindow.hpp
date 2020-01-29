@@ -71,6 +71,7 @@ class MainWindow : public QMainWindow
     QString getFilePath() const;
     QString getProblemURL() const;
     QString getTabTitle(bool complete, bool star);
+    QCodeEditor *getEditor() const;
     bool isUntitled() const;
 
     EditorStatus toStatus() const;

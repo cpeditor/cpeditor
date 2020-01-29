@@ -23,6 +23,7 @@
 #include "SettingsManager.hpp"
 #include "UpdateNotifier.hpp"
 #include "mainwindow.hpp"
+#include "ExtendedEditorFeatures.hpp"
 #include "preferencewindow.hpp"
 
 namespace Ui
@@ -118,6 +119,16 @@ class AppWindow : public QMainWindow
 
     void on_actionSplit_Mode_triggered();
 
+	void on_comment_toggle();
+
+	void on_tab_indent();
+
+	void on_tab_unindent();
+
+	void on_move_up();
+
+	void on_move_down();
+
     void on_confirmTriggered(MainWindow *widget);
 
     void onTabContextMenuRequested(const QPoint &pos);
@@ -132,6 +143,8 @@ class AppWindow : public QMainWindow
     Telemetry::UpdateNotifier *updater = nullptr;
     PreferenceWindow *preferenceWindow = nullptr;
     Network::CompanionServer *server;
+    Core::ExtendedQCodeEditorFeatures *editorFeaturs = nullptr;
+    QVector<QShortcut *> editorFeaturesShortucts;
 
     void setConnections();
     void allocate();

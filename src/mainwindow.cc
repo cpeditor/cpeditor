@@ -350,6 +350,11 @@ QString MainWindow::getTabTitle(bool complete, bool star)
     return tabTitle;
 }
 
+QCodeEditor *MainWindow::getEditor() const
+{
+    return editor;
+}
+
 bool MainWindow::isUntitled() const
 {
     return filePath.isEmpty();

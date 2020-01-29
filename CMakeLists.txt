@@ -48,6 +48,8 @@ add_executable(CPEditor
     include/preferencewindow.hpp
     include/appwindow.hpp
     include/DiffViewer.hpp
+	include/ExtendedEditorFeatures.hpp
+
 
 
     src/mainwindow.cc
@@ -66,6 +68,7 @@ add_executable(CPEditor
     src/preferencewindow.cpp
     src/appwindow.cpp
     src/DiffViewer.cpp
+	src/ExtendedEditorFeatures.cpp
 
     ui/expand.ui
     ui/mainwindow.ui
