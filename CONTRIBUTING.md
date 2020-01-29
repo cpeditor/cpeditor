@@ -38,7 +38,7 @@ Please open an issue (describe the feature/bug like normal issues, and say that 
 - Use Clang Format 9 (use `clang-format --version` to check your version, you may need to set the clang-format binary path for your IDE, for example, the default version of clang-format in VS Code may be clang-format-6) and `.clang-format` in the root directory to format your codes.
 - Don't remove features unless it's necessary. Add an option to disable some feature instead.
 - Keep the settings file backward compatible all the time.
-- Everyone should obey the [Code of Conduct](code_of_conduct.md) in order to build a harassment-free community.
+- Everyone should obey the [Code of Conduct](CODE_OF_CONDUCT.md) in order to build a harassment-free community.
 
 > There may be clang-format-6 only for Ubuntu 18.04, you can read [this blog](http://mickey-happygolucky.hatenablog.com/entry/2020/01/06/133319) for how to install clang-format-9 on Ubuntu 18.04.
 
