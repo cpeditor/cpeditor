@@ -932,10 +932,7 @@ void AppWindow::onTabContextMenuRequested(const QPoint &pos)
         if (!widget->isUntitled() && QFile::exists(filePath))
         {
             menu->addSeparator();
-            menu->addAction("Copy path", [filePath] {
-                auto clipboard = QGuiApplication::clipboard();
-                clipboard->setText(filePath);
-            });
+            menu->addAction("Copy File Path", [filePath] { QGuiApplication::clipboard()->setText(filePath); });
             // Reference: http://lynxline.com/show-in-finder-show-in-explorer/ and https://forum.qt.io/post/296072
 #if defined(Q_OS_MACOS)
             menu->addAction("Reveal in Finder", [filePath] {
@@ -1030,6 +1027,11 @@ void AppWindow::onTabContextMenuRequested(const QPoint &pos)
                             [filePath] { QDesktopServices::openUrl(QUrl::fromLocalFile(QFileInfo(filePath).path())); });
         }
         menu->addSeparator();
+        if (!widget->getProblemURL().isEmpty())
+        {
+            menu->addAction("Copy Problem URL",
+                            [widget] { QGuiApplication::clipboard()->setText(widget->getProblemURL()); });
+        }
         menu->addAction("Set Problem URL", [widget, this] {
             bool ok = false;
             auto url =
