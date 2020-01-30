@@ -426,7 +426,8 @@ TestCases::TestCases(MessageLogger *logger, QWidget *parent) : QWidget(parent), 
     titleLayout = new QHBoxLayout();
     label = new QLabel("Test Cases");
     verdicts = new QLabel();
-    addButton = new QPushButton("Add Test Case");
+    addButton = new QPushButton("Add New");
+    clearButton = new QPushButton("Clear");
     scrollArea = new QScrollArea();
     scrollAreaWidget = new QWidget();
     scrollAreaLayout = new QVBoxLayout(scrollAreaWidget);
@@ -434,6 +435,7 @@ TestCases::TestCases(MessageLogger *logger, QWidget *parent) : QWidget(parent), 
     titleLayout->addWidget(label);
     titleLayout->addWidget(verdicts);
     titleLayout->addWidget(addButton);
+    titleLayout->addWidget(clearButton);
     scrollArea->setWidgetResizable(true);
     scrollArea->setWidget(scrollAreaWidget);
     mainLayout->addLayout(titleLayout);
@@ -442,6 +444,7 @@ TestCases::TestCases(MessageLogger *logger, QWidget *parent) : QWidget(parent), 
     updateVerdicts();
 
     connect(addButton, SIGNAL(clicked()), this, SLOT(on_addButton_clicked()));
+    connect(clearButton, SIGNAL(clicked()), this, SLOT(on_clearButton_clicked()));
 }
 
 void TestCases::setInput(int index, const QString &input)
@@ -580,6 +583,24 @@ int TestCases::count() const
 void TestCases::on_addButton_clicked()
 {
     addTestCase();
+}
+
+void TestCases::on_clearButton_clicked()
+{
+    for (int i = 0; i < count(); ++i)
+    {
+        if (input(i).isEmpty() && output(i).isEmpty() && expected(i).isEmpty())
+        {
+            onChildDeleted(testcases[i]);
+            --i;
+        }
+    }
+    if (count() > 0)
+    {
+        auto res = QMessageBox::question(this, "Clear Test Cases", "Do you want to delete all test cases?");
+        if (res == QMessageBox::Yes)
+            clear();
+    }
 }
 
 void TestCases::onChildDeleted(TestCase *widget)

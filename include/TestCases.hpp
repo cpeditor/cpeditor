@@ -122,13 +122,14 @@ class TestCases : public QWidget
 
   private slots:
     void on_addButton_clicked();
+    void on_clearButton_clicked();
     void onChildDeleted(TestCase *widget);
 
   private:
     static const int MAX_NUMBER_OF_TESTCASES = 100;
     QVBoxLayout *mainLayout = nullptr, *scrollAreaLayout = nullptr;
     QHBoxLayout *titleLayout = nullptr;
-    QPushButton *addButton = nullptr;
+    QPushButton *addButton = nullptr, *clearButton = nullptr;
     QScrollArea *scrollArea = nullptr;
     QWidget *scrollAreaWidget = nullptr;
     QLabel *label = nullptr, *verdicts = nullptr;
