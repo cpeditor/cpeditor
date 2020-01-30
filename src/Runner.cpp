@@ -24,6 +24,7 @@ namespace Core
 Runner::Runner(int index) : runnerIndex(index)
 {
     runProcess = new QProcess();
+    connect(runProcess, SIGNAL(started()), this, SLOT(onStarted()));
 }
 
 Runner::~Runner()
@@ -63,7 +64,6 @@ void Runner::run(const QString &filePath, const QString &lang, const QString &ru
         return;
     }
 
-    connect(runProcess, SIGNAL(started()), this, SLOT(onStarted()));
     connect(runProcess, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(onFinished(int, QProcess::ExitStatus)));
 
     killTimer = new QTimer(runProcess);
