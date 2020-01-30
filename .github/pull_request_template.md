@@ -13,7 +13,8 @@
 <!--- Why is this change required? What problem does it solve? -->
 
 ## How Has This Been Tested?
-<!--- Please describe in detail how you tested your changes. For example, tested on which OS(s)? -->
+<!--- Please describe in detail how you tested your changes. -->
+<!--- Tested on which OS(s)? Tested on light/dark system theme? -->
 
 ## Screenshots (if appropriate)
 
