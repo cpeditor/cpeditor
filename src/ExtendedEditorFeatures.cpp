@@ -40,11 +40,39 @@ void ExtendedQCodeEditorFeatures::toggleSelectionComment(bool _)
 {
     if (editor_->textCursor().hasSelection())
     {
-		// Not implemented
+        // todo(coder3101): This just checks if first line is comment and then works its way out.
+        // make it toggle line by line instead
+        auto sps = editor_->textCursor();
+        sps.setPosition(sps.selectionStart());
+        sps.select(QTextCursor::SelectionType::LineUnderCursor);
+        auto text = sps.selectedText();
+        if (text.startsWith("// ") || text.startsWith("# "))
+        {
+            
+            if (language_ != "Python")
+            {
+
+                selectionRemoveFirstCharIf_({"/", " "});
+                selectionRemoveFirstCharIf_({"/", " "});
+				selectionRemoveFirstCharIf_({"/", " "});
+            }
+            else
+            {
+                selectionRemoveFirstCharIf_({"#", " "});
+                selectionRemoveFirstCharIf_({"#", " "});
+            }
+        }
+        else
+        {
+            if (language_ == "Python")
+                selectionPrepend_("# ");
+            else
+                selectionPrepend_("// ");
+        }
     }
     else
     {
-		// This replacement can be done via regex too.
+        // This replacement can be done via regex too.
         auto cursor = editor_->textCursor();
         cursor.select(QTextCursor::SelectionType::LineUnderCursor);
         QString thisLine = cursor.selectedText();
@@ -76,7 +104,7 @@ bool ExtendedQCodeEditorFeatures::selectionTab()
 
 void ExtendedQCodeEditorFeatures::selectionUnTab()
 {
-    selectionRemoveFirstChar_();
+    selectionRemoveFirstCharIf_({"\t", " "});
 }
 
 void ExtendedQCodeEditorFeatures::moveSelectionUp()
@@ -185,6 +213,11 @@ bool ExtendedQCodeEditorFeatures::selectionPrepend_(QString content)
     {
         auto cursor = editor_->textCursor();
         QTextCursor originalCursor = cursor;
+        originalCursor.clearSelection();
+        originalCursor.setPosition(cursor.selectionStart());
+        originalCursor.movePosition(QTextCursor::MoveOperation::StartOfLine);
+        originalCursor.setPosition(cursor.selectionEnd(), QTextCursor::KeepAnchor);
+        originalCursor.movePosition(QTextCursor::MoveOperation::EndOfLine, QTextCursor::KeepAnchor);
 
         int start = cursor.selectionStart();
         int stop = cursor.selectionEnd();
@@ -197,10 +230,10 @@ bool ExtendedQCodeEditorFeatures::selectionPrepend_(QString content)
         editor_->insertPlainText(content);
 
         cursor.movePosition(QTextCursor::MoveOperation::Down);
-        int i = 1;
+        int i = content.size();
         while (cursor.position() < stop + i)
         {
-            i++;
+            i += content.size();
             editor_->setTextCursor(cursor);
             editor_->insertPlainText(content);
             cursor.movePosition(QTextCursor::MoveOperation::Down);
@@ -213,7 +246,7 @@ bool ExtendedQCodeEditorFeatures::selectionPrepend_(QString content)
     return false;
 }
 
-bool ExtendedQCodeEditorFeatures::selectionRemoveFirstChar_()
+bool ExtendedQCodeEditorFeatures::selectionRemoveFirstCharIf_(QStringList deleteText)
 {
     if (editor_->textCursor().hasSelection())
     {
@@ -229,17 +262,31 @@ bool ExtendedQCodeEditorFeatures::selectionRemoveFirstChar_()
         cursor.movePosition(QTextCursor::MoveOperation::StartOfLine);
         cursor.movePosition(QTextCursor::MoveOperation::Right);
 
-        cursor.deletePreviousChar();
+        QTextCursor tmp;
+        int i = 0;
+        tmp = cursor;
+        tmp.movePosition(QTextCursor::MoveOperation::Left, QTextCursor::KeepAnchor);
+        if (deleteText.contains(tmp.selectedText()))
+        {
+            i++;
+            cursor.deletePreviousChar();
+        }
+
         editor_->setTextCursor(cursor);
 
         cursor.movePosition(QTextCursor::MoveOperation::Down);
         cursor.movePosition(QTextCursor::MoveOperation::Right);
 
-        int i = 1;
         while (cursor.position() < stop - i)
         {
-            i++;
-            cursor.deletePreviousChar();
+            tmp = cursor;
+            tmp.movePosition(QTextCursor::MoveOperation::Left, QTextCursor::KeepAnchor);
+            if (deleteText.contains(tmp.selectedText()))
+            {
+                cursor.deletePreviousChar();
+                i++;
+            }		
+
             editor_->setTextCursor(cursor);
 
             cursor.movePosition(QTextCursor::MoveOperation::Down);
@@ -249,11 +296,6 @@ bool ExtendedQCodeEditorFeatures::selectionRemoveFirstChar_()
         editor_->setTextCursor(originalCursor);
         return true;
     }
-    return false;
-}
-
-bool ExtendedQCodeEditorFeatures::removeSelectionFirstStr_(QString content)
-{
     return false;
 }
 

@@ -28,8 +28,6 @@ class ExtendedQCodeEditorFeatures
     int tabSize_;
     QCodeEditor *editor_ = nullptr;
     bool selectionPrepend_(QString content);
-    bool selectionRemoveFirstChar_();
-    bool removeSelectionFirstStr_(QString content);
-
+    bool selectionRemoveFirstCharIf_(QStringList deleteList);
 };
 } // namespace Core
