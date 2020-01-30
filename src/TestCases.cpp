@@ -102,7 +102,7 @@ TestCase::TestCase(int index, MessageLogger *logger, QWidget *parent, const QStr
     inputLabel = new QLabel("Input");
     outputLabel = new QLabel("Output");
     expectedLabel = new QLabel("Expected");
-    deleteButton = new QPushButton("Delete");
+    deleteButton = new QPushButton("Del");
     loadInputButton = new QPushButton("Load");
     diffButton = new QPushButton("**");
     loadExpectedButton = new QPushButton("Load");
@@ -115,6 +115,12 @@ TestCase::TestCase(int index, MessageLogger *logger, QWidget *parent, const QStr
     inputEdit->setWordWrapMode(QTextOption::NoWrap);
     outputEdit->setWordWrapMode(QTextOption::NoWrap);
     expectedEdit->setWordWrapMode(QTextOption::NoWrap);
+
+    auto setWidth = [](QPushButton *btn) {
+        btn->setMinimumWidth(btn->fontMetrics().boundingRect(btn->text()).width() + 10);
+    };
+    setWidth(loadExpectedButton);
+    setWidth(deleteButton);
 
     inputUpLayout->addWidget(inputLabel);
     inputUpLayout->addWidget(loadInputButton);
