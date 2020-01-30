@@ -46,7 +46,6 @@ add_executable(CPEditor
     include/preferencewindow.hpp
     include/appwindow.hpp
     third_party/diff_match_patch/diff_match_patch.h
-    include/DiffViewer.hpp
 	include/ExtendedEditorFeatures.hpp
 
 
@@ -66,7 +65,6 @@ add_executable(CPEditor
     src/preferencewindow.cpp
     src/appwindow.cpp
     third_party/diff_match_patch/diff_match_patch.cpp
-    src/DiffViewer.cpp
 	src/ExtendedEditorFeatures.cpp
 
     ui/mainwindow.ui
