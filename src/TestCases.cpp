@@ -155,20 +155,23 @@ void TestCase::setOutput(const QString &text)
 {
     outputEdit->modifyText(text);
     outputEdit->startAnimation();
-    if (input().trimmed().isEmpty() || expected().trimmed().isEmpty() || text.trimmed().isEmpty())
+
+    currentVerdict = output().isEmpty() || expected().isEmpty() ? UNKNOWN : (isPass() ? AC : WA);
+
+    switch (currentVerdict)
     {
+    case UNKNOWN:
         diffButton->setStyleSheet("");
         diffButton->setText("**");
-    }
-    else if (isPass())
-    {
+        break;
+    case AC:
         diffButton->setStyleSheet("background: #0b0");
         diffButton->setText("AC");
-    }
-    else
-    {
+        break;
+    case WA:
         diffButton->setStyleSheet("background: #d00");
         diffButton->setText("WA");
+        break;
     }
 }
 
@@ -180,6 +183,7 @@ void TestCase::setExpected(const QString &text)
 void TestCase::clearOutput()
 {
     outputEdit->modifyText(QString());
+    currentVerdict = UNKNOWN;
     diffButton->setStyleSheet("");
     diffButton->setText("**");
 }
@@ -245,6 +249,11 @@ void TestCase::setID(int index)
     inputLabel->setText("Input #" + QString::number(id + 1));
     outputLabel->setText("Output #" + QString::number(id + 1));
     expectedLabel->setText("Expected #" + QString::number(id + 1));
+}
+
+TestCase::Verdict TestCase::verdict() const
+{
+    return currentVerdict;
 }
 
 void TestCase::on_deleteButton_clicked()
@@ -364,7 +373,7 @@ void TestCase::on_loadExpectedButton_clicked()
         log->warn("Tests", "Failed to load expected file " + res);
 }
 
-bool TestCase::isPass()
+bool TestCase::isPass() const
 {
     auto out = output().remove('\r');
     auto ans = expected().remove('\r');
@@ -416,17 +425,21 @@ TestCases::TestCases(MessageLogger *logger, QWidget *parent) : QWidget(parent), 
     mainLayout = new QVBoxLayout(this);
     titleLayout = new QHBoxLayout();
     label = new QLabel("Test Cases");
+    verdicts = new QLabel();
     addButton = new QPushButton("Add Test Case");
     scrollArea = new QScrollArea();
     scrollAreaWidget = new QWidget();
     scrollAreaLayout = new QVBoxLayout(scrollAreaWidget);
 
     titleLayout->addWidget(label);
+    titleLayout->addWidget(verdicts);
     titleLayout->addWidget(addButton);
     scrollArea->setWidgetResizable(true);
     scrollArea->setWidget(scrollAreaWidget);
     mainLayout->addLayout(titleLayout);
     mainLayout->addWidget(scrollArea);
+
+    updateVerdicts();
 
     connect(addButton, SIGNAL(clicked()), this, SLOT(on_addButton_clicked()));
 }
@@ -439,6 +452,7 @@ void TestCases::setInput(int index, const QString &input)
 void TestCases::setOutput(int index, const QString &output)
 {
     testcases[index]->setOutput(output);
+    updateVerdicts();
 }
 
 void TestCases::setExpected(int index, const QString &expected)
@@ -459,6 +473,7 @@ void TestCases::addTestCase(const QString &input, const QString &expected)
         connect(testcase, SIGNAL(deleted(TestCase *)), this, SLOT(onChildDeleted(TestCase *)));
         testcases.push_back(testcase);
         scrollAreaLayout->addWidget(testcase);
+        updateVerdicts();
     }
 }
 
@@ -466,6 +481,7 @@ void TestCases::clearOutput()
 {
     for (int i = 0; i < count(); ++i)
         testcases[i]->clearOutput();
+    updateVerdicts();
 }
 
 void TestCases::clear()
@@ -574,6 +590,26 @@ void TestCases::onChildDeleted(TestCase *widget)
     delete widget;
     for (int i = 0; i < count(); ++i)
         testcases[i]->setID(i);
+    updateVerdicts();
+}
+
+void TestCases::updateVerdicts()
+{
+    int ac = 0, wa = 0;
+    for (int i = 0; i < count(); ++i)
+    {
+        switch (testcases[i]->verdict())
+        {
+        case TestCase::AC:
+            ++ac;
+            break;
+        case TestCase::WA:
+            ++wa;
+            break;
+        }
+    }
+    verdicts->setText("<span style=\"color:red\">" + QString::number(wa) + "</span> / <span style=\"color:green\">" +
+                      QString::number(ac) + "</span> / " + QString::number(count()));
 }
 
 QString TestCases::testFilePathPrefix(const QFileInfo &fileInfo, int index)

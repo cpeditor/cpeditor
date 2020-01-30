@@ -65,6 +65,15 @@ class TestCase : public QWidget
     void save(const QString &pathPrefix);
     void setID(int index);
 
+    enum Verdict
+    {
+        AC,
+        WA,
+        UNKNOWN
+    };
+
+    Verdict verdict() const;
+
   signals:
     void deleted(TestCase *widget);
 
@@ -82,9 +91,10 @@ class TestCase : public QWidget
                 *loadExpectedButton = nullptr;
     TestCaseEdit *inputEdit = nullptr, *outputEdit = nullptr, *expectedEdit = nullptr;
     MessageLogger *log;
+    Verdict currentVerdict = UNKNOWN;
     int id;
 
-    bool isPass();
+    bool isPass() const;
 };
 
 class TestCases : public QWidget
@@ -121,10 +131,11 @@ class TestCases : public QWidget
     QPushButton *addButton = nullptr;
     QScrollArea *scrollArea = nullptr;
     QWidget *scrollAreaWidget = nullptr;
-    QLabel *label = nullptr;
+    QLabel *label = nullptr, *verdicts = nullptr;
     QList<TestCase *> testcases;
     MessageLogger *log;
 
+    void updateVerdicts();
     QString testFilePathPrefix(const QFileInfo &fileInfo, int index);
     int numberOfTestFile(const QString &sourceName, const QFileInfo &fileName);
 };
