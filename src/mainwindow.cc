@@ -972,7 +972,8 @@ void MainWindow::onCompilationFinished(const QString &warning)
 
         detachedRunner = new Core::Runner(-1);
         connect(detachedRunner, SIGNAL(runStarted(int)), this, SLOT(onRunStarted(int)));
-        connect(detachedRunner, SIGNAL(runErrorOccured(int)), this, SLOT(onRunErrorOccured(int)));
+        connect(detachedRunner, SIGNAL(runErrorOccured(int, const QString &)), this,
+                SLOT(onRunErrorOccured(int, const QString &)));
         connect(detachedRunner, SIGNAL(runKilled(int)), this, SLOT(onRunKilled(int)));
         detachedRunner->runDetached(tmpPath(), language, command, args);
     }
