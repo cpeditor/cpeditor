@@ -20,7 +20,7 @@ Following these guidelines helps to communicate that you respect the time of the
 
 **First time to Qt?** You have to install Qt>=5.12 and CMake>=3.5 first. Linux users may install them using the package manager on your system. Windows users may download Qt [here](https://www.qt.io/offline-installers) and it's recommended to use [Visual Studio](https://visualstudio.microsoft.com/) and install the CMake plugin. Read the [build from source](README.md#build-from-source) section to learn how to build. Read the [Qt docs](https://doc.qt.io/) on how to use Qt built-in widgets, how to design the UI and how to use the [signals and slots](https://doc.qt.io/qt-5/signalsandslots.html). Usually, you don't need anything from the std namespace, for example, use `QString` instead of `std::string`.
 
-**Don't know where to start?** You can start by looking through the [issues](https://github.com/coder3101/cp-editor/issues) and find one you are interested in. Ask in the [Telegram group](https://t.me/cpeditor) or under the issues if you have any questions.
+**Don't know where to start?** You can start by looking through the [issues](https://github.com/coder3101/cp-editor/issues) and find one you are interested in. The [good first issues](https://github.com/coder3101/cp-editor/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22) may be suitable for you. Ask in the [Telegram group](https://t.me/cpeditor) or under the issues if you have any questions.
 
 ## Before Writing Codes
 
