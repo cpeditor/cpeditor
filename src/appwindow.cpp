@@ -115,6 +115,7 @@ AppWindow::~AppWindow()
     delete timer;
     delete updater;
     delete server;
+    delete editorFeaturs;
 }
 
 /******************* PUBLIC METHODS ***********************/
@@ -171,6 +172,8 @@ void AppWindow::allocate()
 
     timer->setInterval(3000);
     timer->setSingleShot(false);
+
+    editorFeaturs = new Core::ExtendedQCodeEditorFeatures(nullptr, 0);
 }
 
 void AppWindow::applySettings()
@@ -212,6 +215,21 @@ void AppWindow::maybeSetHotkeys()
     for (auto e : hotkeyObjects)
         delete e;
     hotkeyObjects.clear();
+
+    if (editorFeaturesShortucts.isEmpty())
+    {
+        QKeySequence commentToggle(Qt::ALT + Qt::Key_Slash);
+        QKeySequence tabIndents(Qt::CTRL + Qt::Key_Tab);
+        QKeySequence tabUnIndent(Qt::SHIFT + Qt::Key_Tab);
+        QKeySequence moveUp(Qt::ALT + Qt::Key_Up);
+        QKeySequence moveDown(Qt::ALT + Qt::Key_Down);
+
+        editorFeaturesShortucts.push_back(new QShortcut(commentToggle, this, SLOT(on_comment_toggle())));
+        editorFeaturesShortucts.push_back(new QShortcut(tabIndents, this, SLOT(on_tab_indent())));
+        editorFeaturesShortucts.push_back(new QShortcut(tabUnIndent, this, SLOT(on_tab_unindent())));
+        editorFeaturesShortucts.push_back(new QShortcut(moveUp, this, SLOT(on_move_up())));
+        editorFeaturesShortucts.push_back(new QShortcut(moveDown, this, SLOT(on_move_down())));
+    }
 
     if (!settingManager->isHotkeyInUse())
         return;
@@ -695,6 +713,10 @@ void AppWindow::onEditorChanged()
     {
         setWindowTitle(currentWindow()->getTabTitle(true, false) + " - CP Editor");
 
+        editorFeaturs->setLanguage(currentWindow()->getLanguage());
+        editorFeaturs->setTabSize(settingManager->getTabStop());
+        editorFeaturs->setEditor(currentWindow()->getEditor());
+
         QMap<QString, QVector<int>> tabsByName;
 
         for (int t = 0; t < ui->tabWidget->count(); ++t)
@@ -894,6 +916,62 @@ void AppWindow::on_actionSplit_Mode_triggered()
     auto state = settingManager->getSplitterSizes();
     if (currentWindow() != nullptr)
         currentWindow()->getSplitter()->restoreState(state);
+}
+
+void AppWindow::on_comment_toggle()
+{
+    if (currentWindow() != nullptr)
+    {
+        if (currentWindow()->getEditor()->hasFocus())
+        {
+            editorFeaturs->toggleSelectionComment();
+        }
+    }
+}
+
+void AppWindow::on_tab_indent()
+{
+    if (currentWindow() != nullptr)
+    {
+        if (currentWindow()->getEditor()->hasFocus())
+        {
+            if (!editorFeaturs->selectionTab()) // if nothing was selected, pass tab press to editor
+                currentWindow()->getEditor()->insertPlainText("\t");
+        }
+    }
+}
+
+void AppWindow::on_tab_unindent()
+{
+    if (currentWindow() != nullptr)
+    {
+        if (currentWindow()->getEditor()->hasFocus())
+        {
+            editorFeaturs->selectionUnTab();
+        }
+    }
+}
+
+void AppWindow::on_move_up()
+{
+    if (currentWindow() != nullptr)
+    {
+        if (currentWindow()->getEditor()->hasFocus())
+        {
+            editorFeaturs->moveSelectionUp();
+        }
+    }
+}
+
+void AppWindow::on_move_down()
+{
+    if (currentWindow() != nullptr)
+    {
+        if (currentWindow()->getEditor()->hasFocus())
+        {
+            editorFeaturs->moveSelectionDown();
+        }
+    }
 }
 
 void AppWindow::on_confirmTriggered(MainWindow *widget)

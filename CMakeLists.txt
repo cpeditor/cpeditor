@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.5)
 
-project(CPEditor LANGUAGES CXX VERSION 5.8.3)
+project(CPEditor LANGUAGES CXX VERSION 5.8.4)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
@@ -46,6 +46,10 @@ add_executable(CPEditor
     include/preferencewindow.hpp
     include/appwindow.hpp
     third_party/diff_match_patch/diff_match_patch.h
+    include/DiffViewer.hpp
+	include/ExtendedEditorFeatures.hpp
+
+
 
     src/mainwindow.cc
     src/MessageLogger.cpp
@@ -62,6 +66,8 @@ add_executable(CPEditor
     src/preferencewindow.cpp
     src/appwindow.cpp
     third_party/diff_match_patch/diff_match_patch.cpp
+    src/DiffViewer.cpp
+	src/ExtendedEditorFeatures.cpp
 
     ui/mainwindow.ui
     ui/preferencewindow.ui
