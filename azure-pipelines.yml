@@ -9,6 +9,8 @@ trigger:
     include:
     - '*'
 
+pr: none
+
 jobs:
 - job:
   displayName: 'Linux'
