@@ -38,155 +38,155 @@ SettingManager::SettingManager()
     mSettings->remove("snippets/Cpp");
 }
 
-inline bool SettingManager::isWrapText()
+bool SettingManager::isWrapText()
 {
     return mSettings->value("wrap_text", "false").toBool();
 }
 
-inline bool SettingManager::isAutoIndent()
+bool SettingManager::isAutoIndent()
 {
     return mSettings->value("auto_indent", "true").toBool();
 }
 
-inline bool SettingManager::isAutoParenthesis()
+bool SettingManager::isAutoParenthesis()
 {
     return mSettings->value("auto_parenthesis", "true").toBool();
 }
 
-inline bool SettingManager::isAutoSave()
+bool SettingManager::isAutoSave()
 {
     return mSettings->value("autosave", "false").toBool();
 }
 
-inline bool SettingManager::isBeta()
+bool SettingManager::isBeta()
 {
     return mSettings->value("beta", "false").toBool();
 }
 
-inline bool SettingManager::isTabsReplaced()
+bool SettingManager::isTabsReplaced()
 {
     return mSettings->value("replace_tabs", "false").toBool();
 }
 
-inline bool SettingManager::isSaveTests()
+bool SettingManager::isSaveTests()
 {
     return mSettings->value("save_tests", "false").toBool();
 }
 
-inline bool SettingManager::isUseHotExit()
+bool SettingManager::isUseHotExit()
 {
     return mSettings->value("use_hot_exit", "true").toBool();
 }
 
-inline bool SettingManager::isMaximizedWindow()
+bool SettingManager::isMaximizedWindow()
 {
     return mSettings->value("win_max", "false").toBool();
 }
 
-inline bool SettingManager::isCheckUpdateOnStartup()
+bool SettingManager::isCheckUpdateOnStartup()
 {
     return mSettings->value("update_start_check", "true").toBool();
 }
 
-inline bool SettingManager::isCompetitiveCompanionActive()
+bool SettingManager::isCompetitiveCompanionActive()
 {
     return mSettings->value("competitive_use", "false").toBool();
 }
 
-inline bool SettingManager::isCompetitiveCompanionOpenNewTab()
+bool SettingManager::isCompetitiveCompanionOpenNewTab()
 {
     return mSettings->value("companion_new_tab", "true").toBool();
 }
 
-inline bool SettingManager::isHotkeyInUse()
+bool SettingManager::isHotkeyInUse()
 {
     return mSettings->value("hotkey_use", "false").toBool();
 }
 
-inline bool SettingManager::isFormatOnSave()
+bool SettingManager::isFormatOnSave()
 {
     return mSettings->value("format_on_save", "false").toBool();
 }
 
-inline QString SettingManager::getRunCommandJava()
+QString SettingManager::getRunCommandJava()
 {
     return mSettings->value("run_java", "java").toString();
 }
-inline QString SettingManager::getRunCommandPython()
+QString SettingManager::getRunCommandPython()
 {
     return mSettings->value("run_python", "python").toString();
 }
-inline QString SettingManager::getCompileCommandCpp()
+QString SettingManager::getCompileCommandCpp()
 {
     return mSettings->value("compile_cpp", "g++ -Wall").toString();
 }
-inline QString SettingManager::getCompileCommandJava()
+QString SettingManager::getCompileCommandJava()
 {
     return mSettings->value("compile_java", "javac").toString();
 }
-inline QString SettingManager::getClangFormatBinary()
+QString SettingManager::getClangFormatBinary()
 {
     return mSettings->value("clang_format_binary", "clang-format").toString();
 }
-inline QString SettingManager::getClangFormatStyle()
+QString SettingManager::getClangFormatStyle()
 {
     return mSettings->value("clang_format_style", "BasedOnStyle: Google").toString();
 }
-inline QString SettingManager::getRuntimeArgumentsCpp()
+QString SettingManager::getRuntimeArgumentsCpp()
 {
     return mSettings->value("runtime_cpp", "").toString();
 }
-inline QString SettingManager::getRuntimeArgumentsJava()
+QString SettingManager::getRuntimeArgumentsJava()
 {
     return mSettings->value("runtime_java", "").toString();
 }
-inline QString SettingManager::getRuntimeArgumentsPython()
+QString SettingManager::getRuntimeArgumentsPython()
 {
     return mSettings->value("runtime_python", "").toString();
 }
-inline QString SettingManager::getDefaultLang()
+QString SettingManager::getDefaultLang()
 {
     auto res = mSettings->value("lang", "C++").toString();
     return res;
 }
-inline QString SettingManager::getTemplatePathCpp()
+QString SettingManager::getTemplatePathCpp()
 {
     return mSettings->value("template_cpp", "").toString();
 }
-inline QString SettingManager::getTemplatePathJava()
+QString SettingManager::getTemplatePathJava()
 {
     return mSettings->value("template_java", "").toString();
 }
-inline QString SettingManager::getTemplatePathPython()
+QString SettingManager::getTemplatePathPython()
 {
     return mSettings->value("template_python", "").toString();
 }
-inline QString SettingManager::getFont()
+QString SettingManager::getFont()
 {
     return mSettings->value("font", "").toString();
 }
 
-inline QRect SettingManager::getGeometry()
+QRect SettingManager::getGeometry()
 {
     return mSettings->value("geometry").toRect();
 }
 
-inline int SettingManager::getTabStop()
+int SettingManager::getTabStop()
 {
     return mSettings->value("tab_stop", 4).toInt();
 }
 
-inline int SettingManager::getConnectionPort()
+int SettingManager::getConnectionPort()
 {
     return mSettings->value("companion_port", 10045).toInt();
 }
 
-inline int SettingManager::getTimeLimit()
+int SettingManager::getTimeLimit()
 {
     return mSettings->value("time_limit", 5000).toInt();
 }
 
-inline void SettingManager::setAutoIndent(const bool& value)
+void SettingManager::setAutoIndent(const bool& value)
 {
     if (value)
         mSettings->setValue("auto_indent", QString::fromStdString("true"));
@@ -194,17 +194,17 @@ inline void SettingManager::setAutoIndent(const bool& value)
         mSettings->setValue("auto_indent", QString::fromStdString("false"));
 }
 
-inline void SettingManager::setCompetitiveCompanionActive(const bool& value)
+void SettingManager::setCompetitiveCompanionActive(const bool& value)
 {
     mSettings->setValue("competitive_use", value);
 }
 
-inline void SettingManager::setCompetitiveCompanionOpenNewTab(const bool& value)
+void SettingManager::setCompetitiveCompanionOpenNewTab(const bool& value)
 {
     mSettings->setValue("companion_new_tab", value);
 }
 
-inline void SettingManager::setWrapText(const bool& value)
+void SettingManager::setWrapText(const bool& value)
 {
     if (value)
         mSettings->setValue("wrap_text", QString::fromStdString("true"));
@@ -212,7 +212,7 @@ inline void SettingManager::setWrapText(const bool& value)
         mSettings->setValue("wrap_text", QString::fromStdString("false"));
 }
 
-inline void SettingManager::setAutoParenthesis(const bool& value)
+void SettingManager::setAutoParenthesis(const bool& value)
 {
     if (value)
         mSettings->setValue("auto_parenthesis", QString::fromStdString("true"));
@@ -220,7 +220,7 @@ inline void SettingManager::setAutoParenthesis(const bool& value)
         mSettings->setValue("auto_parenthesis", QString::fromStdString("false"));
 }
 
-inline void SettingManager::setAutoSave(const bool& value)
+void SettingManager::setAutoSave(const bool& value)
 {
     if (value)
         mSettings->setValue("autosave", QString::fromStdString("true"));
@@ -228,7 +228,7 @@ inline void SettingManager::setAutoSave(const bool& value)
         mSettings->setValue("autosave", QString::fromStdString("false"));
 }
 
-inline void SettingManager::setBeta(const bool& value)
+void SettingManager::setBeta(const bool& value)
 {
     if (value)
         mSettings->setValue("beta", QString::fromStdString("true"));
@@ -236,7 +236,7 @@ inline void SettingManager::setBeta(const bool& value)
         mSettings->setValue("beta", QString::fromStdString("false"));
 }
 
-inline void SettingManager::setTabsReplaced(const bool& value)
+void SettingManager::setTabsReplaced(const bool& value)
 {
     if (value)
         mSettings->setValue("replace_tabs", QString::fromStdString("true"));
@@ -244,7 +244,7 @@ inline void SettingManager::setTabsReplaced(const bool& value)
         mSettings->setValue("replace_tabs", QString::fromStdString("false"));
 }
 
-inline void SettingManager::setSaveTests(const bool& value)
+void SettingManager::setSaveTests(const bool& value)
 {
     if (value)
         mSettings->setValue("save_tests", QString::fromStdString("true"));
@@ -252,7 +252,7 @@ inline void SettingManager::setSaveTests(const bool& value)
         mSettings->setValue("save_tests", QString::fromStdString("false"));
 }
 
-inline void SettingManager::setUseHotExit(const bool& value)
+void SettingManager::setUseHotExit(const bool& value)
 {
     if (value)
         mSettings->setValue("use_hot_exit", QString::fromStdString("true"));
@@ -260,7 +260,7 @@ inline void SettingManager::setUseHotExit(const bool& value)
         mSettings->setValue("use_hot_exit", QString::fromStdString("false"));
 }
 
-inline void SettingManager::setMaximizedWindow(const bool& value)
+void SettingManager::setMaximizedWindow(const bool& value)
 {
     if (value)
         mSettings->setValue("win_max", QString::fromStdString("true"));
@@ -268,7 +268,7 @@ inline void SettingManager::setMaximizedWindow(const bool& value)
         mSettings->setValue("win_max", QString::fromStdString("false"));
 }
 
-inline void SettingManager::checkUpdateOnStartup(const bool& value)
+void SettingManager::checkUpdateOnStartup(const bool& value)
 {
     if (value)
         mSettings->setValue("update_start_check", QString::fromStdString("true"));
@@ -276,7 +276,7 @@ inline void SettingManager::checkUpdateOnStartup(const bool& value)
         mSettings->setValue("update_start_check", QString::fromStdString("false"));
 }
 
-inline void SettingManager::setHotKeyInUse(const bool& value)
+void SettingManager::setHotKeyInUse(const bool& value)
 {
     if (value)
         mSettings->setValue("hotkey_use", QString::fromStdString("true"));
@@ -284,7 +284,7 @@ inline void SettingManager::setHotKeyInUse(const bool& value)
         mSettings->setValue("hotkey_use", QString::fromStdString("false"));
 }
 
-inline void SettingManager::formatOnSave(const bool& value)
+void SettingManager::formatOnSave(const bool& value)
 {
     if (value)
         mSettings->setValue("format_on_save", QString::fromStdString("true"));
@@ -292,129 +292,129 @@ inline void SettingManager::formatOnSave(const bool& value)
         mSettings->setValue("format_on_save", QString::fromStdString("false"));
 }
 
-inline void SettingManager::setTabStop(const int& num)
+void SettingManager::setTabStop(const int& num)
 {
     mSettings->setValue("tab_stop", num);
 }
 
-inline void SettingManager::setConnectionPort(const int& num)
+void SettingManager::setConnectionPort(const int& num)
 {
     mSettings->setValue("companion_port", num);
 }
 
-inline void SettingManager::setTimeLimit(const int& val)
+void SettingManager::setTimeLimit(const int& val)
 {
     mSettings->setValue("time_limit", val);
 }
 
-inline void SettingManager::setRunCommandJava(const QString& command)
+void SettingManager::setRunCommandJava(const QString& command)
 {
     mSettings->setValue("run_java", command);
 }
-inline void SettingManager::setRunCommandPython(const QString& command)
+void SettingManager::setRunCommandPython(const QString& command)
 {
     mSettings->setValue("run_python", command);
 }
-inline void SettingManager::setCompileCommandsCpp(const QString& command)
+void SettingManager::setCompileCommandsCpp(const QString& command)
 {
     mSettings->setValue("compile_cpp", command);
 }
-inline void SettingManager::setEditorTheme(const QString& themeName)
+void SettingManager::setEditorTheme(const QString& themeName)
 {
     mSettings->setValue("editor_theme", themeName);
 }
-inline QString SettingManager::getEditorTheme()
+QString SettingManager::getEditorTheme()
 {
     return mSettings->value("editor_theme", "Light").toString();
 }
-inline void SettingManager::setCompileCommandsJava(const QString& command)
+void SettingManager::setCompileCommandsJava(const QString& command)
 {
     mSettings->setValue("compile_java", command);
 }
-inline void SettingManager::setClangFormatBinary(const QString& binary)
+void SettingManager::setClangFormatBinary(const QString& binary)
 {
     mSettings->setValue("clang_format_binary", binary);
 }
-inline void SettingManager::setClangFormatStyle(const QString &style)
+void SettingManager::setClangFormatStyle(const QString &style)
 {
     mSettings->setValue("clang_format_style", style);
 }
-inline void SettingManager::setTemplatePathCpp(const QString& path)
+void SettingManager::setTemplatePathCpp(const QString& path)
 {
     mSettings->setValue("template_cpp", path);
 }
-inline void SettingManager::setTemplatePathJava(const QString& path)
+void SettingManager::setTemplatePathJava(const QString& path)
 {
     mSettings->setValue("template_java", path);
 }
-inline void SettingManager::setTemplatePathPython(const QString& path)
+void SettingManager::setTemplatePathPython(const QString& path)
 {
     mSettings->setValue("template_python", path);
 }
-inline void SettingManager::setRuntimeArgumentsCpp(const QString& command)
+void SettingManager::setRuntimeArgumentsCpp(const QString& command)
 {
     mSettings->setValue("runtime_cpp", command);
 }
-inline void SettingManager::setRuntimeArgumentsJava(const QString& command)
+void SettingManager::setRuntimeArgumentsJava(const QString& command)
 {
     mSettings->setValue("runtime_java", command);
 }
-inline void SettingManager::setRuntimeArgumentsPython(const QString& command)
+void SettingManager::setRuntimeArgumentsPython(const QString& command)
 {
     mSettings->setValue("runtime_python", command);
 }
-inline void SettingManager::setDefaultLanguage(const QString& lang)
+void SettingManager::setDefaultLanguage(const QString& lang)
 {
     mSettings->setValue("lang", lang);
 }
-inline void SettingManager::setFont(const QString& font)
+void SettingManager::setFont(const QString& font)
 {
     mSettings->setValue("font", font);
 }
 
-inline void SettingManager::setGeometry(const QRect& rect)
+void SettingManager::setGeometry(const QRect& rect)
 {
     mSettings->setValue("geometry", rect);
 }
 
-inline QKeySequence SettingManager::getHotkeyCompile()
+QKeySequence SettingManager::getHotkeyCompile()
 {
     return QKeySequence::fromString(mSettings->value("hotkey_compile", "").toString());
 }
-inline QKeySequence SettingManager::getHotkeyRun()
+QKeySequence SettingManager::getHotkeyRun()
 {
     return QKeySequence::fromString(mSettings->value("hotkey_run", "").toString());
 }
-inline QKeySequence SettingManager::getHotkeyCompileRun()
+QKeySequence SettingManager::getHotkeyCompileRun()
 {
     return QKeySequence::fromString(mSettings->value("hotkey_compile_run", "").toString());
 }
-inline QKeySequence SettingManager::getHotkeyKill()
+QKeySequence SettingManager::getHotkeyKill()
 {
     return QKeySequence::fromString(mSettings->value("hotkey_kill", "").toString());
 }
-inline QKeySequence SettingManager::getHotkeyFormat()
+QKeySequence SettingManager::getHotkeyFormat()
 {
     return QKeySequence::fromString(mSettings->value("hotkey_format", "").toString());
 }
-inline QKeySequence SettingManager::getHotkeyViewModeToggler()
+QKeySequence SettingManager::getHotkeyViewModeToggler()
 {
     return QKeySequence::fromString(mSettings->value("hotkey_mode_toggle", "").toString());
 }
-inline QKeySequence SettingManager::getHotkeySnippets()
+QKeySequence SettingManager::getHotkeySnippets()
 {
     return QKeySequence::fromString(mSettings->value("hotkey_snippets", "").toString());
 }
 
-inline QString SettingManager::getSnippet(const QString& lang, const QString& name)
+QString SettingManager::getSnippet(const QString& lang, const QString& name)
 {
     return mSettings->value("snippets/" + lang + "/" + name, "").toString();
 }
-inline void SettingManager::setSnippet(const QString& lang, const QString& name, const QString& content)
+void SettingManager::setSnippet(const QString& lang, const QString& name, const QString& content)
 {
     mSettings->setValue("snippets/" + lang + "/" + name, content);
 }
-inline void SettingManager::removeSnippet(const QString& lang, const QString& name)
+void SettingManager::removeSnippet(const QString& lang, const QString& name)
 {
     mSettings->remove("snippets/" + lang + "/" + name);
 }
@@ -429,85 +429,85 @@ QStringList SettingManager::getSnippetsNames(const QString& lang)
     return ret;
 }
 
-inline int SettingManager::getNumberOfTabs()
+int SettingManager::getNumberOfTabs()
 {
     return mSettings->value("number_of_tabs", 0).toInt();
 }
-inline void SettingManager::setNumberOfTabs(const int& value)
+void SettingManager::setNumberOfTabs(const int& value)
 {
     mSettings->setValue("number_of_tabs", value);
 }
-inline int SettingManager::getCurrentIndex()
+int SettingManager::getCurrentIndex()
 {
     return mSettings->value("current_index", -1).toInt();
 }
-inline void SettingManager::setCurrentIndex(const int& index)
+void SettingManager::setCurrentIndex(const int& index)
 {
     mSettings->setValue("current_index", index);
 }
-inline void SettingManager::clearEditorStatus()
+void SettingManager::clearEditorStatus()
 {
     mSettings->remove("editor_status");
 }
-inline QMap<QString, QVariant> SettingManager::getEditorStatus(const int& index)
+QMap<QString, QVariant> SettingManager::getEditorStatus(const int& index)
 {
     return mSettings->value("editor_status/" + QString::number(index)).toMap();
 }
-inline void SettingManager::setEditorStatus(const int& index, const QMap<QString, QVariant>& status)
+void SettingManager::setEditorStatus(const int& index, const QMap<QString, QVariant>& status)
 {
     mSettings->setValue("editor_status/" + QString::number(index), status);
 }
 
-inline int SettingManager::getTransparency()
+int SettingManager::getTransparency()
 {
     return mSettings->value("transparency", 100).toInt();
 }
 
-inline void SettingManager::setTransparency(const int& val)
+void SettingManager::setTransparency(const int& val)
 {
     mSettings->setValue("transparency", val);
 }
 
-inline QString SettingManager::getCFPath()
+QString SettingManager::getCFPath()
 {
     return mSettings->value("cf_path", "cf").toString();
 }
 
-inline void SettingManager::setCFPath(const QString& path)
+void SettingManager::setCFPath(const QString& path)
 {
     mSettings->setValue("cf_path", path);
 }
 
-inline void SettingManager::setHotkeyViewModeToggler(const QKeySequence& sequence)
+void SettingManager::setHotkeyViewModeToggler(const QKeySequence& sequence)
 {
     mSettings->setValue("hotkey_mode_toggle", sequence.toString());
 }
-inline void SettingManager::setHotkeyCompile(const QKeySequence& sequence)
+void SettingManager::setHotkeyCompile(const QKeySequence& sequence)
 {
     mSettings->setValue("hotkey_compile", sequence.toString());
 }
-inline void SettingManager::setHotkeyRun(const QKeySequence& sequence)
+void SettingManager::setHotkeyRun(const QKeySequence& sequence)
 {
     mSettings->setValue("hotkey_run", sequence.toString());
 }
-inline void SettingManager::setHotkeyCompileRun(const QKeySequence& sequence)
+void SettingManager::setHotkeyCompileRun(const QKeySequence& sequence)
 {
     mSettings->setValue("hotkey_compile_run", sequence.toString());
 }
-inline void SettingManager::setHotkeyKill(const QKeySequence& sequence)
+void SettingManager::setHotkeyKill(const QKeySequence& sequence)
 {
     mSettings->setValue("hotkey_kill", sequence.toString());
 }
-inline void SettingManager::setHotkeyFormat(const QKeySequence& sequence)
+void SettingManager::setHotkeyFormat(const QKeySequence& sequence)
 {
     mSettings->setValue("hotkey_format", sequence.toString());
 }
-inline void SettingManager::setHotkeySnippets(const QKeySequence& sequence)
+void SettingManager::setHotkeySnippets(const QKeySequence& sequence)
 {
     mSettings->setValue("hotkey_snippets", sequence.toString());
 }
 
-inline ViewMode SettingManager::getViewMode()
+ViewMode SettingManager::getViewMode()
 {
     QString strings = mSettings->value("view_mode", "split").toString();
     if (strings == "split")
@@ -518,7 +518,7 @@ inline ViewMode SettingManager::getViewMode()
         return Settings::ViewMode::FULL_IO;
 }
 
-inline void SettingManager::setViewMode(const ViewMode& viewmode)
+void SettingManager::setViewMode(const ViewMode& viewmode)
 {
     QString ans;
     if (viewmode == Settings::FULL_EDITOR)
@@ -530,22 +530,22 @@ inline void SettingManager::setViewMode(const ViewMode& viewmode)
     mSettings->setValue("view_mode", ans);
 }
 
-inline QByteArray SettingManager::getSplitterSizes()
+QByteArray SettingManager::getSplitterSizes()
 {
     return mSettings->value("splitter_sizes").toByteArray();
 }
 
-inline void SettingManager::setSplitterSizes(const QByteArray& state)
+void SettingManager::setSplitterSizes(const QByteArray& state)
 {
     mSettings->setValue("splitter_sizes", state);
 }
 
-inline QByteArray SettingManager::getRightSplitterSizes()
+QByteArray SettingManager::getRightSplitterSizes()
 {
     return mSettings->value("right_splitter_sizes").toByteArray();
 }
 
-inline void SettingManager::setRightSplitterSizes(const QByteArray& state)
+void SettingManager::setRightSplitterSizes(const QByteArray& state)
 {
     mSettings->setValue("right_splitter_sizes", state);
 }
@@ -556,7 +556,7 @@ SettingManager::~SettingManager()
     delete mSettings;
 }
 
-inline SettingsData SettingManager::toData()
+SettingsData SettingManager::toData()
 {
     SettingsData data;
     data.companionPort = getConnectionPort();
@@ -604,7 +604,7 @@ inline SettingsData SettingManager::toData()
     return data;
 }
 
-inline void SettingManager::resetSettings()
+void SettingManager::resetSettings()
 {
     mSettings->clear();
 }
