@@ -93,6 +93,8 @@ int main(int argc, char *argv[])
         }
 
         auto path = args[1];
+        if (QFileInfo(path).isRelative())
+            path = QDir::current().filePath(path);
 
         if (!parser.isSet("new") && app.isSecondary())
         {
@@ -129,6 +131,12 @@ int main(int argc, char *argv[])
 
         if (!cpp && !java && !python)
             cpp = java = python = true;
+
+        for (auto &path : args)
+        {
+            if (QFileInfo(path).isRelative())
+                path = QDir::current().filePath(path);
+        }
 
         if (!parser.isSet("new") && app.isSecondary())
         {
