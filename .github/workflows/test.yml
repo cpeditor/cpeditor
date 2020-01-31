@@ -1,0 +1,30 @@
+name: "CI: Build Test"
+
+on: [push, pull_request]
+
+jobs:
+  build:
+
+    strategy:
+      matrix:
+        qt_version: [5.12.0, 5.12.6, 5.14.0]
+        platform: [ubuntu-latest, windows-latest, macos-latest]
+
+    runs-on: ${{ matrix.platform }}
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Install Qt
+      uses: jurplel/install-qt-action@v2.3.0
+      with:
+        version: ${{ matrix.qt_version }}
+    
+    - name: get submodules
+      run: git submodule update --init --recursive
+
+    - name: cmake
+      run: cmake .
+
+    - name: cmake build
+      run: cmake --build .
