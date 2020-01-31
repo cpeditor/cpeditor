@@ -711,8 +711,6 @@ void AppWindow::onEditorChanged()
 {
     if (currentWindow() != nullptr)
     {
-        setWindowTitle(currentWindow()->getTabTitle(true, false) + " - CP Editor");
-
         editorFeaturs->setLanguage(currentWindow()->getLanguage());
         editorFeaturs->setTabSize(settingManager->getTabStop());
         editorFeaturs->setEditor(currentWindow()->getEditor());
@@ -731,6 +729,8 @@ void AppWindow::onEditorChanged()
                 ui->tabWidget->setTabText(index, windowIndex(index)->getTabTitle(tabs.size() > 1, true));
             }
         }
+
+        setWindowTitle(currentWindow()->getTabTitle(true, false) + " - CP Editor");
     }
 }
 
