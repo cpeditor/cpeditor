@@ -52,85 +52,45 @@ class AppWindow : public QMainWindow
 
   private slots:
     void on_actionSupport_me_triggered();
-
     void on_actionAbout_triggered();
-
     void on_actionAutosave_triggered(bool checked);
-
     void on_actionQuit_triggered();
-
     void on_actionNew_Tab_triggered();
-
     void on_actionOpen_triggered();
-
     void on_actionOpenContest_triggered();
-
     void on_actionRestore_Settings_triggered();
-
     void on_actionSettings_triggered();
-
     void on_actionSave_triggered();
-
     void on_actionSave_As_triggered();
-
     void on_actionSave_All_triggered();
-
     void on_actionClose_Current_triggered();
-
     void on_actionClose_All_triggered();
-
     void on_actionClose_Saved_triggered();
-
     void on_actionCheck_for_updates_triggered();
-
     void onEditorChanged();
-
     void onTabCloseRequested(int);
-
     void onTabChanged(int);
-
     void onSaveTimerElapsed();
-
     void onSettingsApplied();
-
     void onSplitterMoved(int, int);
-
     void onRightSplitterMoved(int, int);
-
     void onIncomingCompanionRequest(Network::CompanionData);
-
     void onViewModeToggle();
-
     void on_actionCompile_triggered();
-
     void on_actionCompile_Run_triggered();
-
     void on_actionRun_triggered();
-
     void on_actionFormat_code_triggered();
-
     void on_actionRun_Detached_triggered();
-
     void on_actionKill_Processes_triggered();
-
     void on_actionUse_Snippets_triggered();
-
     void on_actionEditor_Mode_triggered();
-
     void on_actionIO_Mode_triggered();
-
     void on_actionSplit_Mode_triggered();
-
-	void on_comment_toggle();
-
-	void on_tab_indent();
-
-	void on_tab_unindent();
-
-	void on_move_up();
-
-	void on_move_down();
-
+	  void on_comment_toggle();
+	  void on_tab_indent();
+	  void on_tab_unindent();
+	  void on_move_up();
+	  void on_move_down();
     void on_confirmTriggered(MainWindow *widget);
 
     void onTabContextMenuRequested(const QPoint &pos);
