@@ -420,6 +420,8 @@ bool TestCase::isPass() const
     return true;
 }
 
+const int TestCases::MAX_NUMBER_OF_TESTCASES;
+
 TestCases::TestCases(MessageLogger *logger, QWidget *parent) : QWidget(parent), log(logger)
 {
     mainLayout = new QVBoxLayout(this);
