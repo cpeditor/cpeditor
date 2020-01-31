@@ -98,144 +98,144 @@ class SettingManager
   public:
     SettingManager();
 
-    inline int getConnectionPort();
-    inline void setConnectionPort(const int& port);
+    int getConnectionPort();
+    void setConnectionPort(const int& port);
 
-    inline int getTabStop();
-    inline void setTabStop(const int& num);
+    int getTabStop();
+    void setTabStop(const int& num);
 
-    inline int getTimeLimit();
-    inline void setTimeLimit(const int& ms);
+    int getTimeLimit();
+    void setTimeLimit(const int& ms);
 
-    inline QRect getGeometry();
-    inline void setGeometry(const QRect& rect);
+    QRect getGeometry();
+    void setGeometry(const QRect& rect);
 
-    inline QString getFont();
-    inline void setFont(const QString& font);
+    QString getFont();
+    void setFont(const QString& font);
 
-    inline QString getDefaultLang();
-    inline void setDefaultLanguage(const QString& lang);
+    QString getDefaultLang();
+    void setDefaultLanguage(const QString& lang);
 
-    inline QString getTemplatePathCpp();
-    inline QString getTemplatePathJava();
-    inline QString getTemplatePathPython();
-    inline void setTemplatePathCpp(const QString& path);
-    inline void setTemplatePathJava(const QString& path);
-    inline void setTemplatePathPython(const QString& path);
+    QString getTemplatePathCpp();
+    QString getTemplatePathJava();
+    QString getTemplatePathPython();
+    void setTemplatePathCpp(const QString& path);
+    void setTemplatePathJava(const QString& path);
+    void setTemplatePathPython(const QString& path);
 
-    inline QString getRuntimeArgumentsCpp();
-    inline QString getRuntimeArgumentsJava();
-    inline QString getRuntimeArgumentsPython();
-    inline void setRuntimeArgumentsCpp(const QString& command);
-    inline void setRuntimeArgumentsJava(const QString& command);
-    inline void setRuntimeArgumentsPython(const QString& command);
+    QString getRuntimeArgumentsCpp();
+    QString getRuntimeArgumentsJava();
+    QString getRuntimeArgumentsPython();
+    void setRuntimeArgumentsCpp(const QString& command);
+    void setRuntimeArgumentsJava(const QString& command);
+    void setRuntimeArgumentsPython(const QString& command);
 
-    inline QString getClangFormatBinary();
-    inline void setClangFormatBinary(const QString& binary);
-    inline QString getClangFormatStyle();
-    inline void setClangFormatStyle(const QString& style);
+    QString getClangFormatBinary();
+    void setClangFormatBinary(const QString& binary);
+    QString getClangFormatStyle();
+    void setClangFormatStyle(const QString& style);
 
-    inline QString getCompileCommandCpp();
-    inline QString getCompileCommandJava();
-    inline void setCompileCommandsCpp(const QString& command);
-    inline void setCompileCommandsJava(const QString& command);
+    QString getCompileCommandCpp();
+    QString getCompileCommandJava();
+    void setCompileCommandsCpp(const QString& command);
+    void setCompileCommandsJava(const QString& command);
 
-    inline QString getRunCommandJava();
-    inline QString getRunCommandPython();
-    inline void setRunCommandJava(const QString& command);
-    inline void setRunCommandPython(const QString& command);
+    QString getRunCommandJava();
+    QString getRunCommandPython();
+    void setRunCommandJava(const QString& command);
+    void setRunCommandPython(const QString& command);
 
-    inline QString getEditorTheme();
-    inline void setEditorTheme(const QString& theme);
+    QString getEditorTheme();
+    void setEditorTheme(const QString& theme);
 
-    inline bool isHotkeyInUse();
-    inline void setHotKeyInUse(const bool& value);
+    bool isHotkeyInUse();
+    void setHotKeyInUse(const bool& value);
 
-    inline bool isAutoParenthesis();
-    inline void setAutoParenthesis(const bool& value);
+    bool isAutoParenthesis();
+    void setAutoParenthesis(const bool& value);
 
-    inline bool isAutoIndent();
-    inline void setAutoIndent(const bool& value);
+    bool isAutoIndent();
+    void setAutoIndent(const bool& value);
 
-    inline bool isAutoSave();
-    inline void setAutoSave(const bool& value);
+    bool isAutoSave();
+    void setAutoSave(const bool& value);
 
-    inline bool isWrapText();
-    inline void setWrapText(const bool& value);
+    bool isWrapText();
+    void setWrapText(const bool& value);
 
-    inline bool isBeta();
-    inline void setBeta(const bool& value);
+    bool isBeta();
+    void setBeta(const bool& value);
 
-    inline bool isTabsReplaced();
-    inline void setTabsReplaced(const bool& value);
+    bool isTabsReplaced();
+    void setTabsReplaced(const bool& value);
 
-    inline bool isSaveTests();
-    inline void setSaveTests(const bool& value);
+    bool isSaveTests();
+    void setSaveTests(const bool& value);
 
-    inline bool isUseHotExit();
-    inline void setUseHotExit(const bool& value);
+    bool isUseHotExit();
+    void setUseHotExit(const bool& value);
 
-    inline bool isCompetitiveCompanionActive();
-    inline void setCompetitiveCompanionActive(const bool& value);
+    bool isCompetitiveCompanionActive();
+    void setCompetitiveCompanionActive(const bool& value);
 
-    inline bool isCompetitiveCompanionOpenNewTab();
-    inline void setCompetitiveCompanionOpenNewTab(const bool& value);
+    bool isCompetitiveCompanionOpenNewTab();
+    void setCompetitiveCompanionOpenNewTab(const bool& value);
 
-    inline bool isMaximizedWindow();
-    inline void setMaximizedWindow(const bool& value);
+    bool isMaximizedWindow();
+    void setMaximizedWindow(const bool& value);
 
-    inline bool isCheckUpdateOnStartup();
-    inline void checkUpdateOnStartup(const bool& value);
+    bool isCheckUpdateOnStartup();
+    void checkUpdateOnStartup(const bool& value);
 
-    inline bool isFormatOnSave();
-    inline void formatOnSave(const bool& value);
+    bool isFormatOnSave();
+    void formatOnSave(const bool& value);
 
-    inline int getTransparency();
-    inline void setTransparency(const int& val);
+    int getTransparency();
+    void setTransparency(const int& val);
 
-    inline ViewMode getViewMode();
-    inline void setViewMode(const ViewMode& v);
+    ViewMode getViewMode();
+    void setViewMode(const ViewMode& v);
 
-    inline QByteArray getSplitterSizes();
-    inline void setSplitterSizes(const QByteArray& state);
+    QByteArray getSplitterSizes();
+    void setSplitterSizes(const QByteArray& state);
 
-    inline QByteArray getRightSplitterSizes();
-    inline void setRightSplitterSizes(const QByteArray& state);
+    QByteArray getRightSplitterSizes();
+    void setRightSplitterSizes(const QByteArray& state);
 
-    inline void setHotkeyFormat(const QKeySequence& sequence);
-    inline void setHotkeyKill(const QKeySequence& sequence);
-    inline void setHotkeyCompileRun(const QKeySequence& sequence);
-    inline void setHotkeyRun(const QKeySequence& sequence);
-    inline void setHotkeyCompile(const QKeySequence& sequence);
-    inline void setHotkeyViewModeToggler(const QKeySequence& sequence);
-    inline void setHotkeySnippets(const QKeySequence& sequence);
-    inline QKeySequence getHotkeyFormat();
-    inline QKeySequence getHotkeyKill();
-    inline QKeySequence getHotkeyCompileRun();
-    inline QKeySequence getHotkeyRun();
-    inline QKeySequence getHotkeyCompile();
-    inline QKeySequence getHotkeyViewModeToggler();
-    inline QKeySequence getHotkeySnippets();
+    void setHotkeyFormat(const QKeySequence& sequence);
+    void setHotkeyKill(const QKeySequence& sequence);
+    void setHotkeyCompileRun(const QKeySequence& sequence);
+    void setHotkeyRun(const QKeySequence& sequence);
+    void setHotkeyCompile(const QKeySequence& sequence);
+    void setHotkeyViewModeToggler(const QKeySequence& sequence);
+    void setHotkeySnippets(const QKeySequence& sequence);
+    QKeySequence getHotkeyFormat();
+    QKeySequence getHotkeyKill();
+    QKeySequence getHotkeyCompileRun();
+    QKeySequence getHotkeyRun();
+    QKeySequence getHotkeyCompile();
+    QKeySequence getHotkeyViewModeToggler();
+    QKeySequence getHotkeySnippets();
 
-    inline QString getSnippet(const QString& lang, const QString& name);
-    inline void setSnippet(const QString& lang, const QString& name, const QString& content);
-    inline void removeSnippet(const QString& lang, const QString& name);
-    inline QStringList getSnippetsNames(const QString& lang);
+    QString getSnippet(const QString& lang, const QString& name);
+    void setSnippet(const QString& lang, const QString& name, const QString& content);
+    void removeSnippet(const QString& lang, const QString& name);
+    QStringList getSnippetsNames(const QString& lang);
 
-    inline int getNumberOfTabs();
-    inline void setNumberOfTabs(const int& value);
-    inline int getCurrentIndex();
-    inline void setCurrentIndex(const int& index);
-    inline void clearEditorStatus();
-    inline QMap<QString, QVariant> getEditorStatus(const int& index);
-    inline void setEditorStatus(const int& index, const QMap<QString, QVariant>& status);
+    int getNumberOfTabs();
+    void setNumberOfTabs(const int& value);
+    int getCurrentIndex();
+    void setCurrentIndex(const int& index);
+    void clearEditorStatus();
+    QMap<QString, QVariant> getEditorStatus(const int& index);
+    void setEditorStatus(const int& index, const QMap<QString, QVariant>& status);
 
-    inline QString getCFPath();
-    inline void setCFPath(const QString& path);
+    QString getCFPath();
+    void setCFPath(const QString& path);
 
-    inline void resetSettings();
+    void resetSettings();
 
-    inline SettingsData toData();
+    SettingsData toData();
     ~SettingManager();
 
   private:
