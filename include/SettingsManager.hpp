@@ -150,31 +150,31 @@ class SettingManager
     void setEditorTheme(const QString& theme) { mSettings->setValue("editor_theme", themeName); }
 
     bool isHotkeyInUse() { return mSettings->value("hotkey_use", "false").toBool(); }
-    void setHotKeyInUse(const bool& value);
+    void setHotKeyInUse(const bool& value) { mSettings->setValue("hotkey_use", bool2string(value)); }
 
     bool isAutoParenthesis() { return mSettings->value("auto_parenthesis", "true").toBool(); }
-    void setAutoParenthesis(const bool& value);
+    void setAutoParenthesis(const bool& value) { mSettings->setValue("auto_parenthesis", bool2string(value)); }
 
     bool isAutoIndent() { return mSettings->value("auto_indent", "true").toBool(); }
-    void setAutoIndent(const bool& value);
+    void setAutoIndent(const bool& value) { mSettings->setValue("auto_indent", bool2string(value)); }
 
     bool isAutoSave() { return mSettings->value("autosave", "false").toBool(); }
-    void setAutoSave(const bool& value);
+    void setAutoSave(const bool& value) { mSettings->setValue("autosave", bool2string(value)); }
 
     bool isWrapText() { return mSettings->value("wrap_text", "false").toBool(); }
-    void setWrapText(const bool& value);
+    void setWrapText(const bool& value) { mSettings->setValue("wrap_text", bool2string(value)); }
 
     bool isBeta() { return mSettings->value("beta", "false").toBool(); }
-    void setBeta(const bool& value);
+    void setBeta(const bool& value) { mSettings->setValue("beta", bool2string(value)); }
 
     bool isTabsReplaced() { return mSettings->value("replace_tabs", "false").toBool(); }
-    void setTabsReplaced(const bool& value);
+    void setTabsReplaced(const bool& value) { mSettings->setValue("replace_tabs", bool2string(value)); }
 
     bool isSaveTests() { return mSettings->value("save_tests", "false").toBool(); }
-    void setSaveTests(const bool& value);
+    void setSaveTests(const bool& value) { mSettings->setValue("save_tests", bool2string(value)); }
 
     bool isUseHotExit() { return mSettings->value("use_hot_exit", "true").toBool(); }
-    void setUseHotExit(const bool& value);
+    void setUseHotExit(const bool& value) { mSettings->setValue("use_hot_exit", bool2string(value)); }
 
     bool isCompetitiveCompanionActive() { return mSettings->value("competitive_use", "false").toBool(); }
     void setCompetitiveCompanionActive(const bool& value) { mSettings->setValue("competitive_use", value); }
@@ -183,13 +183,13 @@ class SettingManager
     void setCompetitiveCompanionOpenNewTab(const bool& value) { mSettings->setValue("companion_new_tab", value); }
 
     bool isMaximizedWindow() { return mSettings->value("win_max", "false").toBool(); }
-    void setMaximizedWindow(const bool& value);
+    void setMaximizedWindow(const bool& value) { mSettings->setValue("win_max", bool2string(value)); }
 
     bool isCheckUpdateOnStartup() { return mSettings->value("update_start_check", "true").toBool(); }
-    void checkUpdateOnStartup(const bool& value);
+    void checkUpdateOnStartup(const bool& value) { mSettings->setValue("update_start_check", bool2string(value)); }
 
     bool isFormatOnSave() { return mSettings->value("format_on_save", "false").toBool(); }
-    void formatOnSave(const bool& value);
+    void formatOnSave(const bool& value) { mSettings->setValue("format_on_save", bool2string(value)); }
 
     int getTransparency() { return mSettings->value("transparency", 100).toInt(); }
     void setTransparency(const int& val) { mSettings->setValue("transparency", val); }

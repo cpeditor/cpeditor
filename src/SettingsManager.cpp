@@ -38,66 +38,6 @@ SettingManager::SettingManager()
     mSettings->remove("snippets/Cpp");
 }
 
-void SettingManager::setAutoIndent(const bool& value)
-{
-    mSettings->setValue("auto_indent", bool2string(value));
-}
-
-void SettingManager::setWrapText(const bool& value)
-{
-    mSettings->setValue("wrap_text", bool2string(value));
-}
-
-void SettingManager::setAutoParenthesis(const bool& value)
-{
-    mSettings->setValue("auto_parenthesis", bool2string(value));
-}
-
-void SettingManager::setAutoSave(const bool& value)
-{
-    mSettings->setValue("autosave", bool2string(value));
-}
-
-void SettingManager::setBeta(const bool& value)
-{
-    mSettings->setValue("beta", bool2string(value));
-}
-
-void SettingManager::setTabsReplaced(const bool& value)
-{
-    mSettings->setValue("replace_tabs", bool2string(value));
-}
-
-void SettingManager::setSaveTests(const bool& value)
-{
-    mSettings->setValue("save_tests", bool2string(value));
-}
-
-void SettingManager::setUseHotExit(const bool& value)
-{
-    mSettings->setValue("use_hot_exit", bool2string(value));
-}
-
-void SettingManager::setMaximizedWindow(const bool& value)
-{
-    mSettings->setValue("win_max", bool2string(value));
-}
-
-void SettingManager::checkUpdateOnStartup(const bool& value)
-{
-    mSettings->setValue("update_start_check", bool2string(value));
-}
-
-void SettingManager::setHotKeyInUse(const bool& value)
-{
-    mSettings->setValue("hotkey_use", bool2string(value));
-}
-
-void SettingManager::formatOnSave(const bool& value)
-{
-    mSettings->setValue("format_on_save", bool2string(value));
-}
-
 QStringList SettingManager::getSnippetsNames(const QString& lang)
 {
     mSettings->beginGroup("snippets");
