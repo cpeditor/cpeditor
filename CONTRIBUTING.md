@@ -47,7 +47,7 @@ Please open an issue (describe the feature/bug like normal issues, and say that 
 ## FAQ
 
 - How to add a setting?
-  - You have to add the UI part in `ui/preferencewindow.ui`, add get/set functions in `include/SettingsManager.hpp` and `src/SettingsManager.cpp`, update settings and probably extract setting to UI in `src/preferencewindow.cpp`.
+  - You have to add the UI part in `ui/preferencewindow.ui`, add get/set functions in `include/SettingsManager.hpp`, update settings and probably extract setting to UI in `src/preferencewindow.cpp`.
 - How to implement XXX?
   - Google for it and read the Qt docs usually helps. If you still have questions, ask in the [Telegram group](https://t.me/cpeditor).
 - What do these codes mean/do?
