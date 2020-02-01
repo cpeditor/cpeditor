@@ -16,6 +16,7 @@ if(WIN32)
 endif()
 if(APPLE)
     SET(GUI_TYPE MACOSX_BUNDLE)
+    configure_file(.ci/mac/Info.plist.in ${CMAKE_BINARY_DIR}/generated/Info.plist)
 endif()
 
 
