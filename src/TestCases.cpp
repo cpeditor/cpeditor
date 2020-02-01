@@ -629,6 +629,8 @@ void TestCases::updateVerdicts()
         case TestCase::WA:
             ++wa;
             break;
+        default:
+            break;
         }
     }
     verdicts->setText("<span style=\"color:red\">" + QString::number(wa) + "</span> / <span style=\"color:green\">" +

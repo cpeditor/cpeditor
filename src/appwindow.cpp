@@ -417,9 +417,9 @@ QStringList AppWindow::openFolder(const QString &path, bool cpp, bool java, bool
             else if (depth == -1)
                 res.append(openFolder(entry.canonicalFilePath(), cpp, java, python, -1));
         }
-        else if (cpp && QStringList({"cpp", "hpp", "h", "cc", "cxx", "c"}).contains(entry.suffix()) ||
-                 java && QStringList({"java"}).contains(entry.suffix()) ||
-                 python && QStringList({"py", "py3"}).contains(entry.suffix()))
+        else if ((cpp && QStringList({"cpp", "hpp", "h", "cc", "cxx", "c"}).contains(entry.suffix())) ||
+                 (java && QStringList({"java"}).contains(entry.suffix())) ||
+                 (python && QStringList({"py", "py3"}).contains(entry.suffix())))
         {
             res.append(entry.canonicalFilePath());
         }
