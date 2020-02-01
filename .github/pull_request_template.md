@@ -20,9 +20,14 @@
 
 ## Type of changes
 <!--- What type of changes does your code introduce? Put an `x` in the box that applies: -->
-- [ ] Bug fix (a change which fixes an issue)
-- [ ] New feature (a change which adds functionality)
-- [ ] Documentation (a change which modifies the documentation only)
+- [ ] Bug fix (changes which fix an issue)
+- [ ] New feature (changes which add functionality)
+- [ ] Documentation (changes which modify the documentation only)
+- [ ] Style change (changes which do not affect the meaning of the code: code formatting, etc.)
+- [ ] Refactor (changes which affect the meaning of the code but neither fix a bug nor add a feature)
+- [ ] Performance improve (changes which improve performance)
+- [ ] Test (changes which add tests)
+- [ ] Chore (changes which do not belong to any type above)
 
 ## Checklist
 <!--- Go over all the following points, and put an `x` in all the boxes that apply. -->
