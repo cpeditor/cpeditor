@@ -102,13 +102,13 @@ class SettingManager
     SettingManager();
 
     int getConnectionPort() { return mSettings->value("companion_port", 10045).toInt(); }
-    void setConnectionPort(const int& port) { mSettings->setValue("companion_port", num); }
+    void setConnectionPort(const int& port) { mSettings->setValue("companion_port", port); }
 
     int getTabStop() { return mSettings->value("tab_stop", 4).toInt(); }
     void setTabStop(const int& num) { mSettings->setValue("tab_stop", num); }
 
     int getTimeLimit() { return mSettings->value("time_limit", 5000).toInt(); }
-    void setTimeLimit(const int& ms) { mSettings->setValue("time_limit", val); }
+    void setTimeLimit(const int& ms) { mSettings->setValue("time_limit", ms); }
 
     QRect getGeometry() { return mSettings->value("geometry").toRect(); }
     void setGeometry(const QRect& rect) { mSettings->setValue("geometry", rect); }
@@ -149,7 +149,7 @@ class SettingManager
     void setRunCommandPython(const QString& command) { mSettings->setValue("run_python", command); }
 
     QString getEditorTheme() { return mSettings->value("editor_theme", "Light").toString(); }
-    void setEditorTheme(const QString& theme) { mSettings->setValue("editor_theme", themeName); }
+    void setEditorTheme(const QString& theme) { mSettings->setValue("editor_theme", theme); }
 
     bool isHotkeyInUse() { return mSettings->value("hotkey_use", "false").toBool(); }
     void setHotKeyInUse(const bool& value) { mSettings->setValue("hotkey_use", bool2string(value)); }
