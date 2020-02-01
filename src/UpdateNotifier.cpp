@@ -51,7 +51,7 @@ QString UpdateNotifier::currentVersionStr()
     return QString::fromStdString(version);
 }
 
-bool compareVersion(QString const & a, QString const & b)
+bool compareVersion(QString const &a, QString const &b)
 {
     // returns true if a is higher version than b;
 

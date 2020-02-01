@@ -39,7 +39,7 @@ SettingManager::SettingManager()
     mSettings->remove("snippets/Cpp");
 }
 
-QStringList SettingManager::getSnippetsNames(const QString& lang)
+QStringList SettingManager::getSnippetsNames(const QString &lang)
 {
     mSettings->beginGroup("snippets");
     mSettings->beginGroup(lang);
@@ -61,7 +61,7 @@ ViewMode SettingManager::getViewMode()
         return Settings::ViewMode::FULL_IO;
 }
 
-void SettingManager::setViewMode(const ViewMode& viewmode)
+void SettingManager::setViewMode(const ViewMode &viewmode)
 {
     QString ans;
     if (viewmode == Settings::FULL_EDITOR)

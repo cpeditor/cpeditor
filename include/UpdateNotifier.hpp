@@ -28,7 +28,7 @@ namespace Telemetry
 class UpdateNotifier : public QObject
 {
     Q_OBJECT
-public:
+  public:
     UpdateNotifier(bool useBeta);
     void checkUpdate(bool force = false);
     ~UpdateNotifier();
