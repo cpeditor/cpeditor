@@ -65,13 +65,13 @@ void ExtendedQCodeEditorFeatures::toggleSelectionComment(bool _)
         auto text = sps.selectedText();
         if (text.startsWith("// ") || text.startsWith("# "))
         {
-            
+
             if (language_ != "Python")
             {
 
                 selectionRemoveFirstCharIf_({"/", " "});
                 selectionRemoveFirstCharIf_({"/", " "});
-				selectionRemoveFirstCharIf_({"/", " "});
+                selectionRemoveFirstCharIf_({"/", " "});
             }
             else
             {
@@ -302,7 +302,7 @@ bool ExtendedQCodeEditorFeatures::selectionRemoveFirstCharIf_(QStringList delete
             {
                 cursor.deletePreviousChar();
                 i++;
-            }		
+            }
 
             editor_->setTextCursor(cursor);
 
