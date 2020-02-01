@@ -22,7 +22,7 @@
 
 inline QString bool2string(const bool& value) { 
     if(value) return QString::fromStdString("true");
-    else QString::fromStdString("false");
+    else return QString::fromStdString("false");
 }
 
 #endif
