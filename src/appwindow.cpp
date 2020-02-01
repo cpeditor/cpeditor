@@ -93,7 +93,7 @@ AppWindow::AppWindow(int depth, bool cpp, bool java, bool python, bool noHotExit
 AppWindow::AppWindow(bool cpp, bool java, bool python, bool noHotExit, int number, const QString &path, QWidget *parent)
     : AppWindow(noHotExit, parent)
 {
-    QString lang = settingManager->getDefaultLang();
+    QString lang = settingManager->getDefaultLanguage();
     if (cpp)
         lang = "C++";
     else if (java)
@@ -327,7 +327,7 @@ void AppWindow::openTab(QString path, bool iscompanionOpenedTab)
         auto fsp = new MainWindow(path, settingManager->toData(), index);
         connect(fsp, SIGNAL(confirmTriggered(MainWindow *)), this, SLOT(on_confirmTriggered(MainWindow *)));
         connect(fsp, SIGNAL(editorChanged()), this, SLOT(onEditorChanged()));
-        QString lang = settingManager->getDefaultLang();
+        QString lang = settingManager->getDefaultLanguage();
 
         if (path.endsWith(".java"))
             lang = "Java";
@@ -434,7 +434,7 @@ void AppWindow::openContest(const QString &path, const QString &lang, int number
     if (!dir.exists() && parent.exists())
         parent.mkdir(dir.dirName());
 
-    auto language = lang.isEmpty() ? settingManager->getDefaultLang() : lang;
+    auto language = lang.isEmpty() ? settingManager->getDefaultLanguage() : lang;
 
     QStringList tabs;
 
@@ -544,9 +544,9 @@ void AppWindow::on_actionOpenContest_triggered()
         if (ok)
         {
             int current = 0;
-            if (settingManager->getDefaultLang() == "Java")
+            if (settingManager->getDefaultLanguage() == "Java")
                 current = 1;
-            else if (settingManager->getDefaultLang() == "Python")
+            else if (settingManager->getDefaultLanguage() == "Python")
                 current = 2;
             auto lang = QInputDialog::getItem(this, "Open Contest", "Choose a language", {"C++", "Java", "Python"},
                                               current, false, &ok);
@@ -648,7 +648,7 @@ void AppWindow::onReceivedMessage(quint32 instanceId, QByteArray message)
     {
         FROMJSON(number).toInt();
         FROMJSON(path).toString();
-        QString lang = settingManager->getDefaultLang();
+        QString lang = settingManager->getDefaultLanguage();
         if (cpp)
             lang = "C++";
         else if (java)

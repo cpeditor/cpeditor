@@ -29,7 +29,7 @@ SettingManager::SettingManager()
 
     // backwords compatibility
 
-    if (getDefaultLang() == "Cpp")
+    if (getDefaultLanguage() == "Cpp")
         setDefaultLanguage("C++");
 
     auto names = getSnippetsNames("Cpp");
@@ -38,170 +38,12 @@ SettingManager::SettingManager()
     mSettings->remove("snippets/Cpp");
 }
 
-bool SettingManager::isWrapText()
-{
-    return mSettings->value("wrap_text", "false").toBool();
-}
-
-bool SettingManager::isAutoIndent()
-{
-    return mSettings->value("auto_indent", "true").toBool();
-}
-
-bool SettingManager::isAutoParenthesis()
-{
-    return mSettings->value("auto_parenthesis", "true").toBool();
-}
-
-bool SettingManager::isAutoSave()
-{
-    return mSettings->value("autosave", "false").toBool();
-}
-
-bool SettingManager::isBeta()
-{
-    return mSettings->value("beta", "false").toBool();
-}
-
-bool SettingManager::isTabsReplaced()
-{
-    return mSettings->value("replace_tabs", "false").toBool();
-}
-
-bool SettingManager::isSaveTests()
-{
-    return mSettings->value("save_tests", "false").toBool();
-}
-
-bool SettingManager::isUseHotExit()
-{
-    return mSettings->value("use_hot_exit", "true").toBool();
-}
-
-bool SettingManager::isMaximizedWindow()
-{
-    return mSettings->value("win_max", "false").toBool();
-}
-
-bool SettingManager::isCheckUpdateOnStartup()
-{
-    return mSettings->value("update_start_check", "true").toBool();
-}
-
-bool SettingManager::isCompetitiveCompanionActive()
-{
-    return mSettings->value("competitive_use", "false").toBool();
-}
-
-bool SettingManager::isCompetitiveCompanionOpenNewTab()
-{
-    return mSettings->value("companion_new_tab", "true").toBool();
-}
-
-bool SettingManager::isHotkeyInUse()
-{
-    return mSettings->value("hotkey_use", "false").toBool();
-}
-
-bool SettingManager::isFormatOnSave()
-{
-    return mSettings->value("format_on_save", "false").toBool();
-}
-
-QString SettingManager::getRunCommandJava()
-{
-    return mSettings->value("run_java", "java").toString();
-}
-QString SettingManager::getRunCommandPython()
-{
-    return mSettings->value("run_python", "python").toString();
-}
-QString SettingManager::getCompileCommandCpp()
-{
-    return mSettings->value("compile_cpp", "g++ -Wall").toString();
-}
-QString SettingManager::getCompileCommandJava()
-{
-    return mSettings->value("compile_java", "javac").toString();
-}
-QString SettingManager::getClangFormatBinary()
-{
-    return mSettings->value("clang_format_binary", "clang-format").toString();
-}
-QString SettingManager::getClangFormatStyle()
-{
-    return mSettings->value("clang_format_style", "BasedOnStyle: Google").toString();
-}
-QString SettingManager::getRuntimeArgumentsCpp()
-{
-    return mSettings->value("runtime_cpp", "").toString();
-}
-QString SettingManager::getRuntimeArgumentsJava()
-{
-    return mSettings->value("runtime_java", "").toString();
-}
-QString SettingManager::getRuntimeArgumentsPython()
-{
-    return mSettings->value("runtime_python", "").toString();
-}
-QString SettingManager::getDefaultLang()
-{
-    auto res = mSettings->value("lang", "C++").toString();
-    return res;
-}
-QString SettingManager::getTemplatePathCpp()
-{
-    return mSettings->value("template_cpp", "").toString();
-}
-QString SettingManager::getTemplatePathJava()
-{
-    return mSettings->value("template_java", "").toString();
-}
-QString SettingManager::getTemplatePathPython()
-{
-    return mSettings->value("template_python", "").toString();
-}
-QString SettingManager::getFont()
-{
-    return mSettings->value("font", "").toString();
-}
-
-QRect SettingManager::getGeometry()
-{
-    return mSettings->value("geometry").toRect();
-}
-
-int SettingManager::getTabStop()
-{
-    return mSettings->value("tab_stop", 4).toInt();
-}
-
-int SettingManager::getConnectionPort()
-{
-    return mSettings->value("companion_port", 10045).toInt();
-}
-
-int SettingManager::getTimeLimit()
-{
-    return mSettings->value("time_limit", 5000).toInt();
-}
-
 void SettingManager::setAutoIndent(const bool& value)
 {
     if (value)
         mSettings->setValue("auto_indent", QString::fromStdString("true"));
     else
         mSettings->setValue("auto_indent", QString::fromStdString("false"));
-}
-
-void SettingManager::setCompetitiveCompanionActive(const bool& value)
-{
-    mSettings->setValue("competitive_use", value);
-}
-
-void SettingManager::setCompetitiveCompanionOpenNewTab(const bool& value)
-{
-    mSettings->setValue("companion_new_tab", value);
 }
 
 void SettingManager::setWrapText(const bool& value)
@@ -292,132 +134,6 @@ void SettingManager::formatOnSave(const bool& value)
         mSettings->setValue("format_on_save", QString::fromStdString("false"));
 }
 
-void SettingManager::setTabStop(const int& num)
-{
-    mSettings->setValue("tab_stop", num);
-}
-
-void SettingManager::setConnectionPort(const int& num)
-{
-    mSettings->setValue("companion_port", num);
-}
-
-void SettingManager::setTimeLimit(const int& val)
-{
-    mSettings->setValue("time_limit", val);
-}
-
-void SettingManager::setRunCommandJava(const QString& command)
-{
-    mSettings->setValue("run_java", command);
-}
-void SettingManager::setRunCommandPython(const QString& command)
-{
-    mSettings->setValue("run_python", command);
-}
-void SettingManager::setCompileCommandsCpp(const QString& command)
-{
-    mSettings->setValue("compile_cpp", command);
-}
-void SettingManager::setEditorTheme(const QString& themeName)
-{
-    mSettings->setValue("editor_theme", themeName);
-}
-QString SettingManager::getEditorTheme()
-{
-    return mSettings->value("editor_theme", "Light").toString();
-}
-void SettingManager::setCompileCommandsJava(const QString& command)
-{
-    mSettings->setValue("compile_java", command);
-}
-void SettingManager::setClangFormatBinary(const QString& binary)
-{
-    mSettings->setValue("clang_format_binary", binary);
-}
-void SettingManager::setClangFormatStyle(const QString &style)
-{
-    mSettings->setValue("clang_format_style", style);
-}
-void SettingManager::setTemplatePathCpp(const QString& path)
-{
-    mSettings->setValue("template_cpp", path);
-}
-void SettingManager::setTemplatePathJava(const QString& path)
-{
-    mSettings->setValue("template_java", path);
-}
-void SettingManager::setTemplatePathPython(const QString& path)
-{
-    mSettings->setValue("template_python", path);
-}
-void SettingManager::setRuntimeArgumentsCpp(const QString& command)
-{
-    mSettings->setValue("runtime_cpp", command);
-}
-void SettingManager::setRuntimeArgumentsJava(const QString& command)
-{
-    mSettings->setValue("runtime_java", command);
-}
-void SettingManager::setRuntimeArgumentsPython(const QString& command)
-{
-    mSettings->setValue("runtime_python", command);
-}
-void SettingManager::setDefaultLanguage(const QString& lang)
-{
-    mSettings->setValue("lang", lang);
-}
-void SettingManager::setFont(const QString& font)
-{
-    mSettings->setValue("font", font);
-}
-
-void SettingManager::setGeometry(const QRect& rect)
-{
-    mSettings->setValue("geometry", rect);
-}
-
-QKeySequence SettingManager::getHotkeyCompile()
-{
-    return QKeySequence::fromString(mSettings->value("hotkey_compile", "").toString());
-}
-QKeySequence SettingManager::getHotkeyRun()
-{
-    return QKeySequence::fromString(mSettings->value("hotkey_run", "").toString());
-}
-QKeySequence SettingManager::getHotkeyCompileRun()
-{
-    return QKeySequence::fromString(mSettings->value("hotkey_compile_run", "").toString());
-}
-QKeySequence SettingManager::getHotkeyKill()
-{
-    return QKeySequence::fromString(mSettings->value("hotkey_kill", "").toString());
-}
-QKeySequence SettingManager::getHotkeyFormat()
-{
-    return QKeySequence::fromString(mSettings->value("hotkey_format", "").toString());
-}
-QKeySequence SettingManager::getHotkeyViewModeToggler()
-{
-    return QKeySequence::fromString(mSettings->value("hotkey_mode_toggle", "").toString());
-}
-QKeySequence SettingManager::getHotkeySnippets()
-{
-    return QKeySequence::fromString(mSettings->value("hotkey_snippets", "").toString());
-}
-
-QString SettingManager::getSnippet(const QString& lang, const QString& name)
-{
-    return mSettings->value("snippets/" + lang + "/" + name, "").toString();
-}
-void SettingManager::setSnippet(const QString& lang, const QString& name, const QString& content)
-{
-    mSettings->setValue("snippets/" + lang + "/" + name, content);
-}
-void SettingManager::removeSnippet(const QString& lang, const QString& name)
-{
-    mSettings->remove("snippets/" + lang + "/" + name);
-}
 QStringList SettingManager::getSnippetsNames(const QString& lang)
 {
     mSettings->beginGroup("snippets");
@@ -427,84 +143,6 @@ QStringList SettingManager::getSnippetsNames(const QString& lang)
     mSettings->endGroup();
     ret.sort(Qt::CaseInsensitive);
     return ret;
-}
-
-int SettingManager::getNumberOfTabs()
-{
-    return mSettings->value("number_of_tabs", 0).toInt();
-}
-void SettingManager::setNumberOfTabs(const int& value)
-{
-    mSettings->setValue("number_of_tabs", value);
-}
-int SettingManager::getCurrentIndex()
-{
-    return mSettings->value("current_index", -1).toInt();
-}
-void SettingManager::setCurrentIndex(const int& index)
-{
-    mSettings->setValue("current_index", index);
-}
-void SettingManager::clearEditorStatus()
-{
-    mSettings->remove("editor_status");
-}
-QMap<QString, QVariant> SettingManager::getEditorStatus(const int& index)
-{
-    return mSettings->value("editor_status/" + QString::number(index)).toMap();
-}
-void SettingManager::setEditorStatus(const int& index, const QMap<QString, QVariant>& status)
-{
-    mSettings->setValue("editor_status/" + QString::number(index), status);
-}
-
-int SettingManager::getTransparency()
-{
-    return mSettings->value("transparency", 100).toInt();
-}
-
-void SettingManager::setTransparency(const int& val)
-{
-    mSettings->setValue("transparency", val);
-}
-
-QString SettingManager::getCFPath()
-{
-    return mSettings->value("cf_path", "cf").toString();
-}
-
-void SettingManager::setCFPath(const QString& path)
-{
-    mSettings->setValue("cf_path", path);
-}
-
-void SettingManager::setHotkeyViewModeToggler(const QKeySequence& sequence)
-{
-    mSettings->setValue("hotkey_mode_toggle", sequence.toString());
-}
-void SettingManager::setHotkeyCompile(const QKeySequence& sequence)
-{
-    mSettings->setValue("hotkey_compile", sequence.toString());
-}
-void SettingManager::setHotkeyRun(const QKeySequence& sequence)
-{
-    mSettings->setValue("hotkey_run", sequence.toString());
-}
-void SettingManager::setHotkeyCompileRun(const QKeySequence& sequence)
-{
-    mSettings->setValue("hotkey_compile_run", sequence.toString());
-}
-void SettingManager::setHotkeyKill(const QKeySequence& sequence)
-{
-    mSettings->setValue("hotkey_kill", sequence.toString());
-}
-void SettingManager::setHotkeyFormat(const QKeySequence& sequence)
-{
-    mSettings->setValue("hotkey_format", sequence.toString());
-}
-void SettingManager::setHotkeySnippets(const QKeySequence& sequence)
-{
-    mSettings->setValue("hotkey_snippets", sequence.toString());
 }
 
 ViewMode SettingManager::getViewMode()
@@ -530,26 +168,6 @@ void SettingManager::setViewMode(const ViewMode& viewmode)
     mSettings->setValue("view_mode", ans);
 }
 
-QByteArray SettingManager::getSplitterSizes()
-{
-    return mSettings->value("splitter_sizes").toByteArray();
-}
-
-void SettingManager::setSplitterSizes(const QByteArray& state)
-{
-    mSettings->setValue("splitter_sizes", state);
-}
-
-QByteArray SettingManager::getRightSplitterSizes()
-{
-    return mSettings->value("right_splitter_sizes").toByteArray();
-}
-
-void SettingManager::setRightSplitterSizes(const QByteArray& state)
-{
-    mSettings->setValue("right_splitter_sizes", state);
-}
-
 SettingManager::~SettingManager()
 {
     mSettings->sync();
@@ -564,7 +182,7 @@ SettingsData SettingManager::toData()
     data.timeLimit = getTimeLimit();
     data.geometry = getGeometry();
     data.font = getFont();
-    data.defaultLanguage = getDefaultLang();
+    data.defaultLanguage = getDefaultLanguage();
     data.templateCpp = getTemplatePathCpp();
     data.templateJava = getTemplatePathJava();
     data.templatePython = getTemplatePathPython();
@@ -602,11 +220,6 @@ SettingsData SettingManager::toData()
     data.cfPath = getCFPath();
 
     return data;
-}
-
-void SettingManager::resetSettings()
-{
-    mSettings->clear();
 }
 
 } // namespace Settings

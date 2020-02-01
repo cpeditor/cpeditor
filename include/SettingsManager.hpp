@@ -95,145 +95,146 @@ struct SettingsData
 
 class SettingManager
 {
+  // All functions with code here are implicitly inlined by the compiler.
   public:
     SettingManager();
 
-    int getConnectionPort();
-    void setConnectionPort(const int& port);
+    int getConnectionPort() { return mSettings->value("companion_port", 10045).toInt(); }
+    void setConnectionPort(const int& port) { mSettings->setValue("companion_port", num); }
 
-    int getTabStop();
-    void setTabStop(const int& num);
+    int getTabStop() { return mSettings->value("tab_stop", 4).toInt(); }
+    void setTabStop(const int& num) { mSettings->setValue("tab_stop", num); }
 
-    int getTimeLimit();
-    void setTimeLimit(const int& ms);
+    int getTimeLimit() { return mSettings->value("time_limit", 5000).toInt(); }
+    void setTimeLimit(const int& ms) { mSettings->setValue("time_limit", val); }
 
-    QRect getGeometry();
-    void setGeometry(const QRect& rect);
+    QRect getGeometry() { return mSettings->value("geometry").toRect(); }
+    void setGeometry(const QRect& rect) { mSettings->setValue("geometry", rect); }
 
-    QString getFont();
-    void setFont(const QString& font);
+    QString getFont() { return mSettings->value("font", "").toString(); }
+    void setFont(const QString& font) { mSettings->setValue("font", font); }
 
-    QString getDefaultLang();
-    void setDefaultLanguage(const QString& lang);
+    QString getDefaultLanguage() { return mSettings->value("lang", "C++").toString(); }
+    void setDefaultLanguage(const QString& lang) { mSettings->setValue("lang", lang); }
 
-    QString getTemplatePathCpp();
-    QString getTemplatePathJava();
-    QString getTemplatePathPython();
-    void setTemplatePathCpp(const QString& path);
-    void setTemplatePathJava(const QString& path);
-    void setTemplatePathPython(const QString& path);
+    QString getTemplatePathCpp() { return mSettings->value("template_cpp", "").toString(); }
+    QString getTemplatePathJava() { return mSettings->value("template_java", "").toString(); }
+    QString getTemplatePathPython() { return mSettings->value("template_python", "").toString(); }
+    void setTemplatePathCpp(const QString& path) { mSettings->setValue("template_cpp", path); }
+    void setTemplatePathJava(const QString& path) { mSettings->setValue("template_java", path); }
+    void setTemplatePathPython(const QString& path) { mSettings->setValue("template_python", path); }
 
-    QString getRuntimeArgumentsCpp();
-    QString getRuntimeArgumentsJava();
-    QString getRuntimeArgumentsPython();
-    void setRuntimeArgumentsCpp(const QString& command);
-    void setRuntimeArgumentsJava(const QString& command);
-    void setRuntimeArgumentsPython(const QString& command);
+    QString getRuntimeArgumentsCpp() { return mSettings->value("runtime_cpp", "").toString(); }
+    QString getRuntimeArgumentsJava() { return mSettings->value("runtime_java", "").toString(); }
+    QString getRuntimeArgumentsPython() { return mSettings->value("runtime_python", "").toString(); }
+    void setRuntimeArgumentsCpp(const QString& command) { mSettings->setValue("runtime_cpp", command); }
+    void setRuntimeArgumentsJava(const QString& command) { mSettings->setValue("runtime_java", command); }
+    void setRuntimeArgumentsPython(const QString& command) { mSettings->setValue("runtime_python", command); }
 
-    QString getClangFormatBinary();
-    void setClangFormatBinary(const QString& binary);
-    QString getClangFormatStyle();
-    void setClangFormatStyle(const QString& style);
+    QString getClangFormatBinary() { return mSettings->value("clang_format_binary", "clang-format").toString(); }
+    void setClangFormatBinary(const QString& binary) { mSettings->setValue("clang_format_binary", binary); }
+    QString getClangFormatStyle() { return mSettings->value("clang_format_style", "BasedOnStyle: Google").toString();}
+    void setClangFormatStyle(const QString& style) { mSettings->setValue("clang_format_style", style); }
 
-    QString getCompileCommandCpp();
-    QString getCompileCommandJava();
-    void setCompileCommandsCpp(const QString& command);
-    void setCompileCommandsJava(const QString& command);
+    QString getCompileCommandCpp() { return mSettings->value("compile_cpp", "g++ -Wall").toString(); }
+    QString getCompileCommandJava() { return mSettings->value("compile_java", "javac").toString(); }
+    void setCompileCommandsCpp(const QString& command) { mSettings->setValue("compile_cpp", command); }
+    void setCompileCommandsJava(const QString& command) { mSettings->setValue("compile_java", command); }
 
-    QString getRunCommandJava();
-    QString getRunCommandPython();
-    void setRunCommandJava(const QString& command);
-    void setRunCommandPython(const QString& command);
+    QString getRunCommandJava() { return mSettings->value("run_java", "java").toString(); }
+    QString getRunCommandPython() { return mSettings->value("run_python", "python").toString(); }
+    void setRunCommandJava(const QString& command) { mSettings->setValue("run_java", command); }
+    void setRunCommandPython(const QString& command) { mSettings->setValue("run_python", command); }
 
-    QString getEditorTheme();
-    void setEditorTheme(const QString& theme);
+    QString getEditorTheme() { return mSettings->value("editor_theme", "Light").toString(); }
+    void setEditorTheme(const QString& theme) { mSettings->setValue("editor_theme", themeName); }
 
-    bool isHotkeyInUse();
+    bool isHotkeyInUse() { return mSettings->value("hotkey_use", "false").toBool(); }
     void setHotKeyInUse(const bool& value);
 
-    bool isAutoParenthesis();
+    bool isAutoParenthesis() { return mSettings->value("auto_parenthesis", "true").toBool(); }
     void setAutoParenthesis(const bool& value);
 
-    bool isAutoIndent();
+    bool isAutoIndent() { return mSettings->value("auto_indent", "true").toBool(); }
     void setAutoIndent(const bool& value);
 
-    bool isAutoSave();
+    bool isAutoSave() { return mSettings->value("autosave", "false").toBool(); }
     void setAutoSave(const bool& value);
 
-    bool isWrapText();
+    bool isWrapText() { return mSettings->value("wrap_text", "false").toBool(); }
     void setWrapText(const bool& value);
 
-    bool isBeta();
+    bool isBeta() { return mSettings->value("beta", "false").toBool(); }
     void setBeta(const bool& value);
 
-    bool isTabsReplaced();
+    bool isTabsReplaced() { return mSettings->value("replace_tabs", "false").toBool(); }
     void setTabsReplaced(const bool& value);
 
-    bool isSaveTests();
+    bool isSaveTests() { return mSettings->value("save_tests", "false").toBool(); }
     void setSaveTests(const bool& value);
 
-    bool isUseHotExit();
+    bool isUseHotExit() { return mSettings->value("use_hot_exit", "true").toBool(); }
     void setUseHotExit(const bool& value);
 
-    bool isCompetitiveCompanionActive();
-    void setCompetitiveCompanionActive(const bool& value);
+    bool isCompetitiveCompanionActive() { return mSettings->value("competitive_use", "false").toBool(); }
+    void setCompetitiveCompanionActive(const bool& value) { mSettings->setValue("competitive_use", value); }
 
-    bool isCompetitiveCompanionOpenNewTab();
-    void setCompetitiveCompanionOpenNewTab(const bool& value);
+    bool isCompetitiveCompanionOpenNewTab() { return mSettings->value("companion_new_tab", "true").toBool(); }
+    void setCompetitiveCompanionOpenNewTab(const bool& value) { mSettings->setValue("companion_new_tab", value); }
 
-    bool isMaximizedWindow();
+    bool isMaximizedWindow() { return mSettings->value("win_max", "false").toBool(); }
     void setMaximizedWindow(const bool& value);
 
-    bool isCheckUpdateOnStartup();
+    bool isCheckUpdateOnStartup() { return mSettings->value("update_start_check", "true").toBool(); }
     void checkUpdateOnStartup(const bool& value);
 
-    bool isFormatOnSave();
+    bool isFormatOnSave() { return mSettings->value("format_on_save", "false").toBool(); }
     void formatOnSave(const bool& value);
 
-    int getTransparency();
-    void setTransparency(const int& val);
+    int getTransparency() { return mSettings->value("transparency", 100).toInt(); }
+    void setTransparency(const int& val) { mSettings->setValue("transparency", val); }
 
     ViewMode getViewMode();
     void setViewMode(const ViewMode& v);
 
-    QByteArray getSplitterSizes();
-    void setSplitterSizes(const QByteArray& state);
+    QByteArray getSplitterSizes() { return mSettings->value("splitter_sizes").toByteArray(); }
+    void setSplitterSizes(const QByteArray& state) { mSettings->setValue("splitter_sizes", state); }
 
-    QByteArray getRightSplitterSizes();
-    void setRightSplitterSizes(const QByteArray& state);
+    QByteArray getRightSplitterSizes() { return mSettings->value("right_splitter_sizes").toByteArray(); }
+    void setRightSplitterSizes(const QByteArray& state) { mSettings->setValue("right_splitter_sizes", state); }
 
-    void setHotkeyFormat(const QKeySequence& sequence);
-    void setHotkeyKill(const QKeySequence& sequence);
-    void setHotkeyCompileRun(const QKeySequence& sequence);
-    void setHotkeyRun(const QKeySequence& sequence);
-    void setHotkeyCompile(const QKeySequence& sequence);
-    void setHotkeyViewModeToggler(const QKeySequence& sequence);
-    void setHotkeySnippets(const QKeySequence& sequence);
-    QKeySequence getHotkeyFormat();
-    QKeySequence getHotkeyKill();
-    QKeySequence getHotkeyCompileRun();
-    QKeySequence getHotkeyRun();
-    QKeySequence getHotkeyCompile();
-    QKeySequence getHotkeyViewModeToggler();
-    QKeySequence getHotkeySnippets();
+    void setHotkeyFormat(const QKeySequence& sequence) { mSettings->setValue("hotkey_format", sequence.toString()); }
+    void setHotkeyKill(const QKeySequence& sequence) { mSettings->setValue("hotkey_kill", sequence.toString()); }
+    void setHotkeyCompileRun(const QKeySequence& sequence) { mSettings->setValue("hotkey_compile_run", sequence.toString()); }
+    void setHotkeyRun(const QKeySequence& sequence) { mSettings->setValue("hotkey_run", sequence.toString()); }
+    void setHotkeyCompile(const QKeySequence& sequence) { mSettings->setValue("hotkey_compile", sequence.toString()); }
+    void setHotkeyViewModeToggler(const QKeySequence& sequence) { mSettings->setValue("hotkey_mode_toggle", sequence.toString()); }
+    void setHotkeySnippets(const QKeySequence& sequence) { mSettings->setValue("hotkey_snippets", sequence.toString()); }
+    QKeySequence getHotkeyFormat() { return QKeySequence::fromString(mSettings->value("hotkey_format", "").toString()); }
+    QKeySequence getHotkeyKill() { return QKeySequence::fromString(mSettings->value("hotkey_kill", "").toString()); }
+    QKeySequence getHotkeyCompileRun() { return QKeySequence::fromString(mSettings->value("hotkey_compile_run", "").toString()); }
+    QKeySequence getHotkeyRun() { return QKeySequence::fromString(mSettings->value("hotkey_run", "").toString()); }
+    QKeySequence getHotkeyCompile() { return QKeySequence::fromString(mSettings->value("hotkey_compile", "").toString()); }
+    QKeySequence getHotkeyViewModeToggler() { return QKeySequence::fromString(mSettings->value("hotkey_mode_toggle", "").toString()); }
+    QKeySequence getHotkeySnippets() { return QKeySequence::fromString(mSettings->value("hotkey_snippets", "").toString()); }
 
-    QString getSnippet(const QString& lang, const QString& name);
-    void setSnippet(const QString& lang, const QString& name, const QString& content);
-    void removeSnippet(const QString& lang, const QString& name);
+    QString getSnippet(const QString& lang, const QString& name) { return mSettings->value("snippets/" + lang + "/" + name, "").toString(); }
+    void setSnippet(const QString& lang, const QString& name, const QString& content) { mSettings->setValue("snippets/" + lang + "/" + name, content); }
+    void removeSnippet(const QString& lang, const QString& name) { mSettings->remove("snippets/" + lang + "/" + name); }
     QStringList getSnippetsNames(const QString& lang);
 
-    int getNumberOfTabs();
-    void setNumberOfTabs(const int& value);
-    int getCurrentIndex();
-    void setCurrentIndex(const int& index);
-    void clearEditorStatus();
-    QMap<QString, QVariant> getEditorStatus(const int& index);
-    void setEditorStatus(const int& index, const QMap<QString, QVariant>& status);
+    int getNumberOfTabs() { return mSettings->value("number_of_tabs", 0).toInt(); }
+    void setNumberOfTabs(const int& value) { mSettings->setValue("number_of_tabs", value); }
+    int getCurrentIndex() { return mSettings->value("current_index", -1).toInt(); }
+    void setCurrentIndex(const int& index) { mSettings->setValue("current_index", index); }
+    void clearEditorStatus() { mSettings->remove("editor_status"); }
+    QMap<QString, QVariant> getEditorStatus(const int& index) { return mSettings->value("editor_status/" + QString::number(index)).toMap(); }
+    void setEditorStatus(const int& index, const QMap<QString, QVariant>& status) { mSettings->setValue("editor_status/" + QString::number(index), status); }
 
-    QString getCFPath();
-    void setCFPath(const QString& path);
+    QString getCFPath() { return mSettings->value("cf_path", "cf").toString(); }
+    void setCFPath(const QString& path) { mSettings->setValue("cf_path", path); }
 
-    void resetSettings();
+    void resetSettings() { mSettings->clear(); }
 
     SettingsData toData();
     ~SettingManager();

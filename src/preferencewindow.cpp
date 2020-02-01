@@ -101,7 +101,7 @@ void PreferenceWindow::applySettingsToui()
     ui->format_on_save->setChecked(manager->isFormatOnSave());
     ui->use_hot_exit->setChecked(manager->isUseHotExit());
 
-    ui->defaultLang->setCurrentText(manager->getDefaultLang());
+    ui->defaultLang->setCurrentText(manager->getDefaultLanguage());
 
     ui->cpp_compiler_cmd->setText(manager->getCompileCommandCpp());
     ui->cpp_args_cmd->setText(manager->getRuntimeArgumentsCpp());
@@ -146,7 +146,7 @@ void PreferenceWindow::applySettingsToui()
 
     ui->transparency_slider->setValue(manager->getTransparency());
 
-    auto lang = manager->getDefaultLang();
+    auto lang = manager->getDefaultLanguage();
     int lang_index = ui->snippets_lang->findText(lang);
     if (lang_index != -1)
         ui->snippets_lang->setCurrentIndex(lang_index);
