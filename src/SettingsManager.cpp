@@ -40,98 +40,62 @@ SettingManager::SettingManager()
 
 void SettingManager::setAutoIndent(const bool& value)
 {
-    if (value)
-        mSettings->setValue("auto_indent", QString::fromStdString("true"));
-    else
-        mSettings->setValue("auto_indent", QString::fromStdString("false"));
+    mSettings->setValue("auto_indent", bool2string(value));
 }
 
 void SettingManager::setWrapText(const bool& value)
 {
-    if (value)
-        mSettings->setValue("wrap_text", QString::fromStdString("true"));
-    else
-        mSettings->setValue("wrap_text", QString::fromStdString("false"));
+    mSettings->setValue("wrap_text", bool2string(value));
 }
 
 void SettingManager::setAutoParenthesis(const bool& value)
 {
-    if (value)
-        mSettings->setValue("auto_parenthesis", QString::fromStdString("true"));
-    else
-        mSettings->setValue("auto_parenthesis", QString::fromStdString("false"));
+    mSettings->setValue("auto_parenthesis", bool2string(value));
 }
 
 void SettingManager::setAutoSave(const bool& value)
 {
-    if (value)
-        mSettings->setValue("autosave", QString::fromStdString("true"));
-    else
-        mSettings->setValue("autosave", QString::fromStdString("false"));
+    mSettings->setValue("autosave", bool2string(value));
 }
 
 void SettingManager::setBeta(const bool& value)
 {
-    if (value)
-        mSettings->setValue("beta", QString::fromStdString("true"));
-    else
-        mSettings->setValue("beta", QString::fromStdString("false"));
+    mSettings->setValue("beta", bool2string(value));
 }
 
 void SettingManager::setTabsReplaced(const bool& value)
 {
-    if (value)
-        mSettings->setValue("replace_tabs", QString::fromStdString("true"));
-    else
-        mSettings->setValue("replace_tabs", QString::fromStdString("false"));
+    mSettings->setValue("replace_tabs", bool2string(value));
 }
 
 void SettingManager::setSaveTests(const bool& value)
 {
-    if (value)
-        mSettings->setValue("save_tests", QString::fromStdString("true"));
-    else
-        mSettings->setValue("save_tests", QString::fromStdString("false"));
+    mSettings->setValue("save_tests", bool2string(value));
 }
 
 void SettingManager::setUseHotExit(const bool& value)
 {
-    if (value)
-        mSettings->setValue("use_hot_exit", QString::fromStdString("true"));
-    else
-        mSettings->setValue("use_hot_exit", QString::fromStdString("false"));
+    mSettings->setValue("use_hot_exit", bool2string(value));
 }
 
 void SettingManager::setMaximizedWindow(const bool& value)
 {
-    if (value)
-        mSettings->setValue("win_max", QString::fromStdString("true"));
-    else
-        mSettings->setValue("win_max", QString::fromStdString("false"));
+    mSettings->setValue("win_max", bool2string(value));
 }
 
 void SettingManager::checkUpdateOnStartup(const bool& value)
 {
-    if (value)
-        mSettings->setValue("update_start_check", QString::fromStdString("true"));
-    else
-        mSettings->setValue("update_start_check", QString::fromStdString("false"));
+    mSettings->setValue("update_start_check", bool2string(value));
 }
 
 void SettingManager::setHotKeyInUse(const bool& value)
 {
-    if (value)
-        mSettings->setValue("hotkey_use", QString::fromStdString("true"));
-    else
-        mSettings->setValue("hotkey_use", QString::fromStdString("false"));
+    mSettings->setValue("hotkey_use", bool2string(value));
 }
 
 void SettingManager::formatOnSave(const bool& value)
 {
-    if (value)
-        mSettings->setValue("format_on_save", QString::fromStdString("true"));
-    else
-        mSettings->setValue("format_on_save", QString::fromStdString("false"));
+    mSettings->setValue("format_on_save", bool2string(value));
 }
 
 QStringList SettingManager::getSnippetsNames(const QString& lang)
