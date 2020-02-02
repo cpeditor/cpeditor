@@ -1,6 +1,7 @@
 # CP Editor
 
 [![CI: Build Test](https://github.com/coder3101/cp-editor/workflows/CI:%20Build%20Test/badge.svg)](https://github.com/coder3101/cp-editor/actions)
+[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 [![Latest Stable](https://img.shields.io/github/v/release/coder3101/cp-editor?label=latest%20stable)](https://github.com/coder3101/cp-editor/releases/latest)
 [![Latest Release](https://img.shields.io/github/v/release/coder3101/cp-editor?include_prereleases&label=latest%20release&sort=semver)](https://github.com/coder3101/cp-editor/releases)
 

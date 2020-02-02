@@ -50,3 +50,6 @@ build/
 
 # Visual Studio Code
 .vscode
+
+# Dependency directories
+node_modules/
