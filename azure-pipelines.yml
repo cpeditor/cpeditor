@@ -49,6 +49,7 @@ jobs:
     displayName: 'Package to AppImage'
 
   - task: GitHubRelease@1
+    dependsOn: Make
     condition: or(endsWith(variables['Build.SourceBranch'], '-beta'), endsWith(variables['Build.SourceBranch'], '-rc'))
     inputs:
       gitHubConnection: github.com_coder3101
@@ -123,7 +124,7 @@ jobs:
       action: 'edit'
       target: '$(Build.SourceVersion)'
       title: 'CP Editor - Beta'
-      tag: $(CI_BUILD_TAG)
+      tag: $(VERSION_TAG)
       isPreRelease: true
       assetUploadMode: 'replace' # Optional. Options: delete, replace
       assets: $(Build.SourcesDirectory)/build/*.dmg
@@ -138,7 +139,7 @@ jobs:
       action: 'edit'
       target: '$(Build.SourceVersion)'
       title: 'CP Editor - Stable'
-      tag: $(CI_BUILD_TAG)
+      tag: $(VERSION_TAG)
       isPreRelease: false
       assetUploadMode: 'replace' # Optional. Options: delete, replace
       assets: $(Build.SourcesDirectory)/build/*.dmg
