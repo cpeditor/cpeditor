@@ -12,8 +12,84 @@ trigger:
 pr: none
 
 jobs:
+
+- job: TestUbuntu
+  displayName: 'Test for compilation: Ubuntu'
+  pool:
+    vmImage: 'Ubuntu-16.04'
+  steps:
+  - script: git submodule update --init --recursive
+    displayName: 'Fetch third party dependency'
+  - script: |
+      sudo add-apt-repository ppa:beineri/opt-qt-5.12.0-xenial -y
+      sudo apt-get update -qq
+      sudo apt-get -y install qt512base libgl1-mesa-dev qt512svg qt512imageformats
+      source /opt/qt*/bin/qt*-env.sh
+  - task: CMake@1
+    displayName: 'Generate make-files'
+    inputs:
+      cmakeArgs: '.. -DCMAKE_BUILD_TYPE=Release'
+  - script: cd $(Build.SourcesDirectory)/build && make -j 8
+    displayName: 'Make'
+
+- job : TestMac
+  displayName: 'Test for compilation: MacOS'
+  pool:
+    vmImage: 'macOs 10.14'
+  steps:
+  - script: |
+      git submodule update --recursive --init
+    displayName: 'Fetch dependencies'
+
+  - script: |
+      brew install qt5
+    displayName: 'Install Qt 5'
+
+  - script: |
+      cd $(Build.SourcesDirectory)
+      mkdir build
+      cd build
+      export CMAKE_PREFIX_PATH="/usr/local/opt/qt/lib/cmake"
+      cmake .. -DCMAKE_BUILD_TYPE=Release
+      cmake --build .
+    displayName: 'Generate scripts and Make'
+
+- job: TestWindows
+  displayName: 'Test for compilation: Windows'
+  pool:
+    vmImage: 'vs2017-win2016'
+  steps:
+  - script: |
+      git submodule update --recursive --init
+    displayName: 'Fetch dependencies'
+
+  - task: UsePythonVersion@0
+    inputs:
+      versionSpec: '3.x'
+  
+  - script: |
+      cd $(Build.SourcesDirectory)
+      python -m pip install aqtinstall
+    displayName: 'Install aqtinstall'
+
+  - script: |
+      cd $(Build.SourcesDirectory)
+      python -m aqt install --outputdir $(Build.BinariesDirectory)\\Qt 5.14.0 windows desktop win64_msvc2017_64
+    displayName: 'Install Qt 5.14.0'
+
+  - script: |
+      cd $(Build.SourcesDirectory)
+      call "C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\Enterprise\\VC\\Auxiliary\\Build\\vcvars64.bat"
+      set CMAKE_PREFIX_PATH=$(Build.BinariesDirectory)\Qt\5.14.0\msvc2017_64\lib\cmake      
+      mkdir build
+      cd build
+      cmake .. -G"Visual Studio 15 2017 Win64"
+      cmake --build . --config Release 
+    displayName: 'Generate scripts and Make'
+
 - job:
-  displayName: 'Linux'
+  displayName: 'Linux AppImage'
+  dependsOn: TestUbuntu
   pool:
     vmImage: 'Ubuntu-16.04'
 
@@ -79,7 +155,76 @@ jobs:
       changeLogType: 'commitBased'
 
 - job:
-  displayName: 'Windows'
+  dependsOn: TestMac
+  displayName: 'MacOS DMG'
+  pool:
+    vmImage: 'macOs 10.14'
+  steps:
+  - script: |
+      git submodule update --recursive --init
+    displayName: 'Fetch dependencies'
+
+  - script: |
+      brew install qt5
+    displayName: 'Install Qt 5'
+
+  - script: |
+      cd $(Build.SourcesDirectory)
+      mkdir build
+      cd build
+      export CMAKE_PREFIX_PATH="/usr/local/opt/qt/lib/cmake"
+      cmake .. -DCMAKE_BUILD_TYPE=Release
+      cmake --build .
+    displayName: 'Generate scripts and Make'
+
+  - script: |
+      cd $(Build.SourcesDirectory)/build
+      /usr/local/opt/qt/bin/macdeployqt CPEditor.app
+    displayName: 'Gather dependencies'
+
+  - script: VERSION_TAG=`git describe --tags` && echo "##vso[task.setvariable variable=VERSION_TAG]$VERSION_TAG"
+    displayName: Set the tag name as an environment variable
+
+  - script: |
+      cd $(Build.SourcesDirectory)/build
+      cp $(Build.SourcesDirectory)/.ci/mac/icon.icns $(Build.SourcesDirectory)/build/CPEditor.app/Contents/Resources
+      cp $(Build.SourcesDirectory)/build/generated/Info.plist $(Build.SourcesDirectory)/build/CPEditor.app/Contents
+      hdiutil create -volname CPEditor-$(VERSION_TAG)-x64 -srcfolder $(Build.SourcesDirectory)/build/CPEditor.app -ov -format UDZO CPEditor-$(VERSION_TAG)-x64.dmg
+    
+    displayName: 'Pack to DMG'
+  - task: GitHubRelease@1
+    condition: or(endsWith(variables['Build.SourceBranch'], '-beta'), endsWith(variables['Build.SourceBranch'], '-rc')) 
+    inputs:
+      gitHubConnection: github.com_coder3101
+      repositoryName: '$(Build.Repository.Name)'
+      action: 'edit'
+      target: '$(Build.SourceVersion)'
+      title: 'CP Editor - Beta'
+      tag: $(VERSION_TAG)
+      isPreRelease: true
+      assetUploadMode: 'replace' # Optional. Options: delete, replace
+      assets: $(Build.SourcesDirectory)/build/*.dmg
+      changeLogCompareToRelease: 'lastNonDraftRelease'
+      changeLogType: 'commitBased'
+
+  - task: GitHubRelease@1
+    condition: endsWith(variables['Build.SourceBranch'], '-stable')
+    inputs:
+      gitHubConnection: github.com_coder3101
+      repositoryName: '$(Build.Repository.Name)'
+      action: 'edit'
+      target: '$(Build.SourceVersion)'
+      title: 'CP Editor - Stable'
+      tag: $(VERSION_TAG)
+      isPreRelease: false
+      assetUploadMode: 'replace' # Optional. Options: delete, replace
+      assets: $(Build.SourcesDirectory)/build/*.dmg
+      changeLogCompareToRelease: 'lastFullRelease'
+      changeLogType: 'commitBased'
+
+- job:
+  dependsOn: TestWindows
+  displayName: 'Windows Installer'
   pool:
     vmImage: 'vs2017-win2016'
   steps:
