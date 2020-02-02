@@ -125,6 +125,8 @@ class MainWindow : public QMainWindow
 
     void onFileWatcherChanged(const QString &);
 
+    void updateCursorInfo();
+
   signals:
     void editorChanged();
     void confirmTriggered(MainWindow *widget);

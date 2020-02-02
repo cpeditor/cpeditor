@@ -89,7 +89,11 @@ void MainWindow::setEditor()
 
     ui->verticalLayout_8->addWidget(editor);
 
-    QObject::connect(editor, SIGNAL(textChanged()), this, SIGNAL(editorChanged()));
+    connect(editor, SIGNAL(textChanged()), this, SIGNAL(editorChanged()));
+    connect(editor, SIGNAL(cursorPositionChanged()), this, SLOT(updateCursorInfo()));
+    // cursorPositionChanged() does not imply selectionChanged() if you press Left with
+    // a selection (and the cursor is at the begin of the selection)
+    connect(editor, SIGNAL(selectionChanged()), this, SLOT(updateCursorInfo()));
 }
 
 void MainWindow::setupCore()
@@ -890,6 +894,41 @@ void MainWindow::onFileWatcherChanged(const QString &path)
             }
         }
     }
+}
+
+void MainWindow::updateCursorInfo()
+{
+    auto cursor = editor->textCursor();
+    auto selection = cursor.selectedText();
+    QString info;
+    if (selection.isEmpty())
+    {
+        auto line = editor->document()->findBlockByNumber(cursor.blockNumber()).text();
+        int column = cursor.columnNumber();
+        int col = 0;
+        for (int i = 0; i < column; ++i)
+        {
+            if (line[i] != '\t')
+                ++col;
+            else
+                col += data.tabStop - col % data.tabStop;
+        }
+        info = "Line " + QString::number(cursor.blockNumber() + 1) + ", Column " + QString::number(col + 1);
+    }
+    else
+    {
+        int selectionStart = cursor.selectionStart();
+        int selectionEnd = cursor.selectionEnd();
+        cursor.setPosition(selectionStart);
+        int lineStart = cursor.blockNumber();
+        cursor.setPosition(selectionEnd);
+        int lineEnd = cursor.blockNumber();
+        int selectionLines = lineEnd - lineStart + 1;
+        if (selectionLines > 1)
+            info = QString::number(selectionLines) + " lines, ";
+        info += QString::number(selection.length()) + " characters selected";
+    }
+    ui->cursor_info->setText(info);
 }
 
 QSplitter *MainWindow::getSplitter()
