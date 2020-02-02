@@ -111,9 +111,10 @@ jobs:
   - script: |
       cd $(Build.SourcesDirectory)/build
       macdeployqt CPEditor.app
-      cp $(Build.SourcesDirectory)/.ci/mac/icon.ics CPEditor.app/Content/Resource
+      cp $(Build.SourcesDirectory)/.ci/mac/icon.icns CPEditor.app/Content/Resource
       cp $(Build.SourcesDirectory)/build/generated/Info.plist CPEditor.app/Content
       hdiutil create -volname CPEditor-$(VERSION_TAG)-x64 -srcfolder $(Build.SourcesDirectory)/build/CPEditor.app -ov -format UDZO CPEditor-(VERSION_TAG)-x64.dmg
+      ls
       
     displayName: 'Update resources'
   - task: GitHubRelease@1
