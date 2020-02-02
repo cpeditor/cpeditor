@@ -27,7 +27,10 @@
 - [ ] Refactor (changes which affect the meaning of the code but neither fix a bug nor add a feature)
 - [ ] Performance improve (changes which improve performance)
 - [ ] Test (changes which add tests)
+- [ ] Build (Changes that affect the build system or external dependencies)
+- [ ] CI (changes to CI configuration files and scripts)
 - [ ] Chore (changes which do not belong to any type above)
+- [ ] Revert (revert previous changes)
 
 ## Checklist
 <!--- Go over all the following points, and put an `x` in all the boxes that apply. -->
