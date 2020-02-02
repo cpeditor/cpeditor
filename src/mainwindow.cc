@@ -201,7 +201,7 @@ void MainWindow::setCFToolsUI()
     {
         submitToCodeforces = new QPushButton("Submit Solution", this);
         cftools = new Network::CFTools(cftoolPath, &log);
-        ui->horizontalLayout_9->addWidget(submitToCodeforces);
+        ui->compile_and_run_buttons->addWidget(submitToCodeforces);
         connect(submitToCodeforces, &QPushButton::clicked, this, [this] {
             auto response = QMessageBox::warning(
                 this, "Sure to submit",

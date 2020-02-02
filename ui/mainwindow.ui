@@ -48,7 +48,7 @@
            </layout>
           </item>
           <item>
-           <layout class="QHBoxLayout" name="horizontalLayout_3">
+           <layout class="QHBoxLayout" name="compile_and_run_buttons">
             <item>
              <widget class="QPushButton" name="compile">
               <property name="text">
