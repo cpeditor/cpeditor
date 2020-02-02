@@ -95,13 +95,14 @@ jobs:
       cd $(Build.SourcesDirectory)
       mkdir build
       cd build
+      export CMAKE_PREFIX_PATH="/usr/local/opt/qt/lib/cmake"
       cmake .. -DCMAKE_BUILD_TYPE=Release
       cmake --build .
     displayName: 'Generate scripts and Make'
 
   - script: |
       cd $(Build.SourcesDirectory)/build
-      macdeployqt CPEditor.app
+      /usr/local/opt/qt/bin/macdeployqt CPEditor.app
     displayName: 'Gather dependencies'
 
   - script: VERSION_TAG=`git describe --tags` && echo "##vso[task.setvariable variable=VERSION_TAG]$VERSION_TAG"
