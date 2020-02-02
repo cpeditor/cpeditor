@@ -549,6 +549,8 @@ void TestCases::loadFromFile(const QString &filePath)
         addTestCase();
         testcases[i]->loadFromFile(testFilePathPrefix(fileInfo, i));
     }
+    if (maxIndex == 0)
+        addTestCase();
 }
 
 void TestCases::save(const QString &filePath)
