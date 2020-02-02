@@ -9,7 +9,7 @@ trigger:
     include:
     - '*'
 
-pr: none
+# pr: none
 
 jobs:
 - job:
@@ -75,6 +75,73 @@ jobs:
       isPreRelease: false
       assets: $(Build.SourcesDirectory)/build/CP_*
       assetUploadMode: 'replace'
+      changeLogCompareToRelease: 'lastFullRelease'
+      changeLogType: 'commitBased'
+
+- job:
+  displayName: 'MacOS'
+  pool:
+    vmImage: 'macOs 10.14'
+  steps:
+  - script: |
+      git submodule update --recursive --init
+    displayName: 'Fetch dependencies'
+
+  - script: |
+      brew install qt5
+    displayName: 'Install Qt 5'
+
+  - script: |
+      cd $(Build.SourcesDirectory)
+      mkdir build
+      cd build
+      cmake .. -DCMAKE_BUILD_TYPE=Release
+      cmake --build .
+    displayName: 'Generate scripts and Make'
+
+  - script: |
+      cd $(Build.SourcesDirectory)/build
+      macdeployqt CPEditor.app
+    displayName: 'Gather dependencies'
+
+  - script: VERSION_TAG=`git describe --tags` && echo "##vso[task.setvariable variable=VERSION_TAG]$VERSION_TAG"
+    displayName: Set the tag name as an environment variable
+
+  - script: |
+      cd $(Build.SourcesDirectory)/build
+      macdeployqt CPEditor.app
+      cp $(Build.SourcesDirectory)/.ci/mac/icon.ics CPEditor.app/Content/Resource
+      cp $(Build.SourcesDirectory)/build/generated/Info.plist CPEditor.app/Content
+      hdiutil create -volname CPEditor-$(VERSION_TAG)-x64 -srcfolder $(Build.SourcesDirectory)/build/CPEditor.app -ov -format UDZO CPEditor-(VERSION_TAG)-x64.dmg
+      
+    displayName: 'Update resources'
+  - task: GitHubRelease@1
+    condition: or(endsWith(variables['Build.SourceBranch'], '-beta'), endsWith(variables['Build.SourceBranch'], '-rc')) 
+    inputs:
+      gitHubConnection: github.com_coder3101
+      repositoryName: '$(Build.Repository.Name)'
+      action: 'edit'
+      target: '$(Build.SourceVersion)'
+      title: 'CP Editor - Beta'
+      tag: $(CI_BUILD_TAG)
+      isPreRelease: true
+      assetUploadMode: 'replace' # Optional. Options: delete, replace
+      assets: $(Build.SourcesDirectory)/build/*.dmg
+      changeLogCompareToRelease: 'lastNonDraftRelease'
+      changeLogType: 'commitBased'
+
+  - task: GitHubRelease@1
+    condition: endsWith(variables['Build.SourceBranch'], '-stable')
+    inputs:
+      gitHubConnection: github.com_coder3101
+      repositoryName: '$(Build.Repository.Name)'
+      action: 'edit'
+      target: '$(Build.SourceVersion)'
+      title: 'CP Editor - Stable'
+      tag: $(CI_BUILD_TAG)
+      isPreRelease: false
+      assetUploadMode: 'replace' # Optional. Options: delete, replace
+      assets: $(Build.SourcesDirectory)/build/*.dmg
       changeLogCompareToRelease: 'lastFullRelease'
       changeLogType: 'commitBased'
 
