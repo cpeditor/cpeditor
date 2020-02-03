@@ -25,8 +25,8 @@ namespace Core
 Formatter::Formatter(const QString &clangFormatBinary, const QString &clangFormatStyle, MessageLogger *log)
 {
     this->log = log;
-    Formatter::updateBinary(clangFormatBinary);
-    Formatter::updateStyle(clangFormatStyle);
+    this->updateBinary(clangFormatBinary);
+    this->updateStyle(clangFormatStyle);
 }
 
 bool Formatter::check(const QString &checkBinary, const QString &checkStyle)
