@@ -87,7 +87,7 @@ jobs:
       cmake --build . --config Release 
     displayName: 'Generate scripts and Make'
 
-- job:
+- job: 'AppImage'
   displayName: 'Linux AppImage'
   dependsOn: TestUbuntu
   pool:
@@ -154,8 +154,10 @@ jobs:
       changeLogCompareToRelease: 'lastFullRelease'
       changeLogType: 'commitBased'
 
-- job:
-  dependsOn: TestMac
+- job: 'DMG'
+  dependsOn: 
+  - TestMac
+  - AppImage
   displayName: 'MacOS DMG'
   pool:
     vmImage: 'macOs 10.14'
@@ -222,8 +224,10 @@ jobs:
       changeLogCompareToRelease: 'lastFullRelease'
       changeLogType: 'commitBased'
 
-- job:
-  dependsOn: TestWindows
+- job: 'EXE'
+  dependsOn: 
+  - TestWindows
+  - DMG
   displayName: 'Windows Installer'
   pool:
     vmImage: 'vs2017-win2016'
