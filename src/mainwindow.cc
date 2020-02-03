@@ -606,8 +606,15 @@ void MainWindow::compileOnly()
 
 void MainWindow::runOnly()
 {
-    log.clear();
-    run();
+    if (language == "Python")
+    {
+        compileAndRun();
+    }
+    else
+    {
+        log.clear();
+        run();
+    }
 }
 
 void MainWindow::compileAndRun()
@@ -1246,10 +1253,13 @@ void MainWindow::onCompilationStarted()
 
 void MainWindow::onCompilationFinished(const QString &warning)
 {
-    log.info("Compiler", "Compilation has finished");
-    if (!warning.trimmed().isEmpty())
+    if (language != "Python")
     {
-        log.warn("Compile Warnings", warning);
+        log.info("Compiler", "Compilation has finished");
+        if (!warning.trimmed().isEmpty())
+        {
+            log.warn("Compile Warnings", warning);
+        }
     }
 
     if (afterCompile == Run)
