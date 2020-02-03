@@ -15,8 +15,8 @@
  *
  */
 
-#include <CompanionServer.hpp>
-#include <MessageLogger.hpp>
+#include "Extensions/CompanionServer.hpp"
+#include "Core/MessageLogger.hpp"
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>

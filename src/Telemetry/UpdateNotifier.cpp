@@ -18,7 +18,7 @@
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QMessageBox>
-#include <UpdateNotifier.hpp>
+#include "Telemetry/UpdateNotifier.hpp"
 
 namespace Telemetry
 {

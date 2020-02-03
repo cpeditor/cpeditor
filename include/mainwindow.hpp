@@ -18,9 +18,9 @@
 #ifndef MAINWINDOW_HPP
 #define MAINWINDOW_HPP
 
-#include <CompanionServer.hpp>
-#include <Compiler.hpp>
-#include <Formatter.hpp>
+#include "Extensions/CompanionServer.hpp"
+#include "Core/Compiler.hpp"
+#include "Core/Formatter.hpp"
 #include <QCodeEditor>
 #include <QFile>
 #include <QFileSystemWatcher>
@@ -30,11 +30,11 @@
 #include <QShortcut>
 #include <QSplitter>
 #include <QTemporaryDir>
-#include <Runner.hpp>
-#include <SettingsManager.hpp>
-#include <TestCases.hpp>
-#include <UpdateNotifier.hpp>
-#include <cftools.hpp>
+#include "Core/Runner.hpp"
+#include "Core/SettingsManager.hpp"
+#include "Widgets/TestCases.hpp"
+#include "Telemetry/UpdateNotifier.hpp"
+#include "Extensions/CFTools.hpp"
 #include <generated/version.hpp>
 
 QT_BEGIN_NAMESPACE

@@ -15,7 +15,7 @@
  *
  */
 
-#include "EditorTheme.hpp"
+#include "Extensions/EditorTheme.hpp"
 
 #include <QFile>
 #include <QIODevice>

@@ -17,7 +17,7 @@
 
 #ifndef COMPANIONSERVER_HPP
 #define COMPANIONSERVER_HPP
-#include "MessageLogger.hpp"
+#include "Core/MessageLogger.hpp"
 #include <QObject>
 #include <QTcpServer>
 #include <QTcpSocket>

@@ -15,7 +15,7 @@
  *
  */
 
-#include <Formatter.hpp>
+#include "Core/Formatter.hpp"
 #include <QJsonDocument>
 #include <QProcess>
 #include <QTemporaryDir>

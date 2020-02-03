@@ -15,7 +15,7 @@
  *
  */
 
-#include "TestCases.hpp"
+#include "Widgets/TestCases.hpp"
 #include "diff_match_patch.h"
 #include <QFileDialog>
 #include <QMainWindow>

@@ -17,7 +17,7 @@
 
 #include "appwindow.hpp"
 #include "../ui/ui_appwindow.h"
-#include <EditorTheme.hpp>
+#include "Extensions/EditorTheme.hpp"
 #include <QClipboard>
 #include <QDesktopServices>
 #include <QFileDialog>

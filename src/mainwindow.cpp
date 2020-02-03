@@ -17,9 +17,9 @@
 
 #include "mainwindow.hpp"
 
-#include <Compiler.hpp>
-#include <EditorTheme.hpp>
-#include <MessageLogger.hpp>
+#include "Core/Compiler.hpp"
+#include "Extensions/EditorTheme.hpp"
+#include "Core/MessageLogger.hpp"
 #include <QCXXHighlighter>
 #include <QFileDialog>
 #include <QFont>
@@ -37,7 +37,7 @@
 #include <QTextStream>
 #include <QThread>
 #include <QTimer>
-#include <Runner.hpp>
+#include "Core/Runner.hpp"
 
 #include "../ui/ui_mainwindow.h"
 

@@ -15,7 +15,7 @@
  *
  */
 
-#include <Compiler.hpp>
+#include "Core/Compiler.hpp"
 #include <QFileInfo>
 
 namespace Core

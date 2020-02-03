@@ -20,10 +20,10 @@
 
 #include <QMainWindow>
 
-#include "SettingsManager.hpp"
-#include "UpdateNotifier.hpp"
+#include "Core/SettingsManager.hpp"
+#include "Telemetry/UpdateNotifier.hpp"
 #include "mainwindow.hpp"
-#include "ExtendedEditorFeatures.hpp"
+#include "Extensions/ExtendedEditorFeatures.hpp"
 #include "preferencewindow.hpp"
 
 namespace Ui

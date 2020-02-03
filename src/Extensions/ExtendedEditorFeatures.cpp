@@ -1,4 +1,4 @@
-#include <ExtendedEditorFeatures.hpp>
+#include "Extensions/ExtendedEditorFeatures.hpp"
 #include <QDebug>
 #include <QString>
 

@@ -18,7 +18,7 @@
 #ifndef TESTCASES_HPP
 #define TESTCASES_HPP
 
-#include "MessageLogger.hpp"
+#include "Core/MessageLogger.hpp"
 #include <QFileInfo>
 #include <QHBoxLayout>
 #include <QLabel>

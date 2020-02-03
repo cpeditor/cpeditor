@@ -15,7 +15,7 @@
  *
  */
 
-#include "cftools.hpp"
+#include "Extensions/CFTools.hpp"
 #include <QFileInfo>
 #include <QUrl>
 

@@ -18,7 +18,7 @@
 #ifndef CFTOOLS_HPP
 #define CFTOOLS_HPP
 
-#include <MessageLogger.hpp>
+#include "Core/MessageLogger.hpp"
 #include <QProcess>
 #include <QRegularExpression>
 #include <QSystemTrayIcon>

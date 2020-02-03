@@ -15,10 +15,10 @@
  *
  */
 
-#include <MessageLogger.hpp>
+#include "Core/MessageLogger.hpp"
 #include <QApplication>
 #include <QStandardPaths>
-#include <SettingsManager.hpp>
+#include "Core/SettingsManager.hpp"
 
 namespace Settings
 {

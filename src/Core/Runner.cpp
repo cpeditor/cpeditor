@@ -16,7 +16,7 @@
  */
 
 #include <QFileInfo>
-#include <Runner.hpp>
+#include "Core/Runner.hpp"
 
 namespace Core
 {

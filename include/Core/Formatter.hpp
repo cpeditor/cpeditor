@@ -17,7 +17,7 @@
 
 #ifndef FORMATTER_HPP
 #define FORMATTER_HPP
-#include <MessageLogger.hpp>
+#include "Core/MessageLogger.hpp"
 #include <QCodeEditor>
 #include <QPair>
 #include <QString>
