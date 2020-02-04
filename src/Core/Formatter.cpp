@@ -25,8 +25,8 @@ namespace Core
 Formatter::Formatter(const QString &clangFormatBinary, const QString &clangFormatStyle, MessageLogger *log)
 {
     this->log = log;
-    this->updateBinary(clangFormatBinary);
-    this->updateStyle(clangFormatStyle);
+    updateBinary(clangFormatBinary);
+    updateStyle(clangFormatStyle);
 }
 
 bool Formatter::check(const QString &checkBinary, const QString &checkStyle)
@@ -51,12 +51,12 @@ bool Formatter::check(const QString &checkBinary, const QString &checkStyle)
 
 void Formatter::updateBinary(const QString& newBinary)
 {
-    this->binary = newBinary;
+    binary = newBinary;
 }
 
 void Formatter::updateStyle(const QString &newStyle)
 {
-    this->style = newStyle;
+    style = newStyle;
 }
 
 void Formatter::format(QCodeEditor *editor, const QString &filePath, const QString &lang, bool selectionOnly)
