@@ -108,45 +108,45 @@ class SettingManager
     void setTimeLimit(int ms);
 
     QRect getGeometry();
-    void setGeometry(QRect);
+    void setGeometry(const QRect &);
 
     QString getFont();
-    void setFont(QString font);
+    void setFont(const QString &font);
 
     QString getDefaultLang();
-    void setDefaultLanguage(QString lang);
+    void setDefaultLanguage(const QString &lang);
 
     QString getTemplatePathCpp();
     QString getTemplatePathJava();
     QString getTemplatePathPython();
-    void setTemplatePathCpp(QString path);
-    void setTemplatePathJava(QString path);
-    void setTemplatePathPython(QString path);
+    void setTemplatePathCpp(const QString &path);
+    void setTemplatePathJava(const QString &path);
+    void setTemplatePathPython(const QString &path);
 
     QString getRuntimeArgumentsCpp();
     QString getRuntimeArgumentsJava();
     QString getRuntimeArgumentsPython();
-    void setRuntimeArgumentsCpp(QString command);
-    void setRuntimeArgumentsJava(QString command);
-    void setRuntimeArgumentsPython(QString command);
+    void setRuntimeArgumentsCpp(const QString &command);
+    void setRuntimeArgumentsJava(const QString &command);
+    void setRuntimeArgumentsPython(const QString &command);
 
     QString getClangFormatBinary();
-    void setClangFormatBinary(QString binary);
+    void setClangFormatBinary(const QString &binary);
     QString getClangFormatStyle();
     void setClangFormatStyle(const QString &style);
 
     QString getCompileCommandCpp();
     QString getCompileCommandJava();
-    void setCompileCommandsCpp(QString command);
-    void setCompileCommandsJava(QString command);
+    void setCompileCommandsCpp(const QString &command);
+    void setCompileCommandsJava(const QString &command);
 
     QString getRunCommandJava();
     QString getRunCommandPython();
-    void setRunCommandJava(QString command);
-    void setRunCommandPython(QString command);
+    void setRunCommandJava(const QString &command);
+    void setRunCommandPython(const QString &command);
 
     QString getEditorTheme();
-    void setEditorTheme(QString theme);
+    void setEditorTheme(const QString &theme);
 
     bool isHotkeyInUse();
     void setHotKeyInUse(bool value);
@@ -194,21 +194,21 @@ class SettingManager
     void setTransparency(int val);
 
     ViewMode getViewMode();
-    void setViewMode(ViewMode v);
+    void setViewMode(const ViewMode &v);
 
     QByteArray getSplitterSizes();
-    void setSplitterSizes(QByteArray state);
+    void setSplitterSizes(const QByteArray &state);
 
     QByteArray getRightSplitterSizes();
-    void setRightSplitterSizes(QByteArray state);
+    void setRightSplitterSizes(const QByteArray &state);
 
-    void setHotkeyFormat(QKeySequence sequence);
-    void setHotkeyKill(QKeySequence sequence);
-    void setHotkeyCompileRun(QKeySequence sequence);
-    void setHotkeyRun(QKeySequence sequence);
-    void setHotkeyCompile(QKeySequence sequence);
-    void setHotkeyViewModeToggler(QKeySequence sequence);
-    void setHotkeySnippets(QKeySequence sequence);
+    void setHotkeyFormat(const QKeySequence &sequence);
+    void setHotkeyKill(const QKeySequence &sequence);
+    void setHotkeyCompileRun(const QKeySequence &sequence);
+    void setHotkeyRun(const QKeySequence &sequence);
+    void setHotkeyCompile(const QKeySequence &sequence);
+    void setHotkeyViewModeToggler(const QKeySequence &sequence);
+    void setHotkeySnippets(const QKeySequence &sequence);
     QKeySequence getHotkeyFormat();
     QKeySequence getHotkeyKill();
     QKeySequence getHotkeyCompileRun();
@@ -218,7 +218,7 @@ class SettingManager
     QKeySequence getHotkeySnippets();
 
     QString getSnippet(QString lang, QString name);
-    void setSnippet(QString lang, QString name, QString content);
+    void setSnippet(const QString &lang, const QString &name, const QString &content);
     void removeSnippet(QString lang, QString name);
     QStringList getSnippetsNames(QString lang);
 
@@ -231,7 +231,7 @@ class SettingManager
     void setEditorStatus(int index, const QMap<QString, QVariant> &status);
 
     QString getCFPath();
-    void setCFPath(QString path);
+    void setCFPath(const QString &path);
 
     void resetSettings();
 
