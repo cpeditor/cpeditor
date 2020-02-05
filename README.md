@@ -73,10 +73,12 @@ You can also set hotkeys for some actions manually in `Preferences`. However the
 	git submodule update
 	```
 
-2. Install [Qt](https://www.qt.io/download) (5.12 or higher) and [CMake](https://cmake.org/download/) (3.12 or higher). <br/>
-On Mac, run `brew install qt5`.
+2. Install [Qt](https://www.qt.io/download) (5.12 or higher) and [CMake](https://cmake.org/download/) (3.12 or higher).
+   - If you are using Linux/Mac, you can install from your package manager. For example, `sudo pacman -S qt5` on Arch Linux, `brew install qt5` on Mac OS, `sudo apt-get install qt5-default` on Ubuntu Linux.
+   - You can also download the [offline installer](https://www.qt.io/offline-installers), or download from the [mirrors](https://download.qt.io/static/mirrorlist/). The path from the root of the mirror should be like `/qt/official_releases/qt/5.14/5.14.0/qt-opensource-<platform>-5.14.0.<suffix>` (or other versions).
 
-3. Set environment variable `CMAKE_PREFIX_PATH=%QtPath%/%QtVersion%/%Compiler%/lib/cmake` if necessary (i.e. cmake can't find the Qt installation path.) On Mac, run `export CMAKE_PREFIX_PATH="/usr/local/Cellar/qt/5.13.0"`.
+3. Set environment variable `CMAKE_PREFIX_PATH=%QtPath%/%QtVersion%/%Compiler%/lib/cmake` if necessary (i.e. cmake can't find the Qt installation path.).
+   - On Mac, run something like `export CMAKE_PREFIX_PATH="/usr/local/Cellar/qt/5.14.0"`.
 
 4. Run the following commands:
 	
