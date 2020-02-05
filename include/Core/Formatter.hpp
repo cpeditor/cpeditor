@@ -27,10 +27,10 @@ namespace Core
 class Formatter
 {
   public:
-    Formatter(QString clangFormatBinary, const QString &clangFormatStyle, MessageLogger *log);
+    Formatter(const QString &clangFormatBinary, const QString &clangFormatStyle, MessageLogger *log);
     void format(QCodeEditor *editor, const QString &filePath, const QString &lang, bool selectionOnly);
-    static bool check(QString checkBinary, const QString &checkStyle);
-    void updateBinary(QString newBinary);
+    static bool check(const QString &checkBinary, const QString &checkStyle);
+    void updateBinary(const QString &newBinary);
     void updateStyle(const QString &newStyle);
 
   private:

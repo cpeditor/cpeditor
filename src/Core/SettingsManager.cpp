@@ -15,10 +15,10 @@
  *
  */
 
+#include "Core/SettingsManager.hpp"
 #include "Core/MessageLogger.hpp"
 #include <QApplication>
 #include <QStandardPaths>
-#include "Core/SettingsManager.hpp"
 
 namespace Settings
 {
@@ -304,19 +304,19 @@ void SettingManager::setTimeLimit(int val)
     mSettings->setValue("time_limit", val);
 }
 
-void SettingManager::setRunCommandJava(QString command)
+void SettingManager::setRunCommandJava(const QString &command)
 {
     mSettings->setValue("run_java", command);
 }
-void SettingManager::setRunCommandPython(QString command)
+void SettingManager::setRunCommandPython(const QString &command)
 {
     mSettings->setValue("run_python", command);
 }
-void SettingManager::setCompileCommandsCpp(QString command)
+void SettingManager::setCompileCommandsCpp(const QString &command)
 {
     mSettings->setValue("compile_cpp", command);
 }
-void SettingManager::setEditorTheme(QString themeName)
+void SettingManager::setEditorTheme(const QString &themeName)
 {
     mSettings->setValue("editor_theme", themeName);
 }
@@ -324,11 +324,11 @@ QString SettingManager::getEditorTheme()
 {
     return mSettings->value("editor_theme", "Light").toString();
 }
-void SettingManager::setCompileCommandsJava(QString command)
+void SettingManager::setCompileCommandsJava(const QString &command)
 {
     mSettings->setValue("compile_java", command);
 }
-void SettingManager::setClangFormatBinary(QString binary)
+void SettingManager::setClangFormatBinary(const QString &binary)
 {
     mSettings->setValue("clang_format_binary", binary);
 }
@@ -336,40 +336,40 @@ void SettingManager::setClangFormatStyle(const QString &style)
 {
     mSettings->setValue("clang_format_style", style);
 }
-void SettingManager::setTemplatePathCpp(QString path)
+void SettingManager::setTemplatePathCpp(const QString &path)
 {
     mSettings->setValue("template_cpp", path);
 }
-void SettingManager::setTemplatePathJava(QString path)
+void SettingManager::setTemplatePathJava(const QString &path)
 {
     mSettings->setValue("template_java", path);
 }
-void SettingManager::setTemplatePathPython(QString path)
+void SettingManager::setTemplatePathPython(const QString &path)
 {
     mSettings->setValue("template_python", path);
 }
-void SettingManager::setRuntimeArgumentsCpp(QString command)
+void SettingManager::setRuntimeArgumentsCpp(const QString &command)
 {
     mSettings->setValue("runtime_cpp", command);
 }
-void SettingManager::setRuntimeArgumentsJava(QString command)
+void SettingManager::setRuntimeArgumentsJava(const QString &command)
 {
     mSettings->setValue("runtime_java", command);
 }
-void SettingManager::setRuntimeArgumentsPython(QString command)
+void SettingManager::setRuntimeArgumentsPython(const QString &command)
 {
     mSettings->setValue("runtime_python", command);
 }
-void SettingManager::setDefaultLanguage(QString lang)
+void SettingManager::setDefaultLanguage(const QString &lang)
 {
     mSettings->setValue("lang", lang);
 }
-void SettingManager::setFont(QString font)
+void SettingManager::setFont(const QString &font)
 {
     mSettings->setValue("font", font);
 }
 
-void SettingManager::setGeometry(QRect rect)
+void SettingManager::setGeometry(const QRect &rect)
 {
     mSettings->setValue("geometry", rect);
 }
@@ -407,7 +407,7 @@ QString SettingManager::getSnippet(QString lang, QString name)
 {
     return mSettings->value("snippets/" + lang + "/" + name, "").toString();
 }
-void SettingManager::setSnippet(QString lang, QString name, QString content)
+void SettingManager::setSnippet(const QString &lang, const QString &name, const QString &content)
 {
     mSettings->setValue("snippets/" + lang + "/" + name, content);
 }
@@ -470,36 +470,36 @@ QString SettingManager::getCFPath()
     return mSettings->value("cf_path", "cf").toString();
 }
 
-void SettingManager::setCFPath(QString path)
+void SettingManager::setCFPath(const QString &path)
 {
     mSettings->setValue("cf_path", path);
 }
 
-void SettingManager::setHotkeyViewModeToggler(QKeySequence sequence)
+void SettingManager::setHotkeyViewModeToggler(const QKeySequence &sequence)
 {
     mSettings->setValue("hotkey_mode_toggle", sequence.toString());
 }
-void SettingManager::setHotkeyCompile(QKeySequence sequence)
+void SettingManager::setHotkeyCompile(const QKeySequence &sequence)
 {
     mSettings->setValue("hotkey_compile", sequence.toString());
 }
-void SettingManager::setHotkeyRun(QKeySequence sequence)
+void SettingManager::setHotkeyRun(const QKeySequence &sequence)
 {
     mSettings->setValue("hotkey_run", sequence.toString());
 }
-void SettingManager::setHotkeyCompileRun(QKeySequence sequence)
+void SettingManager::setHotkeyCompileRun(const QKeySequence &sequence)
 {
     mSettings->setValue("hotkey_compile_run", sequence.toString());
 }
-void SettingManager::setHotkeyKill(QKeySequence sequence)
+void SettingManager::setHotkeyKill(const QKeySequence &sequence)
 {
     mSettings->setValue("hotkey_kill", sequence.toString());
 }
-void SettingManager::setHotkeyFormat(QKeySequence sequence)
+void SettingManager::setHotkeyFormat(const QKeySequence &sequence)
 {
     mSettings->setValue("hotkey_format", sequence.toString());
 }
-void SettingManager::setHotkeySnippets(QKeySequence sequence)
+void SettingManager::setHotkeySnippets(const QKeySequence &sequence)
 {
     mSettings->setValue("hotkey_snippets", sequence.toString());
 }
@@ -515,7 +515,7 @@ ViewMode SettingManager::getViewMode()
         return Settings::ViewMode::FULL_IO;
 }
 
-void SettingManager::setViewMode(ViewMode v)
+void SettingManager::setViewMode(const ViewMode &v)
 {
     QString ans;
     if (v == Settings::FULL_EDITOR)
@@ -532,7 +532,7 @@ QByteArray SettingManager::getSplitterSizes()
     return mSettings->value("splitter_sizes").toByteArray();
 }
 
-void SettingManager::setSplitterSizes(QByteArray state)
+void SettingManager::setSplitterSizes(const QByteArray &state)
 {
     mSettings->setValue("splitter_sizes", state);
 }
@@ -542,7 +542,7 @@ QByteArray SettingManager::getRightSplitterSizes()
     return mSettings->value("right_splitter_sizes").toByteArray();
 }
 
-void SettingManager::setRightSplitterSizes(QByteArray state)
+void SettingManager::setRightSplitterSizes(const QByteArray &state)
 {
     mSettings->setValue("right_splitter_sizes", state);
 }

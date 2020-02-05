@@ -22,14 +22,14 @@
 
 namespace Core
 {
-Formatter::Formatter(QString clangFormatBinary, const QString &clangFormatStyle, MessageLogger *log)
+Formatter::Formatter(const QString &clangFormatBinary, const QString &clangFormatStyle, MessageLogger *log)
 {
     this->log = log;
     updateBinary(clangFormatBinary);
     updateStyle(clangFormatStyle);
 }
 
-bool Formatter::check(QString checkBinary, const QString &checkStyle)
+bool Formatter::check(const QString &checkBinary, const QString &checkStyle)
 {
     QTemporaryDir tmpDir;
     if (!tmpDir.isValid())
@@ -49,7 +49,7 @@ bool Formatter::check(QString checkBinary, const QString &checkStyle)
     return program.exitCode() == 0;
 }
 
-void Formatter::updateBinary(QString newBinary)
+void Formatter::updateBinary(const QString& newBinary)
 {
     binary = newBinary;
 }
