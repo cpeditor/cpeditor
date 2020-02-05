@@ -14,19 +14,6 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 if(WIN32)
     SET(GUI_TYPE WIN32)
 endif()
-if(APPLE)
-    set_target_properties(CPEditor PROPERTIES
-        MACOSX_BUNDLE TRUE
-        MACOSX_BUNDLE_BUNDLE_NAME ${PROJECT_NAME}
-        MACOSX_BUNDLE_GUI_IDENTIFIER "org.coder3101.cpeditor"
-        MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
-        MACOSX_BUNDLE_LONG_VERSION_STRING ${PROJECT_VERSION}
-        MACOSX_BUNDLE_SHORT_VERSION_STRING "${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}"
-        MACOSX_BUNDLE_ICON_FILE "cpeditor.icns"
-        MACOSX_BUNDLE_COPYRIGHT ${PROJECT_COPYRIGHT}
-        RESOURCE ".ci/mac/cpeditor.icns"
-    )
-endif()
 
 
 find_package(Qt5 COMPONENTS Widgets REQUIRED)
@@ -96,3 +83,18 @@ target_link_libraries(CPEditor PRIVATE Qt5::Widgets)
 target_link_libraries(CPEditor PRIVATE Qt5::Network)
 target_link_libraries(CPEditor PRIVATE QCodeEditor)
 target_link_libraries(CPEditor PRIVATE SingleApplication)
+ 
+if(APPLE)
+    set_target_properties(CPEditor
+        PROPERTIES
+        MACOSX_BUNDLE TRUE
+        MACOSX_BUNDLE_BUNDLE_NAME ${PROJECT_NAME}
+        MACOSX_BUNDLE_GUI_IDENTIFIER "org.coder3101.cpeditor"
+        MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
+        MACOSX_BUNDLE_LONG_VERSION_STRING ${PROJECT_VERSION}
+        MACOSX_BUNDLE_SHORT_VERSION_STRING "${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}"
+        MACOSX_BUNDLE_ICON_FILE "cpeditor.icns"
+        MACOSX_BUNDLE_COPYRIGHT "GNU GPL v3"
+        RESOURCE ".ci/mac/cpeditor.icns"
+    )
+endif()
