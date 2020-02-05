@@ -15,8 +15,17 @@ if(WIN32)
     SET(GUI_TYPE WIN32)
 endif()
 if(APPLE)
-    SET(GUI_TYPE MACOSX_BUNDLE)
-    configure_file(.ci/mac/Info.plist.in ${CMAKE_BINARY_DIR}/generated/Info.plist)
+    set_target_properties(CPEditor PROPERTIES
+        MACOSX_BUNDLE TRUE
+        MACOSX_BUNDLE_BUNDLE_NAME ${PROJECT_NAME}
+        MACOSX_BUNDLE_GUI_IDENTIFIER "org.coder3101.cpeditor"
+        MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
+        MACOSX_BUNDLE_LONG_VERSION_STRING ${PROJECT_VERSION}
+        MACOSX_BUNDLE_SHORT_VERSION_STRING "${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}"
+        MACOSX_BUNDLE_ICON_FILE "cpeditor.icns"
+        MACOSX_BUNDLE_COPYRIGHT ${PROJECT_COPYRIGHT}
+        RESOURCE ".ci/mac/cpeditor.icns"
+    )
 endif()
 
 
