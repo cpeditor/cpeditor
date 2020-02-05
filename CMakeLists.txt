@@ -53,13 +53,9 @@ add_executable(CPEditor
     include/Extensions/CompanionServer.hpp
     include/Extensions/CFTools.hpp
     include/Extensions/EditorTheme.hpp
-    include/Extensions/ExtendedEditorFeatures.hpp
     src/Extensions/CompanionServer.cpp
     src/Extensions/CFTools.cpp
     src/Extensions/EditorTheme.cpp
-    src/Extensions/ExtendedEditorFeatures.cpp
-
-
 
     include/mainwindow.hpp
     include/preferencewindow.hpp

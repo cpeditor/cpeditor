@@ -23,7 +23,6 @@
 #include "Core/SettingsManager.hpp"
 #include "Telemetry/UpdateNotifier.hpp"
 #include "mainwindow.hpp"
-#include "Extensions/ExtendedEditorFeatures.hpp"
 #include "preferencewindow.hpp"
 
 namespace Ui
@@ -121,15 +120,19 @@ class AppWindow : public QMainWindow
 
     void on_actionSplit_Mode_triggered();
 
-	void on_comment_toggle();
+    void on_action_indent_triggered();
 
-	void on_tab_indent();
+    void on_action_unindent_triggered();
 
-	void on_tab_unindent();
+    void on_action_swap_line_up_triggered();
 
-	void on_move_up();
+    void on_action_swap_line_down_triggered();
 
-	void on_move_down();
+    void on_action_delete_line_triggered();
+
+    void on_action_toggle_comment_triggered();
+
+    void on_action_toggle_block_comment_triggered();
 
     void on_confirmTriggered(MainWindow *widget);
 
@@ -146,8 +149,6 @@ class AppWindow : public QMainWindow
     Telemetry::UpdateNotifier *updater = nullptr;
     PreferenceWindow *preferenceWindow = nullptr;
     Network::CompanionServer *server;
-    Core::ExtendedQCodeEditorFeatures *editorFeaturs = nullptr;
-    QVector<QShortcut *> editorFeaturesShortucts;
 
     void setConnections();
     void allocate();

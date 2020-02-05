@@ -66,9 +66,23 @@
     <addaction name="actionClose_All"/>
     <addaction name="actionQuit"/>
    </widget>
-   <widget class="QMenu" name="menuEditor">
+   <widget class="QMenu" name="menuEdit">
     <property name="title">
-     <string>Action</string>
+     <string>Edit</string>
+    </property>
+    <addaction name="action_indent"/>
+    <addaction name="action_unindent"/>
+    <addaction name="separator"/>
+    <addaction name="action_swap_line_up"/>
+    <addaction name="action_swap_line_down"/>
+    <addaction name="action_delete_line"/>
+    <addaction name="separator"/>
+    <addaction name="action_toggle_comment"/>
+    <addaction name="action_toggle_block_comment"/>
+   </widget>
+   <widget class="QMenu" name="menuActions">
+    <property name="title">
+     <string>Actions</string>
     </property>
     <addaction name="actionCompile"/>
     <addaction name="actionCompile_Run"/>
@@ -79,22 +93,6 @@
     <addaction name="actionFormat_code"/>
     <addaction name="actionUse_Snippets"/>
    </widget>
-   <widget class="QMenu" name="menuActions">
-    <property name="title">
-     <string>Options</string>
-    </property>
-    <addaction name="actionSettings"/>
-    <addaction name="separator"/>
-    <addaction name="actionRestore_Settings"/>
-   </widget>
-   <widget class="QMenu" name="menuSettings">
-    <property name="title">
-     <string>Help</string>
-    </property>
-    <addaction name="actionAbout"/>
-    <addaction name="actionCheck_for_updates"/>
-    <addaction name="actionSupport_me"/>
-   </widget>
    <widget class="QMenu" name="menuView">
     <property name="title">
      <string>View</string>
@@ -103,11 +101,28 @@
     <addaction name="actionIO_Mode"/>
     <addaction name="actionSplit_Mode"/>
    </widget>
+   <widget class="QMenu" name="menuOptions">
+    <property name="title">
+     <string>Options</string>
+    </property>
+    <addaction name="actionSettings"/>
+    <addaction name="separator"/>
+    <addaction name="actionRestore_Settings"/>
+   </widget>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>Help</string>
+    </property>
+    <addaction name="actionAbout"/>
+    <addaction name="actionCheck_for_updates"/>
+    <addaction name="actionSupport_me"/>
+   </widget>
    <addaction name="menuFile"/>
-   <addaction name="menuView"/>
-   <addaction name="menuEditor"/>
+   <addaction name="menuEdit"/>
    <addaction name="menuActions"/>
-   <addaction name="menuSettings"/>
+   <addaction name="menuView"/>
+   <addaction name="menuOptions"/>
+   <addaction name="menuHelp"/>
   </widget>
   <action name="actionNew_Tab">
    <property name="text">
@@ -225,6 +240,62 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+Shift+O</string>
+   </property>
+  </action>
+  <action name="action_indent">
+   <property name="text">
+    <string>Indent</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+]</string>
+   </property>
+  </action>
+  <action name="action_unindent">
+   <property name="text">
+    <string>Unindent</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+[</string>
+   </property>
+  </action>
+  <action name="action_swap_line_up">
+   <property name="text">
+    <string>Swap Line Up</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+Up</string>
+   </property>
+  </action>
+  <action name="action_swap_line_down">
+   <property name="text">
+    <string>Swap Line Down</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+Down</string>
+   </property>
+  </action>
+  <action name="action_delete_line">
+   <property name="text">
+    <string>Delete Line</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+K</string>
+   </property>
+  </action>
+  <action name="action_toggle_comment">
+   <property name="text">
+    <string>Toggle Comment</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+/</string>
+   </property>
+  </action>
+  <action name="action_toggle_block_comment">
+   <property name="text">
+    <string>Toggle Block Comment</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+/</string>
    </property>
   </action>
   <action name="actionCompile">
