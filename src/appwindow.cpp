@@ -75,6 +75,8 @@ AppWindow::AppWindow(bool noHotExit, QWidget *parent) : QMainWindow(parent), ui(
         setUpdatesEnabled(true);
         resize(oldSize);
 
+        settingManager->clearEditorStatus();
+
         int index = settingManager->getCurrentIndex();
         if (index >= 0 && index < ui->tabWidget->count())
             ui->tabWidget->setCurrentIndex(index);
