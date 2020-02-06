@@ -160,7 +160,7 @@ QString SettingManager::getTemplatePathPython()
 }
 QString SettingManager::getFont()
 {
-    return mSettings->value("font", "").toString();
+    return mSettings->value("font", "monospace").toString();
 }
 
 QRect SettingManager::getGeometry()
