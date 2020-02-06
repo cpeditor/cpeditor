@@ -952,7 +952,7 @@ void AppWindow::on_confirmTriggered(MainWindow *widget)
     if (index != -1)
         ui->tabWidget->setCurrentIndex(index);
 }
-//*************************************************** Methods below this have been covered with logger ************************************************//
+
 void AppWindow::onTabContextMenuRequested(const QPoint &pos)
 {
     Core::Log::i("onTabContextMenuRequested", "Location is : " + Core::Stringify(pos.x()) + Core::Stringify(pos.y()));
@@ -965,27 +965,33 @@ void AppWindow::onTabContextMenuRequested(const QPoint &pos)
         auto widget = windowIndex(index);
         auto menu = new QMenu();
 
+        Core::Log::i("onTabContextMenuRequested", "Adding menu actions: close");
         menu->addAction("Close", [index, this] { closeTab(index); });
 
+        Core::Log::i("onTabContextMenuRequested", "Adding menu actions: close Others");
         menu->addAction("Close Others", [widget, this] {
             for (int i = 0; i < ui->tabWidget->count(); ++i)
                 if (windowIndex(i) != widget && closeTab(i))
                     --i;
         });
 
+        Core::Log::i("onTabContextMenuRequested", "Adding menu actions: close left");
         menu->addAction("Close to the Left", [widget, this] {
             for (int i = 0; i < ui->tabWidget->count() && windowIndex(i) != widget; ++i)
                 if (closeTab(i))
                     --i;
         });
 
+        Core::Log::i("onTabContextMenuRequested", "Adding menu actions: close right");
         menu->addAction("Close to the Right", [index, this] {
             for (int i = index + 1; i < ui->tabWidget->count(); ++i)
                 if (closeTab(i))
                     --i;
         });
+        Core::Log::i("onTabContextMenuRequested", "Adding menu actions: close saved");
         menu->addAction("Close Saved", [this] { on_actionClose_Saved_triggered(); });
 
+        Core::Log::i("onTabContextMenuRequested", "Adding menu actions: close all");
         menu->addAction("Close All", [this] { on_actionClose_All_triggered(); });
         QString filePath = widget->getFilePath();
 
