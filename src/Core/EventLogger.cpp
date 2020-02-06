@@ -4,11 +4,13 @@
 #include <QSysInfo>
 #include <QVector>
 #include <iostream>
+#include <generated/version.hpp>
 
 namespace Core
 {
 
 QFile Log::logFile(QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/" + LOG_FILE_NAME);
+bool Log::shouldWriteToStderr;
 
 void Log::e(QString head, QString body)
 {
@@ -27,14 +29,14 @@ void Log::i(QString head, QString body)
     logWithPriority("[INFO]", head, body);
 }
 
-void Log::init()
+void Log::init(bool dumptoStderr)
 {
-    logFile.open(QIODevice::ReadWrite | QFile::Text);
+    shouldWriteToStderr = false;
+    logFile.open(QIODevice::WriteOnly | QFile::Text);
     if (logFile.isOpen())
     {
 
         i("Logger", "Event logger has arrived!");
-        i("Time", dateTimeStamp().remove("[").remove("]"));
         i("SysInfo", "Gathering system information");
         i("SysInfo", platformInformation());
     }
@@ -43,14 +45,14 @@ void Log::init()
         std::cerr << ("Failed to start the event logger. Application cannot create log file at " +
                       QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/" + LOG_FILE_NAME)
                          .toStdString();
-        // Todo(@coder3101) : Maybe start a buffered logger if file logger failed.
-        // Use QString and just show it instead of saving
+
+        shouldWriteToStderr = true; // Since log to file cannot be performed, log on stderr explicitly
     }
 }
 
 QString Log::dateTimeStamp()
 {
-    return "[" + QDateTime::currentDateTime().toString() + "]";
+    return "[" + QDateTime::currentDateTime().toString(Qt::ISODateWithMs) + "]";
 }
 
 QString Log::platformInformation()
@@ -66,8 +68,8 @@ QString Log::platformInformation()
     res.append("machineHostName : " + QSysInfo::machineHostName() + "\n");
     res.append("machineUniqueId : " + QSysInfo::machineUniqueId() + "\n");
     res.append("productType : " + QSysInfo::productType() + "\n");
-    res.append("productVersion : " + QSysInfo::productVersion());
-
+    res.append("productVersion : " + QSysInfo::productVersion() + "\n");
+    res.append("Appversion : " + QString::fromStdString(APP_VERSION_MAJOR "." APP_VERSION_MINOR "." APP_VERSION_PATCH));
     return res;
 }
 
@@ -79,8 +81,13 @@ void Log::logWithPriority(QString priority, QString head, QString body)
     logContent.append("[" + head + "]");
     logContent.append(body);
     logContent.append("\n");
-    logFile.write(logContent.toLocal8Bit());
-    logFile.flush();
+    if (logFile.isWritable())
+    {
+        logFile.write(logContent.toLocal8Bit());
+        logFile.flush();
+    }
+    if (shouldWriteToStderr)
+        std::cerr << logContent.toStdString();
 }
 
 } // namespace Core
