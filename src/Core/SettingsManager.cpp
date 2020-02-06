@@ -444,6 +444,7 @@ void SettingManager::setCurrentIndex(int index)
 }
 void SettingManager::clearEditorStatus()
 {
+    setNumberOfTabs(0);
     mSettings->remove("editor_status");
 }
 QMap<QString, QVariant> SettingManager::getEditorStatus(int index)
