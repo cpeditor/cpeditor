@@ -188,6 +188,7 @@ jobs:
     displayName: Set the tag name as an environment variable
 
   - script: |
+      cd $(Build.SourcesDirectory)/build
       cp $(Build.SourcesDirectory)/.ci/mac/cpeditor.icns $(Build.SourcesDirectory)/build/CPEditor.app/Contents/Resources
       hdiutil create -volname CP_Editor-$(VERSION_TAG)-x64 -srcfolder $(Build.SourcesDirectory)/build/CPEditor.app -ov -format UDZO CP_Editor-$(VERSION_TAG)-x64.dmg
     
