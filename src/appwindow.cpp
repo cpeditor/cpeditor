@@ -713,20 +713,25 @@ void AppWindow::onEditorChanged()
     }
 }
 
+//*************************************** LOGS DONE AFTER THIS ********************************************
 void AppWindow::onSaveTimerElapsed()
 {
+    Core::Log::i("appwindow/onSaveTimerElapsed", "Autosave invoked");
     for (int t = 0; t < ui->tabWidget->count(); t++)
     {
         auto tmp = windowIndex(t);
         if (!tmp->isUntitled())
         {
             tmp->save(false, "Auto Save");
+            Core::Log::i("appwindow/onSaveTimerElapsed", "Autosave success");
         }
     }
 }
 
 void AppWindow::onSettingsApplied()
 {
+    Core::Log::i("appwindow/onSettingsApplied", "Applying settings to appwindow");
+
     updater->setBeta(settingManager->isBeta());
     maybeSetHotkeys();
 
@@ -740,17 +745,27 @@ void AppWindow::onSettingsApplied()
     diagonistics = true;
     onTabChanged(ui->tabWidget->currentIndex());
     onEditorChanged();
+
+	Core::Log::i("appwindow/onSettingsApplied", "Applied settings to appwindow");
 }
 
 void AppWindow::onIncomingCompanionRequest(Network::CompanionData data)
 {
+    Core::Log::i("appwindow/onIncomingCompanionRequest",
+                 "Applying data to new tab. Args : shouldOpenNewTab" +
+                     Core::Stringify(settingManager->isCompetitiveCompanionOpenNewTab()) +
+                     ",currentWindow == nullptr " + Core::Stringify(currentWindow() == nullptr));
+
     if (settingManager->isCompetitiveCompanionOpenNewTab() || currentWindow() == nullptr)
+    {
         openTab(data.url, true);
+    }
     currentWindow()->applyCompanion(data);
 }
 
 void AppWindow::onViewModeToggle()
 {
+    Core::Log::i("appwindow/onViewModeToggle", "Switching view mode");
     if (ui->actionEditor_Mode->isChecked())
     {
         on_actionIO_Mode_triggered();
@@ -770,12 +785,14 @@ void AppWindow::onViewModeToggle()
 
 void AppWindow::onSplitterMoved(int _, int __)
 {
+    Core::Log::i("appwindow/onSplitterMoved", "updating state");
     auto splitter = currentWindow()->getSplitter();
     settingManager->setSplitterSizes(splitter->saveState());
 }
 
 void AppWindow::onRightSplitterMoved(int _, int __)
 {
+    Core::Log::i("appwindow/onRightSplitterMoved", "updating state");
     auto splitter = currentWindow()->getRightSplitter();
     settingManager->setRightSplitterSizes(splitter->saveState());
 }
@@ -783,6 +800,8 @@ void AppWindow::onRightSplitterMoved(int _, int __)
 /************************* ACTIONS ************************/
 void AppWindow::on_actionCheck_for_updates_triggered()
 {
+    Core::Log::i("appwindow/on_actionCheck_for_updates_triggered", "Checking update non-silent mode");
+    // Non-silent means if a update is not available, still the dialog is shown that no update available.
     updater->checkUpdate(true);
 }
 
@@ -793,6 +812,11 @@ void AppWindow::on_actionCompile_triggered()
         if (ui->actionEditor_Mode->isChecked())
             on_actionSplit_Mode_triggered();
         currentWindow()->compileOnly();
+        Core::Log::i("appwindow/on_actionCompile_Run_triggered", "Invoked compile for current Window");
+    }
+    else
+    {
+        Core::Log::w("appwindow/on_actionCompile_Run_triggered", "Nothing happened, No active window");
     }
 }
 
@@ -803,6 +827,11 @@ void AppWindow::on_actionCompile_Run_triggered()
         if (ui->actionEditor_Mode->isChecked())
             on_actionSplit_Mode_triggered();
         currentWindow()->compileAndRun();
+        Core::Log::i("appwindow/on_actionCompile_Run_triggered", "Invoked compile run for current Window");
+    }
+    else
+    {
+        Core::Log::w("appwindow/on_actionCompile_Run_triggered", "Nothing happened, No active window");
     }
 }
 
@@ -813,36 +842,65 @@ void AppWindow::on_actionRun_triggered()
         if (ui->actionEditor_Mode->isChecked())
             on_actionSplit_Mode_triggered();
         currentWindow()->runOnly();
+        Core::Log::i("appwindow/on_actionRun_triggered", "Invoked Run only for current window");
+    }
+    else
+    {
+        Core::Log::w("appwindow/on_actionRun_triggered", "Nothing happened, No active window");
     }
 }
 
 void AppWindow::on_actionFormat_code_triggered()
 {
     if (currentWindow() != nullptr)
+    {
         currentWindow()->formatSource();
+        Core::Log::i("appwindow/on_actionFormat_code_triggered", "Invoked on currentWindow");
+    }
+    else
+    {
+        Core::Log::w("appwindow/on_actionFormat_code_triggered", "Nothing happened, No active window");
+    }
 }
 
 void AppWindow::on_actionRun_Detached_triggered()
 {
     if (currentWindow() != nullptr)
+    {
         currentWindow()->detachedExecution();
+        Core::Log::i("appwindow/on_actionRun_Detached_triggered", "Invoked on currentWindow");
+    }
+    else
+    {
+        Core::Log::w("appwindow/on_actionRun_Detached_triggered", "Nothing happened, No active window");
+    }
 }
 
 void AppWindow::on_actionKill_Processes_triggered()
 {
     if (currentWindow() != nullptr)
+    {
         currentWindow()->killProcesses();
+        Core::Log::i("appwindow/on_actionKill_Processes_triggered", "Invoked on currentWindow");
+    }
+    else
+    {
+        Core::Log::w("appwindow/on_actionKill_Processes_triggered", "Nothing happened, No active window");
+    }
 }
 
 void AppWindow::on_actionUse_Snippets_triggered()
 {
+    Core::Log::i("appwindow/on_actionUse_Snippets_triggered", "Use snipped trigerred");
     auto current = currentWindow();
     if (current != nullptr)
     {
         auto lang = current->getLanguage();
         auto names = settingManager->getSnippetsNames(lang);
+        Core::Log::i("appwindow/on_actionUse_Snippets_triggered", "Lang : " + lang + "name : " + names.join(","));
         if (names.isEmpty())
         {
+            Core::Log::w("appwindow/on_actionUse_Snippets_triggered", "No snippets exists");
             activeLogger->warn("Snippets",
                                "There are no snippets for " + lang + ". Please add snippets in the preference window.");
         }
@@ -852,17 +910,25 @@ void AppWindow::on_actionUse_Snippets_triggered()
             auto name = QInputDialog::getItem(this, tr("Use Snippets"), tr("Choose a snippet:"), names, 0, true, ok);
             if (*ok)
             {
+                Core::Log::i("appwindow/on_actionUse_Snippets_triggered", "Looking for snippet : " + name);
                 if (names.contains(name))
                 {
+                    Core::Log::i("appwindow/on_actionUse_Snippets_triggered", "Found snippet and inserted");
                     auto content = settingManager->getSnippet(lang, name);
                     current->insertText(content);
                 }
                 else
                 {
+                    Core::Log::w("appwindow/on_actionUse_Snippets_triggered", "No snippet for query");
                     activeLogger->warn("Snippets", "There is no snippet named " + name + " for " + lang);
                 }
             }
+            delete ok;
         }
+    }
+    else
+    {
+        Core::Log::w("appwindow/on_actionUse_Snippets_triggered", "No window. Skipped");
     }
 }
 
@@ -873,7 +939,14 @@ void AppWindow::on_actionEditor_Mode_triggered()
     ui->actionIO_Mode->setChecked(false);
     ui->actionSplit_Mode->setChecked(false);
     if (currentWindow() != nullptr)
+    {
+        Core::Log::i("appwindow/on_actionEditor_Mode_triggered", "Switched to editor only mode");
         currentWindow()->getSplitter()->setSizes({1, 0});
+    }
+    else
+    {
+        Core::Log::w("appwindow/on_actionEditor_Mode_triggered", "currentWindow is null. No UI changed");
+    }
 }
 
 void AppWindow::on_actionIO_Mode_triggered()
@@ -883,7 +956,14 @@ void AppWindow::on_actionIO_Mode_triggered()
     ui->actionIO_Mode->setChecked(true);
     ui->actionSplit_Mode->setChecked(false);
     if (currentWindow() != nullptr)
+    {
+        Core::Log::w("appwindow/on_actionIO_Mode_triggered", "Switched to IO Mode");
         currentWindow()->getSplitter()->setSizes({0, 1});
+    }
+    else
+    {
+        Core::Log::w("appwindow/on_actionIO_Mode_triggered", "currentWindow is null. No UI changed");
+    }
 }
 
 void AppWindow::on_actionSplit_Mode_triggered()
@@ -893,8 +973,14 @@ void AppWindow::on_actionSplit_Mode_triggered()
     ui->actionIO_Mode->setChecked(false);
     ui->actionSplit_Mode->setChecked(true);
     auto state = settingManager->getSplitterSizes();
+    Core::Log::i("appwindow/on_actionSplit_Mode_triggered", "Entered split mode");
     if (currentWindow() != nullptr)
+    {
+        Core::Log::i("appwindow/on_actionSplit_Mode_triggered", "Restored splitter state");
         currentWindow()->getSplitter()->restoreState(state);
+    }
+    else
+        Core::Log::w("appwindow/on_actionSplit_Mode_triggered", "No UI change required");
 }
 
 void AppWindow::on_action_indent_triggered()
