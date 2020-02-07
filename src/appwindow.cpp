@@ -593,6 +593,7 @@ void AppWindow::on_actionClose_Saved_triggered()
 
 void AppWindow::on_actionRestore_Settings_triggered()
 {
+    Core::Log::i("appwindow/on_actionRestore_Settings_triggered", "Invoked");
     auto res = QMessageBox::question(this, "Reset preferences?",
                                      "Are you sure you want to reset the"
                                      " all preferences to default?",
@@ -601,11 +602,13 @@ void AppWindow::on_actionRestore_Settings_triggered()
     {
         settingManager->resetSettings();
         onSettingsApplied();
+        Core::Log::i("appwindow/on_actionRestore_Settings_triggered", "Reset success");
     }
 }
 
 void AppWindow::on_actionSettings_triggered()
 {
+    Core::Log::i("appwindow/on_actionSettings_triggered", "Launching settings window");
     preferenceWindow->updateShow();
 }
 
@@ -616,6 +619,7 @@ void AppWindow::on_actionSettings_triggered()
 void AppWindow::onReceivedMessage(quint32 instanceId, QByteArray message)
 {
     raise();
+    Core::Log::i("appwindow/onReceivedMessage", "Recieved a request from secondary instances. Data is : " + message);
 
     message = message.mid(message.indexOf("NOLOSTDATA") + 10);
     auto json = QJsonDocument::fromBinaryData(message);
@@ -625,12 +629,14 @@ void AppWindow::onReceivedMessage(quint32 instanceId, QByteArray message)
 
     if (json["type"] == "normal")
     {
+        Core::Log::i("appwindow/onReceivedMessage", "branched to normal");
         FROMJSON(depth).toInt();
         FROMJSON(paths).toVariant().toStringList();
         openPaths(paths);
     }
     else if (json["type"] == "contest")
     {
+        Core::Log::i("appwindow/onReceivedMessage", "branched to contest");
         FROMJSON(number).toInt();
         FROMJSON(path).toString();
         QString lang = settingManager->getDefaultLang();
@@ -642,17 +648,20 @@ void AppWindow::onReceivedMessage(quint32 instanceId, QByteArray message)
             lang = "Python";
         openContest(path, lang, number);
     }
+	else Core::Log::w("appwindow/onReceivedMessage", "ignored");
 }
 
 #undef FROMJSON
 
 void AppWindow::onTabCloseRequested(int index)
 {
+    Core::Log::i("appwindow/onTabCloseRequested", "Closing tab at index : " + Core::Stringify(index));
     closeTab(index);
 }
 
 void AppWindow::onTabChanged(int index)
 {
+    Core::Log::i("appwindow/onTabChanged", "tab is being changed to " + Core::Stringify(index));
     if (index == -1)
     {
         activeLogger = nullptr;
@@ -694,6 +703,7 @@ void AppWindow::onTabChanged(int index)
 
 void AppWindow::onEditorChanged()
 {
+    Core::Log::i("appwindow/onEditorChanged", "Invoked onEditorChanged");
     if (currentWindow() != nullptr)
     {
         QMap<QString, QVector<int>> tabsByName;
@@ -712,10 +722,11 @@ void AppWindow::onEditorChanged()
         }
 
         setWindowTitle(currentWindow()->getTabTitle(true, false) + " - CP Editor");
+        Core::Log::i("appwindow/onEditorChanged",
+                     "Changed window title to " + currentWindow()->getTabTitle(true, false) + " - CP Editor");
     }
 }
 
-//*************************************** LOGS DONE AFTER THIS ********************************************
 void AppWindow::onSaveTimerElapsed()
 {
     Core::Log::i("appwindow/onSaveTimerElapsed", "Autosave invoked");
@@ -748,7 +759,7 @@ void AppWindow::onSettingsApplied()
     onTabChanged(ui->tabWidget->currentIndex());
     onEditorChanged();
 
-	Core::Log::i("appwindow/onSettingsApplied", "Applied settings to appwindow");
+    Core::Log::i("appwindow/onSettingsApplied", "Applied settings to appwindow");
 }
 
 void AppWindow::onIncomingCompanionRequest(Network::CompanionData data)
