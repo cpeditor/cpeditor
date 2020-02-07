@@ -16,11 +16,13 @@
  */
 
 #include "Core/MessageLogger.hpp"
+#include "Core/EventLogger.hpp"
 #include <QDateTime>
 
 void MessageLogger::setContainer(QTextBrowser *value)
 {
     MessageLogger::box = value;
+    Core::Log::i("messagelogger/setContainer", "Container set and updated to open links");
     box->setOpenExternalLinks(true);
 }
 
@@ -45,20 +47,24 @@ void MessageLogger::message(const QString &head, const QString &body, const QStr
 
 void MessageLogger::info(const QString &head, const QString &body)
 {
+    Core::Log::i("messagelogger/message/" + head, body);
     message(head, body, "");
 }
 
 void MessageLogger::warn(const QString &head, const QString &body)
 {
+    Core::Log::w("messagelogger/message/" + head, body);
     message(head, body, "green");
 }
 
 void MessageLogger::error(const QString &head, const QString &body)
 {
+    Core::Log::e("messagelogger/message/" + head, body);
     message(head, body, "red");
 }
 
 void MessageLogger::clear()
 {
+    Core::Log::i("messagelogger/clear", "Cleared the message box");
     box->clear();
 }
