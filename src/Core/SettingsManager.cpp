@@ -160,7 +160,7 @@ QString SettingManager::getTemplatePathPython()
 }
 QString SettingManager::getFont()
 {
-    return mSettings->value("font", "").toString();
+    return mSettings->value("font", "monospace").toString();
 }
 
 QRect SettingManager::getGeometry()
@@ -444,6 +444,7 @@ void SettingManager::setCurrentIndex(int index)
 }
 void SettingManager::clearEditorStatus()
 {
+    setNumberOfTabs(0);
     mSettings->remove("editor_status");
 }
 QMap<QString, QVariant> SettingManager::getEditorStatus(int index)

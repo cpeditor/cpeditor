@@ -257,7 +257,7 @@ void PreferenceWindow::on_hotkeys_clicked(bool checked)
 void PreferenceWindow::on_font_button_clicked()
 {
     bool ok = false;
-    QFont fp = QFontDialog::getFont(&ok, currentFont);
+    QFont fp = QFontDialog::getFont(&ok, currentFont, this, "Choose a font", QFontDialog::MonospacedFonts);
 
     if (ok)
     {
