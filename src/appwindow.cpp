@@ -902,6 +902,8 @@ void AppWindow::on_action_indent_triggered()
     auto tmp = currentWindow();
     if (tmp != nullptr)
         tmp->getEditor()->indent();
+    else
+        Core::Log::w("appwindow/on_action_indent_triggered", "skipped action because no active tab exists");
 }
 
 void AppWindow::on_action_unindent_triggered()
@@ -909,6 +911,8 @@ void AppWindow::on_action_unindent_triggered()
     auto tmp = currentWindow();
     if (tmp != nullptr)
         tmp->getEditor()->unindent();
+    else
+        Core::Log::w("appwindow/on_action_unindent_triggered", "skipped action because no active tab exists");
 }
 
 void AppWindow::on_action_swap_line_up_triggered()
@@ -916,6 +920,8 @@ void AppWindow::on_action_swap_line_up_triggered()
     auto tmp = currentWindow();
     if (tmp != nullptr)
         tmp->getEditor()->swapLineUp();
+    else
+        Core::Log::w("appwindow/on_action_swap_line_up_triggered", "skipped action because no active tab exists");
 }
 
 void AppWindow::on_action_swap_line_down_triggered()
@@ -923,6 +929,8 @@ void AppWindow::on_action_swap_line_down_triggered()
     auto tmp = currentWindow();
     if (tmp != nullptr)
         tmp->getEditor()->swapLineDown();
+    else
+        Core::Log::w("appwindow/on_action_swap_line_down_triggered", "skipped action because no active tab exists");
 }
 
 void AppWindow::on_action_delete_line_triggered()
@@ -930,6 +938,8 @@ void AppWindow::on_action_delete_line_triggered()
     auto tmp = currentWindow();
     if (tmp != nullptr)
         tmp->getEditor()->deleteLine();
+    else
+        Core::Log::w("appwindow/on_action_delete_line_triggered", "skipped action because no active tab exists");
 }
 
 void AppWindow::on_action_toggle_comment_triggered()
@@ -937,6 +947,8 @@ void AppWindow::on_action_toggle_comment_triggered()
     auto tmp = currentWindow();
     if (tmp != nullptr)
         tmp->getEditor()->toggleComment();
+    else
+        Core::Log::w("appwindow/on_action_toggle_comment_triggered", "skipped action because no active tab exists");
 }
 
 void AppWindow::on_action_toggle_block_comment_triggered()
@@ -944,6 +956,9 @@ void AppWindow::on_action_toggle_block_comment_triggered()
     auto tmp = currentWindow();
     if (tmp != nullptr)
         tmp->getEditor()->toggleBlockComment();
+    else
+        Core::Log::w("appwindow/on_action_toggle_block_comment_triggered",
+                     "skipped action because no active tab exists");
 }
 
 void AppWindow::on_confirmTriggered(MainWindow *widget)
@@ -951,16 +966,19 @@ void AppWindow::on_confirmTriggered(MainWindow *widget)
     int index = ui->tabWidget->indexOf(widget);
     if (index != -1)
         ui->tabWidget->setCurrentIndex(index);
+    else
+        Core::Log::w("appwindow/on_confirmTriggered", "index of widget returned nullptr");
 }
-//*************************************************** Methods below this have been covered with logger ************************************************//
+
 void AppWindow::onTabContextMenuRequested(const QPoint &pos)
 {
-    Core::Log::i("onTabContextMenuRequested", "Location is : " + Core::Stringify(pos.x()) + Core::Stringify(pos.y()));
-    
-	int index = ui->tabWidget->tabBar()->tabAt(pos);
+    Core::Log::i("appwindow/onTabContextMenuRequested",
+                 "Location is : " + Core::Stringify(pos.x()) + Core::Stringify(pos.y()));
+
+    int index = ui->tabWidget->tabBar()->tabAt(pos);
     if (index != -1)
     {
-        Core::Log::i("onTabContextMenuRequested", "Tab index is : " + Core::Stringify(index));
+        Core::Log::i("appwindow/onTabContextMenuRequested", "Tab index is : " + Core::Stringify(index));
 
         auto widget = windowIndex(index);
         auto menu = new QMenu();
@@ -989,16 +1007,16 @@ void AppWindow::onTabContextMenuRequested(const QPoint &pos)
         menu->addAction("Close All", [this] { on_actionClose_All_triggered(); });
         QString filePath = widget->getFilePath();
 
-        Core::Log::i("onTabContextMenuRequested", "Filepath is : " + filePath);
+        Core::Log::i("appwindow/onTabContextMenuRequested", "Filepath is : " + filePath);
 
         if (!widget->isUntitled() && QFile::exists(filePath))
         {
-            Core::Log::i("onTabContextMenuRequested", "Not untitled and filepath exists in system");
+            Core::Log::i("appwindow/onTabContextMenuRequested", "Not untitled and filepath exists in system");
             menu->addSeparator();
             menu->addAction("Copy File Path", [filePath] { QGuiApplication::clipboard()->setText(filePath); });
             // Reference: http://lynxline.com/show-in-finder-show-in-explorer/ and https://forum.qt.io/post/296072
 #if defined(Q_OS_MACOS)
-            Core::Log::i("onTabContextMenuRequested", "Adding menu reveal in finder");
+            Core::Log::i("appwindow/onTabContextMenuRequested", "Adding menu reveal in finder");
             menu->addAction("Reveal in Finder", [filePath] {
                 QStringList args;
                 args << "-e";
@@ -1012,14 +1030,14 @@ void AppWindow::onTabContextMenuRequested(const QPoint &pos)
                 QProcess::startDetached("osascript", args);
             });
 #elif defined(Q_OS_WIN)
-            Core::Log::i("onTabContextMenuRequested", "Adding menu reveal in explorer");
+            Core::Log::i("appwindow/onTabContextMenuRequested", "Adding menu reveal in explorer");
             menu->addAction("Reveal in Explorer", [filePath] {
                 QStringList args;
                 args << "/select," << QDir::toNativeSeparators(filePath);
                 QProcess::startDetached("explorer", args);
             });
 #elif defined(Q_OS_UNIX)
-            Core::Log::i("onTabContextMenuRequested", "Adding menu reveal in linux");
+            Core::Log::i("appwindow/onTabContextMenuRequested", "Adding menu reveal in linux");
             QProcess proc;
             proc.start("xdg-mime", QStringList() << "query"
                                                  << "default"
@@ -1027,9 +1045,9 @@ void AppWindow::onTabContextMenuRequested(const QPoint &pos)
             auto finished = proc.waitForFinished(2000);
             if (finished)
             {
-                Core::Log::i("onTabContextMenuRequested/xdg-mime", "Process finished");
+                Core::Log::i("appwindow/onTabContextMenuRequested/xdg-mime", "Process finished");
                 auto output = proc.readLine().simplified();
-                Core::Log::i("onTabContextMenuRequested/xdg-mime/output", output);
+                Core::Log::i("appwindow/onTabContextMenuRequested/xdg-mime/output", output);
                 QString program;
                 QStringList args;
                 auto nativePath = QUrl::fromLocalFile(filePath).toString();
@@ -1075,7 +1093,7 @@ void AppWindow::onTabContextMenuRequested(const QPoint &pos)
             }
             else
             {
-                Core::Log::i("onTabContextMenuRequested/xdg-mime",
+                Core::Log::i("appwindow/onTabContextMenuRequested/xdg-mime",
                              "Process cannot finish. So opting for openFolder by using QDesktopServices");
 
                 menu->addAction("Open Containing Folder", [filePath] {
@@ -1083,15 +1101,16 @@ void AppWindow::onTabContextMenuRequested(const QPoint &pos)
                 });
             }
 #else
-            Core::Log::w("onTabContextMenuRequested", "Unknown OS. Fallback to open via QDesktopServices");
+            Core::Log::w("appwindow/onTabContextMenuRequested", "Unknown OS. Fallback to open via QDesktopServices");
             menu->addAction("Open Containing Folder",
                             [filePath] { QDesktopServices::openUrl(QUrl::fromLocalFile(QFileInfo(filePath).path())); });
 #endif
         }
         else if (!widget->isUntitled() && QFile::exists(QFileInfo(widget->getFilePath()).path()))
         {
-            Core::Log::i("onTabContextMenuRequested", "filepath does not exists. Looking if tab provides filepath " +
-                                                          QFileInfo(widget->getFilePath()).path());
+            Core::Log::i("appwindow/onTabContextMenuRequested",
+                         "filepath does not exists. Looking if tab provides filepath " +
+                             QFileInfo(widget->getFilePath()).path());
             menu->addSeparator();
             menu->addAction("Copy path", [filePath] {
                 auto clipboard = QGuiApplication::clipboard();
@@ -1116,8 +1135,7 @@ void AppWindow::onTabContextMenuRequested(const QPoint &pos)
             if (ok)
                 widget->setProblemURL(url);
             else
-                Core::Log::i("onTabContextMenuRequested", "set problem url dialog closed or cancelled");
-                
+                Core::Log::i("appwindow/onTabContextMenuRequested", "set problem url dialog closed or cancelled");
         });
         menu->popup(ui->tabWidget->tabBar()->mapToGlobal(pos));
     }
@@ -1128,7 +1146,7 @@ MainWindow *AppWindow::currentWindow()
     int current = ui->tabWidget->currentIndex();
     if (current == -1)
     {
-        Core::Log::w("currentWindow", "No active window, returning nullptr");
+        Core::Log::w("appwindow/currentWindow", "No active window, returning nullptr");
         return nullptr;
     }
     return dynamic_cast<MainWindow *>(ui->tabWidget->widget(current));
@@ -1138,7 +1156,7 @@ MainWindow *AppWindow::windowIndex(int index)
 {
     if (index == -1)
     {
-        Core::Log::w("windowIndex", "No active window, returning nullptr");
+        Core::Log::w("appwindow/windowIndex", "No active window(-1), returning nullptr");
         return nullptr;
     }
     return dynamic_cast<MainWindow *>(ui->tabWidget->widget(index));

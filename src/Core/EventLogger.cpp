@@ -3,13 +3,13 @@
 #include <QStandardPaths>
 #include <QSysInfo>
 #include <QVector>
-#include <iostream>
 #include <generated/version.hpp>
+#include <iostream>
 
 namespace Core
 {
 
-QFile Log::logFile(QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/" + LOG_FILE_NAME);
+QFile Log::logFile;
 bool Log::shouldWriteToStderr;
 
 void Log::e(QString head, QString body)
@@ -29,11 +29,14 @@ void Log::i(QString head, QString body)
     logWithPriority("[INFO]", head, body);
 }
 
-void Log::init(bool dumptoStderr)
+void Log::init(int instance, bool dumptoStderr)
 {
     shouldWriteToStderr = false;
+    logFile.setFileName(QStandardPaths::writableLocation(QStandardPaths::TempLocation) + "/" + LOG_FILE_NAME +
+                        Core::Stringify(instance) + "-" +
+                        QDate::currentDate().toString(Qt::DateFormat::DefaultLocaleShortDate) + ".log");
     logFile.open(QIODevice::WriteOnly | QFile::Text);
-    if (logFile.isOpen())
+    if (logFile.isOpen() && logFile.isWritable())
     {
 
         i("Logger", "Event logger has arrived!");
@@ -43,8 +46,7 @@ void Log::init(bool dumptoStderr)
     else
     {
         std::cerr << ("Failed to start the event logger. Application cannot create log file at " +
-                      QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/" + LOG_FILE_NAME)
-                         .toStdString();
+                      logFile.fileName().toStdString());
 
         shouldWriteToStderr = true; // Since log to file cannot be performed, log on stderr explicitly
     }
@@ -59,7 +61,7 @@ QString Log::platformInformation()
 {
     QString res;
     // Check https://doc.qt.io/qt-5/qsysinfo.html to know what each identifier means
-    res.append("buildABI : " + QSysInfo::buildAbi() + "\n");
+    res.append("\nbuildABI : " + QSysInfo::buildAbi() + "\n");
     res.append("buildCPUArchitecture : " + QSysInfo::buildCpuArchitecture() + "\n");
     res.append("currentCPUArchitecture : " + QSysInfo::currentCpuArchitecture() + "\n");
     res.append("kernelType : " + QSysInfo::kernelType() + "\n");
@@ -73,7 +75,7 @@ QString Log::platformInformation()
     return res;
 }
 
-void Log::logWithPriority(QString priority, QString head, QString body)
+void Log::logWithPriority(QString priority, QString const &head, QString const &body)
 {
     QString logContent;
     logContent.append(dateTimeStamp());

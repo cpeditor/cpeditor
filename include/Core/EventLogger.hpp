@@ -3,7 +3,7 @@
 #include <iomanip>
 #include <sstream>
 
-#define LOG_FILE_NAME "cpeditor.log"
+#define LOG_FILE_NAME "cpeditor-"
 
 namespace Core
 {
@@ -23,12 +23,12 @@ class Log
     static void wtf(QString head, QString body);
     static void i(QString head, QString body);
 
-    static void init(bool dumpToStderr = false);
+    static void init(int instanceCount, bool dumpToStderr = false);
 
   private:
     static QString dateTimeStamp();
     static QString platformInformation();
-    static void logWithPriority(QString, QString, QString);
+    static void logWithPriority(QString, QString const &, QString const &);
 
     static QFile logFile;
     static bool shouldWriteToStderr;

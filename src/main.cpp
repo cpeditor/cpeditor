@@ -71,13 +71,15 @@ int main(int argc, char *argv[])
     bool noHotExit = parser.isSet("no-hot-exit");
     bool shouldDumpTostderr = parser.isSet("verbose");
 
-    Core::Log::init(shouldDumpTostderr);
+    auto instance = static_cast<int>(app.instanceId());
+    Core::Log::init(instance, shouldDumpTostderr);
+    Core::Log::i("main", "Instance number is : " + Core::Stringify(instance));
 
     auto args = parser.positionalArguments();
 
     if (contest)
     {
-        Core::Log::i("Contest", "Branched into contest");
+        Core::Log::i("main/Contest", "Branched into contest");
         if (args.length() != 2)
         {
             cerr << "Invalid Arguments\n\n"
@@ -85,7 +87,7 @@ int main(int argc, char *argv[])
             Core::Log::wtf("Contest", "Exiting because contest arguments are not satisfied");
             return 1;
         }
-        Core::Log::i("Contest", "Argument length is okay, Begining parsing of arguments to int");
+        Core::Log::i("main/Contest", "Argument length is okay, Begining parsing of arguments to int");
 
         bool ok = false;
         int number = args[0].toInt(&ok);
@@ -93,8 +95,8 @@ int main(int argc, char *argv[])
         if (!ok || number < 0 || number > 26)
         {
             swap(args[0], args[1]);
-            Core::Log::w("Contest", "Failed to parse : " + args[1]);
-            Core::Log::w("Contest", " Trying next (i.e) : " + args[0]);
+            Core::Log::w("main/Contest", "Failed to parse : " + args[1]);
+            Core::Log::w("main/Contest", " Trying next (i.e) : " + args[0]);
             number = args[0].toInt(&ok);
         }
 
@@ -102,7 +104,7 @@ int main(int argc, char *argv[])
         {
             cerr << "Number of problems should be an integer in 0~26.\n\n"
                  << "See " + programName + " --help for more infomation.\n\n";
-            Core::Log::wtf("Contest", "Exiting because none of the arguments were parsed successfully. Provided : " +
+            Core::Log::wtf("main/Contest", "Exiting because none of the arguments were parsed successfully. Provided : " +
                                           Core::Stringify(number));
             return 1;
         }
@@ -111,7 +113,7 @@ int main(int argc, char *argv[])
         if (QFileInfo(path).isRelative())
             path = QDir::current().filePath(path);
 
-        Core::Log::i("Contest", "Path extracted as : " + path);
+        Core::Log::i("main/Contest", "Path extracted as : " + path);
 
         if (!parser.isSet("new") && app.isSecondary())
         {
@@ -132,27 +134,27 @@ int main(int argc, char *argv[])
             }
         }
 
-        Core::Log::i("Contest/main", "Launching the new Appwindow with args : " + Core::Stringify(cpp) + ", " +
+        Core::Log::i("main/Contest", "Launching the new Appwindow with args : " + Core::Stringify(cpp) + ", " +
                                          Core::Stringify(java) + ", " + Core::Stringify(python) + ", " +
                                          Core::Stringify(noHotExit) + ", " + Core::Stringify(number) + ", " +
                                          path);
 
         AppWindow w(cpp, java, python, noHotExit, number, path);
-        Core::Log::i("Contest/main", "Launched window connecting this window to onRecieveMessage()");
+        Core::Log::i("main/Contest", "Launched window connecting this window to onRecieveMessage()");
         QObject::connect(&app, &SingleApplication::receivedMessage, &w, &AppWindow::onReceivedMessage);
-        Core::Log::i("Contest/main", "Showing the application window and begining the event loop");
+        Core::Log::i("main/Contest", "Showing the application window and begining the event loop");
         w.show();
         return app.exec();
     }
     else
     {
-        Core::Log::i("NoContest", "Branched to no contest. Now parsing depth to int");
+        Core::Log::i("main/NoContest", "Branched to no contest. Now parsing depth to int");
         bool ok = false;
         int depth = parser.value("depth").toInt(&ok);
 
         if (!ok || depth < -1)
         {
-            Core::Log::wtf("NoContest", "Failed to use parse depth. Provided : " + parser.value("depth"));
+            Core::Log::wtf("main/NoContest", "Failed to use parse depth. Provided : " + parser.value("depth"));
             cerr << "Depth should be a non-negative integer.\n\n"
                  << "See " + programName + " --help for more infomation.\n\n";
             return 1;
@@ -165,7 +167,7 @@ int main(int argc, char *argv[])
         {
             if (QFileInfo(path).isRelative())
                 path = QDir::current().filePath(path);
-            Core::Log::i("NoContest", "Path is : " + path);
+            Core::Log::i("main/NoContest", "Path is : " + path);
         }
 
         if (!parser.isSet("new") && app.isSecondary())
@@ -179,21 +181,21 @@ int main(int argc, char *argv[])
             json["paths"] = QJsonArray::fromStringList(args);
             if (app.sendMessage("AAAAAAAAAAAAAAAAAAAANOLOSTDATA" + QJsonDocument(json).toBinaryData()))
             {
-                Core::Log::i("NoContest/Instance",
+                Core::Log::i("main/NoContest/Instance",
                              "This is secondary application. Sending to primary instance the data : " +
                                  QJsonDocument(json).toJson());
                 cerr << "There is already a CP Editor running. New tabs are opened there.\n";
                 return 0;
             }
         }
-        Core::Log::i("NoContest/main", "Launching the new Appwindow with args : " + Core::Stringify(cpp) + ", " +
+        Core::Log::i("main/NoContest/main", "Launching the new Appwindow with args : " + Core::Stringify(cpp) + ", " +
                                          Core::Stringify(java) + ", " + Core::Stringify(python) + ", " +
                                          Core::Stringify(noHotExit) + ", " + args.join(","));
 
         AppWindow w(depth, cpp, java, python, noHotExit, args);
-        Core::Log::i("NoContest/main", "Launched window connecting this window to onRecieveMessage()");
+        Core::Log::i("main/NoContest", "Launched window connecting this window to onRecieveMessage()");
         QObject::connect(&app, &SingleApplication::receivedMessage, &w, &AppWindow::onReceivedMessage);
-        Core::Log::i("NoContest/main", "Showing the application window and begining the event loop");
+        Core::Log::i("main/NoContest", "Showing the application window and begining the event loop");
         w.show();
         return app.exec();
     }
