@@ -15,6 +15,7 @@
  *
  */
 
+#include "Core/EventLogger.hpp"
 #include "Core/Compiler.hpp"
 #include <QFileInfo>
 
@@ -23,6 +24,7 @@ namespace Core
 
 Compiler::Compiler()
 {
+    Core::Log::i("compiler/Constructor", "Invoked");
     compileProcess = new QProcess();
     connect(compileProcess, SIGNAL(started()), this, SIGNAL(compilationStarted()));
     connect(compileProcess, SIGNAL(finished(int, QProcess::ExitStatus)), this,
@@ -31,9 +33,15 @@ Compiler::Compiler()
 
 Compiler::~Compiler()
 {
+    Core::Log::i("compiler/Destructor", "Invoked");
     if (compileProcess != nullptr)
     {
+        Core::Log::i("compiler/Destructor", "Compiler object destroyed");
         delete compileProcess;
+    }
+    else
+    {
+        Core::Log::i("compiler/Destructor", "compileProcess is already null");
     }
 }
 
@@ -41,6 +49,7 @@ void Compiler::start(const QString &filePath, const QString &compileCommand, con
 {
     if (!QFile::exists(filePath))
     {
+        Core::Log::i("compiler/start", "The source file [" + filePath + "] doesn't exist");
         emit compilationErrorOccured("The source file [" + filePath + "] doesn't exist");
         return;
     }
@@ -49,20 +58,24 @@ void Compiler::start(const QString &filePath, const QString &compileCommand, con
 
     if (lang == "C++")
     {
+        Core::Log::i("Compiler/start", "lang branched into C++");
         command = compileCommand + " \"" + QFileInfo(filePath).canonicalFilePath() + "\" -o \"" +
                   QFileInfo(filePath).canonicalPath() + "/" + QFileInfo(filePath).completeBaseName() + "\"";
     }
     else if (lang == "Java")
     {
+        Core::Log::i("Compiler/start", "lang branched into Java");
         command = compileCommand + " \"" + QFileInfo(filePath).canonicalFilePath() + "\"";
     }
     else if (lang == "Python")
     {
+        Core::Log::i("Compiler/start", "lang branched into Python");
         emit compilationFinished("");
         return;
     }
     else
     {
+        Core::Log::i("compiler/start", "lang is unsupported");
         emit compilationErrorOccured("Unsupported programming language \"" + lang + "\"");
         return;
     }
@@ -72,11 +85,15 @@ void Compiler::start(const QString &filePath, const QString &compileCommand, con
 
 bool Compiler::check(const QString &compileCommand)
 {
+    Core::Log::i("compiler/check", "Invoked");
     QProcess checkProcess;
     checkProcess.start(compileCommand.trimmed().split(' ').front() + " --version");
     bool finished = checkProcess.waitForFinished(1000);
     if (finished && checkProcess.exitCode() == 0)
+    {
+        Core::Log::i("compiler/check", "checkProcess finished");
         return true;
+    }
     checkProcess.kill();
     checkProcess.start(compileCommand.trimmed().split(' ').front() + " -version");
     finished = checkProcess.waitForFinished(1000);
@@ -85,12 +102,15 @@ bool Compiler::check(const QString &compileCommand)
 
 void Compiler::onProcessFinished(int exitCode, QProcess::ExitStatus exitStatus)
 {
+    Core::Log::i("compiler/onProcessFinished", "Invoked");
     if (exitCode == 0)
     {
+        Core::Log::i("compiler/onProcessFinished", "Branched into exitCode 0");
         emit compilationFinished(compileProcess->readAllStandardError());
     }
     else
     {
+        Core::Log::i("compiler/onProcessFinished", "Branched into Not exitCode 0");
         emit compilationErrorOccured(compileProcess->readAllStandardError());
     }
 }
