@@ -36,8 +36,6 @@ int main(int argc, char *argv[])
     SingleApplication::setApplicationVersion(APP_VERSION_MAJOR "." APP_VERSION_MINOR "." APP_VERSION_PATCH);
 
     QTextStream cerr(stderr, QIODevice::WriteOnly);
-    // if verbose is enabled, then both log and editor errors are written to stderr
-    // @ouuan : Could you make editor errors go to stdout?
 
     QString programName(argv[0]);
 
@@ -84,7 +82,7 @@ int main(int argc, char *argv[])
         {
             cerr << "Invalid Arguments\n\n"
                  << "See " + programName + " --help for more infomation.\n\n";
-            Core::Log::wtf("Contest", "Exiting because contest arguments are not satisfied");
+            Core::Log::e("Contest", "Exiting because contest arguments are not satisfied");
             return 1;
         }
         Core::Log::i("main/Contest", "Argument length is okay, Begining parsing of arguments to int");
@@ -104,8 +102,8 @@ int main(int argc, char *argv[])
         {
             cerr << "Number of problems should be an integer in 0~26.\n\n"
                  << "See " + programName + " --help for more infomation.\n\n";
-            Core::Log::wtf("main/Contest", "Exiting because none of the arguments were parsed successfully. Provided : " +
-                                          Core::Stringify(number));
+            Core::Log::e("main/Contest", "Exiting because none of the arguments were parsed successfully. Provided : " +
+                                             Core::Stringify(number));
             return 1;
         }
 
@@ -136,8 +134,7 @@ int main(int argc, char *argv[])
 
         Core::Log::i("main/Contest", "Launching the new Appwindow with args : " + Core::Stringify(cpp) + ", " +
                                          Core::Stringify(java) + ", " + Core::Stringify(python) + ", " +
-                                         Core::Stringify(noHotExit) + ", " + Core::Stringify(number) + ", " +
-                                         path);
+                                         Core::Stringify(noHotExit) + ", " + Core::Stringify(number) + ", " + path);
 
         AppWindow w(cpp, java, python, noHotExit, number, path);
         Core::Log::i("main/Contest", "Launched window connecting this window to onRecieveMessage()");
@@ -154,7 +151,7 @@ int main(int argc, char *argv[])
 
         if (!ok || depth < -1)
         {
-            Core::Log::wtf("main/NoContest", "Failed to use parse depth. Provided : " + parser.value("depth"));
+            Core::Log::e("main/NoContest", "Failed to use parse depth. Provided : " + parser.value("depth"));
             cerr << "Depth should be a non-negative integer.\n\n"
                  << "See " + programName + " --help for more infomation.\n\n";
             return 1;
@@ -189,8 +186,8 @@ int main(int argc, char *argv[])
             }
         }
         Core::Log::i("main/NoContest/main", "Launching the new Appwindow with args : " + Core::Stringify(cpp) + ", " +
-                                         Core::Stringify(java) + ", " + Core::Stringify(python) + ", " +
-                                         Core::Stringify(noHotExit) + ", " + args.join(","));
+                                                Core::Stringify(java) + ", " + Core::Stringify(python) + ", " +
+                                                Core::Stringify(noHotExit) + ", " + args.join(","));
 
         AppWindow w(depth, cpp, java, python, noHotExit, args);
         Core::Log::i("main/NoContest", "Launched window connecting this window to onRecieveMessage()");
