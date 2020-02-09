@@ -654,13 +654,13 @@ void AppWindow::onReceivedMessage(quint32 instanceId, QByteArray message)
 
 void AppWindow::onTabCloseRequested(int index)
 {
-    Core::Log::i("appwindow/onTabCloseRequested", "Closing tab at index : " + Core::Stringify(index));
+    Core::Log::i("appwindow/onTabCloseRequested") << "Closing tab at index : " << index << endl;
     closeTab(index);
 }
 
 void AppWindow::onTabChanged(int index)
 {
-    Core::Log::i("appwindow/onTabChanged", "tab is being changed to " + Core::Stringify(index));
+    Core::Log::i("appwindow/onTabChanged") << "tab is being changed to " << index << endl;
     if (index == -1)
     {
         activeLogger = nullptr;
@@ -763,10 +763,9 @@ void AppWindow::onSettingsApplied()
 
 void AppWindow::onIncomingCompanionRequest(Network::CompanionData data)
 {
-    Core::Log::i("appwindow/onIncomingCompanionRequest",
-                 "Applying data to new tab. Args : shouldOpenNewTab" +
-                     Core::Stringify(settingManager->isCompetitiveCompanionOpenNewTab()) +
-                     ",currentWindow == nullptr " + Core::Stringify(currentWindow() == nullptr));
+    Core::Log::i("appwindow/onIncomingCompanionRequest")
+        << "Applying data to new tab. Args: shouldOpenNewTab:" << settingManager->isCompetitiveCompanionOpenNewTab()
+        << ", currentWindow == nullptr:" << (currentWindow() == nullptr) << endl;
 
     if (settingManager->isCompetitiveCompanionOpenNewTab() || currentWindow() == nullptr)
     {
@@ -1070,13 +1069,12 @@ void AppWindow::on_confirmTriggered(MainWindow *widget)
 
 void AppWindow::onTabContextMenuRequested(const QPoint &pos)
 {
-    Core::Log::i("appwindow/onTabContextMenuRequested",
-                 "Location is : " + Core::Stringify(pos.x()) + Core::Stringify(pos.y()));
+    Core::Log::i("appwindow/onTabContextMenuRequested") << "Location: (" << pos.x() << ", " << pos.y() << ")" << endl;
 
     int index = ui->tabWidget->tabBar()->tabAt(pos);
     if (index != -1)
     {
-        Core::Log::i("appwindow/onTabContextMenuRequested", "Tab index is : " + Core::Stringify(index));
+        Core::Log::i("appwindow/onTabContextMenuRequested") << "Tab index is : " << index;
 
         auto widget = windowIndex(index);
         auto menu = new QMenu();

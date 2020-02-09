@@ -1,34 +1,33 @@
 #include <QFile>
 #include <QTextStream>
-#include <iomanip>
-#include <sstream>
 
 namespace Core
 {
 
-template <class T> QString Stringify(T val)
-{
-    std::ostringstream out;
-    out << std::boolalpha << std::fixed << std::setprecision(10) << val;
-    return QString::fromStdString(out.str());
-}
+#define INFO_OF(x) #x ": " << x
 
 class Log
 {
   public:
-    static void e(QString head, QString body);
-    static void w(QString head, QString body);
-    static void wtf(QString head, QString body);
-    static void i(QString head, QString body);
+    static void i(const QString &head, const QString &body);
+    static void w(const QString &head, const QString &body);
+    static void e(const QString &head, const QString &body);
+    static void wtf(const QString &head, const QString &body);
+    static QTextStream &i(const QString &head);
+    static QTextStream &w(const QString &head);
+    static QTextStream &e(const QString &head);
+    static QTextStream &wtf(const QString &head);
 
     static void init(int instanceCount, bool dumpToStderr = false);
 
   private:
     static QString dateTimeStamp();
     static QString platformInformation();
-    static void logWithPriority(QString, QString const &, QString const &);
+    static void log(const QString &priority, const QString &head, const QString &body);
+    static QTextStream &log(const QString &priority, const QString &head);
 
+    static QTextStream logStream;
     static QFile logFile;
-    static bool shouldWriteToStderr;
 };
+
 } // namespace Core
