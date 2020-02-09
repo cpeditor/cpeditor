@@ -475,9 +475,7 @@ void AppWindow::on_actionSupport_me_triggered()
 
 void AppWindow::on_actionAbout_triggered()
 {
-    QMessageBox::about(this,
-                       QString::fromStdString(std::string("About CP Editor ") + APP_VERSION_MAJOR + "." +
-                                              APP_VERSION_MINOR + "." + APP_VERSION_PATCH),
+    QMessageBox::about(this, "About CP Editor " APP_VERSION,
                        "<p><b>CP Editor</b> is a native Qt-based Code Editor. It's specially designed "
                        "for competitive programming, unlike other editors/IDEs which are mainly for developers. It "
                        "helps you focus on your coding and automates the compilation, executing and testing. It even "
@@ -648,7 +646,8 @@ void AppWindow::onReceivedMessage(quint32 instanceId, QByteArray message)
             lang = "Python";
         openContest(path, lang, number);
     }
-	else Core::Log::w("appwindow/onReceivedMessage", "ignored");
+    else
+        Core::Log::w("appwindow/onReceivedMessage", "ignored");
 }
 
 #undef FROMJSON

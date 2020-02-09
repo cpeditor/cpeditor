@@ -3,8 +3,6 @@
 #include <iomanip>
 #include <sstream>
 
-#define LOG_FILE_NAME "cpeditor-"
-
 namespace Core
 {
 
