@@ -699,7 +699,7 @@ p, li { white-space: pre-wrap; }
               <item row="0" column="0">
                <widget class="QCheckBox" name="hotkeys">
                 <property name="text">
-                 <string>Enable hotkeys (disabling this does not affects standard keys)</string>
+                 <string>Enable hotkeys (disabling this does not affect standard shortcuts)</string>
                 </property>
                 <property name="tristate">
                  <bool>false</bool>
@@ -867,7 +867,7 @@ p, li { white-space: pre-wrap; }
                 <item row="1" column="0">
                  <widget class="QCheckBox" name="beta_update">
                   <property name="text">
-                   <string>Notify of beta updates as well</string>
+                   <string>Notify for beta updates as well</string>
                   </property>
                  </widget>
                 </item>
