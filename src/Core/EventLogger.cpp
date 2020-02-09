@@ -99,7 +99,7 @@ QString Log::platformInformation()
     res.append("machineUniqueId : " + QSysInfo::machineUniqueId() + "\n");
     res.append("productType : " + QSysInfo::productType() + "\n");
     res.append("productVersion : " + QSysInfo::productVersion() + "\n");
-    res.append("Appversion : " + QString::fromStdString(APP_VERSION_MAJOR "." APP_VERSION_MINOR "." APP_VERSION_PATCH));
+    res.append("Appversion : " APP_VERSION);
     return res;
 }
 

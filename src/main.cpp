@@ -33,7 +33,7 @@ int main(int argc, char *argv[])
 {
     SingleApplication app(argc, argv, true);
     SingleApplication::setApplicationName("CP Editor");
-    SingleApplication::setApplicationVersion(APP_VERSION_MAJOR "." APP_VERSION_MINOR "." APP_VERSION_PATCH);
+    SingleApplication::setApplicationVersion(APP_VERSION);
 
     QTextStream cerr(stderr, QIODevice::WriteOnly);
 
