@@ -589,6 +589,8 @@ void AppWindow::on_actionClose_Saved_triggered()
             --t;
 }
 
+// ************************************* LOGS ARE TAKEN FOR CODE BELOW THIS *********************************
+
 /************************ PREFERENCES SECTION **********************/
 
 void AppWindow::on_actionRestore_Settings_triggered()
