@@ -30,6 +30,8 @@
 #include <QPythonHighlighter>
 #include <QSaveFile>
 
+#define PREFERENCE_WINDOW_SIZE_FACTOR 0.5
+
 PreferenceWindow::PreferenceWindow(Settings::SettingManager *manager, QWidget *parent)
     : QMainWindow(parent), ui(new Ui::PreferenceWindow)
 {
@@ -46,7 +48,7 @@ PreferenceWindow::PreferenceWindow(Settings::SettingManager *manager, QWidget *p
             SLOT(onSnippetsLangChanged(const QString &)));
 
     applySettingsToui();
-    resize(QDesktopWidget().availableGeometry(this).size() * 0.40);
+    resize(QDesktopWidget().availableGeometry(this).size() * PREFERENCE_WINDOW_SIZE_FACTOR);
     setConstraints();
     applySettingsToEditor();
 }
