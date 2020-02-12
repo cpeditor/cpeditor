@@ -134,49 +134,49 @@
                 <item row="2" column="0">
                  <widget class="QCheckBox" name="indent">
                   <property name="text">
-                   <string>Automatically indent code</string>
+                   <string>Auto Indent</string>
                   </property>
                  </widget>
                 </item>
                 <item row="3" column="0">
                  <widget class="QCheckBox" name="parentheses">
                   <property name="text">
-                   <string>Automatically close opening braces</string>
+                   <string>Bracket Completion</string>
                   </property>
                  </widget>
                 </item>
                 <item row="4" column="0">
                  <widget class="QCheckBox" name="wrap">
                   <property name="text">
-                   <string>Wrap text into next line</string>
+                   <string>Wrap Text</string>
                   </property>
                  </widget>
                 </item>
                 <item row="5" column="0">
                  <widget class="QCheckBox" name="replace_tabs">
                   <property name="text">
-                   <string>Always replace tabs with spaces</string>
+                   <string>Replace tabs with spaces</string>
                   </property>
                  </widget>
                 </item>
                 <item row="6" column="0">
                  <widget class="QCheckBox" name="format_on_save">
                   <property name="text">
-                   <string>Automatically format source on save</string>
+                   <string>Format source on save</string>
                   </property>
                  </widget>
                 </item>
                 <item row="7" column="0">
                  <widget class="QCheckBox" name="savetest">
                   <property name="text">
-                   <string>Save and load test cases along with source</string>
+                   <string>Save and load test cases</string>
                   </property>
                  </widget>
                 </item>
                 <item row="8" column="0">
                  <widget class="QCheckBox" name="use_hot_exit">
                   <property name="text">
-                   <string>Use Hot Exit (save and load tabs)</string>
+                   <string>Hot Exit (save and load tabs)</string>
                   </property>
                  </widget>
                 </item>
@@ -185,7 +185,7 @@
               <item row="3" column="0">
                <widget class="QLabel" name="transparency_label">
                 <property name="text">
-                 <string>Editor Trasparency</string>
+                 <string>Editor Transparency</string>
                 </property>
                </widget>
               </item>
@@ -699,7 +699,7 @@ p, li { white-space: pre-wrap; }
               <item row="0" column="0">
                <widget class="QCheckBox" name="hotkeys">
                 <property name="text">
-                 <string>Enable hotkeys (disabling this does not affects standard keys)</string>
+                 <string>Enable hotkeys (disabling this does not affect standard shortcuts)</string>
                 </property>
                 <property name="tristate">
                  <bool>false</bool>
@@ -867,7 +867,7 @@ p, li { white-space: pre-wrap; }
                 <item row="1" column="0">
                  <widget class="QCheckBox" name="beta_update">
                   <property name="text">
-                   <string>Notify of beta updates as well</string>
+                   <string>Notify for beta updates as well</string>
                   </property>
                  </widget>
                 </item>
