@@ -15,10 +15,10 @@
  *
  */
 
+#include "Telemetry/UpdateNotifier.hpp"
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QMessageBox>
-#include "Telemetry/UpdateNotifier.hpp"
 
 namespace Telemetry
 {
@@ -44,14 +44,7 @@ void UpdateNotifier::checkUpdate(bool force)
     manager->get(request);
 }
 
-QString UpdateNotifier::currentVersionStr()
-{
-    std::string version = std::string(APP_VERSION_MAJOR) + "." + APP_VERSION_MINOR + "." + APP_VERSION_PATCH;
-
-    return QString::fromStdString(version);
-}
-
-bool compareVersion(QString const & a, QString const & b)
+bool compareVersion(QString const &a, QString const &b)
 {
     // returns true if a is higher version than b;
 
@@ -118,7 +111,7 @@ void UpdateNotifier::managerFinished(QNetworkReply *reply)
         }
     }
 
-    bool isUpdateAvailable = compareVersion(latestRelease, currentVersionStr());
+    bool isUpdateAvailable = compareVersion(latestRelease, APP_VERSION);
 
     if (beta && isBeta && isUpdateAvailable)
     {

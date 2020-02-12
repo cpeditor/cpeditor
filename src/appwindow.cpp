@@ -475,9 +475,7 @@ void AppWindow::on_actionSupport_me_triggered()
 
 void AppWindow::on_actionAbout_triggered()
 {
-    QMessageBox::about(this,
-                       QString::fromStdString(std::string("About CP Editor ") + APP_VERSION_MAJOR + "." +
-                                              APP_VERSION_MINOR + "." + APP_VERSION_PATCH),
+    QMessageBox::about(this, "About CP Editor " APP_VERSION,
                        "<p><b>CP Editor</b> is a native Qt-based Code Editor. It's specially designed "
                        "for competitive programming, unlike other editors/IDEs which are mainly for developers. It "
                        "helps you focus on your coding and automates the compilation, executing and testing. It even "
@@ -650,20 +648,21 @@ void AppWindow::onReceivedMessage(quint32 instanceId, QByteArray message)
             lang = "Python";
         openContest(path, lang, number);
     }
-	else Core::Log::w("appwindow/onReceivedMessage", "ignored");
+    else
+        Core::Log::w("appwindow/onReceivedMessage", "ignored");
 }
 
 #undef FROMJSON
 
 void AppWindow::onTabCloseRequested(int index)
 {
-    Core::Log::i("appwindow/onTabCloseRequested", "Closing tab at index : " + Core::Stringify(index));
+    Core::Log::i("appwindow/onTabCloseRequested") << "Closing tab at index : " << index << endl;
     closeTab(index);
 }
 
 void AppWindow::onTabChanged(int index)
 {
-    Core::Log::i("appwindow/onTabChanged", "tab is being changed to " + Core::Stringify(index));
+    Core::Log::i("appwindow/onTabChanged") << "tab is being changed to " << index << endl;
     if (index == -1)
     {
         activeLogger = nullptr;
@@ -766,10 +765,9 @@ void AppWindow::onSettingsApplied()
 
 void AppWindow::onIncomingCompanionRequest(Network::CompanionData data)
 {
-    Core::Log::i("appwindow/onIncomingCompanionRequest",
-                 "Applying data to new tab. Args : shouldOpenNewTab" +
-                     Core::Stringify(settingManager->isCompetitiveCompanionOpenNewTab()) +
-                     ",currentWindow == nullptr " + Core::Stringify(currentWindow() == nullptr));
+    Core::Log::i("appwindow/onIncomingCompanionRequest")
+        << "Applying data to new tab. Args: shouldOpenNewTab:" << settingManager->isCompetitiveCompanionOpenNewTab()
+        << ", currentWindow == nullptr:" << (currentWindow() == nullptr) << endl;
 
     if (settingManager->isCompetitiveCompanionOpenNewTab() || currentWindow() == nullptr)
     {
@@ -1073,13 +1071,12 @@ void AppWindow::on_confirmTriggered(MainWindow *widget)
 
 void AppWindow::onTabContextMenuRequested(const QPoint &pos)
 {
-    Core::Log::i("appwindow/onTabContextMenuRequested",
-                 "Location is : " + Core::Stringify(pos.x()) + Core::Stringify(pos.y()));
+    Core::Log::i("appwindow/onTabContextMenuRequested") << "Location: (" << pos.x() << ", " << pos.y() << ")" << endl;
 
     int index = ui->tabWidget->tabBar()->tabAt(pos);
     if (index != -1)
     {
-        Core::Log::i("appwindow/onTabContextMenuRequested", "Tab index is : " + Core::Stringify(index));
+        Core::Log::i("appwindow/onTabContextMenuRequested") << "Tab index is : " << index;
 
         auto widget = windowIndex(index);
         auto menu = new QMenu();

@@ -41,7 +41,6 @@ class UpdateNotifier : public QObject
   private:
     QNetworkAccessManager *manager;
     QNetworkRequest request;
-    QString currentVersionStr();
     bool beta;
     bool force;
 };
