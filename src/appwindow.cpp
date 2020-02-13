@@ -60,7 +60,7 @@ AppWindow::AppWindow(bool noHotExit, QWidget *parent) : QMainWindow(parent), ui(
         auto oldSize = size();
         setUpdatesEnabled(false);
 
-        // save these so that they won't be affected by saveEditorStatus() in onEditorChanged()
+        // save these so that they won't be affected by saveEditorStatus() in onEditorFileChanged()
         QVector<MainWindow::EditorStatus> status;
         for (int i = 0; i < length; ++i)
             status.push_back(settingManager->getEditorStatus(i));
@@ -262,11 +262,11 @@ void AppWindow::maybeSetHotkeys()
 
 bool AppWindow::closeTab(int index)
 {
-    auto tmp = windowIndex(index);
+    auto tmp = windowAt(index);
     if (tmp->closeConfirm())
     {
         ui->tabWidget->removeTab(index);
-        onEditorChanged();
+        onEditorFileChanged();
         delete tmp;
         return true;
     }
@@ -305,7 +305,7 @@ void AppWindow::openTab(QString path, bool iscompanionOpenedTab)
             QSet<int> vis;
             for (int t = 0; t < ui->tabWidget->count(); ++t)
             {
-                auto tmp = windowIndex(t);
+                auto tmp = windowAt(t);
                 if (tmp->isUntitled() && tmp->getProblemURL().isEmpty())
                 {
                     vis.insert(tmp->getUntitledIndex());
@@ -316,7 +316,8 @@ void AppWindow::openTab(QString path, bool iscompanionOpenedTab)
         }
         auto fsp = new MainWindow(path, settingManager, index);
         connect(fsp, SIGNAL(confirmTriggered(MainWindow *)), this, SLOT(on_confirmTriggered(MainWindow *)));
-        connect(fsp, SIGNAL(editorChanged()), this, SLOT(onEditorChanged()));
+        connect(fsp, SIGNAL(editorFileChanged()), this, SLOT(onEditorFileChanged()));
+        connect(fsp, SIGNAL(editorTextChanged(MainWindow *)), this, SLOT(onEditorTextChanged(MainWindow *)));
         QString lang = settingManager->getDefaultLanguage();
 
         if (path.endsWith(".java"))
@@ -335,7 +336,7 @@ void AppWindow::openTab(QString path, bool iscompanionOpenedTab)
     {
         for (int t = 0; t < ui->tabWidget->count(); t++)
         {
-            auto tmp = windowIndex(t);
+            auto tmp = windowAt(t);
             if (path == tmp->getProblemURL())
             {
                 ui->tabWidget->setCurrentIndex(t);
@@ -346,11 +347,13 @@ void AppWindow::openTab(QString path, bool iscompanionOpenedTab)
         int t = ui->tabWidget->count();
         auto fsp = new MainWindow("", settingManager, 0);
         connect(fsp, SIGNAL(confirmTriggered(MainWindow *)), this, SLOT(on_confirmTriggered(MainWindow *)));
-        connect(fsp, SIGNAL(editorChanged()), this, SLOT(onEditorChanged()));
+        connect(fsp, SIGNAL(editorFileChanged()), this, SLOT(onEditorFileChanged()));
+        connect(fsp, SIGNAL(editorTextChanged(MainWindow *)), this, SLOT(onEditorTextChanged(MainWindow *)));
         ui->tabWidget->addTab(fsp, fsp->getTabTitle(false, true));
         ui->tabWidget->setCurrentIndex(t);
     }
     currentWindow()->focusOnEditor();
+    onEditorFileChanged();
 }
 
 void AppWindow::openTabs(const QStringList &paths)
@@ -446,7 +449,7 @@ void AppWindow::openContest(const QString &path, const QString &lang, int number
 void AppWindow::saveEditorStatus(bool loadFromFile)
 {
     settingManager->clearEditorStatus();
-    if (ui->tabWidget->count() == 1 && windowIndex(0)->isUntitled() && !windowIndex(0)->isTextChanged())
+    if (ui->tabWidget->count() == 1 && windowAt(0)->isUntitled() && !windowAt(0)->isTextChanged())
     {
         settingManager->setNumberOfTabs(0);
         settingManager->setCurrentIndex(-1);
@@ -457,7 +460,7 @@ void AppWindow::saveEditorStatus(bool loadFromFile)
         settingManager->setCurrentIndex(ui->tabWidget->currentIndex());
         for (int i = 0; i < ui->tabWidget->count(); ++i)
         {
-            settingManager->setEditorStatus(i, windowIndex(i)->toStatus(loadFromFile).toMap());
+            settingManager->setEditorStatus(i, windowAt(i)->toStatus(loadFromFile).toMap());
         }
     }
 }
@@ -573,7 +576,7 @@ void AppWindow::on_actionSave_All_triggered()
     Core::Log::i("appwindow/on_actionSave_All", "Invoked");
     for (int t = 0; t < ui->tabWidget->count(); ++t)
     {
-        auto tmp = windowIndex(t);
+        auto tmp = windowAt(t);
         tmp->save(true, "Save All");
     }
 }
@@ -602,7 +605,7 @@ void AppWindow::on_actionClose_Saved_triggered()
 {
     Core::Log::i("appwindow/on_actionClose_Saved", "Invoked");
     for (int t = 0; t < ui->tabWidget->count(); t++)
-        if (!windowIndex(t)->isTextChanged() && closeTab(t))
+        if (!windowAt(t)->isTextChanged() && closeTab(t))
             --t;
 }
 
@@ -691,7 +694,7 @@ void AppWindow::onTabChanged(int index)
     disconnect(activeSplitterMoveConnection);
     disconnect(activeRightSplitterMoveConnection);
 
-    auto tmp = windowIndex(index);
+    auto tmp = windowAt(index);
 
     setWindowTitle(tmp->getTabTitle(true, false) + " - CP Editor");
 
@@ -719,9 +722,9 @@ void AppWindow::onTabChanged(int index)
         connect(tmp->getRightSplitter(), SIGNAL(splitterMoved(int, int)), this, SLOT(onRightSplitterMoved(int, int)));
 }
 
-void AppWindow::onEditorChanged()
+void AppWindow::onEditorFileChanged()
 {
-    Core::Log::i("appwindow/onEditorChanged", "Invoked onEditorChanged");
+    Core::Log::i("appwindow/onEditorFileChanged", "Invoked onEditorFileChanged");
 
     if (settingManager->isUseHotExit() && settingManager->isHotExitLoadFromFile())
         saveEditorStatus(true);
@@ -732,20 +735,34 @@ void AppWindow::onEditorChanged()
 
         for (int t = 0; t < ui->tabWidget->count(); ++t)
         {
-            tabsByName[windowIndex(t)->getTabTitle(false, false)].push_back(t);
+            tabsByName[windowAt(t)->getTabTitle(false, false)].push_back(t);
         }
 
         for (auto tabs : tabsByName)
         {
             for (auto index : tabs)
             {
-                ui->tabWidget->setTabText(index, windowIndex(index)->getTabTitle(tabs.size() > 1, true));
+                ui->tabWidget->setTabText(index, windowAt(index)->getTabTitle(tabs.size() > 1, true));
             }
         }
 
         setWindowTitle(currentWindow()->getTabTitle(true, false) + " - CP Editor");
-        Core::Log::i("appwindow/onEditorChanged",
+        Core::Log::i("appwindow/onEditorFileChanged",
                      "Changed window title to " + currentWindow()->getTabTitle(true, false) + " - CP Editor");
+    }
+}
+
+void AppWindow::onEditorTextChanged(MainWindow *window)
+{
+    int index = ui->tabWidget->indexOf(window);
+    if (index != -1)
+    {
+        auto currentTitle = ui->tabWidget->tabText(index);
+        if (currentTitle == window->getTabTitle(false, false) ||
+            currentTitle == window->getTabTitle(false, false) + " *")
+            ui->tabWidget->setTabText(index, window->getTabTitle(false, true));
+        else
+            ui->tabWidget->setTabText(index, window->getTabTitle(true, true));
     }
 }
 
@@ -754,7 +771,7 @@ void AppWindow::onSaveTimerElapsed()
     Core::Log::i("appwindow/onSaveTimerElapsed", "Autosave invoked");
     for (int t = 0; t < ui->tabWidget->count(); t++)
     {
-        auto tmp = windowIndex(t);
+        auto tmp = windowAt(t);
         if (!tmp->isUntitled())
         {
             tmp->save(false, "Auto Save");
@@ -779,6 +796,9 @@ void AppWindow::onSettingsApplied()
             connect(server, &Network::CompanionServer::onRequestArrived, this, &AppWindow::onIncomingCompanionRequest);
     diagonistics = true;
     onTabChanged(ui->tabWidget->currentIndex());
+
+    for (int i = 0; i < ui->tabWidget->count(); ++i)
+        onEditorTextChanged(windowAt(i));
 
     Core::Log::i("appwindow/onSettingsApplied", "Applied settings to appwindow");
 }
@@ -1098,19 +1118,19 @@ void AppWindow::onTabContextMenuRequested(const QPoint &pos)
     {
         Core::Log::i("appwindow/onTabContextMenuRequested") << "Tab index is : " << index;
 
-        auto widget = windowIndex(index);
+        auto widget = windowAt(index);
         auto menu = new QMenu();
 
         menu->addAction("Close", [index, this] { closeTab(index); });
 
         menu->addAction("Close Others", [widget, this] {
             for (int i = 0; i < ui->tabWidget->count(); ++i)
-                if (windowIndex(i) != widget && closeTab(i))
+                if (windowAt(i) != widget && closeTab(i))
                     --i;
         });
 
         menu->addAction("Close to the Left", [widget, this] {
-            for (int i = 0; i < ui->tabWidget->count() && windowIndex(i) != widget; ++i)
+            for (int i = 0; i < ui->tabWidget->count() && windowAt(i) != widget; ++i)
                 if (closeTab(i))
                     --i;
         });
@@ -1270,11 +1290,11 @@ MainWindow *AppWindow::currentWindow()
     return dynamic_cast<MainWindow *>(ui->tabWidget->widget(current));
 }
 
-MainWindow *AppWindow::windowIndex(int index)
+MainWindow *AppWindow::windowAt(int index)
 {
     if (index == -1)
     {
-        Core::Log::w("appwindow/windowIndex", "No active window(-1), returning nullptr");
+        Core::Log::w("appwindow/windowAt", "No active window(-1), returning nullptr");
         return nullptr;
     }
     return dynamic_cast<MainWindow *>(ui->tabWidget->widget(index));

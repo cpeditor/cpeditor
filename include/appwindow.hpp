@@ -82,7 +82,9 @@ class AppWindow : public QMainWindow
 
     void on_actionCheck_for_updates_triggered();
 
-    void onEditorChanged();
+    void onEditorFileChanged();
+
+    void onEditorTextChanged(MainWindow *window);
 
     void onTabCloseRequested(int);
 
@@ -167,7 +169,7 @@ class AppWindow : public QMainWindow
     bool quit();
 
     MainWindow *currentWindow();
-    MainWindow *windowIndex(int index);
+    MainWindow *windowAt(int index);
 };
 
 #endif // APPWINDOW_HPP

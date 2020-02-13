@@ -91,10 +91,11 @@ void MainWindow::setEditor()
 
     ui->verticalLayout_8->addWidget(editor);
 
-    connect(editor, SIGNAL(textChanged()), this, SIGNAL(editorChanged()));
-    connect(editor, SIGNAL(cursorPositionChanged()), this, SLOT(updateCursorInfo()));
+    connect(editor, SIGNAL(textChanged()), this, SLOT(onTextChanged()));
+
     // cursorPositionChanged() does not imply selectionChanged() if you press Left with
     // a selection (and the cursor is at the begin of the selection)
+    connect(editor, SIGNAL(cursorPositionChanged()), this, SLOT(updateCursorInfo()));
     connect(editor, SIGNAL(selectionChanged()), this, SLOT(updateCursorInfo()));
 }
 
@@ -261,7 +262,7 @@ void MainWindow::setProblemURL(const QString &url)
     problemURL = url;
     if (problemURL.contains("codeforces.com"))
         setCFToolsUI();
-    emit editorChanged();
+    emit editorFileChanged();
 }
 
 #define FROMSTATUS(x) x = status[#x]
@@ -612,7 +613,7 @@ void MainWindow::setText(const QString &text, bool keep)
 
 void MainWindow::updateWatcher()
 {
-    emit editorChanged();
+    emit editorFileChanged();
     if (!fileWatcher->files().isEmpty())
         fileWatcher->removePaths(fileWatcher->files());
     if (!isUntitled())
@@ -854,7 +855,7 @@ void MainWindow::on_changeLanguageButton_clicked()
 
 void MainWindow::onFileWatcherChanged(const QString &path)
 {
-    emit editorChanged();
+    emit editorTextChanged(this);
 
     auto currentText = editor->toPlainText();
 
@@ -890,6 +891,11 @@ void MainWindow::onFileWatcherChanged(const QString &path)
             }
         }
     }
+}
+
+void MainWindow::onTextChanged()
+{
+    emit editorTextChanged(this);
 }
 
 void MainWindow::updateCursorInfo()
