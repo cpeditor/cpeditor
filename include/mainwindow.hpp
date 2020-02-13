@@ -76,6 +76,7 @@ class MainWindow : public QMainWindow
     bool isUntitled() const;
 
     void setProblemURL(const QString &url);
+    void setUntitledIndex(int index);
 
     EditorStatus toStatus(bool simple) const;
     void loadStatus(const EditorStatus &status, bool simple);

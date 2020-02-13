@@ -1276,7 +1276,26 @@ void AppWindow::onTabContextMenuRequested(const QPoint &pos)
                                                                         : widget->getProblemURL(),
                                       &ok);
             if (ok)
+            {
+                if (url.isEmpty() && widget->isUntitled())
+                {
+                    int index = 0;
+                    QSet<int> vis;
+                    for (int t = 0; t < ui->tabWidget->count(); ++t)
+                    {
+                        auto tmp = windowAt(t);
+                        if (tmp->isUntitled() && tmp->getProblemURL().isEmpty())
+                        {
+                            vis.insert(tmp->getUntitledIndex());
+                        }
+                    }
+                    for (index = 1; vis.contains(index); ++index)
+                        ;
+                    widget->setUntitledIndex(index);
+                }
                 widget->setProblemURL(url);
+                onEditorFileChanged();
+            }
             else
                 Core::Log::i("appwindow/onTabContextMenuRequested", "set problem url dialog closed or cancelled");
         });

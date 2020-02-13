@@ -275,6 +275,11 @@ void MainWindow::setProblemURL(const QString &url)
     emit editorFileChanged();
 }
 
+void MainWindow::setUntitledIndex(int index)
+{
+    untitledIndex = index;
+}
+
 #define FROMSTATUS(x) x = status[#x]
 MainWindow::EditorStatus::EditorStatus(const QMap<QString, QVariant> &status)
 {
