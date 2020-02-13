@@ -415,6 +415,7 @@ void MainWindow::applySettingsData(bool shouldPerformDigonistic)
     editor->setTabReplaceSize(settingManager->getTabStop());
     editor->setAutoIndentation(settingManager->isAutoIndent());
     editor->setAutoParentheses(settingManager->isAutoParenthesis());
+    editor->setAutoRemoveParentheses(settingManager->isAutoRemoveParentheses());
 
     if (!settingManager->getFont().isEmpty())
     {

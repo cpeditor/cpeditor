@@ -52,10 +52,17 @@ bool SettingManager::isAutoParenthesis()
 {
     return mSettings->value("auto_parenthesis", "true").toBool();
 }
+
+bool SettingManager::isAutoRemoveParentheses()
+{
+    return mSettings->value("auto_remove_parentheses", "true").toBool();
+}
+
 bool SettingManager::isAutoSave()
 {
     return mSettings->value("autosave", "false").toBool();
 }
+
 bool SettingManager::isBeta()
 {
     return mSettings->value("beta", "false").toBool();
@@ -215,6 +222,11 @@ void SettingManager::setAutoParenthesis(bool value)
         mSettings->setValue("auto_parenthesis", QString::fromStdString("true"));
     else
         mSettings->setValue("auto_parenthesis", QString::fromStdString("false"));
+}
+
+void SettingManager::setAutoRemoveParentheses(bool value)
+{
+    mSettings->setValue("auto_remove_parentheses", value ? "true" : "false");
 }
 
 void SettingManager::setAutoSave(bool value)

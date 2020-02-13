@@ -99,6 +99,7 @@ void PreferenceWindow::applySettingsToui()
     ui->wrap->setChecked(settingManager->isWrapText());
     ui->indent->setChecked(settingManager->isAutoIndent());
     ui->parentheses->setChecked(settingManager->isAutoParenthesis());
+    ui->remove_parentheses->setChecked(settingManager->isAutoRemoveParentheses());
     ui->replace_tabs->setChecked(settingManager->isTabsReplaced());
     ui->format_on_save->setChecked(settingManager->isFormatOnSave());
     ui->use_hot_exit->setChecked(settingManager->isUseHotExit());
@@ -167,6 +168,7 @@ void PreferenceWindow::extractSettingsFromUi()
     settingManager->setWrapText(ui->wrap->isChecked());
     settingManager->setAutoIndent(ui->indent->isChecked());
     settingManager->setAutoParenthesis(ui->parentheses->isChecked());
+    settingManager->setAutoRemoveParentheses(ui->remove_parentheses->isChecked());
     settingManager->setTabsReplaced(ui->replace_tabs->isChecked());
     settingManager->formatOnSave(ui->format_on_save->isChecked());
     settingManager->setUseHotExit(ui->use_hot_exit->isChecked());
@@ -404,6 +406,7 @@ void PreferenceWindow::applySettingsToEditor()
     editor->setTabReplaceSize(settingManager->getTabStop());
     editor->setAutoIndentation(settingManager->isAutoIndent());
     editor->setAutoParentheses(settingManager->isAutoParenthesis());
+    editor->setAutoRemoveParentheses(settingManager->isAutoRemoveParentheses());
 
     if (!settingManager->getFont().isEmpty())
     {

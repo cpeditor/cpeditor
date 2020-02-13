@@ -141,39 +141,46 @@
                 <item row="3" column="0">
                  <widget class="QCheckBox" name="parentheses">
                   <property name="text">
-                   <string>Bracket Completion</string>
+                   <string>Auto Bracket Completion</string>
                   </property>
                  </widget>
                 </item>
                 <item row="4" column="0">
+                 <widget class="QCheckBox" name="remove_parentheses">
+                  <property name="text">
+                   <string>Auto Bracket Removal</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="5" column="0">
                  <widget class="QCheckBox" name="wrap">
                   <property name="text">
                    <string>Wrap Text</string>
                   </property>
                  </widget>
                 </item>
-                <item row="5" column="0">
+                <item row="6" column="0">
                  <widget class="QCheckBox" name="replace_tabs">
                   <property name="text">
                    <string>Replace tabs with spaces</string>
                   </property>
                  </widget>
                 </item>
-                <item row="6" column="0">
+                <item row="7" column="0">
                  <widget class="QCheckBox" name="format_on_save">
                   <property name="text">
                    <string>Format source on save</string>
                   </property>
                  </widget>
                 </item>
-                <item row="7" column="0">
+                <item row="8" column="0">
                  <widget class="QCheckBox" name="savetest">
                   <property name="text">
                    <string>Save and load test cases</string>
                   </property>
                  </widget>
                 </item>
-                <item row="8" column="0">
+                <item row="9" column="0">
                  <widget class="QCheckBox" name="use_hot_exit">
                   <property name="text">
                    <string>Hot Exit (save and load tabs)</string>

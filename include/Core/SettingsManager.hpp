@@ -85,6 +85,9 @@ class SettingManager
     bool isAutoParenthesis();
     void setAutoParenthesis(bool value);
 
+    bool isAutoRemoveParentheses();
+    void setAutoRemoveParentheses(bool value);
+
     bool isAutoIndent();
     void setAutoIndent(bool value);
 
