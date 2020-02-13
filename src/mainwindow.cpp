@@ -881,13 +881,20 @@ void MainWindow::onFileWatcherChanged(const QString &path)
                 return;
             }
 
-            auto reload = QMessageBox::question(
-                this, "Reload?", "\"" + filePath + "\"\n\nhas been changed on disk.\nDo you want to reload it?");
-
-            if (reload == QMessageBox::StandardButton::Yes)
+            if (!reloading)
             {
-                loadFile(path);
-                return;
+                reloading = true;
+
+                auto reload = QMessageBox::question(
+                    this, "Reload?", "\"" + filePath + "\"\n\nhas been changed on disk.\nDo you want to reload it?");
+
+                reloading = false;
+
+                if (reload == QMessageBox::StandardButton::Yes)
+                {
+                    loadFile(path);
+                    return;
+                }
             }
         }
     }

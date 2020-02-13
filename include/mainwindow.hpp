@@ -175,6 +175,7 @@ class MainWindow : public QMainWindow
     QString savedText;
     QString cftoolPath;
     QFileSystemWatcher *fileWatcher;
+    bool reloading = false;
 
     QPushButton *submitToCodeforces = nullptr;
     Network::CFTools *cftools = nullptr;
