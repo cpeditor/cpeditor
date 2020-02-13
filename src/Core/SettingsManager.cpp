@@ -444,7 +444,6 @@ void SettingManager::setCurrentIndex(int index)
 }
 void SettingManager::clearEditorStatus()
 {
-    setNumberOfTabs(0);
     mSettings->remove("editor_status");
 }
 QMap<QString, QVariant> SettingManager::getEditorStatus(int index)
@@ -454,6 +453,14 @@ QMap<QString, QVariant> SettingManager::getEditorStatus(int index)
 void SettingManager::setEditorStatus(int index, const QMap<QString, QVariant> &status)
 {
     mSettings->setValue("editor_status/" + QString::number(index), status);
+}
+bool SettingManager::isHotExitLoadFromFile()
+{
+    return mSettings->value("hot_exit_load_from_file", "false").toBool();
+}
+void SettingManager::setHotExitLoadFromFile(bool value)
+{
+    mSettings->setValue("hot_exit_load_from_file", value ? "true" : "false");
 }
 
 int SettingManager::getTransparency()

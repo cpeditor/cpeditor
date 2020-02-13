@@ -18,6 +18,7 @@
 #include "mainwindow.hpp"
 
 #include "Core/Compiler.hpp"
+#include "Core/EventLogger.hpp"
 #include "Core/MessageLogger.hpp"
 #include "Core/Runner.hpp"
 #include "Extensions/EditorTheme.hpp"
@@ -303,44 +304,57 @@ QMap<QString, QVariant> MainWindow::EditorStatus::toMap() const
 }
 #undef TOSTATUS
 
-MainWindow::EditorStatus MainWindow::toStatus() const
+MainWindow::EditorStatus MainWindow::toStatus(bool simple) const
 {
     EditorStatus status;
 
     status.isLanguageSet = isLanguageSet;
     status.filePath = filePath;
-    status.savedText = savedText;
     status.problemURL = problemURL;
-    status.editorText = editor->toPlainText();
     status.language = language;
-    status.editorCursor = editor->textCursor().position();
-    status.editorAnchor = editor->textCursor().anchor();
-    status.horizontalScrollBarValue = editor->horizontalScrollBar()->value();
-    status.verticalScrollbarValue = editor->verticalScrollBar()->value();
     status.untitledIndex = untitledIndex;
-    status.input = testcases->inputs();
-    status.expected = testcases->expecteds();
+
+    if (!simple)
+    {
+        status.editorText = editor->toPlainText();
+        status.editorCursor = editor->textCursor().position();
+        status.editorAnchor = editor->textCursor().anchor();
+        status.horizontalScrollBarValue = editor->horizontalScrollBar()->value();
+        status.verticalScrollbarValue = editor->verticalScrollBar()->value();
+        status.input = testcases->inputs();
+        status.expected = testcases->expecteds();
+    }
 
     return status;
 }
 
-void MainWindow::loadStatus(const EditorStatus &status)
+void MainWindow::loadStatus(const EditorStatus &status, bool simple)
 {
-    filePath = status.filePath;
-    updateWatcher();
-    savedText = status.savedText;
     setProblemURL(status.problemURL);
-    editor->setPlainText(status.editorText);
     if (status.isLanguageSet)
         setLanguage(status.language);
-    auto cursor = editor->textCursor();
-    cursor.setPosition(status.editorAnchor);
-    cursor.setPosition(status.editorCursor, QTextCursor::KeepAnchor);
-    editor->setTextCursor(cursor);
-    editor->horizontalScrollBar()->setValue(status.horizontalScrollBarValue);
-    editor->verticalScrollBar()->setValue(status.verticalScrollbarValue);
     untitledIndex = status.untitledIndex;
-    testcases->loadStatus(status.input, status.expected);
+
+    Core::Log::i("MainWindow/loadStatus") << INFO_OF(simple) << ' ' << INFO_OF(status.filePath) << endl;
+
+    if (!simple)
+    {
+        filePath = status.filePath;
+        updateWatcher();
+        savedText = status.savedText;
+        editor->setPlainText(status.editorText);
+        auto cursor = editor->textCursor();
+        cursor.setPosition(status.editorAnchor);
+        cursor.setPosition(status.editorCursor, QTextCursor::KeepAnchor);
+        editor->setTextCursor(cursor);
+        editor->horizontalScrollBar()->setValue(status.horizontalScrollBarValue);
+        editor->verticalScrollBar()->setValue(status.verticalScrollbarValue);
+        testcases->loadStatus(status.input, status.expected);
+    }
+    else if (!status.filePath.isEmpty())
+    {
+        loadFile(status.filePath);
+    }
 }
 
 void MainWindow::applyCompanion(Network::CompanionData data)

@@ -60,14 +60,20 @@ AppWindow::AppWindow(bool noHotExit, QWidget *parent) : QMainWindow(parent), ui(
         auto oldSize = size();
         setUpdatesEnabled(false);
 
+        // save these so that they won't be affected by saveEditorStatus() in onEditorChanged()
+        QVector<MainWindow::EditorStatus> status;
+        for (int i = 0; i < length; ++i)
+            status.push_back(settingManager->getEditorStatus(i));
+        bool loadFromFile = settingManager->isHotExitLoadFromFile();
+        int currentIndex = settingManager->getCurrentIndex();
+
         for (int i = 0; i < length; ++i)
         {
             if (progress.wasCanceled())
                 break;
-            auto status = MainWindow::EditorStatus(settingManager->getEditorStatus(i));
             progress.setValue(i);
             openTab("");
-            currentWindow()->loadStatus(status);
+            currentWindow()->loadStatus(status[i], loadFromFile);
             progress.setLabelText(currentWindow()->getTabTitle(true, false));
         }
 
@@ -76,11 +82,10 @@ AppWindow::AppWindow(bool noHotExit, QWidget *parent) : QMainWindow(parent), ui(
         setUpdatesEnabled(true);
         resize(oldSize);
 
-        settingManager->clearEditorStatus();
+        settingManager->setHotExitLoadFromFile(true);
 
-        int index = settingManager->getCurrentIndex();
-        if (index >= 0 && index < ui->tabWidget->count())
-            ui->tabWidget->setCurrentIndex(index);
+        if (currentIndex >= 0 && currentIndex < ui->tabWidget->count())
+            ui->tabWidget->setCurrentIndex(currentIndex);
     }
 }
 
@@ -438,25 +443,31 @@ void AppWindow::openContest(const QString &path, const QString &lang, int number
     openTabs(tabs);
 }
 
-bool AppWindow::quit()
+void AppWindow::saveEditorStatus(bool loadFromFile)
 {
     settingManager->clearEditorStatus();
+    if (ui->tabWidget->count() == 1 && windowIndex(0)->isUntitled() && !windowIndex(0)->isTextChanged())
+    {
+        settingManager->setNumberOfTabs(0);
+        settingManager->setCurrentIndex(-1);
+    }
+    else
+    {
+        settingManager->setNumberOfTabs(ui->tabWidget->count());
+        settingManager->setCurrentIndex(ui->tabWidget->currentIndex());
+        for (int i = 0; i < ui->tabWidget->count(); ++i)
+        {
+            settingManager->setEditorStatus(i, windowIndex(i)->toStatus(loadFromFile).toMap());
+        }
+    }
+}
+
+bool AppWindow::quit()
+{
     if (settingManager->isUseHotExit())
     {
-        if (ui->tabWidget->count() == 1 && windowIndex(0)->isUntitled() && !windowIndex(0)->isTextChanged())
-        {
-            settingManager->setNumberOfTabs(0);
-            settingManager->setCurrentIndex(-1);
-        }
-        else
-        {
-            settingManager->setNumberOfTabs(ui->tabWidget->count());
-            settingManager->setCurrentIndex(ui->tabWidget->currentIndex());
-            for (int i = 0; i < ui->tabWidget->count(); ++i)
-            {
-                settingManager->setEditorStatus(i, windowIndex(i)->toStatus().toMap());
-            }
-        }
+        settingManager->setHotExitLoadFromFile(false);
+        saveEditorStatus(false);
         return true;
     }
     else
@@ -711,6 +722,10 @@ void AppWindow::onTabChanged(int index)
 void AppWindow::onEditorChanged()
 {
     Core::Log::i("appwindow/onEditorChanged", "Invoked onEditorChanged");
+
+    if (settingManager->isUseHotExit() && settingManager->isHotExitLoadFromFile())
+        saveEditorStatus(true);
+
     if (currentWindow() != nullptr)
     {
         QMap<QString, QVector<int>> tabsByName;
@@ -764,7 +779,6 @@ void AppWindow::onSettingsApplied()
             connect(server, &Network::CompanionServer::onRequestArrived, this, &AppWindow::onIncomingCompanionRequest);
     diagonistics = true;
     onTabChanged(ui->tabWidget->currentIndex());
-    onEditorChanged();
 
     Core::Log::i("appwindow/onSettingsApplied", "Applied settings to appwindow");
 }

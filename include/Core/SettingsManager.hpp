@@ -160,6 +160,8 @@ class SettingManager
     void clearEditorStatus();
     QMap<QString, QVariant> getEditorStatus(int index);
     void setEditorStatus(int index, const QMap<QString, QVariant> &status);
+    bool isHotExitLoadFromFile();
+    void setHotExitLoadFromFile(bool value);
 
     QString getCFPath();
     void setCFPath(const QString &path);

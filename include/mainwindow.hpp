@@ -76,8 +76,8 @@ class MainWindow : public QMainWindow
 
     void setProblemURL(const QString &url);
 
-    EditorStatus toStatus() const;
-    void loadStatus(const EditorStatus &status);
+    EditorStatus toStatus(bool simple) const;
+    void loadStatus(const EditorStatus &status, bool simple);
 
     void save(bool force, const QString &head);
     void saveAs();

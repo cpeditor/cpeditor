@@ -163,6 +163,7 @@ class AppWindow : public QMainWindow
     void openPaths(const QStringList &paths, bool cpp = true, bool java = true, bool python = true, int depth = -1);
     QStringList openFolder(const QString &path, bool cpp, bool java, bool python, int depth);
     void openContest(const QString &path, const QString &lang, int number);
+    void saveEditorStatus(bool loadFromFile);
     bool quit();
 
     MainWindow *currentWindow();
