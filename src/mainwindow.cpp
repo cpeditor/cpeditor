@@ -18,8 +18,9 @@
 #include "mainwindow.hpp"
 
 #include "Core/Compiler.hpp"
-#include "Extensions/EditorTheme.hpp"
 #include "Core/MessageLogger.hpp"
+#include "Core/Runner.hpp"
+#include "Extensions/EditorTheme.hpp"
 #include <QCXXHighlighter>
 #include <QFileDialog>
 #include <QFont>
@@ -37,21 +38,21 @@
 #include <QTextStream>
 #include <QThread>
 #include <QTimer>
-#include "Core/Runner.hpp"
 
 #include "../ui/ui_mainwindow.h"
 
 // ***************************** RAII  ****************************
 
-MainWindow::MainWindow(QString fileOpen, const Settings::SettingsData &data, int index, QWidget *parent)
-    : QMainWindow(parent), ui(new Ui::MainWindow), untitledIndex(index), fileWatcher(new QFileSystemWatcher(this))
+MainWindow::MainWindow(QString fileOpen, Settings::SettingManager *manager, int index, QWidget *parent)
+    : QMainWindow(parent), ui(new Ui::MainWindow), settingManager(manager), untitledIndex(index),
+      fileWatcher(new QFileSystemWatcher(this))
 {
     ui->setupUi(this);
     setTestCases();
     setEditor();
     setupCore();
     connect(fileWatcher, SIGNAL(fileChanged(const QString &)), this, SLOT(onFileWatcherChanged(const QString &)));
-    setSettingsData(data, true);
+    applySettingsData(true);
     loadFile(fileOpen);
     if (testcases->count() == 0)
         testcases->addTestCase();
@@ -98,8 +99,8 @@ void MainWindow::setEditor()
 
 void MainWindow::setupCore()
 {
-    using namespace Core;
-    formatter = new Formatter(data.clangFormatBinary, data.clangFormatStyle, &log);
+    formatter =
+        new Core::Formatter(settingManager->getClangFormatBinary(), settingManager->getClangFormatStyle(), &log);
     log.setContainer(ui->compiler_edit);
 }
 
@@ -109,17 +110,12 @@ void MainWindow::compile()
     compiler = new Core::Compiler();
     if (saveTemp("Compiler"))
     {
-        QString command;
-        if (language == "C++")
-            command = data.compileCommandCpp;
-        else if (language == "Java")
-            command = data.compileCommandJava;
-        else if (language == "Python")
+        if (language == "Python")
         {
             onCompilationFinished("");
             return;
         }
-        else
+        else if (language != "C++" && language != "Java")
         {
             log.warn("Compiler", "Please set the language");
             return;
@@ -129,7 +125,7 @@ void MainWindow::compile()
                 SLOT(onCompilationFinished(const QString &)));
         connect(compiler, SIGNAL(compilationErrorOccured(const QString &)), this,
                 SLOT(onCompilationErrorOccured(const QString &)));
-        compiler->start(tmpPath(), command, language);
+        compiler->start(tmpPath(), settingManager->getCompileCommand(language), language);
     }
 }
 
@@ -138,22 +134,7 @@ void MainWindow::run()
     killProcesses();
     testcases->clearOutput();
 
-    QString command, args;
-    if (language == "C++")
-    {
-        args = data.runtimeArgumentsCpp;
-    }
-    else if (language == "Java")
-    {
-        command = data.runCommandJava;
-        args = data.runtimeArgumentsJava;
-    }
-    else if (language == "Python")
-    {
-        command = data.runCommandPython;
-        args = data.runtimeArgumentsPython;
-    }
-    else
+    if (!QStringList({"C++", "Java", "Python"}).contains(language))
     {
         log.warn("Runner", "Wrong language, please set the language");
         return;
@@ -175,7 +156,9 @@ void MainWindow::run()
                     SLOT(onRunErrorOccured(int, const QString &)));
             connect(runner[i], SIGNAL(runTimeout(int)), this, SLOT(onRunTimeout(int)));
             connect(runner[i], SIGNAL(runKilled(int)), this, SLOT(onRunKilled(int)));
-            runner[i]->run(tmpPath(), language, command, args, testcases->input(i), data.timeLimit);
+            runner[i]->run(tmpPath(), language, settingManager->getRunCommand(language),
+                           settingManager->getRuntimeArguments(language), testcases->input(i),
+                           settingManager->getTimeLimit());
         }
     }
 
@@ -185,13 +168,13 @@ void MainWindow::run()
 
 void MainWindow::loadTests()
 {
-    if (!isUntitled() && data.shouldSaveTests)
+    if (!isUntitled() && settingManager->isSaveTests())
         testcases->loadFromFile(filePath);
 }
 
 void MainWindow::saveTests()
 {
-    if (!isUntitled() && data.shouldSaveTests)
+    if (!isUntitled() && settingManager->isSaveTests())
         testcases->save(filePath);
 }
 
@@ -384,13 +367,12 @@ void MainWindow::applyCompanion(Network::CompanionData data)
     setProblemURL(data.url);
 }
 
-void MainWindow::setSettingsData(const Settings::SettingsData &data, bool shouldPerformDigonistic)
+void MainWindow::applySettingsData(bool shouldPerformDigonistic)
 {
-    this->data = data;
-    formatter->updateBinary(data.clangFormatBinary);
-    formatter->updateStyle(data.clangFormatStyle);
+    formatter->updateBinary(settingManager->getClangFormatBinary());
+    formatter->updateStyle(settingManager->getClangFormatStyle());
 
-    cftoolPath = data.cfPath;
+    cftoolPath = settingManager->getCFPath();
 
     if (cftools != nullptr && Network::CFTools::check(cftoolPath))
     {
@@ -399,37 +381,37 @@ void MainWindow::setSettingsData(const Settings::SettingsData &data, bool should
             submitToCodeforces->setEnabled(true);
     }
 
-    editor->setTabReplace(data.isTabsReplaced);
-    editor->setTabReplaceSize(data.tabStop);
-    editor->setAutoIndentation(data.isAutoIndent);
-    editor->setAutoParentheses(data.isAutoParenthesis);
+    editor->setTabReplace(settingManager->isTabsReplaced());
+    editor->setTabReplaceSize(settingManager->getTabStop());
+    editor->setAutoIndentation(settingManager->isAutoIndent());
+    editor->setAutoParentheses(settingManager->isAutoParenthesis());
 
-    if (!data.font.isEmpty())
+    if (!settingManager->getFont().isEmpty())
     {
         QFont font;
-        font.fromString(data.font);
+        font.fromString(settingManager->getFont());
         editor->setFont(font);
     }
 
-    const int tabStop = data.tabStop;
+    const int tabStop = settingManager->getTabStop();
     QFontMetrics metric(editor->font());
     editor->setTabReplaceSize(tabStop);
     editor->setTabStopDistance(tabStop * metric.horizontalAdvance("9"));
 
-    if (data.isWrapText)
+    if (settingManager->isWrapText())
         editor->setWordWrapMode(QTextOption::WordWrap);
     else
         editor->setWordWrapMode(QTextOption::NoWrap);
 
-    if (data.editorTheme == "Light")
+    if (settingManager->getEditorTheme() == "Light")
         editor->setSyntaxStyle(Themes::EditorTheme::getLightTheme());
-    else if (data.editorTheme == "Drakula")
+    else if (settingManager->getEditorTheme() == "Drakula")
         editor->setSyntaxStyle(Themes::EditorTheme::getDrakulaTheme());
-    else if (data.editorTheme == "Monkai")
+    else if (settingManager->getEditorTheme() == "Monkai")
         editor->setSyntaxStyle(Themes::EditorTheme::getMonkaiTheme());
-    else if (data.editorTheme == "Solarised")
+    else if (settingManager->getEditorTheme() == "Solarised")
         editor->setSyntaxStyle(Themes::EditorTheme::getSolarisedTheme());
-    else if (data.editorTheme == "Solarised Dark")
+    else if (settingManager->getEditorTheme() == "Solarised Dark")
         editor->setSyntaxStyle(Themes::EditorTheme::getSolarisedDarkTheme());
     else
     {
@@ -439,7 +421,7 @@ void MainWindow::setSettingsData(const Settings::SettingsData &data, bool should
 
     if (!isLanguageSet)
     {
-        setLanguage(data.defaultLanguage);
+        setLanguage(settingManager->getDefaultLanguage());
     }
     if (shouldPerformDigonistic)
     {
@@ -509,15 +491,9 @@ void MainWindow::setLanguage(QString lang)
     log.clear();
     if (!QFile::exists(filePath))
     {
-        QString templateContent, templatePath;
-        if (language == "C++")
-            templatePath = data.templateCpp;
-        else if (language == "Java")
-            templatePath = data.templateJava;
-        else if (language == "Python")
-            templatePath = data.templatePython;
-        QFile templateFile(templatePath);
+        QFile templateFile(settingManager->getTemplatePath(language));
         templateFile.open(QIODevice::ReadOnly | QIODevice::Text);
+        QString templateContent;
         if (templateFile.isOpen())
             templateContent = templateFile.readAll();
         if (templateContent == editor->toPlainText())
@@ -637,14 +613,7 @@ void MainWindow::loadFile(QString path)
 
     if (!QFile::exists(path))
     {
-        QString templatePath;
-
-        if (language == "C++")
-            templatePath = data.templateCpp;
-        else if (language == "Java")
-            templatePath = data.templateJava;
-        else if (language == "Python")
-            templatePath = data.templatePython;
+        QString templatePath = settingManager->getTemplatePath(language);
 
         QFile f(templatePath);
         f.open(QIODevice::ReadOnly | QIODevice::Text);
@@ -678,7 +647,7 @@ void MainWindow::loadFile(QString path)
 
 bool MainWindow::saveFile(SaveMode mode, const QString &head)
 {
-    if (data.isFormatOnSave)
+    if (settingManager->isFormatOnSave())
         formatter->format(editor, filePath, language, false);
 
     if (mode == SaveAs || (isUntitled() && mode == SaveUntitled))
@@ -794,20 +763,9 @@ bool MainWindow::isTextChanged()
     if (QFile::exists(filePath))
         filePath = QFileInfo(filePath).canonicalFilePath();
 
-    QString templatePath;
-
-    if (language == "C++")
-        templatePath = data.templateCpp;
-    else if (language == "Java")
-        templatePath = data.templateJava;
-    else if (language == "Python")
-        templatePath = data.templatePython;
-    else
-        return false;
-
     if (isUntitled())
     {
-        QFile f(templatePath);
+        QFile f(settingManager->getTemplatePath(language));
         f.open(QIODevice::ReadOnly | QFile::Text);
         if (f.isOpen())
             return editor->toPlainText() != f.readAll();
@@ -918,7 +876,7 @@ void MainWindow::updateCursorInfo()
             if (line[i] != '\t')
                 ++col;
             else
-                col += data.tabStop - col % data.tabStop;
+                col += settingManager->getTabStop() - col % settingManager->getTabStop();
         }
         info = "Line " + QString::number(cursor.blockNumber() + 1) + ", Column " + QString::number(col + 1);
     }
@@ -951,28 +909,24 @@ QSplitter *MainWindow::getRightSplitter()
 void MainWindow::performCoreDiagonistics()
 {
     log.clear();
-    bool formatResult = Core::Formatter::check(data.clangFormatBinary, data.clangFormatStyle);
+    bool formatResult =
+        Core::Formatter::check(settingManager->getClangFormatBinary(), settingManager->getClangFormatStyle());
     bool compilerResult = true;
-    bool runResults = true;
+    bool runResult = true;
 
-    if (language == "C++")
-        compilerResult = Core::Compiler::check(data.compileCommandCpp);
+    if (language == "C++" || language == "Java")
+        compilerResult = Core::Compiler::check(settingManager->getCompileCommand(language));
 
-    if (language == "Java")
-    {
-        compilerResult = Core::Compiler::check(data.compileCommandJava);
-        runResults = Core::Compiler::check(data.runCommandJava);
-    }
-
-    if (language == "Python")
-        compilerResult = Core::Compiler::check(data.runCommandPython);
+    if (language == "Java" || language == "Python")
+        runResult = Core::Compiler::check(settingManager->getRunCommand(language));
 
     if (!formatResult)
         log.warn("Formatter", "Code formatting failed to work. Please check whether the clang-format binary is in the "
                               "PATH and the style is valid.");
     if (!compilerResult)
         log.error("Compiler", "Compiler command for " + language + " is invalid. Is compiler on PATH?");
-    if (!runResults)
+
+    if (!runResult)
         log.error("Runner",
                   "Binary or Script won't be executed because its corresponding program or VM could not be loaded");
 }
@@ -1003,22 +957,7 @@ void MainWindow::onCompilationFinished(const QString &warning)
     {
         killProcesses();
 
-        QString command, args;
-        if (language == "C++")
-        {
-            args = data.runtimeArgumentsCpp;
-        }
-        else if (language == "Java")
-        {
-            command = data.runCommandJava;
-            args = data.runtimeArgumentsJava;
-        }
-        else if (language == "Python")
-        {
-            command = data.runCommandPython;
-            args = data.runtimeArgumentsPython;
-        }
-        else
+        if (!QStringList({"C++", "Java", "Python"}).contains(language))
         {
             log.warn("Runner", "Wrong language, please set the language");
             return;
@@ -1029,7 +968,8 @@ void MainWindow::onCompilationFinished(const QString &warning)
         connect(detachedRunner, SIGNAL(runErrorOccured(int, const QString &)), this,
                 SLOT(onRunErrorOccured(int, const QString &)));
         connect(detachedRunner, SIGNAL(runKilled(int)), this, SLOT(onRunKilled(int)));
-        detachedRunner->runDetached(tmpPath(), language, command, args);
+        detachedRunner->runDetached(tmpPath(), language, settingManager->getRunCommand(language),
+                                    settingManager->getRuntimeArguments(language));
     }
 }
 

@@ -82,7 +82,7 @@ class PreferenceWindow : public QMainWindow
     Ui::PreferenceWindow *ui;
     QFont currentFont;
     QString cppTemplatePath, pythonTemplatePath, javaTemplatePath;
-    Settings::SettingManager *manager;
+    Settings::SettingManager *settingManager;
     QCodeEditor *editor = nullptr; // for snippets
 
     void extractSettingsFromUi();
