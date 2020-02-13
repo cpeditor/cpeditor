@@ -280,78 +280,56 @@ void AppWindow::saveSettings()
     settingManager->setMaximizedWindow(this->isMaximized());
 }
 
-void AppWindow::openTab(QString path, bool iscompanionOpenedTab)
+void AppWindow::openTab(QString path)
 {
-    if (!iscompanionOpenedTab)
+    if (QFile::exists(path))
     {
-        if (QFile::exists(path))
-        {
-            auto fileInfo = QFileInfo(path);
-            for (int t = 0; t < ui->tabWidget->count(); t++)
-            {
-                auto tmp = dynamic_cast<MainWindow *>(ui->tabWidget->widget(t));
-                if (fileInfo == QFileInfo(tmp->getFilePath()))
-                {
-                    ui->tabWidget->setCurrentIndex(t);
-                    return;
-                }
-            }
-        }
-
-        int t = ui->tabWidget->count();
-        int index = 0;
-        if (path.isEmpty())
-        {
-            QSet<int> vis;
-            for (int t = 0; t < ui->tabWidget->count(); ++t)
-            {
-                auto tmp = windowAt(t);
-                if (tmp->isUntitled() && tmp->getProblemURL().isEmpty())
-                {
-                    vis.insert(tmp->getUntitledIndex());
-                }
-            }
-            for (index = 1; vis.contains(index); ++index)
-                ;
-        }
-        auto fsp = new MainWindow(path, settingManager, index);
-        connect(fsp, SIGNAL(confirmTriggered(MainWindow *)), this, SLOT(on_confirmTriggered(MainWindow *)));
-        connect(fsp, SIGNAL(editorFileChanged()), this, SLOT(onEditorFileChanged()));
-        connect(fsp, SIGNAL(editorTextChanged(MainWindow *)), this, SLOT(onEditorTextChanged(MainWindow *)));
-        QString lang = settingManager->getDefaultLanguage();
-
-        if (path.endsWith(".java"))
-            lang = "Java";
-        else if (path.endsWith(".py") || path.endsWith(".py3"))
-            lang = "Python";
-        else if (path.endsWith(".cpp") || path.endsWith(".cxx") || path.endsWith(".c") || path.endsWith(".cc") ||
-                 path.endsWith(".hpp") || path.endsWith(".h"))
-            lang = "C++";
-
-        ui->tabWidget->addTab(fsp, fsp->getTabTitle(false, true));
-        fsp->setLanguage(lang);
-        ui->tabWidget->setCurrentIndex(t);
-    }
-    else
-    {
+        auto fileInfo = QFileInfo(path);
         for (int t = 0; t < ui->tabWidget->count(); t++)
         {
-            auto tmp = windowAt(t);
-            if (path == tmp->getProblemURL())
+            auto tmp = dynamic_cast<MainWindow *>(ui->tabWidget->widget(t));
+            if (fileInfo == QFileInfo(tmp->getFilePath()))
             {
                 ui->tabWidget->setCurrentIndex(t);
                 return;
             }
         }
-
-        int t = ui->tabWidget->count();
-        auto fsp = new MainWindow("", settingManager, 0);
-        connect(fsp, SIGNAL(confirmTriggered(MainWindow *)), this, SLOT(on_confirmTriggered(MainWindow *)));
-        connect(fsp, SIGNAL(editorFileChanged()), this, SLOT(onEditorFileChanged()));
-        connect(fsp, SIGNAL(editorTextChanged(MainWindow *)), this, SLOT(onEditorTextChanged(MainWindow *)));
-        ui->tabWidget->addTab(fsp, fsp->getTabTitle(false, true));
-        ui->tabWidget->setCurrentIndex(t);
     }
+
+    int index = 0;
+    if (path.isEmpty())
+    {
+        QSet<int> vis;
+        for (int t = 0; t < ui->tabWidget->count(); ++t)
+        {
+            auto tmp = windowAt(t);
+            if (tmp->isUntitled() && tmp->getProblemURL().isEmpty())
+            {
+                vis.insert(tmp->getUntitledIndex());
+            }
+        }
+        for (index = 1; vis.contains(index); ++index)
+            ;
+    }
+
+    auto fsp = new MainWindow(path, settingManager, index);
+    connect(fsp, SIGNAL(confirmTriggered(MainWindow *)), this, SLOT(on_confirmTriggered(MainWindow *)));
+    connect(fsp, SIGNAL(editorFileChanged()), this, SLOT(onEditorFileChanged()));
+    connect(fsp, SIGNAL(editorTextChanged(MainWindow *)), this, SLOT(onEditorTextChanged(MainWindow *)));
+
+    QString lang = settingManager->getDefaultLanguage();
+
+    if (path.endsWith(".java"))
+        lang = "Java";
+    else if (path.endsWith(".py") || path.endsWith(".py3"))
+        lang = "Python";
+    else if (path.endsWith(".cpp") || path.endsWith(".cxx") || path.endsWith(".c") || path.endsWith(".cc") ||
+             path.endsWith(".hpp") || path.endsWith(".h"))
+        lang = "C++";
+
+    ui->tabWidget->setCurrentIndex(ui->tabWidget->addTab(fsp, fsp->getTabTitle(false, true)));
+    fsp->setLanguage(lang);
+
     currentWindow()->focusOnEditor();
     onEditorFileChanged();
 }
@@ -829,10 +807,17 @@ void AppWindow::onIncomingCompanionRequest(Network::CompanionData data)
         << "Applying data to new tab. Args: shouldOpenNewTab:" << settingManager->isCompetitiveCompanionOpenNewTab()
         << ", currentWindow == nullptr:" << (currentWindow() == nullptr) << endl;
 
-    if (settingManager->isCompetitiveCompanionOpenNewTab() || currentWindow() == nullptr)
+    for (int i = 0; i < ui->tabWidget->count(); ++i)
     {
-        openTab(data.url, true);
+        if (windowAt(i)->getProblemURL() == data.url)
+        {
+            ui->tabWidget->setCurrentIndex(i);
+            return;
+        }
     }
+
+    if (settingManager->isCompetitiveCompanionOpenNewTab() || currentWindow() == nullptr)
+        openTab("");
     currentWindow()->applyCompanion(data);
 }
 

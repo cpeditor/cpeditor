@@ -160,7 +160,7 @@ class AppWindow : public QMainWindow
     QVector<QShortcut *> hotkeyObjects;
     void maybeSetHotkeys();
     bool closeTab(int index);
-    void openTab(QString path, bool isCompanionTab = false);
+    void openTab(QString path);
     void openTabs(const QStringList &paths);
     void openPaths(const QStringList &paths, bool cpp = true, bool java = true, bool python = true, int depth = -1);
     QStringList openFolder(const QString &path, bool cpp, bool java, bool python, int depth);
