@@ -652,9 +652,25 @@ bool MainWindow::saveFile(SaveMode mode, const QString &head)
 
     if (mode == SaveAs || (isUntitled() && mode == SaveUntitled))
     {
+        QString defaultPath;
+        if (!isUntitled())
+        {
+            defaultPath = filePath;
+        }
+        else
+        {
+            defaultPath = QDir(settingManager->getSavePath()).filePath(getTabTitle(false, false));
+            if (language == "C++")
+                defaultPath += ".cpp";
+            else if (language == "Java")
+                defaultPath += ".java";
+            else if (language == "Python")
+                defaultPath += ".py";
+        }
+
         emit confirmTriggered(this);
         auto newFilePath = QFileDialog::getSaveFileName(
-            this, tr("Save File"), "", "Source Files (*.cpp *.hpp *.h *.cc *.cxx *.c *.py *.py3 *.java)");
+            this, tr("Save File"), defaultPath, "Source Files (*.cpp *.hpp *.h *.cc *.cxx *.c *.py *.py3 *.java)");
         if (newFilePath.isEmpty())
             return false;
 
@@ -670,6 +686,7 @@ bool MainWindow::saveFile(SaveMode mode, const QString &head)
 
         filePath = newFilePath;
         updateWatcher();
+        settingManager->setSavePath(QFileInfo(filePath).filePath());
 
         auto suffix = QFileInfo(filePath).suffix();
         if (suffix == ".cpp" || suffix == ".hpp" || suffix == ".h" || suffix == ".cc" || suffix == ".cxx" ||

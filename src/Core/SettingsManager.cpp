@@ -476,6 +476,16 @@ void SettingManager::setCFPath(const QString &path)
     mSettings->setValue("cf_path", path);
 }
 
+QString SettingManager::getSavePath()
+{
+    return mSettings->value("save_path").toString();
+}
+
+void SettingManager::setSavePath(const QString &path)
+{
+    mSettings->setValue("save_path", path);
+}
+
 void SettingManager::setHotkeyViewModeToggler(const QKeySequence &sequence)
 {
     mSettings->setValue("hotkey_mode_toggle", sequence.toString());
