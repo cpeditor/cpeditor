@@ -82,8 +82,8 @@ class SettingManager
     bool isHotkeyInUse();
     void setHotKeyInUse(bool value);
 
-    bool isAutoParenthesis();
-    void setAutoParenthesis(bool value);
+    bool isAutoParentheses();
+    void setAutoParentheses(bool value);
 
     bool isAutoRemoveParentheses();
     void setAutoRemoveParentheses(bool value);
@@ -151,10 +151,10 @@ class SettingManager
     QKeySequence getHotkeyViewModeToggler();
     QKeySequence getHotkeySnippets();
 
-    QString getSnippet(QString lang, QString name);
+    QString getSnippet(const QString &lang, const QString &name);
     void setSnippet(const QString &lang, const QString &name, const QString &content);
-    void removeSnippet(QString lang, QString name);
-    QStringList getSnippetsNames(QString lang);
+    void removeSnippet(const QString &lang, const QString &name);
+    QStringList getSnippetsNames(const QString &lang);
 
     int getNumberOfTabs();
     void setNumberOfTabs(int value);

@@ -48,7 +48,7 @@ bool SettingManager::isAutoIndent()
     return mSettings->value("auto_indent", "true").toBool();
 }
 
-bool SettingManager::isAutoParenthesis()
+bool SettingManager::isAutoParentheses()
 {
     return mSettings->value("auto_parenthesis", "true").toBool();
 }
@@ -192,10 +192,7 @@ int SettingManager::getTimeLimit()
 
 void SettingManager::setAutoIndent(bool value)
 {
-    if (value)
-        mSettings->setValue("auto_indent", QString::fromStdString("true"));
-    else
-        mSettings->setValue("auto_indent", QString::fromStdString("false"));
+    mSettings->setValue("auto_indent", value ? "true" : "false");
 }
 
 void SettingManager::setCompetitiveCompanionActive(bool value)
@@ -210,18 +207,12 @@ void SettingManager::setCompetitiveCompanionOpenNewTab(bool value)
 
 void SettingManager::setWrapText(bool value)
 {
-    if (value)
-        mSettings->setValue("wrap_text", QString::fromStdString("true"));
-    else
-        mSettings->setValue("wrap_text", QString::fromStdString("false"));
+    mSettings->setValue("wrap_text", value ? "true" : "false");
 }
 
-void SettingManager::setAutoParenthesis(bool value)
+void SettingManager::setAutoParentheses(bool value)
 {
-    if (value)
-        mSettings->setValue("auto_parenthesis", QString::fromStdString("true"));
-    else
-        mSettings->setValue("auto_parenthesis", QString::fromStdString("false"));
+    mSettings->setValue("auto_parenthesis", value ? "true" : "false");
 }
 
 void SettingManager::setAutoRemoveParentheses(bool value)
@@ -231,74 +222,47 @@ void SettingManager::setAutoRemoveParentheses(bool value)
 
 void SettingManager::setAutoSave(bool value)
 {
-    if (value)
-        mSettings->setValue("autosave", QString::fromStdString("true"));
-    else
-        mSettings->setValue("autosave", QString::fromStdString("false"));
+    mSettings->setValue("autosave", value ? "true" : "false");
 }
 
 void SettingManager::setBeta(bool value)
 {
-    if (value)
-        mSettings->setValue("beta", QString::fromStdString("true"));
-    else
-        mSettings->setValue("beta", QString::fromStdString("false"));
+    mSettings->setValue("beta", value ? "true" : "false");
 }
 
 void SettingManager::setTabsReplaced(bool value)
 {
-    if (value)
-        mSettings->setValue("replace_tabs", QString::fromStdString("true"));
-    else
-        mSettings->setValue("replace_tabs", QString::fromStdString("false"));
+    mSettings->setValue("replace_tabs", value ? "true" : "false");
 }
 
 void SettingManager::setSaveTests(bool value)
 {
-    if (value)
-        mSettings->setValue("save_tests", QString::fromStdString("true"));
-    else
-        mSettings->setValue("save_tests", QString::fromStdString("false"));
+    mSettings->setValue("save_tests", value ? "true" : "false");
 }
 
 void SettingManager::setUseHotExit(bool value)
 {
-    if (value)
-        mSettings->setValue("use_hot_exit", QString::fromStdString("true"));
-    else
-        mSettings->setValue("use_hot_exit", QString::fromStdString("false"));
+    mSettings->setValue("use_hot_exit", value ? "true" : "false");
 }
 
 void SettingManager::setMaximizedWindow(bool value)
 {
-    if (value)
-        mSettings->setValue("win_max", QString::fromStdString("true"));
-    else
-        mSettings->setValue("win_max", QString::fromStdString("false"));
+    mSettings->setValue("win_max", value ? "true" : "false");
 }
 
 void SettingManager::checkUpdateOnStartup(bool value)
 {
-    if (value)
-        mSettings->setValue("update_start_check", QString::fromStdString("true"));
-    else
-        mSettings->setValue("update_start_check", QString::fromStdString("false"));
+    mSettings->setValue("update_start_check", value ? "true" : "false");
 }
 
 void SettingManager::setHotKeyInUse(bool value)
 {
-    if (value)
-        mSettings->setValue("hotkey_use", QString::fromStdString("true"));
-    else
-        mSettings->setValue("hotkey_use", QString::fromStdString("false"));
+    mSettings->setValue("hotkey_use", value ? "true" : "false");
 }
 
 void SettingManager::formatOnSave(bool value)
 {
-    if (value)
-        mSettings->setValue("format_on_save", QString::fromStdString("true"));
-    else
-        mSettings->setValue("format_on_save", QString::fromStdString("false"));
+    mSettings->setValue("format_on_save", value ? "true" : "false");
 }
 
 void SettingManager::setTabStop(int num)
@@ -415,7 +379,7 @@ QKeySequence SettingManager::getHotkeySnippets()
     return QKeySequence::fromString(mSettings->value("hotkey_snippets", "").toString());
 }
 
-QString SettingManager::getSnippet(QString lang, QString name)
+QString SettingManager::getSnippet(const QString &lang, const QString &name)
 {
     return mSettings->value("snippets/" + lang + "/" + name, "").toString();
 }
@@ -423,11 +387,11 @@ void SettingManager::setSnippet(const QString &lang, const QString &name, const 
 {
     mSettings->setValue("snippets/" + lang + "/" + name, content);
 }
-void SettingManager::removeSnippet(QString lang, QString name)
+void SettingManager::removeSnippet(const QString &lang, const QString &name)
 {
     mSettings->remove("snippets/" + lang + "/" + name);
 }
-QStringList SettingManager::getSnippetsNames(QString lang)
+QStringList SettingManager::getSnippetsNames(const QString &lang)
 {
     mSettings->beginGroup("snippets");
     mSettings->beginGroup(lang);
