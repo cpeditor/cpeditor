@@ -716,7 +716,7 @@ bool MainWindow::saveFile(SaveMode mode, const QString &head)
 
         filePath = newFilePath;
         updateWatcher();
-        settingManager->setSavePath(QFileInfo(filePath).filePath());
+        settingManager->setSavePath(QFileInfo(filePath).canonicalPath());
 
         auto suffix = QFileInfo(filePath).suffix();
         if (suffix == ".cpp" || suffix == ".hpp" || suffix == ".h" || suffix == ".cc" || suffix == ".cxx" ||
