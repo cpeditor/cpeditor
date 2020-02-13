@@ -541,20 +541,25 @@ void AppWindow::on_actionOpenContest_triggered()
     }
 }
 
+// ************************************* LOGS ARE TAKEN FOR CODE BELOW THIS *********************************
+
 void AppWindow::on_actionSave_triggered()
 {
+    Core::Log::i("appwindow/on_actionSave", "Invoked");
     if (currentWindow() != nullptr)
         currentWindow()->save(true, "Save");
 }
 
 void AppWindow::on_actionSave_As_triggered()
 {
+    Core::Log::i("appwindow/on_actionSave_As", "Invoked");
     if (currentWindow() != nullptr)
         currentWindow()->saveAs();
 }
 
 void AppWindow::on_actionSave_All_triggered()
 {
+    Core::Log::i("appwindow/on_actionSave_All", "Invoked");
     for (int t = 0; t < ui->tabWidget->count(); ++t)
     {
         auto tmp = windowIndex(t);
@@ -565,12 +570,14 @@ void AppWindow::on_actionSave_All_triggered()
 void AppWindow::on_actionClose_Current_triggered()
 {
     int index = ui->tabWidget->currentIndex();
+    Core::Log::i("appwindow/on_actionClose_Current") << "Invoked with index : " << index << endl;
     if (index != -1)
         closeTab(index);
 }
 
 void AppWindow::on_actionClose_All_triggered()
 {
+    Core::Log::i("appwindow/on_actionClose_All", "Invoked");
     for (int t = 0; t < ui->tabWidget->count(); t++)
     {
         if (closeTab(t))
@@ -582,12 +589,11 @@ void AppWindow::on_actionClose_All_triggered()
 
 void AppWindow::on_actionClose_Saved_triggered()
 {
+    Core::Log::i("appwindow/on_actionClose_Saved", "Invoked");
     for (int t = 0; t < ui->tabWidget->count(); t++)
         if (!windowIndex(t)->isTextChanged() && closeTab(t))
             --t;
 }
-
-// ************************************* LOGS ARE TAKEN FOR CODE BELOW THIS *********************************
 
 /************************ PREFERENCES SECTION **********************/
 

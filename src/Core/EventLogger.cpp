@@ -142,7 +142,7 @@ void Log::log(const QString &priority, const QString &head, const QString &body)
 
 QTextStream &Log::log(const QString &priority, const QString &head)
 {
-    return logStream << dateTimeStamp() << "[" << priority << "][" << head << "]";
+    return logStream << dateTimeStamp() << "[" << priority << "][" << head << "] ";
 }
 
 } // namespace Core

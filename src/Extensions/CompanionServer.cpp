@@ -16,6 +16,7 @@
  */
 
 #include "Extensions/CompanionServer.hpp"
+#include "Core/EventLogger.hpp"
 #include "Core/MessageLogger.hpp"
 #include <QJsonArray>
 #include <QJsonDocument>
@@ -26,15 +27,19 @@ namespace Network
 {
 CompanionServer::CompanionServer(int port)
 {
+    Core::Log::i("companionServer/constructed") << "port is : " << port << endl;
     server = new QTcpServer(this);
     portNumber = port;
     // server->setMaxPendingConnections(1);
     QObject::connect(server, SIGNAL(newConnection()), this, SLOT(onNewConnection()));
     server->listen(QHostAddress::LocalHost, static_cast<unsigned short>(port));
+    Core::Log::i("companionServer/constructed")
+        << "server is listening to url :" << server->serverAddress().toString() << endl;
 }
 
 void CompanionServer::setMessageLogger(MessageLogger *log)
 {
+    Core::Log::i("companionServer/setMessageLogger") << "log is null ? : " << (log == nullptr) << endl;
     this->log = log;
 }
 
@@ -54,10 +59,17 @@ void CompanionServer::checkServer()
                                        QString::number(server->serverPort()));
         }
     }
+    else
+    {
+        Core::Log::w("companionServer/checkServer", "Failure in logging the status, log is nullptr");
+        Core::Log::i("companionServer/checkServer")
+            << "server listening on : " << server->serverAddress().toString() << ":" << server->serverPort() << endl;
+    }
 }
 
 void CompanionServer::updatePort(int port)
 {
+    Core::Log::i("companionServer/updatePort") << "new port is " << port << endl;
     this->portNumber = port;
     delete server;
     server = new QTcpServer(this);
@@ -67,10 +79,12 @@ void CompanionServer::updatePort(int port)
     server->listen(QHostAddress::LocalHost, static_cast<unsigned short>(port));
     if (log != nullptr)
         log->warn("Companion", "Port changed to " + QString::number(port));
+    Core::Log::i("companionServer/updatePort", "Connection was reset and old TCP Server was destroyed");
 }
 
 CompanionServer::~CompanionServer()
 {
+    Core::Log::i("companionServer/destroyed", "killing companion server");
     if (log != nullptr)
         log->info("Companion", "Stopped Server");
     delete server;
@@ -78,6 +92,7 @@ CompanionServer::~CompanionServer()
 
 void CompanionServer::onNewConnection()
 {
+    Core::Log::i("companionServer/onNewConnection", "New connection has arrived, reading from the queue");
     socket = server->nextPendingConnection();
     QObject::connect(socket, SIGNAL(readyRead()), this, SLOT(onReadReady()));
     QObject::connect(socket, SIGNAL(disconnected()), this, SLOT(onTerminateConnection()));
@@ -85,6 +100,8 @@ void CompanionServer::onNewConnection()
 void CompanionServer::onReadReady()
 {
     QString request = socket->readAll();
+
+    Core::Log::i("companionServer/onReadReady") << "\n" << request << endl;
 
     if (request.startsWith("POST") && request.contains("Content-Type: application/json"))
     {
@@ -103,6 +120,8 @@ void CompanionServer::onReadReady()
         socket->disconnectFromHost();
 
         request = request.mid(request.indexOf('{'));
+
+        Core::Log::i("companionServer/onReadReady") << "Truncated request is : \n" << request << endl;
 
         QJsonParseError error;
         QJsonDocument doc = QJsonDocument::fromJson(request.toUtf8(), &error);
@@ -132,12 +151,17 @@ void CompanionServer::onReadReady()
         {
             if (log != nullptr)
                 log->error("Companion", "JSONParser reported errors. \n" + error.errorString());
+            else
+                Core::Log::i("companionServer/onReadReady")
+                    << "JSON Parser reported error " << error.errorString() << endl;
         }
     }
     else
     {
         if (log != nullptr)
             log->warn("Companion", "An Invalid Payload was delivered on the listening port");
+        else
+            Core::Log::w("companionServer/onReadReady", "Invalid payload delivered on listing port");
         socket->write("HTTP/1.1  OK\r\n"); // \r needs to be before \n
         socket->write("Content-Type: text/html\r\n");
         socket->write("Connection: close\r\n");
@@ -153,6 +177,7 @@ void CompanionServer::onReadReady()
 }
 void CompanionServer::onTerminateConnection()
 {
+    Core::Log::i("companionServer/onTerminateConnection", "socket scheduled to be deleted");
     socket->deleteLater();
 }
 
