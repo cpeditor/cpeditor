@@ -18,9 +18,14 @@
 #ifndef MAINWINDOW_HPP
 #define MAINWINDOW_HPP
 
-#include "Extensions/CompanionServer.hpp"
 #include "Core/Compiler.hpp"
 #include "Core/Formatter.hpp"
+#include "Core/Runner.hpp"
+#include "Core/SettingsManager.hpp"
+#include "Extensions/CFTools.hpp"
+#include "Extensions/CompanionServer.hpp"
+#include "Telemetry/UpdateNotifier.hpp"
+#include "Widgets/TestCases.hpp"
 #include <QCodeEditor>
 #include <QFile>
 #include <QFileSystemWatcher>
@@ -30,11 +35,6 @@
 #include <QShortcut>
 #include <QSplitter>
 #include <QTemporaryDir>
-#include "Core/Runner.hpp"
-#include "Core/SettingsManager.hpp"
-#include "Widgets/TestCases.hpp"
-#include "Telemetry/UpdateNotifier.hpp"
-#include "Extensions/CFTools.hpp"
 #include <generated/version.hpp>
 
 QT_BEGIN_NAMESPACE
@@ -63,7 +63,7 @@ class MainWindow : public QMainWindow
         QMap<QString, QVariant> toMap() const;
     };
 
-    MainWindow(QString fileOpen, const Settings::SettingsData &data, int index = 0, QWidget *parent = nullptr);
+    MainWindow(QString fileOpen, Settings::SettingManager *manager, int index = 0, QWidget *parent = nullptr);
     ~MainWindow() override;
 
     int getUntitledIndex() const;
@@ -96,7 +96,7 @@ class MainWindow : public QMainWindow
 
     void setLanguage(QString lang);
     QString getLanguage();
-    void setSettingsData(const Settings::SettingsData &data, bool);
+    void applySettingsData(bool);
 
     MessageLogger *getLogger();
     QSplitter *getSplitter();
@@ -154,7 +154,7 @@ class MainWindow : public QMainWindow
     Ui::MainWindow *ui;
     QCodeEditor *editor;
     QString language;
-    Settings::SettingsData data;
+    Settings::SettingManager *settingManager;
     bool isLanguageSet = false;
 
     Core::Formatter *formatter = nullptr;

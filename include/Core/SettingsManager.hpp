@@ -36,63 +36,6 @@ enum ViewMode
     SPLIT
 };
 
-struct SettingsData
-{
-    int companionPort;
-    int tabStop;
-    int timeLimit;
-
-    QRect geometry;
-    QString font;
-    QString defaultLanguage;
-
-    QString templateCpp;
-    QString templatePython;
-    QString templateJava;
-
-    QString runtimeArgumentsCpp;
-    QString runtimeArgumentsJava;
-    QString runtimeArgumentsPython;
-
-    QString clangFormatBinary;
-    QString clangFormatStyle;
-
-    QString compileCommandJava;
-    QString compileCommandCpp;
-
-    QString runCommandJava;
-    QString runCommandPython;
-
-    QString editorTheme;
-
-    bool isHotKeyInUse;
-    bool isAutoParenthesis;
-    bool isAutoIndent;
-    bool isAutoSave;
-    bool isWrapText;
-    bool isBeta;
-    bool isTabsReplaced;
-    bool shouldSaveTests;
-    bool isCompanionActive;
-    bool isWindowMaximized;
-    bool isCheckUpdateOnStartup;
-    bool isUpdateCheckOnStartup;
-    bool isFormatOnSave;
-
-    QKeySequence hotkeyRun;
-    QKeySequence hotkeyCompile;
-    QKeySequence hotkeyCompileRun;
-    QKeySequence hotkeyFormat;
-    QKeySequence hotkeyKill;
-    QKeySequence hotkeyViewModeToggler;
-    QKeySequence hotkeySnippets;
-
-    ViewMode viewMode;
-    QByteArray splitterSizes;
-
-    QString cfPath;
-};
-
 class SettingManager
 {
   public:
@@ -113,37 +56,25 @@ class SettingManager
     QString getFont();
     void setFont(const QString &font);
 
-    QString getDefaultLang();
+    QString getDefaultLanguage();
     void setDefaultLanguage(const QString &lang);
 
-    QString getTemplatePathCpp();
-    QString getTemplatePathJava();
-    QString getTemplatePathPython();
-    void setTemplatePathCpp(const QString &path);
-    void setTemplatePathJava(const QString &path);
-    void setTemplatePathPython(const QString &path);
+    QString getTemplatePath(const QString &lang);
+    void setTemplatePath(const QString &lang, const QString &path);
 
-    QString getRuntimeArgumentsCpp();
-    QString getRuntimeArgumentsJava();
-    QString getRuntimeArgumentsPython();
-    void setRuntimeArgumentsCpp(const QString &command);
-    void setRuntimeArgumentsJava(const QString &command);
-    void setRuntimeArgumentsPython(const QString &command);
+    QString getRuntimeArguments(const QString &lang);
+    void setRuntimeArguments(const QString &lang, const QString &command);
 
     QString getClangFormatBinary();
     void setClangFormatBinary(const QString &binary);
     QString getClangFormatStyle();
     void setClangFormatStyle(const QString &style);
 
-    QString getCompileCommandCpp();
-    QString getCompileCommandJava();
-    void setCompileCommandsCpp(const QString &command);
-    void setCompileCommandsJava(const QString &command);
+    QString getCompileCommand(const QString &lang);
+    void setCompileCommand(const QString &lang, const QString &command);
 
-    QString getRunCommandJava();
-    QString getRunCommandPython();
-    void setRunCommandJava(const QString &command);
-    void setRunCommandPython(const QString &command);
+    QString getRunCommand(const QString &lang);
+    void setRunCommand(const QString &lang, const QString &command);
 
     QString getEditorTheme();
     void setEditorTheme(const QString &theme);
@@ -233,9 +164,11 @@ class SettingManager
     QString getCFPath();
     void setCFPath(const QString &path);
 
+    QString getSavePath();
+    void setSavePath(const QString &path);
+
     void resetSettings();
 
-    SettingsData toData();
     ~SettingManager();
 
   private:

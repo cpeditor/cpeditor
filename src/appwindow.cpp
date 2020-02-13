@@ -96,7 +96,7 @@ AppWindow::AppWindow(int depth, bool cpp, bool java, bool python, bool noHotExit
 AppWindow::AppWindow(bool cpp, bool java, bool python, bool noHotExit, int number, const QString &path, QWidget *parent)
     : AppWindow(noHotExit, parent)
 {
-    QString lang = settingManager->getDefaultLang();
+    QString lang = settingManager->getDefaultLanguage();
     if (cpp)
         lang = "C++";
     else if (java)
@@ -309,10 +309,10 @@ void AppWindow::openTab(QString path, bool iscompanionOpenedTab)
             for (index = 1; vis.contains(index); ++index)
                 ;
         }
-        auto fsp = new MainWindow(path, settingManager->toData(), index);
+        auto fsp = new MainWindow(path, settingManager, index);
         connect(fsp, SIGNAL(confirmTriggered(MainWindow *)), this, SLOT(on_confirmTriggered(MainWindow *)));
         connect(fsp, SIGNAL(editorChanged()), this, SLOT(onEditorChanged()));
-        QString lang = settingManager->getDefaultLang();
+        QString lang = settingManager->getDefaultLanguage();
 
         if (path.endsWith(".java"))
             lang = "Java";
@@ -339,7 +339,7 @@ void AppWindow::openTab(QString path, bool iscompanionOpenedTab)
         }
 
         int t = ui->tabWidget->count();
-        auto fsp = new MainWindow("", settingManager->toData(), 0);
+        auto fsp = new MainWindow("", settingManager, 0);
         connect(fsp, SIGNAL(confirmTriggered(MainWindow *)), this, SLOT(on_confirmTriggered(MainWindow *)));
         connect(fsp, SIGNAL(editorChanged()), this, SLOT(onEditorChanged()));
         ui->tabWidget->addTab(fsp, fsp->getTabTitle(false, true));
@@ -419,7 +419,7 @@ void AppWindow::openContest(const QString &path, const QString &lang, int number
     if (!dir.exists() && parent.exists())
         parent.mkdir(dir.dirName());
 
-    auto language = lang.isEmpty() ? settingManager->getDefaultLang() : lang;
+    auto language = lang.isEmpty() ? settingManager->getDefaultLanguage() : lang;
 
     QStringList tabs;
 
@@ -527,9 +527,9 @@ void AppWindow::on_actionOpenContest_triggered()
         if (ok)
         {
             int current = 0;
-            if (settingManager->getDefaultLang() == "Java")
+            if (settingManager->getDefaultLanguage() == "Java")
                 current = 1;
-            else if (settingManager->getDefaultLang() == "Python")
+            else if (settingManager->getDefaultLanguage() == "Python")
                 current = 2;
             auto lang = QInputDialog::getItem(this, "Open Contest", "Choose a language", {"C++", "Java", "Python"},
                                               current, false, &ok);
@@ -645,7 +645,7 @@ void AppWindow::onReceivedMessage(quint32 instanceId, QByteArray message)
         Core::Log::i("appwindow/onReceivedMessage", "branched to contest");
         FROMJSON(number).toInt();
         FROMJSON(path).toString();
-        QString lang = settingManager->getDefaultLang();
+        QString lang = settingManager->getDefaultLanguage();
         if (cpp)
             lang = "C++";
         else if (java)
@@ -690,7 +690,7 @@ void AppWindow::onTabChanged(int index)
     if (settingManager->isCompetitiveCompanionActive() && diagonistics)
         server->checkServer();
 
-    tmp->setSettingsData(settingManager->toData(), diagonistics);
+    tmp->applySettingsData(diagonistics);
     diagonistics = false;
 
     if (ui->actionEditor_Mode->isChecked())

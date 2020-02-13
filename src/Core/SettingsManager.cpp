@@ -29,7 +29,7 @@ SettingManager::SettingManager()
 
     // backwords compatibility
 
-    if (getDefaultLang() == "Cpp")
+    if (getDefaultLanguage() == "Cpp")
         setDefaultLanguage("C++");
 
     auto names = getSnippetsNames("Cpp");
@@ -105,21 +105,23 @@ bool SettingManager::isFormatOnSave()
     return mSettings->value("format_on_save", "false").toBool();
 }
 
-QString SettingManager::getRunCommandJava()
+QString SettingManager::getRunCommand(const QString &lang)
 {
-    return mSettings->value("run_java", "java").toString();
+    if (lang == "Java")
+        return mSettings->value("run_java", "java").toString();
+    else if (lang == "Python")
+        return mSettings->value("run_python", "python").toString();
+    else
+        return mSettings->value("run_" + lang).toString();
 }
-QString SettingManager::getRunCommandPython()
+QString SettingManager::getCompileCommand(const QString &lang)
 {
-    return mSettings->value("run_python", "python").toString();
-}
-QString SettingManager::getCompileCommandCpp()
-{
-    return mSettings->value("compile_cpp", "g++ -Wall").toString();
-}
-QString SettingManager::getCompileCommandJava()
-{
-    return mSettings->value("compile_java", "javac").toString();
+    if (lang == "C++")
+        return mSettings->value("compile_cpp", "g++ -Wall").toString();
+    else if (lang == "Java")
+        return mSettings->value("compile_java", "javac").toString();
+    else
+        return mSettings->value("compile_" + lang).toString();
 }
 QString SettingManager::getClangFormatBinary()
 {
@@ -129,34 +131,32 @@ QString SettingManager::getClangFormatStyle()
 {
     return mSettings->value("clang_format_style", "BasedOnStyle: Google").toString();
 }
-QString SettingManager::getRuntimeArgumentsCpp()
+QString SettingManager::getRuntimeArguments(const QString &lang)
 {
-    return mSettings->value("runtime_cpp", "").toString();
+    if (lang == "C++")
+        return mSettings->value("runtime_cpp", "").toString();
+    else if (lang == "Java")
+        return mSettings->value("runtime_java", "").toString();
+    else if (lang == "Python")
+        return mSettings->value("runtime_python", "").toString();
+    else
+        return mSettings->value("runtime_" + lang).toString();
 }
-QString SettingManager::getRuntimeArgumentsJava()
-{
-    return mSettings->value("runtime_java", "").toString();
-}
-QString SettingManager::getRuntimeArgumentsPython()
-{
-    return mSettings->value("runtime_python", "").toString();
-}
-QString SettingManager::getDefaultLang()
+QString SettingManager::getDefaultLanguage()
 {
     auto res = mSettings->value("lang", "C++").toString();
     return res;
 }
-QString SettingManager::getTemplatePathCpp()
+QString SettingManager::getTemplatePath(const QString &lang)
 {
-    return mSettings->value("template_cpp", "").toString();
-}
-QString SettingManager::getTemplatePathJava()
-{
-    return mSettings->value("template_java", "").toString();
-}
-QString SettingManager::getTemplatePathPython()
-{
-    return mSettings->value("template_python", "").toString();
+    if (lang == "C++")
+        return mSettings->value("template_cpp", "").toString();
+    else if (lang == "Java")
+        return mSettings->value("template_java", "").toString();
+    else if (lang == "Python")
+        return mSettings->value("template_python", "").toString();
+    else
+        return mSettings->value("template_" + lang).toString();
 }
 QString SettingManager::getFont()
 {
@@ -304,17 +304,23 @@ void SettingManager::setTimeLimit(int val)
     mSettings->setValue("time_limit", val);
 }
 
-void SettingManager::setRunCommandJava(const QString &command)
+void SettingManager::setRunCommand(const QString &lang, const QString &command)
 {
-    mSettings->setValue("run_java", command);
+    if (lang == "Java")
+        mSettings->setValue("run_java", command);
+    else if (lang == "Python")
+        mSettings->setValue("run_python", command);
+    else
+        mSettings->setValue("run_" + lang, command);
 }
-void SettingManager::setRunCommandPython(const QString &command)
+void SettingManager::setCompileCommand(const QString &lang, const QString &command)
 {
-    mSettings->setValue("run_python", command);
-}
-void SettingManager::setCompileCommandsCpp(const QString &command)
-{
-    mSettings->setValue("compile_cpp", command);
+    if (lang == "C++")
+        mSettings->setValue("compile_cpp", command);
+    else if (lang == "Java")
+        mSettings->setValue("compile_java", command);
+    else
+        mSettings->setValue("compile_" + lang, command);
 }
 void SettingManager::setEditorTheme(const QString &themeName)
 {
@@ -324,10 +330,6 @@ QString SettingManager::getEditorTheme()
 {
     return mSettings->value("editor_theme", "Light").toString();
 }
-void SettingManager::setCompileCommandsJava(const QString &command)
-{
-    mSettings->setValue("compile_java", command);
-}
 void SettingManager::setClangFormatBinary(const QString &binary)
 {
     mSettings->setValue("clang_format_binary", binary);
@@ -336,29 +338,27 @@ void SettingManager::setClangFormatStyle(const QString &style)
 {
     mSettings->setValue("clang_format_style", style);
 }
-void SettingManager::setTemplatePathCpp(const QString &path)
+void SettingManager::setTemplatePath(const QString &lang, const QString &path)
 {
-    mSettings->setValue("template_cpp", path);
+    if (lang == "C++")
+        mSettings->setValue("template_cpp", path);
+    else if (lang == "Java")
+        mSettings->setValue("template_java", path);
+    else if (lang == "Python")
+        mSettings->setValue("template_python", path);
+    else
+        mSettings->setValue("template_" + lang, path);
 }
-void SettingManager::setTemplatePathJava(const QString &path)
+void SettingManager::setRuntimeArguments(const QString &lang, const QString &command)
 {
-    mSettings->setValue("template_java", path);
-}
-void SettingManager::setTemplatePathPython(const QString &path)
-{
-    mSettings->setValue("template_python", path);
-}
-void SettingManager::setRuntimeArgumentsCpp(const QString &command)
-{
-    mSettings->setValue("runtime_cpp", command);
-}
-void SettingManager::setRuntimeArgumentsJava(const QString &command)
-{
-    mSettings->setValue("runtime_java", command);
-}
-void SettingManager::setRuntimeArgumentsPython(const QString &command)
-{
-    mSettings->setValue("runtime_python", command);
+    if (lang == "C++")
+        mSettings->setValue("runtime_cpp", command);
+    else if (lang == "Java")
+        mSettings->setValue("runtime_java", command);
+    else if (lang == "Python")
+        mSettings->setValue("runtime_python", command);
+    else
+        mSettings->setValue("runtime_" + lang, command);
 }
 void SettingManager::setDefaultLanguage(const QString &lang)
 {
@@ -476,6 +476,16 @@ void SettingManager::setCFPath(const QString &path)
     mSettings->setValue("cf_path", path);
 }
 
+QString SettingManager::getSavePath()
+{
+    return mSettings->value("save_path").toString();
+}
+
+void SettingManager::setSavePath(const QString &path)
+{
+    mSettings->setValue("save_path", path);
+}
+
 void SettingManager::setHotkeyViewModeToggler(const QKeySequence &sequence)
 {
     mSettings->setValue("hotkey_mode_toggle", sequence.toString());
@@ -552,54 +562,6 @@ SettingManager::~SettingManager()
 {
     mSettings->sync();
     delete mSettings;
-}
-
-SettingsData SettingManager::toData()
-{
-    SettingsData data;
-    data.companionPort = getConnectionPort();
-    data.tabStop = getTabStop();
-    data.timeLimit = getTimeLimit();
-    data.geometry = getGeometry();
-    data.font = getFont();
-    data.defaultLanguage = getDefaultLang();
-    data.templateCpp = getTemplatePathCpp();
-    data.templateJava = getTemplatePathJava();
-    data.templatePython = getTemplatePathPython();
-    data.runtimeArgumentsCpp = getRuntimeArgumentsCpp();
-    data.runtimeArgumentsJava = getRuntimeArgumentsJava();
-    data.runtimeArgumentsPython = getRuntimeArgumentsPython();
-    data.clangFormatBinary = getClangFormatBinary();
-    data.clangFormatStyle = getClangFormatStyle();
-    data.compileCommandCpp = getCompileCommandCpp();
-    data.compileCommandJava = getCompileCommandJava();
-    data.runCommandJava = getRunCommandJava();
-    data.runCommandPython = getRunCommandPython();
-    data.editorTheme = getEditorTheme();
-    data.isHotKeyInUse = isHotkeyInUse();
-    data.isAutoParenthesis = isAutoParenthesis();
-    data.isAutoIndent = isAutoIndent();
-    data.isAutoSave = isAutoSave();
-    data.isWrapText = isWrapText();
-    data.isBeta = isBeta();
-    data.isTabsReplaced = isTabsReplaced();
-    data.shouldSaveTests = isSaveTests();
-    data.isCompanionActive = isCompetitiveCompanionActive();
-    data.isWindowMaximized = isMaximizedWindow();
-    data.isCheckUpdateOnStartup = isCheckUpdateOnStartup();
-    data.isFormatOnSave = isFormatOnSave();
-    data.hotkeyCompile = getHotkeyCompile();
-    data.hotkeyRun = getHotkeyRun();
-    data.hotkeyCompileRun = getHotkeyCompileRun();
-    data.hotkeyKill = getHotkeyKill();
-    data.hotkeyFormat = getHotkeyFormat();
-    data.hotkeyViewModeToggler = getHotkeyViewModeToggler();
-    data.hotkeySnippets = getHotkeySnippets();
-    data.viewMode = getViewMode();
-    data.splitterSizes = getSplitterSizes();
-    data.cfPath = getCFPath();
-
-    return data;
 }
 
 void SettingManager::resetSettings()
