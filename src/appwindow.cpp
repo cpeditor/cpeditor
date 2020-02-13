@@ -696,7 +696,7 @@ void AppWindow::onTabChanged(int index)
 
     auto tmp = windowAt(index);
 
-    setWindowTitle(tmp->getTabTitle(true, false) + " - CP Editor");
+    setWindowTitle(tmp->getCompleteTitle() + " - CP Editor");
 
     activeLogger = tmp->getLogger();
     server->setMessageLogger(activeLogger);
@@ -740,13 +740,32 @@ void AppWindow::onEditorFileChanged()
 
         for (auto tabs : tabsByName)
         {
+            QString longestCommonPrefix;
+            if (tabs.size() > 1)
+            {
+                longestCommonPrefix = windowAt(tabs.front())->getCompleteTitle();
+                for (int t = 1; t < tabs.length(); ++t)
+                {
+                    auto current = windowAt(tabs[t])->getCompleteTitle();
+                    longestCommonPrefix = longestCommonPrefix.left(current.length());
+                    for (int i = 0; i < longestCommonPrefix.length(); ++i)
+                    {
+                        if (longestCommonPrefix[i] != current[i])
+                        {
+                            longestCommonPrefix = longestCommonPrefix.left(i);
+                            break;
+                        }
+                    }
+                }
+            }
+            int removeLength = longestCommonPrefix.lastIndexOf('/') + 1;
             for (auto index : tabs)
             {
-                ui->tabWidget->setTabText(index, windowAt(index)->getTabTitle(tabs.size() > 1, true));
+                ui->tabWidget->setTabText(index, windowAt(index)->getTabTitle(tabs.size() > 1, true, removeLength));
             }
         }
 
-        setWindowTitle(currentWindow()->getTabTitle(true, false) + " - CP Editor");
+        setWindowTitle(currentWindow()->getCompleteTitle() + " - CP Editor");
         Core::Log::i("appwindow/onEditorFileChanged",
                      "Changed window title to " + currentWindow()->getTabTitle(true, false) + " - CP Editor");
     }
@@ -757,12 +776,13 @@ void AppWindow::onEditorTextChanged(MainWindow *window)
     int index = ui->tabWidget->indexOf(window);
     if (index != -1)
     {
-        auto currentTitle = ui->tabWidget->tabText(index);
-        if (currentTitle == window->getTabTitle(false, false) ||
-            currentTitle == window->getTabTitle(false, false) + " *")
-            ui->tabWidget->setTabText(index, window->getTabTitle(false, true));
-        else
-            ui->tabWidget->setTabText(index, window->getTabTitle(true, true));
+        auto title = ui->tabWidget->tabText(index);
+        // assume the clean title doesn't end with " *"
+        if (title.endsWith(" *"))
+            title.chop(2);
+        if (windowAt(index)->isTextChanged())
+            title += " *";
+        ui->tabWidget->setTabText(index, title);
     }
 }
 

@@ -233,15 +233,25 @@ QString MainWindow::getProblemURL() const
     return problemURL;
 }
 
-QString MainWindow::getTabTitle(bool complete, bool star)
+QString MainWindow::getCompleteTitle() const
+{
+    if (!isUntitled())
+        return filePath;
+    else if (!problemURL.isEmpty())
+        return problemURL;
+    else
+        return getFileName();
+}
+
+QString MainWindow::getTabTitle(bool complete, bool star, int removeLength)
 {
     QString tabTitle;
     if (!complete || (isUntitled() && problemURL.isEmpty()))
         tabTitle = getFileName();
     else if (!isUntitled())
-        tabTitle = filePath;
+        tabTitle = getFileName() + " - " + QFileInfo(filePath).canonicalPath().remove(0, removeLength);
     else
-        tabTitle = problemURL;
+        tabTitle = getFileName() + " - " + getProblemURL().remove(0, removeLength);
     if (star && isTextChanged())
         tabTitle += " *";
     return tabTitle;

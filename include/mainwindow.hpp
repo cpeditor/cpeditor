@@ -70,7 +70,8 @@ class MainWindow : public QMainWindow
     QString getFileName() const;
     QString getFilePath() const;
     QString getProblemURL() const;
-    QString getTabTitle(bool complete, bool star);
+    QString getCompleteTitle() const;
+    QString getTabTitle(bool complete, bool star, int removeLength = 0);
     QCodeEditor *getEditor() const;
     bool isUntitled() const;
 
