@@ -1294,7 +1294,6 @@ void AppWindow::onTabContextMenuRequested(const QPoint &pos)
                     widget->setUntitledIndex(index);
                 }
                 widget->setProblemURL(url);
-                onEditorFileChanged();
             }
             else
                 Core::Log::i("appwindow/onTabContextMenuRequested", "set problem url dialog closed or cancelled");
