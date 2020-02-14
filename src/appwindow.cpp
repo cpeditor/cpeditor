@@ -503,7 +503,7 @@ void AppWindow::on_actionNew_Tab_triggered()
 
 void AppWindow::on_actionOpen_triggered()
 {
-    auto fileNames = QFileDialog::getOpenFileNames(this, tr("Open Files"), "",
+    auto fileNames = QFileDialog::getOpenFileNames(this, tr("Open Files"), settingManager->getSavePath(),
                                                    "Source Files (*.cpp *.hpp *.h *.cc *.cxx *.c *.py *.py3 *.java)");
     openTabs(fileNames);
 }
