@@ -427,7 +427,6 @@ void MainWindow::applySettingsData(bool shouldPerformDigonistic)
     const int tabStop = settingManager->getTabStop();
     QFontMetrics metric(editor->font());
     editor->setTabReplaceSize(tabStop);
-    editor->setTabStopDistance(tabStop * metric.horizontalAdvance("9"));
 
     if (settingManager->isWrapText())
         editor->setWordWrapMode(QTextOption::WordWrap);
