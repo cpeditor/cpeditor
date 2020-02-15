@@ -1265,6 +1265,8 @@ void AppWindow::onTabContextMenuRequested(const QPoint &pos)
         menu->addSeparator();
         if (!widget->getProblemURL().isEmpty())
         {
+            menu->addAction("Open problem in browser",
+                            [widget] { QDesktopServices::openUrl(widget->getProblemURL()); });
             menu->addAction("Copy Problem URL",
                             [widget] { QGuiApplication::clipboard()->setText(widget->getProblemURL()); });
         }
