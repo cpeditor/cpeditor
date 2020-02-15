@@ -21,10 +21,11 @@ jobs:
   - script: git submodule update --init --recursive
     displayName: 'Fetch third party dependency'
   - script: |
-      sudo add-apt-repository ppa:beineri/opt-qt-5.12.0-xenial -y
+      sudo add-apt-repository ppa:beineri/opt-qt-5.12.7-xenial -y
       sudo apt-get update -qq
       sudo apt-get -y install qt512base libgl1-mesa-dev qt512svg qt512imageformats
       source /opt/qt*/bin/qt*-env.sh
+    displayName: 'Install Qt'
   - task: CMake@1
     displayName: 'Generate make-files'
     inputs:
@@ -41,15 +42,25 @@ jobs:
       git submodule update --recursive --init
     displayName: 'Fetch dependencies'
 
+  - task: UsePythonVersion@0
+    inputs:
+      versionSpec: '3.x'
+
   - script: |
-      brew install qt5
-    displayName: 'Install Qt 5'
+      cd $(Build.SourcesDirectory)
+      python -m pip install aqtinstall
+    displayName: 'Install aqtinstall'
+
+  - script: |
+      cd $(Build.SourcesDirectory)
+      python -m aqt install --outputdir $(Build.BinariesDirectory)/Qt 5.12.7 mac desktop
+    displayName: 'Install Qt'
 
   - script: |
       cd $(Build.SourcesDirectory)
       mkdir build
       cd build
-      export CMAKE_PREFIX_PATH="/usr/local/opt/qt/lib/cmake"
+      export CMAKE_PREFIX_PATH=$(Build.BinariesDirectory)/Qt/5.12.7/clang_64/lib/cmake
       cmake .. -DCMAKE_BUILD_TYPE=Release
       cmake --build .
     displayName: 'Generate scripts and Make'
@@ -66,7 +77,7 @@ jobs:
   - task: UsePythonVersion@0
     inputs:
       versionSpec: '3.x'
-  
+
   - script: |
       cd $(Build.SourcesDirectory)
       python -m pip install aqtinstall
@@ -74,17 +85,17 @@ jobs:
 
   - script: |
       cd $(Build.SourcesDirectory)
-      python -m aqt install --outputdir $(Build.BinariesDirectory)\\Qt 5.14.0 windows desktop win64_msvc2017_64
-    displayName: 'Install Qt 5.14.0'
+      python -m aqt install --outputdir $(Build.BinariesDirectory)\\Qt 5.12.7 windows desktop win64_msvc2017_64
+    displayName: 'Install Qt'
 
   - script: |
       cd $(Build.SourcesDirectory)
       call "C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\Enterprise\\VC\\Auxiliary\\Build\\vcvars64.bat"
-      set CMAKE_PREFIX_PATH=$(Build.BinariesDirectory)\Qt\5.14.0\msvc2017_64\lib\cmake      
+      set CMAKE_PREFIX_PATH=$(Build.BinariesDirectory)\Qt\5.12.7\msvc2017_64\lib\cmake
       mkdir build
       cd build
       cmake .. -G"Visual Studio 15 2017 Win64"
-      cmake --build . --config Release 
+      cmake --build . --config Release
     displayName: 'Generate scripts and Make'
 
 - job: 'AppImage'
@@ -98,10 +109,11 @@ jobs:
     displayName: 'Fetch third party dependency'
 
   - script: |
-      sudo add-apt-repository ppa:beineri/opt-qt-5.12.0-xenial -y
+      sudo add-apt-repository ppa:beineri/opt-qt-5.12.7-xenial -y
       sudo apt-get update -qq
       sudo apt-get -y install qt512base libgl1-mesa-dev qt512svg qt512imageformats
       source /opt/qt*/bin/qt*-env.sh
+    displayName: 'Install Qt'
   - task: CMake@1
     displayName: 'Generate make-files'
     inputs:
@@ -117,7 +129,7 @@ jobs:
   - script: |
       source /opt/qt*/bin/qt*-env.sh
       cd $(Build.SourcesDirectory)/build
-      wget -c "https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage" 
+      wget -c "https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage"
       chmod a+x linuxdeployqt*.AppImage
       export VERSION=`git describe --tags`
       mv ../.ci/linux/default.desktop . && mv ../.ci/linux/icon.png .
@@ -155,7 +167,7 @@ jobs:
       changeLogType: 'commitBased'
 
 - job: 'DMG'
-  dependsOn: 
+  dependsOn:
   - TestMac
   - AppImage
   displayName: 'MacOS DMG'
@@ -166,22 +178,32 @@ jobs:
       git submodule update --recursive --init
     displayName: 'Fetch dependencies'
 
+  - task: UsePythonVersion@0
+    inputs:
+      versionSpec: '3.x'
+
   - script: |
-      brew install qt5
-    displayName: 'Install Qt 5'
+      cd $(Build.SourcesDirectory)
+      python -m pip install aqtinstall
+    displayName: 'Install aqtinstall'
+
+  - script: |
+      cd $(Build.SourcesDirectory)
+      python -m aqt install --outputdir $(Build.BinariesDirectory)/Qt 5.12.7 mac desktop
+    displayName: 'Install Qt'
 
   - script: |
       cd $(Build.SourcesDirectory)
       mkdir build
       cd build
-      export CMAKE_PREFIX_PATH="/usr/local/opt/qt/lib/cmake"
+      export CMAKE_PREFIX_PATH=$(Build.BinariesDirectory)/Qt/5.12.7/clang_64/lib/cmake
       cmake .. -DCMAKE_BUILD_TYPE=Release
       cmake --build .
     displayName: 'Generate scripts and Make'
 
   - script: |
       cd $(Build.SourcesDirectory)/build
-      /usr/local/opt/qt/bin/macdeployqt CPEditor.app
+      $(Build.BinariesDirectory)/Qt/5.12.7/clang_64/bin/macdeployqt CPEditor.app
     displayName: 'Gather dependencies'
 
   - script: VERSION_TAG=`git describe --tags` && echo "##vso[task.setvariable variable=VERSION_TAG]$VERSION_TAG"
@@ -191,10 +213,10 @@ jobs:
       cd $(Build.SourcesDirectory)/build
       cp $(Build.SourcesDirectory)/.ci/mac/cpeditor.icns $(Build.SourcesDirectory)/build/CPEditor.app/Contents/Resources
       hdiutil create -volname CP_Editor-$(VERSION_TAG)-x64 -srcfolder $(Build.SourcesDirectory)/build/CPEditor.app -ov -format UDZO CP_Editor-$(VERSION_TAG)-x64.dmg
-    
+
     displayName: 'Pack to DMG'
   - task: GitHubRelease@1
-    condition: or(endsWith(variables['Build.SourceBranch'], '-beta'), endsWith(variables['Build.SourceBranch'], '-rc')) 
+    condition: or(endsWith(variables['Build.SourceBranch'], '-beta'), endsWith(variables['Build.SourceBranch'], '-rc'))
     inputs:
       gitHubConnection: github.com_coder3101
       repositoryName: '$(Build.Repository.Name)'
@@ -224,7 +246,7 @@ jobs:
       changeLogType: 'commitBased'
 
 - job: 'EXE'
-  dependsOn: 
+  dependsOn:
   - TestWindows
   - DMG
   displayName: 'Windows Installer'
@@ -238,7 +260,7 @@ jobs:
   - task: UsePythonVersion@0
     inputs:
       versionSpec: '3.x'
-  
+
   - script: |
       cd $(Build.SourcesDirectory)
       python -m pip install aqtinstall
@@ -246,24 +268,24 @@ jobs:
 
   - script: |
       cd $(Build.SourcesDirectory)
-      python -m aqt install --outputdir $(Build.BinariesDirectory)\\Qt 5.14.0 windows desktop win64_msvc2017_64
-    displayName: 'Install Qt 5.14.0'
+      python -m aqt install --outputdir $(Build.BinariesDirectory)\\Qt 5.12.7 windows desktop win64_msvc2017_64
+    displayName: 'Install Qt'
 
   - script: |
       cd $(Build.SourcesDirectory)
       call "C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\Enterprise\\VC\\Auxiliary\\Build\\vcvars64.bat"
-      set CMAKE_PREFIX_PATH=$(Build.BinariesDirectory)\Qt\5.14.0\msvc2017_64\lib\cmake      
+      set CMAKE_PREFIX_PATH=$(Build.BinariesDirectory)\Qt\5.12.7\msvc2017_64\lib\cmake
       mkdir build
       cd build
       cmake .. -G"Visual Studio 15 2017 Win64"
-      cmake --build . --config Release 
+      cmake --build . --config Release
     displayName: 'Generate scripts and Make'
 
   - script: |
       cd $(Build.SourcesDirectory)\build\Release
       mkdir out
       mv CPEditor.exe out/
-      $(Build.BinariesDirectory)\Qt\5.14.0\msvc2017_64\bin\windeployqt.exe out\CPEditor.exe --no-translations
+      $(Build.BinariesDirectory)\Qt\5.12.7\msvc2017_64\bin\windeployqt.exe out\CPEditor.exe --no-translations
     displayName: 'Gather EXE dependencies'
 
   - task: ChocolateyCommand@0
@@ -279,10 +301,10 @@ jobs:
   - script: |
       cd $(Build.SourcesDirectory)
       iscc .ci\win\win-setup.iss -DMyAppVersion=$(CI_BUILD_TAG) -DMyProjectRoot=$(Build.SourcesDirectory) -DMyOutRoot=$(Build.SourcesDirectory)\build\Release\out
-      dir . 
+      dir .
     displayName: 'Inno setup compile'
   - task: GitHubRelease@1
-    condition: or(endsWith(variables['Build.SourceBranch'], '-beta'), endsWith(variables['Build.SourceBranch'], '-rc')) 
+    condition: or(endsWith(variables['Build.SourceBranch'], '-beta'), endsWith(variables['Build.SourceBranch'], '-rc'))
     inputs:
       gitHubConnection: github.com_coder3101
       repositoryName: '$(Build.Repository.Name)'
