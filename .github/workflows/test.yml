@@ -5,8 +5,6 @@ on:
     paths-ignore:
       - '*.md'
       - '*/*/*.md'
-    tags-ignore:
-      - '*'
   pull_request:
     paths-ignore:
       - '*.md'
