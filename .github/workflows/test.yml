@@ -1,6 +1,16 @@
 name: "CI: Build Test"
 
-on: [push, pull_request]
+on:
+  push:
+    paths-ignore:
+      - '*.md'
+      - '*/*/*.md'
+    tags-ignore:
+      - '*'
+  pull_request:
+    paths-ignore:
+      - '*.md'
+      - '*/*/*.md'
 
 env:
   CMAKE_VERSION: 3.16.4
