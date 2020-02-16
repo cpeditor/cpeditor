@@ -15,8 +15,8 @@
  *
  */
 
-#include "Core/EventLogger.hpp"
 #include "Core/Compiler.hpp"
+#include "Core/EventLogger.hpp"
 #include <QFileInfo>
 
 namespace Core
