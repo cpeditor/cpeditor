@@ -101,6 +101,14 @@ You can also set hotkeys for some actions manually in `Preferences`. However the
 		cmake --build . --config Release
 		```
 
+### Use Artifacts
+
+If you want to use the latest version (even later than the beta release), but don't want to build from source, you can download Artifacts from [Github Actions](https://github.com/coder3101/cp-editor/actions).
+
+However, it's not recommended to use Artifacts, they are more unstable than beta releases, and may be a work in progress. You should read the commit logs and even the source codes before using Artifacts.
+
+Artifacts are only available for Windows, MacOS and Ubuntu 18.04. In order to use it on Windows/MacOS, you should install from [Releases](https://github.com/coder3101/cp-editor/releases) first (any version is OK), then replace `CPEditor.exe/app` with the Artifact.
+
 ### Contribution
 
 If you found any bugs or have any feature requests, please open an issue [here](https://github.com/coder3101/cp-editor/issues), and don't forget to follow the issue templates. Users' responses are important for contributors to improve the project.
