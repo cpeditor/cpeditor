@@ -39,7 +39,7 @@ jobs:
         - {
             os: macos-latest,
             cc: "clang", cxx: "clang++",
-            binary: 'CPEditor.app/MacOS/CPEditor'
+            binary: 'CPEditor.app/Contents/MacOS/CPEditor'
           }
 
     steps:
