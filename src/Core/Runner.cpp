@@ -18,6 +18,7 @@
 #include "Core/Runner.hpp"
 #include "Core/EventLogger.hpp"
 #include <QFileInfo>
+#include <QDebug>
 
 namespace Core
 {
@@ -125,6 +126,15 @@ void Runner::runDetached(const QString &filePath, const QString &lang, const QSt
                                         "; read -n 1 -s -r -p '\nExecution Done\nPress any key to exit'"});
     Core::Log::i("runner/runDetached") << "xterm args " << runProcess->arguments().join(" ") << endl;
     runProcess->start();
+#elif defined(__APPLE__)
+    Core::Log::i("runner/runDetached", "on mac, using apple script to launch terminal");
+    runProcess->setProgram("osascript");
+    runProcess->setArguments({"-l", "AppleScript"});
+    QString script = "tell app \"Terminal\" to do script \"" + getCommand(filePath, lang, runCommand, args).replace("\"", "'") + "\"";
+    runProcess->start();
+    Core::Log::i("runner/runDetached") << "Running apple script : " << script << endl;
+    runProcess->write(script.toUtf8());
+    runProcess->closeWriteChannel();
 #else
     Core::Log::i("runner/runDetached", "on windows. Using cmd");
     runProcess->start("cmd /C \"start cmd /C " + getCommand(filePath, lang, runCommand, args).replace("\"", "^\"") +
