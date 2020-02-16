@@ -630,7 +630,7 @@ void AppWindow::onReceivedMessage(quint32 instanceId, QByteArray message)
         Core::Log::i("appwindow/onReceivedMessage", "branched to normal");
         FROMJSON(depth).toInt();
         FROMJSON(paths).toVariant().toStringList();
-        openPaths(paths);
+        openPaths(paths, cpp, java, python, depth);
     }
     else if (json["type"] == "contest")
     {
