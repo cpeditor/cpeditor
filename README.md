@@ -107,7 +107,7 @@ If you want to use the latest version (even later than the beta release), but do
 
 However, it's not recommended to use Artifacts, they are more unstable than beta releases, and may be a work in progress. You should read the commit logs and even the source codes before using Artifacts.
 
-Artifacts are only available for Windows, MacOS and Ubuntu 18.04. In order to use it on Windows/MacOS, you should install from [Releases](https://github.com/coder3101/cp-editor/releases) first (any version is OK), then replace `CPEditor.exe/app` with the Artifact.
+Artifacts are only available for Windows, MacOS and Ubuntu 18.04. In order to use it on Windows/MacOS, you should install from [Releases](https://github.com/coder3101/cp-editor/releases) first (almost any version is OK, unless something like DLL missing happens), then replace `CPEditor.exe/app` with the Artifact.
 
 ### Contribution
 
