@@ -51,7 +51,7 @@ void UpdateNotifier::checkUpdate(bool force)
 
 bool compareVersion(QString const &a, QString const &b)
 {
-    Core::Log::i("updateNotifier/compareVersion") << "latest : " << a << "current : " << b << endl;
+    Core::Log::i("updateNotifier/compareVersion") << "latest : " << a << " current : " << b << endl;
     // returns true if a is higher version than b;
 
     auto aV = a.split(".");
@@ -88,9 +88,10 @@ void UpdateNotifier::managerFinished(QNetworkReply *reply)
     }
     QString jsonReply = reply->readAll();
 
-    Core::Log::i("updateNotifier/managerFinished") << jsonReply << endl;
+    Core::Log::i("updateNotifier/managerFinished")<< "Cycling through the JSON response" << endl;
 
     QJsonDocument doc = QJsonDocument::fromJson(jsonReply.toUtf8());
+
 
     QJsonDocument release;
     QString downloadUrl = "https://github.com/coder3101/cp-editor";
