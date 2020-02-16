@@ -40,6 +40,7 @@ PreferenceWindow::PreferenceWindow(Settings::SettingManager *manager, QWidget *p
     setWindowTitle("Preferences");
 
     editor = new QCodeEditor();
+    editor->setSizePolicy({QSizePolicy::Expanding, QSizePolicy::Expanding});
     ui->verticalLayout_3->insertWidget(0, editor);
 
     connect(ui->snippets, SIGNAL(currentTextChanged(const QString &)), this,
