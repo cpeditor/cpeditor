@@ -20,15 +20,18 @@ jobs:
         - {
             os: windows-latest,
             cc: "cl", cxx: "cl",
+            binary: 'CPEditor.exe',
             environment_script: "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Auxiliary/Build/vcvars64.bat"
           }
         - {
             os: ubuntu-latest,
-            cc: "gcc", cxx: "g++"
+            cc: "gcc", cxx: "g++",
+            binary: 'CPEditor'
           }
         - {
             os: macos-latest,
-            cc: "clang", cxx: "clang++"
+            cc: "clang", cxx: "clang++",
+            binary: 'CPEditor.app'
           }
 
     steps:
@@ -183,3 +186,9 @@ jobs:
           message(FATAL_ERROR "Bad exit status")
         endif()
         execute_process(COMMAND ccache -s)
+
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v1
+      with:
+        name: "CPEditor-${{ matrix.config.os }}-${{ matrix.qt_version }}-${{ github.sha }}"
+        path: build/${{ matrix.config.binary }}
