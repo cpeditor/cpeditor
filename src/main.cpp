@@ -15,6 +15,8 @@
  *
  */
 
+// bot test
+
 #include "Core/EventLogger.hpp"
 #include <QApplication>
 #include <QCommandLineParser>
