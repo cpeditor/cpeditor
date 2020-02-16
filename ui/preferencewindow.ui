@@ -441,7 +441,12 @@
              </widget>
             </item>
             <item row="1" column="1">
-             <widget class="QPlainTextEdit" name="clang_format_style"/>
+             <widget class="QPlainTextEdit" name="clang_format_style">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+               </sizepolicy>
+              </property>
+             </widget>
             </item>
            </layout>
           </item>
@@ -509,6 +514,10 @@
             </item>
             <item row="2" column="1">
              <widget class="QTextBrowser" name="textBrowser_2">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+               </sizepolicy>
+              </property>
               <property name="html">
                <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
@@ -819,6 +828,10 @@ p, li { white-space: pre-wrap; }
             </item>
             <item row="4" column="1">
              <widget class="QTextBrowser" name="textBrowser">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+               </sizepolicy>
+              </property>
               <property name="html">
                <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
