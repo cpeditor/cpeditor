@@ -32,12 +32,8 @@ Head over to the [release page](https://github.com/coder3101/cp-editor/releases)
 - Linux users can find an `AppImage`:
   1. `chmod +x <AppImagePath>` or make it executable in GUI by right-clicking on it.
   2. Just run it, either from bash or in GUI.
-- Get the .dmg file from releases and follow these steps:
-  1. Move the Extracted bundle to `/Applications`
-  2. If you try to open it, it may fail saying that file is damaged. This is because of Mac Gatekeeper. You need to disable gatekeeper for CPEditor
-  3. Open the terminal and `cd /Applications`
-  4. Run `sudo xattr -rd com.apple.quarantine CPEditor.app`. Type in your password and now you can double click to launch the app.
-  > *Note: You may need to click "Yes" to access Filesystem several times. It may also happen that application icon will not be visible.*
+- Get the .dmg file from releases and install as you install other apps
+  > *Note: You may need to click "Yes" to access Filesystem several times. Apple may report that this application does not comes from recognised developer and prevent you from launching app. Please add an exception to the Editor from `Settings-> Security -> General`, and allow CPEditor to `run anyways`*
 
 For Chinese users who are not convenient to download on Github, there is an [alternative download link](https://pan.wzf2000.top/s/md70l8h0) (it's not guaranteed to be up to date).
 
