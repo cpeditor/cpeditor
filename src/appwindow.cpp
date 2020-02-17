@@ -286,7 +286,7 @@ void AppWindow::saveSettings()
     findReplaceDialog->writeSettings(*settingManager->settings());
 }
 
-void AppWindow::openTab(QString path)
+void AppWindow::openTab(const QString &path)
 {
     if (QFile::exists(path))
     {
@@ -810,7 +810,7 @@ void AppWindow::onSettingsApplied()
     Core::Log::i("appwindow/onSettingsApplied", "Applied settings to appwindow");
 }
 
-void AppWindow::onIncomingCompanionRequest(Network::CompanionData data)
+void AppWindow::onIncomingCompanionRequest(const Network::CompanionData &data)
 {
     Core::Log::i("appwindow/onIncomingCompanionRequest")
         << "Applying data to new tab. Args: shouldOpenNewTab:" << settingManager->isCompetitiveCompanionOpenNewTab()

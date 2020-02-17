@@ -44,7 +44,7 @@
 
 // ***************************** RAII  ****************************
 
-MainWindow::MainWindow(QString fileOpen, Settings::SettingManager *manager, int index, QWidget *parent)
+MainWindow::MainWindow(const QString &fileOpen, Settings::SettingManager *manager, int index, QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow), settingManager(manager), untitledIndex(index),
       fileWatcher(new QFileSystemWatcher(this))
 {
@@ -373,7 +373,7 @@ void MainWindow::loadStatus(const EditorStatus &status, bool simple)
     }
 }
 
-void MainWindow::applyCompanion(Network::CompanionData data)
+void MainWindow::applyCompanion(const Network::CompanionData &data)
 {
     if (isUntitled() && !isTextChanged())
     {
@@ -516,7 +516,7 @@ void MainWindow::formatSource()
     formatter->format(editor, filePath, language, true);
 }
 
-void MainWindow::setLanguage(QString lang)
+void MainWindow::setLanguage(const QString &lang)
 {
     log.clear();
     if (!QFile::exists(filePath))
@@ -568,7 +568,7 @@ MessageLogger *MainWindow::getLogger()
     return &log;
 }
 
-void MainWindow::insertText(QString text)
+void MainWindow::insertText(const QString &text)
 {
     editor->insertPlainText(text);
 }
@@ -635,8 +635,10 @@ void MainWindow::updateWatcher()
         fileWatcher->addPath(filePath);
 }
 
-void MainWindow::loadFile(QString path)
+void MainWindow::loadFile(const QString &loadPath)
 {
+    auto path = loadPath;
+
     bool samePath = !isUntitled() && filePath == path;
     filePath = path;
     updateWatcher();

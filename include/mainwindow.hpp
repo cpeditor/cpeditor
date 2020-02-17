@@ -63,7 +63,7 @@ class MainWindow : public QMainWindow
         QMap<QString, QVariant> toMap() const;
     };
 
-    MainWindow(QString fileOpen, Settings::SettingManager *manager, int index = 0, QWidget *parent = nullptr);
+    MainWindow(const QString &fileOpen, Settings::SettingManager *manager, int index = 0, QWidget *parent = nullptr);
     ~MainWindow() override;
 
     int getUntitledIndex() const;
@@ -94,9 +94,9 @@ class MainWindow : public QMainWindow
     void compileAndRun();
     void formatSource();
 
-    void applyCompanion(Network::CompanionData data);
+    void applyCompanion(const Network::CompanionData &data);
 
-    void setLanguage(QString lang);
+    void setLanguage(const QString &lang);
     QString getLanguage();
     void applySettingsData(bool);
 
@@ -104,7 +104,7 @@ class MainWindow : public QMainWindow
     QSplitter *getSplitter();
     QSplitter *getRightSplitter();
 
-    void insertText(QString text);
+    void insertText(const QString &text);
 
     void focusOnEditor();
 
@@ -194,7 +194,7 @@ class MainWindow : public QMainWindow
     void setCFToolsUI();
     void setText(const QString &text, bool keep = false);
     void updateWatcher();
-    void loadFile(QString path);
+    void loadFile(const QString &loadPath);
     bool saveFile(SaveMode, const QString &head);
     bool saveTemp(const QString &head);
     QString tmpPath();

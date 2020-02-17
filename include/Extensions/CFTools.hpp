@@ -30,12 +30,12 @@ class CFTools : public QObject
     Q_OBJECT
 
   public:
-    CFTools(QString path, MessageLogger *logger);
+    CFTools(const QString &path, MessageLogger *logger);
     ~CFTools();
     void submit(const QString &filePath, const QString &url, const QString &lang);
-    static bool check(QString path);
+    static bool check(const QString &path);
 
-    void updatePath(QString p);
+    void updatePath(const QString &p);
   private slots:
     void onReadReady();
 

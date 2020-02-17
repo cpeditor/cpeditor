@@ -23,7 +23,7 @@
 namespace Network
 {
 
-CFTools::CFTools(QString path, MessageLogger *logger) : path(path)
+CFTools::CFTools(const QString &path, MessageLogger *logger) : path(path)
 {
     Core::Log::i("cftools/constructed") << "path is : " << path << " is logger null " << (logger == nullptr) << endl;
     log = logger;
@@ -92,7 +92,7 @@ void CFTools::submit(const QString &filePath, const QString &url, const QString 
     Core::Log::i("cftools/submit", "cftools has started");
 }
 
-bool CFTools::check(QString path)
+bool CFTools::check(const QString &path)
 {
     Core::Log::i("cftools/check") << "checking for path " << path << endl;
     QProcess checkProcess;
@@ -104,7 +104,7 @@ bool CFTools::check(QString path)
     return finished && checkProcess.exitCode() == 0;
 }
 
-void CFTools::updatePath(QString p)
+void CFTools::updatePath(const QString &p)
 {
     Core::Log::i("cftools/updatePath") << "new path is : " << p << endl;
     path = p;

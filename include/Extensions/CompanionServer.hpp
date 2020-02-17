@@ -29,10 +29,6 @@ struct CompanionData
 {
     struct TestCases
     {
-        TestCases() = default;
-        TestCases(QString in, QString out) : input(in), output(out)
-        {
-        }
         QString input;
         QString output;
     };
@@ -47,7 +43,7 @@ struct CompanionData
     bool isOutputstdout;
     QVector<TestCases> testcases;
 
-    QString toMetaString()
+    QString toMetaString() const
     {
         QString ans;
         ans += "Problem : " + name + "\n";
@@ -72,7 +68,7 @@ class CompanionServer : public QObject
     ~CompanionServer();
 
   signals:
-    void onRequestArrived(CompanionData data);
+    void onRequestArrived(const CompanionData &data);
 
   private slots:
     void onNewConnection();
