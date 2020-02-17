@@ -88,10 +88,9 @@ void UpdateNotifier::managerFinished(QNetworkReply *reply)
     }
     QString jsonReply = reply->readAll();
 
-    Core::Log::i("updateNotifier/managerFinished")<< "Cycling through the JSON response" << endl;
+    Core::Log::i("updateNotifier/managerFinished") << "Cycling through the JSON response" << endl;
 
     QJsonDocument doc = QJsonDocument::fromJson(jsonReply.toUtf8());
-
 
     QJsonDocument release;
     QString downloadUrl = "https://github.com/coder3101/cp-editor";
