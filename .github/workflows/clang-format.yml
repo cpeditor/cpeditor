@@ -26,7 +26,7 @@ jobs:
       run: |
         git config --local user.email "clang-format-action@cpeditor"
         git config --local user.name "clang-format bot"
-        git commit -m "style: Format codes" -a
+        git diff-index --quiet HEAD || git commit -am "style: Format codes"
     - name: Push changes
       uses: ad-m/github-push-action@master
       with:
