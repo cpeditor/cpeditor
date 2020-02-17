@@ -24,6 +24,8 @@
 #include <QTextStream>
 #include <singleapplication.h>
 
+
+
 #include "appwindow.hpp"
 #include "mainwindow.hpp"
 
