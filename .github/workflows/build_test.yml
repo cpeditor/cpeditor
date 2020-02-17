@@ -17,16 +17,6 @@ env:
   CCACHE_VERSION: 3.7.7
 
 jobs:
-  checkformat:
-    name: "Check code format"
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-    - uses: DoozyX/clang-format-lint-action@v0.5
-      with:
-        exclude: './third_party'
-        clangFormatVersion: 9
-
   build:
     name: "${{ matrix.config.os }} Qt ${{ matrix.qt_version }}"
     runs-on: ${{ matrix.config.os }}

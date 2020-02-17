@@ -1,0 +1,22 @@
+name: "CI: Format Test"
+
+on:
+  push:
+    paths-ignore:
+      - '*.md'
+      - '*/*/*.md'
+  pull_request:
+    paths-ignore:
+      - '*.md'
+      - '*/*/*.md'
+
+jobs:
+  checkformat:
+    name: "Check code format"
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: DoozyX/clang-format-lint-action@v0.5
+      with:
+        exclude: './third_party'
+        clangFormatVersion: 9
