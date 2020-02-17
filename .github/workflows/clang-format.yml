@@ -16,14 +16,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-
     - name: "Install clang-format-9"
       run: |
         sudo apt-get update
         sudo apt-get install clang-format-9
-        
-    - name: "git version"
-      run: git --version
-
-    - name: "git clang format"
-      run: git clang-format -h
+    - name: "Format Codes"
+      run: clang-format-9 -i src/*.cpp src/*/*.cpp include/*.hpp include/*/*.hpp
+    - name: Commit files
+      run: |
+        git config --local user.email "clang-format-action@cpeditor"
+        git config --local user.name "clang-format bot"
+        git commit -m "style: Format codes" -a
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
