@@ -1,4 +1,4 @@
-name: "CI: Build Test"
+name: "Auto Clang Format"
 
 on:
   push:
@@ -15,15 +15,15 @@ jobs:
     name: "Auto Clang Format"
     runs-on: ubuntu-latest
   steps:
-    - uses: actions/checkout@v2
+  - uses: actions/checkout@v2
 
-    - name: "Install clang-format-9"
-      run: |
-        apt update
-        apt install clang-format-9
-        
-    - name: "git version"
-      run: git --version
+  - name: "Install clang-format-9"
+    run: |
+      apt update
+      apt install clang-format-9
+      
+  - name: "git version"
+    run: git --version
 
-    - name: "git clang format"
-      run: git clang-format -h
+  - name: "git clang format"
+    run: git clang-format -h
