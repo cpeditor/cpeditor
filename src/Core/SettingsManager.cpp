@@ -645,6 +645,7 @@ void SettingManager::setRightSplitterSizes(const QByteArray &state)
 
 QSettings *SettingManager::settings()
 {
+    Core::Log::i("settingmanager/settings", "invoked");
     return mSettings;
 }
 

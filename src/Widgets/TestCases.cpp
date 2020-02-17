@@ -16,6 +16,7 @@
  */
 
 #include "Widgets/TestCases.hpp"
+#include "Core/EventLogger.hpp"
 #include "diff_match_patch.h"
 #include <QFileDialog>
 #include <QMainWindow>
@@ -26,6 +27,7 @@
 
 TestCaseEdit::TestCaseEdit(bool autoAnimation, const QString &text, QWidget *parent) : QPlainTextEdit(text, parent)
 {
+    Core::Log::i("testcaseEdit/constructed") << "autoAnimate " << autoAnimation << " text " << text << endl;
     animation = new QPropertyAnimation(this, "minimumHeight", this);
     if (autoAnimation)
         connect(this, SIGNAL(textChanged()), this, SLOT(startAnimation()));
@@ -34,6 +36,7 @@ TestCaseEdit::TestCaseEdit(bool autoAnimation, const QString &text, QWidget *par
 
 TestCaseEdit::TestCaseEdit(bool autoAnimation, QWidget *parent) : QPlainTextEdit(parent)
 {
+    Core::Log::i("testcaseEdit/constructed") << "autoAnimate " << autoAnimation << endl;
     animation = new QPropertyAnimation(this, "minimumHeight", this);
     if (autoAnimation)
         connect(this, SIGNAL(textChanged()), this, SLOT(startAnimation()));
@@ -42,8 +45,10 @@ TestCaseEdit::TestCaseEdit(bool autoAnimation, QWidget *parent) : QPlainTextEdit
 
 void TestCaseEdit::dragEnterEvent(QDragEnterEvent *event)
 {
+    Core::Log::i("testCaseEdit/dragEnterEvent", "Something is being dropped into testcaseEdit");
     if (event->mimeData()->hasUrls())
     {
+        Core::Log::i("testCaseEdit/dragEnterEvent", "Accepting dropped object");
         event->accept();
         event->acceptProposedAction();
     }
@@ -51,8 +56,11 @@ void TestCaseEdit::dragEnterEvent(QDragEnterEvent *event)
 
 void TestCaseEdit::dragMoveEvent(QDragMoveEvent *event)
 {
+    Core::Log::i("testCaseEdit/dragMoveEvent", "Something is being Moved into testcaseEdit");
+
     if (event->mimeData()->hasUrls())
     {
+        Core::Log::i("testCaseEdit/dragMoveEvent", "Accepting moved object");
         event->accept();
         event->acceptProposedAction();
     }
@@ -60,18 +68,22 @@ void TestCaseEdit::dragMoveEvent(QDragMoveEvent *event)
 
 void TestCaseEdit::dropEvent(QDropEvent *event)
 {
+    Core::Log::i("testcaseEdit/dropEvent", "Something has been dropped");
     auto urls = event->mimeData()->urls();
     if (!isReadOnly() && !urls.isEmpty())
     {
+        Core::Log::i("testcaseEdit/dropEvent", "Reading the dropped file to testcase");
         QFile file(urls[0].toLocalFile());
         if (file.open(QIODevice::ReadOnly | QIODevice::Text))
             modifyText(file.readAll());
         event->acceptProposedAction();
+        Core::Log::i("testcaseEdit/dropEvent") << "dropped file was " << file.fileName() << endl;
     }
 }
 
 void TestCaseEdit::modifyText(const QString &text)
 {
+    Core::Log::i("testcasesEdit/modifyText") << "text " << text << endl;
     auto cursor = textCursor();
     cursor.select(QTextCursor::Document);
     cursor.insertText(text);
@@ -79,6 +91,7 @@ void TestCaseEdit::modifyText(const QString &text)
 
 void TestCaseEdit::startAnimation()
 {
+    Core::Log::i("testcaseEdit/startAnimation", "started Animation");
     int newHeight = qMin(fontMetrics().lineSpacing() * (document()->lineCount() + 2) + 5, 300);
     if (newHeight != minimumHeight())
     {
@@ -86,12 +99,14 @@ void TestCaseEdit::startAnimation()
         animation->setStartValue(minimumHeight());
         animation->setEndValue(newHeight);
         animation->start();
+        Core::Log::i("testcaseEdit/startAnimation", "re-started Animation");
     }
 }
 
 TestCase::TestCase(int index, MessageLogger *logger, QWidget *parent, const QString &input, const QString &expected)
     : QWidget(parent), log(logger)
 {
+    Core::Log::i("testcase/constructed") << "index " << index << " input " << input << " expected " << expected << endl;
     mainLayout = new QHBoxLayout(this);
     inputUpLayout = new QHBoxLayout();
     outputUpLayout = new QHBoxLayout();
@@ -140,23 +155,32 @@ TestCase::TestCase(int index, MessageLogger *logger, QWidget *parent, const QStr
     mainLayout->addLayout(outputLayout);
     mainLayout->addLayout(expectedLayout);
 
+    Core::Log::i("testcase/constructed", "UI has been built");
+
     connect(deleteButton, SIGNAL(clicked()), this, SLOT(on_deleteButton_clicked()));
     connect(loadInputButton, SIGNAL(clicked()), this, SLOT(on_loadInputButton_clicked()));
     connect(diffButton, SIGNAL(clicked()), SLOT(on_diffButton_clicked()));
     connect(loadExpectedButton, SIGNAL(clicked()), this, SLOT(on_loadExpectedButton_clicked()));
+
+    Core::Log::i("testcase/constructed", "signals have been attached");
 }
 
 void TestCase::setInput(const QString &text)
 {
+    Core::Log::i("testcase/setInput") << "text \n" << text << endl;
     inputEdit->modifyText(text);
 }
 
 void TestCase::setOutput(const QString &text)
 {
+    Core::Log::i("testcase/setOutput") << "text \n" << text << endl;
+
     outputEdit->modifyText(text);
     outputEdit->startAnimation();
 
     currentVerdict = output().isEmpty() || expected().isEmpty() ? UNKNOWN : (isPass() ? AC : WA);
+
+    Core::Log::i("testcase/setOutput") << "currentVerdict " << currentVerdict << endl;
 
     switch (currentVerdict)
     {
@@ -177,11 +201,13 @@ void TestCase::setOutput(const QString &text)
 
 void TestCase::setExpected(const QString &text)
 {
+    Core::Log::i("testcase/setExpected") << "text \n" << text << endl;
     expectedEdit->modifyText(text);
 }
 
 void TestCase::clearOutput()
 {
+    Core::Log::i("testcase/clearOutput", "Cleared output");
     outputEdit->modifyText(QString());
     currentVerdict = UNKNOWN;
     diffButton->setStyleSheet("");
@@ -190,24 +216,29 @@ void TestCase::clearOutput()
 
 QString TestCase::input() const
 {
+    Core::Log::i("testcase/input", "Invoked");
     return inputEdit->toPlainText();
 }
 
 QString TestCase::output() const
 {
+    Core::Log::i("testcase/output", "Invoked");
     return outputEdit->toPlainText();
 }
 
 QString TestCase::expected() const
 {
+    Core::Log::i("testcase/expected", "Invoked");
     return expectedEdit->toPlainText();
 }
 
 void TestCase::loadFromFile(const QString &pathPrefix)
 {
+    Core::Log::i("testcase/loadFromFile") << "pathPrefix " << pathPrefix << endl;
     QFile inputFile(pathPrefix + ".in");
     if (inputFile.exists())
     {
+        Core::Log::i("testcase/loadFromFile", "Okay, Input file exists");
         if (inputFile.open(QIODevice::ReadOnly | QIODevice::Text))
             setInput(inputFile.readAll());
         else
@@ -216,6 +247,7 @@ void TestCase::loadFromFile(const QString &pathPrefix)
     QFile expectedFile(pathPrefix + ".ans");
     if (expectedFile.exists())
     {
+        Core::Log::i("testcase/loadFromFile", "Okay, Expected file exists");
         if (expectedFile.open(QIODevice::ReadOnly | QIODevice::Text))
             setExpected(expectedFile.readAll());
         else
@@ -225,8 +257,11 @@ void TestCase::loadFromFile(const QString &pathPrefix)
 
 void TestCase::save(const QString &pathPrefix)
 {
+    Core::Log::i("testcase/save") << "pathPrefix " << pathPrefix << endl;
+
     if (!input().isEmpty() || QFile::exists(pathPrefix + ".in"))
     {
+        Core::Log::i("testcase/save", "Okay, Input file exists and should be saved");
         QSaveFile inputFile(pathPrefix + ".in");
         inputFile.open(QIODevice::WriteOnly | QIODevice::Text);
         inputFile.write(input().toUtf8());
@@ -235,6 +270,7 @@ void TestCase::save(const QString &pathPrefix)
     }
     if (!expected().isEmpty() || QFile::exists(pathPrefix + ".ans"))
     {
+        Core::Log::i("testcase/save", "Okay, Expected file exists and should be saved");
         QSaveFile expectedFile(pathPrefix + ".ans");
         expectedFile.open(QIODevice::WriteOnly | QIODevice::Text);
         expectedFile.write(expected().toUtf8());
@@ -245,6 +281,7 @@ void TestCase::save(const QString &pathPrefix)
 
 void TestCase::setID(int index)
 {
+    Core::Log::i("testcase/setID") << "index " << index << endl;
     id = index;
     inputLabel->setText("Input #" + QString::number(id + 1));
     outputLabel->setText("Output #" + QString::number(id + 1));
@@ -253,17 +290,22 @@ void TestCase::setID(int index)
 
 TestCase::Verdict TestCase::verdict() const
 {
+    Core::Log::i("testcase/verdict", "Invoked");
     return currentVerdict;
 }
 
 void TestCase::on_deleteButton_clicked()
 {
+    Core::Log::i("testcase/on_deleteButton_clicked", "Invoked");
+
     if (input().isEmpty() && expected().isEmpty())
     {
+        Core::Log::i("testcase/on_deleteButton_clicked", "Deleted Directly because empty");
         emit deleted(this);
     }
     else
     {
+        Core::Log::i("testcase/on_deleteButton_clicked", "Asking confirmation for delete");
         auto res = QMessageBox::question(this, "Delete Testcase", "Do you want to delete this test case?");
         if (res == QMessageBox::Yes)
             emit deleted(this);
@@ -272,6 +314,7 @@ void TestCase::on_deleteButton_clicked()
 
 void TestCase::on_loadInputButton_clicked()
 {
+    Core::Log::i("testcase/on_loadInputButton_clicked", "invoked");
     auto res = QFileDialog::getOpenFileName(this, "Load Input");
     QFile file(res);
     if (file.open(QIODevice::ReadOnly | QIODevice::Text))
@@ -282,6 +325,7 @@ void TestCase::on_loadInputButton_clicked()
 
 void TestCase::on_diffButton_clicked()
 {
+    Core::Log::i("testcase/on_diffButton_clicked", "invoked");
     auto window = new QMainWindow(this);
     auto widget = new QWidget(window);
     auto layout = new QHBoxLayout();
@@ -311,6 +355,7 @@ void TestCase::on_diffButton_clicked()
 
     if (output().length() <= 100000 && expected().length() <= 100000)
     {
+        Core::Log::i("testcase/on_diffButton_clicked", "less than 10^6 size of output and expected. Highlighting now");
         diff_match_patch differ;
         differ.Diff_EditCost = 10;
         auto diffs = differ.diff_main(expected(), output());
@@ -344,7 +389,7 @@ void TestCase::on_diffButton_clicked()
     }
     else
     {
-        QMessageBox::warning(this, "Diff Viewer", "The output/expected is too large, use plain diff.");
+        QMessageBox::warning(this, "Diff Viewer", "The output/expected is too large, using plain diff.");
         expectedEdit->setPlainText(expected());
         outputEdit->setPlainText(output());
         rightLayout->addWidget(outputEdit);
@@ -360,11 +405,14 @@ void TestCase::on_diffButton_clicked()
     connect(outputEdit->verticalScrollBar(), SIGNAL(valueChanged(int)), expectedEdit->verticalScrollBar(),
             SLOT(setValue(int)));
 
+    Core::Log::i("testcase/on_diffButton_clicked", "connnections established, showing diff window");
+
     window->show();
 }
 
 void TestCase::on_loadExpectedButton_clicked()
 {
+    Core::Log::i("settingmanager/on_loadExpectedButton_clicked", "invoked");
     auto res = QFileDialog::getOpenFileName(this, "Load Expected");
     QFile file(res);
     if (file.open(QIODevice::ReadOnly | QIODevice::Text))
@@ -375,6 +423,7 @@ void TestCase::on_loadExpectedButton_clicked()
 
 bool TestCase::isPass() const
 {
+    Core::Log::i("settingmanager/isPass", "invoked");
     auto out = output().remove('\r');
     auto ans = expected().remove('\r');
     auto a_lines = out.split('\n');
@@ -424,6 +473,7 @@ const int TestCases::MAX_NUMBER_OF_TESTCASES;
 
 TestCases::TestCases(MessageLogger *logger, QWidget *parent) : QWidget(parent), log(logger)
 {
+    Core::Log::i("testcases/constructed", "invoked");
     mainLayout = new QVBoxLayout(this);
     titleLayout = new QHBoxLayout();
     label = new QLabel("Test Cases");
@@ -434,6 +484,8 @@ TestCases::TestCases(MessageLogger *logger, QWidget *parent) : QWidget(parent), 
     scrollAreaWidget = new QWidget();
     scrollAreaLayout = new QVBoxLayout(scrollAreaWidget);
 
+	Core::Log::i("testcases/constructed", "widgets created");
+
     titleLayout->addWidget(label);
     titleLayout->addWidget(verdicts);
     titleLayout->addWidget(addButton);
@@ -443,25 +495,33 @@ TestCases::TestCases(MessageLogger *logger, QWidget *parent) : QWidget(parent), 
     mainLayout->addLayout(titleLayout);
     mainLayout->addWidget(scrollArea);
 
+	    Core::Log::i("testcases/constructed", "widgets attached");
+
+
     updateVerdicts();
 
     connect(addButton, SIGNAL(clicked()), this, SLOT(on_addButton_clicked()));
     connect(clearButton, SIGNAL(clicked()), this, SLOT(on_clearButton_clicked()));
+
+	    Core::Log::i("testcases/constructed", "connection established");
 }
 
 void TestCases::setInput(int index, const QString &input)
 {
+    Core::Log::i("testcases/setInput") << "index : " << input << "\n" << input << endl;
     testcases[index]->setInput(input);
 }
 
 void TestCases::setOutput(int index, const QString &output)
 {
+    Core::Log::i("testcases/setoutput") << "index : " <<index << " output \n"<< output << endl;
     testcases[index]->setOutput(output);
     updateVerdicts();
 }
 
 void TestCases::setExpected(int index, const QString &expected)
 {
+    Core::Log::i("testcases/setExpected") << "index : " << index << " expected \n" << expected << endl;
     testcases[index]->setExpected(expected);
 }
 
@@ -469,11 +529,13 @@ void TestCases::addTestCase(const QString &input, const QString &expected)
 {
     if (count() >= MAX_NUMBER_OF_TESTCASES)
     {
+        Core::Log::w("testcases/addTestcase", "Max testcase limit reached");
         QMessageBox::warning(this, "Add Test Case",
                              "There are already " + QString::number(count()) + " test cases, you can't add more.");
     }
     else
     {
+        Core::Log::w("testcases/addTestcase", "New testcase added");
         auto testcase = new TestCase(count(), log, this, input, expected);
         connect(testcase, SIGNAL(deleted(TestCase *)), this, SLOT(onChildDeleted(TestCase *)));
         testcases.push_back(testcase);
@@ -484,6 +546,7 @@ void TestCases::addTestCase(const QString &input, const QString &expected)
 
 void TestCases::clearOutput()
 {
+    Core::Log::w("testcases/clearOutput", "invoked");
     for (int i = 0; i < count(); ++i)
         testcases[i]->clearOutput();
     updateVerdicts();
@@ -491,27 +554,32 @@ void TestCases::clearOutput()
 
 void TestCases::clear()
 {
+    Core::Log::w("testcases/clear", "invoked");
     while (count() > 0)
         onChildDeleted(testcases.front());
 }
 
 QString TestCases::input(int index) const
 {
+    Core::Log::w("testcases/input") << " index " << index << endl;
     return testcases[index]->input();
 }
 
 QString TestCases::output(int index) const
 {
+    Core::Log::w("testcases/output") << " index " << index << endl;
     return testcases[index]->output();
 }
 
 QString TestCases::expected(int index) const
 {
+    Core::Log::w("testcases/expected") << " index " << index << endl;
     return testcases[index]->expected();
 }
 
 void TestCases::loadStatus(const QStringList &inputList, const QStringList &expectedList)
 {
+    Core::Log::w("testcases/loadStatus", "invoked");
     clear();
     for (int i = 0; i < inputList.length(); ++i)
         addTestCase(inputList[i], expectedList[i]);
@@ -519,6 +587,7 @@ void TestCases::loadStatus(const QStringList &inputList, const QStringList &expe
 
 QStringList TestCases::inputs() const
 {
+    Core::Log::w("testcases/inputs", "invoked");
     QStringList res;
     for (int i = 0; i < count(); ++i)
         res.append(testcases[i]->input());
@@ -527,6 +596,7 @@ QStringList TestCases::inputs() const
 
 QStringList TestCases::expecteds() const
 {
+    Core::Log::w("testcases/expecteds", "invoked");
     QStringList res;
     for (int i = 0; i < count(); ++i)
         res.append(testcases[i]->expected());
@@ -535,6 +605,7 @@ QStringList TestCases::expecteds() const
 
 void TestCases::loadFromFile(const QString &filePath)
 {
+    Core::Log::i("testcases/loadFromFile") << "filepath " << filePath << endl; 
     QFileInfo fileInfo(filePath);
     auto dir = fileInfo.dir();
     auto name = fileInfo.completeBaseName();
@@ -555,6 +626,7 @@ void TestCases::loadFromFile(const QString &filePath)
 
 void TestCases::save(const QString &filePath)
 {
+    Core::Log::i("testcases/save") << "filepath " << filePath << endl; 
     QFileInfo fileInfo(filePath);
     auto dir = fileInfo.dir();
     auto name = fileInfo.completeBaseName();
@@ -576,21 +648,25 @@ void TestCases::save(const QString &filePath)
 
 int TestCases::id(TestCase *testcase) const
 {
+    Core::Log::i("testcases/id", "invoked"); 
     return testcases.indexOf(testcase);
 }
 
 int TestCases::count() const
 {
+    Core::Log::i("testcases/count", "invoked"); 
     return testcases.count();
 }
 
 void TestCases::on_addButton_clicked()
 {
+    Core::Log::i("testcases/on_addButton_clicked", "invoked"); 
     addTestCase();
 }
 
 void TestCases::on_clearButton_clicked()
 {
+    Core::Log::i("testcases/on_clearButton_clicked", "invoked"); 
     for (int i = 0; i < count(); ++i)
     {
         if (input(i).isEmpty() && output(i).isEmpty() && expected(i).isEmpty())
@@ -609,6 +685,7 @@ void TestCases::on_clearButton_clicked()
 
 void TestCases::onChildDeleted(TestCase *widget)
 {
+    Core::Log::i("testcases/onChildDeleted", "invoked"); 
     testcases.removeOne(widget);
     widget->hide();
     scrollAreaLayout->removeWidget(widget);
@@ -620,6 +697,7 @@ void TestCases::onChildDeleted(TestCase *widget)
 
 void TestCases::updateVerdicts()
 {
+    Core::Log::i("testcases/updateVerdicts", "invoked"); 
     int ac = 0, wa = 0;
     for (int i = 0; i < count(); ++i)
     {
@@ -641,11 +719,13 @@ void TestCases::updateVerdicts()
 
 QString TestCases::testFilePathPrefix(const QFileInfo &fileInfo, int index)
 {
+    Core::Log::i("testcases/testFilePathPrefix") << "index " << index << endl; 
     return fileInfo.dir().filePath(fileInfo.completeBaseName() + "_" + QString::number(index + 1));
 }
 
 int TestCases::numberOfTestFile(const QString &sourceName, const QFileInfo &fileName)
 {
+    Core::Log::i("testcases/numberofTestFile") << "sourceName " << sourceName << endl; 
     auto baseName = fileName.completeBaseName();
     return baseName.mid(baseName.indexOf(sourceName) + sourceName.length() + 1).toInt();
 }
