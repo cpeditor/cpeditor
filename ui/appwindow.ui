@@ -79,6 +79,8 @@
     <addaction name="separator"/>
     <addaction name="action_toggle_comment"/>
     <addaction name="action_toggle_block_comment"/>
+    <addaction name="separator"/>
+    <addaction name="action_find_replace"/>
    </widget>
    <widget class="QMenu" name="menuActions">
     <property name="title">
@@ -90,9 +92,8 @@
     <addaction name="actionRun_Detached"/>
     <addaction name="actionKill_Processes"/>
     <addaction name="separator"/>
-    <addaction name="action_find_replace"/>
-    <addaction name="actionUse_Snippets"/>
     <addaction name="actionFormat_code"/>
+    <addaction name="actionUse_Snippets"/>
    </widget>
    <widget class="QMenu" name="menuView">
     <property name="title">
