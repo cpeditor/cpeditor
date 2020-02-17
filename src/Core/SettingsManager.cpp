@@ -643,6 +643,11 @@ void SettingManager::setRightSplitterSizes(const QByteArray &state)
     mSettings->setValue("right_splitter_sizes", state);
 }
 
+QSettings *SettingManager::settings()
+{
+    return mSettings;
+}
+
 SettingManager::~SettingManager()
 {
     Core::Log::i("settingmanager/destroyed", "Sync and destoryed setting manager object");

@@ -123,6 +123,7 @@ AppWindow::~AppWindow()
     delete timer;
     delete updater;
     delete server;
+    delete findReplaceDialog;
 }
 
 /******************* PUBLIC METHODS ***********************/
@@ -176,6 +177,8 @@ void AppWindow::allocate()
     updater = new Telemetry::UpdateNotifier(settingManager->isBeta());
     preferenceWindow = new PreferenceWindow(settingManager, this);
     server = new Network::CompanionServer(settingManager->getConnectionPort());
+    findReplaceDialog = new FindReplaceDialog(this);
+    findReplaceDialog->setModal(false);
 
     timer->setInterval(3000);
     timer->setSingleShot(false);
@@ -213,6 +216,8 @@ void AppWindow::applySettings()
     }
 
     maybeSetHotkeys();
+
+    findReplaceDialog->readSettings(*settingManager->settings());
 }
 
 void AppWindow::maybeSetHotkeys()
@@ -278,6 +283,7 @@ void AppWindow::saveSettings()
     if (!this->isMaximized())
         settingManager->setGeometry(this->geometry());
     settingManager->setMaximizedWindow(this->isMaximized());
+    findReplaceDialog->writeSettings(*settingManager->settings());
 }
 
 void AppWindow::openTab(QString path)
@@ -665,6 +671,7 @@ void AppWindow::onTabChanged(int index)
     {
         activeLogger = nullptr;
         server->setMessageLogger(nullptr);
+        findReplaceDialog->setTextEdit(nullptr);
         setWindowTitle("CP Editor: An editor specially designed for competitive programming");
         return;
     }
@@ -673,6 +680,8 @@ void AppWindow::onTabChanged(int index)
     disconnect(activeRightSplitterMoveConnection);
 
     auto tmp = windowAt(index);
+
+    findReplaceDialog->setTextEdit(tmp->getEditor());
 
     setWindowTitle(tmp->getCompleteTitle() + " - CP Editor");
 
@@ -906,6 +915,13 @@ void AppWindow::on_actionRun_triggered()
     {
         Core::Log::w("appwindow/on_actionRun_triggered", "Nothing happened, No active window");
     }
+}
+
+void AppWindow::on_action_find_replace_triggered()
+{
+    auto tmp = currentWindow();
+    if (tmp != nullptr)
+        findReplaceDialog->showDialog(tmp->getEditor()->textCursor().selectedText());
 }
 
 void AppWindow::on_actionFormat_code_triggered()

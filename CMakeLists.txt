@@ -24,6 +24,8 @@ add_subdirectory(third_party/QCodeEditor)
 set(QAPPLICATION_CLASS QApplication CACHE STRING "Inheritance class for SingleApplication")
 add_subdirectory(third_party/singleapplication)
 
+add_subdirectory(third_party/QtFindReplaceDialog/dialogs)
+
 configure_file(version.hpp.in ${CMAKE_BINARY_DIR}/generated/version.hpp)
 
 add_executable(CPEditor
@@ -78,6 +80,7 @@ add_executable(CPEditor
 
 include_directories("third_party/QCodeEditor/include")
 include_directories("third_party/diff_match_patch")
+include_directories("third_party/QtFindReplaceDialog")
 include_directories("include/")
 include_directories("generated/")
 
@@ -85,6 +88,7 @@ target_link_libraries(CPEditor PRIVATE Qt5::Widgets)
 target_link_libraries(CPEditor PRIVATE Qt5::Network)
 target_link_libraries(CPEditor PRIVATE QCodeEditor)
 target_link_libraries(CPEditor PRIVATE SingleApplication)
+target_link_libraries(CPEditor PRIVATE QtFindReplaceDialog)
  
 if(APPLE)
     set_target_properties(CPEditor

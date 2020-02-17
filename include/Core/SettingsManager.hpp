@@ -172,6 +172,8 @@ class SettingManager
     QString getSavePath();
     void setSavePath(const QString &path);
 
+    QSettings *settings();
+
     void resetSettings();
 
     ~SettingManager();

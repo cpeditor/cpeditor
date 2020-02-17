@@ -24,6 +24,7 @@
 #include "Telemetry/UpdateNotifier.hpp"
 #include "mainwindow.hpp"
 #include "preferencewindow.hpp"
+#include <findreplacedialog.h>
 
 namespace Ui
 {
@@ -108,6 +109,8 @@ class AppWindow : public QMainWindow
 
     void on_actionRun_triggered();
 
+    void on_action_find_replace_triggered();
+
     void on_actionFormat_code_triggered();
 
     void on_actionRun_Detached_triggered();
@@ -151,6 +154,7 @@ class AppWindow : public QMainWindow
     Telemetry::UpdateNotifier *updater = nullptr;
     PreferenceWindow *preferenceWindow = nullptr;
     Network::CompanionServer *server;
+    FindReplaceDialog *findReplaceDialog = nullptr;
 
     void setConnections();
     void allocate();
