@@ -484,7 +484,7 @@ TestCases::TestCases(MessageLogger *logger, QWidget *parent) : QWidget(parent), 
     scrollAreaWidget = new QWidget();
     scrollAreaLayout = new QVBoxLayout(scrollAreaWidget);
 
-	Core::Log::i("testcases/constructed", "widgets created");
+    Core::Log::i("testcases/constructed", "widgets created");
 
     titleLayout->addWidget(label);
     titleLayout->addWidget(verdicts);
@@ -495,15 +495,14 @@ TestCases::TestCases(MessageLogger *logger, QWidget *parent) : QWidget(parent), 
     mainLayout->addLayout(titleLayout);
     mainLayout->addWidget(scrollArea);
 
-	    Core::Log::i("testcases/constructed", "widgets attached");
-
+    Core::Log::i("testcases/constructed", "widgets attached");
 
     updateVerdicts();
 
     connect(addButton, SIGNAL(clicked()), this, SLOT(on_addButton_clicked()));
     connect(clearButton, SIGNAL(clicked()), this, SLOT(on_clearButton_clicked()));
 
-	    Core::Log::i("testcases/constructed", "connection established");
+    Core::Log::i("testcases/constructed", "connection established");
 }
 
 void TestCases::setInput(int index, const QString &input)
@@ -514,7 +513,7 @@ void TestCases::setInput(int index, const QString &input)
 
 void TestCases::setOutput(int index, const QString &output)
 {
-    Core::Log::i("testcases/setoutput") << "index : " <<index << " output \n"<< output << endl;
+    Core::Log::i("testcases/setoutput") << "index : " << index << " output \n" << output << endl;
     testcases[index]->setOutput(output);
     updateVerdicts();
 }
@@ -605,7 +604,7 @@ QStringList TestCases::expecteds() const
 
 void TestCases::loadFromFile(const QString &filePath)
 {
-    Core::Log::i("testcases/loadFromFile") << "filepath " << filePath << endl; 
+    Core::Log::i("testcases/loadFromFile") << "filepath " << filePath << endl;
     QFileInfo fileInfo(filePath);
     auto dir = fileInfo.dir();
     auto name = fileInfo.completeBaseName();
@@ -626,7 +625,7 @@ void TestCases::loadFromFile(const QString &filePath)
 
 void TestCases::save(const QString &filePath)
 {
-    Core::Log::i("testcases/save") << "filepath " << filePath << endl; 
+    Core::Log::i("testcases/save") << "filepath " << filePath << endl;
     QFileInfo fileInfo(filePath);
     auto dir = fileInfo.dir();
     auto name = fileInfo.completeBaseName();
@@ -648,25 +647,25 @@ void TestCases::save(const QString &filePath)
 
 int TestCases::id(TestCase *testcase) const
 {
-    Core::Log::i("testcases/id", "invoked"); 
+    Core::Log::i("testcases/id", "invoked");
     return testcases.indexOf(testcase);
 }
 
 int TestCases::count() const
 {
-    Core::Log::i("testcases/count", "invoked"); 
+    Core::Log::i("testcases/count", "invoked");
     return testcases.count();
 }
 
 void TestCases::on_addButton_clicked()
 {
-    Core::Log::i("testcases/on_addButton_clicked", "invoked"); 
+    Core::Log::i("testcases/on_addButton_clicked", "invoked");
     addTestCase();
 }
 
 void TestCases::on_clearButton_clicked()
 {
-    Core::Log::i("testcases/on_clearButton_clicked", "invoked"); 
+    Core::Log::i("testcases/on_clearButton_clicked", "invoked");
     for (int i = 0; i < count(); ++i)
     {
         if (input(i).isEmpty() && output(i).isEmpty() && expected(i).isEmpty())
@@ -685,7 +684,7 @@ void TestCases::on_clearButton_clicked()
 
 void TestCases::onChildDeleted(TestCase *widget)
 {
-    Core::Log::i("testcases/onChildDeleted", "invoked"); 
+    Core::Log::i("testcases/onChildDeleted", "invoked");
     testcases.removeOne(widget);
     widget->hide();
     scrollAreaLayout->removeWidget(widget);
@@ -697,7 +696,7 @@ void TestCases::onChildDeleted(TestCase *widget)
 
 void TestCases::updateVerdicts()
 {
-    Core::Log::i("testcases/updateVerdicts", "invoked"); 
+    Core::Log::i("testcases/updateVerdicts", "invoked");
     int ac = 0, wa = 0;
     for (int i = 0; i < count(); ++i)
     {
@@ -719,13 +718,13 @@ void TestCases::updateVerdicts()
 
 QString TestCases::testFilePathPrefix(const QFileInfo &fileInfo, int index)
 {
-    Core::Log::i("testcases/testFilePathPrefix") << "index " << index << endl; 
+    Core::Log::i("testcases/testFilePathPrefix") << "index " << index << endl;
     return fileInfo.dir().filePath(fileInfo.completeBaseName() + "_" + QString::number(index + 1));
 }
 
 int TestCases::numberOfTestFile(const QString &sourceName, const QFileInfo &fileName)
 {
-    Core::Log::i("testcases/numberofTestFile") << "sourceName " << sourceName << endl; 
+    Core::Log::i("testcases/numberofTestFile") << "sourceName " << sourceName << endl;
     auto baseName = fileName.completeBaseName();
     return baseName.mid(baseName.indexOf(sourceName) + sourceName.length() + 1).toInt();
 }
