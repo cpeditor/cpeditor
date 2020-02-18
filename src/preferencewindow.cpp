@@ -15,10 +15,10 @@
  *
  */
 
-#include "include/preferencewindow.hpp"
+#include "preferencewindow.hpp"
 #include "../ui/ui_preferencewindow.h"
-
 #include "Extensions/EditorTheme.hpp"
+#include "Util.hpp"
 #include <QAction>
 #include <QCXXHighlighter>
 #include <QDesktopWidget>
@@ -361,10 +361,7 @@ void PreferenceWindow::on_extract_snippets_to_files_clicked()
                 filePath = QFileDialog::getSaveFileName(this, "Save snippet " + name + " to:", dirPath, fileType);
             while (!filePath.isEmpty())
             {
-                QSaveFile saveFile(filePath);
-                saveFile.open(QIODevice::WriteOnly | QIODevice::Text);
-                saveFile.write(content.toStdString().c_str());
-                if (saveFile.commit())
+                if (Util::saveFile(filePath, content, "PreferenceWindow/on_extract_snippets_to_files_clicked"))
                     break;
                 QMessageBox::warning(this, "File save error", "Failed to save to " + filePath);
                 filePath = QFileDialog::getSaveFileName(this, "Save snippet " + name + " to:", dirPath, fileType);

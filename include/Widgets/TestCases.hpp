@@ -62,7 +62,7 @@ class TestCase : public QWidget
     QString output() const;
     QString expected() const;
     void loadFromFile(const QString &pathPrefix);
-    void save(const QString &pathPrefix);
+    void save(const QString &pathPrefix, bool safe);
     void setID(int index);
 
     enum Verdict
@@ -116,7 +116,7 @@ class TestCases : public QWidget
     QStringList inputs() const;
     QStringList expecteds() const;
     void loadFromFile(const QString &filePath);
-    void save(const QString &filePath);
+    void save(const QString &filePath, bool safe);
     int id(TestCase *testcase) const;
     int count() const;
 

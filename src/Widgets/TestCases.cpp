@@ -24,6 +24,7 @@
 #include <QMimeData>
 #include <QSaveFile>
 #include <QScrollBar>
+#include <Util.hpp>
 
 TestCaseEdit::TestCaseEdit(bool autoAnimation, const QString &text, QWidget *parent) : QPlainTextEdit(text, parent)
 {
@@ -255,27 +256,19 @@ void TestCase::loadFromFile(const QString &pathPrefix)
     }
 }
 
-void TestCase::save(const QString &pathPrefix)
+void TestCase::save(const QString &pathPrefix, bool safe)
 {
     Core::Log::i("testcase/save") << "pathPrefix " << pathPrefix << endl;
 
     if (!input().isEmpty() || QFile::exists(pathPrefix + ".in"))
     {
         Core::Log::i("testcase/save", "Okay, Input file exists and should be saved");
-        QSaveFile inputFile(pathPrefix + ".in");
-        inputFile.open(QIODevice::WriteOnly | QIODevice::Text);
-        inputFile.write(input().toUtf8());
-        if (!inputFile.commit())
-            log->warn("Tests", "Failed to save Input #" + QString::number(id + 1) + ". Do I have write permission?");
+        Util::saveFile(pathPrefix + ".in", input(), "Testcase Input #" + QString::number(id + 1), safe, log);
     }
     if (!expected().isEmpty() || QFile::exists(pathPrefix + ".ans"))
     {
         Core::Log::i("testcase/save", "Okay, Expected file exists and should be saved");
-        QSaveFile expectedFile(pathPrefix + ".ans");
-        expectedFile.open(QIODevice::WriteOnly | QIODevice::Text);
-        expectedFile.write(expected().toUtf8());
-        if (!expectedFile.commit())
-            log->warn("Tests", "Failed to save Expected #" + QString::number(id + 1) + ". Do I have write permission?");
+        Util::saveFile(pathPrefix + ".ans", expected(), "Testcase Expected #" + QString::number(id + 1), safe, log);
     }
 }
 
@@ -623,14 +616,14 @@ void TestCases::loadFromFile(const QString &filePath)
         addTestCase();
 }
 
-void TestCases::save(const QString &filePath)
+void TestCases::save(const QString &filePath, bool safe)
 {
     Core::Log::i("testcases/save") << "filepath " << filePath << endl;
     QFileInfo fileInfo(filePath);
     auto dir = fileInfo.dir();
     auto name = fileInfo.completeBaseName();
     for (int i = 0; i < count(); ++i)
-        testcases[i]->save(testFilePathPrefix(fileInfo, i));
+        testcases[i]->save(testFilePathPrefix(fileInfo, i), safe);
     auto entries = dir.entryInfoList({name + "*.in", name + "*.ans"}, QDir::Files);
     for (auto entry : entries)
     {

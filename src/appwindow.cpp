@@ -781,7 +781,7 @@ void AppWindow::onSaveTimerElapsed()
         auto tmp = windowAt(t);
         if (!tmp->isUntitled())
         {
-            tmp->save(false, "Auto Save");
+            tmp->save(false, "Auto Save", false);
             Core::Log::i("appwindow/onSaveTimerElapsed", "Autosave success");
         }
     }

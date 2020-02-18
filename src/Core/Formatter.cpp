@@ -17,6 +17,7 @@
 
 #include "Core/Formatter.hpp"
 #include "Core/EventLogger.hpp"
+#include "Util.hpp"
 #include <QJsonDocument>
 #include <QProcess>
 #include <QTemporaryDir>
@@ -42,20 +43,15 @@ bool Formatter::check(const QString &checkBinary, const QString &checkStyle)
         Core::Log::w("formatter/check", "tmpDir is not valid");
         return false;
     }
-    QFile tmpFile(tmpDir.filePath("tmp.cpp"));
-    tmpFile.open(QIODevice::WriteOnly | QIODevice::Text);
-    tmpFile.write("int main(){}");
-    tmpFile.close();
-    Core::Log::i("formatter/check", "wrote a sample main to temp directory");
 
-    QFile styleFile(tmpDir.filePath(".clang-format"));
-    styleFile.open(QIODevice::WriteOnly | QIODevice::Text);
-    styleFile.write(checkStyle.toStdString().c_str());
-    styleFile.close();
-    Core::Log::i("formatter/check", "wrote the format file to temp directory");
+    if (!Util::saveFile(tmpDir.filePath("tmp.cpp"), "int main(){}", "Formatter/check"))
+        return false;
+
+    if (!Util::saveFile(tmpDir.filePath(".clang-format"), checkStyle, "Formatter/check"))
+        return false;
 
     QProcess program;
-    program.start(checkBinary, {"--cursor=0", "--offset=0", "--length=0", "--style=file", tmpFile.fileName()});
+    program.start(checkBinary, {"--cursor=0", "--offset=0", "--length=0", "--style=file", tmpDir.filePath("tmp.cpp")});
     Core::Log::i("formatter/check", "started the format process");
 
     if (!program.waitForFinished(2000))
@@ -121,22 +117,16 @@ void Formatter::format(QCodeEditor *editor, const QString &filePath, const QStri
         log->error("Formatter", "Failed to create temporary directory");
         return;
     }
-    QFile tmpFile(tmpDir.filePath(tmpName));
-    tmpFile.open(QIODevice::WriteOnly | QIODevice::Text);
-    tmpFile.write(editor->toPlainText().toStdString().c_str());
-    tmpFile.close();
 
-    Core::Log::i("formatter/format", "Wrote to temporary file the editor contest");
+    if (!Util::saveFile(tmpDir.filePath(tmpName), editor->toPlainText(), "Formatter", true, log))
+        return;
+
     Core::Log::i("formatter/format") << "Editor content is : \n" << editor->toPlainText();
 
-    QFile styleFile(tmpDir.filePath(".clang-format"));
-    styleFile.open(QIODevice::WriteOnly | QIODevice::Text);
-    styleFile.write(style.toStdString().c_str());
-    styleFile.close();
+    if (!Util::saveFile(tmpDir.filePath(".clang-format"), style, "Formatter", true, log))
+        return;
 
-    Core::Log::i("formatter/format", "Wrote to temporary file the clang-format style");
-
-    args.append(tmpFile.fileName());
+    args.append(tmpDir.filePath(tmpName));
 
     auto res = getFormatResult(args);
     if (res.first == -1)

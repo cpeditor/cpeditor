@@ -22,6 +22,7 @@
 #include "Core/MessageLogger.hpp"
 #include "Core/Runner.hpp"
 #include "Extensions/EditorTheme.hpp"
+#include "Util.hpp"
 #include <QCXXHighlighter>
 #include <QFileDialog>
 #include <QFont>
@@ -174,10 +175,10 @@ void MainWindow::loadTests()
         testcases->loadFromFile(filePath);
 }
 
-void MainWindow::saveTests()
+void MainWindow::saveTests(bool safe)
 {
     if (!isUntitled() && settingManager->isSaveTests())
-        testcases->save(filePath);
+        testcases->save(filePath, safe);
 }
 
 void MainWindow::setCFToolsUI()
@@ -459,14 +460,14 @@ void MainWindow::applySettingsData(bool shouldPerformDigonistic)
     }
 }
 
-void MainWindow::save(bool force, const QString &head)
+void MainWindow::save(bool force, const QString &head, bool safe)
 {
-    saveFile(force ? SaveUntitled : IgnoreUntitled, head);
+    saveFile(force ? SaveUntitled : IgnoreUntitled, head, safe);
 }
 
 void MainWindow::saveAs()
 {
-    saveFile(SaveAs, "Save as");
+    saveFile(SaveAs, "Save as", true);
 }
 
 void MainWindow::on_compile_clicked()
@@ -677,7 +678,7 @@ void MainWindow::loadFile(const QString &loadPath)
     loadTests();
 }
 
-bool MainWindow::saveFile(SaveMode mode, const QString &head)
+bool MainWindow::saveFile(SaveMode mode, const QString &head, bool safe)
 {
     if (settingManager->isFormatOnSave())
         formatter->format(editor, filePath, language, false);
@@ -706,15 +707,8 @@ bool MainWindow::saveFile(SaveMode mode, const QString &head)
         if (newFilePath.isEmpty())
             return false;
 
-        QSaveFile openFile(newFilePath);
-        openFile.open(QIODevice::WriteOnly | QFile::Text);
-        openFile.write(editor->toPlainText().toStdString().c_str());
-
-        if (!openFile.commit())
-        {
-            log.error(head, "Failed to save file to [" + newFilePath + "]. Do I have write permission?");
+        if (!Util::saveFile(newFilePath, editor->toPlainText(), head, safe, &log))
             return false;
-        }
 
         filePath = newFilePath;
         updateWatcher();
@@ -731,14 +725,8 @@ bool MainWindow::saveFile(SaveMode mode, const QString &head)
     }
     else if (!isUntitled())
     {
-        QSaveFile openFile(filePath);
-        openFile.open(QFileDevice::WriteOnly | QFile::Text);
-        openFile.write(editor->toPlainText().toStdString().c_str());
-        if (!openFile.commit())
-        {
-            log.error(head, "Failed to save file to [" + filePath + "]. Do I have write permission?");
+        if (!Util::saveFile(filePath, editor->toPlainText(), head, safe, &log))
             return false;
-        }
         updateWatcher();
     }
     else
@@ -746,14 +734,14 @@ bool MainWindow::saveFile(SaveMode mode, const QString &head)
         return false;
     }
 
-    saveTests();
+    saveTests(safe);
 
     return true;
 }
 
 bool MainWindow::saveTemp(const QString &head)
 {
-    if (!saveFile(IgnoreUntitled, head))
+    if (!saveFile(IgnoreUntitled, head, true))
     {
         if (tmpDir != nullptr)
         {
@@ -767,15 +755,7 @@ bool MainWindow::saveTemp(const QString &head)
             return false;
         }
 
-        QSaveFile tmpFile(tmpPath());
-        tmpFile.open(QIODevice::WriteOnly | QIODevice::Text);
-        tmpFile.write(editor->toPlainText().toStdString().c_str());
-
-        if (!tmpFile.commit())
-        {
-            log.error(head, "Failed to save to " + tmpFile.fileName());
-            return false;
-        }
+        return Util::saveFile(tmpPath(), editor->toPlainText(), head, true, &log);
     }
 
     return true;
@@ -844,7 +824,7 @@ bool MainWindow::closeConfirm()
             "Save changes to " + (isUntitled() ? QString("New File") : getFileName()) + " before closing?",
             QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel, QMessageBox::Cancel);
         if (res == QMessageBox::Save)
-            confirmed = saveFile(SaveUntitled, "Save");
+            confirmed = saveFile(SaveUntitled, "Save", true);
         else if (res == QMessageBox::Discard)
             confirmed = true;
     }

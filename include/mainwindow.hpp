@@ -81,7 +81,7 @@ class MainWindow : public QMainWindow
     EditorStatus toStatus(bool simple) const;
     void loadStatus(const EditorStatus &status, bool simple);
 
-    void save(bool force, const QString &head);
+    void save(bool force, const QString &head, bool safe = true);
     void saveAs();
 
     bool isTextChanged();
@@ -190,12 +190,12 @@ class MainWindow : public QMainWindow
     void compile();
     void run();
     void loadTests();
-    void saveTests();
+    void saveTests(bool safe);
     void setCFToolsUI();
     void setText(const QString &text, bool keep = false);
     void updateWatcher();
     void loadFile(const QString &loadPath);
-    bool saveFile(SaveMode, const QString &head);
+    bool saveFile(SaveMode, const QString &head, bool safe);
     bool saveTemp(const QString &head);
     QString tmpPath();
     void performCoreDiagonistics();

@@ -64,6 +64,9 @@ add_executable(CPEditor
     src/preferencewindow.cpp
     src/appwindow.cpp
 
+    include/Util.hpp
+    src/Util.cpp
+
     third_party/diff_match_patch/diff_match_patch.h
     third_party/diff_match_patch/diff_match_patch.cpp
 
