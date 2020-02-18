@@ -109,9 +109,7 @@ However, it's not recommended to use Artifacts, they are more unstable than beta
 
 In order to run it on Windows/MacOS, you should install from [Releases](https://github.com/coder3101/cp-editor/releases) first (usually any version is OK, unless something like DLL missing happens). On Windows, replace `CPEditor.exe` in your install folder with the Artifact. On Mac, run `cp <Artifact> CPEditor.app/Contents/MacOs`, where `CPEditor.app` is the one already installed on your machine.
 
-In order to run it on Ubuntu, you can install Qt.
-
-In order to run it on other Linux (Ubuntu is also OK), you can extract the AppImage in the [Releases](https://github.com/coder3101/cp-editor/releases), replace the binary file, and pack it again. [This](https://superuser.com/questions/1301583/how-can-i-extract-files-from-an-appimage) may be helpful for extracting and re-package an AppImage.
+In order to run it on Ubuntu 18.04, you need to install Qt. Other Linux distributions may not support binaries compiled on Ubuntu 18.04.
 
 ### Contribution
 
