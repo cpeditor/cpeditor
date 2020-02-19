@@ -19,6 +19,7 @@
 #include "../ui/ui_preferencewindow.h"
 #include "Extensions/EditorTheme.hpp"
 #include "Util.hpp"
+#include "Core/EventLogger.hpp"
 #include <QAction>
 #include <QCXXHighlighter>
 #include <QDesktopWidget>
@@ -35,6 +36,7 @@
 PreferenceWindow::PreferenceWindow(Settings::SettingManager *manager, QWidget *parent)
     : QMainWindow(parent), ui(new Ui::PreferenceWindow)
 {
+    Core::Log::i("preferencewindow/constructed", "Invoked");
     ui->setupUi(this);
     settingManager = manager;
     setWindowTitle("Preferences");
@@ -56,6 +58,8 @@ PreferenceWindow::PreferenceWindow(Settings::SettingManager *manager, QWidget *p
 
 void PreferenceWindow::setConstraints()
 {
+    Core::Log::i("preferencewindow/setConstraints", "Invoked");
+
     ui->tab_length->setMinimum(1);
     ui->tab_length->setMaximum(20);
 
@@ -71,6 +75,7 @@ void PreferenceWindow::setConstraints()
 
 void PreferenceWindow::updateSnippets()
 {
+    Core::Log::i("preferencewindow/updateSnippets", "Invoked");
     ui->snippets->clear();
     auto lang = ui->snippets_lang->currentText();
     auto names = settingManager->getSnippetsNames(lang);
@@ -79,6 +84,7 @@ void PreferenceWindow::updateSnippets()
 
 void PreferenceWindow::switchToSnippet(const QString &text)
 {
+    Core::Log::i("preferencewindow/switchToSnippet", "Invoked");
     updateSnippets();
     int index = ui->snippets->findText(text);
     if (index != -1)
@@ -87,6 +93,7 @@ void PreferenceWindow::switchToSnippet(const QString &text)
 
 void PreferenceWindow::applySettingsToui()
 {
+    Core::Log::i("preferencewindow/applySettingsToui", "Invoked");
     ui->tabWidget->setCurrentIndex(0);
 
     ui->editor_theme->setCurrentText(settingManager->getEditorTheme());
@@ -161,6 +168,7 @@ void PreferenceWindow::applySettingsToui()
 
 void PreferenceWindow::extractSettingsFromUi()
 {
+    Core::Log::i("preferencewindow/extractSettingsFromUi", "Invoked");
     settingManager->setEditorTheme(ui->editor_theme->currentText());
     settingManager->setTabStop(ui->tab_length->value());
     settingManager->setFont(currentFont.toString());
@@ -217,6 +225,7 @@ void PreferenceWindow::extractSettingsFromUi()
 
 void PreferenceWindow::updateShow()
 {
+    Core::Log::i("preferencewindow/updateShow", "Invoked");
     applySettingsToui();
     show();
     raise();
@@ -224,12 +233,14 @@ void PreferenceWindow::updateShow()
 
 PreferenceWindow::~PreferenceWindow()
 {
+    Core::Log::i("preferencewindow/destroyed", "Invoked");
     delete ui;
     delete editor;
 }
 
 void PreferenceWindow::on_ok_clicked()
 {
+    Core::Log::i("preferencewindow/on_ok_clicked", "Invoked");
     extractSettingsFromUi();
     close();
     emit settingsApplied();
@@ -238,11 +249,13 @@ void PreferenceWindow::on_ok_clicked()
 
 void PreferenceWindow::on_cancel_clicked()
 {
+    Core::Log::i("preferencewindow/on_cancel_clicked", "Invoked");
     close();
 }
 
 void PreferenceWindow::on_apply_clicked()
 {
+    Core::Log::i("preferencewindow/on_apply_clicked", "Invoked");
     extractSettingsFromUi();
     emit settingsApplied();
     applySettingsToEditor();
@@ -250,6 +263,7 @@ void PreferenceWindow::on_apply_clicked()
 
 void PreferenceWindow::on_hotkeys_clicked(bool checked)
 {
+    Core::Log::i("preferencewindow/on_hotkeys_clicked", "Invoked");
     ui->compile_hotkey->setEnabled(checked);
     ui->compileRun_hotkey->setEnabled(checked);
     ui->run_hotkey->setEnabled(checked);
@@ -261,11 +275,13 @@ void PreferenceWindow::on_hotkeys_clicked(bool checked)
 
 void PreferenceWindow::on_font_button_clicked()
 {
+    Core::Log::i("preferencewindow/on_font_button_clicked", "Invoked");
     bool ok = false;
     QFont fp = QFontDialog::getFont(&ok, currentFont, this, "Choose a font", QFontDialog::MonospacedFonts);
 
     if (ok)
     {
+        Core::Log::i("preferencewindow/on_font_button_clicked", "Changed font");
         currentFont = fp;
         ui->font_button->setText(currentFont.family() + " " + QString::number(currentFont.pointSize()));
     }
@@ -273,6 +289,7 @@ void PreferenceWindow::on_font_button_clicked()
 
 void PreferenceWindow::on_cpp_template_clicked()
 {
+    Core::Log::i("preferencewindow/on_cpp_template_clicked", "Invoked");
     auto filename = QFileDialog::getOpenFileName(this, tr("Choose C++ template File"), "",
                                                  "C++ Files (*.cpp *.hpp *.h *.cc *.cxx *.c)");
     if (filename.isEmpty())
@@ -283,6 +300,7 @@ void PreferenceWindow::on_cpp_template_clicked()
 
 void PreferenceWindow::on_py_template_clicked()
 {
+    Core::Log::i("preferencewindow/on_py_template_clicked", "Invoked");
     auto filename = QFileDialog::getOpenFileName(this, tr("Choose Python template File"), "", "Python Files (*.py)");
     if (filename.isEmpty())
         return;
@@ -292,6 +310,7 @@ void PreferenceWindow::on_py_template_clicked()
 
 void PreferenceWindow::on_java_template_clicked()
 {
+    Core::Log::i("preferencewindow/on_java_template_clicked", "Invoked");
     auto filename = QFileDialog::getOpenFileName(this, tr("Choose Java template File"), "", "Java Files (*.java)");
     if (filename.isEmpty())
         return;
@@ -301,6 +320,7 @@ void PreferenceWindow::on_java_template_clicked()
 
 void PreferenceWindow::on_load_snippets_from_files_clicked()
 {
+    Core::Log::i("preferencewindow/on_load_snippets_from_files_clicked", "Invoked");
     auto lang = ui->snippets_lang->currentText();
     QString fileType = "C++ Files (*.cpp *.hpp *.h *.cc *.cxx *.c)";
     if (lang == "Java")
@@ -335,6 +355,7 @@ void PreferenceWindow::on_load_snippets_from_files_clicked()
 
 void PreferenceWindow::on_extract_snippets_to_files_clicked()
 {
+    Core::Log::i("preferencewindow/on_extract_snippets_to_files_clicked", "Invoked");
     auto lang = ui->snippets_lang->currentText();
     QString suffix = ".cpp";
     QString fileType = "C++ Files (*.cpp *.hpp *.h *.cc *.cxx *.c)";
@@ -351,6 +372,7 @@ void PreferenceWindow::on_extract_snippets_to_files_clicked()
     auto dirPath = QFileDialog::getExistingDirectory(this, "Choose a directory to extract snippets to");
     if (QFile::exists(dirPath))
     {
+        Core::Log::i("preferencewindow/on_extract_snippets_to_files_clicked", "branched to if");
         QDir dir(dirPath);
         auto names = settingManager->getSnippetsNames(lang);
         for (auto name : names)
@@ -372,6 +394,7 @@ void PreferenceWindow::on_extract_snippets_to_files_clicked()
 
 void PreferenceWindow::onSnippetsLangChanged(const QString &lang)
 {
+    Core::Log::i("preferencewindow/onSnippetsLangChanged") << " lang " << lang << endl;
     updateSnippets();
     if (lang == "Python")
     {
@@ -392,6 +415,7 @@ void PreferenceWindow::onSnippetsLangChanged(const QString &lang)
 
 void PreferenceWindow::onCurrentSnippetChanged(const QString &text)
 {
+    Core::Log::i("preferencewindow/onCurrentSnippetChanged", "Invoked");
     auto lang = ui->snippets_lang->currentText();
     auto content = settingManager->getSnippet(lang, text);
     editor->setPlainText(content);
@@ -400,6 +424,7 @@ void PreferenceWindow::onCurrentSnippetChanged(const QString &text)
 
 void PreferenceWindow::applySettingsToEditor()
 {
+    Core::Log::i("preferencewindow/applySettingsToEditor", "Invoked");
     editor->setTabReplace(settingManager->isTabsReplaced());
     editor->setTabReplaceSize(settingManager->getTabStop());
     editor->setAutoIndentation(settingManager->isAutoIndent());
@@ -438,14 +463,17 @@ void PreferenceWindow::applySettingsToEditor()
 
 void PreferenceWindow::on_snippet_save_clicked()
 {
+    Core::Log::i("preferencewindow/on_snippet_save_clicked", "Invoked");
     auto lang = ui->snippets_lang->currentText();
     if (ui->snippets->currentIndex() != -1)
     {
+        Core::Log::i("preferencewindow/on_snippet_save_clicked", "branched to if");
         auto name = ui->snippets->currentText();
         settingManager->setSnippet(lang, name, editor->toPlainText());
     }
     else
     {
+        Core::Log::i("preferencewindow/on_snippet_save_clicked", "branched to else");
         auto name = getNewSnippetName(lang);
         if (!name.isEmpty())
         {
@@ -458,6 +486,7 @@ void PreferenceWindow::on_snippet_save_clicked()
 
 void PreferenceWindow::on_snippet_new_clicked()
 {
+    Core::Log::i("preferencewindow/on_snippet_new_clicked", "Invoked");
     auto lang = ui->snippets_lang->currentText();
     auto name = getNewSnippetName(lang);
     if (!name.isEmpty())
@@ -469,9 +498,11 @@ void PreferenceWindow::on_snippet_new_clicked()
 
 void PreferenceWindow::on_snippet_delete_clicked()
 {
+    Core::Log::i("preferencewindow/on_snippet_delete_clicked", "Invoked");
     int index = ui->snippets->currentIndex();
     if (index != -1)
     {
+        Core::Log::i("preferencewindow/on_snippet_delete_clicked", "branched to if");
         auto name = ui->snippets->currentText();
         auto res = QMessageBox::question(this, "Delete?", "Do you want to delete the snippet " + name + "?");
         if (res == QMessageBox::Yes)
@@ -485,8 +516,11 @@ void PreferenceWindow::on_snippet_delete_clicked()
 
 void PreferenceWindow::on_snippet_rename_clicked()
 {
+    Core::Log::i("preferencewindow/on_snippet_rename_clicked", "Invoked");
+
     if (ui->snippets->currentIndex() != -1)
     {
+        Core::Log::i("preferencewindow/on_snippet_rename_clicked", "branched to if");
         auto lang = ui->snippets_lang->currentText();
         auto name = getNewSnippetName(lang);
         if (!name.isEmpty())
@@ -508,6 +542,7 @@ void PreferenceWindow::on_transparency_slider_valueChanged(int value)
 
 QString PreferenceWindow::getNewSnippetName(const QString &lang, const QString &old)
 {
+    Core::Log::i("preferencewindow/getNewSnippetName") << " lang " << lang << " old " << old << endl;
     QString label = "New name:";
     if (!old.isEmpty())
         label = "The name " + old + " is used for " + lang + "\n" + label;
