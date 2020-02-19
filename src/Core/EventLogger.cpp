@@ -22,6 +22,7 @@
 #include <QProcess>
 #include <QStandardPaths>
 #include <QSysInfo>
+#include <QUrl>
 #include <QVector>
 #include <generated/version.hpp>
 
