@@ -17,6 +17,7 @@
 
 #include "Core/EventLogger.hpp"
 #include <QDateTime>
+#include <QDesktopServices>
 #include <QDir>
 #include <QProcess>
 #include <QStandardPaths>
