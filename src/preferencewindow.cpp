@@ -284,6 +284,7 @@ void PreferenceWindow::on_font_button_clicked()
         Core::Log::i("preferencewindow/on_font_button_clicked", "Changed font");
         currentFont = fp;
         ui->font_button->setText(currentFont.family() + " " + QString::number(currentFont.pointSize()));
+        raise();
     }
 }
 
