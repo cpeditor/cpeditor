@@ -76,7 +76,7 @@ class PreferenceWindow : public QMainWindow
 
     void on_snippet_rename_clicked();
 
-    void on_transparency_slider_valueChanged(int value);
+    void on_transparency_slider_sliderMoved(int value);
 
   private:
     Ui::PreferenceWindow *ui;
