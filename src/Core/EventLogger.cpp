@@ -18,6 +18,7 @@
 #include "Core/EventLogger.hpp"
 #include <QDateTime>
 #include <QDir>
+#include <QProcess>
 #include <QStandardPaths>
 #include <QSysInfo>
 #include <QVector>
@@ -143,6 +144,103 @@ void Log::log(const QString &priority, const QString &head, const QString &body)
 QTextStream &Log::log(const QString &priority, const QString &head)
 {
     return logStream << dateTimeStamp() << "[" << priority << "][" << head << "] ";
+}
+
+void Log::revealInFileManager()
+{
+    // Reference: http://lynxline.com/show-in-finder-show-in-explorer/ and https://forum.qt.io/post/296072
+    QString filePath = logFile.fileName();
+    i("log/revealInFileManager") << "Revealing in filemanager file " << filePath;
+#if defined(Q_OS_MACOS)
+    QStringList args;
+    args << "-e";
+    args << "tell application \"Finder\"";
+    args << "-e";
+    args << "activate";
+    args << "-e";
+    args << "select POSIX file \"" + filePath + "\"";
+    args << "-e";
+    args << "end tell";
+    QProcess::startDetached("osascript", args);
+#elif defined(Q_OS_WIN)
+    QStringList args;
+    args << "/select," << QDir::toNativeSeparators(filePath);
+    QProcess::startDetached("explorer", args);
+#elif defined(Q_OS_UNIX)
+    QProcess proc;
+    proc.start("xdg-mime", QStringList() << "query"
+                                         << "default"
+                                         << "inode/directory");
+    auto finished = proc.waitForFinished(2000);
+    if (finished)
+    {
+        auto output = proc.readLine().simplified();
+        QString program;
+        QStringList args;
+        auto nativePath = QUrl::fromLocalFile(filePath).toString();
+        if (output == "dolphin.desktop" || output == "org.kde.dolphin.desktop")
+        {
+            program = "dolphin";
+            args << "--select" << nativePath;
+        }
+        else if (output == "nautilus.desktop" || output == "org.gnome.Nautilus.desktop" ||
+                 output == "nautilus-folder-handler.desktop")
+        {
+            program = "nautilus";
+            args << "--no-desktop" << nativePath;
+        }
+        else if (output == "caja-folder-handler.desktop")
+        {
+            program = "caja";
+            args << "--no-desktop" << nativePath;
+        }
+        else if (output == "nemo.desktop")
+        {
+            program = "nemo";
+            args << "--no-desktop" << nativePath;
+        }
+        else if (output == "kfmclient_dir.desktop")
+        {
+            program = "konqueror";
+            args << "--select" << nativePath;
+        }
+        if (program.isEmpty())
+        {
+            QDesktopServices::openUrl(QUrl::fromLocalFile(QFileInfo(filePath).path()));
+        }
+        else
+        {
+            QProcess openProcess;
+            openProcess.startDetached(program, args);
+        }
+    }
+    else
+    {
+        QDesktopServices::openUrl(QUrl::fromLocalFile(QFileInfo(filePath).path()));
+    }
+#else
+    QDesktopServices::openUrl(QUrl::fromLocalFile(QFileInfo(filePath).path()));
+}
+#endif
+} // namespace Core
+
+void Log::clearOldLogs()
+{
+    i("log/clearOldLogs", "Invoked");
+    auto path = QStandardPaths::writableLocation(QStandardPaths::TempLocation);
+    QDir dir(path);
+    if (dir.cd(LOG_DIR_NAME))
+    {
+        auto entries = dir.entryList({LOG_FILE_NAME + "*.log"}, QDir::Files, QDir::Time);
+        for (auto const &e : entries)
+        {
+            if (e != logFile.fileName())
+            {
+                dir.remove(e);
+                i("log/clearOldLog") << "Deleted " << e << endl;
+            }
+        }
+    }
 }
 
 } // namespace Core

@@ -34,6 +34,7 @@
 
 AppWindow::AppWindow(bool noHotExit, QWidget *parent) : QMainWindow(parent), ui(new Ui::AppWindow)
 {
+    Core::Log::i("appwindow/constructed") << "noHotExit " << noHotExit << endl;
     ui->setupUi(this);
     setAcceptDrops(true);
     allocate();
@@ -93,6 +94,9 @@ AppWindow::AppWindow(int depth, bool cpp, bool java, bool python, bool noHotExit
                      QWidget *parent)
     : AppWindow(noHotExit, parent)
 {
+    Core::Log::i("appwindow/constructed") << "args : "
+                                          << "depth : " << depth << "cpp: " << cpp << "java: " << java << "python "
+                                          << python << "noHotExit " << noHotExit << "paths " << paths.join(" ") << endl;
     openPaths(paths, cpp, java, python, depth);
     if (ui->tabWidget->count() == 0)
         openTab("");
@@ -101,6 +105,9 @@ AppWindow::AppWindow(int depth, bool cpp, bool java, bool python, bool noHotExit
 AppWindow::AppWindow(bool cpp, bool java, bool python, bool noHotExit, int number, const QString &path, QWidget *parent)
     : AppWindow(noHotExit, parent)
 {
+    Core::Log::i("appwindow/constructed") << "args : "
+                                          << "cpp: " << cpp << "java: " << java << "python " << python << "noHotExit "
+                                          << noHotExit << "paths " << path << endl;
     QString lang = settingManager->getDefaultLanguage();
     if (cpp)
         lang = "C++";
@@ -115,6 +122,7 @@ AppWindow::AppWindow(bool cpp, bool java, bool python, bool noHotExit, int numbe
 
 AppWindow::~AppWindow()
 {
+    Core::Log::i("appwindow/destroyed", "Invoked");
     saveSettings();
     Themes::EditorTheme::release();
     delete settingManager;
@@ -130,6 +138,7 @@ AppWindow::~AppWindow()
 
 void AppWindow::closeEvent(QCloseEvent *event)
 {
+    Core::Log::i("appwindow/closeEvent", "Invoked");
     if (quit())
         event->accept();
     else
@@ -138,14 +147,17 @@ void AppWindow::closeEvent(QCloseEvent *event)
 
 void AppWindow::dragEnterEvent(QDragEnterEvent *event)
 {
+    Core::Log::i("appwindow/dragEnterEvent", "Invoked");
     if (event->mimeData()->hasUrls())
     {
+        Core::Log::i("appwindow/dragEnterEvent", "Accepted the dropped value");
         event->acceptProposedAction();
     }
 }
 
 void AppWindow::dropEvent(QDropEvent *event)
 {
+    Core::Log::i("appwindow/dropEvent", "Invoked");
     auto urls = event->mimeData()->urls();
     QStringList paths;
     for (auto &e : urls)
@@ -156,6 +168,7 @@ void AppWindow::dropEvent(QDropEvent *event)
 /******************** PRIVATE METHODS ********************/
 void AppWindow::setConnections()
 {
+    Core::Log::i("appwindow/setConnections", "Invoked");
     connect(ui->tabWidget, SIGNAL(tabCloseRequested(int)), this, SLOT(onTabCloseRequested(int)));
     connect(ui->tabWidget, SIGNAL(currentChanged(int)), this, SLOT(onTabChanged(int)));
     ui->tabWidget->tabBar()->setContextMenuPolicy(Qt::CustomContextMenu);
@@ -172,6 +185,7 @@ void AppWindow::setConnections()
 
 void AppWindow::allocate()
 {
+    Core::Log::i("appwindow/allocate", "Invoked");
     settingManager = new Settings::SettingManager();
     timer = new QTimer();
     updater = new Telemetry::UpdateNotifier(settingManager->isBeta());
@@ -186,6 +200,7 @@ void AppWindow::allocate()
 
 void AppWindow::applySettings()
 {
+    Core::Log::i("appwindow/applySettings", "Invoked");
     ui->actionAutosave->setChecked(settingManager->isAutoSave());
     Settings::ViewMode mode = settingManager->getViewMode();
 
@@ -222,6 +237,7 @@ void AppWindow::applySettings()
 
 void AppWindow::maybeSetHotkeys()
 {
+    Core::Log::i("appwindow/maybeSetHotkeys", "Invoked");
     for (auto e : hotkeyObjects)
         delete e;
     hotkeyObjects.clear();
@@ -267,6 +283,7 @@ void AppWindow::maybeSetHotkeys()
 
 bool AppWindow::closeTab(int index)
 {
+    Core::Log::i("appwindowCloseTab") << "index : " << index << endl;
     auto tmp = windowAt(index);
     if (tmp->closeConfirm())
     {
@@ -280,6 +297,7 @@ bool AppWindow::closeTab(int index)
 
 void AppWindow::saveSettings()
 {
+    Core::Log::i("appwindow/saveSettings", "Invoked");
     if (!this->isMaximized())
         settingManager->setGeometry(this->geometry());
     settingManager->setMaximizedWindow(this->isMaximized());
@@ -288,8 +306,10 @@ void AppWindow::saveSettings()
 
 void AppWindow::openTab(const QString &path)
 {
+    Core::Log::i("appwindow/openTab") << "path " << path << endl;
     if (QFile::exists(path))
     {
+        Core::Log::i("appwindow/openTab", "branched to exists file");
         auto fileInfo = QFileInfo(path);
         for (int t = 0; t < ui->tabWidget->count(); t++)
         {
@@ -342,6 +362,7 @@ void AppWindow::openTab(const QString &path)
 
 void AppWindow::openTabs(const QStringList &paths)
 {
+    Core::Log::i("appwindow/openTab") << "paths : " << paths.join(", ") << endl;
     int length = paths.length();
 
     QProgressDialog progress(this);
@@ -370,6 +391,8 @@ void AppWindow::openTabs(const QStringList &paths)
 
 void AppWindow::openPaths(const QStringList &paths, bool cpp, bool java, bool python, int depth)
 {
+    Core::Log::i("appwindow/openPaths") << "args are " << paths.join(", ") << " cpp:" << cpp << " java:" << java
+                                        << "python:" << python << "depth:" << depth << endl;
     QStringList res;
     for (auto &path : paths)
     {
@@ -383,6 +406,8 @@ void AppWindow::openPaths(const QStringList &paths, bool cpp, bool java, bool py
 
 QStringList AppWindow::openFolder(const QString &path, bool cpp, bool java, bool python, int depth)
 {
+    Core::Log::i("appwindow/openFolder") << "args are " << path << " cpp:" << cpp << " java:" << java
+                                         << "python:" << python << "depth:" << depth << endl;
     auto entries = QDir(path).entryInfoList(QDir::NoDotAndDotDot | QDir::AllEntries);
     QStringList res;
     for (auto &entry : entries)
@@ -406,6 +431,8 @@ QStringList AppWindow::openFolder(const QString &path, bool cpp, bool java, bool
 
 void AppWindow::openContest(const QString &path, const QString &lang, int number)
 {
+    Core::Log::i("appwindow/openContest", "Invoked");
+    Core::Log::i("appwindoww/openContest") << "args are : " << path << " " << lang << " " << number << endl;
     QDir dir(path), parent(path);
     parent.cdUp();
     if (!dir.exists() && parent.exists())
@@ -432,14 +459,17 @@ void AppWindow::openContest(const QString &path, const QString &lang, int number
 
 void AppWindow::saveEditorStatus(bool loadFromFile)
 {
+    Core::Log::i("appwindow/saveEditorStatus") << "loadFromFile " << loadFromFile << endl;
     settingManager->clearEditorStatus();
     if (ui->tabWidget->count() == 1 && windowAt(0)->isUntitled() && !windowAt(0)->isTextChanged())
     {
+        Core::Log::i("appwindow/saveEditorStatus", "branched to if");
         settingManager->setNumberOfTabs(0);
         settingManager->setCurrentIndex(-1);
     }
     else
     {
+        Core::Log::i("appwindow/saveEditorStatus", "branched to else");
         settingManager->setNumberOfTabs(ui->tabWidget->count());
         settingManager->setCurrentIndex(ui->tabWidget->currentIndex());
         for (int i = 0; i < ui->tabWidget->count(); ++i)
@@ -453,12 +483,14 @@ bool AppWindow::quit()
 {
     if (settingManager->isUseHotExit())
     {
+        Core::Log::i("appwindow/quit", "Using hotexit");
         settingManager->setHotExitLoadFromFile(false);
         saveEditorStatus(false);
         return true;
     }
     else
     {
+        Core::Log::i("appwindow/quit", "closeAll() called without hotExit");
         on_actionClose_All_triggered();
         return ui->tabWidget->count() == 0;
     }
@@ -468,11 +500,13 @@ bool AppWindow::quit()
 
 void AppWindow::on_actionSupport_me_triggered()
 {
+    Core::Log::i("appwindow/on_actionSupport_me_triggered", "Invoked");
     QDesktopServices::openUrl(QUrl("https://paypal.me/coder3101", QUrl::TolerantMode));
 }
 
 void AppWindow::on_actionAbout_triggered()
 {
+    Core::Log::i("appwindow/on_actionAbout_triggered", "Invoked");
     QMessageBox::about(this, "About CP Editor " APP_VERSION,
                        "<p><b>CP Editor</b> is a native Qt-based Code Editor. It's specially designed "
                        "for competitive programming, unlike other editors/IDEs which are mainly for developers. It "
@@ -489,6 +523,7 @@ void AppWindow::on_actionAbout_triggered()
 
 void AppWindow::on_actionAutosave_triggered(bool checked)
 {
+    Core::Log::i("appwindow/on_actionAutosave_triggered") << "checked " << checked << endl;
     settingManager->setAutoSave(checked);
     if (checked)
         timer->start();
@@ -498,12 +533,17 @@ void AppWindow::on_actionAutosave_triggered(bool checked)
 
 void AppWindow::on_actionQuit_triggered()
 {
+    Core::Log::i("appwindow/on_actionQuit_triggered", "invoked");
     if (quit())
+    {
+        Core::Log::i("appwindow/on_actionQuit_triggered", "Exiting application");
         QApplication::exit();
+    }
 }
 
 void AppWindow::on_actionNew_Tab_triggered()
 {
+    Core::Log::i("appwindow/on_actionNew_Tab_triggered", "invoked");
     openTab("");
 }
 
@@ -511,19 +551,23 @@ void AppWindow::on_actionOpen_triggered()
 {
     auto fileNames = QFileDialog::getOpenFileNames(this, tr("Open Files"), settingManager->getSavePath(),
                                                    "Source Files (*.cpp *.hpp *.h *.cc *.cxx *.c *.py *.py3 *.java)");
+    Core::Log::i("appwindow/on_actionOpen_triggered") << " filename " << fileNames.join(", ") << endl;
     openTabs(fileNames);
 }
 
 void AppWindow::on_actionOpenContest_triggered()
 {
+    Core::Log::i("appwindow/on_actionOpenContest_triggered", "Invoked");
     auto path = QFileDialog::getExistingDirectory(this, "Open Contest");
     if (QFile::exists(path) && QFileInfo(path).isDir())
     {
+        Core::Log::i("appwindow/on_actionOpenContest_triggered", "path exists and is a directory");
         bool ok = false;
         int number =
             QInputDialog::getInt(this, "Open Contest", "Number of problems in this contest:", 5, 0, 26, 1, &ok);
         if (ok)
         {
+            Core::Log::i("appwindow/on_actionOpenContest_triggered") << "number of problems : " << number << endl;
             int current = 0;
             if (settingManager->getDefaultLanguage() == "Java")
                 current = 1;
@@ -533,13 +577,13 @@ void AppWindow::on_actionOpenContest_triggered()
                                               current, false, &ok);
             if (ok)
             {
+                Core::Log::i("appwindow/on_actionOpenContest_triggered")
+                    << "opening contest with args " << path << " " << lang << " " << number << endl;
                 openContest(path, lang, number);
             }
         }
     }
 }
-
-// ************************************* LOGS ARE TAKEN FOR CODE BELOW THIS *********************************
 
 void AppWindow::on_actionSave_triggered()
 {
@@ -1337,4 +1381,18 @@ MainWindow *AppWindow::windowAt(int index)
         return nullptr;
     }
     return dynamic_cast<MainWindow *>(ui->tabWidget->widget(index));
+}
+
+void AppWindow::on_actionShow_Logs_triggered()
+{
+    Core::Log::revealInFileManager();
+}
+
+void AppWindow::on_actionClear_Logs_triggered()
+{
+    Core::Log::clearOldLogs();
+    if (currentWindow() != nullptr)
+    {
+        currentWindow()->getLogger()->info("EventLogger", "All logs except for current session has been deleted");
+    }
 }

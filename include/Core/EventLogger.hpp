@@ -39,6 +39,8 @@ class Log
     static QTextStream &wtf(const QString &head);
 
     static void init(int instanceCount, bool dumpToStderr = false);
+    static void clearOldLogs();
+    static void revealInFileManager();
 
   private:
     static QString dateTimeStamp();

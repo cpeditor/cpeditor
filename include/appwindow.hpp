@@ -143,7 +143,11 @@ class AppWindow : public QMainWindow
 
     void onTabContextMenuRequested(const QPoint &pos);
 
-  private:
+    void on_actionShow_Logs_triggered();
+
+    void on_actionClear_Logs_triggered();
+
+private:
     Ui::AppWindow *ui;
     MessageLogger *activeLogger = nullptr;
     QTimer *timer = nullptr;
