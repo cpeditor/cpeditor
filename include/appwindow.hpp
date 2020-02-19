@@ -147,7 +147,7 @@ class AppWindow : public QMainWindow
 
     void on_actionClear_Logs_triggered();
 
-private:
+  private:
     Ui::AppWindow *ui;
     MessageLogger *activeLogger = nullptr;
     QTimer *timer = nullptr;
