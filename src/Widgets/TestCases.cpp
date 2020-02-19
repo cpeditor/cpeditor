@@ -329,29 +329,29 @@ void TestCase::on_diffButton_clicked()
     window->setAttribute(Qt::WA_DeleteOnClose);
 
     auto leftLayout = new QVBoxLayout();
-    auto expectedLabel = new QLabel("Expected", widget);
-    leftLayout->addWidget(expectedLabel);
-    auto expectedEdit = new QTextEdit(widget);
-    expectedEdit->setReadOnly(true);
-    expectedEdit->setWordWrapMode(QTextOption::NoWrap);
-    leftLayout->addWidget(expectedEdit);
-    layout->addLayout(leftLayout);
-
-    auto rightLayout = new QVBoxLayout();
     auto outputLabel = new QLabel("Output", widget);
-    rightLayout->addWidget(outputLabel);
+    leftLayout->addWidget(outputLabel);
     auto outputEdit = new QTextEdit(widget);
     outputEdit->setReadOnly(true);
     outputEdit->setWordWrapMode(QTextOption::NoWrap);
-    rightLayout->addWidget(outputEdit);
+    leftLayout->addWidget(outputEdit);
+    layout->addLayout(leftLayout);
+
+    auto rightLayout = new QVBoxLayout();
+    auto expectedLabel = new QLabel("Expected", widget);
+    rightLayout->addWidget(expectedLabel);
+    auto expectedEdit = new QTextEdit(widget);
+    expectedEdit->setReadOnly(true);
+    expectedEdit->setWordWrapMode(QTextOption::NoWrap);
+    rightLayout->addWidget(expectedEdit);
     layout->addLayout(rightLayout);
 
     if (output().length() <= 100000 && expected().length() <= 100000)
     {
-        Core::Log::i("testcase/on_diffButton_clicked", "less than 10^6 size of output and expected. Highlighting now");
+        Core::Log::i("testcase/on_diffButton_clicked", "less than 10^5 size of output and expected. Highlighting now");
         diff_match_patch differ;
         differ.Diff_EditCost = 10;
-        auto diffs = differ.diff_main(expected(), output());
+        auto diffs = differ.diff_main(output(), expected());
         differ.diff_cleanupEfficiency(diffs);
 
         QString expectedHTML, outputHTML;
@@ -361,10 +361,10 @@ void TestCase::on_diffButton_clicked()
             switch (diff.operation)
             {
             case INSERT:
-                outputHTML += QString("<ins style=\"background:#8f8;\">") + text + QString("</ins>");
+                expectedHTML += QString("<ins style=\"background:#8f8;\">") + text + QString("</ins>");
                 break;
             case DELETE:
-                expectedHTML += "<s style=\"background:#f88;\">" + text + "</s>";
+                outputHTML += "<s style=\"background:#f88;\">" + text + "</s>";
                 break;
             case EQUAL:
                 expectedHTML += "<span>" + text + "</span>";
@@ -385,8 +385,6 @@ void TestCase::on_diffButton_clicked()
         QMessageBox::warning(this, "Diff Viewer", "The output/expected is too large, using plain diff.");
         expectedEdit->setPlainText(expected());
         outputEdit->setPlainText(output());
-        rightLayout->addWidget(outputEdit);
-        layout->addLayout(rightLayout);
     }
 
     connect(expectedEdit->horizontalScrollBar(), SIGNAL(valueChanged(int)), outputEdit->horizontalScrollBar(),
