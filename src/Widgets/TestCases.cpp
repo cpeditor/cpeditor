@@ -471,6 +471,7 @@ TestCases::TestCases(MessageLogger *logger, QWidget *parent) : QWidget(parent), 
     titleLayout = new QHBoxLayout();
     label = new QLabel("Test Cases");
     verdicts = new QLabel();
+    hideACButton = new QPushButton("Hide AC");
     addButton = new QPushButton("Add New");
     clearButton = new QPushButton("Clear");
     scrollArea = new QScrollArea();
@@ -481,6 +482,7 @@ TestCases::TestCases(MessageLogger *logger, QWidget *parent) : QWidget(parent), 
 
     titleLayout->addWidget(label);
     titleLayout->addWidget(verdicts);
+    titleLayout->addWidget(hideACButton);
     titleLayout->addWidget(addButton);
     titleLayout->addWidget(clearButton);
     scrollArea->setWidgetResizable(true);
@@ -492,6 +494,7 @@ TestCases::TestCases(MessageLogger *logger, QWidget *parent) : QWidget(parent), 
 
     updateVerdicts();
 
+    connect(hideACButton, SIGNAL(clicked()), this, SLOT(on_hideACButton_clicked()));
     connect(addButton, SIGNAL(clicked()), this, SLOT(on_addButton_clicked()));
     connect(clearButton, SIGNAL(clicked()), this, SLOT(on_clearButton_clicked()));
 
@@ -650,6 +653,17 @@ int TestCases::count() const
     return testcases.count();
 }
 
+void TestCases::on_hideACButton_clicked()
+{
+    Core::Log::i("testcases/on_hideACButton_clicked") << "Invoked, " << INFO_OF(isHideAC) << endl;
+    isHideAC ^= 1;
+    if (isHideAC)
+        hideACButton->setText("Show AC");
+    else
+        hideACButton->setText("Hide AC");
+    updateVerdicts();
+}
+
 void TestCases::on_addButton_clicked()
 {
     Core::Log::i("testcases/on_addButton_clicked", "invoked");
@@ -691,17 +705,23 @@ void TestCases::updateVerdicts()
 {
     Core::Log::i("testcases/updateVerdicts", "invoked");
     int ac = 0, wa = 0;
-    for (int i = 0; i < count(); ++i)
+    for (auto t : testcases)
     {
-        switch (testcases[i]->verdict())
+        switch (t->verdict())
         {
         case TestCase::AC:
             ++ac;
+            if (isHideAC)
+                t->hide();
+            else
+                t->show();
             break;
         case TestCase::WA:
             ++wa;
+            t->show();
             break;
         case TestCase::UNKNOWN:
+            t->show();
             break;
         }
     }
