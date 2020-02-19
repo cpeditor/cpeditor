@@ -500,7 +500,7 @@ void PreferenceWindow::on_snippet_rename_clicked()
     }
 }
 
-void PreferenceWindow::on_transparency_slider_valueChanged(int value)
+void PreferenceWindow::on_transparency_slider_sliderMoved(int value)
 {
     settingManager->setTransparency(value);
     parentWidget()->setWindowOpacity(value / 100.0);
