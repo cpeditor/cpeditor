@@ -17,9 +17,9 @@
 
 #include "preferencewindow.hpp"
 #include "../ui/ui_preferencewindow.h"
+#include "Core/EventLogger.hpp"
 #include "Extensions/EditorTheme.hpp"
 #include "Util.hpp"
-#include "Core/EventLogger.hpp"
 #include <QAction>
 #include <QCXXHighlighter>
 #include <QDesktopWidget>
