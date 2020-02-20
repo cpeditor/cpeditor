@@ -48,7 +48,8 @@ SettingManager::SettingManager()
             Core::Log::i("settingmanager/constructor", oldSettingsFile + " File failed to delete.");
     }
 <<<<<<< HEAD
-    else {
+    else
+    {
         Core::Log::i("settingmanager/constructor", "Old Settings file doesnot exist.");
         Core::Log::i("settingmanager/constructor", "Continuing with New Settings file.");
     }
