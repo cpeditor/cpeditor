@@ -32,17 +32,25 @@ SettingManager::SettingManager()
 
     if (QFile::exists(oldSettingsFile))
     {
+        Core::Log::i("settingmanager/constructor", oldSettingsFile + " exists.");
+
         if (QFile::copy(oldSettingsFile, mSettingsFile))
             Core::Log::i("settingmanager/constructor", "Old Settings migrated to new Settings File");
         else
+        {
             Core::Log::i("settingmanager/constructor", "Setting migration failed");
-
+            mSettingsFile = QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/" + SETTINGS_FILE;
+            Core::Log::i("settingmanager/constructor", "Reverted to old settings file");
+        }
         if (QFile::remove(oldSettingsFile))
             Core::Log::i("settingmanager/constructor", oldSettingsFile + " File deleted successfully.");
         else
             Core::Log::i("settingmanager/constructor", oldSettingsFile + " File failed to delete.");
     }
 
+    Core::Log::i("settingmanager/constructor", "Old Settings file doesnot exist.");
+    Core::Log::i("settingmanager/constructor", "Continuing with New Settings file.");
+    
     mSettings = new QSettings(mSettingsFile, QSettings::IniFormat);
 
     if (getDefaultLanguage() == "Cpp")
