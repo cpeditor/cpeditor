@@ -26,7 +26,7 @@ namespace Settings
 SettingManager::SettingManager()
 {
     Core::Log::i("settingmanager/constructor", "Invoked");
-    
+
     mSettingsFile = QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/" + NEW_SETTINGS_FILE;
     QString oldSettingsFile = QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/" + SETTINGS_FILE;
 
@@ -36,7 +36,7 @@ SettingManager::SettingManager()
             Core::Log::i("settingmanager/constructor", "Old Settings migrated to new Settings File");
         else
             Core::Log::i("settingmanager/constructor", "Setting migration failed");
-        
+
         if (QFile::remove(oldSettingsFile))
             Core::Log::i("settingmanager/constructor", oldSettingsFile + " File deleted successfully.");
         else
