@@ -19,17 +19,51 @@
 #include "Core/EventLogger.hpp"
 #include "Core/MessageLogger.hpp"
 #include <QApplication>
+#include <QDir>
 #include <QStandardPaths>
 
 namespace Settings
 {
+
+const QString OLD_SETTINGS_FILE = "cp_editor_settings.ini";
+const QString SETTINGS_FILE = ".cp_editor_settings.ini";
+
 SettingManager::SettingManager()
 {
-    Core::Log::i("settingmanager/constructed", "Invoked");
-    mSettingsFile = QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/" + SETTINGS_FILE;
-    mSettings = new QSettings(mSettingsFile, QSettings::IniFormat);
+    Core::Log::i("settingmanager/constructor", "Invoked");
 
-    // backwords compatibility
+    mSettingsFile = QDir(QStandardPaths::writableLocation(QStandardPaths::HomeLocation)).filePath(SETTINGS_FILE);
+    QString oldSettingsFile =
+        QDir(QStandardPaths::writableLocation(QStandardPaths::HomeLocation)).filePath(OLD_SETTINGS_FILE);
+
+    if (!QFile::exists(mSettingsFile) && QFile::exists(oldSettingsFile))
+    {
+        Core::Log::i("settingmanager/constructor",
+                     mSettingsFile + "doesn't exist, but " + oldSettingsFile + " exists.");
+
+        if (QFile::copy(oldSettingsFile, mSettingsFile))
+        {
+            Core::Log::i("settingmanager/constructor", "Old Settings migrated to new Settings File");
+
+            if (QFile::remove(oldSettingsFile))
+                Core::Log::i("settingmanager/constructor", oldSettingsFile + " File deleted successfully.");
+            else
+                Core::Log::e("settingmanager/constructor", oldSettingsFile + " File failed to delete.");
+        }
+        else
+        {
+            Core::Log::e("settingmanager/constructor", "Setting migration failed");
+            mSettingsFile = oldSettingsFile;
+            Core::Log::w("settingmanager/constructor", "Reverted to old settings file");
+        }
+    }
+    else
+    {
+        Core::Log::i(
+            "settingmanager/constructor",
+            "The new settings file exists or the old settings file does not exist, use the new settings file.");
+    }
+    mSettings = new QSettings(mSettingsFile, QSettings::IniFormat);
 
     if (getDefaultLanguage() == "Cpp")
         setDefaultLanguage("C++");
