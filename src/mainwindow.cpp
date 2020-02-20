@@ -196,7 +196,7 @@ void MainWindow::setCFToolsUI()
     Core::Log::i("mainwindow/setCFToolsUI", "Invoked");
     if (submitToCodeforces == nullptr)
     {
-        submitToCodeforces = new QPushButton("Submit Solution", this);
+        submitToCodeforces = new QPushButton("Submit", this);
         cftools = new Network::CFTools(cftoolPath, &log);
         ui->compile_and_run_buttons->addWidget(submitToCodeforces);
         connect(submitToCodeforces, &QPushButton::clicked, this, [this] {
@@ -603,9 +603,24 @@ void MainWindow::insertText(const QString &text)
     editor->insertPlainText(text);
 }
 
-void MainWindow::focusOnEditor()
+void MainWindow::setViewMode(Settings::ViewMode mode)
 {
-    editor->setFocus();
+    switch (mode)
+    {
+    case Settings::ViewMode::FULL_EDITOR:
+        ui->left_widget->show();
+        ui->right_widget->hide();
+        break;
+    case Settings::ViewMode::FULL_IO:
+        ui->left_widget->hide();
+        ui->right_widget->show();
+        break;
+    case Settings::ViewMode::SPLIT:
+        ui->left_widget->show();
+        ui->right_widget->show();
+        ui->splitter->restoreState(settingManager->getSplitterSizes());
+        break;
+    }
 }
 
 void MainWindow::detachedExecution()

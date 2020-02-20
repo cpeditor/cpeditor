@@ -106,7 +106,7 @@ class MainWindow : public QMainWindow
 
     void insertText(const QString &text);
 
-    void focusOnEditor();
+    void setViewMode(Settings::ViewMode mode);
 
   private slots:
     void on_compile_clicked();

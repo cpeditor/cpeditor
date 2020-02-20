@@ -356,7 +356,7 @@ void AppWindow::openTab(const QString &path)
     ui->tabWidget->setCurrentIndex(ui->tabWidget->addTab(fsp, fsp->getTabTitle(false, true)));
     fsp->setLanguage(lang);
 
-    currentWindow()->focusOnEditor();
+    currentWindow()->getEditor()->setFocus();
     onEditorFileChanged();
 }
 
@@ -1059,7 +1059,7 @@ void AppWindow::on_actionEditor_Mode_triggered()
     if (currentWindow() != nullptr)
     {
         Core::Log::i("appwindow/on_actionEditor_Mode_triggered", "Switched to editor only mode");
-        currentWindow()->getSplitter()->setSizes({1, 0});
+        currentWindow()->setViewMode(Settings::ViewMode::FULL_EDITOR);
     }
     else
     {
@@ -1076,7 +1076,7 @@ void AppWindow::on_actionIO_Mode_triggered()
     if (currentWindow() != nullptr)
     {
         Core::Log::w("appwindow/on_actionIO_Mode_triggered", "Switched to IO Mode");
-        currentWindow()->getSplitter()->setSizes({0, 1});
+        currentWindow()->setViewMode(Settings::ViewMode::FULL_IO);
     }
     else
     {
@@ -1090,12 +1090,11 @@ void AppWindow::on_actionSplit_Mode_triggered()
     ui->actionEditor_Mode->setChecked(false);
     ui->actionIO_Mode->setChecked(false);
     ui->actionSplit_Mode->setChecked(true);
-    auto state = settingManager->getSplitterSizes();
     Core::Log::i("appwindow/on_actionSplit_Mode_triggered", "Entered split mode");
     if (currentWindow() != nullptr)
     {
         Core::Log::i("appwindow/on_actionSplit_Mode_triggered", "Restored splitter state");
-        currentWindow()->getSplitter()->restoreState(state);
+        currentWindow()->setViewMode(Settings::ViewMode::SPLIT);
     }
     else
         Core::Log::w("appwindow/on_actionSplit_Mode_triggered", "No UI change required");
