@@ -50,7 +50,7 @@ SettingManager::SettingManager()
 
     Core::Log::i("settingmanager/constructor", "Old Settings file doesnot exist.");
     Core::Log::i("settingmanager/constructor", "Continuing with New Settings file.");
-    
+
     mSettings = new QSettings(mSettingsFile, QSettings::IniFormat);
 
     if (getDefaultLanguage() == "Cpp")
