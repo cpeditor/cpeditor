@@ -1,11 +1,16 @@
 # CP Editor
 
-[![CI: Build Test](https://github.com/coder3101/cp-editor/workflows/CI:%20Build%20Test/badge.svg)](https://github.com/coder3101/cp-editor/actions)
-[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
-[![Latest Stable](https://img.shields.io/github/v/release/coder3101/cp-editor?label=latest%20stable)](https://github.com/coder3101/cp-editor/releases/latest)
-[![Latest Release](https://img.shields.io/github/v/release/coder3101/cp-editor?include_prereleases&label=latest%20release&sort=semver)](https://github.com/coder3101/cp-editor/releases)
-
 <img src=assets/icon.ico height="80" width="80">
+
+[![LGTM Grade](https://img.shields.io/lgtm/grade/cpp/github/coder3101/cp-editor)](https://lgtm.com/projects/g/coder3101/cp-editor/context:cpp)
+[![LGTM Alerts](https://img.shields.io/lgtm/alerts/github/coder3101/cp-editor)](https://lgtm.com/projects/g/coder3101/cp-editor/alerts)
+[![Telegram Group](https://img.shields.io/badge/chat-on%20telegram-success)](https://t.me/cpeditor)
+[![Help wanted issues](https://img.shields.io/github/issues/coder3101/cp-editor/help%20wanted)](https://github.com/coder3101/cp-editor/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22)
+
+|                            branch                            |                                                                                                  build                                                                                                  |                                                                                         release                                                                                          |                                                                                    downloads                                                                                    |
+| :----------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+| [master](https://github.com/coder3101/cp-editor/tree/master) | [![GitHub Workflow Status (master)](https://img.shields.io/github/workflow/status/coder3101/cp-editor/CI:%20Build%20Test/master)](https://github.com/coder3101/cp-editor/actions?query=branch%3Amaster) |              [![Latest Stable](https://img.shields.io/github/v/release/coder3101/cp-editor?label=latest%20stable)](https://github.com/coder3101/cp-editor/releases/latest)               | [![Release Downloads](https://img.shields.io/github/downloads/coder3101/cp-editor/latest/total?label=downloads@stable)](https://github.com/coder3101/cp-editor/releases/latest) |
+|    [dev](https://github.com/coder3101/cp-editor/tree/dev)    |     [![GitHub Workflow Status (dev)](https://img.shields.io/github/workflow/status/coder3101/cp-editor/CI:%20Build%20Test/dev)](https://github.com/coder3101/cp-editor/actions?query=branch%3Adev)      | [![Latest Release](https://img.shields.io/github/v/release/coder3101/cp-editor?include_prereleases&label=latest%20release&sort=semver)](https://github.com/coder3101/cp-editor/releases) |            [![Pre-Release Downloads](https://img.shields.io/github/downloads-pre/coder3101/cp-editor/latest/total)](https://github.com/coder3101/cp-editor/releases)            |
 
 **CP Editor** is a native Qt-based code editor. It's specially designed for competitive programming, unlike other editors/IDEs which are mainly for developers. It helps you focus on your coding and automates the compilation, executing and testing. It even fetches test cases for you from webpages and submits codes on Codeforces!
 
@@ -31,12 +36,8 @@ Head over to the [release page](https://github.com/coder3101/cp-editor/releases)
 - Linux users can find an `AppImage`:
   1. `chmod +x <AppImagePath>` or make it executable in GUI by right-clicking on it.
   2. Just run it, either from bash or in GUI.
-- Get the .dmg file from releases and follow these steps:
-  1. Move the Extracted bundle to `/Applications`
-  2. If you try to open it, it may fail saying that file is damaged. This is because of Mac Gatekeeper. You need to disable gatekeeper for CPEditor
-  3. Open the terminal and `cd /Applications`
-  4. Run `sudo xattr -rd com.apple.quarantine CPEditor.app`. Type in your password and now you can double click to launch the app.
-  > *Note: You may need to click "Yes" to access Filesystem several times. It may also happen that application icon will not be visible.*
+- Get the .dmg file from releases and install as you install other apps
+  > *Note: You may need to click "Yes" to access Filesystem several times. Apple may report that this application does not comes from recognised developer and prevent you from launching app. Please add an exception to the Editor from `Settings-> Security -> General`, and allow CPEditor to `run anyways`*
 
 For Chinese users who are not convenient to download on Github, there is an [alternative download link](https://pan.wzf2000.top/s/md70l8h0) (it's not guaranteed to be up to date).
 
@@ -74,7 +75,7 @@ You can also set hotkeys for some actions manually in `Preferences`. However the
 	```
 
 2. Install [Qt](https://www.qt.io/download) (5.12 or higher) and [CMake](https://cmake.org/download/) (3.12 or higher).
-   - If you are using Linux/Mac, you can install from your package manager. For example, `sudo pacman -S qt5` on Arch Linux, `brew install qt5` on Mac OS, `sudo apt-get install qt5-default` on Ubuntu Linux.
+   - If you are using Linux/Mac, you can install from your package manager. For example, `sudo pacman -S qt5` on Arch Linux, `brew install qt5` on Mac OS.
    - You can also download the [offline installer](https://www.qt.io/offline-installers), or download from the [mirrors](https://download.qt.io/static/mirrorlist/). The path from the root of the mirror should be like `/qt/official_releases/qt/5.14/5.14.0/qt-opensource-<platform>-5.14.0.<suffix>` (or other versions).
 
 3. Set environment variable `CMAKE_PREFIX_PATH=%QtPath%/%QtVersion%/%Compiler%/lib/cmake` if necessary (i.e. cmake can't find the Qt installation path.).
@@ -99,6 +100,16 @@ You can also set hotkeys for some actions manually in `Preferences`. However the
 		cmake ..
 		cmake --build . --config Release
 		```
+
+### Use Artifacts
+
+If you want to use the latest version (even later than the beta release), but don't want to build from source, you can download Artifacts from [Github Actions](https://github.com/coder3101/cp-editor/actions).
+
+However, it's not recommended to use Artifacts, they are more unstable than beta releases, and may be a work in progress. You should read the commit logs and even the source codes before using Artifacts.
+
+In order to run it on Windows/MacOS, you should install from [Releases](https://github.com/coder3101/cp-editor/releases) first (usually any version is OK, unless something like DLL missing happens). On Windows, replace `CPEditor.exe` in your install folder with the Artifact. On Mac, run `cp <Artifact> CPEditor.app/Contents/MacOs`, where `CPEditor.app` is the one already installed on your machine.
+
+In order to run it on Ubuntu 18.04, you need to install Qt. Other Linux distributions may not support binaries compiled on Ubuntu 18.04.
 
 ### Contribution
 
