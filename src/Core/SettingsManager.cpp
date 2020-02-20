@@ -19,20 +19,27 @@
 #include "Core/EventLogger.hpp"
 #include "Core/MessageLogger.hpp"
 #include <QApplication>
+#include <QDir>
 #include <QStandardPaths>
 
 namespace Settings
 {
+
+const QString OLD_SETTINGS_FILE = "cp_editor_settings.ini";
+const QString SETTINGS_FILE = ".cp_editor_settings.ini";
+
 SettingManager::SettingManager()
 {
     Core::Log::i("settingmanager/constructor", "Invoked");
 
-    mSettingsFile = QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/" + SETTINGS_FILE;
-    QString oldSettingsFile = QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/" + OLD_SETTINGS_FILE;
+    mSettingsFile = QDir(QStandardPaths::writableLocation(QStandardPaths::HomeLocation)).filePath(SETTINGS_FILE);
+    QString oldSettingsFile =
+        QDir(QStandardPaths::writableLocation(QStandardPaths::HomeLocation)).filePath(OLD_SETTINGS_FILE);
 
-    if (QFile::exists(oldSettingsFile))
+    if (!QFile::exists(mSettingsFile) && QFile::exists(oldSettingsFile))
     {
-        Core::Log::i("settingmanager/constructor", oldSettingsFile + " exists.");
+        Core::Log::i("settingmanager/constructor",
+                     mSettingsFile + "doesn't exist, but " + oldSettingsFile + " exists.");
 
         if (QFile::copy(oldSettingsFile, mSettingsFile))
         {
@@ -52,8 +59,9 @@ SettingManager::SettingManager()
     }
     else
     {
-        Core::Log::i("settingmanager/constructor", "Old Settings file doesnot exist.");
-        Core::Log::i("settingmanager/constructor", "Continuing with New Settings file.");
+        Core::Log::i(
+            "settingmanager/constructor",
+            "The new settings file exists or the old settings file does not exist, use the new settings file.");
     }
     mSettings = new QSettings(mSettingsFile, QSettings::IniFormat);
 
