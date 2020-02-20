@@ -27,7 +27,7 @@ SettingManager::SettingManager()
 {
     Core::Log::i("settingmanager/constructor", "Invoked");
 
-    mSettingsFile = QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/" + NEW_SETTINGS_FILE;
+    mSettingsFile = QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/" + SETTINGS_FILE;
     QString oldSettingsFile = QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/" + SETTINGS_FILE;
 
     if (QFile::exists(oldSettingsFile))
