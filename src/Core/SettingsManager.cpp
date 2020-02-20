@@ -35,17 +35,21 @@ SettingManager::SettingManager()
         Core::Log::i("settingmanager/constructor", oldSettingsFile + " exists.");
 
         if (QFile::copy(oldSettingsFile, mSettingsFile))
+        {
             Core::Log::i("settingmanager/constructor", "Old Settings migrated to new Settings File");
+            
+            if (QFile::remove(oldSettingsFile))
+                Core::Log::i("settingmanager/constructor", oldSettingsFile + " File deleted successfully.");
+            else
+                Core::Log::i("settingmanager/constructor", oldSettingsFile + " File failed to delete.");
+        }
         else
         {
             Core::Log::i("settingmanager/constructor", "Setting migration failed");
             mSettingsFile = oldSettingsFile;
             Core::Log::i("settingmanager/constructor", "Reverted to old settings file");
         }
-        if (QFile::remove(oldSettingsFile))
-            Core::Log::i("settingmanager/constructor", oldSettingsFile + " File deleted successfully.");
-        else
-            Core::Log::i("settingmanager/constructor", oldSettingsFile + " File failed to delete.");
+        
     }
     else
     {
