@@ -47,10 +47,10 @@ SettingManager::SettingManager()
         else
             Core::Log::i("settingmanager/constructor", oldSettingsFile + " File failed to delete.");
     }
-
-    Core::Log::i("settingmanager/constructor", "Old Settings file doesnot exist.");
-    Core::Log::i("settingmanager/constructor", "Continuing with New Settings file.");
-    
+    else {
+        Core::Log::i("settingmanager/constructor", "Old Settings file doesnot exist.");
+        Core::Log::i("settingmanager/constructor", "Continuing with New Settings file.");
+    }
     mSettings = new QSettings(mSettingsFile, QSettings::IniFormat);
 
     if (getDefaultLanguage() == "Cpp")
