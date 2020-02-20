@@ -37,7 +37,7 @@ SettingManager::SettingManager()
         if (QFile::copy(oldSettingsFile, mSettingsFile))
         {
             Core::Log::i("settingmanager/constructor", "Old Settings migrated to new Settings File");
-            
+
             if (QFile::remove(oldSettingsFile))
                 Core::Log::i("settingmanager/constructor", oldSettingsFile + " File deleted successfully.");
             else
@@ -49,7 +49,6 @@ SettingManager::SettingManager()
             mSettingsFile = oldSettingsFile;
             Core::Log::i("settingmanager/constructor", "Reverted to old settings file");
         }
-        
     }
     else
     {
