@@ -24,7 +24,7 @@
 #include <QString>
 #include <string>
 
-#define SETTINGS_FILE "cp_editor_settings.ini"
+#define OLD_SETTINGS_FILE "cp_editor_settings.ini"
 #define NEW_SETTINGS_FILE ".cp_editor_settings.ini"
 
 namespace Settings
