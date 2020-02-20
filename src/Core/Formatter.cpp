@@ -49,7 +49,7 @@ bool Formatter::check(const QString &checkBinary, const QString &checkStyle)
     return program.exitCode() == 0;
 }
 
-void Formatter::updateBinary(const QString& newBinary)
+void Formatter::updateBinary(const QString &newBinary)
 {
     binary = newBinary;
 }
