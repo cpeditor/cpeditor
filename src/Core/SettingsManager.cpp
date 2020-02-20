@@ -25,11 +25,25 @@ namespace Settings
 {
 SettingManager::SettingManager()
 {
-    Core::Log::i("settingmanager/constructed", "Invoked");
-    mSettingsFile = QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/" + SETTINGS_FILE;
-    mSettings = new QSettings(mSettingsFile, QSettings::IniFormat);
+    Core::Log::i("settingmanager/constructor", "Invoked");
+    
+    mSettingsFile = QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/" + NEW_SETTINGS_FILE;
+    QString oldSettingsFile = QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/" + SETTINGS_FILE;
 
-    // backwords compatibility
+    if (QFile::exists(oldSettingsFile))
+    {
+        if (QFile::copy(oldSettingsFile, mSettingsFile))
+            Core::Log::i("settingmanager/constructor", "Old Settings migrated to new Settings File");
+        else
+            Core::Log::i("settingmanager/constructor", "Setting migration failed");
+        
+        if (QFile::remove(oldSettingsFile))
+            Core::Log::i("settingmanager/constructor", oldSettingsFile + " File deleted successfully.");
+        else
+            Core::Log::i("settingmanager/constructor", oldSettingsFile + " File failed to delete.");
+    }
+
+    mSettings = new QSettings(mSettingsFile, QSettings::IniFormat);
 
     if (getDefaultLanguage() == "Cpp")
         setDefaultLanguage("C++");
