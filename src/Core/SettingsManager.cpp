@@ -39,7 +39,7 @@ SettingManager::SettingManager()
         else
         {
             Core::Log::i("settingmanager/constructor", "Setting migration failed");
-            mSettingsFile = QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/" + SETTINGS_FILE;
+            mSettingsFile = oldSettingsFile;
             Core::Log::i("settingmanager/constructor", "Reverted to old settings file");
         }
         if (QFile::remove(oldSettingsFile))
