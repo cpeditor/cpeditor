@@ -178,26 +178,6 @@ void TestCase::setOutput(const QString &text)
 
     outputEdit->modifyText(text);
     outputEdit->startAnimation();
-
-    currentVerdict = output().isEmpty() || expected().isEmpty() ? UNKNOWN : (isPass() ? AC : WA);
-
-    Core::Log::i("testcase/setOutput") << "currentVerdict " << currentVerdict << endl;
-
-    switch (currentVerdict)
-    {
-    case UNKNOWN:
-        diffButton->setStyleSheet("");
-        diffButton->setText("**");
-        break;
-    case AC:
-        diffButton->setStyleSheet("background: #0b0");
-        diffButton->setText("AC");
-        break;
-    case WA:
-        diffButton->setStyleSheet("background: #d00");
-        diffButton->setText("WA");
-        break;
-    }
 }
 
 void TestCase::setExpected(const QString &text)
@@ -210,7 +190,7 @@ void TestCase::clearOutput()
 {
     Core::Log::i("testcase/clearOutput", "Cleared output");
     outputEdit->modifyText(QString());
-    currentVerdict = UNKNOWN;
+    currentVerdict = Core::Checker::UNKNOWN;
     diffButton->setStyleSheet("");
     diffButton->setText("**");
 }
@@ -281,7 +261,30 @@ void TestCase::setID(int index)
     expectedLabel->setText("Expected #" + QString::number(id + 1));
 }
 
-TestCase::Verdict TestCase::verdict() const
+void TestCase::setVerdict(Core::Checker::Verdict verdict)
+{
+    currentVerdict = verdict;
+
+    Core::Log::i("testcase/setVerdict") << INFO_OF(verdict) << endl;
+
+    switch (currentVerdict)
+    {
+    case Core::Checker::UNKNOWN:
+        diffButton->setStyleSheet("");
+        diffButton->setText("**");
+        break;
+    case Core::Checker::AC:
+        diffButton->setStyleSheet("background: #0b0");
+        diffButton->setText("AC");
+        break;
+    case Core::Checker::WA:
+        diffButton->setStyleSheet("background: #d00");
+        diffButton->setText("WA");
+        break;
+    }
+}
+
+Core::Checker::Verdict TestCase::verdict() const
 {
     Core::Log::i("testcase/verdict", "Invoked");
     return currentVerdict;
@@ -412,54 +415,6 @@ void TestCase::on_loadExpectedButton_clicked()
         log->warn("Tests", "Failed to load expected file " + res);
 }
 
-bool TestCase::isPass() const
-{
-    Core::Log::i("settingmanager/isPass", "invoked");
-    auto out = output().remove('\r');
-    auto ans = expected().remove('\r');
-    auto a_lines = out.split('\n');
-    auto b_lines = ans.split('\n');
-    for (int i = 0; i < a_lines.size() || i < b_lines.size(); ++i)
-    {
-        if (i >= a_lines.size())
-        {
-            if (b_lines[i].trimmed().isEmpty())
-                continue;
-            else
-                return false;
-        }
-        if (i >= b_lines.size())
-        {
-            if (a_lines[i].trimmed().isEmpty())
-                continue;
-            else
-                return false;
-        }
-        auto a_words = a_lines[i].split(' ');
-        auto b_words = b_lines[i].split(' ');
-        for (int j = 0; j < a_words.size() || j < b_words.size(); ++j)
-        {
-            if (j >= a_words.size())
-            {
-                if (b_words[j].trimmed().isEmpty())
-                    continue;
-                else
-                    return false;
-            }
-            if (j >= b_words.size())
-            {
-                if (a_words[j].trimmed().isEmpty())
-                    continue;
-                else
-                    return false;
-            }
-            if (a_words[j] != b_words[j])
-                return false;
-        }
-    }
-    return true;
-}
-
 const int TestCases::MAX_NUMBER_OF_TESTCASES;
 
 TestCases::TestCases(MessageLogger *logger, QWidget *parent) : QWidget(parent), log(logger)
@@ -467,11 +422,15 @@ TestCases::TestCases(MessageLogger *logger, QWidget *parent) : QWidget(parent), 
     Core::Log::i("testcases/constructed", "invoked");
     mainLayout = new QVBoxLayout(this);
     titleLayout = new QHBoxLayout();
+    checkerLayout = new QHBoxLayout();
     label = new QLabel("Test Cases");
     verdicts = new QLabel();
+    checkerLabel = new QLabel("Checker:");
     hideACButton = new QPushButton("Hide AC");
-    addButton = new QPushButton("Add New");
+    addButton = new QPushButton("Add Test");
     clearButton = new QPushButton("Clear");
+    addCheckerButton = new QPushButton("Add Checker");
+    checkerComboBox = new QComboBox();
     scrollArea = new QScrollArea();
     scrollAreaWidget = new QWidget();
     scrollAreaLayout = new QVBoxLayout(scrollAreaWidget);
@@ -483,18 +442,35 @@ TestCases::TestCases(MessageLogger *logger, QWidget *parent) : QWidget(parent), 
     titleLayout->addWidget(hideACButton);
     titleLayout->addWidget(addButton);
     titleLayout->addWidget(clearButton);
+    checkerLayout->addWidget(checkerLabel);
+    checkerLayout->addWidget(checkerComboBox);
+    checkerLayout->addWidget(addCheckerButton);
     scrollArea->setWidgetResizable(true);
     scrollArea->setWidget(scrollAreaWidget);
     mainLayout->addLayout(titleLayout);
+    mainLayout->addLayout(checkerLayout);
     mainLayout->addWidget(scrollArea);
 
     Core::Log::i("testcases/constructed", "widgets attached");
 
     updateVerdicts();
 
+    checkerLabel->setSizePolicy({QSizePolicy::Maximum, QSizePolicy::Fixed});
+    checkerComboBox->setSizePolicy({QSizePolicy::Expanding, QSizePolicy::Fixed});
+    addCheckerButton->setSizePolicy({QSizePolicy::Maximum, QSizePolicy::Fixed});
+    checkerComboBox->setMinimumWidth(100);
+
+    checkerComboBox->addItems({"Ignore trailing spaces", "Strictly the same", "ncmp - Compare int64s",
+                               "rcmp4 - Compare doubles, max error 1e-4", "rcmp6 - Compare doubles, max error 1e-6",
+                               "rcmp9 - Compare doubles, max error 1e-9", "wcmp - Compare tokens",
+                               "nyesno - Compare YES/NOs, case insensitive"});
+    checkerComboBox->setCurrentIndex(0);
+
+    connect(checkerComboBox, SIGNAL(currentIndexChanged(int)), this, SIGNAL(checkerChanged()));
     connect(hideACButton, SIGNAL(clicked()), this, SLOT(on_hideACButton_clicked()));
     connect(addButton, SIGNAL(clicked()), this, SLOT(on_addButton_clicked()));
     connect(clearButton, SIGNAL(clicked()), this, SLOT(on_clearButton_clicked()));
+    connect(addCheckerButton, SIGNAL(clicked()), this, SLOT(on_addCheckerButton_clicked()));
 
     Core::Log::i("testcases/constructed", "connection established");
 }
@@ -509,7 +485,6 @@ void TestCases::setOutput(int index, const QString &output)
 {
     Core::Log::i("testcases/setoutput") << "index : " << index << " output \n" << output << endl;
     testcases[index]->setOutput(output);
-    updateVerdicts();
 }
 
 void TestCases::setExpected(int index, const QString &expected)
@@ -651,6 +626,69 @@ int TestCases::count() const
     return testcases.count();
 }
 
+void TestCases::setCheckerIndex(int index)
+{
+    if (index >= 0 && index < checkerComboBox->count())
+        checkerComboBox->setCurrentIndex(index);
+    else
+        Core::Log::e("TestCases/setCheckerIndex") << "Invalid checker index " << index << endl;
+}
+
+int TestCases::checkerIndex() const
+{
+    return checkerComboBox->currentIndex();
+}
+
+void TestCases::addCustomCheckers(const QStringList &list)
+{
+    checkerComboBox->addItems(list);
+}
+
+QStringList TestCases::customCheckers() const
+{
+    QStringList res;
+    for (int i = 8; i < checkerComboBox->count(); ++i)
+        res.push_back(checkerComboBox->itemText(i));
+    return res;
+}
+
+QString TestCases::checkerText() const
+{
+    return checkerComboBox->currentText();
+}
+
+Core::Checker::CheckerType TestCases::checkerType() const
+{
+    Core::Log::i("TestCases/checkerType") << INFO_OF(checkerIndex()) << endl;
+    switch (checkerIndex())
+    {
+    case 0:
+        return Core::Checker::IgnoreTrailingSpaces;
+    case 1:
+        return Core::Checker::Strict;
+    case 2:
+        return Core::Checker::Ncmp;
+    case 3:
+        return Core::Checker::Rcmp4;
+    case 4:
+        return Core::Checker::Rcmp6;
+    case 5:
+        return Core::Checker::Rcmp9;
+    case 6:
+        return Core::Checker::Wcmp;
+    case 7:
+        return Core::Checker::Nyesno;
+    default:
+        return Core::Checker::Custom;
+    }
+}
+
+void TestCases::setVerdict(int index, Core::Checker::Verdict verdict)
+{
+    testcases[index]->setVerdict(verdict);
+    updateVerdicts();
+}
+
 void TestCases::on_hideACButton_clicked()
 {
     Core::Log::i("testcases/on_hideACButton_clicked") << "Invoked, " << INFO_OF(isHideAC) << endl;
@@ -687,6 +725,17 @@ void TestCases::on_clearButton_clicked()
     }
 }
 
+void TestCases::on_addCheckerButton_clicked()
+{
+    Core::Log::i("TestCases/on_addCheckerButton_clicked", "Invoked");
+    auto path = QFileInfo(QFileDialog::getOpenFileName(this, "Add Checker")).canonicalFilePath();
+    if (!path.isEmpty())
+    {
+        checkerComboBox->addItem(path);
+        checkerComboBox->setCurrentIndex(checkerComboBox->count() - 1);
+    }
+}
+
 void TestCases::onChildDeleted(TestCase *widget)
 {
     Core::Log::i("testcases/onChildDeleted", "invoked");
@@ -707,18 +756,18 @@ void TestCases::updateVerdicts()
     {
         switch (t->verdict())
         {
-        case TestCase::AC:
+        case Core::Checker::AC:
             ++ac;
             if (isHideAC)
                 t->hide();
             else
                 t->show();
             break;
-        case TestCase::WA:
+        case Core::Checker::WA:
             ++wa;
             t->show();
             break;
-        case TestCase::UNKNOWN:
+        case Core::Checker::UNKNOWN:
             t->show();
             break;
         }

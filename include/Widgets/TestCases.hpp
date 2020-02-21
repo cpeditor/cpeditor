@@ -18,7 +18,9 @@
 #ifndef TESTCASES_HPP
 #define TESTCASES_HPP
 
+#include "Core/Checker.hpp"
 #include "Core/MessageLogger.hpp"
+#include <QComboBox>
 #include <QFileInfo>
 #include <QHBoxLayout>
 #include <QLabel>
@@ -64,15 +66,8 @@ class TestCase : public QWidget
     void loadFromFile(const QString &pathPrefix);
     void save(const QString &pathPrefix, bool safe);
     void setID(int index);
-
-    enum Verdict
-    {
-        AC,
-        WA,
-        UNKNOWN
-    };
-
-    Verdict verdict() const;
+    void setVerdict(Core::Checker::Verdict verdict);
+    Core::Checker::Verdict verdict() const;
 
   signals:
     void deleted(TestCase *widget);
@@ -91,10 +86,8 @@ class TestCase : public QWidget
                 *loadExpectedButton = nullptr;
     TestCaseEdit *inputEdit = nullptr, *outputEdit = nullptr, *expectedEdit = nullptr;
     MessageLogger *log;
-    Verdict currentVerdict = UNKNOWN;
+    Core::Checker::Verdict currentVerdict = Core::Checker::UNKNOWN;
     int id;
-
-    bool isPass() const;
 };
 
 class TestCases : public QWidget
@@ -119,24 +112,39 @@ class TestCases : public QWidget
     void save(const QString &filePath, bool safe);
     int id(TestCase *testcase) const;
     int count() const;
+    void setCheckerIndex(int index);
+    int checkerIndex() const;
+    void addCustomCheckers(const QStringList &list);
+    QStringList customCheckers() const;
+    QString checkerText() const;
+    Core::Checker::CheckerType checkerType() const;
+
+  public slots:
+    void setVerdict(int index, Core::Checker::Verdict verdict);
+
+  signals:
+    void checkerChanged();
 
   private slots:
     void on_hideACButton_clicked();
     void on_addButton_clicked();
     void on_clearButton_clicked();
+    void on_addCheckerButton_clicked();
     void onChildDeleted(TestCase *widget);
 
   private:
     static const int MAX_NUMBER_OF_TESTCASES = 100;
     QVBoxLayout *mainLayout = nullptr, *scrollAreaLayout = nullptr;
-    QHBoxLayout *titleLayout = nullptr;
-    QPushButton *hideACButton = nullptr, *addButton = nullptr, *clearButton = nullptr;
+    QHBoxLayout *titleLayout = nullptr, *checkerLayout = nullptr;
+    QPushButton *hideACButton = nullptr, *addButton = nullptr, *clearButton = nullptr, *addCheckerButton = nullptr;
+    QComboBox *checkerComboBox = nullptr;
     QScrollArea *scrollArea = nullptr;
     QWidget *scrollAreaWidget = nullptr;
-    QLabel *label = nullptr, *verdicts = nullptr;
+    QLabel *label = nullptr, *verdicts = nullptr, *checkerLabel = nullptr;
     QList<TestCase *> testcases;
     MessageLogger *log;
     bool isHideAC = false;
+    bool choosingChecker = false;
 
     void updateVerdicts();
     QString testFilePathPrefix(const QFileInfo &fileInfo, int index);

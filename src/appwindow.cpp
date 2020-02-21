@@ -735,7 +735,7 @@ void AppWindow::onTabChanged(int index)
     if (settingManager->isCompetitiveCompanionActive() && diagonistics)
         server->checkServer();
 
-    tmp->applySettingsData(diagonistics);
+    tmp->applySettings(diagonistics);
     diagonistics = false;
 
     if (ui->actionEditor_Mode->isChecked())

@@ -40,6 +40,7 @@ class Compiler : public QObject
     void compilationStarted();
     void compilationFinished(const QString &warning);
     void compilationErrorOccured(const QString &error);
+    void compilationKilled();
 
   private slots:
     void onProcessFinished(int exitCode, QProcess::ExitStatus exitStatus);

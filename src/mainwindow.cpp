@@ -56,7 +56,7 @@ MainWindow::MainWindow(const QString &fileOpen, Settings::SettingManager *manage
     setEditor();
     setupCore();
     connect(fileWatcher, SIGNAL(fileChanged(const QString &)), this, SLOT(onFileWatcherChanged(const QString &)));
-    applySettingsData(true);
+    applySettings(true);
     loadFile(fileOpen);
     if (testcases->count() == 0)
         testcases->addTestCase();
@@ -86,6 +86,7 @@ void MainWindow::setTestCases()
     Core::Log::i("mainwindow/setTestCases", "Invoked");
     testcases = new TestCases(&log, this);
     ui->test_cases_layout->addWidget(testcases);
+    connect(testcases, SIGNAL(checkerChanged()), this, SLOT(updateChecker()));
 }
 
 void MainWindow::setEditor()
@@ -135,6 +136,7 @@ void MainWindow::compile()
                 SLOT(onCompilationFinished(const QString &)));
         connect(compiler, SIGNAL(compilationErrorOccured(const QString &)), this,
                 SLOT(onCompilationErrorOccured(const QString &)));
+        connect(compiler, SIGNAL(compilationKilled()), this, SLOT(onCompilationKilled()));
         compiler->start(tmpPath(), settingManager->getCompileCommand(language), language);
     }
 }
@@ -309,8 +311,10 @@ MainWindow::EditorStatus::EditorStatus(const QMap<QString, QVariant> &status)
     FROMSTATUS(horizontalScrollBarValue).toInt();
     FROMSTATUS(verticalScrollbarValue).toInt();
     FROMSTATUS(untitledIndex).toInt();
+    FROMSTATUS(checkerIndex).toInt();
     FROMSTATUS(input).toStringList();
     FROMSTATUS(expected).toStringList();
+    FROMSTATUS(customCheckers).toStringList();
 }
 #undef FROMSTATUS
 
@@ -330,8 +334,10 @@ QMap<QString, QVariant> MainWindow::EditorStatus::toMap() const
     TOSTATUS(horizontalScrollBarValue);
     TOSTATUS(verticalScrollbarValue);
     TOSTATUS(untitledIndex);
+    TOSTATUS(checkerIndex);
     TOSTATUS(input);
     TOSTATUS(expected);
+    TOSTATUS(customCheckers);
     return status;
 }
 #undef TOSTATUS
@@ -346,6 +352,8 @@ MainWindow::EditorStatus MainWindow::toStatus(bool simple) const
     status.problemURL = problemURL;
     status.language = language;
     status.untitledIndex = untitledIndex;
+    status.checkerIndex = testcases->checkerIndex();
+    status.customCheckers = testcases->customCheckers();
 
     if (!simple)
     {
@@ -368,6 +376,8 @@ void MainWindow::loadStatus(const EditorStatus &status, bool simple)
     if (status.isLanguageSet)
         setLanguage(status.language);
     untitledIndex = status.untitledIndex;
+    testcases->addCustomCheckers(status.customCheckers);
+    testcases->setCheckerIndex(status.checkerIndex);
 
     Core::Log::i("mainwindow/loadStatus") << INFO_OF(simple) << ' ' << INFO_OF(status.filePath) << endl;
 
@@ -416,7 +426,7 @@ void MainWindow::applyCompanion(const Network::CompanionData &data)
     setProblemURL(data.url);
 }
 
-void MainWindow::applySettingsData(bool shouldPerformDigonistic)
+void MainWindow::applySettings(bool shouldPerformDigonistic)
 {
     Core::Log::i("mainwindow/applySettingsData") << "shouldPerformDiagonistics " << shouldPerformDigonistic << endl;
     formatter->updateBinary(settingManager->getClangFormatBinary());
@@ -477,6 +487,8 @@ void MainWindow::applySettingsData(bool shouldPerformDigonistic)
     {
         performCoreDiagonistics();
     }
+
+    updateChecker();
 }
 
 void MainWindow::save(bool force, const QString &head, bool safe)
@@ -996,6 +1008,18 @@ void MainWindow::updateCursorInfo()
     ui->cursor_info->setText(info);
 }
 
+void MainWindow::updateChecker()
+{
+    if (checker)
+        delete checker;
+    if (testcases->checkerType() == Core::Checker::Custom)
+        checker = new Core::Checker(testcases->checkerText(), &log, settingManager->getTimeLimit(), this);
+    else
+        checker = new Core::Checker(testcases->checkerType(), &log, settingManager->getTimeLimit(), this);
+    connect(checker, &Core::Checker::checkFinished, testcases, &TestCases::setVerdict);
+    checker->prepare(settingManager->getCompileCommand("C++"));
+}
+
 QSplitter *MainWindow::getSplitter()
 {
     return ui->splitter;
@@ -1083,6 +1107,11 @@ void MainWindow::onCompilationErrorOccured(const QString &error)
         log.error("Compile Errors", error);
 }
 
+void MainWindow::onCompilationKilled()
+{
+    log.error("Compiler", "Compilation is killed");
+}
+
 // --------------------- RUNNER SLOTS ----------------------------
 
 QString MainWindow::getRunnerHead(int index)
@@ -1099,7 +1128,6 @@ void MainWindow::onRunStarted(int index)
 
 void MainWindow::onRunFinished(int index, const QString &out, const QString &err, int exitCode, int timeUsed)
 {
-
     auto head = getRunnerHead(index);
 
     if (exitCode == 0)
@@ -1118,6 +1146,8 @@ void MainWindow::onRunFinished(int index, const QString &out, const QString &err
     if (!err.trimmed().isEmpty())
         log.error(head + "/stderr", err);
     testcases->setOutput(index, out);
+    if (!out.isEmpty() && !testcases->expected(index).isEmpty())
+        checker->reqeustCheck(index, testcases->input(index), out, testcases->expected(index));
 }
 
 void MainWindow::onRunErrorOccured(int index, const QString &error)
@@ -1132,7 +1162,7 @@ void MainWindow::onRunTimeout(int index)
 
 void MainWindow::onRunKilled(int index)
 {
-    log.info(getRunnerHead(index),
-             (index == -1 ? "Detached runner" : "Runner for test case #" + QString::number(index + 1)) +
-                 " has been killed");
+    log.error(getRunnerHead(index),
+              (index == -1 ? "Detached runner" : "Runner for test case #" + QString::number(index + 1)) +
+                  " has been killed");
 }

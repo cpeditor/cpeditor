@@ -37,6 +37,12 @@ Compiler::~Compiler()
     if (compileProcess != nullptr)
     {
         Core::Log::i("compiler/Destructor", "Compiler object destroyed");
+        if (compileProcess->state() != QProcess::NotRunning)
+        {
+            Core::Log::i("Compiler/destructor", "compileProcess is running, now kill it");
+            compileProcess->kill();
+            emit compilationKilled();
+        }
         delete compileProcess;
     }
     else

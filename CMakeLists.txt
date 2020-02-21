@@ -31,12 +31,14 @@ configure_file(version.hpp.in ${CMAKE_BINARY_DIR}/generated/version.hpp)
 add_executable(CPEditor
     ${GUI_TYPE}
 
+    include/Core/Checker.hpp
     include/Core/Compiler.hpp
     include/Core/Runner.hpp
     include/Core/Formatter.hpp
     include/Core/SettingsManager.hpp
     include/Core/MessageLogger.hpp
 	include/Core/EventLogger.hpp
+    src/Core/Checker.cpp
     src/Core/Compiler.cpp
     src/Core/Runner.cpp
     src/Core/Formatter.cpp
