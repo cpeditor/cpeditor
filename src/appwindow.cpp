@@ -193,6 +193,8 @@ void AppWindow::allocate()
     server = new Network::CompanionServer(settingManager->getConnectionPort());
     findReplaceDialog = new FindReplaceDialog(this);
     findReplaceDialog->setModal(false);
+    findReplaceDialog->setWindowFlags(Qt::Window | Qt::WindowMinimizeButtonHint | Qt::WindowMaximizeButtonHint |
+                                      Qt::WindowCloseButtonHint);
 
     timer->setInterval(3000);
     timer->setSingleShot(false);
