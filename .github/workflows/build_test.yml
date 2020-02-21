@@ -48,6 +48,11 @@ jobs:
     - name: Fetch submodules
       run: git submodule update --init --recursive
 
+    - name: Install Python 3.7
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.7
+
     - name: Restore Qt from cache
       id: cache-qt
       uses: actions/cache@v1
