@@ -164,6 +164,7 @@ void PreferenceWindow::applySettingsToui()
 
     ui->cf_path->setText(Settings::SettingsManager::getCFPath());
     ui->compile_and_run_only->setChecked(Settings::SettingsManager::isCompileAndRunOnly());
+    ui->display_eoln_in_diff->setChecked(Settings::SettingsManager::isDisplayEolnInDiff());
 }
 
 void PreferenceWindow::extractSettingsFromUi()
@@ -222,6 +223,7 @@ void PreferenceWindow::extractSettingsFromUi()
 
     Settings::SettingsManager::setCFPath(ui->cf_path->text());
     Settings::SettingsManager::setCompileAndRunOnly(ui->compile_and_run_only->isChecked());
+    Settings::SettingsManager::setDisplayEolnInDiff(ui->display_eoln_in_diff->isChecked());
 }
 
 void PreferenceWindow::updateShow()

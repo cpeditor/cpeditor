@@ -173,6 +173,9 @@ class SettingsManager
     static bool isCompileAndRunOnly();
     static void setCompileAndRunOnly(bool value);
 
+    static bool isDisplayEolnInDiff();
+    static void setDisplayEolnInDiff(bool value);
+
     static QSettings *settings();
 
     static void resetSettings();

@@ -603,6 +603,16 @@ void SettingsManager::setCompileAndRunOnly(bool value)
     mSettings->setValue("compile_and_run_only", value ? "true" : "false");
 }
 
+bool SettingsManager::isDisplayEolnInDiff()
+{
+    return mSettings->value("display_eoln_in_diff", "false").toBool();
+}
+
+void SettingsManager::setDisplayEolnInDiff(bool value)
+{
+    mSettings->setValue("display_eoln_in_diff", value ? "true" : "false");
+}
+
 void SettingsManager::setHotkeyViewModeToggler(const QKeySequence &sequence)
 {
     Core::Log::i("settingmanager/sethotViewModeToggler") << "sequence is : " << sequence.toString() << endl;

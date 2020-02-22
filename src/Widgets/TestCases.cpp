@@ -17,6 +17,7 @@
 
 #include "Widgets/TestCases.hpp"
 #include "Core/EventLogger.hpp"
+#include "Core/SettingsManager.hpp"
 #include "diff_match_patch.h"
 #include <QFileDialog>
 #include <QMainWindow>
@@ -360,7 +361,9 @@ void TestCase::on_diffButton_clicked()
         QString expectedHTML, outputHTML;
         for (auto diff : diffs)
         {
-            QString text = diff.text.toHtmlEscaped().replace("\n", "&para;<br>").replace(" ", "&nbsp;");
+            QString text = diff.text.toHtmlEscaped().replace(" ", "&nbsp;");
+            if (Settings::SettingsManager::isDisplayEolnInDiff())
+                text.replace("\n", "&para;<br>");
             switch (diff.operation)
             {
             case INSERT:
