@@ -34,12 +34,10 @@
 
 #define PREFERENCE_WINDOW_SIZE_FACTOR 0.5
 
-PreferenceWindow::PreferenceWindow(Settings::SettingManager *manager, QWidget *parent)
-    : QMainWindow(parent), ui(new Ui::PreferenceWindow)
+PreferenceWindow::PreferenceWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::PreferenceWindow)
 {
     Core::Log::i("preferencewindow/constructed", "Invoked");
     ui->setupUi(this);
-    settingManager = manager;
     setWindowTitle("Preferences");
 
     editor = new QCodeEditor();
@@ -79,7 +77,7 @@ void PreferenceWindow::updateSnippets()
     Core::Log::i("preferencewindow/updateSnippets", "Invoked");
     ui->snippets->clear();
     auto lang = ui->snippets_lang->currentText();
-    auto names = settingManager->getSnippetsNames(lang);
+    auto names = Settings::SettingsManager::getSnippetsNames(lang);
     ui->snippets->addItems(names);
 }
 
@@ -97,131 +95,131 @@ void PreferenceWindow::applySettingsToui()
     Core::Log::i("preferencewindow/applySettingsToui", "Invoked");
     ui->tabWidget->setCurrentIndex(0);
 
-    ui->editor_theme->setCurrentText(settingManager->getEditorTheme());
-    ui->tab_length->setValue(settingManager->getTabStop());
+    ui->editor_theme->setCurrentText(Settings::SettingsManager::getEditorTheme());
+    ui->tab_length->setValue(Settings::SettingsManager::getTabStop());
 
-    if (!settingManager->getFont().isEmpty())
-        currentFont.fromString(settingManager->getFont());
+    if (!Settings::SettingsManager::getFont().isEmpty())
+        currentFont.fromString(Settings::SettingsManager::getFont());
     ui->font_button->setText(currentFont.family() + " " + QString::number(currentFont.pointSize()));
 
-    ui->savetest->setChecked(settingManager->isSaveTests());
-    ui->wrap->setChecked(settingManager->isWrapText());
-    ui->indent->setChecked(settingManager->isAutoIndent());
-    ui->parentheses->setChecked(settingManager->isAutoParentheses());
-    ui->remove_parentheses->setChecked(settingManager->isAutoRemoveParentheses());
-    ui->replace_tabs->setChecked(settingManager->isTabsReplaced());
-    ui->format_on_save->setChecked(settingManager->isFormatOnSave());
-    ui->use_hot_exit->setChecked(settingManager->isUseHotExit());
+    ui->savetest->setChecked(Settings::SettingsManager::isSaveTests());
+    ui->wrap->setChecked(Settings::SettingsManager::isWrapText());
+    ui->indent->setChecked(Settings::SettingsManager::isAutoIndent());
+    ui->parentheses->setChecked(Settings::SettingsManager::isAutoParentheses());
+    ui->remove_parentheses->setChecked(Settings::SettingsManager::isAutoRemoveParentheses());
+    ui->replace_tabs->setChecked(Settings::SettingsManager::isTabsReplaced());
+    ui->format_on_save->setChecked(Settings::SettingsManager::isFormatOnSave());
+    ui->use_hot_exit->setChecked(Settings::SettingsManager::isUseHotExit());
 
-    ui->defaultLang->setCurrentText(settingManager->getDefaultLanguage());
+    ui->defaultLang->setCurrentText(Settings::SettingsManager::getDefaultLanguage());
 
-    ui->cpp_compiler_cmd->setText(settingManager->getCompileCommand("C++"));
-    ui->cpp_args_cmd->setText(settingManager->getRuntimeArguments("C++"));
+    ui->cpp_compiler_cmd->setText(Settings::SettingsManager::getCompileCommand("C++"));
+    ui->cpp_args_cmd->setText(Settings::SettingsManager::getRuntimeArguments("C++"));
 
-    ui->java_compiler_cmd->setText(settingManager->getCompileCommand("Java"));
-    ui->java_args_cmd->setText(settingManager->getRuntimeArguments("Java"));
-    ui->java_start_cmd->setText(settingManager->getRunCommand("Java"));
+    ui->java_compiler_cmd->setText(Settings::SettingsManager::getCompileCommand("Java"));
+    ui->java_args_cmd->setText(Settings::SettingsManager::getRuntimeArguments("Java"));
+    ui->java_start_cmd->setText(Settings::SettingsManager::getRunCommand("Java"));
 
-    ui->python_args_cmd->setText(settingManager->getRuntimeArguments("Python"));
-    ui->python_start_cmd->setText(settingManager->getRunCommand("Python"));
+    ui->python_args_cmd->setText(Settings::SettingsManager::getRuntimeArguments("Python"));
+    ui->python_start_cmd->setText(Settings::SettingsManager::getRunCommand("Python"));
 
-    ui->companion_use->setChecked(settingManager->isCompetitiveCompanionActive());
-    ui->companion_new_tab->setChecked(settingManager->isCompetitiveCompanionOpenNewTab());
-    ui->companion_port->setValue(settingManager->getConnectionPort());
+    ui->companion_use->setChecked(Settings::SettingsManager::isCompetitiveCompanionActive());
+    ui->companion_new_tab->setChecked(Settings::SettingsManager::isCompetitiveCompanionOpenNewTab());
+    ui->companion_port->setValue(Settings::SettingsManager::getConnectionPort());
 
-    ui->clang_format_binary->setText(settingManager->getClangFormatBinary());
-    ui->clang_format_style->setPlainText(settingManager->getClangFormatStyle());
+    ui->clang_format_binary->setText(Settings::SettingsManager::getClangFormatBinary());
+    ui->clang_format_style->setPlainText(Settings::SettingsManager::getClangFormatStyle());
 
-    cppTemplatePath = settingManager->getTemplatePath("C++");
-    pythonTemplatePath = settingManager->getTemplatePath("Python");
-    javaTemplatePath = settingManager->getTemplatePath("Java");
+    cppTemplatePath = Settings::SettingsManager::getTemplatePath("C++");
+    pythonTemplatePath = Settings::SettingsManager::getTemplatePath("Python");
+    javaTemplatePath = Settings::SettingsManager::getTemplatePath("Java");
 
-    ui->update_startup->setChecked(settingManager->isCheckUpdateOnStartup());
-    ui->beta_update->setChecked(settingManager->isBeta());
+    ui->update_startup->setChecked(Settings::SettingsManager::isCheckUpdateOnStartup());
+    ui->beta_update->setChecked(Settings::SettingsManager::isBeta());
 
-    ui->time_limit->setValue(settingManager->getTimeLimit());
+    ui->time_limit->setValue(Settings::SettingsManager::getTimeLimit());
 
     ui->cpp_template->setText(cppTemplatePath.isEmpty() ? "<Not selected>" : "..." + cppTemplatePath.right(30));
     ui->py_template->setText(pythonTemplatePath.isEmpty() ? "<Not selected>" : "..." + pythonTemplatePath.right(30));
     ui->java_template->setText(javaTemplatePath.isEmpty() ? "<Not selected>" : "..." + javaTemplatePath.right(30));
 
-    ui->hotkeys->setChecked(settingManager->isHotkeyInUse());
-    on_hotkeys_clicked(settingManager->isHotkeyInUse());
+    ui->hotkeys->setChecked(Settings::SettingsManager::isHotkeyInUse());
+    on_hotkeys_clicked(Settings::SettingsManager::isHotkeyInUse());
 
-    ui->compile_hotkey->setKeySequence(settingManager->getHotkeyCompile());
-    ui->run_hotkey->setKeySequence(settingManager->getHotkeyRun());
-    ui->format_hotkey->setKeySequence(settingManager->getHotkeyFormat());
-    ui->compileRun_hotkey->setKeySequence(settingManager->getHotkeyCompileRun());
-    ui->kill_hotkey->setKeySequence(settingManager->getHotkeyKill());
-    ui->toggle_hotkey->setKeySequence(settingManager->getHotkeyViewModeToggler());
-    ui->snippets_hotkey->setKeySequence(settingManager->getHotkeySnippets());
+    ui->compile_hotkey->setKeySequence(Settings::SettingsManager::getHotkeyCompile());
+    ui->run_hotkey->setKeySequence(Settings::SettingsManager::getHotkeyRun());
+    ui->format_hotkey->setKeySequence(Settings::SettingsManager::getHotkeyFormat());
+    ui->compileRun_hotkey->setKeySequence(Settings::SettingsManager::getHotkeyCompileRun());
+    ui->kill_hotkey->setKeySequence(Settings::SettingsManager::getHotkeyKill());
+    ui->toggle_hotkey->setKeySequence(Settings::SettingsManager::getHotkeyViewModeToggler());
+    ui->snippets_hotkey->setKeySequence(Settings::SettingsManager::getHotkeySnippets());
 
-    ui->transparency_slider->setValue(settingManager->getTransparency());
+    ui->transparency_slider->setValue(Settings::SettingsManager::getTransparency());
 
-    auto lang = settingManager->getDefaultLanguage();
+    auto lang = Settings::SettingsManager::getDefaultLanguage();
     int lang_index = ui->snippets_lang->findText(lang);
     if (lang_index != -1)
         ui->snippets_lang->setCurrentIndex(lang_index);
     onSnippetsLangChanged(lang);
 
-    ui->cf_path->setText(settingManager->getCFPath());
+    ui->cf_path->setText(Settings::SettingsManager::getCFPath());
 }
 
 void PreferenceWindow::extractSettingsFromUi()
 {
     Core::Log::i("preferencewindow/extractSettingsFromUi", "Invoked");
-    settingManager->setEditorTheme(ui->editor_theme->currentText());
-    settingManager->setTabStop(ui->tab_length->value());
-    settingManager->setFont(currentFont.toString());
+    Settings::SettingsManager::setEditorTheme(ui->editor_theme->currentText());
+    Settings::SettingsManager::setTabStop(ui->tab_length->value());
+    Settings::SettingsManager::setFont(currentFont.toString());
 
-    settingManager->setSaveTests(ui->savetest->isChecked());
-    settingManager->setWrapText(ui->wrap->isChecked());
-    settingManager->setAutoIndent(ui->indent->isChecked());
-    settingManager->setAutoParentheses(ui->parentheses->isChecked());
-    settingManager->setAutoRemoveParentheses(ui->remove_parentheses->isChecked());
-    settingManager->setTabsReplaced(ui->replace_tabs->isChecked());
-    settingManager->formatOnSave(ui->format_on_save->isChecked());
-    settingManager->setUseHotExit(ui->use_hot_exit->isChecked());
+    Settings::SettingsManager::setSaveTests(ui->savetest->isChecked());
+    Settings::SettingsManager::setWrapText(ui->wrap->isChecked());
+    Settings::SettingsManager::setAutoIndent(ui->indent->isChecked());
+    Settings::SettingsManager::setAutoParentheses(ui->parentheses->isChecked());
+    Settings::SettingsManager::setAutoRemoveParentheses(ui->remove_parentheses->isChecked());
+    Settings::SettingsManager::setTabsReplaced(ui->replace_tabs->isChecked());
+    Settings::SettingsManager::formatOnSave(ui->format_on_save->isChecked());
+    Settings::SettingsManager::setUseHotExit(ui->use_hot_exit->isChecked());
 
-    settingManager->setDefaultLanguage(ui->defaultLang->currentText());
+    Settings::SettingsManager::setDefaultLanguage(ui->defaultLang->currentText());
 
-    settingManager->setCompileCommand("C++", ui->cpp_compiler_cmd->text());
-    settingManager->setRuntimeArguments("C++", ui->cpp_args_cmd->text());
+    Settings::SettingsManager::setCompileCommand("C++", ui->cpp_compiler_cmd->text());
+    Settings::SettingsManager::setRuntimeArguments("C++", ui->cpp_args_cmd->text());
 
-    settingManager->setCompileCommand("Java", ui->java_compiler_cmd->text());
-    settingManager->setRuntimeArguments("Java", ui->java_args_cmd->text());
-    settingManager->setRunCommand("Java", ui->java_start_cmd->text());
+    Settings::SettingsManager::setCompileCommand("Java", ui->java_compiler_cmd->text());
+    Settings::SettingsManager::setRuntimeArguments("Java", ui->java_args_cmd->text());
+    Settings::SettingsManager::setRunCommand("Java", ui->java_start_cmd->text());
 
-    settingManager->setRunCommand("Python", ui->python_start_cmd->text());
-    settingManager->setRuntimeArguments("Python", ui->python_args_cmd->text());
+    Settings::SettingsManager::setRunCommand("Python", ui->python_start_cmd->text());
+    Settings::SettingsManager::setRuntimeArguments("Python", ui->python_args_cmd->text());
 
-    settingManager->setClangFormatBinary(ui->clang_format_binary->text());
-    settingManager->setClangFormatStyle(ui->clang_format_style->toPlainText());
+    Settings::SettingsManager::setClangFormatBinary(ui->clang_format_binary->text());
+    Settings::SettingsManager::setClangFormatStyle(ui->clang_format_style->toPlainText());
 
-    settingManager->setCompetitiveCompanionActive(ui->companion_use->isChecked());
-    settingManager->setCompetitiveCompanionOpenNewTab(ui->companion_new_tab->isChecked());
-    settingManager->setConnectionPort(ui->companion_port->value());
+    Settings::SettingsManager::setCompetitiveCompanionActive(ui->companion_use->isChecked());
+    Settings::SettingsManager::setCompetitiveCompanionOpenNewTab(ui->companion_new_tab->isChecked());
+    Settings::SettingsManager::setConnectionPort(ui->companion_port->value());
 
-    settingManager->setBeta(ui->beta_update->isChecked());
-    settingManager->checkUpdateOnStartup(ui->update_startup->isChecked());
+    Settings::SettingsManager::setBeta(ui->beta_update->isChecked());
+    Settings::SettingsManager::checkUpdateOnStartup(ui->update_startup->isChecked());
 
-    settingManager->setTimeLimit(ui->time_limit->value());
+    Settings::SettingsManager::setTimeLimit(ui->time_limit->value());
 
-    settingManager->setTemplatePath("C++", cppTemplatePath);
-    settingManager->setTemplatePath("Java", javaTemplatePath);
-    settingManager->setTemplatePath("Python", pythonTemplatePath);
+    Settings::SettingsManager::setTemplatePath("C++", cppTemplatePath);
+    Settings::SettingsManager::setTemplatePath("Java", javaTemplatePath);
+    Settings::SettingsManager::setTemplatePath("Python", pythonTemplatePath);
 
-    settingManager->setHotKeyInUse(ui->hotkeys->isChecked());
+    Settings::SettingsManager::setHotKeyInUse(ui->hotkeys->isChecked());
 
-    settingManager->setHotkeyRun(ui->run_hotkey->keySequence());
-    settingManager->setHotkeyKill(ui->kill_hotkey->keySequence());
-    settingManager->setHotkeyFormat(ui->format_hotkey->keySequence());
-    settingManager->setHotkeyCompile(ui->compile_hotkey->keySequence());
-    settingManager->setHotkeyCompileRun(ui->compileRun_hotkey->keySequence());
-    settingManager->setHotkeyViewModeToggler(ui->toggle_hotkey->keySequence());
-    settingManager->setHotkeySnippets(ui->snippets_hotkey->keySequence());
+    Settings::SettingsManager::setHotkeyRun(ui->run_hotkey->keySequence());
+    Settings::SettingsManager::setHotkeyKill(ui->kill_hotkey->keySequence());
+    Settings::SettingsManager::setHotkeyFormat(ui->format_hotkey->keySequence());
+    Settings::SettingsManager::setHotkeyCompile(ui->compile_hotkey->keySequence());
+    Settings::SettingsManager::setHotkeyCompileRun(ui->compileRun_hotkey->keySequence());
+    Settings::SettingsManager::setHotkeyViewModeToggler(ui->toggle_hotkey->keySequence());
+    Settings::SettingsManager::setHotkeySnippets(ui->snippets_hotkey->keySequence());
 
-    settingManager->setCFPath(ui->cf_path->text());
+    Settings::SettingsManager::setCFPath(ui->cf_path->text());
 }
 
 void PreferenceWindow::updateShow()
@@ -347,7 +345,7 @@ void PreferenceWindow::on_load_snippets_from_files_clicked()
                 snippetName = getNewSnippetName(lang, snippetName);
             if (!snippetName.isEmpty())
             {
-                settingManager->setSnippet(lang, snippetName, file.readAll());
+                Settings::SettingsManager::setSnippet(lang, snippetName, file.readAll());
                 switchToSnippet(snippetName);
             }
             file.close();
@@ -376,10 +374,10 @@ void PreferenceWindow::on_extract_snippets_to_files_clicked()
     {
         Core::Log::i("preferencewindow/on_extract_snippets_to_files_clicked", "branched to if");
         QDir dir(dirPath);
-        auto names = settingManager->getSnippetsNames(lang);
+        auto names = Settings::SettingsManager::getSnippetsNames(lang);
         for (auto name : names)
         {
-            auto content = settingManager->getSnippet(lang, name);
+            auto content = Settings::SettingsManager::getSnippet(lang, name);
             auto filePath = dir.filePath(name + suffix);
             if (QFile::exists(filePath))
                 filePath = QFileDialog::getSaveFileName(this, "Save snippet " + name + " to:", dirPath, fileType);
@@ -419,7 +417,7 @@ void PreferenceWindow::onCurrentSnippetChanged(const QString &text)
 {
     Core::Log::i("preferencewindow/onCurrentSnippetChanged", "Invoked");
     auto lang = ui->snippets_lang->currentText();
-    auto content = settingManager->getSnippet(lang, text);
+    auto content = Settings::SettingsManager::getSnippet(lang, text);
     editor->setPlainText(content);
     editor->setFocus(Qt::OtherFocusReason);
 }
@@ -427,37 +425,37 @@ void PreferenceWindow::onCurrentSnippetChanged(const QString &text)
 void PreferenceWindow::applySettingsToEditor()
 {
     Core::Log::i("preferencewindow/applySettingsToEditor", "Invoked");
-    editor->setTabReplace(settingManager->isTabsReplaced());
-    editor->setTabReplaceSize(settingManager->getTabStop());
-    editor->setAutoIndentation(settingManager->isAutoIndent());
-    editor->setAutoParentheses(settingManager->isAutoParentheses());
-    editor->setAutoRemoveParentheses(settingManager->isAutoRemoveParentheses());
+    editor->setTabReplace(Settings::SettingsManager::isTabsReplaced());
+    editor->setTabReplaceSize(Settings::SettingsManager::getTabStop());
+    editor->setAutoIndentation(Settings::SettingsManager::isAutoIndent());
+    editor->setAutoParentheses(Settings::SettingsManager::isAutoParentheses());
+    editor->setAutoRemoveParentheses(Settings::SettingsManager::isAutoRemoveParentheses());
 
-    if (!settingManager->getFont().isEmpty())
+    if (!Settings::SettingsManager::getFont().isEmpty())
     {
         QFont font;
-        font.fromString(settingManager->getFont());
+        font.fromString(Settings::SettingsManager::getFont());
         editor->setFont(font);
     }
 
-    const int tabStop = settingManager->getTabStop();
+    const int tabStop = Settings::SettingsManager::getTabStop();
     QFontMetrics metric(editor->font());
     editor->setTabReplaceSize(tabStop);
 
-    if (settingManager->isWrapText())
+    if (Settings::SettingsManager::isWrapText())
         editor->setWordWrapMode(QTextOption::WordWrap);
     else
         editor->setWordWrapMode(QTextOption::NoWrap);
 
-    if (settingManager->getEditorTheme() == "Light")
+    if (Settings::SettingsManager::getEditorTheme() == "Light")
         editor->setSyntaxStyle(Themes::EditorTheme::getLightTheme());
-    else if (settingManager->getEditorTheme() == "Drakula")
+    else if (Settings::SettingsManager::getEditorTheme() == "Drakula")
         editor->setSyntaxStyle(Themes::EditorTheme::getDrakulaTheme());
-    else if (settingManager->getEditorTheme() == "Monkai")
+    else if (Settings::SettingsManager::getEditorTheme() == "Monkai")
         editor->setSyntaxStyle(Themes::EditorTheme::getMonkaiTheme());
-    else if (settingManager->getEditorTheme() == "Solarised")
+    else if (Settings::SettingsManager::getEditorTheme() == "Solarised")
         editor->setSyntaxStyle(Themes::EditorTheme::getSolarisedTheme());
-    else if (settingManager->getEditorTheme() == "Solarised Dark")
+    else if (Settings::SettingsManager::getEditorTheme() == "Solarised Dark")
         editor->setSyntaxStyle(Themes::EditorTheme::getSolarisedDarkTheme());
     else
         editor->setSyntaxStyle(Themes::EditorTheme::getLightTheme());
@@ -471,7 +469,7 @@ void PreferenceWindow::on_snippet_save_clicked()
     {
         Core::Log::i("preferencewindow/on_snippet_save_clicked", "branched to if");
         auto name = ui->snippets->currentText();
-        settingManager->setSnippet(lang, name, editor->toPlainText());
+        Settings::SettingsManager::setSnippet(lang, name, editor->toPlainText());
     }
     else
     {
@@ -480,7 +478,7 @@ void PreferenceWindow::on_snippet_save_clicked()
         if (!name.isEmpty())
         {
             auto content = editor->toPlainText();
-            settingManager->setSnippet(lang, name, content);
+            Settings::SettingsManager::setSnippet(lang, name, content);
             switchToSnippet(name);
         }
     }
@@ -493,7 +491,7 @@ void PreferenceWindow::on_snippet_new_clicked()
     auto name = getNewSnippetName(lang);
     if (!name.isEmpty())
     {
-        settingManager->setSnippet(lang, name, "");
+        Settings::SettingsManager::setSnippet(lang, name, "");
         switchToSnippet(name);
     }
 }
@@ -511,7 +509,7 @@ void PreferenceWindow::on_snippet_delete_clicked()
         {
             auto lang = ui->snippets_lang->currentText();
             ui->snippets->removeItem(index);
-            settingManager->removeSnippet(lang, name);
+            Settings::SettingsManager::removeSnippet(lang, name);
         }
     }
 }
@@ -529,8 +527,8 @@ void PreferenceWindow::on_snippet_rename_clicked()
         {
             auto content = editor->toPlainText();
             auto currentName = ui->snippets->currentText();
-            settingManager->removeSnippet(lang, currentName);
-            settingManager->setSnippet(lang, name, content);
+            Settings::SettingsManager::removeSnippet(lang, currentName);
+            Settings::SettingsManager::setSnippet(lang, name, content);
             switchToSnippet(name);
         }
     }
@@ -538,7 +536,7 @@ void PreferenceWindow::on_snippet_rename_clicked()
 
 void PreferenceWindow::on_transparency_slider_sliderMoved(int value)
 {
-    settingManager->setTransparency(value);
+    Settings::SettingsManager::setTransparency(value);
     parentWidget()->setWindowOpacity(value / 100.0);
 }
 

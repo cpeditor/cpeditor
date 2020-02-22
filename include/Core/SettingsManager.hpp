@@ -34,151 +34,151 @@ enum ViewMode
     SPLIT
 };
 
-class SettingManager
+class SettingsManager
 {
   public:
-    SettingManager();
+    static void init();
 
-    int getConnectionPort();
-    void setConnectionPort(int port);
+    static int getConnectionPort();
+    static void setConnectionPort(int port);
 
-    int getTabStop();
-    void setTabStop(int num);
+    static int getTabStop();
+    static void setTabStop(int num);
 
-    int getTimeLimit();
-    void setTimeLimit(int ms);
+    static int getTimeLimit();
+    static void setTimeLimit(int ms);
 
-    QRect getGeometry();
-    void setGeometry(const QRect &);
+    static QRect getGeometry();
+    static void setGeometry(const QRect &);
 
-    QString getFont();
-    void setFont(const QString &font);
+    static QString getFont();
+    static void setFont(const QString &font);
 
-    QString getDefaultLanguage();
-    void setDefaultLanguage(const QString &lang);
+    static QString getDefaultLanguage();
+    static void setDefaultLanguage(const QString &lang);
 
-    QString getTemplatePath(const QString &lang);
-    void setTemplatePath(const QString &lang, const QString &path);
+    static QString getTemplatePath(const QString &lang);
+    static void setTemplatePath(const QString &lang, const QString &path);
 
-    QString getRuntimeArguments(const QString &lang);
-    void setRuntimeArguments(const QString &lang, const QString &command);
+    static QString getRuntimeArguments(const QString &lang);
+    static void setRuntimeArguments(const QString &lang, const QString &command);
 
-    QString getClangFormatBinary();
-    void setClangFormatBinary(const QString &binary);
-    QString getClangFormatStyle();
-    void setClangFormatStyle(const QString &style);
+    static QString getClangFormatBinary();
+    static void setClangFormatBinary(const QString &binary);
+    static QString getClangFormatStyle();
+    static void setClangFormatStyle(const QString &style);
 
-    QString getCompileCommand(const QString &lang);
-    void setCompileCommand(const QString &lang, const QString &command);
+    static QString getCompileCommand(const QString &lang);
+    static void setCompileCommand(const QString &lang, const QString &command);
 
-    QString getRunCommand(const QString &lang);
-    void setRunCommand(const QString &lang, const QString &command);
+    static QString getRunCommand(const QString &lang);
+    static void setRunCommand(const QString &lang, const QString &command);
 
-    QString getEditorTheme();
-    void setEditorTheme(const QString &theme);
+    static QString getEditorTheme();
+    static void setEditorTheme(const QString &theme);
 
-    bool isHotkeyInUse();
-    void setHotKeyInUse(bool value);
+    static bool isHotkeyInUse();
+    static void setHotKeyInUse(bool value);
 
-    bool isAutoParentheses();
-    void setAutoParentheses(bool value);
+    static bool isAutoParentheses();
+    static void setAutoParentheses(bool value);
 
-    bool isAutoRemoveParentheses();
-    void setAutoRemoveParentheses(bool value);
+    static bool isAutoRemoveParentheses();
+    static void setAutoRemoveParentheses(bool value);
 
-    bool isAutoIndent();
-    void setAutoIndent(bool value);
+    static bool isAutoIndent();
+    static void setAutoIndent(bool value);
 
-    bool isAutoSave();
-    void setAutoSave(bool value);
+    static bool isAutoSave();
+    static void setAutoSave(bool value);
 
-    bool isWrapText();
-    void setWrapText(bool value);
+    static bool isWrapText();
+    static void setWrapText(bool value);
 
-    bool isBeta();
-    void setBeta(bool value);
+    static bool isBeta();
+    static void setBeta(bool value);
 
-    bool isTabsReplaced();
-    void setTabsReplaced(bool value);
+    static bool isTabsReplaced();
+    static void setTabsReplaced(bool value);
 
-    bool isSaveTests();
-    void setSaveTests(bool value);
+    static bool isSaveTests();
+    static void setSaveTests(bool value);
 
-    bool isUseHotExit();
-    void setUseHotExit(bool value);
+    static bool isUseHotExit();
+    static void setUseHotExit(bool value);
 
-    bool isCompetitiveCompanionActive();
-    void setCompetitiveCompanionActive(bool value);
+    static bool isCompetitiveCompanionActive();
+    static void setCompetitiveCompanionActive(bool value);
 
-    bool isCompetitiveCompanionOpenNewTab();
-    void setCompetitiveCompanionOpenNewTab(bool value);
+    static bool isCompetitiveCompanionOpenNewTab();
+    static void setCompetitiveCompanionOpenNewTab(bool value);
 
-    bool isMaximizedWindow();
-    void setMaximizedWindow(bool value);
+    static bool isMaximizedWindow();
+    static void setMaximizedWindow(bool value);
 
-    bool isCheckUpdateOnStartup();
-    void checkUpdateOnStartup(bool value);
+    static bool isCheckUpdateOnStartup();
+    static void checkUpdateOnStartup(bool value);
 
-    bool isFormatOnSave();
-    void formatOnSave(bool value);
+    static bool isFormatOnSave();
+    static void formatOnSave(bool value);
 
-    int getTransparency();
-    void setTransparency(int val);
+    static int getTransparency();
+    static void setTransparency(int val);
 
-    ViewMode getViewMode();
-    void setViewMode(const ViewMode &v);
+    static ViewMode getViewMode();
+    static void setViewMode(const ViewMode &v);
 
-    QByteArray getSplitterSizes();
-    void setSplitterSizes(const QByteArray &state);
+    static QByteArray getSplitterSizes();
+    static void setSplitterSizes(const QByteArray &state);
 
-    QByteArray getRightSplitterSizes();
-    void setRightSplitterSizes(const QByteArray &state);
+    static QByteArray getRightSplitterSizes();
+    static void setRightSplitterSizes(const QByteArray &state);
 
-    void setHotkeyFormat(const QKeySequence &sequence);
-    void setHotkeyKill(const QKeySequence &sequence);
-    void setHotkeyCompileRun(const QKeySequence &sequence);
-    void setHotkeyRun(const QKeySequence &sequence);
-    void setHotkeyCompile(const QKeySequence &sequence);
-    void setHotkeyViewModeToggler(const QKeySequence &sequence);
-    void setHotkeySnippets(const QKeySequence &sequence);
-    QKeySequence getHotkeyFormat();
-    QKeySequence getHotkeyKill();
-    QKeySequence getHotkeyCompileRun();
-    QKeySequence getHotkeyRun();
-    QKeySequence getHotkeyCompile();
-    QKeySequence getHotkeyViewModeToggler();
-    QKeySequence getHotkeySnippets();
+    static void setHotkeyFormat(const QKeySequence &sequence);
+    static void setHotkeyKill(const QKeySequence &sequence);
+    static void setHotkeyCompileRun(const QKeySequence &sequence);
+    static void setHotkeyRun(const QKeySequence &sequence);
+    static void setHotkeyCompile(const QKeySequence &sequence);
+    static void setHotkeyViewModeToggler(const QKeySequence &sequence);
+    static void setHotkeySnippets(const QKeySequence &sequence);
+    static QKeySequence getHotkeyFormat();
+    static QKeySequence getHotkeyKill();
+    static QKeySequence getHotkeyCompileRun();
+    static QKeySequence getHotkeyRun();
+    static QKeySequence getHotkeyCompile();
+    static QKeySequence getHotkeyViewModeToggler();
+    static QKeySequence getHotkeySnippets();
 
-    QString getSnippet(const QString &lang, const QString &name);
-    void setSnippet(const QString &lang, const QString &name, const QString &content);
-    void removeSnippet(const QString &lang, const QString &name);
-    QStringList getSnippetsNames(const QString &lang);
+    static QString getSnippet(const QString &lang, const QString &name);
+    static void setSnippet(const QString &lang, const QString &name, const QString &content);
+    static void removeSnippet(const QString &lang, const QString &name);
+    static QStringList getSnippetsNames(const QString &lang);
 
-    int getNumberOfTabs();
-    void setNumberOfTabs(int value);
-    int getCurrentIndex();
-    void setCurrentIndex(int index);
-    void clearEditorStatus();
-    QMap<QString, QVariant> getEditorStatus(int index);
-    void setEditorStatus(int index, const QMap<QString, QVariant> &status);
-    bool isHotExitLoadFromFile();
-    void setHotExitLoadFromFile(bool value);
+    static int getNumberOfTabs();
+    static void setNumberOfTabs(int value);
+    static int getCurrentIndex();
+    static void setCurrentIndex(int index);
+    static void clearEditorStatus();
+    static QMap<QString, QVariant> getEditorStatus(int index);
+    static void setEditorStatus(int index, const QMap<QString, QVariant> &status);
+    static bool isHotExitLoadFromFile();
+    static void setHotExitLoadFromFile(bool value);
 
-    QString getCFPath();
-    void setCFPath(const QString &path);
+    static QString getCFPath();
+    static void setCFPath(const QString &path);
 
-    QString getSavePath();
-    void setSavePath(const QString &path);
+    static QString getSavePath();
+    static void setSavePath(const QString &path);
 
-    QSettings *settings();
+    static QSettings *settings();
 
-    void resetSettings();
+    static void resetSettings();
 
-    ~SettingManager();
+    static void destroy();
 
   private:
-    QString mSettingsFile;
-    QSettings *mSettings;
+    static QString mSettingsFile;
+    static QSettings *mSettings;
 };
 
 } // namespace Settings

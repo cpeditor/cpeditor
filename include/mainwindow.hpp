@@ -64,7 +64,7 @@ class MainWindow : public QMainWindow
         QMap<QString, QVariant> toMap() const;
     };
 
-    MainWindow(const QString &fileOpen, Settings::SettingManager *manager, int index = 0, QWidget *parent = nullptr);
+    MainWindow(const QString &fileOpen, int index = 0, QWidget *parent = nullptr);
     ~MainWindow() override;
 
     int getUntitledIndex() const;
@@ -163,7 +163,6 @@ class MainWindow : public QMainWindow
     Ui::MainWindow *ui;
     QCodeEditor *editor;
     QString language;
-    Settings::SettingManager *settingManager;
     bool isLanguageSet = false;
 
     Core::Formatter *formatter = nullptr;

@@ -154,7 +154,6 @@ class AppWindow : public QMainWindow
     QMetaObject::Connection activeSplitterMoveConnection;
     QMetaObject::Connection activeRightSplitterMoveConnection;
     QMetaObject::Connection companionEditorConnection;
-    Settings::SettingManager *settingManager = nullptr;
     Telemetry::UpdateNotifier *updater = nullptr;
     PreferenceWindow *preferenceWindow = nullptr;
     Network::CompanionServer *server;

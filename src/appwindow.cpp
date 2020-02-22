@@ -40,17 +40,17 @@ AppWindow::AppWindow(bool noHotExit, QWidget *parent) : QMainWindow(parent), ui(
     allocate();
     setConnections();
 
-    if (settingManager->isCheckUpdateOnStartup())
+    if (Settings::SettingsManager::isCheckUpdateOnStartup())
         updater->checkUpdate();
 
-    setWindowOpacity(settingManager->getTransparency() / 100.0);
+    setWindowOpacity(Settings::SettingsManager::getTransparency() / 100.0);
 
     applySettings();
     onSettingsApplied();
 
-    if (!noHotExit && settingManager->isUseHotExit())
+    if (!noHotExit && Settings::SettingsManager::isUseHotExit())
     {
-        int length = settingManager->getNumberOfTabs();
+        int length = Settings::SettingsManager::getNumberOfTabs();
 
         QProgressDialog progress(this);
         progress.setWindowModality(Qt::WindowModal);
@@ -64,9 +64,9 @@ AppWindow::AppWindow(bool noHotExit, QWidget *parent) : QMainWindow(parent), ui(
         // save these so that they won't be affected by saveEditorStatus() in onEditorFileChanged()
         QVector<MainWindow::EditorStatus> status;
         for (int i = 0; i < length; ++i)
-            status.push_back(settingManager->getEditorStatus(i));
-        bool loadFromFile = settingManager->isHotExitLoadFromFile();
-        int currentIndex = settingManager->getCurrentIndex();
+            status.push_back(Settings::SettingsManager::getEditorStatus(i));
+        bool loadFromFile = Settings::SettingsManager::isHotExitLoadFromFile();
+        int currentIndex = Settings::SettingsManager::getCurrentIndex();
 
         for (int i = 0; i < length; ++i)
         {
@@ -83,7 +83,7 @@ AppWindow::AppWindow(bool noHotExit, QWidget *parent) : QMainWindow(parent), ui(
         setUpdatesEnabled(true);
         resize(oldSize);
 
-        settingManager->setHotExitLoadFromFile(true);
+        Settings::SettingsManager::setHotExitLoadFromFile(true);
 
         if (currentIndex >= 0 && currentIndex < ui->tabWidget->count())
             ui->tabWidget->setCurrentIndex(currentIndex);
@@ -108,7 +108,7 @@ AppWindow::AppWindow(bool cpp, bool java, bool python, bool noHotExit, int numbe
     Core::Log::i("appwindow/constructed") << "args : "
                                           << "cpp: " << cpp << "java: " << java << "python " << python << "noHotExit "
                                           << noHotExit << "paths " << path << endl;
-    QString lang = settingManager->getDefaultLanguage();
+    QString lang = Settings::SettingsManager::getDefaultLanguage();
     if (cpp)
         lang = "C++";
     else if (java)
@@ -125,7 +125,7 @@ AppWindow::~AppWindow()
     Core::Log::i("appwindow/destroyed", "Invoked");
     saveSettings();
     Themes::EditorTheme::release();
-    delete settingManager;
+    Settings::SettingsManager::destroy();
     delete ui;
     delete preferenceWindow;
     delete timer;
@@ -178,7 +178,7 @@ void AppWindow::setConnections()
 
     connect(preferenceWindow, SIGNAL(settingsApplied()), this, SLOT(onSettingsApplied()));
 
-    if (settingManager->isCompetitiveCompanionActive())
+    if (Settings::SettingsManager::isCompetitiveCompanionActive())
         companionEditorConnection =
             connect(server, &Network::CompanionServer::onRequestArrived, this, &AppWindow::onIncomingCompanionRequest);
 }
@@ -186,11 +186,11 @@ void AppWindow::setConnections()
 void AppWindow::allocate()
 {
     Core::Log::i("appwindow/allocate", "Invoked");
-    settingManager = new Settings::SettingManager();
+    Settings::SettingsManager::init();
     timer = new QTimer();
-    updater = new Telemetry::UpdateNotifier(settingManager->isBeta());
-    preferenceWindow = new PreferenceWindow(settingManager, this);
-    server = new Network::CompanionServer(settingManager->getConnectionPort());
+    updater = new Telemetry::UpdateNotifier(Settings::SettingsManager::isBeta());
+    preferenceWindow = new PreferenceWindow(this);
+    server = new Network::CompanionServer(Settings::SettingsManager::getConnectionPort());
     findReplaceDialog = new FindReplaceDialog(this);
     findReplaceDialog->setModal(false);
     findReplaceDialog->setWindowFlags(Qt::Window | Qt::WindowMinimizeButtonHint | Qt::WindowMaximizeButtonHint |
@@ -203,8 +203,8 @@ void AppWindow::allocate()
 void AppWindow::applySettings()
 {
     Core::Log::i("appwindow/applySettings", "Invoked");
-    ui->actionAutosave->setChecked(settingManager->isAutoSave());
-    Settings::ViewMode mode = settingManager->getViewMode();
+    ui->actionAutosave->setChecked(Settings::SettingsManager::isAutoSave());
+    Settings::ViewMode mode = Settings::SettingsManager::getViewMode();
 
     switch (mode)
     {
@@ -218,23 +218,23 @@ void AppWindow::applySettings()
         on_actionSplit_Mode_triggered();
     }
 
-    if (settingManager->isAutoSave())
+    if (Settings::SettingsManager::isAutoSave())
         timer->start();
 
-    if (!settingManager->getGeometry().isEmpty() && !settingManager->getGeometry().isNull() &&
-        settingManager->getGeometry().isValid() && !settingManager->isMaximizedWindow())
+    if (!Settings::SettingsManager::getGeometry().isEmpty() && !Settings::SettingsManager::getGeometry().isNull() &&
+        Settings::SettingsManager::getGeometry().isValid() && !Settings::SettingsManager::isMaximizedWindow())
     {
-        setGeometry(settingManager->getGeometry());
+        setGeometry(Settings::SettingsManager::getGeometry());
     }
 
-    if (settingManager->isMaximizedWindow())
+    if (Settings::SettingsManager::isMaximizedWindow())
     {
         this->showMaximized();
     }
 
     maybeSetHotkeys();
 
-    findReplaceDialog->readSettings(*settingManager->settings());
+    findReplaceDialog->readSettings(*Settings::SettingsManager::settings());
 }
 
 void AppWindow::maybeSetHotkeys()
@@ -244,42 +244,43 @@ void AppWindow::maybeSetHotkeys()
         delete e;
     hotkeyObjects.clear();
 
-    if (!settingManager->isHotkeyInUse())
+    if (!Settings::SettingsManager::isHotkeyInUse())
         return;
 
-    if (!settingManager->getHotkeyRun().isEmpty())
-    {
-        hotkeyObjects.push_back(new QShortcut(settingManager->getHotkeyRun(), this, SLOT(on_actionRun_triggered())));
-    }
-    if (!settingManager->getHotkeyCompile().isEmpty())
+    if (!Settings::SettingsManager::getHotkeyRun().isEmpty())
     {
         hotkeyObjects.push_back(
-            new QShortcut(settingManager->getHotkeyCompile(), this, SLOT(on_actionCompile_triggered())));
+            new QShortcut(Settings::SettingsManager::getHotkeyRun(), this, SLOT(on_actionRun_triggered())));
     }
-    if (!settingManager->getHotkeyCompileRun().isEmpty())
+    if (!Settings::SettingsManager::getHotkeyCompile().isEmpty())
     {
         hotkeyObjects.push_back(
-            new QShortcut(settingManager->getHotkeyCompileRun(), this, SLOT(on_actionCompile_Run_triggered())));
+            new QShortcut(Settings::SettingsManager::getHotkeyCompile(), this, SLOT(on_actionCompile_triggered())));
     }
-    if (!settingManager->getHotkeyFormat().isEmpty())
+    if (!Settings::SettingsManager::getHotkeyCompileRun().isEmpty())
+    {
+        hotkeyObjects.push_back(new QShortcut(Settings::SettingsManager::getHotkeyCompileRun(), this,
+                                              SLOT(on_actionCompile_Run_triggered())));
+    }
+    if (!Settings::SettingsManager::getHotkeyFormat().isEmpty())
     {
         hotkeyObjects.push_back(
-            new QShortcut(settingManager->getHotkeyFormat(), this, SLOT(on_actionFormat_code_triggered())));
+            new QShortcut(Settings::SettingsManager::getHotkeyFormat(), this, SLOT(on_actionFormat_code_triggered())));
     }
-    if (!settingManager->getHotkeyKill().isEmpty())
+    if (!Settings::SettingsManager::getHotkeyKill().isEmpty())
     {
         hotkeyObjects.push_back(
-            new QShortcut(settingManager->getHotkeyKill(), this, SLOT(on_actionKill_Processes_triggered())));
+            new QShortcut(Settings::SettingsManager::getHotkeyKill(), this, SLOT(on_actionKill_Processes_triggered())));
     }
-    if (!settingManager->getHotkeyViewModeToggler().isEmpty())
+    if (!Settings::SettingsManager::getHotkeyViewModeToggler().isEmpty())
     {
         hotkeyObjects.push_back(
-            new QShortcut(settingManager->getHotkeyViewModeToggler(), this, SLOT(onViewModeToggle())));
+            new QShortcut(Settings::SettingsManager::getHotkeyViewModeToggler(), this, SLOT(onViewModeToggle())));
     }
-    if (!settingManager->getHotkeySnippets().isEmpty())
+    if (!Settings::SettingsManager::getHotkeySnippets().isEmpty())
     {
-        hotkeyObjects.push_back(
-            new QShortcut(settingManager->getHotkeySnippets(), this, SLOT(on_actionUse_Snippets_triggered())));
+        hotkeyObjects.push_back(new QShortcut(Settings::SettingsManager::getHotkeySnippets(), this,
+                                              SLOT(on_actionUse_Snippets_triggered())));
     }
 }
 
@@ -301,9 +302,9 @@ void AppWindow::saveSettings()
 {
     Core::Log::i("appwindow/saveSettings", "Invoked");
     if (!this->isMaximized())
-        settingManager->setGeometry(this->geometry());
-    settingManager->setMaximizedWindow(this->isMaximized());
-    findReplaceDialog->writeSettings(*settingManager->settings());
+        Settings::SettingsManager::setGeometry(this->geometry());
+    Settings::SettingsManager::setMaximizedWindow(this->isMaximized());
+    findReplaceDialog->writeSettings(*Settings::SettingsManager::settings());
 }
 
 void AppWindow::openTab(const QString &path)
@@ -340,12 +341,12 @@ void AppWindow::openTab(const QString &path)
             ;
     }
 
-    auto fsp = new MainWindow(path, settingManager, index);
+    auto fsp = new MainWindow(path, index);
     connect(fsp, SIGNAL(confirmTriggered(MainWindow *)), this, SLOT(on_confirmTriggered(MainWindow *)));
     connect(fsp, SIGNAL(editorFileChanged()), this, SLOT(onEditorFileChanged()));
     connect(fsp, SIGNAL(editorTextChanged(MainWindow *)), this, SLOT(onEditorTextChanged(MainWindow *)));
 
-    QString lang = settingManager->getDefaultLanguage();
+    QString lang = Settings::SettingsManager::getDefaultLanguage();
 
     if (path.endsWith(".java"))
         lang = "Java";
@@ -440,7 +441,7 @@ void AppWindow::openContest(const QString &path, const QString &lang, int number
     if (!dir.exists() && parent.exists())
         parent.mkdir(dir.dirName());
 
-    auto language = lang.isEmpty() ? settingManager->getDefaultLanguage() : lang;
+    auto language = lang.isEmpty() ? Settings::SettingsManager::getDefaultLanguage() : lang;
 
     QStringList tabs;
 
@@ -462,31 +463,31 @@ void AppWindow::openContest(const QString &path, const QString &lang, int number
 void AppWindow::saveEditorStatus(bool loadFromFile)
 {
     Core::Log::i("appwindow/saveEditorStatus") << "loadFromFile " << loadFromFile << endl;
-    settingManager->clearEditorStatus();
+    Settings::SettingsManager::clearEditorStatus();
     if (ui->tabWidget->count() == 1 && windowAt(0)->isUntitled() && !windowAt(0)->isTextChanged())
     {
         Core::Log::i("appwindow/saveEditorStatus", "branched to if");
-        settingManager->setNumberOfTabs(0);
-        settingManager->setCurrentIndex(-1);
+        Settings::SettingsManager::setNumberOfTabs(0);
+        Settings::SettingsManager::setCurrentIndex(-1);
     }
     else
     {
         Core::Log::i("appwindow/saveEditorStatus", "branched to else");
-        settingManager->setNumberOfTabs(ui->tabWidget->count());
-        settingManager->setCurrentIndex(ui->tabWidget->currentIndex());
+        Settings::SettingsManager::setNumberOfTabs(ui->tabWidget->count());
+        Settings::SettingsManager::setCurrentIndex(ui->tabWidget->currentIndex());
         for (int i = 0; i < ui->tabWidget->count(); ++i)
         {
-            settingManager->setEditorStatus(i, windowAt(i)->toStatus(loadFromFile).toMap());
+            Settings::SettingsManager::setEditorStatus(i, windowAt(i)->toStatus(loadFromFile).toMap());
         }
     }
 }
 
 bool AppWindow::quit()
 {
-    if (settingManager->isUseHotExit())
+    if (Settings::SettingsManager::isUseHotExit())
     {
         Core::Log::i("appwindow/quit", "Using hotexit");
-        settingManager->setHotExitLoadFromFile(false);
+        Settings::SettingsManager::setHotExitLoadFromFile(false);
         saveEditorStatus(false);
         return true;
     }
@@ -526,7 +527,7 @@ void AppWindow::on_actionAbout_triggered()
 void AppWindow::on_actionAutosave_triggered(bool checked)
 {
     Core::Log::i("appwindow/on_actionAutosave_triggered") << "checked " << checked << endl;
-    settingManager->setAutoSave(checked);
+    Settings::SettingsManager::setAutoSave(checked);
     if (checked)
         timer->start();
     else
@@ -551,7 +552,7 @@ void AppWindow::on_actionNew_Tab_triggered()
 
 void AppWindow::on_actionOpen_triggered()
 {
-    auto fileNames = QFileDialog::getOpenFileNames(this, tr("Open Files"), settingManager->getSavePath(),
+    auto fileNames = QFileDialog::getOpenFileNames(this, tr("Open Files"), Settings::SettingsManager::getSavePath(),
                                                    "Source Files (*.cpp *.hpp *.h *.cc *.cxx *.c *.py *.py3 *.java)");
     Core::Log::i("appwindow/on_actionOpen_triggered") << " filename " << fileNames.join(", ") << endl;
     openTabs(fileNames);
@@ -571,9 +572,9 @@ void AppWindow::on_actionOpenContest_triggered()
         {
             Core::Log::i("appwindow/on_actionOpenContest_triggered") << "number of problems : " << number << endl;
             int current = 0;
-            if (settingManager->getDefaultLanguage() == "Java")
+            if (Settings::SettingsManager::getDefaultLanguage() == "Java")
                 current = 1;
-            else if (settingManager->getDefaultLanguage() == "Python")
+            else if (Settings::SettingsManager::getDefaultLanguage() == "Python")
                 current = 2;
             auto lang = QInputDialog::getItem(this, "Open Contest", "Choose a language", {"C++", "Java", "Python"},
                                               current, false, &ok);
@@ -650,7 +651,7 @@ void AppWindow::on_actionRestore_Settings_triggered()
                                      QMessageBox::Yes | QMessageBox::No);
     if (res == QMessageBox::Yes)
     {
-        settingManager->resetSettings();
+        Settings::SettingsManager::resetSettings();
         onSettingsApplied();
         Core::Log::i("appwindow/on_actionRestore_Settings_triggered", "Reset success");
     }
@@ -689,7 +690,7 @@ void AppWindow::onReceivedMessage(quint32 instanceId, QByteArray message)
         Core::Log::i("appwindow/onReceivedMessage", "branched to contest");
         FROMJSON(number).toInt();
         FROMJSON(path).toString();
-        QString lang = settingManager->getDefaultLanguage();
+        QString lang = Settings::SettingsManager::getDefaultLanguage();
         if (cpp)
             lang = "C++";
         else if (java)
@@ -734,7 +735,7 @@ void AppWindow::onTabChanged(int index)
     activeLogger = tmp->getLogger();
     server->setMessageLogger(activeLogger);
 
-    if (settingManager->isCompetitiveCompanionActive() && diagonistics)
+    if (Settings::SettingsManager::isCompetitiveCompanionActive() && diagonistics)
         server->checkServer();
 
     tmp->applySettings(diagonistics);
@@ -747,7 +748,7 @@ void AppWindow::onTabChanged(int index)
     else if (ui->actionSplit_Mode->isChecked())
         on_actionSplit_Mode_triggered();
 
-    tmp->getRightSplitter()->restoreState(settingManager->getRightSplitterSizes());
+    tmp->getRightSplitter()->restoreState(Settings::SettingsManager::getRightSplitterSizes());
 
     activeSplitterMoveConnection =
         connect(tmp->getSplitter(), SIGNAL(splitterMoved(int, int)), this, SLOT(onSplitterMoved(int, int)));
@@ -759,7 +760,7 @@ void AppWindow::onEditorFileChanged()
 {
     Core::Log::i("appwindow/onEditorFileChanged", "Invoked onEditorFileChanged");
 
-    if (settingManager->isUseHotExit() && settingManager->isHotExitLoadFromFile())
+    if (Settings::SettingsManager::isUseHotExit() && Settings::SettingsManager::isHotExitLoadFromFile())
         saveEditorStatus(true);
 
     if (currentWindow() != nullptr)
@@ -837,14 +838,14 @@ void AppWindow::onSettingsApplied()
 {
     Core::Log::i("appwindow/onSettingsApplied", "Applying settings to appwindow");
 
-    updater->setBeta(settingManager->isBeta());
+    updater->setBeta(Settings::SettingsManager::isBeta());
     maybeSetHotkeys();
 
     disconnect(companionEditorConnection);
 
-    server->updatePort(settingManager->getConnectionPort());
+    server->updatePort(Settings::SettingsManager::getConnectionPort());
 
-    if (settingManager->isCompetitiveCompanionActive())
+    if (Settings::SettingsManager::isCompetitiveCompanionActive())
         companionEditorConnection =
             connect(server, &Network::CompanionServer::onRequestArrived, this, &AppWindow::onIncomingCompanionRequest);
     diagonistics = true;
@@ -859,7 +860,8 @@ void AppWindow::onSettingsApplied()
 void AppWindow::onIncomingCompanionRequest(const Network::CompanionData &data)
 {
     Core::Log::i("appwindow/onIncomingCompanionRequest")
-        << "Applying data to new tab. Args: shouldOpenNewTab:" << settingManager->isCompetitiveCompanionOpenNewTab()
+        << "Applying data to new tab. Args: shouldOpenNewTab:"
+        << Settings::SettingsManager::isCompetitiveCompanionOpenNewTab()
         << ", currentWindow == nullptr:" << (currentWindow() == nullptr) << endl;
 
     for (int i = 0; i < ui->tabWidget->count(); ++i)
@@ -871,7 +873,7 @@ void AppWindow::onIncomingCompanionRequest(const Network::CompanionData &data)
         }
     }
 
-    if (settingManager->isCompetitiveCompanionOpenNewTab() || currentWindow() == nullptr)
+    if (Settings::SettingsManager::isCompetitiveCompanionOpenNewTab() || currentWindow() == nullptr)
         openTab("");
     currentWindow()->applyCompanion(data);
 }
@@ -900,14 +902,14 @@ void AppWindow::onSplitterMoved(int _, int __)
 {
     Core::Log::i("appwindow/onSplitterMoved", "updating state");
     auto splitter = currentWindow()->getSplitter();
-    settingManager->setSplitterSizes(splitter->saveState());
+    Settings::SettingsManager::setSplitterSizes(splitter->saveState());
 }
 
 void AppWindow::onRightSplitterMoved(int _, int __)
 {
     Core::Log::i("appwindow/onRightSplitterMoved", "updating state");
     auto splitter = currentWindow()->getRightSplitter();
-    settingManager->setRightSplitterSizes(splitter->saveState());
+    Settings::SettingsManager::setRightSplitterSizes(splitter->saveState());
 }
 
 /************************* ACTIONS ************************/
@@ -1016,7 +1018,7 @@ void AppWindow::on_actionUse_Snippets_triggered()
     if (current != nullptr)
     {
         auto lang = current->getLanguage();
-        auto names = settingManager->getSnippetsNames(lang);
+        auto names = Settings::SettingsManager::getSnippetsNames(lang);
         Core::Log::i("appwindow/on_actionUse_Snippets_triggered", "Lang : " + lang + "name : " + names.join(","));
         if (names.isEmpty())
         {
@@ -1034,7 +1036,7 @@ void AppWindow::on_actionUse_Snippets_triggered()
                 if (names.contains(name))
                 {
                     Core::Log::i("appwindow/on_actionUse_Snippets_triggered", "Found snippet and inserted");
-                    auto content = settingManager->getSnippet(lang, name);
+                    auto content = Settings::SettingsManager::getSnippet(lang, name);
                     current->insertText(content);
                 }
                 else
@@ -1054,7 +1056,7 @@ void AppWindow::on_actionUse_Snippets_triggered()
 
 void AppWindow::on_actionEditor_Mode_triggered()
 {
-    settingManager->setViewMode(Settings::ViewMode::FULL_EDITOR);
+    Settings::SettingsManager::setViewMode(Settings::ViewMode::FULL_EDITOR);
     ui->actionEditor_Mode->setChecked(true);
     ui->actionIO_Mode->setChecked(false);
     ui->actionSplit_Mode->setChecked(false);
@@ -1071,7 +1073,7 @@ void AppWindow::on_actionEditor_Mode_triggered()
 
 void AppWindow::on_actionIO_Mode_triggered()
 {
-    settingManager->setViewMode(Settings::ViewMode::FULL_IO);
+    Settings::SettingsManager::setViewMode(Settings::ViewMode::FULL_IO);
     ui->actionEditor_Mode->setChecked(false);
     ui->actionIO_Mode->setChecked(true);
     ui->actionSplit_Mode->setChecked(false);
@@ -1088,7 +1090,7 @@ void AppWindow::on_actionIO_Mode_triggered()
 
 void AppWindow::on_actionSplit_Mode_triggered()
 {
-    settingManager->setViewMode(Settings::ViewMode::SPLIT);
+    Settings::SettingsManager::setViewMode(Settings::ViewMode::SPLIT);
     ui->actionEditor_Mode->setChecked(false);
     ui->actionIO_Mode->setChecked(false);
     ui->actionSplit_Mode->setChecked(true);
