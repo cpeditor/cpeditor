@@ -28,6 +28,7 @@
 #include <QFont>
 #include <QFontDialog>
 #include <QInputDialog>
+#include <QJavaHighlighter>
 #include <QMenu>
 #include <QMessageBox>
 #include <QMimeData>
@@ -583,7 +584,7 @@ void MainWindow::setLanguage(const QString &lang)
     }
     else if (lang == "Java")
     {
-        editor->setHighlighter(new QCXXHighlighter);
+        editor->setHighlighter(new QJavaHighlighter);
         editor->setCompleter(nullptr);
         ui->changeLanguageButton->setText("Java");
     }

@@ -26,6 +26,7 @@
 #include <QFileDialog>
 #include <QFontDialog>
 #include <QInputDialog>
+#include <QJavaHighlighter>
 #include <QMessageBox>
 #include <QPythonCompleter>
 #include <QPythonHighlighter>
@@ -404,7 +405,7 @@ void PreferenceWindow::onSnippetsLangChanged(const QString &lang)
     }
     else if (lang == "Java")
     {
-        editor->setHighlighter(new QCXXHighlighter);
+        editor->setHighlighter(new QJavaHighlighter);
         editor->setCompleter(nullptr);
     }
     else
