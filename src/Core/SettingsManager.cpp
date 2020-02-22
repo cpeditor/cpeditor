@@ -593,6 +593,16 @@ void SettingsManager::setSavePath(const QString &path)
     mSettings->setValue("save_path", path);
 }
 
+bool SettingsManager::isCompileAndRunOnly()
+{
+    return mSettings->value("compile_and_run_only", "false").toBool();
+}
+
+void SettingsManager::setCompileAndRunOnly(bool value)
+{
+    mSettings->setValue("compile_and_run_only", value ? "true" : "false");
+}
+
 void SettingsManager::setHotkeyViewModeToggler(const QKeySequence &sequence)
 {
     Core::Log::i("settingmanager/sethotViewModeToggler") << "sequence is : " << sequence.toString() << endl;

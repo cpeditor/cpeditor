@@ -170,6 +170,9 @@ class SettingsManager
     static QString getSavePath();
     static void setSavePath(const QString &path);
 
+    static bool isCompileAndRunOnly();
+    static void setCompileAndRunOnly(bool value);
+
     static QSettings *settings();
 
     static void resetSettings();

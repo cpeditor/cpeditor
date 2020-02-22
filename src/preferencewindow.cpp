@@ -163,6 +163,7 @@ void PreferenceWindow::applySettingsToui()
     onSnippetsLangChanged(lang);
 
     ui->cf_path->setText(Settings::SettingsManager::getCFPath());
+    ui->compile_and_run_only->setChecked(Settings::SettingsManager::isCompileAndRunOnly());
 }
 
 void PreferenceWindow::extractSettingsFromUi()
@@ -220,6 +221,7 @@ void PreferenceWindow::extractSettingsFromUi()
     Settings::SettingsManager::setHotkeySnippets(ui->snippets_hotkey->keySequence());
 
     Settings::SettingsManager::setCFPath(ui->cf_path->text());
+    Settings::SettingsManager::setCompileAndRunOnly(ui->compile_and_run_only->isChecked());
 }
 
 void PreferenceWindow::updateShow()

@@ -488,6 +488,17 @@ void MainWindow::applySettings(bool shouldPerformDigonistic)
         performCoreDiagonistics();
     }
 
+    if (Settings::SettingsManager::isCompileAndRunOnly())
+    {
+        ui->compile->hide();
+        ui->runOnly->hide();
+    }
+    else
+    {
+        ui->compile->show();
+        ui->runOnly->show();
+    }
+
     updateChecker();
 }
 
