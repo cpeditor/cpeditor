@@ -143,7 +143,7 @@ bool SettingManager::isCheckUpdateOnStartup()
 bool SettingManager::isCompetitiveCompanionActive()
 {
     Core::Log::i("settingmanager/isCompetitiveCompanionActive", "Invoked");
-    return mSettings->value("competitive_use", "false").toBool();
+    return mSettings->value("competitive_use", "true").toBool();
 }
 
 bool SettingManager::isCompetitiveCompanionOpenNewTab()
