@@ -52,7 +52,7 @@ class MainWindow : public QMainWindow
   public:
     struct EditorStatus
     {
-        bool isLanguageSet;
+        bool isLanguageSet, isHideAC;
         QString filePath, savedText, problemURL, editorText, language;
         int editorCursor, editorAnchor, horizontalScrollBarValue, verticalScrollbarValue, untitledIndex, checkerIndex;
         QStringList input, expected, customCheckers;

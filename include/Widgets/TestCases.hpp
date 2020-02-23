@@ -118,6 +118,8 @@ class TestCases : public QWidget
     QStringList customCheckers() const;
     QString checkerText() const;
     Core::Checker::CheckerType checkerType() const;
+    void setHideAC(bool value);
+    bool getHideAC() const;
 
   public slots:
     void setVerdict(int index, Core::Checker::Verdict verdict);

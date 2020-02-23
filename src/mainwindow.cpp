@@ -301,6 +301,7 @@ MainWindow::EditorStatus::EditorStatus(const QMap<QString, QVariant> &status)
 {
     Core::Log::i("mainwindow/editorStatus", "Invoked");
     FROMSTATUS(isLanguageSet).toInt();
+    FROMSTATUS(isHideAC).toInt();
     FROMSTATUS(filePath).toString();
     FROMSTATUS(savedText).toString();
     FROMSTATUS(problemURL).toString();
@@ -324,6 +325,7 @@ QMap<QString, QVariant> MainWindow::EditorStatus::toMap() const
     Core::Log::i("mainwindow/toMap", "Invoked");
     QMap<QString, QVariant> status;
     TOSTATUS(isLanguageSet);
+    TOSTATUS(isHideAC);
     TOSTATUS(filePath);
     TOSTATUS(savedText);
     TOSTATUS(problemURL);
@@ -348,6 +350,7 @@ MainWindow::EditorStatus MainWindow::toStatus(bool simple) const
     EditorStatus status;
 
     status.isLanguageSet = isLanguageSet;
+    status.isHideAC = testcases->getHideAC();
     status.filePath = filePath;
     status.problemURL = problemURL;
     status.language = language;
@@ -378,6 +381,7 @@ void MainWindow::loadStatus(const EditorStatus &status, bool simple)
     untitledIndex = status.untitledIndex;
     testcases->addCustomCheckers(status.customCheckers);
     testcases->setCheckerIndex(status.checkerIndex);
+    testcases->setHideAC(status.isHideAC);
 
     Core::Log::i("mainwindow/loadStatus") << INFO_OF(simple) << ' ' << INFO_OF(status.filePath) << endl;
 

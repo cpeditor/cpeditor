@@ -686,15 +686,33 @@ Core::Checker::CheckerType TestCases::checkerType() const
     }
 }
 
+void TestCases::setHideAC(bool value)
+{
+    Core::Log::i("TestCases/setHideAC") << INFO_OF(value) << ", " << INFO_OF(isHideAC) << endl;
+    isHideAC = value;
+    if (isHideAC)
+        hideACButton->setText("Show AC");
+    else
+        hideACButton->setText("Hide AC");
+    updateVerdicts();
+}
+
+bool TestCases::getHideAC() const
+{
+    Core::Log::i("TestCases/getHideAC") << INFO_OF(isHideAC) << endl;
+    return isHideAC;
+}
+
 void TestCases::setVerdict(int index, Core::Checker::Verdict verdict)
 {
+    Core::Log::i("TestCases/setVerdict") << INFO_OF(index) << ", " << INFO_OF(verdict) << endl;
     testcases[index]->setVerdict(verdict);
     updateVerdicts();
 }
 
 void TestCases::on_hideACButton_clicked()
 {
-    Core::Log::i("testcases/on_hideACButton_clicked") << "Invoked, " << INFO_OF(isHideAC) << endl;
+    Core::Log::i("testcases/on_hideACButton_clicked") << INFO_OF(isHideAC) << endl;
     isHideAC ^= 1;
     if (isHideAC)
         hideACButton->setText("Show AC");
