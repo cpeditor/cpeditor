@@ -408,7 +408,7 @@ void MainWindow::applyCompanion(const Network::CompanionData &data)
     {
         QString meta = data.toMetaString();
         meta.prepend("\n");
-        meta.append("Powered by CP Editor (https://github.com/coder3101/cp-editor)");
+        meta.append("Powered by CP Editor (https://github.com/cpeditor/cp-editor)");
 
         if (language == "Python")
             meta.replace('\n', "\n# ");

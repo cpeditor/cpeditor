@@ -518,8 +518,8 @@ void AppWindow::on_actionAbout_triggered()
                        "<p>Copyright (C) 2019-2020 Ashar Khan &lt;ashar786khan@gmail.com&gt;</p>"
                        "<p>This is free software; see the source for copying conditions. There is NO warranty; not "
                        "even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. The source code for CP Editor is "
-                       "available at <a href=\"https://github.com/coder3101/cp-editor\"> "
-                       "https://github.com/coder3101/cp-editor</a>.</p>");
+                       "available at <a href=\"https://github.com/cpeditor/cp-editor\"> "
+                       "https://github.com/cpeditor/cp-editor</a>.</p>");
 }
 
 /******************* FILES SECTION *************************/
