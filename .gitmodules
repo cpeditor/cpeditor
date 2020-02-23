@@ -1,12 +1,12 @@
 [submodule "third_party/QCodeEditor"]
 	path = third_party/QCodeEditor
-	url = https://github.com/ouuan/QCodeEditor
+	url = https://github.com/cpeditor/QCodeEditor
 [submodule "third_party/singleapplication"]
 	path = third_party/singleapplication
 	url = https://github.com/itay-grudev/SingleApplication.git
 [submodule "third_party/QtFindReplaceDialog"]
 	path = third_party/QtFindReplaceDialog
-	url = https://github.com/ouuan/QtFindReplaceDialog
+	url = https://github.com/cpeditor/QtFindReplaceDialog
 [submodule "resources/testlib"]
 	path = resources/testlib
 	url = https://github.com/MikeMirzayanov/testlib
