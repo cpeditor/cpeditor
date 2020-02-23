@@ -35,7 +35,7 @@
 ## Checklist
 <!--- Go over all the following points, and put an `x` in all the boxes that apply. -->
 <!--- If you're unsure about any of these, don't hesitate to ask. We're here to help! -->
-- [ ] I have read the [CONTRIBUTING](https://github.com/coder3101/cp-editor/blob/master/CONTRIBUTING.md) document.
+- [ ] I have read the [CONTRIBUTING](https://github.com/cpeditor/cp-editor/blob/master/CONTRIBUTING.md) document.
 - [ ] I have tested these changes locally, and this fixes the bug/the new feature behaves as the expectation.
 - [ ] I have used clang-format-9 and `.clang-format` file in the root directory to format my codes.
 - [ ] The settings file in the old version can be used in the new version after this change.
