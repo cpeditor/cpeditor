@@ -4,10 +4,12 @@ on:
   push:
     paths-ignore:
       - '*.md'
+      - '*/*.md'
       - '*/*/*.md'
   pull_request:
     paths-ignore:
       - '*.md'
+      - '*/*.md'
       - '*/*/*.md'
 
 env:
