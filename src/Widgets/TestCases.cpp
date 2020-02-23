@@ -608,12 +608,7 @@ void TestCases::save(const QString &filePath, bool safe)
     {
         int number = numberOfTestFile(name, entry);
         if (number > count() && number <= MAX_NUMBER_OF_TESTCASES)
-        {
-            auto res = QMessageBox::question(this, "Save Tests",
-                                             entry.fileName() + " is deleted in the editor, delete it on the disk?");
-            if (res == QMessageBox::Yes)
-                QFile(entry.filePath()).remove();
-        }
+            QFile(entry.filePath()).remove();
     }
 }
 
