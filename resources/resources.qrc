@@ -1,8 +1,15 @@
 <RCC>
     <qresource prefix="/">
-        <file>styles/drakula.xml</file>
+    <file>styles/drakula.xml</file>
 	<file>styles/monkai.xml</file>
 	<file>styles/solarised.xml</file>
 	<file>styles/solarisedDark.xml</file>
+    <file>testlib/testlib.h</file>
+    <file>testlib/checkers/ncmp.cpp</file>
+    <file>testlib/checkers/rcmp4.cpp</file>
+    <file>testlib/checkers/rcmp6.cpp</file>
+    <file>testlib/checkers/rcmp9.cpp</file>
+    <file>testlib/checkers/wcmp.cpp</file>
+    <file>testlib/checkers/nyesno.cpp</file>
     </qresource>
 </RCC>

@@ -23,7 +23,7 @@
       <property name="orientation">
        <enum>Qt::Horizontal</enum>
       </property>
-      <widget class="QWidget" name="layoutWidget_1">
+      <widget class="QWidget" name="left_widget">
        <layout class="QVBoxLayout" name="left_pane" stretch="0,0">
         <property name="spacing">
          <number>1</number>
@@ -76,7 +76,7 @@
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="layoutWidget_2">
+      <widget class="QWidget" name="right_widget">
        <layout class="QVBoxLayout" name="right_pane">
         <item>
          <layout class="QVBoxLayout" name="verticalLayout_5">

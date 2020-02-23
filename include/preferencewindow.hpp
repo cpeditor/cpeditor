@@ -36,7 +36,7 @@ class PreferenceWindow : public QMainWindow
     void settingsApplied();
 
   public:
-    explicit PreferenceWindow(Settings::SettingManager *manager, QWidget *parent = nullptr);
+    explicit PreferenceWindow(QWidget *parent = nullptr);
     void updateShow();
     ~PreferenceWindow();
 
@@ -82,7 +82,6 @@ class PreferenceWindow : public QMainWindow
     Ui::PreferenceWindow *ui;
     QFont currentFont;
     QString cppTemplatePath, pythonTemplatePath, javaTemplatePath;
-    Settings::SettingManager *settingManager;
     QCodeEditor *editor = nullptr; // for snippets
 
     void extractSettingsFromUi();

@@ -18,6 +18,7 @@
 #ifndef MAINWINDOW_HPP
 #define MAINWINDOW_HPP
 
+#include "Core/Checker.hpp"
 #include "Core/Compiler.hpp"
 #include "Core/Formatter.hpp"
 #include "Core/Runner.hpp"
@@ -51,10 +52,10 @@ class MainWindow : public QMainWindow
   public:
     struct EditorStatus
     {
-        bool isLanguageSet;
+        bool isLanguageSet, isHideAC;
         QString filePath, savedText, problemURL, editorText, language;
-        int editorCursor, editorAnchor, horizontalScrollBarValue, verticalScrollbarValue, untitledIndex;
-        QStringList input, expected;
+        int editorCursor, editorAnchor, horizontalScrollBarValue, verticalScrollbarValue, untitledIndex, checkerIndex;
+        QStringList input, expected, customCheckers;
 
         EditorStatus(){};
 
@@ -63,7 +64,7 @@ class MainWindow : public QMainWindow
         QMap<QString, QVariant> toMap() const;
     };
 
-    MainWindow(const QString &fileOpen, Settings::SettingManager *manager, int index = 0, QWidget *parent = nullptr);
+    MainWindow(const QString &fileOpen, int index = 0, QWidget *parent = nullptr);
     ~MainWindow() override;
 
     int getUntitledIndex() const;
@@ -98,7 +99,7 @@ class MainWindow : public QMainWindow
 
     void setLanguage(const QString &lang);
     QString getLanguage();
-    void applySettingsData(bool);
+    void applySettings(bool);
 
     MessageLogger *getLogger();
     QSplitter *getSplitter();
@@ -106,7 +107,7 @@ class MainWindow : public QMainWindow
 
     void insertText(const QString &text);
 
-    void focusOnEditor();
+    void setViewMode(Settings::ViewMode mode);
 
   private slots:
     void on_compile_clicked();
@@ -116,6 +117,7 @@ class MainWindow : public QMainWindow
     void onCompilationStarted();
     void onCompilationFinished(const QString &warning);
     void onCompilationErrorOccured(const QString &error);
+    void onCompilationKilled();
 
     void onRunStarted(int index);
     void onRunFinished(int index, const QString &out, const QString &err, int exitCode, int timeUsed);
@@ -130,6 +132,8 @@ class MainWindow : public QMainWindow
     void onTextChanged();
 
     void updateCursorInfo();
+
+    void updateChecker();
 
   signals:
     void editorFileChanged();
@@ -159,12 +163,12 @@ class MainWindow : public QMainWindow
     Ui::MainWindow *ui;
     QCodeEditor *editor;
     QString language;
-    Settings::SettingManager *settingManager;
     bool isLanguageSet = false;
 
     Core::Formatter *formatter = nullptr;
     Core::Compiler *compiler = nullptr;
     QVector<Core::Runner *> runner;
+    Core::Checker *checker = nullptr;
     Core::Runner *detachedRunner = nullptr;
     QTemporaryDir *tmpDir = nullptr;
     AfterCompile afterCompile = Nothing;

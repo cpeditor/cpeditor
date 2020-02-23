@@ -45,7 +45,7 @@ void UpdateNotifier::checkUpdate(bool force)
 {
     Core::Log::i("updateNotifier/checkupdate") << "Forceful update : " << force << endl;
     this->force = force;
-    request.setUrl(QUrl("https://api.github.com/repos/coder3101/cp-editor/releases"));
+    request.setUrl(QUrl("https://api.github.com/repos/cpeditor/cp-editor/releases"));
     manager->get(request);
 }
 
@@ -93,7 +93,7 @@ void UpdateNotifier::managerFinished(QNetworkReply *reply)
     QJsonDocument doc = QJsonDocument::fromJson(jsonReply.toUtf8());
 
     QJsonDocument release;
-    QString downloadUrl = "https://github.com/coder3101/cp-editor";
+    QString downloadUrl = "https://github.com/cpeditor/cp-editor";
     bool isBeta = false;
     QString latestRelease = "0.0.0";
 
