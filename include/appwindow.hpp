@@ -174,6 +174,7 @@ class AppWindow : public QMainWindow
     void openContest(const QString &path, const QString &lang, int number);
     void saveEditorStatus(bool loadFromFile);
     bool quit();
+    int getNewUntitledIndex();
 
     MainWindow *currentWindow();
     MainWindow *windowAt(int index);

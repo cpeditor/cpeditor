@@ -325,23 +325,7 @@ void AppWindow::openTab(const QString &path)
         }
     }
 
-    int index = 0;
-    if (path.isEmpty())
-    {
-        QSet<int> vis;
-        for (int t = 0; t < ui->tabWidget->count(); ++t)
-        {
-            auto tmp = windowAt(t);
-            if (tmp->isUntitled() && tmp->getProblemURL().isEmpty())
-            {
-                vis.insert(tmp->getUntitledIndex());
-            }
-        }
-        for (index = 1; vis.contains(index); ++index)
-            ;
-    }
-
-    auto fsp = new MainWindow(path, index);
+    auto fsp = new MainWindow(path, getNewUntitledIndex());
     connect(fsp, SIGNAL(confirmTriggered(MainWindow *)), this, SLOT(on_confirmTriggered(MainWindow *)));
     connect(fsp, SIGNAL(editorFileChanged()), this, SLOT(onEditorFileChanged()));
     connect(fsp, SIGNAL(editorTextChanged(MainWindow *)), this, SLOT(onEditorTextChanged(MainWindow *)));
@@ -497,6 +481,23 @@ bool AppWindow::quit()
         on_actionClose_All_triggered();
         return ui->tabWidget->count() == 0;
     }
+}
+
+int AppWindow::getNewUntitledIndex()
+{
+    int index = 0;
+    QSet<int> vis;
+    for (int t = 0; t < ui->tabWidget->count(); ++t)
+    {
+        auto tmp = windowAt(t);
+        if (tmp->isUntitled() && tmp->getProblemURL().isEmpty())
+        {
+            vis.insert(tmp->getUntitledIndex());
+        }
+    }
+    for (index = 1; vis.contains(index); ++index)
+        ;
+    return index;
 }
 
 /***************** ABOUT SECTION ***************************/
@@ -1341,21 +1342,7 @@ void AppWindow::onTabContextMenuRequested(const QPoint &pos)
             if (ok)
             {
                 if (url.isEmpty() && widget->isUntitled())
-                {
-                    int index = 0;
-                    QSet<int> vis;
-                    for (int t = 0; t < ui->tabWidget->count(); ++t)
-                    {
-                        auto tmp = windowAt(t);
-                        if (tmp->isUntitled() && tmp->getProblemURL().isEmpty())
-                        {
-                            vis.insert(tmp->getUntitledIndex());
-                        }
-                    }
-                    for (index = 1; vis.contains(index); ++index)
-                        ;
-                    widget->setUntitledIndex(index);
-                }
+                    widget->setUntitledIndex(getNewUntitledIndex());
                 widget->setProblemURL(url);
             }
             else
