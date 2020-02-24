@@ -83,6 +83,7 @@ void CompanionServer::onNewConnection()
 {
     Core::Log::i("companionServer/onNewConnection", "New connection has arrived, reading from the queue");
     socket = server->nextPendingConnection();
+    socket->setSocketOption(QAbstractSocket::KeepAliveOption, 1);
     QObject::connect(socket, SIGNAL(readyRead()), this, SLOT(onReadReady()));
     QObject::connect(socket, SIGNAL(disconnected()), this, SLOT(onTerminateConnection()));
 }
