@@ -59,12 +59,12 @@ class MainWindow : public QMainWindow
 
         EditorStatus(){};
 
-        EditorStatus(const QMap<QString, QVariant> &status);
+        explicit EditorStatus(const QMap<QString, QVariant> &status);
 
         QMap<QString, QVariant> toMap() const;
     };
 
-    MainWindow(const QString &fileOpen, int index = 0, QWidget *parent = nullptr);
+    explicit MainWindow(const QString &fileOpen, int index = 0, QWidget *parent = nullptr);
     ~MainWindow() override;
 
     int getUntitledIndex() const;

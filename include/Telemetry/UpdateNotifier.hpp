@@ -29,7 +29,7 @@ class UpdateNotifier : public QObject
 {
     Q_OBJECT
   public:
-    UpdateNotifier(bool useBeta);
+    explicit UpdateNotifier(bool useBeta);
     void checkUpdate(bool force = false);
     ~UpdateNotifier();
     void setBeta(bool value);

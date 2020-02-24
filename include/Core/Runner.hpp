@@ -30,7 +30,7 @@ class Runner : public QObject
     Q_OBJECT
 
   public:
-    Runner(int index);
+    explicit Runner(int index);
     ~Runner();
     void run(const QString &filePath, const QString &lang, const QString &runCommand, const QString &args,
              const QString &input, int timeLimit);

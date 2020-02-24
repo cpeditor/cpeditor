@@ -60,7 +60,7 @@ class CompanionServer : public QObject
     Q_OBJECT
 
   public:
-    CompanionServer(int port);
+    explicit CompanionServer(int port);
     void setMessageLogger(MessageLogger *log);
     void checkServer();
 

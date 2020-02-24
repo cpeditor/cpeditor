@@ -64,7 +64,7 @@ AppWindow::AppWindow(bool noHotExit, QWidget *parent) : QMainWindow(parent), ui(
         // save these so that they won't be affected by saveEditorStatus() in onEditorFileChanged()
         QVector<MainWindow::EditorStatus> status;
         for (int i = 0; i < length; ++i)
-            status.push_back(Settings::SettingsManager::getEditorStatus(i));
+            status.push_back(MainWindow::EditorStatus(Settings::SettingsManager::getEditorStatus(i)));
         bool loadFromFile = Settings::SettingsManager::isHotExitLoadFromFile();
         int currentIndex = Settings::SettingsManager::getCurrentIndex();
 
