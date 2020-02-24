@@ -62,7 +62,6 @@ class CompanionServer : public QObject
   public:
     explicit CompanionServer(int port);
     void setMessageLogger(MessageLogger *log);
-    void checkServer();
 
     void updatePort(int port);
     ~CompanionServer();
@@ -78,7 +77,7 @@ class CompanionServer : public QObject
   private:
     QTcpServer *server = nullptr;
     QTcpSocket *socket = nullptr;
-    int portNumber;
+    int portNumber = 0;
     MessageLogger *log = nullptr;
 };
 } // namespace Network

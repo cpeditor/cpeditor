@@ -153,7 +153,6 @@ class AppWindow : public QMainWindow
     QTimer *timer = nullptr;
     QMetaObject::Connection activeSplitterMoveConnection;
     QMetaObject::Connection activeRightSplitterMoveConnection;
-    QMetaObject::Connection companionEditorConnection;
     Telemetry::UpdateNotifier *updater = nullptr;
     PreferenceWindow *preferenceWindow = nullptr;
     Network::CompanionServer *server;
@@ -163,7 +162,6 @@ class AppWindow : public QMainWindow
     void allocate();
     void applySettings();
     void saveSettings();
-    bool diagonistics;
     QVector<QShortcut *> hotkeyObjects;
     void maybeSetHotkeys();
     bool closeTab(int index);

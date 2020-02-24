@@ -36,43 +36,38 @@ void CompanionServer::setMessageLogger(MessageLogger *log)
     this->log = log;
 }
 
-void CompanionServer::checkServer()
-{
-    if (log != nullptr)
-    {
-
-        if (server->serverPort() == 0)
-        {
-            log->error("Companion", "Failed to listen to specified "
-                                    " port. Is another process listening there?");
-        }
-        else
-        {
-            log->info("Companion", "Listening for requests on " + server->serverAddress().toString() + ":" +
-                                       QString::number(server->serverPort()));
-        }
-    }
-    else
-    {
-        Core::Log::w("companionServer/checkServer", "Failure in logging the status, log is nullptr");
-        Core::Log::i("companionServer/checkServer")
-            << "server listening on : " << server->serverAddress().toString() << ":" << server->serverPort() << endl;
-    }
-}
-
 void CompanionServer::updatePort(int port)
 {
     Core::Log::i("companionServer/updatePort") << INFO_OF(port) << endl;
-    portNumber = port;
-    if (server != nullptr)
-        delete server;
-    server = new QTcpServer(this);
-    portNumber = port;
-    // server->setMaxPendingConnections(1);
-    connect(server, SIGNAL(newConnection()), this, SLOT(onNewConnection()));
-    server->listen(QHostAddress::LocalHost, static_cast<quint16>(port));
-    if (log != nullptr)
-        log->info("Companion", "Port is set to " + QString::number(port));
+    if (portNumber != port)
+    {
+        portNumber = port;
+        if (server != nullptr)
+            delete server;
+        if (port == 0)
+        {
+            server = nullptr;
+            if (log != nullptr)
+                log->info("Companion", "Server is closed");
+        }
+        else
+        {
+            server = new QTcpServer(this);
+            portNumber = port;
+            // server->setMaxPendingConnections(1);
+            connect(server, SIGNAL(newConnection()), this, SLOT(onNewConnection()));
+            server->listen(QHostAddress::LocalHost, static_cast<quint16>(port));
+            if (log != nullptr)
+            {
+                log->info("Companion", "Port is set to " + QString::number(port));
+                if (!server->isListening())
+                {
+                    log->error("Companion", "Failed to listen to port " + QString::number(portNumber) +
+                                                ". Is there another process listening?");
+                }
+            }
+        }
+    }
     Core::Log::i("companionServer/updatePort", "Finished");
 }
 
@@ -91,6 +86,7 @@ void CompanionServer::onNewConnection()
     QObject::connect(socket, SIGNAL(readyRead()), this, SLOT(onReadReady()));
     QObject::connect(socket, SIGNAL(disconnected()), this, SLOT(onTerminateConnection()));
 }
+
 void CompanionServer::onReadReady()
 {
     QString request = socket->readAll();

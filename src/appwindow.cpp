@@ -178,9 +178,7 @@ void AppWindow::setConnections()
 
     connect(preferenceWindow, SIGNAL(settingsApplied()), this, SLOT(onSettingsApplied()));
 
-    if (Settings::SettingsManager::isCompetitiveCompanionActive())
-        companionEditorConnection =
-            connect(server, &Network::CompanionServer::onRequestArrived, this, &AppWindow::onIncomingCompanionRequest);
+    connect(server, &Network::CompanionServer::onRequestArrived, this, &AppWindow::onIncomingCompanionRequest);
 }
 
 void AppWindow::allocate()
@@ -736,12 +734,6 @@ void AppWindow::onTabChanged(int index)
     activeLogger = tmp->getLogger();
     server->setMessageLogger(activeLogger);
 
-    if (Settings::SettingsManager::isCompetitiveCompanionActive() && diagonistics)
-        server->checkServer();
-
-    tmp->applySettings(diagonistics);
-    diagonistics = false;
-
     if (ui->actionEditor_Mode->isChecked())
         on_actionEditor_Mode_triggered();
     else if (ui->actionIO_Mode->isChecked())
@@ -837,25 +829,23 @@ void AppWindow::onSaveTimerElapsed()
 
 void AppWindow::onSettingsApplied()
 {
-    Core::Log::i("appwindow/onSettingsApplied", "Applying settings to appwindow");
+    Core::Log::i("appwindow/onSettingsApplied", "Invoked");
+
+    for (int i = 0; i < ui->tabWidget->count(); ++i)
+    {
+        windowAt(i)->applySettings(i == ui->tabWidget->currentIndex());
+        onEditorTextChanged(windowAt(i));
+    }
 
     updater->setBeta(Settings::SettingsManager::isBeta());
     maybeSetHotkeys();
 
-    disconnect(companionEditorConnection);
-
-    server->updatePort(Settings::SettingsManager::getConnectionPort());
-
     if (Settings::SettingsManager::isCompetitiveCompanionActive())
-        companionEditorConnection =
-            connect(server, &Network::CompanionServer::onRequestArrived, this, &AppWindow::onIncomingCompanionRequest);
-    diagonistics = true;
-    onTabChanged(ui->tabWidget->currentIndex());
+        server->updatePort(Settings::SettingsManager::getConnectionPort());
+    else
+        server->updatePort(0);
 
-    for (int i = 0; i < ui->tabWidget->count(); ++i)
-        onEditorTextChanged(windowAt(i));
-
-    Core::Log::i("appwindow/onSettingsApplied", "Applied settings to appwindow");
+    Core::Log::i("appwindow/onSettingsApplied", "Finished");
 }
 
 void AppWindow::onIncomingCompanionRequest(const Network::CompanionData &data)

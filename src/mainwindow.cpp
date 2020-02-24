@@ -1011,7 +1011,6 @@ QSplitter *MainWindow::getRightSplitter()
 void MainWindow::performCoreDiagonistics()
 {
     Core::Log::i("mainwindow/performCoreDiagonistics", "Invoked");
-    log.clear();
     bool formatResult = Core::Formatter::check(Settings::SettingsManager::getClangFormatBinary(),
                                                Settings::SettingsManager::getClangFormatStyle());
     bool compilerResult = true;
