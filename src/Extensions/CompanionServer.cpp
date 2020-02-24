@@ -27,14 +27,7 @@ namespace Network
 {
 CompanionServer::CompanionServer(int port)
 {
-    Core::Log::i("companionServer/constructed") << "port is : " << port << endl;
-    server = new QTcpServer(this);
-    portNumber = port;
-    // server->setMaxPendingConnections(1);
-    QObject::connect(server, SIGNAL(newConnection()), this, SLOT(onNewConnection()));
-    server->listen(QHostAddress::LocalHost, static_cast<unsigned short>(port));
-    Core::Log::i("companionServer/constructed")
-        << "server is listening to url :" << server->serverAddress().toString() << endl;
+    updatePort(port);
 }
 
 void CompanionServer::setMessageLogger(MessageLogger *log)
@@ -69,17 +62,18 @@ void CompanionServer::checkServer()
 
 void CompanionServer::updatePort(int port)
 {
-    Core::Log::i("companionServer/updatePort") << "new port is " << port << endl;
-    this->portNumber = port;
-    delete server;
+    Core::Log::i("companionServer/updatePort") << INFO_OF(port) << endl;
+    portNumber = port;
+    if (server != nullptr)
+        delete server;
     server = new QTcpServer(this);
     portNumber = port;
     // server->setMaxPendingConnections(1);
-    QObject::connect(server, SIGNAL(newConnection()), this, SLOT(onNewConnection()));
-    server->listen(QHostAddress::LocalHost, static_cast<unsigned short>(port));
+    connect(server, SIGNAL(newConnection()), this, SLOT(onNewConnection()));
+    server->listen(QHostAddress::LocalHost, static_cast<quint16>(port));
     if (log != nullptr)
-        log->warn("Companion", "Port changed to " + QString::number(port));
-    Core::Log::i("companionServer/updatePort", "Connection was reset and old TCP Server was destroyed");
+        log->info("Companion", "Port is set to " + QString::number(port));
+    Core::Log::i("companionServer/updatePort", "Finished");
 }
 
 CompanionServer::~CompanionServer()
