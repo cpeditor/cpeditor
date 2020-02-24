@@ -19,12 +19,15 @@
 #define UTIL_HPP
 
 #include "Core/MessageLogger.hpp"
+#include <QCodeEditor>
 
 namespace Util
 {
 
 bool saveFile(const QString &path, const QString &content, const QString &head = "Save File", bool safe = true,
               MessageLogger *log = nullptr);
+
+void applySettingsToEditor(QCodeEditor *editor);
 
 } // namespace Util
 

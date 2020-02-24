@@ -21,7 +21,6 @@
 #include "Core/EventLogger.hpp"
 #include "Core/MessageLogger.hpp"
 #include "Core/Runner.hpp"
-#include "Extensions/EditorTheme.hpp"
 #include "Util.hpp"
 #include <QCXXHighlighter>
 #include <QFileDialog>
@@ -445,43 +444,7 @@ void MainWindow::applySettings(bool shouldPerformDigonistic)
             submitToCodeforces->setEnabled(true);
     }
 
-    editor->setTabReplace(Settings::SettingsManager::isTabsReplaced());
-    editor->setTabReplaceSize(Settings::SettingsManager::getTabStop());
-    editor->setAutoIndentation(Settings::SettingsManager::isAutoIndent());
-    editor->setAutoParentheses(Settings::SettingsManager::isAutoParentheses());
-    editor->setAutoRemoveParentheses(Settings::SettingsManager::isAutoRemoveParentheses());
-
-    if (!Settings::SettingsManager::getFont().isEmpty())
-    {
-        QFont font;
-        font.fromString(Settings::SettingsManager::getFont());
-        editor->setFont(font);
-    }
-
-    const int tabStop = Settings::SettingsManager::getTabStop();
-    QFontMetrics metric(editor->font());
-    editor->setTabReplaceSize(tabStop);
-
-    if (Settings::SettingsManager::isWrapText())
-        editor->setWordWrapMode(QTextOption::WordWrap);
-    else
-        editor->setWordWrapMode(QTextOption::NoWrap);
-
-    if (Settings::SettingsManager::getEditorTheme() == "Light")
-        editor->setSyntaxStyle(Themes::EditorTheme::getLightTheme());
-    else if (Settings::SettingsManager::getEditorTheme() == "Drakula")
-        editor->setSyntaxStyle(Themes::EditorTheme::getDrakulaTheme());
-    else if (Settings::SettingsManager::getEditorTheme() == "Monkai")
-        editor->setSyntaxStyle(Themes::EditorTheme::getMonkaiTheme());
-    else if (Settings::SettingsManager::getEditorTheme() == "Solarised")
-        editor->setSyntaxStyle(Themes::EditorTheme::getSolarisedTheme());
-    else if (Settings::SettingsManager::getEditorTheme() == "Solarised Dark")
-        editor->setSyntaxStyle(Themes::EditorTheme::getSolarisedDarkTheme());
-    else
-    {
-        log.warn("Themes", "Editor theme is set to invalid value. Fallback to Light");
-        editor->setSyntaxStyle(Themes::EditorTheme::getLightTheme());
-    }
+    Util::applySettingsToEditor(editor);
 
     if (!isLanguageSet)
     {

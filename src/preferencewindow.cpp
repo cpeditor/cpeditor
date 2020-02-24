@@ -18,7 +18,6 @@
 #include "preferencewindow.hpp"
 #include "../ui/ui_preferencewindow.h"
 #include "Core/EventLogger.hpp"
-#include "Extensions/EditorTheme.hpp"
 #include "Util.hpp"
 #include <QAction>
 #include <QCXXHighlighter>
@@ -52,7 +51,7 @@ PreferenceWindow::PreferenceWindow(QWidget *parent) : QMainWindow(parent), ui(ne
     applySettingsToui();
     resize(QDesktopWidget().availableGeometry(this).size() * PREFERENCE_WINDOW_SIZE_FACTOR);
     setConstraints();
-    applySettingsToEditor();
+    Util::applySettingsToEditor(editor);
 }
 
 void PreferenceWindow::setConstraints()
@@ -247,7 +246,7 @@ void PreferenceWindow::on_ok_clicked()
     extractSettingsFromUi();
     close();
     emit settingsApplied();
-    applySettingsToEditor();
+    Util::applySettingsToEditor(editor);
 }
 
 void PreferenceWindow::on_cancel_clicked()
@@ -261,7 +260,7 @@ void PreferenceWindow::on_apply_clicked()
     Core::Log::i("preferencewindow/on_apply_clicked", "Invoked");
     extractSettingsFromUi();
     emit settingsApplied();
-    applySettingsToEditor();
+    Util::applySettingsToEditor(editor);
 }
 
 void PreferenceWindow::on_hotkeys_clicked(bool checked)
@@ -424,45 +423,6 @@ void PreferenceWindow::onCurrentSnippetChanged(const QString &text)
     auto content = Settings::SettingsManager::getSnippet(lang, text);
     editor->setPlainText(content);
     editor->setFocus(Qt::OtherFocusReason);
-}
-
-void PreferenceWindow::applySettingsToEditor()
-{
-    Core::Log::i("preferencewindow/applySettingsToEditor", "Invoked");
-    editor->setTabReplace(Settings::SettingsManager::isTabsReplaced());
-    editor->setTabReplaceSize(Settings::SettingsManager::getTabStop());
-    editor->setAutoIndentation(Settings::SettingsManager::isAutoIndent());
-    editor->setAutoParentheses(Settings::SettingsManager::isAutoParentheses());
-    editor->setAutoRemoveParentheses(Settings::SettingsManager::isAutoRemoveParentheses());
-
-    if (!Settings::SettingsManager::getFont().isEmpty())
-    {
-        QFont font;
-        font.fromString(Settings::SettingsManager::getFont());
-        editor->setFont(font);
-    }
-
-    const int tabStop = Settings::SettingsManager::getTabStop();
-    QFontMetrics metric(editor->font());
-    editor->setTabReplaceSize(tabStop);
-
-    if (Settings::SettingsManager::isWrapText())
-        editor->setWordWrapMode(QTextOption::WordWrap);
-    else
-        editor->setWordWrapMode(QTextOption::NoWrap);
-
-    if (Settings::SettingsManager::getEditorTheme() == "Light")
-        editor->setSyntaxStyle(Themes::EditorTheme::getLightTheme());
-    else if (Settings::SettingsManager::getEditorTheme() == "Drakula")
-        editor->setSyntaxStyle(Themes::EditorTheme::getDrakulaTheme());
-    else if (Settings::SettingsManager::getEditorTheme() == "Monkai")
-        editor->setSyntaxStyle(Themes::EditorTheme::getMonkaiTheme());
-    else if (Settings::SettingsManager::getEditorTheme() == "Solarised")
-        editor->setSyntaxStyle(Themes::EditorTheme::getSolarisedTheme());
-    else if (Settings::SettingsManager::getEditorTheme() == "Solarised Dark")
-        editor->setSyntaxStyle(Themes::EditorTheme::getSolarisedDarkTheme());
-    else
-        editor->setSyntaxStyle(Themes::EditorTheme::getLightTheme());
 }
 
 void PreferenceWindow::on_snippet_save_clicked()

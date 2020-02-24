@@ -41,7 +41,6 @@ class PreferenceWindow : public QMainWindow
     ~PreferenceWindow();
 
   private slots:
-
     void on_ok_clicked();
 
     void on_cancel_clicked();
@@ -65,8 +64,6 @@ class PreferenceWindow : public QMainWindow
     void onSnippetsLangChanged(const QString &lang);
 
     void onCurrentSnippetChanged(const QString &text);
-
-    void applySettingsToEditor();
 
     void on_snippet_save_clicked();
 
