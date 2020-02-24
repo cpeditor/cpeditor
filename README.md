@@ -2,8 +2,7 @@
 
 <img src=assets/icon.ico height="80" width="80">
 
-[![LGTM Grade](https://img.shields.io/lgtm/grade/cpp/github/cpeditor/cp-editor)](https://lgtm.com/projects/g/cpeditor/cp-editor/context:cpp)
-[![LGTM Alerts](https://img.shields.io/lgtm/alerts/github/cpeditor/cp-editor)](https://lgtm.com/projects/g/cpeditor/cp-editor/alerts)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/ce0f297f31f74485b0d340949d08d605)](https://www.codacy.com/gh/cpeditor/cp-editor)
 [![Telegram Group](https://img.shields.io/badge/chat-on%20telegram-success)](https://t.me/cpeditor)
 [![Help wanted issues](https://img.shields.io/github/issues/cpeditor/cp-editor/help%20wanted)](https://github.com/cpeditor/cp-editor/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22)
 
