@@ -105,10 +105,10 @@ void TestCaseEdit::startAnimation()
     }
 }
 
-TestCase::TestCase(int index, MessageLogger *logger, QWidget *parent, const QString &input, const QString &expected)
+TestCase::TestCase(int index, MessageLogger *logger, QWidget *parent, const QString &in, const QString &exp)
     : QWidget(parent), log(logger)
 {
-    Core::Log::i("testcase/constructed") << "index " << index << " input " << input << " expected " << expected << endl;
+    Core::Log::i("testcase/constructed") << "index " << index << " input " << in << " expected " << exp << endl;
     mainLayout = new QHBoxLayout(this);
     inputUpLayout = new QHBoxLayout();
     outputUpLayout = new QHBoxLayout();
@@ -116,16 +116,18 @@ TestCase::TestCase(int index, MessageLogger *logger, QWidget *parent, const QStr
     inputLayout = new QVBoxLayout();
     outputLayout = new QVBoxLayout();
     expectedLayout = new QVBoxLayout();
+    showCheckBox = new QCheckBox();
     inputLabel = new QLabel("Input");
     outputLabel = new QLabel("Output");
     expectedLabel = new QLabel("Expected");
-    deleteButton = new QPushButton("Del");
+    moreButton = new QPushButton("More");
     loadInputButton = new QPushButton("Load");
     diffButton = new QPushButton("**");
     loadExpectedButton = new QPushButton("Load");
-    inputEdit = new TestCaseEdit(true, input);
+    inputEdit = new TestCaseEdit(true, in);
     outputEdit = new TestCaseEdit(false);
-    expectedEdit = new TestCaseEdit(true, expected);
+    expectedEdit = new TestCaseEdit(true, exp);
+    moreMenu = new QMenu();
 
     setID(index);
     outputEdit->setReadOnly(true);
@@ -133,19 +135,48 @@ TestCase::TestCase(int index, MessageLogger *logger, QWidget *parent, const QStr
     outputEdit->setWordWrapMode(QTextOption::NoWrap);
     expectedEdit->setWordWrapMode(QTextOption::NoWrap);
 
-    auto setWidth = [](QPushButton *btn) {
-        btn->setMinimumWidth(btn->fontMetrics().boundingRect(btn->text()).width() + 10);
-    };
-    setWidth(loadExpectedButton);
-    setWidth(deleteButton);
+    showCheckBox->setMinimumWidth(20);
+    showCheckBox->setChecked(true);
+    showCheckBox->setSizePolicy({QSizePolicy::Fixed, QSizePolicy::Fixed});
 
+    loadExpectedButton->setMinimumWidth(
+        loadExpectedButton->fontMetrics().boundingRect(loadExpectedButton->text()).width() + 10);
+
+    moreButton->setMinimumWidth(moreButton->fontMetrics().boundingRect(moreButton->text()).width() + 30);
+
+    moreMenu->addAction("Delete", [this] {
+        Core::Log::i("TestCases/moreMenu/Delete", "Invoked");
+
+        if (input().isEmpty() && expected().isEmpty())
+        {
+            Core::Log::i("TestCases/moreMenu/Delete", "Deleted Directly because it's empty");
+            emit deleted(this);
+        }
+        else
+        {
+            Core::Log::i("TestCases/moreMenu/Delete", "Asking confirmation for delete");
+            auto res = QMessageBox::question(this, "Delete Testcase",
+                                             "Do you want to delete test case #" + QString::number(id + 1));
+            if (res == QMessageBox::Yes)
+                emit deleted(this);
+        }
+    });
+
+    moreMenu->addAction("Run", [this] {
+        showCheckBox->setChecked(true);
+        emit requestRun(id);
+    });
+
+    moreButton->setMenu(moreMenu);
+
+    inputUpLayout->addWidget(showCheckBox);
     inputUpLayout->addWidget(inputLabel);
     inputUpLayout->addWidget(loadInputButton);
     outputUpLayout->addWidget(outputLabel);
     outputUpLayout->addWidget(diffButton);
     expectedUpLayout->addWidget(expectedLabel);
     expectedUpLayout->addWidget(loadExpectedButton);
-    expectedUpLayout->addWidget(deleteButton);
+    expectedUpLayout->addWidget(moreButton);
     inputLayout->addLayout(inputUpLayout);
     inputLayout->addWidget(inputEdit);
     outputLayout->addLayout(outputUpLayout);
@@ -159,7 +190,7 @@ TestCase::TestCase(int index, MessageLogger *logger, QWidget *parent, const QStr
 
     Core::Log::i("testcase/constructed", "UI has been built");
 
-    connect(deleteButton, SIGNAL(clicked()), this, SLOT(on_deleteButton_clicked()));
+    connect(showCheckBox, SIGNAL(toggled(bool)), this, SLOT(on_showCheckBox_toggled(bool)));
     connect(loadInputButton, SIGNAL(clicked()), this, SLOT(on_loadInputButton_clicked()));
     connect(diffButton, SIGNAL(clicked()), SLOT(on_diffButton_clicked()));
     connect(loadExpectedButton, SIGNAL(clicked()), this, SLOT(on_loadExpectedButton_clicked()));
@@ -291,21 +322,29 @@ Core::Checker::Verdict TestCase::verdict() const
     return currentVerdict;
 }
 
-void TestCase::on_deleteButton_clicked()
+void TestCase::setShow(bool show)
 {
-    Core::Log::i("testcase/on_deleteButton_clicked", "Invoked");
+    showCheckBox->setChecked(show);
+}
 
-    if (input().isEmpty() && expected().isEmpty())
+bool TestCase::isShow() const
+{
+    return showCheckBox->isChecked();
+}
+
+void TestCase::on_showCheckBox_toggled(bool checked)
+{
+    if (checked)
     {
-        Core::Log::i("testcase/on_deleteButton_clicked", "Deleted Directly because empty");
-        emit deleted(this);
+        inputEdit->show();
+        outputEdit->show();
+        expectedEdit->show();
     }
     else
     {
-        Core::Log::i("testcase/on_deleteButton_clicked", "Asking confirmation for delete");
-        auto res = QMessageBox::question(this, "Delete Testcase", "Do you want to delete this test case?");
-        if (res == QMessageBox::Yes)
-            emit deleted(this);
+        inputEdit->hide();
+        outputEdit->hide();
+        expectedEdit->hide();
     }
 }
 
@@ -429,9 +468,8 @@ TestCases::TestCases(MessageLogger *logger, QWidget *parent) : QWidget(parent), 
     label = new QLabel("Test Cases");
     verdicts = new QLabel();
     checkerLabel = new QLabel("Checker:");
-    hideACButton = new QPushButton("Hide AC");
     addButton = new QPushButton("Add Test");
-    clearButton = new QPushButton("Clear");
+    moreButton = new QPushButton("More");
     addCheckerButton = new QPushButton("Add Checker");
     checkerComboBox = new QComboBox();
     scrollArea = new QScrollArea();
@@ -442,9 +480,8 @@ TestCases::TestCases(MessageLogger *logger, QWidget *parent) : QWidget(parent), 
 
     titleLayout->addWidget(label);
     titleLayout->addWidget(verdicts);
-    titleLayout->addWidget(hideACButton);
     titleLayout->addWidget(addButton);
-    titleLayout->addWidget(clearButton);
+    titleLayout->addWidget(moreButton);
     checkerLayout->addWidget(checkerLabel);
     checkerLayout->addWidget(checkerComboBox);
     checkerLayout->addWidget(addCheckerButton);
@@ -458,6 +495,60 @@ TestCases::TestCases(MessageLogger *logger, QWidget *parent) : QWidget(parent), 
 
     updateVerdicts();
 
+    moreMenu = new QMenu();
+
+    moreMenu->addAction("Remove Empty", [this] {
+        Core::Log::i("TestCases/More/Remove Empty", "Invoked");
+        for (int i = 0; i < count(); ++i)
+        {
+            if (input(i).isEmpty() && output(i).isEmpty() && expected(i).isEmpty())
+            {
+                onChildDeleted(testcases[i]);
+                --i;
+            }
+        }
+    });
+
+    moreMenu->addAction("Remove All", [this] {
+        Core::Log::i("testcases/More/Remove All", "invoked");
+        auto res = QMessageBox::question(this, "Clear Testcases", "Do you want to delete all test cases?");
+        if (res == QMessageBox::Yes)
+        {
+            for (int i = 0; i < count(); ++i)
+            {
+                onChildDeleted(testcases[i]);
+                --i;
+            }
+        }
+    });
+
+    moreMenu->addAction("Hide AC", [this] {
+        Core::Log::i("testcases/More/Hide AC", "Invoked");
+        for (auto t : testcases)
+            if (t->verdict() == Core::Checker::AC)
+                t->setShow(false);
+    });
+
+    moreMenu->addAction("Show All", [this] {
+        Core::Log::i("TestCases/More/Show All", "Invoked");
+        for (auto t : testcases)
+            t->setShow(true);
+    });
+
+    moreMenu->addAction("Hide All", [this] {
+        Core::Log::i("TestCases/More/Hide All", "Invoked");
+        for (auto t : testcases)
+            t->setShow(false);
+    });
+
+    moreMenu->addAction("Inverse", [this] {
+        Core::Log::i("TestCases/More/Inverse", "Invoked");
+        for (auto t : testcases)
+            t->setShow(t->isShow() ^ 1);
+    });
+
+    moreButton->setMenu(moreMenu);
+
     checkerLabel->setSizePolicy({QSizePolicy::Maximum, QSizePolicy::Fixed});
     checkerComboBox->setSizePolicy({QSizePolicy::Expanding, QSizePolicy::Fixed});
     addCheckerButton->setSizePolicy({QSizePolicy::Maximum, QSizePolicy::Fixed});
@@ -470,9 +561,7 @@ TestCases::TestCases(MessageLogger *logger, QWidget *parent) : QWidget(parent), 
     checkerComboBox->setCurrentIndex(0);
 
     connect(checkerComboBox, SIGNAL(currentIndexChanged(int)), this, SIGNAL(checkerChanged()));
-    connect(hideACButton, SIGNAL(clicked()), this, SLOT(on_hideACButton_clicked()));
     connect(addButton, SIGNAL(clicked()), this, SLOT(on_addButton_clicked()));
-    connect(clearButton, SIGNAL(clicked()), this, SLOT(on_clearButton_clicked()));
     connect(addCheckerButton, SIGNAL(clicked()), this, SLOT(on_addCheckerButton_clicked()));
 
     Core::Log::i("testcases/constructed", "connection established");
@@ -509,6 +598,7 @@ void TestCases::addTestCase(const QString &input, const QString &expected)
         Core::Log::w("testcases/addTestcase", "New testcase added");
         auto testcase = new TestCase(count(), log, this, input, expected);
         connect(testcase, SIGNAL(deleted(TestCase *)), this, SLOT(onChildDeleted(TestCase *)));
+        connect(testcase, SIGNAL(requestRun(int)), this, SIGNAL(requestRun(int)));
         testcases.push_back(testcase);
         scrollAreaLayout->addWidget(testcase);
         updateVerdicts();
@@ -681,21 +771,14 @@ Core::Checker::CheckerType TestCases::checkerType() const
     }
 }
 
-void TestCases::setHideAC(bool value)
+void TestCases::setShow(int index, bool show)
 {
-    Core::Log::i("TestCases/setHideAC") << INFO_OF(value) << ", " << INFO_OF(isHideAC) << endl;
-    isHideAC = value;
-    if (isHideAC)
-        hideACButton->setText("Show AC");
-    else
-        hideACButton->setText("Hide AC");
-    updateVerdicts();
+    testcases[index]->setShow(show);
 }
 
-bool TestCases::getHideAC() const
+bool TestCases::isShow(int index) const
 {
-    Core::Log::i("TestCases/getHideAC") << INFO_OF(isHideAC) << endl;
-    return isHideAC;
+    return testcases[index]->isShow();
 }
 
 void TestCases::setVerdict(int index, Core::Checker::Verdict verdict)
@@ -705,40 +788,10 @@ void TestCases::setVerdict(int index, Core::Checker::Verdict verdict)
     updateVerdicts();
 }
 
-void TestCases::on_hideACButton_clicked()
-{
-    Core::Log::i("testcases/on_hideACButton_clicked") << INFO_OF(isHideAC) << endl;
-    isHideAC ^= 1;
-    if (isHideAC)
-        hideACButton->setText("Show AC");
-    else
-        hideACButton->setText("Hide AC");
-    updateVerdicts();
-}
-
 void TestCases::on_addButton_clicked()
 {
     Core::Log::i("testcases/on_addButton_clicked", "invoked");
     addTestCase();
-}
-
-void TestCases::on_clearButton_clicked()
-{
-    Core::Log::i("testcases/on_clearButton_clicked", "invoked");
-    for (int i = 0; i < count(); ++i)
-    {
-        if (input(i).isEmpty() && output(i).isEmpty() && expected(i).isEmpty())
-        {
-            onChildDeleted(testcases[i]);
-            --i;
-        }
-    }
-    if (count() > 0)
-    {
-        auto res = QMessageBox::question(this, "Clear Test Cases", "Do you want to delete all test cases?");
-        if (res == QMessageBox::Yes)
-            clear();
-    }
 }
 
 void TestCases::on_addCheckerButton_clicked()
@@ -774,17 +827,11 @@ void TestCases::updateVerdicts()
         {
         case Core::Checker::AC:
             ++ac;
-            if (isHideAC)
-                t->hide();
-            else
-                t->show();
             break;
         case Core::Checker::WA:
             ++wa;
-            t->show();
             break;
         case Core::Checker::UNKNOWN:
-            t->show();
             break;
         }
     }

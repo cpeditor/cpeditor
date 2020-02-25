@@ -86,6 +86,7 @@ void MainWindow::setTestCases()
     testcases = new TestCases(&log, this);
     ui->test_cases_layout->addWidget(testcases);
     connect(testcases, SIGNAL(checkerChanged()), this, SLOT(updateChecker()));
+    connect(testcases, SIGNAL(requestRun(int)), this, SLOT(runTestCase(int)));
 }
 
 void MainWindow::setEditor()
@@ -152,30 +153,48 @@ void MainWindow::run()
         return;
     }
 
-    bool isRun = false;
-    runner.resize(testcases->count());
-
     for (int i = 0; i < testcases->count(); ++i)
     {
-        if (!testcases->input(i).trimmed().isEmpty())
+        if (!testcases->input(i).trimmed().isEmpty() && testcases->isShow(i))
         {
-            isRun = true;
-            runner[i] = new Core::Runner(i);
-            connect(runner[i], SIGNAL(runStarted(int)), this, SLOT(onRunStarted(int)));
-            connect(runner[i], SIGNAL(runFinished(int, const QString &, const QString &, int, int)), this,
-                    SLOT(onRunFinished(int, const QString &, const QString &, int, int)));
-            connect(runner[i], SIGNAL(runErrorOccured(int, const QString &)), this,
-                    SLOT(onRunErrorOccured(int, const QString &)));
-            connect(runner[i], SIGNAL(runTimeout(int)), this, SLOT(onRunTimeout(int)));
-            connect(runner[i], SIGNAL(runKilled(int)), this, SLOT(onRunKilled(int)));
-            runner[i]->run(tmpPath(), language, Settings::SettingsManager::getRunCommand(language),
-                           Settings::SettingsManager::getRuntimeArguments(language), testcases->input(i),
-                           Settings::SettingsManager::getTimeLimit());
+            run(i);
         }
     }
 
-    if (!isRun)
+    if (runner.empty())
         log.warn("Runner", "All inputs are empty, nothing to run");
+}
+
+void MainWindow::run(int index)
+{
+    Core::Log::i("MainWindow/run") << INFO_OF(index) << endl;
+    auto tmp = new Core::Runner(index);
+    connect(tmp, SIGNAL(runStarted(int)), this, SLOT(onRunStarted(int)));
+    connect(tmp, SIGNAL(runFinished(int, const QString &, const QString &, int, int)), this,
+            SLOT(onRunFinished(int, const QString &, const QString &, int, int)));
+    connect(tmp, SIGNAL(runErrorOccured(int, const QString &)), this, SLOT(onRunErrorOccured(int, const QString &)));
+    connect(tmp, SIGNAL(runTimeout(int)), this, SLOT(onRunTimeout(int)));
+    connect(tmp, SIGNAL(runKilled(int)), this, SLOT(onRunKilled(int)));
+    tmp->run(tmpPath(), language, Settings::SettingsManager::getRunCommand(language),
+             Settings::SettingsManager::getRuntimeArguments(language), testcases->input(index),
+             Settings::SettingsManager::getTimeLimit());
+    runner.push_back(tmp);
+}
+
+void MainWindow::runTestCase(int index)
+{
+    Core::Log::i("MainWindow/runTestCase") << INFO_OF(index) << endl;
+    killProcesses();
+    testcases->clearOutput();
+    log.clear();
+
+    if (!QStringList({"C++", "Java", "Python"}).contains(language))
+    {
+        log.warn("Runner", "Wrong language, please set the language");
+        return;
+    }
+
+    run(index);
 }
 
 void MainWindow::loadTests()
@@ -300,7 +319,6 @@ MainWindow::EditorStatus::EditorStatus(const QMap<QString, QVariant> &status)
 {
     Core::Log::i("mainwindow/editorStatus", "Invoked");
     FROMSTATUS(isLanguageSet).toInt();
-    FROMSTATUS(isHideAC).toInt();
     FROMSTATUS(filePath).toString();
     FROMSTATUS(savedText).toString();
     FROMSTATUS(problemURL).toString();
@@ -315,6 +333,7 @@ MainWindow::EditorStatus::EditorStatus(const QMap<QString, QVariant> &status)
     FROMSTATUS(input).toStringList();
     FROMSTATUS(expected).toStringList();
     FROMSTATUS(customCheckers).toStringList();
+    FROMSTATUS(testcasesIsShow).toList();
 }
 #undef FROMSTATUS
 
@@ -324,7 +343,6 @@ QMap<QString, QVariant> MainWindow::EditorStatus::toMap() const
     Core::Log::i("mainwindow/toMap", "Invoked");
     QMap<QString, QVariant> status;
     TOSTATUS(isLanguageSet);
-    TOSTATUS(isHideAC);
     TOSTATUS(filePath);
     TOSTATUS(savedText);
     TOSTATUS(problemURL);
@@ -339,6 +357,7 @@ QMap<QString, QVariant> MainWindow::EditorStatus::toMap() const
     TOSTATUS(input);
     TOSTATUS(expected);
     TOSTATUS(customCheckers);
+    TOSTATUS(testcasesIsShow);
     return status;
 }
 #undef TOSTATUS
@@ -349,7 +368,6 @@ MainWindow::EditorStatus MainWindow::toStatus(bool simple) const
     EditorStatus status;
 
     status.isLanguageSet = isLanguageSet;
-    status.isHideAC = testcases->getHideAC();
     status.filePath = filePath;
     status.problemURL = problemURL;
     status.language = language;
@@ -366,6 +384,8 @@ MainWindow::EditorStatus MainWindow::toStatus(bool simple) const
         status.verticalScrollbarValue = editor->verticalScrollBar()->value();
         status.input = testcases->inputs();
         status.expected = testcases->expecteds();
+        for (int i = 0; i < testcases->count(); ++i)
+            status.testcasesIsShow.push_back(testcases->isShow(i));
     }
 
     return status;
@@ -380,7 +400,6 @@ void MainWindow::loadStatus(const EditorStatus &status, bool simple)
     untitledIndex = status.untitledIndex;
     testcases->addCustomCheckers(status.customCheckers);
     testcases->setCheckerIndex(status.checkerIndex);
-    testcases->setHideAC(status.isHideAC);
 
     Core::Log::i("mainwindow/loadStatus") << INFO_OF(simple) << ' ' << INFO_OF(status.filePath) << endl;
 
@@ -397,6 +416,8 @@ void MainWindow::loadStatus(const EditorStatus &status, bool simple)
         editor->horizontalScrollBar()->setValue(status.horizontalScrollBarValue);
         editor->verticalScrollBar()->setValue(status.verticalScrollbarValue);
         testcases->loadStatus(status.input, status.expected);
+        for (int i = 0; i < status.testcasesIsShow.count() && i < testcases->count(); ++i)
+            testcases->setShow(i, status.testcasesIsShow[i].toBool());
     }
     else if (!status.filePath.isEmpty())
     {

@@ -52,10 +52,11 @@ class MainWindow : public QMainWindow
   public:
     struct EditorStatus
     {
-        bool isLanguageSet, isHideAC;
+        bool isLanguageSet;
         QString filePath, savedText, problemURL, editorText, language;
         int editorCursor, editorAnchor, horizontalScrollBarValue, verticalScrollbarValue, untitledIndex, checkerIndex;
         QStringList input, expected, customCheckers;
+        QList<QVariant> testcasesIsShow;
 
         EditorStatus(){};
 
@@ -135,6 +136,8 @@ class MainWindow : public QMainWindow
 
     void updateChecker();
 
+    void runTestCase(int index);
+
   signals:
     void editorFileChanged();
     void editorTextChanged(MainWindow *window);
@@ -193,6 +196,7 @@ class MainWindow : public QMainWindow
     void setupCore();
     void compile();
     void run();
+    void run(int index);
     void loadTests();
     void saveTests(bool safe);
     void setCFToolsUI();

@@ -20,10 +20,12 @@
 
 #include "Core/Checker.hpp"
 #include "Core/MessageLogger.hpp"
+#include <QCheckBox>
 #include <QComboBox>
 #include <QFileInfo>
 #include <QHBoxLayout>
 #include <QLabel>
+#include <QMenu>
 #include <QPlainTextEdit>
 #include <QPropertyAnimation>
 #include <QPushButton>
@@ -68,12 +70,15 @@ class TestCase : public QWidget
     void setID(int index);
     void setVerdict(Core::Checker::Verdict verdict);
     Core::Checker::Verdict verdict() const;
+    void setShow(bool show);
+    bool isShow() const;
 
   signals:
     void deleted(TestCase *widget);
+    void requestRun(int index);
 
   private slots:
-    void on_deleteButton_clicked();
+    void on_showCheckBox_toggled(bool checked);
     void on_loadInputButton_clicked();
     void on_diffButton_clicked();
     void on_loadExpectedButton_clicked();
@@ -81,10 +86,11 @@ class TestCase : public QWidget
   private:
     QHBoxLayout *mainLayout = nullptr, *inputUpLayout = nullptr, *outputUpLayout = nullptr, *expectedUpLayout = nullptr;
     QVBoxLayout *inputLayout = nullptr, *outputLayout = nullptr, *expectedLayout = nullptr;
+    QCheckBox *showCheckBox = nullptr;
     QLabel *inputLabel = nullptr, *outputLabel = nullptr, *expectedLabel = nullptr;
-    QPushButton *deleteButton = nullptr, *loadInputButton = nullptr, *diffButton = nullptr,
-                *loadExpectedButton = nullptr;
+    QPushButton *moreButton = nullptr, *loadInputButton = nullptr, *diffButton = nullptr, *loadExpectedButton = nullptr;
     TestCaseEdit *inputEdit = nullptr, *outputEdit = nullptr, *expectedEdit = nullptr;
+    QMenu *moreMenu;
     MessageLogger *log;
     Core::Checker::Verdict currentVerdict = Core::Checker::UNKNOWN;
     int id;
@@ -118,19 +124,18 @@ class TestCases : public QWidget
     QStringList customCheckers() const;
     QString checkerText() const;
     Core::Checker::CheckerType checkerType() const;
-    void setHideAC(bool value);
-    bool getHideAC() const;
+    void setShow(int index, bool show);
+    bool isShow(int index) const;
 
   public slots:
     void setVerdict(int index, Core::Checker::Verdict verdict);
 
   signals:
     void checkerChanged();
+    void requestRun(int index);
 
   private slots:
-    void on_hideACButton_clicked();
     void on_addButton_clicked();
-    void on_clearButton_clicked();
     void on_addCheckerButton_clicked();
     void onChildDeleted(TestCase *widget);
 
@@ -138,14 +143,14 @@ class TestCases : public QWidget
     static const int MAX_NUMBER_OF_TESTCASES = 100;
     QVBoxLayout *mainLayout = nullptr, *scrollAreaLayout = nullptr;
     QHBoxLayout *titleLayout = nullptr, *checkerLayout = nullptr;
-    QPushButton *hideACButton = nullptr, *addButton = nullptr, *clearButton = nullptr, *addCheckerButton = nullptr;
+    QPushButton *addButton = nullptr, *moreButton = nullptr, *addCheckerButton = nullptr;
+    QMenu *moreMenu = nullptr;
     QComboBox *checkerComboBox = nullptr;
     QScrollArea *scrollArea = nullptr;
     QWidget *scrollAreaWidget = nullptr;
     QLabel *label = nullptr, *verdicts = nullptr, *checkerLabel = nullptr;
     QList<TestCase *> testcases;
     MessageLogger *log;
-    bool isHideAC = false;
     bool choosingChecker = false;
 
     void updateVerdicts();
