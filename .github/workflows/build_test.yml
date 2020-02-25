@@ -226,7 +226,7 @@ jobs:
       if: matrix.config.os == 'macos-latest' && startsWith(github.ref, 'refs/tags') && (matrix.qt_version == '5.12.7')
       uses: softprops/action-gh-release@v1
       with:
-        prerelease: ${{ endsWith(github.ref, 'beta') }}
+        draft: true
         files: build/CP_Editor-${{ steps.get_version.outputs.VERSION }}-x64.dmg
         name: CP Editor ${{ steps.get_version.outputs.VERSION }}
       env:
@@ -251,7 +251,7 @@ jobs:
       if: matrix.config.os == 'windows-latest' && startsWith(github.ref, 'refs/tags') && (matrix.qt_version == '5.12.7')
       uses: softprops/action-gh-release@v1
       with:
-        prerelease: ${{ endsWith(github.ref, 'beta') }}
+        draft: true
         files: CP_Editor-${{ steps.get_version.outputs.VERSION }}-x64-setup.exe
         name: CP Editor ${{ steps.get_version.outputs.VERSION }}
       env:

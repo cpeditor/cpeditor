@@ -48,7 +48,7 @@ jobs:
     - name: Release
       uses: softprops/action-gh-release@v1
       with:
-        prerelease: ${{ endsWith(github.ref, 'beta') }}
+        draft: true
         files: build/CP_Editor-${{ steps.get_version.outputs.VERSION }}-x86_64.AppImage
         name: CP Editor ${{ steps.get_version.outputs.VERSION }}
       env:

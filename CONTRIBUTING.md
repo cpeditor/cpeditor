@@ -40,6 +40,7 @@ Please open an issue (describe the feature/bug like normal issues, and say that 
 - Keep the settings file backward compatible all the time.
 - Windows, Linux and Mac OS should be supported.
 - Both light/dark system themes should be supported.
+- Follow [VERSIONING.md](VERSIONING.md) to make releases and choose branches for opening pull requests.
 - Everyone should obey the [Code of Conduct](CODE_OF_CONDUCT.md) in order to build a harassment-free community.
 
 > There may be clang-format-6 only for Ubuntu 18.04, you can read [this blog](http://mickey-happygolucky.hatenablog.com/entry/2020/01/06/133319) for how to install clang-format-9 on Ubuntu 18.04.
