@@ -510,10 +510,10 @@ void AppWindow::on_actionAbout_triggered()
 {
     Core::Log::i("appwindow/on_actionAbout_triggered", "Invoked");
     QMessageBox::about(this, "About CP Editor " APP_VERSION,
-                       "<p><b>CP Editor</b> is a native Qt-based Code Editor. It's specially designed "
-                       "for competitive programming, unlike other editors/IDEs which are mainly for developers. It "
-                       "helps you focus on your coding and automates the compilation, executing and testing. It even "
-                       "fetches test cases for you from webpages and submits codes on Codeforces!</p>"
+                       "<p><b>CP Editor</b> is a native Qt-based code editor. It's specially designed for competitive "
+                       "programming, unlike other editors/IDEs which are mainly for developers. It helps you focus on "
+                       "your algorithm and automates the compilation, executing and testing. It even fetches test "
+                       "cases for you from different platforms and submits solutions to Codeforces!</p>"
                        "<p>Copyright (C) 2019-2020 Ashar Khan &lt;ashar786khan@gmail.com&gt;</p>"
                        "<p>This is free software; see the source for copying conditions. There is NO warranty; not "
                        "even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. The source code for CP Editor is "
