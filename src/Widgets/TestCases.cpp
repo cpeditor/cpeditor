@@ -364,6 +364,8 @@ void TestCase::on_diffButton_clicked()
             QString text = diff.text.toHtmlEscaped().replace(" ", "&nbsp;");
             if (Settings::SettingsManager::isDisplayEolnInDiff())
                 text.replace("\n", "&para;<br>");
+            else
+                text.replace("\n", "<br>");
             switch (diff.operation)
             {
             case INSERT:
