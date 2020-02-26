@@ -63,7 +63,11 @@ We update [CHANGELOG.md](CHANGELOG.md) in these cases:
 A changelog between versions should be like this:
 
 ```Markdown
-## <!-- $X.$Y.$Z for changes between PATCH versions, v$X.$Y for changes MINOR versions --> <!-- "(Beta)" here for pre-releases -->
+<!-- ## v$X.$Y for changes between MINOR versions on the master branch -->
+
+<!-- ## $X.$Y.$Z for stable releases on the version branch -->
+
+<!-- ## $X.$Y.$Z (Beta) for beta releases on the version branch -->
 
 <!-- "Nothing changed." here when releasing a stable release which is exactly the same as the latest pre-release at the beginning of a release cycle -->
 
@@ -84,12 +88,14 @@ A changelog between versions should be like this:
 ### The complete workflow of making a new release
 
 1. Additional steps for creating a new MINOR version at the beginning of a release cycle:
-   1. Create a commit on the master branch, which moves the UNRELEASED changes to "changes between MINOR versions", with `Update changelog for v$X.$Y` as the commit subject.
-   2. Create a new branch `v$X.$Y` based on the master branch.
-   3. Create a commit on the master branch, which changes the version in [CMakeLists.txt](CMakeLists.txt) to `$X.$(Y+1).0`, with `Start a new release cycle for v$X.$(Y+1)` as the commit subject.
+   1. Create a new branch `v$X.$Y` based on the master branch.
+   2. After creating the new branch, create a commit on the master branch which contains exactly the following:
+      - Change the version in [CMakeLists.txt](CMakeLists.txt) to `$X.$(Y+1).0`.
+      - Move the UNRELEASED changes to the changelog of `v$X.$Y` in [CHANGELOG.md](CHANGELOG.md).
+      - The commit subject is `Start a new release cycle for v$X.$(Y+1)`.
 2. Create a commit on the version branch which contains exactly the following:
    - Change the version in [CMakeLists.txt](CMakeLists.txt) to `$X.$Y.$Z`.
-   - For PATCH releases only: Move the UNRELEASED changes to "changes between PATCH versions" in [CHANGELOG.md](CHANGELOG.md).
+   - Move the UNRELEASED changes to the changelog of `$X.$Y.$Z` in [CHANGELOG.md](CHANGELOG.md).
    - The commit subject is `Release $X.$Y.$Z`.
 3. Tag the commit created at the step 2 as `$X.$Y.$Z`.
 4. Push both the commit and the tag.
