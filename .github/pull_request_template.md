@@ -42,3 +42,4 @@
 - [ ] These changes only fix a single bug/introduces a single feature. (Otherwise, open multiple Pull Requests instead, unless these bugs/features are closely related.)
 - [ ] The commit messages are clear and detailed. (Otherwise, use `git reset` and commit again, or use `git rebase -i` and `git commit --amend` to modify the commit messages.)
 - [ ] These changes don't remove an existing feature. (Otherwise, add an option to disable this feature instead, unless it's necessary to remove this feature.)
+- [ ] I have documented these changes in [CHANGELOG.md](https://github.com/cpeditor/cp-editor/blob/master/CHANGELOG.md), or these changes are not notable.
