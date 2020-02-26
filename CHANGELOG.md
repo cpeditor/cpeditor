@@ -10,6 +10,9 @@
 
 - The "Hide AC" button is removed. (But a similiar action is added in the "More" menu of testcases.)
 
+### Fixed
+- Show line-breaks without "¶" in the Diff Viewer when "Display new-line characters in the Diff Viewer" option is not checked. (#181)
+
 ## v6.0
 
 It's the first version after the versioning rules changed, so there's no change log before v6.0.
