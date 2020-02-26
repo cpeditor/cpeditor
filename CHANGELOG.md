@@ -10,6 +10,9 @@
 
 - The "Hide AC" button is removed. (But a similiar action is added in the "More" menu of testcases.)
 
+### Fix
+- The diff viewer shows line-breaks now.
+
 ## v6.0
 
 It's the first version after the versioning rules changed, so there's no change log before v6.0.
