@@ -9,7 +9,7 @@
  * (at your option) any later version.
  *
  * I will not be responsible if CPEditor behaves in unexpected way and
- * causes your ratings to go down and or loose any important contest.
+ * causes your ratings to go down and or lose any important contest.
  *
  * Believe Software is "Software" and it isn't immune to bugs.
  *
