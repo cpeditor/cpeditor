@@ -35,6 +35,7 @@ class CFTool : public QObject
     void submit(const QString &filePath, const QString &url, const QString &lang);
     static bool check(const QString &path);
     void updatePath(const QString &p);
+    static bool parseCfUrl(const QString &url, QString &contestId, QString &problemCode);
 
   private slots:
     void onReadReady();

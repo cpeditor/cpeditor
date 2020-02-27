@@ -5,6 +5,7 @@
 - You can show/hide each testcase, and only run the non-hidden testcases.
 - Add a drop-down menu for each testcase. You can delete a testcase / run a single testcase from it.
 - Add a drop-down menu for testcases. You can remove empty, remove all, hide AC, show all, hide all, inverse hide/show from it.
+- Add "Set Codeforces URL" in the right-click menu of tabs. You can enter the contest ID and problem code instead of the whole URL.
 
 ### Changed
 

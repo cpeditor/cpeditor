@@ -1324,11 +1324,25 @@ void AppWindow::onTabContextMenuRequested(const QPoint &pos)
             menu->addAction("Copy Problem URL",
                             [widget] { QGuiApplication::clipboard()->setText(widget->getProblemURL()); });
         }
+        menu->addAction("Set Codeforces URL", [widget, this] {
+            QString contestId, problemCode;
+            Network::CFTool::parseCfUrl(widget->getProblemURL(), contestId, problemCode);
+            bool ok = false;
+            contestId =
+                QInputDialog::getText(this, "Set CF URL", "Enter the contest ID:", QLineEdit::Normal, contestId, &ok);
+            if (ok)
+                problemCode = QInputDialog::getText(
+                    this, "Set CF URL", "Enter the problem Code (A-Z):", QLineEdit::Normal, problemCode, &ok);
+            if (ok)
+            {
+                auto url = "https://codeforces.com/contest/" + contestId + "/problem/" + problemCode;
+                widget->setProblemURL(url);
+            }
+        });
         menu->addAction("Set Problem URL", [widget, this] {
             bool ok = false;
-            auto url =
-                QInputDialog::getText(this, "Set Problem URL", "Enter the new problem URL here:", QLineEdit::Normal,
-                                      widget->getProblemURL(), &ok);
+            auto url = QInputDialog::getText(this, "Set Problem URL", "Enter the new problem URL:", QLineEdit::Normal,
+                                             widget->getProblemURL(), &ok);
             if (ok)
             {
                 if (url.isEmpty() && widget->isUntitled())

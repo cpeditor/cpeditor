@@ -58,48 +58,26 @@ void CFTool::submit(const QString &filePath, const QString &url, const QString &
         }
         else
             delete CFToolProcess;
+        CFToolProcess = nullptr;
     }
 
-    CFToolProcess = new QProcess();
-
     Core::Log::i("cftool/submit") << INFO_OF(filePath) << ", " << INFO_OF(url) << ", " INFO_OF(lang) << endl;
-    QRegularExpression regexContest(".*://codeforces.com/contest/([1-9][0-9]*)/problem/(0|[A-Z][1-9]?)");
-    auto matchContest = regexContest.match(url);
-    if (matchContest.hasMatch())
+
+    if (parseCfUrl(url, problemContestId, problemCode))
     {
-        problemContestId = matchContest.captured(1);
-        problemCode = matchContest.captured(2);
-        if (problemCode == "0")
-            problemCode = "A";
-        Core::Log::i("cftool/submit") << "contest regex matched for id " << problemContestId << " code " << problemCode
-                                      << endl;
+        lastStatus = "Unknown";
+        CFToolProcess = new QProcess();
+        CFToolProcess->setProgram(CFToolPath);
+        CFToolProcess->setArguments({"submit", problemContestId, problemCode, filePath});
+        connect(CFToolProcess, SIGNAL(readyReadStandardOutput()), this, SLOT(onReadReady()));
+        connect(CFToolProcess, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(onFinished(int)));
+        CFToolProcess->start();
+        log->info("CF Tool", "CF Tool has started");
     }
     else
     {
-        Core::Log::i("cftool/submit", "regex match fallbackt to practice");
-        QRegularExpression regexProblemSet(".*://codeforces.com/problemset/problem/([1-9][0-9]*)/([A-Z][1-9]?)");
-        auto matchProblemSet = regexProblemSet.match(url);
-        if (matchProblemSet.hasMatch())
-        {
-            problemContestId = matchProblemSet.captured(1);
-            problemCode = matchProblemSet.captured(2);
-            Core::Log::i("cftool/submit")
-                << "practice regex matched for id " << problemContestId << " code " << problemCode << endl;
-        }
-        else
-        {
-            log->error("CF Tool", "Failed to parse the problem URL " + url);
-            return;
-        }
+        log->error("CF Tool", "Failed to parse the URL [" + url + "]");
     }
-    lastStatus = "Unknown";
-    CFToolProcess->setProgram(CFToolPath);
-    CFToolProcess->setArguments({"submit", problemContestId, problemCode, filePath});
-    connect(CFToolProcess, SIGNAL(readyReadStandardOutput()), this, SLOT(onReadReady()));
-    connect(CFToolProcess, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(onFinished(int)));
-    log->info("CF Tool", "CF Tool has started");
-    CFToolProcess->start();
-    Core::Log::i("cftool/submit", "cftool has started");
 }
 
 bool CFTool::check(const QString &path)
@@ -117,6 +95,28 @@ void CFTool::updatePath(const QString &p)
 {
     Core::Log::i("cftool/updatePath") << "new path is : " << p << endl;
     CFToolPath = p;
+}
+
+bool CFTool::parseCfUrl(const QString &url, QString &contestId, QString &problemCode)
+{
+    Core::Log::i("CF Tool/parseCfUrl") << INFO_OF(url) << endl;
+    auto match = QRegularExpression(".*://codeforces.com/contest/([1-9][0-9]*)/problem/(0|[A-Z][1-9]?)").match(url);
+    if (match.hasMatch())
+    {
+        contestId = match.captured(1);
+        problemCode = match.captured(2);
+        if (problemCode == "0")
+            problemCode = "A";
+        return true;
+    }
+    match = QRegularExpression(".*://codeforces.com/problemset/problem/([1-9][0-9]*)/([A-Z][1-9]?)").match(url);
+    if (match.hasMatch())
+    {
+        contestId = match.captured(1);
+        problemCode = match.captured(2);
+        return true;
+    }
+    return false;
 }
 
 void CFTool::onReadReady()
