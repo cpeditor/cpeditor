@@ -28,7 +28,7 @@ On the version branches, we fix bugs only, no new features will be added. Releas
 
 Except for creating new version branches, all commits on a branch must be based on the branch itself. No merges except merge pull requests. (Cherry-picks are allowed.)
 
-Code-unrelated changes (e.g. issue template changes, CI changes) apply to all these three branches if possible.
+Code-unrelated changes (e.g. issue template changes, CI changes) apply to the master branch only if it's not necessary to apply to other branches.
 
 ### When to make new releases
 
