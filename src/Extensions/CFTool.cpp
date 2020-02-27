@@ -161,10 +161,10 @@ void CFTool::onFinished(int exitCode)
     {
         showToastMessage("CF Tool failed");
         log->error("CF Tool", "CF Tool finished with non-zero exit code " + QString::number(exitCode));
-        QString err = CFToolProcess->readAllStandardError();
-        if (!err.trimmed().isEmpty())
-            log->error("CF Tool", err);
     }
+    QString err = CFToolProcess->readAllStandardError();
+    if (!err.trimmed().isEmpty())
+        log->error("CF Tool", err);
 }
 
 void CFTool::showToastMessage(const QString &message)
