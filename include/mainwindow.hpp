@@ -23,7 +23,7 @@
 #include "Core/Formatter.hpp"
 #include "Core/Runner.hpp"
 #include "Core/SettingsManager.hpp"
-#include "Extensions/CFTools.hpp"
+#include "Extensions/CFTool.hpp"
 #include "Extensions/CompanionServer.hpp"
 #include "Telemetry/UpdateNotifier.hpp"
 #include "Widgets/TestCases.hpp"
@@ -187,7 +187,7 @@ class MainWindow : public QMainWindow
     bool reloading = false;
 
     QPushButton *submitToCodeforces = nullptr;
-    Network::CFTools *cftools = nullptr;
+    Network::CFTool *cftool = nullptr;
 
     TestCases *testcases = nullptr;
 
@@ -199,7 +199,7 @@ class MainWindow : public QMainWindow
     void run(int index);
     void loadTests();
     void saveTests(bool safe);
-    void setCFToolsUI();
+    void setCFToolUI();
     void setText(const QString &text, bool keep = false);
     void updateWatcher();
     void loadFile(const QString &loadPath);

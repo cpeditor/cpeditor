@@ -66,8 +66,8 @@ MainWindow::~MainWindow()
     Core::Log::i("mainwindow/destoryed", "Invoked");
     killProcesses();
 
-    if (cftools != nullptr)
-        delete cftools;
+    if (cftool != nullptr)
+        delete cftool;
     if (tmpDir != nullptr)
         delete tmpDir;
 
@@ -211,13 +211,13 @@ void MainWindow::saveTests(bool safe)
         testcases->save(filePath, safe);
 }
 
-void MainWindow::setCFToolsUI()
+void MainWindow::setCFToolUI()
 {
-    Core::Log::i("mainwindow/setCFToolsUI", "Invoked");
+    Core::Log::i("mainwindow/setCFToolUI", "Invoked");
     if (submitToCodeforces == nullptr)
     {
         submitToCodeforces = new QPushButton("Submit", this);
-        cftools = new Network::CFTools(cftoolPath, &log);
+        cftool = new Network::CFTool(cftoolPath, &log);
         ui->compile_and_run_buttons->addWidget(submitToCodeforces);
         connect(submitToCodeforces, &QPushButton::clicked, this, [this] {
             auto response = QMessageBox::warning(
@@ -229,15 +229,18 @@ void MainWindow::setCFToolsUI()
             if (response == QMessageBox::Yes)
             {
                 if (saveTemp("CF Tool Saver"))
-                    cftools->submit(tmpPath(), problemURL, language);
+                {
+                    log.clear();
+                    cftool->submit(tmpPath(), problemURL, language);
+                }
             }
         });
     }
-    if (!Network::CFTools::check(cftoolPath))
+    if (!Network::CFTool::check(cftoolPath))
     {
         submitToCodeforces->setEnabled(false);
-        log.error("CFTools", "You will not be able to submit code to Codeforces because CFTools is not installed or is "
-                             "not on SYSTEM PATH. You can set it manually in settings.");
+        log.error("CFTool", "You will not be able to submit code to Codeforces because CFTool is not installed or is "
+                            "not on SYSTEM PATH. You can set it manually in settings.");
     }
 }
 
@@ -304,7 +307,7 @@ void MainWindow::setProblemURL(const QString &url)
     Core::Log::i("mainwindow/setProblemURL") << "url : " << url << endl;
     problemURL = url;
     if (problemURL.contains("codeforces.com"))
-        setCFToolsUI();
+        setCFToolUI();
     emit editorFileChanged();
 }
 
@@ -458,9 +461,9 @@ void MainWindow::applySettings(bool shouldPerformDigonistic)
 
     cftoolPath = Settings::SettingsManager::getCFPath();
 
-    if (cftools != nullptr && Network::CFTools::check(cftoolPath))
+    if (cftool != nullptr && Network::CFTool::check(cftoolPath))
     {
-        cftools->updatePath(cftoolPath);
+        cftool->updatePath(cftoolPath);
         if (submitToCodeforces != nullptr)
             submitToCodeforces->setEnabled(true);
     }

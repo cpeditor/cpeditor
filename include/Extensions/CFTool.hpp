@@ -15,8 +15,8 @@
  *
  */
 
-#ifndef CFTOOLS_HPP
-#define CFTOOLS_HPP
+#ifndef CFTOOL_HPP
+#define CFTOOL_HPP
 
 #include "Core/MessageLogger.hpp"
 #include <QProcess>
@@ -25,26 +25,30 @@
 
 namespace Network
 {
-class CFTools : public QObject
+class CFTool : public QObject
 {
     Q_OBJECT
 
   public:
-    CFTools(const QString &path, MessageLogger *logger);
-    ~CFTools();
+    CFTool(const QString &path, MessageLogger *logger);
+    ~CFTool();
     void submit(const QString &filePath, const QString &url, const QString &lang);
     static bool check(const QString &path);
-
     void updatePath(const QString &p);
+
   private slots:
     void onReadReady();
+    void onFinished(int exitCode);
 
   private:
+    void showToastMessage(const QString &message);
+
+    QString problemContestId, problemCode, lastStatus;
     QProcess *CFToolProcess = nullptr;
     QSystemTrayIcon *icon = nullptr;
     MessageLogger *log;
-    QString path;
+    QString CFToolPath;
 };
 } // namespace Network
 
-#endif // CFTOOLS_HPP
+#endif // CFTOOL_HPP

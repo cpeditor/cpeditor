@@ -54,10 +54,10 @@ add_executable(CPEditor
     src/Widgets/TestCases.cpp
 
     include/Extensions/CompanionServer.hpp
-    include/Extensions/CFTools.hpp
+    include/Extensions/CFTool.hpp
     include/Extensions/EditorTheme.hpp
     src/Extensions/CompanionServer.cpp
-    src/Extensions/CFTools.cpp
+    src/Extensions/CFTool.cpp
     src/Extensions/EditorTheme.cpp
 
     include/mainwindow.hpp
