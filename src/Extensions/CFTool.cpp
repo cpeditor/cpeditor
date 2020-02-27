@@ -135,9 +135,9 @@ void CFTool::onReadReady()
                 response.contains("status: Pretests Passed"))
                 log->message("CF Tool", shortStatus, "green");
             else if (response.contains("status: Running"))
-                log->error("CF Tool", shortStatus);
-            else
                 log->info("CF Tool", shortStatus);
+            else
+                log->error("CF Tool", shortStatus);
         }
     }
     else if (!response.trimmed().isEmpty())
