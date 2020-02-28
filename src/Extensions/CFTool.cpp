@@ -28,6 +28,8 @@ CFTool::CFTool(const QString &path, MessageLogger *logger) : CFToolPath(path)
     Core::Log::i("cftool/constructed") << "path is : " << path << " is logger null " << (logger == nullptr) << endl;
     log = logger;
     icon = new QSystemTrayIcon();
+    icon->setIcon(QIcon(":/icon.ico"));
+    icon->show();
 }
 
 CFTool::~CFTool()
@@ -170,9 +172,7 @@ void CFTool::onFinished(int exitCode)
 
 void CFTool::showToastMessage(const QString &message)
 {
-    icon->show();
     icon->showMessage("Contest " + problemContestId + " Problem " + problemCode, message);
-    icon->hide();
 }
 
 } // namespace Network

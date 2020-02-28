@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/">
+    <file>icon.ico</file>
     <file>styles/drakula.xml</file>
 	<file>styles/monkai.xml</file>
 	<file>styles/solarised.xml</file>
