@@ -65,7 +65,7 @@ class MainWindow : public QMainWindow
         QMap<QString, QVariant> toMap() const;
     };
 
-    explicit MainWindow(const QString &fileOpen, int index = 0, QWidget *parent = nullptr);
+    explicit MainWindow(const QString &fileOpen, int index, QWidget *parent);
     ~MainWindow() override;
 
     int getUntitledIndex() const;
@@ -142,6 +142,7 @@ class MainWindow : public QMainWindow
     void editorFileChanged();
     void editorTextChanged(MainWindow *window);
     void confirmTriggered(MainWindow *widget);
+    void requestToastMessage(const QString &head, const QString &body);
 
   private:
     enum SaveMode

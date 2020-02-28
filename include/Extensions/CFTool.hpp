@@ -21,7 +21,6 @@
 #include "Core/MessageLogger.hpp"
 #include <QProcess>
 #include <QRegularExpression>
-#include <QSystemTrayIcon>
 
 namespace Network
 {
@@ -37,18 +36,20 @@ class CFTool : public QObject
     void updatePath(const QString &p);
     static bool parseCfUrl(const QString &url, QString &contestId, QString &problemCode);
 
+  signals:
+    void requestToastMessage(const QString &head, const QString &body);
+
   private slots:
     void onReadReady();
     void onFinished(int exitCode);
 
   private:
-    void showToastMessage(const QString &message);
-
     QString problemContestId, problemCode, lastStatus;
     QProcess *CFToolProcess = nullptr;
-    QSystemTrayIcon *icon = nullptr;
     MessageLogger *log;
     QString CFToolPath;
+
+    void showToastMessage(const QString &message);
 };
 } // namespace Network
 

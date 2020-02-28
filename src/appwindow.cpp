@@ -179,6 +179,10 @@ void AppWindow::setConnections()
     connect(preferenceWindow, SIGNAL(settingsApplied()), this, SLOT(onSettingsApplied()));
 
     connect(server, &Network::CompanionServer::onRequestArrived, this, &AppWindow::onIncomingCompanionRequest);
+
+    connect(trayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)), this,
+            SLOT(onTrayIconActivated(QSystemTrayIcon::ActivationReason)));
+    connect(trayIcon, SIGNAL(messageClicked()), this, SLOT(showOnTop()));
 }
 
 void AppWindow::allocate()
@@ -196,6 +200,15 @@ void AppWindow::allocate()
 
     timer->setInterval(3000);
     timer->setSingleShot(false);
+
+    trayIconMenu = new QMenu();
+    trayIconMenu->addAction("Show Main Window", this, SLOT(showOnTop()));
+    trayIconMenu->addAction("About", this, SLOT(on_actionAbout_triggered()));
+    trayIconMenu->addAction("Quit", this, SLOT(on_actionQuit_triggered()));
+    trayIcon = new QSystemTrayIcon();
+    trayIcon->setIcon(QIcon(":/icon.ico"));
+    trayIcon->setContextMenu(trayIconMenu);
+    trayIcon->show();
 }
 
 void AppWindow::applySettings()
@@ -323,10 +336,12 @@ void AppWindow::openTab(const QString &path)
         }
     }
 
-    auto fsp = new MainWindow(path, getNewUntitledIndex());
+    auto fsp = new MainWindow(path, getNewUntitledIndex(), this);
     connect(fsp, SIGNAL(confirmTriggered(MainWindow *)), this, SLOT(on_confirmTriggered(MainWindow *)));
     connect(fsp, SIGNAL(editorFileChanged()), this, SLOT(onEditorFileChanged()));
     connect(fsp, SIGNAL(editorTextChanged(MainWindow *)), this, SLOT(onEditorTextChanged(MainWindow *)));
+    connect(fsp, SIGNAL(requestToastMessage(const QString &, const QString &)), trayIcon,
+            SLOT(showMessage(const QString &, const QString &)));
 
     QString lang = Settings::SettingsManager::getDefaultLanguage();
 
@@ -466,19 +481,25 @@ void AppWindow::saveEditorStatus(bool loadFromFile)
 
 bool AppWindow::quit()
 {
+    bool ret = false;
     if (Settings::SettingsManager::isUseHotExit())
     {
         Core::Log::i("appwindow/quit", "Using hotexit");
         Settings::SettingsManager::setHotExitLoadFromFile(false);
         saveEditorStatus(false);
-        return true;
+        ret = true;
     }
     else
     {
         Core::Log::i("appwindow/quit", "closeAll() called without hotExit");
         on_actionClose_All_triggered();
-        return ui->tabWidget->count() == 0;
+        ret = ui->tabWidget->count() == 0;
     }
+    // The tray icon is considered as a visible window, if it is not hidden, even if the app window is closed,
+    // the application won't exit.
+    if (ret)
+        trayIcon->hide();
+    return ret;
 }
 
 int AppWindow::getNewUntitledIndex()
@@ -1389,4 +1410,17 @@ void AppWindow::on_actionClear_Logs_triggered()
     {
         currentWindow()->getLogger()->info("EventLogger", "All logs except for current session has been deleted");
     }
+}
+
+void AppWindow::showOnTop()
+{
+    setWindowState((windowState() & ~Qt::WindowMinimized) | Qt::WindowActive);
+    activateWindow();
+    raise();
+}
+
+void AppWindow::onTrayIconActivated(QSystemTrayIcon::ActivationReason reason)
+{
+    if (reason == QSystemTrayIcon::Trigger)
+        showOnTop();
 }

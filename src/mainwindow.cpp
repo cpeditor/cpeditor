@@ -218,6 +218,8 @@ void MainWindow::setCFToolUI()
     {
         submitToCodeforces = new QPushButton("Submit", this);
         cftool = new Network::CFTool(cftoolPath, &log);
+        connect(cftool, SIGNAL(requestToastMessage(const QString &, const QString &)), this,
+                SIGNAL(requestToastMessage(const QString &, const QString &)));
         ui->compile_and_run_buttons->addWidget(submitToCodeforces);
         connect(submitToCodeforces, &QPushButton::clicked, this, [this] {
             auto response = QMessageBox::warning(

@@ -24,6 +24,7 @@
 #include "Telemetry/UpdateNotifier.hpp"
 #include "mainwindow.hpp"
 #include "preferencewindow.hpp"
+#include <QSystemTrayIcon>
 #include <findreplacedialog.h>
 
 namespace Ui
@@ -147,6 +148,10 @@ class AppWindow : public QMainWindow
 
     void on_actionClear_Logs_triggered();
 
+    void showOnTop();
+
+    void onTrayIconActivated(QSystemTrayIcon::ActivationReason reason);
+
   private:
     Ui::AppWindow *ui;
     MessageLogger *activeLogger = nullptr;
@@ -157,6 +162,8 @@ class AppWindow : public QMainWindow
     PreferenceWindow *preferenceWindow = nullptr;
     Network::CompanionServer *server;
     FindReplaceDialog *findReplaceDialog = nullptr;
+    QSystemTrayIcon *trayIcon = nullptr;
+    QMenu *trayIconMenu = nullptr;
 
     void setConnections();
     void allocate();

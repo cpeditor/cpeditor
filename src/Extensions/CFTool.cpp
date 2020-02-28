@@ -27,9 +27,6 @@ CFTool::CFTool(const QString &path, MessageLogger *logger) : CFToolPath(path)
 {
     Core::Log::i("cftool/constructed") << "path is : " << path << " is logger null " << (logger == nullptr) << endl;
     log = logger;
-    icon = new QSystemTrayIcon();
-    icon->setIcon(QIcon(":/icon.ico"));
-    icon->show();
 }
 
 CFTool::~CFTool()
@@ -39,11 +36,6 @@ CFTool::~CFTool()
     {
         Core::Log::i("cftool/destructed", "deleting process pointer");
         delete CFToolProcess;
-    }
-    if (icon != nullptr)
-    {
-        Core::Log::i("cftool/destructed", "deleting icon pointer");
-        delete icon;
     }
 }
 
@@ -172,7 +164,7 @@ void CFTool::onFinished(int exitCode)
 
 void CFTool::showToastMessage(const QString &message)
 {
-    icon->showMessage("Contest " + problemContestId + " Problem " + problemCode, message);
+    emit requestToastMessage("Contest " + problemContestId + " Problem " + problemCode, message);
 }
 
 } // namespace Network
