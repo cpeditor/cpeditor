@@ -40,6 +40,8 @@ AppWindow::AppWindow(bool noHotExit, QWidget *parent) : QMainWindow(parent), ui(
     allocate();
     setConnections();
 
+    setWindowIcon(QIcon(":/icon.ico"));
+
     if (Settings::SettingsManager::isCheckUpdateOnStartup())
         updater->checkUpdate();
 

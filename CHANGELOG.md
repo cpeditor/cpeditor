@@ -8,6 +8,7 @@
 - Add "Set Codeforces URL" in the right-click menu of tabs. You can enter the contest ID and problem code instead of the whole URL.
 - Warn when submitting to CF and the problem code is 0.
 - A system-wide tray icon.
+- Windows icon for all OSs.
 
 ### Changed
 
