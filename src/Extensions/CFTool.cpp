@@ -65,6 +65,12 @@ void CFTool::submit(const QString &filePath, const QString &url, const QString &
 
     if (parseCfUrl(url, problemContestId, problemCode))
     {
+        if (problemCode == "0")
+        {
+            problemCode = "A";
+            log->warn("CF Tool", "The problem code is 0, now use A automatically. If the actual problem code is not A, "
+                                 "please set the problem code manually in the right-click menu of the current tab.");
+        }
         lastStatus = "Unknown";
         CFToolProcess = new QProcess();
         CFToolProcess->setProgram(CFToolPath);
@@ -105,8 +111,6 @@ bool CFTool::parseCfUrl(const QString &url, QString &contestId, QString &problem
     {
         contestId = match.captured(1);
         problemCode = match.captured(2);
-        if (problemCode == "0")
-            problemCode = "A";
         return true;
     }
     match = QRegularExpression(".*://codeforces.com/problemset/problem/([1-9][0-9]*)/([A-Z][1-9]?)").match(url);
