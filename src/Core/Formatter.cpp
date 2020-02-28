@@ -121,7 +121,7 @@ void Formatter::format(QCodeEditor *editor, const QString &filePath, const QStri
     if (!Util::saveFile(tmpDir.filePath(tmpName), editor->toPlainText(), "Formatter", true, log))
         return;
 
-    Core::Log::i("formatter/format") << "Editor content is : \n" << editor->toPlainText();
+    Core::Log::i("formatter/format") << "Editor content is : \n" << editor->toPlainText() << endl;
 
     if (!Util::saveFile(tmpDir.filePath(".clang-format"), style, "Formatter", true, log))
         return;
