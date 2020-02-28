@@ -11,8 +11,10 @@
 
 - The "Hide AC" button is removed. (But a similiar action is added in the "More" menu of testcases.)
 - Submitting to CF is enhanced. Now empty messages are not shown, some wrong verdicts are fixed, toast messages are shown only once per run. Some small bugs are also fixed.
+- Now there's only one Diff Viewer per testcase. The output and expected will update automatically after each run. When pressing the diff button, the output and expected will update and the Diff Viewer will show and raise.
 
 ### Fixed
+
 - Show line-breaks without "¶" in the Diff Viewer when "Display new-line characters in the Diff Viewer" option is not checked. (#181)
 
 ## v6.0

@@ -17,12 +17,8 @@
 
 #include "Widgets/TestCase.hpp"
 #include "Core/EventLogger.hpp"
-#include "Core/SettingsManager.hpp"
-#include "diff_match_patch.h"
 #include <QFileDialog>
-#include <QMainWindow>
 #include <QMessageBox>
-#include <QScrollBar>
 #include <Util.hpp>
 
 TestCase::TestCase(int index, MessageLogger *logger, QWidget *parent, const QString &in, const QString &exp)
@@ -48,6 +44,7 @@ TestCase::TestCase(int index, MessageLogger *logger, QWidget *parent, const QStr
     outputEdit = new TestCaseEdit(false);
     expectedEdit = new TestCaseEdit(true, exp);
     moreMenu = new QMenu();
+    diffViewer = new DiffViewer(this);
 
     setID(index);
     outputEdit->setReadOnly(true);
@@ -114,6 +111,7 @@ TestCase::TestCase(int index, MessageLogger *logger, QWidget *parent, const QStr
     connect(loadInputButton, SIGNAL(clicked()), this, SLOT(on_loadInputButton_clicked()));
     connect(diffButton, SIGNAL(clicked()), SLOT(on_diffButton_clicked()));
     connect(loadExpectedButton, SIGNAL(clicked()), this, SLOT(on_loadExpectedButton_clicked()));
+    connect(diffViewer, SIGNAL(toLongForHtml()), this, SLOT(onToLongForHtml()));
 
     Core::Log::i("testcase/constructed", "signals have been attached");
 }
@@ -130,6 +128,9 @@ void TestCase::setOutput(const QString &text)
 
     outputEdit->modifyText(text);
     outputEdit->startAnimation();
+
+    if (!diffViewer->isHidden())
+        diffViewer->setText(output(), expected());
 }
 
 void TestCase::setExpected(const QString &text)
@@ -282,90 +283,9 @@ void TestCase::on_loadInputButton_clicked()
 void TestCase::on_diffButton_clicked()
 {
     Core::Log::i("testcase/on_diffButton_clicked", "invoked");
-    auto window = new QMainWindow(this);
-    auto widget = new QWidget(window);
-    auto layout = new QHBoxLayout();
-    widget->setLayout(layout);
-    window->setCentralWidget(widget);
-    window->setWindowTitle("Diff Viewer");
-    window->resize(800, 600);
-    window->setAttribute(Qt::WA_DeleteOnClose);
-
-    auto leftLayout = new QVBoxLayout();
-    auto outputLabel = new QLabel("Output", widget);
-    leftLayout->addWidget(outputLabel);
-    auto outputEdit = new QTextEdit(widget);
-    outputEdit->setReadOnly(true);
-    outputEdit->setWordWrapMode(QTextOption::NoWrap);
-    leftLayout->addWidget(outputEdit);
-    layout->addLayout(leftLayout);
-
-    auto rightLayout = new QVBoxLayout();
-    auto expectedLabel = new QLabel("Expected", widget);
-    rightLayout->addWidget(expectedLabel);
-    auto expectedEdit = new QTextEdit(widget);
-    expectedEdit->setReadOnly(true);
-    expectedEdit->setWordWrapMode(QTextOption::NoWrap);
-    rightLayout->addWidget(expectedEdit);
-    layout->addLayout(rightLayout);
-
-    if (output().length() <= 100000 && expected().length() <= 100000)
-    {
-        Core::Log::i("testcase/on_diffButton_clicked", "less than 10^5 size of output and expected. Highlighting now");
-        diff_match_patch differ;
-        differ.Diff_EditCost = 10;
-        auto diffs = differ.diff_main(output(), expected());
-        differ.diff_cleanupEfficiency(diffs);
-
-        QString expectedHTML, outputHTML;
-        for (auto diff : diffs)
-        {
-            QString text = diff.text.toHtmlEscaped().replace(" ", "&nbsp;");
-            if (Settings::SettingsManager::isDisplayEolnInDiff())
-                text.replace("\n", "&para;<br>");
-            else
-                text.replace("\n", "<br>");
-            switch (diff.operation)
-            {
-            case INSERT:
-                expectedHTML += QString("<ins style=\"background:#8f8;\">") + text + QString("</ins>");
-                break;
-            case DELETE:
-                outputHTML += "<s style=\"background:#f88;\">" + text + "</s>";
-                break;
-            case EQUAL:
-                expectedHTML += "<span>" + text + "</span>";
-                outputHTML += "<span>" + text + "</span>";
-                break;
-            }
-        }
-        QPalette p = expectedEdit->palette();
-        p.setColor(QPalette::Base, Qt::white); // for system dark theme
-        p.setColor(QPalette::Text, Qt::black);
-        expectedEdit->setPalette(p);
-        expectedEdit->setHtml(expectedHTML);
-        outputEdit->setPalette(p);
-        outputEdit->setHtml(outputHTML);
-    }
-    else
-    {
-        QMessageBox::warning(this, "Diff Viewer", "The output/expected is too large, using plain diff.");
-        expectedEdit->setPlainText(expected());
-        outputEdit->setPlainText(output());
-    }
-
-    connect(expectedEdit->horizontalScrollBar(), SIGNAL(valueChanged(int)), outputEdit->horizontalScrollBar(),
-            SLOT(setValue(int)));
-    connect(outputEdit->horizontalScrollBar(), SIGNAL(valueChanged(int)), expectedEdit->horizontalScrollBar(),
-            SLOT(setValue(int)));
-    connect(expectedEdit->verticalScrollBar(), SIGNAL(valueChanged(int)), outputEdit->verticalScrollBar(),
-            SLOT(setValue(int)));
-    connect(outputEdit->verticalScrollBar(), SIGNAL(valueChanged(int)), expectedEdit->verticalScrollBar(),
-            SLOT(setValue(int)));
-
-    Core::Log::i("testcase/on_diffButton_clicked", "connnections established, showing diff window");
-
-    window->show();
+    diffViewer->setText(output(), expected());
+    diffViewer->show();
+    diffViewer->raise();
 }
 
 void TestCase::on_loadExpectedButton_clicked()
@@ -377,4 +297,11 @@ void TestCase::on_loadExpectedButton_clicked()
         setExpected(file.readAll());
     else
         log->warn("Tests", "Failed to load expected file " + res);
+}
+
+void TestCase::onToLongForHtml()
+{
+    log->warn("Diff Viewer[" + QString::number(id + 1) + "]", "The output/expected is longer than " +
+                                                                  QString::number(DiffViewer::MAX_CHARACTERS_FOR_HTML) +
+                                                                  " characters, use plain text diff");
 }

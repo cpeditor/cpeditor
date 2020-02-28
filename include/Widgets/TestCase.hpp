@@ -20,6 +20,7 @@
 
 #include "Core/Checker.hpp"
 #include "Core/MessageLogger.hpp"
+#include "Widgets/DiffViewer.hpp"
 #include "Widgets/TestCaseEdit.hpp"
 #include <QCheckBox>
 #include <QHBoxLayout>
@@ -60,6 +61,7 @@ class TestCase : public QWidget
     void on_loadInputButton_clicked();
     void on_diffButton_clicked();
     void on_loadExpectedButton_clicked();
+    void onToLongForHtml();
 
   private:
     QHBoxLayout *mainLayout = nullptr, *inputUpLayout = nullptr, *outputUpLayout = nullptr, *expectedUpLayout = nullptr;
@@ -68,7 +70,8 @@ class TestCase : public QWidget
     QLabel *inputLabel = nullptr, *outputLabel = nullptr, *expectedLabel = nullptr;
     QPushButton *moreButton = nullptr, *loadInputButton = nullptr, *diffButton = nullptr, *loadExpectedButton = nullptr;
     TestCaseEdit *inputEdit = nullptr, *outputEdit = nullptr, *expectedEdit = nullptr;
-    QMenu *moreMenu;
+    QMenu *moreMenu = nullptr;
+    DiffViewer *diffViewer = nullptr;
     MessageLogger *log;
     Core::Checker::Verdict currentVerdict = Core::Checker::UNKNOWN;
     int id;
