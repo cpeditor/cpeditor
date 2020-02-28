@@ -1175,7 +1175,7 @@ void AppWindow::onTabContextMenuRequested(const QPoint &pos)
     int index = ui->tabWidget->tabBar()->tabAt(pos);
     if (index != -1)
     {
-        Core::Log::i("appwindow/onTabContextMenuRequested") << "Tab index is : " << index;
+        Core::Log::i("appwindow/onTabContextMenuRequested") << "Tab index is : " << index << endl;
 
         auto widget = windowAt(index);
         auto menu = new QMenu();
