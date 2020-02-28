@@ -50,7 +50,11 @@ add_executable(CPEditor
     include/Telemetry/UpdateNotifier.hpp
     src/Telemetry/UpdateNotifier.cpp
 
+    include/Widgets/TestCaseEdit.hpp
+    include/Widgets/TestCase.hpp
     include/Widgets/TestCases.hpp
+    src/Widgets/TestCaseEdit.cpp
+    src/Widgets/TestCase.cpp
     src/Widgets/TestCases.cpp
 
     include/Extensions/CompanionServer.hpp

@@ -20,81 +20,15 @@
 
 #include "Core/Checker.hpp"
 #include "Core/MessageLogger.hpp"
-#include <QCheckBox>
+#include "Widgets/TestCase.hpp"
 #include <QComboBox>
 #include <QFileInfo>
 #include <QHBoxLayout>
 #include <QLabel>
 #include <QMenu>
-#include <QPlainTextEdit>
-#include <QPropertyAnimation>
 #include <QPushButton>
 #include <QScrollArea>
 #include <QVBoxLayout>
-
-class TestCaseEdit : public QPlainTextEdit
-{
-    Q_OBJECT
-
-  public:
-    explicit TestCaseEdit(bool autoAnimation, const QString &text, QWidget *parent = nullptr);
-    explicit TestCaseEdit(bool autoAnimation, QWidget *parent = nullptr);
-    void dragEnterEvent(QDragEnterEvent *event) override;
-    void dragMoveEvent(QDragMoveEvent *event) override;
-    void dropEvent(QDropEvent *event) override;
-    void modifyText(const QString &text);
-
-  public slots:
-    void startAnimation();
-
-  private:
-    QPropertyAnimation *animation;
-};
-
-class TestCase : public QWidget
-{
-    Q_OBJECT
-
-  public:
-    explicit TestCase(int index, MessageLogger *logger, QWidget *parent = nullptr, const QString &input = QString(),
-                      const QString &expected = QString());
-    void setInput(const QString &text);
-    void setOutput(const QString &text);
-    void setExpected(const QString &text);
-    void clearOutput();
-    QString input() const;
-    QString output() const;
-    QString expected() const;
-    void loadFromFile(const QString &pathPrefix);
-    void save(const QString &pathPrefix, bool safe);
-    void setID(int index);
-    void setVerdict(Core::Checker::Verdict verdict);
-    Core::Checker::Verdict verdict() const;
-    void setShow(bool show);
-    bool isShow() const;
-
-  signals:
-    void deleted(TestCase *widget);
-    void requestRun(int index);
-
-  private slots:
-    void on_showCheckBox_toggled(bool checked);
-    void on_loadInputButton_clicked();
-    void on_diffButton_clicked();
-    void on_loadExpectedButton_clicked();
-
-  private:
-    QHBoxLayout *mainLayout = nullptr, *inputUpLayout = nullptr, *outputUpLayout = nullptr, *expectedUpLayout = nullptr;
-    QVBoxLayout *inputLayout = nullptr, *outputLayout = nullptr, *expectedLayout = nullptr;
-    QCheckBox *showCheckBox = nullptr;
-    QLabel *inputLabel = nullptr, *outputLabel = nullptr, *expectedLabel = nullptr;
-    QPushButton *moreButton = nullptr, *loadInputButton = nullptr, *diffButton = nullptr, *loadExpectedButton = nullptr;
-    TestCaseEdit *inputEdit = nullptr, *outputEdit = nullptr, *expectedEdit = nullptr;
-    QMenu *moreMenu;
-    MessageLogger *log;
-    Core::Checker::Verdict currentVerdict = Core::Checker::UNKNOWN;
-    int id;
-};
 
 class TestCases : public QWidget
 {
