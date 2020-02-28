@@ -18,7 +18,6 @@
 #ifndef MESSAGELOGGER_HPP
 #define MESSAGELOGGER_HPP
 #include <QTextBrowser>
-#include <string>
 
 class MessageLogger
 {
