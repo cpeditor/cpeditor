@@ -128,21 +128,18 @@ void CFTool::onReadReady()
     QString response = CFToolProcess->readAll();
     Core::Log::i("cftool/onReadReady") << "\n" << INFO_OF(response) << endl;
     response.remove(QRegularExpression("\x1b\\[.. "));
-    if (!response.trimmed().isEmpty())
+    if (response.contains("status: "))
     {
-        if (response.contains("status: "))
-        {
-            auto shortStatus = response.mid(response.indexOf("status: ") + 8);
-            lastStatus = shortStatus.contains('\n') ? shortStatus.left(shortStatus.indexOf('\n')) : shortStatus;
-            Core::Log::i("cftool/showResponse") << INFO_OF(shortStatus) << endl;
-            if (response.contains("status: Happy New Year") || response.contains("status: Accepted") ||
-                response.contains("status: Pretests Passed"))
-                log->message("CF Tool", shortStatus, "green");
-            else if (response.contains("status: Running"))
-                log->info("CF Tool", shortStatus);
-            else
-                log->error("CF Tool", shortStatus);
-        }
+        auto shortStatus = response.mid(response.indexOf("status: ") + 8);
+        lastStatus = shortStatus.contains('\n') ? shortStatus.left(shortStatus.indexOf('\n')) : shortStatus;
+        Core::Log::i("cftool/showResponse") << INFO_OF(shortStatus) << endl;
+        if (response.contains("status: Happy New Year") || response.contains("status: Accepted") ||
+            response.contains("status: Pretests Passed"))
+            log->message("CF Tool", shortStatus, "green");
+        else if (response.contains("status: Running"))
+            log->info("CF Tool", shortStatus);
+        else
+            log->error("CF Tool", shortStatus);
     }
     else if (!response.trimmed().isEmpty())
     {
