@@ -1,5 +1,9 @@
 ## UNRELEASED
 
+### Added
+
+- Warn when submitting to CF and the problem code is 0.
+
 ## 6.0.2 (Beta)
 
 ### Fixed

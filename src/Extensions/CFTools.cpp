@@ -63,7 +63,11 @@ void CFTools::submit(const QString &filePath, const QString &url, const QString 
         problemContestId = matchContest.captured(1);
         problemCode = matchContest.captured(2);
         if (problemCode == "0")
+        {
             problemCode = "A";
+            log->warn("CF Tool", "The problem code is 0, now use A automatically. If the actual problem code is not A, "
+                                 "please set the problem code manually in the right-click menu of the current tab.");
+        }
         Core::Log::i("cftools/submit") << "contest regex matched for id " << problemContestId << " code " << problemCode
                                        << endl;
     }
