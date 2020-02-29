@@ -22,7 +22,6 @@
 #include <QRect>
 #include <QSettings>
 #include <QString>
-#include <string>
 
 namespace Settings
 {
