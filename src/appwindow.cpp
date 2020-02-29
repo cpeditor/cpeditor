@@ -45,7 +45,16 @@ AppWindow::AppWindow(bool noHotExit, QWidget *parent) : QMainWindow(parent), ui(
     if (Settings::SettingsManager::isCheckUpdateOnStartup())
         updater->checkUpdate();
 
+#ifdef Q_OS_WIN
+    // setWindowOpacity(0.99) when transparency should be 100 is a workaround for a strange issue on Windows
+    // The behavior: If the transparency is 100, and the window is maximized, it will resize to smaller than maximized
+    if (Settings::SettingsManager::getTransparency() < 100)
+        setWindowOpacity(Settings::SettingsManager::getTransparency() / 100.0);
+    else
+        setWindowOpacity(0.99);
+#else
     setWindowOpacity(Settings::SettingsManager::getTransparency() / 100.0);
+#endif
 
     applySettings();
     onSettingsApplied();
@@ -102,6 +111,12 @@ AppWindow::AppWindow(int depth, bool cpp, bool java, bool python, bool noHotExit
     openPaths(paths, cpp, java, python, depth);
     if (ui->tabWidget->count() == 0)
         openTab("");
+
+#ifdef Q_OS_WIN
+    // This is necessary because of setWindowOpacity(0.99) earlier
+    if (Settings::SettingsManager::getTransparency() == 100)
+        setWindowOpacity(1);
+#endif
 }
 
 AppWindow::AppWindow(bool cpp, bool java, bool python, bool noHotExit, int number, const QString &path, QWidget *parent)
@@ -120,6 +135,12 @@ AppWindow::AppWindow(bool cpp, bool java, bool python, bool noHotExit, int numbe
     openContest(path, lang, number);
     if (ui->tabWidget->count() == 0)
         openTab("");
+
+#ifdef Q_OS_WIN
+    // This is necessary because of setWindowOpacity(0.99) earlier
+    if (Settings::SettingsManager::getTransparency() == 100)
+        setWindowOpacity(1);
+#endif
 }
 
 AppWindow::~AppWindow()
