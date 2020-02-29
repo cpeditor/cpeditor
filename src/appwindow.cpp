@@ -565,6 +565,31 @@ void AppWindow::on_actionAbout_triggered()
                        "https://github.com/cpeditor/cp-editor</a>.</p>");
 }
 
+void AppWindow::on_actionAboutQt_triggered()
+{
+    Core::Log::i("AppWindow/on_actionAboutQt_triggered", "Invoked");
+    QMessageBox::aboutQt(this);
+}
+
+void AppWindow::on_actionBuildInfo_triggered()
+{
+    Core::Log::i("AppWindow/on_actionBuildInfo_triggered", "Invoked");
+    QMessageBox::about(this, "Build Info",
+                       "App version: " APP_VERSION "\n"
+                       "Git commit hash: " GIT_COMMIT_HASH "\n"
+                       "Build time: " __DATE__ " " __TIME__ "\n"
+#if defined(Q_OS_UNIX)
+                       "OS: Linux\n"
+#elif defined(Q_OS_WIN)
+                       "OS: Windows\n"
+#elif defined(Q_OS_MACOS)
+                       "OS: MacOS\n"
+#else
+                       "OS: Unknown\n"
+#endif
+    );
+}
+
 /******************* FILES SECTION *************************/
 
 void AppWindow::on_actionAutosave_triggered(bool checked)

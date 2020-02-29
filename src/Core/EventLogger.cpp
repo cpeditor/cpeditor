@@ -124,17 +124,18 @@ QString Log::platformInformation()
 {
     QString res;
     // Check https://doc.qt.io/qt-5/qsysinfo.html to know what each identifier means
-    res.append("buildABI : " + QSysInfo::buildAbi() + ", ");
-    res.append("buildCPUArchitecture : " + QSysInfo::buildCpuArchitecture() + ", ");
-    res.append("currentCPUArchitecture : " + QSysInfo::currentCpuArchitecture() + ", ");
-    res.append("kernelType : " + QSysInfo::kernelType() + ", ");
-    res.append("kernelVersion : " + QSysInfo::kernelVersion() + ", ");
-    res.append("prettyProductName : " + QSysInfo::prettyProductName() + ", ");
-    res.append("machineHostName : " + QSysInfo::machineHostName() + ", ");
-    res.append("machineUniqueId : " + QSysInfo::machineUniqueId() + ", ");
-    res.append("productType : " + QSysInfo::productType() + ", ");
-    res.append("productVersion : " + QSysInfo::productVersion() + ", ");
-    res.append("Appversion : " APP_VERSION);
+    res.append("buildABI : " + QSysInfo::buildAbi() + "\n");
+    res.append("buildCPUArchitecture : " + QSysInfo::buildCpuArchitecture() + "\n");
+    res.append("currentCPUArchitecture : " + QSysInfo::currentCpuArchitecture() + "\n");
+    res.append("kernelType : " + QSysInfo::kernelType() + "\n");
+    res.append("kernelVersion : " + QSysInfo::kernelVersion() + "\n");
+    res.append("prettyProductName : " + QSysInfo::prettyProductName() + "\n");
+    res.append("machineHostName : " + QSysInfo::machineHostName() + "\n");
+    res.append("machineUniqueId : " + QSysInfo::machineUniqueId() + "\n");
+    res.append("productType : " + QSysInfo::productType() + "\n");
+    res.append("productVersion : " + QSysInfo::productVersion() + "\n");
+    res.append("Appversion : " APP_VERSION "\n");
+    res.append("Git commit hash : " GIT_COMMIT_HASH);
     return res;
 }
 

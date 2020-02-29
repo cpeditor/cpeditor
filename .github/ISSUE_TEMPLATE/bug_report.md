@@ -22,7 +22,7 @@ assignees: ''
 **Environment**
 
 <!-- Your environment is usually important for finding the cause of the bug. -->
-<!-- You can get the CP Editor version by clicking `Help`->`About` in the GUI. -->
+<!-- You can get the CP Editor version by clicking `Help`->`Build Info` in the GUI. -->
 
  - OS: [e.g. Windows 10 / Ubuntu 18.04]
  - CP Editor Version: [e.g. 6.0.2]

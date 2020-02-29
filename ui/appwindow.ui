@@ -119,6 +119,8 @@
      <string>Help</string>
     </property>
     <addaction name="actionAbout"/>
+    <addaction name="actionAboutQt"/>
+    <addaction name="actionBuildInfo"/>
     <addaction name="actionCheck_for_updates"/>
     <addaction name="actionSupport_me"/>
    </widget>
@@ -383,6 +385,16 @@
   <action name="actionAbout">
    <property name="text">
     <string>About</string>
+   </property>
+  </action>
+  <action name="actionAboutQt">
+   <property name="text">
+    <string>About Qt</string>
+   </property>
+  </action>
+  <action name="actionBuildInfo">
+   <property name="text">
+    <string>Build Info</string>
    </property>
   </action>
   <action name="actionCheck_for_updates">

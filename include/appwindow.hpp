@@ -56,6 +56,10 @@ class AppWindow : public QMainWindow
 
     void on_actionAbout_triggered();
 
+    void on_actionAboutQt_triggered();
+
+    void on_actionBuildInfo_triggered();
+
     void on_actionAutosave_triggered(bool checked);
 
     void on_actionQuit_triggered();

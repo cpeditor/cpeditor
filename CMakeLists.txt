@@ -29,6 +29,20 @@ add_subdirectory(third_party/QtFindReplaceDialog/dialogs)
 
 configure_file(version.hpp.in ${CMAKE_BINARY_DIR}/generated/version.hpp)
 
+IF(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/.git)
+  FIND_PACKAGE(Git)
+  IF(GIT_FOUND)
+    EXECUTE_PROCESS(
+      COMMAND ${GIT_EXECUTABLE} rev-parse --short HEAD
+      WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}"
+      OUTPUT_VARIABLE "COMMIT_HASH"
+      ERROR_QUIET
+      OUTPUT_STRIP_TRAILING_WHITESPACE)
+    add_definitions(-DGIT_COMMIT_HASH="${COMMIT_HASH}")
+    MESSAGE( STATUS "Git commit hash: ${COMMIT_HASH}")
+  ENDIF(GIT_FOUND)
+ENDIF(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/.git)
+
 add_executable(CPEditor
     ${GUI_TYPE}
 
