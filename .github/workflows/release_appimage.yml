@@ -43,7 +43,7 @@ jobs:
         chmod a+x linuxdeployqt*.AppImage
         export VERSION=${{ steps.get_version.outputs.VERSION }}
         mv ../.ci/linux/default.desktop . && mv ../.ci/linux/icon.png .
-        ./linuxdeployqt*.AppImage ./CPEditor -appimage -qmake=/opt/qt512/bin/qmake
+        ./linuxdeployqt*.AppImage ./cpeditor -appimage -qmake=/opt/qt512/bin/qmake
 
     - name: Release
       uses: softprops/action-gh-release@v1

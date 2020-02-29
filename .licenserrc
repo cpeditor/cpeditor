@@ -40,7 +40,7 @@ ongoing_project=true
 # This is the name of the project, It is required and should be non-empty
 # This value is also used to write about project in the license header.
 # ========================================================
-project=CPEditor
+project=cpeditor
 # ========================================================
 
 # This is the starting year of your project

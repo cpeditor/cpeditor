@@ -1,14 +1,14 @@
 /*
  * Copyright (C) 2019-2020 Ashar Khan <ashar786khan@gmail.com>
  *
- * This file is part of CPEditor.
+ * This file is part of cpeditor.
  *
- * CPEditor is free software: you can redistribute it and/or modify
+ * cpeditor is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * I will not be responsible if CPEditor behaves in unexpected way and
+ * I will not be responsible if cpeditor behaves in unexpected way and
  * causes your ratings to go down and or lose any important contest.
  *
  * Believe Software is "Software" and it isn't immune to bugs.
@@ -437,7 +437,7 @@ void MainWindow::applyCompanion(const Network::CompanionData &data)
     {
         QString meta = data.toMetaString();
         meta.prepend("\n");
-        meta.append("Powered by CP Editor (https://github.com/cpeditor/cp-editor)");
+        meta.append("Powered by CP Editor (https://github.com/cpeditor/cpeditor)");
 
         if (language == "Python")
             meta.replace('\n', "\n# ");

@@ -1,14 +1,14 @@
 /*
  * Copyright (C) 2019-2020 Ashar Khan <ashar786khan@gmail.com>
  *
- * This file is part of CPEditor.
+ * This file is part of cpeditor.
  *
- * CPEditor is free software: you can redistribute it and/or modify
+ * cpeditor is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * I will not be responsible if CPEditor behaves in unexpected way and
+ * I will not be responsible if cpeditor behaves in unexpected way and
  * causes your ratings to go down and or lose any important contest.
  *
  * Believe Software is "Software" and it isn't immune to bugs.
@@ -561,8 +561,8 @@ void AppWindow::on_actionAbout_triggered()
                        "<p>Copyright (C) 2019-2020 Ashar Khan &lt;ashar786khan@gmail.com&gt;</p>"
                        "<p>This is free software; see the source for copying conditions. There is NO warranty; not "
                        "even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. The source code for CP Editor is "
-                       "available at <a href=\"https://github.com/cpeditor/cp-editor\"> "
-                       "https://github.com/cpeditor/cp-editor</a>.</p>");
+                       "available at <a href=\"https://github.com/cpeditor/cpeditor\"> "
+                       "https://github.com/cpeditor/cpeditor</a>.</p>");
 }
 
 void AppWindow::on_actionAboutQt_triggered()

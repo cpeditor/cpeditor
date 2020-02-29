@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.5)
 
-project(CPEditor LANGUAGES CXX VERSION 6.1.0)
+project(cpeditor LANGUAGES CXX VERSION 6.1.0)
 
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
@@ -43,7 +43,7 @@ IF(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/.git)
   ENDIF(GIT_FOUND)
 ENDIF(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/.git)
 
-add_executable(CPEditor
+add_executable(cpeditor
     ${GUI_TYPE}
 
     include/Core/Checker.hpp
@@ -110,14 +110,14 @@ include_directories("third_party/QtFindReplaceDialog")
 include_directories("include/")
 include_directories("generated/")
 
-target_link_libraries(CPEditor PRIVATE Qt5::Widgets)
-target_link_libraries(CPEditor PRIVATE Qt5::Network)
-target_link_libraries(CPEditor PRIVATE QCodeEditor)
-target_link_libraries(CPEditor PRIVATE SingleApplication)
-target_link_libraries(CPEditor PRIVATE QtFindReplaceDialog)
+target_link_libraries(cpeditor PRIVATE Qt5::Widgets)
+target_link_libraries(cpeditor PRIVATE Qt5::Network)
+target_link_libraries(cpeditor PRIVATE QCodeEditor)
+target_link_libraries(cpeditor PRIVATE SingleApplication)
+target_link_libraries(cpeditor PRIVATE QtFindReplaceDialog)
  
 if(APPLE)
-    set_target_properties(CPEditor
+    set_target_properties(cpeditor
         PROPERTIES
         MACOSX_BUNDLE TRUE
         MACOSX_BUNDLE_BUNDLE_NAME ${PROJECT_NAME}

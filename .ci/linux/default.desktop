@@ -2,6 +2,6 @@
 Type=Application
 Name=CP Editor
 Comment=Editor for Competitive Programming
-Exec=CPEditor
+Exec=cpeditor
 Icon=icon
 Categories=Development;

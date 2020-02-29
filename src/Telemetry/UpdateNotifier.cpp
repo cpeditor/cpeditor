@@ -1,14 +1,14 @@
 /*
  * Copyright (C) 2019-2020 Ashar Khan <ashar786khan@gmail.com>
  *
- * This file is part of CPEditor.
+ * This file is part of cpeditor.
  *
- * CPEditor is free software: you can redistribute it and/or modify
+ * cpeditor is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * I will not be responsible if CPEditor behaves in unexpected way and
+ * I will not be responsible if cpeditor behaves in unexpected way and
  * causes your ratings to go down and or lose any important contest.
  *
  * Believe Software is "Software" and it isn't immune to bugs.
@@ -45,7 +45,7 @@ void UpdateNotifier::checkUpdate(bool force)
 {
     Core::Log::i("updateNotifier/checkupdate") << "Forceful update : " << force << endl;
     this->force = force;
-    request.setUrl(QUrl("https://api.github.com/repos/cpeditor/cp-editor/releases"));
+    request.setUrl(QUrl("https://api.github.com/repos/cpeditor/cpeditor/releases"));
     manager->get(request);
 }
 
@@ -93,7 +93,7 @@ void UpdateNotifier::managerFinished(QNetworkReply *reply)
     QJsonDocument doc = QJsonDocument::fromJson(jsonReply.toUtf8());
 
     QJsonDocument release;
-    QString downloadUrl = "https://github.com/cpeditor/cp-editor";
+    QString downloadUrl = "https://github.com/cpeditor/cpeditor";
     bool isBeta = false;
     QString latestRelease = "0.0.0";
 

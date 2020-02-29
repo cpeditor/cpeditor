@@ -30,18 +30,18 @@ jobs:
         - {
             os: windows-latest,
             cc: "cl", cxx: "cl",
-            binary: 'CPEditor.exe',
+            binary: 'cpeditor.exe',
             environment_script: "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Auxiliary/Build/vcvars64.bat"
           }
         - {
             os: ubuntu-latest,
             cc: "gcc", cxx: "g++",
-            binary: 'CPEditor'
+            binary: 'cpeditor'
           }
         - {
             os: macos-latest,
             cc: "clang", cxx: "clang++",
-            binary: 'CPEditor.app/Contents/MacOS/CPEditor'
+            binary: 'cpeditor.app/Contents/MacOS/cpeditor'
           }
 
     steps:
@@ -205,7 +205,7 @@ jobs:
     - name: Upload Artifact
       uses: actions/upload-artifact@v1
       with:
-        name: "CPEditor-${{ matrix.config.os }}-${{ matrix.qt_version }}-${{ github.sha }}"
+        name: "cpeditor-${{ matrix.config.os }}-${{ matrix.qt_version }}-${{ github.sha }}"
         path: build/${{ matrix.config.binary }}
 
     - name: Get the version
@@ -218,9 +218,9 @@ jobs:
       if: matrix.config.os == 'macos-latest' && startsWith(github.ref, 'refs/tags') && (matrix.qt_version == '5.12.7')
       run: |
         cd build
-        ../../Qt/*/*/bin/macdeployqt CPEditor.app
-        cp ../.ci/mac/cpeditor.icns CPEditor.app/Contents/Resources
-        hdiutil create -volname CP_Editor-${{ steps.get_version.outputs.VERSION }}-x64 -srcfolder CPEditor.app -ov -format UDZO CP_Editor-${{ steps.get_version.outputs.VERSION }}-x64.dmg
+        ../../Qt/*/*/bin/macdeployqt cpeditor.app
+        cp ../.ci/mac/cpeditor.icns cpeditor.app/Contents/Resources
+        hdiutil create -volname CP_Editor-${{ steps.get_version.outputs.VERSION }}-x64 -srcfolder cpeditor.app -ov -format UDZO CP_Editor-${{ steps.get_version.outputs.VERSION }}-x64.dmg
 
     - name: Release on Mac
       if: matrix.config.os == 'macos-latest' && startsWith(github.ref, 'refs/tags') && (matrix.qt_version == '5.12.7')
@@ -243,8 +243,8 @@ jobs:
       shell: bash
       run: |
         mkdir build/out
-        mv build/CPEditor.exe build/out
-        ../Qt/*/*/bin/windeployqt.exe build/out/CPEditor.exe --no-translations
+        mv build/cpeditor.exe build/out
+        ../Qt/*/*/bin/windeployqt.exe build/out/cpeditor.exe --no-translations
         iscc .ci/win/win-setup.iss -DMyAppVersion=${{ steps.get_version.outputs.VERSION }} -DMyProjectRoot=$(pwd) -DMyOutRoot=$(pwd)/build/out
 
     - name: Release on Windows

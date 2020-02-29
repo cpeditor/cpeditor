@@ -8,8 +8,8 @@
 
 #define MyAppName "CP Editor"
 #define MyAppPublisher "Ashar Khan <coder3101>"
-#define MyAppURL "https://github.com/cpeditor/cp-editor"
-#define MyAppExeName "CPEditor.exe"
+#define MyAppURL "https://github.com/cpeditor/cpeditor"
+#define MyAppExeName "cpeditor.exe"
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application. Do not use the same AppId value in installers for other applications.
@@ -21,7 +21,7 @@ AppPublisher={#MyAppPublisher}
 AppPublisherURL={#MyAppURL}
 AppSupportURL={#MyAppURL}
 AppUpdatesURL={#MyAppURL}
-DefaultDirName={autopf}\CPEditor
+DefaultDirName={autopf}\cpeditor
 DisableProgramGroupPage=yes
 UsedUserAreasWarning=no
 LicenseFile={#MyProjectRoot}\LICENSE
@@ -41,7 +41,7 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 Name: "quicklaunchicon"; Description: "{cm:CreateQuickLaunchIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked; OnlyBelowVersion: 6.1; Check: not IsAdminInstallMode
 
 [Files]
-Source: "{#MyOutRoot}\CPEditor.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#MyOutRoot}\cpeditor.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#MyOutRoot}\bearer\*"; DestDir: "{app}\bearer\"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "{#MyOutRoot}\iconengines\*"; DestDir: "{app}\iconengines\"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "{#MyOutRoot}\imageformats\*"; DestDir: "{app}\imageformats\"; Flags: ignoreversion recursesubdirs createallsubdirs

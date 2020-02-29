@@ -2,15 +2,15 @@
 
 <img src=assets/icon.ico height="80" width="80">
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/ce0f297f31f74485b0d340949d08d605)](https://www.codacy.com/gh/cpeditor/cp-editor)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/ce0f297f31f74485b0d340949d08d605)](https://www.codacy.com/gh/cpeditor/cpeditor)
 [![Telegram Group](https://img.shields.io/badge/chat-on%20telegram-success)](https://t.me/cpeditor)
-[![Help wanted issues](https://img.shields.io/github/issues/cpeditor/cp-editor/help%20wanted)](https://github.com/cpeditor/cp-editor/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22)
+[![Help wanted issues](https://img.shields.io/github/issues/cpeditor/cpeditor/help%20wanted)](https://github.com/cpeditor/cpeditor/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22)
 
-|  type  |                           branch                            |                                                                                            build                                                                                             |                                                                           downloads                                                                            |
-| :----: | :---------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------------------------------: |
-| alpha  | [master](https://github.com/cpeditor/cp-editor/tree/master) | [![GitHub Workflow Status](https://img.shields.io/github/workflow/status/cpeditor/cp-editor/CI:%20Build%20Test/master)](https://github.com/cpeditor/cp-editor/actions?query=branch%3Amaster) |                                                                               -                                                                                |
-|  beta  |   [v6.0](https://github.com/cpeditor/cp-editor/tree/v6.0)   |   [![GitHub Workflow Status](https://img.shields.io/github/workflow/status/cpeditor/cp-editor/CI:%20Build%20Test/v6.0)](https://github.com/cpeditor/cp-editor/actions?query=branch%3Av6.0)   |        [![Downloads](https://img.shields.io/github/downloads/cpeditor/cp-editor/6.0.2/total)](https://github.com/cpeditor/cp-editor/releases/tag/6.0.2)        |
-| stable |   [v5.9](https://github.com/cpeditor/cp-editor/tree/v5.9)   |   [![GitHub Workflow Status](https://img.shields.io/github/workflow/status/cpeditor/cp-editor/CI:%20Build%20Test/v5.9)](https://github.com/cpeditor/cp-editor/actions?query=branch%3Av5.9)   | [![Downloads](https://img.shields.io/github/downloads/cpeditor/cp-editor/5.9.7-stable/total)](https://github.com/cpeditor/cp-editor/releases/tag/5.9.7-stable) |
+|  type  |                           branch                           |                                                                                           build                                                                                            |                                                                          downloads                                                                           |
+| :----: | :--------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------: |
+| alpha  | [master](https://github.com/cpeditor/cpeditor/tree/master) | [![GitHub Workflow Status](https://img.shields.io/github/workflow/status/cpeditor/cpeditor/CI:%20Build%20Test/master)](https://github.com/cpeditor/cpeditor/actions?query=branch%3Amaster) |                                                                              -                                                                               |
+|  beta  |   [v6.0](https://github.com/cpeditor/cpeditor/tree/v6.0)   |   [![GitHub Workflow Status](https://img.shields.io/github/workflow/status/cpeditor/cpeditor/CI:%20Build%20Test/v6.0)](https://github.com/cpeditor/cpeditor/actions?query=branch%3Av6.0)   |        [![Downloads](https://img.shields.io/github/downloads/cpeditor/cpeditor/6.0.2/total)](https://github.com/cpeditor/cpeditor/releases/tag/6.0.2)        |
+| stable |   [v5.9](https://github.com/cpeditor/cpeditor/tree/v5.9)   |   [![GitHub Workflow Status](https://img.shields.io/github/workflow/status/cpeditor/cpeditor/CI:%20Build%20Test/v5.9)](https://github.com/cpeditor/cpeditor/actions?query=branch%3Av5.9)   | [![Downloads](https://img.shields.io/github/downloads/cpeditor/cpeditor/5.9.7-stable/total)](https://github.com/cpeditor/cpeditor/releases/tag/5.9.7-stable) |
 
 **CP Editor** is a native Qt-based code editor. It's specially designed for competitive programming, unlike other editors/IDEs which are mainly for developers. It helps you focus on your algorithm and automates the compilation, executing and testing. It even fetches test cases for you from different platforms and submits solutions to Codeforces!
 
@@ -31,13 +31,13 @@
 
 ### Installation
 
-Head over to the [release page](https://github.com/cpeditor/cp-editor/releases) and download the binary/installer depending upon your OS.
+Head over to the [release page](https://github.com/cpeditor/cpeditor/releases) and download the binary/installer depending upon your OS.
 - Windows users can find a `setup.exe` for installation.
 - Linux users can find an `AppImage`:
   1. `chmod +x <AppImagePath>` or make it executable in GUI by right-clicking on it.
   2. Just run it, either from bash or in GUI.
 - Get the .dmg file from releases and install as you install other apps
-  > *Note: You may need to click "Yes" to access Filesystem several times. Apple may report that this application does not comes from recognised developer and prevent you from launching app. Please add an exception to the Editor from `Settings-> Security -> General`, and allow CPEditor to `run anyways`*
+  > *Note: You may need to click "Yes" to access Filesystem several times. Apple may report that this application does not comes from recognised developer and prevent you from launching app. Please add an exception to the Editor from `Settings-> Security -> General`, and allow cpeditor to `run anyways`*
 
 For Chinese users who are not convenient to download on Github, there is an [alternative download link](https://pan.wzf2000.top/s/md70l8h0) (it's not guaranteed to be up to date).
 
@@ -68,8 +68,8 @@ You can also set hotkeys for some actions manually in `Preferences`. However the
 1. Clone this repo:
 
 	```sh
-	git clone https://github.com/cpeditor/cp-editor.git
-	cd cp-editor
+	git clone https://github.com/cpeditor/cpeditor.git
+	cd cpeditor
 	git submodule init
 	git submodule update
 	```
@@ -103,19 +103,19 @@ You can also set hotkeys for some actions manually in `Preferences`. However the
 
 ### Use Artifacts
 
-If you want to use the latest version (even later than the beta release), but don't want to build from source, you can download Artifacts from [Github Actions](https://github.com/cpeditor/cp-editor/actions).
+If you want to use the latest version (even later than the beta release), but don't want to build from source, you can download Artifacts from [Github Actions](https://github.com/cpeditor/cpeditor/actions).
 
 However, it's not recommended to use Artifacts, they are more unstable than beta releases, and may be a work in progress. You should read the commit logs and even the source codes before using Artifacts.
 
-In order to run it on Windows/MacOS, you should install from [Releases](https://github.com/cpeditor/cp-editor/releases) first (usually any version is OK, unless something like DLL missing happens). On Windows, replace `CPEditor.exe` in your install folder with the Artifact. On Mac, run `cp <Artifact> CPEditor.app/Contents/MacOs`, where `CPEditor.app` is the one already installed on your machine.
+In order to run it on Windows/MacOS, you should install from [Releases](https://github.com/cpeditor/cpeditor/releases) first (usually any version is OK, unless something like DLL missing happens). On Windows, replace `cpeditor.exe` in your install folder with the Artifact. On Mac, run `cp <Artifact> cpeditor.app/Contents/MacOs`, where `cpeditor.app` is the one already installed on your machine.
 
 In order to run it on Ubuntu 18.04, you need to install Qt. Other Linux distributions may not support binaries compiled on Ubuntu 18.04.
 
 ### Contribution
 
-If you found any bugs or have any feature requests, please open an issue [here](https://github.com/cpeditor/cp-editor/issues), and don't forget to follow the issue templates. Users' responses are important for contributors to improve the project.
+If you found any bugs or have any feature requests, please open an issue [here](https://github.com/cpeditor/cpeditor/issues), and don't forget to follow the issue templates. Users' responses are important for contributors to improve the project.
 
-If you want a try on developing, you can install Qt and CMake, then fix bugs / make new features by yourself! After finishing the coding, just open a pull request [here](https://github.com/cpeditor/cp-editor/pulls). Don't worry if you are not familiar with Qt / GUI programming, Google is your friend, and Qt is a [well documented](https://doc.qt.io/) library. Don't forget to use `.clang-format` file in the root directory to format the codes.
+If you want a try on developing, you can install Qt and CMake, then fix bugs / make new features by yourself! After finishing the coding, just open a pull request [here](https://github.com/cpeditor/cpeditor/pulls). Don't worry if you are not familiar with Qt / GUI programming, Google is your friend, and Qt is a [well documented](https://doc.qt.io/) library. Don't forget to use `.clang-format` file in the root directory to format the codes.
 
 Contributions are always welcomed. Together we can build a better editor for ourselves.
 
@@ -143,4 +143,4 @@ You can join the [Telegram group](https://t.me/cpeditor) for asking quetions abo
 License
 ----
 
-[GNU General Public License Version 3.0](https://github.com/cpeditor/cp-editor/blob/master/LICENSE)
+[GNU General Public License Version 3.0](https://github.com/cpeditor/cpeditor/blob/master/LICENSE)
