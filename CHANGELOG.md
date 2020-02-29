@@ -4,6 +4,10 @@
 
 - Warn when submitting to CF and the problem code is 0.
 
+### Fixed
+
+- Fix window size issue on Windows if the transparency is 100 and the window was maximized in the last session.
+
 ## 6.0.2 (Beta)
 
 ### Fixed
