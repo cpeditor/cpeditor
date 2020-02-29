@@ -99,8 +99,8 @@ A changelog between versions should be like this:
    - The commit subject is `Release $X.$Y.$Z`.
 3. Tag the commit created at the step 2 as `$X.$Y.$Z`.
 4. Push both the commit and the tag.
-5. Edit the changelog of the Github Release, make it non-draft, and mark it as a pre-release if it is.
-6. Update badges in [README.md](README.md) on all the three branches.
+5. Edit the changelog of the GitHub Release, make it non-draft, and mark it as a pre-release if it is.
+6. Update badges in [README.md](../README.md) on all the three branches.
 
 ### Pull requests
 

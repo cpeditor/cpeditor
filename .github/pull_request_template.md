@@ -35,11 +35,11 @@
 ## Checklist
 <!--- Go over all the following points, and put an `x` in all the boxes that apply. -->
 <!--- If you're unsure about any of these, don't hesitate to ask. We're here to help! -->
-- [ ] I have read the [CONTRIBUTING](https://github.com/cpeditor/cpeditor/blob/master/CONTRIBUTING.md) document.
+- [ ] I have read the [CONTRIBUTING](https://github.com/cpeditor/cpeditor/blob/master/doc/CONTRIBUTING.md) document.
 - [ ] I have tested these changes locally, and this fixes the bug/the new feature behaves as the expectation.
 - [ ] I have used clang-format-9 and `.clang-format` file in the root directory to format my codes.
 - [ ] The settings file in the old version can be used in the new version after this change.
 - [ ] These changes only fix a single bug/introduces a single feature. (Otherwise, open multiple Pull Requests instead, unless these bugs/features are closely related.)
 - [ ] The commit messages are clear and detailed. (Otherwise, use `git reset` and commit again, or use `git rebase -i` and `git commit --amend` to modify the commit messages.)
 - [ ] These changes don't remove an existing feature. (Otherwise, add an option to disable this feature instead, unless it's necessary to remove this feature.)
-- [ ] I have documented these changes in [CHANGELOG.md](https://github.com/cpeditor/cpeditor/blob/master/CHANGELOG.md), or these changes are not notable.
+- [ ] I have documented these changes in [CHANGELOG.md](https://github.com/cpeditor/cpeditor/blob/master/doc/CHANGELOG.md), or these changes are not notable.
