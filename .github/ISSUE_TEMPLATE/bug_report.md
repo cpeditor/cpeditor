@@ -21,8 +21,8 @@ assignees: ''
 
 **Environment**
 
- - OS: [e.g. Windows 10]
- - Version: [e.g. 5.9.4]
+ - OS: [e.g. Windows 10 / Ubuntu 18.04]
+ - CP Editor Version: [e.g. 6.0.2]
 
 **Additional context**
 
