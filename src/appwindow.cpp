@@ -40,7 +40,7 @@ AppWindow::AppWindow(bool noHotExit, QWidget *parent) : QMainWindow(parent), ui(
     allocate();
     setConnections();
 
-    setWindowIcon(QIcon(":/icon.ico"));
+    setWindowIcon(QIcon(":/icon.png"));
 
     if (Settings::SettingsManager::isCheckUpdateOnStartup())
         updater->checkUpdate();
@@ -264,7 +264,7 @@ void AppWindow::allocate()
     trayIconMenu->addAction("About", this, SLOT(on_actionAbout_triggered()));
     trayIconMenu->addAction("Quit", this, SLOT(on_actionQuit_triggered()));
     trayIcon = new QSystemTrayIcon();
-    trayIcon->setIcon(QIcon(":/icon.ico"));
+    trayIcon->setIcon(QIcon(":/icon.png"));
     trayIcon->setContextMenu(trayIconMenu);
     trayIcon->show();
 }
