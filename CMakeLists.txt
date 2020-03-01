@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.5)
 
-project(CPEditor LANGUAGES CXX VERSION 6.0.2)
+project(CPEditor LANGUAGES CXX VERSION 6.0.3)
 
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
