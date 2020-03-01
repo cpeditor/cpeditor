@@ -2,7 +2,6 @@ cmake_minimum_required(VERSION 3.5)
 
 project(cpeditor LANGUAGES CXX VERSION 6.1.0)
 
-
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 set(CMAKE_AUTOUIC ON)
@@ -15,7 +14,6 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 if(WIN32)
     SET(GUI_TYPE WIN32)
 endif()
-
 
 find_package(Qt5 COMPONENTS Widgets REQUIRED)
 find_package(Qt5 COMPONENTS Network REQUIRED)
