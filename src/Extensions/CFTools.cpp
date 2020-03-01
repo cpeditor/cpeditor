@@ -120,7 +120,7 @@ void CFTools::onReadReady()
     Core::Log::i("cftools/onReadReady") << "\n" << newResponse << endl;
     auto shortStatus = newResponse.right(newResponse.size() - newResponse.indexOf("status:") - 8);
     if (newResponse.contains("status: Happy New Year") || newResponse.contains("status: Accepted") ||
-        newResponse.contains("status: Pretests Passed"))
+        newResponse.contains("status: Pretests passed"))
     {
         Core::Log::i("cftools/onReadReady") << "solution was accepted " << shortStatus << endl;
         log->message("CF Tool", shortStatus, "green");
