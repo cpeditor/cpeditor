@@ -128,7 +128,7 @@ void CFTool::onReadReady()
         lastStatus = shortStatus.contains('\n') ? shortStatus.left(shortStatus.indexOf('\n')) : shortStatus;
         Core::Log::i("cftool/showResponse") << INFO_OF(shortStatus) << endl;
         if (response.contains("status: Happy New Year") || response.contains("status: Accepted") ||
-            response.contains("status: Pretests Passed"))
+            response.contains("status: Pretests passed"))
             log->message("CF Tool", shortStatus, "green");
         else if (response.contains("status: Running"))
             log->info("CF Tool", shortStatus);
