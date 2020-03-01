@@ -4,7 +4,7 @@
 
 CP Editor is a Qt-based code editor specially designed for competitive programming.
 
-It makes your competitive coding life easier :grin: by automates many things for you.
+It makes your competitive coding life easier :grin: by automating many things for you.
 
 ## [<--- LEARN MORE ABOUT CP EDITOR --->](https://cpeditor.github.io/)
 
