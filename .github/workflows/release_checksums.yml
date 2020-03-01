@@ -19,9 +19,9 @@ jobs:
       run: |
         mkdir -p downloads
         cd downloads
-        wget -c https://github.com/${{ github.repository }}/releases/download/${{ steps.get_version.outputs.VERSION }}/CP_Editor-${{ steps.get_version.outputs.VERSION }}-x86_64.AppImage
-        wget -c https://github.com/${{ github.repository }}/releases/download/${{ steps.get_version.outputs.VERSION }}/CP_Editor-${{ steps.get_version.outputs.VERSION }}-x64-setup.exe
-        wget -c https://github.com/${{ github.repository }}/releases/download/${{ steps.get_version.outputs.VERSION }}/CP_Editor-${{ steps.get_version.outputs.VERSION }}-x64.dmg
+        wget -c https://github.com/${{ github.repository }}/releases/download/${{ steps.get_version.outputs.VERSION }}/cpeditor-${{ steps.get_version.outputs.VERSION }}-x86_64.AppImage
+        wget -c https://github.com/${{ github.repository }}/releases/download/${{ steps.get_version.outputs.VERSION }}/cpeditor-${{ steps.get_version.outputs.VERSION }}-x64-setup.exe
+        wget -c https://github.com/${{ github.repository }}/releases/download/${{ steps.get_version.outputs.VERSION }}/cpeditor-${{ steps.get_version.outputs.VERSION }}-x64.dmg
         shasum -a 256 *.* > sha256_checksums.txt
 
     - name: Upload checksums
