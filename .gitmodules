@@ -10,3 +10,6 @@
 [submodule "resources/testlib"]
 	path = resources/testlib
 	url = https://github.com/MikeMirzayanov/testlib
+[submodule "third_party/lsp-cpp"]
+	path = third_party/lsp-cpp
+	url = https://github.com/cpeditor/lsp-cpp
