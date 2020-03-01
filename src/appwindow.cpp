@@ -141,12 +141,19 @@ AppWindow::AppWindow(bool cpp, bool java, bool python, bool noHotExit, int numbe
     if (Settings::SettingsManager::getTransparency() == 100)
         setWindowOpacity(1);
 #endif
+    setLanguageClient();
 }
 
 AppWindow::~AppWindow()
 {
     Core::Log::i("appwindow/destroyed", "Invoked");
     saveSettings();
+    if (languageClient != nullptr)
+    {
+        languageClient->shutdown();
+        languageClient->exit();
+        delete languageClient;
+    }
     Themes::EditorTheme::release();
     Settings::SettingsManager::destroy();
     delete ui;
@@ -158,6 +165,34 @@ AppWindow::~AppWindow()
 }
 
 /******************* PUBLIC METHODS ***********************/
+
+void AppWindow::setLanguageClient()
+{
+    // Let us check here if user wants to use LSP. From settings
+    // otherwise return;
+
+    Core::Log::i("appwindow/setLanguageClient", "Invoked");
+    // Make this path value get picked from the SettingManager
+    // Also Make the Command line arguments for LSP picked from Settings
+
+    languageClient = new LSPClient("C:/Program Files/LLVM/bin/clangd.exe", {/* No commandline args */});
+
+    connect(languageClient, SIGNAL(onNotify(QString, QJsonObject)), this,
+            SLOT(onLSPServerNotificationArrived(QString, QJsonObject)));
+    connect(languageClient, SIGNAL(onResponse(QJsonObject, QJsonObject)), this,
+            SLOT(onLSPServerResponseArrived(QJsonObject, QJsonObject)));
+    connect(languageClient, SIGNAL(onRequest(QString, QJsonObject, QJsonObject)), this,
+            SLOT(onLSPServerRequestArrived(QString, QJsonObject, QJsonObject)));
+    connect(languageClient, SIGNAL(onError(QJsonObject, QJsonObject)), this,
+            SLOT(onLSPServerErrorArrived(QJsonObject, QJsonObject)));
+
+    connect(languageClient, SIGNAL(onServerError(QProcess::ProcessError)), this,
+            SLOT(onLSPServerProcessError(QProcess::ProcessError)));
+    connect(languageClient, SIGNAL(onServerFinished(int, QProcess::ExitStatus)), this,
+            SLOT(onLSPServerProcessFinished(int, QProcess::ExitStatus)));
+
+    languageClient->initialize();
+}
 
 void AppWindow::closeEvent(QCloseEvent *event)
 {
@@ -1476,4 +1511,30 @@ void AppWindow::onTrayIconActivated(QSystemTrayIcon::ActivationReason reason)
         else
             showOnTop();
     }
+}
+
+// ---------------------------- LSP SLOTS ------------------------
+
+void AppWindow::onLSPServerNotificationArrived(QString method, QJsonObject param)
+{
+}
+
+void AppWindow::onLSPServerResponseArrived(QJsonObject method, QJsonObject param)
+{
+}
+
+void AppWindow::onLSPServerRequestArrived(QString method, QJsonObject param, QJsonObject id)
+{
+}
+
+void AppWindow::onLSPServerErrorArrived(QJsonObject id, QJsonObject error)
+{
+}
+
+void AppWindow::onLSPServerProcessError(QProcess::ProcessError error)
+{
+}
+
+void AppWindow::onLSPServerProcessFinished(int exitCode, QProcess::ExitStatus status)
+{
 }

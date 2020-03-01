@@ -21,9 +21,12 @@ find_package(Qt5 COMPONENTS Network REQUIRED)
 add_subdirectory(third_party/QCodeEditor)
 
 set(QAPPLICATION_CLASS QApplication CACHE STRING "Inheritance class for SingleApplication")
+
 add_subdirectory(third_party/singleapplication)
 
 add_subdirectory(third_party/QtFindReplaceDialog/dialogs)
+
+add_subdirectory(third_party/lsp-cpp)
 
 configure_file(version.hpp.in ${CMAKE_BINARY_DIR}/generated/version.hpp)
 
@@ -105,6 +108,7 @@ add_executable(cpeditor
 include_directories("third_party/QCodeEditor/include")
 include_directories("third_party/diff_match_patch")
 include_directories("third_party/QtFindReplaceDialog")
+include_directories("third_party/lsp-cpp/include")
 include_directories("include/")
 include_directories("generated/")
 
@@ -113,6 +117,7 @@ target_link_libraries(cpeditor PRIVATE Qt5::Network)
 target_link_libraries(cpeditor PRIVATE QCodeEditor)
 target_link_libraries(cpeditor PRIVATE SingleApplication)
 target_link_libraries(cpeditor PRIVATE QtFindReplaceDialog)
+target_link_libraries(cpeditor PRIVATE LSPClient)
  
 if(APPLE)
     set_target_properties(cpeditor
