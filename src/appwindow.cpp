@@ -1470,5 +1470,10 @@ void AppWindow::showOnTop()
 void AppWindow::onTrayIconActivated(QSystemTrayIcon::ActivationReason reason)
 {
     if (reason == QSystemTrayIcon::Trigger)
-        showOnTop();
+    {
+        if (isActiveWindow())
+            showMinimized();
+        else
+            showOnTop();
+    }
 }
