@@ -34,7 +34,7 @@ Code-unrelated changes (e.g. issue template changes, CI changes) apply to the ma
 
 We make new releases in these cases:
 
-1. At the beginning of a release cycle, we regularly make two releases, which is described in the [Release cycle part](#Release%20cycle).
+1. At the beginning of a release cycle, we regularly make two releases, which is described in the [Release cycle part](#Release-cycle).
 2. We make stable releases whenever a bug is fixed on the stable branch.
 3. We make pre-releases when a critical bug is fixed on the beta branch.
 
@@ -90,11 +90,11 @@ A changelog between versions should be like this:
 1. Additional steps for creating a new MINOR version at the beginning of a release cycle:
    1. Create a new branch `v$X.$Y` based on the master branch.
    2. After creating the new branch, create a commit on the master branch which contains exactly the following:
-      - Change the version in [CMakeLists.txt](CMakeLists.txt) to `$X.$(Y+1).0`.
+      - Change the version in [CMakeLists.txt](../CMakeLists.txt) to `$X.$(Y+1).0`.
       - Move the UNRELEASED changes to the changelog of `v$X.$Y` in [CHANGELOG.md](CHANGELOG.md).
       - The commit subject is `Start a new release cycle for v$X.$(Y+1)`.
 2. Create a commit on the version branch which contains exactly the following:
-   - Change the version in [CMakeLists.txt](CMakeLists.txt) to `$X.$Y.$Z`.
+   - Change the version in [CMakeLists.txt](../CMakeLists.txt) to `$X.$Y.$Z`.
    - Move the UNRELEASED changes to the changelog of `$X.$Y.$Z` in [CHANGELOG.md](CHANGELOG.md).
    - The commit subject is `Release $X.$Y.$Z`.
 3. Tag the commit created at the step 2 as `$X.$Y.$Z`.
