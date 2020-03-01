@@ -187,6 +187,13 @@
                   </property>
                  </widget>
                 </item>
+                <item row="10" column="0">
+                 <widget class="QCheckBox" name="compile_and_run_only">
+                  <property name="text">
+                   <string>Display the Compile And Run button only</string>
+                  </property>
+                 </widget>
+                </item>
                </layout>
               </item>
               <item row="3" column="0">
@@ -997,13 +1004,6 @@ p, li { white-space: pre-wrap; }
                </layout>
               </item>
               <item row="6" column="1">
-               <widget class="QCheckBox" name="compile_and_run_only">
-                <property name="text">
-                 <string>Display the Compile And Run button only</string>
-                </property>
-               </widget>
-              </item>
-              <item row="7" column="1">
                <widget class="QCheckBox" name="display_eoln_in_diff">
                 <property name="text">
                  <string>Display newline characters in the Diff Viewer</string>
