@@ -21,9 +21,9 @@
 #include <QMainWindow>
 
 #include "Core/SettingsManager.hpp"
+#include "LSPClient.hpp"
 #include "Telemetry/UpdateNotifier.hpp"
 #include "mainwindow.hpp"
-#include "LSPClient.hpp"
 #include "preferencewindow.hpp"
 #include <QSystemTrayIcon>
 #include <findreplacedialog.h>
@@ -178,7 +178,6 @@ class AppWindow : public QMainWindow
     QSystemTrayIcon *trayIcon = nullptr;
     QMenu *trayIconMenu = nullptr;
     LSPClient *languageClient = nullptr;
-
 
     void setConnections();
     void allocate();
