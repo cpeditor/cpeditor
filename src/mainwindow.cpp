@@ -807,7 +807,7 @@ bool MainWindow::saveFile(SaveMode mode, const QString &head, bool safe)
     return true;
 }
 
-bool MainWindow::saveTemp(const QString &head)
+MainWindow::SaveTempStatus MainWindow::saveTemp(const QString &head)
 {
     Core::Log::i("mainwindow/saveTemp") << "head " << head << endl;
     if (!saveFile(IgnoreUntitled, head, true))
@@ -821,13 +821,13 @@ bool MainWindow::saveTemp(const QString &head)
         if (!tmpDir->isValid())
         {
             log.error(head, "Failed to create temporary directory");
-            return false;
+            return Failed;
         }
 
-        return Util::saveFile(tmpPath(), editor->toPlainText(), head, true, &log);
+        return Util::saveFile(tmpPath(), editor->toPlainText(), head, true, &log) ? TempSaved : Failed;
     }
 
-    return true;
+    return NormalSaved;
 }
 
 QString MainWindow::tmpPath()
@@ -838,9 +838,18 @@ QString MainWindow::tmpPath()
         return filePath;
     if (tmpDir == nullptr || !tmpDir->isValid())
     {
-        if (!saveTemp("Temp Saver"))
+        switch (saveTemp("Temp Saver"))
         {
+        case Failed:
+            Core::Log::i("MainWindow/tmpPath", "Failed");
+            log.error("Temp Saver", "Error occurred when trying to save temp file");
             return "";
+        case TempSaved:
+            Core::Log::i("MainWindow/tmpPath", "TempSaved");
+            break;
+        case NormalSaved:
+            Core::Log::i("MainWindow/tmpPath", "NormalSaved");
+            return filePath;
         }
     }
     QString name;

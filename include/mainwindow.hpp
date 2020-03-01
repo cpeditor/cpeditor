@@ -157,11 +157,12 @@ class MainWindow : public QMainWindow
         Run,
         RunDetached
     };
-    enum Verdict
+    enum SaveTempStatus
     {
-        ACCEPTED,
-        WRONG_ANSWER,
-        UNKNOWN
+        Failed, // There must be exactly one failed status and it must be the first one in the enum
+                // in order to cast to bool correctly.
+        TempSaved,
+        NormalSaved
     };
 
     Ui::MainWindow *ui;
@@ -205,7 +206,7 @@ class MainWindow : public QMainWindow
     void updateWatcher();
     void loadFile(const QString &loadPath);
     bool saveFile(SaveMode, const QString &head, bool safe);
-    bool saveTemp(const QString &head);
+    SaveTempStatus saveTemp(const QString &head);
     QString tmpPath();
     void performCoreDiagonistics();
     QString getRunnerHead(int index);

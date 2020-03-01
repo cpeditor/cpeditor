@@ -20,6 +20,7 @@
 
 - Show line-breaks without "¶" in the Diff Viewer when "Display new-line characters in the Diff Viewer" option is not checked. (#181)
 - Fix window size issue on Windows if the transparency is 100 and the window was maximized in the last session.
+- Fix a bug which makes the editor crash if the text is modified when running.
 
 ## v6.0
 
