@@ -20,13 +20,13 @@ It makes your competitive coding life easier :grin: by automates many things for
 ## Get Started
 
 - [Releases](https://github.com/cpeditor/cpeditor/releases)
-- [INSTALL.md](doc/INSTALL.md)
-- [MANUAL.md](doc/MANUAL.md)
+- [Install instructions](doc/INSTALL.md)
+- [Get Started and Tips](doc/MANUAL.md)
 
 ## Contributing
 
 - [Open an issue](https://github.com/cpeditor/cpeditor/issues/new/choose)
-- [CONTRIBUTING.md](doc/CONTRIBUTING.md)
+- [Contributing Guidelines](doc/CONTRIBUTING.md)
 - [Good first issues](https://github.com/cpeditor/cpeditor/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22)
 - [Help wanted issues](https://github.com/cpeditor/cpeditor/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22)
 
@@ -35,10 +35,10 @@ It makes your competitive coding life easier :grin: by automates many things for
 1. Ask Google first if it's not very editor-related. (e.g. How to install Clang Format?)
 2. Search in the [Issues](https://github.com/cpeditor/cpeditor/issues) and make sure your bug report/feature request is not duplicated.
 3. Please follow the issue template and provide detailed information, it will help us to give you better feedback.
-4. If it's a feature request or bug report rather than a question, please open an issue instead of asking in Telegram so that it can be tracked easier.
+4. If it's a feature request or bug report rather than a question, please open an issue instead of asking on Telegram so that it can be tracked easier.
 
 - [Open an issue](https://github.com/cpeditor/cpeditor/issues/new/choose)
-- [Ask in Telegram](https://t.me/cpeditor)
+- [Ask on Telegram](https://t.me/cpeditor)
 
 ## FAQ
 
