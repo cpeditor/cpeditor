@@ -2,6 +2,12 @@
 
 <img src=assets/icon.ico height="80" width="80">
 
+CP Editor is a Qt-based code editor specially designed for competitive programming.
+
+It makes your competitive coding life easier :grin: by automates many things for you.
+
+## [<--- LEARN MORE ABOUT CP EDITOR --->](https://cpeditor.github.io/)
+
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/ce0f297f31f74485b0d340949d08d605)](https://www.codacy.com/gh/cpeditor/cpeditor)
 [![Telegram Group](https://img.shields.io/badge/join-telegram%20chat-success)](https://t.me/cpeditor)
 [![Help wanted issues](https://img.shields.io/github/issues/cpeditor/cpeditor/help%20wanted)](https://github.com/cpeditor/cpeditor/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22)
@@ -10,12 +16,6 @@
 | :---: | :--------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------------: |
 | alpha | [master](https://github.com/cpeditor/cpeditor/tree/master) | [![GitHub Workflow Status](https://img.shields.io/github/workflow/status/cpeditor/cpeditor/CI:%20Build%20Test/master)](https://github.com/cpeditor/cpeditor/actions?query=branch%3Amaster) |                                                                       -                                                                        |
 | beta  |   [v6.0](https://github.com/cpeditor/cpeditor/tree/v6.0)   |   [![GitHub Workflow Status](https://img.shields.io/github/workflow/status/cpeditor/cpeditor/CI:%20Build%20Test/v6.0)](https://github.com/cpeditor/cpeditor/actions?query=branch%3Av6.0)   | [![Downloads](https://img.shields.io/github/downloads/cpeditor/cpeditor/6.0.2/total)](https://github.com/cpeditor/cpeditor/releases/tag/6.0.2) |
-
-CP Editor is a Qt-based code editor specially designed for competitive programming.
-
-It makes your competitive coding life easier :grin: by automates many things for you.
-
-## [<--- LEARN MORE ABOUT CP EDITOR --->](https://cpeditor.github.io/)
 
 ## Get Started
 
