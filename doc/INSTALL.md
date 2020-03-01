@@ -37,10 +37,8 @@ You may need to click "Yes" to access Filesystem several times. Apple may report
 1. Clone this repo:
 
 	```sh
-	git clone https://github.com/cpeditor/cpeditor.git
+	git clone --recurse-submodules https://github.com/cpeditor/cpeditor.git
 	cd cpeditor
-	git submodule init
-	git submodule update
 	```
 
 2. Install [Qt](https://www.qt.io/download) (5.12 or higher) and [CMake](https://cmake.org/download/) (3.12 or higher).
