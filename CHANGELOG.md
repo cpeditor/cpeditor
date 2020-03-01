@@ -7,6 +7,7 @@
 ### Fixed
 
 - Fix window size issue on Windows if the transparency is 100 and the window was maximized in the last session.
+- Fix a bug which makes the editor crash if the text is modified when running.
 
 ## 6.0.2 (Beta)
 
