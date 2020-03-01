@@ -50,14 +50,14 @@ add_executable(cpeditor
     include/Core/Formatter.hpp
     include/Core/SettingsManager.hpp
     include/Core/MessageLogger.hpp
-	include/Core/EventLogger.hpp
+    include/Core/EventLogger.hpp
     src/Core/Checker.cpp
     src/Core/Compiler.cpp
     src/Core/Runner.cpp
     src/Core/Formatter.cpp
     src/Core/SettingsManager.cpp
     src/Core/MessageLogger.cpp
-	src/Core/EventLogger.cpp
+    src/Core/EventLogger.cpp
 
     include/Telemetry/UpdateNotifier.hpp
     src/Telemetry/UpdateNotifier.cpp
