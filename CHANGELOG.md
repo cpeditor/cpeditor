@@ -1,5 +1,9 @@
 ## UNRELEASED
 
+### Fixed
+
+- Fix wrong version comparing in update notifier.
+
 ## 6.0.3 (Beta)
 
 ### Added

@@ -70,8 +70,14 @@ bool compareVersion(QString const &a, QString const &b)
 
     if (aMajor > bMajor)
         return true;
+    if (aMajor < bMajor)
+        return false;
+
     if (aMinor > bMinor)
         return true;
+    if (aMinor < bMinor)
+        return false;
+
     if (aPatch > bPatch)
         return true;
 
