@@ -20,6 +20,12 @@ You have to use a **non-public** class named **a** for your solution.
 
 ## Preferences
 
+### Save files faster
+
+If this option is checked, [QSaveFile](https://doc.qt.io/qt-5/qsavefile.html) will be used in some situations, otherwise [QFile](https://doc.qt.io/qt-5/qfile.html) will always be used.
+
+Enable this will make saving files faster, but if error happens when writing to files, both the old file and the new one may lose. Note that the old file won't lose when the editor doesn't have permission to the file.
+
 ### Runtime Arguments
 
 This is the arguments passed to your programs in the command line when running them. You usually don't need to set them.

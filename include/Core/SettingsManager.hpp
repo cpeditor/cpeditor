@@ -175,6 +175,9 @@ class SettingsManager
     static bool isDisplayEolnInDiff();
     static void setDisplayEolnInDiff(bool value);
 
+    static bool isSaveFaster();
+    static void setSaveFaster(bool value);
+
     static QSettings *settings();
 
     static void resetSettings();

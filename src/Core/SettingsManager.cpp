@@ -613,6 +613,16 @@ void SettingsManager::setDisplayEolnInDiff(bool value)
     mSettings->setValue("display_eoln_in_diff", value ? "true" : "false");
 }
 
+bool SettingsManager::isSaveFaster()
+{
+    return mSettings->value("save_faster", "false").toBool();
+}
+
+void SettingsManager::setSaveFaster(bool value)
+{
+    mSettings->setValue("save_faster", value ? "true" : "false");
+}
+
 void SettingsManager::setHotkeyViewModeToggler(const QKeySequence &sequence)
 {
     Core::Log::i("settingmanager/sethotViewModeToggler") << "sequence is : " << sequence.toString() << endl;

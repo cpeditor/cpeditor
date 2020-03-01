@@ -27,7 +27,7 @@ namespace Util
 
 bool saveFile(const QString &path, const QString &content, const QString &head, bool safe, MessageLogger *log)
 {
-    if (safe)
+    if (safe && !Settings::SettingsManager::isSaveFaster())
     {
         QSaveFile file(path);
         if (!file.open(QIODevice::WriteOnly | QIODevice::Text))

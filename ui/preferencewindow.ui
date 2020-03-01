@@ -194,6 +194,13 @@
                   </property>
                  </widget>
                 </item>
+                <item row="11" column="0">
+                 <widget class="QCheckBox" name="save_faster">
+                  <property name="text">
+                   <string>Save files faster but a little bit not safe</string>
+                  </property>
+                 </widget>
+                </item>
                </layout>
               </item>
               <item row="3" column="0">

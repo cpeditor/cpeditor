@@ -9,6 +9,7 @@
 - Warn when submitting to CF and the problem code is 0.
 - A system-wide tray icon.
 - Windows icon for all OSs.
+- Add an option to save files faster.
 
 ### Changed
 

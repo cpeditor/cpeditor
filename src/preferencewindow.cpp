@@ -109,6 +109,8 @@ void PreferenceWindow::applySettingsToui()
     ui->replace_tabs->setChecked(Settings::SettingsManager::isTabsReplaced());
     ui->format_on_save->setChecked(Settings::SettingsManager::isFormatOnSave());
     ui->use_hot_exit->setChecked(Settings::SettingsManager::isUseHotExit());
+    ui->compile_and_run_only->setChecked(Settings::SettingsManager::isCompileAndRunOnly());
+    ui->save_faster->setChecked(Settings::SettingsManager::isSaveFaster());
 
     ui->defaultLang->setCurrentText(Settings::SettingsManager::getDefaultLanguage());
 
@@ -162,7 +164,6 @@ void PreferenceWindow::applySettingsToui()
     onSnippetsLangChanged(lang);
 
     ui->cf_path->setText(Settings::SettingsManager::getCFPath());
-    ui->compile_and_run_only->setChecked(Settings::SettingsManager::isCompileAndRunOnly());
     ui->display_eoln_in_diff->setChecked(Settings::SettingsManager::isDisplayEolnInDiff());
 }
 
@@ -181,6 +182,8 @@ void PreferenceWindow::extractSettingsFromUi()
     Settings::SettingsManager::setTabsReplaced(ui->replace_tabs->isChecked());
     Settings::SettingsManager::formatOnSave(ui->format_on_save->isChecked());
     Settings::SettingsManager::setUseHotExit(ui->use_hot_exit->isChecked());
+    Settings::SettingsManager::setCompileAndRunOnly(ui->compile_and_run_only->isChecked());
+    Settings::SettingsManager::setSaveFaster(ui->save_faster->isChecked());
 
     Settings::SettingsManager::setDefaultLanguage(ui->defaultLang->currentText());
 
@@ -221,7 +224,6 @@ void PreferenceWindow::extractSettingsFromUi()
     Settings::SettingsManager::setHotkeySnippets(ui->snippets_hotkey->keySequence());
 
     Settings::SettingsManager::setCFPath(ui->cf_path->text());
-    Settings::SettingsManager::setCompileAndRunOnly(ui->compile_and_run_only->isChecked());
     Settings::SettingsManager::setDisplayEolnInDiff(ui->display_eoln_in_diff->isChecked());
 }
 
