@@ -3,6 +3,7 @@
 ### Fixed
 
 - Fix wrong version comparing in update notifier.
+- Fix wrong color when submitting to CF and gets "Pretests passed" verdict.
 - Fix a bug which would cause multiple lines jammed into one line. (#187)
 
 ## 6.0.3 (Beta)
