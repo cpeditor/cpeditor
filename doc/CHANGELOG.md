@@ -10,6 +10,7 @@
 - A system-wide tray icon.
 - Windows icon for all OSs.
 - Add an option to save files faster.
+- In the regex mode of Find/Replace dialog, you can use "\1", "\2" to refer to the 1st, 2nd capturing group in text to replace.
 
 ### Changed
 
