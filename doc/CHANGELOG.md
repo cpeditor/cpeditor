@@ -24,6 +24,7 @@
 - Fix window size issue on Windows if the transparency is 100 and the window was maximized in the last session.
 - Fix a bug which makes the editor crash if the text is modified when running.
 - Fix wrong version comparing in update notifier.
+- Fix wrong color when submitting to CF and gets "Pretests passed" verdict.
 - Fix a bug which would cause multiple lines jammed into one line. (#187)
 
 ## v6.0
