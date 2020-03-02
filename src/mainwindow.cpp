@@ -59,6 +59,7 @@ MainWindow::MainWindow(const QString &fileOpen, int index, QWidget *parent)
     loadFile(fileOpen);
     if (testcases->count() == 0)
         testcases->addTestCase();
+    QTimer::singleShot(0, [this] { setLanguage(language); }); // See issue #187 for more information
 }
 
 MainWindow::~MainWindow()
