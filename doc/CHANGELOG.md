@@ -1,5 +1,7 @@
 ## UNRELEASED
 
+## 6.1.2 (Beta)
+
 - Fix update check.
 
 ## 6.1.1 (Beta)
