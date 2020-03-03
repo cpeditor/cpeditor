@@ -1,5 +1,9 @@
 ## UNRELEASED
 
+### Fixed
+
+- Fix updates check.
+
 ## 6.0.4
 
 ### Fixed

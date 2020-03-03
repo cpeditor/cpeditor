@@ -45,7 +45,7 @@ void UpdateNotifier::checkUpdate(bool force)
 {
     Core::Log::i("updateNotifier/checkupdate") << "Forceful update : " << force << endl;
     this->force = force;
-    request.setUrl(QUrl("https://api.github.com/repos/cpeditor/cp-editor/releases"));
+    request.setUrl(QUrl("https://api.github.com/repos/cpeditor/cpeditor/releases"));
     manager->get(request);
 }
 
@@ -124,6 +124,14 @@ void UpdateNotifier::managerFinished(QNetworkReply *reply)
             downloadUrl = release["html_url"].toString();
             break;
         }
+    }
+
+    if (latestRelease == "0.0.0")
+    {
+        QMessageBox::about(
+            nullptr, "Failed to check update",
+            "Please manually check for updates <a href=https://github.com/cpeditor/cpeditor/releases>here</a>.");
+        return;
     }
 
     bool isUpdateAvailable = compareVersion(latestRelease, APP_VERSION);
