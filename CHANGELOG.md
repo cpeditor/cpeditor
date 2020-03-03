@@ -1,5 +1,7 @@
 ## UNRELEASED
 
+## 6.0.4
+
 ### Fixed
 
 - Fix wrong version comparing in update notifier.
