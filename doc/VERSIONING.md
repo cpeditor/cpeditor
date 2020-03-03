@@ -91,6 +91,8 @@ A changelog between versions should be like this:
 - Another thing is changed.
 ```
 
+The changelog of a GitHub Releases is a part of [CHANGELOG.md](CHANGELOG.md), usually of the corresponding single version, but the changelog of a stable release at the beginning of a release cycle on GitHub should be all changelogs of that MINOR version.
+
 ### The complete workflow of making a new release
 
 1. Additional steps for creating a new MINOR version at the beginning of a release cycle:
