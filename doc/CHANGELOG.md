@@ -1,5 +1,7 @@
 ## UNRELEASED
 
+## 6.1.1 (Beta)
+
 ### Added
 
 - You can show/hide each testcase, and only run the non-hidden testcases.
