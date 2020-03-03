@@ -2,6 +2,12 @@
 
 These rules apply to CP Editor since v6.0. The versions before v6.0 may not satisfy these rules.
 
+### Pull requests
+
+Pull requests which propose a feature should be based on the master branch.
+
+Pull requests which fix a bug should be based on the oldest one of the three active branches (stable > beta > master) which contains the bug.
+
 ### Version number format
 
 Versioning of CP Editor is based on [Semantic Versioning](https://semver.org/), but no `-rc1`, `-beta`, `-stable` is included, so every version number must be strictly in the format `$X.$Y.$Z`, where `$X`, `$Y`, and `$Z` are all non-negative integers without leading zeros.
@@ -26,7 +32,7 @@ On the master branch, we make all changes including new features and bug fixes. 
 
 On the version branches, we fix bugs only, no new features will be added. Releases are made on version branches only.
 
-Except for creating new version branches, all commits on a branch must be based on the branch itself. No merges except merge pull requests. (Cherry-picks are allowed.)
+When fixing a bug, it should be fixed on the oldest one of the three active branches (stable > beta > master) which contains the bug, and then get merged in to the later branches. Version branches shouldn't be ahead of the master branch. (This rule begins at v6.1.)
 
 Code-unrelated changes (e.g. issue template changes, CI changes) apply to the master branch only if it's not necessary to apply to other branches.
 
@@ -101,9 +107,3 @@ A changelog between versions should be like this:
 4. Push both the commit and the tag.
 5. Edit the changelog of the GitHub Release, make it non-draft, and mark it as a pre-release if it is.
 6. Update badges in [README.md](../README.md) on all the three branches.
-
-### Pull requests
-
-Pull requests which propose a feature should be based on the master branch.
-
-Pull requests which fix a bug should be based on the latest branch (master > beta > stable) which contains the bug. If cherry-pick is not possible for the older branches, opening multiple pull requests for the same bug is allowed.
