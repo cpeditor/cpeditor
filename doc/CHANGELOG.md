@@ -1,5 +1,7 @@
 ## UNRELEASED
 
+- Fix update check.
+
 ## v6.1
 
 ### Added
