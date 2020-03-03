@@ -28,7 +28,7 @@ A release cycle can last for 1~4 weeks, depending on the working progress and th
 
 We work on three branches at the same time: the master branch, the latest pre-release branch (called the beta branch), and the latest stable release branch (called the stable branch). Other branches are no longer maintained, they may contain bugs that are known by the maintainers.
 
-On the master branch, we make all changes including new features and bug fixes. The master branch contains no releases (no tags) after v6.0.
+On the master branch, we make all changes including new features and bug fixes.
 
 On the version branches, we fix bugs only, no new features will be added. Releases are made on version branches only.
 
