@@ -25,10 +25,11 @@ namespace Core
 Compiler::Compiler()
 {
     Core::Log::i("compiler/Constructor", "Invoked");
+
+    // create compiliation process and connect signals
     compileProcess = new QProcess();
     connect(compileProcess, SIGNAL(started()), this, SIGNAL(compilationStarted()));
-    connect(compileProcess, SIGNAL(finished(int, QProcess::ExitStatus)), this,
-            SLOT(onProcessFinished(int, QProcess::ExitStatus)));
+    connect(compileProcess, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(onProcessFinished(int)));
 }
 
 Compiler::~Compiler()
@@ -39,6 +40,7 @@ Compiler::~Compiler()
         Core::Log::i("compiler/Destructor", "Compiler object destroyed");
         if (compileProcess->state() != QProcess::NotRunning)
         {
+            // kill the compilation process if it's still running when the Compiler is being destructed
             Core::Log::i("Compiler/destructor", "compileProcess is running, now kill it");
             compileProcess->kill();
             emit compilationKilled();
@@ -55,10 +57,14 @@ void Compiler::start(const QString &filePath, const QString &compileCommand, con
 {
     if (!QFile::exists(filePath))
     {
+        // quit with error if the source file is not found
         Core::Log::i("compiler/start", "The source file [" + filePath + "] doesn't exist");
         emit compilationErrorOccured("The source file [" + filePath + "] doesn't exist");
         return;
     }
+
+    // get the full compile command
+    // please remember to quote the file paths
 
     QString command;
 
@@ -76,7 +82,7 @@ void Compiler::start(const QString &filePath, const QString &compileCommand, con
     else if (lang == "Python")
     {
         Core::Log::i("Compiler/start", "lang branched into Python");
-        emit compilationFinished("");
+        emit compilationFinished(""); // we don't actually compile Python
         return;
     }
     else
@@ -86,6 +92,7 @@ void Compiler::start(const QString &filePath, const QString &compileCommand, con
         return;
     }
 
+    // start compilation
     compileProcess->start(command);
 }
 
@@ -93,22 +100,25 @@ bool Compiler::check(const QString &compileCommand)
 {
     Core::Log::i("compiler/check", "Invoked");
     QProcess checkProcess;
+
+    // check both "--version" and "-version", "-version" is mainly for Java
+
     checkProcess.start(compileCommand.trimmed().split(' ').front() + " --version");
     bool finished = checkProcess.waitForFinished(1000);
     if (finished && checkProcess.exitCode() == 0)
-    {
-        Core::Log::i("compiler/check", "checkProcess finished");
         return true;
-    }
-    checkProcess.kill();
+    checkProcess.kill(); // kill it if it's not finished, no harm if it's finished with non-zero exit code
+
     checkProcess.start(compileCommand.trimmed().split(' ').front() + " -version");
     finished = checkProcess.waitForFinished(1000);
     return finished && checkProcess.exitCode() == 0;
 }
 
-void Compiler::onProcessFinished(int exitCode, QProcess::ExitStatus exitStatus)
+void Compiler::onProcessFinished(int exitCode)
 {
     Core::Log::i("compiler/onProcessFinished", "Invoked");
+
+    // emit different signals due to different exit codes
     if (exitCode == 0)
     {
         Core::Log::i("compiler/onProcessFinished", "Branched into exitCode 0");
