@@ -29,8 +29,6 @@
 namespace Core
 {
 
-// In .cpp file because they are used in implementations of EventLogger only
-
 static const int NUMBER_OF_LOGS_TO_KEEP = 50;
 static const QString LOG_FILE_NAME("cpeditor");
 static const QString LOG_DIR_NAME("cpeditorLogFiles");
@@ -77,6 +75,7 @@ void Log::init(int instance, bool dumptoStderr)
     logStream.setDevice(&logFile);
     if (!dumptoStderr)
     {
+        // get the path to the log file
         auto path = QStandardPaths::writableLocation(QStandardPaths::TempLocation);
         if (path.isEmpty())
         {
@@ -88,9 +87,12 @@ void Log::init(int instance, bool dumptoStderr)
             dir.mkdir(LOG_DIR_NAME);
             if (dir.cd(LOG_DIR_NAME))
             {
+                // keep NUMBER_OF_LOGS_TO_KEEP log files
                 auto entries = dir.entryList({LOG_FILE_NAME + "*.log"}, QDir::Files, QDir::Time);
                 for (int i = NUMBER_OF_LOGS_TO_KEEP; i < entries.length(); ++i)
                     dir.remove(entries[i]);
+
+                // open the log file
                 logFile.setFileName(dir.filePath(LOG_FILE_NAME +
                                                  QDateTime::currentDateTime().toString("-yyyy-MM-dd-hh-mm-ss-zzz-") +
                                                  QString::number(instance) + ".log"));
@@ -146,6 +148,8 @@ void Log::log(const QString &priority, const QString &head, const QString &body)
 
 QTextStream &Log::log(const QString &priority, const QString &head)
 {
+    if (!logFile.isOpen() || !logFile.isWritable())
+        logFile.open(stderr, QIODevice::WriteOnly); // dump to stderr if failed to open log file
     return logStream << dateTimeStamp() << "[" << priority << "][" << head << "] ";
 }
 
@@ -234,10 +238,10 @@ void Log::clearOldLogs()
     QDir dir(path);
     if (dir.cd(LOG_DIR_NAME))
     {
-        auto entries = dir.entryList({LOG_FILE_NAME + "*.log"}, QDir::Files, QDir::Time);
+        auto entries = dir.entryList({LOG_FILE_NAME + "*.log"}, QDir::Files);
         for (auto const &e : entries)
         {
-            if (e != logFile.fileName())
+            if (e != logFile.fileName()) // clear all except the current
             {
                 dir.remove(e);
                 i("log/clearOldLog") << "Deleted " << e << endl;
