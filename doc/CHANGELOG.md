@@ -1,5 +1,9 @@
 ## UNRELEASED
 
+### Fixed
+
+- Fix the wrong behavior of the built-in checker Ignore trailing spaces.
+
 ## 6.1.2 (Beta)
 
 - Fix update check.
