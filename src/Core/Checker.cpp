@@ -204,43 +204,22 @@ bool Checker::checkIgnoreTrailingSpaces(const QString &output, const QString &ex
     ans.replace("\r\n", "\n").replace("\r", "\n");
     auto a_lines = out.split('\n');
     auto b_lines = ans.split('\n');
-    for (int i = 0; i < a_lines.size() || i < b_lines.size(); ++i)
+    while (!a_lines.isEmpty() && a_lines.back().trimmed().isEmpty())
+        a_lines.pop_back();
+    while (!b_lines.isEmpty() && b_lines.back().trimmed().isEmpty())
+        b_lines.pop_back();
+    if (a_lines.size() != b_lines.size())
+        return false;
+    for (int i = 0; i < a_lines.size(); ++i)
     {
-        if (i >= a_lines.size())
-        {
-            if (b_lines[i].trimmed().isEmpty())
-                continue;
-            else
-                return false;
-        }
-        if (i >= b_lines.size())
-        {
-            if (a_lines[i].trimmed().isEmpty())
-                continue;
-            else
-                return false;
-        }
-        auto a_words = a_lines[i].split(' ');
-        auto b_words = b_lines[i].split(' ');
-        for (int j = 0; j < a_words.size() || j < b_words.size(); ++j)
-        {
-            if (j >= a_words.size())
-            {
-                if (b_words[j].trimmed().isEmpty())
-                    continue;
-                else
-                    return false;
-            }
-            if (j >= b_words.size())
-            {
-                if (a_words[j].trimmed().isEmpty())
-                    continue;
-                else
-                    return false;
-            }
-            if (a_words[j] != b_words[j])
-                return false;
-        }
+        auto a_line = a_lines[i];
+        auto b_line = b_lines[i];
+        while (!a_line.isEmpty() && a_line.back().isSpace())
+            a_line.chop(1);
+        while (!b_line.isEmpty() && b_line.back().isSpace())
+            b_line.chop(1);
+        if (a_line != b_line)
+            return false;
     }
     return true;
 }

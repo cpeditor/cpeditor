@@ -3,6 +3,7 @@
 ### Fixed
 
 - Fix update check.
+- Fix the wrong behavior of the built-in checker Ignore trailing spaces.
 
 ## v6.1
 
