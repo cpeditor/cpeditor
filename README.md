@@ -34,10 +34,11 @@ It makes your competitive coding life easier :grin: by automating many things fo
 
 ## Get help
 
-1. Ask Google first if it's not very editor-related. (e.g. How to install Clang Format?)
-2. Search in the [Issues](https://github.com/cpeditor/cpeditor/issues) and make sure your bug report/feature request is not duplicated.
-3. Please follow the issue template and provide detailed information, it will help us to give you better feedback.
-4. If it's a feature request or bug report rather than a question, please open an issue instead of asking on Telegram so that it can be tracked easier.
+1. Read the [manual](doc/MANUAL.md) first, also go through the menus to see if there are what you are looking for.
+2. Ask Google first if it's not very editor-related. (e.g. How to install Clang Format?)
+3. Search in the [Issues](https://github.com/cpeditor/cpeditor/issues) and make sure your bug report/feature request is not duplicated.
+4. Please follow the issue template and provide detailed information, it will help us to give you better feedback.
+5. If it's a feature request or bug report rather than a question, please open an issue instead of asking on Telegram so that it can be tracked easier.
 
 - [Open an issue](https://github.com/cpeditor/cpeditor/issues/new/choose)
 - [Ask on Telegram](https://t.me/cpeditor)

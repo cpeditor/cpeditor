@@ -8,7 +8,7 @@ We're glad that you have chosen our editor, let's get started now! :tada:
 
 - If you want to use the Competitive Companion for parsing examples from online platforms like Codeforces, install it [here](https://github.com/jmerle/competitive-companion).
 
-- If you want to use CF-Tool for submitting on Codeforces inside the editor, install it [here](https://github.com/xalanq/cf-tool) and set the path to it in the Preferences if it's not in the PATH. Don't forget to configure it by `cf config` (set the user and the template).
+- If you want to use CF-Tool for submitting on Codeforces inside the editor, install it [here](https://github.com/xalanq/cf-tool). If it's not in the system PATH, you can set the path to it in Preferences->Extra->Misc->CF Tool Command. Don't forget to configure it by `cf config` (set the user and the template).
 
 - If you want to format your C++ codes, you need to install [Clang Format](http://releases.llvm.org/download.html). You have to make sure it's installed on the system PATH or set the path to it in the Preferences.
 
@@ -43,6 +43,10 @@ You can use <kbd>Ctrl+S</kbd>, <kbd>Ctrl+N</kbd>, <kbd>Ctrl+D</kbd>, <kbd>Ctrl+R
 ## Editor
 
 Besides the shortcuts in the menu, you can use the [Read-only Key Bindings](https://doc.qt.io/qt-5/qtextedit.html#read-only-key-bindings) and the [Editing Key Bindings](https://doc.qt.io/qt-5/qtextedit.html#read-only-key-bindings). There are also some hidden shortcuts: <kbd>Tab</kbd> and <kbd>Shift+Tab</kbd> for indent (a selection is needed) and unindent, <kbd>Ctrl+Enter</kbd> and <kbd>Ctrl+Shift+Enter</kbd> for inserting line after and before.
+
+## Drag and Drop
+
+You can drag files and drop them into the main editor and the input and expected parts of testcases.
 
 ## Tabs
 
