@@ -15,6 +15,10 @@
  *
  */
 
+/*
+ * The MessageLogger is used to send messages to the user directly in the GUI.
+ */
+
 #ifndef MESSAGELOGGER_HPP
 #define MESSAGELOGGER_HPP
 #include <QTextBrowser>
@@ -24,15 +28,51 @@ class MessageLogger
   public:
     MessageLogger() = default;
 
+    /*
+     * @brief show a message
+     * @param head the head of the message, indicates where the message is from
+     * @param body the main part of the message
+     * @param color the color of the message, use the default color if this parameter is empty
+     */
     void message(const QString &head, const QString &body, const QString &color);
+
+    /*
+     * @brief show a warning message
+     * @param head the head of the message, indicates where the message is from
+     * @param body the main part of the message
+     * @note the message is green
+     */
     void warn(const QString &head, const QString &body);
+
+    /*
+     * @brief show a infomation message
+     * @param head the head of the message, indicates where the message is from
+     * @param body the main part of the message
+     * @note the message is in the default color
+     */
     void info(const QString &head, const QString &body);
+
+    /*
+     * @brief show a error message
+     * @param head the head of the message, indicates where the message is from
+     * @param body the main part of the message
+     * @note the message is red
+     */
     void error(const QString &head, const QString &body);
+
+    /*
+     * @brief clear all messages in the message logger
+     */
     void clear();
-    void setContainer(QTextBrowser *value);
+
+    /*
+     * @brief set the container of the message logger
+     * @param container the container of the message logger
+     */
+    void setContainer(QTextBrowser *container);
 
   private:
-    QTextBrowser *box;
+    QTextBrowser *box; // the container of the message logger
 };
 
 #endif // MESSAGELOGGER_HPP

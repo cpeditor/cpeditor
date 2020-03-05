@@ -19,19 +19,28 @@
 #include "Core/EventLogger.hpp"
 #include <QDateTime>
 
-void MessageLogger::setContainer(QTextBrowser *value)
+const int MAX_NUMBER_OF_CHARACTERS_TO_DISPLAY = 20000;
+
+void MessageLogger::setContainer(QTextBrowser *container)
 {
-    MessageLogger::box = value;
+    MessageLogger::box = container;
     Core::Log::i("messagelogger/setContainer", "Container set and updated to open links");
     box->setOpenExternalLinks(true);
 }
 
 void MessageLogger::message(const QString &head, const QString &body, const QString &color)
 {
+    // replace spaces by "&nbsp;" to avoid multiple spaces becoming one, important for compilation errors
     auto newHead = head.toHtmlEscaped().replace(" ", "&nbsp;");
     auto newBody = body.toHtmlEscaped().replace(" ", "&nbsp;");
-    if (newBody.length() > 10000)
-        newBody = newBody.left(10000) + "\n... The message is too long";
+
+    // don't display too long messages, otherwise the application may stuck
+    if (newBody.length() > MAX_NUMBER_OF_CHARACTERS_TO_DISPLAY)
+        newBody = newBody.left(MAX_NUMBER_OF_CHARACTERS_TO_DISPLAY) + "\n... The message is too long";
+
+    // get the HTML of the message
+    // use monospace for the message body, it's important for compilation errors
+    // "monospace" might not work on Windows, but "Consolas,Courier,monospace" works
     QString res = "<b>[" + QTime::currentTime().toString() + "] [" + newHead +
                   "] </b><span style=\"font-family:Consolas,Courier,monospace;";
     if (!color.isEmpty())
@@ -42,6 +51,7 @@ void MessageLogger::message(const QString &head, const QString &body, const QStr
     else
         res += newBody;
     res += "]</font>";
+
     box->append(res);
 }
 
