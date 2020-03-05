@@ -22,11 +22,12 @@ jobs:
         wget -c https://github.com/${{ github.repository }}/releases/download/${{ steps.get_version.outputs.VERSION }}/cpeditor-${{ steps.get_version.outputs.VERSION }}-x86_64.AppImage
         wget -c https://github.com/${{ github.repository }}/releases/download/${{ steps.get_version.outputs.VERSION }}/cpeditor-${{ steps.get_version.outputs.VERSION }}-x64-setup.exe
         wget -c https://github.com/${{ github.repository }}/releases/download/${{ steps.get_version.outputs.VERSION }}/cpeditor-${{ steps.get_version.outputs.VERSION }}-x64.dmg
-        shasum -a 256 *.* > cpeditor-${{ steps.get_version.outputs.VERSION }}-sha256_checksums.txt
+        shasum -a 256 *.* > cpeditor-${{ steps.get_version.outputs.VERSION }}-sha256-checksums.txt
 
     - name: Upload checksums
       uses: softprops/action-gh-release@v1
       with:
-        files: downloads/cpeditor-${{ steps.get_version.outputs.VERSION }}-sha256_checksums.txt
+        name: CP Editor ${{ steps.get_version.outputs.VERSION }}
+        files: downloads/cpeditor-${{ steps.get_version.outputs.VERSION }}-sha256-checksums.txt
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
