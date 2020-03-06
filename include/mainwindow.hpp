@@ -122,7 +122,7 @@ class MainWindow : public QMainWindow
 
     void onRunStarted(int index);
     void onRunFinished(int index, const QString &out, const QString &err, int exitCode, int timeUsed);
-    void onRunErrorOccured(int index, const QString &error);
+    void onFailedToStartRun(int index, const QString &error);
     void onRunTimeout(int index);
     void onRunKilled(int index);
 

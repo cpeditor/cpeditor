@@ -195,7 +195,7 @@ void Checker::onRunFinished(int index, const QString &out, const QString &err, i
     }
 }
 
-void Checker::onRunErrorOccured(int index, const QString &error)
+void Checker::onFailedToStartRun(int index, const QString &error)
 {
     log->error("Checker[" + QString::number(index + 1) + "]", error);
 }
@@ -289,8 +289,8 @@ void Checker::check(int index, const QString &input, const QString &output, cons
             runner.push_back(tmp); // save the checkers in a list, so we can delete them when destructing the checker
             connect(tmp, SIGNAL(runFinished(int, const QString &, const QString &, int, int)), this,
                     SLOT(onRunFinished(int, const QString &, const QString &, int)));
-            connect(tmp, SIGNAL(runErrorOccured(int, const QString &)), this,
-                    SLOT(onRunErrorOccured(int, const QString &)));
+            connect(tmp, SIGNAL(failedToStartRun(int, const QString &)), this,
+                    SLOT(onFailedToStartRun(int, const QString &)));
             connect(tmp, SIGNAL(runTimeout(int)), this, SLOT(onRunTimeout(int)));
             connect(tmp, SIGNAL(runKilled(int)), this, SLOT(onRunKilled(int)));
             tmp->run(checkerPath, "C++", "", "\"" + inputPath + "\" \"" + outputPath + "\" \"" + expectedPath + "\"",

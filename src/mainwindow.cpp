@@ -173,7 +173,7 @@ void MainWindow::run(int index)
     connect(tmp, SIGNAL(runStarted(int)), this, SLOT(onRunStarted(int)));
     connect(tmp, SIGNAL(runFinished(int, const QString &, const QString &, int, int)), this,
             SLOT(onRunFinished(int, const QString &, const QString &, int, int)));
-    connect(tmp, SIGNAL(runErrorOccured(int, const QString &)), this, SLOT(onRunErrorOccured(int, const QString &)));
+    connect(tmp, SIGNAL(failedToStartRun(int, const QString &)), this, SLOT(onFailedToStartRun(int, const QString &)));
     connect(tmp, SIGNAL(runTimeout(int)), this, SLOT(onRunTimeout(int)));
     connect(tmp, SIGNAL(runKilled(int)), this, SLOT(onRunKilled(int)));
     tmp->run(tmpPath(), language, Settings::SettingsManager::getRunCommand(language),
@@ -1105,8 +1105,8 @@ void MainWindow::onCompilationFinished(const QString &warning)
 
         detachedRunner = new Core::Runner(-1);
         connect(detachedRunner, SIGNAL(runStarted(int)), this, SLOT(onRunStarted(int)));
-        connect(detachedRunner, SIGNAL(runErrorOccured(int, const QString &)), this,
-                SLOT(onRunErrorOccured(int, const QString &)));
+        connect(detachedRunner, SIGNAL(failedToStartRun(int, const QString &)), this,
+                SLOT(onFailedToStartRun(int, const QString &)));
         connect(detachedRunner, SIGNAL(runKilled(int)), this, SLOT(onRunKilled(int)));
         detachedRunner->runDetached(tmpPath(), language, Settings::SettingsManager::getRunCommand(language),
                                     Settings::SettingsManager::getRuntimeArguments(language));
@@ -1163,7 +1163,7 @@ void MainWindow::onRunFinished(int index, const QString &out, const QString &err
         checker->reqeustCheck(index, testcases->input(index), out, testcases->expected(index));
 }
 
-void MainWindow::onRunErrorOccured(int index, const QString &error)
+void MainWindow::onFailedToStartRun(int index, const QString &error)
 {
     log.error(getRunnerHead(index), error);
 }

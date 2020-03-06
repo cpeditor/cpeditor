@@ -71,7 +71,7 @@ class Checker : public QObject
      * @brief construct a checker
      * @param type the type of the checker
      * @param logger the message logger that receives the messages
-     * @param timeLimit maximum time for a testlib checker to run
+     * @param timeLimit maximum time for a testlib checker to run, in milliseconds
      * @param parent the parent of a QObject
      * @note Don't construct a custom checker by this.
      */
@@ -81,7 +81,7 @@ class Checker : public QObject
      * @brief construct a custom checker
      * @param path the file path to the custom checker
      * @param logger the message logger that receives the messages
-     * @param timeLimit maximum time for a testlib checker to run
+     * @param timeLimit maximum time for a testlib checker to run, in milliseconds
      * @param parent the parent of a QObject
      */
     Checker(const QString &path, MessageLogger *logger, int timeLimit, QObject *parent = nullptr);
@@ -149,7 +149,7 @@ class Checker : public QObject
      * @param index the index of the testcase
      * @param error the error message provided by Core::Runner
      */
-    void onRunErrorOccured(int index, const QString &error);
+    void onFailedToStartRun(int index, const QString &error);
 
     /*
      * @brief the checker hasn't finished in the time limit
@@ -198,7 +198,7 @@ class Checker : public QObject
 
     CheckerType checkerType;         // the type of the checker
     QString checkerPath;             // the file path to the custom checker
-    int timeLimit;                   // the maximum time for a testlib checker to run
+    int timeLimit;                   // the maximum time for a testlib checker to run, in milliseconds
     QTemporaryDir *tmpDir = nullptr; // the temp directory to save the I/O files, testlib.h and the compiled checker
                                      // It's not needed by built-in checkers
     MessageLogger *log = nullptr;    // the message logger to show messages to the user

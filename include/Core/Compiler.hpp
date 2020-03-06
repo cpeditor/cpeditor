@@ -84,6 +84,7 @@ class Compiler : public QObject
 
     /*
      * @brief the compilation process has just been killed
+     * @note It's only emitted when the process is killed when destructing the Compiler.
      */
     void compilationKilled();
 

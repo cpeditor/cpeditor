@@ -32,23 +32,28 @@ Runner::Runner(int index) : runnerIndex(index)
 
 Runner::~Runner()
 {
+    // The order of destructions is important, runTimer is used when emitting signals
+
     Core::Log::i("runner/destructed", "Destruction of this runner has began");
     if (killTimer != nullptr)
     {
         Core::Log::i("runner/destructed", "killtimer is being deleted");
         delete killTimer;
     }
+
     if (runProcess != nullptr)
     {
         Core::Log::i("runner/destructed", "runProcess is being deleted");
         if (runProcess->state() == QProcess::Running)
         {
+            // Kill the process if it's still running when the Runner is destructed
             Core::Log::i("runner/destructed", "runProcess is was running, now killing");
             runProcess->kill();
             emit runKilled(runnerIndex);
         }
         delete runProcess;
     }
+
     if (runTimer != nullptr)
     {
         Core::Log::i("runner/destructed", "runTimer is being deleted");
@@ -61,19 +66,22 @@ void Runner::run(const QString &filePath, const QString &lang, const QString &ru
 {
     Core::Log::i("runner/run") << "filepath" << filePath << " lang " << lang << " runCommand " << runCommand << " args "
                                << args << " input " << input << "timelimit " << timeLimit << endl;
-    if (!QFile::exists(filePath))
+    if (!QFile::exists(filePath)) // make sure the source file exists, this usually means the executable file exists
     {
         Core::Log::e("runner/run", "source file does not exist on disk now");
-        emit runErrorOccured(runnerIndex, "The source file " + filePath + " doesn't exist");
+        emit failedToStartRun(runnerIndex, "The source file " + filePath + " doesn't exist");
         return;
     }
 
+    // get the command for execution
     QString command = getCommand(filePath, lang, runCommand, args);
     if (command.isEmpty())
     {
-        emit runErrorOccured(runnerIndex, "Failed to get run command. It's probably a bug");
+        emit failedToStartRun(runnerIndex, "Failed to get run command. It's probably a bug");
         return;
     }
+
+    // connect signals and set timers
 
     connect(runProcess, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(onFinished(int, QProcess::ExitStatus)));
 
@@ -97,11 +105,14 @@ void Runner::run(const QString &filePath, const QString &lang, const QString &ru
 
     if (!started)
     {
+        // usually, fail to start is because it's not compiled
         Core::Log::e("runner/run", "process was not started");
-        emit runErrorOccured(runnerIndex, "Failed to start running. Please compile first");
+        emit failedToStartRun(runnerIndex, "Failed to start running. Please compile first");
         runProcess->kill();
         return;
     }
+
+    // write input to the program
     runProcess->write(input.toStdString().c_str());
     runProcess->closeWriteChannel();
     Core::Log::i("runner/run", "All inputs were written to stdin of process");
@@ -109,7 +120,10 @@ void Runner::run(const QString &filePath, const QString &lang, const QString &ru
 
 void Runner::runDetached(const QString &filePath, const QString &lang, const QString &runCommand, const QString &args)
 {
+    // different steps on different OSs
 #if defined(__unix__)
+    // use xterm on Linux
+    // check whether xterm is installed at first
     Core::Log::i("runner/runDetached", "using xterm on unix");
     QProcess testProcess;
     testProcess.start("xterm -v");
@@ -117,7 +131,7 @@ void Runner::runDetached(const QString &filePath, const QString &lang, const QSt
     if (!finished || testProcess.exitCode() != 0)
     {
         Core::Log::e("runner/runDetached", "xterm is not installed");
-        emit runErrorOccured(runnerIndex, "Please install xterm in order to use Detached Run");
+        emit failedToStartRun(runnerIndex, "Please install xterm in order to use Detached Run");
         return;
     }
     Core::Log::i("runner/runDetached", "xterm is reachable");
@@ -127,6 +141,7 @@ void Runner::runDetached(const QString &filePath, const QString &lang, const QSt
     Core::Log::i("runner/runDetached") << "xterm args " << runProcess->arguments().join(" ") << endl;
     runProcess->start();
 #elif defined(__APPLE__)
+    // use apple script on Mac OS
     Core::Log::i("runner/runDetached", "on mac, using apple script to launch terminal");
     runProcess->setProgram("osascript");
     runProcess->setArguments({"-l", "AppleScript"});
@@ -137,6 +152,7 @@ void Runner::runDetached(const QString &filePath, const QString &lang, const QSt
     runProcess->write(script.toUtf8());
     runProcess->closeWriteChannel();
 #else
+    // use cmd on Windows
     Core::Log::i("runner/runDetached", "on windows. Using cmd");
     runProcess->start("cmd /C \"start cmd /C " + getCommand(filePath, lang, runCommand, args).replace("\"", "^\"") +
                       " ^& pause\"");
@@ -171,6 +187,9 @@ void Runner::onTimeout()
 
 QString Runner::getCommand(const QString &filePath, const QString &lang, const QString &runCommand, const QString &args)
 {
+    // get the execution command by the file path and the language
+    // please remember to add quotes for the paths
+
     Core::Log::i("runner/getCommand") << "filePath : " << filePath << " lang : " << lang
                                       << " runCommand : " << runCommand << "args : " << args << endl;
     QFileInfo fileInfo(filePath);
