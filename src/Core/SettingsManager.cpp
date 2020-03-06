@@ -35,6 +35,8 @@ void SettingsManager::init()
 {
     Core::Log::i("settingmanager/constructor", "Invoked");
 
+    // move from the old path to the new one for backward compatibility
+
     mSettingsFile = QDir(QStandardPaths::writableLocation(QStandardPaths::HomeLocation)).filePath(SETTINGS_FILE);
     QString oldSettingsFile =
         QDir(QStandardPaths::writableLocation(QStandardPaths::HomeLocation)).filePath(OLD_SETTINGS_FILE);
@@ -66,7 +68,11 @@ void SettingsManager::init()
             "settingmanager/constructor",
             "The new settings file exists or the old settings file does not exist, use the new settings file.");
     }
+
+    // create the QSettings
     mSettings = new QSettings(mSettingsFile, QSettings::IniFormat);
+
+    // move "Cpp" to "C++" for backward compatibility
 
     if (getDefaultLanguage() == "Cpp")
         setDefaultLanguage("C++");
@@ -725,6 +731,7 @@ void SettingsManager::destroy()
 
 void SettingsManager::resetSettings()
 {
+    // the default settings are set in the "get" functions, so a simple clear is enough
     Core::Log::i("settingmanager/resetSetting", "mSettings->clear(), invoked");
     mSettings->clear();
 }

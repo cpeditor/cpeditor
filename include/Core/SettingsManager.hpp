@@ -15,6 +15,12 @@
  *
  */
 
+/*
+ * The SettingsManager is used to manage the preferences and
+ * the saved statuses like hot exit status and window status.
+ * All functions are static, so you can call them at anywhere.
+ */
+
 #ifndef SETTINGSMANAGER_HPP
 #define SETTINGSMANAGER_HPP
 
@@ -26,17 +32,22 @@
 namespace Settings
 {
 
+// The view mode of the editor
 enum ViewMode
 {
-    FULL_EDITOR,
-    FULL_IO,
-    SPLIT
+    FULL_EDITOR, // only the editor is on the screen
+    FULL_IO,     // only the IO part is on the screen
+    SPLIT        // both the editor and the IO part are on the screen with a splitter
 };
 
 class SettingsManager
 {
   public:
+    // initialize the SettingsManager, must be called before reading/writing any setting
     static void init();
+
+    // most functions is a pair of get/set
+    // note that the default settings are set in the "get" functions
 
     static int getConnectionPort();
     static void setConnectionPort(int port);
@@ -47,6 +58,7 @@ class SettingsManager
     static int getTimeLimit();
     static void setTimeLimit(int ms);
 
+    // save the geometry of the main window
     static QRect getGeometry();
     static void setGeometry(const QRect &);
 
@@ -127,9 +139,11 @@ class SettingsManager
     static ViewMode getViewMode();
     static void setViewMode(const ViewMode &v);
 
+    // save the splitter size between the edior and the IO part
     static QByteArray getSplitterSizes();
     static void setSplitterSizes(const QByteArray &state);
 
+    // save the splitter size between the message logger and the testcases
     static QByteArray getRightSplitterSizes();
     static void setRightSplitterSizes(const QByteArray &state);
 
@@ -148,11 +162,13 @@ class SettingsManager
     static QKeySequence getHotkeyViewModeToggler();
     static QKeySequence getHotkeySnippets();
 
+    // these are used for code snippets
     static QString getSnippet(const QString &lang, const QString &name);
     static void setSnippet(const QString &lang, const QString &name, const QString &content);
     static void removeSnippet(const QString &lang, const QString &name);
     static QStringList getSnippetsNames(const QString &lang);
 
+    // these are used for hot exit
     static int getNumberOfTabs();
     static void setNumberOfTabs(int value);
     static int getCurrentIndex();
@@ -166,6 +182,7 @@ class SettingsManager
     static QString getCFPath();
     static void setCFPath(const QString &path);
 
+    // this is used for the default save path
     static QString getSavePath();
     static void setSavePath(const QString &path);
 
@@ -178,15 +195,18 @@ class SettingsManager
     static bool isSaveFaster();
     static void setSaveFaster(bool value);
 
+    // get the internal QSettings
     static QSettings *settings();
 
+    // reset all settings
     static void resetSettings();
 
+    // please call this when the application exits
     static void destroy();
 
   private:
-    static QString mSettingsFile;
-    static QSettings *mSettings;
+    static QString mSettingsFile; // the path to the settings file
+    static QSettings *mSettings;  // the QSettings used for managing the settings
 };
 
 } // namespace Settings
