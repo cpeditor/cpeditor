@@ -72,7 +72,18 @@ void CFTool::submit(const QString &filePath, const QString &url)
         connect(CFToolProcess, SIGNAL(readyReadStandardOutput()), this, SLOT(onReadReady()));
         connect(CFToolProcess, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(onFinished(int)));
         CFToolProcess->start();
-        log->info("CF Tool", "CF Tool has started");
+        bool started = CFToolProcess->waitForStarted(2000);
+        if (started)
+        {
+            log->info("CF Tool", "CF Tool has started");
+        }
+        else
+        {
+            CFToolProcess->kill();
+            log->error(
+                "CF Tool",
+                "Failed to start CF Tool in 2 seconds. Have you set the correct path to CF Tool in Preferences?");
+        }
     }
     else
     {

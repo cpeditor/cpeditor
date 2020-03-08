@@ -4,8 +4,11 @@
 
 - Fix the wrong behavior of the built-in checker Ignore trailing spaces.
 - Remove the misleading "language" in confirmation of submitting to CF.
+- Check whether CF Tool is started when submitting to CF.
 
 ## 6.1.2 (Beta)
+
+### Fixed
 
 - Fix update check.
 
