@@ -5,12 +5,12 @@
 	<file>styles/monkai.xml</file>
 	<file>styles/solarised.xml</file>
 	<file>styles/solarisedDark.xml</file>
-    <file>testlib/testlib.h</file>
-    <file>testlib/checkers/ncmp.cpp</file>
-    <file>testlib/checkers/rcmp4.cpp</file>
-    <file>testlib/checkers/rcmp6.cpp</file>
-    <file>testlib/checkers/rcmp9.cpp</file>
-    <file>testlib/checkers/wcmp.cpp</file>
-    <file>testlib/checkers/nyesno.cpp</file>
+    <file alias="testlib/testlib.h">../third_party/testlib/testlib.h</file>
+    <file alias="testlib/checkers/ncmp.cpp">../third_party/testlib/checkers/ncmp.cpp</file>
+    <file alias="testlib/checkers/rcmp4.cpp">../third_party/testlib/checkers/rcmp4.cpp</file>
+    <file alias="testlib/checkers/rcmp6.cpp">../third_party/testlib/checkers/rcmp6.cpp</file>
+    <file alias="testlib/checkers/rcmp9.cpp">../third_party/testlib/checkers/rcmp9.cpp</file>
+    <file alias="testlib/checkers/wcmp.cpp">../third_party/testlib/checkers/wcmp.cpp</file>
+    <file alias="testlib/checkers/nyesno.cpp">../third_party/testlib/checkers/nyesno.cpp</file>
     </qresource>
 </RCC>

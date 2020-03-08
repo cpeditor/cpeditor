@@ -7,9 +7,9 @@
 [submodule "third_party/QtFindReplaceDialog"]
 	path = third_party/QtFindReplaceDialog
 	url = https://github.com/cpeditor/QtFindReplaceDialog
-[submodule "resources/testlib"]
-	path = resources/testlib
-	url = https://github.com/MikeMirzayanov/testlib
 [submodule "third_party/lsp-cpp"]
 	path = third_party/lsp-cpp
 	url = https://github.com/cpeditor/lsp-cpp
+[submodule "third_party/testlib"]
+	path = third_party/testlib
+	url = https://github.com/MikeMirzayanov/testlib
