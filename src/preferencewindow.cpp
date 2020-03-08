@@ -346,8 +346,9 @@ bool PreferenceWindow::isUnsavedChanges()
     if (ui->display_eoln_in_diff->isChecked() != Settings::SettingsManager::isDisplayEolnInDiff())
         return true;
 
-    // @ouuan: Add the logic to detect the snippet unsaved changes here, this function should return true incase of changes.
-    // Check line 650, where actual saving of snippet should take place, which is reached only if this function returns true
+    // @ouuan: Add the logic to detect the snippet unsaved changes here, this function should return true incase of
+    // changes. Check line 650, where actual saving of snippet should take place, which is reached only if this function
+    // returns true
 
     return false;
 }
