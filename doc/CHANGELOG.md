@@ -1,5 +1,9 @@
 ## UNRELEASED
 
+### Added
+
+- Clear buttons for keybindings in Preferences.
+
 ### Fixed
 
 - Fix update check.

@@ -48,6 +48,14 @@ PreferenceWindow::PreferenceWindow(QWidget *parent) : QMainWindow(parent), ui(ne
     connect(ui->snippets_lang, SIGNAL(currentTextChanged(const QString &)), this,
             SLOT(onSnippetsLangChanged(const QString &)));
 
+    connect(ui->compile_hotkey_clear_button, SIGNAL(clicked()), ui->compile_hotkey, SLOT(clear()));
+    connect(ui->run_hotkey_clear_button, SIGNAL(clicked()), ui->run_hotkey, SLOT(clear()));
+    connect(ui->compileRun_hotkey_clear_button, SIGNAL(clicked()), ui->compileRun_hotkey, SLOT(clear()));
+    connect(ui->format_hotkey_clear_button, SIGNAL(clicked()), ui->format_hotkey, SLOT(clear()));
+    connect(ui->kill_hotkey_clear_button, SIGNAL(clicked()), ui->kill_hotkey, SLOT(clear()));
+    connect(ui->toggle_hotkey_clear_button, SIGNAL(clicked()), ui->toggle_hotkey, SLOT(clear()));
+    connect(ui->snippets_hotkey_clear_button, SIGNAL(clicked()), ui->snippets_hotkey, SLOT(clear()));
+
     applySettingsToui();
     resize(QDesktopWidget().availableGeometry(this).size() * PREFERENCE_WINDOW_SIZE_FACTOR);
     setConstraints();

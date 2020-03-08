@@ -769,19 +769,18 @@ p, li { white-space: pre-wrap; }
                </widget>
               </item>
               <item row="0" column="1">
-               <widget class="QKeySequenceEdit" name="compile_hotkey"/>
-              </item>
-              <item row="4" column="1">
-               <widget class="QKeySequenceEdit" name="kill_hotkey"/>
-              </item>
-              <item row="1" column="1">
-               <widget class="QKeySequenceEdit" name="run_hotkey"/>
-              </item>
-              <item row="2" column="1">
-               <widget class="QKeySequenceEdit" name="compileRun_hotkey"/>
-              </item>
-              <item row="3" column="1">
-               <widget class="QKeySequenceEdit" name="format_hotkey"/>
+               <layout class="QHBoxLayout" name="compile_hotkey_layout">
+                <item>
+                 <widget class="QKeySequenceEdit" name="compile_hotkey"/>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="compile_hotkey_clear_button">
+                  <property name="text">
+                   <string>Clear</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
               </item>
               <item row="1" column="0">
                <widget class="QLabel" name="label_14">
@@ -790,12 +789,40 @@ p, li { white-space: pre-wrap; }
                 </property>
                </widget>
               </item>
+              <item row="1" column="1">
+               <layout class="QHBoxLayout" name="run_hotkey_layout">
+                <item>
+                 <widget class="QKeySequenceEdit" name="run_hotkey"/>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="run_hotkey_clear_button">
+                  <property name="text">
+                   <string>Clear</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
               <item row="2" column="0">
                <widget class="QLabel" name="label_15">
                 <property name="text">
                  <string>Hotkey for Compile and Run</string>
                 </property>
                </widget>
+              </item>
+              <item row="2" column="1">
+               <layout class="QHBoxLayout" name="compileRun_hotkey_layout">
+                <item>
+                 <widget class="QKeySequenceEdit" name="compileRun_hotkey"/>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="compileRun_hotkey_clear_button">
+                  <property name="text">
+                   <string>Clear</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
               </item>
               <item row="3" column="0">
                <widget class="QLabel" name="label_16">
@@ -804,12 +831,40 @@ p, li { white-space: pre-wrap; }
                 </property>
                </widget>
               </item>
+              <item row="3" column="1">
+               <layout class="QHBoxLayout" name="format_hotkey_layout">
+                <item>
+                 <widget class="QKeySequenceEdit" name="format_hotkey"/>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="format_hotkey_clear_button">
+                  <property name="text">
+                   <string>Clear</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
               <item row="4" column="0">
                <widget class="QLabel" name="label_17">
                 <property name="text">
                  <string>Hotkey for Killing all Running Processes</string>
                 </property>
                </widget>
+              </item>
+              <item row="4" column="1">
+               <layout class="QHBoxLayout" name="kill_hotkey_layout">
+                <item>
+                 <widget class="QKeySequenceEdit" name="kill_hotkey"/>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="kill_hotkey_clear_button">
+                  <property name="text">
+                   <string>Clear</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
               </item>
               <item row="5" column="0">
                <widget class="QLabel" name="label_44">
@@ -819,7 +874,18 @@ p, li { white-space: pre-wrap; }
                </widget>
               </item>
               <item row="5" column="1">
-               <widget class="QKeySequenceEdit" name="toggle_hotkey"/>
+               <layout class="QHBoxLayout" name="toggle_hotkey_layout">
+                <item>
+                 <widget class="QKeySequenceEdit" name="toggle_hotkey"/>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="toggle_hotkey_clear_button">
+                  <property name="text">
+                   <string>Clear</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
               </item>
               <item row="6" column="0">
                <widget class="QLabel" name="label_100">
@@ -829,7 +895,18 @@ p, li { white-space: pre-wrap; }
                </widget>
               </item>
               <item row="6" column="1">
-               <widget class="QKeySequenceEdit" name="snippets_hotkey"/>
+               <layout class="QHBoxLayout" name="snippets_hotkey_layout">
+                <item>
+                 <widget class="QKeySequenceEdit" name="snippets_hotkey"/>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="snippets_hotkey_clear_button">
+                  <property name="text">
+                   <string>Clear</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
               </item>
              </layout>
             </item>
