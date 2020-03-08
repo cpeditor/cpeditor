@@ -31,7 +31,7 @@ class CFTool : public QObject
   public:
     CFTool(const QString &path, MessageLogger *logger);
     ~CFTool();
-    void submit(const QString &filePath, const QString &url, const QString &lang);
+    void submit(const QString &filePath, const QString &url);
     static bool check(const QString &path);
     void updatePath(const QString &p);
     static bool parseCfUrl(const QString &url, QString &contestId, QString &problemCode);

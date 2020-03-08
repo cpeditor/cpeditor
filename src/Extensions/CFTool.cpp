@@ -39,7 +39,7 @@ CFTool::~CFTool()
     }
 }
 
-void CFTool::submit(const QString &filePath, const QString &url, const QString &lang)
+void CFTool::submit(const QString &filePath, const QString &url)
 {
     if (CFToolProcess != nullptr)
     {
@@ -55,7 +55,7 @@ void CFTool::submit(const QString &filePath, const QString &url, const QString &
         CFToolProcess = nullptr;
     }
 
-    Core::Log::i("cftool/submit") << INFO_OF(filePath) << ", " << INFO_OF(url) << ", " INFO_OF(lang) << endl;
+    Core::Log::i("cftool/submit") << INFO_OF(filePath) << ", " << INFO_OF(url) << endl;
 
     if (parseCfUrl(url, problemContestId, problemCode))
     {

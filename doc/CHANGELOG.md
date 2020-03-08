@@ -4,6 +4,7 @@
 
 - Fix update check.
 - Fix the wrong behavior of the built-in checker Ignore trailing spaces.
+- Remove the misleading "language" in confirmation of submitting to CF.
 
 ## v6.1
 

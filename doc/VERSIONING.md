@@ -104,8 +104,10 @@ The changelog of a GitHub Releases is a part of [CHANGELOG.md](CHANGELOG.md), us
 2. Create a commit on the version branch which contains exactly the following:
    - Change the version in [CMakeLists.txt](../CMakeLists.txt) to `$X.$Y.$Z`.
    - Move the UNRELEASED changes to the changelog of `$X.$Y.$Z` in [CHANGELOG.md](CHANGELOG.md).
+   - Update badges in [README.md](../README.md).
    - The commit subject is `Release $X.$Y.$Z`.
 3. Tag the commit created at the step 2 as `$X.$Y.$Z`.
 4. Push both the commit and the tag.
 5. Edit the changelog of the GitHub Release, make it non-draft, and mark it as a pre-release if it is.
-6. Update badges in [README.md](../README.md) on all the three branches.
+
+You can use [release.sh](../release.sh) to do the above except edit the release on GitHub.
