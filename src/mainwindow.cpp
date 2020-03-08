@@ -225,8 +225,7 @@ void MainWindow::setCFToolUI()
         connect(submitToCodeforces, &QPushButton::clicked, this, [this] {
             auto response = QMessageBox::warning(
                 this, "Sure to submit",
-                "Are you sure you want to submit this solution to Codeforces?\n\n URL: " + problemURL +
-                    "\n Language : " + language,
+                "Are you sure you want to submit this solution to Codeforces?\n\n URL: " + problemURL,
                 QMessageBox::Yes | QMessageBox::No);
 
             if (response == QMessageBox::Yes)
@@ -234,7 +233,7 @@ void MainWindow::setCFToolUI()
                 if (saveTemp("CF Tool Saver"))
                 {
                     log.clear();
-                    cftool->submit(tmpPath(), problemURL, language);
+                    cftool->submit(tmpPath(), problemURL);
                 }
             }
         });

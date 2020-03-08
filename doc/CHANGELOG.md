@@ -3,6 +3,7 @@
 ### Fixed
 
 - Fix the wrong behavior of the built-in checker Ignore trailing spaces.
+- Remove the misleading "language" in confirmation of submitting to CF.
 
 ## 6.1.2 (Beta)
 
