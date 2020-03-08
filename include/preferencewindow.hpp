@@ -38,7 +38,8 @@ class PreferenceWindow : public QMainWindow
   public:
     explicit PreferenceWindow(QWidget *parent = nullptr);
     void updateShow();
-    ~PreferenceWindow();
+    void closeEvent(QCloseEvent *event) override;
+    ~PreferenceWindow() override;
 
   private slots:
     void on_ok_clicked();
@@ -86,6 +87,7 @@ class PreferenceWindow : public QMainWindow
     void setConstraints();
     void updateSnippets();
     void switchToSnippet(const QString &text);
+    bool isUnsavedChanges();
 
     QString getNewSnippetName(const QString &lang, const QString &old = QString());
 };

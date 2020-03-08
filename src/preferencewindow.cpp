@@ -33,6 +33,11 @@
 
 #define PREFERENCE_WINDOW_SIZE_FACTOR 0.5
 
+// Whenever a new settings key is added, Add code to each of following functions:
+// 1. applySettingsToui
+// 2. extractSettingsFromui
+// 3. isUnsavedChanges
+
 PreferenceWindow::PreferenceWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::PreferenceWindow)
 {
     Core::Log::i("preferencewindow/constructed", "Invoked");
@@ -235,6 +240,118 @@ void PreferenceWindow::extractSettingsFromUi()
     Settings::SettingsManager::setDisplayEolnInDiff(ui->display_eoln_in_diff->isChecked());
 }
 
+bool PreferenceWindow::isUnsavedChanges()
+{
+    Core::Log::i("preferencewindow/unsavedChanges", "Invoked");
+
+    if (ui->editor_theme->currentText() != Settings::SettingsManager::getEditorTheme())
+        return true;
+    if (ui->tab_length->value() != Settings::SettingsManager::getTabStop())
+        return true;
+    if (!Settings::SettingsManager::getFont().isEmpty() &&
+        currentFont.toString() != Settings::SettingsManager::getFont())
+        return true;
+
+    if (ui->savetest->isChecked() != Settings::SettingsManager::isSaveTests())
+        return true;
+    if (ui->wrap->isChecked() != Settings::SettingsManager::isWrapText())
+        return true;
+    if (ui->indent->isChecked() != Settings::SettingsManager::isAutoIndent())
+        return true;
+    if (ui->parentheses->isChecked() != Settings::SettingsManager::isAutoParentheses())
+        return true;
+    if (ui->remove_parentheses->isChecked() != Settings::SettingsManager::isAutoRemoveParentheses())
+        return true;
+    if (ui->replace_tabs->isChecked() != Settings::SettingsManager::isTabsReplaced())
+        return true;
+    if (ui->format_on_save->isChecked() != Settings::SettingsManager::isFormatOnSave())
+        return true;
+    if (ui->use_hot_exit->isChecked() != Settings::SettingsManager::isUseHotExit())
+        return true;
+    if (ui->compile_and_run_only->isChecked() != Settings::SettingsManager::isCompileAndRunOnly())
+        return true;
+    if (ui->save_faster->isChecked() != Settings::SettingsManager::isSaveFaster())
+        return true;
+
+    if (ui->defaultLang->currentText() != Settings::SettingsManager::getDefaultLanguage())
+        return true;
+
+    if (ui->cpp_compiler_cmd->text() != Settings::SettingsManager::getCompileCommand("C++"))
+        return true;
+    if (ui->cpp_args_cmd->text() != Settings::SettingsManager::getRuntimeArguments("C++"))
+        return true;
+
+    if (ui->java_compiler_cmd->text() != Settings::SettingsManager::getCompileCommand("Java"))
+        return true;
+    if (ui->java_start_cmd->text() != Settings::SettingsManager::getRunCommand("Java"))
+        return true;
+    if (ui->java_args_cmd->text() != Settings::SettingsManager::getRuntimeArguments("Java"))
+        return true;
+
+    if (ui->python_start_cmd->text() != Settings::SettingsManager::getRunCommand("Python"))
+        return true;
+    if (ui->python_args_cmd->text() != Settings::SettingsManager::getRuntimeArguments("Python"))
+        return true;
+
+    if (ui->clang_format_binary->text() != Settings::SettingsManager::getClangFormatBinary())
+        return true;
+    if (ui->clang_format_style->toPlainText() != Settings::SettingsManager::getClangFormatStyle())
+        return true;
+
+    if (ui->companion_use->isChecked() != Settings::SettingsManager::isCompetitiveCompanionActive())
+        return true;
+    if (ui->companion_new_tab->isChecked() != Settings::SettingsManager::isCompetitiveCompanionOpenNewTab())
+        return true;
+    if (ui->companion_port->value() != Settings::SettingsManager::getConnectionPort())
+        return true;
+
+    if (ui->beta_update->isChecked() != Settings::SettingsManager::isBeta())
+        return true;
+    if (ui->update_startup->isChecked() != Settings::SettingsManager::isCheckUpdateOnStartup())
+        return true;
+
+    if (ui->time_limit->value() != Settings::SettingsManager::getTimeLimit())
+        return true;
+
+    if (!Settings::SettingsManager::getTemplatePath("C++").isEmpty() &&
+        cppTemplatePath != Settings::SettingsManager::getTemplatePath("C++"))
+        return true;
+    if (!Settings::SettingsManager::getTemplatePath("Java").isEmpty() &&
+        javaTemplatePath != Settings::SettingsManager::getTemplatePath("Java"))
+        return true;
+    if (!Settings::SettingsManager::getTemplatePath("Python").isEmpty() &&
+        pythonTemplatePath != Settings::SettingsManager::getTemplatePath("Python"))
+        return true;
+
+    if (ui->hotkeys->isChecked() != Settings::SettingsManager::isHotkeyInUse())
+        return true;
+
+    if (ui->run_hotkey->keySequence() != Settings::SettingsManager::getHotkeyRun())
+        return true;
+    if (ui->kill_hotkey->keySequence() != Settings::SettingsManager::getHotkeyKill())
+        return true;
+    if (ui->format_hotkey->keySequence() != Settings::SettingsManager::getHotkeyFormat())
+        return true;
+    if (ui->compile_hotkey->keySequence() != Settings::SettingsManager::getHotkeyCompile())
+        return true;
+    if (ui->compileRun_hotkey->keySequence() != Settings::SettingsManager::getHotkeyCompileRun())
+        return true;
+    if (ui->toggle_hotkey->keySequence() != Settings::SettingsManager::getHotkeyViewModeToggler())
+        return true;
+    if (ui->snippets_hotkey->keySequence() != Settings::SettingsManager::getHotkeySnippets())
+        return true;
+
+    if (ui->cf_path->text() != Settings::SettingsManager::getCFPath())
+        return true;
+    if (ui->display_eoln_in_diff->isChecked() != Settings::SettingsManager::isDisplayEolnInDiff())
+        return true;
+
+    // @ouuan: Add the logic to detect the snippet unsaved changes here, this function should return true incase of changes.
+    // Check line 650, where actual saving of snippet should take place, which is reached only if this function returns true
+
+    return false;
+}
+
 void PreferenceWindow::updateShow()
 {
     Core::Log::i("preferencewindow/updateShow", "Invoked");
@@ -388,7 +505,7 @@ void PreferenceWindow::on_extract_snippets_to_files_clicked()
         Core::Log::i("preferencewindow/on_extract_snippets_to_files_clicked", "branched to if");
         QDir dir(dirPath);
         auto names = Settings::SettingsManager::getSnippetsNames(lang);
-        for (auto name : names)
+        for (auto const &name : names)
         {
             auto content = Settings::SettingsManager::getSnippet(lang, name);
             auto filePath = dir.filePath(name + suffix);
@@ -527,4 +644,21 @@ QString PreferenceWindow::getNewSnippetName(const QString &lang, const QString &
         return name;
     else
         return getNewSnippetName(lang, name);
+}
+
+void PreferenceWindow::closeEvent(QCloseEvent *event)
+{
+    if (isUnsavedChanges())
+    {
+        auto button = QMessageBox::warning(
+            this, "Unsaved settings", "You have unsaved changes, Would you like to apply the changes or discard them?",
+            QMessageBox::Discard | QMessageBox::Save);
+        if (button != QMessageBox::Discard)
+        {
+            on_apply_clicked();
+            // Also save the unsaved changes of snippets, above does not saves snippet.
+            // Add the code to update snippets when this code is reached.
+        }
+    }
+    event->accept();
 }

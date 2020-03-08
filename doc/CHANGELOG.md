@@ -9,6 +9,7 @@
 - Fix update check.
 - Fix the wrong behavior of the built-in checker Ignore trailing spaces.
 - Check whether CF Tool is started when submitting to CF.
+- Show warning if Setting changes are not saved and setting window is closed.
 
 ## v6.1
 
