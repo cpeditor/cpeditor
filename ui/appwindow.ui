@@ -118,6 +118,7 @@
     <property name="title">
      <string>Help</string>
     </property>
+    <addaction name="actionManual"/>
     <addaction name="actionAbout"/>
     <addaction name="actionAboutQt"/>
     <addaction name="actionBuildInfo"/>
@@ -380,6 +381,11 @@
   <action name="actionRestore_Settings">
    <property name="text">
     <string>Reset Preferences</string>
+   </property>
+  </action>
+  <action name="actionManual">
+   <property name="text">
+    <string>Manual</string>
    </property>
   </action>
   <action name="actionAbout">

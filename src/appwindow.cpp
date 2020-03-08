@@ -586,6 +586,12 @@ void AppWindow::on_actionSupport_me_triggered()
     QDesktopServices::openUrl(QUrl("https://paypal.me/coder3101", QUrl::TolerantMode));
 }
 
+void AppWindow::on_actionManual_triggered()
+{
+    QDesktopServices::openUrl(
+        QUrl("https://github.com/cpeditor/cpeditor/blob/master/doc/MANUAL.md", QUrl::TolerantMode));
+}
+
 void AppWindow::on_actionAbout_triggered()
 {
     Core::Log::i("appwindow/on_actionAbout_triggered", "Invoked");

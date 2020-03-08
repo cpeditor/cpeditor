@@ -55,6 +55,8 @@ class AppWindow : public QMainWindow
   private slots:
     void on_actionSupport_me_triggered();
 
+    void on_actionManual_triggered();
+
     void on_actionAbout_triggered();
 
     void on_actionAboutQt_triggered();
