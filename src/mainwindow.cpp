@@ -225,7 +225,8 @@ void MainWindow::setCFToolUI()
         connect(submitToCodeforces, &QPushButton::clicked, this, [this] {
             auto response = QMessageBox::warning(
                 this, "Sure to submit",
-                "Are you sure you want to submit this solution to Codeforces?\n\n URL: " + problemURL,
+                "Are you sure you want to submit this solution to Codeforces?\n\n URL: " + problemURL +
+                    "\n Language : " + language,
                 QMessageBox::Yes | QMessageBox::No);
 
             if (response == QMessageBox::Yes)
