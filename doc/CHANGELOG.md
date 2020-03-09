@@ -3,6 +3,11 @@
 ### Added
 
 - Clear buttons for keybindings in Preferences.
+- You can edit input/expected in a bigger window, by the action in the right-click menu of the textedits.
+
+### Changed
+
+- "Load Input" and "Load Expected" buttons are moved to the right-click menu of the textedits. "Run" and "Delete" buttons take place of them (they were in the menu of the "More" button, now the "More" button is gone).
 
 ### Fixed
 

@@ -26,7 +26,6 @@
 #include <QHBoxLayout>
 #include <QLabel>
 #include <QMenu>
-#include <QPlainTextEdit>
 #include <QPushButton>
 #include <QVBoxLayout>
 
@@ -57,10 +56,10 @@ class TestCase : public QWidget
     void requestRun(int index);
 
   private slots:
-    void on_showCheckBox_toggled(bool checked);
-    void on_loadInputButton_clicked();
-    void on_diffButton_clicked();
-    void on_loadExpectedButton_clicked();
+    void onShowCheckBoxToggled(bool checked);
+    void onRunButtonClicked();
+    void onDiffButtonClicked();
+    void onDelButtonClicked();
     void onToLongForHtml();
 
   private:
@@ -68,9 +67,8 @@ class TestCase : public QWidget
     QVBoxLayout *inputLayout = nullptr, *outputLayout = nullptr, *expectedLayout = nullptr;
     QCheckBox *showCheckBox = nullptr;
     QLabel *inputLabel = nullptr, *outputLabel = nullptr, *expectedLabel = nullptr;
-    QPushButton *moreButton = nullptr, *loadInputButton = nullptr, *diffButton = nullptr, *loadExpectedButton = nullptr;
+    QPushButton *runButton = nullptr, *diffButton = nullptr, *delButton = nullptr;
     TestCaseEdit *inputEdit = nullptr, *outputEdit = nullptr, *expectedEdit = nullptr;
-    QMenu *moreMenu = nullptr;
     DiffViewer *diffViewer = nullptr;
     MessageLogger *log;
     Core::Checker::Verdict currentVerdict = Core::Checker::UNKNOWN;

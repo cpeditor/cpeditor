@@ -18,6 +18,7 @@
 #ifndef TESTCASEEDIT_HPP
 #define TESTCASEEDIT_HPP
 
+#include "Core/MessageLogger.hpp"
 #include <QPlainTextEdit>
 #include <QPropertyAnimation>
 
@@ -26,8 +27,8 @@ class TestCaseEdit : public QPlainTextEdit
     Q_OBJECT
 
   public:
-    explicit TestCaseEdit(bool autoAnimation, const QString &text, QWidget *parent = nullptr);
-    explicit TestCaseEdit(bool autoAnimation, QWidget *parent = nullptr);
+    explicit TestCaseEdit(bool autoAnimation, MessageLogger *logger, const QString &text = QString(),
+                          QWidget *parent = nullptr);
     void dragEnterEvent(QDragEnterEvent *event) override;
     void dragMoveEvent(QDragMoveEvent *event) override;
     void dropEvent(QDropEvent *event) override;
@@ -36,8 +37,12 @@ class TestCaseEdit : public QPlainTextEdit
   public slots:
     void startAnimation();
 
+  private slots:
+    void onCustomContextMenuRequested(const QPoint &);
+
   private:
     QPropertyAnimation *animation;
+    MessageLogger *log;
 };
 
 #endif // TESTCASEEDIT_HPP

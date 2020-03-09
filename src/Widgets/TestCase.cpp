@@ -17,7 +17,6 @@
 
 #include "Widgets/TestCase.hpp"
 #include "Core/EventLogger.hpp"
-#include <QFileDialog>
 #include <QMessageBox>
 #include <Util.hpp>
 
@@ -36,14 +35,12 @@ TestCase::TestCase(int index, MessageLogger *logger, QWidget *parent, const QStr
     inputLabel = new QLabel("Input");
     outputLabel = new QLabel("Output");
     expectedLabel = new QLabel("Expected");
-    moreButton = new QPushButton("More");
-    loadInputButton = new QPushButton("Load");
+    runButton = new QPushButton("Run");
     diffButton = new QPushButton("**");
-    loadExpectedButton = new QPushButton("Load");
-    inputEdit = new TestCaseEdit(true, in);
-    outputEdit = new TestCaseEdit(false);
-    expectedEdit = new TestCaseEdit(true, exp);
-    moreMenu = new QMenu();
+    delButton = new QPushButton("Del");
+    inputEdit = new TestCaseEdit(true, log, in);
+    outputEdit = new TestCaseEdit(false, log);
+    expectedEdit = new TestCaseEdit(true, log, exp);
     diffViewer = new DiffViewer(this);
 
     setID(index);
@@ -56,44 +53,13 @@ TestCase::TestCase(int index, MessageLogger *logger, QWidget *parent, const QStr
     showCheckBox->setChecked(true);
     showCheckBox->setSizePolicy({QSizePolicy::Fixed, QSizePolicy::Fixed});
 
-    loadExpectedButton->setMinimumWidth(
-        loadExpectedButton->fontMetrics().boundingRect(loadExpectedButton->text()).width() + 10);
-
-    moreButton->setMinimumWidth(moreButton->fontMetrics().boundingRect(moreButton->text()).width() + 30);
-
-    moreMenu->addAction("Delete", [this] {
-        Core::Log::i("TestCases/moreMenu/Delete", "Invoked");
-
-        if (input().isEmpty() && expected().isEmpty())
-        {
-            Core::Log::i("TestCases/moreMenu/Delete", "Deleted Directly because it's empty");
-            emit deleted(this);
-        }
-        else
-        {
-            Core::Log::i("TestCases/moreMenu/Delete", "Asking confirmation for delete");
-            auto res = QMessageBox::question(this, "Delete Testcase",
-                                             "Do you want to delete test case #" + QString::number(id + 1));
-            if (res == QMessageBox::Yes)
-                emit deleted(this);
-        }
-    });
-
-    moreMenu->addAction("Run", [this] {
-        showCheckBox->setChecked(true);
-        emit requestRun(id);
-    });
-
-    moreButton->setMenu(moreMenu);
-
     inputUpLayout->addWidget(showCheckBox);
     inputUpLayout->addWidget(inputLabel);
-    inputUpLayout->addWidget(loadInputButton);
+    inputUpLayout->addWidget(runButton);
     outputUpLayout->addWidget(outputLabel);
     outputUpLayout->addWidget(diffButton);
     expectedUpLayout->addWidget(expectedLabel);
-    expectedUpLayout->addWidget(loadExpectedButton);
-    expectedUpLayout->addWidget(moreButton);
+    expectedUpLayout->addWidget(delButton);
     inputLayout->addLayout(inputUpLayout);
     inputLayout->addWidget(inputEdit);
     outputLayout->addLayout(outputUpLayout);
@@ -107,10 +73,10 @@ TestCase::TestCase(int index, MessageLogger *logger, QWidget *parent, const QStr
 
     Core::Log::i("testcase/constructed", "UI has been built");
 
-    connect(showCheckBox, SIGNAL(toggled(bool)), this, SLOT(on_showCheckBox_toggled(bool)));
-    connect(loadInputButton, SIGNAL(clicked()), this, SLOT(on_loadInputButton_clicked()));
-    connect(diffButton, SIGNAL(clicked()), SLOT(on_diffButton_clicked()));
-    connect(loadExpectedButton, SIGNAL(clicked()), this, SLOT(on_loadExpectedButton_clicked()));
+    connect(showCheckBox, SIGNAL(toggled(bool)), this, SLOT(onShowCheckBoxToggled(bool)));
+    connect(runButton, SIGNAL(clicked()), this, SLOT(onRunButtonClicked()));
+    connect(diffButton, SIGNAL(clicked()), SLOT(onDiffButtonClicked()));
+    connect(delButton, SIGNAL(clicked()), this, SLOT(onDelButtonClicked()));
     connect(diffViewer, SIGNAL(toLongForHtml()), this, SLOT(onToLongForHtml()));
 
     Core::Log::i("testcase/constructed", "signals have been attached");
@@ -253,7 +219,7 @@ bool TestCase::isShow() const
     return showCheckBox->isChecked();
 }
 
-void TestCase::on_showCheckBox_toggled(bool checked)
+void TestCase::onShowCheckBoxToggled(bool checked)
 {
     if (checked)
     {
@@ -269,18 +235,14 @@ void TestCase::on_showCheckBox_toggled(bool checked)
     }
 }
 
-void TestCase::on_loadInputButton_clicked()
+void TestCase::onRunButtonClicked()
 {
-    Core::Log::i("testcase/on_loadInputButton_clicked", "invoked");
-    auto res = QFileDialog::getOpenFileName(this, "Load Input");
-    QFile file(res);
-    if (file.open(QIODevice::ReadOnly | QIODevice::Text))
-        setInput(file.readAll());
-    else
-        log->warn("Tests", "Failed to load input file " + res);
+    Core::Log::i("TestCase/onRunButtonClicked", "Invoked");
+    showCheckBox->setChecked(true);
+    emit requestRun(id);
 }
 
-void TestCase::on_diffButton_clicked()
+void TestCase::onDiffButtonClicked()
 {
     Core::Log::i("testcase/on_diffButton_clicked", "invoked");
     diffViewer->setText(output(), expected());
@@ -288,15 +250,23 @@ void TestCase::on_diffButton_clicked()
     diffViewer->raise();
 }
 
-void TestCase::on_loadExpectedButton_clicked()
+void TestCase::onDelButtonClicked()
 {
-    Core::Log::i("settingmanager/on_loadExpectedButton_clicked", "invoked");
-    auto res = QFileDialog::getOpenFileName(this, "Load Expected");
-    QFile file(res);
-    if (file.open(QIODevice::ReadOnly | QIODevice::Text))
-        setExpected(file.readAll());
+    Core::Log::i("TestCase/onDelButtonClicked", "Invoked");
+
+    if (input().isEmpty() && expected().isEmpty())
+    {
+        Core::Log::i("TestCase/onDelButtonClicked", "Deleted Directly because it's empty");
+        emit deleted(this);
+    }
     else
-        log->warn("Tests", "Failed to load expected file " + res);
+    {
+        Core::Log::i("TestCase/onDelButtonClicked", "Asking confirmation for delete");
+        auto res = QMessageBox::question(this, "Delete Testcase",
+                                         "Do you want to delete test case #" + QString::number(id + 1));
+        if (res == QMessageBox::Yes)
+            emit deleted(this);
+    }
 }
 
 void TestCase::onToLongForHtml()

@@ -17,24 +17,24 @@
 
 #include "Widgets/TestCaseEdit.hpp"
 #include "Core/EventLogger.hpp"
+#include <QApplication>
+#include <QFileDialog>
+#include <QInputDialog>
+#include <QMenu>
 #include <QMimeData>
+#include <QStyle>
 
-TestCaseEdit::TestCaseEdit(bool autoAnimation, const QString &text, QWidget *parent) : QPlainTextEdit(text, parent)
+TestCaseEdit::TestCaseEdit(bool autoAnimation, MessageLogger *logger, const QString &text, QWidget *parent)
+    : QPlainTextEdit(text, parent), log(logger)
 {
     Core::Log::i("testcaseEdit/constructed") << "autoAnimate " << autoAnimation << " text " << text << endl;
     animation = new QPropertyAnimation(this, "minimumHeight", this);
     if (autoAnimation)
         connect(this, SIGNAL(textChanged()), this, SLOT(startAnimation()));
     startAnimation();
-}
-
-TestCaseEdit::TestCaseEdit(bool autoAnimation, QWidget *parent) : QPlainTextEdit(parent)
-{
-    Core::Log::i("testcaseEdit/constructed") << "autoAnimate " << autoAnimation << endl;
-    animation = new QPropertyAnimation(this, "minimumHeight", this);
-    if (autoAnimation)
-        connect(this, SIGNAL(textChanged()), this, SLOT(startAnimation()));
-    startAnimation();
+    setContextMenuPolicy(Qt::CustomContextMenu);
+    connect(this, SIGNAL(customContextMenuRequested(const QPoint &)), this,
+            SLOT(onCustomContextMenuRequested(const QPoint &)));
 }
 
 void TestCaseEdit::dragEnterEvent(QDragEnterEvent *event)
@@ -95,4 +95,31 @@ void TestCaseEdit::startAnimation()
         animation->start();
         Core::Log::i("testcaseEdit/startAnimation", "re-started Animation");
     }
+}
+
+void TestCaseEdit::onCustomContextMenuRequested(const QPoint &pos)
+{
+    auto menu = createStandardContextMenu();
+    if (!isReadOnly())
+    {
+        menu->addSeparator();
+        menu->addAction(QApplication::style()->standardIcon(QStyle::SP_DialogOpenButton), "Load From File", [this] {
+            Core::Log::i("TestCaseEdit/LoadFromFile", "Invoked");
+            auto res = QFileDialog::getOpenFileName(this, "Load From File");
+            QFile file(res);
+            if (file.open(QIODevice::ReadOnly | QIODevice::Text))
+                modifyText(file.readAll());
+            else
+                log->warn("TestCases", "Failed to load testcase from [" + res + "]");
+        });
+        menu->addAction(
+            QApplication::style()->standardIcon(QStyle::SP_TitleBarMaxButton), "Edit in Bigger Window", [this] {
+                Core::Log::i("TestCaseEdit/EditInBiggerWindow");
+                bool ok = false;
+                auto res = QInputDialog::getMultiLineText(this, "Edit Testcase", QString(), toPlainText(), &ok);
+                if (ok)
+                    modifyText(res);
+            });
+    }
+    menu->popup(mapToGlobal(pos));
 }
