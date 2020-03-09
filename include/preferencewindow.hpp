@@ -81,6 +81,7 @@ class PreferenceWindow : public QMainWindow
     QFont currentFont;
     QString cppTemplatePath, pythonTemplatePath, javaTemplatePath;
     QCodeEditor *editor = nullptr; // for snippets
+    bool isCancel = false;
 
     void extractSettingsFromUi();
     void applySettingsToui();

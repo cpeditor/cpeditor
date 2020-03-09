@@ -554,6 +554,8 @@ bool AppWindow::quit()
         on_actionClose_All_triggered();
         ret = ui->tabWidget->count() == 0;
     }
+    if (ret && preferenceWindow->isVisible())
+        ret = preferenceWindow->close();
     // The tray icon is considered as a visible window, if it is not hidden, even if the app window is closed,
     // the application won't exit.
     if (ret)

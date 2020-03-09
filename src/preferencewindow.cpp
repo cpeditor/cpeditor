@@ -356,6 +356,7 @@ bool PreferenceWindow::isUnsavedChanges()
 void PreferenceWindow::updateShow()
 {
     Core::Log::i("preferencewindow/updateShow", "Invoked");
+    isCancel = false;
     applySettingsToui();
     show();
     raise();
@@ -380,6 +381,7 @@ void PreferenceWindow::on_ok_clicked()
 void PreferenceWindow::on_cancel_clicked()
 {
     Core::Log::i("preferencewindow/on_cancel_clicked", "Invoked");
+    isCancel = true;
     close();
 }
 
@@ -649,16 +651,21 @@ QString PreferenceWindow::getNewSnippetName(const QString &lang, const QString &
 
 void PreferenceWindow::closeEvent(QCloseEvent *event)
 {
-    if (isUnsavedChanges())
+    if (!isCancel && isUnsavedChanges())
     {
-        auto button = QMessageBox::warning(
-            this, "Unsaved settings", "You have unsaved changes, Would you like to apply the changes or discard them?",
-            QMessageBox::Discard | QMessageBox::Save);
-        if (button != QMessageBox::Discard)
+        auto button = QMessageBox::warning(this, "Unsaved settings",
+                                           "You have unsaved changes, would you like to apply these changes?",
+                                           QMessageBox::Discard | QMessageBox::Save | QMessageBox::Cancel);
+        if (button == QMessageBox::Save)
         {
             on_apply_clicked();
             // Also save the unsaved changes of snippets, above does not saves snippet.
             // Add the code to update snippets when this code is reached.
+        }
+        else if (button == QMessageBox::Cancel)
+        {
+            event->ignore();
+            return;
         }
     }
     event->accept();
