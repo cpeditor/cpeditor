@@ -238,6 +238,13 @@ void PreferenceWindow::extractSettingsFromUi()
 
     Settings::SettingsManager::setCFPath(ui->cf_path->text());
     Settings::SettingsManager::setDisplayEolnInDiff(ui->display_eoln_in_diff->isChecked());
+
+    if (!ui->snippets->currentText().isEmpty() || !editor->toPlainText().isEmpty())
+    {
+        if (ui->snippets->currentText().isEmpty())
+            ui->tabWidget->setCurrentIndex(ui->tabWidget->indexOf(ui->snippets_tab));
+        on_snippet_save_clicked();
+    }
 }
 
 bool PreferenceWindow::isUnsavedChanges()
@@ -346,9 +353,9 @@ bool PreferenceWindow::isUnsavedChanges()
     if (ui->display_eoln_in_diff->isChecked() != Settings::SettingsManager::isDisplayEolnInDiff())
         return true;
 
-    // @ouuan: Add the logic to detect the snippet unsaved changes here, this function should return true incase of
-    // changes. Check line 650, where actual saving of snippet should take place, which is reached only if this function
-    // returns true
+    if (editor->toPlainText() !=
+        Settings::SettingsManager::getSnippet(ui->snippets_lang->currentText(), ui->snippets->currentText()))
+        return true;
 
     return false;
 }
@@ -659,8 +666,6 @@ void PreferenceWindow::closeEvent(QCloseEvent *event)
         if (button == QMessageBox::Save)
         {
             on_apply_clicked();
-            // Also save the unsaved changes of snippets, above does not saves snippet.
-            // Add the code to update snippets when this code is reached.
         }
         else if (button == QMessageBox::Cancel)
         {

@@ -36,8 +36,6 @@ The content of the "Clang Format Style" setting is the same as a `.clang-format`
 
 ### Snippets
 
-Remember to save the snippets! The "OK" and "Apply" buttons don't save snippets.
-
 You can use <kbd>Ctrl+S</kbd>, <kbd>Ctrl+N</kbd>, <kbd>Ctrl+D</kbd>, <kbd>Ctrl+R</kbd> for `Save`, `New`, `Delete` and `Rename`.
 
 ## Editor
