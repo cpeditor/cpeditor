@@ -50,7 +50,7 @@ It makes your competitive coding life easier :grin: by automating many things fo
 - I get **DLL Missing error** when launching the application?
    - Please download  [Microsoft Visual C++ Redistributable for Visual Studio 2015, 2017 and 2019](https://support.microsoft.com/en-us/help/2977003/the-latest-supported-visual-c-downloads).
 - How to use whole-application dark theme?
-   - It's only available on some platforms including KDE and MacOS.
+   - It's only available on some platforms including KDE and MacOS. Just set the system theme, and CP Editor will use the same theme. It's also possible to use different themes via the command-line option `--style`, but it's a feature [provided by Qt](https://doc.qt.io/qt-5/qstyle.html#details), not by CP Editor, and does NOT work on all platforms.
 - I am using it on Codeforces but the submit button is not clickable.
    - It's because the editor can't run the `cf` command. Please make sure it's in the PATH or set the path to it in the Preferences.
 - When I click the Submit button, I get some message saying template is required?
