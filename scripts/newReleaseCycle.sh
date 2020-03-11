@@ -7,20 +7,20 @@ fi
 
 set -e
 
-export STABLEMINOR=v$1.$2
-export STABLEOLD=$1.$2.$3
+STABLEMINOR=v$1.$2
+STABLEOLD=$1.$2.$3
 
-export BETAMINOR=v$4.$5
-export BETAOLD=$4.$5.$6
-export BETANEW=$4.$5.$(($6 + 1))
+BETAMINOR=v$4.$5
+BETAOLD=$4.$5.$6
+BETANEW=$4.$5.$(($6 + 1))
 
-export NEWMINOR=v$7.$8
-export NEWNEW=$7.$8.1
+NEWMINOR=v$7.$8
+NEWNEW=$7.$8.1
 
-export ALPHAOLD=$4.$(($5 + 1)).0
-export ALPHANEW=$7.$(($8 + 1)).0
+ALPHAOLD=$4.$(($5 + 1)).0
+ALPHANEW=$7.$(($8 + 1)).0
 
-export NEXTMINOR=v$7.$(($8 + 1))
+NEXTMINOR=v$7.$(($8 + 1))
 
 cat << endOfMessage
 The old versions:
@@ -38,7 +38,7 @@ endOfMessage
 
 read
 
-git switch $BETAMINOR
+git switch "$BETAMINOR"
 sed -i "s/UNRELEASED/UNRELEASED\n\n## $BETANEW/" doc/CHANGELOG.md
 sed -i "s/$BETAOLD/$BETANEW/" CMakeLists.txt
 git add doc/CHANGELOG.md CMakeLists.txt
@@ -46,12 +46,12 @@ git diff --cached
 echo "Is this diff of $BETANEW OK?"
 read
 git commit -m "Release $BETANEW"
-git tag $BETANEW
+git tag "$BETANEW"
 git push
 git push --tags
 
-git switch -c $NEWMINOR master
-git merge $BETAMINOR --no-commit
+git switch -c "$NEWMINOR" master
+git merge "$BETAMINOR" --no-commit
 echo "[$NEWMINOR]: Are the conflicts resolved?"
 read
 git commit -am "Merge $BETAMINOR: Release $BETANEW"
@@ -62,12 +62,12 @@ git diff --cached
 echo "Is this diff of $NEWNEW OK?"
 read
 git commit -m "Release $NEWNEW"
-git tag $NEWNEW
+git tag "$NEWNEW"
 git push
 git push --tags
 
 git switch master
-git merge $NEWMINOR --no-commit
+git merge "$NEWMINOR" --no-commit
 echo "[master]: Are the conflicts resolved?"
 read
 git commit -am "Merge $NEWMINOR: Release $NEWNEW"

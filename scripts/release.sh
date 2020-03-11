@@ -14,7 +14,7 @@ git diff --cached
 echo "Is this diff OK?"
 read
 git commit -m "Release $2"
-git tag $2
+git tag "$2"
 git push
 git push --tags
 
