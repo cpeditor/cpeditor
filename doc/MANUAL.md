@@ -14,6 +14,10 @@ We're glad that you have chosen our editor, let's get started now! :tada:
 
 # Tips
 
+## CF Tool
+
+You have to either parse the problem from Competitive Companion, or set the problem URL in the right-click menu of the tabs. Then you'll see the submit button. The button is only clickable when CF Tool is found by the editor. You can set the path to it in Preferences->Extra->Misc->CF Tool Command.
+
 ## For Java users
 
 You have to use a **non-public** class named **a** for your solution.
