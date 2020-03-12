@@ -64,6 +64,7 @@ bool Formatter::check(const QString &checkBinary, const QString &checkStyle)
     {
         Core::Log::w("formatter/check", "Format process did not finished in 2 sec, it is being killed");
         program.kill();
+        return false;
     }
     Core::Log::i("formatter/check") << "Process returned exitcode " << program.exitCode() << endl;
     return program.exitCode() == 0;
@@ -187,14 +188,15 @@ QPair<int, QString> Formatter::getFormatResult(const QStringList &args)
     formatProcess.start(binary, args);
     Core::Log::i("formatter/getFormatResult") << "Starting format with args : " << args.join(",") << endl;
 
-    formatProcess.waitForFinished(2000); // BLOCKS main Thread
+    bool finished = formatProcess.waitForFinished(2000); // BLOCKS main Thread
     Core::Log::i("formatter/getFormatResult", "Finished wait of 2 sec for format process is completed");
-    if (formatProcess.state() == QProcess::Running)
+    if (!finished)
     {
-        Core::Log::w("formatter/getFormatResult", "formatProcess was still running, killing it now!");
+        Core::Log::w("formatter/getFormatResult", "formatProcess didn't finish in 2 seconds, kill it.");
         formatProcess.kill();
-        log->warn("Formatter", "The format command is: " + binary + " " + args.join(' '));
-        log->warn("Formatter", "It seems the formatting took more than 2 seconds to complete. Skipped");
+        log->warn("Formatter",
+                  "The format process didn't finish in 2 seconds. This is probably because the clang-format binary is "
+                  "not found by CP Editor. You can set the path to clang-format in Preferences->Formatting.");
         return QPair<int, QString>(-1, QString());
     }
 

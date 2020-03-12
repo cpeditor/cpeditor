@@ -4,6 +4,7 @@
 
 - Clear buttons for keybindings in Preferences.
 - You can edit input/expected in a bigger window, by the action in the right-click menu of the textedits.
+- Show warning if Setting changes are not saved and setting window is closed.
 
 ### Changed
 
@@ -14,7 +15,8 @@
 - Fix update check.
 - Fix the wrong behavior of the built-in checker Ignore trailing spaces.
 - Check whether CF Tool is started when submitting to CF.
-- Show warning if Setting changes are not saved and setting window is closed.
+- Support CF Tool v1.0.0. (#194)
+- Fix this bug: the editor is cleared when formatting if Clang Format is not found. (#195)
 
 ## v6.1
 

@@ -68,7 +68,19 @@ void CFTool::submit(const QString &filePath, const QString &url)
         lastStatus = "Unknown";
         CFToolProcess = new QProcess();
         CFToolProcess->setProgram(CFToolPath);
-        CFToolProcess->setArguments({"submit", problemContestId, problemCode, filePath});
+        auto version = getCFToolVersion();
+        if (version.isEmpty())
+        {
+            log->error(
+                "CF Tool",
+                "Failed to get the version of CF Tool. Have you set the correct path to CF Tool in Preferences?");
+            return;
+        }
+        if (version.split('.')[0] == "0")
+            CFToolProcess->setArguments({"submit", problemContestId, problemCode, filePath});
+        else
+            CFToolProcess->setArguments({"submit", "-f", filePath, url});
+        Core::Log::i("CFTool/submit") << INFO_OF(CFToolProcess->arguments().join(' ')) << endl;
         connect(CFToolProcess, SIGNAL(readyReadStandardOutput()), this, SLOT(onReadReady()));
         connect(CFToolProcess, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(onFinished(int)));
         CFToolProcess->start();
@@ -176,6 +188,21 @@ void CFTool::onFinished(int exitCode)
 void CFTool::showToastMessage(const QString &message)
 {
     emit requestToastMessage("Contest " + problemContestId + " Problem " + problemCode, message);
+}
+
+QString CFTool::getCFToolVersion() const
+{
+    Core::Log::i("CFTool/getCFToolVersion", "Invoked");
+    QProcess process;
+    process.start(CFToolPath, {"--version"});
+    if (!process.waitForFinished(2000))
+    {
+        Core::Log::w("CFTool/getCFToolVersion", "CF Tool didn't finish");
+        return "";
+    }
+    QString version = QRegularExpression(R"((?<=v)\d+\.\d+\.\d+)").match(process.readAll()).captured();
+    Core::Log::i("CFTool/getCFToolVersion") << INFO_OF(version) << endl;
+    return version;
 }
 
 } // namespace Network
