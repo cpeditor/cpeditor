@@ -5,6 +5,7 @@
 - Clear buttons for keybindings in Preferences.
 - You can edit input/expected in a bigger window, by the action in the right-click menu of the textedits.
 - Show warning if Setting changes are not saved and setting window is closed.
+- Add Shift+Delete as a shortcut for deleting the current line.
 
 ### Changed
 

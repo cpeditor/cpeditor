@@ -44,7 +44,7 @@ You can use <kbd>Ctrl+S</kbd>, <kbd>Ctrl+N</kbd>, <kbd>Ctrl+D</kbd>, <kbd>Ctrl+R
 
 ## Editor
 
-Besides the shortcuts in the menu, you can use the [Read-only Key Bindings](https://doc.qt.io/qt-5/qtextedit.html#read-only-key-bindings) and the [Editing Key Bindings](https://doc.qt.io/qt-5/qtextedit.html#read-only-key-bindings). There are also some hidden shortcuts: <kbd>Tab</kbd> and <kbd>Shift+Tab</kbd> for indent (a selection is needed) and unindent, <kbd>Ctrl+Enter</kbd> and <kbd>Ctrl+Shift+Enter</kbd> for inserting line after and before.
+Besides the shortcuts in the menu, you can use the [Read-only Key Bindings](https://doc.qt.io/qt-5/qtextedit.html#read-only-key-bindings) and the [Editing Key Bindings](https://doc.qt.io/qt-5/qtextedit.html#read-only-key-bindings). There are also some hidden shortcuts: <kbd>Tab</kbd> and <kbd>Shift+Tab</kbd> for indent (a selection is needed) and unindent, <kbd>Ctrl+Enter</kbd> and <kbd>Ctrl+Shift+Enter</kbd> for inserting line after and before, <kbd>Shift+Delete</kbd> for deleting the current line.
 
 ## Drag and Drop
 
