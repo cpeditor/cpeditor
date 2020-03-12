@@ -50,6 +50,7 @@ class CFTool : public QObject
     QString CFToolPath;
 
     void showToastMessage(const QString &message);
+    QString getCFToolVersion() const;
 };
 } // namespace Network
 

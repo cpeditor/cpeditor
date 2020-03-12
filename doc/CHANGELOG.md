@@ -4,6 +4,7 @@
 
 - Fix the wrong behavior of the built-in checker Ignore trailing spaces.
 - Check whether CF Tool is started when submitting to CF.
+- Support CF Tool v1.0.0. (#194)
 
 ## 6.1.2 (Beta)
 
