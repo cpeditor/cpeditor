@@ -1,6 +1,6 @@
 ## Welcome!
 
-You are here to help CP Editor? Awesome, feel free and read the following sections in order to know how to work on something and where to get help from. Your contribution matters a lot, CP Editor is getting better and better because of people like you.
+You are here to help CP Editor? Awesome, feel free and read the following sections in order to know how to work on something and where to get help from. Your contribution matters a lot, CP Editor is getting better and better because of people like you. :smile:
 
 ## What kinds of contributions are we looking for?
 

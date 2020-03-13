@@ -32,7 +32,7 @@
 
 ### Runtime Arguments
 
-这些参数会在运行h时作为程序的命令行参数，一般情况下用不上。
+这些参数会在运行时作为程序的命令行参数，一般情况下用不上。
 
 ### Clang Format
 
@@ -47,7 +47,7 @@
 除了菜单中可以看到的快捷键，还有这些快捷键：
 
  - [（Qt）只读的快捷键](https://doc.qt.io/qt-5/qtextedit.html#read-only-key-bindings)
- - [（Qt）修改的快捷键](https://doc.qt.io/qt-5/qtextedit.html#read-only-key-bindings)
+ - [（Qt）修改的快捷键](https://doc.qt.io/qt-5/qtextedit.html#editing-key-bindings)
  - 其它快捷键:
    - <kbd>Tab</kbd>（有选中部分时）/ <kbd>Shift+Tab</kbd>：缩进 / 减少缩进。
    - <kbd>Ctrl+Enter</kbd> / <kbd>Ctrl+Shift+Enter</kbd>：在在后 / 前插入一行。
@@ -81,6 +81,6 @@ Testlib checkers 是在更新设置 / 更换 checkers 时编译的，所以如�
 
 CP Editor 支持一些命令行参数，具体可以执行 `cpeditor --help` 查看。
 
-在 Windows 上，最好使用 git bash 等类 unix 终端来执行命令。
+在 Windows 上，最好使用 git bash 等类 Linux 终端来执行命令。
 
 你可以通过命令行打开一个不存在的文件（稍后可以保存在这个路径）作为一个标签页，或者打开一个文件夹内的所有 C++ 文件。
