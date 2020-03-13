@@ -2,12 +2,6 @@
 
 These rules apply to CP Editor since v6.0. The versions before v6.0 may not satisfy these rules.
 
-### Pull requests
-
-Pull requests which propose a feature should be based on the master branch.
-
-Pull requests which fix a bug should be based on the oldest one of the three active branches (stable > beta > master) which contains the bug.
-
 ### Version number format
 
 Versioning of CP Editor is based on [Semantic Versioning](https://semver.org/), but no `-rc1`, `-beta`, `-stable` is included, so every version number must be strictly in the format `$X.$Y.$Z`, where `$X`, `$Y`, and `$Z` are all non-negative integers without leading zeros.
@@ -111,3 +105,9 @@ The changelog of a GitHub Releases is a part of [CHANGELOG.md](CHANGELOG.md), us
 6. Update the badges in [README.md](../README.md) on the master branch.
 
 You can use [release.sh](../scripts/release.sh) and [newReleaseCycle.sh](../scripts/newReleaseCycle.sh) to do the above except edit the release on GitHub. (Please run them at the root directory.)
+
+### Pull requests
+
+Pull requests which propose a feature should be based on the master branch.
+
+Pull requests which fix a bug should be based on the oldest one of the three active branches (stable > beta > master) which contains the bug.

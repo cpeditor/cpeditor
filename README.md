@@ -2,11 +2,11 @@
 
 <img src=assets/icon.ico height="80" width="80">
 
-CP Editor is a Qt-based code editor specially designed for competitive programming.
+CP Editor is a Qt-based, lightweight and cross-platform code editor specially designed for competitive programming.
 
 It makes your competitive coding life easier :grin: by automating many things for you.
 
-## [<--- LEARN MORE ABOUT CP EDITOR --->](https://cpeditor.github.io/)
+[Features](https://cpeditor.github.io/) | [Installation](doc/INSTALL.md) | [Usage](doc/MANUAL.md) | [FAQ](#faq) | [中文](doc/README_zh-CN.md)
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/ce0f297f31f74485b0d340949d08d605)](https://www.codacy.com/gh/cpeditor/cpeditor)
 [![GitHub All Releases](https://img.shields.io/github/downloads/cpeditor/cpeditor/total?label=downloads%40all)](https://github.com/cpeditor/cpeditor/releases)
@@ -34,8 +34,8 @@ It makes your competitive coding life easier :grin: by automating many things fo
 
 ## Get help
 
-1. Read the [manual](doc/MANUAL.md) first, also go through the menus to see if there are what you are looking for.
-2. Ask Google first if it's not very editor-related. (e.g. How to install Clang Format?)
+1. Read the [manual](doc/MANUAL.md) and the [FAQ](#faq) first, also go through the menus and preferencecs to see if there are what you are looking for.
+2. Ask Google first if it's not very editor-related. (e.g. How to install Clang Format? What does this compilation error mean?)
 3. Search in the [Issues](https://github.com/cpeditor/cpeditor/issues) and make sure your bug report/feature request is not duplicated.
 4. Please follow the issue template and provide detailed information, it will help us to give you better feedback.
 5. If it's a feature request or bug report rather than a question, please open an issue instead of asking on Telegram so that it can be tracked easier.
