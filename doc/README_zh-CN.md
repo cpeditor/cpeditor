@@ -1,12 +1,14 @@
 # CP Editor
 
-<img src=assets/icon.ico height="80" width="80">
+<img src=../assets/icon.ico height="80" width="80">
 
 CP Editor 是一个基于 Qt 的轻量级跨平台代码编辑器，专为算法竞赛设计。
 
 它可以让你刷题/打比赛更加轻松 :grin: 因为它自动化了很多算法竞赛中的流程。
 
 [特性](https://cpeditor.github.io/) | [安装](INSTALL_zh-CN.md) | [使用](MANUAL_zh-CN.md) | [FAQ](#faq) | [English](../README.md)
+
+---
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/ce0f297f31f74485b0d340949d08d605)](https://www.codacy.com/gh/cpeditor/cpeditor)
 [![GitHub All Releases](https://img.shields.io/github/downloads/cpeditor/cpeditor/total?label=downloads%40all)](https://github.com/cpeditor/cpeditor/releases)
