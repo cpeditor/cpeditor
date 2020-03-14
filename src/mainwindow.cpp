@@ -702,6 +702,8 @@ void MainWindow::updateWatcher()
         fileWatcher->addPath(filePath);
 }
 
+const int MainWindow::MAX_CODE_LENGTH;
+
 void MainWindow::loadFile(const QString &loadPath)
 {
     Core::Log::i("mainwindow/loadFile") << "loadPath : " << loadPath << endl;
@@ -734,8 +736,11 @@ void MainWindow::loadFile(const QString &loadPath)
     openFile.open(QIODevice::ReadOnly | QFile::Text);
     if (openFile.isOpen())
     {
-        savedText = openFile.readAll();
-        setText(savedText, samePath);
+        auto content = openFile.readAll();
+        savedText = content;
+        if (content.length() > MAX_CODE_LENGTH)
+            content = content.left(MAX_CODE_LENGTH) + "...This file is too big.";
+        setText(content, samePath);
     }
     else
     {

@@ -145,6 +145,8 @@ class MainWindow : public QMainWindow
     void requestToastMessage(const QString &head, const QString &body);
 
   private:
+    static const int MAX_CODE_LENGTH = 100000;
+
     enum SaveMode
     {
         IgnoreUntitled, // save only when filePath is not empty
