@@ -30,7 +30,7 @@ It makes your competitive coding life easier :grin: by automating many things fo
 ## Contributing
 
 - [Open an issue](https://github.com/cpeditor/cpeditor/issues/new/choose)
-- [Contributing Guidelines](doc/CONTRIBUTING.md)
+- [Contributing Guidelines](CONTRIBUTING.md)
 - [Good first issues](https://github.com/cpeditor/cpeditor/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22)
 - [Help wanted issues](https://github.com/cpeditor/cpeditor/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22)
 

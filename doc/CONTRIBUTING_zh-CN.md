@@ -42,7 +42,7 @@
 7. 永远保持设置文件的向下兼容。
 8. Windows，Linux 和 Mac OS 都要支持。
 9. 系统浅色主题/深色主题都要支持。
-10. 请遵守 [行为准则](CODE_OF_CONDUCT.md)。
+10. 请遵守 [行为准则](../CODE_OF_CONDUCT.md)。
 
 ## FAQ
 
