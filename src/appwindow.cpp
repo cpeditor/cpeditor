@@ -520,7 +520,8 @@ void AppWindow::saveEditorStatus(bool loadFromFile)
 {
     Core::Log::i("appwindow/saveEditorStatus") << "loadFromFile " << loadFromFile << endl;
     Settings::SettingsManager::clearEditorStatus();
-    if (ui->tabWidget->count() == 1 && windowAt(0)->isUntitled() && !windowAt(0)->isTextChanged())
+    if (ui->tabWidget->count() == 1 && windowAt(0)->isUntitled() && !windowAt(0)->isTextChanged() &&
+        windowAt(0)->getProblemURL().isEmpty())
     {
         Core::Log::i("appwindow/saveEditorStatus", "branched to if");
         Settings::SettingsManager::setNumberOfTabs(0);
