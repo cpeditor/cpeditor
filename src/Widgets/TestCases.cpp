@@ -104,8 +104,8 @@ TestCases::TestCases(MessageLogger *logger, QWidget *parent) : QWidget(parent), 
             t->setShow(false);
     });
 
-    moreMenu->addAction("Inverse", [this] {
-        Core::Log::i("TestCases/More/Inverse", "Invoked");
+    moreMenu->addAction("Invert", [this] {
+        Core::Log::i("TestCases/More/Invert", "Invoked");
         for (auto t : testcases)
             t->setShow(t->isShow() ^ 1);
     });
