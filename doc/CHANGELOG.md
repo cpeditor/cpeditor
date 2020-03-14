@@ -6,6 +6,7 @@
 - Check whether CF Tool is started when submitting to CF.
 - Support CF Tool v1.0.0. (#194)
 - Fix this bug: the editor is cleared when formatting if Clang Format is not found. (#195)
+- Fix untitled tab title with problem URL.
 
 ## 6.1.2 (Beta)
 
