@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Manual
+    url: https://github.com/cpeditor/cpeditor/blob/master/doc/MANUAL.md
+    about: Some instructions and tips.
+  - name: Telegram Group
+    url: https://t.me/cpeditor
+    about: Please ask questions except of feature requests and bug reports here.
