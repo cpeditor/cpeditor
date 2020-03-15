@@ -59,7 +59,7 @@ echo "Is this diff of $NEWNEW OK?"
 read
 git commit -m "Release $NEWNEW"
 git tag "$NEWNEW"
-git push
+git push -u origin "$NEWMINOR"
 git push --tags
 
 git switch master
