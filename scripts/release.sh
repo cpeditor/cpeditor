@@ -1,13 +1,17 @@
 #!/bin/bash
 
-if (($# != 2)); then
-  echo 'release.sh <last version> <new version>'
+if (($# != 3)); then
+  echo 'release.sh <last version> <new version> <is beta>'
   exit 1
 fi
 
 set -e
 
-sed -i "s/UNRELEASED/UNRELEASED\n\n## $2/" doc/CHANGELOG.md
+if (($3 == true)); then
+  sed -i "s/UNRELEASED/UNRELEASED\n\n## $2 (Beta)/" doc/CHANGELOG.md
+else
+  sed -i "s/UNRELEASED/UNRELEASED\n\n## $2/" doc/CHANGELOG.md
+fi
 sed -i "s/$1/$2/" CMakeLists.txt
 git add doc/CHANGELOG.md CMakeLists.txt
 git diff --cached

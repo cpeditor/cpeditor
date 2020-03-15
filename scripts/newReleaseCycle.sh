@@ -51,7 +51,7 @@ git push
 git push --tags
 
 git switch -c "$NEWMINOR" master
-sed -i "s/UNRELEASED/UNRELEASED\n\n## $NEWNEW/" doc/CHANGELOG.md
+sed -i "s/UNRELEASED/UNRELEASED\n\n## $NEWNEW (Beta)/" doc/CHANGELOG.md
 sed -i "s/$ALPHAOLD/$NEWNEW/" CMakeLists.txt
 git add doc/CHANGELOG.md CMakeLists.txt
 git diff --cached
