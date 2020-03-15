@@ -1,5 +1,7 @@
 ## UNRELEASED
 
+## vv6.2
+
 ### Added
 
 - Clear buttons for keybindings in Preferences.
