@@ -227,6 +227,7 @@ jobs:
       uses: softprops/action-gh-release@v1
       with:
         draft: true
+        prerelease: true
         files: build/cpeditor-${{ steps.get_version.outputs.VERSION }}-x64.dmg
         name: CP Editor ${{ steps.get_version.outputs.VERSION }}
       env:
@@ -252,6 +253,7 @@ jobs:
       uses: softprops/action-gh-release@v1
       with:
         draft: true
+        prerelease: true
         files: cpeditor-${{ steps.get_version.outputs.VERSION }}-x64-setup.exe
         name: CP Editor ${{ steps.get_version.outputs.VERSION }}
       env:
