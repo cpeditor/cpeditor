@@ -51,10 +51,6 @@ git push
 git push --tags
 
 git switch -c "$NEWMINOR" master
-git merge "$BETAMINOR" --no-commit
-echo "[$NEWMINOR]: Are the conflicts resolved?"
-read
-git commit -am "Merge $BETAMINOR: Release $BETANEW"
 sed -i "s/UNRELEASED/UNRELEASED\n\n## $NEWNEW/" doc/CHANGELOG.md
 sed -i "s/$ALPHAOLD/$NEWNEW/" CMakeLists.txt
 git add doc/CHANGELOG.md CMakeLists.txt
@@ -67,10 +63,6 @@ git push
 git push --tags
 
 git switch master
-git merge "$NEWMINOR" --no-commit
-echo "[master]: Are the conflicts resolved?"
-read
-git commit -am "Merge $NEWMINOR: Release $NEWNEW"
 sed -i "s/UNRELEASED/UNRELEASED\n\n## v$NEWMINOR/" doc/CHANGELOG.md
 sed -i "s/$ALPHAOLD/$ALPHANEW/" CMakeLists.txt
 sed -i "s/$BETAMINOR/$NEWMINOR/" README.md
