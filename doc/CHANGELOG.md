@@ -1,5 +1,7 @@
 ## UNRELEASED
 
+## 6.1.3
+
 ### Fixed
 
 - Fix the wrong behavior of the built-in checker Ignore trailing spaces.
