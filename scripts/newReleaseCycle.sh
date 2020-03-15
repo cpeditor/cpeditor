@@ -65,10 +65,10 @@ git push --tags
 git switch master
 sed -i "s/UNRELEASED/UNRELEASED\n\n## v$NEWMINOR/" doc/CHANGELOG.md
 sed -i "s/$ALPHAOLD/$ALPHANEW/" CMakeLists.txt
-sed -i "s/$BETAMINOR/$NEWMINOR/" README.md
-sed -i "s/$BETAOLD/$NEWNEW/" README.md
-sed -i "s/$STABLEMINOR/$BETAMINOR/" README.md
-sed -i "s/$STABLEOLD/$BETANEW/" README.md
+sed -i "s/$BETAMINOR/$NEWMINOR/g" README.md
+sed -i "s/$BETAOLD/$NEWNEW/g" README.md
+sed -i "s/$STABLEMINOR/$BETAMINOR/g" README.md
+sed -i "s/$STABLEOLD/$BETANEW/g" README.md
 git add doc/CHANGELOG.md CMakeLists.txt README.md
 git diff --cached
 echo "Is this diff of the new release cycle OK?"
