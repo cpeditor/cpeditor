@@ -63,11 +63,10 @@ jobs:
         key: Qt-${{ matrix.config.os }}-${{ matrix.qt_version }}
 
     - name: Set up Qt environment
-      uses: ouuan/install-qt-action@ouuan
+      uses: jurplel/install-qt-action@v2
       with:
         cached: ${{ steps.cache-qt.outputs.cache-hit }}
         version: ${{ matrix.qt_version }}
-        aqtversion: "==0.7.4"
 
     - name: Download Ninja and CMake
       id: cmake_and_ninja
