@@ -63,7 +63,7 @@ git push -u origin "$NEWMINOR"
 git push --tags
 
 git switch master
-sed -i "s/UNRELEASED/UNRELEASED\n\n## v$NEWMINOR/" doc/CHANGELOG.md
+sed -i "s/UNRELEASED/UNRELEASED\n\n## $NEWMINOR/" doc/CHANGELOG.md
 sed -i "s/$ALPHAOLD/$ALPHANEW/" CMakeLists.txt
 sed -i "s/$BETAMINOR/$NEWMINOR/g" README.md
 sed -i "s/$BETAOLD/$NEWNEW/g" README.md

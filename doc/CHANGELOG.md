@@ -1,6 +1,6 @@
 ## UNRELEASED
 
-## vv6.2
+## v6.2
 
 ### Added
 
