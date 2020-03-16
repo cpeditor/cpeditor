@@ -173,6 +173,8 @@ void Checker::onRunFinished(int index, const QString &out, const QString &err, i
     if (exitCode == 0)
     {
         // the check process succeeded
+        if (!err.isEmpty())
+            log->message("Checker[" + QString::number(index + 1) + "]", err, "green");
         emit checkFinished(index, AC);
     }
     else if (QList<int>({1, 2, 3, 4, 5, 8, 16}).contains(exitCode)) // this list is from testlib.h::TResult
