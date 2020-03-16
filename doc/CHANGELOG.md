@@ -4,10 +4,6 @@
 
 - Show stderr of the checker when the verdict is AC. (#207)
 
-### Changed
-
-- Don't require the output and the expected to be non-empty for checking. (#208)
-
 ## v6.2
 
 ### Added
