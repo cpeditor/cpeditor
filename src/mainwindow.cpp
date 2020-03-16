@@ -1164,7 +1164,7 @@ void MainWindow::onRunFinished(int index, const QString &out, const QString &err
     if (!err.trimmed().isEmpty())
         log.error(head + "/stderr", err);
     testcases->setOutput(index, out);
-    if (!out.isEmpty() && !testcases->expected(index).isEmpty())
+    if (exitCode == 0)
         checker->reqeustCheck(index, testcases->input(index), out, testcases->expected(index));
 }
 

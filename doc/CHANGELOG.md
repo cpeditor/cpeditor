@@ -1,5 +1,9 @@
 ## UNRELEASED
 
+### Changed
+
+- Don't require the output and the expected to be non-empty for checking.
+
 ## v6.2
 
 ### Added
