@@ -6,7 +6,7 @@ CP Editor is a Qt-based, lightweight and cross-platform code editor specially de
 
 It makes your competitive coding life easier :grin: by automating many things for you.
 
-[Features](https://cpeditor.github.io/) | [Installation](doc/INSTALL.md) | [Usage](doc/MANUAL.md) | [Changelog](doc/CHANGELOG.md) | [FAQ](#faq) | [中文](doc/README_zh-CN.md)
+[Features](https://cpeditor.github.io/) | [Installation](doc/INSTALL.md) | [Usage](doc/MANUAL.md) | [Changelog](doc/CHANGELOG.md) | [Contributing](CONTRIBUTING.md) | [FAQ](#faq) | [中文](doc/README_zh-CN.md)
 
 ---
 
