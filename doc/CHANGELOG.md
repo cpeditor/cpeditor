@@ -1,5 +1,9 @@
 ## UNRELEASED
 
+### Fixed
+
+- Show the manual of the current version instead of the latest version.
+
 ## 6.2.1 (Beta)
 
 ### Added
