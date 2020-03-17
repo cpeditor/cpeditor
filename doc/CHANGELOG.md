@@ -4,6 +4,10 @@
 
 - Show stderr of the checker when the verdict is AC. (#207)
 
+### Fixed
+
+- Show the manual of the current version instead of the latest version.
+
 ## v6.2
 
 ### Added
