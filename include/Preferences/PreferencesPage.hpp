@@ -112,6 +112,11 @@ class PreferencesPage : public QWidget
      */
     void addItem(QLayoutItem *item);
 
+    /*
+     * @brief add the title of a new section
+     */
+    void addSection(const QString &title);
+
   protected slots:
     /*
      * @brief enable/disable the reset button and the apply button

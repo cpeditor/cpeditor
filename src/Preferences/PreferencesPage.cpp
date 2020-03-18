@@ -17,6 +17,7 @@
 
 #include "Preferences/PreferencesPage.hpp"
 #include <QApplication>
+#include <QLabel>
 #include <QMessageBox>
 #include <QStyle>
 
@@ -95,6 +96,16 @@ void PreferencesPage::addWidget(QWidget *widget)
 void PreferencesPage::addItem(QLayoutItem *item)
 {
     settingsLayout->addItem(item);
+}
+
+void PreferencesPage::addSection(const QString &title)
+{
+    auto label = new QLabel(title);
+    auto labelFont = font();
+    labelFont.setBold(true);
+    labelFont.setPointSizeF(font().pointSizeF() * 1.5);
+    label->setFont(labelFont);
+    addWidget(label);
 }
 
 void PreferencesPage::loadDefault()
