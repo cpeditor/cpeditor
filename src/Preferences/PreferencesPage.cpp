@@ -16,7 +16,9 @@
  */
 
 #include "Preferences/PreferencesPage.hpp"
+#include <QApplication>
 #include <QMessageBox>
+#include <QStyle>
 
 PreferencesPage::PreferencesPage(QWidget *parent) : QWidget(parent)
 {
@@ -26,10 +28,10 @@ PreferencesPage::PreferencesPage(QWidget *parent) : QWidget(parent)
     scrollAreaWidget = new QWidget();
     settingsLayout = new QVBoxLayout(scrollAreaWidget);
     buttonsLayout = new QHBoxLayout();
+    defaultButton = new QPushButton(QApplication::style()->standardIcon(QStyle::SP_DialogDiscardButton), "Default");
+    resetButton = new QPushButton(QApplication::style()->standardIcon(QStyle::SP_DialogResetButton), "Reset");
     buttonsSpacer = new QSpacerItem(10, 10, QSizePolicy::Expanding, QSizePolicy::Expanding);
-    defaultButton = new QPushButton("Default");
-    resetButton = new QPushButton("Reset");
-    applyButton = new QPushButton("Apply");
+    applyButton = new QPushButton(QApplication::style()->standardIcon(QStyle::SP_DialogApplyButton), "Apply");
 
     // set up the UI
     buttonsLayout->addWidget(defaultButton);

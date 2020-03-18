@@ -152,9 +152,9 @@ class PreferencesPage : public QWidget
     QWidget *scrollAreaWidget = nullptr;   // The widget in the scroll area with settingsLayout as its layout
     QVBoxLayout *settingsLayout = nullptr; // The layout for the settings
     QHBoxLayout *buttonsLayout = nullptr;  // The layout for the Default, Reset, and Apply buttons
-    QSpacerItem *buttonsSpacer = nullptr;  // The spacer to put Default and Reset the to left and put Apply to the right
     QPushButton *defaultButton = nullptr;  // The button to set the UI to the default values
     QPushButton *resetButton = nullptr;    // The button to set the UI to the saved settings
+    QSpacerItem *buttonsSpacer = nullptr;  // The spacer to put Default and Reset the to left and put Apply to the right
     QPushButton *applyButton = nullptr;    // The button to save the UI to the settings
 };
 
