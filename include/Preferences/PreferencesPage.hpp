@@ -89,6 +89,12 @@ class PreferencesPage : public QWidget
      */
     void loadSettings();
 
+  signals:
+    /*
+     * @brief the settings are applied
+     */
+    void settingsApplied();
+
   protected:
     /*
      * @brief add a layout in the UI

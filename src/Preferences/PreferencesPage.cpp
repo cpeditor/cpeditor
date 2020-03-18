@@ -101,6 +101,7 @@ void PreferencesPage::applySettings()
 {
     makeSettingsTheSameAsUI();
     updateButtons();
+    emit settingsApplied();
 }
 
 void PreferencesPage::updateButtons()
