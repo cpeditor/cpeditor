@@ -22,7 +22,9 @@ PreferencesPage::PreferencesPage(QWidget *parent) : QWidget(parent)
 {
     // construct widgets
     mainLayout = new QVBoxLayout(this);
-    settingsLayout = new QVBoxLayout();
+    scrollArea = new QScrollArea();
+    scrollAreaWidget = new QWidget();
+    settingsLayout = new QVBoxLayout(scrollAreaWidget);
     buttonsLayout = new QHBoxLayout();
     buttonsSpacer = new QSpacerItem(10, 10, QSizePolicy::Expanding, QSizePolicy::Expanding);
     defaultButton = new QPushButton("Default");
@@ -34,7 +36,9 @@ PreferencesPage::PreferencesPage(QWidget *parent) : QWidget(parent)
     buttonsLayout->addWidget(resetButton);
     buttonsLayout->addItem(buttonsSpacer);
     buttonsLayout->addWidget(applyButton);
-    mainLayout->addLayout(settingsLayout);
+    scrollArea->setWidgetResizable(true);
+    scrollArea->setWidget(scrollAreaWidget);
+    mainLayout->addWidget(scrollArea);
     mainLayout->addLayout(buttonsLayout);
 
     // connect the signals and slots

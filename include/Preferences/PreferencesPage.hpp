@@ -33,6 +33,7 @@
 
 #include <QHBoxLayout>
 #include <QPushButton>
+#include <QScrollArea>
 #include <QSpacerItem>
 #include <QVBoxLayout>
 #include <QWidget>
@@ -130,7 +131,25 @@ class PreferencesPage : public QWidget
     void applySettings();
 
   private:
+    /*
+     * The UI structure:
+     *
+     * mainLayout:
+     *  - scrollArea
+     *    - scrollAreaWidget
+     *      - settingsLayout
+     *        - setting 1 in the derived class
+     *        - ...
+     *  - buttonsLayout
+     *    - defaultButton
+     *    - resetButton
+     *    - buttonsSpacer
+     *    - applyButton
+     */
+
     QVBoxLayout *mainLayout = nullptr;     // The main layout of the page
+    QScrollArea *scrollArea = nullptr;     // The scroll area to place the settings
+    QWidget *scrollAreaWidget = nullptr;   // The widget in the scroll area with settingsLayout as its layout
     QVBoxLayout *settingsLayout = nullptr; // The layout for the settings
     QHBoxLayout *buttonsLayout = nullptr;  // The layout for the Default, Reset, and Apply buttons
     QSpacerItem *buttonsSpacer = nullptr;  // The spacer to put Default and Reset the to left and put Apply to the right
