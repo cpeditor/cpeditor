@@ -81,6 +81,9 @@ add_executable(cpeditor
     src/Extensions/CFTool.cpp
     src/Extensions/EditorTheme.cpp
 
+    include/Preferences/PreferencesPage.hpp
+    src/Preferences/PreferencesPage.cpp
+
     include/mainwindow.hpp
     include/preferencewindow.hpp
     include/appwindow.hpp
