@@ -31,13 +31,12 @@ PreferencesPage::PreferencesPage(QWidget *parent) : QWidget(parent)
     buttonsLayout = new QHBoxLayout();
     defaultButton = new QPushButton(QApplication::style()->standardIcon(QStyle::SP_DialogDiscardButton), "Default");
     resetButton = new QPushButton(QApplication::style()->standardIcon(QStyle::SP_DialogResetButton), "Reset");
-    buttonsSpacer = new QSpacerItem(10, 10, QSizePolicy::Expanding, QSizePolicy::Expanding);
     applyButton = new QPushButton(QApplication::style()->standardIcon(QStyle::SP_DialogApplyButton), "Apply");
 
     // set up the UI
     buttonsLayout->addWidget(defaultButton);
     buttonsLayout->addWidget(resetButton);
-    buttonsLayout->addItem(buttonsSpacer);
+    buttonsLayout->addStretch();
     buttonsLayout->addWidget(applyButton);
     scrollArea->setWidgetResizable(true);
     scrollArea->setWidget(scrollAreaWidget);

@@ -34,7 +34,6 @@
 #include <QHBoxLayout>
 #include <QPushButton>
 #include <QScrollArea>
-#include <QSpacerItem>
 #include <QVBoxLayout>
 #include <QWidget>
 
@@ -148,7 +147,7 @@ class PreferencesPage : public QWidget
      *  - buttonsLayout
      *    - defaultButton
      *    - resetButton
-     *    - buttonsSpacer
+     *    - (spacing)
      *    - applyButton
      */
 
@@ -159,7 +158,6 @@ class PreferencesPage : public QWidget
     QHBoxLayout *buttonsLayout = nullptr;  // The layout for the Default, Reset, and Apply buttons
     QPushButton *defaultButton = nullptr;  // The button to set the UI to the default values
     QPushButton *resetButton = nullptr;    // The button to set the UI to the saved settings
-    QSpacerItem *buttonsSpacer = nullptr;  // The spacer to put Default and Reset the to left and put Apply to the right
     QPushButton *applyButton = nullptr;    // The button to save the UI to the settings
 };
 
