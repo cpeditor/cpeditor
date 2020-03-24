@@ -83,6 +83,16 @@ class PreferencesPage : public QWidget
      */
     bool aboutToExit();
 
+    /*
+     * @brief get the path to this page in the preferences window
+     */
+    QString path() const;
+
+    /*
+     * @brief set the path to this page in the preferences window
+     */
+    void setPath(const QString &path);
+
   public slots:
     /*
      * @brief update the UI, make it the same as the settings, and update buttons
@@ -92,8 +102,9 @@ class PreferencesPage : public QWidget
   signals:
     /*
      * @brief the settings are applied
+     * @param pagePath the path to this page
      */
-    void settingsApplied();
+    void settingsApplied(const QString &pagePath);
 
   protected:
     /*
@@ -159,6 +170,8 @@ class PreferencesPage : public QWidget
     QPushButton *defaultButton = nullptr;  // The button to set the UI to the default values
     QPushButton *resetButton = nullptr;    // The button to set the UI to the saved settings
     QPushButton *applyButton = nullptr;    // The button to save the UI to the settings
+
+    QString m_path; // The path to this page in the preferences window
 };
 
 #endif // PREFERENCESPAGE_HPP

@@ -31,10 +31,10 @@ PreferencesHomePage::PreferencesHomePage(QWidget *parent) : QWidget(parent)
     layout->addSpacing(20);
 
     // add buttons
-    addButton(Edit, "Editor Settings");
-    addButton(DefaultLanguage, "Default Language");
-    addButton(CompileAndRunCommands, "Compile and Run Commands");
-    addButton(Appearance, "Appearance");
+    addButton("Edit", "Editor Settings");
+    addButton("Language", "Default Language");
+    addButton("Language/Commands", "Compile and Run Commands");
+    addButton("Appearance", "Appearance");
 
     // add spacing between the buttons and the manual label
     layout->addSpacing(30);
@@ -46,7 +46,7 @@ PreferencesHomePage::PreferencesHomePage(QWidget *parent) : QWidget(parent)
     layout->addWidget(manualLabel);
 }
 
-void PreferencesHomePage::addButton(Page page, const QString &text)
+void PreferencesHomePage::addButton(const QString &page, const QString &text)
 {
     auto button = new QPushButton(text, this);
     connect(button, &QPushButton::clicked, [this, page]() { emit requestPage(page); });

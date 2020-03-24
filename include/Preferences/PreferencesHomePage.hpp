@@ -32,15 +32,6 @@ class PreferencesHomePage : public QWidget
     Q_OBJECT
 
   public:
-    // This enum is used in the signals, each item represents for a preferences page.
-    enum Page
-    {
-        Edit,
-        DefaultLanguage,
-        CompileAndRunCommands,
-        Appearance
-    };
-
     /*
      * @brief construct a PreferencesHomePage
      */
@@ -49,17 +40,17 @@ class PreferencesHomePage : public QWidget
   signals:
     /*
      * @brief tell the preferences window to switch to a page
-     * @param page the page to switch to
+     * @param page the path to the page to switch to
      */
-    void requestPage(Page page);
+    void requestPage(const QString &pagePath);
 
   private:
     /*
      * @breif add a button that switch to a page
-     * @param page the page to switch to
+     * @param page the path to the page to switch to
      * @param text the text for this button
      */
-    void addButton(Page page, const QString &text);
+    void addButton(const QString &pagePath, const QString &text);
 
     QVBoxLayout *layout = nullptr;  // the main layout
     QLabel *welcomeLabel = nullptr; // the welcome QLabel

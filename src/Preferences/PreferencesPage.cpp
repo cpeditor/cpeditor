@@ -76,6 +76,16 @@ bool PreferencesPage::aboutToExit()
     }
 }
 
+QString PreferencesPage::path() const
+{
+    return m_path;
+}
+
+void PreferencesPage::setPath(const QString &path)
+{
+    m_path = path;
+}
+
 void PreferencesPage::loadSettings()
 {
     makeUITheSameAsSettings();
@@ -117,7 +127,7 @@ void PreferencesPage::applySettings()
 {
     makeSettingsTheSameAsUI();
     updateButtons();
-    emit settingsApplied();
+    emit settingsApplied(m_path);
 }
 
 void PreferencesPage::updateButtons()
