@@ -1,8 +1,12 @@
 ## UNRELEASED
 
-### Fixed
+### Changed
 
 - Show the manual of the current version instead of the latest version.
+
+### Fixed
+
+- Fix the wrong behavior of toggle comments, indent, delete line, etc. when wrap text is on. (#213)
 
 ## 6.2.1 (Beta)
 
