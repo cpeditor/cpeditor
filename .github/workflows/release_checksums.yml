@@ -27,6 +27,7 @@ jobs:
     - name: Upload checksums
       uses: softprops/action-gh-release@v1
       with:
+        prerelease: true
         name: CP Editor ${{ steps.get_version.outputs.VERSION }}
         files: downloads/cpeditor-${{ steps.get_version.outputs.VERSION }}-sha256-checksums.txt
       env:
