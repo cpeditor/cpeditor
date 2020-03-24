@@ -1,5 +1,7 @@
 ## UNRELEASED
 
+## 6.2.2 (Beta)
+
 ### Changed
 
 - Show the manual of the current version instead of the latest version.
