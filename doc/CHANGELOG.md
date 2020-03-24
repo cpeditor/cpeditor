@@ -1,5 +1,9 @@
 ## UNRELEASED
 
+### Fixed
+
+- Fix the wrong behavior of toggle comments, indent, delete line, etc. when wrap text is on. (#213)
+
 ## 6.1.3
 
 ### Fixed
