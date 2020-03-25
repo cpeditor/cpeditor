@@ -22,9 +22,9 @@
 
 #include "Core/SettingsManager.hpp"
 #include "LSPClient.hpp"
+#include "Preferences/PreferencesWindow.hpp"
 #include "Telemetry/UpdateNotifier.hpp"
 #include "mainwindow.hpp"
-#include "preferencewindow.hpp"
 #include <QSystemTrayIcon>
 #include <findreplacedialog.h>
 
@@ -174,7 +174,7 @@ class AppWindow : public QMainWindow
     QMetaObject::Connection activeSplitterMoveConnection;
     QMetaObject::Connection activeRightSplitterMoveConnection;
     Telemetry::UpdateNotifier *updater = nullptr;
-    PreferenceWindow *preferenceWindow = nullptr;
+    PreferencesWindow *preferencesWindow = nullptr;
     Network::CompanionServer *server;
     FindReplaceDialog *findReplaceDialog = nullptr;
     QSystemTrayIcon *trayIcon = nullptr;

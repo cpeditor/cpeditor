@@ -20,18 +20,17 @@
 #include <QCloseEvent>
 #include <QScreen>
 
-PreferencesWindow::PreferencesWindow(QWidget *parent) : QWidget(parent)
+PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
 {
     // set attributes
+    hide();
     resize(QApplication::screenAt(parent->pos())->geometry().size() / 1.5);
-    setWindowModality(Qt::WindowModal);
     setWindowTitle("Preferences");
 
     // setup UI
-    mainLayout = new QHBoxLayout(this);
-
     splitter = new QSplitter();
-    splitter->setLayout(mainLayout);
+    splitter->setChildrenCollapsible(false);
+    setCentralWidget(splitter);
 
     leftWidget = new QWidget();
     splitter->addWidget(leftWidget);
@@ -43,7 +42,7 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QWidget(parent)
 
     searchEdit = new QLineEdit();
     searchEdit->setPlaceholderText("Search...");
-    connect(searchEdit, SIGNAL(textChanged()), this, SLOT(updateSearch()));
+    connect(searchEdit, SIGNAL(textChanged(const QString &)), this, SLOT(updateSearch(const QString &)));
     searchLayout->addWidget(searchEdit);
 
     homeButton = new QPushButton("Home");
@@ -73,6 +72,9 @@ void PreferencesWindow::display()
 {
     switchToPage(homePage, true);
     show();
+    setWindowState((windowState() & ~Qt::WindowMinimized) | Qt::WindowActive);
+    activateWindow();
+    raise();
 }
 
 void PreferencesWindow::updateSearch(const QString &text)

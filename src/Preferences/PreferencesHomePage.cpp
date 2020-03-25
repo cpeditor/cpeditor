@@ -16,6 +16,7 @@
  */
 
 #include "Preferences/PreferencesHomePage.hpp"
+#include <QPixmap>
 #include <generated/version.hpp>
 
 PreferencesHomePage::PreferencesHomePage(QWidget *parent) : QWidget(parent)
@@ -23,27 +24,43 @@ PreferencesHomePage::PreferencesHomePage(QWidget *parent) : QWidget(parent)
     // construct the layout
     layout = new QVBoxLayout(this);
 
+    // add stretch so that the contents are vertically centered
+    layout->addStretch();
+
+    iconLabel = new QLabel();
+    iconLabel->setPixmap(QPixmap(":/icon.png").scaledToHeight(128, Qt::SmoothTransformation));
+    layout->addWidget(iconLabel);
+    layout->setAlignment(iconLabel, Qt::AlignCenter);
+
+    // add spacing between the icon and the webcome label
+    layout->addSpacing(40);
+
     // add welcome label
     welcomeLabel = new QLabel("Welcome to CP Editor! Let's get started 🚀");
     layout->addWidget(welcomeLabel);
+    layout->setAlignment(welcomeLabel, Qt::AlignCenter);
 
     // add spacing between the webcome label and the buttons
     layout->addSpacing(20);
 
     // add buttons
-    addButton("Edit", "Editor Settings");
+    addButton("Edit", "Code Editor Settings");
     addButton("Language", "Default Language");
     addButton("Language/Commands", "Compile and Run Commands");
     addButton("Appearance", "Appearance");
 
     // add spacing between the buttons and the manual label
-    layout->addSpacing(30);
+    layout->addSpacing(20);
 
     // add manual label
     manualLabel = new QLabel("You can read the <a href=\"https://github.com/cpeditor/cpeditor/blob/" APP_VERSION
-                             "/doc/MANUAL.md\">Manual</a> for more information.");
+                             "/doc/MANUAL.md\">Manual</a> or go through the settings for more information.");
     manualLabel->setOpenExternalLinks(true);
     layout->addWidget(manualLabel);
+    layout->setAlignment(manualLabel, Qt::AlignCenter);
+
+    // add stretch so that the contents are vertically centered
+    layout->addStretch();
 }
 
 void PreferencesHomePage::addButton(const QString &page, const QString &text)

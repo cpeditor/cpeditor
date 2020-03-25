@@ -158,7 +158,7 @@ AppWindow::~AppWindow()
     Themes::EditorTheme::release();
     Settings::SettingsManager::destroy();
     delete ui;
-    delete preferenceWindow;
+    delete preferencesWindow;
     delete timer;
     delete updater;
     delete server;
@@ -235,7 +235,7 @@ void AppWindow::setConnections()
             SLOT(onTabContextMenuRequested(const QPoint &)));
     connect(timer, SIGNAL(timeout()), this, SLOT(onSaveTimerElapsed()));
 
-    connect(preferenceWindow, SIGNAL(settingsApplied()), this, SLOT(onSettingsApplied()));
+    connect(preferencesWindow, SIGNAL(settingsApplied(const QString &)), this, SLOT(onSettingsApplied()));
 
     connect(server, &Network::CompanionServer::onRequestArrived, this, &AppWindow::onIncomingCompanionRequest);
 
@@ -250,7 +250,7 @@ void AppWindow::allocate()
     Settings::SettingsManager::init();
     timer = new QTimer();
     updater = new Telemetry::UpdateNotifier(Settings::SettingsManager::isBeta());
-    preferenceWindow = new PreferenceWindow(this);
+    preferencesWindow = new PreferencesWindow(this);
     server = new Network::CompanionServer(Settings::SettingsManager::getConnectionPort());
     findReplaceDialog = new FindReplaceDialog(this);
     findReplaceDialog->setModal(false);
@@ -555,8 +555,8 @@ bool AppWindow::quit()
         on_actionClose_All_triggered();
         ret = ui->tabWidget->count() == 0;
     }
-    if (ret && preferenceWindow->isVisible())
-        ret = preferenceWindow->close();
+    if (ret && preferencesWindow->isVisible())
+        ret = preferencesWindow->close();
     // The tray icon is considered as a visible window, if it is not hidden, even if the app window is closed,
     // the application won't exit.
     if (ret)
@@ -773,7 +773,7 @@ void AppWindow::on_actionRestore_Settings_triggered()
 void AppWindow::on_actionSettings_triggered()
 {
     Core::Log::i("appwindow/on_actionSettings_triggered", "Launching settings window");
-    preferenceWindow->updateShow();
+    preferencesWindow->display();
 }
 
 /************************** SLOTS *********************************/

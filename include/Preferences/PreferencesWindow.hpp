@@ -28,12 +28,13 @@
 #include "Preferences/PreferencesHomePage.hpp"
 #include "Preferences/PreferencesPage.hpp"
 #include <QLineEdit>
+#include <QMainWindow>
 #include <QMap>
 #include <QSplitter>
 #include <QStackedWidget>
 #include <QTreeWidget>
 
-class PreferencesWindow : public QWidget
+class PreferencesWindow : public QMainWindow
 {
     Q_OBJECT
 
@@ -102,23 +103,21 @@ class PreferencesWindow : public QWidget
     /*
      * The GUI:
      *
-     * - mainLayout
-     *   - splitter
-     *     - leftWidget
-     *       - leftLayout
-     *         - searchLayout
-     *           - searchEdit
-     *           - homeButton
-     *       - menuTree
+     * - splitter
+     *   - leftWidget
+     *     - leftLayout
+     *       - searchLayout
+     *         - searchEdit
+     *         - homeButton
+     *     - menuTree
+     *       - ...
      *         - ...
-     *           - ...
+     *       - ...
      *         - ...
-     *           - ...
-     *     - stackedWidget
-     *       - xxx
+     *   - stackedWidget
+     *     - xxx
      */
 
-    QHBoxLayout *mainLayout = nullptr;
     QSplitter *splitter = nullptr;
     QWidget *leftWidget = nullptr;
     QVBoxLayout *leftLayout = nullptr;
