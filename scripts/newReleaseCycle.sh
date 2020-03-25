@@ -69,11 +69,11 @@ sed -i "s/$BETAMINOR/$NEWMINOR/g" README.md
 sed -i "s/$BETAOLD/$NEWNEW/g" README.md
 sed -i "s/$STABLEMINOR/$BETAMINOR/g" README.md
 sed -i "s/$STABLEOLD/$BETANEW/g" README.md
-sed -i "s/$BETAMINOR/$NEWMINOR/g" doc/README_zh-CN.md
-sed -i "s/$BETAOLD/$NEWNEW/g" doc/README_zh-CN.md
-sed -i "s/$STABLEMINOR/$BETAMINOR/g" doc/README_zh-CN.md
-sed -i "s/$STABLEOLD/$BETANEW/g" doc/README_zh-CN.md
-git add doc/CHANGELOG.md CMakeLists.txt README.md doc/README_zh-CN.md
+sed -i "s/$BETAMINOR/$NEWMINOR/g" README_zh-CN.md
+sed -i "s/$BETAOLD/$NEWNEW/g" README_zh-CN.md
+sed -i "s/$STABLEMINOR/$BETAMINOR/g" README_zh-CN.md
+sed -i "s/$STABLEOLD/$BETANEW/g" README_zh-CN.md
+git add doc/CHANGELOG.md CMakeLists.txt README.md README_zh-CN.md
 git diff --cached
 echo "Is this diff of the new release cycle OK?"
 read
