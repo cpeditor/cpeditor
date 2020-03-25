@@ -1,12 +1,12 @@
 # CP Editor
 
-<img src=../assets/icon.ico height="80" width="80">
+<img src=assets/icon.ico height="80" width="80">
 
 CP Editor 是一个基于 Qt 的轻量级跨平台代码编辑器，专为算法竞赛设计。
 
 它可以让你刷题/打比赛更加轻松 :grin: 因为它自动化了很多算法竞赛中的流程。
 
-[特性](https://cpeditor.github.io/) | [安装](INSTALL_zh-CN.md) | [使用](MANUAL_zh-CN.md) | [更新日志](CHANGELOG.md) | [贡献指南](CONTRIBUTING_zh-CN.md) | [FAQ](#faq) | [English](../README.md)
+[特性](https://cpeditor.github.io/) | [安装](doc/INSTALL_zh-CN.md) | [使用](doc/MANUAL_zh-CN.md) | [更新日志](doc/CHANGELOG.md) | [贡献指南](CONTRIBUTING_zh-CN.md) | [FAQ](#faq) | [English](README.md)
 
 ---
 
@@ -24,8 +24,8 @@ CP Editor 是一个基于 Qt 的轻量级跨平台代码编辑器，专为算法
 ## 开始使用
 
 - [发行版](https://github.com/cpeditor/cpeditor/releases)
-- [安装指南](INSTALL_zh-CN.md)
-- [使用说明与提示](MANUAL_zh-CN.md)
+- [安装指南](doc/INSTALL_zh-CN.md)
+- [使用说明与提示](doc/MANUAL_zh-CN.md)
 
 ## 做出贡献
 
@@ -36,7 +36,7 @@ CP Editor 是一个基于 Qt 的轻量级跨平台代码编辑器，专为算法
 
 ## 获取帮助
 
-1. 请首先阅读 [使用指南](MANUAL_zh-CN.md) 和 [FAQ](#faq)，并看看应用菜单和设置中有没有能帮到你的。
+1. 请首先阅读 [使用指南](doc/MANUAL_zh-CN.md) 和 [FAQ](#faq)，并看看应用菜单和设置中有没有能帮到你的。
 2. 如果你要问的问题和 CP Editor 本身不太相关，请尝试通过百度来解决问题（例如：如何安装 Clang Format？这个编译错误是什么意思？）。
 3. 在 [Issues](https://github.com/cpeditor/cpeditor/issues) 中搜索，确保你是第一个发现这个问题/提出这个请求的。
 4. 在提 issue 时，请务必遵守模板，提供详细的信息，这有助于更快地获得更加令您满意的答复。

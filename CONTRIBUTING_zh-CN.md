@@ -17,7 +17,7 @@
 
 **第一次参与开发?** 工程开发和算法竞赛有着很大的区别，但并没有那么难以上手。首先，你需要了解面向对象编程：你需要知道 C++ 中类是怎样工作的，知道类的定义与函数实现是分开放在两个文件里的（在 `.h`/`.hpp` 文件中放置定义，在 `.cpp` 文件中放置函数实现）。你可以阅读 CP Editor 的源码，模仿它，在百度（如果能用 Google 更好）上搜索你想实现的功能。开发和算法竞赛使用的 IDE 也是不同的，对于工程开发来说，[VS Code](https://code.visualstudio.com/) 是一个不错的选择。
 
-**第一次使用 Qt?** 不要怕，Qt 并不难上手。你可以阅读 [从源代码构建](INSTALL_zh-CN.md#从源代码构建) 来学习如何构建 CP Editor，阅读 [Qt 文档](https://doc.qt.io/) 来学习如何使用 Qt 组件，如何设计 UI，以及如何使用 [信号与插槽机制](https://doc.qt.io/qt-5/signalsandslots.html)。在使用 Qt 时，你一般不需要使用 `std` 命名空间中的函数 / 对象，例如，`std::string` 可以使用 `QString` 代替。
+**第一次使用 Qt?** 不要怕，Qt 并不难上手。你可以阅读 [从源代码构建](doc/INSTALL_zh-CN.md#从源代码构建) 来学习如何构建 CP Editor，阅读 [Qt 文档](https://doc.qt.io/) 来学习如何使用 Qt 组件，如何设计 UI，以及如何使用 [信号与插槽机制](https://doc.qt.io/qt-5/signalsandslots.html)。在使用 Qt 时，你一般不需要使用 `std` 命名空间中的函数 / 对象，例如，`std::string` 可以使用 `QString` 代替。
 
 **不知道从哪开始？** 你可以查看 [issues](https://github.com/cpeditor/cpeditor/issues) 来找到你感兴趣的那个。[Good first issues](https://github.com/cpeditor/cpeditor/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22) 是被认为对新手友好的 issues，你可以从它们开始。如果遇到了什么问题，可以在 [QQ 群](https://jq.qq.com/?_wv=1027&k=50eq8yF) 中或对应的 issue 中提问。
 
@@ -42,14 +42,14 @@
 7. 永远保持设置文件的向下兼容。
 8. Windows，Linux 和 Mac OS 都要支持。
 9. 系统浅色主题/深色主题都要支持。
-10. 请遵守 [行为准则](../CODE_OF_CONDUCT.md)。
+10. 请遵守 [行为准则](CODE_OF_CONDUCT.md)。
 
 ## FAQ
 
 - 这是我第一次参与开发，我可以做得好吗？
   - 大家都是从第一次开始的。不要担心，其它 contributors 会在你遇到困难时给予帮助。只要你热爱开源并尝试，一切都会越来越好。
 - 我需要学习使用 CMake 吗？
-  - 不需要，你只需要知道如何 [从源代码构建](INSTALL_zh-CN.md#从源代码构建) 即可。
+  - 不需要，你只需要知道如何 [从源代码构建](doc/INSTALL_zh-CN.md#从源代码构建) 即可。
 - 如何添加一个设置？
   - 你需要在 `ui/preferencewindow.ui` 中添加 UI，然后在 `include/Core/SettingsManager.hpp` 和 `src/Core/SettingsManager.cpp` 中添加获取/修改设置的函数，在 `src/preferencewindow.cpp` 的 `applySettingsToui`, `extractSettingsFromui` 和 `isUnsavedChanges` 中添加代码。复制粘贴非常有用。
 - 有些文件在编译时缺失了。
