@@ -23,7 +23,7 @@ CP Editor 是一个基于 Qt 的轻量级跨平台代码编辑器，专为算法
 
 ## 开始使用
 
-- [发行版](https://github.com/cpeditor/cpeditor/releases)
+- [发行版](https://github.com/cpeditor/cpeditor/releases) ([Gitee 镜像](https://gitee.com/ouuan/cpeditor/releases))
 - [安装指南](doc/INSTALL_zh-CN.md)
 - [使用说明与提示](doc/MANUAL_zh-CN.md)
 
@@ -70,9 +70,9 @@ CP Editor 是一个基于 Qt 的轻量级跨平台代码编辑器，专为算法
 
 ## 关于 Gitee
 
-本项目同时在 [GitHub](https://github.com/cpeditor/cpeditor) 和 [Gitee](https://gitee.com/ouuan/cpeditor) 上进行托管，其中 Gitee 仓库仅作为镜像使用，不会发布可执行文件，也不开放 Issues / Pull Requests，并且不保证总是与 GitHub 仓库同步，如有需要请移步 [GitHub](https://github.com/cpeditor/cpeditor)，也可以进入 [QQ 群](https://jq.qq.com/?_wv=1027&k=50eq8yF) (1081647997) 来交流讨论。
+本项目同时在 [GitHub](https://github.com/cpeditor/cpeditor) 和 [Gitee](https://gitee.com/ouuan/cpeditor) 上进行托管，其中 Gitee 仓库仅作为镜像使用，不保证总是与 GitHub 仓库同步，不开放 Issues / Pull Requests，如有需要请移步 [GitHub](https://github.com/cpeditor/cpeditor)，也可以进入 [QQ 群](https://jq.qq.com/?_wv=1027&k=50eq8yF) (1081647997) 来交流讨论。
 
-License
+许可证
 ----
 
 [GNU General Public License Version 3.0](https://github.com/cpeditor/cpeditor/blob/master/LICENSE)
