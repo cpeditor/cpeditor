@@ -7,6 +7,7 @@
 ### Changed
 
 - Show the manual of the current version instead of the latest version.
+- Set window icon in application level instead of window level, this affects the update check window.
 
 ### Fixed
 
