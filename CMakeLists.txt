@@ -83,8 +83,10 @@ add_executable(cpeditor
 
     include/Preferences/PreferencesPage.hpp
     include/Preferences/PreferencesHomePage.hpp
+    include/Preferences/PreferencesWindow.hpp
     src/Preferences/PreferencesPage.cpp
     src/Preferences/PreferencesHomePage.cpp
+    src/Preferences/PreferencesWindow.cpp
 
     include/mainwindow.hpp
     include/preferencewindow.hpp
