@@ -158,6 +158,7 @@ void PreferencesWindow::addPage(const QString &path, PreferencesPage *page, cons
         current = nxt;
     }
 
+    page->setPath(path);
     content[current] = pageContent;
     pageWidget[current] = page;
     stackedWidget->addWidget(page);
