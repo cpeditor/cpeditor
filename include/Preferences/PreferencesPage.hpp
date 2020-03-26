@@ -31,9 +31,12 @@
 #ifndef PREFERENCESPAGE_HPP
 #define PREFERENCESPAGE_HPP
 
+#include <QCheckBox>
 #include <QHBoxLayout>
+#include <QLineEdit>
 #include <QPushButton>
 #include <QScrollArea>
+#include <QSpinBox>
 #include <QVBoxLayout>
 #include <QWidget>
 
@@ -121,6 +124,24 @@ class PreferencesPage : public QWidget
      * @brief add an item in the UI
      */
     void addItem(QLayoutItem *item);
+
+    /*
+     * @brief add a check box in the UI
+     * @note QCheckBox::toggled will be connected to updateButtons
+     */
+    void addCheckBox(QCheckBox *checkBox);
+
+    /*
+     * @brief add a line edit in the UI
+     * @note QLineEdit::textChanged will be connected to updateButtons
+     */
+    void addLineEdit(QLineEdit *lineEdit);
+
+    /*
+     * @brief add a spin box in the UI
+     * @note QSpinBox::valueChanged will be connected to updateButtons
+     */
+    void addSpinBox(QSpinBox *spinBox);
 
     /*
      * @brief add the title of a new section

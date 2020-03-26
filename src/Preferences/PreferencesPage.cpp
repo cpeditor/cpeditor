@@ -107,6 +107,24 @@ void PreferencesPage::addItem(QLayoutItem *item)
     settingsLayout->addItem(item);
 }
 
+void PreferencesPage::addCheckBox(QCheckBox *checkBox)
+{
+    connect(checkBox, SIGNAL(toggled(bool)), this, SLOT(updateButtons()));
+    addWidget(checkBox);
+}
+
+void PreferencesPage::addLineEdit(QLineEdit *lineEdit)
+{
+    connect(lineEdit, SIGNAL(textChanged(const QString &)), this, SLOT(updateButtons()));
+    addWidget(lineEdit);
+}
+
+void PreferencesPage::addSpinBox(QSpinBox *spinBox)
+{
+    connect(spinBox, SIGNAL(valueChanged(int)), this, SLOT(updateButtons()));
+    addWidget(spinBox);
+}
+
 void PreferencesPage::addSection(const QString &title)
 {
     auto label = new QLabel(title);
