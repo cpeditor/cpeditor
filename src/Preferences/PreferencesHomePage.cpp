@@ -45,7 +45,6 @@ PreferencesHomePage::PreferencesHomePage(QWidget *parent) : QWidget(parent)
 
     // add buttons
     addButton("Edit", "Code Editor Settings");
-    addButton("Language", "Default Language");
     addButton("Language/Commands", "Compile and Run Commands");
     addButton("Appearance", "Appearance");
 
