@@ -233,13 +233,21 @@ void PreferencesWindow::updateSearch(QTreeWidgetItem *item, const QString &text)
 
     if (item->childCount() == 0)
     {
-        // check whether the content matches text in the leaves
-        for (auto s : content[item])
+        // check whether the leaf should be hidden or not
+        if (pageWidget[item]->path().contains(text)) // check whether the path contains text
         {
-            if (s.contains(text))
+            shouldHide = false;
+        }
+        else
+        {
+            // check whether the content contains text
+            for (auto s : content[item])
             {
-                shouldHide = false;
-                break;
+                if (s.contains(text))
+                {
+                    shouldHide = false;
+                    break;
+                }
             }
         }
     }
