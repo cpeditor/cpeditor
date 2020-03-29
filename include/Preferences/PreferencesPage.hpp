@@ -126,6 +126,16 @@ class PreferencesPage : public QWidget
     void addItem(QLayoutItem *item);
 
     /*
+     * @brief QBoxLayout::addSpacing
+     */
+    void addSpacing(int size);
+
+    /*
+     * @brief QBoxLayout::addStretch
+     */
+    void addStretch(int stretch = 0);
+
+    /*
      * @brief add a check box in the UI
      * @note QCheckBox::toggled will be connected to updateButtons
      */

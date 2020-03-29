@@ -29,7 +29,7 @@ PreferencesPage::PreferencesPage(QWidget *parent) : QWidget(parent)
     scrollAreaWidget = new QWidget();
     settingsLayout = new QVBoxLayout(scrollAreaWidget);
     buttonsLayout = new QHBoxLayout();
-    defaultButton = new QPushButton(QApplication::style()->standardIcon(QStyle::SP_DialogDiscardButton), "Default");
+    defaultButton = new QPushButton(QApplication::style()->standardIcon(QStyle::SP_FileDialogDetailedView), "Default");
     resetButton = new QPushButton(QApplication::style()->standardIcon(QStyle::SP_DialogResetButton), "Reset");
     applyButton = new QPushButton(QApplication::style()->standardIcon(QStyle::SP_DialogApplyButton), "Apply");
 
@@ -105,6 +105,16 @@ void PreferencesPage::addWidget(QWidget *widget)
 void PreferencesPage::addItem(QLayoutItem *item)
 {
     settingsLayout->addItem(item);
+}
+
+void PreferencesPage::addSpacing(int size)
+{
+    settingsLayout->addSpacing(size);
+}
+
+void PreferencesPage::addStretch(int stretch)
+{
+    settingsLayout->addStretch(stretch);
 }
 
 void PreferencesPage::addCheckBox(QCheckBox *checkBox)

@@ -53,6 +53,7 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
     menuTree = new QTreeWidget();
     menuTree->setHeaderHidden(true);
     connect(menuTree, &QTreeWidget::itemActivated, [this](QTreeWidgetItem *item) { switchToPage(pageWidget[item]); });
+    connect(menuTree, &QTreeWidget::itemClicked, [this](QTreeWidgetItem *item) { switchToPage(pageWidget[item]); });
     leftLayout->addWidget(menuTree);
 
     stackedWidget = new QStackedWidget();
@@ -108,6 +109,10 @@ void PreferencesWindow::switchToPage(QWidget *page, bool force)
 
     // switch if everything is OK
     stackedWidget->setCurrentWidget(page);
+
+    auto preferencesPage = dynamic_cast<PreferencesPage *>(page);
+    if (preferencesPage != nullptr)
+        preferencesPage->loadSettings();
 }
 
 void PreferencesWindow::addPage(const QString &path, PreferencesPage *page, const QStringList &pageContent)

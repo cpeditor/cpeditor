@@ -36,7 +36,7 @@ PreferencesHomePage::PreferencesHomePage(QWidget *parent) : QWidget(parent)
     layout->addSpacing(40);
 
     // add welcome label
-    welcomeLabel = new QLabel("Welcome to CP Editor! Let's get started 🚀");
+    welcomeLabel = new QLabel("Welcome to CP Editor! Let's get started.");
     layout->addWidget(welcomeLabel);
     layout->setAlignment(welcomeLabel, Qt::AlignCenter);
 
