@@ -16,6 +16,7 @@
  */
 
 #include "Preferences/PreferencesWindow.hpp"
+#include "Preferences/Edit/EditPage.hpp"
 #include <QApplication>
 #include <QCloseEvent>
 #include <QScreen>
@@ -67,6 +68,10 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
     splitter->setSizes({1, 3});
 
     // add pages
+
+    addPage("Edit", new EditPage(this),
+            {"Tab Width", "Auto Indentation", "Text Wrap", "Auto Parentheses Completion", "Auto Parentheses Removal",
+             "Replace tabs with spaces"});
 }
 
 void PreferencesWindow::display()

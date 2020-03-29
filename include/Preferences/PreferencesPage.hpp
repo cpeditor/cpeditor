@@ -31,6 +31,7 @@
 #ifndef PREFERENCESPAGE_HPP
 #define PREFERENCESPAGE_HPP
 
+#include "Core/SettingsManager.hpp"
 #include <QCheckBox>
 #include <QHBoxLayout>
 #include <QLineEdit>
