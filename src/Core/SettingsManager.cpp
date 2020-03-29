@@ -86,55 +86,55 @@ void SettingsManager::init()
 bool SettingsManager::isWrapText()
 {
     Core::Log::i("settingmanager/isWrapText", "Invoked");
-    return mSettings->value("wrap_text", "false").toBool();
+    return mSettings->value("wrap_text", Default::textWrap).toBool();
 }
 
 bool SettingsManager::isAutoIndent()
 {
     Core::Log::i("settingmanager/isAutoIndent", "Invoked");
-    return mSettings->value("auto_indent", "true").toBool();
+    return mSettings->value("auto_indent", Default::autoIndent).toBool();
 }
 
 bool SettingsManager::isAutoParentheses()
 {
     Core::Log::i("settingmanager/isAutoParentheses", "Invoked");
-    return mSettings->value("auto_parenthesis", "true").toBool();
+    return mSettings->value("auto_parenthesis", Default::autoParentheses).toBool();
 }
 
 bool SettingsManager::isAutoRemoveParentheses()
 {
     Core::Log::i("settingmanager/isAutoRemoveParentheses", "Invoked");
-    return mSettings->value("auto_remove_parentheses", "true").toBool();
+    return mSettings->value("auto_remove_parentheses", Default::autoRemoveParentheses).toBool();
 }
 
 bool SettingsManager::isAutoSave()
 {
     Core::Log::i("settingmanager/isAutoSave", "Invoked");
-    return mSettings->value("autosave", "false").toBool();
+    return mSettings->value("autosave", Default::autoSave).toBool();
 }
 
 bool SettingsManager::isBeta()
 {
     Core::Log::i("settingmanager/isBeta", "Invoked");
-    return mSettings->value("beta", "false").toBool();
+    return mSettings->value("beta", Default::beta).toBool();
 }
 
 bool SettingsManager::isTabsReplaced()
 {
     Core::Log::i("settingmanager/isTabReplaced", "Invoked");
-    return mSettings->value("replace_tabs", "false").toBool();
+    return mSettings->value("replace_tabs", Default::tabsReplaced).toBool();
 }
 
 bool SettingsManager::isSaveTests()
 {
     Core::Log::i("settingmanager/isSaveTests", "Invoked");
-    return mSettings->value("save_tests", "false").toBool();
+    return mSettings->value("save_tests", Default::saveTests).toBool();
 }
 
 bool SettingsManager::isUseHotExit()
 {
     Core::Log::i("settingmanager/isuseHotExit", "Invoked");
-    return mSettings->value("use_hot_exit", "true").toBool();
+    return mSettings->value("use_hot_exit", Default::useHotExit).toBool();
 }
 
 bool SettingsManager::isMaximizedWindow()
@@ -146,39 +146,39 @@ bool SettingsManager::isMaximizedWindow()
 bool SettingsManager::isCheckUpdateOnStartup()
 {
     Core::Log::i("settingmanager/ischeckUpdateOnStartup", "Invoked");
-    return mSettings->value("update_start_check", "true").toBool();
+    return mSettings->value("update_start_check", Default::checkUpdateOnStartup).toBool();
 }
 
 bool SettingsManager::isCompetitiveCompanionActive()
 {
     Core::Log::i("settingmanager/isCompetitiveCompanionActive", "Invoked");
-    return mSettings->value("competitive_use", "true").toBool();
+    return mSettings->value("competitive_use", Default::competitiveCompanionActive).toBool();
 }
 
 bool SettingsManager::isCompetitiveCompanionOpenNewTab()
 {
     Core::Log::i("settingmanager/isCompetitiveompanionOpenNewTab", "Invoked");
-    return mSettings->value("companion_new_tab", "true").toBool();
+    return mSettings->value("companion_new_tab", Default::competitiveCompanionOpenNewTab).toBool();
 }
 
 bool SettingsManager::isHotkeyInUse()
 {
     Core::Log::i("settingmanager/isHotKeyInUse", "Invoked");
-    return mSettings->value("hotkey_use", "false").toBool();
+    return mSettings->value("hotkey_use", Default::hotKeyInUse).toBool();
 }
 bool SettingsManager::isFormatOnSave()
 {
     Core::Log::i("settingmanager/isFormatOnSave", "Invoked");
-    return mSettings->value("format_on_save", "false").toBool();
+    return mSettings->value("format_on_save", Default::formatOnSave).toBool();
 }
 
 QString SettingsManager::getRunCommand(const QString &lang)
 {
     Core::Log::i("settingmanager/getRunCommand") << "lang " << lang << endl;
     if (lang == "Java")
-        return mSettings->value("run_java", "java").toString();
+        return mSettings->value("run_java", Default::javaRunCommand).toString();
     else if (lang == "Python")
-        return mSettings->value("run_python", "python").toString();
+        return mSettings->value("run_python", Default::pythonRunCommand).toString();
     else
         return mSettings->value("run_" + lang).toString();
 }
@@ -186,21 +186,21 @@ QString SettingsManager::getCompileCommand(const QString &lang)
 {
     Core::Log::i("settingmanager/getCompileCommand") << "lang " << lang << endl;
     if (lang == "C++")
-        return mSettings->value("compile_cpp", "g++ -Wall").toString();
+        return mSettings->value("compile_cpp", Default::cppCompileCommand).toString();
     else if (lang == "Java")
-        return mSettings->value("compile_java", "javac").toString();
+        return mSettings->value("compile_java", Default::javaCompileCommand).toString();
     else
         return mSettings->value("compile_" + lang).toString();
 }
 QString SettingsManager::getClangFormatBinary()
 {
     Core::Log::i("settingmanager/getClangFormatBinary", "Invoked");
-    return mSettings->value("clang_format_binary", "clang-format").toString();
+    return mSettings->value("clang_format_binary", Default::clangFormatBinary).toString();
 }
 QString SettingsManager::getClangFormatStyle()
 {
     Core::Log::i("settingmanager/getClangFormatstyle", "Invoked");
-    return mSettings->value("clang_format_style", "BasedOnStyle: Google").toString();
+    return mSettings->value("clang_format_style", Default::clangFormatStyle).toString();
 }
 QString SettingsManager::getRuntimeArguments(const QString &lang)
 {
@@ -217,7 +217,7 @@ QString SettingsManager::getRuntimeArguments(const QString &lang)
 QString SettingsManager::getDefaultLanguage()
 {
     Core::Log::i("settingmanager/getDefaultLanguage", "Invoked");
-    auto res = mSettings->value("lang", "C++").toString();
+    auto res = mSettings->value("lang", Default::defaultLanguage).toString();
     return res;
 }
 QString SettingsManager::getTemplatePath(const QString &lang)
@@ -235,7 +235,7 @@ QString SettingsManager::getTemplatePath(const QString &lang)
 QString SettingsManager::getFont()
 {
     Core::Log::i("settingmanager/getfont", "Invoked");
-    return mSettings->value("font", "monospace").toString();
+    return mSettings->value("font", Default::font).toString();
 }
 
 QRect SettingsManager::getGeometry()
@@ -247,19 +247,19 @@ QRect SettingsManager::getGeometry()
 int SettingsManager::getTabStop()
 {
     Core::Log::i("settingmanager/getTabStop", "Invoked");
-    return mSettings->value("tab_stop", 4).toInt();
+    return mSettings->value("tab_stop", Default::tabStopWidth).toInt();
 }
 
 int SettingsManager::getConnectionPort()
 {
     Core::Log::i("settingmanager/getConnectionPort", "Invoked");
-    return mSettings->value("companion_port", 10045).toInt();
+    return mSettings->value("companion_port", Default::connectionPort).toInt();
 }
 
 int SettingsManager::getTimeLimit()
 {
     Core::Log::i("settingmanager/getTimeLimit", "Invoked");
-    return mSettings->value("time_limit", 5000).toInt();
+    return mSettings->value("time_limit", Default::timeLimit).toInt();
 }
 
 void SettingsManager::setAutoIndent(bool value)
@@ -398,7 +398,7 @@ void SettingsManager::setEditorTheme(const QString &themeName)
 QString SettingsManager::getEditorTheme()
 {
     Core::Log::i("settingmanager/getEditorTheme", "Invoked");
-    return mSettings->value("editor_theme", "Light").toString();
+    return mSettings->value("editor_theme", Default::editorTheme).toString();
 }
 void SettingsManager::setClangFormatBinary(const QString &binary)
 {
@@ -578,7 +578,7 @@ void SettingsManager::setTransparency(int val)
 QString SettingsManager::getCFPath()
 {
     Core::Log::i("settingmanager/getCFPath", "Invoked");
-    return mSettings->value("cf_path", "cf").toString();
+    return mSettings->value("cf_path", Default::CFPath).toString();
 }
 
 void SettingsManager::setCFPath(const QString &path)
@@ -601,7 +601,7 @@ void SettingsManager::setSavePath(const QString &path)
 
 bool SettingsManager::isCompileAndRunOnly()
 {
-    return mSettings->value("compile_and_run_only", "false").toBool();
+    return mSettings->value("compile_and_run_only", Default::compileAndRunOnly).toBool();
 }
 
 void SettingsManager::setCompileAndRunOnly(bool value)
@@ -611,7 +611,7 @@ void SettingsManager::setCompileAndRunOnly(bool value)
 
 bool SettingsManager::isDisplayEolnInDiff()
 {
-    return mSettings->value("display_eoln_in_diff", "false").toBool();
+    return mSettings->value("display_eoln_in_diff", Default::displayEolnInDiff).toBool();
 }
 
 void SettingsManager::setDisplayEolnInDiff(bool value)
@@ -621,7 +621,7 @@ void SettingsManager::setDisplayEolnInDiff(bool value)
 
 bool SettingsManager::isSaveFaster()
 {
-    return mSettings->value("save_faster", "false").toBool();
+    return mSettings->value("save_faster", Default::saveFaster).toBool();
 }
 
 void SettingsManager::setSaveFaster(bool value)

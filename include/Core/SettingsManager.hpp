@@ -40,6 +40,41 @@ enum ViewMode
     SPLIT        // both the editor and the IO part are on the screen with a splitter
 };
 
+namespace Default
+{
+const bool saveFaster = false;
+const bool textWrap = false;
+const bool autoIndent = true;
+const bool autoParentheses = true;
+const bool autoRemoveParentheses = true;
+const bool autoSave = false;
+const bool beta = false;
+const bool tabsReplaced = false;
+const bool saveTests = false;
+const bool useHotExit = true;
+const bool checkUpdateOnStartup = true;
+const bool competitiveCompanionActive = true;
+const bool competitiveCompanionOpenNewTab = true;
+const bool hotKeyInUse = false;
+const bool formatOnSave = false;
+const QString javaRunCommand = "java";
+const QString pythonRunCommand = "python";
+const QString cppCompileCommand = "g++ -Wall";
+const QString javaCompileCommand = "javac";
+const QString clangFormatBinary = "clang-format";
+const QString clangFormatStyle = "BasedOnStyle: Google";
+const int connectionPort = 10045;
+const int tabStopWidth = 4;
+const int timeLimit = 5000;
+const QString font = "monospace";
+const QString defaultLanguage = "C++";
+const QString editorTheme = "Light";
+const int transparency = 100;
+const QString CFPath = "cf";
+const bool compileAndRunOnly = false;
+const bool displayEolnInDiff = false;
+} // namespace Default
+
 class SettingsManager
 {
   public:
