@@ -19,6 +19,8 @@
 
 LanguageGeneralPage::LanguageGeneralPage(QWidget *parent) : PreferencesPage(parent)
 {
+    setTitle("Language General");
+
     defaultLanguageLayout = new QFormLayout();
     addLayout(defaultLanguageLayout);
 

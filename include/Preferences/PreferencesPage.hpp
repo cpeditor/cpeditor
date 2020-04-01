@@ -34,6 +34,7 @@
 #include "Core/SettingsManager.hpp"
 #include <QCheckBox>
 #include <QHBoxLayout>
+#include <QLabel>
 #include <QLineEdit>
 #include <QPushButton>
 #include <QScrollArea>
@@ -127,16 +128,6 @@ class PreferencesPage : public QWidget
     void addItem(QLayoutItem *item);
 
     /*
-     * @brief QBoxLayout::addSpacing
-     */
-    void addSpacing(int size);
-
-    /*
-     * @brief QBoxLayout::addStretch
-     */
-    void addStretch(int stretch = 0);
-
-    /*
      * @brief add a check box
      * @note QCheckBox::toggled will be connected to updateButtons
      */
@@ -155,9 +146,9 @@ class PreferencesPage : public QWidget
     void addSpinBox(const QString &labelText, QSpinBox *spinBox);
 
     /*
-     * @brief add the title of a new section
+     * @brief set the title of the page
      */
-    void addSection(const QString &title);
+    void setTitle(const QString &title);
 
   protected slots:
     /*
@@ -182,21 +173,31 @@ class PreferencesPage : public QWidget
      * The UI structure:
      *
      * mainLayout:
+     *  - titleLabel
      *  - scrollArea
      *    - scrollAreaWidget
-     *      - settingsLayout
-     *        - setting 1 in the derived class
-     *        - ...
+     *      - VStretchLayout
+     *        - (spacing)
+     *        - HStretchLayout
+     *          - (stretch)
+     *            - settingsLayout
+     *              - setting 1 in the derived class
+     *              - ...
+     *          - (stretch)
+     *        - (stretch)
      *  - buttonsLayout
      *    - defaultButton
      *    - resetButton
-     *    - (spacing)
+     *    - (stretch)
      *    - applyButton
      */
 
     QVBoxLayout *mainLayout = nullptr;     // The main layout of the page
+    QLabel *titleLabel = nullptr;          // The title of the page
     QScrollArea *scrollArea = nullptr;     // The scroll area to place the settings
     QWidget *scrollAreaWidget = nullptr;   // The widget in the scroll area with settingsLayout as its layout
+    QVBoxLayout *VStretchLayout = nullptr; // Used for align up
+    QHBoxLayout *HStretchLayout = nullptr; // Used for align center
     QVBoxLayout *settingsLayout = nullptr; // The layout for the settings
     QHBoxLayout *buttonsLayout = nullptr;  // The layout for the Default, Reset, and Apply buttons
     QPushButton *defaultButton = nullptr;  // The button to set the UI to the default values

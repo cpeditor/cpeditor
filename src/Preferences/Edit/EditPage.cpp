@@ -19,6 +19,8 @@
 
 EditPage::EditPage(QWidget *parent) : PreferencesPage(parent)
 {
+    setTitle("Edit");
+
     tabWidthSpinBox = new QSpinBox(this);
     tabWidthSpinBox->setRange(1, 20);
     addSpinBox("Tab Width", tabWidthSpinBox);
@@ -37,8 +39,6 @@ EditPage::EditPage(QWidget *parent) : PreferencesPage(parent)
 
     parenthesesRemovalCheckBox = new QCheckBox("Auto Parentheses Removal", this);
     addCheckBox(parenthesesRemovalCheckBox);
-
-    addStretch();
 }
 
 bool EditPage::areSettingsChanged()

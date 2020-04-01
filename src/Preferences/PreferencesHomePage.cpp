@@ -33,7 +33,7 @@ PreferencesHomePage::PreferencesHomePage(QWidget *parent) : QWidget(parent)
     layout->setAlignment(iconLabel, Qt::AlignCenter);
 
     // add spacing between the icon and the webcome label
-    layout->addSpacing(40);
+    layout->addSpacing(30);
 
     // add welcome label
     welcomeLabel = new QLabel("Welcome to CP Editor! Let's get started.");

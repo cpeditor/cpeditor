@@ -18,7 +18,6 @@
 #include "Preferences/PreferencesPage.hpp"
 #include <QApplication>
 #include <QFormLayout>
-#include <QLabel>
 #include <QMessageBox>
 #include <QStyle>
 
@@ -26,9 +25,12 @@ PreferencesPage::PreferencesPage(QWidget *parent) : QWidget(parent)
 {
     // construct widgets
     mainLayout = new QVBoxLayout(this);
+    titleLabel = new QLabel();
     scrollArea = new QScrollArea();
     scrollAreaWidget = new QWidget();
-    settingsLayout = new QVBoxLayout(scrollAreaWidget);
+    VStretchLayout = new QVBoxLayout(scrollAreaWidget);
+    HStretchLayout = new QHBoxLayout();
+    settingsLayout = new QVBoxLayout();
     buttonsLayout = new QHBoxLayout();
     defaultButton = new QPushButton(QApplication::style()->standardIcon(QStyle::SP_FileDialogDetailedView), "Default");
     resetButton = new QPushButton(QApplication::style()->standardIcon(QStyle::SP_DialogResetButton), "Reset");
@@ -39,10 +41,22 @@ PreferencesPage::PreferencesPage(QWidget *parent) : QWidget(parent)
     buttonsLayout->addWidget(resetButton);
     buttonsLayout->addStretch();
     buttonsLayout->addWidget(applyButton);
+    HStretchLayout->addStretch();
+    HStretchLayout->addLayout(settingsLayout);
+    HStretchLayout->addStretch();
+    VStretchLayout->addSpacing(30);
+    VStretchLayout->addLayout(HStretchLayout);
+    VStretchLayout->addStretch();
     scrollArea->setWidgetResizable(true);
     scrollArea->setWidget(scrollAreaWidget);
+    mainLayout->addWidget(titleLabel);
     mainLayout->addWidget(scrollArea);
     mainLayout->addLayout(buttonsLayout);
+
+    // set the font for title
+    auto labelFont = font();
+    labelFont.setPointSizeF(font().pointSizeF() * 1.6);
+    titleLabel->setFont(labelFont);
 
     // connect the signals and slots
     connect(defaultButton, SIGNAL(clicked()), this, SLOT(loadDefault()));
@@ -108,16 +122,6 @@ void PreferencesPage::addItem(QLayoutItem *item)
     settingsLayout->addItem(item);
 }
 
-void PreferencesPage::addSpacing(int size)
-{
-    settingsLayout->addSpacing(size);
-}
-
-void PreferencesPage::addStretch(int stretch)
-{
-    settingsLayout->addStretch(stretch);
-}
-
 void PreferencesPage::addCheckBox(QCheckBox *checkBox)
 {
     connect(checkBox, SIGNAL(toggled(bool)), this, SLOT(updateButtons()));
@@ -140,14 +144,9 @@ void PreferencesPage::addSpinBox(const QString &labelText, QSpinBox *spinBox)
     addLayout(formLayout);
 }
 
-void PreferencesPage::addSection(const QString &title)
+void PreferencesPage::setTitle(const QString &title)
 {
-    auto label = new QLabel(title);
-    auto labelFont = font();
-    labelFont.setBold(true);
-    labelFont.setPointSizeF(font().pointSizeF() * 1.5);
-    label->setFont(labelFont);
-    addWidget(label);
+    titleLabel->setText(title);
 }
 
 void PreferencesPage::loadDefault()

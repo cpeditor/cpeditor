@@ -19,7 +19,6 @@
 #define EDITPAGE_HPP
 
 #include "Preferences/PreferencesPage.hpp"
-#include <QLabel>
 
 class EditPage : public PreferencesPage
 {
