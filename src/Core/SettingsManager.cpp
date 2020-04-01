@@ -186,7 +186,7 @@ QString SettingsManager::getCompileCommand(const QString &lang)
 {
     Core::Log::i("settingmanager/getCompileCommand") << "lang " << lang << endl;
     if (lang == "C++")
-        return mSettings->value("compile_cpp", "g++ -Wall").toString();
+        return mSettings->value("compile_cpp", "g++ -Wall -g").toString();
     else if (lang == "Java")
         return mSettings->value("compile_java", "javac").toString();
     else

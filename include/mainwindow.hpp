@@ -27,6 +27,7 @@
 #include "Extensions/CompanionServer.hpp"
 #include "Telemetry/UpdateNotifier.hpp"
 #include "Widgets/TestCases.hpp"
+#include "debugcontrol.hpp"
 #include <QCodeEditor>
 #include <QFile>
 #include <QFileSystemWatcher>
@@ -37,6 +38,7 @@
 #include <QSplitter>
 #include <QTemporaryDir>
 #include <generated/version.hpp>
+#include <qgdbint.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui
@@ -137,6 +139,9 @@ class MainWindow : public QMainWindow
     void updateChecker();
 
     void runTestCase(int index);
+    void debugTestCase(int index);
+
+    void onCurrentRowChanged(int row);
 
   signals:
     void editorFileChanged();
@@ -195,12 +200,15 @@ class MainWindow : public QMainWindow
 
     TestCases *testcases = nullptr;
 
+    DebugControl* debugControlDialog = nullptr;
+
     void setTestCases();
     void setEditor();
     void setupCore();
     void compile();
     void run();
     void run(int index);
+    void debug(int index);
     void loadTests();
     void saveTests(bool safe);
     void setCFToolUI();

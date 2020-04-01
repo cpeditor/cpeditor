@@ -36,6 +36,7 @@ TestCase::TestCase(int index, MessageLogger *logger, QWidget *parent, const QStr
     outputLabel = new QLabel("Output");
     expectedLabel = new QLabel("Expected");
     runButton = new QPushButton("Run");
+    debugButton = new QPushButton("Debug");
     diffButton = new QPushButton("**");
     delButton = new QPushButton("Del");
     inputEdit = new TestCaseEdit(true, log, in);
@@ -56,6 +57,7 @@ TestCase::TestCase(int index, MessageLogger *logger, QWidget *parent, const QStr
     inputUpLayout->addWidget(showCheckBox);
     inputUpLayout->addWidget(inputLabel);
     inputUpLayout->addWidget(runButton);
+    inputUpLayout->addWidget(debugButton);
     outputUpLayout->addWidget(outputLabel);
     outputUpLayout->addWidget(diffButton);
     expectedUpLayout->addWidget(expectedLabel);
@@ -75,6 +77,7 @@ TestCase::TestCase(int index, MessageLogger *logger, QWidget *parent, const QStr
 
     connect(showCheckBox, SIGNAL(toggled(bool)), this, SLOT(onShowCheckBoxToggled(bool)));
     connect(runButton, SIGNAL(clicked()), this, SLOT(onRunButtonClicked()));
+    connect(debugButton, SIGNAL(clicked()), this, SLOT(onDebugButtonClicked()));
     connect(diffButton, SIGNAL(clicked()), SLOT(onDiffButtonClicked()));
     connect(delButton, SIGNAL(clicked()), this, SLOT(onDelButtonClicked()));
     connect(diffViewer, SIGNAL(toLongForHtml()), this, SLOT(onToLongForHtml()));
@@ -240,6 +243,13 @@ void TestCase::onRunButtonClicked()
     Core::Log::i("TestCase/onRunButtonClicked", "Invoked");
     showCheckBox->setChecked(true);
     emit requestRun(id);
+}
+
+void TestCase::onDebugButtonClicked()
+{
+    Core::Log::i("TestCase/onDebugButtonClicked", "Invoked");
+    showCheckBox->setChecked(true);
+    emit requestDebug(id);
 }
 
 void TestCase::onDiffButtonClicked()

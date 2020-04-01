@@ -67,6 +67,7 @@ class TestCases : public QWidget
   signals:
     void checkerChanged();
     void requestRun(int index);
+    void requestDebug(int index);
 
   private slots:
     void on_addButton_clicked();

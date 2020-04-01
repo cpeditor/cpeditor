@@ -25,6 +25,7 @@
 #include "Telemetry/UpdateNotifier.hpp"
 #include "mainwindow.hpp"
 #include "preferencewindow.hpp"
+#include "debugcontrol.hpp"
 #include <QSystemTrayIcon>
 #include <findreplacedialog.h>
 
@@ -180,6 +181,7 @@ class AppWindow : public QMainWindow
     QSystemTrayIcon *trayIcon = nullptr;
     QMenu *trayIconMenu = nullptr;
     LSPClient *languageClient = nullptr;
+    DebugControl* debugControlDialog = nullptr;
 
     void setConnections();
     void allocate();

@@ -88,6 +88,7 @@ void MainWindow::setTestCases()
     ui->test_cases_layout->addWidget(testcases);
     connect(testcases, SIGNAL(checkerChanged()), this, SLOT(updateChecker()));
     connect(testcases, SIGNAL(requestRun(int)), this, SLOT(runTestCase(int)));
+    connect(testcases, SIGNAL(requestDebug(int)), this, SLOT(debugTestCase(int)));
 }
 
 void MainWindow::setEditor()
@@ -105,6 +106,11 @@ void MainWindow::setEditor()
     // a selection (and the cursor is at the begin of the selection)
     connect(editor, SIGNAL(cursorPositionChanged()), this, SLOT(updateCursorInfo()));
     connect(editor, SIGNAL(selectionChanged()), this, SLOT(updateCursorInfo()));
+    connect(editor, &QCodeEditor::cursorPositionChanged, [&]() {
+        auto cursor = editor->textCursor();
+        if (debugControlDialog)
+            debugControlDialog->rowChanged(cursor.blockNumber() + 1);
+    });
 }
 
 void MainWindow::setupCore()
@@ -196,6 +202,47 @@ void MainWindow::runTestCase(int index)
     }
 
     run(index);
+}
+
+void MainWindow::debug(int index) {
+    Core::Log::i("MainWindow/debug") << INFO_OF(index) << endl;
+    if (language == "C++")
+    {
+        QFileInfo path(tmpPath());
+        if (!debugControlDialog)
+        {
+            debugControlDialog = new DebugControl("gdb", "gdbserver",
+                                              path.canonicalPath() + QDir::separator() + path.completeBaseName(),
+                                              QStringList { Settings::SettingsManager::getRuntimeArguments("C++") }); // FIX IT: parse argument string to stringlist.
+            auto cursor = editor->textCursor();
+            debugControlDialog->rowChanged(cursor.blockNumber() + 1);
+        }
+        debugControlDialog->setInput(testcases->input(index));
+        connect(debugControlDialog, SIGNAL(currentRowChanged(int)), this, SLOT(onCurrentRowChanged(int)));
+        debugControlDialog->show();
+    }
+}
+
+void MainWindow::debugTestCase(int index)
+{
+    Core::Log::i("MainWindow/debugTestCase") << INFO_OF(index) << endl;
+    killProcesses();
+
+    if (!QStringList({"C++"/* , "Java", "Python" */}).contains(language)) // currently, only C++ is supported
+    {
+        log.warn("Debugger", "Wrong language, please set the supported language(C++)");
+        return;
+    }
+
+    debug(index);
+}
+
+void MainWindow::onCurrentRowChanged(int row)
+{
+    QTextCursor cursor = editor->textCursor();
+    cursor.movePosition(QTextCursor::Start);
+    cursor.movePosition(QTextCursor::Down, QTextCursor::MoveAnchor, row - 1);
+    editor->setTextCursor(cursor);
 }
 
 void MainWindow::loadTests()
@@ -639,7 +686,6 @@ void MainWindow::setViewMode(Settings::ViewMode mode)
         break;
     }
 }
-
 void MainWindow::detachedExecution()
 {
     Core::Log::i("mainwindow/detachedExecution", "Invoked");
@@ -671,6 +717,11 @@ void MainWindow::killProcesses()
     {
         delete detachedRunner;
         detachedRunner = nullptr;
+    }
+
+    if (debugControlDialog)
+    {
+        debugControlDialog->hide();
     }
 }
 
