@@ -4,9 +4,14 @@
 
 - Show stderr of the checker when the verdict is AC. (#207)
 
-### Fixed
+### Changed
 
 - Show the manual of the current version instead of the latest version.
+- Set window icon in application level instead of window level, this affects the update check window.
+
+### Fixed
+
+- Fix the wrong behavior of toggle comments, indent, delete line, etc. when wrap text is on. (#213)
 
 ## v6.2
 

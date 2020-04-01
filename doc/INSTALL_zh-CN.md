@@ -16,7 +16,7 @@
 
 在 [发行版](https://github.com/cpeditor/cpeditor/releases) 中选择一个版本，下载适合你的平台的可执行文件。
 
-如果你不方便在 GitHub 上下载，可以在 [这里](https://pan.wzf2000.top/s/md70l8h0) 下载。
+如果你不方便在 GitHub 上下载，可以在 [Gitee](https://gitee.com/ouuan/cpeditor/releases) 上下载。
 
 ### Windows
 

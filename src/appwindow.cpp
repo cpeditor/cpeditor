@@ -40,9 +40,6 @@ AppWindow::AppWindow(bool noHotExit, QWidget *parent) : QMainWindow(parent), ui(
     allocate();
     setConnections();
 
-    QApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
-    setWindowIcon(QIcon(":/icon.png"));
-
     if (Settings::SettingsManager::isCheckUpdateOnStartup())
         updater->checkUpdate();
 
