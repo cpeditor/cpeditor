@@ -32,11 +32,12 @@ DebugControl::DebugControl(QString gdb, QString gdbServer, QString prog, QString
         throw "too much debug dialog!"; // actually open over 1000 tabs is impossible, I think
     }
     qgdb = new qgdbint::QGdb(gdb, gdbServer, port);
-    setWindowFlags(Qt::WindowTitleHint | Qt::CustomizeWindowHint | Qt::WindowMinimizeButtonHint | Qt::WindowMaximizeButtonHint);
+    setWindowFlags(Qt::WindowTitleHint | Qt::CustomizeWindowHint | Qt::WindowMinimizeButtonHint | Qt::WindowMaximizeButtonHint | Qt::WindowCloseButtonHint);
     connect(qgdb, &qgdbint::QGdb::positionUpdated, [&](QString, int row) {
         emit currentRowChanged(row);
     });
     connect(qgdb, &qgdbint::QGdb::textResponse, ui->log, &QPlainTextEdit::appendPlainText);
+    connect(qgdb, &qgdbint::QGdb::errorOccurered, ui->errorLog, &QPlainTextEdit::appendPlainText);
     connect(qgdb, &qgdbint::QGdb::readyStdout, ui->output, &QPlainTextEdit::appendPlainText);
     connect(qgdb, &qgdbint::QGdb::exited, this, &DebugControl::onExited);
     connect(qgdb, &qgdbint::QGdb::stateChanged, this, &DebugControl::onStateChanged);
@@ -44,9 +45,9 @@ DebugControl::DebugControl(QString gdb, QString gdbServer, QString prog, QString
         if (status == STOP)
         {
             ui->log->clear();
+            ui->errorLog->clear();
             ui->output->clear();
             qgdb->start(program, arguments, ui->input->toPlainText());
-            qgdb->connect(); // TODO: check connection.
             status = PAUSE;
             updateStatus(); // here we add initial breakpoints
             qgdb->cont();
