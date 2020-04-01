@@ -21,6 +21,7 @@
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
+#include <QStyleFactory>
 #include <QTextStream>
 #include <singleapplication.h>
 
@@ -29,8 +30,47 @@
 
 #define TOJSON(x) json[#x] = x
 
+void setWindowsDarkTheme()
+{
+#ifdef Q_OS_WIN
+    QSettings settings("HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize",
+                       QSettings::NativeFormat);
+    if (settings.value("AppsUseLightTheme") == 0)
+    {
+        Core::Log::i("main/Normal", "Using dark pallete for the theme as Windows Settings");
+        qApp->setStyle(QStyleFactory::create("Fusion"));
+        QPalette darkPalette;
+        QColor darkColor = QColor(45, 45, 45);
+        QColor disabledColor = QColor(127, 127, 127);
+        darkPalette.setColor(QPalette::Window, darkColor);
+        darkPalette.setColor(QPalette::WindowText, Qt::white);
+        darkPalette.setColor(QPalette::Base, QColor(18, 18, 18));
+        darkPalette.setColor(QPalette::AlternateBase, darkColor);
+        darkPalette.setColor(QPalette::ToolTipBase, Qt::white);
+        darkPalette.setColor(QPalette::ToolTipText, Qt::white);
+        darkPalette.setColor(QPalette::Text, Qt::white);
+        darkPalette.setColor(QPalette::Disabled, QPalette::Text, disabledColor);
+        darkPalette.setColor(QPalette::Button, darkColor);
+        darkPalette.setColor(QPalette::ButtonText, Qt::white);
+        darkPalette.setColor(QPalette::Disabled, QPalette::ButtonText, disabledColor);
+        darkPalette.setColor(QPalette::BrightText, Qt::red);
+        darkPalette.setColor(QPalette::Link, QColor(42, 130, 218));
+
+        darkPalette.setColor(QPalette::Highlight, QColor(42, 130, 218));
+        darkPalette.setColor(QPalette::HighlightedText, Qt::black);
+        darkPalette.setColor(QPalette::Disabled, QPalette::HighlightedText, disabledColor);
+
+        qApp->setPalette(darkPalette);
+
+        qApp->setStyleSheet("QToolTip { color: #ffffff; background-color: #2a82da; border: 1px solid white; }");
+    }
+#endif
+}
+
 int main(int argc, char *argv[])
 {
+    setWindowsDarkTheme();
+
     SingleApplication app(argc, argv, true);
     SingleApplication::setApplicationName("CP Editor");
     SingleApplication::setApplicationVersion(APP_VERSION);
@@ -194,6 +234,7 @@ int main(int argc, char *argv[])
         Core::Log::i("main/Normal", "Launched window connecting this window to onRecieveMessage()");
         QObject::connect(&app, &SingleApplication::receivedMessage, &w, &AppWindow::onReceivedMessage);
         Core::Log::i("main/Normal", "Showing the application window and begining the event loop");
+
         w.show();
         return app.exec();
     }

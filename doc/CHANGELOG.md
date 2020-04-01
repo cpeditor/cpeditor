@@ -3,6 +3,7 @@
 ### Added
 
 - Show stderr of the checker when the verdict is AC. (#207)
+- System-wide Dark theme for Windows 10 (#215)
 
 ### Changed
 
