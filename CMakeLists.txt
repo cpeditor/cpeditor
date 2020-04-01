@@ -91,6 +91,9 @@ add_executable(cpeditor
     include/Preferences/Edit/EditPage.hpp
     src/Preferences/Edit/EditPage.cpp
 
+    include/Preferences/Language/LanguageGeneralPage.hpp
+    src//Preferences/Language/LanguageGeneralPage.cpp
+
     include/mainwindow.hpp
     include/preferencewindow.hpp
     include/appwindow.hpp

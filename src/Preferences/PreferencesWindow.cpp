@@ -15,8 +15,12 @@
  *
  */
 
-#include "Preferences/PreferencesWindow.hpp"
+// Pages
 #include "Preferences/Edit/EditPage.hpp"
+#include "Preferences/Language/LanguageGeneralPage.hpp"
+
+// Main Frame
+#include "Preferences/PreferencesWindow.hpp"
 #include <QApplication>
 #include <QCloseEvent>
 #include <QScreen>
@@ -25,7 +29,7 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
 {
     // set attributes
     hide();
-    resize(QApplication::screenAt(parent->pos())->geometry().size() / 1.5);
+    resize(QApplication::screenAt(parent->pos())->geometry().size() / 1.6);
     setWindowTitle("Preferences");
 
     // setup UI
@@ -72,6 +76,8 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
     addPage("Edit", new EditPage(this),
             {"Tab Width", "Auto Indentation", "Text Wrap", "Auto Parentheses Completion", "Auto Parentheses Removal",
              "Replace tabs with spaces"});
+
+    addPage("Language/General", new LanguageGeneralPage(this), {"Default Language"});
 }
 
 void PreferencesWindow::display()
