@@ -95,10 +95,8 @@ add_executable(cpeditor
     src//Preferences/Language/LanguageGeneralPage.cpp
 
     include/mainwindow.hpp
-    include/preferencewindow.hpp
     include/appwindow.hpp
     src/mainwindow.cpp
-    src/preferencewindow.cpp
     src/appwindow.cpp
 
     include/Util.hpp
@@ -110,7 +108,6 @@ add_executable(cpeditor
     src/main.cpp
 
     ui/mainwindow.ui
-    ui/preferencewindow.ui
     ui/appwindow.ui
 
     ${CMAKE_BINARY_DIR}/generated/version.hpp

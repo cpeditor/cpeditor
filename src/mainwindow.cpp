@@ -55,7 +55,7 @@ MainWindow::MainWindow(const QString &fileOpen, int index, QWidget *parent)
     setEditor();
     setupCore();
     connect(fileWatcher, SIGNAL(fileChanged(const QString &)), this, SLOT(onFileWatcherChanged(const QString &)));
-    applySettings(true);
+    applySettings("", true);
     loadFile(fileOpen);
     if (testcases->count() == 0)
         testcases->addTestCase();
@@ -456,44 +456,58 @@ void MainWindow::applyCompanion(const Network::CompanionData &data)
     setProblemURL(data.url);
 }
 
-void MainWindow::applySettings(bool shouldPerformDigonistic)
+void MainWindow::applySettings(const QString &pagePath, bool shouldPerformDigonistic)
 {
-    Core::Log::i("mainwindow/applySettingsData") << "shouldPerformDiagonistics " << shouldPerformDigonistic << endl;
-    formatter->updateBinary(Settings::SettingsManager::getClangFormatBinary());
-    formatter->updateStyle(Settings::SettingsManager::getClangFormatStyle());
+    Core::Log::i("mainwindow/applySettingsData")
+        << INFO_OF(pagePath) << ", " << INFO_OF(shouldPerformDigonistic) << endl;
 
-    cftoolPath = Settings::SettingsManager::getCFPath();
-
-    if (cftool != nullptr && Network::CFTool::check(cftoolPath))
+    if (pagePath.isEmpty() || pagePath == "Extensions/Clang Format")
     {
-        cftool->updatePath(cftoolPath);
-        if (submitToCodeforces != nullptr)
-            submitToCodeforces->setEnabled(true);
+        formatter->updateBinary(Settings::SettingsManager::getClangFormatBinary());
+        formatter->updateStyle(Settings::SettingsManager::getClangFormatStyle());
     }
 
-    Util::applySettingsToEditor(editor);
+    if (pagePath.isEmpty() || pagePath == "Extensions/CF Tool")
+    {
+        cftoolPath = Settings::SettingsManager::getCFPath();
 
-    if (!isLanguageSet)
+        if (cftool != nullptr && Network::CFTool::check(cftoolPath))
+        {
+            cftool->updatePath(cftoolPath);
+            if (submitToCodeforces != nullptr)
+                submitToCodeforces->setEnabled(true);
+        }
+    }
+
+    if (pagePath.isEmpty() || pagePath == "Edit" || pagePath == "Appearance")
+        Util::applySettingsToEditor(editor);
+
+    if (!isLanguageSet && (pagePath.isEmpty() || pagePath == "Language/General"))
     {
         setLanguage(Settings::SettingsManager::getDefaultLanguage());
     }
-    if (shouldPerformDigonistic)
+
+    if (shouldPerformDigonistic && (pagePath.isEmpty() || pagePath == "Language/Commands"))
     {
-        performCoreDiagonistics();
+        performCompileAndRunDiagonistics();
     }
 
-    if (Settings::SettingsManager::isCompileAndRunOnly())
+    if (pagePath.isEmpty() || pagePath == "Appearance")
     {
-        ui->compile->hide();
-        ui->runOnly->hide();
-    }
-    else
-    {
-        ui->compile->show();
-        ui->runOnly->show();
+        if (Settings::SettingsManager::isCompileAndRunOnly())
+        {
+            ui->compile->hide();
+            ui->runOnly->hide();
+        }
+        else
+        {
+            ui->compile->show();
+            ui->runOnly->show();
+        }
     }
 
-    updateChecker();
+    if (pagePath.isEmpty() || pagePath == "Language/Commands")
+        updateChecker();
 }
 
 void MainWindow::save(bool force, const QString &head, bool safe)
@@ -601,7 +615,7 @@ void MainWindow::setLanguage(const QString &lang)
         editor->setCompleter(nullptr);
         ui->changeLanguageButton->setText("C++");
     }
-    performCoreDiagonistics();
+    performCompileAndRunDiagonistics();
     isLanguageSet = true;
 }
 
@@ -1032,9 +1046,9 @@ void MainWindow::updateChecker()
     if (checker)
         delete checker;
     if (testcases->checkerType() == Core::Checker::Custom)
-        checker = new Core::Checker(testcases->checkerText(), &log, Settings::SettingsManager::getTimeLimit(), this);
+        checker = new Core::Checker(testcases->checkerText(), &log, this);
     else
-        checker = new Core::Checker(testcases->checkerType(), &log, Settings::SettingsManager::getTimeLimit(), this);
+        checker = new Core::Checker(testcases->checkerType(), &log, this);
     connect(checker, &Core::Checker::checkFinished, testcases, &TestCases::setVerdict);
     checker->prepare(Settings::SettingsManager::getCompileCommand("C++"));
 }
@@ -1049,11 +1063,10 @@ QSplitter *MainWindow::getRightSplitter()
     return ui->right_splitter;
 }
 
-void MainWindow::performCoreDiagonistics()
+void MainWindow::performCompileAndRunDiagonistics()
 {
-    Core::Log::i("mainwindow/performCoreDiagonistics", "Invoked");
-    bool formatResult = Core::Formatter::check(Settings::SettingsManager::getClangFormatBinary(),
-                                               Settings::SettingsManager::getClangFormatStyle());
+    Core::Log::i("mainwindow/performCompileAndRunDiagonistics", "Invoked");
+
     bool compilerResult = true;
     bool runResult = true;
 
@@ -1063,9 +1076,6 @@ void MainWindow::performCoreDiagonistics()
     if (language == "Java" || language == "Python")
         runResult = Core::Compiler::check(Settings::SettingsManager::getRunCommand(language));
 
-    if (!formatResult)
-        log.warn("Formatter", "Code formatting failed to work. Please check whether the clang-format binary is in the "
-                              "PATH and the style is valid.");
     if (!compilerResult)
         log.error("Compiler", "Compiler command for " + language + " is invalid. Is compiler on PATH?");
 

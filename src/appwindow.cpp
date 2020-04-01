@@ -58,7 +58,7 @@ AppWindow::AppWindow(bool noHotExit, QWidget *parent) : QMainWindow(parent), ui(
 #endif
 
     applySettings();
-    onSettingsApplied();
+    onSettingsApplied("");
 
     if (!noHotExit && Settings::SettingsManager::isUseHotExit())
     {
@@ -235,7 +235,8 @@ void AppWindow::setConnections()
             SLOT(onTabContextMenuRequested(const QPoint &)));
     connect(timer, SIGNAL(timeout()), this, SLOT(onSaveTimerElapsed()));
 
-    connect(preferencesWindow, SIGNAL(settingsApplied(const QString &)), this, SLOT(onSettingsApplied()));
+    connect(preferencesWindow, SIGNAL(settingsApplied(const QString &)), this,
+            SLOT(onSettingsApplied(const QString &)));
 
     connect(server, &Network::CompanionServer::onRequestArrived, this, &AppWindow::onIncomingCompanionRequest);
 
@@ -765,7 +766,7 @@ void AppWindow::on_actionRestore_Settings_triggered()
     if (res == QMessageBox::Yes)
     {
         Settings::SettingsManager::resetSettings();
-        onSettingsApplied();
+        onSettingsApplied("");
         Core::Log::i("appwindow/on_actionRestore_Settings_triggered", "Reset success");
     }
 }
@@ -941,23 +942,29 @@ void AppWindow::onSaveTimerElapsed()
     }
 }
 
-void AppWindow::onSettingsApplied()
+void AppWindow::onSettingsApplied(const QString &pagePath)
 {
-    Core::Log::i("appwindow/onSettingsApplied", "Invoked");
+    Core::Log::i("appwindow/onSettingsApplied") << INFO_OF(pagePath) << endl;
 
     for (int i = 0; i < ui->tabWidget->count(); ++i)
     {
-        windowAt(i)->applySettings(i == ui->tabWidget->currentIndex());
+        windowAt(i)->applySettings(pagePath, i == ui->tabWidget->currentIndex());
         onEditorTextChanged(windowAt(i));
     }
 
-    updater->setBeta(Settings::SettingsManager::isBeta());
-    maybeSetHotkeys();
+    if (pagePath.isEmpty() || pagePath == "Advanced/Update")
+        updater->setBeta(Settings::SettingsManager::isBeta());
 
-    if (Settings::SettingsManager::isCompetitiveCompanionActive())
-        server->updatePort(Settings::SettingsManager::getConnectionPort());
-    else
-        server->updatePort(0);
+    if (pagePath.isEmpty() || pagePath == "Key Bindings")
+        maybeSetHotkeys();
+
+    if (pagePath.isEmpty() || pagePath == "Extensions/Competitive Companion")
+    {
+        if (Settings::SettingsManager::isCompetitiveCompanionActive())
+            server->updatePort(Settings::SettingsManager::getConnectionPort());
+        else
+            server->updatePort(0);
+    }
 
     Core::Log::i("appwindow/onSettingsApplied", "Finished");
 }

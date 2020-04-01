@@ -100,7 +100,7 @@ class MainWindow : public QMainWindow
 
     void setLanguage(const QString &lang);
     QString getLanguage();
-    void applySettings(bool);
+    void applySettings(const QString &pagePath, bool shouldPerformDigonistic);
 
     MessageLogger *getLogger();
     QSplitter *getSplitter();
@@ -210,7 +210,7 @@ class MainWindow : public QMainWindow
     bool saveFile(SaveMode, const QString &head, bool safe);
     SaveTempStatus saveTemp(const QString &head);
     QString tmpPath();
-    void performCoreDiagonistics();
+    void performCompileAndRunDiagonistics();
     QString getRunnerHead(int index);
 };
 #endif // MAINWINDOW_HPP

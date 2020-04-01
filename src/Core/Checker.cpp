@@ -17,22 +17,21 @@
 
 #include "Core/Checker.hpp"
 #include "Core/EventLogger.hpp"
+#include "Core/SettingsManager.hpp"
 #include "Util.hpp"
 #include <QFile>
 
 namespace Core
 {
 
-Checker::Checker(CheckerType type, MessageLogger *logger, int timeLimit, QObject *parent) : QObject(parent)
+Checker::Checker(CheckerType type, MessageLogger *logger, QObject *parent) : QObject(parent)
 {
     Log::i("Checker/constructor") << INFO_OF(type) << endl;
     checkerType = type;
     log = logger;
-    this->timeLimit = timeLimit;
 }
 
-Checker::Checker(const QString &path, MessageLogger *logger, int timeLimit, QObject *parent)
-    : Checker(Custom, logger, timeLimit, parent)
+Checker::Checker(const QString &path, MessageLogger *logger, QObject *parent) : Checker(Custom, logger, parent)
 {
     checkerPath = path;
 }
@@ -296,7 +295,7 @@ void Checker::check(int index, const QString &input, const QString &output, cons
             connect(tmp, SIGNAL(runTimeout(int)), this, SLOT(onRunTimeout(int)));
             connect(tmp, SIGNAL(runKilled(int)), this, SLOT(onRunKilled(int)));
             tmp->run(checkerPath, "C++", "", "\"" + inputPath + "\" \"" + outputPath + "\" \"" + expectedPath + "\"",
-                     "", timeLimit);
+                     "", Settings::SettingsManager::getTimeLimit());
         }
         break;
     }

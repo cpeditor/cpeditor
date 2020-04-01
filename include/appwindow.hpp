@@ -101,7 +101,7 @@ class AppWindow : public QMainWindow
 
     void onSaveTimerElapsed();
 
-    void onSettingsApplied();
+    void onSettingsApplied(const QString &pagePath);
 
     void onSplitterMoved(int, int);
 
