@@ -236,6 +236,8 @@ void PreferencesWindow::updateSearch(QTreeWidgetItem *item, const QString &text)
     if (item == nullptr)
         return;
 
+    item->setExpanded(!text.isEmpty());
+
     if (text.isEmpty())
     {
         // If text is empty, set all items visible
