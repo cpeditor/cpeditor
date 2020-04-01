@@ -17,6 +17,7 @@
 
 #include "Preferences/PreferencesPage.hpp"
 #include <QApplication>
+#include <QFormLayout>
 #include <QLabel>
 #include <QMessageBox>
 #include <QStyle>
@@ -123,16 +124,20 @@ void PreferencesPage::addCheckBox(QCheckBox *checkBox)
     addWidget(checkBox);
 }
 
-void PreferencesPage::addLineEdit(QLineEdit *lineEdit)
+void PreferencesPage::addLineEdit(const QString &labelText, QLineEdit *lineEdit)
 {
+    auto formLayout = new QFormLayout();
     connect(lineEdit, SIGNAL(textChanged(const QString &)), this, SLOT(updateButtons()));
-    addWidget(lineEdit);
+    formLayout->addRow(labelText, lineEdit);
+    addLayout(formLayout);
 }
 
-void PreferencesPage::addSpinBox(QSpinBox *spinBox)
+void PreferencesPage::addSpinBox(const QString &labelText, QSpinBox *spinBox)
 {
+    auto formLayout = new QFormLayout();
     connect(spinBox, SIGNAL(valueChanged(int)), this, SLOT(updateButtons()));
-    addWidget(spinBox);
+    formLayout->addRow(labelText, spinBox);
+    addLayout(formLayout);
 }
 
 void PreferencesPage::addSection(const QString &title)

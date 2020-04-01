@@ -19,12 +19,9 @@
 
 EditPage::EditPage(QWidget *parent) : PreferencesPage(parent)
 {
-    tabWidthLayout = new QFormLayout();
-    addLayout(tabWidthLayout);
     tabWidthSpinBox = new QSpinBox(this);
     tabWidthSpinBox->setRange(1, 20);
-    connect(tabWidthSpinBox, SIGNAL(valueChanged(int)), this, SLOT(updateButtons()));
-    tabWidthLayout->addRow("Tab Width", tabWidthSpinBox);
+    addSpinBox("Tab Width", tabWidthSpinBox);
 
     indentCheckBox = new QCheckBox("Auto Indentation", this);
     addCheckBox(indentCheckBox);

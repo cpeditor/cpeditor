@@ -19,7 +19,6 @@
 #define EDITPAGE_HPP
 
 #include "Preferences/PreferencesPage.hpp"
-#include <QFormLayout>
 #include <QLabel>
 
 class EditPage : public PreferencesPage
@@ -39,7 +38,6 @@ class EditPage : public PreferencesPage
     void makeSettingsTheSameAsUI() override;
 
   private:
-    QFormLayout *tabWidthLayout = nullptr;
     QSpinBox *tabWidthSpinBox = nullptr;
     QCheckBox *indentCheckBox = nullptr;
     QCheckBox *textWrapCheckBox = nullptr;

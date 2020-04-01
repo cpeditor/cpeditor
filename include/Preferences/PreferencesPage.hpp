@@ -137,22 +137,22 @@ class PreferencesPage : public QWidget
     void addStretch(int stretch = 0);
 
     /*
-     * @brief add a check box in the UI
+     * @brief add a check box
      * @note QCheckBox::toggled will be connected to updateButtons
      */
     void addCheckBox(QCheckBox *checkBox);
 
     /*
-     * @brief add a line edit in the UI
+     * @brief add a line edit with a label in a QFormLayout
      * @note QLineEdit::textChanged will be connected to updateButtons
      */
-    void addLineEdit(QLineEdit *lineEdit);
+    void addLineEdit(const QString &labelText, QLineEdit *lineEdit);
 
     /*
-     * @brief add a spin box in the UI
+     * @brief add a spin box with a label in a QFormLayout
      * @note QSpinBox::valueChanged will be connected to updateButtons
      */
-    void addSpinBox(QSpinBox *spinBox);
+    void addSpinBox(const QString &labelText, QSpinBox *spinBox);
 
     /*
      * @brief add the title of a new section
