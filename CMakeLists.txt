@@ -133,3 +133,11 @@ if(APPLE)
         RESOURCE ".ci/mac/cpeditor.icns"
     )
 endif()
+
+if(UNIX AND NOT APPLE)
+	install(TARGETS cpeditor
+		RUNTIME DESTINATION bin
+        	LIBRARY DESTINATION lib)
+	install(FILES .ci/linux/cpeditor.desktop DESTINATION share/applications)
+	install(FILES .ci/linux/cpeditor-icon.png DESTINATION share/icons)
+endif()
