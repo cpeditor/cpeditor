@@ -92,7 +92,11 @@ add_executable(cpeditor
     src/Preferences/Edit/EditPage.cpp
 
     include/Preferences/Language/LanguageGeneralPage.hpp
-    src//Preferences/Language/LanguageGeneralPage.cpp
+    include/Preferences/Language/CodeTemplateItem.hpp
+    include/Preferences/Language/CodeTemplatePage.hpp
+    src/Preferences/Language/LanguageGeneralPage.cpp
+    src/Preferences/Language/CodeTemplateItem.cpp
+    src/Preferences/Language/CodeTemplatePage.cpp
 
     include/mainwindow.hpp
     include/appwindow.hpp
