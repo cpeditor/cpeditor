@@ -24,7 +24,7 @@ It makes your competitive coding life easier :grin: by automating many things fo
 ## Get Started
 
 - [Releases](https://github.com/cpeditor/cpeditor/releases)
-- [Install instructions](doc/INSTALL.md)
+- [Install in different ways](doc/INSTALL.md)
 - [Get Started and Tips](doc/MANUAL.md)
 
 ## Contributing

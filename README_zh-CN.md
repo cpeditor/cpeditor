@@ -24,7 +24,7 @@ CP Editor 是一个基于 Qt 的轻量级跨平台代码编辑器，专为算法
 ## 开始使用
 
 - [发行版](https://github.com/cpeditor/cpeditor/releases) ([Gitee 镜像](https://gitee.com/ouuan/cpeditor/releases))
-- [安装指南](doc/INSTALL_zh-CN.md)
+- [各种安装方式](doc/INSTALL_zh-CN.md)
 - [使用说明与提示](doc/MANUAL_zh-CN.md)
 
 ## 做出贡献

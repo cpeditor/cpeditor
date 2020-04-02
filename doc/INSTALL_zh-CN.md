@@ -12,6 +12,10 @@
 
     通过 Artifacts，无需自己构建便能使用最新的 feature。但是，并非所有平台都可以使用，而且只能用于更新，不能用于首次安装。
 
+4. [从 AUR 构建](#从-AUR-构建)
+
+   这是 Arch Linux 用户的推荐安装方法。通过 AUR，你可以轻松地从源代码构建，享受最新的特性。并且，由于 AppImage 是在 Ubuntu 上构建的，只能使用 Fusion 主题，但如果是在使用 KDE 桌面环境的 Arch Linux 上构建的，就可以使用 Breeze（微风）等主题。
+
 ## 安装可执行文件
 
 在 [发行版](https://github.com/cpeditor/cpeditor/releases) 中选择一个版本，下载适合你的平台的可执行文件。
@@ -81,6 +85,16 @@
 在 Windows/MacOS 上，你可以用 Artifact 替换之前的安装。在 MacOS 上，你需要运行 `cp path/to/Artifact cpeditor.app/Contents/MacOs`，其中 `cpeditor.app` 是已经安装好的文件。
 
 在 Ubuntu 18.04 上，你需要安装 Qt 来运行 Artifact。其它发行版上可能无法运行 Artifact。
+
+## 从 AUR 构建
+
+这个方法仅适用于 Arch Linux（以及 Manjaro 等基于 Arch Linux 的发行版）。
+
+就像安装其它 AUR 包一样，首先你需要有一个 AUR 安装器。如果你没有，可以通过 `sudo pacman -S yay` 安装一个。
+
+接着，运行 `yay -S cpeditor-git`，选择默认选项，然后等着就好了。
+
+安装完成后，你就可以在终端中使用 `cpeditor` 来运行 CP Editor 了。
 
 # 开始使用
 
