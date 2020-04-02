@@ -10,8 +10,8 @@ enum {
 
 QSet<int> DebugControl::portUsed;
 
-DebugControl::DebugControl(QString gdb, QString gdbServer, QString prog, QStringList args, QWidget *parent)
-    : QDialog(parent), ui(new Ui::DebugControl), program(prog), arguments(args), status(STOP)
+DebugControl::DebugControl(QString gdb, QString gdbServer, QString prog, QWidget *parent)
+    : QDialog(parent), ui(new Ui::DebugControl), program(prog), status(STOP)
 {
     ui->setupUi(this);
     setWindowTitle(QString("DebugControl - %1").arg(prog));
@@ -147,6 +147,11 @@ void DebugControl::setInput(QString in)
 {
     ui->input->clear();
     ui->input->appendPlainText(in);
+}
+
+void DebugControl::setArguments(QStringList args)
+{
+    arguments = args;
 }
 
 void DebugControl::onStateChanged(bool running, QString reason)

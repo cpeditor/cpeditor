@@ -20,12 +20,13 @@ class DebugControl : public QDialog
         RUN,
         PAUSE
     };
-    explicit DebugControl(QString gdb, QString gdbServer, QString program, QStringList arguments, QWidget *parent = nullptr);
+    explicit DebugControl(QString gdb, QString gdbServer, QString program, QWidget *parent = nullptr);
     ~DebugControl();
 
   public slots:
     void rowChanged(int row); // tell debug control the row cursor lies.
     void setInput(QString input);
+    void setArguments(QStringList arguments);
 
   signals:
     void currentRowChanged(int row); // tell editor the current running row.

@@ -130,6 +130,12 @@ class Runner : public QObject
     void onTimeout();
 
   private:
+    struct Command
+    {
+        QString prog;
+        QStringList args;
+        QString full;
+    };
     /*
      * @brief get the command to run a program
      * @param filePath the path to the source file
@@ -137,7 +143,7 @@ class Runner : public QObject
      * @param runCommand the command for running a program
      * @param args the command line arguments added at the back to start the program
      */
-    QString getCommand(const QString &filePath, const QString &lang, const QString &runCommand, const QString &args);
+    Command getCommand(const QString &filePath, const QString &lang, const QString &runCommand, const QString &args);
 
     const int runnerIndex;             // the index of the testcase
     QProcess *runProcess = nullptr;    // the process to run the program

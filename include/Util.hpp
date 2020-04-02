@@ -29,6 +29,8 @@ bool saveFile(const QString &path, const QString &content, const QString &head =
 
 void applySettingsToEditor(QCodeEditor *editor);
 
+QStringList splitArgument(QString arg);
+
 } // namespace Util
 
 #endif // UTIL_HPP

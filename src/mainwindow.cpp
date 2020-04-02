@@ -55,6 +55,13 @@ MainWindow::MainWindow(const QString &fileOpen, int index, QWidget *parent)
     setEditor();
     setupCore();
     connect(fileWatcher, SIGNAL(fileChanged(const QString &)), this, SLOT(onFileWatcherChanged(const QString &)));
+    connect(this, &MainWindow::editorFileChanged, [&]() {
+        if (debugControlDialog)
+        {
+            delete debugControlDialog;
+            debugControlDialog = nullptr;
+        }
+    });
     applySettings(true);
     loadFile(fileOpen);
     if (testcases->count() == 0)
@@ -212,8 +219,8 @@ void MainWindow::debug(int index) {
         if (!debugControlDialog)
         {
             debugControlDialog = new DebugControl("gdb", "gdbserver",
-                                              path.canonicalPath() + QDir::separator() + path.completeBaseName(),
-                                              QStringList { Settings::SettingsManager::getRuntimeArguments("C++") }); // FIX IT: parse argument string to stringlist.
+                                              path.canonicalPath() + QDir::separator() + path.completeBaseName());
+            debugControlDialog->setArguments(Util::splitArgument(Settings::SettingsManager::getRuntimeArguments("C++")));
             auto cursor = editor->textCursor();
             debugControlDialog->rowChanged(cursor.blockNumber() + 1);
         }
@@ -541,6 +548,9 @@ void MainWindow::applySettings(bool shouldPerformDigonistic)
     }
 
     updateChecker();
+
+    if (debugControlDialog)
+        debugControlDialog->setArguments(Util::splitArgument(Settings::SettingsManager::getRuntimeArguments("C++")));
 }
 
 void MainWindow::save(bool force, const QString &head, bool safe)
