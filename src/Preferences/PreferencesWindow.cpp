@@ -29,8 +29,16 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
 {
     // set attributes
     hide();
-    resize(QApplication::screenAt(parent->pos())->geometry().size() / 1.6);
     setWindowTitle("Preferences");
+
+    // set size
+    const double PREFERENCES_WINDOW_SIZE_RADIO = 0.6;
+    auto screenSize = QApplication::screenAt(parent->pos())->geometry().size();
+    resize(screenSize * PREFERENCES_WINDOW_SIZE_RADIO);
+
+    // move to the center of the screen
+    move(screenSize.width() * (1 - PREFERENCES_WINDOW_SIZE_RADIO) / 2,
+         screenSize.height() * (1 - PREFERENCES_WINDOW_SIZE_RADIO) / 2);
 
     // setup UI
     splitter = new QSplitter();
