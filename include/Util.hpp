@@ -24,6 +24,12 @@
 namespace Util
 {
 
+const QStringList cppSuffix = {"cpp", "hpp", "h", "cc", "cxx", "c"};
+const QStringList javaSuffix = {"java"};
+const QStringList pythonSuffix = {"py", "py3"};
+
+QString fileNameFilter(bool cpp, bool java, bool python);
+
 bool saveFile(const QString &path, const QString &content, const QString &head = "Save File", bool safe = true,
               MessageLogger *log = nullptr);
 

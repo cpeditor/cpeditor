@@ -19,6 +19,7 @@
 #include "../ui/ui_appwindow.h"
 #include "Core/EventLogger.hpp"
 #include "Extensions/EditorTheme.hpp"
+#include "Util.hpp"
 #include <QClipboard>
 #include <QDesktopServices>
 #include <QFileDialog>
@@ -405,13 +406,14 @@ void AppWindow::openTab(const QString &path)
 
     QString lang = Settings::SettingsManager::getDefaultLanguage();
 
-    if (path.endsWith(".java"))
-        lang = "Java";
-    else if (path.endsWith(".py") || path.endsWith(".py3"))
-        lang = "Python";
-    else if (path.endsWith(".cpp") || path.endsWith(".cxx") || path.endsWith(".c") || path.endsWith(".cc") ||
-             path.endsWith(".hpp") || path.endsWith(".h"))
+    auto suffix = QFileInfo(path).suffix();
+
+    if (Util::cppSuffix.contains(suffix))
         lang = "C++";
+    else if (Util::javaSuffix.contains(suffix))
+        lang = "Java";
+    else if (Util::pythonSuffix.contains(suffix))
+        lang = "Python";
 
     ui->tabWidget->setCurrentIndex(ui->tabWidget->addTab(fsp, fsp->getTabTitle(false, true)));
     fsp->setLanguage(lang);
@@ -479,9 +481,9 @@ QStringList AppWindow::openFolder(const QString &path, bool cpp, bool java, bool
             else if (depth == -1)
                 res.append(openFolder(entry.canonicalFilePath(), cpp, java, python, -1));
         }
-        else if ((cpp && QStringList({"cpp", "hpp", "h", "cc", "cxx", "c"}).contains(entry.suffix())) ||
-                 (java && QStringList({"java"}).contains(entry.suffix())) ||
-                 (python && QStringList({"py", "py3"}).contains(entry.suffix())))
+        else if ((cpp && Util::cppSuffix.contains(entry.suffix())) ||
+                 (java && Util::javaSuffix.contains(entry.suffix())) ||
+                 (python && Util::pythonSuffix.contains(entry.suffix())))
         {
             res.append(entry.canonicalFilePath());
         }
@@ -667,7 +669,7 @@ void AppWindow::on_actionNew_Tab_triggered()
 void AppWindow::on_actionOpen_triggered()
 {
     auto fileNames = QFileDialog::getOpenFileNames(this, tr("Open Files"), Settings::SettingsManager::getSavePath(),
-                                                   "Source Files (*.cpp *.hpp *.h *.cc *.cxx *.c *.py *.py3 *.java)");
+                                                   Util::fileNameFilter(true, true, true));
     Core::Log::i("appwindow/on_actionOpen_triggered") << " filename " << fileNames.join(", ") << endl;
     openTabs(fileNames);
 }

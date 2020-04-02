@@ -7,6 +7,7 @@
 ### Fixed
 
 - Show the manual of the current version instead of the latest version.
+- Before this fix, the language is not set to C++ when saving a file with one of the C++ prefixes.
 
 ## v6.2
 

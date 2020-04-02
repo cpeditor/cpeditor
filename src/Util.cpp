@@ -25,6 +25,20 @@
 namespace Util
 {
 
+QString fileNameFilter(bool cpp, bool java, bool python)
+{
+    QString filter;
+
+    if (cpp)
+        filter += " *." + cppSuffix.join(" *.");
+    if (java)
+        filter += " *." + javaSuffix.join(" *.");
+    if (python)
+        filter += " *." + pythonSuffix.join(" *.");
+
+    return "Source Files (" + filter.trimmed() + ")";
+}
+
 bool saveFile(const QString &path, const QString &content, const QString &head, bool safe, MessageLogger *log)
 {
     if (safe && !Settings::SettingsManager::isSaveFaster())
