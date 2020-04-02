@@ -30,6 +30,7 @@
 #include <QLineEdit>
 #include <QMainWindow>
 #include <QMap>
+#include <QShortcut>
 #include <QSplitter>
 #include <QStackedWidget>
 #include <QTreeWidget>
@@ -131,6 +132,8 @@ class PreferencesWindow : public QMainWindow
 
     QMap<QTreeWidgetItem *, QStringList> content;
     QMap<QTreeWidgetItem *, PreferencesPage *> pageWidget;
+
+    QShortcut *exitShortcut = nullptr;
 };
 
 #endif // PREFERENCESWINDOW_HPP

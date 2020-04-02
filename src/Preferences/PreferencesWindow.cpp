@@ -71,6 +71,9 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
 
     splitter->setSizes({1, 3});
 
+    exitShortcut = new QShortcut(QKeySequence::Cancel, this);
+    connect(exitShortcut, SIGNAL(activated()), this, SLOT(close()));
+
     // add pages
 
     addPage("Edit", new EditPage(this),
