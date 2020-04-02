@@ -42,7 +42,9 @@ jobs:
         wget -c "https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage"
         chmod a+x linuxdeployqt*.AppImage
         export VERSION=${{ steps.get_version.outputs.VERSION }}
-        mv ../.ci/linux/default.desktop . && mv ../.ci/linux/icon.png .
+        mv ../.ci/linux/cpeditor.desktop . && mv ../.ci/linux/cpeditor-icon.png .
+        mv cpeditor.desktop default.desktop
+        mv cpeditor-icon.png icon.png
         ./linuxdeployqt*.AppImage ./cpeditor -appimage -qmake=/opt/qt512/bin/qmake
 
     - name: Release

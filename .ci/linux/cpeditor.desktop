@@ -1,7 +1,7 @@
 [Desktop Entry]
 Type=Application
-Name=cpeditor
+Name=CP Editor
 Comment=The Editor for Competitive Programming
 Exec=cpeditor
-Icon=icon
+Icon=cpeditor-icon.png
 Categories=Development;
