@@ -211,7 +211,8 @@ void MainWindow::runTestCase(int index)
     run(index);
 }
 
-void MainWindow::debug(int index) {
+void MainWindow::debug(int index)
+{
     Core::Log::i("MainWindow/debug") << INFO_OF(index) << endl;
     if (language == "C++")
     {
@@ -219,8 +220,9 @@ void MainWindow::debug(int index) {
         if (!debugControlDialog)
         {
             debugControlDialog = new DebugControl("gdb", "gdbserver",
-                                              path.canonicalPath() + QDir::separator() + path.completeBaseName());
-            debugControlDialog->setArguments(Util::splitArgument(Settings::SettingsManager::getRuntimeArguments("C++")));
+                                                  path.canonicalPath() + QDir::separator() + path.completeBaseName());
+            debugControlDialog->setArguments(
+                Util::splitArgument(Settings::SettingsManager::getRuntimeArguments("C++")));
             auto cursor = editor->textCursor();
             debugControlDialog->rowChanged(cursor.blockNumber() + 1);
         }
@@ -235,7 +237,7 @@ void MainWindow::debugTestCase(int index)
     Core::Log::i("MainWindow/debugTestCase") << INFO_OF(index) << endl;
     killProcesses();
 
-    if (!QStringList({"C++"/* , "Java", "Python" */}).contains(language)) // currently, only C++ is supported
+    if (!QStringList({"C++" /* , "Java", "Python" */}).contains(language)) // currently, only C++ is supported
     {
         log.warn("Debugger", "Wrong language, please set the supported language(C++)");
         return;

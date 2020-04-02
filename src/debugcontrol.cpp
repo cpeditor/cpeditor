@@ -3,7 +3,8 @@
 #include <QMessageBox>
 
 #include <QDebug>
-enum {
+enum
+{
     PORT_ENUM_BEGIN = 51400,
     PORT_ENUM_END = 52400
 };
@@ -32,10 +33,9 @@ DebugControl::DebugControl(QString gdb, QString gdbServer, QString prog, QWidget
         throw "too much debug dialog!"; // actually open over 1000 tabs is impossible, I think
     }
     qgdb = new qgdbint::QGdb(gdb, gdbServer, port);
-    setWindowFlags(Qt::WindowTitleHint | Qt::CustomizeWindowHint | Qt::WindowMinimizeButtonHint | Qt::WindowMaximizeButtonHint | Qt::WindowCloseButtonHint);
-    connect(qgdb, &qgdbint::QGdb::positionUpdated, [&](QString, int row) {
-        emit currentRowChanged(row);
-    });
+    setWindowFlags(Qt::WindowTitleHint | Qt::CustomizeWindowHint | Qt::WindowMinimizeButtonHint |
+                   Qt::WindowMaximizeButtonHint | Qt::WindowCloseButtonHint);
+    connect(qgdb, &qgdbint::QGdb::positionUpdated, [&](QString, int row) { emit currentRowChanged(row); });
     connect(qgdb, &qgdbint::QGdb::textResponse, ui->log, &QPlainTextEdit::appendPlainText);
     connect(qgdb, &qgdbint::QGdb::errorOccurered, ui->errorLog, &QPlainTextEdit::appendPlainText);
     connect(qgdb, &qgdbint::QGdb::readyStdout, ui->output, &QPlainTextEdit::appendPlainText);
@@ -158,7 +158,7 @@ void DebugControl::onStateChanged(bool running, QString reason)
 {
     if (running)
         status = RUN;
-    else if (QStringList { "breakpoint-hit", "function-finished", "end-stepping-range"}.contains(reason))
+    else if (QStringList{"breakpoint-hit", "function-finished", "end-stepping-range"}.contains(reason))
         status = PAUSE;
     else
         status = STOP;
@@ -192,8 +192,7 @@ void DebugControl::updateStatus()
         bpCache.clear();
         ui->pendingBp->clear();
         break;
-    default:
-        ;
+    default:;
     }
     ui->startstop->setText(status == STOP ? "start" : "stop");
     ui->cont->setEnabled(status == PAUSE);

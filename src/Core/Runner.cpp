@@ -155,8 +155,8 @@ void Runner::runDetached(const QString &filePath, const QString &lang, const QSt
 #else
     // use cmd on Windows
     Core::Log::i("runner/runDetached", "on windows. Using cmd");
-    runProcess->start("cmd /C \"start cmd /C " + getCommand(filePath, lang, runCommand, args).full.replace("\"", "^\"") +
-                      " ^& pause\"");
+    runProcess->start("cmd /C \"start cmd /C " +
+                      getCommand(filePath, lang, runCommand, args).full.replace("\"", "^\"") + " ^& pause\"");
     Core::Log::i("runner/runDetached") << "cmd args " << runProcess->arguments().join(" ") << endl;
 
 #endif
@@ -186,7 +186,8 @@ void Runner::onTimeout()
     }
 }
 
-Runner::Command Runner::getCommand(const QString &filePath, const QString &lang, const QString &runCommand, const QString &arg)
+Runner::Command Runner::getCommand(const QString &filePath, const QString &lang, const QString &runCommand,
+                                   const QString &arg)
 {
     // get the execution command by the file path and the language
     // please remember to add quotes for the paths

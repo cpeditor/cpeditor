@@ -200,7 +200,7 @@ class MainWindow : public QMainWindow
 
     TestCases *testcases = nullptr;
 
-    DebugControl* debugControlDialog = nullptr;
+    DebugControl *debugControlDialog = nullptr;
 
     void setTestCases();
     void setEditor();

@@ -7,7 +7,7 @@
 
 namespace Ui
 {
-    class DebugControl;
+class DebugControl;
 }
 
 class DebugControl : public QDialog
@@ -15,7 +15,8 @@ class DebugControl : public QDialog
     Q_OBJECT
 
   public:
-    enum Status {
+    enum Status
+    {
         STOP,
         RUN,
         PAUSE
@@ -39,7 +40,7 @@ class DebugControl : public QDialog
     void updateStatus();
 
     Ui::DebugControl *ui;
-    qgdbint::QGdb* qgdb;
+    qgdbint::QGdb *qgdb;
     QString program;
     QStringList arguments;
     Status status;
