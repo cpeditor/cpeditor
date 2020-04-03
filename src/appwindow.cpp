@@ -1289,30 +1289,33 @@ void AppWindow::onTabContextMenuRequested(const QPoint &pos)
         Core::Log::i("appwindow/onTabContextMenuRequested") << "Tab index is : " << index << endl;
 
         auto widget = windowAt(index);
-        auto menu = new QMenu();
 
-        menu->addAction("Close", [index, this] { closeTab(index); });
+        if (tabMenu != nullptr)
+            delete tabMenu;
+        tabMenu = new QMenu();
 
-        menu->addAction("Close Others", [widget, this] {
+        tabMenu->addAction("Close", [index, this] { closeTab(index); });
+
+        tabMenu->addAction("Close Others", [widget, this] {
             for (int i = 0; i < ui->tabWidget->count(); ++i)
                 if (windowAt(i) != widget && closeTab(i))
                     --i;
         });
 
-        menu->addAction("Close to the Left", [widget, this] {
+        tabMenu->addAction("Close to the Left", [widget, this] {
             for (int i = 0; i < ui->tabWidget->count() && windowAt(i) != widget; ++i)
                 if (closeTab(i))
                     --i;
         });
 
-        menu->addAction("Close to the Right", [index, this] {
+        tabMenu->addAction("Close to the Right", [index, this] {
             for (int i = index + 1; i < ui->tabWidget->count(); ++i)
                 if (closeTab(i))
                     --i;
         });
-        menu->addAction("Close Saved", [this] { on_actionClose_Saved_triggered(); });
+        tabMenu->addAction("Close Saved", [this] { on_actionClose_Saved_triggered(); });
 
-        menu->addAction("Close All", [this] { on_actionClose_All_triggered(); });
+        tabMenu->addAction("Close All", [this] { on_actionClose_All_triggered(); });
         QString filePath = widget->getFilePath();
 
         Core::Log::i("appwindow/onTabContextMenuRequested", "Filepath is : " + filePath);
@@ -1320,12 +1323,12 @@ void AppWindow::onTabContextMenuRequested(const QPoint &pos)
         if (!widget->isUntitled() && QFile::exists(filePath))
         {
             Core::Log::i("appwindow/onTabContextMenuRequested", "Not untitled and filepath exists in system");
-            menu->addSeparator();
-            menu->addAction("Copy File Path", [filePath] { QGuiApplication::clipboard()->setText(filePath); });
+            tabMenu->addSeparator();
+            tabMenu->addAction("Copy File Path", [filePath] { QGuiApplication::clipboard()->setText(filePath); });
             // Reference: http://lynxline.com/show-in-finder-show-in-explorer/ and https://forum.qt.io/post/296072
 #if defined(Q_OS_MACOS)
             Core::Log::i("appwindow/onTabContextMenuRequested", "Adding menu reveal in finder");
-            menu->addAction("Reveal in Finder", [filePath] {
+            tabMenu->addAction("Reveal in Finder", [filePath] {
                 QStringList args;
                 args << "-e";
                 args << "tell application \"Finder\"";
@@ -1339,7 +1342,7 @@ void AppWindow::onTabContextMenuRequested(const QPoint &pos)
             });
 #elif defined(Q_OS_WIN)
             Core::Log::i("appwindow/onTabContextMenuRequested", "Adding menu reveal in explorer");
-            menu->addAction("Reveal in Explorer", [filePath] {
+            tabMenu->addAction("Reveal in Explorer", [filePath] {
                 QStringList args;
                 args << "/select," << QDir::toNativeSeparators(filePath);
                 QProcess::startDetached("explorer", args);
@@ -1387,13 +1390,13 @@ void AppWindow::onTabContextMenuRequested(const QPoint &pos)
                 }
                 if (program.isEmpty())
                 {
-                    menu->addAction("Open Containing Folder", [filePath] {
+                    tabMenu->addAction("Open Containing Folder", [filePath] {
                         QDesktopServices::openUrl(QUrl::fromLocalFile(QFileInfo(filePath).path()));
                     });
                 }
                 else
                 {
-                    menu->addAction("Reveal in File Manager", [program, args] {
+                    tabMenu->addAction("Reveal in File Manager", [program, args] {
                         QProcess openProcess;
                         openProcess.startDetached(program, args);
                     });
@@ -1404,14 +1407,15 @@ void AppWindow::onTabContextMenuRequested(const QPoint &pos)
                 Core::Log::i("appwindow/onTabContextMenuRequested/xdg-mime",
                              "Process cannot finish. So opting for openFolder by using QDesktopServices");
 
-                menu->addAction("Open Containing Folder", [filePath] {
+                tabMenu->addAction("Open Containing Folder", [filePath] {
                     QDesktopServices::openUrl(QUrl::fromLocalFile(QFileInfo(filePath).path()));
                 });
             }
 #else
             Core::Log::w("appwindow/onTabContextMenuRequested", "Unknown OS. Fallback to open via QDesktopServices");
-            menu->addAction("Open Containing Folder",
-                            [filePath] { QDesktopServices::openUrl(QUrl::fromLocalFile(QFileInfo(filePath).path())); });
+            tabMenu->addAction("Open Containing Folder", [filePath] {
+                QDesktopServices::openUrl(QUrl::fromLocalFile(QFileInfo(filePath).path()));
+            });
 #endif
         }
         else if (!widget->isUntitled() && QFile::exists(QFileInfo(widget->getFilePath()).path()))
@@ -1419,23 +1423,24 @@ void AppWindow::onTabContextMenuRequested(const QPoint &pos)
             Core::Log::i("appwindow/onTabContextMenuRequested",
                          "filepath does not exists. Looking if tab provides filepath " +
                              QFileInfo(widget->getFilePath()).path());
-            menu->addSeparator();
-            menu->addAction("Copy path", [filePath] {
+            tabMenu->addSeparator();
+            tabMenu->addAction("Copy path", [filePath] {
                 auto clipboard = QGuiApplication::clipboard();
                 clipboard->setText(filePath);
             });
-            menu->addAction("Open Containing Folder",
-                            [filePath] { QDesktopServices::openUrl(QUrl::fromLocalFile(QFileInfo(filePath).path())); });
+            tabMenu->addAction("Open Containing Folder", [filePath] {
+                QDesktopServices::openUrl(QUrl::fromLocalFile(QFileInfo(filePath).path()));
+            });
         }
-        menu->addSeparator();
+        tabMenu->addSeparator();
         if (!widget->getProblemURL().isEmpty())
         {
-            menu->addAction("Open problem in browser",
-                            [widget] { QDesktopServices::openUrl(widget->getProblemURL()); });
-            menu->addAction("Copy Problem URL",
-                            [widget] { QGuiApplication::clipboard()->setText(widget->getProblemURL()); });
+            tabMenu->addAction("Open problem in browser",
+                               [widget] { QDesktopServices::openUrl(widget->getProblemURL()); });
+            tabMenu->addAction("Copy Problem URL",
+                               [widget] { QGuiApplication::clipboard()->setText(widget->getProblemURL()); });
         }
-        menu->addAction("Set Codeforces URL", [widget, this] {
+        tabMenu->addAction("Set Codeforces URL", [widget, this] {
             QString contestId, problemCode;
             Network::CFTool::parseCfUrl(widget->getProblemURL(), contestId, problemCode);
             bool ok = false;
@@ -1450,7 +1455,7 @@ void AppWindow::onTabContextMenuRequested(const QPoint &pos)
                 widget->setProblemURL(url);
             }
         });
-        menu->addAction("Set Problem URL", [widget, this] {
+        tabMenu->addAction("Set Problem URL", [widget, this] {
             bool ok = false;
             auto url = QInputDialog::getText(this, "Set Problem URL", "Enter the new problem URL:", QLineEdit::Normal,
                                              widget->getProblemURL(), &ok);
@@ -1463,7 +1468,7 @@ void AppWindow::onTabContextMenuRequested(const QPoint &pos)
             else
                 Core::Log::i("appwindow/onTabContextMenuRequested", "set problem url dialog closed or cancelled");
         });
-        menu->popup(ui->tabWidget->tabBar()->mapToGlobal(pos));
+        tabMenu->popup(ui->tabWidget->tabBar()->mapToGlobal(pos));
     }
 }
 

@@ -179,6 +179,7 @@ class AppWindow : public QMainWindow
     FindReplaceDialog *findReplaceDialog = nullptr;
     QSystemTrayIcon *trayIcon = nullptr;
     QMenu *trayIconMenu = nullptr;
+    QMenu *tabMenu = nullptr;
     LSPClient *languageClient = nullptr;
 
     void setConnections();
