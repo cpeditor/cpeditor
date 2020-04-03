@@ -32,6 +32,8 @@
 #include <QTimer>
 #include <QUrl>
 
+
+
 AppWindow::AppWindow(bool noHotExit, QWidget *parent) : QMainWindow(parent), ui(new Ui::AppWindow)
 {
     Core::Log::i("appwindow/constructed") << "noHotExit " << noHotExit << endl;
