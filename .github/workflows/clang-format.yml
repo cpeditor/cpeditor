@@ -1,6 +1,6 @@
 name: "Auto Clang Format"
 
-on: push
+on: [push, pull_request]
 
 jobs:
   build:
@@ -20,6 +20,7 @@ jobs:
         git config --local user.name "cpeditor-bot"
         git diff-index --quiet HEAD || git commit -am "style: Format codes"
     - name: Push changes
+      if: github.event_name == 'pull_request' || github.repository == 'cpeditor/cpeditor'
       uses: ad-m/github-push-action@master
       with:
         branch: ${{ github.ref }}
