@@ -24,7 +24,7 @@
 
 ### Windows
 
-下载 `setup.exe` 然后安装。你可能还需要安装 [Microsoft Visual C++ Redistributable for Visual Studio 2015, 2017 and 2019](https://support.microsoft.com/en-us/help/2977003/the-latest-supported-visual-c-downloads)。
+下载 `setup.exe` 然后安装。你可能还需要安装 [适用于 Visual Studio 2015、2017 和 2019 的 Microsoft Visual C++ 可再发行软件包](https://support.microsoft.com/zh-cn/help/2977003/the-latest-supported-visual-c-downloads)。
 
 ### Linux
 
