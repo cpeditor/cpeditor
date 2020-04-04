@@ -18,24 +18,18 @@
 #include "Preferences/Language/CodeTemplatePage.hpp"
 #include "Util.hpp"
 
-CodeTemplatePage::CodeTemplatePage(QWidget *parent) : PreferencesPage(parent)
+CodeTemplatePage::CodeTemplatePage(QWidget *parent) : PreferencesGridPage(parent)
 {
     setTitle("Code Template");
 
-    layout = new QFormLayout();
-    addLayout(layout);
-
     cppTemplate = new CodeTemplateItem(Util::fileNameFilter(true, false, false));
-    connect(cppTemplate->getLineEdit(), SIGNAL(textChanged(const QString &)), this, SLOT(updateButtons()));
-    layout->addRow("C++ Template", cppTemplate);
+    registerAddRow("C++ Template", cppTemplate, cppTemplate->getLineEdit());
 
     javaTemplate = new CodeTemplateItem(Util::fileNameFilter(false, true, false));
-    connect(javaTemplate->getLineEdit(), SIGNAL(textChanged(const QString &)), this, SLOT(updateButtons()));
-    layout->addRow("Java Template", javaTemplate);
+    registerAddRow("Java Template", javaTemplate, javaTemplate->getLineEdit());
 
     pythonTemplate = new CodeTemplateItem(Util::fileNameFilter(false, false, true));
-    connect(pythonTemplate->getLineEdit(), SIGNAL(textChanged(const QString &)), this, SLOT(updateButtons()));
-    layout->addRow("Python Template", pythonTemplate);
+    registerAddRow("Python Template", pythonTemplate, pythonTemplate->getLineEdit());
 }
 
 bool CodeTemplatePage::areSettingsChanged()

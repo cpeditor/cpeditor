@@ -19,10 +19,9 @@
 #define CODETEMPLATEPAGE_HPP
 
 #include "Preferences/Language/CodeTemplateItem.hpp"
-#include "Preferences/PreferencesPage.hpp"
-#include <QFormLayout>
+#include "Preferences/PreferencesGridPage.hpp"
 
-class CodeTemplatePage : public PreferencesPage
+class CodeTemplatePage : public PreferencesGridPage
 {
     Q_OBJECT
 
@@ -39,7 +38,6 @@ class CodeTemplatePage : public PreferencesPage
     void makeSettingsTheSameAsUI() override;
 
   private:
-    QFormLayout *layout = nullptr;
     CodeTemplateItem *cppTemplate = nullptr;
     CodeTemplateItem *javaTemplate = nullptr;
     CodeTemplateItem *pythonTemplate = nullptr;

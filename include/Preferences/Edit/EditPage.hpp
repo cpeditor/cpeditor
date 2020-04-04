@@ -18,9 +18,9 @@
 #ifndef EDITPAGE_HPP
 #define EDITPAGE_HPP
 
-#include "Preferences/PreferencesPage.hpp"
+#include "Preferences/PreferencesGridPage.hpp"
 
-class EditPage : public PreferencesPage
+class EditPage : public PreferencesGridPage
 {
     Q_OBJECT
 

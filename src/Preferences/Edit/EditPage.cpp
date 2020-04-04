@@ -17,28 +17,28 @@
 
 #include "Preferences/Edit/EditPage.hpp"
 
-EditPage::EditPage(QWidget *parent) : PreferencesPage(parent)
+EditPage::EditPage(QWidget *parent) : PreferencesGridPage(parent)
 {
     setTitle("Edit");
 
     tabWidthSpinBox = new QSpinBox(this);
     tabWidthSpinBox->setRange(1, 20);
-    addSpinBox("Tab Width", tabWidthSpinBox);
+    registerAddRow("Tab Width", tabWidthSpinBox);
 
     indentCheckBox = new QCheckBox("Auto Indentation", this);
-    addCheckBox(indentCheckBox);
+    registerAddRow(indentCheckBox);
 
     textWrapCheckBox = new QCheckBox("Text Wrap", this);
-    addCheckBox(textWrapCheckBox);
+    registerAddRow(textWrapCheckBox);
 
     replaceTabsWithSpacesCheckBox = new QCheckBox("Replace tabs with spaces", this);
-    addCheckBox(replaceTabsWithSpacesCheckBox);
+    registerAddRow(replaceTabsWithSpacesCheckBox);
 
     parenthesesCompletionCheckBox = new QCheckBox("Auto Parentheses Completion", this);
-    addCheckBox(parenthesesCompletionCheckBox);
+    registerAddRow(parenthesesCompletionCheckBox);
 
     parenthesesRemovalCheckBox = new QCheckBox("Auto Parentheses Removal", this);
-    addCheckBox(parenthesesRemovalCheckBox);
+    registerAddRow(parenthesesRemovalCheckBox);
 }
 
 bool EditPage::areSettingsChanged()

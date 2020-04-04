@@ -18,11 +18,9 @@
 #ifndef LANGUAGEGENERALPAGE_HPP
 #define LANGUAGEGENERALPAGE_HPP
 
-#include "Preferences/PreferencesPage.hpp"
-#include <QComboBox>
-#include <QFormLayout>
+#include "Preferences/PreferencesGridPage.hpp"
 
-class LanguageGeneralPage : public PreferencesPage
+class LanguageGeneralPage : public PreferencesGridPage
 {
     Q_OBJECT
 
@@ -39,7 +37,6 @@ class LanguageGeneralPage : public PreferencesPage
     void makeSettingsTheSameAsUI() override;
 
   private:
-    QFormLayout *defaultLanguageLayout = nullptr;
     QComboBox *defaultLanguageComboBox = nullptr;
 };
 

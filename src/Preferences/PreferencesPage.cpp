@@ -122,16 +122,36 @@ void PreferencesPage::addItem(QLayoutItem *item)
     settingsLayout->addItem(item);
 }
 
-void PreferencesPage::addCheckBox(QCheckBox *checkBox)
+void PreferencesPage::registerWidget(QCheckBox *checkBox)
 {
     connect(checkBox, SIGNAL(toggled(bool)), this, SLOT(updateButtons()));
+}
+
+void PreferencesPage::registerWidget(QLineEdit *lineEdit)
+{
+    connect(lineEdit, SIGNAL(textChanged(const QString &)), this, SLOT(updateButtons()));
+}
+
+void PreferencesPage::registerWidget(QSpinBox *spinBox)
+{
+    connect(spinBox, SIGNAL(valueChanged(int)), this, SLOT(updateButtons()));
+}
+
+void PreferencesPage::registerWidget(QComboBox *comboBox)
+{
+    connect(comboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(updateButtons()));
+}
+
+void PreferencesPage::addCheckBox(QCheckBox *checkBox)
+{
+    registerWidget(checkBox);
     addWidget(checkBox);
 }
 
 void PreferencesPage::addLineEdit(const QString &labelText, QLineEdit *lineEdit)
 {
     auto formLayout = new QFormLayout();
-    connect(lineEdit, SIGNAL(textChanged(const QString &)), this, SLOT(updateButtons()));
+    registerWidget(lineEdit);
     formLayout->addRow(labelText, lineEdit);
     addLayout(formLayout);
 }
@@ -139,7 +159,7 @@ void PreferencesPage::addLineEdit(const QString &labelText, QLineEdit *lineEdit)
 void PreferencesPage::addSpinBox(const QString &labelText, QSpinBox *spinBox)
 {
     auto formLayout = new QFormLayout();
-    connect(spinBox, SIGNAL(valueChanged(int)), this, SLOT(updateButtons()));
+    registerWidget(spinBox);
     formLayout->addRow(labelText, spinBox);
     addLayout(formLayout);
 }

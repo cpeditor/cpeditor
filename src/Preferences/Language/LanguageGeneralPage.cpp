@@ -17,18 +17,13 @@
 
 #include "Preferences/Language/LanguageGeneralPage.hpp"
 
-LanguageGeneralPage::LanguageGeneralPage(QWidget *parent) : PreferencesPage(parent)
+LanguageGeneralPage::LanguageGeneralPage(QWidget *parent) : PreferencesGridPage(parent)
 {
     setTitle("Language General");
 
-    defaultLanguageLayout = new QFormLayout();
-    addLayout(defaultLanguageLayout);
-
     defaultLanguageComboBox = new QComboBox(this);
     defaultLanguageComboBox->addItems({"C++", "Java", "Python"});
-    connect(defaultLanguageComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(updateButtons()));
-
-    defaultLanguageLayout->addRow("Default Language", defaultLanguageComboBox);
+    registerAddRow("Default Language", defaultLanguageComboBox);
 }
 
 bool LanguageGeneralPage::areSettingsChanged()

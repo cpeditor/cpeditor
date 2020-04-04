@@ -33,6 +33,7 @@
 
 #include "Core/SettingsManager.hpp"
 #include <QCheckBox>
+#include <QComboBox>
 #include <QHBoxLayout>
 #include <QLabel>
 #include <QLineEdit>
@@ -126,6 +127,15 @@ class PreferencesPage : public QWidget
      * @brief add an item in the UI
      */
     void addItem(QLayoutItem *item);
+
+    /*
+     * @brief register widget
+     * @note the toggled, textChanged, valueChanged, currentIndexChanged will be connected to updateButtons
+     */
+    void registerWidget(QCheckBox *checkBox);
+    void registerWidget(QLineEdit *lineEdit);
+    void registerWidget(QSpinBox *spinBox);
+    void registerWidget(QComboBox *comboBox);
 
     /*
      * @brief add a check box
