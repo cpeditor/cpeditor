@@ -1,17 +1,31 @@
-runs-on: ubuntu-latest
-steps:
-- name: Install SSH key
-  uses: shimataro/ssh-key-action@v2
-  with:
-    key: ${{ secrets.SSH_KEY }}
-    name: id_rsa 
-    known_hosts: ${{ secrets.KNOWN_HOSTS }}
+name: "Release AUR package"
+
+on:
+  push:
+    tags:
+      - '*'
+
+
+jobs:
+  build:
+    name: "Release AUR package"
+    runs-on: 'ubuntu-latest'
     
- - name: Generate AUR files
-   run: echo "HI"
-   
- - name: Fetch AUR Remote
-   run: echo "HI"
-   
- - name: Publish to AUR
-   run: git push origin master
+    steps:
+    - name: Install SSH key
+      uses: shimataro/ssh-key-action@v2
+      with:
+        key: ${{ secrets.SSH_KEY }}
+        name: id_rsa 
+        known_hosts: ${{ secrets.KNOWN_HOSTS }}
+
+    - name: Generate AUR files
+      run: |
+        echo "hi"
+
+    - name: Fetch AUR Remote
+      run: |
+        echo "Hi"
+
+    - name: Publish to AUR
+      run: git push origin master
