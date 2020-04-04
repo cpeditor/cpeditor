@@ -34,7 +34,7 @@ class CodeTemplateItem : public QWidget
     /*
      * @brief construct a CodeTemplateItem
      */
-    CodeTemplateItem(const QString &pathFilter, QWidget *parent = nullptr);
+    explicit CodeTemplateItem(const QString &pathFilter, QWidget *parent = nullptr);
 
     /*
      * @brief get the line edit of the CodeTemplate

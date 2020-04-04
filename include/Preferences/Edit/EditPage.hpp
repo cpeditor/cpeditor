@@ -25,7 +25,7 @@ class EditPage : public PreferencesPage
     Q_OBJECT
 
   public:
-    EditPage(QWidget *parent = nullptr);
+    explicit EditPage(QWidget *parent = nullptr);
 
   private:
     bool areSettingsChanged() override;

@@ -27,7 +27,7 @@ class CodeTemplatePage : public PreferencesPage
     Q_OBJECT
 
   public:
-    CodeTemplatePage(QWidget *parent = nullptr);
+    explicit CodeTemplatePage(QWidget *parent = nullptr);
 
   private:
     bool areSettingsChanged() override;

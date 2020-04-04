@@ -27,7 +27,7 @@ class LanguageGeneralPage : public PreferencesPage
     Q_OBJECT
 
   public:
-    LanguageGeneralPage(QWidget *parent = nullptr);
+    explicit LanguageGeneralPage(QWidget *parent = nullptr);
 
   private:
     bool areSettingsChanged() override;
