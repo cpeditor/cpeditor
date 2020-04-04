@@ -102,11 +102,16 @@ class PreferencesWindow : public QMainWindow
     void updateSearch(QTreeWidgetItem *item, const QString &text);
 
     /*
-     * @brief get the top level item with the given text
-     * @param text the text of the top level item
+     * @brief get the top level item with the text *text*
      * @returns the top level item or nullptr if not found
      */
     QTreeWidgetItem *getTopLevelItem(const QString &text);
+
+    /*
+     * @brief get the child of *item* with text *text*
+     * @returns the child or nullptr if not found
+     */
+    QTreeWidgetItem *getChild(QTreeWidgetItem *item, const QString &text);
 
     /*
      * The GUI:

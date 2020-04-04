@@ -159,16 +159,7 @@ void PreferencesWindow::addPage(const QString &path, PreferencesPage *page, cons
     // get non-top-level items step by step
     for (int i = 1; i < parts.count(); ++i)
     {
-        QTreeWidgetItem *nxt = nullptr;
-        for (int j = 0; j < current->childCount(); ++j)
-        {
-            auto child = current->child(j);
-            if (child->text(0) == parts[i])
-            {
-                nxt = child;
-                break;
-            }
-        }
+        QTreeWidgetItem *nxt = getChild(current, parts[i]);
 
         // add if not exists
         if (nxt == nullptr)
@@ -199,16 +190,7 @@ PreferencesPage *PreferencesWindow::getPageWidget(const QString &pagePath)
     // get the non-top-level items step by step
     for (int i = 1; i < parts.count(); ++i)
     {
-        QTreeWidgetItem *nxt = nullptr;
-        for (int j = 0; j < current->childCount(); ++j)
-        {
-            auto child = current->child(j);
-            if (child->text(0) == parts[i])
-            {
-                nxt = child;
-                break;
-            }
-        }
+        QTreeWidgetItem *nxt = getChild(current, parts[i]);
         if (nxt == nullptr)
             return nullptr;
         current = nxt;
@@ -285,6 +267,19 @@ QTreeWidgetItem *PreferencesWindow::getTopLevelItem(const QString &text)
         if (item->text(0) == text)
         {
             return item;
+        }
+    }
+    return nullptr;
+}
+
+QTreeWidgetItem *PreferencesWindow::getChild(QTreeWidgetItem *item, const QString &text)
+{
+    for (int i = 0; i < item->childCount(); ++i)
+    {
+        auto child = item->child(i);
+        if (child->text(0) == text)
+        {
+            return child;
         }
     }
     return nullptr;
