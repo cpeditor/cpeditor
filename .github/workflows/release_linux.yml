@@ -1,4 +1,4 @@
-name: "Release AppImage"
+name: "Release Linux"
 
 on:
   push:
@@ -52,7 +52,7 @@ jobs:
         wget https://raw.githubusercontent.com/Kentzo/git-archive-all/master/git_archive_all.py
         python3 git_archive_all.py cpeditor-full-source-${{ steps.get_version.outputs.VERSION }}.tar.gz
 
-    - name: Release
+    - name: Release AppImage and Source
       uses: softprops/action-gh-release@v1
       with:
         draft: true
