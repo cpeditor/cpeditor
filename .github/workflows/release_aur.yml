@@ -30,7 +30,7 @@ jobs:
       run: |
         ls -l
         mkdir build
-        git sumodule update --init
+        git submodule update --init
         cd build
         ls -l
         cmake ..
