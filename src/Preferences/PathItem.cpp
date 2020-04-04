@@ -20,8 +20,8 @@
 #include <QFileDialog>
 #include <QStyle>
 
-PathItem::PathItem(QString pathFilter, QString browseTitle, QWidget *parent)
-    : QWidget(parent), filter(pathFilter), title(browseTitle)
+PathItem::PathItem(const QString &pathFilter, const QString &dialogTitle, QWidget *parent)
+    : QWidget(parent), filter(pathFilter), title(dialogTitle)
 {
     layout = new QHBoxLayout(this);
     layout->setContentsMargins(0, 0, 0, 0);

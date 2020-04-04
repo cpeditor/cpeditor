@@ -16,7 +16,7 @@
  */
 
 /*
- * A template path line edit and a tool button for choosing the path.
+ * A line edit and a tool button for choosing a file path.
  */
 
 #ifndef PATHITEM_HPP
@@ -34,7 +34,7 @@ class PathItem : public QWidget
     /*
      * @brief construct a PathItem
      */
-    explicit PathItem(QString pathFilter, QString browseTitle, QWidget *parent = nullptr);
+    explicit PathItem(const QString &pathFilter, const QString &dialogTitle, QWidget *parent = nullptr);
 
     /*
      * @brief get the line edit of the PathItem
