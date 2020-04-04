@@ -40,7 +40,7 @@
 - Все время поддерживайте обратную совместимость файла настроек.
 - Стоит поддерживать программу под Windows, Linux и Mac OS.
 - Следует поддерживать как светлые, так и темные системные темы.
-- Все должны подчиняться закону [Code of Conduct](CODE_OF_CONDUCT.md)для того чтобы построить сообщество, свободное от притеснений.
+- Все должны подчиняться закону [Code of Conduct](CODE_OF_CONDUCT.md) для того чтобы построить сообщество, свободное от притеснений.
 
 ## FAQ
 
@@ -49,7 +49,7 @@
 - Нужно ли мне знать CMake?
   - Нет, тебе нужно только знать, как делается [сборка из исходного кода](doc/INSTALL_ru-RU.md#Сборка-из-исходного-кода).
 - Как добавить настройку?
-  - Вы должны добавить пользовательский интерфейс в  `ui/preferencewindow.ui`, добавить set/get функции в `include/Core/SettingsManager.hpp` и `src/Core/SettingsManager.cpp`, добавить код в `applySettingsToui`, `extractSettingsFromui` и `isUnsavedChanges` в `src/preferencewindow.cpp`. копи-пастинг очень полезен.
+  - Вы должны добавить пользовательский интерфейс в `ui/preferencewindow.ui`, добавить set/get функции в `include/Core/SettingsManager.hpp` и `src/Core/SettingsManager.cpp`, добавить код в `applySettingsToui`, `extractSettingsFromui` и `isUnsavedChanges` в `src/preferencewindow.cpp`. копи-пастинг очень полезен.
 - Некоторые файлы отсутствуют при компиляции.
   - Если тесты CI пройдены, то из-за того, что обновляются подмодули. Вы можете выполнить следующие команды:
 
