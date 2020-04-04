@@ -22,7 +22,7 @@
 
 ### Windows
 
-Загрузите `setup.exe` и установите его. Также может потребоваться установить [распространяемый пакет Microsoft Visual C++ для Visual Studio 2015, 2017 и 2019](https://support.microsoft.com/en-us/help/2977003/the-latest-supported-visual-c-downloads).
+Загрузите `setup.exe` и установите его. Также может потребоваться установить [распространяемый пакет Microsoft Visual C++ для Visual Studio 2015, 2017 и 2019](https://support.microsoft.com/ru-ru/help/2977003/the-latest-supported-visual-c-downloads).
 
 ### Linux
 
