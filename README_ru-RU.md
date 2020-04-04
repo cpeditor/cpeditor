@@ -24,13 +24,13 @@ CP Editor - это легкий кросс-платформенный редак
 ## Начало
 
 - [Релизы](https://github.com/cpeditor/cpeditor/releases)
-- [Установка разными способами](doc/INSTALL.md)
-- [Начало и советы](doc/MANUAL.md)
+- [Установка разными способами](doc/INSTALL_ru-RU.md)
+- [Начало и советы](doc/MANUAL_ru-RU.md)
 
 ## Сотрудничество
 
 - [Открыть вопрос](https://github.com/cpeditor/cpeditor/issues/new/choose)
-- [Правила внесения вклада](CONTRIBUTING.md)
+- [Правила внесения вклада](CONTRIBUTING_ru-RU.md)
 - [Good first issues](https://github.com/cpeditor/cpeditor/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22)
 - [Help wanted issues](https://github.com/cpeditor/cpeditor/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22)
 
