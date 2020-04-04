@@ -44,6 +44,8 @@ jobs:
     - name: Publish to AUR
       run: |
         cd cpeditor
+        git config --global user.email "ashar786khan@gmail.com"
+        git config --global user.name "coder3101"
         git add .
         git commit -m "New update from CI"
         git push -u origin master
