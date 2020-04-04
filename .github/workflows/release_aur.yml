@@ -12,6 +12,8 @@ jobs:
     runs-on: 'ubuntu-latest'
     
     steps:
+    - uses: actions/checkout@v2
+
     - name: Install SSH key
       uses: shimataro/ssh-key-action@v2
       with:
