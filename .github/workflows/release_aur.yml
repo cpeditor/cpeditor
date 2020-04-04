@@ -21,10 +21,16 @@ jobs:
         name: id_rsa 
         known_hosts: ${{ secrets.KNOWN_HOST }}
 
+    - name: Set up Qt environment
+      uses: jurplel/install-qt-action@v2
+      with:
+        version: 5.14.1
+
     - name: Generate AUR files
       run: |
         ls -l
         mkdir build
+        git sumodule update --init
         cd build
         ls -l
         cmake ..
