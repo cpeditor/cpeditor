@@ -40,8 +40,8 @@ jobs:
         git clone ssh://aur@aur.archlinux.org/cpeditor.git
         cd cpeditor
         rm PKGBUILD .SRCINFO
-        mv ../build/aur/PKGBUILD
-        mv ../build/aur/.SRCINFO
+        mv ../build/aur/PKGBUILD .
+        mv ../build/aur/.SRCINFO .
 
     - name: Publish to AUR
       run: |
