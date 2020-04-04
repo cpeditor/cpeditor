@@ -46,13 +46,20 @@ jobs:
         mv cpeditor.desktop default.desktop
         mv cpeditor-icon.png icon.png
         ./linuxdeployqt*.AppImage ./cpeditor -appimage -qmake=/opt/qt512/bin/qmake
+    
+    - name: Package the complete Source
+      run: |
+        wget https://raw.githubusercontent.com/Kentzo/git-archive-all/master/git_archive_all.py
+        python3 git_archive_all.py cpeditor-full-source-${{ steps.get_version.outputs.VERSION }}.tar.gz
 
     - name: Release
       uses: softprops/action-gh-release@v1
       with:
         draft: true
         prerelease: true
-        files: build/cpeditor-${{ steps.get_version.outputs.VERSION }}-x86_64.AppImage
+        files: |
+          build/cpeditor-${{ steps.get_version.outputs.VERSION }}-x86_64.AppImage
+          cpeditor-full-source-${{ steps.get_version.outputs.VERSION }}.tar.gz
         name: CP Editor ${{ steps.get_version.outputs.VERSION }}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
