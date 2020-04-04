@@ -21,8 +21,10 @@ jobs:
 
     - name: Generate AUR files
       run: |
+        ls -l
         mkdir build
         cd build
+        ls -l
         cmake ..
 
     - name: Fetch AUR Remote
