@@ -147,18 +147,7 @@ void PreferencesWindow::addPage(const QString &path, PreferencesPage *page, cons
 {
     auto parts = path.split('/');
 
-    QTreeWidgetItem *current = nullptr;
-
-    // get the top level item
-    for (int i = 0; i < menuTree->topLevelItemCount(); ++i)
-    {
-        auto item = menuTree->topLevelItem(i);
-        if (item->text(0) == parts.front())
-        {
-            current = item;
-            break;
-        }
-    }
+    QTreeWidgetItem *current = getTopLevelItem(parts.front());
 
     // add if not exists
     if (current == nullptr)
@@ -202,18 +191,7 @@ PreferencesPage *PreferencesWindow::getPageWidget(const QString &pagePath)
 {
     auto parts = pagePath.split('/');
 
-    QTreeWidgetItem *current = nullptr;
-
-    // get the top level item
-    for (int i = 0; i < menuTree->topLevelItemCount(); ++i)
-    {
-        auto item = menuTree->topLevelItem(i);
-        if (item->text(0) == parts.front())
-        {
-            current = item;
-            break;
-        }
-    }
+    QTreeWidgetItem *current = getTopLevelItem(parts.front());
 
     if (current == nullptr)
         return nullptr;
@@ -297,4 +275,17 @@ void PreferencesWindow::updateSearch(QTreeWidgetItem *item, const QString &text)
     }
 
     item->setHidden(shouldHide);
+}
+
+QTreeWidgetItem *PreferencesWindow::getTopLevelItem(const QString &text)
+{
+    for (int i = 0; i < menuTree->topLevelItemCount(); ++i)
+    {
+        auto item = menuTree->topLevelItem(i);
+        if (item->text(0) == text)
+        {
+            return item;
+        }
+    }
+    return nullptr;
 }
