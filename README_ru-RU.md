@@ -6,8 +6,7 @@ CP Editor - это легкий кросс-платформенный редак
 
 Этот редактор облегчает жизнь спортивного прораммиста :grin: автоматизируя многие вещи.
 
-[Возможности](https://cpeditor.github.io/) | [Установка](doc/INSTALL_ru-RU.md) | [Использование](doc/MANUAL_ru-RU.md) | [Список изменений](doc/CHANGELOG.md) | [Сотрудничество](CONTRIBUTING_ru-RU.md) | [FAQ](#faq) | [中文](README_zh-CN.md)
-
+[Возможности](https://cpeditor.github.io/) | [Установка](doc/INSTALL_ru-RU.md) | [Использование](doc/MANUAL_ru-RU.md) | [Список изменений](doc/CHANGELOG.md) | [Сотрудничество](CONTRIBUTING_ru-RU.md) | [FAQ](#faq) | [English](README.md) | [中文](README_zh-CN.md)
 ---
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/ce0f297f31f74485b0d340949d08d605)](https://www.codacy.com/gh/cpeditor/cpeditor)
