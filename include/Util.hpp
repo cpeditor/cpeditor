@@ -27,6 +27,11 @@ namespace Util
 const QStringList cppSuffix = {"cpp", "hpp", "h", "cc", "cxx", "c"};
 const QStringList javaSuffix = {"java"};
 const QStringList pythonSuffix = {"py", "py3"};
+#ifdef Q_OS_WIN32
+#define EXE_SUFFIX ".exe"
+#else
+#define EXE_SUFFIX ""
+#endif
 
 QString fileNameFilter(bool cpp, bool java, bool python);
 

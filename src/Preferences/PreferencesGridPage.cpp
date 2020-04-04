@@ -14,6 +14,6 @@ void PreferencesGridPage::addRow(QWidget *widget)
 void PreferencesGridPage::addRow(const QString &labelText, QWidget *widget)
 {
     int row = gridLayout->rowCount();
-    gridLayout->addWidget(new QLabel(labelText), row, 0);
+    gridLayout->addWidget(new QLabel(labelText, this), row, 0);
     gridLayout->addWidget(widget, row, 1);
 }

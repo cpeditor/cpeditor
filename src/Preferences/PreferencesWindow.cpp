@@ -18,6 +18,7 @@
 // Pages
 #include "Preferences/Edit/EditPage.hpp"
 #include "Preferences/Language/CodeTemplatePage.hpp"
+#include "Preferences/Language/CommandPage.hpp"
 #include "Preferences/Language/LanguageGeneralPage.hpp"
 
 // Main Frame
@@ -90,6 +91,11 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
              "Replace tabs with spaces"});
 
     addPage("Language/General", new LanguageGeneralPage(this), {"Default Language"});
+
+    addPage("Language/Commands", new CommandPage(this),
+            {"C++ Compile Command", "Cpp Compile Command", "C++ Runtime Arguments", "Cpp Runtime Arguments",
+             "Java Compile Command", "Java Runtime Arguments", "Java Start Program", "Python Runtime Arguments",
+             "Python Start Program"});
 
     addPage("Language/Code Template", new CodeTemplatePage(this),
             {"C++ Template Path", "Cpp Template Path", "Java Template Path", "Python Template Path",

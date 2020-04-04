@@ -19,25 +19,25 @@
  * A template path line edit and a tool button for choosing the path.
  */
 
-#ifndef CODETEMPLATEITEM_HPP
-#define CODETEMPLATEITEM_HPP
+#ifndef PATHITEM_HPP
+#define PATHITEM_HPP
 
 #include <QHBoxLayout>
 #include <QLineEdit>
 #include <QToolButton>
 
-class CodeTemplateItem : public QWidget
+class PathItem : public QWidget
 {
     Q_OBJECT
 
   public:
     /*
-     * @brief construct a CodeTemplateItem
+     * @brief construct a PathItem
      */
-    explicit CodeTemplateItem(const QString &pathFilter, QWidget *parent = nullptr);
+    explicit PathItem(QString pathFilter, QString browseTitle, QWidget *parent = nullptr);
 
     /*
-     * @brief get the line edit of the CodeTemplate
+     * @brief get the line edit of the PathItem
      */
     QLineEdit *getLineEdit();
 
@@ -48,7 +48,7 @@ class CodeTemplateItem : public QWidget
     void onButtonClicked();
 
   private:
-    QString filter;
+    QString filter, title;
     QHBoxLayout *layout = nullptr;
     QLineEdit *lineEdit = nullptr;
     QToolButton *toolButton = nullptr;

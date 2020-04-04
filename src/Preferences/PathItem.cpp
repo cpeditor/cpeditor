@@ -15,14 +15,16 @@
  *
  */
 
-#include "Preferences/Language/CodeTemplateItem.hpp"
+#include "Preferences/PathItem.hpp"
 #include <QApplication>
 #include <QFileDialog>
 #include <QStyle>
 
-CodeTemplateItem::CodeTemplateItem(const QString &pathFilter, QWidget *parent) : QWidget(parent), filter(pathFilter)
+PathItem::PathItem(QString pathFilter, QString browseTitle, QWidget *parent)
+    : QWidget(parent), filter(pathFilter), title(browseTitle)
 {
     layout = new QHBoxLayout(this);
+    layout->setContentsMargins(0, 0, 0, 0);
 
     lineEdit = new QLineEdit();
     lineEdit->setMinimumWidth(400);
@@ -34,17 +36,14 @@ CodeTemplateItem::CodeTemplateItem(const QString &pathFilter, QWidget *parent) :
     layout->addWidget(toolButton);
 }
 
-QLineEdit *CodeTemplateItem::getLineEdit()
+QLineEdit *PathItem::getLineEdit()
 {
     return lineEdit;
 }
 
-void CodeTemplateItem::onButtonClicked()
+void PathItem::onButtonClicked()
 {
-    auto path = QFileDialog::getOpenFileName(this, "Choose Code Template", lineEdit->text(), filter);
+    auto path = QFileDialog::getOpenFileName(this, title, lineEdit->text(), filter);
     if (!path.isEmpty())
-    {
-        lineEdit->selectAll();
-        lineEdit->insert(path);
-    }
+        lineEdit->setText(path);
 }

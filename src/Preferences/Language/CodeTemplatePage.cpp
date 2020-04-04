@@ -22,13 +22,13 @@ CodeTemplatePage::CodeTemplatePage(QWidget *parent) : PreferencesGridPage(parent
 {
     setTitle("Code Template");
 
-    cppTemplate = new CodeTemplateItem(Util::fileNameFilter(true, false, false));
+    cppTemplate = new PathItem(Util::fileNameFilter(true, false, false), "Choose Code Template for C++");
     registerAddRow("C++ Template", cppTemplate, cppTemplate->getLineEdit());
 
-    javaTemplate = new CodeTemplateItem(Util::fileNameFilter(false, true, false));
+    javaTemplate = new PathItem(Util::fileNameFilter(false, true, false), "Choose Code Template for Java");
     registerAddRow("Java Template", javaTemplate, javaTemplate->getLineEdit());
 
-    pythonTemplate = new CodeTemplateItem(Util::fileNameFilter(false, false, true));
+    pythonTemplate = new PathItem(Util::fileNameFilter(false, false, true), "Choose Code Template for Python");
     registerAddRow("Python Template", pythonTemplate, pythonTemplate->getLineEdit());
 }
 

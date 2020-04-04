@@ -15,18 +15,17 @@
  *
  */
 
-#ifndef CODETEMPLATEPAGE_HPP
-#define CODETEMPLATEPAGE_HPP
+#ifndef PREFERENCESCOMMANDPAGE_HPP
+#define PREFERENCESCOMMANDPAGE_HPP
 
 #include "Preferences/PathItem.hpp"
 #include "Preferences/PreferencesGridPage.hpp"
 
-class CodeTemplatePage : public PreferencesGridPage
+class CommandPage : public PreferencesGridPage
 {
     Q_OBJECT
-
   public:
-    explicit CodeTemplatePage(QWidget *parent = nullptr);
+    explicit CommandPage(QWidget *parent);
 
   private:
     bool areSettingsChanged() override;
@@ -38,9 +37,13 @@ class CodeTemplatePage : public PreferencesGridPage
     void makeSettingsTheSameAsUI() override;
 
   private:
-    PathItem *cppTemplate = nullptr;
-    PathItem *javaTemplate = nullptr;
-    PathItem *pythonTemplate = nullptr;
+    QLineEdit *cppCompile = nullptr;
+    QLineEdit *cppRunArgument = nullptr;
+    QLineEdit *javaCompile = nullptr;
+    QLineEdit *javaRunArgument = nullptr;
+    PathItem *javaStartPath = nullptr;
+    QLineEdit *pythonRunArgument = nullptr;
+    PathItem *pythonStartPath = nullptr;
 };
 
-#endif // CODETEMPLATEPAGE_HPP
+#endif

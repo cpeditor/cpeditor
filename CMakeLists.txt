@@ -85,20 +85,22 @@ add_executable(cpeditor
     include/Preferences/PreferencesHomePage.hpp
     include/Preferences/PreferencesWindow.hpp
     include/Preferences/PreferencesGridPage.hpp
+    include/Preferences/PathItem.hpp
     src/Preferences/PreferencesPage.cpp
     src/Preferences/PreferencesHomePage.cpp
     src/Preferences/PreferencesWindow.cpp
     src/Preferences/PreferencesGridPage.cpp
+    src/Preferences/PathItem.cpp
 
     include/Preferences/Edit/EditPage.hpp
     src/Preferences/Edit/EditPage.cpp
 
-    include/Preferences/Language/LanguageGeneralPage.hpp
-    include/Preferences/Language/CodeTemplateItem.hpp
     include/Preferences/Language/CodeTemplatePage.hpp
-    src/Preferences/Language/LanguageGeneralPage.cpp
-    src/Preferences/Language/CodeTemplateItem.cpp
+    include/Preferences/Language/CommandPage.hpp
+    include/Preferences/Language/LanguageGeneralPage.hpp
     src/Preferences/Language/CodeTemplatePage.cpp
+    src/Preferences/Language/CommandPage.cpp
+    src/Preferences/Language/LanguageGeneralPage.cpp
 
     include/mainwindow.hpp
     include/appwindow.hpp
