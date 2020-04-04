@@ -28,11 +28,9 @@ jobs:
 
     - name: Generate AUR files
       run: |
-        ls -l
         mkdir build
         git submodule update --init
         cd build
-        ls -l
         cmake ..
 
     - name: Fetch AUR Remote
@@ -46,4 +44,6 @@ jobs:
     - name: Publish to AUR
       run: |
         cd cpeditor
+        git add .
+        git commit -m "New update from CI"
         git push -u origin master
