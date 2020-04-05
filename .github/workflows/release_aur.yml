@@ -14,7 +14,19 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
+    - name: Check beta
+      id: check_beta
+      run: |
+        VERSION=${GITHUB_REF/refs\/tags\//}
+        read STABLE_VERSION < .ci/STABLE_VERSION
+        if [ "${VERSION:0:${#STABLE_VERSION}}" == "$STABLE_VERSION" ]; then
+          echo ::set-output name=ISSTABLE::true
+        else
+          echo ::set-output name=ISSTABLE::false
+        fi
+
     - name: Install SSH key
+      if: steps.check_beta.outputs.ISSTABLE == 'true'
       uses: shimataro/ssh-key-action@v2
       with:
         key: ${{ secrets.SSH_KEY }}
@@ -22,6 +34,7 @@ jobs:
         known_hosts: ${{ secrets.KNOWN_HOST }}
 
     - name: Install Qt
+      if: steps.check_beta.outputs.ISSTABLE == 'true'
       run: |
         sudo add-apt-repository ppa:beineri/opt-qt-5.12.7-xenial -y
         sudo apt-get update -qq
@@ -29,6 +42,7 @@ jobs:
         bash /opt/qt*/bin/qt*-env.sh
 
     - name: Generate AUR files
+      if: steps.check_beta.outputs.ISSTABLE == 'true'
       run: |
         mkdir build
         git submodule update --init
@@ -36,6 +50,7 @@ jobs:
         cmake ..
 
     - name: Fetch AUR Remote
+      if: steps.check_beta.outputs.ISSTABLE == 'true'
       run: |
         git clone ssh://aur@aur.archlinux.org/cpeditor.git
         cd cpeditor
@@ -44,6 +59,7 @@ jobs:
         mv ../build/aur/.SRCINFO .
 
     - name: Publish to AUR
+      if: steps.check_beta.outputs.ISSTABLE == 'true'
       run: |
         cd cpeditor
         git config --global user.email "ashar786khan@gmail.com"
