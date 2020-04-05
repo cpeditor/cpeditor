@@ -1,5 +1,9 @@
 ## UNRELEASED
 
+### Added
+
+- Make it able to use makepkg to install on Linux.
+
 ## 6.2.2 (Beta)
 
 ### Changed
