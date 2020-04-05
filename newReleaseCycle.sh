@@ -38,7 +38,12 @@ endOfMessage
 
 read
 
+<<<<<<< HEAD:newReleaseCycle.sh
 git switch $BETAMINOR
+=======
+git switch "$BETAMINOR"
+echo "$4.$5." > .ci/STABLE_VERSION
+>>>>>>> b14d4b7... ci: Use .ci/STABLE_VERSION to auto-detect beta/stable:scripts/newReleaseCycle.sh
 sed -i "s/UNRELEASED/UNRELEASED\n\n## $BETANEW/" doc/CHANGELOG.md
 sed -i "s/$BETAOLD/$BETANEW/" CMakeLists.txt
 git add doc/CHANGELOG.md CMakeLists.txt
