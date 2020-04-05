@@ -32,6 +32,7 @@
 #define PREFERENCESPAGE_HPP
 
 #include "Core/SettingsManager.hpp"
+#include "Preferences/FontItem.hpp"
 #include "Preferences/PathItem.hpp"
 #include <QCheckBox>
 #include <QComboBox>
@@ -139,6 +140,7 @@ class PreferencesPage : public QWidget
     void registerWidget(QComboBox *comboBox);
     // void registerWidget(QFontComboBox *comboBox); this will fallback to registerWidget(QComboBox*)
 
+    void registerWidget(FontItem *fontItem);
     void registerWidget(PathItem *pathItem);
 
     /*

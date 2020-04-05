@@ -19,6 +19,7 @@
 #define EDITPAGE_HPP
 
 #include "Preferences/PreferencesGridPage.hpp"
+#include "Preferences/FontItem.hpp"
 
 class EditPage : public PreferencesGridPage
 {
@@ -38,6 +39,7 @@ class EditPage : public PreferencesGridPage
 
   private:
     QSpinBox *tabWidthSpinBox = nullptr;
+    FontItem *fontItem = nullptr;
     QCheckBox *indentCheckBox = nullptr;
     QCheckBox *textWrapCheckBox = nullptr;
     QCheckBox *replaceTabsWithSpacesCheckBox = nullptr;

@@ -142,6 +142,11 @@ void PreferencesPage::registerWidget(QComboBox *comboBox)
     connect(comboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(updateButtons()));
 }
 
+void PreferencesPage::registerWidget(FontItem *fontItem)
+{
+    connect(fontItem, SIGNAL(fontChanged(QFont)), this, SLOT(updateButtons()));
+}
+
 void PreferencesPage::registerWidget(PathItem *pathItem)
 {
     registerWidget(pathItem->getLineEdit());

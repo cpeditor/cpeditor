@@ -25,6 +25,9 @@ EditPage::EditPage(QWidget *parent) : PreferencesGridPage(parent)
     tabWidthSpinBox->setRange(1, 20);
     registerAddRow("Tab Width", tabWidthSpinBox);
 
+    fontItem = new FontItem(this);
+    registerAddRow("Font", fontItem);
+
     indentCheckBox = new QCheckBox("Auto Indentation", this);
     registerAddRow(indentCheckBox);
 
@@ -45,6 +48,8 @@ bool EditPage::areSettingsChanged()
 {
     if (Settings::SettingsManager::getTabStop() != tabWidthSpinBox->value())
         return true;
+    if (Settings::SettingsManager::getFont() != fontItem->getFont().toString())
+        return true;
     if (Settings::SettingsManager::isAutoIndent() != indentCheckBox->isChecked())
         return true;
     if (Settings::SettingsManager::isWrapText() != textWrapCheckBox->isChecked())
@@ -61,6 +66,7 @@ bool EditPage::areSettingsChanged()
 void EditPage::makeUITheSameAsDefault()
 {
     tabWidthSpinBox->setValue(Settings::Default::tabStopWidth);
+    fontItem->setFont(Settings::Default::font);
     indentCheckBox->setChecked(Settings::Default::autoIndent);
     textWrapCheckBox->setChecked(Settings::Default::textWrap);
     replaceTabsWithSpacesCheckBox->setChecked(Settings::Default::tabsReplaced);
@@ -71,6 +77,7 @@ void EditPage::makeUITheSameAsDefault()
 void EditPage::makeUITheSameAsSettings()
 {
     tabWidthSpinBox->setValue(Settings::SettingsManager::getTabStop());
+    fontItem->setFont(Settings::SettingsManager::getFont());
     indentCheckBox->setChecked(Settings::SettingsManager::isAutoIndent());
     textWrapCheckBox->setChecked(Settings::SettingsManager::isWrapText());
     replaceTabsWithSpacesCheckBox->setChecked(Settings::SettingsManager::isTabsReplaced());
@@ -81,6 +88,7 @@ void EditPage::makeUITheSameAsSettings()
 void EditPage::makeSettingsTheSameAsUI()
 {
     Settings::SettingsManager::setTabStop(tabWidthSpinBox->value());
+    Settings::SettingsManager::setFont(fontItem->getFont().toString());
     Settings::SettingsManager::setAutoIndent(indentCheckBox->isChecked());
     Settings::SettingsManager::setWrapText(textWrapCheckBox->isChecked());
     Settings::SettingsManager::setTabsReplaced(replaceTabsWithSpacesCheckBox->isChecked());
