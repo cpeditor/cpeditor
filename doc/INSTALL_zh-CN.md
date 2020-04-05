@@ -16,7 +16,7 @@
 
 4. [从 AUR 构建](#从-AUR-构建)
 
-   这是 Arch Linux 用户的推荐安装方法。通过 AUR，你可以轻松地从源代码构建，享受最新的特性。并且，由于 AppImage 是在 Ubuntu 上构建的，只能使用 Fusion 主题，但如果是在使用 KDE 桌面环境的 Arch Linux 上构建的，就可以使用 Breeze（微风）等主题。
+   这是 Arch Linux 用户的推荐安装方法。你可以使用 AUR 安装器来进行更新，轻松享受最新的特性。并且，由于 AppImage 是在 Ubuntu 上构建的，只能使用 Fusion 主题，但如果是在使用 KDE 桌面环境的 Arch Linux 上构建的，就可以使用 Breeze（微风）等主题。
 
 ## 安装可执行文件
 
@@ -92,9 +92,11 @@
 
 这个方法仅适用于 Arch Linux（以及 Manjaro 等基于 Arch Linux 的发行版）。
 
+CP Editor 在 AUR 上有两个包：稳定版 [cpeditor](https://aur.archlinux.org/packages/cpeditor/) 和 alpha 版 [cpeditor-git](https://aur.archlinux.org/packages/cpeditor-git/)。
+
 就像安装其它 AUR 包一样，首先你需要有一个 AUR 安装器。如果你没有，可以通过 `sudo pacman -S yay` 安装一个。
 
-接着，运行 `yay -S cpeditor-git`，选择默认选项，然后等着就好了。
+接着，运行 `yay -S cpeditor` 或 `yay -S cpeditor-git`，选择默认选项，然后等着就好了。
 
 安装完成后，你就可以在终端中使用 `cpeditor` 来运行 CP Editor 了。
 
