@@ -1,3 +1,5 @@
+> 本页面由 [英文版本](README.md) 翻译而来，不保证是最新版本。
+
 # CP Editor
 
 <img src=assets/icon.ico height="80" width="80">
