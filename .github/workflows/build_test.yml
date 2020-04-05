@@ -211,7 +211,15 @@ jobs:
       if: startsWith(github.ref, 'refs/tags') && (matrix.qt_version == '5.12.7')
       id: get_version
       shell: bash
-      run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
+      run: |
+        VERSION=${GITHUB_REF/refs\/tags\//}
+        echo ::set-output name=VERSION::$VERSION
+        read STABLE_VERSION < .ci/STABLE_VERSION
+        if [ "${VERSION:0:${#STABLE_VERSION}}" == "$STABLE_VERSION" ]; then
+          echo ::set-output name=ISBETA::false
+        else
+          echo ::set-output name=ISBETA::true
+        fi
 
     - name: Pack to dmg on Mac
       if: matrix.config.os == 'macos-latest' && startsWith(github.ref, 'refs/tags') && (matrix.qt_version == '5.12.7')
@@ -226,7 +234,7 @@ jobs:
       uses: softprops/action-gh-release@v1
       with:
         draft: true
-        prerelease: true
+        prerelease: ${{ steps.get_version.outputs.ISBETA }}
         files: build/cpeditor-${{ steps.get_version.outputs.VERSION }}-x64.dmg
         name: CP Editor ${{ steps.get_version.outputs.VERSION }}
       env:
@@ -252,7 +260,7 @@ jobs:
       uses: softprops/action-gh-release@v1
       with:
         draft: true
-        prerelease: true
+        prerelease: ${{ steps.get_version.outputs.ISBETA }}
         files: cpeditor-${{ steps.get_version.outputs.VERSION }}-x64-setup.exe
         name: CP Editor ${{ steps.get_version.outputs.VERSION }}
       env:

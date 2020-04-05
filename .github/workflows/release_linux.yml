@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    name: "Release AppImage"
+    name: "Release Linux"
     runs-on: 'ubuntu-16.04'
 
     steps:
@@ -32,8 +32,15 @@ jobs:
 
     - name: Get the version
       id: get_version
-      shell: bash
-      run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
+      run: |
+        VERSION=${GITHUB_REF/refs\/tags\//}
+        echo ::set-output name=VERSION::$VERSION
+        read STABLE_VERSION < .ci/STABLE_VERSION
+        if [ "${VERSION:0:${#STABLE_VERSION}}" == "$STABLE_VERSION" ]; then
+          echo ::set-output name=ISBETA::false
+        else
+          echo ::set-output name=ISBETA::true
+        fi
 
     - name: Pack to AppImage
       run: |
@@ -57,7 +64,7 @@ jobs:
       uses: softprops/action-gh-release@v1
       with:
         draft: true
-        prerelease: true
+        prerelease: ${{ steps.get_version.outputs.ISBETA }}
         files: |
           build/cpeditor-${{ steps.get_version.outputs.VERSION }}-x86_64.AppImage
           cpeditor-full-source-${{ steps.get_version.outputs.VERSION }}.tar.gz

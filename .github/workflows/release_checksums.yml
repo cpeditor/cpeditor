@@ -11,9 +11,19 @@ jobs:
     runs-on: 'ubuntu-latest'
 
     steps:
+    - uses: actions/checkout@v2
+
     - name: Get the version
       id: get_version
-      run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
+      run: |
+        VERSION=${GITHUB_REF/refs\/tags\//}
+        echo ::set-output name=VERSION::$VERSION
+        read STABLE_VERSION < .ci/STABLE_VERSION
+        if [ "${VERSION:0:${#STABLE_VERSION}}" == "$STABLE_VERSION" ]; then
+          echo ::set-output name=ISBETA::false
+        else
+          echo ::set-output name=ISBETA::true
+        fi
 
     - name: Download assets and generate checksums
       run: |
@@ -27,7 +37,7 @@ jobs:
     - name: Upload checksums
       uses: softprops/action-gh-release@v1
       with:
-        prerelease: true
+        prerelease: ${{ steps.get_version.outputs.ISBETA }}
         name: CP Editor ${{ steps.get_version.outputs.VERSION }}
         files: downloads/cpeditor-${{ steps.get_version.outputs.VERSION }}-sha256-checksums.txt
       env:
