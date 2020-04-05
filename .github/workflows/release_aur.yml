@@ -1,0 +1,53 @@
+name: "Release AUR package"
+
+on:
+  push:
+     tags:
+       - '*'
+
+
+jobs:
+  build:
+    name: "Release AUR package"
+    runs-on: 'ubuntu-16.04'
+    
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Install SSH key
+      uses: shimataro/ssh-key-action@v2
+      with:
+        key: ${{ secrets.SSH_KEY }}
+        name: id_rsa 
+        known_hosts: ${{ secrets.KNOWN_HOST }}
+
+    - name: Install Qt
+      run: |
+        sudo add-apt-repository ppa:beineri/opt-qt-5.12.7-xenial -y
+        sudo apt-get update -qq
+        sudo apt-get -y install qt512base libgl1-mesa-dev qt512svg qt512imageformats
+        bash /opt/qt*/bin/qt*-env.sh
+
+    - name: Generate AUR files
+      run: |
+        mkdir build
+        git submodule update --init
+        cd build
+        cmake ..
+
+    - name: Fetch AUR Remote
+      run: |
+        git clone ssh://aur@aur.archlinux.org/cpeditor.git
+        cd cpeditor
+        rm PKGBUILD .SRCINFO
+        mv ../build/aur/PKGBUILD .
+        mv ../build/aur/.SRCINFO .
+
+    - name: Publish to AUR
+      run: |
+        cd cpeditor
+        git config --global user.email "ashar786khan@gmail.com"
+        git config --global user.name "coder3101"
+        git add .
+        git commit -m "New update from CI"
+        git push -u origin master
