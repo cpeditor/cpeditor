@@ -32,6 +32,7 @@
 #define PREFERENCESPAGE_HPP
 
 #include "Core/SettingsManager.hpp"
+#include "Preferences/PathItem.hpp"
 #include <QCheckBox>
 #include <QComboBox>
 #include <QHBoxLayout>
@@ -136,24 +137,9 @@ class PreferencesPage : public QWidget
     void registerWidget(QLineEdit *lineEdit);
     void registerWidget(QSpinBox *spinBox);
     void registerWidget(QComboBox *comboBox);
+    // void registerWidget(QFontComboBox *comboBox); this will fallback to registerWidget(QComboBox*)
 
-    /*
-     * @brief add a check box
-     * @note QCheckBox::toggled will be connected to updateButtons
-     */
-    void addCheckBox(QCheckBox *checkBox);
-
-    /*
-     * @brief add a line edit with a label in a QFormLayout
-     * @note QLineEdit::textChanged will be connected to updateButtons
-     */
-    void addLineEdit(const QString &labelText, QLineEdit *lineEdit);
-
-    /*
-     * @brief add a spin box with a label in a QFormLayout
-     * @note QSpinBox::valueChanged will be connected to updateButtons
-     */
-    void addSpinBox(const QString &labelText, QSpinBox *spinBox);
+    void registerWidget(PathItem *pathItem);
 
     /*
      * @brief set the title of the page

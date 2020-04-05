@@ -35,13 +35,13 @@ CommandPage::CommandPage(QWidget *parent) : PreferencesGridPage(parent)
     registerAddRow("Java Runtime Arguments", javaRunArgument);
 
     javaStartPath = new PathItem("Excutable (*" EXE_SUFFIX ")", "Choose Java Excutable");
-    registerAddRow("Java Start Program", javaStartPath, javaStartPath->getLineEdit());
+    registerAddRow("Java Start Program", javaStartPath);
 
     pythonRunArgument = new QLineEdit(this);
     registerAddRow("Python Runtime Arguments", pythonRunArgument);
 
     pythonStartPath = new PathItem("Excutable (*" EXE_SUFFIX ")", "Choose Python Excutable");
-    registerAddRow("Python Start Program", pythonStartPath, pythonStartPath->getLineEdit());
+    registerAddRow("Python Start Program", pythonStartPath);
 }
 
 bool CommandPage::areSettingsChanged()

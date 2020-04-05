@@ -142,26 +142,9 @@ void PreferencesPage::registerWidget(QComboBox *comboBox)
     connect(comboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(updateButtons()));
 }
 
-void PreferencesPage::addCheckBox(QCheckBox *checkBox)
+void PreferencesPage::registerWidget(PathItem *pathItem)
 {
-    registerWidget(checkBox);
-    addWidget(checkBox);
-}
-
-void PreferencesPage::addLineEdit(const QString &labelText, QLineEdit *lineEdit)
-{
-    auto formLayout = new QFormLayout();
-    registerWidget(lineEdit);
-    formLayout->addRow(labelText, lineEdit);
-    addLayout(formLayout);
-}
-
-void PreferencesPage::addSpinBox(const QString &labelText, QSpinBox *spinBox)
-{
-    auto formLayout = new QFormLayout();
-    registerWidget(spinBox);
-    formLayout->addRow(labelText, spinBox);
-    addLayout(formLayout);
+    registerWidget(pathItem->getLineEdit());
 }
 
 void PreferencesPage::setTitle(const QString &title)

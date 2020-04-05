@@ -63,12 +63,6 @@ class PreferencesGridPage : public PreferencesPage
         addRow(label, widget);
     }
 
-    template <typename T1, typename T2> void registerAddRow(const QString &label, T1 *widget, T2 *data)
-    {
-        registerWidget(data);
-        addRow(label, widget);
-    }
-
   private:
     QGridLayout *gridLayout;
 };
