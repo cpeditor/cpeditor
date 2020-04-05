@@ -29,6 +29,8 @@ add_subdirectory(third_party/QtFindReplaceDialog/dialogs)
 add_subdirectory(third_party/lsp-cpp)
 
 configure_file(version.hpp.in ${CMAKE_BINARY_DIR}/generated/version.hpp)
+configure_file(scripts/aur/PKGBUILD.in ${CMAKE_BINARY_DIR}/aur/PKGBUILD)
+configure_file(scripts/aur/.SRCINFO.in ${CMAKE_BINARY_DIR}/aur/.SRCINFO)
 
 IF(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/.git)
   FIND_PACKAGE(Git)
