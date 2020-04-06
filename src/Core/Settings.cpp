@@ -54,49 +54,52 @@ void SettingsManager::init()
     for (const SettingInfo &si : settingInfo)
         def->insert(si.desc, si.def);
 
-    QSettings setting(loadPath, QSettings::IniFormat);
-
-    // load most of settings
-    for (const SettingInfo &si : settingInfo)
+    if (!loadPath.isEmpty())
     {
-        if (setting.contains(si.name()))
-            set(si.desc, setting.value(si.name()));
-        else
-            for (const QString &old : si.old)
-                if (setting.contains(old))
-                {
-                    set(si.desc, setting.value(old));
-                    break;
-                }
-    }
+        QSettings setting(loadPath, QSettings::IniFormat);
 
-    // load snippets
-    setting.beginGroup("snippets");
-    QStringList langs = setting.childGroups();
-    if (langs.contains("Cpp"))
-    {
-        setting.beginGroup("Cpp");
-        QStringList keys = setting.allKeys();
-        for (const QString &key : keys)
-            set(QString("Snippets/C++/%1").arg(key), setting.value(key));
+        // load most of settings
+        for (const SettingInfo &si : settingInfo)
+        {
+            if (setting.contains(si.name()))
+                set(si.desc, setting.value(si.name()));
+            else
+                for (const QString &old : si.old)
+                    if (setting.contains(old))
+                    {
+                        set(si.desc, setting.value(old));
+                        break;
+                    }
+        }
+
+        // load snippets
+        setting.beginGroup("snippets");
+        QStringList langs = setting.childGroups();
+        if (langs.contains("Cpp"))
+        {
+            setting.beginGroup("Cpp");
+            QStringList keys = setting.allKeys();
+            for (const QString &key : keys)
+                set(QString("Snippets/C++/%1").arg(key), setting.value(key));
+            setting.endGroup();
+            langs.removeOne("Cpp");
+        }
+        for (const QString &lang : langs)
+        {
+            setting.beginGroup(lang);
+            QStringList keys = setting.allKeys();
+            for (const QString &key : keys)
+                set(QString("Snippets/%1/%2").arg(lang, key), setting.value(key));
+            setting.endGroup();
+        }
         setting.endGroup();
-        langs.removeOne("Cpp");
-    }
-    for (const QString &lang : langs)
-    {
-        setting.beginGroup(lang);
-        QStringList keys = setting.allKeys();
-        for (const QString &key : keys)
-            set(QString("Snippets/%1/%2").arg(lang, key), setting.value(key));
+
+        // load editor status
+        setting.beginGroup("editor_status");
+        for (const QString &index : setting.allKeys())
+            set(QString("Editor Status/%1").arg(index), setting.value(index));
         setting.endGroup();
     }
-    setting.endGroup();
-
-    // load editor status
-    setting.beginGroup("editor_status");
-    for (const QString &index : setting.allKeys())
-        set(QString("Editor Status/%1").arg(index), setting.value(index));
-    setting.endGroup();
 }
 
 void SettingsManager::deinit()
