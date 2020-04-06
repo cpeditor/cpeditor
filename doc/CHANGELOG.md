@@ -6,6 +6,10 @@
 - System-wide Dark theme for Windows 10 (#215)
 - Make it able to use makepkg to install on Linux.
 
+### Fixed
+
+- Add auto-close for single and double quotes. (#226)
+
 ### Changed
 
 - Show the manual of the current version instead of the latest version.
