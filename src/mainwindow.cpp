@@ -21,6 +21,7 @@
 #include "Core/EventLogger.hpp"
 #include "Core/MessageLogger.hpp"
 #include "Core/Runner.hpp"
+#include "Core/SettingsHelper.hpp"
 #include "Util.hpp"
 #include <QCXXHighlighter>
 #include <QFileDialog>
@@ -110,8 +111,7 @@ void MainWindow::setEditor()
 void MainWindow::setupCore()
 {
     Core::Log::i("mainwindow/setupCore", "Invoked");
-    formatter = new Core::Formatter(Settings::SettingsManager::getClangFormatBinary(),
-                                    Settings::SettingsManager::getClangFormatStyle(), &log);
+    formatter = new Core::Formatter(SettingsHelper::getClangFormatPath(), SettingsHelper::getClangFormatStyle(), &log);
     log.setContainer(ui->compiler_edit);
 }
 
@@ -138,7 +138,8 @@ void MainWindow::compile()
         connect(compiler, SIGNAL(compilationErrorOccured(const QString &)), this,
                 SLOT(onCompilationErrorOccured(const QString &)));
         connect(compiler, SIGNAL(compilationKilled()), this, SLOT(onCompilationKilled()));
-        compiler->start(tmpPath(), Settings::SettingsManager::getCompileCommand(language), language);
+        compiler->start(tmpPath(), SettingsManager::get(QString("%1/Compile Command").arg(language)).toString(),
+                        language);
     }
 }
 
@@ -176,9 +177,9 @@ void MainWindow::run(int index)
     connect(tmp, SIGNAL(failedToStartRun(int, const QString &)), this, SLOT(onFailedToStartRun(int, const QString &)));
     connect(tmp, SIGNAL(runTimeout(int)), this, SLOT(onRunTimeout(int)));
     connect(tmp, SIGNAL(runKilled(int)), this, SLOT(onRunKilled(int)));
-    tmp->run(tmpPath(), language, Settings::SettingsManager::getRunCommand(language),
-             Settings::SettingsManager::getRuntimeArguments(language), testcases->input(index),
-             Settings::SettingsManager::getTimeLimit());
+    tmp->run(tmpPath(), language, SettingsManager::get(QString("%1/Run Command").arg(language)).toString(),
+             SettingsManager::get(QString("%1/Run Arguments").arg(language)).toString(), testcases->input(index),
+             SettingsHelper::getTimeLimit());
     runner.push_back(tmp);
 }
 
@@ -201,14 +202,14 @@ void MainWindow::runTestCase(int index)
 void MainWindow::loadTests()
 {
     Core::Log::i("mainwindow/loadTests", "Invoked");
-    if (!isUntitled() && Settings::SettingsManager::isSaveTests())
+    if (!isUntitled() && SettingsHelper::isSaveTests())
         testcases->loadFromFile(filePath);
 }
 
 void MainWindow::saveTests(bool safe)
 {
     Core::Log::i("mainwindow/saveTests", "Invoked");
-    if (!isUntitled() && Settings::SettingsManager::isSaveTests())
+    if (!isUntitled() && SettingsHelper::isSaveTests())
         testcases->save(filePath, safe);
 }
 
@@ -463,13 +464,13 @@ void MainWindow::applySettings(const QString &pagePath, bool shouldPerformDigoni
 
     if (pagePath.isEmpty() || pagePath == "Extensions/Clang Format")
     {
-        formatter->updateBinary(Settings::SettingsManager::getClangFormatBinary());
-        formatter->updateStyle(Settings::SettingsManager::getClangFormatStyle());
+        formatter->updateBinary(SettingsHelper::getClangFormatPath());
+        formatter->updateStyle(SettingsHelper::getClangFormatStyle());
     }
 
     if (pagePath.isEmpty() || pagePath == "Extensions/CF Tool")
     {
-        cftoolPath = Settings::SettingsManager::getCFPath();
+        cftoolPath = SettingsHelper::getCFPath();
 
         if (cftool != nullptr && Network::CFTool::check(cftoolPath))
         {
@@ -484,7 +485,7 @@ void MainWindow::applySettings(const QString &pagePath, bool shouldPerformDigoni
 
     if (!isLanguageSet && (pagePath.isEmpty() || pagePath == "Language/General"))
     {
-        setLanguage(Settings::SettingsManager::getDefaultLanguage());
+        setLanguage(SettingsHelper::getDefaultLanguage());
     }
 
     if (shouldPerformDigonistic && (pagePath.isEmpty() || pagePath == "Language/Commands"))
@@ -494,7 +495,7 @@ void MainWindow::applySettings(const QString &pagePath, bool shouldPerformDigoni
 
     if (pagePath.isEmpty() || pagePath == "Appearance")
     {
-        if (Settings::SettingsManager::isCompileAndRunOnly())
+        if (SettingsHelper::isCompileAndRunOnly())
         {
             ui->compile->hide();
             ui->runOnly->hide();
@@ -582,7 +583,7 @@ void MainWindow::setLanguage(const QString &lang)
     log.clear();
     if (!QFile::exists(filePath))
     {
-        QFile templateFile(Settings::SettingsManager::getTemplatePath(language));
+        QFile templateFile(SettingsManager::get(QString("%1/Template Path").arg(lang)).toString());
         templateFile.open(QIODevice::ReadOnly | QIODevice::Text);
         QString templateContent;
         if (templateFile.isOpen())
@@ -634,23 +635,23 @@ void MainWindow::insertText(const QString &text)
     editor->insertPlainText(text);
 }
 
-void MainWindow::setViewMode(Settings::ViewMode mode)
+void MainWindow::setViewMode(const QString &mode)
 {
-    switch (mode)
+    if (mode == "code")
     {
-    case Settings::ViewMode::FULL_EDITOR:
         ui->left_widget->show();
         ui->right_widget->hide();
-        break;
-    case Settings::ViewMode::FULL_IO:
+    }
+    else if (mode == "io")
+    {
         ui->left_widget->hide();
         ui->right_widget->show();
-        break;
-    case Settings::ViewMode::SPLIT:
+    }
+    else
+    {
         ui->left_widget->show();
         ui->right_widget->show();
-        ui->splitter->restoreState(Settings::SettingsManager::getSplitterSizes());
-        break;
+        ui->splitter->restoreState(SettingsHelper::getSplitterSize());
     }
 }
 
@@ -730,7 +731,7 @@ void MainWindow::loadFile(const QString &loadPath)
 
     if (!QFile::exists(path))
     {
-        QString templatePath = Settings::SettingsManager::getTemplatePath(language);
+        QString templatePath = SettingsManager::get(QString("%1/Template Path").arg(language)).toString();
 
         QFile f(templatePath);
         f.open(QIODevice::ReadOnly | QIODevice::Text);
@@ -768,7 +769,7 @@ void MainWindow::loadFile(const QString &loadPath)
 bool MainWindow::saveFile(SaveMode mode, const QString &head, bool safe)
 {
     Core::Log::i("mainwindow/saveFile") << "mode " << mode << "head " << head << "safe " << safe << endl;
-    if (Settings::SettingsManager::isFormatOnSave())
+    if (SettingsHelper::isAutoFormat())
         formatter->format(editor, filePath, language, false);
 
     if (mode == SaveAs || (isUntitled() && mode == SaveUntitled))
@@ -780,7 +781,7 @@ bool MainWindow::saveFile(SaveMode mode, const QString &head, bool safe)
         }
         else
         {
-            defaultPath = QDir(Settings::SettingsManager::getSavePath()).filePath(getTabTitle(false, false));
+            defaultPath = QDir(SettingsHelper::getSavePath()).filePath(getTabTitle(false, false));
             if (language == "C++")
                 defaultPath += ".cpp";
             else if (language == "Java")
@@ -800,7 +801,7 @@ bool MainWindow::saveFile(SaveMode mode, const QString &head, bool safe)
 
         filePath = newFilePath;
         updateWatcher();
-        Settings::SettingsManager::setSavePath(QFileInfo(filePath).canonicalPath());
+        SettingsHelper::setSavePath(QFileInfo(filePath).canonicalPath());
 
         auto suffix = QFileInfo(filePath).suffix();
         if (Util::cppSuffix.contains(suffix))
@@ -893,7 +894,7 @@ bool MainWindow::isTextChanged()
 
     if (isUntitled())
     {
-        QFile f(Settings::SettingsManager::getTemplatePath(language));
+        QFile f(SettingsManager::get(QString("%1/Template Path").arg(language)).toString());
         f.open(QIODevice::ReadOnly | QFile::Text);
         if (f.isOpen())
             return editor->toPlainText() != f.readAll();
@@ -1020,7 +1021,7 @@ void MainWindow::updateCursorInfo()
             if (line[i] != '\t')
                 ++col;
             else
-                col += Settings::SettingsManager::getTabStop() - col % Settings::SettingsManager::getTabStop();
+                col += SettingsHelper::getTabWidth() - col % SettingsHelper::getTabWidth();
         }
         info = "Line " + QString::number(cursor.blockNumber() + 1) + ", Column " + QString::number(col + 1);
     }
@@ -1049,7 +1050,7 @@ void MainWindow::updateChecker()
     else
         checker = new Core::Checker(testcases->checkerType(), &log, this);
     connect(checker, &Core::Checker::checkFinished, testcases, &TestCases::setVerdict);
-    checker->prepare(Settings::SettingsManager::getCompileCommand("C++"));
+    checker->prepare(SettingsManager::get(QString("%1/Compile Command").arg(language)).toString());
 }
 
 QSplitter *MainWindow::getSplitter()
@@ -1070,10 +1071,11 @@ void MainWindow::performCompileAndRunDiagonistics()
     bool runResult = true;
 
     if (language == "C++" || language == "Java")
-        compilerResult = Core::Compiler::check(Settings::SettingsManager::getCompileCommand(language));
+        compilerResult =
+            Core::Compiler::check(SettingsManager::get(QString("%1/Compile Command").arg(language)).toString());
 
     if (language == "Java" || language == "Python")
-        runResult = Core::Compiler::check(Settings::SettingsManager::getRunCommand(language));
+        runResult = Core::Compiler::check(SettingsManager::get(QString("%1/Compile Command").arg(language)).toString());
 
     if (!compilerResult)
         log.error("Compiler", "Compiler command for " + language + " is invalid. Is compiler on PATH?");
@@ -1122,8 +1124,9 @@ void MainWindow::onCompilationFinished(const QString &warning)
         connect(detachedRunner, SIGNAL(failedToStartRun(int, const QString &)), this,
                 SLOT(onFailedToStartRun(int, const QString &)));
         connect(detachedRunner, SIGNAL(runKilled(int)), this, SLOT(onRunKilled(int)));
-        detachedRunner->runDetached(tmpPath(), language, Settings::SettingsManager::getRunCommand(language),
-                                    Settings::SettingsManager::getRuntimeArguments(language));
+        detachedRunner->runDetached(tmpPath(), language,
+                                    SettingsManager::get(QString("%1/Run Command").arg(language)).toString(),
+                                    SettingsManager::get(QString("%1/Run Arguments").arg(language)).toString());
     }
 }
 

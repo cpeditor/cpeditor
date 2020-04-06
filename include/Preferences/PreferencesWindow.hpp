@@ -27,6 +27,7 @@
 
 #include "Preferences/PreferencesHomePage.hpp"
 #include "Preferences/PreferencesPage.hpp"
+#include "Preferences/PreferencesPageTemplate.hpp"
 #include <QLineEdit>
 #include <QMainWindow>
 #include <QMap>
@@ -72,6 +73,14 @@ class PreferencesWindow : public QMainWindow
      * @param pageContent the content of the page, used for search
      */
     void addPage(const QString &path, PreferencesPage *page, const QStringList &pageContent);
+
+    /*
+     * @brief add a preferences page
+     * @param path the path to the page, for example: "Actions/Save" / "Appearance"
+     * @param page the PreferencesPage widget
+     * pageContent will use page->content()
+     */
+    void addPage(const QString &path, PreferencesPageTemplate *page);
 
     /*
      * @brief switch to a page

@@ -20,7 +20,6 @@
 
 #include <QMainWindow>
 
-#include "Core/SettingsManager.hpp"
 #include "LSPClient.hpp"
 #include "Preferences/PreferencesWindow.hpp"
 #include "Telemetry/UpdateNotifier.hpp"

@@ -15,12 +15,6 @@
  *
  */
 
-// Pages
-#include "Preferences/Edit/EditPage.hpp"
-#include "Preferences/Language/CodeTemplatePage.hpp"
-#include "Preferences/Language/CommandPage.hpp"
-#include "Preferences/Language/LanguageGeneralPage.hpp"
-
 // Main Frame
 #include "Preferences/PreferencesWindow.hpp"
 #include <QApplication>
@@ -84,23 +78,18 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
     exitShortcut = new QShortcut(QKeySequence::Cancel, this);
     connect(exitShortcut, SIGNAL(activated()), this, SLOT(close()));
 
-    // add pages
+    addPage("Edit", new PreferencesPageTemplate({"Tab Width", "Auto Indent", "Wrap Text", "Auto Complete Parentheses",
+                                                 "Auto Remove Parentheses", "Replace Tabs"}));
 
-    addPage("Edit", new EditPage(this),
-            {"Tab Width", "Auto Indentation", "Text Wrap", "Auto Parentheses Completion", "Auto Parentheses Removal",
-             "Replace tabs with spaces"});
+    addPage("Language/General", new PreferencesPageTemplate({"Default Language"}));
 
-    addPage("Language/General", new LanguageGeneralPage(this), {"Default Language"});
+    addPage("Language/Commands",
+            new PreferencesPageTemplate({"C++/Compile Command", "C++/Run Arguments", "Java/Compile Command",
+                                         "Java/Run Arguments", "Java/Run Command", "Python/Run Arguments",
+                                         "Python/Run Command"}));
 
-    addPage("Language/Commands", new CommandPage(this),
-            {"C++ Compile Command", "Cpp Compile Command", "C++ Runtime Arguments", "Cpp Runtime Arguments",
-             "Java Compile Command", "Java Runtime Arguments", "Java Start Program", "Python Runtime Arguments",
-             "Python Start Program"});
-
-    addPage("Language/Code Template", new CodeTemplatePage(this),
-            {"C++ Template Path", "Cpp Template Path", "Java Template Path", "Python Template Path",
-             "C++ Code Template Path", "Cpp Code Template Path", "Java Code Template Path",
-             "Python Code Template Path"});
+    addPage("Language/Code Template",
+            new PreferencesPageTemplate({"C++/Template Path", "Java/Template Path", "Python/Template Path"}));
 }
 
 void PreferencesWindow::display()
@@ -182,6 +171,11 @@ void PreferencesWindow::addPage(const QString &path, PreferencesPage *page, cons
     pageWidget[current] = page;
     stackedWidget->addWidget(page);
     connect(page, SIGNAL(settingsApplied(const QString &)), this, SIGNAL(settingsApplied(const QString &)));
+}
+
+void PreferencesWindow::addPage(const QString &path, PreferencesPageTemplate *page)
+{
+    addPage(path, page, page->content());
 }
 
 PreferencesPage *PreferencesWindow::getPageWidget(const QString &pagePath)

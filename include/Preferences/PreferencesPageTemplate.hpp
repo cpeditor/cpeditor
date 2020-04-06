@@ -15,29 +15,29 @@
  *
  */
 
-#ifndef LANGUAGEGENERALPAGE_HPP
-#define LANGUAGEGENERALPAGE_HPP
+#ifndef PREFERENCESPAGETEMPLATE_HPP
+#define PREFERENCESPAGETEMPLATE_HPP
 
 #include "Preferences/PreferencesGridPage.hpp"
 
-class LanguageGeneralPage : public PreferencesGridPage
+class PreferencesPageTemplate : public PreferencesGridPage
 {
     Q_OBJECT
 
   public:
-    explicit LanguageGeneralPage(QWidget *parent = nullptr);
+    explicit PreferencesPageTemplate(QStringList opts, QWidget *parent = nullptr);
+
+    QStringList content();
 
   private:
     bool areSettingsChanged() override;
-
     void makeUITheSameAsDefault() override;
-
     void makeUITheSameAsSettings() override;
-
     void makeSettingsTheSameAsUI() override;
 
   private:
-    QComboBox *defaultLanguageComboBox = nullptr;
+    QStringList options;
+    QList<QWidget *> widgets;
 };
 
-#endif // LANGUAGEGENERALPAGE_HPP
+#endif // PREFERENCESPAGETEMPLATE_HPP

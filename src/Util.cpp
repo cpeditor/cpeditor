@@ -17,7 +17,7 @@
 
 #include "Util.hpp"
 #include "Core/EventLogger.hpp"
-#include "Core/SettingsManager.hpp"
+#include "Core/SettingsHelper.hpp"
 #include "Extensions/EditorTheme.hpp"
 #include <QFile>
 #include <QSaveFile>
@@ -41,7 +41,7 @@ QString fileNameFilter(bool cpp, bool java, bool python)
 
 bool saveFile(const QString &path, const QString &content, const QString &head, bool safe, MessageLogger *log)
 {
-    if (safe && !Settings::SettingsManager::isSaveFaster())
+    if (safe && !SettingsHelper::isSaveFaster())
     {
         QSaveFile file(path);
         if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
@@ -86,37 +86,32 @@ void applySettingsToEditor(QCodeEditor *editor)
 {
     Core::Log::i("Util/applySettingsToEditor", "Invoked");
 
-    editor->setTabReplace(Settings::SettingsManager::isTabsReplaced());
-    editor->setTabReplaceSize(Settings::SettingsManager::getTabStop());
-    editor->setAutoIndentation(Settings::SettingsManager::isAutoIndent());
-    editor->setAutoParentheses(Settings::SettingsManager::isAutoParentheses());
-    editor->setAutoRemoveParentheses(Settings::SettingsManager::isAutoRemoveParentheses());
+    editor->setTabReplace(SettingsHelper::isReplaceTabs());
+    editor->setTabReplaceSize(SettingsHelper::getTabWidth());
+    editor->setAutoIndentation(SettingsHelper::isAutoIndent());
+    editor->setAutoParentheses(SettingsHelper::isAutoCompleteParentheses());
+    editor->setAutoRemoveParentheses(SettingsHelper::isAutoRemoveParentheses());
 
-    if (!Settings::SettingsManager::getFont().isEmpty())
-    {
-        QFont font;
-        font.fromString(Settings::SettingsManager::getFont());
-        editor->setFont(font);
-    }
+    editor->setFont(SettingsHelper::getFont());
 
-    const int tabStop = Settings::SettingsManager::getTabStop();
+    const int tabStop = SettingsHelper::getTabWidth();
     QFontMetrics metric(editor->font());
     editor->setTabReplaceSize(tabStop);
 
-    if (Settings::SettingsManager::isWrapText())
+    if (SettingsHelper::isWrapText())
         editor->setWordWrapMode(QTextOption::WordWrap);
     else
         editor->setWordWrapMode(QTextOption::NoWrap);
 
-    if (Settings::SettingsManager::getEditorTheme() == "Light")
+    if (SettingsHelper::getEditorTheme() == "Light")
         editor->setSyntaxStyle(Themes::EditorTheme::getLightTheme());
-    else if (Settings::SettingsManager::getEditorTheme() == "Drakula")
+    else if (SettingsHelper::getEditorTheme() == "Drakula")
         editor->setSyntaxStyle(Themes::EditorTheme::getDrakulaTheme());
-    else if (Settings::SettingsManager::getEditorTheme() == "Monkai")
+    else if (SettingsHelper::getEditorTheme() == "Monkai")
         editor->setSyntaxStyle(Themes::EditorTheme::getMonkaiTheme());
-    else if (Settings::SettingsManager::getEditorTheme() == "Solarised")
+    else if (SettingsHelper::getEditorTheme() == "Solarised")
         editor->setSyntaxStyle(Themes::EditorTheme::getSolarisedTheme());
-    else if (Settings::SettingsManager::getEditorTheme() == "Solarised Dark")
+    else if (SettingsHelper::getEditorTheme() == "Solarised Dark")
         editor->setSyntaxStyle(Themes::EditorTheme::getSolarisedDarkTheme());
     else
         editor->setSyntaxStyle(Themes::EditorTheme::getLightTheme());

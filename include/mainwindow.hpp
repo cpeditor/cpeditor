@@ -22,7 +22,6 @@
 #include "Core/Compiler.hpp"
 #include "Core/Formatter.hpp"
 #include "Core/Runner.hpp"
-#include "Core/SettingsManager.hpp"
 #include "Extensions/CFTool.hpp"
 #include "Extensions/CompanionServer.hpp"
 #include "Telemetry/UpdateNotifier.hpp"
@@ -108,7 +107,7 @@ class MainWindow : public QMainWindow
 
     void insertText(const QString &text);
 
-    void setViewMode(Settings::ViewMode mode);
+    void setViewMode(const QString &mode);
 
   private slots:
     void on_compile_clicked();

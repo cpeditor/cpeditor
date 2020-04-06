@@ -31,7 +31,6 @@
 #ifndef PREFERENCESPAGE_HPP
 #define PREFERENCESPAGE_HPP
 
-#include "Core/SettingsManager.hpp"
 #include "Preferences/FontItem.hpp"
 #include "Preferences/PathItem.hpp"
 #include <QCheckBox>

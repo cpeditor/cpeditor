@@ -17,7 +17,7 @@
 
 #include "Widgets/DiffViewer.hpp"
 #include "Core/EventLogger.hpp"
-#include "Core/SettingsManager.hpp"
+#include "Core/SettingsHelper.hpp"
 #include "diff_match_patch.h"
 #include <QScrollBar>
 
@@ -78,7 +78,7 @@ void DiffViewer::setText(const QString &output, const QString &expected)
         for (auto diff : diffs)
         {
             QString text = diff.text.toHtmlEscaped().replace(" ", "&nbsp;");
-            if (Settings::SettingsManager::isDisplayEolnInDiff())
+            if (SettingsHelper::isDisplayEOLNInDiff())
                 text.replace("\n", "&para;<br>");
             else
                 text.replace("\n", "<br>");

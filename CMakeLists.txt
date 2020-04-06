@@ -51,14 +51,16 @@ add_executable(cpeditor
     include/Core/Compiler.hpp
     include/Core/Runner.hpp
     include/Core/Formatter.hpp
-    include/Core/SettingsManager.hpp
+    include/Core/Settings.hpp
+    include/Core/SettingsHelper.hpp
+    include/Core/SettingsInfo.hpp
     include/Core/MessageLogger.hpp
     include/Core/EventLogger.hpp
     src/Core/Checker.cpp
     src/Core/Compiler.cpp
     src/Core/Runner.cpp
     src/Core/Formatter.cpp
-    src/Core/SettingsManager.cpp
+    src/Core/Settings.cpp
     src/Core/MessageLogger.cpp
     src/Core/EventLogger.cpp
 
@@ -84,25 +86,17 @@ add_executable(cpeditor
     include/Preferences/PreferencesPage.hpp
     include/Preferences/PreferencesHomePage.hpp
     include/Preferences/PreferencesWindow.hpp
-    include/Preferences/PreferencesGridPage.hpp
+    include/Preferences/PreferencesGridPage
+    include/Preferences/PreferencesPageTemplate.hpp
     include/Preferences/FontItem.hpp
     include/Preferences/PathItem.hpp
     src/Preferences/PreferencesPage.cpp
     src/Preferences/PreferencesHomePage.cpp
     src/Preferences/PreferencesWindow.cpp
     src/Preferences/PreferencesGridPage.cpp
+    src/Preferences/PreferencesPageTemplate.cpp
     src/Preferences/FontItem.cpp
     src/Preferences/PathItem.cpp
-
-    include/Preferences/Edit/EditPage.hpp
-    src/Preferences/Edit/EditPage.cpp
-
-    include/Preferences/Language/CodeTemplatePage.hpp
-    include/Preferences/Language/CommandPage.hpp
-    include/Preferences/Language/LanguageGeneralPage.hpp
-    src/Preferences/Language/CodeTemplatePage.cpp
-    src/Preferences/Language/CommandPage.cpp
-    src/Preferences/Language/LanguageGeneralPage.cpp
 
     include/mainwindow.hpp
     include/appwindow.hpp
