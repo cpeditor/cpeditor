@@ -242,7 +242,7 @@
         "old": [
             "connection_port"
         ],
-        "param1": "\"1,65535\""
+        "param1": "\"1024,49151\""
     },
     {
         "desc": "Competitive Companion/Open New Tab",
