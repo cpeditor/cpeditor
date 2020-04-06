@@ -100,6 +100,23 @@ void PathItemWrapper::set(QString s)
     static_cast<PathItem *>(widget)->getLineEdit()->setText(s);
 }
 
+void ShortcutItemWrapper::init(QWidget *parent, QVariant param)
+{
+    ShortcutItem *item = new ShortcutItem(parent);
+    connect(item, &ShortcutItem::shortcutChanged, this, &ValueWidget::emitSignal);
+    widget = item;
+}
+
+QString ShortcutItemWrapper::get()
+{
+    return static_cast<ShortcutItem *>(widget)->getShortcut();
+}
+
+void ShortcutItemWrapper::set(QString s)
+{
+    static_cast<ShortcutItem *>(widget)->setShortcut(s);
+}
+
 void SpinBoxWrapper::init(QWidget *parent, QVariant param)
 {
     QSpinBox *item = new QSpinBox(parent);
@@ -202,6 +219,8 @@ Wrapper<QString> *createStringWrapper(QString type)
         return new ComboBoxWrapper();
     else if (type == "PathItem")
         return new PathItemWrapper();
+    else if (type == "ShortcutItem")
+        return new ShortcutItemWrapper();
     return nullptr;
 }
 

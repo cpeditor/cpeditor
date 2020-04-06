@@ -264,49 +264,56 @@
         "type": "QString",
         "old": [
             "hotkey_format"
-        ]
+        ],
+        "ui": "ShortcutItem"
     },
     {
         "desc": "Hotkey/Kill",
         "type": "QString",
         "old": [
             "hotkey_kill"
-        ]
+        ],
+        "ui": "ShortcutItem"
     },
     {
         "desc": "Hotkey/Compile Run",
         "type": "QString",
         "old": [
             "hotkey_compile_run"
-        ]
+        ],
+        "ui": "ShortcutItem"
     },
     {
         "desc": "Hotkey/Run",
         "type": "QString",
         "old": [
             "hotkey_run"
-        ]
+        ],
+        "ui": "ShortcutItem"
     },
     {
         "desc": "Hotkey/Compile",
         "type": "QString",
         "old": [
             "hotkey_compile"
-        ]
+        ],
+        "ui": "ShortcutItem"
     },
     {
         "desc": "Hotkey/Change View Mode",
         "type": "QString",
         "old": [
             "hotkey_mode_toggle"
-        ]
+        ],
+        "ui": "ShortcutItem"
     },
     {
         "desc": "Hotkey/Snippets",
         "type": "QString",
         "old": [
             "hotkey_snippets"
-        ]
+        ],
+        "ui": "ShortcutItem"
     },
     {
         "desc": "Hot Exit/Enable",

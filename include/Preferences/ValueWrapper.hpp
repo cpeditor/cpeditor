@@ -25,6 +25,7 @@
 
 // QString
 #include "Preferences/PathItem.hpp"
+#include "Preferences/ShortcutItem.hpp"
 #include <QComboBox>
 #include <QLineEdit>
 
@@ -128,6 +129,13 @@ struct ComboBoxWrapper : public Wrapper<QString>
 };
 
 struct PathItemWrapper : public Wrapper<QString>
+{
+    virtual void init(QWidget *parent, QVariant param = QVariant());
+    virtual QString get() override;
+    virtual void set(QString s) override;
+};
+
+struct ShortcutItemWrapper : public Wrapper<QString>
 {
     virtual void init(QWidget *parent, QVariant param = QVariant());
     virtual QString get() override;

@@ -93,6 +93,10 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
 
     addPage("Appearance", new PreferencesPageTemplate({"Editor Theme", "Font", "Transparency",
                                                        "Show Compile And Run Only", "Display EOLN In Diff"}));
+
+    addPage("Key Bindings",
+            new PreferencesPageTemplate({"Hotkey/Compile", "Hotkey/Run", "Hotkey/Compile Run", "Hotkey/Format",
+                                         "Hotkey/Kill", "Hotkey/Change View Mode", "Hotkey/Snippets"}));
 }
 
 void PreferencesWindow::display()
