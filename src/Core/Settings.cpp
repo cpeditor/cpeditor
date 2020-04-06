@@ -27,11 +27,8 @@
 Settings *SettingsManager::cur = nullptr;
 Settings *SettingsManager::def = nullptr;
 
-static QStringList configFileLocation = {
-    "$AC/cp_editor_settings.ini",
-    "$H/.cp_editor_settings.ini",
-    "$H/cp_editor_settings.ini",
-};
+static QStringList configFileLocation = {"$AC/cp_editor_settings.ini", "$H/.cp_editor_settings.ini",
+                                         "$H/cp_editor_settings.ini"};
 
 void SettingsManager::init()
 {
@@ -41,12 +38,14 @@ void SettingsManager::init()
 
     // find exist config file
     QString loadPath;
-    for (auto it = configFileLocation.rbegin(); it != configFileLocation.rend(); ++it)
-        if (QFile::exists(*it))
+    for (auto path : configFileLocation)
+    {
+        if (QFile::exists(path))
         {
-            loadPath = *it;
+            loadPath = path;
             break;
         }
+    }
 
     cur = new Settings();
     def = new Settings();
