@@ -62,6 +62,7 @@ PreferencesPageTemplate::PreferencesPageTemplate(QStringList opts, QWidget *pare
             else
             {
                 QLineEdit *edit = new QLineEdit(this);
+                edit->setMinimumWidth(400);
                 registerAddRow(si.desc, edit);
                 widgets.push_back(edit);
             }
