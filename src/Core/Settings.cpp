@@ -158,6 +158,6 @@ void SettingsManager::reset()
 QStringList SettingsManager::keyStartsWith(const QString &head)
 {
     QStringList keys = cur->keys();
-    keys.erase(std::remove_if(keys.begin(), keys.end(), [head](QString s) { return s.startsWith(head); }), keys.end());
+    keys.erase(std::remove_if(keys.begin(), keys.end(), [head](QString s) { return !s.startsWith(head); }), keys.end());
     return keys;
 }
