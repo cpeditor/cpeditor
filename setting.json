@@ -3,7 +3,9 @@
         "desc": "Tab Width",
         "type": "int",
         "default": 4,
-        "old": [ "tab_stop" ],
+        "old": [
+            "tab_stop"
+        ],
         "param1": "\"1,16\""
     },
     {
@@ -31,7 +33,9 @@
         "desc": "Clang Format/Path",
         "type": "QString",
         "default": "clang-format",
-        "old": [ "clang_format_binary" ],
+        "old": [
+            "clang_format_binary"
+        ],
         "param1": "\"PathItem\"",
         "param2": "0"
     },
@@ -39,12 +43,16 @@
         "desc": "Clang Format/Style",
         "type": "QString",
         "default": "BasedOnStyle: Google",
-        "old": [ "clang_format_style" ]
+        "old": [
+            "clang_format_style"
+        ]
     },
     {
         "desc": "C++/Template Path",
         "type": "QString",
-        "old": [ "template_cpp" ],
+        "old": [
+            "template_cpp"
+        ],
         "param1": "\"PathItem\"",
         "param2": "1"
     },
@@ -52,17 +60,23 @@
         "desc": "C++/Compile Command",
         "type": "QString",
         "default": "g++ -Wall",
-        "old": [ "compile_cpp" ]
+        "old": [
+            "compile_cpp"
+        ]
     },
     {
         "desc": "C++/Run Arguments",
         "type": "QString",
-        "old": [ "runtime_cpp" ]
+        "old": [
+            "runtime_cpp"
+        ]
     },
     {
         "desc": "Java/Template Path",
         "type": "QString",
-        "old": [ "template_java" ],
+        "old": [
+            "template_java"
+        ],
         "param1": "\"PathItem\"",
         "param2": "2"
     },
@@ -70,37 +84,49 @@
         "desc": "Java/Compile Command",
         "type": "QString",
         "default": "javac",
-        "old": [ "compile_java" ]
+        "old": [
+            "compile_java"
+        ]
     },
     {
         "desc": "Java/Run Arguments",
         "type": "QString",
         "default": "java",
-        "old": [ "runtime_java" ]
+        "old": [
+            "runtime_java"
+        ]
     },
     {
         "desc": "Java/Run Command",
         "type": "QString",
         "default": "java",
-        "old": [ "run_java" ]
+        "old": [
+            "run_java"
+        ]
     },
     {
         "desc": "Python/Template Path",
         "type": "QString",
-        "old": [ "template_python" ],
+        "old": [
+            "template_python"
+        ],
         "param1": "\"PathItem\"",
         "param2": "3"
     },
     {
         "desc": "Python/Run Arguments",
         "type": "QString",
-        "old": [ "runtime_python" ]
+        "old": [
+            "runtime_python"
+        ]
     },
     {
         "desc": "Python/Run Command",
         "type": "QString",
         "default": "python",
-        "old": [ "run_python" ]
+        "old": [
+            "run_python"
+        ]
     },
     {
         "desc": "Editor Theme",
@@ -113,13 +139,17 @@
         "desc": "Auto Complete Parentheses",
         "type": "bool",
         "default": true,
-        "old": [ "auto_parenthesis" ]
+        "old": [
+            "auto_parenthesis"
+        ]
     },
     {
         "desc": "Auto Remove Parentheses",
         "type": "bool",
         "default": true,
-        "old": [ "auto_remove_parentheses" ]
+        "old": [
+            "auto_remove_parentheses"
+        ]
     },
     {
         "desc": "Auto Indent",
@@ -129,7 +159,9 @@
     {
         "desc": "Auto Save",
         "type": "bool",
-        "old": [ "autosave" ]
+        "old": [
+            "autosave"
+        ]
     },
     {
         "desc": "Wrap Text",
@@ -150,18 +182,24 @@
     {
         "desc": "Maximized Window",
         "type": "bool",
-        "old": [ "win_max" ]
+        "old": [
+            "win_max"
+        ]
     },
     {
         "desc": "Check Update",
         "type": "bool",
         "default": true,
-        "old": [ "update_start_check" ]
+        "old": [
+            "update_start_check"
+        ]
     },
     {
         "desc": "Auto Format",
         "type": "bool",
-        "old": [ "format_on_save" ]
+        "old": [
+            "format_on_save"
+        ]
     },
     {
         "desc": "Transparency",
@@ -178,99 +216,135 @@
     {
         "desc": "Splitter Size",
         "type": "QByteArray",
-        "old": [ "splitter_sizes" ]
+        "old": [
+            "splitter_sizes"
+        ]
     },
     {
         "desc": "Right Splitter Size",
         "type": "QByteArray",
-        "old": [ "right_splitter_sizes" ]
+        "old": [
+            "right_splitter_sizes"
+        ]
     },
     {
         "desc": "Competitive Companion/Enable",
         "type": "bool",
         "default": true,
-        "old": [ "competitive_use" ]
+        "old": [
+            "competitive_use"
+        ]
     },
     {
         "desc": "Competitive Companion/Connection Port",
         "type": "int",
         "default": 10045,
-        "old": [ "connection_port" ],
+        "old": [
+            "connection_port"
+        ],
         "param1": "\"1,65535\""
     },
     {
         "desc": "Competitive Companion/Open New Tab",
         "type": "bool",
         "default": true,
-        "old": [ "companion_new_tab" ]
+        "old": [
+            "companion_new_tab"
+        ]
     },
     {
         "desc": "Hotkey/Enable",
         "type": "bool",
-        "old": [ "hotkey_use" ]
+        "old": [
+            "hotkey_use"
+        ]
     },
     {
         "desc": "Hotkey/Format",
         "type": "QString",
-        "old": [ "hotkey_format" ]
+        "old": [
+            "hotkey_format"
+        ]
     },
     {
         "desc": "Hotkey/Kill",
         "type": "QString",
-        "old": [ "hotkey_kill" ]
+        "old": [
+            "hotkey_kill"
+        ]
     },
     {
         "desc": "Hotkey/Compile Run",
         "type": "QString",
-        "old": [ "hotkey_compile_run" ]
+        "old": [
+            "hotkey_compile_run"
+        ]
     },
     {
         "desc": "Hotkey/Run",
         "type": "QString",
-        "old": [ "hotkey_run" ]
+        "old": [
+            "hotkey_run"
+        ]
     },
     {
         "desc": "Hotkey/Compile",
         "type": "QString",
-        "old": [ "hotkey_compile" ]
+        "old": [
+            "hotkey_compile"
+        ]
     },
     {
         "desc": "Hotkey/Change View Mode",
         "type": "QString",
-        "old": [ "hotkey_mode_toggle" ]
+        "old": [
+            "hotkey_mode_toggle"
+        ]
     },
     {
         "desc": "Hotkey/Snippets",
         "type": "QString",
-        "old": [ "hotkey_snippets" ]
+        "old": [
+            "hotkey_snippets"
+        ]
     },
     {
         "desc": "Hot Exit/Enable",
         "type": "bool",
         "default": true,
-        "old": [ "use_hot_exit" ]
+        "old": [
+            "use_hot_exit"
+        ]
     },
     {
         "desc": "Hot Exit/Tab Count",
         "type": "int",
-        "old": [ "number_of_tabs" ]
+        "old": [
+            "number_of_tabs"
+        ]
     },
     {
         "desc": "Hot Exit/Current Index",
         "type": "int",
         "default": -1,
-        "old": [ "current_index" ]
+        "old": [
+            "current_index"
+        ]
     },
     {
         "desc": "Hot Exit/Load From File",
         "type": "bool",
-        "old": [ "hot_exit_load_from_file" ]
+        "old": [
+            "hot_exit_load_from_file"
+        ]
     },
     {
         "desc": "CF/Path",
         "type": "QString",
         "default": "cf",
-        "old": [ "cf_path" ],
+        "old": [
+            "cf_path"
+        ],
         "param1": "\"PathItem\"",
         "param2": "0"
     },
@@ -281,7 +355,9 @@
     {
         "desc": "Show Compile And Run Only",
         "type": "bool",
-        "old": [ "compile_and_run_only" ]
+        "old": [
+            "compile_and_run_only"
+        ]
     },
     {
         "desc": "Display EOLN In Diff",
