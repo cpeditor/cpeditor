@@ -56,23 +56,23 @@ class ValueWidget : public QObject
 
 template <typename Type> struct Wrapper : public ValueWidget
 {
-    virtual ~Wrapper()
+    virtual ~Wrapper() override
     {
         if (widget)
             delete widget;
     }
-    virtual QWidget *coreWidget()
+    virtual QWidget *coreWidget() override
     {
         return widget;
     }
     virtual void init(QWidget *parent, QVariant param) = 0;
     virtual Type get() = 0;
     virtual void set(Type b) = 0;
-    virtual QVariant getVariant()
+    virtual QVariant getVariant() override
     {
         return QVariant(get());
     }
-    virtual void setVariant(QVariant value)
+    virtual void setVariant(QVariant value) override
     {
         set(value.value<Type>());
     }
@@ -82,23 +82,23 @@ template <typename Type> struct Wrapper : public ValueWidget
 
 template <> struct Wrapper<bool> : public ValueWidget
 {
-    virtual ~Wrapper()
+    virtual ~Wrapper() override
     {
         if (widget)
             delete widget;
     }
-    virtual QWidget *coreWidget()
+    virtual QWidget *coreWidget() override
     {
         return widget;
     }
     virtual void init(QString name, QWidget *parent, QVariant param) = 0;
     virtual bool get() = 0;
     virtual void set(bool b) = 0;
-    virtual QVariant getVariant()
+    virtual QVariant getVariant() override
     {
         return QVariant(get());
     }
-    virtual void setVariant(QVariant value)
+    virtual void setVariant(QVariant value) override
     {
         set(value.toBool());
     }
