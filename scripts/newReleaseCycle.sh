@@ -52,6 +52,7 @@ git push
 git push --tags
 
 git switch -c "$NEWMINOR" master
+echo "$4.$5." > .ci/STABLE_VERSION
 sed -i "s/UNRELEASED/UNRELEASED\n\n## $NEWNEW (Beta)/" doc/CHANGELOG.md
 sed -i "s/$ALPHAOLD/$NEWNEW/" CMakeLists.txt
 git add doc/CHANGELOG.md CMakeLists.txt
@@ -64,6 +65,7 @@ git push -u origin "$NEWMINOR"
 git push --tags
 
 git switch master
+echo "$4.$5." > .ci/STABLE_VERSION
 sed -i "s/UNRELEASED/UNRELEASED\n\n## $NEWMINOR/" doc/CHANGELOG.md
 sed -i "s/$ALPHAOLD/$ALPHANEW/" CMakeLists.txt
 sed -i "s/$BETAMINOR/$NEWMINOR/g" README.md
