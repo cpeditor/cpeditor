@@ -6,14 +6,16 @@ PreferencesGridPage::PreferencesGridPage(QWidget *parent) : PreferencesPage(pare
     addLayout(gridLayout);
 }
 
-void PreferencesGridPage::addRow(QWidget *widget)
+void PreferencesGridPage::addRow(ValueWidget *widget)
 {
-    gridLayout->addWidget(widget, gridLayout->rowCount(), 1);
+    registerWidget(widget);
+    gridLayout->addWidget(widget->coreWidget(), gridLayout->rowCount(), 1);
 }
 
-void PreferencesGridPage::addRow(const QString &labelText, QWidget *widget)
+void PreferencesGridPage::addRow(const QString &labelText, ValueWidget *widget)
 {
+    registerWidget(widget);
     int row = gridLayout->rowCount();
     gridLayout->addWidget(new QLabel(labelText, this), row, 0);
-    gridLayout->addWidget(widget, row, 1);
+    gridLayout->addWidget(widget->coreWidget(), row, 1);
 }

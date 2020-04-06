@@ -43,78 +43,31 @@ PreferencesPageTemplate::PreferencesPageTemplate(QStringList opts, QWidget *pare
 #endif
         if (si.type == "QString")
         {
-            if (!si.param1.isNull()) // Don't use QLineEdit
-            {
-                if (si.param1.toString() == "PathItem")
-                {
-                    PathItem *item = new PathItem(filter[si.param2.toInt()], titles[si.param2.toInt()], this);
-                    registerAddRow(si.desc, item);
-                    widgets.push_back(item);
-                }
-                else if (si.param1.toString() == "QComboBox")
-                {
-                    QComboBox *combo = new QComboBox(this);
-                    combo->addItems(si.param2.toStringList());
-                    registerAddRow(si.desc, combo);
-                    widgets.push_back(combo);
-                }
-            }
-            else
-            {
-                QLineEdit *edit = new QLineEdit(this);
-                edit->setMinimumWidth(400);
-                registerAddRow(si.desc, edit);
-                widgets.push_back(edit);
-            }
-        }
-        else if (si.type == "QFont")
-        {
-            FontItem *item = new FontItem(this);
-            registerAddRow(si.desc, item);
-            widgets.push_back(item);
-        }
-        else if (si.type == "int")
-        {
-            if (si.param1.isNull())
-            {
-                QSpinBox *spin = new QSpinBox(this);
-                registerAddRow(si.desc, spin);
-                widgets.push_back(spin);
-            }
-            else
-            {
-                QStringList range = si.param1.toString().split(',');
-                if (!si.param2.isNull()) // Don't use QSpinBox
-                {
-                    if (si.param2.toString() == "QScrollBar")
-                    {
-                        QScrollBar *bar = new QScrollBar(Qt::Horizontal, this);
-                        bar->setRange(range[0].toInt(), range[1].toInt());
-                        registerAddRow(si.desc, bar);
-                        widgets.push_back(bar);
-                    }
-                    else if (si.param2.toString() == "QSlider")
-                    {
-                        QSlider *slider = new QSlider(Qt::Horizontal, this);
-                        slider->setRange(range[0].toInt(), range[1].toInt());
-                        registerAddRow(si.desc, slider);
-                        widgets.push_back(slider);
-                    }
-                }
-                else
-                {
-                    QSpinBox *spin = new QSpinBox(this);
-                    spin->setRange(range[0].toInt(), range[1].toInt());
-                    registerAddRow(si.desc, spin);
-                    widgets.push_back(spin);
-                }
-            }
+            Wrapper<QString> *wrapper = createStringWrapper(si.ui);
+            wrapper->init(this, si.param);
+            addRow(si.desc, wrapper);
+            widgets.push_back(wrapper);
         }
         else if (si.type == "bool")
         {
-            QCheckBox *check = new QCheckBox(si.desc, this);
-            registerAddRow(check);
-            widgets.push_back(check);
+            Wrapper<bool> *wrapper = createBoolWrapper(si.ui);
+            wrapper->init(si.desc, this, si.param);
+            addRow(wrapper);
+            widgets.push_back(wrapper);
+        }
+        else if (si.type == "int")
+        {
+            Wrapper<int> *wrapper = createIntWrapper(si.ui);
+            wrapper->init(this, si.param);
+            addRow(si.desc, wrapper);
+            widgets.push_back(wrapper);
+        }
+        else if (si.type == "QFont")
+        {
+            Wrapper<QFont> *wrapper = createFontWrapper(si.ui);
+            wrapper->init(this, si.param);
+            addRow(si.desc, wrapper);
+            widgets.push_back(wrapper);
         }
     }
 }
@@ -124,102 +77,13 @@ QStringList PreferencesPageTemplate::content()
     return options;
 }
 
-static QVariant getValue(const SettingInfo &si, QWidget *widget)
-{
-    if (si.type == "QString")
-    {
-        if (!si.param1.isNull())
-        {
-            if (si.param1.toString() == "PathItem")
-            {
-                return dynamic_cast<PathItem *>(widget)->getLineEdit()->text();
-            }
-            else if (si.param1.toString() == "QComboBox")
-            {
-                return dynamic_cast<QComboBox *>(widget)->currentText();
-            }
-        }
-        else
-        {
-            return dynamic_cast<QLineEdit *>(widget)->text();
-        }
-    }
-    else if (si.type == "QFont")
-    {
-        return dynamic_cast<FontItem *>(widget)->getFont();
-    }
-    else if (si.type == "int")
-    {
-        if (!si.param2.isNull())
-        {
-            if (si.param2.toString() == "QScrollBar")
-                return dynamic_cast<QScrollBar *>(widget)->value();
-            if (si.param2.toString() == "QSlider")
-                return dynamic_cast<QSlider *>(widget)->value();
-        }
-        else
-        {
-            return dynamic_cast<QSpinBox *>(widget)->value();
-        }
-    }
-    else if (si.type == "bool")
-    {
-        return dynamic_cast<QCheckBox *>(widget)->isChecked();
-    }
-    return QVariant();
-}
-
-static void setValue(const SettingInfo &si, QWidget *widget, QVariant value)
-{
-    if (si.type == "QString")
-    {
-        if (!si.param1.isNull())
-        {
-            if (si.param1.toString() == "PathItem")
-            {
-                dynamic_cast<PathItem *>(widget)->getLineEdit()->setText(value.toString());
-            }
-            else if (si.param1.toString() == "QComboBox")
-            {
-                dynamic_cast<QComboBox *>(widget)->setCurrentText(value.toString());
-            }
-        }
-        else
-        {
-            dynamic_cast<QLineEdit *>(widget)->setText(value.toString());
-        }
-    }
-    else if (si.type == "QFont")
-    {
-        dynamic_cast<FontItem *>(widget)->setFont(value.value<QFont>());
-    }
-    else if (si.type == "int")
-    {
-        if (!si.param2.isNull())
-        {
-            if (si.param2.toString() == "QScrollBar")
-                dynamic_cast<QScrollBar *>(widget)->setValue(value.toInt());
-            else if (si.param2.toString() == "QSlider")
-                dynamic_cast<QSlider *>(widget)->setValue(value.toInt());
-        }
-        else
-        {
-            dynamic_cast<QSpinBox *>(widget)->setValue(value.toInt());
-        }
-    }
-    else if (si.type == "bool")
-    {
-        dynamic_cast<QCheckBox *>(widget)->setChecked(value.toBool());
-    }
-}
-
 bool PreferencesPageTemplate::areSettingsChanged()
 {
     for (int i = 0; i < options.size(); ++i)
     {
-        QWidget *widget = widgets[i];
+        ValueWidget *widget = widgets[i];
         SettingInfo si = findSetting(options[i]);
-        if (getValue(si, widget) != SettingsManager::get(si.desc))
+        if (widget->getVariant() != SettingsManager::get(si.desc))
             return true;
     }
     return false;
@@ -229,9 +93,9 @@ void PreferencesPageTemplate::makeUITheSameAsDefault()
 {
     for (int i = 0; i < options.size(); ++i)
     {
-        QWidget *widget = widgets[i];
+        ValueWidget *widget = widgets[i];
         SettingInfo si = findSetting(options[i]);
-        setValue(si, widget, SettingsManager::get(si.desc, true));
+        widget->setVariant(SettingsManager::get(si.desc, true));
     }
 }
 
@@ -239,9 +103,9 @@ void PreferencesPageTemplate::makeUITheSameAsSettings()
 {
     for (int i = 0; i < options.size(); ++i)
     {
-        QWidget *widget = widgets[i];
+        ValueWidget *widget = widgets[i];
         SettingInfo si = findSetting(options[i]);
-        setValue(si, widget, SettingsManager::get(si.desc));
+        widget->setVariant(SettingsManager::get(si.desc));
     }
 }
 
@@ -249,8 +113,8 @@ void PreferencesPageTemplate::makeSettingsTheSameAsUI()
 {
     for (int i = 0; i < options.size(); ++i)
     {
-        QWidget *widget = widgets[i];
+        ValueWidget *widget = widgets[i];
         SettingInfo si = findSetting(options[i]);
-        SettingsManager::set(si.desc, getValue(si, widget));
+        SettingsManager::set(si.desc, widget->getVariant());
     }
 }

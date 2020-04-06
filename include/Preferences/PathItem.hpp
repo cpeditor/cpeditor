@@ -37,6 +37,11 @@ class PathItem : public QWidget
     explicit PathItem(const QString &pathFilter, const QString &dialogTitle, QWidget *parent = nullptr);
 
     /*
+     * @brief construct a PathItem use builtin filter and title
+     */
+    explicit PathItem(int filterId, int titleId, QWidget *parent = nullptr);
+
+    /*
      * @brief get the line edit of the PathItem
      */
     QLineEdit *getLineEdit();

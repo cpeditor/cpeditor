@@ -83,6 +83,7 @@ add_executable(cpeditor
     src/Extensions/CFTool.cpp
     src/Extensions/EditorTheme.cpp
 
+    include/Preferences/ValueWrapper.hpp
     include/Preferences/PreferencesPage.hpp
     include/Preferences/PreferencesHomePage.hpp
     include/Preferences/PreferencesWindow.hpp
@@ -90,6 +91,7 @@ add_executable(cpeditor
     include/Preferences/PreferencesPageTemplate.hpp
     include/Preferences/FontItem.hpp
     include/Preferences/PathItem.hpp
+    src/Preferences/ValueWrapper.cpp
     src/Preferences/PreferencesPage.cpp
     src/Preferences/PreferencesHomePage.cpp
     src/Preferences/PreferencesWindow.cpp

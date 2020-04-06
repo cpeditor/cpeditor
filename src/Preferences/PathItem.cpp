@@ -16,9 +16,20 @@
  */
 
 #include "Preferences/PathItem.hpp"
+#include "Util.hpp"
 #include <QApplication>
 #include <QFileDialog>
 #include <QStyle>
+
+static QString filters[] = {"Excutable (*" EXE_SUFFIX ")", "C++ Sources (*.cpp *.hpp *.h *.cc *.cxx *.c",
+                            "Java Sources (*.java)", "Python Sources (*.py *.py3)"};
+
+static QString titles[] = {
+    "Choose Excutable",
+    "Choose C++ Sources",
+    "Choose Java Sources",
+    "Choose Python Sources",
+};
 
 PathItem::PathItem(const QString &pathFilter, const QString &dialogTitle, QWidget *parent)
     : QWidget(parent), filter(pathFilter), title(dialogTitle)
@@ -34,6 +45,10 @@ PathItem::PathItem(const QString &pathFilter, const QString &dialogTitle, QWidge
     toolButton->setIcon(QApplication::style()->standardIcon(QStyle::SP_DialogOpenButton));
     connect(toolButton, SIGNAL(clicked()), this, SLOT(onButtonClicked()));
     layout->addWidget(toolButton);
+}
+
+PathItem::PathItem(int filterId, int titleId, QWidget *parent) : PathItem(filters[filterId], titles[titleId], parent)
+{
 }
 
 QLineEdit *PathItem::getLineEdit()

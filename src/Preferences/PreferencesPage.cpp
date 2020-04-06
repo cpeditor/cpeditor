@@ -122,44 +122,9 @@ void PreferencesPage::addItem(QLayoutItem *item)
     settingsLayout->addItem(item);
 }
 
-void PreferencesPage::registerWidget(QCheckBox *checkBox)
+void PreferencesPage::registerWidget(ValueWidget *widget)
 {
-    connect(checkBox, SIGNAL(toggled(bool)), this, SLOT(updateButtons()));
-}
-
-void PreferencesPage::registerWidget(QLineEdit *lineEdit)
-{
-    connect(lineEdit, SIGNAL(textChanged(const QString &)), this, SLOT(updateButtons()));
-}
-
-void PreferencesPage::registerWidget(QSpinBox *spinBox)
-{
-    connect(spinBox, SIGNAL(valueChanged(int)), this, SLOT(updateButtons()));
-}
-
-void PreferencesPage::registerWidget(QScrollBar *scrollBar)
-{
-    connect(scrollBar, SIGNAL(valueChanged(int)), this, SLOT(updateButtons()));
-}
-
-void PreferencesPage::registerWidget(QSlider *slider)
-{
-    connect(slider, SIGNAL(valueChanged(int)), this, SLOT(updateButtons()));
-}
-
-void PreferencesPage::registerWidget(QComboBox *comboBox)
-{
-    connect(comboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(updateButtons()));
-}
-
-void PreferencesPage::registerWidget(FontItem *fontItem)
-{
-    connect(fontItem, SIGNAL(fontChanged(QFont)), this, SLOT(updateButtons()));
-}
-
-void PreferencesPage::registerWidget(PathItem *pathItem)
-{
-    registerWidget(pathItem->getLineEdit());
+    QObject::connect(widget, &ValueWidget::valueChanged, this, &PreferencesPage::updateButtons);
 }
 
 void PreferencesPage::setTitle(const QString &title)

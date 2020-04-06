@@ -40,28 +40,8 @@ class PreferencesGridPage : public PreferencesPage
      * @param widget the widget to add
      * @param labelText(optional) the label of the row
      */
-    void addRow(QWidget *widget);
-    void addRow(const QString &labelText, QWidget *widget);
-
-    /*
-     * @brief add a row and connect the widget's changed signal to updateButton
-     * @param widget the widget to add
-     * @param label(optional) the label of this row
-     * @param data(optional) connect *data* to updateButton instead of *widget*
-     */
-
-    // use template to help registerWidget know the type of widget
-    template <typename T> void registerAddRow(T *widget)
-    {
-        registerWidget(widget);
-        addRow(widget);
-    }
-
-    template <typename T> void registerAddRow(const QString &label, T *widget)
-    {
-        registerWidget(widget);
-        addRow(label, widget);
-    }
+    void addRow(ValueWidget *widget);
+    void addRow(const QString &labelText, ValueWidget *widget);
 
   private:
     QGridLayout *gridLayout;

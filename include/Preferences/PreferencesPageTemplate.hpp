@@ -19,6 +19,7 @@
 #define PREFERENCESPAGETEMPLATE_HPP
 
 #include "Preferences/PreferencesGridPage.hpp"
+#include "Preferences/ValueWrapper.hpp"
 
 class PreferencesPageTemplate : public PreferencesGridPage
 {
@@ -37,7 +38,7 @@ class PreferencesPageTemplate : public PreferencesGridPage
 
   private:
     QStringList options;
-    QList<QWidget *> widgets;
+    QList<ValueWidget *> widgets;
 };
 
 #endif // PREFERENCESPAGETEMPLATE_HPP

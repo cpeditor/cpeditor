@@ -31,20 +31,11 @@
 #ifndef PREFERENCESPAGE_HPP
 #define PREFERENCESPAGE_HPP
 
-#include "Preferences/FontItem.hpp"
-#include "Preferences/PathItem.hpp"
-#include <QCheckBox>
-#include <QComboBox>
-#include <QHBoxLayout>
+#include "Preferences/ValueWrapper.hpp"
 #include <QLabel>
-#include <QLineEdit>
 #include <QPushButton>
 #include <QScrollArea>
-#include <QScrollBar>
-#include <QSlider>
-#include <QSpinBox>
 #include <QVBoxLayout>
-#include <QWidget>
 
 class PreferencesPage : public QWidget
 {
@@ -131,20 +122,7 @@ class PreferencesPage : public QWidget
      */
     void addItem(QLayoutItem *item);
 
-    /*
-     * @brief register widget
-     * @note the toggled, textChanged, valueChanged, currentIndexChanged will be connected to updateButtons
-     */
-    void registerWidget(QCheckBox *checkBox);
-    void registerWidget(QLineEdit *lineEdit);
-    void registerWidget(QSpinBox *spinBox);
-    void registerWidget(QComboBox *comboBox);
-    void registerWidget(QScrollBar *scrollBar);
-    void registerWidget(QSlider *slider);
-    // void registerWidget(QFontComboBox *comboBox); this will fallback to registerWidget(QComboBox*)
-
-    void registerWidget(FontItem *fontItem);
-    void registerWidget(PathItem *pathItem);
+    void registerWidget(ValueWidget *widget);
 
     /*
      * @brief set the title of the page

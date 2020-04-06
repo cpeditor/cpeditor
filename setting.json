@@ -6,7 +6,7 @@
         "old": [
             "tab_stop"
         ],
-        "param1": "\"1,16\""
+        "param": "QList<QVariant> {1,16}"
     },
     {
         "desc": "Time Limit",
@@ -20,14 +20,14 @@
     {
         "desc": "Font",
         "type": "QFont",
-        "default": "QFont(\"monospace\")"
+        "default": "QFont(\"monospace\",9)"
     },
     {
         "desc": "Default Language",
         "type": "QString",
         "default": "C++",
-        "param1": "\"QComboBox\"",
-        "param2": "QStringList {\"C++\", \"Java\", \"Python\"}"
+        "ui": "QComboBox",
+        "param": "QStringList {\"C++\", \"Java\", \"Python\"}"
     },
     {
         "desc": "Clang Format/Path",
@@ -36,8 +36,8 @@
         "old": [
             "clang_format_binary"
         ],
-        "param1": "\"PathItem\"",
-        "param2": "0"
+        "ui": "PathItem",
+        "param": "0"
     },
     {
         "desc": "Clang Format/Style",
@@ -53,8 +53,8 @@
         "old": [
             "template_cpp"
         ],
-        "param1": "\"PathItem\"",
-        "param2": "1"
+        "ui": "PathItem",
+        "param": "1"
     },
     {
         "desc": "C++/Compile Command",
@@ -77,8 +77,8 @@
         "old": [
             "template_java"
         ],
-        "param1": "\"PathItem\"",
-        "param2": "2"
+        "ui": "PathItem",
+        "param": "2"
     },
     {
         "desc": "Java/Compile Command",
@@ -110,8 +110,8 @@
         "old": [
             "template_python"
         ],
-        "param1": "\"PathItem\"",
-        "param2": "3"
+        "ui": "PathItem",
+        "param": "3"
     },
     {
         "desc": "Python/Run Arguments",
@@ -132,8 +132,8 @@
         "desc": "Editor Theme",
         "type": "QString",
         "default": "Light",
-        "param1": "\"QComboBox\"",
-        "param2": "QStringList {\"Light\", \"Drakula\", \"Monkai\", \"Solarised\", \"Solarised Dark\"}"
+        "ui": "QComboBox",
+        "param": "QStringList {\"Light\", \"Drakula\", \"Monkai\", \"Solarised\", \"Solarised Dark\"}"
     },
     {
         "desc": "Auto Complete Parentheses",
@@ -205,8 +205,8 @@
         "desc": "Transparency",
         "type": "int",
         "default": 100,
-        "param1": "\"60,100\"",
-        "param2": "\"QSlider\""
+        "param": "QList<QVariant> {60,100}",
+        "ui": "QSlider"
     },
     {
         "desc": "View Mode",
@@ -242,7 +242,7 @@
         "old": [
             "connection_port"
         ],
-        "param1": "\"1024,49151\""
+        "param": "QList<QVariant> {1024,49151}"
     },
     {
         "desc": "Competitive Companion/Open New Tab",
@@ -345,8 +345,8 @@
         "old": [
             "cf_path"
         ],
-        "param1": "\"PathItem\"",
-        "param2": "0"
+        "ui": "PathItem",
+        "param": "0"
     },
     {
         "desc": "Save Path",

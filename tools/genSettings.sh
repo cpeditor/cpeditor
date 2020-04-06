@@ -66,10 +66,10 @@ echo "$license
 
 struct SettingInfo
 {
-    QString desc, type;
+    QString desc, type, ui;
     QStringList old;
     QVariant def;
-    QVariant param1, param2;
+    QVariant param;
 
     QString name() const
     {
@@ -82,7 +82,12 @@ const SettingInfo settingInfo[] =
 for ((i=0;i<count;++i)); do
     namestr="$(jq ".[$i].desc" "$SETTING")";
     type="$(jq -r ".[$i].type" "$SETTING")";
-    echo -n "    {$namestr, \"$type\", {" >&4;
+    if [ "$(jq ".[$i].ui" "$SETTING")" != "null" ]; then
+        ui="$(jq -r ".[$i].ui" "$SETTING")";
+    else
+        ui='';
+    fi
+    echo -n "    {$namestr, \"$type\", \"$ui\", {" >&4;
     if [ "$(jq ".[$i].old" "$SETTING")" != "null" ]; then
         olds=($(jq ".[$i].old[]" "$SETTING"));
         ocnt=${#olds[@]};
@@ -114,11 +119,8 @@ for ((i=0;i<count;++i)); do
                 ;;
         esac
     fi
-    if [ "$(jq ".[$i].param1" "$SETTING")" != "null" ]; then
-        echo -n ", $(jq -r ".[$i].param1" "$SETTING")" >&4;
-        if [ "$(jq ".[$i].param2" "$SETTING")" != "null" ]; then
-            echo -n ", $(jq -r ".[$i].param2" "$SETTING")" >&4;
-        fi
+    if [ "$(jq ".[$i].param" "$SETTING")" != "null" ]; then
+        echo -n ", $(jq -r ".[$i].param" "$SETTING")" >&4;
     fi
     echo "}," >&4;
 done
