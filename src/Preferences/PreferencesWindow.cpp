@@ -90,6 +90,9 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
 
     addPage("Language/Code Template",
             new PreferencesPageTemplate({"C++/Template Path", "Java/Template Path", "Python/Template Path"}));
+
+    addPage("Appearance", new PreferencesPageTemplate({"Editor Theme", "Font", "Transparency",
+                                                       "Show Compile And Run Only", "Display EOLN In Diff"}));
 }
 
 void PreferencesWindow::display()

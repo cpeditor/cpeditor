@@ -4,8 +4,7 @@
         "type": "int",
         "default": 4,
         "old": [ "tab_stop" ],
-        "param1": "1",
-        "param2": "16"
+        "param1": "\"1,16\""
     },
     {
         "desc": "Time Limit",
@@ -168,8 +167,8 @@
         "desc": "Transparency",
         "type": "int",
         "default": 100,
-        "param1": "60",
-        "param2": "100"
+        "param1": "\"60,100\"",
+        "param2": "\"QSlider\""
     },
     {
         "desc": "View Mode",
@@ -197,8 +196,7 @@
         "type": "int",
         "default": 10045,
         "old": [ "connection_port" ],
-        "param1": "1",
-        "param2": "65535"
+        "param1": "\"1,65535\""
     },
     {
         "desc": "Competitive Companion/Open New Tab",
@@ -281,8 +279,9 @@
         "type": "QString"
     },
     {
-        "desc": "Compile And Run Only",
-        "type": "bool"
+        "desc": "Show Compile And Run Only",
+        "type": "bool",
+        "old": [ "compile_and_run_only" ]
     },
     {
         "desc": "Display EOLN In Diff",

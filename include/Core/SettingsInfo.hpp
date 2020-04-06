@@ -42,7 +42,7 @@ struct SettingInfo
 };
 
 const SettingInfo settingInfo[] = {
-    {"Tab Width", "int", {"tab_stop"}, 4, 1, 16},
+    {"Tab Width", "int", {"tab_stop"}, 4, "1,16"},
     {"Time Limit", "int", {}, 5000},
     {"Geometry", "QRect", {}, QRect()},
     {"Font", "QFont", {}, QFont("monospace", 9)},
@@ -76,12 +76,12 @@ const SettingInfo settingInfo[] = {
     {"Maximized Window", "bool", {"win_max"}, false},
     {"Check Update", "bool", {"update_start_check"}, true},
     {"Auto Format", "bool", {"format_on_save"}, false},
-    {"Transparency", "int", {}, 100, 60, 100},
+    {"Transparency", "int", {}, 100, "60,100", "QSlider"},
     {"View Mode", "QString", {}, "split"},
     {"Splitter Size", "QByteArray", {"splitter_sizes"}, QByteArray()},
     {"Right Splitter Size", "QByteArray", {"right_splitter_sizes"}, QByteArray()},
     {"Competitive Companion/Enable", "bool", {"competitive_use"}, true},
-    {"Competitive Companion/Connection Port", "int", {"connection_port"}, 10045, 1, 65535},
+    {"Competitive Companion/Connection Port", "int", {"connection_port"}, 10045, "1,65535"},
     {"Competitive Companion/Open New Tab", "bool", {"companion_new_tab"}, true},
     {"Hotkey/Enable", "bool", {"hotkey_use"}, false},
     {"Hotkey/Format", "QString", {"hotkey_format"}, ""},
@@ -97,7 +97,7 @@ const SettingInfo settingInfo[] = {
     {"Hot Exit/Load From File", "bool", {"hot_exit_load_from_file"}, false},
     {"CF/Path", "QString", {"cf_path"}, "cf", "PathItem", 0},
     {"Save Path", "QString", {}, ""},
-    {"Compile And Run Only", "bool", {}, false},
+    {"Show Compile And Run Only", "bool", {"compile_and_run_only"}, false},
     {"Display EOLN In Diff", "bool", {}, false},
     {"Save Faster", "bool", {}, false},
 };

@@ -67,12 +67,48 @@ PreferencesPageTemplate::PreferencesPageTemplate(QStringList opts, QWidget *pare
                 widgets.push_back(edit);
             }
         }
+        else if (si.type == "QFont")
+        {
+            FontItem *item = new FontItem(this);
+            registerAddRow(si.desc, item);
+            widgets.push_back(item);
+        }
         else if (si.type == "int")
         {
-            QSpinBox *spin = new QSpinBox(this);
-            spin->setRange(si.param1.toInt(), si.param2.toInt());
-            registerAddRow(si.desc, spin);
-            widgets.push_back(spin);
+            if (si.param1.isNull())
+            {
+                QSpinBox *spin = new QSpinBox(this);
+                registerAddRow(si.desc, spin);
+                widgets.push_back(spin);
+            }
+            else
+            {
+                QStringList range = si.param1.toString().split(',');
+                if (!si.param2.isNull()) // Don't use QSpinBox
+                {
+                    if (si.param2.toString() == "QScrollBar")
+                    {
+                        QScrollBar *bar = new QScrollBar(Qt::Horizontal, this);
+                        bar->setRange(range[0].toInt(), range[1].toInt());
+                        registerAddRow(si.desc, bar);
+                        widgets.push_back(bar);
+                    }
+                    else if (si.param2.toString() == "QSlider")
+                    {
+                        QSlider *slider = new QSlider(Qt::Horizontal, this);
+                        slider->setRange(range[0].toInt(), range[1].toInt());
+                        registerAddRow(si.desc, slider);
+                        widgets.push_back(slider);
+                    }
+                }
+                else
+                {
+                    QSpinBox *spin = new QSpinBox(this);
+                    spin->setRange(range[0].toInt(), range[1].toInt());
+                    registerAddRow(si.desc, spin);
+                    widgets.push_back(spin);
+                }
+            }
         }
         else if (si.type == "bool")
         {
@@ -108,9 +144,23 @@ static QVariant getValue(const SettingInfo &si, QWidget *widget)
             return dynamic_cast<QLineEdit *>(widget)->text();
         }
     }
+    else if (si.type == "QFont")
+    {
+        return dynamic_cast<FontItem *>(widget)->getFont();
+    }
     else if (si.type == "int")
     {
-        return dynamic_cast<QSpinBox *>(widget)->value();
+        if (!si.param2.isNull())
+        {
+            if (si.param2.toString() == "QScrollBar")
+                return dynamic_cast<QScrollBar *>(widget)->value();
+            if (si.param2.toString() == "QSlider")
+                return dynamic_cast<QSlider *>(widget)->value();
+        }
+        else
+        {
+            return dynamic_cast<QSpinBox *>(widget)->value();
+        }
     }
     else if (si.type == "bool")
     {
@@ -139,9 +189,23 @@ static void setValue(const SettingInfo &si, QWidget *widget, QVariant value)
             dynamic_cast<QLineEdit *>(widget)->setText(value.toString());
         }
     }
+    else if (si.type == "QFont")
+    {
+        dynamic_cast<FontItem *>(widget)->setFont(value.value<QFont>());
+    }
     else if (si.type == "int")
     {
-        dynamic_cast<QSpinBox *>(widget)->setValue(value.toInt());
+        if (!si.param2.isNull())
+        {
+            if (si.param2.toString() == "QScrollBar")
+                dynamic_cast<QScrollBar *>(widget)->setValue(value.toInt());
+            else if (si.param2.toString() == "QSlider")
+                dynamic_cast<QSlider *>(widget)->setValue(value.toInt());
+        }
+        else
+        {
+            dynamic_cast<QSpinBox *>(widget)->setValue(value.toInt());
+        }
     }
     else if (si.type == "bool")
     {

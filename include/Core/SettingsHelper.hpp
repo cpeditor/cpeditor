@@ -426,13 +426,13 @@ inline QString getSavePath()
 {
     return SettingsManager::get("Save Path").value<QString>();
 }
-inline void setCompileAndRunOnly(bool value)
+inline void setShowCompileAndRunOnly(bool value)
 {
-    SettingsManager::set("Compile And Run Only", value);
+    SettingsManager::set("Show Compile And Run Only", value);
 }
-inline bool isCompileAndRunOnly()
+inline bool isShowCompileAndRunOnly()
 {
-    return SettingsManager::get("Compile And Run Only").value<bool>();
+    return SettingsManager::get("Show Compile And Run Only").value<bool>();
 }
 inline void setDisplayEOLNInDiff(bool value)
 {

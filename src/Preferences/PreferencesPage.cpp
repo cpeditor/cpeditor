@@ -137,6 +137,16 @@ void PreferencesPage::registerWidget(QSpinBox *spinBox)
     connect(spinBox, SIGNAL(valueChanged(int)), this, SLOT(updateButtons()));
 }
 
+void PreferencesPage::registerWidget(QScrollBar *scrollBar)
+{
+    connect(scrollBar, SIGNAL(valueChanged(int)), this, SLOT(updateButtons()));
+}
+
+void PreferencesPage::registerWidget(QSlider *slider)
+{
+    connect(slider, SIGNAL(valueChanged(int)), this, SLOT(updateButtons()));
+}
+
 void PreferencesPage::registerWidget(QComboBox *comboBox)
 {
     connect(comboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(updateButtons()));

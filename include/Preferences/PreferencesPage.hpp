@@ -40,6 +40,8 @@
 #include <QLineEdit>
 #include <QPushButton>
 #include <QScrollArea>
+#include <QScrollBar>
+#include <QSlider>
 #include <QSpinBox>
 #include <QVBoxLayout>
 #include <QWidget>
@@ -137,6 +139,8 @@ class PreferencesPage : public QWidget
     void registerWidget(QLineEdit *lineEdit);
     void registerWidget(QSpinBox *spinBox);
     void registerWidget(QComboBox *comboBox);
+    void registerWidget(QScrollBar *scrollBar);
+    void registerWidget(QSlider *slider);
     // void registerWidget(QFontComboBox *comboBox); this will fallback to registerWidget(QComboBox*)
 
     void registerWidget(FontItem *fontItem);

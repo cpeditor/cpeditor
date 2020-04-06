@@ -495,7 +495,7 @@ void MainWindow::applySettings(const QString &pagePath, bool shouldPerformDigoni
 
     if (pagePath.isEmpty() || pagePath == "Appearance")
     {
-        if (SettingsHelper::isCompileAndRunOnly())
+        if (SettingsHelper::isShowCompileAndRunOnly())
         {
             ui->compile->hide();
             ui->runOnly->hide();
