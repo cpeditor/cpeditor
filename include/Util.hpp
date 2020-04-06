@@ -40,6 +40,8 @@ bool saveFile(const QString &path, const QString &content, const QString &head =
 
 void applySettingsToEditor(QCodeEditor *editor);
 
+void setEditorLanguage(QCodeEditor *editor, const QString &language);
+
 } // namespace Util
 
 #endif // UTIL_HPP

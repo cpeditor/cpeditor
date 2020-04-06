@@ -23,21 +23,18 @@
 #include "Core/Runner.hpp"
 #include "Core/SettingsHelper.hpp"
 #include "Util.hpp"
-#include <QCXXHighlighter>
 #include <QFileDialog>
 #include <QFont>
 #include <QFontDialog>
 #include <QInputDialog>
-#include <QJavaHighlighter>
 #include <QMenu>
 #include <QMessageBox>
 #include <QMimeData>
-#include <QPythonCompleter>
-#include <QPythonHighlighter>
 #include <QSaveFile>
 #include <QScrollBar>
 #include <QShortcut>
 #include <QSyntaxStyle>
+#include <QTextBlock>
 #include <QTextStream>
 #include <QThread>
 #include <QTimer>
@@ -580,42 +577,22 @@ void MainWindow::formatSource()
 void MainWindow::setLanguage(const QString &lang)
 {
     Core::Log::i("mainwindow/setLanguage") << "lang " << lang << endl;
+    language = lang;
+    if (language != "Python" && language != "Java")
+        language = "C++";
     log.clear();
     if (!QFile::exists(filePath))
     {
-        QFile templateFile(SettingsManager::get(QString("%1/Template Path").arg(lang)).toString());
+        QFile templateFile(SettingsManager::get(QString("%1/Template Path").arg(language)).toString());
         templateFile.open(QIODevice::ReadOnly | QIODevice::Text);
         QString templateContent;
         if (templateFile.isOpen())
             templateContent = templateFile.readAll();
         if (templateContent == editor->toPlainText())
-        {
-            language = lang;
             loadFile(filePath);
-        }
     }
-    language = lang;
-    if (lang == "Python")
-    {
-        editor->setHighlighter(new QPythonHighlighter);
-        editor->setCompleter(new QPythonCompleter);
-        ui->changeLanguageButton->setText("Python");
-    }
-    else if (lang == "Java")
-    {
-        editor->setHighlighter(new QJavaHighlighter);
-        editor->setCompleter(nullptr);
-        ui->changeLanguageButton->setText("Java");
-    }
-    else
-    {
-        language = "C++";
-        if (lang != "C++")
-            log.warn("CP Editor", "Unknown lanague set, fallback to C++");
-        editor->setHighlighter(new QCXXHighlighter);
-        editor->setCompleter(nullptr);
-        ui->changeLanguageButton->setText("C++");
-    }
+    Util::setEditorLanguage(editor, language);
+    ui->changeLanguageButton->setText(language);
     performCompileAndRunDiagonistics();
     isLanguageSet = true;
 }

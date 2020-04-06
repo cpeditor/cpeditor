@@ -4,6 +4,10 @@
 
 - Show stderr of the checker when the verdict is AC. (#207)
 
+### Changed
+
+- Remove the hard-to-use completer for Python.
+
 ### Fixed
 
 - Show the manual of the current version instead of the latest version.

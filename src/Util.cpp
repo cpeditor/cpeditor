@@ -19,7 +19,10 @@
 #include "Core/EventLogger.hpp"
 #include "Core/SettingsHelper.hpp"
 #include "Extensions/EditorTheme.hpp"
+#include <QCXXHighlighter>
 #include <QFile>
+#include <QJavaHighlighter>
+#include <QPythonHighlighter>
 #include <QSaveFile>
 
 namespace Util
@@ -115,6 +118,25 @@ void applySettingsToEditor(QCodeEditor *editor)
         editor->setSyntaxStyle(Themes::EditorTheme::getSolarisedDarkTheme());
     else
         editor->setSyntaxStyle(Themes::EditorTheme::getLightTheme());
+}
+
+void setEditorLanguage(QCodeEditor *editor, const QString &language)
+{
+    if (language == "Python")
+    {
+        editor->setHighlighter(new QPythonHighlighter);
+        editor->setCompleter(nullptr);
+    }
+    else if (language == "Java")
+    {
+        editor->setHighlighter(new QJavaHighlighter);
+        editor->setCompleter(nullptr);
+    }
+    else
+    {
+        editor->setHighlighter(new QCXXHighlighter);
+        editor->setCompleter(nullptr);
+    }
 }
 
 } // namespace Util
