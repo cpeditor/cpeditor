@@ -4,6 +4,10 @@
 
 - Make it able to use makepkg to install on Linux.
 
+### Fixed
+
+- Add auto-close for single and double quotes. (#226)
+
 ## 6.2.2 (Beta)
 
 ### Changed
