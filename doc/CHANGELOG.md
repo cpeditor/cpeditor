@@ -1,5 +1,9 @@
 ## UNRELEASED
 
+### Fixed
+
+- Add auto-close for single and double quotes. (#226)
+
 ## 6.1.5
 
 ### Added
