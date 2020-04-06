@@ -7,6 +7,7 @@
 ### Fixed
 
 - Add auto-close for single and double quotes. (#226)
+- Don't require any undo for auto-close parentheses.
 
 ## 6.2.2 (Beta)
 
