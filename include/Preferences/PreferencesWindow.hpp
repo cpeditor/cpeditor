@@ -153,6 +153,7 @@ class PreferencesWindow : public QMainWindow
 
     QMap<QTreeWidgetItem *, QStringList> content;
     QMap<QTreeWidgetItem *, PreferencesPage *> pageWidget;
+    QMap<PreferencesPage *, QTreeWidgetItem *> pageTreeItem;
 
     QShortcut *exitShortcut = nullptr;
 };

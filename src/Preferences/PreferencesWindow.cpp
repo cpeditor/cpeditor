@@ -138,7 +138,10 @@ void PreferencesWindow::switchToPage(QWidget *page, bool force)
 
     auto preferencesPage = dynamic_cast<PreferencesPage *>(page);
     if (preferencesPage != nullptr)
+    {
+        menuTree->setCurrentItem(pageTreeItem[preferencesPage]);
         preferencesPage->loadSettings();
+    }
 }
 
 void PreferencesWindow::addPage(const QString &path, PreferencesPage *page, const QStringList &pageContent)
@@ -172,6 +175,7 @@ void PreferencesWindow::addPage(const QString &path, PreferencesPage *page, cons
     page->setPath(path);
     content[current] = pageContent;
     pageWidget[current] = page;
+    pageTreeItem[page] = current;
     stackedWidget->addWidget(page);
     connect(page, SIGNAL(settingsApplied(const QString &)), this, SIGNAL(settingsApplied(const QString &)));
 }
