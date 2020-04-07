@@ -15,8 +15,8 @@
  *
  */
 
-// Main Frame
 #include "Preferences/PreferencesWindow.hpp"
+#include "Preferences/CodeSnippetsPage.hpp"
 #include <QApplication>
 #include <QCloseEvent>
 #include <QScreen>
@@ -73,7 +73,7 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
             [this](const QString &path) { switchToPage(getPageWidget(path)); });
     stackedWidget->addWidget(homePage);
 
-    splitter->setSizes({1, 3});
+    splitter->setSizes({10000, 30000});
 
     exitShortcut = new QShortcut(QKeySequence::Cancel, this);
     connect(exitShortcut, SIGNAL(activated()), this, SLOT(close()));
@@ -90,6 +90,14 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
 
     addPage("Language/Code Template",
             new PreferencesPageTemplate({"C++/Template Path", "Java/Template Path", "Python/Template Path"}));
+
+    auto cppSnippetsPage = new CodeSnippetsPage("C++");
+    auto javaSnippetsPage = new CodeSnippetsPage("Java");
+    auto pythonSnippetsPage = new CodeSnippetsPage("Python");
+    addPage("Language/Code Snippets/C++ Snippets", cppSnippetsPage,
+            {"C++ Snippets", "C++ Code Snippets", "Cpp Snippets", "Cpp Code Snippets"});
+    addPage("Language/Code Snippets/Java Snippets", javaSnippetsPage, {"Java Snippets", "Java Code Snippets"});
+    addPage("Language/Code Snippets/Python Snippets", pythonSnippetsPage, {"Python Snippets", "Python Code Snippets"});
 
     addPage("Appearance", new PreferencesPageTemplate({"Editor Theme", "Font", "Transparency",
                                                        "Show Compile And Run Only", "Display EOLN In Diff"}));

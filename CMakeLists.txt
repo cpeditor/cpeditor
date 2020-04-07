@@ -92,6 +92,7 @@ add_executable(cpeditor
     include/Preferences/FontItem.hpp
     include/Preferences/PathItem.hpp
     include/Preferences/ShortcutItem.hpp
+    include/Preferences/CodeSnippetsPage.hpp
     src/Preferences/ValueWrapper.cpp
     src/Preferences/PreferencesPage.cpp
     src/Preferences/PreferencesHomePage.cpp
@@ -101,6 +102,7 @@ add_executable(cpeditor
     src/Preferences/FontItem.cpp
     src/Preferences/PathItem.cpp
     src/Preferences/ShortcutItem.cpp
+    src/Preferences/CodeSnippetsPage.cpp
 
     include/mainwindow.hpp
     include/appwindow.hpp

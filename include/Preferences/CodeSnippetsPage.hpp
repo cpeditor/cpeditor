@@ -1,0 +1,176 @@
+/*
+ * Copyright (C) 2019-2020 Ashar Khan <ashar786khan@gmail.com>
+ *
+ * This file is part of CP Editor.
+ *
+ * CP Editor is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * I will not be responsible if CP Editor behaves in unexpected way and
+ * causes your ratings to go down and or lose any important contest.
+ *
+ * Believe Software is "Software" and it isn't immune to bugs.
+ *
+ */
+
+#ifndef CODESNIPPETSPAGE_HPP
+#define CODESNIPPETSPAGE_HPP
+
+#include "Preferences/PreferencesPage.hpp"
+#include <QCodeEditor>
+#include <QListWidget>
+#include <QMap>
+#include <QMenu>
+#include <QSplitter>
+#include <QStackedWidget>
+
+class CodeSnippetsPage : public PreferencesPage
+{
+    Q_OBJECT
+
+  public:
+    explicit CodeSnippetsPage(const QString &language, QWidget *parent = nullptr);
+
+  private:
+    bool areSettingsChanged() override;
+
+    void makeUITheSameAsDefault() override;
+
+    void makeUITheSameAsSettings() override;
+
+    void makeSettingsTheSameAsUI() override;
+
+  private slots:
+    /*
+     * @brief select the first snippet with a name starts with text
+     */
+    void updateSearch(const QString &text);
+
+    /*
+     * @brief switch to snippet and warn if there are unsaved changes
+     * @param item the item to switch to, nullptr for switching to the "empty"
+     * @param force if true, won't ask for conformation
+     * @returns succeeded or not, it may fail because of unsaved changes
+     */
+    bool switchToSnippet(QListWidgetItem *item, bool force = false);
+
+    /*
+     * @brief ask for name and add a snippet
+     * @note may ask to change a name if it's duplicated
+     */
+    void addSnippet();
+
+    /*
+     * @brief ask for confirmation and delete the current snippet
+     */
+    void deleteSnippet();
+
+    /*
+     * @brief ask for new name and rename the current snippet
+     * @note may ask to change a name if it's duplicated
+     */
+    void renameSnippet();
+
+    /*
+     * @brief ask for files and load them from files
+     * @note may ask to change a name if it's duplicated
+     */
+    void loadSnippetsFromFiles();
+
+    /*
+     * @brief ask for directory and extract to files
+     * @note may ask to change a file name if it's duplicated
+     */
+    void extractSnippetsToFiles();
+
+  private:
+    /*
+     * @brief check it's able to switch to another snippet, warn if there are unsaved changes
+     * @returns able to switch or not
+     */
+    bool aboutToSwitchToSnippet();
+
+    /*
+     * @brief get a non-empty unused snippet name
+     * @param oldName the old name used for the first-time place holder
+     * @param avoidConflictWithSettings avoid used names in the settings as well as in the UI
+     * @returns the name if succeeded, null QString if failed
+     */
+    QString getNewSnippetName(const QString &oldName = QString(), bool avoidConflictWithSettings = false);
+
+    /*
+     * @brief add a new snippet without asking for confirmation
+     * @param name the name of the new snippet
+     * @note updateButtons() is called in this
+     */
+    void addSnippet(const QString &name);
+
+    /*
+     * @brief delete a snippet without asking for confirmation
+     * @param item the item to the snippet
+     * @note updateButtons() is called in this
+     */
+    void deleteSnippet(QListWidgetItem *item);
+
+    /*
+     * @brief get the key of the snippet name in the SettingsManager
+     */
+    QString snippetKey(const QString &name);
+
+    /*
+     * @brief set enabled for deleleButton, renameAction and extractSnippetsToFilesAction
+     */
+    void updateActions();
+
+  private:
+    /*
+     * splitter:
+     *   - leftWidget
+     *     - leftLayout
+     *       - searchEdit
+     *       - snippetsList
+     *       - buttonsLayout
+     *         - addButton
+     *         - deleteButton
+     *         - moreButton
+     *   - rightWidget
+     *     - editor
+     *     - noSnippetWidget
+     *       - VStretchLayout
+     *         - (stretch)
+     *         - HStretchLayout
+     *           - (stretch)
+     *           - noSnippetLabel
+     *           - (stretch)
+     *         - (stretch)
+     */
+
+    QSplitter *splitter = nullptr;
+    QWidget *leftWidget = nullptr;
+    QVBoxLayout *leftLayout = nullptr;
+    QLineEdit *searchEdit = nullptr;
+    QListWidget *snippetsList = nullptr;
+    QHBoxLayout *buttonsLayout = nullptr;
+    QPushButton *addButton = nullptr;
+    QPushButton *deleteButton = nullptr;
+    QPushButton *moreButton = nullptr;
+    QMenu *moreMenu = nullptr;
+    QAction *renameAction = nullptr;
+    QAction *loadSnippetsFromFilesAction = nullptr;
+    QAction *extractSnippetsToFilesAction = nullptr;
+    QStackedWidget *rightWidget = nullptr;
+    QCodeEditor *editor = nullptr;
+    QWidget *noSnippetWidget = nullptr;
+    QVBoxLayout *VStretchLayout = nullptr;
+    QHBoxLayout *HStretchLayout = nullptr;
+    QLabel *noSnippetLabel = nullptr;
+
+    QString lang;
+    QString currentSnippetName;
+    QListWidgetItem *currentItem = nullptr;
+    QMap<QString, QListWidgetItem *> snippetItem;
+};
+
+#endif // CODESNIPPETSPAGE_HPP
