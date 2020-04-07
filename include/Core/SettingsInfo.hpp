@@ -45,7 +45,7 @@ const SettingInfo settingInfo[] = {
     {"Tab Width", "int", "", {"tab_stop"}, 4, QList<QVariant>{1, 16}},
     {"Time Limit", "int", "", {}, 5000},
     {"Geometry", "QRect", "", {}, QRect()},
-    {"Font", "QFont", "", {}, QFont("monospace", 9)},
+    {"Font", "QFont", "", {}, QFont("monospace")},
     {"Default Language", "QString", "QComboBox", {}, "C++", QStringList{"C++", "Java", "Python"}},
     {"Clang Format/Path", "QString", "PathItem", {"clang_format_binary"}, "clang-format", 0},
     {"Clang Format/Style", "QString", "", {"clang_format_style"}, "BasedOnStyle: Google"},

@@ -20,7 +20,7 @@
     {
         "desc": "Font",
         "type": "QFont",
-        "default": "QFont(\"monospace\",9)"
+        "default": "QFont(\"monospace\")"
     },
     {
         "desc": "Default Language",

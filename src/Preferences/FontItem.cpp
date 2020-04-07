@@ -50,7 +50,7 @@ QFont FontItem::getFont()
 void FontItem::onButtonClicked()
 {
     bool ok;
-    QFont newFont = QFontDialog::getFont(&ok, font);
+    QFont newFont = QFontDialog::getFont(&ok, font, this, QString(), QFontDialog::MonospacedFonts);
     if (ok)
         setFont(newFont);
 }
