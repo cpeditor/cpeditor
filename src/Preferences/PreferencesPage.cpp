@@ -31,8 +31,11 @@ PreferencesPage::PreferencesPage(QWidget *parent) : QWidget(parent)
     settingsLayout = new QVBoxLayout(scrollAreaWidget);
     buttonsLayout = new QHBoxLayout();
     defaultButton = new QPushButton(QApplication::style()->standardIcon(QStyle::SP_FileDialogDetailedView), "Default");
+    defaultButton->setShortcut({"Ctrl+D"});
     resetButton = new QPushButton(QApplication::style()->standardIcon(QStyle::SP_DialogResetButton), "Reset");
+    resetButton->setShortcut({"Ctrl+R"});
     applyButton = new QPushButton(QApplication::style()->standardIcon(QStyle::SP_DialogApplyButton), "Apply");
+    applyButton->setShortcut({"Ctrl+S"});
 
     // set up the UI
     buttonsLayout->addWidget(defaultButton);

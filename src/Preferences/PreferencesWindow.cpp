@@ -78,6 +78,17 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
     exitShortcut = new QShortcut(QKeySequence::Cancel, this);
     connect(exitShortcut, SIGNAL(activated()), this, SLOT(close()));
 
+    travelShortcut = new QShortcut({"Ctrl+Tab"}, this);
+    connect(travelShortcut, &QShortcut::activated, [this]() {
+        switchToPage(stackedWidget->widget((stackedWidget->currentIndex() + 1) % stackedWidget->count()));
+    });
+
+    travelBackShortcut = new QShortcut({"Ctrl+Shift+Tab"}, this);
+    connect(travelBackShortcut, &QShortcut::activated, [this]() {
+        switchToPage(stackedWidget->widget((stackedWidget->currentIndex() + stackedWidget->count() - 1) %
+                                           stackedWidget->count()));
+    });
+
     addPage("Edit", new PreferencesPageTemplate({"Tab Width", "Auto Indent", "Wrap Text", "Auto Complete Parentheses",
                                                  "Auto Remove Parentheses", "Replace Tabs"}));
 

@@ -49,14 +49,17 @@ CodeSnippetsPage::CodeSnippetsPage(const QString &language, QWidget *parent) : P
     leftLayout->addLayout(buttonsLayout);
 
     addButton = new QPushButton("Add");
+    addButton->setShortcut({"Ctrl+N"});
     connect(addButton, SIGNAL(clicked()), this, SLOT(addSnippet()));
     buttonsLayout->addWidget(addButton);
 
     deleteButton = new QPushButton("Del");
+    deleteButton->setShortcut({"Ctrl+W"});
     connect(deleteButton, SIGNAL(clicked()), this, SLOT(deleteSnippet()));
     buttonsLayout->addWidget(deleteButton);
 
     renameAction = new QAction("Rename Snippet");
+    renameAction->setShortcut({"F2"});
     connect(renameAction, SIGNAL(triggered()), this, SLOT(renameSnippet()));
 
     loadSnippetsFromFilesAction = new QAction("Load Snippets From Files");

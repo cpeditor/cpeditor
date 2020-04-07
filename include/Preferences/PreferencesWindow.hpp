@@ -156,6 +156,8 @@ class PreferencesWindow : public QMainWindow
     QMap<PreferencesPage *, QTreeWidgetItem *> pageTreeItem;
 
     QShortcut *exitShortcut = nullptr;
+    QShortcut *travelShortcut = nullptr;
+    QShortcut *travelBackShortcut = nullptr;
 };
 
 #endif // PREFERENCESWINDOW_HPP
