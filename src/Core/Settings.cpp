@@ -105,6 +105,7 @@ void SettingsManager::init()
 void SettingsManager::deinit()
 {
     QSettings setting(configFileLocation[0], QSettings::IniFormat);
+    setting.clear(); // Otherwise SettingsManager::remove won't work
 
     // save most settings
     for (const SettingInfo &si : settingInfo)
