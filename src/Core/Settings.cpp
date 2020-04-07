@@ -139,6 +139,11 @@ QVariant SettingsManager::get(QString key, bool alwaysDefault)
     }
 }
 
+bool SettingsManager::contains(const QString &key)
+{
+    return cur->contains(key);
+}
+
 void SettingsManager::set(const QString &key, QVariant value)
 {
     cur->insert(key, value);

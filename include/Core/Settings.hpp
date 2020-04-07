@@ -30,6 +30,7 @@ struct SettingsManager
     static void deinit();
 
     static QVariant get(QString key, bool alwaysDefault = false);
+    static bool contains(const QString &key);
     static void set(const QString &key, QVariant value);
     static void remove(QStringList keys);
     static void reset();
