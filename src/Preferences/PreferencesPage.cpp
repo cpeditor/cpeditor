@@ -28,9 +28,7 @@ PreferencesPage::PreferencesPage(QWidget *parent) : QWidget(parent)
     titleLabel = new QLabel();
     scrollArea = new QScrollArea();
     scrollAreaWidget = new QWidget();
-    VStretchLayout = new QVBoxLayout(scrollAreaWidget);
-    HStretchLayout = new QHBoxLayout();
-    settingsLayout = new QVBoxLayout();
+    settingsLayout = new QVBoxLayout(scrollAreaWidget);
     buttonsLayout = new QHBoxLayout();
     defaultButton = new QPushButton(QApplication::style()->standardIcon(QStyle::SP_FileDialogDetailedView), "Default");
     resetButton = new QPushButton(QApplication::style()->standardIcon(QStyle::SP_DialogResetButton), "Reset");
@@ -41,12 +39,6 @@ PreferencesPage::PreferencesPage(QWidget *parent) : QWidget(parent)
     buttonsLayout->addWidget(resetButton);
     buttonsLayout->addStretch();
     buttonsLayout->addWidget(applyButton);
-    HStretchLayout->addStretch();
-    HStretchLayout->addLayout(settingsLayout);
-    HStretchLayout->addStretch();
-    VStretchLayout->addSpacing(30);
-    VStretchLayout->addLayout(HStretchLayout);
-    VStretchLayout->addStretch();
     scrollArea->setWidgetResizable(true);
     scrollArea->setWidget(scrollAreaWidget);
     mainLayout->addWidget(titleLabel);

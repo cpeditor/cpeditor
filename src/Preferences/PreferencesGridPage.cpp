@@ -2,8 +2,19 @@
 
 PreferencesGridPage::PreferencesGridPage(QWidget *parent) : PreferencesPage(parent)
 {
+    VLayout = new QVBoxLayout();
+    HLayout = new QHBoxLayout();
     gridLayout = new QGridLayout();
-    addLayout(gridLayout);
+
+    addLayout(VLayout);
+
+    VLayout->addSpacing(30);
+    VLayout->addLayout(HLayout);
+    VLayout->addStretch();
+
+    HLayout->addStretch();
+    HLayout->addLayout(gridLayout);
+    HLayout->addStretch();
 }
 
 void PreferencesGridPage::addRow(ValueWidget *widget)

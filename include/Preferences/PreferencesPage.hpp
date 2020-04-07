@@ -155,15 +155,7 @@ class PreferencesPage : public QWidget
      *  - titleLabel
      *  - scrollArea
      *    - scrollAreaWidget
-     *      - VStretchLayout
-     *        - (spacing)
-     *        - HStretchLayout
-     *          - (stretch)
-     *            - settingsLayout
-     *              - setting 1 in the derived class
-     *              - ...
-     *          - (stretch)
-     *        - (stretch)
+     *      - settingsLayout
      *  - buttonsLayout
      *    - defaultButton
      *    - resetButton
@@ -175,8 +167,6 @@ class PreferencesPage : public QWidget
     QLabel *titleLabel = nullptr;          // The title of the page
     QScrollArea *scrollArea = nullptr;     // The scroll area to place the settings
     QWidget *scrollAreaWidget = nullptr;   // The widget in the scroll area with settingsLayout as its layout
-    QVBoxLayout *VStretchLayout = nullptr; // Used for align up
-    QHBoxLayout *HStretchLayout = nullptr; // Used for align center
     QVBoxLayout *settingsLayout = nullptr; // The layout for the settings
     QHBoxLayout *buttonsLayout = nullptr;  // The layout for the Default, Reset, and Apply buttons
     QPushButton *defaultButton = nullptr;  // The button to set the UI to the default values

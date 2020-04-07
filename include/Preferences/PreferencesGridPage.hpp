@@ -44,7 +44,9 @@ class PreferencesGridPage : public PreferencesPage
     void addRow(const QString &labelText, ValueWidget *widget);
 
   private:
-    QGridLayout *gridLayout;
+    QVBoxLayout *VLayout = nullptr;
+    QHBoxLayout *HLayout = nullptr;
+    QGridLayout *gridLayout = nullptr;
 };
 
 #endif
