@@ -43,12 +43,12 @@ class CodeSnippetsPage : public PreferencesPage
     void makeSettingsTheSameAsUI() override;
 
   private slots:
-    /*
+    /**
      * @brief select the first snippet with a name starts with text
      */
     void updateSearch(const QString &text);
 
-    /*
+    /**
      * @brief switch to snippet and warn if there are unsaved changes
      * @param item the item to switch to, nullptr for switching to the "empty"
      * @param force if true, won't ask for conformation
@@ -56,43 +56,43 @@ class CodeSnippetsPage : public PreferencesPage
      */
     bool switchToSnippet(QListWidgetItem *item, bool force = false);
 
-    /*
+    /**
      * @brief ask for name and add a snippet
      * @note may ask to change a name if it's duplicated
      */
     void addSnippet();
 
-    /*
+    /**
      * @brief ask for confirmation and delete the current snippet
      */
     void deleteSnippet();
 
-    /*
+    /**
      * @brief ask for new name and rename the current snippet
      * @note may ask to change a name if it's duplicated
      */
     void renameSnippet();
 
-    /*
+    /**
      * @brief ask for files and load them from files
      * @note may ask to change a name if it's duplicated
      */
     void loadSnippetsFromFiles();
 
-    /*
+    /**
      * @brief ask for directory and extract to files
      * @note may ask to change a file name if it's duplicated
      */
     void extractSnippetsToFiles();
 
   private:
-    /*
+    /**
      * @brief check it's able to switch to another snippet, warn if there are unsaved changes
      * @returns able to switch or not
      */
     bool aboutToSwitchToSnippet();
 
-    /*
+    /**
      * @brief get a non-empty unused snippet name
      * @param oldName the old name used for the first-time place holder
      * @param avoidConflictWithSettings avoid used names in the settings as well as in the UI
@@ -100,32 +100,32 @@ class CodeSnippetsPage : public PreferencesPage
      */
     QString getNewSnippetName(const QString &oldName = QString(), bool avoidConflictWithSettings = false);
 
-    /*
+    /**
      * @brief add a new snippet without asking for confirmation
      * @param name the name of the new snippet
      * @note updateButtons() is called in this
      */
     void addSnippet(const QString &name);
 
-    /*
+    /**
      * @brief delete a snippet without asking for confirmation
      * @param item the item to the snippet
      * @note updateButtons() is called in this
      */
     void deleteSnippet(QListWidgetItem *item);
 
-    /*
+    /**
      * @brief get the key of the snippet name in the SettingsManager
      */
     QString snippetKey(const QString &name);
 
-    /*
+    /**
      * @brief set enabled for deleleButton, renameAction and extractSnippetsToFilesAction
      */
     void updateActions();
 
   private:
-    /*
+    /**
      * splitter:
      *   - leftWidget
      *     - leftLayout

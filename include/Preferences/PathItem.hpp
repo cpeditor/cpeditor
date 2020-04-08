@@ -31,23 +31,23 @@ class PathItem : public QWidget
     Q_OBJECT
 
   public:
-    /*
+    /**
      * @brief construct a PathItem
      */
     explicit PathItem(const QString &pathFilter, const QString &dialogTitle, QWidget *parent = nullptr);
 
-    /*
+    /**
      * @brief construct a PathItem use builtin filter and title
      */
     explicit PathItem(int filterId, int titleId, QWidget *parent = nullptr);
 
-    /*
+    /**
      * @brief get the line edit of the PathItem
      */
     QLineEdit *getLineEdit();
 
   private slots:
-    /*
+    /**
      * @brief choose the path of the template
      */
     void onButtonClicked();

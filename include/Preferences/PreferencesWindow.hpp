@@ -41,32 +41,32 @@ class PreferencesWindow : public QMainWindow
     Q_OBJECT
 
   public:
-    /*
+    /**
      * @brief construct a preferences window
      */
     explicit PreferencesWindow(QWidget *parent);
 
   public slots:
-    /*
+    /**
      * @brief switch to home and show up
      */
     void display();
 
   signals:
-    /*
+    /**
      * @brief the settings are applied
      * @param pagePath the path to the applied page
      */
     void settingsApplied(const QString &pagePath);
 
   private slots:
-    /*
+    /**
      * @brief show/hide items in the menu according to the new text
      */
     void updateSearch(const QString &text);
 
   private:
-    /*
+    /**
      * @brief add a preferences page
      * @param path the path to the page, for example: "Actions/Save" / "Appearance"
      * @param page the PreferencesPage widget
@@ -74,7 +74,7 @@ class PreferencesWindow : public QMainWindow
      */
     void addPage(const QString &path, PreferencesPage *page, const QStringList &pageContent);
 
-    /*
+    /**
      * @brief add a preferences page
      * @param path the path to the page, for example: "Actions/Save" / "Appearance"
      * @param page the PreferencesPage widget
@@ -82,7 +82,7 @@ class PreferencesWindow : public QMainWindow
      */
     void addPage(const QString &path, PreferencesPageTemplate *page);
 
-    /*
+    /**
      * @brief switch to a page
      * @param page the target page, can be either a preferences page or home page
      * @param force if force, user won't be asked whether to save changes or not
@@ -91,38 +91,38 @@ class PreferencesWindow : public QMainWindow
      */
     void switchToPage(QWidget *page, bool force = false);
 
-    /*
+    /**
      * @brief get the page widget to the page of the given path
      * @param pagePath the path to the page
      * @returns returns the widget if it's found, otherwise returns nullptr
      */
     PreferencesPage *getPageWidget(const QString &pagePath);
 
-    /*
+    /**
      * @brief if there are unsaved changes, ask the user to save/discard the changes or cancel the close
      */
     void closeEvent(QCloseEvent *event) override;
 
-    /*
+    /**
      * @brief show/hide items in the menu according to the new text recursively
      * @param item the current item
      * @param text the search text
      */
     void updateSearch(QTreeWidgetItem *item, const QString &text);
 
-    /*
+    /**
      * @brief get the top level item with the text *text*
      * @returns the top level item or nullptr if not found
      */
     QTreeWidgetItem *getTopLevelItem(const QString &text);
 
-    /*
+    /**
      * @brief get the child of *item* with text *text*
      * @returns the child or nullptr if not found
      */
     QTreeWidgetItem *getChild(QTreeWidgetItem *item, const QString &text);
 
-    /*
+    /**
      * The GUI:
      *
      * - splitter

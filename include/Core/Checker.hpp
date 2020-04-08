@@ -67,7 +67,7 @@ class Checker : public QObject
                 // Usually the checker doesn't return UNKNOWN, the verdict is set to UNKNOWN before the check begins
     };
 
-    /*
+    /**
      * @brief construct a checker
      * @param type the type of the checker
      * @param logger the message logger that receives the messages
@@ -76,7 +76,7 @@ class Checker : public QObject
      */
     Checker(CheckerType type, MessageLogger *logger, QObject *parent = nullptr);
 
-    /*
+    /**
      * @brief construct a custom checker
      * @param path the file path to the custom checker
      * @param logger the message logger that receives the messages
@@ -84,20 +84,20 @@ class Checker : public QObject
      */
     Checker(const QString &path, MessageLogger *logger, QObject *parent = nullptr);
 
-    /*
+    /**
      * @brief destruct a checker
      * @note Tt kills the running compiler and checker, removes the temporary directory.
      */
     ~Checker();
 
-    /*
+    /**
      * @brief prepare for checking
      * @param compileCommand the command used to compile the checker
      * @note Testlib checkers will be compiled after calling this function. This should be called only once.
      */
     void prepare(const QString &compileCommand);
 
-    /*
+    /**
      * @brief request the checker to check a testcase
      * @param index the index of this testcase, used in messages and the result signals
      * @param input the input of the testcase, not used in the built-in checkers
@@ -109,7 +109,7 @@ class Checker : public QObject
     void reqeustCheck(int index, const QString &input, const QString &output, const QString &expected);
 
   signals:
-    /*
+    /**
      * @brief return the check result
      * @param index the index of the checked testcase
      * @param verdict the result of this check
@@ -117,23 +117,23 @@ class Checker : public QObject
     void checkFinished(int index, Verdict verdict);
 
   private slots:
-    /*
+    /**
      * @brief the checker is compiled successfully
      */
     void onCompilationFinished();
 
-    /*
+    /**
      * @brief failed to compile the checker
      * @param error the error message provided by Core::Compiler
      */
     void onCompilationErrorOccured(const QString &error);
 
-    /*
+    /**
      * @brief the compile process is killed
      */
     void onCompilationKilled();
 
-    /*
+    /**
      * @brief the checker process is finished
      * @param index the index of the testcase
      * @param out the stdout of the checker process
@@ -142,27 +142,27 @@ class Checker : public QObject
      */
     void onRunFinished(int index, const QString &out, const QString &err, int exitCode);
 
-    /*
+    /**
      * @brief the checker failed to start
      * @param index the index of the testcase
      * @param error the error message provided by Core::Runner
      */
     void onFailedToStartRun(int index, const QString &error);
 
-    /*
+    /**
      * @brief the checker hasn't finished in the time limit
      * @param index the index of the testcase
      */
     void onRunTimeout(int index);
 
-    /*
+    /**
      * @brief the checker process is killed
      * @param index the index of the testcase
      */
     void onRunKilled(int index);
 
   private:
-    /*
+    /**
      * @brief check the output against the expected output in IgnoreTrailingSpaces mode
      * @param output the output to check
      * @param expected the expected output to check the output against
@@ -170,7 +170,7 @@ class Checker : public QObject
      */
     bool checkIgnoreTrailingSpaces(const QString &output, const QString &expected);
 
-    /*
+    /**
      * @brief check the output against the expected output in Strict mode
      * @param output the output to check
      * @param expected the expected output to check the output against
@@ -178,7 +178,7 @@ class Checker : public QObject
      */
     bool checkStrict(const QString &output, const QString &expected);
 
-    /*
+    /**
      * @brief check a testcase
      * @param input the input of the testcase
      * @param output the output to check

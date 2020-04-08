@@ -32,20 +32,20 @@ class PreferencesHomePage : public QWidget
     Q_OBJECT
 
   public:
-    /*
+    /**
      * @brief construct a PreferencesHomePage
      */
     explicit PreferencesHomePage(QWidget *parent = nullptr);
 
   signals:
-    /*
+    /**
      * @brief tell the preferences window to switch to a page
      * @param page the path to the page to switch to
      */
     void requestPage(const QString &pagePath);
 
   private:
-    /*
+    /**
      * @breif add a button that switch to a page
      * @param page the path to the page to switch to
      * @param text the text for this button

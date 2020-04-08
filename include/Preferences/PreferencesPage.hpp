@@ -42,113 +42,113 @@ class PreferencesPage : public QWidget
     Q_OBJECT
 
   private:
-    /*
+    /**
      * @brief query for whether the settings are different from the UI
      */
     virtual bool areSettingsChanged() = 0;
 
-    /*
+    /**
      * @brief update the UI, make it the same as the default values
      * @note you don't need to call updateButtons() in this function
      */
     virtual void makeUITheSameAsDefault() = 0;
 
-    /*
+    /**
      * @brief update the UI, make it the same as the settings
      * @note you don't need to call updateButtons() in this function
      */
     virtual void makeUITheSameAsSettings() = 0;
 
-    /*
+    /**
      * @brief update the settings, make it the same as the UI
      * @note you don't need to call updateButtons() in this function
      */
     virtual void makeSettingsTheSameAsUI() = 0;
 
   public:
-    /*
+    /**
      * @brief construct a PreferencesPage
      */
     explicit PreferencesPage(QWidget *parent = nullptr);
 
-    /*
+    /**
      * @brief a virtual destructor that does nothing
      * @note the widgets are destructed by Qt, so we shouldn't destruct them in the codes
      */
     virtual ~PreferencesPage(){};
 
-    /*
+    /**
      * @brief ask the user whether to save, discard or cancel if there are unsaved changes
      * @return return true if there is no unsaved change or the changes are saved/discarded
      */
     bool aboutToExit();
 
-    /*
+    /**
      * @brief get the path to this page in the preferences window
      */
     QString path() const;
 
-    /*
+    /**
      * @brief set the path to this page in the preferences window
      */
     void setPath(const QString &path);
 
   public slots:
-    /*
+    /**
      * @brief update the UI, make it the same as the settings, and update buttons
      */
     void loadSettings();
 
   signals:
-    /*
+    /**
      * @brief the settings are applied
      * @param pagePath the path to this page
      */
     void settingsApplied(const QString &pagePath);
 
   protected:
-    /*
+    /**
      * @brief add a layout in the UI
      */
     void addLayout(QLayout *layout);
 
-    /*
+    /**
      * @brief add a widget in the UI
      */
     void addWidget(QWidget *widget);
 
-    /*
+    /**
      * @brief add an item in the UI
      */
     void addItem(QLayoutItem *item);
 
     void registerWidget(ValueWidget *widget);
 
-    /*
+    /**
      * @brief set the title of the page
      */
     void setTitle(const QString &title);
 
   protected slots:
-    /*
+    /**
      * @brief enable/disable the reset button and the apply button
      * @note this should be invoked when the UI/the settings are changed
      */
     void updateButtons();
 
   private slots:
-    /*
+    /**
      * @brief update the UI, make it the same as the default values, and update buttons
      */
     void loadDefault();
 
-    /*
+    /**
      * @brief update the settings, make it the same as the UI, and update buttons
      */
     void applySettings();
 
   private:
-    /*
+    /**
      * The UI structure:
      *
      * mainLayout:

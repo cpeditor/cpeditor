@@ -37,18 +37,18 @@ class Compiler : public QObject
     Q_OBJECT
 
   public:
-    /*
+    /**
      * @brief construct a compiler
      */
     Compiler();
 
-    /*
+    /**
      * @brief destruct a compiler
      * @note the compilation process will be killed if it's running
      */
     ~Compiler();
 
-    /*
+    /**
      * @brief start the compilation
      * @param filePath the file path to the source file
      * @param compileCommand the command for compiling
@@ -57,7 +57,7 @@ class Compiler : public QObject
      */
     void start(const QString &filePath, const QString &compileCommand, const QString &lang);
 
-    /*
+    /**
      * @brief check whether a compile command is valid or not
      * @param compilaCommand the command to check
      * @note this only checks whether the program of the command works
@@ -65,31 +65,31 @@ class Compiler : public QObject
     static bool check(const QString &compileCommand);
 
   signals:
-    /*
+    /**
      * @brief the compilation has just started
      */
     void compilationStarted();
 
-    /*
+    /**
      * @brief the compilation has just finished
      * @param warning the compile warnings (stderr of the compile process)
      */
     void compilationFinished(const QString &warning);
 
-    /*
+    /**
      * @brief the compilation has just finished with error
      * @param error the compile errors and warnings (stderr of the compile process)
      */
     void compilationErrorOccured(const QString &error);
 
-    /*
+    /**
      * @brief the compilation process has just been killed
      * @note It's only emitted when the process is killed when destructing the Compiler.
      */
     void compilationKilled();
 
   private slots:
-    /*
+    /**
      * @brief the compilation process has just finished
      * @param the exit code of the compilation process
      */

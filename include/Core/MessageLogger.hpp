@@ -28,7 +28,7 @@ class MessageLogger
   public:
     MessageLogger() = default;
 
-    /*
+    /**
      * @brief show a message
      * @param head the head of the message, indicates where the message is from
      * @param body the main part of the message
@@ -36,7 +36,7 @@ class MessageLogger
      */
     void message(const QString &head, const QString &body, const QString &color);
 
-    /*
+    /**
      * @brief show a warning message
      * @param head the head of the message, indicates where the message is from
      * @param body the main part of the message
@@ -44,7 +44,7 @@ class MessageLogger
      */
     void warn(const QString &head, const QString &body);
 
-    /*
+    /**
      * @brief show a infomation message
      * @param head the head of the message, indicates where the message is from
      * @param body the main part of the message
@@ -52,7 +52,7 @@ class MessageLogger
      */
     void info(const QString &head, const QString &body);
 
-    /*
+    /**
      * @brief show a error message
      * @param head the head of the message, indicates where the message is from
      * @param body the main part of the message
@@ -60,12 +60,12 @@ class MessageLogger
      */
     void error(const QString &head, const QString &body);
 
-    /*
+    /**
      * @brief clear all messages in the message logger
      */
     void clear();
 
-    /*
+    /**
      * @brief set the container of the message logger
      * @param container the container of the message logger
      */

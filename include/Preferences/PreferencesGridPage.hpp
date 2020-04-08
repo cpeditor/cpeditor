@@ -35,7 +35,7 @@ class PreferencesGridPage : public PreferencesPage
   public:
     explicit PreferencesGridPage(QWidget *parent = nullptr);
 
-    /*
+    /**
      * @brief add a row
      * @param widget the widget to add
      * @param labelText(optional) the label of the row
