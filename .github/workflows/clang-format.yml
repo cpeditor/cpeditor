@@ -13,6 +13,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+      with:
+        fetch-depth: 2
     - name: "Install clang-format-9"
       run: |
         sudo apt-get update
@@ -21,11 +23,10 @@ jobs:
       run: clang-format-9 -i src/*.cpp src/*/*.cpp include/*.hpp include/*/*.hpp
     - name: Commit files
       run: |
-        git config --local user.email "clang-format-action@cpeditor"
-        git config --local user.name "clang-format bot"
-        git diff-index --quiet HEAD || git commit -am "style: Format codes"
+        git config --local user.email "cpeditor_bot@126.com"
+        git config --local user.name "cpeditor-bot"
+        git diff --exit-code HEAD || git commit -a --amend --no-edit
     - name: Push changes
-      uses: ad-m/github-push-action@master
-      with:
-        branch: ${{ github.ref }}
-        github_token: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        git remote add token https://${GITHUB_ACTOR}:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git
+        git push token HEAD:${GITHUB_REF} --force-with-lease=${GITHUB_REF}:${GITHUB_SHA}
