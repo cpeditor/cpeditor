@@ -25,7 +25,7 @@ namespace Telemetry
 {
 UpdateNotifier::UpdateNotifier(bool useBeta)
 {
-    Core::Log::i("updateNotifier/constructed") << "use beta ? " << useBeta << endl;
+    Core::Log::i("updateNotifier/constructed") << BOOLEAN(useBeta) << endl;
     manager = new QNetworkAccessManager();
     QObject::connect(manager, SIGNAL(finished(QNetworkReply *)), this, SLOT(managerFinished(QNetworkReply *)));
     beta = useBeta;
@@ -37,13 +37,13 @@ UpdateNotifier::~UpdateNotifier()
 }
 void UpdateNotifier::setBeta(bool value)
 {
-    Core::Log::i("updateNotifer/setBeta") << "value is ? " << value << endl;
+    Core::Log::i("updateNotifer/setBeta") << "value is ? " << BOOLEAN(value) << endl;
     beta = value;
 }
 
 void UpdateNotifier::checkUpdate(bool force)
 {
-    Core::Log::i("updateNotifier/checkupdate") << "Forceful update : " << force << endl;
+    Core::Log::i("updateNotifier/checkupdate") << BOOLEAN(force) << endl;
     this->force = force;
     request.setUrl(QUrl("https://api.github.com/repos/cpeditor/cpeditor/releases"));
     manager->get(request);
@@ -88,13 +88,11 @@ void UpdateNotifier::managerFinished(QNetworkReply *reply)
 {
     if (reply->error())
     {
-        Core::Log::e("updateNotifer/managerFinished") << reply->errorString() << endl;
+        Core::Log::e("updateNotifer/managerFinished") << "Got error : " << reply->errorString() << endl;
         qDebug() << reply->errorString();
         return;
     }
     QString jsonReply = reply->readAll();
-
-    Core::Log::i("updateNotifier/managerFinished") << "Cycling through the JSON response" << endl;
 
     QJsonDocument doc = QJsonDocument::fromJson(jsonReply.toUtf8());
 
@@ -136,7 +134,7 @@ void UpdateNotifier::managerFinished(QNetworkReply *reply)
 
     bool isUpdateAvailable = compareVersion(latestRelease, APP_VERSION);
 
-    Core::Log::i("updateNotifier/managerFinished") << "update available ? " << isUpdateAvailable << endl;
+    Core::Log::i("updateNotifier/managerFinished") << BOOLEAN(isUpdateAvailable) << endl;
 
     if (beta && isBeta && isUpdateAvailable)
     {

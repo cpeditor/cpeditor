@@ -29,7 +29,8 @@
 namespace Core
 {
 
-#define INFO_OF(x) #x ": " << x // a useful macro to show a variable in the log
+#define INFO_OF(x) #x ": " << x << " "                 // a useful macro to show a variable in the log
+#define BOOLEAN(x) #x ": " << (x ? "true " : "false ") // a usefule macro to convert boolean type to string equivalent
 
 class Log
 {

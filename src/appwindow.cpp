@@ -34,7 +34,7 @@
 
 AppWindow::AppWindow(bool noHotExit, QWidget *parent) : QMainWindow(parent), ui(new Ui::AppWindow)
 {
-    Core::Log::i("appwindow/constructed") << "noHotExit " << noHotExit << endl;
+    Core::Log::i("appwindow/constructed") << "Application window constructed with " << BOOLEAN(noHotExit) << endl;
     ui->setupUi(this);
     setAcceptDrops(true);
     allocate();
@@ -103,9 +103,9 @@ AppWindow::AppWindow(int depth, bool cpp, bool java, bool python, bool noHotExit
                      QWidget *parent)
     : AppWindow(noHotExit, parent)
 {
-    Core::Log::i("appwindow/constructed") << "args : "
-                                          << "depth : " << depth << "cpp: " << cpp << "java: " << java << "python "
-                                          << python << "noHotExit " << noHotExit << "paths " << paths.join(" ") << endl;
+    Core::Log::i("appwindow/constructed") << "Application window constructed with args : "
+                                          << "depth : " << depth << BOOLEAN(cpp) << BOOLEAN(java) << BOOLEAN(python)
+                                          << "paths " << paths.join(" ") << endl;
     openPaths(paths, cpp, java, python, depth);
     if (ui->tabWidget->count() == 0)
         openTab("");
@@ -120,9 +120,8 @@ AppWindow::AppWindow(int depth, bool cpp, bool java, bool python, bool noHotExit
 AppWindow::AppWindow(bool cpp, bool java, bool python, bool noHotExit, int number, const QString &path, QWidget *parent)
     : AppWindow(noHotExit, parent)
 {
-    Core::Log::i("appwindow/constructed") << "args : "
-                                          << "cpp: " << cpp << "java: " << java << "python " << python << "noHotExit "
-                                          << noHotExit << "paths " << path << endl;
+    Core::Log::i("appwindow/constructed") << "Application window constructed with args : " << BOOLEAN(cpp)
+                                          << BOOLEAN(java) << BOOLEAN(python) << "paths " << path << endl;
     QString lang = Settings::SettingsManager::getDefaultLanguage();
     if (cpp)
         lang = "C++";
@@ -144,7 +143,7 @@ AppWindow::AppWindow(bool cpp, bool java, bool python, bool noHotExit, int numbe
 
 AppWindow::~AppWindow()
 {
-    Core::Log::i("appwindow/destroyed", "Invoked");
+    Core::Log::i("appwindow/destroyed", "Destroying the Application window");
     saveSettings();
     if (languageClient != nullptr)
     {
@@ -169,7 +168,7 @@ void AppWindow::setLanguageClient()
     // Let us check here if user wants to use LSP. From settings
     // otherwise return;
 
-    Core::Log::i("appwindow/setLanguageClient", "Invoked");
+    Core::Log::i("appwindow/setLanguageClient", "Setting Language Protocol server");
     // Make this path value get picked from the SettingManager
     // Also Make the Command line arguments for LSP picked from Settings
 
@@ -190,11 +189,12 @@ void AppWindow::setLanguageClient()
             SLOT(onLSPServerProcessFinished(int, QProcess::ExitStatus)));
 
     languageClient->initialize();
+    Core::Log::i("appwindow/setLanguageClient", "Language server was initialized");
 }
 
 void AppWindow::closeEvent(QCloseEvent *event)
 {
-    Core::Log::i("appwindow/closeEvent", "Invoked");
+    Core::Log::i("appwindow/closeEvent", "Application requested a close event");
     if (quit())
         event->accept();
     else
@@ -203,7 +203,7 @@ void AppWindow::closeEvent(QCloseEvent *event)
 
 void AppWindow::dragEnterEvent(QDragEnterEvent *event)
 {
-    Core::Log::i("appwindow/dragEnterEvent", "Invoked");
+    Core::Log::i("appwindow/dragEnterEvent", "File is being dropped into the Editor");
     if (event->mimeData()->hasUrls())
     {
         Core::Log::i("appwindow/dragEnterEvent", "Accepted the dropped value");
@@ -213,7 +213,7 @@ void AppWindow::dragEnterEvent(QDragEnterEvent *event)
 
 void AppWindow::dropEvent(QDropEvent *event)
 {
-    Core::Log::i("appwindow/dropEvent", "Invoked");
+    Core::Log::i("appwindow/dropEvent", "File was dropped to application");
     auto urls = event->mimeData()->urls();
     QStringList paths;
     for (auto &e : urls)
@@ -224,7 +224,7 @@ void AppWindow::dropEvent(QDropEvent *event)
 /******************** PRIVATE METHODS ********************/
 void AppWindow::setConnections()
 {
-    Core::Log::i("appwindow/setConnections", "Invoked");
+    Core::Log::i("appwindow/setConnections", "Application basic connections are being set up");
     connect(ui->tabWidget, SIGNAL(tabCloseRequested(int)), this, SLOT(onTabCloseRequested(int)));
     connect(ui->tabWidget, SIGNAL(currentChanged(int)), this, SLOT(onTabChanged(int)));
     ui->tabWidget->tabBar()->setContextMenuPolicy(Qt::CustomContextMenu);
@@ -243,7 +243,7 @@ void AppWindow::setConnections()
 
 void AppWindow::allocate()
 {
-    Core::Log::i("appwindow/allocate", "Invoked");
+    Core::Log::i("appwindow/allocate", "Allocating core components of application");
     Settings::SettingsManager::init();
     timer = new QTimer();
     updater = new Telemetry::UpdateNotifier(Settings::SettingsManager::isBeta());
@@ -269,7 +269,7 @@ void AppWindow::allocate()
 
 void AppWindow::applySettings()
 {
-    Core::Log::i("appwindow/applySettings", "Invoked");
+    Core::Log::i("appwindow/applySettings", "Applying Settings to application main UI");
     ui->actionAutosave->setChecked(Settings::SettingsManager::isAutoSave());
     Settings::ViewMode mode = Settings::SettingsManager::getViewMode();
 
@@ -306,7 +306,6 @@ void AppWindow::applySettings()
 
 void AppWindow::maybeSetHotkeys()
 {
-    Core::Log::i("appwindow/maybeSetHotkeys", "Invoked");
     for (auto e : hotkeyObjects)
         delete e;
     hotkeyObjects.clear();
@@ -318,48 +317,65 @@ void AppWindow::maybeSetHotkeys()
     {
         hotkeyObjects.push_back(
             new QShortcut(Settings::SettingsManager::getHotkeyRun(), this, SLOT(on_actionRun_triggered())));
+        Core::Log::i("appwindow/maybeSetHotkeys")
+            << "Setting hotkey for Run to " << Settings::SettingsManager::getHotkeyRun().toString() << endl;
     }
     if (!Settings::SettingsManager::getHotkeyCompile().isEmpty())
     {
         hotkeyObjects.push_back(
             new QShortcut(Settings::SettingsManager::getHotkeyCompile(), this, SLOT(on_actionCompile_triggered())));
+        Core::Log::i("appwindow/maybeSetHotkeys")
+            << "Setting hotkey for Compile to " << Settings::SettingsManager::getHotkeyCompile().toString() << endl;
     }
     if (!Settings::SettingsManager::getHotkeyCompileRun().isEmpty())
     {
         hotkeyObjects.push_back(new QShortcut(Settings::SettingsManager::getHotkeyCompileRun(), this,
                                               SLOT(on_actionCompile_Run_triggered())));
+        Core::Log::i("appwindow/maybeSetHotkeys")
+            << "Setting hotkey for Compile and Run to " << Settings::SettingsManager::getHotkeyCompileRun().toString()
+            << endl;
     }
     if (!Settings::SettingsManager::getHotkeyFormat().isEmpty())
     {
         hotkeyObjects.push_back(
             new QShortcut(Settings::SettingsManager::getHotkeyFormat(), this, SLOT(on_actionFormat_code_triggered())));
+        Core::Log::i("appwindow/maybeSetHotkeys")
+            << "Setting hotkey for Format to " << Settings::SettingsManager::getHotkeyFormat().toString() << endl;
     }
     if (!Settings::SettingsManager::getHotkeyKill().isEmpty())
     {
         hotkeyObjects.push_back(
             new QShortcut(Settings::SettingsManager::getHotkeyKill(), this, SLOT(on_actionKill_Processes_triggered())));
+        Core::Log::i("appwindow/maybeSetHotkeys") << "Setting hotkey for Killing process to "
+                                                  << Settings::SettingsManager::getHotkeyKill().toString() << endl;
     }
     if (!Settings::SettingsManager::getHotkeyViewModeToggler().isEmpty())
     {
         hotkeyObjects.push_back(
             new QShortcut(Settings::SettingsManager::getHotkeyViewModeToggler(), this, SLOT(onViewModeToggle())));
+        Core::Log::i("appwindow/maybeSetHotkeys")
+            << "Setting hotkey for ViewModeToggler to "
+            << Settings::SettingsManager::getHotkeyViewModeToggler().toString() << endl;
     }
     if (!Settings::SettingsManager::getHotkeySnippets().isEmpty())
     {
         hotkeyObjects.push_back(new QShortcut(Settings::SettingsManager::getHotkeySnippets(), this,
                                               SLOT(on_actionUse_Snippets_triggered())));
+        Core::Log::i("appwindow/maybeSetHotkeys")
+            << "Setting hotkey for Smippets to " << Settings::SettingsManager::getHotkeySnippets().toString() << endl;
     }
 }
 
 bool AppWindow::closeTab(int index)
 {
-    Core::Log::i("appwindowCloseTab") << "index : " << index << endl;
+    Core::Log::i("appwindow/CloseTab") << "Attempting to Close tab at index: " << index << endl;
     auto tmp = windowAt(index);
     if (tmp->closeConfirm())
     {
         ui->tabWidget->removeTab(index);
         onEditorFileChanged();
         delete tmp;
+        Core::Log::i("appwindow/CloseTab", "Tab was closed successfully");
         return true;
     }
     return false;
@@ -367,7 +383,7 @@ bool AppWindow::closeTab(int index)
 
 void AppWindow::saveSettings()
 {
-    Core::Log::i("appwindow/saveSettings", "Invoked");
+    Core::Log::i("appwindow/saveSettings", "Saving application global settings and states");
     if (!this->isMaximized())
         Settings::SettingsManager::setGeometry(this->geometry());
     Settings::SettingsManager::setMaximizedWindow(this->isMaximized());
@@ -376,10 +392,10 @@ void AppWindow::saveSettings()
 
 void AppWindow::openTab(const QString &path)
 {
-    Core::Log::i("appwindow/openTab") << "path " << path << endl;
+    Core::Log::i("appwindow/openTab") << "Opening new tab for path:" << path << endl;
     if (QFile::exists(path))
     {
-        Core::Log::i("appwindow/openTab", "branched to exists file");
+        Core::Log::i("appwindow/openTab", "Path already exists. Trying to re-focus the tab or open the saved file");
         auto fileInfo = QFileInfo(path);
         for (int t = 0; t < ui->tabWidget->count(); t++)
         {
@@ -418,7 +434,7 @@ void AppWindow::openTab(const QString &path)
 
 void AppWindow::openTabs(const QStringList &paths)
 {
-    Core::Log::i("appwindow/openTab") << "paths : " << paths.join(", ") << endl;
+    Core::Log::i("appwindow/openTab") << "Opening multiple tabs at once where paths are: " << paths.join(", ") << endl;
     int length = paths.length();
 
     QProgressDialog progress(this);
@@ -447,8 +463,9 @@ void AppWindow::openTabs(const QStringList &paths)
 
 void AppWindow::openPaths(const QStringList &paths, bool cpp, bool java, bool python, int depth)
 {
-    Core::Log::i("appwindow/openPaths") << "args are " << paths.join(", ") << " cpp:" << cpp << " java:" << java
-                                        << "python:" << python << "depth:" << depth << endl;
+    Core::Log::i("appwindow/openPaths") << "Opeing multiple paths: " << paths.join(", ") << " arguments are "
+                                        << BOOLEAN(cpp) << BOOLEAN(java) << BOOLEAN(python) << "depth:" << depth
+                                        << endl;
     QStringList res;
     for (auto &path : paths)
     {
@@ -462,8 +479,10 @@ void AppWindow::openPaths(const QStringList &paths, bool cpp, bool java, bool py
 
 QStringList AppWindow::openFolder(const QString &path, bool cpp, bool java, bool python, int depth)
 {
-    Core::Log::i("appwindow/openFolder") << "args are " << path << " cpp:" << cpp << " java:" << java
-                                         << "python:" << python << "depth:" << depth << endl;
+    Core::Log::i("appwindow/openFolder") << "Opening everything in a directory at: " << path
+                                         << "with arguments as: " << BOOLEAN(cpp) << BOOLEAN(java) << BOOLEAN(python)
+                                         << "depth:" << depth << endl;
+
     auto entries = QDir(path).entryInfoList(QDir::NoDotAndDotDot | QDir::AllEntries);
     QStringList res;
     for (auto &entry : entries)
@@ -487,8 +506,8 @@ QStringList AppWindow::openFolder(const QString &path, bool cpp, bool java, bool
 
 void AppWindow::openContest(const QString &path, const QString &lang, int number)
 {
-    Core::Log::i("appwindow/openContest", "Invoked");
-    Core::Log::i("appwindoww/openContest") << "args are : " << path << " " << lang << " " << number << endl;
+    Core::Log::i("appwindow/openContest")
+        << "Opening a contest at path" << path << " with args: " << INFO_OF(lang) << INFO_OF(number) << endl;
     QDir dir(path), parent(path);
     parent.cdUp();
     if (!dir.exists() && parent.exists())
@@ -515,18 +534,19 @@ void AppWindow::openContest(const QString &path, const QString &lang, int number
 
 void AppWindow::saveEditorStatus(bool loadFromFile)
 {
-    Core::Log::i("appwindow/saveEditorStatus") << "loadFromFile " << loadFromFile << endl;
+    Core::Log::i("appwindow/saveEditorStatus") << "Saving Editor status with " << BOOLEAN(loadFromFile) << endl;
     Settings::SettingsManager::clearEditorStatus();
     if (ui->tabWidget->count() == 1 && windowAt(0)->isUntitled() && !windowAt(0)->isTextChanged() &&
         windowAt(0)->getProblemURL().isEmpty())
     {
-        Core::Log::i("appwindow/saveEditorStatus", "branched to if");
+        Core::Log::i("appwindow/saveEditorStatus", "No tabs were open. Saving empty state");
         Settings::SettingsManager::setNumberOfTabs(0);
         Settings::SettingsManager::setCurrentIndex(-1);
     }
     else
     {
-        Core::Log::i("appwindow/saveEditorStatus", "branched to else");
+        Core::Log::i("appwindow/saveEditorStatus",
+                     "Found open tabs with maybe unsaved changes, saving the complete state of tabs");
         Settings::SettingsManager::setNumberOfTabs(ui->tabWidget->count());
         Settings::SettingsManager::setCurrentIndex(ui->tabWidget->currentIndex());
         for (int i = 0; i < ui->tabWidget->count(); ++i)
@@ -541,7 +561,7 @@ bool AppWindow::quit()
     bool ret = false;
     if (Settings::SettingsManager::isUseHotExit())
     {
-        Core::Log::i("appwindow/quit", "Using hotexit");
+        Core::Log::i("appwindow/quit", "Using hotexit to quit the application.");
         Settings::SettingsManager::setHotExitLoadFromFile(false);
         saveEditorStatus(false);
         ret = true;
@@ -575,6 +595,7 @@ int AppWindow::getNewUntitledIndex()
     }
     for (index = 1; vis.contains(index); ++index)
         ;
+    Core::Log::i("appwindow/getNewUntitledIndex") << "Returning new Untitled Index " << index << endl;
     return index;
 }
 
@@ -582,19 +603,20 @@ int AppWindow::getNewUntitledIndex()
 
 void AppWindow::on_actionSupport_me_triggered()
 {
-    Core::Log::i("appwindow/on_actionSupport_me_triggered", "Invoked");
+    Core::Log::i("appwindow/on_actionSupport_me_triggered", "Opening support me for Paypal on browser");
     QDesktopServices::openUrl(QUrl("https://paypal.me/coder3101", QUrl::TolerantMode));
 }
 
 void AppWindow::on_actionManual_triggered()
 {
+    Core::Log::i("appwindow/on_actionManual_triggered", "Opening manual for " APP_VERSION);
     QDesktopServices::openUrl(
         QUrl("https://github.com/cpeditor/cpeditor/blob/" APP_VERSION "/doc/MANUAL.md", QUrl::TolerantMode));
 }
 
 void AppWindow::on_actionAbout_triggered()
 {
-    Core::Log::i("appwindow/on_actionAbout_triggered", "Invoked");
+    Core::Log::i("appwindow/on_actionAbout_triggered", "Showing about application window");
     QMessageBox::about(this, "About CP Editor " APP_VERSION,
                        "<p><b>CP Editor</b> is a native Qt-based code editor. It's specially designed for competitive "
                        "programming, unlike other editors/IDEs which are mainly for developers. It helps you focus on "
@@ -609,13 +631,13 @@ void AppWindow::on_actionAbout_triggered()
 
 void AppWindow::on_actionAboutQt_triggered()
 {
-    Core::Log::i("AppWindow/on_actionAboutQt_triggered", "Invoked");
+    Core::Log::i("AppWindow/on_actionAboutQt_triggered", "Showing about Qt window");
     QMessageBox::aboutQt(this);
 }
 
 void AppWindow::on_actionBuildInfo_triggered()
 {
-    Core::Log::i("AppWindow/on_actionBuildInfo_triggered", "Invoked");
+    Core::Log::i("AppWindow/on_actionBuildInfo_triggered", "Build information window is being shown");
     QMessageBox::about(this, "Build Info",
                        "App version: " APP_VERSION "\n"
                        "Git commit hash: " GIT_COMMIT_HASH "\n"
@@ -636,7 +658,7 @@ void AppWindow::on_actionBuildInfo_triggered()
 
 void AppWindow::on_actionAutosave_triggered(bool checked)
 {
-    Core::Log::i("appwindow/on_actionAutosave_triggered") << "checked " << checked << endl;
+    Core::Log::i("appwindow/on_actionAutosave_triggered") << "Autosave was toggeled " << BOOLEAN(checked) << endl;
     Settings::SettingsManager::setAutoSave(checked);
     if (checked)
         timer->start();
@@ -646,17 +668,17 @@ void AppWindow::on_actionAutosave_triggered(bool checked)
 
 void AppWindow::on_actionQuit_triggered()
 {
-    Core::Log::i("appwindow/on_actionQuit_triggered", "invoked");
+    Core::Log::i("appwindow/on_actionQuit_triggered", "Quit request arrived");
     if (quit())
     {
-        Core::Log::i("appwindow/on_actionQuit_triggered", "Exiting application");
+        Core::Log::i("appwindow/on_actionQuit_triggered", "Quitting the application now. Bye bye!");
         QApplication::exit();
     }
 }
 
 void AppWindow::on_actionNew_Tab_triggered()
 {
-    Core::Log::i("appwindow/on_actionNew_Tab_triggered", "invoked");
+    Core::Log::i("appwindow/on_actionNew_Tab_triggered", "Creating a new empty Tab");
     openTab("");
 }
 
@@ -664,23 +686,23 @@ void AppWindow::on_actionOpen_triggered()
 {
     auto fileNames = QFileDialog::getOpenFileNames(this, tr("Open Files"), Settings::SettingsManager::getSavePath(),
                                                    "Source Files (*.cpp *.hpp *.h *.cc *.cxx *.c *.py *.py3 *.java)");
-    Core::Log::i("appwindow/on_actionOpen_triggered") << " filename " << fileNames.join(", ") << endl;
+    Core::Log::i("appwindow/on_actionOpen_triggered")
+        << "Opening multiple files with filenames " << fileNames.join(", ") << endl;
     openTabs(fileNames);
 }
 
 void AppWindow::on_actionOpenContest_triggered()
 {
-    Core::Log::i("appwindow/on_actionOpenContest_triggered", "Invoked");
     auto path = QFileDialog::getExistingDirectory(this, "Open Contest");
+    Core::Log::i("appwindow/on_actionOpenContest_triggered") << "Open contest for path " << path << endl;
     if (QFile::exists(path) && QFileInfo(path).isDir())
     {
-        Core::Log::i("appwindow/on_actionOpenContest_triggered", "path exists and is a directory");
+        Core::Log::i("appwindow/on_actionOpenContest_triggered", "Path exists and is a directory");
         bool ok = false;
         int number =
             QInputDialog::getInt(this, "Open Contest", "Number of problems in this contest:", 5, 0, 26, 1, &ok);
         if (ok)
         {
-            Core::Log::i("appwindow/on_actionOpenContest_triggered") << "number of problems : " << number << endl;
             int current = 0;
             if (Settings::SettingsManager::getDefaultLanguage() == "Java")
                 current = 1;
@@ -691,7 +713,8 @@ void AppWindow::on_actionOpenContest_triggered()
             if (ok)
             {
                 Core::Log::i("appwindow/on_actionOpenContest_triggered")
-                    << "opening contest with args " << path << " " << lang << " " << number << endl;
+                    << "Opening contest with args: " << INFO_OF(path) << " " << INFO_OF(lang) << " " << INFO_OF(number)
+                    << endl;
                 openContest(path, lang, number);
             }
         }
@@ -700,21 +723,21 @@ void AppWindow::on_actionOpenContest_triggered()
 
 void AppWindow::on_actionSave_triggered()
 {
-    Core::Log::i("appwindow/on_actionSave", "Invoked");
+    Core::Log::i("appwindow/on_actionSave", "Saving the current tab file to disk");
     if (currentWindow() != nullptr)
         currentWindow()->save(true, "Save");
 }
 
 void AppWindow::on_actionSave_As_triggered()
 {
-    Core::Log::i("appwindow/on_actionSave_As", "Invoked");
+    Core::Log::i("appwindow/on_actionSave_As", "Saving the current file to disk with new name (Save as)");
     if (currentWindow() != nullptr)
         currentWindow()->saveAs();
 }
 
 void AppWindow::on_actionSave_All_triggered()
 {
-    Core::Log::i("appwindow/on_actionSave_All", "Invoked");
+    Core::Log::i("appwindow/on_actionSave_All", "Saving all opening unsaved files in the Editor");
     for (int t = 0; t < ui->tabWidget->count(); ++t)
     {
         auto tmp = windowAt(t);
@@ -725,14 +748,14 @@ void AppWindow::on_actionSave_All_triggered()
 void AppWindow::on_actionClose_Current_triggered()
 {
     int index = ui->tabWidget->currentIndex();
-    Core::Log::i("appwindow/on_actionClose_Current") << "Invoked with index : " << index << endl;
+    Core::Log::i("appwindow/on_actionClose_Current") << "Closing tab with index : " << index << endl;
     if (index != -1)
         closeTab(index);
 }
 
 void AppWindow::on_actionClose_All_triggered()
 {
-    Core::Log::i("appwindow/on_actionClose_All", "Invoked");
+    Core::Log::i("appwindow/on_actionClose_All", "Closing all tabs int the editor");
     for (int t = 0; t < ui->tabWidget->count(); t++)
     {
         if (closeTab(t))
@@ -744,7 +767,7 @@ void AppWindow::on_actionClose_All_triggered()
 
 void AppWindow::on_actionClose_Saved_triggered()
 {
-    Core::Log::i("appwindow/on_actionClose_Saved", "Invoked");
+    Core::Log::i("appwindow/on_actionClose_Saved", "Closing all saved tabs");
     for (int t = 0; t < ui->tabWidget->count(); t++)
         if (!windowAt(t)->isTextChanged() && closeTab(t))
             --t;
@@ -754,7 +777,7 @@ void AppWindow::on_actionClose_Saved_triggered()
 
 void AppWindow::on_actionRestore_Settings_triggered()
 {
-    Core::Log::i("appwindow/on_actionRestore_Settings_triggered", "Invoked");
+    Core::Log::i("appwindow/on_actionRestore_Settings_triggered", "Reset preference requested");
     auto res = QMessageBox::question(this, "Reset preferences?",
                                      "Are you sure you want to reset the"
                                      " all preferences to default?",
@@ -790,14 +813,14 @@ void AppWindow::onReceivedMessage(quint32 instanceId, QByteArray message)
 
     if (json["type"] == "normal")
     {
-        Core::Log::i("appwindow/onReceivedMessage", "branched to normal");
+        Core::Log::i("appwindow/onReceivedMessage", "Launching in normal mode");
         FROMJSON(depth).toInt();
         FROMJSON(paths).toVariant().toStringList();
         openPaths(paths, cpp, java, python, depth);
     }
     else if (json["type"] == "contest")
     {
-        Core::Log::i("appwindow/onReceivedMessage", "branched to contest");
+        Core::Log::i("appwindow/onReceivedMessage", "Launching in contest mode");
         FROMJSON(number).toInt();
         FROMJSON(path).toString();
         QString lang = Settings::SettingsManager::getDefaultLanguage();
@@ -810,7 +833,7 @@ void AppWindow::onReceivedMessage(quint32 instanceId, QByteArray message)
         openContest(path, lang, number);
     }
     else
-        Core::Log::w("appwindow/onReceivedMessage", "ignored");
+        Core::Log::w("appwindow/onReceivedMessage", "Not launching, no mode was specified");
 }
 
 #undef FROMJSON
@@ -823,7 +846,7 @@ void AppWindow::onTabCloseRequested(int index)
 
 void AppWindow::onTabChanged(int index)
 {
-    Core::Log::i("appwindow/onTabChanged") << "tab is being changed to " << index << endl;
+    Core::Log::i("appwindow/onTabChanged") << "Tab is being changed to index " << index << endl;
     if (index == -1)
     {
         activeLogger = nullptr;
@@ -926,21 +949,19 @@ void AppWindow::onEditorTextChanged(MainWindow *window)
 
 void AppWindow::onSaveTimerElapsed()
 {
-    Core::Log::i("appwindow/onSaveTimerElapsed", "Autosave invoked");
     for (int t = 0; t < ui->tabWidget->count(); t++)
     {
         auto tmp = windowAt(t);
         if (!tmp->isUntitled())
         {
             tmp->save(false, "Auto Save", false);
-            Core::Log::i("appwindow/onSaveTimerElapsed", "Autosave success");
         }
     }
 }
 
 void AppWindow::onSettingsApplied()
 {
-    Core::Log::i("appwindow/onSettingsApplied", "Invoked");
+    Core::Log::i("appwindow/onSettingsApplied", "Applying settings to application window");
 
     for (int i = 0; i < ui->tabWidget->count(); ++i)
     {
@@ -955,16 +976,13 @@ void AppWindow::onSettingsApplied()
         server->updatePort(Settings::SettingsManager::getConnectionPort());
     else
         server->updatePort(0);
-
-    Core::Log::i("appwindow/onSettingsApplied", "Finished");
 }
 
 void AppWindow::onIncomingCompanionRequest(const Network::CompanionData &data)
 {
     Core::Log::i("appwindow/onIncomingCompanionRequest")
-        << "Applying data to new tab. Args: shouldOpenNewTab:"
-        << Settings::SettingsManager::isCompetitiveCompanionOpenNewTab()
-        << ", currentWindow == nullptr:" << (currentWindow() == nullptr) << endl;
+        << "Applying data to new tab." << BOOLEAN(Settings::SettingsManager::isCompetitiveCompanionOpenNewTab())
+        << BOOLEAN(currentWindow() == nullptr) << endl;
 
     for (int i = 0; i < ui->tabWidget->count(); ++i)
     {
@@ -1002,14 +1020,12 @@ void AppWindow::onViewModeToggle()
 
 void AppWindow::onSplitterMoved(int _, int __)
 {
-    Core::Log::i("appwindow/onSplitterMoved", "updating state");
     auto splitter = currentWindow()->getSplitter();
     Settings::SettingsManager::setSplitterSizes(splitter->saveState());
 }
 
 void AppWindow::onRightSplitterMoved(int _, int __)
 {
-    Core::Log::i("appwindow/onRightSplitterMoved", "updating state");
     auto splitter = currentWindow()->getRightSplitter();
     Settings::SettingsManager::setRightSplitterSizes(splitter->saveState());
 }
@@ -1017,7 +1033,7 @@ void AppWindow::onRightSplitterMoved(int _, int __)
 /************************* ACTIONS ************************/
 void AppWindow::on_actionCheck_for_updates_triggered()
 {
-    Core::Log::i("appwindow/on_actionCheck_for_updates_triggered", "Checking update non-silent mode");
+    Core::Log::i("appwindow/on_actionCheck_for_updates_triggered", "Checking update in non-silent mode");
     // Non-silent means if a update is not available, still the dialog is shown that no update available.
     updater->checkUpdate(true);
 }
@@ -1029,7 +1045,7 @@ void AppWindow::on_actionCompile_triggered()
         if (ui->actionEditor_Mode->isChecked())
             on_actionSplit_Mode_triggered();
         currentWindow()->compileOnly();
-        Core::Log::i("appwindow/on_actionCompile_Run_triggered", "Invoked compile for current Window");
+        Core::Log::i("appwindow/on_actionCompile_Run_triggered", "Compile for current Window");
     }
     else
     {
@@ -1044,7 +1060,7 @@ void AppWindow::on_actionCompile_Run_triggered()
         if (ui->actionEditor_Mode->isChecked())
             on_actionSplit_Mode_triggered();
         currentWindow()->compileAndRun();
-        Core::Log::i("appwindow/on_actionCompile_Run_triggered", "Invoked compile run for current Window");
+        Core::Log::i("appwindow/on_actionCompile_Run_triggered", "Compile and Run for current Window");
     }
     else
     {
@@ -1059,7 +1075,7 @@ void AppWindow::on_actionRun_triggered()
         if (ui->actionEditor_Mode->isChecked())
             on_actionSplit_Mode_triggered();
         currentWindow()->runOnly();
-        Core::Log::i("appwindow/on_actionRun_triggered", "Invoked Run only for current window");
+        Core::Log::i("appwindow/on_actionRun_triggered", "Run only for current window");
     }
     else
     {
@@ -1079,7 +1095,7 @@ void AppWindow::on_actionFormat_code_triggered()
     if (currentWindow() != nullptr)
     {
         currentWindow()->formatSource();
-        Core::Log::i("appwindow/on_actionFormat_code_triggered", "Invoked on currentWindow");
+        Core::Log::i("appwindow/on_actionFormat_code_triggered", "Format on currentWindow");
     }
     else
     {
@@ -1092,7 +1108,7 @@ void AppWindow::on_actionRun_Detached_triggered()
     if (currentWindow() != nullptr)
     {
         currentWindow()->detachedExecution();
-        Core::Log::i("appwindow/on_actionRun_Detached_triggered", "Invoked on currentWindow");
+        Core::Log::i("appwindow/on_actionRun_Detached_triggered", "Detached run on currentWindow");
     }
     else
     {
@@ -1105,7 +1121,7 @@ void AppWindow::on_actionKill_Processes_triggered()
     if (currentWindow() != nullptr)
     {
         currentWindow()->killProcesses();
-        Core::Log::i("appwindow/on_actionKill_Processes_triggered", "Invoked on currentWindow");
+        Core::Log::i("appwindow/on_actionKill_Processes_triggered", "Killing all process from currentWindow");
     }
     else
     {
@@ -1115,13 +1131,12 @@ void AppWindow::on_actionKill_Processes_triggered()
 
 void AppWindow::on_actionUse_Snippets_triggered()
 {
-    Core::Log::i("appwindow/on_actionUse_Snippets_triggered", "Use snipped trigerred");
+    Core::Log::i("appwindow/on_actionUse_Snippets_triggered", "Use snippets trigerred");
     auto current = currentWindow();
     if (current != nullptr)
     {
         auto lang = current->getLanguage();
         auto names = Settings::SettingsManager::getSnippetsNames(lang);
-        Core::Log::i("appwindow/on_actionUse_Snippets_triggered", "Lang : " + lang + "name : " + names.join(","));
         if (names.isEmpty())
         {
             Core::Log::w("appwindow/on_actionUse_Snippets_triggered", "No snippets exists");
@@ -1196,14 +1211,11 @@ void AppWindow::on_actionSplit_Mode_triggered()
     ui->actionEditor_Mode->setChecked(false);
     ui->actionIO_Mode->setChecked(false);
     ui->actionSplit_Mode->setChecked(true);
-    Core::Log::i("appwindow/on_actionSplit_Mode_triggered", "Entered split mode");
     if (currentWindow() != nullptr)
     {
         Core::Log::i("appwindow/on_actionSplit_Mode_triggered", "Restored splitter state");
         currentWindow()->setViewMode(Settings::ViewMode::SPLIT);
     }
-    else
-        Core::Log::w("appwindow/on_actionSplit_Mode_triggered", "No UI change required");
 }
 
 void AppWindow::on_action_indent_triggered()
@@ -1211,8 +1223,6 @@ void AppWindow::on_action_indent_triggered()
     auto tmp = currentWindow();
     if (tmp != nullptr)
         tmp->getEditor()->indent();
-    else
-        Core::Log::w("appwindow/on_action_indent_triggered", "skipped action because no active tab exists");
 }
 
 void AppWindow::on_action_unindent_triggered()
@@ -1220,8 +1230,6 @@ void AppWindow::on_action_unindent_triggered()
     auto tmp = currentWindow();
     if (tmp != nullptr)
         tmp->getEditor()->unindent();
-    else
-        Core::Log::w("appwindow/on_action_unindent_triggered", "skipped action because no active tab exists");
 }
 
 void AppWindow::on_action_swap_line_up_triggered()
@@ -1229,8 +1237,6 @@ void AppWindow::on_action_swap_line_up_triggered()
     auto tmp = currentWindow();
     if (tmp != nullptr)
         tmp->getEditor()->swapLineUp();
-    else
-        Core::Log::w("appwindow/on_action_swap_line_up_triggered", "skipped action because no active tab exists");
 }
 
 void AppWindow::on_action_swap_line_down_triggered()
@@ -1238,8 +1244,6 @@ void AppWindow::on_action_swap_line_down_triggered()
     auto tmp = currentWindow();
     if (tmp != nullptr)
         tmp->getEditor()->swapLineDown();
-    else
-        Core::Log::w("appwindow/on_action_swap_line_down_triggered", "skipped action because no active tab exists");
 }
 
 void AppWindow::on_action_delete_line_triggered()
@@ -1247,8 +1251,6 @@ void AppWindow::on_action_delete_line_triggered()
     auto tmp = currentWindow();
     if (tmp != nullptr)
         tmp->getEditor()->deleteLine();
-    else
-        Core::Log::w("appwindow/on_action_delete_line_triggered", "skipped action because no active tab exists");
 }
 
 void AppWindow::on_action_toggle_comment_triggered()
@@ -1256,8 +1258,6 @@ void AppWindow::on_action_toggle_comment_triggered()
     auto tmp = currentWindow();
     if (tmp != nullptr)
         tmp->getEditor()->toggleComment();
-    else
-        Core::Log::w("appwindow/on_action_toggle_comment_triggered", "skipped action because no active tab exists");
 }
 
 void AppWindow::on_action_toggle_block_comment_triggered()
@@ -1265,9 +1265,6 @@ void AppWindow::on_action_toggle_block_comment_triggered()
     auto tmp = currentWindow();
     if (tmp != nullptr)
         tmp->getEditor()->toggleBlockComment();
-    else
-        Core::Log::w("appwindow/on_action_toggle_block_comment_triggered",
-                     "skipped action because no active tab exists");
 }
 
 void AppWindow::on_confirmTriggered(MainWindow *widget)
@@ -1275,19 +1272,13 @@ void AppWindow::on_confirmTriggered(MainWindow *widget)
     int index = ui->tabWidget->indexOf(widget);
     if (index != -1)
         ui->tabWidget->setCurrentIndex(index);
-    else
-        Core::Log::w("appwindow/on_confirmTriggered", "index of widget returned nullptr");
 }
 
 void AppWindow::onTabContextMenuRequested(const QPoint &pos)
 {
-    Core::Log::i("appwindow/onTabContextMenuRequested") << "Location: (" << pos.x() << ", " << pos.y() << ")" << endl;
-
     int index = ui->tabWidget->tabBar()->tabAt(pos);
     if (index != -1)
     {
-        Core::Log::i("appwindow/onTabContextMenuRequested") << "Tab index is : " << index << endl;
-
         auto widget = windowAt(index);
 
         if (tabMenu != nullptr)
@@ -1421,7 +1412,7 @@ void AppWindow::onTabContextMenuRequested(const QPoint &pos)
         else if (!widget->isUntitled() && QFile::exists(QFileInfo(widget->getFilePath()).path()))
         {
             Core::Log::i("appwindow/onTabContextMenuRequested",
-                         "filepath does not exists. Looking if tab provides filepath " +
+                         "Filepath does not exists. Looking if tab provides filepath " +
                              QFileInfo(widget->getFilePath()).path());
             tabMenu->addSeparator();
             tabMenu->addAction("Copy path", [filePath] {
@@ -1466,7 +1457,7 @@ void AppWindow::onTabContextMenuRequested(const QPoint &pos)
                 widget->setProblemURL(url);
             }
             else
-                Core::Log::i("appwindow/onTabContextMenuRequested", "set problem url dialog closed or cancelled");
+                Core::Log::i("appwindow/onTabContextMenuRequested", "Set problem url dialog closed or cancelled");
         });
         tabMenu->popup(ui->tabWidget->tabBar()->mapToGlobal(pos));
     }
@@ -1477,7 +1468,6 @@ MainWindow *AppWindow::currentWindow()
     int current = ui->tabWidget->currentIndex();
     if (current == -1)
     {
-        Core::Log::w("appwindow/currentWindow", "No active window, returning nullptr");
         return nullptr;
     }
     return dynamic_cast<MainWindow *>(ui->tabWidget->widget(current));
@@ -1487,7 +1477,6 @@ MainWindow *AppWindow::windowAt(int index)
 {
     if (index == -1)
     {
-        Core::Log::w("appwindow/windowAt", "No active window(-1), returning nullptr");
         return nullptr;
     }
     return dynamic_cast<MainWindow *>(ui->tabWidget->widget(index));

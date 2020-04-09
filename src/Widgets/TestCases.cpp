@@ -24,7 +24,7 @@ const int TestCases::MAX_NUMBER_OF_TESTCASES;
 
 TestCases::TestCases(MessageLogger *logger, QWidget *parent) : QWidget(parent), log(logger)
 {
-    Core::Log::i("testcases/constructed", "invoked");
+    Core::Log::i("testcases/constructed", "Creating Testcases Cluster");
     mainLayout = new QVBoxLayout(this);
     titleLayout = new QHBoxLayout();
     checkerLayout = new QHBoxLayout();
@@ -39,8 +39,6 @@ TestCases::TestCases(MessageLogger *logger, QWidget *parent) : QWidget(parent), 
     scrollAreaWidget = new QWidget();
     scrollAreaLayout = new QVBoxLayout(scrollAreaWidget);
 
-    Core::Log::i("testcases/constructed", "widgets created");
-
     titleLayout->addWidget(label);
     titleLayout->addWidget(verdicts);
     titleLayout->addWidget(addButton);
@@ -54,14 +52,12 @@ TestCases::TestCases(MessageLogger *logger, QWidget *parent) : QWidget(parent), 
     mainLayout->addLayout(checkerLayout);
     mainLayout->addWidget(scrollArea);
 
-    Core::Log::i("testcases/constructed", "widgets attached");
-
     updateVerdicts();
 
     moreMenu = new QMenu();
 
     moreMenu->addAction("Remove Empty", [this] {
-        Core::Log::i("TestCases/More/Remove Empty", "Invoked");
+        Core::Log::i("TestCases/More/RemoveEmpty", "Removing Empty testcases");
         for (int i = 0; i < count(); ++i)
         {
             if (input(i).isEmpty() && output(i).isEmpty() && expected(i).isEmpty())
@@ -73,7 +69,7 @@ TestCases::TestCases(MessageLogger *logger, QWidget *parent) : QWidget(parent), 
     });
 
     moreMenu->addAction("Remove All", [this] {
-        Core::Log::i("testcases/More/Remove All", "invoked");
+        Core::Log::i("testcases/More/Remove All", "Deleting all testcases with confirmation");
         auto res = QMessageBox::question(this, "Clear Testcases", "Do you want to delete all test cases?");
         if (res == QMessageBox::Yes)
         {
@@ -86,26 +82,26 @@ TestCases::TestCases(MessageLogger *logger, QWidget *parent) : QWidget(parent), 
     });
 
     moreMenu->addAction("Hide AC", [this] {
-        Core::Log::i("testcases/More/Hide AC", "Invoked");
+        Core::Log::i("testcases/More/Hide AC", "Hiding all Accepted testcases");
         for (auto t : testcases)
             if (t->verdict() == Core::Checker::AC)
                 t->setShow(false);
     });
 
     moreMenu->addAction("Show All", [this] {
-        Core::Log::i("TestCases/More/Show All", "Invoked");
+        Core::Log::i("TestCases/More/Show All", "Making all testcase visible");
         for (auto t : testcases)
             t->setShow(true);
     });
 
     moreMenu->addAction("Hide All", [this] {
-        Core::Log::i("TestCases/More/Hide All", "Invoked");
+        Core::Log::i("TestCases/More/Hide All", "Hiding all testcases");
         for (auto t : testcases)
             t->setShow(false);
     });
 
     moreMenu->addAction("Invert", [this] {
-        Core::Log::i("TestCases/More/Invert", "Invoked");
+        Core::Log::i("TestCases/More/Invert", "Making visible testcases hidden and hidden cases visible");
         for (auto t : testcases)
             t->setShow(t->isShow() ^ 1);
     });
@@ -126,25 +122,20 @@ TestCases::TestCases(MessageLogger *logger, QWidget *parent) : QWidget(parent), 
     connect(checkerComboBox, SIGNAL(currentIndexChanged(int)), this, SIGNAL(checkerChanged()));
     connect(addButton, SIGNAL(clicked()), this, SLOT(on_addButton_clicked()));
     connect(addCheckerButton, SIGNAL(clicked()), this, SLOT(on_addCheckerButton_clicked()));
-
-    Core::Log::i("testcases/constructed", "connection established");
 }
 
 void TestCases::setInput(int index, const QString &input)
 {
-    Core::Log::i("testcases/setInput") << "index : " << input << "\n" << input << endl;
     testcases[index]->setInput(input);
 }
 
 void TestCases::setOutput(int index, const QString &output)
 {
-    Core::Log::i("testcases/setoutput") << "index : " << index << " output \n" << output << endl;
     testcases[index]->setOutput(output);
 }
 
 void TestCases::setExpected(int index, const QString &expected)
 {
-    Core::Log::i("testcases/setExpected") << "index : " << index << " expected \n" << expected << endl;
     testcases[index]->setExpected(expected);
 }
 
@@ -152,7 +143,7 @@ void TestCases::addTestCase(const QString &input, const QString &expected)
 {
     if (count() >= MAX_NUMBER_OF_TESTCASES)
     {
-        Core::Log::w("testcases/addTestcase", "Max testcase limit reached");
+        Core::Log::w("testcases/addTestcase", "Maximum testcase limit reached");
         QMessageBox::warning(this, "Add Test Case",
                              "There are already " + QString::number(count()) + " test cases, you can't add more.");
     }
@@ -170,7 +161,7 @@ void TestCases::addTestCase(const QString &input, const QString &expected)
 
 void TestCases::clearOutput()
 {
-    Core::Log::w("testcases/clearOutput", "invoked");
+    Core::Log::w("testcases/clearOutput", "Clearing output of all testcases");
     for (int i = 0; i < count(); ++i)
         testcases[i]->clearOutput();
     updateVerdicts();
@@ -178,32 +169,27 @@ void TestCases::clearOutput()
 
 void TestCases::clear()
 {
-    Core::Log::w("testcases/clear", "invoked");
     while (count() > 0)
         onChildDeleted(testcases.front());
 }
 
 QString TestCases::input(int index) const
 {
-    Core::Log::w("testcases/input") << " index " << index << endl;
     return testcases[index]->input();
 }
 
 QString TestCases::output(int index) const
 {
-    Core::Log::w("testcases/output") << " index " << index << endl;
     return testcases[index]->output();
 }
 
 QString TestCases::expected(int index) const
 {
-    Core::Log::w("testcases/expected") << " index " << index << endl;
     return testcases[index]->expected();
 }
 
 void TestCases::loadStatus(const QStringList &inputList, const QStringList &expectedList)
 {
-    Core::Log::w("testcases/loadStatus", "invoked");
     clear();
     for (int i = 0; i < inputList.length(); ++i)
         addTestCase(inputList[i], expectedList[i]);
@@ -211,7 +197,6 @@ void TestCases::loadStatus(const QStringList &inputList, const QStringList &expe
 
 QStringList TestCases::inputs() const
 {
-    Core::Log::w("testcases/inputs", "invoked");
     QStringList res;
     for (int i = 0; i < count(); ++i)
         res.append(testcases[i]->input());
@@ -220,7 +205,6 @@ QStringList TestCases::inputs() const
 
 QStringList TestCases::expecteds() const
 {
-    Core::Log::w("testcases/expecteds", "invoked");
     QStringList res;
     for (int i = 0; i < count(); ++i)
         res.append(testcases[i]->expected());
@@ -229,7 +213,7 @@ QStringList TestCases::expecteds() const
 
 void TestCases::loadFromFile(const QString &filePath)
 {
-    Core::Log::i("testcases/loadFromFile") << "filepath " << filePath << endl;
+    Core::Log::i("testcases/loadFromFile") << "Lading testcases from filepath " << filePath << endl;
     QFileInfo fileInfo(filePath);
     auto dir = fileInfo.dir();
     auto name = fileInfo.completeBaseName();
@@ -250,7 +234,8 @@ void TestCases::loadFromFile(const QString &filePath)
 
 void TestCases::save(const QString &filePath, bool safe)
 {
-    Core::Log::i("testcases/save") << "filepath " << filePath << endl;
+    Core::Log::i("testcases/save") << "Saving testcases to filepath " << filePath << "in mode " << BOOLEAN(safe)
+                                   << endl;
     QFileInfo fileInfo(filePath);
     auto dir = fileInfo.dir();
     auto name = fileInfo.completeBaseName();
@@ -267,13 +252,11 @@ void TestCases::save(const QString &filePath, bool safe)
 
 int TestCases::id(TestCase *testcase) const
 {
-    Core::Log::i("testcases/id", "invoked");
     return testcases.indexOf(testcase);
 }
 
 int TestCases::count() const
 {
-    Core::Log::i("testcases/count", "invoked");
     return testcases.count();
 }
 
@@ -346,20 +329,21 @@ bool TestCases::isShow(int index) const
 
 void TestCases::setVerdict(int index, Core::Checker::Verdict verdict)
 {
-    Core::Log::i("TestCases/setVerdict") << INFO_OF(index) << ", " << INFO_OF(verdict) << endl;
+    Core::Log::i("TestCases/setVerdict") << "Setting verdict to testcases " << INFO_OF(index) << ", "
+                                         << INFO_OF(verdict) << endl;
     testcases[index]->setVerdict(verdict);
     updateVerdicts();
 }
 
 void TestCases::on_addButton_clicked()
 {
-    Core::Log::i("testcases/on_addButton_clicked", "invoked");
+    Core::Log::i("testcases/on_addButton_clicked", "Add new case button clicked");
     addTestCase();
 }
 
 void TestCases::on_addCheckerButton_clicked()
 {
-    Core::Log::i("TestCases/on_addCheckerButton_clicked", "Invoked");
+    Core::Log::i("TestCases/on_addCheckerButton_clicked", "Add new checker button clicked");
     auto path = QFileInfo(QFileDialog::getOpenFileName(this, "Add Checker")).canonicalFilePath();
     if (!path.isEmpty())
     {
@@ -370,7 +354,6 @@ void TestCases::on_addCheckerButton_clicked()
 
 void TestCases::onChildDeleted(TestCase *widget)
 {
-    Core::Log::i("testcases/onChildDeleted", "invoked");
     testcases.removeOne(widget);
     widget->hide();
     scrollAreaLayout->removeWidget(widget);
@@ -382,7 +365,7 @@ void TestCases::onChildDeleted(TestCase *widget)
 
 void TestCases::updateVerdicts()
 {
-    Core::Log::i("testcases/updateVerdicts", "invoked");
+    Core::Log::i("testcases/updateVerdicts", "Updating verdict of all testcases");
     int ac = 0, wa = 0;
     for (auto t : testcases)
     {
@@ -404,13 +387,13 @@ void TestCases::updateVerdicts()
 
 QString TestCases::testFilePathPrefix(const QFileInfo &fileInfo, int index)
 {
-    Core::Log::i("testcases/testFilePathPrefix") << "index " << index << endl;
+    Core::Log::i("testcases/testFilePathPrefix") << INFO_OF(index) << endl;
     return fileInfo.dir().filePath(fileInfo.completeBaseName() + "_" + QString::number(index + 1));
 }
 
 int TestCases::numberOfTestFile(const QString &sourceName, const QFileInfo &fileName)
 {
-    Core::Log::i("testcases/numberofTestFile") << "sourceName " << sourceName << endl;
+    Core::Log::i("testcases/numberofTestFile") << INFO_OF(sourceName) << endl;
     auto baseName = fileName.completeBaseName();
     return baseName.mid(baseName.indexOf(sourceName) + sourceName.length() + 1).toInt();
 }

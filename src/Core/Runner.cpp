@@ -25,7 +25,7 @@ namespace Core
 
 Runner::Runner(int index) : runnerIndex(index)
 {
-    Core::Log::i("runner/constructed") << "index : " << index << endl;
+    Core::Log::i("runner/constructed") << " Constructed Runner instance with index: " << index << endl;
     runProcess = new QProcess();
     connect(runProcess, SIGNAL(started()), this, SLOT(onStarted()));
 }
@@ -37,7 +37,7 @@ Runner::~Runner()
     Core::Log::i("runner/destructed", "Destruction of this runner has began");
     if (killTimer != nullptr)
     {
-        Core::Log::i("runner/destructed", "killtimer is being deleted");
+        Core::Log::i("runner/destructed", "Killtimer is being deleted");
         delete killTimer;
     }
 
@@ -47,7 +47,7 @@ Runner::~Runner()
         if (runProcess->state() == QProcess::Running)
         {
             // Kill the process if it's still running when the Runner is destructed
-            Core::Log::i("runner/destructed", "runProcess is was running, now killing");
+            Core::Log::i("runner/destructed", "runProcess is was running, now killing it");
             runProcess->kill();
             emit runKilled(runnerIndex);
         }
@@ -64,11 +64,12 @@ Runner::~Runner()
 void Runner::run(const QString &filePath, const QString &lang, const QString &runCommand, const QString &args,
                  const QString &input, int timeLimit)
 {
-    Core::Log::i("runner/run") << "filepath" << filePath << " lang " << lang << " runCommand " << runCommand << " args "
-                               << args << " input " << input << "timelimit " << timeLimit << endl;
+    Core::Log::i("runner/run") << INFO_OF(filePath) << INFO_OF(lang) << INFO_OF(runCommand) << INFO_OF(args)
+                               << INFO_OF(input) << INFO_OF(timeLimit) << endl;
+
     if (!QFile::exists(filePath)) // make sure the source file exists, this usually means the executable file exists
     {
-        Core::Log::e("runner/run", "source file does not exist on disk now");
+        Core::Log::e("runner/run", "Source file does not exist on disk now");
         emit failedToStartRun(runnerIndex, "The source file " + filePath + " doesn't exist");
         return;
     }

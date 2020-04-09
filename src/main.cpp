@@ -135,8 +135,8 @@ int main(int argc, char *argv[])
         if (!ok || number < 0 || number > 26)
         {
             swap(args[0], args[1]);
-            Core::Log::w("main/Contest", "Failed to parse : " + args[1]);
-            Core::Log::w("main/Contest", " Trying next (i.e) : " + args[0]);
+            Core::Log::w("main/Contest") << "Failed to parse : " << args[1] << endl;
+            Core::Log::w("main/Contest") << " Trying next (i.e) : " << args[0] << endl;
             number = args[0].toInt(&ok);
         }
 
@@ -152,7 +152,7 @@ int main(int argc, char *argv[])
         if (QFileInfo(path).isRelative())
             path = QDir::current().filePath(path);
 
-        Core::Log::i("main/Contest", "Path extracted as : " + path);
+        Core::Log::i("main/Contest") << "Path extracted as : " << path << endl;
 
         if (/*!parser.isSet("new") &&*/ app.isSecondary())
         {
@@ -165,16 +165,17 @@ int main(int argc, char *argv[])
             TOJSON(path);
             if (app.sendMessage("AAAAAAAAAAAAAAAAAAAANOLOSTDATA" + QJsonDocument(json).toBinaryData()))
             {
-                Core::Log::i("Contest/Instance",
-                             "This is secondary application. Sending to primary instance the binary data : " +
-                                 QJsonDocument(json).toJson(QJsonDocument::Compact));
+                Core::Log::i("Contest/Instance")
+                    << "This is secondary application. Sending to primary instance the binary data : "
+                    << QJsonDocument(json).toJson(QJsonDocument::Compact) << endl;
+
                 cerr << "There is already a CP Editor running. New tabs are opened there.\n";
                 return 0;
             }
         }
 
-        Core::Log::i("main/Contest") << "Launching the new Appwindow with args: " << INFO_OF(cpp) << ", "
-                                     << INFO_OF(java) << ", " << INFO_OF(python) << ", " << INFO_OF(noHotExit) << ", "
+        Core::Log::i("main/Contest") << "Launching the new Appwindow with args: " << BOOLEAN(cpp) << ", "
+                                     << BOOLEAN(java) << ", " << BOOLEAN(python) << ", " << BOOLEAN(noHotExit) << ", "
                                      << INFO_OF(number) << ", " << INFO_OF(path) << endl;
 
         AppWindow w(cpp, java, python, noHotExit, number, path);
@@ -192,7 +193,7 @@ int main(int argc, char *argv[])
 
         if (!ok || depth < -1)
         {
-            Core::Log::e("main/Normal", "Failed to use parse depth. Provided : " + parser.value("depth"));
+            Core::Log::e("main/Normal") << "Failed to use parse depth. Provided : " << parser.value("depth") << endl;
             cerr << "Depth should be a non-negative integer.\n\n"
                  << "See " + programName + " --help for more infomation.\n\n";
             return 1;
@@ -205,7 +206,7 @@ int main(int argc, char *argv[])
         {
             if (QFileInfo(path).isRelative())
                 path = QDir::current().filePath(path);
-            Core::Log::i("main/Normal", "Path is : " + path);
+            Core::Log::i("main/Normal") << "Path is : " + path << endl;
         }
 
         if (/*!parser.isSet("new") &&*/ app.isSecondary())
@@ -219,16 +220,16 @@ int main(int argc, char *argv[])
             json["paths"] = QJsonArray::fromStringList(args);
             if (app.sendMessage("AAAAAAAAAAAAAAAAAAAANOLOSTDATA" + QJsonDocument(json).toBinaryData()))
             {
-                Core::Log::i("main/Normal/Instance",
-                             "This is secondary application. Sending to primary instance the data : " +
-                                 QJsonDocument(json).toJson(QJsonDocument::Compact));
+                Core::Log::i("main/Normal/Instance")
+                    << "This is secondary application. Sending to primary instance the data : "
+                    << QJsonDocument(json).toJson(QJsonDocument::Compact) << endl;
                 cerr << "There is already a CP Editor running. New tabs are opened there.\n";
                 return 0;
             }
         }
         Core::Log::i("main/Normal/main") << "Launching the new Appwindow with args: " << INFO_OF(depth) << ", "
-                                         << INFO_OF(cpp) << ", " << INFO_OF(java) << ", " << INFO_OF(python) << ", "
-                                         << INFO_OF(noHotExit) << ", " << INFO_OF(args.join(", ")) << endl;
+                                         << BOOLEAN(cpp) << ", " << BOOLEAN(java) << ", " << BOOLEAN(python) << ", "
+                                         << BOOLEAN(noHotExit) << ", " << INFO_OF(args.join(", ")) << endl;
 
         AppWindow w(depth, cpp, java, python, noHotExit, args);
         Core::Log::i("main/Normal", "Launched window connecting this window to onRecieveMessage()");

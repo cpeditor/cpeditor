@@ -27,7 +27,8 @@
 TestCaseEdit::TestCaseEdit(bool autoAnimation, MessageLogger *logger, const QString &text, QWidget *parent)
     : QPlainTextEdit(text, parent), log(logger)
 {
-    Core::Log::i("testcaseEdit/constructed") << "autoAnimate " << autoAnimation << " text " << text << endl;
+    Core::Log::i("testcaseEdit/constructed")
+        << " Constructing TestCaseEdit with " << BOOLEAN(autoAnimation) << INFO_OF(text) << endl;
     animation = new QPropertyAnimation(this, "minimumHeight", this);
     if (autoAnimation)
         connect(this, SIGNAL(textChanged()), this, SLOT(startAnimation()));
@@ -71,13 +72,13 @@ void TestCaseEdit::dropEvent(QDropEvent *event)
         if (file.open(QIODevice::ReadOnly | QIODevice::Text))
             modifyText(file.readAll());
         event->acceptProposedAction();
-        Core::Log::i("testcaseEdit/dropEvent") << "dropped file was " << file.fileName() << endl;
+        Core::Log::i("testcaseEdit/dropEvent") << "Dropped file was " << file.fileName() << endl;
     }
 }
 
 void TestCaseEdit::modifyText(const QString &text)
 {
-    Core::Log::i("testcasesEdit/modifyText") << "text " << text << endl;
+    Core::Log::i("testcasesEdit/modifyText") << " Modified text " << text << endl;
     auto cursor = textCursor();
     cursor.select(QTextCursor::Document);
     cursor.insertText(text);
@@ -85,7 +86,6 @@ void TestCaseEdit::modifyText(const QString &text)
 
 void TestCaseEdit::startAnimation()
 {
-    Core::Log::i("testcaseEdit/startAnimation", "started Animation");
     int newHeight = qMin(fontMetrics().lineSpacing() * (document()->lineCount() + 2) + 5, 300);
     if (newHeight != minimumHeight())
     {
@@ -93,7 +93,6 @@ void TestCaseEdit::startAnimation()
         animation->setStartValue(minimumHeight());
         animation->setEndValue(newHeight);
         animation->start();
-        Core::Log::i("testcaseEdit/startAnimation", "re-started Animation");
     }
 }
 
@@ -104,7 +103,7 @@ void TestCaseEdit::onCustomContextMenuRequested(const QPoint &pos)
     {
         menu->addSeparator();
         menu->addAction(QApplication::style()->standardIcon(QStyle::SP_DialogOpenButton), "Load From File", [this] {
-            Core::Log::i("TestCaseEdit/LoadFromFile", "Invoked");
+            Core::Log::i("TestCaseEdit/LoadFromFile", "Loading testcase from file");
             auto res = QFileDialog::getOpenFileName(this, "Load From File");
             QFile file(res);
             if (file.open(QIODevice::ReadOnly | QIODevice::Text))
@@ -114,7 +113,7 @@ void TestCaseEdit::onCustomContextMenuRequested(const QPoint &pos)
         });
         menu->addAction(
             QApplication::style()->standardIcon(QStyle::SP_TitleBarMaxButton), "Edit in Bigger Window", [this] {
-                Core::Log::i("TestCaseEdit/EditInBiggerWindow");
+                Core::Log::i("TestCaseEdit/EditInBiggerWindow", "Edit in big window requested");
                 bool ok = false;
                 auto res = QInputDialog::getMultiLineText(this, "Edit Testcase", QString(), toPlainText(), &ok);
                 if (ok)

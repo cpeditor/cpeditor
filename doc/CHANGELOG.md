@@ -10,6 +10,7 @@
 
 - Show the manual of the current version instead of the latest version.
 - Set window icon in application level instead of window level, this affects the update check window.
+- Log system now logs more informative and better to read logs.
 
 ### Fixed
 
@@ -18,7 +19,6 @@
 - Don't require any undo for auto-close parentheses.
 - Fix the low resolution issue on macOS. (#225)
 - Fix Application failed to get installed on macOS 10.14 (#193)
-
 ## v6.2
 
 ### Added
