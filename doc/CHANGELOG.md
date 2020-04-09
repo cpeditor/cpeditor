@@ -17,6 +17,7 @@
 - Add auto-close for single and double quotes. (#226)
 - Don't require any undo for auto-close parentheses.
 - Fix the low resolution issue on macOS. (#225)
+- Fix Application failed to get installed on macOS 10.14 (#193)
 
 ## v6.2
 
