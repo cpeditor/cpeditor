@@ -1,5 +1,7 @@
 ## UNRELEASED
 
+## 6.2.3
+
 ### Added
 
 - Make it able to use makepkg to install on Linux.
