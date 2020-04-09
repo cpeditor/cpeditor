@@ -28,7 +28,7 @@ add_subdirectory(third_party/QtFindReplaceDialog/dialogs)
 
 add_subdirectory(third_party/lsp-cpp)
 
-configure_file(version.hpp.in ${CMAKE_BINARY_DIR}/generated/version.hpp)
+configure_file(cmake/version.hpp.in ${CMAKE_BINARY_DIR}/generated/version.hpp)
 configure_file(scripts/aur/PKGBUILD.in ${CMAKE_BINARY_DIR}/aur/PKGBUILD)
 configure_file(scripts/aur/.SRCINFO.in ${CMAKE_BINARY_DIR}/aur/.SRCINFO)
 
@@ -125,13 +125,7 @@ if(APPLE)
     set_target_properties(cpeditor
         PROPERTIES
         MACOSX_BUNDLE TRUE
-        MACOSX_BUNDLE_BUNDLE_NAME ${PROJECT_NAME}
-        MACOSX_BUNDLE_GUI_IDENTIFIER "org.coder3101.cpeditor"
-        MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
-        MACOSX_BUNDLE_LONG_VERSION_STRING ${PROJECT_VERSION}
-        MACOSX_BUNDLE_SHORT_VERSION_STRING "${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT_VERSION_PATCH}"
-        MACOSX_BUNDLE_ICON_FILE "cpeditor.icns"
-        MACOSX_BUNDLE_COPYRIGHT "GNU GPL v3"
+	MACOSX_BUNDLE_INFO_PLIST ${CMAKE_SOURCE_DIR}/cmake/Info.plist.in
         RESOURCE ".ci/mac/cpeditor.icns"
     )
 endif()
