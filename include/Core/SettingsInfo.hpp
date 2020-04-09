@@ -54,7 +54,7 @@ const SettingInfo settingInfo[] = {
     {"C++/Run Arguments", "QString", "", {"runtime_cpp"}, ""},
     {"Java/Template Path", "QString", "PathItem", {"template_java"}, "", 2},
     {"Java/Compile Command", "QString", "", {"compile_java"}, "javac"},
-    {"Java/Run Arguments", "QString", "", {"runtime_java"}, "java"},
+    {"Java/Run Arguments", "QString", "", {"runtime_java"}, ""},
     {"Java/Run Command", "QString", "", {"run_java"}, "java"},
     {"Python/Template Path", "QString", "PathItem", {"template_python"}, "", 3},
     {"Python/Run Arguments", "QString", "", {"runtime_python"}, ""},

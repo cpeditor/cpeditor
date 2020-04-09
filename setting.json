@@ -91,7 +91,7 @@
     {
         "desc": "Java/Run Arguments",
         "type": "QString",
-        "default": "java",
+        "default": "",
         "old": [
             "runtime_java"
         ]
