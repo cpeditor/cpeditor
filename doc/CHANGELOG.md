@@ -3,7 +3,7 @@
 ### Added
 
 - Show stderr of the checker when the verdict is AC. (#207)
-- System-wide Dark theme for Windows 10 (#215)
+- System-wide Dark theme for Windows 10. (#215)
 - Make it able to use makepkg to install on Linux.
 
 ### Changed
@@ -16,6 +16,7 @@
 - Fix the wrong behavior of toggle comments, indent, delete line, etc. when wrap text is on. (#213)
 - Add auto-close for single and double quotes. (#226)
 - Don't require any undo for auto-close parentheses.
+- Fix the low resolution issue on macOS. (#225)
 
 ## v6.2
 
