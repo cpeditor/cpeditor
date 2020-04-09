@@ -100,6 +100,14 @@ class PreferencesPage : public QWidget
     void loadSettings();
 
   signals:
+
+    /**
+     * @brief the path are changed
+     * @param pagePath the path to this page
+     */
+
+    void pathChanged(const QString &pagePath);
+
     /**
      * @brief the settings are applied
      * @param pagePath the path to this page

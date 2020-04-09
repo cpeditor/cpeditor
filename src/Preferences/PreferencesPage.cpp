@@ -94,6 +94,7 @@ QString PreferencesPage::path() const
 void PreferencesPage::setPath(const QString &path)
 {
     m_path = path;
+    emit pathChanged(m_path);
 }
 
 void PreferencesPage::loadSettings()

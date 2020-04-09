@@ -34,6 +34,14 @@ static QString titles[] = {
 PreferencesPageTemplate::PreferencesPageTemplate(QStringList opts, QWidget *parent)
     : PreferencesGridPage(parent), options(opts)
 {
+    connect(this, &PreferencesPageTemplate::pathChanged, [this](const QString &path) {
+        QStringList pl = path.split('/');
+        if (pl.size() > 1 && pl.back() == "General")
+            setTitle(QString("%1 %2").arg(pl[pl.size() - 2], pl.last()));
+        else
+            setTitle(pl.last());
+    });
+
     for (const QString &desc : options)
     {
         SettingInfo si = findSetting(desc);
