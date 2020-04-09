@@ -1,9 +1,12 @@
 ## UNRELEASED
 
+## 6.1.6
+
 ### Fixed
 
 - Add auto-close for single and double quotes. (#226)
 - Don't require any undo for auto-close parentheses.
+- Fix the low resolution issue on macOS. (#225)
 
 ## 6.1.5
 
