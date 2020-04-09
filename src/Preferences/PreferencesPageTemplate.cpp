@@ -42,12 +42,12 @@ PreferencesPageTemplate::PreferencesPageTemplate(QStringList opts, QWidget *pare
             setTitle(pl.last());
     });
 
-    for (const QString &desc : options)
+    for (const QString &name : options)
     {
-        SettingInfo si = findSetting(desc);
+        SettingInfo si = findSetting(name);
 #ifdef QT_DEBUG
-        if (desc != si.desc)
-            qDebug() << "Unknown options" << desc;
+        if (name != si.name)
+            qDebug() << "Unknown options" << name;
 #endif
         if (si.type == "QString")
         {
@@ -91,7 +91,7 @@ bool PreferencesPageTemplate::areSettingsChanged()
     {
         ValueWidget *widget = widgets[i];
         SettingInfo si = findSetting(options[i]);
-        if (widget->getVariant() != SettingsManager::get(si.desc))
+        if (widget->getVariant() != SettingsManager::get(si.name))
             return true;
     }
     return false;
@@ -103,7 +103,7 @@ void PreferencesPageTemplate::makeUITheSameAsDefault()
     {
         ValueWidget *widget = widgets[i];
         SettingInfo si = findSetting(options[i]);
-        widget->setVariant(SettingsManager::get(si.desc, true));
+        widget->setVariant(SettingsManager::get(si.name, true));
     }
 }
 
@@ -113,7 +113,7 @@ void PreferencesPageTemplate::makeUITheSameAsSettings()
     {
         ValueWidget *widget = widgets[i];
         SettingInfo si = findSetting(options[i]);
-        widget->setVariant(SettingsManager::get(si.desc));
+        widget->setVariant(SettingsManager::get(si.name));
     }
 }
 
@@ -123,6 +123,6 @@ void PreferencesPageTemplate::makeSettingsTheSameAsUI()
     {
         ValueWidget *widget = widgets[i];
         SettingInfo si = findSetting(options[i]);
-        SettingsManager::set(si.desc, widget->getVariant());
+        SettingsManager::set(si.name, widget->getVariant());
     }
 }

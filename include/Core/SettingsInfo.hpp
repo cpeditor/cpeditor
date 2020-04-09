@@ -30,82 +30,89 @@
 
 struct SettingInfo
 {
-    QString desc, type, ui;
+    QString name, desc, type, ui;
     QStringList old;
     QVariant def;
     QVariant param;
 
-    QString name() const
+    QString key() const
     {
-        return desc.toLower().replace('+', 'p').replace(' ', '_');
+        return name.toLower().replace('+', 'p').replace(' ', '_');
     }
 };
 
 const SettingInfo settingInfo[] = {
-    {"Tab Width", "int", "", {"tab_stop"}, 4, QList<QVariant>{1, 16}},
-    {"Time Limit", "int", "", {}, 5000},
-    {"Geometry", "QRect", "", {}, QRect()},
-    {"Font", "QFont", "", {}, QFont("monospace")},
-    {"Default Language", "QString", "QComboBox", {}, "C++", QStringList{"C++", "Java", "Python"}},
-    {"Clang Format/Path", "QString", "PathItem", {"clang_format_binary"}, "clang-format", 0},
-    {"Clang Format/Style", "QString", "", {"clang_format_style"}, "BasedOnStyle: Google"},
-    {"C++/Template Path", "QString", "PathItem", {"template_cpp"}, "", 1},
-    {"C++/Compile Command", "QString", "", {"compile_cpp"}, "g++ -Wall"},
-    {"C++/Run Arguments", "QString", "", {"runtime_cpp"}, ""},
-    {"Java/Template Path", "QString", "PathItem", {"template_java"}, "", 2},
-    {"Java/Compile Command", "QString", "", {"compile_java"}, "javac"},
-    {"Java/Run Arguments", "QString", "", {"runtime_java"}, ""},
-    {"Java/Run Command", "QString", "", {"run_java"}, "java"},
-    {"Python/Template Path", "QString", "PathItem", {"template_python"}, "", 3},
-    {"Python/Run Arguments", "QString", "", {"runtime_python"}, ""},
-    {"Python/Run Command", "QString", "", {"run_python"}, "python"},
+    {"Tab Width", "Tab Width", "int", "", {"tab_stop"}, 4, QList<QVariant>{1, 16}},
+    {"Time Limit", "Time Limit", "int", "", {}, 5000},
+    {"Geometry", "Geometry", "QRect", "", {}, QRect()},
+    {"Font", "Font", "QFont", "", {}, QFont("monospace")},
+    {"Default Language", "Default Language", "QString", "QComboBox", {}, "C++", QStringList{"C++", "Java", "Python"}},
+    {"Clang Format/Path", "Path", "QString", "PathItem", {"clang_format_binary"}, "clang-format", 0},
+    {"Clang Format/Style", "Style", "QString", "", {"clang_format_style"}, "BasedOnStyle: Google"},
+    {"C++/Template Path", "C++/Template Path", "QString", "PathItem", {"template_cpp"}, "", 1},
+    {"C++/Compile Command", "C++/Compile Command", "QString", "", {"compile_cpp"}, "g++ -Wall"},
+    {"C++/Run Arguments", "C++/Run Arguments", "QString", "", {"runtime_cpp"}, ""},
+    {"Java/Template Path", "Java/Template Path", "QString", "PathItem", {"template_java"}, "", 2},
+    {"Java/Compile Command", "Java/Compile Command", "QString", "", {"compile_java"}, "javac"},
+    {"Java/Run Arguments", "Java/Run Arguments", "QString", "", {"runtime_java"}, ""},
+    {"Java/Run Command", "Java/Run Command", "QString", "", {"run_java"}, "java"},
+    {"Python/Template Path", "Python/Template Path", "QString", "PathItem", {"template_python"}, "", 3},
+    {"Python/Run Arguments", "Python/Run Arguments", "QString", "", {"runtime_python"}, ""},
+    {"Python/Run Command", "Python/Run Command", "QString", "", {"run_python"}, "python"},
     {"Editor Theme",
+     "Editor Theme",
      "QString",
      "QComboBox",
      {},
      "Light",
      QStringList{"Light", "Drakula", "Monkai", "Solarised", "Solarised Dark"}},
-    {"Auto Complete Parentheses", "bool", "", {"auto_parenthesis"}, true},
-    {"Auto Remove Parentheses", "bool", "", {"auto_remove_parentheses"}, true},
-    {"Auto Indent", "bool", "", {}, true},
-    {"Auto Save", "bool", "", {"autosave"}, false},
-    {"Wrap Text", "bool", "", {}, false},
-    {"Beta", "bool", "", {}, false},
-    {"Replace Tabs", "bool", "", {}, false},
-    {"Save Tests", "bool", "", {}, false},
-    {"Maximized Window", "bool", "", {"win_max"}, false},
-    {"Check Update", "bool", "", {"update_start_check"}, true},
-    {"Auto Format", "bool", "", {"format_on_save"}, false},
-    {"Transparency", "int", "QSlider", {}, 100, QList<QVariant>{60, 100}},
-    {"View Mode", "QString", "", {}, "split"},
-    {"Splitter Size", "QByteArray", "", {"splitter_sizes"}, QByteArray()},
-    {"Right Splitter Size", "QByteArray", "", {"right_splitter_sizes"}, QByteArray()},
-    {"Competitive Companion/Enable", "bool", "", {"competitive_use"}, true},
-    {"Competitive Companion/Connection Port", "int", "", {"connection_port"}, 10045, QList<QVariant>{1024, 49151}},
-    {"Competitive Companion/Open New Tab", "bool", "", {"companion_new_tab"}, true},
-    {"Hotkey/Enable", "bool", "", {"hotkey_use"}, false},
-    {"Hotkey/Format", "QString", "ShortcutItem", {"hotkey_format"}, ""},
-    {"Hotkey/Kill", "QString", "ShortcutItem", {"hotkey_kill"}, ""},
-    {"Hotkey/Compile Run", "QString", "ShortcutItem", {"hotkey_compile_run"}, ""},
-    {"Hotkey/Run", "QString", "ShortcutItem", {"hotkey_run"}, ""},
-    {"Hotkey/Compile", "QString", "ShortcutItem", {"hotkey_compile"}, ""},
-    {"Hotkey/Change View Mode", "QString", "ShortcutItem", {"hotkey_mode_toggle"}, ""},
-    {"Hotkey/Snippets", "QString", "ShortcutItem", {"hotkey_snippets"}, ""},
-    {"Hot Exit/Enable", "bool", "", {"use_hot_exit"}, true},
-    {"Hot Exit/Tab Count", "int", "", {"number_of_tabs"}, 0},
-    {"Hot Exit/Current Index", "int", "", {"current_index"}, -1},
-    {"Hot Exit/Load From File", "bool", "", {"hot_exit_load_from_file"}, false},
-    {"CF/Path", "QString", "PathItem", {"cf_path"}, "cf", 0},
-    {"Save Path", "QString", "", {}, ""},
-    {"Show Compile And Run Only", "bool", "", {"compile_and_run_only"}, false},
-    {"Display EOLN In Diff", "bool", "", {}, false},
-    {"Save Faster", "bool", "", {}, false},
+    {"Auto Complete Parentheses", "Auto Complete Parentheses", "bool", "", {"auto_parenthesis"}, true},
+    {"Auto Remove Parentheses", "Auto Remove Parentheses", "bool", "", {"auto_remove_parentheses"}, true},
+    {"Auto Indent", "Auto Indent", "bool", "", {}, true},
+    {"Auto Save", "Auto Save", "bool", "", {"autosave"}, false},
+    {"Wrap Text", "Wrap Text", "bool", "", {}, false},
+    {"Beta", "Beta", "bool", "", {}, false},
+    {"Replace Tabs", "Replace Tabs", "bool", "", {}, false},
+    {"Save Tests", "Save Tests", "bool", "", {}, false},
+    {"Maximized Window", "Maximized Window", "bool", "", {"win_max"}, false},
+    {"Check Update", "Check Update", "bool", "", {"update_start_check"}, true},
+    {"Auto Format", "Auto Format Code On Save", "bool", "", {"format_on_save"}, false},
+    {"Transparency", "Transparency", "int", "QSlider", {}, 100, QList<QVariant>{60, 100}},
+    {"View Mode", "View Mode", "QString", "", {}, "split"},
+    {"Splitter Size", "Splitter Size", "QByteArray", "", {"splitter_sizes"}, QByteArray()},
+    {"Right Splitter Size", "Right Splitter Size", "QByteArray", "", {"right_splitter_sizes"}, QByteArray()},
+    {"Competitive Companion/Enable", "Enable Competitive Companion", "bool", "", {"competitive_use"}, true},
+    {"Competitive Companion/Connection Port",
+     "Connection Port",
+     "int",
+     "",
+     {"connection_port"},
+     10045,
+     QList<QVariant>{1024, 49151}},
+    {"Competitive Companion/Open New Tab", "Open New Tabs", "bool", "", {"companion_new_tab"}, true},
+    {"Hotkey/Enable", "Enable Hotkey", "bool", "", {"hotkey_use"}, false},
+    {"Hotkey/Format", "Format", "QString", "ShortcutItem", {"hotkey_format"}, ""},
+    {"Hotkey/Kill", "Kill", "QString", "ShortcutItem", {"hotkey_kill"}, ""},
+    {"Hotkey/Compile Run", "Compile Run", "QString", "ShortcutItem", {"hotkey_compile_run"}, ""},
+    {"Hotkey/Run", "Run", "QString", "ShortcutItem", {"hotkey_run"}, ""},
+    {"Hotkey/Compile", "Compile", "QString", "ShortcutItem", {"hotkey_compile"}, ""},
+    {"Hotkey/Change View Mode", "Change View Mode", "QString", "ShortcutItem", {"hotkey_mode_toggle"}, ""},
+    {"Hotkey/Snippets", "Snippets", "QString", "ShortcutItem", {"hotkey_snippets"}, ""},
+    {"Hot Exit/Enable", "Enable Hot Exit", "bool", "", {"use_hot_exit"}, true},
+    {"Hot Exit/Tab Count", "Hot Exit/Tab Count", "int", "", {"number_of_tabs"}, 0},
+    {"Hot Exit/Current Index", "Hot Exit/Current Index", "int", "", {"current_index"}, -1},
+    {"Hot Exit/Load From File", "Hot Exit/Load From File", "bool", "", {"hot_exit_load_from_file"}, false},
+    {"CF/Path", "Path", "QString", "PathItem", {"cf_path"}, "cf", 0},
+    {"Save Path", "Save Path", "QString", "", {}, ""},
+    {"Show Compile And Run Only", "Show Compile And Run Only", "bool", "", {"compile_and_run_only"}, false},
+    {"Display EOLN In Diff", "Display EOLN In Diff", "bool", "", {}, false},
+    {"Save Faster", "Save Faster", "bool", "", {}, false},
 };
 
-inline SettingInfo findSetting(const QString &desc)
+inline SettingInfo findSetting(const QString &name)
 {
     for (const SettingInfo &si : settingInfo)
-        if (si.desc == desc)
+        if (si.name == name)
             return si;
     return SettingInfo();
 }

@@ -116,6 +116,13 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
     addPage("Key Bindings",
             new PreferencesPageTemplate({"Hotkey/Compile", "Hotkey/Run", "Hotkey/Compile Run", "Hotkey/Format",
                                          "Hotkey/Kill", "Hotkey/Change View Mode", "Hotkey/Snippets"}));
+
+    addPage("Extensions/Clang Format", new PreferencesPageTemplate({"Clang Format/Path", "Clang Format/Style"}));
+
+    addPage("Extensions/Competitive Companion",
+            new PreferencesPageTemplate({"Competitive Companion/Enable", "Competitive Companion/Connection Port",
+                                         "Competitive Companion/Open New Tab"}));
+    addPage("Extensions/CF", new PreferencesPageTemplate({"CF/Path"}));
 }
 
 void PreferencesWindow::display()

@@ -38,8 +38,8 @@ namespace SettingsHelper
 types=($(jq '.[].type' "$SETTING"));
 count=${#types[@]};
 for ((i=0;i<count;++i)); do
-    name="$(jq -r ".[$i].desc" "$SETTING")";
-    namestr="$(jq ".[$i].desc" "$SETTING")";
+    name="$(jq -r ".[$i].name" "$SETTING")";
+    namestr="$(jq ".[$i].name" "$SETTING")";
     type="$(jq -r ".[$i].type" "$SETTING")";
     key="$(echo "$name" | tr -d ' /' | tr '+' 'p')";
     echo "    inline void set$key($type value) { SettingsManager::set($namestr, value); }" >&3;
@@ -66,28 +66,33 @@ echo "$license
 
 struct SettingInfo
 {
-    QString desc, type, ui;
+    QString name, desc, type, ui;
     QStringList old;
     QVariant def;
     QVariant param;
 
-    QString name() const
+    QString key() const
     {
-        return desc.toLower().replace('+', 'p').replace(' ', '_');
+        return name.toLower().replace('+', 'p').replace(' ', '_');
     }
 };
 
 const SettingInfo settingInfo[] =
 {" >&4;
 for ((i=0;i<count;++i)); do
-    namestr="$(jq ".[$i].desc" "$SETTING")";
+    name="$(jq ".[$i].name" "$SETTING")";
+    if [ "$(jq ".[$i].desc" "$SETTING")" != "null" ]; then
+        desc="$(jq ".[$i].desc" "$SETTING")";
+    else
+        desc="$name";
+    fi
     type="$(jq -r ".[$i].type" "$SETTING")";
     if [ "$(jq ".[$i].ui" "$SETTING")" != "null" ]; then
         ui="$(jq -r ".[$i].ui" "$SETTING")";
     else
         ui='';
     fi
-    echo -n "    {$namestr, \"$type\", \"$ui\", {" >&4;
+    echo -n "    {$name, $desc, \"$type\", \"$ui\", {" >&4;
     if [ "$(jq ".[$i].old" "$SETTING")" != "null" ]; then
         olds=($(jq ".[$i].old[]" "$SETTING"));
         ocnt=${#olds[@]};
@@ -126,10 +131,10 @@ for ((i=0;i<count;++i)); do
 done
 echo -n "};
 
-inline SettingInfo findSetting(const QString &desc)
+inline SettingInfo findSetting(const QString &name)
 {
     for (const SettingInfo &si: settingInfo)
-        if (si.desc == desc)
+        if (si.name == name)
             return si;
     return SettingInfo();
 }

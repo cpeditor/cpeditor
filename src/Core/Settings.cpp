@@ -52,7 +52,7 @@ void SettingsManager::init()
 
     // default settings
     for (const SettingInfo &si : settingInfo)
-        def->insert(si.desc, si.def);
+        def->insert(si.name, si.def);
 
     if (!loadPath.isEmpty())
     {
@@ -61,13 +61,13 @@ void SettingsManager::init()
         // load most of settings
         for (const SettingInfo &si : settingInfo)
         {
-            if (setting.contains(si.name()))
-                set(si.desc, setting.value(si.name()));
+            if (setting.contains(si.key()))
+                set(si.name, setting.value(si.key()));
             else
                 for (const QString &old : si.old)
                     if (setting.contains(old))
                     {
-                        set(si.desc, setting.value(old));
+                        set(si.name, setting.value(old));
                         break;
                     }
         }
@@ -109,7 +109,7 @@ void SettingsManager::deinit()
 
     // save most settings
     for (const SettingInfo &si : settingInfo)
-        setting.setValue(si.name(), get(si.desc));
+        setting.setValue(si.key(), get(si.name));
 
     // save snippets
     for (QString key : keyStartsWith("Snippets/"))
