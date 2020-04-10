@@ -47,7 +47,8 @@
         "default": "BasedOnStyle: Google",
         "old": [
             "clang_format_style"
-        ]
+        ],
+        "ui": "QPlainTextEdit"
     },
     {
         "name": "C++/Template Path",

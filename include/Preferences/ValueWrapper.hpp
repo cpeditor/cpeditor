@@ -28,6 +28,7 @@
 #include "Preferences/ShortcutItem.hpp"
 #include <QComboBox>
 #include <QLineEdit>
+#include <QPlainTextEdit>
 
 // int
 #include <QScrollBar>
@@ -115,6 +116,13 @@ struct CheckBoxWrapper : public Wrapper<bool>
 };
 
 struct LineEditWrapper : public Wrapper<QString>
+{
+    virtual void init(QWidget *parent, QVariant param = QVariant());
+    virtual QString get() override;
+    virtual void set(QString s) override;
+};
+
+struct PlainTextEditWrapper : public Wrapper<QString>
 {
     virtual void init(QWidget *parent, QVariant param = QVariant());
     virtual QString get() override;

@@ -64,6 +64,23 @@ void LineEditWrapper::set(QString s)
     static_cast<QLineEdit *>(widget)->setText(s);
 }
 
+void PlainTextEditWrapper::init(QWidget *parent, QVariant)
+{
+    auto *item = new QPlainTextEdit(parent);
+    connect(item, &QPlainTextEdit::textChanged, this, &ValueWidget::emitSignal);
+    widget = item;
+}
+
+QString PlainTextEditWrapper::get()
+{
+    return static_cast<QPlainTextEdit *>(widget)->toPlainText();
+}
+
+void PlainTextEditWrapper::set(QString s)
+{
+    static_cast<QPlainTextEdit *>(widget)->setPlainText(s);
+}
+
 void ComboBoxWrapper::init(QWidget *parent, QVariant param)
 {
     QComboBox *item = new QComboBox(parent);
@@ -215,6 +232,8 @@ Wrapper<QString> *createStringWrapper(QString type)
         type = "QLineEdit";
     if (type == "QLineEdit")
         return new LineEditWrapper();
+    else if (type == "QPlainTextEdit")
+        return new PlainTextEditWrapper();
     else if (type == "QComboBox")
         return new ComboBoxWrapper();
     else if (type == "PathItem")

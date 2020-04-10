@@ -48,7 +48,7 @@ const SettingInfo settingInfo[] = {
     {"Font", "Font", "QFont", "", {}, QFont("monospace")},
     {"Default Language", "Default Language", "QString", "QComboBox", {}, "C++", QStringList{"C++", "Java", "Python"}},
     {"Clang Format/Path", "Path", "QString", "PathItem", {"clang_format_binary"}, "clang-format", 0},
-    {"Clang Format/Style", "Style", "QString", "", {"clang_format_style"}, "BasedOnStyle: Google"},
+    {"Clang Format/Style", "Style", "QString", "QPlainTextEdit", {"clang_format_style"}, "BasedOnStyle: Google"},
     {"C++/Template Path", "C++/Template Path", "QString", "PathItem", {"template_cpp"}, "", 1},
     {"C++/Compile Command", "C++/Compile Command", "QString", "", {"compile_cpp"}, "g++ -Wall"},
     {"C++/Run Arguments", "C++/Run Arguments", "QString", "", {"runtime_cpp"}, ""},
