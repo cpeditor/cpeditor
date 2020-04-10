@@ -8,4 +8,7 @@ contact_links:
     about: Some instructions and tips.
   - name: Telegram Group
     url: https://t.me/cpeditor
-    about: Please ask questions except of feature requests and bug reports here.
+    about: You can ask questions except for feature requests and bug reports here.
+  - name: Slack Workspace
+    url: https://join.slack.com/t/cpeditor/shared_invite/zt-dke1v9xd-zr~QeXJhCzbM9FFOjx6sMA
+    about: You can ask questions except for feature requests and bug reports in the "help" channel.

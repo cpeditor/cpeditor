@@ -12,6 +12,7 @@ It makes your competitive coding life easier :grin: by automating many things fo
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/ce0f297f31f74485b0d340949d08d605)](https://www.codacy.com/gh/cpeditor/cpeditor)
 [![GitHub All Releases](https://img.shields.io/github/downloads/cpeditor/cpeditor/total?label=downloads%40all)](https://github.com/cpeditor/cpeditor/releases)
+[![Slack Workspace](https://img.shields.io/badge/join-slack-success)](https://join.slack.com/t/cpeditor/shared_invite/zt-dke1v9xd-zr~QeXJhCzbM9FFOjx6sMA)
 [![Telegram Group](https://img.shields.io/badge/join-telegram%20chat-success)](https://t.me/cpeditor)
 [![Help wanted issues](https://img.shields.io/github/issues/cpeditor/cpeditor/help%20wanted)](https://github.com/cpeditor/cpeditor/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22)
 
@@ -40,10 +41,11 @@ It makes your competitive coding life easier :grin: by automating many things fo
 2. Ask Google first if it's not very editor-related. (e.g. How to install Clang Format? What does this compilation error mean?)
 3. Search in the [Issues](https://github.com/cpeditor/cpeditor/issues) and make sure your bug report/feature request is not duplicated.
 4. Please follow the issue template and provide detailed information, it will help us to give you better feedback.
-5. If it's a feature request or bug report rather than a question, please open an issue instead of asking on Telegram so that it can be tracked easier.
+5. If it's a feature request or bug report rather than a question, please open an issue instead of asking on Telegram or Slack so that it can be tracked easier.
 
 - [Open an issue](https://github.com/cpeditor/cpeditor/issues/new/choose)
 - [Ask on Telegram](https://t.me/cpeditor)
+- [Ask on Slack](https://join.slack.com/t/cpeditor/shared_invite/zt-dke1v9xd-zr~QeXJhCzbM9FFOjx6sMA)
 
 ## FAQ
 
