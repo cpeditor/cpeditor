@@ -62,6 +62,9 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
 
     menuTree = new QTreeWidget();
     menuTree->setHeaderHidden(true);
+    connect(menuTree, &QTreeView::clicked, [this](const QModelIndex &index) {
+        menuTree->isExpanded(index) ? menuTree->collapse(index) : menuTree->expand(index);
+    });
     connect(menuTree, &QTreeWidget::itemActivated, [this](QTreeWidgetItem *item) { switchToPage(pageWidget[item]); });
     connect(menuTree, &QTreeWidget::itemClicked, [this](QTreeWidgetItem *item) { switchToPage(pageWidget[item]); });
     leftLayout->addWidget(menuTree);
