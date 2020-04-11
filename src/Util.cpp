@@ -108,14 +108,14 @@ void applySettingsToEditor(QCodeEditor *editor)
 
     if (SettingsHelper::getEditorTheme() == "Light")
         editor->setSyntaxStyle(Themes::EditorTheme::getLightTheme());
-    else if (SettingsHelper::getEditorTheme() == "Drakula")
-        editor->setSyntaxStyle(Themes::EditorTheme::getDrakulaTheme());
-    else if (SettingsHelper::getEditorTheme() == "Monkai")
-        editor->setSyntaxStyle(Themes::EditorTheme::getMonkaiTheme());
-    else if (SettingsHelper::getEditorTheme() == "Solarised")
-        editor->setSyntaxStyle(Themes::EditorTheme::getSolarisedTheme());
-    else if (SettingsHelper::getEditorTheme() == "Solarised Dark")
-        editor->setSyntaxStyle(Themes::EditorTheme::getSolarisedDarkTheme());
+    else if (SettingsHelper::getEditorTheme() == "Dracula")
+        editor->setSyntaxStyle(Themes::EditorTheme::getDraculaTheme());
+    else if (SettingsHelper::getEditorTheme() == "Monokai")
+        editor->setSyntaxStyle(Themes::EditorTheme::getMonokaiTheme());
+    else if (SettingsHelper::getEditorTheme() == "Solarized")
+        editor->setSyntaxStyle(Themes::EditorTheme::getSolarizedTheme());
+    else if (SettingsHelper::getEditorTheme() == "Solarized Dark")
+        editor->setSyntaxStyle(Themes::EditorTheme::getSolarizedDarkTheme());
     else
         editor->setSyntaxStyle(Themes::EditorTheme::getLightTheme());
 }

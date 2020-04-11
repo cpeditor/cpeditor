@@ -65,7 +65,7 @@ const SettingInfo settingInfo[] = {
      "QComboBox",
      {},
      "Light",
-     QStringList{"Light", "Drakula", "Monkai", "Solarised", "Solarised Dark"}},
+     QStringList{"Light", "Dracula", "Monokai", "Solarized", "Solarized Dark"}},
     {"Auto Complete Parentheses", "Auto Complete Parentheses", "bool", "", {"auto_parenthesis"}, true},
     {"Auto Remove Parentheses", "Auto Remove Parentheses", "bool", "", {"auto_remove_parentheses"}, true},
     {"Auto Indent", "Auto Indent", "bool", "", {}, true},

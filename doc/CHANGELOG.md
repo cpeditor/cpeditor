@@ -13,6 +13,7 @@
 
 - Show the manual of the current version instead of the latest version.
 - Before this fix, the language is not set to C++ when saving a file with one of the C++ prefixes.
+- Fix types in the names of the editor themes.
 
 ## v6.2
 

@@ -99,6 +99,14 @@ void SettingsManager::init()
         for (const QString &index : setting.allKeys())
             set(QString("Editor Status/%1").arg(index), setting.value(index));
         setting.endGroup();
+
+        // rename themes
+        QString theme = get("Editor Theme")
+                            .toString()
+                            .replace("Monkai", "Monokai")
+                            .replace("Drakula", "Dracula")
+                            .replace("Solarised", "Solarized");
+        set("Editor Theme", theme);
     }
 }
 

@@ -136,7 +136,7 @@
         "type": "QString",
         "default": "Light",
         "ui": "QComboBox",
-        "param": "QStringList {\"Light\", \"Drakula\", \"Monkai\", \"Solarised\", \"Solarised Dark\"}"
+        "param": "QStringList {\"Light\", \"Dracula\", \"Monokai\", \"Solarized\", \"Solarized Dark\"}"
     },
     {
         "name": "Auto Complete Parentheses",
