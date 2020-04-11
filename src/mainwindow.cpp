@@ -579,19 +579,25 @@ void MainWindow::formatSource()
 void MainWindow::setLanguage(const QString &lang)
 {
     Core::Log::i("mainwindow/setLanguage") << "lang " << lang << endl;
+    if (!QFile::exists(filePath))
+    {
+        QString templateContent;
+        if (!language.isEmpty())
+        {
+            QFile templateFile(SettingsManager::get(QString("%1/Template Path").arg(language)).toString());
+            templateFile.open(QIODevice::ReadOnly | QIODevice::Text);
+            if (templateFile.isOpen())
+                templateContent = templateFile.readAll();
+        }
+        if (templateContent == editor->toPlainText())
+        {
+            language = lang;
+            loadFile(filePath);
+        }
+    }
     language = lang;
     if (language != "Python" && language != "Java")
         language = "C++";
-    if (!QFile::exists(filePath))
-    {
-        QFile templateFile(SettingsManager::get(QString("%1/Template Path").arg(language)).toString());
-        templateFile.open(QIODevice::ReadOnly | QIODevice::Text);
-        QString templateContent;
-        if (templateFile.isOpen())
-            templateContent = templateFile.readAll();
-        if (templateContent == editor->toPlainText())
-            loadFile(filePath);
-    }
     Util::setEditorLanguage(editor, language);
     ui->changeLanguageButton->setText(language);
     performCompileAndRunDiagonistics();
