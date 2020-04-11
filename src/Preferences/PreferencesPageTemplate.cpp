@@ -31,8 +31,8 @@ static QString titles[] = {
     "Choose Python Sources",
 };
 
-PreferencesPageTemplate::PreferencesPageTemplate(QStringList opts, QWidget *parent)
-    : PreferencesGridPage(parent), options(opts)
+PreferencesPageTemplate::PreferencesPageTemplate(QStringList opts, bool alignTop, QWidget *parent)
+    : PreferencesGridPage(alignTop, parent), options(opts)
 {
     connect(this, &PreferencesPageTemplate::pathChanged, [this](const QString &path) {
         QStringList pl = path.split('/');

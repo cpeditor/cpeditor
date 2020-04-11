@@ -77,8 +77,9 @@ class PreferencesWindow : public QMainWindow
      * @brief add a preferences page
      * @param path the path to the page, for example: "Actions/Save" / "Appearance"
      * @param opts the options of the PreferencesPageTemplate
+     * @param alignTop whether to align settings to the top
      */
-    void addPage(const QString &path, const QStringList &opts);
+    void addPage(const QString &path, const QStringList &opts, bool alignTop = true);
 
     /**
      * @brief switch to a page

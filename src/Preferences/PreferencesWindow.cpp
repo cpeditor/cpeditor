@@ -119,7 +119,7 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
 
     addPage("Actions/Save", {"Auto Save", "Save Faster", "Auto Format", "Save Tests"});
 
-    addPage("Extensions/Clang Format", {"Clang Format/Path", "Clang Format/Style"});
+    addPage("Extensions/Clang Format", {"Clang Format/Path", "Clang Format/Style"}, false);
 
     addPage("Extensions/Competitive Companion", {"Competitive Companion/Enable", "Competitive Companion/Open New Tab",
                                                  "Competitive Companion/Connection Port"});
@@ -215,9 +215,9 @@ void PreferencesWindow::addPage(const QString &path, PreferencesPage *page, cons
     connect(page, SIGNAL(settingsApplied(const QString &)), this, SIGNAL(settingsApplied(const QString &)));
 }
 
-void PreferencesWindow::addPage(const QString &path, const QStringList &opts)
+void PreferencesWindow::addPage(const QString &path, const QStringList &opts, bool alignTop)
 {
-    auto page = new PreferencesPageTemplate(opts);
+    auto page = new PreferencesPageTemplate(opts, alignTop);
     addPage(path, page, page->content());
 }
 

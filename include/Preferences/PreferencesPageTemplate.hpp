@@ -26,7 +26,7 @@ class PreferencesPageTemplate : public PreferencesGridPage
     Q_OBJECT
 
   public:
-    explicit PreferencesPageTemplate(QStringList opts, QWidget *parent = nullptr);
+    explicit PreferencesPageTemplate(QStringList opts, bool alignTop = true, QWidget *parent = nullptr);
 
     QStringList content();
 

@@ -1,6 +1,6 @@
 #include "Preferences/PreferencesGridPage.hpp"
 
-PreferencesGridPage::PreferencesGridPage(QWidget *parent) : PreferencesPage(parent)
+PreferencesGridPage::PreferencesGridPage(bool alignTop, QWidget *parent) : PreferencesPage(parent)
 {
     VLayout = new QVBoxLayout();
     HLayout = new QHBoxLayout();
@@ -10,7 +10,10 @@ PreferencesGridPage::PreferencesGridPage(QWidget *parent) : PreferencesPage(pare
 
     VLayout->addSpacing(30);
     VLayout->addLayout(HLayout);
-    VLayout->addStretch();
+    if (alignTop)
+        VLayout->addStretch();
+    else
+        VLayout->addSpacing(30);
 
     HLayout->addStretch();
     HLayout->addLayout(gridLayout);

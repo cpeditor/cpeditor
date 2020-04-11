@@ -33,7 +33,7 @@ class PreferencesGridPage : public PreferencesPage
     Q_OBJECT
 
   public:
-    explicit PreferencesGridPage(QWidget *parent = nullptr);
+    explicit PreferencesGridPage(bool alignTop = true, QWidget *parent = nullptr);
 
     /**
      * @brief add a row
