@@ -84,7 +84,7 @@ for ((i=0;i<count;++i)); do
     if [ "$(jq ".[$i].desc" "$SETTING")" != "null" ]; then
         desc="$(jq ".[$i].desc" "$SETTING")";
     else
-        desc="$name";
+        desc="${name/\// }";
     fi
     type="$(jq -r ".[$i].type" "$SETTING")";
     if [ "$(jq ".[$i].ui" "$SETTING")" != "null" ]; then
