@@ -30,6 +30,8 @@ Settings *SettingsManager::def = nullptr;
 static QStringList configFileLocation = {"$AC/cp_editor_settings.ini", "$H/.cp_editor_settings.ini",
                                          "$H/cp_editor_settings.ini"};
 
+static const QStringList noUnknownKeyWarning = {"C++/Run Command", "Python/Compile Command"};
+
 void SettingsManager::init()
 {
     for (QString &location : configFileLocation)
@@ -142,7 +144,8 @@ QVariant SettingsManager::get(QString key, bool alwaysDefault)
     else
     {
 #ifdef QT_DEBUG
-        qDebug() << "Settings: getting unknown key" << key;
+        if (!noUnknownKeyWarning.contains(key))
+            qDebug() << "Settings: getting unknown key" << key;
 #endif
         return QVariant();
     }

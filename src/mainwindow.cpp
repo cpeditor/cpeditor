@@ -1033,7 +1033,7 @@ void MainWindow::updateChecker()
     else
         checker = new Core::Checker(testcases->checkerType(), &log, this);
     connect(checker, &Core::Checker::checkFinished, testcases, &TestCases::setVerdict);
-    checker->prepare(SettingsManager::get(QString("%1/Compile Command").arg(language)).toString());
+    checker->prepare(SettingsManager::get(QString("C++/Compile Command")).toString());
 }
 
 QSplitter *MainWindow::getSplitter()
