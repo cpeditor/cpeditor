@@ -184,6 +184,10 @@ void PreferencesWindow::switchToPage(QWidget *page, bool force)
         menuTree->setCurrentItem(pageTreeItem[preferencesPage]);
         preferencesPage->loadSettings();
     }
+    else
+    {
+        menuTree->clearSelection();
+    }
 }
 
 void PreferencesWindow::addPage(const QString &path, PreferencesPage *page, const QStringList &pageContent)
