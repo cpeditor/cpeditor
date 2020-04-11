@@ -1064,14 +1064,14 @@ void MainWindow::performCompileAndRunDiagonistics()
             Core::Compiler::check(SettingsManager::get(QString("%1/Compile Command").arg(language)).toString());
 
     if (language == "Java" || language == "Python")
-        runResult = Core::Compiler::check(SettingsManager::get(QString("%1/Compile Command").arg(language)).toString());
+        runResult = Core::Compiler::check(SettingsManager::get(QString("%1/Run Command").arg(language)).toString());
 
     if (!compilerResult)
-        log.error("Compiler", "Compiler command for " + language + " is invalid. Is compiler on PATH?");
+        log.error("Compiler",
+                  "The compile command for " + language + " is invalid. Is the compiler in the system PATH?");
 
     if (!runResult)
-        log.error("Runner",
-                  "Binary or Script won't be executed because its corresponding program or VM could not be loaded");
+        log.error("Runner", "The run command for " + language + " is invalid. Is the runner in the system Path?");
 }
 
 // -------------------- COMPILER SLOTS ---------------------------
