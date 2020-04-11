@@ -118,9 +118,8 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
 
     addPage("Extensions/Clang Format", {"Clang Format/Path", "Clang Format/Style"});
 
-    addPage("Extensions/Competitive Companion",
-            {"Competitive Companion/Enable", "Competitive Companion/Connection Port",
-             "Competitive Companion/Open New Tab"});
+    addPage("Extensions/Competitive Companion", {"Competitive Companion/Enable", "Competitive Companion/Open New Tab",
+                                                 "Competitive Companion/Connection Port"});
 
     addPage("Extensions/CF Tool", {"CF/Path"});
 
