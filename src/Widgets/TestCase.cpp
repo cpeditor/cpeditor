@@ -18,8 +18,8 @@
 #include "Widgets/TestCase.hpp"
 #include "Core/EventLogger.hpp"
 #include <QMessageBox>
-#include <generated/SettingsHelper.hpp>
 #include <Util.hpp>
+#include <generated/SettingsHelper.hpp>
 
 TestCase::TestCase(int index, MessageLogger *logger, QWidget *parent, const QString &in, const QString &exp)
     : QWidget(parent), log(logger)

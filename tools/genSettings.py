@@ -5,7 +5,13 @@ import os
 import sys
 import json
 
+def check(path, time):
+    return os.path.exists(path) and os.path.getmtime(path) > time
+
 if __name__ == "__main__":
+    setting_time = os.path.getmtime(sys.argv[1])
+    if check("generated/SettingsHelper.hpp", setting_time) and check("generated/SettingsInfo.hpp", setting_time):
+        exit(0)
     obj = json.load(open(sys.argv[1], mode="r"))
     head = """/*
  * Copyright (C) 2019-2020 Ashar Khan <ashar786khan@gmail.com>
@@ -41,10 +47,10 @@ if __name__ == "__main__":
 namespace SettingsHelper
 {
 """)
-    for i in range(len(obj)):
-        name = obj[i]["name"]
+    for t in obj:
+        name = t["name"]
         key = name.replace(" ", "").replace("/", "").replace("+", "p")
-        typename = obj[i]["type"]
+        typename = t["type"]
         setting_helper.write(f"    inline void set{key}({typename} value) {{ SettingsManager::set({json.dumps(name)}, value); }}\n")
         if typename == "bool":
             setting_helper.write(f"    inline bool is{key}() {{ return SettingsManager::get({json.dumps(name)}).toBool(); }}\n")
@@ -81,32 +87,32 @@ struct SettingInfo
 const SettingInfo settingInfo[] =
 {
 """)
-    for i in range(len(obj)):
-        name = obj[i]["name"]
-        typename = obj[i]["type"]
-        if "desc" in obj[i]:
-            desc = obj[i]["desc"]
+    for o in obj:
+        name = t["name"]
+        typename = t["type"]
+        if "desc" in t:
+            desc = t["desc"]
         else:
             desc = name.replace('/', ' ')
-        if "ui" in obj[i]:
-            ui = obj[i]["ui"]
+        if "ui" in t:
+            ui = t["ui"]
         else:
             ui = ""
         setting_info.write(f"    {{{json.dumps(name)}, {json.dumps(desc)}, \"{typename}\", \"{ui}\", {{")
-        if "old" in obj[i]:
+        if "old" in t:
             olds = ""
-            for s in obj[i]["old"]:
+            for s in t["old"]:
                 olds = olds + '"' + s + '", '
             setting_info.write(olds)
         setting_info.write("}, ")
-        if "default" in obj[i]:
+        if "default" in t:
             if typename == "QString":
-                setting_info.write(json.dumps(obj[i]["default"]))
+                setting_info.write(json.dumps(t["default"]))
             else:
-                if type(obj[i]["default"]) == type(True):
-                    setting_info.write(str(obj[i]["default"]).lower())
+                if isinstance(type(t["default"]), bool):
+                    setting_info.write(str(t["default"]).lower())
                 else:
-                    setting_info.write(str(obj[i]["default"]))
+                    setting_info.write(str(t["default"]))
         else:
             defs = {
                 'QString':'""',
@@ -116,8 +122,8 @@ const SettingInfo settingInfo[] =
                 'QByteArray': 'QByteArray()'
             }
             setting_info.write(defs[typename])
-        if "param" in obj[i]:
-            setting_info.write(f', {obj[i]["param"]}')
+        if "param" in t:
+            setting_info.write(f', {t["param"]}')
         setting_info.write("},\n")
     setting_info.write("""};
 
