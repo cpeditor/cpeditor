@@ -161,6 +161,7 @@
     },
     {
         "name": "Auto Save",
+        "desc": "Enable Auto Save",
         "type": "bool",
         "old": [
             "autosave"
@@ -180,6 +181,7 @@
     },
     {
         "name": "Save Tests",
+        "desc": "Save Testcases on Save",
         "type": "bool"
     },
     {
@@ -199,7 +201,7 @@
     },
     {
         "name": "Auto Format",
-        "desc": "Auto Format Code On Save",
+        "desc": "Format Codes on Save",
         "type": "bool",
         "old": [
             "format_on_save"
@@ -389,6 +391,7 @@
     },
     {
         "name": "Save Faster",
+        "desc": "Save Files Faster",
         "type": "bool"
     }
 ]

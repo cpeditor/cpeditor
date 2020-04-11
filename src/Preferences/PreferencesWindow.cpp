@@ -112,8 +112,9 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
     addPage("Appearance",
             {"Editor Theme", "Font", "Transparency", "Show Compile And Run Only", "Display EOLN In Diff"});
 
-    addPage("Key Bindings", {"Hotkey/Compile", "Hotkey/Run", "Hotkey/Compile Run", "Hotkey/Format", "Hotkey/Kill",
-                             "Hotkey/Change View Mode", "Hotkey/Snippets"});
+    addPage("Actions/General", {"Hot Exit/Enable"});
+
+    addPage("Actions/Save", {"Auto Save", "Save Faster", "Auto Format", "Save Tests"});
 
     addPage("Extensions/Clang Format", {"Clang Format/Path", "Clang Format/Style"});
 
@@ -122,6 +123,9 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
              "Competitive Companion/Open New Tab"});
 
     addPage("Extensions/CF Tool", {"CF/Path"});
+
+    addPage("Key Bindings", {"Hotkey/Compile", "Hotkey/Run", "Hotkey/Compile Run", "Hotkey/Format", "Hotkey/Kill",
+                             "Hotkey/Change View Mode", "Hotkey/Snippets"});
 }
 
 void PreferencesWindow::display()

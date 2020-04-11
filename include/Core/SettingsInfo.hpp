@@ -69,14 +69,14 @@ const SettingInfo settingInfo[] = {
     {"Auto Complete Parentheses", "Auto Complete Parentheses", "bool", "", {"auto_parenthesis"}, true},
     {"Auto Remove Parentheses", "Auto Remove Parentheses", "bool", "", {"auto_remove_parentheses"}, true},
     {"Auto Indent", "Auto Indent", "bool", "", {}, true},
-    {"Auto Save", "Auto Save", "bool", "", {"autosave"}, false},
+    {"Auto Save", "Enable Auto Save", "bool", "", {"autosave"}, false},
     {"Wrap Text", "Wrap Text", "bool", "", {}, false},
     {"Beta", "Beta", "bool", "", {}, false},
     {"Replace Tabs", "Replace Tabs", "bool", "", {}, false},
-    {"Save Tests", "Save Tests", "bool", "", {}, false},
+    {"Save Tests", "Save Testcases on Save", "bool", "", {}, false},
     {"Maximized Window", "Maximized Window", "bool", "", {"win_max"}, false},
     {"Check Update", "Check Update", "bool", "", {"update_start_check"}, true},
-    {"Auto Format", "Auto Format Code On Save", "bool", "", {"format_on_save"}, false},
+    {"Auto Format", "Format Codes on Save", "bool", "", {"format_on_save"}, false},
     {"Transparency", "Transparency", "int", "QSlider", {}, 100, QList<QVariant>{60, 100}},
     {"View Mode", "View Mode", "QString", "", {}, "split"},
     {"Splitter Size", "Splitter Size", "QByteArray", "", {"splitter_sizes"}, QByteArray()},
@@ -106,7 +106,7 @@ const SettingInfo settingInfo[] = {
     {"Save Path", "Save Path", "QString", "", {}, ""},
     {"Show Compile And Run Only", "Show Compile And Run Only", "bool", "", {"compile_and_run_only"}, false},
     {"Display EOLN In Diff", "Display EOLN In Diff", "bool", "", {}, false},
-    {"Save Faster", "Save Faster", "bool", "", {}, false},
+    {"Save Faster", "Save Files Faster", "bool", "", {}, false},
 };
 
 inline SettingInfo findSetting(const QString &name)
