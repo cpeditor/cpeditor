@@ -122,7 +122,8 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
     addPage("Extensions/Competitive Companion",
             new PreferencesPageTemplate({"Competitive Companion/Enable", "Competitive Companion/Connection Port",
                                          "Competitive Companion/Open New Tab"}));
-    addPage("Extensions/CF", new PreferencesPageTemplate({"CF/Path"}));
+
+    addPage("Extensions/CF Tool", new PreferencesPageTemplate({"CF/Path"}));
 }
 
 void PreferencesWindow::display()
