@@ -156,6 +156,13 @@ class Checker : public QObject
     void onRunTimeout(int index);
 
     /**
+     * @brief the stdout/stderr of the checker is too long
+     * @param index the index of the testcase
+     * @param type stdout/stderr
+     */
+    void onRunOutputLimitExceeded(int index, const QString &type);
+
+    /**
      * @brief the checker process is killed
      * @param index the index of the testcase
      */

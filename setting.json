@@ -9,11 +9,6 @@
         "param": "QList<QVariant> {1,16}"
     },
     {
-        "name": "Time Limit",
-        "type": "int",
-        "default": 5000
-    },
-    {
         "name": "Geometry",
         "type": "QRect"
     },
@@ -387,5 +382,42 @@
         "name": "Save Faster",
         "desc": "Save Files Faster",
         "type": "bool"
+    },
+    {
+        "name": "Time Limit",
+        "desc": "Time Limit (ms)",
+        "type": "int",
+        "default": 5000,
+        "param": "QList<QVariant> {1,3600000}"
+    },
+    {
+        "name": "Output Length Limit",
+        "type": "int",
+        "default": 500000,
+        "param": "QList<QVariant> {2,1000000000}"
+    },
+    {
+        "name": "Message Length Limit",
+        "type": "int",
+        "default": 20000,
+        "param": "QList<QVariant> {500,100000000}"
+    },
+    {
+        "name": "HTML Diff Viewer Length Limit",
+        "type": "int",
+        "default": 50000,
+        "param": "QList<QVariant> {2,100000000}"
+    },
+    {
+        "name": "Open File Length Limit",
+        "type": "int",
+        "default": 20000,
+        "param": "QList<QVariant> {2,100000000}"
+    },
+    {
+        "name": "Load Test Case File Length Limit",
+        "type": "int",
+        "default": 500000,
+        "param": "QList<QVariant> {2,1000000000}"
     }
 ]

@@ -43,7 +43,6 @@ struct SettingInfo
 
 const SettingInfo settingInfo[] = {
     {"Tab Width", "Tab Width", "int", "", {"tab_stop"}, 4, QList<QVariant>{1, 16}},
-    {"Time Limit", "Time Limit", "int", "", {}, 5000},
     {"Geometry", "Geometry", "QRect", "", {}, QRect()},
     {"Font", "Font", "QFont", "", {}, QFont("monospace")},
     {"Default Language", "Default Language", "QString", "QComboBox", {}, "C++", QStringList{"C++", "Java", "Python"}},
@@ -106,6 +105,24 @@ const SettingInfo settingInfo[] = {
     {"Show Compile And Run Only", "Show Compile And Run Only", "bool", "", {"compile_and_run_only"}, false},
     {"Display EOLN In Diff", "Display EOLN In Diff", "bool", "", {}, false},
     {"Save Faster", "Save Files Faster", "bool", "", {}, false},
+    {"Time Limit", "Time Limit (ms)", "int", "", {}, 5000, QList<QVariant>{1, 3600000}},
+    {"Output Length Limit", "Output Length Limit", "int", "", {}, 500000, QList<QVariant>{2, 1000000000}},
+    {"Message Length Limit", "Message Length Limit", "int", "", {}, 20000, QList<QVariant>{500, 100000000}},
+    {"HTML Diff Viewer Length Limit",
+     "HTML Diff Viewer Length Limit",
+     "int",
+     "",
+     {},
+     50000,
+     QList<QVariant>{2, 100000000}},
+    {"Open File Length Limit", "Open File Length Limit", "int", "", {}, 20000, QList<QVariant>{2, 100000000}},
+    {"Load Test Case File Length Limit",
+     "Load Test Case File Length Limit",
+     "int",
+     "",
+     {},
+     500000,
+     QList<QVariant>{2, 1000000000}},
 };
 
 inline SettingInfo findSetting(const QString &name)

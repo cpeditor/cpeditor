@@ -130,6 +130,10 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
                              "Hotkey/Change View Mode", "Hotkey/Snippets"});
 
     addPage("Advanced/Update", {"Check Update", "Beta"});
+
+    addPage("Advanced/Limits",
+            {"Time Limit", "Output Length Limit", "Message Length Limit", "HTML Diff Viewer Length Limit",
+             "Open File Length Limit", "Load Test Case File Length Limit"});
 }
 
 void PreferencesWindow::display()

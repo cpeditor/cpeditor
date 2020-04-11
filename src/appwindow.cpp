@@ -159,13 +159,13 @@ AppWindow::~AppWindow()
         delete languageClient;
     }
     Themes::EditorTheme::release();
-    SettingsManager::deinit();
     delete ui;
     delete preferencesWindow;
     delete timer;
     delete updater;
     delete server;
     delete findReplaceDialog;
+    SettingsManager::deinit();
 }
 
 /******************* PUBLIC METHODS ***********************/

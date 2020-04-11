@@ -123,6 +123,7 @@ class MainWindow : public QMainWindow
     void onRunFinished(int index, const QString &out, const QString &err, int exitCode, int timeUsed);
     void onFailedToStartRun(int index, const QString &error);
     void onRunTimeout(int index);
+    void onRunOutputLimitExceeded(int index, const QString &type);
     void onRunKilled(int index);
 
     void on_changeLanguageButton_clicked();
@@ -144,8 +145,6 @@ class MainWindow : public QMainWindow
     void requestToastMessage(const QString &head, const QString &body);
 
   private:
-    static const int MAX_CODE_LENGTH = 100000;
-
     enum SaveMode
     {
         IgnoreUntitled, // save only when filePath is not empty

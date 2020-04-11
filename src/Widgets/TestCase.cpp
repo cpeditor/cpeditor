@@ -17,6 +17,7 @@
 
 #include "Widgets/TestCase.hpp"
 #include "Core/EventLogger.hpp"
+#include "Core/SettingsHelper.hpp"
 #include <QMessageBox>
 #include <Util.hpp>
 
@@ -92,11 +93,23 @@ void TestCase::setOutput(const QString &text)
 {
     Core::Log::i("testcase/setOutput") << "text \n" << text << endl;
 
-    outputEdit->modifyText(text);
+    auto newOutput = text;
+
+    if (text.length() > SettingsHelper::getOutputLengthLimit())
+    {
+        newOutput = "Output Length Limit Exceeded";
+        log->error("Testcases",
+                   QString("The output #%1 contains more than %2 characters, so it's not displayed. You can set the "
+                           "output length limit in Preferences->Advanced->Limits->Output Length Limit")
+                       .arg(id + 1)
+                       .arg(SettingsHelper::getOutputLengthLimit()));
+    }
+
+    outputEdit->modifyText(newOutput);
     outputEdit->startAnimation();
 
     if (!diffViewer->isHidden())
-        diffViewer->setText(output(), expected());
+        diffViewer->setText(newOutput, expected());
 }
 
 void TestCase::setExpected(const QString &text)
@@ -140,18 +153,48 @@ void TestCase::loadFromFile(const QString &pathPrefix)
     {
         Core::Log::i("testcase/loadFromFile", "Okay, Input file exists");
         if (inputFile.open(QIODevice::ReadOnly | QIODevice::Text))
-            setInput(inputFile.readAll());
+        {
+            auto text = inputFile.readAll();
+            if (text.length() > SettingsHelper::getLoadTestCaseFileLengthLimit())
+            {
+                log->error(
+                    "Testcases",
+                    QString(
+                        "The testcase file [%1] contains more than %2 characters, so it's not loaded. You can change "
+                        "the length limit in Preferences->Advanced->Limits->Load Test Case File Length Limit")
+                        .arg(pathPrefix + ".in")
+                        .arg(SettingsHelper::getLoadTestCaseFileLengthLimit()));
+            }
+            else
+                setInput(text);
+        }
         else
-            log->warn("Tests", "Failed to load Input #" + QString::number(id + 1) + ". Do I have read permission?");
+            log->error("Testcases",
+                       "Failed to load Input #" + QString::number(id + 1) + ". Do I have read permission?");
     }
     QFile expectedFile(pathPrefix + ".ans");
     if (expectedFile.exists())
     {
         Core::Log::i("testcase/loadFromFile", "Okay, Expected file exists");
         if (expectedFile.open(QIODevice::ReadOnly | QIODevice::Text))
-            setExpected(expectedFile.readAll());
+        {
+            auto text = expectedFile.readAll();
+            if (text.length() > SettingsHelper::getLoadTestCaseFileLengthLimit())
+            {
+                log->error(
+                    "Testcases",
+                    QString(
+                        "The testcase file [%1] contains more than %2 characters, so it's not loaded. You can change "
+                        "the length limit in Preferences->Advanced->Limits->Load Test Case File Length Limit")
+                        .arg(pathPrefix + ".ans")
+                        .arg(SettingsHelper::getLoadTestCaseFileLengthLimit()));
+            }
+            else
+                setExpected(text);
+        }
         else
-            log->warn("Tests", "Failed to load Expected #" + QString::number(id + 1) + ". Do I have read permission?");
+            log->error("Testcases",
+                       "Failed to load Expected #" + QString::number(id + 1) + ". Do I have read permission?");
     }
 }
 
@@ -271,7 +314,9 @@ void TestCase::onDelButtonClicked()
 
 void TestCase::onToLongForHtml()
 {
-    log->warn("Diff Viewer[" + QString::number(id + 1) + "]", "The output/expected is longer than " +
-                                                                  QString::number(DiffViewer::MAX_CHARACTERS_FOR_HTML) +
-                                                                  " characters, use plain text diff");
+    log->warn(
+        "Diff Viewer[" + QString::number(id + 1) + "]",
+        QString("The output/expected contains more than %1 characters, HTML diff viewer is disabled. You can change "
+                "the length limit in Preferences->Advanced->Limits->HTML Diff Viewer Length Limit")
+            .arg(SettingsHelper::getHTMLDiffViewerLengthLimit()));
 }

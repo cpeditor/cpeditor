@@ -104,6 +104,14 @@ class Runner : public QObject
     void runTimeout(int index);
 
     /**
+     * @brief the stdout/stderr is too long
+     * @param index the index of the testcase
+     * @param type either stdout or stderr
+     * @note this will be emitted only once
+     */
+    void runOutputLimitExceeded(int index, const QString &type);
+
+    /**
      * @brief the program is killed
      * @param index the index of the testcase
      * @note It's only emitted when the process is killed when destructing the Runner.
@@ -125,9 +133,21 @@ class Runner : public QObject
 
     /**
      * @brief the time limit is reached
-     * @param this will kill the process if it's still running and emit runTimeout
+     * @note this will kill the process if it's still running and emit runTimeout
      */
     void onTimeout();
+
+    /**
+     * @brief the stdout of the process updated
+     * @note kill the process if stdout is too long
+     */
+    void onReadyReadStandardOutput();
+
+    /**
+     * @brief the stderr of the process updated
+     * @note kill the process if stderr is too long
+     */
+    void onReadyReadStandardError();
 
   private:
     /**
@@ -139,10 +159,13 @@ class Runner : public QObject
      */
     QString getCommand(const QString &filePath, const QString &lang, const QString &runCommand, const QString &args);
 
-    const int runnerIndex;             // the index of the testcase
-    QProcess *runProcess = nullptr;    // the process to run the program
-    QTimer *killTimer = nullptr;       // the timer used to kill the process when the time limit is reached
-    QElapsedTimer *runTimer = nullptr; // the timer used to measure how much time did the execution use
+    const int runnerIndex;                   // the index of the testcase
+    QProcess *runProcess = nullptr;          // the process to run the program
+    QTimer *killTimer = nullptr;             // the timer used to kill the process when the time limit is reached
+    QElapsedTimer *runTimer = nullptr;       // the timer used to measure how much time did the execution use
+    QString processStdout;                   // the stdout of the process
+    QString processStderr;                   // the stderr of the process
+    bool outputLimitExceededEmitted = false; // whether runOutputLimitExceeded is emitted or not
 };
 
 } // namespace Core

@@ -23,6 +23,8 @@
 #define SETTINGSHELPER_HPP
 
 #include "Core/Settings.hpp"
+#include <QFont>
+#include <QRect>
 
 namespace SettingsHelper
 {
@@ -33,14 +35,6 @@ inline void setTabWidth(int value)
 inline int getTabWidth()
 {
     return SettingsManager::get("Tab Width").value<int>();
-}
-inline void setTimeLimit(int value)
-{
-    SettingsManager::set("Time Limit", value);
-}
-inline int getTimeLimit()
-{
-    return SettingsManager::get("Time Limit").value<int>();
 }
 inline void setGeometry(QRect value)
 {
@@ -441,6 +435,54 @@ inline void setSaveFaster(bool value)
 inline bool isSaveFaster()
 {
     return SettingsManager::get("Save Faster").value<bool>();
+}
+inline void setTimeLimit(int value)
+{
+    SettingsManager::set("Time Limit", value);
+}
+inline int getTimeLimit()
+{
+    return SettingsManager::get("Time Limit").value<int>();
+}
+inline void setOutputLengthLimit(int value)
+{
+    SettingsManager::set("Output Length Limit", value);
+}
+inline int getOutputLengthLimit()
+{
+    return SettingsManager::get("Output Length Limit").value<int>();
+}
+inline void setMessageLengthLimit(int value)
+{
+    SettingsManager::set("Message Length Limit", value);
+}
+inline int getMessageLengthLimit()
+{
+    return SettingsManager::get("Message Length Limit").value<int>();
+}
+inline void setHTMLDiffViewerLengthLimit(int value)
+{
+    SettingsManager::set("HTML Diff Viewer Length Limit", value);
+}
+inline int getHTMLDiffViewerLengthLimit()
+{
+    return SettingsManager::get("HTML Diff Viewer Length Limit").value<int>();
+}
+inline void setOpenFileLengthLimit(int value)
+{
+    SettingsManager::set("Open File Length Limit", value);
+}
+inline int getOpenFileLengthLimit()
+{
+    return SettingsManager::get("Open File Length Limit").value<int>();
+}
+inline void setLoadTestCaseFileLengthLimit(int value)
+{
+    SettingsManager::set("Load Test Case File Length Limit", value);
+}
+inline int getLoadTestCaseFileLengthLimit()
+{
+    return SettingsManager::get("Load Test Case File Length Limit").value<int>();
 }
 } // namespace SettingsHelper
 

@@ -66,7 +66,8 @@ DiffViewer::DiffViewer(QWidget *parent) : QMainWindow(parent)
 
 void DiffViewer::setText(const QString &output, const QString &expected)
 {
-    if (output.length() <= MAX_CHARACTERS_FOR_HTML && expected.length() <= MAX_CHARACTERS_FOR_HTML)
+    if (output.length() <= SettingsHelper::getHTMLDiffViewerLengthLimit() &&
+        expected.length() <= SettingsHelper::getHTMLDiffViewerLengthLimit())
     {
         Core::Log::i("DiffViewer/setText", "Use HTML");
         diff_match_patch differ;

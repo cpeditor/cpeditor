@@ -173,6 +173,8 @@ void MainWindow::run(int index)
             SLOT(onRunFinished(int, const QString &, const QString &, int, int)));
     connect(tmp, SIGNAL(failedToStartRun(int, const QString &)), this, SLOT(onFailedToStartRun(int, const QString &)));
     connect(tmp, SIGNAL(runTimeout(int)), this, SLOT(onRunTimeout(int)));
+    connect(tmp, SIGNAL(runOutputLimitExceeded(int, const QString &)), this,
+            SLOT(onRunOutputLimitExceeded(int, const QString &)));
     connect(tmp, SIGNAL(runKilled(int)), this, SLOT(onRunKilled(int)));
     tmp->run(tmpPath(), language, SettingsManager::get(QString("%1/Run Command").arg(language)).toString(),
              SettingsManager::get(QString("%1/Run Arguments").arg(language)).toString(), testcases->input(index),
@@ -580,7 +582,6 @@ void MainWindow::setLanguage(const QString &lang)
     language = lang;
     if (language != "Python" && language != "Java")
         language = "C++";
-    log.clear();
     if (!QFile::exists(filePath))
     {
         QFile templateFile(SettingsManager::get(QString("%1/Template Path").arg(language)).toString());
@@ -694,8 +695,6 @@ void MainWindow::updateWatcher()
         fileWatcher->addPath(filePath);
 }
 
-const int MainWindow::MAX_CODE_LENGTH;
-
 void MainWindow::loadFile(const QString &loadPath)
 {
     Core::Log::i("mainwindow/loadFile") << "loadPath : " << loadPath << endl;
@@ -730,13 +729,20 @@ void MainWindow::loadFile(const QString &loadPath)
     {
         auto content = openFile.readAll();
         savedText = content;
-        if (content.length() > MAX_CODE_LENGTH)
-            content = content.left(MAX_CODE_LENGTH) + "...This file is too big.";
+        if (content.length() > SettingsHelper::getOpenFileLengthLimit())
+        {
+            content = "Open File Length Limit Exceeded";
+            log.error("Open File",
+                      QString("The file [%1] contains more than %2 characters, so it's not opened. You can change the "
+                              "open file length limit in Preferences->Advanced->Limits->Open File Length Limit")
+                          .arg(path)
+                          .arg(SettingsHelper::getOpenFileLengthLimit()));
+        }
         setText(content, samePath);
     }
     else
     {
-        log.warn("Loader", "Failed to load " + path + ". Do I have read permission?");
+        log.warn("Open File", "Failed to load " + path + ". Do I have read permission?");
         return;
     }
 
@@ -1167,9 +1173,21 @@ void MainWindow::onRunTimeout(int index)
     log.warn(getRunnerHead(index), "Time Limit Exceeded");
 }
 
+void MainWindow::onRunOutputLimitExceeded(int index, const QString &type)
+{
+    log.warn(
+        getRunnerHead(index),
+        QString("The %1 of the process running on the testcase #%2 contains more than %3 characters, which is longer "
+                "than the output length limit, so the process is killed. You can change the output length limit "
+                "in Preferences->Advanced->Limits->Output Length Limit")
+            .arg(type)
+            .arg(index + 1)
+            .arg(SettingsHelper::getOutputLengthLimit()));
+}
+
 void MainWindow::onRunKilled(int index)
 {
     log.error(getRunnerHead(index),
-              (index == -1 ? "Detached runner" : "Runner for test case #" + QString::number(index + 1)) +
+              (index == -1 ? "Detached runner" : "Runner for testcase #" + QString::number(index + 1)) +
                   " has been killed");
 }

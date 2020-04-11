@@ -17,6 +17,7 @@
 
 #include "Widgets/TestCaseEdit.hpp"
 #include "Core/EventLogger.hpp"
+#include "Core/SettingsHelper.hpp"
 #include <QApplication>
 #include <QFileDialog>
 #include <QInputDialog>
@@ -67,11 +68,9 @@ void TestCaseEdit::dropEvent(QDropEvent *event)
     if (!isReadOnly() && !urls.isEmpty())
     {
         Core::Log::i("testcaseEdit/dropEvent", "Reading the dropped file to testcase");
-        QFile file(urls[0].toLocalFile());
-        if (file.open(QIODevice::ReadOnly | QIODevice::Text))
-            modifyText(file.readAll());
+        loadFromFile(urls[0].toLocalFile());
         event->acceptProposedAction();
-        Core::Log::i("testcaseEdit/dropEvent") << "dropped file was " << file.fileName() << endl;
+        Core::Log::i("testcaseEdit/dropEvent") << "dropped file was " << urls[0].toLocalFile() << endl;
     }
 }
 
@@ -106,11 +105,7 @@ void TestCaseEdit::onCustomContextMenuRequested(const QPoint &pos)
         menu->addAction(QApplication::style()->standardIcon(QStyle::SP_DialogOpenButton), "Load From File", [this] {
             Core::Log::i("TestCaseEdit/LoadFromFile", "Invoked");
             auto res = QFileDialog::getOpenFileName(this, "Load From File");
-            QFile file(res);
-            if (file.open(QIODevice::ReadOnly | QIODevice::Text))
-                modifyText(file.readAll());
-            else
-                log->warn("TestCases", "Failed to load testcase from [" + res + "]");
+            loadFromFile(res);
         });
         menu->addAction(
             QApplication::style()->standardIcon(QStyle::SP_TitleBarMaxButton), "Edit in Bigger Window", [this] {
@@ -122,4 +117,26 @@ void TestCaseEdit::onCustomContextMenuRequested(const QPoint &pos)
             });
     }
     menu->popup(mapToGlobal(pos));
+}
+
+void TestCaseEdit::loadFromFile(const QString &path)
+{
+    QFile file(path);
+    if (file.open(QIODevice::ReadOnly | QIODevice::Text))
+    {
+        auto text = file.readAll();
+        if (text.length() > SettingsHelper::getLoadTestCaseFileLengthLimit())
+        {
+            log->error(
+                "Testcases",
+                QString("The testcase file [%1] contains more than %2 characters, so it's not loaded. You can change "
+                        "the length limit in Preferences->Advanced->Limits->Load Test Case File Length Limit")
+                    .arg(path)
+                    .arg(SettingsHelper::getLoadTestCaseFileLengthLimit()));
+        }
+        else
+            modifyText(text);
+    }
+    else
+        log->warn("TestCases", QString("Failed to load testcase from the file [%1]").arg(path));
 }

@@ -32,6 +32,8 @@ echo "$license
 #define SETTINGSHELPER_HPP
 
 #include \"Core/Settings.hpp\"
+#include <QFont>
+#include <QRect>
 
 namespace SettingsHelper
 {" >&3;
