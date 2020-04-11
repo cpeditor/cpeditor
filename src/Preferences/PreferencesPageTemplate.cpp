@@ -47,7 +47,7 @@ PreferencesPageTemplate::PreferencesPageTemplate(QStringList opts, bool alignTop
         SettingInfo si = findSetting(name);
 #ifdef QT_DEBUG
         if (name != si.name)
-            qDebug() << "Unknown options" << name;
+            qDebug() << "Unknown option" << name;
 #endif
         if (si.type == "QString")
         {

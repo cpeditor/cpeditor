@@ -173,6 +173,7 @@
     },
     {
         "name": "Beta",
+        "desc": "Check for Beta updates as well",
         "type": "bool"
     },
     {
@@ -193,6 +194,7 @@
     },
     {
         "name": "Check Update",
+        "desc": "Check for updates on startup",
         "type": "bool",
         "default": true,
         "old": [

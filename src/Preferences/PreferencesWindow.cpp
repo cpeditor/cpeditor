@@ -128,6 +128,8 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
 
     addPage("Key Bindings", {"Hotkey/Compile", "Hotkey/Run", "Hotkey/Compile Run", "Hotkey/Format", "Hotkey/Kill",
                              "Hotkey/Change View Mode", "Hotkey/Snippets"});
+
+    addPage("Advanced/Update", {"Check Update", "Beta"});
 }
 
 void PreferencesWindow::display()
