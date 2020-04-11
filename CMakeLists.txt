@@ -17,6 +17,7 @@ endif()
 
 find_package(Qt5 COMPONENTS Widgets REQUIRED)
 find_package(Qt5 COMPONENTS Network REQUIRED)
+find_package(Python3 COMPONENTS Interpreter REQUIRED)
 
 add_subdirectory(third_party/QCodeEditor)
 
@@ -29,6 +30,7 @@ add_subdirectory(third_party/QtFindReplaceDialog/dialogs)
 add_subdirectory(third_party/lsp-cpp)
 
 configure_file(version.hpp.in ${CMAKE_BINARY_DIR}/generated/version.hpp)
+execute_process(COMMAND ${Python3_EXECUTABLE} ${PROJECT_SOURCE_DIR}/tools/genSettings.py ${PROJECT_SOURCE_DIR}/setting.json WORKING_DIRECTORY ${CMAKE_BINARY_DIR})
 
 IF(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/.git)
   FIND_PACKAGE(Git)
@@ -52,8 +54,6 @@ add_executable(cpeditor
     include/Core/Runner.hpp
     include/Core/Formatter.hpp
     include/Core/Settings.hpp
-    include/Core/SettingsHelper.hpp
-    include/Core/SettingsInfo.hpp
     include/Core/MessageLogger.hpp
     include/Core/EventLogger.hpp
     src/Core/Checker.cpp
@@ -121,6 +121,8 @@ add_executable(cpeditor
     ui/appwindow.ui
 
     ${CMAKE_BINARY_DIR}/generated/version.hpp
+    ${CMAKE_BINARY_DIR}/generated/SettingsHelper.hpp
+    ${CMAKE_BINARY_DIR}/generated/SettingsInfo.hpp
 
     resources/resources.qrc
     assets/appicon.rc)

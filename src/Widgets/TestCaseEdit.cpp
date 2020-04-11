@@ -17,13 +17,13 @@
 
 #include "Widgets/TestCaseEdit.hpp"
 #include "Core/EventLogger.hpp"
-#include "Core/SettingsHelper.hpp"
 #include <QApplication>
 #include <QFileDialog>
 #include <QInputDialog>
 #include <QMenu>
 #include <QMimeData>
 #include <QStyle>
+#include <generated/SettingsHelper.hpp>
 
 TestCaseEdit::TestCaseEdit(bool autoAnimation, MessageLogger *logger, const QString &text, QWidget *parent)
     : QPlainTextEdit(text, parent), log(logger)

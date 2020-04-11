@@ -18,7 +18,6 @@
 #include "appwindow.hpp"
 #include "../ui/ui_appwindow.h"
 #include "Core/EventLogger.hpp"
-#include "Core/SettingsHelper.hpp"
 #include "Extensions/EditorTheme.hpp"
 #include "Util.hpp"
 #include <QClipboard>
@@ -33,6 +32,7 @@
 #include <QProgressDialog>
 #include <QTimer>
 #include <QUrl>
+#include <generated/SettingsHelper.hpp>
 
 AppWindow::AppWindow(bool noHotExit, QWidget *parent) : QMainWindow(parent), ui(new Ui::AppWindow)
 {

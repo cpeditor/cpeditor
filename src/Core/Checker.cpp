@@ -17,9 +17,9 @@
 
 #include "Core/Checker.hpp"
 #include "Core/EventLogger.hpp"
-#include "Core/SettingsHelper.hpp"
 #include "Util.hpp"
 #include <QFile>
+#include <generated/SettingsHelper.hpp>
 
 namespace Core
 {

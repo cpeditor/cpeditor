@@ -17,13 +17,13 @@
 
 #include "Util.hpp"
 #include "Core/EventLogger.hpp"
-#include "Core/SettingsHelper.hpp"
 #include "Extensions/EditorTheme.hpp"
 #include <QCXXHighlighter>
 #include <QFile>
 #include <QJavaHighlighter>
 #include <QPythonHighlighter>
 #include <QSaveFile>
+#include <generated/SettingsHelper.hpp>
 
 namespace Util
 {

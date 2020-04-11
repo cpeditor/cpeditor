@@ -17,8 +17,8 @@
 
 #include "Core/Runner.hpp"
 #include "Core/EventLogger.hpp"
-#include "Core/SettingsHelper.hpp"
 #include <QFileInfo>
+#include <generated/SettingsHelper.hpp>
 
 namespace Core
 {

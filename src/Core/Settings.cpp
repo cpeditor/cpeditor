@@ -16,13 +16,13 @@
  */
 
 #include "Core/Settings.hpp"
-#include "Core/SettingsInfo.hpp"
 #include <QDebug>
 #include <QFile>
 #include <QFont>
 #include <QRect>
 #include <QSettings>
 #include <QStandardPaths>
+#include <generated/SettingsInfo.hpp>
 
 Settings *SettingsManager::cur = nullptr;
 Settings *SettingsManager::def = nullptr;

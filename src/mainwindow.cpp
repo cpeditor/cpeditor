@@ -21,7 +21,6 @@
 #include "Core/EventLogger.hpp"
 #include "Core/MessageLogger.hpp"
 #include "Core/Runner.hpp"
-#include "Core/SettingsHelper.hpp"
 #include "Util.hpp"
 #include <QFileDialog>
 #include <QFont>
@@ -38,6 +37,7 @@
 #include <QTextStream>
 #include <QThread>
 #include <QTimer>
+#include <generated/SettingsHelper.hpp>
 
 #include "../ui/ui_mainwindow.h"
 

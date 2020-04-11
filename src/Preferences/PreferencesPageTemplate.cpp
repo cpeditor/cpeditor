@@ -17,9 +17,9 @@
 
 #include "Preferences/PreferencesPageTemplate.hpp"
 #include "Core/Settings.hpp"
-#include "Core/SettingsInfo.hpp"
 #include "Util.hpp"
 #include <QDebug>
+#include <generated/SettingsInfo.hpp>
 
 static QString filter[] = {"Excutable (*" EXE_SUFFIX ")", "C++ Sources (*.cpp *.hpp *.h *.cc *.cxx *.c",
                            "Java Sources (*.java)", "Python Sources (*.py *.py3)"};

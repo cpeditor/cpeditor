@@ -17,9 +17,9 @@
 
 #include "Widgets/DiffViewer.hpp"
 #include "Core/EventLogger.hpp"
-#include "Core/SettingsHelper.hpp"
 #include "diff_match_patch.h"
 #include <QScrollBar>
+#include <generated/SettingsHelper.hpp>
 
 DiffViewer::DiffViewer(QWidget *parent) : QMainWindow(parent)
 {
