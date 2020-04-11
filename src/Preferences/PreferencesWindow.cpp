@@ -17,6 +17,7 @@
 
 #include "Preferences/PreferencesWindow.hpp"
 #include "Preferences/CodeSnippetsPage.hpp"
+#include "Preferences/PreferencesPageTemplate.hpp"
 #include <QApplication>
 #include <QCloseEvent>
 #include <QScreen>
@@ -89,18 +90,16 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
                                            stackedWidget->count()));
     });
 
-    addPage("Edit", new PreferencesPageTemplate({"Tab Width", "Auto Indent", "Wrap Text", "Auto Complete Parentheses",
-                                                 "Auto Remove Parentheses", "Replace Tabs"}));
+    addPage("Edit", {"Tab Width", "Auto Indent", "Wrap Text", "Auto Complete Parentheses", "Auto Remove Parentheses",
+                     "Replace Tabs"});
 
-    addPage("Language/General", new PreferencesPageTemplate({"Default Language"}));
+    addPage("Language/General", {"Default Language"});
 
     addPage("Language/Commands",
-            new PreferencesPageTemplate({"C++/Compile Command", "C++/Run Arguments", "Java/Compile Command",
-                                         "Java/Run Arguments", "Java/Run Command", "Python/Run Arguments",
-                                         "Python/Run Command"}));
+            {"C++/Compile Command", "C++/Run Arguments", "Java/Compile Command", "Java/Run Arguments",
+             "Java/Run Command", "Python/Run Arguments", "Python/Run Command"});
 
-    addPage("Language/Code Template",
-            new PreferencesPageTemplate({"C++/Template Path", "Java/Template Path", "Python/Template Path"}));
+    addPage("Language/Code Template", {"C++/Template Path", "Java/Template Path", "Python/Template Path"});
 
     auto cppSnippetsPage = new CodeSnippetsPage("C++");
     auto javaSnippetsPage = new CodeSnippetsPage("Java");
@@ -110,20 +109,19 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
     addPage("Language/Code Snippets/Java Snippets", javaSnippetsPage, {"Java Snippets", "Java Code Snippets"});
     addPage("Language/Code Snippets/Python Snippets", pythonSnippetsPage, {"Python Snippets", "Python Code Snippets"});
 
-    addPage("Appearance", new PreferencesPageTemplate({"Editor Theme", "Font", "Transparency",
-                                                       "Show Compile And Run Only", "Display EOLN In Diff"}));
+    addPage("Appearance",
+            {"Editor Theme", "Font", "Transparency", "Show Compile And Run Only", "Display EOLN In Diff"});
 
-    addPage("Key Bindings",
-            new PreferencesPageTemplate({"Hotkey/Compile", "Hotkey/Run", "Hotkey/Compile Run", "Hotkey/Format",
-                                         "Hotkey/Kill", "Hotkey/Change View Mode", "Hotkey/Snippets"}));
+    addPage("Key Bindings", {"Hotkey/Compile", "Hotkey/Run", "Hotkey/Compile Run", "Hotkey/Format", "Hotkey/Kill",
+                             "Hotkey/Change View Mode", "Hotkey/Snippets"});
 
-    addPage("Extensions/Clang Format", new PreferencesPageTemplate({"Clang Format/Path", "Clang Format/Style"}));
+    addPage("Extensions/Clang Format", {"Clang Format/Path", "Clang Format/Style"});
 
     addPage("Extensions/Competitive Companion",
-            new PreferencesPageTemplate({"Competitive Companion/Enable", "Competitive Companion/Connection Port",
-                                         "Competitive Companion/Open New Tab"}));
+            {"Competitive Companion/Enable", "Competitive Companion/Connection Port",
+             "Competitive Companion/Open New Tab"});
 
-    addPage("Extensions/CF Tool", new PreferencesPageTemplate({"CF/Path"}));
+    addPage("Extensions/CF Tool", {"CF/Path"});
 }
 
 void PreferencesWindow::display()
@@ -211,8 +209,9 @@ void PreferencesWindow::addPage(const QString &path, PreferencesPage *page, cons
     connect(page, SIGNAL(settingsApplied(const QString &)), this, SIGNAL(settingsApplied(const QString &)));
 }
 
-void PreferencesWindow::addPage(const QString &path, PreferencesPageTemplate *page)
+void PreferencesWindow::addPage(const QString &path, const QStringList &opts)
 {
+    auto page = new PreferencesPageTemplate(opts);
     addPage(path, page, page->content());
 }
 
