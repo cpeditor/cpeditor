@@ -50,6 +50,7 @@ void CheckBoxWrapper::set(bool b)
 void LineEditWrapper::init(QWidget *parent, QVariant)
 {
     QLineEdit *item = new QLineEdit(parent);
+    item->setMinimumWidth(400);
     connect(item, &QLineEdit::textChanged, this, &ValueWidget::emitSignal);
     widget = item;
 }
