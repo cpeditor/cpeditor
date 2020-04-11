@@ -132,7 +132,14 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
 
 void PreferencesWindow::display()
 {
-    switchToPage(homePage, true);
+    if (isHidden())
+    {
+        switchToPage(homePage);
+        menuTree->clearSelection();
+        menuTree->collapseAll();
+        searchEdit->clear();
+        searchEdit->setFocus();
+    }
     show();
     setWindowState((windowState() & ~Qt::WindowMinimized) | Qt::WindowActive);
     activateWindow();
