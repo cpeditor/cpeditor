@@ -314,14 +314,6 @@ inline bool isCompetitiveCompanionOpenNewTab()
 {
     return SettingsManager::get("Competitive Companion/Open New Tab").value<bool>();
 }
-inline void setHotkeyEnable(bool value)
-{
-    SettingsManager::set("Hotkey/Enable", value);
-}
-inline bool isHotkeyEnable()
-{
-    return SettingsManager::get("Hotkey/Enable").value<bool>();
-}
 inline void setHotkeyFormat(QString value)
 {
     SettingsManager::set("Hotkey/Format", value);

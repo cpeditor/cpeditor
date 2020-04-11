@@ -313,9 +313,6 @@ void AppWindow::maybeSetHotkeys()
         delete e;
     hotkeyObjects.clear();
 
-    if (!SettingsHelper::isHotkeyEnable())
-        return;
-
     if (!SettingsHelper::getHotkeyRun().isEmpty())
     {
         hotkeyObjects.push_back(new QShortcut(SettingsHelper::getHotkeyRun(), this, SLOT(on_actionRun_triggered())));

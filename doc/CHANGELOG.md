@@ -7,6 +7,7 @@
 ### Changed
 
 - Remove the hard-to-use completer for Python.
+- The "Enable hotkeys" option is removed, because it's useless —— you can simply either not use the hotkeys or not set the hotkeys (i.e. clear the hotkeys).
 
 ### Fixed
 

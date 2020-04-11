@@ -262,16 +262,8 @@
         ]
     },
     {
-        "name": "Hotkey/Enable",
-        "desc": "Enable Hotkey",
-        "type": "bool",
-        "old": [
-            "hotkey_use"
-        ]
-    },
-    {
         "name": "Hotkey/Format",
-        "desc": "Format",
+        "desc": "Format Codes",
         "type": "QString",
         "old": [
             "hotkey_format"
@@ -280,7 +272,7 @@
     },
     {
         "name": "Hotkey/Kill",
-        "desc": "Kill",
+        "desc": "Kill All Processes",
         "type": "QString",
         "old": [
             "hotkey_kill"
@@ -289,7 +281,7 @@
     },
     {
         "name": "Hotkey/Compile Run",
-        "desc": "Compile Run",
+        "desc": "Compile and Run",
         "type": "QString",
         "old": [
             "hotkey_compile_run"
@@ -298,7 +290,7 @@
     },
     {
         "name": "Hotkey/Run",
-        "desc": "Run",
+        "desc": "Run Only",
         "type": "QString",
         "old": [
             "hotkey_run"
@@ -307,7 +299,7 @@
     },
     {
         "name": "Hotkey/Compile",
-        "desc": "Compile",
+        "desc": "Compile Only",
         "type": "QString",
         "old": [
             "hotkey_compile"
@@ -325,7 +317,7 @@
     },
     {
         "name": "Hotkey/Snippets",
-        "desc": "Snippets",
+        "desc": "Use Snippets",
         "type": "QString",
         "old": [
             "hotkey_snippets"
