@@ -30,7 +30,12 @@ add_subdirectory(third_party/QtFindReplaceDialog/dialogs)
 add_subdirectory(third_party/lsp-cpp)
 
 configure_file(version.hpp.in ${CMAKE_BINARY_DIR}/generated/version.hpp)
-execute_process(COMMAND ${Python3_EXECUTABLE} ${PROJECT_SOURCE_DIR}/tools/genSettings.py ${PROJECT_SOURCE_DIR}/setting.json WORKING_DIRECTORY ${CMAKE_BINARY_DIR})
+
+add_custom_command(OUTPUT ${CMAKE_BINARY_DIR}/generated/SettingsHelper.hpp ${CMAKE_BINARY_DIR}/generated/SettingsInfo.hpp 
+                   COMMAND ${Python3_EXECUTABLE} ${PROJECT_SOURCE_DIR}/tools/genSettings.py ${PROJECT_SOURCE_DIR}/setting.json
+                   WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+                   DEPENDS ${PROJECT_SOURCE_DIR}/setting.json ${PROJECT_SOURCE_DIR}/tools/genSettings.py)
+set_property(SOURCE ${CMAKE_BINARY_DIR}/generated/SettingsHelper.hpp ${CMAKE_BINARY_DIR}/generated/SettingsInfo.hpp PROPERTY SKIP_AUTOGEN ON)
 
 IF(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/.git)
   FIND_PACKAGE(Git)

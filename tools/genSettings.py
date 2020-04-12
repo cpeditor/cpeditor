@@ -1,17 +1,10 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
 
-import os
 import sys
 import json
 
-def check(path, time):
-    return os.path.exists(path) and os.path.getmtime(path) > time
-
 if __name__ == "__main__":
-    setting_time = os.path.getmtime(sys.argv[1])
-    if check("generated/SettingsHelper.hpp", setting_time) and check("generated/SettingsInfo.hpp", setting_time):
-        exit(0)
     obj = json.load(open(sys.argv[1], mode="r"))
     head = """/*
  * Copyright (C) 2019-2020 Ashar Khan <ashar786khan@gmail.com>
