@@ -20,7 +20,7 @@ jobs:
         sudo apt-get update
         sudo apt-get install clang-format-9
     - name: "Format Codes"
-      run: clang-format-9 -i src/*.cpp src/*/*.cpp include/*.hpp include/*/*.hpp
+      run: clang-format-9 -i src/*.cpp src/*/*.cpp src/*.hpp src/*/*.hpp
     - name: Commit files
       run: |
         git config --local user.email "cpeditor_bot@126.com"

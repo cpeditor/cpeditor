@@ -37,7 +37,7 @@ configure_file(cmake/version.hpp.in ${CMAKE_BINARY_DIR}/generated/version.hpp)
 configure_file(cmake/aur/PKGBUILD.in ${CMAKE_BINARY_DIR}/aur/PKGBUILD)
 configure_file(cmake/aur/.SRCINFO.in ${CMAKE_BINARY_DIR}/aur/.SRCINFO)
 
-add_custom_command(OUTPUT ${CMAKE_BINARY_DIR}/generated/SettingsHelper.hpp ${CMAKE_BINARY_DIR}/generated/SettingsInfo.hpp 
+add_custom_command(OUTPUT ${CMAKE_BINARY_DIR}/generated/SettingsHelper.hpp ${CMAKE_BINARY_DIR}/generated/SettingsInfo.hpp
                    COMMAND ${Python3_EXECUTABLE} ${PROJECT_SOURCE_DIR}/tools/genSettings.py ${PROJECT_SOURCE_DIR}/setting.json
                    WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
                    DEPENDS ${PROJECT_SOURCE_DIR}/setting.json ${PROJECT_SOURCE_DIR}/tools/genSettings.py)
@@ -60,73 +60,73 @@ ENDIF(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/.git)
 add_executable(cpeditor
     ${GUI_TYPE}
 
-    include/Core/Checker.hpp
-    include/Core/Compiler.hpp
-    include/Core/Runner.hpp
-    include/Core/Formatter.hpp
-    include/Core/SettingsManager.hpp
-    include/Core/MessageLogger.hpp
-    include/Core/EventLogger.hpp
     src/Core/Checker.cpp
+    src/Core/Checker.hpp
     src/Core/Compiler.cpp
-    src/Core/Runner.cpp
-    src/Core/Formatter.cpp
-    src/Core/SettingsManager.cpp
-    src/Core/MessageLogger.cpp
+    src/Core/Compiler.hpp
     src/Core/EventLogger.cpp
+    src/Core/EventLogger.hpp
+    src/Core/Formatter.cpp
+    src/Core/Formatter.hpp
+    src/Core/MessageLogger.cpp
+    src/Core/MessageLogger.hpp
+    src/Core/Runner.cpp
+    src/Core/Runner.hpp
+    src/Core/SettingsManager.cpp
+    src/Core/SettingsManager.hpp
 
-    include/Telemetry/UpdateNotifier.hpp
     src/Telemetry/UpdateNotifier.cpp
+    src/Telemetry/UpdateNotifier.hpp
 
-    include/Widgets/DiffViewer.hpp
-    include/Widgets/TestCaseEdit.hpp
-    include/Widgets/TestCase.hpp
-    include/Widgets/TestCases.hpp
     src/Widgets/DiffViewer.cpp
-    src/Widgets/TestCaseEdit.cpp
+    src/Widgets/DiffViewer.hpp
     src/Widgets/TestCase.cpp
+    src/Widgets/TestCase.hpp
+    src/Widgets/TestCaseEdit.cpp
+    src/Widgets/TestCaseEdit.hpp
     src/Widgets/TestCases.cpp
+    src/Widgets/TestCases.hpp
 
-    include/Extensions/CompanionServer.hpp
-    include/Extensions/CFTool.hpp
-    include/Extensions/EditorTheme.hpp
-    src/Extensions/CompanionServer.cpp
     src/Extensions/CFTool.cpp
+    src/Extensions/CFTool.hpp
+    src/Extensions/CompanionServer.cpp
+    src/Extensions/CompanionServer.hpp
     src/Extensions/EditorTheme.cpp
+    src/Extensions/EditorTheme.hpp
 
-    include/Preferences/ValueWrapper.hpp
-    include/Preferences/PreferencesPage.hpp
-    include/Preferences/PreferencesHomePage.hpp
-    include/Preferences/PreferencesWindow.hpp
-    include/Preferences/PreferencesGridPage
-    include/Preferences/PreferencesPageTemplate.hpp
-    include/Preferences/FontItem.hpp
-    include/Preferences/PathItem.hpp
-    include/Preferences/ShortcutItem.hpp
-    include/Preferences/CodeSnippetsPage.hpp
-    src/Preferences/ValueWrapper.cpp
-    src/Preferences/PreferencesPage.cpp
-    src/Preferences/PreferencesHomePage.cpp
-    src/Preferences/PreferencesWindow.cpp
-    src/Preferences/PreferencesGridPage.cpp
-    src/Preferences/PreferencesPageTemplate.cpp
-    src/Preferences/FontItem.cpp
-    src/Preferences/PathItem.cpp
-    src/Preferences/ShortcutItem.cpp
     src/Preferences/CodeSnippetsPage.cpp
+    src/Preferences/CodeSnippetsPage.hpp
+    src/Preferences/FontItem.cpp
+    src/Preferences/FontItem.hpp
+    src/Preferences/PathItem.cpp
+    src/Preferences/PathItem.hpp
+    src/Preferences/PreferencesGridPage.cpp
+    src/Preferences/PreferencesGridPage.hpp
+    src/Preferences/PreferencesHomePage.cpp
+    src/Preferences/PreferencesHomePage.hpp
+    src/Preferences/PreferencesPage.cpp
+    src/Preferences/PreferencesPage.hpp
+    src/Preferences/PreferencesPageTemplate.cpp
+    src/Preferences/PreferencesPageTemplate.hpp
+    src/Preferences/PreferencesWindow.cpp
+    src/Preferences/PreferencesWindow.hpp
+    src/Preferences/ShortcutItem.cpp
+    src/Preferences/ShortcutItem.hpp
+    src/Preferences/ValueWrapper.cpp
+    src/Preferences/ValueWrapper.hpp
 
-    include/mainwindow.hpp
-    include/appwindow.hpp
-    src/mainwindow.cpp
     src/appwindow.cpp
+    src/appwindow.hpp
+    src/mainwindow.cpp
+    src/mainwindow.hpp
 
-    include/Util.hpp
     src/Util.cpp
+    src/Util.hpp
+
+    src/main.cpp
 
     third_party/diff_match_patch/diff_match_patch.h
     third_party/diff_match_patch/diff_match_patch.cpp
-
-    src/main.cpp
 
     ui/mainwindow.ui
     ui/appwindow.ui
@@ -138,20 +138,20 @@ add_executable(cpeditor
     resources/resources.qrc
     assets/appicon.rc)
 
-include_directories("third_party/QCodeEditor/include")
-include_directories("third_party/diff_match_patch")
-include_directories("third_party/QtFindReplaceDialog")
-include_directories("third_party/lsp-cpp/include")
-include_directories("include/")
 include_directories("generated/")
+include_directories("src/")
+include_directories("third_party/diff_match_patch")
+include_directories("third_party/lsp-cpp/include")
+include_directories("third_party/QCodeEditor/include")
+include_directories("third_party/QtFindReplaceDialog")
 
-target_link_libraries(cpeditor PRIVATE Qt5::Widgets)
-target_link_libraries(cpeditor PRIVATE Qt5::Network)
-target_link_libraries(cpeditor PRIVATE QCodeEditor)
-target_link_libraries(cpeditor PRIVATE SingleApplication)
-target_link_libraries(cpeditor PRIVATE QtFindReplaceDialog)
 target_link_libraries(cpeditor PRIVATE LSPClient)
- 
+target_link_libraries(cpeditor PRIVATE QCodeEditor)
+target_link_libraries(cpeditor PRIVATE Qt5::Network)
+target_link_libraries(cpeditor PRIVATE Qt5::Widgets)
+target_link_libraries(cpeditor PRIVATE QtFindReplaceDialog)
+target_link_libraries(cpeditor PRIVATE SingleApplication)
+
 if(APPLE)
     set_target_properties(cpeditor
         PROPERTIES

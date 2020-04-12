@@ -9,4 +9,4 @@ else
     exit 1;
 fi
 
-$CLANGFORMAT -style=file -i src/*.cpp src/*/*.cpp include/*.hpp include/*/*.hpp;
+$CLANGFORMAT -style=file -i src/*.cpp src/*/*.cpp src/*.hpp src/*/*.hpp;

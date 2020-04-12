@@ -32,13 +32,13 @@ filename=${1#$filepath/}
 define=${filename}_hpp
 DEFINE=${define^^}
 
-mkdir -p "include/$filepath" "src/$filepath"
+mkdir -p "src/$filepath"
 
 echo "$head" "
 #ifndef $DEFINE
 #define $DEFINE
 
-#endif // $DEFINE" > "include/$1.hpp"
+#endif // $DEFINE" > "src/$1.hpp"
 
 echo "$head" "
 #include \"$1.hpp\"" > "src/$1.cpp"
