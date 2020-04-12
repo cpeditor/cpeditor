@@ -23,7 +23,7 @@
 
 DiffViewer::DiffViewer(QWidget *parent) : QMainWindow(parent)
 {
-    Core::Log::i("DiffViewer/constructor", "Difference viewer is being created");
+    Core::Log::i("DiffViewer/constructor", "Invoked");
 
     widget = new QWidget(this);
     layout = new QHBoxLayout();
@@ -31,6 +31,7 @@ DiffViewer::DiffViewer(QWidget *parent) : QMainWindow(parent)
     setCentralWidget(widget);
     setWindowTitle("Diff Viewer");
     resize(720, 480);
+    Core::Log::i("DiffViewer/constructor", "Main layout is set");
 
     leftLayout = new QVBoxLayout();
     outputLabel = new QLabel("Output", widget);
@@ -40,6 +41,7 @@ DiffViewer::DiffViewer(QWidget *parent) : QMainWindow(parent)
     outputEdit->setWordWrapMode(QTextOption::NoWrap);
     leftLayout->addWidget(outputEdit);
     layout->addLayout(leftLayout);
+    Core::Log::i("DiffViewer/constructor", "Left layout is set");
 
     rightLayout = new QVBoxLayout();
     expectedLabel = new QLabel("Expected", widget);
@@ -49,6 +51,7 @@ DiffViewer::DiffViewer(QWidget *parent) : QMainWindow(parent)
     expectedEdit->setWordWrapMode(QTextOption::NoWrap);
     rightLayout->addWidget(expectedEdit);
     layout->addLayout(rightLayout);
+    Core::Log::i("DiffViewer/constructor", "Right layout is set");
 
     connect(expectedEdit->horizontalScrollBar(), SIGNAL(valueChanged(int)), outputEdit->horizontalScrollBar(),
             SLOT(setValue(int)));
@@ -58,13 +61,14 @@ DiffViewer::DiffViewer(QWidget *parent) : QMainWindow(parent)
             SLOT(setValue(int)));
     connect(outputEdit->verticalScrollBar(), SIGNAL(valueChanged(int)), expectedEdit->verticalScrollBar(),
             SLOT(setValue(int)));
+    Core::Log::i("DiffViewer/constructor", "Signals are connected");
 }
 
 void DiffViewer::setText(const QString &output, const QString &expected)
 {
     if (output.length() <= MAX_CHARACTERS_FOR_HTML && expected.length() <= MAX_CHARACTERS_FOR_HTML)
     {
-        Core::Log::i("DiffViewer/setText", "Using HTML format to insert to diff viewer");
+        Core::Log::i("DiffViewer/setText", "Use HTML");
         diff_match_patch differ;
         differ.Diff_EditCost = 10;
         auto diffs = differ.diff_main(output, expected);
@@ -102,7 +106,7 @@ void DiffViewer::setText(const QString &output, const QString &expected)
     }
     else
     {
-        Core::Log::i("DiffViewer/setText", "Use plain text to insert to diff viewer");
+        Core::Log::i("DiffViewer/setText", "Use plain text");
         emit toLongForHtml();
         outputEdit->setPlainText(output);
         expectedEdit->setPlainText(expected);

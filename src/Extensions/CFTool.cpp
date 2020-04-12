@@ -25,17 +25,16 @@ namespace Network
 
 CFTool::CFTool(const QString &path, MessageLogger *logger) : CFToolPath(path)
 {
-    Core::Log::i("cftool/constructed") << "Constructed CF Tool instance. " << INFO_OF(path)
-                                       << BOOLEAN(logger == nullptr) << endl;
+    Core::Log::i("cftool/constructed") << "path is : " << path << " is logger null " << (logger == nullptr) << endl;
     log = logger;
 }
 
 CFTool::~CFTool()
 {
-    Core::Log::i("cftool/destructed", "Destructing CF Tool instance");
+    Core::Log::i("cftool/destructed", "Invoking destructor");
     if (CFToolProcess != nullptr)
     {
-        Core::Log::i("cftool/destructed", "Killed CF Tool process");
+        Core::Log::i("cftool/destructed", "deleting process pointer");
         delete CFToolProcess;
     }
 }
@@ -46,7 +45,7 @@ void CFTool::submit(const QString &filePath, const QString &url)
     {
         if (CFToolProcess->state() == QProcess::Running)
         {
-            Core::Log::w("cftool/submit", "There is already a CF Tool running, killing it now");
+            Core::Log::w("cftool/submit", "There is already a CF Tool running, kill it now");
             CFToolProcess->kill();
             delete CFToolProcess;
             log->error("CF Tool", "CF Tool was killed");
@@ -82,10 +81,8 @@ void CFTool::submit(const QString &filePath, const QString &url)
         else
             CFToolProcess->setArguments({"submit", "-f", filePath, url});
         Core::Log::i("CFTool/submit") << INFO_OF(CFToolProcess->arguments().join(' ')) << endl;
-
         connect(CFToolProcess, SIGNAL(readyReadStandardOutput()), this, SLOT(onReadReady()));
         connect(CFToolProcess, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(onFinished(int)));
-
         CFToolProcess->start();
         bool started = CFToolProcess->waitForStarted(2000);
         if (started)
@@ -108,17 +105,18 @@ void CFTool::submit(const QString &filePath, const QString &url)
 
 bool CFTool::check(const QString &path)
 {
-    Core::Log::i("cftool/check") << "Checking for path " << path << endl;
+    Core::Log::i("cftool/check") << "checking for path " << path << endl;
     QProcess checkProcess;
     checkProcess.start(path, {"--version"});
+    Core::Log::i("cftool/check", "process started to fetch version");
     bool finished = checkProcess.waitForFinished(2000);
-    Core::Log::i("cftool/check") << BOOLEAN(finished) << " " << INFO_OF(checkProcess.exitCode()) << endl;
+    Core::Log::i("cftool/check") << "finished ? " << finished << " exitcode " << checkProcess.exitCode() << endl;
     return finished && checkProcess.exitCode() == 0;
 }
 
 void CFTool::updatePath(const QString &p)
 {
-    Core::Log::i("cftool/updatePath") << "New path is : " << p << endl;
+    Core::Log::i("cftool/updatePath") << "new path is : " << p << endl;
     CFToolPath = p;
 }
 
@@ -139,13 +137,13 @@ bool CFTool::parseCfUrl(const QString &url, QString &contestId, QString &problem
         problemCode = match.captured(2);
         return true;
     }
-    Core::Log::i("CF Tool/parseCfUrl") << INFO_OF(contestId) << " " << INFO_OF(problemCode) << endl;
     return false;
 }
 
 void CFTool::onReadReady()
 {
     QString response = CFToolProcess->readAll();
+    Core::Log::i("cftool/onReadReady") << "\n" << INFO_OF(response) << endl;
     response.remove(QRegularExpression("\x1b\\[.. "));
     if (response.contains("status: "))
     {

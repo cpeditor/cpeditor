@@ -32,6 +32,7 @@ QSyntaxStyle *EditorTheme::solarisedDark = nullptr;
 
 QSyntaxStyle *EditorTheme::getLightTheme()
 {
+    Core::Log::e("editorTheme/getLightTheme", "Invoked");
     if (light != nullptr)
         return light;
     else
@@ -39,9 +40,10 @@ QSyntaxStyle *EditorTheme::getLightTheme()
 }
 QSyntaxStyle *EditorTheme::getMonkaiTheme()
 {
+    Core::Log::i("editorTheme/getMonkaiTheme", "Invoked");
     if (monkai != nullptr)
     {
-        Core::Log::i("editorTheme/getMonkaiTheme", "Reuse existing resource");
+        Core::Log::i("editorTheme/getMonkaiTheme", "reuse existing resource");
         return monkai;
     }
     else
@@ -50,7 +52,7 @@ QSyntaxStyle *EditorTheme::getMonkaiTheme()
         f.open(QIODevice::ReadOnly);
         if (!f.isOpen())
         {
-            Core::Log::e("editorTheme/getMonkaiTheme", "Unable to access resources, returning nullptr");
+            Core::Log::e("editorTheme/getMonkaiTheme", "unable to access resources, returning nullptr");
             return nullptr;
         }
         monkai = new QSyntaxStyle();
@@ -60,9 +62,10 @@ QSyntaxStyle *EditorTheme::getMonkaiTheme()
 }
 QSyntaxStyle *EditorTheme::getDrakulaTheme()
 {
+    Core::Log::i("editorTheme/getDrakulaTheme", "Invoked");
     if (drakula != nullptr)
     {
-        Core::Log::i("editorTheme/getDrakulaTheme", "Reuse existing resource");
+        Core::Log::i("editorTheme/getDrakulaTheme", "reuse existing resource");
         return drakula;
     }
     else
@@ -71,7 +74,7 @@ QSyntaxStyle *EditorTheme::getDrakulaTheme()
         f.open(QIODevice::ReadOnly);
         if (!f.isOpen())
         {
-            Core::Log::e("editorTheme/getDrakulaTheme", "Unable to access resources, returning nullptr");
+            Core::Log::e("editorTheme/getDrakulaTheme", "unable to access resources, returning nullptr");
             return nullptr;
         }
         drakula = new QSyntaxStyle();
@@ -81,9 +84,10 @@ QSyntaxStyle *EditorTheme::getDrakulaTheme()
 }
 QSyntaxStyle *EditorTheme::getSolarisedTheme()
 {
+    Core::Log::i("editorTheme/getSolarisedTheme", "Invoked");
     if (solarised != nullptr)
     {
-        Core::Log::i("editorTheme/getSolarisedTheme", "Reuse existing resource");
+        Core::Log::i("editorTheme/getSolarisedTheme", "reuse existing resource");
         return solarised;
     }
     else
@@ -92,7 +96,7 @@ QSyntaxStyle *EditorTheme::getSolarisedTheme()
         f.open(QIODevice::ReadOnly);
         if (!f.isOpen())
         {
-            Core::Log::e("editorTheme/getsolarisedTheme", "Unable to access resources, returning nullptr");
+            Core::Log::e("editorTheme/getsolarisedTheme", "unable to access resources, returning nullptr");
             return nullptr;
         }
         solarised = new QSyntaxStyle();
@@ -102,9 +106,10 @@ QSyntaxStyle *EditorTheme::getSolarisedTheme()
 }
 QSyntaxStyle *EditorTheme::getSolarisedDarkTheme()
 {
+    Core::Log::i("editorTheme/getSolarisedDarkTheme", "Invoked");
     if (solarisedDark != nullptr)
     {
-        Core::Log::i("editorTheme/getSolarisedDarkTheme", "Reuse existing resource");
+        Core::Log::i("editorTheme/getSolarisedDarkTheme", "reuse existing resource");
         return solarisedDark;
     }
     else
@@ -113,7 +118,7 @@ QSyntaxStyle *EditorTheme::getSolarisedDarkTheme()
         f.open(QIODevice::ReadOnly);
         if (!f.isOpen())
         {
-            Core::Log::e("editorTheme/getsolarisedDarkTheme", "Unable to access resources, returning nullptr");
+            Core::Log::e("editorTheme/getsolarisedDarkTheme", "unable to access resources, returning nullptr");
             return nullptr;
         }
         solarisedDark = new QSyntaxStyle();
@@ -124,30 +129,30 @@ QSyntaxStyle *EditorTheme::getSolarisedDarkTheme()
 
 void EditorTheme::release()
 {
-    Core::Log::i("editorTheme/release", "Releasing theme resources");
+    Core::Log::i("editorTheme/release", "releasing theme resources");
     if (light != nullptr)
     {
-        Core::Log::i("editorTheme/release", "Deleting light theme");
+        Core::Log::i("editorTheme/release", "deleting light theme");
         delete light;
     }
     if (drakula != nullptr)
     {
-        Core::Log::i("editorTheme/release", "Deleting drakula theme");
+        Core::Log::i("editorTheme/release", "deleting drakula theme");
         delete drakula;
     }
     if (monkai != nullptr)
     {
-        Core::Log::i("editorTheme/release", "Deleting monkai theme");
+        Core::Log::i("editorTheme/release", "deleting monkai theme");
         delete monkai;
     }
     if (solarised != nullptr)
     {
-        Core::Log::i("editorTheme/release", "Deleting solarised theme");
+        Core::Log::i("editorTheme/release", "deleting solarised theme");
         delete solarised;
     }
     if (solarisedDark != nullptr)
     {
-        Core::Log::i("editorTheme/release", "Deleting solarisedDark theme");
+        Core::Log::i("editorTheme/release", "deleting solarisedDark theme");
         delete solarisedDark;
     }
 }

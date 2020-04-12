@@ -23,8 +23,7 @@
 TestCase::TestCase(int index, MessageLogger *logger, QWidget *parent, const QString &in, const QString &exp)
     : QWidget(parent), log(logger)
 {
-    Core::Log::i("testcase/constructed") << "Constructing single testcase instance with " << INFO_OF(index)
-                                         << INFO_OF(in) << INFO_OF(exp) << endl;
+    Core::Log::i("testcase/constructed") << "index " << index << " input " << in << " expected " << exp << endl;
     mainLayout = new QHBoxLayout(this);
     inputUpLayout = new QHBoxLayout();
     outputUpLayout = new QHBoxLayout();
@@ -72,22 +71,26 @@ TestCase::TestCase(int index, MessageLogger *logger, QWidget *parent, const QStr
     mainLayout->addLayout(outputLayout);
     mainLayout->addLayout(expectedLayout);
 
+    Core::Log::i("testcase/constructed", "UI has been built");
+
     connect(showCheckBox, SIGNAL(toggled(bool)), this, SLOT(onShowCheckBoxToggled(bool)));
     connect(runButton, SIGNAL(clicked()), this, SLOT(onRunButtonClicked()));
     connect(diffButton, SIGNAL(clicked()), SLOT(onDiffButtonClicked()));
     connect(delButton, SIGNAL(clicked()), this, SLOT(onDelButtonClicked()));
     connect(diffViewer, SIGNAL(toLongForHtml()), this, SLOT(onToLongForHtml()));
+
+    Core::Log::i("testcase/constructed", "signals have been attached");
 }
 
 void TestCase::setInput(const QString &text)
 {
-    Core::Log::i("testcase/setInput") << "Input text for testcase " << INFO_OF(id) << "\n" << text << endl;
+    Core::Log::i("testcase/setInput") << "text \n" << text << endl;
     inputEdit->modifyText(text);
 }
 
 void TestCase::setOutput(const QString &text)
 {
-    Core::Log::i("testcase/setOutput") << "Output text for testcase " << INFO_OF(id) << "\n" << text << endl;
+    Core::Log::i("testcase/setOutput") << "text \n" << text << endl;
 
     outputEdit->modifyText(text);
     outputEdit->startAnimation();
@@ -98,7 +101,7 @@ void TestCase::setOutput(const QString &text)
 
 void TestCase::setExpected(const QString &text)
 {
-    Core::Log::i("testcase/setExpected") << "Expected text for testcase " << INFO_OF(id) << "\n" << text << endl;
+    Core::Log::i("testcase/setExpected") << "text \n" << text << endl;
     expectedEdit->modifyText(text);
 }
 
@@ -113,22 +116,25 @@ void TestCase::clearOutput()
 
 QString TestCase::input() const
 {
+    Core::Log::i("testcase/input", "Invoked");
     return inputEdit->toPlainText();
 }
 
 QString TestCase::output() const
 {
+    Core::Log::i("testcase/output", "Invoked");
     return outputEdit->toPlainText();
 }
 
 QString TestCase::expected() const
 {
+    Core::Log::i("testcase/expected", "Invoked");
     return expectedEdit->toPlainText();
 }
 
 void TestCase::loadFromFile(const QString &pathPrefix)
 {
-    Core::Log::i("testcase/loadFromFile") << "Loading testcase from file from pathPrefix " << pathPrefix << endl;
+    Core::Log::i("testcase/loadFromFile") << "pathPrefix " << pathPrefix << endl;
     QFile inputFile(pathPrefix + ".in");
     if (inputFile.exists())
     {
@@ -151,7 +157,7 @@ void TestCase::loadFromFile(const QString &pathPrefix)
 
 void TestCase::save(const QString &pathPrefix, bool safe)
 {
-    Core::Log::i("testcase/save") << "Saving testcase to disk with pathPrefix " << pathPrefix << endl;
+    Core::Log::i("testcase/save") << "pathPrefix " << pathPrefix << endl;
 
     if (!input().isEmpty() || QFile::exists(pathPrefix + ".in"))
     {
@@ -167,6 +173,7 @@ void TestCase::save(const QString &pathPrefix, bool safe)
 
 void TestCase::setID(int index)
 {
+    Core::Log::i("testcase/setID") << "index " << index << endl;
     id = index;
     inputLabel->setText("Input #" + QString::number(id + 1));
     outputLabel->setText("Output #" + QString::number(id + 1));
@@ -177,8 +184,7 @@ void TestCase::setVerdict(Core::Checker::Verdict verdict)
 {
     currentVerdict = verdict;
 
-    Core::Log::i("testcase/setVerdict") << "Setting verdict for testcase " << INFO_OF(id) << " is " << INFO_OF(verdict)
-                                        << endl;
+    Core::Log::i("testcase/setVerdict") << INFO_OF(verdict) << endl;
 
     switch (currentVerdict)
     {
@@ -199,6 +205,7 @@ void TestCase::setVerdict(Core::Checker::Verdict verdict)
 
 Core::Checker::Verdict TestCase::verdict() const
 {
+    Core::Log::i("testcase/verdict", "Invoked");
     return currentVerdict;
 }
 
@@ -230,14 +237,14 @@ void TestCase::onShowCheckBoxToggled(bool checked)
 
 void TestCase::onRunButtonClicked()
 {
-    Core::Log::i("TestCase/onRunButtonClicked") << "Running only one testcase with id " << id << endl;
+    Core::Log::i("TestCase/onRunButtonClicked", "Invoked");
     showCheckBox->setChecked(true);
     emit requestRun(id);
 }
 
 void TestCase::onDiffButtonClicked()
 {
-    Core::Log::i("testcase/on_diffButton_clicked") << "Showing diff for testcase with id " << id << endl;
+    Core::Log::i("testcase/on_diffButton_clicked", "invoked");
     diffViewer->setText(output(), expected());
     diffViewer->show();
     diffViewer->raise();
@@ -245,7 +252,7 @@ void TestCase::onDiffButtonClicked()
 
 void TestCase::onDelButtonClicked()
 {
-    Core::Log::i("TestCase/onDelButtonClicked") << "Deleting the testcase with testcase id " << id << endl;
+    Core::Log::i("TestCase/onDelButtonClicked", "Invoked");
 
     if (input().isEmpty() && expected().isEmpty())
     {
@@ -254,13 +261,11 @@ void TestCase::onDelButtonClicked()
     }
     else
     {
+        Core::Log::i("TestCase/onDelButtonClicked", "Asking confirmation for delete");
         auto res = QMessageBox::question(this, "Delete Testcase",
                                          "Do you want to delete test case #" + QString::number(id + 1));
         if (res == QMessageBox::Yes)
-        {
             emit deleted(this);
-            Core::Log::i("TestCase/onDelButtonClicked", "Deleted testcase successfully.");
-        }
     }
 }
 

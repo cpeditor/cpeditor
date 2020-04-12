@@ -138,7 +138,6 @@ QString Log::platformInformation()
     res.append("productVersion : " + QSysInfo::productVersion() + "\n");
     res.append("Appversion : " APP_VERSION "\n");
     res.append("Git commit hash : " GIT_COMMIT_HASH);
-    res.append("Build date and time : " __DATE__ __TIME__);
     return res;
 }
 
@@ -234,7 +233,7 @@ void Log::revealInFileManager()
 
 void Log::clearOldLogs()
 {
-    i("log/clearOldLogs", "Creating all old logs");
+    i("log/clearOldLogs", "Invoked");
     auto path = QStandardPaths::writableLocation(QStandardPaths::TempLocation);
     QDir dir(path);
     if (dir.cd(LOG_DIR_NAME))

@@ -25,8 +25,7 @@ namespace Core
 
 Checker::Checker(CheckerType type, MessageLogger *logger, int timeLimit, QObject *parent) : QObject(parent)
 {
-    Log::i("Checker/constructor") << "Checker is: " << INFO_OF(timeLimit) << BOOLEAN(logger == nullptr) << INFO_OF(type)
-                                  << endl;
+    Log::i("Checker/constructor") << INFO_OF(type) << endl;
     checkerType = type;
     log = logger;
     this->timeLimit = timeLimit;
@@ -36,11 +35,11 @@ Checker::Checker(const QString &path, MessageLogger *logger, int timeLimit, QObj
     : Checker(Custom, logger, timeLimit, parent)
 {
     checkerPath = path;
-    Core::Log::i("Checker/constructed") << "Path is: " << path << endl;
 }
 
 Checker::~Checker()
 {
+    Log::i("Checker/destructor", "Invoked");
     if (compiler)
         delete compiler;
     for (auto &t : runner)
@@ -51,6 +50,7 @@ Checker::~Checker()
 
 void Checker::prepare(const QString &compileCommand)
 {
+    // clear everything
     for (auto &t : runner)
         delete t;
     if (compiler)
@@ -60,8 +60,11 @@ void Checker::prepare(const QString &compileCommand)
 
     if (!compiled)
     {
+        // compile the checker if it's not compiled
+
         QString checkerResource;
 
+        // get the checker resource
         switch (checkerType)
         {
         case IgnoreTrailingSpaces:
@@ -144,7 +147,7 @@ void Checker::reqeustCheck(int index, const QString &input, const QString &outpu
 
 void Checker::onCompilationFinished()
 {
-    Log::i("Checker/onCompilationFinished", "Checker compilation has finished");
+    Log::i("Checker/onCompilationFinished", "Invoked");
     compiled = true; // mark that the checker is compiled
     for (auto t : pendingTasks)
         check(t.index, t.input, t.output, t.expected); // solve the pending tasks
@@ -211,6 +214,8 @@ void Checker::onRunKilled(int index)
 
 bool Checker::checkIgnoreTrailingSpaces(const QString &output, const QString &expected)
 {
+    Core::Log::i("Checker/checkIgnoreTrailingSpaces", "Invoked");
+
     // first, replace \r\n and \r by \n
     auto out = output;
     out.replace("\r\n", "\n").replace("\r", "\n");
@@ -253,6 +258,7 @@ bool Checker::checkIgnoreTrailingSpaces(const QString &output, const QString &ex
 
 bool Checker::checkStrict(const QString &output, const QString &expected)
 {
+    Log::i("Checker/checkStrict", "Invoked");
     auto a = output;
     auto b = expected;
     // replace \r\n and \r with \n, then directly compare them

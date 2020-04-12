@@ -32,7 +32,7 @@ CompanionServer::CompanionServer(int port)
 
 void CompanionServer::setMessageLogger(MessageLogger *log)
 {
-    Core::Log::i("companionServer/setMessageLogger") << "Message logger is " << BOOLEAN(log == nullptr) << endl;
+    Core::Log::i("companionServer/setMessageLogger") << "log is null ? : " << (log == nullptr) << endl;
     this->log = log;
 }
 

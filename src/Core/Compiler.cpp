@@ -24,7 +24,7 @@ namespace Core
 
 Compiler::Compiler()
 {
-    Core::Log::i("compiler/Constructor", "Compiler instance is being created");
+    Core::Log::i("compiler/Constructor", "Invoked");
 
     // create compiliation process and connect signals
     compileProcess = new QProcess();
@@ -34,14 +34,14 @@ Compiler::Compiler()
 
 Compiler::~Compiler()
 {
-    Core::Log::i("compiler/Destructor", "Coompiler instance is being deleted");
+    Core::Log::i("compiler/Destructor", "Invoked");
     if (compileProcess != nullptr)
     {
         Core::Log::i("compiler/Destructor", "Compiler object destroyed");
         if (compileProcess->state() != QProcess::NotRunning)
         {
             // kill the compilation process if it's still running when the Compiler is being destructed
-            Core::Log::i("Compiler/destructor", "Compile Process is running, now killing it");
+            Core::Log::i("Compiler/destructor", "compileProcess is running, now kill it");
             compileProcess->kill();
             emit compilationKilled();
         }
@@ -49,7 +49,7 @@ Compiler::~Compiler()
     }
     else
     {
-        Core::Log::w("compiler/Destructor", "compile Process is already Null");
+        Core::Log::i("compiler/Destructor", "compileProcess is already null");
     }
 }
 
@@ -70,24 +70,24 @@ void Compiler::start(const QString &filePath, const QString &compileCommand, con
 
     if (lang == "C++")
     {
+        Core::Log::i("Compiler/start", "lang branched into C++");
         command = compileCommand + " \"" + QFileInfo(filePath).canonicalFilePath() + "\" -o \"" +
                   QFileInfo(filePath).canonicalPath() + "/" + QFileInfo(filePath).completeBaseName() + "\"";
-        Core::Log::i("Compiler/start[C++]") << command << endl;
     }
     else if (lang == "Java")
     {
+        Core::Log::i("Compiler/start", "lang branched into Java");
         command = compileCommand + " \"" + QFileInfo(filePath).canonicalFilePath() + "\"";
-        Core::Log::i("Compiler/start[Java]") << command << endl;
     }
     else if (lang == "Python")
     {
-        Core::Log::i("Compiler/start[Python]", "No compilation is required");
+        Core::Log::i("Compiler/start", "lang branched into Python");
         emit compilationFinished(""); // we don't actually compile Python
         return;
     }
     else
     {
-        Core::Log::i("compiler/start", "Language is unsupported");
+        Core::Log::i("compiler/start", "lang is unsupported");
         emit compilationErrorOccured("Unsupported programming language \"" + lang + "\"");
         return;
     }
@@ -98,6 +98,7 @@ void Compiler::start(const QString &filePath, const QString &compileCommand, con
 
 bool Compiler::check(const QString &compileCommand)
 {
+    Core::Log::i("compiler/check", "Invoked");
     QProcess checkProcess;
 
     // check both "--version" and "-version", "-version" is mainly for Java
@@ -110,23 +111,24 @@ bool Compiler::check(const QString &compileCommand)
 
     checkProcess.start(compileCommand.trimmed().split(' ').front() + " -version");
     finished = checkProcess.waitForFinished(1000);
-    Core::Log::i("Compiler/check", "Checking compiler command " + compileCommand);
     return finished && checkProcess.exitCode() == 0;
 }
 
 void Compiler::onProcessFinished(int exitCode)
 {
+    Core::Log::i("compiler/onProcessFinished", "Invoked");
 
     // emit different signals due to different exit codes
     if (exitCode == 0)
     {
+        Core::Log::i("compiler/onProcessFinished", "Branched into exitCode 0");
         emit compilationFinished(compileProcess->readAllStandardError());
     }
     else
     {
+        Core::Log::i("compiler/onProcessFinished", "Branched into Not exitCode 0");
         emit compilationErrorOccured(compileProcess->readAllStandardError());
     }
-    Core::Log::i("Compiler/onProcessFinished") << "Exit code is: " << exitCode << endl;
 }
 
 } // namespace Core

@@ -26,8 +26,9 @@ namespace Core
 {
 Formatter::Formatter(const QString &clangFormatBinary, const QString &clangFormatStyle, MessageLogger *logger)
 {
-    Core::Log::i("formatter/created") << "Creating formatter instance " << INFO_OF(clangFormatBinary)
-                                      << INFO_OF(clangFormatStyle) << BOOLEAN(log == nullptr) << endl;
+    Core::Log::i("formatter/created") << "clangformatBinary : " << clangFormatBinary
+                                      << "clangformatStyle : " << clangFormatStyle
+                                      << "log is null? : " << (log == nullptr) << endl;
     log = logger;
     updateBinary(clangFormatBinary);
     updateStyle(clangFormatStyle);
@@ -35,7 +36,7 @@ Formatter::Formatter(const QString &clangFormatBinary, const QString &clangForma
 
 bool Formatter::check(const QString &checkBinary, const QString &checkStyle)
 {
-    Core::Log::i("formatter/check") << "checkBinary : " << checkBinary << "checkStyle : \n" << checkStyle << endl;
+    Core::Log::i("formatter/check") << "checkBinary : " << checkBinary << "checkStyle : " << checkStyle << endl;
 
     // create a temporary directory for formatting
     QTemporaryDir tmpDir;
@@ -77,14 +78,14 @@ void Formatter::updateBinary(const QString &newBinary)
 
 void Formatter::updateStyle(const QString &newStyle)
 {
-    Core::Log::i("formatter/updateStyle") << "New style is : \n" << newStyle << endl;
+    Core::Log::i("formatter/updateStyle") << "New style is : " << newStyle << endl;
     style = newStyle;
 }
 
 void Formatter::format(QCodeEditor *editor, const QString &filePath, const QString &lang, bool selectionOnly)
 {
-    Core::Log::i("formatter/format") << BOOLEAN(editor == nullptr) << INFO_OF(filePath) << INFO_OF(lang)
-                                     << BOOLEAN(selectionOnly) << endl;
+    Core::Log::i("formatter/format") << "Editor is null ? : " << (editor == nullptr) << " Filepath is : " << filePath
+                                     << " Language is : " << lang << " selectionOnly ? : " << selectionOnly << endl;
 
     // get the cursor positions
     auto cursor = editor->textCursor();
@@ -202,8 +203,9 @@ QPair<int, QString> Formatter::getFormatResult(const QStringList &args)
     if (formatProcess.exitCode() != 0)
     {
         // the format process failed, show the error messages and return {-1, QString()}
-        Core::Log::w("formatter/getFormatResult") << "formatProcess returned exit code " << formatProcess.exitCode();
-        log->warn("Formatter", "The format command was: " + binary + " " + args.join(' '));
+        Core::Log::w("formatter/getFormatResult")
+            << "formatProcess did returned exit code " << formatProcess.exitCode();
+        log->warn("Formatter", "The format command is: " + binary + " " + args.join(' '));
         auto stdOut = formatProcess.readAllStandardOutput();
         if (!stdOut.isEmpty())
             log->warn("Formatter[stdout]", stdOut);

@@ -70,7 +70,7 @@ bool saveFile(const QString &path, const QString &content, const QString &head, 
 
 void applySettingsToEditor(QCodeEditor *editor)
 {
-    Core::Log::i("Util/applySettingsToEditor", "Applying settings to an code editor widget");
+    Core::Log::i("Util/applySettingsToEditor", "Invoked");
 
     editor->setTabReplace(Settings::SettingsManager::isTabsReplaced());
     editor->setTabReplaceSize(Settings::SettingsManager::getTabStop());
@@ -81,7 +81,6 @@ void applySettingsToEditor(QCodeEditor *editor)
     if (!Settings::SettingsManager::getFont().isEmpty())
     {
         QFont font;
-        Core::Log::i("Util/applySettingsToEditor", "Applying user chosen font to code editor");
         font.fromString(Settings::SettingsManager::getFont());
         editor->setFont(font);
     }
