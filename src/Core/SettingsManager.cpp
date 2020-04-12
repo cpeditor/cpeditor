@@ -15,7 +15,7 @@
  *
  */
 
-#include "Core/Settings.hpp"
+#include "Core/SettingsManager.hpp"
 #include <QDebug>
 #include <QFile>
 #include <QFont>

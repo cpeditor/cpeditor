@@ -58,14 +58,14 @@ add_executable(cpeditor
     include/Core/Compiler.hpp
     include/Core/Runner.hpp
     include/Core/Formatter.hpp
-    include/Core/Settings.hpp
+    include/Core/SettingsManager.hpp
     include/Core/MessageLogger.hpp
     include/Core/EventLogger.hpp
     src/Core/Checker.cpp
     src/Core/Compiler.cpp
     src/Core/Runner.cpp
     src/Core/Formatter.cpp
-    src/Core/Settings.cpp
+    src/Core/SettingsManager.cpp
     src/Core/MessageLogger.cpp
     src/Core/EventLogger.cpp
 
