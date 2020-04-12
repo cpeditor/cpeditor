@@ -80,7 +80,7 @@ struct SettingInfo
 const SettingInfo settingInfo[] =
 {
 """)
-    for o in obj:
+    for t in obj:
         name = t["name"]
         typename = t["type"]
         if "desc" in t:
@@ -102,7 +102,7 @@ const SettingInfo settingInfo[] =
             if typename == "QString":
                 setting_info.write(json.dumps(t["default"]))
             else:
-                if isinstance(type(t["default"]), bool):
+                if isinstance(t["default"], bool):
                     setting_info.write(str(t["default"]).lower())
                 else:
                     setting_info.write(str(t["default"]))
