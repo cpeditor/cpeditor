@@ -131,7 +131,12 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
 
 void PreferencesWindow::display()
 {
-    if (isHidden())
+    bool hidden = isHidden();
+    show();
+    setWindowState((windowState() & ~Qt::WindowMinimized) | Qt::WindowActive);
+    activateWindow();
+    raise();
+    if (hidden)
     {
         switchToPage(homePage);
         menuTree->clearSelection();
@@ -141,10 +146,6 @@ void PreferencesWindow::display()
         move(parentWidget()->geometry().center().x() - width() / 2,
              parentWidget()->geometry().center().y() - height() / 2);
     }
-    show();
-    setWindowState((windowState() & ~Qt::WindowMinimized) | Qt::WindowActive);
-    activateWindow();
-    raise();
 }
 
 void PreferencesWindow::updateSearch(const QString &text)
