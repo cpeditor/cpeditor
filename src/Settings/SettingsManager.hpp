@@ -15,8 +15,8 @@
  *
  */
 
-#ifndef SETTINGS_HPP
-#define SETTINGS_HPP
+#ifndef SETTINGSMANAGER_HPP
+#define SETTINGSMANAGER_HPP
 
 #include <QMap>
 #include <QString>
@@ -42,4 +42,4 @@ struct SettingsManager
     static Settings *def;
 };
 
-#endif
+#endif // SETTINGSMANAGER_HPP
