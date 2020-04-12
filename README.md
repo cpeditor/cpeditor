@@ -54,7 +54,7 @@ It makes your competitive coding life easier :grin: by automating many things fo
 - I get **DLL Missing error** when launching the application?
    - Please download  [Microsoft Visual C++ Redistributable for Visual Studio 2015, 2017 and 2019](https://support.microsoft.com/en-us/help/2977003/the-latest-supported-visual-c-downloads).
 - How to use whole-application dark theme?
-   - It's only available on some platforms including KDE and MacOS. Just set the system theme, and CP Editor will use the same theme. It's also possible to use different themes via the command-line option `--style`, but it's a feature [provided by Qt](https://doc.qt.io/qt-5/qstyle.html#details), not by CP Editor, and does NOT work on all platforms.
+   - Now you can use whole-application dark theme on KDE, macOS and Windows 10. You need to set the system theme to dark theme, then CP Editor will use dark theme, too. However, on Windows 10, if you use the dark theme, you may need to restart the application after changing the theme of the code editor.
 - How to fetch testcases from the websites?
    - You have to install [Competitive Companion](https://github.com/jmerle/competitive-companion) on your browser, and use it on the website while CP Editor is running.
 - How to submit to CF inside the editor?
