@@ -62,8 +62,6 @@ class AppWindow : public QMainWindow
 
     void on_actionBuildInfo_triggered();
 
-    void on_actionAutosave_triggered(bool checked);
-
     void on_actionQuit_triggered();
 
     void on_actionNew_Tab_triggered();
@@ -169,7 +167,7 @@ class AppWindow : public QMainWindow
   private:
     Ui::AppWindow *ui;
     MessageLogger *activeLogger = nullptr;
-    QTimer *timer = nullptr;
+    QTimer *autoSaveTimer = nullptr;
     QMetaObject::Connection activeSplitterMoveConnection;
     QMetaObject::Connection activeRightSplitterMoveConnection;
     Telemetry::UpdateNotifier *updater = nullptr;

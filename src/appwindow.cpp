@@ -161,7 +161,7 @@ AppWindow::~AppWindow()
     Themes::EditorTheme::release();
     delete ui;
     delete preferencesWindow;
-    delete timer;
+    delete autoSaveTimer;
     delete updater;
     delete server;
     delete findReplaceDialog;
@@ -236,7 +236,7 @@ void AppWindow::setConnections()
     ui->tabWidget->tabBar()->setContextMenuPolicy(Qt::CustomContextMenu);
     connect(ui->tabWidget->tabBar(), SIGNAL(customContextMenuRequested(const QPoint &)), this,
             SLOT(onTabContextMenuRequested(const QPoint &)));
-    connect(timer, SIGNAL(timeout()), this, SLOT(onSaveTimerElapsed()));
+    connect(autoSaveTimer, SIGNAL(timeout()), this, SLOT(onSaveTimerElapsed()));
 
     connect(preferencesWindow, SIGNAL(settingsApplied(const QString &)), this,
             SLOT(onSettingsApplied(const QString &)));
@@ -252,7 +252,7 @@ void AppWindow::allocate()
 {
     Core::Log::i("appwindow/allocate", "Invoked");
     SettingsManager::init();
-    timer = new QTimer();
+    autoSaveTimer = new QTimer();
     updater = new Telemetry::UpdateNotifier(SettingsHelper::isBeta());
     preferencesWindow = new PreferencesWindow(this);
     server = new Network::CompanionServer(SettingsHelper::getCompetitiveCompanionConnectionPort());
@@ -261,8 +261,8 @@ void AppWindow::allocate()
     findReplaceDialog->setWindowFlags(Qt::Window | Qt::WindowMinimizeButtonHint | Qt::WindowMaximizeButtonHint |
                                       Qt::WindowCloseButtonHint);
 
-    timer->setInterval(3000);
-    timer->setSingleShot(false);
+    autoSaveTimer->setInterval(3000);
+    autoSaveTimer->setSingleShot(false);
 
     trayIconMenu = new QMenu();
     trayIconMenu->addAction("Show Main Window", this, SLOT(showOnTop()));
@@ -277,7 +277,6 @@ void AppWindow::allocate()
 void AppWindow::applySettings()
 {
     Core::Log::i("appwindow/applySettings", "Invoked");
-    ui->actionAutosave->setChecked(SettingsHelper::isAutoSave());
     QString mode = SettingsHelper::getViewMode();
 
     if (mode == "code")
@@ -286,9 +285,6 @@ void AppWindow::applySettings()
         on_actionIO_Mode_triggered();
     else
         on_actionSplit_Mode_triggered();
-
-    if (SettingsHelper::isAutoSave())
-        timer->start();
 
     if (!SettingsHelper::getGeometry().isEmpty() && !SettingsHelper::getGeometry().isNull() &&
         SettingsHelper::getGeometry().isValid() && !SettingsHelper::isMaximizedWindow())
@@ -631,16 +627,6 @@ void AppWindow::on_actionBuildInfo_triggered()
 
 /******************* FILES SECTION *************************/
 
-void AppWindow::on_actionAutosave_triggered(bool checked)
-{
-    Core::Log::i("appwindow/on_actionAutosave_triggered") << "checked " << checked << endl;
-    SettingsHelper::setAutoSave(checked);
-    if (checked)
-        timer->start();
-    else
-        timer->stop();
-}
-
 void AppWindow::on_actionQuit_triggered()
 {
     Core::Log::i("appwindow/on_actionQuit_triggered", "invoked");
@@ -957,6 +943,14 @@ void AppWindow::onSettingsApplied(const QString &pagePath)
             server->updatePort(SettingsHelper::getCompetitiveCompanionConnectionPort());
         else
             server->updatePort(0);
+    }
+
+    if (pagePath.isEmpty() || pagePath == "Actions/Save")
+    {
+        if (SettingsHelper::isAutoSave())
+            autoSaveTimer->start();
+        else
+            autoSaveTimer->stop();
     }
 
     Core::Log::i("appwindow/onSettingsApplied", "Finished");
