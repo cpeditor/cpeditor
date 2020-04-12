@@ -18,8 +18,8 @@
 #ifndef PREFERENCESPAGETEMPLATE_HPP
 #define PREFERENCESPAGETEMPLATE_HPP
 
-#include "Preferences/PreferencesGridPage.hpp"
-#include "Preferences/ValueWrapper.hpp"
+#include "Settings/PreferencesGridPage.hpp"
+#include "Settings/ValueWrapper.hpp"
 
 class PreferencesPageTemplate : public PreferencesGridPage
 {

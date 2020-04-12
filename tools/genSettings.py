@@ -33,7 +33,7 @@ if __name__ == "__main__":
     setting_helper.write("""#ifndef SETTINGSHELPER_HPP
 #define SETTINGSHELPER_HPP
 
-#include "Core/SettingsManager.hpp"
+#include "Settings/SettingsManager.hpp"
 #include <QFont>
 #include <QRect>
 

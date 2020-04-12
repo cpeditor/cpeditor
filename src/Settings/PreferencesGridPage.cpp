@@ -1,4 +1,4 @@
-#include "Preferences/PreferencesGridPage.hpp"
+#include "Settings/PreferencesGridPage.hpp"
 
 PreferencesGridPage::PreferencesGridPage(bool alignTop, QWidget *parent) : PreferencesPage(parent)
 {

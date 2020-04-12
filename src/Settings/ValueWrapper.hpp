@@ -24,8 +24,8 @@
 #include <QCheckBox>
 
 // QString
-#include "Preferences/PathItem.hpp"
-#include "Preferences/ShortcutItem.hpp"
+#include "Settings/PathItem.hpp"
+#include "Settings/ShortcutItem.hpp"
 #include <QComboBox>
 #include <QLineEdit>
 #include <QPlainTextEdit>
@@ -36,7 +36,7 @@
 #include <QSpinBox>
 
 // QFont
-#include "Preferences/FontItem.hpp"
+#include "Settings/FontItem.hpp"
 
 class ValueWidget : public QObject
 {

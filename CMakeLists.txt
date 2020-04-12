@@ -38,9 +38,9 @@ configure_file(cmake/aur/PKGBUILD.in ${CMAKE_BINARY_DIR}/aur/PKGBUILD)
 configure_file(cmake/aur/.SRCINFO.in ${CMAKE_BINARY_DIR}/aur/.SRCINFO)
 
 add_custom_command(OUTPUT ${CMAKE_BINARY_DIR}/generated/SettingsHelper.hpp ${CMAKE_BINARY_DIR}/generated/SettingsInfo.hpp
-                   COMMAND ${Python3_EXECUTABLE} ${PROJECT_SOURCE_DIR}/tools/genSettings.py ${PROJECT_SOURCE_DIR}/setting.json
+                   COMMAND ${Python3_EXECUTABLE} ${PROJECT_SOURCE_DIR}/tools/genSettings.py ${PROJECT_SOURCE_DIR}/src/Settings/settings.json
                    WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
-                   DEPENDS ${PROJECT_SOURCE_DIR}/setting.json ${PROJECT_SOURCE_DIR}/tools/genSettings.py)
+                   DEPENDS ${PROJECT_SOURCE_DIR}/src/Settings/settings.json ${PROJECT_SOURCE_DIR}/tools/genSettings.py)
 set_property(SOURCE ${CMAKE_BINARY_DIR}/generated/SettingsHelper.hpp ${CMAKE_BINARY_DIR}/generated/SettingsInfo.hpp PROPERTY SKIP_AUTOGEN ON)
 
 IF(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/.git)
@@ -72,8 +72,6 @@ add_executable(cpeditor
     src/Core/MessageLogger.hpp
     src/Core/Runner.cpp
     src/Core/Runner.hpp
-    src/Core/SettingsManager.cpp
-    src/Core/SettingsManager.hpp
 
     src/Telemetry/UpdateNotifier.cpp
     src/Telemetry/UpdateNotifier.hpp
@@ -94,26 +92,28 @@ add_executable(cpeditor
     src/Extensions/EditorTheme.cpp
     src/Extensions/EditorTheme.hpp
 
-    src/Preferences/CodeSnippetsPage.cpp
-    src/Preferences/CodeSnippetsPage.hpp
-    src/Preferences/FontItem.cpp
-    src/Preferences/FontItem.hpp
-    src/Preferences/PathItem.cpp
-    src/Preferences/PathItem.hpp
-    src/Preferences/PreferencesGridPage.cpp
-    src/Preferences/PreferencesGridPage.hpp
-    src/Preferences/PreferencesHomePage.cpp
-    src/Preferences/PreferencesHomePage.hpp
-    src/Preferences/PreferencesPage.cpp
-    src/Preferences/PreferencesPage.hpp
-    src/Preferences/PreferencesPageTemplate.cpp
-    src/Preferences/PreferencesPageTemplate.hpp
-    src/Preferences/PreferencesWindow.cpp
-    src/Preferences/PreferencesWindow.hpp
-    src/Preferences/ShortcutItem.cpp
-    src/Preferences/ShortcutItem.hpp
-    src/Preferences/ValueWrapper.cpp
-    src/Preferences/ValueWrapper.hpp
+    src/Settings/CodeSnippetsPage.cpp
+    src/Settings/CodeSnippetsPage.hpp
+    src/Settings/FontItem.cpp
+    src/Settings/FontItem.hpp
+    src/Settings/PathItem.cpp
+    src/Settings/PathItem.hpp
+    src/Settings/PreferencesGridPage.cpp
+    src/Settings/PreferencesGridPage.hpp
+    src/Settings/PreferencesHomePage.cpp
+    src/Settings/PreferencesHomePage.hpp
+    src/Settings/PreferencesPage.cpp
+    src/Settings/PreferencesPage.hpp
+    src/Settings/PreferencesPageTemplate.cpp
+    src/Settings/PreferencesPageTemplate.hpp
+    src/Settings/PreferencesWindow.cpp
+    src/Settings/PreferencesWindow.hpp
+    src/Settings/SettingsManager.cpp
+    src/Settings/SettingsManager.hpp
+    src/Settings/ShortcutItem.cpp
+    src/Settings/ShortcutItem.hpp
+    src/Settings/ValueWrapper.cpp
+    src/Settings/ValueWrapper.hpp
 
     src/appwindow.cpp
     src/appwindow.hpp

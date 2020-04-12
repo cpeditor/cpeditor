@@ -15,7 +15,7 @@
  *
  */
 
-#include "Preferences/PreferencesHomePage.hpp"
+#include "Settings/PreferencesHomePage.hpp"
 #include <QPixmap>
 #include <generated/version.hpp>
 

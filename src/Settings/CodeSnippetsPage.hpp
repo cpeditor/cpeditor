@@ -18,7 +18,7 @@
 #ifndef CODESNIPPETSPAGE_HPP
 #define CODESNIPPETSPAGE_HPP
 
-#include "Preferences/PreferencesPage.hpp"
+#include "Settings/PreferencesPage.hpp"
 #include <QCodeEditor>
 #include <QListWidget>
 #include <QMap>

@@ -21,7 +21,7 @@
 #include <QMainWindow>
 
 #include "LSPClient.hpp"
-#include "Preferences/PreferencesWindow.hpp"
+#include "Settings/PreferencesWindow.hpp"
 #include "Telemetry/UpdateNotifier.hpp"
 #include "mainwindow.hpp"
 #include <QSystemTrayIcon>

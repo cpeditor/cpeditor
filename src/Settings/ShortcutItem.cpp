@@ -15,7 +15,7 @@
  *
  */
 
-#include "Preferences/ShortcutItem.hpp"
+#include "Settings/ShortcutItem.hpp"
 #include <QApplication>
 #include <QStyle>
 

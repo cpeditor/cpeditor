@@ -25,8 +25,8 @@
 #ifndef PREFERENCESWINDOW_HPP
 #define PREFERENCESWINDOW_HPP
 
-#include "Preferences/PreferencesHomePage.hpp"
-#include "Preferences/PreferencesPage.hpp"
+#include "Settings/PreferencesHomePage.hpp"
+#include "Settings/PreferencesPage.hpp"
 #include <QLineEdit>
 #include <QMainWindow>
 #include <QMap>

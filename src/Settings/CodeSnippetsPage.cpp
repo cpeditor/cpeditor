@@ -15,8 +15,8 @@
  *
  */
 
-#include "Preferences/CodeSnippetsPage.hpp"
-#include "Core/SettingsManager.hpp"
+#include "Settings/CodeSnippetsPage.hpp"
+#include "Settings/SettingsManager.hpp"
 #include "Util.hpp"
 #include <QFileDialog>
 #include <QInputDialog>

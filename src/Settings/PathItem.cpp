@@ -15,7 +15,7 @@
  *
  */
 
-#include "Preferences/PathItem.hpp"
+#include "Settings/PathItem.hpp"
 #include "Util.hpp"
 #include <QApplication>
 #include <QFileDialog>

@@ -31,7 +31,7 @@
 #ifndef PREFERENCESPAGE_HPP
 #define PREFERENCESPAGE_HPP
 
-#include "Preferences/ValueWrapper.hpp"
+#include "Settings/ValueWrapper.hpp"
 #include <QLabel>
 #include <QPushButton>
 #include <QScrollArea>

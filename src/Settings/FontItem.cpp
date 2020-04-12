@@ -15,7 +15,7 @@
  *
  */
 
-#include "Preferences/FontItem.hpp"
+#include "Settings/FontItem.hpp"
 #include <QFontDialog>
 
 FontItem::FontItem(QWidget *parent) : QPushButton(parent)

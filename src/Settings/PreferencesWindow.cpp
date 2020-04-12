@@ -15,9 +15,9 @@
  *
  */
 
-#include "Preferences/PreferencesWindow.hpp"
-#include "Preferences/CodeSnippetsPage.hpp"
-#include "Preferences/PreferencesPageTemplate.hpp"
+#include "Settings/PreferencesWindow.hpp"
+#include "Settings/CodeSnippetsPage.hpp"
+#include "Settings/PreferencesPageTemplate.hpp"
 #include <QApplication>
 #include <QCloseEvent>
 #include <QScreen>

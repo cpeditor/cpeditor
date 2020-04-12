@@ -50,7 +50,7 @@
 - Нужно ли мне знать CMake?
   - Нет, нужно только знать, как делается [сборка из исходного кода](doc/INSTALL_ru-RU.md#Сборка-из-исходного-кода).
 - Как добавить настройку?
-  - Вы должны добавить пользовательский интерфейс в `ui/preferencewindow.ui`, добавить set/get функции в `include/Core/SettingsManager.hpp` и `src/Core/SettingsManager.cpp`, добавить код в `applySettingsToui`, `extractSettingsFromui` и `isUnsavedChanges` в `src/preferencewindow.cpp`. Копипастинг очень полезен.
+  - Вы должны добавить пользовательский интерфейс в `ui/preferencewindow.ui`, добавить set/get функции в `include/Settings/SettingsManager.hpp` и `src/Settings/SettingsManager.cpp`, добавить код в `applySettingsToui`, `extractSettingsFromui` и `isUnsavedChanges` в `src/preferencewindow.cpp`. Копипастинг очень полезен.
 - Некоторые файлы отсутствуют при компиляции.
   - Если тесты CI пройдены, то из-за того, что обновляются подмодули. Вы можете выполнить следующие команды:
 

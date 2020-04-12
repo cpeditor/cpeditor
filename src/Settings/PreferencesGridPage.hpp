@@ -25,7 +25,7 @@
 #ifndef PREFERENCESGRIDPAGE_HPP
 #define PREFERENCESGRIDPAGE_HPP
 
-#include "Preferences/PreferencesPage.hpp"
+#include "Settings/PreferencesPage.hpp"
 #include <QGridLayout>
 
 class PreferencesGridPage : public PreferencesPage

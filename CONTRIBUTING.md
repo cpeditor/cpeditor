@@ -49,7 +49,7 @@ Please open an issue (describe the feature/bug like normal issues, and say that 
 - Do I need to learn about CMake?
   - No, you only need to know how to [build from source](doc/INSTALL.md#Build-from-source).
 - How to add a setting?
-  - You have to add the UI part in `ui/preferencewindow.ui`, add get/set functions in `include/Core/SettingsManager.hpp` and `src/Core/SettingsManager.cpp`, add codes in `applySettingsToui`, `extractSettingsFromui` and `isUnsavedChanges` in `src/preferencewindow.cpp`. Copy-pasting is very helpful.
+  - You have to add the UI part in `ui/preferencewindow.ui`, add get/set functions in `include/Settings/SettingsManager.hpp` and `src/Settings/SettingsManager.cpp`, add codes in `applySettingsToui`, `extractSettingsFromui` and `isUnsavedChanges` in `src/preferencewindow.cpp`. Copy-pasting is very helpful.
 - Some files are missing when compiling.
   -  If the CI tests are passed, it's probably because the submodules are updated. You can run the following commands:
   

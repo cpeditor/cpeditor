@@ -15,7 +15,7 @@
  *
  */
 
-#include "Preferences/ValueWrapper.hpp"
+#include "Settings/ValueWrapper.hpp"
 
 ValueWidget::ValueWidget() : QObject()
 {

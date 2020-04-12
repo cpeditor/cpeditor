@@ -15,7 +15,7 @@
  *
  */
 
-#include "Preferences/PreferencesPage.hpp"
+#include "Settings/PreferencesPage.hpp"
 #include <QApplication>
 #include <QFormLayout>
 #include <QMessageBox>

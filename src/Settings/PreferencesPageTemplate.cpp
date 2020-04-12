@@ -15,8 +15,8 @@
  *
  */
 
-#include "Preferences/PreferencesPageTemplate.hpp"
-#include "Core/SettingsManager.hpp"
+#include "Settings/PreferencesPageTemplate.hpp"
+#include "Settings/SettingsManager.hpp"
 #include "Util.hpp"
 #include <QDebug>
 #include <generated/SettingsInfo.hpp>
