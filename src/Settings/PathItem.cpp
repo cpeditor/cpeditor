@@ -21,7 +21,7 @@
 #include <QFileDialog>
 #include <QStyle>
 
-static QString filters[] = {"Excutable (*" EXE_SUFFIX ")", "C++ Sources (*.cpp *.hpp *.h *.cc *.cxx *.c",
+static QString filters[] = {"Excutable (*" EXE_SUFFIX ")", "C++ Sources (*.cpp *.hpp *.h *.cc *.cxx *.c)",
                             "Java Sources (*.java)", "Python Sources (*.py *.py3)"};
 
 static QString titles[] = {
