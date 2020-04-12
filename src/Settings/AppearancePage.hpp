@@ -15,30 +15,20 @@
  *
  */
 
-#ifndef PREFERENCESPAGETEMPLATE_HPP
-#define PREFERENCESPAGETEMPLATE_HPP
+#ifndef APPEARANCEPAGE_HPP
+#define APPEARANCEPAGE_HPP
 
-#include "Settings/PreferencesGridPage.hpp"
-#include "Settings/ValueWrapper.hpp"
+#include "Settings/PreferencesPageTemplate.hpp"
 
-class PreferencesPageTemplate : public PreferencesGridPage
+class AppearancePage : public PreferencesPageTemplate
 {
     Q_OBJECT
 
   public:
-    explicit PreferencesPageTemplate(QStringList opts, bool alignTop = true, QWidget *parent = nullptr);
-
-    QStringList content();
+    explicit AppearancePage(QWidget *parent = nullptr);
 
   private:
-    bool areSettingsChanged() override;
-    void makeUITheSameAsDefault() override;
-    void makeUITheSameAsSettings() override;
     void makeSettingsTheSameAsUI() override;
-
-  protected:
-    QStringList options;
-    QList<ValueWidget *> widgets;
 };
 
-#endif // PREFERENCESPAGETEMPLATE_HPP
+#endif // APPEARANCEPAGE_HPP

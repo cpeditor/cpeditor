@@ -92,6 +92,8 @@ add_executable(cpeditor
     src/Extensions/EditorTheme.cpp
     src/Extensions/EditorTheme.hpp
 
+    src/Settings/AppearancePage.cpp
+    src/Settings/AppearancePage.hpp
     src/Settings/CodeSnippetsPage.cpp
     src/Settings/CodeSnippetsPage.hpp
     src/Settings/FontItem.cpp

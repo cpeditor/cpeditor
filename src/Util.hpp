@@ -27,8 +27,9 @@ namespace Util
 const QStringList cppSuffix = {"cpp", "hpp", "h", "cc", "cxx", "c"};
 const QStringList javaSuffix = {"java"};
 const QStringList pythonSuffix = {"py", "py3"};
-#ifdef Q_OS_WIN32
+#ifdef Q_OS_WIN
 #define EXE_SUFFIX ".exe"
+extern bool useDarkTheme;
 #else
 #define EXE_SUFFIX ""
 #endif

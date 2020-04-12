@@ -16,6 +16,7 @@
  */
 
 #include "Settings/PreferencesWindow.hpp"
+#include "Settings/AppearancePage.hpp"
 #include "Settings/CodeSnippetsPage.hpp"
 #include "Settings/PreferencesPageTemplate.hpp"
 #include <QApplication>
@@ -105,8 +106,8 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
     addPage("Language/Code Snippets/Java Snippets", javaSnippetsPage, {"Java Snippets", "Java Code Snippets"});
     addPage("Language/Code Snippets/Python Snippets", pythonSnippetsPage, {"Python Snippets", "Python Code Snippets"});
 
-    addPage("Appearance",
-            {"Editor Theme", "Font", "Transparency", "Show Compile And Run Only", "Display EOLN In Diff"});
+    auto appearancePage = new AppearancePage();
+    addPage("Appearance", appearancePage, appearancePage->content());
 
     addPage("Actions/General", {"Hot Exit/Enable"});
 
