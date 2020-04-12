@@ -8,6 +8,7 @@ pkgbase = cpeditor
 	makedepends = cmake
 	makedepends = git
 	makedepends = gcc
+	makedepends = python3
 	depends = qt5-base
 	conflicts = cpeditor-git
 	source = https://github.com/cpeditor/cpeditor/releases/download/@PROJECT_VERSION@/cpeditor-full-source-@PROJECT_VERSION@.tar.gz
