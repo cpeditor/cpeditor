@@ -953,6 +953,9 @@ void AppWindow::onSettingsApplied(const QString &pagePath)
             autoSaveTimer->stop();
     }
 
+    if (pagePath.isEmpty() || pagePath == "Appearance")
+        setWindowOpacity(SettingsHelper::getTransparency() / 100.0);
+
     Core::Log::i("appwindow/onSettingsApplied", "Finished");
 }
 
