@@ -17,9 +17,9 @@
 
 #include "Widgets/DiffViewer.hpp"
 #include "Core/EventLogger.hpp"
-#include "Core/SettingsManager.hpp"
 #include "diff_match_patch.h"
 #include <QScrollBar>
+#include <generated/SettingsHelper.hpp>
 
 DiffViewer::DiffViewer(QWidget *parent) : QMainWindow(parent)
 {
@@ -66,7 +66,8 @@ DiffViewer::DiffViewer(QWidget *parent) : QMainWindow(parent)
 
 void DiffViewer::setText(const QString &output, const QString &expected)
 {
-    if (output.length() <= MAX_CHARACTERS_FOR_HTML && expected.length() <= MAX_CHARACTERS_FOR_HTML)
+    if (output.length() <= SettingsHelper::getHTMLDiffViewerLengthLimit() &&
+        expected.length() <= SettingsHelper::getHTMLDiffViewerLengthLimit())
     {
         Core::Log::i("DiffViewer/setText", "Use HTML");
         diff_match_patch differ;
@@ -78,7 +79,7 @@ void DiffViewer::setText(const QString &output, const QString &expected)
         for (auto diff : diffs)
         {
             QString text = diff.text.toHtmlEscaped().replace(" ", "&nbsp;");
-            if (Settings::SettingsManager::isDisplayEolnInDiff())
+            if (SettingsHelper::isDisplayEOLNInDiff())
                 text.replace("\n", "&para;<br>");
             else
                 text.replace("\n", "<br>");

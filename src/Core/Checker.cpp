@@ -19,20 +19,19 @@
 #include "Core/EventLogger.hpp"
 #include "Util.hpp"
 #include <QFile>
+#include <generated/SettingsHelper.hpp>
 
 namespace Core
 {
 
-Checker::Checker(CheckerType type, MessageLogger *logger, int timeLimit, QObject *parent) : QObject(parent)
+Checker::Checker(CheckerType type, MessageLogger *logger, QObject *parent) : QObject(parent)
 {
     Log::i("Checker/constructor") << INFO_OF(type) << endl;
     checkerType = type;
     log = logger;
-    this->timeLimit = timeLimit;
 }
 
-Checker::Checker(const QString &path, MessageLogger *logger, int timeLimit, QObject *parent)
-    : Checker(Custom, logger, timeLimit, parent)
+Checker::Checker(const QString &path, MessageLogger *logger, QObject *parent) : Checker(Custom, logger, parent)
 {
     checkerPath = path;
 }
@@ -174,42 +173,54 @@ void Checker::onRunFinished(int index, const QString &out, const QString &err, i
     {
         // the check process succeeded
         if (!err.isEmpty())
-            log->message("Checker[" + QString::number(index + 1) + "]", err, "green");
+            log->message(QString("Checker[%1]").arg(index + 1), err, "green");
         emit checkFinished(index, AC);
     }
     else if (QList<int>({1, 2, 3, 4, 5, 8, 16}).contains(exitCode)) // this list is from testlib.h::TResult
     {
         // This exit code is a normal exit code of a testlib checker, means WA or something else
         if (err.isEmpty())
-            log->error("Checker[" + QString::number(index + 1) + "]",
+            log->error(QString("Checker[%1]").arg(index + 1),
                        "Checker exited with exit code " + QString::number(exitCode));
         else
-            log->error("Checker[" + QString::number(index + 1) + "]", err);
+            log->error(QString("Checker[%1]").arg(index + 1), err);
         emit checkFinished(index, WA);
     }
     else
     {
         // This exit code is not one of the normal exit codes of a testlib checker, maybe the checker crashed
-        log->error("Checker[" + QString::number(index + 1) + "]",
+        log->error(QString("Checker[%1]").arg(index + 1),
                    "Checker exited with unknown exit code " + QString::number(exitCode));
         if (!err.isEmpty())
-            log->error("Checker[" + QString::number(index + 1) + "]", err);
+            log->error(QString("Checker[%1]").arg(index + 1), err);
     }
 }
 
 void Checker::onFailedToStartRun(int index, const QString &error)
 {
-    log->error("Checker[" + QString::number(index + 1) + "]", error);
+    log->error(QString("Checker[%1]").arg(index + 1), error);
 }
 
 void Checker::onRunTimeout(int index)
 {
-    log->warn("Checker[" + QString::number(index + 1) + "]", "Time Limit Exceeded");
+    log->warn(QString("Checker[%1]").arg(index + 1), "Time Limit Exceeded");
+}
+
+void Checker::onRunOutputLimitExceeded(int index, const QString &type)
+{
+    log->warn(
+        QString("Checker[%1]").arg(index + 1),
+        QString("The %1 of the process running on the testcase #%2 contains more than %3 characters, which is longer "
+                "than the output length limit, so the process is killed. You can change the output length limit "
+                "in Preferences->Advanced->Limits->Output Length Limit")
+            .arg(type)
+            .arg(index + 1)
+            .arg(SettingsHelper::getOutputLengthLimit()));
 }
 
 void Checker::onRunKilled(int index)
 {
-    log->error("Checker[" + QString::number(index + 1) + "]", "Killed");
+    log->error(QString("Checker[%1]").arg(index + 1), "Killed");
 }
 
 bool Checker::checkIgnoreTrailingSpaces(const QString &output, const QString &expected)
@@ -294,9 +305,11 @@ void Checker::check(int index, const QString &input, const QString &output, cons
             connect(tmp, SIGNAL(failedToStartRun(int, const QString &)), this,
                     SLOT(onFailedToStartRun(int, const QString &)));
             connect(tmp, SIGNAL(runTimeout(int)), this, SLOT(onRunTimeout(int)));
+            connect(tmp, SIGNAL(runOutputLimitExceeded(int, const QString &)), this,
+                    SLOT(onRunOutputLimitExceeded(int, const QString &)));
             connect(tmp, SIGNAL(runKilled(int)), this, SLOT(onRunKilled(int)));
             tmp->run(checkerPath, "C++", "", "\"" + inputPath + "\" \"" + outputPath + "\" \"" + expectedPath + "\"",
-                     "", timeLimit);
+                     "", SettingsHelper::getTimeLimit());
         }
         break;
     }

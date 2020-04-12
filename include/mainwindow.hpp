@@ -22,7 +22,6 @@
 #include "Core/Compiler.hpp"
 #include "Core/Formatter.hpp"
 #include "Core/Runner.hpp"
-#include "Core/SettingsManager.hpp"
 #include "Extensions/CFTool.hpp"
 #include "Extensions/CompanionServer.hpp"
 #include "Telemetry/UpdateNotifier.hpp"
@@ -100,7 +99,7 @@ class MainWindow : public QMainWindow
 
     void setLanguage(const QString &lang);
     QString getLanguage();
-    void applySettings(bool);
+    void applySettings(const QString &pagePath, bool shouldPerformDigonistic);
 
     MessageLogger *getLogger();
     QSplitter *getSplitter();
@@ -108,7 +107,7 @@ class MainWindow : public QMainWindow
 
     void insertText(const QString &text);
 
-    void setViewMode(Settings::ViewMode mode);
+    void setViewMode(const QString &mode);
 
   private slots:
     void on_compile_clicked();
@@ -124,6 +123,7 @@ class MainWindow : public QMainWindow
     void onRunFinished(int index, const QString &out, const QString &err, int exitCode, int timeUsed);
     void onFailedToStartRun(int index, const QString &error);
     void onRunTimeout(int index);
+    void onRunOutputLimitExceeded(int index, const QString &type);
     void onRunKilled(int index);
 
     void on_changeLanguageButton_clicked();
@@ -145,8 +145,6 @@ class MainWindow : public QMainWindow
     void requestToastMessage(const QString &head, const QString &body);
 
   private:
-    static const int MAX_CODE_LENGTH = 100000;
-
     enum SaveMode
     {
         IgnoreUntitled, // save only when filePath is not empty
@@ -210,7 +208,7 @@ class MainWindow : public QMainWindow
     bool saveFile(SaveMode, const QString &head, bool safe);
     SaveTempStatus saveTemp(const QString &head);
     QString tmpPath();
-    void performCoreDiagonistics();
+    void performCompileAndRunDiagonistics();
     QString getRunnerHead(int index);
 };
 #endif // MAINWINDOW_HPP

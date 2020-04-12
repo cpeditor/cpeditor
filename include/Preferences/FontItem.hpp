@@ -15,31 +15,33 @@
  *
  */
 
-#ifndef SETTINGS_HPP
-#define SETTINGS_HPP
+/*
+ * A push button for choosing a font.
+ */
 
-#include <QMap>
-#include <QString>
-#include <QVariant>
+#ifndef FONTITEM_HPP
+#define FONTITEM_HPP
 
-typedef QMap<QString, QVariant> Settings;
+#include <QPushButton>
 
-struct SettingsManager
+class FontItem : public QPushButton
 {
-    static void init();
-    static void deinit();
+    Q_OBJECT
+  public:
+    explicit FontItem(QWidget *parent = nullptr);
 
-    static QVariant get(QString key, bool alwaysDefault = false);
-    static bool contains(const QString &key);
-    static void set(const QString &key, QVariant value);
-    static void remove(QStringList keys);
-    static void reset();
+    void setFont(const QString &desc);
+    void setFont(QFont newFont);
+    QFont getFont();
 
-    static QStringList keyStartsWith(const QString &head);
+  signals:
+    void fontChanged(QFont font);
+
+  private slots:
+    void onButtonClicked();
 
   private:
-    static Settings *cur;
-    static Settings *def;
+    QFont font;
 };
 
-#endif
+#endif // FONTITEM_HPP

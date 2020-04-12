@@ -104,7 +104,7 @@ The changelog of a GitHub Releases is a part of [CHANGELOG.md](CHANGELOG.md), us
 5. Edit the changelog of the GitHub Release, make it non-draft, and mark it as a pre-release if it is.
 6. Update the badges in [README.md](../README.md) on the master branch.
 
-You can use [release.sh](../scripts/release.sh) and [newReleaseCycle.sh](../scripts/newReleaseCycle.sh) to do the above except edit the release on GitHub. (Please run them at the root directory.)
+You can use [release.sh](../tools/release.sh) and [newReleaseCycle.sh](../tools/newReleaseCycle.sh) to do the above except edit the release on GitHub. (Please run them at the root directory.)
 
 ### Pull requests
 

@@ -18,8 +18,7 @@
 #include "Core/MessageLogger.hpp"
 #include "Core/EventLogger.hpp"
 #include <QDateTime>
-
-const int MAX_NUMBER_OF_CHARACTERS_TO_DISPLAY = 20000;
+#include <generated/SettingsHelper.hpp>
 
 void MessageLogger::setContainer(QTextBrowser *container)
 {
@@ -35,8 +34,8 @@ void MessageLogger::message(const QString &head, const QString &body, const QStr
     auto newBody = body.toHtmlEscaped().replace(" ", "&nbsp;");
 
     // don't display too long messages, otherwise the application may stuck
-    if (newBody.length() > MAX_NUMBER_OF_CHARACTERS_TO_DISPLAY)
-        newBody = newBody.left(MAX_NUMBER_OF_CHARACTERS_TO_DISPLAY) + "\n... The message is too long";
+    if (newBody.length() > SettingsHelper::getMessageLengthLimit())
+        newBody = newBody.left(SettingsHelper::getMessageLengthLimit()) + "\n... The message is too long";
 
     // get the HTML of the message
     // use monospace for the message body, it's important for compilation errors

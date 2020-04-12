@@ -25,10 +25,10 @@ namespace Themes
 {
 
 QSyntaxStyle *EditorTheme::light = nullptr;
-QSyntaxStyle *EditorTheme::drakula = nullptr;
-QSyntaxStyle *EditorTheme::monkai = nullptr;
-QSyntaxStyle *EditorTheme::solarised = nullptr;
-QSyntaxStyle *EditorTheme::solarisedDark = nullptr;
+QSyntaxStyle *EditorTheme::dracula = nullptr;
+QSyntaxStyle *EditorTheme::monokai = nullptr;
+QSyntaxStyle *EditorTheme::solarized = nullptr;
+QSyntaxStyle *EditorTheme::solarizedDark = nullptr;
 
 QSyntaxStyle *EditorTheme::getLightTheme()
 {
@@ -38,92 +38,92 @@ QSyntaxStyle *EditorTheme::getLightTheme()
     else
         return QSyntaxStyle::defaultStyle();
 }
-QSyntaxStyle *EditorTheme::getMonkaiTheme()
+QSyntaxStyle *EditorTheme::getMonokaiTheme()
 {
-    Core::Log::i("editorTheme/getMonkaiTheme", "Invoked");
-    if (monkai != nullptr)
+    Core::Log::i("editorTheme/getMonokaiTheme", "Invoked");
+    if (monokai != nullptr)
     {
-        Core::Log::i("editorTheme/getMonkaiTheme", "reuse existing resource");
-        return monkai;
+        Core::Log::i("editorTheme/getMonokaiTheme", "reuse existing resource");
+        return monokai;
     }
     else
     {
-        QFile f(":/styles/monkai.xml");
+        QFile f(":/styles/monokai.xml");
         f.open(QIODevice::ReadOnly);
         if (!f.isOpen())
         {
-            Core::Log::e("editorTheme/getMonkaiTheme", "unable to access resources, returning nullptr");
+            Core::Log::e("editorTheme/getMonokaiTheme", "unable to access resources, returning nullptr");
             return nullptr;
         }
-        monkai = new QSyntaxStyle();
-        monkai->load(f.readAll());
-        return monkai;
+        monokai = new QSyntaxStyle();
+        monokai->load(f.readAll());
+        return monokai;
     }
 }
-QSyntaxStyle *EditorTheme::getDrakulaTheme()
+QSyntaxStyle *EditorTheme::getDraculaTheme()
 {
-    Core::Log::i("editorTheme/getDrakulaTheme", "Invoked");
-    if (drakula != nullptr)
+    Core::Log::i("editorTheme/getDraculaTheme", "Invoked");
+    if (dracula != nullptr)
     {
-        Core::Log::i("editorTheme/getDrakulaTheme", "reuse existing resource");
-        return drakula;
+        Core::Log::i("editorTheme/getDraculaTheme", "reuse existing resource");
+        return dracula;
     }
     else
     {
-        QFile f(":/styles/drakula.xml");
+        QFile f(":/styles/dracula.xml");
         f.open(QIODevice::ReadOnly);
         if (!f.isOpen())
         {
-            Core::Log::e("editorTheme/getDrakulaTheme", "unable to access resources, returning nullptr");
+            Core::Log::e("editorTheme/getDraculaTheme", "unable to access resources, returning nullptr");
             return nullptr;
         }
-        drakula = new QSyntaxStyle();
-        drakula->load(f.readAll());
-        return drakula;
+        dracula = new QSyntaxStyle();
+        dracula->load(f.readAll());
+        return dracula;
     }
 }
-QSyntaxStyle *EditorTheme::getSolarisedTheme()
+QSyntaxStyle *EditorTheme::getSolarizedTheme()
 {
-    Core::Log::i("editorTheme/getSolarisedTheme", "Invoked");
-    if (solarised != nullptr)
+    Core::Log::i("editorTheme/getSolarizedTheme", "Invoked");
+    if (solarized != nullptr)
     {
-        Core::Log::i("editorTheme/getSolarisedTheme", "reuse existing resource");
-        return solarised;
+        Core::Log::i("editorTheme/getSolarizedTheme", "reuse existing resource");
+        return solarized;
     }
     else
     {
-        QFile f(":/styles/solarised.xml");
+        QFile f(":/styles/solarized.xml");
         f.open(QIODevice::ReadOnly);
         if (!f.isOpen())
         {
-            Core::Log::e("editorTheme/getsolarisedTheme", "unable to access resources, returning nullptr");
+            Core::Log::e("editorTheme/getsolarizedTheme", "unable to access resources, returning nullptr");
             return nullptr;
         }
-        solarised = new QSyntaxStyle();
-        solarised->load(f.readAll());
-        return solarised;
+        solarized = new QSyntaxStyle();
+        solarized->load(f.readAll());
+        return solarized;
     }
 }
-QSyntaxStyle *EditorTheme::getSolarisedDarkTheme()
+QSyntaxStyle *EditorTheme::getSolarizedDarkTheme()
 {
-    Core::Log::i("editorTheme/getSolarisedDarkTheme", "Invoked");
-    if (solarisedDark != nullptr)
+    Core::Log::i("editorTheme/getSolarizedDarkTheme", "Invoked");
+    if (solarizedDark != nullptr)
     {
-        Core::Log::i("editorTheme/getSolarisedDarkTheme", "reuse existing resource");
-        return solarisedDark;
+        Core::Log::i("editorTheme/getSolarizedDarkTheme", "reuse existing resource");
+        return solarizedDark;
     }
     else
     {
-        QFile f(":/styles/solarisedDark.xml");
+        QFile f(":/styles/solarizedDark.xml");
         f.open(QIODevice::ReadOnly);
         if (!f.isOpen())
         {
-            Core::Log::e("editorTheme/getsolarisedDarkTheme", "unable to access resources, returning nullptr");
+            Core::Log::e("editorTheme/getsolarizedDarkTheme", "unable to access resources, returning nullptr");
             return nullptr;
         }
-        solarisedDark = new QSyntaxStyle();
-        solarisedDark->load(f.readAll());
-        return solarisedDark;
+        solarizedDark = new QSyntaxStyle();
+        solarizedDark->load(f.readAll());
+        return solarizedDark;
     }
 }
 
@@ -135,25 +135,25 @@ void EditorTheme::release()
         Core::Log::i("editorTheme/release", "deleting light theme");
         delete light;
     }
-    if (drakula != nullptr)
+    if (dracula != nullptr)
     {
-        Core::Log::i("editorTheme/release", "deleting drakula theme");
-        delete drakula;
+        Core::Log::i("editorTheme/release", "deleting dracula theme");
+        delete dracula;
     }
-    if (monkai != nullptr)
+    if (monokai != nullptr)
     {
-        Core::Log::i("editorTheme/release", "deleting monkai theme");
-        delete monkai;
+        Core::Log::i("editorTheme/release", "deleting monokai theme");
+        delete monokai;
     }
-    if (solarised != nullptr)
+    if (solarized != nullptr)
     {
-        Core::Log::i("editorTheme/release", "deleting solarised theme");
-        delete solarised;
+        Core::Log::i("editorTheme/release", "deleting solarized theme");
+        delete solarized;
     }
-    if (solarisedDark != nullptr)
+    if (solarizedDark != nullptr)
     {
-        Core::Log::i("editorTheme/release", "deleting solarisedDark theme");
-        delete solarisedDark;
+        Core::Log::i("editorTheme/release", "deleting solarizedDark theme");
+        delete solarizedDark;
     }
 }
 } // namespace Themes

@@ -17,8 +17,8 @@
 
 #include "Core/Runner.hpp"
 #include "Core/EventLogger.hpp"
-#include <QDebug>
 #include <QFileInfo>
+#include <generated/SettingsHelper.hpp>
 
 namespace Core
 {
@@ -84,6 +84,8 @@ void Runner::run(const QString &filePath, const QString &lang, const QString &ru
     // connect signals and set timers
 
     connect(runProcess, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(onFinished(int, QProcess::ExitStatus)));
+    connect(runProcess, SIGNAL(readyReadStandardOutput()), this, SLOT(onReadyReadStandardOutput()));
+    connect(runProcess, SIGNAL(readyReadStandardError()), this, SLOT(onReadyReadStandardError()));
 
     killTimer = new QTimer(runProcess);
     killTimer->setSingleShot(true);
@@ -164,8 +166,8 @@ void Runner::runDetached(const QString &filePath, const QString &lang, const QSt
 void Runner::onFinished(int exitCode, QProcess::ExitStatus exitStatus)
 {
     Core::Log::i("runner/onfinished") << "index is : " << runnerIndex << endl;
-    emit runFinished(runnerIndex, runProcess->readAllStandardOutput(), runProcess->readAllStandardError(), exitCode,
-                     runTimer->elapsed());
+    emit runFinished(runnerIndex, processStdout + runProcess->readAllStandardOutput(),
+                     processStderr + runProcess->readAllStandardError(), exitCode, runTimer->elapsed());
 }
 
 void Runner::onStarted()
@@ -182,6 +184,28 @@ void Runner::onTimeout()
         Core::Log::i("runner/ontimeout", "process was running, now killing");
         runProcess->kill();
         emit runTimeout(runnerIndex);
+    }
+}
+
+void Runner::onReadyReadStandardOutput()
+{
+    processStdout.append(runProcess->readAllStandardOutput());
+    if (!outputLimitExceededEmitted && processStdout.length() > SettingsHelper::getOutputLengthLimit())
+    {
+        outputLimitExceededEmitted = true;
+        runProcess->kill();
+        emit runOutputLimitExceeded(runnerIndex, "stdout");
+    }
+}
+
+void Runner::onReadyReadStandardError()
+{
+    processStderr.append(runProcess->readAllStandardError());
+    if (!outputLimitExceededEmitted && processStderr.length() > SettingsHelper::getOutputLengthLimit())
+    {
+        outputLimitExceededEmitted = true;
+        runProcess->kill();
+        emit runOutputLimitExceeded(runnerIndex, "stderr");
     }
 }
 

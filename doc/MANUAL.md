@@ -24,6 +24,12 @@ You have to use a **non-public** class named **a** for your solution.
 
 ## Preferences
 
+### Shortcuts
+
+You can use <kbd>Ctlr+D</kbd>, <kbd>Ctrl+R</kbd> and <kbd>Ctrl+S</kbd> for "Default", "Reset" and "Apply" respectively.
+
+You can use <kbd>Ctlr+Tab</kbd> and <kbd>Ctlr+Shift+Tab</kbd> to go through the preferences pages.
+
 ### Save files faster
 
 If this option is enabled, [QFile](https://doc.qt.io/qt-5/qfile.html) will always be used to save files, otherwise [QSaveFile](https://doc.qt.io/qt-5/qsavefile.html) will be used in some situations.
@@ -40,9 +46,11 @@ The content of the "Clang Format Style" setting is the same as a `.clang-format`
 
 ### Snippets
 
-You can use <kbd>Ctrl+S</kbd>, <kbd>Ctrl+N</kbd>, <kbd>Ctrl+D</kbd>, <kbd>Ctrl+R</kbd> for `Save`, `New`, `Delete` and `Rename`.
+You can use <kbd>Ctrl+N</kbd> for "Add", <kbd>Ctrl+W</kbd> for "Del" and <kbd>F2</kbd> for "Rename".
 
-## Shortcuts
+To use the snippets, you can press <kbd>Ctrl+T</kbd> in the main window.
+
+## Editor Shortcuts
 
 Besides the shortcuts in the menu, you can use the [Read-only Key Bindings](https://doc.qt.io/qt-5/qtextedit.html#read-only-key-bindings) and the [Editing Key Bindings](https://doc.qt.io/qt-5/qtextedit.html#editing-key-bindings). There are also some hidden shortcuts: <kbd>Tab</kbd> (when there's a selection) and <kbd>Shift+Tab</kbd> for indent and unindent, <kbd>Ctrl+Enter</kbd> and <kbd>Ctrl+Shift+Enter</kbd> for inserting line after and before, <kbd>Shift+Delete</kbd> for deleting the current line.
 

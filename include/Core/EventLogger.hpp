@@ -34,7 +34,7 @@ namespace Core
 class Log
 {
   public:
-    /*
+    /**
      * There are four log levels:
      * 1. INFO(i): information, used when everything is normal
      * 2. WARN(w): warning, used when something strange happened, but it is not necessarily an error
@@ -57,7 +57,7 @@ class Log
     static QTextStream &e(const QString &head);
     static QTextStream &wtf(const QString &head);
 
-    /*
+    /**
      * @brief initialize the event logger
      * @param instanceCount the instance ID provided by SingleApplication, to distinct processes from each other
      * @param dumpToStderr whether to print the logs into stderr or not
@@ -65,31 +65,31 @@ class Log
      */
     static void init(int instanceCount, bool dumpToStderr = false);
 
-    /*
+    /**
      * @brief clear old logs
      * @note this clears all logs except the current one
      */
     static void clearOldLogs();
 
-    /*
+    /**
      * @brief reveal the current log file in the file manager
      */
     static void revealInFileManager();
 
   private:
-    /*
+    /**
      * @brief get the current datetime
      * @return the current datetime
      */
     static QString dateTimeStamp();
 
-    /*
+    /**
      * @brief get the platform info
      * @return the platform information
      */
     static QString platformInformation();
 
-    /*
+    /**
      * @brief log with a certain priority, head and body
      * @param priority one of "INFO", "WARN", "ERR", "WTF"
      * @param head ususally <class name>/<function name>, indicates where this message is from
@@ -97,7 +97,7 @@ class Log
      */
     static void log(const QString &priority, const QString &head, const QString &body);
 
-    /*
+    /**
      * @brief the text stream form of log
      * @param priority one of "INFO", "WARN", "ERR", "WTF"
      * @param head ususally <class name>/<function name>, indicates where this message is from

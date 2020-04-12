@@ -29,17 +29,17 @@ class EditorTheme
 
   private:
     static QSyntaxStyle *light;
-    static QSyntaxStyle *drakula;
-    static QSyntaxStyle *monkai;
-    static QSyntaxStyle *solarised;
-    static QSyntaxStyle *solarisedDark;
+    static QSyntaxStyle *dracula;
+    static QSyntaxStyle *monokai;
+    static QSyntaxStyle *solarized;
+    static QSyntaxStyle *solarizedDark;
 
   public:
     static QSyntaxStyle *getLightTheme();
-    static QSyntaxStyle *getDrakulaTheme();
-    static QSyntaxStyle *getMonkaiTheme();
-    static QSyntaxStyle *getSolarisedTheme();
-    static QSyntaxStyle *getSolarisedDarkTheme();
+    static QSyntaxStyle *getDraculaTheme();
+    static QSyntaxStyle *getMonokaiTheme();
+    static QSyntaxStyle *getSolarizedTheme();
+    static QSyntaxStyle *getSolarizedDarkTheme();
 
     static void release();
 };

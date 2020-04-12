@@ -41,6 +41,9 @@ class TestCaseEdit : public QPlainTextEdit
     void onCustomContextMenuRequested(const QPoint &);
 
   private:
+    void loadFromFile(const QString &path);
+
+  private:
     QPropertyAnimation *animation;
     MessageLogger *log;
 };

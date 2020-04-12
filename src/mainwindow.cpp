@@ -22,24 +22,22 @@
 #include "Core/MessageLogger.hpp"
 #include "Core/Runner.hpp"
 #include "Util.hpp"
-#include <QCXXHighlighter>
 #include <QFileDialog>
 #include <QFont>
 #include <QFontDialog>
 #include <QInputDialog>
-#include <QJavaHighlighter>
 #include <QMenu>
 #include <QMessageBox>
 #include <QMimeData>
-#include <QPythonCompleter>
-#include <QPythonHighlighter>
 #include <QSaveFile>
 #include <QScrollBar>
 #include <QShortcut>
 #include <QSyntaxStyle>
+#include <QTextBlock>
 #include <QTextStream>
 #include <QThread>
 #include <QTimer>
+#include <generated/SettingsHelper.hpp>
 
 #include "../ui/ui_mainwindow.h"
 
@@ -55,7 +53,7 @@ MainWindow::MainWindow(const QString &fileOpen, int index, QWidget *parent)
     setEditor();
     setupCore();
     connect(fileWatcher, SIGNAL(fileChanged(const QString &)), this, SLOT(onFileWatcherChanged(const QString &)));
-    applySettings(true);
+    applySettings("", true);
     loadFile(fileOpen);
     if (testcases->count() == 0)
         testcases->addTestCase();
@@ -110,8 +108,7 @@ void MainWindow::setEditor()
 void MainWindow::setupCore()
 {
     Core::Log::i("mainwindow/setupCore", "Invoked");
-    formatter = new Core::Formatter(Settings::SettingsManager::getClangFormatBinary(),
-                                    Settings::SettingsManager::getClangFormatStyle(), &log);
+    formatter = new Core::Formatter(SettingsHelper::getClangFormatPath(), SettingsHelper::getClangFormatStyle(), &log);
     log.setContainer(ui->compiler_edit);
 }
 
@@ -138,7 +135,8 @@ void MainWindow::compile()
         connect(compiler, SIGNAL(compilationErrorOccured(const QString &)), this,
                 SLOT(onCompilationErrorOccured(const QString &)));
         connect(compiler, SIGNAL(compilationKilled()), this, SLOT(onCompilationKilled()));
-        compiler->start(tmpPath(), Settings::SettingsManager::getCompileCommand(language), language);
+        compiler->start(tmpPath(), SettingsManager::get(QString("%1/Compile Command").arg(language)).toString(),
+                        language);
     }
 }
 
@@ -175,10 +173,12 @@ void MainWindow::run(int index)
             SLOT(onRunFinished(int, const QString &, const QString &, int, int)));
     connect(tmp, SIGNAL(failedToStartRun(int, const QString &)), this, SLOT(onFailedToStartRun(int, const QString &)));
     connect(tmp, SIGNAL(runTimeout(int)), this, SLOT(onRunTimeout(int)));
+    connect(tmp, SIGNAL(runOutputLimitExceeded(int, const QString &)), this,
+            SLOT(onRunOutputLimitExceeded(int, const QString &)));
     connect(tmp, SIGNAL(runKilled(int)), this, SLOT(onRunKilled(int)));
-    tmp->run(tmpPath(), language, Settings::SettingsManager::getRunCommand(language),
-             Settings::SettingsManager::getRuntimeArguments(language), testcases->input(index),
-             Settings::SettingsManager::getTimeLimit());
+    tmp->run(tmpPath(), language, SettingsManager::get(QString("%1/Run Command").arg(language)).toString(),
+             SettingsManager::get(QString("%1/Run Arguments").arg(language)).toString(), testcases->input(index),
+             SettingsHelper::getTimeLimit());
     runner.push_back(tmp);
 }
 
@@ -201,14 +201,14 @@ void MainWindow::runTestCase(int index)
 void MainWindow::loadTests()
 {
     Core::Log::i("mainwindow/loadTests", "Invoked");
-    if (!isUntitled() && Settings::SettingsManager::isSaveTests())
+    if (!isUntitled() && SettingsHelper::isSaveTests())
         testcases->loadFromFile(filePath);
 }
 
 void MainWindow::saveTests(bool safe)
 {
     Core::Log::i("mainwindow/saveTests", "Invoked");
-    if (!isUntitled() && Settings::SettingsManager::isSaveTests())
+    if (!isUntitled() && SettingsHelper::isSaveTests())
         testcases->save(filePath, safe);
 }
 
@@ -456,44 +456,58 @@ void MainWindow::applyCompanion(const Network::CompanionData &data)
     setProblemURL(data.url);
 }
 
-void MainWindow::applySettings(bool shouldPerformDigonistic)
+void MainWindow::applySettings(const QString &pagePath, bool shouldPerformDigonistic)
 {
-    Core::Log::i("mainwindow/applySettingsData") << "shouldPerformDiagonistics " << shouldPerformDigonistic << endl;
-    formatter->updateBinary(Settings::SettingsManager::getClangFormatBinary());
-    formatter->updateStyle(Settings::SettingsManager::getClangFormatStyle());
+    Core::Log::i("mainwindow/applySettingsData")
+        << INFO_OF(pagePath) << ", " << INFO_OF(shouldPerformDigonistic) << endl;
 
-    cftoolPath = Settings::SettingsManager::getCFPath();
-
-    if (cftool != nullptr && Network::CFTool::check(cftoolPath))
+    if (pagePath.isEmpty() || pagePath == "Extensions/Clang Format")
     {
-        cftool->updatePath(cftoolPath);
-        if (submitToCodeforces != nullptr)
-            submitToCodeforces->setEnabled(true);
+        formatter->updateBinary(SettingsHelper::getClangFormatPath());
+        formatter->updateStyle(SettingsHelper::getClangFormatStyle());
     }
 
-    Util::applySettingsToEditor(editor);
+    if (pagePath.isEmpty() || pagePath == "Extensions/CF Tool")
+    {
+        cftoolPath = SettingsHelper::getCFPath();
 
-    if (!isLanguageSet)
-    {
-        setLanguage(Settings::SettingsManager::getDefaultLanguage());
-    }
-    if (shouldPerformDigonistic)
-    {
-        performCoreDiagonistics();
-    }
-
-    if (Settings::SettingsManager::isCompileAndRunOnly())
-    {
-        ui->compile->hide();
-        ui->runOnly->hide();
-    }
-    else
-    {
-        ui->compile->show();
-        ui->runOnly->show();
+        if (cftool != nullptr && Network::CFTool::check(cftoolPath))
+        {
+            cftool->updatePath(cftoolPath);
+            if (submitToCodeforces != nullptr)
+                submitToCodeforces->setEnabled(true);
+        }
     }
 
-    updateChecker();
+    if (pagePath.isEmpty() || pagePath == "Edit" || pagePath == "Appearance")
+        Util::applySettingsToEditor(editor);
+
+    if (!isLanguageSet && (pagePath.isEmpty() || pagePath == "Language/General"))
+    {
+        setLanguage(SettingsHelper::getDefaultLanguage());
+    }
+
+    if (shouldPerformDigonistic && (pagePath.isEmpty() || pagePath == "Language/Commands"))
+    {
+        performCompileAndRunDiagonistics();
+    }
+
+    if (pagePath.isEmpty() || pagePath == "Appearance")
+    {
+        if (SettingsHelper::isShowCompileAndRunOnly())
+        {
+            ui->compile->hide();
+            ui->runOnly->hide();
+        }
+        else
+        {
+            ui->compile->show();
+            ui->runOnly->show();
+        }
+    }
+
+    if (pagePath.isEmpty() || pagePath == "Language/Commands")
+        updateChecker();
 }
 
 void MainWindow::save(bool force, const QString &head, bool safe)
@@ -565,14 +579,16 @@ void MainWindow::formatSource()
 void MainWindow::setLanguage(const QString &lang)
 {
     Core::Log::i("mainwindow/setLanguage") << "lang " << lang << endl;
-    log.clear();
     if (!QFile::exists(filePath))
     {
-        QFile templateFile(Settings::SettingsManager::getTemplatePath(language));
-        templateFile.open(QIODevice::ReadOnly | QIODevice::Text);
         QString templateContent;
-        if (templateFile.isOpen())
-            templateContent = templateFile.readAll();
+        if (!language.isEmpty())
+        {
+            QFile templateFile(SettingsManager::get(QString("%1/Template Path").arg(language)).toString());
+            templateFile.open(QIODevice::ReadOnly | QIODevice::Text);
+            if (templateFile.isOpen())
+                templateContent = templateFile.readAll();
+        }
         if (templateContent == editor->toPlainText())
         {
             language = lang;
@@ -580,28 +596,11 @@ void MainWindow::setLanguage(const QString &lang)
         }
     }
     language = lang;
-    if (lang == "Python")
-    {
-        editor->setHighlighter(new QPythonHighlighter);
-        editor->setCompleter(new QPythonCompleter);
-        ui->changeLanguageButton->setText("Python");
-    }
-    else if (lang == "Java")
-    {
-        editor->setHighlighter(new QJavaHighlighter);
-        editor->setCompleter(nullptr);
-        ui->changeLanguageButton->setText("Java");
-    }
-    else
-    {
+    if (language != "Python" && language != "Java")
         language = "C++";
-        if (lang != "C++")
-            log.warn("CP Editor", "Unknown lanague set, fallback to C++");
-        editor->setHighlighter(new QCXXHighlighter);
-        editor->setCompleter(nullptr);
-        ui->changeLanguageButton->setText("C++");
-    }
-    performCoreDiagonistics();
+    Util::setEditorLanguage(editor, language);
+    ui->changeLanguageButton->setText(language);
+    performCompileAndRunDiagonistics();
     isLanguageSet = true;
 }
 
@@ -620,23 +619,23 @@ void MainWindow::insertText(const QString &text)
     editor->insertPlainText(text);
 }
 
-void MainWindow::setViewMode(Settings::ViewMode mode)
+void MainWindow::setViewMode(const QString &mode)
 {
-    switch (mode)
+    if (mode == "code")
     {
-    case Settings::ViewMode::FULL_EDITOR:
         ui->left_widget->show();
         ui->right_widget->hide();
-        break;
-    case Settings::ViewMode::FULL_IO:
+    }
+    else if (mode == "io")
+    {
         ui->left_widget->hide();
         ui->right_widget->show();
-        break;
-    case Settings::ViewMode::SPLIT:
+    }
+    else
+    {
         ui->left_widget->show();
         ui->right_widget->show();
-        ui->splitter->restoreState(Settings::SettingsManager::getSplitterSizes());
-        break;
+        ui->splitter->restoreState(SettingsHelper::getSplitterSize());
     }
 }
 
@@ -702,8 +701,6 @@ void MainWindow::updateWatcher()
         fileWatcher->addPath(filePath);
 }
 
-const int MainWindow::MAX_CODE_LENGTH;
-
 void MainWindow::loadFile(const QString &loadPath)
 {
     Core::Log::i("mainwindow/loadFile") << "loadPath : " << loadPath << endl;
@@ -716,7 +713,7 @@ void MainWindow::loadFile(const QString &loadPath)
 
     if (!QFile::exists(path))
     {
-        QString templatePath = Settings::SettingsManager::getTemplatePath(language);
+        QString templatePath = SettingsManager::get(QString("%1/Template Path").arg(language)).toString();
 
         QFile f(templatePath);
         f.open(QIODevice::ReadOnly | QIODevice::Text);
@@ -738,13 +735,20 @@ void MainWindow::loadFile(const QString &loadPath)
     {
         auto content = openFile.readAll();
         savedText = content;
-        if (content.length() > MAX_CODE_LENGTH)
-            content = content.left(MAX_CODE_LENGTH) + "...This file is too big.";
+        if (content.length() > SettingsHelper::getOpenFileLengthLimit())
+        {
+            content = "Open File Length Limit Exceeded";
+            log.error("Open File",
+                      QString("The file [%1] contains more than %2 characters, so it's not opened. You can change the "
+                              "open file length limit in Preferences->Advanced->Limits->Open File Length Limit")
+                          .arg(path)
+                          .arg(SettingsHelper::getOpenFileLengthLimit()));
+        }
         setText(content, samePath);
     }
     else
     {
-        log.warn("Loader", "Failed to load " + path + ". Do I have read permission?");
+        log.warn("Open File", "Failed to load " + path + ". Do I have read permission?");
         return;
     }
 
@@ -754,7 +758,7 @@ void MainWindow::loadFile(const QString &loadPath)
 bool MainWindow::saveFile(SaveMode mode, const QString &head, bool safe)
 {
     Core::Log::i("mainwindow/saveFile") << "mode " << mode << "head " << head << "safe " << safe << endl;
-    if (Settings::SettingsManager::isFormatOnSave())
+    if (SettingsHelper::isAutoFormat())
         formatter->format(editor, filePath, language, false);
 
     if (mode == SaveAs || (isUntitled() && mode == SaveUntitled))
@@ -766,7 +770,7 @@ bool MainWindow::saveFile(SaveMode mode, const QString &head, bool safe)
         }
         else
         {
-            defaultPath = QDir(Settings::SettingsManager::getSavePath()).filePath(getTabTitle(false, false));
+            defaultPath = QDir(SettingsHelper::getSavePath()).filePath(getTabTitle(false, false));
             if (language == "C++")
                 defaultPath += ".cpp";
             else if (language == "Java")
@@ -776,8 +780,8 @@ bool MainWindow::saveFile(SaveMode mode, const QString &head, bool safe)
         }
 
         emit confirmTriggered(this);
-        auto newFilePath = QFileDialog::getSaveFileName(
-            this, tr("Save File"), defaultPath, "Source Files (*.cpp *.hpp *.h *.cc *.cxx *.c *.py *.py3 *.java)");
+        auto newFilePath =
+            QFileDialog::getSaveFileName(this, tr("Save File"), defaultPath, Util::fileNameFilter(true, true, true));
         if (newFilePath.isEmpty())
             return false;
 
@@ -786,15 +790,14 @@ bool MainWindow::saveFile(SaveMode mode, const QString &head, bool safe)
 
         filePath = newFilePath;
         updateWatcher();
-        Settings::SettingsManager::setSavePath(QFileInfo(filePath).canonicalPath());
+        SettingsHelper::setSavePath(QFileInfo(filePath).canonicalPath());
 
         auto suffix = QFileInfo(filePath).suffix();
-        if (suffix == ".cpp" || suffix == ".hpp" || suffix == ".h" || suffix == ".cc" || suffix == ".cxx" ||
-            suffix == ".c")
+        if (Util::cppSuffix.contains(suffix))
             setLanguage("C++");
-        else if (suffix == "java")
+        else if (Util::javaSuffix.contains(suffix))
             setLanguage("Java");
-        else if (suffix == "py" || suffix == "py3")
+        else if (Util::pythonSuffix.contains(suffix))
             setLanguage("Python");
     }
     else if (!isUntitled())
@@ -880,7 +883,7 @@ bool MainWindow::isTextChanged()
 
     if (isUntitled())
     {
-        QFile f(Settings::SettingsManager::getTemplatePath(language));
+        QFile f(SettingsManager::get(QString("%1/Template Path").arg(language)).toString());
         f.open(QIODevice::ReadOnly | QFile::Text);
         if (f.isOpen())
             return editor->toPlainText() != f.readAll();
@@ -1007,7 +1010,7 @@ void MainWindow::updateCursorInfo()
             if (line[i] != '\t')
                 ++col;
             else
-                col += Settings::SettingsManager::getTabStop() - col % Settings::SettingsManager::getTabStop();
+                col += SettingsHelper::getTabWidth() - col % SettingsHelper::getTabWidth();
         }
         info = "Line " + QString::number(cursor.blockNumber() + 1) + ", Column " + QString::number(col + 1);
     }
@@ -1032,11 +1035,11 @@ void MainWindow::updateChecker()
     if (checker)
         delete checker;
     if (testcases->checkerType() == Core::Checker::Custom)
-        checker = new Core::Checker(testcases->checkerText(), &log, Settings::SettingsManager::getTimeLimit(), this);
+        checker = new Core::Checker(testcases->checkerText(), &log, this);
     else
-        checker = new Core::Checker(testcases->checkerType(), &log, Settings::SettingsManager::getTimeLimit(), this);
+        checker = new Core::Checker(testcases->checkerType(), &log, this);
     connect(checker, &Core::Checker::checkFinished, testcases, &TestCases::setVerdict);
-    checker->prepare(Settings::SettingsManager::getCompileCommand("C++"));
+    checker->prepare(SettingsManager::get(QString("C++/Compile Command")).toString());
 }
 
 QSplitter *MainWindow::getSplitter()
@@ -1049,29 +1052,26 @@ QSplitter *MainWindow::getRightSplitter()
     return ui->right_splitter;
 }
 
-void MainWindow::performCoreDiagonistics()
+void MainWindow::performCompileAndRunDiagonistics()
 {
-    Core::Log::i("mainwindow/performCoreDiagonistics", "Invoked");
-    bool formatResult = Core::Formatter::check(Settings::SettingsManager::getClangFormatBinary(),
-                                               Settings::SettingsManager::getClangFormatStyle());
+    Core::Log::i("mainwindow/performCompileAndRunDiagonistics", "Invoked");
+
     bool compilerResult = true;
     bool runResult = true;
 
     if (language == "C++" || language == "Java")
-        compilerResult = Core::Compiler::check(Settings::SettingsManager::getCompileCommand(language));
+        compilerResult =
+            Core::Compiler::check(SettingsManager::get(QString("%1/Compile Command").arg(language)).toString());
 
     if (language == "Java" || language == "Python")
-        runResult = Core::Compiler::check(Settings::SettingsManager::getRunCommand(language));
+        runResult = Core::Compiler::check(SettingsManager::get(QString("%1/Run Command").arg(language)).toString());
 
-    if (!formatResult)
-        log.warn("Formatter", "Code formatting failed to work. Please check whether the clang-format binary is in the "
-                              "PATH and the style is valid.");
     if (!compilerResult)
-        log.error("Compiler", "Compiler command for " + language + " is invalid. Is compiler on PATH?");
+        log.error("Compiler",
+                  "The compile command for " + language + " is invalid. Is the compiler in the system PATH?");
 
     if (!runResult)
-        log.error("Runner",
-                  "Binary or Script won't be executed because its corresponding program or VM could not be loaded");
+        log.error("Runner", "The run command for " + language + " is invalid. Is the runner in the system Path?");
 }
 
 // -------------------- COMPILER SLOTS ---------------------------
@@ -1113,8 +1113,9 @@ void MainWindow::onCompilationFinished(const QString &warning)
         connect(detachedRunner, SIGNAL(failedToStartRun(int, const QString &)), this,
                 SLOT(onFailedToStartRun(int, const QString &)));
         connect(detachedRunner, SIGNAL(runKilled(int)), this, SLOT(onRunKilled(int)));
-        detachedRunner->runDetached(tmpPath(), language, Settings::SettingsManager::getRunCommand(language),
-                                    Settings::SettingsManager::getRuntimeArguments(language));
+        detachedRunner->runDetached(tmpPath(), language,
+                                    SettingsManager::get(QString("%1/Run Command").arg(language)).toString(),
+                                    SettingsManager::get(QString("%1/Run Arguments").arg(language)).toString());
     }
 }
 
@@ -1178,9 +1179,21 @@ void MainWindow::onRunTimeout(int index)
     log.warn(getRunnerHead(index), "Time Limit Exceeded");
 }
 
+void MainWindow::onRunOutputLimitExceeded(int index, const QString &type)
+{
+    log.warn(
+        getRunnerHead(index),
+        QString("The %1 of the process running on the testcase #%2 contains more than %3 characters, which is longer "
+                "than the output length limit, so the process is killed. You can change the output length limit "
+                "in Preferences->Advanced->Limits->Output Length Limit")
+            .arg(type)
+            .arg(index + 1)
+            .arg(SettingsHelper::getOutputLengthLimit()));
+}
+
 void MainWindow::onRunKilled(int index)
 {
     log.error(getRunnerHead(index),
-              (index == -1 ? "Detached runner" : "Runner for test case #" + QString::number(index + 1)) +
+              (index == -1 ? "Detached runner" : "Runner for testcase #" + QString::number(index + 1)) +
                   " has been killed");
 }

@@ -20,11 +20,10 @@
 
 #include <QMainWindow>
 
-#include "Core/SettingsManager.hpp"
 #include "LSPClient.hpp"
+#include "Preferences/PreferencesWindow.hpp"
 #include "Telemetry/UpdateNotifier.hpp"
 #include "mainwindow.hpp"
-#include "preferencewindow.hpp"
 #include <QSystemTrayIcon>
 #include <findreplacedialog.h>
 
@@ -63,8 +62,6 @@ class AppWindow : public QMainWindow
 
     void on_actionBuildInfo_triggered();
 
-    void on_actionAutosave_triggered(bool checked);
-
     void on_actionQuit_triggered();
 
     void on_actionNew_Tab_triggered();
@@ -101,7 +98,7 @@ class AppWindow : public QMainWindow
 
     void onSaveTimerElapsed();
 
-    void onSettingsApplied();
+    void onSettingsApplied(const QString &pagePath);
 
     void onSplitterMoved(int, int);
 
@@ -170,11 +167,11 @@ class AppWindow : public QMainWindow
   private:
     Ui::AppWindow *ui;
     MessageLogger *activeLogger = nullptr;
-    QTimer *timer = nullptr;
+    QTimer *autoSaveTimer = nullptr;
     QMetaObject::Connection activeSplitterMoveConnection;
     QMetaObject::Connection activeRightSplitterMoveConnection;
     Telemetry::UpdateNotifier *updater = nullptr;
-    PreferenceWindow *preferenceWindow = nullptr;
+    PreferencesWindow *preferencesWindow = nullptr;
     Network::CompanionServer *server;
     FindReplaceDialog *findReplaceDialog = nullptr;
     QSystemTrayIcon *trayIcon = nullptr;

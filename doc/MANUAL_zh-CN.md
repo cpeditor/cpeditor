@@ -26,6 +26,12 @@
 
 ## 设置
 
+### 快捷键
+
+你可以分别使用 <kbd>Ctlr+D</kbd>, <kbd>Ctrl+R</kbd> 和 <kbd>Ctrl+S</kbd> 来恢复本页的默认设置，恢复到本次修改前的状态，保存本次修改。
+
+你可以使用 <kbd>Ctlr+Tab</kbd> 和 <kbd>Ctlr+Shift+Tab</kbd> 来切换页面。
+
 ### Save files faster
 
 当这个选项启用时，总是会用 [QFile](https://doc.qt.io/qt-5/qfile.html) 来保存文件, 未启用时有时会用 [QSaveFile](https://doc.qt.io/qt-5/qsavefile.html) 来保存文件。
@@ -42,9 +48,11 @@
 
 ### Snippets
 
-你可以使用 <kbd>Ctrl+S</kbd>, <kbd>Ctrl+N</kbd>, <kbd>Ctrl+D</kbd>, <kbd>Ctrl+R</kbd> 作为 `Save`, `New`, `Delete` 和 `Rename` 的快捷键。
+你可以使用 <kbd>Ctrl+N</kbd> 来添加 snippet, 使用 <kbd>Ctrl+W</kbd> 来删除当前 snippet，使用 <kbd>F2</kbd> 来重命名当前 snippet。
 
-## 快捷键
+你可以在主窗口内使用 <kbd>Ctrl+T</kbd> 来使用 snippets。
+
+## 代码编辑器中的快捷键
 
 除了菜单中可以看到的快捷键，还有这些快捷键：
 

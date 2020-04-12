@@ -17,17 +17,34 @@
 
 #include "Util.hpp"
 #include "Core/EventLogger.hpp"
-#include "Core/SettingsManager.hpp"
 #include "Extensions/EditorTheme.hpp"
+#include <QCXXHighlighter>
 #include <QFile>
+#include <QJavaHighlighter>
+#include <QPythonHighlighter>
 #include <QSaveFile>
+#include <generated/SettingsHelper.hpp>
 
 namespace Util
 {
 
+QString fileNameFilter(bool cpp, bool java, bool python)
+{
+    QString filter;
+
+    if (cpp)
+        filter += " *." + cppSuffix.join(" *.");
+    if (java)
+        filter += " *." + javaSuffix.join(" *.");
+    if (python)
+        filter += " *." + pythonSuffix.join(" *.");
+
+    return "Source Files (" + filter.trimmed() + ")";
+}
+
 bool saveFile(const QString &path, const QString &content, const QString &head, bool safe, MessageLogger *log)
 {
-    if (safe && !Settings::SettingsManager::isSaveFaster())
+    if (safe && !SettingsHelper::isSaveFaster())
     {
         QSaveFile file(path);
         if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
@@ -72,40 +89,54 @@ void applySettingsToEditor(QCodeEditor *editor)
 {
     Core::Log::i("Util/applySettingsToEditor", "Invoked");
 
-    editor->setTabReplace(Settings::SettingsManager::isTabsReplaced());
-    editor->setTabReplaceSize(Settings::SettingsManager::getTabStop());
-    editor->setAutoIndentation(Settings::SettingsManager::isAutoIndent());
-    editor->setAutoParentheses(Settings::SettingsManager::isAutoParentheses());
-    editor->setAutoRemoveParentheses(Settings::SettingsManager::isAutoRemoveParentheses());
+    editor->setTabReplace(SettingsHelper::isReplaceTabs());
+    editor->setTabReplaceSize(SettingsHelper::getTabWidth());
+    editor->setAutoIndentation(SettingsHelper::isAutoIndent());
+    editor->setAutoParentheses(SettingsHelper::isAutoCompleteParentheses());
+    editor->setAutoRemoveParentheses(SettingsHelper::isAutoRemoveParentheses());
 
-    if (!Settings::SettingsManager::getFont().isEmpty())
-    {
-        QFont font;
-        font.fromString(Settings::SettingsManager::getFont());
-        editor->setFont(font);
-    }
+    editor->setFont(SettingsHelper::getFont());
 
-    const int tabStop = Settings::SettingsManager::getTabStop();
+    const int tabStop = SettingsHelper::getTabWidth();
     QFontMetrics metric(editor->font());
     editor->setTabReplaceSize(tabStop);
 
-    if (Settings::SettingsManager::isWrapText())
+    if (SettingsHelper::isWrapText())
         editor->setWordWrapMode(QTextOption::WordWrap);
     else
         editor->setWordWrapMode(QTextOption::NoWrap);
 
-    if (Settings::SettingsManager::getEditorTheme() == "Light")
+    if (SettingsHelper::getEditorTheme() == "Light")
         editor->setSyntaxStyle(Themes::EditorTheme::getLightTheme());
-    else if (Settings::SettingsManager::getEditorTheme() == "Drakula")
-        editor->setSyntaxStyle(Themes::EditorTheme::getDrakulaTheme());
-    else if (Settings::SettingsManager::getEditorTheme() == "Monkai")
-        editor->setSyntaxStyle(Themes::EditorTheme::getMonkaiTheme());
-    else if (Settings::SettingsManager::getEditorTheme() == "Solarised")
-        editor->setSyntaxStyle(Themes::EditorTheme::getSolarisedTheme());
-    else if (Settings::SettingsManager::getEditorTheme() == "Solarised Dark")
-        editor->setSyntaxStyle(Themes::EditorTheme::getSolarisedDarkTheme());
+    else if (SettingsHelper::getEditorTheme() == "Dracula")
+        editor->setSyntaxStyle(Themes::EditorTheme::getDraculaTheme());
+    else if (SettingsHelper::getEditorTheme() == "Monokai")
+        editor->setSyntaxStyle(Themes::EditorTheme::getMonokaiTheme());
+    else if (SettingsHelper::getEditorTheme() == "Solarized")
+        editor->setSyntaxStyle(Themes::EditorTheme::getSolarizedTheme());
+    else if (SettingsHelper::getEditorTheme() == "Solarized Dark")
+        editor->setSyntaxStyle(Themes::EditorTheme::getSolarizedDarkTheme());
     else
         editor->setSyntaxStyle(Themes::EditorTheme::getLightTheme());
+}
+
+void setEditorLanguage(QCodeEditor *editor, const QString &language)
+{
+    if (language == "Python")
+    {
+        editor->setHighlighter(new QPythonHighlighter);
+        editor->setCompleter(nullptr);
+    }
+    else if (language == "Java")
+    {
+        editor->setHighlighter(new QJavaHighlighter);
+        editor->setCompleter(nullptr);
+    }
+    else
+    {
+        editor->setHighlighter(new QCXXHighlighter);
+        editor->setCompleter(nullptr);
+    }
 }
 
 } // namespace Util

@@ -30,8 +30,6 @@ class DiffViewer : public QMainWindow
     Q_OBJECT
 
   public:
-    static const int MAX_CHARACTERS_FOR_HTML = 100000;
-
     explicit DiffViewer(QWidget *parent = nullptr);
     void setText(const QString &output, const QString &expected);
 

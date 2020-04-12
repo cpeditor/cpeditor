@@ -1,5 +1,15 @@
 ## UNRELEASED
 
+### The new Preferences Window!
+
+The old preferences window is not very extendable, which has been a big obstacle to add new features for a long time. In this version, we bring a brand new preferences window for the users.
+
+In the new preferences window, the settings are organized well in a tree structure. Now you can save the settings for each page separately, and get warned when you try to leave a page without saving the changes. You can discard the changes in the current page, or restore the default settings on the current page. What's more, you can search for a setting and go to the corresponding page easily.
+
+If you want to backup your settings file or do something with it, we have to tell you that it has been moved from the home directory to the config directory (on Linux, from `$HOME` to `$HOME/.config/CP Editor`). But don't worry, we have worked on keeping backward compatibility, so you won't lose your settings when switching from the old version to the new version.
+
+For the developers, now it's extremely easy to add a new setting. So we'll add more settings with some exciting features in the next version.
+
 ### Added
 
 - Show stderr of the checker when the verdict is AC. (#207)
@@ -10,6 +20,8 @@
 
 - Show the manual of the current version instead of the latest version.
 - Set window icon in application level instead of window level, this affects the update check window.
+- Remove the hard-to-use completer for Python.
+- The "Enable hotkeys" option is removed, because it's useless —— you can simply either not use the hotkeys or not set the hotkeys (i.e. clear the hotkeys).
 
 ### Fixed
 
@@ -18,6 +30,9 @@
 - Don't require any undo for auto-close parentheses.
 - Fix the low resolution issue on macOS. (#225)
 - Fix Application failed to get installed on macOS 10.14 (#193)
+- Show the manual of the current version instead of the latest version.
+- Before this fix, the language is not set to C++ when saving a file with one of the C++ prefixes.
+- Fix typos in the names of the editor themes.
 
 ## v6.2
 

@@ -15,31 +15,30 @@
  *
  */
 
-#ifndef SETTINGS_HPP
-#define SETTINGS_HPP
+#ifndef SHORTCUTITEM_HPP
+#define SHORTCUTITEM_HPP
 
-#include <QMap>
-#include <QString>
-#include <QVariant>
+#include <QHBoxLayout>
+#include <QKeySequenceEdit>
+#include <QToolButton>
 
-typedef QMap<QString, QVariant> Settings;
-
-struct SettingsManager
+class ShortcutItem : public QWidget
 {
-    static void init();
-    static void deinit();
+    Q_OBJECT
 
-    static QVariant get(QString key, bool alwaysDefault = false);
-    static bool contains(const QString &key);
-    static void set(const QString &key, QVariant value);
-    static void remove(QStringList keys);
-    static void reset();
+  public:
+    ShortcutItem(QWidget *parent = nullptr);
 
-    static QStringList keyStartsWith(const QString &head);
+    void setShortcut(const QString &s);
+    QString getShortcut();
+
+  signals:
+    void shortcutChanged();
 
   private:
-    static Settings *cur;
-    static Settings *def;
+    QHBoxLayout *layout = nullptr;
+    QKeySequenceEdit *edit = nullptr;
+    QToolButton *clear = nullptr;
 };
 
-#endif
+#endif // SHORTCUTITEM_HPP

@@ -59,7 +59,6 @@
     <addaction name="actionSave"/>
     <addaction name="actionSave_As"/>
     <addaction name="actionSave_All"/>
-    <addaction name="actionAutosave"/>
     <addaction name="separator"/>
     <addaction name="actionClose_Current"/>
     <addaction name="actionClose_Saved"/>
@@ -207,14 +206,6 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+Shift+W</string>
-   </property>
-  </action>
-  <action name="actionAutosave">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
-   <property name="text">
-    <string>Autosave</string>
    </property>
   </action>
   <action name="actionQuit">

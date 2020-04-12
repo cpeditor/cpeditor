@@ -21,6 +21,7 @@ endif()
 
 find_package(Qt5 COMPONENTS Widgets REQUIRED)
 find_package(Qt5 COMPONENTS Network REQUIRED)
+find_package(Python3 COMPONENTS Interpreter REQUIRED)
 
 add_subdirectory(third_party/QCodeEditor)
 
@@ -33,8 +34,14 @@ add_subdirectory(third_party/QtFindReplaceDialog/dialogs)
 add_subdirectory(third_party/lsp-cpp)
 
 configure_file(cmake/version.hpp.in ${CMAKE_BINARY_DIR}/generated/version.hpp)
-configure_file(scripts/aur/PKGBUILD.in ${CMAKE_BINARY_DIR}/aur/PKGBUILD)
-configure_file(scripts/aur/.SRCINFO.in ${CMAKE_BINARY_DIR}/aur/.SRCINFO)
+configure_file(cmake/aur/PKGBUILD.in ${CMAKE_BINARY_DIR}/aur/PKGBUILD)
+configure_file(cmake/aur/.SRCINFO.in ${CMAKE_BINARY_DIR}/aur/.SRCINFO)
+
+add_custom_command(OUTPUT ${CMAKE_BINARY_DIR}/generated/SettingsHelper.hpp ${CMAKE_BINARY_DIR}/generated/SettingsInfo.hpp 
+                   COMMAND ${Python3_EXECUTABLE} ${PROJECT_SOURCE_DIR}/tools/genSettings.py ${PROJECT_SOURCE_DIR}/setting.json
+                   WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+                   DEPENDS ${PROJECT_SOURCE_DIR}/setting.json ${PROJECT_SOURCE_DIR}/tools/genSettings.py)
+set_property(SOURCE ${CMAKE_BINARY_DIR}/generated/SettingsHelper.hpp ${CMAKE_BINARY_DIR}/generated/SettingsInfo.hpp PROPERTY SKIP_AUTOGEN ON)
 
 IF(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/.git)
   FIND_PACKAGE(Git)
@@ -87,11 +94,30 @@ add_executable(cpeditor
     src/Extensions/CFTool.cpp
     src/Extensions/EditorTheme.cpp
 
+    include/Preferences/ValueWrapper.hpp
+    include/Preferences/PreferencesPage.hpp
+    include/Preferences/PreferencesHomePage.hpp
+    include/Preferences/PreferencesWindow.hpp
+    include/Preferences/PreferencesGridPage
+    include/Preferences/PreferencesPageTemplate.hpp
+    include/Preferences/FontItem.hpp
+    include/Preferences/PathItem.hpp
+    include/Preferences/ShortcutItem.hpp
+    include/Preferences/CodeSnippetsPage.hpp
+    src/Preferences/ValueWrapper.cpp
+    src/Preferences/PreferencesPage.cpp
+    src/Preferences/PreferencesHomePage.cpp
+    src/Preferences/PreferencesWindow.cpp
+    src/Preferences/PreferencesGridPage.cpp
+    src/Preferences/PreferencesPageTemplate.cpp
+    src/Preferences/FontItem.cpp
+    src/Preferences/PathItem.cpp
+    src/Preferences/ShortcutItem.cpp
+    src/Preferences/CodeSnippetsPage.cpp
+
     include/mainwindow.hpp
-    include/preferencewindow.hpp
     include/appwindow.hpp
     src/mainwindow.cpp
-    src/preferencewindow.cpp
     src/appwindow.cpp
 
     include/Util.hpp
@@ -103,10 +129,11 @@ add_executable(cpeditor
     src/main.cpp
 
     ui/mainwindow.ui
-    ui/preferencewindow.ui
     ui/appwindow.ui
 
     ${CMAKE_BINARY_DIR}/generated/version.hpp
+    ${CMAKE_BINARY_DIR}/generated/SettingsHelper.hpp
+    ${CMAKE_BINARY_DIR}/generated/SettingsInfo.hpp
 
     resources/resources.qrc
     assets/appicon.rc)
