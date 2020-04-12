@@ -21,6 +21,7 @@
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
+#include <QSettings>
 #include <QStyleFactory>
 #include <QTextStream>
 #include <singleapplication.h>
@@ -69,13 +70,12 @@ void setWindowsDarkTheme()
 
 int main(int argc, char *argv[])
 {
-    setWindowsDarkTheme();
-
     SingleApplication app(argc, argv, true);
     SingleApplication::setApplicationName("CP Editor");
     SingleApplication::setApplicationVersion(APP_VERSION);
     QApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
     QApplication::setWindowIcon(QIcon(":/icon.png"));
+    setWindowsDarkTheme();
 
     QTextStream cerr(stderr, QIODevice::WriteOnly);
 
