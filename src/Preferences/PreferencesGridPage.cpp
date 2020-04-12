@@ -12,8 +12,7 @@ PreferencesGridPage::PreferencesGridPage(bool alignTop, QWidget *parent) : Prefe
     VLayout->addLayout(HLayout);
     if (alignTop)
         VLayout->addStretch();
-    else
-        VLayout->addSpacing(30);
+    VLayout->addSpacing(30);
 
     HLayout->addStretch();
     HLayout->addLayout(gridLayout);
