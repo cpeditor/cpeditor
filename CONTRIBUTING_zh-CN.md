@@ -53,7 +53,7 @@
 - 我需要学习使用 CMake 吗？
   - 不需要，你只需要知道如何 [从源代码构建](doc/INSTALL_zh-CN.md#从源代码构建) 即可。
 - 如何添加一个设置？
-  - 你需要在 `ui/preferencewindow.ui` 中添加 UI，然后在 `include/Settings/SettingsManager.hpp` 和 `src/Settings/SettingsManager.cpp` 中添加获取/修改设置的函数，在 `src/preferencewindow.cpp` 的 `applySettingsToui`, `extractSettingsFromui` 和 `isUnsavedChanges` 中添加代码。复制粘贴非常有用。
+  - 你只需修改 [settings.json](src/Settings/settings.json) 和 [PreferencesWindow.cpp](src/Settings/PreferencesWindow.cpp)，你可以参照其它设置来进行修改。
 - 有些文件在编译时缺失了。
   - 如果 CI 测试通过了，这往往是因为子组件更新了。
 
