@@ -29,7 +29,6 @@ const QStringList javaSuffix = {"java"};
 const QStringList pythonSuffix = {"py", "py3"};
 #ifdef Q_OS_WIN
 #define EXE_SUFFIX ".exe"
-extern bool useDarkTheme;
 #else
 #define EXE_SUFFIX ""
 #endif
@@ -42,6 +41,8 @@ bool saveFile(const QString &path, const QString &content, const QString &head =
 void applySettingsToEditor(QCodeEditor *editor);
 
 void setEditorLanguage(QCodeEditor *editor, const QString &language);
+
+QPalette windowsDarkThemePalette();
 
 } // namespace Util
 

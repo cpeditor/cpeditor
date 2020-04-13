@@ -18,6 +18,7 @@
 #include "Settings/AppearancePage.hpp"
 #include "Settings/SettingsManager.hpp"
 #include "Util.hpp"
+#include <QApplication>
 #include <QMessageBox>
 #include <generated/SettingsInfo.hpp>
 
@@ -34,7 +35,8 @@ void AppearancePage::makeSettingsTheSameAsUI()
         ValueWidget *widget = widgets[i];
         SettingInfo si = findSetting(options[i]);
 #ifdef Q_OS_WIN
-        if (Util::useDarkTheme && si.name == "Editor Theme" && SettingsManager::get(si.name) != widget->getVariant())
+        if (si.name == "Editor Theme" && SettingsManager::get(si.name) != widget->getVariant() &&
+            Util::windowsDarkThemePalette() == qApp->palette())
         {
             QMessageBox::warning(this, "Change Editor Theme",
                                  "Because you are using whole-application dark theme on Windows, you need to restart "
