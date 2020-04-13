@@ -7,7 +7,7 @@ pkgrel=1
 pkgdesc='The editor for competitive programming'
 arch=('x86_64')
 url='https://github.com/cpeditor/cpeditor'
-license=('GPLv3+')
+license=('GPL3')
 depends=('qt5-base')
 makedepends=("cmake" "git" "gcc" "python3")
 conflicts=("cpeditor-git")
@@ -24,6 +24,3 @@ package() {
 	cd $_pkgdir/build
 	make DESTDIR="$pkgdir" install
 }
-
-
-

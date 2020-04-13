@@ -4,7 +4,7 @@ pkgbase = cpeditor
 	pkgrel = 1
 	url = https://github.com/cpeditor/cpeditor
 	arch = x86_64
-	license = GPLv3+
+	license = GPL3
 	makedepends = cmake
 	makedepends = git
 	makedepends = gcc
@@ -15,4 +15,3 @@ pkgbase = cpeditor
 	md5sums = SKIP
 
 pkgname = cpeditor
-
