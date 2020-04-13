@@ -136,7 +136,10 @@ class CodeSnippetsPage : public PreferencesPage
      *         - deleteButton
      *         - moreButton
      *   - rightWidget
-     *     - editor
+     *     - snippetWidget
+     *       - snippetLayout
+     *         - snippetNameLabel
+     *         - editor
      *     - noSnippetWidget
      *       - VStretchLayout
      *         - (stretch)
@@ -161,6 +164,9 @@ class CodeSnippetsPage : public PreferencesPage
     QAction *loadSnippetsFromFilesAction = nullptr;
     QAction *extractSnippetsToFilesAction = nullptr;
     QStackedWidget *rightWidget = nullptr;
+    QWidget *snippetWidget = nullptr;
+    QVBoxLayout *snippetLayout = nullptr;
+    QLabel *snippetNameLabel = nullptr;
     QCodeEditor *editor = nullptr;
     QWidget *noSnippetWidget = nullptr;
     QVBoxLayout *VStretchLayout = nullptr;

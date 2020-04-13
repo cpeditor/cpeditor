@@ -82,10 +82,18 @@ CodeSnippetsPage::CodeSnippetsPage(const QString &language, QWidget *parent) : P
     rightWidget = new QStackedWidget();
     splitter->addWidget(rightWidget);
 
+    snippetWidget = new QWidget();
+    rightWidget->addWidget(snippetWidget);
+
+    snippetLayout = new QVBoxLayout(snippetWidget);
+
+    snippetNameLabel = new QLabel();
+    snippetLayout->addWidget(snippetNameLabel);
+
     editor = new QCodeEditor();
     Util::setEditorLanguage(editor, lang);
     connect(editor, SIGNAL(textChanged()), this, SLOT(updateButtons()));
-    rightWidget->addWidget(editor);
+    snippetLayout->addWidget(editor);
 
     noSnippetWidget = new QWidget();
     rightWidget->addWidget(noSnippetWidget);
@@ -214,7 +222,8 @@ bool CodeSnippetsPage::switchToSnippet(QListWidgetItem *item, bool force)
         }
         else
         {
-            rightWidget->setCurrentWidget(editor);
+            rightWidget->setCurrentWidget(snippetWidget);
+            snippetNameLabel->setText(item->text());
             editor->setPlainText(SettingsManager::get(snippetKey(item->text())).toString());
         }
         updateActions();
@@ -234,10 +243,14 @@ bool CodeSnippetsPage::aboutToSwitchToSnippet()
         editor->toPlainText() == SettingsManager::get(snippetKey(currentItem->text())))
         return true;
 
-    auto res =
-        QMessageBox::question(this, "Unsaved Snippets",
-                              "The current snippet has been changed. Do you want to save it or discard the changes?",
-                              QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel);
+    if (!SettingsManager::contains(snippetKey(currentItem->text())) && editor->toPlainText().isEmpty())
+        return true;
+
+    auto res = QMessageBox::question(
+        this, "Unsaved Snippets",
+        QString("The snippet [%1] has been changed. Do you want to save it or discard the changes?")
+            .arg(currentItem->text()),
+        QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel);
     switch (res)
     {
     case QMessageBox::Save:
