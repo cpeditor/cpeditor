@@ -479,7 +479,7 @@ void MainWindow::applySettings(const QString &pagePath, bool shouldPerformDigoni
         }
     }
 
-    if (pagePath.isEmpty() || pagePath == "Edit" || pagePath == "Appearance")
+    if (pagePath.isEmpty() || pagePath == "Code Edit" || pagePath == "Appearance")
         Util::applySettingsToEditor(editor);
 
     if (!isLanguageSet && (pagePath.isEmpty() || pagePath == "Language/General"))

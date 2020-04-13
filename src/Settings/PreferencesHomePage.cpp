@@ -44,7 +44,7 @@ PreferencesHomePage::PreferencesHomePage(QWidget *parent) : QWidget(parent)
     layout->addSpacing(20);
 
     // add buttons
-    addButton("Edit", "Code Editor Settings");
+    addButton("Code Edit", "Code Editor Settings");
     addButton("Language/Commands", "Compile and Run Commands");
     addButton("Appearance", "Appearance");
 
