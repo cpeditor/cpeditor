@@ -45,7 +45,7 @@
 	cd cpeditor
 	```
 
-2. 安装 [Qt](https://www.qt.io/download)（5.12 或更高版本）和 [CMake](https://cmake.org/download/)（3.12 或更高版本）.
+2. 安装 [Qt](https://www.qt.io/download)（5.12 或更高版本）, [CMake](https://cmake.org/download/)（3.12 或更高版本）以及 [Python3](https://www.python.org/downloads/)。
    - 在一些 Linux g发行版和 MacOS 系统上，你可以直接使用包管理器安装 Qt。例如，在 Arch Linux 上可以使用 `sudo pacman -S qt5`，在 MacOS 上可以使用 `brew install qt5`.=。
    - 你还可以下载 [离线安装包](https://www.qt.io/offline-installers), 或者从 [镜像](https://download.qt.io/static/mirrorlist/) 下载。你要下载的文件在镜像中的目录应该是 `/qt/official_releases/qt/5.14/5.14.1/qt-opensource-<platform>-5.14.1.<suffix>` (或其它版本).
    - 你还可以使用 [aqtinstall](https://github.com/miurahr/aqtinstall) 来下载并安装。
