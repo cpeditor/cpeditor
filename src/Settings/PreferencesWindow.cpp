@@ -115,6 +115,8 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
 
     addPage("Extensions/Clang Format", {"Clang Format/Path", "Clang Format/Style"}, false);
 
+    addPage("Extensions/Language Server", {"LSP/UseAutoComplete", "LSP/UseDiagonistics", "LSP/Path", "LSP/Delay"});
+
     addPage("Extensions/Competitive Companion", {"Competitive Companion/Enable", "Competitive Companion/Open New Tab",
                                                  "Competitive Companion/Connection Port"});
 

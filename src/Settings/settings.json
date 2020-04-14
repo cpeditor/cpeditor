@@ -414,10 +414,35 @@
         "default": 20000,
         "param": "QList<QVariant> {2,100000000}"
     },
-    {
-        "name": "Load Test Case File Length Limit",
-        "type": "int",
-        "default": 500000,
-        "param": "QList<QVariant> {2,1000000000}"
-    }
+  {
+    "name": "Load Test Case File Length Limit",
+    "type": "int",
+    "default": 500000,
+    "param": "QList<QVariant> {2,1000000000}"
+  },
+  {
+    "name": "LSP/UseAutoComplete",
+    "desc": "Use autocomplete with Language server",
+    "type": "bool"
+  },
+  {
+    "name": "LSP/UseDiagonistics",
+    "desc": "Use diagonistics with Language Server",
+    "type": "bool"
+  },
+  {
+    "name": "LSP/Path",
+    "ui": "PathItem",
+    "desc": "Path to LSP executable",
+    "default": "clangd",
+    "type": "QString",
+    "param": "0"
+  },
+  {
+    "name": "LSP/Delay",
+    "type": "int",
+    "desc": "Delay in LSP diagonistics",
+    "default": 2000,
+    "param": "QList<QVariant> {100, 10000}"
+  }
 ]
