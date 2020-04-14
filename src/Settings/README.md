@@ -1,7 +1,9 @@
 # Settings
 
-This folder contains the codes related to the Settings window.
-Any code in this folder does not need to be under any namespace, It is because this directory is self sufficient and does not interacts with any outside code.
+This directory contains the header/sources related to the Settings window.
+Any code in this folder does not need to be under any namespace, 
+It is because this directory is self sufficient and does not interacts with 
+any outside code.
 
 ### Useful Information
 
@@ -31,11 +33,3 @@ It includes description of all settings, including those not in the Settings Int
 3. Add a new Settings name to the existing `addPage()` options
 
 To get settings values in Code use the static members from `SettingsHelper` class. This is auto-generated from `settings.json`.
-
----
-
-> Put the chinese version below this line
-
----
-
-> Put the Russian version below this line
