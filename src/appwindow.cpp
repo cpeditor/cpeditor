@@ -172,7 +172,7 @@ AppWindow::~AppWindow()
         languageClient->exit();
         delete languageClient;
     }
-    Themes::EditorTheme::release();
+    Extensions::EditorTheme::release();
     delete ui;
     delete preferencesWindow;
     delete autoSaveTimer;
@@ -255,7 +255,7 @@ void AppWindow::setConnections()
     connect(preferencesWindow, SIGNAL(settingsApplied(const QString &)), this,
             SLOT(onSettingsApplied(const QString &)));
 
-    connect(server, &Network::CompanionServer::onRequestArrived, this, &AppWindow::onIncomingCompanionRequest);
+    connect(server, &Extensions::CompanionServer::onRequestArrived, this, &AppWindow::onIncomingCompanionRequest);
 
     connect(trayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)), this,
             SLOT(onTrayIconActivated(QSystemTrayIcon::ActivationReason)));
@@ -269,7 +269,7 @@ void AppWindow::allocate()
     autoSaveTimer = new QTimer();
     updater = new Telemetry::UpdateNotifier(SettingsHelper::isBeta());
     preferencesWindow = new PreferencesWindow(this);
-    server = new Network::CompanionServer(SettingsHelper::getCompetitiveCompanionConnectionPort());
+    server = new Extensions::CompanionServer(SettingsHelper::getCompetitiveCompanionConnectionPort());
     findReplaceDialog = new FindReplaceDialog(this);
     findReplaceDialog->setModal(false);
     findReplaceDialog->setWindowFlags(Qt::Window | Qt::WindowMinimizeButtonHint | Qt::WindowMaximizeButtonHint |
@@ -973,7 +973,7 @@ void AppWindow::onSettingsApplied(const QString &pagePath)
     Core::Log::i("appwindow/onSettingsApplied", "Finished");
 }
 
-void AppWindow::onIncomingCompanionRequest(const Network::CompanionData &data)
+void AppWindow::onIncomingCompanionRequest(const Extensions::CompanionData &data)
 {
     Core::Log::i("appwindow/onIncomingCompanionRequest")
         << "Applying data to new tab. Args: shouldOpenNewTab:" << SettingsHelper::isCompetitiveCompanionOpenNewTab()
@@ -1458,7 +1458,7 @@ void AppWindow::onTabContextMenuRequested(const QPoint &pos)
         }
         tabMenu->addAction("Set Codeforces URL", [widget, this] {
             QString contestId, problemCode;
-            Network::CFTool::parseCfUrl(widget->getProblemURL(), contestId, problemCode);
+            Extensions::CFTool::parseCfUrl(widget->getProblemURL(), contestId, problemCode);
             bool ok = false;
             contestId =
                 QInputDialog::getText(this, "Set CF URL", "Enter the contest ID:", QLineEdit::Normal, contestId, &ok);

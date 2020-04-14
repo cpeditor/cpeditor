@@ -107,17 +107,17 @@ void applySettingsToEditor(QCodeEditor *editor)
         editor->setWordWrapMode(QTextOption::NoWrap);
 
     if (SettingsHelper::getEditorTheme() == "Light")
-        editor->setSyntaxStyle(Themes::EditorTheme::getLightTheme());
+        editor->setSyntaxStyle(Extensions::EditorTheme::getLightTheme());
     else if (SettingsHelper::getEditorTheme() == "Dracula")
-        editor->setSyntaxStyle(Themes::EditorTheme::getDraculaTheme());
+        editor->setSyntaxStyle(Extensions::EditorTheme::getDraculaTheme());
     else if (SettingsHelper::getEditorTheme() == "Monokai")
-        editor->setSyntaxStyle(Themes::EditorTheme::getMonokaiTheme());
+        editor->setSyntaxStyle(Extensions::EditorTheme::getMonokaiTheme());
     else if (SettingsHelper::getEditorTheme() == "Solarized")
-        editor->setSyntaxStyle(Themes::EditorTheme::getSolarizedTheme());
+        editor->setSyntaxStyle(Extensions::EditorTheme::getSolarizedTheme());
     else if (SettingsHelper::getEditorTheme() == "Solarized Dark")
-        editor->setSyntaxStyle(Themes::EditorTheme::getSolarizedDarkTheme());
+        editor->setSyntaxStyle(Extensions::EditorTheme::getSolarizedDarkTheme());
     else
-        editor->setSyntaxStyle(Themes::EditorTheme::getLightTheme());
+        editor->setSyntaxStyle(Extensions::EditorTheme::getLightTheme());
 }
 
 void setEditorLanguage(QCodeEditor *editor, const QString &language)

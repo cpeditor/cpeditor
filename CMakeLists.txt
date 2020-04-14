@@ -66,8 +66,6 @@ add_executable(cpeditor
     src/Core/Compiler.hpp
     src/Core/EventLogger.cpp
     src/Core/EventLogger.hpp
-    src/Core/Formatter.cpp
-    src/Core/Formatter.hpp
     src/Core/MessageLogger.cpp
     src/Core/MessageLogger.hpp
     src/Core/Runner.cpp
@@ -91,6 +89,8 @@ add_executable(cpeditor
     src/Extensions/CompanionServer.hpp
     src/Extensions/EditorTheme.cpp
     src/Extensions/EditorTheme.hpp
+	src/Extensions/ClangFormatter.cpp
+    src/Extensions/ClangFormatter.hpp
 
     src/Settings/AppearancePage.cpp
     src/Settings/AppearancePage.hpp

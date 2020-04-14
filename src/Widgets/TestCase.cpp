@@ -21,6 +21,8 @@
 #include <Util.hpp>
 #include <generated/SettingsHelper.hpp>
 
+namespace Widgets
+{
 TestCase::TestCase(int index, MessageLogger *logger, QWidget *parent, const QString &in, const QString &exp)
     : QWidget(parent), log(logger)
 {
@@ -320,3 +322,5 @@ void TestCase::onToLongForHtml()
                 "the length limit in Preferences->Advanced->Limits->HTML Diff Viewer Length Limit")
             .arg(SettingsHelper::getHTMLDiffViewerLengthLimit()));
 }
+
+} // namespace Widgets

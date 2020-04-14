@@ -30,6 +30,8 @@
 #include <QScrollArea>
 #include <QVBoxLayout>
 
+namespace Widgets
+{
 class TestCases : public QWidget
 {
     Q_OBJECT
@@ -91,5 +93,5 @@ class TestCases : public QWidget
     QString testFilePathPrefix(const QFileInfo &fileInfo, int index);
     int numberOfTestFile(const QString &sourceName, const QFileInfo &fileName);
 };
-
+} // namespace Widgets
 #endif // TESTCASES_HPP

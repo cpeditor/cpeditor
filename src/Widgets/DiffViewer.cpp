@@ -21,6 +21,8 @@
 #include <QScrollBar>
 #include <generated/SettingsHelper.hpp>
 
+namespace Widgets
+{
 DiffViewer::DiffViewer(QWidget *parent) : QMainWindow(parent)
 {
     Core::Log::i("DiffViewer/constructor", "Invoked");
@@ -120,3 +122,4 @@ void DiffViewer::setText(const QString &output, const QString &expected)
     resetScrollBar(expectedEdit->horizontalScrollBar());
     resetScrollBar(outputEdit->verticalScrollBar());
 }
+} // namespace Widgets

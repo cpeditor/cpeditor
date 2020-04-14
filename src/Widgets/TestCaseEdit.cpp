@@ -24,7 +24,8 @@
 #include <QMimeData>
 #include <QStyle>
 #include <generated/SettingsHelper.hpp>
-
+namespace Widgets
+{
 TestCaseEdit::TestCaseEdit(bool autoAnimation, MessageLogger *logger, const QString &text, QWidget *parent)
     : QPlainTextEdit(text, parent), log(logger)
 {
@@ -140,3 +141,4 @@ void TestCaseEdit::loadFromFile(const QString &path)
     else
         log->warn("TestCases", QString("Failed to load testcase from the file [%1]").arg(path));
 }
+} // namespace Widgets

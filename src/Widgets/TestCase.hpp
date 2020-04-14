@@ -29,6 +29,8 @@
 #include <QPushButton>
 #include <QVBoxLayout>
 
+namespace Widgets
+{
 class TestCase : public QWidget
 {
     Q_OBJECT
@@ -74,5 +76,5 @@ class TestCase : public QWidget
     Core::Checker::Verdict currentVerdict = Core::Checker::UNKNOWN;
     int id;
 };
-
+} // namespace Widgets
 #endif // TESTCASE_HPP

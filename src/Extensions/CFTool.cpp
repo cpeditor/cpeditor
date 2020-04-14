@@ -20,7 +20,7 @@
 #include <QFileInfo>
 #include <QUrl>
 
-namespace Network
+namespace Extensions
 {
 
 CFTool::CFTool(const QString &path, MessageLogger *logger) : CFToolPath(path)
@@ -205,4 +205,4 @@ QString CFTool::getCFToolVersion() const
     return version;
 }
 
-} // namespace Network
+} // namespace Extensions

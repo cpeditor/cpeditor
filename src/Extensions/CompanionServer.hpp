@@ -22,7 +22,7 @@
 #include <QTcpServer>
 #include <QTcpSocket>
 
-namespace Network
+namespace Extensions
 {
 
 struct CompanionData
@@ -80,5 +80,5 @@ class CompanionServer : public QObject
     int portNumber = 0;
     MessageLogger *log = nullptr;
 };
-} // namespace Network
+} // namespace Extensions
 #endif // COMPANIONSERVER_HPP

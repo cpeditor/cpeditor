@@ -23,7 +23,7 @@
 #include <QJsonObject>
 #include <QString>
 
-namespace Network
+namespace Extensions
 {
 CompanionServer::CompanionServer(int port)
 {
@@ -172,4 +172,4 @@ void CompanionServer::onTerminateConnection()
     socket->deleteLater();
 }
 
-} // namespace Network
+} // namespace Extensions

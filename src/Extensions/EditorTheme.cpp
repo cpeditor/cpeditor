@@ -21,7 +21,7 @@
 #include <QFile>
 #include <QIODevice>
 
-namespace Themes
+namespace Extensions
 {
 
 QSyntaxStyle *EditorTheme::light = nullptr;
@@ -156,4 +156,4 @@ void EditorTheme::release()
         delete solarizedDark;
     }
 }
-} // namespace Themes
+} // namespace Extensions

@@ -21,7 +21,8 @@
 #include "Core/MessageLogger.hpp"
 #include <QPlainTextEdit>
 #include <QPropertyAnimation>
-
+namespace Widgets
+{
 class TestCaseEdit : public QPlainTextEdit
 {
     Q_OBJECT
@@ -47,5 +48,5 @@ class TestCaseEdit : public QPlainTextEdit
     QPropertyAnimation *animation;
     MessageLogger *log;
 };
-
+} // namespace Widgets
 #endif // TESTCASEEDIT_HPP

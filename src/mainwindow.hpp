@@ -20,9 +20,9 @@
 
 #include "Core/Checker.hpp"
 #include "Core/Compiler.hpp"
-#include "Core/Formatter.hpp"
 #include "Core/Runner.hpp"
 #include "Extensions/CFTool.hpp"
+#include "Extensions/ClangFormatter.hpp"
 #include "Extensions/CompanionServer.hpp"
 #include "Telemetry/UpdateNotifier.hpp"
 #include "Widgets/TestCases.hpp"
@@ -95,7 +95,7 @@ class MainWindow : public QMainWindow
     void compileAndRun();
     void formatSource();
 
-    void applyCompanion(const Network::CompanionData &data);
+    void applyCompanion(const Extensions::CompanionData &data);
 
     void setLanguage(const QString &lang);
     QString getLanguage();
@@ -170,7 +170,7 @@ class MainWindow : public QMainWindow
     QString language;
     bool isLanguageSet = false;
 
-    Core::Formatter *formatter = nullptr;
+    Extensions::ClangFormatter *formatter = nullptr;
     Core::Compiler *compiler = nullptr;
     QVector<Core::Runner *> runner;
     Core::Checker *checker = nullptr;
@@ -189,9 +189,9 @@ class MainWindow : public QMainWindow
     bool reloading = false;
 
     QPushButton *submitToCodeforces = nullptr;
-    Network::CFTool *cftool = nullptr;
+    Extensions::CFTool *cftool = nullptr;
 
-    TestCases *testcases = nullptr;
+    Widgets::TestCases *testcases = nullptr;
 
     void setTestCases();
     void setEditor();

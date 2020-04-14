@@ -22,7 +22,7 @@
 #include <QProcess>
 #include <QRegularExpression>
 
-namespace Network
+namespace Extensions
 {
 class CFTool : public QObject
 {
@@ -52,6 +52,6 @@ class CFTool : public QObject
     void showToastMessage(const QString &message);
     QString getCFToolVersion() const;
 };
-} // namespace Network
+} // namespace Extensions
 
 #endif // CFTOOL_HPP

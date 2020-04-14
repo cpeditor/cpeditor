@@ -20,7 +20,7 @@
 
 #include <QSyntaxStyle>
 
-namespace Themes
+namespace Extensions
 {
 class EditorTheme
 {
@@ -43,6 +43,6 @@ class EditorTheme
 
     static void release();
 };
-} // namespace Themes
+} // namespace Extensions
 
 #endif // EDITORTHEME_H

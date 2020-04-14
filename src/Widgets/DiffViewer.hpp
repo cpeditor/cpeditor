@@ -25,6 +25,8 @@
 #include <QTextEdit>
 #include <QVBoxLayout>
 
+namespace Widgets
+{
 class DiffViewer : public QMainWindow
 {
     Q_OBJECT
@@ -43,5 +45,5 @@ class DiffViewer : public QMainWindow
     QLabel *outputLabel = nullptr, *expectedLabel = nullptr;
     QTextEdit *outputEdit = nullptr, *expectedEdit = nullptr;
 };
-
+} // namespace Widgets
 #endif // DIFFVIEWER_HPP

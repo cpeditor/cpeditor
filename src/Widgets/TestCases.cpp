@@ -20,6 +20,8 @@
 #include <QFileDialog>
 #include <QMessageBox>
 
+namespace Widgets
+{
 const int TestCases::MAX_NUMBER_OF_TESTCASES;
 
 TestCases::TestCases(MessageLogger *logger, QWidget *parent) : QWidget(parent), log(logger)
@@ -414,3 +416,4 @@ int TestCases::numberOfTestFile(const QString &sourceName, const QFileInfo &file
     auto baseName = fileName.completeBaseName();
     return baseName.mid(baseName.indexOf(sourceName) + sourceName.length() + 1).toInt();
 }
+} // namespace Widgets

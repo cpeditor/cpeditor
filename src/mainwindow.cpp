@@ -82,7 +82,7 @@ MainWindow::~MainWindow()
 void MainWindow::setTestCases()
 {
     Core::Log::i("mainwindow/setTestCases", "Invoked");
-    testcases = new TestCases(&log, this);
+    testcases = new Widgets::TestCases(&log, this);
     ui->test_cases_layout->addWidget(testcases);
     connect(testcases, SIGNAL(checkerChanged()), this, SLOT(updateChecker()));
     connect(testcases, SIGNAL(requestRun(int)), this, SLOT(runTestCase(int)));
@@ -108,7 +108,8 @@ void MainWindow::setEditor()
 void MainWindow::setupCore()
 {
     Core::Log::i("mainwindow/setupCore", "Invoked");
-    formatter = new Core::Formatter(SettingsHelper::getClangFormatPath(), SettingsHelper::getClangFormatStyle(), &log);
+    formatter = new Extensions::ClangFormatter(SettingsHelper::getClangFormatPath(),
+                                               SettingsHelper::getClangFormatStyle(), &log);
     log.setContainer(ui->compiler_edit);
 }
 
@@ -218,7 +219,7 @@ void MainWindow::setCFToolUI()
     if (submitToCodeforces == nullptr)
     {
         submitToCodeforces = new QPushButton("Submit", this);
-        cftool = new Network::CFTool(cftoolPath, &log);
+        cftool = new Extensions::CFTool(cftoolPath, &log);
         connect(cftool, SIGNAL(requestToastMessage(const QString &, const QString &)), this,
                 SIGNAL(requestToastMessage(const QString &, const QString &)));
         ui->compile_and_run_buttons->addWidget(submitToCodeforces);
@@ -239,7 +240,7 @@ void MainWindow::setCFToolUI()
             }
         });
     }
-    if (!Network::CFTool::check(cftoolPath))
+    if (!Extensions::CFTool::check(cftoolPath))
     {
         submitToCodeforces->setEnabled(false);
         log.error("CFTool", "You will not be able to submit code to Codeforces because CFTool is not installed or is "
@@ -431,7 +432,7 @@ void MainWindow::loadStatus(const EditorStatus &status, bool simple)
     }
 }
 
-void MainWindow::applyCompanion(const Network::CompanionData &data)
+void MainWindow::applyCompanion(const Extensions::CompanionData &data)
 {
     Core::Log::i("mainwindow/applyCompanion", "Invoked");
     if (isUntitled() && !isTextChanged())
@@ -471,7 +472,7 @@ void MainWindow::applySettings(const QString &pagePath, bool shouldPerformDigoni
     {
         cftoolPath = SettingsHelper::getCFPath();
 
-        if (cftool != nullptr && Network::CFTool::check(cftoolPath))
+        if (cftool != nullptr && Extensions::CFTool::check(cftoolPath))
         {
             cftool->updatePath(cftoolPath);
             if (submitToCodeforces != nullptr)
@@ -1038,7 +1039,7 @@ void MainWindow::updateChecker()
         checker = new Core::Checker(testcases->checkerText(), &log, this);
     else
         checker = new Core::Checker(testcases->checkerType(), &log, this);
-    connect(checker, &Core::Checker::checkFinished, testcases, &TestCases::setVerdict);
+    connect(checker, &Core::Checker::checkFinished, testcases, &Widgets::TestCases::setVerdict);
     checker->prepare(SettingsManager::get(QString("C++/Compile Command")).toString());
 }
 

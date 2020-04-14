@@ -104,7 +104,7 @@ class AppWindow : public QMainWindow
 
     void onRightSplitterMoved(int, int);
 
-    void onIncomingCompanionRequest(const Network::CompanionData &);
+    void onIncomingCompanionRequest(const Extensions::CompanionData &);
 
     void onViewModeToggle();
 
@@ -172,7 +172,7 @@ class AppWindow : public QMainWindow
     QMetaObject::Connection activeRightSplitterMoveConnection;
     Telemetry::UpdateNotifier *updater = nullptr;
     PreferencesWindow *preferencesWindow = nullptr;
-    Network::CompanionServer *server;
+    Extensions::CompanionServer *server;
     FindReplaceDialog *findReplaceDialog = nullptr;
     QSystemTrayIcon *trayIcon = nullptr;
     QMenu *trayIconMenu = nullptr;

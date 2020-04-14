@@ -28,9 +28,9 @@
 #include <QPair>
 #include <QString>
 
-namespace Core
+namespace Extensions
 {
-class Formatter
+class ClangFormatter
 {
   public:
     /**
@@ -39,7 +39,7 @@ class Formatter
      * @param clangFormatStyle the Clang Format style used for formatting
      * @param logger the message logger used for displaying messages
      */
-    Formatter(const QString &clangFormatBinary, const QString &clangFormatStyle, MessageLogger *logger);
+    ClangFormatter(const QString &clangFormatBinary, const QString &clangFormatStyle, MessageLogger *logger);
 
     /**
      * @brief format the codes in the given editor
@@ -84,5 +84,5 @@ class Formatter
     MessageLogger *log; // the message logger to display messages
 };
 
-} // namespace Core
+} // namespace Extensions
 #endif // FORMATTER_HPP

@@ -87,8 +87,8 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
 
     // add pages
 
-    addPage("Code Edit", {"Tab Width", "Auto Indent", "Wrap Text", "Auto Complete Parentheses", "Auto Remove Parentheses",
-                     "Replace Tabs"});
+    addPage("Code Edit", {"Tab Width", "Auto Indent", "Wrap Text", "Auto Complete Parentheses",
+                          "Auto Remove Parentheses", "Replace Tabs"});
 
     addPage("Language/General", {"Default Language"});
 
