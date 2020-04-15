@@ -156,14 +156,6 @@ class AppWindow : public QMainWindow
 
     void onTrayIconActivated(QSystemTrayIcon::ActivationReason reason);
 
-    // LSP Slots
-    void onLSPServerNotificationArrived(QString method, QJsonObject param);
-    void onLSPServerResponseArrived(QJsonObject method, QJsonObject param);
-    void onLSPServerRequestArrived(QString method, QJsonObject param, QJsonObject id);
-    void onLSPServerErrorArrived(QJsonObject id, QJsonObject error);
-    void onLSPServerProcessError(QProcess::ProcessError error);
-    void onLSPServerProcessFinished(int exitCode, QProcess::ExitStatus status);
-
   private:
     Ui::AppWindow *ui;
     MessageLogger *activeLogger = nullptr;
@@ -177,13 +169,11 @@ class AppWindow : public QMainWindow
     QSystemTrayIcon *trayIcon = nullptr;
     QMenu *trayIconMenu = nullptr;
     QMenu *tabMenu = nullptr;
-    LSPClient *languageClient = nullptr;
 
     void setConnections();
     void allocate();
     void applySettings();
     void saveSettings();
-    void setLanguageClient();
     QVector<QShortcut *> hotkeyObjects;
     void maybeSetHotkeys();
     bool closeTab(int index);
