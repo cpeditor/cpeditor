@@ -8,7 +8,7 @@ on:
       - '*/*/*.md'
 
 jobs:
-  build:
+  format:
     name: "Auto Clang Format"
     runs-on: ubuntu-latest
     steps:
