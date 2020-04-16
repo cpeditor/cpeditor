@@ -55,6 +55,9 @@ class LanguageServer : public QObject
     void performConnection();
     void createClient();
 
+	QCodeEditor::SeverityLevel lspSeverity(int a);
+    void lintInEditor(QPair<int, int>, QPair<int, int>, QCodeEditor::SeverityLevel, QString);
+
     QCodeEditor *m_editor = nullptr;
     LSPClient *lsp = nullptr;
     QString language;

@@ -17,6 +17,8 @@
 #include "LanguageServer.hpp"
 #include "Core/EventLogger.hpp"
 #include <QDebug>
+#include <QJsonArray>
+#include <QJsonDocument>
 #include <QJsonObject>
 #include <QProcess>
 #include <QString>
@@ -149,11 +151,70 @@ void LanguageServer::createClient()
     else
         lsp = new LSPClient(SettingsHelper::getLSPPathCpp(), argListCpp);
 }
+
+QCodeEditor::SeverityLevel LanguageServer::lspSeverity(int in)
+{
+    switch (in)
+    {
+    case 1:
+        return QCodeEditor ::SeverityLevel::Error;
+    case 2:
+        return QCodeEditor::SeverityLevel::Warning;
+    case 3:
+        return QCodeEditor::SeverityLevel::Information;
+    case 4:
+        return QCodeEditor::SeverityLevel::Information; // Hint will be added in future.
+    }
+    // Nothing matched
+    return QCodeEditor::SeverityLevel::Error;
+}
+
+void LanguageServer::lintInEditor(QPair<int, int> start, QPair<int, int> stop, QCodeEditor::SeverityLevel level,
+                                  QString tooltip)
+{
+    if (start.first == stop.first) // single line error
+    {
+        Core::Log::i("lintInEditor") << "Linting at " << start.first << " " << start.second << " " << stop.first << " "
+                                     << stop.second << endl;
+
+        m_editor->squiggle(level, start.first, start.second, stop.second, tooltip);
+    }
+    else // multiline error
+    {
+		// We select the error range text and for each new line we skip it.
+		// This requires some other API that is yet to be implemented in QCodeEditor hence skipped.
+        Core::Log::w("lintInEditor", "Multiline linting is not yet supported");
+	}
+}
 // ---------------------------- LSP SLOTS ------------------------
 
 void LanguageServer::onLSPServerNotificationArrived(QString method, QJsonObject param)
 {
-    Core::Log::i("Notification arrived", "Notification arrived");
+    if (method == "textDocument/publishDiagnostics") // Linting
+    {
+        m_editor->clearSquiggle();
+        Core::Log::i("onLSPServerNotificationArrived","Linting started");
+        QJsonArray doc = QJsonDocument::fromVariant(param.toVariantMap()).object()["diagnostics"].toArray();
+        for (auto e : doc)
+        {
+            Core::Log::i("inside", "inside");
+            QString tooltip = e.toObject()["message"].toString();
+            QCodeEditor::SeverityLevel level = lspSeverity(e.toObject()["severity"].toInt());
+            
+			auto beg = e.toObject()["range"].toObject()["start"].toObject();
+            auto end = e.toObject()["range"].toObject()["end"].toObject();
+
+			QPair<int, int> start, stop;
+
+            start.first = beg["line"].toInt();
+            start.second = beg["character"].toInt();
+			
+			stop.first = end["line"].toInt();
+            stop.second = end["character"].toInt();
+
+            lintInEditor(start, stop, level, tooltip);
+        }
+    }
 }
 
 void LanguageServer::onLSPServerResponseArrived(QJsonObject method, QJsonObject param)
