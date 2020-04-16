@@ -1,0 +1,43 @@
+name: "Update AUR"
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  aur:
+    name: "Update AUR"
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+
+    - name: Install SSH key
+      uses: shimataro/ssh-key-action@v2
+      with:
+        key: ${{ secrets.SSH_KEY }}
+        name: id_rsa
+        known_hosts: ${{ secrets.KNOWN_HOST }}
+
+    - name: Fetch AUR Remote
+      run: git clone ssh://aur@aur.archlinux.org/cpeditor-git.git
+
+    - name: Update files
+      run: |
+        git fetch --tags
+        VERSION=$(git describe --long --tags | sed 's/\([^-]*-g\)/r\1/;s/-/./g')
+        cd cpeditor-git
+        sed -i "s/pkgver=\S*/pkgver=$VERSION/" PKGBUILD
+        sed -i "s/pkgver = \S*/pkgver = $VERSION/" .SRCINFO
+
+    - name: Publish to AUR
+      run: |
+        SHA=$(git rev-parse --short HEAD)
+        cd cpeditor-git
+        git config --global user.email "ashar786khan@gmail.com"
+        git config --global user.name "coder3101"
+        git commit -am "Update from CI: $SHA"
+        git push -u origin master

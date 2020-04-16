@@ -6,10 +6,10 @@ on:
       - published
 
 jobs:
-  build:
+  aur:
     name: "Release AUR package"
     runs-on: 'ubuntu-16.04'
-    
+
     steps:
     - uses: actions/checkout@v2
 
@@ -29,7 +29,7 @@ jobs:
       uses: shimataro/ssh-key-action@v2
       with:
         key: ${{ secrets.SSH_KEY }}
-        name: id_rsa 
+        name: id_rsa
         known_hosts: ${{ secrets.KNOWN_HOST }}
 
     - name: Install Qt
@@ -52,6 +52,10 @@ jobs:
       if: steps.check_beta.outputs.ISSTABLE == 'true'
       run: |
         git clone ssh://aur@aur.archlinux.org/cpeditor.git
+
+    - name: Update files
+      if: steps.check_beta.outputs.ISSTABLE == 'true'
+      run: |
         cd cpeditor
         rm PKGBUILD .SRCINFO
         mv ../build/aur/PKGBUILD .
@@ -64,5 +68,5 @@ jobs:
         git config --global user.email "ashar786khan@gmail.com"
         git config --global user.name "coder3101"
         git add .
-        git commit -m "New update from CI"
+        git commit -m "Update from CI: ${GITHUB_REF/refs\/tags\//}"
         git push -u origin master
