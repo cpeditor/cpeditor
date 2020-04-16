@@ -1,5 +1,7 @@
 ## UNRELEASED
 
+## 6.3.1 (Beta)
+
 ### The new Preferences Window!
 
 The old preferences window is not very extendable, which has been a big obstacle to add new features for a long time. In this version, we bring a brand new preferences window for you.
