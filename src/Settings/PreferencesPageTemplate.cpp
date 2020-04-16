@@ -53,7 +53,7 @@ PreferencesPageTemplate::PreferencesPageTemplate(QStringList opts, bool alignTop
         {
             Wrapper<QString> *wrapper = createStringWrapper(si.ui);
             wrapper->init(this, si.param);
-            addRow(si.desc, wrapper);
+            addRow(si.desc, si.tip, wrapper);
             widgets.push_back(wrapper);
         }
         else if (si.type == "bool")
@@ -67,14 +67,14 @@ PreferencesPageTemplate::PreferencesPageTemplate(QStringList opts, bool alignTop
         {
             Wrapper<int> *wrapper = createIntWrapper(si.ui);
             wrapper->init(this, si.param);
-            addRow(si.desc, wrapper);
+            addRow(si.desc, si.tip, wrapper);
             widgets.push_back(wrapper);
         }
         else if (si.type == "QFont")
         {
             Wrapper<QFont> *wrapper = createFontWrapper(si.ui);
             wrapper->init(this, si.param);
-            addRow(si.desc, wrapper);
+            addRow(si.desc, si.tip, wrapper);
             widgets.push_back(wrapper);
         }
     }

@@ -41,7 +41,7 @@ class PreferencesGridPage : public PreferencesPage
      * @param labelText(optional) the label of the row
      */
     void addRow(ValueWidget *widget);
-    void addRow(const QString &labelText, ValueWidget *widget);
+    void addRow(const QString &labelText, const QString &labelTip, ValueWidget *widget);
 
   private:
     QVBoxLayout *VLayout = nullptr;
