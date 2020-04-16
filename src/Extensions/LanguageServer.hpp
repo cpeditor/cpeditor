@@ -41,10 +41,11 @@ class LanguageServer : public QObject
   public:
     LanguageServer(QString language);
 
-    // Diagonistics related helpers
     void openDocument(QString path, QCodeEditor *editor);
-    void closeDocument(QString path);
-    void changeDocument(QString path, QCodeEditor *editor);
+    void closeDocument();
+    void requestLinting();
+
+    bool isDocumentOpen() const;
 
     void updateSettings();
 
@@ -56,6 +57,7 @@ class LanguageServer : public QObject
     QCodeEditor *m_editor = nullptr;
     LSPClient *lsp = nullptr;
     QString language;
+    QString openFile;
 };
 } // namespace Extensions
 #endif // !LANGUAGE_SERVER_H

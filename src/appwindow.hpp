@@ -20,7 +20,7 @@
 
 #include <QMainWindow>
 
-#include "LSPClient.hpp"
+#include "Extensions/LanguageServer.hpp"
 #include "Settings/PreferencesWindow.hpp"
 #include "Telemetry/UpdateNotifier.hpp"
 #include "mainwindow.hpp"
@@ -98,6 +98,8 @@ class AppWindow : public QMainWindow
 
     void onSaveTimerElapsed();
 
+    void onLSPTimerElapsed();
+
     void onSettingsApplied(const QString &pagePath);
 
     void onSplitterMoved(int, int);
@@ -160,6 +162,7 @@ class AppWindow : public QMainWindow
     Ui::AppWindow *ui;
     MessageLogger *activeLogger = nullptr;
     QTimer *autoSaveTimer = nullptr;
+    QTimer *lspTimer = nullptr;
     QMetaObject::Connection activeSplitterMoveConnection;
     QMetaObject::Connection activeRightSplitterMoveConnection;
     Telemetry::UpdateNotifier *updater = nullptr;
@@ -169,6 +172,10 @@ class AppWindow : public QMainWindow
     QSystemTrayIcon *trayIcon = nullptr;
     QMenu *trayIconMenu = nullptr;
     QMenu *tabMenu = nullptr;
+
+    Extensions::LanguageServer *cppServer = nullptr;
+    Extensions::LanguageServer *javaServer = nullptr;
+    Extensions::LanguageServer *pythonServer = nullptr;
 
     void setConnections();
     void allocate();

@@ -169,9 +169,14 @@ AppWindow::~AppWindow()
     delete ui;
     delete preferencesWindow;
     delete autoSaveTimer;
+    delete lspTimer;
+    delete cppServer;
+    delete pythonServer;
+    delete javaServer;
     delete updater;
     delete server;
     delete findReplaceDialog;
+
     SettingsManager::deinit();
 }
 
@@ -216,6 +221,7 @@ void AppWindow::setConnections()
     connect(ui->tabWidget->tabBar(), SIGNAL(customContextMenuRequested(const QPoint &)), this,
             SLOT(onTabContextMenuRequested(const QPoint &)));
     connect(autoSaveTimer, SIGNAL(timeout()), this, SLOT(onSaveTimerElapsed()));
+    connect(lspTimer, SIGNAL(timeout()), this, SLOT(onLSPTimerElapsed()));
 
     connect(preferencesWindow, SIGNAL(settingsApplied(const QString &)), this,
             SLOT(onSettingsApplied(const QString &)));
@@ -232,9 +238,16 @@ void AppWindow::allocate()
     Core::Log::i("appwindow/allocate", "Invoked");
     SettingsManager::init();
     autoSaveTimer = new QTimer();
+    lspTimer = new QTimer();
     updater = new Telemetry::UpdateNotifier(SettingsHelper::isBeta());
     preferencesWindow = new PreferencesWindow(this);
+
     server = new Extensions::CompanionServer(SettingsHelper::getCompetitiveCompanionConnectionPort());
+
+    cppServer = new Extensions::LanguageServer("C++");
+    javaServer = new Extensions::LanguageServer("Java");
+    pythonServer = new Extensions::LanguageServer("Python");
+
     findReplaceDialog = new FindReplaceDialog(this);
     findReplaceDialog->setModal(false);
     findReplaceDialog->setWindowFlags(Qt::Window | Qt::WindowMinimizeButtonHint | Qt::WindowMaximizeButtonHint |
@@ -242,6 +255,9 @@ void AppWindow::allocate()
 
     autoSaveTimer->setInterval(3000);
     autoSaveTimer->setSingleShot(false);
+
+    lspTimer->setInterval(SettingsHelper::getLSPDelay());
+    lspTimer->setSingleShot(false);
 
     trayIconMenu = new QMenu();
     trayIconMenu->addAction("Show Main Window", this, SLOT(showOnTop()));
@@ -800,6 +816,25 @@ void AppWindow::onTabChanged(int index)
 
     auto tmp = windowAt(index);
 
+    if (tmp->getLanguage() == "C++")
+    {
+        if (cppServer->isDocumentOpen())
+            cppServer->closeDocument();
+        cppServer->openDocument(tmp->tmpPath(), tmp->getEditor());
+    }
+    else if (tmp->getLanguage() == "Java")
+    {
+        if (javaServer->isDocumentOpen())
+            javaServer->closeDocument();
+        javaServer->openDocument(tmp->tmpPath(), tmp->getEditor());
+    }
+    else if (tmp->getLanguage() == "Python")
+    {
+        if (pythonServer->isDocumentOpen())
+            pythonServer->closeDocument();
+        pythonServer->openDocument(tmp->tmpPath(), tmp->getEditor());
+    }
+
     findReplaceDialog->setTextEdit(tmp->getEditor());
 
     setWindowTitle(tmp->getCompleteTitle() + " - CP Editor");
@@ -883,12 +918,13 @@ void AppWindow::onEditorTextChanged(MainWindow *window)
         if (windowAt(index)->isTextChanged())
             title += " *";
         ui->tabWidget->setTabText(index, title);
+
+        lspTimer->start();
     }
 }
 
 void AppWindow::onSaveTimerElapsed()
 {
-    Core::Log::i("appwindow/onSaveTimerElapsed", "Autosave invoked");
     for (int t = 0; t < ui->tabWidget->count(); t++)
     {
         auto tmp = windowAt(t);
@@ -900,6 +936,21 @@ void AppWindow::onSaveTimerElapsed()
     }
 }
 
+void AppWindow::onLSPTimerElapsed()
+{
+    auto tab = currentWindow();
+    if (tab == nullptr)
+        return;
+    auto lang = tab->getLanguage();
+    if (lang == "C++")
+        cppServer->requestLinting();
+    else if (lang == "Java")
+        javaServer->requestLinting();
+    else if (lang == "Python")
+        pythonServer->requestLinting();
+
+    lspTimer->stop(); // Wait for next change.
+}
 void AppWindow::onSettingsApplied(const QString &pagePath)
 {
     Core::Log::i("appwindow/onSettingsApplied") << INFO_OF(pagePath) << endl;
@@ -935,7 +986,17 @@ void AppWindow::onSettingsApplied(const QString &pagePath)
     if (pagePath.isEmpty() || pagePath == "Appearance")
         setWindowOpacity(SettingsHelper::getTransparency() / 100.0);
 
-    Core::Log::i("appwindow/onSettingsApplied", "Finished");
+    if (pagePath.isEmpty() || pagePath == "Extensions/Language Server/Java Server")
+        javaServer->updateSettings();
+
+    if (pagePath.isEmpty() || pagePath == "Extensions/Language Server/C++ Server")
+        cppServer->updateSettings();
+
+    if (pagePath.isEmpty() || pagePath == "Extensions/Language Server/Python Server")
+        pythonServer->updateSettings();
+
+    if (pagePath.isEmpty() || pagePath == "Extensions/Language Server/General")
+        lspTimer->setInterval(SettingsHelper::getLSPDelay());
 }
 
 void AppWindow::onIncomingCompanionRequest(const Extensions::CompanionData &data)
