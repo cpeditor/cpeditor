@@ -1,419 +1,419 @@
 [
-    {
-        "name": "Tab Width",
-        "type": "int",
-        "default": 4,
-        "old": [
-            "tab_stop"
-        ],
-        "param": "QList<QVariant> {1,16}"
-    },
-    {
-        "name": "Geometry",
-        "type": "QRect"
-    },
-    {
-        "name": "Font",
-        "type": "QFont",
-        "default": "QFont(\"monospace\")"
-    },
-    {
-        "name": "Default Language",
-        "type": "QString",
-        "default": "C++",
-        "ui": "QComboBox",
-        "param": "QStringList {\"C++\", \"Java\", \"Python\"}"
-    },
-    {
-        "name": "Clang Format/Path",
-        "desc": "Path",
-        "type": "QString",
-        "default": "clang-format",
-        "old": [
-            "clang_format_binary"
-        ],
-        "ui": "PathItem",
-        "param": "0"
-    },
-    {
-        "name": "Clang Format/Style",
-        "desc": "Style",
-        "type": "QString",
-        "default": "BasedOnStyle: Google",
-        "old": [
-            "clang_format_style"
-        ],
-        "ui": "QPlainTextEdit"
-    },
-    {
-        "name": "C++/Template Path",
-        "type": "QString",
-        "old": [
-            "template_cpp"
-        ],
-        "ui": "PathItem",
-        "param": "1"
-    },
-    {
-        "name": "C++/Compile Command",
-        "type": "QString",
-        "default": "g++ -Wall",
-        "old": [
-            "compile_cpp"
-        ]
-    },
-    {
-        "name": "C++/Run Arguments",
-        "type": "QString",
-        "old": [
-            "runtime_cpp"
-        ]
-    },
-    {
-        "name": "Java/Template Path",
-        "type": "QString",
-        "old": [
-            "template_java"
-        ],
-        "ui": "PathItem",
-        "param": "2"
-    },
-    {
-        "name": "Java/Compile Command",
-        "type": "QString",
-        "default": "javac",
-        "old": [
-            "compile_java"
-        ]
-    },
-    {
-        "name": "Java/Run Arguments",
-        "type": "QString",
-        "default": "",
-        "old": [
-            "runtime_java"
-        ]
-    },
-    {
-        "name": "Java/Run Command",
-        "type": "QString",
-        "default": "java",
-        "old": [
-            "run_java"
-        ]
-    },
-    {
-        "name": "Python/Template Path",
-        "type": "QString",
-        "old": [
-            "template_python"
-        ],
-        "ui": "PathItem",
-        "param": "3"
-    },
-    {
-        "name": "Python/Run Arguments",
-        "type": "QString",
-        "old": [
-            "runtime_python"
-        ]
-    },
-    {
-        "name": "Python/Run Command",
-        "type": "QString",
-        "default": "python",
-        "old": [
-            "run_python"
-        ]
-    },
-    {
-        "name": "Editor Theme",
-        "type": "QString",
-        "default": "Light",
-        "ui": "QComboBox",
-        "param": "QStringList {\"Light\", \"Dracula\", \"Monokai\", \"Solarized\", \"Solarized Dark\"}"
-    },
-    {
-        "name": "Auto Complete Parentheses",
-        "type": "bool",
-        "default": true,
-        "old": [
-            "auto_parenthesis"
-        ]
-    },
-    {
-        "name": "Auto Remove Parentheses",
-        "type": "bool",
-        "default": true,
-        "old": [
-            "auto_remove_parentheses"
-        ]
-    },
-    {
-        "name": "Auto Indent",
-        "type": "bool",
-        "default": true
-    },
-    {
-        "name": "Auto Save",
-        "desc": "Enable Auto Save",
-        "type": "bool",
-        "old": [
-            "autosave"
-        ]
-    },
-    {
-        "name": "Wrap Text",
-        "type": "bool"
-    },
-    {
-        "name": "Beta",
-        "desc": "Check for Beta updates as well",
-        "type": "bool"
-    },
-    {
-        "name": "Replace Tabs",
-        "type": "bool"
-    },
-    {
-        "name": "Save Tests",
-        "desc": "Save Testcases on Save",
-        "type": "bool"
-    },
-    {
-        "name": "Maximized Window",
-        "type": "bool",
-        "old": [
-            "win_max"
-        ]
-    },
-    {
-        "name": "Check Update",
-        "desc": "Check for updates on startup",
-        "type": "bool",
-        "default": true,
-        "old": [
-            "update_start_check"
-        ]
-    },
-    {
-        "name": "Auto Format",
-        "desc": "Format Codes on Save",
-        "type": "bool",
-        "old": [
-            "format_on_save"
-        ]
-    },
-    {
-        "name": "Transparency",
-        "type": "int",
-        "default": 100,
-        "param": "QList<QVariant> {60,100}",
-        "ui": "QSlider"
-    },
-    {
-        "name": "View Mode",
-        "type": "QString",
-        "default": "split"
-    },
-    {
-        "name": "Splitter Size",
-        "type": "QByteArray",
-        "old": [
-            "splitter_sizes"
-        ]
-    },
-    {
-        "name": "Right Splitter Size",
-        "type": "QByteArray",
-        "old": [
-            "right_splitter_sizes"
-        ]
-    },
-    {
-        "name": "Competitive Companion/Enable",
-        "desc": "Enable Competitive Companion",
-        "type": "bool",
-        "default": true,
-        "old": [
-            "competitive_use"
-        ]
-    },
-    {
-        "name": "Competitive Companion/Connection Port",
-        "desc": "Connection Port",
-        "type": "int",
-        "default": 10045,
-        "old": [
-            "connection_port"
-        ],
-        "param": "QList<QVariant> {1024,49151}"
-    },
-    {
-        "name": "Competitive Companion/Open New Tab",
-        "desc": "Open New Tabs",
-        "type": "bool",
-        "default": true,
-        "old": [
-            "companion_new_tab"
-        ]
-    },
-    {
-        "name": "Hotkey/Format",
-        "desc": "Format Codes",
-        "type": "QString",
-        "old": [
-            "hotkey_format"
-        ],
-        "ui": "ShortcutItem"
-    },
-    {
-        "name": "Hotkey/Kill",
-        "desc": "Kill All Processes",
-        "type": "QString",
-        "old": [
-            "hotkey_kill"
-        ],
-        "ui": "ShortcutItem"
-    },
-    {
-        "name": "Hotkey/Compile Run",
-        "desc": "Compile and Run",
-        "type": "QString",
-        "old": [
-            "hotkey_compile_run"
-        ],
-        "ui": "ShortcutItem"
-    },
-    {
-        "name": "Hotkey/Run",
-        "desc": "Run Only",
-        "type": "QString",
-        "old": [
-            "hotkey_run"
-        ],
-        "ui": "ShortcutItem"
-    },
-    {
-        "name": "Hotkey/Compile",
-        "desc": "Compile Only",
-        "type": "QString",
-        "old": [
-            "hotkey_compile"
-        ],
-        "ui": "ShortcutItem"
-    },
-    {
-        "name": "Hotkey/Change View Mode",
-        "desc": "Change View Mode",
-        "type": "QString",
-        "old": [
-            "hotkey_mode_toggle"
-        ],
-        "ui": "ShortcutItem"
-    },
-    {
-        "name": "Hotkey/Snippets",
-        "desc": "Use Snippets",
-        "type": "QString",
-        "old": [
-            "hotkey_snippets"
-        ],
-        "ui": "ShortcutItem"
-    },
-    {
-        "name": "Hot Exit/Enable",
-        "desc": "Enable Hot Exit",
-        "type": "bool",
-        "default": true,
-        "old": [
-            "use_hot_exit"
-        ]
-    },
-    {
-        "name": "Hot Exit/Tab Count",
-        "type": "int",
-        "old": [
-            "number_of_tabs"
-        ]
-    },
-    {
-        "name": "Hot Exit/Current Index",
-        "type": "int",
-        "default": -1,
-        "old": [
-            "current_index"
-        ]
-    },
-    {
-        "name": "Hot Exit/Load From File",
-        "type": "bool",
-        "old": [
-            "hot_exit_load_from_file"
-        ]
-    },
-    {
-        "name": "CF/Path",
-        "desc": "Path",
-        "type": "QString",
-        "default": "cf",
-        "old": [
-            "cf_path"
-        ],
-        "ui": "PathItem",
-        "param": "0"
-    },
-    {
-        "name": "Save Path",
-        "type": "QString"
-    },
-    {
-        "name": "Show Compile And Run Only",
-        "type": "bool",
-        "old": [
-            "compile_and_run_only"
-        ]
-    },
-    {
-        "name": "Display EOLN In Diff",
-        "type": "bool"
-    },
-    {
-        "name": "Save Faster",
-        "desc": "Save Files Faster",
-        "type": "bool"
-    },
-    {
-        "name": "Time Limit",
-        "desc": "Time Limit (ms)",
-        "type": "int",
-        "default": 5000,
-        "param": "QList<QVariant> {1,3600000}"
-    },
-    {
-        "name": "Output Length Limit",
-        "type": "int",
-        "default": 500000,
-        "param": "QList<QVariant> {2,1000000000}"
-    },
-    {
-        "name": "Message Length Limit",
-        "type": "int",
-        "default": 20000,
-        "param": "QList<QVariant> {500,100000000}"
-    },
-    {
-        "name": "HTML Diff Viewer Length Limit",
-        "type": "int",
-        "default": 50000,
-        "param": "QList<QVariant> {2,100000000}"
-    },
-    {
-        "name": "Open File Length Limit",
-        "type": "int",
-        "default": 20000,
-        "param": "QList<QVariant> {2,100000000}"
-    },
+  {
+    "name": "Tab Width",
+    "type": "int",
+    "default": 4,
+    "old": [
+      "tab_stop"
+    ],
+    "param": "QList<QVariant> {1,16}"
+  },
+  {
+    "name": "Geometry",
+    "type": "QRect"
+  },
+  {
+    "name": "Font",
+    "type": "QFont",
+    "default": "QFont(\"monospace\")"
+  },
+  {
+    "name": "Default Language",
+    "type": "QString",
+    "default": "C++",
+    "ui": "QComboBox",
+    "param": "QStringList {\"C++\", \"Java\", \"Python\"}"
+  },
+  {
+    "name": "Clang Format/Path",
+    "desc": "Path",
+    "type": "QString",
+    "default": "clang-format",
+    "old": [
+      "clang_format_binary"
+    ],
+    "ui": "PathItem",
+    "param": "0"
+  },
+  {
+    "name": "Clang Format/Style",
+    "desc": "Style",
+    "type": "QString",
+    "default": "BasedOnStyle: Google",
+    "old": [
+      "clang_format_style"
+    ],
+    "ui": "QPlainTextEdit"
+  },
+  {
+    "name": "C++/Template Path",
+    "type": "QString",
+    "old": [
+      "template_cpp"
+    ],
+    "ui": "PathItem",
+    "param": "1"
+  },
+  {
+    "name": "C++/Compile Command",
+    "type": "QString",
+    "default": "g++ -Wall",
+    "old": [
+      "compile_cpp"
+    ]
+  },
+  {
+    "name": "C++/Run Arguments",
+    "type": "QString",
+    "old": [
+      "runtime_cpp"
+    ]
+  },
+  {
+    "name": "Java/Template Path",
+    "type": "QString",
+    "old": [
+      "template_java"
+    ],
+    "ui": "PathItem",
+    "param": "2"
+  },
+  {
+    "name": "Java/Compile Command",
+    "type": "QString",
+    "default": "javac",
+    "old": [
+      "compile_java"
+    ]
+  },
+  {
+    "name": "Java/Run Arguments",
+    "type": "QString",
+    "default": "",
+    "old": [
+      "runtime_java"
+    ]
+  },
+  {
+    "name": "Java/Run Command",
+    "type": "QString",
+    "default": "java",
+    "old": [
+      "run_java"
+    ]
+  },
+  {
+    "name": "Python/Template Path",
+    "type": "QString",
+    "old": [
+      "template_python"
+    ],
+    "ui": "PathItem",
+    "param": "3"
+  },
+  {
+    "name": "Python/Run Arguments",
+    "type": "QString",
+    "old": [
+      "runtime_python"
+    ]
+  },
+  {
+    "name": "Python/Run Command",
+    "type": "QString",
+    "default": "python",
+    "old": [
+      "run_python"
+    ]
+  },
+  {
+    "name": "Editor Theme",
+    "type": "QString",
+    "default": "Light",
+    "ui": "QComboBox",
+    "param": "QStringList {\"Light\", \"Dracula\", \"Monokai\", \"Solarized\", \"Solarized Dark\"}"
+  },
+  {
+    "name": "Auto Complete Parentheses",
+    "type": "bool",
+    "default": true,
+    "old": [
+      "auto_parenthesis"
+    ]
+  },
+  {
+    "name": "Auto Remove Parentheses",
+    "type": "bool",
+    "default": true,
+    "old": [
+      "auto_remove_parentheses"
+    ]
+  },
+  {
+    "name": "Auto Indent",
+    "type": "bool",
+    "default": true
+  },
+  {
+    "name": "Auto Save",
+    "desc": "Enable Auto Save",
+    "type": "bool",
+    "old": [
+      "autosave"
+    ]
+  },
+  {
+    "name": "Wrap Text",
+    "type": "bool"
+  },
+  {
+    "name": "Beta",
+    "desc": "Check for Beta updates as well",
+    "type": "bool"
+  },
+  {
+    "name": "Replace Tabs",
+    "type": "bool"
+  },
+  {
+    "name": "Save Tests",
+    "desc": "Save Testcases on Save",
+    "type": "bool"
+  },
+  {
+    "name": "Maximized Window",
+    "type": "bool",
+    "old": [
+      "win_max"
+    ]
+  },
+  {
+    "name": "Check Update",
+    "desc": "Check for updates on startup",
+    "type": "bool",
+    "default": true,
+    "old": [
+      "update_start_check"
+    ]
+  },
+  {
+    "name": "Auto Format",
+    "desc": "Format Codes on Save",
+    "type": "bool",
+    "old": [
+      "format_on_save"
+    ]
+  },
+  {
+    "name": "Transparency",
+    "type": "int",
+    "default": 100,
+    "param": "QList<QVariant> {60,100}",
+    "ui": "QSlider"
+  },
+  {
+    "name": "View Mode",
+    "type": "QString",
+    "default": "split"
+  },
+  {
+    "name": "Splitter Size",
+    "type": "QByteArray",
+    "old": [
+      "splitter_sizes"
+    ]
+  },
+  {
+    "name": "Right Splitter Size",
+    "type": "QByteArray",
+    "old": [
+      "right_splitter_sizes"
+    ]
+  },
+  {
+    "name": "Competitive Companion/Enable",
+    "desc": "Enable Competitive Companion",
+    "type": "bool",
+    "default": true,
+    "old": [
+      "competitive_use"
+    ]
+  },
+  {
+    "name": "Competitive Companion/Connection Port",
+    "desc": "Connection Port",
+    "type": "int",
+    "default": 10045,
+    "old": [
+      "connection_port"
+    ],
+    "param": "QList<QVariant> {1024,49151}"
+  },
+  {
+    "name": "Competitive Companion/Open New Tab",
+    "desc": "Open New Tabs",
+    "type": "bool",
+    "default": true,
+    "old": [
+      "companion_new_tab"
+    ]
+  },
+  {
+    "name": "Hotkey/Format",
+    "desc": "Format Codes",
+    "type": "QString",
+    "old": [
+      "hotkey_format"
+    ],
+    "ui": "ShortcutItem"
+  },
+  {
+    "name": "Hotkey/Kill",
+    "desc": "Kill All Processes",
+    "type": "QString",
+    "old": [
+      "hotkey_kill"
+    ],
+    "ui": "ShortcutItem"
+  },
+  {
+    "name": "Hotkey/Compile Run",
+    "desc": "Compile and Run",
+    "type": "QString",
+    "old": [
+      "hotkey_compile_run"
+    ],
+    "ui": "ShortcutItem"
+  },
+  {
+    "name": "Hotkey/Run",
+    "desc": "Run Only",
+    "type": "QString",
+    "old": [
+      "hotkey_run"
+    ],
+    "ui": "ShortcutItem"
+  },
+  {
+    "name": "Hotkey/Compile",
+    "desc": "Compile Only",
+    "type": "QString",
+    "old": [
+      "hotkey_compile"
+    ],
+    "ui": "ShortcutItem"
+  },
+  {
+    "name": "Hotkey/Change View Mode",
+    "desc": "Change View Mode",
+    "type": "QString",
+    "old": [
+      "hotkey_mode_toggle"
+    ],
+    "ui": "ShortcutItem"
+  },
+  {
+    "name": "Hotkey/Snippets",
+    "desc": "Use Snippets",
+    "type": "QString",
+    "old": [
+      "hotkey_snippets"
+    ],
+    "ui": "ShortcutItem"
+  },
+  {
+    "name": "Hot Exit/Enable",
+    "desc": "Enable Hot Exit",
+    "type": "bool",
+    "default": true,
+    "old": [
+      "use_hot_exit"
+    ]
+  },
+  {
+    "name": "Hot Exit/Tab Count",
+    "type": "int",
+    "old": [
+      "number_of_tabs"
+    ]
+  },
+  {
+    "name": "Hot Exit/Current Index",
+    "type": "int",
+    "default": -1,
+    "old": [
+      "current_index"
+    ]
+  },
+  {
+    "name": "Hot Exit/Load From File",
+    "type": "bool",
+    "old": [
+      "hot_exit_load_from_file"
+    ]
+  },
+  {
+    "name": "CF/Path",
+    "desc": "Path",
+    "type": "QString",
+    "default": "cf",
+    "old": [
+      "cf_path"
+    ],
+    "ui": "PathItem",
+    "param": "0"
+  },
+  {
+    "name": "Save Path",
+    "type": "QString"
+  },
+  {
+    "name": "Show Compile And Run Only",
+    "type": "bool",
+    "old": [
+      "compile_and_run_only"
+    ]
+  },
+  {
+    "name": "Display EOLN In Diff",
+    "type": "bool"
+  },
+  {
+    "name": "Save Faster",
+    "desc": "Save Files Faster",
+    "type": "bool"
+  },
+  {
+    "name": "Time Limit",
+    "desc": "Time Limit (ms)",
+    "type": "int",
+    "default": 5000,
+    "param": "QList<QVariant> {1,3600000}"
+  },
+  {
+    "name": "Output Length Limit",
+    "type": "int",
+    "default": 500000,
+    "param": "QList<QVariant> {2,1000000000}"
+  },
+  {
+    "name": "Message Length Limit",
+    "type": "int",
+    "default": 20000,
+    "param": "QList<QVariant> {500,100000000}"
+  },
+  {
+    "name": "HTML Diff Viewer Length Limit",
+    "type": "int",
+    "default": 50000,
+    "param": "QList<QVariant> {2,100000000}"
+  },
+  {
+    "name": "Open File Length Limit",
+    "type": "int",
+    "default": 20000,
+    "param": "QList<QVariant> {2,100000000}"
+  },
   {
     "name": "Load Test Case File Length Limit",
     "type": "int",
@@ -421,20 +421,34 @@
     "param": "QList<QVariant> {2,1000000000}"
   },
   {
-    "name": "LSP/UseAutoComplete",
+    "name": "LSP/Use Auto Complete",
     "desc": "Use autocomplete with Language server",
     "type": "bool"
   },
   {
-    "name": "LSP/UseDiagonistics",
-    "desc": "Use diagonistics with Language Server",
+    "name": "LSP/Use Linting",
+    "desc": "Use Linting with Language Server",
     "type": "bool"
   },
   {
-    "name": "LSP/Path",
+    "name": "LSP/Path C++",
     "ui": "PathItem",
     "desc": "Path to LSP executable",
     "default": "clangd",
+    "type": "QString",
+    "param": "0"
+  },
+  {
+    "name": "LSP/Path Java",
+    "ui": "PathItem",
+    "desc": "Path to LSP executable",
+    "type": "QString",
+    "param": "0"
+  },
+  {
+    "name": "LSP/Path Python",
+    "ui": "PathItem",
+    "desc": "Path to LSP executable",
     "type": "QString",
     "param": "0"
   },
@@ -444,5 +458,20 @@
     "desc": "Delay in LSP diagonistics",
     "default": 2000,
     "param": "QList<QVariant> {100, 10000}"
+  },
+  {
+    "name": "LSP/Args C++",
+    "desc": "Arguments for Language Server",
+    "type": "QString"
+  },
+  {
+    "name": "LSP/Args Java",
+    "desc": "Arguments for Language Server",
+    "type": "QString"
+  },
+  {
+    "name": "LSP/Args Python",
+    "desc": "Arguments for Language Server",
+    "type": "QString"
   }
 ]

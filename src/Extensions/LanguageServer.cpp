@@ -36,8 +36,15 @@ LanguageServer::LanguageServer(QString language)
         Core::Log::w("LanguageServer/constructed") << "Invalid language " << language << "Fallback to c++" << endl;
         this->language = "cpp";
     }
+    // When we have written the QString -> QStringList argument converter this split(" ") should be removed
 
-    lsp = new LSPClient(SettingsHelper::getLSPPath(), {/* No arguments to pass for now*/});
+    if (language == "Python")
+        lsp = new LSPClient(SettingsHelper::getLSPPathPython(), SettingsHelper::getLSPArgsPython().split(" "));
+    else if (language == "Java")
+        lsp = new LSPClient(SettingsHelper::getLSPPathJava(), SettingsHelper::getLSPArgsJava().split(" "));
+    else
+        lsp = new LSPClient(SettingsHelper::getLSPPathCpp(), SettingsHelper::getLSPArgsCpp().split(" "));
+
     performConnection();
     lsp->initialize();
 }

@@ -115,7 +115,10 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
 
     addPage("Extensions/Clang Format", {"Clang Format/Path", "Clang Format/Style"}, false);
 
-    addPage("Extensions/Language Server", {"LSP/UseAutoComplete", "LSP/UseDiagonistics", "LSP/Path", "LSP/Delay"});
+    addPage("Extensions/Language Server/General", {"LSP/Use Auto Complete", "LSP/Use Linting", "LSP/Delay"});
+    addPage("Extensions/Language Server/C++ Server", {"LSP/Path C++", "LSP/Args C++"});
+    addPage("Extensions/Language Server/Java Server", {"LSP/Path Java", "LSP/Args Java"});
+    addPage("Extensions/Language Server/Python Server", {"LSP/Path Python", "LSP/Args Python"});
 
     addPage("Extensions/Competitive Companion", {"Competitive Companion/Enable", "Competitive Companion/Open New Tab",
                                                  "Competitive Companion/Connection Port"});
