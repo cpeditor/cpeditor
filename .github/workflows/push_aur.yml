@@ -35,9 +35,9 @@ jobs:
 
     - name: Publish to AUR
       run: |
-        SHA=$(git rev-parse --short HEAD)
+        VERSION=$(git describe --long --tags | sed 's/\([^-]*-g\)/r\1/;s/-/./g')
         cd cpeditor-git
         git config --global user.email "ashar786khan@gmail.com"
         git config --global user.name "coder3101"
-        git commit -am "Update from CI: $SHA"
+        git commit -am "Update from CI: $VERSION"
         git push -u origin master
