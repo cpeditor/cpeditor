@@ -53,6 +53,7 @@ class LanguageServer : public QObject
 
   private:
     void performConnection();
+    void createClient();
 
     QCodeEditor *m_editor = nullptr;
     LSPClient *lsp = nullptr;

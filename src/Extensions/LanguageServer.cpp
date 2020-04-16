@@ -40,13 +40,7 @@ LanguageServer::LanguageServer(QString lang)
     }
     // When we have written the QString -> QStringList argument converter this split(" ") should be removed
 
-    if (language == "python")
-        lsp = new LSPClient(SettingsHelper::getLSPPathPython(), SettingsHelper::getLSPArgsPython().split(" "));
-    else if (language == "java")
-        lsp = new LSPClient(SettingsHelper::getLSPPathJava(), SettingsHelper::getLSPArgsJava().split(" "));
-    else
-        lsp = new LSPClient(SettingsHelper::getLSPPathCpp(), SettingsHelper::getLSPArgsCpp().split(" "));
-
+    createClient();
     performConnection();
     lsp->initialize();
 }
@@ -94,7 +88,7 @@ void LanguageServer::requestLinting()
 
 bool LanguageServer::isDocumentOpen() const
 {
-    return openFile.isEmpty();
+    return !openFile.isEmpty();
 }
 
 void LanguageServer::updateSettings()
@@ -108,12 +102,7 @@ void LanguageServer::updateSettings()
     if (m_editor != nullptr)
         m_editor->clearSquiggle();
 
-    if (language == "Python")
-        lsp = new LSPClient(SettingsHelper::getLSPPathPython(), SettingsHelper::getLSPArgsPython().split(" "));
-    else if (language == "Java")
-        lsp = new LSPClient(SettingsHelper::getLSPPathJava(), SettingsHelper::getLSPArgsJava().split(" "));
-    else
-        lsp = new LSPClient(SettingsHelper::getLSPPathCpp(), SettingsHelper::getLSPArgsCpp().split(" "));
+    createClient();
 
     performConnection();
     lsp->initialize();
@@ -138,6 +127,28 @@ void LanguageServer::performConnection()
     Core::Log::i("LanguageServer/performConnections", "All connections have been established");
 }
 
+void LanguageServer::createClient()
+{
+    QString lspArgCpp = SettingsHelper::getLSPArgsCpp().trimmed();
+    QString lspArgPython = SettingsHelper::getLSPArgsPython().trimmed();
+    QString lspArgJava = SettingsHelper::getLSPArgsJava().trimmed();
+
+    QStringList argListCpp, argListPython, argListJava;
+
+    if (!lspArgCpp.isEmpty())
+        argListCpp = lspArgCpp.split(" ");
+    if (!lspArgPython.isEmpty())
+        argListPython = lspArgPython.split(" ");
+    if (!lspArgJava.isEmpty())
+        argListJava = lspArgJava.split(" ");
+
+    if (language == "python")
+        lsp = new LSPClient(SettingsHelper::getLSPPathPython(), argListPython);
+    else if (language == "java")
+        lsp = new LSPClient(SettingsHelper::getLSPPathJava(), argListJava);
+    else
+        lsp = new LSPClient(SettingsHelper::getLSPPathCpp(), argListCpp);
+}
 // ---------------------------- LSP SLOTS ------------------------
 
 void LanguageServer::onLSPServerNotificationArrived(QString method, QJsonObject param)
