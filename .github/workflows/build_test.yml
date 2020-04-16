@@ -3,7 +3,7 @@ name: "CI: Build Test"
 on: [push, pull_request]
 
 env:
-  CMAKE_VERSION: 3.16.4
+  CMAKE_VERSION: 3.16.6
   NINJA_VERSION: 1.10.0
   BUILD_TYPE: Release
   CCACHE_VERSION: 3.7.7
@@ -15,7 +15,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        qt_version: [5.12.7, 5.14.1]
+        qt_version: [5.12.8, 5.14.2]
         config:
         - {
             os: windows-latest,
@@ -176,9 +176,9 @@ jobs:
         set(ENV{CCACHE_DIR} "${ccache_basedir}/.ccache")
         set(ENV{CCACHE_COMPRESS} "true")
         set(ENV{CCACHE_COMPRESSLEVEL} "6")
-        set(ENV{CCACHE_MAXSIZE} "100M")
+        set(ENV{CCACHE_MAXSIZE} "20M")
         if ("${{ matrix.config.cxx }}" STREQUAL "cl")
-          set(ENV{CCACHE_MAXSIZE} "150M")
+          set(ENV{CCACHE_MAXSIZE} "30M")
         endif()
         execute_process(COMMAND ccache -p)
         execute_process(COMMAND ccache -z)
