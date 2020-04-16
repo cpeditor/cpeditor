@@ -1,6 +1,6 @@
 ## UNRELEASED
 
-## 6.3.1 (Beta)
+## v6.3
 
 ### The new Preferences Window!
 
