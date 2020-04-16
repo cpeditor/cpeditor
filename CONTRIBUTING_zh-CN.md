@@ -39,7 +39,7 @@
 2. 一个 PR 只干一件事。如果你需要添加多个 feature / 修复多个 bug，并且它们之间没有什么关联，请开多个 PR。你可能需要开多个分支来提交多个 PR，你可以在 [这里](https://learngitbranching.js.org/) 学习在不同的分支上工作。
 3. 请在 master 分支上添加特性，在最早的含有该 bug 的活动（master, beta 和 stable）分支上修复 bug。
 4. 请撰写 [清晰的 commit messages](https://chris.beams.io/posts/git-commit/)。推荐遵守 [约定式提交](https://www.conventionalcommits.org/zh-hans/) 的规范，你可以使用 [commitizen/cz-cli](https://github.com/commitizen/cz-cli) 来撰写提交信息。只不过，这些规范都是不必强行遵守的，关键是你的 commit messages 要能让别人和未来的自己明白每个 commit 中有哪些改动，以及为何进行这些改动。
-5. 请使用 Clang Format 9（你可以通过 `clang-format --version` 来获取你的 Clang Format 版本）来格式化代码。你可能需要为你的 IDE 设置 clang-format 可执行文件路径，例如，VS Code 可能自带了 Clang Format 6，需要手动设置成你安装的 Clang Format 9。如果你实在无法安装 Clang Format 9 也没关系，因为你的代码会在 GitHub 上被自动格式化。
+5. 请使用 Clang Format 9（你可以通过 `clang-format --version` 来获取你的 Clang Format 版本）来格式化代码。你可能需要为你的 IDE 设置 clang-format 可执行文件路径，例如，VS Code 可能自带了 Clang Format 6，需要手动设置成你安装的 Clang Format 9。
 6. 尽量不要移除已有的 feature，请增加一个启用 / 禁用的选项。
 7. 永远保持设置文件的向下兼容。
 8. Windows，Linux 和 Mac OS 都要支持。
