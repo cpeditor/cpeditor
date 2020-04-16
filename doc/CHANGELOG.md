@@ -1,6 +1,10 @@
 ## UNRELEASED
 
-## 6.2.3
+## 6.2.4
+
+It's the same as 6.2.3 but it's considered stable now.
+
+## 6.2.3 (Beta)
 
 ### Added
 
