@@ -66,7 +66,7 @@ namespace SettingsHelper
 
 struct SettingInfo
 {
-    QString name, desc, type, ui, tip;
+    QString name, desc, type, ui, tip, help;
     QStringList old;
     QVariant def;
     QVariant param;
@@ -95,7 +95,11 @@ const SettingInfo settingInfo[] =
             tip = t["tip"]
         else:
             tip = ""
-        setting_info.write(f"    {{{json.dumps(name)}, {json.dumps(desc)}, \"{typename}\", \"{ui}\", {json.dumps(tip)}, {{")
+        if "help" in t:
+            hlp = t["hlp"]
+        else:
+            hlp = ""
+        setting_info.write(f"    {{{json.dumps(name)}, {json.dumps(desc)}, \"{typename}\", \"{ui}\", {json.dumps(tip)}, {json.dumps(hlp)}, {{")
         if "old" in t:
             olds = ""
             for s in t["old"]:

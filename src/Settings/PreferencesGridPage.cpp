@@ -25,13 +25,15 @@ void PreferencesGridPage::addRow(ValueWidget *widget)
     gridLayout->addWidget(widget->coreWidget(), gridLayout->rowCount(), 1);
 }
 
-void PreferencesGridPage::addRow(const QString &labelText, const QString &labelTip, ValueWidget *widget)
+void PreferencesGridPage::addRow(const QString &labelText, const QString &labelTip, const QString &labelHelp, ValueWidget *widget)
 {
     registerWidget(widget);
     int row = gridLayout->rowCount();
     QLabel *label = new QLabel(labelText, this);
     if (!labelTip.isEmpty())
         label->setToolTip(labelTip);
+    if (!labelHelp.isEmpty())
+        label->setWhatsThis(labelHelp);
     gridLayout->addWidget(label, row, 0);
     gridLayout->addWidget(widget->coreWidget(), row, 1);
 }
