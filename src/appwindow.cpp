@@ -820,19 +820,19 @@ void AppWindow::onTabChanged(int index)
     {
         if (cppServer->isDocumentOpen())
             cppServer->closeDocument();
-        cppServer->openDocument(tmp->tmpPath(), tmp->getEditor());
+        cppServer->openDocument(tmp->tmpPath(), tmp->getEditor(), tmp->getLogger());
     }
     else if (tmp->getLanguage() == "Java")
     {
         if (javaServer->isDocumentOpen())
             javaServer->closeDocument();
-        javaServer->openDocument(tmp->tmpPath(), tmp->getEditor());
+        javaServer->openDocument(tmp->tmpPath(), tmp->getEditor(), tmp->getLogger());
     }
     else if (tmp->getLanguage() == "Python")
     {
         if (pythonServer->isDocumentOpen())
             pythonServer->closeDocument();
-        pythonServer->openDocument(tmp->tmpPath(), tmp->getEditor());
+        pythonServer->openDocument(tmp->tmpPath(), tmp->getEditor(), tmp->getLogger());
     }
 
     findReplaceDialog->setTextEdit(tmp->getEditor());
@@ -941,15 +941,19 @@ void AppWindow::onLSPTimerElapsed()
     auto tab = currentWindow();
     if (tab == nullptr)
         return;
-    auto lang = tab->getLanguage();
-    if (lang == "C++")
-        cppServer->requestLinting();
-    else if (lang == "Java")
-        javaServer->requestLinting();
-    else if (lang == "Python")
-        pythonServer->requestLinting();
 
-    lspTimer->stop(); // Wait for next change.
+    if (SettingsHelper::isLSPUseLinting())
+    {
+
+        auto lang = tab->getLanguage();
+        if (lang == "C++")
+            cppServer->requestLinting();
+        else if (lang == "Java")
+            javaServer->requestLinting();
+        else if (lang == "Python")
+            pythonServer->requestLinting();
+    }
+    lspTimer->stop(); // Wait for next change
 }
 void AppWindow::onSettingsApplied(const QString &pagePath)
 {

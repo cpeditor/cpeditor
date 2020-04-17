@@ -422,13 +422,15 @@
   },
   {
     "name": "LSP/Use Auto Complete",
-    "desc": "Use autocomplete with Language server",
-    "type": "bool"
+    "desc": "Use autocomplete with Language Server",
+    "type": "bool",
+    "default":  true
   },
   {
     "name": "LSP/Use Linting",
     "desc": "Use Linting with Language Server",
-    "type": "bool"
+    "type": "bool",
+    "default" :  true
   },
   {
     "name": "LSP/Path C++",
@@ -455,7 +457,7 @@
   {
     "name": "LSP/Delay",
     "type": "int",
-    "desc": "Delay in LSP diagonistics",
+    "desc": "Delay in Linting",
     "default": 2000,
     "param": "QList<QVariant> {100, 10000}"
   },

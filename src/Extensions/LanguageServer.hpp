@@ -18,6 +18,7 @@
 #ifndef LANGUAGE_SERVER_H
 #define LANGUAGE_SERVER_H
 
+#include "Core/MessageLogger.hpp"
 #include "generated/SettingsHelper.hpp"
 #include <LSPClient.hpp>
 #include <QCodeEditor>
@@ -41,7 +42,7 @@ class LanguageServer : public QObject
   public:
     LanguageServer(QString language);
 
-    void openDocument(QString path, QCodeEditor *editor);
+    void openDocument(QString path, QCodeEditor *editor, MessageLogger *logger);
     void closeDocument();
     void requestLinting();
 
@@ -55,10 +56,11 @@ class LanguageServer : public QObject
     void performConnection();
     void createClient();
 
-	QCodeEditor::SeverityLevel lspSeverity(int a);
+    QCodeEditor::SeverityLevel lspSeverity(int a);
     void lintInEditor(QPair<int, int>, QPair<int, int>, QCodeEditor::SeverityLevel, QString);
 
     QCodeEditor *m_editor = nullptr;
+    MessageLogger *logger = nullptr;
     LSPClient *lsp = nullptr;
     QString language;
     QString openFile;

@@ -55,15 +55,14 @@ LanguageServer::~LanguageServer()
         lsp->exit();
         delete lsp;
     }
-    if (m_editor != nullptr)
-        m_editor->clearSquiggle();
 }
 
-void LanguageServer::openDocument(QString path, QCodeEditor *editor)
+void LanguageServer::openDocument(QString path, QCodeEditor *editor, MessageLogger *log)
 {
     std::string uri = "file://" + path.toStdString();
     m_editor = editor;
     openFile = path;
+    logger = log;
     std::string code = m_editor->toPlainText().toStdString();
     std::string lang = language.toStdString();
 
@@ -74,6 +73,7 @@ void LanguageServer::closeDocument()
     std::string uri = "file://" + openFile.toStdString();
     lsp->didClose(uri);
     openFile = "";
+    logger = nullptr;
     m_editor = nullptr;
 }
 
@@ -108,6 +108,15 @@ void LanguageServer::updateSettings()
 
     performConnection();
     lsp->initialize();
+
+    if (m_editor != nullptr && isDocumentOpen())
+    {
+        auto tmp_editor = m_editor;
+        auto tmp_path = openFile;
+        auto tmp_log = logger;
+        closeDocument();
+        openDocument(tmp_path, tmp_editor, tmp_log);
+    }
 }
 
 // Private methods
@@ -163,28 +172,10 @@ QCodeEditor::SeverityLevel LanguageServer::lspSeverity(int in)
     case 3:
         return QCodeEditor::SeverityLevel::Information;
     case 4:
-        return QCodeEditor::SeverityLevel::Information; // Hint will be added in future.
+        return QCodeEditor::SeverityLevel::Hint;
     }
     // Nothing matched
     return QCodeEditor::SeverityLevel::Error;
-}
-
-void LanguageServer::lintInEditor(QPair<int, int> start, QPair<int, int> stop, QCodeEditor::SeverityLevel level,
-                                  QString tooltip)
-{
-    if (start.first == stop.first) // single line error
-    {
-        Core::Log::i("lintInEditor") << "Linting at " << start.first << " " << start.second << " " << stop.first << " "
-                                     << stop.second << endl;
-
-        m_editor->squiggle(level, start.first, start.second, stop.second, tooltip);
-    }
-    else // multiline error
-    {
-		// We select the error range text and for each new line we skip it.
-		// This requires some other API that is yet to be implemented in QCodeEditor hence skipped.
-        Core::Log::w("lintInEditor", "Multiline linting is not yet supported");
-	}
 }
 // ---------------------------- LSP SLOTS ------------------------
 
@@ -193,26 +184,25 @@ void LanguageServer::onLSPServerNotificationArrived(QString method, QJsonObject 
     if (method == "textDocument/publishDiagnostics") // Linting
     {
         m_editor->clearSquiggle();
-        Core::Log::i("onLSPServerNotificationArrived","Linting started");
         QJsonArray doc = QJsonDocument::fromVariant(param.toVariantMap()).object()["diagnostics"].toArray();
         for (auto e : doc)
         {
-            Core::Log::i("inside", "inside");
             QString tooltip = e.toObject()["message"].toString();
             QCodeEditor::SeverityLevel level = lspSeverity(e.toObject()["severity"].toInt());
-            
-			auto beg = e.toObject()["range"].toObject()["start"].toObject();
+
+            auto beg = e.toObject()["range"].toObject()["start"].toObject();
             auto end = e.toObject()["range"].toObject()["end"].toObject();
 
-			QPair<int, int> start, stop;
+            QPair<int, int> start, stop;
 
-            start.first = beg["line"].toInt();
+            start.first = beg["line"].toInt() + 1;
             start.second = beg["character"].toInt();
-			
-			stop.first = end["line"].toInt();
+
+            stop.first = end["line"].toInt() + 1;
             stop.second = end["character"].toInt();
 
-            lintInEditor(start, stop, level, tooltip);
+            m_editor->squiggle(level, start, stop,
+                               tooltip.remove("(fix available)")); // We do not provide quick fix so remove this text.
         }
     }
 }
@@ -229,32 +219,40 @@ void LanguageServer::onLSPServerRequestArrived(QString method, QJsonObject param
 
 void LanguageServer::onLSPServerErrorArrived(QJsonObject id, QJsonObject error)
 {
-    Core::Log::i("Error arrived", "error");
+    QString a, b;
+    a = QJsonDocument::fromVariant(id.toVariantMap()).toJson();
+    b = QJsonDocument::fromVariant(error.toVariantMap()).toJson();
+
+    Core::Log::e("LanguageServer/onLSPServerErrorArrived") << a << "\n" << b;
+    if (logger != nullptr)
+        logger->error("Langauge Server [" + language + "]",
+                      "Language server sent an error. Please check log for details.");
 }
 
 void LanguageServer::onLSPServerProcessError(QProcess::ProcessError error)
 {
-    Core::Log::e("LanguageServer/onLSPServerProcessError", "LSP Process errored out");
+    Core::Log::e("LanguageServer/onLSPServerProcessError") << "LSP Process Errored Out (" << error << ")" << endl;
+    if (logger == nullptr)
+        return;
     switch (error)
     {
     case QProcess::FailedToStart:
-        Core::Log::e("LanguageServer/onLSPServerProcessError", "Failed to start");
+        logger->error("Language Server  [" + language + "]", "Failed to start LSP Process");
         break;
     case QProcess::Crashed:
-        Core::Log::e("LanguageServer/onLSPServerProcessError", "Process Crashed");
+        logger->error("Language Server  [" + language + "]", "Process has crashed. Is LSP it in PATH?");
         break;
     case QProcess::Timedout:
-        Core::Log::e("LanguageServer/onLSPServerProcessError", "Process Timedout");
+        logger->error("Language Server  [" + language + "]", "LSP Process timed out");
         break;
     case QProcess::ReadError:
-        Core::Log::e("LanguageServer/onLSPServerProcessError", "Process ReadError");
+        logger->error("Language Server  [" + language + "]", "LSP Process Read Error");
         break;
     case QProcess::WriteError:
-        Core::Log::e("LanguageServer/onLSPServerProcessError", "Process WriteError");
+        logger->error("Language Server  [" + language + "]", "LSP Process Write Error");
         break;
     case QProcess::UnknownError:
-        Core::Log::e("LanguageServer/onLSPServerProcessError", "Unknown Error");
-        break;
+        logger->error("Language Server  [" + language + "]", "An unknown error has occured in LSP Process");
     }
 }
 
