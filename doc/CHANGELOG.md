@@ -1,5 +1,13 @@
 ## UNRELEASED
 
+### Added
+
+- Add Ctrl+Shift+D for duplicating the current line or the selection. (#237)
+
+### Changed
+
+- The shortcut of Detached Run is changed from Ctrl+Shift+D to Ctrl+Alt+D. (#237)
+
 ## v6.3
 
 ### The new Preferences Window!

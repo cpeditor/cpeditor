@@ -138,6 +138,8 @@ class AppWindow : public QMainWindow
 
     void on_action_swap_line_down_triggered();
 
+    void on_action_duplicate_line_triggered();
+
     void on_action_delete_line_triggered();
 
     void on_action_toggle_comment_triggered();
