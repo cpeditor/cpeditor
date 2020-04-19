@@ -85,6 +85,24 @@ bool saveFile(const QString &path, const QString &content, const QString &head, 
     return true;
 }
 
+QString readFile(const QString &path, const QString &head, MessageLogger *log)
+{
+    if (!QFile::exists(path))
+        return QString();
+    QFile file(path);
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
+    {
+        Core::Log::w(head, QString("Failed to open [%1]").arg(path));
+        if (log != nullptr)
+            log->error(head, QString("Failed to open [%1]. Do I have read permission?").arg(path));
+        return QString();
+    }
+    QString content = file.readAll();
+    if (content.isNull())
+        return "";
+    return content;
+}
+
 void applySettingsToEditor(QCodeEditor *editor)
 {
     Core::Log::i("Util/applySettingsToEditor", "Invoked");

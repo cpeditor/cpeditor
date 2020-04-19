@@ -17,7 +17,7 @@
 
 #include "Extensions/EditorTheme.hpp"
 #include "Core/EventLogger.hpp"
-
+#include "Util.hpp"
 #include <QFile>
 #include <QIODevice>
 
@@ -48,15 +48,11 @@ QSyntaxStyle *EditorTheme::getMonokaiTheme()
     }
     else
     {
-        QFile f(":/styles/monokai.xml");
-        f.open(QIODevice::ReadOnly);
-        if (!f.isOpen())
-        {
-            Core::Log::e("editorTheme/getMonokaiTheme", "unable to access resources, returning nullptr");
+        auto content = Util::readFile(":/styles/monokai.xml", "Read Style");
+        if (content.isNull())
             return nullptr;
-        }
         monokai = new QSyntaxStyle();
-        monokai->load(f.readAll());
+        monokai->load(content);
         return monokai;
     }
 }
@@ -70,15 +66,11 @@ QSyntaxStyle *EditorTheme::getDraculaTheme()
     }
     else
     {
-        QFile f(":/styles/dracula.xml");
-        f.open(QIODevice::ReadOnly);
-        if (!f.isOpen())
-        {
-            Core::Log::e("editorTheme/getDraculaTheme", "unable to access resources, returning nullptr");
+        auto content = Util::readFile(":/styles/dracula.xml", "Read Style");
+        if (content.isNull())
             return nullptr;
-        }
         dracula = new QSyntaxStyle();
-        dracula->load(f.readAll());
+        dracula->load(content);
         return dracula;
     }
 }
@@ -92,15 +84,11 @@ QSyntaxStyle *EditorTheme::getSolarizedTheme()
     }
     else
     {
-        QFile f(":/styles/solarized.xml");
-        f.open(QIODevice::ReadOnly);
-        if (!f.isOpen())
-        {
-            Core::Log::e("editorTheme/getsolarizedTheme", "unable to access resources, returning nullptr");
+        auto content = Util::readFile(":/styles/solarized.xml", "Read Style");
+        if (content.isNull())
             return nullptr;
-        }
         solarized = new QSyntaxStyle();
-        solarized->load(f.readAll());
+        solarized->load(content);
         return solarized;
     }
 }
@@ -114,15 +102,11 @@ QSyntaxStyle *EditorTheme::getSolarizedDarkTheme()
     }
     else
     {
-        QFile f(":/styles/solarizedDark.xml");
-        f.open(QIODevice::ReadOnly);
-        if (!f.isOpen())
-        {
-            Core::Log::e("editorTheme/getsolarizedDarkTheme", "unable to access resources, returning nullptr");
+        auto content = Util::readFile(":/styles/solarizedDark.xml", "Read Style");
+        if (content.isNull())
             return nullptr;
-        }
         solarizedDark = new QSyntaxStyle();
-        solarizedDark->load(f.readAll());
+        solarizedDark->load(content);
         return solarizedDark;
     }
 }

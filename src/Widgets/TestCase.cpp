@@ -150,53 +150,35 @@ QString TestCase::expected() const
 void TestCase::loadFromFile(const QString &pathPrefix)
 {
     Core::Log::i("testcase/loadFromFile") << "pathPrefix " << pathPrefix << endl;
-    QFile inputFile(pathPrefix + ".in");
-    if (inputFile.exists())
+    auto content = Util::readFile(pathPrefix + ".in", "Read Input #" + QString::number(id + 1), log);
+    if (!content.isNull())
     {
-        Core::Log::i("testcase/loadFromFile", "Okay, Input file exists");
-        if (inputFile.open(QIODevice::ReadOnly | QIODevice::Text))
+        if (content.length() > SettingsHelper::getLoadTestCaseFileLengthLimit())
         {
-            auto text = inputFile.readAll();
-            if (text.length() > SettingsHelper::getLoadTestCaseFileLengthLimit())
-            {
-                log->error(
-                    "Testcases",
-                    QString(
-                        "The testcase file [%1] contains more than %2 characters, so it's not loaded. You can change "
+            log->error(
+                "Testcases",
+                QString("The testcase file [%1] contains more than %2 characters, so it's not loaded. You can change "
                         "the length limit in Preferences->Advanced->Limits->Load Test Case File Length Limit")
-                        .arg(pathPrefix + ".in")
-                        .arg(SettingsHelper::getLoadTestCaseFileLengthLimit()));
-            }
-            else
-                setInput(text);
+                    .arg(pathPrefix + ".in")
+                    .arg(SettingsHelper::getLoadTestCaseFileLengthLimit()));
         }
         else
-            log->error("Testcases",
-                       "Failed to load Input #" + QString::number(id + 1) + ". Do I have read permission?");
+            setInput(content);
     }
-    QFile expectedFile(pathPrefix + ".ans");
-    if (expectedFile.exists())
+    content = Util::readFile(pathPrefix + ".ans", "Read Expected #" + QString::number(id + 1), log);
+    if (!content.isNull())
     {
-        Core::Log::i("testcase/loadFromFile", "Okay, Expected file exists");
-        if (expectedFile.open(QIODevice::ReadOnly | QIODevice::Text))
+        if (content.length() > SettingsHelper::getLoadTestCaseFileLengthLimit())
         {
-            auto text = expectedFile.readAll();
-            if (text.length() > SettingsHelper::getLoadTestCaseFileLengthLimit())
-            {
-                log->error(
-                    "Testcases",
-                    QString(
-                        "The testcase file [%1] contains more than %2 characters, so it's not loaded. You can change "
+            log->error(
+                "Testcases",
+                QString("The testcase file [%1] contains more than %2 characters, so it's not loaded. You can change "
                         "the length limit in Preferences->Advanced->Limits->Load Test Case File Length Limit")
-                        .arg(pathPrefix + ".ans")
-                        .arg(SettingsHelper::getLoadTestCaseFileLengthLimit()));
-            }
-            else
-                setExpected(text);
+                    .arg(pathPrefix + ".ans")
+                    .arg(SettingsHelper::getLoadTestCaseFileLengthLimit()));
         }
         else
-            log->error("Testcases",
-                       "Failed to load Expected #" + QString::number(id + 1) + ". Do I have read permission?");
+            setExpected(content);
     }
 }
 
