@@ -384,6 +384,7 @@ void AppWindow::openTab(const QString &path)
     auto fsp = new MainWindow(path, getNewUntitledIndex(), this);
     connect(fsp, SIGNAL(confirmTriggered(MainWindow *)), this, SLOT(on_confirmTriggered(MainWindow *)));
     connect(fsp, SIGNAL(editorFileChanged()), this, SLOT(onEditorFileChanged()));
+    connect(fsp, SIGNAL(editorLanguageChanged(MainWindow *)), this, SLOT(onEditorLanguageChanged(MainWindow *)));
     connect(fsp, SIGNAL(editorTextChanged(MainWindow *)), this, SLOT(onEditorTextChanged(MainWindow *)));
     connect(fsp, SIGNAL(requestToastMessage(const QString &, const QString &)), trayIcon,
             SLOT(showMessage(const QString &, const QString &)));
@@ -680,14 +681,32 @@ void AppWindow::on_actionSave_triggered()
 {
     Core::Log::i("appwindow/on_actionSave", "Invoked");
     if (currentWindow() != nullptr)
+    {
         currentWindow()->save(true, "Save");
+        auto tmp = currentWindow();
+        if (tmp->getLanguage() == "C++")
+            cppServer->updatePath(tmp->tmpPath());
+        else if (tmp->getLanguage() == "Java")
+            javaServer->updatePath(tmp->tmpPath());
+        else if (tmp->getLanguage() == "Python")
+            pythonServer->updatePath(tmp->tmpPath());
+    }
 }
 
 void AppWindow::on_actionSave_As_triggered()
 {
     Core::Log::i("appwindow/on_actionSave_As", "Invoked");
     if (currentWindow() != nullptr)
+    {
         currentWindow()->saveAs();
+        auto tmp = currentWindow();
+        if (tmp->getLanguage() == "C++")
+            cppServer->updatePath(tmp->tmpPath());
+        else if (tmp->getLanguage() == "Java")
+            javaServer->updatePath(tmp->tmpPath());
+        else if (tmp->getLanguage() == "Python")
+            pythonServer->updatePath(tmp->tmpPath());
+    }
 }
 
 void AppWindow::on_actionSave_All_triggered()
@@ -808,6 +827,14 @@ void AppWindow::onTabChanged(int index)
         server->setMessageLogger(nullptr);
         findReplaceDialog->setTextEdit(nullptr);
         setWindowTitle("CP Editor: An editor specially designed for competitive programming");
+
+        if (cppServer->isDocumentOpen())
+            cppServer->closeDocument();
+        if (pythonServer->isDocumentOpen())
+            pythonServer->closeDocument();
+        if (javaServer->isDocumentOpen())
+            javaServer->closeDocument();
+
         return;
     }
 
@@ -816,24 +843,7 @@ void AppWindow::onTabChanged(int index)
 
     auto tmp = windowAt(index);
 
-    if (tmp->getLanguage() == "C++")
-    {
-        if (cppServer->isDocumentOpen())
-            cppServer->closeDocument();
-        cppServer->openDocument(tmp->tmpPath(), tmp->getEditor(), tmp->getLogger());
-    }
-    else if (tmp->getLanguage() == "Java")
-    {
-        if (javaServer->isDocumentOpen())
-            javaServer->closeDocument();
-        javaServer->openDocument(tmp->tmpPath(), tmp->getEditor(), tmp->getLogger());
-    }
-    else if (tmp->getLanguage() == "Python")
-    {
-        if (pythonServer->isDocumentOpen())
-            pythonServer->closeDocument();
-        pythonServer->openDocument(tmp->tmpPath(), tmp->getEditor(), tmp->getLogger());
-    }
+    reAttachLanguageServer(tmp);
 
     findReplaceDialog->setTextEdit(tmp->getEditor());
 
@@ -921,6 +931,12 @@ void AppWindow::onEditorTextChanged(MainWindow *window)
 
         lspTimer->start();
     }
+}
+
+void AppWindow::onEditorLanguageChanged(MainWindow *window)
+{
+    if (currentWindow() == window)
+        reAttachLanguageServer(window);
 }
 
 void AppWindow::onSaveTimerElapsed()
@@ -1527,6 +1543,34 @@ MainWindow *AppWindow::currentWindow()
         return nullptr;
     }
     return dynamic_cast<MainWindow *>(ui->tabWidget->widget(current));
+}
+
+void AppWindow::reAttachLanguageServer(MainWindow *window)
+{
+    lspTimer->stop();
+    if (window->getLanguage() == "C++")
+    {
+        if (cppServer->isDocumentOpen())
+            cppServer->closeDocument();
+        cppServer->openDocument(window->tmpPath(), window->getEditor(), window->getLogger());
+        cppServer->requestLinting();
+    }
+    else if (window->getLanguage() == "Java")
+    {
+        if (javaServer->isDocumentOpen())
+            javaServer->closeDocument();
+        javaServer->openDocument(window->tmpPath(), window->getEditor(), window->getLogger());
+        javaServer->requestLinting();
+    }
+    else if (window->getLanguage() == "Python")
+    {
+        if (pythonServer->isDocumentOpen())
+            pythonServer->closeDocument();
+        pythonServer->openDocument(window->tmpPath(), window->getEditor(), window->getLogger());
+        pythonServer->requestLinting();
+    }
+
+    lspTimer->start();
 }
 
 MainWindow *AppWindow::windowAt(int index)

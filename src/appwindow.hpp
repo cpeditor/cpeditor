@@ -92,6 +92,8 @@ class AppWindow : public QMainWindow
 
     void onEditorTextChanged(MainWindow *window);
 
+    void onEditorLanguageChanged(MainWindow *window);
+
     void onTabCloseRequested(int);
 
     void onTabChanged(int);
@@ -192,6 +194,7 @@ class AppWindow : public QMainWindow
     void saveEditorStatus(bool loadFromFile);
     bool quit();
     int getNewUntitledIndex();
+    void reAttachLanguageServer(MainWindow *window);
 
     MainWindow *currentWindow();
     MainWindow *windowAt(int index);

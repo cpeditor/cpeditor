@@ -17,6 +17,8 @@
 #include "LanguageServer.hpp"
 #include "Core/EventLogger.hpp"
 #include <QDebug>
+#include <QDir>
+#include <QFileInfo>
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
@@ -44,7 +46,6 @@ LanguageServer::LanguageServer(QString lang)
 
     createClient();
     performConnection();
-    lsp->initialize();
 }
 
 LanguageServer::~LanguageServer()
@@ -59,6 +60,12 @@ LanguageServer::~LanguageServer()
 
 void LanguageServer::openDocument(QString path, QCodeEditor *editor, MessageLogger *log)
 {
+    if (!isInitialized)
+    {
+        initializeLSP(path);
+        isInitialized = true;
+    }
+
     std::string uri = "file://" + path.toStdString();
     m_editor = editor;
     openFile = path;
@@ -79,6 +86,8 @@ void LanguageServer::closeDocument()
 
 void LanguageServer::requestLinting()
 {
+    if (m_editor == nullptr)
+        return; // will return if document was closed and linting was requested.
     std::vector<TextDocumentContentChangeEvent> changes;
     TextDocumentContentChangeEvent e;
     e.text = m_editor->toPlainText().toStdString();
@@ -107,7 +116,7 @@ void LanguageServer::updateSettings()
     createClient();
 
     performConnection();
-    lsp->initialize();
+    initializeLSP(openFile); // explictly initialize because this it was initialized but destroyed.
 
     if (m_editor != nullptr && isDocumentOpen())
     {
@@ -117,6 +126,14 @@ void LanguageServer::updateSettings()
         closeDocument();
         openDocument(tmp_path, tmp_editor, tmp_log);
     }
+}
+
+void LanguageServer::updatePath(QString newPath)
+{
+    if (openFile == newPath)
+        return;
+    openFile = newPath;
+    updateSettings();
 }
 
 // Private methods
@@ -176,6 +193,14 @@ QCodeEditor::SeverityLevel LanguageServer::lspSeverity(int in)
     }
     // Nothing matched
     return QCodeEditor::SeverityLevel::Error;
+}
+
+void LanguageServer::initializeLSP(QString filePath)
+{
+    QFileInfo info(filePath);
+    std::string uri = "file://" + info.absoluteDir().absolutePath().toStdString();
+    option<DocumentUri> rootUri(uri);
+    lsp->initialize(rootUri);
 }
 // ---------------------------- LSP SLOTS ------------------------
 
@@ -237,10 +262,10 @@ void LanguageServer::onLSPServerProcessError(QProcess::ProcessError error)
     switch (error)
     {
     case QProcess::FailedToStart:
-        logger->error("Language Server  [" + language + "]", "Failed to start LSP Process");
+        logger->error("Language Server  [" + language + "]", "Failed to start LSP Process. Is program in PATH?");
         break;
     case QProcess::Crashed:
-        logger->error("Language Server  [" + language + "]", "Process has crashed. Is LSP it in PATH?");
+        logger->warn("Language Server  [" + language + "]", "Process was abruptly killed");
         break;
     case QProcess::Timedout:
         logger->error("Language Server  [" + language + "]", "LSP Process timed out");

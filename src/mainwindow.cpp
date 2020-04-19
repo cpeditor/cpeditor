@@ -603,6 +603,7 @@ void MainWindow::setLanguage(const QString &lang)
     ui->changeLanguageButton->setText(language);
     performCompileAndRunDiagonistics();
     isLanguageSet = true;
+    emit editorLanguageChanged(this);
 }
 
 QString MainWindow::getLanguage()

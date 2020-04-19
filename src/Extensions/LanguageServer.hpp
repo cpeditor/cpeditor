@@ -49,6 +49,7 @@ class LanguageServer : public QObject
     bool isDocumentOpen() const;
 
     void updateSettings();
+    void updatePath(QString);
 
     ~LanguageServer();
 
@@ -58,10 +59,12 @@ class LanguageServer : public QObject
 
     QCodeEditor::SeverityLevel lspSeverity(int a);
     void lintInEditor(QPair<int, int>, QPair<int, int>, QCodeEditor::SeverityLevel, QString);
+    void initializeLSP(QString url);
 
     QCodeEditor *m_editor = nullptr;
     MessageLogger *logger = nullptr;
     LSPClient *lsp = nullptr;
+    bool isInitialized = false;
     QString language;
     QString openFile;
 };
