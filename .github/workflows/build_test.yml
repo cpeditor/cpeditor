@@ -198,7 +198,7 @@ jobs:
         path: build/${{ matrix.config.binary }}
 
     - name: Get the version
-      if: startsWith(github.ref, 'refs/tags') && (matrix.qt_version == '5.12.7')
+      if: startsWith(github.ref, 'refs/tags') && (matrix.qt_version == '5.12.8')
       id: get_version
       shell: bash
       run: |
@@ -212,7 +212,7 @@ jobs:
         fi
 
     - name: Pack to dmg on Mac
-      if: matrix.config.os == 'macos-latest' && startsWith(github.ref, 'refs/tags') && (matrix.qt_version == '5.12.7')
+      if: matrix.config.os == 'macos-latest' && startsWith(github.ref, 'refs/tags') && (matrix.qt_version == '5.12.8')
       run: |
         cd build
         ../../Qt/*/*/bin/macdeployqt cpeditor.app
@@ -220,7 +220,7 @@ jobs:
         hdiutil create -volname cpeditor-${{ steps.get_version.outputs.VERSION }}-x64 -srcfolder cpeditor.app -ov -format UDZO cpeditor-${{ steps.get_version.outputs.VERSION }}-x64.dmg
 
     - name: Release on Mac
-      if: matrix.config.os == 'macos-latest' && startsWith(github.ref, 'refs/tags') && (matrix.qt_version == '5.12.7')
+      if: matrix.config.os == 'macos-latest' && startsWith(github.ref, 'refs/tags') && (matrix.qt_version == '5.12.8')
       uses: softprops/action-gh-release@v1
       with:
         draft: true
@@ -231,13 +231,13 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Install innosetup on Windows
-      if: matrix.config.os == 'windows-latest' && startsWith(github.ref, 'refs/tags') && (matrix.qt_version == '5.12.7')
+      if: matrix.config.os == 'windows-latest' && startsWith(github.ref, 'refs/tags') && (matrix.qt_version == '5.12.8')
       uses: crazy-max/ghaction-chocolatey@v1
       with:
         args: 'install innosetup'
 
     - name: Pack to exe on Windows
-      if: matrix.config.os == 'windows-latest' && startsWith(github.ref, 'refs/tags') && (matrix.qt_version == '5.12.7')
+      if: matrix.config.os == 'windows-latest' && startsWith(github.ref, 'refs/tags') && (matrix.qt_version == '5.12.8')
       shell: bash
       run: |
         mkdir build/out
@@ -246,7 +246,7 @@ jobs:
         iscc .ci/win/win-setup.iss -DMyAppVersion=${{ steps.get_version.outputs.VERSION }} -DMyProjectRoot=$(pwd) -DMyOutRoot=$(pwd)/build/out
 
     - name: Release on Windows
-      if: matrix.config.os == 'windows-latest' && startsWith(github.ref, 'refs/tags') && (matrix.qt_version == '5.12.7')
+      if: matrix.config.os == 'windows-latest' && startsWith(github.ref, 'refs/tags') && (matrix.qt_version == '5.12.8')
       uses: softprops/action-gh-release@v1
       with:
         draft: true
