@@ -48,6 +48,11 @@ PreferencesPage::PreferencesPage(QWidget *parent) : QWidget(parent)
     mainLayout->addWidget(scrollArea);
     mainLayout->addLayout(buttonsLayout);
 
+    // add tooltips
+    defaultButton->setToolTip("Restore the default settings on the current page. (Ctrl+D)");
+    resetButton->setToolTip("Discard all changes on the current page. (Ctrl+R)");
+    applyButton->setToolTip("Save the changes on the current page. (Ctrl+S)");
+
     // set the font for title
     auto labelFont = font();
     labelFont.setPointSizeF(font().pointSizeF() * 1.6);
