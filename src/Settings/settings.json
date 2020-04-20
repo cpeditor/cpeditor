@@ -49,7 +49,7 @@
             "clang_format_style"
         ],
         "ui": "QPlainTextEdit",
-        "tip": "The Clang Format style options, which is often saved in a .clang-format configuration file.\nYou can learn about it at <https://clang.llvm.org/docs/ClangFormatStyleOptions.html>."
+        "tip": "The Clang Format style options, which are often saved in a .clang-format configuration file.\nYou can learn about it at <https://clang.llvm.org/docs/ClangFormatStyleOptions.html>."
     },
     {
         "name": "C++/Template Path",
@@ -220,7 +220,7 @@
         "old": [
             "update_start_check"
         ],
-        "tip": "Check whether there's a new verion of CP Editor when starting CP Editor."
+        "tip": "Check whether there's a new version of CP Editor when starting CP Editor."
     },
     {
         "name": "Auto Format",
