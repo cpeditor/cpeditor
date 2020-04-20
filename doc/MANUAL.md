@@ -8,9 +8,9 @@ We're glad that you have chosen our editor, let's get started now! :tada:
 
 - If you want to parse sample testcases from online platforms like Codeforces, please install [Competitive Companion](https://github.com/jmerle/competitive-companion) on your browser.
 
-- If you want to submit to Codeforces inside the editor, please install [CF Tool](https://github.com/xalanq/cf-tool). If it's not in the system PATH, you can set the path to it in Preferences->Extra->Misc->CF Tool Command. Don't forget to configure it by `cf config` (set the user and the template).
+- If you want to submit to Codeforces inside the editor, please install [CF Tool](https://github.com/xalanq/cf-tool). If it's not in the system PATH, you can set the path to it in Preferences->Extensions->CF Tool. Don't forget to configure it by `cf config` (set the user and the template).
 
-- If you want to format your C++ codes, you need to install [Clang Format](http://releases.llvm.org/download.html). You have to make sure it's installed on the system PATH or set the path to it at Preferences->Formatting->Clang Format Command.
+- If you want to format your C++ codes, you need to install [Clang Format](http://releases.llvm.org/download.html). You have to make sure it's installed on the system PATH or set the path to it at Preferences->Extensions->Clang Format Command.
 
 # Tips
 
@@ -21,6 +21,9 @@ You have to either parse the problem from Competitive Companion, or set the prob
 ## For Java users
 
 You have to use a **non-public** class named **a** for your solution.
+
+## Language Server: Linting
+Yo
 
 ## Preferences
 
