@@ -61,15 +61,13 @@ TestCases::TestCases(MessageLogger *logger, QWidget *parent) : QWidget(parent), 
 
     moreMenu = new QMenu();
 
-    moreMenu->addAction("Scan Testcases", [this] {
-        Core::Log::i("TestCases/More/Scan Testcases", "Invoked");
-        QString path = QFileDialog::getExistingDirectory(this, "Choose directory to scan", "", 0); // set to the src dir
-        if (!path.isEmpty())
+    moreMenu->addAction("Add Testcases", [this] {
+        Core::Log::i("TestCases/More/Add Testcases", "Invoked");
+        QStringList paths = QFileDialog::getOpenFileNames(this, "Choose testcases", ""); // set to the src dir
+        if (paths.size())
         {
-            QStringList rules = SettingsHelper::getTestcaseScanRule();
-            QDir dir(path);
-            auto files = dir.entryList(QDir::Files, QDir::Name); // Havn't supported recursive scan yet.
-            for (auto input : files)
+            QStringList rules = SettingsHelper::getTestcaseRule();
+            for (auto input : paths)
             {
                 auto it = rules.begin();
                 bool finded = false;
@@ -89,7 +87,7 @@ TestCases::TestCases(MessageLogger *logger, QWidget *parent) : QWidget(parent), 
                 }
                 if (finded)
                 {
-                    QFile infile(dir.filePath(input)), ansfile(dir.filePath(answer));
+                    QFile infile(input), ansfile(answer);
                     QString inbuffer, ansbuffer;
                     infile.open(QIODevice::ReadOnly);
                     inbuffer = QString::fromUtf8(infile.readAll());
