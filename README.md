@@ -66,7 +66,7 @@ It makes your competitive coding life easier :grin: by automating many things fo
 - I got an invalid payload when parsing sample testcases?
    - Please try restarting the browser and the editor. It's known that there are few people always fail on this even after restarting, and Firefox is more stable than Google Chrome. We're really sorry if it always fails, you can change a browser as for now, we will try our best to investigate it.
 - How to enable error linting in editor?
-   - In order to use Linting you need to download a Language Server Program. For `C++` download [clangd](https://github.com/clangd/clangd) or [ccls](https://github.com/MaskRay/ccls.git) and add its Path in Editor Settings, For Python `pip install 'python-language-server[all]'` and reset Python Language server settings to default, For Java install and setup [Eclipse.JDT.ls](https://github.com/eclipse/eclipse.jdt.ls). Please check [manual](https://github.com/cpeditor/cpeditor/blob/master/doc/MANUAL.md) for detailed instructions. 
+   - In order to use Linting you need to download a Language Server Program. For `C++` download [clangd](https://github.com/clangd/clangd) or [ccls](https://github.com/MaskRay/ccls.git) and add its Path in Editor Settings, For Python `pip install 'python-language-server[all]'` and reset Python Language server settings to default, For Java install and setup [Eclipse.JDT.ls](https://github.com/eclipse/eclipse.jdt.ls). Please check [manual](https://github.com/cpeditor/cpeditor/blob/master/doc/MANUAL.md#Linting) for detailed instructions. 
 
 License
 ----

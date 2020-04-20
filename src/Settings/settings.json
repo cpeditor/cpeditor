@@ -485,7 +485,6 @@
     {
       "name": "LSP/Path Python",
       "ui": "PathItem",
-      "default": "python",
       "desc": "Path to LSP executable",
       "type": "QString",
       "param": "0",
@@ -578,7 +577,6 @@
       "name": "LSP/Args Python",
       "desc": "Arguments for Language Server",
       "type": "QString",
-      "default": "-m pyls",
       "tip": "Arguments to pass to Language server executable"
 
     }
