@@ -100,7 +100,11 @@ class AppWindow : public QMainWindow
 
     void onSaveTimerElapsed();
 
-    void onLSPTimerElapsed();
+    void onLSPTimerElapsedCpp();
+
+	void onLSPTimerElapsedPython();
+
+	void onLSPTimerElapsedJava();
 
     void onSettingsApplied(const QString &pagePath);
 
@@ -164,7 +168,11 @@ class AppWindow : public QMainWindow
     Ui::AppWindow *ui;
     MessageLogger *activeLogger = nullptr;
     QTimer *autoSaveTimer = nullptr;
-    QTimer *lspTimer = nullptr;
+
+    QTimer *lspTimerCpp = nullptr;
+    QTimer *lspTimerPython = nullptr;
+    QTimer *lspTimerJava = nullptr;
+
     QMetaObject::Connection activeSplitterMoveConnection;
     QMetaObject::Connection activeRightSplitterMoveConnection;
     Telemetry::UpdateNotifier *updater = nullptr;

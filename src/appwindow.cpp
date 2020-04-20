@@ -169,7 +169,9 @@ AppWindow::~AppWindow()
     delete ui;
     delete preferencesWindow;
     delete autoSaveTimer;
-    delete lspTimer;
+    delete lspTimerCpp;
+    delete lspTimerJava;
+    delete lspTimerPython;
     delete cppServer;
     delete pythonServer;
     delete javaServer;
@@ -221,7 +223,11 @@ void AppWindow::setConnections()
     connect(ui->tabWidget->tabBar(), SIGNAL(customContextMenuRequested(const QPoint &)), this,
             SLOT(onTabContextMenuRequested(const QPoint &)));
     connect(autoSaveTimer, SIGNAL(timeout()), this, SLOT(onSaveTimerElapsed()));
-    connect(lspTimer, SIGNAL(timeout()), this, SLOT(onLSPTimerElapsed()));
+
+    connect(lspTimerCpp, SIGNAL(timeout()), this, SLOT(onLSPTimerElapsedCpp()));
+    connect(lspTimerJava, SIGNAL(timeout()), this, SLOT(onLSPTimerElapsedJava()));
+    connect(lspTimerPython, SIGNAL(timeout()), this, SLOT(onLSPTimerElapsedPython()));
+
 
     connect(preferencesWindow, SIGNAL(settingsApplied(const QString &)), this,
             SLOT(onSettingsApplied(const QString &)));
@@ -238,7 +244,9 @@ void AppWindow::allocate()
     Core::Log::i("appwindow/allocate", "Invoked");
     SettingsManager::init();
     autoSaveTimer = new QTimer();
-    lspTimer = new QTimer();
+    lspTimerCpp = new QTimer();
+    lspTimerJava = new QTimer();
+    lspTimerPython = new QTimer();
     updater = new Telemetry::UpdateNotifier(SettingsHelper::isBeta());
     preferencesWindow = new PreferencesWindow(this);
 
@@ -256,8 +264,13 @@ void AppWindow::allocate()
     autoSaveTimer->setInterval(3000);
     autoSaveTimer->setSingleShot(false);
 
-    lspTimer->setInterval(SettingsHelper::getLSPDelay());
-    lspTimer->setSingleShot(false);
+    lspTimerCpp->setInterval(SettingsHelper::getLSPDelayCpp());
+    lspTimerJava->setInterval(SettingsHelper::getLSPDelayJava());
+    lspTimerPython->setInterval(SettingsHelper::getLSPDelayPython());
+
+    lspTimerCpp->setSingleShot(false);
+    lspTimerJava->setSingleShot(false);
+    lspTimerPython->setSingleShot(false);
 
     trayIconMenu = new QMenu();
     trayIconMenu->addAction("Show Main Window", this, SLOT(showOnTop()));
@@ -929,7 +942,12 @@ void AppWindow::onEditorTextChanged(MainWindow *window)
             title += " *";
         ui->tabWidget->setTabText(index, title);
 
-        lspTimer->start();
+        if (window->getLanguage() == "C++")
+            lspTimerCpp->start();
+        else if (window->getLanguage() == "Java")
+            lspTimerJava->start();
+        else
+            lspTimerPython->start();
     }
 }
 
@@ -952,25 +970,42 @@ void AppWindow::onSaveTimerElapsed()
     }
 }
 
-void AppWindow::onLSPTimerElapsed()
+void AppWindow::onLSPTimerElapsedCpp()
 {
     auto tab = currentWindow();
     if (tab == nullptr)
         return;
 
-    if (SettingsHelper::isLSPUseLinting())
-    {
+    if (SettingsHelper::isLSPUseLintingCpp() && tab->getLanguage() == "C++")
+        cppServer->requestLinting();
 
-        auto lang = tab->getLanguage();
-        if (lang == "C++")
-            cppServer->requestLinting();
-        else if (lang == "Java")
-            javaServer->requestLinting();
-        else if (lang == "Python")
-            pythonServer->requestLinting();
-    }
-    lspTimer->stop(); // Wait for next change
+    lspTimerCpp->stop();
 }
+
+void AppWindow::onLSPTimerElapsedJava()
+{
+    auto tab = currentWindow();
+    if (tab == nullptr)
+        return;
+
+    if (SettingsHelper::isLSPUseLintingJava() && tab->getLanguage() == "Java")
+        javaServer->requestLinting();
+
+    lspTimerJava->stop();
+}
+
+void AppWindow::onLSPTimerElapsedPython()
+{
+    auto tab = currentWindow();
+    if (tab == nullptr)
+        return;
+
+    if (SettingsHelper::isLSPUseLintingPython() && tab->getLanguage() == "Python")
+        pythonServer->requestLinting();
+
+    lspTimerPython->stop();
+}
+
 void AppWindow::onSettingsApplied(const QString &pagePath)
 {
     Core::Log::i("appwindow/onSettingsApplied") << INFO_OF(pagePath) << endl;
@@ -1006,17 +1041,23 @@ void AppWindow::onSettingsApplied(const QString &pagePath)
     if (pagePath.isEmpty() || pagePath == "Appearance")
         setWindowOpacity(SettingsHelper::getTransparency() / 100.0);
 
-    if (pagePath.isEmpty() || pagePath == "Extensions/Language Server/Java Server")
-        javaServer->updateSettings();
-
     if (pagePath.isEmpty() || pagePath == "Extensions/Language Server/C++ Server")
+    {
         cppServer->updateSettings();
+        lspTimerCpp->setInterval(SettingsHelper::getLSPDelayCpp());
+    }
+
+    if (pagePath.isEmpty() || pagePath == "Extensions/Language Server/Java Server")
+    {
+        javaServer->updateSettings();
+        lspTimerJava->setInterval(SettingsHelper::getLSPDelayJava());
+    }
 
     if (pagePath.isEmpty() || pagePath == "Extensions/Language Server/Python Server")
+    {
         pythonServer->updateSettings();
-
-    if (pagePath.isEmpty() || pagePath == "Extensions/Language Server/General")
-        lspTimer->setInterval(SettingsHelper::getLSPDelay());
+        lspTimerPython->setInterval(SettingsHelper::getLSPDelayPython());
+    }
 }
 
 void AppWindow::onIncomingCompanionRequest(const Extensions::CompanionData &data)
@@ -1547,13 +1588,17 @@ MainWindow *AppWindow::currentWindow()
 
 void AppWindow::reAttachLanguageServer(MainWindow *window)
 {
-    lspTimer->stop();
+    lspTimerCpp->stop();
+    lspTimerJava->stop();
+    lspTimerPython->stop();
+
     if (window->getLanguage() == "C++")
     {
         if (cppServer->isDocumentOpen())
             cppServer->closeDocument();
         cppServer->openDocument(window->tmpPath(), window->getEditor(), window->getLogger());
         cppServer->requestLinting();
+        lspTimerCpp->start();
     }
     else if (window->getLanguage() == "Java")
     {
@@ -1561,6 +1606,7 @@ void AppWindow::reAttachLanguageServer(MainWindow *window)
             javaServer->closeDocument();
         javaServer->openDocument(window->tmpPath(), window->getEditor(), window->getLogger());
         javaServer->requestLinting();
+        lspTimerJava->start();
     }
     else if (window->getLanguage() == "Python")
     {
@@ -1568,9 +1614,8 @@ void AppWindow::reAttachLanguageServer(MainWindow *window)
             pythonServer->closeDocument();
         pythonServer->openDocument(window->tmpPath(), window->getEditor(), window->getLogger());
         pythonServer->requestLinting();
+        lspTimerPython->start();
     }
-
-    lspTimer->start();
 }
 
 MainWindow *AppWindow::windowAt(int index)
