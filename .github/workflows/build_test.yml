@@ -1,19 +1,9 @@
 name: "CI: Build Test"
 
-on:
-  push:
-    paths-ignore:
-      - '*.md'
-      - '*/*.md'
-      - '*/*/*.md'
-  pull_request:
-    paths-ignore:
-      - '*.md'
-      - '*/*.md'
-      - '*/*/*.md'
+on: [push, pull_request]
 
 env:
-  CMAKE_VERSION: 3.16.4
+  CMAKE_VERSION: 3.16.6
   NINJA_VERSION: 1.10.0
   BUILD_TYPE: Release
   CCACHE_VERSION: 3.7.7
@@ -25,7 +15,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        qt_version: [5.12.7, 5.14.1]
+        qt_version: [5.12.8, 5.14.2]
         config:
         - {
             os: windows-latest,
@@ -186,9 +176,9 @@ jobs:
         set(ENV{CCACHE_DIR} "${ccache_basedir}/.ccache")
         set(ENV{CCACHE_COMPRESS} "true")
         set(ENV{CCACHE_COMPRESSLEVEL} "6")
-        set(ENV{CCACHE_MAXSIZE} "100M")
+        set(ENV{CCACHE_MAXSIZE} "20M")
         if ("${{ matrix.config.cxx }}" STREQUAL "cl")
-          set(ENV{CCACHE_MAXSIZE} "150M")
+          set(ENV{CCACHE_MAXSIZE} "30M")
         endif()
         execute_process(COMMAND ccache -p)
         execute_process(COMMAND ccache -z)
@@ -208,7 +198,7 @@ jobs:
         path: build/${{ matrix.config.binary }}
 
     - name: Get the version
-      if: startsWith(github.ref, 'refs/tags') && (matrix.qt_version == '5.12.7')
+      if: startsWith(github.ref, 'refs/tags') && (matrix.qt_version == '5.12.8')
       id: get_version
       shell: bash
       run: |
@@ -222,7 +212,7 @@ jobs:
         fi
 
     - name: Pack to dmg on Mac
-      if: matrix.config.os == 'macos-latest' && startsWith(github.ref, 'refs/tags') && (matrix.qt_version == '5.12.7')
+      if: matrix.config.os == 'macos-latest' && startsWith(github.ref, 'refs/tags') && (matrix.qt_version == '5.12.8')
       run: |
         cd build
         ../../Qt/*/*/bin/macdeployqt cpeditor.app
@@ -230,7 +220,7 @@ jobs:
         hdiutil create -volname cpeditor-${{ steps.get_version.outputs.VERSION }}-x64 -srcfolder cpeditor.app -ov -format UDZO cpeditor-${{ steps.get_version.outputs.VERSION }}-x64.dmg
 
     - name: Release on Mac
-      if: matrix.config.os == 'macos-latest' && startsWith(github.ref, 'refs/tags') && (matrix.qt_version == '5.12.7')
+      if: matrix.config.os == 'macos-latest' && startsWith(github.ref, 'refs/tags') && (matrix.qt_version == '5.12.8')
       uses: softprops/action-gh-release@v1
       with:
         draft: true
@@ -241,13 +231,13 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Install innosetup on Windows
-      if: matrix.config.os == 'windows-latest' && startsWith(github.ref, 'refs/tags') && (matrix.qt_version == '5.12.7')
+      if: matrix.config.os == 'windows-latest' && startsWith(github.ref, 'refs/tags') && (matrix.qt_version == '5.12.8')
       uses: crazy-max/ghaction-chocolatey@v1
       with:
         args: 'install innosetup'
 
     - name: Pack to exe on Windows
-      if: matrix.config.os == 'windows-latest' && startsWith(github.ref, 'refs/tags') && (matrix.qt_version == '5.12.7')
+      if: matrix.config.os == 'windows-latest' && startsWith(github.ref, 'refs/tags') && (matrix.qt_version == '5.12.8')
       shell: bash
       run: |
         mkdir build/out
@@ -256,7 +246,7 @@ jobs:
         iscc .ci/win/win-setup.iss -DMyAppVersion=${{ steps.get_version.outputs.VERSION }} -DMyProjectRoot=$(pwd) -DMyOutRoot=$(pwd)/build/out
 
     - name: Release on Windows
-      if: matrix.config.os == 'windows-latest' && startsWith(github.ref, 'refs/tags') && (matrix.qt_version == '5.12.7')
+      if: matrix.config.os == 'windows-latest' && startsWith(github.ref, 'refs/tags') && (matrix.qt_version == '5.12.8')
       uses: softprops/action-gh-release@v1
       with:
         draft: true

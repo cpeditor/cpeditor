@@ -1,0 +1,18 @@
+name: "Check Clang Format"
+
+on: [push, pull_request]
+
+jobs:
+  format:
+    name: "Check Clang Format"
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: "Install clang-format-9"
+      run: |
+        sudo apt-get update
+        sudo apt-get install clang-format-9
+    - name: "Format Codes"
+      run: clang-format-9 -i src/*.cpp src/*/*.cpp src/*.hpp src/*/*.hpp
+    - name: Check diff
+      run: git diff --exit-code HEAD
