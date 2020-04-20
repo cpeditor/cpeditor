@@ -1,5 +1,11 @@
 ## UNRELEASED
 
+- Editor will lint error, warning, information and hint from your code in the editor. Lints can be helpful in finding error in code and fixing them quickly. A Language Server Program(LSP) needs to be installed 
+in user's PC for this to take place. You can set delay in linting in miliseconds, Path for LSP Program and its arguments from Settings. Each of these settings can be different for each language.
+Please check install manual for more information on how to set this up.
+
+- Word selection in editor is highlighted with change of background color instead of an underline. Underlined text now represent a linting of type "Hint".
+
 ### The new Preferences Window!
 
 The old preferences window is not very extendable, which has been a big obstacle to add new features for a long time. In this version, we bring a brand new preferences window for you.
