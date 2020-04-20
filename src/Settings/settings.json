@@ -6,7 +6,8 @@
         "old": [
             "tab_stop"
         ],
-        "param": "QList<QVariant> {1,16}"
+        "param": "QList<QVariant> {1,16}",
+        "tip": "the width of the tab character, or the number of spaces of an indent"
     },
     {
         "name": "Geometry",
@@ -14,15 +15,18 @@
     },
     {
         "name": "Font",
+        "desc": "Editor Font",
         "type": "QFont",
-        "default": "QFont(\"monospace\")"
+        "default": "QFont(\"monospace\")",
+        "tip": "the font of the code editor"
     },
     {
         "name": "Default Language",
         "type": "QString",
         "default": "C++",
         "ui": "QComboBox",
-        "param": "QStringList {\"C++\", \"Java\", \"Python\"}"
+        "param": "QStringList {\"C++\", \"Java\", \"Python\"}",
+        "tip": "the default language used when opening new tabs"
     },
     {
         "name": "Clang Format/Path",
@@ -33,7 +37,8 @@
             "clang_format_binary"
         ],
         "ui": "PathItem",
-        "param": "0"
+        "param": "0",
+        "tip": "the path to the Clang Format executable file"
     },
     {
         "name": "Clang Format/Style",
@@ -43,7 +48,8 @@
         "old": [
             "clang_format_style"
         ],
-        "ui": "QPlainTextEdit"
+        "ui": "QPlainTextEdit",
+        "tip": "The Clang Format style options, which are often saved in a .clang-format configuration file.\nYou can learn about it at <https://clang.llvm.org/docs/ClangFormatStyleOptions.html>."
     },
     {
         "name": "C++/Template Path",
@@ -52,7 +58,8 @@
             "template_cpp"
         ],
         "ui": "PathItem",
-        "param": "1"
+        "param": "1",
+        "tip": "the template used when creating a new C++ file"
     },
     {
         "name": "C++/Compile Command",
@@ -60,14 +67,16 @@
         "default": "g++ -Wall",
         "old": [
             "compile_cpp"
-        ]
+        ],
+        "tip": "The command used to compile C++. It should NOT include the path to the source file or \"-o <output file>\"."
     },
     {
         "name": "C++/Run Arguments",
         "type": "QString",
         "old": [
             "runtime_cpp"
-        ]
+        ],
+        "tip": "the runtime arguments when executing a C++ program"
     },
     {
         "name": "Java/Template Path",
@@ -76,7 +85,8 @@
             "template_java"
         ],
         "ui": "PathItem",
-        "param": "2"
+        "param": "2",
+        "tip": "the template used when creating a new Java file"
     },
     {
         "name": "Java/Compile Command",
@@ -84,7 +94,8 @@
         "default": "javac",
         "old": [
             "compile_java"
-        ]
+        ],
+        "tip": "The command used to compile Java. It should NOT include the path to the source file."
     },
     {
         "name": "Java/Run Arguments",
@@ -92,7 +103,8 @@
         "default": "",
         "old": [
             "runtime_java"
-        ]
+        ],
+        "tip": "the runtime arguments when executing a Java program"
     },
     {
         "name": "Java/Run Command",
@@ -100,7 +112,8 @@
         "default": "java",
         "old": [
             "run_java"
-        ]
+        ],
+        "tip": "The command to start a Java program. It should NOT include \"-classpath <path> <class name>\"."
     },
     {
         "name": "Python/Template Path",
@@ -109,14 +122,16 @@
             "template_python"
         ],
         "ui": "PathItem",
-        "param": "3"
+        "param": "3",
+        "tip": "the template used when creating a new Python file"
     },
     {
         "name": "Python/Run Arguments",
         "type": "QString",
         "old": [
             "runtime_python"
-        ]
+        ],
+        "tip": "the runtime arguments when executing a Python program"
     },
     {
         "name": "Python/Run Command",
@@ -124,14 +139,16 @@
         "default": "python",
         "old": [
             "run_python"
-        ]
+        ],
+        "tip": "The command to start a Python program. It should NOT include the path to the source file."
     },
     {
         "name": "Editor Theme",
         "type": "QString",
         "default": "Light",
         "ui": "QComboBox",
-        "param": "QStringList {\"Light\", \"Dracula\", \"Monokai\", \"Solarized\", \"Solarized Dark\"}"
+        "param": "QStringList {\"Light\", \"Dracula\", \"Monokai\", \"Solarized\", \"Solarized Dark\"}",
+        "tip": "the syntax highlight theme of the code editor"
     },
     {
         "name": "Auto Complete Parentheses",
@@ -139,7 +156,8 @@
         "default": true,
         "old": [
             "auto_parenthesis"
-        ]
+        ],
+        "tip": "Automatically complete a pair of parentheses when typing the left element of it,\nand move out of it when typing the right element of it."
     },
     {
         "name": "Auto Remove Parentheses",
@@ -147,12 +165,14 @@
         "default": true,
         "old": [
             "auto_remove_parentheses"
-        ]
+        ],
+        "tip": "Automatically delete the whole pair of parentheses when deleting the left element of it if the two elements are adjacent."
     },
     {
         "name": "Auto Indent",
         "type": "bool",
-        "default": true
+        "default": true,
+        "tip": "Add an indent when entering a new line after a \"{\"."
     },
     {
         "name": "Auto Save",
@@ -160,25 +180,30 @@
         "type": "bool",
         "old": [
             "autosave"
-        ]
+        ],
+        "tip": "Automatically save the file every 3 seconds."
     },
     {
         "name": "Wrap Text",
-        "type": "bool"
+        "type": "bool",
+        "tip": "Wrap a line into several lines if it doesn't fit into the screen."
     },
     {
         "name": "Beta",
-        "desc": "Check for Beta updates as well",
-        "type": "bool"
+        "desc": "Use the beta version",
+        "type": "bool",
+        "tip": "Check for updates marked as pre-releases, which are considered not very stable but have more features."
     },
     {
         "name": "Replace Tabs",
-        "type": "bool"
+        "type": "bool",
+        "tip": "Use spaces instead of a tab character."
     },
     {
         "name": "Save Tests",
         "desc": "Save Testcases on Save",
-        "type": "bool"
+        "type": "bool",
+        "tip": "Save the testcases on the disk when saving a file, and load the saved testcases when opening a file."
     },
     {
         "name": "Maximized Window",
@@ -194,7 +219,8 @@
         "default": true,
         "old": [
             "update_start_check"
-        ]
+        ],
+        "tip": "Check whether there's a new version of CP Editor when starting CP Editor."
     },
     {
         "name": "Auto Format",
@@ -202,14 +228,19 @@
         "type": "bool",
         "old": [
             "format_on_save"
-        ]
+        ],
+        "tip": "Use Clang Format to format the codes when saving it."
     },
     {
-        "name": "Transparency",
+        "name": "Opacity",
         "type": "int",
         "default": 100,
         "param": "QList<QVariant> {60,100}",
-        "ui": "QSlider"
+        "ui": "QSlider",
+        "old": [
+            "transparency"
+        ],
+        "tip": "the opacity of the main window"
     },
     {
         "name": "View Mode",
@@ -237,7 +268,8 @@
         "default": true,
         "old": [
             "competitive_use"
-        ]
+        ],
+        "tip": "Receive data sent by Competitive Companion and load the example testcases."
     },
     {
         "name": "Competitive Companion/Connection Port",
@@ -247,7 +279,8 @@
         "old": [
             "connection_port"
         ],
-        "param": "QList<QVariant> {1024,49151}"
+        "param": "QList<QVariant> {1024,49151}",
+        "tip": "the port used to receive data from Competitive Companion"
     },
     {
         "name": "Competitive Companion/Open New Tab",
@@ -256,7 +289,8 @@
         "default": true,
         "old": [
             "companion_new_tab"
-        ]
+        ],
+        "tip": "Open a new tab for each problem parsed by Competitive Companion."
     },
     {
         "name": "Hotkey/Format",
@@ -328,7 +362,8 @@
         "default": true,
         "old": [
             "use_hot_exit"
-        ]
+        ],
+        "tip": "Save the status of the editor when the application exits and load the status of the last session when the application starts.\nWhen this is enabled, you won't be asked whether to save the unsaved files or not when exiting."
     },
     {
         "name": "Hot Exit/Tab Count",
@@ -361,7 +396,8 @@
             "cf_path"
         ],
         "ui": "PathItem",
-        "param": "0"
+        "param": "0",
+        "tip": "the path to the CF Tool executable file"
     },
     {
         "name": "Save Path",
@@ -372,52 +408,61 @@
         "type": "bool",
         "old": [
             "compile_and_run_only"
-        ]
+        ],
+        "tip": "Hide the Compile Only button and the Run Only button under the code editor in the main window."
     },
     {
         "name": "Display EOLN In Diff",
-        "type": "bool"
+        "type": "bool",
+        "tip": "Use \"¶\" to represent for the new line character in the HTML Diff Viewer."
     },
     {
         "name": "Save Faster",
         "desc": "Save Files Faster",
-        "type": "bool"
+        "type": "bool",
+        "tip": "Always use QFile instead of QSaveFile to save files.\nThis will be faster but with a little bit more risk of losing the file (with a very small possibility)."
     },
     {
         "name": "Time Limit",
         "desc": "Time Limit (ms)",
         "type": "int",
         "default": 5000,
-        "param": "QList<QVariant> {1,3600000}"
+        "param": "QList<QVariant> {1,3600000}",
+        "tip": "The time limit when executing the program.\nThe program will be killed if it doesn't terminate in the time limit."
     },
     {
         "name": "Output Length Limit",
         "type": "int",
         "default": 500000,
-        "param": "QList<QVariant> {2,1000000000}"
+        "param": "QList<QVariant> {2,1000000000}",
+        "tip": "The maximum number of characters in the output of the program.\nThe program will be killed if either of its stdout or stderr is too long."
     },
     {
         "name": "Message Length Limit",
         "type": "int",
         "default": 20000,
-        "param": "QList<QVariant> {500,100000000}"
+        "param": "QList<QVariant> {500,100000000}",
+        "tip": "The maximum number of characters in each message in the top-right corner of the main window.\nThe message will be elided if it's too long."
     },
     {
         "name": "HTML Diff Viewer Length Limit",
         "type": "int",
         "default": 50000,
-        "param": "QList<QVariant> {2,100000000}"
+        "param": "QList<QVariant> {2,100000000}",
+        "tip": "The maximum number of characters in the HTML Diff Viewer.\nThe Diff Viewer will fall back to plain text if either of the output or the expected output is too long."
     },
     {
         "name": "Open File Length Limit",
         "type": "int",
         "default": 20000,
-        "param": "QList<QVariant> {2,100000000}"
+        "param": "QList<QVariant> {2,100000000}",
+        "tip": "The maximum number of characters in a source file to open.\nA source file won't be opened if it's too long."
     },
     {
         "name": "Load Test Case File Length Limit",
         "type": "int",
         "default": 500000,
-        "param": "QList<QVariant> {2,1000000000}"
+        "param": "QList<QVariant> {2,1000000000}",
+        "tip": "The maximum number of characters in a testcase file to load.\nA testcase file won't be loaded if it's too long."
     }
 ]

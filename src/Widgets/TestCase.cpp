@@ -74,6 +74,9 @@ TestCase::TestCase(int index, MessageLogger *logger, QWidget *parent, const QStr
     mainLayout->addLayout(outputLayout);
     mainLayout->addLayout(expectedLayout);
 
+    runButton->setToolTip("Test on a single testcase");
+    diffButton->setToolTip("Open the Diff Viewer");
+
     Core::Log::i("testcase/constructed", "UI has been built");
 
     connect(showCheckBox, SIGNAL(toggled(bool)), this, SLOT(onShowCheckBoxToggled(bool)));

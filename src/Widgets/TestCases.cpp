@@ -58,6 +58,9 @@ TestCases::TestCases(MessageLogger *logger, QWidget *parent) : QWidget(parent), 
 
     Core::Log::i("testcases/constructed", "widgets attached");
 
+    verdicts->setToolTip("Wrong Answer / Accepted / Total");
+    addCheckerButton->setToolTip("Add a custom testlib checker");
+
     updateVerdicts();
 
     moreMenu = new QMenu();

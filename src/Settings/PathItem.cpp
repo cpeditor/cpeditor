@@ -42,6 +42,7 @@ PathItem::PathItem(const QString &pathFilter, const QString &dialogTitle, QWidge
     layout->addWidget(lineEdit);
 
     toolButton = new QToolButton();
+    toolButton->setToolTip("Choose a file");
     toolButton->setIcon(QApplication::style()->standardIcon(QStyle::SP_DialogOpenButton));
     connect(toolButton, SIGNAL(clicked()), this, SLOT(onButtonClicked()));
     layout->addWidget(toolButton);
