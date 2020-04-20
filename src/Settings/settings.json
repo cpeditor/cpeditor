@@ -205,11 +205,14 @@
         ]
     },
     {
-        "name": "Transparency",
+        "name": "Opacity",
         "type": "int",
         "default": 100,
         "param": "QList<QVariant> {60,100}",
-        "ui": "QSlider"
+        "ui": "QSlider",
+        "old": [
+            "transparency"
+        ]
     },
     {
         "name": "View Mode",

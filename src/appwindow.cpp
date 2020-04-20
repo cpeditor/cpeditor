@@ -63,14 +63,14 @@ AppWindow::AppWindow(bool noHotExit, QWidget *parent) : QMainWindow(parent), ui(
         updater->checkUpdate();
 
 #ifdef Q_OS_WIN
-    // setWindowOpacity(0.99) when transparency should be 100 is a workaround for a strange issue on Windows
-    // The behavior: If the transparency is 100, and the window is maximized, it will resize to smaller than maximized
-    if (SettingsHelper::getTransparency() < 100)
-        setWindowOpacity(SettingsHelper::getTransparency() / 100.0);
+    // setWindowOpacity(0.99) when opacity should be 100 is a workaround for a strange issue on Windows
+    // The behavior: If the opacity is 100, and the window is maximized, it will resize to smaller than maximized
+    if (SettingsHelper::getOpacity() < 100)
+        setWindowOpacity(SettingsHelper::getOpacity() / 100.0);
     else
         setWindowOpacity(0.99);
 #else
-    setWindowOpacity(SettingsHelper::getTransparency() / 100.0);
+    setWindowOpacity(SettingsHelper::getOpacity() / 100.0);
 #endif
 
     applySettings();
@@ -132,7 +132,7 @@ AppWindow::AppWindow(int depth, bool cpp, bool java, bool python, bool noHotExit
 
 #ifdef Q_OS_WIN
     // This is necessary because of setWindowOpacity(0.99) earlier
-    if (SettingsHelper::getTransparency() == 100)
+    if (SettingsHelper::getOpacity() == 100)
         setWindowOpacity(1);
 #endif
 }
@@ -156,7 +156,7 @@ AppWindow::AppWindow(bool cpp, bool java, bool python, bool noHotExit, int numbe
 
 #ifdef Q_OS_WIN
     // This is necessary because of setWindowOpacity(0.99) earlier
-    if (SettingsHelper::getTransparency() == 100)
+    if (SettingsHelper::getOpacity() == 100)
         setWindowOpacity(1);
 #endif
     setLanguageClient();
@@ -968,7 +968,7 @@ void AppWindow::onSettingsApplied(const QString &pagePath)
     }
 
     if (pagePath.isEmpty() || pagePath == "Appearance")
-        setWindowOpacity(SettingsHelper::getTransparency() / 100.0);
+        setWindowOpacity(SettingsHelper::getOpacity() / 100.0);
 
     Core::Log::i("appwindow/onSettingsApplied", "Finished");
 }
