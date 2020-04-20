@@ -29,6 +29,7 @@ ShortcutItem::ShortcutItem(QWidget *parent) : QWidget(parent)
     layout->addWidget(edit);
 
     clear = new QToolButton(this);
+    clear->setToolTip("Clear the shortcut");
     clear->setIcon(QApplication::style()->standardIcon(QStyle::SP_DialogResetButton));
     connect(clear, &QToolButton::clicked, edit, &QKeySequenceEdit::clear);
     layout->addWidget(clear);

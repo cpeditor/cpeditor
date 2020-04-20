@@ -314,8 +314,8 @@ void CodeSnippetsPage::loadSnippetsFromFiles()
 
     for (auto file : files)
     {
-        QFile openFile(file);
-        if (!openFile.open(QIODevice::ReadOnly | QIODevice::Text))
+        auto content = Util::readFile(file, "CodeSnippetsPage::loadSnippetsFromFiles");
+        if (content.isNull())
         {
             QMessageBox::warning(this, "Load Snippets",
                                  QString("Failed to open [%1]. Do I have read permission?").arg(file));
@@ -327,7 +327,7 @@ void CodeSnippetsPage::loadSnippetsFromFiles()
         if (name.isEmpty())
             break;
         addSnippet(name);
-        SettingsManager::set(snippetKey(name), openFile.readAll());
+        SettingsManager::set(snippetKey(name), content);
     }
 }
 

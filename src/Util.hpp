@@ -38,6 +38,17 @@ QString fileNameFilter(bool cpp, bool java, bool python);
 bool saveFile(const QString &path, const QString &content, const QString &head = "Save File", bool safe = true,
               MessageLogger *log = nullptr);
 
+/**
+ * @brief get the content of a file
+ * @param path the path to the file
+ * @param head the head of the log
+ * @param log the MessageLogger to display the messages
+ * @returns a null QString if failed to open the file, the content of the file otherwise
+ * @note The warning is sent to *log* only if the file exists but we can't open it.
+ * @note If the content of the file is a null QString, this function will return a non-null empty QString.
+ */
+QString readFile(const QString &path, const QString &head = "Read File", MessageLogger *log = nullptr);
+
 void applySettingsToEditor(QCodeEditor *editor);
 
 void setEditorLanguage(QCodeEditor *editor, const QString &language);

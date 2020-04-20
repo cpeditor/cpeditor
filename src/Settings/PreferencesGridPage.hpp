@@ -38,10 +38,11 @@ class PreferencesGridPage : public PreferencesPage
     /**
      * @brief add a row
      * @param widget the widget to add
-     * @param labelText(optional) the label of the row
+     * @param tip the tool tip of this item
+     * @param help the help (what's this) of this item
+     * @param labelText (optional) the label of the row
      */
-    void addRow(ValueWidget *widget);
-    void addRow(const QString &labelText, ValueWidget *widget);
+    void addRow(ValueWidget *widget, const QString &tip, const QString &help, const QString &labelText = QString());
 
   private:
     QVBoxLayout *VLayout = nullptr;

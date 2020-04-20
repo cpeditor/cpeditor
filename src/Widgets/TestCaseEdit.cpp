@@ -17,6 +17,7 @@
 
 #include "Widgets/TestCaseEdit.hpp"
 #include "Core/EventLogger.hpp"
+#include "Util.hpp"
 #include <QApplication>
 #include <QFileDialog>
 #include <QInputDialog>
@@ -24,6 +25,7 @@
 #include <QMimeData>
 #include <QStyle>
 #include <generated/SettingsHelper.hpp>
+
 namespace Widgets
 {
 TestCaseEdit::TestCaseEdit(bool autoAnimation, MessageLogger *logger, const QString &text, QWidget *parent)
@@ -122,11 +124,10 @@ void TestCaseEdit::onCustomContextMenuRequested(const QPoint &pos)
 
 void TestCaseEdit::loadFromFile(const QString &path)
 {
-    QFile file(path);
-    if (file.open(QIODevice::ReadOnly | QIODevice::Text))
+    auto content = Util::readFile(path, "Load Testcase From File", log);
+    if (!content.isNull())
     {
-        auto text = file.readAll();
-        if (text.length() > SettingsHelper::getLoadTestCaseFileLengthLimit())
+        if (content.length() > SettingsHelper::getLoadTestCaseFileLengthLimit())
         {
             log->error(
                 "Testcases",
@@ -136,9 +137,7 @@ void TestCaseEdit::loadFromFile(const QString &path)
                     .arg(SettingsHelper::getLoadTestCaseFileLengthLimit()));
         }
         else
-            modifyText(text);
+            modifyText(content);
     }
-    else
-        log->warn("TestCases", QString("Failed to load testcase from the file [%1]").arg(path));
 }
 } // namespace Widgets

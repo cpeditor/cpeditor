@@ -94,13 +94,9 @@ void Checker::prepare(const QString &compileCommand)
         }
 
         // get the code of the checker
-        QFile checkerResourceReader(checkerResource);
-        if (!checkerResourceReader.open(QIODevice::ReadOnly | QIODevice::Text))
-        {
-            log->error("Checker", "Failed to read the checker from [" + checkerResource + "]");
+        QString checkerCode = Util::readFile(checkerResource, "Read Checker", log);
+        if (checkerCode.isNull())
             return;
-        }
-        QString checkerCode = checkerResourceReader.readAll();
 
         // create a temporary directory
         tmpDir = new QTemporaryDir();
@@ -116,14 +112,10 @@ void Checker::prepare(const QString &compileCommand)
             return;
 
         // save testlib.h on the disk
-        QFile testlibReader(":/testlib/testlib.h");
-        if (!testlibReader.open(QIODevice::ReadOnly | QIODevice::Text))
-        {
-            log->error("Checker", "Failed to read testlib.h from resource");
+        auto testlib_h = Util::readFile(":/testlib/testlib.h", "Read testlib.h", log);
+        if (testlib_h.isNull())
             return;
-        }
-        auto testlib_h = testlibReader.readAll();
-        if (!Util::saveFile(tmpDir->filePath("testlib.h"), testlib_h, "Checker", false, log))
+        if (!Util::saveFile(tmpDir->filePath("testlib.h"), testlib_h, "Save testlib.h", false, log))
             return;
 
         // start the compilation of the checker

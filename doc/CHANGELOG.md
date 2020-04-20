@@ -7,6 +7,7 @@ Editor will lint error, warning, information and hint from your code in the edit
 ### Added
 
 - Add Ctrl+Shift+D for duplicating the current line or the selection. (#237)
+- Add tooltips for many widgets. (#211)
 
 ### Changed
 

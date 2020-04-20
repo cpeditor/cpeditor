@@ -49,6 +49,7 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
 
     homeButton = new QPushButton("Home");
     homeButton->setDisabled(true);
+    homeButton->setToolTip("Go to the home page");
     connect(homeButton, &QPushButton::clicked, this, [this]() { switchToPage(homePage); });
     searchLayout->addWidget(homeButton);
 

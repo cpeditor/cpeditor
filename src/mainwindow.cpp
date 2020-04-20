@@ -584,12 +584,8 @@ void MainWindow::setLanguage(const QString &lang)
     {
         QString templateContent;
         if (!language.isEmpty())
-        {
-            QFile templateFile(SettingsManager::get(QString("%1/Template Path").arg(language)).toString());
-            templateFile.open(QIODevice::ReadOnly | QIODevice::Text);
-            if (templateFile.isOpen())
-                templateContent = templateFile.readAll();
-        }
+            templateContent = Util::readFile(SettingsManager::get(QString("%1/Template Path").arg(language)).toString(),
+                                             QString("Open %1 Template").arg(language), &log);
         if (templateContent == editor->toPlainText())
         {
             language = lang;
@@ -718,9 +714,8 @@ void MainWindow::loadFile(const QString &loadPath)
         QString templatePath = SettingsManager::get(QString("%1/Template Path").arg(language)).toString();
 
         QFile f(templatePath);
-        f.open(QIODevice::ReadOnly | QIODevice::Text);
 
-        if (f.isOpen())
+        if (!templatePath.isEmpty() && f.open(QIODevice::ReadOnly | QIODevice::Text))
         {
             path = templatePath;
         }
@@ -731,28 +726,22 @@ void MainWindow::loadFile(const QString &loadPath)
         }
     }
 
-    QFile openFile(path);
-    openFile.open(QIODevice::ReadOnly | QFile::Text);
-    if (openFile.isOpen())
-    {
-        auto content = openFile.readAll();
-        savedText = content;
-        if (content.length() > SettingsHelper::getOpenFileLengthLimit())
-        {
-            content = "Open File Length Limit Exceeded";
-            log.error("Open File",
-                      QString("The file [%1] contains more than %2 characters, so it's not opened. You can change the "
-                              "open file length limit in Preferences->Advanced->Limits->Open File Length Limit")
-                          .arg(path)
-                          .arg(SettingsHelper::getOpenFileLengthLimit()));
-        }
-        setText(content, samePath);
-    }
-    else
-    {
-        log.warn("Open File", "Failed to load " + path + ". Do I have read permission?");
+    auto content = Util::readFile(path, "Open File", &log);
+
+    if (content.isNull())
         return;
+
+    savedText = content;
+    if (content.length() > SettingsHelper::getOpenFileLengthLimit())
+    {
+        content = "Open File Length Limit Exceeded";
+        log.error("Open File",
+                  QString("The file [%1] contains more than %2 characters, so it's not opened. You can change the "
+                          "open file length limit in Preferences->Advanced->Limits->Open File Length Limit")
+                      .arg(path)
+                      .arg(SettingsHelper::getOpenFileLengthLimit()));
     }
+    setText(content, samePath);
 
     loadTests();
 }
@@ -885,22 +874,21 @@ bool MainWindow::isTextChanged()
 
     if (isUntitled())
     {
-        QFile f(SettingsManager::get(QString("%1/Template Path").arg(language)).toString());
-        f.open(QIODevice::ReadOnly | QFile::Text);
-        if (f.isOpen())
-            return editor->toPlainText() != f.readAll();
-        else
+        auto content = Util::readFile(SettingsManager::get(QString("%1/Template Path").arg(language)).toString(),
+                                      QString("Read %1 Template").arg(language), &log);
+        if (content.isNull())
             return !editor->toPlainText().isEmpty();
+        else
+            return editor->toPlainText() != content;
     }
     else
     {
-        QFile openFile(filePath);
-        openFile.open(QIODevice::ReadOnly | QFile::Text);
+        auto content = Util::readFile(filePath);
 
-        if (openFile.isOpen())
-            return openFile.readAll() != editor->toPlainText();
-        else
+        if (content.isNull())
             return true;
+
+        return editor->toPlainText() != content;
     }
 }
 
@@ -951,42 +939,35 @@ void MainWindow::onFileWatcherChanged(const QString &path)
 
     auto currentText = editor->toPlainText();
 
-    QString fileText;
-    QFile openFile(path);
+    auto fileText = Util::readFile(path);
 
-    if (openFile.exists())
+    if (!fileText.isNull())
     {
-        openFile.open(QIODevice::ReadOnly | QIODevice::Text);
-        if (openFile.isOpen())
+        if (fileText == currentText)
         {
-            fileText = openFile.readAll();
+            savedText = fileText;
+            return;
+        }
 
-            if (fileText == currentText)
-            {
-                savedText = fileText;
-                return;
-            }
+        if (savedText == currentText)
+        {
+            loadFile(path);
+            return;
+        }
 
-            if (savedText == currentText)
+        if (!reloading)
+        {
+            reloading = true;
+
+            auto reload = QMessageBox::question(
+                this, "Reload?", "\"" + filePath + "\"\n\nhas been changed on disk.\nDo you want to reload it?");
+
+            reloading = false;
+
+            if (reload == QMessageBox::StandardButton::Yes)
             {
                 loadFile(path);
                 return;
-            }
-
-            if (!reloading)
-            {
-                reloading = true;
-
-                auto reload = QMessageBox::question(
-                    this, "Reload?", "\"" + filePath + "\"\n\nhas been changed on disk.\nDo you want to reload it?");
-
-                reloading = false;
-
-                if (reload == QMessageBox::StandardButton::Yes)
-                {
-                    loadFile(path);
-                    return;
-                }
             }
         }
     }
