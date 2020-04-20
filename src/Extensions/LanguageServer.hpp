@@ -40,7 +40,7 @@ class LanguageServer : public QObject
     void onLSPServerProcessFinished(int exitCode, QProcess::ExitStatus status);
 
   public:
-    LanguageServer(QString language);
+    explicit LanguageServer(QString language);
 
     void openDocument(QString path, QCodeEditor *editor, MessageLogger *logger);
     void closeDocument();

@@ -165,4 +165,93 @@ QPalette windowsDarkThemePalette()
     return darkPalette;
 }
 
+QStringList splitArgument(QString arg)
+{
+    ArgumentSplitterStatus status = SA_OUT;
+    QStringList result;
+    QString current;
+    for (int ptr = 0; ptr < arg.size(); ++ptr)
+    {
+        switch (status)
+        {
+        case SA_OUT:
+            switch (arg[ptr].unicode())
+            {
+            case '"':
+                status = SA_DQUOTE;
+                break;
+            case '\'':
+                status = SA_SQUOTE;
+                break;
+            case ' ':
+                break;
+            default:
+                status = SA_NORMAL;
+                current = arg[ptr];
+            }
+            break;
+        case SA_NORMAL:
+            switch (arg[ptr].unicode())
+            {
+            case '"':
+                status = SA_DQUOTE;
+                break;
+            case '\'':
+                status = SA_SQUOTE;
+                break;
+            case '\\':
+                if (++ptr == arg.size())
+                {
+                    status = SA_OUT;
+                    result.push_back(current);
+                    current = "";
+                    break;
+                }
+                current.push_back(arg[ptr]);
+                break;
+            case ' ':
+                status = SA_OUT;
+                result.push_back(current);
+                current = "";
+                break;
+            default:
+                current.append(arg[ptr]);
+            }
+            break;
+        case SA_SQUOTE:
+            switch (arg[ptr].unicode())
+            {
+            case '\'':
+                status = SA_NORMAL;
+                break;
+            default:
+                current.append(arg[ptr]);
+            }
+            break;
+        case SA_DQUOTE:
+            switch (arg[ptr].unicode())
+            {
+            case '"':
+                status = SA_NORMAL;
+                break;
+            case '\\':
+                if (++ptr == arg.size())
+                {
+                    status = SA_OUT;
+                    result.push_back(current);
+                    current = "";
+                    break;
+                }
+                current.push_back(arg[ptr]);
+                break;
+            default:
+                current.push_back(arg[ptr]);
+            }
+        }
+    }
+    if (status == SA_NORMAL)
+        result.push_back(current);
+    return result;
+}
+
 } // namespace Util

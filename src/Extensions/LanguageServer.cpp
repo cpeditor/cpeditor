@@ -24,6 +24,7 @@
 #include <QJsonObject>
 #include <QProcess>
 #include <QString>
+#include <Util.hpp>
 
 namespace Extensions
 {
@@ -42,7 +43,6 @@ LanguageServer::LanguageServer(QString lang)
         Core::Log::w("LanguageServer/constructed") << "Invalid language " << language << "Fallback to c++" << endl;
         this->language = "cpp";
     }
-    // When we have written the QString -> QStringList argument converter this split(" ") should be removed
 
     createClient();
     performConnection();
@@ -164,11 +164,11 @@ void LanguageServer::createClient()
     QStringList argListCpp, argListPython, argListJava;
 
     if (!lspArgCpp.isEmpty())
-        argListCpp = lspArgCpp.split(" ");
+        argListCpp = Util::splitArgument(lspArgCpp);
     if (!lspArgPython.isEmpty())
-        argListPython = lspArgPython.split(" ");
+        argListPython = Util::splitArgument(lspArgPython);
     if (!lspArgJava.isEmpty())
-        argListJava = lspArgJava.split(" ");
+        argListJava = Util::splitArgument(lspArgJava);
 
     if (language == "python")
         lsp = new LSPClient(SettingsHelper::getLSPPathPython(), argListPython);
