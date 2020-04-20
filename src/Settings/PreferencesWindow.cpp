@@ -130,7 +130,7 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
             {"Time Limit", "Output Length Limit", "Message Length Limit", "HTML Diff Viewer Length Limit",
              "Open File Length Limit", "Load Test Case File Length Limit"});
 
-    addPage("Test", {"Testcase Scan Rule"});
+    addPage("Misc", {"Testcase Scan Rule"}); // TODO: move to the right group
 }
 
 void PreferencesWindow::display()

@@ -17,6 +17,7 @@
 
 #include "Widgets/TestCases.hpp"
 #include "Core/EventLogger.hpp"
+#include "generated/SettingsHelper.hpp"
 #include <QFileDialog>
 #include <QMessageBox>
 
@@ -59,6 +60,49 @@ TestCases::TestCases(MessageLogger *logger, QWidget *parent) : QWidget(parent), 
     updateVerdicts();
 
     moreMenu = new QMenu();
+
+    moreMenu->addAction("Scan Testcases", [this] {
+        Core::Log::i("TestCases/More/Scan Testcases", "Invoked");
+        QString path = QFileDialog::getExistingDirectory(this, "Choose directory to scan", "", 0); // set to the src dir
+        if (!path.isEmpty())
+        {
+            QStringList rules = SettingsHelper::getTestcaseScanRule();
+            QDir dir(path);
+            auto files = dir.entryList(QDir::Files, QDir::Name); // Havn't supported recursive scan yet.
+            for (auto input : files)
+            {
+                auto it = rules.begin();
+                bool finded = false;
+                QString answer;
+                while (!finded && it != rules.end())
+                {
+                    QRegularExpression re(*it++);
+                    auto match = re.match(input);
+                    if (match.hasMatch())
+                    {
+                        answer = *it++;
+                        auto caps = match.capturedTexts();
+                        for (int i = 1; i < caps.size(); ++i)
+                            answer = answer.arg(caps[i]);
+                        finded = true;
+                    }
+                }
+                if (finded)
+                {
+                    QFile infile(dir.filePath(input)), ansfile(dir.filePath(answer));
+                    QString inbuffer, ansbuffer;
+                    infile.open(QIODevice::ReadOnly);
+                    inbuffer = QString::fromUtf8(infile.readAll());
+                    if (ansfile.exists())
+                    {
+                        ansfile.open(QIODevice::ReadOnly);
+                        ansbuffer = QString::fromUtf8(ansfile.readAll());
+                    }
+                    addTestCase(inbuffer, ansbuffer);
+                }
+            }
+        }
+    });
 
     moreMenu->addAction("Remove Empty", [this] {
         LOG_INFO("Testcases Removing empty");
