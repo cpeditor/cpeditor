@@ -102,9 +102,9 @@ class AppWindow : public QMainWindow
 
     void onLSPTimerElapsedCpp();
 
-	void onLSPTimerElapsedPython();
+    void onLSPTimerElapsedPython();
 
-	void onLSPTimerElapsedJava();
+    void onLSPTimerElapsedJava();
 
     void onSettingsApplied(const QString &pagePath);
 

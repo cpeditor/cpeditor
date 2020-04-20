@@ -228,7 +228,6 @@ void AppWindow::setConnections()
     connect(lspTimerJava, SIGNAL(timeout()), this, SLOT(onLSPTimerElapsedJava()));
     connect(lspTimerPython, SIGNAL(timeout()), this, SLOT(onLSPTimerElapsedPython()));
 
-
     connect(preferencesWindow, SIGNAL(settingsApplied(const QString &)), this,
             SLOT(onSettingsApplied(const QString &)));
 
