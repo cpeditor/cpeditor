@@ -1344,6 +1344,15 @@ void AppWindow::on_action_swap_line_down_triggered()
         Core::Log::w("appwindow/on_action_swap_line_down_triggered", "skipped action because no active tab exists");
 }
 
+void AppWindow::on_action_duplicate_line_triggered()
+{
+    auto tmp = currentWindow();
+    if (tmp != nullptr)
+        tmp->getEditor()->duplicate();
+    else
+        Core::Log::w("appwindow/on_action_duplicate_line_triggered", "skipped action because no active tab exists");
+}
+
 void AppWindow::on_action_delete_line_triggered()
 {
     auto tmp = currentWindow();

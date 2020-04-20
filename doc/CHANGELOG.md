@@ -1,10 +1,19 @@
 ## UNRELEASED
 
-- Editor will lint error, warning, information and hint from your code in the editor. Lints can be helpful in finding error in code and fixing them quickly. A Language Server Program(LSP) needs to be installed 
-in user's PC for this to take place. You can set delay in linting in miliseconds, Path for LSP Program and its arguments from Settings. Each of these settings can be different for each language.
-Please check install manual for more information on how to set this up.
+### Linting with Language Server
 
-- Word selection in editor is highlighted with change of background color instead of an underline. Underlined text now represent a linting of type "Hint".
+Editor will lint error, warning, information and hint from your code in the editor. Lints can be helpful in finding error in code and fixing them quickly. A Language Server Program(LSP) needs to be installed in your PC for linting to take place. You can set delay for linting in miliseconds, Path for LSP Program and its arguments from Settings. Each of these settings can be different for each language. Please check install [manual](https://github.com/cpeditor/cpeditor/blob/master/doc/MANUAL.md) for more information on how to set this up.
+
+### Added
+
+- Add Ctrl+Shift+D for duplicating the current line or the selection. (#237)
+
+### Changed
+
+- Word selection in editor is highlighted with change of background color instead of an underline. Underlined text now represent linting of type "Hint".
+- The shortcut of Detached Run is changed from Ctrl+Shift+D to Ctrl+Alt+D. (#237)
+
+## v6.3
 
 ### The new Preferences Window!
 
