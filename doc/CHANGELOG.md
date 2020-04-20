@@ -1,5 +1,9 @@
 ## UNRELEASED
 
+### Added
+
+- Add tooltips for many widgets. (#211)
+
 ## v6.3
 
 ### The new Preferences Window!
