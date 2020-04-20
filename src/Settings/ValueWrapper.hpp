@@ -38,6 +38,9 @@
 // QFont
 #include "Settings/FontItem.hpp"
 
+// QStringList
+#include "Settings/StringListItem.hpp"
+
 class ValueWidget : public QObject
 {
     Q_OBJECT
@@ -178,9 +181,17 @@ struct FontItemWrapper : public Wrapper<QFont>
     virtual void set(QFont f) override;
 };
 
+struct StringListItemWrapper : public Wrapper<QStringList>
+{
+    virtual void init(QWidget *parent, QVariant param = QVariant()) override;
+    virtual QStringList get() override;
+    virtual void set(QStringList sl) override;
+};
+
 Wrapper<bool> *createBoolWrapper(QString type);
 Wrapper<QString> *createStringWrapper(QString type);
 Wrapper<int> *createIntWrapper(QString type);
 Wrapper<QFont> *createFontWrapper(QString type);
+Wrapper<QStringList> *createStringListWrapper(QString type);
 
 #endif

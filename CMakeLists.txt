@@ -89,7 +89,7 @@ add_executable(cpeditor
     src/Extensions/CompanionServer.hpp
     src/Extensions/EditorTheme.cpp
     src/Extensions/EditorTheme.hpp
-	src/Extensions/ClangFormatter.cpp
+    src/Extensions/ClangFormatter.cpp
     src/Extensions/ClangFormatter.hpp
 
     src/Settings/AppearancePage.cpp
@@ -100,6 +100,8 @@ add_executable(cpeditor
     src/Settings/FontItem.hpp
     src/Settings/PathItem.cpp
     src/Settings/PathItem.hpp
+    src/Settings/StringListItem.cpp
+    src/Settings/StringListItem.hpp
     src/Settings/PreferencesGridPage.cpp
     src/Settings/PreferencesGridPage.hpp
     src/Settings/PreferencesHomePage.cpp

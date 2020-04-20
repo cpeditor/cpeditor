@@ -120,7 +120,8 @@ const SettingInfo settingInfo[] =
                 'int': '0',
                 'bool': 'false',
                 'QRect': 'QRect()',
-                'QByteArray': 'QByteArray()'
+                'QByteArray': 'QByteArray()',
+                'QStringList': 'QStringList()'
             }
             setting_info.write(defs[typename])
         if "param" in t:

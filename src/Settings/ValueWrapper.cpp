@@ -219,6 +219,23 @@ void FontItemWrapper::set(QFont f)
     static_cast<FontItem *>(widget)->setFont(f);
 }
 
+void StringListItemWrapper::init(QWidget *parent, QVariant cols)
+{
+    StringListItem *item = new StringListItem(cols.toInt(), parent);
+    connect(item, &StringListItem::stringsChanged, this, &ValueWidget::emitSignal);
+    widget = item;
+}
+
+QStringList StringListItemWrapper::get()
+{
+    return static_cast<StringListItem *>(widget)->getStrings();
+}
+
+void StringListItemWrapper::set(QStringList sl)
+{
+    static_cast<StringListItem *>(widget)->setStrings(sl);
+}
+
 Wrapper<bool> *createBoolWrapper(QString type)
 {
     if (type == "")
@@ -264,5 +281,14 @@ Wrapper<QFont> *createFontWrapper(QString type)
         type = "FontItem";
     if (type == "FontItem")
         return new FontItemWrapper();
+    return nullptr;
+}
+
+Wrapper<QStringList> *createStringListWrapper(QString type)
+{
+    if (type == "")
+        type = "StringListItem";
+    if (type == "StringListItem")
+        return new StringListItemWrapper();
     return nullptr;
 }

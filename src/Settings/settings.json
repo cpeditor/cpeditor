@@ -464,5 +464,11 @@
         "default": 500000,
         "param": "QList<QVariant> {2,1000000000}",
         "tip": "The maximum number of characters in a testcase file to load.\nA testcase file won't be loaded if it's too long."
+    },
+    {
+        "name": "Testcase Scan Rule",
+        "type": "QStringList",
+        "default": "QStringList {\"(.*)\\\\.in\", \"%1.ans\"}",
+        "param": "2"
     }
 ]
