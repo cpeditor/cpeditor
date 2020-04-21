@@ -99,7 +99,7 @@ bool Compiler::check(const QString &compileCommand)
     checkProcess.start(compileCommand.trimmed().split(' ').front() + " -version");
     finished = checkProcess.waitForFinished(1000);
 
-    LOG_INFO(BOOL_INFO_OF(finished && checkProcess.exitCode() == 0));
+    LOG_INFO(BOOL_INFO_OF(finished) << INFO_OF(checkProcess.exitCode()));
 
     return finished && checkProcess.exitCode() == 0;
 }
