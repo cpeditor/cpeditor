@@ -62,7 +62,7 @@ void MessageLogger::info(const QString &head, const QString &body)
 
 void MessageLogger::warn(const QString &head, const QString &body)
 {
-    LOG_WARN("MessageLogger Information " << INFO_OF(head) << INFO_OF(body));
+    LOG_INFO("MessageLogger Warning " << INFO_OF(head) << INFO_OF(body));
     message(head, body, "green");
 }
 
