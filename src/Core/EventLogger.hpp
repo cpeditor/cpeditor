@@ -66,7 +66,7 @@
     }
 
 #define INFO_OF(variable) "<" #variable ">: [" << (variable) << "], "
-#define BOOL_INFO_OF(variable) #variable << " : " << ((variable) ? "true" : "false") << " "
+#define BOOL_INFO_OF(variable) "<" #variable ">: [" << ((variable) ? "true" : "false") << "], "
 
 namespace Core
 {
