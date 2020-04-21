@@ -51,7 +51,7 @@ bool saveFile(const QString &path, const QString &content, const QString &head, 
         {
             if (log != nullptr)
                 log->error(head, "Failed to open [" + path + "]. Do I have write permission?");
-                LOG_ERR("Failed to open [" << path << "]");
+            LOG_ERR("Failed to open [" << path << "]");
             return false;
         }
         file.write(content.toUtf8());
@@ -59,7 +59,7 @@ bool saveFile(const QString &path, const QString &content, const QString &head, 
         {
             if (log != nullptr)
                 log->error(head, "Failed to save to [" + path + "]. Do I have write permission?");
-                LOG_ERR("Failed to save to [" << path << "]");
+            LOG_ERR("Failed to save to [" << path << "]");
             return false;
         }
     }
@@ -70,14 +70,14 @@ bool saveFile(const QString &path, const QString &content, const QString &head, 
         {
             if (log != nullptr)
                 log->error(head, "Failed to open [" + path + "]. Do I have write permission?");
-                LOG_ERR("unsafe: Failed to open [" << path << "]");
+            LOG_ERR("unsafe: Failed to open [" << path << "]");
             return false;
         }
         if (file.write(content.toUtf8()) == -1)
         {
             if (log != nullptr)
                 log->error(head, "Failed to save to [" + path + "]. Do I have write permission?");
-                LOG_ERR("unsafe: Failed to save to [" << path << "]");
+            LOG_ERR("unsafe: Failed to save to [" << path << "]");
             return false;
         }
     }
@@ -94,7 +94,7 @@ QString readFile(const QString &path, const QString &head, MessageLogger *log)
     {
         if (log != nullptr)
             log->error(head, QString("Failed to open [%1]. Do I have read permission?").arg(path));
-            LOG_ERR(QString("Failed to open [%1]").arg(path));
+        LOG_ERR(QString("Failed to open [%1]").arg(path));
         return QString();
     }
     QString content = file.readAll();

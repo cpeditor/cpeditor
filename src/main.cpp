@@ -131,9 +131,9 @@ int main(int argc, char *argv[])
             }
         }
 
-        LOG_INFO("Launching the new Appwindow with args: " << BOOL_INFO_OF(cpp) << BOOL_INFO_OF(java) << BOOL_INFO_OF(python)
-                                                           << BOOL_INFO_OF(noHotExit) << INFO_OF(number)
-                                                           << INFO_OF(path));
+        LOG_INFO("Launching the new Appwindow with args: " << BOOL_INFO_OF(cpp) << BOOL_INFO_OF(java)
+                                                           << BOOL_INFO_OF(python) << BOOL_INFO_OF(noHotExit)
+                                                           << INFO_OF(number) << INFO_OF(path));
 
         AppWindow w(cpp, java, python, noHotExit, number, path);
         LOG_INFO("Launched window connecting this window to onRecieveMessage()");
