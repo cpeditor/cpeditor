@@ -65,7 +65,7 @@
         Core::Log::log("ERROR", __FUNCTION__, __LINE__, __FILE__) << stream << endl;                                   \
     }
 
-#define INFO_OF(variable) #variable << " : " << variable << " "
+#define INFO_OF(variable) "<" #variable ">: [" << (variable) << "], "
 #define BOOL_INFO_OF(variable) #variable << " : " << ((variable) ? "true" : "false") << " "
 
 namespace Core
