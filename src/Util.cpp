@@ -51,7 +51,6 @@ bool saveFile(const QString &path, const QString &content, const QString &head, 
         {
             if (log != nullptr)
                 log->error(head, "Failed to open [" + path + "]. Do I have write permission?");
-            else
                 LOG_ERR("Failed to open [" << path << "]");
             return false;
         }
