@@ -18,6 +18,7 @@
 #include "Core/EventLogger.hpp"
 #include "appwindow.hpp"
 #include "mainwindow.hpp"
+#include "signal.hpp"
 #include <QApplication>
 #include <QCommandLineParser>
 #include <QJsonArray>
@@ -134,9 +135,10 @@ int main(int argc, char *argv[])
         LOG_INFO("Launching the new Appwindow with args: " << BOOL_INFO_OF(cpp) << BOOL_INFO_OF(java)
                                                            << BOOL_INFO_OF(python) << BOOL_INFO_OF(noHotExit)
                                                            << INFO_OF(number) << INFO_OF(path));
-
+        Daemon d;
+        Daemon::setup();
         AppWindow w(cpp, java, python, noHotExit, number, path);
-        LOG_INFO("Launched window connecting this window to onReceiveMessage()");
+        QObject::connect(&d, &Daemon::signalActivated, &w, &AppWindow::close);
         QObject::connect(&app, &SingleApplication::receivedMessage, &w, &AppWindow::onReceivedMessage);
         LOG_INFO("Showing the application window and beginning the event loop");
         w.show();
@@ -187,8 +189,10 @@ int main(int argc, char *argv[])
                                                            << BOOL_INFO_OF(python) << BOOL_INFO_OF(noHotExit)
                                                            << INFO_OF(args.join(", ")));
 
+        Daemon d;
+        Daemon::setup();
         AppWindow w(depth, cpp, java, python, noHotExit, args);
-        LOG_INFO("Launched window connecting this window to onReceiveMessage()");
+        QObject::connect(&d, &Daemon::signalActivated, &w, &AppWindow::close);
         QObject::connect(&app, &SingleApplication::receivedMessage, &w, &AppWindow::onReceivedMessage);
         LOG_INFO("Showing the application window and beginning the event loop");
 
