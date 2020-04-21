@@ -153,7 +153,7 @@ void TestCases::addTestCase(const QString &input, const QString &expected)
     }
     else
     {
-        LOG_WARN("New testcase added");
+        LOG_INFO("New testcase added");
         auto testcase = new TestCase(count(), log, this, input, expected);
         connect(testcase, SIGNAL(deleted(TestCase *)), this, SLOT(onChildDeleted(TestCase *)));
         connect(testcase, SIGNAL(requestRun(int)), this, SIGNAL(requestRun(int)));
