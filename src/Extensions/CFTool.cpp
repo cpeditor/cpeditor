@@ -107,7 +107,7 @@ bool CFTool::check(const QString &path)
     QProcess checkProcess;
     checkProcess.start(path, {"--version"});
     bool finished = checkProcess.waitForFinished(2000);
-    LOG_INFO(BOOL_INFO_OF(finished && checkProcess.exitCode()) << INFO_OF(checkProcess.exitStatus()));
+    LOG_INFO(BOOL_INFO_OF(finished) << INFO_OF(checkProcess.exitCode()) << INFO_OF(checkProcess.exitStatus()));
     return finished && checkProcess.exitCode() == 0;
 }
 
