@@ -466,118 +466,112 @@
         "tip": "The maximum number of characters in a testcase file to load.\nA testcase file won't be loaded if it's too long."
     },
     {
-      "name": "LSP/Path C++",
-      "ui": "PathItem",
-      "desc": "Path to LSP executable",
-      "default": "clangd",
-      "type": "QString",
-      "param": "0",
-      "tip": "The path to the C++ Language Server executable"
+        "name": "LSP/Path C++",
+        "ui": "PathItem",
+        "desc": "Path to LSP executable",
+        "default": "clangd",
+        "type": "QString",
+        "param": "0",
+        "tip": "The path to the C++ Language Server executable"
     },
     {
-      "name": "LSP/Path Java",
-      "ui": "PathItem",
-      "desc": "Path to LSP executable",
-      "type": "QString",
-      "param": "0",
-      "tip": "The path to the Java Language Server executable"
+        "name": "LSP/Path Java",
+        "ui": "PathItem",
+        "desc": "Path to LSP executable",
+        "type": "QString",
+        "param": "0",
+        "tip": "The path to the Java Language Server executable"
     },
     {
-      "name": "LSP/Path Python",
-      "ui": "PathItem",
-      "desc": "Path to LSP executable",
-      "type": "QString",
-      "param": "0",
-      "tip": "The path to the Python Language Server executable"
+        "name": "LSP/Path Python",
+        "ui": "PathItem",
+        "desc": "Path to LSP executable",
+        "type": "QString",
+        "param": "0",
+        "tip": "The path to the Python Language Server executable"
     },
     {
-      "name": "LSP/Use Linting C++",
-      "desc": "Use Linting with Language Server",
-      "type": "bool",
-      "default": true,
-      "tip": "Show Error, Warning, Information and Hints in Code Editor for C++ Langauge"
+        "name": "LSP/Use Linting C++",
+        "desc": "Use Linting with Language Server",
+        "type": "bool",
+        "default": true,
+        "tip": "Show Error, Warning, Information and Hints in Code Editor for C++ Langauge"
     },
     {
-      "name": "LSP/Use Linting Java",
-      "desc": "Use Linting with Language Server",
-      "type": "bool",
-      "default": true,
-      "tip": "Show Error, Warning, Information and Hints in Code Editor for Java Langauge"
+        "name": "LSP/Use Linting Java",
+        "desc": "Use Linting with Language Server",
+        "type": "bool",
+        "default": true,
+        "tip": "Show Error, Warning, Information and Hints in Code Editor for Java Langauge"
     },
     {
-      "name": "LSP/Use Linting Python",
-      "desc": "Use Linting with Language Server",
-      "type": "bool",
-      "default": true,
-      "tip": "Show Error, Warning, Information and Hints in Code Editor for Python Langauge"
+        "name": "LSP/Use Linting Python",
+        "desc": "Use Linting with Language Server",
+        "type": "bool",
+        "default": true,
+        "tip": "Show Error, Warning, Information and Hints in Code Editor for Python Langauge"
     },
     {
-      "name": "LSP/Use Autocomplete C++",
-      "desc": "Use auto complete with Language Server",
-      "type": "bool",
-      "default": true,
-      "tip": "Use autocomplete results from Language server"
+        "name": "LSP/Use Autocomplete C++",
+        "desc": "Use auto complete with Language Server",
+        "type": "bool",
+        "default": true,
+        "tip": "Use autocomplete results from Language server"
     },
     {
-      "name": "LSP/Use Autocomplete Java",
-      "desc": "Use auto complete with Language Server",
-      "type": "bool",
-      "default": true,
-      "tip": "Use autocomplete results from Language server"
-
+        "name": "LSP/Use Autocomplete Java",
+        "desc": "Use auto complete with Language Server",
+        "type": "bool",
+        "default": true,
+        "tip": "Use autocomplete results from Language server"
     },
     {
-      "name": "LSP/Use Autocomplete Python",
-      "desc": "Use auto complete with Language Server",
-      "type": "bool",
-      "default": true,
-      "tip": "Use autocomplete results from Language server"
-
+        "name": "LSP/Use Autocomplete Python",
+        "desc": "Use auto complete with Language Server",
+        "type": "bool",
+        "default": true,
+        "tip": "Use autocomplete results from Language server"
     },
     {
-      "name": "LSP/Delay C++",
-      "type": "int",
-      "desc": "Delay in Linting (ms)",
-      "default": 2000,
-      "param": "QList<QVariant> {100, 10000}",
-      "tip": "Delay in linting in miliseconds after last modification to code"
+        "name": "LSP/Delay C++",
+        "type": "int",
+        "desc": "Delay in Linting (ms)",
+        "default": 2000,
+        "param": "QList<QVariant> {100, 10000}",
+        "tip": "Delay in linting in miliseconds after last modification to code"
     },
     {
-      "name": "LSP/Delay Java",
-      "type": "int",
-      "desc": "Delay in Linting (ms)",
-      "default": 2000,
-      "param": "QList<QVariant> {100, 10000}",
-      "tip": "Delay in linting in miliseconds after last modification to code"
-
+        "name": "LSP/Delay Java",
+        "type": "int",
+        "desc": "Delay in Linting (ms)",
+        "default": 2000,
+        "param": "QList<QVariant> {100, 10000}",
+        "tip": "Delay in linting in miliseconds after last modification to code"
     },
     {
-      "name": "LSP/Delay Python",
-      "type": "int",
-      "desc": "Delay in Linting (ms)",
-      "default": 2000,
-      "param": "QList<QVariant> {100, 10000}",
-      "tip": "Delay in linting in miliseconds after last modification to code"
-
+        "name": "LSP/Delay Python",
+        "type": "int",
+        "desc": "Delay in Linting (ms)",
+        "default": 2000,
+        "param": "QList<QVariant> {100, 10000}",
+        "tip": "Delay in linting in miliseconds after last modification to code"
     },
     {
-      "name": "LSP/Args C++",
-      "desc": "Arguments for Language Server",
-      "type": "QString",
-      "tip": "Arguments to pass to Language server executable"
+        "name": "LSP/Args C++",
+        "desc": "Arguments for Language Server",
+        "type": "QString",
+        "tip": "Arguments to pass to Language server executable"
     },
     {
-      "name": "LSP/Args Java",
-      "desc": "Arguments for Language Server",
-      "type": "QString",
-      "tip": "Arguments to pass to Language server executable"
-
+        "name": "LSP/Args Java",
+        "desc": "Arguments for Language Server",
+        "type": "QString",
+        "tip": "Arguments to pass to Language server executable"
     },
     {
-      "name": "LSP/Args Python",
-      "desc": "Arguments for Language Server",
-      "type": "QString",
-      "tip": "Arguments to pass to Language server executable"
-
+        "name": "LSP/Args Python",
+        "desc": "Arguments for Language Server",
+        "type": "QString",
+        "tip": "Arguments to pass to Language server executable"
     }
 ]

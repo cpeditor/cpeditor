@@ -2,7 +2,7 @@
 
 ### Linting with Language Server
 
-Editor will lint error, warning, information and hint from your code in the editor. Lints can be helpful in finding error in code and fixing them quickly. A Language Server Program(LSP) needs to be installed in your PC for linting to take place. You can set delay for linting in miliseconds, Path for LSP Program and its arguments from Settings. Each of these settings can be different for each language. Please check install [manual](https://github.com/cpeditor/cpeditor/blob/master/doc/MANUAL.md) for more information on how to set this up.
+Now error linting is available with Language Server. Linting can be helpful when you want to find errors in your code and fix them quickly. You need to install a Language Server program to enable linting. You can set delay for linting, the path to the Languae Server program and its arguments in the Preferences window. You can set different settings for different languages. Please check the [manual](MANUAL.md) for more information on how to set this up.
 
 ### Added
 

@@ -89,10 +89,10 @@ add_executable(cpeditor
     src/Extensions/CompanionServer.hpp
     src/Extensions/EditorTheme.cpp
     src/Extensions/EditorTheme.hpp
-	src/Extensions/ClangFormatter.cpp
+    src/Extensions/ClangFormatter.cpp
     src/Extensions/ClangFormatter.hpp
-	src/Extensions/LanguageServer.cpp
-	src/Extensions/LanguageServer.hpp
+    src/Extensions/LanguageServer.cpp
+    src/Extensions/LanguageServer.hpp
 
     src/Settings/AppearancePage.cpp
     src/Settings/AppearancePage.hpp

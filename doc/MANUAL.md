@@ -23,20 +23,18 @@ You have to either parse the problem from Competitive Companion, or set the prob
 You have to use a **non-public** class named **a** for your solution.
 
 ## Language Server
-You need to install a Language Server (LS) for Linting, Autocomplete or other intellisense features. Each programming language have different Language Server Program (LSP). 
-You first need to decide your primary language for CP and install LSP for only that program, if you have a powerful machine you can continue to install LSP for all languages. 
 
-Below are the features that utilizes LSP and has steps to set it up for each language.
+You need to install a [Language Server program](https://microsoft.github.io/language-server-protocol/implementors/servers/) for linting, auto-complete and some other features. Each programming language have a different Language Server program.
 
-### Linting
+Here are the steps to set up a Language Server program for each language:
 
-  - **C++**:  If you had installed LLVM, you already have `clangd`. **It comes bundled with clang compiler**. If you haven't, please install [LLVM](https://releases.llvm.org/download.html) Prebuild binaries for Windows, on Linux and mac you can install from your package manager. You need to set the Path of `clangd` to Preferences -> Extensions -> Language Server -> C++ Server -> Path. On Linux it could be `/usr/bin/clangd` for Windows it could be `C://ProgramFiles/LLVM/bin/clangd.exe` depending upon where LLVM is installed. 
+- **C++**:  If you have installed LLVM, you already have `clangd`, because it comes with the clang compiler. If you haven't, please install [LLVM](https://releases.llvm.org/download.html) prebuild binaries for Windows. On Linux and mac you can install it from your package manager. You need to set the start command of `clangd` in Preferences -> Extensions -> Language Server -> C++ Server -> Path, where the command can be the path to the executable file or just `clangd` if it's in the PATH.
 
+- **Python**: You need to have `python` and `pip` installed and added to `PATH`. Install `python-language-server` pip module by running `pip install 'python-language-server[all]'`. After the installation is done, open CP Editor settings, go to Preferences -> Extensions -> Language Server -> Python Server. Set "Path" to `python` and set "Arguments" to `-m pyls`. Save the changes and you will have linting for Python.
 
-  - **Python**: You need to have `python` and `pip` installed and added to `PATH`. Install `python-language-server` pip module by running `pip install 'python-language-server[all]'`. After installation is done, Open CP Editor settings naviage to Preferences -> Extensions -> Language Server -> Python Server. In PATH add `python` In Arguments add `-m pyls`. Save the changes and you will have linting for Python.
+- **Java**: You need to have `java` installed and added to `PATH`. Download [Eclipse.JDT.ls](http://download.eclipse.org/jdtls/snapshots/jdt-language-server-latest.tar.gz), extract it to any location (in a new directory), We call the path to that directory `<INSTALL_PATH>` (Something like `C://Users/Myname/Desktop/EclipseJDT.ls/`). In CP Editor, go to Preferences -> Extensions -> Language Server -> Java Server. Set "Path" to `java` and set "Arguments" to something like `-jar $INSTALL_PATH/plugins/org.eclipse.equinox.launcher_1.5.200.v20180922-1751.jar -configuration <INSTALL_PATH>/config_(linux|win|mac)`. For example, on Windows, the arguments should be something like `-configuration C://Users/Myname/Desktop/Eclipse.JDT.ls/config_win`.
 
-  - **Java**: You need to have `java` installed and added to `PATH`. Download [Eclipse.JDT.ls](http://download.eclipse.org/jdtls/snapshots/jdt-language-server-latest.tar.gz), extract it to your favourite location (in a new Directory), We call Path to this `<FAVOURITE_LOCATION>` (Something like C://Users/Myname/Desktop/EclipseJDT.ls/). In the Editor naviage to Preferences -> Extensions -> Language Server -> Java Server. Set Value of Path to `java` and Value of argument to something like `-jar $FAVOURITE_LOCATION/plugins/org.eclipse.equinox.launcher_1.5.200.v20180922-1751.jar -configuration <FAVOURITE_LOCATION>/config_(linux|win|mac)`. You need to put the last command as per your OS, Like for windows, I you will put last command as`-configuration C://Users/Myname/Desktop/Eclipse.JDT.ls/config_win`.
-    > The full name of the build jar file above, `org.eclipse.equinox.launcher_1.5.200.v20180922-1751.jar`, may change incrementally as the project version changes of JDT Changes. If java complains about jar not found, then look for the latest version of the org.eclipse.equinox.launcher_* jar in the <FAVOURITE_LOCATION>/plugins directory and replace it in the command after the -jar
+  The full name of the jar file above, `org.eclipse.equinox.launcher_1.5.200.v20180922-1751.jar`, may change incrementally as the project version of JDT changes. If java complains about "jar not found", then look for the latest version of the `org.eclipse.equinox.launcher_*` jar in `<INSTALL_PATH>/plugins` and replace it in the command after `-jar`.
 
 ## Preferences
 
