@@ -148,7 +148,7 @@ QVariant SettingsManager::get(QString key, bool alwaysDefault)
         if (!noUnknownKeyWarning.contains(key))
             qDebug() << "Settings: getting unknown key: " << key;
 #endif
-        LOG_INFO("SettingsManager::getting unknown key: " << key);
+        LOG_WARN("SettingsManager::getting unknown key: " << key);
         return QVariant();
     }
 }
