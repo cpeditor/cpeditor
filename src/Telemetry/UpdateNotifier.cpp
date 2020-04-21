@@ -25,7 +25,7 @@ namespace Telemetry
 {
 UpdateNotifier::UpdateNotifier(bool useBeta)
 {
-    LOG_INFO(INFO_OF(useBeta));
+    LOG_INFO(BOOL_INFO_OF(useBeta));
     manager = new QNetworkAccessManager();
     QObject::connect(manager, SIGNAL(finished(QNetworkReply *)), this, SLOT(managerFinished(QNetworkReply *)));
     beta = useBeta;
