@@ -1315,8 +1315,7 @@ void AppWindow::onTabContextMenuRequested(const QPoint &pos)
         }
         else if (!widget->isUntitled() && QFile::exists(QFileInfo(widget->getFilePath()).path()))
         {
-            LOG_INFO("filepath does not exists. Looking if tab provides filepath "
-                     << QFileInfo(widget->getFilePath()).path());
+            LOG_INFO("The file does not exist, but its parent directory [" << QFileInfo(widget->getFilePath()).path() << "] exists");
             tabMenu->addSeparator();
             tabMenu->addAction("Copy path", [filePath] {
                 auto clipboard = QGuiApplication::clipboard();
