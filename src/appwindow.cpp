@@ -1044,7 +1044,7 @@ void AppWindow::on_actionKill_Processes_triggered()
 
 void AppWindow::on_actionUse_Snippets_triggered()
 {
-    LOG_INFO("Use snipped trigerred");
+    LOG_INFO("Use snippets trigerred");
     auto current = currentWindow();
     if (current != nullptr)
     {
