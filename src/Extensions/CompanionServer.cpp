@@ -32,13 +32,12 @@ CompanionServer::CompanionServer(int port)
 
 void CompanionServer::setMessageLogger(MessageLogger *log)
 {
-    Core::Log::i("companionServer/setMessageLogger") << "log is null ? : " << (log == nullptr) << endl;
     this->log = log;
 }
 
 void CompanionServer::updatePort(int port)
 {
-    Core::Log::i("companionServer/updatePort") << INFO_OF(port) << endl;
+    LOG_INFO(INFO_OF(port));
     if (portNumber != port)
     {
         portNumber = port;
@@ -68,12 +67,10 @@ void CompanionServer::updatePort(int port)
             }
         }
     }
-    Core::Log::i("companionServer/updatePort", "Finished");
 }
 
 CompanionServer::~CompanionServer()
 {
-    Core::Log::i("companionServer/destroyed", "killing companion server");
     if (log != nullptr)
         log->info("Companion", "Stopped Server");
     delete server;
@@ -81,7 +78,7 @@ CompanionServer::~CompanionServer()
 
 void CompanionServer::onNewConnection()
 {
-    Core::Log::i("companionServer/onNewConnection", "New connection has arrived, reading from the queue");
+    LOG_INFO("New connection has arrived, reading from queue");
     socket = server->nextPendingConnection();
     socket->setSocketOption(QAbstractSocket::KeepAliveOption, 1);
     QObject::connect(socket, SIGNAL(readyRead()), this, SLOT(onReadReady()));
@@ -92,7 +89,7 @@ void CompanionServer::onReadReady()
 {
     QString request = socket->readAll();
 
-    Core::Log::i("companionServer/onReadReady") << "\n" << request << endl;
+    LOG_INFO("Connection content is\n" << request);
 
     if (request.startsWith("POST") && request.contains("Content-Type: application/json"))
     {
@@ -111,8 +108,6 @@ void CompanionServer::onReadReady()
         socket->disconnectFromHost();
 
         request = request.mid(request.indexOf('{'));
-
-        Core::Log::i("companionServer/onReadReady") << "Truncated request is : \n" << request << endl;
 
         QJsonParseError error;
         QJsonDocument doc = QJsonDocument::fromJson(request.toUtf8(), &error);
@@ -143,8 +138,7 @@ void CompanionServer::onReadReady()
             if (log != nullptr)
                 log->error("Companion", "JSONParser reported errors. \n" + error.errorString());
             else
-                Core::Log::i("companionServer/onReadReady")
-                    << "JSON Parser reported error " << error.errorString() << endl;
+                LOG_INFO("JSON Parser reported error " << error.errorString());
         }
     }
     else
@@ -152,7 +146,7 @@ void CompanionServer::onReadReady()
         if (log != nullptr)
             log->warn("Companion", "An Invalid Payload was delivered on the listening port");
         else
-            Core::Log::w("companionServer/onReadReady", "Invalid payload delivered on listing port");
+            LOG_WARN("Invalid payload delivered on listing port");
         socket->write("HTTP/1.1  OK\r\n"); // \r needs to be before \n
         socket->write("Content-Type: text/html\r\n");
         socket->write("Connection: close\r\n");
@@ -168,7 +162,7 @@ void CompanionServer::onReadReady()
 }
 void CompanionServer::onTerminateConnection()
 {
-    Core::Log::i("companionServer/onTerminateConnection", "socket scheduled to be deleted");
+    LOG_INFO("Socket scheduled to be Deleted");
     socket->deleteLater();
 }
 

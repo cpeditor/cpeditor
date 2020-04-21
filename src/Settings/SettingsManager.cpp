@@ -148,7 +148,7 @@ QVariant SettingsManager::get(QString key, bool alwaysDefault)
         if (!noUnknownKeyWarning.contains(key))
             qDebug() << "Settings: getting unknown key: " << key;
 #endif
-        Core::Log::w("SettingsManager::get") << "getting unknown key: " << key << endl;
+        LOG_INFO("SettingsManager::getting unknown key: " << key);
         return QVariant();
     }
 }
@@ -160,7 +160,7 @@ bool SettingsManager::contains(const QString &key)
 
 void SettingsManager::set(const QString &key, QVariant value)
 {
-    Core::Log::i("SettingsManager::set") << INFO_OF(key) << ", " << INFO_OF(value.toString()) << endl;
+    LOG_INFO(INFO_OF(key) << "," << INFO_OF(value.toString()));
     cur->insert(key, value);
 }
 

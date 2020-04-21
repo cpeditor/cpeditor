@@ -26,37 +26,54 @@
 #include <QFile>
 #include <QTextStream>
 
+#define NUMBER_OF_LOGS_TO_KEEP (50)
+#define LOG_FILE_NAME QString("cpeditor")
+#define LOG_DIR_NAME QString("cpeditorLogFiles")
+#define MAXIMUM_FUNCTION_NAME_SIZE (30)
+#define MAXIMUM_FILE_NAME_SIZE (20)
+
+/**
+ * There are four log levels:
+ * 1. LOG_INFO(i): information, used when everything is normal
+ * 2. LOG_WARN(w): warning, used when something strange happened, but it is not necessarily an error
+ * 3. LOG_WARN_IF(cond, w): something strange will happen if condition is true
+ * 4. LOG_ERR(e): error, used when something bad happened
+ * 5. LOG_ERR_IF(cond, e): something bad will happen if condition is true
+ * 6. LOG_WTF(wtf): what a terrible failure, used when it's considered impossible to happen
+ */
+
+// Log levels are defined as:
+// WTF : Level 4
+// ERR : Level 3
+// WARN: Level 2
+// INFO: Level 1
+
+
+#define LOG_WTF(stream) Core::Log::log(" WTF ", __func__, __LINE__, __FILE__) << stream << endl;
+#define LOG_ERR(stream) Core::Log::log("ERROR", __func__, __LINE__, __FILE__) << stream << endl;
+#define LOG_WARN(stream) Core::Log::log("WARN ", __func__, __LINE__, __FILE__) << stream << endl;
+#define LOG_INFO(stream) Core::Log::log("INFO ", __func__, __LINE__, __FILE__) << stream << endl;
+
+#define LOG_WARN_IF(cond, stream)                                                                                      \
+    if ((cond))                                                                                                        \
+    {                                                                                                                  \
+        Core::Log::log("WARN ", __FUNCTION__, __LINE__, __FILE__) << stream << endl;                                                                                               \
+    }
+
+#define LOG_ERR_IF(cond, stream)                                                                                       \
+    if ((cond))                                                                                                        \
+    {                                                                                                                  \
+        Core::Log::log("ERROR", __FUNCTION__, __LINE__, __FILE__) << stream << endl;                                                 \
+    }
+
+#define INFO_OF(variable) #variable <<" : "<< variable << " "
+#define BOOL_INFO_OF(variable) #variable <<" : "<< ((variable) ? "true" : "false") << " "
+
 namespace Core
 {
-
-#define INFO_OF(x) #x ": " << x // a useful macro to show a variable in the log
-
 class Log
 {
   public:
-    /**
-     * There are four log levels:
-     * 1. INFO(i): information, used when everything is normal
-     * 2. WARN(w): warning, used when something strange happened, but it is not necessarily an error
-     * 3. ERR(e): error, used when something bad happened
-     * 4. WTF(wtf): what a terrible failure, used when it's considered impossible to happen
-     *
-     * You can use one of the two forms for logging:
-     * 1. Core::Log::i/w/e/wtf(head, body);
-     * 2. Core::Log::i/w/e/wtf(head) << body1 << body2 << ... << endl;
-     *
-     * Please remember to add endl when using the second form.
-     */
-
-    static void i(const QString &head, const QString &body);
-    static void w(const QString &head, const QString &body);
-    static void e(const QString &head, const QString &body);
-    static void wtf(const QString &head, const QString &body);
-    static QTextStream &i(const QString &head);
-    static QTextStream &w(const QString &head);
-    static QTextStream &e(const QString &head);
-    static QTextStream &wtf(const QString &head);
-
     /**
      * @brief initialize the event logger
      * @param instanceCount the instance ID provided by SingleApplication, to distinct processes from each other
@@ -76,34 +93,11 @@ class Log
      */
     static void revealInFileManager();
 
-  private:
-    /**
-     * @brief get the current datetime
-     * @return the current datetime
-     */
+    static QTextStream &log(const QString &priority, QString funcName, int lineNumber, QString fileName);
+  
+private:
     static QString dateTimeStamp();
-
-    /**
-     * @brief get the platform info
-     * @return the platform information
-     */
-    static QString platformInformation();
-
-    /**
-     * @brief log with a certain priority, head and body
-     * @param priority one of "INFO", "WARN", "ERR", "WTF"
-     * @param head ususally <class name>/<function name>, indicates where this message is from
-     * @param body the main part of the message
-     */
-    static void log(const QString &priority, const QString &head, const QString &body);
-
-    /**
-     * @brief the text stream form of log
-     * @param priority one of "INFO", "WARN", "ERR", "WTF"
-     * @param head ususally <class name>/<function name>, indicates where this message is from
-     * @note Please add endl manually when using the text stream form.
-     */
-    static QTextStream &log(const QString &priority, const QString &head);
+    static void platformInformation();
 
     static QTextStream logStream; // the text stream for logging, writes to logFile
     static QFile logFile;         // the device for logging, a file or stderr

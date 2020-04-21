@@ -25,25 +25,25 @@ namespace Telemetry
 {
 UpdateNotifier::UpdateNotifier(bool useBeta)
 {
-    Core::Log::i("updateNotifier/constructed") << "use beta ? " << useBeta << endl;
+    LOG_INFO(INFO_OF(useBeta));
     manager = new QNetworkAccessManager();
     QObject::connect(manager, SIGNAL(finished(QNetworkReply *)), this, SLOT(managerFinished(QNetworkReply *)));
     beta = useBeta;
 }
 UpdateNotifier::~UpdateNotifier()
 {
-    Core::Log::i("updateNotifer/destroyed", "deleting network access manager");
     delete manager;
 }
 void UpdateNotifier::setBeta(bool value)
 {
-    Core::Log::i("updateNotifer/setBeta") << "value is ? " << value << endl;
+    LOG_INFO("Updated beta" << BOOL_INFO_OF(value));
     beta = value;
 }
 
 void UpdateNotifier::checkUpdate(bool force)
 {
-    Core::Log::i("updateNotifier/checkupdate") << "Forceful update : " << force << endl;
+    LOG_INFO("Forceful update : " << force);
+
     this->force = force;
     request.setUrl(QUrl("https://api.github.com/repos/cpeditor/cpeditor/releases"));
     manager->get(request);
@@ -51,7 +51,7 @@ void UpdateNotifier::checkUpdate(bool force)
 
 bool compareVersion(QString const &a, QString const &b)
 {
-    Core::Log::i("updateNotifier/compareVersion") << "latest : " << a << " current : " << b << endl;
+    LOG_INFO(INFO_OF(a) << INFO_OF(b));
     // returns true if a is higher version than b;
 
     auto aV = a.split(".");
@@ -88,13 +88,11 @@ void UpdateNotifier::managerFinished(QNetworkReply *reply)
 {
     if (reply->error())
     {
-        Core::Log::e("updateNotifer/managerFinished") << reply->errorString() << endl;
+        LOG_ERR("Error returned " << reply->errorString());
         qDebug() << reply->errorString();
         return;
     }
     QString jsonReply = reply->readAll();
-
-    Core::Log::i("updateNotifier/managerFinished") << "Cycling through the JSON response" << endl;
 
     QJsonDocument doc = QJsonDocument::fromJson(jsonReply.toUtf8());
 
@@ -136,7 +134,7 @@ void UpdateNotifier::managerFinished(QNetworkReply *reply)
 
     bool isUpdateAvailable = compareVersion(latestRelease, APP_VERSION);
 
-    Core::Log::i("updateNotifier/managerFinished") << "update available ? " << isUpdateAvailable << endl;
+    LOG_INFO(BOOL_INFO_OF(isUpdateAvailable));
 
     if (beta && isBeta && isUpdateAvailable)
     {
@@ -164,7 +162,7 @@ void UpdateNotifier::managerFinished(QNetworkReply *reply)
     }
     else
     {
-        Core::Log::i("updateNotifier/managerFinshed", "No update available. Silently logged it");
+        LOG_INFO("No update available. Silently logged it");
     }
 }
 } // namespace Telemetry

@@ -23,7 +23,7 @@
 void MessageLogger::setContainer(QTextBrowser *container)
 {
     MessageLogger::box = container;
-    Core::Log::i("messagelogger/setContainer", "Container set and updated to open links");
+    LOG_INFO("MessageLogger container has been initialized");
     box->setOpenExternalLinks(true);
 }
 
@@ -56,24 +56,24 @@ void MessageLogger::message(const QString &head, const QString &body, const QStr
 
 void MessageLogger::info(const QString &head, const QString &body)
 {
-    Core::Log::i("messagelogger/message/" + head, body);
+    LOG_INFO("MessageLogger Information " << INFO_OF(head) << INFO_OF(body));
     message(head, body, "");
 }
 
 void MessageLogger::warn(const QString &head, const QString &body)
 {
-    Core::Log::w("messagelogger/message/" + head, body);
+    LOG_WARN("MessageLogger Information " << INFO_OF(head) << INFO_OF(body));
     message(head, body, "green");
 }
 
 void MessageLogger::error(const QString &head, const QString &body)
 {
-    Core::Log::e("messagelogger/message/" + head, body);
+    LOG_ERR("MessageLogger Information " << INFO_OF(head) << INFO_OF(body));
     message(head, body, "red");
 }
 
 void MessageLogger::clear()
 {
-    Core::Log::i("messagelogger/clear", "Cleared the message box");
+    LOG_INFO("MessageLogger box has been cleared");
     box->clear();
 }

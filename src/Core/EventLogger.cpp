@@ -29,46 +29,8 @@
 namespace Core
 {
 
-static const int NUMBER_OF_LOGS_TO_KEEP = 50;
-static const QString LOG_FILE_NAME("cpeditor");
-static const QString LOG_DIR_NAME("cpeditorLogFiles");
-
 QFile Log::logFile;
 QTextStream Log::logStream;
-
-void Log::i(const QString &head, const QString &body)
-{
-    log("INFO", head, body);
-}
-void Log::w(const QString &head, const QString &body)
-{
-    log("WARN", head, body);
-}
-void Log::e(const QString &head, const QString &body)
-{
-    log("ERR", head, body);
-}
-void Log::wtf(const QString &head, const QString &body)
-{
-    log("WTF", head, body);
-}
-
-QTextStream &Log::i(const QString &head)
-{
-    return log("INFO", head);
-}
-QTextStream &Log::w(const QString &head)
-{
-    return log("WARN", head);
-}
-QTextStream &Log::e(const QString &head)
-{
-    return log("ERR", head);
-}
-QTextStream &Log::wtf(const QString &head)
-{
-    return log("WTF", head);
-}
 
 void Log::init(int instance, bool dumptoStderr)
 {
@@ -77,44 +39,35 @@ void Log::init(int instance, bool dumptoStderr)
     {
         // get the path to the log file
         auto path = QStandardPaths::writableLocation(QStandardPaths::TempLocation);
-        if (path.isEmpty())
+        LOG_ERR_IF(path.isEmpty(), "Failed to get writable temp location");
+
+        QDir dir(path);
+        dir.mkdir(LOG_DIR_NAME);
+        if (dir.cd(LOG_DIR_NAME))
         {
-            e("Logger", "Failed to get writable temp location");
+            // keep NUMBER_OF_LOGS_TO_KEEP log files
+            auto entries = dir.entryList({LOG_FILE_NAME + "*.log"}, QDir::Files, QDir::Time);
+            for (int i = NUMBER_OF_LOGS_TO_KEEP; i < entries.length(); ++i)
+                dir.remove(entries[i]);
+
+            // open the log file
+            logFile.setFileName(dir.filePath(LOG_FILE_NAME +
+                                             QDateTime::currentDateTime().toString("-yyyy-MM-dd-hh-mm-ss-zzz-") +
+                                             QString::number(instance) + ".log"));
+            logFile.open(QIODevice::WriteOnly | QFile::Text);
+            LOG_ERR_IF(!logFile.isOpen() || !logFile.isWritable(), "Failed to open file" << logFile.fileName());
         }
         else
         {
-            QDir dir(path);
-            dir.mkdir(LOG_DIR_NAME);
-            if (dir.cd(LOG_DIR_NAME))
-            {
-                // keep NUMBER_OF_LOGS_TO_KEEP log files
-                auto entries = dir.entryList({LOG_FILE_NAME + "*.log"}, QDir::Files, QDir::Time);
-                for (int i = NUMBER_OF_LOGS_TO_KEEP; i < entries.length(); ++i)
-                    dir.remove(entries[i]);
-
-                // open the log file
-                logFile.setFileName(dir.filePath(LOG_FILE_NAME +
-                                                 QDateTime::currentDateTime().toString("-yyyy-MM-dd-hh-mm-ss-zzz-") +
-                                                 QString::number(instance) + ".log"));
-                logFile.open(QIODevice::WriteOnly | QFile::Text);
-                if (!logFile.isOpen() || !logFile.isWritable())
-                {
-                    e("Logger", "Failed to open file " + logFile.fileName());
-                }
-            }
-            else
-            {
-                e("Logger", "Failed to open directory " + dir.filePath(LOG_DIR_NAME));
-            }
+            LOG_ERR("Failed to open directory" << dir.filePath(LOG_DIR_NAME));
         }
     }
     else
     {
         logFile.open(stderr, QIODevice::WriteOnly);
     }
-    i("Logger", "Event logger has started");
-    i("SysInfo", "Gathering system information");
-    i("SysInfo", platformInformation());
+    LOG_INFO("Event logger has been initialized successfully");
+    platformInformation();
 }
 
 QString Log::dateTimeStamp()
@@ -122,42 +75,50 @@ QString Log::dateTimeStamp()
     return "[" + QDateTime::currentDateTime().toString(Qt::ISODateWithMs) + "]";
 }
 
-QString Log::platformInformation()
+void Log::platformInformation()
 {
-    QString res;
+    LOG_INFO("Gathering system information");
     // Check https://doc.qt.io/qt-5/qsysinfo.html to know what each identifier means
-    res.append("buildABI : " + QSysInfo::buildAbi() + "\n");
-    res.append("buildCPUArchitecture : " + QSysInfo::buildCpuArchitecture() + "\n");
-    res.append("currentCPUArchitecture : " + QSysInfo::currentCpuArchitecture() + "\n");
-    res.append("kernelType : " + QSysInfo::kernelType() + "\n");
-    res.append("kernelVersion : " + QSysInfo::kernelVersion() + "\n");
-    res.append("prettyProductName : " + QSysInfo::prettyProductName() + "\n");
-    res.append("machineHostName : " + QSysInfo::machineHostName() + "\n");
-    res.append("machineUniqueId : " + QSysInfo::machineUniqueId() + "\n");
-    res.append("productType : " + QSysInfo::productType() + "\n");
-    res.append("productVersion : " + QSysInfo::productVersion() + "\n");
-    res.append("Appversion : " APP_VERSION "\n");
-    res.append("Git commit hash : " GIT_COMMIT_HASH);
-    return res;
+    LOG_INFO(INFO_OF(QSysInfo::buildAbi()));
+    LOG_INFO(INFO_OF(QSysInfo::buildCpuArchitecture()));
+    LOG_INFO(INFO_OF(QSysInfo::currentCpuArchitecture()));
+    LOG_INFO(INFO_OF(QSysInfo::kernelType()));
+    LOG_INFO(INFO_OF(QSysInfo::kernelVersion()));
+    LOG_INFO(INFO_OF(QSysInfo::prettyProductName()));
+    LOG_INFO(INFO_OF(QSysInfo::machineHostName()));
+    LOG_INFO(INFO_OF(QSysInfo::machineUniqueId()));
+    LOG_INFO(INFO_OF(QSysInfo::productType()));
+    LOG_INFO(INFO_OF(QSysInfo::productVersion()));
+
+    LOG_INFO(INFO_OF(APP_VERSION));
+    LOG_INFO(INFO_OF(GIT_COMMIT_HASH));
+    LOG_INFO(INFO_OF(__DATE__));
+    LOG_INFO(INFO_OF(__TIME__));
 }
 
-void Log::log(const QString &priority, const QString &head, const QString &body)
-{
-    log(priority, head) << body << endl;
-}
-
-QTextStream &Log::log(const QString &priority, const QString &head)
+QTextStream &Log::log(const QString &priority, QString funcName, int line, QString fileName)
 {
     if (!logFile.isOpen() || !logFile.isWritable())
         logFile.open(stderr, QIODevice::WriteOnly); // dump to stderr if failed to open log file
-    return logStream << dateTimeStamp() << "[" << priority << "][" << head << "] ";
+    if (funcName.size() > MAXIMUM_FUNCTION_NAME_SIZE)
+        funcName = funcName.right(MAXIMUM_FUNCTION_NAME_SIZE);
+    
+	QFileInfo info(fileName);
+    fileName = info.fileName();
+
+	if (fileName.size() > MAXIMUM_FILE_NAME_SIZE)
+        fileName = fileName.right(MAXIMUM_FILE_NAME_SIZE);
+
+    return logStream << dateTimeStamp() << center << "[" << priority << "][" << qSetFieldWidth(MAXIMUM_FUNCTION_NAME_SIZE)
+                     << funcName << qSetFieldWidth(0) << "][" <<qSetFieldWidth(MAXIMUM_FILE_NAME_SIZE) << fileName << qSetFieldWidth(0) << left << "]"
+                     << "(" << line << ")::";
 }
 
 void Log::revealInFileManager()
 {
     // Reference: http://lynxline.com/show-in-finder-show-in-explorer/ and https://forum.qt.io/post/296072
     QString filePath = logFile.fileName();
-    i("log/revealInFileManager") << "Revealing in filemanager file " << filePath;
+    LOG_INFO("Revealing " << filePath << "in filemanager");
 #if defined(Q_OS_MACOS)
     QStringList args;
     args << "-e";
@@ -233,7 +194,6 @@ void Log::revealInFileManager()
 
 void Log::clearOldLogs()
 {
-    i("log/clearOldLogs", "Invoked");
     auto path = QStandardPaths::writableLocation(QStandardPaths::TempLocation);
     QDir dir(path);
     if (dir.cd(LOG_DIR_NAME))
@@ -244,7 +204,7 @@ void Log::clearOldLogs()
             if (e != logFile.fileName()) // clear all except the current
             {
                 dir.remove(e);
-                i("log/clearOldLog") << "Deleted " << e << endl;
+                LOG_INFO("Deleted log file:" << e);
             }
         }
     }
