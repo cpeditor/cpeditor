@@ -99,7 +99,7 @@ QString readFile(const QString &path, const QString &head, MessageLogger *log)
         if (log != nullptr)
             log->error(head, QString("Failed to open [%1]. Do I have read permission?").arg(path));
         else
-            LOG_WARN(QString("Failed to open [%1]").arg(path));
+            LOG_ERR(QString("Failed to open [%1]").arg(path));
         return QString();
     }
     QString content = file.readAll();
