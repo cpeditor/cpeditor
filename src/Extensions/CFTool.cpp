@@ -51,7 +51,7 @@ void CFTool::submit(const QString &filePath, const QString &url)
         CFToolProcess = nullptr;
     }
 
-	LOG_INFO(INFO_OF(filePath) << INFO_OF(url));
+    LOG_INFO(INFO_OF(filePath) << INFO_OF(url));
 
     if (parseCfUrl(url, problemContestId, problemCode))
     {

@@ -79,7 +79,7 @@ void Compiler::start(const QString &filePath, const QString &compileCommand, con
         return;
     }
 
-	LOG_INFO(INFO_OF(lang) << INFO_OF(command));
+    LOG_INFO(INFO_OF(lang) << INFO_OF(command));
     // start compilation
     compileProcess->start(command);
 }
@@ -100,8 +100,8 @@ bool Compiler::check(const QString &compileCommand)
     finished = checkProcess.waitForFinished(1000);
 
     LOG_INFO(BOOL_INFO_OF(finished && checkProcess.exitCode() == 0));
-    
-	return finished && checkProcess.exitCode() == 0;
+
+    return finished && checkProcess.exitCode() == 0;
 }
 
 void Compiler::onProcessFinished(int exitCode)

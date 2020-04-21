@@ -48,7 +48,6 @@
 // WARN: Level 2
 // INFO: Level 1
 
-
 #define LOG_WTF(stream) Core::Log::log(" WTF ", __func__, __LINE__, __FILE__) << stream << endl;
 #define LOG_ERR(stream) Core::Log::log("ERROR", __func__, __LINE__, __FILE__) << stream << endl;
 #define LOG_WARN(stream) Core::Log::log("WARN ", __func__, __LINE__, __FILE__) << stream << endl;
@@ -57,17 +56,17 @@
 #define LOG_WARN_IF(cond, stream)                                                                                      \
     if ((cond))                                                                                                        \
     {                                                                                                                  \
-        Core::Log::log("WARN ", __FUNCTION__, __LINE__, __FILE__) << stream << endl;                                                                                               \
+        Core::Log::log("WARN ", __FUNCTION__, __LINE__, __FILE__) << stream << endl;                                   \
     }
 
 #define LOG_ERR_IF(cond, stream)                                                                                       \
     if ((cond))                                                                                                        \
     {                                                                                                                  \
-        Core::Log::log("ERROR", __FUNCTION__, __LINE__, __FILE__) << stream << endl;                                                 \
+        Core::Log::log("ERROR", __FUNCTION__, __LINE__, __FILE__) << stream << endl;                                   \
     }
 
-#define INFO_OF(variable) #variable <<" : "<< variable << " "
-#define BOOL_INFO_OF(variable) #variable <<" : "<< ((variable) ? "true" : "false") << " "
+#define INFO_OF(variable) #variable << " : " << variable << " "
+#define BOOL_INFO_OF(variable) #variable << " : " << ((variable) ? "true" : "false") << " "
 
 namespace Core
 {
@@ -94,8 +93,8 @@ class Log
     static void revealInFileManager();
 
     static QTextStream &log(const QString &priority, QString funcName, int lineNumber, QString fileName);
-  
-private:
+
+  private:
     static QString dateTimeStamp();
     static void platformInformation();
 

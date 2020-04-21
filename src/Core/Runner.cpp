@@ -35,7 +35,6 @@ Runner::~Runner()
 
     if (killTimer != nullptr)
         delete killTimer;
-    
 
     if (runProcess != nullptr)
     {
@@ -125,7 +124,6 @@ void Runner::runDetached(const QString &filePath, const QString &lang, const QSt
     runProcess->start();
 #elif defined(__APPLE__)
     // use apple script on Mac OS
-    Core::Log::i("runner/runDetached", "on mac, using apple script to launch terminal");
     runProcess->setProgram("osascript");
     runProcess->setArguments({"-l", "AppleScript"});
     QString script = "tell app \"Terminal\" to do script \"" +
@@ -209,8 +207,8 @@ QString Runner::getCommand(const QString &filePath, const QString &lang, const Q
     }
 
     LOG_INFO("Returning runCommand as : " << res);
-    
-	return res;
+
+    return res;
 }
 
 } // namespace Core

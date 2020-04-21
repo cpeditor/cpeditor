@@ -52,7 +52,7 @@ bool saveFile(const QString &path, const QString &content, const QString &head, 
             if (log != nullptr)
                 log->error(head, "Failed to open [" + path + "]. Do I have write permission?");
             else
-				LOG_ERR("Failed to open [" << path << "]");
+                LOG_ERR("Failed to open [" << path << "]");
             return false;
         }
         file.write(content.toUtf8());
@@ -61,7 +61,7 @@ bool saveFile(const QString &path, const QString &content, const QString &head, 
             if (log != nullptr)
                 log->error(head, "Failed to save to [" + path + "]. Do I have write permission?");
             else
-				LOG_ERR("Failed to save to [" << path << "]");
+                LOG_ERR("Failed to save to [" << path << "]");
             return false;
         }
     }

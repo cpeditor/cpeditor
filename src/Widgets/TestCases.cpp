@@ -53,7 +53,6 @@ TestCases::TestCases(MessageLogger *logger, QWidget *parent) : QWidget(parent), 
     mainLayout->addLayout(checkerLayout);
     mainLayout->addWidget(scrollArea);
 
-
     verdicts->setToolTip("Wrong Answer / Accepted / Total");
     addCheckerButton->setToolTip("Add a custom testlib checker");
 
@@ -127,7 +126,6 @@ TestCases::TestCases(MessageLogger *logger, QWidget *parent) : QWidget(parent), 
     connect(checkerComboBox, SIGNAL(currentIndexChanged(int)), this, SIGNAL(checkerChanged()));
     connect(addButton, SIGNAL(clicked()), this, SLOT(on_addButton_clicked()));
     connect(addCheckerButton, SIGNAL(clicked()), this, SLOT(on_addCheckerButton_clicked()));
-
 }
 
 void TestCases::setInput(int index, const QString &input)

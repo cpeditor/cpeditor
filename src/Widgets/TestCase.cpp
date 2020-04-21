@@ -26,7 +26,7 @@ namespace Widgets
 TestCase::TestCase(int index, MessageLogger *logger, QWidget *parent, const QString &in, const QString &exp)
     : QWidget(parent), log(logger)
 {
-    LOG_INFO("Testcase " << index <<" is being created with Input\n" << in <<"\nExpected\n" << exp);
+    LOG_INFO("Testcase " << index << " is being created with Input\n" << in << "\nExpected\n" << exp);
     mainLayout = new QHBoxLayout(this);
     inputUpLayout = new QHBoxLayout();
     outputUpLayout = new QHBoxLayout();
@@ -82,7 +82,6 @@ TestCase::TestCase(int index, MessageLogger *logger, QWidget *parent, const QStr
     connect(diffButton, SIGNAL(clicked()), SLOT(onDiffButtonClicked()));
     connect(delButton, SIGNAL(clicked()), this, SLOT(onDelButtonClicked()));
     connect(diffViewer, SIGNAL(toLongForHtml()), this, SLOT(onToLongForHtml()));
-
 }
 
 void TestCase::setInput(const QString &text)

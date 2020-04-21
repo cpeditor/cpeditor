@@ -398,7 +398,7 @@ void MainWindow::loadStatus(const EditorStatus &status, bool simple)
     testcases->addCustomCheckers(status.customCheckers);
     testcases->setCheckerIndex(status.checkerIndex);
 
-	LOG_INFO(INFO_OF(simple) << INFO_OF(status.filePath));
+    LOG_INFO(INFO_OF(simple) << INFO_OF(status.filePath));
 
     if (!simple)
     {

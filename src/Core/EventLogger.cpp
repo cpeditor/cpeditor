@@ -102,15 +102,16 @@ QTextStream &Log::log(const QString &priority, QString funcName, int line, QStri
         logFile.open(stderr, QIODevice::WriteOnly); // dump to stderr if failed to open log file
     if (funcName.size() > MAXIMUM_FUNCTION_NAME_SIZE)
         funcName = funcName.right(MAXIMUM_FUNCTION_NAME_SIZE);
-    
-	QFileInfo info(fileName);
+
+    QFileInfo info(fileName);
     fileName = info.fileName();
 
-	if (fileName.size() > MAXIMUM_FILE_NAME_SIZE)
+    if (fileName.size() > MAXIMUM_FILE_NAME_SIZE)
         fileName = fileName.right(MAXIMUM_FILE_NAME_SIZE);
 
-    return logStream << dateTimeStamp() << center << "[" << priority << "][" << qSetFieldWidth(MAXIMUM_FUNCTION_NAME_SIZE)
-                     << funcName << qSetFieldWidth(0) << "][" <<qSetFieldWidth(MAXIMUM_FILE_NAME_SIZE) << fileName << qSetFieldWidth(0) << left << "]"
+    return logStream << dateTimeStamp() << center << "[" << priority << "]["
+                     << qSetFieldWidth(MAXIMUM_FUNCTION_NAME_SIZE) << funcName << qSetFieldWidth(0) << "]["
+                     << qSetFieldWidth(MAXIMUM_FILE_NAME_SIZE) << fileName << qSetFieldWidth(0) << left << "]"
                      << "(" << line << ")::";
 }
 
