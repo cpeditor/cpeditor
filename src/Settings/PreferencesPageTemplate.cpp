@@ -77,9 +77,9 @@ PreferencesPageTemplate::PreferencesPageTemplate(QStringList opts, bool alignTop
             addRow(wrapper, si.tip, si.help, si.desc);
             widgets.push_back(wrapper);
         }
-        else if (si.type == "QStringList")
+        else if (si.type == "QList<QVariant>")
         {
-            Wrapper<QStringList> *wrapper = createStringListWrapper(si.ui);
+            Wrapper<QList<QVariant>> *wrapper = createStringListsWrapper(si.ui);
             wrapper->init(this, si.param);
             addRow(wrapper, si.tip, si.help, si.desc);
             widgets.push_back(wrapper);

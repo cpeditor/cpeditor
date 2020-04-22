@@ -100,8 +100,8 @@ add_executable(cpeditor
     src/Settings/FontItem.hpp
     src/Settings/PathItem.cpp
     src/Settings/PathItem.hpp
-    src/Settings/StringListItem.cpp
-    src/Settings/StringListItem.hpp
+    src/Settings/StringListsItem.cpp
+    src/Settings/StringListsItem.hpp
     src/Settings/PreferencesGridPage.cpp
     src/Settings/PreferencesGridPage.hpp
     src/Settings/PreferencesHomePage.cpp

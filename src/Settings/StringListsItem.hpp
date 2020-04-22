@@ -15,26 +15,26 @@
  *
  */
 
-#ifndef STRINGLISTITEM_HPP
-#define STRINGLISTITEM_HPP
+#ifndef STRINGLISTSITEM_HPP
+#define STRINGLISTSITEM_HPP
 
 #include <QHBoxLayout>
 #include <QTableWidget>
 #include <QToolButton>
 #include <QVBoxLayout>
 
-class StringListItem : public QWidget
+class StringListsItem : public QWidget
 {
     Q_OBJECT
 
   public:
-    explicit StringListItem(int column, QWidget *parent = nullptr);
+    explicit StringListsItem(const QList<QVariant> &cols, QWidget *parent = nullptr);
 
-    void setStrings(const QStringList &sl);
-    QStringList getStrings();
+    void setStringLists(const QList<QVariant> &val);
+    QList<QVariant> getStringLists();
 
   signals:
-    void stringsChanged();
+    void valueChanged();
 
   private:
     QHBoxLayout *layout = nullptr;
@@ -46,4 +46,4 @@ class StringListItem : public QWidget
     QToolButton *moveDown = nullptr;
 };
 
-#endif // STRINGLISTITEM_HPP
+#endif // STRINGLISTSITEM_HPP

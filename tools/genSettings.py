@@ -44,11 +44,14 @@ namespace SettingsHelper
         name = t["name"]
         key = name.replace(" ", "").replace("/", "").replace("+", "p")
         typename = t["type"]
-        setting_helper.write(f"    inline void set{key}({typename} value) {{ SettingsManager::set({json.dumps(name)}, value); }}\n")
+        setting_helper.write(
+            f"    inline void set{key}({typename} value) {{ SettingsManager::set({json.dumps(name)}, value); }}\n")
         if typename == "bool":
-            setting_helper.write(f"    inline bool is{key}() {{ return SettingsManager::get({json.dumps(name)}).toBool(); }}\n")
+            setting_helper.write(
+                f"    inline bool is{key}() {{ return SettingsManager::get({json.dumps(name)}).toBool(); }}\n")
         else:
-            setting_helper.write(f"    inline {typename} get{key}() {{ return SettingsManager::get({json.dumps(name)}).value<{typename}>(); }}\n")
+            setting_helper.write(
+                f"    inline {typename} get{key}() {{ return SettingsManager::get({json.dumps(name)}).value<{typename}>(); }}\n")
     setting_helper.write("""}
 
 #endif // SETTINGSHELPER_HPP""")
@@ -99,7 +102,8 @@ const SettingInfo settingInfo[] =
             hlp = t["hlp"]
         else:
             hlp = ""
-        setting_info.write(f"    {{{json.dumps(name)}, {json.dumps(desc)}, \"{typename}\", \"{ui}\", {json.dumps(tip)}, {json.dumps(hlp)}, {{")
+        setting_info.write(
+            f"    {{{json.dumps(name)}, {json.dumps(desc)}, \"{typename}\", \"{ui}\", {json.dumps(tip)}, {json.dumps(hlp)}, {{")
         if "old" in t:
             olds = ""
             for s in t["old"]:
@@ -116,12 +120,12 @@ const SettingInfo settingInfo[] =
                     setting_info.write(str(t["default"]))
         else:
             defs = {
-                'QString':'""',
+                'QString': '""',
                 'int': '0',
                 'bool': 'false',
                 'QRect': 'QRect()',
                 'QByteArray': 'QByteArray()',
-                'QStringList': 'QStringList()'
+                'QList<QVariant>': 'QList<QVariant>()'
             }
             setting_info.write(defs[typename])
         if "param" in t:

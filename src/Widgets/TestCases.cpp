@@ -17,6 +17,7 @@
 
 #include "Widgets/TestCases.hpp"
 #include "Core/EventLogger.hpp"
+#include "Util.hpp"
 #include "generated/SettingsHelper.hpp"
 #include <QFileDialog>
 #include <QMessageBox>
@@ -61,43 +62,68 @@ TestCases::TestCases(MessageLogger *logger, QWidget *parent) : QWidget(parent), 
 
     moreMenu = new QMenu();
 
-    moreMenu->addAction("Add Testcases", [this] {
-        QStringList paths = QFileDialog::getOpenFileNames(this, "Choose testcases", ""); // set to the src dir
+    moreMenu->addAction("Add Pairs of Testcases From Files", [this] {
+        QStringList paths = QFileDialog::getOpenFileNames(this, "Choose Testcase Files", "");
         LOG_INFO(paths.join(", "));
         if (paths.size())
         {
-            QStringList rules = SettingsHelper::getAddTestcasesFromFilesRule();
-            for (auto input : paths)
+            QVariantList rules = SettingsHelper::getTestcasesMatchingRules();
+            QSet<QString> remain;
+            for (auto path : paths)
+                remain.insert(QFileInfo(path).fileName());
+            // load pairs
+            for (auto rule : rules)
             {
-                auto it = rules.begin();
-                bool finded = false;
-                QString answer;
-                while (!finded && it != rules.end())
+                QRegularExpression inputRegex("^" + rule.toStringList().front() + "$");
+                QString answerReplace(rule.toStringList().back());
+                for (auto path : paths)
                 {
-                    QRegularExpression re(*it++);
-                    auto match = re.match(input);
-                    if (match.hasMatch())
-                    {
-                        answer = *it++;
-                        auto caps = match.capturedTexts();
-                        for (int i = 1; i < caps.size(); ++i)
-                            answer = answer.arg(caps[i]);
-                        finded = true;
-                    }
+                    auto inputFile = QFileInfo(path).fileName();
+                    if (!remain.contains(inputFile))
+                        continue;
+                    if (!inputRegex.match(inputFile).hasMatch())
+                        continue;
+                    auto answerFile = inputFile;
+                    answerFile.replace(inputRegex, answerReplace);
+                    if (!remain.contains(answerFile))
+                        continue;
+                    remain.remove(inputFile);
+                    remain.remove(answerFile);
+                    auto answerPath = QFileInfo(path).dir().filePath(answerFile);
+                    auto input = Util::readFile(path, "Load Testcases", log, true);
+                    auto answer = Util::readFile(answerPath, "Load Testcases", log, true);
+                    addTestCase(input, answer);
+                    log->info("Load Testcases",
+                              QString("A pair of testcases [%1] and [%2] is loaded").arg(path).arg(answerPath));
                 }
-                if (finded)
+            }
+            // load single input
+            for (auto rule : rules)
+            {
+                QRegularExpression inputRegex("^" + rule.toStringList().front() + "$");
+                for (auto path : paths)
                 {
-                    QFile infile(input), ansfile(answer);
-                    QString inbuffer, ansbuffer;
-                    infile.open(QIODevice::ReadOnly);
-                    inbuffer = QString::fromUtf8(infile.readAll());
-                    if (ansfile.exists())
-                    {
-                        ansfile.open(QIODevice::ReadOnly);
-                        ansbuffer = QString::fromUtf8(ansfile.readAll());
-                    }
-                    addTestCase(inbuffer, ansbuffer);
+                    auto inputFile = QFileInfo(path).fileName();
+                    if (!remain.contains(inputFile))
+                        continue;
+                    if (!inputRegex.match(inputFile).hasMatch())
+                        continue;
+                    remain.remove(inputFile);
+                    auto input = Util::readFile(path, "Load Testcases", log, true);
+                    addTestCase(input, QString());
+                    log->info("Load Testcases", QString("An input [%1] is loaded").arg(path));
                 }
+            }
+            if (!remain.isEmpty())
+            {
+                QStringList remainPaths;
+                for (auto path : remain)
+                    remainPaths.push_back(QString("[%1]").arg(path));
+                log->warn(
+                    "Load Testcases",
+                    QString("The following files are not loaded because they are not matched:%1. You can set the "
+                            "matching rules at Preferences->File Path->Testcases->Add Testcases From Files Rules.")
+                        .arg(remainPaths.join(", ")));
             }
         }
     });
