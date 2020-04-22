@@ -30,17 +30,9 @@ class LanguageServer : public QObject
 {
     Q_OBJECT
 
-  private slots:
-
-    void onLSPServerNotificationArrived(QString method, QJsonObject param);
-    void onLSPServerResponseArrived(QJsonObject method, QJsonObject param);
-    void onLSPServerRequestArrived(QString method, QJsonObject param, QJsonObject id);
-    void onLSPServerErrorArrived(QJsonObject id, QJsonObject error);
-    void onLSPServerProcessError(QProcess::ProcessError error);
-    void onLSPServerProcessFinished(int exitCode, QProcess::ExitStatus status);
-
   public:
     explicit LanguageServer(QString language);
+    ~LanguageServer();
 
     void openDocument(QString path, QCodeEditor *editor, MessageLogger *logger);
     void closeDocument();
@@ -51,7 +43,13 @@ class LanguageServer : public QObject
     void updateSettings();
     void updatePath(QString);
 
-    ~LanguageServer();
+  private slots:
+    void onLSPServerNotificationArrived(QString method, QJsonObject param);
+    void onLSPServerResponseArrived(QJsonObject method, QJsonObject param);
+    void onLSPServerRequestArrived(QString method, QJsonObject param, QJsonObject id);
+    void onLSPServerErrorArrived(QJsonObject id, QJsonObject error);
+    void onLSPServerProcessError(QProcess::ProcessError error);
+    void onLSPServerProcessFinished(int exitCode, QProcess::ExitStatus status);
 
   private:
     void performConnection();
@@ -69,4 +67,5 @@ class LanguageServer : public QObject
     QString openFile;
 };
 } // namespace Extensions
+
 #endif // !LANGUAGE_SERVER_H

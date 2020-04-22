@@ -75,6 +75,7 @@ void LanguageServer::openDocument(QString path, QCodeEditor *editor, MessageLogg
 
     lsp->didOpen(uri, code, lang);
 }
+
 void LanguageServer::closeDocument()
 {
     std::string uri = "file://" + openFile.toStdString();
@@ -262,22 +263,25 @@ void LanguageServer::onLSPServerProcessError(QProcess::ProcessError error)
     switch (error)
     {
     case QProcess::FailedToStart:
-        logger->error("Language Server  [" + language + "]", "Failed to start LSP Process. Is program in PATH?");
+        logger->error("Language Server  [" + language + "]",
+                      "Failed to start LSP Process. Have you set the path to the Language Server program in "
+                      "Preferences->Extensions->Language Server?");
         break;
     case QProcess::Crashed:
-        logger->warn("Language Server  [" + language + "]", "Process was abruptly killed");
+        logger->warn("Language Server [" + language + "]", "Process was abruptly killed");
         break;
     case QProcess::Timedout:
-        logger->error("Language Server  [" + language + "]", "LSP Process timed out");
+        logger->error("Language Server [" + language + "]", "LSP Process timed out");
         break;
     case QProcess::ReadError:
-        logger->error("Language Server  [" + language + "]", "LSP Process Read Error");
+        logger->error("Language Server [" + language + "]", "LSP Process Read Error");
         break;
     case QProcess::WriteError:
-        logger->error("Language Server  [" + language + "]", "LSP Process Write Error");
+        logger->error("Language Server [" + language + "]", "LSP Process Write Error");
         break;
     case QProcess::UnknownError:
-        logger->error("Language Server  [" + language + "]", "An unknown error has occured in LSP Process");
+        logger->error("Language Server [" + language + "]", "An unknown error has occured in LSP Process");
+        break;
     }
 }
 
