@@ -49,17 +49,17 @@ bool saveFile(const QString &path, const QString &content, const QString &head, 
         QSaveFile file(path);
         if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
         {
-            Core::Log::e("Util/saveFile/safe/" + head) << "Failed to open [" << path << "]" << endl;
             if (log != nullptr)
                 log->error(head, "Failed to open [" + path + "]. Do I have write permission?");
+            LOG_ERR("Failed to open [" << path << "]");
             return false;
         }
         file.write(content.toUtf8());
         if (!file.commit())
         {
-            Core::Log::e("Util/saveFile/safe/" + head) << "Failed to save to [" << path << "]" << endl;
             if (log != nullptr)
                 log->error(head, "Failed to save to [" + path + "]. Do I have write permission?");
+            LOG_ERR("Failed to save to [" << path << "]");
             return false;
         }
     }
@@ -68,20 +68,20 @@ bool saveFile(const QString &path, const QString &content, const QString &head, 
         QFile file(path);
         if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
         {
-            Core::Log::e("Util/saveFile/unsafe/" + head) << "Failed to open [" << path << "]" << endl;
             if (log != nullptr)
                 log->error(head, "Failed to open [" + path + "]. Do I have write permission?");
+            LOG_ERR("unsafe: Failed to open [" << path << "]");
             return false;
         }
         if (file.write(content.toUtf8()) == -1)
         {
-            Core::Log::e("Util/saveFile/unsafe/" + head) << "Failed to save to [" << path << "]" << endl;
             if (log != nullptr)
                 log->error(head, "Failed to save to [" + path + "]. Do I have write permission?");
+            LOG_ERR("unsafe: Failed to save to [" << path << "]");
             return false;
         }
     }
-    Core::Log::i("Util/saveFile/" + head) << "Successfully saved to [" << path << "]" << endl;
+    LOG_INFO("Successfully saved to [" << path << "]");
     return true;
 }
 
@@ -92,9 +92,9 @@ QString readFile(const QString &path, const QString &head, MessageLogger *log)
     QFile file(path);
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
     {
-        Core::Log::w(head, QString("Failed to open [%1]").arg(path));
         if (log != nullptr)
             log->error(head, QString("Failed to open [%1]. Do I have read permission?").arg(path));
+        LOG_ERR(QString("Failed to open [%1]").arg(path));
         return QString();
     }
     QString content = file.readAll();
@@ -105,7 +105,7 @@ QString readFile(const QString &path, const QString &head, MessageLogger *log)
 
 void applySettingsToEditor(QCodeEditor *editor)
 {
-    Core::Log::i("Util/applySettingsToEditor", "Invoked");
+    LOG_INFO("Applying settings to QCodeEditor");
 
     editor->setTabReplace(SettingsHelper::isReplaceTabs());
     editor->setTabReplaceSize(SettingsHelper::getTabWidth());

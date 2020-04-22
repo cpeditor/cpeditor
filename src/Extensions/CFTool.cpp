@@ -25,18 +25,14 @@ namespace Extensions
 
 CFTool::CFTool(const QString &path, MessageLogger *logger) : CFToolPath(path)
 {
-    Core::Log::i("cftool/constructed") << "path is : " << path << " is logger null " << (logger == nullptr) << endl;
+    LOG_INFO(INFO_OF(path))
     log = logger;
 }
 
 CFTool::~CFTool()
 {
-    Core::Log::i("cftool/destructed", "Invoking destructor");
     if (CFToolProcess != nullptr)
-    {
-        Core::Log::i("cftool/destructed", "deleting process pointer");
         delete CFToolProcess;
-    }
 }
 
 void CFTool::submit(const QString &filePath, const QString &url)
@@ -45,7 +41,7 @@ void CFTool::submit(const QString &filePath, const QString &url)
     {
         if (CFToolProcess->state() == QProcess::Running)
         {
-            Core::Log::w("cftool/submit", "There is already a CF Tool running, kill it now");
+            LOG_WARN("CFTool was already running, forcefully killing it now");
             CFToolProcess->kill();
             delete CFToolProcess;
             log->error("CF Tool", "CF Tool was killed");
@@ -55,7 +51,7 @@ void CFTool::submit(const QString &filePath, const QString &url)
         CFToolProcess = nullptr;
     }
 
-    Core::Log::i("cftool/submit") << INFO_OF(filePath) << ", " << INFO_OF(url) << endl;
+    LOG_INFO(INFO_OF(filePath) << INFO_OF(url));
 
     if (parseCfUrl(url, problemContestId, problemCode))
     {
@@ -80,7 +76,9 @@ void CFTool::submit(const QString &filePath, const QString &url)
             CFToolProcess->setArguments({"submit", problemContestId, problemCode, filePath});
         else
             CFToolProcess->setArguments({"submit", "-f", filePath, url});
-        Core::Log::i("CFTool/submit") << INFO_OF(CFToolProcess->arguments().join(' ')) << endl;
+
+        LOG_INFO(INFO_OF(CFToolProcess->arguments().join(' ')));
+
         connect(CFToolProcess, SIGNAL(readyReadStandardOutput()), this, SLOT(onReadReady()));
         connect(CFToolProcess, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(onFinished(int)));
         CFToolProcess->start();
@@ -105,24 +103,23 @@ void CFTool::submit(const QString &filePath, const QString &url)
 
 bool CFTool::check(const QString &path)
 {
-    Core::Log::i("cftool/check") << "checking for path " << path << endl;
+    LOG_INFO(INFO_OF(path));
     QProcess checkProcess;
     checkProcess.start(path, {"--version"});
-    Core::Log::i("cftool/check", "process started to fetch version");
     bool finished = checkProcess.waitForFinished(2000);
-    Core::Log::i("cftool/check") << "finished ? " << finished << " exitcode " << checkProcess.exitCode() << endl;
+    LOG_INFO(BOOL_INFO_OF(finished) << INFO_OF(checkProcess.exitCode()) << INFO_OF(checkProcess.exitStatus()));
     return finished && checkProcess.exitCode() == 0;
 }
 
 void CFTool::updatePath(const QString &p)
 {
-    Core::Log::i("cftool/updatePath") << "new path is : " << p << endl;
+    LOG_INFO(INFO_OF(p));
     CFToolPath = p;
 }
 
 bool CFTool::parseCfUrl(const QString &url, QString &contestId, QString &problemCode)
 {
-    Core::Log::i("CF Tool/parseCfUrl") << INFO_OF(url) << endl;
+    LOG_INFO(INFO_OF(url));
     auto match = QRegularExpression(".*://codeforces.com/contest/([1-9][0-9]*)/problem/(0|[A-Z][1-9]?)").match(url);
     if (match.hasMatch())
     {
@@ -143,13 +140,12 @@ bool CFTool::parseCfUrl(const QString &url, QString &contestId, QString &problem
 void CFTool::onReadReady()
 {
     QString response = CFToolProcess->readAll();
-    Core::Log::i("cftool/onReadReady") << "\n" << INFO_OF(response) << endl;
     response.remove(QRegularExpression("\x1b\\[.. "));
     if (response.contains("status: "))
     {
         auto shortStatus = response.mid(response.indexOf("status: ") + 8);
         lastStatus = shortStatus.contains('\n') ? shortStatus.left(shortStatus.indexOf('\n')) : shortStatus;
-        Core::Log::i("cftool/showResponse") << INFO_OF(shortStatus) << endl;
+
         if (response.contains("status: Happy New Year") || response.contains("status: Accepted") ||
             response.contains("status: Pretests passed"))
             log->message("CF Tool", shortStatus, "green");
@@ -159,14 +155,9 @@ void CFTool::onReadReady()
             log->error("CF Tool", shortStatus);
     }
     else if (!response.trimmed().isEmpty())
-    {
-        Core::Log::i("CF Tool/showResponse") << "no status, " << INFO_OF(response) << endl;
         log->info("CF Tool", response);
-    }
     else
-    {
-        Core::Log::i("CF Tool/showResponse", "Response is empty");
-    }
+        LOG_INFO("Response is empty");
 }
 
 void CFTool::onFinished(int exitCode)
@@ -192,16 +183,15 @@ void CFTool::showToastMessage(const QString &message)
 
 QString CFTool::getCFToolVersion() const
 {
-    Core::Log::i("CFTool/getCFToolVersion", "Invoked");
     QProcess process;
     process.start(CFToolPath, {"--version"});
     if (!process.waitForFinished(2000))
     {
-        Core::Log::w("CFTool/getCFToolVersion", "CF Tool didn't finish");
+        LOG_WARN("CF Tool didn't finish after 2 second");
         return "";
     }
     QString version = QRegularExpression(R"((?<=v)\d+\.\d+\.\d+)").match(process.readAll()).captured();
-    Core::Log::i("CFTool/getCFToolVersion") << INFO_OF(version) << endl;
+    LOG_INFO(INFO_OF(version));
     return version;
 }
 

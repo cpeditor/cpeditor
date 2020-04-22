@@ -46,7 +46,7 @@
 MainWindow::MainWindow(const QString &fileOpen, int index, QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow), untitledIndex(index), fileWatcher(new QFileSystemWatcher(this))
 {
-    Core::Log::i("mainwindow/constructed") << " fileOpen " << fileOpen << " index " << index << endl;
+    LOG_INFO(INFO_OF(fileOpen) << INFO_OF(index));
 
     ui->setupUi(this);
     setTestCases();
@@ -62,7 +62,6 @@ MainWindow::MainWindow(const QString &fileOpen, int index, QWidget *parent)
 
 MainWindow::~MainWindow()
 {
-    Core::Log::i("mainwindow/destoryed", "Invoked");
     killProcesses();
 
     if (cftool != nullptr)
@@ -81,7 +80,6 @@ MainWindow::~MainWindow()
 
 void MainWindow::setTestCases()
 {
-    Core::Log::i("mainwindow/setTestCases", "Invoked");
     testcases = new Widgets::TestCases(&log, this);
     ui->test_cases_layout->addWidget(testcases);
     connect(testcases, SIGNAL(checkerChanged()), this, SLOT(updateChecker()));
@@ -90,7 +88,6 @@ void MainWindow::setTestCases()
 
 void MainWindow::setEditor()
 {
-    Core::Log::i("mainwindow/setEditor", "Invoked");
     editor = new QCodeEditor();
     editor->setSizePolicy(QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Expanding);
     editor->setAcceptDrops(false);
@@ -107,7 +104,6 @@ void MainWindow::setEditor()
 
 void MainWindow::setupCore()
 {
-    Core::Log::i("mainwindow/setupCore", "Invoked");
     formatter = new Extensions::ClangFormatter(SettingsHelper::getClangFormatPath(),
                                                SettingsHelper::getClangFormatStyle(), &log);
     log.setContainer(ui->compiler_edit);
@@ -115,7 +111,6 @@ void MainWindow::setupCore()
 
 void MainWindow::compile()
 {
-    Core::Log::i("mainwindow/compile", "Invoked");
     killProcesses();
     compiler = new Core::Compiler();
     if (saveTemp("Compiler"))
@@ -143,7 +138,7 @@ void MainWindow::compile()
 
 void MainWindow::run()
 {
-    Core::Log::i("mainwindow/run", "Invoked");
+    LOG_INFO("Requesting run of testcases");
     killProcesses();
     testcases->clearOutput();
 
@@ -167,7 +162,6 @@ void MainWindow::run()
 
 void MainWindow::run(int index)
 {
-    Core::Log::i("MainWindow/run") << INFO_OF(index) << endl;
     auto tmp = new Core::Runner(index);
     connect(tmp, SIGNAL(runStarted(int)), this, SLOT(onRunStarted(int)));
     connect(tmp, SIGNAL(runFinished(int, const QString &, const QString &, int, int)), this,
@@ -185,7 +179,7 @@ void MainWindow::run(int index)
 
 void MainWindow::runTestCase(int index)
 {
-    Core::Log::i("MainWindow/runTestCase") << INFO_OF(index) << endl;
+    LOG_INFO(INFO_OF(index));
     killProcesses();
     testcases->clearOutput();
     log.clear();
@@ -201,21 +195,18 @@ void MainWindow::runTestCase(int index)
 
 void MainWindow::loadTests()
 {
-    Core::Log::i("mainwindow/loadTests", "Invoked");
     if (!isUntitled() && SettingsHelper::isSaveTests())
         testcases->loadFromFile(filePath);
 }
 
 void MainWindow::saveTests(bool safe)
 {
-    Core::Log::i("mainwindow/saveTests", "Invoked");
     if (!isUntitled() && SettingsHelper::isSaveTests())
         testcases->save(filePath, safe);
 }
 
 void MainWindow::setCFToolUI()
 {
-    Core::Log::i("mainwindow/setCFToolUI", "Invoked");
     if (submitToCodeforces == nullptr)
     {
         submitToCodeforces = new QPushButton("Submit", this);
@@ -308,7 +299,7 @@ bool MainWindow::isUntitled() const
 
 void MainWindow::setProblemURL(const QString &url)
 {
-    Core::Log::i("mainwindow/setProblemURL") << "url : " << url << endl;
+    LOG_INFO(INFO_OF(url));
     problemURL = url;
     if (problemURL.contains("codeforces.com"))
         setCFToolUI();
@@ -317,14 +308,13 @@ void MainWindow::setProblemURL(const QString &url)
 
 void MainWindow::setUntitledIndex(int index)
 {
-    Core::Log::i("mainwindow/setUntitledIndex") << "index " << index << endl;
     untitledIndex = index;
 }
 
 #define FROMSTATUS(x) x = status[#x]
 MainWindow::EditorStatus::EditorStatus(const QMap<QString, QVariant> &status)
 {
-    Core::Log::i("mainwindow/editorStatus", "Invoked");
+    LOG_INFO("Window status from map");
     FROMSTATUS(isLanguageSet).toInt();
     FROMSTATUS(filePath).toString();
     FROMSTATUS(savedText).toString();
@@ -347,7 +337,7 @@ MainWindow::EditorStatus::EditorStatus(const QMap<QString, QVariant> &status)
 #define TOSTATUS(x) status[#x] = x
 QMap<QString, QVariant> MainWindow::EditorStatus::toMap() const
 {
-    Core::Log::i("mainwindow/toMap", "Invoked");
+    LOG_INFO("Window status to hashmap");
     QMap<QString, QVariant> status;
     TOSTATUS(isLanguageSet);
     TOSTATUS(filePath);
@@ -371,7 +361,7 @@ QMap<QString, QVariant> MainWindow::EditorStatus::toMap() const
 
 MainWindow::EditorStatus MainWindow::toStatus(bool simple) const
 {
-    Core::Log::i("mainwindow/toStatus", "Invoked");
+    LOG_INFO("Moving to status this window state" << BOOL_INFO_OF(simple));
     EditorStatus status;
 
     status.isLanguageSet = isLanguageSet;
@@ -400,7 +390,7 @@ MainWindow::EditorStatus MainWindow::toStatus(bool simple) const
 
 void MainWindow::loadStatus(const EditorStatus &status, bool simple)
 {
-    Core::Log::i("mainwindow/loadStatus", "Invoked");
+    LOG_INFO("Requesting loadStatus");
     setProblemURL(status.problemURL);
     if (status.isLanguageSet)
         setLanguage(status.language);
@@ -408,7 +398,7 @@ void MainWindow::loadStatus(const EditorStatus &status, bool simple)
     testcases->addCustomCheckers(status.customCheckers);
     testcases->setCheckerIndex(status.checkerIndex);
 
-    Core::Log::i("mainwindow/loadStatus") << INFO_OF(simple) << ' ' << INFO_OF(status.filePath) << endl;
+    LOG_INFO(INFO_OF(simple) << INFO_OF(status.filePath));
 
     if (!simple)
     {
@@ -434,7 +424,7 @@ void MainWindow::loadStatus(const EditorStatus &status, bool simple)
 
 void MainWindow::applyCompanion(const Extensions::CompanionData &data)
 {
-    Core::Log::i("mainwindow/applyCompanion", "Invoked");
+    LOG_INFO("Requesting apply from companion");
     if (isUntitled() && !isTextChanged())
     {
         QString meta = data.toMetaString();
@@ -459,8 +449,7 @@ void MainWindow::applyCompanion(const Extensions::CompanionData &data)
 
 void MainWindow::applySettings(const QString &pagePath, bool shouldPerformDigonistic)
 {
-    Core::Log::i("mainwindow/applySettingsData")
-        << INFO_OF(pagePath) << ", " << INFO_OF(shouldPerformDigonistic) << endl;
+    LOG_INFO(INFO_OF(pagePath) << BOOL_INFO_OF(shouldPerformDigonistic));
 
     if (pagePath.isEmpty() || pagePath == "Extensions/Clang Format")
     {
@@ -513,37 +502,37 @@ void MainWindow::applySettings(const QString &pagePath, bool shouldPerformDigoni
 
 void MainWindow::save(bool force, const QString &head, bool safe)
 {
-    Core::Log::i("mainwindow/save") << "force " << force << "head " << head << "safe " << safe << endl;
+    LOG_INFO("Save " << BOOL_INFO_OF(force) << INFO_OF(head) << BOOL_INFO_OF(safe));
     saveFile(force ? SaveUntitled : IgnoreUntitled, head, safe);
 }
 
 void MainWindow::saveAs()
 {
-    Core::Log::i("mainwindow/saveAs", "Invoked");
+    LOG_INFO("Save as clicked");
     saveFile(SaveAs, "Save as", true);
 }
 
 void MainWindow::on_compile_clicked()
 {
-    Core::Log::i("mainwindow/on_compile_clicked", "Invoked");
+    LOG_INFO("Compile button clicked");
     compileOnly();
 }
 
 void MainWindow::on_runOnly_clicked()
 {
-    Core::Log::i("mainwindow/on_runOnly_clicked", "Invoked");
+    LOG_INFO("Run only button clicked");
     runOnly();
 }
 
 void MainWindow::on_run_clicked()
 {
-    Core::Log::i("mainwindow/on_run_clicked", "Invoked");
+    LOG_INFO("Run button clicked");
     compileAndRun();
 }
 
 void MainWindow::compileOnly()
 {
-    Core::Log::i("mainwindow/compileOnly", "Invoked");
+    LOG_INFO("Requesting Compile Only");
     afterCompile = Nothing;
     log.clear();
     compile();
@@ -551,7 +540,7 @@ void MainWindow::compileOnly()
 
 void MainWindow::runOnly()
 {
-    Core::Log::i("mainwindow/runOnly", "Invoked");
+    LOG_INFO("Requesting Run only");
     if (language == "Python")
     {
         compileAndRun();
@@ -565,7 +554,7 @@ void MainWindow::runOnly()
 
 void MainWindow::compileAndRun()
 {
-    Core::Log::i("mainwindow/compileAndRun", "Invoked");
+    LOG_INFO("Requested Compile and Run");
     afterCompile = Run;
     log.clear();
     compile();
@@ -573,13 +562,13 @@ void MainWindow::compileAndRun()
 
 void MainWindow::formatSource()
 {
-    Core::Log::i("mainwindow/formatSource", "Invoked");
+    LOG_INFO("Requested code format");
     formatter->format(editor, filePath, language, true);
 }
 
 void MainWindow::setLanguage(const QString &lang)
 {
-    Core::Log::i("mainwindow/setLanguage") << "lang " << lang << endl;
+    LOG_INFO(INFO_OF(lang));
     if (!QFile::exists(filePath))
     {
         QString templateContent;
@@ -638,7 +627,7 @@ void MainWindow::setViewMode(const QString &mode)
 
 void MainWindow::detachedExecution()
 {
-    Core::Log::i("mainwindow/detachedExecution", "Invoked");
+    LOG_INFO("Executing in detached mode");
     afterCompile = RunDetached;
     log.clear();
     compile();
@@ -646,7 +635,7 @@ void MainWindow::detachedExecution()
 
 void MainWindow::killProcesses()
 {
-    Core::Log::i("mainwindow/killProcesses", "Invoked");
+    LOG_INFO("Killing all processes");
 
     if (compiler != nullptr)
     {
@@ -689,8 +678,6 @@ void MainWindow::setText(const QString &text, bool keep)
 
 void MainWindow::updateWatcher()
 {
-    Core::Log::i("mainwindow/updateWatcher", "Invoked");
-
     emit editorFileChanged();
     if (!fileWatcher->files().isEmpty())
         fileWatcher->removePaths(fileWatcher->files());
@@ -700,7 +687,7 @@ void MainWindow::updateWatcher()
 
 void MainWindow::loadFile(const QString &loadPath)
 {
-    Core::Log::i("mainwindow/loadFile") << "loadPath : " << loadPath << endl;
+    LOG_INFO(INFO_OF(loadPath));
 
     auto path = loadPath;
 
@@ -747,7 +734,7 @@ void MainWindow::loadFile(const QString &loadPath)
 
 bool MainWindow::saveFile(SaveMode mode, const QString &head, bool safe)
 {
-    Core::Log::i("mainwindow/saveFile") << "mode " << mode << "head " << head << "safe " << safe << endl;
+    LOG_INFO(INFO_OF(mode) << INFO_OF(head) << BOOL_INFO_OF(safe));
     if (SettingsHelper::isAutoFormat())
         formatter->format(editor, filePath, language, false);
 
@@ -808,7 +795,7 @@ bool MainWindow::saveFile(SaveMode mode, const QString &head, bool safe)
 
 MainWindow::SaveTempStatus MainWindow::saveTemp(const QString &head)
 {
-    Core::Log::i("mainwindow/saveTemp") << "head " << head << endl;
+    LOG_INFO(INFO_OF(head));
     if (!saveFile(IgnoreUntitled, head, true))
     {
         if (tmpDir != nullptr)
@@ -831,8 +818,6 @@ MainWindow::SaveTempStatus MainWindow::saveTemp(const QString &head)
 
 QString MainWindow::tmpPath()
 {
-    Core::Log::i("mainwindow/tmpPath", "Invoked");
-
     if (!isUntitled() && !isTextChanged())
         return filePath;
     if (tmpDir == nullptr || !tmpDir->isValid())
@@ -840,14 +825,11 @@ QString MainWindow::tmpPath()
         switch (saveTemp("Temp Saver"))
         {
         case Failed:
-            Core::Log::i("MainWindow/tmpPath", "Failed");
             log.error("Temp Saver", "Error occurred when trying to save temp file");
             return "";
         case TempSaved:
-            Core::Log::i("MainWindow/tmpPath", "TempSaved");
             break;
         case NormalSaved:
-            Core::Log::i("MainWindow/tmpPath", "NormalSaved");
             return filePath;
         }
     }
@@ -893,7 +875,7 @@ bool MainWindow::isTextChanged()
 
 bool MainWindow::closeConfirm()
 {
-    Core::Log::i("mainwindow/closeConfirm", "Invoked");
+    LOG_INFO("Confirming to close this window");
     bool confirmed = !isTextChanged();
     if (!confirmed)
     {
@@ -907,12 +889,13 @@ bool MainWindow::closeConfirm()
         else if (res == QMessageBox::Discard)
             confirmed = true;
     }
+    LOG_INFO(BOOL_INFO_OF(confirmed));
     return confirmed;
 }
 
 void MainWindow::on_changeLanguageButton_clicked()
 {
-    Core::Log::i("mainwindow/on_changeLanguageButton_clicked", "Invoked");
+    LOG_INFO("Window language change button requested");
     bool ok = false;
     int curr = 0;
 
@@ -932,7 +915,7 @@ void MainWindow::on_changeLanguageButton_clicked()
 
 void MainWindow::onFileWatcherChanged(const QString &path)
 {
-    Core::Log::i("mainwindow/onFileWatcherChanged") << "path " << path << endl;
+    LOG_INFO(INFO_OF(path));
 
     emit editorTextChanged(this);
 
@@ -1036,8 +1019,6 @@ QSplitter *MainWindow::getRightSplitter()
 
 void MainWindow::performCompileAndRunDiagonistics()
 {
-    Core::Log::i("mainwindow/performCompileAndRunDiagonistics", "Invoked");
-
     bool compilerResult = true;
     bool runResult = true;
 
@@ -1065,8 +1046,6 @@ void MainWindow::onCompilationStarted()
 
 void MainWindow::onCompilationFinished(const QString &warning)
 {
-    Core::Log::i("mainwindow/oncompilationFinished") << "warning : \n" << warning << endl;
-
     if (language != "Python")
     {
         log.info("Compiler", "Compilation has finished");
