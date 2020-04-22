@@ -28,7 +28,7 @@ class StringListItem : public QWidget
     Q_OBJECT
 
   public:
-    StringListItem(int column, QWidget *parent = nullptr);
+    explicit StringListItem(int column, QWidget *parent = nullptr);
 
     void setStrings(const QStringList &sl);
     QStringList getStrings();

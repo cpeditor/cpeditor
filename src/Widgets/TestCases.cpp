@@ -66,7 +66,7 @@ TestCases::TestCases(MessageLogger *logger, QWidget *parent) : QWidget(parent), 
         QStringList paths = QFileDialog::getOpenFileNames(this, "Choose testcases", ""); // set to the src dir
         if (paths.size())
         {
-            QStringList rules = SettingsHelper::getTestcaseRule();
+            QStringList rules = SettingsHelper::getAddTestcasesFromFilesRule();
             for (auto input : paths)
             {
                 auto it = rules.begin();

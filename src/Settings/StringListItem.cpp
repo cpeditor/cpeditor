@@ -32,7 +32,7 @@ StringListItem::StringListItem(int column, QWidget *parent) : QWidget(parent)
     connect(table, &QTableWidget::cellChanged, this, &StringListItem::stringsChanged);
     layout->addWidget(table);
 
-    buttonLayout = new QVBoxLayout(this);
+    buttonLayout = new QVBoxLayout();
 
     add = new QToolButton(this);
     add->setText("＋");
@@ -65,7 +65,7 @@ StringListItem::StringListItem(int column, QWidget *parent) : QWidget(parent)
         auto items = table->selectedItems();
         if (items.size())
         {
-            table->setItemSelected(items.front(), false);
+            items.front()->setSelected(false);
             int row = items.front()->row();
             if (row > 0)
                 for (int i = 0; i < cols; ++i)
@@ -74,7 +74,7 @@ StringListItem::StringListItem(int column, QWidget *parent) : QWidget(parent)
                     table->setItem(row - 1, i, table->takeItem(row, i));
                     table->setItem(row, i, temp);
                 }
-            table->setItemSelected(items.front(), true);
+            items.front()->setSelected(true);
         }
     });
     buttonLayout->addWidget(moveUp);
@@ -87,7 +87,7 @@ StringListItem::StringListItem(int column, QWidget *parent) : QWidget(parent)
         auto items = table->selectedItems();
         if (items.size())
         {
-            table->setItemSelected(items.front(), false);
+            items.front()->setSelected(false);
             int row = items.front()->row();
             if (row + 1 < rows)
                 for (int i = 0; i < cols; ++i)
@@ -96,7 +96,7 @@ StringListItem::StringListItem(int column, QWidget *parent) : QWidget(parent)
                     table->setItem(row + 1, i, table->takeItem(row, i));
                     table->setItem(row, i, temp);
                 }
-            table->setItemSelected(items.front(), true);
+            items.front()->setSelected(true);
         }
     });
     buttonLayout->addWidget(moveDown);

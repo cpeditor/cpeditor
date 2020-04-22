@@ -121,6 +121,8 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
 
     addPage("Extensions/CF Tool", {"CF/Path"});
 
+    addPage("File Path/Testcases", {"Add Testcases From Files Rule"});
+
     addPage("Key Bindings", {"Hotkey/Compile", "Hotkey/Run", "Hotkey/Compile Run", "Hotkey/Format", "Hotkey/Kill",
                              "Hotkey/Change View Mode", "Hotkey/Snippets"});
 
@@ -129,8 +131,6 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
     addPage("Advanced/Limits",
             {"Time Limit", "Output Length Limit", "Message Length Limit", "HTML Diff Viewer Length Limit",
              "Open File Length Limit", "Load Test Case File Length Limit"});
-
-    addPage("Misc", {"Testcase Scan Rule"}); // TODO: move to the right group
 }
 
 void PreferencesWindow::display()

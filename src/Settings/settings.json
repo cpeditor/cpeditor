@@ -466,7 +466,7 @@
         "tip": "The maximum number of characters in a testcase file to load.\nA testcase file won't be loaded if it's too long."
     },
     {
-        "name": "Testcase Rule",
+        "name": "Add Testcases From Files Rule",
         "type": "QStringList",
         "default": "QStringList {\"(.*)\\\\.in\", \"%1.ans\"}",
         "param": "2",
