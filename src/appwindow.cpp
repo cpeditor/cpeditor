@@ -381,6 +381,7 @@ void AppWindow::openTab(const QString &path)
     auto fsp = new MainWindow(path, getNewUntitledIndex(), this);
     connect(fsp, SIGNAL(confirmTriggered(MainWindow *)), this, SLOT(on_confirmTriggered(MainWindow *)));
     connect(fsp, SIGNAL(editorFileChanged()), this, SLOT(onEditorFileChanged()));
+    connect(fsp, SIGNAL(editorTmpPathChanged(MainWindow *)), this, SLOT(onEditorTmpPathChanged(MainWindow *)));
     connect(fsp, SIGNAL(editorLanguageChanged(MainWindow *)), this, SLOT(onEditorLanguageChanged(MainWindow *)));
     connect(fsp, SIGNAL(editorTextChanged(MainWindow *)), this, SLOT(onEditorTextChanged(MainWindow *)));
     connect(fsp, SIGNAL(requestToastMessage(const QString &, const QString &)), trayIcon,
@@ -663,31 +664,13 @@ void AppWindow::on_actionOpenContest_triggered()
 void AppWindow::on_actionSave_triggered()
 {
     if (currentWindow() != nullptr)
-    {
         currentWindow()->save(true, "Save");
-        auto tmp = currentWindow();
-        if (tmp->getLanguage() == "C++")
-            cppServer->updatePath(tmp->tmpPath());
-        else if (tmp->getLanguage() == "Java")
-            javaServer->updatePath(tmp->tmpPath());
-        else if (tmp->getLanguage() == "Python")
-            pythonServer->updatePath(tmp->tmpPath());
-    }
 }
 
 void AppWindow::on_actionSave_As_triggered()
 {
     if (currentWindow() != nullptr)
-    {
         currentWindow()->saveAs();
-        auto tmp = currentWindow();
-        if (tmp->getLanguage() == "C++")
-            cppServer->updatePath(tmp->tmpPath());
-        else if (tmp->getLanguage() == "Java")
-            javaServer->updatePath(tmp->tmpPath());
-        else if (tmp->getLanguage() == "Python")
-            pythonServer->updatePath(tmp->tmpPath());
-    }
 }
 
 void AppWindow::on_actionSave_All_triggered()
@@ -902,6 +885,19 @@ void AppWindow::onEditorTextChanged(MainWindow *window)
             lspTimerJava->start();
         else
             lspTimerPython->start();
+    }
+}
+
+void AppWindow::onEditorTmpPathChanged(MainWindow *window)
+{
+    if (currentWindow() == window)
+    {
+        if (window->getLanguage() == "C++")
+            cppServer->updatePath(window->tmpPath());
+        else if (window->getLanguage() == "Java")
+            javaServer->updatePath(window->tmpPath());
+        else if (window->getLanguage() == "Python")
+            pythonServer->updatePath(window->tmpPath());
     }
 }
 

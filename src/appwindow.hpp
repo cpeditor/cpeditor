@@ -92,6 +92,8 @@ class AppWindow : public QMainWindow
 
     void onEditorTextChanged(MainWindow *window);
 
+    void onEditorTmpPathChanged(MainWindow *window);
+
     void onEditorLanguageChanged(MainWindow *window);
 
     void onTabCloseRequested(int);

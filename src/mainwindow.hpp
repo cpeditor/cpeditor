@@ -141,6 +141,7 @@ class MainWindow : public QMainWindow
 
   signals:
     void editorFileChanged();
+    void editorTmpPathChanged(MainWindow *window);
     void editorTextChanged(MainWindow *window);
     void confirmTriggered(MainWindow *widget);
     void requestToastMessage(const QString &head, const QString &body);
