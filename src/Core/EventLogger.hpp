@@ -26,12 +26,6 @@
 #include <QFile>
 #include <QTextStream>
 
-#define NUMBER_OF_LOGS_TO_KEEP (50)
-#define LOG_FILE_NAME QString("cpeditor")
-#define LOG_DIR_NAME QString("cpeditorLogFiles")
-#define MAXIMUM_FUNCTION_NAME_SIZE (30)
-#define MAXIMUM_FILE_NAME_SIZE (20)
-
 /**
  * There are four log levels:
  * 1. LOG_INFO(i): information, used when everything is normal
@@ -56,13 +50,13 @@
 #define LOG_WARN_IF(cond, stream)                                                                                      \
     if ((cond))                                                                                                        \
     {                                                                                                                  \
-        Core::Log::log("WARN ", __FUNCTION__, __LINE__, __FILE__) << stream << endl;                                   \
+        Core::Log::log("WARN ", __func__, __LINE__, __FILE__) << stream << endl;                                       \
     }
 
 #define LOG_ERR_IF(cond, stream)                                                                                       \
     if ((cond))                                                                                                        \
     {                                                                                                                  \
-        Core::Log::log("ERROR", __FUNCTION__, __LINE__, __FILE__) << stream << endl;                                   \
+        Core::Log::log("ERROR", __func__, __LINE__, __FILE__) << stream << endl;                                       \
     }
 
 #define INFO_OF(variable) "<" #variable ">: [" << (variable) << "], "
@@ -100,6 +94,12 @@ class Log
 
     static QTextStream logStream; // the text stream for logging, writes to logFile
     static QFile logFile;         // the device for logging, a file or stderr
+
+    static int NUMBER_OF_LOGS_TO_KEEP;     // Number of log files to keep in Temporary directory
+    static QString LOG_FILE_NAME;          // Base Name of the log file
+    static QString LOG_DIR_NAME;           // Directory inside Temp where log files will be stored
+    static int MAXIMUM_FUNCTION_NAME_SIZE; // Maximum size of function name, it is used to determine spacing in log file
+    static int MAXIMUM_FILE_NAME_SIZE;     // Maximum size of file name, it is used to determine spacing in log file
 };
 
 } // namespace Core
