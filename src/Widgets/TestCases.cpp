@@ -62,8 +62,8 @@ TestCases::TestCases(MessageLogger *logger, QWidget *parent) : QWidget(parent), 
     moreMenu = new QMenu();
 
     moreMenu->addAction("Add Testcases", [this] {
-        Core::Log::i("TestCases/More/Add Testcases", "Invoked");
         QStringList paths = QFileDialog::getOpenFileNames(this, "Choose testcases", ""); // set to the src dir
+        LOG_INFO(paths.join(", "));
         if (paths.size())
         {
             QStringList rules = SettingsHelper::getAddTestcasesFromFilesRule();
