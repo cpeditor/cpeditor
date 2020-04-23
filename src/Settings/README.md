@@ -145,6 +145,18 @@ The first ui in the list is the default ui.
 
         Widget for font choosing.
 
+* `QList<QVariant>`
+
+    * `StringListsItem`
+
+        Widget for several `QStringList`s.
+
+        Suppose the number of of `QString`s in a single `QStringList` is `<col>`.
+
+        value: `QList<QVairant>`, each the element of `value` is a `QStringList` with `<col>` `QString`s.
+
+        param: The param describes the header and `<col>`. It's a `QList<QVairant>` with `<col>` elements, and each of the elements is a `QStringList` with two `QString`s, the first one is the title and the second one is the tooltip.
+
 ### Adding Settings
 
 Refer to the existing code for more details.
