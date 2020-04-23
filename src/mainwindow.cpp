@@ -1082,7 +1082,7 @@ void MainWindow::onCompilationFinished(const QString &warning)
 
 void MainWindow::onCompilationErrorOccurred(const QString &error)
 {
-    log.error("Complier", "Error occurred while compiling");
+    log.error("Complier", "Error occured while compiling");
     if (!error.trimmed().isEmpty())
         log.error("Compile Errors", error);
 }
