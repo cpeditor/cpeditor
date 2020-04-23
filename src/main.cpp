@@ -86,7 +86,7 @@ int main(int argc, char *argv[])
             LOG_ERR("Exiting because contest arguments are not satisfied");
             return 1;
         }
-        LOG_INFO("Argument length is okay, Begining parsing of arguments to int");
+        LOG_INFO("Argument length is okay, Beginning parsing of arguments to int");
 
         bool ok = false;
         int number = args[0].toInt(&ok);
@@ -136,9 +136,9 @@ int main(int argc, char *argv[])
                                                            << INFO_OF(number) << INFO_OF(path));
 
         AppWindow w(cpp, java, python, noHotExit, number, path);
-        LOG_INFO("Launched window connecting this window to onRecieveMessage()");
+        LOG_INFO("Launched window connecting this window to onReceiveMessage()");
         QObject::connect(&app, &SingleApplication::receivedMessage, &w, &AppWindow::onReceivedMessage);
-        LOG_INFO("Showing the application window and begining the event loop");
+        LOG_INFO("Showing the application window and beginning the event loop");
         w.show();
         return app.exec();
     }
@@ -188,9 +188,9 @@ int main(int argc, char *argv[])
                                                            << INFO_OF(args.join(", ")));
 
         AppWindow w(depth, cpp, java, python, noHotExit, args);
-        LOG_INFO("Launched window connecting this window to onRecieveMessage()");
+        LOG_INFO("Launched window connecting this window to onReceiveMessage()");
         QObject::connect(&app, &SingleApplication::receivedMessage, &w, &AppWindow::onReceivedMessage);
-        LOG_INFO("Showing the application window and begining the event loop");
+        LOG_INFO("Showing the application window and beginning the event loop");
 
         w.show();
         return app.exec();

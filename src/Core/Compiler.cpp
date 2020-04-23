@@ -50,7 +50,7 @@ void Compiler::start(const QString &filePath, const QString &compileCommand, con
     if (!QFile::exists(filePath))
     {
         // quit with error if the source file is not found
-        emit compilationErrorOccured("The source file [" + filePath + "] doesn't exist");
+        emit compilationErrorOccurred("The source file [" + filePath + "] doesn't exist");
         return;
     }
 
@@ -75,7 +75,7 @@ void Compiler::start(const QString &filePath, const QString &compileCommand, con
     }
     else
     {
-        emit compilationErrorOccured("Unsupported programming language \"" + lang + "\"");
+        emit compilationErrorOccurred("Unsupported programming language \"" + lang + "\"");
         return;
     }
 
@@ -110,7 +110,7 @@ void Compiler::onProcessFinished(int exitCode)
     if (exitCode == 0)
         emit compilationFinished(compileProcess->readAllStandardError());
     else
-        emit compilationErrorOccured(compileProcess->readAllStandardError());
+        emit compilationErrorOccurred(compileProcess->readAllStandardError());
 }
 
 } // namespace Core

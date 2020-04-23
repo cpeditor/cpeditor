@@ -123,8 +123,8 @@ void Checker::prepare(const QString &compileCommand)
         // start the compilation of the checker
         compiler = new Compiler();
         connect(compiler, SIGNAL(compilationFinished(const QString &)), this, SLOT(onCompilationFinished()));
-        connect(compiler, SIGNAL(compilationErrorOccured(const QString &)), this,
-                SLOT(onCompilationErrorOccured(const QString &)));
+        connect(compiler, SIGNAL(compilationErrorOccurred(const QString &)), this,
+                SLOT(onCompilationErrorOccurred(const QString &)));
         connect(compiler, SIGNAL(compilationKilled()), this, SLOT(onCompilationKilled()));
         compiler->start(checkerPath, compileCommand, "C++");
     }
@@ -147,7 +147,7 @@ void Checker::onCompilationFinished()
     pendingTasks.clear();
 }
 
-void Checker::onCompilationErrorOccured(const QString &error)
+void Checker::onCompilationErrorOccurred(const QString &error)
 {
     log->error("Checker", "Error occurred while compiling the checker:\n" + error);
 }
@@ -157,8 +157,8 @@ void Checker::onCompilationKilled()
     // It will be confusing to show "the checker failed" when it's killed,
     // but the user is also unlikely willing to see the message "the checker compilation is killed",
     // so we can simply show nothing when the compilation is killed
-    disconnect(compiler, SIGNAL(compilationErrorOccured(const QString &)), this,
-               SLOT(onCompilationErrorOccured(const QString &)));
+    disconnect(compiler, SIGNAL(compilationErrorOccurred(const QString &)), this,
+               SLOT(onCompilationErrorOccurred(const QString &)));
 }
 
 void Checker::onRunFinished(int index, const QString &out, const QString &err, int exitCode)
