@@ -470,6 +470,6 @@
         "type": "QList<QVariant>",
         "default": "QList<QVariant> { QStringList {\"(.*)\\\\.in\", \"\\\\1.ans\"}, QStringList {\"(.*)\\\\.in\", \"\\\\1.out\"}}",
         "param": "QList<QVariant> { QStringList {\"Input Regex\", \"The regular expression for the input file name\"}, QStringList {\"Answer Replace\", \"The replace expression for the answer file name. You can use \\\"\\\\1\\\" for the first captured group.\"}}",
-        "tip": "Pairs of regular expressions used when adding pairs of testcases from files. Each pair of regular expressions represents for a testcase."
+        "tip": "Pairs of regular expressions used when adding pairs of test cases from files. Each pair of regular expressions represents a test case."
     }
 ]
