@@ -1,7 +1,6 @@
 name: Misspell fixer
 
-on:
-  - push
+on: [push, pull_request]
 
 jobs:
   misspell-fixer:
