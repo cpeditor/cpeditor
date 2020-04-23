@@ -152,6 +152,7 @@ void LanguageServer::performConnection()
     connect(lsp, &LSPClient::onResponse, this, &LanguageServer::onLSPServerResponseArrived);
     connect(lsp, &LSPClient::onNotify, this, &LanguageServer::onLSPServerNotificationArrived);
     connect(lsp, &LSPClient::onServerFinished, this, &LanguageServer::onLSPServerProcessFinished);
+    connect(lsp, &LSPClient::newStderr, this, &LanguageServer::onLSPServerNewStderr);
 
     LOG_INFO("All language server connections have been established");
 }
@@ -290,5 +291,10 @@ void LanguageServer::onLSPServerProcessError(QProcess::ProcessError error)
 void LanguageServer::onLSPServerProcessFinished(int exitCode, QProcess::ExitStatus status)
 {
     LOG_INFO("LSP Finished with exit code " << exitCode << INFO_OF(language) << INFO_OF(status));
+}
+
+void LanguageServer::onLSPServerNewStderr(const QString &content)
+{
+    LOG_INFO(content);
 }
 } // namespace Extensions

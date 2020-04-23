@@ -50,6 +50,7 @@ class LanguageServer : public QObject
     void onLSPServerErrorArrived(QJsonObject id, QJsonObject error);
     void onLSPServerProcessError(QProcess::ProcessError error);
     void onLSPServerProcessFinished(int exitCode, QProcess::ExitStatus status);
+    void onLSPServerNewStderr(const QString &content);
 
   private:
     void performConnection();
