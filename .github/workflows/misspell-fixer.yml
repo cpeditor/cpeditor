@@ -9,7 +9,10 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - uses: sobolevn/misspell-fixer-action@master
+    - name: "Check diff"
+      run: git diff --exit-code ${{ github.sha }}
     - uses: peter-evans/create-pull-request@v2
+      if: failure()
       with:
         commit-message: 'Fix typos by misspell-fixer'
         title: 'Fix typos by misspell-fixer for ${{ github.ref }}'
