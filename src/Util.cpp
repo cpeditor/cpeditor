@@ -85,10 +85,18 @@ bool saveFile(const QString &path, const QString &content, const QString &head, 
     return true;
 }
 
-QString readFile(const QString &path, const QString &head, MessageLogger *log)
+QString readFile(const QString &path, const QString &head, MessageLogger *log, bool notExistWarning)
 {
     if (!QFile::exists(path))
+    {
+        if (notExistWarning)
+        {
+            if (log != nullptr)
+                log->warn(head, QString("The file [%1] does not exist").arg(path));
+            LOG_WARN(QString("The file [%1] does not exist").arg(path));
+        }
         return QString();
+    }
     QFile file(path);
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
     {

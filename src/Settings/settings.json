@@ -464,5 +464,12 @@
         "default": 500000,
         "param": "QList<QVariant> {2,1000000000}",
         "tip": "The maximum number of characters in a testcase file to load.\nA testcase file won't be loaded if it's too long."
+    },
+    {
+        "name": "Testcases Matching Rules",
+        "type": "QList<QVariant>",
+        "default": "QList<QVariant> { QStringList {\"(.*)\\\\.in\", \"\\\\1.ans\"}, QStringList {\"(.*)\\\\.in\", \"\\\\1.out\"}}",
+        "param": "QList<QVariant> { QStringList {\"Input Regex\", \"The regular expression for the input file name\"}, QStringList {\"Answer Replace\", \"The replace expression for the answer file name. You can use \\\"\\\\1\\\" for the first captured group.\"}}",
+        "tip": "Pairs of regular expressions used when adding pairs of test cases from files. Each pair of regular expressions represents a test case."
     }
 ]

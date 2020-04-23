@@ -138,6 +138,18 @@ json数组的每一项表示一个配置项，结构如下：
 
         设置字体的控件。
 
+* `QList<QVariant>`
+
+    * `StringListsItem`
+
+        多个 `QStringList`。
+
+        令一个 `QStringList` 中的 `QString` 数量为 `<col>`。
+
+        value: `QList<QVairant>`, 其中每个元素是一个包含 `<col>` 个 `QString` 的 `QStringList`。
+
+        param: 这个参数描述了 UI 中的标题栏以及 `<col>` 的值。它是一个 有 `<col>` 个元素的 `QList<QVairant>`，其中每个元素是一个包含两个 `QString` 的 `QStringList`，第一个 `QString` 是标题，第二个 `QString` 是 tooltip。
+
 ### 添加设置
 
 具体的实现细节请参考已有代码。
