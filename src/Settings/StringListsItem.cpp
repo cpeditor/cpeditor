@@ -28,7 +28,8 @@ StringListsItem::StringListsItem(const QList<QVariant> &cols, QWidget *parent) :
     table->setMinimumWidth(480);
     table->setColumnCount(cols.count());
     table->setSelectionMode(QAbstractItemView::SingleSelection);
-    table->setEditTriggers(QAbstractItemView::DoubleClicked);
+    table->setEditTriggers(QAbstractItemView::DoubleClicked | QAbstractItemView::SelectedClicked |
+                           QAbstractItemView::AnyKeyPressed);
     for (int i = 0; i < cols.count(); ++i)
     {
         auto item = new QTableWidgetItem(cols[i].toStringList().front());
