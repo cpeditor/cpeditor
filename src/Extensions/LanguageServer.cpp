@@ -31,7 +31,7 @@ namespace Extensions
 
 LanguageServer::LanguageServer(QString lang)
 {
-    Core::Log::i("LanguageServer/constructed") << INFO_OF(lang) << endl;
+    LOG_INFO(INFO_OF(lang));
     if (lang == "Python")
         language = "python";
     else if (lang == "Java")
@@ -40,7 +40,7 @@ LanguageServer::LanguageServer(QString lang)
         language = "cpp";
     else
     {
-        Core::Log::w("LanguageServer/constructed") << "Invalid language " << language << "Fallback to c++" << endl;
+        LOG_WARN("Invalid language " << language << "falling back to C++");
         this->language = "cpp";
     }
 
@@ -143,7 +143,7 @@ void LanguageServer::performConnection()
 {
     if (lsp == nullptr)
     {
-        Core::Log::e("LanguageServer/performConnection", "Cannot perform connect if lsp is nullptr");
+        LOG_WARN("Skipping establishement of connections as lsp client is nullptr");
         return;
     }
     connect(lsp, &LSPClient::onError, this, &LanguageServer::onLSPServerErrorArrived);
@@ -153,7 +153,7 @@ void LanguageServer::performConnection()
     connect(lsp, &LSPClient::onNotify, this, &LanguageServer::onLSPServerNotificationArrived);
     connect(lsp, &LSPClient::onServerFinished, this, &LanguageServer::onLSPServerProcessFinished);
 
-    Core::Log::i("LanguageServer/performConnections", "All connections have been established");
+    LOG_INFO("All language server connections have been established");
 }
 
 void LanguageServer::createClient()
@@ -235,21 +235,23 @@ void LanguageServer::onLSPServerNotificationArrived(QString method, QJsonObject 
 
 void LanguageServer::onLSPServerResponseArrived(QJsonObject method, QJsonObject param)
 {
-    Core::Log::i("Response arrived", "Response");
+    LOG_INFO("Response from Server has arrived");
 }
 
 void LanguageServer::onLSPServerRequestArrived(QString method, QJsonObject param, QJsonObject id)
 {
-    Core::Log::i("Request arrived", "Something");
+    LOG_INFO("Request from Sever has arrived. " << INFO_OF(method));
 }
 
 void LanguageServer::onLSPServerErrorArrived(QJsonObject id, QJsonObject error)
 {
-    QString a, b;
-    a = QJsonDocument::fromVariant(id.toVariantMap()).toJson();
-    b = QJsonDocument::fromVariant(error.toVariantMap()).toJson();
+    QString ID, ERR;
+    ID = QJsonDocument::fromVariant(id.toVariantMap()).toJson();
+    ERR = QJsonDocument::fromVariant(error.toVariantMap()).toJson();
 
-    Core::Log::e("LanguageServer/onLSPServerErrorArrived") << a << "\n" << b;
+    LOG_ERR("ID is \n" << ID);
+    LOG_ERR("ERR is \n" << ERR);
+
     if (logger != nullptr)
         logger->error("Langauge Server [" + language + "]",
                       "Language server sent an error. Please check log for details.");
@@ -257,7 +259,7 @@ void LanguageServer::onLSPServerErrorArrived(QJsonObject id, QJsonObject error)
 
 void LanguageServer::onLSPServerProcessError(QProcess::ProcessError error)
 {
-    Core::Log::e("LanguageServer/onLSPServerProcessError") << "LSP Process Errored Out (" << error << ")" << endl;
+    LOG_ERR("LSP Process errored out " << INFO_OF(error));
     if (logger == nullptr)
         return;
     switch (error)
@@ -287,7 +289,6 @@ void LanguageServer::onLSPServerProcessError(QProcess::ProcessError error)
 
 void LanguageServer::onLSPServerProcessFinished(int exitCode, QProcess::ExitStatus status)
 {
-    Core::Log::i("LanguageServer/onLSPServerProcessFinished")
-        << "LSP Finished with exit code " << exitCode << " " << INFO_OF(language) << " " << INFO_OF(status) << endl;
+    LOG_INFO("LSP Finished with exit code " << exitCode << INFO_OF(language) << INFO_OF(status));
 }
 } // namespace Extensions
