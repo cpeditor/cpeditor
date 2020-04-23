@@ -16,3 +16,13 @@ jobs:
       run: clang-format-9 -i src/*.cpp src/*/*.cpp src/*.hpp src/*/*.hpp
     - name: Check diff
       run: git diff --exit-code HEAD
+    - name: Create Pull Request
+      if: failure()
+      uses: peter-evans/create-pull-request@v2
+      with:
+        commit-message: "style: Format codes"
+        title: "Format codes for ${{ github.ref }}"
+        labels: "style"
+        assignees: "${{ github.actor }}"
+        reviewers: "${{ github.actor }}"
+        branch: 'auto-pr/clang-format/${{ github.ref }}'
