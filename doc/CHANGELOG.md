@@ -4,6 +4,7 @@
 
 - Add Ctrl+Shift+D for duplicating the current line or the selection. (#237)
 - Add tooltips for many widgets. (#211)
+- Now you can add pairs of test cases from files. (#204 and #246)
 
 ### Changed
 
