@@ -26,7 +26,7 @@ namespace Core
 
 Checker::Checker(CheckerType type, MessageLogger *logger, QObject *parent) : QObject(parent)
 {
-    Log::i("Checker/constructor") << INFO_OF(type) << endl;
+    LOG_INFO("Checker of type " << type << "created");
     checkerType = type;
     log = logger;
 }
@@ -34,17 +34,18 @@ Checker::Checker(CheckerType type, MessageLogger *logger, QObject *parent) : QOb
 Checker::Checker(const QString &path, MessageLogger *logger, QObject *parent) : Checker(Custom, logger, parent)
 {
     checkerPath = path;
+    LOG_INFO("Updated checker path to " << path);
 }
 
 Checker::~Checker()
 {
-    Log::i("Checker/destructor", "Invoked");
     if (compiler)
         delete compiler;
     for (auto &t : runner)
         delete t;
     if (tmpDir)
         delete tmpDir;
+    LOG_INFO("Destroyed checker of type " << checkerType);
 }
 
 void Checker::prepare(const QString &compileCommand)
@@ -59,6 +60,7 @@ void Checker::prepare(const QString &compileCommand)
 
     if (!compiled)
     {
+        LOG_INFO("Compiling checker with command " << compileCommand);
         // compile the checker if it's not compiled
 
         QString checkerResource;
@@ -130,6 +132,7 @@ void Checker::prepare(const QString &compileCommand)
 
 void Checker::reqeustCheck(int index, const QString &input, const QString &output, const QString &expected)
 {
+    LOG_INFO(BOOL_INFO_OF(compiled));
     if (compiled)
         check(index, input, output, expected); // check immediately if the checker is compiled
     else
@@ -138,7 +141,6 @@ void Checker::reqeustCheck(int index, const QString &input, const QString &outpu
 
 void Checker::onCompilationFinished()
 {
-    Log::i("Checker/onCompilationFinished", "Invoked");
     compiled = true; // mark that the checker is compiled
     for (auto t : pendingTasks)
         check(t.index, t.input, t.output, t.expected); // solve the pending tasks
@@ -217,8 +219,6 @@ void Checker::onRunKilled(int index)
 
 bool Checker::checkIgnoreTrailingSpaces(const QString &output, const QString &expected)
 {
-    Core::Log::i("Checker/checkIgnoreTrailingSpaces", "Invoked");
-
     // first, replace \r\n and \r by \n
     auto out = output;
     out.replace("\r\n", "\n").replace("\r", "\n");
@@ -261,7 +261,6 @@ bool Checker::checkIgnoreTrailingSpaces(const QString &output, const QString &ex
 
 bool Checker::checkStrict(const QString &output, const QString &expected)
 {
-    Log::i("Checker/checkStrict", "Invoked");
     auto a = output;
     auto b = expected;
     // replace \r\n and \r with \n, then directly compare them
@@ -270,7 +269,7 @@ bool Checker::checkStrict(const QString &output, const QString &expected)
 
 void Checker::check(int index, const QString &input, const QString &output, const QString &expected)
 {
-    Log::i("Checker/check") << "Invoked. " << INFO_OF(index) << endl;
+    LOG_INFO(INFO_OF(index));
     switch (checkerType)
     {
     // check directly if it's a built-in checker

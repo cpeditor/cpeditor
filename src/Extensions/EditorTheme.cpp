@@ -32,7 +32,6 @@ QSyntaxStyle *EditorTheme::solarizedDark = nullptr;
 
 QSyntaxStyle *EditorTheme::getLightTheme()
 {
-    Core::Log::e("editorTheme/getLightTheme", "Invoked");
     if (light != nullptr)
         return light;
     else
@@ -40,12 +39,8 @@ QSyntaxStyle *EditorTheme::getLightTheme()
 }
 QSyntaxStyle *EditorTheme::getMonokaiTheme()
 {
-    Core::Log::i("editorTheme/getMonokaiTheme", "Invoked");
     if (monokai != nullptr)
-    {
-        Core::Log::i("editorTheme/getMonokaiTheme", "reuse existing resource");
         return monokai;
-    }
     else
     {
         auto content = Util::readFile(":/styles/monokai.xml", "Read Style");
@@ -58,12 +53,8 @@ QSyntaxStyle *EditorTheme::getMonokaiTheme()
 }
 QSyntaxStyle *EditorTheme::getDraculaTheme()
 {
-    Core::Log::i("editorTheme/getDraculaTheme", "Invoked");
     if (dracula != nullptr)
-    {
-        Core::Log::i("editorTheme/getDraculaTheme", "reuse existing resource");
         return dracula;
-    }
     else
     {
         auto content = Util::readFile(":/styles/dracula.xml", "Read Style");
@@ -76,12 +67,8 @@ QSyntaxStyle *EditorTheme::getDraculaTheme()
 }
 QSyntaxStyle *EditorTheme::getSolarizedTheme()
 {
-    Core::Log::i("editorTheme/getSolarizedTheme", "Invoked");
     if (solarized != nullptr)
-    {
-        Core::Log::i("editorTheme/getSolarizedTheme", "reuse existing resource");
         return solarized;
-    }
     else
     {
         auto content = Util::readFile(":/styles/solarized.xml", "Read Style");
@@ -94,12 +81,8 @@ QSyntaxStyle *EditorTheme::getSolarizedTheme()
 }
 QSyntaxStyle *EditorTheme::getSolarizedDarkTheme()
 {
-    Core::Log::i("editorTheme/getSolarizedDarkTheme", "Invoked");
     if (solarizedDark != nullptr)
-    {
-        Core::Log::i("editorTheme/getSolarizedDarkTheme", "reuse existing resource");
         return solarizedDark;
-    }
     else
     {
         auto content = Util::readFile(":/styles/solarizedDark.xml", "Read Style");
@@ -113,31 +96,15 @@ QSyntaxStyle *EditorTheme::getSolarizedDarkTheme()
 
 void EditorTheme::release()
 {
-    Core::Log::i("editorTheme/release", "releasing theme resources");
     if (light != nullptr)
-    {
-        Core::Log::i("editorTheme/release", "deleting light theme");
         delete light;
-    }
     if (dracula != nullptr)
-    {
-        Core::Log::i("editorTheme/release", "deleting dracula theme");
         delete dracula;
-    }
     if (monokai != nullptr)
-    {
-        Core::Log::i("editorTheme/release", "deleting monokai theme");
         delete monokai;
-    }
     if (solarized != nullptr)
-    {
-        Core::Log::i("editorTheme/release", "deleting solarized theme");
         delete solarized;
-    }
     if (solarizedDark != nullptr)
-    {
-        Core::Log::i("editorTheme/release", "deleting solarizedDark theme");
         delete solarizedDark;
-    }
 }
 } // namespace Extensions
