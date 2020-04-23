@@ -747,7 +747,7 @@ void AppWindow::onReceivedMessage(quint32 instanceId, QByteArray message)
     FROMJSON(java).toBool();
     FROMJSON(python).toBool();
 
-    LOG_INFO("Recieved a request from secondary instances" << json["type"].toString());
+    LOG_INFO("Received a request from secondary instances" << json["type"].toString());
     if (json["type"] == "normal")
     {
         FROMJSON(depth).toInt();
