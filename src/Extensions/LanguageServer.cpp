@@ -52,6 +52,10 @@ LanguageServer::~LanguageServer()
 
 void LanguageServer::openDocument(QString path, QCodeEditor *editor, MessageLogger *log)
 {
+    m_editor = editor;
+    openFile = path;
+    logger = log;
+
     if (lsp == nullptr)
         return;
 
@@ -62,9 +66,6 @@ void LanguageServer::openDocument(QString path, QCodeEditor *editor, MessageLogg
     }
 
     std::string uri = "file://" + path.toStdString();
-    m_editor = editor;
-    openFile = path;
-    logger = log;
     std::string code = m_editor->toPlainText().toStdString();
     std::string lang = language.toStdString();
 
@@ -73,14 +74,15 @@ void LanguageServer::openDocument(QString path, QCodeEditor *editor, MessageLogg
 
 void LanguageServer::closeDocument()
 {
+    openFile = "";
+    logger = nullptr;
+    m_editor = nullptr;
+
     if (lsp == nullptr)
         return;
 
     std::string uri = "file://" + openFile.toStdString();
     lsp->didClose(uri);
-    openFile = "";
-    logger = nullptr;
-    m_editor = nullptr;
 }
 
 void LanguageServer::requestLinting()
@@ -123,12 +125,13 @@ void LanguageServer::updateSettings()
         performConnection();
         initializeLSP(openFile);
 
-        if (m_editor != nullptr && isDocumentOpen())
+        if (m_editor != nullptr)
         {
             auto tmp_editor = m_editor;
             auto tmp_path = openFile;
             auto tmp_log = logger;
-            closeDocument();
+            if (isDocumentOpen())
+                closeDocument();
             openDocument(tmp_path, tmp_editor, tmp_log);
         }
     }
