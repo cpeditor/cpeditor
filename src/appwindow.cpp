@@ -1462,30 +1462,32 @@ MainWindow *AppWindow::currentWindow()
 
 void AppWindow::reAttachLanguageServer(MainWindow *window)
 {
+    window->getEditor()->clearSquiggle();
     lspTimerCpp->stop();
     lspTimerJava->stop();
     lspTimerPython->stop();
 
+    if (cppServer->isDocumentOpen())
+        cppServer->closeDocument();
+    if (javaServer->isDocumentOpen())
+        javaServer->closeDocument();
+    if (pythonServer->isDocumentOpen())
+        pythonServer->closeDocument();
+
     if (window->getLanguage() == "C++")
     {
-        if (cppServer->isDocumentOpen())
-            cppServer->closeDocument();
         cppServer->openDocument(window->tmpPath(), window->getEditor(), window->getLogger());
         cppServer->requestLinting();
         lspTimerCpp->start();
     }
     else if (window->getLanguage() == "Java")
     {
-        if (javaServer->isDocumentOpen())
-            javaServer->closeDocument();
         javaServer->openDocument(window->tmpPath(), window->getEditor(), window->getLogger());
         javaServer->requestLinting();
         lspTimerJava->start();
     }
     else if (window->getLanguage() == "Python")
     {
-        if (pythonServer->isDocumentOpen())
-            pythonServer->closeDocument();
         pythonServer->openDocument(window->tmpPath(), window->getEditor(), window->getLogger());
         pythonServer->requestLinting();
         lspTimerPython->start();
