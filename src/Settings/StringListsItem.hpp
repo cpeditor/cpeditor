@@ -19,8 +19,8 @@
 #define STRINGLISTSITEM_HPP
 
 #include <QHBoxLayout>
+#include <QPushButton>
 #include <QTableWidget>
-#include <QToolButton>
 #include <QVBoxLayout>
 
 class StringListsItem : public QWidget
@@ -40,10 +40,10 @@ class StringListsItem : public QWidget
     QHBoxLayout *layout = nullptr;
     QVBoxLayout *buttonLayout = nullptr;
     QTableWidget *table = nullptr;
-    QToolButton *add = nullptr;
-    QToolButton *del = nullptr;
-    QToolButton *moveUp = nullptr;
-    QToolButton *moveDown = nullptr;
+    QPushButton *add = nullptr;
+    QPushButton *del = nullptr;
+    QPushButton *moveUp = nullptr;
+    QPushButton *moveDown = nullptr;
 };
 
 #endif // STRINGLISTSITEM_HPP
