@@ -121,7 +121,7 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
 
     addPage("Extensions/CF Tool", {"CF/Path"});
 
-    addPage("File Path/Testcases", {"Testcases Matching Rules"});
+    addPage("File Path/Testcases", {"Input File Save Path", "Answer File Save Path", "Testcases Matching Rules"});
 
     addPage("Key Bindings", {"Hotkey/Compile", "Hotkey/Run", "Hotkey/Compile Run", "Hotkey/Format", "Hotkey/Kill",
                              "Hotkey/Change View Mode", "Hotkey/Snippets"});

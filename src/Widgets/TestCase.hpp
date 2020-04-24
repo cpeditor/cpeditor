@@ -45,8 +45,6 @@ class TestCase : public QWidget
     QString input() const;
     QString output() const;
     QString expected() const;
-    void loadFromFile(const QString &pathPrefix);
-    void save(const QString &pathPrefix, bool safe);
     void setID(int index);
     void setVerdict(Core::Checker::Verdict verdict);
     Core::Checker::Verdict verdict() const;

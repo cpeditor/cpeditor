@@ -19,7 +19,9 @@
 #include "Core/EventLogger.hpp"
 #include "Extensions/EditorTheme.hpp"
 #include <QCXXHighlighter>
+#include <QDir>
 #include <QFile>
+#include <QFileInfo>
 #include <QJavaHighlighter>
 #include <QPythonHighlighter>
 #include <QSaveFile>
@@ -42,8 +44,14 @@ QString fileNameFilter(bool cpp, bool java, bool python)
     return "Source Files (" + filter.trimmed() + ")";
 }
 
-bool saveFile(const QString &path, const QString &content, const QString &head, bool safe, MessageLogger *log)
+bool saveFile(const QString &path, const QString &content, const QString &head, bool safe, MessageLogger *log,
+              bool createDirectory)
 {
+    if (createDirectory)
+    {
+        auto dirPath = QFileInfo(path).absolutePath();
+        LOG_ERR_IF(!QDir().mkpath(dirPath), QString("Failed to create the directory [%1]").arg(dirPath));
+    }
     if (safe && !SettingsHelper::isSaveFaster())
     {
         QSaveFile file(path);

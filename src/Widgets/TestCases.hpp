@@ -38,30 +38,42 @@ class TestCases : public QWidget
 
   public:
     explicit TestCases(MessageLogger *logger, QWidget *parent = nullptr);
-    void setInput(int index, const QString &input);
-    void setOutput(int index, const QString &output);
-    void setExpected(int index, const QString &expected);
-    void addTestCase(const QString &input = QString(), const QString &expected = QString());
-    void clearOutput();
-    void clear();
+
     QString input(int index) const;
     QString output(int index) const;
     QString expected(int index) const;
+
+    void setInput(int index, const QString &input);
+    void setOutput(int index, const QString &output);
+    void setExpected(int index, const QString &expected);
+
     void loadStatus(const QStringList &inputList, const QStringList &expectedList);
+
     QStringList inputs() const;
     QStringList expecteds() const;
-    void loadFromFile(const QString &filePath);
-    void save(const QString &filePath, bool safe);
+
+    void addTestCase(const QString &input = QString(), const QString &expected = QString());
+
+    void clearOutput();
+    void clear();
+
     int id(TestCase *testcase) const;
     int count() const;
+
     void setCheckerIndex(int index);
     int checkerIndex() const;
     void addCustomCheckers(const QStringList &list);
     QStringList customCheckers() const;
     QString checkerText() const;
     Core::Checker::CheckerType checkerType() const;
+
     void setShow(int index, bool show);
     bool isShow(int index) const;
+
+    void loadFromSavedFiles(const QString &filePath);
+    void saveToFiles(const QString &filePath, bool safe);
+
+    QString loadTestCaseFromFile(const QString &path, const QString &head);
 
   public slots:
     void setVerdict(int index, Core::Checker::Verdict verdict);
@@ -90,8 +102,9 @@ class TestCases : public QWidget
     bool choosingChecker = false;
 
     void updateVerdicts();
-    QString testFilePathPrefix(const QFileInfo &fileInfo, int index);
-    int numberOfTestFile(const QString &sourceName, const QFileInfo &fileName);
+    QString inputFilePath(const QString &filePath, int index);
+    QString answerFilePath(const QString &filePath, int index);
+    QString testCaseFilePath(QString rule, const QString &filePath, int index);
 };
 } // namespace Widgets
 #endif // TESTCASES_HPP

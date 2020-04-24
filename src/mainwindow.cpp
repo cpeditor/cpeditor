@@ -196,13 +196,13 @@ void MainWindow::runTestCase(int index)
 void MainWindow::loadTests()
 {
     if (!isUntitled() && SettingsHelper::isSaveTests())
-        testcases->loadFromFile(filePath);
+        testcases->loadFromSavedFiles(filePath);
 }
 
 void MainWindow::saveTests(bool safe)
 {
     if (!isUntitled() && SettingsHelper::isSaveTests())
-        testcases->save(filePath, safe);
+        testcases->saveToFiles(filePath, safe);
 }
 
 void MainWindow::setCFToolUI()
@@ -762,7 +762,7 @@ bool MainWindow::saveFile(SaveMode mode, const QString &head, bool safe)
         if (newFilePath.isEmpty())
             return false;
 
-        if (!Util::saveFile(newFilePath, editor->toPlainText(), head, safe, &log))
+        if (!Util::saveFile(newFilePath, editor->toPlainText(), head, safe, &log, true))
             return false;
 
         filePath = newFilePath;
@@ -779,7 +779,7 @@ bool MainWindow::saveFile(SaveMode mode, const QString &head, bool safe)
     }
     else if (!isUntitled())
     {
-        if (!Util::saveFile(filePath, editor->toPlainText(), head, safe, &log))
+        if (!Util::saveFile(filePath, editor->toPlainText(), head, safe, &log, true))
             return false;
         updateWatcher();
     }
