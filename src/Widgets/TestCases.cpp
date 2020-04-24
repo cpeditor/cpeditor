@@ -17,6 +17,8 @@
 
 #include "Widgets/TestCases.hpp"
 #include "Core/EventLogger.hpp"
+#include "Util.hpp"
+#include "generated/SettingsHelper.hpp"
 #include <QFileDialog>
 #include <QMessageBox>
 
@@ -59,6 +61,72 @@ TestCases::TestCases(MessageLogger *logger, QWidget *parent) : QWidget(parent), 
     updateVerdicts();
 
     moreMenu = new QMenu();
+
+    moreMenu->addAction("Add Pairs of Testcases From Files", [this] {
+        QStringList paths = QFileDialog::getOpenFileNames(this, "Choose Testcase Files", "");
+        LOG_INFO(paths.join(", "));
+        if (paths.size())
+        {
+            QVariantList rules = SettingsHelper::getTestcasesMatchingRules();
+            QSet<QString> remain;
+            for (auto path : paths)
+                remain.insert(QFileInfo(path).fileName());
+            // load pairs
+            for (auto rule : rules)
+            {
+                QRegularExpression inputRegex("^" + rule.toStringList().front() + "$");
+                QString answerReplace(rule.toStringList().back());
+                for (auto path : paths)
+                {
+                    auto inputFile = QFileInfo(path).fileName();
+                    if (!remain.contains(inputFile))
+                        continue;
+                    if (!inputRegex.match(inputFile).hasMatch())
+                        continue;
+                    auto answerFile = inputFile;
+                    answerFile.replace(inputRegex, answerReplace);
+                    if (!remain.contains(answerFile))
+                        continue;
+                    remain.remove(inputFile);
+                    remain.remove(answerFile);
+                    auto answerPath = QFileInfo(path).dir().filePath(answerFile);
+                    auto input = Util::readFile(path, "Load Testcases", log, true);
+                    auto answer = Util::readFile(answerPath, "Load Testcases", log, true);
+                    addTestCase(input, answer);
+                    log->info("Load Testcases",
+                              QString("A pair of testcases [%1] and [%2] is loaded").arg(path).arg(answerPath));
+                }
+            }
+            // load single input
+            for (auto rule : rules)
+            {
+                QRegularExpression inputRegex("^" + rule.toStringList().front() + "$");
+                for (auto path : paths)
+                {
+                    auto inputFile = QFileInfo(path).fileName();
+                    if (!remain.contains(inputFile))
+                        continue;
+                    if (!inputRegex.match(inputFile).hasMatch())
+                        continue;
+                    remain.remove(inputFile);
+                    auto input = Util::readFile(path, "Load Testcases", log, true);
+                    addTestCase(input, QString());
+                    log->info("Load Testcases", QString("An input [%1] is loaded").arg(path));
+                }
+            }
+            if (!remain.isEmpty())
+            {
+                QStringList remainPaths;
+                for (auto path : remain)
+                    remainPaths.push_back(QString("[%1]").arg(path));
+                log->warn(
+                    "Load Testcases",
+                    QString("The following files are not loaded because they are not matched:%1. You can set the "
+                            "matching rules at Preferences->File Path->Testcases->Add Testcases From Files Rules.")
+                        .arg(remainPaths.join(", ")));
+            }
+        }
+    });
 
     moreMenu->addAction("Remove Empty", [this] {
         LOG_INFO("Testcases Removing empty");
@@ -214,40 +282,63 @@ QStringList TestCases::expecteds() const
     return res;
 }
 
-void TestCases::loadFromFile(const QString &filePath)
+void TestCases::loadFromSavedFiles(const QString &filePath)
 {
-    QFileInfo fileInfo(filePath);
-    auto dir = fileInfo.dir();
-    auto name = fileInfo.completeBaseName();
-    int maxIndex = 0;
-    auto entries = dir.entryInfoList({name + "*.in", name + "*.ans"}, QDir::Files);
-    for (auto entry : entries)
-        maxIndex = qMax(maxIndex, numberOfTestFile(name, entry));
-    maxIndex = qMin(maxIndex, MAX_NUMBER_OF_TESTCASES);
     clear();
-    for (int i = 0; i < maxIndex; ++i)
+
+    for (int i = MAX_NUMBER_OF_TESTCASES - 1; i >= 0; --i)
     {
-        addTestCase();
-        testcases[i]->loadFromFile(testFilePathPrefix(fileInfo, i));
+        auto inputPath = inputFilePath(filePath, i);
+        auto answerPath = answerFilePath(filePath, i);
+        if (QFile::exists(inputPath) || QFile::exists(answerPath))
+        {
+            for (int j = 0; j <= i; ++j)
+            {
+                addTestCase(loadTestCaseFromFile(inputPath, QString("Input #%1").arg(j + 1)),
+                            loadTestCaseFromFile(answerPath, QString("Expected #%1").arg(j + 1)));
+            }
+            break;
+        }
     }
-    if (maxIndex == 0)
+
+    if (count() == 0)
         addTestCase();
 }
 
-void TestCases::save(const QString &filePath, bool safe)
+void TestCases::saveToFiles(const QString &filePath, bool safe)
 {
-    QFileInfo fileInfo(filePath);
-    auto dir = fileInfo.dir();
-    auto name = fileInfo.completeBaseName();
     for (int i = 0; i < count(); ++i)
-        testcases[i]->save(testFilePathPrefix(fileInfo, i), safe);
-    auto entries = dir.entryInfoList({name + "*.in", name + "*.ans"}, QDir::Files);
-    for (auto entry : entries)
     {
-        int number = numberOfTestFile(name, entry);
-        if (number > count() && number <= MAX_NUMBER_OF_TESTCASES)
-            QFile(entry.filePath()).remove();
+        if (!input(i).isEmpty())
+            Util::saveFile(inputFilePath(filePath, i), input(i), QString("Save Input #%1").arg(i + 1), safe, log, true);
+        if (!expected(i).isEmpty())
+            Util::saveFile(answerFilePath(filePath, i), expected(i), QString("Save Expected #%1").arg(i + 1), safe, log,
+                           true);
     }
+    for (int i = count(); i < MAX_NUMBER_OF_TESTCASES; ++i)
+    {
+        auto inputPath = inputFilePath(filePath, i);
+        auto answerPath = answerFilePath(filePath, i);
+        if (QFile::exists(inputPath))
+            QFile::remove(inputPath);
+        if (QFile::exists(answerPath))
+            QFile::remove(answerPath);
+    }
+}
+
+QString TestCases::loadTestCaseFromFile(const QString &path, const QString &head)
+{
+    auto content = Util::readFile(path, QString("Load %1").arg(head), log);
+    if (content.length() > SettingsHelper::getLoadTestCaseFileLengthLimit())
+    {
+        log->error("Testcases",
+                   QString("The testcase file [%1] contains more than %2 characters, so it's not loaded. You can "
+                           "change the length limit in Preferences->Advanced->Limits->Load Test Case File Length Limit")
+                       .arg(path)
+                       .arg(SettingsHelper::getLoadTestCaseFileLengthLimit()));
+        return QString();
+    }
+    return content;
 }
 
 int TestCases::id(TestCase *testcase) const
@@ -380,15 +471,22 @@ void TestCases::updateVerdicts()
                       QString::number(ac) + "</span> / " + QString::number(count()));
 }
 
-QString TestCases::testFilePathPrefix(const QFileInfo &fileInfo, int index)
+QString TestCases::inputFilePath(const QString &filePath, int index)
 {
-    return fileInfo.dir().filePath(fileInfo.completeBaseName() + "_" + QString::number(index + 1));
+    return testCaseFilePath(SettingsHelper::getInputFileSavePath(), filePath, index);
 }
 
-int TestCases::numberOfTestFile(const QString &sourceName, const QFileInfo &fileName)
+QString TestCases::answerFilePath(const QString &filePath, int index)
 {
-    LOG_INFO(INFO_OF(sourceName) << INFO_OF(fileName.absolutePath()));
-    auto baseName = fileName.completeBaseName();
-    return baseName.mid(baseName.indexOf(sourceName) + sourceName.length() + 1).toInt();
+    return testCaseFilePath(SettingsHelper::getAnswerFileSavePath(), filePath, index);
+}
+
+QString TestCases::testCaseFilePath(QString rule, const QString &filePath, int index)
+{
+    QFileInfo fileInfo(filePath);
+    return fileInfo.dir().filePath(rule.replace("${filename}", fileInfo.fileName())
+                                       .replace("${basename}", fileInfo.completeBaseName())
+                                       .replace("${0-index}", QString::number(index))
+                                       .replace("${1-index}", QString::number(index + 1)));
 }
 } // namespace Widgets

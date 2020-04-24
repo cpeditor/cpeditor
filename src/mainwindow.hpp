@@ -117,7 +117,7 @@ class MainWindow : public QMainWindow
 
     void onCompilationStarted();
     void onCompilationFinished(const QString &warning);
-    void onCompilationErrorOccured(const QString &error);
+    void onCompilationErrorOccurred(const QString &error);
     void onCompilationKilled();
 
     void onRunStarted(int index);

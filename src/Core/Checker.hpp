@@ -126,7 +126,7 @@ class Checker : public QObject
      * @brief failed to compile the checker
      * @param error the error message provided by Core::Compiler
      */
-    void onCompilationErrorOccured(const QString &error);
+    void onCompilationErrorOccurred(const QString &error);
 
     /**
      * @brief the compile process is killed

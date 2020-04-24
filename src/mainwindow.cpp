@@ -128,8 +128,8 @@ void MainWindow::compile()
         connect(compiler, SIGNAL(compilationStarted()), this, SLOT(onCompilationStarted()));
         connect(compiler, SIGNAL(compilationFinished(const QString &)), this,
                 SLOT(onCompilationFinished(const QString &)));
-        connect(compiler, SIGNAL(compilationErrorOccured(const QString &)), this,
-                SLOT(onCompilationErrorOccured(const QString &)));
+        connect(compiler, SIGNAL(compilationErrorOccurred(const QString &)), this,
+                SLOT(onCompilationErrorOccurred(const QString &)));
         connect(compiler, SIGNAL(compilationKilled()), this, SLOT(onCompilationKilled()));
         compiler->start(tmpPath(), SettingsManager::get(QString("%1/Compile Command").arg(language)).toString(),
                         language);
@@ -196,13 +196,13 @@ void MainWindow::runTestCase(int index)
 void MainWindow::loadTests()
 {
     if (!isUntitled() && SettingsHelper::isSaveTests())
-        testcases->loadFromFile(filePath);
+        testcases->loadFromSavedFiles(filePath);
 }
 
 void MainWindow::saveTests(bool safe)
 {
     if (!isUntitled() && SettingsHelper::isSaveTests())
-        testcases->save(filePath, safe);
+        testcases->saveToFiles(filePath, safe);
 }
 
 void MainWindow::setCFToolUI()
@@ -764,7 +764,7 @@ bool MainWindow::saveFile(SaveMode mode, const QString &head, bool safe)
         if (newFilePath.isEmpty())
             return false;
 
-        if (!Util::saveFile(newFilePath, editor->toPlainText(), head, safe, &log))
+        if (!Util::saveFile(newFilePath, editor->toPlainText(), head, safe, &log, true))
             return false;
 
         filePath = newFilePath;
@@ -781,7 +781,7 @@ bool MainWindow::saveFile(SaveMode mode, const QString &head, bool safe)
     }
     else if (!isUntitled())
     {
-        if (!Util::saveFile(filePath, editor->toPlainText(), head, safe, &log))
+        if (!Util::saveFile(filePath, editor->toPlainText(), head, safe, &log, true))
             return false;
         updateWatcher();
     }
@@ -1087,9 +1087,9 @@ void MainWindow::onCompilationFinished(const QString &warning)
     }
 }
 
-void MainWindow::onCompilationErrorOccured(const QString &error)
+void MainWindow::onCompilationErrorOccurred(const QString &error)
 {
-    log.error("Complier", "Error occured while compiling");
+    log.error("Complier", "Error occurred while compiling");
     if (!error.trimmed().isEmpty())
         log.error("Compile Errors", error);
 }

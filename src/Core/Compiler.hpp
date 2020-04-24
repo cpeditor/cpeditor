@@ -80,7 +80,7 @@ class Compiler : public QObject
      * @brief the compilation has just finished with error
      * @param error the compile errors and warnings (stderr of the compile process)
      */
-    void compilationErrorOccured(const QString &error);
+    void compilationErrorOccurred(const QString &error);
 
     /**
      * @brief the compilation process has just been killed
