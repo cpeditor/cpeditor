@@ -32,20 +32,12 @@ namespace Extensions
 LanguageServer::LanguageServer(QString lang)
 {
     LOG_INFO(INFO_OF(lang));
-    if (lang == "Python")
-        language = "python";
-    else if (lang == "Java")
-        language = "java";
-    else if (lang == "C++")
-        language = "cpp";
-    else
+    this->language = lang;
+    if (shouldCreateClient())
     {
-        LOG_WARN("Invalid language " << language << "falling back to C++");
-        this->language = "cpp";
+        createClient();
+        performConnection();
     }
-
-    createClient();
-    performConnection();
 }
 
 LanguageServer::~LanguageServer()
@@ -60,6 +52,9 @@ LanguageServer::~LanguageServer()
 
 void LanguageServer::openDocument(QString path, QCodeEditor *editor, MessageLogger *log)
 {
+    if (lsp == nullptr)
+        return;
+
     if (!isInitialized)
     {
         initializeLSP(path);
@@ -78,6 +73,9 @@ void LanguageServer::openDocument(QString path, QCodeEditor *editor, MessageLogg
 
 void LanguageServer::closeDocument()
 {
+    if (lsp == nullptr)
+        return;
+
     std::string uri = "file://" + openFile.toStdString();
     lsp->didClose(uri);
     openFile = "";
@@ -87,8 +85,9 @@ void LanguageServer::closeDocument()
 
 void LanguageServer::requestLinting()
 {
-    if (m_editor == nullptr)
-        return; // will return if document was closed and linting was requested.
+    if (m_editor == nullptr || lsp == nullptr)
+        return;
+
     std::vector<TextDocumentContentChangeEvent> changes;
     TextDocumentContentChangeEvent e;
     e.text = m_editor->toPlainText().toStdString();
@@ -100,65 +99,69 @@ void LanguageServer::requestLinting()
 
 bool LanguageServer::isDocumentOpen() const
 {
-    return !openFile.isEmpty();
+    return !openFile.isEmpty() && lsp != nullptr;
 }
 
 void LanguageServer::updateSettings()
 {
-    // When settings are changed. Do destruction then reconstruct the client.
+    if (lsp != nullptr)
+    {
 
-    lsp->shutdown();
-    lsp->exit();
-    delete lsp;
+        lsp->shutdown();
+        lsp->exit();
+        delete lsp;
+        lsp = nullptr;
+    }
 
     if (m_editor != nullptr)
         m_editor->clearSquiggle();
 
-    createClient();
-
-    performConnection();
-    initializeLSP(openFile); // explictly initialize because this it was initialized but destroyed.
-
-    if (m_editor != nullptr && isDocumentOpen())
+    if (shouldCreateClient())
     {
-        auto tmp_editor = m_editor;
-        auto tmp_path = openFile;
-        auto tmp_log = logger;
-        closeDocument();
-        openDocument(tmp_path, tmp_editor, tmp_log);
+        createClient();
+
+        performConnection();
+        initializeLSP(openFile);
+
+        if (m_editor != nullptr && isDocumentOpen())
+        {
+            auto tmp_editor = m_editor;
+            auto tmp_path = openFile;
+            auto tmp_log = logger;
+            closeDocument();
+            openDocument(tmp_path, tmp_editor, tmp_log);
+        }
     }
 }
 
 void LanguageServer::updatePath(QString newPath)
 {
-    if (openFile == newPath)
+    if (lsp == nullptr || (openFile == newPath))
         return;
-    openFile = newPath;
-    updateSettings();
+    auto tmp_logger = logger;
+    auto tmp_editor = m_editor;
+    closeDocument();
+    openDocument(newPath, tmp_editor, tmp_logger);
 }
 
 // Private methods
-
-void LanguageServer::performConnection()
+bool LanguageServer::shouldCreateClient()
 {
-    if (lsp == nullptr)
+    if (language == "python")
+        return SettingsHelper::isLSPUseAutocompletePython() || SettingsHelper::isLSPUseLintingPython();
+    else if (language == "java")
+        return SettingsHelper::isLSPUseAutocompleteJava() || SettingsHelper::isLSPUseLintingJava();
+    else
     {
-        LOG_WARN("Skipping establishement of connections as lsp client is nullptr");
-        return;
+        LOG_WARN_IF(language != "cpp", "Invalid language " << language << "falling back to C++");
+        language = "cpp";
+        return SettingsHelper::isLSPUseAutocompleteCpp() || SettingsHelper::isLSPUseLintingCpp();
     }
-    connect(lsp, &LSPClient::onError, this, &LanguageServer::onLSPServerErrorArrived);
-    connect(lsp, &LSPClient::onRequest, this, &LanguageServer::onLSPServerRequestArrived);
-    connect(lsp, &LSPClient::onServerError, this, &LanguageServer::onLSPServerProcessError);
-    connect(lsp, &LSPClient::onResponse, this, &LanguageServer::onLSPServerResponseArrived);
-    connect(lsp, &LSPClient::onNotify, this, &LanguageServer::onLSPServerNotificationArrived);
-    connect(lsp, &LSPClient::onServerFinished, this, &LanguageServer::onLSPServerProcessFinished);
-    connect(lsp, &LSPClient::newStderr, this, &LanguageServer::onLSPServerNewStderr);
-
-    LOG_INFO("All language server connections have been established");
 }
 
 void LanguageServer::createClient()
 {
+
     QString lspArgCpp = SettingsHelper::getLSPArgsCpp().trimmed();
     QString lspArgPython = SettingsHelper::getLSPArgsPython().trimmed();
     QString lspArgJava = SettingsHelper::getLSPArgsJava().trimmed();
@@ -178,6 +181,24 @@ void LanguageServer::createClient()
         lsp = new LSPClient(SettingsHelper::getLSPPathJava(), argListJava);
     else
         lsp = new LSPClient(SettingsHelper::getLSPPathCpp(), argListCpp);
+}
+
+void LanguageServer::performConnection()
+{
+    if (lsp == nullptr)
+    {
+        LOG_WARN("Skipping establishement of connections as lsp client is nullptr");
+        return;
+    }
+    connect(lsp, &LSPClient::onError, this, &LanguageServer::onLSPServerErrorArrived);
+    connect(lsp, &LSPClient::onRequest, this, &LanguageServer::onLSPServerRequestArrived);
+    connect(lsp, &LSPClient::onServerError, this, &LanguageServer::onLSPServerProcessError);
+    connect(lsp, &LSPClient::onResponse, this, &LanguageServer::onLSPServerResponseArrived);
+    connect(lsp, &LSPClient::onNotify, this, &LanguageServer::onLSPServerNotificationArrived);
+    connect(lsp, &LSPClient::onServerFinished, this, &LanguageServer::onLSPServerProcessFinished);
+    connect(lsp, &LSPClient::newStderr, this, &LanguageServer::onLSPServerNewStderr);
+
+    LOG_INFO("All language server connections have been established");
 }
 
 QCodeEditor::SeverityLevel LanguageServer::lspSeverity(int in)
@@ -208,7 +229,7 @@ void LanguageServer::initializeLSP(QString filePath)
 
 void LanguageServer::onLSPServerNotificationArrived(QString method, QJsonObject param)
 {
-    if (method == "textDocument/publishDiagnostics") // Linting
+    if (method == "textDocument/publishDiagnostics" && m_editor != nullptr) // Linting
     {
         m_editor->clearSquiggle();
         QJsonArray doc = QJsonDocument::fromVariant(param.toVariantMap()).object()["diagnostics"].toArray();
@@ -229,7 +250,7 @@ void LanguageServer::onLSPServerNotificationArrived(QString method, QJsonObject 
             stop.second = end["character"].toInt();
 
             m_editor->squiggle(level, start, stop,
-                               tooltip.remove("(fix available)")); // We do not provide quick fix so remove this text.
+                               tooltip.remove(" (fix available)")); // We do not provide quick fix so remove this text.
         }
     }
 }

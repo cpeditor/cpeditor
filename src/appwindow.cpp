@@ -239,9 +239,9 @@ void AppWindow::allocate()
 
     server = new Extensions::CompanionServer(SettingsHelper::getCompetitiveCompanionConnectionPort());
 
-    cppServer = new Extensions::LanguageServer("C++");
-    javaServer = new Extensions::LanguageServer("Java");
-    pythonServer = new Extensions::LanguageServer("Python");
+    cppServer = new Extensions::LanguageServer("cpp"); // These are language code set by Language server protocol
+    javaServer = new Extensions::LanguageServer("java");
+    pythonServer = new Extensions::LanguageServer("python");
 
     findReplaceDialog = new FindReplaceDialog(this);
     findReplaceDialog->setModal(false);
@@ -892,11 +892,11 @@ void AppWindow::onEditorTmpPathChanged(MainWindow *window)
 {
     if (currentWindow() == window)
     {
-        if (window->getLanguage() == "C++")
+        if (window->getLanguage() == "C++" && cppServer->isDocumentOpen())
             cppServer->updatePath(window->tmpPath());
-        else if (window->getLanguage() == "Java")
+        else if (window->getLanguage() == "Java" && javaServer->isDocumentOpen())
             javaServer->updatePath(window->tmpPath());
-        else if (window->getLanguage() == "Python")
+        else if (window->getLanguage() == "Python" && pythonServer->isDocumentOpen())
             pythonServer->updatePath(window->tmpPath());
     }
 }
