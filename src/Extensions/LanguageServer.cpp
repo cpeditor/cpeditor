@@ -307,7 +307,7 @@ void LanguageServer::onLSPServerProcessError(QProcess::ProcessError error)
         logger->error("Language Server [" + language + "]", "LSP Process Write Error");
         break;
     case QProcess::UnknownError:
-        logger->error("Language Server [" + language + "]", "An unknown error has occured in LSP Process");
+        logger->error("Language Server [" + language + "]", "An unknown error has occurred in LSP Process");
         break;
     }
 }
