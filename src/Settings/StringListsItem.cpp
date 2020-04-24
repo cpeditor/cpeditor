@@ -42,15 +42,11 @@ StringListsItem::StringListsItem(const QList<QVariant> &cols, QWidget *parent) :
 
     buttonLayout = new QVBoxLayout();
 
-    int buttonWidth = qMax(qMax(fontMetrics().boundingRect("+").width(), fontMetrics().boundingRect("-").width()),
-                           qMax(fontMetrics().boundingRect("∧").width(), fontMetrics().boundingRect("∨").width()));
-
-    add = new QToolButton(this);
-    add->setMinimumWidth(buttonWidth);
-    add->setText("＋");
+    add = new QPushButton(this);
+    add->setText("Add");
     add->setShortcut({"Ctrl+N"});
     add->setToolTip("Insert a row (Ctrl+N)");
-    connect(add, &QToolButton::clicked, [&]() {
+    connect(add, &QPushButton::clicked, [&]() {
         int cols = table->columnCount();
         int rows = table->rowCount();
         auto items = table->selectedItems();
@@ -63,12 +59,11 @@ StringListsItem::StringListsItem(const QList<QVariant> &cols, QWidget *parent) :
     });
     buttonLayout->addWidget(add);
 
-    del = new QToolButton(this);
-    del->setMinimumWidth(buttonWidth);
-    del->setText("－");
+    del = new QPushButton(this);
+    del->setText("Remove");
     del->setShortcut({"Ctrl+W"});
     del->setToolTip("Delete the current row (Ctrl+W)");
-    connect(del, &QToolButton::clicked, [&]() {
+    connect(del, &QPushButton::clicked, [&]() {
         auto items = table->selectedItems();
         if (items.size())
         {
@@ -82,12 +77,11 @@ StringListsItem::StringListsItem(const QList<QVariant> &cols, QWidget *parent) :
     });
     buttonLayout->addWidget(del);
 
-    moveUp = new QToolButton(this);
-    moveUp->setMinimumWidth(buttonWidth);
-    moveUp->setText("∧");
+    moveUp = new QPushButton(this);
+    moveUp->setText("Move Up");
     moveUp->setShortcut({"Ctrl+Shift+Up"});
     moveUp->setToolTip("Move the current row up (Ctrl+Shift+Up)");
-    connect(moveUp, &QToolButton::clicked, [&]() {
+    connect(moveUp, &QPushButton::clicked, [&]() {
         int cols = table->columnCount();
         auto items = table->selectedItems();
         if (items.size())
@@ -106,12 +100,11 @@ StringListsItem::StringListsItem(const QList<QVariant> &cols, QWidget *parent) :
     });
     buttonLayout->addWidget(moveUp);
 
-    moveDown = new QToolButton(this);
-    moveDown->setMinimumWidth(buttonWidth);
-    moveDown->setText("∨");
+    moveDown = new QPushButton(this);
+    moveDown->setText("Move Down");
     moveDown->setShortcut({"Ctrl+Shift+Down"});
     moveDown->setToolTip("Move the current row down (Ctrl+Shift+Down)");
-    connect(moveDown, &QToolButton::clicked, [&]() {
+    connect(moveDown, &QPushButton::clicked, [&]() {
         int cols = table->columnCount();
         int rows = table->rowCount();
         auto items = table->selectedItems();
