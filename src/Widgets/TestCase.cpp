@@ -141,57 +141,6 @@ QString TestCase::expected() const
     return expectedEdit->toPlainText();
 }
 
-void TestCase::loadFromFile(const QString &pathPrefix)
-{
-    LOG_INFO("Loading from file path " << pathPrefix);
-    auto content = Util::readFile(pathPrefix + ".in", "Read Input #" + QString::number(id + 1), log);
-    if (!content.isNull())
-    {
-        if (content.length() > SettingsHelper::getLoadTestCaseFileLengthLimit())
-        {
-            log->error(
-                "Testcases",
-                QString("The testcase file [%1] contains more than %2 characters, so it's not loaded. You can change "
-                        "the length limit in Preferences->Advanced->Limits->Load Test Case File Length Limit")
-                    .arg(pathPrefix + ".in")
-                    .arg(SettingsHelper::getLoadTestCaseFileLengthLimit()));
-        }
-        else
-            setInput(content);
-    }
-    content = Util::readFile(pathPrefix + ".ans", "Read Expected #" + QString::number(id + 1), log);
-    if (!content.isNull())
-    {
-        if (content.length() > SettingsHelper::getLoadTestCaseFileLengthLimit())
-        {
-            log->error(
-                "Testcases",
-                QString("The testcase file [%1] contains more than %2 characters, so it's not loaded. You can change "
-                        "the length limit in Preferences->Advanced->Limits->Load Test Case File Length Limit")
-                    .arg(pathPrefix + ".ans")
-                    .arg(SettingsHelper::getLoadTestCaseFileLengthLimit()));
-        }
-        else
-            setExpected(content);
-    }
-}
-
-void TestCase::save(const QString &pathPrefix, bool safe)
-{
-    LOG_INFO("Saving to pathPrefix" << pathPrefix << "In " << BOOL_INFO_OF(safe));
-
-    if (!input().isEmpty() || QFile::exists(pathPrefix + ".in"))
-    {
-        LOG_INFO("Input file exists and should be saved");
-        Util::saveFile(pathPrefix + ".in", input(), "Testcase Input #" + QString::number(id + 1), safe, log);
-    }
-    if (!expected().isEmpty() || QFile::exists(pathPrefix + ".ans"))
-    {
-        LOG_INFO("Expected file exists and should be saved");
-        Util::saveFile(pathPrefix + ".ans", expected(), "Testcase Expected #" + QString::number(id + 1), safe, log);
-    }
-}
-
 void TestCase::setID(int index)
 {
     LOG_INFO("Changed testcase ID to " << index);

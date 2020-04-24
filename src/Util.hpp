@@ -36,7 +36,7 @@ const QStringList pythonSuffix = {"py", "py3"};
 QString fileNameFilter(bool cpp, bool java, bool python);
 
 bool saveFile(const QString &path, const QString &content, const QString &head = "Save File", bool safe = true,
-              MessageLogger *log = nullptr);
+              MessageLogger *log = nullptr, bool createDirectory = false);
 
 /**
  * @brief get the content of a file

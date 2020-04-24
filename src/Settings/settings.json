@@ -471,5 +471,17 @@
         "default": "QList<QVariant> { QStringList {\"(.*)\\\\.in\", \"\\\\1.ans\"}, QStringList {\"(.*)\\\\.in\", \"\\\\1.out\"}}",
         "param": "QList<QVariant> { QStringList {\"Input Regex\", \"The regular expression for the input file name\"}, QStringList {\"Answer Replace\", \"The replace expression for the answer file name. You can use \\\"\\\\1\\\" for the first captured group.\"}}",
         "tip": "Pairs of regular expressions used when adding pairs of test cases from files. Each pair of regular expressions represents a test case."
+    },
+    {
+        "name": "Input File Save Path",
+        "type": "QString",
+        "default": "./${basename}_${1-index}.in",
+        "tip": "The path where the input files are saved.\nThis setting is a relative path to the source file.\nYou can use \"${filename}\" for the complete file name,\n\"${basename}\" for the base file name without the suffix,\n\"${0-index}\" for the index of the test case started from 0,\n\"${1-index}\" for the index of the test case started from 1."
+    },
+    {
+        "name": "Answer File Save Path",
+        "type": "QString",
+        "default": "./${basename}_${1-index}.ans",
+        "tip": "The path where the answer files are saved.\nThis setting is a relative path to the source file.\nYou can use \"${filename}\" for the complete file name,\n\"${basename}\" for the base file name without the suffix,\n\"${0-index}\" for the index of the test case started from 0,\n\"${1-index}\" for the index of the test case started from 1."
     }
 ]
