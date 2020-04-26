@@ -143,6 +143,7 @@ class MainWindow : public QMainWindow
     void editorTextChanged(MainWindow *window);
     void confirmTriggered(MainWindow *widget);
     void requestToastMessage(const QString &head, const QString &body);
+    void compileOrRunTriggered();
 
   private:
     static const int MAX_CODE_LENGTH = 100000;

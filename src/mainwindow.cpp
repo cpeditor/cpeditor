@@ -529,6 +529,7 @@ void MainWindow::on_run_clicked()
 void MainWindow::compileOnly()
 {
     Core::Log::i("mainwindow/compileOnly", "Invoked");
+    emit compileOrRunTriggered();
     afterCompile = Nothing;
     log.clear();
     compile();
@@ -537,6 +538,7 @@ void MainWindow::compileOnly()
 void MainWindow::runOnly()
 {
     Core::Log::i("mainwindow/runOnly", "Invoked");
+    emit compileOrRunTriggered();
     if (language == "Python")
     {
         compileAndRun();
@@ -551,6 +553,7 @@ void MainWindow::runOnly()
 void MainWindow::compileAndRun()
 {
     Core::Log::i("mainwindow/compileAndRun", "Invoked");
+    emit compileOrRunTriggered();
     afterCompile = Run;
     log.clear();
     compile();
