@@ -74,6 +74,7 @@
     <addaction name="separator"/>
     <addaction name="action_swap_line_up"/>
     <addaction name="action_swap_line_down"/>
+    <addaction name="action_duplicate_line"/>
     <addaction name="action_delete_line"/>
     <addaction name="separator"/>
     <addaction name="action_toggle_comment"/>
@@ -273,6 +274,14 @@
     <string>Ctrl+Shift+Down</string>
    </property>
   </action>
+  <action name="action_duplicate_line">
+   <property name="text">
+    <string>Duplicate Line</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+D</string>
+   </property>
+  </action>
   <action name="action_delete_line">
    <property name="text">
     <string>Delete Line</string>
@@ -334,7 +343,7 @@
     <string>Run Detached</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+Shift+D</string>
+    <string>Ctrl+Alt+D</string>
    </property>
   </action>
   <action name="actionKill_Processes">

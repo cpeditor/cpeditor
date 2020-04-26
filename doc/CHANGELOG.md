@@ -1,10 +1,22 @@
 ## UNRELEASED
 
+### Added
+
+- Add Ctrl+Shift+D for duplicating the current line or the selection. (#237)
+- Add tooltips for many widgets. (#211)
+- Now you can add pairs of test cases from files. (#204 and #246)
+- Now you can choose where to save the test case files in Preferences->File Path->Testcases. (#176)
+- Now when saving the source file, if the parent directory of the file does not exist, it will be automatically created.
+
+### Changed
+
+- The shortcut of Detached Run is changed from Ctrl+Shift+D to Ctrl+Alt+D. (#237)
+
 ### Fixed
 
 - Fix switching to split view mode instead of editor view mode when clicking "Run", "Compile" or "Compile and Run".
 
-## 6.3.1 (Beta)
+## v6.3
 
 ### The new Preferences Window!
 

@@ -19,16 +19,25 @@ PreferencesGridPage::PreferencesGridPage(bool alignTop, QWidget *parent) : Prefe
     HLayout->addStretch();
 }
 
-void PreferencesGridPage::addRow(ValueWidget *widget)
-{
-    registerWidget(widget);
-    gridLayout->addWidget(widget->coreWidget(), gridLayout->rowCount(), 1);
-}
-
-void PreferencesGridPage::addRow(const QString &labelText, ValueWidget *widget)
+void PreferencesGridPage::addRow(ValueWidget *widget, const QString &tip, const QString &help, const QString &labelText)
 {
     registerWidget(widget);
     int row = gridLayout->rowCount();
-    gridLayout->addWidget(new QLabel(labelText, this), row, 0);
+    if (labelText.isEmpty())
+    {
+        if (!tip.isEmpty())
+            widget->coreWidget()->setToolTip(tip);
+        if (!help.isEmpty())
+            widget->coreWidget()->setWhatsThis(help);
+    }
+    else
+    {
+        QLabel *label = new QLabel(labelText, this);
+        if (!tip.isEmpty())
+            label->setToolTip(tip);
+        if (!help.isEmpty())
+            label->setWhatsThis(help);
+        gridLayout->addWidget(label, row, 0);
+    }
     gridLayout->addWidget(widget->coreWidget(), row, 1);
 }

@@ -1,0 +1,51 @@
+# Maintainer: Ashar Khan <ashar786khan at gmail.com>
+
+pkgname=cpeditor-git
+_pkgname=cpeditor
+pkgver=VERSION
+pkgrel=1
+pkgdesc='The editor for competitive programming'
+arch=('x86_64')
+url='https://github.com/cpeditor/cpeditor'
+license=('GPL3')
+depends=('qt5-base')
+makedepends=("gcc" "cmake" "git" "python3")
+conflicts=("cpeditor")
+
+source=('git://github.com/cpeditor/cpeditor.git'
+	'git://github.com/cpeditor/QCodeEditor.git'
+	'git://github.com/cpeditor/QtFindReplaceDialog.git'
+	'git://github.com/cpeditor/lsp-cpp.git'
+	'git://github.com/itay-grudev/singleapplication.git'
+	'git://github.com/MikeMirzayanov/testlib.git')
+
+md5sums=('SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP')
+
+pkgver() {
+	cd $_pkgname
+	git describe --long --tags | sed 's/\([^-]*-g\)/r\1/;s/-/./g'
+}
+
+prepare() {
+	cd $_pkgname
+	git submodule init
+
+	git config submodule.third_party/QCodeEditor.url $srcdir/QCodeEditor
+	git config submodule.third_party/QtFindReplaceDialog.url $srcdir/QtFindReplaceDialog
+	git config submodule.third_party/lsp-cpp.url $srcdir/lsp-cpp
+	git config submodule.third_party/singleapplication.url $srcdir/singleapplication
+	git config submodule.third_party/testlib.url $srcdir/testlib
+
+	git submodule update
+}
+
+build() {
+	cd $_pkgname
+	cmake -H. -Bbuild -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_CXX_COMPILER=g++
+	cmake --build build -j$(nproc)
+}
+
+package() {
+	cd $_pkgname/build
+	make DESTDIR="$pkgdir" install
+}

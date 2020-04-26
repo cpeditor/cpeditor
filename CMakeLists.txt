@@ -4,7 +4,7 @@ if(APPLE)
 	set(CMAKE_OSX_DEPLOYMENT_TARGET "10.14" CACHE STRING "Minimum OS X deployment version")
 endif()
 
-project(cpeditor LANGUAGES CXX VERSION 6.3.1)
+project(cpeditor LANGUAGES CXX VERSION 6.4.0)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
@@ -89,7 +89,7 @@ add_executable(cpeditor
     src/Extensions/CompanionServer.hpp
     src/Extensions/EditorTheme.cpp
     src/Extensions/EditorTheme.hpp
-	src/Extensions/ClangFormatter.cpp
+    src/Extensions/ClangFormatter.cpp
     src/Extensions/ClangFormatter.hpp
 
     src/Settings/AppearancePage.cpp
@@ -100,6 +100,8 @@ add_executable(cpeditor
     src/Settings/FontItem.hpp
     src/Settings/PathItem.cpp
     src/Settings/PathItem.hpp
+    src/Settings/StringListsItem.cpp
+    src/Settings/StringListsItem.hpp
     src/Settings/PreferencesGridPage.cpp
     src/Settings/PreferencesGridPage.hpp
     src/Settings/PreferencesHomePage.cpp

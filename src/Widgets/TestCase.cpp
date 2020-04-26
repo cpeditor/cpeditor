@@ -26,7 +26,7 @@ namespace Widgets
 TestCase::TestCase(int index, MessageLogger *logger, QWidget *parent, const QString &in, const QString &exp)
     : QWidget(parent), log(logger)
 {
-    Core::Log::i("testcase/constructed") << "index " << index << " input " << in << " expected " << exp << endl;
+    LOG_INFO("Testcase " << index << " is being created with Input\n" << in << "\nExpected\n" << exp);
     mainLayout = new QHBoxLayout(this);
     inputUpLayout = new QHBoxLayout();
     outputUpLayout = new QHBoxLayout();
@@ -74,27 +74,24 @@ TestCase::TestCase(int index, MessageLogger *logger, QWidget *parent, const QStr
     mainLayout->addLayout(outputLayout);
     mainLayout->addLayout(expectedLayout);
 
-    Core::Log::i("testcase/constructed", "UI has been built");
+    runButton->setToolTip("Test on a single testcase");
+    diffButton->setToolTip("Open the Diff Viewer");
 
     connect(showCheckBox, SIGNAL(toggled(bool)), this, SLOT(onShowCheckBoxToggled(bool)));
     connect(runButton, SIGNAL(clicked()), this, SLOT(onRunButtonClicked()));
     connect(diffButton, SIGNAL(clicked()), SLOT(onDiffButtonClicked()));
     connect(delButton, SIGNAL(clicked()), this, SLOT(onDelButtonClicked()));
     connect(diffViewer, SIGNAL(toLongForHtml()), this, SLOT(onToLongForHtml()));
-
-    Core::Log::i("testcase/constructed", "signals have been attached");
 }
 
 void TestCase::setInput(const QString &text)
 {
-    Core::Log::i("testcase/setInput") << "text \n" << text << endl;
+    LOG_INFO("Input value updated to\n" << text);
     inputEdit->modifyText(text);
 }
 
 void TestCase::setOutput(const QString &text)
 {
-    Core::Log::i("testcase/setOutput") << "text \n" << text << endl;
-
     auto newOutput = text;
 
     if (text.length() > SettingsHelper::getOutputLengthLimit())
@@ -107,6 +104,7 @@ void TestCase::setOutput(const QString &text)
                        .arg(SettingsHelper::getOutputLengthLimit()));
     }
 
+    LOG_INFO("Output value updated to\n" << text);
     outputEdit->modifyText(newOutput);
     outputEdit->startAnimation();
 
@@ -116,13 +114,12 @@ void TestCase::setOutput(const QString &text)
 
 void TestCase::setExpected(const QString &text)
 {
-    Core::Log::i("testcase/setExpected") << "text \n" << text << endl;
+    LOG_INFO("Expected value updated to\n" << text);
     expectedEdit->modifyText(text);
 }
 
 void TestCase::clearOutput()
 {
-    Core::Log::i("testcase/clearOutput", "Cleared output");
     outputEdit->modifyText(QString());
     currentVerdict = Core::Checker::UNKNOWN;
     diffButton->setStyleSheet("");
@@ -131,94 +128,22 @@ void TestCase::clearOutput()
 
 QString TestCase::input() const
 {
-    Core::Log::i("testcase/input", "Invoked");
     return inputEdit->toPlainText();
 }
 
 QString TestCase::output() const
 {
-    Core::Log::i("testcase/output", "Invoked");
     return outputEdit->toPlainText();
 }
 
 QString TestCase::expected() const
 {
-    Core::Log::i("testcase/expected", "Invoked");
     return expectedEdit->toPlainText();
-}
-
-void TestCase::loadFromFile(const QString &pathPrefix)
-{
-    Core::Log::i("testcase/loadFromFile") << "pathPrefix " << pathPrefix << endl;
-    QFile inputFile(pathPrefix + ".in");
-    if (inputFile.exists())
-    {
-        Core::Log::i("testcase/loadFromFile", "Okay, Input file exists");
-        if (inputFile.open(QIODevice::ReadOnly | QIODevice::Text))
-        {
-            auto text = inputFile.readAll();
-            if (text.length() > SettingsHelper::getLoadTestCaseFileLengthLimit())
-            {
-                log->error(
-                    "Testcases",
-                    QString(
-                        "The testcase file [%1] contains more than %2 characters, so it's not loaded. You can change "
-                        "the length limit in Preferences->Advanced->Limits->Load Test Case File Length Limit")
-                        .arg(pathPrefix + ".in")
-                        .arg(SettingsHelper::getLoadTestCaseFileLengthLimit()));
-            }
-            else
-                setInput(text);
-        }
-        else
-            log->error("Testcases",
-                       "Failed to load Input #" + QString::number(id + 1) + ". Do I have read permission?");
-    }
-    QFile expectedFile(pathPrefix + ".ans");
-    if (expectedFile.exists())
-    {
-        Core::Log::i("testcase/loadFromFile", "Okay, Expected file exists");
-        if (expectedFile.open(QIODevice::ReadOnly | QIODevice::Text))
-        {
-            auto text = expectedFile.readAll();
-            if (text.length() > SettingsHelper::getLoadTestCaseFileLengthLimit())
-            {
-                log->error(
-                    "Testcases",
-                    QString(
-                        "The testcase file [%1] contains more than %2 characters, so it's not loaded. You can change "
-                        "the length limit in Preferences->Advanced->Limits->Load Test Case File Length Limit")
-                        .arg(pathPrefix + ".ans")
-                        .arg(SettingsHelper::getLoadTestCaseFileLengthLimit()));
-            }
-            else
-                setExpected(text);
-        }
-        else
-            log->error("Testcases",
-                       "Failed to load Expected #" + QString::number(id + 1) + ". Do I have read permission?");
-    }
-}
-
-void TestCase::save(const QString &pathPrefix, bool safe)
-{
-    Core::Log::i("testcase/save") << "pathPrefix " << pathPrefix << endl;
-
-    if (!input().isEmpty() || QFile::exists(pathPrefix + ".in"))
-    {
-        Core::Log::i("testcase/save", "Okay, Input file exists and should be saved");
-        Util::saveFile(pathPrefix + ".in", input(), "Testcase Input #" + QString::number(id + 1), safe, log);
-    }
-    if (!expected().isEmpty() || QFile::exists(pathPrefix + ".ans"))
-    {
-        Core::Log::i("testcase/save", "Okay, Expected file exists and should be saved");
-        Util::saveFile(pathPrefix + ".ans", expected(), "Testcase Expected #" + QString::number(id + 1), safe, log);
-    }
 }
 
 void TestCase::setID(int index)
 {
-    Core::Log::i("testcase/setID") << "index " << index << endl;
+    LOG_INFO("Changed testcase ID to " << index);
     id = index;
     inputLabel->setText("Input #" + QString::number(id + 1));
     outputLabel->setText("Output #" + QString::number(id + 1));
@@ -229,7 +154,7 @@ void TestCase::setVerdict(Core::Checker::Verdict verdict)
 {
     currentVerdict = verdict;
 
-    Core::Log::i("testcase/setVerdict") << INFO_OF(verdict) << endl;
+    LOG_INFO("Changed verdict to " << INFO_OF(verdict));
 
     switch (currentVerdict)
     {
@@ -250,7 +175,6 @@ void TestCase::setVerdict(Core::Checker::Verdict verdict)
 
 Core::Checker::Verdict TestCase::verdict() const
 {
-    Core::Log::i("testcase/verdict", "Invoked");
     return currentVerdict;
 }
 
@@ -282,14 +206,14 @@ void TestCase::onShowCheckBoxToggled(bool checked)
 
 void TestCase::onRunButtonClicked()
 {
-    Core::Log::i("TestCase/onRunButtonClicked", "Invoked");
+    LOG_INFO("Run button clicked for " << INFO_OF(id));
     showCheckBox->setChecked(true);
     emit requestRun(id);
 }
 
 void TestCase::onDiffButtonClicked()
 {
-    Core::Log::i("testcase/on_diffButton_clicked", "invoked");
+    LOG_INFO("Diff button clicked for " << INFO_OF(id));
     diffViewer->setText(output(), expected());
     diffViewer->show();
     diffViewer->raise();
@@ -297,16 +221,13 @@ void TestCase::onDiffButtonClicked()
 
 void TestCase::onDelButtonClicked()
 {
-    Core::Log::i("TestCase/onDelButtonClicked", "Invoked");
-
+    LOG_INFO("Del button clicked for " << INFO_OF(id));
     if (input().isEmpty() && expected().isEmpty())
     {
-        Core::Log::i("TestCase/onDelButtonClicked", "Deleted Directly because it's empty");
         emit deleted(this);
     }
     else
     {
-        Core::Log::i("TestCase/onDelButtonClicked", "Asking confirmation for delete");
         auto res = QMessageBox::question(this, "Delete Testcase",
                                          "Do you want to delete test case #" + QString::number(id + 1));
         if (res == QMessageBox::Yes)
