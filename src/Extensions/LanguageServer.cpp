@@ -56,7 +56,7 @@ void LanguageServer::openDocument(QString path, QCodeEditor *editor, MessageLogg
     {
         LOG_WARN("openDocument called without closing the previous document. Closing it now");
         closeDocument();
-	}
+    }
 
     m_editor = editor;
     openFile = path;
@@ -132,7 +132,7 @@ void LanguageServer::updateSettings()
         performConnection();
         initializeLSP(openFile);
 
-		LOG_INFO("Recreated Language server Process");
+        LOG_INFO("Recreated Language server Process");
         if (m_editor != nullptr)
         {
             auto tmp_editor = m_editor;
