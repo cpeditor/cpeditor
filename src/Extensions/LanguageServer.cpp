@@ -52,6 +52,12 @@ LanguageServer::~LanguageServer()
 
 void LanguageServer::openDocument(QString path, QCodeEditor *editor, MessageLogger *log)
 {
+    if (isDocumentOpen())
+    {
+        LOG_WARN("openDocument called without closing the previous document. Closing it now");
+        closeDocument();
+	}
+
     m_editor = editor;
     openFile = path;
     logger = log;
@@ -74,20 +80,21 @@ void LanguageServer::openDocument(QString path, QCodeEditor *editor, MessageLogg
 
 void LanguageServer::closeDocument()
 {
-    openFile = "";
-    logger = nullptr;
-    m_editor = nullptr;
-
-    if (lsp == nullptr)
+    LOG_WARN_IF(!isDocumentOpen(), "Cannot close the document, No document was open");
+    if (!isDocumentOpen())
         return;
 
     std::string uri = "file://" + openFile.toStdString();
     lsp->didClose(uri);
+
+    openFile = "";
+    logger = nullptr;
+    m_editor = nullptr;
 }
 
 void LanguageServer::requestLinting()
 {
-    if (m_editor == nullptr || lsp == nullptr)
+    if (m_editor == nullptr || !isDocumentOpen())
         return;
 
     std::vector<TextDocumentContentChangeEvent> changes;
@@ -125,6 +132,7 @@ void LanguageServer::updateSettings()
         performConnection();
         initializeLSP(openFile);
 
+		LOG_INFO("Recreated Language server Process");
         if (m_editor != nullptr)
         {
             auto tmp_editor = m_editor;
@@ -133,6 +141,7 @@ void LanguageServer::updateSettings()
             if (isDocumentOpen())
                 closeDocument();
             openDocument(tmp_path, tmp_editor, tmp_log);
+            LOG_INFO("Reopened document after restart");
         }
     }
 }
