@@ -28,7 +28,7 @@ class FontItem : public QPushButton
 {
     Q_OBJECT
   public:
-    explicit FontItem(QWidget *parent = nullptr);
+    explicit FontItem(QWidget *parent);
 
     void setFont(const QString &desc);
     void setFont(QFont newFont);
