@@ -12,6 +12,10 @@
 
 - The shortcut of Detached Run is changed from Ctrl+Shift+D to Ctrl+Alt+D. (#237)
 
+### Fixed
+
+- Fix switching to split view mode instead of editor view mode when clicking "Run", "Compile" or "Compile and Run".
+
 ## v6.3
 
 ### The new Preferences Window!

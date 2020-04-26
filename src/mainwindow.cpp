@@ -533,6 +533,7 @@ void MainWindow::on_run_clicked()
 void MainWindow::compileOnly()
 {
     LOG_INFO("Requesting Compile Only");
+    emit compileOrRunTriggered();
     afterCompile = Nothing;
     log.clear();
     compile();
@@ -541,6 +542,7 @@ void MainWindow::compileOnly()
 void MainWindow::runOnly()
 {
     LOG_INFO("Requesting Run only");
+    emit compileOrRunTriggered();
     if (language == "Python")
     {
         compileAndRun();
@@ -555,6 +557,7 @@ void MainWindow::runOnly()
 void MainWindow::compileAndRun()
 {
     LOG_INFO("Requested Compile and Run");
+    emit compileOrRunTriggered();
     afterCompile = Run;
     log.clear();
     compile();
