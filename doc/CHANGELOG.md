@@ -17,6 +17,10 @@ Now error linting is available with Language Server. Linting can be helpful when
 - Word selection in editor is highlighted with change of background color instead of an underline. Underlined text now represent linting of type "Hint".
 - The shortcut of Detached Run is changed from Ctrl+Shift+D to Ctrl+Alt+D. (#237)
 
+### Fixed
+
+- Fix switching to split view mode instead of editor view mode when clicking "Run", "Compile" or "Compile and Run".
+
 ## v6.3
 
 ### The new Preferences Window!

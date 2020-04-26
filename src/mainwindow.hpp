@@ -146,6 +146,7 @@ class MainWindow : public QMainWindow
     void confirmTriggered(MainWindow *widget);
     void requestToastMessage(const QString &head, const QString &body);
     void editorLanguageChanged(MainWindow *window);
+    void compileOrRunTriggered();
 
   private:
     enum SaveMode
