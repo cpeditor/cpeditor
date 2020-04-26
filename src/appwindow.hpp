@@ -169,6 +169,7 @@ class AppWindow : public QMainWindow
     void onTrayIconActivated(QSystemTrayIcon::ActivationReason reason);
 
     void onCompileOrRunTriggered();
+
   private:
     Ui::AppWindow *ui;
     MessageLogger *activeLogger = nullptr;
