@@ -20,6 +20,7 @@
 
 FontItem::FontItem(QWidget *parent) : QPushButton(parent)
 {
+    Q_ASSERT(parent != nullptr);
     connect(this, SIGNAL(clicked(bool)), this, SLOT(onButtonClicked()));
 }
 
@@ -53,4 +54,5 @@ void FontItem::onButtonClicked()
     QFont newFont = QFontDialog::getFont(&ok, font, this, QString(), QFontDialog::MonospacedFonts);
     if (ok)
         setFont(newFont);
+    parentWidget()->raise();
 }
