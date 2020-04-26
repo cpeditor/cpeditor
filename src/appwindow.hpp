@@ -156,6 +156,8 @@ class AppWindow : public QMainWindow
 
     void onTrayIconActivated(QSystemTrayIcon::ActivationReason reason);
 
+    void onCompileOrRunTriggered();
+
     // LSP Slots
     void onLSPServerNotificationArrived(QString method, QJsonObject param);
     void onLSPServerResponseArrived(QJsonObject method, QJsonObject param);

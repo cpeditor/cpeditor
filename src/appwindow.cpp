@@ -406,6 +406,7 @@ void AppWindow::openTab(const QString &path)
     connect(fsp, SIGNAL(editorTextChanged(MainWindow *)), this, SLOT(onEditorTextChanged(MainWindow *)));
     connect(fsp, SIGNAL(requestToastMessage(const QString &, const QString &)), trayIcon,
             SLOT(showMessage(const QString &, const QString &)));
+    connect(fsp, SIGNAL(compileOrRunTriggered()), this, SLOT(onCompileOrRunTriggered()));
 
     QString lang = SettingsHelper::getDefaultLanguage();
 
@@ -1038,46 +1039,19 @@ void AppWindow::on_actionCheck_for_updates_triggered()
 void AppWindow::on_actionCompile_triggered()
 {
     if (currentWindow() != nullptr)
-    {
-        if (ui->actionEditor_Mode->isChecked())
-            on_actionSplit_Mode_triggered();
         currentWindow()->compileOnly();
-        Core::Log::i("appwindow/on_actionCompile_Run_triggered", "Invoked compile for current Window");
-    }
-    else
-    {
-        Core::Log::w("appwindow/on_actionCompile_Run_triggered", "Nothing happened, No active window");
-    }
 }
 
 void AppWindow::on_actionCompile_Run_triggered()
 {
     if (currentWindow() != nullptr)
-    {
-        if (ui->actionEditor_Mode->isChecked())
-            on_actionSplit_Mode_triggered();
         currentWindow()->compileAndRun();
-        Core::Log::i("appwindow/on_actionCompile_Run_triggered", "Invoked compile run for current Window");
-    }
-    else
-    {
-        Core::Log::w("appwindow/on_actionCompile_Run_triggered", "Nothing happened, No active window");
-    }
 }
 
 void AppWindow::on_actionRun_triggered()
 {
     if (currentWindow() != nullptr)
-    {
-        if (ui->actionEditor_Mode->isChecked())
-            on_actionSplit_Mode_triggered();
         currentWindow()->runOnly();
-        Core::Log::i("appwindow/on_actionRun_triggered", "Invoked Run only for current window");
-    }
-    else
-    {
-        Core::Log::w("appwindow/on_actionRun_triggered", "Nothing happened, No active window");
-    }
 }
 
 void AppWindow::on_action_find_replace_triggered()
@@ -1539,6 +1513,12 @@ void AppWindow::onTrayIconActivated(QSystemTrayIcon::ActivationReason reason)
         else
             showOnTop();
     }
+}
+
+void AppWindow::onCompileOrRunTriggered()
+{
+    if (ui->actionEditor_Mode->isChecked())
+        on_actionSplit_Mode_triggered();
 }
 
 // ---------------------------- LSP SLOTS ------------------------

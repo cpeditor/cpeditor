@@ -1,5 +1,9 @@
 ## UNRELEASED
 
+### Fixed
+
+- Fix switching to split view mode instead of editor view mode when clicking "Run", "Compile" or "Compile and Run".
+
 ## 6.3.1 (Beta)
 
 ### The new Preferences Window!
