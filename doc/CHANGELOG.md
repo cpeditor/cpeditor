@@ -15,6 +15,7 @@
 ### Fixed
 
 - Fix switching to split view mode instead of editor view mode when clicking "Run", "Compile" or "Compile and Run".
+- Fix preferences window loses focus after picking the font. (#260)
 
 ## v6.3
 
