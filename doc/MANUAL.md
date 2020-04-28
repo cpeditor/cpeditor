@@ -8,19 +8,33 @@ We're glad that you have chosen our editor, let's get started now! :tada:
 
 - If you want to parse sample testcases from online platforms like Codeforces, please install [Competitive Companion](https://github.com/jmerle/competitive-companion) on your browser.
 
-- If you want to submit to Codeforces inside the editor, please install [CF Tool](https://github.com/xalanq/cf-tool). If it's not in the system PATH, you can set the path to it in Preferences->Extra->Misc->CF Tool Command. Don't forget to configure it by `cf config` (set the user and the template).
+- If you want to submit to Codeforces inside the editor, please install [CF Tool](https://github.com/xalanq/cf-tool). If it's not in the system PATH, you can set the path to it in Preferences->Extensions->CF Tool. Don't forget to configure it by `cf config` (set the user and the template).
 
-- If you want to format your C++ codes, you need to install [Clang Format](http://releases.llvm.org/download.html). You have to make sure it's installed on the system PATH or set the path to it at Preferences->Formatting->Clang Format Command.
+- If you want to format your C++ codes, you need to install [Clang Format](http://releases.llvm.org/download.html). You have to make sure it's installed on the system PATH or set the path to it at Preferences->Extensions->Clang Format.
 
 # Tips
 
 ## CF Tool
 
-You have to either parse the problem from Competitive Companion, or set the problem URL in the right-click menu of the tabs. Then you'll see the submit button. The button is only clickable when CF Tool is found by the editor. You can set the path to it in Preferences->Extra->Misc->CF Tool Command.
+You have to either parse the problem from Competitive Companion, or set the problem URL in the right-click menu of the tabs. Then you'll see the submit button. The button is only clickable when CF Tool is found by the editor. You can set the path to it in Preferences->Extensions->CF Tool Command.
 
 ## For Java users
 
 You have to use a **non-public** class named **a** for your solution.
+
+## Language Server
+
+You need to install a [Language Server program](https://microsoft.github.io/language-server-protocol/implementors/servers/) for linting, auto-complete and some other features. Each programming language have a different Language Server program.
+
+Here are the steps to set up a Language Server program for each language:
+
+- **C++**:  If you have installed LLVM, you already have `clangd`, because it comes with the clang compiler. If you haven't, please install [LLVM](https://releases.llvm.org/download.html) prebuild binaries for Windows. On Linux and mac you can install it from your package manager. You need to set the start command of `clangd` in Preferences -> Extensions -> Language Server -> C++ Server -> Path, where the command can be the path to the executable file or just `clangd` if it's in the PATH.
+
+- **Python**: You need to have `python` and `pip` installed and added to `PATH`. Install `python-language-server` pip module by running `pip install 'python-language-server[all]'`. After the installation is done, open CP Editor settings, go to Preferences -> Extensions -> Language Server -> Python Server. Set "Path" to `python` and set "Arguments" to `-m pyls`. Save the changes and you will have linting for Python.
+
+- **Java**: You need to have `java` installed and added to `PATH`. Download [Eclipse.JDT.ls](http://download.eclipse.org/jdtls/snapshots/jdt-language-server-latest.tar.gz), extract it to any location (in a new directory), We call the path to that directory `<INSTALL_PATH>` (Something like `C://Users/Myname/Desktop/EclipseJDT.ls/`). In CP Editor, go to Preferences -> Extensions -> Language Server -> Java Server. Set "Path" to `java` and set "Arguments" to something like `-jar $INSTALL_PATH/plugins/org.eclipse.equinox.launcher_1.5.200.v20180922-1751.jar -configuration <INSTALL_PATH>/config_(linux|win|mac)`. For example, on Windows, the arguments should be something like `-configuration C://Users/Myname/Desktop/Eclipse.JDT.ls/config_win`.
+
+  The full name of the jar file above, `org.eclipse.equinox.launcher_1.5.200.v20180922-1751.jar`, may change incrementally as the project version of JDT changes. If java complains about "jar not found", then look for the latest version of the `org.eclipse.equinox.launcher_*` jar in `<INSTALL_PATH>/plugins` and replace it in the command after `-jar`.
 
 ## Preferences
 

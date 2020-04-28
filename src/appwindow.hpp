@@ -20,7 +20,7 @@
 
 #include <QMainWindow>
 
-#include "LSPClient.hpp"
+#include "Extensions/LanguageServer.hpp"
 #include "Settings/PreferencesWindow.hpp"
 #include "Telemetry/UpdateNotifier.hpp"
 #include "mainwindow.hpp"
@@ -92,11 +92,21 @@ class AppWindow : public QMainWindow
 
     void onEditorTextChanged(MainWindow *window);
 
+    void onEditorTmpPathChanged(MainWindow *window);
+
+    void onEditorLanguageChanged(MainWindow *window);
+
     void onTabCloseRequested(int);
 
     void onTabChanged(int);
 
     void onSaveTimerElapsed();
+
+    void onLSPTimerElapsedCpp();
+
+    void onLSPTimerElapsedPython();
+
+    void onLSPTimerElapsedJava();
 
     void onSettingsApplied(const QString &pagePath);
 
@@ -160,18 +170,15 @@ class AppWindow : public QMainWindow
 
     void onCompileOrRunTriggered();
 
-    // LSP Slots
-    void onLSPServerNotificationArrived(QString method, QJsonObject param);
-    void onLSPServerResponseArrived(QJsonObject method, QJsonObject param);
-    void onLSPServerRequestArrived(QString method, QJsonObject param, QJsonObject id);
-    void onLSPServerErrorArrived(QJsonObject id, QJsonObject error);
-    void onLSPServerProcessError(QProcess::ProcessError error);
-    void onLSPServerProcessFinished(int exitCode, QProcess::ExitStatus status);
-
   private:
     Ui::AppWindow *ui;
     MessageLogger *activeLogger = nullptr;
     QTimer *autoSaveTimer = nullptr;
+
+    QTimer *lspTimerCpp = nullptr;
+    QTimer *lspTimerPython = nullptr;
+    QTimer *lspTimerJava = nullptr;
+
     QMetaObject::Connection activeSplitterMoveConnection;
     QMetaObject::Connection activeRightSplitterMoveConnection;
     Telemetry::UpdateNotifier *updater = nullptr;
@@ -181,13 +188,15 @@ class AppWindow : public QMainWindow
     QSystemTrayIcon *trayIcon = nullptr;
     QMenu *trayIconMenu = nullptr;
     QMenu *tabMenu = nullptr;
-    LSPClient *languageClient = nullptr;
+
+    Extensions::LanguageServer *cppServer = nullptr;
+    Extensions::LanguageServer *javaServer = nullptr;
+    Extensions::LanguageServer *pythonServer = nullptr;
 
     void setConnections();
     void allocate();
     void applySettings();
     void saveSettings();
-    void setLanguageClient();
     QVector<QShortcut *> hotkeyObjects;
     void maybeSetHotkeys();
     bool closeTab(int index);
@@ -199,6 +208,7 @@ class AppWindow : public QMainWindow
     void saveEditorStatus(bool loadFromFile);
     bool quit();
     int getNewUntitledIndex();
+    void reAttachLanguageServer(MainWindow *window);
 
     MainWindow *currentWindow();
     MainWindow *windowAt(int index);

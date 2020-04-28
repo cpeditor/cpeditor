@@ -7,7 +7,7 @@
             "tab_stop"
         ],
         "param": "QList<QVariant> {1,16}",
-        "tip": "the width of the tab character, or the number of spaces of an indent"
+        "tip": "The width of the tab character, or the number of spaces of an indent"
     },
     {
         "name": "Geometry",
@@ -18,7 +18,7 @@
         "desc": "Editor Font",
         "type": "QFont",
         "default": "QFont(\"monospace\")",
-        "tip": "the font of the code editor"
+        "tip": "The font of the code editor"
     },
     {
         "name": "Default Language",
@@ -26,7 +26,7 @@
         "default": "C++",
         "ui": "QComboBox",
         "param": "QStringList {\"C++\", \"Java\", \"Python\"}",
-        "tip": "the default language used when opening new tabs"
+        "tip": "The default language used when opening new tabs"
     },
     {
         "name": "Clang Format/Path",
@@ -38,7 +38,7 @@
         ],
         "ui": "PathItem",
         "param": "0",
-        "tip": "the path to the Clang Format executable file"
+        "tip": "The path to the Clang Format executable file"
     },
     {
         "name": "Clang Format/Style",
@@ -59,7 +59,7 @@
         ],
         "ui": "PathItem",
         "param": "1",
-        "tip": "the template used when creating a new C++ file"
+        "tip": "The template used when creating a new C++ file"
     },
     {
         "name": "C++/Compile Command",
@@ -76,7 +76,7 @@
         "old": [
             "runtime_cpp"
         ],
-        "tip": "the runtime arguments when executing a C++ program"
+        "tip": "The runtime arguments when executing a C++ program"
     },
     {
         "name": "Java/Template Path",
@@ -86,7 +86,7 @@
         ],
         "ui": "PathItem",
         "param": "2",
-        "tip": "the template used when creating a new Java file"
+        "tip": "The template used when creating a new Java file"
     },
     {
         "name": "Java/Compile Command",
@@ -104,7 +104,7 @@
         "old": [
             "runtime_java"
         ],
-        "tip": "the runtime arguments when executing a Java program"
+        "tip": "The runtime arguments when executing a Java program"
     },
     {
         "name": "Java/Run Command",
@@ -123,7 +123,7 @@
         ],
         "ui": "PathItem",
         "param": "3",
-        "tip": "the template used when creating a new Python file"
+        "tip": "The template used when creating a new Python file"
     },
     {
         "name": "Python/Run Arguments",
@@ -131,7 +131,7 @@
         "old": [
             "runtime_python"
         ],
-        "tip": "the runtime arguments when executing a Python program"
+        "tip": "The runtime arguments when executing a Python program"
     },
     {
         "name": "Python/Run Command",
@@ -148,7 +148,7 @@
         "default": "Light",
         "ui": "QComboBox",
         "param": "QStringList {\"Light\", \"Dracula\", \"Monokai\", \"Solarized\", \"Solarized Dark\"}",
-        "tip": "the syntax highlight theme of the code editor"
+        "tip": "The syntax highlight theme of the code editor"
     },
     {
         "name": "Auto Complete Parentheses",
@@ -240,7 +240,7 @@
         "old": [
             "transparency"
         ],
-        "tip": "the opacity of the main window"
+        "tip": "The opacity of the main window"
     },
     {
         "name": "View Mode",
@@ -280,7 +280,7 @@
             "connection_port"
         ],
         "param": "QList<QVariant> {1024,49151}",
-        "tip": "the port used to receive data from Competitive Companion"
+        "tip": "The port used to receive data from Competitive Companion"
     },
     {
         "name": "Competitive Companion/Open New Tab",
@@ -397,7 +397,7 @@
         ],
         "ui": "PathItem",
         "param": "0",
-        "tip": "the path to the CF Tool executable file"
+        "tip": "The path to the CF Tool executable file"
     },
     {
         "name": "Save Path",
@@ -464,6 +464,111 @@
         "default": 500000,
         "param": "QList<QVariant> {2,1000000000}",
         "tip": "The maximum number of characters in a testcase file to load.\nA testcase file won't be loaded if it's too long."
+    },
+    {
+        "name": "LSP/Path C++",
+        "ui": "PathItem",
+        "desc": "Path to LSP executable",
+        "default": "clangd",
+        "type": "QString",
+        "param": "0",
+        "tip": "The path to the C++ Language Server executable"
+    },
+    {
+        "name": "LSP/Path Java",
+        "ui": "PathItem",
+        "desc": "Path to LSP executable",
+        "type": "QString",
+        "param": "0",
+        "tip": "The path to the Java Language Server executable"
+    },
+    {
+        "name": "LSP/Path Python",
+        "ui": "PathItem",
+        "desc": "Path to LSP executable",
+        "default": "python",
+        "type": "QString",
+        "param": "0",
+        "tip": "The path to the Python Language Server executable"
+    },
+    {
+        "name": "LSP/Use Linting C++",
+        "desc": "Use Linting with Language Server",
+        "type": "bool",
+        "tip": "Show Error, Warning, Information and Hints in Code Editor for C++ Langauge"
+    },
+    {
+        "name": "LSP/Use Linting Java",
+        "desc": "Use Linting with Language Server",
+        "type": "bool",
+        "tip": "Show Error, Warning, Information and Hints in Code Editor for Java Langauge"
+    },
+    {
+        "name": "LSP/Use Linting Python",
+        "desc": "Use Linting with Language Server",
+        "type": "bool",
+        "tip": "Show Error, Warning, Information and Hints in Code Editor for Python Langauge"
+    },
+    {
+        "name": "LSP/Use Autocomplete C++",
+        "desc": "Use auto complete with Language Server",
+        "type": "bool",
+        "tip": "Use autocomplete results from Language server"
+    },
+    {
+        "name": "LSP/Use Autocomplete Java",
+        "desc": "Use auto complete with Language Server",
+        "type": "bool",
+        "tip": "Use autocomplete results from Language server"
+    },
+    {
+        "name": "LSP/Use Autocomplete Python",
+        "desc": "Use auto complete with Language Server",
+        "type": "bool",
+        "tip": "Use autocomplete results from Language server"
+    },
+    {
+        "name": "LSP/Delay C++",
+        "type": "int",
+        "desc": "Delay in Linting (ms)",
+        "default": 2000,
+        "param": "QList<QVariant> {10, 3600000}",
+        "tip": "Delay in linting in miliseconds after last modification to code"
+    },
+    {
+        "name": "LSP/Delay Java",
+        "type": "int",
+        "desc": "Delay in Linting (ms)",
+        "default": 2000,
+        "param": "QList<QVariant> {10, 3600000}",
+        "tip": "Delay in linting in miliseconds after last modification to code"
+    },
+    {
+        "name": "LSP/Delay Python",
+        "type": "int",
+        "desc": "Delay in Linting (ms)",
+        "default": 2000,
+        "param": "QList<QVariant> {10, 3600000}",
+        "tip": "Delay in linting in miliseconds after last modification to code"
+    },
+    {
+        "name": "LSP/Args C++",
+        "desc": "Arguments for Language Server",
+        "type": "QString",
+        "tip": "Arguments to pass to Language server executable"
+    },
+    {
+        "name": "LSP/Args Java",
+        "desc": "Arguments for Language Server",
+        "type": "QString",
+        "tip": "Arguments to pass to Language server executable"
+    },
+    {
+        "name": "LSP/Args Python",
+        "desc": "Arguments for Language Server",
+        "default": "-m pyls",
+        "type": "QString",
+        "tip": "Arguments to pass to Language server executable"
     },
     {
         "name": "Testcases Matching Rules",

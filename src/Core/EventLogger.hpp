@@ -47,14 +47,20 @@
 #define LOG_WARN(stream) Core::Log::log("WARN ", __func__, __LINE__, __FILE__) << stream << endl;
 #define LOG_INFO(stream) Core::Log::log("INFO ", __func__, __LINE__, __FILE__) << stream << endl;
 
+#define LOG_INFO_IF(cond, stream)                                                                                      \
+    if (cond)                                                                                                          \
+    {                                                                                                                  \
+        Core::Log::log("INFO ", __func__, __LINE__, __FILE__) << stream << endl;                                       \
+    }
+
 #define LOG_WARN_IF(cond, stream)                                                                                      \
-    if ((cond))                                                                                                        \
+    if (cond)                                                                                                          \
     {                                                                                                                  \
         Core::Log::log("WARN ", __func__, __LINE__, __FILE__) << stream << endl;                                       \
     }
 
 #define LOG_ERR_IF(cond, stream)                                                                                       \
-    if ((cond))                                                                                                        \
+    if (cond)                                                                                                          \
     {                                                                                                                  \
         Core::Log::log("ERROR", __func__, __LINE__, __FILE__) << stream << endl;                                       \
     }

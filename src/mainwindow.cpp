@@ -591,6 +591,7 @@ void MainWindow::setLanguage(const QString &lang)
     ui->changeLanguageButton->setText(language);
     performCompileAndRunDiagonistics();
     isLanguageSet = true;
+    emit editorLanguageChanged(this);
 }
 
 QString MainWindow::getLanguage()
@@ -682,6 +683,7 @@ void MainWindow::setText(const QString &text, bool keep)
 void MainWindow::updateWatcher()
 {
     emit editorFileChanged();
+    emit editorTmpPathChanged(this);
     if (!fileWatcher->files().isEmpty())
         fileWatcher->removePaths(fileWatcher->files());
     if (!isUntitled())
@@ -813,7 +815,12 @@ MainWindow::SaveTempStatus MainWindow::saveTemp(const QString &head)
             return Failed;
         }
 
-        return Util::saveFile(tmpPath(), editor->toPlainText(), head, true, &log) ? TempSaved : Failed;
+        bool success = Util::saveFile(tmpPath(), editor->toPlainText(), head, true, &log);
+
+        if (success)
+            emit editorTmpPathChanged(this);
+
+        return success ? TempSaved : Failed;
     }
 
     return NormalSaved;

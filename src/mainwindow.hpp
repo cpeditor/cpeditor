@@ -108,6 +108,7 @@ class MainWindow : public QMainWindow
     void insertText(const QString &text);
 
     void setViewMode(const QString &mode);
+    QString tmpPath();
 
   private slots:
     void on_compile_clicked();
@@ -140,9 +141,11 @@ class MainWindow : public QMainWindow
 
   signals:
     void editorFileChanged();
+    void editorTmpPathChanged(MainWindow *window);
     void editorTextChanged(MainWindow *window);
     void confirmTriggered(MainWindow *widget);
     void requestToastMessage(const QString &head, const QString &body);
+    void editorLanguageChanged(MainWindow *window);
     void compileOrRunTriggered();
 
   private:
@@ -208,7 +211,6 @@ class MainWindow : public QMainWindow
     void loadFile(const QString &loadPath);
     bool saveFile(SaveMode, const QString &head, bool safe);
     SaveTempStatus saveTemp(const QString &head);
-    QString tmpPath();
     void performCompileAndRunDiagonistics();
     QString getRunnerHead(int index);
 };
