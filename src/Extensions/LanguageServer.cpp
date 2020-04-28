@@ -44,6 +44,7 @@ LanguageServer::~LanguageServer()
 {
     if (lsp != nullptr)
     {
+        LOG_INFO("Killing LSP");
         lsp->shutdown();
         lsp->exit();
         delete lsp;
@@ -115,7 +116,7 @@ void LanguageServer::updateSettings()
 {
     if (lsp != nullptr)
     {
-
+        LOG_INFO("Killing LSP");
         lsp->shutdown();
         lsp->exit();
         delete lsp;
@@ -293,7 +294,8 @@ void LanguageServer::onLSPServerErrorArrived(QJsonObject id, QJsonObject error)
 
 void LanguageServer::onLSPServerProcessError(QProcess::ProcessError error)
 {
-    LOG_ERR("LSP Process errored out " << INFO_OF(error));
+    LOG_WARN_IF(error == QProcess::Crashed, "LSP Process errored out " << INFO_OF(error));
+    LOG_ERR_IF(error != QProcess::Crashed, "LSP Process errored out " << INFO_OF(error));
     if (logger == nullptr)
         return;
     switch (error)
@@ -304,7 +306,6 @@ void LanguageServer::onLSPServerProcessError(QProcess::ProcessError error)
                       "Preferences->Extensions->Language Server?");
         break;
     case QProcess::Crashed:
-        logger->warn("Language Server [" + language + "]", "Process was abruptly killed");
         break;
     case QProcess::Timedout:
         logger->error("Language Server [" + language + "]", "LSP Process timed out");
@@ -323,7 +324,8 @@ void LanguageServer::onLSPServerProcessError(QProcess::ProcessError error)
 
 void LanguageServer::onLSPServerProcessFinished(int exitCode, QProcess::ExitStatus status)
 {
-    LOG_INFO("LSP Finished with exit code " << exitCode << INFO_OF(language) << INFO_OF(status));
+    LOG_INFO_IF(exitCode == 0, "LSP Finished with exit code " << exitCode << INFO_OF(language) << INFO_OF(status));
+    LOG_WARN_IF(exitCode != 0, "LSP Finished with exit code " << exitCode << INFO_OF(language) << INFO_OF(status));
 }
 
 void LanguageServer::onLSPServerNewStderr(const QString &content)
