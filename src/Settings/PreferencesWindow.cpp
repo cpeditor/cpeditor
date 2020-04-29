@@ -22,6 +22,7 @@
 #include <QApplication>
 #include <QCloseEvent>
 #include <QScreen>
+#include <generated/SettingsHelper.hpp>
 
 PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
 {
@@ -271,7 +272,7 @@ PreferencesPage *PreferencesWindow::getPageWidget(const QString &pagePath)
 void PreferencesWindow::closeEvent(QCloseEvent *event)
 {
     auto current = dynamic_cast<PreferencesPage *>(stackedWidget->currentWidget());
-    if (current != nullptr && !current->aboutToExit())
+    if (!SettingsHelper::isForceClose() && current != nullptr && !current->aboutToExit())
         event->ignore();
     else
         event->accept();

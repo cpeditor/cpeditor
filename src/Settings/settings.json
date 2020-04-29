@@ -388,6 +388,10 @@
         ]
     },
     {
+        "name": "Force Close",
+        "type": "bool"
+    },
+    {
         "name": "CF/Path",
         "desc": "Path",
         "type": "QString",

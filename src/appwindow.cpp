@@ -76,8 +76,23 @@ AppWindow::AppWindow(bool noHotExit, QWidget *parent) : QMainWindow(parent), ui(
     applySettings();
     onSettingsApplied("");
 
-    if (!noHotExit && SettingsHelper::isHotExitEnable())
+    do
     {
+        if (noHotExit || (!SettingsHelper::isForceClose() && !SettingsHelper::isHotExitEnable()))
+            break;
+
+        SettingsHelper::setForceClose(false);
+
+        if (!SettingsHelper::isHotExitEnable())
+        {
+            auto res = QMessageBox::question(
+                this, "Hot Exit",
+                "In the last session, CP Editor was abnormally killed, do you want to restore the last session?",
+                QMessageBox::Yes | QMessageBox::No);
+            if (res == QMessageBox::No)
+                break;
+        }
+
         int length = SettingsHelper::getHotExitTabCount();
 
         QProgressDialog progress(this);
@@ -116,7 +131,7 @@ AppWindow::AppWindow(bool noHotExit, QWidget *parent) : QMainWindow(parent), ui(
 
         if (currentIndex >= 0 && currentIndex < ui->tabWidget->count())
             ui->tabWidget->setCurrentIndex(currentIndex);
-    }
+    } while (false);
 }
 
 AppWindow::AppWindow(int depth, bool cpp, bool java, bool python, bool noHotExit, const QStringList &paths,
@@ -523,7 +538,7 @@ void AppWindow::saveEditorStatus(bool loadFromFile)
 bool AppWindow::quit()
 {
     bool ret = false;
-    if (SettingsHelper::isHotExitEnable())
+    if (SettingsHelper::isHotExitEnable() || SettingsHelper::isForceClose())
     {
         LOG_INFO("quit() with hotexit");
         SettingsHelper::setHotExitLoadFromFile(false);
@@ -767,6 +782,12 @@ void AppWindow::onReceivedMessage(quint32 instanceId, QByteArray message)
 }
 
 #undef FROMJSON
+
+void AppWindow::forceClose()
+{
+    SettingsHelper::setForceClose(true);
+    close();
+}
 
 void AppWindow::onTabCloseRequested(int index)
 {

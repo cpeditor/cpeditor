@@ -138,7 +138,7 @@ int main(int argc, char *argv[])
         Daemon d;
         Daemon::setup();
         AppWindow w(cpp, java, python, noHotExit, number, path);
-        QObject::connect(&d, &Daemon::signalActivated, &w, &AppWindow::close);
+        QObject::connect(&d, &Daemon::signalActivated, &w, &AppWindow::forceClose);
         QObject::connect(&app, &SingleApplication::receivedMessage, &w, &AppWindow::onReceivedMessage);
         LOG_INFO("Showing the application window and beginning the event loop");
         w.show();
@@ -192,7 +192,7 @@ int main(int argc, char *argv[])
         Daemon d;
         Daemon::setup();
         AppWindow w(depth, cpp, java, python, noHotExit, args);
-        QObject::connect(&d, &Daemon::signalActivated, &w, &AppWindow::close);
+        QObject::connect(&d, &Daemon::signalActivated, &w, &AppWindow::forceClose);
         QObject::connect(&app, &SingleApplication::receivedMessage, &w, &AppWindow::onReceivedMessage);
         LOG_INFO("Showing the application window and beginning the event loop");
 
