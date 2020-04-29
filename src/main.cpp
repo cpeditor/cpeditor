@@ -36,7 +36,7 @@ class Application : public SignalHandler
 
     int main(int argc, char *argv[]);
 
-    bool handleSignal(int signal)
+    bool handleSignal(int signal) override
     {
         if (qApp)
         {
