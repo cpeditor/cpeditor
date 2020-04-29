@@ -18,18 +18,49 @@
 #include "Core/EventLogger.hpp"
 #include "appwindow.hpp"
 #include "mainwindow.hpp"
-#include "signal.hpp"
 #include <QApplication>
 #include <QCommandLineParser>
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QTextStream>
+#include <SignalHandler.hpp>
 #include <singleapplication.h>
+
+class Application : public SignalHandler
+{
+  public:
+    Application() : SignalHandler(SIG_INT | SIG_TERM | SIG_CLOSE | SIG_RELOAD)
+    {
+    }
+
+    int main(int argc, char *argv[]);
+
+    bool handleSignal(int signal)
+    {
+        if (qApp)
+        {
+            auto widgets = qApp->topLevelWidgets();
+            for (auto widget : widgets)
+            {
+                auto appWindow = qobject_cast<AppWindow *>(widget);
+                if (appWindow)
+                {
+                    if (signal == SIG_INT)
+                        return appWindow->close();
+                    else
+                        return appWindow->forceClose();
+                }
+            }
+        }
+        // Let the signal propagate as though we had not been there
+        return false;
+    }
+};
 
 #define TOJSON(x) json[#x] = x
 
-int main(int argc, char *argv[])
+int Application::main(int argc, char *argv[])
 {
     SingleApplication app(argc, argv, true);
     SingleApplication::setApplicationName("CP Editor");
@@ -135,10 +166,9 @@ int main(int argc, char *argv[])
         LOG_INFO("Launching the new Appwindow with args: " << BOOL_INFO_OF(cpp) << BOOL_INFO_OF(java)
                                                            << BOOL_INFO_OF(python) << BOOL_INFO_OF(noHotExit)
                                                            << INFO_OF(number) << INFO_OF(path));
-        Daemon d;
-        Daemon::setup();
+
         AppWindow w(cpp, java, python, noHotExit, number, path);
-        QObject::connect(&d, &Daemon::signalActivated, &w, &AppWindow::forceClose);
+        LOG_INFO("Launched window connecting this window to onReceiveMessage()");
         QObject::connect(&app, &SingleApplication::receivedMessage, &w, &AppWindow::onReceivedMessage);
         LOG_INFO("Showing the application window and beginning the event loop");
         w.show();
@@ -189,10 +219,8 @@ int main(int argc, char *argv[])
                                                            << BOOL_INFO_OF(python) << BOOL_INFO_OF(noHotExit)
                                                            << INFO_OF(args.join(", ")));
 
-        Daemon d;
-        Daemon::setup();
         AppWindow w(depth, cpp, java, python, noHotExit, args);
-        QObject::connect(&d, &Daemon::signalActivated, &w, &AppWindow::forceClose);
+        LOG_INFO("Launched window connecting this window to onReceiveMessage()");
         QObject::connect(&app, &SingleApplication::receivedMessage, &w, &AppWindow::onReceivedMessage);
         LOG_INFO("Showing the application window and beginning the event loop");
 
@@ -202,3 +230,9 @@ int main(int argc, char *argv[])
 }
 
 #undef TOJSON
+
+int main(int argc, char *argv[])
+{
+    Application app;
+    return app.main(argc, argv);
+}

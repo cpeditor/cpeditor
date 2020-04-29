@@ -537,27 +537,25 @@ void AppWindow::saveEditorStatus(bool loadFromFile)
 
 bool AppWindow::quit()
 {
-    bool ret = false;
+    if (preferencesWindow->isVisible() && !preferencesWindow->close())
+        return false;
     if (SettingsHelper::isHotExitEnable() || SettingsHelper::isForceClose())
     {
         LOG_INFO("quit() with hotexit");
         SettingsHelper::setHotExitLoadFromFile(false);
         saveEditorStatus(false);
-        ret = true;
     }
     else
     {
         LOG_INFO("quit() called without hotExit");
         on_actionClose_All_triggered();
-        ret = ui->tabWidget->count() == 0;
+        if (ui->tabWidget->count() >= 1)
+            return false;
     }
-    if (ret && preferencesWindow->isVisible())
-        ret = preferencesWindow->close();
     // The tray icon is considered as a visible window, if it is not hidden, even if the app window is closed,
     // the application won't exit.
-    if (ret)
-        trayIcon->hide();
-    return ret;
+    trayIcon->hide();
+    return true;
 }
 
 int AppWindow::getNewUntitledIndex()
@@ -783,10 +781,10 @@ void AppWindow::onReceivedMessage(quint32 instanceId, QByteArray message)
 
 #undef FROMJSON
 
-void AppWindow::forceClose()
+bool AppWindow::forceClose()
 {
     SettingsHelper::setForceClose(true);
-    close();
+    return close();
 }
 
 void AppWindow::onTabCloseRequested(int index)
