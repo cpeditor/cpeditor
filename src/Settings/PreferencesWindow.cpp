@@ -130,6 +130,8 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
 
     addPage("File Path/Testcases", {"Input File Save Path", "Answer File Save Path", "Testcases Matching Rules"});
 
+    addPage("File Path/Problem URL", {"Default File Paths For Problem URLs"});
+
     addPage("Key Bindings", {"Hotkey/Compile", "Hotkey/Run", "Hotkey/Compile Run", "Hotkey/Format", "Hotkey/Kill",
                              "Hotkey/Change View Mode", "Hotkey/Snippets"});
 

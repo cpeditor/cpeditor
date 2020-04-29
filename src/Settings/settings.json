@@ -574,7 +574,7 @@
         "name": "Testcases Matching Rules",
         "type": "QList<QVariant>",
         "default": "QList<QVariant> { QStringList {\"(.*)\\\\.in\", \"\\\\1.ans\"}, QStringList {\"(.*)\\\\.in\", \"\\\\1.out\"}}",
-        "param": "QList<QVariant> { QStringList {\"Input Regex\", \"The regular expression for the input file name\"}, QStringList {\"Answer Replace\", \"The replace expression for the answer file name. You can use \\\"\\\\1\\\" for the first captured group.\"}}",
+        "param": "QList<QVariant> { QStringList {\"Input Regex\", \"The regular expression for the input file name\"}, QStringList {\"Answer Replace\", \"The replace expression for the answer file name.\\nYou can use \\\"\\\\1\\\" for the first captured group.\"}}",
         "tip": "Pairs of regular expressions used when adding pairs of test cases from files. Each pair of regular expressions represents a test case."
     },
     {
@@ -588,5 +588,12 @@
         "type": "QString",
         "default": "./${basename}_${1-index}.ans",
         "tip": "The path where the answer files are saved.\nThis setting is a relative path to the source file.\nYou can use \"${filename}\" for the complete file name,\n\"${basename}\" for the base file name without the suffix,\n\"${0-index}\" for the index of the test case started from 0,\n\"${1-index}\" for the index of the test case started from 1."
+    },
+    {
+        "name": "Default File Paths For Problem URLs",
+        "type": "QList<QVariant>",
+        "default": "QList<QVariant> {}",
+        "param": "QList<QVariant> { QStringList {\"Problem URL\", \"The regular expression for the problem URL\"}, QStringList {\"File Path\", \"The replace expression for the file path, without file name suffix.\\nYou can use \\\"\\\\1\\\" for the first captured group.\"}}",
+        "tip": "The default file path used when saving a new file while the problem URL is set"
     }
 ]

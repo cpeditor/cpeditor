@@ -746,13 +746,28 @@ bool MainWindow::saveFile(SaveMode mode, const QString &head, bool safe)
     if (mode == SaveAs || (isUntitled() && mode == SaveUntitled))
     {
         QString defaultPath;
+
         if (!isUntitled())
         {
             defaultPath = filePath;
         }
         else
         {
-            defaultPath = QDir(SettingsHelper::getSavePath()).filePath(getTabTitle(false, false));
+            if (!problemURL.isEmpty())
+            {
+                auto rules = SettingsHelper::getDefaultFilePathsForProblemURLs();
+                for (auto rule : rules)
+                {
+                    auto url = QRegularExpression(rule.toStringList().front());
+                    if (url.match(problemURL).hasMatch())
+                    {
+                        defaultPath = getProblemURL().replace(url, rule.toStringList().back());
+                        break;
+                    }
+                }
+            }
+            if (defaultPath.isEmpty())
+                defaultPath = QDir(SettingsHelper::getSavePath()).filePath(getTabTitle(false, false));
             if (language == "C++")
                 defaultPath += ".cpp";
             else if (language == "Java")
@@ -761,14 +776,35 @@ bool MainWindow::saveFile(SaveMode mode, const QString &head, bool safe)
                 defaultPath += ".py";
         }
 
+        // Create the parent directories of the default path if they don't exist,
+        // and remove them if they are empty after saving.
+
+        QStringList madePaths;
+        if (!QDir(QFileInfo(defaultPath).absolutePath()).exists())
+        {
+            QDir dir(QFileInfo(defaultPath).absolutePath());
+            while (!dir.exists() && !dir.isRoot())
+            {
+                madePaths.push_back(dir.path());
+                dir.setPath(QDir::cleanPath(dir.filePath("..")));
+            }
+            QDir().mkpath(QFileInfo(defaultPath).absolutePath());
+        }
+        auto beforeReturn = [&](bool ret) {
+            for (auto path : madePaths)
+                if (!QDir().rmdir(path))
+                    break;
+            return ret;
+        };
+
         emit confirmTriggered(this);
         auto newFilePath =
             QFileDialog::getSaveFileName(this, tr("Save File"), defaultPath, Util::fileNameFilter(true, true, true));
         if (newFilePath.isEmpty())
-            return false;
+            return beforeReturn(false);
 
         if (!Util::saveFile(newFilePath, editor->toPlainText(), head, safe, &log, true))
-            return false;
+            return beforeReturn(false);
 
         filePath = newFilePath;
         updateWatcher();
@@ -781,6 +817,8 @@ bool MainWindow::saveFile(SaveMode mode, const QString &head, bool safe)
             setLanguage("Java");
         else if (Util::pythonSuffix.contains(suffix))
             setLanguage("Python");
+
+        beforeReturn(true);
     }
     else if (!isUntitled())
     {
