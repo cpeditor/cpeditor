@@ -23,6 +23,7 @@
 
 #else
 
+#include <QDebug>
 #include <signal.h>
 #include <sys/socket.h>
 #include <sys/types.h>
@@ -73,7 +74,9 @@ Daemon::Daemon(QObject *parent) : QObject(parent)
 
 Daemon::~Daemon()
 {
+#ifndef Q_OS_WIN32
     delete notifier;
+#endif
 }
 
 void Daemon::setup()
@@ -98,7 +101,13 @@ void Daemon::handleSignal()
 #ifndef Q_OS_WIN32
     notifier->setEnabled(false);
     char tmp;
-    ::read(sigFd[1], &tmp, sizeof(tmp));
+    ssize_t ret = ::read(sigFd[1], &tmp, sizeof(tmp));
+    if (ret == -1 || ret != sizeof(tmp))
+    {
+        qCritical() << QString("::read in Daemon::handleSignal returned %1 but it's expected to be %2")
+                           .arg(ret)
+                           .arg(sizeof(tmp));
+    }
 #endif
     emit signalActivated();
 #ifndef Q_OS_WIN32

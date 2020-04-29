@@ -37,8 +37,10 @@ class Daemon : public QObject
     // Qt signal handlers.
     void handleSignal();
 
+#ifndef Q_OS_WIN32
   private:
-    QSocketNotifier *notifier;
+    QSocketNotifier *notifier = nullptr;
+#endif
 };
 
 #endif // SIGNAL_HPP
