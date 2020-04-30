@@ -214,7 +214,21 @@ bool Application::handleSignal(int signal)
             if (dialog && dialog->isModal())
             {
                 if (signal == SIG_INT)
+                {
+                    for (auto w : widgets)
+                    {
+                        auto appWindow = qobject_cast<AppWindow *>(w);
+                        if (appWindow)
+                        {
+                            appWindow->showOnTop();
+                            break;
+                        }
+                    }
+                    dialog->setWindowState((dialog->windowState() & ~Qt::WindowMinimized) | Qt::WindowActive);
+                    dialog->activateWindow();
+                    dialog->raise();
                     return false;
+                }
                 else
                 {
                     auto progressDialog = qobject_cast<QProgressDialog *>(dialog);

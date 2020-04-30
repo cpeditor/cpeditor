@@ -53,6 +53,8 @@ class AppWindow : public QMainWindow
 
     bool forceClose();
 
+    void showOnTop();
+
   private slots:
     void on_actionSupport_me_triggered();
 
@@ -165,8 +167,6 @@ class AppWindow : public QMainWindow
     void on_actionShow_Logs_triggered();
 
     void on_actionClear_Logs_triggered();
-
-    void showOnTop();
 
     void onTrayIconActivated(QSystemTrayIcon::ActivationReason reason);
 
