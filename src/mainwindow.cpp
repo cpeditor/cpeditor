@@ -758,10 +758,13 @@ bool MainWindow::saveFile(SaveMode mode, const QString &head, bool safe)
                 auto rules = SettingsHelper::getDefaultFilePathsForProblemURLs();
                 for (auto rule : rules)
                 {
+                    if (rule.toStringList().front().isEmpty())
+                        continue;
                     auto url = QRegularExpression(rule.toStringList().front());
-                    if (url.match(problemURL).hasMatch())
+                    auto match = url.match(problemURL);
+                    if (match.hasMatch())
                     {
-                        defaultPath = getProblemURL().replace(url, rule.toStringList().back());
+                        defaultPath = match.captured().replace(url, rule.toStringList().back());
                         break;
                     }
                 }
