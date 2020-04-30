@@ -18,13 +18,13 @@
 #include "Widgets/TestCaseEdit.hpp"
 #include "Core/EventLogger.hpp"
 #include "Core/MessageLogger.hpp"
-#include <QPropertyAnimation>
 #include "Util.hpp"
 #include <QApplication>
 #include <QFileDialog>
 #include <QInputDialog>
 #include <QMenu>
 #include <QMimeData>
+#include <QPropertyAnimation>
 #include <QStyle>
 #include <generated/SettingsHelper.hpp>
 

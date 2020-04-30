@@ -19,8 +19,8 @@
 #include <QApplication>
 #include <QHBoxLayout>
 #include <QKeySequenceEdit>
-#include <QToolButton>
 #include <QStyle>
+#include <QToolButton>
 
 ShortcutItem::ShortcutItem(QWidget *parent) : QWidget(parent)
 {
