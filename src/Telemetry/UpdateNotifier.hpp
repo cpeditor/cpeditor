@@ -17,17 +17,19 @@
 
 #ifndef UPDATENOTIFIER_HPP
 #define UPDATENOTIFIER_HPP
+
 #include <QObject>
-#include <QtNetwork/QNetworkAccessManager>
-#include <QtNetwork/QNetworkReply>
-#include <QtNetwork/QNetworkRequest>
-#include <generated/version.hpp>
+
+class QNetworkAccessManager;
+class QNetworkReply;
+class QNetworkRequest;
 
 namespace Telemetry
 {
 class UpdateNotifier : public QObject
 {
     Q_OBJECT
+
   public:
     explicit UpdateNotifier(bool useBeta);
     void checkUpdate(bool force = false);
@@ -35,12 +37,11 @@ class UpdateNotifier : public QObject
     void setBeta(bool value);
 
   private slots:
-
     void managerFinished(QNetworkReply *reply);
 
   private:
     QNetworkAccessManager *manager;
-    QNetworkRequest request;
+    QNetworkRequest *request;
     bool beta;
     bool force;
 };

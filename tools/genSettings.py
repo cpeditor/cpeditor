@@ -61,10 +61,8 @@ namespace SettingsHelper
     setting_info.write("""#ifndef SETTINGSINFO_HPP
 #define SETTINGSINFO_HPP
 
-#include <QString>
 #include <QFont>
 #include <QRect>
-#include <QByteArray>
 #include <QVariant>
 
 struct SettingInfo
@@ -125,7 +123,7 @@ const SettingInfo settingInfo[] =
                 'bool': 'false',
                 'QRect': 'QRect()',
                 'QByteArray': 'QByteArray()',
-                'QList<QVariant>': 'QList<QVariant>()'
+                'QVariantList': 'QVariantList()'
             }
             setting_info.write(defs[typename])
         if "param" in t:

@@ -19,7 +19,6 @@
 #define PREFERENCESPAGETEMPLATE_HPP
 
 #include "Settings/PreferencesGridPage.hpp"
-#include "Settings/ValueWrapper.hpp"
 
 class PreferencesPageTemplate : public PreferencesGridPage
 {

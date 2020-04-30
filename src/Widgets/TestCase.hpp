@@ -19,18 +19,21 @@
 #define TESTCASE_HPP
 
 #include "Core/Checker.hpp"
-#include "Core/MessageLogger.hpp"
-#include "Widgets/DiffViewer.hpp"
-#include "Widgets/TestCaseEdit.hpp"
-#include <QCheckBox>
-#include <QHBoxLayout>
-#include <QLabel>
-#include <QMenu>
-#include <QPushButton>
-#include <QVBoxLayout>
+#include <QWidget>
+
+class MessageLogger;
+class QCheckBox;
+class QHBoxLayout;
+class QLabel;
+class QMenu;
+class QPushButton;
+class QVBoxLayout;
 
 namespace Widgets
 {
+class DiffViewer;
+class TestCaseEdit;
+
 class TestCase : public QWidget
 {
     Q_OBJECT

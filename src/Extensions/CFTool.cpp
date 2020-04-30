@@ -17,7 +17,10 @@
 
 #include "Extensions/CFTool.hpp"
 #include "Core/EventLogger.hpp"
+#include "Core/MessageLogger.hpp"
 #include <QFileInfo>
+#include <QProcess>
+#include <QRegularExpression>
 #include <QUrl>
 
 namespace Extensions

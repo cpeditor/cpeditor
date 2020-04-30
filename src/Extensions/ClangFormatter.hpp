@@ -23,10 +23,13 @@
 
 #ifndef FORMATTER_HPP
 #define FORMATTER_HPP
-#include "Core/MessageLogger.hpp"
-#include <QCodeEditor>
+
 #include <QPair>
 #include <QString>
+
+class MessageLogger;
+class QCodeEditor;
+class QStringList;
 
 namespace Extensions
 {

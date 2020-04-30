@@ -18,23 +18,37 @@
 #include "appwindow.hpp"
 #include "../ui/ui_appwindow.h"
 #include "Core/EventLogger.hpp"
+#include "Core/MessageLogger.hpp"
+#include "Extensions/CFTool.hpp"
+#include "Extensions/CompanionServer.hpp"
 #include "Extensions/EditorTheme.hpp"
+#include "Extensions/LanguageServer.hpp"
+#include "Settings/PreferencesWindow.hpp"
+#include "Telemetry/UpdateNotifier.hpp"
 #include "Util.hpp"
+#include "mainwindow.hpp"
 #include <QClipboard>
 #include <QDesktopServices>
+#include <QDragEnterEvent>
 #include <QFileDialog>
 #include <QInputDialog>
 #include <QJsonDocument>
-#include <QMap>
 #include <QMessageBox>
-#include <QMetaMethod>
 #include <QMimeData>
 #include <QProgressDialog>
-#include <QSettings>
-#include <QStyleFactory>
+#include <QShortcut>
+#include <QSplitter>
+#include <QTabBar>
 #include <QTimer>
 #include <QUrl>
+#include <findreplacedialog.h>
 #include <generated/SettingsHelper.hpp>
+#include <generated/version.hpp>
+
+#ifdef Q_OS_WIN
+#include <QSettings>
+#include <QStyleFactory>
+#endif
 
 AppWindow::AppWindow(bool noHotExit, QWidget *parent) : QMainWindow(parent), ui(new Ui::AppWindow)
 {

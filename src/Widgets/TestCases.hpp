@@ -19,19 +19,22 @@
 #define TESTCASES_HPP
 
 #include "Core/Checker.hpp"
-#include "Core/MessageLogger.hpp"
-#include "Widgets/TestCase.hpp"
-#include <QComboBox>
-#include <QFileInfo>
-#include <QHBoxLayout>
-#include <QLabel>
-#include <QMenu>
-#include <QPushButton>
-#include <QScrollArea>
-#include <QVBoxLayout>
+#include <QList>
+#include <QWidget>
+
+class MessageLogger;
+class QComboBox;
+class QHBoxLayout;
+class QLabel;
+class QMenu;
+class QPushButton;
+class QScrollArea;
+class QVBoxLayout;
 
 namespace Widgets
 {
+class TestCase;
+
 class TestCases : public QWidget
 {
     Q_OBJECT

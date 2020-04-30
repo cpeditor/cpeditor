@@ -21,7 +21,8 @@
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
-#include <QString>
+#include <QTcpServer>
+#include <QTcpSocket>
 
 namespace Extensions
 {

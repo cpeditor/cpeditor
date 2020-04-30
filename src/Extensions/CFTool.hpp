@@ -18,9 +18,10 @@
 #ifndef CFTOOL_HPP
 #define CFTOOL_HPP
 
-#include "Core/MessageLogger.hpp"
-#include <QProcess>
-#include <QRegularExpression>
+#include <QObject>
+
+class MessageLogger;
+class QProcess;
 
 namespace Extensions
 {

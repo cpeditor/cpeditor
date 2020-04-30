@@ -18,9 +18,11 @@
 #ifndef SHORTCUTITEM_HPP
 #define SHORTCUTITEM_HPP
 
-#include <QHBoxLayout>
-#include <QKeySequenceEdit>
-#include <QToolButton>
+#include <QWidget>
+
+class QHBoxLayout;
+class QKeySequenceEdit;
+class QToolButton;
 
 class ShortcutItem : public QWidget
 {

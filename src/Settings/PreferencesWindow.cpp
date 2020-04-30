@@ -18,10 +18,18 @@
 #include "Settings/PreferencesWindow.hpp"
 #include "Settings/AppearancePage.hpp"
 #include "Settings/CodeSnippetsPage.hpp"
-#include "Settings/PreferencesPageTemplate.hpp"
+#include "Settings/PreferencesHomePage.hpp"
 #include <QApplication>
 #include <QCloseEvent>
+#include <QHBoxLayout>
+#include <QLineEdit>
+#include <QPushButton>
 #include <QScreen>
+#include <QShortcut>
+#include <QSplitter>
+#include <QStackedWidget>
+#include <QTreeWidget>
+#include <QVBoxLayout>
 
 PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
 {

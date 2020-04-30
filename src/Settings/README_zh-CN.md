@@ -116,9 +116,9 @@ json数组的每一项表示一个配置项，结构如下：
 
     默认值```0```
 
-    所有参数均为包含两个```int```的```QList<QVariant>```，代表数值范围。
+    所有参数均为包含两个```int```的```QVariantList```，代表数值范围。
 
-    例如```"param": "QList<QVariant> {1, 100}"```
+    例如```"param": "QVariantList {1, 100}"```
 
     * `QSpinBox`
 
@@ -138,7 +138,7 @@ json数组的每一项表示一个配置项，结构如下：
 
         设置字体的控件。
 
-* `QList<QVariant>`
+* `QVariantList`
 
     * `StringListsItem`
 
@@ -146,9 +146,9 @@ json数组的每一项表示一个配置项，结构如下：
 
         令一个 `QStringList` 中的 `QString` 数量为 `<col>`。
 
-        value: `QList<QVairant>`, 其中每个元素是一个包含 `<col>` 个 `QString` 的 `QStringList`。
+        value: `QVariantList`, 其中每个元素是一个包含 `<col>` 个 `QString` 的 `QStringList`。
 
-        param: 这个参数描述了 UI 中的标题栏以及 `<col>` 的值。它是一个 有 `<col>` 个元素的 `QList<QVairant>`，其中每个元素是一个包含两个 `QString` 的 `QStringList`，第一个 `QString` 是标题，第二个 `QString` 是 tooltip。
+        param: 这个参数描述了 UI 中的标题栏以及 `<col>` 的值。它是一个 有 `<col>` 个元素的 `QVariantList`，其中每个元素是一个包含两个 `QString` 的 `QStringList`，第一个 `QString` 是标题，第二个 `QString` 是 tooltip。
 
 ### 添加设置
 

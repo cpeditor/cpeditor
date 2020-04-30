@@ -17,10 +17,13 @@
 
 #ifndef COMPANIONSERVER_HPP
 #define COMPANIONSERVER_HPP
-#include "Core/MessageLogger.hpp"
+
 #include <QObject>
-#include <QTcpServer>
-#include <QTcpSocket>
+#include <QVector>
+
+class MessageLogger;
+class QTcpServer;
+class QTcpSocket;
 
 namespace Extensions
 {

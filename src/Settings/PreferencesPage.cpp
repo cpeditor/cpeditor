@@ -16,10 +16,15 @@
  */
 
 #include "Settings/PreferencesPage.hpp"
+#include "Settings/ValueWrapper.hpp"
 #include <QApplication>
 #include <QFormLayout>
+#include <QLabel>
 #include <QMessageBox>
+#include <QPushButton>
+#include <QScrollArea>
 #include <QStyle>
+#include <QVBoxLayout>
 
 PreferencesPage::PreferencesPage(QWidget *parent) : QWidget(parent)
 {
