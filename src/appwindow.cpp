@@ -36,6 +36,7 @@
 #include <QMessageBox>
 #include <QMimeData>
 #include <QProgressDialog>
+#include <QSettings>
 #include <QShortcut>
 #include <QSplitter>
 #include <QTabBar>

@@ -19,6 +19,7 @@
 #define COMPANIONSERVER_HPP
 
 #include <QObject>
+#include <QVector>
 
 class MessageLogger;
 class QTcpServer;

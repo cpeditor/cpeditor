@@ -29,6 +29,7 @@
 #define CHECKER_HPP
 
 #include <QObject>
+#include <QVector>
 
 class QTemporaryDir;
 class MessageLogger;
