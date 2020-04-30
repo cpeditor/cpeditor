@@ -17,10 +17,21 @@
 
 #include "Widgets/TestCases.hpp"
 #include "Core/EventLogger.hpp"
+#include "Core/MessageLogger.hpp"
 #include "Util.hpp"
+#include "Widgets/TestCase.hpp"
 #include "generated/SettingsHelper.hpp"
+#include <QComboBox>
 #include <QFileDialog>
+#include <QFileInfo>
+#include <QHBoxLayout>
+#include <QLabel>
+#include <QMenu>
 #include <QMessageBox>
+#include <QPushButton>
+#include <QScrollArea>
+#include <QSet>
+#include <QVBoxLayout>
 
 namespace Widgets
 {

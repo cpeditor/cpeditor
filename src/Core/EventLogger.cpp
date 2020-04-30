@@ -19,11 +19,11 @@
 #include <QDateTime>
 #include <QDesktopServices>
 #include <QDir>
+#include <QFile>
 #include <QProcess>
 #include <QStandardPaths>
 #include <QSysInfo>
 #include <QUrl>
-#include <QVector>
 #include <generated/version.hpp>
 
 namespace Core

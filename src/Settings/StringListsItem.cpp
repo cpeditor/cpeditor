@@ -16,10 +16,15 @@
  */
 
 #include "Settings/StringListsItem.hpp"
+#include <QHBoxLayout>
 #include <QHeaderView>
 #include <QMessageBox>
+#include <QPushButton>
+#include <QTableWidget>
+#include <QVBoxLayout>
+#include <QVariant>
 
-StringListsItem::StringListsItem(const QList<QVariant> &cols, QWidget *parent) : QWidget(parent)
+StringListsItem::StringListsItem(const QVariantList &cols, QWidget *parent) : QWidget(parent)
 {
     layout = new QHBoxLayout(this);
     layout->setContentsMargins(0, 0, 0, 0);
@@ -127,7 +132,7 @@ StringListsItem::StringListsItem(const QList<QVariant> &cols, QWidget *parent) :
     layout->addLayout(buttonLayout);
 }
 
-void StringListsItem::setStringLists(const QList<QVariant> &val)
+void StringListsItem::setStringLists(const QVariantList &val)
 {
     int cols = table->columnCount();
     int rows = val.size();
@@ -140,9 +145,9 @@ void StringListsItem::setStringLists(const QList<QVariant> &val)
     }
 }
 
-QList<QVariant> StringListsItem::getStringLists()
+QVariantList StringListsItem::getStringLists()
 {
-    QList<QVariant> data;
+    QVariantList data;
     int cols = table->columnCount();
     int rows = table->rowCount();
     for (int i = 0; i < rows; ++i)

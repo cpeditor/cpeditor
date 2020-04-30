@@ -19,7 +19,7 @@
 #include "Core/EventLogger.hpp"
 #include "Util.hpp"
 #include <QFile>
-#include <QIODevice>
+#include <QSyntaxStyle>
 
 namespace Extensions
 {

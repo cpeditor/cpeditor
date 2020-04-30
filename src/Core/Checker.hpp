@@ -28,13 +28,16 @@
 #ifndef CHECKER_HPP
 #define CHECKER_HPP
 
-#include "Core/Compiler.hpp"
-#include "Core/MessageLogger.hpp"
-#include "Core/Runner.hpp"
-#include <QTemporaryDir>
+#include <QObject>
+
+class QTemporaryDir;
+class MessageLogger;
 
 namespace Core
 {
+
+class Compiler;
+class Runner;
 
 class Checker : public QObject
 {

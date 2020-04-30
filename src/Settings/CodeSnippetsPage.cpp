@@ -18,9 +18,17 @@
 #include "Settings/CodeSnippetsPage.hpp"
 #include "Settings/SettingsManager.hpp"
 #include "Util.hpp"
+#include <QCodeEditor>
 #include <QFileDialog>
 #include <QInputDialog>
+#include <QLabel>
+#include <QListWidget>
+#include <QMenu>
 #include <QMessageBox>
+#include <QPushButton>
+#include <QSplitter>
+#include <QStackedWidget>
+#include <QVBoxLayout>
 
 CodeSnippetsPage::CodeSnippetsPage(const QString &language, QWidget *parent) : PreferencesPage(parent), lang(language)
 {

@@ -18,11 +18,7 @@
 #ifndef SETTINGSMANAGER_HPP
 #define SETTINGSMANAGER_HPP
 
-#include <QMap>
-#include <QString>
-#include <QVariant>
-
-typedef QMap<QString, QVariant> Settings;
+#include <QMetaType>
 
 struct SettingsManager
 {
@@ -38,8 +34,8 @@ struct SettingsManager
     static QStringList keyStartsWith(const QString &head);
 
   private:
-    static Settings *cur;
-    static Settings *def;
+    static QVariantMap *cur;
+    static QVariantMap *def;
 };
 
 #endif // SETTINGSMANAGER_HPP

@@ -19,7 +19,10 @@
 #include "Util.hpp"
 #include <QApplication>
 #include <QFileDialog>
+#include <QHBoxLayout>
+#include <QLineEdit>
 #include <QStyle>
+#include <QToolButton>
 
 static QString filters[] = {"Excutable (*" EXE_SUFFIX ")", "C++ Sources (*.cpp *.hpp *.h *.cc *.cxx *.c)",
                             "Java Sources (*.java)", "Python Sources (*.py *.py3)"};

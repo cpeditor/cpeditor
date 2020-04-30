@@ -17,6 +17,7 @@
 
 #include "Settings/AppearancePage.hpp"
 #include "Settings/SettingsManager.hpp"
+#include "Settings/ValueWrapper.hpp"
 #include "Util.hpp"
 #include <QApplication>
 #include <QMessageBox>

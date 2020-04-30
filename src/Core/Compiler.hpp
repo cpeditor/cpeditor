@@ -27,7 +27,9 @@
 #ifndef COMPILER_HPP
 #define COMPILER_HPP
 
-#include <QProcess>
+#include <QObject>
+
+class QProcess;
 
 namespace Core
 {

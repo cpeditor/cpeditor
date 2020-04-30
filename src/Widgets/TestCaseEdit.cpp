@@ -17,6 +17,8 @@
 
 #include "Widgets/TestCaseEdit.hpp"
 #include "Core/EventLogger.hpp"
+#include "Core/MessageLogger.hpp"
+#include <QPropertyAnimation>
 #include "Util.hpp"
 #include <QApplication>
 #include <QFileDialog>

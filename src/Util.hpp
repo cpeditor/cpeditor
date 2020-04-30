@@ -18,8 +18,11 @@
 #ifndef UTIL_HPP
 #define UTIL_HPP
 
-#include "Core/MessageLogger.hpp"
-#include <QCodeEditor>
+#include <QStringList>
+
+class MessageLogger;
+class QCodeEditor;
+class QPalette;
 
 namespace Util
 {

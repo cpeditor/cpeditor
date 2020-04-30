@@ -20,10 +20,13 @@
 #include "mainwindow.hpp"
 #include <QApplication>
 #include <QCommandLineParser>
+#include <QDir>
+#include <QFileInfo>
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QTextStream>
+#include <generated/version.hpp>
 #include <singleapplication.h>
 
 #define TOJSON(x) json[#x] = x

@@ -17,7 +17,16 @@
 
 #include "Widgets/TestCase.hpp"
 #include "Core/EventLogger.hpp"
+#include "Core/MessageLogger.hpp"
+#include "Widgets/DiffViewer.hpp"
+#include "Widgets/TestCaseEdit.hpp"
+#include <QCheckBox>
+#include <QHBoxLayout>
+#include <QLabel>
+#include <QMenu>
 #include <QMessageBox>
+#include <QPushButton>
+#include <QVBoxLayout>
 #include <Util.hpp>
 #include <generated/SettingsHelper.hpp>
 

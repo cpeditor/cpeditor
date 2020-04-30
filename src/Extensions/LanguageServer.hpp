@@ -18,11 +18,12 @@
 #ifndef LANGUAGE_SERVER_H
 #define LANGUAGE_SERVER_H
 
-#include "Core/MessageLogger.hpp"
-#include "generated/SettingsHelper.hpp"
-#include <LSPClient.hpp>
 #include <QCodeEditor>
-#include <QObject>
+#include <QJsonObject>
+#include <QProcess>
+
+class MessageLogger;
+class LSPClient;
 
 namespace Extensions
 {
