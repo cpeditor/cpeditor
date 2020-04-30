@@ -15,10 +15,26 @@
  *
  */
 
-#include <Application.hpp>
+#ifndef APPLICATION_HPP
+#define APPLICATION_HPP
 
-int main(int argc, char *argv[])
+#include <SignalHandler.hpp>
+
+class Application : public SignalHandler
 {
-    Application app;
-    return app.main(argc, argv);
-}
+    Q_OBJECT
+
+  public:
+    Application() : SignalHandler(SIG_INT | SIG_TERM | SIG_CLOSE | SIG_RELOAD)
+    {
+    }
+
+    int main(int argc, char *argv[]);
+
+    bool handleSignal(int signal) override;
+
+  signals:
+    void requestToExit();
+};
+
+#endif // APPLICATION_HPP

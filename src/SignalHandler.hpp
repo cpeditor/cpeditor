@@ -22,8 +22,12 @@
 #ifndef SIGNALHANDLER_HPP
 #define SIGNALHANDLER_HPP
 
-class SignalHandler
+#include <QObject>
+
+class SignalHandler : public QObject
 {
+    Q_OBJECT
+
   public:
     SignalHandler(int mask = DEFAULT_SIGNALS);
     virtual ~SignalHandler();
