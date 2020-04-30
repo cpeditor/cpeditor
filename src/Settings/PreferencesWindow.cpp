@@ -183,7 +183,7 @@ void PreferencesWindow::switchToPage(QWidget *page, bool force)
     // ask for saving changes or not if not force
     if (!force)
     {
-        auto current = dynamic_cast<PreferencesPage *>(stackedWidget->currentWidget());
+        auto current = qobject_cast<PreferencesPage *>(stackedWidget->currentWidget());
         if (current != nullptr && !current->aboutToExit())
             return;
     }
@@ -194,7 +194,7 @@ void PreferencesWindow::switchToPage(QWidget *page, bool force)
     // switch if everything is OK
     stackedWidget->setCurrentWidget(page);
 
-    auto preferencesPage = dynamic_cast<PreferencesPage *>(page);
+    auto preferencesPage = qobject_cast<PreferencesPage *>(page);
     if (preferencesPage != nullptr)
     {
         menuTree->setCurrentItem(pageTreeItem[preferencesPage]);
@@ -271,7 +271,7 @@ PreferencesPage *PreferencesWindow::getPageWidget(const QString &pagePath)
 
 void PreferencesWindow::closeEvent(QCloseEvent *event)
 {
-    auto current = dynamic_cast<PreferencesPage *>(stackedWidget->currentWidget());
+    auto current = qobject_cast<PreferencesPage *>(stackedWidget->currentWidget());
     if (!SettingsHelper::isForceClose() && current != nullptr && !current->aboutToExit())
         event->ignore();
     else

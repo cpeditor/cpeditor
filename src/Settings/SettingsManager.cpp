@@ -115,6 +115,8 @@ void SettingsManager::init()
 
 void SettingsManager::deinit()
 {
+    LOG_INFO("Start saving settings");
+
     QSettings setting(configFileLocation[0], QSettings::IniFormat);
     setting.clear(); // Otherwise SettingsManager::remove won't work
 
@@ -134,6 +136,8 @@ void SettingsManager::deinit()
     delete cur;
     delete def;
     cur = def = nullptr;
+
+    LOG_INFO("Settings saved");
 }
 
 QVariant SettingsManager::get(QString key, bool alwaysDefault)

@@ -172,6 +172,7 @@ AppWindow::AppWindow(bool cpp, bool java, bool python, bool noHotExit, int numbe
 
 AppWindow::~AppWindow()
 {
+    LOG_INFO("Destruction started");
     saveSettings();
     Extensions::EditorTheme::release();
     delete ui;
@@ -188,6 +189,7 @@ AppWindow::~AppWindow()
     delete findReplaceDialog;
 
     SettingsManager::deinit();
+    LOG_INFO("Destruction finished");
 }
 
 /******************* PUBLIC METHODS ***********************/
@@ -384,7 +386,7 @@ void AppWindow::openTab(const QString &path)
         auto fileInfo = QFileInfo(path);
         for (int t = 0; t < ui->tabWidget->count(); t++)
         {
-            auto tmp = dynamic_cast<MainWindow *>(ui->tabWidget->widget(t));
+            auto tmp = qobject_cast<MainWindow *>(ui->tabWidget->widget(t));
             if (fileInfo == QFileInfo(tmp->getFilePath()))
             {
                 ui->tabWidget->setCurrentIndex(t);
@@ -550,11 +552,15 @@ bool AppWindow::quit()
         LOG_INFO("quit() called without hotExit");
         on_actionClose_All_triggered();
         if (ui->tabWidget->count() >= 1)
+        {
+            LOG_INFO("Closing is cancelled");
             return false;
+        }
     }
     // The tray icon is considered as a visible window, if it is not hidden, even if the app window is closed,
     // the application won't exit.
     trayIcon->hide();
+    LOG_INFO("All preparations for closing are finished");
     return true;
 }
 
@@ -1465,7 +1471,7 @@ MainWindow *AppWindow::currentWindow()
     {
         return nullptr;
     }
-    return dynamic_cast<MainWindow *>(ui->tabWidget->widget(current));
+    return qobject_cast<MainWindow *>(ui->tabWidget->widget(current));
 }
 
 void AppWindow::reAttachLanguageServer(MainWindow *window)
@@ -1508,7 +1514,7 @@ MainWindow *AppWindow::windowAt(int index)
     {
         return nullptr;
     }
-    return dynamic_cast<MainWindow *>(ui->tabWidget->widget(index));
+    return qobject_cast<MainWindow *>(ui->tabWidget->widget(index));
 }
 
 void AppWindow::on_actionShow_Logs_triggered()
