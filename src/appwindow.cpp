@@ -43,6 +43,7 @@
 #include <QUrl>
 #include <findreplacedialog.h>
 #include <generated/SettingsHelper.hpp>
+#include <generated/gitsha.hpp>
 #include <generated/version.hpp>
 
 #ifdef Q_OS_WIN
