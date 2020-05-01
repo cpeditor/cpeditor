@@ -21,27 +21,6 @@
 #include <QVariant>
 #include <QWidget>
 
-// bool
-class QCheckBox;
-
-// QString
-class PathItem;
-class ShortcutItem;
-class QComboBox;
-class QLineEdit;
-class QLineEdit;
-
-// int
-class QScrollBar;
-class QSlider;
-class QSpinBox;
-
-// QFont
-class FontItem;
-
-// QVariantList
-class StringListsItem;
-
 class ValueWidget : public QObject
 {
     Q_OBJECT

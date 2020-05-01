@@ -19,7 +19,6 @@
 #define TESTCASES_HPP
 
 #include "Core/Checker.hpp"
-#include <QList>
 #include <QWidget>
 
 class MessageLogger;
