@@ -17,6 +17,27 @@
 
 #include "Settings/ValueWrapper.hpp"
 
+// bool
+#include <QCheckBox>
+
+// QString
+#include "Settings/PathItem.hpp"
+#include "Settings/ShortcutItem.hpp"
+#include <QComboBox>
+#include <QLineEdit>
+#include <QPlainTextEdit>
+
+// int
+#include <QScrollBar>
+#include <QSlider>
+#include <QSpinBox>
+
+// QFont
+#include "Settings/FontItem.hpp"
+
+// QVariantList
+#include "Settings/StringListsItem.hpp"
+
 ValueWidget::ValueWidget() : QObject()
 {
 }
@@ -141,7 +162,7 @@ void SpinBoxWrapper::init(QWidget *parent, QVariant param)
     QSpinBox *item = new QSpinBox(parent);
     if (!param.isNull())
     {
-        QList<QVariant> il = param.toList();
+        QVariantList il = param.toList();
         item->setRange(il[0].toInt(), il[1].toInt());
     }
     connect(item, QOverload<int>::of(&QSpinBox::valueChanged), this, &SpinBoxWrapper::emitSignal);
@@ -163,7 +184,7 @@ void ScrollBarWrapper::init(QWidget *parent, QVariant param)
     QScrollBar *item = new QScrollBar(Qt::Horizontal, parent);
     if (!param.isNull())
     {
-        QList<QVariant> il = param.toList();
+        QVariantList il = param.toList();
         item->setRange(il[0].toInt(), il[1].toInt());
     }
     connect(item, &QScrollBar::valueChanged, this, &ValueWidget::emitSignal);
@@ -185,7 +206,7 @@ void SliderWrapper::init(QWidget *parent, QVariant param)
     QSlider *item = new QSlider(Qt::Horizontal, parent);
     if (!param.isNull())
     {
-        QList<QVariant> il = param.toList();
+        QVariantList il = param.toList();
         item->setRange(il[0].toInt(), il[1].toInt());
     }
     connect(item, &QSlider::valueChanged, this, &ValueWidget::emitSignal);
@@ -226,12 +247,12 @@ void StringListsItemWrapper::init(QWidget *parent, QVariant cols)
     widget = item;
 }
 
-QList<QVariant> StringListsItemWrapper::get()
+QVariantList StringListsItemWrapper::get()
 {
     return qobject_cast<StringListsItem *>(widget)->getStringLists();
 }
 
-void StringListsItemWrapper::set(QList<QVariant> sl)
+void StringListsItemWrapper::set(QVariantList sl)
 {
     qobject_cast<StringListsItem *>(widget)->setStringLists(sl);
 }
@@ -284,7 +305,7 @@ Wrapper<QFont> *createFontWrapper(QString type)
     return nullptr;
 }
 
-Wrapper<QList<QVariant>> *createStringListsWrapper(QString type)
+Wrapper<QVariantList> *createStringListsWrapper(QString type)
 {
     if (type == "")
         type = "StringListsItem";

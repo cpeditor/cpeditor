@@ -6,7 +6,7 @@
         "old": [
             "tab_stop"
         ],
-        "param": "QList<QVariant> {1,16}",
+        "param": "QVariantList {1,16}",
         "tip": "The width of the tab character, or the number of spaces of an indent"
     },
     {
@@ -235,7 +235,7 @@
         "name": "Opacity",
         "type": "int",
         "default": 100,
-        "param": "QList<QVariant> {60,100}",
+        "param": "QVariantList {60,100}",
         "ui": "QSlider",
         "old": [
             "transparency"
@@ -279,7 +279,7 @@
         "old": [
             "connection_port"
         ],
-        "param": "QList<QVariant> {1024,49151}",
+        "param": "QVariantList {1024,49151}",
         "tip": "The port used to receive data from Competitive Companion"
     },
     {
@@ -431,42 +431,42 @@
         "desc": "Time Limit (ms)",
         "type": "int",
         "default": 5000,
-        "param": "QList<QVariant> {1,3600000}",
+        "param": "QVariantList {1,3600000}",
         "tip": "The time limit when executing the program.\nThe program will be killed if it doesn't terminate in the time limit."
     },
     {
         "name": "Output Length Limit",
         "type": "int",
         "default": 500000,
-        "param": "QList<QVariant> {2,1000000000}",
+        "param": "QVariantList {2,1000000000}",
         "tip": "The maximum number of characters in the output of the program.\nThe program will be killed if either of its stdout or stderr is too long."
     },
     {
         "name": "Message Length Limit",
         "type": "int",
         "default": 20000,
-        "param": "QList<QVariant> {500,100000000}",
+        "param": "QVariantList {500,100000000}",
         "tip": "The maximum number of characters in each message in the top-right corner of the main window.\nThe message will be elided if it's too long."
     },
     {
         "name": "HTML Diff Viewer Length Limit",
         "type": "int",
         "default": 50000,
-        "param": "QList<QVariant> {2,100000000}",
+        "param": "QVariantList {2,100000000}",
         "tip": "The maximum number of characters in the HTML Diff Viewer.\nThe Diff Viewer will fall back to plain text if either of the output or the expected output is too long."
     },
     {
         "name": "Open File Length Limit",
         "type": "int",
         "default": 20000,
-        "param": "QList<QVariant> {2,100000000}",
+        "param": "QVariantList {2,100000000}",
         "tip": "The maximum number of characters in a source file to open.\nA source file won't be opened if it's too long."
     },
     {
         "name": "Load Test Case File Length Limit",
         "type": "int",
         "default": 500000,
-        "param": "QList<QVariant> {2,1000000000}",
+        "param": "QVariantList {2,1000000000}",
         "tip": "The maximum number of characters in a testcase file to load.\nA testcase file won't be loaded if it's too long."
     },
     {
@@ -536,7 +536,7 @@
         "type": "int",
         "desc": "Delay in Linting (ms)",
         "default": 2000,
-        "param": "QList<QVariant> {10, 3600000}",
+        "param": "QVariantList {10, 3600000}",
         "tip": "Delay in linting in miliseconds after last modification to code"
     },
     {
@@ -544,7 +544,7 @@
         "type": "int",
         "desc": "Delay in Linting (ms)",
         "default": 2000,
-        "param": "QList<QVariant> {10, 3600000}",
+        "param": "QVariantList {10, 3600000}",
         "tip": "Delay in linting in miliseconds after last modification to code"
     },
     {
@@ -552,7 +552,7 @@
         "type": "int",
         "desc": "Delay in Linting (ms)",
         "default": 2000,
-        "param": "QList<QVariant> {10, 3600000}",
+        "param": "QVariantList {10, 3600000}",
         "tip": "Delay in linting in miliseconds after last modification to code"
     },
     {
@@ -576,9 +576,9 @@
     },
     {
         "name": "Testcases Matching Rules",
-        "type": "QList<QVariant>",
-        "default": "QList<QVariant> { QStringList {\"(.*)\\\\.in\", \"\\\\1.ans\"}, QStringList {\"(.*)\\\\.in\", \"\\\\1.out\"}}",
-        "param": "QList<QVariant> { QStringList {\"Input Regex\", \"The regular expression for the input file name\"}, QStringList {\"Answer Replace\", \"The replace expression for the answer file name.\\nYou can use \\\"\\\\1\\\" for the first captured group.\"}}",
+        "type": "QVariantList",
+        "default": "QVariantList { QStringList {\"(.*)\\\\.in\", \"\\\\1.ans\"}, QStringList {\"(.*)\\\\.in\", \"\\\\1.out\"}}",
+        "param": "QVariantList { QStringList {\"Input Regex\", \"The regular expression which matches the whole input file name\"}, QStringList {\"Answer Replace\", \"The replace expression for the answer file name.\\nYou can use \\\"\\\\1\\\" for the first captured group.\"}}",
         "tip": "Pairs of regular expressions used when adding pairs of test cases from files. Each pair of regular expressions represents a test case."
     },
     {
@@ -595,9 +595,9 @@
     },
     {
         "name": "Default File Paths For Problem URLs",
-        "type": "QList<QVariant>",
-        "default": "QList<QVariant> {}",
-        "param": "QList<QVariant> { QStringList {\"Problem URL\", \"The regular expression for the problem URL\"}, QStringList {\"File Path\", \"The replace expression for the file path, without file name suffix.\\nYou can use \\\"\\\\1\\\" for the first captured group.\"}}",
+        "type": "QVariantList",
+        "default": "QVariantList {}",
+        "param": "QVariantList { QStringList {\"Problem URL\", \"The regular expression which matches a part of the problem URL\"}, QStringList {\"File Path\", \"The replace expression for the file path, without file name suffix.\\nYou can use \\\"\\\\1\\\" for the first captured group.\"}}",
         "tip": "The default file path used when saving a new file while the problem URL is set"
     }
 ]

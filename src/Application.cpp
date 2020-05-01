@@ -21,11 +21,14 @@
 #include "mainwindow.hpp"
 #include <QApplication>
 #include <QCommandLineParser>
+#include <QDir>
+#include <QFileInfo>
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QProgressDialog>
 #include <QTextStream>
+#include <generated/version.hpp>
 #include <singleapplication.h>
 
 int Application::main(int argc, char *argv[])

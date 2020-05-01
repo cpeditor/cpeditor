@@ -18,20 +18,22 @@
 #ifndef STRINGLISTSITEM_HPP
 #define STRINGLISTSITEM_HPP
 
-#include <QHBoxLayout>
-#include <QPushButton>
-#include <QTableWidget>
-#include <QVBoxLayout>
+#include <QWidget>
+
+class QHBoxLayout;
+class QPushButton;
+class QTableWidget;
+class QVBoxLayout;
 
 class StringListsItem : public QWidget
 {
     Q_OBJECT
 
   public:
-    explicit StringListsItem(const QList<QVariant> &cols, QWidget *parent = nullptr);
+    explicit StringListsItem(const QVariantList &cols, QWidget *parent = nullptr);
 
-    void setStringLists(const QList<QVariant> &val);
-    QList<QVariant> getStringLists();
+    void setStringLists(const QVariantList &val);
+    QVariantList getStringLists();
 
   signals:
     void valueChanged();

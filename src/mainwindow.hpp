@@ -18,31 +18,44 @@
 #ifndef MAINWINDOW_HPP
 #define MAINWINDOW_HPP
 
-#include "Core/Checker.hpp"
-#include "Core/Compiler.hpp"
-#include "Core/Runner.hpp"
-#include "Extensions/CFTool.hpp"
-#include "Extensions/ClangFormatter.hpp"
-#include "Extensions/CompanionServer.hpp"
-#include "Telemetry/UpdateNotifier.hpp"
-#include "Widgets/TestCases.hpp"
-#include <QCodeEditor>
-#include <QFile>
-#include <QFileSystemWatcher>
-#include <QLabel>
 #include <QMainWindow>
-#include <QPushButton>
-#include <QShortcut>
-#include <QSplitter>
-#include <QTemporaryDir>
-#include <generated/version.hpp>
 
-QT_BEGIN_NAMESPACE
-namespace Ui
+class MessageLogger;
+class QCodeEditor;
+class QFileSystemWatcher;
+class QPushButton;
+class QSplitter;
+class QTemporaryDir;
+
+QT_BEGIN_NAMESPACE namespace Ui
 {
-class MainWindow;
+    class MainWindow;
 }
 QT_END_NAMESPACE
+
+namespace Core
+{
+class Checker;
+class Compiler;
+class Runner;
+} // namespace Core
+
+namespace Extensions
+{
+class CFTool;
+class ClangFormatter;
+struct CompanionData;
+} // namespace Extensions
+
+namespace Telemetry
+{
+class UpdateNotifier;
+}
+
+namespace Widgets
+{
+class TestCases;
+}
 
 class MainWindow : public QMainWindow
 {
@@ -55,7 +68,7 @@ class MainWindow : public QMainWindow
         QString filePath, savedText, problemURL, editorText, language;
         int editorCursor, editorAnchor, horizontalScrollBarValue, verticalScrollbarValue, untitledIndex, checkerIndex;
         QStringList input, expected, customCheckers;
-        QList<QVariant> testcasesIsShow;
+        QVariantList testcasesIsShow;
 
         EditorStatus(){};
 
@@ -182,7 +195,7 @@ class MainWindow : public QMainWindow
     QTemporaryDir *tmpDir = nullptr;
     AfterCompile afterCompile = Nothing;
 
-    MessageLogger log;
+    MessageLogger *log = nullptr;
 
     int untitledIndex;
     QString problemURL;

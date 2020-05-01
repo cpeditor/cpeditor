@@ -18,9 +18,11 @@
 #ifndef TESTCASEEDIT_HPP
 #define TESTCASEEDIT_HPP
 
-#include "Core/MessageLogger.hpp"
 #include <QPlainTextEdit>
-#include <QPropertyAnimation>
+
+class MessageLogger;
+class QPropertyAnimation;
+
 namespace Widgets
 {
 class TestCaseEdit : public QPlainTextEdit

@@ -33,6 +33,20 @@ add_subdirectory(third_party/QtFindReplaceDialog/dialogs)
 
 add_subdirectory(third_party/lsp-cpp)
 
+IF(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/.git)
+  FIND_PACKAGE(Git)
+  IF(GIT_FOUND)
+    EXECUTE_PROCESS(
+      COMMAND ${GIT_EXECUTABLE} rev-parse --short HEAD
+      WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}"
+      OUTPUT_VARIABLE "GIT_COMMIT_HASH"
+      ERROR_QUIET
+      OUTPUT_STRIP_TRAILING_WHITESPACE)
+    MESSAGE( STATUS "Git commit hash: ${GIT_COMMIT_HASH}")
+  ENDIF(GIT_FOUND)
+ENDIF(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/.git)
+
+configure_file(cmake/gitsha.hpp.in ${CMAKE_BINARY_DIR}/generated/gitsha.hpp)
 configure_file(cmake/version.hpp.in ${CMAKE_BINARY_DIR}/generated/version.hpp)
 configure_file(cmake/aur/PKGBUILD.in ${CMAKE_BINARY_DIR}/aur/PKGBUILD)
 configure_file(cmake/aur/.SRCINFO.in ${CMAKE_BINARY_DIR}/aur/.SRCINFO)
@@ -42,20 +56,6 @@ add_custom_command(OUTPUT ${CMAKE_BINARY_DIR}/generated/SettingsHelper.hpp ${CMA
                    WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
                    DEPENDS ${PROJECT_SOURCE_DIR}/src/Settings/settings.json ${PROJECT_SOURCE_DIR}/tools/genSettings.py)
 set_property(SOURCE ${CMAKE_BINARY_DIR}/generated/SettingsHelper.hpp ${CMAKE_BINARY_DIR}/generated/SettingsInfo.hpp PROPERTY SKIP_AUTOGEN ON)
-
-IF(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/.git)
-  FIND_PACKAGE(Git)
-  IF(GIT_FOUND)
-    EXECUTE_PROCESS(
-      COMMAND ${GIT_EXECUTABLE} rev-parse --short HEAD
-      WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}"
-      OUTPUT_VARIABLE "COMMIT_HASH"
-      ERROR_QUIET
-      OUTPUT_STRIP_TRAILING_WHITESPACE)
-    add_definitions(-DGIT_COMMIT_HASH="${COMMIT_HASH}")
-    MESSAGE( STATUS "Git commit hash: ${COMMIT_HASH}")
-  ENDIF(GIT_FOUND)
-ENDIF(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/.git)
 
 add_executable(cpeditor
     ${GUI_TYPE}
@@ -142,6 +142,7 @@ add_executable(cpeditor
     ui/mainwindow.ui
     ui/appwindow.ui
 
+    ${CMAKE_BINARY_DIR}/generated/gitsha.hpp
     ${CMAKE_BINARY_DIR}/generated/version.hpp
     ${CMAKE_BINARY_DIR}/generated/SettingsHelper.hpp
     ${CMAKE_BINARY_DIR}/generated/SettingsInfo.hpp

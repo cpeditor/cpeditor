@@ -19,12 +19,15 @@
 #define CODESNIPPETSPAGE_HPP
 
 #include "Settings/PreferencesPage.hpp"
-#include <QCodeEditor>
-#include <QListWidget>
 #include <QMap>
-#include <QMenu>
-#include <QSplitter>
-#include <QStackedWidget>
+
+class QCodeEditor;
+class QLineEdit;
+class QListWidget;
+class QListWidgetItem;
+class QMenu;
+class QSplitter;
+class QStackedWidget;
 
 class CodeSnippetsPage : public PreferencesPage
 {

@@ -18,6 +18,7 @@
 #include "Core/MessageLogger.hpp"
 #include "Core/EventLogger.hpp"
 #include <QDateTime>
+#include <QTextBrowser>
 #include <generated/SettingsHelper.hpp>
 
 void MessageLogger::setContainer(QTextBrowser *container)

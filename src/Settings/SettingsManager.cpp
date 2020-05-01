@@ -25,8 +25,8 @@
 #include <QStandardPaths>
 #include <generated/SettingsInfo.hpp>
 
-Settings *SettingsManager::cur = nullptr;
-Settings *SettingsManager::def = nullptr;
+QVariantMap *SettingsManager::cur = nullptr;
+QVariantMap *SettingsManager::def = nullptr;
 
 static QStringList configFileLocation = {"$AC/cp_editor_settings.ini", "$H/.cp_editor_settings.ini",
                                          "$H/cp_editor_settings.ini"};
@@ -50,8 +50,8 @@ void SettingsManager::init()
         }
     }
 
-    cur = new Settings();
-    def = new Settings();
+    cur = new QVariantMap();
+    def = new QVariantMap();
 
     // default settings
     for (const SettingInfo &si : settingInfo)

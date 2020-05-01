@@ -3,8 +3,4 @@
 
 #define APP_VERSION "@PROJECT_VERSION@"
 
-#ifndef GIT_COMMIT_HASH
-#define GIT_COMMIT_HASH "Unknown"
-#endif
-
 #endif

@@ -17,8 +17,13 @@
 
 #include "Widgets/DiffViewer.hpp"
 #include "Core/EventLogger.hpp"
+#include "Core/MessageLogger.hpp"
 #include "diff_match_patch.h"
+#include <QHBoxLayout>
+#include <QLabel>
 #include <QScrollBar>
+#include <QTextEdit>
+#include <QVBoxLayout>
 #include <generated/SettingsHelper.hpp>
 
 namespace Widgets

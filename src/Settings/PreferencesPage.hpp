@@ -31,11 +31,15 @@
 #ifndef PREFERENCESPAGE_HPP
 #define PREFERENCESPAGE_HPP
 
-#include "Settings/ValueWrapper.hpp"
-#include <QLabel>
-#include <QPushButton>
-#include <QScrollArea>
-#include <QVBoxLayout>
+#include <QWidget>
+
+class QHBoxLayout;
+class QLabel;
+class QLayoutItem;
+class QPushButton;
+class QScrollArea;
+class QVBoxLayout;
+class ValueWidget;
 
 class PreferencesPage : public QWidget
 {

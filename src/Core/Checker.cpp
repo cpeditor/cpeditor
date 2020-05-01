@@ -16,9 +16,13 @@
  */
 
 #include "Core/Checker.hpp"
+#include "Core/Compiler.hpp"
 #include "Core/EventLogger.hpp"
+#include "Core/MessageLogger.hpp"
+#include "Core/Runner.hpp"
 #include "Util.hpp"
 #include <QFile>
+#include <QTemporaryDir>
 #include <generated/SettingsHelper.hpp>
 
 namespace Core
