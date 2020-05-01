@@ -23,9 +23,11 @@
 #ifndef PREFERENCESHOMEPAGE_HPP
 #define PREFERENCESHOMEPAGE_HPP
 
-#include <QLabel>
-#include <QPushButton>
-#include <QVBoxLayout>
+#include <QWidget>
+
+class QLabel;
+class QPushButton;
+class QVBoxLayout;
 
 class PreferencesHomePage : public QWidget
 {

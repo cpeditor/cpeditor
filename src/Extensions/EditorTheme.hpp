@@ -18,7 +18,7 @@
 #ifndef EDITORTHEME_H
 #define EDITORTHEME_H
 
-#include <QSyntaxStyle>
+class QSyntaxStyle;
 
 namespace Extensions
 {

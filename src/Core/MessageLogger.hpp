@@ -21,7 +21,9 @@
 
 #ifndef MESSAGELOGGER_HPP
 #define MESSAGELOGGER_HPP
-#include <QTextBrowser>
+
+class QString;
+class QTextBrowser;
 
 class MessageLogger
 {

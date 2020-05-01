@@ -23,8 +23,9 @@
 #ifndef EVENTLOGGER_HPP
 #define EVENTLOGGER_HPP
 
-#include <QFile>
 #include <QTextStream>
+
+class QFile;
 
 /**
  * There are four log levels:

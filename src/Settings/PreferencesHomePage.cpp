@@ -16,7 +16,10 @@
  */
 
 #include "Settings/PreferencesHomePage.hpp"
+#include <QLabel>
 #include <QPixmap>
+#include <QPushButton>
+#include <QVBoxLayout>
 #include <generated/version.hpp>
 
 PreferencesHomePage::PreferencesHomePage(QWidget *parent) : QWidget(parent)

@@ -25,15 +25,20 @@
 #ifndef PREFERENCESWINDOW_HPP
 #define PREFERENCESWINDOW_HPP
 
-#include "Settings/PreferencesHomePage.hpp"
-#include "Settings/PreferencesPage.hpp"
-#include <QLineEdit>
 #include <QMainWindow>
 #include <QMap>
-#include <QShortcut>
-#include <QSplitter>
-#include <QStackedWidget>
-#include <QTreeWidget>
+
+class PreferencesHomePage;
+class PreferencesPage;
+class QHBoxLayout;
+class QLineEdit;
+class QPushButton;
+class QShortcut;
+class QSplitter;
+class QStackedWidget;
+class QTreeWidget;
+class QTreeWidgetItem;
+class QVBoxLayout;
 
 class PreferencesWindow : public QMainWindow
 {

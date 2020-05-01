@@ -17,7 +17,10 @@
 
 #include "Settings/ShortcutItem.hpp"
 #include <QApplication>
+#include <QHBoxLayout>
+#include <QKeySequenceEdit>
 #include <QStyle>
+#include <QToolButton>
 
 ShortcutItem::ShortcutItem(QWidget *parent) : QWidget(parent)
 {

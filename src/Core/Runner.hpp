@@ -25,9 +25,10 @@
 #ifndef RUNNER_HPP
 #define RUNNER_HPP
 
-#include <QElapsedTimer>
 #include <QProcess>
-#include <QTimer>
+
+class QElapsedTimer;
+class QTimer;
 
 namespace Core
 {

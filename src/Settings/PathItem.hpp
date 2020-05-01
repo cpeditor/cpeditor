@@ -22,9 +22,11 @@
 #ifndef PATHITEM_HPP
 #define PATHITEM_HPP
 
-#include <QHBoxLayout>
-#include <QLineEdit>
-#include <QToolButton>
+#include <QWidget>
+
+class QHBoxLayout;
+class QLineEdit;
+class QToolButton;
 
 class PathItem : public QWidget
 {

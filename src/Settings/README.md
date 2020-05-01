@@ -123,9 +123,9 @@ The first ui in the list is the default ui.
 
     Default value: `0`
 
-    param(`QList<QVariant>`): The range.
+    param(`QVariantList`): The range.
 
-    e.g. ```"param": "QList<QVariant> {1, 100}"```
+    e.g. ```"param": "QVariantList {1, 100}"```
 
     * `QSpinBox`
 
@@ -145,7 +145,7 @@ The first ui in the list is the default ui.
 
         Widget for font choosing.
 
-* `QList<QVariant>`
+* `QVariantList`
 
     * `StringListsItem`
 
@@ -153,9 +153,9 @@ The first ui in the list is the default ui.
 
         Suppose the number of of `QString`s in a single `QStringList` is `<col>`.
 
-        value: `QList<QVairant>`, each the element of `value` is a `QStringList` with `<col>` `QString`s.
+        value: `QVariantList`, each the element of `value` is a `QStringList` with `<col>` `QString`s.
 
-        param: The param describes the header and `<col>`. It's a `QList<QVairant>` with `<col>` elements, and each of the elements is a `QStringList` with two `QString`s, the first one is the title and the second one is the tooltip.
+        param: The param describes the header and `<col>`. It's a `QVariantList` with `<col>` elements, and each of the elements is a `QStringList` with two `QString`s, the first one is the title and the second one is the tooltip.
 
 ### Adding Settings
 

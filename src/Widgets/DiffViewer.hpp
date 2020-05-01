@@ -18,12 +18,12 @@
 #ifndef DIFFVIEWER_HPP
 #define DIFFVIEWER_HPP
 
-#include "Core/MessageLogger.hpp"
-#include <QHBoxLayout>
-#include <QLabel>
 #include <QMainWindow>
-#include <QTextEdit>
-#include <QVBoxLayout>
+
+class QHBoxLayout;
+class QVBoxLayout;
+class QLabel;
+class QTextEdit;
 
 namespace Widgets
 {

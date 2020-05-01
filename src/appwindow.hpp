@@ -19,17 +19,32 @@
 #define APPWINDOW_HPP
 
 #include <QMainWindow>
-
-#include "Extensions/LanguageServer.hpp"
-#include "Settings/PreferencesWindow.hpp"
-#include "Telemetry/UpdateNotifier.hpp"
-#include "mainwindow.hpp"
 #include <QSystemTrayIcon>
-#include <findreplacedialog.h>
+
+class FindReplaceDialog;
+class MainWindow;
+class MessageLogger;
+class PreferencesWindow;
+class QMenu;
+class QShortcut;
+class QSplitter;
+class QSystemTrayIcon;
 
 namespace Ui
 {
 class AppWindow;
+}
+
+namespace Extensions
+{
+class CompanionServer;
+struct CompanionData;
+class LanguageServer;
+} // namespace Extensions
+
+namespace Telemetry
+{
+class UpdateNotifier;
 }
 
 class AppWindow : public QMainWindow

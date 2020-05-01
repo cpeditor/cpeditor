@@ -19,27 +19,7 @@
 #define VALUEWRAPPER_HPP
 
 #include <QVariant>
-
-// bool
-#include <QCheckBox>
-
-// QString
-#include "Settings/PathItem.hpp"
-#include "Settings/ShortcutItem.hpp"
-#include <QComboBox>
-#include <QLineEdit>
-#include <QPlainTextEdit>
-
-// int
-#include <QScrollBar>
-#include <QSlider>
-#include <QSpinBox>
-
-// QFont
-#include "Settings/FontItem.hpp"
-
-// QList<QVariant>
-#include "Settings/StringListsItem.hpp"
+#include <QWidget>
 
 class ValueWidget : public QObject
 {
@@ -181,17 +161,17 @@ struct FontItemWrapper : public Wrapper<QFont>
     virtual void set(QFont f) override;
 };
 
-struct StringListsItemWrapper : public Wrapper<QList<QVariant>>
+struct StringListsItemWrapper : public Wrapper<QVariantList>
 {
     virtual void init(QWidget *parent, QVariant param = QVariant()) override;
-    virtual QList<QVariant> get() override;
-    virtual void set(QList<QVariant> sl) override;
+    virtual QVariantList get() override;
+    virtual void set(QVariantList sl) override;
 };
 
 Wrapper<bool> *createBoolWrapper(QString type);
 Wrapper<QString> *createStringWrapper(QString type);
 Wrapper<int> *createIntWrapper(QString type);
 Wrapper<QFont> *createFontWrapper(QString type);
-Wrapper<QList<QVariant>> *createStringListsWrapper(QString type);
+Wrapper<QVariantList> *createStringListsWrapper(QString type);
 
 #endif

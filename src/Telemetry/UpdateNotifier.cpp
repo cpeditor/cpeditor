@@ -20,6 +20,10 @@
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QMessageBox>
+#include <QtNetwork/QNetworkAccessManager>
+#include <QtNetwork/QNetworkReply>
+#include <QtNetwork/QNetworkRequest>
+#include <generated/version.hpp>
 
 namespace Telemetry
 {
@@ -27,12 +31,14 @@ UpdateNotifier::UpdateNotifier(bool useBeta)
 {
     LOG_INFO(BOOL_INFO_OF(useBeta));
     manager = new QNetworkAccessManager();
+    request = new QNetworkRequest();
     QObject::connect(manager, SIGNAL(finished(QNetworkReply *)), this, SLOT(managerFinished(QNetworkReply *)));
     beta = useBeta;
 }
 UpdateNotifier::~UpdateNotifier()
 {
     delete manager;
+    delete request;
 }
 void UpdateNotifier::setBeta(bool value)
 {
@@ -45,8 +51,8 @@ void UpdateNotifier::checkUpdate(bool force)
     LOG_INFO("Forceful update : " << force);
 
     this->force = force;
-    request.setUrl(QUrl("https://api.github.com/repos/cpeditor/cpeditor/releases"));
-    manager->get(request);
+    request->setUrl(QUrl("https://api.github.com/repos/cpeditor/cpeditor/releases"));
+    manager->get(*request);
 }
 
 bool compareVersion(QString const &a, QString const &b)

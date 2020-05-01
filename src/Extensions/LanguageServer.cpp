@@ -16,14 +16,13 @@
  */
 #include "LanguageServer.hpp"
 #include "Core/EventLogger.hpp"
-#include <QDebug>
+#include "Core/MessageLogger.hpp"
+#include "generated/SettingsHelper.hpp"
+#include <LSPClient.hpp>
 #include <QDir>
 #include <QFileInfo>
 #include <QJsonArray>
 #include <QJsonDocument>
-#include <QJsonObject>
-#include <QProcess>
-#include <QString>
 #include <Util.hpp>
 
 namespace Extensions

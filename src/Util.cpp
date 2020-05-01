@@ -17,8 +17,10 @@
 
 #include "Util.hpp"
 #include "Core/EventLogger.hpp"
+#include "Core/MessageLogger.hpp"
 #include "Extensions/EditorTheme.hpp"
 #include <QCXXHighlighter>
+#include <QCodeEditor>
 #include <QDir>
 #include <QFile>
 #include <QFileInfo>
