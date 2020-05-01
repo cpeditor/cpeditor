@@ -16,9 +16,11 @@
  */
 
 #include <Application.hpp>
+#include <singleapplication.h>
 
 int main(int argc, char *argv[])
 {
+    SingleApplication qapp(argc, argv, true);
     Application app;
     return app.main(argc, argv);
 }

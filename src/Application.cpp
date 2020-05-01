@@ -33,7 +33,9 @@
 
 int Application::main(int argc, char *argv[])
 {
-    SingleApplication app(argc, argv, true);
+    auto sApp = qobject_cast<SingleApplication *>(qApp);
+    Q_ASSERT(sApp != nullptr);
+
     SingleApplication::setApplicationName("CP Editor");
     SingleApplication::setApplicationVersion(APP_VERSION);
     QApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
@@ -64,7 +66,7 @@ int Application::main(int argc, char *argv[])
          {"no-hot-exit", "Do not load hot exit in this session. You won't be able to load the last session again."}});
     parser.setOptionsAfterPositionalArgumentsMode(QCommandLineParser::ParseAsOptions);
     parser.setSingleDashWordOptionMode(QCommandLineParser::ParseAsLongOptions);
-    parser.process(app);
+    parser.process(*qApp);
 
 #define GETSET(x) bool x = parser.isSet(#x)
     GETSET(cpp);
@@ -75,7 +77,7 @@ int Application::main(int argc, char *argv[])
     bool noHotExit = parser.isSet("no-hot-exit");
     bool shouldDumpTostderr = parser.isSet("verbose");
 
-    auto instance = app.instanceId();
+    auto instance = sApp->instanceId();
     Core::Log::init(instance, shouldDumpTostderr);
     LOG_INFO(INFO_OF(instance));
 
@@ -118,7 +120,7 @@ int Application::main(int argc, char *argv[])
 
         LOG_INFO("Path extracted as : " << path);
 
-        if (/*!parser.isSet("new") &&*/ app.isSecondary())
+        if (/*!parser.isSet("new") &&*/ sApp->isSecondary())
         {
             QJsonObject json;
             json["type"] = "contest";
@@ -129,7 +131,7 @@ int Application::main(int argc, char *argv[])
             TOJSON(number);
             TOJSON(path);
 #undef TOJSON
-            if (app.sendMessage("AAAAAAAAAAAAAAAAAAAANOLOSTDATA" + QJsonDocument(json).toBinaryData()))
+            if (sApp->sendMessage("AAAAAAAAAAAAAAAAAAAANOLOSTDATA" + QJsonDocument(json).toBinaryData()))
             {
                 LOG_INFO("This is secondary application. Sending to primary instance the binary data : " +
                          QJsonDocument(json).toJson(QJsonDocument::Compact));
@@ -144,10 +146,10 @@ int Application::main(int argc, char *argv[])
 
         AppWindow w(cpp, java, python, noHotExit, number, path);
         LOG_INFO("Launched window connecting this window to onReceiveMessage()");
-        QObject::connect(&app, &SingleApplication::receivedMessage, &w, &AppWindow::onReceivedMessage);
+        QObject::connect(sApp, &SingleApplication::receivedMessage, &w, &AppWindow::onReceivedMessage);
         LOG_INFO("Showing the application window and beginning the event loop");
         w.show();
-        return app.exec();
+        return qApp->exec();
     }
     else
     {
@@ -173,7 +175,7 @@ int Application::main(int argc, char *argv[])
             LOG_INFO("Path is : " << path);
         }
 
-        if (/*!parser.isSet("new") &&*/ app.isSecondary())
+        if (/*!parser.isSet("new") &&*/ sApp->isSecondary())
         {
             QJsonObject json;
             json["type"] = "normal";
@@ -184,7 +186,7 @@ int Application::main(int argc, char *argv[])
             TOJSON(python);
 #undef TOJSON
             json["paths"] = QJsonArray::fromStringList(args);
-            if (app.sendMessage("AAAAAAAAAAAAAAAAAAAANOLOSTDATA" + QJsonDocument(json).toBinaryData()))
+            if (sApp->sendMessage("AAAAAAAAAAAAAAAAAAAANOLOSTDATA" + QJsonDocument(json).toBinaryData()))
             {
                 LOG_INFO("This is secondary application. Sending to primary instance the data : "
                          << QJsonDocument(json).toJson(QJsonDocument::Compact));
@@ -198,11 +200,11 @@ int Application::main(int argc, char *argv[])
 
         AppWindow w(depth, cpp, java, python, noHotExit, args);
         LOG_INFO("Launched window connecting this window to onReceiveMessage()");
-        QObject::connect(&app, &SingleApplication::receivedMessage, &w, &AppWindow::onReceivedMessage);
+        QObject::connect(sApp, &SingleApplication::receivedMessage, &w, &AppWindow::onReceivedMessage);
         LOG_INFO("Showing the application window and beginning the event loop");
 
         w.show();
-        return app.exec();
+        return qApp->exec();
     }
 }
 
