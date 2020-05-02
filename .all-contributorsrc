@@ -1,0 +1,16 @@
+{
+  "files": [
+    "README.md",
+    "README_zh-CN.md",
+    "README_ru-RU.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [],
+  "contributorsPerLine": 7,
+  "projectName": "cpeditor",
+  "projectOwner": "cpeditor",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "skipCi": false
+}
