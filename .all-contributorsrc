@@ -6,7 +6,22 @@
   ],
   "imageSize": 100,
   "commit": false,
-  "contributors": [],
+  "contributors": [
+    {
+      "login": "ouuan",
+      "name": "Yufan You",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/30581822?v=4",
+      "profile": "https://ouuan.github.io",
+      "contributions": [
+        "maintenance",
+        "code",
+        "doc",
+        "translation",
+        "ideas",
+        "bug"
+      ]
+    }
+  ],
   "contributorsPerLine": 7,
   "projectName": "cpeditor",
   "projectOwner": "cpeditor",
