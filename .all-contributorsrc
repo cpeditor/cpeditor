@@ -104,6 +104,15 @@
       "contributions": [
         "ideas"
       ]
+    },
+    {
+      "login": "nikhil-sarda",
+      "name": "Nikhil Sarda",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/51774873?v=4",
+      "profile": "https://github.com/nikhil-sarda",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 5,
