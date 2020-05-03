@@ -6,7 +6,7 @@ These rules apply to CP Editor since v6.0. The versions before v6.0 may not sati
 
 Versioning of CP Editor is based on [Semantic Versioning](https://semver.org/), but no `-rc1`, `-beta`, `-stable` is included, so every version number must be strictly in the format `$X.$Y.$Z`, where `$X`, `$Y`, and `$Z` are all non-negative integers without leading zeros.
 
-The version numbers must be continuous, i.e. no directly from `6.1.2` to `6.3.1` without `6.2.1` is allowed.
+The version numbers must be continuous, i.e. no directly from `6.1.2` to `6.3.2` without `6.2.1` is allowed.
 
 ### Release cycle
 
