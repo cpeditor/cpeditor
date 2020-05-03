@@ -113,6 +113,15 @@
       "contributions": [
         "bug"
       ]
+    },
+    {
+      "login": "GoToCoding",
+      "name": "Ruzal Ibragimov",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/16542586?v=4",
+      "profile": "https://github.com/GoToCoding",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 5,
