@@ -113,6 +113,15 @@
       "contributions": [
         "bug"
       ]
+    },
+    {
+      "login": "ahmfuad",
+      "name": "A. H. M Fuad",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/42442668?v=4",
+      "profile": "http://www.agamiramra.com",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 5,
