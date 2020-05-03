@@ -215,6 +215,15 @@
       "contributions": [
         "bug"
       ]
+    },
+    {
+      "login": "WZKSDN",
+      "name": "nocriz",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/14256391?v=4",
+      "profile": "https://github.com/WZKSDN",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 5,
