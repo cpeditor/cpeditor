@@ -33,6 +33,18 @@
         "ideas",
         "bug"
       ]
+    },
+    {
+      "login": "neko-para",
+      "name": "liaohy",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/26452623?v=4",
+      "profile": "https://github.com/neko-para",
+      "contributions": [
+        "code",
+        "doc",
+        "translation",
+        "ideas"
+      ]
     }
   ],
   "contributorsPerLine": 7,
