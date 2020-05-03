@@ -84,9 +84,20 @@
         "ideas",
         "bug"
       ]
+    },
+    {
+      "login": "polyomino-24",
+      "name": "polyomino",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/20138086?v=4",
+      "profile": "https://github.com/polyomino-24",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 5,
+  "badgeTemplate": "[![All Contributors](https://img.shields.io/badge/all_contributors-<%= contributors.length %>-orange.svg)](#contributors-sparkles)",
+  "contributorTemplate": "<a href=\"https://github.com/<%= contributor.login %>\"><img src=\"<%= contributor.avatar_url %>\" width=\"<%= options.imageSize %>px;\" alt=\"\"/></a><br /><a href=\"<%= contributor.profile %>\"><sub><b><%= contributor.name %></b></sub></a><br /><%= contributions %>",
   "projectName": "cpeditor",
   "projectOwner": "cpeditor",
   "repoType": "github",
