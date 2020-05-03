@@ -73,6 +73,17 @@
         "code",
         "ideas"
       ]
+    },
+    {
+      "login": "testitem",
+      "name": "queen bee shuttle",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/19212916?v=4",
+      "profile": "https://github.com/testitem",
+      "contributions": [
+        "code",
+        "ideas",
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 7,
