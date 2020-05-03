@@ -28,6 +28,7 @@ CP Editor 是一个基于 Qt 的轻量级跨平台代码编辑器，专为算法
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 [![All Contributors](https://img.shields.io/badge/all_contributors-11-orange.svg)](#contributors-sparkles)
 =======
 [![All Contributors](https://img.shields.io/badge/all_contributors-9-orange.svg)](#contributors-sparkles)
@@ -74,13 +75,15 @@ CP Editor 是一个基于 Qt 的轻量级跨平台代码编辑器，专为算法
 =======
 [![All Contributors](https://img.shields.io/badge/all_contributors-11-orange.svg)](#contributors-sparkles)
 >>>>>>> origin/all-contributors/add-m3h3d1
+=======
+[![All Contributors](https://img.shields.io/badge/all_contributors-8-orange.svg)](#contributors-sparkles)
+>>>>>>> origin/all-contributors/add-polyomino-24
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/ce0f297f31f74485b0d340949d08d605)](https://www.codacy.com/gh/cpeditor/cpeditor)
 [![GitHub All Releases](https://img.shields.io/github/downloads/cpeditor/cpeditor/total?label=downloads%40all)](https://github.com/cpeditor/cpeditor/releases)
 [![Slack Workspace](https://img.shields.io/badge/join-slack-success)](https://join.slack.com/t/cpeditor/shared_invite/zt-dke1v9xd-zr~QeXJhCzbM9FFOjx6sMA)
 [![QQ Group](https://img.shields.io/badge/join-QQ%20chat-success)](https://jq.qq.com/?_wv=1027&k=50eq8yF)
 [![Help wanted issues](https://img.shields.io/github/issues/cpeditor/cpeditor/help%20wanted)](https://github.com/cpeditor/cpeditor/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22)
-[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg)](#贡献者们-sparkles)
 
 |  类型  |                            分支                            |                                                                                                        构建                                                                                                        |                                                                     下载量                                                                     |                                                         AUR                                                         |
 | :----: | :--------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------: |
@@ -141,10 +144,14 @@ CP Editor 是一个基于 Qt 的轻量级跨平台代码编辑器，专为算法
 本项目同时在 [GitHub](https://github.com/cpeditor/cpeditor) 和 [Gitee](https://gitee.com/ouuan/cpeditor) 上进行托管，其中 Gitee 仓库仅作为镜像使用，不保证总是与 GitHub 仓库同步，不开放 Issues / Pull Requests，如有需要请移步 [GitHub](https://github.com/cpeditor/cpeditor)，也可以进入 [QQ 群](https://jq.qq.com/?_wv=1027&k=50eq8yF) (1081647997) 来交流讨论。
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 ## Contributors :sparkles:
 =======
 ## 贡献者们 :sparkles:
 >>>>>>> origin/all-contributors/add-ouuan
+=======
+## Contributors :sparkles:
+>>>>>>> origin/all-contributors/add-polyomino-24
 
 感谢下面这些人的贡献：（[emoji key](https://allcontributors.org/docs/en/emoji-key)）
 
@@ -153,6 +160,7 @@ CP Editor 是一个基于 Qt 的轻量级跨平台代码编辑器，专为算法
 <!-- markdownlint-disable -->
 <table>
   <tr>
+<<<<<<< HEAD
 <<<<<<< HEAD
     <td align="center">
       <a href="https://github.com/ouuan"><img src="https://avatars2.githubusercontent.com/u/30581822?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/ouuan"><sub><b>Yufan You</b></sub></a><br /><a href="#maintenance-ouuan" title="Maintenance">🚧</a> <a href="https://github.com/cpeditor/cpeditor/commits?author=ouuan" title="Code">💻</a> <a href="https://github.com/cpeditor/cpeditor/commits?author=ouuan" title="Documentation">📖</a> <a href="#translation-ouuan" title="Translation">🌍</a> <a href="#ideas-ouuan" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/cpeditor/cpeditor/issues?q=author%3Aouuan" title="Bug reports">🐛</a> <a href="https://github.com/cpeditor/cpeditor/pulls?q=is%3Apr+reviewed-by%3Aouuan" title="Reviewed Pull Requests">👀</a>
@@ -283,6 +291,18 @@ CP Editor 是一个基于 Qt 的轻量级跨平台代码编辑器，专为算法
 =======
     <td align="center"><a href="https://github.com/ouuan"><img src="https://avatars2.githubusercontent.com/u/30581822?v=4" width="100px;" alt=""/><br /><sub><b>Yufan You</b></sub></a><br /><a href="#maintenance-ouuan" title="Maintenance">🚧</a> <a href="https://github.com/cpeditor/cpeditor/commits?author=ouuan" title="Code">💻</a> <a href="https://github.com/cpeditor/cpeditor/commits?author=ouuan" title="Documentation">📖</a> <a href="#translation-ouuan" title="Translation">🌍</a> <a href="#ideas-ouuan" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/cpeditor/cpeditor/issues?q=author%3Aouuan" title="Bug reports">🐛</a></td>
 >>>>>>> origin/all-contributors/add-ouuan
+=======
+    <td align="center"><a href="https://github.com/ouuan"><img src="https://avatars2.githubusercontent.com/u/30581822?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/ouuan"><sub><b>Yufan You</b></sub></a><br />maintenance,code,doc,translation,ideas,bug</td>
+    <td align="center"><a href="https://github.com/coder3101"><img src="https://avatars2.githubusercontent.com/u/22212259?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/coder3101"><sub><b>Ashar</b></sub></a><br />maintenance,code,doc,ideas,bug</td>
+    <td align="center"><a href="https://github.com/neko-para"><img src="https://avatars1.githubusercontent.com/u/26452623?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/neko-para"><sub><b>liaohy</b></sub></a><br />code,doc,translation,ideas</td>
+    <td align="center"><a href="https://github.com/sadykhzadeh"><img src="https://avatars1.githubusercontent.com/u/51178055?v=4" width="100px;" alt=""/></a><br /><a href="http://sadykhzadeh.github.io"><sub><b>Azer Sadykhzadeh</b></sub></a><br />translation</td>
+    <td align="center"><a href="https://github.com/IZOBRETATEL777"><img src="https://avatars0.githubusercontent.com/u/32099652?v=4" width="100px;" alt=""/></a><br /><a href="http://izobretatelsoft.moy.su/"><sub><b>IZOBRETATEL777</b></sub></a><br />translation</td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/Razdeep"><img src="https://avatars2.githubusercontent.com/u/32531173?v=4" width="100px;" alt=""/></a><br /><a href="https://www.linkedin.com/in/razdeeproychowdhury"><sub><b>Rajdeep Roy Chowdhury</b></sub></a><br />code,ideas</td>
+    <td align="center"><a href="https://github.com/testitem"><img src="https://avatars3.githubusercontent.com/u/19212916?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/testitem"><sub><b>queen bee shuttle</b></sub></a><br />code,ideas,bug</td>
+    <td align="center"><a href="https://github.com/polyomino-24"><img src="https://avatars0.githubusercontent.com/u/20138086?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/polyomino-24"><sub><b>polyomino</b></sub></a><br />doc</td>
+>>>>>>> origin/all-contributors/add-polyomino-24
   </tr>
 </table>
 
