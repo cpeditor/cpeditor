@@ -45,6 +45,15 @@
         "translation",
         "ideas"
       ]
+    },
+    {
+      "login": "sadykhzadeh",
+      "name": "Azer Sadykhzadeh",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/51178055?v=4",
+      "profile": "http://sadykhzadeh.github.io",
+      "contributions": [
+        "translation"
+      ]
     }
   ],
   "contributorsPerLine": 7,
