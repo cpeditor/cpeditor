@@ -90,8 +90,9 @@ The changelog of a GitHub Releases is a part of [CHANGELOG.md](CHANGELOG.md), us
 ### The complete workflow of making a new release
 
 1. Additional steps for creating a new MINOR version at the beginning of a release cycle:
-   1. Create a new branch `v$X.$Y` based on the master branch.
-   2. After creating the new branch, create a commit on the master branch which contains exactly the following:
+   1. Modify [.ci/STABLE_VERSION](../.ci/STABLE_VERSION) in master and the current beta branch (the next stable branch).
+   2. Create a new branch `v$X.$Y` based on the master branch.
+   3. After creating the new branch, create a commit on the master branch which contains exactly the following:
       - Change the version in [CMakeLists.txt](../CMakeLists.txt) to `$X.$(Y+1).0`.
       - Move the UNRELEASED changes to the changelog of `v$X.$Y` in [CHANGELOG.md](CHANGELOG.md).
       - The commit subject is `Start a new release cycle for v$X.$(Y+1)`.
