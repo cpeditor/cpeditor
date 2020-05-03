@@ -113,6 +113,15 @@
       "contributions": [
         "bug"
       ]
+    },
+    {
+      "login": "fedimser",
+      "name": "Dmytro Fedoriaka",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/14271071?v=4",
+      "profile": "http://fedimser.github.io",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 5,
