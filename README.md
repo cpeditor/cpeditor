@@ -84,6 +84,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="http://sadykhzadeh.github.io"><img src="https://avatars1.githubusercontent.com/u/51178055?v=4" width="100px;" alt=""/><br /><sub><b>Azer Sadykhzadeh</b></sub></a><br /><a href="#translation-sadykhzadeh" title="Translation">🌍</a></td>
     <td align="center"><a href="http://izobretatelsoft.moy.su/"><img src="https://avatars0.githubusercontent.com/u/32099652?v=4" width="100px;" alt=""/><br /><sub><b>IZOBRETATEL777</b></sub></a><br /><a href="#translation-IZOBRETATEL777" title="Translation">🌍</a></td>
     <td align="center"><a href="https://www.linkedin.com/in/razdeeproychowdhury"><img src="https://avatars2.githubusercontent.com/u/32531173?v=4" width="100px;" alt=""/><br /><sub><b>Rajdeep Roy Chowdhury</b></sub></a><br /><a href="https://github.com/cpeditor/cpeditor/commits?author=Razdeep" title="Code">💻</a> <a href="#ideas-Razdeep" title="Ideas, Planning, & Feedback">🤔</a></td>
+    <td align="center"><a href="https://github.com/testitem"><img src="https://avatars3.githubusercontent.com/u/19212916?v=4" width="100px;" alt=""/><br /><sub><b>queen bee shuttle</b></sub></a><br /><a href="https://github.com/cpeditor/cpeditor/commits?author=testitem" title="Code">💻</a> <a href="#ideas-testitem" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/cpeditor/cpeditor/issues?q=author%3Atestitem" title="Bug reports">🐛</a></td>
   </tr>
 </table>
 
