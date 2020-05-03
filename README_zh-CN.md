@@ -13,7 +13,7 @@ CP Editor 是一个基于 Qt 的轻量级跨平台代码编辑器，专为算法
 ---
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-9-orange.svg)](#contributors-sparkles)
+[![All Contributors](https://img.shields.io/badge/all_contributors-10-orange.svg)](#contributors-sparkles)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/ce0f297f31f74485b0d340949d08d605)](https://www.codacy.com/gh/cpeditor/cpeditor)
 [![GitHub All Releases](https://img.shields.io/github/downloads/cpeditor/cpeditor/total?label=downloads%40all)](https://github.com/cpeditor/cpeditor/releases)
@@ -116,6 +116,9 @@ CP Editor 是一个基于 Qt 的轻量级跨平台代码编辑器，专为算法
     </td>
     <td align="center">
       <a href="https://github.com/DarkWarrior703"><img src="https://avatars0.githubusercontent.com/u/56077342?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/DarkWarrior703"><sub><b>DarkWarrior703</b></sub></a><br /><a href="#ideas-DarkWarrior703" title="Ideas, Planning, & Feedback">🤔</a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/nikhil-sarda"><img src="https://avatars1.githubusercontent.com/u/51774873?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/nikhil-sarda"><sub><b>Nikhil Sarda</b></sub></a><br /><a href="https://github.com/cpeditor/cpeditor/issues?q=author%3Anikhil-sarda" title="Bug reports">🐛</a>
     </td>
   </tr>
 </table>
