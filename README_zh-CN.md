@@ -80,6 +80,7 @@ CP Editor 是一个基于 Qt 的轻量级跨平台代码编辑器，专为算法
 [![Slack Workspace](https://img.shields.io/badge/join-slack-success)](https://join.slack.com/t/cpeditor/shared_invite/zt-dke1v9xd-zr~QeXJhCzbM9FFOjx6sMA)
 [![QQ Group](https://img.shields.io/badge/join-QQ%20chat-success)](https://jq.qq.com/?_wv=1027&k=50eq8yF)
 [![Help wanted issues](https://img.shields.io/github/issues/cpeditor/cpeditor/help%20wanted)](https://github.com/cpeditor/cpeditor/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22)
+[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg)](#贡献者们-sparkles)
 
 |  类型  |                            分支                            |                                                                                                        构建                                                                                                        |                                                                     下载量                                                                     |                                                         AUR                                                         |
 | :----: | :--------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------: |
@@ -139,7 +140,11 @@ CP Editor 是一个基于 Qt 的轻量级跨平台代码编辑器，专为算法
 
 本项目同时在 [GitHub](https://github.com/cpeditor/cpeditor) 和 [Gitee](https://gitee.com/ouuan/cpeditor) 上进行托管，其中 Gitee 仓库仅作为镜像使用，不保证总是与 GitHub 仓库同步，不开放 Issues / Pull Requests，如有需要请移步 [GitHub](https://github.com/cpeditor/cpeditor)，也可以进入 [QQ 群](https://jq.qq.com/?_wv=1027&k=50eq8yF) (1081647997) 来交流讨论。
 
+<<<<<<< HEAD
 ## Contributors :sparkles:
+=======
+## 贡献者们 :sparkles:
+>>>>>>> origin/all-contributors/add-ouuan
 
 感谢下面这些人的贡献：（[emoji key](https://allcontributors.org/docs/en/emoji-key)）
 
@@ -148,6 +153,7 @@ CP Editor 是一个基于 Qt 的轻量级跨平台代码编辑器，专为算法
 <!-- markdownlint-disable -->
 <table>
   <tr>
+<<<<<<< HEAD
     <td align="center">
       <a href="https://github.com/ouuan"><img src="https://avatars2.githubusercontent.com/u/30581822?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/ouuan"><sub><b>Yufan You</b></sub></a><br /><a href="#maintenance-ouuan" title="Maintenance">🚧</a> <a href="https://github.com/cpeditor/cpeditor/commits?author=ouuan" title="Code">💻</a> <a href="https://github.com/cpeditor/cpeditor/commits?author=ouuan" title="Documentation">📖</a> <a href="#translation-ouuan" title="Translation">🌍</a> <a href="#ideas-ouuan" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/cpeditor/cpeditor/issues?q=author%3Aouuan" title="Bug reports">🐛</a> <a href="https://github.com/cpeditor/cpeditor/pulls?q=is%3Apr+reviewed-by%3Aouuan" title="Reviewed Pull Requests">👀</a>
     </td>
@@ -274,6 +280,9 @@ CP Editor 是一个基于 Qt 的轻量级跨平台代码编辑器，专为算法
       <a href="https://github.com/m3h3d1"><img src="https://avatars0.githubusercontent.com/u/39239695?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/m3h3d1"><sub><b>m3h3d1</b></sub></a><br /><a href="#ideas-m3h3d1" title="Ideas, Planning, & Feedback">🤔</a>
     </td>
 >>>>>>> origin/all-contributors/add-m3h3d1
+=======
+    <td align="center"><a href="https://github.com/ouuan"><img src="https://avatars2.githubusercontent.com/u/30581822?v=4" width="100px;" alt=""/><br /><sub><b>Yufan You</b></sub></a><br /><a href="#maintenance-ouuan" title="Maintenance">🚧</a> <a href="https://github.com/cpeditor/cpeditor/commits?author=ouuan" title="Code">💻</a> <a href="https://github.com/cpeditor/cpeditor/commits?author=ouuan" title="Documentation">📖</a> <a href="#translation-ouuan" title="Translation">🌍</a> <a href="#ideas-ouuan" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/cpeditor/cpeditor/issues?q=author%3Aouuan" title="Bug reports">🐛</a></td>
+>>>>>>> origin/all-contributors/add-ouuan
   </tr>
 </table>
 
