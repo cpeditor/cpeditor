@@ -122,6 +122,15 @@
       "contributions": [
         "bug"
       ]
+    },
+    {
+      "login": "ApoorvaRajBhadani",
+      "name": "Apoorva Raj Bhadani",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/11313858?v=4",
+      "profile": "http://www.apoorvarajbhadani.blogspot.com",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 5,
