@@ -1,5 +1,7 @@
 ## UNRELEASED
 
+## 6.3.2 (Beta)
+
 ### Fixed
 
 - Fix switching to split view mode instead of editor view mode when clicking "Run", "Compile" or "Compile and Run".
