@@ -113,6 +113,16 @@
       "contributions": [
         "bug"
       ]
+    },
+    {
+      "login": "yatharth1706",
+      "name": "Yatharth Verma",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/32243289?v=4",
+      "profile": "https://yatharth1706.github.io/",
+      "contributions": [
+        "code",
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 5,
