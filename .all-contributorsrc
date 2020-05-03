@@ -107,10 +107,20 @@
       ]
     },
     {
-      "login": "DarkWarrior703",
-      "name": "DarkWarrior703",
-      "avatar_url": "https://avatars0.githubusercontent.com/u/56077342?v=4",
-      "profile": "https://github.com/DarkWarrior703",
+      "login": "Ravenclaw-OIer",
+      "name": "Ravenclaw-OIer",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/44526586?v=4",
+      "profile": "http://ravenclaw-oier.github.io",
+      "contributions": [
+        "ideas",
+        "bug"
+      ]
+    },
+    {
+      "login": "tuwuna",
+      "name": "tuwuna",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/56817415?v=4",
+      "profile": "https://github.com/tuwuna",
       "contributions": [
         "ideas"
       ]
@@ -120,24 +130,6 @@
       "name": "Nikhil Sarda",
       "avatar_url": "https://avatars1.githubusercontent.com/u/51774873?v=4",
       "profile": "https://github.com/nikhil-sarda",
-      "contributions": [
-        "bug"
-      ]
-    },
-    {
-      "login": "1CH1GO",
-      "name": "v-O_O-v",
-      "avatar_url": "https://avatars2.githubusercontent.com/u/56096830?v=4",
-      "profile": "http://pavankumar31072000@gmail.com",
-      "contributions": [
-        "bug"
-      ]
-    },
-    {
-      "login": "ApoorvaRajBhadani",
-      "name": "Apoorva Raj Bhadani",
-      "avatar_url": "https://avatars1.githubusercontent.com/u/11313858?v=4",
-      "profile": "http://www.apoorvarajbhadani.blogspot.com",
       "contributions": [
         "bug"
       ]
@@ -159,6 +151,33 @@
       "profile": "https://github.com/Brijesh1in",
       "contributions": [
         "ideas",
+        "bug"
+      ]
+    },
+    {
+      "login": "DarkWarrior703",
+      "name": "DarkWarrior703",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/56077342?v=4",
+      "profile": "https://github.com/DarkWarrior703",
+      "contributions": [
+        "ideas"
+      ]
+    },
+    {
+      "login": "1CH1GO",
+      "name": "v-O_O-v",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/56096830?v=4",
+      "profile": "http://pavankumar31072000@gmail.com",
+      "contributions": [
+        "bug"
+      ]
+    },
+    {
+      "login": "ApoorvaRajBhadani",
+      "name": "Apoorva Raj Bhadani",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/11313858?v=4",
+      "profile": "http://www.apoorvarajbhadani.blogspot.com",
+      "contributions": [
         "bug"
       ]
     },
@@ -186,16 +205,6 @@
       "avatar_url": "https://avatars3.githubusercontent.com/u/16542586?v=4",
       "profile": "https://github.com/GoToCoding",
       "contributions": [
-        "bug"
-      ]
-    },
-    {
-      "login": "Ravenclaw-OIer",
-      "name": "Ravenclaw-OIer",
-      "avatar_url": "https://avatars2.githubusercontent.com/u/44526586?v=4",
-      "profile": "http://ravenclaw-oier.github.io",
-      "contributions": [
-        "ideas",
         "bug"
       ]
     },
@@ -315,18 +324,9 @@
       "contributions": [
         "bug"
       ]
-    },
-    {
-      "login": "tuwuna",
-      "name": "tuwuna",
-      "avatar_url": "https://avatars3.githubusercontent.com/u/56817415?v=4",
-      "profile": "https://github.com/tuwuna",
-      "contributions": [
-        "ideas"
-      ]
     }
   ],
-  "contributorsPerLine": 5,
+  "contributorsPerLine": 7,
   "badgeTemplate": "[![All Contributors](https://img.shields.io/badge/all_contributors-<%= contributors.length %>-orange.svg)](#contributors-sparkles)",
   "contributorTemplate": "\n      <a href=\"https://github.com/<%= contributor.login %>\"><img src=\"<%= contributor.avatar_url %>\" width=\"<%= options.imageSize %>px;\" alt=\"\"/></a><br /><a href=\"<%= contributor.profile %>\"><sub><b><%= contributor.name %></b></sub></a><br /><%= contributions %>\n    ",
   "projectName": "cpeditor",
