@@ -154,6 +154,9 @@ CP Editor 是一个基于 Qt 的轻量级跨平台代码编辑器，专为算法
   </tr>
   <tr>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/all-contributors/add-coder3101
     <td align="center">
       <a href="https://github.com/Razdeep"><img src="https://avatars2.githubusercontent.com/u/32531173?v=4" width="100px;" alt=""/></a><br /><a href="https://www.linkedin.com/in/razdeeproychowdhury"><sub><b>Rajdeep Roy Chowdhury</b></sub></a><br /><a href="https://github.com/cpeditor/cpeditor/commits?author=Razdeep" title="Code">💻</a> <a href="#ideas-Razdeep" title="Ideas, Planning, & Feedback">🤔</a>
     </td>
@@ -163,6 +166,7 @@ CP Editor 是一个基于 Qt 的轻量级跨平台代码编辑器，专为算法
     <td align="center">
       <a href="https://github.com/polyomino-24"><img src="https://avatars0.githubusercontent.com/u/20138086?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/polyomino-24"><sub><b>polyomino</b></sub></a><br /><a href="https://github.com/cpeditor/cpeditor/commits?author=polyomino-24" title="Documentation">📖</a>
     </td>
+<<<<<<< HEAD
     <td align="center">
       <a href="https://github.com/DarkWarrior703"><img src="https://avatars0.githubusercontent.com/u/56077342?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/DarkWarrior703"><sub><b>DarkWarrior703</b></sub></a><br /><a href="#ideas-DarkWarrior703" title="Ideas, Planning, & Feedback">🤔</a>
     </td>
@@ -241,6 +245,8 @@ CP Editor 是一个基于 Qt 的轻量级跨平台代码编辑器，专为算法
       <a href="https://github.com/ankur314"><img src="https://avatars2.githubusercontent.com/u/37039680?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/ankur314"><sub><b>Ankur Ojha</b></sub></a><br /><a href="#ideas-ankur314" title="Ideas, Planning, & Feedback">🤔</a>
     </td>
 >>>>>>> origin/all-contributors/add-ankur314
+=======
+>>>>>>> origin/all-contributors/add-coder3101
   </tr>
 </table>
 
