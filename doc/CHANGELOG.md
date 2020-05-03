@@ -5,6 +5,7 @@
 - Fix switching to split view mode instead of editor view mode when clicking "Run", "Compile" or "Compile and Run".
 - Fix preferences window loses focus after picking the font. (#260)
 - Fix Ctrl+Enter and Ctrl+Shift+Enter in the code editor.
+- Fix lost of code snippets and hot exit status on some platforms.
 
 ## 6.3.1 (Beta)
 

@@ -124,11 +124,17 @@ void SettingsManager::deinit()
 
     // save snippets
     for (QString key : keyStartsWith("Snippets/"))
-        setting.setValue(key.replace("Snippets/", "snippets/"), get(key));
+    {
+        auto saveKey = key;
+        setting.setValue(saveKey.replace("Snippets/", "snippets/"), get(key));
+    }
 
     // save editor status
     for (QString key : keyStartsWith("Editor Status/"))
-        setting.setValue(key.replace("Editor Status/", "editor_status/"), get(key));
+    {
+        auto saveKey = key;
+        setting.setValue(saveKey.replace("Editor Status/", "editor_status/"), get(key));
+    }
 
     setting.sync();
     delete cur;
