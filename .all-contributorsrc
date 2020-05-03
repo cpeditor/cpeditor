@@ -206,6 +206,15 @@
       "contributions": [
         "ideas"
       ]
+    },
+    {
+      "login": "WYWFlash",
+      "name": "WYWFlash",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/42882043?v=4",
+      "profile": "https://github.com/WYWFlash",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 5,
