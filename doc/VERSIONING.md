@@ -6,7 +6,7 @@ These rules apply to CP Editor since v6.0. The versions before v6.0 may not sati
 
 Versioning of CP Editor is based on [Semantic Versioning](https://semver.org/), but no `-rc1`, `-beta`, `-stable` is included, so every version number must be strictly in the format `$X.$Y.$Z`, where `$X`, `$Y`, and `$Z` are all non-negative integers without leading zeros.
 
-The version numbers must be continuous, i.e. no directly from `6.1.2` to `6.3.1` without `6.2.1` is allowed.
+The version numbers must be continuous, i.e. no directly from `6.1.2` to `6.3.2` without `6.2.1` is allowed.
 
 ### Release cycle
 
@@ -26,7 +26,7 @@ On the master branch, we make all changes including new features and bug fixes.
 
 On the version branches, we fix bugs only, no new features will be added. Releases are made on version branches only.
 
-When fixing a bug, it should be fixed on the oldest one of the three active branches (stable > beta > master) which contains the bug, and then get merged in to the later branches. Version branches shouldn't be ahead of the master branch. (This rule begins at v6.1.)
+When fixing a bug, it should be fixed on the oldest one of the three active branches (stable > beta > master) which contains the bug, and then get merged in to the later branches. Version branches shouldn't be ahead of the master branch, so we should create a merge commit and merge the version branch into master instead of squash and merge.
 
 Code-unrelated changes (e.g. issue template changes, CI changes) apply to the master branch only if it's not necessary to apply to other branches.
 
@@ -90,8 +90,9 @@ The changelog of a GitHub Releases is a part of [CHANGELOG.md](CHANGELOG.md), us
 ### The complete workflow of making a new release
 
 1. Additional steps for creating a new MINOR version at the beginning of a release cycle:
-   1. Create a new branch `v$X.$Y` based on the master branch.
-   2. After creating the new branch, create a commit on the master branch which contains exactly the following:
+   1. Modify [.ci/STABLE_VERSION](../.ci/STABLE_VERSION) in master and the current beta branch (the next stable branch).
+   2. Create a new branch `v$X.$Y` based on the master branch.
+   3. After creating the new branch, create a commit on the master branch which contains exactly the following:
       - Change the version in [CMakeLists.txt](../CMakeLists.txt) to `$X.$(Y+1).0`.
       - Move the UNRELEASED changes to the changelog of `v$X.$Y` in [CHANGELOG.md](CHANGELOG.md).
       - The commit subject is `Start a new release cycle for v$X.$(Y+1)`.
