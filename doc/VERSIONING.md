@@ -26,7 +26,7 @@ On the master branch, we make all changes including new features and bug fixes.
 
 On the version branches, we fix bugs only, no new features will be added. Releases are made on version branches only.
 
-When fixing a bug, it should be fixed on the oldest one of the three active branches (stable > beta > master) which contains the bug, and then get merged in to the later branches. Version branches shouldn't be ahead of the master branch. (This rule begins at v6.1.)
+When fixing a bug, it should be fixed on the oldest one of the three active branches (stable > beta > master) which contains the bug, and then get merged in to the later branches. Version branches shouldn't be ahead of the master branch, so we should create a merge commit and merge the version branch into master instead of squash and merge.
 
 Code-unrelated changes (e.g. issue template changes, CI changes) apply to the master branch only if it's not necessary to apply to other branches.
 
