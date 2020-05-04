@@ -122,6 +122,12 @@ void ComboBoxWrapper::set(QString s)
     static_cast<QComboBox *>(widget)->setCurrentText(s);
 }
 
+void ComboBoxEditWrapper::init(QWidget *parent, QVariant param)
+{
+    ComboBoxWrapper::init(parent, param);
+    static_cast<QComboBox *>(widget)->setEditable(true);
+}
+
 void PathItemWrapper::init(QWidget *parent, QVariant param)
 {
     int id = param.toInt();
@@ -276,6 +282,8 @@ Wrapper<QString> *createStringWrapper(QString type)
         return new PlainTextEditWrapper();
     else if (type == "QComboBox")
         return new ComboBoxWrapper();
+    else if (type == "QComboBoxEdit")
+        return new ComboBoxEditWrapper();
     else if (type == "PathItem")
         return new PathItemWrapper();
     else if (type == "ShortcutItem")

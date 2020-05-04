@@ -119,6 +119,11 @@ struct ComboBoxWrapper : public Wrapper<QString>
     virtual void set(QString s) override;
 };
 
+struct ComboBoxEditWrapper : public ComboBoxWrapper
+{
+    virtual void init(QWidget *parent, QVariant param = QVariant()) override;
+};
+
 struct PathItemWrapper : public Wrapper<QString>
 {
     virtual void init(QWidget *parent, QVariant param = QVariant()) override;

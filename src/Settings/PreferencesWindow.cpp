@@ -148,6 +148,8 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
     addPage("Advanced/Limits",
             {"Time Limit", "Output Length Limit", "Message Length Limit", "HTML Diff Viewer Length Limit",
              "Open File Length Limit", "Load Test Case File Length Limit"});
+
+    addPage("Advanced/Codec", {"Codec Guess Priority", "Saving Codec"});
 }
 
 void PreferencesWindow::display()

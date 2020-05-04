@@ -27,6 +27,7 @@
 #include <QJavaHighlighter>
 #include <QPythonHighlighter>
 #include <QSaveFile>
+#include <QTextCodec>
 #include <generated/SettingsHelper.hpp>
 
 namespace Util
@@ -54,6 +55,19 @@ bool saveFile(const QString &path, const QString &content, const QString &head, 
         auto dirPath = QFileInfo(path).absolutePath();
         LOG_ERR_IF(!QDir().mkpath(dirPath), QString("Failed to create the directory [%1]").arg(dirPath));
     }
+    QString name = SettingsHelper::getSavingCodec();
+    QTextCodec *codec = QTextCodec::codecForName(name.toUtf8());
+    if (!codec)
+        codec = QTextCodec::codecForName("UTF-8");
+    QTextCodec::ConverterState state;
+    QByteArray data = codec->fromUnicode(content.data(), content.size(), &state);
+    if (state.invalidChars > 0)
+    {
+        if (log != nullptr)
+            log->error(head, "Failed to convert to " + name + ". Do you choose the correct codec?");
+        LOG_ERR("Failed to convert to " << name);
+        return false;
+    }
     if (safe && !SettingsHelper::isSaveFaster())
     {
         QSaveFile file(path);
@@ -64,7 +78,7 @@ bool saveFile(const QString &path, const QString &content, const QString &head, 
             LOG_ERR("Failed to open [" << path << "]");
             return false;
         }
-        file.write(content.toUtf8());
+        file.write(data);
         if (!file.commit())
         {
             if (log != nullptr)
@@ -83,7 +97,7 @@ bool saveFile(const QString &path, const QString &content, const QString &head, 
             LOG_ERR("unsafe: Failed to open [" << path << "]");
             return false;
         }
-        if (file.write(content.toUtf8()) == -1)
+        if (file.write(data) == -1)
         {
             if (log != nullptr)
                 log->error(head, "Failed to save to [" + path + "]. Do I have write permission?");
@@ -115,10 +129,23 @@ QString readFile(const QString &path, const QString &head, MessageLogger *log, b
         LOG_ERR(QString("Failed to open [%1]").arg(path));
         return QString();
     }
-    QString content = file.readAll();
-    if (content.isNull())
-        return "";
-    return content;
+    QByteArray data = file.readAll();
+    QString content;
+    for (auto name : SettingsHelper::getCodecGuessPriority())
+    {
+        auto codec = QTextCodec::codecForName(name.toString().toUtf8());
+        if (codec)
+        {
+            QTextCodec::ConverterState state;
+            content = codec->toUnicode(data.data(), data.size(), &state);
+            if (!state.invalidChars)
+                return content;
+        }
+    }
+    if (log != nullptr)
+        log->error(head, QString("Failed to guess the codec of [%1]. Do you add correct codecs?").arg(path));
+    LOG_ERR(QString("Failed to guess the codec of [%1]").arg(path));
+    return "";
 }
 
 void applySettingsToEditor(QCodeEditor *editor)
