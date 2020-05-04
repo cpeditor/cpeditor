@@ -56,6 +56,8 @@ bool saveFile(const QString &path, const QString &content, const QString &head, 
         LOG_ERR_IF(!QDir().mkpath(dirPath), QString("Failed to create the directory [%1]").arg(dirPath));
     }
     QString name = SettingsHelper::getSavingCodec();
+    if (name == "system")
+        name = QTextCodec::codecForLocale()->name();
     QTextCodec *codec = QTextCodec::codecForName(name.toUtf8());
     if (!codec)
         codec = QTextCodec::codecForName("UTF-8");
@@ -131,9 +133,12 @@ QString readFile(const QString &path, const QString &head, MessageLogger *log, b
     }
     QByteArray data = file.readAll();
     QString content;
-    for (auto name : SettingsHelper::getCodecGuessPriority())
+    for (QVariant nameVariant : SettingsHelper::getCodecGuessPriority())
     {
-        auto codec = QTextCodec::codecForName(name.toString().toUtf8());
+        QString name = nameVariant.toString();
+        if (name == "system")
+            name = QTextCodec::codecForLocale()->name();
+        auto codec = QTextCodec::codecForName(name.toUtf8());
         if (codec)
         {
             QTextCodec::ConverterState state;
