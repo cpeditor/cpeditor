@@ -64,11 +64,11 @@ void SettingsManager::init()
         // load most of settings
         for (const SettingInfo &si : settingInfo)
         {
-            if (setting.contains(si.key()))
+            if (setting.contains(si.key()) && setting.value(si.key()).isValid())
                 set(si.name, setting.value(si.key()));
             else
                 for (const QString &old : si.old)
-                    if (setting.contains(old))
+                    if (setting.contains(old) && setting.value(old).isValid())
                     {
                         set(si.name, setting.value(old));
                         break;
