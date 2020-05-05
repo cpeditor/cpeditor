@@ -512,7 +512,7 @@ void MainWindow::applySettings(const QString &pagePath, bool shouldPerformDigoni
 void MainWindow::save(bool force, const QString &head, bool safe)
 {
     LOG_INFO("Save " << BOOL_INFO_OF(force) << INFO_OF(head) << BOOL_INFO_OF(safe));
-    saveFile(force ? SaveUntitled : IgnoreUntitled, head, safe);
+    saveFile(force ? AlwaysSave : IgnoreUntitled, head, safe);
 }
 
 void MainWindow::saveAs()
@@ -752,7 +752,7 @@ bool MainWindow::saveFile(SaveMode mode, const QString &head, bool safe)
     if (SettingsHelper::isAutoFormat())
         formatter->format(editor, filePath, language, false);
 
-    if (mode == SaveAs || (isUntitled() && mode == SaveUntitled))
+    if (mode == SaveAs || (isUntitled() && mode == AlwaysSave))
     {
         QString defaultPath;
 
@@ -832,7 +832,7 @@ bool MainWindow::saveFile(SaveMode mode, const QString &head, bool safe)
 
         beforeReturn(true);
     }
-    else if (!isUntitled())
+    else if (!isUntitled() && (mode != IgnoreNonExist || QFile::exists(filePath)))
     {
         if (!Util::saveFile(filePath, editor->toPlainText(), head, safe, log, true))
             return false;
@@ -848,10 +848,10 @@ bool MainWindow::saveFile(SaveMode mode, const QString &head, bool safe)
     return true;
 }
 
-MainWindow::SaveTempStatus MainWindow::saveTemp(const QString &head)
+MainWindow::SaveTempStatus MainWindow::saveTemp(const QString &head, SaveMode mode)
 {
     LOG_INFO(INFO_OF(head));
-    if (!saveFile(IgnoreUntitled, head, true))
+    if (!saveFile(mode, head, true))
     {
         if (tmpDir != nullptr)
         {
@@ -882,7 +882,7 @@ QString MainWindow::tmpPath()
         return filePath;
     if (tmpDir == nullptr || !tmpDir->isValid())
     {
-        switch (saveTemp("Temp Saver"))
+        switch (saveTemp("Temp Saver", IgnoreNonExist))
         {
         case Failed:
             log->error("Temp Saver", "Error occurred when trying to save temp file");
@@ -945,7 +945,7 @@ bool MainWindow::closeConfirm()
             "Save changes to " + (isUntitled() ? QString("New File") : getFileName()) + " before closing?",
             QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel, QMessageBox::Cancel);
         if (res == QMessageBox::Save)
-            confirmed = saveFile(SaveUntitled, "Save", true);
+            confirmed = saveFile(AlwaysSave, "Save", true);
         else if (res == QMessageBox::Discard)
             confirmed = true;
     }
