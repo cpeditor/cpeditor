@@ -36,11 +36,11 @@
 
 void prepareCloseBySignal(bool sigInt)
 {
-	// unsed sigInt flag, indicates this exit is by signal SIGINT
+    // unsed sigInt flag, indicates this exit is by signal SIGINT
 
-	// This function should behave like this:
-	// if hotexit is enabled, exit all windows or dialog and close the applications
-	// otherwise set forceClose to true and close all Windows or dialog and close the application
+    // This function should behave like this:
+    // if hotexit is enabled, exit all windows or dialog and close the applications
+    // otherwise set forceClose to true and close all Windows or dialog and close the application
 
     auto widgets = QApplication::topLevelWidgets();
     for (auto widget : widgets)

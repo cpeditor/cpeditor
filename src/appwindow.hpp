@@ -66,10 +66,9 @@ class AppWindow : public QMainWindow
   public slots:
     void onReceivedMessage(quint32 instanceId, QByteArray message);
 
-	void showOnTop();
+    void showOnTop();
 
-	bool forceClose();
-
+    bool forceClose();
 
   private slots:
     void on_actionSupport_me_triggered();
