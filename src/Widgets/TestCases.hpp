@@ -77,6 +77,8 @@ class TestCases : public QWidget
 
     QString loadTestCaseFromFile(const QString &path, const QString &head);
 
+    void setTestCaseEditFont(const QFont &font);
+
   public slots:
     void setVerdict(int index, Core::Checker::Verdict verdict);
 

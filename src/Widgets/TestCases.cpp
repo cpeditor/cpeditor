@@ -352,6 +352,12 @@ QString TestCases::loadTestCaseFromFile(const QString &path, const QString &head
     return content;
 }
 
+void TestCases::setTestCaseEditFont(const QFont &font)
+{
+    for (auto t : testcases)
+        t->setTestCaseEditFont(font);
+}
+
 int TestCases::id(TestCase *testcase) const
 {
     return testcases.indexOf(testcase);

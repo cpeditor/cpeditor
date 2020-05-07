@@ -53,6 +53,7 @@ class TestCase : public QWidget
     Core::Checker::Verdict verdict() const;
     void setShow(bool show);
     bool isShow() const;
+    void setTestCaseEditFont(const QFont &font);
 
   signals:
     void deleted(TestCase *widget);

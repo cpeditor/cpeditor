@@ -197,6 +197,13 @@ bool TestCase::isShow() const
     return showCheckBox->isChecked();
 }
 
+void TestCase::setTestCaseEditFont(const QFont &font)
+{
+    inputEdit->setFont(font);
+    outputEdit->setFont(font);
+    expectedEdit->setFont(font);
+}
+
 void TestCase::onShowCheckBoxToggled(bool checked)
 {
     if (checked)
