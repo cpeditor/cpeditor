@@ -66,6 +66,11 @@ class AppWindow : public QMainWindow
   public slots:
     void onReceivedMessage(quint32 instanceId, QByteArray message);
 
+	void showOnTop();
+
+	bool forceClose();
+
+
   private slots:
     void on_actionSupport_me_triggered();
 
@@ -178,8 +183,6 @@ class AppWindow : public QMainWindow
     void on_actionShow_Logs_triggered();
 
     void on_actionClear_Logs_triggered();
-
-    void showOnTop();
 
     void onTrayIconActivated(QSystemTrayIcon::ActivationReason reason);
 

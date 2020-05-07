@@ -20,16 +20,39 @@
 #include "mainwindow.hpp"
 #include <QApplication>
 #include <QCommandLineParser>
+#include <QCtrlSignals>
+#include <QDialog>
 #include <QDir>
 #include <QFileInfo>
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
+#include <QProgressDialog>
 #include <QTextStream>
 #include <generated/version.hpp>
 #include <singleapplication.h>
 
 #define TOJSON(x) json[#x] = x
+
+void prepareCloseBySignal(bool sigInt)
+{
+	// unsed sigInt flag, indicates this exit is by signal SIGINT
+
+	// This function should behave like this:
+	// if hotexit is enabled, exit all windows or dialog and close the applications
+	// otherwise set forceClose to true and close all Windows or dialog and close the application
+
+    auto widgets = QApplication::topLevelWidgets();
+    for (auto widget : widgets)
+    {
+        auto appWindow = qobject_cast<AppWindow *>(widget);
+        if (appWindow)
+        {
+            appWindow->forceClose();
+            qApp->quit();
+        }
+    }
+}
 
 int main(int argc, char *argv[])
 {
@@ -38,6 +61,8 @@ int main(int argc, char *argv[])
     SingleApplication::setApplicationVersion(APP_VERSION);
     QApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
     QApplication::setWindowIcon(QIcon(":/icon.png"));
+
+    auto handler = QCtrlSignalHandler::instance();
 
     QTextStream cerr(stderr, QIODevice::WriteOnly);
 
@@ -76,6 +101,12 @@ int main(int argc, char *argv[])
     auto instance = app.instanceId();
     Core::Log::init(instance, shouldDumpTostderr);
     LOG_INFO(INFO_OF(instance));
+
+    LOG_INFO("Registered SigInt " << handler->registerForSignal(QCtrlSignalHandler::SigInt));
+    LOG_INFO("Registered SigTerm " << handler->registerForSignal(QCtrlSignalHandler::SigTerm));
+
+    QObject::connect(handler, &QCtrlSignalHandler::sigInt, qApp, []() { prepareCloseBySignal(true); });
+    QObject::connect(handler, &QCtrlSignalHandler::sigTerm, qApp, []() { prepareCloseBySignal(false); });
 
     auto args = parser.positionalArguments();
 

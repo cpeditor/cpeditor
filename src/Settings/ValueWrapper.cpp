@@ -60,12 +60,12 @@ void CheckBoxWrapper::init(QString name, QWidget *parent, QVariant)
 
 bool CheckBoxWrapper::get()
 {
-    return static_cast<QCheckBox *>(widget)->isChecked();
+    return qobject_cast<QCheckBox *>(widget)->isChecked();
 }
 
 void CheckBoxWrapper::set(bool b)
 {
-    static_cast<QCheckBox *>(widget)->setChecked(b);
+    qobject_cast<QCheckBox *>(widget)->setChecked(b);
 }
 
 void LineEditWrapper::init(QWidget *parent, QVariant)
@@ -78,12 +78,12 @@ void LineEditWrapper::init(QWidget *parent, QVariant)
 
 QString LineEditWrapper::get()
 {
-    return static_cast<QLineEdit *>(widget)->text();
+    return qobject_cast<QLineEdit *>(widget)->text();
 }
 
 void LineEditWrapper::set(QString s)
 {
-    static_cast<QLineEdit *>(widget)->setText(s);
+    qobject_cast<QLineEdit *>(widget)->setText(s);
 }
 
 void PlainTextEditWrapper::init(QWidget *parent, QVariant)
@@ -96,12 +96,12 @@ void PlainTextEditWrapper::init(QWidget *parent, QVariant)
 
 QString PlainTextEditWrapper::get()
 {
-    return static_cast<QPlainTextEdit *>(widget)->toPlainText();
+    return qobject_cast<QPlainTextEdit *>(widget)->toPlainText();
 }
 
 void PlainTextEditWrapper::set(QString s)
 {
-    static_cast<QPlainTextEdit *>(widget)->setPlainText(s);
+    qobject_cast<QPlainTextEdit *>(widget)->setPlainText(s);
 }
 
 void ComboBoxWrapper::init(QWidget *parent, QVariant param)
@@ -114,12 +114,12 @@ void ComboBoxWrapper::init(QWidget *parent, QVariant param)
 
 QString ComboBoxWrapper::get()
 {
-    return static_cast<QComboBox *>(widget)->currentText();
+    return qobject_cast<QComboBox *>(widget)->currentText();
 }
 
 void ComboBoxWrapper::set(QString s)
 {
-    static_cast<QComboBox *>(widget)->setCurrentText(s);
+    qobject_cast<QComboBox *>(widget)->setCurrentText(s);
 }
 
 void PathItemWrapper::init(QWidget *parent, QVariant param)
@@ -132,12 +132,12 @@ void PathItemWrapper::init(QWidget *parent, QVariant param)
 
 QString PathItemWrapper::get()
 {
-    return static_cast<PathItem *>(widget)->getLineEdit()->text();
+    return qobject_cast<PathItem *>(widget)->getLineEdit()->text();
 }
 
 void PathItemWrapper::set(QString s)
 {
-    static_cast<PathItem *>(widget)->getLineEdit()->setText(s);
+    qobject_cast<PathItem *>(widget)->getLineEdit()->setText(s);
 }
 
 void ShortcutItemWrapper::init(QWidget *parent, QVariant param)
@@ -149,12 +149,12 @@ void ShortcutItemWrapper::init(QWidget *parent, QVariant param)
 
 QString ShortcutItemWrapper::get()
 {
-    return static_cast<ShortcutItem *>(widget)->getShortcut();
+    return qobject_cast<ShortcutItem *>(widget)->getShortcut();
 }
 
 void ShortcutItemWrapper::set(QString s)
 {
-    static_cast<ShortcutItem *>(widget)->setShortcut(s);
+    qobject_cast<ShortcutItem *>(widget)->setShortcut(s);
 }
 
 void SpinBoxWrapper::init(QWidget *parent, QVariant param)
@@ -171,12 +171,12 @@ void SpinBoxWrapper::init(QWidget *parent, QVariant param)
 
 int SpinBoxWrapper::get()
 {
-    return static_cast<QSpinBox *>(widget)->value();
+    return qobject_cast<QSpinBox *>(widget)->value();
 }
 
 void SpinBoxWrapper::set(int i)
 {
-    static_cast<QSpinBox *>(widget)->setValue(i);
+    qobject_cast<QSpinBox *>(widget)->setValue(i);
 }
 
 void ScrollBarWrapper::init(QWidget *parent, QVariant param)
@@ -193,12 +193,12 @@ void ScrollBarWrapper::init(QWidget *parent, QVariant param)
 
 int ScrollBarWrapper::get()
 {
-    return static_cast<QScrollBar *>(widget)->value();
+    return qobject_cast<QScrollBar *>(widget)->value();
 }
 
 void ScrollBarWrapper::set(int i)
 {
-    static_cast<QScrollBar *>(widget)->setValue(i);
+    qobject_cast<QScrollBar *>(widget)->setValue(i);
 }
 
 void SliderWrapper::init(QWidget *parent, QVariant param)
@@ -215,12 +215,12 @@ void SliderWrapper::init(QWidget *parent, QVariant param)
 
 int SliderWrapper::get()
 {
-    return static_cast<QSlider *>(widget)->value();
+    return qobject_cast<QSlider *>(widget)->value();
 }
 
 void SliderWrapper::set(int i)
 {
-    static_cast<QSlider *>(widget)->setValue(i);
+    qobject_cast<QSlider *>(widget)->setValue(i);
 }
 
 void FontItemWrapper::init(QWidget *parent, QVariant)
@@ -232,12 +232,12 @@ void FontItemWrapper::init(QWidget *parent, QVariant)
 
 QFont FontItemWrapper::get()
 {
-    return static_cast<FontItem *>(widget)->getFont();
+    return qobject_cast<FontItem *>(widget)->getFont();
 }
 
 void FontItemWrapper::set(QFont f)
 {
-    static_cast<FontItem *>(widget)->setFont(f);
+    qobject_cast<FontItem *>(widget)->setFont(f);
 }
 
 void StringListsItemWrapper::init(QWidget *parent, QVariant cols)
@@ -249,12 +249,12 @@ void StringListsItemWrapper::init(QWidget *parent, QVariant cols)
 
 QVariantList StringListsItemWrapper::get()
 {
-    return static_cast<StringListsItem *>(widget)->getStringLists();
+    return qobject_cast<StringListsItem *>(widget)->getStringLists();
 }
 
 void StringListsItemWrapper::set(QVariantList sl)
 {
-    static_cast<StringListsItem *>(widget)->setStringLists(sl);
+    qobject_cast<StringListsItem *>(widget)->setStringLists(sl);
 }
 
 Wrapper<bool> *createBoolWrapper(QString type)

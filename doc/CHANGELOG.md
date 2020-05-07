@@ -12,6 +12,7 @@ Now error linting is available with Language Server. Linting can be helpful when
 - Now you can choose where to save the test case files in Preferences->File Path->Testcases. (#176)
 - Now when saving the source file, if the parent directory of the file does not exist, it will be automatically created.
 - Now you can set different default file paths for different problem URLs. (#200)
+- Now the application catches SIGINT and SIGTERM, it be will normally closed when receiving these signals. (#178 and #268)
 
 ### Changed
 

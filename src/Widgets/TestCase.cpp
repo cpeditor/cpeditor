@@ -35,7 +35,7 @@ namespace Widgets
 TestCase::TestCase(int index, MessageLogger *logger, QWidget *parent, const QString &in, const QString &exp)
     : QWidget(parent), log(logger)
 {
-    LOG_INFO("Testcase " << index << " is being created with Input\n" << in << "\nExpected\n" << exp);
+    LOG_INFO("Testcase " << index << " is being created");
     mainLayout = new QHBoxLayout(this);
     inputUpLayout = new QHBoxLayout();
     outputUpLayout = new QHBoxLayout();
