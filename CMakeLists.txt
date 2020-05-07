@@ -33,6 +33,8 @@ add_subdirectory(third_party/QtFindReplaceDialog/dialogs)
 
 add_subdirectory(third_party/lsp-cpp)
 
+add_subdirectory(third_party/QCtrlSignals)
+
 IF(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/.git)
   FIND_PACKAGE(Git)
   IF(GIT_FOUND)
@@ -151,6 +153,7 @@ include_directories("third_party/diff_match_patch")
 include_directories("third_party/lsp-cpp/include")
 include_directories("third_party/QCodeEditor/include")
 include_directories("third_party/QtFindReplaceDialog")
+include_directories("third_party/QCtrlSignals/src")
 
 target_link_libraries(cpeditor PRIVATE LSPClient)
 target_link_libraries(cpeditor PRIVATE QCodeEditor)
@@ -158,6 +161,7 @@ target_link_libraries(cpeditor PRIVATE Qt5::Network)
 target_link_libraries(cpeditor PRIVATE Qt5::Widgets)
 target_link_libraries(cpeditor PRIVATE QtFindReplaceDialog)
 target_link_libraries(cpeditor PRIVATE SingleApplication)
+target_link_libraries(cpeditor PRIVATE ControlSignals)
 
 if(APPLE)
     set_target_properties(cpeditor
