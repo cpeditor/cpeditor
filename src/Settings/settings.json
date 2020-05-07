@@ -14,10 +14,12 @@
         "type": "QRect"
     },
     {
-        "name": "Font",
-        "desc": "Editor Font",
+        "name": "Editor Font",
         "type": "QFont",
         "default": "QFont(\"monospace\")",
+        "old": [
+            "font"
+        ],
         "tip": "The font of the code editor"
     },
     {
@@ -595,5 +597,11 @@
         "default": "QVariantList {}",
         "param": "QVariantList { QStringList {\"Problem URL\", \"The regular expression which matches a part of the problem URL\"}, QStringList {\"File Path\", \"The replace expression for the file path, without file name suffix.\\nYou can use \\\"\\\\1\\\" for the first captured group.\"}}",
         "tip": "The default file path used when saving a new file while the problem URL is set"
+    },
+    {
+        "name": "Test Cases Font",
+        "type": "QFont",
+        "default": "QFont(\"monospace\")",
+        "tip": "The font of test cases"
     }
 ]

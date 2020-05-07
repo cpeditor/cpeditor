@@ -481,6 +481,9 @@ void MainWindow::applySettings(const QString &pagePath, bool shouldPerformDigoni
     if (pagePath.isEmpty() || pagePath == "Code Edit" || pagePath == "Appearance")
         Util::applySettingsToEditor(editor);
 
+    if (pagePath.isEmpty() || pagePath == "Appearance")
+        testcases->setTestCaseEditFont(SettingsHelper::getTestCasesFont());
+
     if (!isLanguageSet && (pagePath.isEmpty() || pagePath == "Language/General"))
     {
         setLanguage(SettingsHelper::getDefaultLanguage());
