@@ -34,22 +34,53 @@
 
 #define TOJSON(x) json[#x] = x
 
-void prepareCloseBySignal(bool sigInt)
+void signalReceived(bool sigInt)
 {
-    // unsed sigInt flag, indicates this exit is by signal SIGINT
-
-    // This function should behave like this:
-    // if hotexit is enabled, exit all windows or dialog and close the applications
-    // otherwise set forceClose to true and close all Windows or dialog and close the application
-
-    auto widgets = QApplication::topLevelWidgets();
-    for (auto widget : widgets)
+    if (qApp)
     {
-        auto appWindow = qobject_cast<AppWindow *>(widget);
-        if (appWindow)
+        auto widgets = QApplication::topLevelWidgets();
+        for (auto widget : widgets)
         {
-            appWindow->forceClose();
-            qApp->quit();
+            auto dialog = qobject_cast<QDialog *>(widget);
+            if (dialog && dialog->isModal())
+            {
+                if (sigInt)
+                {
+                    for (auto w : widgets)
+                    {
+                        auto appWindow = qobject_cast<AppWindow *>(w);
+                        if (appWindow)
+                        {
+                            appWindow->showOnTop();
+                            break;
+                        }
+                    }
+                    dialog->setWindowState((dialog->windowState() & ~Qt::WindowMinimized) | Qt::WindowActive);
+                    dialog->activateWindow();
+                    dialog->raise();
+                    return;
+                }
+                else
+                {
+                    auto progressDialog = qobject_cast<QProgressDialog *>(dialog);
+                    if (progressDialog)
+                        progressDialog->cancel();
+                    else
+                        dialog->reject();
+                }
+            }
+        }
+        for (auto widget : widgets)
+        {
+            auto appWindow = qobject_cast<AppWindow *>(widget);
+            if (appWindow)
+            {
+                if (sigInt)
+                    appWindow->close();
+                else
+                    appWindow->forceClose();
+                break;
+            }
         }
     }
 }
@@ -105,8 +136,8 @@ int main(int argc, char *argv[])
     LOG_INFO("Registered SigInt " << handler->registerForSignal(QCtrlSignalHandler::SigInt));
     LOG_INFO("Registered SigTerm " << handler->registerForSignal(QCtrlSignalHandler::SigTerm));
 
-    QObject::connect(handler, &QCtrlSignalHandler::sigInt, qApp, []() { prepareCloseBySignal(true); });
-    QObject::connect(handler, &QCtrlSignalHandler::sigTerm, qApp, []() { prepareCloseBySignal(false); });
+    QObject::connect(handler, &QCtrlSignalHandler::sigInt, qApp, []() { signalReceived(true); });
+    QObject::connect(handler, &QCtrlSignalHandler::sigTerm, qApp, []() { signalReceived(false); });
 
     auto args = parser.positionalArguments();
 
