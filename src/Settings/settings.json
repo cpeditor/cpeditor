@@ -14,10 +14,12 @@
         "type": "QRect"
     },
     {
-        "name": "Font",
-        "desc": "Editor Font",
+        "name": "Editor Font",
         "type": "QFont",
         "default": "QFont(\"monospace\")",
+        "old": [
+            "font"
+        ],
         "tip": "The font of the code editor"
     },
     {
