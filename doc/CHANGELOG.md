@@ -13,11 +13,13 @@ Now error linting is available with Language Server. Linting can be helpful when
 - Now when saving the source file, if the parent directory of the file does not exist, it will be automatically created.
 - Now you can set different default file paths for different problem URLs. (#200)
 - Now you can set font for test cases.
+- Now you can enable extra bottom margin with the height of a page. (#230)
 
 ### Changed
 
 - Word selection in editor is highlighted with change of background color instead of an underline. Underlined text now represent linting of type "Hint".
 - The shortcut of Detached Run is changed from Ctrl+Shift+D to Ctrl+Alt+D. (#237)
+- Now after deleting the current line/selected lines, the cursor will keep its place if possible, instead of moving to the start of the previous line.
 
 ### Fixed
 
@@ -25,6 +27,7 @@ Now error linting is available with Language Server. Linting can be helpful when
 - Fix preferences window loses focus after picking the font. (#260)
 - Fix Ctrl+Enter and Ctrl+Shift+Enter in the code editor.
 - Fix lost of code snippets and hot exit status on some platforms.
+- Fix the unexpected behaviour of Shift+Enter.
 
 ## v6.3
 

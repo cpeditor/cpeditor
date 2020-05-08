@@ -154,6 +154,8 @@ void applySettingsToEditor(QCodeEditor *editor)
         editor->setSyntaxStyle(Extensions::EditorTheme::getSolarizedDarkTheme());
     else
         editor->setSyntaxStyle(Extensions::EditorTheme::getLightTheme());
+
+    editor->setExtraBottomMargin(SettingsHelper::isExtraBottomMargin());
 }
 
 void setEditorLanguage(QCodeEditor *editor, const QString &language)
