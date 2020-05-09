@@ -1,5 +1,9 @@
 ## UNRELEASED
 
+## 6.3.3
+
+This version is the same as 6.3.2, but it's considered stable now.
+
 ## 6.3.2 (Beta)
 
 ### Fixed
