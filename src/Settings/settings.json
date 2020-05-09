@@ -603,5 +603,11 @@
         "type": "QFont",
         "default": "QFont(\"monospace\")",
         "tip": "The font of test cases"
+    },
+    {
+        "name": "Extra Bottom Margin",
+        "desc": "Add extra margin at the bottom of the code editor",
+        "type": "bool",
+        "tip": "Add an extra margin with the height of a page at the bottom of the code editor.\nDue to technical reasons, changing the height of the margin affects the undo history."
     }
 ]
