@@ -1,6 +1,6 @@
 ## UNRELEASED
 
-## 6.4.1 (Beta)
+## v6.4
 
 ### Linting with Language Server
 
