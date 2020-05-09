@@ -79,15 +79,7 @@ CP Editor 是一个基于 Qt 的轻量级跨平台代码编辑器，专为算法
 
 本项目同时在 [GitHub](https://github.com/cpeditor/cpeditor) 和 [Gitee](https://gitee.com/ouuan/cpeditor) 上进行托管，其中 Gitee 仓库仅作为镜像使用，不保证总是与 GitHub 仓库同步，不开放 Issues / Pull Requests，如有需要请移步 [GitHub](https://github.com/cpeditor/cpeditor)，也可以进入 [QQ 群](https://jq.qq.com/?_wv=1027&k=50eq8yF) (1081647997) 来交流讨论。
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 ## Contributors :sparkles:
-=======
-## 贡献者们 :sparkles:
->>>>>>> origin/all-contributors/add-ouuan
-=======
-## Contributors :sparkles:
->>>>>>> origin/all-contributors/add-polyomino-24
 
 感谢下面这些人的贡献：（[emoji key](https://allcontributors.org/docs/en/emoji-key)）
 
