@@ -1,5 +1,7 @@
 ## UNRELEASED
 
+## v6.4
+
 ### Linting with Language Server
 
 Now error linting is available with Language Server. Linting can be helpful when you want to find errors in your code and fix them quickly. You need to install a Language Server program to enable linting. You can set delay for linting, the path to the Languae Server program and its arguments in the Preferences window. You can set different settings for different languages. Please check the [manual](MANUAL.md) for more information on how to set this up.
