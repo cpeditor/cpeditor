@@ -609,5 +609,11 @@
         "desc": "Add extra margin at the bottom of the code editor",
         "type": "bool",
         "tip": "Add an extra margin with the height of a page at the bottom of the code editor.\nDue to technical reasons, changing the height of the margin affects the undo history."
+    },
+    {
+        "name": "Message Logger Font",
+        "type": "QFont",
+        "default": "QFont(\"monospace\")",
+        "tip": "The font of the message logger"
     }
 ]
