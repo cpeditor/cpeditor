@@ -28,6 +28,7 @@
 #include "Telemetry/UpdateNotifier.hpp"
 #include "Util.hpp"
 #include "Widgets/TestCases.hpp"
+#include "debugcontrol.hpp"
 #include <QCodeEditor>
 #include <QFileDialog>
 #include <QFileSystemWatcher>
@@ -60,6 +61,13 @@ MainWindow::MainWindow(const QString &fileOpen, int index, QWidget *parent)
     setTestCases();
     setEditor();
     connect(fileWatcher, SIGNAL(fileChanged(const QString &)), this, SLOT(onFileWatcherChanged(const QString &)));
+    connect(this, &MainWindow::editorFileChanged, [&]() {
+        if (debugControlDialog)
+        {
+            delete debugControlDialog;
+            debugControlDialog = nullptr;
+        }
+    });
     applySettings("", true);
     loadFile(fileOpen);
     if (testcases->count() == 0)
@@ -92,6 +100,7 @@ void MainWindow::setTestCases()
     ui->test_cases_layout->addWidget(testcases);
     connect(testcases, SIGNAL(checkerChanged()), this, SLOT(updateChecker()));
     connect(testcases, SIGNAL(requestRun(int)), this, SLOT(runTestCase(int)));
+    connect(testcases, SIGNAL(requestDebug(int)), this, SLOT(debugTestCase(int)));
 }
 
 void MainWindow::setEditor()
@@ -108,6 +117,11 @@ void MainWindow::setEditor()
     // a selection (and the cursor is at the begin of the selection)
     connect(editor, SIGNAL(cursorPositionChanged()), this, SLOT(updateCursorInfo()));
     connect(editor, SIGNAL(selectionChanged()), this, SLOT(updateCursorInfo()));
+    connect(editor, &QCodeEditor::cursorPositionChanged, [&]() {
+        auto cursor = editor->textCursor();
+        if (debugControlDialog)
+            debugControlDialog->rowChanged(cursor.blockNumber() + 1);
+    });
 }
 
 void MainWindow::setupCore()
@@ -200,6 +214,48 @@ void MainWindow::runTestCase(int index)
     }
 
     run(index);
+}
+
+void MainWindow::debug(int index)
+{
+    LOG_INFO(INFO_OF(index));
+    if (language == "C++")
+    {
+        QFileInfo path(tmpPath());
+        if (!debugControlDialog)
+        {
+            debugControlDialog = new DebugControl("gdb", "gdbserver",
+                                                  path.canonicalPath() + QDir::separator() + path.completeBaseName());
+            debugControlDialog->setArguments(Util::splitArgument(SettingsHelper::getCppRunArguments()));
+            auto cursor = editor->textCursor();
+            debugControlDialog->rowChanged(cursor.blockNumber() + 1);
+        }
+        debugControlDialog->setInput(testcases->input(index));
+        connect(debugControlDialog, SIGNAL(currentRowChanged(int)), this, SLOT(onCurrentRowChanged(int)));
+        debugControlDialog->show();
+    }
+}
+
+void MainWindow::debugTestCase(int index)
+{
+    LOG_INFO(INFO_OF(index));
+    killProcesses();
+
+    if (!QStringList({"C++" /* , "Java", "Python" */}).contains(language)) // currently, only C++ is supported
+    {
+        log->warn("Debugger", "Wrong language, please set the supported language(C++)");
+        return;
+    }
+
+    debug(index);
+}
+
+void MainWindow::onCurrentRowChanged(int row)
+{
+    QTextCursor cursor = editor->textCursor();
+    cursor.movePosition(QTextCursor::Start);
+    cursor.movePosition(QTextCursor::Down, QTextCursor::MoveAnchor, row - 1);
+    editor->setTextCursor(cursor);
 }
 
 void MainWindow::loadTests()
@@ -508,7 +564,11 @@ void MainWindow::applySettings(const QString &pagePath, bool shouldPerformDigoni
     }
 
     if (pagePath.isEmpty() || pagePath == "Language/Commands")
+    {
         updateChecker();
+        if (debugControlDialog)
+            debugControlDialog->setArguments(Util::splitArgument(SettingsHelper::getCppRunArguments()));
+    }
 }
 
 void MainWindow::save(bool force, const QString &head, bool safe)
@@ -639,7 +699,6 @@ void MainWindow::setViewMode(const QString &mode)
         ui->splitter->restoreState(SettingsHelper::getSplitterSize());
     }
 }
-
 void MainWindow::detachedExecution()
 {
     LOG_INFO("Executing in detached mode");
@@ -671,6 +730,11 @@ void MainWindow::killProcesses()
     {
         delete detachedRunner;
         detachedRunner = nullptr;
+    }
+
+    if (debugControlDialog)
+    {
+        debugControlDialog->hide();
     }
 }
 

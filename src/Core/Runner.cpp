@@ -17,6 +17,7 @@
 
 #include "Core/Runner.hpp"
 #include "Core/EventLogger.hpp"
+#include "Util.hpp"
 #include <QElapsedTimer>
 #include <QFileInfo>
 #include <QTimer>
@@ -65,8 +66,8 @@ void Runner::run(const QString &filePath, const QString &lang, const QString &ru
     }
 
     // get the command for execution
-    QString command = getCommand(filePath, lang, runCommand, args);
-    if (command.isEmpty())
+    Command command = getCommand(filePath, lang, runCommand, args);
+    if (command.full.isEmpty())
     {
         emit failedToStartRun(runnerIndex, "Failed to get run command. It's probably a bug");
         return;
@@ -88,7 +89,7 @@ void Runner::run(const QString &filePath, const QString &lang, const QString &ru
     killTimer->start();
     runTimer->start();
 
-    runProcess->start(command);
+    runProcess->start(command.prog, command.args);
     bool started = runProcess->waitForStarted(2000);
 
     if (!started)
@@ -120,7 +121,7 @@ void Runner::runDetached(const QString &filePath, const QString &lang, const QSt
         return;
     }
     runProcess->setProgram("xterm");
-    runProcess->setArguments({"-e", getCommand(filePath, lang, runCommand, args) +
+    runProcess->setArguments({"-e", getCommand(filePath, lang, runCommand, args).full +
                                         "; read -n 1 -s -r -p '\nExecution Done\nPress any key to exit'"});
     LOG_INFO("Xterm args " << runProcess->arguments().join(" "));
     runProcess->start();
@@ -129,15 +130,16 @@ void Runner::runDetached(const QString &filePath, const QString &lang, const QSt
     runProcess->setProgram("osascript");
     runProcess->setArguments({"-l", "AppleScript"});
     QString script = "tell app \"Terminal\" to do script \"" +
-                     getCommand(filePath, lang, runCommand, args).replace("\"", "'") + "\"";
+                     getCommand(filePath, lang, runCommand, args).full.replace("\"", "'") + "\"";
     runProcess->start();
     LOG_INFO("Running apple script\n" << script);
     runProcess->write(script.toUtf8());
     runProcess->closeWriteChannel();
 #else
     // use cmd on Windows
-    runProcess->start("cmd /C \"start cmd /C " + getCommand(filePath, lang, runCommand, args).replace("\"", "^\"") +
-                      " ^& pause\"");
+    Core::Log::i("runner/runDetached", "on windows. Using cmd");
+    runProcess->start("cmd /C \"start cmd /C " +
+                      getCommand(filePath, lang, runCommand, args).full.replace("\"", "^\"") + " ^& pause\"");
     LOG_INFO("CMD Arguemnts " << runProcess->arguments().join(" "));
 
 #endif
@@ -188,29 +190,36 @@ void Runner::onReadyReadStandardError()
     }
 }
 
-QString Runner::getCommand(const QString &filePath, const QString &lang, const QString &runCommand, const QString &args)
+Runner::Command Runner::getCommand(const QString &filePath, const QString &lang, const QString &runCommand,
+                                   const QString &arg)
 {
     // get the execution command by the file path and the language
     // please remember to add quotes for the paths
 
     QFileInfo fileInfo(filePath);
-    QString res;
+    Command cmd;
     if (lang == "C++")
     {
-        res = "\"" + fileInfo.canonicalPath() + "/" + fileInfo.completeBaseName() + "\" " + args;
+        cmd.prog = fileInfo.canonicalPath() + "/" + fileInfo.completeBaseName();
+        cmd.args = Util::splitArgument(arg);
+        cmd.full = QString("\"%1\" %2").arg(cmd.prog, arg);
     }
     else if (lang == "Java")
     {
-        res = runCommand + " -classpath \"" + fileInfo.canonicalPath() + "\" a " + args;
+        cmd.prog = runCommand;
+        cmd.args << "-classpath" << fileInfo.canonicalPath() << "a" << Util::splitArgument(arg);
+        cmd.full = QString("%1 -classpath \"%2\" a %3").arg(runCommand, fileInfo.canonicalPath(), arg);
     }
     else if (lang == "Python")
     {
-        res = runCommand + " \"" + fileInfo.canonicalFilePath() + "\" " + args;
+        cmd.prog = runCommand;
+        cmd.args << fileInfo.canonicalPath() << Util::splitArgument(arg);
+        cmd.full = QString("%1 \"%2\" %3").arg(runCommand, fileInfo.canonicalPath(), arg);
     }
 
-    LOG_INFO("Returning runCommand as : " << res);
+    LOG_INFO("Returning runCommand as : " << cmd.full);
 
-    return res;
+    return cmd;
 }
 
 } // namespace Core

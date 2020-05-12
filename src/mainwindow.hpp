@@ -26,6 +26,7 @@ class QFileSystemWatcher;
 class QPushButton;
 class QSplitter;
 class QTemporaryDir;
+class DebugControl;
 
 QT_BEGIN_NAMESPACE namespace Ui
 {
@@ -151,6 +152,9 @@ class MainWindow : public QMainWindow
     void updateChecker();
 
     void runTestCase(int index);
+    void debugTestCase(int index);
+
+    void onCurrentRowChanged(int row);
 
   signals:
     void editorFileChanged();
@@ -211,12 +215,15 @@ class MainWindow : public QMainWindow
 
     Widgets::TestCases *testcases = nullptr;
 
+    DebugControl *debugControlDialog = nullptr;
+
     void setTestCases();
     void setEditor();
     void setupCore();
     void compile();
     void run();
     void run(int index);
+    void debug(int index);
     void loadTests();
     void saveTests(bool safe);
     void setCFToolUI();
