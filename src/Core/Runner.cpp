@@ -17,8 +17,8 @@
 
 #include "Core/Runner.hpp"
 #include "Core/EventLogger.hpp"
-#include <QElapsedTimer>
 #include "Util.hpp"
+#include <QElapsedTimer>
 #include <QFileInfo>
 #include <QTimer>
 #include <generated/SettingsHelper.hpp>

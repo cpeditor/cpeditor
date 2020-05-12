@@ -27,8 +27,8 @@
 #include "Extensions/CompanionServer.hpp"
 #include "Telemetry/UpdateNotifier.hpp"
 #include "Util.hpp"
-#include "debugcontrol.hpp"
 #include "Widgets/TestCases.hpp"
+#include "debugcontrol.hpp"
 #include <QCodeEditor>
 #include <QFileDialog>
 #include <QFileSystemWatcher>
@@ -226,8 +226,7 @@ void MainWindow::debug(int index)
         {
             debugControlDialog = new DebugControl("gdb", "gdbserver",
                                                   path.canonicalPath() + QDir::separator() + path.completeBaseName());
-            debugControlDialog->setArguments(
-                Util::splitArgument(SettingsHelper::getCppRunArguments()));
+            debugControlDialog->setArguments(Util::splitArgument(SettingsHelper::getCppRunArguments()));
             auto cursor = editor->textCursor();
             debugControlDialog->rowChanged(cursor.blockNumber() + 1);
         }

@@ -208,7 +208,7 @@ class AppWindow : public QMainWindow
     Extensions::LanguageServer *cppServer = nullptr;
     Extensions::LanguageServer *javaServer = nullptr;
     Extensions::LanguageServer *pythonServer = nullptr;
-    
+
     DebugControl *debugControlDialog = nullptr;
 
     void setConnections();
