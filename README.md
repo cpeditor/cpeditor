@@ -101,7 +101,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   </tr>
   <tr>
     <td align="center">
-      <a href="https://github.com/testitem"><img src="https://avatars3.githubusercontent.com/u/19212916?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/testitem"><sub><b>queen bee shuttle</b></sub></a><br /><a href="https://github.com/cpeditor/cpeditor/commits?author=testitem" title="Code">💻</a> <a href="#ideas-testitem" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/cpeditor/cpeditor/issues?q=author%3Atestitem" title="Bug reports">🐛</a> <a href="https://github.com/cpeditor/cpeditor/commits?author=testitem" title="Documentation">📖</a>
+      <a href="https://github.com/testitem"><img src="https://avatars3.githubusercontent.com/u/19212916?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/testitem"><sub><b>queen bee shuttle</b></sub></a><br /><a href="https://github.com/cpeditor/cpeditor/commits?author=testitem" title="Documentation">📖</a> <a href="#ideas-testitem" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/cpeditor/cpeditor/issues?q=author%3Atestitem" title="Bug reports">🐛</a>
     </td>
     <td align="center">
       <a href="https://github.com/yatharth1706"><img src="https://avatars2.githubusercontent.com/u/32243289?v=4" width="100px;" alt=""/></a><br /><a href="https://yatharth1706.github.io/"><sub><b>Yatharth Verma</b></sub></a><br /><a href="https://github.com/cpeditor/cpeditor/commits?author=yatharth1706" title="Code">💻</a> <a href="https://github.com/cpeditor/cpeditor/issues?q=author%3Ayatharth1706" title="Bug reports">🐛</a>
