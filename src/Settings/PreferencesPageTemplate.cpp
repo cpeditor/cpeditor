@@ -90,7 +90,18 @@ PreferencesPageTemplate::PreferencesPageTemplate(QStringList opts, bool alignTop
 
 QStringList PreferencesPageTemplate::content()
 {
-    return options;
+    QStringList ret = options;
+    for (auto opt : options)
+    {
+        SettingInfo si = findSetting(opt);
+        if (!si.desc.isEmpty())
+            ret += si.desc;
+        if (!si.tip.isEmpty())
+            ret += si.tip;
+        if (!si.help.isEmpty())
+            ret += si.help;
+    }
+    return ret;
 }
 
 bool PreferencesPageTemplate::areSettingsChanged()
