@@ -137,7 +137,6 @@ void Runner::runDetached(const QString &filePath, const QString &lang, const QSt
     runProcess->closeWriteChannel();
 #else
     // use cmd on Windows
-    Core::Log::i("runner/runDetached", "on windows. Using cmd");
     runProcess->start("cmd /C \"start cmd /C " +
                       getCommand(filePath, lang, runCommand, args).full.replace("\"", "^\"") + " ^& pause\"");
     LOG_INFO("CMD Arguemnts " << runProcess->arguments().join(" "));
