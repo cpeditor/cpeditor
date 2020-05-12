@@ -33,6 +33,8 @@ add_subdirectory(third_party/QtFindReplaceDialog/dialogs)
 
 add_subdirectory(third_party/lsp-cpp)
 
+add_subdirectory(third_party/qgdbint)
+
 IF(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/.git)
   FIND_PACKAGE(Git)
   IF(GIT_FOUND)
@@ -126,6 +128,9 @@ add_executable(cpeditor
     src/mainwindow.cpp
     src/mainwindow.hpp
 
+    src/debugcontrol.cpp
+    src/debugcontrol.hpp
+
     src/Util.cpp
     src/Util.hpp
 
@@ -136,6 +141,7 @@ add_executable(cpeditor
 
     ui/mainwindow.ui
     ui/appwindow.ui
+    ui/debugcontrol.ui
 
     ${CMAKE_BINARY_DIR}/generated/gitsha.hpp
     ${CMAKE_BINARY_DIR}/generated/version.hpp
@@ -151,6 +157,7 @@ include_directories("third_party/diff_match_patch")
 include_directories("third_party/lsp-cpp/include")
 include_directories("third_party/QCodeEditor/include")
 include_directories("third_party/QtFindReplaceDialog")
+include_directories("third_party/qgdbint")
 
 target_link_libraries(cpeditor PRIVATE LSPClient)
 target_link_libraries(cpeditor PRIVATE QCodeEditor)
@@ -158,7 +165,8 @@ target_link_libraries(cpeditor PRIVATE Qt5::Network)
 target_link_libraries(cpeditor PRIVATE Qt5::Widgets)
 target_link_libraries(cpeditor PRIVATE QtFindReplaceDialog)
 target_link_libraries(cpeditor PRIVATE SingleApplication)
-
+target_link_libraries(cpeditor PRIVATE qgdbint)
+ 
 if(APPLE)
     set_target_properties(cpeditor
         PROPERTIES

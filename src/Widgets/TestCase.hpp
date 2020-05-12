@@ -58,10 +58,12 @@ class TestCase : public QWidget
   signals:
     void deleted(TestCase *widget);
     void requestRun(int index);
+    void requestDebug(int index);
 
   private slots:
     void onShowCheckBoxToggled(bool checked);
     void onRunButtonClicked();
+    void onDebugButtonClicked();
     void onDiffButtonClicked();
     void onDelButtonClicked();
     void onToLongForHtml();
@@ -71,7 +73,7 @@ class TestCase : public QWidget
     QVBoxLayout *inputLayout = nullptr, *outputLayout = nullptr, *expectedLayout = nullptr;
     QCheckBox *showCheckBox = nullptr;
     QLabel *inputLabel = nullptr, *outputLabel = nullptr, *expectedLabel = nullptr;
-    QPushButton *runButton = nullptr, *diffButton = nullptr, *delButton = nullptr;
+    QPushButton *runButton = nullptr, *debugButton = nullptr, *diffButton = nullptr, *delButton = nullptr;
     TestCaseEdit *inputEdit = nullptr, *outputEdit = nullptr, *expectedEdit = nullptr;
     DiffViewer *diffViewer = nullptr;
     MessageLogger *log;

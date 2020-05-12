@@ -29,6 +29,7 @@ class QMenu;
 class QShortcut;
 class QSplitter;
 class QSystemTrayIcon;
+class DebugControl;
 
 namespace Ui
 {
@@ -207,6 +208,8 @@ class AppWindow : public QMainWindow
     Extensions::LanguageServer *cppServer = nullptr;
     Extensions::LanguageServer *javaServer = nullptr;
     Extensions::LanguageServer *pythonServer = nullptr;
+    
+    DebugControl *debugControlDialog = nullptr;
 
     void setConnections();
     void allocate();

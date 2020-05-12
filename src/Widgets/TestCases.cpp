@@ -236,6 +236,7 @@ void TestCases::addTestCase(const QString &input, const QString &expected)
         auto testcase = new TestCase(count(), log, this, input, expected);
         connect(testcase, SIGNAL(deleted(TestCase *)), this, SLOT(onChildDeleted(TestCase *)));
         connect(testcase, SIGNAL(requestRun(int)), this, SIGNAL(requestRun(int)));
+        connect(testcase, SIGNAL(requestDebug(int)), this, SIGNAL(requestDebug(int)));
         testcases.push_back(testcase);
         scrollAreaLayout->addWidget(testcase);
         updateVerdicts();
