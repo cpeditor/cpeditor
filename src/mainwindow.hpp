@@ -92,8 +92,8 @@ class MainWindow : public QMainWindow
     void setProblemURL(const QString &url);
     void setUntitledIndex(int index);
 
-    EditorStatus toStatus(bool simple) const;
-    void loadStatus(const EditorStatus &status, bool simple);
+    EditorStatus toStatus() const;
+    void loadStatus(const EditorStatus &status);
 
     void save(bool force, const QString &head, bool safe = true);
     void saveAs();

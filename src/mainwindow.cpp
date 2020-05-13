@@ -368,9 +368,8 @@ QMap<QString, QVariant> MainWindow::EditorStatus::toMap() const
 }
 #undef TOSTATUS
 
-MainWindow::EditorStatus MainWindow::toStatus(bool simple) const
+MainWindow::EditorStatus MainWindow::toStatus() const
 {
-    LOG_INFO("Moving to status this window state" << BOOL_INFO_OF(simple));
     EditorStatus status;
 
     status.isLanguageSet = isLanguageSet;
@@ -380,24 +379,20 @@ MainWindow::EditorStatus MainWindow::toStatus(bool simple) const
     status.untitledIndex = untitledIndex;
     status.checkerIndex = testcases->checkerIndex();
     status.customCheckers = testcases->customCheckers();
-
-    if (!simple)
-    {
-        status.editorText = editor->toPlainText();
-        status.editorCursor = editor->textCursor().position();
-        status.editorAnchor = editor->textCursor().anchor();
-        status.horizontalScrollBarValue = editor->horizontalScrollBar()->value();
-        status.verticalScrollbarValue = editor->verticalScrollBar()->value();
-        status.input = testcases->inputs();
-        status.expected = testcases->expecteds();
-        for (int i = 0; i < testcases->count(); ++i)
-            status.testcasesIsShow.push_back(testcases->isShow(i));
-    }
+    status.editorText = editor->toPlainText();
+    status.editorCursor = editor->textCursor().position();
+    status.editorAnchor = editor->textCursor().anchor();
+    status.horizontalScrollBarValue = editor->horizontalScrollBar()->value();
+    status.verticalScrollbarValue = editor->verticalScrollBar()->value();
+    status.input = testcases->inputs();
+    status.expected = testcases->expecteds();
+    for (int i = 0; i < testcases->count(); ++i)
+        status.testcasesIsShow.push_back(testcases->isShow(i));
 
     return status;
 }
 
-void MainWindow::loadStatus(const EditorStatus &status, bool simple)
+void MainWindow::loadStatus(const EditorStatus &status)
 {
     LOG_INFO("Requesting loadStatus");
     setProblemURL(status.problemURL);
@@ -406,29 +401,19 @@ void MainWindow::loadStatus(const EditorStatus &status, bool simple)
     untitledIndex = status.untitledIndex;
     testcases->addCustomCheckers(status.customCheckers);
     testcases->setCheckerIndex(status.checkerIndex);
-
-    LOG_INFO(INFO_OF(simple) << INFO_OF(status.filePath));
-
-    if (!simple)
-    {
-        filePath = status.filePath;
-        updateWatcher();
-        savedText = status.savedText;
-        editor->setPlainText(status.editorText);
-        auto cursor = editor->textCursor();
-        cursor.setPosition(status.editorAnchor);
-        cursor.setPosition(status.editorCursor, QTextCursor::KeepAnchor);
-        editor->setTextCursor(cursor);
-        editor->horizontalScrollBar()->setValue(status.horizontalScrollBarValue);
-        editor->verticalScrollBar()->setValue(status.verticalScrollbarValue);
-        testcases->loadStatus(status.input, status.expected);
-        for (int i = 0; i < status.testcasesIsShow.count() && i < testcases->count(); ++i)
-            testcases->setShow(i, status.testcasesIsShow[i].toBool());
-    }
-    else if (!status.filePath.isEmpty())
-    {
-        loadFile(status.filePath);
-    }
+    filePath = status.filePath;
+    updateWatcher();
+    savedText = status.savedText;
+    editor->setPlainText(status.editorText);
+    auto cursor = editor->textCursor();
+    cursor.setPosition(status.editorAnchor);
+    cursor.setPosition(status.editorCursor, QTextCursor::KeepAnchor);
+    editor->setTextCursor(cursor);
+    editor->horizontalScrollBar()->setValue(status.horizontalScrollBarValue);
+    editor->verticalScrollBar()->setValue(status.verticalScrollbarValue);
+    testcases->loadStatus(status.input, status.expected);
+    for (int i = 0; i < status.testcasesIsShow.count() && i < testcases->count(); ++i)
+        testcases->setShow(i, status.testcasesIsShow[i].toBool());
 }
 
 void MainWindow::applyCompanion(const Extensions::CompanionData &data)

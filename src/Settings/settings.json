@@ -383,13 +383,6 @@
         ]
     },
     {
-        "name": "Hot Exit/Load From File",
-        "type": "bool",
-        "old": [
-            "hot_exit_load_from_file"
-        ]
-    },
-    {
         "name": "Force Close",
         "type": "bool"
     },

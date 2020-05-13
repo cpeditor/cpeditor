@@ -119,21 +119,14 @@ AppWindow::AppWindow(bool noHotExit, QWidget *parent) : QMainWindow(parent), ui(
         auto oldSize = size();
         setUpdatesEnabled(false);
 
-        // save these so that they won't be affected by saveEditorStatus() in onEditorFileChanged()
-        QVector<MainWindow::EditorStatus> status;
-        for (int i = 0; i < length; ++i)
-            status.push_back(
-                MainWindow::EditorStatus(SettingsManager::get(QString("Editor Status/%1").arg(i)).toMap()));
-        bool loadFromFile = SettingsHelper::isHotExitLoadFromFile();
-        int currentIndex = SettingsHelper::getHotExitCurrentIndex();
-
         for (int i = 0; i < length; ++i)
         {
             if (progress.wasCanceled())
                 break;
+            auto status = MainWindow::EditorStatus(SettingsManager::get(QString("Editor Status/%1").arg(i)).toMap());
             progress.setValue(i);
             openTab("");
-            currentWindow()->loadStatus(status[i], loadFromFile);
+            currentWindow()->loadStatus(status);
             progress.setLabelText(currentWindow()->getTabTitle(true, false));
         }
 
@@ -142,8 +135,7 @@ AppWindow::AppWindow(bool noHotExit, QWidget *parent) : QMainWindow(parent), ui(
         setUpdatesEnabled(true);
         resize(oldSize);
 
-        SettingsHelper::setHotExitLoadFromFile(true);
-
+        int currentIndex = SettingsHelper::getHotExitCurrentIndex();
         if (currentIndex >= 0 && currentIndex < ui->tabWidget->count())
             ui->tabWidget->setCurrentIndex(currentIndex);
     } while (false);
@@ -533,9 +525,8 @@ void AppWindow::openContest(const QString &path, const QString &lang, int number
     openTabs(tabs);
 }
 
-void AppWindow::saveEditorStatus(bool loadFromFile)
+void AppWindow::saveEditorStatus()
 {
-    LOG_INFO("Save Editor status and load From File " << BOOL_INFO_OF(loadFromFile));
     SettingsManager::remove(SettingsManager::keyStartsWith("Editor Status/"));
     if (ui->tabWidget->count() == 1 && windowAt(0)->isUntitled() && !windowAt(0)->isTextChanged() &&
         windowAt(0)->getProblemURL().isEmpty())
@@ -548,7 +539,7 @@ void AppWindow::saveEditorStatus(bool loadFromFile)
         SettingsHelper::setHotExitTabCount(ui->tabWidget->count());
         SettingsHelper::setHotExitCurrentIndex(ui->tabWidget->currentIndex());
         for (int i = 0; i < ui->tabWidget->count(); ++i)
-            SettingsManager::set(QString("Editor Status/%1").arg(i), windowAt(i)->toStatus(loadFromFile).toMap());
+            SettingsManager::set(QString("Editor Status/%1").arg(i), windowAt(i)->toStatus().toMap());
     }
 }
 
@@ -559,8 +550,7 @@ bool AppWindow::quit()
     if (SettingsHelper::isHotExitEnable() || SettingsHelper::isForceClose())
     {
         LOG_INFO("quit() with hotexit");
-        SettingsHelper::setHotExitLoadFromFile(false);
-        saveEditorStatus(false);
+        saveEditorStatus();
     }
     else
     {
@@ -864,9 +854,6 @@ void AppWindow::onTabChanged(int index)
 
 void AppWindow::onEditorFileChanged()
 {
-    if (SettingsHelper::isHotExitEnable() && SettingsHelper::isHotExitLoadFromFile())
-        saveEditorStatus(true);
-
     if (currentWindow() != nullptr)
     {
         QMap<QString, QVector<int>> tabsByName;
