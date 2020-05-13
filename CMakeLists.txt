@@ -129,8 +129,6 @@ add_executable(cpeditor
     src/Util.cpp
     src/Util.hpp
 
-    src/Application.cpp
-    src/Application.hpp
     src/SignalHandler.cpp
     src/SignalHandler.hpp
 

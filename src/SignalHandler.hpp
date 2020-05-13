@@ -16,7 +16,7 @@
  */
 
 /**
- * This class is from https://stackoverflow.com/a/7582555/12601364
+ * This class is based on https://stackoverflow.com/a/7582555/12601364
  */
 
 #ifndef SIGNALHANDLER_HPP
@@ -29,7 +29,7 @@ class SignalHandler : public QObject
     Q_OBJECT
 
   public:
-    SignalHandler(int mask = DEFAULT_SIGNALS);
+    explicit SignalHandler(int mask = DEFAULT_SIGNALS);
     virtual ~SignalHandler();
 
     enum SIGNALS
@@ -48,11 +48,14 @@ class SignalHandler : public QObject
         // SIG_TERM]
         SIG_RELOAD = 16,
         // Reload the configuration [Linux only, physical signal is SIGHUP; on Windows it maps to SIG_NOOP]
-        DEFAULT_SIGNALS = SIG_INT | SIG_TERM | SIG_CLOSE,
+        DEFAULT_SIGNALS = SIG_INT | SIG_TERM | SIG_CLOSE | SIG_RELOAD,
     };
     static const int numSignals = 6;
 
-    virtual bool handleSignal(int signal) = 0;
+    bool handleSignal(int signal);
+
+  signals:
+    void signalReceived(int signal);
 
   private:
     int _mask;

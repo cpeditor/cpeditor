@@ -16,7 +16,7 @@
  */
 
 /**
- * This class is from https://stackoverflow.com/a/7582555/12601364
+ * This class is based on https://stackoverflow.com/a/7582555/12601364
  */
 
 #include "SignalHandler.hpp"
@@ -196,3 +196,9 @@ void POSIX_handleFunc(int signal)
     }
 }
 #endif //_WIN32
+
+bool SignalHandler::handleSignal(int signal)
+{
+    emit signalReceived(signal);
+    return false;
+}
