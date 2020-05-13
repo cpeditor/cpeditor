@@ -50,7 +50,7 @@
    </property>
    <widget class="QMenu" name="menuFile">
     <property name="title">
-     <string>File</string>
+     <string>&amp;File</string>
     </property>
     <addaction name="actionNew_Tab"/>
     <addaction name="actionOpen"/>
@@ -67,7 +67,7 @@
    </widget>
    <widget class="QMenu" name="menuEdit">
     <property name="title">
-     <string>Edit</string>
+     <string>&amp;Edit</string>
     </property>
     <addaction name="action_indent"/>
     <addaction name="action_unindent"/>
@@ -84,7 +84,7 @@
    </widget>
    <widget class="QMenu" name="menuActions">
     <property name="title">
-     <string>Actions</string>
+     <string>&amp;Actions</string>
     </property>
     <addaction name="actionCompile"/>
     <addaction name="actionCompile_Run"/>
@@ -97,7 +97,7 @@
    </widget>
    <widget class="QMenu" name="menuView">
     <property name="title">
-     <string>View</string>
+     <string>&amp;View</string>
     </property>
     <addaction name="actionEditor_Mode"/>
     <addaction name="actionIO_Mode"/>
@@ -105,7 +105,7 @@
    </widget>
    <widget class="QMenu" name="menuOptions">
     <property name="title">
-     <string>Options</string>
+     <string>&amp;Options</string>
     </property>
     <addaction name="actionSettings"/>
     <addaction name="separator"/>
@@ -116,7 +116,7 @@
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
-     <string>Help</string>
+     <string>&amp;Help</string>
     </property>
     <addaction name="actionManual"/>
     <addaction name="actionAbout"/>
