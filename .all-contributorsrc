@@ -45,7 +45,8 @@
         "code",
         "doc",
         "translation",
-        "ideas"
+        "ideas",
+        "review"
       ]
     },
     {
@@ -83,7 +84,7 @@
       "avatar_url": "https://avatars3.githubusercontent.com/u/19212916?v=4",
       "profile": "https://github.com/testitem",
       "contributions": [
-        "code",
+        "doc",
         "ideas",
         "bug"
       ]
@@ -324,6 +325,24 @@
       "profile": "https://github.com/samael042",
       "contributions": [
         "bug"
+      ]
+    },
+    {
+      "login": "2740365712",
+      "name": "Starlit_Night",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/33799658?v=4",
+      "profile": "https://github.com/2740365712",
+      "contributions": [
+        "ideas"
+      ]
+    },
+    {
+      "login": "shakeabi",
+      "name": "Abishake",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/36559835?v=4",
+      "profile": "http://abishake.co",
+      "contributions": [
+        "ideas"
       ]
     }
   ],

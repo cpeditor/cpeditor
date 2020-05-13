@@ -1,5 +1,13 @@
 ## UNRELEASED
 
+### Added
+
+- Now you can change the font of the message logger. (#331 and #334)
+- Now besides the name of a setting, you can also search for the desciption, tool tip and help information of a setting in the preferences window. (#337)
+- Now the application catches SIGINT, SIGTERM and SIGHUP on Linux and catches CTRL_C_EVENT, CTRL_BREAK_EVENT and CTRL_CLOSE_EVENT on Windows, it be will gracefully closed when receiving these signals. (#178 and #268)
+
+## v6.4
+
 ### Linting with Language Server
 
 Now error linting is available with Language Server. Linting can be helpful when you want to find errors in your code and fix them quickly. You need to install a Language Server program to enable linting. You can set delay for linting, the path to the Languae Server program and its arguments in the Preferences window. You can set different settings for different languages. Please check the [manual](MANUAL.md) for more information on how to set this up.
@@ -12,12 +20,14 @@ Now error linting is available with Language Server. Linting can be helpful when
 - Now you can choose where to save the test case files in Preferences->File Path->Testcases. (#176)
 - Now when saving the source file, if the parent directory of the file does not exist, it will be automatically created.
 - Now you can set different default file paths for different problem URLs. (#200)
-- Now the application catches SIGINT and SIGTERM, it be will normally closed when receiving these signals. (#178 and #268)
+- Now you can set font for test cases.
+- Now you can enable extra bottom margin with the height of a page. (#230)
 
 ### Changed
 
 - Word selection in editor is highlighted with change of background color instead of an underline. Underlined text now represent linting of type "Hint".
 - The shortcut of Detached Run is changed from Ctrl+Shift+D to Ctrl+Alt+D. (#237)
+- Now after deleting the current line/selected lines, the cursor will keep its place if possible, instead of moving to the start of the previous line.
 
 ### Fixed
 
@@ -25,6 +35,7 @@ Now error linting is available with Language Server. Linting can be helpful when
 - Fix preferences window loses focus after picking the font. (#260)
 - Fix Ctrl+Enter and Ctrl+Shift+Enter in the code editor.
 - Fix lost of code snippets and hot exit status on some platforms.
+- Fix the unexpected behaviour of Shift+Enter.
 
 ## v6.3
 

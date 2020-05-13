@@ -14,10 +14,12 @@
         "type": "QRect"
     },
     {
-        "name": "Font",
-        "desc": "Editor Font",
+        "name": "Editor Font",
         "type": "QFont",
         "default": "QFont(\"monospace\")",
+        "old": [
+            "font"
+        ],
         "tip": "The font of the code editor"
     },
     {
@@ -599,5 +601,23 @@
         "default": "QVariantList {}",
         "param": "QVariantList { QStringList {\"Problem URL\", \"The regular expression which matches a part of the problem URL\"}, QStringList {\"File Path\", \"The replace expression for the file path, without file name suffix.\\nYou can use \\\"\\\\1\\\" for the first captured group.\"}}",
         "tip": "The default file path used when saving a new file while the problem URL is set"
+    },
+    {
+        "name": "Test Cases Font",
+        "type": "QFont",
+        "default": "QFont(\"monospace\")",
+        "tip": "The font of test cases"
+    },
+    {
+        "name": "Extra Bottom Margin",
+        "desc": "Add extra margin at the bottom of the code editor",
+        "type": "bool",
+        "tip": "Add an extra margin with the height of a page at the bottom of the code editor.\nDue to technical reasons, changing the height of the margin affects the undo history."
+    },
+    {
+        "name": "Message Logger Font",
+        "type": "QFont",
+        "default": "QFont(\"monospace\")",
+        "tip": "The font of the message logger"
     }
 ]

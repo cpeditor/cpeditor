@@ -131,7 +131,7 @@ void applySettingsToEditor(QCodeEditor *editor)
     editor->setAutoParentheses(SettingsHelper::isAutoCompleteParentheses());
     editor->setAutoRemoveParentheses(SettingsHelper::isAutoRemoveParentheses());
 
-    editor->setFont(SettingsHelper::getFont());
+    editor->setFont(SettingsHelper::getEditorFont());
 
     const int tabStop = SettingsHelper::getTabWidth();
     QFontMetrics metric(editor->font());
@@ -154,6 +154,8 @@ void applySettingsToEditor(QCodeEditor *editor)
         editor->setSyntaxStyle(Extensions::EditorTheme::getSolarizedDarkTheme());
     else
         editor->setSyntaxStyle(Extensions::EditorTheme::getLightTheme());
+
+    editor->setExtraBottomMargin(SettingsHelper::isExtraBottomMargin());
 }
 
 void setEditorLanguage(QCodeEditor *editor, const QString &language)

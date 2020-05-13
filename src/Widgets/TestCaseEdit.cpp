@@ -33,6 +33,7 @@ namespace Widgets
 TestCaseEdit::TestCaseEdit(bool autoAnimation, MessageLogger *logger, const QString &text, QWidget *parent)
     : QPlainTextEdit(text, parent), log(logger)
 {
+    setFont(SettingsHelper::getTestCasesFont());
     animation = new QPropertyAnimation(this, "minimumHeight", this);
     if (autoAnimation)
         connect(this, SIGNAL(textChanged()), this, SLOT(startAnimation()));

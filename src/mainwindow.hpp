@@ -165,7 +165,8 @@ class MainWindow : public QMainWindow
     enum SaveMode
     {
         IgnoreUntitled, // save only when filePath is not empty
-        SaveUntitled,   // save to filePath if it's not empty, otherwise ask for new path
+        IgnoreNonExist, // don't save if the file doesn't exist, this implies IgnoreUntitled
+        AlwaysSave,     // save to filePath if it's not empty, otherwise ask for new path
         SaveAs,         // ask for new path no matter filePath is empty or not
     };
     enum AfterCompile
@@ -223,7 +224,7 @@ class MainWindow : public QMainWindow
     void updateWatcher();
     void loadFile(const QString &loadPath);
     bool saveFile(SaveMode, const QString &head, bool safe);
-    SaveTempStatus saveTemp(const QString &head);
+    SaveTempStatus saveTemp(const QString &head, SaveMode mode = IgnoreUntitled);
     void performCompileAndRunDiagonistics();
     QString getRunnerHead(int index);
 };

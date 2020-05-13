@@ -41,8 +41,7 @@ void MessageLogger::message(const QString &head, const QString &body, const QStr
     // get the HTML of the message
     // use monospace for the message body, it's important for compilation errors
     // "monospace" might not work on Windows, but "Consolas,Courier,monospace" works
-    QString res = "<b>[" + QTime::currentTime().toString() + "] [" + newHead +
-                  "] </b><span style=\"font-family:Consolas,Courier,monospace;";
+    QString res = QString("<b>[%1] [%2] </b><span style=\"").arg(QTime::currentTime().toString(), newHead);
     if (!color.isEmpty())
         res += "color:" + color;
     res += "\">[";
@@ -50,7 +49,7 @@ void MessageLogger::message(const QString &head, const QString &body, const QStr
         res += "<br>" + newBody.replace("\n", "<br>");
     else
         res += newBody;
-    res += "]</font>";
+    res += "]</span>";
 
     box->append(res);
 }
