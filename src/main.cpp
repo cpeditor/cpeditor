@@ -34,7 +34,7 @@
 
 #define TOJSON(x) json[#x] = x
 
-void signalReceived(bool sigInt)
+void signalReceived(bool force)
 {
     if (qApp)
     {
@@ -44,7 +44,7 @@ void signalReceived(bool sigInt)
             auto dialog = qobject_cast<QDialog *>(widget);
             if (dialog && dialog->isModal())
             {
-                if (sigInt)
+                if (!force)
                 {
                     for (auto w : widgets)
                     {
@@ -75,7 +75,7 @@ void signalReceived(bool sigInt)
             auto appWindow = qobject_cast<AppWindow *>(widget);
             if (appWindow)
             {
-                if (sigInt)
+                if (!force)
                     appWindow->close();
                 else
                     appWindow->forceClose();
@@ -136,8 +136,12 @@ int main(int argc, char *argv[])
     LOG_INFO("Registered SigInt " << handler->registerForSignal(QCtrlSignalHandler::SigInt));
     LOG_INFO("Registered SigTerm " << handler->registerForSignal(QCtrlSignalHandler::SigTerm));
 
+#ifdef Q_OS_WIN
     QObject::connect(handler, &QCtrlSignalHandler::sigInt, qApp, []() { signalReceived(true); });
-    QObject::connect(handler, &QCtrlSignalHandler::sigTerm, qApp, []() { signalReceived(false); });
+#else
+    QObject::connect(handler, &QCtrlSignalHandler::sigInt, qApp, []() { signalReceived(false); });
+#endif
+    QObject::connect(handler, &QCtrlSignalHandler::sigTerm, qApp, []() { signalReceived(true); });
 
     auto args = parser.positionalArguments();
 
