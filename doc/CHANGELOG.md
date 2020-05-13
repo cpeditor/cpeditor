@@ -4,6 +4,7 @@
 
 - Now you can change the font of the message logger. (#331 and #334)
 - Now besides the name of a setting, you can also search for the desciption, tool tip and help information of a setting in the preferences window. (#337)
+- Now you can use Alt to choose the menu in the main window. (#344)
 
 ## v6.4
 
