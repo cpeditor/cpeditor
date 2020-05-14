@@ -43,7 +43,7 @@ QSyntaxStyle *EditorTheme::getMonokaiTheme()
         return monokai;
     else
     {
-        auto content = Util::readFile(":/styles/monokai.xml", "Read Style");
+        auto content = QString::fromUtf8(Util::readFile(":/styles/monokai.xml", "Read Style"));
         if (content.isNull())
             return nullptr;
         monokai = new QSyntaxStyle();
@@ -57,7 +57,7 @@ QSyntaxStyle *EditorTheme::getDraculaTheme()
         return dracula;
     else
     {
-        auto content = Util::readFile(":/styles/dracula.xml", "Read Style");
+        auto content = QString::fromUtf8(Util::readFile(":/styles/dracula.xml", "Read Style"));
         if (content.isNull())
             return nullptr;
         dracula = new QSyntaxStyle();
@@ -71,7 +71,7 @@ QSyntaxStyle *EditorTheme::getSolarizedTheme()
         return solarized;
     else
     {
-        auto content = Util::readFile(":/styles/solarized.xml", "Read Style");
+        auto content = QString::fromUtf8(Util::readFile(":/styles/solarized.xml", "Read Style"));
         if (content.isNull())
             return nullptr;
         solarized = new QSyntaxStyle();
@@ -85,7 +85,7 @@ QSyntaxStyle *EditorTheme::getSolarizedDarkTheme()
         return solarizedDark;
     else
     {
-        auto content = Util::readFile(":/styles/solarizedDark.xml", "Read Style");
+        auto content = QString::fromUtf8(Util::readFile(":/styles/solarizedDark.xml", "Read Style"));
         if (content.isNull())
             return nullptr;
         solarizedDark = new QSyntaxStyle();

@@ -42,6 +42,7 @@
 #include <QSyntaxStyle>
 #include <QTemporaryDir>
 #include <QTextBlock>
+#include <QTextCodec>
 #include <QTimer>
 #include <generated/SettingsHelper.hpp>
 #include <generated/version.hpp>
@@ -61,6 +62,26 @@ MainWindow::MainWindow(const QString &fileOpen, int index, QWidget *parent)
     setEditor();
     connect(fileWatcher, SIGNAL(fileChanged(const QString &)), this, SLOT(onFileWatcherChanged(const QString &)));
     applySettings("", true);
+    ui->codecCombo->addItem("UTF-8");
+#ifdef Q_OS_WIN32
+    ui->codecCombo->addItem(QTextCodec::codecForLocale()->name());
+#endif
+    QString defCodec = SettingsHelper::getDefaultCodec(); // maybe do some checks
+    if (-1 == ui->codecCombo->findText(defCodec))
+        ui->codecCombo->addItem(defCodec);
+    ui->codecCombo->setCurrentText(defCodec);
+    codec = QTextCodec::codecForName(defCodec.toUtf8());
+    connect(ui->codecCombo, &QComboBox::currentTextChanged, [&](QString name) {
+        if (!isTextChanged() ||
+            QMessageBox::Yes ==
+                QMessageBox::warning(this, "Discard changes?",
+                                     "Are you sure to discard unsaved changes and reload with the new codec?",
+                                     QMessageBox::Yes | QMessageBox::No))
+        {
+            codec = QTextCodec::codecForName(name.toUtf8());
+            loadFile(filePath);
+        }
+    });
     loadFile(fileOpen);
     if (testcases->count() == 0)
         testcases->addTestCase();
@@ -585,8 +606,9 @@ void MainWindow::setLanguage(const QString &lang)
     {
         QString templateContent;
         if (!language.isEmpty())
-            templateContent = Util::readFile(SettingsManager::get(QString("%1/Template Path").arg(language)).toString(),
-                                             QString("Open %1 Template").arg(language), log);
+            templateContent = QString::fromUtf8(
+                Util::readFile(SettingsManager::get(QString("%1/Template Path").arg(language)).toString(),
+                               QString("Open %1 Template").arg(language), log));
         if (templateContent == editor->toPlainText())
         {
             language = lang;
@@ -726,7 +748,7 @@ void MainWindow::loadFile(const QString &loadPath)
         }
     }
 
-    auto content = Util::readFile(path, "Open File", log);
+    auto content = codec->toUnicode(Util::readFile(path, "Open File", log));
 
     if (content.isNull())
         return;
@@ -815,7 +837,7 @@ bool MainWindow::saveFile(SaveMode mode, const QString &head, bool safe)
         if (newFilePath.isEmpty())
             return beforeReturn(false);
 
-        if (!Util::saveFile(newFilePath, editor->toPlainText(), head, safe, log, true))
+        if (!Util::saveFile(newFilePath, codec->fromUnicode(editor->toPlainText()), head, safe, log, true))
             return beforeReturn(false);
 
         filePath = newFilePath;
@@ -834,7 +856,7 @@ bool MainWindow::saveFile(SaveMode mode, const QString &head, bool safe)
     }
     else if (!isUntitled())
     {
-        if (!Util::saveFile(filePath, editor->toPlainText(), head, safe, log, true))
+        if (!Util::saveFile(filePath, codec->fromUnicode(editor->toPlainText()), head, safe, log, true))
             return false;
         updateWatcher();
     }
@@ -865,7 +887,7 @@ MainWindow::SaveTempStatus MainWindow::saveTemp(const QString &head)
             return Failed;
         }
 
-        bool success = Util::saveFile(tmpPath(), editor->toPlainText(), head, true, log);
+        bool success = Util::saveFile(tmpPath(), codec->fromUnicode(editor->toPlainText()), head, true, log);
 
         if (success)
             emit editorTmpPathChanged(this);
@@ -915,8 +937,9 @@ bool MainWindow::isTextChanged()
 
     if (isUntitled())
     {
-        auto content = Util::readFile(SettingsManager::get(QString("%1/Template Path").arg(language)).toString(),
-                                      QString("Read %1 Template").arg(language), log);
+        auto content =
+            codec->toUnicode(Util::readFile(SettingsManager::get(QString("%1/Template Path").arg(language)).toString(),
+                                            QString("Read %1 Template").arg(language), log));
         if (content.isNull())
             return !editor->toPlainText().isEmpty();
         else
@@ -924,7 +947,7 @@ bool MainWindow::isTextChanged()
     }
     else
     {
-        auto content = Util::readFile(filePath);
+        auto content = codec->toUnicode(Util::readFile(filePath));
 
         if (content.isNull())
             return true;
@@ -981,7 +1004,7 @@ void MainWindow::onFileWatcherChanged(const QString &path)
 
     auto currentText = editor->toPlainText();
 
-    auto fileText = Util::readFile(path);
+    auto fileText = codec->toUnicode(Util::readFile(path));
 
     if (!fileText.isNull())
     {

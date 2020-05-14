@@ -101,8 +101,8 @@ TestCases::TestCases(MessageLogger *logger, QWidget *parent) : QWidget(parent), 
                     remain.remove(inputFile);
                     remain.remove(answerFile);
                     auto answerPath = QFileInfo(path).dir().filePath(answerFile);
-                    auto input = Util::readFile(path, "Load Testcases", log, true);
-                    auto answer = Util::readFile(answerPath, "Load Testcases", log, true);
+                    auto input = QString::fromUtf8(Util::readFile(path, "Load Testcases", log, true));
+                    auto answer = QString::fromUtf8(Util::readFile(answerPath, "Load Testcases", log, true));
                     addTestCase(input, answer);
                     log->info("Load Testcases",
                               QString("A pair of testcases [%1] and [%2] is loaded").arg(path).arg(answerPath));
@@ -120,7 +120,7 @@ TestCases::TestCases(MessageLogger *logger, QWidget *parent) : QWidget(parent), 
                     if (!inputRegex.match(inputFile).hasMatch())
                         continue;
                     remain.remove(inputFile);
-                    auto input = Util::readFile(path, "Load Testcases", log, true);
+                    auto input = QString::fromUtf8(Util::readFile(path, "Load Testcases", log, true));
                     addTestCase(input, QString());
                     log->info("Load Testcases", QString("An input [%1] is loaded").arg(path));
                 }
@@ -339,7 +339,7 @@ void TestCases::saveToFiles(const QString &filePath, bool safe)
 
 QString TestCases::loadTestCaseFromFile(const QString &path, const QString &head)
 {
-    auto content = Util::readFile(path, QString("Load %1").arg(head), log);
+    auto content = QString::fromUtf8(Util::readFile(path, QString("Load %1").arg(head), log));
     if (content.length() > SettingsHelper::getLoadTestCaseFileLengthLimit())
     {
         log->error("Testcases",

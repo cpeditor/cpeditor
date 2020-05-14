@@ -26,6 +26,7 @@ class QFileSystemWatcher;
 class QPushButton;
 class QSplitter;
 class QTemporaryDir;
+class QTextCodec;
 
 QT_BEGIN_NAMESPACE namespace Ui
 {
@@ -186,6 +187,7 @@ class MainWindow : public QMainWindow
     QCodeEditor *editor;
     QString language;
     bool isLanguageSet = false;
+    QTextCodec *codec;
 
     Extensions::ClangFormatter *formatter = nullptr;
     Core::Compiler *compiler = nullptr;

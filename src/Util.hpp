@@ -18,6 +18,7 @@
 #ifndef UTIL_HPP
 #define UTIL_HPP
 
+#include <QByteArray>
 #include <QStringList>
 
 class MessageLogger;
@@ -38,6 +39,9 @@ const QStringList pythonSuffix = {"py", "py3"};
 
 QString fileNameFilter(bool cpp, bool java, bool python);
 
+bool saveFile(const QString &path, const QByteArray &content, const QString &head = "Save File", bool safe = true,
+              MessageLogger *log = nullptr, bool createDirectory = false);
+
 bool saveFile(const QString &path, const QString &content, const QString &head = "Save File", bool safe = true,
               MessageLogger *log = nullptr, bool createDirectory = false);
 
@@ -51,8 +55,8 @@ bool saveFile(const QString &path, const QString &content, const QString &head =
  * @note The warning is sent to *log* only if the file exists but we can't open it.
  * @note If the content of the file is a null QString, this function will return a non-null empty QString.
  */
-QString readFile(const QString &path, const QString &head = "Read File", MessageLogger *log = nullptr,
-                 bool notExistWarning = false);
+QByteArray readFile(const QString &path, const QString &head = "Read File", MessageLogger *log = nullptr,
+                    bool notExistWarning = false);
 
 void applySettingsToEditor(QCodeEditor *editor);
 

@@ -46,7 +46,7 @@ bool ClangFormatter::check(const QString &checkBinary, const QString &checkStyle
     }
 
     // save a simple file for testing
-    if (!Util::saveFile(tmpDir.filePath("tmp.cpp"), "int main(){}", "Formatter/check"))
+    if (!Util::saveFile(tmpDir.filePath("tmp.cpp"), QByteArray("int main(){}"), "Formatter/check"))
         return false;
 
     // save the style to .clang-format

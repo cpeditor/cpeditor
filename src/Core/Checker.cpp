@@ -100,7 +100,7 @@ void Checker::prepare(const QString &compileCommand)
         }
 
         // get the code of the checker
-        QString checkerCode = Util::readFile(checkerResource, "Read Checker", log);
+        QString checkerCode = QString::fromUtf8(Util::readFile(checkerResource, "Read Checker", log));
         if (checkerCode.isNull())
             return;
 

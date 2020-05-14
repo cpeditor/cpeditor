@@ -116,7 +116,7 @@ void TestCaseEdit::onCustomContextMenuRequested(const QPoint &pos)
 
 void TestCaseEdit::loadFromFile(const QString &path)
 {
-    auto content = Util::readFile(path, "Load Testcase From File", log);
+    auto content = QString::fromUtf8(Util::readFile(path, "Load Testcase From File", log));
     if (!content.isNull())
     {
         if (content.length() > SettingsHelper::getLoadTestCaseFileLengthLimit())

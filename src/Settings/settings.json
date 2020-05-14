@@ -597,17 +597,9 @@
         "tip": "The default file path used when saving a new file while the problem URL is set"
     },
     {
-        "name": "Codec Guess Priority",
-        "type": "QVariantList",
-        "default": "QVariantList { QStringList {\"system\"}, QStringList {\"UTF-8\"}, QStringList {\"UTF-16\"}}",
-        "param": "QVariantList { QStringList {\"Codec\", \"The codec name.\"}}",
-        "tip": "The guess order of codecs when loading files."
-    },
-    {
-        "name": "Saving Codec",
+        "name": "Default Codec",
         "type": "QString",
-        "ui": "QComboBoxEdit",
-        "default": "system",
-        "param": "QStringList {\"system\", \"UTF-8\", \"UTF-16\"}"
+        "default": "UTF-8",
+        "tip": "The default codec used to load files"
     }
 ]

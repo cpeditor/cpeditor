@@ -96,7 +96,7 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
 
     // add pages
 
-    addPage("Code Edit", {"Tab Width", "Auto Indent", "Wrap Text", "Auto Complete Parentheses",
+    addPage("Code Edit", {"Tab Width", "Default Codec", "Auto Indent", "Wrap Text", "Auto Complete Parentheses",
                           "Auto Remove Parentheses", "Replace Tabs"});
 
     addPage("Language/General", {"Default Language"});
@@ -148,8 +148,6 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
     addPage("Advanced/Limits",
             {"Time Limit", "Output Length Limit", "Message Length Limit", "HTML Diff Viewer Length Limit",
              "Open File Length Limit", "Load Test Case File Length Limit"});
-
-    addPage("Advanced/Codec", {"Codec Guess Priority", "Saving Codec"});
 }
 
 void PreferencesWindow::display()

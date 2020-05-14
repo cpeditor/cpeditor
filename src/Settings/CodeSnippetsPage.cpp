@@ -322,7 +322,7 @@ void CodeSnippetsPage::loadSnippetsFromFiles()
 
     for (auto file : files)
     {
-        auto content = Util::readFile(file, "CodeSnippetsPage::loadSnippetsFromFiles");
+        auto content = QString::fromUtf8(Util::readFile(file, "CodeSnippetsPage::loadSnippetsFromFiles"));
         if (content.isNull())
         {
             QMessageBox::warning(this, "Load Snippets",
