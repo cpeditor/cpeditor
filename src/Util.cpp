@@ -142,18 +142,10 @@ void applySettingsToEditor(QCodeEditor *editor)
     else
         editor->setWordWrapMode(QTextOption::NoWrap);
 
-    if (SettingsHelper::getEditorTheme() == "Light")
-        editor->setSyntaxStyle(Extensions::EditorTheme::getLightTheme());
-    else if (SettingsHelper::getEditorTheme() == "Dracula")
-        editor->setSyntaxStyle(Extensions::EditorTheme::getDraculaTheme());
-    else if (SettingsHelper::getEditorTheme() == "Monokai")
-        editor->setSyntaxStyle(Extensions::EditorTheme::getMonokaiTheme());
-    else if (SettingsHelper::getEditorTheme() == "Solarized")
-        editor->setSyntaxStyle(Extensions::EditorTheme::getSolarizedTheme());
-    else if (SettingsHelper::getEditorTheme() == "Solarized Dark")
-        editor->setSyntaxStyle(Extensions::EditorTheme::getSolarizedDarkTheme());
-    else
-        editor->setSyntaxStyle(Extensions::EditorTheme::getLightTheme());
+    auto style = Extensions::EditorTheme::query(SettingsHelper::getEditorTheme());
+    if (!style)
+        style = Extensions::EditorTheme::query("Light");
+    editor->setSyntaxStyle(style);
 
     editor->setExtraBottomMargin(SettingsHelper::isExtraBottomMargin());
 }

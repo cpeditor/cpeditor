@@ -18,6 +18,8 @@
 #ifndef EDITORTHEME_H
 #define EDITORTHEME_H
 
+#include <QMap>
+
 class QSyntaxStyle;
 
 namespace Extensions
@@ -28,19 +30,10 @@ class EditorTheme
     EditorTheme() = delete;
 
   private:
-    static QSyntaxStyle *light;
-    static QSyntaxStyle *dracula;
-    static QSyntaxStyle *monokai;
-    static QSyntaxStyle *solarized;
-    static QSyntaxStyle *solarizedDark;
+    static QMap<QString, QSyntaxStyle*> styles;
 
   public:
-    static QSyntaxStyle *getLightTheme();
-    static QSyntaxStyle *getDraculaTheme();
-    static QSyntaxStyle *getMonokaiTheme();
-    static QSyntaxStyle *getSolarizedTheme();
-    static QSyntaxStyle *getSolarizedDarkTheme();
-
+    static QSyntaxStyle *query(const QString &name);
     static void release();
 };
 } // namespace Extensions
