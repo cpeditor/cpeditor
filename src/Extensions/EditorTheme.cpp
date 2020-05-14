@@ -24,15 +24,12 @@
 namespace Extensions
 {
 
-static QMap<QString, QString> resources =
-{
-    {"Dracula", ":/styles/dracula.xml"},
-    {"Monokai", ":/styles/monokai.xml"},
-    {"Solarized", ":/styles/solarized.xml"},
-    {"Solarized Dark", ":/styles/solarizedDark.xml"}
-};
+static QMap<QString, QString> resources = {{"Dracula", ":/styles/dracula.xml"},
+                                           {"Monokai", ":/styles/monokai.xml"},
+                                           {"Solarized", ":/styles/solarized.xml"},
+                                           {"Solarized Dark", ":/styles/solarizedDark.xml"}};
 
-QMap<QString, QSyntaxStyle*> EditorTheme::styles;
+QMap<QString, QSyntaxStyle *> EditorTheme::styles;
 
 QSyntaxStyle *EditorTheme::query(const QString &name)
 {
@@ -58,7 +55,7 @@ QSyntaxStyle *EditorTheme::query(const QString &name)
 
 void EditorTheme::release()
 {
-    for (auto style: styles.values())
+    for (auto style : styles.values())
         delete style;
     styles.clear();
 }

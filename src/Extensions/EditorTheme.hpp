@@ -30,7 +30,7 @@ class EditorTheme
     EditorTheme() = delete;
 
   private:
-    static QMap<QString, QSyntaxStyle*> styles;
+    static QMap<QString, QSyntaxStyle *> styles;
 
   public:
     static QSyntaxStyle *query(const QString &name);
