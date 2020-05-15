@@ -10,15 +10,15 @@
 
 - 如果你想从网站上获取样例，你需要在浏览器上安装 [Competitive Companion](https://github.com/jmerle/competitive-companion)。
 
-- 如果你想在 CP Editor 内提交代码到 CF 上，你需要安装 [CF Tool](https://github.com/xalanq/cf-tool)。如果 CF Tool 不在 PATH 中，你可以在 Preferences->Extra->Misc->CF Tool Command 中设置 CF Tool 的路径。不要忘了在命令行中使用 `cf config` 设置用户名，密码和模板.
+- 如果你想在 CP Editor 内提交代码到 CF 上，你需要安装 [CF Tool](https://github.com/xalanq/cf-tool)。如果 CF Tool 不在 PATH 中，你可以在 Preferences->Extensions->CF Tool 中设置 CF Tool 的路径。不要忘了在命令行中使用 `cf config` 设置用户名，密码和模板.
 
-- 如果你想格式化你的代码，你需要安装 [Clang Format](http://releases.llvm.org/download.html)。如果 clang-format 不在 PATH 中，你可以在 Preferences->Formatting->Clang Format Command 设置 clang-format 的路径。
+- 如果你想格式化你的代码，你需要安装 [Clang Format](http://releases.llvm.org/download.html)。如果 clang-format 不在 PATH 中，你可以在 Preferences->Extensions->Clang Format 设置 clang-format 的路径。
 
 # 提示
 
 ## CF Tool
 
-你需要使用 Competitive Companion 获取题目样例，或者在标签页的右键菜单中设置题目地址，然后就有提交按钮了。如果 CF Tool 没有被找到，提交按钮就无法点击，可以在 Preferences->Extra->Misc->CF Tool Command 中设置 CF Tool 的路径。
+你需要使用 Competitive Companion 获取题目样例，或者在标签页的右键菜单中设置题目地址，然后就有提交按钮了。如果 CF Tool 没有被找到，提交按钮就无法点击，可以在 Preferences->Extensions->CF Tool 中设置 CF Tool 的路径。
 
 ## 如果你使用 Java
 
