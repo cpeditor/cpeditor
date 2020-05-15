@@ -71,18 +71,6 @@ add_executable(cpeditor
     src/Core/Runner.cpp
     src/Core/Runner.hpp
 
-    src/Telemetry/UpdateNotifier.cpp
-    src/Telemetry/UpdateNotifier.hpp
-
-    src/Widgets/DiffViewer.cpp
-    src/Widgets/DiffViewer.hpp
-    src/Widgets/TestCase.cpp
-    src/Widgets/TestCase.hpp
-    src/Widgets/TestCaseEdit.cpp
-    src/Widgets/TestCaseEdit.hpp
-    src/Widgets/TestCases.cpp
-    src/Widgets/TestCases.hpp
-
     src/Extensions/CFTool.cpp
     src/Extensions/CFTool.hpp
     src/Extensions/CompanionServer.cpp
@@ -121,13 +109,29 @@ add_executable(cpeditor
     src/Settings/ValueWrapper.cpp
     src/Settings/ValueWrapper.hpp
 
+    src/Telemetry/UpdateNotifier.cpp
+    src/Telemetry/UpdateNotifier.hpp
+
+    src/Util/FileUtil.cpp
+    src/Util/FileUtil.hpp
+    src/Util/QCodeEditorUtil.cpp
+    src/Util/QCodeEditorUtil.hpp
+    src/Util/Util.cpp
+    src/Util/Util.hpp
+
+    src/Widgets/DiffViewer.cpp
+    src/Widgets/DiffViewer.hpp
+    src/Widgets/TestCase.cpp
+    src/Widgets/TestCase.hpp
+    src/Widgets/TestCaseEdit.cpp
+    src/Widgets/TestCaseEdit.hpp
+    src/Widgets/TestCases.cpp
+    src/Widgets/TestCases.hpp
+
     src/appwindow.cpp
     src/appwindow.hpp
     src/mainwindow.cpp
     src/mainwindow.hpp
-
-    src/Util.cpp
-    src/Util.hpp
 
     src/main.cpp
 

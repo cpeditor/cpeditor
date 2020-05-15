@@ -17,7 +17,7 @@
 
 #include "Extensions/EditorTheme.hpp"
 #include "Core/EventLogger.hpp"
-#include "Util.hpp"
+#include "Util/FileUtil.hpp"
 #include <QFile>
 #include <QSyntaxStyle>
 

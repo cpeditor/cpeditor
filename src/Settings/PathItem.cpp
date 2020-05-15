@@ -16,7 +16,7 @@
  */
 
 #include "Settings/PathItem.hpp"
-#include "Util.hpp"
+#include "Util/FileUtil.hpp"
 #include <QApplication>
 #include <QFileDialog>
 #include <QHBoxLayout>
@@ -24,10 +24,11 @@
 #include <QStyle>
 #include <QToolButton>
 
-static QString filters[] = {"Excutable (*" EXE_SUFFIX ")", "C++ Sources (*.cpp *.hpp *.h *.cc *.cxx *.c)",
-                            "Java Sources (*.java)", "Python Sources (*.py *.py3)"};
+static const QString filters[] = {"Excutable (*" + Util::exeSuffix + ")",
+                                  "C++ Sources (*.cpp *.hpp *.h *.cc *.cxx *.c)", "Java Sources (*.java)",
+                                  "Python Sources (*.py *.py3)"};
 
-static QString titles[] = {
+static const QString titles[] = {
     "Choose Excutable",
     "Choose C++ Sources",
     "Choose Java Sources",
