@@ -8,15 +8,15 @@
 
 - Если вы хотите парсить примеры тестовых наборов с таких онлайн-платформ, как Codeforces, пожалуйста, установите [Competitive Companion](https://github.com/jmerle/competitive-companion) в Ваш браузер.
 
-- Если вы хотите послать решение Codeforces в Editor, пожалуйста, установите [CF Tool](https://github.com/xalanq/cf-tool). Если он не находится в системном пути(PATH), вы можете установить путь к нему в Preferences->Extra->Misc->CF Tool Command. Не забудьте настроить его с помощью `cf config` (выберите пользователя и шаблон).
+- Если вы хотите послать решение Codeforces в Editor, пожалуйста, установите [CF Tool](https://github.com/xalanq/cf-tool). Если он не находится в системном пути(PATH), вы можете установить путь к нему в Preferences->Extensions->CF Tool. Не забудьте настроить его с помощью `cf config` (выберите пользователя и шаблон).
 
-- Если вы хотите сделать форматирование своего C++ кода, вам нужно установить [Clang Format](http://releases.llvm.org/download.html). вы должны убедиться, что он установлен на системном пути(PATH) или установить путь к нему в Preferences->Formatting->Clang Format Command.
+- Если вы хотите сделать форматирование своего C++ кода, вам нужно установить [Clang Format](http://releases.llvm.org/download.html). вы должны убедиться, что он установлен на системном пути(PATH) или установить путь к нему в Preferences->Extensions->Clang Format.
 
 # Советы
 
 ## CF tool
 
-Вы можете парсить задачу через Competitive Companion, либо вставить URL-адрес задачи через меню вкладок правой кнопкой мыши. Затем вы увидите кнопку "Sumnit". Кнопка доступна только тогда, когда CF Tool будет найден редактором. Вы можете установить путь к нему в Preferences->Extra->Misc->CF Tool Command.
+Вы можете парсить задачу через Competitive Companion, либо вставить URL-адрес задачи через меню вкладок правой кнопкой мыши. Затем вы увидите кнопку "Sumnit". Кнопка доступна только тогда, когда CF Tool будет найден редактором. Вы можете установить путь к нему в Preferences->Extensions->CF Tool.
 
 ## Для пользователей Java
 
