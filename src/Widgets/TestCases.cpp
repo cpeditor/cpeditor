@@ -18,7 +18,7 @@
 #include "Widgets/TestCases.hpp"
 #include "Core/EventLogger.hpp"
 #include "Core/MessageLogger.hpp"
-#include "Util.hpp"
+#include "Util/FileUtil.hpp"
 #include "Widgets/TestCase.hpp"
 #include "generated/SettingsHelper.hpp"
 #include <QComboBox>

@@ -18,10 +18,13 @@
 #include "Settings/AppearancePage.hpp"
 #include "Settings/SettingsManager.hpp"
 #include "Settings/ValueWrapper.hpp"
-#include "Util.hpp"
 #include <QApplication>
 #include <QMessageBox>
 #include <generated/SettingsInfo.hpp>
+
+#ifdef Q_OS_WIN
+#include "Util/Util.hpp"
+#endif
 
 AppearancePage::AppearancePage(QWidget *parent)
     : PreferencesPageTemplate({"Editor Theme", "Editor Font", "Test Cases Font", "Message Logger Font", "Opacity",
