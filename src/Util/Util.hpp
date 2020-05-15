@@ -29,14 +29,6 @@ namespace Util
 
 QPalette windowsDarkThemePalette();
 
-enum ArgumentSplitterStatus
-{
-    SA_OUT,
-    SA_NORMAL,
-    SA_SQUOTE, // single quote
-    SA_DQUOTE  // double quote
-};
-
 QStringList splitArgument(QString);
 
 } // namespace Util

@@ -49,7 +49,14 @@ QPalette windowsDarkThemePalette()
 
 QStringList splitArgument(QString arg)
 {
-    ArgumentSplitterStatus status = SA_OUT;
+    enum
+    {
+        SA_OUT,
+        SA_NORMAL,
+        SA_SQUOTE, // single quote
+        SA_DQUOTE  // double quote
+    } status = SA_OUT;
+
     QStringList result;
     QString current;
     for (int ptr = 0; ptr < arg.size(); ++ptr)
