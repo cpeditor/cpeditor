@@ -20,7 +20,7 @@
 #include "Core/EventLogger.hpp"
 #include "Core/MessageLogger.hpp"
 #include "Core/Runner.hpp"
-#include "Util.hpp"
+#include "Util/FileUtil.hpp"
 #include <QFile>
 #include <QTemporaryDir>
 #include <generated/SettingsHelper.hpp>

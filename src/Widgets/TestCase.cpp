@@ -27,7 +27,6 @@
 #include <QMessageBox>
 #include <QPushButton>
 #include <QVBoxLayout>
-#include <Util.hpp>
 #include <generated/SettingsHelper.hpp>
 
 namespace Widgets

@@ -17,13 +17,13 @@
 #include "LanguageServer.hpp"
 #include "Core/EventLogger.hpp"
 #include "Core/MessageLogger.hpp"
+#include "Util/Util.hpp"
 #include "generated/SettingsHelper.hpp"
 #include <LSPClient.hpp>
 #include <QDir>
 #include <QFileInfo>
 #include <QJsonArray>
 #include <QJsonDocument>
-#include <Util.hpp>
 
 namespace Extensions
 {

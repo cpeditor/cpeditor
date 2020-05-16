@@ -26,7 +26,8 @@
 #include "Extensions/ClangFormatter.hpp"
 #include "Extensions/CompanionServer.hpp"
 #include "Telemetry/UpdateNotifier.hpp"
-#include "Util.hpp"
+#include "Util/FileUtil.hpp"
+#include "Util/QCodeEditorUtil.hpp"
 #include "Widgets/TestCases.hpp"
 #include <QCodeEditor>
 #include <QFileDialog>

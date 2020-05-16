@@ -15,25 +15,22 @@
  *
  */
 
-#ifndef UTIL_HPP
-#define UTIL_HPP
+#ifndef FILEUTIL_HPP
+#define FILEUTIL_HPP
 
 #include <QStringList>
 
 class MessageLogger;
-class QCodeEditor;
-class QPalette;
 
 namespace Util
 {
-
-const QStringList cppSuffix = {"cpp", "hpp", "h", "cc", "cxx", "c"};
-const QStringList javaSuffix = {"java"};
-const QStringList pythonSuffix = {"py", "py3"};
+const static QStringList cppSuffix = {"cpp", "hpp", "h", "cc", "cxx", "c"};
+const static QStringList javaSuffix = {"java"};
+const static QStringList pythonSuffix = {"py", "py3"};
 #ifdef Q_OS_WIN
-#define EXE_SUFFIX ".exe"
+const static QString exeSuffix = ".exe";
 #else
-#define EXE_SUFFIX ""
+const static QString exeSuffix = "";
 #endif
 
 QString fileNameFilter(bool cpp, bool java, bool python);
@@ -53,23 +50,6 @@ bool saveFile(const QString &path, const QString &content, const QString &head =
  */
 QString readFile(const QString &path, const QString &head = "Read File", MessageLogger *log = nullptr,
                  bool notExistWarning = false);
-
-void applySettingsToEditor(QCodeEditor *editor);
-
-void setEditorLanguage(QCodeEditor *editor, const QString &language);
-
-QPalette windowsDarkThemePalette();
-
-enum ArgumentSplitterStatus
-{
-    SA_OUT,
-    SA_NORMAL,
-    SA_SQUOTE, // single quote
-    SA_DQUOTE  // double quote
-};
-
-QStringList splitArgument(QString);
-
 } // namespace Util
 
-#endif // UTIL_HPP
+#endif // FILEUTIL_HPP

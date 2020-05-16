@@ -18,19 +18,8 @@
 #include "Settings/PreferencesPageTemplate.hpp"
 #include "Settings/SettingsManager.hpp"
 #include "Settings/ValueWrapper.hpp"
-#include "Util.hpp"
 #include <QDebug>
 #include <generated/SettingsInfo.hpp>
-
-static QString filter[] = {"Excutable (*" EXE_SUFFIX ")", "C++ Sources (*.cpp *.hpp *.h *.cc *.cxx *.c",
-                           "Java Sources (*.java)", "Python Sources (*.py *.py3)"};
-
-static QString titles[] = {
-    "Choose Excutable",
-    "Choose C++ Sources",
-    "Choose Java Sources",
-    "Choose Python Sources",
-};
 
 PreferencesPageTemplate::PreferencesPageTemplate(QStringList opts, bool alignTop, QWidget *parent)
     : PreferencesGridPage(alignTop, parent), options(opts)

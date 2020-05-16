@@ -18,7 +18,7 @@
 #include "Extensions/ClangFormatter.hpp"
 #include "Core/EventLogger.hpp"
 #include "Core/MessageLogger.hpp"
-#include "Util.hpp"
+#include "Util/FileUtil.hpp"
 #include <QCodeEditor>
 #include <QJsonDocument>
 #include <QProcess>

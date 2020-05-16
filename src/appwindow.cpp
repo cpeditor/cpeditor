@@ -25,7 +25,7 @@
 #include "Extensions/LanguageServer.hpp"
 #include "Settings/PreferencesWindow.hpp"
 #include "Telemetry/UpdateNotifier.hpp"
-#include "Util.hpp"
+#include "Util/FileUtil.hpp"
 #include "mainwindow.hpp"
 #include <QClipboard>
 #include <QDesktopServices>
@@ -47,6 +47,7 @@
 #include <generated/version.hpp>
 
 #ifdef Q_OS_WIN
+#include "Util/Util.hpp"
 #include <QSettings>
 #include <QStyleFactory>
 #endif

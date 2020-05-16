@@ -15,27 +15,17 @@
  *
  */
 
-#ifndef EDITORTHEME_H
-#define EDITORTHEME_H
+#ifndef QCODEEDITORUTIL_HPP
+#define QCODEEDITORUTIL_HPP
 
-#include <QMap>
+class QCodeEditor;
+class QString;
 
-class QSyntaxStyle;
-
-namespace Extensions
+namespace Util
 {
-class EditorTheme
-{
-  public:
-    EditorTheme() = delete;
+void applySettingsToEditor(QCodeEditor *editor);
 
-  private:
-    static QMap<QString, QSyntaxStyle *> styles;
+void setEditorLanguage(QCodeEditor *editor, const QString &language);
+} // namespace Util
 
-  public:
-    static QSyntaxStyle *query(const QString &name);
-    static void release();
-};
-} // namespace Extensions
-
-#endif // EDITORTHEME_H
+#endif // QCODEEDITORUTIL_HPP

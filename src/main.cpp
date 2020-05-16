@@ -30,6 +30,7 @@
 #include <QProgressDialog>
 #include <QTextStream>
 #include <generated/version.hpp>
+#include <iostream>
 #include <singleapplication.h>
 
 #define TOJSON(x) json[#x] = x

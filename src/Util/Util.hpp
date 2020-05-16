@@ -15,27 +15,22 @@
  *
  */
 
-#ifndef EDITORTHEME_H
-#define EDITORTHEME_H
+#ifndef UTIL_HPP
+#define UTIL_HPP
 
-#include <QMap>
+#include <QStringList>
 
-class QSyntaxStyle;
+class MessageLogger;
+class QCodeEditor;
+class QPalette;
 
-namespace Extensions
+namespace Util
 {
-class EditorTheme
-{
-  public:
-    EditorTheme() = delete;
 
-  private:
-    static QMap<QString, QSyntaxStyle *> styles;
+QPalette windowsDarkThemePalette();
 
-  public:
-    static QSyntaxStyle *query(const QString &name);
-    static void release();
-};
-} // namespace Extensions
+QStringList splitArgument(QString);
 
-#endif // EDITORTHEME_H
+} // namespace Util
+
+#endif // UTIL_HPP

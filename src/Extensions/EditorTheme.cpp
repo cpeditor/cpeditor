@@ -17,94 +17,47 @@
 
 #include "Extensions/EditorTheme.hpp"
 #include "Core/EventLogger.hpp"
-#include "Util.hpp"
+#include "Util/FileUtil.hpp"
 #include <QFile>
 #include <QSyntaxStyle>
 
 namespace Extensions
 {
 
-QSyntaxStyle *EditorTheme::light = nullptr;
-QSyntaxStyle *EditorTheme::dracula = nullptr;
-QSyntaxStyle *EditorTheme::monokai = nullptr;
-QSyntaxStyle *EditorTheme::solarized = nullptr;
-QSyntaxStyle *EditorTheme::solarizedDark = nullptr;
+static QMap<QString, QString> resources = {{"Dracula", ":/styles/dracula.xml"},
+                                           {"Monokai", ":/styles/monokai.xml"},
+                                           {"Solarized", ":/styles/solarized.xml"},
+                                           {"Solarized Dark", ":/styles/solarizedDark.xml"}};
 
-QSyntaxStyle *EditorTheme::getLightTheme()
+QMap<QString, QSyntaxStyle *> EditorTheme::styles;
+
+QSyntaxStyle *EditorTheme::query(const QString &name)
 {
-    if (light != nullptr)
-        return light;
-    else
-        return QSyntaxStyle::defaultStyle();
-}
-QSyntaxStyle *EditorTheme::getMonokaiTheme()
-{
-    if (monokai != nullptr)
-        return monokai;
+    if (styles.find(name) != styles.end())
+        return styles[name];
     else
     {
-        auto content = Util::readFile(":/styles/monokai.xml", "Read Style");
-        if (content.isNull())
-            return nullptr;
-        monokai = new QSyntaxStyle();
-        monokai->load(content);
-        return monokai;
-    }
-}
-QSyntaxStyle *EditorTheme::getDraculaTheme()
-{
-    if (dracula != nullptr)
-        return dracula;
-    else
-    {
-        auto content = Util::readFile(":/styles/dracula.xml", "Read Style");
-        if (content.isNull())
-            return nullptr;
-        dracula = new QSyntaxStyle();
-        dracula->load(content);
-        return dracula;
-    }
-}
-QSyntaxStyle *EditorTheme::getSolarizedTheme()
-{
-    if (solarized != nullptr)
-        return solarized;
-    else
-    {
-        auto content = Util::readFile(":/styles/solarized.xml", "Read Style");
-        if (content.isNull())
-            return nullptr;
-        solarized = new QSyntaxStyle();
-        solarized->load(content);
-        return solarized;
-    }
-}
-QSyntaxStyle *EditorTheme::getSolarizedDarkTheme()
-{
-    if (solarizedDark != nullptr)
-        return solarizedDark;
-    else
-    {
-        auto content = Util::readFile(":/styles/solarizedDark.xml", "Read Style");
-        if (content.isNull())
-            return nullptr;
-        solarizedDark = new QSyntaxStyle();
-        solarizedDark->load(content);
-        return solarizedDark;
+        if (name == "Light")
+            return styles["Light"] = QSyntaxStyle::defaultStyle();
+        else
+        {
+            if (resources.find(name) == resources.end())
+                return nullptr;
+            auto content = Util::readFile(resources[name], "Read Style");
+            if (content.isNull())
+                return nullptr;
+            auto style = new QSyntaxStyle();
+            style->load(content);
+            return styles[name] = style;
+        }
     }
 }
 
 void EditorTheme::release()
 {
-    if (light != nullptr)
-        delete light;
-    if (dracula != nullptr)
-        delete dracula;
-    if (monokai != nullptr)
-        delete monokai;
-    if (solarized != nullptr)
-        delete solarized;
-    if (solarizedDark != nullptr)
-        delete solarizedDark;
+    for (auto style : styles.values())
+        delete style;
+    styles.clear();
 }
+
 } // namespace Extensions
