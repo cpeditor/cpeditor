@@ -750,12 +750,15 @@ void MainWindow::loadFile(const QString &loadPath)
     savedText = content;
     if (content.length() > SettingsHelper::getOpenFileLengthLimit())
     {
-        content = "Open File Length Limit Exceeded";
         log->error("Open File",
                    QString("The file [%1] contains more than %2 characters, so it's not opened. You can change the "
                            "open file length limit in Preferences->Advanced->Limits->Open File Length Limit")
                        .arg(path)
                        .arg(SettingsHelper::getOpenFileLengthLimit()));
+        setText("");
+        filePath.clear();
+        updateWatcher();
+        return;
     }
     setText(content, samePath);
 
