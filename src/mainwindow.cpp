@@ -121,28 +121,29 @@ void MainWindow::setupCore()
 void MainWindow::compile()
 {
     killProcesses();
+
     compiler = new Core::Compiler();
-    if (saveTemp("Compiler"))
+
+    auto path = tmpPath();
+    if (path.isEmpty())
+        return;
+
+    if (language == "Python")
     {
-        if (language == "Python")
-        {
-            onCompilationFinished("");
-            return;
-        }
-        else if (language != "C++" && language != "Java")
-        {
-            log->warn("Compiler", "Please set the language");
-            return;
-        }
-        connect(compiler, SIGNAL(compilationStarted()), this, SLOT(onCompilationStarted()));
-        connect(compiler, SIGNAL(compilationFinished(const QString &)), this,
-                SLOT(onCompilationFinished(const QString &)));
-        connect(compiler, SIGNAL(compilationErrorOccurred(const QString &)), this,
-                SLOT(onCompilationErrorOccurred(const QString &)));
-        connect(compiler, SIGNAL(compilationKilled()), this, SLOT(onCompilationKilled()));
-        compiler->start(tmpPath(), SettingsManager::get(QString("%1/Compile Command").arg(language)).toString(),
-                        language);
+        onCompilationFinished("");
+        return;
     }
+    else if (language != "C++" && language != "Java")
+    {
+        log->warn("Compiler", "Please set the language");
+        return;
+    }
+    connect(compiler, SIGNAL(compilationStarted()), this, SLOT(onCompilationStarted()));
+    connect(compiler, SIGNAL(compilationFinished(const QString &)), this, SLOT(onCompilationFinished(const QString &)));
+    connect(compiler, SIGNAL(compilationErrorOccurred(const QString &)), this,
+            SLOT(onCompilationErrorOccurred(const QString &)));
+    connect(compiler, SIGNAL(compilationKilled()), this, SLOT(onCompilationKilled()));
+    compiler->start(path, SettingsManager::get(QString("%1/Compile Command").arg(language)).toString(), language);
 }
 
 void MainWindow::run()
@@ -232,7 +233,13 @@ void MainWindow::setCFToolUI()
 
             if (response == QMessageBox::Yes)
             {
-                if (saveTemp("CF Tool Saver"))
+                auto path = tmpPath();
+                if (path.isEmpty())
+                {
+                    QMessageBox::warning(this, "CF Tool",
+                                         "Failed to save the temp file, and the solution is not submitted.");
+                }
+                else
                 {
                     log->clear();
                     cftool->submit(tmpPath(), problemURL);
@@ -695,7 +702,6 @@ void MainWindow::setText(const QString &text, bool keep)
 void MainWindow::updateWatcher()
 {
     emit editorFileChanged();
-    emit editorTmpPathChanged(this);
     if (!fileWatcher->files().isEmpty())
         fileWatcher->removePaths(fileWatcher->files());
     if (!isUntitled())
@@ -835,7 +841,7 @@ bool MainWindow::saveFile(SaveMode mode, const QString &head, bool safe)
 
         beforeReturn(true);
     }
-    else if (!isUntitled() && (mode != IgnoreNonExist || QFile::exists(filePath)))
+    else if (!isUntitled() && QFile::exists(filePath))
     {
         if (!Util::saveFile(filePath, editor->toPlainText(), head, safe, log, true))
             return false;
@@ -851,64 +857,40 @@ bool MainWindow::saveFile(SaveMode mode, const QString &head, bool safe)
     return true;
 }
 
-MainWindow::SaveTempStatus MainWindow::saveTemp(const QString &head, SaveMode mode)
+QString MainWindow::tmpPath()
 {
-    LOG_INFO(INFO_OF(head));
-    if (!saveFile(mode, head, true))
+    bool created = false;
+    if (tmpDir == nullptr || !tmpDir->isValid())
     {
-        if (tmpDir != nullptr)
-        {
+        if (tmpDir)
             delete tmpDir;
-        }
-
         tmpDir = new QTemporaryDir();
         if (!tmpDir->isValid())
         {
-            log->error(head, "Failed to create temporary directory");
-            return Failed;
+            LOG_ERR("Failed to create the temporary directory");
+            log->error("Temp File", "Failed to create the temporary directory");
+            return QString();
         }
-
-        bool success = Util::saveFile(tmpPath(), editor->toPlainText(), head, true, log);
-
-        if (success)
-            emit editorTmpPathChanged(this);
-
-        return success ? TempSaved : Failed;
+        created = true;
     }
-
-    return NormalSaved;
-}
-
-QString MainWindow::tmpPath()
-{
-    if (!isUntitled() && !isTextChanged())
-        return filePath;
-    if (tmpDir == nullptr || !tmpDir->isValid())
-    {
-        switch (saveTemp("Temp Saver", IgnoreNonExist))
-        {
-        case Failed:
-            log->error("Temp Saver", "Error occurred when trying to save temp file");
-            return "";
-        case TempSaved:
-            break;
-        case NormalSaved:
-            return filePath;
-        }
-    }
-    QString name;
+    QString name = "sol.";
     if (language == "C++")
-        name = "sol.cpp";
+        name += Util::cppSuffix.first();
     else if (language == "Java")
-        name = "sol.java";
+        name += Util::javaSuffix.first();
     else if (language == "Python")
-        name = "sol.py";
+        name += Util::pythonSuffix.first();
     else
     {
-        log->error("Temp Saver", "Please set the language");
+        log->error("Temp File", "Please set the language");
         return "";
     }
-    return tmpDir->filePath(name);
+    QString path = tmpDir->filePath(name);
+    if (!Util::saveFile(path, editor->toPlainText(), "Temp File", false, log))
+        return QString();
+    if (created)
+        emit editorTmpPathChanged(this, path);
+    return path;
 }
 
 bool MainWindow::isTextChanged()

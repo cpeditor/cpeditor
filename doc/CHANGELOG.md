@@ -1,5 +1,9 @@
 ## UNRELEASED
 
+### Fixed
+
+- Fixed some unexpected file saving. (#353)
+
 ## 6.4.1 (Beta)
 
 ### Linting with Language Server
