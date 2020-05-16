@@ -113,10 +113,10 @@ bool Compiler::check(const QString &compileCommand)
 QString Compiler::cppOutputPath(const QString &tmpFilePath, const QString &sourceFilePath)
 {
     QFileInfo fileInfo(sourceFilePath.isEmpty() ? tmpFilePath : sourceFilePath);
-    QString res =  fileInfo.dir().filePath(SettingsHelper::getCppExecutableFilePath()
-                                       .replace("${filename}", fileInfo.fileName())
-                                       .replace("${basename}", fileInfo.completeBaseName())
-                                       .replace("${tmpdir}", QFileInfo(tmpFilePath).absolutePath()));
+    QString res = fileInfo.dir().filePath(SettingsHelper::getCppExecutableFilePath()
+                                              .replace("${filename}", fileInfo.fileName())
+                                              .replace("${basename}", fileInfo.completeBaseName())
+                                              .replace("${tmpdir}", QFileInfo(tmpFilePath).absolutePath()));
     QDir().mkpath(QFileInfo(res).absolutePath());
     return res;
 }
