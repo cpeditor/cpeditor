@@ -73,6 +73,12 @@
         "tip": "The command used to compile C++. It should NOT include the path to the source file or \"-o <output file>\"."
     },
     {
+        "name": "C++/Executable File Path",
+        "type": "QString",
+        "default": "${tempdir}/${basename}",
+        "tip": "The path of the compiled executable file, relative to the source file,\nor the temporary directory if the tab is untitled.\nNo \".exe\" is needed.\nYou can use \"${filename}\" for the complete file name,\n\"${basename}\" for the base file name without the suffix,\n\"${tmpdir}\" for the absolute path of the temporary directory."
+    },
+    {
         "name": "C++/Run Arguments",
         "type": "QString",
         "old": [
@@ -116,6 +122,12 @@
             "run_java"
         ],
         "tip": "The command to start a Java program. It should NOT include \"-classpath <path> <class name>\"."
+    },
+    {
+        "name": "Java/Class Name",
+        "type": "QString",
+        "default": "a",
+        "tip": "The non-public class name of your solution."
     },
     {
         "name": "Python/Template Path",

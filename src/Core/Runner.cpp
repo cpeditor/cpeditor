@@ -16,6 +16,7 @@
  */
 
 #include "Core/Runner.hpp"
+#include "Core/Compiler.hpp"
 #include "Core/EventLogger.hpp"
 #include <QElapsedTimer>
 #include <QFileInfo>
@@ -54,18 +55,19 @@ Runner::~Runner()
         delete runTimer;
 }
 
-void Runner::run(const QString &filePath, const QString &lang, const QString &runCommand, const QString &args,
-                 const QString &input, int timeLimit)
+void Runner::run(const QString &tmpFilePath, const QString &sourceFilePath, const QString &lang,
+                 const QString &runCommand, const QString &args, const QString &input, int timeLimit)
 {
-    LOG_INFO(INFO_OF(filePath) << INFO_OF(lang) << INFO_OF(runCommand) << INFO_OF(args) << INFO_OF(timeLimit));
-    if (!QFile::exists(filePath)) // make sure the source file exists, this usually means the executable file exists
+    LOG_INFO(INFO_OF(tmpFilePath) << INFO_OF(sourceFilePath) << INFO_OF(lang) << INFO_OF(runCommand) << INFO_OF(args)
+                                  << INFO_OF(timeLimit));
+    if (!QFile::exists(tmpFilePath)) // make sure the source file exists, this usually means the executable file exists
     {
-        emit failedToStartRun(runnerIndex, "The source file " + filePath + " doesn't exist");
+        emit failedToStartRun(runnerIndex, "The source file " + tmpFilePath + " doesn't exist");
         return;
     }
 
     // get the command for execution
-    QString command = getCommand(filePath, lang, runCommand, args);
+    QString command = getCommand(tmpFilePath, sourceFilePath, lang, runCommand, args);
     if (command.isEmpty())
     {
         emit failedToStartRun(runnerIndex, "Failed to get run command. It's probably a bug");
@@ -104,7 +106,8 @@ void Runner::run(const QString &filePath, const QString &lang, const QString &ru
     runProcess->closeWriteChannel();
 }
 
-void Runner::runDetached(const QString &filePath, const QString &lang, const QString &runCommand, const QString &args)
+void Runner::runDetached(const QString &tmpFilePath, const QString &sourceFilePath, const QString &lang,
+                         const QString &runCommand, const QString &args)
 {
     // different steps on different OSs
 #if defined(__unix__)
@@ -120,7 +123,7 @@ void Runner::runDetached(const QString &filePath, const QString &lang, const QSt
         return;
     }
     runProcess->setProgram("xterm");
-    runProcess->setArguments({"-e", getCommand(filePath, lang, runCommand, args) +
+    runProcess->setArguments({"-e", getCommand(tmpFilePath, sourceFilePath, lang, runCommand, args) +
                                         "; read -n 1 -s -r -p '\nExecution Done\nPress any key to exit'"});
     LOG_INFO("Xterm args " << runProcess->arguments().join(" "));
     runProcess->start();
@@ -129,14 +132,15 @@ void Runner::runDetached(const QString &filePath, const QString &lang, const QSt
     runProcess->setProgram("osascript");
     runProcess->setArguments({"-l", "AppleScript"});
     QString script = "tell app \"Terminal\" to do script \"" +
-                     getCommand(filePath, lang, runCommand, args).replace("\"", "'") + "\"";
+                     getCommand(tmpFilePath, sourceFilePath, lang, runCommand, args).replace("\"", "'") + "\"";
     runProcess->start();
     LOG_INFO("Running apple script\n" << script);
     runProcess->write(script.toUtf8());
     runProcess->closeWriteChannel();
 #else
     // use cmd on Windows
-    runProcess->start("cmd /C \"start cmd /C " + getCommand(filePath, lang, runCommand, args).replace("\"", "^\"") +
+    runProcess->start("cmd /C \"start cmd /C " +
+                      getCommand(tmpFilePath, sourceFilePath, lang, runCommand, args).replace("\"", "^\"") +
                       " ^& pause\"");
     LOG_INFO("CMD Arguemnts " << runProcess->arguments().join(" "));
 
@@ -188,24 +192,29 @@ void Runner::onReadyReadStandardError()
     }
 }
 
-QString Runner::getCommand(const QString &filePath, const QString &lang, const QString &runCommand, const QString &args)
+QString Runner::getCommand(const QString &tmpFilePath, const QString &sourceFilePath, const QString &lang,
+                           const QString &runCommand, const QString &args)
 {
     // get the execution command by the file path and the language
     // please remember to add quotes for the paths
 
-    QFileInfo fileInfo(filePath);
     QString res;
+
     if (lang == "C++")
     {
-        res = "\"" + fileInfo.canonicalPath() + "/" + fileInfo.completeBaseName() + "\" " + args;
+        res = QString("\"%1\" %2").arg(Compiler::cppOutputPath(tmpFilePath, sourceFilePath)).arg(args);
     }
     else if (lang == "Java")
     {
-        res = runCommand + " -classpath \"" + fileInfo.canonicalPath() + "\" a " + args;
+        res = QString("%1 -classpath \"%2\" %3 %4")
+                  .arg(runCommand)
+                  .arg(QFileInfo(tmpFilePath).canonicalPath())
+                  .arg(SettingsHelper::getJavaClassName())
+                  .arg(args);
     }
     else if (lang == "Python")
     {
-        res = runCommand + " \"" + fileInfo.canonicalFilePath() + "\" " + args;
+        res = QString("%1 \"%2\" %3").arg(runCommand).arg(QFileInfo(tmpFilePath).canonicalFilePath()).arg(args);
     }
 
     LOG_INFO("Returning runCommand as : " << res);
