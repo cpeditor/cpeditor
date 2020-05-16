@@ -56,7 +56,7 @@ QSyntaxStyle *EditorTheme::query(const QString &name)
 void EditorTheme::release()
 {
     for (auto style : styles.values())
-        delete style;
+        if(style != QSyntaxStyle::defaultStyle()) delete style;
     styles.clear();
 }
 
