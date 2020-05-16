@@ -303,8 +303,9 @@ void Checker::check(int index, const QString &input, const QString &output, cons
             connect(tmp, SIGNAL(runOutputLimitExceeded(int, const QString &)), this,
                     SLOT(onRunOutputLimitExceeded(int, const QString &)));
             connect(tmp, SIGNAL(runKilled(int)), this, SLOT(onRunKilled(int)));
-            tmp->run(checkerPath, "", "C++", "", "\"" + inputPath + "\" \"" + outputPath + "\" \"" + expectedPath + "\"",
-                     "", SettingsHelper::getTimeLimit());
+            tmp->run(checkerPath, "", "C++", "",
+                     "\"" + inputPath + "\" \"" + outputPath + "\" \"" + expectedPath + "\"", "",
+                     SettingsHelper::getTimeLimit());
         }
         break;
     }
