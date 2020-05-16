@@ -130,7 +130,7 @@ void Checker::prepare(const QString &compileCommand)
         connect(compiler, SIGNAL(compilationErrorOccurred(const QString &)), this,
                 SLOT(onCompilationErrorOccurred(const QString &)));
         connect(compiler, SIGNAL(compilationKilled()), this, SLOT(onCompilationKilled()));
-        compiler->start(checkerPath, compileCommand, "C++");
+        compiler->start(checkerPath, "", compileCommand, "C++");
     }
 }
 
@@ -303,7 +303,7 @@ void Checker::check(int index, const QString &input, const QString &output, cons
             connect(tmp, SIGNAL(runOutputLimitExceeded(int, const QString &)), this,
                     SLOT(onRunOutputLimitExceeded(int, const QString &)));
             connect(tmp, SIGNAL(runKilled(int)), this, SLOT(onRunKilled(int)));
-            tmp->run(checkerPath, "C++", "", "\"" + inputPath + "\" \"" + outputPath + "\" \"" + expectedPath + "\"",
+            tmp->run(checkerPath, "", "C++", "", "\"" + inputPath + "\" \"" + outputPath + "\" \"" + expectedPath + "\"",
                      "", SettingsHelper::getTimeLimit());
         }
         break;

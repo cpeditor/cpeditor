@@ -17,8 +17,10 @@
 
 #include "Core/Compiler.hpp"
 #include "Core/EventLogger.hpp"
+#include <QDir>
 #include <QFileInfo>
 #include <QProcess>
+#include <generated/SettingsHelper.hpp>
 
 namespace Core
 {
@@ -46,12 +48,13 @@ Compiler::~Compiler()
     }
 }
 
-void Compiler::start(const QString &filePath, const QString &compileCommand, const QString &lang)
+void Compiler::start(const QString &tmpFilePath, const QString &sourceFilePath, const QString &compileCommand,
+                     const QString &lang)
 {
-    if (!QFile::exists(filePath))
+    if (!QFile::exists(tmpFilePath))
     {
         // quit with error if the source file is not found
-        emit compilationErrorOccurred("The source file [" + filePath + "] doesn't exist");
+        emit compilationErrorOccurred("The source file [" + tmpFilePath + "] doesn't exist");
         return;
     }
 
@@ -62,12 +65,14 @@ void Compiler::start(const QString &filePath, const QString &compileCommand, con
 
     if (lang == "C++")
     {
-        command = compileCommand + " \"" + QFileInfo(filePath).canonicalFilePath() + "\" -o \"" +
-                  QFileInfo(filePath).canonicalPath() + "/" + QFileInfo(filePath).completeBaseName() + "\"";
+        command = QString("%1 \"%2\" -o \"%3\"")
+                      .arg(compileCommand)
+                      .arg(QFileInfo(tmpFilePath).canonicalFilePath())
+                      .arg(cppOutputPath(tmpFilePath, sourceFilePath));
     }
     else if (lang == "Java")
     {
-        command = compileCommand + " \"" + QFileInfo(filePath).canonicalFilePath() + "\"";
+        command = compileCommand + " \"" + QFileInfo(tmpFilePath).canonicalFilePath() + "\"";
     }
     else if (lang == "Python")
     {
@@ -103,6 +108,17 @@ bool Compiler::check(const QString &compileCommand)
     LOG_INFO(BOOL_INFO_OF(finished) << INFO_OF(checkProcess.exitCode()));
 
     return finished && checkProcess.exitCode() == 0;
+}
+
+QString Compiler::cppOutputPath(const QString &tmpFilePath, const QString &sourceFilePath)
+{
+    QFileInfo fileInfo(sourceFilePath.isEmpty() ? tmpFilePath : sourceFilePath);
+    QString res =  fileInfo.dir().filePath(SettingsHelper::getCppExecutableFilePath()
+                                       .replace("${filename}", fileInfo.fileName())
+                                       .replace("${basename}", fileInfo.completeBaseName())
+                                       .replace("${tmpdir}", QFileInfo(tmpFilePath).absolutePath()));
+    QDir().mkpath(QFileInfo(res).absolutePath());
+    return res;
 }
 
 void Compiler::onProcessFinished(int exitCode)

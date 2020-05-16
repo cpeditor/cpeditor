@@ -146,7 +146,8 @@ void MainWindow::compile()
     connect(compiler, SIGNAL(compilationErrorOccurred(const QString &)), this,
             SLOT(onCompilationErrorOccurred(const QString &)));
     connect(compiler, SIGNAL(compilationKilled()), this, SLOT(onCompilationKilled()));
-    compiler->start(path, SettingsManager::get(QString("%1/Compile Command").arg(language)).toString(), language);
+    compiler->start(path, filePath, SettingsManager::get(QString("%1/Compile Command").arg(language)).toString(),
+                    language);
 }
 
 void MainWindow::run()
@@ -187,7 +188,7 @@ void MainWindow::run(int index)
     connect(tmp, SIGNAL(runOutputLimitExceeded(int, const QString &)), this,
             SLOT(onRunOutputLimitExceeded(int, const QString &)));
     connect(tmp, SIGNAL(runKilled(int)), this, SLOT(onRunKilled(int)));
-    tmp->run(tmpPath(), language, SettingsManager::get(QString("%1/Run Command").arg(language)).toString(),
+    tmp->run(tmpPath(), filePath, language, SettingsManager::get(QString("%1/Run Command").arg(language)).toString(),
              SettingsManager::get(QString("%1/Run Arguments").arg(language)).toString(), testcases->input(index),
              SettingsHelper::getTimeLimit());
     runner.push_back(tmp);
@@ -866,7 +867,7 @@ bool MainWindow::saveFile(SaveMode mode, const QString &head, bool safe)
 QString MainWindow::tmpPath()
 {
     bool created = false;
-    if (tmpDir == nullptr || !tmpDir->isValid())
+    if (tmpDir == nullptr || !tmpDir->isValid() || !QDir(tmpDir->path()).exists())
     {
         if (tmpDir)
             delete tmpDir;
@@ -1128,7 +1129,7 @@ void MainWindow::onCompilationFinished(const QString &warning)
         connect(detachedRunner, SIGNAL(failedToStartRun(int, const QString &)), this,
                 SLOT(onFailedToStartRun(int, const QString &)));
         connect(detachedRunner, SIGNAL(runKilled(int)), this, SLOT(onRunKilled(int)));
-        detachedRunner->runDetached(tmpPath(), language,
+        detachedRunner->runDetached(tmpPath(), filePath, language,
                                     SettingsManager::get(QString("%1/Run Command").arg(language)).toString(),
                                     SettingsManager::get(QString("%1/Run Arguments").arg(language)).toString());
     }
