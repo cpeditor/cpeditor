@@ -609,5 +609,16 @@
         "desc": "Add extra margin at the bottom of the code editor",
         "type": "bool",
         "tip": "Add an extra margin with the height of a page at the bottom of the code editor.\nDue to technical reasons, changing the height of the margin affects the undo history."
+    },
+    {
+        "name": "Save File On Compilation",
+        "type": "bool",
+        "default": "true",
+        "tip": "Save the source file when compiling it. It won't be saved if the tab is untitled."
+    },
+    {
+        "name": "Save File On Execution",
+        "type": "bool",
+        "tip": "Save the source file when running it. It won't be saved if the tab is untitled."
     }
 ]

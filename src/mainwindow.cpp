@@ -120,6 +120,9 @@ void MainWindow::setupCore()
 
 void MainWindow::compile()
 {
+    if (SettingsHelper::isSaveFileOnCompilation())
+        saveFile(IgnoreUntitled, "Compiler", true);
+
     killProcesses();
 
     compiler = new Core::Compiler();
@@ -148,6 +151,9 @@ void MainWindow::compile()
 
 void MainWindow::run()
 {
+    if (SettingsHelper::isSaveFileOnExecution())
+        saveFile(IgnoreUntitled, "Runner", true);
+
     LOG_INFO("Requesting run of testcases");
     killProcesses();
     testcases->clearOutput();
@@ -1106,6 +1112,9 @@ void MainWindow::onCompilationFinished(const QString &warning)
     }
     else if (afterCompile == RunDetached)
     {
+        if (SettingsHelper::isSaveFileOnExecution())
+            saveFile(IgnoreUntitled, "Runner", true);
+
         killProcesses();
 
         if (!QStringList({"C++", "Java", "Python"}).contains(language))

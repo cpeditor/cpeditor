@@ -1,5 +1,9 @@
 ## UNRELEASED
 
+### Added
+
+- Now it's optional to save the file on compilation and execution or not.
+
 ### Fixed
 
 - Fixed some unexpected file saving. (#353)
