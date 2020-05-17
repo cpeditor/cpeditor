@@ -1,5 +1,7 @@
 ## UNRELEASED
 
+## 6.4.4 (Beta)
+
 ### Fxied
 
 - Fix a bug which makes the saved test cases are not loaded correctly.
