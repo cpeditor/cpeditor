@@ -305,8 +305,8 @@ void TestCases::loadFromSavedFiles(const QString &filePath)
         {
             for (int j = 0; j <= i; ++j)
             {
-                addTestCase(loadTestCaseFromFile(inputPath, QString("Input #%1").arg(j + 1)),
-                            loadTestCaseFromFile(answerPath, QString("Expected #%1").arg(j + 1)));
+                addTestCase(loadTestCaseFromFile(inputFilePath(filePath, j), QString("Input #%1").arg(j + 1)),
+                            loadTestCaseFromFile(answerFilePath(filePath, j), QString("Expected #%1").arg(j + 1)));
             }
             break;
         }
