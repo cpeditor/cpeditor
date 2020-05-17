@@ -3,76 +3,76 @@ name: "Release Linux"
 on:
   push:
     tags:
-      - '*'
+      - "*"
 
 jobs:
   build:
     name: "Release Linux"
-    runs-on: 'ubuntu-16.04'
+    runs-on: "ubuntu-16.04"
 
     steps:
-    - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
-    - name: Fetch submodules
-      run: git submodule update --init --recursive
+      - name: Fetch submodules
+        run: git submodule update --init --recursive
 
-    - name: Install Python 3.7
-      uses: actions/setup-python@v1
-      with:
-        python-version: 3.7
+      - name: Install Python 3.7
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.7
 
-    - name: Install Qt
-      run: |
-        sudo add-apt-repository ppa:beineri/opt-qt-5.12.8-xenial -y
-        sudo apt-get update -qq
-        sudo apt-get -y install qt512base libgl1-mesa-dev qt512svg qt512imageformats
-        bash /opt/qt*/bin/qt*-env.sh
+      - name: Install Qt
+        run: |
+          sudo add-apt-repository ppa:beineri/opt-qt-5.12.8-xenial -y
+          sudo apt-get update -qq
+          sudo apt-get -y install qt512base libgl1-mesa-dev qt512svg qt512imageformats
+          bash /opt/qt*/bin/qt*-env.sh
 
-    - name: Build
-      run: |
-        mkdir build
-        cd build
-        cmake .. -DCMAKE_BUILD_TYPE=Release
-        cmake --build .
+      - name: Build
+        run: |
+          mkdir build
+          cd build
+          cmake .. -DCMAKE_BUILD_TYPE=Release
+          cmake --build .
 
-    - name: Get the version
-      id: get_version
-      run: |
-        VERSION=${GITHUB_REF/refs\/tags\//}
-        echo ::set-output name=VERSION::$VERSION
-        read STABLE_VERSION < .ci/STABLE_VERSION
-        if [ "${VERSION:0:${#STABLE_VERSION}}" == "$STABLE_VERSION" ]; then
-          echo ::set-output name=ISBETA::false
-        else
-          echo ::set-output name=ISBETA::true
-        fi
+      - name: Get the version
+        id: get_version
+        run: |
+          VERSION=${GITHUB_REF/refs\/tags\//}
+          echo ::set-output name=VERSION::$VERSION
+          read STABLE_VERSION < .ci/STABLE_VERSION
+          if [ "${VERSION:0:${#STABLE_VERSION}}" == "$STABLE_VERSION" ]; then
+            echo ::set-output name=ISBETA::false
+          else
+            echo ::set-output name=ISBETA::true
+          fi
 
-    - name: Pack to AppImage
-      run: |
-        bash /opt/qt*/bin/qt*-env.sh
-        cd build
-        wget -c "https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage"
-        chmod a+x linuxdeployqt*.AppImage
-        export VERSION=${{ steps.get_version.outputs.VERSION }}
-        cp ../.ci/linux/cpeditor.desktop . && cp ../.ci/linux/cpeditor-icon.png .
-        cp cpeditor.desktop default.desktop
-        mv cpeditor-icon.png cpeditor-icon.png.png
-        ./linuxdeployqt*.AppImage ./cpeditor -appimage -qmake=/opt/qt512/bin/qmake
-        mv CP_Editor-${{steps.get_version.outputs.VERSION }}-x86_64.AppImage cpeditor-${{ steps.get_version.outputs.VERSION }}-x86_64.AppImage
-    
-    - name: Package the complete Source
-      run: |
-        wget https://raw.githubusercontent.com/Kentzo/git-archive-all/master/git_archive_all.py
-        python3 git_archive_all.py cpeditor-full-source-${{ steps.get_version.outputs.VERSION }}.tar.gz
+      - name: Pack to AppImage
+        run: |
+          bash /opt/qt*/bin/qt*-env.sh
+          cd build
+          wget -c "https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage"
+          chmod a+x linuxdeployqt*.AppImage
+          export VERSION=${{ steps.get_version.outputs.VERSION }}
+          cp ../.ci/linux/cpeditor.desktop . && cp ../.ci/linux/cpeditor-icon.png .
+          cp cpeditor.desktop default.desktop
+          mv cpeditor-icon.png cpeditor-icon.png.png
+          ./linuxdeployqt*.AppImage ./cpeditor -appimage -qmake=/opt/qt512/bin/qmake
+          mv CP_Editor-${{steps.get_version.outputs.VERSION }}-x86_64.AppImage cpeditor-${{ steps.get_version.outputs.VERSION }}-x86_64.AppImage
 
-    - name: Release AppImage and Source
-      uses: softprops/action-gh-release@v1
-      with:
-        draft: true
-        prerelease: ${{ steps.get_version.outputs.ISBETA }}
-        files: |
-          build/cpeditor-${{ steps.get_version.outputs.VERSION }}-x86_64.AppImage
-          cpeditor-full-source-${{ steps.get_version.outputs.VERSION }}.tar.gz
-        name: CP Editor ${{ steps.get_version.outputs.VERSION }}
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Package the complete Source
+        run: |
+          wget https://raw.githubusercontent.com/Kentzo/git-archive-all/master/git_archive_all.py
+          python3 git_archive_all.py cpeditor-full-source-${{ steps.get_version.outputs.VERSION }}.tar.gz
+
+      - name: Release AppImage and Source
+        uses: softprops/action-gh-release@v1
+        with:
+          draft: true
+          prerelease: ${{ steps.get_version.outputs.ISBETA }}
+          files: |
+            build/cpeditor-${{ steps.get_version.outputs.VERSION }}-x86_64.AppImage
+            cpeditor-full-source-${{ steps.get_version.outputs.VERSION }}.tar.gz
+          name: CP Editor ${{ steps.get_version.outputs.VERSION }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

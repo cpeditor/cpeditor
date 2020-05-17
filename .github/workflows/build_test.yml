@@ -17,241 +17,239 @@ jobs:
       matrix:
         qt_version: [5.12.8, 5.14.2]
         config:
-        - {
-            os: windows-latest,
-            cc: "cl", cxx: "cl",
-            binary: 'cpeditor.exe',
-            environment_script: "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Auxiliary/Build/vcvars64.bat"
-          }
-        - {
-            os: ubuntu-latest,
-            cc: "gcc", cxx: "g++",
-            binary: 'cpeditor'
-          }
-        - {
-            os: macos-latest,
-            cc: "clang", cxx: "clang++",
-            binary: 'cpeditor.app/Contents/MacOS/cpeditor'
-          }
+          - {
+              os: windows-latest,
+              cc: "cl",
+              cxx: "cl",
+              binary: "cpeditor.exe",
+              environment_script: "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Auxiliary/Build/vcvars64.bat",
+            }
+          - { os: ubuntu-latest, cc: "gcc", cxx: "g++", binary: "cpeditor" }
+          - {
+              os: macos-latest,
+              cc: "clang",
+              cxx: "clang++",
+              binary: "cpeditor.app/Contents/MacOS/cpeditor",
+            }
 
     steps:
-    - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
-    - name: Fetch submodules
-      run: git submodule update --init --recursive
+      - name: Fetch submodules
+        run: git submodule update --init --recursive
 
-    - name: Install Python 3.7
-      uses: actions/setup-python@v1
-      with:
-        python-version: 3.7
+      - name: Install Python 3.7
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.7
 
-    - name: Restore Qt from cache
-      id: cache-qt
-      uses: actions/cache@v1
-      with:
-        path: ../Qt
-        key: Qt-${{ matrix.config.os }}-${{ matrix.qt_version }}
+      - name: Restore Qt from cache
+        id: cache-qt
+        uses: actions/cache@v1
+        with:
+          path: ../Qt
+          key: Qt-${{ matrix.config.os }}-${{ matrix.qt_version }}
 
-    - name: Set up Qt environment
-      uses: jurplel/install-qt-action@v2
-      with:
-        cached: ${{ steps.cache-qt.outputs.cache-hit }}
-        version: ${{ matrix.qt_version }}
+      - name: Set up Qt environment
+        uses: jurplel/install-qt-action@v2
+        with:
+          cached: ${{ steps.cache-qt.outputs.cache-hit }}
+          version: ${{ matrix.qt_version }}
 
-    - name: Download Ninja and CMake
-      id: cmake_and_ninja
-      shell: cmake -P {0}
-      run: |
-        set(cmake_version $ENV{CMAKE_VERSION})
-        set(ninja_version $ENV{NINJA_VERSION})
-        message(STATUS "Using host CMake version: ${CMAKE_VERSION}")
-        if ("${{ runner.os }}" STREQUAL "Windows")
-          set(ninja_suffix "win.zip")
-          set(cmake_suffix "win64-x64.zip")
-          set(cmake_dir "cmake-${cmake_version}-win64-x64/bin")
-        elseif ("${{ runner.os }}" STREQUAL "Linux")
-          set(ninja_suffix "linux.zip")
-          set(cmake_suffix "Linux-x86_64.tar.gz")
-          set(cmake_dir "cmake-${cmake_version}-Linux-x86_64/bin")
-        elseif ("${{ runner.os }}" STREQUAL "macOS")
-          set(ninja_suffix "mac.zip")
-          set(cmake_suffix "Darwin-x86_64.tar.gz")
-          set(cmake_dir "cmake-${cmake_version}-Darwin-x86_64/CMake.app/Contents/bin")
-        endif()
-        set(ninja_url "https://github.com/ninja-build/ninja/releases/download/v${ninja_version}/ninja-${ninja_suffix}")
-        file(DOWNLOAD "${ninja_url}" ./ninja.zip SHOW_PROGRESS)
-        execute_process(COMMAND ${CMAKE_COMMAND} -E tar xvf ./ninja.zip)
-        set(cmake_url "https://github.com/Kitware/CMake/releases/download/v${cmake_version}/cmake-${cmake_version}-${cmake_suffix}")
-        file(DOWNLOAD "${cmake_url}" ./cmake.zip SHOW_PROGRESS)
-        execute_process(COMMAND ${CMAKE_COMMAND} -E tar xvf ./cmake.zip)
-        # Save the path for other steps
-        file(TO_CMAKE_PATH "$ENV{GITHUB_WORKSPACE}/${cmake_dir}" cmake_dir)
-        message("::set-output name=cmake_dir::${cmake_dir}")
-        if (NOT "${{ runner.os }}" STREQUAL "Windows")
+      - name: Download Ninja and CMake
+        id: cmake_and_ninja
+        shell: cmake -P {0}
+        run: |
+          set(cmake_version $ENV{CMAKE_VERSION})
+          set(ninja_version $ENV{NINJA_VERSION})
+          message(STATUS "Using host CMake version: ${CMAKE_VERSION}")
+          if ("${{ runner.os }}" STREQUAL "Windows")
+            set(ninja_suffix "win.zip")
+            set(cmake_suffix "win64-x64.zip")
+            set(cmake_dir "cmake-${cmake_version}-win64-x64/bin")
+          elseif ("${{ runner.os }}" STREQUAL "Linux")
+            set(ninja_suffix "linux.zip")
+            set(cmake_suffix "Linux-x86_64.tar.gz")
+            set(cmake_dir "cmake-${cmake_version}-Linux-x86_64/bin")
+          elseif ("${{ runner.os }}" STREQUAL "macOS")
+            set(ninja_suffix "mac.zip")
+            set(cmake_suffix "Darwin-x86_64.tar.gz")
+            set(cmake_dir "cmake-${cmake_version}-Darwin-x86_64/CMake.app/Contents/bin")
+          endif()
+          set(ninja_url "https://github.com/ninja-build/ninja/releases/download/v${ninja_version}/ninja-${ninja_suffix}")
+          file(DOWNLOAD "${ninja_url}" ./ninja.zip SHOW_PROGRESS)
+          execute_process(COMMAND ${CMAKE_COMMAND} -E tar xvf ./ninja.zip)
+          set(cmake_url "https://github.com/Kitware/CMake/releases/download/v${cmake_version}/cmake-${cmake_version}-${cmake_suffix}")
+          file(DOWNLOAD "${cmake_url}" ./cmake.zip SHOW_PROGRESS)
+          execute_process(COMMAND ${CMAKE_COMMAND} -E tar xvf ./cmake.zip)
+          # Save the path for other steps
+          file(TO_CMAKE_PATH "$ENV{GITHUB_WORKSPACE}/${cmake_dir}" cmake_dir)
+          message("::set-output name=cmake_dir::${cmake_dir}")
+          if (NOT "${{ runner.os }}" STREQUAL "Windows")
+            execute_process(
+              COMMAND chmod +x ninja
+              COMMAND chmod +x ${cmake_dir}/cmake
+            )
+          endif()
+
+      - name: Download ccache
+        id: ccache
+        shell: cmake -P {0}
+        run: |
+          set(ccache_url "https://github.com/cristianadam/ccache/releases/download/v$ENV{CCACHE_VERSION}/${{ runner.os }}.tar.xz")
+          file(DOWNLOAD "${ccache_url}" ./ccache.tar.xz SHOW_PROGRESS)
+          execute_process(COMMAND ${CMAKE_COMMAND} -E tar xvf ./ccache.tar.xz)
+
+      - name: Prepare ccache timestamp
+        id: ccache_cache_timestamp
+        shell: cmake -P {0}
+        run: |
+          string(TIMESTAMP current_date "%Y-%m-%d-%H;%M;%S" UTC)
+          message("::set-output name=timestamp::${current_date}")
+
+      - name: Restore ccache cache files
+        uses: actions/cache@v1
+        with:
+          path: .ccache
+          key: ${{ matrix.config.os }}-${{ matrix.qt_version }}-ccache-${{ steps.ccache_cache_timestamp.outputs.timestamp }}
+          restore-keys: |
+            ${{ matrix.config.os }}-${{ matrix.qt_version }}-ccache-
+
+      - name: Configure CMake
+        shell: cmake -P {0}
+        run: |
+          set(ENV{CC} ${{ matrix.config.cc }})
+          set(ENV{CXX} ${{ matrix.config.cxx }})
+          if ("${{ runner.os }}" STREQUAL "Windows" AND NOT "x${{ matrix.config.environment_script }}" STREQUAL "x")
+            execute_process(
+              COMMAND "${{ matrix.config.environment_script }}" && set
+              OUTPUT_FILE environment_script_output.txt
+            )
+            file(STRINGS environment_script_output.txt output_lines)
+            foreach(line IN LISTS output_lines)
+              if (line MATCHES "^([a-zA-Z0-9_-]+)=(.*)$")
+                set(ENV{${CMAKE_MATCH_1}} "${CMAKE_MATCH_2}")
+              endif()
+            endforeach()
+          endif()
+          set(path_separator ":")
+          if ("${{ runner.os }}" STREQUAL "Windows")
+            set(path_separator ";")
+          endif()
+          set(ENV{PATH} "$ENV{GITHUB_WORKSPACE}${path_separator}$ENV{PATH}")
           execute_process(
-            COMMAND chmod +x ninja
-            COMMAND chmod +x ${cmake_dir}/cmake
+            COMMAND ${{ steps.cmake_and_ninja.outputs.cmake_dir }}/cmake
+              -S .
+              -B build
+              -D CMAKE_BUILD_TYPE=$ENV{BUILD_TYPE}
+              -G Ninja
+              -D CMAKE_MAKE_PROGRAM=ninja
+              -D CMAKE_C_COMPILER_LAUNCHER=ccache
+              -D CMAKE_CXX_COMPILER_LAUNCHER=ccache
+            RESULT_VARIABLE result
           )
-        endif()
+          if (NOT result EQUAL 0)
+            message(FATAL_ERROR "Bad exit status")
+          endif()
 
-    - name: Download ccache
-      id: ccache
-      shell: cmake -P {0}
-      run: |
-        set(ccache_url "https://github.com/cristianadam/ccache/releases/download/v$ENV{CCACHE_VERSION}/${{ runner.os }}.tar.xz")
-        file(DOWNLOAD "${ccache_url}" ./ccache.tar.xz SHOW_PROGRESS)
-        execute_process(COMMAND ${CMAKE_COMMAND} -E tar xvf ./ccache.tar.xz)
-
-    - name: Prepare ccache timestamp
-      id: ccache_cache_timestamp
-      shell: cmake -P {0}
-      run: |
-        string(TIMESTAMP current_date "%Y-%m-%d-%H;%M;%S" UTC)
-        message("::set-output name=timestamp::${current_date}")
-
-    - name: Restore ccache cache files
-      uses: actions/cache@v1
-      with:
-        path: .ccache
-        key: ${{ matrix.config.os }}-${{ matrix.qt_version }}-ccache-${{ steps.ccache_cache_timestamp.outputs.timestamp }}
-        restore-keys: |
-          ${{ matrix.config.os }}-${{ matrix.qt_version }}-ccache-
-
-    - name: Configure CMake
-      shell: cmake -P {0}
-      run: |
-        set(ENV{CC} ${{ matrix.config.cc }})
-        set(ENV{CXX} ${{ matrix.config.cxx }})
-        if ("${{ runner.os }}" STREQUAL "Windows" AND NOT "x${{ matrix.config.environment_script }}" STREQUAL "x")
+      - name: Build
+        shell: cmake -P {0}
+        run: |
+          set(ENV{NINJA_STATUS} "[%f/%t %o/sec] ")
+          if ("${{ runner.os }}" STREQUAL "Windows" AND NOT "x${{ matrix.config.environment_script }}" STREQUAL "x")
+            file(STRINGS environment_script_output.txt output_lines)
+            foreach(line IN LISTS output_lines)
+              if (line MATCHES "^([a-zA-Z0-9_-]+)=(.*)$")
+                set(ENV{${CMAKE_MATCH_1}} "${CMAKE_MATCH_2}")
+              endif()
+            endforeach()
+          endif()
+          set(path_separator ":")
+          if ("${{ runner.os }}" STREQUAL "Windows")
+            set(path_separator ";")
+          endif()
+          set(ENV{PATH} "$ENV{GITHUB_WORKSPACE}${path_separator}$ENV{PATH}")
+          file(TO_CMAKE_PATH "$ENV{GITHUB_WORKSPACE}" ccache_basedir)
+          set(ENV{CCACHE_BASEDIR} "${ccache_basedir}")
+          set(ENV{CCACHE_DIR} "${ccache_basedir}/.ccache")
+          set(ENV{CCACHE_COMPRESS} "true")
+          set(ENV{CCACHE_COMPRESSLEVEL} "6")
+          set(ENV{CCACHE_MAXSIZE} "20M")
+          if ("${{ matrix.config.cxx }}" STREQUAL "cl")
+            set(ENV{CCACHE_MAXSIZE} "30M")
+          endif()
+          execute_process(COMMAND ccache -p)
+          execute_process(COMMAND ccache -z)
           execute_process(
-            COMMAND "${{ matrix.config.environment_script }}" && set
-            OUTPUT_FILE environment_script_output.txt
+            COMMAND ${{ steps.cmake_and_ninja.outputs.cmake_dir }}/cmake --build build
+            RESULT_VARIABLE result
           )
-          file(STRINGS environment_script_output.txt output_lines)
-          foreach(line IN LISTS output_lines)
-            if (line MATCHES "^([a-zA-Z0-9_-]+)=(.*)$")
-              set(ENV{${CMAKE_MATCH_1}} "${CMAKE_MATCH_2}")
-            endif()
-          endforeach()
-        endif()
-        set(path_separator ":")
-        if ("${{ runner.os }}" STREQUAL "Windows")
-          set(path_separator ";")
-        endif()
-        set(ENV{PATH} "$ENV{GITHUB_WORKSPACE}${path_separator}$ENV{PATH}")
-        execute_process(
-          COMMAND ${{ steps.cmake_and_ninja.outputs.cmake_dir }}/cmake
-            -S .
-            -B build
-            -D CMAKE_BUILD_TYPE=$ENV{BUILD_TYPE}
-            -G Ninja
-            -D CMAKE_MAKE_PROGRAM=ninja
-            -D CMAKE_C_COMPILER_LAUNCHER=ccache
-            -D CMAKE_CXX_COMPILER_LAUNCHER=ccache
-          RESULT_VARIABLE result
-        )
-        if (NOT result EQUAL 0)
-          message(FATAL_ERROR "Bad exit status")
-        endif()
+          if (NOT result EQUAL 0)
+            message(FATAL_ERROR "Bad exit status")
+          endif()
+          execute_process(COMMAND ccache -s)
 
-    - name: Build
-      shell: cmake -P {0}
-      run: |
-        set(ENV{NINJA_STATUS} "[%f/%t %o/sec] ")
-        if ("${{ runner.os }}" STREQUAL "Windows" AND NOT "x${{ matrix.config.environment_script }}" STREQUAL "x")
-          file(STRINGS environment_script_output.txt output_lines)
-          foreach(line IN LISTS output_lines)
-            if (line MATCHES "^([a-zA-Z0-9_-]+)=(.*)$")
-              set(ENV{${CMAKE_MATCH_1}} "${CMAKE_MATCH_2}")
-            endif()
-          endforeach()
-        endif()
-        set(path_separator ":")
-        if ("${{ runner.os }}" STREQUAL "Windows")
-          set(path_separator ";")
-        endif()
-        set(ENV{PATH} "$ENV{GITHUB_WORKSPACE}${path_separator}$ENV{PATH}")
-        file(TO_CMAKE_PATH "$ENV{GITHUB_WORKSPACE}" ccache_basedir)
-        set(ENV{CCACHE_BASEDIR} "${ccache_basedir}")
-        set(ENV{CCACHE_DIR} "${ccache_basedir}/.ccache")
-        set(ENV{CCACHE_COMPRESS} "true")
-        set(ENV{CCACHE_COMPRESSLEVEL} "6")
-        set(ENV{CCACHE_MAXSIZE} "20M")
-        if ("${{ matrix.config.cxx }}" STREQUAL "cl")
-          set(ENV{CCACHE_MAXSIZE} "30M")
-        endif()
-        execute_process(COMMAND ccache -p)
-        execute_process(COMMAND ccache -z)
-        execute_process(
-          COMMAND ${{ steps.cmake_and_ninja.outputs.cmake_dir }}/cmake --build build
-          RESULT_VARIABLE result
-        )
-        if (NOT result EQUAL 0)
-          message(FATAL_ERROR "Bad exit status")
-        endif()
-        execute_process(COMMAND ccache -s)
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: "cpeditor-${{ matrix.config.os }}-${{ matrix.qt_version }}-${{ github.sha }}"
+          path: build/${{ matrix.config.binary }}
 
-    - name: Upload Artifact
-      uses: actions/upload-artifact@v1
-      with:
-        name: "cpeditor-${{ matrix.config.os }}-${{ matrix.qt_version }}-${{ github.sha }}"
-        path: build/${{ matrix.config.binary }}
+      - name: Get the version
+        if: startsWith(github.ref, 'refs/tags') && (matrix.qt_version == '5.12.8')
+        id: get_version
+        shell: bash
+        run: |
+          VERSION=${GITHUB_REF/refs\/tags\//}
+          echo ::set-output name=VERSION::$VERSION
+          read STABLE_VERSION < .ci/STABLE_VERSION
+          if [ "${VERSION:0:${#STABLE_VERSION}}" == "$STABLE_VERSION" ]; then
+            echo ::set-output name=ISBETA::false
+          else
+            echo ::set-output name=ISBETA::true
+          fi
 
-    - name: Get the version
-      if: startsWith(github.ref, 'refs/tags') && (matrix.qt_version == '5.12.8')
-      id: get_version
-      shell: bash
-      run: |
-        VERSION=${GITHUB_REF/refs\/tags\//}
-        echo ::set-output name=VERSION::$VERSION
-        read STABLE_VERSION < .ci/STABLE_VERSION
-        if [ "${VERSION:0:${#STABLE_VERSION}}" == "$STABLE_VERSION" ]; then
-          echo ::set-output name=ISBETA::false
-        else
-          echo ::set-output name=ISBETA::true
-        fi
+      - name: Pack to dmg on Mac
+        if: matrix.config.os == 'macos-latest' && startsWith(github.ref, 'refs/tags') && (matrix.qt_version == '5.12.8')
+        run: |
+          cd build
+          ../../Qt/*/*/bin/macdeployqt cpeditor.app
+          cp ../.ci/mac/cpeditor.icns cpeditor.app/Contents/Resources
+          hdiutil create -volname cpeditor-${{ steps.get_version.outputs.VERSION }}-x64 -srcfolder cpeditor.app -ov -format UDZO cpeditor-${{ steps.get_version.outputs.VERSION }}-x64.dmg
 
-    - name: Pack to dmg on Mac
-      if: matrix.config.os == 'macos-latest' && startsWith(github.ref, 'refs/tags') && (matrix.qt_version == '5.12.8')
-      run: |
-        cd build
-        ../../Qt/*/*/bin/macdeployqt cpeditor.app
-        cp ../.ci/mac/cpeditor.icns cpeditor.app/Contents/Resources
-        hdiutil create -volname cpeditor-${{ steps.get_version.outputs.VERSION }}-x64 -srcfolder cpeditor.app -ov -format UDZO cpeditor-${{ steps.get_version.outputs.VERSION }}-x64.dmg
+      - name: Release on Mac
+        if: matrix.config.os == 'macos-latest' && startsWith(github.ref, 'refs/tags') && (matrix.qt_version == '5.12.8')
+        uses: softprops/action-gh-release@v1
+        with:
+          draft: true
+          prerelease: ${{ steps.get_version.outputs.ISBETA }}
+          files: build/cpeditor-${{ steps.get_version.outputs.VERSION }}-x64.dmg
+          name: CP Editor ${{ steps.get_version.outputs.VERSION }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Release on Mac
-      if: matrix.config.os == 'macos-latest' && startsWith(github.ref, 'refs/tags') && (matrix.qt_version == '5.12.8')
-      uses: softprops/action-gh-release@v1
-      with:
-        draft: true
-        prerelease: ${{ steps.get_version.outputs.ISBETA }}
-        files: build/cpeditor-${{ steps.get_version.outputs.VERSION }}-x64.dmg
-        name: CP Editor ${{ steps.get_version.outputs.VERSION }}
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Install innosetup on Windows
+        if: matrix.config.os == 'windows-latest' && startsWith(github.ref, 'refs/tags') && (matrix.qt_version == '5.12.8')
+        uses: crazy-max/ghaction-chocolatey@v1
+        with:
+          args: "install innosetup"
 
-    - name: Install innosetup on Windows
-      if: matrix.config.os == 'windows-latest' && startsWith(github.ref, 'refs/tags') && (matrix.qt_version == '5.12.8')
-      uses: crazy-max/ghaction-chocolatey@v1
-      with:
-        args: 'install innosetup'
+      - name: Pack to exe on Windows
+        if: matrix.config.os == 'windows-latest' && startsWith(github.ref, 'refs/tags') && (matrix.qt_version == '5.12.8')
+        shell: bash
+        run: |
+          mkdir build/out
+          mv build/cpeditor.exe build/out
+          ../Qt/*/*/bin/windeployqt.exe build/out/cpeditor.exe --no-translations
+          iscc .ci/win/win-setup.iss -DMyAppVersion=${{ steps.get_version.outputs.VERSION }} -DMyProjectRoot=$(pwd) -DMyOutRoot=$(pwd)/build/out
 
-    - name: Pack to exe on Windows
-      if: matrix.config.os == 'windows-latest' && startsWith(github.ref, 'refs/tags') && (matrix.qt_version == '5.12.8')
-      shell: bash
-      run: |
-        mkdir build/out
-        mv build/cpeditor.exe build/out
-        ../Qt/*/*/bin/windeployqt.exe build/out/cpeditor.exe --no-translations
-        iscc .ci/win/win-setup.iss -DMyAppVersion=${{ steps.get_version.outputs.VERSION }} -DMyProjectRoot=$(pwd) -DMyOutRoot=$(pwd)/build/out
-
-    - name: Release on Windows
-      if: matrix.config.os == 'windows-latest' && startsWith(github.ref, 'refs/tags') && (matrix.qt_version == '5.12.8')
-      uses: softprops/action-gh-release@v1
-      with:
-        draft: true
-        prerelease: ${{ steps.get_version.outputs.ISBETA }}
-        files: cpeditor-${{ steps.get_version.outputs.VERSION }}-x64-setup.exe
-        name: CP Editor ${{ steps.get_version.outputs.VERSION }}
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Release on Windows
+        if: matrix.config.os == 'windows-latest' && startsWith(github.ref, 'refs/tags') && (matrix.qt_version == '5.12.8')
+        uses: softprops/action-gh-release@v1
+        with:
+          draft: true
+          prerelease: ${{ steps.get_version.outputs.ISBETA }}
+          files: cpeditor-${{ steps.get_version.outputs.VERSION }}-x64-setup.exe
+          name: CP Editor ${{ steps.get_version.outputs.VERSION }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
