@@ -17,6 +17,8 @@
 
 #include "Core/Compiler.hpp"
 #include "Core/EventLogger.hpp"
+#include "Settings/SettingsManager.hpp"
+#include <QDir>
 #include <QFileInfo>
 #include <QProcess>
 
@@ -46,12 +48,13 @@ Compiler::~Compiler()
     }
 }
 
-void Compiler::start(const QString &filePath, const QString &compileCommand, const QString &lang)
+void Compiler::start(const QString &tmpFilePath, const QString &sourceFilePath, const QString &compileCommand,
+                     const QString &lang)
 {
-    if (!QFile::exists(filePath))
+    if (!QFile::exists(tmpFilePath))
     {
         // quit with error if the source file is not found
-        emit compilationErrorOccurred("The source file [" + filePath + "] doesn't exist");
+        emit compilationErrorOccurred("The source file [" + tmpFilePath + "] doesn't exist");
         return;
     }
 
@@ -62,12 +65,17 @@ void Compiler::start(const QString &filePath, const QString &compileCommand, con
 
     if (lang == "C++")
     {
-        command = compileCommand + " \"" + QFileInfo(filePath).canonicalFilePath() + "\" -o \"" +
-                  QFileInfo(filePath).canonicalPath() + "/" + QFileInfo(filePath).completeBaseName() + "\"";
+        command = QString("%1 \"%2\" -o \"%3\"")
+                      .arg(compileCommand)
+                      .arg(QFileInfo(tmpFilePath).canonicalFilePath())
+                      .arg(outputPath(tmpFilePath, sourceFilePath, "C++"));
     }
     else if (lang == "Java")
     {
-        command = compileCommand + " \"" + QFileInfo(filePath).canonicalFilePath() + "\"";
+        command = QString("%1 \"%2\" -d \"%3\"")
+                      .arg(compileCommand)
+                      .arg(QFileInfo(tmpFilePath).canonicalFilePath())
+                      .arg(outputPath(tmpFilePath, sourceFilePath, "Java"));
     }
     else if (lang == "Python")
     {
@@ -92,17 +100,32 @@ bool Compiler::check(const QString &compileCommand)
     // check both "--version" and "-version", "-version" is mainly for Java
 
     checkProcess.start(compileCommand.trimmed().split(' ').front() + " --version");
-    bool finished = checkProcess.waitForFinished(1000);
+    bool finished = checkProcess.waitForFinished(2000);
     if (finished && checkProcess.exitCode() == 0)
         return true;
     checkProcess.kill(); // kill it if it's not finished, no harm if it's finished with non-zero exit code
 
     checkProcess.start(compileCommand.trimmed().split(' ').front() + " -version");
-    finished = checkProcess.waitForFinished(1000);
+    finished = checkProcess.waitForFinished(2000);
 
     LOG_INFO(BOOL_INFO_OF(finished) << INFO_OF(checkProcess.exitCode()));
 
     return finished && checkProcess.exitCode() == 0;
+}
+
+QString Compiler::outputPath(const QString &tmpFilePath, const QString &sourceFilePath, const QString &lang)
+{
+    QFileInfo fileInfo(sourceFilePath.isEmpty() ? tmpFilePath : sourceFilePath);
+    QString res = fileInfo.dir().filePath(SettingsManager::get(lang + "/Output Path")
+                                              .toString()
+                                              .replace("${filename}", fileInfo.fileName())
+                                              .replace("${basename}", fileInfo.completeBaseName())
+                                              .replace("${tmpdir}", QFileInfo(tmpFilePath).absolutePath()));
+    if (lang == "C++")
+        QDir().mkpath(QFileInfo(res).absolutePath());
+    else if (lang == "Java")
+        QDir().mkpath(res);
+    return res;
 }
 
 void Compiler::onProcessFinished(int exitCode)

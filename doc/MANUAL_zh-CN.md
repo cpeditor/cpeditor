@@ -22,7 +22,7 @@
 
 ## 如果你使用 Java
 
-你的代码使用的类名需要是 `a`，而且不能是 public class。
+你的代码需要使用一个 non-public class，名称可以在 Preferences->Language->Commands->Java Class Name 中设定。
 
 ## 设置
 
