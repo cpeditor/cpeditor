@@ -173,6 +173,12 @@ AppWindow::AppWindow(bool cpp, bool java, bool python, bool noHotExit, int numbe
 AppWindow::~AppWindow()
 {
     saveSettings();
+    while (ui->tabWidget->count())
+    {
+        auto tmp = ui->tabWidget->widget(0);
+        ui->tabWidget->removeTab(0);
+        delete tmp;
+    }
     Extensions::EditorTheme::release();
     delete ui;
     delete preferencesWindow;
