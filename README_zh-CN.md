@@ -55,7 +55,7 @@ CP Editor 是一个基于 Qt 的轻量级跨平台代码编辑器，专为算法
 ## FAQ
 
 - 我在写 Java，代码不能正常运行。
-   - 你的代码使用的类名需要是 `a`，而且不能是 public class。
+   - 你的代码需要使用一个 non-public class，名称可以在 Preferences->Language->Commands->Java Class Name 中设定。
 - 打开程序时提示缺失 DLL。
    - 请下载并安装 [Microsoft Visual C++ Redistributable for Visual Studio 2015, 2017 and 2019](https://support.microsoft.com/en-us/help/2977003/the-latest-supported-visual-c-downloads)。
 - 如何使整个界面都是暗色主题？
