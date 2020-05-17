@@ -7,6 +7,7 @@
 - Now you can use Alt to choose the menu in the main window. (#344)
 - Now it's optional to save the file on compilation and execution or not.
 - Now you can choose the path of the executable file for C++ and the path of the parent directory of the class file for Java. (#271)
+- Now you can get the git commit hash when executing `cpeditor --version` in the terminal.
 
 ### Fixed
 
