@@ -63,7 +63,7 @@ jobs:
       - name: Package the complete Source
         run: |
           wget https://raw.githubusercontent.com/Kentzo/git-archive-all/master/git_archive_all.py
-          python3 git_archive_all.py cpeditor-full-source-${{ steps.get_version.outputs.VERSION }}.tar.gz
+          python3 git_archive_all.py cpeditor-${{ steps.get_version.outputs.VERSION }}-full-source.tar.gz
 
       - name: Release AppImage and Source
         uses: softprops/action-gh-release@v1
@@ -72,7 +72,7 @@ jobs:
           prerelease: ${{ steps.get_version.outputs.ISBETA }}
           files: |
             build/cpeditor-${{ steps.get_version.outputs.VERSION }}-x86_64.AppImage
-            cpeditor-full-source-${{ steps.get_version.outputs.VERSION }}.tar.gz
+            cpeditor-${{ steps.get_version.outputs.VERSION }}-full-source.tar.gz
           name: CP Editor ${{ steps.get_version.outputs.VERSION }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
