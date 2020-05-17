@@ -52,7 +52,8 @@ class Runner : public QObject
 
     /**
      * @brief run a program on a given input
-     * @param filePath the path to the source file
+     * @param tmpFilePath the path to the temporary file which is compiled
+     * @param sourceFilePath the path to the original source file
      * @param lang the language to run, one of "C++", "Java" and "Python"
      * @param runCommand the command for running a program
      * @param args the command line arguments added at the back to start the program
@@ -60,19 +61,21 @@ class Runner : public QObject
      * @param timeLimit the maximum time for the program to run, in milliseconds
      * @note This should be called only once. Please create multiple Runners for multiple runs.
      */
-    void run(const QString &filePath, const QString &lang, const QString &runCommand, const QString &args,
-             const QString &input, int timeLimit);
+    void run(const QString &tmpFilePath, const QString &sourceFilePath, const QString &lang, const QString &runCommand,
+             const QString &args, const QString &input, int timeLimit);
 
     /**
      * @brief run a program in a pop-up terminal
-     * @param filePath the path to the source file
+     * @param tmpFilePath the path to the temporary file which is compiled
+     * @param sourceFilePath the path to the original source file
      * @param lang the language to run, one of "C++", "Java" and "Python"
      * @param runCommand the command for running a program
      * @param args the command line arguments added at the back to start the program
      * @note runFinished, runTimeout and runKilled won't be emitted when using runDetached. failedToStartRun will only
      *       be emitted when xterm is not installed on Linux, it's not emitted even the source file is not compiled.
      */
-    void runDetached(const QString &filePath, const QString &lang, const QString &runCommand, const QString &args);
+    void runDetached(const QString &tmpFilePath, const QString &sourceFilePath, const QString &lang,
+                     const QString &runCommand, const QString &args);
 
   signals:
     /**
@@ -153,12 +156,14 @@ class Runner : public QObject
   private:
     /**
      * @brief get the command to run a program
-     * @param filePath the path to the source file
+     * @param tmpFilePath the path to the temporary file which is compiled
+     * @param sourceFilePath the path to the original source file
      * @param lang the language to run, one of "C++", "Java" and "Python"
      * @param runCommand the command for running a program
      * @param args the command line arguments added at the back to start the program
      */
-    QString getCommand(const QString &filePath, const QString &lang, const QString &runCommand, const QString &args);
+    static QString getCommand(const QString &tmpFilePath, const QString &sourceFilePath, const QString &lang,
+                              const QString &runCommand, const QString &args);
 
     const int runnerIndex;                   // the index of the testcase
     QProcess *runProcess = nullptr;          // the process to run the program

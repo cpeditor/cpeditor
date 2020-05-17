@@ -11,7 +11,7 @@ pkgbase = cpeditor
 	makedepends = python3
 	depends = qt5-base
 	conflicts = cpeditor-git
-	source = https://github.com/cpeditor/cpeditor/releases/download/@PROJECT_VERSION@/cpeditor-full-source-@PROJECT_VERSION@.tar.gz
+	source = https://github.com/cpeditor/cpeditor/releases/download/@PROJECT_VERSION@/cpeditor-@PROJECT_VERSION@-full-source.tar.gz
 	md5sums = SKIP
 
 pkgname = cpeditor

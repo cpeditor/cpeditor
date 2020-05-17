@@ -154,7 +154,7 @@ class MainWindow : public QMainWindow
 
   signals:
     void editorFileChanged();
-    void editorTmpPathChanged(MainWindow *window);
+    void editorTmpPathChanged(MainWindow *window, const QString &path);
     void editorTextChanged(MainWindow *window);
     void confirmTriggered(MainWindow *widget);
     void requestToastMessage(const QString &head, const QString &body);
@@ -165,7 +165,6 @@ class MainWindow : public QMainWindow
     enum SaveMode
     {
         IgnoreUntitled, // save only when filePath is not empty
-        IgnoreNonExist, // don't save if the file doesn't exist, this implies IgnoreUntitled
         AlwaysSave,     // save to filePath if it's not empty, otherwise ask for new path
         SaveAs,         // ask for new path no matter filePath is empty or not
     };
@@ -174,13 +173,6 @@ class MainWindow : public QMainWindow
         Nothing,
         Run,
         RunDetached
-    };
-    enum SaveTempStatus
-    {
-        Failed, // There must be exactly one failed status and it must be the first one in the enum
-                // in order to cast to bool correctly.
-        TempSaved,
-        NormalSaved
     };
 
     Ui::MainWindow *ui;
@@ -223,8 +215,7 @@ class MainWindow : public QMainWindow
     void setText(const QString &text, bool keep = false);
     void updateWatcher();
     void loadFile(const QString &loadPath);
-    bool saveFile(SaveMode, const QString &head, bool safe);
-    SaveTempStatus saveTemp(const QString &head, SaveMode mode = IgnoreUntitled);
+    bool saveFile(SaveMode mode, const QString &head, bool safe);
     void performCompileAndRunDiagonistics();
     QString getRunnerHead(int index);
 };

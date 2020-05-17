@@ -182,6 +182,12 @@ AppWindow::~AppWindow()
 {
     LOG_INFO("Destruction started");
     saveSettings();
+    while (ui->tabWidget->count())
+    {
+        auto tmp = ui->tabWidget->widget(0);
+        ui->tabWidget->removeTab(0);
+        delete tmp;
+    }
     Extensions::EditorTheme::release();
     delete ui;
     delete preferencesWindow;
@@ -406,7 +412,8 @@ void AppWindow::openTab(const QString &path)
     auto fsp = new MainWindow(path, getNewUntitledIndex(), this);
     connect(fsp, SIGNAL(confirmTriggered(MainWindow *)), this, SLOT(on_confirmTriggered(MainWindow *)));
     connect(fsp, SIGNAL(editorFileChanged()), this, SLOT(onEditorFileChanged()));
-    connect(fsp, SIGNAL(editorTmpPathChanged(MainWindow *)), this, SLOT(onEditorTmpPathChanged(MainWindow *)));
+    connect(fsp, SIGNAL(editorTmpPathChanged(MainWindow *, const QString &)), this,
+            SLOT(onEditorTmpPathChanged(MainWindow *, const QString &)));
     connect(fsp, SIGNAL(editorLanguageChanged(MainWindow *)), this, SLOT(onEditorLanguageChanged(MainWindow *)));
     connect(fsp, SIGNAL(editorTextChanged(MainWindow *)), this, SLOT(onEditorTextChanged(MainWindow *)));
     connect(fsp, SIGNAL(requestToastMessage(const QString &, const QString &)), trayIcon,
@@ -917,16 +924,16 @@ void AppWindow::onEditorTextChanged(MainWindow *window)
     }
 }
 
-void AppWindow::onEditorTmpPathChanged(MainWindow *window)
+void AppWindow::onEditorTmpPathChanged(MainWindow *window, const QString &path)
 {
     if (currentWindow() == window)
     {
         if (window->getLanguage() == "C++" && cppServer->isDocumentOpen())
-            cppServer->updatePath(window->tmpPath());
+            cppServer->updatePath(path);
         else if (window->getLanguage() == "Java" && javaServer->isDocumentOpen())
-            javaServer->updatePath(window->tmpPath());
+            javaServer->updatePath(path);
         else if (window->getLanguage() == "Python" && pythonServer->isDocumentOpen())
-            pythonServer->updatePath(window->tmpPath());
+            pythonServer->updatePath(path);
     }
 }
 

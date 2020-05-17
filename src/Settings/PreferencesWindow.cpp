@@ -102,9 +102,10 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
 
     addPage("Language/General", {"Default Language"});
 
-    addPage("Language/Commands",
-            {"C++/Compile Command", "C++/Run Arguments", "Java/Compile Command", "Java/Run Arguments",
-             "Java/Run Command", "Python/Run Arguments", "Python/Run Command"});
+    addPage("Language/Commands/C++ Commands", {"C++/Compile Command", "C++/Output Path", "C++/Run Arguments"});
+    addPage("Language/Commands/Java Commands",
+            {"Java/Compile Command", "Java/Output Path", "Java/Class Name", "Java/Run Command", "Java/Run Arguments"});
+    addPage("Language/Commands/Python Commands", {"Python/Run Command", "Python/Run Arguments"});
 
     addPage("Language/Code Template", {"C++/Template Path", "Java/Template Path", "Python/Template Path"});
 
@@ -121,7 +122,8 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
 
     addPage("Actions/General", {"Hot Exit/Enable"});
 
-    addPage("Actions/Save", {"Auto Save", "Save Faster", "Auto Format", "Save Tests"});
+    addPage("Actions/Save", {"Auto Save", "Save Faster", "Auto Format", "Save File On Compilation",
+                             "Save File On Execution", "Save Tests"});
 
     addPage("Extensions/Clang Format", {"Clang Format/Path", "Clang Format/Style"}, false);
 
