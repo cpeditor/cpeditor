@@ -1,6 +1,0 @@
-#ifndef GITSHA_HPP
-#define GITSHA_HPP
-
-#define GIT_COMMIT_HASH "@GIT_COMMIT_HASH@"
-
-#endif

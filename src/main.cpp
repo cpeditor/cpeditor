@@ -36,7 +36,7 @@ int main(int argc, char *argv[])
 {
     SingleApplication app(argc, argv, true);
     SingleApplication::setApplicationName("CP Editor");
-    SingleApplication::setApplicationVersion(APP_VERSION);
+    SingleApplication::setApplicationVersion(APP_VERSION "+g" GIT_COMMIT_HASH);
     QApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
     QApplication::setWindowIcon(QIcon(":/icon.png"));
 

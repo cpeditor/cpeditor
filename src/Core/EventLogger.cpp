@@ -24,7 +24,6 @@
 #include <QStandardPaths>
 #include <QSysInfo>
 #include <QUrl>
-#include <generated/gitsha.hpp>
 #include <generated/version.hpp>
 
 namespace Core
