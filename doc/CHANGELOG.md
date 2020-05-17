@@ -1,5 +1,7 @@
 ## UNRELEASED
 
+## 6.4.3 (Beta)
+
 ### Fixed
 
 - Fix a bug which makes the application crash when quiting in some scenarios. (fa5259b)
