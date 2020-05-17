@@ -8,38 +8,38 @@ on:
 jobs:
   build:
     name: "Release checksums"
-    runs-on: 'ubuntu-latest'
+    runs-on: "ubuntu-latest"
 
     steps:
-    - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
-    - name: Get the version
-      id: get_version
-      run: |
-        VERSION=${GITHUB_REF/refs\/tags\//}
-        echo ::set-output name=VERSION::$VERSION
-        read STABLE_VERSION < .ci/STABLE_VERSION
-        if [ "${VERSION:0:${#STABLE_VERSION}}" == "$STABLE_VERSION" ]; then
-          echo ::set-output name=ISBETA::false
-        else
-          echo ::set-output name=ISBETA::true
-        fi
+      - name: Get the version
+        id: get_version
+        run: |
+          VERSION=${GITHUB_REF/refs\/tags\//}
+          echo ::set-output name=VERSION::$VERSION
+          read STABLE_VERSION < .ci/STABLE_VERSION
+          if [ "${VERSION:0:${#STABLE_VERSION}}" == "$STABLE_VERSION" ]; then
+            echo ::set-output name=ISBETA::false
+          else
+            echo ::set-output name=ISBETA::true
+          fi
 
-    - name: Download assets and generate checksums
-      run: |
-        mkdir -p downloads
-        cd downloads
-        wget -c https://github.com/${{ github.repository }}/releases/download/${{ steps.get_version.outputs.VERSION }}/cpeditor-${{ steps.get_version.outputs.VERSION }}-x86_64.AppImage
-        wget -c https://github.com/${{ github.repository }}/releases/download/${{ steps.get_version.outputs.VERSION }}/cpeditor-${{ steps.get_version.outputs.VERSION }}-x64-setup.exe
-        wget -c https://github.com/${{ github.repository }}/releases/download/${{ steps.get_version.outputs.VERSION }}/cpeditor-${{ steps.get_version.outputs.VERSION }}-x64.dmg
-        wget -c https://github.com/${{ github.repository }}/releases/download/${{ steps.get_version.outputs.VERSION }}/cpeditor-full-source-${{ steps.get_version.outputs.VERSION }}.tar.gz
-        shasum -a 256 *.* > cpeditor-${{ steps.get_version.outputs.VERSION }}-sha256-checksums.txt
+      - name: Download assets and generate checksums
+        run: |
+          mkdir -p downloads
+          cd downloads
+          wget -c https://github.com/${{ github.repository }}/releases/download/${{ steps.get_version.outputs.VERSION }}/cpeditor-${{ steps.get_version.outputs.VERSION }}-x86_64.AppImage
+          wget -c https://github.com/${{ github.repository }}/releases/download/${{ steps.get_version.outputs.VERSION }}/cpeditor-${{ steps.get_version.outputs.VERSION }}-x64-setup.exe
+          wget -c https://github.com/${{ github.repository }}/releases/download/${{ steps.get_version.outputs.VERSION }}/cpeditor-${{ steps.get_version.outputs.VERSION }}-x64.dmg
+          wget -c https://github.com/${{ github.repository }}/releases/download/${{ steps.get_version.outputs.VERSION }}/cpeditor-${{ steps.get_version.outputs.VERSION }}-full-source.tar.gz
+          shasum -a 256 *.* > cpeditor-${{ steps.get_version.outputs.VERSION }}-sha256-checksums.txt
 
-    - name: Upload checksums
-      uses: softprops/action-gh-release@v1
-      with:
-        prerelease: ${{ steps.get_version.outputs.ISBETA }}
-        name: CP Editor ${{ steps.get_version.outputs.VERSION }}
-        files: downloads/cpeditor-${{ steps.get_version.outputs.VERSION }}-sha256-checksums.txt
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Upload checksums
+        uses: softprops/action-gh-release@v1
+        with:
+          prerelease: ${{ steps.get_version.outputs.ISBETA }}
+          name: CP Editor ${{ steps.get_version.outputs.VERSION }}
+          files: downloads/cpeditor-${{ steps.get_version.outputs.VERSION }}-sha256-checksums.txt
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
