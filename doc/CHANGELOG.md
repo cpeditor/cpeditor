@@ -1,5 +1,9 @@
 ## UNRELEASED
 
+### Fxied
+
+- Fix a bug which makes the saved test cases are not loaded correctly.
+
 ## 6.4.3 (Beta)
 
 ### Fixed
