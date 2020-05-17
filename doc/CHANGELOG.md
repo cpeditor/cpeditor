@@ -1,5 +1,18 @@
 ## UNRELEASED
 
+### Added
+
+- Now it's optional to save the file on compilation and execution or not.
+- Now you can choose the path of the executable file for C++ and the path of the parent directory of the class file for Java. (#271)
+
+### Fixed
+
+- Fixed some unexpected file saving. (#353)
+
+### Changed
+
+- Open an empty untitled tab when the open file length limit is exceeded. (#353)
+
 ## 6.4.1 (Beta)
 
 ### Linting with Language Server

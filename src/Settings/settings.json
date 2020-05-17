@@ -73,6 +73,13 @@
         "tip": "The command used to compile C++. It should NOT include the path to the source file or \"-o <output file>\"."
     },
     {
+        "name": "C++/Output Path",
+        "desc": "C++ Executable File Path",
+        "type": "QString",
+        "default": "${tempdir}/${basename}",
+        "tip": "The path of the compiled executable file.\nIt's relative to the source file, or the temporary directory if the tab is untitled.\nNo \".exe\" is needed.\nYou can use \"${filename}\" for the complete file name,\n\"${basename}\" for the base file name without the suffix,\n\"${tmpdir}\" for the absolute path of the temporary directory."
+    },
+    {
         "name": "C++/Run Arguments",
         "type": "QString",
         "old": [
@@ -97,7 +104,7 @@
         "old": [
             "compile_java"
         ],
-        "tip": "The command used to compile Java. It should NOT include the path to the source file."
+        "tip": "The command used to compile Java.\nIt should NOT include the path to the source file or the path of the compiled class file."
     },
     {
         "name": "Java/Run Arguments",
@@ -116,6 +123,19 @@
             "run_java"
         ],
         "tip": "The command to start a Java program. It should NOT include \"-classpath <path> <class name>\"."
+    },
+    {
+        "name": "Java/Class Name",
+        "type": "QString",
+        "default": "a",
+        "tip": "The non-public class name of your solution."
+    },
+    {
+        "name": "Java/Output Path",
+        "desc": "Java Class Path",
+        "type": "QString",
+        "default": "${tmpdir}",
+        "tip": "The path of the parent directory of the compiled executable file.\nIt's relative to the source file, or the temporary directory if the tab is untitled.\nYou can use \"${filename}\" for the complete file name,\n\"${basename}\" for the base file name without the suffix,\n\"${tmpdir}\" for the absolute path of the temporary directory."
     },
     {
         "name": "Python/Template Path",
@@ -609,5 +629,16 @@
         "desc": "Add extra margin at the bottom of the code editor",
         "type": "bool",
         "tip": "Add an extra margin with the height of a page at the bottom of the code editor.\nDue to technical reasons, changing the height of the margin affects the undo history."
+    },
+    {
+        "name": "Save File On Compilation",
+        "type": "bool",
+        "default": "true",
+        "tip": "Save the source file when compiling it. It won't be saved if the tab is untitled."
+    },
+    {
+        "name": "Save File On Execution",
+        "type": "bool",
+        "tip": "Save the source file when running it. It won't be saved if the tab is untitled."
     }
 ]

@@ -20,7 +20,7 @@ You have to either parse the problem from Competitive Companion, or set the prob
 
 ## For Java users
 
-You have to use a **non-public** class named **a** for your solution.
+You have to use a **non-public** class for your solution, its name can be configured in Preferences->Language->Commands->Java Class Name.
 
 ## Language Server
 
