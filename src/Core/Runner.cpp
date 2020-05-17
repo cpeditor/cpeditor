@@ -202,13 +202,13 @@ QString Runner::getCommand(const QString &tmpFilePath, const QString &sourceFile
 
     if (lang == "C++")
     {
-        res = QString("\"%1\" %2").arg(Compiler::cppOutputPath(tmpFilePath, sourceFilePath)).arg(args);
+        res = QString("\"%1\" %2").arg(Compiler::outputPath(tmpFilePath, sourceFilePath, "C++")).arg(args);
     }
     else if (lang == "Java")
     {
         res = QString("%1 -classpath \"%2\" %3 %4")
                   .arg(runCommand)
-                  .arg(QFileInfo(tmpFilePath).canonicalPath())
+                  .arg(Compiler::outputPath(tmpFilePath, sourceFilePath, "Java"))
                   .arg(SettingsHelper::getJavaClassName())
                   .arg(args);
     }

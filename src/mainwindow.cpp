@@ -569,15 +569,8 @@ void MainWindow::runOnly()
 {
     LOG_INFO("Requesting Run only");
     emit compileOrRunTriggered();
-    if (language == "Python")
-    {
-        compileAndRun();
-    }
-    else
-    {
-        log->clear();
-        run();
-    }
+    log->clear();
+    run();
 }
 
 void MainWindow::compileAndRun()

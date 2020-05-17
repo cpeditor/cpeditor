@@ -3,7 +3,7 @@
 ### Added
 
 - Now it's optional to save the file on compilation and execution or not.
-- Now you can choose the path of the executable file of C++. (#271)
+- Now you can choose the path of the executable file for C++ and the path of the parent directory of the class file for Java. (#271)
 
 ### Fixed
 

@@ -73,10 +73,11 @@
         "tip": "The command used to compile C++. It should NOT include the path to the source file or \"-o <output file>\"."
     },
     {
-        "name": "C++/Executable File Path",
+        "name": "C++/Output Path",
+        "desc": "C++ Executable File Path",
         "type": "QString",
         "default": "${tempdir}/${basename}",
-        "tip": "The path of the compiled executable file, relative to the source file,\nor the temporary directory if the tab is untitled.\nNo \".exe\" is needed.\nYou can use \"${filename}\" for the complete file name,\n\"${basename}\" for the base file name without the suffix,\n\"${tmpdir}\" for the absolute path of the temporary directory."
+        "tip": "The path of the compiled executable file.\nIt's relative to the source file, or the temporary directory if the tab is untitled.\nNo \".exe\" is needed.\nYou can use \"${filename}\" for the complete file name,\n\"${basename}\" for the base file name without the suffix,\n\"${tmpdir}\" for the absolute path of the temporary directory."
     },
     {
         "name": "C++/Run Arguments",
@@ -103,7 +104,7 @@
         "old": [
             "compile_java"
         ],
-        "tip": "The command used to compile Java. It should NOT include the path to the source file."
+        "tip": "The command used to compile Java.\nIt should NOT include the path to the source file or the path of the compiled class file."
     },
     {
         "name": "Java/Run Arguments",
@@ -128,6 +129,13 @@
         "type": "QString",
         "default": "a",
         "tip": "The non-public class name of your solution."
+    },
+    {
+        "name": "Java/Output Path",
+        "desc": "Java Class Path",
+        "type": "QString",
+        "default": "${tmpdir}",
+        "tip": "The path of the parent directory of the compiled executable file.\nIt's relative to the source file, or the temporary directory if the tab is untitled.\nYou can use \"${filename}\" for the complete file name,\n\"${basename}\" for the base file name without the suffix,\n\"${tmpdir}\" for the absolute path of the temporary directory."
     },
     {
         "name": "Python/Template Path",

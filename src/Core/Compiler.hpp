@@ -69,12 +69,14 @@ class Compiler : public QObject
     static bool check(const QString &compileCommand);
 
     /**
-     * @brief get the output path (executable file path) when compiling C++
+     * @brief get the output path (executable file path when compiling C++, class path when compiling Java)
      * @param tmpFilePath the path to the temporary file which is compiled
      * @param sourceFilePath the path to the original source file, if it's empty, tmpFilePath will be used instead of it
-     * @note the parent directory of the result will be created
+     * @param lang the language being compiled
+     * @note if lang is C++, the parent directory of the result will be created; if lang is Java, the result directory
+     * will be created
      */
-    static QString cppOutputPath(const QString &tmpFilePath, const QString &sourceFilePath);
+    static QString outputPath(const QString &tmpFilePath, const QString &sourceFilePath, const QString &lang);
 
   signals:
     /**

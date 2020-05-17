@@ -101,9 +101,10 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
 
     addPage("Language/General", {"Default Language"});
 
-    addPage("Language/Commands", {"C++/Compile Command", "C++/Executable File Path", "C++/Run Arguments",
-                                  "Java/Compile Command", "Java/Run Arguments", "Java/Run Command", "Java/Class Name",
-                                  "Python/Run Arguments", "Python/Run Command"});
+    addPage("Language/Commands/C++ Commands", {"C++/Compile Command", "C++/Output Path", "C++/Run Arguments"});
+    addPage("Language/Commands/Java Commands",
+            {"Java/Compile Command", "Java/Output Path", "Java/Class Name", "Java/Run Command", "Java/Run Arguments"});
+    addPage("Language/Commands/Python Commands", {"Python/Run Command", "Python/Run Arguments"});
 
     addPage("Language/Code Template", {"C++/Template Path", "Java/Template Path", "Python/Template Path"});
 
