@@ -166,6 +166,12 @@ AppWindow::~AppWindow()
 {
     Core::Log::i("appwindow/destroyed", "Invoked");
     saveSettings();
+    while (ui->tabWidget->count())
+    {
+        auto tmp = ui->tabWidget->widget(0);
+        ui->tabWidget->removeTab(0);
+        delete tmp;
+    }
     if (languageClient != nullptr)
     {
         languageClient->shutdown();

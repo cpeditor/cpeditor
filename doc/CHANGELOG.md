@@ -1,5 +1,9 @@
 ## UNRELEASED
 
+### Fixed
+
+- Fix a bug which makes the application crash when quiting in some scenarios. (fa5259b)
+
 ## 6.3.3
 
 This version is the same as 6.3.2, but it's considered stable now.
