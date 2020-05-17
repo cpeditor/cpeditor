@@ -52,12 +52,14 @@ class Compiler : public QObject
 
     /**
      * @brief start the compilation
-     * @param filePath the file path to the source file
+     * @param tmpFilePath the path to the temporary file which is compiled
+     * @param sourceFilePath the path to the original source file
      * @param compileCommand the command for compiling
      * @param lang the language to compile, one of "C++", "Java", "Python"
      * @note this should be called only once per Compiler
      */
-    void start(const QString &filePath, const QString &compileCommand, const QString &lang);
+    void start(const QString &tmpFilePath, const QString &sourceFilePath, const QString &compileCommand,
+               const QString &lang);
 
     /**
      * @brief check whether a compile command is valid or not
@@ -65,6 +67,16 @@ class Compiler : public QObject
      * @note this only checks whether the program of the command works
      */
     static bool check(const QString &compileCommand);
+
+    /**
+     * @brief get the output path (executable file path when compiling C++, class path when compiling Java)
+     * @param tmpFilePath the path to the temporary file which is compiled
+     * @param sourceFilePath the path to the original source file, if it's empty, tmpFilePath will be used instead of it
+     * @param lang the language being compiled
+     * @note if lang is C++, the parent directory of the result will be created; if lang is Java, the result directory
+     * will be created
+     */
+    static QString outputPath(const QString &tmpFilePath, const QString &sourceFilePath, const QString &lang);
 
   signals:
     /**

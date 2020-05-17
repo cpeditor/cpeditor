@@ -27,6 +27,8 @@ PreferencesHomePage::PreferencesHomePage(QWidget *parent) : QWidget(parent)
     // construct the layout
     layout = new QVBoxLayout(this);
 
+    layout->addSpacing(20);
+
     // add stretch so that the contents are vertically centered
     layout->addStretch();
 
@@ -48,7 +50,9 @@ PreferencesHomePage::PreferencesHomePage(QWidget *parent) : QWidget(parent)
 
     // add buttons
     addButton("Code Edit", "Code Editor Settings");
-    addButton("Language/Commands", "Compile and Run Commands");
+    addButton("Language/Commands/C++ Commands", "C++ Compile and Run Commands");
+    addButton("Language/Commands/Java Commands", "Java Compile and Run Commands");
+    addButton("Language/Commands/Python Commands", "Python Run Commands");
     addButton("Appearance", "Appearance");
 
     // add spacing between the buttons and the manual label
@@ -63,6 +67,8 @@ PreferencesHomePage::PreferencesHomePage(QWidget *parent) : QWidget(parent)
 
     // add stretch so that the contents are vertically centered
     layout->addStretch();
+
+    layout->addSpacing(20);
 }
 
 void PreferencesHomePage::addButton(const QString &page, const QString &text)
