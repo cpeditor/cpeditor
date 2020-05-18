@@ -13,6 +13,7 @@
 
 - Fixed some unexpected file saving. (#353)
 - Fix a bug which makes the application crash when quiting in some scenarios. (fa5259b)
+- Fix a bug which makes the saved test cases are not loaded correctly.
 
 ### Changed
 
