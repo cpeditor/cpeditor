@@ -11,6 +11,6 @@ pkgbase = cpeditor
 	depends = qt5-base
 	conflicts = cpeditor-git
 	source = https://github.com/cpeditor/cpeditor/releases/download/@PROJECT_VERSION@/cpeditor-@PROJECT_VERSION@-full-source.tar.gz
-	md5sums = SKIP
+	sha256sums = SKIP
 
 pkgname = cpeditor

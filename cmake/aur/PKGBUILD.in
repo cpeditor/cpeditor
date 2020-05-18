@@ -12,7 +12,7 @@ depends=('qt5-base')
 makedepends=("cmake" "git" "python3")
 conflicts=("cpeditor-git")
 source=("https://github.com/cpeditor/$pkgname/releases/download/$pkgver/cpeditor-$pkgver-full-source.tar.gz")
-md5sums=('SKIP')
+sha256sums=('SKIP')
 
 build() {
 	cd $_pkgdir
