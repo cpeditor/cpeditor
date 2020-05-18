@@ -7,12 +7,14 @@
 - Now you can use Alt to choose the menu in the main window. (#344)
 - Now it's optional to save the file on compilation and execution or not.
 - Now you can choose the path of the executable file for C++ and the path of the parent directory of the class file for Java. (#271)
+- Now you can get the git commit hash when executing `cpeditor --version` in the terminal.
 - Now the application catches SIGINT, SIGTERM and SIGHUP on Linux/macOS and catches CTRL_C_EVENT, CTRL_BREAK_EVENT and CTRL_CLOSE_EVENT on Windows, it be will gracefully closed when receiving these signals. (#178 and #268) Warning: It's reported that on some environments it doesn't always work.
 
 ### Fixed
 
 - Fixed some unexpected file saving. (#353)
 - Fix a bug which makes the application crash when quiting in some scenarios. (fa5259b)
+- Fix a bug which makes the saved test cases are not loaded correctly.
 
 ### Changed
 

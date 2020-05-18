@@ -15,14 +15,14 @@ It makes your competitive coding life easier :grin: by automating many things fo
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/ce0f297f31f74485b0d340949d08d605)](https://www.codacy.com/gh/cpeditor/cpeditor)
 [![GitHub All Releases](https://img.shields.io/github/downloads/cpeditor/cpeditor/total?label=downloads%40all)](https://github.com/cpeditor/cpeditor/releases)
-[![Slack Workspace](https://img.shields.io/badge/join-slack-success)](https://join.slack.com/t/cpeditor/shared_invite/zt-dke1v9xd-zr~QeXJhCzbM9FFOjx6sMA)
+[![Slack Workspace](https://img.shields.io/badge/join-slack-success)](https://join.slack.com/t/cpeditor/shared_invite/zt-ekfy0zb5-SrOi8SIox8oq61oRonBynw)
 [![Telegram Group](https://img.shields.io/badge/join-telegram%20chat-success)](https://t.me/cpeditor)
 [![Help wanted issues](https://img.shields.io/github/issues/cpeditor/cpeditor/help%20wanted)](https://github.com/cpeditor/cpeditor/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22)
 
 |  type  |                           branch                           |                                                                                                       build                                                                                                        |                                                                   downloads                                                                    |                                                         AUR                                                         |
 | :----: | :--------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------: |
 | alpha  | [master](https://github.com/cpeditor/cpeditor/tree/master) | [![GitHub Workflow Status](https://github.com/cpeditor/cpeditor/workflows/CI:%20Build%20Test/badge.svg?branch=master&event=push)](https://github.com/cpeditor/cpeditor/actions?query=event%3Apush+branch%3Amaster) |                                                                       -                                                                        | [![AUR version](https://img.shields.io/aur/version/cpeditor-git)](https://aur.archlinux.org/packages/cpeditor-git/) |
-|  beta  |   [v6.4](https://github.com/cpeditor/cpeditor/tree/v6.4)   |   [![GitHub Workflow Status](https://github.com/cpeditor/cpeditor/workflows/CI:%20Build%20Test/badge.svg?branch=v6.4&event=push)](https://github.com/cpeditor/cpeditor/actions?query=event%3Apush+branch%3Av6.4)   | [![Downloads](https://img.shields.io/github/downloads/cpeditor/cpeditor/6.4.3/total)](https://github.com/cpeditor/cpeditor/releases/tag/6.4.3) |                                                          -                                                          |
+|  beta  |   [v6.4](https://github.com/cpeditor/cpeditor/tree/v6.4)   |   [![GitHub Workflow Status](https://github.com/cpeditor/cpeditor/workflows/CI:%20Build%20Test/badge.svg?branch=v6.4&event=push)](https://github.com/cpeditor/cpeditor/actions?query=event%3Apush+branch%3Av6.4)   | [![Downloads](https://img.shields.io/github/downloads/cpeditor/cpeditor/6.4.4/total)](https://github.com/cpeditor/cpeditor/releases/tag/6.4.4) |                                                          -                                                          |
 | stable |   [v6.3](https://github.com/cpeditor/cpeditor/tree/v6.3)   |   [![GitHub Workflow Status](https://github.com/cpeditor/cpeditor/workflows/CI:%20Build%20Test/badge.svg?branch=v6.3&event=push)](https://github.com/cpeditor/cpeditor/actions?query=event%3Apush+branch%3Av6.3)   | [![Downloads](https://img.shields.io/github/downloads/cpeditor/cpeditor/6.3.4/total)](https://github.com/cpeditor/cpeditor/releases/tag/6.3.4) |     [![AUR version](https://img.shields.io/aur/version/cpeditor)](https://aur.archlinux.org/packages/cpeditor/)     |
 
 ## Get Started
@@ -48,7 +48,7 @@ It makes your competitive coding life easier :grin: by automating many things fo
 
 - [Open an issue](https://github.com/cpeditor/cpeditor/issues/new/choose)
 - [Ask on Telegram](https://t.me/cpeditor)
-- [Ask on Slack](https://join.slack.com/t/cpeditor/shared_invite/zt-dke1v9xd-zr~QeXJhCzbM9FFOjx6sMA)
+- [Ask on Slack](https://join.slack.com/t/cpeditor/shared_invite/zt-ekfy0zb5-SrOi8SIox8oq61oRonBynw)
 
 ## FAQ
 

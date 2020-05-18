@@ -46,7 +46,6 @@ IF(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/.git)
   ENDIF(GIT_FOUND)
 ENDIF(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/.git)
 
-configure_file(cmake/gitsha.hpp.in ${CMAKE_BINARY_DIR}/generated/gitsha.hpp)
 configure_file(cmake/version.hpp.in ${CMAKE_BINARY_DIR}/generated/version.hpp)
 configure_file(cmake/aur/PKGBUILD.in ${CMAKE_BINARY_DIR}/aur/PKGBUILD)
 configure_file(cmake/aur/.SRCINFO.in ${CMAKE_BINARY_DIR}/aur/.SRCINFO)
@@ -144,7 +143,6 @@ add_executable(cpeditor
     ui/mainwindow.ui
     ui/appwindow.ui
 
-    ${CMAKE_BINARY_DIR}/generated/gitsha.hpp
     ${CMAKE_BINARY_DIR}/generated/version.hpp
     ${CMAKE_BINARY_DIR}/generated/SettingsHelper.hpp
     ${CMAKE_BINARY_DIR}/generated/SettingsInfo.hpp
