@@ -5,7 +5,6 @@ pkgbase = cpeditor-git
 	url = https://github.com/cpeditor/cpeditor
 	arch = x86_64
 	license = GPL3
-	makedepends = gcc
 	makedepends = cmake
 	makedepends = git
 	makedepends = python3

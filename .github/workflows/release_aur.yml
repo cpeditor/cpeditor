@@ -13,10 +13,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Check beta
-        id: check_beta
+      - name: Get the version
+        id: get_version
         run: |
           VERSION=${GITHUB_REF/refs\/tags\//}
+          echo ::set-output name=VERSION::$VERSION
           read STABLE_VERSION < .ci/STABLE_VERSION
           if [ "${VERSION:0:${#STABLE_VERSION}}" == "$STABLE_VERSION" ]; then
             echo ::set-output name=ISSTABLE::true
@@ -25,7 +26,7 @@ jobs:
           fi
 
       - name: Install SSH key
-        if: steps.check_beta.outputs.ISSTABLE == 'true'
+        if: steps.get_version.outputs.ISSTABLE == 'true'
         uses: shimataro/ssh-key-action@v2
         with:
           key: ${{ secrets.SSH_KEY }}
@@ -33,7 +34,7 @@ jobs:
           known_hosts: ${{ secrets.KNOWN_HOST }}
 
       - name: Install Qt
-        if: steps.check_beta.outputs.ISSTABLE == 'true'
+        if: steps.get_version.outputs.ISSTABLE == 'true'
         run: |
           sudo add-apt-repository ppa:beineri/opt-qt-5.12.8-xenial -y
           sudo apt-get update -qq
@@ -41,7 +42,7 @@ jobs:
           bash /opt/qt*/bin/qt*-env.sh
 
       - name: Generate AUR files
-        if: steps.check_beta.outputs.ISSTABLE == 'true'
+        if: steps.get_version.outputs.ISSTABLE == 'true'
         run: |
           mkdir build
           git submodule update --init
@@ -49,20 +50,24 @@ jobs:
           cmake ..
 
       - name: Fetch AUR Remote
-        if: steps.check_beta.outputs.ISSTABLE == 'true'
+        if: steps.get_version.outputs.ISSTABLE == 'true'
         run: |
           git clone ssh://aur@aur.archlinux.org/cpeditor.git
 
       - name: Update files
-        if: steps.check_beta.outputs.ISSTABLE == 'true'
+        if: steps.get_version.outputs.ISSTABLE == 'true'
         run: |
+          wget -c https://github.com/${{ github.repository }}/releases/download/${{ steps.get_version.outputs.VERSION }}/cpeditor-${{ steps.get_version.outputs.VERSION }}-full-source.tar.gz
+          sha256sum=$(shasum -a 256 cpeditor-${{ steps.get_version.outputs.VERSION }}-full-source.tar.gz | cut -d ' ' -f 1)
           cd cpeditor
           rm PKGBUILD .SRCINFO
           mv ../build/aur/PKGBUILD .
           mv ../build/aur/.SRCINFO .
+          sed -i "s/SKIP/${sha256sum}/" PKGBUILD
+          sed -i "s/SKIP/${sha256sum}/" .SRCINFO
 
       - name: Publish to AUR
-        if: steps.check_beta.outputs.ISSTABLE == 'true'
+        if: steps.get_version.outputs.ISSTABLE == 'true'
         run: |
           cd cpeditor
           git config --global user.email "ashar786khan@gmail.com"
