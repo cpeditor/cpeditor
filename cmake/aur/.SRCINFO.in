@@ -7,7 +7,6 @@ pkgbase = cpeditor
 	license = GPL3
 	makedepends = cmake
 	makedepends = git
-	makedepends = gcc
 	makedepends = python3
 	depends = qt5-base
 	conflicts = cpeditor-git

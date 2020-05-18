@@ -9,14 +9,14 @@ arch=('x86_64')
 url='https://github.com/cpeditor/cpeditor'
 license=('GPL3')
 depends=('qt5-base')
-makedepends=("cmake" "git" "gcc" "python3")
+makedepends=("cmake" "git" "python3")
 conflicts=("cpeditor-git")
 source=("https://github.com/cpeditor/$pkgname/releases/download/$pkgver/cpeditor-$pkgver-full-source.tar.gz")
 md5sums=('SKIP')
 
 build() {
 	cd $_pkgdir
-	cmake -H. -Bbuild -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_CXX_COMPILER=g++
+	cmake -H. -Bbuild -DCMAKE_INSTALL_PREFIX=/usr
 	cmake --build build -j$(nproc)
 }
 
