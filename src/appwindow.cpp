@@ -91,8 +91,23 @@ AppWindow::AppWindow(bool noHotExit, QWidget *parent) : QMainWindow(parent), ui(
     applySettings();
     onSettingsApplied("");
 
-    if (!noHotExit && SettingsHelper::isHotExitEnable())
+    do
     {
+        if (noHotExit || (!SettingsHelper::isForceClose() && !SettingsHelper::isHotExitEnable()))
+            break;
+
+        SettingsHelper::setForceClose(false);
+
+        if (!SettingsHelper::isHotExitEnable())
+        {
+            auto res = QMessageBox::question(
+                this, "Hot Exit",
+                "In the last session, CP Editor was abnormally killed, do you want to restore the last session?",
+                QMessageBox::Yes | QMessageBox::No);
+            if (res == QMessageBox::No)
+                break;
+        }
+
         int length = SettingsHelper::getHotExitTabCount();
 
         QProgressDialog progress(this);
@@ -104,21 +119,14 @@ AppWindow::AppWindow(bool noHotExit, QWidget *parent) : QMainWindow(parent), ui(
         auto oldSize = size();
         setUpdatesEnabled(false);
 
-        // save these so that they won't be affected by saveEditorStatus() in onEditorFileChanged()
-        QVector<MainWindow::EditorStatus> status;
-        for (int i = 0; i < length; ++i)
-            status.push_back(
-                MainWindow::EditorStatus(SettingsManager::get(QString("Editor Status/%1").arg(i)).toMap()));
-        bool loadFromFile = SettingsHelper::isHotExitLoadFromFile();
-        int currentIndex = SettingsHelper::getHotExitCurrentIndex();
-
         for (int i = 0; i < length; ++i)
         {
             if (progress.wasCanceled())
                 break;
+            auto status = MainWindow::EditorStatus(SettingsManager::get(QString("Editor Status/%1").arg(i)).toMap());
             progress.setValue(i);
             openTab("");
-            currentWindow()->loadStatus(status[i], loadFromFile);
+            currentWindow()->loadStatus(status);
             progress.setLabelText(currentWindow()->getTabTitle(true, false));
         }
 
@@ -127,11 +135,10 @@ AppWindow::AppWindow(bool noHotExit, QWidget *parent) : QMainWindow(parent), ui(
         setUpdatesEnabled(true);
         resize(oldSize);
 
-        SettingsHelper::setHotExitLoadFromFile(true);
-
+        int currentIndex = SettingsHelper::getHotExitCurrentIndex();
         if (currentIndex >= 0 && currentIndex < ui->tabWidget->count())
             ui->tabWidget->setCurrentIndex(currentIndex);
-    }
+    } while (false);
 }
 
 AppWindow::AppWindow(int depth, bool cpp, bool java, bool python, bool noHotExit, const QStringList &paths,
@@ -172,6 +179,7 @@ AppWindow::AppWindow(bool cpp, bool java, bool python, bool noHotExit, int numbe
 
 AppWindow::~AppWindow()
 {
+    LOG_INFO("Destruction started");
     saveSettings();
     while (ui->tabWidget->count())
     {
@@ -194,6 +202,7 @@ AppWindow::~AppWindow()
     delete findReplaceDialog;
 
     SettingsManager::deinit();
+    LOG_INFO("Destruction finished");
 }
 
 /******************* PUBLIC METHODS ***********************/
@@ -390,7 +399,7 @@ void AppWindow::openTab(const QString &path)
         auto fileInfo = QFileInfo(path);
         for (int t = 0; t < ui->tabWidget->count(); t++)
         {
-            auto tmp = dynamic_cast<MainWindow *>(ui->tabWidget->widget(t));
+            auto tmp = qobject_cast<MainWindow *>(ui->tabWidget->widget(t));
             if (fileInfo == QFileInfo(tmp->getFilePath()))
             {
                 ui->tabWidget->setCurrentIndex(t);
@@ -523,9 +532,8 @@ void AppWindow::openContest(const QString &path, const QString &lang, int number
     openTabs(tabs);
 }
 
-void AppWindow::saveEditorStatus(bool loadFromFile)
+void AppWindow::saveEditorStatus()
 {
-    LOG_INFO("Save Editor status and load From File " << BOOL_INFO_OF(loadFromFile));
     SettingsManager::remove(SettingsManager::keyStartsWith("Editor Status/"));
     if (ui->tabWidget->count() == 1 && windowAt(0)->isUntitled() && !windowAt(0)->isTextChanged() &&
         windowAt(0)->getProblemURL().isEmpty())
@@ -538,33 +546,34 @@ void AppWindow::saveEditorStatus(bool loadFromFile)
         SettingsHelper::setHotExitTabCount(ui->tabWidget->count());
         SettingsHelper::setHotExitCurrentIndex(ui->tabWidget->currentIndex());
         for (int i = 0; i < ui->tabWidget->count(); ++i)
-            SettingsManager::set(QString("Editor Status/%1").arg(i), windowAt(i)->toStatus(loadFromFile).toMap());
+            SettingsManager::set(QString("Editor Status/%1").arg(i), windowAt(i)->toStatus().toMap());
     }
 }
 
 bool AppWindow::quit()
 {
-    bool ret = false;
-    if (SettingsHelper::isHotExitEnable())
+    if (preferencesWindow->isVisible() && !preferencesWindow->close())
+        return false;
+    if (SettingsHelper::isHotExitEnable() || SettingsHelper::isForceClose())
     {
         LOG_INFO("quit() with hotexit");
-        SettingsHelper::setHotExitLoadFromFile(false);
-        saveEditorStatus(false);
-        ret = true;
+        saveEditorStatus();
     }
     else
     {
         LOG_INFO("quit() called without hotExit");
         on_actionClose_All_triggered();
-        ret = ui->tabWidget->count() == 0;
+        if (ui->tabWidget->count() >= 1)
+        {
+            LOG_INFO("Closing is cancelled");
+            return false;
+        }
     }
-    if (ret && preferencesWindow->isVisible())
-        ret = preferencesWindow->close();
     // The tray icon is considered as a visible window, if it is not hidden, even if the app window is closed,
     // the application won't exit.
-    if (ret)
-        trayIcon->hide();
-    return ret;
+    trayIcon->hide();
+    LOG_INFO("All preparations for closing are finished");
+    return true;
 }
 
 int AppWindow::getNewUntitledIndex()
@@ -790,6 +799,12 @@ void AppWindow::onReceivedMessage(quint32 instanceId, QByteArray message)
 
 #undef FROMJSON
 
+bool AppWindow::forceClose()
+{
+    SettingsHelper::setForceClose(true);
+    return close();
+}
+
 void AppWindow::onTabCloseRequested(int index)
 {
     closeTab(index);
@@ -846,9 +861,6 @@ void AppWindow::onTabChanged(int index)
 
 void AppWindow::onEditorFileChanged()
 {
-    if (SettingsHelper::isHotExitEnable() && SettingsHelper::isHotExitLoadFromFile())
-        saveEditorStatus(true);
-
     if (currentWindow() != nullptr)
     {
         QMap<QString, QVector<int>> tabsByName;
@@ -1468,7 +1480,7 @@ MainWindow *AppWindow::currentWindow()
     {
         return nullptr;
     }
-    return dynamic_cast<MainWindow *>(ui->tabWidget->widget(current));
+    return qobject_cast<MainWindow *>(ui->tabWidget->widget(current));
 }
 
 void AppWindow::reAttachLanguageServer(MainWindow *window)
@@ -1511,7 +1523,7 @@ MainWindow *AppWindow::windowAt(int index)
     {
         return nullptr;
     }
-    return dynamic_cast<MainWindow *>(ui->tabWidget->widget(index));
+    return qobject_cast<MainWindow *>(ui->tabWidget->widget(index));
 }
 
 void AppWindow::on_actionShow_Logs_triggered()

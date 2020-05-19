@@ -66,6 +66,10 @@ class AppWindow : public QMainWindow
   public slots:
     void onReceivedMessage(quint32 instanceId, QByteArray message);
 
+    bool forceClose();
+
+    void showOnTop();
+
   private slots:
     void on_actionSupport_me_triggered();
 
@@ -179,8 +183,6 @@ class AppWindow : public QMainWindow
 
     void on_actionClear_Logs_triggered();
 
-    void showOnTop();
-
     void onTrayIconActivated(QSystemTrayIcon::ActivationReason reason);
 
     void onCompileOrRunTriggered();
@@ -220,7 +222,7 @@ class AppWindow : public QMainWindow
     void openPaths(const QStringList &paths, bool cpp = true, bool java = true, bool python = true, int depth = -1);
     QStringList openFolder(const QString &path, bool cpp, bool java, bool python, int depth);
     void openContest(const QString &path, const QString &lang, int number);
-    void saveEditorStatus(bool loadFromFile);
+    void saveEditorStatus();
     bool quit();
     int getNewUntitledIndex();
     void reAttachLanguageServer(MainWindow *window);

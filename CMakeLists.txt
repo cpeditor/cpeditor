@@ -132,6 +132,9 @@ add_executable(cpeditor
     src/mainwindow.cpp
     src/mainwindow.hpp
 
+    src/SignalHandler.cpp
+    src/SignalHandler.hpp
+
     src/main.cpp
 
     third_party/diff_match_patch/diff_match_patch.h

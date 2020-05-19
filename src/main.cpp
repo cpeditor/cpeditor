@@ -16,15 +16,18 @@
  */
 
 #include "Core/EventLogger.hpp"
+#include "SignalHandler.hpp"
 #include "appwindow.hpp"
 #include "mainwindow.hpp"
 #include <QApplication>
 #include <QCommandLineParser>
+#include <QDialog>
 #include <QDir>
 #include <QFileInfo>
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
+#include <QProgressDialog>
 #include <QTextStream>
 #include <generated/version.hpp>
 #include <iostream>
@@ -39,6 +42,64 @@ int main(int argc, char *argv[])
     SingleApplication::setApplicationVersion(APP_VERSION "+g" GIT_COMMIT_HASH);
     QApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
     QApplication::setWindowIcon(QIcon(":/icon.png"));
+
+    SignalHandler handler;
+    QObject::connect(&handler, &SignalHandler::signalReceived, qApp, [](int signal) {
+        if (qApp)
+        {
+            auto widgets = QApplication::topLevelWidgets();
+            for (auto widget : widgets)
+            {
+                auto dialog = qobject_cast<QDialog *>(widget);
+                if (dialog && dialog->isModal())
+                {
+#ifndef Q_OS_WIN // always force-close on Windows because task manager sends SIGINT on kill
+                    if (signal == SignalHandler::SIG_INT)
+                    {
+                        for (auto w : widgets)
+                        {
+                            auto appWindow = qobject_cast<AppWindow *>(w);
+                            if (appWindow)
+                            {
+                                appWindow->showOnTop();
+                                break;
+                            }
+                        }
+                        dialog->setWindowState((dialog->windowState() & ~Qt::WindowMinimized) | Qt::WindowActive);
+                        dialog->activateWindow();
+                        dialog->raise();
+                        return;
+                    }
+                    else
+#endif
+                    {
+                        auto progressDialog = qobject_cast<QProgressDialog *>(dialog);
+                        if (progressDialog)
+                            progressDialog->cancel();
+                        else
+                            dialog->reject();
+                    }
+                }
+            }
+            for (auto widget : widgets)
+            {
+                auto appWindow = qobject_cast<AppWindow *>(widget);
+                if (appWindow)
+                {
+#ifndef Q_OS_WIN // always force-close on Windows because task manager sends SIGINT on kill
+                    if (signal == SignalHandler::SIG_INT)
+                        appWindow->close();
+                    else
+#endif
+                    {
+                        if (appWindow->forceClose())
+                            qApp->quit();
+                    }
+                    break;
+                }
+            }
+        }
+    });
 
     QTextStream cerr(stderr, QIODevice::WriteOnly);
 
