@@ -85,6 +85,8 @@ add_executable(cpeditor
     src/Settings/AppearancePage.hpp
     src/Settings/CodeSnippetsPage.cpp
     src/Settings/CodeSnippetsPage.hpp
+    src/Settings/FileProblemBinder.cpp
+    src/Settings/FileProblemBinder.hpp
     src/Settings/FontItem.cpp
     src/Settings/FontItem.hpp
     src/Settings/PathItem.cpp

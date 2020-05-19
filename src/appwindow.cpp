@@ -23,6 +23,7 @@
 #include "Extensions/CompanionServer.hpp"
 #include "Extensions/EditorTheme.hpp"
 #include "Extensions/LanguageServer.hpp"
+#include "Settings/FileProblemBinder.hpp"
 #include "Settings/PreferencesWindow.hpp"
 #include "Telemetry/UpdateNotifier.hpp"
 #include "Util/FileUtil.hpp"
@@ -1057,8 +1058,11 @@ void AppWindow::onIncomingCompanionRequest(const Extensions::CompanionData &data
         }
     }
 
-    if (SettingsHelper::isCompetitiveCompanionOpenNewTab() || currentWindow() == nullptr)
+    if (SettingsHelper::isOpenOldFileForOldProblemUrl() && FileProblemBinder::containsProblem(data.url))
+        openTab(FileProblemBinder::getFileForProblem(data.url));
+    else if (SettingsHelper::isCompetitiveCompanionOpenNewTab() || currentWindow() == nullptr)
         openTab("");
+
     currentWindow()->applyCompanion(data);
 }
 

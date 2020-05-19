@@ -25,6 +25,7 @@
 #include "Extensions/CFTool.hpp"
 #include "Extensions/ClangFormatter.hpp"
 #include "Extensions/CompanionServer.hpp"
+#include "Settings/FileProblemBinder.hpp"
 #include "Telemetry/UpdateNotifier.hpp"
 #include "Util/FileUtil.hpp"
 #include "Util/QCodeEditorUtil.hpp"
@@ -321,10 +322,24 @@ bool MainWindow::isUntitled() const
     return filePath.isEmpty();
 }
 
+void MainWindow::setFilePath(const QString &path)
+{
+    LOG_INFO(INFO_OF(path));
+    if (filePath == path)
+        return;
+    filePath = path;
+    FileProblemBinder::set(path, problemURL);
+    emit editorFileChanged();
+    updateWatcher();
+}
+
 void MainWindow::setProblemURL(const QString &url)
 {
     LOG_INFO(INFO_OF(url));
+    if (problemURL == url)
+        return;
     problemURL = url;
+    FileProblemBinder::set(filePath, url);
     if (problemURL.contains("codeforces.com"))
         setCFToolUI();
     emit editorFileChanged();
@@ -416,8 +431,7 @@ void MainWindow::loadStatus(const EditorStatus &status)
     untitledIndex = status.untitledIndex;
     testcases->addCustomCheckers(status.customCheckers);
     testcases->setCheckerIndex(status.checkerIndex);
-    filePath = status.filePath;
-    updateWatcher();
+    setFilePath(status.filePath);
     savedText = status.savedText;
     editor->setPlainText(status.editorText);
     auto cursor = editor->textCursor();
@@ -686,7 +700,6 @@ void MainWindow::setText(const QString &text, bool keep)
 
 void MainWindow::updateWatcher()
 {
-    emit editorFileChanged();
     if (!fileWatcher->files().isEmpty())
         fileWatcher->removePaths(fileWatcher->files());
     if (!isUntitled())
@@ -700,8 +713,7 @@ void MainWindow::loadFile(const QString &loadPath)
     auto path = loadPath;
 
     bool samePath = !isUntitled() && filePath == path;
-    filePath = path;
-    updateWatcher();
+    setFilePath(path);
 
     if (!QFile::exists(path))
     {
@@ -734,10 +746,13 @@ void MainWindow::loadFile(const QString &loadPath)
                        .arg(path)
                        .arg(SettingsHelper::getOpenFileLengthLimit()));
         setText("");
-        filePath.clear();
-        updateWatcher();
+        setFilePath("");
         return;
     }
+
+    if (!isUntitled() && SettingsHelper::isRestoreOldProblemUrl() && FileProblemBinder::containsFile(filePath))
+        setProblemURL(FileProblemBinder::getProblemForFile(filePath));
+
     setText(content, samePath);
 
     loadTests();
@@ -815,8 +830,8 @@ bool MainWindow::saveFile(SaveMode mode, const QString &head, bool safe)
         if (!Util::saveFile(newFilePath, editor->toPlainText(), head, safe, log, true))
             return beforeReturn(false);
 
-        filePath = newFilePath;
-        updateWatcher();
+        setFilePath(newFilePath);
+
         SettingsHelper::setSavePath(QFileInfo(filePath).canonicalPath());
 
         auto suffix = QFileInfo(filePath).suffix();
@@ -884,7 +899,7 @@ QString MainWindow::tmpPath()
 bool MainWindow::isTextChanged()
 {
     if (QFile::exists(filePath))
-        filePath = QFileInfo(filePath).canonicalFilePath();
+        setFilePath(QFileInfo(filePath).canonicalFilePath());
 
     if (isUntitled())
     {

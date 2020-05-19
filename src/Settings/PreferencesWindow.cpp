@@ -125,6 +125,8 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
     addPage("Actions/Save", {"Auto Save", "Save Faster", "Auto Format", "Save File On Compilation",
                              "Save File On Execution", "Save Tests"});
 
+    addPage("Actions/Bind file and problem", {"Restore Old Problem Url", "Open Old File For Old Problem Url"});
+
     addPage("Extensions/Clang Format", {"Clang Format/Path", "Clang Format/Style"}, false);
 
     addPage("Extensions/Language Server/C++ Server",

@@ -17,6 +17,7 @@
 
 #include "Settings/SettingsManager.hpp"
 #include "Core/EventLogger.hpp"
+#include "Settings/FileProblemBinder.hpp"
 #include <QDebug>
 #include <QFile>
 #include <QFont>
@@ -103,6 +104,9 @@ void SettingsManager::init()
             set(QString("Editor Status/%1").arg(index), setting.value(index));
         setting.endGroup();
 
+        // load file problem binding
+        FileProblemBinder::fromVariant(setting.value("file_problem_binding"));
+
         // rename themes
         QString theme = get("Editor Theme")
                             .toString()
@@ -137,6 +141,9 @@ void SettingsManager::deinit()
         auto saveKey = key;
         setting.setValue(saveKey.replace("Editor Status/", "editor_status/"), get(key));
     }
+
+    // save file problem binding
+    setting.setValue("file_problem_binding", FileProblemBinder::toVariant());
 
     setting.sync();
     delete cur;
