@@ -9,6 +9,12 @@ pkgbase = cpeditor-git
 	makedepends = git
 	makedepends = python3
 	depends = qt5-base
+	optdepends = cf-tool: submit to Codeforces support
+	optdepends = clang: C++ format and language server support
+	optdepends = jdk-openjdk: compile Java support
+	optdepends = jre-openjdk: execute Java support
+	optdepends = python: execute Python support
+	optdepends = xterm: detached run support
 	conflicts = cpeditor
 	source = git://github.com/cpeditor/cpeditor.git
 	source = git://github.com/cpeditor/QCodeEditor.git
@@ -24,3 +30,4 @@ pkgbase = cpeditor-git
 	md5sums = SKIP
 
 pkgname = cpeditor-git
+
