@@ -234,6 +234,7 @@ void MainWindow::setCFToolUI()
                 SIGNAL(requestToastMessage(const QString &, const QString &)));
         ui->compile_and_run_buttons->addWidget(submitToCodeforces);
         connect(submitToCodeforces, &QPushButton::clicked, this, [this] {
+            emit confirmTriggered(this);
             auto response = QMessageBox::warning(
                 this, "Sure to submit",
                 "Are you sure you want to submit this solution to Codeforces?\n\n URL: " + problemURL +
@@ -304,7 +305,7 @@ QString MainWindow::getTabTitle(bool complete, bool star, int removeLength)
     if (!complete || (isUntitled() && problemURL.isEmpty()))
         tabTitle = getFileName();
     else if (!isUntitled())
-        tabTitle = getFileName() + " - " + QFileInfo(filePath).canonicalPath().remove(0, removeLength);
+        tabTitle = getFileName() + " - " + QFileInfo(filePath).path().remove(0, removeLength);
     else
         tabTitle = getFileName() + " - " + getProblemURL().remove(0, removeLength);
     if (star && isTextChanged())
@@ -322,11 +323,16 @@ bool MainWindow::isUntitled() const
     return filePath.isEmpty();
 }
 
-void MainWindow::setFilePath(const QString &path)
+void MainWindow::setFilePath(QString path)
 {
+    if (QFile::exists(path))
+        path = QFileInfo(path).canonicalFilePath();
     LOG_INFO(INFO_OF(path));
     if (filePath == path)
+    {
+        updateWatcher();
         return;
+    }
     filePath = path;
     FileProblemBinder::set(path, problemURL);
     emit editorFileChanged();
@@ -700,6 +706,8 @@ void MainWindow::setText(const QString &text, bool keep)
 
 void MainWindow::updateWatcher()
 {
+    if (fileWatcher->files() == QStringList(filePath))
+        return;
     if (!fileWatcher->files().isEmpty())
         fileWatcher->removePaths(fileWatcher->files());
     if (!isUntitled())
@@ -848,12 +856,14 @@ bool MainWindow::saveFile(SaveMode mode, const QString &head, bool safe)
     {
         if (!Util::saveFile(filePath, editor->toPlainText(), head, safe, log, true))
             return false;
-        updateWatcher();
     }
     else
     {
         return false;
     }
+
+    setFilePath(filePath); // make sure that the file path is the canonical file path and the file watcher is working
+    emit editorTextChanged(this); // make sure that the tab title is updated
 
     saveTests(safe);
 
@@ -896,11 +906,8 @@ QString MainWindow::tmpPath()
     return path;
 }
 
-bool MainWindow::isTextChanged()
+bool MainWindow::isTextChanged() const
 {
-    if (QFile::exists(filePath))
-        setFilePath(QFileInfo(filePath).canonicalFilePath());
-
     if (isUntitled())
     {
         auto content = Util::readFile(SettingsManager::get(QString("%1/Template Path").arg(language)).toString(),
@@ -930,7 +937,7 @@ bool MainWindow::closeConfirm()
         emit confirmTriggered(this);
         auto res = QMessageBox::warning(
             this, "Save changes?",
-            "Save changes to " + (isUntitled() ? QString("New File") : getFileName()) + " before closing?",
+            "Save changes to [" + (isUntitled() ? QString("New File") : getFileName()) + "] before closing?",
             QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel, QMessageBox::Cancel);
         if (res == QMessageBox::Save)
             confirmed = saveFile(AlwaysSave, "Save", true);
@@ -989,8 +996,9 @@ void MainWindow::onFileWatcherChanged(const QString &path)
         {
             reloading = true;
 
+            emit confirmTriggered(this);
             auto reload = QMessageBox::question(
-                this, "Reload?", "\"" + filePath + "\"\n\nhas been changed on disk.\nDo you want to reload it?");
+                this, "Reload?", "[" + filePath + "]\n\nhas been changed on disk.\nDo you want to reload it?");
 
             reloading = false;
 

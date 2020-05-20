@@ -98,7 +98,7 @@ class MainWindow : public QMainWindow
     void save(bool force, const QString &head, bool safe = true);
     void saveAs();
 
-    bool isTextChanged();
+    bool isTextChanged() const;
     bool closeConfirm();
 
     void killProcesses();
@@ -212,7 +212,7 @@ class MainWindow : public QMainWindow
     void loadTests();
     void saveTests(bool safe);
     void setCFToolUI();
-    void setFilePath(const QString &path);
+    void setFilePath(QString path);
     void setText(const QString &text, bool keep = false);
     void updateWatcher();
     void loadFile(const QString &loadPath);

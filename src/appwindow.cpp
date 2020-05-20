@@ -395,13 +395,13 @@ void AppWindow::saveSettings()
 void AppWindow::openTab(const QString &path)
 {
     LOG_INFO("OpenTab Path is " << path);
-    if (QFile::exists(path))
+    if (!path.isEmpty())
     {
         auto fileInfo = QFileInfo(path);
         for (int t = 0; t < ui->tabWidget->count(); t++)
         {
-            auto tmp = qobject_cast<MainWindow *>(ui->tabWidget->widget(t));
-            if (fileInfo == QFileInfo(tmp->getFilePath()))
+            auto tPath = qobject_cast<MainWindow *>(ui->tabWidget->widget(t))->getFilePath();
+            if (path == tPath || (fileInfo.exists() && fileInfo == QFileInfo(tPath)))
             {
                 ui->tabWidget->setCurrentIndex(t);
                 return;
