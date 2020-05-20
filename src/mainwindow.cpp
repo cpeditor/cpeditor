@@ -844,7 +844,7 @@ bool MainWindow::saveFile(SaveMode mode, const QString &head, bool safe)
 
         beforeReturn(true);
     }
-    else if (!isUntitled() && QFile::exists(filePath))
+    else if (!isUntitled())
     {
         if (!Util::saveFile(filePath, editor->toPlainText(), head, safe, log, true))
             return false;

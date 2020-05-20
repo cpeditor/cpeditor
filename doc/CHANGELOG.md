@@ -1,5 +1,9 @@
 ## UNRELEASED
 
+### Fixed
+
+- Fix can't save non-exist but titled file.
+
 ## 6.4.4 (Beta)
 
 ### Fxied
