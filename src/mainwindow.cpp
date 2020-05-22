@@ -723,6 +723,8 @@ void MainWindow::loadFile(const QString &loadPath)
     bool samePath = !isUntitled() && filePath == path;
     setFilePath(path);
 
+    bool isTemplate = false;
+
     if (!QFile::exists(path))
     {
         QString templatePath = SettingsManager::get(QString("%1/Template Path").arg(language)).toString();
@@ -731,6 +733,7 @@ void MainWindow::loadFile(const QString &loadPath)
 
         if (!templatePath.isEmpty() && f.open(QIODevice::ReadOnly | QIODevice::Text))
         {
+            isTemplate = true;
             path = templatePath;
         }
         else
@@ -762,6 +765,28 @@ void MainWindow::loadFile(const QString &loadPath)
         setProblemURL(FileProblemBinder::getProblemForFile(filePath));
 
     setText(content, samePath);
+
+    if (isTemplate)
+    {
+        auto match = QRegularExpression(SettingsManager::get(language + "/Template Cursor Position Regex").toString())
+                         .match(content);
+        if (match.hasMatch())
+        {
+            int pos = SettingsManager::get(language + "/Template Cursor Position Offset Type").toString() == "start"
+                          ? match.capturedStart()
+                          : match.capturedEnd();
+            pos += SettingsManager::get(language + "/Template Cursor Position Offset Characters").toInt();
+            pos = qMax(pos, 0);
+            pos = qMin(pos, content.length());
+            auto cursor = editor->textCursor();
+            cursor.setPosition(pos);
+            editor->setTextCursor(cursor);
+        }
+        else
+        {
+            editor->moveCursor(QTextCursor::End);
+        }
+    }
 
     loadTests();
 }

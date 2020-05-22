@@ -64,6 +64,27 @@
         "tip": "The template used when creating a new C++ file"
     },
     {
+        "name": "C++/Template Cursor Position Regex",
+        "type": "QString",
+        "default": "main\\(\\)",
+        "tip": "The regular expression which matches a part of the code template.\nWhen opening a template, the position of the cursor is the position of the regex with an offset.\nThe cursor will be at the end of the template if there's no match of the regex."
+    },
+    {
+        "name": "C++/Template Cursor Position Offset Type",
+        "type": "QString",
+        "default": "end",
+        "ui": "QComboBox",
+        "param": "QStringList {\"start\", \"end\"}",
+        "tip": "Whether the offset is relative to the start of the regex or the end of the regex."
+    },
+    {
+        "name": "C++/Template Cursor Position Offset Characters",
+        "type": "int",
+        "default": 4,
+        "param": "QVariantList {-1000000, 1000000}",
+        "tip": "The offset relative to the match of the regex in the number of characters, including white spaces."
+    },
+    {
         "name": "C++/Compile Command",
         "type": "QString",
         "default": "g++ -Wall",
@@ -138,6 +159,25 @@
         "tip": "The path of the parent directory of the compiled executable file.\nIt's relative to the source file, or the temporary directory if the tab is untitled.\nYou can use \"${filename}\" for the complete file name,\n\"${basename}\" for the base file name without the suffix,\n\"${tmpdir}\" for the absolute path of the temporary directory."
     },
     {
+        "name": "Java/Template Cursor Position Regex",
+        "type": "QString",
+        "tip": "The regular expression which matches a part of the code template.\nWhen opening a template, the position of the cursor is the position of the regex with an offset.\nThe cursor will be at the end of the template if there's no match of the regex."
+    },
+    {
+        "name": "Java/Template Cursor Position Offset Type",
+        "type": "QString",
+        "default": "end",
+        "ui": "QComboBox",
+        "param": "QStringList {\"start\", \"end\"}",
+        "tip": "Whether the offset is relative to the start of the regex or the end of the regex."
+    },
+    {
+        "name": "Java/Template Cursor Position Offset Characters",
+        "type": "int",
+        "param": "QVariantList {-1000000, 1000000}",
+        "tip": "The offset relative to the match of the regex in the number of characters, including white spaces."
+    },
+    {
         "name": "Python/Template Path",
         "type": "QString",
         "old": [
@@ -146,6 +186,25 @@
         "ui": "PathItem",
         "param": "3",
         "tip": "The template used when creating a new Python file"
+    },
+    {
+        "name": "Python/Template Cursor Position Regex",
+        "type": "QString",
+        "tip": "The regular expression which matches a part of the code template.\nWhen opening a template, the position of the cursor is the position of the regex with an offset.\nThe cursor will be at the end of the template if there's no match of the regex."
+    },
+    {
+        "name": "Python/Template Cursor Position Offset Type",
+        "type": "QString",
+        "default": "end",
+        "ui": "QComboBox",
+        "param": "QStringList {\"start\", \"end\"}",
+        "tip": "Whether the offset is relative to the start of the regex or the end of the regex."
+    },
+    {
+        "name": "Python/Template Cursor Position Offset Characters",
+        "type": "int",
+        "param": "QVariantList {-1000000, 1000000}",
+        "tip": "The offset relative to the match of the regex in the number of characters, including white spaces."
     },
     {
         "name": "Python/Run Arguments",

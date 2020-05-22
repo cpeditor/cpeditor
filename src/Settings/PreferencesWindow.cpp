@@ -102,20 +102,28 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
 
     addPage("Language/General", {"Default Language"});
 
-    addPage("Language/Commands/C++ Commands", {"C++/Compile Command", "C++/Output Path", "C++/Run Arguments"});
-    addPage("Language/Commands/Java Commands",
-            {"Java/Compile Command", "Java/Output Path", "Java/Class Name", "Java/Run Command", "Java/Run Arguments"});
-    addPage("Language/Commands/Python Commands", {"Python/Run Command", "Python/Run Arguments"});
-
-    addPage("Language/Code Template", {"C++/Template Path", "Java/Template Path", "Python/Template Path"});
-
+    addPage("Language/C++/C++ Commands", {"C++/Compile Command", "C++/Output Path", "C++/Run Arguments"});
+    addPage("Language/C++/C++ Template",
+            {"C++/Template Path", "C++/Template Cursor Position Regex", "C++/Template Cursor Position Offset Type",
+             "C++/Template Cursor Position Offset Characters"});
     auto cppSnippetsPage = new CodeSnippetsPage("C++");
-    auto javaSnippetsPage = new CodeSnippetsPage("Java");
-    auto pythonSnippetsPage = new CodeSnippetsPage("Python");
-    addPage("Language/Code Snippets/C++ Snippets", cppSnippetsPage,
+    addPage("Language/C++/C++ Snippets", cppSnippetsPage,
             {"C++ Snippets", "C++ Code Snippets", "Cpp Snippets", "Cpp Code Snippets"});
-    addPage("Language/Code Snippets/Java Snippets", javaSnippetsPage, {"Java Snippets", "Java Code Snippets"});
-    addPage("Language/Code Snippets/Python Snippets", pythonSnippetsPage, {"Python Snippets", "Python Code Snippets"});
+
+    addPage("Language/Java/Java Commands",
+            {"Java/Compile Command", "Java/Output Path", "Java/Class Name", "Java/Run Command", "Java/Run Arguments"});
+    addPage("Language/Java/Java Template",
+            {"Java/Template Path", "Java/Template Cursor Position Regex", "Java/Template Cursor Position Offset Type",
+             "Java/Template Cursor Position Offset Characters"});
+    auto javaSnippetsPage = new CodeSnippetsPage("Java");
+    addPage("Language/Java/Java Snippets", javaSnippetsPage, {"Java Snippets", "Java Code Snippets"});
+
+    addPage("Language/Python/Python Commands", {"Python/Run Command", "Python/Run Arguments"});
+    addPage("Language/Python/Python Template",
+            {"Python/Template Path", "Python/Template Cursor Position Regex",
+             "Python/Template Cursor Position Offset Type", "Python/Template Cursor Position Offset Characters"});
+    auto pythonSnippetsPage = new CodeSnippetsPage("Python");
+    addPage("Language/Python/Python Snippets", pythonSnippetsPage, {"Python Snippets", "Python Code Snippets"});
 
     auto appearancePage = new AppearancePage();
     addPage("Appearance", appearancePage, appearancePage->content());
