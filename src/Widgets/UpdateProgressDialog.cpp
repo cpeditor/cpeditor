@@ -16,7 +16,7 @@
  */
 
 #include <QLabel>
-#include <QProgressbar>
+#include <QProgressBar>
 #include <QPushButton>
 #include <QVBoxLayout>
 #include <Widgets/UpdateProgressDialog.hpp>
