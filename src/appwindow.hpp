@@ -20,6 +20,7 @@
 
 #include <QMainWindow>
 #include <QSystemTrayIcon>
+#include <Telemetry/UpdateChecker.hpp>
 
 class FindReplaceDialog;
 class MainWindow;
@@ -42,10 +43,11 @@ struct CompanionData;
 class LanguageServer;
 } // namespace Extensions
 
-namespace Telemetry
+namespace Widgets
 {
-class UpdateNotifier;
-}
+class UpdateProgressDialog;
+class UpdatePresenter;
+} // namespace Widgets
 
 class AppWindow : public QMainWindow
 {
@@ -187,6 +189,8 @@ class AppWindow : public QMainWindow
 
     void onCompileOrRunTriggered();
 
+    void updateAvailable(Telemetry::UpdateChecker::UpdateMetaInformation);
+
   private:
     Ui::AppWindow *ui;
     MessageLogger *activeLogger = nullptr;
@@ -198,7 +202,7 @@ class AppWindow : public QMainWindow
 
     QMetaObject::Connection activeSplitterMoveConnection;
     QMetaObject::Connection activeRightSplitterMoveConnection;
-    Telemetry::UpdateNotifier *updater = nullptr;
+    Telemetry::UpdateChecker *updater = nullptr;
     PreferencesWindow *preferencesWindow = nullptr;
     Extensions::CompanionServer *server;
     FindReplaceDialog *findReplaceDialog = nullptr;
@@ -209,6 +213,9 @@ class AppWindow : public QMainWindow
     Extensions::LanguageServer *cppServer = nullptr;
     Extensions::LanguageServer *javaServer = nullptr;
     Extensions::LanguageServer *pythonServer = nullptr;
+
+    Widgets::UpdateProgressDialog *updaterProgressDialog = nullptr;
+    Widgets::UpdatePresenter *updatePresenter = nullptr;
 
     void setConnections();
     void allocate();

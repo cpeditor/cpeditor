@@ -4,7 +4,7 @@ if(APPLE)
 	set(CMAKE_OSX_DEPLOYMENT_TARGET "10.14" CACHE STRING "Minimum OS X deployment version")
 endif()
 
-project(cpeditor LANGUAGES CXX VERSION 6.5.0)
+project(cpeditor LANGUAGES CXX VERSION 6.3.0)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
@@ -110,8 +110,8 @@ add_executable(cpeditor
     src/Settings/ValueWrapper.cpp
     src/Settings/ValueWrapper.hpp
 
-    src/Telemetry/UpdateNotifier.cpp
-    src/Telemetry/UpdateNotifier.hpp
+    src/Telemetry/UpdateChecker.cpp
+    src/Telemetry/UpdateChecker.hpp
 
     src/Util/FileUtil.cpp
     src/Util/FileUtil.hpp
@@ -128,6 +128,10 @@ add_executable(cpeditor
     src/Widgets/TestCaseEdit.hpp
     src/Widgets/TestCases.cpp
     src/Widgets/TestCases.hpp
+	src/Widgets/UpdatePresenter.hpp
+	src/Widgets/UpdatePresenter.cpp
+    src/Widgets/UpdateProgressDialog.hpp
+    src/Widgets/UpdateProgressDialog.cpp
 
     src/appwindow.cpp
     src/appwindow.hpp
@@ -141,6 +145,10 @@ add_executable(cpeditor
 
     third_party/diff_match_patch/diff_match_patch.h
     third_party/diff_match_patch/diff_match_patch.cpp
+	third_party/markdown_highlighter/markdown_highlighter.h
+	third_party/markdown_highlighter/markdown_highlighter.cpp
+	third_party/markdown_highlighter/qownlanguagedata.h
+	third_party/markdown_highlighter/qownlanguagedata.cpp
 
     ui/mainwindow.ui
     ui/appwindow.ui
@@ -158,11 +166,11 @@ include_directories("third_party/diff_match_patch")
 include_directories("third_party/lsp-cpp/include")
 include_directories("third_party/QCodeEditor/include")
 include_directories("third_party/QtFindReplaceDialog")
+include_directories("third_party/markdown_highlighter")
 
 target_link_libraries(cpeditor PRIVATE LSPClient)
 target_link_libraries(cpeditor PRIVATE QCodeEditor)
 target_link_libraries(cpeditor PRIVATE Qt5::Network)
-target_link_libraries(cpeditor PRIVATE Qt5::Widgets)
 target_link_libraries(cpeditor PRIVATE QtFindReplaceDialog)
 target_link_libraries(cpeditor PRIVATE SingleApplication)
 

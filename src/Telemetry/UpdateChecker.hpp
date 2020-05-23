@@ -26,24 +26,53 @@ class QNetworkRequest;
 
 namespace Telemetry
 {
-class UpdateNotifier : public QObject
+class UpdateChecker : public QObject
 {
     Q_OBJECT
 
   public:
-    explicit UpdateNotifier(bool useBeta);
-    void checkUpdate(bool force = false);
-    ~UpdateNotifier();
-    void setBeta(bool value);
+    enum class UpdateCheckerResult
+    {
+        STABLE_UPDATE,
+        BETA_UPDATE,
+        NO_UPDATES,
+        UNKNOWN,
+    };
+
+    struct UpdateMetaInformation
+    {
+        bool preview;
+
+        QString name;
+        QString body;
+        QString assetDownloadUrl;
+        QString releasePageUrl;
+
+        QString tagName;
+
+        UpdateCheckerResult result;
+    };
+
+    UpdateChecker();
+    void checkUpdate(bool beta = false);
+    void cancelCheckUpdate();
+    ~UpdateChecker();
 
   private slots:
     void managerFinished(QNetworkReply *reply);
 
+  signals:
+    void updateCheckerFinished(UpdateMetaInformation information);
+    void updateCheckerFailed(QString errorText);
+
   private:
+    bool compareVersion(QString const &newVersion, QString const &currentVersison);
+    void toMetaInformation(QJsonDocument &release, UpdateChecker::UpdateMetaInformation &result);
+
     QNetworkAccessManager *manager;
     QNetworkRequest *request;
+
     bool beta;
-    bool force;
 };
 } // namespace Telemetry
 

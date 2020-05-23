@@ -10,6 +10,8 @@
 - Now you can get the git commit hash when executing `cpeditor --version` in the terminal.
 - Now the application catches SIGINT, SIGTERM and SIGHUP on Linux/macOS and catches CTRL_C_EVENT, CTRL_BREAK_EVENT and CTRL_CLOSE_EVENT on Windows, it be will gracefully closed when receiving these signals. (#178 and #268) Warning: It's reported that on some environments it doesn't always work.
 - Now you can restore the problem URL when opening a file previously with a problem URL, and/or open the old file when parsing an old problem URL. (#199)
+- Now editor update also shows changelogs and provides actions to cancel update operation and a directly download button to binaries. (#361)
+
 
 ### Fixed
 

@@ -15,7 +15,7 @@
  *
  */
 
-#include "Telemetry/UpdateNotifier.hpp"
+#include "Telemetry/UpdateChecker.hpp"
 #include "Core/EventLogger.hpp"
 #include <QJsonArray>
 #include <QJsonDocument>
@@ -27,35 +27,59 @@
 
 namespace Telemetry
 {
-UpdateNotifier::UpdateNotifier(bool useBeta)
+UpdateChecker::UpdateChecker()
 {
-    LOG_INFO(BOOL_INFO_OF(useBeta));
     manager = new QNetworkAccessManager();
     request = new QNetworkRequest();
     QObject::connect(manager, SIGNAL(finished(QNetworkReply *)), this, SLOT(managerFinished(QNetworkReply *)));
-    beta = useBeta;
 }
-UpdateNotifier::~UpdateNotifier()
+UpdateChecker::~UpdateChecker()
 {
     delete manager;
     delete request;
 }
-void UpdateNotifier::setBeta(bool value)
-{
-    LOG_INFO("Updated beta" << BOOL_INFO_OF(value));
-    beta = value;
-}
 
-void UpdateNotifier::checkUpdate(bool force)
+void UpdateChecker::checkUpdate(bool beta)
 {
-    LOG_INFO("Forceful update : " << force);
+    LOG_INFO("Beta checks included : " << beta);
+    this->beta = beta;
 
-    this->force = force;
     request->setUrl(QUrl("https://api.github.com/repos/cpeditor/cpeditor/releases"));
     manager->get(*request);
 }
+void UpdateChecker::cancelCheckUpdate()
+{
+    delete manager;
+    manager = new QNetworkAccessManager();
+    QObject::connect(manager, SIGNAL(finished(QNetworkReply *)), this, SLOT(managerFinished(QNetworkReply *)));
+}
+void UpdateChecker::toMetaInformation(QJsonDocument &release, UpdateChecker::UpdateMetaInformation &result)
+{
 
-bool compareVersion(QString const &a, QString const &b)
+    auto assets = release["assets"].toArray().toVariantList();
+
+    for (auto const &e : assets)
+    {
+        auto asset = QJsonDocument::fromVariant(e);
+        auto assetName = asset["name"].toString();
+#if defined(Q_OS_WIN32)
+        if (assetName.endsWith(".exe"))
+#elif defined(Q_OS_MAC)
+        if (assetName.endsWith(".dmg"))
+#else
+        if (assetName.endsWith(".AppImage"))
+#endif
+            result.assetDownloadUrl = asset["browser_download_url"].toString();
+    }
+    result.body = release["body"].toString();
+    result.name = release["name"].toString();
+    result.preview = release["prerelease"].toBool();
+    result.releasePageUrl = release["html_url"].toString();
+    result.result = result.preview ? UpdateCheckerResult::BETA_UPDATE : UpdateCheckerResult::STABLE_UPDATE;
+    result.tagName = release["tag_name"].toString().remove("-beta").remove("-rc");
+}
+
+bool UpdateChecker::compareVersion(QString const &a, QString const &b)
 {
     LOG_INFO(INFO_OF(a) << INFO_OF(b));
     // returns true if a is higher version than b;
@@ -90,84 +114,60 @@ bool compareVersion(QString const &a, QString const &b)
     return false;
 }
 
-void UpdateNotifier::managerFinished(QNetworkReply *reply)
+void UpdateChecker::managerFinished(QNetworkReply *reply)
 {
     if (reply->error())
     {
         LOG_ERR("Error returned " << reply->errorString());
-        qDebug() << reply->errorString();
+        emit updateCheckerFailed(reply->errorString());
         return;
     }
     QString jsonReply = reply->readAll();
-
     QJsonDocument doc = QJsonDocument::fromJson(jsonReply.toUtf8());
 
     QJsonDocument release;
-    QString downloadUrl = "https://github.com/cpeditor/cp-editor";
-    bool isBeta = false;
-    QString latestRelease = "0.0.0";
+    UpdateMetaInformation result;
+    result.tagName = "0.0.0";
+    result.result = UpdateCheckerResult::UNKNOWN;
+    result.preview = false;
 
     for (auto const &e : doc.array().toVariantList())
     {
         release = QJsonDocument::fromVariant(e);
-
         if (release["prerelease"].toBool())
         {
             if (beta)
             {
-                latestRelease = release["tag_name"].toString().remove("-beta").remove("-rc");
-                isBeta = true;
-                downloadUrl = release["html_url"].toString();
+                toMetaInformation(release, result);
                 break;
             }
         }
         else // stable
         {
-            latestRelease = release["tag_name"].toString().remove("-stable");
-            isBeta = false;
-            downloadUrl = release["html_url"].toString();
+            toMetaInformation(release, result);
             break;
         }
     }
 
-    if (latestRelease == "0.0.0")
+    if (result.tagName == "0.0.0")
     {
-        QMessageBox::about(
-            nullptr, "Failed to check update",
-            "Please manually check for updates <a href=https://github.com/cpeditor/cpeditor/releases>here</a>.");
+        UpdateMetaInformation info;
+        info.result = UpdateCheckerResult::UNKNOWN;
+        emit updateCheckerFinished(info);
         return;
     }
 
-    bool isUpdateAvailable = compareVersion(latestRelease, APP_VERSION);
-
+    bool isUpdateAvailable = compareVersion(result.tagName, APP_VERSION);
     LOG_INFO(BOOL_INFO_OF(isUpdateAvailable));
 
-    if (beta && isBeta && isUpdateAvailable)
+    if (isUpdateAvailable)
     {
-        QMessageBox::about(nullptr, QString::fromStdString("Beta Update available"),
-
-                           QString::fromStdString("A new beta update " + latestRelease.toStdString() +
-                                                  " is available. <a href = " + downloadUrl.toStdString() +
-                                                  ">Please Download" + "</a>"));
-    }
-    else if (!isBeta && isUpdateAvailable)
-    {
-        QMessageBox::about(nullptr, QString::fromStdString("New Update available"),
-
-                           QString::fromStdString("A new stable update " + latestRelease.toStdString() +
-                                                  " is available. <a href = " + downloadUrl.toStdString() +
-                                                  ">Please Download" + "</a>"));
-    }
-    else if (force)
-    {
-        QMessageBox::about(
-            nullptr, QString::fromStdString("No new update"),
-            QString::fromStdString(
-                "You are already running latest release. Keep checking so you dont miss on important update."));
-        force = false;
+        emit updateCheckerFinished(result);
     }
     else
     {
+        result.result = UpdateCheckerResult::NO_UPDATES;
+        emit updateCheckerFinished(result);
         LOG_INFO("No update available. Silently logged it");
     }
 }
