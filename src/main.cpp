@@ -17,6 +17,7 @@
 
 #include "Core/EventLogger.hpp"
 #include "SignalHandler.hpp"
+#include "Util/Util.hpp"
 #include "appwindow.hpp"
 #include "mainwindow.hpp"
 #include <QApplication>
@@ -65,9 +66,7 @@ int main(int argc, char *argv[])
                                 break;
                             }
                         }
-                        dialog->setWindowState((dialog->windowState() & ~Qt::WindowMinimized) | Qt::WindowActive);
-                        dialog->activateWindow();
-                        dialog->raise();
+                        Util::showWidgetOnTop(dialog);
                         return;
                     }
                     else

@@ -25,17 +25,16 @@ class QVBoxLayout;
 class QHBoxLayout;
 class QPushButton;
 class QTextEdit;
-class MarkdownHighlighter;
 
 namespace Widgets
 {
 class UpdatePresenter : public QDialog
 {
     Q_OBJECT
+
   public:
     UpdatePresenter();
-    void load(Telemetry::UpdateChecker::UpdateMetaInformation);
-    ~UpdatePresenter();
+    void load(const Telemetry::UpdateChecker::UpdateMetaInformation &meta);
 
   private:
     QLabel *name = nullptr;
@@ -44,7 +43,6 @@ class UpdatePresenter : public QDialog
     QTextEdit *textEdit = nullptr;
     QPushButton *downloadButton = nullptr;
     QPushButton *cancelButton = nullptr;
-    MarkdownHighlighter *highlighter = nullptr;
 
     Telemetry::UpdateChecker::UpdateMetaInformation information;
 };

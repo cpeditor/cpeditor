@@ -27,6 +27,7 @@
 #include "Settings/PreferencesWindow.hpp"
 #include "Telemetry/UpdateChecker.hpp"
 #include "Util/FileUtil.hpp"
+#include "Util/Util.hpp"
 #include "Widgets/UpdatePresenter.hpp"
 #include "Widgets/UpdateProgressDialog.hpp"
 #include "mainwindow.hpp"
@@ -1104,7 +1105,6 @@ void AppWindow::onRightSplitterMoved(int _, int __)
 /************************* ACTIONS ************************/
 void AppWindow::on_actionCheck_for_updates_triggered()
 {
-    // updater->checkUpdate(SettingsHelper::isBeta());
     updaterProgressDialog->start(SettingsHelper::isBeta());
 }
 
@@ -1557,9 +1557,7 @@ void AppWindow::on_actionClear_Logs_triggered()
 
 void AppWindow::showOnTop()
 {
-    setWindowState((windowState() & ~Qt::WindowMinimized) | Qt::WindowActive);
-    activateWindow();
-    raise();
+    Util::showWidgetOnTop(this);
 }
 
 void AppWindow::onTrayIconActivated(QSystemTrayIcon::ActivationReason reason)

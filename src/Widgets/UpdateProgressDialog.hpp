@@ -35,7 +35,6 @@ class UpdateProgressDialog : public QDialog
   public:
     UpdateProgressDialog();
     void start(bool beta = false);
-    ~UpdateProgressDialog();
 
   private slots:
     void updaterFailed(QString);

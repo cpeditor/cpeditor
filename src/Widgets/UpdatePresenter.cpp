@@ -14,17 +14,18 @@
  * Believe Software is "Software" and it isn't immune to bugs.
  *
  */
+
+#include "Core/EventLogger.hpp"
+#include "Util/Util.hpp"
 #include <QDesktopServices>
 #include <QLabel>
 #include <QPushButton>
 #include <QTextEdit>
 #include <QVBoxLayout>
 #include <Widgets/UpdatePresenter.hpp>
-#include <markdown_highlighter.h>
 
 namespace Widgets
 {
-
 UpdatePresenter::UpdatePresenter()
 {
     textEdit = new QTextEdit(this);
@@ -32,12 +33,14 @@ UpdatePresenter::UpdatePresenter()
 
     name = new QLabel(this);
     mainLayout = new QVBoxLayout(this);
-    subLayout = new QHBoxLayout(this);
+    subLayout = new QHBoxLayout();
 
     downloadButton = new QPushButton("Download", this);
     cancelButton = new QPushButton("Close", this);
 
-    connect(cancelButton, &QPushButton::clicked, this, [this]() { close(); });
+    connect(cancelButton, SIGNAL(clicked()), this, SLOT(close()));
+    connect(downloadButton, &QPushButton::clicked, this,
+            [this] { QDesktopServices::openUrl(QUrl(information.assetDownloadUrl, QUrl::TolerantMode)); });
 
     subLayout->addWidget(downloadButton);
     subLayout->addWidget(cancelButton);
@@ -46,54 +49,28 @@ UpdatePresenter::UpdatePresenter()
     mainLayout->addWidget(textEdit);
     mainLayout->addLayout(subLayout);
 
-    setLayout(mainLayout);
-    // setGeometry(geometry());
     setWindowTitle("New update available");
 }
 
-void UpdatePresenter::load(Telemetry::UpdateChecker::UpdateMetaInformation meta)
+void UpdatePresenter::load(const Telemetry::UpdateChecker::UpdateMetaInformation &meta)
 {
+    LOG_INFO(BOOL_INFO_OF(meta.preview) << INFO_OF(meta.name) << INFO_OF(meta.body) << INFO_OF(meta.assetDownloadUrl)
+                                        << INFO_OF(meta.releasePageUrl) << INFO_OF(meta.tagName)
+                                        << INFO_OF((int)meta.result));
+
     information = meta;
 
-    textEdit->setText(information.body);
+    textEdit->setMarkdown(information.body);
 
-    delete downloadButton;
-    downloadButton = new QPushButton("Download", this);
-    subLayout->insertWidget(0, downloadButton);
-
-    // Instead of delete and re create, if we can somehow disconnect the old connection and set new one, it would be
-    // better
-
-    connect(downloadButton, &QPushButton::clicked, this,
-            [this] { QDesktopServices::openUrl(QUrl(information.assetDownloadUrl, QUrl::TolerantMode)); });
-
-    auto message = QString("A new %1 update %2 is available. Changelog is mentioned below.\nWe highly recommend "
-                           "you keep the editor up "
-                           "to date to not miss on new features. Happy CP-ing")
-                       .arg(information.preview ?
-
-                                                "beta"
-                                                : "stable",
-                            information.name);
+    auto message =
+        QString(
+            "A new %1 update <a href=\"%2\">%3</a> is available. See below for the changelog.<br />We highly recommend "
+            "you keep the editor up to date so that you won't miss the awesome new features and bug fixes.")
+            .arg(information.preview ? "beta" : "stable")
+            .arg(information.releasePageUrl)
+            .arg(information.name);
     name->setText(message);
 
-    auto doc = textEdit->document();
-    if (highlighter != nullptr)
-        delete highlighter;
-
-    highlighter = new MarkdownHighlighter(doc);
-
-    show();
-}
-
-UpdatePresenter::~UpdatePresenter()
-{
-    delete textEdit;
-    delete name;
-    delete mainLayout;
-    delete downloadButton;
-    delete highlighter;
-    delete subLayout;
-    delete cancelButton;
+    Util::showWidgetOnTop(this);
 }
 } // namespace Widgets

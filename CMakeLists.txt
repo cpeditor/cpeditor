@@ -145,10 +145,6 @@ add_executable(cpeditor
 
     third_party/diff_match_patch/diff_match_patch.h
     third_party/diff_match_patch/diff_match_patch.cpp
-    third_party/markdown_highlighter/markdown_highlighter.h
-    third_party/markdown_highlighter/markdown_highlighter.cpp
-    third_party/markdown_highlighter/qownlanguagedata.h
-    third_party/markdown_highlighter/qownlanguagedata.cpp
 
     ui/mainwindow.ui
     ui/appwindow.ui
@@ -166,7 +162,6 @@ include_directories("third_party/diff_match_patch")
 include_directories("third_party/lsp-cpp/include")
 include_directories("third_party/QCodeEditor/include")
 include_directories("third_party/QtFindReplaceDialog")
-include_directories("third_party/markdown_highlighter")
 
 target_link_libraries(cpeditor PRIVATE LSPClient)
 target_link_libraries(cpeditor PRIVATE QCodeEditor)

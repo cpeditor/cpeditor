@@ -33,23 +33,20 @@ class UpdateChecker : public QObject
   public:
     enum class UpdateCheckerResult
     {
+        UNKNOWN,
         STABLE_UPDATE,
         BETA_UPDATE,
         NO_UPDATES,
-        UNKNOWN,
     };
 
     struct UpdateMetaInformation
     {
         bool preview;
-
         QString name;
         QString body;
         QString assetDownloadUrl;
         QString releasePageUrl;
-
         QString tagName;
-
         UpdateCheckerResult result;
     };
 
@@ -62,12 +59,15 @@ class UpdateChecker : public QObject
     void managerFinished(QNetworkReply *reply);
 
   signals:
-    void updateCheckerFinished(UpdateMetaInformation information);
-    void updateCheckerFailed(QString errorText);
+    void updateCheckerFinished(const UpdateMetaInformation &information);
+    void updateCheckerFailed(const QString &errorText);
 
   private:
-    bool compareVersion(QString const &newVersion, QString const &currentVersison);
-    void toMetaInformation(QJsonDocument &release, UpdateChecker::UpdateMetaInformation &result);
+    /**
+     * @returns whether the *newVersion* is higher than the *currentVersion*
+     */
+    bool compareVersion(const QString &newVersion, const QString &currentVersion);
+    UpdateMetaInformation toMetaInformation(const QJsonDocument &release);
 
     QNetworkAccessManager *manager;
     QNetworkRequest *request;
