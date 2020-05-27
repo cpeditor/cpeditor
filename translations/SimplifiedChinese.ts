@@ -37,7 +37,7 @@
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="29"/>
         <source>The width of the tab character, or the number of spaces of an indent</source>
-        <translation type="unfinished">制表符的宽度或缩进的空格个数</translation>
+        <translation type="unfinished">制表符的宽度/缩进的空格个数</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="30"/>
@@ -78,38 +78,39 @@
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="34"/>
         <source>Style</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">风格</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="34"/>
         <source>The Clang Format style options, which are often saved in a .clang-format configuration file.
 You can learn about it at &lt;https://clang.llvm.org/docs/ClangFormatStyleOptions.html&gt;.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Clang Format格式化所用风格，通常存储为.clang-format。
+你可以在&lt;https://clang.llvm.org/docs/ClangFormatStyleOptions.html&gt;上了解更多。</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="35"/>
         <source>C++ Template Path</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">C++文件模板</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="35"/>
         <source>The template used when creating a new C++ file</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">新建C++代码时所用模板的路径</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="36"/>
         <source>C++ Compile Command</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">C++编译命令</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="36"/>
         <source>The command used to compile C++. It should NOT include the path to the source file or &quot;-o &lt;output file&gt;&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">编译C++代码所用命令。这里不应该包含源代码路径或是&quot;-o &lt;output file&gt;&quot;。</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="37"/>
         <source>C++ Executable File Path</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">C++可执行文件路径</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="37"/>
@@ -119,68 +120,73 @@ No &quot;.exe&quot; is needed.
 You can use &quot;${filename}&quot; for the complete file name,
 &quot;${basename}&quot; for the base file name without the suffix,
 &quot;${tmpdir}&quot; for the absolute path of the temporary directory.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">编译后生成的可执行文件的路径。
+以源代码所在路径起始的相对路径。如果当前页未命名，则是临时目录。
+不需要.exe的后缀。
+你可以使用&quot;${filename}&quot;来代替完整的源文件名；
+使用&quot;${basename}&quot;来代替无后缀的源文件名；
+使用&quot;${tmpdir}&quot;来代替一个临时目录的绝对路径。</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="38"/>
         <source>C++ Run Arguments</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">C++命令行参数</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="38"/>
         <source>The runtime arguments when executing a C++ program</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">执行C++程序时提供的命令行参数</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="39"/>
         <source>Java Template Path</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Java文件模板</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="39"/>
         <source>The template used when creating a new Java file</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">新建Java代码时所用模板的路径</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="40"/>
         <source>Java Compile Command</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Java编译命令</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="40"/>
         <source>The command used to compile Java.
 It should NOT include the path to the source file or the path of the compiled class file.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">编译Java代码所用命令。这里不应该包含源代码路径或是输出的class文件路径。</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="41"/>
         <source>Java Run Arguments</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Java命令行参数</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="41"/>
         <source>The runtime arguments when executing a Java program</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">执行Java程序时提供的命令行参数</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="42"/>
         <source>Java Run Command</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Java解释命令</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="42"/>
         <source>The command to start a Java program. It should NOT include &quot;-classpath &lt;path&gt; &lt;class name&gt;&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">执行Java程序时的命令。这里不应该包含&quot;-classpath &lt;path&gt; &lt;class name&gt;&quot;。</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="43"/>
         <source>Java Class Name</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Java类名</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="43"/>
         <source>The non-public class name of your solution.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">解决方案的非public类的名字。</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="44"/>
@@ -229,93 +235,93 @@ You can use &quot;${filename}&quot; for the complete file name,
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="48"/>
         <source>Editor Theme</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">编辑器主题</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="48"/>
         <source>The syntax highlight theme of the code editor</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">代码编辑器高亮所用的主题</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="49"/>
         <source>Auto Complete Parentheses</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">自动补全括号</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="49"/>
         <source>Automatically complete a pair of parentheses when typing the left element of it,
 and move out of it when typing the right element of it.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">自动在输入左括号时补全右括号，并在输入右括号时使光标移出。</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="50"/>
         <source>Auto Remove Parentheses</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">自动删除括号</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="50"/>
         <source>Automatically delete the whole pair of parentheses when deleting the left element of it if the two elements are adjacent.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">在删除左括号时自动删除邻接的右括号。</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="51"/>
         <source>Auto Indent</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">自动制表</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="51"/>
         <source>Add an indent when entering a new line after a &quot;{&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">在&quot;{&quot;后换行时插入一个制表。</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="52"/>
         <source>Enable Auto Save</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">自动保存</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="52"/>
         <source>Automatically save the file every 3 seconds.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">每3秒自动保存代码。</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="53"/>
         <source>Wrap Text</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">文本折行</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="53"/>
         <source>Wrap a line into several lines if it doesn&apos;t fit into the screen.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">当单行超出屏幕时折成多行。</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="54"/>
         <source>Use the beta version</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">使用测试版</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="54"/>
         <source>Check for updates marked as pre-releases, which are considered not very stable but have more features.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">检查更新时包含测试版本。测试版将会包含更多功能，但可能不太稳定。</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="55"/>
         <source>Replace Tabs</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">替换制表</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="55"/>
         <source>Use spaces instead of a tab character.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">输入制表时插入空格代替。</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="56"/>
         <source>Save Testcases on Save</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">保存时保存测试用例</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="56"/>
         <source>Save the testcases on the disk when saving a file, and load the saved testcases when opening a file.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">在保存时一并保存测试用例，在加载时一并加载。</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="57"/>
@@ -325,32 +331,32 @@ and move out of it when typing the right element of it.</source>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="58"/>
         <source>Check for updates on startup</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">启动时检查更新</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="58"/>
         <source>Check whether there&apos;s a new version of CP Editor when starting CP Editor.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">在启动程序时检查有无新版本。</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="59"/>
         <source>Format Codes on Save</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">保存时自动格式化代码</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="59"/>
         <source>Use Clang Format to format the codes when saving it.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">在保存文件是使用clang format格式化代码。</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="60"/>
         <source>Opacity</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">不透明度</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="60"/>
         <source>The opacity of the main window</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">主窗口的不透明度</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="61"/>
