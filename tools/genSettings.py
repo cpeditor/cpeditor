@@ -5,7 +5,7 @@ import sys
 import json
 
 if __name__ == "__main__":
-    obj = json.load(open(sys.argv[1], mode="r"))
+    obj = json.load(open(sys.argv[1], mode="r", encoding="utf-8"))
     head = """/*
  * Copyright (C) 2019-2020 Ashar Khan <ashar786khan@gmail.com>
  *
