@@ -28,7 +28,7 @@ if __name__ == "__main__":
  */
 
 """
-    setting_helper = open("generated/SettingsHelper.hpp", mode="w")
+    setting_helper = open("generated/SettingsHelper.hpp", mode="w", encoding="utf-8")
     setting_helper.write(head)
     setting_helper.write("""#ifndef SETTINGSHELPER_HPP
 #define SETTINGSHELPER_HPP
@@ -56,7 +56,7 @@ namespace SettingsHelper
 
 #endif // SETTINGSHELPER_HPP""")
     setting_helper.close()
-    setting_info = open("generated/SettingsInfo.hpp", mode="w")
+    setting_info = open("generated/SettingsInfo.hpp", mode="w", encoding="utf-8")
     setting_info.write(head)
     setting_info.write("""#ifndef SETTINGSINFO_HPP
 #define SETTINGSINFO_HPP
@@ -93,7 +93,7 @@ inline SettingInfo findSetting(const QString &name)
 
 #endif // SETTINGSINFO_HPP""")
 
-    setting_info = open("generated/SettingsInfo.cpp", mode="w")
+    setting_info = open("generated/SettingsInfo.cpp", mode="w", encoding="utf-8")
     setting_info.write(head)
     setting_info.write("""#include "SettingsInfo.hpp"
 
