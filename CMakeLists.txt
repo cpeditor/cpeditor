@@ -21,6 +21,7 @@ endif()
 
 find_package(Qt5 COMPONENTS Widgets REQUIRED)
 find_package(Qt5 COMPONENTS Network REQUIRED)
+find_package(Qt5LinguistTools REQUIRED)
 find_package(Python3 COMPONENTS Interpreter REQUIRED)
 
 add_subdirectory(third_party/QCodeEditor)
@@ -55,7 +56,15 @@ add_custom_command(OUTPUT ${CMAKE_BINARY_DIR}/generated/SettingsHelper.hpp ${CMA
                    WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
                    DEPENDS ${PROJECT_SOURCE_DIR}/src/Settings/settings.json ${PROJECT_SOURCE_DIR}/tools/genSettings.py)
 
-set_property(SOURCE ${CMAKE_BINARY_DIR}/generated/SettingsHelper.hpp ${CMAKE_BINARY_DIR}/generated/SettingsInfo.hpp PROPERTY SKIP_AUTOGEN ON)
+set(TSS ${CMAKE_SOURCE_DIR}/translations/SimplifiedChinese.ts)
+
+set_source_files_properties(${TSS} PROPERTIES OUTPUT_LOCATION ${CMAKE_BINARY_DIR}/translations)
+
+qt5_add_translation(QMFILES ${TSS})
+
+file(COPY ${CMAKE_SOURCE_DIR}/translations/translations.qrc DESTINATION ${CMAKE_BINARY_DIR}/translations)
+
+set_property(SOURCE ${CMAKE_BINARY_DIR}/generated/SettingsHelper.hpp ${CMAKE_BINARY_DIR}/generated/SettingsInfo.hpp ${CMAKE_BINARY_DIR}/generated/SettingsInfo.cpp PROPERTY SKIP_AUTOGEN ON)
 
 add_executable(cpeditor
     ${GUI_TYPE}
@@ -151,6 +160,7 @@ add_executable(cpeditor
     ${CMAKE_BINARY_DIR}/generated/SettingsInfo.hpp
     ${CMAKE_BINARY_DIR}/generated/SettingsInfo.cpp
 
+    ${CMAKE_BINARY_DIR}/translations/translations.qrc
     resources/resources.qrc
     assets/appicon.rc)
 
