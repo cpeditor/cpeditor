@@ -28,8 +28,6 @@
 #include "Telemetry/UpdateChecker.hpp"
 #include "Util/FileUtil.hpp"
 #include "Util/Util.hpp"
-#include "Widgets/UpdatePresenter.hpp"
-#include "Widgets/UpdateProgressDialog.hpp"
 #include "mainwindow.hpp"
 #include <QClipboard>
 #include <QDesktopServices>
@@ -79,7 +77,7 @@ AppWindow::AppWindow(bool noHotExit, QWidget *parent) : QMainWindow(parent), ui(
     setWindowIcon(QIcon(":/icon.png"));
 
     if (SettingsHelper::isCheckUpdate())
-        updater->checkUpdate(SettingsHelper::isBeta());
+        updateChecker->checkUpdate(true);
 
 #ifdef Q_OS_WIN
     // setWindowOpacity(0.99) when opacity should be 100 is a workaround for a strange issue on Windows
@@ -200,7 +198,7 @@ AppWindow::~AppWindow()
     delete cppServer;
     delete pythonServer;
     delete javaServer;
-    delete updater;
+    delete updateChecker;
     delete server;
     delete findReplaceDialog;
 
@@ -258,9 +256,6 @@ void AppWindow::setConnections()
     connect(trayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)), this,
             SLOT(onTrayIconActivated(QSystemTrayIcon::ActivationReason)));
     connect(trayIcon, SIGNAL(messageClicked()), this, SLOT(showOnTop()));
-
-    connect(updater, &Telemetry::UpdateChecker::updateCheckerFinished, this, &AppWindow::updateAvailable);
-    connect(updaterProgressDialog, &Widgets::UpdateProgressDialog::updateAvailable, this, &AppWindow::updateAvailable);
 }
 
 void AppWindow::allocate()
@@ -270,9 +265,7 @@ void AppWindow::allocate()
     lspTimerCpp = new QTimer();
     lspTimerJava = new QTimer();
     lspTimerPython = new QTimer();
-    updater = new Telemetry::UpdateChecker();
-    updaterProgressDialog = new Widgets::UpdateProgressDialog();
-    updatePresenter = new Widgets::UpdatePresenter();
+    updateChecker = new Telemetry::UpdateChecker();
     preferencesWindow = new PreferencesWindow(this);
 
     server = new Extensions::CompanionServer(SettingsHelper::getCompetitiveCompanionConnectionPort());
@@ -577,6 +570,7 @@ bool AppWindow::quit()
             return false;
         }
     }
+    updateChecker->closeAll();
     // The tray icon is considered as a visible window, if it is not hidden, even if the app window is closed,
     // the application won't exit.
     trayIcon->hide();
@@ -1105,7 +1099,7 @@ void AppWindow::onRightSplitterMoved(int _, int __)
 /************************* ACTIONS ************************/
 void AppWindow::on_actionCheck_for_updates_triggered()
 {
-    updaterProgressDialog->start(SettingsHelper::isBeta());
+    updateChecker->checkUpdate(false);
 }
 
 void AppWindow::on_actionCompile_triggered()
@@ -1297,15 +1291,6 @@ void AppWindow::on_confirmTriggered(MainWindow *widget)
     int index = ui->tabWidget->indexOf(widget);
     if (index != -1)
         ui->tabWidget->setCurrentIndex(index);
-}
-
-void AppWindow::updateAvailable(Telemetry::UpdateChecker::UpdateMetaInformation meta)
-{
-    if (meta.result == Telemetry::UpdateChecker::UpdateCheckerResult::BETA_UPDATE ||
-        meta.result == Telemetry::UpdateChecker::UpdateCheckerResult::STABLE_UPDATE)
-    {
-        updatePresenter->load(meta);
-    }
 }
 
 void AppWindow::onTabContextMenuRequested(const QPoint &pos)

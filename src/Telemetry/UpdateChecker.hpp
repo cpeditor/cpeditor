@@ -24,6 +24,12 @@ class QNetworkAccessManager;
 class QNetworkReply;
 class QNetworkRequest;
 
+namespace Widgets
+{
+class UpdatePresenter;
+class UpdateProgressDialog;
+} // namespace Widgets
+
 namespace Telemetry
 {
 class UpdateChecker : public QObject
@@ -31,48 +37,44 @@ class UpdateChecker : public QObject
     Q_OBJECT
 
   public:
-    enum class UpdateCheckerResult
-    {
-        UNKNOWN,
-        STABLE_UPDATE,
-        BETA_UPDATE,
-        NO_UPDATES,
-    };
-
     struct UpdateMetaInformation
     {
         bool preview;
-        QString name;
-        QString body;
+        QString version;
+        QString changelog;
         QString assetDownloadUrl;
         QString releasePageUrl;
-        QString tagName;
-        UpdateCheckerResult result;
     };
 
-    UpdateChecker();
-    void checkUpdate(bool beta = false);
-    void cancelCheckUpdate();
+    explicit UpdateChecker();
+    void checkUpdate(bool silent);
+    void closeAll();
     ~UpdateChecker();
 
   private slots:
+    void cancelCheckUpdate();
     void managerFinished(QNetworkReply *reply);
 
-  signals:
-    void updateCheckerFinished(const UpdateMetaInformation &information);
-    void updateCheckerFailed(const QString &errorText);
-
   private:
-    /**
-     * @returns whether the *newVersion* is higher than the *currentVersion*
-     */
-    bool compareVersion(const QString &newVersion, const QString &currentVersion);
+    struct Version
+    {
+        bool valid;
+        int major;
+        int minor;
+        int patch;
+
+        Version(const QString &version);
+
+        bool operator<(const Version &rhs) const;
+    };
+
     UpdateMetaInformation toMetaInformation(const QJsonDocument &release);
 
-    QNetworkAccessManager *manager;
-    QNetworkRequest *request;
+    Widgets::UpdateProgressDialog *progress = nullptr;
+    Widgets::UpdatePresenter *presenter = nullptr;
 
-    bool beta;
+    QNetworkAccessManager *manager = nullptr;
+    QNetworkRequest *request = nullptr;
 };
 } // namespace Telemetry
 

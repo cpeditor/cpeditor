@@ -19,9 +19,7 @@
 #define UPDATE_DIALOG_PROGRESS
 
 #include <QDialog>
-#include <Telemetry/UpdateChecker.hpp> // Forward declaration not possible as nested classes are required.
 
-class QString;
 class QProgressBar;
 class QPushButton;
 class QLabel;
@@ -32,22 +30,18 @@ namespace Widgets
 class UpdateProgressDialog : public QDialog
 {
     Q_OBJECT
-  public:
-    UpdateProgressDialog();
-    void start(bool beta = false);
 
-  private slots:
-    void updaterFailed(QString);
-    void updaterFinished(Telemetry::UpdateChecker::UpdateMetaInformation);
+  public:
+    explicit UpdateProgressDialog();
+    void start();
+    void onAlreadyUpToDate();
+    void onUpdateFailed(const QString &error);
 
   signals:
-    void updateAvailable(Telemetry::UpdateChecker::UpdateMetaInformation);
+    void canceled();
 
   private:
-    void resetState();
-
     QPushButton *cancelUpdate = nullptr;
-    Telemetry::UpdateChecker *updateChecker = nullptr;
     QLabel *information = nullptr;
     QProgressBar *progressBar = nullptr;
     QVBoxLayout *mainLayout = nullptr;

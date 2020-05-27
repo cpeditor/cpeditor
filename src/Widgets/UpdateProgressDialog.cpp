@@ -24,11 +24,6 @@
 
 namespace Widgets
 {
-static const QString updateErrorMessage =
-    "Updater failed to check for update. Please manually check for update at<br /><a "
-    "href=\"https://cpeditor.github.io/download\">https://cpeditor.github.io/download</a> or <a "
-    "href=\"https://github.com/cpeditor/cpeditor/releases\">https://github.com/cpeditor/cpeditor/releases</a>.";
-
 UpdateProgressDialog::UpdateProgressDialog()
 {
     progressBar = new QProgressBar(this);
@@ -37,8 +32,6 @@ UpdateProgressDialog::UpdateProgressDialog()
     progressBar->setMinimumWidth(width());
 
     information = new QLabel(this);
-
-    updateChecker = new Telemetry::UpdateChecker();
 
     cancelUpdate = new QPushButton("Cancel", this);
     cancelUpdate->setToolTip("Close this dialog and abort the update check");
@@ -53,59 +46,32 @@ UpdateProgressDialog::UpdateProgressDialog()
 
     setModal(false);
 
-    connect(updateChecker, &Telemetry::UpdateChecker::updateCheckerFailed, this, &UpdateProgressDialog::updaterFailed);
-    connect(updateChecker, &Telemetry::UpdateChecker::updateCheckerFinished, this,
-            &UpdateProgressDialog::updaterFinished);
-
-    connect(cancelUpdate, &QPushButton::clicked, [this]() {
-        updateChecker->cancelCheckUpdate();
-        close();
-    });
+    connect(cancelUpdate, SIGNAL(clicked()), this, SIGNAL(canceled()));
+    connect(cancelUpdate, SIGNAL(clicked()), this, SLOT(close()));
 }
 
-void UpdateProgressDialog::start(bool beta)
+void UpdateProgressDialog::start()
 {
-    resetState();
-    updateChecker->checkUpdate(beta);
+    information->setText("Fetching the list of releases...");
+    progressBar->show();
     Util::showWidgetOnTop(this);
 }
 
-void UpdateProgressDialog::resetState()
+void UpdateProgressDialog::onUpdateFailed(const QString &error)
 {
-    information->setText("Fetching the list of releases...");
-    information->show();
-    progressBar->show();
-}
-
-void UpdateProgressDialog::updaterFailed(QString error)
-{
-    information->setText(QString("Error: %1<br /><br />%2").arg(error).arg(updateErrorMessage));
-    information->show();
-    cancelUpdate->setText("Close");
+    information->setText(
+        QString(
+            "Error: %1<br /><br />Updater failed to check for update. Please manually check for update at<br /><a "
+            "href=\"https://cpeditor.github.io/download\">https://cpeditor.github.io/download</a> or <a "
+            "href=\"https://github.com/cpeditor/cpeditor/releases\">https://github.com/cpeditor/cpeditor/releases</a>.")
+            .arg(error));
     progressBar->hide();
 }
 
-void UpdateProgressDialog::updaterFinished(Telemetry::UpdateChecker::UpdateMetaInformation meta)
+void UpdateProgressDialog::onAlreadyUpToDate()
 {
-    if (meta.result == Telemetry::UpdateChecker::UpdateCheckerResult::STABLE_UPDATE ||
-        meta.result == Telemetry::UpdateChecker::UpdateCheckerResult::BETA_UPDATE)
-    {
-        close();
-        emit updateAvailable(meta);
-    }
-    else if (meta.result == Telemetry::UpdateChecker::UpdateCheckerResult::NO_UPDATES)
-    {
-        information->show();
-        progressBar->hide();
-        cancelUpdate->setText("Close");
-        information->setText("Hooray!! You are already using the latest release of CP Editor.");
-    }
-    else
-    {
-        information->show();
-        progressBar->hide();
-        cancelUpdate->setText("Close");
-        information->setText(updateErrorMessage);
-    }
+    progressBar->hide();
+    cancelUpdate->setText("Close");
+    information->setText("Hooray!! You are already using the latest release of CP Editor.");
 }
 } // namespace Widgets

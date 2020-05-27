@@ -15,6 +15,7 @@
  *
  */
 
+#include "Widgets/UpdatePresenter.hpp"
 #include "Core/EventLogger.hpp"
 #include "Util/Util.hpp"
 #include <QDesktopServices>
@@ -22,7 +23,6 @@
 #include <QPushButton>
 #include <QTextEdit>
 #include <QVBoxLayout>
-#include <Widgets/UpdatePresenter.hpp>
 
 namespace Widgets
 {
@@ -31,7 +31,7 @@ UpdatePresenter::UpdatePresenter()
     textEdit = new QTextEdit(this);
     textEdit->setReadOnly(true);
 
-    name = new QLabel(this);
+    hint = new QLabel(this);
     mainLayout = new QVBoxLayout(this);
     subLayout = new QHBoxLayout();
 
@@ -40,36 +40,35 @@ UpdatePresenter::UpdatePresenter()
 
     connect(cancelButton, SIGNAL(clicked()), this, SLOT(close()));
     connect(downloadButton, &QPushButton::clicked, this,
-            [this] { QDesktopServices::openUrl(QUrl(information.assetDownloadUrl, QUrl::TolerantMode)); });
+            [this] { QDesktopServices::openUrl(QUrl(downloadUrl, QUrl::TolerantMode)); });
 
     subLayout->addWidget(downloadButton);
     subLayout->addWidget(cancelButton);
 
-    mainLayout->addWidget(name);
+    mainLayout->addWidget(hint);
     mainLayout->addWidget(textEdit);
     mainLayout->addLayout(subLayout);
 
     setWindowTitle("New update available");
 }
 
-void UpdatePresenter::load(const Telemetry::UpdateChecker::UpdateMetaInformation &meta)
+void UpdatePresenter::showUpdate(const Telemetry::UpdateChecker::UpdateMetaInformation &info)
 {
-    LOG_INFO(BOOL_INFO_OF(meta.preview) << INFO_OF(meta.name) << INFO_OF(meta.body) << INFO_OF(meta.assetDownloadUrl)
-                                        << INFO_OF(meta.releasePageUrl) << INFO_OF(meta.tagName)
-                                        << INFO_OF((int)meta.result));
+    LOG_INFO(BOOL_INFO_OF(info.preview) << INFO_OF(info.version) << INFO_OF(info.changelog)
+                                        << INFO_OF(info.assetDownloadUrl) << INFO_OF(info.releasePageUrl));
 
-    information = meta;
+    downloadUrl = info.assetDownloadUrl;
 
-    textEdit->setMarkdown(information.body);
+    textEdit->setMarkdown(info.changelog);
 
     auto message =
         QString(
             "A new %1 update <a href=\"%2\">%3</a> is available. See below for the changelog.<br />We highly recommend "
             "you keep the editor up to date so that you won't miss the awesome new features and bug fixes.")
-            .arg(information.preview ? "beta" : "stable")
-            .arg(information.releasePageUrl)
-            .arg(information.name);
-    name->setText(message);
+            .arg(info.preview ? "beta" : "stable")
+            .arg(info.releasePageUrl)
+            .arg(info.version);
+    hint->setText(message);
 
     Util::showWidgetOnTop(this);
 }

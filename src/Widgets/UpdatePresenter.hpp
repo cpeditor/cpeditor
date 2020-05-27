@@ -17,8 +17,8 @@
 #ifndef UPDATE_PRESENTER_DIALOG
 #define UPDATE_PRESENTER_DIALOG
 
+#include "Telemetry/UpdateChecker.hpp"
 #include <QDialog>
-#include <Telemetry/UpdateChecker.hpp>
 
 class QLabel;
 class QVBoxLayout;
@@ -33,18 +33,18 @@ class UpdatePresenter : public QDialog
     Q_OBJECT
 
   public:
-    UpdatePresenter();
-    void load(const Telemetry::UpdateChecker::UpdateMetaInformation &meta);
+    explicit UpdatePresenter();
+    void showUpdate(const Telemetry::UpdateChecker::UpdateMetaInformation &info);
 
   private:
-    QLabel *name = nullptr;
+    QLabel *hint = nullptr;
     QVBoxLayout *mainLayout = nullptr;
     QHBoxLayout *subLayout = nullptr;
     QTextEdit *textEdit = nullptr;
     QPushButton *downloadButton = nullptr;
     QPushButton *cancelButton = nullptr;
 
-    Telemetry::UpdateChecker::UpdateMetaInformation information;
+    QString downloadUrl;
 };
 } // namespace Widgets
 #endif
