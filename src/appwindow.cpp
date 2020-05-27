@@ -260,7 +260,6 @@ void AppWindow::setConnections()
 
 void AppWindow::allocate()
 {
-    SettingsManager::init();
     autoSaveTimer = new QTimer();
     lspTimerCpp = new QTimer();
     lspTimerJava = new QTimer();

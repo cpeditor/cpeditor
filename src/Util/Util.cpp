@@ -16,7 +16,11 @@
  */
 
 #include "Util/Util.hpp"
+#include <QCoreApplication>
+#include <QFile>
 #include <QPalette>
+#include <QTranslator>
+#include <generated/SettingsInfo.hpp>
 
 namespace Util
 {
@@ -141,6 +145,27 @@ QStringList splitArgument(QString arg)
     if (status == SA_NORMAL)
         result.push_back(current);
     return result;
+}
+
+void applyNewLocale(const QString &language)
+{
+    static QMap<QString, QString> locales = {
+        {"简体中文", "SimplifiedChinese"},
+        // {"繁體中文", "TraditionalChinese"},
+        {"русский", "Russian"} // I use google translate to get this. Update this if not suitable.
+    };
+    static QByteArray qmData;
+    if (language != "English")
+    {
+        QFile file(QString(":/translations/%1.qm").arg(locales[language]));
+        file.open(QIODevice::ReadOnly);
+        qmData = file.readAll();
+        file.close();
+        QTranslator translator;
+        translator.load(reinterpret_cast<uchar *>(qmData.data()), qmData.size());
+        QCoreApplication::instance()->installTranslator(&translator);
+        updateSettingInfo();
+    }
 }
 
 } // namespace Util

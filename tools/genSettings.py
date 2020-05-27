@@ -61,6 +61,7 @@ namespace SettingsHelper
     setting_info.write("""#ifndef SETTINGSINFO_HPP
 #define SETTINGSINFO_HPP
 
+#include <QCoreApplication>
 #include <QFont>
 #include <QRect>
 #include <QVariant>
@@ -78,8 +79,29 @@ struct SettingInfo
     }
 };
 
-const SettingInfo settingInfo[] =
+extern QList<SettingInfo> settingInfo;
+
+void updateSettingInfo();
+
+inline SettingInfo findSetting(const QString &name)
 {
+    for (const SettingInfo &si: settingInfo)
+        if (si.name == name)
+            return si;
+    return SettingInfo();
+}
+
+#endif // SETTINGSINFO_HPP""")
+
+    setting_info = open("generated/SettingsInfo.cpp", mode="w")
+    setting_info.write(head)
+    setting_info.write("""#include "SettingsInfo.hpp"
+
+QList<SettingInfo> settingInfo;
+
+void updateSettingInfo()
+{
+    settingInfo.clear();
 """)
     for t in obj:
         name = t["name"]
@@ -101,7 +123,7 @@ const SettingInfo settingInfo[] =
         else:
             hlp = ""
         setting_info.write(
-            f"    {{{json.dumps(name)}, {json.dumps(desc)}, \"{typename}\", \"{ui}\", {json.dumps(tip)}, {json.dumps(hlp)}, {{")
+            f"    settingInfo.append(SettingInfo {{{json.dumps(name)}, QCoreApplication::translate(\"Setting\", {json.dumps(desc)}), \"{typename}\", \"{ui}\", QCoreApplication::translate(\"Setting\", {json.dumps(tip)}), QCoreApplication::translate(\"Setting\", {json.dumps(hlp)}), {{")
         if "old" in t:
             olds = ""
             for s in t["old"]:
@@ -128,16 +150,6 @@ const SettingInfo settingInfo[] =
             setting_info.write(defs[typename])
         if "param" in t:
             setting_info.write(f', {t["param"]}')
-        setting_info.write("},\n")
-    setting_info.write("""};
-
-inline SettingInfo findSetting(const QString &name)
-{
-    for (const SettingInfo &si: settingInfo)
-        if (si.name == name)
-            return si;
-    return SettingInfo();
-}
-
-#endif // SETTINGSINFO_HPP""")
+        setting_info.write("});\n")
+    setting_info.write("};\n")
     setting_info.close()

@@ -31,6 +31,8 @@ QPalette windowsDarkThemePalette();
 
 QStringList splitArgument(QString);
 
+void applyNewLocale(const QString &language);
+
 } // namespace Util
 
 #endif // UTIL_HPP
