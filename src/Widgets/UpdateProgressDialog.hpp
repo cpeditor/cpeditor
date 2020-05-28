@@ -15,36 +15,37 @@
  *
  */
 
-#ifndef UPDATENOTIFIER_HPP
-#define UPDATENOTIFIER_HPP
+#ifndef UPDATE_DIALOG_PROGRESS
+#define UPDATE_DIALOG_PROGRESS
 
-#include <QObject>
+#include <QDialog>
 
-class QNetworkAccessManager;
-class QNetworkReply;
-class QNetworkRequest;
+class QProgressBar;
+class QPushButton;
+class QLabel;
+class QVBoxLayout;
 
-namespace Telemetry
+namespace Widgets
 {
-class UpdateNotifier : public QObject
+class UpdateProgressDialog : public QDialog
 {
     Q_OBJECT
 
   public:
-    explicit UpdateNotifier(bool useBeta);
-    void checkUpdate(bool force = false);
-    ~UpdateNotifier();
-    void setBeta(bool value);
+    explicit UpdateProgressDialog();
+    void start();
+    void onAlreadyUpToDate();
+    void onUpdateFailed(const QString &error);
 
-  private slots:
-    void managerFinished(QNetworkReply *reply);
+  signals:
+    void canceled();
 
   private:
-    QNetworkAccessManager *manager;
-    QNetworkRequest *request;
-    bool beta;
-    bool force;
+    QPushButton *cancelUpdate = nullptr;
+    QLabel *information = nullptr;
+    QProgressBar *progressBar = nullptr;
+    QVBoxLayout *mainLayout = nullptr;
 };
-} // namespace Telemetry
+} // namespace Widgets
 
-#endif // UPDATENOTIFIER_HPP
+#endif

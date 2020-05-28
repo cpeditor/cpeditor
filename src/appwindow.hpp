@@ -44,7 +44,7 @@ class LanguageServer;
 
 namespace Telemetry
 {
-class UpdateNotifier;
+class UpdateChecker;
 }
 
 class AppWindow : public QMainWindow
@@ -198,7 +198,7 @@ class AppWindow : public QMainWindow
 
     QMetaObject::Connection activeSplitterMoveConnection;
     QMetaObject::Connection activeRightSplitterMoveConnection;
-    Telemetry::UpdateNotifier *updater = nullptr;
+    Telemetry::UpdateChecker *updateChecker = nullptr;
     PreferencesWindow *preferencesWindow = nullptr;
     Extensions::CompanionServer *server;
     FindReplaceDialog *findReplaceDialog = nullptr;

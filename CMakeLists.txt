@@ -110,8 +110,8 @@ add_executable(cpeditor
     src/Settings/ValueWrapper.cpp
     src/Settings/ValueWrapper.hpp
 
-    src/Telemetry/UpdateNotifier.cpp
-    src/Telemetry/UpdateNotifier.hpp
+    src/Telemetry/UpdateChecker.cpp
+    src/Telemetry/UpdateChecker.hpp
 
     src/Util/FileUtil.cpp
     src/Util/FileUtil.hpp
@@ -128,6 +128,10 @@ add_executable(cpeditor
     src/Widgets/TestCaseEdit.hpp
     src/Widgets/TestCases.cpp
     src/Widgets/TestCases.hpp
+    src/Widgets/UpdatePresenter.hpp
+    src/Widgets/UpdatePresenter.cpp
+    src/Widgets/UpdateProgressDialog.hpp
+    src/Widgets/UpdateProgressDialog.cpp
 
     src/appwindow.cpp
     src/appwindow.hpp
