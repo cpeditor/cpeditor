@@ -34,11 +34,11 @@ DEFINE=${define^^}
 
 mkdir -p "src/$filepath"
 
-echo "$head" "
+echo "$head
 #ifndef $DEFINE
 #define $DEFINE
 
 #endif // $DEFINE" > "src/$1.hpp"
 
-echo "$head" "
+echo "$head
 #include \"$1.hpp\"" > "src/$1.cpp"
