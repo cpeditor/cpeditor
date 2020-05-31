@@ -498,15 +498,16 @@ void MainWindow::applySettings(const QString &pagePath, bool shouldPerformDigoni
         }
     }
 
-    if (pagePath.isEmpty() || pagePath == "Code Edit" || pagePath == "Appearance")
-        Util::applySettingsToEditor(editor);
+    if (pagePath.isEmpty() || pagePath == "Code Edit" || pagePath == "Appearance" ||
+        pagePath == QString("Language/%1/%1 Parentheses").arg(language))
+        Util::applySettingsToEditor(editor, language);
 
     if (!isLanguageSet && (pagePath.isEmpty() || pagePath == "Language/General"))
     {
         setLanguage(SettingsHelper::getDefaultLanguage());
     }
 
-    if (shouldPerformDigonistic && (pagePath.isEmpty() || pagePath == "Language/Commands"))
+    if (shouldPerformDigonistic && (pagePath.isEmpty() || pagePath == QString("Language/%1/%1 Commands").arg(language)))
     {
         performCompileAndRunDiagonistics();
     }
@@ -527,7 +528,7 @@ void MainWindow::applySettings(const QString &pagePath, bool shouldPerformDigoni
         }
     }
 
-    if (pagePath.isEmpty() || pagePath == "Language/Commands")
+    if (pagePath.isEmpty() || pagePath == "Language/C++/C++ Commands")
         updateChecker();
 }
 
@@ -611,7 +612,7 @@ void MainWindow::setLanguage(const QString &lang)
     language = lang;
     if (language != "Python" && language != "Java")
         language = "C++";
-    Util::setEditorLanguage(editor, language);
+    Util::applySettingsToEditor(editor, language);
     ui->changeLanguageButton->setText(language);
     performCompileAndRunDiagonistics();
     isLanguageSet = true;

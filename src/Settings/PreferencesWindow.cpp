@@ -18,6 +18,7 @@
 #include "Settings/PreferencesWindow.hpp"
 #include "Settings/AppearancePage.hpp"
 #include "Settings/CodeSnippetsPage.hpp"
+#include "Settings/ParenthesesPage.hpp"
 #include "Settings/PreferencesHomePage.hpp"
 #include <QApplication>
 #include <QCloseEvent>
@@ -98,7 +99,7 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
     // add pages
 
     addPage("Code Edit", {"Tab Width", "Auto Indent", "Wrap Text", "Auto Complete Parentheses",
-                          "Auto Remove Parentheses", "Replace Tabs"});
+                          "Auto Remove Parentheses", "Tab Jump Out Parentheses", "Replace Tabs"});
 
     addPage("Language/General", {"Default Language"});
 
@@ -109,6 +110,10 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
     auto cppSnippetsPage = new CodeSnippetsPage("C++");
     addPage("Language/C++/C++ Snippets", cppSnippetsPage,
             {"C++ Snippets", "C++ Code Snippets", "Cpp Snippets", "Cpp Code Snippets"});
+    auto cppParenthesesPage = new ParenthesesPage("C++");
+    addPage(
+        "Language/C++/C++ Parentheses", cppParenthesesPage,
+        {"C++ Parentheses", "C++ Brackets", "C++ Braces", "C++ Auto Complete", "C++ Auto Remove", "C++ Tab Jump Out"});
 
     addPage("Language/Java/Java Commands",
             {"Java/Compile Command", "Java/Output Path", "Java/Class Name", "Java/Run Command", "Java/Run Arguments"});
@@ -117,6 +122,10 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
              "Java/Template Cursor Position Offset Characters"});
     auto javaSnippetsPage = new CodeSnippetsPage("Java");
     addPage("Language/Java/Java Snippets", javaSnippetsPage, {"Java Snippets", "Java Code Snippets"});
+    auto javaParenthesesPage = new ParenthesesPage("Java");
+    addPage("Language/Java/Java Parentheses", javaParenthesesPage,
+            {"Java Parentheses", "Java Brackets", "Java Braces", "Java Auto Complete", "Java Auto Remove",
+             "Java Tab Jump Out"});
 
     addPage("Language/Python/Python Commands", {"Python/Run Command", "Python/Run Arguments"});
     addPage("Language/Python/Python Template",
@@ -124,6 +133,10 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
              "Python/Template Cursor Position Offset Type", "Python/Template Cursor Position Offset Characters"});
     auto pythonSnippetsPage = new CodeSnippetsPage("Python");
     addPage("Language/Python/Python Snippets", pythonSnippetsPage, {"Python Snippets", "Python Code Snippets"});
+    auto pythonParenthesesPage = new ParenthesesPage("Python");
+    addPage("Language/Python/Python Parentheses", pythonParenthesesPage,
+            {"Python Parentheses", "Python Brackets", "Python Braces", "Python Auto Complete", "Python Auto Remove",
+             "Python Tab Jump Out"});
 
     auto appearancePage = new AppearancePage();
     addPage("Appearance", appearancePage, appearancePage->content());
