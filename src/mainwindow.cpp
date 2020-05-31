@@ -973,6 +973,11 @@ bool MainWindow::closeConfirm()
     return confirmed;
 }
 
+void MainWindow::on_clear_messages_button_clicked()
+{
+    log->clear();
+}
+
 void MainWindow::on_changeLanguageButton_clicked()
 {
     LOG_INFO("Window language change button requested");

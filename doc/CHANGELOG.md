@@ -14,6 +14,7 @@
 - Now you can set a initial position for the code template. (#352)
 - Use tab to jump out of a parenthesis. (#256)
 - Parentheses settings for each parenthesis in each language. (#206)
+- A button to clear the messages.
 
 ### Fixed
 
