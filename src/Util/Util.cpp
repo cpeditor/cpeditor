@@ -17,6 +17,7 @@
 
 #include "Util/Util.hpp"
 #include <QPalette>
+#include <QWidget>
 
 namespace Util
 {
@@ -141,6 +142,14 @@ QStringList splitArgument(QString arg)
     if (status == SA_NORMAL)
         result.push_back(current);
     return result;
+}
+
+void showWidgetOnTop(QWidget *widget)
+{
+    widget->show();
+    widget->setWindowState((widget->windowState() & ~Qt::WindowMinimized) | Qt::WindowActive);
+    widget->activateWindow();
+    widget->raise();
 }
 
 } // namespace Util

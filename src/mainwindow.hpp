@@ -47,11 +47,6 @@ class ClangFormatter;
 struct CompanionData;
 } // namespace Extensions
 
-namespace Telemetry
-{
-class UpdateNotifier;
-}
-
 namespace Widgets
 {
 class TestCases;

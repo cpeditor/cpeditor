@@ -20,6 +20,7 @@
 #include "Settings/CodeSnippetsPage.hpp"
 #include "Settings/ParenthesesPage.hpp"
 #include "Settings/PreferencesHomePage.hpp"
+#include "Util/Util.hpp"
 #include <QApplication>
 #include <QCloseEvent>
 #include <QHBoxLayout>
@@ -179,10 +180,7 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
 void PreferencesWindow::display()
 {
     bool hidden = isHidden();
-    show();
-    setWindowState((windowState() & ~Qt::WindowMinimized) | Qt::WindowActive);
-    activateWindow();
-    raise();
+    Util::showWidgetOnTop(this);
     if (hidden)
     {
         switchToPage(homePage);
