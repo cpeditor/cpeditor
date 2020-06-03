@@ -4,8 +4,70 @@
 <context>
     <name>AppWindow</name>
     <message>
+        <location filename="../src/appwindow.cpp" line="105"/>
+        <source>Hot Exit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/appwindow.cpp" line="106"/>
+        <source>In the last session, CP Editor was abnormally killed, do you want to restore the last session?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/appwindow.cpp" line="116"/>
+        <source>Restoring Last Session</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/appwindow.cpp" line="293"/>
+        <source>Show Main Window</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/appwindow.cpp" line="447"/>
+        <source>Opening Files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/appwindow.cpp" line="611"/>
+        <source>About CP Editor %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/appwindow.cpp" line="612"/>
+        <source>&lt;p&gt;&lt;b&gt;CP Editor&lt;/b&gt; is a native Qt-based code editor. It&apos;s specially designed for competitive programming, unlike other editors/IDEs which are mainly for developers. It helps you focus on your algorithm and automates the compilation, executing and testing. It even fetches test cases for you from different platforms and submits solutions to Codeforces!&lt;/p&gt;&lt;p&gt;Copyright (C) 2019-2020 Ashar Khan &amp;lt;ashar786khan@gmail.com&amp;gt;&lt;/p&gt;&lt;p&gt;This is free software; see the source for copying conditions. There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. The source code for CP Editor is available at &lt;a href=&quot;https://github.com/cpeditor/cpeditor&quot;&gt; https://github.com/cpeditor/cpeditor&lt;/a&gt;.&lt;/p&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../src/appwindow.cpp" line="664"/>
         <source>Open Files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/appwindow.cpp" line="672"/>
+        <location filename="../src/appwindow.cpp" line="677"/>
+        <location filename="../src/appwindow.cpp" line="685"/>
+        <source>Open Contest</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/appwindow.cpp" line="677"/>
+        <source>Number of problems in this contest:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/appwindow.cpp" line="685"/>
+        <source>Choose a language</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/appwindow.cpp" line="746"/>
+        <source>Reset preferences</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/appwindow.cpp" line="747"/>
+        <source>Are you sure you want to reset the all preferences to default?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -19,6 +81,102 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../src/appwindow.cpp" line="1312"/>
+        <source>Close</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/appwindow.cpp" line="1314"/>
+        <source>Close Others</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/appwindow.cpp" line="1320"/>
+        <source>Close to the Left</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/appwindow.cpp" line="1326"/>
+        <source>Close to the Right</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/appwindow.cpp" line="1342"/>
+        <source>Copy File Path</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/appwindow.cpp" line="1345"/>
+        <source>Reveal in Finder</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/appwindow.cpp" line="1358"/>
+        <source>Reveal in Explorer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/appwindow.cpp" line="1403"/>
+        <location filename="../src/appwindow.cpp" line="1418"/>
+        <location filename="../src/appwindow.cpp" line="1423"/>
+        <location filename="../src/appwindow.cpp" line="1437"/>
+        <source>Open Containing Folder</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/appwindow.cpp" line="1409"/>
+        <source>Reveal in File Manager</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/appwindow.cpp" line="1433"/>
+        <source>Copy path</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/appwindow.cpp" line="1444"/>
+        <source>Open problem in browser</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/appwindow.cpp" line="1446"/>
+        <source>Copy Problem URL</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/appwindow.cpp" line="1449"/>
+        <source>Set Codeforces URL</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/appwindow.cpp" line="1454"/>
+        <location filename="../src/appwindow.cpp" line="1457"/>
+        <source>Set CF URL</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/appwindow.cpp" line="1454"/>
+        <source>Enter the contest ID:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/appwindow.cpp" line="1457"/>
+        <source>Enter the problem Code (A-Z):</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/appwindow.cpp" line="1464"/>
+        <location filename="../src/appwindow.cpp" line="1466"/>
+        <source>Set Problem URL</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/appwindow.cpp" line="1466"/>
+        <source>Enter the new problem URL:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/appwindow.cpp" line="821"/>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="257"/>
         <source>CP Editor: An editor specially designed for competitive programming</source>
         <translation type="unfinished"></translation>
@@ -99,6 +257,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../src/appwindow.cpp" line="1331"/>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="293"/>
         <source>Close Saved</source>
         <translation type="unfinished"></translation>
@@ -114,6 +273,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../src/appwindow.cpp" line="1333"/>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="300"/>
         <source>Close All</source>
         <translation type="unfinished"></translation>
@@ -129,6 +289,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../src/appwindow.cpp" line="295"/>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="307"/>
         <source>Quit</source>
         <translation type="unfinished"></translation>
@@ -354,6 +515,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../src/appwindow.cpp" line="294"/>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="398"/>
         <source>About</source>
         <translation type="unfinished"></translation>
@@ -1400,128 +1562,128 @@ from competitive companion again, the old file will be opened.</source>
 <context>
     <name>TestCases</name>
     <message>
-        <location filename="../src/Widgets/TestCases.cpp" line="45"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="46"/>
         <source>Test Cases</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Widgets/TestCases.cpp" line="47"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="48"/>
         <source>Checker:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Widgets/TestCases.cpp" line="48"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="49"/>
         <source>Add Test</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Widgets/TestCases.cpp" line="49"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="50"/>
         <source>More</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Widgets/TestCases.cpp" line="50"/>
-        <location filename="../src/Widgets/TestCases.cpp" line="458"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="51"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="459"/>
         <source>Add Checker</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Widgets/TestCases.cpp" line="69"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="70"/>
         <source>Wrong Answer / Accepted / Total</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Widgets/TestCases.cpp" line="70"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="71"/>
         <source>Add a custom testlib checker</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Widgets/TestCases.cpp" line="76"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="77"/>
         <source>Add Pairs of Testcases From Files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Widgets/TestCases.cpp" line="78"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="79"/>
         <source>Choose Testcase Files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Widgets/TestCases.cpp" line="143"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="144"/>
         <source>Remove Empty</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Widgets/TestCases.cpp" line="155"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="156"/>
         <source>Remove All</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Widgets/TestCases.cpp" line="158"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="159"/>
         <source>Clear Testcases</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Widgets/TestCases.cpp" line="159"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="160"/>
         <source>Do you want to delete all test cases?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Widgets/TestCases.cpp" line="170"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="171"/>
         <source>Hide AC</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Widgets/TestCases.cpp" line="177"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="178"/>
         <source>Show All</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Widgets/TestCases.cpp" line="183"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="184"/>
         <source>Hide All</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Widgets/TestCases.cpp" line="189"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="190"/>
         <source>Invert</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Widgets/TestCases.cpp" line="202"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="203"/>
         <source>Ignore trailing spaces</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Widgets/TestCases.cpp" line="203"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="204"/>
         <source>Strictly the same</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Widgets/TestCases.cpp" line="204"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="205"/>
         <source>ncmp - Compare int64s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Widgets/TestCases.cpp" line="205"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="206"/>
         <source>rcmp4 - Compare doubles, max error 1e-4</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Widgets/TestCases.cpp" line="206"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="207"/>
         <source>rcmp6 - Compare doubles, max error 1e-6</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Widgets/TestCases.cpp" line="207"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="208"/>
         <source>rcmp9 - Compare doubles, max error 1e-9</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Widgets/TestCases.cpp" line="208"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="209"/>
         <source>wcmp - Compare tokens</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Widgets/TestCases.cpp" line="209"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="210"/>
         <source>nyesno - Compare YES/NOs, case insensitive</source>
         <translation type="unfinished"></translation>
     </message>
