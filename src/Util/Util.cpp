@@ -154,16 +154,12 @@ void applyNewLocale(const QString &language)
         // {"繁體中文", "TraditionalChinese"},
         {"русский", "Russian"} // I use google translate to get this. Update this if not suitable.
     };
-    static QByteArray qmData;
     if (language != "English")
     {
-        QFile file(QString(":/translations/%1.qm").arg(locales[language]));
-        file.open(QIODevice::ReadOnly);
-        qmData = file.readAll();
-        file.close();
-        QTranslator translator;
-        translator.load(reinterpret_cast<uchar *>(qmData.data()), qmData.size());
-        QCoreApplication::instance()->installTranslator(&translator);
+        QCoreApplication *app = QCoreApplication::instance();
+        QTranslator *translator = new QTranslator(app);
+        translator->load(QString(":/translations/%1.qm").arg(locales[language]));
+        app->installTranslator(translator);
         updateSettingInfo();
     }
 }
