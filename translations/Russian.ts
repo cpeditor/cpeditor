@@ -1329,4 +1329,201 @@ from competitive companion again, the old file will be opened.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
+<context>
+    <name>TestCase</name>
+    <message>
+        <location filename="../src/Widgets/TestCase.cpp" line="47"/>
+        <source>Input</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Widgets/TestCase.cpp" line="48"/>
+        <source>Output</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Widgets/TestCase.cpp" line="49"/>
+        <source>Expected</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Widgets/TestCase.cpp" line="50"/>
+        <source>Run</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Widgets/TestCase.cpp" line="52"/>
+        <source>Del</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Widgets/TestCase.cpp" line="86"/>
+        <source>Test on a single testcase</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Widgets/TestCase.cpp" line="87"/>
+        <source>Open the Diff Viewer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Widgets/TestCase.cpp" line="108"/>
+        <source>Output Length Limit Exceeded</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Widgets/TestCase.cpp" line="157"/>
+        <source>Input #%1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Widgets/TestCase.cpp" line="158"/>
+        <source>Output #%1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Widgets/TestCase.cpp" line="159"/>
+        <source>Expected #%1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Widgets/TestCase.cpp" line="248"/>
+        <source>Delete Testcase</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Widgets/TestCase.cpp" line="249"/>
+        <source>Do you want to delete test case #%1?</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>TestCases</name>
+    <message>
+        <location filename="../src/Widgets/TestCases.cpp" line="45"/>
+        <source>Test Cases</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Widgets/TestCases.cpp" line="47"/>
+        <source>Checker:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Widgets/TestCases.cpp" line="48"/>
+        <source>Add Test</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Widgets/TestCases.cpp" line="49"/>
+        <source>More</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Widgets/TestCases.cpp" line="50"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="458"/>
+        <source>Add Checker</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Widgets/TestCases.cpp" line="69"/>
+        <source>Wrong Answer / Accepted / Total</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Widgets/TestCases.cpp" line="70"/>
+        <source>Add a custom testlib checker</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Widgets/TestCases.cpp" line="76"/>
+        <source>Add Pairs of Testcases From Files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Widgets/TestCases.cpp" line="78"/>
+        <source>Choose Testcase Files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Widgets/TestCases.cpp" line="143"/>
+        <source>Remove Empty</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Widgets/TestCases.cpp" line="155"/>
+        <source>Remove All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Widgets/TestCases.cpp" line="158"/>
+        <source>Clear Testcases</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Widgets/TestCases.cpp" line="159"/>
+        <source>Do you want to delete all test cases?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Widgets/TestCases.cpp" line="170"/>
+        <source>Hide AC</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Widgets/TestCases.cpp" line="177"/>
+        <source>Show All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Widgets/TestCases.cpp" line="183"/>
+        <source>Hide All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Widgets/TestCases.cpp" line="189"/>
+        <source>Invert</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Widgets/TestCases.cpp" line="202"/>
+        <source>Ignore trailing spaces</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Widgets/TestCases.cpp" line="203"/>
+        <source>Strictly the same</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Widgets/TestCases.cpp" line="204"/>
+        <source>ncmp - Compare int64s</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Widgets/TestCases.cpp" line="205"/>
+        <source>rcmp4 - Compare doubles, max error 1e-4</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Widgets/TestCases.cpp" line="206"/>
+        <source>rcmp6 - Compare doubles, max error 1e-6</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Widgets/TestCases.cpp" line="207"/>
+        <source>rcmp9 - Compare doubles, max error 1e-9</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Widgets/TestCases.cpp" line="208"/>
+        <source>wcmp - Compare tokens</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Widgets/TestCases.cpp" line="209"/>
+        <source>nyesno - Compare YES/NOs, case insensitive</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
 </TS>

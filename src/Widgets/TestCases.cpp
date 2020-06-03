@@ -22,6 +22,7 @@
 #include "Widgets/TestCase.hpp"
 #include "generated/SettingsHelper.hpp"
 #include <QComboBox>
+#include <QCoreApplication>
 #include <QFileDialog>
 #include <QFileInfo>
 #include <QHBoxLayout>
@@ -42,12 +43,12 @@ TestCases::TestCases(MessageLogger *logger, QWidget *parent) : QWidget(parent), 
     mainLayout = new QVBoxLayout(this);
     titleLayout = new QHBoxLayout();
     checkerLayout = new QHBoxLayout();
-    label = new QLabel("Test Cases");
+    label = new QLabel(QCoreApplication::translate("TestCases", "Test Cases"));
     verdicts = new QLabel();
-    checkerLabel = new QLabel("Checker:");
-    addButton = new QPushButton("Add Test");
-    moreButton = new QPushButton("More");
-    addCheckerButton = new QPushButton("Add Checker");
+    checkerLabel = new QLabel(QCoreApplication::translate("TestCases", "Checker:"));
+    addButton = new QPushButton(QCoreApplication::translate("TestCases", "Add Test"));
+    moreButton = new QPushButton(QCoreApplication::translate("TestCases", "More"));
+    addCheckerButton = new QPushButton(QCoreApplication::translate("TestCases", "Add Checker"));
     checkerComboBox = new QComboBox();
     scrollArea = new QScrollArea();
     scrollAreaWidget = new QWidget();
@@ -66,15 +67,16 @@ TestCases::TestCases(MessageLogger *logger, QWidget *parent) : QWidget(parent), 
     mainLayout->addLayout(checkerLayout);
     mainLayout->addWidget(scrollArea);
 
-    verdicts->setToolTip("Wrong Answer / Accepted / Total");
-    addCheckerButton->setToolTip("Add a custom testlib checker");
+    verdicts->setToolTip(QCoreApplication::translate("TestCases", "Wrong Answer / Accepted / Total"));
+    addCheckerButton->setToolTip(QCoreApplication::translate("TestCases", "Add a custom testlib checker"));
 
     updateVerdicts();
 
     moreMenu = new QMenu();
 
-    moreMenu->addAction("Add Pairs of Testcases From Files", [this] {
-        QStringList paths = QFileDialog::getOpenFileNames(this, "Choose Testcase Files", "");
+    moreMenu->addAction(QCoreApplication::translate("TestCases", "Add Pairs of Testcases From Files"), [this] {
+        QStringList paths =
+            QFileDialog::getOpenFileNames(this, QCoreApplication::translate("TestCases", "Choose Testcase Files"), "");
         LOG_INFO(paths.join(", "));
         if (paths.size())
         {
@@ -139,7 +141,7 @@ TestCases::TestCases(MessageLogger *logger, QWidget *parent) : QWidget(parent), 
         }
     });
 
-    moreMenu->addAction("Remove Empty", [this] {
+    moreMenu->addAction(QCoreApplication::translate("TestCases", "Remove Empty"), [this] {
         LOG_INFO("Testcases Removing empty");
         for (int i = 0; i < count(); ++i)
         {
@@ -151,9 +153,11 @@ TestCases::TestCases(MessageLogger *logger, QWidget *parent) : QWidget(parent), 
         }
     });
 
-    moreMenu->addAction("Remove All", [this] {
+    moreMenu->addAction(QCoreApplication::translate("TestCases", "Remove All"), [this] {
         LOG_INFO("Testcases removing all testcases");
-        auto res = QMessageBox::question(this, "Clear Testcases", "Do you want to delete all test cases?");
+        auto res =
+            QMessageBox::question(this, QCoreApplication::translate("TestCases", "Clear Testcases"),
+                                  QCoreApplication::translate("TestCases", "Do you want to delete all test cases?"));
         if (res == QMessageBox::Yes)
         {
             for (int i = 0; i < count(); ++i)
@@ -164,26 +168,26 @@ TestCases::TestCases(MessageLogger *logger, QWidget *parent) : QWidget(parent), 
         }
     });
 
-    moreMenu->addAction("Hide AC", [this] {
+    moreMenu->addAction(QCoreApplication::translate("TestCases", "Hide AC"), [this] {
         LOG_INFO("Testcases hiding all Accepted");
         for (auto t : testcases)
             if (t->verdict() == Core::Checker::AC)
                 t->setShow(false);
     });
 
-    moreMenu->addAction("Show All", [this] {
+    moreMenu->addAction(QCoreApplication::translate("TestCases", "Show All"), [this] {
         LOG_INFO("Testcases making all cases visible");
         for (auto t : testcases)
             t->setShow(true);
     });
 
-    moreMenu->addAction("Hide All", [this] {
+    moreMenu->addAction(QCoreApplication::translate("TestCases", "Hide All"), [this] {
         LOG_INFO("Testcases Hiding all cases");
         for (auto t : testcases)
             t->setShow(false);
     });
 
-    moreMenu->addAction("Invert", [this] {
+    moreMenu->addAction(QCoreApplication::translate("TestCases", "Invert"), [this] {
         LOG_INFO("Testcases Inverting all cases");
         for (auto t : testcases)
             t->setShow(t->isShow() ^ 1);
@@ -196,10 +200,14 @@ TestCases::TestCases(MessageLogger *logger, QWidget *parent) : QWidget(parent), 
     addCheckerButton->setSizePolicy({QSizePolicy::Maximum, QSizePolicy::Fixed});
     checkerComboBox->setMinimumWidth(100);
 
-    checkerComboBox->addItems({"Ignore trailing spaces", "Strictly the same", "ncmp - Compare int64s",
-                               "rcmp4 - Compare doubles, max error 1e-4", "rcmp6 - Compare doubles, max error 1e-6",
-                               "rcmp9 - Compare doubles, max error 1e-9", "wcmp - Compare tokens",
-                               "nyesno - Compare YES/NOs, case insensitive"});
+    checkerComboBox->addItems({QCoreApplication::translate("TestCases", "Ignore trailing spaces"),
+                               QCoreApplication::translate("TestCases", "Strictly the same"),
+                               QCoreApplication::translate("TestCases", "ncmp - Compare int64s"),
+                               QCoreApplication::translate("TestCases", "rcmp4 - Compare doubles, max error 1e-4"),
+                               QCoreApplication::translate("TestCases", "rcmp6 - Compare doubles, max error 1e-6"),
+                               QCoreApplication::translate("TestCases", "rcmp9 - Compare doubles, max error 1e-9"),
+                               QCoreApplication::translate("TestCases", "wcmp - Compare tokens"),
+                               QCoreApplication::translate("TestCases", "nyesno - Compare YES/NOs, case insensitive")});
     checkerComboBox->setCurrentIndex(0);
 
     connect(checkerComboBox, SIGNAL(currentIndexChanged(int)), this, SIGNAL(checkerChanged()));
@@ -448,7 +456,8 @@ void TestCases::on_addButton_clicked()
 void TestCases::on_addCheckerButton_clicked()
 {
     LOG_INFO("Add checker button clicked");
-    auto path = QFileInfo(QFileDialog::getOpenFileName(this, "Add Checker")).canonicalFilePath();
+    auto path = QFileInfo(QFileDialog::getOpenFileName(this, QCoreApplication::translate("TestCases", "Add Checker")))
+                    .canonicalFilePath();
     if (!path.isEmpty())
     {
         checkerComboBox->addItem(path);
