@@ -6,17 +6,17 @@
     <message>
         <location filename="../src/appwindow.cpp" line="664"/>
         <source>Open Files</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">打开</translation>
     </message>
     <message>
         <location filename="../src/appwindow.cpp" line="1176"/>
         <source>Use Snippets</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">使用代码片段</translation>
     </message>
     <message>
         <location filename="../src/appwindow.cpp" line="1176"/>
         <source>Choose a snippet:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">选择一个代码片段：</translation>
     </message>
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="257"/>
@@ -26,12 +26,12 @@
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="258"/>
         <source>New Tab</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">新标签页</translation>
     </message>
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="260"/>
         <source>Opens a new Tab in the Editor</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">在编辑器中打开一个新标签页</translation>
     </message>
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="263"/>
@@ -41,12 +41,12 @@
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="265"/>
         <source>Save</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">保存</translation>
     </message>
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="267"/>
         <source>Saves the file to disk</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">将文件保存到硬盘</translation>
     </message>
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="270"/>
@@ -56,12 +56,12 @@
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="272"/>
         <source>Save As...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">另存为...</translation>
     </message>
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="274"/>
         <source>Save as new file</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">以新文件保存</translation>
     </message>
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="277"/>
@@ -71,12 +71,12 @@
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="279"/>
         <source>Save All</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">保存所有</translation>
     </message>
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="281"/>
         <source>Save all opened files</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">保存所有打开的文件</translation>
     </message>
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="284"/>
@@ -86,12 +86,12 @@
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="286"/>
         <source>Close Current</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">关闭当前</translation>
     </message>
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="288"/>
         <source>Close current tab</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">关闭当前标签页</translation>
     </message>
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="291"/>
@@ -101,12 +101,12 @@
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="293"/>
         <source>Close Saved</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">关闭已保存</translation>
     </message>
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="295"/>
         <source>Close saved tabs</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">关闭已保存的标签页</translation>
     </message>
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="298"/>
@@ -116,12 +116,12 @@
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="300"/>
         <source>Close All</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">关闭所有</translation>
     </message>
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="302"/>
         <source>Close All the tabs</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">关闭所有标签页</translation>
     </message>
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="305"/>
@@ -131,12 +131,12 @@
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="307"/>
         <source>Quit</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">退出</translation>
     </message>
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="309"/>
         <source>Quit the application</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">退出程序</translation>
     </message>
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="312"/>
@@ -146,12 +146,12 @@
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="314"/>
         <source>Open File...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">打开...</translation>
     </message>
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="316"/>
         <source>Open files</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">打开文件</translation>
     </message>
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="319"/>
@@ -161,12 +161,12 @@
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="321"/>
         <source>Open Contest...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">打开比赛...</translation>
     </message>
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="323"/>
         <source>Open a Contest</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">打开一个比赛</translation>
     </message>
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="326"/>
@@ -176,7 +176,7 @@
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="328"/>
         <source>Indent</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">缩进</translation>
     </message>
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="330"/>
@@ -186,7 +186,7 @@
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="332"/>
         <source>Unindent</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">取消缩进</translation>
     </message>
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="334"/>
@@ -196,7 +196,7 @@
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="336"/>
         <source>Swap Line Up</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">向上交换当前行</translation>
     </message>
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="338"/>
@@ -206,7 +206,7 @@
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="340"/>
         <source>Swap Line Down</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">向下交换当前行</translation>
     </message>
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="342"/>
@@ -216,7 +216,7 @@
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="344"/>
         <source>Duplicate Line</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">复制当前行</translation>
     </message>
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="346"/>
@@ -226,7 +226,7 @@
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="348"/>
         <source>Delete Line</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">删除当前行</translation>
     </message>
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="350"/>
@@ -236,7 +236,7 @@
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="352"/>
         <source>Toggle Comment</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">转化注释</translation>
     </message>
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="354"/>
@@ -246,7 +246,7 @@
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="356"/>
         <source>Toggle Block Comment</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">转化块注释</translation>
     </message>
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="358"/>
@@ -256,7 +256,7 @@
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="360"/>
         <source>Compile</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">编译</translation>
     </message>
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="362"/>
@@ -266,7 +266,7 @@
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="364"/>
         <source>Compile and Run</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">编译并运行</translation>
     </message>
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="366"/>
@@ -276,7 +276,7 @@
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="368"/>
         <source>Run</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">运行</translation>
     </message>
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="370"/>
@@ -286,7 +286,7 @@
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="372"/>
         <source>Format code</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">格式化代码</translation>
     </message>
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="374"/>
@@ -296,7 +296,7 @@
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="376"/>
         <source>Run Detached</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">脱离式运行</translation>
     </message>
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="378"/>
@@ -306,7 +306,7 @@
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="380"/>
         <source>Kill Processes</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">终止所有进程</translation>
     </message>
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="382"/>
@@ -316,7 +316,7 @@
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="384"/>
         <source>Find and Replace...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">查找替换...</translation>
     </message>
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="386"/>
@@ -326,7 +326,7 @@
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="388"/>
         <source>Use Snippet...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">使用代码片段...</translation>
     </message>
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="390"/>
@@ -336,7 +336,7 @@
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="392"/>
         <source>Preferences</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">设置</translation>
     </message>
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="394"/>
@@ -346,37 +346,37 @@
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="396"/>
         <source>Reset Preferences</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">重置设置</translation>
     </message>
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="397"/>
         <source>Manual</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">手册</translation>
     </message>
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="398"/>
         <source>About</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">关于</translation>
     </message>
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="399"/>
         <source>About Qt</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">关于Qt</translation>
     </message>
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="400"/>
         <source>Build Info</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">构建信息</translation>
     </message>
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="401"/>
         <source>Check for updates</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">检查更新</translation>
     </message>
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="402"/>
         <source>Support me</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">支持我</translation>
     </message>
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="403"/>
@@ -396,42 +396,42 @@
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="406"/>
         <source>Show Log Files</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">显示日志文件</translation>
     </message>
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="407"/>
         <source>Delete Log Files</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">删除日志文件</translation>
     </message>
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="408"/>
         <source>&amp;File</source>
-        <translation type="unfinished"></translation>
+        <translation>文件(&amp;F)</translation>
     </message>
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="409"/>
         <source>&amp;Edit</source>
-        <translation type="unfinished"></translation>
+        <translation>编辑(&amp;E)</translation>
     </message>
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="410"/>
         <source>&amp;Actions</source>
-        <translation type="unfinished"></translation>
+        <translation>动作(&amp;A)</translation>
     </message>
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="411"/>
         <source>&amp;View</source>
-        <translation type="unfinished"></translation>
+        <translation>显示(&amp;V)</translation>
     </message>
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="412"/>
         <source>&amp;Options</source>
-        <translation type="unfinished"></translation>
+        <translation>选项(&amp;O)</translation>
     </message>
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="413"/>
         <source>&amp;Help</source>
-        <translation type="unfinished"></translation>
+        <translation>帮助(&amp;H)</translation>
     </message>
 </context>
 <context>
@@ -439,7 +439,7 @@
     <message>
         <location filename="../src/mainwindow.cpp" line="834"/>
         <source>Save File</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">保存</translation>
     </message>
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_mainwindow.h" line="182"/>
@@ -449,27 +449,27 @@
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_mainwindow.h" line="183"/>
         <source>cursor info</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">光标信息</translation>
     </message>
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_mainwindow.h" line="184"/>
         <source>Compile</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">编译</translation>
     </message>
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_mainwindow.h" line="185"/>
         <source>Run</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">运行</translation>
     </message>
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_mainwindow.h" line="186"/>
         <source>Compile and Run</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">编译并运行</translation>
     </message>
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_mainwindow.h" line="187"/>
         <source>Messages and stderr</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">信息和stderr</translation>
     </message>
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_mainwindow.h" line="188"/>
@@ -826,78 +826,79 @@ and move out of it when typing the right element of it.</source>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="64"/>
         <source>Enable Competitive Companion</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">启用Competitive Companion</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="64"/>
         <source>Receive data sent by Competitive Companion and load the example testcases.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">接受Competitive Companion发送的数据并加载测试数据。</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="65"/>
         <source>Connection Port</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">连接端口</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="65"/>
         <source>The port used to receive data from Competitive Companion</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">从Competitive Companion接受数据使用的端口</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="66"/>
         <source>Open New Tabs</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">打开新标签</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="66"/>
         <source>Open a new tab for each problem parsed by Competitive Companion.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">为Competitive Companion解析的每一个问题打开一个新标签。</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="67"/>
         <source>Format Codes</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">格式化代码</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="68"/>
         <source>Kill All Processes</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">结束所有进程</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="69"/>
         <source>Compile and Run</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">编译并运行</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="70"/>
         <source>Run Only</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">运行</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="71"/>
         <source>Compile Only</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">编译</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="72"/>
         <source>Change View Mode</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">切换视图模式</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="73"/>
         <source>Use Snippets</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">使用代码片段</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="74"/>
         <source>Enable Hot Exit</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">启用热退出</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="74"/>
         <source>Save the status of the editor when the application exits and load the status of the last session when the application starts.
 When this is enabled, you won&apos;t be asked whether to save the unsaved files or not when exiting.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">在退出时保存状态，在启动时加载最后一次会话的状态。
+当此功能启用时，在关闭时将不会询问是否保存未保存的文件。</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="75"/>
@@ -917,7 +918,7 @@ When this is enabled, you won&apos;t be asked whether to save the unsaved files 
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="78"/>
         <source>The path to the CF Tool executable file</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">CF Tool可执行文件路径</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="79"/>
@@ -927,200 +928,207 @@ When this is enabled, you won&apos;t be asked whether to save the unsaved files 
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="80"/>
         <source>Show Compile And Run Only</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">只显示编译并运行</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="80"/>
         <source>Hide the Compile Only button and the Run Only button under the code editor in the main window.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">在主窗口隐藏编译和运行两个按钮。</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="81"/>
         <source>Display EOLN In Diff</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">在Diff中显示行尾</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="81"/>
         <source>Use &quot;¶&quot; to represent for the new line character in the HTML Diff Viewer.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">在HTML DIff Viewer中使用¶代替换行符。</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="82"/>
         <source>Save Files Faster</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">加速保存文件</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="82"/>
         <source>Always use QFile instead of QSaveFile to save files.
 This will be faster but with a little bit more risk of losing the file (with a very small possibility).</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">总是使用QFile而不是QSaveFile来保存。
+这会更快速，但更可能丢失文件（概率极小）。</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="83"/>
         <source>Time Limit (ms)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">时间限制（毫秒）</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="83"/>
         <source>The time limit when executing the program.
 The program will be killed if it doesn&apos;t terminate in the time limit.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">执行程序的时间限制。
+超时程序将会被终止。</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="84"/>
         <source>Output Length Limit</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">输出限制</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="84"/>
         <source>The maximum number of characters in the output of the program.
 The program will be killed if either of its stdout or stderr is too long.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">程序的最大输出字符数。
+通过stdout或stderr输出过长的程序将会被终止。</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="85"/>
         <source>Message Length Limit</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">信息长度限制</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="85"/>
         <source>The maximum number of characters in each message in the top-right corner of the main window.
 The message will be elided if it&apos;s too long.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">主窗口右上角内每条信息的最大长度。
+超出部分将会被舍弃。</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="86"/>
         <source>HTML Diff Viewer Length Limit</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">HTML Diff Viewer长度限制</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="86"/>
         <source>The maximum number of characters in the HTML Diff Viewer.
 The Diff Viewer will fall back to plain text if either of the output or the expected output is too long.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">HTML Diff Viewer中显示的最大长度。
+如果超长，将会使用纯文本进行显示。</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="87"/>
         <source>Open File Length Limit</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">打开文件长度限制</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="87"/>
         <source>The maximum number of characters in a source file to open.
 A source file won&apos;t be opened if it&apos;s too long.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">允许打开的文件的最大字符数。
+如果超长，将不会打开。</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="88"/>
         <source>Load Test Case File Length Limit</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">加载测试用例文件最大长度</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="88"/>
         <source>The maximum number of characters in a testcase file to load.
 A testcase file won&apos;t be loaded if it&apos;s too long.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">允许加载的测试文件的最大字符数。
+如果超长，将不会加载。</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="89"/>
         <location filename="../build/generated/SettingsInfo.cpp" line="90"/>
         <location filename="../build/generated/SettingsInfo.cpp" line="91"/>
         <source>Path to LSP executable</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">LSP可执行文件的路径</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="89"/>
         <source>The path to the C++ Language Server executable</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">C++ Language Server可执行文件的路径</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="90"/>
         <source>The path to the Java Language Server executable</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Java Language Server可执行文件的路径</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="91"/>
         <source>The path to the Python Language Server executable</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Python Language Server可执行文件的路径</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="92"/>
         <location filename="../build/generated/SettingsInfo.cpp" line="93"/>
         <location filename="../build/generated/SettingsInfo.cpp" line="94"/>
         <source>Use Linting with Language Server</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">使用Language Server提供的提示</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="92"/>
         <source>Show Error, Warning, Information and Hints in Code Editor for C++ Langauge</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">在编辑器中为C++显示错误、警告、信息和提示</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="93"/>
         <source>Show Error, Warning, Information and Hints in Code Editor for Java Langauge</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">在编辑器中为Java显示错误、警告、信息和提示</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="94"/>
         <source>Show Error, Warning, Information and Hints in Code Editor for Python Langauge</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">在编辑器中为Python显示错误、警告、信息和提示</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="95"/>
         <location filename="../build/generated/SettingsInfo.cpp" line="96"/>
         <location filename="../build/generated/SettingsInfo.cpp" line="97"/>
         <source>Use auto complete with Language Server</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">使用Language Server的自动补全</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="95"/>
         <location filename="../build/generated/SettingsInfo.cpp" line="96"/>
         <location filename="../build/generated/SettingsInfo.cpp" line="97"/>
         <source>Use autocomplete results from Language server</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">使用由Language Server提供的自动补全</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="98"/>
         <location filename="../build/generated/SettingsInfo.cpp" line="99"/>
         <location filename="../build/generated/SettingsInfo.cpp" line="100"/>
         <source>Delay in Linting (ms)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">提示延迟（毫秒）</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="98"/>
         <location filename="../build/generated/SettingsInfo.cpp" line="99"/>
         <location filename="../build/generated/SettingsInfo.cpp" line="100"/>
         <source>Delay in linting in miliseconds after last modification to code</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">最后一次修改后，延迟进行提示的时间间隔</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="101"/>
         <location filename="../build/generated/SettingsInfo.cpp" line="102"/>
         <location filename="../build/generated/SettingsInfo.cpp" line="103"/>
         <source>Arguments for Language Server</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Language Server的参数</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="101"/>
         <location filename="../build/generated/SettingsInfo.cpp" line="102"/>
         <location filename="../build/generated/SettingsInfo.cpp" line="103"/>
         <source>Arguments to pass to Language server executable</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">传给Language Server的参数</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="104"/>
         <source>Testcases Matching Rules</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">测试数据匹配规则</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="104"/>
         <source>Pairs of regular expressions used when adding pairs of test cases from files. Each pair of regular expressions represents a test case.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">在通过文件添加测试用例时使用的一对正则表达式。每对正则表达式代表一个测试用例。</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="105"/>
         <source>Input File Save Path</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">输入文件保存路径</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="105"/>
@@ -1130,12 +1138,17 @@ You can use &quot;${filename}&quot; for the complete file name,
 &quot;${basename}&quot; for the base file name without the suffix,
 &quot;${0-index}&quot; for the index of the test case started from 0,
 &quot;${1-index}&quot; for the index of the test case started from 1.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">输入文件保存的路径。
+以源代码起始的相对路径。
+你可以使用&quot;${filename}&quot;来代替完整的源文件名；
+使用&quot;${basename}&quot;来代替无后缀的源文件名；
+使用&quot;${0-index}&quot;来代替以0起始的编号；
+使用&quot;${1-index}&quot;来代替以1起始的编号。</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="106"/>
         <source>Answer File Save Path</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">答案文件保存路径</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="106"/>
@@ -1145,7 +1158,12 @@ You can use &quot;${filename}&quot; for the complete file name,
 &quot;${basename}&quot; for the base file name without the suffix,
 &quot;${0-index}&quot; for the index of the test case started from 0,
 &quot;${1-index}&quot; for the index of the test case started from 1.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">答案文件保存的路径。
+以源代码起始的相对路径。
+你可以使用&quot;${filename}&quot;来代替完整的源文件名；
+使用&quot;${basename}&quot;来代替无后缀的源文件名；
+使用&quot;${0-index}&quot;来代替以0起始的编号；
+使用&quot;${1-index}&quot;来代替以1起始的编号。</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="107"/>
@@ -1160,12 +1178,12 @@ You can use &quot;${filename}&quot; for the complete file name,
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="108"/>
         <source>Test Cases Font</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">测试用例字体</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="108"/>
         <source>The font of test cases</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">显示测试用例所用字体</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="109"/>
@@ -1181,12 +1199,12 @@ Due to technical reasons, changing the height of the margin affects the undo his
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="110"/>
         <source>Message Logger Font</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">消息字体</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="110"/>
         <source>The font of the message logger</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">显示消息所用字体</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="111"/>
