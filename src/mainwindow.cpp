@@ -228,7 +228,7 @@ void MainWindow::setCFToolUI()
 {
     if (submitToCodeforces == nullptr)
     {
-        submitToCodeforces = new QPushButton("Submit", this);
+        submitToCodeforces = new QPushButton(tr("Submit"), this);
         cftool = new Extensions::CFTool(cftoolPath, log);
         connect(cftool, SIGNAL(requestToastMessage(const QString &, const QString &)), this,
                 SIGNAL(requestToastMessage(const QString &, const QString &)));
@@ -236,9 +236,9 @@ void MainWindow::setCFToolUI()
         connect(submitToCodeforces, &QPushButton::clicked, this, [this] {
             emit confirmTriggered(this);
             auto response = QMessageBox::warning(
-                this, "Sure to submit",
-                "Are you sure you want to submit this solution to Codeforces?\n\n URL: " + problemURL +
-                    "\n Language : " + language,
+                this, tr("Sure to submit"),
+                tr("Are you sure you want to submit this solution to Codeforces?\n\n URL: %1\n Language: %2")
+                    .arg(problemURL, language),
                 QMessageBox::Yes | QMessageBox::No);
 
             if (response == QMessageBox::Yes)
@@ -246,8 +246,8 @@ void MainWindow::setCFToolUI()
                 auto path = tmpPath();
                 if (path.isEmpty())
                 {
-                    QMessageBox::warning(this, "CF Tool",
-                                         "Failed to save the temp file, and the solution is not submitted.");
+                    QMessageBox::warning(this, tr("CF Tool"),
+                                         tr("Failed to save the temp file, and the solution is not submitted."));
                 }
                 else
                 {
@@ -936,8 +936,8 @@ bool MainWindow::closeConfirm()
     {
         emit confirmTriggered(this);
         auto res = QMessageBox::warning(
-            this, "Save changes?",
-            "Save changes to [" + (isUntitled() ? QString("New File") : getFileName()) + "] before closing?",
+            this, tr("Save changes"),
+            tr("Save changes to [%1] before closing?").arg(isUntitled() ? QString("New File") : getFileName()),
             QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel, QMessageBox::Cancel);
         if (res == QMessageBox::Save)
             confirmed = saveFile(AlwaysSave, "Save", true);
@@ -961,7 +961,7 @@ void MainWindow::on_changeLanguageButton_clicked()
     else if (language == "Python")
         curr = 2;
 
-    auto response = QInputDialog::getItem(this, "Set Tab language", "Set the language to use in this Tab",
+    auto response = QInputDialog::getItem(this, tr("Set Tab language"), tr("Set the language to use in this Tab"),
                                           {"C++", "Java", "Python"}, curr, false, &ok);
 
     if (ok)
@@ -998,7 +998,7 @@ void MainWindow::onFileWatcherChanged(const QString &path)
 
             emit confirmTriggered(this);
             auto reload = QMessageBox::question(
-                this, "Reload?", "[" + filePath + "]\n\nhas been changed on disk.\nDo you want to reload it?");
+                this, tr("Reload"), tr("[%1]\n\nhas been changed on disk.\nDo you want to reload it?").arg(filePath));
 
             reloading = false;
 
@@ -1033,7 +1033,7 @@ void MainWindow::updateCursorInfo()
             else
                 col += SettingsHelper::getTabWidth() - col % SettingsHelper::getTabWidth();
         }
-        info = "Line " + QString::number(cursor.blockNumber() + 1) + ", Column " + QString::number(col + 1);
+        info = tr("Line %1, Column %2").arg(QString::number(cursor.blockNumber() + 1)).arg(QString::number(col + 1));
     }
     else
     {
@@ -1045,8 +1045,9 @@ void MainWindow::updateCursorInfo()
         int lineEnd = cursor.blockNumber();
         int selectionLines = lineEnd - lineStart + 1;
         if (selectionLines > 1)
-            info = QString::number(selectionLines) + " lines, ";
-        info += QString::number(selection.length()) + " characters selected";
+            info = tr("%1 lines, %2 charachters selected").arg(selectionLines).arg(selection.length());
+        else
+            info = tr("%1 characters selected").arg(selection.length());
     }
     ui->cursor_info->setText(info);
 }
