@@ -18,6 +18,7 @@
 #include "Widgets/TestCase.hpp"
 #include "Core/EventLogger.hpp"
 #include "Core/MessageLogger.hpp"
+#include "Util/Util.hpp"
 #include "Widgets/DiffViewer.hpp"
 #include "Widgets/TestCaseEdit.hpp"
 #include <QCheckBox>
@@ -231,8 +232,7 @@ void TestCase::onDiffButtonClicked()
 {
     LOG_INFO("Diff button clicked for " << INFO_OF(id));
     diffViewer->setText(output(), expected());
-    diffViewer->show();
-    diffViewer->raise();
+    Util::showWidgetOnTop(diffViewer);
 }
 
 void TestCase::onDelButtonClicked()

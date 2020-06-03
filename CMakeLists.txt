@@ -82,12 +82,12 @@ add_executable(cpeditor
 
     src/Extensions/CFTool.cpp
     src/Extensions/CFTool.hpp
+    src/Extensions/ClangFormatter.cpp
+    src/Extensions/ClangFormatter.hpp
     src/Extensions/CompanionServer.cpp
     src/Extensions/CompanionServer.hpp
     src/Extensions/EditorTheme.cpp
     src/Extensions/EditorTheme.hpp
-    src/Extensions/ClangFormatter.cpp
-    src/Extensions/ClangFormatter.hpp
     src/Extensions/LanguageServer.cpp
     src/Extensions/LanguageServer.hpp
 
@@ -99,10 +99,10 @@ add_executable(cpeditor
     src/Settings/FileProblemBinder.hpp
     src/Settings/FontItem.cpp
     src/Settings/FontItem.hpp
+    src/Settings/ParenthesesPage.cpp
+    src/Settings/ParenthesesPage.hpp
     src/Settings/PathItem.cpp
     src/Settings/PathItem.hpp
-    src/Settings/StringListsItem.cpp
-    src/Settings/StringListsItem.hpp
     src/Settings/PreferencesGridPage.cpp
     src/Settings/PreferencesGridPage.hpp
     src/Settings/PreferencesHomePage.cpp
@@ -117,11 +117,13 @@ add_executable(cpeditor
     src/Settings/SettingsManager.hpp
     src/Settings/ShortcutItem.cpp
     src/Settings/ShortcutItem.hpp
+    src/Settings/StringListsItem.cpp
+    src/Settings/StringListsItem.hpp
     src/Settings/ValueWrapper.cpp
     src/Settings/ValueWrapper.hpp
 
-    src/Telemetry/UpdateNotifier.cpp
-    src/Telemetry/UpdateNotifier.hpp
+    src/Telemetry/UpdateChecker.cpp
+    src/Telemetry/UpdateChecker.hpp
 
     src/Util/FileUtil.cpp
     src/Util/FileUtil.hpp
@@ -138,6 +140,10 @@ add_executable(cpeditor
     src/Widgets/TestCaseEdit.hpp
     src/Widgets/TestCases.cpp
     src/Widgets/TestCases.hpp
+    src/Widgets/UpdatePresenter.hpp
+    src/Widgets/UpdatePresenter.cpp
+    src/Widgets/UpdateProgressDialog.hpp
+    src/Widgets/UpdateProgressDialog.cpp
 
     src/appwindow.cpp
     src/appwindow.hpp

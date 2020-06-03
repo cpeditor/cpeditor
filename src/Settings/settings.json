@@ -64,6 +64,27 @@
         "tip": "The template used when creating a new C++ file"
     },
     {
+        "name": "C++/Template Cursor Position Regex",
+        "type": "QString",
+        "default": "main\\(\\)",
+        "tip": "The regular expression which matches a part of the code template.\nWhen opening a template, the position of the cursor is the position of the regex with an offset.\nThe cursor will be at the end of the template if there's no match of the regex."
+    },
+    {
+        "name": "C++/Template Cursor Position Offset Type",
+        "type": "QString",
+        "default": "end",
+        "ui": "QComboBox",
+        "param": "QStringList {\"start\", \"end\"}",
+        "tip": "Whether the offset is relative to the start of the regex or the end of the regex."
+    },
+    {
+        "name": "C++/Template Cursor Position Offset Characters",
+        "type": "int",
+        "default": 4,
+        "param": "QVariantList {-1000000, 1000000}",
+        "tip": "The offset relative to the match of the regex in the number of characters, including white spaces."
+    },
+    {
         "name": "C++/Compile Command",
         "type": "QString",
         "default": "g++ -Wall",
@@ -86,6 +107,11 @@
             "runtime_cpp"
         ],
         "tip": "The runtime arguments when executing a C++ program"
+    },
+    {
+        "name": "C++/Parentheses",
+        "type": "QVariantList",
+        "default": "QVariantList { QVariantList {'(', ')', Qt::PartiallyChecked, Qt::PartiallyChecked, Qt::PartiallyChecked}, QVariantList {'{', '}', Qt::PartiallyChecked, Qt::PartiallyChecked, Qt::PartiallyChecked}, QVariantList {'[', ']', Qt::PartiallyChecked, Qt::PartiallyChecked, Qt::PartiallyChecked}, QVariantList {'\"', '\"', Qt::PartiallyChecked, Qt::PartiallyChecked, Qt::PartiallyChecked}, QVariantList {'\\'', '\\'', Qt::PartiallyChecked, Qt::PartiallyChecked, Qt::PartiallyChecked} }"
     },
     {
         "name": "Java/Template Path",
@@ -138,6 +164,30 @@
         "tip": "The path of the parent directory of the compiled executable file.\nIt's relative to the source file, or the temporary directory if the tab is untitled.\nYou can use \"${filename}\" for the complete file name,\n\"${basename}\" for the base file name without the suffix,\n\"${tmpdir}\" for the absolute path of the temporary directory."
     },
     {
+        "name": "Java/Template Cursor Position Regex",
+        "type": "QString",
+        "tip": "The regular expression which matches a part of the code template.\nWhen opening a template, the position of the cursor is the position of the regex with an offset.\nThe cursor will be at the end of the template if there's no match of the regex."
+    },
+    {
+        "name": "Java/Template Cursor Position Offset Type",
+        "type": "QString",
+        "default": "end",
+        "ui": "QComboBox",
+        "param": "QStringList {\"start\", \"end\"}",
+        "tip": "Whether the offset is relative to the start of the regex or the end of the regex."
+    },
+    {
+        "name": "Java/Template Cursor Position Offset Characters",
+        "type": "int",
+        "param": "QVariantList {-1000000, 1000000}",
+        "tip": "The offset relative to the match of the regex in the number of characters, including white spaces."
+    },
+    {
+        "name": "Java/Parentheses",
+        "type": "QVariantList",
+        "default": "QVariantList { QVariantList {'(', ')', Qt::PartiallyChecked, Qt::PartiallyChecked, Qt::PartiallyChecked}, QVariantList {'{', '}', Qt::PartiallyChecked, Qt::PartiallyChecked, Qt::PartiallyChecked}, QVariantList {'[', ']', Qt::PartiallyChecked, Qt::PartiallyChecked, Qt::PartiallyChecked}, QVariantList {'\"', '\"', Qt::PartiallyChecked, Qt::PartiallyChecked, Qt::PartiallyChecked}, QVariantList {'\\'', '\\'', Qt::PartiallyChecked, Qt::PartiallyChecked, Qt::PartiallyChecked} }"
+    },
+    {
         "name": "Python/Template Path",
         "type": "QString",
         "old": [
@@ -146,6 +196,25 @@
         "ui": "PathItem",
         "param": "3",
         "tip": "The template used when creating a new Python file"
+    },
+    {
+        "name": "Python/Template Cursor Position Regex",
+        "type": "QString",
+        "tip": "The regular expression which matches a part of the code template.\nWhen opening a template, the position of the cursor is the position of the regex with an offset.\nThe cursor will be at the end of the template if there's no match of the regex."
+    },
+    {
+        "name": "Python/Template Cursor Position Offset Type",
+        "type": "QString",
+        "default": "end",
+        "ui": "QComboBox",
+        "param": "QStringList {\"start\", \"end\"}",
+        "tip": "Whether the offset is relative to the start of the regex or the end of the regex."
+    },
+    {
+        "name": "Python/Template Cursor Position Offset Characters",
+        "type": "int",
+        "param": "QVariantList {-1000000, 1000000}",
+        "tip": "The offset relative to the match of the regex in the number of characters, including white spaces."
     },
     {
         "name": "Python/Run Arguments",
@@ -165,6 +234,11 @@
         "tip": "The command to start a Python program. It should NOT include the path to the source file."
     },
     {
+        "name": "Python/Parentheses",
+        "type": "QVariantList",
+        "default": "QVariantList { QVariantList {'(', ')', Qt::PartiallyChecked, Qt::PartiallyChecked, Qt::PartiallyChecked}, QVariantList {'{', '}', Qt::PartiallyChecked, Qt::PartiallyChecked, Qt::PartiallyChecked}, QVariantList {'[', ']', Qt::PartiallyChecked, Qt::PartiallyChecked, Qt::PartiallyChecked}, QVariantList {'\"', '\"', Qt::PartiallyChecked, Qt::PartiallyChecked, Qt::PartiallyChecked}, QVariantList {'\\'', '\\'', Qt::PartiallyChecked, Qt::PartiallyChecked, Qt::PartiallyChecked} }"
+    },
+    {
         "name": "Editor Theme",
         "type": "QString",
         "default": "Light",
@@ -179,7 +253,7 @@
         "old": [
             "auto_parenthesis"
         ],
-        "tip": "Automatically complete a pair of parentheses when typing the left element of it,\nand move out of it when typing the right element of it."
+        "tip": "Automatically complete a pair of parentheses when typing the left element of it,\nand move out of it when typing the right element of it.\nThis can be overridden for each parenthesis in each language."
     },
     {
         "name": "Auto Remove Parentheses",
@@ -188,7 +262,14 @@
         "old": [
             "auto_remove_parentheses"
         ],
-        "tip": "Automatically delete the whole pair of parentheses when deleting the left element of it if the two elements are adjacent."
+        "tip": "Automatically delete the whole pair of parentheses when deleting\nthe left element of it if the two elements are adjacent.\nThis can be overridden for each parenthesis in each language."
+    },
+    {
+        "name": "Tab Jump Out Parentheses",
+        "desc": "Jump out of a parenthesis by pressing Tab",
+        "type": "bool",
+        "default": true,
+        "tip": "When this is enabled, you can use Tab instead of the\nclosing parenthesis to jump out of a parenthesis.\nThis can be overridden for each parenthesis in each language."
     },
     {
         "name": "Auto Indent",
@@ -218,6 +299,7 @@
     },
     {
         "name": "Replace Tabs",
+        "desc": "Replace tabs by spaces",
         "type": "bool",
         "tip": "Use spaces instead of a tab character."
     },

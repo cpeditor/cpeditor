@@ -20,6 +20,7 @@
 #include <QFile>
 #include <QPalette>
 #include <QTranslator>
+#include <QWidget>
 #include <generated/SettingsInfo.hpp>
 
 namespace Util
@@ -163,6 +164,14 @@ void applyNewLocale(const QString &language)
         app->installTranslator(translator);
         updateSettingInfo();
     }
+}
+
+void showWidgetOnTop(QWidget *widget)
+{
+    widget->show();
+    widget->setWindowState((widget->windowState() & ~Qt::WindowMinimized) | Qt::WindowActive);
+    widget->activateWindow();
+    widget->raise();
 }
 
 } // namespace Util

@@ -47,11 +47,6 @@ class ClangFormatter;
 struct CompanionData;
 } // namespace Extensions
 
-namespace Telemetry
-{
-class UpdateNotifier;
-}
-
 namespace Widgets
 {
 class TestCases;
@@ -139,6 +134,8 @@ class MainWindow : public QMainWindow
     void onRunTimeout(int index);
     void onRunOutputLimitExceeded(int index, const QString &type);
     void onRunKilled(int index);
+
+    void on_clear_messages_button_clicked();
 
     void on_changeLanguageButton_clicked();
 

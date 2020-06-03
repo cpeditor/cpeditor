@@ -72,9 +72,7 @@ int main(int argc, char *argv[])
                                 break;
                             }
                         }
-                        dialog->setWindowState((dialog->windowState() & ~Qt::WindowMinimized) | Qt::WindowActive);
-                        dialog->activateWindow();
-                        dialog->raise();
+                        Util::showWidgetOnTop(dialog);
                         return;
                     }
                     else

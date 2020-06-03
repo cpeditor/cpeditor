@@ -25,8 +25,9 @@
 #include "Extensions/LanguageServer.hpp"
 #include "Settings/FileProblemBinder.hpp"
 #include "Settings/PreferencesWindow.hpp"
-#include "Telemetry/UpdateNotifier.hpp"
+#include "Telemetry/UpdateChecker.hpp"
 #include "Util/FileUtil.hpp"
+#include "Util/Util.hpp"
 #include "mainwindow.hpp"
 #include <QClipboard>
 #include <QDesktopServices>
@@ -76,7 +77,7 @@ AppWindow::AppWindow(bool noHotExit, QWidget *parent) : QMainWindow(parent), ui(
     setWindowIcon(QIcon(":/icon.png"));
 
     if (SettingsHelper::isCheckUpdate())
-        updater->checkUpdate();
+        updateChecker->checkUpdate(true);
 
 #ifdef Q_OS_WIN
     // setWindowOpacity(0.99) when opacity should be 100 is a workaround for a strange issue on Windows
@@ -88,7 +89,6 @@ AppWindow::AppWindow(bool noHotExit, QWidget *parent) : QMainWindow(parent), ui(
 #else
     setWindowOpacity(SettingsHelper::getOpacity() / 100.0);
 #endif
-
     applySettings();
     onSettingsApplied("");
 
@@ -198,7 +198,7 @@ AppWindow::~AppWindow()
     delete cppServer;
     delete pythonServer;
     delete javaServer;
-    delete updater;
+    delete updateChecker;
     delete server;
     delete findReplaceDialog;
 
@@ -264,7 +264,7 @@ void AppWindow::allocate()
     lspTimerCpp = new QTimer();
     lspTimerJava = new QTimer();
     lspTimerPython = new QTimer();
-    updater = new Telemetry::UpdateNotifier(SettingsHelper::isBeta());
+    updateChecker = new Telemetry::UpdateChecker();
     preferencesWindow = new PreferencesWindow(this);
 
     server = new Extensions::CompanionServer(SettingsHelper::getCompetitiveCompanionConnectionPort());
@@ -569,6 +569,7 @@ bool AppWindow::quit()
             return false;
         }
     }
+    updateChecker->closeAll();
     // The tray icon is considered as a visible window, if it is not hidden, even if the app window is closed,
     // the application won't exit.
     trayIcon->hide();
@@ -768,7 +769,7 @@ void AppWindow::on_actionSettings_triggered()
 
 void AppWindow::onReceivedMessage(quint32 instanceId, QByteArray message)
 {
-    raise();
+    showOnTop();
 
     message = message.mid(message.indexOf("NOLOSTDATA") + 10);
     auto json = QJsonDocument::fromBinaryData(message);
@@ -1001,9 +1002,6 @@ void AppWindow::onSettingsApplied(const QString &pagePath)
         onEditorTextChanged(windowAt(i));
     }
 
-    if (pagePath.isEmpty() || pagePath == "Advanced/Update")
-        updater->setBeta(SettingsHelper::isBeta());
-
     if (pagePath.isEmpty() || pagePath == "Key Bindings")
         maybeSetHotkeys();
 
@@ -1101,9 +1099,7 @@ void AppWindow::onRightSplitterMoved(int _, int __)
 /************************* ACTIONS ************************/
 void AppWindow::on_actionCheck_for_updates_triggered()
 {
-    LOG_INFO("Checking update non-silent mode");
-    // Non-silent means if a update is not available, still the dialog is shown that no update available.
-    updater->checkUpdate(true);
+    updateChecker->checkUpdate(false);
 }
 
 void AppWindow::on_actionCompile_triggered()
@@ -1546,9 +1542,7 @@ void AppWindow::on_actionClear_Logs_triggered()
 
 void AppWindow::showOnTop()
 {
-    setWindowState((windowState() & ~Qt::WindowMinimized) | Qt::WindowActive);
-    activateWindow();
-    raise();
+    Util::showWidgetOnTop(this);
 }
 
 void AppWindow::onTrayIconActivated(QSystemTrayIcon::ActivationReason reason)

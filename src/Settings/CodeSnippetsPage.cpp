@@ -100,7 +100,6 @@ CodeSnippetsPage::CodeSnippetsPage(const QString &language, QWidget *parent) : P
     snippetLayout->addWidget(snippetNameLabel);
 
     editor = new QCodeEditor();
-    Util::setEditorLanguage(editor, lang);
     connect(editor, SIGNAL(textChanged()), this, SLOT(updateButtons()));
     snippetLayout->addWidget(editor);
 
@@ -153,7 +152,7 @@ void CodeSnippetsPage::makeUITheSameAsDefault()
 
 void CodeSnippetsPage::makeUITheSameAsSettings()
 {
-    Util::applySettingsToEditor(editor);
+    Util::applySettingsToEditor(editor, lang);
     auto settingsKeys = SettingsManager::keyStartsWith(snippetKey(""));
     for (auto key : settingsKeys)
     {

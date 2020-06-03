@@ -23,9 +23,7 @@ class QString;
 
 namespace Util
 {
-void applySettingsToEditor(QCodeEditor *editor);
-
-void setEditorLanguage(QCodeEditor *editor, const QString &language);
+void applySettingsToEditor(QCodeEditor *editor, const QString &language);
 } // namespace Util
 
 #endif // QCODEEDITORUTIL_HPP
