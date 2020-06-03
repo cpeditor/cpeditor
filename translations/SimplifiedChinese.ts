@@ -88,17 +88,17 @@
     <message>
         <location filename="../src/appwindow.cpp" line="1311"/>
         <source>Close Others</source>
-        <translation type="unfinished">关闭其它</translation>
+        <translation type="unfinished">关闭其它标签页</translation>
     </message>
     <message>
         <location filename="../src/appwindow.cpp" line="1317"/>
         <source>Close to the Left</source>
-        <translation type="unfinished">关闭左侧所有</translation>
+        <translation type="unfinished">关闭左侧标签页</translation>
     </message>
     <message>
         <location filename="../src/appwindow.cpp" line="1323"/>
         <source>Close to the Right</source>
-        <translation type="unfinished">关闭右侧所有</translation>
+        <translation type="unfinished">关闭右侧标签页</translation>
     </message>
     <message>
         <location filename="../src/appwindow.cpp" line="1339"/>
@@ -179,7 +179,7 @@
         <location filename="../src/appwindow.cpp" line="823"/>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="257"/>
         <source>CP Editor: An editor specially designed for competitive programming</source>
-        <translation type="unfinished">CP Editor: 专为竞技变成设计的编辑器</translation>
+        <translation type="unfinished">CP Editor: 一款为算法竞赛量身定制的编辑器</translation>
     </message>
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="258"/>
@@ -543,7 +543,7 @@
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="403"/>
         <source>Editor Mode</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">编辑器模式</translation>
     </message>
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="404"/>
@@ -1829,17 +1829,17 @@ from competitive companion again, the old file will be opened.</source>
     <message>
         <location filename="../src/Widgets/TestCases.cpp" line="144"/>
         <source>Remove Empty</source>
-        <translation type="unfinished">删除空</translation>
+        <translation type="unfinished">删除空测试点</translation>
     </message>
     <message>
         <location filename="../src/Widgets/TestCases.cpp" line="156"/>
         <source>Remove All</source>
-        <translation type="unfinished">删除全部</translation>
+        <translation type="unfinished">删除全部测试点</translation>
     </message>
     <message>
         <location filename="../src/Widgets/TestCases.cpp" line="159"/>
         <source>Clear Testcases</source>
-        <translation type="unfinished">清楚测试点</translation>
+        <translation type="unfinished">清除测试点</translation>
     </message>
     <message>
         <location filename="../src/Widgets/TestCases.cpp" line="160"/>
@@ -1849,22 +1849,22 @@ from competitive companion again, the old file will be opened.</source>
     <message>
         <location filename="../src/Widgets/TestCases.cpp" line="171"/>
         <source>Hide AC</source>
-        <translation type="unfinished">隐藏AC</translation>
+        <translation type="unfinished">隐藏通过的测试点</translation>
     </message>
     <message>
         <location filename="../src/Widgets/TestCases.cpp" line="178"/>
         <source>Show All</source>
-        <translation type="unfinished">显示所有</translation>
+        <translation type="unfinished">显示所有测试点</translation>
     </message>
     <message>
         <location filename="../src/Widgets/TestCases.cpp" line="184"/>
         <source>Hide All</source>
-        <translation type="unfinished">隐藏所有</translation>
+        <translation type="unfinished">隐藏所有测试点</translation>
     </message>
     <message>
         <location filename="../src/Widgets/TestCases.cpp" line="190"/>
         <source>Invert</source>
-        <translation type="unfinished">翻转</translation>
+        <translation type="unfinished">翻转显示状态</translation>
     </message>
     <message>
         <location filename="../src/Widgets/TestCases.cpp" line="203"/>
@@ -1904,7 +1904,7 @@ from competitive companion again, the old file will be opened.</source>
     <message>
         <location filename="../src/Widgets/TestCases.cpp" line="210"/>
         <source>nyesno - Compare YES/NOs, case insensitive</source>
-        <translation type="unfinished">nyesno - 匹配YES和NO，大小写敏感</translation>
+        <translation type="unfinished">nyesno - 匹配YES和NO，大小写不敏感</translation>
     </message>
 </context>
 <context>
