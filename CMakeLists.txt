@@ -72,12 +72,12 @@ add_executable(cpeditor
 
     src/Extensions/CFTool.cpp
     src/Extensions/CFTool.hpp
+    src/Extensions/ClangFormatter.cpp
+    src/Extensions/ClangFormatter.hpp
     src/Extensions/CompanionServer.cpp
     src/Extensions/CompanionServer.hpp
     src/Extensions/EditorTheme.cpp
     src/Extensions/EditorTheme.hpp
-    src/Extensions/ClangFormatter.cpp
-    src/Extensions/ClangFormatter.hpp
     src/Extensions/LanguageServer.cpp
     src/Extensions/LanguageServer.hpp
 
@@ -89,10 +89,10 @@ add_executable(cpeditor
     src/Settings/FileProblemBinder.hpp
     src/Settings/FontItem.cpp
     src/Settings/FontItem.hpp
+    src/Settings/ParenthesesPage.cpp
+    src/Settings/ParenthesesPage.hpp
     src/Settings/PathItem.cpp
     src/Settings/PathItem.hpp
-    src/Settings/StringListsItem.cpp
-    src/Settings/StringListsItem.hpp
     src/Settings/PreferencesGridPage.cpp
     src/Settings/PreferencesGridPage.hpp
     src/Settings/PreferencesHomePage.cpp
@@ -107,6 +107,8 @@ add_executable(cpeditor
     src/Settings/SettingsManager.hpp
     src/Settings/ShortcutItem.cpp
     src/Settings/ShortcutItem.hpp
+    src/Settings/StringListsItem.cpp
+    src/Settings/StringListsItem.hpp
     src/Settings/ValueWrapper.cpp
     src/Settings/ValueWrapper.hpp
 

@@ -28,6 +28,8 @@
 #include "Telemetry/UpdateChecker.hpp"
 #include "Util/FileUtil.hpp"
 #include "Util/Util.hpp"
+#include "generated/SettingsHelper.hpp"
+#include "generated/version.hpp"
 #include "mainwindow.hpp"
 #include <QClipboard>
 #include <QDesktopServices>
@@ -44,11 +46,8 @@
 #include <QTimer>
 #include <QUrl>
 #include <findreplacedialog.h>
-#include <generated/SettingsHelper.hpp>
-#include <generated/version.hpp>
 
 #ifdef Q_OS_WIN
-#include "Util/Util.hpp"
 #include <QSettings>
 #include <QStyleFactory>
 #endif
@@ -1052,14 +1051,25 @@ void AppWindow::onIncomingCompanionRequest(const Extensions::CompanionData &data
         if (windowAt(i)->getProblemURL() == data.url)
         {
             ui->tabWidget->setCurrentIndex(i);
+            currentWindow()->applyCompanion(data);
             return;
         }
     }
 
-    if (SettingsHelper::isOpenOldFileForOldProblemUrl() && FileProblemBinder::containsProblem(data.url))
-        openTab(FileProblemBinder::getFileForProblem(data.url));
-    else if (SettingsHelper::isCompetitiveCompanionOpenNewTab() || currentWindow() == nullptr)
-        openTab("");
+    do
+    {
+        if (SettingsHelper::isOpenOldFileForOldProblemUrl() && FileProblemBinder::containsProblem(data.url))
+        {
+            auto oldFile = FileProblemBinder::getFileForProblem(data.url);
+            if (QFileInfo(oldFile).isReadable())
+            {
+                openTab(oldFile);
+                break;
+            }
+        }
+        if (SettingsHelper::isCompetitiveCompanionOpenNewTab() || currentWindow() == nullptr)
+            openTab("");
+    } while (false);
 
     currentWindow()->applyCompanion(data);
 }

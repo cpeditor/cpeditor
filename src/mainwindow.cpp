@@ -453,6 +453,7 @@ void MainWindow::loadStatus(const EditorStatus &status)
 void MainWindow::applyCompanion(const Extensions::CompanionData &data)
 {
     LOG_INFO("Requesting apply from companion");
+
     if (isUntitled() && !isTextChanged())
     {
         QString meta = data.toMetaString();
@@ -464,7 +465,13 @@ void MainWindow::applyCompanion(const Extensions::CompanionData &data)
         else
             meta.replace('\n', "\n// ");
 
-        editor->setPlainText(meta + "\n\n" + editor->toPlainText());
+        meta.append("\n\n");
+
+        auto cursor = editor->textCursor();
+        int cursorPos = cursor.position();
+        editor->setPlainText(meta + editor->toPlainText());
+        cursor.setPosition(cursorPos + meta.length());
+        editor->setTextCursor(cursor);
     }
 
     testcases->clear();
@@ -497,15 +504,16 @@ void MainWindow::applySettings(const QString &pagePath, bool shouldPerformDigoni
         }
     }
 
-    if (pagePath.isEmpty() || pagePath == "Code Edit" || pagePath == "Appearance")
-        Util::applySettingsToEditor(editor);
+    if (pagePath.isEmpty() || pagePath == "Code Edit" || pagePath == "Appearance" ||
+        pagePath == QString("Language/%1/%1 Parentheses").arg(language))
+        Util::applySettingsToEditor(editor, language);
 
     if (!isLanguageSet && (pagePath.isEmpty() || pagePath == "Language/General"))
     {
         setLanguage(SettingsHelper::getDefaultLanguage());
     }
 
-    if (shouldPerformDigonistic && (pagePath.isEmpty() || pagePath == "Language/Commands"))
+    if (shouldPerformDigonistic && (pagePath.isEmpty() || pagePath == QString("Language/%1/%1 Commands").arg(language)))
     {
         performCompileAndRunDiagonistics();
     }
@@ -526,7 +534,7 @@ void MainWindow::applySettings(const QString &pagePath, bool shouldPerformDigoni
         }
     }
 
-    if (pagePath.isEmpty() || pagePath == "Language/Commands")
+    if (pagePath.isEmpty() || pagePath == "Language/C++/C++ Commands")
         updateChecker();
 }
 
@@ -610,7 +618,7 @@ void MainWindow::setLanguage(const QString &lang)
     language = lang;
     if (language != "Python" && language != "Java")
         language = "C++";
-    Util::setEditorLanguage(editor, language);
+    Util::applySettingsToEditor(editor, language);
     ui->changeLanguageButton->setText(language);
     performCompileAndRunDiagonistics();
     isLanguageSet = true;
@@ -722,6 +730,8 @@ void MainWindow::loadFile(const QString &loadPath)
     bool samePath = !isUntitled() && filePath == path;
     setFilePath(path);
 
+    bool isTemplate = false;
+
     if (!QFile::exists(path))
     {
         QString templatePath = SettingsManager::get(QString("%1/Template Path").arg(language)).toString();
@@ -730,6 +740,7 @@ void MainWindow::loadFile(const QString &loadPath)
 
         if (!templatePath.isEmpty() && f.open(QIODevice::ReadOnly | QIODevice::Text))
         {
+            isTemplate = true;
             path = templatePath;
         }
         else
@@ -761,6 +772,28 @@ void MainWindow::loadFile(const QString &loadPath)
         setProblemURL(FileProblemBinder::getProblemForFile(filePath));
 
     setText(content, samePath);
+
+    if (isTemplate)
+    {
+        auto match = QRegularExpression(SettingsManager::get(language + "/Template Cursor Position Regex").toString())
+                         .match(content);
+        if (match.hasMatch())
+        {
+            int pos = SettingsManager::get(language + "/Template Cursor Position Offset Type").toString() == "start"
+                          ? match.capturedStart()
+                          : match.capturedEnd();
+            pos += SettingsManager::get(language + "/Template Cursor Position Offset Characters").toInt();
+            pos = qMax(pos, 0);
+            pos = qMin(pos, content.length());
+            auto cursor = editor->textCursor();
+            cursor.setPosition(pos);
+            editor->setTextCursor(cursor);
+        }
+        else
+        {
+            editor->moveCursor(QTextCursor::End);
+        }
+    }
 
     loadTests();
 }
@@ -945,6 +978,11 @@ bool MainWindow::closeConfirm()
     }
     LOG_INFO(BOOL_INFO_OF(confirmed));
     return confirmed;
+}
+
+void MainWindow::on_clear_messages_button_clicked()
+{
+    log->clear();
 }
 
 void MainWindow::on_changeLanguageButton_clicked()

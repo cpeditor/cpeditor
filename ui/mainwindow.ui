@@ -91,7 +91,7 @@
                </font>
               </property>
               <property name="text">
-               <string>Messages and stderr</string>
+               <string>Messages</string>
               </property>
              </widget>
             </item>
@@ -107,6 +107,13 @@
                </size>
               </property>
              </spacer>
+            </item>
+            <item>
+             <widget class="QPushButton" name="clear_messages_button">
+              <property name="text">
+               <string>Clear</string>
+              </property>
+             </widget>
             </item>
             <item>
              <widget class="QPushButton" name="changeLanguageButton">
