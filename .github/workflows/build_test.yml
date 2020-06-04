@@ -15,7 +15,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        qt_version: [5.14.2]
+        qt_version: [5.15.0]
         config:
           - {
               os: windows-latest,
@@ -55,6 +55,8 @@ jobs:
         with:
           cached: ${{ steps.cache-qt.outputs.cache-hit }}
           version: ${{ matrix.qt_version }}
+          arch: "win64_msvc2019_64"
+          aqtversion: ">=0.9.0"
 
       - name: Download Ninja and CMake
         id: cmake_and_ninja
@@ -196,7 +198,7 @@ jobs:
           path: build/${{ matrix.config.binary }}
 
       - name: Get the version
-        if: startsWith(github.ref, 'refs/tags') && (matrix.qt_version == '5.14.2')
+        if: startsWith(github.ref, 'refs/tags') && (matrix.qt_version == '5.15.0')
         id: get_version
         shell: bash
         run: |
@@ -210,7 +212,7 @@ jobs:
           fi
 
       - name: Pack to dmg on Mac
-        if: matrix.config.os == 'macos-latest' && startsWith(github.ref, 'refs/tags') && (matrix.qt_version == '5.14.2')
+        if: matrix.config.os == 'macos-latest' && startsWith(github.ref, 'refs/tags') && (matrix.qt_version == '5.15.0')
         run: |
           cd build
           ../../Qt/*/*/bin/macdeployqt cpeditor.app
@@ -218,7 +220,7 @@ jobs:
           hdiutil create -volname cpeditor-${{ steps.get_version.outputs.VERSION }}-x64 -srcfolder cpeditor.app -ov -format UDZO cpeditor-${{ steps.get_version.outputs.VERSION }}-x64.dmg
 
       - name: Release on Mac
-        if: matrix.config.os == 'macos-latest' && startsWith(github.ref, 'refs/tags') && (matrix.qt_version == '5.14.2')
+        if: matrix.config.os == 'macos-latest' && startsWith(github.ref, 'refs/tags') && (matrix.qt_version == '5.15.0')
         uses: softprops/action-gh-release@v1
         with:
           draft: true
@@ -229,13 +231,13 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Install innosetup on Windows
-        if: matrix.config.os == 'windows-latest' && startsWith(github.ref, 'refs/tags') && (matrix.qt_version == '5.14.2')
+        if: matrix.config.os == 'windows-latest' && startsWith(github.ref, 'refs/tags') && (matrix.qt_version == '5.15.0')
         uses: crazy-max/ghaction-chocolatey@v1
         with:
           args: "install innosetup"
 
       - name: Pack to exe on Windows
-        if: matrix.config.os == 'windows-latest' && startsWith(github.ref, 'refs/tags') && (matrix.qt_version == '5.14.2')
+        if: matrix.config.os == 'windows-latest' && startsWith(github.ref, 'refs/tags') && (matrix.qt_version == '5.15.0')
         shell: bash
         run: |
           mkdir build/out
@@ -244,7 +246,7 @@ jobs:
           iscc .ci/win/win-setup.iss -DMyAppVersion=${{ steps.get_version.outputs.VERSION }} -DMyProjectRoot=$(pwd) -DMyOutRoot=$(pwd)/build/out
 
       - name: Release on Windows
-        if: matrix.config.os == 'windows-latest' && startsWith(github.ref, 'refs/tags') && (matrix.qt_version == '5.14.2')
+        if: matrix.config.os == 'windows-latest' && startsWith(github.ref, 'refs/tags') && (matrix.qt_version == '5.15.0')
         uses: softprops/action-gh-release@v1
         with:
           draft: true
