@@ -453,6 +453,7 @@ void MainWindow::loadStatus(const EditorStatus &status)
 void MainWindow::applyCompanion(const Extensions::CompanionData &data)
 {
     LOG_INFO("Requesting apply from companion");
+
     if (isUntitled() && !isTextChanged())
     {
         QString meta = data.toMetaString();
@@ -464,7 +465,13 @@ void MainWindow::applyCompanion(const Extensions::CompanionData &data)
         else
             meta.replace('\n', "\n// ");
 
-        editor->setPlainText(meta + "\n\n" + editor->toPlainText());
+        meta.append("\n\n");
+
+        auto cursor = editor->textCursor();
+        int cursorPos = cursor.position();
+        editor->setPlainText(meta + editor->toPlainText());
+        cursor.setPosition(cursorPos + meta.length());
+        editor->setTextCursor(cursor);
     }
 
     testcases->clear();

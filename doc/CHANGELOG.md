@@ -26,6 +26,7 @@
 ### Changed
 
 - Open an empty untitled tab when the open file length limit is exceeded. (#353)
+- When parsing a problem while it is already parsed and opened in a tab, the new test cases will override the old test cases.
 
 ## v6.4
 
