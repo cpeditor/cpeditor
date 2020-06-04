@@ -244,7 +244,7 @@ void TestCase::onDelButtonClicked()
     else
     {
         auto res = QMessageBox::question(this, "Delete Testcase",
-                                         "Do you want to delete test case #" + QString::number(id + 1));
+                                         "Do you really want to delete test case #" + QString::number(id + 1));
         if (res == QMessageBox::Yes)
             emit deleted(this);
     }
