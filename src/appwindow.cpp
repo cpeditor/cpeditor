@@ -772,7 +772,7 @@ void AppWindow::onReceivedMessage(quint32 instanceId, QByteArray message)
     showOnTop();
 
     message = message.mid(message.indexOf("NOLOSTDATA") + 10);
-    auto json = QJsonDocument::fromBinaryData(message);
+    auto json = QJsonDocument::fromJson(message);
     FROMJSON(cpp).toBool();
     FROMJSON(java).toBool();
     FROMJSON(python).toBool();
