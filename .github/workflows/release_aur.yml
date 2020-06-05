@@ -33,22 +33,6 @@ jobs:
           name: id_rsa
           known_hosts: ${{ secrets.KNOWN_HOST }}
 
-      - name: Install Qt
-        if: steps.get_version.outputs.ISSTABLE == 'true'
-        run: |
-          sudo add-apt-repository ppa:beineri/opt-qt-5.15.0-xenial -y
-          sudo apt-get update -qq
-          sudo apt-get -y install qt512base libgl1-mesa-dev qt512svg qt512imageformats
-          bash /opt/qt*/bin/qt*-env.sh
-
-      - name: Generate AUR files
-        if: steps.get_version.outputs.ISSTABLE == 'true'
-        run: |
-          mkdir build
-          git submodule update --init
-          cd build
-          cmake ..
-
       - name: Fetch AUR Remote
         if: steps.get_version.outputs.ISSTABLE == 'true'
         run: |
@@ -60,11 +44,10 @@ jobs:
           wget -c https://github.com/${{ github.repository }}/releases/download/${{ steps.get_version.outputs.VERSION }}/cpeditor-${{ steps.get_version.outputs.VERSION }}-full-source.tar.gz
           sha256sum=$(shasum -a 256 cpeditor-${{ steps.get_version.outputs.VERSION }}-full-source.tar.gz | cut -d ' ' -f 1)
           cd cpeditor
-          rm PKGBUILD .SRCINFO
-          mv ../build/aur/PKGBUILD .
-          mv ../build/aur/.SRCINFO .
-          sed -i "s/SKIP/${sha256sum}/" PKGBUILD
-          sed -i "s/SKIP/${sha256sum}/" .SRCINFO
+          cp ../.ci/aur/stable/PKGBUILD .
+          cp ../.ci/aur/stable/.SRCINFO .
+          sed -i "s/@PROJECT_VERSION@/${{ steps.get_version.outputs.VERSION }}/" PKGBUILD .SRCINFO
+          sed -i "s/SKIP/${sha256sum}/" PKGBUILD .SRCINFO
 
       - name: Publish to AUR
         if: steps.get_version.outputs.ISSTABLE == 'true'
