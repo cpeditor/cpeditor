@@ -743,7 +743,7 @@ void AppWindow::on_actionClose_Saved_triggered()
 
 /************************ PREFERENCES SECTION **********************/
 
-void AppWindow::on_actionRestore_Settings_triggered()
+void AppWindow::on_action_reset_settings_triggered()
 {
     auto res = QMessageBox::question(this, "Reset preferences?",
                                      "Are you sure you want to reset the"
@@ -754,6 +754,25 @@ void AppWindow::on_actionRestore_Settings_triggered()
         SettingsManager::reset();
         onSettingsApplied("");
         LOG_INFO("Reset success");
+    }
+}
+
+void AppWindow::on_action_export_settings_triggered()
+{
+    auto path = QFileDialog::getSaveFileName(this, "Export settings to a file", QString(),
+                                             "CP Editor Settings File (*.cpeditor)");
+    if (!path.isEmpty())
+        SettingsManager::saveSettings(path);
+}
+
+void AppWindow::on_action_import_settings_triggered()
+{
+    auto path = QFileDialog::getOpenFileName(this, "Import settings from a file", QString(),
+                                             "CP Editor Settings File (*.cpeditor)");
+    if (!path.isEmpty())
+    {
+        SettingsManager::loadSettings(path);
+        onSettingsApplied("");
     }
 }
 

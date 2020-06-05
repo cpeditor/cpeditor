@@ -15,6 +15,7 @@
 - Use tab to jump out of a parenthesis. (#256)
 - Parentheses settings for each parenthesis in each language. (#206)
 - A button to clear the messages.
+- Export and import settings. (#336)
 
 ### Fixed
 

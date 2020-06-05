@@ -18,13 +18,13 @@
 #include "Settings/SettingsManager.hpp"
 #include "Core/EventLogger.hpp"
 #include "Settings/FileProblemBinder.hpp"
+#include "generated/SettingsInfo.hpp"
 #include <QDebug>
 #include <QFile>
 #include <QFont>
 #include <QRect>
 #include <QSettings>
 #include <QStandardPaths>
-#include <generated/SettingsInfo.hpp>
 
 QVariantMap *SettingsManager::cur = nullptr;
 QVariantMap *SettingsManager::def = nullptr;
@@ -51,6 +51,27 @@ void SettingsManager::init()
         }
     }
 
+    loadSettings(loadPath);
+}
+
+void SettingsManager::deinit()
+{
+    saveSettings(configFileLocation[0]);
+
+    delete cur;
+    delete def;
+    cur = def = nullptr;
+}
+
+void SettingsManager::loadSettings(const QString &path)
+{
+    LOG_INFO("Start loading settings from " + path);
+
+    if (cur)
+        delete cur;
+    if (def)
+        delete def;
+
     cur = new QVariantMap();
     def = new QVariantMap();
 
@@ -58,9 +79,9 @@ void SettingsManager::init()
     for (const SettingInfo &si : settingInfo)
         def->insert(si.name, si.def);
 
-    if (!loadPath.isEmpty())
+    if (!path.isEmpty())
     {
-        QSettings setting(loadPath, QSettings::IniFormat);
+        QSettings setting(path, QSettings::IniFormat);
 
         // load most of settings
         for (const SettingInfo &si : settingInfo)
@@ -115,13 +136,15 @@ void SettingsManager::init()
                             .replace("Solarised", "Solarized");
         set("Editor Theme", theme);
     }
+
+    LOG_INFO("Settings have been loaded from " + path);
 }
 
-void SettingsManager::deinit()
+void SettingsManager::saveSettings(const QString &path)
 {
-    LOG_INFO("Start saving settings");
+    LOG_INFO("Start saving settings to " + path);
 
-    QSettings setting(configFileLocation[0], QSettings::IniFormat);
+    QSettings setting(path, QSettings::IniFormat);
     setting.clear(); // Otherwise SettingsManager::remove won't work
 
     // save most settings
@@ -146,11 +169,8 @@ void SettingsManager::deinit()
     setting.setValue("file_problem_binding", FileProblemBinder::toVariant());
 
     setting.sync();
-    delete cur;
-    delete def;
-    cur = def = nullptr;
 
-    LOG_INFO("Settings saved");
+    LOG_INFO("Settings have been saved to " + path);
 }
 
 QVariant SettingsManager::get(QString key, bool alwaysDefault)
