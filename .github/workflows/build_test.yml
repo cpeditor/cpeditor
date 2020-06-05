@@ -3,10 +3,11 @@ name: "CI: Build Test"
 on: [push, pull_request]
 
 env:
-  CMAKE_VERSION: 3.16.6
+  QT_VERSION: 5.15.0
+  CMAKE_VERSION: 3.16.8
   NINJA_VERSION: 1.10.0
-  BUILD_TYPE: Release
   CCACHE_VERSION: 3.7.7
+  BUILD_TYPE: Release
 
 jobs:
   build:
@@ -47,13 +48,13 @@ jobs:
         uses: actions/cache@v1
         with:
           path: ../Qt
-          key: Qt-${{ matrix.config.os }}-5.15.0
+          key: Qt-${{ matrix.config.os }}-${{ env.QT_VERSION }}
 
       - name: Set up Qt environment
         uses: jurplel/install-qt-action@v2
         with:
           cached: ${{ steps.cache-qt.outputs.cache-hit }}
-          version: 5.15.0
+          version: ${{ env.QT_VERSION }}
           arch: "win64_msvc2019_64"
           aqtversion: ">=0.9.0"
 
@@ -112,9 +113,9 @@ jobs:
         uses: actions/cache@v1
         with:
           path: .ccache
-          key: ${{ matrix.config.os }}-5.15.0-ccache-${{ steps.ccache_cache_timestamp.outputs.timestamp }}
+          key: ${{ matrix.config.os }}-${{ env.QT_VERSION }}-ccache-${{ steps.ccache_cache_timestamp.outputs.timestamp }}
           restore-keys: |
-            ${{ matrix.config.os }}-5.15.0-ccache-
+            ${{ matrix.config.os }}-${{ env.QT_VERSION }}-ccache-
 
       - name: Configure CMake
         shell: cmake -P {0}
