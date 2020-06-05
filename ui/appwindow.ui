@@ -109,7 +109,10 @@
     </property>
     <addaction name="actionSettings"/>
     <addaction name="separator"/>
-    <addaction name="actionRestore_Settings"/>
+    <addaction name="action_reset_settings"/>
+    <addaction name="separator"/>
+    <addaction name="action_export_settings"/>
+    <addaction name="action_import_settings"/>
     <addaction name="separator"/>
     <addaction name="actionShow_Logs"/>
     <addaction name="actionClear_Logs"/>
@@ -378,9 +381,19 @@
     <string>Ctrl+P</string>
    </property>
   </action>
-  <action name="actionRestore_Settings">
+  <action name="action_reset_settings">
    <property name="text">
-    <string>Reset Preferences</string>
+    <string>Reset Settings</string>
+   </property>
+  </action>
+  <action name="action_export_settings">
+   <property name="text">
+    <string>Export Settings</string>
+   </property>
+  </action>
+  <action name="action_import_settings">
+   <property name="text">
+    <string>Import Settings</string>
    </property>
   </action>
   <action name="actionManual">
