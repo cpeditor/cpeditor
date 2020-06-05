@@ -538,10 +538,10 @@ void MainWindow::applySettings(const QString &pagePath, bool shouldPerformDigoni
         updateChecker();
 }
 
-void MainWindow::save(bool force, const QString &head, bool safe)
+bool MainWindow::save(bool force, const QString &head, bool safe)
 {
     LOG_INFO("Save " << BOOL_INFO_OF(force) << INFO_OF(head) << BOOL_INFO_OF(safe));
-    saveFile(force ? AlwaysSave : IgnoreUntitled, head, safe);
+    return saveFile(force ? AlwaysSave : IgnoreUntitled, head, safe);
 }
 
 void MainWindow::saveAs()

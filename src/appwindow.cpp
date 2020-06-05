@@ -711,7 +711,8 @@ void AppWindow::on_actionSave_All_triggered()
     for (int t = 0; t < ui->tabWidget->count(); ++t)
     {
         auto tmp = windowAt(t);
-        tmp->save(true, "Save All");
+        if (!tmp->save(true, "Save All"))
+            break;
     }
 }
 
