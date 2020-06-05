@@ -814,6 +814,24 @@ Do you want to reload it?</source>
     </message>
 </context>
 <context>
+    <name>PreferencesPage</name>
+    <message>
+        <location filename="../src/Settings/PreferencesPage.cpp" line="38"/>
+        <source>Default</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/PreferencesPage.cpp" line="40"/>
+        <source>Reset</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/PreferencesPage.cpp" line="42"/>
+        <source>Apply</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>Setting</name>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="29"/>
@@ -1875,7 +1893,7 @@ from competitive companion again, the old file will be opened.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Telemetry/UpdateChecker.cpp" line="141"/>
+        <location filename="../src/Telemetry/UpdateChecker.cpp" line="142"/>
         <source>No download URL of the version [%1] is found.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1903,12 +1921,12 @@ from competitive companion again, the old file will be opened.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Widgets/UpdatePresenter.cpp" line="68"/>
+        <location filename="../src/Widgets/UpdatePresenter.cpp" line="70"/>
         <source>beta</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Widgets/UpdatePresenter.cpp" line="68"/>
+        <location filename="../src/Widgets/UpdatePresenter.cpp" line="71"/>
         <source>stable</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1921,32 +1939,32 @@ from competitive companion again, the old file will be opened.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Widgets/UpdateProgressDialog.cpp" line="38"/>
+        <location filename="../src/Widgets/UpdateProgressDialog.cpp" line="39"/>
         <source>Close this dialog and abort the update check</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Widgets/UpdateProgressDialog.cpp" line="46"/>
+        <location filename="../src/Widgets/UpdateProgressDialog.cpp" line="47"/>
         <source>Update Checker</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Widgets/UpdateProgressDialog.cpp" line="56"/>
+        <location filename="../src/Widgets/UpdateProgressDialog.cpp" line="57"/>
         <source>Fetching the list of releases...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Widgets/UpdateProgressDialog.cpp" line="64"/>
+        <location filename="../src/Widgets/UpdateProgressDialog.cpp" line="65"/>
         <source>Error: %1&lt;br /&gt;&lt;br /&gt;Updater failed to check for update. Please manually check for update at&lt;br /&gt;&lt;a href=&quot;https://cpeditor.github.io/download&quot;&gt;https://cpeditor.github.io/download&lt;/a&gt; or &lt;a href=&quot;https://github.com/cpeditor/cpeditor/releases&quot;&gt;https://github.com/cpeditor/cpeditor/releases&lt;/a&gt;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Widgets/UpdateProgressDialog.cpp" line="74"/>
+        <location filename="../src/Widgets/UpdateProgressDialog.cpp" line="77"/>
         <source>Close</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Widgets/UpdateProgressDialog.cpp" line="75"/>
+        <location filename="../src/Widgets/UpdateProgressDialog.cpp" line="78"/>
         <source>Hooray!! You are already using the latest release of CP Editor.</source>
         <translation type="unfinished"></translation>
     </message>

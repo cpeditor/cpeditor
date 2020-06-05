@@ -820,6 +820,24 @@ Do you want to reload it?</source>
     </message>
 </context>
 <context>
+    <name>PreferencesPage</name>
+    <message>
+        <location filename="../src/Settings/PreferencesPage.cpp" line="38"/>
+        <source>Default</source>
+        <translation type="unfinished">默认</translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/PreferencesPage.cpp" line="40"/>
+        <source>Reset</source>
+        <translation type="unfinished">重置</translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/PreferencesPage.cpp" line="42"/>
+        <source>Apply</source>
+        <translation type="unfinished">应用</translation>
+    </message>
+</context>
+<context>
     <name>Setting</name>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="29"/>
@@ -1915,7 +1933,7 @@ from competitive companion again, the old file will be opened.</source>
         <translation type="unfinished">未发现更新。</translation>
     </message>
     <message>
-        <location filename="../src/Telemetry/UpdateChecker.cpp" line="141"/>
+        <location filename="../src/Telemetry/UpdateChecker.cpp" line="142"/>
         <source>No download URL of the version [%1] is found.</source>
         <translation type="unfinished">没有发现版本[%1]可用的下载链接。</translation>
     </message>
@@ -1943,12 +1961,12 @@ from competitive companion again, the old file will be opened.</source>
         <translation type="unfinished">一个新的%1更新&lt;a href=&quot;%2&quot;&gt;%3&lt;/a&gt;可用。更新日志在下方。&lt;br /&gt;我们强烈建议更新至最新版本，这样你才不会错过新的特性和补丁。</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/UpdatePresenter.cpp" line="68"/>
+        <location filename="../src/Widgets/UpdatePresenter.cpp" line="70"/>
         <source>beta</source>
         <translation type="unfinished">测试</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/UpdatePresenter.cpp" line="68"/>
+        <location filename="../src/Widgets/UpdatePresenter.cpp" line="71"/>
         <source>stable</source>
         <translation type="unfinished">稳定</translation>
     </message>
@@ -1961,32 +1979,32 @@ from competitive companion again, the old file will be opened.</source>
         <translation type="unfinished">取消</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/UpdateProgressDialog.cpp" line="38"/>
+        <location filename="../src/Widgets/UpdateProgressDialog.cpp" line="39"/>
         <source>Close this dialog and abort the update check</source>
         <translation type="unfinished">关闭对话框并终止检查更新</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/UpdateProgressDialog.cpp" line="46"/>
+        <location filename="../src/Widgets/UpdateProgressDialog.cpp" line="47"/>
         <source>Update Checker</source>
         <translation type="unfinished">更新检查器</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/UpdateProgressDialog.cpp" line="56"/>
+        <location filename="../src/Widgets/UpdateProgressDialog.cpp" line="57"/>
         <source>Fetching the list of releases...</source>
         <translation type="unfinished">获取更新列表中...</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/UpdateProgressDialog.cpp" line="64"/>
+        <location filename="../src/Widgets/UpdateProgressDialog.cpp" line="65"/>
         <source>Error: %1&lt;br /&gt;&lt;br /&gt;Updater failed to check for update. Please manually check for update at&lt;br /&gt;&lt;a href=&quot;https://cpeditor.github.io/download&quot;&gt;https://cpeditor.github.io/download&lt;/a&gt; or &lt;a href=&quot;https://github.com/cpeditor/cpeditor/releases&quot;&gt;https://github.com/cpeditor/cpeditor/releases&lt;/a&gt;.</source>
         <translation type="unfinished">错误：%1&lt;br /&gt;&lt;br /&gt;检查更新失败。请前往&lt;br /&gt;&lt;a href=&quot;https://cpeditor.github.io/download&quot;&gt;https://cpeditor.github.io/download&lt;/a&gt;或 &lt;a href=&quot;https://github.com/cpeditor/cpeditor/releases&quot;&gt;https://github.com/cpeditor/cpeditor/releases&lt;/a&gt;手动检查更新。</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/UpdateProgressDialog.cpp" line="74"/>
+        <location filename="../src/Widgets/UpdateProgressDialog.cpp" line="77"/>
         <source>Close</source>
         <translation type="unfinished">关闭</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/UpdateProgressDialog.cpp" line="75"/>
+        <location filename="../src/Widgets/UpdateProgressDialog.cpp" line="78"/>
         <source>Hooray!! You are already using the latest release of CP Editor.</source>
         <translation type="unfinished">恭喜！！你已经在使用最新版本的CP Editor了。</translation>
     </message>
