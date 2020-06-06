@@ -25,7 +25,7 @@ jobs:
         run: |
           sudo add-apt-repository ppa:beineri/opt-qt-5.15.0-xenial -y
           sudo apt-get update -qq
-          sudo apt-get -y install qt514base libgl1-mesa-dev qt514svg qt514imageformats
+          sudo apt-get -y install qt515base libgl1-mesa-dev qt515svg qt515imageformats
           bash /opt/qt*/bin/qt*-env.sh
 
       - name: Build
@@ -57,7 +57,7 @@ jobs:
           cp ../.ci/linux/cpeditor.desktop . && cp ../.ci/linux/cpeditor-icon.png .
           cp cpeditor.desktop default.desktop
           mv cpeditor-icon.png cpeditor-icon.png.png
-          ./linuxdeployqt*.AppImage ./cpeditor -appimage -qmake=/opt/qt514/bin/qmake
+          ./linuxdeployqt*.AppImage ./cpeditor -appimage -qmake=/opt/qt515/bin/qmake
           mv CP_Editor-${{steps.get_version.outputs.VERSION }}-x86_64.AppImage cpeditor-${{ steps.get_version.outputs.VERSION }}-x86_64.AppImage
 
       - name: Package the complete Source
