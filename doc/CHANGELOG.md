@@ -16,6 +16,7 @@
 - Parentheses settings for each parenthesis in each language. (#206)
 - A button to clear the messages.
 - Export and import settings. (#336)
+- Ask whether to override an existing snippet or not when there's a conflict in the snippet names. (#244)
 
 ### Fixed
 

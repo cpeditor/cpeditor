@@ -278,7 +278,7 @@ bool CodeSnippetsPage::aboutToSwitchToSnippet()
 
 void CodeSnippetsPage::addSnippet()
 {
-    auto name = getNewSnippetName();
+    auto name = getNewSnippetName(QString(), false, false);
     if (!name.isEmpty())
         addSnippet(name);
 }
@@ -378,7 +378,7 @@ void CodeSnippetsPage::extractSnippetsToFiles()
     }
 }
 
-QString CodeSnippetsPage::getNewSnippetName(const QString &oldName, bool avoidConflictWithSettings)
+QString CodeSnippetsPage::getNewSnippetName(const QString &oldName, bool avoidConflictWithSettings, bool askOverride)
 {
     QString name;
     bool firstTime = true;
@@ -395,7 +395,25 @@ QString CodeSnippetsPage::getNewSnippetName(const QString &oldName, bool avoidCo
         else if (name.isEmpty())
             head = "Snippet name can't be empty.\n";
         else
+        {
+            if (askOverride)
+            {
+                auto res =
+                    QMessageBox::question(this, "Snippet Name Conflict",
+                                          QString("The name \"%1\" is already in use. Do you want to override it? "
+                                                  "(The old snippet with this name will be deleted.)")
+                                              .arg(name),
+                                          QMessageBox::Yes | QMessageBox::No);
+                if (res == QMessageBox::Yes)
+                {
+                    auto item = snippetItem[name];
+                    if (item)
+                        deleteSnippet(item);
+                    return name;
+                }
+            }
             head = QString("The name \"%1\" is already in use.\n").arg(name);
+        }
         name = QInputDialog::getText(this, "Add Snippet", head + "New Snippet Name:", QLineEdit::Normal, name, &ok);
         if (!ok)
             return QString();
