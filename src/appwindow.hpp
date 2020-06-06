@@ -89,7 +89,11 @@ class AppWindow : public QMainWindow
 
     void on_actionOpenContest_triggered();
 
-    void on_actionRestore_Settings_triggered();
+    void on_action_reset_settings_triggered();
+
+    void on_action_export_settings_triggered();
+
+    void on_action_import_settings_triggered();
 
     void on_actionSettings_triggered();
 

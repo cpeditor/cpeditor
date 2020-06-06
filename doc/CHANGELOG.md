@@ -1,5 +1,7 @@
 ## UNRELEASED
 
+## v6.5
+
 ### Added
 
 - Now you can change the font of the message logger. (#331 and #334)
@@ -15,6 +17,8 @@
 - Use tab to jump out of a parenthesis. (#256)
 - Parentheses settings for each parenthesis in each language. (#206)
 - A button to clear the messages.
+- Export and import settings. (#336)
+- Ask whether to override an existing snippet or not when there's a conflict in the snippet names. (#244)
 
 ### Fixed
 
@@ -27,6 +31,7 @@
 
 - Open an empty untitled tab when the open file length limit is exceeded. (#353)
 - When parsing a problem while it is already parsed and opened in a tab, the new test cases will override the old test cases.
+- If you click "Cancel" when saving all files, the action will be aborted instead of saving the next file.
 
 ## v6.4
 
