@@ -46,10 +46,6 @@ int main(int argc, char *argv[])
     QApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
     QApplication::setWindowIcon(QIcon(":/icon.png"));
 
-    updateSettingInfo(); // generate an English version, so that we can use SettingsHelper
-    SettingsManager::init();
-    Util::applyNewLocale(SettingsHelper::getLanguage());
-
     SignalHandler handler;
     QObject::connect(&handler, &SignalHandler::signalReceived, qApp, [](int signal) {
         if (qApp)
@@ -143,6 +139,10 @@ int main(int argc, char *argv[])
     auto instance = app.instanceId();
     Core::Log::init(instance, shouldDumpTostderr);
     LOG_INFO(INFO_OF(instance));
+
+    updateSettingInfo(); // generate an English version, so that we can use SettingsHelper
+    SettingsManager::init();
+    Util::applyNewLocale(SettingsHelper::getLanguage());
 
     auto args = parser.positionalArguments();
 
