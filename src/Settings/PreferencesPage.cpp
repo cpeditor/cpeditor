@@ -55,9 +55,9 @@ PreferencesPage::PreferencesPage(QWidget *parent) : QWidget(parent)
     mainLayout->addLayout(buttonsLayout);
 
     // add tooltips
-    defaultButton->setToolTip("Restore the default settings on the current page. (Ctrl+D)");
-    resetButton->setToolTip("Discard all changes on the current page. (Ctrl+R)");
-    applyButton->setToolTip("Save the changes on the current page. (Ctrl+S)");
+    defaultButton->setToolTip(tr("Restore the default settings on the current page. (Ctrl+D)"));
+    resetButton->setToolTip(tr("Discard all changes on the current page. (Ctrl+R)"));
+    applyButton->setToolTip(tr("Save the changes on the current page. (Ctrl+S)"));
 
     // set the font for title
     auto labelFont = font();
@@ -77,9 +77,9 @@ bool PreferencesPage::aboutToExit()
         return true;
 
     // otherwise, ask the user whether to save, discard or cancel
-    auto response = QMessageBox::warning(this, "Unsaved Settings",
-                                         "The settings are changed. Do you want to save the settings or discard them?",
-                                         QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel);
+    auto response = QMessageBox::warning(
+        this, tr("Unsaved Settings"), tr("The settings are changed. Do you want to save the settings or discard them?"),
+        QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel);
 
     switch (response)
     {

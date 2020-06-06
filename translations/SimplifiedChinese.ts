@@ -822,19 +822,44 @@ Do you want to reload it?</source>
 <context>
     <name>PreferencesPage</name>
     <message>
-        <location filename="../src/Settings/PreferencesPage.cpp" line="38"/>
+        <location filename="../src/Settings/PreferencesPage.cpp" line="39"/>
         <source>Default</source>
         <translation type="unfinished">默认</translation>
     </message>
     <message>
-        <location filename="../src/Settings/PreferencesPage.cpp" line="40"/>
+        <location filename="../src/Settings/PreferencesPage.cpp" line="41"/>
         <source>Reset</source>
         <translation type="unfinished">重置</translation>
     </message>
     <message>
-        <location filename="../src/Settings/PreferencesPage.cpp" line="42"/>
+        <location filename="../src/Settings/PreferencesPage.cpp" line="43"/>
         <source>Apply</source>
         <translation type="unfinished">应用</translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/PreferencesPage.cpp" line="58"/>
+        <source>Restore the default settings on the current page. (Ctrl+D)</source>
+        <translation type="unfinished">将当前页设置重置为默认（Ctrl+D）</translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/PreferencesPage.cpp" line="59"/>
+        <source>Discard all changes on the current page. (Ctrl+R)</source>
+        <translation type="unfinished">放弃当前页设置（Ctrl+R）</translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/PreferencesPage.cpp" line="60"/>
+        <source>Save the changes on the current page. (Ctrl+S)</source>
+        <translation type="unfinished">保存当前页设置（Ctrl+S）</translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/PreferencesPage.cpp" line="80"/>
+        <source>Unsaved Settings</source>
+        <translation type="unfinished">未保存设置</translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/PreferencesPage.cpp" line="81"/>
+        <source>The settings are changed. Do you want to save the settings or discard them?</source>
+        <translation type="unfinished">设置已变更。你希望保存设置还是舍弃设置？</translation>
     </message>
 </context>
 <context>
