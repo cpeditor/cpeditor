@@ -148,11 +148,9 @@ QStringList splitArgument(QString arg)
     return result;
 }
 
-const static QMap<QString, QString> locales = {
-    {"简体中文", "SimplifiedChinese"},
-    // {"繁體中文", "TraditionalChinese"},
-    {"русский", "Russian"} // I use google translate to get this. Update this if not suitable.
-};
+const static QMap<QString, QString> locales = {{"简体中文", "SimplifiedChinese"},
+                                               // {"繁體中文", "TraditionalChinese"},
+                                               {"Русский", "Russian"}};
 
 void applyNewLocale(const QString &language)
 {
