@@ -235,8 +235,10 @@ void TestCases::addTestCase(const QString &input, const QString &expected)
     if (count() >= MAX_NUMBER_OF_TESTCASES)
     {
         LOG_WARN("Max testcase limit reached");
-        QMessageBox::warning(this, "Add Test Case",
-                             "There are already " + QString::number(count()) + " test cases, you can't add more.");
+        QMessageBox::warning(
+            this, QCoreApplication::translate("TestCases", "Add Test Case"),
+            QCoreApplication::translate("TestCases", "There are already %1 test cases, you can't add more.")
+                .arg(QString::number(count())));
     }
     else
     {

@@ -852,7 +852,7 @@ Do you want to reload it?</source>
         <translation type="unfinished">保存当前页设置（Ctrl+S）</translation>
     </message>
     <message>
-        <location filename="../src/Settings/PreferencesPage.cpp" line="80"/>
+        <location filename="../src/Settings/PreferencesPage.cpp" line="81"/>
         <source>Unsaved Settings</source>
         <translation type="unfinished">未保存设置</translation>
     </message>
@@ -1948,6 +1948,16 @@ from competitive companion again, the old file will be opened.</source>
         <location filename="../src/Widgets/TestCases.cpp" line="210"/>
         <source>nyesno - Compare YES/NOs, case insensitive</source>
         <translation type="unfinished">nyesno - 匹配YES和NO，大小写不敏感</translation>
+    </message>
+    <message>
+        <location filename="../src/Widgets/TestCases.cpp" line="238"/>
+        <source>Add Test Case</source>
+        <translation type="unfinished">添加测试点</translation>
+    </message>
+    <message>
+        <location filename="../src/Widgets/TestCases.cpp" line="239"/>
+        <source>There are already %1 test cases, you can&apos;t add more.</source>
+        <translation type="unfinished">已经有%1个测试点，你不能继续添加更多了。</translation>
     </message>
 </context>
 <context>

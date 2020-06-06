@@ -846,7 +846,7 @@ Do you want to reload it?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Settings/PreferencesPage.cpp" line="80"/>
+        <location filename="../src/Settings/PreferencesPage.cpp" line="81"/>
         <source>Unsaved Settings</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1907,6 +1907,16 @@ from competitive companion again, the old file will be opened.</source>
     <message>
         <location filename="../src/Widgets/TestCases.cpp" line="210"/>
         <source>nyesno - Compare YES/NOs, case insensitive</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Widgets/TestCases.cpp" line="238"/>
+        <source>Add Test Case</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Widgets/TestCases.cpp" line="239"/>
+        <source>There are already %1 test cases, you can&apos;t add more.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
