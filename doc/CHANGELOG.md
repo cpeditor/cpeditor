@@ -1,5 +1,7 @@
 ## UNRELEASED
 
+## v6.5
+
 ### Added
 
 - Now you can change the font of the message logger. (#331 and #334)
