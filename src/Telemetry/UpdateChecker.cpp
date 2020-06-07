@@ -19,7 +19,6 @@
 #include "Core/EventLogger.hpp"
 #include "Widgets/UpdatePresenter.hpp"
 #include "Widgets/UpdateProgressDialog.hpp"
-#include <QCoreApplication>
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QtNetwork/QNetworkAccessManager>

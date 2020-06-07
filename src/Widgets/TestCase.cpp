@@ -22,7 +22,6 @@
 #include "Widgets/DiffViewer.hpp"
 #include "Widgets/TestCaseEdit.hpp"
 #include <QCheckBox>
-#include <QCoreApplication>
 #include <QHBoxLayout>
 #include <QLabel>
 #include <QMenu>

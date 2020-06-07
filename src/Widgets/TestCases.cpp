@@ -22,7 +22,6 @@
 #include "Widgets/TestCase.hpp"
 #include "generated/SettingsHelper.hpp"
 #include <QComboBox>
-#include <QCoreApplication>
 #include <QFileDialog>
 #include <QFileInfo>
 #include <QHBoxLayout>

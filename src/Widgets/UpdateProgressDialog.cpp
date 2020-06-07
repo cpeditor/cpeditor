@@ -17,7 +17,6 @@
 
 #include "Widgets/UpdateProgressDialog.hpp"
 #include "Util/Util.hpp"
-#include <QCoreApplication>
 #include <QLabel>
 #include <QProgressBar>
 #include <QPushButton>

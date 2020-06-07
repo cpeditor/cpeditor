@@ -18,7 +18,6 @@
 #include "Widgets/UpdatePresenter.hpp"
 #include "Core/EventLogger.hpp"
 #include "Util/Util.hpp"
-#include <QCoreApplication>
 #include <QDesktopServices>
 #include <QLabel>
 #include <QPushButton>
