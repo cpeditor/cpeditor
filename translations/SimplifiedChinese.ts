@@ -1754,7 +1754,20 @@ from competitive companion again, the old file will be opened.</source>
     </message>
 </context>
 <context>
-    <name>TestCase</name>
+    <name>Telemetry::UpdateChecker</name>
+    <message>
+        <location filename="../src/Telemetry/UpdateChecker.cpp" line="130"/>
+        <source>No release is found.</source>
+        <translation type="unfinished">未发现更新。</translation>
+    </message>
+    <message>
+        <location filename="../src/Telemetry/UpdateChecker.cpp" line="142"/>
+        <source>No download URL of the version [%1] is found.</source>
+        <translation type="unfinished">没有发现版本[%1]可用的下载链接。</translation>
+    </message>
+</context>
+<context>
+    <name>Widgets::TestCase</name>
     <message>
         <location filename="../src/Widgets/TestCase.cpp" line="48"/>
         <source>Input</source>
@@ -1822,7 +1835,7 @@ from competitive companion again, the old file will be opened.</source>
     </message>
 </context>
 <context>
-    <name>TestCases</name>
+    <name>Widgets::TestCases</name>
     <message>
         <location filename="../src/Widgets/TestCases.cpp" line="46"/>
         <source>Test Cases</source>
@@ -1845,7 +1858,7 @@ from competitive companion again, the old file will be opened.</source>
     </message>
     <message>
         <location filename="../src/Widgets/TestCases.cpp" line="51"/>
-        <location filename="../src/Widgets/TestCases.cpp" line="459"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="461"/>
         <source>Add Checker</source>
         <translation type="unfinished">添加评测器</translation>
     </message>
@@ -1950,31 +1963,18 @@ from competitive companion again, the old file will be opened.</source>
         <translation type="unfinished">nyesno - 匹配YES和NO，大小写不敏感</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/TestCases.cpp" line="238"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="239"/>
         <source>Add Test Case</source>
         <translation type="unfinished">添加测试点</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/TestCases.cpp" line="239"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="240"/>
         <source>There are already %1 test cases, you can&apos;t add more.</source>
         <translation type="unfinished">已经有%1个测试点，你不能继续添加更多了。</translation>
     </message>
 </context>
 <context>
-    <name>UpdateChecker</name>
-    <message>
-        <location filename="../src/Telemetry/UpdateChecker.cpp" line="130"/>
-        <source>No release is found.</source>
-        <translation type="unfinished">未发现更新。</translation>
-    </message>
-    <message>
-        <location filename="../src/Telemetry/UpdateChecker.cpp" line="142"/>
-        <source>No download URL of the version [%1] is found.</source>
-        <translation type="unfinished">没有发现版本[%1]可用的下载链接。</translation>
-    </message>
-</context>
-<context>
-    <name>UpdatePresenter</name>
+    <name>Widgets::UpdatePresenter</name>
     <message>
         <location filename="../src/Widgets/UpdatePresenter.cpp" line="39"/>
         <source>Download</source>
@@ -1996,18 +1996,18 @@ from competitive companion again, the old file will be opened.</source>
         <translation type="unfinished">一个新的%1更新&lt;a href=&quot;%2&quot;&gt;%3&lt;/a&gt;可用。更新日志在下方。&lt;br /&gt;我们强烈建议更新至最新版本，这样你才不会错过新的特性和补丁。</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/UpdatePresenter.cpp" line="70"/>
+        <location filename="../src/Widgets/UpdatePresenter.cpp" line="68"/>
         <source>beta</source>
         <translation type="unfinished">测试</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/UpdatePresenter.cpp" line="71"/>
+        <location filename="../src/Widgets/UpdatePresenter.cpp" line="69"/>
         <source>stable</source>
         <translation type="unfinished">稳定</translation>
     </message>
 </context>
 <context>
-    <name>UpdateProgressDialog</name>
+    <name>Widgets::UpdateProgressDialog</name>
     <message>
         <location filename="../src/Widgets/UpdateProgressDialog.cpp" line="37"/>
         <source>Cancel</source>
@@ -2034,12 +2034,12 @@ from competitive companion again, the old file will be opened.</source>
         <translation type="unfinished">错误：%1&lt;br /&gt;&lt;br /&gt;检查更新失败。请前往&lt;br /&gt;&lt;a href=&quot;https://cpeditor.github.io/download&quot;&gt;https://cpeditor.github.io/download&lt;/a&gt;或 &lt;a href=&quot;https://github.com/cpeditor/cpeditor/releases&quot;&gt;https://github.com/cpeditor/cpeditor/releases&lt;/a&gt;手动检查更新。</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/UpdateProgressDialog.cpp" line="77"/>
+        <location filename="../src/Widgets/UpdateProgressDialog.cpp" line="75"/>
         <source>Close</source>
         <translation type="unfinished">关闭</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/UpdateProgressDialog.cpp" line="78"/>
+        <location filename="../src/Widgets/UpdateProgressDialog.cpp" line="76"/>
         <source>Hooray!! You are already using the latest release of CP Editor.</source>
         <translation type="unfinished">恭喜！！你已经在使用最新版本的CP Editor了。</translation>
     </message>

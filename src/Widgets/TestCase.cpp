@@ -45,12 +45,12 @@ TestCase::TestCase(int index, MessageLogger *logger, QWidget *parent, const QStr
     outputLayout = new QVBoxLayout();
     expectedLayout = new QVBoxLayout();
     showCheckBox = new QCheckBox();
-    inputLabel = new QLabel(QCoreApplication::translate("TestCase", "Input"));
-    outputLabel = new QLabel(QCoreApplication::translate("TestCase", "Output"));
-    expectedLabel = new QLabel(QCoreApplication::translate("TestCase", "Expected"));
-    runButton = new QPushButton(QCoreApplication::translate("TestCase", "Run"));
+    inputLabel = new QLabel(tr("Input"));
+    outputLabel = new QLabel(tr("Output"));
+    expectedLabel = new QLabel(tr("Expected"));
+    runButton = new QPushButton(tr("Run"));
     diffButton = new QPushButton("**");
-    delButton = new QPushButton(QCoreApplication::translate("TestCase", "Del"));
+    delButton = new QPushButton(tr("Del"));
     inputEdit = new TestCaseEdit(true, log, in);
     outputEdit = new TestCaseEdit(false, log);
     expectedEdit = new TestCaseEdit(true, log, exp);
@@ -84,8 +84,8 @@ TestCase::TestCase(int index, MessageLogger *logger, QWidget *parent, const QStr
     mainLayout->addLayout(outputLayout);
     mainLayout->addLayout(expectedLayout);
 
-    runButton->setToolTip(QCoreApplication::translate("TestCase", "Test on a single testcase"));
-    diffButton->setToolTip(QCoreApplication::translate("TestCase", "Open the Diff Viewer"));
+    runButton->setToolTip(tr("Test on a single testcase"));
+    diffButton->setToolTip(tr("Open the Diff Viewer"));
 
     connect(showCheckBox, SIGNAL(toggled(bool)), this, SLOT(onShowCheckBoxToggled(bool)));
     connect(runButton, SIGNAL(clicked()), this, SLOT(onRunButtonClicked()));
@@ -106,7 +106,7 @@ void TestCase::setOutput(const QString &text)
 
     if (text.length() > SettingsHelper::getOutputLengthLimit())
     {
-        newOutput = QCoreApplication::translate("TestCase", "Output Length Limit Exceeded");
+        newOutput = tr("Output Length Limit Exceeded");
         log->error("Testcases",
                    QString("The output #%1 contains more than %2 characters, so it's not displayed. You can set the "
                            "output length limit in Preferences->Advanced->Limits->Output Length Limit")
@@ -155,9 +155,9 @@ void TestCase::setID(int index)
 {
     LOG_INFO("Changed testcase ID to " << index);
     id = index;
-    inputLabel->setText(QCoreApplication::translate("TestCase", "Input #%1").arg(id + 1));
-    outputLabel->setText(QCoreApplication::translate("TestCase", "Output #%1").arg(id + 1));
-    expectedLabel->setText(QCoreApplication::translate("TestCase", "Expected #%1").arg(id + 1));
+    inputLabel->setText(tr("Input #%1").arg(id + 1));
+    outputLabel->setText(tr("Output #%1").arg(id + 1));
+    expectedLabel->setText(tr("Expected #%1").arg(id + 1));
 }
 
 void TestCase::setVerdict(Core::Checker::Verdict verdict)
@@ -244,9 +244,8 @@ void TestCase::onDelButtonClicked()
     }
     else
     {
-        auto res = QMessageBox::question(
-            this, QCoreApplication::translate("TestCase", "Delete Testcase"),
-            QCoreApplication::translate("TestCase", "Do you want to delete test case #%1?").arg(id + 1));
+        auto res =
+            QMessageBox::question(this, tr("Delete Testcase"), tr("Do you want to delete test case #%1?").arg(id + 1));
         if (res == QMessageBox::Yes)
             emit deleted(this);
     }

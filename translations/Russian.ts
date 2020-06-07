@@ -1714,7 +1714,20 @@ from competitive companion again, the old file will be opened.</source>
     </message>
 </context>
 <context>
-    <name>TestCase</name>
+    <name>Telemetry::UpdateChecker</name>
+    <message>
+        <location filename="../src/Telemetry/UpdateChecker.cpp" line="130"/>
+        <source>No release is found.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Telemetry/UpdateChecker.cpp" line="142"/>
+        <source>No download URL of the version [%1] is found.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>Widgets::TestCase</name>
     <message>
         <location filename="../src/Widgets/TestCase.cpp" line="48"/>
         <source>Input</source>
@@ -1782,7 +1795,7 @@ from competitive companion again, the old file will be opened.</source>
     </message>
 </context>
 <context>
-    <name>TestCases</name>
+    <name>Widgets::TestCases</name>
     <message>
         <location filename="../src/Widgets/TestCases.cpp" line="46"/>
         <source>Test Cases</source>
@@ -1805,7 +1818,7 @@ from competitive companion again, the old file will be opened.</source>
     </message>
     <message>
         <location filename="../src/Widgets/TestCases.cpp" line="51"/>
-        <location filename="../src/Widgets/TestCases.cpp" line="459"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="461"/>
         <source>Add Checker</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1910,31 +1923,18 @@ from competitive companion again, the old file will be opened.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Widgets/TestCases.cpp" line="238"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="239"/>
         <source>Add Test Case</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Widgets/TestCases.cpp" line="239"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="240"/>
         <source>There are already %1 test cases, you can&apos;t add more.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
-    <name>UpdateChecker</name>
-    <message>
-        <location filename="../src/Telemetry/UpdateChecker.cpp" line="130"/>
-        <source>No release is found.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/Telemetry/UpdateChecker.cpp" line="142"/>
-        <source>No download URL of the version [%1] is found.</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>UpdatePresenter</name>
+    <name>Widgets::UpdatePresenter</name>
     <message>
         <location filename="../src/Widgets/UpdatePresenter.cpp" line="39"/>
         <source>Download</source>
@@ -1956,18 +1956,18 @@ from competitive companion again, the old file will be opened.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Widgets/UpdatePresenter.cpp" line="70"/>
+        <location filename="../src/Widgets/UpdatePresenter.cpp" line="68"/>
         <source>beta</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Widgets/UpdatePresenter.cpp" line="71"/>
+        <location filename="../src/Widgets/UpdatePresenter.cpp" line="69"/>
         <source>stable</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
-    <name>UpdateProgressDialog</name>
+    <name>Widgets::UpdateProgressDialog</name>
     <message>
         <location filename="../src/Widgets/UpdateProgressDialog.cpp" line="37"/>
         <source>Cancel</source>
@@ -1994,12 +1994,12 @@ from competitive companion again, the old file will be opened.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Widgets/UpdateProgressDialog.cpp" line="77"/>
+        <location filename="../src/Widgets/UpdateProgressDialog.cpp" line="75"/>
         <source>Close</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Widgets/UpdateProgressDialog.cpp" line="78"/>
+        <location filename="../src/Widgets/UpdateProgressDialog.cpp" line="76"/>
         <source>Hooray!! You are already using the latest release of CP Editor.</source>
         <translation type="unfinished"></translation>
     </message>
