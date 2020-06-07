@@ -99,9 +99,11 @@ class CodeSnippetsPage : public PreferencesPage
      * @brief get a non-empty unused snippet name
      * @param oldName the old name used for the first-time place holder
      * @param avoidConflictWithSettings avoid used names in the settings as well as in the UI
+     * @param askOverride when the name is conflicted, ask whether to override the old snippet or not
      * @returns the name if succeeded, null QString if failed
      */
-    QString getNewSnippetName(const QString &oldName = QString(), bool avoidConflictWithSettings = false);
+    QString getNewSnippetName(const QString &oldName = QString(), bool avoidConflictWithSettings = false,
+                              bool askOverride = true);
 
     /**
      * @brief add a new snippet without asking for confirmation

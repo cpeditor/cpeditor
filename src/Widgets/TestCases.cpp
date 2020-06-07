@@ -153,7 +153,8 @@ TestCases::TestCases(MessageLogger *logger, QWidget *parent) : QWidget(parent), 
 
     moreMenu->addAction(tr("Remove All"), [this] {
         LOG_INFO("Testcases removing all testcases");
-        auto res = QMessageBox::question(this, tr("Clear Testcases"), tr("Do you want to delete all test cases?"));
+        auto res =
+            QMessageBox::question(this, tr("Clear Testcases"), tr("Are you sure you want to delete all test cases?"));
         if (res == QMessageBox::Yes)
         {
             for (int i = 0; i < count(); ++i)

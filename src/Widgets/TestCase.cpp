@@ -243,8 +243,8 @@ void TestCase::onDelButtonClicked()
     }
     else
     {
-        auto res =
-            QMessageBox::question(this, tr("Delete Testcase"), tr("Do you want to delete test case #%1?").arg(id + 1));
+        auto res = QMessageBox::question(this, tr("Delete Testcase"),
+                                         tr("Are you sure you want to delete test case #%1?").arg(id + 1));
         if (res == QMessageBox::Yes)
             emit deleted(this);
     }

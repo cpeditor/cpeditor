@@ -20,10 +20,14 @@
 
 #include <QMetaType>
 
-struct SettingsManager
+class SettingsManager
 {
+  public:
     static void init();
     static void deinit();
+
+    static void loadSettings(const QString &path);
+    static void saveSettings(const QString &path);
 
     static QVariant get(QString key, bool alwaysDefault = false);
     static bool contains(const QString &key);

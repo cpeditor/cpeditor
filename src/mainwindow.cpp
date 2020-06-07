@@ -453,6 +453,7 @@ void MainWindow::loadStatus(const EditorStatus &status)
 void MainWindow::applyCompanion(const Extensions::CompanionData &data)
 {
     LOG_INFO("Requesting apply from companion");
+
     if (isUntitled() && !isTextChanged())
     {
         QString meta = data.toMetaString();
@@ -464,7 +465,13 @@ void MainWindow::applyCompanion(const Extensions::CompanionData &data)
         else
             meta.replace('\n', "\n// ");
 
-        editor->setPlainText(meta + "\n\n" + editor->toPlainText());
+        meta.append("\n\n");
+
+        auto cursor = editor->textCursor();
+        int cursorPos = cursor.position();
+        editor->setPlainText(meta + editor->toPlainText());
+        cursor.setPosition(cursorPos + meta.length());
+        editor->setTextCursor(cursor);
     }
 
     testcases->clear();
@@ -531,10 +538,10 @@ void MainWindow::applySettings(const QString &pagePath, bool shouldPerformDigoni
         updateChecker();
 }
 
-void MainWindow::save(bool force, const QString &head, bool safe)
+bool MainWindow::save(bool force, const QString &head, bool safe)
 {
     LOG_INFO("Save " << BOOL_INFO_OF(force) << INFO_OF(head) << BOOL_INFO_OF(safe));
-    saveFile(force ? AlwaysSave : IgnoreUntitled, head, safe);
+    return saveFile(force ? AlwaysSave : IgnoreUntitled, head, safe);
 }
 
 void MainWindow::saveAs()

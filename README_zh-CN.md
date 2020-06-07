@@ -24,8 +24,8 @@ CP Editor 是一个基于 Qt 的轻量级跨平台代码编辑器，专为算法
 |  类型  |                            分支                            |                                                                                                        构建                                                                                                        |                                                                     下载量                                                                     |                                                         AUR                                                         |
 | :----: | :--------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------: |
 | alpha  | [master](https://github.com/cpeditor/cpeditor/tree/master) | [![GitHub Workflow Status](https://github.com/cpeditor/cpeditor/workflows/CI:%20Build%20Test/badge.svg?branch=master&event=push)](https://github.com/cpeditor/cpeditor/actions?query=event%3Apush+branch%3Amaster) |                                                                       -                                                                        | [![AUR version](https://img.shields.io/aur/version/cpeditor-git)](https://aur.archlinux.org/packages/cpeditor-git/) |
-|  beta  |   [v6.4](https://github.com/cpeditor/cpeditor/tree/v6.4)   |   [![GitHub Workflow Status](https://github.com/cpeditor/cpeditor/workflows/CI:%20Build%20Test/badge.svg?branch=v6.4&event=push)](https://github.com/cpeditor/cpeditor/actions?query=event%3Apush+branch%3Av6.4)   | [![Downloads](https://img.shields.io/github/downloads/cpeditor/cpeditor/6.4.5/total)](https://github.com/cpeditor/cpeditor/releases/tag/6.4.5) |                                                          -                                                          |
-| stable |   [v6.3](https://github.com/cpeditor/cpeditor/tree/v6.3)   |   [![GitHub Workflow Status](https://github.com/cpeditor/cpeditor/workflows/CI:%20Build%20Test/badge.svg?branch=v6.3&event=push)](https://github.com/cpeditor/cpeditor/actions?query=event%3Apush+branch%3Av6.3)   | [![Downloads](https://img.shields.io/github/downloads/cpeditor/cpeditor/6.3.4/total)](https://github.com/cpeditor/cpeditor/releases/tag/6.3.4) |     [![AUR version](https://img.shields.io/aur/version/cpeditor)](https://aur.archlinux.org/packages/cpeditor/)     |
+|  beta  |   [v6.5](https://github.com/cpeditor/cpeditor/tree/v6.5)   |   [![GitHub Workflow Status](https://github.com/cpeditor/cpeditor/workflows/CI:%20Build%20Test/badge.svg?branch=v6.5&event=push)](https://github.com/cpeditor/cpeditor/actions?query=event%3Apush+branch%3Av6.5)   | [![Downloads](https://img.shields.io/github/downloads/cpeditor/cpeditor/6.5.1/total)](https://github.com/cpeditor/cpeditor/releases/tag/6.5.1) |                                                          -                                                          |
+| stable |   [v6.4](https://github.com/cpeditor/cpeditor/tree/v6.4)   |   [![GitHub Workflow Status](https://github.com/cpeditor/cpeditor/workflows/CI:%20Build%20Test/badge.svg?branch=v6.4&event=push)](https://github.com/cpeditor/cpeditor/actions?query=event%3Apush+branch%3Av6.4)   | [![Downloads](https://img.shields.io/github/downloads/cpeditor/cpeditor/6.4.6/total)](https://github.com/cpeditor/cpeditor/releases/tag/6.4.6) |     [![AUR version](https://img.shields.io/aur/version/cpeditor)](https://aur.archlinux.org/packages/cpeditor/)     |
 
 ## 开始使用
 
@@ -118,16 +118,19 @@ CP Editor 是一个基于 Qt 的轻量级跨平台代码编辑器，专为算法
       <a href="https://github.com/polyomino-24"><img src="https://avatars0.githubusercontent.com/u/20138086?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/polyomino-24"><sub><b>polyomino</b></sub></a><br /><a href="https://github.com/cpeditor/cpeditor/commits?author=polyomino-24" title="Documentation">📖</a>
     </td>
     <td align="center">
+      <a href="https://github.com/StudyingFather"><img src="https://avatars3.githubusercontent.com/u/23295419?v=4" width="100px;" alt=""/></a><br /><a href="https://studyingfather.com"><sub><b>Shuhao Zhang</b></sub></a><br /><a href="#ideas-StudyingFather" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/cpeditor/cpeditor/pulls?q=is%3Apr+reviewed-by%3AStudyingFather" title="Reviewed Pull Requests">👀</a> <a href="#translation-StudyingFather" title="Translation">🌍</a>
+    </td>
+    <td align="center">
       <a href="https://github.com/Ravenclaw-OIer"><img src="https://avatars2.githubusercontent.com/u/44526586?v=4" width="100px;" alt=""/></a><br /><a href="http://ravenclaw-oier.github.io"><sub><b>Ravenclaw-OIer</b></sub></a><br /><a href="#ideas-Ravenclaw-OIer" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/cpeditor/cpeditor/issues?q=author%3ARavenclaw-OIer" title="Bug reports">🐛</a>
     </td>
     <td align="center">
       <a href="https://github.com/tuwuna"><img src="https://avatars3.githubusercontent.com/u/56817415?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/tuwuna"><sub><b>tuwuna</b></sub></a><br /><a href="#ideas-tuwuna" title="Ideas, Planning, & Feedback">🤔</a>
     </td>
+  </tr>
+  <tr>
     <td align="center">
       <a href="https://github.com/nikhil-sarda"><img src="https://avatars1.githubusercontent.com/u/51774873?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/nikhil-sarda"><sub><b>Nikhil Sarda</b></sub></a><br /><a href="https://github.com/cpeditor/cpeditor/issues?q=author%3Anikhil-sarda" title="Bug reports">🐛</a>
     </td>
-  </tr>
-  <tr>
     <td align="center">
       <a href="https://github.com/Arthur-QQ"><img src="https://avatars0.githubusercontent.com/u/30394349?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/Arthur-QQ"><sub><b>Arthur-QQ</b></sub></a><br /><a href="#ideas-Arthur-QQ" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/cpeditor/cpeditor/issues?q=author%3AArthur-QQ" title="Bug reports">🐛</a>
     </td>
@@ -143,11 +146,11 @@ CP Editor 是一个基于 Qt 的轻量级跨平台代码编辑器，专为算法
     <td align="center">
       <a href="https://github.com/ApoorvaRajBhadani"><img src="https://avatars1.githubusercontent.com/u/11313858?v=4" width="100px;" alt=""/></a><br /><a href="http://www.apoorvarajbhadani.blogspot.com"><sub><b>Apoorva Raj Bhadani</b></sub></a><br /><a href="https://github.com/cpeditor/cpeditor/issues?q=author%3AApoorvaRajBhadani" title="Bug reports">🐛</a>
     </td>
+  </tr>
+  <tr>
     <td align="center">
       <a href="https://github.com/Exile-2k4"><img src="https://avatars2.githubusercontent.com/u/40086604?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/Exile-2k4"><sub><b>Nguyễn Hoàng Dương</b></sub></a><br /><a href="#ideas-Exile-2k4" title="Ideas, Planning, & Feedback">🤔</a>
     </td>
-  </tr>
-  <tr>
     <td align="center">
       <a href="https://github.com/GoBigorGoHome"><img src="https://avatars3.githubusercontent.com/u/9896288?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/GoBigorGoHome"><sub><b>Pat</b></sub></a><br /><a href="#ideas-GoBigorGoHome" title="Ideas, Planning, & Feedback">🤔</a>
     </td>
@@ -156,9 +159,6 @@ CP Editor 是一个基于 Qt 的轻量级跨平台代码编辑器，专为算法
     </td>
     <td align="center">
       <a href="https://github.com/Salil03"><img src="https://avatars0.githubusercontent.com/u/32109637?v=4" width="100px;" alt=""/></a><br /><a href="https://salil03.github.io/"><sub><b>Salil Gokhale</b></sub></a><br /><a href="#ideas-Salil03" title="Ideas, Planning, & Feedback">🤔</a>
-    </td>
-    <td align="center">
-      <a href="https://github.com/StudyingFather"><img src="https://avatars3.githubusercontent.com/u/23295419?v=4" width="100px;" alt=""/></a><br /><a href="https://studyingfather.com"><sub><b>Shuhao Zhang</b></sub></a><br /><a href="#ideas-StudyingFather" title="Ideas, Planning, & Feedback">🤔</a>
     </td>
     <td align="center">
       <a href="https://github.com/WYWFlash"><img src="https://avatars1.githubusercontent.com/u/42882043?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/WYWFlash"><sub><b>WYWFlash</b></sub></a><br /><a href="https://github.com/cpeditor/cpeditor/issues?q=author%3AWYWFlash" title="Bug reports">🐛</a>
