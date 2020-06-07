@@ -1761,7 +1761,7 @@ from competitive companion again, the old file will be opened.</source>
         <translation type="unfinished">未发现更新。</translation>
     </message>
     <message>
-        <location filename="../src/Telemetry/UpdateChecker.cpp" line="142"/>
+        <location filename="../src/Telemetry/UpdateChecker.cpp" line="141"/>
         <source>No download URL of the version [%1] is found.</source>
         <translation type="unfinished">没有发现版本[%1]可用的下载链接。</translation>
     </message>
@@ -1829,7 +1829,7 @@ from competitive companion again, the old file will be opened.</source>
         <translation type="unfinished">删除测试点</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/TestCase.cpp" line="249"/>
+        <location filename="../src/Widgets/TestCase.cpp" line="248"/>
         <source>Do you want to delete test case #%1?</source>
         <translation type="unfinished">你确定要删除第%1?个测试点吗？</translation>
     </message>
@@ -1858,7 +1858,7 @@ from competitive companion again, the old file will be opened.</source>
     </message>
     <message>
         <location filename="../src/Widgets/TestCases.cpp" line="51"/>
-        <location filename="../src/Widgets/TestCases.cpp" line="461"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="453"/>
         <source>Add Checker</source>
         <translation type="unfinished">添加评测器</translation>
     </message>
@@ -1878,97 +1878,97 @@ from competitive companion again, the old file will be opened.</source>
         <translation type="unfinished">从文件添加测试点</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/TestCases.cpp" line="79"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="78"/>
         <source>Choose Testcase Files</source>
         <translation type="unfinished">选择测试点文件</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/TestCases.cpp" line="144"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="143"/>
         <source>Remove Empty</source>
         <translation type="unfinished">删除空测试点</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/TestCases.cpp" line="156"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="155"/>
         <source>Remove All</source>
         <translation type="unfinished">删除全部测试点</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/TestCases.cpp" line="159"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="157"/>
         <source>Clear Testcases</source>
         <translation type="unfinished">清除测试点</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/TestCases.cpp" line="160"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="157"/>
         <source>Do you want to delete all test cases?</source>
         <translation type="unfinished">你确定要删除所有测试点吗？</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/TestCases.cpp" line="171"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="168"/>
         <source>Hide AC</source>
         <translation type="unfinished">隐藏通过的测试点</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/TestCases.cpp" line="178"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="175"/>
         <source>Show All</source>
         <translation type="unfinished">显示所有测试点</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/TestCases.cpp" line="184"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="181"/>
         <source>Hide All</source>
         <translation type="unfinished">隐藏所有测试点</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/TestCases.cpp" line="190"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="187"/>
         <source>Invert</source>
         <translation type="unfinished">翻转显示状态</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/TestCases.cpp" line="203"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="200"/>
         <source>Ignore trailing spaces</source>
         <translation type="unfinished">忽略行尾空白</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/TestCases.cpp" line="204"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="200"/>
         <source>Strictly the same</source>
         <translation type="unfinished">严格一致</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/TestCases.cpp" line="205"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="200"/>
         <source>ncmp - Compare int64s</source>
         <translation type="unfinished">ncmp - 匹配int64</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/TestCases.cpp" line="206"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="201"/>
         <source>rcmp4 - Compare doubles, max error 1e-4</source>
         <translation type="unfinished">rcmp4 - 匹配double，误差1e-4</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/TestCases.cpp" line="207"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="202"/>
         <source>rcmp6 - Compare doubles, max error 1e-6</source>
         <translation type="unfinished">rcmp6 - 匹配double，误差1e-6</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/TestCases.cpp" line="208"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="203"/>
         <source>rcmp9 - Compare doubles, max error 1e-9</source>
         <translation type="unfinished">rcmp9 - 匹配double，误差1e-9</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/TestCases.cpp" line="209"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="203"/>
         <source>wcmp - Compare tokens</source>
         <translation type="unfinished">wcmp - 匹配符号</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/TestCases.cpp" line="210"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="204"/>
         <source>nyesno - Compare YES/NOs, case insensitive</source>
         <translation type="unfinished">nyesno - 匹配YES和NO，大小写不敏感</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/TestCases.cpp" line="239"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="232"/>
         <source>Add Test Case</source>
         <translation type="unfinished">添加测试点</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/TestCases.cpp" line="240"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="233"/>
         <source>There are already %1 test cases, you can&apos;t add more.</source>
         <translation type="unfinished">已经有%1个测试点，你不能继续添加更多了。</translation>
     </message>
@@ -2001,7 +2001,7 @@ from competitive companion again, the old file will be opened.</source>
         <translation type="unfinished">测试</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/UpdatePresenter.cpp" line="69"/>
+        <location filename="../src/Widgets/UpdatePresenter.cpp" line="68"/>
         <source>stable</source>
         <translation type="unfinished">稳定</translation>
     </message>
@@ -2014,32 +2014,32 @@ from competitive companion again, the old file will be opened.</source>
         <translation type="unfinished">取消</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/UpdateProgressDialog.cpp" line="39"/>
+        <location filename="../src/Widgets/UpdateProgressDialog.cpp" line="38"/>
         <source>Close this dialog and abort the update check</source>
         <translation type="unfinished">关闭对话框并终止检查更新</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/UpdateProgressDialog.cpp" line="47"/>
+        <location filename="../src/Widgets/UpdateProgressDialog.cpp" line="46"/>
         <source>Update Checker</source>
         <translation type="unfinished">更新检查器</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/UpdateProgressDialog.cpp" line="57"/>
+        <location filename="../src/Widgets/UpdateProgressDialog.cpp" line="56"/>
         <source>Fetching the list of releases...</source>
         <translation type="unfinished">获取更新列表中...</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/UpdateProgressDialog.cpp" line="65"/>
+        <location filename="../src/Widgets/UpdateProgressDialog.cpp" line="64"/>
         <source>Error: %1&lt;br /&gt;&lt;br /&gt;Updater failed to check for update. Please manually check for update at&lt;br /&gt;&lt;a href=&quot;https://cpeditor.github.io/download&quot;&gt;https://cpeditor.github.io/download&lt;/a&gt; or &lt;a href=&quot;https://github.com/cpeditor/cpeditor/releases&quot;&gt;https://github.com/cpeditor/cpeditor/releases&lt;/a&gt;.</source>
         <translation type="unfinished">错误：%1&lt;br /&gt;&lt;br /&gt;检查更新失败。请前往&lt;br /&gt;&lt;a href=&quot;https://cpeditor.github.io/download&quot;&gt;https://cpeditor.github.io/download&lt;/a&gt;或 &lt;a href=&quot;https://github.com/cpeditor/cpeditor/releases&quot;&gt;https://github.com/cpeditor/cpeditor/releases&lt;/a&gt;手动检查更新。</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/UpdateProgressDialog.cpp" line="75"/>
+        <location filename="../src/Widgets/UpdateProgressDialog.cpp" line="74"/>
         <source>Close</source>
         <translation type="unfinished">关闭</translation>
     </message>
     <message>
-        <location filename="../src/Widgets/UpdateProgressDialog.cpp" line="76"/>
+        <location filename="../src/Widgets/UpdateProgressDialog.cpp" line="75"/>
         <source>Hooray!! You are already using the latest release of CP Editor.</source>
         <translation type="unfinished">恭喜！！你已经在使用最新版本的CP Editor了。</translation>
     </message>
