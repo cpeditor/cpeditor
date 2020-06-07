@@ -16,7 +16,6 @@
  */
 
 #include "Util/Util.hpp"
-#include <QCoreApplication>
 #include <QFile>
 #include <QPalette>
 #include <QTranslator>
@@ -156,10 +155,9 @@ void applyNewLocale(const QString &language)
 {
     if (language != "English")
     {
-        QCoreApplication *app = QCoreApplication::instance();
-        QTranslator *translator = new QTranslator(app);
+        QTranslator *translator = new QTranslator(qApp);
         translator->load(QString(":/translations/%1.qm").arg(locales[language]));
-        app->installTranslator(translator);
+        qApp->installTranslator(translator);
         updateSettingInfo();
     }
 }
