@@ -597,6 +597,127 @@
     </message>
 </context>
 <context>
+    <name>Core::Checker</name>
+    <message>
+        <location filename="../src/Core/Checker.cpp" line="103"/>
+        <source>Read Checker</source>
+        <translation type="unfinished">读取评测器代码</translation>
+    </message>
+    <message>
+        <location filename="../src/Core/Checker.cpp" line="111"/>
+        <location filename="../src/Core/Checker.cpp" line="117"/>
+        <location filename="../src/Core/Checker.cpp" line="156"/>
+        <location filename="../src/Core/Checker.cpp" line="291"/>
+        <location filename="../src/Core/Checker.cpp" line="292"/>
+        <location filename="../src/Core/Checker.cpp" line="293"/>
+        <source>Checker</source>
+        <translation type="unfinished">评测器</translation>
+    </message>
+    <message>
+        <location filename="../src/Core/Checker.cpp" line="111"/>
+        <source>Failed to create temporary directory</source>
+        <translation type="unfinished">创建临时目录失败</translation>
+    </message>
+    <message>
+        <location filename="../src/Core/Checker.cpp" line="121"/>
+        <source>Read testlib.h</source>
+        <translation type="unfinished">读取testlib.h</translation>
+    </message>
+    <message>
+        <location filename="../src/Core/Checker.cpp" line="124"/>
+        <source>Save testlib.h</source>
+        <translation type="unfinished">保存testlib.h</translation>
+    </message>
+    <message>
+        <location filename="../src/Core/Checker.cpp" line="156"/>
+        <source>Error occurred while compiling the checker:
+%1</source>
+        <translation type="unfinished">编译评测器时发生错误：
+%1</translation>
+    </message>
+    <message>
+        <location filename="../src/Core/Checker.cpp" line="174"/>
+        <location filename="../src/Core/Checker.cpp" line="181"/>
+        <location filename="../src/Core/Checker.cpp" line="190"/>
+        <location filename="../src/Core/Checker.cpp" line="199"/>
+        <location filename="../src/Core/Checker.cpp" line="204"/>
+        <location filename="../src/Core/Checker.cpp" line="210"/>
+        <source>Checker[%1]</source>
+        <translation type="unfinished">评测器[%1]</translation>
+    </message>
+    <message>
+        <location filename="../src/Core/Checker.cpp" line="182"/>
+        <source>Checker exited with exit code %1</source>
+        <translation type="unfinished">评测器退出，返回值%1</translation>
+    </message>
+    <message>
+        <location filename="../src/Core/Checker.cpp" line="191"/>
+        <source>Checker exited with unknown exit code %1</source>
+        <translation type="unfinished">评测器退出，未知返回值%1</translation>
+    </message>
+    <message>
+        <location filename="../src/Core/Checker.cpp" line="204"/>
+        <source>Time Limit Exceeded</source>
+        <translation type="unfinished">超出时间限制</translation>
+    </message>
+    <message>
+        <location filename="../src/Core/Checker.cpp" line="211"/>
+        <source>The %1 of the process running on the testcase #%2 contains more than %3 characters, which is longer than the output length limit, so the process is killed. You can change the output length limit in Preferences-&gt;Advanced-&gt;Limits-&gt;Output Length Limit</source>
+        <translation type="unfinished">测试点#%2的%1超过%3个字符，超出了输出限制，因此进程被结束。你可以在设置-&gt;Advance-&gt;Limits-&gt;输出限制中更改</translation>
+    </message>
+    <message>
+        <location filename="../src/Core/Checker.cpp" line="221"/>
+        <source>Killed</source>
+        <translation type="unfinished">被终止</translation>
+    </message>
+</context>
+<context>
+    <name>Core::Compiler</name>
+    <message>
+        <location filename="../src/Core/Compiler.cpp" line="57"/>
+        <source>The source file [%1] doesn&apos;t exist</source>
+        <translation type="unfinished">源文件[%1]不存在</translation>
+    </message>
+    <message>
+        <location filename="../src/Core/Compiler.cpp" line="87"/>
+        <source>Unsupported programming language &quot;%1&quot;</source>
+        <translation type="unfinished">编程语言“%1”不支持</translation>
+    </message>
+</context>
+<context>
+    <name>Core::MessageLogger</name>
+    <message>
+        <location filename="../src/Core/MessageLogger.cpp" line="40"/>
+        <source>
+... The message is too long</source>
+        <translation type="unfinished">
+……信息过长</translation>
+    </message>
+</context>
+<context>
+    <name>Core::Runner</name>
+    <message>
+        <location filename="../src/Core/Runner.cpp" line="65"/>
+        <source>The source file %1 doesn&apos;t exist.</source>
+        <translation type="unfinished">源文件[%1]不存在。</translation>
+    </message>
+    <message>
+        <location filename="../src/Core/Runner.cpp" line="73"/>
+        <source>Failed to get run command. It&apos;s probably a bug.</source>
+        <translation type="unfinished">获取运行指令失败。这可能是一个bug。</translation>
+    </message>
+    <message>
+        <location filename="../src/Core/Runner.cpp" line="99"/>
+        <source>Failed to start running. Please compile first.</source>
+        <translation type="unfinished">运行失败。请先编译。</translation>
+    </message>
+    <message>
+        <location filename="../src/Core/Runner.cpp" line="122"/>
+        <source>Please install xterm in order to use Detached Run.</source>
+        <translation type="unfinished">请安装xterm来使用脱离式运行。</translation>
+    </message>
+</context>
+<context>
     <name>FindReplaceDialog</name>
     <message>
         <location filename="../build/third_party/QtFindReplaceDialog/dialogs/QtFindReplaceDialog_autogen/include/ui_findreplacedialog.h" line="46"/>

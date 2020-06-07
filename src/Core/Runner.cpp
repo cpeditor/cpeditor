@@ -62,7 +62,7 @@ void Runner::run(const QString &tmpFilePath, const QString &sourceFilePath, cons
                                   << INFO_OF(timeLimit));
     if (!QFile::exists(tmpFilePath)) // make sure the source file exists, this usually means the executable file exists
     {
-        emit failedToStartRun(runnerIndex, "The source file " + tmpFilePath + " doesn't exist");
+        emit failedToStartRun(runnerIndex, tr("The source file %1 doesn't exist.").arg(tmpFilePath));
         return;
     }
 
@@ -70,7 +70,7 @@ void Runner::run(const QString &tmpFilePath, const QString &sourceFilePath, cons
     QString command = getCommand(tmpFilePath, sourceFilePath, lang, runCommand, args);
     if (command.isEmpty())
     {
-        emit failedToStartRun(runnerIndex, "Failed to get run command. It's probably a bug");
+        emit failedToStartRun(runnerIndex, tr("Failed to get run command. It's probably a bug."));
         return;
     }
 
@@ -96,7 +96,7 @@ void Runner::run(const QString &tmpFilePath, const QString &sourceFilePath, cons
     if (!started)
     {
         // usually, fail to start is because it's not compiled
-        emit failedToStartRun(runnerIndex, "Failed to start running. Please compile first");
+        emit failedToStartRun(runnerIndex, tr("Failed to start running. Please compile first."));
         runProcess->kill();
         return;
     }
@@ -119,7 +119,7 @@ void Runner::runDetached(const QString &tmpFilePath, const QString &sourceFilePa
     bool finished = testProcess.waitForFinished(2000);
     if (!finished || testProcess.exitCode() != 0)
     {
-        emit failedToStartRun(runnerIndex, "Please install xterm in order to use Detached Run");
+        emit failedToStartRun(runnerIndex, tr("Please install xterm in order to use Detached Run."));
         return;
     }
     runProcess->setProgram("xterm");

@@ -54,7 +54,7 @@ void Compiler::start(const QString &tmpFilePath, const QString &sourceFilePath, 
     if (!QFile::exists(tmpFilePath))
     {
         // quit with error if the source file is not found
-        emit compilationErrorOccurred("The source file [" + tmpFilePath + "] doesn't exist");
+        emit compilationErrorOccurred(tr("The source file [%1] doesn't exist").arg(tmpFilePath));
         return;
     }
 
@@ -84,7 +84,7 @@ void Compiler::start(const QString &tmpFilePath, const QString &sourceFilePath, 
     }
     else
     {
-        emit compilationErrorOccurred("Unsupported programming language \"" + lang + "\"");
+        emit compilationErrorOccurred(tr("Unsupported programming language \"%1\"").arg(lang));
         return;
     }
 

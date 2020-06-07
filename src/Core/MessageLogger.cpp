@@ -17,6 +17,7 @@
 
 #include "Core/MessageLogger.hpp"
 #include "Core/EventLogger.hpp"
+#include <QCoreApplication>
 #include <QDateTime>
 #include <QTextBrowser>
 #include <generated/SettingsHelper.hpp>
@@ -36,7 +37,8 @@ void MessageLogger::message(const QString &head, const QString &body, const QStr
 
     // don't display too long messages, otherwise the application may stuck
     if (newBody.length() > SettingsHelper::getMessageLengthLimit())
-        newBody = newBody.left(SettingsHelper::getMessageLengthLimit()) + "\n... The message is too long";
+        newBody = newBody.left(SettingsHelper::getMessageLengthLimit()) +
+                  QCoreApplication::translate("Core::MessageLogger", "\n... The message is too long");
 
     // get the HTML of the message
     // use monospace for the message body, it's important for compilation errors
