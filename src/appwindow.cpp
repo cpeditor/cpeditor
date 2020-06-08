@@ -697,7 +697,7 @@ void AppWindow::on_actionOpenContest_triggered()
 void AppWindow::on_actionSave_triggered()
 {
     if (currentWindow() != nullptr)
-        currentWindow()->save(true, "Save");
+        currentWindow()->save(true, tr("Save"));
 }
 
 void AppWindow::on_actionSave_As_triggered()
@@ -711,7 +711,7 @@ void AppWindow::on_actionSave_All_triggered()
     for (int t = 0; t < ui->tabWidget->count(); ++t)
     {
         auto tmp = windowAt(t);
-        if (!tmp->save(true, "Save All"))
+        if (!tmp->save(true, tr("Save All")))
             break;
     }
 }
@@ -970,7 +970,7 @@ void AppWindow::onSaveTimerElapsed()
         auto tmp = windowAt(t);
         if (!tmp->isUntitled())
         {
-            tmp->save(false, "Auto Save", false);
+            tmp->save(false, tr("Auto Save"), false);
         }
     }
 }
@@ -1194,8 +1194,9 @@ void AppWindow::on_actionUse_Snippets_triggered()
             key = key.mid(head.size());
         if (names.isEmpty())
         {
-            activeLogger->warn("Snippets",
-                               "There are no snippets for " + lang + ". Please add snippets in the preference window.");
+            activeLogger->warn(
+                tr("Snippets"),
+                tr("There are no snippets for %1. Please add snippets in the preference window.").arg(lang));
         }
         else
         {
@@ -1212,7 +1213,7 @@ void AppWindow::on_actionUse_Snippets_triggered()
                 }
                 else
                 {
-                    activeLogger->warn("Snippets", "There is no snippet named " + name + " for " + lang);
+                    activeLogger->warn(tr("Snippets"), tr("There is no snippet named %1 for %2").arg(name, lang));
                 }
             }
             delete ok;
@@ -1566,7 +1567,8 @@ void AppWindow::on_actionClear_Logs_triggered()
     Core::Log::clearOldLogs();
     if (currentWindow() != nullptr)
     {
-        currentWindow()->getLogger()->info("EventLogger", "All logs except for current session has been deleted");
+        currentWindow()->getLogger()->info(tr("EventLogger"),
+                                           tr("All logs except for current session has been deleted"));
     }
 }
 

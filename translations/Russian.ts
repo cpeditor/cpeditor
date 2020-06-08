@@ -71,108 +71,139 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="1203"/>
+        <location filename="../src/appwindow.cpp" line="973"/>
+        <source>Auto Save</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/appwindow.cpp" line="1198"/>
+        <location filename="../src/appwindow.cpp" line="1216"/>
+        <source>Snippets</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/appwindow.cpp" line="1199"/>
+        <source>There are no snippets for %1. Please add snippets in the preference window.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/appwindow.cpp" line="1204"/>
         <source>Use Snippets</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="1203"/>
+        <location filename="../src/appwindow.cpp" line="1204"/>
         <source>Choose a snippet:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="1339"/>
+        <location filename="../src/appwindow.cpp" line="1216"/>
+        <source>There is no snippet named %1 for %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/appwindow.cpp" line="1340"/>
         <source>Close</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="1341"/>
+        <location filename="../src/appwindow.cpp" line="1342"/>
         <source>Close Others</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="1347"/>
+        <location filename="../src/appwindow.cpp" line="1348"/>
         <source>Close to the Left</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="1353"/>
+        <location filename="../src/appwindow.cpp" line="1354"/>
         <source>Close to the Right</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="1369"/>
+        <location filename="../src/appwindow.cpp" line="1370"/>
         <source>Copy File Path</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="1372"/>
+        <location filename="../src/appwindow.cpp" line="1373"/>
         <source>Reveal in Finder</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="1385"/>
+        <location filename="../src/appwindow.cpp" line="1386"/>
         <source>Reveal in Explorer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="1430"/>
-        <location filename="../src/appwindow.cpp" line="1445"/>
-        <location filename="../src/appwindow.cpp" line="1450"/>
-        <location filename="../src/appwindow.cpp" line="1464"/>
+        <location filename="../src/appwindow.cpp" line="1431"/>
+        <location filename="../src/appwindow.cpp" line="1446"/>
+        <location filename="../src/appwindow.cpp" line="1451"/>
+        <location filename="../src/appwindow.cpp" line="1465"/>
         <source>Open Containing Folder</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="1436"/>
+        <location filename="../src/appwindow.cpp" line="1437"/>
         <source>Reveal in File Manager</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="1460"/>
+        <location filename="../src/appwindow.cpp" line="1461"/>
         <source>Copy path</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="1471"/>
+        <location filename="../src/appwindow.cpp" line="1472"/>
         <source>Open problem in browser</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="1473"/>
+        <location filename="../src/appwindow.cpp" line="1474"/>
         <source>Copy Problem URL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="1476"/>
+        <location filename="../src/appwindow.cpp" line="1477"/>
         <source>Set Codeforces URL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="1480"/>
-        <location filename="../src/appwindow.cpp" line="1483"/>
+        <location filename="../src/appwindow.cpp" line="1481"/>
+        <location filename="../src/appwindow.cpp" line="1484"/>
         <source>Set CF URL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="1480"/>
+        <location filename="../src/appwindow.cpp" line="1481"/>
         <source>Enter the contest ID:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="1483"/>
+        <location filename="../src/appwindow.cpp" line="1484"/>
         <source>Enter the problem Code (A-Z):</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="1491"/>
-        <location filename="../src/appwindow.cpp" line="1493"/>
+        <location filename="../src/appwindow.cpp" line="1492"/>
+        <location filename="../src/appwindow.cpp" line="1494"/>
         <source>Set Problem URL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="1493"/>
+        <location filename="../src/appwindow.cpp" line="1494"/>
         <source>Enter the new problem URL:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/appwindow.cpp" line="1570"/>
+        <source>EventLogger</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/appwindow.cpp" line="1571"/>
+        <source>All logs except for current session has been deleted</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -197,6 +228,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../src/appwindow.cpp" line="700"/>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="274"/>
         <source>Save</source>
         <translation type="unfinished"></translation>
@@ -227,6 +259,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../src/appwindow.cpp" line="714"/>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="288"/>
         <source>Save All</source>
         <translation type="unfinished"></translation>
@@ -257,7 +290,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="1358"/>
+        <location filename="../src/appwindow.cpp" line="1359"/>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="302"/>
         <source>Close Saved</source>
         <translation type="unfinished"></translation>
@@ -273,7 +306,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="1360"/>
+        <location filename="../src/appwindow.cpp" line="1361"/>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="309"/>
         <source>Close All</source>
         <translation type="unfinished"></translation>
@@ -1161,6 +1194,46 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>MainWindow</name>
     <message>
+        <location filename="../src/mainwindow.cpp" line="125"/>
+        <location filename="../src/mainwindow.cpp" line="142"/>
+        <location filename="../src/mainwindow.cpp" line="1128"/>
+        <location filename="../src/mainwindow.cpp" line="1140"/>
+        <location filename="../src/mainwindow.cpp" line="1147"/>
+        <location filename="../src/mainwindow.cpp" line="1184"/>
+        <location filename="../src/mainwindow.cpp" line="1191"/>
+        <source>Compiler</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="142"/>
+        <location filename="../src/mainwindow.cpp" line="931"/>
+        <source>Please set the language</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="157"/>
+        <location filename="../src/mainwindow.cpp" line="165"/>
+        <location filename="../src/mainwindow.cpp" line="178"/>
+        <location filename="../src/mainwindow.cpp" line="207"/>
+        <location filename="../src/mainwindow.cpp" line="1132"/>
+        <location filename="../src/mainwindow.cpp" line="1161"/>
+        <location filename="../src/mainwindow.cpp" line="1167"/>
+        <source>Runner</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="165"/>
+        <location filename="../src/mainwindow.cpp" line="207"/>
+        <location filename="../src/mainwindow.cpp" line="1167"/>
+        <source>Wrong language, please set the language</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="178"/>
+        <source>All inputs are empty, nothing to run</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../src/mainwindow.cpp" line="230"/>
         <source>Submit</source>
         <translation type="unfinished"></translation>
@@ -1189,37 +1262,95 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="866"/>
+        <location filename="../src/mainwindow.cpp" line="262"/>
+        <source>CFTool</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="263"/>
+        <source>You will not be able to submit code to Codeforces because CFTool is not installed or is not on SYSTEM PATH. You can set it manually in settings.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="551"/>
+        <source>Save as</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="612"/>
+        <source>Open %1 Template</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="754"/>
+        <location filename="../src/mainwindow.cpp" line="762"/>
+        <source>Open File</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="763"/>
+        <source>The file [%1] contains more than %2 characters, so it&apos;s not opened. You can change the open file length limit in Preferences-&gt;Advanced-&gt;Limits-&gt;Open File Length Limit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="867"/>
         <source>Save File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="971"/>
-        <source>Save changes</source>
+        <location filename="../src/mainwindow.cpp" line="917"/>
+        <location filename="../src/mainwindow.cpp" line="931"/>
+        <location filename="../src/mainwindow.cpp" line="935"/>
+        <source>Temp File</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="917"/>
+        <source>Failed to create the temporary directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="947"/>
+        <source>Read %1 Template</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="972"/>
+        <source>Save changes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="973"/>
         <source>Save changes to [%1] before closing?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1001"/>
+        <location filename="../src/mainwindow.cpp" line="973"/>
+        <source>New File</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="976"/>
+        <source>Save</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="1002"/>
         <source>Set Tab language</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1001"/>
+        <location filename="../src/mainwindow.cpp" line="1002"/>
         <source>Set the language to use in this Tab</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1038"/>
+        <location filename="../src/mainwindow.cpp" line="1039"/>
         <source>Reload</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1038"/>
+        <location filename="../src/mainwindow.cpp" line="1039"/>
         <source>[%1]
 
 has been changed on disk.
@@ -1227,18 +1358,113 @@ Do you want to reload it?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1073"/>
+        <location filename="../src/mainwindow.cpp" line="1074"/>
         <source>Line %1, Column %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1085"/>
+        <location filename="../src/mainwindow.cpp" line="1086"/>
         <source>%1 lines, %2 charachters selected</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1087"/>
+        <location filename="../src/mainwindow.cpp" line="1088"/>
         <source>%1 characters selected</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="1129"/>
+        <source>The compile command for %1 is invalid. Is the compiler in the system PATH?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="1133"/>
+        <source>The run command for %1 is invalid. Is the runner in the system Path?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="1140"/>
+        <source>Compilation has started</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="1147"/>
+        <source>Compilation has finished</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="1150"/>
+        <source>Compile Warnings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="1184"/>
+        <source>Error occurred while compiling</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="1186"/>
+        <source>Compile Errors</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="1191"/>
+        <source>Compilation is killed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="1199"/>
+        <source>Detached Runner</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="1200"/>
+        <source>Runner[%1]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="1205"/>
+        <source>Execution has started</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="1214"/>
+        <source>Execution for test case #%1 has finished in %2ms</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="1219"/>
+        <source>Execution for test case #%1 has finished with non-zero exitcode %2 in %3ms</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="1226"/>
+        <source>/stderr</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="1239"/>
+        <source>Time Limit Exceeded</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="1245"/>
+        <source>The %1 of the process running on the testcase #%2 contains more than %3 characters, which is longer than the output length limit, so the process is killed. You can change the output length limit in Preferences-&gt;Advanced-&gt;Limits-&gt;Output Length Limit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="1256"/>
+        <source>%1 has been killed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="1257"/>
+        <source>Detached runner</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="1257"/>
+        <source>Runner for testcase #%1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

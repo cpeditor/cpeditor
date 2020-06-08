@@ -122,7 +122,7 @@ void MainWindow::setupCore()
 void MainWindow::compile()
 {
     if (SettingsHelper::isSaveFileOnCompilation())
-        saveFile(IgnoreUntitled, "Compiler", true);
+        saveFile(IgnoreUntitled, tr("Compiler"), true);
 
     killProcesses();
 
@@ -139,7 +139,7 @@ void MainWindow::compile()
     }
     else if (language != "C++" && language != "Java")
     {
-        log->warn("Compiler", "Please set the language");
+        log->warn(tr("Compiler"), tr("Please set the language"));
         return;
     }
     connect(compiler, SIGNAL(compilationStarted()), this, SLOT(onCompilationStarted()));
@@ -154,7 +154,7 @@ void MainWindow::compile()
 void MainWindow::run()
 {
     if (SettingsHelper::isSaveFileOnExecution())
-        saveFile(IgnoreUntitled, "Runner", true);
+        saveFile(IgnoreUntitled, tr("Runner"), true);
 
     LOG_INFO("Requesting run of testcases");
     killProcesses();
@@ -162,7 +162,7 @@ void MainWindow::run()
 
     if (!QStringList({"C++", "Java", "Python"}).contains(language))
     {
-        log->warn("Runner", "Wrong language, please set the language");
+        log->warn(tr("Runner"), tr("Wrong language, please set the language"));
         return;
     }
 
@@ -175,7 +175,7 @@ void MainWindow::run()
     }
 
     if (runner.empty())
-        log->warn("Runner", "All inputs are empty, nothing to run");
+        log->warn(tr("Runner"), tr("All inputs are empty, nothing to run"));
 }
 
 void MainWindow::run(int index)
@@ -204,7 +204,7 @@ void MainWindow::runTestCase(int index)
 
     if (!QStringList({"C++", "Java", "Python"}).contains(language))
     {
-        log->warn("Runner", "Wrong language, please set the language");
+        log->warn(tr("Runner"), tr("Wrong language, please set the language"));
         return;
     }
 
@@ -259,8 +259,9 @@ void MainWindow::setCFToolUI()
     if (!Extensions::CFTool::check(cftoolPath))
     {
         submitToCodeforces->setEnabled(false);
-        log->error("CFTool", "You will not be able to submit code to Codeforces because CFTool is not installed or is "
-                             "not on SYSTEM PATH. You can set it manually in settings.");
+        log->error(tr("CFTool"),
+                   tr("You will not be able to submit code to Codeforces because CFTool is not installed or is "
+                      "not on SYSTEM PATH. You can set it manually in settings."));
     }
 }
 
@@ -547,7 +548,7 @@ bool MainWindow::save(bool force, const QString &head, bool safe)
 void MainWindow::saveAs()
 {
     LOG_INFO("Save as clicked");
-    saveFile(SaveAs, "Save as", true);
+    saveFile(SaveAs, tr("Save as"), true);
 }
 
 void MainWindow::on_compile_clicked()
@@ -608,7 +609,7 @@ void MainWindow::setLanguage(const QString &lang)
         QString templateContent;
         if (!language.isEmpty())
             templateContent = Util::readFile(SettingsManager::get(QString("%1/Template Path").arg(language)).toString(),
-                                             QString("Open %1 Template").arg(language), log);
+                                             tr("Open %1 Template").arg(language), log);
         if (templateContent == editor->toPlainText())
         {
             language = lang;
@@ -750,7 +751,7 @@ void MainWindow::loadFile(const QString &loadPath)
         }
     }
 
-    auto content = Util::readFile(path, "Open File", log);
+    auto content = Util::readFile(path, tr("Open File"), log);
 
     if (content.isNull())
         return;
@@ -758,9 +759,9 @@ void MainWindow::loadFile(const QString &loadPath)
     savedText = content;
     if (content.length() > SettingsHelper::getOpenFileLengthLimit())
     {
-        log->error("Open File",
-                   QString("The file [%1] contains more than %2 characters, so it's not opened. You can change the "
-                           "open file length limit in Preferences->Advanced->Limits->Open File Length Limit")
+        log->error(tr("Open File"),
+                   tr("The file [%1] contains more than %2 characters, so it's not opened. You can change the "
+                      "open file length limit in Preferences->Advanced->Limits->Open File Length Limit")
                        .arg(path)
                        .arg(SettingsHelper::getOpenFileLengthLimit()));
         setText("");
@@ -913,7 +914,7 @@ QString MainWindow::tmpPath()
         if (!tmpDir->isValid())
         {
             LOG_ERR("Failed to create the temporary directory");
-            log->error("Temp File", "Failed to create the temporary directory");
+            log->error(tr("Temp File"), tr("Failed to create the temporary directory"));
             return QString();
         }
         created = true;
@@ -927,11 +928,11 @@ QString MainWindow::tmpPath()
         name += Util::pythonSuffix.first();
     else
     {
-        log->error("Temp File", "Please set the language");
+        log->error(tr("Temp File"), tr("Please set the language"));
         return "";
     }
     QString path = tmpDir->filePath(name);
-    if (!Util::saveFile(path, editor->toPlainText(), "Temp File", false, log))
+    if (!Util::saveFile(path, editor->toPlainText(), tr("Temp File"), false, log))
         return QString();
     if (created)
         emit editorTmpPathChanged(this, path);
@@ -943,7 +944,7 @@ bool MainWindow::isTextChanged() const
     if (isUntitled())
     {
         auto content = Util::readFile(SettingsManager::get(QString("%1/Template Path").arg(language)).toString(),
-                                      QString("Read %1 Template").arg(language), log);
+                                      tr("Read %1 Template").arg(language), log);
         if (content.isNull())
             return !editor->toPlainText().isEmpty();
         else
@@ -969,10 +970,10 @@ bool MainWindow::closeConfirm()
         emit confirmTriggered(this);
         auto res = QMessageBox::warning(
             this, tr("Save changes"),
-            tr("Save changes to [%1] before closing?").arg(isUntitled() ? QString("New File") : getFileName()),
+            tr("Save changes to [%1] before closing?").arg(isUntitled() ? tr("New File") : getFileName()),
             QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel, QMessageBox::Cancel);
         if (res == QMessageBox::Save)
-            confirmed = saveFile(AlwaysSave, "Save", true);
+            confirmed = saveFile(AlwaysSave, tr("Save"), true);
         else if (res == QMessageBox::Discard)
             confirmed = true;
     }
@@ -1124,28 +1125,29 @@ void MainWindow::performCompileAndRunDiagonistics()
         runResult = Core::Compiler::check(SettingsManager::get(QString("%1/Run Command").arg(language)).toString());
 
     if (!compilerResult)
-        log->error("Compiler",
-                   "The compile command for " + language + " is invalid. Is the compiler in the system PATH?");
+        log->error(tr("Compiler"),
+                   tr("The compile command for %1 is invalid. Is the compiler in the system PATH?").arg(language));
 
     if (!runResult)
-        log->error("Runner", "The run command for " + language + " is invalid. Is the runner in the system Path?");
+        log->error(tr("Runner"),
+                   tr("The run command for %1 is invalid. Is the runner in the system Path?").arg(language));
 }
 
 // -------------------- COMPILER SLOTS ---------------------------
 
 void MainWindow::onCompilationStarted()
 {
-    log->info("Compiler", "Compilation has started");
+    log->info(tr("Compiler"), tr("Compilation has started"));
 }
 
 void MainWindow::onCompilationFinished(const QString &warning)
 {
     if (language != "Python")
     {
-        log->info("Compiler", "Compilation has finished");
+        log->info(tr("Compiler"), tr("Compilation has finished"));
         if (!warning.trimmed().isEmpty())
         {
-            log->warn("Compile Warnings", warning);
+            log->warn(tr("Compile Warnings"), warning);
         }
     }
 
@@ -1156,13 +1158,13 @@ void MainWindow::onCompilationFinished(const QString &warning)
     else if (afterCompile == RunDetached)
     {
         if (SettingsHelper::isSaveFileOnExecution())
-            saveFile(IgnoreUntitled, "Runner", true);
+            saveFile(IgnoreUntitled, tr("Runner"), true);
 
         killProcesses();
 
         if (!QStringList({"C++", "Java", "Python"}).contains(language))
         {
-            log->warn("Runner", "Wrong language, please set the language");
+            log->warn(tr("Runner"), tr("Wrong language, please set the language"));
             return;
         }
 
@@ -1179,14 +1181,14 @@ void MainWindow::onCompilationFinished(const QString &warning)
 
 void MainWindow::onCompilationErrorOccurred(const QString &error)
 {
-    log->error("Complier", "Error occurred while compiling");
+    log->error(tr("Compiler"), tr("Error occurred while compiling"));
     if (!error.trimmed().isEmpty())
-        log->error("Compile Errors", error);
+        log->error(tr("Compile Errors"), error);
 }
 
 void MainWindow::onCompilationKilled()
 {
-    log->error("Compiler", "Compilation is killed");
+    log->error(tr("Compiler"), tr("Compilation is killed"));
 }
 
 // --------------------- RUNNER SLOTS ----------------------------
@@ -1194,13 +1196,13 @@ void MainWindow::onCompilationKilled()
 QString MainWindow::getRunnerHead(int index)
 {
     if (index == -1)
-        return "Detached Runner";
-    return "Runner[" + QString::number(index + 1) + "]";
+        return tr("Detached Runner");
+    return tr("Runner[%1]").arg(index + 1);
 }
 
 void MainWindow::onRunStarted(int index)
 {
-    log->info(getRunnerHead(index), "Execution has started");
+    log->info(getRunnerHead(index), tr("Execution has started"));
 }
 
 void MainWindow::onRunFinished(int index, const QString &out, const QString &err, int exitCode, int timeUsed)
@@ -1209,19 +1211,19 @@ void MainWindow::onRunFinished(int index, const QString &out, const QString &err
 
     if (exitCode == 0)
     {
-        log->info(head, "Execution for test case #" + QString::number(index + 1) + " has finished in " +
-                            QString::number(timeUsed) + "ms");
+        log->info(head, tr("Execution for test case #%1 has finished in %2ms").arg(index + 1).arg(timeUsed));
     }
 
     else
     {
-        log->error(head, "Execution for test case #" + QString::number(index + 1) +
-                             " has finished with non-zero exitcode " + QString::number(exitCode) + " in " +
-                             QString::number(timeUsed) + "ms");
+        log->error(head, tr("Execution for test case #%1 has finished with non-zero exitcode %2 in %3ms")
+                             .arg(index + 1)
+                             .arg(exitCode)
+                             .arg(timeUsed));
     }
 
     if (!err.trimmed().isEmpty())
-        log->error(head + "/stderr", err);
+        log->error(head + tr("/stderr"), err);
     testcases->setOutput(index, out);
     if (!out.isEmpty() && !testcases->expected(index).isEmpty())
         checker->reqeustCheck(index, testcases->input(index), out, testcases->expected(index));
@@ -1234,24 +1236,23 @@ void MainWindow::onFailedToStartRun(int index, const QString &error)
 
 void MainWindow::onRunTimeout(int index)
 {
-    log->warn(getRunnerHead(index), "Time Limit Exceeded");
+    log->warn(getRunnerHead(index), tr("Time Limit Exceeded"));
 }
 
 void MainWindow::onRunOutputLimitExceeded(int index, const QString &type)
 {
-    log->warn(
-        getRunnerHead(index),
-        QString("The %1 of the process running on the testcase #%2 contains more than %3 characters, which is longer "
-                "than the output length limit, so the process is killed. You can change the output length limit "
-                "in Preferences->Advanced->Limits->Output Length Limit")
-            .arg(type)
-            .arg(index + 1)
-            .arg(SettingsHelper::getOutputLengthLimit()));
+    log->warn(getRunnerHead(index),
+              tr("The %1 of the process running on the testcase #%2 contains more than %3 characters, which is longer "
+                 "than the output length limit, so the process is killed. You can change the output length limit "
+                 "in Preferences->Advanced->Limits->Output Length Limit")
+                  .arg(type)
+                  .arg(index + 1)
+                  .arg(SettingsHelper::getOutputLengthLimit()));
 }
 
 void MainWindow::onRunKilled(int index)
 {
     log->error(getRunnerHead(index),
-               (index == -1 ? "Detached runner" : "Runner for testcase #" + QString::number(index + 1)) +
-                   " has been killed");
+               tr("%1 has been killed")
+                   .arg(index == -1 ? tr("Detached runner") : tr("Runner for testcase #%1").arg(index + 1)));
 }
