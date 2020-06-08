@@ -177,421 +177,431 @@
     </message>
     <message>
         <location filename="../src/appwindow.cpp" line="842"/>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="257"/>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="266"/>
         <source>CP Editor: An editor specially designed for competitive programming</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="258"/>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="267"/>
         <source>New Tab</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="260"/>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="269"/>
         <source>Opens a new Tab in the Editor</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="263"/>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="272"/>
         <source>Ctrl+N</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="265"/>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="274"/>
         <source>Save</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="267"/>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="276"/>
         <source>Saves the file to disk</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="270"/>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="279"/>
         <source>Ctrl+S</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="272"/>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="281"/>
         <source>Save As...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="274"/>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="283"/>
         <source>Save as new file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="277"/>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="286"/>
         <source>Ctrl+Shift+S</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="279"/>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="288"/>
         <source>Save All</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="281"/>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="290"/>
         <source>Save all opened files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="284"/>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="293"/>
         <source>Ctrl+Alt+Shift+S</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="286"/>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="295"/>
         <source>Close Current</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="288"/>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="297"/>
         <source>Close current tab</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="291"/>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="300"/>
         <source>Ctrl+W</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/appwindow.cpp" line="1358"/>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="293"/>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="302"/>
         <source>Close Saved</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="295"/>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="304"/>
         <source>Close saved tabs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="298"/>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="307"/>
         <source>Ctrl+Alt+W</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/appwindow.cpp" line="1360"/>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="300"/>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="309"/>
         <source>Close All</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="302"/>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="311"/>
         <source>Close All the tabs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="305"/>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="314"/>
         <source>Ctrl+Shift+W</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/appwindow.cpp" line="294"/>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="307"/>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="316"/>
         <source>Quit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="309"/>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="318"/>
         <source>Quit the application</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="312"/>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="321"/>
         <source>Ctrl+Q</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="314"/>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="323"/>
         <source>Open File...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="316"/>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="325"/>
         <source>Open files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="319"/>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="328"/>
         <source>Ctrl+O</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="321"/>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="330"/>
         <source>Open Contest...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="323"/>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="332"/>
         <source>Open a Contest</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="326"/>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="335"/>
         <source>Ctrl+Shift+O</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="328"/>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="337"/>
         <source>Indent</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="330"/>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="339"/>
         <source>Ctrl+]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="332"/>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="341"/>
         <source>Unindent</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="334"/>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="343"/>
         <source>Ctrl+[</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="336"/>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="345"/>
         <source>Swap Line Up</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="338"/>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="347"/>
         <source>Ctrl+Shift+Up</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="340"/>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="349"/>
         <source>Swap Line Down</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="342"/>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="351"/>
         <source>Ctrl+Shift+Down</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="344"/>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="353"/>
         <source>Duplicate Line</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="346"/>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="355"/>
         <source>Ctrl+Shift+D</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="348"/>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="357"/>
         <source>Delete Line</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="350"/>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="359"/>
         <source>Ctrl+Shift+K</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="352"/>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="361"/>
         <source>Toggle Comment</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="354"/>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="363"/>
         <source>Ctrl+/</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="356"/>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="365"/>
         <source>Toggle Block Comment</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="358"/>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="367"/>
         <source>Ctrl+Shift+/</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="360"/>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="369"/>
         <source>Compile</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="362"/>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="371"/>
         <source>Ctrl+Shift+C</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="364"/>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="373"/>
         <source>Compile and Run</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="366"/>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="375"/>
         <source>Ctrl+Shift+R</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="368"/>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="377"/>
         <source>Run</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="370"/>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="379"/>
         <source>Ctrl+R</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="372"/>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="381"/>
         <source>Format code</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="374"/>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="383"/>
         <source>Ctrl+Alt+L</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="376"/>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="385"/>
         <source>Run Detached</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="378"/>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="387"/>
         <source>Ctrl+Alt+D</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="380"/>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="389"/>
         <source>Kill Processes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="382"/>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="391"/>
         <source>Ctrl+K</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="384"/>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="393"/>
         <source>Find and Replace...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="386"/>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="395"/>
         <source>Ctrl+F</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="388"/>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="397"/>
         <source>Use Snippet...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="390"/>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="399"/>
         <source>Ctrl+T</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="392"/>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="401"/>
         <source>Preferences</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="394"/>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="403"/>
         <source>Ctrl+P</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="396"/>
-        <source>Reset Preferences</source>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="405"/>
+        <source>Reset Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="397"/>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="406"/>
+        <source>Export Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="407"/>
+        <source>Import Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="408"/>
         <source>Manual</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/appwindow.cpp" line="293"/>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="398"/>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="409"/>
         <source>About</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="399"/>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="410"/>
         <source>About Qt</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="400"/>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="411"/>
         <source>Build Info</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="401"/>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="412"/>
         <source>Check for updates</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="402"/>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="413"/>
         <source>Support me</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="403"/>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="414"/>
         <source>Editor Mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="404"/>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="415"/>
         <source>IO Mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="405"/>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="416"/>
         <source>Split Mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="406"/>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="417"/>
         <source>Show Log Files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="407"/>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="418"/>
         <source>Delete Log Files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="408"/>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="419"/>
         <source>&amp;File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="409"/>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="420"/>
         <source>&amp;Edit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="410"/>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="421"/>
         <source>&amp;Actions</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="411"/>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="422"/>
         <source>&amp;View</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="412"/>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="423"/>
         <source>&amp;Options</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="413"/>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="424"/>
         <source>&amp;Help</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2398,6 +2408,49 @@ from competitive companion again, the old file will be opened.</source>
     </message>
 </context>
 <context>
+    <name>Util::FileUtil</name>
+    <message>
+        <location filename="../src/Util/FileUtil.cpp" line="67"/>
+        <location filename="../src/Util/FileUtil.cpp" line="90"/>
+        <source>Failed to open [%1]. Do I have write permission?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Util/FileUtil.cpp" line="77"/>
+        <location filename="../src/Util/FileUtil.cpp" line="99"/>
+        <source>Failed to save to [%1]. Do I have write permission?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Util/FileUtil.cpp" line="118"/>
+        <source>The file [%1] does not exist</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Util/FileUtil.cpp" line="128"/>
+        <source>Failed to open [%1]. Do I have read permission?</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>Widgets::DiffViewer</name>
+    <message>
+        <location filename="../src/Widgets/DiffViewer.cpp" line="37"/>
+        <source>Diff Viewer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Widgets/DiffViewer.cpp" line="41"/>
+        <source>Output</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Widgets/DiffViewer.cpp" line="50"/>
+        <source>Expected</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>Widgets::TestCase</name>
     <message>
         <location filename="../src/Widgets/TestCase.cpp" line="47"/>
@@ -2440,6 +2493,16 @@ from competitive companion again, the old file will be opened.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../src/Widgets/TestCase.cpp" line="109"/>
+        <source>Testcases</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Widgets/TestCase.cpp" line="110"/>
+        <source>The output #%1 contains more than %2 characters, so it&apos;s not displayed. You can set the output length limit in Preferences-&gt;Advanced-&gt;Limits-&gt;Output Length Limit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../src/Widgets/TestCase.cpp" line="157"/>
         <source>Input #%1</source>
         <translation type="unfinished"></translation>
@@ -2462,6 +2525,45 @@ from competitive companion again, the old file will be opened.</source>
     <message>
         <location filename="../src/Widgets/TestCase.cpp" line="247"/>
         <source>Are you sure you want to delete test case #%1?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Widgets/TestCase.cpp" line="255"/>
+        <source>Diff Viewer[%1]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Widgets/TestCase.cpp" line="256"/>
+        <source>The output/expected contains more than %1 characters, HTML diff viewer is disabled. You can change the length limit in Preferences-&gt;Advanced-&gt;Limits-&gt;HTML Diff Viewer Length Limit</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>Widgets::TestCaseEdit</name>
+    <message>
+        <location filename="../src/Widgets/TestCaseEdit.cpp" line="101"/>
+        <location filename="../src/Widgets/TestCaseEdit.cpp" line="103"/>
+        <source>Load From File</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Widgets/TestCaseEdit.cpp" line="107"/>
+        <source>Edit in Bigger Window</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Widgets/TestCaseEdit.cpp" line="110"/>
+        <source>Edit Testcase</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Widgets/TestCaseEdit.cpp" line="125"/>
+        <source>Testcases</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Widgets/TestCaseEdit.cpp" line="126"/>
+        <source>The testcase file [%1] contains more than %2 characters, so it&apos;s not loaded. You can change the length limit in Preferences-&gt;Advanced-&gt;Limits-&gt;Load Test Case File Length Limit</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2489,7 +2591,7 @@ from competitive companion again, the old file will be opened.</source>
     </message>
     <message>
         <location filename="../src/Widgets/TestCases.cpp" line="50"/>
-        <location filename="../src/Widgets/TestCases.cpp" line="453"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="452"/>
         <source>Add Checker</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2514,93 +2616,153 @@ from competitive companion again, the old file will be opened.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Widgets/TestCases.cpp" line="142"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="104"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="105"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="107"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="123"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="125"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="133"/>
+        <source>Load Testcases</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Widgets/TestCases.cpp" line="108"/>
+        <source>A pair of testcases [%1] and [%2] is loaded</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Widgets/TestCases.cpp" line="125"/>
+        <source>An input [%1] is loaded</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Widgets/TestCases.cpp" line="134"/>
+        <source>The following files are not loaded because they are not matched:%1. You can set the matching rules at Preferences-&gt;File Path-&gt;Testcases-&gt;Add Testcases From Files Rules.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Widgets/TestCases.cpp" line="141"/>
         <source>Remove Empty</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Widgets/TestCases.cpp" line="154"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="153"/>
         <source>Remove All</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Widgets/TestCases.cpp" line="157"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="156"/>
         <source>Clear Testcases</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Widgets/TestCases.cpp" line="157"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="156"/>
         <source>Are you sure you want to delete all test cases?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Widgets/TestCases.cpp" line="168"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="167"/>
         <source>Hide AC</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Widgets/TestCases.cpp" line="175"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="174"/>
         <source>Show All</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Widgets/TestCases.cpp" line="181"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="180"/>
         <source>Hide All</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Widgets/TestCases.cpp" line="187"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="186"/>
         <source>Invert</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Widgets/TestCases.cpp" line="200"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="199"/>
         <source>Ignore trailing spaces</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Widgets/TestCases.cpp" line="200"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="199"/>
         <source>Strictly the same</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Widgets/TestCases.cpp" line="200"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="199"/>
         <source>ncmp - Compare int64s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Widgets/TestCases.cpp" line="201"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="200"/>
         <source>rcmp4 - Compare doubles, max error 1e-4</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Widgets/TestCases.cpp" line="202"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="201"/>
         <source>rcmp6 - Compare doubles, max error 1e-6</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Widgets/TestCases.cpp" line="203"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="202"/>
         <source>rcmp9 - Compare doubles, max error 1e-9</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Widgets/TestCases.cpp" line="203"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="202"/>
         <source>wcmp - Compare tokens</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Widgets/TestCases.cpp" line="204"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="203"/>
         <source>nyesno - Compare YES/NOs, case insensitive</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Widgets/TestCases.cpp" line="232"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="231"/>
         <source>Add Test Case</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Widgets/TestCases.cpp" line="233"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="232"/>
         <source>There are already %1 test cases, you can&apos;t add more.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Widgets/TestCases.cpp" line="309"/>
+        <source>Input #%1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Widgets/TestCases.cpp" line="310"/>
+        <source>Expected #%1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Widgets/TestCases.cpp" line="325"/>
+        <source>Save Input #%1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Widgets/TestCases.cpp" line="327"/>
+        <source>Save Expected #%1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Widgets/TestCases.cpp" line="343"/>
+        <source>Load %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Widgets/TestCases.cpp" line="346"/>
+        <source>Testcases</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Widgets/TestCases.cpp" line="347"/>
+        <source>The testcase file [%1] contains more than %2 characters, so it&apos;s not loaded. You can change the length limit in Preferences-&gt;Advanced-&gt;Limits-&gt;Load Test Case File Length Limit</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -18,6 +18,7 @@
 #include "Util/FileUtil.hpp"
 #include "Core/EventLogger.hpp"
 #include "Core/MessageLogger.hpp"
+#include <QCoreApplication>
 #include <QDir>
 #include <QFile>
 #include <QFileInfo>
@@ -63,7 +64,9 @@ bool saveFile(const QString &path, const QString &content, const QString &head, 
         if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
         {
             if (log != nullptr)
-                log->error(head, "Failed to open [" + path + "]. Do I have write permission?");
+                log->error(head, QCoreApplication::translate("Util::FileUtil",
+                                                             "Failed to open [%1]. Do I have write permission?")
+                                     .arg(path));
             LOG_ERR("Failed to open [" << path << "]");
             return false;
         }
@@ -71,7 +74,9 @@ bool saveFile(const QString &path, const QString &content, const QString &head, 
         if (!file.commit())
         {
             if (log != nullptr)
-                log->error(head, "Failed to save to [" + path + "]. Do I have write permission?");
+                log->error(head, QCoreApplication::translate("Util::FileUtil",
+                                                             "Failed to save to [%1]. Do I have write permission?")
+                                     .arg(path));
             LOG_ERR("Failed to save to [" << path << "]");
             return false;
         }
@@ -82,14 +87,18 @@ bool saveFile(const QString &path, const QString &content, const QString &head, 
         if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
         {
             if (log != nullptr)
-                log->error(head, "Failed to open [" + path + "]. Do I have write permission?");
+                log->error(head, QCoreApplication::translate("Util::FileUtil",
+                                                             "Failed to open [%1]. Do I have write permission?")
+                                     .arg(path));
             LOG_ERR("unsafe: Failed to open [" << path << "]");
             return false;
         }
         if (file.write(content.toUtf8()) == -1)
         {
             if (log != nullptr)
-                log->error(head, "Failed to save to [" + path + "]. Do I have write permission?");
+                log->error(head, QCoreApplication::translate("Util::FileUtil",
+                                                             "Failed to save to [%1]. Do I have write permission?")
+                                     .arg(path));
             LOG_ERR("unsafe: Failed to save to [" << path << "]");
             return false;
         }
@@ -105,7 +114,8 @@ QString readFile(const QString &path, const QString &head, MessageLogger *log, b
         if (notExistWarning)
         {
             if (log != nullptr)
-                log->warn(head, QString("The file [%1] does not exist").arg(path));
+                log->warn(head,
+                          QCoreApplication::translate("Util::FileUtil", "The file [%1] does not exist").arg(path));
             LOG_WARN(QString("The file [%1] does not exist").arg(path));
         }
         return QString();
@@ -114,7 +124,9 @@ QString readFile(const QString &path, const QString &head, MessageLogger *log, b
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
     {
         if (log != nullptr)
-            log->error(head, QString("Failed to open [%1]. Do I have read permission?").arg(path));
+            log->error(head,
+                       QCoreApplication::translate("Util::FileUtil", "Failed to open [%1]. Do I have read permission?")
+                           .arg(path));
         LOG_ERR(QString("Failed to open [%1]").arg(path));
         return QString();
     }

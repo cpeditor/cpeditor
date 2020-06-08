@@ -101,11 +101,11 @@ TestCases::TestCases(MessageLogger *logger, QWidget *parent) : QWidget(parent), 
                     remain.remove(inputFile);
                     remain.remove(answerFile);
                     auto answerPath = QFileInfo(path).dir().filePath(answerFile);
-                    auto input = Util::readFile(path, "Load Testcases", log, true);
-                    auto answer = Util::readFile(answerPath, "Load Testcases", log, true);
+                    auto input = Util::readFile(path, tr("Load Testcases"), log, true);
+                    auto answer = Util::readFile(answerPath, tr("Load Testcases"), log, true);
                     addTestCase(input, answer);
-                    log->info("Load Testcases",
-                              QString("A pair of testcases [%1] and [%2] is loaded").arg(path).arg(answerPath));
+                    log->info(tr("Load Testcases"),
+                              tr("A pair of testcases [%1] and [%2] is loaded").arg(path).arg(answerPath));
                 }
             }
             // load single input
@@ -120,9 +120,9 @@ TestCases::TestCases(MessageLogger *logger, QWidget *parent) : QWidget(parent), 
                     if (!inputRegex.match(inputFile).hasMatch())
                         continue;
                     remain.remove(inputFile);
-                    auto input = Util::readFile(path, "Load Testcases", log, true);
+                    auto input = Util::readFile(path, tr("Load Testcases"), log, true);
                     addTestCase(input, QString());
-                    log->info("Load Testcases", QString("An input [%1] is loaded").arg(path));
+                    log->info(tr("Load Testcases"), tr("An input [%1] is loaded").arg(path));
                 }
             }
             if (!remain.isEmpty())
@@ -130,11 +130,10 @@ TestCases::TestCases(MessageLogger *logger, QWidget *parent) : QWidget(parent), 
                 QStringList remainPaths;
                 for (auto path : remain)
                     remainPaths.push_back(QString("[%1]").arg(path));
-                log->warn(
-                    "Load Testcases",
-                    QString("The following files are not loaded because they are not matched:%1. You can set the "
-                            "matching rules at Preferences->File Path->Testcases->Add Testcases From Files Rules.")
-                        .arg(remainPaths.join(", ")));
+                log->warn(tr("Load Testcases"),
+                          tr("The following files are not loaded because they are not matched:%1. You can set the "
+                             "matching rules at Preferences->File Path->Testcases->Add Testcases From Files Rules.")
+                              .arg(remainPaths.join(", ")));
             }
         }
     });
@@ -307,8 +306,8 @@ void TestCases::loadFromSavedFiles(const QString &filePath)
         {
             for (int j = 0; j <= i; ++j)
             {
-                addTestCase(loadTestCaseFromFile(inputFilePath(filePath, j), QString("Input #%1").arg(j + 1)),
-                            loadTestCaseFromFile(answerFilePath(filePath, j), QString("Expected #%1").arg(j + 1)));
+                addTestCase(loadTestCaseFromFile(inputFilePath(filePath, j), tr("Input #%1").arg(j + 1)),
+                            loadTestCaseFromFile(answerFilePath(filePath, j), tr("Expected #%1").arg(j + 1)));
             }
             break;
         }
@@ -323,9 +322,9 @@ void TestCases::saveToFiles(const QString &filePath, bool safe)
     for (int i = 0; i < count(); ++i)
     {
         if (!input(i).isEmpty())
-            Util::saveFile(inputFilePath(filePath, i), input(i), QString("Save Input #%1").arg(i + 1), safe, log, true);
+            Util::saveFile(inputFilePath(filePath, i), input(i), tr("Save Input #%1").arg(i + 1), safe, log, true);
         if (!expected(i).isEmpty())
-            Util::saveFile(answerFilePath(filePath, i), expected(i), QString("Save Expected #%1").arg(i + 1), safe, log,
+            Util::saveFile(answerFilePath(filePath, i), expected(i), tr("Save Expected #%1").arg(i + 1), safe, log,
                            true);
     }
     for (int i = count(); i < MAX_NUMBER_OF_TESTCASES; ++i)
@@ -341,12 +340,12 @@ void TestCases::saveToFiles(const QString &filePath, bool safe)
 
 QString TestCases::loadTestCaseFromFile(const QString &path, const QString &head)
 {
-    auto content = Util::readFile(path, QString("Load %1").arg(head), log);
+    auto content = Util::readFile(path, tr("Load %1").arg(head), log);
     if (content.length() > SettingsHelper::getLoadTestCaseFileLengthLimit())
     {
-        log->error("Testcases",
-                   QString("The testcase file [%1] contains more than %2 characters, so it's not loaded. You can "
-                           "change the length limit in Preferences->Advanced->Limits->Load Test Case File Length Limit")
+        log->error(tr("Testcases"),
+                   tr("The testcase file [%1] contains more than %2 characters, so it's not loaded. You can "
+                      "change the length limit in Preferences->Advanced->Limits->Load Test Case File Length Limit")
                        .arg(path)
                        .arg(SettingsHelper::getLoadTestCaseFileLengthLimit()));
         return QString();

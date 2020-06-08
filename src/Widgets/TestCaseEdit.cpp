@@ -98,16 +98,16 @@ void TestCaseEdit::onCustomContextMenuRequested(const QPoint &pos)
     if (!isReadOnly())
     {
         menu->addSeparator();
-        menu->addAction(QApplication::style()->standardIcon(QStyle::SP_DialogOpenButton), "Load From File", [this] {
+        menu->addAction(QApplication::style()->standardIcon(QStyle::SP_DialogOpenButton), tr("Load From File"), [this] {
             LOG_INFO("Opening file dialog to Load from file");
-            auto res = QFileDialog::getOpenFileName(this, "Load From File");
+            auto res = QFileDialog::getOpenFileName(this, tr("Load From File"));
             loadFromFile(res);
         });
         menu->addAction(
-            QApplication::style()->standardIcon(QStyle::SP_TitleBarMaxButton), "Edit in Bigger Window", [this] {
+            QApplication::style()->standardIcon(QStyle::SP_TitleBarMaxButton), tr("Edit in Bigger Window"), [this] {
                 LOG_INFO("Opening for edit in big window");
                 bool ok = false;
-                auto res = QInputDialog::getMultiLineText(this, "Edit Testcase", QString(), toPlainText(), &ok);
+                auto res = QInputDialog::getMultiLineText(this, tr("Edit Testcase"), QString(), toPlainText(), &ok);
                 if (ok)
                     modifyText(res);
             });
@@ -122,12 +122,11 @@ void TestCaseEdit::loadFromFile(const QString &path)
     {
         if (content.length() > SettingsHelper::getLoadTestCaseFileLengthLimit())
         {
-            log->error(
-                "Testcases",
-                QString("The testcase file [%1] contains more than %2 characters, so it's not loaded. You can change "
-                        "the length limit in Preferences->Advanced->Limits->Load Test Case File Length Limit")
-                    .arg(path)
-                    .arg(SettingsHelper::getLoadTestCaseFileLengthLimit()));
+            log->error(tr("Testcases"),
+                       tr("The testcase file [%1] contains more than %2 characters, so it's not loaded. You can change "
+                          "the length limit in Preferences->Advanced->Limits->Load Test Case File Length Limit")
+                           .arg(path)
+                           .arg(SettingsHelper::getLoadTestCaseFileLengthLimit()));
         }
         else
             modifyText(content);

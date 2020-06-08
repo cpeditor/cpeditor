@@ -106,9 +106,9 @@ void TestCase::setOutput(const QString &text)
     if (text.length() > SettingsHelper::getOutputLengthLimit())
     {
         newOutput = tr("Output Length Limit Exceeded");
-        log->error("Testcases",
-                   QString("The output #%1 contains more than %2 characters, so it's not displayed. You can set the "
-                           "output length limit in Preferences->Advanced->Limits->Output Length Limit")
+        log->error(tr("Testcases"),
+                   tr("The output #%1 contains more than %2 characters, so it's not displayed. You can set the "
+                      "output length limit in Preferences->Advanced->Limits->Output Length Limit")
                        .arg(id + 1)
                        .arg(SettingsHelper::getOutputLengthLimit()));
     }
@@ -252,11 +252,10 @@ void TestCase::onDelButtonClicked()
 
 void TestCase::onToLongForHtml()
 {
-    log->warn(
-        "Diff Viewer[" + QString::number(id + 1) + "]",
-        QString("The output/expected contains more than %1 characters, HTML diff viewer is disabled. You can change "
-                "the length limit in Preferences->Advanced->Limits->HTML Diff Viewer Length Limit")
-            .arg(SettingsHelper::getHTMLDiffViewerLengthLimit()));
+    log->warn(tr("Diff Viewer[%1]").arg(id + 1),
+              tr("The output/expected contains more than %1 characters, HTML diff viewer is disabled. You can change "
+                 "the length limit in Preferences->Advanced->Limits->HTML Diff Viewer Length Limit")
+                  .arg(SettingsHelper::getHTMLDiffViewerLengthLimit()));
 }
 
 } // namespace Widgets

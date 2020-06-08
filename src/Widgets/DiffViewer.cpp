@@ -34,11 +34,11 @@ DiffViewer::DiffViewer(QWidget *parent) : QMainWindow(parent)
     layout = new QHBoxLayout();
     widget->setLayout(layout);
     setCentralWidget(widget);
-    setWindowTitle("Diff Viewer");
+    setWindowTitle(tr("Diff Viewer"));
     resize(720, 480);
 
     leftLayout = new QVBoxLayout();
-    outputLabel = new QLabel("Output", widget);
+    outputLabel = new QLabel(tr("Output"), widget);
     leftLayout->addWidget(outputLabel);
     outputEdit = new QTextEdit(widget);
     outputEdit->setReadOnly(true);
@@ -47,7 +47,7 @@ DiffViewer::DiffViewer(QWidget *parent) : QMainWindow(parent)
     layout->addLayout(leftLayout);
 
     rightLayout = new QVBoxLayout();
-    expectedLabel = new QLabel("Expected", widget);
+    expectedLabel = new QLabel(tr("Expected"), widget);
     rightLayout->addWidget(expectedLabel);
     expectedEdit = new QTextEdit(widget);
     expectedEdit->setReadOnly(true);
