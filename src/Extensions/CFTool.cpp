@@ -47,7 +47,7 @@ void CFTool::submit(const QString &filePath, const QString &url)
             LOG_WARN("CFTool was already running, forcefully killing it now");
             CFToolProcess->kill();
             delete CFToolProcess;
-            log->error("CF Tool", "CF Tool was killed");
+            log->error(tr("CF Tool"), tr("CF Tool was killed"));
         }
         else
             delete CFToolProcess;
@@ -61,18 +61,19 @@ void CFTool::submit(const QString &filePath, const QString &url)
         if (problemCode == "0")
         {
             problemCode = "A";
-            log->warn("CF Tool", "The problem code is 0, now use A automatically. If the actual problem code is not A, "
-                                 "please set the problem code manually in the right-click menu of the current tab.");
+            log->warn(tr("CF Tool"),
+                      tr("The problem code is 0, now use A automatically. If the actual problem code is not A, "
+                         "please set the problem code manually in the right-click menu of the current tab."));
         }
-        lastStatus = "Unknown";
+        lastStatus = "Unknown"; // No tr here. We don't know what we'll get from network. Maybe a array for mapping.
         CFToolProcess = new QProcess();
         CFToolProcess->setProgram(CFToolPath);
         auto version = getCFToolVersion();
         if (version.isEmpty())
         {
             log->error(
-                "CF Tool",
-                "Failed to get the version of CF Tool. Have you set the correct path to CF Tool in Preferences?");
+                tr("CF Tool"),
+                tr("Failed to get the version of CF Tool. Have you set the correct path to CF Tool in Preferences?"));
             return;
         }
         if (version.split('.')[0] == "0")
@@ -88,19 +89,19 @@ void CFTool::submit(const QString &filePath, const QString &url)
         bool started = CFToolProcess->waitForStarted(2000);
         if (started)
         {
-            log->info("CF Tool", "CF Tool has started");
+            log->info(tr("CF Tool"), tr("CF Tool has started"));
         }
         else
         {
             CFToolProcess->kill();
             log->error(
-                "CF Tool",
-                "Failed to start CF Tool in 2 seconds. Have you set the correct path to CF Tool in Preferences?");
+                tr("CF Tool"),
+                tr("Failed to start CF Tool in 2 seconds. Have you set the correct path to CF Tool in Preferences?"));
         }
     }
     else
     {
-        log->error("CF Tool", "Failed to parse the URL [" + url + "]");
+        log->error(tr("CF Tool"), tr("Failed to parse the URL [%1]").arg(url));
     }
 }
 
@@ -146,19 +147,19 @@ void CFTool::onReadReady()
     response.remove(QRegularExpression("\x1b\\[.. "));
     if (response.contains("status: "))
     {
-        auto shortStatus = response.mid(response.indexOf("status: ") + 8);
+        auto shortStatus = response.mid(response.indexOf("status: ") + 8); // Maybe need some tricks to translate
         lastStatus = shortStatus.contains('\n') ? shortStatus.left(shortStatus.indexOf('\n')) : shortStatus;
 
         if (response.contains("status: Happy New Year") || response.contains("status: Accepted") ||
             response.contains("status: Pretests passed"))
-            log->message("CF Tool", shortStatus, "green");
+            log->message(tr("CF Tool"), shortStatus, "green");
         else if (response.contains("status: Running"))
-            log->info("CF Tool", shortStatus);
+            log->info(tr("CF Tool"), shortStatus);
         else
-            log->error("CF Tool", shortStatus);
+            log->error(tr("CF Tool"), shortStatus);
     }
     else if (!response.trimmed().isEmpty())
-        log->info("CF Tool", response);
+        log->info(tr("CF Tool"), response);
     else
         LOG_INFO("Response is empty");
 }
@@ -171,17 +172,17 @@ void CFTool::onFinished(int exitCode)
     }
     else
     {
-        showToastMessage("CF Tool failed");
-        log->error("CF Tool", "CF Tool finished with non-zero exit code " + QString::number(exitCode));
+        showToastMessage(tr("CF Tool failed"));
+        log->error(tr("CF Tool"), tr("CF Tool finished with non-zero exit code %1").arg(exitCode));
     }
     QString err = CFToolProcess->readAllStandardError();
     if (!err.trimmed().isEmpty())
-        log->error("CF Tool", err);
+        log->error(tr("CF Tool"), err);
 }
 
 void CFTool::showToastMessage(const QString &message)
 {
-    emit requestToastMessage("Contest " + problemContestId + " Problem " + problemCode, message);
+    emit requestToastMessage(tr("Contest %1 Problem %2").arg(problemContestId).arg(problemCode), message);
 }
 
 QString CFTool::getCFToolVersion() const

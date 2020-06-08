@@ -607,9 +607,9 @@
         <location filename="../src/Core/Checker.cpp" line="111"/>
         <location filename="../src/Core/Checker.cpp" line="117"/>
         <location filename="../src/Core/Checker.cpp" line="156"/>
-        <location filename="../src/Core/Checker.cpp" line="291"/>
-        <location filename="../src/Core/Checker.cpp" line="292"/>
-        <location filename="../src/Core/Checker.cpp" line="293"/>
+        <location filename="../src/Core/Checker.cpp" line="288"/>
+        <location filename="../src/Core/Checker.cpp" line="289"/>
+        <location filename="../src/Core/Checker.cpp" line="290"/>
         <source>Checker</source>
         <translation type="unfinished"></translation>
     </message>
@@ -637,35 +637,35 @@
     <message>
         <location filename="../src/Core/Checker.cpp" line="174"/>
         <location filename="../src/Core/Checker.cpp" line="181"/>
-        <location filename="../src/Core/Checker.cpp" line="190"/>
-        <location filename="../src/Core/Checker.cpp" line="199"/>
-        <location filename="../src/Core/Checker.cpp" line="204"/>
-        <location filename="../src/Core/Checker.cpp" line="210"/>
+        <location filename="../src/Core/Checker.cpp" line="189"/>
+        <location filename="../src/Core/Checker.cpp" line="197"/>
+        <location filename="../src/Core/Checker.cpp" line="202"/>
+        <location filename="../src/Core/Checker.cpp" line="207"/>
         <source>Checker[%1]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Core/Checker.cpp" line="182"/>
+        <location filename="../src/Core/Checker.cpp" line="181"/>
         <source>Checker exited with exit code %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Core/Checker.cpp" line="191"/>
+        <location filename="../src/Core/Checker.cpp" line="189"/>
         <source>Checker exited with unknown exit code %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Core/Checker.cpp" line="204"/>
+        <location filename="../src/Core/Checker.cpp" line="202"/>
         <source>Time Limit Exceeded</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Core/Checker.cpp" line="211"/>
+        <location filename="../src/Core/Checker.cpp" line="208"/>
         <source>The %1 of the process running on the testcase #%2 contains more than %3 characters, which is longer than the output length limit, so the process is killed. You can change the output length limit in Preferences-&gt;Advanced-&gt;Limits-&gt;Output Length Limit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Core/Checker.cpp" line="221"/>
+        <location filename="../src/Core/Checker.cpp" line="218"/>
         <source>Killed</source>
         <translation type="unfinished"></translation>
     </message>
@@ -686,7 +686,7 @@
 <context>
     <name>Core::MessageLogger</name>
     <message>
-        <location filename="../src/Core/MessageLogger.cpp" line="40"/>
+        <location filename="../src/Core/MessageLogger.cpp" line="41"/>
         <source>
 ... The message is too long</source>
         <translation type="unfinished"></translation>
@@ -712,6 +712,206 @@
     <message>
         <location filename="../src/Core/Runner.cpp" line="122"/>
         <source>Please install xterm in order to use Detached Run.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>Extensions::CFTool</name>
+    <message>
+        <location filename="../src/Extensions/CFTool.cpp" line="50"/>
+        <location filename="../src/Extensions/CFTool.cpp" line="64"/>
+        <location filename="../src/Extensions/CFTool.cpp" line="75"/>
+        <location filename="../src/Extensions/CFTool.cpp" line="92"/>
+        <location filename="../src/Extensions/CFTool.cpp" line="98"/>
+        <location filename="../src/Extensions/CFTool.cpp" line="104"/>
+        <location filename="../src/Extensions/CFTool.cpp" line="155"/>
+        <location filename="../src/Extensions/CFTool.cpp" line="157"/>
+        <location filename="../src/Extensions/CFTool.cpp" line="159"/>
+        <location filename="../src/Extensions/CFTool.cpp" line="162"/>
+        <location filename="../src/Extensions/CFTool.cpp" line="176"/>
+        <location filename="../src/Extensions/CFTool.cpp" line="180"/>
+        <source>CF Tool</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Extensions/CFTool.cpp" line="50"/>
+        <source>CF Tool was killed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Extensions/CFTool.cpp" line="65"/>
+        <source>The problem code is 0, now use A automatically. If the actual problem code is not A, please set the problem code manually in the right-click menu of the current tab.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Extensions/CFTool.cpp" line="76"/>
+        <source>Failed to get the version of CF Tool. Have you set the correct path to CF Tool in Preferences?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Extensions/CFTool.cpp" line="92"/>
+        <source>CF Tool has started</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Extensions/CFTool.cpp" line="99"/>
+        <source>Failed to start CF Tool in 2 seconds. Have you set the correct path to CF Tool in Preferences?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Extensions/CFTool.cpp" line="104"/>
+        <source>Failed to parse the URL [%1]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Extensions/CFTool.cpp" line="175"/>
+        <source>CF Tool failed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Extensions/CFTool.cpp" line="176"/>
+        <source>CF Tool finished with non-zero exit code %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Extensions/CFTool.cpp" line="185"/>
+        <source>Contest %1 Problem %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>Extensions::ClangFormatter</name>
+    <message>
+        <location filename="../src/Extensions/ClangFormatter.cpp" line="52"/>
+        <location filename="../src/Extensions/ClangFormatter.cpp" line="56"/>
+        <source>Formatter/check</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Extensions/ClangFormatter.cpp" line="124"/>
+        <location filename="../src/Extensions/ClangFormatter.cpp" line="129"/>
+        <location filename="../src/Extensions/ClangFormatter.cpp" line="133"/>
+        <location filename="../src/Extensions/ClangFormatter.cpp" line="172"/>
+        <location filename="../src/Extensions/ClangFormatter.cpp" line="188"/>
+        <location filename="../src/Extensions/ClangFormatter.cpp" line="199"/>
+        <source>Formatter</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Extensions/ClangFormatter.cpp" line="124"/>
+        <source>Failed to create temporary directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Extensions/ClangFormatter.cpp" line="172"/>
+        <source>Formatting completed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Extensions/ClangFormatter.cpp" line="189"/>
+        <source>The format process didn&apos;t finish in 2 seconds. This is probably because the clang-format binary is not found by CP Editor. You can set the path to clang-format in Preferences-&gt;Formatting.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Extensions/ClangFormatter.cpp" line="199"/>
+        <source>The format command is: %1 %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Extensions/ClangFormatter.cpp" line="202"/>
+        <source>Formatter[stdout]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Extensions/ClangFormatter.cpp" line="205"/>
+        <source>Formatter[stderr]</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>Extensions::CompanionServer</name>
+    <message>
+        <location filename="../src/Extensions/CompanionServer.cpp" line="51"/>
+        <location filename="../src/Extensions/CompanionServer.cpp" line="62"/>
+        <location filename="../src/Extensions/CompanionServer.cpp" line="65"/>
+        <location filename="../src/Extensions/CompanionServer.cpp" line="76"/>
+        <location filename="../src/Extensions/CompanionServer.cpp" line="98"/>
+        <location filename="../src/Extensions/CompanionServer.cpp" line="140"/>
+        <source>Companion</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Extensions/CompanionServer.cpp" line="51"/>
+        <source>Server is closed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Extensions/CompanionServer.cpp" line="62"/>
+        <source>Port is set to %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Extensions/CompanionServer.cpp" line="66"/>
+        <source>Failed to listen to port %1. Is there another process listening?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Extensions/CompanionServer.cpp" line="76"/>
+        <source>Stopped Server</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Extensions/CompanionServer.cpp" line="98"/>
+        <source>Got a POST Request</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Extensions/CompanionServer.cpp" line="140"/>
+        <source>JSONParser reported errors. 
+%1</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>Extensions::LanguageServer</name>
+    <message>
+        <location filename="../src/Extensions/LanguageServer.cpp" line="290"/>
+        <location filename="../src/Extensions/LanguageServer.cpp" line="303"/>
+        <location filename="../src/Extensions/LanguageServer.cpp" line="310"/>
+        <location filename="../src/Extensions/LanguageServer.cpp" line="313"/>
+        <location filename="../src/Extensions/LanguageServer.cpp" line="316"/>
+        <location filename="../src/Extensions/LanguageServer.cpp" line="319"/>
+        <source>Langauge Server [%1]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Extensions/LanguageServer.cpp" line="291"/>
+        <source>Language server sent an error. Please check log for details.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Extensions/LanguageServer.cpp" line="304"/>
+        <source>Failed to start LSP Process. Have you set the path to the Language Server program in Preferences-&gt;Extensions-&gt;Language Server?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Extensions/LanguageServer.cpp" line="310"/>
+        <source>LSP Process timed out</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Extensions/LanguageServer.cpp" line="313"/>
+        <source>LSP Process Read Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Extensions/LanguageServer.cpp" line="316"/>
+        <source>LSP Process Write Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Extensions/LanguageServer.cpp" line="319"/>
+        <source>An unknown error has occurred in LSP Process</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
