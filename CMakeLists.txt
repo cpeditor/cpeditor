@@ -21,7 +21,7 @@ endif()
 
 find_package(Qt5 COMPONENTS Widgets REQUIRED)
 find_package(Qt5 COMPONENTS Network REQUIRED)
-find_package(Qt5LinguistTools REQUIRED)
+find_package(Qt5 COMPONENTS LinguistTools REQUIRED)
 find_package(Python3 COMPONENTS Interpreter REQUIRED)
 
 add_subdirectory(third_party/QCodeEditor)
