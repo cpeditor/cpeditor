@@ -38,7 +38,7 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
 {
     // set attributes
     hide();
-    setWindowTitle("Preferences");
+    setWindowTitle(tr("Preferences"));
 
     // setup UI
     splitter = new QSplitter();
@@ -54,13 +54,13 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
     leftLayout->addLayout(searchLayout);
 
     searchEdit = new QLineEdit();
-    searchEdit->setPlaceholderText("Search...");
+    searchEdit->setPlaceholderText(tr("Search..."));
     connect(searchEdit, SIGNAL(textChanged(const QString &)), this, SLOT(updateSearch(const QString &)));
     searchLayout->addWidget(searchEdit);
 
-    homeButton = new QPushButton("Home");
+    homeButton = new QPushButton(tr("Home"));
     homeButton->setDisabled(true);
-    homeButton->setToolTip("Go to the home page");
+    homeButton->setToolTip(tr("Go to the home page"));
     connect(homeButton, &QPushButton::clicked, this, [this]() { switchToPage(homePage); });
     searchLayout->addWidget(homeButton);
 

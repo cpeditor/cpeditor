@@ -44,7 +44,7 @@ CodeSnippetsPage::CodeSnippetsPage(const QString &language, QWidget *parent) : P
     leftLayout = new QVBoxLayout(leftWidget);
 
     searchEdit = new QLineEdit();
-    searchEdit->setPlaceholderText("Search...");
+    searchEdit->setPlaceholderText(tr("Search..."));
     connect(searchEdit, SIGNAL(textChanged(const QString &)), this, SLOT(updateSearch(const QString &)));
     leftLayout->addWidget(searchEdit);
 
@@ -57,24 +57,24 @@ CodeSnippetsPage::CodeSnippetsPage(const QString &language, QWidget *parent) : P
     buttonsLayout = new QHBoxLayout();
     leftLayout->addLayout(buttonsLayout);
 
-    addButton = new QPushButton("Add");
+    addButton = new QPushButton(tr("Add"));
     addButton->setShortcut({"Ctrl+N"});
     connect(addButton, SIGNAL(clicked()), this, SLOT(addSnippet()));
     buttonsLayout->addWidget(addButton);
 
-    deleteButton = new QPushButton("Del");
+    deleteButton = new QPushButton(tr("Del"));
     deleteButton->setShortcut({"Ctrl+W"});
     connect(deleteButton, SIGNAL(clicked()), this, SLOT(deleteSnippet()));
     buttonsLayout->addWidget(deleteButton);
 
-    renameAction = new QAction("Rename Snippet");
+    renameAction = new QAction(tr("Rename Snippet"));
     renameAction->setShortcut({"F2"});
     connect(renameAction, SIGNAL(triggered()), this, SLOT(renameSnippet()));
 
-    loadSnippetsFromFilesAction = new QAction("Load Snippets From Files");
+    loadSnippetsFromFilesAction = new QAction(tr("Load Snippets From Files"));
     connect(loadSnippetsFromFilesAction, SIGNAL(triggered()), this, SLOT(loadSnippetsFromFiles()));
 
-    extractSnippetsToFilesAction = new QAction("Extract Snippets To Files");
+    extractSnippetsToFilesAction = new QAction(tr("Extract Snippets To Files"));
     connect(extractSnippetsToFilesAction, SIGNAL(triggered()), this, SLOT(extractSnippetsToFiles()));
 
     updateActions();
@@ -84,7 +84,7 @@ CodeSnippetsPage::CodeSnippetsPage(const QString &language, QWidget *parent) : P
     moreMenu->addAction(loadSnippetsFromFilesAction);
     moreMenu->addAction(extractSnippetsToFilesAction);
 
-    moreButton = new QPushButton("More");
+    moreButton = new QPushButton(tr("More"));
     moreButton->setMenu(moreMenu);
     buttonsLayout->addWidget(moreButton);
 
@@ -114,7 +114,7 @@ CodeSnippetsPage::CodeSnippetsPage(const QString &language, QWidget *parent) : P
     VStretchLayout->addLayout(HStretchLayout);
     HStretchLayout->addStretch();
 
-    noSnippetLabel = new QLabel("No Snippet Selected");
+    noSnippetLabel = new QLabel(tr("No Snippet Selected"));
     HStretchLayout->addWidget(noSnippetLabel);
 
     HStretchLayout->addStretch();
@@ -254,11 +254,11 @@ bool CodeSnippetsPage::aboutToSwitchToSnippet()
     if (!SettingsManager::contains(snippetKey(currentItem->text())) && editor->toPlainText().isEmpty())
         return true;
 
-    auto res = QMessageBox::question(
-        this, "Unsaved Snippets",
-        QString("The snippet [%1] has been changed. Do you want to save it or discard the changes?")
-            .arg(currentItem->text()),
-        QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel);
+    auto res =
+        QMessageBox::question(this, tr("Unsaved Snippets"),
+                              tr("The snippet [%1] has been changed. Do you want to save it or discard the changes?")
+                                  .arg(currentItem->text()),
+                              QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel);
     switch (res)
     {
     case QMessageBox::Save:
@@ -287,8 +287,8 @@ void CodeSnippetsPage::deleteSnippet()
 {
     if (currentItem == nullptr)
         return;
-    auto res = QMessageBox::question(this, "Delete Snippet",
-                                     QString("Do you really want to delete the snippet [%1]?").arg(currentItem->text()),
+    auto res = QMessageBox::question(this, tr("Delete Snippet"),
+                                     tr("Do you really want to delete the snippet [%1]?").arg(currentItem->text()),
                                      QMessageBox::Yes | QMessageBox::No);
     if (res == QMessageBox::Yes)
         deleteSnippet(currentItem);
@@ -317,16 +317,16 @@ void CodeSnippetsPage::renameSnippet()
 
 void CodeSnippetsPage::loadSnippetsFromFiles()
 {
-    auto files = QFileDialog::getOpenFileNames(this, "Load Snippets", QString(),
+    auto files = QFileDialog::getOpenFileNames(this, tr("Load Snippets"), QString(),
                                                Util::fileNameFilter(lang == "C++", lang == "Java", lang == "Python"));
 
     for (auto file : files)
     {
-        auto content = Util::readFile(file, "CodeSnippetsPage::loadSnippetsFromFiles");
+        auto content = Util::readFile(file, tr("CodeSnippetsPage::loadSnippetsFromFiles"));
         if (content.isNull())
         {
-            QMessageBox::warning(this, "Load Snippets",
-                                 QString("Failed to open [%1]. Do I have read permission?").arg(file));
+            QMessageBox::warning(this, tr("Load Snippets"),
+                                 tr("Failed to open [%1]. Do I have read permission?").arg(file));
             break;
         }
         auto name = QFileInfo(file).completeBaseName();
@@ -341,7 +341,7 @@ void CodeSnippetsPage::loadSnippetsFromFiles()
 
 void CodeSnippetsPage::extractSnippetsToFiles()
 {
-    auto dirPath = QFileDialog::getExistingDirectory(this, "Extract Snippets");
+    auto dirPath = QFileDialog::getExistingDirectory(this, tr("Extract Snippets"));
     if (dirPath.isEmpty())
         return;
     auto dir = QDir(dirPath);
@@ -364,15 +364,15 @@ void CodeSnippetsPage::extractSnippetsToFiles()
         if (QFile::exists(filePath))
         {
             filePath =
-                QFileDialog::getSaveFileName(this, "Extract Snippets: " + name, filePath,
+                QFileDialog::getSaveFileName(this, tr("Extract Snippets: %1").arg(name), filePath,
                                              Util::fileNameFilter(lang == "C++", lang == "Java", lang == "Python"));
         }
         if (filePath.isEmpty())
             break;
         if (!Util::saveFile(filePath, SettingsManager::get(snippetKey(name)).toString(), "Extract Snippets"))
         {
-            QMessageBox::warning(this, "Extract Snippets",
-                                 QString("Failed to write to [%1]. Do I have write permission?").arg(filePath));
+            QMessageBox::warning(this, tr("Extract Snippets"),
+                                 tr("Failed to write to [%1]. Do I have write permission?").arg(filePath));
             break;
         }
     }
@@ -393,17 +393,16 @@ QString CodeSnippetsPage::getNewSnippetName(const QString &oldName, bool avoidCo
             name = oldName;
         }
         else if (name.isEmpty())
-            head = "Snippet name can't be empty.\n";
+            head = tr("Snippet name can't be empty.\n");
         else
         {
             if (askOverride)
             {
-                auto res =
-                    QMessageBox::question(this, "Snippet Name Conflict",
-                                          QString("The name \"%1\" is already in use. Do you want to override it? "
-                                                  "(The old snippet with this name will be deleted.)")
-                                              .arg(name),
-                                          QMessageBox::Yes | QMessageBox::No);
+                auto res = QMessageBox::question(this, tr("Snippet Name Conflict"),
+                                                 tr("The name \"%1\" is already in use. Do you want to override it? "
+                                                    "(The old snippet with this name will be deleted.)")
+                                                     .arg(name),
+                                                 QMessageBox::Yes | QMessageBox::No);
                 if (res == QMessageBox::Yes)
                 {
                     auto item = snippetItem[name];
@@ -412,9 +411,10 @@ QString CodeSnippetsPage::getNewSnippetName(const QString &oldName, bool avoidCo
                     return name;
                 }
             }
-            head = QString("The name \"%1\" is already in use.\n").arg(name);
+            head = tr("The name \"%1\" is already in use.\n").arg(name);
         }
-        name = QInputDialog::getText(this, "Add Snippet", head + "New Snippet Name:", QLineEdit::Normal, name, &ok);
+        name = QInputDialog::getText(this, tr("Add Snippet"), head + tr("New Snippet Name:"), QLineEdit::Normal, name,
+                                     &ok);
         if (!ok)
             return QString();
     }

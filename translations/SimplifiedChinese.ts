@@ -601,12 +601,12 @@
     <message>
         <location filename="../src/Settings/AppearancePage.cpp" line="47"/>
         <source>Change Editor Theme</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">更改编辑器主题</translation>
     </message>
     <message>
         <location filename="../src/Settings/AppearancePage.cpp" line="48"/>
         <source>Because you are using whole-application dark theme on Windows, you need to restart the application after changing the editor theme.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">由于你正在使用全局暗色主题，你需要在更改编辑器主题后重启程序。</translation>
     </message>
 </context>
 <context>
@@ -614,12 +614,12 @@
     <message>
         <location filename="../src/Settings/CodeSnippetsPage.cpp" line="47"/>
         <source>Search...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">搜索...</translation>
     </message>
     <message>
         <location filename="../src/Settings/CodeSnippetsPage.cpp" line="60"/>
         <source>Add</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">添加</translation>
     </message>
     <message>
         <location filename="../src/Settings/CodeSnippetsPage.cpp" line="65"/>
@@ -629,17 +629,17 @@
     <message>
         <location filename="../src/Settings/CodeSnippetsPage.cpp" line="70"/>
         <source>Rename Snippet</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">重命名</translation>
     </message>
     <message>
         <location filename="../src/Settings/CodeSnippetsPage.cpp" line="74"/>
         <source>Load Snippets From Files</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">从文件中加载代码片段</translation>
     </message>
     <message>
         <location filename="../src/Settings/CodeSnippetsPage.cpp" line="77"/>
         <source>Extract Snippets To Files</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">导出代码片段到文件</translation>
     </message>
     <message>
         <location filename="../src/Settings/CodeSnippetsPage.cpp" line="87"/>
@@ -649,91 +649,93 @@
     <message>
         <location filename="../src/Settings/CodeSnippetsPage.cpp" line="117"/>
         <source>No Snippet Selected</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">无代码片段被选择</translation>
     </message>
     <message>
         <location filename="../src/Settings/CodeSnippetsPage.cpp" line="258"/>
         <source>Unsaved Snippets</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">未保存的代码片段</translation>
     </message>
     <message>
         <location filename="../src/Settings/CodeSnippetsPage.cpp" line="259"/>
         <source>The snippet [%1] has been changed. Do you want to save it or discard the changes?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">代码片段[%1]已经被更改。你希望保存更改还是丢弃更改？</translation>
     </message>
     <message>
         <location filename="../src/Settings/CodeSnippetsPage.cpp" line="290"/>
         <source>Delete Snippet</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">删除代码片段</translation>
     </message>
     <message>
         <location filename="../src/Settings/CodeSnippetsPage.cpp" line="291"/>
         <source>Do you really want to delete the snippet [%1]?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">你真的要删除代码片段[%1]吗？</translation>
     </message>
     <message>
         <location filename="../src/Settings/CodeSnippetsPage.cpp" line="320"/>
         <location filename="../src/Settings/CodeSnippetsPage.cpp" line="328"/>
         <source>Load Snippets</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">加载代码片段</translation>
     </message>
     <message>
         <location filename="../src/Settings/CodeSnippetsPage.cpp" line="325"/>
         <source>CodeSnippetsPage::loadSnippetsFromFiles</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">代码片段/加载</translation>
     </message>
     <message>
         <location filename="../src/Settings/CodeSnippetsPage.cpp" line="329"/>
         <source>Failed to open [%1]. Do I have read permission?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">打开[%1]失败。你拥有读取权限吗？</translation>
     </message>
     <message>
         <location filename="../src/Settings/CodeSnippetsPage.cpp" line="344"/>
         <location filename="../src/Settings/CodeSnippetsPage.cpp" line="374"/>
         <source>Extract Snippets</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">导出代码片段</translation>
     </message>
     <message>
         <location filename="../src/Settings/CodeSnippetsPage.cpp" line="367"/>
         <source>Extract Snippets: %1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">导出代码片段：%1</translation>
     </message>
     <message>
         <location filename="../src/Settings/CodeSnippetsPage.cpp" line="375"/>
         <source>Failed to write to [%1]. Do I have write permission?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">写入[%1]失败。你拥有写入权限吗？</translation>
     </message>
     <message>
         <location filename="../src/Settings/CodeSnippetsPage.cpp" line="396"/>
         <source>Snippet name can&apos;t be empty.
 </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">代码片段的名称不能为空白。
+</translation>
     </message>
     <message>
         <location filename="../src/Settings/CodeSnippetsPage.cpp" line="401"/>
         <source>Snippet Name Conflict</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">代码片段名称冲突</translation>
     </message>
     <message>
         <location filename="../src/Settings/CodeSnippetsPage.cpp" line="402"/>
         <source>The name &quot;%1&quot; is already in use. Do you want to override it? (The old snippet with this name will be deleted.)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">名称&quot;%1&quot;已经被使用了。你希望覆盖吗？（对应旧片段将会被删除。）</translation>
     </message>
     <message>
         <location filename="../src/Settings/CodeSnippetsPage.cpp" line="414"/>
         <source>The name &quot;%1&quot; is already in use.
 </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">名称&quot;%1&quot;已经被使用了。
+</translation>
     </message>
     <message>
         <location filename="../src/Settings/CodeSnippetsPage.cpp" line="416"/>
         <source>Add Snippet</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">添加代码片段</translation>
     </message>
     <message>
         <location filename="../src/Settings/CodeSnippetsPage.cpp" line="416"/>
         <source>New Snippet Name:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">新代码片段的名称：</translation>
     </message>
 </context>
 <context>
@@ -1286,12 +1288,12 @@ Do you want to reload it?</source>
     <message>
         <location filename="../src/Settings/ParenthesesPage.cpp" line="90"/>
         <source>%1 Parentheses</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">%1的括号</translation>
     </message>
     <message>
         <location filename="../src/Settings/ParenthesesPage.cpp" line="108"/>
         <source>Add</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">添加</translation>
     </message>
     <message>
         <location filename="../src/Settings/ParenthesesPage.cpp" line="113"/>
@@ -1301,27 +1303,27 @@ Do you want to reload it?</source>
     <message>
         <location filename="../src/Settings/ParenthesesPage.cpp" line="135"/>
         <source>No Parenthesis Selected</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">没有括号对被选择</translation>
     </message>
     <message>
         <location filename="../src/Settings/ParenthesesPage.cpp" line="171"/>
         <source>New Parenthesis</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">新的括号对</translation>
     </message>
     <message>
         <location filename="../src/Settings/ParenthesesPage.cpp" line="171"/>
         <source>Enter a parenthesis (e.g. {}):</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">输入一对括号（如{}）：</translation>
     </message>
     <message>
         <location filename="../src/Settings/ParenthesesPage.cpp" line="184"/>
         <source>Delete Parenthesis</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">删除括号对</translation>
     </message>
     <message>
         <location filename="../src/Settings/ParenthesesPage.cpp" line="185"/>
         <source>Do you really want to delete the parenthesis %1?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">你真的要删除括号对%1吗？</translation>
     </message>
 </context>
 <context>
@@ -1329,28 +1331,29 @@ Do you want to reload it?</source>
     <message>
         <location filename="../src/Settings/ParenthesesPage.cpp" line="39"/>
         <source>Parenthesis: %1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">括号对：%1</translation>
     </message>
     <message>
         <location filename="../src/Settings/ParenthesesPage.cpp" line="60"/>
         <source>Enable %1 for %2 in %3.
 If it&apos;s partially checked, the global setting in Code Edit will be used.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">在%3中为括号对%2启用%1。
+如果是部分选择，则将会使用全局设置。</translation>
     </message>
     <message>
         <location filename="../src/Settings/ParenthesesPage.cpp" line="68"/>
         <source>Auto Complete</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">自动补全</translation>
     </message>
     <message>
         <location filename="../src/Settings/ParenthesesPage.cpp" line="69"/>
         <source>Auto Remove</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">自动删除</translation>
     </message>
     <message>
         <location filename="../src/Settings/ParenthesesPage.cpp" line="70"/>
         <source>Tab Jump Out</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Tab跳出</translation>
     </message>
 </context>
 <context>
@@ -1358,12 +1361,12 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     <message>
         <location filename="../src/Settings/PreferencesHomePage.cpp" line="44"/>
         <source>Welcome to CP Editor! Let&apos;s get started.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">欢迎使用CP Editor！让我们开始吧。</translation>
     </message>
     <message>
         <location filename="../src/Settings/PreferencesHomePage.cpp" line="63"/>
         <source>You can read the &lt;a href=&quot;https://github.com/cpeditor/cpeditor/blob/%1/doc/MANUAL.md&quot;&gt;Manual&lt;/a&gt; or go through the settings for more information.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">你可以阅读 &lt;a href=&quot;https://github.com/cpeditor/cpeditor/blob/%1/doc/MANUAL-zh_CN.md&quot;&gt;手册&lt;/a&gt;或在设置中浏览以获取更多信息。</translation>
     </message>
 </context>
 <context>
@@ -1419,17 +1422,17 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     <message>
         <location filename="../src/Settings/PreferencesWindow.cpp" line="57"/>
         <source>Search...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">搜索...</translation>
     </message>
     <message>
         <location filename="../src/Settings/PreferencesWindow.cpp" line="61"/>
         <source>Home</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">主页</translation>
     </message>
     <message>
         <location filename="../src/Settings/PreferencesWindow.cpp" line="63"/>
         <source>Go to the home page</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">回到主页</translation>
     </message>
 </context>
 <context>
@@ -2328,42 +2331,42 @@ from competitive companion again, the old file will be opened.</source>
     <message>
         <location filename="../src/Settings/PathItem.cpp" line="37"/>
         <source>Excutable</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">可执行文件</translation>
     </message>
     <message>
         <location filename="../src/Settings/PathItem.cpp" line="38"/>
         <source>C++ Sources</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">C++源文件</translation>
     </message>
     <message>
         <location filename="../src/Settings/PathItem.cpp" line="40"/>
         <source>Java Sources</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Java源文件</translation>
     </message>
     <message>
         <location filename="../src/Settings/PathItem.cpp" line="41"/>
         <source>Python Sources</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Python源文件</translation>
     </message>
     <message>
         <location filename="../src/Settings/PathItem.cpp" line="47"/>
         <source>Choose Excutable</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">选择可执行文件</translation>
     </message>
     <message>
         <location filename="../src/Settings/PathItem.cpp" line="48"/>
         <source>Choose C++ Sources</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">选择C++源文件</translation>
     </message>
     <message>
         <location filename="../src/Settings/PathItem.cpp" line="49"/>
         <source>Choose Java Sources</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">选择Java源文件</translation>
     </message>
     <message>
         <location filename="../src/Settings/PathItem.cpp" line="50"/>
         <source>Choose Python Sources</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">选择Python源文件</translation>
     </message>
 </context>
 <context>
@@ -2371,7 +2374,7 @@ from competitive companion again, the old file will be opened.</source>
     <message>
         <location filename="../src/Settings/ShortcutItem.cpp" line="35"/>
         <source>Clear the shortcut</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">清除快捷键</translation>
     </message>
 </context>
 <context>
@@ -2379,52 +2382,52 @@ from competitive companion again, the old file will be opened.</source>
     <message>
         <location filename="../src/Settings/StringListsItem.cpp" line="51"/>
         <source>Add</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">添加</translation>
     </message>
     <message>
         <location filename="../src/Settings/StringListsItem.cpp" line="53"/>
         <source>Insert a row (Ctrl+N)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">插入一行（Ctrl+N）</translation>
     </message>
     <message>
         <location filename="../src/Settings/StringListsItem.cpp" line="68"/>
         <source>Remove</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">删除</translation>
     </message>
     <message>
         <location filename="../src/Settings/StringListsItem.cpp" line="70"/>
         <source>Delete the current row (Ctrl+W)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">删除当前行（Ctrl+W）</translation>
     </message>
     <message>
         <location filename="../src/Settings/StringListsItem.cpp" line="76"/>
         <source>Remove Item</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">删除项目</translation>
     </message>
     <message>
         <location filename="../src/Settings/StringListsItem.cpp" line="76"/>
         <source>Do you really want to delete the current row?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">你真的要删除当前行吗？</translation>
     </message>
     <message>
         <location filename="../src/Settings/StringListsItem.cpp" line="87"/>
         <source>Move Up</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">上移</translation>
     </message>
     <message>
         <location filename="../src/Settings/StringListsItem.cpp" line="89"/>
         <source>Move the current row up (Ctrl+Shift+Up)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">将当前行上移一行（Ctrl+Shift+↑）</translation>
     </message>
     <message>
         <location filename="../src/Settings/StringListsItem.cpp" line="110"/>
         <source>Move Down</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">下移</translation>
     </message>
     <message>
         <location filename="../src/Settings/StringListsItem.cpp" line="112"/>
         <source>Move the current row down (Ctrl+Shift+Down)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">将当前行下移一行（Ctrl+Shift+↓）</translation>
     </message>
 </context>
 <context>

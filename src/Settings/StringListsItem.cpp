@@ -48,9 +48,9 @@ StringListsItem::StringListsItem(const QVariantList &cols, QWidget *parent) : QW
     buttonLayout = new QVBoxLayout();
 
     add = new QPushButton(this);
-    add->setText("Add");
+    add->setText(tr("Add"));
     add->setShortcut({"Ctrl+N"});
-    add->setToolTip("Insert a row (Ctrl+N)");
+    add->setToolTip(tr("Insert a row (Ctrl+N)"));
     connect(add, &QPushButton::clicked, [&]() {
         int cols = table->columnCount();
         int rows = table->rowCount();
@@ -65,14 +65,15 @@ StringListsItem::StringListsItem(const QVariantList &cols, QWidget *parent) : QW
     buttonLayout->addWidget(add);
 
     del = new QPushButton(this);
-    del->setText("Remove");
+    del->setText(tr("Remove"));
     del->setShortcut({"Ctrl+W"});
-    del->setToolTip("Delete the current row (Ctrl+W)");
+    del->setToolTip(tr("Delete the current row (Ctrl+W)"));
     connect(del, &QPushButton::clicked, [&]() {
         auto items = table->selectedItems();
         if (items.size())
         {
-            auto res = QMessageBox::question(this, "Remove Item", "Do you really want to delete the current row?");
+            auto res =
+                QMessageBox::question(this, tr("Remove Item"), tr("Do you really want to delete the current row?"));
             if (res == QMessageBox::Yes)
             {
                 table->removeRow(items.front()->row());
@@ -83,9 +84,9 @@ StringListsItem::StringListsItem(const QVariantList &cols, QWidget *parent) : QW
     buttonLayout->addWidget(del);
 
     moveUp = new QPushButton(this);
-    moveUp->setText("Move Up");
+    moveUp->setText(tr("Move Up"));
     moveUp->setShortcut({"Ctrl+Shift+Up"});
-    moveUp->setToolTip("Move the current row up (Ctrl+Shift+Up)");
+    moveUp->setToolTip(tr("Move the current row up (Ctrl+Shift+Up)"));
     connect(moveUp, &QPushButton::clicked, [&]() {
         int cols = table->columnCount();
         auto items = table->selectedItems();
@@ -106,9 +107,9 @@ StringListsItem::StringListsItem(const QVariantList &cols, QWidget *parent) : QW
     buttonLayout->addWidget(moveUp);
 
     moveDown = new QPushButton(this);
-    moveDown->setText("Move Down");
+    moveDown->setText(tr("Move Down"));
     moveDown->setShortcut({"Ctrl+Shift+Down"});
-    moveDown->setToolTip("Move the current row down (Ctrl+Shift+Down)");
+    moveDown->setToolTip(tr("Move the current row down (Ctrl+Shift+Down)"));
     connect(moveDown, &QPushButton::clicked, [&]() {
         int cols = table->columnCount();
         int rows = table->rowCount();

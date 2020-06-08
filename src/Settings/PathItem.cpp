@@ -18,15 +18,12 @@
 #include "Settings/PathItem.hpp"
 #include "Util/FileUtil.hpp"
 #include <QApplication>
+#include <QCoreApplication>
 #include <QFileDialog>
 #include <QHBoxLayout>
 #include <QLineEdit>
 #include <QStyle>
 #include <QToolButton>
-
-static const QString filters[] = {"Excutable (*" + Util::exeSuffix + ")",
-                                  "C++ Sources (*.cpp *.hpp *.h *.cc *.cxx *.c)", "Java Sources (*.java)",
-                                  "Python Sources (*.py *.py3)"};
 
 static const QString titles[] = {
     "Choose Excutable",
@@ -34,6 +31,25 @@ static const QString titles[] = {
     "Choose Java Sources",
     "Choose Python Sources",
 };
+
+inline QString getFilters(int index)
+{
+    return QStringList{QCoreApplication::translate("Settings::PathItem", "Excutable") + " (*" + Util::exeSuffix + ")",
+                       QCoreApplication::translate("Settings::PathItem", "C++ Sources") +
+                           " (*.cpp *.hpp *.h *.cc *.cxx *.c)",
+                       QCoreApplication::translate("Settings::PathItem", "Java Sources") + " (*.java)",
+                       QCoreApplication::translate("Settings::PathItem", "Python Sources") + " (*.py *.py3)"}[index];
+}
+
+inline QString getTitles(int index)
+{
+    return QStringList{
+        QCoreApplication::translate("Settings::PathItem", "Choose Excutable"),
+        QCoreApplication::translate("Settings::PathItem", "Choose C++ Sources"),
+        QCoreApplication::translate("Settings::PathItem", "Choose Java Sources"),
+        QCoreApplication::translate("Settings::PathItem", "Choose Python Sources"),
+    }[index];
+}
 
 PathItem::PathItem(const QString &pathFilter, const QString &dialogTitle, QWidget *parent)
     : QWidget(parent), filter(pathFilter), title(dialogTitle)
@@ -52,7 +68,8 @@ PathItem::PathItem(const QString &pathFilter, const QString &dialogTitle, QWidge
     layout->addWidget(toolButton);
 }
 
-PathItem::PathItem(int filterId, int titleId, QWidget *parent) : PathItem(filters[filterId], titles[titleId], parent)
+PathItem::PathItem(int filterId, int titleId, QWidget *parent)
+    : PathItem(getFilters(filterId), getTitles(titleId), parent)
 {
 }
 
