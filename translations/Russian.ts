@@ -597,6 +597,146 @@
     </message>
 </context>
 <context>
+    <name>AppearancePage</name>
+    <message>
+        <location filename="../src/Settings/AppearancePage.cpp" line="47"/>
+        <source>Change Editor Theme</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/AppearancePage.cpp" line="48"/>
+        <source>Because you are using whole-application dark theme on Windows, you need to restart the application after changing the editor theme.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>CodeSnippetsPage</name>
+    <message>
+        <location filename="../src/Settings/CodeSnippetsPage.cpp" line="47"/>
+        <source>Search...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/CodeSnippetsPage.cpp" line="60"/>
+        <source>Add</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/CodeSnippetsPage.cpp" line="65"/>
+        <source>Del</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/CodeSnippetsPage.cpp" line="70"/>
+        <source>Rename Snippet</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/CodeSnippetsPage.cpp" line="74"/>
+        <source>Load Snippets From Files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/CodeSnippetsPage.cpp" line="77"/>
+        <source>Extract Snippets To Files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/CodeSnippetsPage.cpp" line="87"/>
+        <source>More</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/CodeSnippetsPage.cpp" line="117"/>
+        <source>No Snippet Selected</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/CodeSnippetsPage.cpp" line="258"/>
+        <source>Unsaved Snippets</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/CodeSnippetsPage.cpp" line="259"/>
+        <source>The snippet [%1] has been changed. Do you want to save it or discard the changes?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/CodeSnippetsPage.cpp" line="290"/>
+        <source>Delete Snippet</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/CodeSnippetsPage.cpp" line="291"/>
+        <source>Do you really want to delete the snippet [%1]?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/CodeSnippetsPage.cpp" line="320"/>
+        <location filename="../src/Settings/CodeSnippetsPage.cpp" line="328"/>
+        <source>Load Snippets</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/CodeSnippetsPage.cpp" line="325"/>
+        <source>CodeSnippetsPage::loadSnippetsFromFiles</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/CodeSnippetsPage.cpp" line="329"/>
+        <source>Failed to open [%1]. Do I have read permission?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/CodeSnippetsPage.cpp" line="344"/>
+        <location filename="../src/Settings/CodeSnippetsPage.cpp" line="374"/>
+        <source>Extract Snippets</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/CodeSnippetsPage.cpp" line="367"/>
+        <source>Extract Snippets: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/CodeSnippetsPage.cpp" line="375"/>
+        <source>Failed to write to [%1]. Do I have write permission?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/CodeSnippetsPage.cpp" line="396"/>
+        <source>Snippet name can&apos;t be empty.
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/CodeSnippetsPage.cpp" line="401"/>
+        <source>Snippet Name Conflict</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/CodeSnippetsPage.cpp" line="402"/>
+        <source>The name &quot;%1&quot; is already in use. Do you want to override it? (The old snippet with this name will be deleted.)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/CodeSnippetsPage.cpp" line="414"/>
+        <source>The name &quot;%1&quot; is already in use.
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/CodeSnippetsPage.cpp" line="416"/>
+        <source>Add Snippet</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/CodeSnippetsPage.cpp" line="416"/>
+        <source>New Snippet Name:</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>Core::Checker</name>
     <message>
         <location filename="../src/Core/Checker.cpp" line="103"/>
@@ -782,48 +922,48 @@
 <context>
     <name>Extensions::ClangFormatter</name>
     <message>
-        <location filename="../src/Extensions/ClangFormatter.cpp" line="52"/>
+        <location filename="../src/Extensions/ClangFormatter.cpp" line="51"/>
         <location filename="../src/Extensions/ClangFormatter.cpp" line="56"/>
         <source>Formatter/check</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/Extensions/ClangFormatter.cpp" line="124"/>
-        <location filename="../src/Extensions/ClangFormatter.cpp" line="129"/>
-        <location filename="../src/Extensions/ClangFormatter.cpp" line="133"/>
-        <location filename="../src/Extensions/ClangFormatter.cpp" line="172"/>
-        <location filename="../src/Extensions/ClangFormatter.cpp" line="188"/>
-        <location filename="../src/Extensions/ClangFormatter.cpp" line="199"/>
+        <location filename="../src/Extensions/ClangFormatter.cpp" line="131"/>
+        <location filename="../src/Extensions/ClangFormatter.cpp" line="136"/>
+        <location filename="../src/Extensions/ClangFormatter.cpp" line="175"/>
+        <location filename="../src/Extensions/ClangFormatter.cpp" line="192"/>
+        <location filename="../src/Extensions/ClangFormatter.cpp" line="205"/>
         <source>Formatter</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Extensions/ClangFormatter.cpp" line="124"/>
+        <location filename="../src/Extensions/ClangFormatter.cpp" line="125"/>
         <source>Failed to create temporary directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Extensions/ClangFormatter.cpp" line="172"/>
+        <location filename="../src/Extensions/ClangFormatter.cpp" line="176"/>
         <source>Formatting completed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Extensions/ClangFormatter.cpp" line="189"/>
+        <location filename="../src/Extensions/ClangFormatter.cpp" line="193"/>
         <source>The format process didn&apos;t finish in 2 seconds. This is probably because the clang-format binary is not found by CP Editor. You can set the path to clang-format in Preferences-&gt;Formatting.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Extensions/ClangFormatter.cpp" line="199"/>
+        <location filename="../src/Extensions/ClangFormatter.cpp" line="206"/>
         <source>The format command is: %1 %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Extensions/ClangFormatter.cpp" line="202"/>
+        <location filename="../src/Extensions/ClangFormatter.cpp" line="210"/>
         <source>Formatter[stdout]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Extensions/ClangFormatter.cpp" line="205"/>
+        <location filename="../src/Extensions/ClangFormatter.cpp" line="213"/>
         <source>Formatter[stderr]</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1133,6 +1273,91 @@ Do you want to reload it?</source>
     </message>
 </context>
 <context>
+    <name>ParenthesesPage</name>
+    <message>
+        <location filename="../src/Settings/ParenthesesPage.cpp" line="90"/>
+        <source>%1 Parentheses</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/ParenthesesPage.cpp" line="108"/>
+        <source>Add</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/ParenthesesPage.cpp" line="113"/>
+        <source>Del</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/ParenthesesPage.cpp" line="135"/>
+        <source>No Parenthesis Selected</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/ParenthesesPage.cpp" line="171"/>
+        <source>New Parenthesis</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/ParenthesesPage.cpp" line="171"/>
+        <source>Enter a parenthesis (e.g. {}):</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/ParenthesesPage.cpp" line="184"/>
+        <source>Delete Parenthesis</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/ParenthesesPage.cpp" line="185"/>
+        <source>Do you really want to delete the parenthesis %1?</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ParenthesisWidget</name>
+    <message>
+        <location filename="../src/Settings/ParenthesesPage.cpp" line="39"/>
+        <source>Parenthesis: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/ParenthesesPage.cpp" line="60"/>
+        <source>Enable %1 for %2 in %3.
+If it&apos;s partially checked, the global setting in Code Edit will be used.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/ParenthesesPage.cpp" line="68"/>
+        <source>Auto Complete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/ParenthesesPage.cpp" line="69"/>
+        <source>Auto Remove</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/ParenthesesPage.cpp" line="70"/>
+        <source>Tab Jump Out</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>PreferencesHomePage</name>
+    <message>
+        <location filename="../src/Settings/PreferencesHomePage.cpp" line="44"/>
+        <source>Welcome to CP Editor! Let&apos;s get started.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/PreferencesHomePage.cpp" line="63"/>
+        <source>You can read the &lt;a href=&quot;https://github.com/cpeditor/cpeditor/blob/%1/doc/MANUAL.md&quot;&gt;Manual&lt;/a&gt; or go through the settings for more information.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>PreferencesPage</name>
     <message>
         <location filename="../src/Settings/PreferencesPage.cpp" line="39"/>
@@ -1172,6 +1397,29 @@ Do you want to reload it?</source>
     <message>
         <location filename="../src/Settings/PreferencesPage.cpp" line="81"/>
         <source>The settings are changed. Do you want to save the settings or discard them?</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>PreferencesWindow</name>
+    <message>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="41"/>
+        <source>Preferences</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="57"/>
+        <source>Search...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="61"/>
+        <source>Home</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="63"/>
+        <source>Go to the home page</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2029,6 +2277,110 @@ from competitive companion again, the old file will be opened.</source>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="128"/>
         <source>Language displayed in menus and windows.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>Settings::PathItem</name>
+    <message>
+        <location filename="../src/Settings/PathItem.cpp" line="37"/>
+        <source>Excutable</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/PathItem.cpp" line="38"/>
+        <source>C++ Sources</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/PathItem.cpp" line="40"/>
+        <source>Java Sources</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/PathItem.cpp" line="41"/>
+        <source>Python Sources</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/PathItem.cpp" line="47"/>
+        <source>Choose Excutable</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/PathItem.cpp" line="48"/>
+        <source>Choose C++ Sources</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/PathItem.cpp" line="49"/>
+        <source>Choose Java Sources</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/PathItem.cpp" line="50"/>
+        <source>Choose Python Sources</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ShortcutItem</name>
+    <message>
+        <location filename="../src/Settings/ShortcutItem.cpp" line="35"/>
+        <source>Clear the shortcut</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>StringListsItem</name>
+    <message>
+        <location filename="../src/Settings/StringListsItem.cpp" line="51"/>
+        <source>Add</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/StringListsItem.cpp" line="53"/>
+        <source>Insert a row (Ctrl+N)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/StringListsItem.cpp" line="68"/>
+        <source>Remove</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/StringListsItem.cpp" line="70"/>
+        <source>Delete the current row (Ctrl+W)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/StringListsItem.cpp" line="76"/>
+        <source>Remove Item</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/StringListsItem.cpp" line="76"/>
+        <source>Do you really want to delete the current row?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/StringListsItem.cpp" line="87"/>
+        <source>Move Up</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/StringListsItem.cpp" line="89"/>
+        <source>Move the current row up (Ctrl+Shift+Up)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/StringListsItem.cpp" line="110"/>
+        <source>Move Down</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/StringListsItem.cpp" line="112"/>
+        <source>Move the current row down (Ctrl+Shift+Down)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
