@@ -642,12 +642,22 @@
 <context>
     <name>AppearancePage</name>
     <message>
-        <location filename="../src/Settings/AppearancePage.cpp" line="47"/>
+        <location filename="../src/Settings/AppearancePage.cpp" line="42"/>
+        <source>Change Locale</source>
+        <translation type="unfinished">改变语言</translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/AppearancePage.cpp" line="43"/>
+        <source>You need to restart the application to completely apply the locale change.</source>
+        <translation type="unfinished">你需要重启程序以彻底地改变语言。</translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/AppearancePage.cpp" line="50"/>
         <source>Change Editor Theme</source>
         <translation type="unfinished">更改编辑器主题</translation>
     </message>
     <message>
-        <location filename="../src/Settings/AppearancePage.cpp" line="48"/>
+        <location filename="../src/Settings/AppearancePage.cpp" line="51"/>
         <source>Because you are using whole-application dark theme on Windows, you need to restart the application after changing the editor theme.</source>
         <translation type="unfinished">由于你正在使用全局暗色主题，你需要在更改编辑器主题后重启程序。</translation>
     </message>
@@ -2553,13 +2563,13 @@ from competitive companion again, the old file will be opened.</source>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="128"/>
-        <source>UI Language (need restart to apply)</source>
-        <translation type="unfinished"></translation>
+        <source>UI Language</source>
+        <translation type="unfinished">界面语言</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="128"/>
-        <source>Language displayed in menus and windows.</source>
-        <translation type="unfinished"></translation>
+        <source>The language displayed in the UI.</source>
+        <translation type="unfinished">在用户界面中显示的语言。</translation>
     </message>
 </context>
 <context>

@@ -740,7 +740,7 @@
     },
     {
         "name": "Locale",
-        "desc": "UI Language (need restart to apply)",
+        "desc": "UI Language",
         "type": "QString",
         "ui": "QComboBox",
         "default": "English",

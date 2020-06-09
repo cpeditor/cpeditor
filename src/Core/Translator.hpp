@@ -15,24 +15,25 @@
  *
  */
 
-#ifndef UTIL_HPP
-#define UTIL_HPP
+#ifndef TRANSLATOR_HPP
+#define TRANSLATOR_HPP
 
-#include <QStringList>
+#include <QObject>
 
-class MessageLogger;
-class QCodeEditor;
-class QPalette;
-class QWidget;
+class QTranslator;
 
-namespace Util
+namespace Core
 {
+class Translator : public QObject
+{
+    Q_OBJECT
 
-QPalette windowsDarkThemePalette();
+  public:
+    static void setLocale(const QString &language);
 
-QStringList splitArgument(QString);
+  private:
+    static QTranslator *translator;
+};
+} // namespace Core
 
-void showWidgetOnTop(QWidget *widget);
-} // namespace Util
-
-#endif // UTIL_HPP
+#endif // TRANSLATOR_HPP

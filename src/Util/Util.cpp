@@ -16,11 +16,8 @@
  */
 
 #include "Util/Util.hpp"
-#include <QFile>
 #include <QPalette>
-#include <QTranslator>
 #include <QWidget>
-#include <generated/SettingsInfo.hpp>
 
 namespace Util
 {
@@ -145,21 +142,6 @@ QStringList splitArgument(QString arg)
     if (status == SA_NORMAL)
         result.push_back(current);
     return result;
-}
-
-const static QMap<QString, QString> locales = {{"简体中文", "SimplifiedChinese"},
-                                               // {"繁體中文", "TraditionalChinese"},
-                                               {"Русский", "Russian"}};
-
-void applyNewLocale(const QString &language)
-{
-    if (language != "English")
-    {
-        QTranslator *translator = new QTranslator(qApp);
-        translator->load(QString(":/translations/%1.qm").arg(locales[language]));
-        qApp->installTranslator(translator);
-        updateSettingInfo();
-    }
 }
 
 void showWidgetOnTop(QWidget *widget)

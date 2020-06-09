@@ -16,6 +16,7 @@
  */
 
 #include "Settings/AppearancePage.hpp"
+#include "Core/Translator.hpp"
 #include "Settings/SettingsManager.hpp"
 #include "Settings/ValueWrapper.hpp"
 #include <QApplication>
@@ -27,7 +28,7 @@
 #endif
 
 AppearancePage::AppearancePage(QWidget *parent)
-    : PreferencesPageTemplate({"Language", "Editor Theme", "Editor Font", "Test Cases Font", "Message Logger Font",
+    : PreferencesPageTemplate({"Locale", "Editor Theme", "Editor Font", "Test Cases Font", "Message Logger Font",
                                "Opacity", "Show Compile And Run Only", "Display EOLN In Diff", "Extra Bottom Margin"},
                               true, parent)
 {
@@ -39,6 +40,12 @@ void AppearancePage::makeSettingsTheSameAsUI()
     {
         ValueWidget *widget = widgets[i];
         SettingInfo si = findSetting(options[i]);
+        if (si.name == "Locale" && SettingsManager::get(si.name) != widget->getVariant())
+        {
+            Core::Translator::setLocale(widget->getVariant().toString());
+            QMessageBox::warning(this, tr("Change Locale"),
+                                 tr("You need to restart the application to completely apply the locale change."));
+        }
 #ifdef Q_OS_WIN
         if (si.name == "Editor Theme" && SettingsManager::get(si.name) != widget->getVariant() &&
             Util::windowsDarkThemePalette() == qApp->palette())

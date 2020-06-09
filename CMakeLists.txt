@@ -79,6 +79,8 @@ add_executable(cpeditor
     src/Core/MessageLogger.hpp
     src/Core/Runner.cpp
     src/Core/Runner.hpp
+    src/Core/Translator.cpp
+    src/Core/Translator.hpp
 
     src/Extensions/CFTool.cpp
     src/Extensions/CFTool.hpp
