@@ -16,6 +16,7 @@
  */
 
 #include "Settings/PathItem.hpp"
+#include "Core/EventLogger.hpp"
 #include "Util/FileUtil.hpp"
 #include <QApplication>
 #include <QCoreApplication>
@@ -25,30 +26,37 @@
 #include <QStyle>
 #include <QToolButton>
 
-static const QString titles[] = {
-    "Choose Excutable",
-    "Choose C++ Sources",
-    "Choose Java Sources",
-    "Choose Python Sources",
-};
-
 inline QString getFilters(int index)
 {
-    return QStringList{QCoreApplication::translate("Settings::PathItem", "Excutable") + " (*" + Util::exeSuffix + ")",
-                       QCoreApplication::translate("Settings::PathItem", "C++ Sources") +
-                           " (*.cpp *.hpp *.h *.cc *.cxx *.c)",
-                       QCoreApplication::translate("Settings::PathItem", "Java Sources") + " (*.java)",
-                       QCoreApplication::translate("Settings::PathItem", "Python Sources") + " (*.py *.py3)"}[index];
+    switch (index)
+    {
+    case 0:
+        return QCoreApplication::translate("Settings::PathItem", "Excutable") + " (*" + Util::exeSuffix + ")";
+    case 1:
+    case 2:
+    case 3:
+        return Util::fileNameFilter(index == 1, index == 2, index == 3);
+    default:
+        LOG_ERR("Unknown index: " INFO_OF(index));
+        break;
+    }
 }
 
 inline QString getTitles(int index)
 {
-    return QStringList{
-        QCoreApplication::translate("Settings::PathItem", "Choose Excutable"),
-        QCoreApplication::translate("Settings::PathItem", "Choose C++ Sources"),
-        QCoreApplication::translate("Settings::PathItem", "Choose Java Sources"),
-        QCoreApplication::translate("Settings::PathItem", "Choose Python Sources"),
-    }[index];
+    switch (index)
+    {
+    case 0:
+        return QCoreApplication::translate("Settings::PathItem", "Choose Excutable");
+    case 1:
+    case 2:
+    case 3:
+        return QCoreApplication::translate("Settings::PathItem", "Choose %1 Sources")
+            .arg(QStringList{"C++", "Java", "Python"}[index - 1]);
+    default:
+        LOG_ERR("Unknown index: " INFO_OF(index));
+        break;
+    }
 }
 
 PathItem::PathItem(const QString &pathFilter, const QString &dialogTitle, QWidget *parent)

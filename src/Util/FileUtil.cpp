@@ -47,7 +47,7 @@ QString fileNameFilter(bool cpp, bool java, bool python)
     if (python)
         filter += " *." + pythonSuffix.join(" *.");
 
-    return QString("%1Source Files (%2)").arg(name, filter.trimmed());
+    return QCoreApplication::translate("Util::FileUtil", "%1Source Files (%2)").arg(name, filter.trimmed());
 }
 
 bool saveFile(const QString &path, const QString &content, const QString &head, bool safe, MessageLogger *log,

@@ -22,13 +22,16 @@
 #ifndef MESSAGELOGGER_HPP
 #define MESSAGELOGGER_HPP
 
-class QString;
+#include <QObject>
+
 class QTextBrowser;
 
-class MessageLogger
+class MessageLogger : public QObject
 {
+    Q_OBJECT
+
   public:
-    MessageLogger() = default;
+    explicit MessageLogger(QObject *parent = nullptr);
 
     /**
      * @brief show a message
@@ -74,7 +77,7 @@ class MessageLogger
     void setContainer(QTextBrowser *container);
 
   private:
-    QTextBrowser *box; // the container of the message logger
+      QTextBrowser *box = nullptr; // the container of the message logger
 };
 
 #endif // MESSAGELOGGER_HPP

@@ -642,22 +642,22 @@
 <context>
     <name>AppearancePage</name>
     <message>
-        <location filename="../src/Settings/AppearancePage.cpp" line="42"/>
+        <location filename="../src/Settings/AppearancePage.cpp" line="46"/>
         <source>Change Locale</source>
         <translation type="unfinished">改变语言</translation>
     </message>
     <message>
-        <location filename="../src/Settings/AppearancePage.cpp" line="43"/>
+        <location filename="../src/Settings/AppearancePage.cpp" line="47"/>
         <source>You need to restart the application to completely apply the locale change.</source>
         <translation type="unfinished">你需要重启程序以彻底地改变语言。</translation>
     </message>
     <message>
-        <location filename="../src/Settings/AppearancePage.cpp" line="50"/>
+        <location filename="../src/Settings/AppearancePage.cpp" line="54"/>
         <source>Change Editor Theme</source>
         <translation type="unfinished">更改编辑器主题</translation>
     </message>
     <message>
-        <location filename="../src/Settings/AppearancePage.cpp" line="51"/>
+        <location filename="../src/Settings/AppearancePage.cpp" line="55"/>
         <source>Because you are using whole-application dark theme on Windows, you need to restart the application after changing the editor theme.</source>
         <translation type="unfinished">由于你正在使用全局暗色主题，你需要在更改编辑器主题后重启程序。</translation>
     </message>
@@ -880,16 +880,6 @@
     </message>
 </context>
 <context>
-    <name>Core::MessageLogger</name>
-    <message>
-        <location filename="../src/Core/MessageLogger.cpp" line="41"/>
-        <source>
-... The message is too long</source>
-        <translation type="unfinished">
-……信息过长</translation>
-    </message>
-</context>
-<context>
     <name>Core::Runner</name>
     <message>
         <location filename="../src/Core/Runner.cpp" line="65"/>
@@ -980,47 +970,47 @@
     <name>Extensions::ClangFormatter</name>
     <message>
         <location filename="../src/Extensions/ClangFormatter.cpp" line="51"/>
-        <location filename="../src/Extensions/ClangFormatter.cpp" line="56"/>
+        <location filename="../src/Extensions/ClangFormatter.cpp" line="55"/>
         <source>Formatter/check</source>
         <translation type="unfinished">格式化工具/检查</translation>
     </message>
     <message>
-        <location filename="../src/Extensions/ClangFormatter.cpp" line="124"/>
-        <location filename="../src/Extensions/ClangFormatter.cpp" line="131"/>
-        <location filename="../src/Extensions/ClangFormatter.cpp" line="136"/>
-        <location filename="../src/Extensions/ClangFormatter.cpp" line="175"/>
-        <location filename="../src/Extensions/ClangFormatter.cpp" line="192"/>
-        <location filename="../src/Extensions/ClangFormatter.cpp" line="205"/>
+        <location filename="../src/Extensions/ClangFormatter.cpp" line="123"/>
+        <location filename="../src/Extensions/ClangFormatter.cpp" line="128"/>
+        <location filename="../src/Extensions/ClangFormatter.cpp" line="132"/>
+        <location filename="../src/Extensions/ClangFormatter.cpp" line="171"/>
+        <location filename="../src/Extensions/ClangFormatter.cpp" line="187"/>
+        <location filename="../src/Extensions/ClangFormatter.cpp" line="198"/>
         <source>Formatter</source>
         <translation type="unfinished">格式化工具</translation>
     </message>
     <message>
-        <location filename="../src/Extensions/ClangFormatter.cpp" line="125"/>
+        <location filename="../src/Extensions/ClangFormatter.cpp" line="123"/>
         <source>Failed to create temporary directory</source>
         <translation type="unfinished">创建临时目录失败</translation>
     </message>
     <message>
-        <location filename="../src/Extensions/ClangFormatter.cpp" line="176"/>
+        <location filename="../src/Extensions/ClangFormatter.cpp" line="171"/>
         <source>Formatting completed</source>
         <translation type="unfinished">格式化完毕</translation>
     </message>
     <message>
-        <location filename="../src/Extensions/ClangFormatter.cpp" line="193"/>
+        <location filename="../src/Extensions/ClangFormatter.cpp" line="188"/>
         <source>The format process didn&apos;t finish in 2 seconds. This is probably because the clang-format binary is not found by CP Editor. You can set the path to clang-format in Preferences-&gt;Formatting.</source>
-        <translation type="unfinished">格式化进程在两秒内未完成。这可能是因为CP Editor没有找到clang-format的二进制。你可以在设置-&gt;Extensions-&gt;Clang Format中设置clang-format的路径。</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Extensions/ClangFormatter.cpp" line="206"/>
+        <location filename="../src/Extensions/ClangFormatter.cpp" line="198"/>
         <source>The format command is: %1 %2</source>
         <translation type="unfinished">格式化指令为：%1 %2</translation>
     </message>
     <message>
-        <location filename="../src/Extensions/ClangFormatter.cpp" line="210"/>
+        <location filename="../src/Extensions/ClangFormatter.cpp" line="201"/>
         <source>Formatter[stdout]</source>
         <translation type="unfinished">格式化工具[标准输出流]</translation>
     </message>
     <message>
-        <location filename="../src/Extensions/ClangFormatter.cpp" line="213"/>
+        <location filename="../src/Extensions/ClangFormatter.cpp" line="204"/>
         <source>Formatter[stderr]</source>
         <translation type="unfinished">格式化工具[标准错误流]</translation>
     </message>
@@ -1527,6 +1517,16 @@ Do you want to reload it?</source>
         <location filename="../build/cpeditor_autogen/ui/ui_mainwindow.h" line="195"/>
         <source>C++</source>
         <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>MessageLogger</name>
+    <message>
+        <location filename="../src/Core/MessageLogger.cpp" line="43"/>
+        <source>
+... The message is too long</source>
+        <translation type="unfinished">
+……信息过长</translation>
     </message>
 </context>
 <context>
@@ -2575,44 +2575,19 @@ from competitive companion again, the old file will be opened.</source>
 <context>
     <name>Settings::PathItem</name>
     <message>
-        <location filename="../src/Settings/PathItem.cpp" line="37"/>
+        <location filename="../src/Settings/PathItem.cpp" line="34"/>
         <source>Excutable</source>
         <translation type="unfinished">可执行文件</translation>
     </message>
     <message>
-        <location filename="../src/Settings/PathItem.cpp" line="38"/>
-        <source>C++ Sources</source>
-        <translation type="unfinished">C++源文件</translation>
-    </message>
-    <message>
-        <location filename="../src/Settings/PathItem.cpp" line="40"/>
-        <source>Java Sources</source>
-        <translation type="unfinished">Java源文件</translation>
-    </message>
-    <message>
-        <location filename="../src/Settings/PathItem.cpp" line="41"/>
-        <source>Python Sources</source>
-        <translation type="unfinished">Python源文件</translation>
-    </message>
-    <message>
-        <location filename="../src/Settings/PathItem.cpp" line="47"/>
+        <location filename="../src/Settings/PathItem.cpp" line="50"/>
         <source>Choose Excutable</source>
         <translation type="unfinished">选择可执行文件</translation>
     </message>
     <message>
-        <location filename="../src/Settings/PathItem.cpp" line="48"/>
-        <source>Choose C++ Sources</source>
-        <translation type="unfinished">选择C++源文件</translation>
-    </message>
-    <message>
-        <location filename="../src/Settings/PathItem.cpp" line="49"/>
-        <source>Choose Java Sources</source>
-        <translation type="unfinished">选择Java源文件</translation>
-    </message>
-    <message>
-        <location filename="../src/Settings/PathItem.cpp" line="50"/>
-        <source>Choose Python Sources</source>
-        <translation type="unfinished">选择Python源文件</translation>
+        <location filename="../src/Settings/PathItem.cpp" line="54"/>
+        <source>Choose %1 Sources</source>
+        <translation type="unfinished">选择 %1 源代码</translation>
     </message>
 </context>
 <context>
@@ -2691,6 +2666,11 @@ from competitive companion again, the old file will be opened.</source>
 </context>
 <context>
     <name>Util::FileUtil</name>
+    <message>
+        <location filename="../src/Util/FileUtil.cpp" line="50"/>
+        <source>%1Source Files (%2)</source>
+        <translation type="unfinished">%1源代码 (%2)</translation>
+    </message>
     <message>
         <location filename="../src/Util/FileUtil.cpp" line="67"/>
         <location filename="../src/Util/FileUtil.cpp" line="90"/>
