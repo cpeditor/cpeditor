@@ -185,7 +185,7 @@ target_link_libraries(cpeditor PRIVATE QtFindReplaceDialog)
 target_link_libraries(cpeditor PRIVATE SingleApplication)
 
 if(MSVC)
-    target_compile_options(cpeditor PUBLIC "/UTF-8")
+    target_compile_options(cpeditor PUBLIC "/utf-8")
 endif(MSVC)
 
 if(APPLE)
