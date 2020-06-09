@@ -77,7 +77,7 @@ class MessageLogger : public QObject
     void setContainer(QTextBrowser *container);
 
   private:
-      QTextBrowser *box = nullptr; // the container of the message logger
+    QTextBrowser *box = nullptr; // the container of the message logger
 };
 
 #endif // MESSAGELOGGER_HPP
