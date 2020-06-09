@@ -184,6 +184,10 @@ target_link_libraries(cpeditor PRIVATE Qt5::Widgets)
 target_link_libraries(cpeditor PRIVATE QtFindReplaceDialog)
 target_link_libraries(cpeditor PRIVATE SingleApplication)
 
+if(MSVC)
+    target_compile_options(cpeditor PUBLIC "/UTF-8")
+endif(MSVC)
+
 if(APPLE)
     set_target_properties(cpeditor
         PROPERTIES
