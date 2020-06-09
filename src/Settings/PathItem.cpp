@@ -38,7 +38,7 @@ inline QString getFilters(int index)
         return Util::fileNameFilter(index == 1, index == 2, index == 3);
     default:
         LOG_ERR("Unknown index: " INFO_OF(index));
-        break;
+        return QString();
     }
 }
 
@@ -55,7 +55,7 @@ inline QString getTitles(int index)
             .arg(QStringList{"C++", "Java", "Python"}[index - 1]);
     default:
         LOG_ERR("Unknown index: " INFO_OF(index));
-        break;
+        return QString();
     }
 }
 
