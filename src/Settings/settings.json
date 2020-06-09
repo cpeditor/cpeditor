@@ -739,12 +739,15 @@
         "tip": "If a problem URL was set for a file path, when parsing that problem\nfrom competitive companion again, the old file will be opened."
     },
     {
-        "name": "Language",
+        "name": "Locale",
         "desc": "UI Language (need restart to apply)",
         "type": "QString",
         "ui": "QComboBox",
         "default": "English",
         "param": "QStringList { \"English\", \"简体中文\", \"Русский\" }",
-        "tip": "Language displayed in menus and windows."
+        "tip": "The language displayed in the UI.",
+        "old": [
+            "language"
+        ]
     }
 ]

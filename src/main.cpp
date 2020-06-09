@@ -142,7 +142,7 @@ int main(int argc, char *argv[])
 
     updateSettingInfo(); // generate an English version, so that we can use SettingsHelper
     SettingsManager::init();
-    Util::applyNewLocale(SettingsHelper::getLanguage());
+    Util::applyNewLocale(SettingsHelper::getLocale());
 
     auto args = parser.positionalArguments();
 
