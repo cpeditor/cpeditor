@@ -161,6 +161,7 @@ class Runner : public QObject
      * @param lang the language to run, one of "C++", "Java" and "Python"
      * @param runCommand the command for running a program
      * @param args the command line arguments added at the back to start the program
+     * @note this returns QString instead of QStringList because xterm needs the QString form
      */
     static QString getCommand(const QString &tmpFilePath, const QString &sourceFilePath, const QString &lang,
                               const QString &runCommand, const QString &args);
