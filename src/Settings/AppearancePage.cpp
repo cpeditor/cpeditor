@@ -18,13 +18,8 @@
 #include "Settings/AppearancePage.hpp"
 #include "Settings/SettingsManager.hpp"
 #include "Settings/ValueWrapper.hpp"
-#include <QApplication>
 #include <QMessageBox>
 #include <generated/SettingsInfo.hpp>
-
-#ifdef Q_OS_WIN
-#include "Util/Util.hpp"
-#endif
 
 AppearancePage::AppearancePage(QWidget *parent)
     : PreferencesPageTemplate({"Editor Theme", "Editor Font", "Test Cases Font", "Message Logger Font", "Opacity",
@@ -39,15 +34,6 @@ void AppearancePage::makeSettingsTheSameAsUI()
     {
         ValueWidget *widget = widgets[i];
         SettingInfo si = findSetting(options[i]);
-#ifdef Q_OS_WIN
-        if (si.name == "Editor Theme" && SettingsManager::get(si.name) != widget->getVariant() &&
-            Util::windowsDarkThemePalette() == qApp->palette())
-        {
-            QMessageBox::warning(this, "Change Editor Theme",
-                                 "Because you are using whole-application dark theme on Windows, you need to restart "
-                                 "the application after changing the editor theme.");
-        }
-#endif
         SettingsManager::set(si.name, widget->getVariant());
     }
 }
