@@ -141,10 +141,10 @@ void Runner::runDetached(const QString &tmpFilePath, const QString &sourceFilePa
     runProcess->closeWriteChannel();
 #else
     // use cmd on Windows
-    runProcess->start("cmd",
-                      {"/C", "\"start cmd /C " +
+    runProcess->start("cmd", QProcess::splitCommand(
+                                 "/C \"start cmd /C " +
                                  getCommand(tmpFilePath, sourceFilePath, lang, runCommand, args).replace("\"", "^\"") +
-                                 " ^& pause\""});
+                                 " ^& pause\""));
     LOG_INFO("CMD Arguemnts " << runProcess->arguments().join(" "));
 
 #endif
