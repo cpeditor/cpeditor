@@ -44,7 +44,7 @@ You may need to click "Yes" to access Filesystem several times. Apple may report
 	```
 
 2. Install [Qt](https://www.qt.io/download) (5.15 or higher), [CMake](https://cmake.org/download/) (3.12 or higher) and [Python3](https://www.python.org/downloads/).
-   - On some Linux distributions and MacOS, you can install from your package manager. For example, `sudo pacman -S qt5` on Arch Linux, `brew install qt5` on Mac OS.
+   - On some Linux distributions and MacOS, you can install from your package manager. For example, `sudo pacman -S qt5-base` on Arch Linux, `brew install qt5` on Mac OS.
    - You can also use [aqtinstall](https://github.com/miurahr/aqtinstall) to install Qt.
 
 3. If CMake can't find the Qt installation path, you should set environment variable: `CMAKE_PREFIX_PATH=%QtPath%/%QtVersion%/%Compiler%/lib/cmake`. For example, on Mac, you can run something like `export CMAKE_PREFIX_PATH="/usr/local/Cellar/qt/5.15.0"`.
