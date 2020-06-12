@@ -355,6 +355,15 @@
       "contributions": [
         "ideas"
       ]
+    },
+    {
+      "login": "palob",
+      "name": "Vincent Bermel",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/7050624?v=4",
+      "profile": "https://github.com/palob",
+      "contributions": [
+        "infra"
+      ]
     }
   ],
   "contributorsPerLine": 6,
