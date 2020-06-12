@@ -56,7 +56,6 @@ jobs:
           export VERSION=${{ steps.get_version.outputs.VERSION }}
           cp ../.ci/linux/cpeditor.desktop . && cp ../.ci/linux/cpeditor-icon.png .
           cp cpeditor.desktop default.desktop
-          mv cpeditor-icon.png cpeditor-icon.png.png
           ./linuxdeployqt*.AppImage ./cpeditor -appimage -qmake=/opt/qt514/bin/qmake
           mv CP_Editor-${{steps.get_version.outputs.VERSION }}-x86_64.AppImage cpeditor-${{ steps.get_version.outputs.VERSION }}-x86_64.AppImage
 
