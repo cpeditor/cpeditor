@@ -120,6 +120,15 @@
       ]
     },
     {
+      "login": "palob",
+      "name": "Vincent Bermel",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/7050624?v=4",
+      "profile": "https://github.com/palob",
+      "contributions": [
+        "infra"
+      ]
+    },
+    {
       "login": "Ravenclaw-OIer",
       "name": "Ravenclaw-OIer",
       "avatar_url": "https://avatars2.githubusercontent.com/u/44526586?v=4",
@@ -354,15 +363,6 @@
       "profile": "https://github.com/sahil-ra",
       "contributions": [
         "ideas"
-      ]
-    },
-    {
-      "login": "palob",
-      "name": "Vincent Bermel",
-      "avatar_url": "https://avatars2.githubusercontent.com/u/7050624?v=4",
-      "profile": "https://github.com/palob",
-      "contributions": [
-        "infra"
       ]
     }
   ],
