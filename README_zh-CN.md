@@ -103,11 +103,11 @@ CP Editor 是一个基于 Qt 的轻量级跨平台代码编辑器，专为算法
     <td align="center">
       <a href="https://github.com/IZOBRETATEL777"><img src="https://avatars0.githubusercontent.com/u/32099652?v=4" width="100px;" alt=""/></a><br /><a href="http://izobretatelsoft.moy.su/"><sub><b>IZOBRETATEL777</b></sub></a><br /><a href="#translation-IZOBRETATEL777" title="Translation">🌍</a>
     </td>
+  </tr>
+  <tr>
     <td align="center">
       <a href="https://github.com/Razdeep"><img src="https://avatars2.githubusercontent.com/u/32531173?v=4" width="100px;" alt=""/></a><br /><a href="https://www.linkedin.com/in/razdeeproychowdhury"><sub><b>Rajdeep Roy Chowdhury</b></sub></a><br /><a href="https://github.com/cpeditor/cpeditor/commits?author=Razdeep" title="Code">💻</a> <a href="#ideas-Razdeep" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/cpeditor/cpeditor/issues?q=author%3ARazdeep" title="Bug reports">🐛</a>
     </td>
-  </tr>
-  <tr>
     <td align="center">
       <a href="https://github.com/testitem"><img src="https://avatars3.githubusercontent.com/u/19212916?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/testitem"><sub><b>queen bee shuttle</b></sub></a><br /><a href="https://github.com/cpeditor/cpeditor/commits?author=testitem" title="Documentation">📖</a> <a href="#ideas-testitem" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/cpeditor/cpeditor/issues?q=author%3Atestitem" title="Bug reports">🐛</a>
     </td>
@@ -120,14 +120,14 @@ CP Editor 是一个基于 Qt 的轻量级跨平台代码编辑器，专为算法
     <td align="center">
       <a href="https://github.com/StudyingFather"><img src="https://avatars3.githubusercontent.com/u/23295419?v=4" width="100px;" alt=""/></a><br /><a href="https://studyingfather.com"><sub><b>Shuhao Zhang</b></sub></a><br /><a href="#ideas-StudyingFather" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/cpeditor/cpeditor/pulls?q=is%3Apr+reviewed-by%3AStudyingFather" title="Reviewed Pull Requests">👀</a> <a href="#translation-StudyingFather" title="Translation">🌍</a>
     </td>
+  </tr>
+  <tr>
     <td align="center">
       <a href="https://github.com/palob"><img src="https://avatars2.githubusercontent.com/u/7050624?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/palob"><sub><b>Vincent Bermel</b></sub></a><br /><a href="#infra-palob" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a>
     </td>
     <td align="center">
       <a href="https://github.com/Ravenclaw-OIer"><img src="https://avatars2.githubusercontent.com/u/44526586?v=4" width="100px;" alt=""/></a><br /><a href="http://ravenclaw-oier.github.io"><sub><b>Ravenclaw-OIer</b></sub></a><br /><a href="#ideas-Ravenclaw-OIer" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/cpeditor/cpeditor/issues?q=author%3ARavenclaw-OIer" title="Bug reports">🐛</a>
     </td>
-  </tr>
-  <tr>
     <td align="center">
       <a href="https://github.com/tuwuna"><img src="https://avatars3.githubusercontent.com/u/56817415?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/tuwuna"><sub><b>tuwuna</b></sub></a><br /><a href="#ideas-tuwuna" title="Ideas, Planning, & Feedback">🤔</a>
     </td>
@@ -137,6 +137,8 @@ CP Editor 是一个基于 Qt 的轻量级跨平台代码编辑器，专为算法
     <td align="center">
       <a href="https://github.com/Arthur-QQ"><img src="https://avatars0.githubusercontent.com/u/30394349?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/Arthur-QQ"><sub><b>Arthur-QQ</b></sub></a><br /><a href="#ideas-Arthur-QQ" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/cpeditor/cpeditor/issues?q=author%3AArthur-QQ" title="Bug reports">🐛</a>
     </td>
+  </tr>
+  <tr>
     <td align="center">
       <a href="https://github.com/Brijesh1in"><img src="https://avatars3.githubusercontent.com/u/33791137?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/Brijesh1in"><sub><b>Brijesh1in</b></sub></a><br /><a href="#ideas-Brijesh1in" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/cpeditor/cpeditor/issues?q=author%3ABrijesh1in" title="Bug reports">🐛</a>
     </td>
@@ -146,14 +148,14 @@ CP Editor 是一个基于 Qt 的轻量级跨平台代码编辑器，专为算法
     <td align="center">
       <a href="https://github.com/1CH1GO"><img src="https://avatars2.githubusercontent.com/u/56096830?v=4" width="100px;" alt=""/></a><br /><a href="http://pavankumar31072000@gmail.com"><sub><b>v-O_O-v</b></sub></a><br /><a href="https://github.com/cpeditor/cpeditor/issues?q=author%3A1CH1GO" title="Bug reports">🐛</a>
     </td>
-  </tr>
-  <tr>
     <td align="center">
       <a href="https://github.com/ApoorvaRajBhadani"><img src="https://avatars1.githubusercontent.com/u/11313858?v=4" width="100px;" alt=""/></a><br /><a href="http://www.apoorvarajbhadani.blogspot.com"><sub><b>Apoorva Raj Bhadani</b></sub></a><br /><a href="https://github.com/cpeditor/cpeditor/issues?q=author%3AApoorvaRajBhadani" title="Bug reports">🐛</a>
     </td>
     <td align="center">
       <a href="https://github.com/Exile-2k4"><img src="https://avatars2.githubusercontent.com/u/40086604?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/Exile-2k4"><sub><b>Nguyễn Hoàng Dương</b></sub></a><br /><a href="#ideas-Exile-2k4" title="Ideas, Planning, & Feedback">🤔</a>
     </td>
+  </tr>
+  <tr>
     <td align="center">
       <a href="https://github.com/GoBigorGoHome"><img src="https://avatars3.githubusercontent.com/u/9896288?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/GoBigorGoHome"><sub><b>Pat</b></sub></a><br /><a href="#ideas-GoBigorGoHome" title="Ideas, Planning, & Feedback">🤔</a>
     </td>
@@ -166,11 +168,11 @@ CP Editor 是一个基于 Qt 的轻量级跨平台代码编辑器，专为算法
     <td align="center">
       <a href="https://github.com/WYWFlash"><img src="https://avatars1.githubusercontent.com/u/42882043?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/WYWFlash"><sub><b>WYWFlash</b></sub></a><br /><a href="https://github.com/cpeditor/cpeditor/issues?q=author%3AWYWFlash" title="Bug reports">🐛</a>
     </td>
-  </tr>
-  <tr>
     <td align="center">
       <a href="https://github.com/WZKSDN"><img src="https://avatars1.githubusercontent.com/u/14256391?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/WZKSDN"><sub><b>nocriz</b></sub></a><br /><a href="https://github.com/cpeditor/cpeditor/issues?q=author%3AWZKSDN" title="Bug reports">🐛</a>
     </td>
+  </tr>
+  <tr>
     <td align="center">
       <a href="https://github.com/Wandoka"><img src="https://avatars2.githubusercontent.com/u/26433142?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/Wandoka"><sub><b>Wandoka</b></sub></a><br /><a href="#ideas-Wandoka" title="Ideas, Planning, & Feedback">🤔</a>
     </td>
@@ -203,11 +205,11 @@ CP Editor 是一个基于 Qt 的轻量级跨平台代码编辑器，专为算法
     <td align="center">
       <a href="https://github.com/2740365712"><img src="https://avatars0.githubusercontent.com/u/33799658?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/2740365712"><sub><b>Starlit_Night</b></sub></a><br /><a href="#ideas-2740365712" title="Ideas, Planning, & Feedback">🤔</a>
     </td>
+  </tr>
+  <tr>
     <td align="center">
       <a href="https://github.com/shakeabi"><img src="https://avatars2.githubusercontent.com/u/36559835?v=4" width="100px;" alt=""/></a><br /><a href="http://abishake.co"><sub><b>Abishake</b></sub></a><br /><a href="#ideas-shakeabi" title="Ideas, Planning, & Feedback">🤔</a>
     </td>
-  </tr>
-  <tr>
     <td align="center">
       <a href="https://github.com/sahil-ra"><img src="https://avatars0.githubusercontent.com/u/30044253?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/sahil-ra"><sub><b>sahil-ra</b></sub></a><br /><a href="#ideas-sahil-ra" title="Ideas, Planning, & Feedback">🤔</a>
     </td>
