@@ -49,7 +49,6 @@
 
 #include "Core/StyleManager.hpp"
 
-
 AppWindow::AppWindow(bool noHotExit, QWidget *parent) : QMainWindow(parent), ui(new Ui::AppWindow)
 {
     LOG_INFO(BOOL_INFO_OF(noHotExit))
@@ -60,7 +59,7 @@ AppWindow::AppWindow(bool noHotExit, QWidget *parent) : QMainWindow(parent), ui(
 
     Core::StyleManager::initiateStyle();
     Core::StyleManager::setStyle("auto_fusion");
-    
+
     QApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
     setWindowIcon(QIcon(":/icon.png"));
 
