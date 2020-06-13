@@ -15,23 +15,33 @@
  *
  */
 
-#ifndef UTIL_HPP
-#define UTIL_HPP
+#ifndef STYLE_MANAGER_HPP
+#define STYLE_MANAGER_HPP
 
-#include <QStringList>
-
-class MessageLogger;
-class QCodeEditor;
+class QString;
+class QStringList;
 class QPalette;
-class QWidget;
+class QStyle;
 
-namespace Util
+namespace Core
 {
+class StyleManager
+{
+  public:
+    static void initiateStyle();
+    static QStringList styleList();
+    static bool setStyle(QString styleName);
 
-QStringList splitArgument(QString);
+  private:
+    static bool isWindowsDarkThemeforApps();
+    static QPalette fusionDarkPalette();
+    static void setFusionDarkTooltip();
+    static QPalette fusionLightPalette();
+    static void setFusionLightTooltip();
 
-void showWidgetOnTop(QWidget *widget);
+    static QStyle *defaultStyle;
+    static QString defaultStyleSheet;
+};
 
-} // namespace Util
-
-#endif // UTIL_HPP
+} // namespace Core
+#endif

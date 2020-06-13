@@ -47,10 +47,8 @@
 #include <QUrl>
 #include <findreplacedialog.h>
 
-#ifdef Q_OS_WIN
-#include <QSettings>
-#include <QStyleFactory>
-#endif
+#include "Core/StyleManager.hpp"
+
 
 AppWindow::AppWindow(bool noHotExit, QWidget *parent) : QMainWindow(parent), ui(new Ui::AppWindow)
 {
@@ -60,18 +58,9 @@ AppWindow::AppWindow(bool noHotExit, QWidget *parent) : QMainWindow(parent), ui(
     allocate();
     setConnections();
 
-#ifdef Q_OS_WIN
-    QSettings settings("HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize",
-                       QSettings::NativeFormat);
-    if (settings.value("AppsUseLightTheme") == 0)
-    {
-        LOG_INFO("Using dark pallete for the theme as Windows Settings");
-        qApp->setStyle(QStyleFactory::create("Fusion"));
-        qApp->setPalette(Util::windowsDarkThemePalette());
-        qApp->setStyleSheet("QToolTip { color: #ffffff; background-color: #2a82da; border: 1px solid white; }");
-    }
-#endif
-
+    Core::StyleManager::initiateStyle();
+    Core::StyleManager::setStyle("auto_fusion");
+    
     QApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
     setWindowIcon(QIcon(":/icon.png"));
 
