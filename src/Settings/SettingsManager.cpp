@@ -197,7 +197,7 @@ bool SettingsManager::contains(const QString &key)
 
 void SettingsManager::set(const QString &key, QVariant value)
 {
-    LOG_INFO(INFO_OF(key) << INFO_OF(value.toString()));
+    LOG_INFO_IF(!key.startsWith("Snippets/"), INFO_OF(key) << INFO_OF(value.toString()));
     cur->insert(key, value);
 }
 
