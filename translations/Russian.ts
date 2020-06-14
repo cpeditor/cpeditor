@@ -642,23 +642,13 @@
 <context>
     <name>AppearancePage</name>
     <message>
-        <location filename="../src/Settings/AppearancePage.cpp" line="46"/>
+        <location filename="../src/Settings/AppearancePage.cpp" line="41"/>
         <source>Change Locale</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Settings/AppearancePage.cpp" line="47"/>
+        <location filename="../src/Settings/AppearancePage.cpp" line="42"/>
         <source>You need to restart the application to completely apply the locale change.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/Settings/AppearancePage.cpp" line="54"/>
-        <source>Change Editor Theme</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/Settings/AppearancePage.cpp" line="55"/>
-        <source>Because you are using whole-application dark theme on Windows, you need to restart the application after changing the editor theme.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -871,7 +861,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Core/Compiler.cpp" line="87"/>
+        <location filename="../src/Core/Compiler.cpp" line="73"/>
+        <source>The compile command for %1 is empty</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Core/Compiler.cpp" line="89"/>
         <source>Unsupported programming language &quot;%1&quot;</source>
         <translation type="unfinished"></translation>
     </message>
@@ -889,12 +884,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Core/Runner.cpp" line="99"/>
+        <location filename="../src/Core/Runner.cpp" line="101"/>
         <source>Failed to start running. Please compile first.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Core/Runner.cpp" line="122"/>
+        <location filename="../src/Core/Runner.cpp" line="124"/>
         <source>Please install xterm in order to use Detached Run.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1059,42 +1054,42 @@
 <context>
     <name>Extensions::LanguageServer</name>
     <message>
+        <location filename="../src/Extensions/LanguageServer.cpp" line="277"/>
         <location filename="../src/Extensions/LanguageServer.cpp" line="290"/>
+        <location filename="../src/Extensions/LanguageServer.cpp" line="297"/>
+        <location filename="../src/Extensions/LanguageServer.cpp" line="300"/>
         <location filename="../src/Extensions/LanguageServer.cpp" line="303"/>
-        <location filename="../src/Extensions/LanguageServer.cpp" line="310"/>
-        <location filename="../src/Extensions/LanguageServer.cpp" line="313"/>
-        <location filename="../src/Extensions/LanguageServer.cpp" line="316"/>
-        <location filename="../src/Extensions/LanguageServer.cpp" line="319"/>
+        <location filename="../src/Extensions/LanguageServer.cpp" line="306"/>
         <source>Langauge Server [%1]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Extensions/LanguageServer.cpp" line="291"/>
+        <location filename="../src/Extensions/LanguageServer.cpp" line="278"/>
         <source>Language server sent an error. Please check log for details.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Extensions/LanguageServer.cpp" line="304"/>
+        <location filename="../src/Extensions/LanguageServer.cpp" line="291"/>
         <source>Failed to start LSP Process. Have you set the path to the Language Server program in Preferences-&gt;Extensions-&gt;Language Server?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Extensions/LanguageServer.cpp" line="310"/>
+        <location filename="../src/Extensions/LanguageServer.cpp" line="297"/>
         <source>LSP Process timed out</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Extensions/LanguageServer.cpp" line="313"/>
+        <location filename="../src/Extensions/LanguageServer.cpp" line="300"/>
         <source>LSP Process Read Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Extensions/LanguageServer.cpp" line="316"/>
+        <location filename="../src/Extensions/LanguageServer.cpp" line="303"/>
         <source>LSP Process Write Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Extensions/LanguageServer.cpp" line="319"/>
+        <location filename="../src/Extensions/LanguageServer.cpp" line="306"/>
         <source>An unknown error has occurred in LSP Process</source>
         <translation type="unfinished"></translation>
     </message>

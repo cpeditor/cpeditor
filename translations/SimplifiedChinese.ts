@@ -642,24 +642,14 @@
 <context>
     <name>AppearancePage</name>
     <message>
-        <location filename="../src/Settings/AppearancePage.cpp" line="46"/>
+        <location filename="../src/Settings/AppearancePage.cpp" line="41"/>
         <source>Change Locale</source>
         <translation type="unfinished">改变语言</translation>
     </message>
     <message>
-        <location filename="../src/Settings/AppearancePage.cpp" line="47"/>
+        <location filename="../src/Settings/AppearancePage.cpp" line="42"/>
         <source>You need to restart the application to completely apply the locale change.</source>
         <translation type="unfinished">你需要重启程序以彻底地改变语言。</translation>
-    </message>
-    <message>
-        <location filename="../src/Settings/AppearancePage.cpp" line="54"/>
-        <source>Change Editor Theme</source>
-        <translation type="unfinished">更改编辑器主题</translation>
-    </message>
-    <message>
-        <location filename="../src/Settings/AppearancePage.cpp" line="55"/>
-        <source>Because you are using whole-application dark theme on Windows, you need to restart the application after changing the editor theme.</source>
-        <translation type="unfinished">由于你正在使用全局暗色主题，你需要在更改编辑器主题后重启程序。</translation>
     </message>
 </context>
 <context>
@@ -871,12 +861,17 @@
     <message>
         <location filename="../src/Core/Compiler.cpp" line="57"/>
         <source>The source file [%1] doesn&apos;t exist</source>
-        <translation type="unfinished">源文件[%1]不存在</translation>
+        <translation type="unfinished">源文件 [%1] 不存在</translation>
     </message>
     <message>
-        <location filename="../src/Core/Compiler.cpp" line="87"/>
+        <location filename="../src/Core/Compiler.cpp" line="73"/>
+        <source>The compile command for %1 is empty</source>
+        <translation type="unfinished">%1 的编译命令为空</translation>
+    </message>
+    <message>
+        <location filename="../src/Core/Compiler.cpp" line="89"/>
         <source>Unsupported programming language &quot;%1&quot;</source>
-        <translation type="unfinished">编程语言“%1”不支持</translation>
+        <translation type="unfinished">编程语言“%1”不受支持</translation>
     </message>
 </context>
 <context>
@@ -892,12 +887,12 @@
         <translation type="unfinished">获取运行指令失败。这可能是一个bug。</translation>
     </message>
     <message>
-        <location filename="../src/Core/Runner.cpp" line="99"/>
+        <location filename="../src/Core/Runner.cpp" line="101"/>
         <source>Failed to start running. Please compile first.</source>
         <translation type="unfinished">运行失败。请先编译。</translation>
     </message>
     <message>
-        <location filename="../src/Core/Runner.cpp" line="122"/>
+        <location filename="../src/Core/Runner.cpp" line="124"/>
         <source>Please install xterm in order to use Detached Run.</source>
         <translation type="unfinished">请安装xterm来使用脱离式运行。</translation>
     </message>
@@ -1063,42 +1058,42 @@
 <context>
     <name>Extensions::LanguageServer</name>
     <message>
+        <location filename="../src/Extensions/LanguageServer.cpp" line="277"/>
         <location filename="../src/Extensions/LanguageServer.cpp" line="290"/>
+        <location filename="../src/Extensions/LanguageServer.cpp" line="297"/>
+        <location filename="../src/Extensions/LanguageServer.cpp" line="300"/>
         <location filename="../src/Extensions/LanguageServer.cpp" line="303"/>
-        <location filename="../src/Extensions/LanguageServer.cpp" line="310"/>
-        <location filename="../src/Extensions/LanguageServer.cpp" line="313"/>
-        <location filename="../src/Extensions/LanguageServer.cpp" line="316"/>
-        <location filename="../src/Extensions/LanguageServer.cpp" line="319"/>
+        <location filename="../src/Extensions/LanguageServer.cpp" line="306"/>
         <source>Langauge Server [%1]</source>
         <translation type="unfinished">语言服务器[%1]</translation>
     </message>
     <message>
-        <location filename="../src/Extensions/LanguageServer.cpp" line="291"/>
+        <location filename="../src/Extensions/LanguageServer.cpp" line="278"/>
         <source>Language server sent an error. Please check log for details.</source>
         <translation type="unfinished">语言服务器出现错误。请检查日志文件以获取详细信息。</translation>
     </message>
     <message>
-        <location filename="../src/Extensions/LanguageServer.cpp" line="304"/>
+        <location filename="../src/Extensions/LanguageServer.cpp" line="291"/>
         <source>Failed to start LSP Process. Have you set the path to the Language Server program in Preferences-&gt;Extensions-&gt;Language Server?</source>
         <translation type="unfinished">启动语言服务器进程失败。你是否已在设置-&gt;Extensions-&gt;Language Server中设置语言服务器的路径？</translation>
     </message>
     <message>
-        <location filename="../src/Extensions/LanguageServer.cpp" line="310"/>
+        <location filename="../src/Extensions/LanguageServer.cpp" line="297"/>
         <source>LSP Process timed out</source>
         <translation type="unfinished">语言服务器超时</translation>
     </message>
     <message>
-        <location filename="../src/Extensions/LanguageServer.cpp" line="313"/>
+        <location filename="../src/Extensions/LanguageServer.cpp" line="300"/>
         <source>LSP Process Read Error</source>
         <translation type="unfinished">语言服务器读取错误</translation>
     </message>
     <message>
-        <location filename="../src/Extensions/LanguageServer.cpp" line="316"/>
+        <location filename="../src/Extensions/LanguageServer.cpp" line="303"/>
         <source>LSP Process Write Error</source>
         <translation type="unfinished">语言服务器写出错误</translation>
     </message>
     <message>
-        <location filename="../src/Extensions/LanguageServer.cpp" line="319"/>
+        <location filename="../src/Extensions/LanguageServer.cpp" line="306"/>
         <source>An unknown error has occurred in LSP Process</source>
         <translation type="unfinished">语言服务器发生未知错误</translation>
     </message>
