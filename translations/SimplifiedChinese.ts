@@ -11,7 +11,7 @@
     <message>
         <location filename="../src/appwindow.cpp" line="105"/>
         <source>In the last session, CP Editor was abnormally killed, do you want to restore the last session?</source>
-        <translation type="unfinished">在最后一次会话中，CP Editor被意外关闭，你希望从最后一次会话中恢复吗？</translation>
+        <translation type="unfinished">在最后一次会话中，CP Editor 被意外关闭，你希望从最后一次会话中恢复吗？</translation>
     </message>
     <message>
         <location filename="../src/appwindow.cpp" line="115"/>
@@ -31,17 +31,17 @@
     <message>
         <location filename="../src/appwindow.cpp" line="612"/>
         <source>About CP Editor %1</source>
-        <translation type="unfinished">关于CP Editor %1</translation>
+        <translation type="unfinished">关于 CP Editor %1</translation>
     </message>
     <message>
         <location filename="../src/appwindow.cpp" line="613"/>
         <source>&lt;p&gt;&lt;b&gt;CP Editor&lt;/b&gt; is a native Qt-based code editor. It&apos;s specially designed for competitive programming, unlike other editors/IDEs which are mainly for developers. It helps you focus on your algorithm and automates the compilation, executing and testing. It even fetches test cases for you from different platforms and submits solutions to Codeforces!&lt;/p&gt;&lt;p&gt;Copyright (C) 2019-2020 Ashar Khan &amp;lt;ashar786khan@gmail.com&amp;gt;&lt;/p&gt;&lt;p&gt;This is free software; see the source for copying conditions. There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. The source code for CP Editor is available at &lt;a href=&quot;https://github.com/cpeditor/cpeditor&quot;&gt; https://github.com/cpeditor/cpeditor&lt;/a&gt;.&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;p&gt;&lt;b&gt;CP Editor&lt;/b&gt; 是一个基于 Qt 的原生态 IDE。它专为算法竞赛设计，不像其它 IDE 主要是为了开发设计。它可以帮助你自动化编译、运行、测试，从而让你专注于算法设计。它甚至可以从各种算法竞赛网站上获取样例，将代码提交到 Codeforces 上！&lt;/p&gt;&lt;p&gt;Copyright (C) 2019-2020 Ashar Khan &amp;lt;ashar786khan@gmail.com&amp;gt;&lt;/p&gt;&lt;p&gt;本程序是自由软件；请参看源代码的版权声明。本软件没有任何担保；包括没有适销性和某一专用目的下的适用性担保。CP Editor 的代码可以在 &lt;a href=&quot;https://github.com/cpeditor/cpeditor&quot;&gt; https://github.com/cpeditor/cpeditor&lt;/a&gt; 获取。&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="../src/appwindow.cpp" line="665"/>
         <source>Open Files</source>
-        <translation type="unfinished">打开</translation>
+        <translation type="unfinished">打开文件</translation>
     </message>
     <message>
         <location filename="../src/appwindow.cpp" line="673"/>
@@ -84,7 +84,7 @@
     <message>
         <location filename="../src/appwindow.cpp" line="1199"/>
         <source>There are no snippets for %1. Please add snippets in the preference window.</source>
-        <translation type="unfinished">语言%1没有代码片段。请在设置窗口中添加。</translation>
+        <translation type="unfinished">语言 %1 没有任何代码片段。请在设置窗口中添加。</translation>
     </message>
     <message>
         <location filename="../src/appwindow.cpp" line="1204"/>
@@ -99,7 +99,7 @@
     <message>
         <location filename="../src/appwindow.cpp" line="1216"/>
         <source>There is no snippet named %1 for %2</source>
-        <translation type="unfinished">语言%2没有叫做%1的代码片段</translation>
+        <translation type="unfinished">语言 %2 没有叫做 %1 的代码片段</translation>
     </message>
     <message>
         <location filename="../src/appwindow.cpp" line="1340"/>
@@ -142,7 +142,7 @@
         <location filename="../src/appwindow.cpp" line="1451"/>
         <location filename="../src/appwindow.cpp" line="1465"/>
         <source>Open Containing Folder</source>
-        <translation type="unfinished">打开文件目录</translation>
+        <translation type="unfinished">打开文件所在的目录</translation>
     </message>
     <message>
         <location filename="../src/appwindow.cpp" line="1437"/>
@@ -167,18 +167,18 @@
     <message>
         <location filename="../src/appwindow.cpp" line="1477"/>
         <source>Set Codeforces URL</source>
-        <translation type="unfinished">设置Codeforces链接</translation>
+        <translation type="unfinished">设置 Codeforces 链接</translation>
     </message>
     <message>
         <location filename="../src/appwindow.cpp" line="1481"/>
         <location filename="../src/appwindow.cpp" line="1484"/>
         <source>Set CF URL</source>
-        <translation type="unfinished">设置Codeforces链接</translation>
+        <translation type="unfinished">设置 CF 链接</translation>
     </message>
     <message>
         <location filename="../src/appwindow.cpp" line="1481"/>
         <source>Enter the contest ID:</source>
-        <translation type="unfinished">输入比赛ID：</translation>
+        <translation type="unfinished">输入比赛 ID：</translation>
     </message>
     <message>
         <location filename="../src/appwindow.cpp" line="1484"/>
@@ -215,7 +215,7 @@
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="267"/>
         <source>New Tab</source>
-        <translation type="unfinished">新建</translation>
+        <translation type="unfinished">新建标签页</translation>
     </message>
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="269"/>
@@ -251,7 +251,7 @@
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="283"/>
         <source>Save as new file</source>
-        <translation type="unfinished">以新文件保存</translation>
+        <translation type="unfinished">保存到一个新文件</translation>
     </message>
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="286"/>
@@ -340,7 +340,7 @@
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="323"/>
         <source>Open File...</source>
-        <translation type="unfinished">打开...</translation>
+        <translation type="unfinished">打开文件...</translation>
     </message>
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="325"/>
@@ -370,7 +370,7 @@
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="337"/>
         <source>Indent</source>
-        <translation type="unfinished">缩进</translation>
+        <translation type="unfinished">增加缩进</translation>
     </message>
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="339"/>
@@ -380,7 +380,7 @@
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="341"/>
         <source>Unindent</source>
-        <translation type="unfinished">取消缩进</translation>
+        <translation type="unfinished">减少缩进</translation>
     </message>
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="343"/>
@@ -430,7 +430,7 @@
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="361"/>
         <source>Toggle Comment</source>
-        <translation type="unfinished">转化注释</translation>
+        <translation type="unfinished">开启/关闭单行注释</translation>
     </message>
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="363"/>
@@ -440,7 +440,7 @@
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="365"/>
         <source>Toggle Block Comment</source>
-        <translation type="unfinished">转化块注释</translation>
+        <translation type="unfinished">开启/关闭多行注释</translation>
     </message>
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="367"/>
@@ -490,7 +490,7 @@
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="385"/>
         <source>Run Detached</source>
-        <translation type="unfinished">脱离式运行</translation>
+        <translation type="unfinished">在终端中运行</translation>
     </message>
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="387"/>
@@ -510,7 +510,7 @@
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="393"/>
         <source>Find and Replace...</source>
-        <translation type="unfinished">查找替换...</translation>
+        <translation type="unfinished">查找和替换...</translation>
     </message>
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="395"/>
@@ -555,7 +555,7 @@
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="408"/>
         <source>Manual</source>
-        <translation type="unfinished">手册</translation>
+        <translation type="unfinished">帮助手册</translation>
     </message>
     <message>
         <location filename="../src/appwindow.cpp" line="293"/>
@@ -566,7 +566,7 @@
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="410"/>
         <source>About Qt</source>
-        <translation type="unfinished">关于Qt</translation>
+        <translation type="unfinished">关于 Qt</translation>
     </message>
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="411"/>
@@ -581,7 +581,7 @@
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="413"/>
         <source>Support me</source>
-        <translation type="unfinished">支持我</translation>
+        <translation type="unfinished">支持作者</translation>
     </message>
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="414"/>
@@ -591,12 +591,12 @@
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="415"/>
         <source>IO Mode</source>
-        <translation type="unfinished">IO模式</translation>
+        <translation type="unfinished">IO 模式</translation>
     </message>
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="416"/>
         <source>Split Mode</source>
-        <translation type="unfinished">分隔模式</translation>
+        <translation type="unfinished">分屏模式</translation>
     </message>
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="417"/>
@@ -626,7 +626,7 @@
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="422"/>
         <source>&amp;View</source>
-        <translation type="unfinished">显示(&amp;V)</translation>
+        <translation type="unfinished">视图(&amp;V)</translation>
     </message>
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="423"/>
@@ -712,7 +712,7 @@
     <message>
         <location filename="../src/Settings/CodeSnippetsPage.cpp" line="259"/>
         <source>The snippet [%1] has been changed. Do you want to save it or discard the changes?</source>
-        <translation type="unfinished">代码片段[%1]已经被更改。你希望保存更改还是丢弃更改？</translation>
+        <translation type="unfinished">代码片段 [%1] 已被更改。你希望保存更改还是丢弃更改？</translation>
     </message>
     <message>
         <location filename="../src/Settings/CodeSnippetsPage.cpp" line="290"/>
@@ -722,7 +722,7 @@
     <message>
         <location filename="../src/Settings/CodeSnippetsPage.cpp" line="291"/>
         <source>Do you really want to delete the snippet [%1]?</source>
-        <translation type="unfinished">你真的要删除代码片段[%1]吗？</translation>
+        <translation type="unfinished">你真的要删除代码片段 [%1] 吗？</translation>
     </message>
     <message>
         <location filename="../src/Settings/CodeSnippetsPage.cpp" line="320"/>
@@ -733,12 +733,12 @@
     <message>
         <location filename="../src/Settings/CodeSnippetsPage.cpp" line="325"/>
         <source>CodeSnippetsPage::loadSnippetsFromFiles</source>
-        <translation type="unfinished">代码片段/加载</translation>
+        <translation type="unfinished">代码片段/从文件加载</translation>
     </message>
     <message>
         <location filename="../src/Settings/CodeSnippetsPage.cpp" line="329"/>
         <source>Failed to open [%1]. Do I have read permission?</source>
-        <translation type="unfinished">打开[%1]失败。你拥有读取权限吗？</translation>
+        <translation type="unfinished">打开 [%1] 失败。你拥有读取权限吗？</translation>
     </message>
     <message>
         <location filename="../src/Settings/CodeSnippetsPage.cpp" line="344"/>
@@ -754,7 +754,7 @@
     <message>
         <location filename="../src/Settings/CodeSnippetsPage.cpp" line="375"/>
         <source>Failed to write to [%1]. Do I have write permission?</source>
-        <translation type="unfinished">写入[%1]失败。你拥有写入权限吗？</translation>
+        <translation type="unfinished">写入 [%1] 失败。你拥有写入权限吗？</translation>
     </message>
     <message>
         <location filename="../src/Settings/CodeSnippetsPage.cpp" line="396"/>
@@ -771,13 +771,13 @@
     <message>
         <location filename="../src/Settings/CodeSnippetsPage.cpp" line="402"/>
         <source>The name &quot;%1&quot; is already in use. Do you want to override it? (The old snippet with this name will be deleted.)</source>
-        <translation type="unfinished">名称&quot;%1&quot;已经被使用了。你希望覆盖吗？（对应旧片段将会被删除。）</translation>
+        <translation type="unfinished">名称 &quot;%1&quot; 已经被使用了。你希望覆盖吗？（对应旧片段将会被删除。）</translation>
     </message>
     <message>
         <location filename="../src/Settings/CodeSnippetsPage.cpp" line="414"/>
         <source>The name &quot;%1&quot; is already in use.
 </source>
-        <translation type="unfinished">名称&quot;%1&quot;已经被使用了。
+        <translation type="unfinished">名称 &quot;%1&quot; 已经被使用了。
 </translation>
     </message>
     <message>
@@ -816,12 +816,12 @@
     <message>
         <location filename="../src/Core/Checker.cpp" line="121"/>
         <source>Read testlib.h</source>
-        <translation type="unfinished">读取testlib.h</translation>
+        <translation type="unfinished">读取 testlib.h</translation>
     </message>
     <message>
         <location filename="../src/Core/Checker.cpp" line="124"/>
         <source>Save testlib.h</source>
-        <translation type="unfinished">保存testlib.h</translation>
+        <translation type="unfinished">保存 testlib.h</translation>
     </message>
     <message>
         <location filename="../src/Core/Checker.cpp" line="156"/>
@@ -843,12 +843,12 @@
     <message>
         <location filename="../src/Core/Checker.cpp" line="181"/>
         <source>Checker exited with exit code %1</source>
-        <translation type="unfinished">评测器退出，返回值%1</translation>
+        <translation type="unfinished">评测器退出，返回值: %1</translation>
     </message>
     <message>
         <location filename="../src/Core/Checker.cpp" line="189"/>
         <source>Checker exited with unknown exit code %1</source>
-        <translation type="unfinished">评测器退出，未知返回值%1</translation>
+        <translation type="unfinished">评测器退出，未知返回值: %1</translation>
     </message>
     <message>
         <location filename="../src/Core/Checker.cpp" line="202"/>
@@ -858,7 +858,7 @@
     <message>
         <location filename="../src/Core/Checker.cpp" line="208"/>
         <source>The %1 of the process running on the testcase #%2 contains more than %3 characters, which is longer than the output length limit, so the process is killed. You can change the output length limit in Preferences-&gt;Advanced-&gt;Limits-&gt;Output Length Limit</source>
-        <translation type="unfinished">测试点#%2的%1超过%3个字符，超出了输出限制，因此进程被结束。你可以在设置-&gt;Advance-&gt;Limits-&gt;输出限制中更改</translation>
+        <translation type="unfinished">测试点 #%2 的 %1 超过 %3 个字符，超出了输出长度限制，因此进程被结束。你可以在设置-&gt;Advance-&gt;Limits-&gt;输出限制中更改限制大小</translation>
     </message>
     <message>
         <location filename="../src/Core/Checker.cpp" line="218"/>
