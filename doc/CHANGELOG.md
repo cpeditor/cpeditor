@@ -1,5 +1,9 @@
 ## UNRELEASED
 
+### Changed
+
+- Now the lengths of the files added by "Add Pairs of Testcases From Files" are limited by Preferences->Advanced->Limits->Load Test Case File Length Limit. (#405)
+
 ## v6.5
 
 ### Added

@@ -95,7 +95,6 @@ TestCase::TestCase(int index, MessageLogger *logger, QWidget *parent, const QStr
 
 void TestCase::setInput(const QString &text)
 {
-    LOG_INFO("Input value updated to\n" << text);
     inputEdit->modifyText(text);
 }
 
@@ -113,7 +112,6 @@ void TestCase::setOutput(const QString &text)
                        .arg(SettingsHelper::getOutputLengthLimit()));
     }
 
-    LOG_INFO("Output value updated to\n" << text);
     outputEdit->modifyText(newOutput);
     outputEdit->startAnimation();
 
@@ -123,7 +121,6 @@ void TestCase::setOutput(const QString &text)
 
 void TestCase::setExpected(const QString &text)
 {
-    LOG_INFO("Expected value updated to\n" << text);
     expectedEdit->modifyText(text);
 }
 
