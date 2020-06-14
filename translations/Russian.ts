@@ -2699,52 +2699,52 @@ from competitive companion again, the old file will be opened.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Widgets/TestCase.cpp" line="108"/>
+        <location filename="../src/Widgets/TestCase.cpp" line="107"/>
         <source>Output Length Limit Exceeded</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Widgets/TestCase.cpp" line="109"/>
+        <location filename="../src/Widgets/TestCase.cpp" line="108"/>
         <source>Testcases</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Widgets/TestCase.cpp" line="110"/>
+        <location filename="../src/Widgets/TestCase.cpp" line="109"/>
         <source>The output #%1 contains more than %2 characters, so it&apos;s not displayed. You can set the output length limit in Preferences-&gt;Advanced-&gt;Limits-&gt;Output Length Limit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Widgets/TestCase.cpp" line="157"/>
+        <location filename="../src/Widgets/TestCase.cpp" line="154"/>
         <source>Input #%1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Widgets/TestCase.cpp" line="158"/>
+        <location filename="../src/Widgets/TestCase.cpp" line="155"/>
         <source>Output #%1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Widgets/TestCase.cpp" line="159"/>
+        <location filename="../src/Widgets/TestCase.cpp" line="156"/>
         <source>Expected #%1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Widgets/TestCase.cpp" line="246"/>
+        <location filename="../src/Widgets/TestCase.cpp" line="243"/>
         <source>Delete Testcase</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Widgets/TestCase.cpp" line="247"/>
+        <location filename="../src/Widgets/TestCase.cpp" line="244"/>
         <source>Are you sure you want to delete test case #%1?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Widgets/TestCase.cpp" line="255"/>
+        <location filename="../src/Widgets/TestCase.cpp" line="252"/>
         <source>Diff Viewer[%1]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Widgets/TestCase.cpp" line="256"/>
+        <location filename="../src/Widgets/TestCase.cpp" line="253"/>
         <source>The output/expected contains more than %1 characters, HTML diff viewer is disabled. You can change the length limit in Preferences-&gt;Advanced-&gt;Limits-&gt;HTML Diff Viewer Length Limit</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2802,7 +2802,7 @@ from competitive companion again, the old file will be opened.</source>
     </message>
     <message>
         <location filename="../src/Widgets/TestCases.cpp" line="50"/>
-        <location filename="../src/Widgets/TestCases.cpp" line="452"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="458"/>
         <source>Add Checker</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2827,152 +2827,152 @@ from competitive companion again, the old file will be opened.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Widgets/TestCases.cpp" line="104"/>
-        <location filename="../src/Widgets/TestCases.cpp" line="105"/>
-        <location filename="../src/Widgets/TestCases.cpp" line="107"/>
-        <location filename="../src/Widgets/TestCases.cpp" line="123"/>
-        <location filename="../src/Widgets/TestCases.cpp" line="125"/>
-        <location filename="../src/Widgets/TestCases.cpp" line="133"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="109"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="130"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="139"/>
         <source>Load Testcases</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Widgets/TestCases.cpp" line="108"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="110"/>
         <source>A pair of testcases [%1] and [%2] is loaded</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Widgets/TestCases.cpp" line="125"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="130"/>
         <source>An input [%1] is loaded</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Widgets/TestCases.cpp" line="134"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="140"/>
         <source>The following files are not loaded because they are not matched:%1. You can set the matching rules at Preferences-&gt;File Path-&gt;Testcases-&gt;Add Testcases From Files Rules.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Widgets/TestCases.cpp" line="141"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="147"/>
         <source>Remove Empty</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Widgets/TestCases.cpp" line="153"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="159"/>
         <source>Remove All</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Widgets/TestCases.cpp" line="156"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="162"/>
         <source>Clear Testcases</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Widgets/TestCases.cpp" line="156"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="162"/>
         <source>Are you sure you want to delete all test cases?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Widgets/TestCases.cpp" line="167"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="173"/>
         <source>Hide AC</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Widgets/TestCases.cpp" line="174"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="180"/>
         <source>Show All</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Widgets/TestCases.cpp" line="180"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="186"/>
         <source>Hide All</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Widgets/TestCases.cpp" line="186"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="192"/>
         <source>Invert</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Widgets/TestCases.cpp" line="199"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="205"/>
         <source>Ignore trailing spaces</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Widgets/TestCases.cpp" line="199"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="205"/>
         <source>Strictly the same</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Widgets/TestCases.cpp" line="199"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="205"/>
         <source>ncmp - Compare int64s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Widgets/TestCases.cpp" line="200"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="206"/>
         <source>rcmp4 - Compare doubles, max error 1e-4</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Widgets/TestCases.cpp" line="201"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="207"/>
         <source>rcmp6 - Compare doubles, max error 1e-6</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Widgets/TestCases.cpp" line="202"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="208"/>
         <source>rcmp9 - Compare doubles, max error 1e-9</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Widgets/TestCases.cpp" line="202"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="208"/>
         <source>wcmp - Compare tokens</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Widgets/TestCases.cpp" line="203"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="209"/>
         <source>nyesno - Compare YES/NOs, case insensitive</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Widgets/TestCases.cpp" line="231"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="237"/>
         <source>Add Test Case</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Widgets/TestCases.cpp" line="232"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="238"/>
         <source>There are already %1 test cases, you can&apos;t add more.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Widgets/TestCases.cpp" line="309"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="315"/>
         <source>Input #%1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Widgets/TestCases.cpp" line="310"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="316"/>
         <source>Expected #%1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Widgets/TestCases.cpp" line="325"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="331"/>
         <source>Save Input #%1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Widgets/TestCases.cpp" line="327"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="333"/>
         <source>Save Expected #%1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Widgets/TestCases.cpp" line="343"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="349"/>
         <source>Load %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Widgets/TestCases.cpp" line="346"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="104"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="105"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="126"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="352"/>
         <source>Testcases</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Widgets/TestCases.cpp" line="347"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="353"/>
         <source>The testcase file [%1] contains more than %2 characters, so it&apos;s not loaded. You can change the length limit in Preferences-&gt;Advanced-&gt;Limits-&gt;Load Test Case File Length Limit</source>
         <translation type="unfinished"></translation>
     </message>
