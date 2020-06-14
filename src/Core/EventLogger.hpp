@@ -29,41 +29,39 @@ class QFile;
 
 /**
  * There are four log levels:
- * 1. LOG_INFO(i): information, used when everything is normal
- * 2. LOG_WARN(w): warning, used when something strange happened, but it is not necessarily an error
- * 3. LOG_WARN_IF(cond, w): something strange will happen if condition is true
- * 4. LOG_ERR(e): error, used when something bad happened
- * 5. LOG_ERR_IF(cond, e): something bad will happen if condition is true
- * 6. LOG_WTF(wtf): what a terrible failure, used when it's considered impossible to happen
+ * INFO: information, used when everything is normal
+ * WARN: warning, used when something strange happened, but it is not necessarily an error
+ * ERR: error, used when something bad happened
+ * WTF: what a terrible failure, used when it's considered impossible to happen
  */
 
-// Log levels are defined as:
-// WTF : Level 4
-// ERR : Level 3
-// WARN: Level 2
-// INFO: Level 1
-
-#define LOG_WTF(stream) Core::Log::log(" WTF ", __func__, __LINE__, __FILE__) << stream << endl;
-#define LOG_ERR(stream) Core::Log::log("ERROR", __func__, __LINE__, __FILE__) << stream << endl;
-#define LOG_WARN(stream) Core::Log::log("WARN ", __func__, __LINE__, __FILE__) << stream << endl;
-#define LOG_INFO(stream) Core::Log::log("INFO ", __func__, __LINE__, __FILE__) << stream << endl;
+#define LOG_INFO(stream) Core::Log::log("INFO ", __func__, __LINE__, __FILE__) << stream << Qt::endl;
+#define LOG_WARN(stream) Core::Log::log("WARN ", __func__, __LINE__, __FILE__) << stream << Qt::endl;
+#define LOG_ERR(stream) Core::Log::log("ERROR", __func__, __LINE__, __FILE__) << stream << Qt::endl;
+#define LOG_WTF(stream) Core::Log::log(" WTF ", __func__, __LINE__, __FILE__) << stream << Qt::endl;
 
 #define LOG_INFO_IF(cond, stream)                                                                                      \
     if (cond)                                                                                                          \
     {                                                                                                                  \
-        Core::Log::log("INFO ", __func__, __LINE__, __FILE__) << stream << endl;                                       \
+        LOG_INFO(stream)                                                                                               \
     }
 
 #define LOG_WARN_IF(cond, stream)                                                                                      \
     if (cond)                                                                                                          \
     {                                                                                                                  \
-        Core::Log::log("WARN ", __func__, __LINE__, __FILE__) << stream << endl;                                       \
+        LOG_WARN(stream)                                                                                               \
     }
 
 #define LOG_ERR_IF(cond, stream)                                                                                       \
     if (cond)                                                                                                          \
     {                                                                                                                  \
-        Core::Log::log("ERROR", __func__, __LINE__, __FILE__) << stream << endl;                                       \
+        LOG_ERR(stream)                                                                                                \
+    }
+
+#define LOG_WTF_IF(cond, stream)                                                                                       \
+    if (cond)                                                                                                          \
+    {                                                                                                                  \
+        LOG_WTF(stream)                                                                                                \
     }
 
 #define INFO_OF(variable) "<" #variable ">: [" << (variable) << "], "

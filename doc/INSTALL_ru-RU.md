@@ -43,12 +43,11 @@
 	cd cpeditor
 	```
 
-2. Установите [Qt](https://www.qt.io/download) (5.14 или выше), [CMake](https://cmake.org/download/) (3.12 или выше) и [Python3](https://www.python.org/downloads/).
-   - На некоторые дистрибутивы Linux и MacOS, вы можете установить из вашего менеджера пакетов. Например, `sudo pacman-S qt5` на Arch Linux, `brew install qt5` на Mac OS.
-   - Вы также можете скачать [автономный установщик](https://www.qt.io/offline-installers), или скачать с [зеркал](https://download.qt.io/static/mirrorlist/). Путь от корня зеркала должен быть похож на `/qt/official_releases/qt/5.14/5.14.2/qt-opensource-<platform>-5.14.2.<suffix>` (или другие версии).
+2. Установите [Qt](https://www.qt.io/download) (5.15 или выше), [CMake](https://cmake.org/download/) (3.12 или выше) и [Python3](https://www.python.org/downloads/).
+   - На некоторые дистрибутивы Linux и MacOS, вы можете установить из вашего менеджера пакетов. Например, `sudo pacman -S qt5-base` на Arch Linux, `brew install qt5` на Mac OS.
    - Вы также можете использовать [aqtinstall](https://github.com/miurahr/aqtinstall) чтобы установить Qt.
 
-3. Если CMake не может найти путь установки Qt, вы должны добавить его в PATH: `CMAKE_PREFIX_PATH=%QtPath% / %QtVersion% / %Compiler% / lib / cmake`. Например, на Mac вы можете запустить что-то вроде `export CMAKE_PREFIX_PATH="/usr/local/Cellar/qt/5.14.2`.
+3. Если CMake не может найти путь установки Qt, вы должны добавить его в PATH: `CMAKE_PREFIX_PATH=%QtPath% / %QtVersion% / %Compiler% / lib / cmake`. Например, на Mac вы можете запустить что-то вроде `export CMAKE_PREFIX_PATH="/usr/local/Cellar/qt/5.15.0`.
 
 4. Выполните следующие команды:
 

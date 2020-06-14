@@ -1,8 +1,6 @@
 #!/bin/bash
 
-cd .ci/aur
+cd .ci/aur/stable
 makepkg --printsrcinfo > .SRCINFO
-cd ../../cmake/aur
-cp PKGBUILD.in PKGBUILD
-makepkg --printsrcinfo > .SRCINFO.in
-rm PKGBUILD
+cd ../git
+makepkg --printsrcinfo > .SRCINFO

@@ -45,12 +45,11 @@
 	cd cpeditor
 	```
 
-2. 安装 [Qt](https://www.qt.io/download)（5.14 或更高版本）, [CMake](https://cmake.org/download/)（3.12 或更高版本）以及 [Python3](https://www.python.org/downloads/)。
-   - 在一些 Linux g发行版和 MacOS 系统上，你可以直接使用包管理器安装 Qt。例如，在 Arch Linux 上可以使用 `sudo pacman -S qt5`，在 MacOS 上可以使用 `brew install qt5`.=。
-   - 你还可以下载 [离线安装包](https://www.qt.io/offline-installers), 或者从 [镜像](https://download.qt.io/static/mirrorlist/) 下载。你要下载的文件在镜像中的目录应该是 `/qt/official_releases/qt/5.14/5.14.2/qt-opensource-<platform>-5.14.2.<suffix>` (或其它版本).
+2. 安装 [Qt](https://www.qt.io/download)（5.15 或更高版本）, [CMake](https://cmake.org/download/)（3.12 或更高版本）以及 [Python3](https://www.python.org/downloads/)。
+   - 在一些 Linux 发行版和 MacOS 系统上，你可以直接使用包管理器安装 Qt。例如，在 Arch Linux 上可以使用 `sudo pacman -S qt5-base`，在 MacOS 上可以使用 `brew install qt5`.=。
    - 你还可以使用 [aqtinstall](https://github.com/miurahr/aqtinstall) 来下载并安装。
 
-3. 如果 CMake 提示找不到 Qt 路径，你应该设置环境变量：`CMAKE_PREFIX_PATH=%QtPath%/%QtVersion%/%Compiler%/lib/cmake`。例如，在 MacOS 上，你可以运行 `export CMAKE_PREFIX_PATH="/usr/local/Cellar/qt/5.14.2"`。
+3. 如果 CMake 提示找不到 Qt 路径，你应该设置环境变量：`CMAKE_PREFIX_PATH=%QtPath%/%QtVersion%/%Compiler%/lib/cmake`。例如，在 MacOS 上，你可以运行 `export CMAKE_PREFIX_PATH="/usr/local/Cellar/qt/5.15.0"`。
 
 4. 运行下面的脚本来构建:
 

@@ -269,9 +269,9 @@ void AppWindow::allocate()
 
     server = new Extensions::CompanionServer(SettingsHelper::getCompetitiveCompanionConnectionPort());
 
-    cppServer = new Extensions::LanguageServer("cpp"); // These are language code set by Language server protocol
-    javaServer = new Extensions::LanguageServer("java");
-    pythonServer = new Extensions::LanguageServer("python");
+    cppServer = new Extensions::LanguageServer("C++");
+    javaServer = new Extensions::LanguageServer("Java");
+    pythonServer = new Extensions::LanguageServer("Python");
 
     findReplaceDialog = new FindReplaceDialog(this);
     findReplaceDialog->setModal(false);
@@ -791,7 +791,7 @@ void AppWindow::onReceivedMessage(quint32 instanceId, QByteArray message)
     showOnTop();
 
     message = message.mid(message.indexOf("NOLOSTDATA") + 10);
-    auto json = QJsonDocument::fromBinaryData(message);
+    auto json = QJsonDocument::fromJson(message);
     FROMJSON(cpp).toBool();
     FROMJSON(java).toBool();
     FROMJSON(python).toBool();

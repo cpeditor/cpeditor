@@ -1,4 +1,4 @@
-pkgbase = cpeditor
+pkgbase = cpeditor-git
 	pkgdesc = The editor for competitive programming
 	pkgver = @PROJECT_VERSION@
 	pkgrel = 1
@@ -8,16 +8,26 @@ pkgbase = cpeditor
 	makedepends = cmake
 	makedepends = git
 	makedepends = python3
-	depends = qt5-base
+	depends = qt5-base>=5.15.0
 	optdepends = cf-tool: submit to Codeforces support
 	optdepends = clang: C++ format and language server support
 	optdepends = jdk-openjdk: compile Java support
 	optdepends = jre-openjdk: execute Java support
 	optdepends = python: execute Python support
 	optdepends = xterm: detached run support
-	conflicts = cpeditor-git
-	source = https://github.com/cpeditor/cpeditor/releases/download/@PROJECT_VERSION@/cpeditor-@PROJECT_VERSION@-full-source.tar.gz
-	sha256sums = SKIP
+	conflicts = cpeditor
+	source = git://github.com/cpeditor/cpeditor.git
+	source = git://github.com/cpeditor/QCodeEditor.git
+	source = git://github.com/cpeditor/QtFindReplaceDialog.git
+	source = git://github.com/cpeditor/lsp-cpp.git
+	source = git://github.com/itay-grudev/singleapplication.git
+	source = git://github.com/MikeMirzayanov/testlib.git
+	md5sums = SKIP
+	md5sums = SKIP
+	md5sums = SKIP
+	md5sums = SKIP
+	md5sums = SKIP
+	md5sums = SKIP
 
-pkgname = cpeditor
+pkgname = cpeditor-git
 
