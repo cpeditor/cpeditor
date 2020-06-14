@@ -2,13 +2,13 @@
 
 pkgname=cpeditor-git
 _pkgname=cpeditor
-pkgver=VERSION
+pkgver=@PROJECT_VERSION@
 pkgrel=1
 pkgdesc='The editor for competitive programming'
 arch=('x86_64')
 url='https://github.com/cpeditor/cpeditor'
 license=('GPL3')
-depends=('qt5-base')
+depends=('qt5-base>=5.15.0')
 makedepends=(
 	"cmake"
 	"git"

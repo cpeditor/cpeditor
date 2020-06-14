@@ -48,6 +48,9 @@ build/
 # Visual Studio
 .vs
 
+# Visual Studio CMake
+CMakeSettings.json
+
 # Visual Studio Code
 .vscode
 

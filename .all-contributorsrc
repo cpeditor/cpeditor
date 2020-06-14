@@ -19,7 +19,8 @@
         "translation",
         "ideas",
         "bug",
-        "review"
+        "review",
+        "infra"
       ]
     },
     {
@@ -33,7 +34,8 @@
         "doc",
         "ideas",
         "bug",
-        "review"
+        "review",
+        "infra"
       ]
     },
     {
@@ -117,6 +119,15 @@
         "ideas",
         "review",
         "translation"
+      ]
+    },
+    {
+      "login": "palob",
+      "name": "Vincent Bermel",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/7050624?v=4",
+      "profile": "https://github.com/palob",
+      "contributions": [
+        "infra"
       ]
     },
     {
@@ -343,6 +354,15 @@
       "name": "Abishake",
       "avatar_url": "https://avatars2.githubusercontent.com/u/36559835?v=4",
       "profile": "http://abishake.co",
+      "contributions": [
+        "ideas"
+      ]
+    },
+    {
+      "login": "sahil-ra",
+      "name": "sahil-ra",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/30044253?v=4",
+      "profile": "https://github.com/sahil-ra",
       "contributions": [
         "ideas"
       ]

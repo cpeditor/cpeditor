@@ -3,19 +3,19 @@ name: "CI: Build Test"
 on: [push, pull_request]
 
 env:
-  CMAKE_VERSION: 3.16.6
+  QT_VERSION: 5.15.0
+  CMAKE_VERSION: 3.16.8
   NINJA_VERSION: 1.10.0
-  BUILD_TYPE: Release
   CCACHE_VERSION: 3.7.7
+  BUILD_TYPE: Release
 
 jobs:
   build:
-    name: "${{ matrix.config.os }} Qt ${{ matrix.qt_version }}"
+    name: "${{ matrix.config.os }}"
     runs-on: ${{ matrix.config.os }}
     strategy:
       fail-fast: false
       matrix:
-        qt_version: [5.14.2]
         config:
           - {
               os: windows-latest,
@@ -48,13 +48,15 @@ jobs:
         uses: actions/cache@v1
         with:
           path: ../Qt
-          key: Qt-${{ matrix.config.os }}-${{ matrix.qt_version }}
+          key: Qt-${{ matrix.config.os }}-${{ env.QT_VERSION }}
 
       - name: Set up Qt environment
         uses: jurplel/install-qt-action@v2
         with:
           cached: ${{ steps.cache-qt.outputs.cache-hit }}
-          version: ${{ matrix.qt_version }}
+          version: ${{ env.QT_VERSION }}
+          arch: "win64_msvc2019_64"
+          aqtversion: ">=0.9.0"
 
       - name: Download Ninja and CMake
         id: cmake_and_ninja
@@ -111,9 +113,9 @@ jobs:
         uses: actions/cache@v1
         with:
           path: .ccache
-          key: ${{ matrix.config.os }}-${{ matrix.qt_version }}-ccache-${{ steps.ccache_cache_timestamp.outputs.timestamp }}
+          key: ${{ matrix.config.os }}-${{ env.QT_VERSION }}-ccache-${{ steps.ccache_cache_timestamp.outputs.timestamp }}
           restore-keys: |
-            ${{ matrix.config.os }}-${{ matrix.qt_version }}-ccache-
+            ${{ matrix.config.os }}-${{ env.QT_VERSION }}-ccache-
 
       - name: Configure CMake
         shell: cmake -P {0}
@@ -192,11 +194,11 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@v1
         with:
-          name: "cpeditor-${{ matrix.config.os }}-${{ matrix.qt_version }}-${{ github.sha }}"
+          name: "cpeditor-${{ matrix.config.os }}-${{ github.sha }}"
           path: build/${{ matrix.config.binary }}
 
       - name: Get the version
-        if: startsWith(github.ref, 'refs/tags') && (matrix.qt_version == '5.14.2')
+        if: startsWith(github.ref, 'refs/tags')
         id: get_version
         shell: bash
         run: |
@@ -210,7 +212,7 @@ jobs:
           fi
 
       - name: Pack to dmg on Mac
-        if: matrix.config.os == 'macos-latest' && startsWith(github.ref, 'refs/tags') && (matrix.qt_version == '5.14.2')
+        if: matrix.config.os == 'macos-latest' && startsWith(github.ref, 'refs/tags')
         run: |
           cd build
           ../../Qt/*/*/bin/macdeployqt cpeditor.app
@@ -218,7 +220,7 @@ jobs:
           hdiutil create -volname cpeditor-${{ steps.get_version.outputs.VERSION }}-x64 -srcfolder cpeditor.app -ov -format UDZO cpeditor-${{ steps.get_version.outputs.VERSION }}-x64.dmg
 
       - name: Release on Mac
-        if: matrix.config.os == 'macos-latest' && startsWith(github.ref, 'refs/tags') && (matrix.qt_version == '5.14.2')
+        if: matrix.config.os == 'macos-latest' && startsWith(github.ref, 'refs/tags')
         uses: softprops/action-gh-release@v1
         with:
           draft: true
@@ -229,13 +231,13 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Install innosetup on Windows
-        if: matrix.config.os == 'windows-latest' && startsWith(github.ref, 'refs/tags') && (matrix.qt_version == '5.14.2')
+        if: matrix.config.os == 'windows-latest' && startsWith(github.ref, 'refs/tags')
         uses: crazy-max/ghaction-chocolatey@v1
         with:
           args: "install innosetup"
 
       - name: Pack to exe on Windows
-        if: matrix.config.os == 'windows-latest' && startsWith(github.ref, 'refs/tags') && (matrix.qt_version == '5.14.2')
+        if: matrix.config.os == 'windows-latest' && startsWith(github.ref, 'refs/tags')
         shell: bash
         run: |
           mkdir build/out
@@ -244,7 +246,7 @@ jobs:
           iscc .ci/win/win-setup.iss -DMyAppVersion=${{ steps.get_version.outputs.VERSION }} -DMyProjectRoot=$(pwd) -DMyOutRoot=$(pwd)/build/out
 
       - name: Release on Windows
-        if: matrix.config.os == 'windows-latest' && startsWith(github.ref, 'refs/tags') && (matrix.qt_version == '5.14.2')
+        if: matrix.config.os == 'windows-latest' && startsWith(github.ref, 'refs/tags')
         uses: softprops/action-gh-release@v1
         with:
           draft: true

@@ -17,8 +17,8 @@
 #include "LanguageServer.hpp"
 #include "Core/EventLogger.hpp"
 #include "Core/MessageLogger.hpp"
+#include "Settings/SettingsManager.hpp"
 #include "Util/Util.hpp"
-#include "generated/SettingsHelper.hpp"
 #include <LSPClient.hpp>
 #include <QDir>
 #include <QFileInfo>
@@ -73,7 +73,17 @@ void LanguageServer::openDocument(QString path, QCodeEditor *editor, MessageLogg
 
     std::string uri = "file://" + path.toStdString();
     std::string code = m_editor->toPlainText().toStdString();
-    std::string lang = language.toStdString();
+    std::string lang;
+
+    if (language == "Java")
+        lang = "java";
+    else if (language == "Python")
+        lang = "python";
+    else
+    {
+        LOG_WARN_IF(language != "C++", "Unknown language " << language);
+        lang = "cpp";
+    }
 
     lsp->didOpen(uri, code, lang);
 }
@@ -159,40 +169,17 @@ void LanguageServer::updatePath(QString newPath)
 // Private methods
 bool LanguageServer::shouldCreateClient()
 {
-    if (language == "python")
-        return SettingsHelper::isLSPUseAutocompletePython() || SettingsHelper::isLSPUseLintingPython();
-    else if (language == "java")
-        return SettingsHelper::isLSPUseAutocompleteJava() || SettingsHelper::isLSPUseLintingJava();
-    else
-    {
-        LOG_WARN_IF(language != "cpp", "Invalid language " << language << "falling back to C++");
-        language = "cpp";
-        return SettingsHelper::isLSPUseAutocompleteCpp() || SettingsHelper::isLSPUseLintingCpp();
-    }
+    return SettingsManager::get("LSP/Use Linting " + language).toBool() ||
+           SettingsManager::get("LSP/Use Autocomplete " + language).toBool();
 }
 
 void LanguageServer::createClient()
 {
-
-    QString lspArgCpp = SettingsHelper::getLSPArgsCpp().trimmed();
-    QString lspArgPython = SettingsHelper::getLSPArgsPython().trimmed();
-    QString lspArgJava = SettingsHelper::getLSPArgsJava().trimmed();
-
-    QStringList argListCpp, argListPython, argListJava;
-
-    if (!lspArgCpp.isEmpty())
-        argListCpp = Util::splitArgument(lspArgCpp);
-    if (!lspArgPython.isEmpty())
-        argListPython = Util::splitArgument(lspArgPython);
-    if (!lspArgJava.isEmpty())
-        argListJava = Util::splitArgument(lspArgJava);
-
-    if (language == "python")
-        lsp = new LSPClient(SettingsHelper::getLSPPathPython(), argListPython);
-    else if (language == "java")
-        lsp = new LSPClient(SettingsHelper::getLSPPathJava(), argListJava);
-    else
-        lsp = new LSPClient(SettingsHelper::getLSPPathCpp(), argListCpp);
+    if (lsp)
+        delete lsp;
+    auto program = SettingsManager::get("LSP/Path " + language).toString();
+    auto args = QProcess::splitCommand(SettingsManager::get("LSP/Args " + language).toString().trimmed());
+    lsp = new LSPClient(program, args);
 }
 
 void LanguageServer::performConnection()

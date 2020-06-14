@@ -58,29 +58,31 @@ void Compiler::start(const QString &tmpFilePath, const QString &sourceFilePath, 
         return;
     }
 
-    // get the full compile command
-    // please remember to quote the file paths
-
-    QString command;
-
-    if (lang == "C++")
-    {
-        command = QString("%1 \"%2\" -o \"%3\"")
-                      .arg(compileCommand)
-                      .arg(QFileInfo(tmpFilePath).canonicalFilePath())
-                      .arg(outputPath(tmpFilePath, sourceFilePath, "C++"));
-    }
-    else if (lang == "Java")
-    {
-        command = QString("%1 \"%2\" -d \"%3\"")
-                      .arg(compileCommand)
-                      .arg(QFileInfo(tmpFilePath).canonicalFilePath())
-                      .arg(outputPath(tmpFilePath, sourceFilePath, "Java"));
-    }
-    else if (lang == "Python")
+    if (lang == "Python")
     {
         emit compilationFinished(""); // we don't actually compile Python
         return;
+    }
+
+    // get the compile command
+
+    QStringList args = QProcess::splitCommand(compileCommand);
+
+    if (args.isEmpty())
+    {
+        emit compilationErrorOccurred(tr("The compile command for %1 is empty").arg(lang));
+        return;
+    }
+
+    QString program = args.takeFirst();
+
+    if (lang == "C++")
+    {
+        args << QFileInfo(tmpFilePath).canonicalFilePath() << "-o" << outputPath(tmpFilePath, sourceFilePath, "C++");
+    }
+    else if (lang == "Java")
+    {
+        args << QFileInfo(tmpFilePath).canonicalFilePath() << "-d" << outputPath(tmpFilePath, sourceFilePath, "Java");
     }
     else
     {
@@ -88,24 +90,30 @@ void Compiler::start(const QString &tmpFilePath, const QString &sourceFilePath, 
         return;
     }
 
-    LOG_INFO(INFO_OF(lang) << INFO_OF(command));
+    LOG_INFO(INFO_OF(lang) << INFO_OF(args.join(" ")));
     // start compilation
-    compileProcess->start(command);
+    compileProcess->start(program, args);
 }
 
 bool Compiler::check(const QString &compileCommand)
 {
+    if (compileCommand.isEmpty())
+    {
+        LOG_WARN("The compile command is empty");
+        return false;
+    }
+
     QProcess checkProcess;
 
     // check both "--version" and "-version", "-version" is mainly for Java
 
-    checkProcess.start(compileCommand.trimmed().split(' ').front() + " --version");
+    checkProcess.start(QProcess::splitCommand(compileCommand)[0], {"--version"});
     bool finished = checkProcess.waitForFinished(2000);
     if (finished && checkProcess.exitCode() == 0)
         return true;
     checkProcess.kill(); // kill it if it's not finished, no harm if it's finished with non-zero exit code
 
-    checkProcess.start(compileCommand.trimmed().split(' ').front() + " -version");
+    checkProcess.start(QProcess::splitCommand(compileCommand)[0], {"-version"});
     finished = checkProcess.waitForFinished(2000);
 
     LOG_INFO(BOOL_INFO_OF(finished) << INFO_OF(checkProcess.exitCode()));

@@ -18,10 +18,6 @@
 #ifndef UTIL_HPP
 #define UTIL_HPP
 
-#include <QStringList>
-
-class MessageLogger;
-class QCodeEditor;
 class QPalette;
 class QWidget;
 
@@ -29,8 +25,6 @@ namespace Util
 {
 
 QPalette windowsDarkThemePalette();
-
-QStringList splitArgument(QString);
 
 void showWidgetOnTop(QWidget *widget);
 } // namespace Util

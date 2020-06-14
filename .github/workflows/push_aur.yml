@@ -35,9 +35,9 @@ jobs:
         run: |
           git fetch --tags
           VERSION=$(git describe --long --tags | sed 's/\([^-]*-g\)/r\1/;s/-/./g')
-          cp .ci/aur/PKGBUILD cpeditor-git
-          cp .ci/aur/.SRCINFO cpeditor-git
-          sed -i "s/VERSION/$VERSION/" cpeditor-git/PKGBUILD cpeditor-git/.SRCINFO
+          cp .ci/aur/git/PKGBUILD cpeditor-git
+          cp .ci/aur/git/.SRCINFO cpeditor-git
+          sed -i "s/@PROJECT_VERSION@/$VERSION/" cpeditor-git/PKGBUILD cpeditor-git/.SRCINFO
 
       - name: Publish to AUR
         run: |
