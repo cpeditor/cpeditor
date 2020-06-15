@@ -38,7 +38,6 @@ class StyleManager
     static void setFusionDarkTooltip();
     static QPalette fusionLightPalette();
     static void setFusionLightTooltip();
-
 };
 
 } // namespace Core
