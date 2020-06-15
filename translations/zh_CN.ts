@@ -538,6 +538,16 @@
         <translation type="unfinished">设置...</translation>
     </message>
     <message>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="406"/>
+        <source>Export Settings...</source>
+        <translation type="unfinished">导出设置...</translation>
+    </message>
+    <message>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="407"/>
+        <source>Import Settings...</source>
+        <translation type="unfinished">导入设置...</translation>
+    </message>
+    <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="409"/>
         <source>About...</source>
         <translation type="unfinished">关于...</translation>
@@ -566,16 +576,6 @@
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="405"/>
         <source>Reset Settings</source>
         <translation type="unfinished">重置设置</translation>
-    </message>
-    <message>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="406"/>
-        <source>Export Settings</source>
-        <translation type="unfinished">导出设置</translation>
-    </message>
-    <message>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="407"/>
-        <source>Import Settings</source>
-        <translation type="unfinished">导入设置</translation>
     </message>
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="408"/>

@@ -538,6 +538,16 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="406"/>
+        <source>Export Settings...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="407"/>
+        <source>Import Settings...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="409"/>
         <source>About...</source>
         <translation type="unfinished"></translation>
@@ -565,16 +575,6 @@
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="405"/>
         <source>Reset Settings</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="406"/>
-        <source>Export Settings</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="407"/>
-        <source>Import Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

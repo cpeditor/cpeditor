@@ -388,12 +388,12 @@
   </action>
   <action name="action_export_settings">
    <property name="text">
-    <string>Export Settings</string>
+    <string>Export Settings...</string>
    </property>
   </action>
   <action name="action_import_settings">
    <property name="text">
-    <string>Import Settings</string>
+    <string>Import Settings...</string>
    </property>
   </action>
   <action name="actionManual">
