@@ -67,7 +67,7 @@ void Runner::run(const QString &tmpFilePath, const QString &sourceFilePath, cons
     }
 
     // get the command for execution
-    QString command = getCommand(tmpFilePath, sourceFilePath, lang, runCommand, args);
+    QStringList command = QProcess::splitCommand(getCommand(tmpFilePath, sourceFilePath, lang, runCommand, args));
     if (command.isEmpty())
     {
         emit failedToStartRun(runnerIndex, "Failed to get run command. It's probably a bug");
@@ -90,7 +90,9 @@ void Runner::run(const QString &tmpFilePath, const QString &sourceFilePath, cons
     killTimer->start();
     runTimer->start();
 
-    runProcess->start(command);
+    QString program = command.takeFirst();
+
+    runProcess->start(program, command);
     bool started = runProcess->waitForStarted(2000);
 
     if (!started)
@@ -115,7 +117,7 @@ void Runner::runDetached(const QString &tmpFilePath, const QString &sourceFilePa
     // check whether xterm is installed at first
     LOG_INFO("Using xterm on unix");
     QProcess testProcess;
-    testProcess.start("xterm -v");
+    testProcess.start("xterm", {"-v"});
     bool finished = testProcess.waitForFinished(2000);
     if (!finished || testProcess.exitCode() != 0)
     {
@@ -139,9 +141,10 @@ void Runner::runDetached(const QString &tmpFilePath, const QString &sourceFilePa
     runProcess->closeWriteChannel();
 #else
     // use cmd on Windows
-    runProcess->start("cmd /C \"start cmd /C " +
-                      getCommand(tmpFilePath, sourceFilePath, lang, runCommand, args).replace("\"", "^\"") +
-                      " ^& pause\"");
+    runProcess->start("cmd", QProcess::splitCommand(
+                                 "/C \"start cmd /C " +
+                                 getCommand(tmpFilePath, sourceFilePath, lang, runCommand, args).replace("\"", "^\"") +
+                                 " ^& pause\""));
     LOG_INFO("CMD Arguemnts " << runProcess->arguments().join(" "));
 
 #endif

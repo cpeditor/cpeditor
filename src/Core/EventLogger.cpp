@@ -115,9 +115,9 @@ QTextStream &Log::log(const QString &priority, QString funcName, int line, QStri
     if (fileName.size() > MAXIMUM_FILE_NAME_SIZE)
         fileName = fileName.right(MAXIMUM_FILE_NAME_SIZE);
 
-    return logStream << dateTimeStamp() << center << "[" << priority << "]["
+    return logStream << dateTimeStamp() << Qt::center << "[" << priority << "]["
                      << qSetFieldWidth(MAXIMUM_FUNCTION_NAME_SIZE) << funcName << qSetFieldWidth(0) << "]["
-                     << qSetFieldWidth(MAXIMUM_FILE_NAME_SIZE) << fileName << qSetFieldWidth(0) << left << "]"
+                     << qSetFieldWidth(MAXIMUM_FILE_NAME_SIZE) << fileName << qSetFieldWidth(0) << Qt::left << "]"
                      << "(" << line << ")::";
 }
 

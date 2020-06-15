@@ -186,7 +186,7 @@ int main(int argc, char *argv[])
             TOJSON(python);
             TOJSON(number);
             TOJSON(path);
-            if (app.sendMessage("AAAAAAAAAAAAAAAAAAAANOLOSTDATA" + QJsonDocument(json).toBinaryData()))
+            if (app.sendMessage("AAAAAAAAAAAAAAAAAAAANOLOSTDATA" + QJsonDocument(json).toJson()))
             {
                 LOG_INFO("This is secondary application. Sending to primary instance the binary data : " +
                          QJsonDocument(json).toJson(QJsonDocument::Compact));
@@ -239,7 +239,7 @@ int main(int argc, char *argv[])
             TOJSON(java);
             TOJSON(python);
             json["paths"] = QJsonArray::fromStringList(args);
-            if (app.sendMessage("AAAAAAAAAAAAAAAAAAAANOLOSTDATA" + QJsonDocument(json).toBinaryData()))
+            if (app.sendMessage("AAAAAAAAAAAAAAAAAAAANOLOSTDATA" + QJsonDocument(json).toJson()))
             {
                 LOG_INFO("This is secondary application. Sending to primary instance the data : "
                          << QJsonDocument(json).toJson(QJsonDocument::Compact));

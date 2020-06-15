@@ -1,5 +1,9 @@
 ## UNRELEASED
 
+### Changed
+
+- Now the lengths of the files added by "Add Pairs of Testcases From Files" are limited by Preferences->Advanced->Limits->Load Test Case File Length Limit. (#405)
+
 ## v6.5
 
 ### Added
@@ -33,6 +37,7 @@
 - Open an empty untitled tab when the open file length limit is exceeded. (#353)
 - When parsing a problem while it is already parsed and opened in a tab, the new test cases will override the old test cases.
 - If you click "Cancel" when saving all files, the action will be aborted instead of saving the next file.
+- The Qt version is upgraded to 5.15. (#374 and #378)
 
 ## v6.4
 
