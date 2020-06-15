@@ -28,19 +28,17 @@ namespace Core
 class StyleManager
 {
   public:
-    static void initiateStyle();
+    static bool initiateStyle(QString);
     static QStringList styleList();
-    static bool setStyle(QString styleName);
 
   private:
+    static bool setStyle(QString styleName);
     static bool isWindowsDarkThemeforApps();
     static QPalette fusionDarkPalette();
     static void setFusionDarkTooltip();
     static QPalette fusionLightPalette();
     static void setFusionLightTooltip();
 
-    static QStyle *defaultStyle;
-    static QString defaultStyleSheet;
 };
 
 } // namespace Core
