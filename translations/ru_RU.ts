@@ -1258,6 +1258,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="248"/>
+        <location filename="../src/mainwindow.cpp" line="262"/>
         <source>CF Tool</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1267,13 +1268,8 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="262"/>
-        <source>CFTool</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../src/mainwindow.cpp" line="263"/>
-        <source>You will not be able to submit code to Codeforces because CFTool is not installed or is not on SYSTEM PATH. You can set it manually in settings.</source>
+        <source>You will not be able to submit code to Codeforces because CF Tool is not installed or is not on SYSTEM PATH. You can set it manually in settings.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

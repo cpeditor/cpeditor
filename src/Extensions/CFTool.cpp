@@ -44,7 +44,7 @@ void CFTool::submit(const QString &filePath, const QString &url)
     {
         if (CFToolProcess->state() == QProcess::Running)
         {
-            LOG_WARN("CFTool was already running, forcefully killing it now");
+            LOG_WARN("CF Tool was already running, forcefully killing it now");
             CFToolProcess->kill();
             delete CFToolProcess;
             log->error(tr("CF Tool"), tr("CF Tool was killed"));

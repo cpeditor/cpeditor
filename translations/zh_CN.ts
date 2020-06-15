@@ -1112,7 +1112,7 @@
     <message>
         <location filename="../build/third_party/QtFindReplaceDialog/dialogs/QtFindReplaceDialog_autogen/include/ui_findreplacedialog.h" line="46"/>
         <source>Find/Replace</source>
-        <translation type="unfinished">查找替换</translation>
+        <translation type="unfinished">查找/替换</translation>
     </message>
 </context>
 <context>
@@ -1177,7 +1177,14 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;You may want to take a look at the syntax of regular expressions:&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://doc.trolltech.com/qregexp.html&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://doc.trolltech.com/qregexp.html&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;被查找的是否是正则表达式。&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;你可能想要学习正则表达式的使用：&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://deerchao.cn/tutorials/regex/regex.htm&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;https://deerchao.cn/tutorials/regex/regex.htm&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../build/third_party/QtFindReplaceDialog/dialogs/QtFindReplaceDialog_autogen/include/ui_findreplaceform.h" line="209"/>
@@ -1211,7 +1218,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../src/mainwindow.cpp" line="1184"/>
         <location filename="../src/mainwindow.cpp" line="1191"/>
         <source>Compiler</source>
-        <translation type="unfinished">编译</translation>
+        <translation type="unfinished">编译器</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="142"/>
@@ -1228,7 +1235,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../src/mainwindow.cpp" line="1161"/>
         <location filename="../src/mainwindow.cpp" line="1167"/>
         <source>Runner</source>
-        <translation type="unfinished">运行</translation>
+        <translation type="unfinished">运行器</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="165"/>
@@ -1258,30 +1265,26 @@ p, li { white-space: pre-wrap; }
 
  URL: %1
  Language: %2</source>
-        <translation type="unfinished">确认提交解答到Codeforces？
+        <translation type="unfinished">确认要提交代码到 Codeforces 吗？
 
 链接：%1
 语言：%2</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="248"/>
+        <location filename="../src/mainwindow.cpp" line="262"/>
         <source>CF Tool</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="249"/>
         <source>Failed to save the temp file, and the solution is not submitted.</source>
-        <translation type="unfinished">保存临时文件失败，解答未提交。</translation>
-    </message>
-    <message>
-        <location filename="../src/mainwindow.cpp" line="262"/>
-        <source>CFTool</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">保存临时文件失败，代码未提交。</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="263"/>
-        <source>You will not be able to submit code to Codeforces because CFTool is not installed or is not on SYSTEM PATH. You can set it manually in settings.</source>
-        <translation type="unfinished">由于你没有安装CF Tool或没有将其加入系统路径中，你将不能向Codeforces提交代码。你可以在设置中手动设置。</translation>
+        <source>You will not be able to submit code to Codeforces because CF Tool is not installed or is not on SYSTEM PATH. You can set it manually in settings.</source>
+        <translation type="unfinished">你无法将代码提交至 Codeforces，因为 CF Tool 没有安装，或是它不在 PATH 环境变量里。你可以在设置中手动设置 CF Tool 的路径。</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="551"/>
@@ -1291,7 +1294,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/mainwindow.cpp" line="612"/>
         <source>Open %1 Template</source>
-        <translation type="unfinished">打开%1的模板</translation>
+        <translation type="unfinished">打开 %1 的模板</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="754"/>
@@ -1302,7 +1305,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/mainwindow.cpp" line="763"/>
         <source>The file [%1] contains more than %2 characters, so it&apos;s not opened. You can change the open file length limit in Preferences-&gt;Advanced-&gt;Limits-&gt;Open File Length Limit</source>
-        <translation type="unfinished">文件[%1]包含超过%2个字符，因此没有被打开。你可以在设置-&gt;Advanced-&gt;Limits-&gt;打开文件长度限制中更改</translation>
+        <translation type="unfinished">文件 [%1] 包含超过 %2 个字符，因此没有被打开。你可以在设置-&gt;Advanced-&gt;Limits-&gt;打开文件长度限制中更改长度限制</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="867"/>
@@ -1324,7 +1327,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/mainwindow.cpp" line="947"/>
         <source>Read %1 Template</source>
-        <translation type="unfinished">读取%1的模板</translation>
+        <translation type="unfinished">读取 %1 的模板</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="972"/>
@@ -1334,7 +1337,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/mainwindow.cpp" line="973"/>
         <source>Save changes to [%1] before closing?</source>
-        <translation type="unfinished">关闭前将更改保存至[%1]？</translation>
+        <translation type="unfinished">关闭前将更改保存至 [%1]？</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="973"/>
@@ -1349,12 +1352,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/mainwindow.cpp" line="1002"/>
         <source>Set Tab language</source>
-        <translation type="unfinished">设置标签语言</translation>
+        <translation type="unfinished">设置标签页语言</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="1002"/>
         <source>Set the language to use in this Tab</source>
-        <translation type="unfinished">设置标签所用语言</translation>
+        <translation type="unfinished">设置该标签页所使用的语言</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="1039"/>
@@ -1375,37 +1378,37 @@ Do you want to reload it?</source>
     <message>
         <location filename="../src/mainwindow.cpp" line="1074"/>
         <source>Line %1, Column %2</source>
-        <translation type="unfinished">行%1，列%2</translation>
+        <translation type="unfinished">行 %1，列 %2</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="1086"/>
         <source>%1 lines, %2 charachters selected</source>
-        <translation type="unfinished">%1行，%2个字符被选择</translation>
+        <translation type="unfinished">共有 %1 行，%2 个字符被选择</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="1088"/>
         <source>%1 characters selected</source>
-        <translation type="unfinished">%1个字符被选择</translation>
+        <translation type="unfinished">共有 %1 个字符被选择</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="1129"/>
         <source>The compile command for %1 is invalid. Is the compiler in the system PATH?</source>
-        <translation type="unfinished">语言%1的编译命令不可用。编译器是否在系统路径中？</translation>
+        <translation type="unfinished">语言 %1 的编译命令不可用。编译器是否在环境变量 PATH 中？</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="1133"/>
         <source>The run command for %1 is invalid. Is the runner in the system Path?</source>
-        <translation type="unfinished">语言%1的运行命令不可用。解释器是否在系统路径中？</translation>
+        <translation type="unfinished">语言 %1 的运行命令不可用。解释器是否在环境变量 PATH 中？</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="1140"/>
         <source>Compilation has started</source>
-        <translation type="unfinished">编译开始</translation>
+        <translation type="unfinished">编译已开始</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="1147"/>
         <source>Compilation has finished</source>
-        <translation type="unfinished">编译结束</translation>
+        <translation type="unfinished">编译已结束</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="1150"/>
@@ -1430,32 +1433,32 @@ Do you want to reload it?</source>
     <message>
         <location filename="../src/mainwindow.cpp" line="1199"/>
         <source>Detached Runner</source>
-        <translation type="unfinished">脱离式实例</translation>
+        <translation type="unfinished">终端运行器</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="1200"/>
         <source>Runner[%1]</source>
-        <translation type="unfinished">实例[%1]</translation>
+        <translation type="unfinished">运行器[%1]</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="1205"/>
         <source>Execution has started</source>
-        <translation type="unfinished">执行开始</translation>
+        <translation type="unfinished">执行已开始</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="1214"/>
         <source>Execution for test case #%1 has finished in %2ms</source>
-        <translation type="unfinished">针对测试点#%1的程序在%2毫秒后结束</translation>
+        <translation type="unfinished">程序在测试点 #%1 上运行了 %2ms 后终止了</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="1219"/>
         <source>Execution for test case #%1 has finished with non-zero exitcode %2 in %3ms</source>
-        <translation type="unfinished">针对测试点#%1的程序在%3毫秒后以非零返回值%2结束</translation>
+        <translation type="unfinished">程序在测试点 #%1 上运行了 %3ms 后以非零返回值 %2 终止了</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="1226"/>
         <source>/stderr</source>
-        <translation type="unfinished">/标准错误流</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="1239"/>
@@ -1465,22 +1468,22 @@ Do you want to reload it?</source>
     <message>
         <location filename="../src/mainwindow.cpp" line="1245"/>
         <source>The %1 of the process running on the testcase #%2 contains more than %3 characters, which is longer than the output length limit, so the process is killed. You can change the output length limit in Preferences-&gt;Advanced-&gt;Limits-&gt;Output Length Limit</source>
-        <translation type="unfinished">测试点#%2的%1超过%3个字符，超出了输出限制，因此进程被结束。你可以在设置-&gt;Advance-&gt;Limits-&gt;输出限制中更改</translation>
+        <translation type="unfinished">在测试点 #%2 上运行的程序的 %1 包含多于 %3 个字符，超出了输出长度限制，因此进程被结束。你可以在设置-&gt;Advance-&gt;Limits-&gt;输出限制中更改长度限制</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="1256"/>
         <source>%1 has been killed</source>
-        <translation type="unfinished">%1已被终止</translation>
+        <translation type="unfinished">%1 已被终止</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="1257"/>
         <source>Detached runner</source>
-        <translation type="unfinished">脱离式实例</translation>
+        <translation type="unfinished">终端运行器</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="1257"/>
         <source>Runner for testcase #%1</source>
-        <translation type="unfinished">测试点#%1的实例</translation>
+        <translation type="unfinished">在测试点 #%1 上运行的程序</translation>
     </message>
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_mainwindow.h" line="188"/>

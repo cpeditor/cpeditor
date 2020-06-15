@@ -259,8 +259,8 @@ void MainWindow::setCFToolUI()
     if (!Extensions::CFTool::check(cftoolPath))
     {
         submitToCodeforces->setEnabled(false);
-        log->error(tr("CFTool"),
-                   tr("You will not be able to submit code to Codeforces because CFTool is not installed or is "
+        log->error(tr("CF Tool"),
+                   tr("You will not be able to submit code to Codeforces because CF Tool is not installed or is "
                       "not on SYSTEM PATH. You can set it manually in settings."));
     }
 }
