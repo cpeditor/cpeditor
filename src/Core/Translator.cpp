@@ -23,11 +23,9 @@
 
 namespace Core
 {
-const static QMap<QString, QString> locales = {{"简体中文", "SimplifiedChinese"},
-                                               // {"繁體中文", "TraditionalChinese"},
-                                               {"Русский", "Russian"}};
-
-const static QMap<QString, QString> syslocale = {{"zh", "SimplifiedChinese"}, {"ru", "Russian"}};
+const static QMap<QString, QString> locales = {{"简体中文", "zh_CN"},
+                                               // {"繁體中文", "zh_TW"},
+                                               {"Русский", "ru_RU"}};
 
 QTranslator *Translator::translator = nullptr;
 
@@ -40,20 +38,19 @@ void Translator::setLocale(const QString &language)
         delete translator;
         translator = nullptr;
     }
-    QString locale = "";
+    QString locale;
     if (language == "system")
     {
-        QString name = QLocale::system().name().split('_').first();
-        if (syslocale.contains(name))
-        {
-            locale = syslocale[name];
-        }
+        auto name = QLocale::system().name();
+        LOG_INFO("System locale: " << INFO_OF(name));
+        if (locales.values().contains(name))
+            locale = name;
     }
     else if (locales.keys().contains(language))
     {
         locale = locales[language];
     }
-    if (locale != "")
+    if (!locale.isEmpty())
     {
         translator = new QTranslator(qApp);
         translator->load(QString(":/translations/%1.qm").arg(locale));

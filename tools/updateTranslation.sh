@@ -12,6 +12,6 @@ for i in "${DIRS[@]}"; do
 	INCS=("${INCS[@]}" -I src/"$i");
 done
 
-for i in SimplifiedChinese Russian; do
+for i in zh_CN ru_RU; do
 	lupdate -no-obsolete "${SOURCES[@]}" -ts translations/$i.ts -I src "${INCS[@]}"
 done
