@@ -2002,7 +2002,7 @@ You can use &quot;${filename}&quot; for the complete file name,
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="64"/>
         <source>Auto Indent</source>
-        <translation type="unfinished">自动制表</translation>
+        <translation type="unfinished">自动缩进</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="64"/>
@@ -2111,7 +2111,7 @@ This can be overridden for each parenthesis in each language.</source>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="72"/>
         <source>Use Clang Format to format the codes when saving it.</source>
-        <translation type="unfinished">在保存文件是使用clang format格式化代码。</translation>
+        <translation type="unfinished">在保存文件时使用clang format格式化代码。</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="73"/>
@@ -2349,7 +2349,7 @@ A testcase file won&apos;t be loaded if it&apos;s too long.</source>
         <location filename="../build/generated/SettingsInfo.cpp" line="103"/>
         <location filename="../build/generated/SettingsInfo.cpp" line="104"/>
         <source>Path to LSP executable</source>
-        <translation type="unfinished">LSP可执行文件的路径</translation>
+        <translation type="unfinished">路径</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="102"/>
@@ -2371,7 +2371,7 @@ A testcase file won&apos;t be loaded if it&apos;s too long.</source>
         <location filename="../build/generated/SettingsInfo.cpp" line="106"/>
         <location filename="../build/generated/SettingsInfo.cpp" line="107"/>
         <source>Use Linting with Language Server</source>
-        <translation type="unfinished">使用Language Server提供的提示</translation>
+        <translation type="unfinished">启用Language Server</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="105"/>
@@ -2421,7 +2421,7 @@ A testcase file won&apos;t be loaded if it&apos;s too long.</source>
         <location filename="../build/generated/SettingsInfo.cpp" line="115"/>
         <location filename="../build/generated/SettingsInfo.cpp" line="116"/>
         <source>Arguments for Language Server</source>
-        <translation type="unfinished">Language Server的参数</translation>
+        <translation type="unfinished">参数</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="114"/>
