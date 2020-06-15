@@ -45,7 +45,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>17</height>
+     <height>23</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -375,7 +375,7 @@
   </action>
   <action name="actionSettings">
    <property name="text">
-    <string>Preferences</string>
+    <string>Preferences...</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+P</string>
@@ -403,22 +403,22 @@
   </action>
   <action name="actionAbout">
    <property name="text">
-    <string>About</string>
+    <string>About...</string>
    </property>
   </action>
   <action name="actionAboutQt">
    <property name="text">
-    <string>About Qt</string>
+    <string>About Qt...</string>
    </property>
   </action>
   <action name="actionBuildInfo">
    <property name="text">
-    <string>Build Info</string>
+    <string>Build Info...</string>
    </property>
   </action>
   <action name="actionCheck_for_updates">
    <property name="text">
-    <string>Check for updates</string>
+    <string>Check for updates...</string>
    </property>
   </action>
   <action name="actionSupport_me">

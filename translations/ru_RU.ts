@@ -529,7 +529,27 @@
     </message>
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="401"/>
-        <source>Preferences</source>
+        <source>Preferences...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="409"/>
+        <source>About...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="410"/>
+        <source>About Qt...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="411"/>
+        <source>Build Info...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="412"/>
+        <source>Check for updates...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -559,23 +579,7 @@
     </message>
     <message>
         <location filename="../src/appwindow.cpp" line="293"/>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="409"/>
         <source>About</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="410"/>
-        <source>About Qt</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="411"/>
-        <source>Build Info</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="412"/>
-        <source>Check for updates</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

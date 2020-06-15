@@ -529,8 +529,28 @@
     </message>
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="401"/>
-        <source>Preferences</source>
-        <translation type="unfinished">设置</translation>
+        <source>Preferences...</source>
+        <translation type="unfinished">设置...</translation>
+    </message>
+    <message>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="409"/>
+        <source>About...</source>
+        <translation type="unfinished">关于...</translation>
+    </message>
+    <message>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="410"/>
+        <source>About Qt...</source>
+        <translation type="unfinished">关于Qt...</translation>
+    </message>
+    <message>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="411"/>
+        <source>Build Info...</source>
+        <translation type="unfinished">构建信息...</translation>
+    </message>
+    <message>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="412"/>
+        <source>Check for updates...</source>
+        <translation type="unfinished">检查更新...</translation>
     </message>
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="403"/>
@@ -559,24 +579,8 @@
     </message>
     <message>
         <location filename="../src/appwindow.cpp" line="293"/>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="409"/>
         <source>About</source>
         <translation type="unfinished">关于</translation>
-    </message>
-    <message>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="410"/>
-        <source>About Qt</source>
-        <translation type="unfinished">关于 Qt</translation>
-    </message>
-    <message>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="411"/>
-        <source>Build Info</source>
-        <translation type="unfinished">构建信息</translation>
-    </message>
-    <message>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="412"/>
-        <source>Check for updates</source>
-        <translation type="unfinished">检查更新</translation>
     </message>
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="413"/>
