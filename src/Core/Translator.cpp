@@ -27,6 +27,8 @@ const static QMap<QString, QString> locales = {{"简体中文", "SimplifiedChine
                                                // {"繁體中文", "TraditionalChinese"},
                                                {"Русский", "Russian"}};
 
+const static QMap<QString, QString> syslocale = {{"zh", "SimplifiedChinese"}, {"ru", "Russian"}};
+
 QTranslator *Translator::translator = nullptr;
 
 void Translator::setLocale(const QString &language)
@@ -38,10 +40,23 @@ void Translator::setLocale(const QString &language)
         delete translator;
         translator = nullptr;
     }
-    if (locales.keys().contains(language))
+    QString locale = "";
+    if (language == "system")
+    {
+        QString name = QLocale::system().name().split('_').first();
+        if (syslocale.contains(name))
+        {
+            locale = syslocale[name];
+        }
+    }
+    else if (locales.keys().contains(language))
+    {
+        locale = locales[language];
+    }
+    if (locale != "")
     {
         translator = new QTranslator(qApp);
-        translator->load(QString(":/translations/%1.qm").arg(locales[language]));
+        translator->load(QString(":/translations/%1.qm").arg(locale));
         LOG_ERR_IF(!qApp->installTranslator(translator), "Failed to load the translator " << translator);
         updateSettingInfo();
     }

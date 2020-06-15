@@ -743,8 +743,8 @@
         "desc": "UI Language",
         "type": "QString",
         "ui": "QComboBox",
-        "default": "English",
-        "param": "QStringList { \"English\", \"简体中文\", \"Русский\" }",
+        "default": "system",
+        "param": "QStringList { \"system\", \"English\", \"简体中文\", \"Русский\" }",
         "tip": "The language displayed in the UI.",
         "old": [
             "language"
