@@ -1617,6 +1617,31 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
         <translation type="unfinished">欢迎使用CP Editor！让我们开始吧。</translation>
     </message>
     <message>
+        <location filename="../src/Settings/PreferencesHomePage.cpp" line="52"/>
+        <source>Code Editor Settings</source>
+        <translation type="unfinished">代码编辑器设置</translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/PreferencesHomePage.cpp" line="53"/>
+        <source>C++ Compile and Run Commands</source>
+        <translation type="unfinished">C++编译运行命令</translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/PreferencesHomePage.cpp" line="54"/>
+        <source>Java Compile and Run Commands</source>
+        <translation type="unfinished">Java编译运行命令</translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/PreferencesHomePage.cpp" line="55"/>
+        <source>Python Run Commands</source>
+        <translation type="unfinished">Python编译运行命令</translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/PreferencesHomePage.cpp" line="56"/>
+        <source>Appearance</source>
+        <translation type="unfinished">外观</translation>
+    </message>
+    <message>
         <location filename="../src/Settings/PreferencesHomePage.cpp" line="63"/>
         <source>You can read the &lt;a href=&quot;https://github.com/cpeditor/cpeditor/blob/%1/doc/MANUAL.md&quot;&gt;Manual&lt;/a&gt; or go through the settings for more information.</source>
         <translation type="unfinished">你可以阅读 &lt;a href=&quot;https://github.com/cpeditor/cpeditor/blob/%1/doc/MANUAL-zh_CN.md&quot;&gt;手册&lt;/a&gt;或在设置中浏览以获取更多信息。</translation>
@@ -1690,18 +1715,18 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     <message>
         <location filename="../src/Settings/PreferencesWindow.cpp" line="167"/>
         <source>Code Edit</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">代码编辑</translation>
     </message>
     <message>
         <location filename="../src/Settings/PreferencesWindow.cpp" line="170"/>
         <source>Language</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">语言</translation>
     </message>
     <message>
         <location filename="../src/Settings/PreferencesWindow.cpp" line="171"/>
         <location filename="../src/Settings/PreferencesWindow.cpp" line="211"/>
         <source>General</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">一般</translation>
     </message>
     <message>
         <location filename="../src/Settings/PreferencesWindow.cpp" line="172"/>
@@ -1711,22 +1736,22 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     <message>
         <location filename="../src/Settings/PreferencesWindow.cpp" line="173"/>
         <source>C++ Commands</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">C++命令</translation>
     </message>
     <message>
         <location filename="../src/Settings/PreferencesWindow.cpp" line="175"/>
         <source>C++ Template</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">C++模板</translation>
     </message>
     <message>
         <location filename="../src/Settings/PreferencesWindow.cpp" line="178"/>
         <source>C++ Snippets</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">C++代码片段</translation>
     </message>
     <message>
         <location filename="../src/Settings/PreferencesWindow.cpp" line="180"/>
         <source>C++ Parentheses</source>
-        <translation type="unfinished">C++括号补全规则</translation>
+        <translation type="unfinished">C++括号补全</translation>
     </message>
     <message>
         <location filename="../src/Settings/PreferencesWindow.cpp" line="184"/>
@@ -1736,22 +1761,22 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     <message>
         <location filename="../src/Settings/PreferencesWindow.cpp" line="185"/>
         <source>Java Commands</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Java命令</translation>
     </message>
     <message>
         <location filename="../src/Settings/PreferencesWindow.cpp" line="187"/>
         <source>Java Template</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Java模板</translation>
     </message>
     <message>
         <location filename="../src/Settings/PreferencesWindow.cpp" line="190"/>
         <source>Java Snippets</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Java代码片段</translation>
     </message>
     <message>
         <location filename="../src/Settings/PreferencesWindow.cpp" line="192"/>
         <source>Java Parentheses</source>
-        <translation type="unfinished">Java括号补全规则</translation>
+        <translation type="unfinished">Java括号补全</translation>
     </message>
     <message>
         <location filename="../src/Settings/PreferencesWindow.cpp" line="196"/>
@@ -1761,32 +1786,32 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     <message>
         <location filename="../src/Settings/PreferencesWindow.cpp" line="197"/>
         <source>Python Commands</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Python命令</translation>
     </message>
     <message>
         <location filename="../src/Settings/PreferencesWindow.cpp" line="199"/>
         <source>Python Template</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Python模板</translation>
     </message>
     <message>
         <location filename="../src/Settings/PreferencesWindow.cpp" line="202"/>
         <source>Python Snippets</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Python代码片段</translation>
     </message>
     <message>
         <location filename="../src/Settings/PreferencesWindow.cpp" line="204"/>
         <source>Python Parentheses</source>
-        <translation type="unfinished">Python括号补全规则</translation>
+        <translation type="unfinished">Python括号补全</translation>
     </message>
     <message>
         <location filename="../src/Settings/PreferencesWindow.cpp" line="209"/>
         <source>Apperance</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">外观</translation>
     </message>
     <message>
         <location filename="../src/Settings/PreferencesWindow.cpp" line="210"/>
         <source>Actions</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">动作</translation>
     </message>
     <message>
         <location filename="../src/Settings/PreferencesWindow.cpp" line="212"/>
@@ -1796,12 +1821,12 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     <message>
         <location filename="../src/Settings/PreferencesWindow.cpp" line="214"/>
         <source>Bind file and problem</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">关联文件和题目</translation>
     </message>
     <message>
         <location filename="../src/Settings/PreferencesWindow.cpp" line="216"/>
         <source>Extensions</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">插件</translation>
     </message>
     <message>
         <location filename="../src/Settings/PreferencesWindow.cpp" line="217"/>
@@ -1816,17 +1841,17 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     <message>
         <location filename="../src/Settings/PreferencesWindow.cpp" line="219"/>
         <source>C++ Server</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">C++服务器</translation>
     </message>
     <message>
         <location filename="../src/Settings/PreferencesWindow.cpp" line="220"/>
         <source>Java Server</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Java服务器</translation>
     </message>
     <message>
         <location filename="../src/Settings/PreferencesWindow.cpp" line="221"/>
         <source>Python Server</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Python服务器</translation>
     </message>
     <message>
         <location filename="../src/Settings/PreferencesWindow.cpp" line="223"/>
@@ -1841,7 +1866,7 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     <message>
         <location filename="../src/Settings/PreferencesWindow.cpp" line="227"/>
         <source>File Path</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">文件路径</translation>
     </message>
     <message>
         <location filename="../src/Settings/PreferencesWindow.cpp" line="228"/>
@@ -1851,27 +1876,27 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     <message>
         <location filename="../src/Settings/PreferencesWindow.cpp" line="229"/>
         <source>Problem URL</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">题目链接</translation>
     </message>
     <message>
         <location filename="../src/Settings/PreferencesWindow.cpp" line="231"/>
         <source>Key Bindings</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">按键绑定</translation>
     </message>
     <message>
         <location filename="../src/Settings/PreferencesWindow.cpp" line="233"/>
         <source>Advanced</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">高级</translation>
     </message>
     <message>
         <location filename="../src/Settings/PreferencesWindow.cpp" line="234"/>
         <source>Update</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">更新</translation>
     </message>
     <message>
         <location filename="../src/Settings/PreferencesWindow.cpp" line="235"/>
         <source>Limits</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">限制</translation>
     </message>
 </context>
 <context>

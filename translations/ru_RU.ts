@@ -1598,6 +1598,31 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../src/Settings/PreferencesHomePage.cpp" line="52"/>
+        <source>Code Editor Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/PreferencesHomePage.cpp" line="53"/>
+        <source>C++ Compile and Run Commands</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/PreferencesHomePage.cpp" line="54"/>
+        <source>Java Compile and Run Commands</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/PreferencesHomePage.cpp" line="55"/>
+        <source>Python Run Commands</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/PreferencesHomePage.cpp" line="56"/>
+        <source>Appearance</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../src/Settings/PreferencesHomePage.cpp" line="63"/>
         <source>You can read the &lt;a href=&quot;https://github.com/cpeditor/cpeditor/blob/%1/doc/MANUAL.md&quot;&gt;Manual&lt;/a&gt; or go through the settings for more information.</source>
         <translation type="unfinished"></translation>

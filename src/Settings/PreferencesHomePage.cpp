@@ -49,11 +49,11 @@ PreferencesHomePage::PreferencesHomePage(QWidget *parent) : QWidget(parent)
     layout->addSpacing(20);
 
     // add buttons
-    addButton("Code Edit", "Code Editor Settings");
-    addButton("Language/C++/C++ Commands", "C++ Compile and Run Commands");
-    addButton("Language/Java/Java Commands", "Java Compile and Run Commands");
-    addButton("Language/Python/Python Commands", "Python Run Commands");
-    addButton("Appearance", "Appearance");
+    addButton("Code Edit", tr("Code Editor Settings"));
+    addButton("Language/C++/C++ Commands", tr("C++ Compile and Run Commands"));
+    addButton("Language/Java/Java Commands", tr("Java Compile and Run Commands"));
+    addButton("Language/Python/Python Commands", tr("Python Run Commands"));
+    addButton("Appearance", tr("Appearance"));
 
     // add spacing between the buttons and the manual label
     layout->addSpacing(20);
