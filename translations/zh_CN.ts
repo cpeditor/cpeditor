@@ -1650,42 +1650,42 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
 <context>
     <name>PreferencesPage</name>
     <message>
-        <location filename="../src/Settings/PreferencesPage.cpp" line="39"/>
+        <location filename="../src/Settings/PreferencesPage.cpp" line="41"/>
         <source>Default</source>
         <translation type="unfinished">默认</translation>
     </message>
     <message>
-        <location filename="../src/Settings/PreferencesPage.cpp" line="41"/>
+        <location filename="../src/Settings/PreferencesPage.cpp" line="43"/>
         <source>Reset</source>
         <translation type="unfinished">重置</translation>
     </message>
     <message>
-        <location filename="../src/Settings/PreferencesPage.cpp" line="43"/>
+        <location filename="../src/Settings/PreferencesPage.cpp" line="45"/>
         <source>Apply</source>
         <translation type="unfinished">应用</translation>
     </message>
     <message>
-        <location filename="../src/Settings/PreferencesPage.cpp" line="58"/>
+        <location filename="../src/Settings/PreferencesPage.cpp" line="60"/>
         <source>Restore the default settings on the current page. (Ctrl+D)</source>
         <translation type="unfinished">将当前页设置重置为默认（Ctrl+D）</translation>
     </message>
     <message>
-        <location filename="../src/Settings/PreferencesPage.cpp" line="59"/>
+        <location filename="../src/Settings/PreferencesPage.cpp" line="61"/>
         <source>Discard all changes on the current page. (Ctrl+R)</source>
         <translation type="unfinished">放弃当前页设置（Ctrl+R）</translation>
     </message>
     <message>
-        <location filename="../src/Settings/PreferencesPage.cpp" line="60"/>
+        <location filename="../src/Settings/PreferencesPage.cpp" line="62"/>
         <source>Save the changes on the current page. (Ctrl+S)</source>
         <translation type="unfinished">保存当前页设置（Ctrl+S）</translation>
     </message>
     <message>
-        <location filename="../src/Settings/PreferencesPage.cpp" line="81"/>
+        <location filename="../src/Settings/PreferencesPage.cpp" line="83"/>
         <source>Unsaved Settings</source>
         <translation type="unfinished">未保存设置</translation>
     </message>
     <message>
-        <location filename="../src/Settings/PreferencesPage.cpp" line="81"/>
+        <location filename="../src/Settings/PreferencesPage.cpp" line="83"/>
         <source>The settings are changed. Do you want to save the settings or discard them?</source>
         <translation type="unfinished">设置已变更。你希望保存设置还是舍弃设置？</translation>
     </message>
@@ -1805,7 +1805,7 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     </message>
     <message>
         <location filename="../src/Settings/PreferencesWindow.cpp" line="209"/>
-        <source>Apperance</source>
+        <source>Appearance</source>
         <translation type="unfinished">外观</translation>
     </message>
     <message>

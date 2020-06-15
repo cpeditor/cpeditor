@@ -206,7 +206,7 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
                        "Python Tab Jump Out"})
             .end()
         .end()
-        .page("Apperance", tr("Apperance"), new AppearancePage())
+        .page("Appearance", tr("Appearance"), new AppearancePage())
         .dir("Actions", tr("Actions"))
             .page("General", tr("General"), {"Hot Exit/Enable"})
             .page("Save", tr("Save"), {"Auto Save", "Save Faster", "Auto Format", "Save File On Compilation",
