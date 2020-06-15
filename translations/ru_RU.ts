@@ -992,7 +992,7 @@
     </message>
     <message>
         <location filename="../src/Extensions/ClangFormatter.cpp" line="188"/>
-        <source>The format process didn&apos;t finish in 2 seconds. This is probably because the clang-format binary is not found by CP Editor. You can set the path to clang-format in Preferences-&gt;Formatting.</source>
+        <source>The format process didn&apos;t finish in 2 seconds. This is probably because the clang-format binary is not found by CP Editor. You can set the path to clang-format in Preferences-&gt;Extensions-&gt;Clang Format.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1050,7 +1050,7 @@
     </message>
     <message>
         <location filename="../src/Extensions/CompanionServer.cpp" line="140"/>
-        <source>JSONParser reported errors. 
+        <source>JSON parser reported errors:
 %1</source>
         <translation type="unfinished"></translation>
     </message>

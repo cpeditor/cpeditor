@@ -805,7 +805,7 @@
     <message>
         <location filename="../src/Core/Checker.cpp" line="111"/>
         <source>Failed to create temporary directory</source>
-        <translation type="unfinished">创建临时目录失败</translation>
+        <translation type="unfinished">未能成功创建临时目录</translation>
     </message>
     <message>
         <location filename="../src/Core/Checker.cpp" line="121"/>
@@ -883,22 +883,22 @@
     <message>
         <location filename="../src/Core/Runner.cpp" line="65"/>
         <source>The source file %1 doesn&apos;t exist.</source>
-        <translation type="unfinished">源文件[%1]不存在。</translation>
+        <translation type="unfinished">源文件 [%1] 不存在。</translation>
     </message>
     <message>
         <location filename="../src/Core/Runner.cpp" line="73"/>
         <source>Failed to get run command. It&apos;s probably a bug.</source>
-        <translation type="unfinished">获取运行指令失败。这可能是一个bug。</translation>
+        <translation type="unfinished">未能成功获取运行指令。这可能是一个 bug。</translation>
     </message>
     <message>
         <location filename="../src/Core/Runner.cpp" line="101"/>
         <source>Failed to start running. Please compile first.</source>
-        <translation type="unfinished">运行失败。请先编译。</translation>
+        <translation type="unfinished">未能成功运行。请先编译。</translation>
     </message>
     <message>
         <location filename="../src/Core/Runner.cpp" line="124"/>
         <source>Please install xterm in order to use Detached Run.</source>
-        <translation type="unfinished">请安装xterm来使用脱离式运行。</translation>
+        <translation type="unfinished">请安装 xterm 以使用在终端中运行。</translation>
     </message>
 </context>
 <context>
@@ -922,42 +922,42 @@
     <message>
         <location filename="../src/Extensions/CFTool.cpp" line="50"/>
         <source>CF Tool was killed</source>
-        <translation type="unfinished">CF Tool已被停止</translation>
+        <translation type="unfinished">CF Tool 已被终止</translation>
     </message>
     <message>
         <location filename="../src/Extensions/CFTool.cpp" line="65"/>
         <source>The problem code is 0, now use A automatically. If the actual problem code is not A, please set the problem code manually in the right-click menu of the current tab.</source>
-        <translation type="unfinished">题目序号为0，将自动使用A。如果题目的实际序号不是A，请在当前标签页的右键菜单中手动设置。</translation>
+        <translation type="unfinished">题目编号为 0，将自动使用 A 作为题目编号。如果题目的实际编号不是 A，请在当前标签页的右键菜单中手动设置。</translation>
     </message>
     <message>
         <location filename="../src/Extensions/CFTool.cpp" line="76"/>
         <source>Failed to get the version of CF Tool. Have you set the correct path to CF Tool in Preferences?</source>
-        <translation type="unfinished">获取CF Tool版本失败。你是在设置中填写的CF Tool路径是否正确？</translation>
+        <translation type="unfinished">未能成功获取 CF Tool 版本。你在设置中填写的 CF Tool 路径是否正确？</translation>
     </message>
     <message>
         <location filename="../src/Extensions/CFTool.cpp" line="92"/>
         <source>CF Tool has started</source>
-        <translation type="unfinished">CF Tool已启动</translation>
+        <translation type="unfinished">CF Tool 已启动</translation>
     </message>
     <message>
         <location filename="../src/Extensions/CFTool.cpp" line="99"/>
         <source>Failed to start CF Tool in 2 seconds. Have you set the correct path to CF Tool in Preferences?</source>
-        <translation type="unfinished">在两秒内启动CF Tool失败。你是在设置中填写的CF Tool路径是否正确？</translation>
+        <translation type="unfinished">未能成功在两秒内启动 CF Tool。你在设置中填写的 CF Tool 路径是否正确？</translation>
     </message>
     <message>
         <location filename="../src/Extensions/CFTool.cpp" line="104"/>
         <source>Failed to parse the URL [%1]</source>
-        <translation type="unfinished">解析链接[%1]失败</translation>
+        <translation type="unfinished">未能成功解析链接 [%1]</translation>
     </message>
     <message>
         <location filename="../src/Extensions/CFTool.cpp" line="175"/>
         <source>CF Tool failed</source>
-        <translation type="unfinished">CF Tool失败</translation>
+        <translation type="unfinished">CF Tool 运行出错</translation>
     </message>
     <message>
         <location filename="../src/Extensions/CFTool.cpp" line="176"/>
         <source>CF Tool finished with non-zero exit code %1</source>
-        <translation type="unfinished">CF Tool以非零返回值%1结束</translation>
+        <translation type="unfinished">CF Tool 以非零返回值 %1 结束</translation>
     </message>
     <message>
         <location filename="../src/Extensions/CFTool.cpp" line="185"/>
@@ -986,7 +986,7 @@
     <message>
         <location filename="../src/Extensions/ClangFormatter.cpp" line="123"/>
         <source>Failed to create temporary directory</source>
-        <translation type="unfinished">创建临时目录失败</translation>
+        <translation type="unfinished">未能成功创建临时目录</translation>
     </message>
     <message>
         <location filename="../src/Extensions/ClangFormatter.cpp" line="171"/>
@@ -995,23 +995,23 @@
     </message>
     <message>
         <location filename="../src/Extensions/ClangFormatter.cpp" line="188"/>
-        <source>The format process didn&apos;t finish in 2 seconds. This is probably because the clang-format binary is not found by CP Editor. You can set the path to clang-format in Preferences-&gt;Formatting.</source>
-        <translation type="unfinished"></translation>
+        <source>The format process didn&apos;t finish in 2 seconds. This is probably because the clang-format binary is not found by CP Editor. You can set the path to clang-format in Preferences-&gt;Extensions-&gt;Clang Format.</source>
+        <translation type="unfinished">格式化进程未能在 2 秒内结束。这可能是因为 CP Editor 未能找到 clang-format 的可执行文件。你可以在 Preferences-&gt;Extensions-&gt;Clang Format 中设置 clang-format 可执行文件的路径。</translation>
     </message>
     <message>
         <location filename="../src/Extensions/ClangFormatter.cpp" line="198"/>
         <source>The format command is: %1 %2</source>
-        <translation type="unfinished">格式化指令为：%1 %2</translation>
+        <translation type="unfinished">格式化指令为: %1 %2</translation>
     </message>
     <message>
         <location filename="../src/Extensions/ClangFormatter.cpp" line="201"/>
         <source>Formatter[stdout]</source>
-        <translation type="unfinished">格式化工具[标准输出流]</translation>
+        <translation type="unfinished">格式化工具[stdout]</translation>
     </message>
     <message>
         <location filename="../src/Extensions/ClangFormatter.cpp" line="204"/>
         <source>Formatter[stderr]</source>
-        <translation type="unfinished">格式化工具[标准错误流]</translation>
+        <translation type="unfinished">格式化工具[stderr]</translation>
     </message>
 </context>
 <context>
@@ -1024,7 +1024,7 @@
         <location filename="../src/Extensions/CompanionServer.cpp" line="98"/>
         <location filename="../src/Extensions/CompanionServer.cpp" line="140"/>
         <source>Companion</source>
-        <translation type="unfinished">伙伴</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/Extensions/CompanionServer.cpp" line="51"/>
@@ -1034,12 +1034,12 @@
     <message>
         <location filename="../src/Extensions/CompanionServer.cpp" line="62"/>
         <source>Port is set to %1</source>
-        <translation type="unfinished">端口已被设置为%1</translation>
+        <translation type="unfinished">端口已被设置为 %1</translation>
     </message>
     <message>
         <location filename="../src/Extensions/CompanionServer.cpp" line="66"/>
         <source>Failed to listen to port %1. Is there another process listening?</source>
-        <translation type="unfinished">监听端口%1失败。是否有其它进程占用？</translation>
+        <translation type="unfinished">监听端口 %1 失败。是否有其它进程正在占用？</translation>
     </message>
     <message>
         <location filename="../src/Extensions/CompanionServer.cpp" line="76"/>
@@ -1049,13 +1049,13 @@
     <message>
         <location filename="../src/Extensions/CompanionServer.cpp" line="98"/>
         <source>Got a POST Request</source>
-        <translation type="unfinished">获得一个Post请求</translation>
+        <translation type="unfinished">收到了一个 POST 请求</translation>
     </message>
     <message>
         <location filename="../src/Extensions/CompanionServer.cpp" line="140"/>
-        <source>JSONParser reported errors. 
+        <source>JSON parser reported errors:
 %1</source>
-        <translation type="unfinished">JSONParser报告错误。
+        <translation type="unfinished">JSON 解析器报告了错误：
 %1</translation>
     </message>
 </context>
@@ -1314,7 +1314,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/mainwindow.cpp" line="917"/>
         <source>Failed to create the temporary directory</source>
-        <translation type="unfinished">创建临时文件夹失败</translation>
+        <translation type="unfinished">未能成功创建临时文件夹</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="947"/>

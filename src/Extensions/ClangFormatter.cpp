@@ -185,8 +185,8 @@ QPair<int, QString> ClangFormatter::getFormatResult(const QStringList &args)
         formatProcess.kill();
         log->warn(
             tr("Formatter"),
-            tr("The format process didn't finish in 2 seconds. This is probably because the clang-format binary is "
-               "not found by CP Editor. You can set the path to clang-format in Preferences->Formatting."));
+            tr("The format process didn't finish in 2 seconds. This is probably because the clang-format binary is not "
+               "found by CP Editor. You can set the path to clang-format in Preferences->Extensions->Clang Format."));
         return QPair<int, QString>(-1, QString());
     }
 
