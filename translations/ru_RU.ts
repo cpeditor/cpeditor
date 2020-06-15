@@ -29,6 +29,11 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../src/appwindow.cpp" line="606"/>
+        <source>https://github.com/cpeditor/cpeditor/blob/%1/doc/MANUAL.md</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../src/appwindow.cpp" line="612"/>
         <source>About CP Editor %1</source>
         <translation type="unfinished"></translation>

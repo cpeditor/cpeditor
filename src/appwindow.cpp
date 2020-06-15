@@ -603,7 +603,7 @@ void AppWindow::on_actionSupport_me_triggered()
 void AppWindow::on_actionManual_triggered()
 {
     QDesktopServices::openUrl(
-        QUrl("https://github.com/cpeditor/cpeditor/blob/" APP_VERSION "/doc/MANUAL.md", QUrl::TolerantMode));
+        QUrl(tr("https://github.com/cpeditor/cpeditor/blob/%1/doc/MANUAL.md").arg(APP_VERSION), QUrl::TolerantMode));
 }
 
 void AppWindow::on_actionAbout_triggered()

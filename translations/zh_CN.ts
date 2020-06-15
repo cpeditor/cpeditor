@@ -29,6 +29,11 @@
         <translation type="unfinished">打开文件中</translation>
     </message>
     <message>
+        <location filename="../src/appwindow.cpp" line="606"/>
+        <source>https://github.com/cpeditor/cpeditor/blob/%1/doc/MANUAL.md</source>
+        <translation type="unfinished">https://github.com/cpeditor/cpeditor/blob/%1/doc/MANUAL_zh-CN.md</translation>
+    </message>
+    <message>
         <location filename="../src/appwindow.cpp" line="612"/>
         <source>About CP Editor %1</source>
         <translation type="unfinished">关于 CP Editor %1</translation>
