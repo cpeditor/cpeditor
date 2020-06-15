@@ -34,6 +34,71 @@
 #include <QVBoxLayout>
 #include <generated/SettingsHelper.hpp>
 
+AddPageHelper &AddPageHelper::page(const QString &key, const QString &trkey, const QStringList &content)
+{
+    return page(key, trkey, new PreferencesPageTemplate(content));
+}
+
+AddPageHelper &AddPageHelper::page(const QString &key, const QString &trkey, PreferencesPage *newpage)
+{
+    return page(key, trkey, newpage, newpage->content());
+}
+
+AddPageHelper &AddPageHelper::page(const QString &key, const QString &trkey, PreferencesPage *newpage,
+                                   const QStringList &content)
+{
+    window->registerName(key, trkey);
+    if (currentPath.size() == 0)
+    {
+        currentItem = new QTreeWidgetItem({trkey});
+        tree->addTopLevelItem(currentItem);
+        newpage->setPath(key);
+        newpage->setTitle(trkey);
+        window->addPage(currentItem, newpage, content);
+    }
+    else
+    {
+        QTreeWidgetItem *item = new QTreeWidgetItem({trkey});
+        currentItem->addChild(item);
+        newpage->setPath(currentPath.join('/') + '/' + key);
+        if (key == "@")
+            newpage->setTitle(currentItem->text(0));
+        else
+            newpage->setTitle(trkey);
+        window->addPage(item, newpage, content);
+    }
+    return *this;
+}
+
+AddPageHelper &AddPageHelper::dir(const QString &key, const QString &trkey)
+{
+    window->registerName(key, trkey);
+    if (currentPath.size() == 0)
+    {
+        currentItem = new QTreeWidgetItem({trkey});
+        tree->addTopLevelItem(currentItem);
+    }
+    else
+    {
+        QTreeWidgetItem *item = new QTreeWidgetItem({trkey});
+        currentItem->addChild(item);
+        currentItem = item;
+    }
+    currentPath.push_back(key);
+    return *this;
+}
+
+AddPageHelper &AddPageHelper::end()
+{
+    currentItem = currentItem->parent();
+    currentPath.pop_back();
+    return *this;
+}
+
+AddPageHelper::AddPageHelper(PreferencesWindow *w) : window(w), tree(window->menuTree)
+{
+}
+
 PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
 {
     // set attributes
@@ -97,84 +162,80 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
                                            stackedWidget->count()));
     });
 
-    // add pages
-
-    addPage("Code Edit", {"Tab Width", "Auto Indent", "Wrap Text", "Auto Complete Parentheses",
-                          "Auto Remove Parentheses", "Tab Jump Out Parentheses", "Replace Tabs"});
-
-    addPage("Language/General", {"Default Language"});
-
-    addPage("Language/C++/C++ Commands", {"C++/Compile Command", "C++/Output Path", "C++/Run Arguments"});
-    addPage("Language/C++/C++ Template",
-            {"C++/Template Path", "C++/Template Cursor Position Regex", "C++/Template Cursor Position Offset Type",
-             "C++/Template Cursor Position Offset Characters"});
-    auto cppSnippetsPage = new CodeSnippetsPage("C++");
-    addPage("Language/C++/C++ Snippets", cppSnippetsPage,
-            {"C++ Snippets", "C++ Code Snippets", "Cpp Snippets", "Cpp Code Snippets"});
-    auto cppParenthesesPage = new ParenthesesPage("C++");
-    addPage(
-        "Language/C++/C++ Parentheses", cppParenthesesPage,
-        {"C++ Parentheses", "C++ Brackets", "C++ Braces", "C++ Auto Complete", "C++ Auto Remove", "C++ Tab Jump Out"});
-
-    addPage("Language/Java/Java Commands",
-            {"Java/Compile Command", "Java/Output Path", "Java/Class Name", "Java/Run Command", "Java/Run Arguments"});
-    addPage("Language/Java/Java Template",
-            {"Java/Template Path", "Java/Template Cursor Position Regex", "Java/Template Cursor Position Offset Type",
-             "Java/Template Cursor Position Offset Characters"});
-    auto javaSnippetsPage = new CodeSnippetsPage("Java");
-    addPage("Language/Java/Java Snippets", javaSnippetsPage, {"Java Snippets", "Java Code Snippets"});
-    auto javaParenthesesPage = new ParenthesesPage("Java");
-    addPage("Language/Java/Java Parentheses", javaParenthesesPage,
-            {"Java Parentheses", "Java Brackets", "Java Braces", "Java Auto Complete", "Java Auto Remove",
-             "Java Tab Jump Out"});
-
-    addPage("Language/Python/Python Commands", {"Python/Run Command", "Python/Run Arguments"});
-    addPage("Language/Python/Python Template",
-            {"Python/Template Path", "Python/Template Cursor Position Regex",
-             "Python/Template Cursor Position Offset Type", "Python/Template Cursor Position Offset Characters"});
-    auto pythonSnippetsPage = new CodeSnippetsPage("Python");
-    addPage("Language/Python/Python Snippets", pythonSnippetsPage, {"Python Snippets", "Python Code Snippets"});
-    auto pythonParenthesesPage = new ParenthesesPage("Python");
-    addPage("Language/Python/Python Parentheses", pythonParenthesesPage,
-            {"Python Parentheses", "Python Brackets", "Python Braces", "Python Auto Complete", "Python Auto Remove",
-             "Python Tab Jump Out"});
-
-    auto appearancePage = new AppearancePage();
-    addPage("Appearance", appearancePage, appearancePage->content());
-
-    addPage("Actions/General", {"Hot Exit/Enable"});
-
-    addPage("Actions/Save", {"Auto Save", "Save Faster", "Auto Format", "Save File On Compilation",
-                             "Save File On Execution", "Save Tests"});
-
-    addPage("Actions/Bind file and problem", {"Restore Old Problem Url", "Open Old File For Old Problem Url"});
-
-    addPage("Extensions/Clang Format", {"Clang Format/Path", "Clang Format/Style"}, false);
-
-    addPage("Extensions/Language Server/C++ Server",
-            {/*"LSP/Use Autocomplete C++",*/ "LSP/Use Linting C++", "LSP/Delay C++", "LSP/Path C++", "LSP/Args C++"});
-    addPage("Extensions/Language Server/Java Server", {/*"LSP/Use Autocomplete Java",*/ "LSP/Use Linting Java",
-                                                       "LSP/Delay Java", "LSP/Path Java", "LSP/Args Java"});
-    addPage("Extensions/Language Server/Python Server", {/*"LSP/Use Autocomplete Python",*/ "LSP/Use Linting Python",
-                                                         "LSP/Delay Python", "LSP/Path Python", "LSP/Args Python"});
-
-    addPage("Extensions/Competitive Companion", {"Competitive Companion/Enable", "Competitive Companion/Open New Tab",
-                                                 "Competitive Companion/Connection Port"});
-
-    addPage("Extensions/CF Tool", {"CF/Path"});
-
-    addPage("File Path/Testcases", {"Input File Save Path", "Answer File Save Path", "Testcases Matching Rules"});
-
-    addPage("File Path/Problem URL", {"Default File Paths For Problem URLs"});
-
-    addPage("Key Bindings", {"Hotkey/Compile", "Hotkey/Run", "Hotkey/Compile Run", "Hotkey/Format", "Hotkey/Kill",
-                             "Hotkey/Change View Mode", "Hotkey/Snippets"});
-
-    addPage("Advanced/Update", {"Check Update", "Beta"});
-
-    addPage("Advanced/Limits",
-            {"Time Limit", "Output Length Limit", "Message Length Limit", "HTML Diff Viewer Length Limit",
-             "Open File Length Limit", "Load Test Case File Length Limit"});
+    // clang-format off
+    AddPageHelper(this)
+        .page("Code Edit", tr("Code Edit"),
+              {"Tab Width", "Auto Indent", "Wrap Text", "Auto Complete Parentheses", "Auto Remove Parentheses",
+               "Tab Jump Out Parentheses", "Replace Tabs"})
+        .dir("Language", tr("Language"))
+            .page("General", tr("General"), {"Default Language"})
+            .dir("C++", tr("C++"))
+                .page("C++ Commands", tr("C++ Commands"),
+                      {"C++/Compile Command", "C++/Output Path", "C++/Run Arguments"})
+                .page("C++ Template", tr("C++ Template"),
+                      {"C++/Template Path", "C++/Template Cursor Position Regex",
+                       "C++/Template Cursor Position Offset Type", "C++/Template Cursor Position Offset Characters"})
+                .page("C++ Snippets", tr("C++ Snippets"), new CodeSnippetsPage("C++"),
+                      {"C++ Snippets", "C++ Code Snippets", "Cpp Snippets", "Cpp Code Snippets"})
+                .page("C++ Parentheses", tr("C++ Parentheses"), new ParenthesesPage("C++"),
+                      {"C++ Parentheses", "C++ Brackets", "C++ Braces", "C++ Auto Complete", "C++ Auto Remove",
+                       "C++ Tab Jump Out"})
+            .end()
+            .dir("Java", tr("Java"))
+                .page("Java Commands", tr("Java Commands"),
+                      {"Java/Compile Command", "Java/Output Path", "Java/Class Name", "Java/Run Command", "Java/Run Arguments"})
+                .page("Java Template", tr("Java Template"),
+                      {"Java/Template Path", "Java/Template Cursor Position Regex", "Java/Template Cursor Position Offset Type",
+                       "Java/Template Cursor Position Offset Characters"})
+                .page("Java Snippets", tr("Java Snippets"), new CodeSnippetsPage("Java"),
+                      {"Java Snippets", "Java Code Snippets"})
+                .page("Java Parentheses", tr("Java Parentheses"), new ParenthesesPage("Java"),
+                      {"Java Parentheses", "Java Brackets", "Java Braces", "Java Auto Complete", "Java Auto Remove",
+                       "Java Tab Jump Out"})
+            .end()
+            .dir("Python", tr("Python"))
+                .page("Python Commands", tr("Python Commands"),
+                      {"Python/Run Command", "Python/Run Arguments"})
+                .page("Python Template", tr("Python Template"),
+                      {"Python/Template Path", "Python/Template Cursor Position Regex", "Python/Template Cursor Position Offset Type",
+                      "Python/Template Cursor Position Offset Characters"})
+                .page("Python Snippets", tr("Python Snippets"), new CodeSnippetsPage("Python"),
+                      {"Python Snippets", "Python Code Snippets"})
+                .page("Python Parentheses", tr("Python Parentheses"), new ParenthesesPage("Python"),
+                      {"Python Parentheses", "Python Brackets", "Python Braces", "Python Auto Complete", "Python Auto Remove",
+                       "Python Tab Jump Out"})
+            .end()
+        .end()
+        .page("Apperance", tr("Apperance"), new AppearancePage())
+        .dir("Actions", tr("Actions"))
+            .page("General", tr("General"), {"Hot Exit/Enable"})
+            .page("Save", tr("Save"), {"Auto Save", "Save Faster", "Auto Format", "Save File On Compilation",
+                               "Save File On Execution", "Save Tests"})
+            .page("Bind file and problem", tr("Bind file and problem"), {"Restore Old Problem Url", "Open Old File For Old Problem Url"})
+        .end()
+        .dir("Extensions", tr("Extensions"))
+            .page("Clang Format", tr("Clang Format"), new PreferencesPageTemplate({"Clang Format/Path", "Clang Format/Style"}, false))
+            .dir("Language Server", tr("Language Server"))
+                .page("C++ Server", tr("C++ Server"), {"LSP/Use Linting C++", "LSP/Delay C++", "LSP/Path C++", "LSP/Args C++"})
+                .page("Java Server", tr("Java Server"), {"LSP/Use Linting Java", "LSP/Delay Java", "LSP/Path Java", "LSP/Args Java"})
+                .page("Python Server", tr("Python Server"), {"LSP/Use Linting Python", "LSP/Delay Python", "LSP/Path Python", "LSP/Args Python"})
+            .end()
+            .page("Competitive Companion", tr("Competitive Companion"), {"Competitive Companion/Enable", "Competitive Companion/Open New Tab",
+                                                "Competitive Companion/Connection Port"})
+            .page("CF Tool", tr("CF Tool"), {"CF/Path"})
+        .end()
+        .dir("File Path", tr("File Path"))
+            .page("Testcases", tr("Testcases"), {"Input File Save Path", "Answer File Save Path", "Testcases Matching Rules"})
+            .page("Problem URL", tr("Problem URL"), {"Default File Paths For Problem URLs"})
+        .end()
+        .page("Key Bindings", tr("Key Bindings"), {"Hotkey/Compile", "Hotkey/Run", "Hotkey/Compile Run", "Hotkey/Format", "Hotkey/Kill",
+                                   "Hotkey/Change View Mode", "Hotkey/Snippets"})
+        .dir("Advanced", tr("Advanced"))
+            .page("Update", tr("Update"), {"Check Update", "Beta"})
+            .page("Limits", tr("Limits"), {"Time Limit", "Output Length Limit", "Message Length Limit", "HTML Diff Viewer Length Limit",
+                                 "Open File Length Limit", "Load Test Case File Length Limit"})
+        .end();
+    // clang-format on
 }
 
 void PreferencesWindow::display()
@@ -237,51 +298,26 @@ void PreferencesWindow::switchToPage(QWidget *page, bool force)
     }
 }
 
-void PreferencesWindow::addPage(const QString &path, PreferencesPage *page, const QStringList &pageContent)
+void PreferencesWindow::registerName(const QString &key, const QString &trkey)
 {
-    auto parts = path.split('/');
-
-    QTreeWidgetItem *current = getTopLevelItem(parts.front());
-
-    // add if not exists
-    if (current == nullptr)
-    {
-        current = new QTreeWidgetItem({parts.front()});
-        menuTree->addTopLevelItem(current);
-    }
-
-    // get non-top-level items step by step
-    for (int i = 1; i < parts.count(); ++i)
-    {
-        QTreeWidgetItem *nxt = getChild(current, parts[i]);
-
-        // add if not exists
-        if (nxt == nullptr)
-        {
-            nxt = new QTreeWidgetItem({parts[i]});
-            current->addChild(nxt);
-        }
-
-        current = nxt;
-    }
-
-    page->setPath(path);
-    content[current] = pageContent;
-    pageWidget[current] = page;
-    pageTreeItem[page] = current;
-    stackedWidget->addWidget(page);
-    connect(page, SIGNAL(settingsApplied(const QString &)), this, SIGNAL(settingsApplied(const QString &)));
+    if (!treeEntryTranslation.contains(key))
+        treeEntryTranslation[key] = trkey;
 }
 
-void PreferencesWindow::addPage(const QString &path, const QStringList &opts, bool alignTop)
+void PreferencesWindow::addPage(QTreeWidgetItem *item, PreferencesPage *page, const QStringList &pageContent)
 {
-    auto page = new PreferencesPageTemplate(opts, alignTop);
-    addPage(path, page, page->content());
+    content[item] = pageContent;
+    pageWidget[item] = page;
+    pageTreeItem[page] = item;
+    stackedWidget->addWidget(page);
+    connect(page, SIGNAL(settingsApplied(const QString &)), this, SIGNAL(settingsApplied(const QString &)));
 }
 
 PreferencesPage *PreferencesWindow::getPageWidget(const QString &pagePath)
 {
     auto parts = pagePath.split('/');
+    for (QString &name : parts)
+        name = treeEntryTranslation[name];
 
     QTreeWidgetItem *current = getTopLevelItem(parts.front());
 

@@ -97,6 +97,16 @@ class PreferencesPage : public QWidget
      */
     void setPath(const QString &path);
 
+    /**
+     * @brief set the title of the page
+     */
+    void setTitle(const QString &title);
+
+    /**
+     * @brief get the content
+     */
+    virtual QStringList content();
+
   public slots:
     /**
      * @brief update the UI, make it the same as the settings, and update buttons
@@ -135,11 +145,6 @@ class PreferencesPage : public QWidget
     void addItem(QLayoutItem *item);
 
     void registerWidget(ValueWidget *widget);
-
-    /**
-     * @brief set the title of the page
-     */
-    void setTitle(const QString &title);
 
   protected slots:
     /**

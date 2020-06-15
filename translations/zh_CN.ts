@@ -664,128 +664,128 @@
 <context>
     <name>CodeSnippetsPage</name>
     <message>
-        <location filename="../src/Settings/CodeSnippetsPage.cpp" line="47"/>
+        <location filename="../src/Settings/CodeSnippetsPage.cpp" line="45"/>
         <source>Search...</source>
         <translation type="unfinished">搜索...</translation>
     </message>
     <message>
-        <location filename="../src/Settings/CodeSnippetsPage.cpp" line="60"/>
+        <location filename="../src/Settings/CodeSnippetsPage.cpp" line="58"/>
         <source>Add</source>
         <translation type="unfinished">添加</translation>
     </message>
     <message>
-        <location filename="../src/Settings/CodeSnippetsPage.cpp" line="65"/>
+        <location filename="../src/Settings/CodeSnippetsPage.cpp" line="63"/>
         <source>Del</source>
         <translation type="unfinished">删除</translation>
     </message>
     <message>
-        <location filename="../src/Settings/CodeSnippetsPage.cpp" line="70"/>
+        <location filename="../src/Settings/CodeSnippetsPage.cpp" line="68"/>
         <source>Rename Snippet</source>
         <translation type="unfinished">重命名</translation>
     </message>
     <message>
-        <location filename="../src/Settings/CodeSnippetsPage.cpp" line="74"/>
+        <location filename="../src/Settings/CodeSnippetsPage.cpp" line="72"/>
         <source>Load Snippets From Files</source>
         <translation type="unfinished">从文件中加载代码片段</translation>
     </message>
     <message>
-        <location filename="../src/Settings/CodeSnippetsPage.cpp" line="77"/>
+        <location filename="../src/Settings/CodeSnippetsPage.cpp" line="75"/>
         <source>Extract Snippets To Files</source>
         <translation type="unfinished">导出代码片段到文件</translation>
     </message>
     <message>
-        <location filename="../src/Settings/CodeSnippetsPage.cpp" line="87"/>
+        <location filename="../src/Settings/CodeSnippetsPage.cpp" line="85"/>
         <source>More</source>
         <translation type="unfinished">更多</translation>
     </message>
     <message>
-        <location filename="../src/Settings/CodeSnippetsPage.cpp" line="117"/>
+        <location filename="../src/Settings/CodeSnippetsPage.cpp" line="115"/>
         <source>No Snippet Selected</source>
         <translation type="unfinished">无代码片段被选择</translation>
     </message>
     <message>
-        <location filename="../src/Settings/CodeSnippetsPage.cpp" line="258"/>
+        <location filename="../src/Settings/CodeSnippetsPage.cpp" line="256"/>
         <source>Unsaved Snippets</source>
         <translation type="unfinished">未保存的代码片段</translation>
     </message>
     <message>
-        <location filename="../src/Settings/CodeSnippetsPage.cpp" line="259"/>
+        <location filename="../src/Settings/CodeSnippetsPage.cpp" line="257"/>
         <source>The snippet [%1] has been changed. Do you want to save it or discard the changes?</source>
         <translation type="unfinished">代码片段 [%1] 已被更改。你希望保存更改还是丢弃更改？</translation>
     </message>
     <message>
-        <location filename="../src/Settings/CodeSnippetsPage.cpp" line="290"/>
+        <location filename="../src/Settings/CodeSnippetsPage.cpp" line="288"/>
         <source>Delete Snippet</source>
         <translation type="unfinished">删除代码片段</translation>
     </message>
     <message>
-        <location filename="../src/Settings/CodeSnippetsPage.cpp" line="291"/>
+        <location filename="../src/Settings/CodeSnippetsPage.cpp" line="289"/>
         <source>Do you really want to delete the snippet [%1]?</source>
         <translation type="unfinished">你真的要删除代码片段 [%1] 吗？</translation>
     </message>
     <message>
-        <location filename="../src/Settings/CodeSnippetsPage.cpp" line="320"/>
-        <location filename="../src/Settings/CodeSnippetsPage.cpp" line="328"/>
+        <location filename="../src/Settings/CodeSnippetsPage.cpp" line="318"/>
+        <location filename="../src/Settings/CodeSnippetsPage.cpp" line="326"/>
         <source>Load Snippets</source>
         <translation type="unfinished">加载代码片段</translation>
     </message>
     <message>
-        <location filename="../src/Settings/CodeSnippetsPage.cpp" line="325"/>
+        <location filename="../src/Settings/CodeSnippetsPage.cpp" line="323"/>
         <source>CodeSnippetsPage::loadSnippetsFromFiles</source>
         <translation type="unfinished">代码片段/从文件加载</translation>
     </message>
     <message>
-        <location filename="../src/Settings/CodeSnippetsPage.cpp" line="329"/>
+        <location filename="../src/Settings/CodeSnippetsPage.cpp" line="327"/>
         <source>Failed to open [%1]. Do I have read permission?</source>
         <translation type="unfinished">打开 [%1] 失败。你拥有读取权限吗？</translation>
     </message>
     <message>
-        <location filename="../src/Settings/CodeSnippetsPage.cpp" line="344"/>
-        <location filename="../src/Settings/CodeSnippetsPage.cpp" line="374"/>
+        <location filename="../src/Settings/CodeSnippetsPage.cpp" line="342"/>
+        <location filename="../src/Settings/CodeSnippetsPage.cpp" line="372"/>
         <source>Extract Snippets</source>
         <translation type="unfinished">导出代码片段</translation>
     </message>
     <message>
-        <location filename="../src/Settings/CodeSnippetsPage.cpp" line="367"/>
+        <location filename="../src/Settings/CodeSnippetsPage.cpp" line="365"/>
         <source>Extract Snippets: %1</source>
         <translation type="unfinished">导出代码片段：%1</translation>
     </message>
     <message>
-        <location filename="../src/Settings/CodeSnippetsPage.cpp" line="375"/>
+        <location filename="../src/Settings/CodeSnippetsPage.cpp" line="373"/>
         <source>Failed to write to [%1]. Do I have write permission?</source>
         <translation type="unfinished">写入 [%1] 失败。你拥有写入权限吗？</translation>
     </message>
     <message>
-        <location filename="../src/Settings/CodeSnippetsPage.cpp" line="396"/>
+        <location filename="../src/Settings/CodeSnippetsPage.cpp" line="394"/>
         <source>Snippet name can&apos;t be empty.
 </source>
         <translation type="unfinished">代码片段的名称不能为空白。
 </translation>
     </message>
     <message>
-        <location filename="../src/Settings/CodeSnippetsPage.cpp" line="401"/>
+        <location filename="../src/Settings/CodeSnippetsPage.cpp" line="399"/>
         <source>Snippet Name Conflict</source>
         <translation type="unfinished">代码片段名称冲突</translation>
     </message>
     <message>
-        <location filename="../src/Settings/CodeSnippetsPage.cpp" line="402"/>
+        <location filename="../src/Settings/CodeSnippetsPage.cpp" line="400"/>
         <source>The name &quot;%1&quot; is already in use. Do you want to override it? (The old snippet with this name will be deleted.)</source>
         <translation type="unfinished">名称 &quot;%1&quot; 已经被使用了。你希望覆盖吗？（对应旧片段将会被删除。）</translation>
     </message>
     <message>
-        <location filename="../src/Settings/CodeSnippetsPage.cpp" line="414"/>
+        <location filename="../src/Settings/CodeSnippetsPage.cpp" line="412"/>
         <source>The name &quot;%1&quot; is already in use.
 </source>
         <translation type="unfinished">名称 &quot;%1&quot; 已经被使用了。
 </translation>
     </message>
     <message>
-        <location filename="../src/Settings/CodeSnippetsPage.cpp" line="416"/>
+        <location filename="../src/Settings/CodeSnippetsPage.cpp" line="414"/>
         <source>Add Snippet</source>
         <translation type="unfinished">添加代码片段</translation>
     </message>
     <message>
-        <location filename="../src/Settings/CodeSnippetsPage.cpp" line="416"/>
+        <location filename="../src/Settings/CodeSnippetsPage.cpp" line="414"/>
         <source>New Snippet Name:</source>
         <translation type="unfinished">新代码片段的名称：</translation>
     </message>
@@ -1668,24 +1668,210 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
 <context>
     <name>PreferencesWindow</name>
     <message>
-        <location filename="../src/Settings/PreferencesWindow.cpp" line="41"/>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="106"/>
         <source>Preferences</source>
         <translation type="unfinished">设置</translation>
     </message>
     <message>
-        <location filename="../src/Settings/PreferencesWindow.cpp" line="57"/>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="122"/>
         <source>Search...</source>
         <translation type="unfinished">搜索...</translation>
     </message>
     <message>
-        <location filename="../src/Settings/PreferencesWindow.cpp" line="61"/>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="126"/>
         <source>Home</source>
         <translation type="unfinished">主页</translation>
     </message>
     <message>
-        <location filename="../src/Settings/PreferencesWindow.cpp" line="63"/>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="128"/>
         <source>Go to the home page</source>
         <translation type="unfinished">回到主页</translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="167"/>
+        <source>Code Edit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="170"/>
+        <source>Language</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="171"/>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="211"/>
+        <source>General</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="172"/>
+        <source>C++</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="173"/>
+        <source>C++ Commands</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="175"/>
+        <source>C++ Template</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="178"/>
+        <source>C++ Snippets</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="180"/>
+        <source>C++ Parentheses</source>
+        <translation type="unfinished">C++括号补全规则</translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="184"/>
+        <source>Java</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="185"/>
+        <source>Java Commands</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="187"/>
+        <source>Java Template</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="190"/>
+        <source>Java Snippets</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="192"/>
+        <source>Java Parentheses</source>
+        <translation type="unfinished">Java括号补全规则</translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="196"/>
+        <source>Python</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="197"/>
+        <source>Python Commands</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="199"/>
+        <source>Python Template</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="202"/>
+        <source>Python Snippets</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="204"/>
+        <source>Python Parentheses</source>
+        <translation type="unfinished">Python括号补全规则</translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="209"/>
+        <source>Apperance</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="210"/>
+        <source>Actions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="212"/>
+        <source>Save</source>
+        <translation type="unfinished">保存</translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="214"/>
+        <source>Bind file and problem</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="216"/>
+        <source>Extensions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="217"/>
+        <source>Clang Format</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="218"/>
+        <source>Language Server</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="219"/>
+        <source>C++ Server</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="220"/>
+        <source>Java Server</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="221"/>
+        <source>Python Server</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="223"/>
+        <source>Competitive Companion</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="225"/>
+        <source>CF Tool</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="227"/>
+        <source>File Path</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="228"/>
+        <source>Testcases</source>
+        <translation type="unfinished">测试点</translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="229"/>
+        <source>Problem URL</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="231"/>
+        <source>Key Bindings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="233"/>
+        <source>Advanced</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="234"/>
+        <source>Update</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="235"/>
+        <source>Limits</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

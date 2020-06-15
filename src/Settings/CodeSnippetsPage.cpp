@@ -33,8 +33,6 @@
 
 CodeSnippetsPage::CodeSnippetsPage(const QString &language, QWidget *parent) : PreferencesPage(parent), lang(language)
 {
-    setTitle(language + " Snippets");
-
     splitter = new QSplitter();
     addWidget(splitter);
 

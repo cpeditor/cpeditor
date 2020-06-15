@@ -108,6 +108,16 @@ void PreferencesPage::setPath(const QString &path)
     emit pathChanged(m_path);
 }
 
+void PreferencesPage::setTitle(const QString &title)
+{
+    titleLabel->setText(title);
+}
+
+QStringList PreferencesPage::content()
+{
+    return QStringList();
+}
+
 void PreferencesPage::loadSettings()
 {
     makeUITheSameAsSettings();
@@ -132,11 +142,6 @@ void PreferencesPage::addItem(QLayoutItem *item)
 void PreferencesPage::registerWidget(ValueWidget *widget)
 {
     QObject::connect(widget, &ValueWidget::valueChanged, this, &PreferencesPage::updateButtons);
-}
-
-void PreferencesPage::setTitle(const QString &title)
-{
-    titleLabel->setText(title);
 }
 
 void PreferencesPage::loadDefault()
