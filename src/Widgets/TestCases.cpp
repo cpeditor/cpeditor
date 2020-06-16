@@ -235,7 +235,7 @@ void TestCases::addTestCase(const QString &input, const QString &expected)
     {
         LOG_WARN("Max testcase limit reached");
         QMessageBox::warning(this, tr("Add Test Case"),
-                             tr("There are already %1 test cases, you can't add more.").arg(QString::number(count())));
+                             tr("There are already %1 test cases, you can't add more.").arg(count()));
     }
     else
     {
@@ -491,8 +491,10 @@ void TestCases::updateVerdicts()
             break;
         }
     }
-    verdicts->setText("<span style=\"color:red\">" + QString::number(wa) + "</span> / <span style=\"color:green\">" +
-                      QString::number(ac) + "</span> / " + QString::number(count()));
+    verdicts->setText(QString("<span style=\"color:red\">%1</span> / <span style=\"color:green\">%2</span> / %3")
+                          .arg(wa)
+                          .arg(ac)
+                          .arg(count()));
 }
 
 QString TestCases::inputFilePath(const QString &filePath, int index)

@@ -1071,7 +1071,7 @@ void MainWindow::updateCursorInfo()
             else
                 col += SettingsHelper::getTabWidth() - col % SettingsHelper::getTabWidth();
         }
-        info = tr("Line %1, Column %2").arg(QString::number(cursor.blockNumber() + 1)).arg(QString::number(col + 1));
+        info = tr("Line %1, Column %2").arg(cursor.blockNumber() + 1).arg(col + 1);
     }
     else
     {
