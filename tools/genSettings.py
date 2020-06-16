@@ -122,8 +122,18 @@ void updateSettingInfo()
             hlp = t["hlp"]
         else:
             hlp = ""
-        setting_info.write(
-            f"    settingInfo.append(SettingInfo {{{json.dumps(name)}, QCoreApplication::translate(\"Setting\", {json.dumps(desc)}), \"{typename}\", \"{ui}\", QCoreApplication::translate(\"Setting\", {json.dumps(tip)}), QCoreApplication::translate(\"Setting\", {json.dumps(hlp)}), {{")
+
+        setting_info.write(f"    settingInfo.append(SettingInfo {{{json.dumps(name)}, ")
+        if "C++" in json.dumps(desc):
+            setting_info.write(f"QCoreApplication::translate(\"Setting\", {json.dumps(desc).replace('C++', '%1')}).arg(\"C++\")")
+        elif "Java" in json.dumps(desc):
+            setting_info.write(f"QCoreApplication::translate(\"Setting\", {json.dumps(desc).replace('Java', '%1')}).arg(\"Java\")")
+        elif "Python" in json.dumps(desc):
+            setting_info.write(f"QCoreApplication::translate(\"Setting\", {json.dumps(desc).replace('Python', '%1')}).arg(\"Python\")")
+        else:
+            setting_info.write(f"QCoreApplication::translate(\"Setting\", {json.dumps(desc)})")
+        setting_info.write(f", \"{typename}\", \"{ui}\", QCoreApplication::translate(\"Setting\", {json.dumps(tip)}), QCoreApplication::translate(\"Setting\", {json.dumps(hlp)}), {{")
+
         if "old" in t:
             olds = ""
             for s in t["old"]:

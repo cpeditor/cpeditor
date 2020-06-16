@@ -1631,42 +1631,42 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
 <context>
     <name>PreferencesPage</name>
     <message>
-        <location filename="../src/Settings/PreferencesPage.cpp" line="41"/>
+        <location filename="../src/Settings/PreferencesPage.cpp" line="39"/>
         <source>Default</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Settings/PreferencesPage.cpp" line="43"/>
+        <location filename="../src/Settings/PreferencesPage.cpp" line="41"/>
         <source>Reset</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Settings/PreferencesPage.cpp" line="45"/>
+        <location filename="../src/Settings/PreferencesPage.cpp" line="43"/>
         <source>Apply</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Settings/PreferencesPage.cpp" line="60"/>
+        <location filename="../src/Settings/PreferencesPage.cpp" line="58"/>
         <source>Restore the default settings on the current page. (Ctrl+D)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Settings/PreferencesPage.cpp" line="61"/>
+        <location filename="../src/Settings/PreferencesPage.cpp" line="59"/>
         <source>Discard all changes on the current page. (Ctrl+R)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Settings/PreferencesPage.cpp" line="62"/>
+        <location filename="../src/Settings/PreferencesPage.cpp" line="60"/>
         <source>Save the changes on the current page. (Ctrl+S)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Settings/PreferencesPage.cpp" line="83"/>
+        <location filename="../src/Settings/PreferencesPage.cpp" line="81"/>
         <source>Unsaved Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Settings/PreferencesPage.cpp" line="83"/>
+        <location filename="../src/Settings/PreferencesPage.cpp" line="81"/>
         <source>The settings are changed. Do you want to save the settings or discard them?</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1711,77 +1711,32 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     </message>
     <message>
         <location filename="../src/Settings/PreferencesWindow.cpp" line="172"/>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="173"/>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="175"/>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="178"/>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="180"/>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="219"/>
         <source>C++</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Settings/PreferencesWindow.cpp" line="173"/>
-        <source>C++ Commands</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/Settings/PreferencesWindow.cpp" line="175"/>
-        <source>C++ Template</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/Settings/PreferencesWindow.cpp" line="178"/>
-        <source>C++ Snippets</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/Settings/PreferencesWindow.cpp" line="180"/>
-        <source>C++ Parentheses</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../src/Settings/PreferencesWindow.cpp" line="184"/>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="185"/>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="187"/>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="190"/>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="192"/>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="220"/>
         <source>Java</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Settings/PreferencesWindow.cpp" line="185"/>
-        <source>Java Commands</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/Settings/PreferencesWindow.cpp" line="187"/>
-        <source>Java Template</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/Settings/PreferencesWindow.cpp" line="190"/>
-        <source>Java Snippets</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/Settings/PreferencesWindow.cpp" line="192"/>
-        <source>Java Parentheses</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../src/Settings/PreferencesWindow.cpp" line="196"/>
-        <source>Python</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../src/Settings/PreferencesWindow.cpp" line="197"/>
-        <source>Python Commands</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../src/Settings/PreferencesWindow.cpp" line="199"/>
-        <source>Python Template</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../src/Settings/PreferencesWindow.cpp" line="202"/>
-        <source>Python Snippets</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../src/Settings/PreferencesWindow.cpp" line="204"/>
-        <source>Python Parentheses</source>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="221"/>
+        <source>Python</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1820,18 +1775,38 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="173"/>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="185"/>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="197"/>
+        <source>%1 Commands</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="175"/>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="187"/>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="199"/>
+        <source>%1 Template</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="178"/>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="190"/>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="202"/>
+        <source>%1 Snippets</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="180"/>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="192"/>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="204"/>
+        <source>%1 Parentheses</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../src/Settings/PreferencesWindow.cpp" line="219"/>
-        <source>C++ Server</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../src/Settings/PreferencesWindow.cpp" line="220"/>
-        <source>Java Server</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../src/Settings/PreferencesWindow.cpp" line="221"/>
-        <source>Python Server</source>
+        <source>%1 Server</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1941,17 +1916,7 @@ You can learn about it at &lt;https://clang.llvm.org/docs/ClangFormatStyleOption
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="35"/>
-        <source>C++ Template Path</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="35"/>
         <source>The template used when creating a new C++ file</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="36"/>
-        <source>C++ Template Cursor Position Regex</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1965,19 +1930,9 @@ The cursor will be at the end of the template if there&apos;s no match of the re
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="37"/>
-        <source>C++ Template Cursor Position Offset Type</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="37"/>
         <location filename="../build/generated/SettingsInfo.cpp" line="50"/>
         <location filename="../build/generated/SettingsInfo.cpp" line="55"/>
         <source>Whether the offset is relative to the start of the regex or the end of the regex.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="38"/>
-        <source>C++ Template Cursor Position Offset Characters</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1989,17 +1944,7 @@ The cursor will be at the end of the template if there&apos;s no match of the re
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="39"/>
-        <source>C++ Compile Command</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="39"/>
         <source>The command used to compile C++. It should NOT include the path to the source file or &quot;-o &lt;output file&gt;&quot;.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="40"/>
-        <source>C++ Executable File Path</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2014,32 +1959,12 @@ You can use &quot;${filename}&quot; for the complete file name,
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="41"/>
-        <source>C++ Run Arguments</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="41"/>
         <source>The runtime arguments when executing a C++ program</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="42"/>
-        <source>C++ Parentheses</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="43"/>
-        <source>Java Template Path</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="43"/>
         <source>The template used when creating a new Java file</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="44"/>
-        <source>Java Compile Command</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2050,17 +1975,7 @@ It should NOT include the path to the source file or the path of the compiled cl
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="45"/>
-        <source>Java Run Arguments</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="45"/>
         <source>The runtime arguments when executing a Java program</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="46"/>
-        <source>Java Run Command</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2069,8 +1984,9 @@ It should NOT include the path to the source file or the path of the compiled cl
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="47"/>
-        <source>Java Class Name</source>
+        <location filename="../build/generated/SettingsInfo.cpp" line="46"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="58"/>
+        <source>%1 Run Command</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2079,8 +1995,8 @@ It should NOT include the path to the source file or the path of the compiled cl
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="48"/>
-        <source>Java Class Path</source>
+        <location filename="../build/generated/SettingsInfo.cpp" line="47"/>
+        <source>%1 Class Name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2093,53 +2009,13 @@ You can use &quot;${filename}&quot; for the complete file name,
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="49"/>
-        <source>Java Template Cursor Position Regex</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="50"/>
-        <source>Java Template Cursor Position Offset Type</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="51"/>
-        <source>Java Template Cursor Position Offset Characters</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="52"/>
-        <source>Java Parentheses</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="53"/>
-        <source>Python Template Path</source>
+        <location filename="../build/generated/SettingsInfo.cpp" line="48"/>
+        <source>%1 Class Path</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="53"/>
         <source>The template used when creating a new Python file</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="54"/>
-        <source>Python Template Cursor Position Regex</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="55"/>
-        <source>Python Template Cursor Position Offset Type</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="56"/>
-        <source>Python Template Cursor Position Offset Characters</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="57"/>
-        <source>Python Run Arguments</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2149,17 +2025,7 @@ You can use &quot;${filename}&quot; for the complete file name,
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="58"/>
-        <source>Python Run Command</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="58"/>
         <source>The command to start a Python program. It should NOT include the path to the source file.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="59"/>
-        <source>Python Parentheses</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2227,6 +2093,59 @@ You can use &quot;${filename}&quot; for the complete file name,
         <source>Automatically complete a pair of parentheses when typing the left element of it,
 and move out of it when typing the right element of it.
 This can be overridden for each parenthesis in each language.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="35"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="43"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="53"/>
+        <source>%1 Template Path</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="36"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="49"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="54"/>
+        <source>%1 Template Cursor Position Regex</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="37"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="50"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="55"/>
+        <source>%1 Template Cursor Position Offset Type</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="38"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="51"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="56"/>
+        <source>%1 Template Cursor Position Offset Characters</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="39"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="44"/>
+        <source>%1 Compile Command</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="40"/>
+        <source>%1 Executable File Path</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="41"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="45"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="57"/>
+        <source>%1 Run Arguments</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="42"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="52"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="59"/>
+        <source>%1 Parentheses</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

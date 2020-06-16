@@ -170,38 +170,38 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
         .dir("Language", tr("Language"))
             .page("General", tr("General"), {"Default Language"})
             .dir("C++", tr("C++"))
-                .page("C++ Commands", tr("C++ Commands"),
+                .page("C++ Commands", tr("%1 Commands").arg(tr("C++")),
                       {"C++/Compile Command", "C++/Output Path", "C++/Run Arguments"})
-                .page("C++ Template", tr("C++ Template"),
+                .page("C++ Template", tr("%1 Template").arg(tr("C++")),
                       {"C++/Template Path", "C++/Template Cursor Position Regex",
                        "C++/Template Cursor Position Offset Type", "C++/Template Cursor Position Offset Characters"})
-                .page("C++ Snippets", tr("C++ Snippets"), new CodeSnippetsPage("C++"),
+                .page("C++ Snippets", tr("%1 Snippets").arg(tr("C++")), new CodeSnippetsPage("C++"),
                       {"C++ Snippets", "C++ Code Snippets", "Cpp Snippets", "Cpp Code Snippets"})
-                .page("C++ Parentheses", tr("C++ Parentheses"), new ParenthesesPage("C++"),
+                .page("C++ Parentheses", tr("%1 Parentheses").arg(tr("C++")), new ParenthesesPage("C++"),
                       {"C++ Parentheses", "C++ Brackets", "C++ Braces", "C++ Auto Complete", "C++ Auto Remove",
                        "C++ Tab Jump Out"})
             .end()
             .dir("Java", tr("Java"))
-                .page("Java Commands", tr("Java Commands"),
+                .page("Java Commands", tr("%1 Commands").arg(tr("Java")),
                       {"Java/Compile Command", "Java/Output Path", "Java/Class Name", "Java/Run Command", "Java/Run Arguments"})
-                .page("Java Template", tr("Java Template"),
+                .page("Java Template", tr("%1 Template").arg(tr("Java")),
                       {"Java/Template Path", "Java/Template Cursor Position Regex", "Java/Template Cursor Position Offset Type",
                        "Java/Template Cursor Position Offset Characters"})
-                .page("Java Snippets", tr("Java Snippets"), new CodeSnippetsPage("Java"),
+                .page("Java Snippets", tr("%1 Snippets").arg(tr("Java")), new CodeSnippetsPage("Java"),
                       {"Java Snippets", "Java Code Snippets"})
-                .page("Java Parentheses", tr("Java Parentheses"), new ParenthesesPage("Java"),
+                .page("Java Parentheses", tr("%1 Parentheses").arg(tr("Java")), new ParenthesesPage("Java"),
                       {"Java Parentheses", "Java Brackets", "Java Braces", "Java Auto Complete", "Java Auto Remove",
                        "Java Tab Jump Out"})
             .end()
             .dir("Python", tr("Python"))
-                .page("Python Commands", tr("Python Commands"),
+                .page("Python Commands", tr("%1 Commands").arg(tr("Python")),
                       {"Python/Run Command", "Python/Run Arguments"})
-                .page("Python Template", tr("Python Template"),
+                .page("Python Template", tr("%1 Template").arg(tr("Python")),
                       {"Python/Template Path", "Python/Template Cursor Position Regex", "Python/Template Cursor Position Offset Type",
                       "Python/Template Cursor Position Offset Characters"})
-                .page("Python Snippets", tr("Python Snippets"), new CodeSnippetsPage("Python"),
+                .page("Python Snippets", tr("%1 Snippets").arg(tr("Python")), new CodeSnippetsPage("Python"),
                       {"Python Snippets", "Python Code Snippets"})
-                .page("Python Parentheses", tr("Python Parentheses"), new ParenthesesPage("Python"),
+                .page("Python Parentheses", tr("%1 Parentheses").arg(tr("Python")), new ParenthesesPage("Python"),
                       {"Python Parentheses", "Python Brackets", "Python Braces", "Python Auto Complete", "Python Auto Remove",
                        "Python Tab Jump Out"})
             .end()
@@ -216,9 +216,9 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
         .dir("Extensions", tr("Extensions"))
             .page("Clang Format", tr("Clang Format"), new PreferencesPageTemplate({"Clang Format/Path", "Clang Format/Style"}, false))
             .dir("Language Server", tr("Language Server"))
-                .page("C++ Server", tr("C++ Server"), {"LSP/Use Linting C++", "LSP/Delay C++", "LSP/Path C++", "LSP/Args C++"})
-                .page("Java Server", tr("Java Server"), {"LSP/Use Linting Java", "LSP/Delay Java", "LSP/Path Java", "LSP/Args Java"})
-                .page("Python Server", tr("Python Server"), {"LSP/Use Linting Python", "LSP/Delay Python", "LSP/Path Python", "LSP/Args Python"})
+                .page("C++ Server", tr("%1 Server").arg(tr("C++")), {"LSP/Use Linting C++", "LSP/Delay C++", "LSP/Path C++", "LSP/Args C++"})
+                .page("Java Server", tr("%1 Server").arg(tr("Java")), {"LSP/Use Linting Java", "LSP/Delay Java", "LSP/Path Java", "LSP/Args Java"})
+                .page("Python Server", tr("%1 Server").arg(tr("Python")), {"LSP/Use Linting Python", "LSP/Delay Python", "LSP/Path Python", "LSP/Args Python"})
             .end()
             .page("Competitive Companion", tr("Competitive Companion"), {"Competitive Companion/Enable", "Competitive Companion/Open New Tab",
                                                 "Competitive Companion/Connection Port"})

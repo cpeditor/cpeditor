@@ -857,7 +857,7 @@
     <message>
         <location filename="../src/Core/Checker.cpp" line="208"/>
         <source>The %1 of the process running on the testcase #%2 contains more than %3 characters, which is longer than the output length limit, so the process is killed. You can change the output length limit in Preferences-&gt;Advanced-&gt;Limits-&gt;Output Length Limit</source>
-        <translation type="unfinished">测试点 #%2 的 %1 超过 %3 个字符，超出了输出长度限制，因此进程被结束。你可以在设置-&gt;Advance-&gt;Limits-&gt;输出限制中更改限制大小</translation>
+        <translation type="unfinished">测试点 #%2 的 %1 超过 %3 个字符，超出了输出长度限制，因此进程被结束。你可以在设置-&gt;高级-&gt;限制-&gt;输出长度限制中更改限制大小</translation>
     </message>
     <message>
         <location filename="../src/Core/Checker.cpp" line="218"/>
@@ -1001,7 +1001,7 @@
     <message>
         <location filename="../src/Extensions/ClangFormatter.cpp" line="188"/>
         <source>The format process didn&apos;t finish in 2 seconds. This is probably because the clang-format binary is not found by CP Editor. You can set the path to clang-format in Preferences-&gt;Extensions-&gt;Clang Format.</source>
-        <translation type="unfinished">格式化进程未能在 2 秒内结束。这可能是因为 CP Editor 未能找到 clang-format 的可执行文件。你可以在 Preferences-&gt;Extensions-&gt;Clang Format 中设置 clang-format 可执行文件的路径。</translation>
+        <translation type="unfinished">格式化进程未能在 2 秒内结束。这可能是因为 CP Editor 未能找到 clang-format 的可执行文件。你可以在 设置-&gt;扩展-&gt;Clang Format 中设置 clang-format 可执行文件的路径。</translation>
     </message>
     <message>
         <location filename="../src/Extensions/ClangFormatter.cpp" line="198"/>
@@ -1084,7 +1084,7 @@
     <message>
         <location filename="../src/Extensions/LanguageServer.cpp" line="291"/>
         <source>Failed to start LSP Process. Have you set the path to the Language Server program in Preferences-&gt;Extensions-&gt;Language Server?</source>
-        <translation type="unfinished">启动语言服务器进程失败。你是否已在设置-&gt;Extensions-&gt;Language Server中设置语言服务器的路径？</translation>
+        <translation type="unfinished">启动语言服务器进程失败。你是否已在设置-&gt;扩展-&gt;Language Server 中设置语言服务器的路径？</translation>
     </message>
     <message>
         <location filename="../src/Extensions/LanguageServer.cpp" line="297"/>
@@ -1305,7 +1305,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/mainwindow.cpp" line="763"/>
         <source>The file [%1] contains more than %2 characters, so it&apos;s not opened. You can change the open file length limit in Preferences-&gt;Advanced-&gt;Limits-&gt;Open File Length Limit</source>
-        <translation type="unfinished">文件 [%1] 包含超过 %2 个字符，因此没有被打开。你可以在设置-&gt;Advanced-&gt;Limits-&gt;打开文件长度限制中更改长度限制</translation>
+        <translation type="unfinished">文件 [%1] 包含超过 %2 个字符，因此没有被打开。你可以在设置-&gt;高级-&gt;限制-&gt;打开文件长度限制中更改长度限制</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="867"/>
@@ -1468,7 +1468,7 @@ Do you want to reload it?</source>
     <message>
         <location filename="../src/mainwindow.cpp" line="1245"/>
         <source>The %1 of the process running on the testcase #%2 contains more than %3 characters, which is longer than the output length limit, so the process is killed. You can change the output length limit in Preferences-&gt;Advanced-&gt;Limits-&gt;Output Length Limit</source>
-        <translation type="unfinished">在测试点 #%2 上运行的程序的 %1 包含多于 %3 个字符，超出了输出长度限制，因此进程被结束。你可以在设置-&gt;Advance-&gt;Limits-&gt;输出限制中更改长度限制</translation>
+        <translation type="unfinished">在测试点 #%2 上运行的程序的 %1 包含多于 %3 个字符，超出了输出长度限制，因此进程被结束。你可以在设置-&gt;高级-&gt;限制-&gt;输出限制中更改长度限制</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="1256"/>
@@ -1513,7 +1513,7 @@ Do you want to reload it?</source>
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_mainwindow.h" line="193"/>
         <source>Messages</source>
-        <translation type="unfinished">信息</translation>
+        <translation type="unfinished">消息</translation>
     </message>
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_mainwindow.h" line="194"/>
@@ -1541,7 +1541,7 @@ Do you want to reload it?</source>
     <message>
         <location filename="../src/Settings/ParenthesesPage.cpp" line="90"/>
         <source>%1 Parentheses</source>
-        <translation type="unfinished">%1的括号</translation>
+        <translation type="unfinished">%1 括号</translation>
     </message>
     <message>
         <location filename="../src/Settings/ParenthesesPage.cpp" line="108"/>
@@ -1566,7 +1566,7 @@ Do you want to reload it?</source>
     <message>
         <location filename="../src/Settings/ParenthesesPage.cpp" line="171"/>
         <source>Enter a parenthesis (e.g. {}):</source>
-        <translation type="unfinished">输入一对括号（如{}）：</translation>
+        <translation type="unfinished">输入一对括号（例如: {}）：</translation>
     </message>
     <message>
         <location filename="../src/Settings/ParenthesesPage.cpp" line="184"/>
@@ -1576,7 +1576,7 @@ Do you want to reload it?</source>
     <message>
         <location filename="../src/Settings/ParenthesesPage.cpp" line="185"/>
         <source>Do you really want to delete the parenthesis %1?</source>
-        <translation type="unfinished">你真的要删除括号对%1吗？</translation>
+        <translation type="unfinished">你真的要删除括号对 %1 吗？</translation>
     </message>
 </context>
 <context>
@@ -1590,8 +1590,8 @@ Do you want to reload it?</source>
         <location filename="../src/Settings/ParenthesesPage.cpp" line="60"/>
         <source>Enable %1 for %2 in %3.
 If it&apos;s partially checked, the global setting in Code Edit will be used.</source>
-        <translation type="unfinished">在%3中为括号对%2启用%1。
-如果是部分选择，则将会使用全局设置。</translation>
+        <translation type="unfinished">在 %3 中为括号对 %2 启用 %1。
+如果复选框被部分选择，则会使用全局设置。</translation>
     </message>
     <message>
         <location filename="../src/Settings/ParenthesesPage.cpp" line="68"/>
@@ -1606,7 +1606,7 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     <message>
         <location filename="../src/Settings/ParenthesesPage.cpp" line="70"/>
         <source>Tab Jump Out</source>
-        <translation type="unfinished">Tab跳出</translation>
+        <translation type="unfinished">按 Tab 键跳出</translation>
     </message>
 </context>
 <context>
@@ -1614,7 +1614,7 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     <message>
         <location filename="../src/Settings/PreferencesHomePage.cpp" line="44"/>
         <source>Welcome to CP Editor! Let&apos;s get started.</source>
-        <translation type="unfinished">欢迎使用CP Editor！让我们开始吧。</translation>
+        <translation type="unfinished">欢迎使用 CP Editor！让我们开始吧。</translation>
     </message>
     <message>
         <location filename="../src/Settings/PreferencesHomePage.cpp" line="52"/>
@@ -1624,17 +1624,17 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     <message>
         <location filename="../src/Settings/PreferencesHomePage.cpp" line="53"/>
         <source>C++ Compile and Run Commands</source>
-        <translation type="unfinished">C++编译运行命令</translation>
+        <translation type="unfinished">C++ 编译运行命令</translation>
     </message>
     <message>
         <location filename="../src/Settings/PreferencesHomePage.cpp" line="54"/>
         <source>Java Compile and Run Commands</source>
-        <translation type="unfinished">Java编译运行命令</translation>
+        <translation type="unfinished">Java 编译运行命令</translation>
     </message>
     <message>
         <location filename="../src/Settings/PreferencesHomePage.cpp" line="55"/>
         <source>Python Run Commands</source>
-        <translation type="unfinished">Python编译运行命令</translation>
+        <translation type="unfinished">Python 编译运行命令</translation>
     </message>
     <message>
         <location filename="../src/Settings/PreferencesHomePage.cpp" line="56"/>
@@ -1644,50 +1644,50 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     <message>
         <location filename="../src/Settings/PreferencesHomePage.cpp" line="63"/>
         <source>You can read the &lt;a href=&quot;https://github.com/cpeditor/cpeditor/blob/%1/doc/MANUAL.md&quot;&gt;Manual&lt;/a&gt; or go through the settings for more information.</source>
-        <translation type="unfinished">你可以阅读 &lt;a href=&quot;https://github.com/cpeditor/cpeditor/blob/%1/doc/MANUAL-zh_CN.md&quot;&gt;手册&lt;/a&gt;或在设置中浏览以获取更多信息。</translation>
+        <translation type="unfinished">你可以阅读 &lt;a href=&quot;https://github.com/cpeditor/cpeditor/blob/%1/doc/MANUAL-zh_CN.md&quot;&gt;手册&lt;/a&gt; 或在设置中浏览以获取更多信息。</translation>
     </message>
 </context>
 <context>
     <name>PreferencesPage</name>
     <message>
-        <location filename="../src/Settings/PreferencesPage.cpp" line="41"/>
+        <location filename="../src/Settings/PreferencesPage.cpp" line="39"/>
         <source>Default</source>
         <translation type="unfinished">默认</translation>
     </message>
     <message>
-        <location filename="../src/Settings/PreferencesPage.cpp" line="43"/>
+        <location filename="../src/Settings/PreferencesPage.cpp" line="41"/>
         <source>Reset</source>
         <translation type="unfinished">重置</translation>
     </message>
     <message>
-        <location filename="../src/Settings/PreferencesPage.cpp" line="45"/>
+        <location filename="../src/Settings/PreferencesPage.cpp" line="43"/>
         <source>Apply</source>
         <translation type="unfinished">应用</translation>
     </message>
     <message>
-        <location filename="../src/Settings/PreferencesPage.cpp" line="60"/>
+        <location filename="../src/Settings/PreferencesPage.cpp" line="58"/>
         <source>Restore the default settings on the current page. (Ctrl+D)</source>
         <translation type="unfinished">将当前页设置重置为默认（Ctrl+D）</translation>
     </message>
     <message>
-        <location filename="../src/Settings/PreferencesPage.cpp" line="61"/>
+        <location filename="../src/Settings/PreferencesPage.cpp" line="59"/>
         <source>Discard all changes on the current page. (Ctrl+R)</source>
         <translation type="unfinished">放弃当前页设置（Ctrl+R）</translation>
     </message>
     <message>
-        <location filename="../src/Settings/PreferencesPage.cpp" line="62"/>
+        <location filename="../src/Settings/PreferencesPage.cpp" line="60"/>
         <source>Save the changes on the current page. (Ctrl+S)</source>
         <translation type="unfinished">保存当前页设置（Ctrl+S）</translation>
     </message>
     <message>
-        <location filename="../src/Settings/PreferencesPage.cpp" line="83"/>
+        <location filename="../src/Settings/PreferencesPage.cpp" line="81"/>
         <source>Unsaved Settings</source>
-        <translation type="unfinished">未保存设置</translation>
+        <translation type="unfinished">未保存的设置</translation>
     </message>
     <message>
-        <location filename="../src/Settings/PreferencesPage.cpp" line="83"/>
+        <location filename="../src/Settings/PreferencesPage.cpp" line="81"/>
         <source>The settings are changed. Do you want to save the settings or discard them?</source>
-        <translation type="unfinished">设置已变更。你希望保存设置还是舍弃设置？</translation>
+        <translation type="unfinished">设置已变更。你希望保存设置还是舍弃更改？</translation>
     </message>
 </context>
 <context>
@@ -1726,82 +1726,37 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
         <location filename="../src/Settings/PreferencesWindow.cpp" line="171"/>
         <location filename="../src/Settings/PreferencesWindow.cpp" line="211"/>
         <source>General</source>
-        <translation type="unfinished">一般</translation>
+        <translation type="unfinished">通用</translation>
     </message>
     <message>
         <location filename="../src/Settings/PreferencesWindow.cpp" line="172"/>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="173"/>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="175"/>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="178"/>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="180"/>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="219"/>
         <source>C++</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Settings/PreferencesWindow.cpp" line="173"/>
-        <source>C++ Commands</source>
-        <translation type="unfinished">C++命令</translation>
-    </message>
-    <message>
-        <location filename="../src/Settings/PreferencesWindow.cpp" line="175"/>
-        <source>C++ Template</source>
-        <translation type="unfinished">C++模板</translation>
-    </message>
-    <message>
-        <location filename="../src/Settings/PreferencesWindow.cpp" line="178"/>
-        <source>C++ Snippets</source>
-        <translation type="unfinished">C++代码片段</translation>
-    </message>
-    <message>
-        <location filename="../src/Settings/PreferencesWindow.cpp" line="180"/>
-        <source>C++ Parentheses</source>
-        <translation type="unfinished">C++括号补全</translation>
-    </message>
-    <message>
         <location filename="../src/Settings/PreferencesWindow.cpp" line="184"/>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="185"/>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="187"/>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="190"/>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="192"/>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="220"/>
         <source>Java</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Settings/PreferencesWindow.cpp" line="185"/>
-        <source>Java Commands</source>
-        <translation type="unfinished">Java命令</translation>
-    </message>
-    <message>
-        <location filename="../src/Settings/PreferencesWindow.cpp" line="187"/>
-        <source>Java Template</source>
-        <translation type="unfinished">Java模板</translation>
-    </message>
-    <message>
-        <location filename="../src/Settings/PreferencesWindow.cpp" line="190"/>
-        <source>Java Snippets</source>
-        <translation type="unfinished">Java代码片段</translation>
-    </message>
-    <message>
-        <location filename="../src/Settings/PreferencesWindow.cpp" line="192"/>
-        <source>Java Parentheses</source>
-        <translation type="unfinished">Java括号补全</translation>
-    </message>
-    <message>
         <location filename="../src/Settings/PreferencesWindow.cpp" line="196"/>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="197"/>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="199"/>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="202"/>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="204"/>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="221"/>
         <source>Python</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/Settings/PreferencesWindow.cpp" line="197"/>
-        <source>Python Commands</source>
-        <translation type="unfinished">Python命令</translation>
-    </message>
-    <message>
-        <location filename="../src/Settings/PreferencesWindow.cpp" line="199"/>
-        <source>Python Template</source>
-        <translation type="unfinished">Python模板</translation>
-    </message>
-    <message>
-        <location filename="../src/Settings/PreferencesWindow.cpp" line="202"/>
-        <source>Python Snippets</source>
-        <translation type="unfinished">Python代码片段</translation>
-    </message>
-    <message>
-        <location filename="../src/Settings/PreferencesWindow.cpp" line="204"/>
-        <source>Python Parentheses</source>
-        <translation type="unfinished">Python括号补全</translation>
     </message>
     <message>
         <location filename="../src/Settings/PreferencesWindow.cpp" line="209"/>
@@ -1826,7 +1781,7 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     <message>
         <location filename="../src/Settings/PreferencesWindow.cpp" line="216"/>
         <source>Extensions</source>
-        <translation type="unfinished">插件</translation>
+        <translation type="unfinished">扩展</translation>
     </message>
     <message>
         <location filename="../src/Settings/PreferencesWindow.cpp" line="217"/>
@@ -1839,19 +1794,39 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="173"/>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="185"/>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="197"/>
+        <source>%1 Commands</source>
+        <translation type="unfinished">%1 命令</translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="175"/>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="187"/>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="199"/>
+        <source>%1 Template</source>
+        <translation type="unfinished">%1 模板</translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="178"/>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="190"/>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="202"/>
+        <source>%1 Snippets</source>
+        <translation type="unfinished">%1 代码片段</translation>
+    </message>
+    <message>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="180"/>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="192"/>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="204"/>
+        <source>%1 Parentheses</source>
+        <translation type="unfinished">%1 括号</translation>
+    </message>
+    <message>
         <location filename="../src/Settings/PreferencesWindow.cpp" line="219"/>
-        <source>C++ Server</source>
-        <translation type="unfinished">C++服务器</translation>
-    </message>
-    <message>
         <location filename="../src/Settings/PreferencesWindow.cpp" line="220"/>
-        <source>Java Server</source>
-        <translation type="unfinished">Java服务器</translation>
-    </message>
-    <message>
         <location filename="../src/Settings/PreferencesWindow.cpp" line="221"/>
-        <source>Python Server</source>
-        <translation type="unfinished">Python服务器</translation>
+        <source>%1 Server</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/Settings/PreferencesWindow.cpp" line="223"/>
@@ -1881,7 +1856,7 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     <message>
         <location filename="../src/Settings/PreferencesWindow.cpp" line="231"/>
         <source>Key Bindings</source>
-        <translation type="unfinished">按键绑定</translation>
+        <translation type="unfinished">热键</translation>
     </message>
     <message>
         <location filename="../src/Settings/PreferencesWindow.cpp" line="233"/>
@@ -1904,12 +1879,12 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="29"/>
         <source>Tab Width</source>
-        <translation type="unfinished">制表符宽度</translation>
+        <translation type="unfinished">缩进宽度</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="29"/>
         <source>The width of the tab character, or the number of spaces of an indent</source>
-        <translation type="unfinished">制表符的宽度/缩进的空格个数</translation>
+        <translation type="unfinished">制表符的宽度或缩进的空格个数</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="30"/>
@@ -1934,7 +1909,7 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="32"/>
         <source>The default language used when opening new tabs</source>
-        <translation type="unfinished">打开新页时默认的编程语言</translation>
+        <translation type="unfinished">打开新标签页时默认的编程语言</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="33"/>
@@ -1945,7 +1920,7 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="33"/>
         <source>The path to the Clang Format executable file</source>
-        <translation type="unfinished">Clang Format可执行文件的路径</translation>
+        <translation type="unfinished">Clang Format 可执行文件的路径</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="34"/>
@@ -1956,23 +1931,13 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
         <location filename="../build/generated/SettingsInfo.cpp" line="34"/>
         <source>The Clang Format style options, which are often saved in a .clang-format configuration file.
 You can learn about it at &lt;https://clang.llvm.org/docs/ClangFormatStyleOptions.html&gt;.</source>
-        <translation type="unfinished">Clang Format格式化所用风格，通常存储为.clang-format。
-你可以在&lt;https://clang.llvm.org/docs/ClangFormatStyleOptions.html&gt;上了解更多。</translation>
-    </message>
-    <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="35"/>
-        <source>C++ Template Path</source>
-        <translation type="unfinished">C++模板路径</translation>
+        <translation type="unfinished">Clang Format 格式化所用风格，通常存储为 .clang-format。
+你可以在 &lt;https://clang.llvm.org/docs/ClangFormatStyleOptions.html&gt; 上了解更多。</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="35"/>
         <source>The template used when creating a new C++ file</source>
-        <translation type="unfinished">新建C++代码时所用模板的路径</translation>
-    </message>
-    <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="36"/>
-        <source>C++ Template Cursor Position Regex</source>
-        <translation type="unfinished">C++模板光标正则</translation>
+        <translation type="unfinished">新建 C++ 代码时所用模板的路径</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="36"/>
@@ -1987,42 +1952,22 @@ The cursor will be at the end of the template if there&apos;s no match of the re
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="37"/>
-        <source>C++ Template Cursor Position Offset Type</source>
-        <translation type="unfinished">C++模板光标偏移类型</translation>
-    </message>
-    <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="37"/>
         <location filename="../build/generated/SettingsInfo.cpp" line="50"/>
         <location filename="../build/generated/SettingsInfo.cpp" line="55"/>
         <source>Whether the offset is relative to the start of the regex or the end of the regex.</source>
-        <translation type="unfinished">偏移基于正则匹配的位置。</translation>
-    </message>
-    <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="38"/>
-        <source>C++ Template Cursor Position Offset Characters</source>
-        <translation type="unfinished">C++模板光标偏移字符数</translation>
+        <translation type="unfinished">偏移是基于正则表达式匹配的开头还是结尾。</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="38"/>
         <location filename="../build/generated/SettingsInfo.cpp" line="51"/>
         <location filename="../build/generated/SettingsInfo.cpp" line="56"/>
         <source>The offset relative to the match of the regex in the number of characters, including white spaces.</source>
-        <translation type="unfinished">包含空格的偏移字符数。</translation>
-    </message>
-    <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="39"/>
-        <source>C++ Compile Command</source>
-        <translation type="unfinished">C++编译命令</translation>
+        <translation type="unfinished">包含空白字符的偏移字符数，相对于正则表达式的匹配。</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="39"/>
         <source>The command used to compile C++. It should NOT include the path to the source file or &quot;-o &lt;output file&gt;&quot;.</source>
-        <translation type="unfinished">编译C++代码所用命令。这里不应该包含源代码路径或是&quot;-o &lt;output file&gt;&quot;。</translation>
-    </message>
-    <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="40"/>
-        <source>C++ Executable File Path</source>
-        <translation type="unfinished">C++可执行文件路径</translation>
+        <translation type="unfinished">编译 C++ 代码所用命令。这里不应该包含源代码路径或是&quot;-o &lt;output file&gt;&quot;。</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="40"/>
@@ -2033,82 +1978,53 @@ You can use &quot;${filename}&quot; for the complete file name,
 &quot;${basename}&quot; for the base file name without the suffix,
 &quot;${tmpdir}&quot; for the absolute path of the temporary directory.</source>
         <translation type="unfinished">编译后生成的可执行文件的路径。
-以源代码所在路径起始的相对路径。如果当前页未命名，则是临时目录。
-不需要.exe的后缀。
-你可以使用&quot;${filename}&quot;来代替完整的源文件名；
-使用&quot;${basename}&quot;来代替无后缀的源文件名；
-使用&quot;${tmpdir}&quot;来代替一个临时目录的绝对路径。</translation>
-    </message>
-    <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="41"/>
-        <source>C++ Run Arguments</source>
-        <translation type="unfinished">C++命令行参数</translation>
+相对于源代码所在路径的相对路径。如果当前页未命名，则相对于临时目录。
+不需要 &quot;.exe&quot; 后缀。
+你可以使用&quot;${filename}&quot;来代指完整的源文件名；
+使用&quot;${basename}&quot;来代指无后缀的源文件名；
+使用&quot;${tmpdir}&quot;来代指临时目录的绝对路径。</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="41"/>
         <source>The runtime arguments when executing a C++ program</source>
-        <translation type="unfinished">执行C++程序时提供的命令行参数</translation>
-    </message>
-    <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="42"/>
-        <source>C++ Parentheses</source>
-        <translation type="unfinished">C++括号补全规则</translation>
-    </message>
-    <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="43"/>
-        <source>Java Template Path</source>
-        <translation type="unfinished">Java模板路径</translation>
+        <translation type="unfinished">执行 C++ 程序时提供的命令行参数</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="43"/>
         <source>The template used when creating a new Java file</source>
-        <translation type="unfinished">新建Java代码时所用模板的路径</translation>
-    </message>
-    <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="44"/>
-        <source>Java Compile Command</source>
-        <translation type="unfinished">Java编译命令</translation>
+        <translation type="unfinished">新建 Java 代码时所用模板的路径</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="44"/>
         <source>The command used to compile Java.
 It should NOT include the path to the source file or the path of the compiled class file.</source>
-        <translation type="unfinished">编译Java代码所用命令。这里不应该包含源代码路径或是输出的class文件路径。</translation>
-    </message>
-    <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="45"/>
-        <source>Java Run Arguments</source>
-        <translation type="unfinished">Java命令行参数</translation>
+        <translation type="unfinished">编译 Java 代码所用命令。这里不应该包含源代码路径或是输出的 class 文件路径。</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="45"/>
         <source>The runtime arguments when executing a Java program</source>
-        <translation type="unfinished">执行Java程序时提供的命令行参数</translation>
-    </message>
-    <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="46"/>
-        <source>Java Run Command</source>
-        <translation type="unfinished">Java解释命令</translation>
+        <translation type="unfinished">执行 Java 程序时提供的命令行参数</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="46"/>
         <source>The command to start a Java program. It should NOT include &quot;-classpath &lt;path&gt; &lt;class name&gt;&quot;.</source>
-        <translation type="unfinished">执行Java程序时的命令。这里不应该包含&quot;-classpath &lt;path&gt; &lt;class name&gt;&quot;。</translation>
+        <translation type="unfinished">执行 Java 程序时的命令。这里不应该包含&quot;-classpath &lt;path&gt; &lt;class name&gt;&quot;。</translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="47"/>
-        <source>Java Class Name</source>
-        <translation type="unfinished">Java类名</translation>
+        <location filename="../build/generated/SettingsInfo.cpp" line="46"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="58"/>
+        <source>%1 Run Command</source>
+        <translation type="unfinished">%1 运行命令</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="47"/>
         <source>The non-public class name of your solution.</source>
-        <translation type="unfinished">解决方案的非public类的名字。</translation>
+        <translation type="unfinished">你的代码中的非 public 主类的名字。</translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="48"/>
-        <source>Java Class Path</source>
-        <translation type="unfinished">Java类路径</translation>
+        <location filename="../build/generated/SettingsInfo.cpp" line="47"/>
+        <source>%1 Class Name</source>
+        <translation type="unfinished">%1 类名称</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="48"/>
@@ -2117,81 +2033,31 @@ It&apos;s relative to the source file, or the temporary directory if the tab is 
 You can use &quot;${filename}&quot; for the complete file name,
 &quot;${basename}&quot; for the base file name without the suffix,
 &quot;${tmpdir}&quot; for the absolute path of the temporary directory.</source>
-        <translation type="unfinished">编译后生成的可执行文件的目录。
-以源代码所在路径起始的相对路径。如果当前页未命名，则是临时目录。
+        <translation type="unfinished">编译后生成的可执行文件的所在的目录。
+相对于源代码所在路径的相对路径。如果当前页未命名，则相对于临时目录。
 你可以使用&quot;${filename}&quot;来代替完整的源文件名；
 使用&quot;${basename}&quot;来代替无后缀的源文件名；
-使用&quot;${tmpdir}&quot;来代替一个临时目录的绝对路径。</translation>
+使用&quot;${tmpdir}&quot;来代替临时目录的绝对路径。</translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="49"/>
-        <source>Java Template Cursor Position Regex</source>
-        <translation type="unfinished">Java模板光标正则</translation>
-    </message>
-    <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="50"/>
-        <source>Java Template Cursor Position Offset Type</source>
-        <translation type="unfinished">Java模板光标偏移类型</translation>
-    </message>
-    <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="51"/>
-        <source>Java Template Cursor Position Offset Characters</source>
-        <translation type="unfinished">Java模板光标偏移字符数</translation>
-    </message>
-    <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="52"/>
-        <source>Java Parentheses</source>
-        <translation type="unfinished">Java括号补全规则</translation>
-    </message>
-    <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="53"/>
-        <source>Python Template Path</source>
-        <translation type="unfinished">Python模板路径</translation>
+        <location filename="../build/generated/SettingsInfo.cpp" line="48"/>
+        <source>%1 Class Path</source>
+        <translation type="unfinished">%1 类路径</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="53"/>
         <source>The template used when creating a new Python file</source>
-        <translation type="unfinished">新建Python代码时所用模板的路径</translation>
-    </message>
-    <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="54"/>
-        <source>Python Template Cursor Position Regex</source>
-        <translation type="unfinished">Python模板光标正则</translation>
-    </message>
-    <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="55"/>
-        <source>Python Template Cursor Position Offset Type</source>
-        <translation type="unfinished">Python模板光标偏移类型</translation>
-    </message>
-    <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="56"/>
-        <source>Python Template Cursor Position Offset Characters</source>
-        <translation type="unfinished">Python模板光标偏移字符数</translation>
-    </message>
-    <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="57"/>
-        <source>Python Run Arguments</source>
-        <translation type="unfinished">Python命令行参数</translation>
+        <translation type="unfinished">新建 Python 代码时所用模板的路径</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="57"/>
         <source>The runtime arguments when executing a Python program</source>
-        <translation type="unfinished">执行Python程序时提供的命令行参数</translation>
-    </message>
-    <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="58"/>
-        <source>Python Run Command</source>
-        <translation type="unfinished">Python解释命令</translation>
+        <translation type="unfinished">执行 Python 程序时提供的命令行参数</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="58"/>
         <source>The command to start a Python program. It should NOT include the path to the source file.</source>
-        <translation type="unfinished">执行Python程序时的命令。这里不应该包含源代码路径。</translation>
-    </message>
-    <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="59"/>
-        <source>Python Parentheses</source>
-        <translation type="unfinished">Python括号补全规则</translation>
+        <translation type="unfinished">执行 Python 程序时的命令。这里不应该包含源代码路径。</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="60"/>
@@ -2221,7 +2087,7 @@ You can use &quot;${filename}&quot; for the complete file name,
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="64"/>
         <source>Add an indent when entering a new line after a &quot;{&quot;.</source>
-        <translation type="unfinished">在&quot;{&quot;后换行时插入一个制表。</translation>
+        <translation type="unfinished">在&quot;{&quot;后换行时插入一个缩进。</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="65"/>
@@ -2231,7 +2097,7 @@ You can use &quot;${filename}&quot; for the complete file name,
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="65"/>
         <source>Automatically save the file every 3 seconds.</source>
-        <translation type="unfinished">每3秒自动保存代码。</translation>
+        <translation type="unfinished">每 3 秒自动保存代码。</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="66"/>
@@ -2262,35 +2128,88 @@ This can be overridden for each parenthesis in each language.</source>
 此设置可以被各个语言的设置所覆盖。</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="35"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="43"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="53"/>
+        <source>%1 Template Path</source>
+        <translation type="unfinished">%1 模板路径</translation>
+    </message>
+    <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="36"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="49"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="54"/>
+        <source>%1 Template Cursor Position Regex</source>
+        <translation type="unfinished">使用 %1 模板时光标初始位置定位使用的正则表达式</translation>
+    </message>
+    <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="37"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="50"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="55"/>
+        <source>%1 Template Cursor Position Offset Type</source>
+        <translation type="unfinished">使用 %1 模板时光标初始位置的偏移类型</translation>
+    </message>
+    <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="38"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="51"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="56"/>
+        <source>%1 Template Cursor Position Offset Characters</source>
+        <translation type="unfinished">使用 %1 模板时光标初始位置的偏移字符量</translation>
+    </message>
+    <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="39"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="44"/>
+        <source>%1 Compile Command</source>
+        <translation type="unfinished">%1 编译命令</translation>
+    </message>
+    <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="40"/>
+        <source>%1 Executable File Path</source>
+        <translation type="unfinished">%1 可执行文件路径</translation>
+    </message>
+    <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="41"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="45"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="57"/>
+        <source>%1 Run Arguments</source>
+        <translation type="unfinished">%1 运行参数</translation>
+    </message>
+    <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="42"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="52"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="59"/>
+        <source>%1 Parentheses</source>
+        <translation type="unfinished">%1 括号</translation>
+    </message>
+    <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="62"/>
         <source>Automatically delete the whole pair of parentheses when deleting
 the left element of it if the two elements are adjacent.
 This can be overridden for each parenthesis in each language.</source>
-        <translation type="unfinished">删除一对连续括号的左括号时，自动删除右括号。
+        <translation type="unfinished">删除一对相邻的左右括号中的左括号时，自动删除右括号。
 此设置可以被各个语言的设置所覆盖。</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="63"/>
         <source>Jump out of a parenthesis by pressing Tab</source>
-        <translation type="unfinished">在按下tab时跳出括号</translation>
+        <translation type="unfinished">在按下 Tab 键时跳出括号</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="63"/>
         <source>When this is enabled, you can use Tab instead of the
 closing parenthesis to jump out of a parenthesis.
 This can be overridden for each parenthesis in each language.</source>
-        <translation type="unfinished">启用时可以使用Tab而不是对应右括号来跳出括号。
+        <translation type="unfinished">启用时可以使用 Tab 而不是对应右括号来跳出括号。
 此设置可以被各个语言的设置所覆盖。</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="68"/>
         <source>Use spaces instead of a tab character.</source>
-        <translation type="unfinished">输入制表时插入空格代替。</translation>
+        <translation type="unfinished">输入制表符时插入空格代替。</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="68"/>
         <source>Replace tabs by spaces</source>
-        <translation type="unfinished">替换制表为空格</translation>
+        <translation type="unfinished">将制表符替换为空格</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="69"/>
@@ -2325,7 +2244,7 @@ This can be overridden for each parenthesis in each language.</source>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="72"/>
         <source>Use Clang Format to format the codes when saving it.</source>
-        <translation type="unfinished">在保存文件时使用clang format格式化代码。</translation>
+        <translation type="unfinished">在保存文件时使用 Clang Format 格式化代码。</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="73"/>
@@ -2355,12 +2274,12 @@ This can be overridden for each parenthesis in each language.</source>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="77"/>
         <source>Enable Competitive Companion</source>
-        <translation type="unfinished">启用Competitive Companion</translation>
+        <translation type="unfinished">启用 Competitive Companion</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="77"/>
         <source>Receive data sent by Competitive Companion and load the example testcases.</source>
-        <translation type="unfinished">接受Competitive Companion发送的数据并加载测试数据。</translation>
+        <translation type="unfinished">接受 Competitive Companion 发送的数据并加载测试数据。</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="78"/>
@@ -2370,7 +2289,7 @@ This can be overridden for each parenthesis in each language.</source>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="78"/>
         <source>The port used to receive data from Competitive Companion</source>
-        <translation type="unfinished">从Competitive Companion接受数据使用的端口</translation>
+        <translation type="unfinished">从 Competitive Companion 接受数据使用的端口</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="79"/>
@@ -2380,7 +2299,7 @@ This can be overridden for each parenthesis in each language.</source>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="79"/>
         <source>Open a new tab for each problem parsed by Competitive Companion.</source>
-        <translation type="unfinished">为Competitive Companion解析的每一个问题打开一个新标签。</translation>
+        <translation type="unfinished">为 Competitive Companion 解析的每一个题目打开一个新标签页。</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="80"/>
@@ -2400,7 +2319,7 @@ This can be overridden for each parenthesis in each language.</source>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="83"/>
         <source>Run Only</source>
-        <translation type="unfinished">运行</translation>
+        <translation type="unfinished">仅运行</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="84"/>
@@ -2447,7 +2366,7 @@ When this is enabled, you won&apos;t be asked whether to save the unsaved files 
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="91"/>
         <source>The path to the CF Tool executable file</source>
-        <translation type="unfinished">CF Tool可执行文件路径</translation>
+        <translation type="unfinished">CF Tool 可执行文件路径</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="92"/>
@@ -2462,17 +2381,17 @@ When this is enabled, you won&apos;t be asked whether to save the unsaved files 
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="93"/>
         <source>Hide the Compile Only button and the Run Only button under the code editor in the main window.</source>
-        <translation type="unfinished">在主窗口隐藏编译和运行两个按钮。</translation>
+        <translation type="unfinished">在主窗口隐藏编译，运行两个按钮。</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="94"/>
         <source>Display EOLN In Diff</source>
-        <translation type="unfinished">在Diff中显示行尾</translation>
+        <translation type="unfinished">在差异查看器中显示行尾字符</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="94"/>
         <source>Use &quot;¶&quot; to represent for the new line character in the HTML Diff Viewer.</source>
-        <translation type="unfinished">在HTML DIff Viewer中使用¶代替换行符。</translation>
+        <translation type="unfinished">在 HTML 差异查看器中使用 &quot;¶&quot; 表示换行符。</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="95"/>
@@ -2483,7 +2402,7 @@ When this is enabled, you won&apos;t be asked whether to save the unsaved files 
         <location filename="../build/generated/SettingsInfo.cpp" line="95"/>
         <source>Always use QFile instead of QSaveFile to save files.
 This will be faster but with a little bit more risk of losing the file (with a very small possibility).</source>
-        <translation type="unfinished">总是使用QFile而不是QSaveFile来保存。
+        <translation type="unfinished">总是使用 QFile 而不是 QSaveFile 来保存。
 这会更快速，但更可能丢失文件（概率极小）。</translation>
     </message>
     <message>
@@ -2501,19 +2420,19 @@ The program will be killed if it doesn&apos;t terminate in the time limit.</sour
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="97"/>
         <source>Output Length Limit</source>
-        <translation type="unfinished">输出限制</translation>
+        <translation type="unfinished">输出长度限制</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="97"/>
         <source>The maximum number of characters in the output of the program.
 The program will be killed if either of its stdout or stderr is too long.</source>
         <translation type="unfinished">程序的最大输出字符数。
-通过stdout或stderr输出过长的程序将会被终止。</translation>
+stdout 或 stderr 过长的程序将会被终止。</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="98"/>
         <source>Message Length Limit</source>
-        <translation type="unfinished">信息长度限制</translation>
+        <translation type="unfinished">消息长度限制</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="98"/>
@@ -2525,13 +2444,13 @@ The message will be elided if it&apos;s too long.</source>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="99"/>
         <source>HTML Diff Viewer Length Limit</source>
-        <translation type="unfinished">HTML Diff Viewer长度限制</translation>
+        <translation type="unfinished">HTML 差异查看器长度限制</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="99"/>
         <source>The maximum number of characters in the HTML Diff Viewer.
 The Diff Viewer will fall back to plain text if either of the output or the expected output is too long.</source>
-        <translation type="unfinished">HTML Diff Viewer中显示的最大长度。
+        <translation type="unfinished">HTML 差异查看器中显示的最大长度。
 如果超长，将会使用纯文本进行显示。</translation>
     </message>
     <message>
@@ -2568,53 +2487,53 @@ A testcase file won&apos;t be loaded if it&apos;s too long.</source>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="102"/>
         <source>The path to the C++ Language Server executable</source>
-        <translation type="unfinished">C++ Language Server可执行文件的路径</translation>
+        <translation type="unfinished">C++ Language Server 可执行文件的路径</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="103"/>
         <source>The path to the Java Language Server executable</source>
-        <translation type="unfinished">Java Language Server可执行文件的路径</translation>
+        <translation type="unfinished">Java Language Server 可执行文件的路径</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="104"/>
         <source>The path to the Python Language Server executable</source>
-        <translation type="unfinished">Python Language Server可执行文件的路径</translation>
+        <translation type="unfinished">Python Language Server 可执行文件的路径</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="105"/>
         <location filename="../build/generated/SettingsInfo.cpp" line="106"/>
         <location filename="../build/generated/SettingsInfo.cpp" line="107"/>
         <source>Use Linting with Language Server</source>
-        <translation type="unfinished">启用Language Server</translation>
+        <translation type="unfinished">启用 Language Server</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="105"/>
         <source>Show Error, Warning, Information and Hints in Code Editor for C++ Langauge</source>
-        <translation type="unfinished">在编辑器中为C++显示错误、警告、信息和提示</translation>
+        <translation type="unfinished">在编辑器中为 C++ 显示错误、警告、信息和提示</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="106"/>
         <source>Show Error, Warning, Information and Hints in Code Editor for Java Langauge</source>
-        <translation type="unfinished">在编辑器中为Java显示错误、警告、信息和提示</translation>
+        <translation type="unfinished">在编辑器中为 Java 显示错误、警告、信息和提示</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="107"/>
         <source>Show Error, Warning, Information and Hints in Code Editor for Python Langauge</source>
-        <translation type="unfinished">在编辑器中为Python显示错误、警告、信息和提示</translation>
+        <translation type="unfinished">在编辑器中为 Python 显示错误、警告、信息和提示</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="108"/>
         <location filename="../build/generated/SettingsInfo.cpp" line="109"/>
         <location filename="../build/generated/SettingsInfo.cpp" line="110"/>
         <source>Use auto complete with Language Server</source>
-        <translation type="unfinished">使用Language Server的自动补全</translation>
+        <translation type="unfinished">使用 Language Server 的自动补全</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="108"/>
         <location filename="../build/generated/SettingsInfo.cpp" line="109"/>
         <location filename="../build/generated/SettingsInfo.cpp" line="110"/>
         <source>Use autocomplete results from Language server</source>
-        <translation type="unfinished">使用由Language Server提供的自动补全</translation>
+        <translation type="unfinished">使用由 Language Server 提供的自动补全</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="111"/>
@@ -2642,7 +2561,7 @@ A testcase file won&apos;t be loaded if it&apos;s too long.</source>
         <location filename="../build/generated/SettingsInfo.cpp" line="115"/>
         <location filename="../build/generated/SettingsInfo.cpp" line="116"/>
         <source>Arguments to pass to Language server executable</source>
-        <translation type="unfinished">传给Language Server的参数</translation>
+        <translation type="unfinished">传给 Language Server 程序的参数</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="117"/>
@@ -2668,11 +2587,11 @@ You can use &quot;${filename}&quot; for the complete file name,
 &quot;${0-index}&quot; for the index of the test case started from 0,
 &quot;${1-index}&quot; for the index of the test case started from 1.</source>
         <translation type="unfinished">输入文件保存的路径。
-以源代码起始的相对路径。
+是一个相对于源代码所在路径的相对路径。
 你可以使用&quot;${filename}&quot;来代替完整的源文件名；
 使用&quot;${basename}&quot;来代替无后缀的源文件名；
-使用&quot;${0-index}&quot;来代替以0起始的编号；
-使用&quot;${1-index}&quot;来代替以1起始的编号。</translation>
+使用&quot;${0-index}&quot;来代替以 0 起始的编号；
+使用&quot;${1-index}&quot;来代替以 1 起始的编号。</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="119"/>
@@ -2688,16 +2607,16 @@ You can use &quot;${filename}&quot; for the complete file name,
 &quot;${0-index}&quot; for the index of the test case started from 0,
 &quot;${1-index}&quot; for the index of the test case started from 1.</source>
         <translation type="unfinished">答案文件保存的路径。
-以源代码起始的相对路径。
+是一个相对于源代码所在路径的相对路径。
 你可以使用&quot;${filename}&quot;来代替完整的源文件名；
 使用&quot;${basename}&quot;来代替无后缀的源文件名；
-使用&quot;${0-index}&quot;来代替以0起始的编号；
-使用&quot;${1-index}&quot;来代替以1起始的编号。</translation>
+使用&quot;${0-index}&quot;来代替以 0 起始的编号；
+使用&quot;${1-index}&quot;来代替以 1 起始的编号。</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="120"/>
         <source>Default File Paths For Problem URLs</source>
-        <translation type="unfinished">题目链接默认文件路径</translation>
+        <translation type="unfinished">关于题目链接的默认保存路径</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="120"/>
@@ -2724,7 +2643,7 @@ You can use &quot;${filename}&quot; for the complete file name,
         <source>Add an extra margin with the height of a page at the bottom of the code editor.
 Due to technical reasons, changing the height of the margin affects the undo history.</source>
         <translation type="unfinished">在代码编辑器底部添加额外的边距。
-基于技术原因，改变边距会影响撤销历史。</translation>
+由于技术原因，改变边距会影响撤销历史。</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="123"/>
@@ -2744,7 +2663,7 @@ Due to technical reasons, changing the height of the margin affects the undo his
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="124"/>
         <source>Save the source file when compiling it. It won&apos;t be saved if the tab is untitled.</source>
-        <translation type="unfinished">在编译前保存代码。如果是未命名标签，则不会保存。</translation>
+        <translation type="unfinished">在编译前保存代码。如果是未命名标签页，则不会保存。</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="125"/>
@@ -2754,7 +2673,7 @@ Due to technical reasons, changing the height of the margin affects the undo his
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="125"/>
         <source>Save the source file when running it. It won&apos;t be saved if the tab is untitled.</source>
-        <translation type="unfinished">在运行前保存代码。如果是未命名标签，则不会保存。</translation>
+        <translation type="unfinished">在运行前保存代码。如果是未命名标签页，则不会保存。</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="126"/>
@@ -2766,18 +2685,18 @@ Due to technical reasons, changing the height of the margin affects the undo his
         <source>If a file path was with a problem URL,
 when you open that path again,
 the problem URL will be restored.</source>
-        <translation type="unfinished">当一个文件关联到一个问题链接时，在打开文件时自动加载题目链接。</translation>
+        <translation type="unfinished">当一个文件关联到一个题目链接时，在打开文件时自动加载题目链接。</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="127"/>
         <source>Open the old file when parsing an old problem URL</source>
-        <translation type="unfinished">加载旧题目时打开旧文件</translation>
+        <translation type="unfinished">加载以前的题目时打开以前的文件</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="127"/>
         <source>If a problem URL was set for a file path, when parsing that problem
 from competitive companion again, the old file will be opened.</source>
-        <translation type="unfinished">当一个文件关联到一个问题链接时，在加载题目时自动打开文件。</translation>
+        <translation type="unfinished">当一个文件关联到一个题目链接时，在加载题目时自动打开文件。</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="128"/>
@@ -2879,7 +2798,7 @@ from competitive companion again, the old file will be opened.</source>
     <message>
         <location filename="../src/Telemetry/UpdateChecker.cpp" line="140"/>
         <source>No download URL of the version [%1] is found.</source>
-        <translation type="unfinished">没有发现版本[%1]可用的下载链接。</translation>
+        <translation type="unfinished">没有发现版本 [%1] 可用的下载链接。</translation>
     </message>
 </context>
 <context>
@@ -2887,29 +2806,29 @@ from competitive companion again, the old file will be opened.</source>
     <message>
         <location filename="../src/Util/FileUtil.cpp" line="50"/>
         <source>%1Source Files (%2)</source>
-        <translation type="unfinished">%1源代码 (%2)</translation>
+        <translation type="unfinished">%1 源代码 (%2)</translation>
     </message>
     <message>
         <location filename="../src/Util/FileUtil.cpp" line="67"/>
         <location filename="../src/Util/FileUtil.cpp" line="90"/>
         <source>Failed to open [%1]. Do I have write permission?</source>
-        <translation type="unfinished">打开[%1]失败。你拥有写入权限吗？</translation>
+        <translation type="unfinished">打开 [%1] 失败。你拥有写入权限吗？</translation>
     </message>
     <message>
         <location filename="../src/Util/FileUtil.cpp" line="77"/>
         <location filename="../src/Util/FileUtil.cpp" line="99"/>
         <source>Failed to save to [%1]. Do I have write permission?</source>
-        <translation type="unfinished">保存[%1]失败。你拥有写入权限吗？</translation>
+        <translation type="unfinished">保存 [%1] 失败。你拥有写入权限吗？</translation>
     </message>
     <message>
         <location filename="../src/Util/FileUtil.cpp" line="118"/>
         <source>The file [%1] does not exist</source>
-        <translation type="unfinished">文件[%1]不存在</translation>
+        <translation type="unfinished">文件 [%1] 不存在</translation>
     </message>
     <message>
         <location filename="../src/Util/FileUtil.cpp" line="128"/>
         <source>Failed to open [%1]. Do I have read permission?</source>
-        <translation type="unfinished">打开[%1]失败。你拥有读取权限吗？</translation>
+        <translation type="unfinished">打开 [%1] 失败。你拥有读取权限吗？</translation>
     </message>
 </context>
 <context>
@@ -2917,7 +2836,7 @@ from competitive companion again, the old file will be opened.</source>
     <message>
         <location filename="../src/Widgets/DiffViewer.cpp" line="37"/>
         <source>Diff Viewer</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">差异查看器</translation>
     </message>
     <message>
         <location filename="../src/Widgets/DiffViewer.cpp" line="41"/>
@@ -2960,12 +2879,12 @@ from competitive companion again, the old file will be opened.</source>
     <message>
         <location filename="../src/Widgets/TestCase.cpp" line="86"/>
         <source>Test on a single testcase</source>
-        <translation type="unfinished">在一个测试点测试</translation>
+        <translation type="unfinished">在单个测试点上进行测试</translation>
     </message>
     <message>
         <location filename="../src/Widgets/TestCase.cpp" line="87"/>
         <source>Open the Diff Viewer</source>
-        <translation type="unfinished">打开Diff Viewer</translation>
+        <translation type="unfinished">打开差异查看器</translation>
     </message>
     <message>
         <location filename="../src/Widgets/TestCase.cpp" line="107"/>
@@ -2980,22 +2899,22 @@ from competitive companion again, the old file will be opened.</source>
     <message>
         <location filename="../src/Widgets/TestCase.cpp" line="109"/>
         <source>The output #%1 contains more than %2 characters, so it&apos;s not displayed. You can set the output length limit in Preferences-&gt;Advanced-&gt;Limits-&gt;Output Length Limit</source>
-        <translation type="unfinished">测试点#%1的输出超过%2个字符，因此没有显示。你可以在设置-&gt;Advance-&gt;Limits-&gt;输出限制中更改</translation>
+        <translation type="unfinished">测试点 #%1 的输出包含超过 %2 个字符，因此没有显示。你可以在设置-&gt;高级-&gt;限制-&gt;输出限制中更改限制大小</translation>
     </message>
     <message>
         <location filename="../src/Widgets/TestCase.cpp" line="154"/>
         <source>Input #%1</source>
-        <translation type="unfinished">输入#%1</translation>
+        <translation type="unfinished">输入 #%1</translation>
     </message>
     <message>
         <location filename="../src/Widgets/TestCase.cpp" line="155"/>
         <source>Output #%1</source>
-        <translation type="unfinished">输出#%1</translation>
+        <translation type="unfinished">输出 #%1</translation>
     </message>
     <message>
         <location filename="../src/Widgets/TestCase.cpp" line="156"/>
         <source>Expected #%1</source>
-        <translation type="unfinished">答案#%1</translation>
+        <translation type="unfinished">答案 #%1</translation>
     </message>
     <message>
         <location filename="../src/Widgets/TestCase.cpp" line="243"/>
@@ -3010,12 +2929,12 @@ from competitive companion again, the old file will be opened.</source>
     <message>
         <location filename="../src/Widgets/TestCase.cpp" line="252"/>
         <source>Diff Viewer[%1]</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">差异查看器[%1]</translation>
     </message>
     <message>
         <location filename="../src/Widgets/TestCase.cpp" line="253"/>
         <source>The output/expected contains more than %1 characters, HTML diff viewer is disabled. You can change the length limit in Preferences-&gt;Advanced-&gt;Limits-&gt;HTML Diff Viewer Length Limit</source>
-        <translation type="unfinished">输出超过了%1个字符，因此HTML Diff Viewer已被禁用。你可以在设置-&gt;Advanced-&gt;Limits-&gt;HTML Diff Viewer长度限制中更改</translation>
+        <translation type="unfinished">输出或答案超过了 %1 个字符，因此 HTML 差异查看器已被禁用。你可以在设置-&gt;高级-&gt;限制-&gt;HTML 差异查看器长度限制中更改限制大小</translation>
     </message>
 </context>
 <context>
@@ -3029,7 +2948,7 @@ from competitive companion again, the old file will be opened.</source>
     <message>
         <location filename="../src/Widgets/TestCaseEdit.cpp" line="107"/>
         <source>Edit in Bigger Window</source>
-        <translation type="unfinished">在大窗口中编辑</translation>
+        <translation type="unfinished">在更大的窗口中编辑</translation>
     </message>
     <message>
         <location filename="../src/Widgets/TestCaseEdit.cpp" line="110"/>
@@ -3044,7 +2963,7 @@ from competitive companion again, the old file will be opened.</source>
     <message>
         <location filename="../src/Widgets/TestCaseEdit.cpp" line="126"/>
         <source>The testcase file [%1] contains more than %2 characters, so it&apos;s not loaded. You can change the length limit in Preferences-&gt;Advanced-&gt;Limits-&gt;Load Test Case File Length Limit</source>
-        <translation type="unfinished">测试点文件[%1]超过了%2个字符，因此没有加载。你可以在设置-&gt;Advanced-&gt;Limits-&gt;加载测试用例文件最大长度长度限制中更改</translation>
+        <translation type="unfinished">测试点文件 [%1] 包含超过 %2 个字符，因此没有被加载。你可以在设置-&gt;高级-&gt;限制-&gt;加载测试用例文件最大长度长度限制中更改限制大小</translation>
     </message>
 </context>
 <context>
@@ -3083,12 +3002,12 @@ from competitive companion again, the old file will be opened.</source>
     <message>
         <location filename="../src/Widgets/TestCases.cpp" line="70"/>
         <source>Add a custom testlib checker</source>
-        <translation type="unfinished">添加基于testlib的自定义评测器</translation>
+        <translation type="unfinished">添加基于 testlib 的自定义评测器</translation>
     </message>
     <message>
         <location filename="../src/Widgets/TestCases.cpp" line="76"/>
         <source>Add Pairs of Testcases From Files</source>
-        <translation type="unfinished">从文件添加测试点</translation>
+        <translation type="unfinished">从文件添加成对的测试点</translation>
     </message>
     <message>
         <location filename="../src/Widgets/TestCases.cpp" line="77"/>
@@ -3105,17 +3024,17 @@ from competitive companion again, the old file will be opened.</source>
     <message>
         <location filename="../src/Widgets/TestCases.cpp" line="110"/>
         <source>A pair of testcases [%1] and [%2] is loaded</source>
-        <translation type="unfinished">已加载一对测试点[%1]和[%2]</translation>
+        <translation type="unfinished">已加载一对测试点 [%1] 和 [%2]</translation>
     </message>
     <message>
         <location filename="../src/Widgets/TestCases.cpp" line="130"/>
         <source>An input [%1] is loaded</source>
-        <translation type="unfinished">已加载输入[%1]</translation>
+        <translation type="unfinished">已加载输入 [%1]</translation>
     </message>
     <message>
         <location filename="../src/Widgets/TestCases.cpp" line="140"/>
         <source>The following files are not loaded because they are not matched:%1. You can set the matching rules at Preferences-&gt;File Path-&gt;Testcases-&gt;Add Testcases From Files Rules.</source>
-        <translation type="unfinished">下列文件由于没有匹配而未加载：%1。你可以在设置-&gt;File Path-&gt;Testcases-&gt;测试数据匹配规则中设置匹配规则。</translation>
+        <translation type="unfinished">下列文件由于没有匹配而未加载：%1。你可以在设置-&gt;文件路径-&gt;测试点-&gt;测试数据匹配规则中设置匹配规则。</translation>
     </message>
     <message>
         <location filename="../src/Widgets/TestCases.cpp" line="147"/>
@@ -3140,7 +3059,7 @@ from competitive companion again, the old file will be opened.</source>
     <message>
         <location filename="../src/Widgets/TestCases.cpp" line="173"/>
         <source>Hide AC</source>
-        <translation type="unfinished">隐藏通过的测试点</translation>
+        <translation type="unfinished">隐藏已通过的测试点</translation>
     </message>
     <message>
         <location filename="../src/Widgets/TestCases.cpp" line="180"/>
@@ -3160,7 +3079,7 @@ from competitive companion again, the old file will be opened.</source>
     <message>
         <location filename="../src/Widgets/TestCases.cpp" line="205"/>
         <source>Ignore trailing spaces</source>
-        <translation type="unfinished">忽略行尾空白</translation>
+        <translation type="unfinished">忽略行末空格和文末换行</translation>
     </message>
     <message>
         <location filename="../src/Widgets/TestCases.cpp" line="205"/>
@@ -3170,32 +3089,32 @@ from competitive companion again, the old file will be opened.</source>
     <message>
         <location filename="../src/Widgets/TestCases.cpp" line="205"/>
         <source>ncmp - Compare int64s</source>
-        <translation type="unfinished">ncmp - 匹配int64</translation>
+        <translation type="unfinished">ncmp - 匹配 int64</translation>
     </message>
     <message>
         <location filename="../src/Widgets/TestCases.cpp" line="206"/>
         <source>rcmp4 - Compare doubles, max error 1e-4</source>
-        <translation type="unfinished">rcmp4 - 匹配double，误差1e-4</translation>
+        <translation type="unfinished">rcmp4 - 匹配浮点数，允许最大误差 1e-4</translation>
     </message>
     <message>
         <location filename="../src/Widgets/TestCases.cpp" line="207"/>
         <source>rcmp6 - Compare doubles, max error 1e-6</source>
-        <translation type="unfinished">rcmp6 - 匹配double，误差1e-6</translation>
+        <translation type="unfinished">rcmp6 - 匹配浮点数，允许最大误差 1e-6</translation>
     </message>
     <message>
         <location filename="../src/Widgets/TestCases.cpp" line="208"/>
         <source>rcmp9 - Compare doubles, max error 1e-9</source>
-        <translation type="unfinished">rcmp9 - 匹配double，误差1e-9</translation>
+        <translation type="unfinished">rcmp9 - 匹配浮点数，允许最大误差 1e-9</translation>
     </message>
     <message>
         <location filename="../src/Widgets/TestCases.cpp" line="208"/>
         <source>wcmp - Compare tokens</source>
-        <translation type="unfinished">wcmp - 匹配符号</translation>
+        <translation type="unfinished">wcmp - 匹配字符串</translation>
     </message>
     <message>
         <location filename="../src/Widgets/TestCases.cpp" line="209"/>
         <source>nyesno - Compare YES/NOs, case insensitive</source>
-        <translation type="unfinished">nyesno - 匹配YES和NO，大小写不敏感</translation>
+        <translation type="unfinished">nyesno - 匹配 YES 和 NO，大小写不敏感</translation>
     </message>
     <message>
         <location filename="../src/Widgets/TestCases.cpp" line="237"/>
@@ -3205,32 +3124,32 @@ from competitive companion again, the old file will be opened.</source>
     <message>
         <location filename="../src/Widgets/TestCases.cpp" line="238"/>
         <source>There are already %1 test cases, you can&apos;t add more.</source>
-        <translation type="unfinished">已经有%1个测试点，你不能继续添加更多了。</translation>
+        <translation type="unfinished">已经有 %1 个测试点了，你不能继续添加更多了。</translation>
     </message>
     <message>
         <location filename="../src/Widgets/TestCases.cpp" line="315"/>
         <source>Input #%1</source>
-        <translation type="unfinished">输入#%1</translation>
+        <translation type="unfinished">输入 #%1</translation>
     </message>
     <message>
         <location filename="../src/Widgets/TestCases.cpp" line="316"/>
         <source>Expected #%1</source>
-        <translation type="unfinished">答案#%1</translation>
+        <translation type="unfinished">答案 #%1</translation>
     </message>
     <message>
         <location filename="../src/Widgets/TestCases.cpp" line="331"/>
         <source>Save Input #%1</source>
-        <translation type="unfinished">保存输入#%1</translation>
+        <translation type="unfinished">保存输入 #%1</translation>
     </message>
     <message>
         <location filename="../src/Widgets/TestCases.cpp" line="333"/>
         <source>Save Expected #%1</source>
-        <translation type="unfinished">保存答案#%1</translation>
+        <translation type="unfinished">保存答案 #%1</translation>
     </message>
     <message>
         <location filename="../src/Widgets/TestCases.cpp" line="349"/>
         <source>Load %1</source>
-        <translation type="unfinished">加载%1</translation>
+        <translation type="unfinished">加载 %1</translation>
     </message>
     <message>
         <location filename="../src/Widgets/TestCases.cpp" line="104"/>
@@ -3243,7 +3162,7 @@ from competitive companion again, the old file will be opened.</source>
     <message>
         <location filename="../src/Widgets/TestCases.cpp" line="353"/>
         <source>The testcase file [%1] contains more than %2 characters, so it&apos;s not loaded. You can change the length limit in Preferences-&gt;Advanced-&gt;Limits-&gt;Load Test Case File Length Limit</source>
-        <translation type="unfinished">测试点文件[%1]超过了%2个字符，因此没有加载。你可以在设置-&gt;Advanced-&gt;Limits-&gt;加载测试用例文件最大长度长度限制中更改</translation>
+        <translation type="unfinished">测试点文件 [%1] 包含超过 %2 个字符，因此没有被加载。你可以在设置-&gt;高级-&gt;限制-&gt;加载测试用例文件最大长度长度限制中更改限制大小</translation>
     </message>
 </context>
 <context>
@@ -3266,7 +3185,7 @@ from competitive companion again, the old file will be opened.</source>
     <message>
         <location filename="../src/Widgets/UpdatePresenter.cpp" line="65"/>
         <source>A new %1 update &lt;a href=&quot;%2&quot;&gt;%3&lt;/a&gt; is available. See below for the changelog.&lt;br /&gt;We highly recommend you keep the editor up to date so that you won&apos;t miss the awesome new features and bug fixes.</source>
-        <translation type="unfinished">一个新的%1更新&lt;a href=&quot;%2&quot;&gt;%3&lt;/a&gt;可用。更新日志在下方。&lt;br /&gt;我们强烈建议更新至最新版本，这样你才不会错过新的特性和补丁。</translation>
+        <translation type="unfinished">一个新的 %1 更新 &lt;a href=&quot;%2&quot;&gt;%3&lt;/a&gt; 可用。更新日志在下方。&lt;br /&gt;我们强烈建议您更新至最新版本，这样你才不会错过新的特性和 bug 修复。</translation>
     </message>
     <message>
         <location filename="../src/Widgets/UpdatePresenter.cpp" line="67"/>
@@ -3304,7 +3223,7 @@ from competitive companion again, the old file will be opened.</source>
     <message>
         <location filename="../src/Widgets/UpdateProgressDialog.cpp" line="63"/>
         <source>Error: %1&lt;br /&gt;&lt;br /&gt;Updater failed to check for update. Please manually check for update at&lt;br /&gt;&lt;a href=&quot;https://cpeditor.github.io/download&quot;&gt;https://cpeditor.github.io/download&lt;/a&gt; or &lt;a href=&quot;https://github.com/cpeditor/cpeditor/releases&quot;&gt;https://github.com/cpeditor/cpeditor/releases&lt;/a&gt;.</source>
-        <translation type="unfinished">错误：%1&lt;br /&gt;&lt;br /&gt;检查更新失败。请前往&lt;br /&gt;&lt;a href=&quot;https://cpeditor.github.io/download&quot;&gt;https://cpeditor.github.io/download&lt;/a&gt;或 &lt;a href=&quot;https://github.com/cpeditor/cpeditor/releases&quot;&gt;https://github.com/cpeditor/cpeditor/releases&lt;/a&gt;手动检查更新。</translation>
+        <translation type="unfinished">错误：%1&lt;br /&gt;&lt;br /&gt;检查更新失败。请前往 &lt;br /&gt;&lt;a href=&quot;https://cpeditor.github.io/download&quot;&gt;https://cpeditor.github.io/download&lt;/a&gt; 或 &lt;a href=&quot;https://github.com/cpeditor/cpeditor/releases&quot;&gt;https://github.com/cpeditor/cpeditor/releases&lt;/a&gt; 手动检查更新。</translation>
     </message>
     <message>
         <location filename="../src/Widgets/UpdateProgressDialog.cpp" line="73"/>
@@ -3314,7 +3233,7 @@ from competitive companion again, the old file will be opened.</source>
     <message>
         <location filename="../src/Widgets/UpdateProgressDialog.cpp" line="74"/>
         <source>Hooray!! You are already using the latest release of CP Editor.</source>
-        <translation type="unfinished">恭喜！！你已经在使用最新版本的CP Editor了。</translation>
+        <translation type="unfinished">恭喜！！你已经在使用最新版本的 CP Editor 了。</translation>
     </message>
 </context>
 </TS>
