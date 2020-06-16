@@ -137,10 +137,10 @@
   </widget>
   <action name="actionNew_Tab">
    <property name="text">
-    <string>New Tab</string>
+    <string>New File</string>
    </property>
    <property name="toolTip">
-    <string>Opens a new Tab in the Editor</string>
+    <string>Open a new tab in the editor</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+N</string>
@@ -151,7 +151,7 @@
     <string>Save</string>
    </property>
    <property name="toolTip">
-    <string>Saves the file to disk</string>
+    <string>Save the file on the disk</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+S</string>
@@ -359,7 +359,7 @@
   </action>
   <action name="action_find_replace">
    <property name="text">
-    <string>Find and Replace...</string>
+    <string>Find and Replace</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+F</string>
@@ -375,7 +375,7 @@
   </action>
   <action name="actionSettings">
    <property name="text">
-    <string>Preferences...</string>
+    <string>Preferences</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+P</string>
@@ -403,22 +403,22 @@
   </action>
   <action name="actionAbout">
    <property name="text">
-    <string>About...</string>
+    <string>About</string>
    </property>
   </action>
   <action name="actionAboutQt">
    <property name="text">
-    <string>About Qt...</string>
+    <string>About Qt</string>
    </property>
   </action>
   <action name="actionBuildInfo">
    <property name="text">
-    <string>Build Info...</string>
+    <string>Build Info</string>
    </property>
   </action>
   <action name="actionCheck_for_updates">
    <property name="text">
-    <string>Check for updates...</string>
+    <string>Check for updates</string>
    </property>
   </action>
   <action name="actionSupport_me">

@@ -218,16 +218,6 @@
         <translation type="unfinished">CP Editor: 一款为算法竞赛量身定制的编辑器</translation>
     </message>
     <message>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="267"/>
-        <source>New Tab</source>
-        <translation type="unfinished">新建标签页</translation>
-    </message>
-    <message>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="269"/>
-        <source>Opens a new Tab in the Editor</source>
-        <translation type="unfinished">在编辑器中打开一个新标签页</translation>
-    </message>
-    <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="272"/>
         <source>Ctrl+N</source>
         <translation type="unfinished"></translation>
@@ -237,11 +227,6 @@
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="274"/>
         <source>Save</source>
         <translation type="unfinished">保存</translation>
-    </message>
-    <message>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="276"/>
-        <source>Saves the file to disk</source>
-        <translation type="unfinished">将文件保存到磁盘</translation>
     </message>
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="279"/>
@@ -514,13 +499,48 @@
     </message>
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="393"/>
-        <source>Find and Replace...</source>
-        <translation type="unfinished">查找和替换...</translation>
+        <source>Find and Replace</source>
+        <translation type="unfinished">查找和替换</translation>
+    </message>
+    <message>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="401"/>
+        <source>Preferences</source>
+        <translation type="unfinished">设置</translation>
+    </message>
+    <message>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="410"/>
+        <source>About Qt</source>
+        <translation type="unfinished">关于 Qt</translation>
+    </message>
+    <message>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="411"/>
+        <source>Build Info</source>
+        <translation type="unfinished">构建信息</translation>
+    </message>
+    <message>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="412"/>
+        <source>Check for updates</source>
+        <translation type="unfinished">检查更新</translation>
     </message>
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="395"/>
         <source>Ctrl+F</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="267"/>
+        <source>New File</source>
+        <translation type="unfinished">新建文件</translation>
+    </message>
+    <message>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="269"/>
+        <source>Open a new tab in the editor</source>
+        <translation type="unfinished">在编辑器中打开一个新标签页</translation>
+    </message>
+    <message>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="276"/>
+        <source>Save the file on the disk</source>
+        <translation type="unfinished">在磁盘上保存文件</translation>
     </message>
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="397"/>
@@ -533,11 +553,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="401"/>
-        <source>Preferences...</source>
-        <translation type="unfinished">设置...</translation>
-    </message>
-    <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="406"/>
         <source>Export Settings...</source>
         <translation type="unfinished">导出设置...</translation>
@@ -546,26 +561,6 @@
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="407"/>
         <source>Import Settings...</source>
         <translation type="unfinished">导入设置...</translation>
-    </message>
-    <message>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="409"/>
-        <source>About...</source>
-        <translation type="unfinished">关于...</translation>
-    </message>
-    <message>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="410"/>
-        <source>About Qt...</source>
-        <translation type="unfinished">关于Qt...</translation>
-    </message>
-    <message>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="411"/>
-        <source>Build Info...</source>
-        <translation type="unfinished">构建信息...</translation>
-    </message>
-    <message>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="412"/>
-        <source>Check for updates...</source>
-        <translation type="unfinished">检查更新...</translation>
     </message>
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="403"/>
@@ -584,6 +579,7 @@
     </message>
     <message>
         <location filename="../src/appwindow.cpp" line="293"/>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="409"/>
         <source>About</source>
         <translation type="unfinished">关于</translation>
     </message>

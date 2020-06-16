@@ -218,16 +218,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="267"/>
-        <source>New Tab</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="269"/>
-        <source>Opens a new Tab in the Editor</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="272"/>
         <source>Ctrl+N</source>
         <translation type="unfinished"></translation>
@@ -236,11 +226,6 @@
         <location filename="../src/appwindow.cpp" line="700"/>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="274"/>
         <source>Save</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="276"/>
-        <source>Saves the file to disk</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -514,12 +499,47 @@
     </message>
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="393"/>
-        <source>Find and Replace...</source>
+        <source>Find and Replace</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="401"/>
+        <source>Preferences</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="410"/>
+        <source>About Qt</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="411"/>
+        <source>Build Info</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="412"/>
+        <source>Check for updates</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="395"/>
         <source>Ctrl+F</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="267"/>
+        <source>New File</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="269"/>
+        <source>Open a new tab in the editor</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="276"/>
+        <source>Save the file on the disk</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -533,11 +553,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="401"/>
-        <source>Preferences...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="406"/>
         <source>Export Settings...</source>
         <translation type="unfinished"></translation>
@@ -545,26 +560,6 @@
     <message>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="407"/>
         <source>Import Settings...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="409"/>
-        <source>About...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="410"/>
-        <source>About Qt...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="411"/>
-        <source>Build Info...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="412"/>
-        <source>Check for updates...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -584,6 +579,7 @@
     </message>
     <message>
         <location filename="../src/appwindow.cpp" line="293"/>
+        <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="409"/>
         <source>About</source>
         <translation type="unfinished"></translation>
     </message>
