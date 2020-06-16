@@ -45,7 +45,7 @@ class PreferencesWindow;
 class AddPageHelper
 {
   public:
-    AddPageHelper(PreferencesWindow *w);
+    explicit AddPageHelper(PreferencesWindow *w);
 
     AddPageHelper &page(const QString &key, const QString &trkey, const QStringList &content);
     AddPageHelper &page(const QString &key, const QString &trkey, PreferencesPage *page);
