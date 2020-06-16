@@ -100,7 +100,7 @@ void Checker::prepare(const QString &compileCommand)
         }
 
         // get the code of the checker
-        QString checkerCode = Util::readFile(checkerResource, "Read Checker", log);
+        QString checkerCode = Util::readFile(checkerResource, tr("Read Checker"), log);
         if (checkerCode.isNull())
             return;
 
@@ -108,20 +108,20 @@ void Checker::prepare(const QString &compileCommand)
         tmpDir = new QTemporaryDir();
         if (!tmpDir->isValid())
         {
-            log->error("Checker", "Failed to create temporary directory");
+            log->error(tr("Checker"), tr("Failed to create temporary directory"));
             return;
         }
 
         // save the checker source file on the disk
         checkerPath = tmpDir->filePath("checker.cpp");
-        if (!Util::saveFile(checkerPath, checkerCode, "Checker", false, log))
+        if (!Util::saveFile(checkerPath, checkerCode, tr("Checker"), false, log))
             return;
 
         // save testlib.h on the disk
-        auto testlib_h = Util::readFile(":/testlib/testlib.h", "Read testlib.h", log);
+        auto testlib_h = Util::readFile(":/testlib/testlib.h", tr("Read testlib.h"), log);
         if (testlib_h.isNull())
             return;
-        if (!Util::saveFile(tmpDir->filePath("testlib.h"), testlib_h, "Save testlib.h", false, log))
+        if (!Util::saveFile(tmpDir->filePath("testlib.h"), testlib_h, tr("Save testlib.h"), false, log))
             return;
 
         // start the compilation of the checker
@@ -153,7 +153,7 @@ void Checker::onCompilationFinished()
 
 void Checker::onCompilationErrorOccurred(const QString &error)
 {
-    log->error("Checker", "Error occurred while compiling the checker:\n" + error);
+    log->error(tr("Checker"), tr("Error occurred while compiling the checker:\n%1").arg(error));
 }
 
 void Checker::onCompilationKilled()
@@ -171,15 +171,14 @@ void Checker::onRunFinished(int index, const QString &out, const QString &err, i
     {
         // the check process succeeded
         if (!err.isEmpty())
-            log->message(QString("Checker[%1]").arg(index + 1), err, "green");
+            log->message(tr("Checker[%1]").arg(index + 1), err, "green");
         emit checkFinished(index, AC);
     }
     else if (QList<int>({1, 2, 3, 4, 5, 8, 16}).contains(exitCode)) // this list is from testlib.h::TResult
     {
         // This exit code is a normal exit code of a testlib checker, means WA or something else
         if (err.isEmpty())
-            log->error(QString("Checker[%1]").arg(index + 1),
-                       "Checker exited with exit code " + QString::number(exitCode));
+            log->error(tr("Checker[%1]").arg(index + 1), tr("Checker exited with exit code %1").arg(exitCode));
         else
             log->error(QString("Checker[%1]").arg(index + 1), err);
         emit checkFinished(index, WA);
@@ -187,8 +186,7 @@ void Checker::onRunFinished(int index, const QString &out, const QString &err, i
     else
     {
         // This exit code is not one of the normal exit codes of a testlib checker, maybe the checker crashed
-        log->error(QString("Checker[%1]").arg(index + 1),
-                   "Checker exited with unknown exit code " + QString::number(exitCode));
+        log->error(tr("Checker[%1]").arg(index + 1), tr("Checker exited with unknown exit code %1").arg(exitCode));
         if (!err.isEmpty())
             log->error(QString("Checker[%1]").arg(index + 1), err);
     }
@@ -196,29 +194,28 @@ void Checker::onRunFinished(int index, const QString &out, const QString &err, i
 
 void Checker::onFailedToStartRun(int index, const QString &error)
 {
-    log->error(QString("Checker[%1]").arg(index + 1), error);
+    log->error(tr("Checker[%1]").arg(index + 1), error);
 }
 
 void Checker::onRunTimeout(int index)
 {
-    log->warn(QString("Checker[%1]").arg(index + 1), "Time Limit Exceeded");
+    log->warn(tr("Checker[%1]").arg(index + 1), tr("Time Limit Exceeded"));
 }
 
 void Checker::onRunOutputLimitExceeded(int index, const QString &type)
 {
-    log->warn(
-        QString("Checker[%1]").arg(index + 1),
-        QString("The %1 of the process running on the testcase #%2 contains more than %3 characters, which is longer "
-                "than the output length limit, so the process is killed. You can change the output length limit "
-                "in Preferences->Advanced->Limits->Output Length Limit")
-            .arg(type)
-            .arg(index + 1)
-            .arg(SettingsHelper::getOutputLengthLimit()));
+    log->warn(tr("Checker[%1]").arg(index + 1),
+              tr("The %1 of the process running on the testcase #%2 contains more than %3 characters, which is longer "
+                 "than the output length limit, so the process is killed. You can change the output length limit "
+                 "in Preferences->Advanced->Limits->Output Length Limit")
+                  .arg(type)
+                  .arg(index + 1)
+                  .arg(SettingsHelper::getOutputLengthLimit()));
 }
 
 void Checker::onRunKilled(int index)
 {
-    log->error(QString("Checker[%1]").arg(index + 1), "Killed");
+    log->error(QString("Checker[%1]").arg(index + 1), tr("Killed"));
 }
 
 bool Checker::checkIgnoreTrailingSpaces(const QString &output, const QString &expected)
@@ -288,9 +285,9 @@ void Checker::check(int index, const QString &input, const QString &output, cons
         auto inputPath = tmpDir->filePath(QString::number(index) + ".in");
         auto outputPath = tmpDir->filePath(QString::number(index) + ".out");
         auto expectedPath = tmpDir->filePath(QString::number(index) + ".ans");
-        if (Util::saveFile(inputPath, input, "Checker", false, log) &&
-            Util::saveFile(outputPath, output, "Checker", false, log) &&
-            Util::saveFile(expectedPath, expected, "Checker", false, log))
+        if (Util::saveFile(inputPath, input, tr("Checker"), false, log) &&
+            Util::saveFile(outputPath, output, tr("Checker"), false, log) &&
+            Util::saveFile(expectedPath, expected, tr("Checker"), false, log))
         {
             // if files are successfully saved, run the checker
             auto tmp = new Runner(index);

@@ -46,17 +46,17 @@ void PreferencesGridPage::addRow(ValueWidget *widget, const QString &tip, const 
     if (labelText.isEmpty())
     {
         if (!tip.isEmpty())
-            widget->coreWidget()->setToolTip(tip);
+            widget->coreWidget()->setToolTip(tr(tip.toUtf8()));
         if (!help.isEmpty())
-            widget->coreWidget()->setWhatsThis(help);
+            widget->coreWidget()->setWhatsThis(tr(help.toUtf8()));
     }
     else
     {
-        QLabel *label = new QLabel(labelText, this);
+        QLabel *label = new QLabel(tr(labelText.toUtf8()), this);
         if (!tip.isEmpty())
-            label->setToolTip(tip);
+            label->setToolTip(tr(tip.toUtf8()));
         if (!help.isEmpty())
-            label->setWhatsThis(help);
+            label->setWhatsThis(tr(help.toUtf8()));
         gridLayout->addWidget(label, row, 0);
     }
     gridLayout->addWidget(widget->coreWidget(), row, 1);

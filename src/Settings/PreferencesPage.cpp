@@ -35,11 +35,12 @@ PreferencesPage::PreferencesPage(QWidget *parent) : QWidget(parent)
     scrollAreaWidget = new QWidget();
     settingsLayout = new QVBoxLayout(scrollAreaWidget);
     buttonsLayout = new QHBoxLayout();
-    defaultButton = new QPushButton(QApplication::style()->standardIcon(QStyle::SP_FileDialogDetailedView), "Default");
+    defaultButton =
+        new QPushButton(QApplication::style()->standardIcon(QStyle::SP_FileDialogDetailedView), tr("Default"));
     defaultButton->setShortcut({"Ctrl+D"});
-    resetButton = new QPushButton(QApplication::style()->standardIcon(QStyle::SP_DialogResetButton), "Reset");
+    resetButton = new QPushButton(QApplication::style()->standardIcon(QStyle::SP_DialogResetButton), tr("Reset"));
     resetButton->setShortcut({"Ctrl+R"});
-    applyButton = new QPushButton(QApplication::style()->standardIcon(QStyle::SP_DialogApplyButton), "Apply");
+    applyButton = new QPushButton(QApplication::style()->standardIcon(QStyle::SP_DialogApplyButton), tr("Apply"));
     applyButton->setShortcut({"Ctrl+S"});
 
     // set up the UI
@@ -54,9 +55,9 @@ PreferencesPage::PreferencesPage(QWidget *parent) : QWidget(parent)
     mainLayout->addLayout(buttonsLayout);
 
     // add tooltips
-    defaultButton->setToolTip("Restore the default settings on the current page. (Ctrl+D)");
-    resetButton->setToolTip("Discard all changes on the current page. (Ctrl+R)");
-    applyButton->setToolTip("Save the changes on the current page. (Ctrl+S)");
+    defaultButton->setToolTip(tr("Restore the default settings on the current page. (Ctrl+D)"));
+    resetButton->setToolTip(tr("Discard all changes on the current page. (Ctrl+R)"));
+    applyButton->setToolTip(tr("Save the changes on the current page. (Ctrl+S)"));
 
     // set the font for title
     auto labelFont = font();
@@ -76,9 +77,9 @@ bool PreferencesPage::aboutToExit()
         return true;
 
     // otherwise, ask the user whether to save, discard or cancel
-    auto response = QMessageBox::warning(this, "Unsaved Settings",
-                                         "The settings are changed. Do you want to save the settings or discard them?",
-                                         QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel);
+    auto response = QMessageBox::warning(
+        this, tr("Unsaved Settings"), tr("The settings are changed. Do you want to save the settings or discard them?"),
+        QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel);
 
     switch (response)
     {
@@ -107,6 +108,16 @@ void PreferencesPage::setPath(const QString &path)
     emit pathChanged(m_path);
 }
 
+void PreferencesPage::setTitle(const QString &title)
+{
+    titleLabel->setText(title);
+}
+
+QStringList PreferencesPage::content()
+{
+    return QStringList();
+}
+
 void PreferencesPage::loadSettings()
 {
     makeUITheSameAsSettings();
@@ -131,11 +142,6 @@ void PreferencesPage::addItem(QLayoutItem *item)
 void PreferencesPage::registerWidget(ValueWidget *widget)
 {
     QObject::connect(widget, &ValueWidget::valueChanged, this, &PreferencesPage::updateButtons);
-}
-
-void PreferencesPage::setTitle(const QString &title)
-{
-    titleLabel->setText(title);
 }
 
 void PreferencesPage::loadDefault()

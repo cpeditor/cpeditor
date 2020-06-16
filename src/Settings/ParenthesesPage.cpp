@@ -36,7 +36,7 @@ ParenthesisWidget::ParenthesisWidget(const QString &language, QChar leftParenthe
 {
     mainLayout = new QVBoxLayout(this);
 
-    nameLabel = new QLabel("Parenthesis: " + parenthesis());
+    nameLabel = new QLabel(tr("Parenthesis: %1").arg(parenthesis()));
     auto labelFont = font();
     labelFont.setPointSizeF(labelFont.pointSizeF() * 1.3);
     nameLabel->setFont(labelFont);
@@ -57,7 +57,7 @@ ParenthesisWidget::ParenthesisWidget(const QString &language, QChar leftParenthe
         checkBox->setTristate(true);
         checkBox->setCheckState(state);
         checkBox->setToolTip(
-            QString("Enable %1 for %2 in %3.\nIf it's partially checked, the global setting in Code Edit will be used.")
+            tr("Enable %1 for %2 in %3.\nIf it's partially checked, the global setting in Code Edit will be used.")
                 .arg(name.toLower())
                 .arg(parenthesis())
                 .arg(lang));
@@ -65,9 +65,9 @@ ParenthesisWidget::ParenthesisWidget(const QString &language, QChar leftParenthe
         checkBoxesLayout->addWidget(checkBox);
     };
 
-    addOption(autoCompleteCheckBox, "Auto Complete", autoComplete);
-    addOption(autoRemoveCheckBox, "Auto Remove", autoRemove);
-    addOption(tabJumpOutCheckBox, "Tab Jump Out", tabJumpOut);
+    addOption(autoCompleteCheckBox, tr("Auto Complete"), autoComplete);
+    addOption(autoRemoveCheckBox, tr("Auto Remove"), autoRemove);
+    addOption(tabJumpOutCheckBox, tr("Tab Jump Out"), tabJumpOut);
 
     stretchLayout->addStretch();
 
@@ -87,7 +87,7 @@ QString ParenthesisWidget::parenthesis() const
 
 ParenthesesPage::ParenthesesPage(const QString &language, QWidget *parent) : PreferencesPage(parent), lang(language)
 {
-    setTitle(language + " Parentheses");
+    setTitle(tr("%1 Parentheses").arg(language));
 
     splitter = new QSplitter();
     addWidget(splitter);
@@ -105,12 +105,12 @@ ParenthesesPage::ParenthesesPage(const QString &language, QWidget *parent) : Pre
     buttonsLayout = new QHBoxLayout();
     leftLayout->addLayout(buttonsLayout);
 
-    addButton = new QPushButton("Add");
+    addButton = new QPushButton(tr("Add"));
     addButton->setShortcut({"Ctrl+N"});
     connect(addButton, SIGNAL(clicked()), this, SLOT(addParenthesis()));
     buttonsLayout->addWidget(addButton);
 
-    delButton = new QPushButton("Del");
+    delButton = new QPushButton(tr("Del"));
     delButton->setShortcut({"Ctrl+W"});
     delButton->setEnabled(false);
     connect(delButton, SIGNAL(clicked()), this, SLOT(deleteCurrentParenthesis()));
@@ -132,7 +132,7 @@ ParenthesesPage::ParenthesesPage(const QString &language, QWidget *parent) : Pre
 
     noParenthesisStretchLayout->addStretch();
 
-    noParenthesisLabel = new QLabel("No Parenthesis Selected");
+    noParenthesisLabel = new QLabel(tr("No Parenthesis Selected"));
     noParenthesisStretchLayout->addWidget(noParenthesisLabel);
 
     noParenthesisStretchLayout->addStretch();
@@ -168,7 +168,7 @@ void ParenthesesPage::addParenthesis()
 
     while (parenthesis.length() != 2)
     {
-        parenthesis = QInputDialog::getText(this, "New Parenthesis", "Enter a parenthesis (e.g. {}):");
+        parenthesis = QInputDialog::getText(this, tr("New Parenthesis"), tr("Enter a parenthesis (e.g. {}):"));
         if (parenthesis.isNull())
             return;
     }
@@ -181,8 +181,8 @@ void ParenthesesPage::deleteCurrentParenthesis()
     int index = stackedWidget->currentIndex();
     Q_ASSERT(index > 0);
     auto currentParenthesis = parenthesisWidget(index)->parenthesis();
-    if (QMessageBox::question(this, "Delete Parenthesis",
-                              QString("Do you really want to delete the parenthesis %1?").arg(currentParenthesis),
+    if (QMessageBox::question(this, tr("Delete Parenthesis"),
+                              tr("Do you really want to delete the parenthesis %1?").arg(currentParenthesis),
                               QMessageBox::Yes | QMessageBox::No) == QMessageBox::No)
         return;
     if (index + 1 < stackedWidget->count())

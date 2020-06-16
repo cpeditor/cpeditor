@@ -15,29 +15,25 @@
  *
  */
 
-#ifndef PREFERENCESPAGETEMPLATE_HPP
-#define PREFERENCESPAGETEMPLATE_HPP
+#ifndef TRANSLATOR_HPP
+#define TRANSLATOR_HPP
 
-#include "Settings/PreferencesGridPage.hpp"
+#include <QObject>
 
-class PreferencesPageTemplate : public PreferencesGridPage
+class QTranslator;
+
+namespace Core
+{
+class Translator : public QObject
 {
     Q_OBJECT
 
   public:
-    explicit PreferencesPageTemplate(QStringList opts, bool alignTop = true, QWidget *parent = nullptr);
-
-    virtual QStringList content() override;
+    static void setLocale(const QString &language);
 
   private:
-    bool areSettingsChanged() override;
-    void makeUITheSameAsDefault() override;
-    void makeUITheSameAsSettings() override;
-    void makeSettingsTheSameAsUI() override;
-
-  protected:
-    QStringList options;
-    QList<ValueWidget *> widgets;
+    static QTranslator *translator;
 };
+} // namespace Core
 
-#endif // PREFERENCESPAGETEMPLATE_HPP
+#endif // TRANSLATOR_HPP

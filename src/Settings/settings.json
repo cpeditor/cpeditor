@@ -154,14 +154,14 @@
         "name": "Java/Class Name",
         "type": "QString",
         "default": "a",
-        "tip": "The non-public class name of your solution."
+        "tip": "The name of the non-public main class of your solution."
     },
     {
         "name": "Java/Output Path",
         "desc": "Java Class Path",
         "type": "QString",
         "default": "${tmpdir}",
-        "tip": "The path of the parent directory of the compiled executable file.\nIt's relative to the source file, or the temporary directory if the tab is untitled.\nYou can use \"${filename}\" for the complete file name,\n\"${basename}\" for the base file name without the suffix,\n\"${tmpdir}\" for the absolute path of the temporary directory."
+        "tip": "The path of the parent directory of the compiled class file.\nIt's relative to the source file, or the temporary directory if the tab is untitled.\nYou can use \"${filename}\" for the complete file name,\n\"${basename}\" for the base file name without the suffix,\n\"${tmpdir}\" for the absolute path of the temporary directory."
     },
     {
         "name": "Java/Template Cursor Position Regex",
@@ -467,7 +467,7 @@
         "old": [
             "use_hot_exit"
         ],
-        "tip": "Save the status of the editor when the application exits and load the status of the last session when the application starts.\nWhen this is enabled, you won't be asked whether to save the unsaved files or not when exiting."
+        "tip": "Save the status of the editor when the application exits and\nload the status of the last session when the application starts.\nWhen this is enabled, you won't be asked whether to save\nthe unsaved files or not when exiting."
     },
     {
         "name": "Hot Exit/Tab Count",
@@ -676,7 +676,7 @@
         "type": "QVariantList",
         "default": "QVariantList { QStringList {\"(.*)\\\\.in\", \"\\\\1.ans\"}, QStringList {\"(.*)\\\\.in\", \"\\\\1.out\"}}",
         "param": "QVariantList { QStringList {\"Input Regex\", \"The regular expression which matches the whole input file name\"}, QStringList {\"Answer Replace\", \"The replace expression for the answer file name.\\nYou can use \\\"\\\\1\\\" for the first captured group.\"}}",
-        "tip": "Pairs of regular expressions used when adding pairs of test cases from files. Each pair of regular expressions represents a test case."
+        "tip": "Pairs of regular expressions used when adding pairs of test cases from files.\nEach pair of regular expressions represents a test case."
     },
     {
         "name": "Input File Save Path",
@@ -730,12 +730,24 @@
         "name": "Restore Old Problem Url",
         "desc": "Restore the problem URL when opening a file",
         "type": "bool",
-        "tip": "If a file path was with a problem URL,\nwhen you open that path again,\nthe problem URL will be restored."
+        "tip": "If a problem URL was set for a file, when you open\nthat file again, the problem URL will be restored."
     },
     {
         "name": "Open Old File For Old Problem Url",
         "desc": "Open the old file when parsing an old problem URL",
         "type": "bool",
-        "tip": "If a problem URL was set for a file path, when parsing that problem\nfrom competitive companion again, the old file will be opened."
+        "tip": "If a problem URL was set for a file, when parsing that problem\nfrom Competitive Companion again, the old file will be opened."
+    },
+    {
+        "name": "Locale",
+        "desc": "UI Language",
+        "type": "QString",
+        "ui": "QComboBox",
+        "default": "system",
+        "param": "QStringList { \"system\", \"English\", \"简体中文\" }",
+        "tip": "The language displayed in the UI.",
+        "old": [
+            "language"
+        ]
     }
 ]

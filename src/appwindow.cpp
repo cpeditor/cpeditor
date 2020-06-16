@@ -101,8 +101,8 @@ AppWindow::AppWindow(bool noHotExit, QWidget *parent) : QMainWindow(parent), ui(
         if (!SettingsHelper::isHotExitEnable())
         {
             auto res = QMessageBox::question(
-                this, "Hot Exit",
-                "In the last session, CP Editor was abnormally killed, do you want to restore the last session?",
+                this, tr("Hot Exit"),
+                tr("In the last session, CP Editor was abnormally killed, do you want to restore the last session?"),
                 QMessageBox::Yes | QMessageBox::No);
             if (res == QMessageBox::No)
                 break;
@@ -112,7 +112,7 @@ AppWindow::AppWindow(bool noHotExit, QWidget *parent) : QMainWindow(parent), ui(
 
         QProgressDialog progress(this);
         progress.setWindowModality(Qt::WindowModal);
-        progress.setWindowTitle("Restoring Last Session");
+        progress.setWindowTitle(tr("Restoring Last Session"));
         progress.setMaximum(length);
         progress.setValue(0);
 
@@ -259,7 +259,6 @@ void AppWindow::setConnections()
 
 void AppWindow::allocate()
 {
-    SettingsManager::init();
     autoSaveTimer = new QTimer();
     lspTimerCpp = new QTimer();
     lspTimerJava = new QTimer();
@@ -290,9 +289,9 @@ void AppWindow::allocate()
     lspTimerPython->setSingleShot(false);
 
     trayIconMenu = new QMenu();
-    trayIconMenu->addAction("Show Main Window", this, SLOT(showOnTop()));
-    trayIconMenu->addAction("About", this, SLOT(on_actionAbout_triggered()));
-    trayIconMenu->addAction("Quit", this, SLOT(on_actionQuit_triggered()));
+    trayIconMenu->addAction(tr("Show Main Window"), this, SLOT(showOnTop()));
+    trayIconMenu->addAction(tr("About"), this, SLOT(on_actionAbout_triggered()));
+    trayIconMenu->addAction(tr("Quit"), this, SLOT(on_actionQuit_triggered()));
     trayIcon = new QSystemTrayIcon();
     trayIcon->setIcon(QIcon(":/icon.png"));
     trayIcon->setContextMenu(trayIconMenu);
@@ -444,7 +443,7 @@ void AppWindow::openTabs(const QStringList &paths)
 
     QProgressDialog progress(this);
     progress.setWindowModality(Qt::WindowModal);
-    progress.setWindowTitle("Opening Files");
+    progress.setWindowTitle(tr("Opening Files"));
     progress.setMaximum(length);
     progress.setValue(0);
 
@@ -604,21 +603,22 @@ void AppWindow::on_actionSupport_me_triggered()
 void AppWindow::on_actionManual_triggered()
 {
     QDesktopServices::openUrl(
-        QUrl("https://github.com/cpeditor/cpeditor/blob/" APP_VERSION "/doc/MANUAL.md", QUrl::TolerantMode));
+        QUrl(tr("https://github.com/cpeditor/cpeditor/blob/%1/doc/MANUAL.md").arg(APP_VERSION), QUrl::TolerantMode));
 }
 
 void AppWindow::on_actionAbout_triggered()
 {
-    QMessageBox::about(this, "About CP Editor " APP_VERSION,
-                       "<p><b>CP Editor</b> is a native Qt-based code editor. It's specially designed for competitive "
-                       "programming, unlike other editors/IDEs which are mainly for developers. It helps you focus on "
-                       "your algorithm and automates the compilation, executing and testing. It even fetches test "
-                       "cases for you from different platforms and submits solutions to Codeforces!</p>"
-                       "<p>Copyright (C) 2019-2020 Ashar Khan &lt;ashar786khan@gmail.com&gt;</p>"
-                       "<p>This is free software; see the source for copying conditions. There is NO warranty; not "
-                       "even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. The source code for CP Editor is "
-                       "available at <a href=\"https://github.com/cpeditor/cpeditor\"> "
-                       "https://github.com/cpeditor/cpeditor</a>.</p>");
+    QMessageBox::about(
+        this, tr("About CP Editor %1").arg(APP_VERSION),
+        tr("<p><b>CP Editor</b> is a native Qt-based code editor. It's specially designed for competitive "
+           "programming, unlike other editors/IDEs which are mainly for developers. It helps you focus on "
+           "your algorithm and automates the compilation, executing and testing. It even fetches test "
+           "cases for you from different platforms and submits solutions to Codeforces!</p>"
+           "<p>Copyright (C) 2019-2020 Ashar Khan &lt;ashar786khan@gmail.com&gt;</p>"
+           "<p>This is free software; see the source for copying conditions. There is NO warranty; not "
+           "even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. The source code for CP Editor is "
+           "available at <a href=\"https://github.com/cpeditor/cpeditor\"> "
+           "https://github.com/cpeditor/cpeditor</a>.</p>"));
 }
 
 void AppWindow::on_actionAboutQt_triggered()
@@ -670,12 +670,12 @@ void AppWindow::on_actionOpen_triggered()
 
 void AppWindow::on_actionOpenContest_triggered()
 {
-    auto path = QFileDialog::getExistingDirectory(this, "Open Contest");
+    auto path = QFileDialog::getExistingDirectory(this, tr("Open Contest"));
     if (QFile::exists(path) && QFileInfo(path).isDir())
     {
         bool ok = false;
         int number =
-            QInputDialog::getInt(this, "Open Contest", "Number of problems in this contest:", 5, 0, 26, 1, &ok);
+            QInputDialog::getInt(this, tr("Open Contest"), tr("Number of problems in this contest:"), 5, 0, 26, 1, &ok);
         if (ok)
         {
             int current = 0;
@@ -683,8 +683,8 @@ void AppWindow::on_actionOpenContest_triggered()
                 current = 1;
             else if (SettingsHelper::getDefaultLanguage() == "Python")
                 current = 2;
-            auto lang = QInputDialog::getItem(this, "Open Contest", "Choose a language", {"C++", "Java", "Python"},
-                                              current, false, &ok);
+            auto lang = QInputDialog::getItem(this, tr("Open Contest"), tr("Choose a language"),
+                                              {"C++", "Java", "Python"}, current, false, &ok);
             if (ok)
             {
                 LOG_INFO("Opening contest with args " << INFO_OF(path) << INFO_OF(lang) << INFO_OF(number));
@@ -697,7 +697,7 @@ void AppWindow::on_actionOpenContest_triggered()
 void AppWindow::on_actionSave_triggered()
 {
     if (currentWindow() != nullptr)
-        currentWindow()->save(true, "Save");
+        currentWindow()->save(true, tr("Save"));
 }
 
 void AppWindow::on_actionSave_As_triggered()
@@ -711,7 +711,7 @@ void AppWindow::on_actionSave_All_triggered()
     for (int t = 0; t < ui->tabWidget->count(); ++t)
     {
         auto tmp = windowAt(t);
-        if (!tmp->save(true, "Save All"))
+        if (!tmp->save(true, tr("Save All")))
             break;
     }
 }
@@ -745,9 +745,9 @@ void AppWindow::on_actionClose_Saved_triggered()
 
 void AppWindow::on_action_reset_settings_triggered()
 {
-    auto res = QMessageBox::question(this, "Reset preferences?",
-                                     "Are you sure you want to reset the"
-                                     " all preferences to default?",
+    auto res = QMessageBox::question(this, tr("Reset preferences"),
+                                     tr("Are you sure you want to reset the"
+                                        " all preferences to default?"),
                                      QMessageBox::Yes | QMessageBox::No);
     if (res == QMessageBox::Yes)
     {
@@ -839,7 +839,7 @@ void AppWindow::onTabChanged(int index)
         activeLogger = nullptr;
         server->setMessageLogger(nullptr);
         findReplaceDialog->setTextEdit(nullptr);
-        setWindowTitle("CP Editor: An editor specially designed for competitive programming");
+        setWindowTitle(tr("CP Editor: An editor specially designed for competitive programming"));
 
         if (cppServer->isDocumentOpen())
             cppServer->closeDocument();
@@ -970,7 +970,7 @@ void AppWindow::onSaveTimerElapsed()
         auto tmp = windowAt(t);
         if (!tmp->isUntitled())
         {
-            tmp->save(false, "Auto Save", false);
+            tmp->save(false, tr("Auto Save"), false);
         }
     }
 }
@@ -1194,8 +1194,9 @@ void AppWindow::on_actionUse_Snippets_triggered()
             key = key.mid(head.size());
         if (names.isEmpty())
         {
-            activeLogger->warn("Snippets",
-                               "There are no snippets for " + lang + ". Please add snippets in the preference window.");
+            activeLogger->warn(
+                tr("Snippets"),
+                tr("There are no snippets for %1. Please add snippets in the preference window.").arg(lang));
         }
         else
         {
@@ -1212,7 +1213,7 @@ void AppWindow::on_actionUse_Snippets_triggered()
                 }
                 else
                 {
-                    activeLogger->warn("Snippets", "There is no snippet named " + name + " for " + lang);
+                    activeLogger->warn(tr("Snippets"), tr("There is no snippet named %1 for %2").arg(name, lang));
                 }
             }
             delete ok;
@@ -1336,28 +1337,28 @@ void AppWindow::onTabContextMenuRequested(const QPoint &pos)
             delete tabMenu;
         tabMenu = new QMenu();
 
-        tabMenu->addAction("Close", [index, this] { closeTab(index); });
+        tabMenu->addAction(tr("Close"), [index, this] { closeTab(index); });
 
-        tabMenu->addAction("Close Others", [widget, this] {
+        tabMenu->addAction(tr("Close Others"), [widget, this] {
             for (int i = 0; i < ui->tabWidget->count(); ++i)
                 if (windowAt(i) != widget && closeTab(i))
                     --i;
         });
 
-        tabMenu->addAction("Close to the Left", [widget, this] {
+        tabMenu->addAction(tr("Close to the Left"), [widget, this] {
             for (int i = 0; i < ui->tabWidget->count() && windowAt(i) != widget; ++i)
                 if (closeTab(i))
                     --i;
         });
 
-        tabMenu->addAction("Close to the Right", [index, this] {
+        tabMenu->addAction(tr("Close to the Right"), [index, this] {
             for (int i = index + 1; i < ui->tabWidget->count(); ++i)
                 if (closeTab(i))
                     --i;
         });
-        tabMenu->addAction("Close Saved", [this] { on_actionClose_Saved_triggered(); });
+        tabMenu->addAction(tr("Close Saved"), [this] { on_actionClose_Saved_triggered(); });
 
-        tabMenu->addAction("Close All", [this] { on_actionClose_All_triggered(); });
+        tabMenu->addAction(tr("Close All"), [this] { on_actionClose_All_triggered(); });
         QString filePath = widget->getFilePath();
 
         LOG_INFO(INFO_OF(filePath));
@@ -1366,10 +1367,10 @@ void AppWindow::onTabContextMenuRequested(const QPoint &pos)
         {
             LOG_INFO("Not untitled and filepath exists in system");
             tabMenu->addSeparator();
-            tabMenu->addAction("Copy File Path", [filePath] { QGuiApplication::clipboard()->setText(filePath); });
+            tabMenu->addAction(tr("Copy File Path"), [filePath] { QGuiApplication::clipboard()->setText(filePath); });
             // Reference: http://lynxline.com/show-in-finder-show-in-explorer/ and https://forum.qt.io/post/296072
 #if defined(Q_OS_MACOS)
-            tabMenu->addAction("Reveal in Finder", [filePath] {
+            tabMenu->addAction(tr("Reveal in Finder"), [filePath] {
                 QStringList args;
                 args << "-e";
                 args << "tell application \"Finder\"";
@@ -1382,7 +1383,7 @@ void AppWindow::onTabContextMenuRequested(const QPoint &pos)
                 QProcess::startDetached("osascript", args);
             });
 #elif defined(Q_OS_WIN)
-            tabMenu->addAction("Reveal in Explorer", [filePath] {
+            tabMenu->addAction(tr("Reveal in Explorer"), [filePath] {
                 QStringList args;
                 args << "/select," << QDir::toNativeSeparators(filePath);
                 QProcess::startDetached("explorer", args);
@@ -1427,13 +1428,13 @@ void AppWindow::onTabContextMenuRequested(const QPoint &pos)
                 }
                 if (program.isEmpty())
                 {
-                    tabMenu->addAction("Open Containing Folder", [filePath] {
+                    tabMenu->addAction(tr("Open Containing Folder"), [filePath] {
                         QDesktopServices::openUrl(QUrl::fromLocalFile(QFileInfo(filePath).path()));
                     });
                 }
                 else
                 {
-                    tabMenu->addAction("Reveal in File Manager", [program, args] {
+                    tabMenu->addAction(tr("Reveal in File Manager"), [program, args] {
                         QProcess openProcess;
                         openProcess.startDetached(program, args);
                     });
@@ -1442,12 +1443,12 @@ void AppWindow::onTabContextMenuRequested(const QPoint &pos)
             else
             {
 
-                tabMenu->addAction("Open Containing Folder", [filePath] {
+                tabMenu->addAction(tr("Open Containing Folder"), [filePath] {
                     QDesktopServices::openUrl(QUrl::fromLocalFile(QFileInfo(filePath).path()));
                 });
             }
 #else
-            tabMenu->addAction("Open Containing Folder", [filePath] {
+            tabMenu->addAction(tr("Open Containing Folder"), [filePath] {
                 QDesktopServices::openUrl(QUrl::fromLocalFile(QFileInfo(filePath).path()));
             });
 #endif
@@ -1457,41 +1458,41 @@ void AppWindow::onTabContextMenuRequested(const QPoint &pos)
             LOG_INFO("The file does not exist, but its parent directory [" << QFileInfo(widget->getFilePath()).path()
                                                                            << "] exists");
             tabMenu->addSeparator();
-            tabMenu->addAction("Copy path", [filePath] {
+            tabMenu->addAction(tr("Copy path"), [filePath] {
                 auto clipboard = QGuiApplication::clipboard();
                 clipboard->setText(filePath);
             });
-            tabMenu->addAction("Open Containing Folder", [filePath] {
+            tabMenu->addAction(tr("Open Containing Folder"), [filePath] {
                 QDesktopServices::openUrl(QUrl::fromLocalFile(QFileInfo(filePath).path()));
             });
         }
         tabMenu->addSeparator();
         if (!widget->getProblemURL().isEmpty())
         {
-            tabMenu->addAction("Open problem in browser",
+            tabMenu->addAction(tr("Open problem in browser"),
                                [widget] { QDesktopServices::openUrl(widget->getProblemURL()); });
-            tabMenu->addAction("Copy Problem URL",
+            tabMenu->addAction(tr("Copy Problem URL"),
                                [widget] { QGuiApplication::clipboard()->setText(widget->getProblemURL()); });
         }
-        tabMenu->addAction("Set Codeforces URL", [widget, this] {
+        tabMenu->addAction(tr("Set Codeforces URL"), [widget, this] {
             QString contestId, problemCode;
             Extensions::CFTool::parseCfUrl(widget->getProblemURL(), contestId, problemCode);
             bool ok = false;
-            contestId =
-                QInputDialog::getText(this, "Set CF URL", "Enter the contest ID:", QLineEdit::Normal, contestId, &ok);
+            contestId = QInputDialog::getText(this, tr("Set CF URL"), tr("Enter the contest ID:"), QLineEdit::Normal,
+                                              contestId, &ok);
             if (ok)
-                problemCode = QInputDialog::getText(
-                    this, "Set CF URL", "Enter the problem Code (A-Z):", QLineEdit::Normal, problemCode, &ok);
+                problemCode = QInputDialog::getText(this, tr("Set CF URL"), tr("Enter the problem Code (A-Z):"),
+                                                    QLineEdit::Normal, problemCode, &ok);
             if (ok)
             {
                 auto url = "https://codeforces.com/contest/" + contestId + "/problem/" + problemCode;
                 widget->setProblemURL(url);
             }
         });
-        tabMenu->addAction("Set Problem URL", [widget, this] {
+        tabMenu->addAction(tr("Set Problem URL"), [widget, this] {
             bool ok = false;
-            auto url = QInputDialog::getText(this, "Set Problem URL", "Enter the new problem URL:", QLineEdit::Normal,
-                                             widget->getProblemURL(), &ok);
+            auto url = QInputDialog::getText(this, tr("Set Problem URL"), tr("Enter the new problem URL:"),
+                                             QLineEdit::Normal, widget->getProblemURL(), &ok);
             if (ok)
             {
                 if (url.isEmpty() && widget->isUntitled())
@@ -1566,7 +1567,8 @@ void AppWindow::on_actionClear_Logs_triggered()
     Core::Log::clearOldLogs();
     if (currentWindow() != nullptr)
     {
-        currentWindow()->getLogger()->info("EventLogger", "All logs except for current session has been deleted");
+        currentWindow()->getLogger()->info(tr("EventLogger"),
+                                           tr("All logs except for current session has been deleted"));
     }
 }
 

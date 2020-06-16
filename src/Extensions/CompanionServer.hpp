@@ -48,13 +48,16 @@ struct CompanionData
 
     QString toMetaString() const
     {
-        QString ans;
-        ans += "Problem : " + name + "\n";
-        ans += "Contest : " + contest + "\n";
-        ans += "URL : " + url + "\n";
-        ans += "Memory Limit : " + QString::number(memoryLimit) + " MB\n";
-        ans += "Time Limit : " + QString::number(timeLimit) + " ms\n";
-        return ans;
+        return QString("Problem: %1\n"
+                       "Contest: %2\n"
+                       "URL: %3\n"
+                       "Memory Limit: %4 MB\n"
+                       "Time Limit: %5 ms\n")
+            .arg(name)
+            .arg(contest)
+            .arg(url)
+            .arg(memoryLimit)
+            .arg(timeLimit);
     }
 };
 

@@ -16,24 +16,48 @@
  */
 
 #include "Settings/PathItem.hpp"
+#include "Core/EventLogger.hpp"
 #include "Util/FileUtil.hpp"
 #include <QApplication>
+#include <QCoreApplication>
 #include <QFileDialog>
 #include <QHBoxLayout>
 #include <QLineEdit>
 #include <QStyle>
 #include <QToolButton>
 
-static const QString filters[] = {"Excutable (*" + Util::exeSuffix + ")",
-                                  "C++ Sources (*.cpp *.hpp *.h *.cc *.cxx *.c)", "Java Sources (*.java)",
-                                  "Python Sources (*.py *.py3)"};
+inline QString getFilters(int index)
+{
+    switch (index)
+    {
+    case 0:
+        return QCoreApplication::translate("Settings::PathItem", "Excutable") + " (*" + Util::exeSuffix + ")";
+    case 1:
+    case 2:
+    case 3:
+        return Util::fileNameFilter(index == 1, index == 2, index == 3);
+    default:
+        LOG_ERR("Unknown index: " INFO_OF(index));
+        return QString();
+    }
+}
 
-static const QString titles[] = {
-    "Choose Excutable",
-    "Choose C++ Sources",
-    "Choose Java Sources",
-    "Choose Python Sources",
-};
+inline QString getTitles(int index)
+{
+    switch (index)
+    {
+    case 0:
+        return QCoreApplication::translate("Settings::PathItem", "Choose Excutable");
+    case 1:
+    case 2:
+    case 3:
+        return QCoreApplication::translate("Settings::PathItem", "Choose %1 Sources")
+            .arg(QStringList{"C++", "Java", "Python"}[index - 1]);
+    default:
+        LOG_ERR("Unknown index: " INFO_OF(index));
+        return QString();
+    }
+}
 
 PathItem::PathItem(const QString &pathFilter, const QString &dialogTitle, QWidget *parent)
     : QWidget(parent), filter(pathFilter), title(dialogTitle)
@@ -52,7 +76,8 @@ PathItem::PathItem(const QString &pathFilter, const QString &dialogTitle, QWidge
     layout->addWidget(toolButton);
 }
 
-PathItem::PathItem(int filterId, int titleId, QWidget *parent) : PathItem(filters[filterId], titles[titleId], parent)
+PathItem::PathItem(int filterId, int titleId, QWidget *parent)
+    : PathItem(getFilters(filterId), getTitles(titleId), parent)
 {
 }
 
