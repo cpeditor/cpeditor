@@ -350,29 +350,36 @@ void PreferencesWindow::updateSearch(QTreeWidgetItem *item, const QString &text)
     if (item == nullptr)
         return;
 
-    item->setExpanded(!text.isEmpty());
+    item->setExpanded(true);
 
     if (text.isEmpty())
     {
-        // If text is empty, set all items visible
+        // If *text* is empty, set all items visible
         item->setHidden(false);
         for (int i = 0; i < item->childCount(); ++i)
             updateSearch(item->child(i), text);
         return;
     }
 
-    bool shouldHide = true;
+    bool shouldHide = true, translatedMatched = false;
 
-    if (item->childCount() == 0)
+    if (item->text(0).contains(text, Qt::CaseInsensitive))
+    {
+        // check whether the translated path contains *text*
+        shouldHide = false;
+        translatedMatched = true;
+    }
+    else if (item->childCount() == 0)
     {
         // check whether the leaf should be hidden or not
-        if (pageWidget[item]->path().contains(text, Qt::CaseInsensitive)) // check whether the path contains text
+        if (pageWidget[item]->path().contains(text, Qt::CaseInsensitive))
         {
+            // check whether the untranslated path contains *text*
             shouldHide = false;
         }
         else
         {
-            // check whether the content contains text
+            // check whether the content contains *text*
             for (auto s : content[item])
             {
                 if (s.contains(text, Qt::CaseInsensitive))
@@ -387,8 +394,12 @@ void PreferencesWindow::updateSearch(QTreeWidgetItem *item, const QString &text)
     for (int i = 0; i < item->childCount(); ++i)
     {
         auto child = item->child(i);
-        updateSearch(child, text);
+
+        // show all children if the translation of the current node contains *text*
+        updateSearch(child, translatedMatched ? QString() : text);
+
         // If at least one child is not hidden, a non-leaf item is not hidden
+        // this is useful if the untranslated path contains *text*
         if (!child->isHidden())
             shouldHide = false;
     }
