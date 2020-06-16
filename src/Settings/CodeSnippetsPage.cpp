@@ -320,7 +320,7 @@ void CodeSnippetsPage::loadSnippetsFromFiles()
 
     for (auto file : files)
     {
-        auto content = Util::readFile(file, tr("CodeSnippetsPage::loadSnippetsFromFiles"));
+        auto content = Util::readFile(file, "CodeSnippetsPage::loadSnippetsFromFiles");
         if (content.isNull())
         {
             QMessageBox::warning(this, tr("Load Snippets"),

@@ -726,11 +726,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Settings/CodeSnippetsPage.cpp" line="323"/>
-        <source>CodeSnippetsPage::loadSnippetsFromFiles</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../src/Settings/CodeSnippetsPage.cpp" line="327"/>
         <source>Failed to open [%1]. Do I have read permission?</source>
         <translation type="unfinished"></translation>

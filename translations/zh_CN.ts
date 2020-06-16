@@ -726,11 +726,6 @@
         <translation type="unfinished">加载代码片段</translation>
     </message>
     <message>
-        <location filename="../src/Settings/CodeSnippetsPage.cpp" line="323"/>
-        <source>CodeSnippetsPage::loadSnippetsFromFiles</source>
-        <translation type="unfinished">代码片段/从文件加载</translation>
-    </message>
-    <message>
         <location filename="../src/Settings/CodeSnippetsPage.cpp" line="327"/>
         <source>Failed to open [%1]. Do I have read permission?</source>
         <translation type="unfinished">打开 [%1] 失败。你拥有读取权限吗？</translation>
