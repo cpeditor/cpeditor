@@ -1287,6 +1287,11 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished">你无法将代码提交至 Codeforces，因为 CF Tool 没有安装，或是它不在 PATH 环境变量里。你可以在设置中手动设置 CF Tool 的路径。</translation>
     </message>
     <message>
+        <location filename="../src/mainwindow.cpp" line="279"/>
+        <source>Untitled-%1</source>
+        <translation type="unfinished">未命名-%1</translation>
+    </message>
+    <message>
         <location filename="../src/mainwindow.cpp" line="551"/>
         <source>Save as</source>
         <translation type="unfinished">另存为</translation>

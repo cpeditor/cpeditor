@@ -276,7 +276,7 @@ QString MainWindow::getFileName() const
         return QFileInfo(filePath).fileName();
     if (!problemURL.isEmpty())
         return QRegularExpression(R"(.*/([^\?#].*?)/?$)").match(problemURL).captured(1);
-    return "Untitled-" + QString::number(untitledIndex);
+    return tr("Untitled-%1").arg(untitledIndex);
 }
 
 QString MainWindow::getFilePath() const

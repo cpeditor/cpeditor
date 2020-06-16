@@ -1273,6 +1273,11 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../src/mainwindow.cpp" line="279"/>
+        <source>Untitled-%1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../src/mainwindow.cpp" line="551"/>
         <source>Save as</source>
         <translation type="unfinished"></translation>
