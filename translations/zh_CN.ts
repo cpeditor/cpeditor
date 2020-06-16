@@ -2703,7 +2703,7 @@ from Competitive Companion again, the old file will be opened.</source>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="128"/>
         <source>UI Language</source>
-        <translation>界面语言</translation>
+        <translation>界面语言 (UI Language)</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="128"/>
