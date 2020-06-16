@@ -2574,6 +2574,28 @@ A testcase file won&apos;t be loaded if it&apos;s too long.</source>
         <translation>测试数据匹配规则</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="117"/>
+        <source>Input Regex</source>
+        <translation>输入正则</translation>
+    </message>
+    <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="117"/>
+        <source>The regular expression which matches the whole input file name</source>
+        <translation>匹配整个输入文件名的正则表达式</translation>
+    </message>
+    <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="117"/>
+        <source>Answer Replace</source>
+        <translation>答案替换</translation>
+    </message>
+    <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="117"/>
+        <source>The replace expression for the answer file name.
+You can use &quot;\1&quot; for the first captured group.</source>
+        <translation>答案文件名的替换表达式。
+你可以使用 &quot;\1&quot; 来代指匹配中的第一个捕获组。</translation>
+    </message>
+    <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="118"/>
         <source>Input File Save Path</source>
         <translation>输入文件保存路径</translation>
@@ -2622,6 +2644,28 @@ You can use &quot;${filename}&quot; for the complete file name,
         <location filename="../build/generated/SettingsInfo.cpp" line="120"/>
         <source>The default file path used when saving a new file while the problem URL is set</source>
         <translation>在设置了题目链接时，保存新文件使用的默认文件路径</translation>
+    </message>
+    <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="120"/>
+        <source>Problem URL</source>
+        <translation>题目链接</translation>
+    </message>
+    <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="120"/>
+        <source>The regular expression which matches a part of the problem URL</source>
+        <translation>能够匹配题目链接的一部分的正则表达式</translation>
+    </message>
+    <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="120"/>
+        <source>File Path</source>
+        <translation>文件路径</translation>
+    </message>
+    <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="120"/>
+        <source>The replace expression for the file path, without file name suffix.
+You can use &quot;\1&quot; for the first captured group.</source>
+        <translation>默认保存路径的替换表达式，不含文件后缀名。
+你可以使用 &quot;\1&quot; 来代指匹配中的第一个捕获组。</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="121"/>
