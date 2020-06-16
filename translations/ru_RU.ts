@@ -1987,21 +1987,7 @@ It should NOT include the path to the source file or the path of the compiled cl
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="47"/>
-        <source>The non-public class name of your solution.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="47"/>
         <source>%1 Class Name</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="48"/>
-        <source>The path of the parent directory of the compiled executable file.
-It&apos;s relative to the source file, or the temporary directory if the tab is untitled.
-You can use &quot;${filename}&quot; for the complete file name,
-&quot;${basename}&quot; for the base file name without the suffix,
-&quot;${tmpdir}&quot; for the absolute path of the temporary directory.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2085,6 +2071,20 @@ You can use &quot;${filename}&quot; for the complete file name,
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="87"/>
+        <source>Save the status of the editor when the application exits and
+load the status of the last session when the application starts.
+When this is enabled, you won&apos;t be asked whether to save
+the unsaved files or not when exiting.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="117"/>
+        <source>Pairs of regular expressions used when adding pairs of test cases from files.
+Each pair of regular expressions represents a test case.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="61"/>
         <source>Automatically complete a pair of parentheses when typing the left element of it,
 and move out of it when typing the right element of it.
@@ -2142,6 +2142,20 @@ This can be overridden for each parenthesis in each language.</source>
         <location filename="../build/generated/SettingsInfo.cpp" line="52"/>
         <location filename="../build/generated/SettingsInfo.cpp" line="59"/>
         <source>%1 Parentheses</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="47"/>
+        <source>The name of the non-public main class of your solution.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="48"/>
+        <source>The path of the parent directory of the compiled class file.
+It&apos;s relative to the source file, or the temporary directory if the tab is untitled.
+You can use &quot;${filename}&quot; for the complete file name,
+&quot;${basename}&quot; for the base file name without the suffix,
+&quot;${tmpdir}&quot; for the absolute path of the temporary directory.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2301,12 +2315,6 @@ This can be overridden for each parenthesis in each language.</source>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="87"/>
         <source>Enable Hot Exit</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="87"/>
-        <source>Save the status of the editor when the application exits and load the status of the last session when the application starts.
-When this is enabled, you won&apos;t be asked whether to save the unsaved files or not when exiting.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2523,11 +2531,6 @@ A testcase file won&apos;t be loaded if it&apos;s too long.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="117"/>
-        <source>Pairs of regular expressions used when adding pairs of test cases from files. Each pair of regular expressions represents a test case.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="118"/>
         <source>Input File Save Path</source>
         <translation type="unfinished"></translation>
@@ -2625,20 +2628,19 @@ Due to technical reasons, changing the height of the margin affects the undo his
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="126"/>
-        <source>If a file path was with a problem URL,
-when you open that path again,
-the problem URL will be restored.</source>
+        <source>If a problem URL was set for a file, when you open
+that file again, the problem URL will be restored.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="127"/>
+        <source>If a problem URL was set for a file, when parsing that problem
+from Competitive Companion again, the old file will be opened.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="127"/>
         <source>Open the old file when parsing an old problem URL</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="127"/>
-        <source>If a problem URL was set for a file path, when parsing that problem
-from competitive companion again, the old file will be opened.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
