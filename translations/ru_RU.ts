@@ -2531,6 +2531,27 @@ A testcase file won&apos;t be loaded if it&apos;s too long.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="117"/>
+        <source>Input Regex</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="117"/>
+        <source>The regular expression which matches the whole input file name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="117"/>
+        <source>Answer Replace</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="117"/>
+        <source>The replace expression for the answer file name.
+You can use &quot;\1&quot; for the first captured group.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="118"/>
         <source>Input File Save Path</source>
         <translation type="unfinished"></translation>
@@ -2568,6 +2589,27 @@ You can use &quot;${filename}&quot; for the complete file name,
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="120"/>
         <source>The default file path used when saving a new file while the problem URL is set</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="120"/>
+        <source>Problem URL</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="120"/>
+        <source>The regular expression which matches a part of the problem URL</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="120"/>
+        <source>File Path</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="120"/>
+        <source>The replace expression for the file path, without file name suffix.
+You can use &quot;\1&quot; for the first captured group.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
