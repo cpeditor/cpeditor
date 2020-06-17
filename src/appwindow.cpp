@@ -61,9 +61,6 @@ AppWindow::AppWindow(bool noHotExit, QWidget *parent) : QMainWindow(parent), ui(
     QApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
     setWindowIcon(QIcon(":/icon.png"));
 
-    if (SettingsHelper::isCheckUpdate())
-        updateChecker->checkUpdate(true);
-
 #ifdef Q_OS_WIN
     // setWindowOpacity(0.99) when opacity should be 100 is a workaround for a strange issue on Windows
     // The behavior: If the opacity is 100, and the window is maximized, it will resize to smaller than maximized
@@ -74,8 +71,12 @@ AppWindow::AppWindow(bool noHotExit, QWidget *parent) : QMainWindow(parent), ui(
 #else
     setWindowOpacity(SettingsHelper::getOpacity() / 100.0);
 #endif
+
     applySettings();
     onSettingsApplied("");
+
+    if (SettingsHelper::isCheckUpdate())
+        updateChecker->checkUpdate(true);
 
     do
     {

@@ -66,6 +66,9 @@ bool StyleManager::setStyle(const QString &styleName)
     }
 #endif
 
+    setStyleSheet(currentStyle);
+    setPalette(currentStyle);
+
     if (currentStyle == "default")
     {
         qApp->setStyle(defaultStyle);
@@ -78,9 +81,6 @@ bool StyleManager::setStyle(const QString &styleName)
     {
         qApp->setStyle(currentStyle);
     }
-
-    setStyleSheet(currentStyle);
-    setPalette(currentStyle);
 
     return true;
 } // namespace Core
