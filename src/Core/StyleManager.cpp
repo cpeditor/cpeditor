@@ -119,7 +119,7 @@ void StyleManager::setStyleSheet(const QString &styleName)
     QString styleSheet;
 
     if (styleName == "Light Fusion")
-        styleSheet = "QToolTip {color: #000000; background-color: d57d25 ; border: 1px solid black}";
+        styleSheet = "QToolTip {color: #000000; background-color: #d57d25 ; border: 1px solid black}";
     else if (styleName == "Dark Fusion")
         styleSheet = "QToolTip { color: #ffffff; background-color: #2a82da; border: 1px solid white; }";
 
