@@ -34,9 +34,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-
-      - name: Fetch submodules
-        run: git submodule update --init --recursive
+        with:
+          submodules: recursive
 
       - name: Install Python 3.7
         uses: actions/setup-python@v1
@@ -55,8 +54,6 @@ jobs:
         with:
           cached: ${{ steps.cache-qt.outputs.cache-hit }}
           version: ${{ env.QT_VERSION }}
-          arch: "win64_msvc2019_64"
-          aqtversion: ">=0.9.0"
 
       - name: Download Ninja and CMake
         id: cmake_and_ninja
@@ -183,7 +180,7 @@ jobs:
           execute_process(COMMAND ccache -p)
           execute_process(COMMAND ccache -z)
           execute_process(
-            COMMAND ${{ steps.cmake_and_ninja.outputs.cmake_dir }}/cmake --build build
+            COMMAND ${{ steps.cmake_and_ninja.outputs.cmake_dir }}/cmake --build build -j2
             RESULT_VARIABLE result
           )
           if (NOT result EQUAL 0)
@@ -196,62 +193,3 @@ jobs:
         with:
           name: "cpeditor-${{ matrix.config.os }}-${{ github.sha }}"
           path: build/${{ matrix.config.binary }}
-
-      - name: Get the version
-        if: startsWith(github.ref, 'refs/tags')
-        id: get_version
-        shell: bash
-        run: |
-          VERSION=${GITHUB_REF/refs\/tags\//}
-          echo ::set-output name=VERSION::$VERSION
-          read STABLE_VERSION < .ci/STABLE_VERSION
-          if [ "${VERSION:0:${#STABLE_VERSION}}" == "$STABLE_VERSION" ]; then
-            echo ::set-output name=ISBETA::false
-          else
-            echo ::set-output name=ISBETA::true
-          fi
-
-      - name: Pack to dmg on Mac
-        if: matrix.config.os == 'macos-latest' && startsWith(github.ref, 'refs/tags')
-        run: |
-          cd build
-          ../../Qt/*/*/bin/macdeployqt cpeditor.app
-          cp ../.ci/mac/cpeditor.icns cpeditor.app/Contents/Resources
-          hdiutil create -volname cpeditor-${{ steps.get_version.outputs.VERSION }}-x64 -srcfolder cpeditor.app -ov -format UDZO cpeditor-${{ steps.get_version.outputs.VERSION }}-x64.dmg
-
-      - name: Release on Mac
-        if: matrix.config.os == 'macos-latest' && startsWith(github.ref, 'refs/tags')
-        uses: softprops/action-gh-release@v1
-        with:
-          draft: true
-          prerelease: ${{ steps.get_version.outputs.ISBETA }}
-          files: build/cpeditor-${{ steps.get_version.outputs.VERSION }}-x64.dmg
-          name: CP Editor ${{ steps.get_version.outputs.VERSION }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Install innosetup on Windows
-        if: matrix.config.os == 'windows-latest' && startsWith(github.ref, 'refs/tags')
-        uses: crazy-max/ghaction-chocolatey@v1
-        with:
-          args: "install innosetup"
-
-      - name: Pack to exe on Windows
-        if: matrix.config.os == 'windows-latest' && startsWith(github.ref, 'refs/tags')
-        shell: bash
-        run: |
-          mkdir build/out
-          mv build/cpeditor.exe build/out
-          ../Qt/*/*/bin/windeployqt.exe build/out/cpeditor.exe --no-translations
-          iscc .ci/win/win-setup.iss -DMyAppVersion=${{ steps.get_version.outputs.VERSION }} -DMyProjectRoot=$(pwd) -DMyOutRoot=$(pwd)/build/out
-
-      - name: Release on Windows
-        if: matrix.config.os == 'windows-latest' && startsWith(github.ref, 'refs/tags')
-        uses: softprops/action-gh-release@v1
-        with:
-          draft: true
-          prerelease: ${{ steps.get_version.outputs.ISBETA }}
-          files: cpeditor-${{ steps.get_version.outputs.VERSION }}-x64-setup.exe
-          name: CP Editor ${{ steps.get_version.outputs.VERSION }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
