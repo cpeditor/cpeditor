@@ -19,14 +19,15 @@
 #include "Core/EventLogger.hpp"
 #include "Widgets/UpdatePresenter.hpp"
 #include "Widgets/UpdateProgressDialog.hpp"
+#include "generated/SettingsHelper.hpp"
+#include "generated/portable.hpp"
+#include "generated/version.hpp"
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QtNetwork/QNetworkAccessManager>
 #include <QtNetwork/QNetworkReply>
 #include <QtNetwork/QNetworkRequest>
 #include <algorithm>
-#include <generated/SettingsHelper.hpp>
-#include <generated/version.hpp>
 
 namespace Telemetry
 {
@@ -77,13 +78,18 @@ UpdateChecker::UpdateMetaInformation UpdateChecker::toMetaInformation(const QJso
         auto asset = QJsonDocument::fromVariant(e);
         auto assetName = asset["name"].toString();
 #if defined(Q_OS_WIN)
-        if (assetName.endsWith(".exe"))
+        if (assetName.contains("windows"))
 #elif defined(Q_OS_MAC)
-        if (assetName.endsWith(".dmg"))
+        if (assetName.contains("macos"))
 #else
-        if (assetName.endsWith(".AppImage"))
+        if (assetName.contains("linux"))
 #endif
-            result.assetDownloadUrl = asset["browser_download_url"].toString();
+#ifdef PORTABLE_VERSION
+            if (assetName.contains("portable"))
+#else
+            if (!assetName.contains("portable"))
+#endif
+                result.assetDownloadUrl = asset["browser_download_url"].toString();
     }
     result.preview = release["prerelease"].toBool();
     result.version = release["tag_name"].toString();
