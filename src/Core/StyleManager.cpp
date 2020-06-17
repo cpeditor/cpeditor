@@ -83,7 +83,7 @@ bool StyleManager::setStyle(const QString &styleName)
     }
 
     return true;
-} // namespace Core
+}
 
 QStringList StyleManager::styleList()
 {
