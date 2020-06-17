@@ -3,6 +3,7 @@
 ### Added
 
 - Add the translation system and Simplified Chinese translation. (#377 and #384)
+- On Windows, install VC Redist along with the application.
 
 ### Changed
 

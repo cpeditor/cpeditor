@@ -3,7 +3,7 @@
 
 ; Before running define these three variables is must.
 ; MyRootOut = directory where you ran windeployqt
-; MyAppVersion = App Version 
+; MyAppVersion = App Version
 ; MyProjectRoot = Source root
 
 #define MyAppName "CP Editor"
@@ -49,6 +49,9 @@ Source: "{#MyOutRoot}\platforms\*"; DestDir: "{app}\platforms\"; Flags: ignoreve
 Source: "{#MyOutRoot}\styles\*"; DestDir: "{app}\styles\"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "{#MyOutRoot}\*.dll"; DestDir: "{app}"; Flags: ignoreversion
 
+; VC++ redistributable runtime. Extracted by VC2019RedistNeedsInstall(), if needed.
+Source: "{#MyOutRoot}\Redist\vc_redist.x64.exe"; DestDir: {tmp}; Flags: dontcopy
+
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
@@ -58,4 +61,25 @@ Name: "{userappdata}\Microsoft\Internet Explorer\Quick Launch\{#MyAppName}"; Fil
 
 [Run]
 Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent
+Filename: "{tmp}\vc_redist.x64.exe"; StatusMsg: "Installing VC2019 redist..."; Parameters: "/quiet"; Check: VC2019RedistNeedsInstall ; Flags: waituntilterminated
 
+[Code]
+function VC2019RedistNeedsInstall: Boolean;
+var
+  Version: String;
+begin
+  if (RegQueryStringValue(HKEY_LOCAL_MACHINE, 'SOFTWARE\Microsoft\VisualStudio\14.0\VC\Runtimes\x64', 'Version', Version)) then
+  begin
+    Log('VC Redist Version check : found ' + Version);
+    Result := (CompareStr(Version, 'v14.26.28720.03')<0);
+  end
+  else
+  begin
+    // Not even an old version installed
+    Result := True;
+  end;
+  if (Result) then
+  begin
+    ExtractTemporaryFile('vc_redist.x64.exe');
+  end;
+end;
