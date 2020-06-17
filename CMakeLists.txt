@@ -36,6 +36,12 @@ add_subdirectory(third_party/lsp-cpp)
 
 option(PORTABLE_VERSION "Build the portable version" Off)
 
+if(${PORTABLE_VERSION})
+  message(STATUS "Will build the portable version")
+else()
+  message(STATUS "Will build the setup version")
+endif()
+
 IF(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/.git)
   FIND_PACKAGE(Git)
   IF(GIT_FOUND)
