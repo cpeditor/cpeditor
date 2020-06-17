@@ -16,14 +16,15 @@
  */
 
 #include "Settings/AppearancePage.hpp"
+#include "Core/Translator.hpp"
 #include "Settings/SettingsManager.hpp"
 #include "Settings/ValueWrapper.hpp"
 #include <QMessageBox>
 #include <generated/SettingsInfo.hpp>
 
 AppearancePage::AppearancePage(QWidget *parent)
-    : PreferencesPageTemplate({"Editor Theme", "Editor Font", "Test Cases Font", "Message Logger Font", "Opacity",
-                               "Show Compile And Run Only", "Display EOLN In Diff", "Extra Bottom Margin"},
+    : PreferencesPageTemplate({"Locale", "Editor Theme", "Editor Font", "Test Cases Font", "Message Logger Font",
+                               "Opacity", "Show Compile And Run Only", "Display EOLN In Diff", "Extra Bottom Margin"},
                               true, parent)
 {
 }
@@ -34,6 +35,12 @@ void AppearancePage::makeSettingsTheSameAsUI()
     {
         ValueWidget *widget = widgets[i];
         SettingInfo si = findSetting(options[i]);
+        if (si.name == "Locale" && SettingsManager::get(si.name) != widget->getVariant())
+        {
+            Core::Translator::setLocale(widget->getVariant().toString());
+            QMessageBox::warning(this, tr("Change Locale"),
+                                 tr("You need to restart the application to completely apply the locale change."));
+        }
         SettingsManager::set(si.name, widget->getVariant());
     }
 }

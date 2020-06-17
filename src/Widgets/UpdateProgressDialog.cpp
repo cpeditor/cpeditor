@@ -33,8 +33,8 @@ UpdateProgressDialog::UpdateProgressDialog()
 
     information = new QLabel(this);
 
-    cancelUpdate = new QPushButton("Cancel", this);
-    cancelUpdate->setToolTip("Close this dialog and abort the update check");
+    cancelUpdate = new QPushButton(tr("Cancel"), this);
+    cancelUpdate->setToolTip(tr("Close this dialog and abort the update check"));
 
     mainLayout = new QVBoxLayout(this);
 
@@ -42,7 +42,7 @@ UpdateProgressDialog::UpdateProgressDialog()
     mainLayout->addWidget(progressBar);
     mainLayout->addWidget(cancelUpdate);
 
-    setWindowTitle("Update Checker");
+    setWindowTitle(tr("Update Checker"));
 
     setModal(false);
 
@@ -52,7 +52,7 @@ UpdateProgressDialog::UpdateProgressDialog()
 
 void UpdateProgressDialog::start()
 {
-    information->setText("Fetching the list of releases...");
+    information->setText(tr("Fetching the list of releases..."));
     progressBar->show();
     Util::showWidgetOnTop(this);
 }
@@ -60,10 +60,9 @@ void UpdateProgressDialog::start()
 void UpdateProgressDialog::onUpdateFailed(const QString &error)
 {
     information->setText(
-        QString(
-            "Error: %1<br /><br />Updater failed to check for update. Please manually check for update at<br /><a "
-            "href=\"https://cpeditor.github.io/download\">https://cpeditor.github.io/download</a> or <a "
-            "href=\"https://github.com/cpeditor/cpeditor/releases\">https://github.com/cpeditor/cpeditor/releases</a>.")
+        tr("Error: %1<br /><br />Updater failed to check for update. Please manually check for update at<br /><a "
+           "href=\"https://cpeditor.github.io/download\">https://cpeditor.github.io/download</a> or <a "
+           "href=\"https://github.com/cpeditor/cpeditor/releases\">https://github.com/cpeditor/cpeditor/releases</a>.")
             .arg(error));
     progressBar->hide();
 }
@@ -71,7 +70,7 @@ void UpdateProgressDialog::onUpdateFailed(const QString &error)
 void UpdateProgressDialog::onAlreadyUpToDate()
 {
     progressBar->hide();
-    cancelUpdate->setText("Close");
-    information->setText("Hooray!! You are already using the latest release of CP Editor.");
+    cancelUpdate->setText(tr("Close"));
+    information->setText(tr("Hooray!! You are already using the latest release of CP Editor."));
 }
 } // namespace Widgets

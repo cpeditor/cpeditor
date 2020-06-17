@@ -45,7 +45,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>17</height>
+     <height>23</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -137,10 +137,10 @@
   </widget>
   <action name="actionNew_Tab">
    <property name="text">
-    <string>New Tab</string>
+    <string>New File</string>
    </property>
    <property name="toolTip">
-    <string>Opens a new Tab in the Editor</string>
+    <string>Open a new tab in the editor</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+N</string>
@@ -151,7 +151,7 @@
     <string>Save</string>
    </property>
    <property name="toolTip">
-    <string>Saves the file to disk</string>
+    <string>Save the file on the disk</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+S</string>
@@ -359,7 +359,7 @@
   </action>
   <action name="action_find_replace">
    <property name="text">
-    <string>Find and Replace...</string>
+    <string>Find and Replace</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+F</string>
@@ -388,12 +388,12 @@
   </action>
   <action name="action_export_settings">
    <property name="text">
-    <string>Export Settings</string>
+    <string>Export Settings...</string>
    </property>
   </action>
   <action name="action_import_settings">
    <property name="text">
-    <string>Import Settings</string>
+    <string>Import Settings...</string>
    </property>
   </action>
   <action name="actionManual">

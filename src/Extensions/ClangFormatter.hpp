@@ -24,25 +24,27 @@
 #ifndef FORMATTER_HPP
 #define FORMATTER_HPP
 
-#include <QPair>
-#include <QString>
+#include <QObject>
 
 class MessageLogger;
 class QCodeEditor;
-class QStringList;
 
 namespace Extensions
 {
-class ClangFormatter
+class ClangFormatter : public QObject
 {
+    Q_OBJECT
+
   public:
     /**
      * @brief construct a Formatter
      * @param clangFormatBinary the path to the Clang Format binary used for formatting
      * @param clangFormatStyle the Clang Format style used for formatting
      * @param logger the message logger used for displaying messages
+     * @param parent the parent of the QObject
      */
-    ClangFormatter(const QString &clangFormatBinary, const QString &clangFormatStyle, MessageLogger *logger);
+    explicit ClangFormatter(const QString &clangFormatBinary, const QString &clangFormatStyle, MessageLogger *logger,
+                            QObject *parent = nullptr);
 
     /**
      * @brief format the codes in the given editor

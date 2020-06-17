@@ -15,16 +15,25 @@
  *
  */
 
-#ifndef UTIL_HPP
-#define UTIL_HPP
+#ifndef TRANSLATOR_HPP
+#define TRANSLATOR_HPP
 
-class QPalette;
-class QWidget;
+#include <QObject>
 
-namespace Util
+class QTranslator;
+
+namespace Core
 {
+class Translator : public QObject
+{
+    Q_OBJECT
 
-void showWidgetOnTop(QWidget *widget);
-} // namespace Util
+  public:
+    static void setLocale(const QString &language);
 
-#endif // UTIL_HPP
+  private:
+    static QTranslator *translator;
+};
+} // namespace Core
+
+#endif // TRANSLATOR_HPP

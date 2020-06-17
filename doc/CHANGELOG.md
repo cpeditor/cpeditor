@@ -1,5 +1,9 @@
 ## UNRELEASED
 
+### Added
+
+- Add the translation system and Simplified Chinese translation. (#377 and #384)
+
 ### Changed
 
 - Now the lengths of the files added by "Add Pairs of Testcases From Files" are limited by Preferences->Advanced->Limits->Load Test Case File Length Limit. (#405)

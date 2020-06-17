@@ -5,7 +5,7 @@ import sys
 import json
 
 if __name__ == "__main__":
-    obj = json.load(open(sys.argv[1], mode="r"))
+    obj = json.load(open(sys.argv[1], mode="r", encoding="utf-8"))
     head = """/*
  * Copyright (C) 2019-2020 Ashar Khan <ashar786khan@gmail.com>
  *
@@ -28,7 +28,7 @@ if __name__ == "__main__":
  */
 
 """
-    setting_helper = open("generated/SettingsHelper.hpp", mode="w")
+    setting_helper = open("generated/SettingsHelper.hpp", mode="w", encoding="utf-8")
     setting_helper.write(head)
     setting_helper.write("""#ifndef SETTINGSHELPER_HPP
 #define SETTINGSHELPER_HPP
@@ -56,11 +56,12 @@ namespace SettingsHelper
 
 #endif // SETTINGSHELPER_HPP""")
     setting_helper.close()
-    setting_info = open("generated/SettingsInfo.hpp", mode="w")
+    setting_info = open("generated/SettingsInfo.hpp", mode="w", encoding="utf-8")
     setting_info.write(head)
     setting_info.write("""#ifndef SETTINGSINFO_HPP
 #define SETTINGSINFO_HPP
 
+#include <QCoreApplication>
 #include <QFont>
 #include <QRect>
 #include <QVariant>
@@ -78,8 +79,29 @@ struct SettingInfo
     }
 };
 
-const SettingInfo settingInfo[] =
+extern QList<SettingInfo> settingInfo;
+
+void updateSettingInfo();
+
+inline SettingInfo findSetting(const QString &name)
 {
+    for (const SettingInfo &si: settingInfo)
+        if (si.name == name)
+            return si;
+    return SettingInfo();
+}
+
+#endif // SETTINGSINFO_HPP""")
+
+    setting_info = open("generated/SettingsInfo.cpp", mode="w", encoding="utf-8")
+    setting_info.write(head)
+    setting_info.write("""#include "SettingsInfo.hpp"
+
+QList<SettingInfo> settingInfo;
+
+void updateSettingInfo()
+{
+    settingInfo.clear();
 """)
     for t in obj:
         name = t["name"]
@@ -100,8 +122,18 @@ const SettingInfo settingInfo[] =
             hlp = t["hlp"]
         else:
             hlp = ""
-        setting_info.write(
-            f"    {{{json.dumps(name)}, {json.dumps(desc)}, \"{typename}\", \"{ui}\", {json.dumps(tip)}, {json.dumps(hlp)}, {{")
+
+        setting_info.write(f"    settingInfo.append(SettingInfo {{{json.dumps(name)}, ")
+        if "C++" in json.dumps(desc):
+            setting_info.write(f"QCoreApplication::translate(\"Setting\", {json.dumps(desc).replace('C++', '%1')}).arg(\"C++\")")
+        elif "Java" in json.dumps(desc):
+            setting_info.write(f"QCoreApplication::translate(\"Setting\", {json.dumps(desc).replace('Java', '%1')}).arg(\"Java\")")
+        elif "Python" in json.dumps(desc):
+            setting_info.write(f"QCoreApplication::translate(\"Setting\", {json.dumps(desc).replace('Python', '%1')}).arg(\"Python\")")
+        else:
+            setting_info.write(f"QCoreApplication::translate(\"Setting\", {json.dumps(desc)})")
+        setting_info.write(f", \"{typename}\", \"{ui}\", QCoreApplication::translate(\"Setting\", {json.dumps(tip)}), QCoreApplication::translate(\"Setting\", {json.dumps(hlp)}), {{")
+
         if "old" in t:
             olds = ""
             for s in t["old"]:
@@ -128,16 +160,6 @@ const SettingInfo settingInfo[] =
             setting_info.write(defs[typename])
         if "param" in t:
             setting_info.write(f', {t["param"]}')
-        setting_info.write("},\n")
-    setting_info.write("""};
-
-inline SettingInfo findSetting(const QString &name)
-{
-    for (const SettingInfo &si: settingInfo)
-        if (si.name == name)
-            return si;
-    return SettingInfo();
-}
-
-#endif // SETTINGSINFO_HPP""")
+        setting_info.write("});\n")
+    setting_info.write("};\n")
     setting_info.close()

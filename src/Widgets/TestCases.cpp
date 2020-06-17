@@ -42,12 +42,12 @@ TestCases::TestCases(MessageLogger *logger, QWidget *parent) : QWidget(parent), 
     mainLayout = new QVBoxLayout(this);
     titleLayout = new QHBoxLayout();
     checkerLayout = new QHBoxLayout();
-    label = new QLabel("Test Cases");
+    label = new QLabel(tr("Test Cases"));
     verdicts = new QLabel();
-    checkerLabel = new QLabel("Checker:");
-    addButton = new QPushButton("Add Test");
-    moreButton = new QPushButton("More");
-    addCheckerButton = new QPushButton("Add Checker");
+    checkerLabel = new QLabel(tr("Checker:"));
+    addButton = new QPushButton(tr("Add Test"));
+    moreButton = new QPushButton(tr("More"));
+    addCheckerButton = new QPushButton(tr("Add Checker"));
     checkerComboBox = new QComboBox();
     scrollArea = new QScrollArea();
     scrollAreaWidget = new QWidget();
@@ -66,15 +66,15 @@ TestCases::TestCases(MessageLogger *logger, QWidget *parent) : QWidget(parent), 
     mainLayout->addLayout(checkerLayout);
     mainLayout->addWidget(scrollArea);
 
-    verdicts->setToolTip("Wrong Answer / Accepted / Total");
-    addCheckerButton->setToolTip("Add a custom testlib checker");
+    verdicts->setToolTip(tr("Wrong Answer / Accepted / Total"));
+    addCheckerButton->setToolTip(tr("Add a custom testlib checker"));
 
     updateVerdicts();
 
     moreMenu = new QMenu();
 
-    moreMenu->addAction("Add Pairs of Testcases From Files", [this] {
-        QStringList paths = QFileDialog::getOpenFileNames(this, "Choose Testcase Files", "");
+    moreMenu->addAction(tr("Add Pairs of Testcases From Files"), [this] {
+        QStringList paths = QFileDialog::getOpenFileNames(this, tr("Choose Testcase Files"), "");
         LOG_INFO(paths.join(", "));
         if (paths.size())
         {
@@ -101,13 +101,13 @@ TestCases::TestCases(MessageLogger *logger, QWidget *parent) : QWidget(parent), 
                     remain.remove(inputFile);
                     remain.remove(answerFile);
                     auto answerPath = QFileInfo(path).dir().filePath(answerFile);
-                    auto input = loadTestCaseFromFile(path, "Testcases");
-                    auto answer = loadTestCaseFromFile(answerPath, "Testcases");
+                    auto input = loadTestCaseFromFile(path, tr("Testcases"));
+                    auto answer = loadTestCaseFromFile(answerPath, tr("Testcases"));
                     if (!input.isNull() && !answer.isNull())
                     {
                         addTestCase(input, answer);
-                        log->info("Load Testcases",
-                                  QString("A pair of testcases [%1] and [%2] is loaded").arg(path).arg(answerPath));
+                        log->info(tr("Load Testcases"),
+                                  tr("A pair of testcases [%1] and [%2] is loaded").arg(path).arg(answerPath));
                     }
                 }
             }
@@ -123,11 +123,11 @@ TestCases::TestCases(MessageLogger *logger, QWidget *parent) : QWidget(parent), 
                     if (!inputRegex.match(inputFile).hasMatch())
                         continue;
                     remain.remove(inputFile);
-                    auto input = loadTestCaseFromFile(path, "Testcases");
+                    auto input = loadTestCaseFromFile(path, tr("Testcases"));
                     if (!input.isNull())
                     {
                         addTestCase(input, QString());
-                        log->info("Load Testcases", QString("An input [%1] is loaded").arg(path));
+                        log->info(tr("Load Testcases"), tr("An input [%1] is loaded").arg(path));
                     }
                 }
             }
@@ -136,16 +136,15 @@ TestCases::TestCases(MessageLogger *logger, QWidget *parent) : QWidget(parent), 
                 QStringList remainPaths;
                 for (auto path : remain)
                     remainPaths.push_back(QString("[%1]").arg(path));
-                log->warn(
-                    "Load Testcases",
-                    QString("The following files are not loaded because they are not matched:%1. You can set the "
-                            "matching rules at Preferences->File Path->Testcases->Add Testcases From Files Rules.")
-                        .arg(remainPaths.join(", ")));
+                log->warn(tr("Load Testcases"),
+                          tr("The following files are not loaded because they are not matched:%1. You can set the "
+                             "matching rules at Preferences->File Path->Testcases->Add Testcases From Files Rules.")
+                              .arg(remainPaths.join(", ")));
             }
         }
     });
 
-    moreMenu->addAction("Remove Empty", [this] {
+    moreMenu->addAction(tr("Remove Empty"), [this] {
         LOG_INFO("Testcases Removing empty");
         for (int i = 0; i < count(); ++i)
         {
@@ -157,9 +156,10 @@ TestCases::TestCases(MessageLogger *logger, QWidget *parent) : QWidget(parent), 
         }
     });
 
-    moreMenu->addAction("Remove All", [this] {
+    moreMenu->addAction(tr("Remove All"), [this] {
         LOG_INFO("Testcases removing all testcases");
-        auto res = QMessageBox::question(this, "Clear Testcases", "Do you really want to delete all test cases?");
+        auto res =
+            QMessageBox::question(this, tr("Clear Testcases"), tr("Are you sure you want to delete all test cases?"));
         if (res == QMessageBox::Yes)
         {
             for (int i = 0; i < count(); ++i)
@@ -170,26 +170,26 @@ TestCases::TestCases(MessageLogger *logger, QWidget *parent) : QWidget(parent), 
         }
     });
 
-    moreMenu->addAction("Hide AC", [this] {
+    moreMenu->addAction(tr("Hide AC"), [this] {
         LOG_INFO("Testcases hiding all Accepted");
         for (auto t : testcases)
             if (t->verdict() == Core::Checker::AC)
                 t->setShow(false);
     });
 
-    moreMenu->addAction("Show All", [this] {
+    moreMenu->addAction(tr("Show All"), [this] {
         LOG_INFO("Testcases making all cases visible");
         for (auto t : testcases)
             t->setShow(true);
     });
 
-    moreMenu->addAction("Hide All", [this] {
+    moreMenu->addAction(tr("Hide All"), [this] {
         LOG_INFO("Testcases Hiding all cases");
         for (auto t : testcases)
             t->setShow(false);
     });
 
-    moreMenu->addAction("Invert", [this] {
+    moreMenu->addAction(tr("Invert"), [this] {
         LOG_INFO("Testcases Inverting all cases");
         for (auto t : testcases)
             t->setShow(t->isShow() ^ 1);
@@ -202,10 +202,11 @@ TestCases::TestCases(MessageLogger *logger, QWidget *parent) : QWidget(parent), 
     addCheckerButton->setSizePolicy({QSizePolicy::Maximum, QSizePolicy::Fixed});
     checkerComboBox->setMinimumWidth(100);
 
-    checkerComboBox->addItems({"Ignore trailing spaces", "Strictly the same", "ncmp - Compare int64s",
-                               "rcmp4 - Compare doubles, max error 1e-4", "rcmp6 - Compare doubles, max error 1e-6",
-                               "rcmp9 - Compare doubles, max error 1e-9", "wcmp - Compare tokens",
-                               "nyesno - Compare YES/NOs, case insensitive"});
+    checkerComboBox->addItems({tr("Ignore trailing spaces"), tr("Strictly the same"), tr("ncmp - Compare int64s"),
+                               tr("rcmp4 - Compare doubles, max error 1e-4"),
+                               tr("rcmp6 - Compare doubles, max error 1e-6"),
+                               tr("rcmp9 - Compare doubles, max error 1e-9"), tr("wcmp - Compare tokens"),
+                               tr("nyesno - Compare YES/NOs, case insensitive")});
     checkerComboBox->setCurrentIndex(0);
 
     connect(checkerComboBox, SIGNAL(currentIndexChanged(int)), this, SIGNAL(checkerChanged()));
@@ -233,8 +234,8 @@ void TestCases::addTestCase(const QString &input, const QString &expected)
     if (count() >= MAX_NUMBER_OF_TESTCASES)
     {
         LOG_WARN("Max testcase limit reached");
-        QMessageBox::warning(this, "Add Test Case",
-                             "There are already " + QString::number(count()) + " test cases, you can't add more.");
+        QMessageBox::warning(this, tr("Add Test Case"),
+                             tr("There are already %1 test cases, you can't add more.").arg(count()));
     }
     else
     {
@@ -311,8 +312,8 @@ void TestCases::loadFromSavedFiles(const QString &filePath)
         {
             for (int j = 0; j <= i; ++j)
             {
-                addTestCase(loadTestCaseFromFile(inputFilePath(filePath, j), QString("Input #%1").arg(j + 1)),
-                            loadTestCaseFromFile(answerFilePath(filePath, j), QString("Expected #%1").arg(j + 1)));
+                addTestCase(loadTestCaseFromFile(inputFilePath(filePath, j), tr("Input #%1").arg(j + 1)),
+                            loadTestCaseFromFile(answerFilePath(filePath, j), tr("Expected #%1").arg(j + 1)));
             }
             break;
         }
@@ -327,9 +328,9 @@ void TestCases::saveToFiles(const QString &filePath, bool safe)
     for (int i = 0; i < count(); ++i)
     {
         if (!input(i).isEmpty())
-            Util::saveFile(inputFilePath(filePath, i), input(i), QString("Save Input #%1").arg(i + 1), safe, log, true);
+            Util::saveFile(inputFilePath(filePath, i), input(i), tr("Save Input #%1").arg(i + 1), safe, log, true);
         if (!expected(i).isEmpty())
-            Util::saveFile(answerFilePath(filePath, i), expected(i), QString("Save Expected #%1").arg(i + 1), safe, log,
+            Util::saveFile(answerFilePath(filePath, i), expected(i), tr("Save Expected #%1").arg(i + 1), safe, log,
                            true);
     }
     for (int i = count(); i < MAX_NUMBER_OF_TESTCASES; ++i)
@@ -345,12 +346,12 @@ void TestCases::saveToFiles(const QString &filePath, bool safe)
 
 QString TestCases::loadTestCaseFromFile(const QString &path, const QString &head)
 {
-    auto content = Util::readFile(path, QString("Load %1").arg(head), log, true);
+    auto content = Util::readFile(path, tr("Load %1").arg(head), log, true);
     if (content.length() > SettingsHelper::getLoadTestCaseFileLengthLimit())
     {
-        log->error("Testcases",
-                   QString("The testcase file [%1] contains more than %2 characters, so it's not loaded. You can "
-                           "change the length limit in Preferences->Advanced->Limits->Load Test Case File Length Limit")
+        log->error(tr("Testcases"),
+                   tr("The testcase file [%1] contains more than %2 characters, so it's not loaded. You can "
+                      "change the length limit in Preferences->Advanced->Limits->Load Test Case File Length Limit")
                        .arg(path)
                        .arg(SettingsHelper::getLoadTestCaseFileLengthLimit()));
         return QString();
@@ -454,7 +455,7 @@ void TestCases::on_addButton_clicked()
 void TestCases::on_addCheckerButton_clicked()
 {
     LOG_INFO("Add checker button clicked");
-    auto path = QFileInfo(QFileDialog::getOpenFileName(this, "Add Checker")).canonicalFilePath();
+    auto path = QFileInfo(QFileDialog::getOpenFileName(this, tr("Add Checker"))).canonicalFilePath();
     if (!path.isEmpty())
     {
         checkerComboBox->addItem(path);
@@ -490,8 +491,10 @@ void TestCases::updateVerdicts()
             break;
         }
     }
-    verdicts->setText("<span style=\"color:red\">" + QString::number(wa) + "</span> / <span style=\"color:green\">" +
-                      QString::number(ac) + "</span> / " + QString::number(count()));
+    verdicts->setText(QString("<span style=\"color:red\">%1</span> / <span style=\"color:green\">%2</span> / %3")
+                          .arg(wa)
+                          .arg(ac)
+                          .arg(count()));
 }
 
 QString TestCases::inputFilePath(const QString &filePath, int index)

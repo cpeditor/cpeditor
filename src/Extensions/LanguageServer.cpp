@@ -274,8 +274,8 @@ void LanguageServer::onLSPServerErrorArrived(QJsonObject id, QJsonObject error)
     LOG_ERR("ERR is \n" << ERR);
 
     if (logger != nullptr)
-        logger->error("Langauge Server [" + language + "]",
-                      "Language server sent an error. Please check log for details.");
+        logger->error(tr("Langauge Server [%1]").arg(language),
+                      tr("Language server sent an error. Please check log for details."));
 }
 
 void LanguageServer::onLSPServerProcessError(QProcess::ProcessError error)
@@ -287,23 +287,23 @@ void LanguageServer::onLSPServerProcessError(QProcess::ProcessError error)
     switch (error)
     {
     case QProcess::FailedToStart:
-        logger->error("Language Server  [" + language + "]",
-                      "Failed to start LSP Process. Have you set the path to the Language Server program in "
-                      "Preferences->Extensions->Language Server?");
+        logger->error(tr("Langauge Server [%1]").arg(language),
+                      tr("Failed to start LSP Process. Have you set the path to the Language Server program in "
+                         "Preferences->Extensions->Language Server?"));
         break;
     case QProcess::Crashed:
         break;
     case QProcess::Timedout:
-        logger->error("Language Server [" + language + "]", "LSP Process timed out");
+        logger->error(tr("Langauge Server [%1]").arg(language), tr("LSP Process timed out"));
         break;
     case QProcess::ReadError:
-        logger->error("Language Server [" + language + "]", "LSP Process Read Error");
+        logger->error(tr("Langauge Server [%1]").arg(language), tr("LSP Process Read Error"));
         break;
     case QProcess::WriteError:
-        logger->error("Language Server [" + language + "]", "LSP Process Write Error");
+        logger->error(tr("Langauge Server [%1]").arg(language), tr("LSP Process Write Error"));
         break;
     case QProcess::UnknownError:
-        logger->error("Language Server [" + language + "]", "An unknown error has occurred in LSP Process");
+        logger->error(tr("Langauge Server [%1]").arg(language), tr("An unknown error has occurred in LSP Process"));
         break;
     }
 }

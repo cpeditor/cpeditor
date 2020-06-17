@@ -40,9 +40,33 @@ class QTreeWidget;
 class QTreeWidgetItem;
 class QVBoxLayout;
 
+class PreferencesWindow;
+
+class AddPageHelper
+{
+  public:
+    explicit AddPageHelper(PreferencesWindow *w);
+
+    AddPageHelper &page(const QString &key, const QString &trkey, const QStringList &content);
+    AddPageHelper &page(const QString &key, const QString &trkey, PreferencesPage *page);
+    AddPageHelper &page(const QString &key, const QString &trkey, PreferencesPage *page, const QStringList &content);
+
+    AddPageHelper &dir(const QString &key, const QString &trkey);
+
+    AddPageHelper &end();
+
+  private:
+    PreferencesWindow *window;
+    QTreeWidget *tree;
+    QTreeWidgetItem *currentItem;
+    QStringList currentPath;
+};
+
 class PreferencesWindow : public QMainWindow
 {
     Q_OBJECT
+
+    friend class AddPageHelper;
 
   public:
     /**
@@ -70,21 +94,9 @@ class PreferencesWindow : public QMainWindow
     void updateSearch(const QString &text);
 
   private:
-    /**
-     * @brief add a preferences page
-     * @param path the path to the page, for example: "Actions/Save" / "Appearance"
-     * @param page the PreferencesPage widget
-     * @param pageContent the content of the page, used for search
-     */
-    void addPage(const QString &path, PreferencesPage *page, const QStringList &pageContent);
+    void registerName(const QString &key, const QString &trkey);
 
-    /**
-     * @brief add a preferences page
-     * @param path the path to the page, for example: "Actions/Save" / "Appearance"
-     * @param opts the options of the PreferencesPageTemplate
-     * @param alignTop whether to align settings to the top
-     */
-    void addPage(const QString &path, const QStringList &opts, bool alignTop = true);
+    void addPage(QTreeWidgetItem *item, PreferencesPage *page, const QStringList &pageContent);
 
     /**
      * @brief switch to a page
@@ -158,6 +170,7 @@ class PreferencesWindow : public QMainWindow
     QMap<QTreeWidgetItem *, QStringList> content;
     QMap<QTreeWidgetItem *, PreferencesPage *> pageWidget;
     QMap<PreferencesPage *, QTreeWidgetItem *> pageTreeItem;
+    QMap<QString, QString> treeEntryTranslation;
 
     QShortcut *exitShortcut = nullptr;
     QShortcut *travelShortcut = nullptr;

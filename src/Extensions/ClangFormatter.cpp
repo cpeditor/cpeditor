@@ -26,7 +26,9 @@
 
 namespace Extensions
 {
-ClangFormatter::ClangFormatter(const QString &clangFormatBinary, const QString &clangFormatStyle, MessageLogger *logger)
+ClangFormatter::ClangFormatter(const QString &clangFormatBinary, const QString &clangFormatStyle, MessageLogger *logger,
+                               QObject *parent)
+    : QObject(parent)
 {
     log = logger;
     updateBinary(clangFormatBinary);
@@ -46,11 +48,11 @@ bool ClangFormatter::check(const QString &checkBinary, const QString &checkStyle
     }
 
     // save a simple file for testing
-    if (!Util::saveFile(tmpDir.filePath("tmp.cpp"), "int main(){}", "Formatter/check"))
+    if (!Util::saveFile(tmpDir.filePath("tmp.cpp"), "int main(){}", tr("Formatter/check")))
         return false;
 
     // save the style to .clang-format
-    if (!Util::saveFile(tmpDir.filePath(".clang-format"), checkStyle, "Formatter/check"))
+    if (!Util::saveFile(tmpDir.filePath(".clang-format"), checkStyle, tr("Formatter/check")))
         return false;
 
     // run Clang Format
@@ -118,16 +120,16 @@ void ClangFormatter::format(QCodeEditor *editor, const QString &filePath, const 
     QTemporaryDir tmpDir;
     if (!tmpDir.isValid())
     {
-        log->error("Formatter", "Failed to create temporary directory");
+        log->error(tr("Formatter"), tr("Failed to create temporary directory"));
         return;
     }
 
     // save the text to a file
-    if (!Util::saveFile(tmpDir.filePath(tmpName), editor->toPlainText(), "Formatter", true, log))
+    if (!Util::saveFile(tmpDir.filePath(tmpName), editor->toPlainText(), tr("Formatter"), true, log))
         return;
 
     // save the style to .clang-format
-    if (!Util::saveFile(tmpDir.filePath(".clang-format"), style, "Formatter", true, log))
+    if (!Util::saveFile(tmpDir.filePath(".clang-format"), style, tr("Formatter"), true, log))
         return;
 
     // add the file to be formatted in the command line arguments
@@ -166,7 +168,7 @@ void ClangFormatter::format(QCodeEditor *editor, const QString &filePath, const 
     // apply the cursor changes to the editor
     editor->setTextCursor(cursor);
 
-    log->info("Formatter", "Formatting completed");
+    log->info(tr("Formatter"), tr("Formatting completed"));
 }
 
 QPair<int, QString> ClangFormatter::getFormatResult(const QStringList &args)
@@ -181,9 +183,10 @@ QPair<int, QString> ClangFormatter::getFormatResult(const QStringList &args)
     if (!finished)
     {
         formatProcess.kill();
-        log->warn("Formatter",
-                  "The format process didn't finish in 2 seconds. This is probably because the clang-format binary is "
-                  "not found by CP Editor. You can set the path to clang-format in Preferences->Formatting.");
+        log->warn(
+            tr("Formatter"),
+            tr("The format process didn't finish in 2 seconds. This is probably because the clang-format binary is not "
+               "found by CP Editor. You can set the path to clang-format in Preferences->Extensions->Clang Format."));
         return QPair<int, QString>(-1, QString());
     }
 
@@ -192,13 +195,13 @@ QPair<int, QString> ClangFormatter::getFormatResult(const QStringList &args)
         // the format process failed, show the error messages and return {-1, QString()}
         LOG_WARN("Format process returned exit code " << formatProcess.exitCode());
 
-        log->warn("Formatter", "The format command is: " + binary + " " + args.join(' '));
+        log->warn(tr("Formatter"), tr("The format command is: %1 %2").arg(binary, args.join(' ')));
         auto stdOut = formatProcess.readAllStandardOutput();
         if (!stdOut.isEmpty())
-            log->warn("Formatter[stdout]", stdOut);
+            log->warn(tr("Formatter[stdout]"), stdOut);
         auto stdError = formatProcess.readAllStandardError();
         if (!stdError.isEmpty())
-            log->error("Formatter[stderr]", stdError);
+            log->error(tr("Formatter[stderr]"), stdError);
         return QPair<int, QString>(-1, QString());
     }
 

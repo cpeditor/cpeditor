@@ -41,7 +41,7 @@ PreferencesHomePage::PreferencesHomePage(QWidget *parent) : QWidget(parent)
     layout->addSpacing(30);
 
     // add welcome label
-    welcomeLabel = new QLabel("Welcome to CP Editor! Let's get started.");
+    welcomeLabel = new QLabel(tr("Welcome to CP Editor! Let's get started."));
     layout->addWidget(welcomeLabel);
     layout->setAlignment(welcomeLabel, Qt::AlignCenter);
 
@@ -49,18 +49,20 @@ PreferencesHomePage::PreferencesHomePage(QWidget *parent) : QWidget(parent)
     layout->addSpacing(20);
 
     // add buttons
-    addButton("Code Edit", "Code Editor Settings");
-    addButton("Language/C++/C++ Commands", "C++ Compile and Run Commands");
-    addButton("Language/Java/Java Commands", "Java Compile and Run Commands");
-    addButton("Language/Python/Python Commands", "Python Run Commands");
-    addButton("Appearance", "Appearance");
+    addButton("Code Edit", tr("Code Editor Settings"));
+    addButton("Language/C++/C++ Commands", tr("C++ Compile and Run Commands"));
+    addButton("Language/Java/Java Commands", tr("Java Compile and Run Commands"));
+    addButton("Language/Python/Python Commands", tr("Python Run Commands"));
+    addButton("Appearance", tr("Appearance"));
 
     // add spacing between the buttons and the manual label
     layout->addSpacing(20);
 
     // add manual label
-    manualLabel = new QLabel("You can read the <a href=\"https://github.com/cpeditor/cpeditor/blob/" APP_VERSION
-                             "/doc/MANUAL.md\">Manual</a> or go through the settings for more information.");
+    manualLabel = new QLabel(
+        tr("You can read the <a href=\"https://github.com/cpeditor/cpeditor/blob/%1/doc/MANUAL.md\">Manual</a> or go "
+           "through the settings for more information.")
+            .arg(APP_VERSION));
     manualLabel->setOpenExternalLinks(true);
     layout->addWidget(manualLabel);
     layout->setAlignment(manualLabel, Qt::AlignCenter);

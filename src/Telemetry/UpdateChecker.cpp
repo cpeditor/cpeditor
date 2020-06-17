@@ -126,7 +126,7 @@ void UpdateChecker::managerFinished(QNetworkReply *reply)
 
     if (releases.isEmpty())
     {
-        progress->onUpdateFailed("No release is found.");
+        progress->onUpdateFailed(tr("No release is found."));
         return;
     }
 
@@ -137,7 +137,7 @@ void UpdateChecker::managerFinished(QNetworkReply *reply)
     if (latestInfo.assetDownloadUrl.isEmpty())
     {
         LOG_INFO("No download URL");
-        progress->onUpdateFailed(QString("No download URL of the version [%1] is found.").arg(latestInfo.version));
+        progress->onUpdateFailed(tr("No download URL of the version [%1] is found.").arg(latestInfo.version));
     }
     else if (currentVersion < latestVersion)
     {

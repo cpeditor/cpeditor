@@ -27,7 +27,7 @@ class PreferencesPageTemplate : public PreferencesGridPage
   public:
     explicit PreferencesPageTemplate(QStringList opts, bool alignTop = true, QWidget *parent = nullptr);
 
-    QStringList content();
+    virtual QStringList content() override;
 
   private:
     bool areSettingsChanged() override;

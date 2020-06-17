@@ -35,8 +35,8 @@ UpdatePresenter::UpdatePresenter()
     mainLayout = new QVBoxLayout(this);
     subLayout = new QHBoxLayout();
 
-    downloadButton = new QPushButton("Download", this);
-    cancelButton = new QPushButton("Close", this);
+    downloadButton = new QPushButton(tr("Download"), this);
+    cancelButton = new QPushButton(tr("Close"), this);
 
     connect(cancelButton, SIGNAL(clicked()), this, SLOT(close()));
     connect(downloadButton, &QPushButton::clicked, this,
@@ -49,7 +49,7 @@ UpdatePresenter::UpdatePresenter()
     mainLayout->addWidget(textEdit);
     mainLayout->addLayout(subLayout);
 
-    setWindowTitle("New update available");
+    setWindowTitle(tr("New update available"));
 }
 
 void UpdatePresenter::showUpdate(const Telemetry::UpdateChecker::UpdateMetaInformation &info)
@@ -62,10 +62,9 @@ void UpdatePresenter::showUpdate(const Telemetry::UpdateChecker::UpdateMetaInfor
     textEdit->setMarkdown(info.changelog);
 
     auto message =
-        QString(
-            "A new %1 update <a href=\"%2\">%3</a> is available. See below for the changelog.<br />We highly recommend "
-            "you keep the editor up to date so that you won't miss the awesome new features and bug fixes.")
-            .arg(info.preview ? "beta" : "stable")
+        tr("A new %1 update <a href=\"%2\">%3</a> is available. See below for the changelog.<br />We highly recommend "
+           "you keep the editor up to date so that you won't miss the awesome new features and bug fixes.")
+            .arg(info.preview ? tr("beta") : tr("stable"))
             .arg(info.releasePageUrl)
             .arg(info.version);
     hint->setText(message);

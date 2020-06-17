@@ -21,6 +21,7 @@ endif()
 
 find_package(Qt5 COMPONENTS Widgets REQUIRED)
 find_package(Qt5 COMPONENTS Network REQUIRED)
+find_package(Qt5 COMPONENTS LinguistTools REQUIRED)
 find_package(Python3 COMPONENTS Interpreter REQUIRED)
 
 add_subdirectory(third_party/QCodeEditor)
@@ -48,11 +49,20 @@ ENDIF(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/.git)
 
 configure_file(cmake/version.hpp.in ${CMAKE_BINARY_DIR}/generated/version.hpp)
 
-add_custom_command(OUTPUT ${CMAKE_BINARY_DIR}/generated/SettingsHelper.hpp ${CMAKE_BINARY_DIR}/generated/SettingsInfo.hpp
+add_custom_command(OUTPUT ${CMAKE_BINARY_DIR}/generated/SettingsHelper.hpp ${CMAKE_BINARY_DIR}/generated/SettingsInfo.hpp ${CMAKE_BINARY_DIR}/generated/SettingsInfo.cpp
                    COMMAND ${Python3_EXECUTABLE} ${PROJECT_SOURCE_DIR}/tools/genSettings.py ${PROJECT_SOURCE_DIR}/src/Settings/settings.json
                    WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
                    DEPENDS ${PROJECT_SOURCE_DIR}/src/Settings/settings.json ${PROJECT_SOURCE_DIR}/tools/genSettings.py)
-set_property(SOURCE ${CMAKE_BINARY_DIR}/generated/SettingsHelper.hpp ${CMAKE_BINARY_DIR}/generated/SettingsInfo.hpp PROPERTY SKIP_AUTOGEN ON)
+
+set(TSS ${CMAKE_SOURCE_DIR}/translations/zh_CN.ts ${CMAKE_SOURCE_DIR}/translations/ru_RU.ts)
+
+set_source_files_properties(${TSS} PROPERTIES OUTPUT_LOCATION ${CMAKE_BINARY_DIR}/translations)
+
+qt5_add_translation(QMFILES ${TSS})
+
+file(COPY ${CMAKE_SOURCE_DIR}/translations/translations.qrc DESTINATION ${CMAKE_BINARY_DIR}/translations)
+
+set_property(SOURCE ${CMAKE_BINARY_DIR}/generated/SettingsHelper.hpp ${CMAKE_BINARY_DIR}/generated/SettingsInfo.hpp ${CMAKE_BINARY_DIR}/generated/SettingsInfo.cpp PROPERTY SKIP_AUTOGEN ON)
 
 add_executable(cpeditor
     ${GUI_TYPE}
@@ -69,6 +79,8 @@ add_executable(cpeditor
     src/Core/Runner.hpp
     src/Core/StyleManager.cpp
     src/Core/StyleManager.hpp
+    src/Core/Translator.cpp
+    src/Core/Translator.hpp
 
     src/Extensions/CFTool.cpp
     src/Extensions/CFTool.hpp
@@ -154,7 +166,9 @@ add_executable(cpeditor
     ${CMAKE_BINARY_DIR}/generated/version.hpp
     ${CMAKE_BINARY_DIR}/generated/SettingsHelper.hpp
     ${CMAKE_BINARY_DIR}/generated/SettingsInfo.hpp
+    ${CMAKE_BINARY_DIR}/generated/SettingsInfo.cpp
 
+    ${CMAKE_BINARY_DIR}/translations/translations.qrc
     resources/resources.qrc
     assets/appicon.rc)
 
@@ -171,6 +185,10 @@ target_link_libraries(cpeditor PRIVATE Qt5::Network)
 target_link_libraries(cpeditor PRIVATE Qt5::Widgets)
 target_link_libraries(cpeditor PRIVATE QtFindReplaceDialog)
 target_link_libraries(cpeditor PRIVATE SingleApplication)
+
+if(MSVC)
+    target_compile_options(cpeditor PUBLIC "/utf-8")
+endif(MSVC)
 
 if(APPLE)
     set_target_properties(cpeditor

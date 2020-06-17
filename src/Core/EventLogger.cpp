@@ -57,9 +57,10 @@ void Log::init(int instance, bool dumptoStderr)
                 dir.remove(entries[i]);
 
             // open the log file
-            logFile.setFileName(dir.filePath(LOG_FILE_NAME +
-                                             QDateTime::currentDateTime().toString("-yyyy-MM-dd-hh-mm-ss-zzz-") +
-                                             QString::number(instance) + ".log"));
+            logFile.setFileName(dir.filePath(QString("%1-%2-%3.log")
+                                                 .arg(LOG_FILE_NAME)
+                                                 .arg(QDateTime::currentDateTime().toString("yyyy-MM-dd-hh-mm-ss-zzz"))
+                                                 .arg(instance)));
             logFile.open(QIODevice::WriteOnly | QFile::Text);
             LOG_ERR_IF(!logFile.isOpen() || !logFile.isWritable(), "Failed to open file" << logFile.fileName());
         }
