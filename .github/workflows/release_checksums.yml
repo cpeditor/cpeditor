@@ -29,9 +29,12 @@ jobs:
         run: |
           mkdir -p downloads
           cd downloads
-          wget -c https://github.com/${{ github.repository }}/releases/download/${{ steps.get_version.outputs.VERSION }}/cpeditor-${{ steps.get_version.outputs.VERSION }}-x86_64.AppImage
-          wget -c https://github.com/${{ github.repository }}/releases/download/${{ steps.get_version.outputs.VERSION }}/cpeditor-${{ steps.get_version.outputs.VERSION }}-x64-setup.exe
-          wget -c https://github.com/${{ github.repository }}/releases/download/${{ steps.get_version.outputs.VERSION }}/cpeditor-${{ steps.get_version.outputs.VERSION }}-x64.dmg
+          wget -c https://github.com/${{ github.repository }}/releases/download/${{ steps.get_version.outputs.VERSION }}/cpeditor-${{ steps.get_version.outputs.VERSION }}-linux-x86_64.AppImage
+          wget -c https://github.com/${{ github.repository }}/releases/download/${{ steps.get_version.outputs.VERSION }}/cpeditor-${{ steps.get_version.outputs.VERSION }}-linux-x86_64-portable.AppImage
+          wget -c https://github.com/${{ github.repository }}/releases/download/${{ steps.get_version.outputs.VERSION }}/cpeditor-${{ steps.get_version.outputs.VERSION }}-windows-x64-setup.exe
+          wget -c https://github.com/${{ github.repository }}/releases/download/${{ steps.get_version.outputs.VERSION }}/cpeditor-${{ steps.get_version.outputs.VERSION }}-windows-x64-portable.exe
+          wget -c https://github.com/${{ github.repository }}/releases/download/${{ steps.get_version.outputs.VERSION }}/cpeditor-${{ steps.get_version.outputs.VERSION }}-macos-x64.dmg
+          wget -c https://github.com/${{ github.repository }}/releases/download/${{ steps.get_version.outputs.VERSION }}/cpeditor-${{ steps.get_version.outputs.VERSION }}-macos-x64-portable.dmg
           wget -c https://github.com/${{ github.repository }}/releases/download/${{ steps.get_version.outputs.VERSION }}/cpeditor-${{ steps.get_version.outputs.VERSION }}-full-source.tar.gz
           shasum -a 256 *.* > cpeditor-${{ steps.get_version.outputs.VERSION }}-sha256-checksums.txt
 
