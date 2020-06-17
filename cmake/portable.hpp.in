@@ -1,0 +1,6 @@
+#ifndef PORTABLE_HPP
+#define PORTABLE_HPP
+
+#cmakedefine PORTABLE_VERSION
+
+#endif
