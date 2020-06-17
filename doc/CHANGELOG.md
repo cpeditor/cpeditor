@@ -1,5 +1,9 @@
 ## UNRELEASED
 
+### Added
+
+- On Windows, install VC Redist along with the application.
+
 ## 6.5.1 (Beta)
 
 ### Added
