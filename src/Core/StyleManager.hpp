@@ -21,23 +21,33 @@
 class QString;
 class QStringList;
 class QPalette;
-class QStyle;
 
 namespace Core
 {
 class StyleManager
 {
   public:
-    static bool initiateStyle(QString);
+    static void setDefault();
+    static bool setStyle(const QString &styleName);
     static QStringList styleList();
 
   private:
-    static bool setStyle(QString styleName);
+#ifdef Q_OS_WIN
     static bool isWindowsDarkThemeforApps();
-    static QPalette fusionDarkPalette();
-    static void setFusionDarkTooltip();
-    static QPalette fusionLightPalette();
-    static void setFusionLightTooltip();
+#endif
+
+    static void setPalette(const QString &styleName);
+
+    static void setStyleSheet(const QString &styleName);
+
+    static QPalette darkFusionPalette();
+
+    static QPalette lightFusionPalette();
+
+  private:
+    static QPalette defaultPalette;
+    static QString defaultStyle;
+    static QString currentStyle;
 };
 
 } // namespace Core

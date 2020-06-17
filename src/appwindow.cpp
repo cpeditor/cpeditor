@@ -19,6 +19,7 @@
 #include "../ui/ui_appwindow.h"
 #include "Core/EventLogger.hpp"
 #include "Core/MessageLogger.hpp"
+#include "Core/StyleManager.hpp"
 #include "Extensions/CFTool.hpp"
 #include "Extensions/CompanionServer.hpp"
 #include "Extensions/EditorTheme.hpp"
@@ -47,8 +48,6 @@
 #include <QUrl>
 #include <findreplacedialog.h>
 
-#include "Core/StyleManager.hpp"
-
 AppWindow::AppWindow(bool noHotExit, QWidget *parent) : QMainWindow(parent), ui(new Ui::AppWindow)
 {
     LOG_INFO(BOOL_INFO_OF(noHotExit))
@@ -57,7 +56,7 @@ AppWindow::AppWindow(bool noHotExit, QWidget *parent) : QMainWindow(parent), ui(
     allocate();
     setConnections();
 
-    Core::StyleManager::initiateStyle("auto_fusion");
+    Core::StyleManager::setDefault();
 
     QApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
     setWindowIcon(QIcon(":/icon.png"));
@@ -1028,7 +1027,10 @@ void AppWindow::onSettingsApplied(const QString &pagePath)
     }
 
     if (pagePath.isEmpty() || pagePath == "Appearance")
+    {
         setWindowOpacity(SettingsHelper::getOpacity() / 100.0);
+        Core::StyleManager::setStyle(SettingsHelper::getUIStyle());
+    }
 
     if (pagePath.isEmpty() || pagePath == "Extensions/Language Server/C++ Server")
     {

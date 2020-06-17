@@ -65,6 +65,7 @@ namespace SettingsHelper
 #include <QFont>
 #include <QRect>
 #include <QVariant>
+#include "Core/StyleManager.hpp"
 
 struct SettingInfo
 {

@@ -749,5 +749,13 @@
         "old": [
             "language"
         ]
+    },
+    {
+        "name": "UI Style",
+        "type": "QString",
+        "ui": "QComboBox",
+        "default": "default",
+        "param": "Core::StyleManager::styleList()",
+        "tip": "The style of the whole application."
     }
 ]

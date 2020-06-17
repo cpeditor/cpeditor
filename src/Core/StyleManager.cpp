@@ -17,99 +17,132 @@
 
 #include "Core/StyleManager.hpp"
 #include "Core/EventLogger.hpp"
-#include <QSettings>
-#include <QString>
-#include <QStringList>
-#include <QStyleFactory>
-
-#include <QPalette>
-
 #include <QApplication>
+#include <QPalette>
+#include <QSettings>
+#include <QStyle>
+#include <QStyleFactory>
 
 namespace Core
 {
 
-bool StyleManager::initiateStyle(QString styleName)
+QPalette StyleManager::defaultPalette;
+QString StyleManager::defaultStyle;
+QString StyleManager::currentStyle = "default";
+
+void StyleManager::setDefault()
 {
-    return setStyle(styleName);
+    defaultPalette = qApp->palette();
+    defaultStyle = qApp->style()->objectName();
+    LOG_INFO(INFO_OF(defaultStyle));
 }
 
-bool StyleManager::setStyle(QString styleName)
+bool StyleManager::setStyle(const QString &styleName)
 {
     bool isValid = styleList().contains(styleName);
     if (!isValid)
     {
         LOG_ERR("Cannot set style " << styleName
                                     << ". No such style found supported on this platform. Supported styles are: ["
-                                    << styleList().join(",") << "]");
+                                    << styleList().join(", ") << "]");
         return false;
     }
 
-    if (styleName == "light_fusion")
+    if (currentStyle == styleName)
     {
-        qApp->setStyle(QStyleFactory::create("Fusion"));
-        qApp->setPalette(fusionLightPalette());
-        setFusionLightTooltip();
-    }
-    else if (styleName == "dark_fusion")
-    {
-        qApp->setStyle(QStyleFactory::create("Fusion"));
-        qApp->setPalette(fusionDarkPalette());
-        setFusionDarkTooltip();
-    }
-#ifdef Q_OS_WIN
-    else if (styleName == "auto_fusion")
-    {
-        qApp->setStyle(QStyleFactory::create("Fusion"));
-        if (isWindowsDarkThemeforApps())
-        {
-            qApp->setPalette(fusionDarkPalette());
-            setFusionDarkTooltip();
-        }
-        else
-        {
-            qApp->setPalette(fusionLightPalette());
-            setFusionLightTooltip();
-        }
-    }
-#endif
-    else
-    {
-        qApp->setStyle(QStyleFactory::create(styleName));
+        LOG_INFO("The style is not changed. " << INFO_OF(styleName));
+        return true;
     }
 
+    currentStyle = styleName;
+
+#ifdef Q_OS_WIN
+    if (styleName == "Auto Fusion")
+    {
+        if (isWindowsDarkThemeforApps())
+            currentStyle = "Dark Fusion";
+        else
+            currentStyle = "Light Fusion";
+    }
+#endif
+
+    if (currentStyle == "default")
+    {
+        qApp->setStyle(defaultStyle);
+    }
+    else if (currentStyle == "Light Fusion" || currentStyle == "Dark Fusion")
+    {
+        qApp->setStyle("Fusion");
+    }
+    else
+    {
+        qApp->setStyle(currentStyle);
+    }
+
+    setStyleSheet(currentStyle);
+    setPalette(currentStyle);
+
     return true;
-}
+} // namespace Core
 
 QStringList StyleManager::styleList()
 {
     auto list = QStyleFactory::keys();
+
     if (list.contains("Fusion"))
     {
         list.removeAll("Fusion");
-        list.append("light_fusion");
-        list.append("dark_fusion");
+        list.append("Light Fusion");
+        list.append("Dark Fusion");
 
-#ifdef Q_OS_WIN // In Windows we can check if we have dark theme enabled from system.
-        list.append("auto_fusion");
+#ifdef Q_OS_WIN // On Windows we can check if we have dark theme enabled from system.
+        list.append("Auto Fusion");
 #endif
     }
+
+    list.prepend("default");
 
     return list;
 }
 
+#ifdef Q_OS_WIN
 bool StyleManager::isWindowsDarkThemeforApps()
 {
     QSettings settings("HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize",
                        QSettings::NativeFormat);
     return settings.value("AppsUseLightTheme") == 0;
 }
+#endif
 
-QPalette StyleManager::fusionDarkPalette()
+void StyleManager::setStyleSheet(const QString &styleName)
 {
-    QPalette darkPalette;
+    QString styleSheet;
+
+    if (styleName == "Light Fusion")
+        styleSheet = "QToolTip {color: #000000; background-color: d57d25 ; border: 1px solid black}";
+    else if (styleName == "Dark Fusion")
+        styleSheet = "QToolTip { color: #ffffff; background-color: #2a82da; border: 1px solid white; }";
+
+    qApp->setStyleSheet(styleSheet);
+}
+
+void StyleManager::setPalette(const QString &styleName)
+{
+    if (styleName == "Light Fusion")
+        qApp->setPalette(lightFusionPalette());
+    else if (styleName == "Dark Fusion")
+        qApp->setPalette(darkFusionPalette());
+    else
+        qApp->setPalette(defaultPalette);
+}
+
+QPalette StyleManager::darkFusionPalette()
+{
+    QPalette darkPalette = defaultPalette;
+
     QColor darkColor = QColor(45, 45, 45);
     QColor disabledColor = QColor(127, 127, 127);
+
     darkPalette.setColor(QPalette::Window, darkColor);
     darkPalette.setColor(QPalette::WindowText, Qt::white);
     darkPalette.setColor(QPalette::Base, QColor(18, 18, 18));
@@ -123,7 +156,6 @@ QPalette StyleManager::fusionDarkPalette()
     darkPalette.setColor(QPalette::Disabled, QPalette::ButtonText, disabledColor);
     darkPalette.setColor(QPalette::BrightText, Qt::red);
     darkPalette.setColor(QPalette::Link, QColor(42, 130, 218));
-
     darkPalette.setColor(QPalette::Highlight, QColor(42, 130, 218));
     darkPalette.setColor(QPalette::HighlightedText, Qt::black);
     darkPalette.setColor(QPalette::Disabled, QPalette::HighlightedText, disabledColor);
@@ -131,20 +163,15 @@ QPalette StyleManager::fusionDarkPalette()
     return darkPalette;
 }
 
-void StyleManager::setFusionDarkTooltip()
+QPalette StyleManager::lightFusionPalette()
 {
-    qApp->setStyleSheet("QToolTip { color: #ffffff; background-color: #2a82da; border: 1px solid white; }");
-}
+    QPalette lightPalette = defaultPalette;
 
-QPalette StyleManager::fusionLightPalette()
-{
-    QPalette lightPalette;
     QColor lightColor = QColor(210, 210, 210);
     QColor disabledColor = QColor(128, 128, 128);
 
     lightPalette.setColor(QPalette::Window, lightColor);
     lightPalette.setColor(QPalette::WindowText, Qt::black);
-
     lightPalette.setColor(QPalette::Base, QColor(237, 237, 237));
     lightPalette.setColor(QPalette::AlternateBase, lightColor);
     lightPalette.setColor(QPalette::ToolTipBase, Qt::black);
@@ -156,7 +183,6 @@ QPalette StyleManager::fusionLightPalette()
     lightPalette.setColor(QPalette::Disabled, QPalette::ButtonText, disabledColor);
     lightPalette.setColor(QPalette::BrightText, Qt::red);
     lightPalette.setColor(QPalette::Link, QColor(213, 115, 37));
-
     lightPalette.setColor(QPalette::Highlight, QColor(213, 115, 37));
     lightPalette.setColor(QPalette::HighlightedText, Qt::white);
     lightPalette.setColor(QPalette::Disabled, QPalette::HighlightedText, disabledColor);
@@ -164,8 +190,4 @@ QPalette StyleManager::fusionLightPalette()
     return lightPalette;
 }
 
-void StyleManager::setFusionLightTooltip()
-{
-    qApp->setStyleSheet("QToolTip {color: #000000; background-color: d57d25 ; border: 1px solid black}");
-}
 } // namespace Core
