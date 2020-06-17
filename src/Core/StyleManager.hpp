@@ -32,9 +32,7 @@ class StyleManager
     static QStringList styleList();
 
   private:
-#ifdef Q_OS_WIN
-    static bool isWindowsDarkThemeforApps();
-#endif
+    static bool isWindowsDarkThemeForApps();
 
     static void setPalette(const QString &styleName);
 

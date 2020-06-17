@@ -59,7 +59,7 @@ bool StyleManager::setStyle(const QString &styleName)
 #ifdef Q_OS_WIN
     if (styleName == "Auto Fusion")
     {
-        if (isWindowsDarkThemeforApps())
+        if (isWindowsDarkThemeForApps())
             currentStyle = "Dark Fusion";
         else
             currentStyle = "Light Fusion";
@@ -106,7 +106,7 @@ QStringList StyleManager::styleList()
 }
 
 #ifdef Q_OS_WIN
-bool StyleManager::isWindowsDarkThemeforApps()
+bool StyleManager::isWindowsDarkThemeForApps()
 {
     QSettings settings("HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize",
                        QSettings::NativeFormat);
