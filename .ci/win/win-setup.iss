@@ -67,11 +67,14 @@ Filename: "{tmp}\vc_redist.x64.exe"; StatusMsg: "Installing VC2019 redist..."; P
 function VC2019RedistNeedsInstall: Boolean;
 var
   Version: String;
+  ExpectedVersion: String;
 begin
   if (RegQueryStringValue(HKEY_LOCAL_MACHINE, 'SOFTWARE\Microsoft\VisualStudio\14.0\VC\Runtimes\x64', 'Version', Version)) then
   begin
+    ExpectedVersion := 'v{#VC_REDIST_VERSION}.03'
     Log('VC Redist Version check : found ' + Version);
-    Result := (CompareStr(Version, 'v14.26.28720.03')<0);
+    Log('VC Redist Version check : expected ' + ExpectedVersion);
+    Result := (CompareStr(Version, ExpectedVersion)<0);
   end
   else
   begin
