@@ -871,6 +871,8 @@ bool MainWindow::saveFile(SaveMode mode, const QString &head, bool safe)
         if (!Util::saveFile(newFilePath, editor->toPlainText(), head, safe, log, true))
             return beforeReturn(false);
 
+        savedText = editor->toPlainText();
+
         setFilePath(newFilePath);
 
         SettingsHelper::setSavePath(QFileInfo(filePath).canonicalPath());
@@ -889,6 +891,7 @@ bool MainWindow::saveFile(SaveMode mode, const QString &head, bool safe)
     {
         if (!Util::saveFile(filePath, editor->toPlainText(), head, safe, log, true))
             return false;
+        savedText = editor->toPlainText();
     }
     else
     {
@@ -1018,6 +1021,9 @@ void MainWindow::onFileWatcherChanged(const QString &path)
 
     if (!fileText.isNull())
     {
+        if (fileText == savedText)
+            return;
+
         if (fileText == currentText)
         {
             savedText = fileText;
