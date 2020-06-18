@@ -287,6 +287,14 @@
         "tip": "Automatically save the file every 3 seconds."
     },
     {
+        "name": "Auto Save Interval",
+        "desc": "Auto Save Interval (ms)",
+        "type": "int",
+        "default": 3000,
+        "param": "QVariantList {100, 36000000}",
+        "tip": "The time interval in miliseconds between two auto-saves."
+    },
+    {
         "name": "Wrap Text",
         "type": "bool",
         "tip": "Wrap a line into several lines if it doesn't fit into the screen."

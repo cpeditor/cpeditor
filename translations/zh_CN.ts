@@ -19,200 +19,200 @@
         <translation>恢复最后一次会话</translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="279"/>
+        <location filename="../src/appwindow.cpp" line="272"/>
         <source>Show Main Window</source>
         <translation>显示主窗口</translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="433"/>
+        <location filename="../src/appwindow.cpp" line="426"/>
         <source>Opening Files</source>
         <translation>打开文件中</translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="593"/>
+        <location filename="../src/appwindow.cpp" line="586"/>
         <source>https://github.com/cpeditor/cpeditor/blob/%1/doc/MANUAL.md</source>
         <translation>https://github.com/cpeditor/cpeditor/blob/%1/doc/MANUAL_zh-CN.md</translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="599"/>
+        <location filename="../src/appwindow.cpp" line="592"/>
         <source>About CP Editor %1</source>
         <translation>关于 CP Editor %1</translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="600"/>
+        <location filename="../src/appwindow.cpp" line="593"/>
         <source>&lt;p&gt;&lt;b&gt;CP Editor&lt;/b&gt; is a native Qt-based code editor. It&apos;s specially designed for competitive programming, unlike other editors/IDEs which are mainly for developers. It helps you focus on your algorithm and automates the compilation, executing and testing. It even fetches test cases for you from different platforms and submits solutions to Codeforces!&lt;/p&gt;&lt;p&gt;Copyright (C) 2019-2020 Ashar Khan &amp;lt;ashar786khan@gmail.com&amp;gt;&lt;/p&gt;&lt;p&gt;This is free software; see the source for copying conditions. There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. The source code for CP Editor is available at &lt;a href=&quot;https://github.com/cpeditor/cpeditor&quot;&gt; https://github.com/cpeditor/cpeditor&lt;/a&gt;.&lt;/p&gt;</source>
         <translation>&lt;p&gt;&lt;b&gt;CP Editor&lt;/b&gt; 是一个基于 Qt 的原生态 IDE。它专为算法竞赛设计，不像其它 IDE 主要是为了开发设计。它可以帮助你自动化编译、运行、测试，从而让你专注于算法设计。它甚至可以从各种算法竞赛网站上获取样例，将代码提交到 Codeforces 上！&lt;/p&gt;&lt;p&gt;Copyright (C) 2019-2020 Ashar Khan &amp;lt;ashar786khan@gmail.com&amp;gt;&lt;/p&gt;&lt;p&gt;本程序是自由软件；请参看源代码的版权声明。本软件没有任何担保；包括没有适销性和某一专用目的下的适用性担保。CP Editor 的代码可以在 &lt;a href=&quot;https://github.com/cpeditor/cpeditor&quot;&gt; https://github.com/cpeditor/cpeditor&lt;/a&gt; 获取。&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="652"/>
+        <location filename="../src/appwindow.cpp" line="645"/>
         <source>Open Files</source>
         <translation>打开文件</translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="660"/>
-        <location filename="../src/appwindow.cpp" line="665"/>
-        <location filename="../src/appwindow.cpp" line="673"/>
+        <location filename="../src/appwindow.cpp" line="653"/>
+        <location filename="../src/appwindow.cpp" line="658"/>
+        <location filename="../src/appwindow.cpp" line="666"/>
         <source>Open Contest</source>
         <translation>打开比赛</translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="665"/>
+        <location filename="../src/appwindow.cpp" line="658"/>
         <source>Number of problems in this contest:</source>
         <translation>比赛题目数量：</translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="673"/>
+        <location filename="../src/appwindow.cpp" line="666"/>
         <source>Choose a language</source>
         <translation>选择语言</translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="735"/>
+        <location filename="../src/appwindow.cpp" line="728"/>
         <source>Reset preferences</source>
         <translation>重置设置</translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="736"/>
+        <location filename="../src/appwindow.cpp" line="729"/>
         <source>Are you sure you want to reset the all preferences to default?</source>
         <translation>你确定要重置所有设置吗？</translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="960"/>
+        <location filename="../src/appwindow.cpp" line="953"/>
         <source>Auto Save</source>
         <translation>自动保存</translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="1188"/>
-        <location filename="../src/appwindow.cpp" line="1206"/>
+        <location filename="../src/appwindow.cpp" line="1184"/>
+        <location filename="../src/appwindow.cpp" line="1202"/>
         <source>Snippets</source>
         <translation>代码片段</translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="1189"/>
+        <location filename="../src/appwindow.cpp" line="1185"/>
         <source>There are no snippets for %1. Please add snippets in the preference window.</source>
         <translation>语言 %1 没有任何代码片段。请在设置窗口中添加。</translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="1194"/>
+        <location filename="../src/appwindow.cpp" line="1190"/>
         <source>Use Snippets</source>
         <translation>使用代码片段</translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="1194"/>
+        <location filename="../src/appwindow.cpp" line="1190"/>
         <source>Choose a snippet:</source>
         <translation>选择一个代码片段：</translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="1206"/>
+        <location filename="../src/appwindow.cpp" line="1202"/>
         <source>There is no snippet named %1 for %2</source>
         <translation>语言 %2 没有叫做 %1 的代码片段</translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="1330"/>
+        <location filename="../src/appwindow.cpp" line="1326"/>
         <source>Close</source>
         <translation>关闭</translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="1332"/>
+        <location filename="../src/appwindow.cpp" line="1328"/>
         <source>Close Others</source>
         <translation>关闭其它标签页</translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="1338"/>
+        <location filename="../src/appwindow.cpp" line="1334"/>
         <source>Close to the Left</source>
         <translation>关闭左侧标签页</translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="1344"/>
+        <location filename="../src/appwindow.cpp" line="1340"/>
         <source>Close to the Right</source>
         <translation>关闭右侧标签页</translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="1360"/>
+        <location filename="../src/appwindow.cpp" line="1356"/>
         <source>Copy File Path</source>
         <translation>复制文件路径</translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="1363"/>
+        <location filename="../src/appwindow.cpp" line="1359"/>
         <source>Reveal in Finder</source>
         <translation>在访达中打开</translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="1376"/>
+        <location filename="../src/appwindow.cpp" line="1372"/>
         <source>Reveal in Explorer</source>
         <translation>在资源管理器中打开</translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="1421"/>
-        <location filename="../src/appwindow.cpp" line="1436"/>
-        <location filename="../src/appwindow.cpp" line="1441"/>
-        <location filename="../src/appwindow.cpp" line="1455"/>
+        <location filename="../src/appwindow.cpp" line="1417"/>
+        <location filename="../src/appwindow.cpp" line="1432"/>
+        <location filename="../src/appwindow.cpp" line="1437"/>
+        <location filename="../src/appwindow.cpp" line="1451"/>
         <source>Open Containing Folder</source>
         <translation>打开文件所在的目录</translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="1427"/>
+        <location filename="../src/appwindow.cpp" line="1423"/>
         <source>Reveal in File Manager</source>
         <translation>在文件管理器中打开</translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="1451"/>
+        <location filename="../src/appwindow.cpp" line="1447"/>
         <source>Copy path</source>
         <translation>复制路径</translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="1462"/>
+        <location filename="../src/appwindow.cpp" line="1458"/>
         <source>Open problem in browser</source>
         <translation>在浏览器中打开题目</translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="1464"/>
+        <location filename="../src/appwindow.cpp" line="1460"/>
         <source>Copy Problem URL</source>
         <translation>复制题目链接</translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="1467"/>
+        <location filename="../src/appwindow.cpp" line="1463"/>
         <source>Set Codeforces URL</source>
         <translation>设置 Codeforces 链接</translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="1471"/>
-        <location filename="../src/appwindow.cpp" line="1474"/>
+        <location filename="../src/appwindow.cpp" line="1467"/>
+        <location filename="../src/appwindow.cpp" line="1470"/>
         <source>Set CF URL</source>
         <translation>设置 CF 链接</translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="1471"/>
+        <location filename="../src/appwindow.cpp" line="1467"/>
         <source>Enter the contest ID:</source>
         <translation>输入比赛 ID：</translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="1474"/>
+        <location filename="../src/appwindow.cpp" line="1470"/>
         <source>Enter the problem Code (A-Z):</source>
         <translation>输入题目编号（A-Z）：</translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="1482"/>
-        <location filename="../src/appwindow.cpp" line="1484"/>
+        <location filename="../src/appwindow.cpp" line="1478"/>
+        <location filename="../src/appwindow.cpp" line="1480"/>
         <source>Set Problem URL</source>
         <translation>设置题目链接</translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="1484"/>
+        <location filename="../src/appwindow.cpp" line="1480"/>
         <source>Enter the new problem URL:</source>
         <translation>输入新的题目链接：</translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="1560"/>
+        <location filename="../src/appwindow.cpp" line="1556"/>
         <source>EventLogger</source>
         <translation>事件日志器</translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="1561"/>
+        <location filename="../src/appwindow.cpp" line="1557"/>
         <source>All logs except for current session has been deleted</source>
         <translation>除当前会话外所有日志已被删除</translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="829"/>
+        <location filename="../src/appwindow.cpp" line="822"/>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="266"/>
         <source>CP Editor: An editor specially designed for competitive programming</source>
         <translation>CP Editor: 一款为算法竞赛量身定制的编辑器</translation>
@@ -223,7 +223,7 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="687"/>
+        <location filename="../src/appwindow.cpp" line="680"/>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="274"/>
         <source>Save</source>
         <translation>保存</translation>
@@ -249,7 +249,7 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="701"/>
+        <location filename="../src/appwindow.cpp" line="694"/>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="288"/>
         <source>Save All</source>
         <translation>保存所有</translation>
@@ -280,7 +280,7 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="1349"/>
+        <location filename="../src/appwindow.cpp" line="1345"/>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="302"/>
         <source>Close Saved</source>
         <translation>关闭已保存</translation>
@@ -296,7 +296,7 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="1351"/>
+        <location filename="../src/appwindow.cpp" line="1347"/>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="309"/>
         <source>Close All</source>
         <translation>关闭所有</translation>
@@ -312,7 +312,7 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="281"/>
+        <location filename="../src/appwindow.cpp" line="274"/>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="316"/>
         <source>Quit</source>
         <translation>退出</translation>
@@ -578,7 +578,7 @@
         <translation>帮助手册</translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="280"/>
+        <location filename="../src/appwindow.cpp" line="273"/>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="409"/>
         <source>About</source>
         <translation>关于</translation>
@@ -1909,7 +1909,7 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="33"/>
-        <location filename="../build/generated/SettingsInfo.cpp" line="91"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="92"/>
         <source>Path</source>
         <translation>路径</translation>
     </message>
@@ -2078,27 +2078,27 @@ It should NOT include the path to the source file or the path of the compiled cl
         <translation>每 3 秒自动保存代码。</translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="66"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="67"/>
         <source>Wrap Text</source>
         <translation>文本自动换行</translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="66"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="67"/>
         <source>Wrap a line into several lines if it doesn&apos;t fit into the screen.</source>
         <translation>当单行超出屏幕时折成多行。</translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="67"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="68"/>
         <source>Use the beta version</source>
         <translation>使用测试版本</translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="67"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="68"/>
         <source>Check for updates marked as pre-releases, which are considered not very stable but have more features.</source>
         <translation>检查更新时包含测试版本。测试版将会包含更多功能，但可能不太稳定。</translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="87"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="88"/>
         <source>Save the status of the editor when the application exits and
 load the status of the last session when the application starts.
 When this is enabled, you won&apos;t be asked whether to save
@@ -2107,7 +2107,7 @@ the unsaved files or not when exiting.</source>
 若这项设置已启用，退出时你将不会被询问是否保存已更改的文件。</translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="117"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="118"/>
         <source>Pairs of regular expressions used when adding pairs of test cases from files.
 Each pair of regular expressions represents a test case.</source>
         <translation>从文件添加成对测试用例时使用的成对的正则表达式。
@@ -2214,394 +2214,404 @@ This can be overridden for each parenthesis in each language.</source>
 此设置可以被各个语言的设置所覆盖。</translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="68"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="66"/>
+        <source>Auto Save Interval (ms)</source>
+        <translation>自动保存间隔 (ms)</translation>
+    </message>
+    <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="66"/>
+        <source>The time interval in miliseconds between two auto-saves.</source>
+        <translation>两次自动保存之间的时间间隔，以毫秒为单位。</translation>
+    </message>
+    <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="69"/>
         <source>Use spaces instead of a tab character.</source>
         <translation>输入制表符时插入空格代替。</translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="68"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="69"/>
         <source>Replace tabs by spaces</source>
         <translation>将制表符替换为空格</translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="69"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="70"/>
         <source>Save Testcases on Save</source>
         <translation>保存文件时保存测试用例</translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="69"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="70"/>
         <source>Save the testcases on the disk when saving a file, and load the saved testcases when opening a file.</source>
         <translation>在保存文件时一并保存测试用例，在加载时一并加载。</translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="70"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="71"/>
         <source>Maximized Window</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="71"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="72"/>
         <source>Check for updates on startup</source>
         <translation>启动时检查更新</translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="71"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="72"/>
         <source>Check whether there&apos;s a new version of CP Editor when starting CP Editor.</source>
         <translation>在启动程序时检查有无新版本。</translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="72"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="73"/>
         <source>Format Codes on Save</source>
         <translation>保存时自动格式化代码</translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="72"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="73"/>
         <source>Use Clang Format to format the codes when saving it.</source>
         <translation>在保存文件时使用 Clang Format 格式化代码。</translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="73"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="74"/>
         <source>Opacity</source>
         <translation>不透明度</translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="73"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="74"/>
         <source>The opacity of the main window</source>
         <translation>主窗口的不透明度</translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="74"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="75"/>
         <source>View Mode</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="75"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="76"/>
         <source>Splitter Size</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="76"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="77"/>
         <source>Right Splitter Size</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="77"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="78"/>
         <source>Enable Competitive Companion</source>
         <translation>启用 Competitive Companion</translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="77"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="78"/>
         <source>Receive data sent by Competitive Companion and load the example testcases.</source>
         <translation>接受 Competitive Companion 发送的数据并加载测试数据。</translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="78"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="79"/>
         <source>Connection Port</source>
         <translation>连接端口</translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="78"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="79"/>
         <source>The port used to receive data from Competitive Companion</source>
         <translation>从 Competitive Companion 接受数据使用的端口</translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="79"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="80"/>
         <source>Open New Tabs</source>
         <translation>打开新标签</translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="79"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="80"/>
         <source>Open a new tab for each problem parsed by Competitive Companion.</source>
         <translation>为 Competitive Companion 解析的每一个题目打开一个新标签页。</translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="80"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="81"/>
         <source>Format Codes</source>
         <translation>格式化代码</translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="81"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="82"/>
         <source>Kill All Processes</source>
         <translation>结束所有进程</translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="82"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="83"/>
         <source>Compile and Run</source>
         <translation>编译并运行</translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="83"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="84"/>
         <source>Run Only</source>
         <translation>仅运行</translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="84"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="85"/>
         <source>Compile Only</source>
         <translation>仅编译</translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="85"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="86"/>
         <source>Change View Mode</source>
         <translation>切换视图模式</translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="86"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="87"/>
         <source>Use Snippets</source>
         <translation>使用代码片段</translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="87"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="88"/>
         <source>Enable Hot Exit</source>
         <translation>启用热退出</translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="88"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="89"/>
         <source>Hot Exit Tab Count</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="89"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="90"/>
         <source>Hot Exit Current Index</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="90"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="91"/>
         <source>Force Close</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="91"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="92"/>
         <source>The path to the CF Tool executable file</source>
         <translation>CF Tool 可执行文件路径</translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="92"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="93"/>
         <source>Save Path</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="93"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="94"/>
         <source>Show Compile And Run Only</source>
         <translation>只显示编译并运行</translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="93"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="94"/>
         <source>Hide the Compile Only button and the Run Only button under the code editor in the main window.</source>
         <translation>在主窗口隐藏编译，运行两个按钮。</translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="94"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="95"/>
         <source>Display EOLN In Diff</source>
         <translation>在差异查看器中显示行尾字符</translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="94"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="95"/>
         <source>Use &quot;¶&quot; to represent for the new line character in the HTML Diff Viewer.</source>
         <translation>在 HTML 差异查看器中使用 &quot;¶&quot; 表示换行符。</translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="95"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="96"/>
         <source>Save Files Faster</source>
         <translation>更快地保存文件</translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="95"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="96"/>
         <source>Always use QFile instead of QSaveFile to save files.
 This will be faster but with a little bit more risk of losing the file (with a very small possibility).</source>
         <translation>总是使用 QFile 而不是 QSaveFile 来保存。
 这会更快速，但更可能丢失文件（概率极小）。</translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="96"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="97"/>
         <source>Time Limit (ms)</source>
         <translation>时间限制（毫秒）</translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="96"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="97"/>
         <source>The time limit when executing the program.
 The program will be killed if it doesn&apos;t terminate in the time limit.</source>
         <translation>执行程序的时间限制。
 超时程序将会被终止。</translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="97"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="98"/>
         <source>Output Length Limit</source>
         <translation>输出长度限制</translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="97"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="98"/>
         <source>The maximum number of characters in the output of the program.
 The program will be killed if either of its stdout or stderr is too long.</source>
         <translation>程序的最大输出字符数。
 stdout 或 stderr 过长的程序将会被终止。</translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="98"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="99"/>
         <source>Message Length Limit</source>
         <translation>消息长度限制</translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="98"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="99"/>
         <source>The maximum number of characters in each message in the top-right corner of the main window.
 The message will be elided if it&apos;s too long.</source>
         <translation>主窗口右上角内每条信息的最大长度。
 超出部分将会被省略。</translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="99"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="100"/>
         <source>HTML Diff Viewer Length Limit</source>
         <translation>HTML 差异查看器长度限制</translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="99"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="100"/>
         <source>The maximum number of characters in the HTML Diff Viewer.
 The Diff Viewer will fall back to plain text if either of the output or the expected output is too long.</source>
         <translation>HTML 差异查看器中显示的最大长度。
 如果超长，将会使用纯文本进行显示。</translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="100"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="101"/>
         <source>Open File Length Limit</source>
         <translation>打开文件长度限制</translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="100"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="101"/>
         <source>The maximum number of characters in a source file to open.
 A source file won&apos;t be opened if it&apos;s too long.</source>
         <translation>允许打开的文件的最大字符数。
 如果超长，将不会打开。</translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="101"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="102"/>
         <source>Load Test Case File Length Limit</source>
         <translation>加载测试用例文件最大长度</translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="101"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="102"/>
         <source>The maximum number of characters in a testcase file to load.
 A testcase file won&apos;t be loaded if it&apos;s too long.</source>
         <translation>允许加载的测试文件的最大字符数。
 如果超长，将不会加载。</translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="102"/>
         <location filename="../build/generated/SettingsInfo.cpp" line="103"/>
         <location filename="../build/generated/SettingsInfo.cpp" line="104"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="105"/>
         <source>Path to LSP executable</source>
         <translation>路径</translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="102"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="103"/>
         <source>The path to the C++ Language Server executable</source>
         <translation>C++ Language Server 可执行文件的路径</translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="103"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="104"/>
         <source>The path to the Java Language Server executable</source>
         <translation>Java Language Server 可执行文件的路径</translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="104"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="105"/>
         <source>The path to the Python Language Server executable</source>
         <translation>Python Language Server 可执行文件的路径</translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="105"/>
         <location filename="../build/generated/SettingsInfo.cpp" line="106"/>
         <location filename="../build/generated/SettingsInfo.cpp" line="107"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="108"/>
         <source>Use Linting with Language Server</source>
         <translation>启用 Language Server</translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="105"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="106"/>
         <source>Show Error, Warning, Information and Hints in Code Editor for C++ Langauge</source>
         <translation>在编辑器中为 C++ 显示错误、警告、信息和提示</translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="106"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="107"/>
         <source>Show Error, Warning, Information and Hints in Code Editor for Java Langauge</source>
         <translation>在编辑器中为 Java 显示错误、警告、信息和提示</translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="107"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="108"/>
         <source>Show Error, Warning, Information and Hints in Code Editor for Python Langauge</source>
         <translation>在编辑器中为 Python 显示错误、警告、信息和提示</translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="108"/>
         <location filename="../build/generated/SettingsInfo.cpp" line="109"/>
         <location filename="../build/generated/SettingsInfo.cpp" line="110"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="111"/>
         <source>Use auto complete with Language Server</source>
         <translation>使用 Language Server 的自动补全</translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="108"/>
         <location filename="../build/generated/SettingsInfo.cpp" line="109"/>
         <location filename="../build/generated/SettingsInfo.cpp" line="110"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="111"/>
         <source>Use autocomplete results from Language server</source>
         <translation>使用由 Language Server 提供的自动补全</translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="111"/>
         <location filename="../build/generated/SettingsInfo.cpp" line="112"/>
         <location filename="../build/generated/SettingsInfo.cpp" line="113"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="114"/>
         <source>Delay in Linting (ms)</source>
         <translation>提示延迟（毫秒）</translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="111"/>
         <location filename="../build/generated/SettingsInfo.cpp" line="112"/>
         <location filename="../build/generated/SettingsInfo.cpp" line="113"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="114"/>
         <source>Delay in linting in miliseconds after last modification to code</source>
         <translation>最后一次修改后，延迟进行提示的时间间隔</translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="114"/>
         <location filename="../build/generated/SettingsInfo.cpp" line="115"/>
         <location filename="../build/generated/SettingsInfo.cpp" line="116"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="117"/>
         <source>Arguments for Language Server</source>
         <translation>参数</translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="114"/>
         <location filename="../build/generated/SettingsInfo.cpp" line="115"/>
         <location filename="../build/generated/SettingsInfo.cpp" line="116"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="117"/>
         <source>Arguments to pass to Language server executable</source>
         <translation>传给 Language Server 程序的参数</translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="117"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="118"/>
         <source>Testcases Matching Rules</source>
         <translation>测试数据匹配规则</translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="117"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="118"/>
         <source>Input Regex</source>
         <translation>输入正则</translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="117"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="118"/>
         <source>The regular expression which matches the whole input file name</source>
         <translation>匹配整个输入文件名的正则表达式</translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="117"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="118"/>
         <source>Answer Replace</source>
         <translation>答案替换</translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="117"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="118"/>
         <source>The replace expression for the answer file name.
 You can use &quot;\1&quot; for the first captured group.</source>
         <translation>答案文件名的替换表达式。
 你可以使用 &quot;\1&quot; 来代指匹配中的第一个捕获组。</translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="118"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="119"/>
         <source>Input File Save Path</source>
         <translation>输入文件保存路径</translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="118"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="119"/>
         <source>The path where the input files are saved.
 This setting is a relative path to the source file.
 You can use &quot;${filename}&quot; for the complete file name,
@@ -2616,12 +2626,12 @@ You can use &quot;${filename}&quot; for the complete file name,
 使用&quot;${1-index}&quot;来代指以 1 起始的编号。</translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="119"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="120"/>
         <source>Answer File Save Path</source>
         <translation>答案文件保存路径</translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="119"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="120"/>
         <source>The path where the answer files are saved.
 This setting is a relative path to the source file.
 You can use &quot;${filename}&quot; for the complete file name,
@@ -2636,103 +2646,103 @@ You can use &quot;${filename}&quot; for the complete file name,
 使用&quot;${1-index}&quot;来代指以 1 起始的编号。</translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="120"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="121"/>
         <source>Default File Paths For Problem URLs</source>
         <translation>针对题目链接的默认保存路径</translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="120"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="121"/>
         <source>The default file path used when saving a new file while the problem URL is set</source>
         <translation>在设置了题目链接时，保存新文件使用的默认文件路径</translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="120"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="121"/>
         <source>Problem URL</source>
         <translation>题目链接</translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="120"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="121"/>
         <source>The regular expression which matches a part of the problem URL</source>
         <translation>能够匹配题目链接的一部分的正则表达式</translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="120"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="121"/>
         <source>File Path</source>
         <translation>文件路径</translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="120"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="121"/>
         <source>The replace expression for the file path, without file name suffix.
 You can use &quot;\1&quot; for the first captured group.</source>
         <translation>默认保存路径的替换表达式，不含文件后缀名。
 你可以使用 &quot;\1&quot; 来代指匹配中的第一个捕获组。</translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="121"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="122"/>
         <source>Test Cases Font</source>
         <translation>测试用例字体</translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="121"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="122"/>
         <source>The font of test cases</source>
         <translation>显示测试用例所用字体</translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="122"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="123"/>
         <source>Add extra margin at the bottom of the code editor</source>
         <translation>在代码编辑器底部添加额外的边距</translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="122"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="123"/>
         <source>Add an extra margin with the height of a page at the bottom of the code editor.
 Due to technical reasons, changing the height of the margin affects the undo history.</source>
         <translation>在代码编辑器底部添加额外的边距。
 由于技术原因，改变边距会影响撤销/重做历史。</translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="123"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="124"/>
         <source>Message Logger Font</source>
         <translation>消息字体</translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="123"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="124"/>
         <source>The font of the message logger</source>
         <translation>显示消息所用字体</translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="124"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="125"/>
         <source>Save File On Compilation</source>
         <translation>编译时保存文件</translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="124"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="125"/>
         <source>Save the source file when compiling it. It won&apos;t be saved if the tab is untitled.</source>
         <translation>在编译前保存代码。如果是未命名标签页，则不会保存。</translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="125"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="126"/>
         <source>Save File On Execution</source>
         <translation>执行时保存文件</translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="125"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="126"/>
         <source>Save the source file when running it. It won&apos;t be saved if the tab is untitled.</source>
         <translation>在运行前保存代码。如果是未命名标签页，则不会保存。</translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="126"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="127"/>
         <source>Restore the problem URL when opening a file</source>
         <translation>打开文件时加载对应题目</translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="126"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="127"/>
         <source>If a problem URL was set for a file, when you open
 that file again, the problem URL will be restored.</source>
         <translation>如果一个文件曾经被设置过题目链接，当你再次
 打开这个文件时，会继续使用原来那个题目链接。</translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="127"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="128"/>
         <source>If a problem URL was set for a file, when parsing that problem
 from Competitive Companion again, the old file will be opened.</source>
         <translation>如果一个文件曾经被设置过题目链接，
@@ -2740,27 +2750,27 @@ from Competitive Companion again, the old file will be opened.</source>
 解析这道题目时，以前的那个文件会被打开。</translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="127"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="128"/>
         <source>Open the old file when parsing an old problem URL</source>
         <translation>加载以前的题目时打开以前的文件</translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="128"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="129"/>
         <source>UI Language</source>
         <translation>界面语言 (UI Language)</translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="128"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="129"/>
         <source>The language displayed in the UI.</source>
         <translation>在用户界面中显示的语言。</translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="129"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="130"/>
         <source>UI Style</source>
         <translation>界面风格</translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="129"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="130"/>
         <source>The style of the whole application.</source>
         <translation>整个应用程序的风格。</translation>
     </message>
@@ -2847,12 +2857,12 @@ from Competitive Companion again, the old file will be opened.</source>
 <context>
     <name>Telemetry::UpdateChecker</name>
     <message>
-        <location filename="../src/Telemetry/UpdateChecker.cpp" line="129"/>
+        <location filename="../src/Telemetry/UpdateChecker.cpp" line="135"/>
         <source>No release is found.</source>
         <translation>未发现更新。</translation>
     </message>
     <message>
-        <location filename="../src/Telemetry/UpdateChecker.cpp" line="140"/>
+        <location filename="../src/Telemetry/UpdateChecker.cpp" line="146"/>
         <source>No download URL of the version [%1] is found.</source>
         <translation>没有发现版本 [%1] 可用的下载链接。</translation>
     </message>

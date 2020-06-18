@@ -264,16 +264,9 @@ void AppWindow::allocate()
     findReplaceDialog->setWindowFlags(Qt::Window | Qt::WindowMinimizeButtonHint | Qt::WindowMaximizeButtonHint |
                                       Qt::WindowCloseButtonHint);
 
-    autoSaveTimer->setInterval(3000);
-    autoSaveTimer->setSingleShot(false);
-
     lspTimerCpp->setInterval(SettingsHelper::getLSPDelayCpp());
     lspTimerJava->setInterval(SettingsHelper::getLSPDelayJava());
     lspTimerPython->setInterval(SettingsHelper::getLSPDelayPython());
-
-    lspTimerCpp->setSingleShot(false);
-    lspTimerJava->setSingleShot(false);
-    lspTimerPython->setSingleShot(false);
 
     trayIconMenu = new QMenu();
     trayIconMenu->addAction(tr("Show Main Window"), this, SLOT(showOnTop()));
@@ -1022,7 +1015,10 @@ void AppWindow::onSettingsApplied(const QString &pagePath)
     if (pagePath.isEmpty() || pagePath == "Actions/Save")
     {
         if (SettingsHelper::isAutoSave())
+        {
+            autoSaveTimer->setInterval(SettingsHelper::getAutoSaveInterval());
             autoSaveTimer->start();
+        }
         else
             autoSaveTimer->stop();
     }

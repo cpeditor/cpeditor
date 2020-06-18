@@ -19,200 +19,200 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="279"/>
+        <location filename="../src/appwindow.cpp" line="272"/>
         <source>Show Main Window</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="433"/>
+        <location filename="../src/appwindow.cpp" line="426"/>
         <source>Opening Files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="593"/>
+        <location filename="../src/appwindow.cpp" line="586"/>
         <source>https://github.com/cpeditor/cpeditor/blob/%1/doc/MANUAL.md</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="599"/>
+        <location filename="../src/appwindow.cpp" line="592"/>
         <source>About CP Editor %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="600"/>
+        <location filename="../src/appwindow.cpp" line="593"/>
         <source>&lt;p&gt;&lt;b&gt;CP Editor&lt;/b&gt; is a native Qt-based code editor. It&apos;s specially designed for competitive programming, unlike other editors/IDEs which are mainly for developers. It helps you focus on your algorithm and automates the compilation, executing and testing. It even fetches test cases for you from different platforms and submits solutions to Codeforces!&lt;/p&gt;&lt;p&gt;Copyright (C) 2019-2020 Ashar Khan &amp;lt;ashar786khan@gmail.com&amp;gt;&lt;/p&gt;&lt;p&gt;This is free software; see the source for copying conditions. There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. The source code for CP Editor is available at &lt;a href=&quot;https://github.com/cpeditor/cpeditor&quot;&gt; https://github.com/cpeditor/cpeditor&lt;/a&gt;.&lt;/p&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="652"/>
+        <location filename="../src/appwindow.cpp" line="645"/>
         <source>Open Files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="660"/>
-        <location filename="../src/appwindow.cpp" line="665"/>
-        <location filename="../src/appwindow.cpp" line="673"/>
+        <location filename="../src/appwindow.cpp" line="653"/>
+        <location filename="../src/appwindow.cpp" line="658"/>
+        <location filename="../src/appwindow.cpp" line="666"/>
         <source>Open Contest</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="665"/>
+        <location filename="../src/appwindow.cpp" line="658"/>
         <source>Number of problems in this contest:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="673"/>
+        <location filename="../src/appwindow.cpp" line="666"/>
         <source>Choose a language</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="735"/>
+        <location filename="../src/appwindow.cpp" line="728"/>
         <source>Reset preferences</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="736"/>
+        <location filename="../src/appwindow.cpp" line="729"/>
         <source>Are you sure you want to reset the all preferences to default?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="960"/>
+        <location filename="../src/appwindow.cpp" line="953"/>
         <source>Auto Save</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="1188"/>
-        <location filename="../src/appwindow.cpp" line="1206"/>
+        <location filename="../src/appwindow.cpp" line="1184"/>
+        <location filename="../src/appwindow.cpp" line="1202"/>
         <source>Snippets</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="1189"/>
+        <location filename="../src/appwindow.cpp" line="1185"/>
         <source>There are no snippets for %1. Please add snippets in the preference window.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="1194"/>
+        <location filename="../src/appwindow.cpp" line="1190"/>
         <source>Use Snippets</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="1194"/>
+        <location filename="../src/appwindow.cpp" line="1190"/>
         <source>Choose a snippet:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="1206"/>
+        <location filename="../src/appwindow.cpp" line="1202"/>
         <source>There is no snippet named %1 for %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="1330"/>
+        <location filename="../src/appwindow.cpp" line="1326"/>
         <source>Close</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="1332"/>
+        <location filename="../src/appwindow.cpp" line="1328"/>
         <source>Close Others</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="1338"/>
+        <location filename="../src/appwindow.cpp" line="1334"/>
         <source>Close to the Left</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="1344"/>
+        <location filename="../src/appwindow.cpp" line="1340"/>
         <source>Close to the Right</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="1360"/>
+        <location filename="../src/appwindow.cpp" line="1356"/>
         <source>Copy File Path</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="1363"/>
+        <location filename="../src/appwindow.cpp" line="1359"/>
         <source>Reveal in Finder</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="1376"/>
+        <location filename="../src/appwindow.cpp" line="1372"/>
         <source>Reveal in Explorer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="1421"/>
-        <location filename="../src/appwindow.cpp" line="1436"/>
-        <location filename="../src/appwindow.cpp" line="1441"/>
-        <location filename="../src/appwindow.cpp" line="1455"/>
+        <location filename="../src/appwindow.cpp" line="1417"/>
+        <location filename="../src/appwindow.cpp" line="1432"/>
+        <location filename="../src/appwindow.cpp" line="1437"/>
+        <location filename="../src/appwindow.cpp" line="1451"/>
         <source>Open Containing Folder</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="1427"/>
+        <location filename="../src/appwindow.cpp" line="1423"/>
         <source>Reveal in File Manager</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="1451"/>
+        <location filename="../src/appwindow.cpp" line="1447"/>
         <source>Copy path</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="1462"/>
+        <location filename="../src/appwindow.cpp" line="1458"/>
         <source>Open problem in browser</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="1464"/>
+        <location filename="../src/appwindow.cpp" line="1460"/>
         <source>Copy Problem URL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="1467"/>
+        <location filename="../src/appwindow.cpp" line="1463"/>
         <source>Set Codeforces URL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="1471"/>
-        <location filename="../src/appwindow.cpp" line="1474"/>
+        <location filename="../src/appwindow.cpp" line="1467"/>
+        <location filename="../src/appwindow.cpp" line="1470"/>
         <source>Set CF URL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="1471"/>
+        <location filename="../src/appwindow.cpp" line="1467"/>
         <source>Enter the contest ID:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="1474"/>
+        <location filename="../src/appwindow.cpp" line="1470"/>
         <source>Enter the problem Code (A-Z):</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="1482"/>
-        <location filename="../src/appwindow.cpp" line="1484"/>
+        <location filename="../src/appwindow.cpp" line="1478"/>
+        <location filename="../src/appwindow.cpp" line="1480"/>
         <source>Set Problem URL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="1484"/>
+        <location filename="../src/appwindow.cpp" line="1480"/>
         <source>Enter the new problem URL:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="1560"/>
+        <location filename="../src/appwindow.cpp" line="1556"/>
         <source>EventLogger</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="1561"/>
+        <location filename="../src/appwindow.cpp" line="1557"/>
         <source>All logs except for current session has been deleted</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="829"/>
+        <location filename="../src/appwindow.cpp" line="822"/>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="266"/>
         <source>CP Editor: An editor specially designed for competitive programming</source>
         <translation type="unfinished"></translation>
@@ -223,7 +223,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="687"/>
+        <location filename="../src/appwindow.cpp" line="680"/>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="274"/>
         <source>Save</source>
         <translation type="unfinished"></translation>
@@ -249,7 +249,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="701"/>
+        <location filename="../src/appwindow.cpp" line="694"/>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="288"/>
         <source>Save All</source>
         <translation type="unfinished"></translation>
@@ -280,7 +280,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="1349"/>
+        <location filename="../src/appwindow.cpp" line="1345"/>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="302"/>
         <source>Close Saved</source>
         <translation type="unfinished"></translation>
@@ -296,7 +296,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="1351"/>
+        <location filename="../src/appwindow.cpp" line="1347"/>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="309"/>
         <source>Close All</source>
         <translation type="unfinished"></translation>
@@ -312,7 +312,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="281"/>
+        <location filename="../src/appwindow.cpp" line="274"/>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="316"/>
         <source>Quit</source>
         <translation type="unfinished"></translation>
@@ -578,7 +578,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/appwindow.cpp" line="280"/>
+        <location filename="../src/appwindow.cpp" line="273"/>
         <location filename="../build/cpeditor_autogen/ui/ui_appwindow.h" line="409"/>
         <source>About</source>
         <translation type="unfinished"></translation>
@@ -1890,7 +1890,7 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="33"/>
-        <location filename="../build/generated/SettingsInfo.cpp" line="91"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="92"/>
         <source>Path</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2051,27 +2051,27 @@ It should NOT include the path to the source file or the path of the compiled cl
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="66"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="67"/>
         <source>Wrap Text</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="66"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="67"/>
         <source>Wrap a line into several lines if it doesn&apos;t fit into the screen.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="67"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="68"/>
         <source>Use the beta version</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="67"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="68"/>
         <source>Check for updates marked as pre-releases, which are considered not very stable but have more features.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="87"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="88"/>
         <source>Save the status of the editor when the application exits and
 load the status of the last session when the application starts.
 When this is enabled, you won&apos;t be asked whether to save
@@ -2079,7 +2079,7 @@ the unsaved files or not when exiting.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="117"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="118"/>
         <source>Pairs of regular expressions used when adding pairs of test cases from files.
 Each pair of regular expressions represents a test case.</source>
         <translation type="unfinished"></translation>
@@ -2178,386 +2178,396 @@ This can be overridden for each parenthesis in each language.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="68"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="66"/>
+        <source>Auto Save Interval (ms)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="66"/>
+        <source>The time interval in miliseconds between two auto-saves.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="69"/>
         <source>Use spaces instead of a tab character.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="68"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="69"/>
         <source>Replace tabs by spaces</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="69"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="70"/>
         <source>Save Testcases on Save</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="69"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="70"/>
         <source>Save the testcases on the disk when saving a file, and load the saved testcases when opening a file.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="70"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="71"/>
         <source>Maximized Window</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="71"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="72"/>
         <source>Check for updates on startup</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="71"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="72"/>
         <source>Check whether there&apos;s a new version of CP Editor when starting CP Editor.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="72"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="73"/>
         <source>Format Codes on Save</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="72"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="73"/>
         <source>Use Clang Format to format the codes when saving it.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="73"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="74"/>
         <source>Opacity</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="73"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="74"/>
         <source>The opacity of the main window</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="74"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="75"/>
         <source>View Mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="75"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="76"/>
         <source>Splitter Size</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="76"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="77"/>
         <source>Right Splitter Size</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="77"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="78"/>
         <source>Enable Competitive Companion</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="77"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="78"/>
         <source>Receive data sent by Competitive Companion and load the example testcases.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="78"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="79"/>
         <source>Connection Port</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="78"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="79"/>
         <source>The port used to receive data from Competitive Companion</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="79"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="80"/>
         <source>Open New Tabs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="79"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="80"/>
         <source>Open a new tab for each problem parsed by Competitive Companion.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="80"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="81"/>
         <source>Format Codes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="81"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="82"/>
         <source>Kill All Processes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="82"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="83"/>
         <source>Compile and Run</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="83"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="84"/>
         <source>Run Only</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="84"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="85"/>
         <source>Compile Only</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="85"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="86"/>
         <source>Change View Mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="86"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="87"/>
         <source>Use Snippets</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="87"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="88"/>
         <source>Enable Hot Exit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="88"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="89"/>
         <source>Hot Exit Tab Count</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="89"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="90"/>
         <source>Hot Exit Current Index</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="90"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="91"/>
         <source>Force Close</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="91"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="92"/>
         <source>The path to the CF Tool executable file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="92"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="93"/>
         <source>Save Path</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="93"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="94"/>
         <source>Show Compile And Run Only</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="93"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="94"/>
         <source>Hide the Compile Only button and the Run Only button under the code editor in the main window.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="94"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="95"/>
         <source>Display EOLN In Diff</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="94"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="95"/>
         <source>Use &quot;¶&quot; to represent for the new line character in the HTML Diff Viewer.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="95"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="96"/>
         <source>Save Files Faster</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="95"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="96"/>
         <source>Always use QFile instead of QSaveFile to save files.
 This will be faster but with a little bit more risk of losing the file (with a very small possibility).</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="96"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="97"/>
         <source>Time Limit (ms)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="96"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="97"/>
         <source>The time limit when executing the program.
 The program will be killed if it doesn&apos;t terminate in the time limit.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="97"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="98"/>
         <source>Output Length Limit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="97"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="98"/>
         <source>The maximum number of characters in the output of the program.
 The program will be killed if either of its stdout or stderr is too long.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="98"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="99"/>
         <source>Message Length Limit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="98"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="99"/>
         <source>The maximum number of characters in each message in the top-right corner of the main window.
 The message will be elided if it&apos;s too long.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="99"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="100"/>
         <source>HTML Diff Viewer Length Limit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="99"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="100"/>
         <source>The maximum number of characters in the HTML Diff Viewer.
 The Diff Viewer will fall back to plain text if either of the output or the expected output is too long.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="100"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="101"/>
         <source>Open File Length Limit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="100"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="101"/>
         <source>The maximum number of characters in a source file to open.
 A source file won&apos;t be opened if it&apos;s too long.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="101"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="102"/>
         <source>Load Test Case File Length Limit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="101"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="102"/>
         <source>The maximum number of characters in a testcase file to load.
 A testcase file won&apos;t be loaded if it&apos;s too long.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="102"/>
         <location filename="../build/generated/SettingsInfo.cpp" line="103"/>
         <location filename="../build/generated/SettingsInfo.cpp" line="104"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="105"/>
         <source>Path to LSP executable</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="102"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="103"/>
         <source>The path to the C++ Language Server executable</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="103"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="104"/>
         <source>The path to the Java Language Server executable</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="104"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="105"/>
         <source>The path to the Python Language Server executable</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="105"/>
         <location filename="../build/generated/SettingsInfo.cpp" line="106"/>
         <location filename="../build/generated/SettingsInfo.cpp" line="107"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="108"/>
         <source>Use Linting with Language Server</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="105"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="106"/>
         <source>Show Error, Warning, Information and Hints in Code Editor for C++ Langauge</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="106"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="107"/>
         <source>Show Error, Warning, Information and Hints in Code Editor for Java Langauge</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="107"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="108"/>
         <source>Show Error, Warning, Information and Hints in Code Editor for Python Langauge</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="108"/>
         <location filename="../build/generated/SettingsInfo.cpp" line="109"/>
         <location filename="../build/generated/SettingsInfo.cpp" line="110"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="111"/>
         <source>Use auto complete with Language Server</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="108"/>
         <location filename="../build/generated/SettingsInfo.cpp" line="109"/>
         <location filename="../build/generated/SettingsInfo.cpp" line="110"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="111"/>
         <source>Use autocomplete results from Language server</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="111"/>
         <location filename="../build/generated/SettingsInfo.cpp" line="112"/>
         <location filename="../build/generated/SettingsInfo.cpp" line="113"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="114"/>
         <source>Delay in Linting (ms)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="111"/>
         <location filename="../build/generated/SettingsInfo.cpp" line="112"/>
         <location filename="../build/generated/SettingsInfo.cpp" line="113"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="114"/>
         <source>Delay in linting in miliseconds after last modification to code</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="114"/>
         <location filename="../build/generated/SettingsInfo.cpp" line="115"/>
         <location filename="../build/generated/SettingsInfo.cpp" line="116"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="117"/>
         <source>Arguments for Language Server</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="114"/>
         <location filename="../build/generated/SettingsInfo.cpp" line="115"/>
         <location filename="../build/generated/SettingsInfo.cpp" line="116"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="117"/>
         <source>Arguments to pass to Language server executable</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="117"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="118"/>
         <source>Testcases Matching Rules</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="117"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="118"/>
         <source>Input Regex</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="117"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="118"/>
         <source>The regular expression which matches the whole input file name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="117"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="118"/>
         <source>Answer Replace</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="117"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="118"/>
         <source>The replace expression for the answer file name.
 You can use &quot;\1&quot; for the first captured group.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="118"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="119"/>
         <source>Input File Save Path</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="118"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="119"/>
         <source>The path where the input files are saved.
 This setting is a relative path to the source file.
 You can use &quot;${filename}&quot; for the complete file name,
@@ -2567,12 +2577,12 @@ You can use &quot;${filename}&quot; for the complete file name,
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="119"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="120"/>
         <source>Answer File Save Path</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="119"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="120"/>
         <source>The path where the answer files are saved.
 This setting is a relative path to the source file.
 You can use &quot;${filename}&quot; for the complete file name,
@@ -2582,126 +2592,126 @@ You can use &quot;${filename}&quot; for the complete file name,
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="120"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="121"/>
         <source>Default File Paths For Problem URLs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="120"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="121"/>
         <source>The default file path used when saving a new file while the problem URL is set</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="120"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="121"/>
         <source>Problem URL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="120"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="121"/>
         <source>The regular expression which matches a part of the problem URL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="120"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="121"/>
         <source>File Path</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="120"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="121"/>
         <source>The replace expression for the file path, without file name suffix.
 You can use &quot;\1&quot; for the first captured group.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="121"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="122"/>
         <source>Test Cases Font</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="121"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="122"/>
         <source>The font of test cases</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="122"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="123"/>
         <source>Add extra margin at the bottom of the code editor</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="122"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="123"/>
         <source>Add an extra margin with the height of a page at the bottom of the code editor.
 Due to technical reasons, changing the height of the margin affects the undo history.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="123"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="124"/>
         <source>Message Logger Font</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="123"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="124"/>
         <source>The font of the message logger</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="124"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="125"/>
         <source>Save File On Compilation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="124"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="125"/>
         <source>Save the source file when compiling it. It won&apos;t be saved if the tab is untitled.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="125"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="126"/>
         <source>Save File On Execution</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="125"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="126"/>
         <source>Save the source file when running it. It won&apos;t be saved if the tab is untitled.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="126"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="127"/>
         <source>Restore the problem URL when opening a file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="126"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="127"/>
         <source>If a problem URL was set for a file, when you open
 that file again, the problem URL will be restored.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="127"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="128"/>
         <source>If a problem URL was set for a file, when parsing that problem
 from Competitive Companion again, the old file will be opened.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="127"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="128"/>
         <source>Open the old file when parsing an old problem URL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="128"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="129"/>
         <source>UI Language</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="128"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="129"/>
         <source>The language displayed in the UI.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="129"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="130"/>
         <source>UI Style</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="129"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="130"/>
         <source>The style of the whole application.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2788,12 +2798,12 @@ from Competitive Companion again, the old file will be opened.</source>
 <context>
     <name>Telemetry::UpdateChecker</name>
     <message>
-        <location filename="../src/Telemetry/UpdateChecker.cpp" line="129"/>
+        <location filename="../src/Telemetry/UpdateChecker.cpp" line="135"/>
         <source>No release is found.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Telemetry/UpdateChecker.cpp" line="140"/>
+        <location filename="../src/Telemetry/UpdateChecker.cpp" line="146"/>
         <source>No download URL of the version [%1] is found.</source>
         <translation type="unfinished"></translation>
     </message>
