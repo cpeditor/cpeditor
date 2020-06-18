@@ -284,13 +284,13 @@
         "old": [
             "autosave"
         ],
-        "tip": "Automatically save the file every 3 seconds."
+        "tip": "Automatically save the file."
     },
     {
         "name": "Auto Save Interval",
         "desc": "Auto Save Interval (ms)",
         "type": "int",
-        "default": 3000,
+        "default": 10000,
         "param": "QVariantList {100, 36000000}",
         "tip": "The time interval in miliseconds between two auto-saves."
     },
