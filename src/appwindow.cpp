@@ -19,6 +19,7 @@
 #include "../ui/ui_appwindow.h"
 #include "Core/EventLogger.hpp"
 #include "Core/MessageLogger.hpp"
+#include "Core/StyleManager.hpp"
 #include "Extensions/CFTool.hpp"
 #include "Extensions/CompanionServer.hpp"
 #include "Extensions/EditorTheme.hpp"
@@ -47,11 +48,6 @@
 #include <QUrl>
 #include <findreplacedialog.h>
 
-#ifdef Q_OS_WIN
-#include <QSettings>
-#include <QStyleFactory>
-#endif
-
 AppWindow::AppWindow(bool noHotExit, QWidget *parent) : QMainWindow(parent), ui(new Ui::AppWindow)
 {
     LOG_INFO(BOOL_INFO_OF(noHotExit))
@@ -60,23 +56,10 @@ AppWindow::AppWindow(bool noHotExit, QWidget *parent) : QMainWindow(parent), ui(
     allocate();
     setConnections();
 
-#ifdef Q_OS_WIN
-    QSettings settings("HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize",
-                       QSettings::NativeFormat);
-    if (settings.value("AppsUseLightTheme") == 0)
-    {
-        LOG_INFO("Using dark pallete for the theme as Windows Settings");
-        qApp->setStyle(QStyleFactory::create("Fusion"));
-        qApp->setPalette(Util::windowsDarkThemePalette());
-        qApp->setStyleSheet("QToolTip { color: #ffffff; background-color: #2a82da; border: 1px solid white; }");
-    }
-#endif
+    Core::StyleManager::setDefault();
 
     QApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
     setWindowIcon(QIcon(":/icon.png"));
-
-    if (SettingsHelper::isCheckUpdate())
-        updateChecker->checkUpdate(true);
 
 #ifdef Q_OS_WIN
     // setWindowOpacity(0.99) when opacity should be 100 is a workaround for a strange issue on Windows
@@ -88,8 +71,12 @@ AppWindow::AppWindow(bool noHotExit, QWidget *parent) : QMainWindow(parent), ui(
 #else
     setWindowOpacity(SettingsHelper::getOpacity() / 100.0);
 #endif
+
     applySettings();
     onSettingsApplied("");
+
+    if (SettingsHelper::isCheckUpdate())
+        updateChecker->checkUpdate(true);
 
     do
     {
@@ -1041,7 +1028,10 @@ void AppWindow::onSettingsApplied(const QString &pagePath)
     }
 
     if (pagePath.isEmpty() || pagePath == "Appearance")
+    {
         setWindowOpacity(SettingsHelper::getOpacity() / 100.0);
+        Core::StyleManager::setStyle(SettingsHelper::getUIStyle());
+    }
 
     if (pagePath.isEmpty() || pagePath == "Extensions/Language Server/C++ Server")
     {

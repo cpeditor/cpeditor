@@ -24,8 +24,6 @@ class QWidget;
 namespace Util
 {
 
-QPalette windowsDarkThemePalette();
-
 void showWidgetOnTop(QWidget *widget);
 } // namespace Util
 

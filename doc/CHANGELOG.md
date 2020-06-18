@@ -10,6 +10,7 @@ With the portable version, you can easily store it in something like a USB disk,
 
 - Add the translation system and Simplified Chinese translation. (#377 and #384)
 - On Windows, install VC Redist along with the application.
+- In-application UI style setting and built-in light/dark style. (#265 and #404)
 
 ### Changed
 

@@ -86,6 +86,8 @@ add_executable(cpeditor
     src/Core/MessageLogger.hpp
     src/Core/Runner.cpp
     src/Core/Runner.hpp
+    src/Core/StyleManager.cpp
+    src/Core/StyleManager.hpp
     src/Core/Translator.cpp
     src/Core/Translator.hpp
 
