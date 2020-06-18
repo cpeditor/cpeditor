@@ -1017,6 +1017,17 @@ void AppWindow::onSettingsApplied(const QString &pagePath)
         if (SettingsHelper::isAutoSave())
         {
             autoSaveTimer->setInterval(SettingsHelper::getAutoSaveInterval());
+            // Auto save all the tabs except current tab, when autosave is enabled
+            // We skip current tab, because current tab will be saved by onSaveTimerElapsed() on a different thread
+            // which may cause race conditions if two different threads are simultaneously trying to save same tab.
+            for (int i = 0; i < ui->tabWidget->count(); i++)
+            {
+                auto tmp = windowAt(i);
+                if (tmp != currentWindow() && !tmp->isUntitled())
+                {
+                    tmp->save(false, tr("AutoSave"), false);
+                }
+            }
             autoSaveTimer->start();
         }
         else
