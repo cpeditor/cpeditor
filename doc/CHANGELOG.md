@@ -16,6 +16,7 @@ With the portable version, you can easily store it in something like a USB disk,
 ### Changed
 
 - Now the lengths of the files added by "Add Pairs of Testcases From Files" are limited by Preferences->Advanced->Limits->Load Test Case File Length Limit. (#405)
+- Auto Save only saves the current active tab
 
 ### Fixed
 

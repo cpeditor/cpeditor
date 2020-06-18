@@ -228,7 +228,7 @@ void AppWindow::setConnections()
     ui->tabWidget->tabBar()->setContextMenuPolicy(Qt::CustomContextMenu);
     connect(ui->tabWidget->tabBar(), SIGNAL(customContextMenuRequested(const QPoint &)), this,
             SLOT(onTabContextMenuRequested(const QPoint &)));
-    connect(autoSaveTimer, SIGNAL(timeout()), this, SLOT(onSaveTimerElapsed()));
+    connect(autoSaveTimer, SIGNAL(timeout()), this, SLOT(onSaveTimerElapsed()), Qt::DirectConnection);
 
     connect(lspTimerCpp, SIGNAL(timeout()), this, SLOT(onLSPTimerElapsedCpp()));
     connect(lspTimerJava, SIGNAL(timeout()), this, SLOT(onLSPTimerElapsedJava()));
@@ -945,13 +945,13 @@ void AppWindow::onEditorLanguageChanged(MainWindow *window)
 
 void AppWindow::onSaveTimerElapsed()
 {
-    for (int t = 0; t < ui->tabWidget->count(); t++)
+    auto tab = currentWindow();
+    if (tab == nullptr)
+        return;
+
+    if (!tab->isUntitled())
     {
-        auto tmp = windowAt(t);
-        if (!tmp->isUntitled())
-        {
-            tmp->save(false, tr("Auto Save"), false);
-        }
+        tab->save(false, tr("Auto Save"), false);
     }
 }
 
