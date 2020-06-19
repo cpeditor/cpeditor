@@ -1,5 +1,13 @@
 ## UNRELEASED
 
+### Fixed
+
+- Fix wrong default setting for C++ executable file path.
+
+### Added
+
+- Now you can use `${tempdir}` as an alternaltive of `${tmpdir}` in C++ executable file path setting and Java class file path setting.
+
 ## 6.4.6
 
 The same as 6.4.5.
