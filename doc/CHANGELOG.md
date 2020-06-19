@@ -9,13 +9,13 @@ With the portable version, you can easily store it in something like a USB disk,
 ### Added
 
 - On Windows, install VC Redist along with the application.
-- Now you can use `${tempdir}` as an alternaltive of `${tmpdir}` in C++ executable file path setting and Java class file path setting.
+- Now you can use `${tempdir}` as an alternative of `${tmpdir}` in C++ executable file path setting and Java class file path setting.
 - Add the translation system and Simplified Chinese translation. (#377 and #384)
 - In-application UI style setting and built-in light/dark style. (#265 and #404)
 
 ### Fixed
 
-- Fix wrong default setting for C++ executable file path.
+- Fix the wrong default setting for C++ executable file path.
 
 ### Changed
 
