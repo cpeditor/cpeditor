@@ -1966,21 +1966,6 @@ The cursor will be at the end of the template if there&apos;s no match of the re
         <translation>编译 C++ 代码所用命令。这里不应该包含源代码路径或是&quot;-o &lt;output file&gt;&quot;。</translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="40"/>
-        <source>The path of the compiled executable file.
-It&apos;s relative to the source file, or the temporary directory if the tab is untitled.
-No &quot;.exe&quot; is needed.
-You can use &quot;${filename}&quot; for the complete file name,
-&quot;${basename}&quot; for the base file name without the suffix,
-&quot;${tmpdir}&quot; for the absolute path of the temporary directory.</source>
-        <translation>编译后生成的可执行文件的路径。
-是一个相对于源代码所在路径的相对路径。如果当前页未命名，则相对于临时目录。
-不需要 &quot;.exe&quot; 后缀。
-你可以使用&quot;${filename}&quot;来代指完整的源文件名；
-使用&quot;${basename}&quot;来代指无后缀的源文件名；
-使用&quot;${tmpdir}&quot;来代指临时目录的绝对路径。</translation>
-    </message>
-    <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="41"/>
         <source>The runtime arguments when executing a C++ program</source>
         <translation>执行 C++ 程序时提供的命令行参数</translation>
@@ -2021,6 +2006,19 @@ It should NOT include the path to the source file or the path of the compiled cl
         <location filename="../build/generated/SettingsInfo.cpp" line="48"/>
         <source>%1 Class Path</source>
         <translation>%1 类路径</translation>
+    </message>
+    <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="48"/>
+        <source>The path of the parent directory of the compiled class file.
+It&apos;s relative to the source file, or the temporary directory if the tab is untitled.
+You can use &quot;${filename}&quot; for the complete file name,
+&quot;${basename}&quot; for the base file name without the suffix,
+&quot;${tmpdir}&quot; or &quot;${tempdir}&quot; for the absolute path of the temporary directory.</source>
+        <translation>编译后生成的类文件所在的目录。
+是一个相对于源代码所在路径的相对路径。如果当前页未命名，则相对于临时目录。
+你可以使用 &quot;${filename}&quot; 来代指完整的源文件名；
+使用 &quot;${basename}&quot; 来代指无后缀的源文件名；
+使用 &quot;${tmpdir}&quot; 或 &quot;${tempdir}&quot; 来代指临时目录的绝对路径。</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="53"/>
@@ -2161,6 +2159,21 @@ This can be overridden for each parenthesis in each language.</source>
         <translation>%1 可执行文件路径</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="40"/>
+        <source>The path of the compiled executable file.
+It&apos;s relative to the source file, or the temporary directory if the tab is untitled.
+No &quot;.exe&quot; is needed.
+You can use &quot;${filename}&quot; for the complete file name,
+&quot;${basename}&quot; for the base file name without the suffix,
+&quot;${tmpdir}&quot; or &quot;${tempdir}&quot; for the absolute path of the temporary directory.</source>
+        <translation>编译后生成的可执行文件的路径。
+是一个相对于源代码所在路径的相对路径。如果当前页未命名，则相对于临时目录。
+不需要 &quot;.exe&quot; 后缀。
+你可以使用 &quot;${filename}&quot; 来代指完整的源文件名；
+使用 &quot;${basename}&quot; 来代指无后缀的源文件名；
+使用 &quot;${tmpdir}&quot; 或 &quot;${tempdir}&quot; 来代指临时目录的绝对路径。</translation>
+    </message>
+    <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="41"/>
         <location filename="../build/generated/SettingsInfo.cpp" line="45"/>
         <location filename="../build/generated/SettingsInfo.cpp" line="57"/>
@@ -2178,19 +2191,6 @@ This can be overridden for each parenthesis in each language.</source>
         <location filename="../build/generated/SettingsInfo.cpp" line="47"/>
         <source>The name of the non-public main class of your solution.</source>
         <translation>你的代码中非 public 主类的名称。</translation>
-    </message>
-    <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="48"/>
-        <source>The path of the parent directory of the compiled class file.
-It&apos;s relative to the source file, or the temporary directory if the tab is untitled.
-You can use &quot;${filename}&quot; for the complete file name,
-&quot;${basename}&quot; for the base file name without the suffix,
-&quot;${tmpdir}&quot; for the absolute path of the temporary directory.</source>
-        <translation>编译后生成的类文件所在的目录。
-是一个相对于源代码所在路径的相对路径。如果当前页未命名，则相对于临时目录。
-你可以使用&quot;${filename}&quot;来代指完整的源文件名；
-使用&quot;${basename}&quot;来代指无后缀的源文件名；
-使用&quot;${tmpdir}&quot;来代指临时目录的绝对路径。</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="62"/>
@@ -2847,12 +2847,12 @@ from Competitive Companion again, the old file will be opened.</source>
 <context>
     <name>Telemetry::UpdateChecker</name>
     <message>
-        <location filename="../src/Telemetry/UpdateChecker.cpp" line="129"/>
+        <location filename="../src/Telemetry/UpdateChecker.cpp" line="135"/>
         <source>No release is found.</source>
         <translation>未发现更新。</translation>
     </message>
     <message>
-        <location filename="../src/Telemetry/UpdateChecker.cpp" line="140"/>
+        <location filename="../src/Telemetry/UpdateChecker.cpp" line="146"/>
         <source>No download URL of the version [%1] is found.</source>
         <translation>没有发现版本 [%1] 可用的下载链接。</translation>
     </message>

@@ -1944,16 +1944,6 @@ The cursor will be at the end of the template if there&apos;s no match of the re
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="40"/>
-        <source>The path of the compiled executable file.
-It&apos;s relative to the source file, or the temporary directory if the tab is untitled.
-No &quot;.exe&quot; is needed.
-You can use &quot;${filename}&quot; for the complete file name,
-&quot;${basename}&quot; for the base file name without the suffix,
-&quot;${tmpdir}&quot; for the absolute path of the temporary directory.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="41"/>
         <source>The runtime arguments when executing a C++ program</source>
         <translation type="unfinished"></translation>
@@ -1993,6 +1983,15 @@ It should NOT include the path to the source file or the path of the compiled cl
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="48"/>
         <source>%1 Class Path</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="48"/>
+        <source>The path of the parent directory of the compiled class file.
+It&apos;s relative to the source file, or the temporary directory if the tab is untitled.
+You can use &quot;${filename}&quot; for the complete file name,
+&quot;${basename}&quot; for the base file name without the suffix,
+&quot;${tmpdir}&quot; or &quot;${tempdir}&quot; for the absolute path of the temporary directory.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2131,6 +2130,16 @@ This can be overridden for each parenthesis in each language.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="40"/>
+        <source>The path of the compiled executable file.
+It&apos;s relative to the source file, or the temporary directory if the tab is untitled.
+No &quot;.exe&quot; is needed.
+You can use &quot;${filename}&quot; for the complete file name,
+&quot;${basename}&quot; for the base file name without the suffix,
+&quot;${tmpdir}&quot; or &quot;${tempdir}&quot; for the absolute path of the temporary directory.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="41"/>
         <location filename="../build/generated/SettingsInfo.cpp" line="45"/>
         <location filename="../build/generated/SettingsInfo.cpp" line="57"/>
@@ -2147,15 +2156,6 @@ This can be overridden for each parenthesis in each language.</source>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="47"/>
         <source>The name of the non-public main class of your solution.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="48"/>
-        <source>The path of the parent directory of the compiled class file.
-It&apos;s relative to the source file, or the temporary directory if the tab is untitled.
-You can use &quot;${filename}&quot; for the complete file name,
-&quot;${basename}&quot; for the base file name without the suffix,
-&quot;${tmpdir}&quot; for the absolute path of the temporary directory.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2788,12 +2788,12 @@ from Competitive Companion again, the old file will be opened.</source>
 <context>
     <name>Telemetry::UpdateChecker</name>
     <message>
-        <location filename="../src/Telemetry/UpdateChecker.cpp" line="129"/>
+        <location filename="../src/Telemetry/UpdateChecker.cpp" line="135"/>
         <source>No release is found.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Telemetry/UpdateChecker.cpp" line="140"/>
+        <location filename="../src/Telemetry/UpdateChecker.cpp" line="146"/>
         <source>No download URL of the version [%1] is found.</source>
         <translation type="unfinished"></translation>
     </message>
