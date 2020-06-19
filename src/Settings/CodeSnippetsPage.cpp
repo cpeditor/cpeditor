@@ -16,9 +16,9 @@
  */
 
 #include "Settings/CodeSnippetsPage.hpp"
-#include "Settings/SettingsManager.hpp"
 #include "Util/FileUtil.hpp"
 #include "Util/QCodeEditorUtil.hpp"
+#include "generated/SettingsHelper.hpp"
 #include <QCodeEditor>
 #include <QFileDialog>
 #include <QInputDialog>
@@ -124,15 +124,14 @@ CodeSnippetsPage::CodeSnippetsPage(const QString &language, QWidget *parent) : P
 
 bool CodeSnippetsPage::areSettingsChanged()
 {
-    auto settingsKeys = SettingsManager::keyStartsWith(snippetKey(""));
+    auto settingsKeys = SettingsHelper::querySnippets(lang);
     auto UIkeys = snippetItem.keys();
-    for (auto &key : UIkeys)
-        key = snippetKey(key);
     if (settingsKeys != UIkeys)
         return true;
     if (currentItem == nullptr)
         return false;
-    return editor->toPlainText() != SettingsManager::get(snippetKey(currentItem->text()));
+    return editor->toPlainText() != SettingsHelper::getSnippets(lang, currentItem->text());
+    ;
 }
 
 void CodeSnippetsPage::makeUITheSameAsDefault()
@@ -151,18 +150,18 @@ void CodeSnippetsPage::makeUITheSameAsDefault()
 void CodeSnippetsPage::makeUITheSameAsSettings()
 {
     Util::applySettingsToEditor(editor, lang);
-    auto settingsKeys = SettingsManager::keyStartsWith(snippetKey(""));
+    auto settingsKeys = SettingsHelper::querySnippets(lang);
     for (auto key : settingsKeys)
     {
-        if (!snippetItem.contains(key.mid(snippetKey("").length())))
+        if (!snippetItem.contains(key))
         {
-            addSnippet(key.mid(snippetKey("").length()));
+            addSnippet(key);
         }
     }
     auto UIKeys = snippetItem.keys();
     for (auto key : UIKeys)
     {
-        if (!settingsKeys.contains(snippetKey(key)))
+        if (!settingsKeys.contains(key))
         {
             deleteSnippet(snippetItem[key]);
         }
@@ -171,30 +170,30 @@ void CodeSnippetsPage::makeUITheSameAsSettings()
     {
         auto cursor = editor->textCursor();
         cursor.select(QTextCursor::Document);
-        cursor.insertText(SettingsManager::get(snippetKey(currentItem->text())).toString());
+        cursor.insertText(SettingsHelper::getSnippets(lang, currentItem->text()));
     }
 }
 
 void CodeSnippetsPage::makeSettingsTheSameAsUI()
 {
-    auto settingsKeys = SettingsManager::keyStartsWith(snippetKey(""));
+    auto settingsKeys = SettingsHelper::querySnippets(lang);
     for (auto key : settingsKeys)
     {
-        if (!snippetItem.contains(key.mid(snippetKey("").length())))
+        if (!snippetItem.contains(key))
         {
-            SettingsManager::remove({key});
+            SettingsHelper::removeSnippets(lang, key);
         }
     }
     auto UIKeys = snippetItem.keys();
     for (auto key : UIKeys)
     {
-        if (!settingsKeys.contains(snippetKey(key)))
+        if (!settingsKeys.contains(key))
         {
-            SettingsManager::set(snippetKey(key), QString());
+            SettingsHelper::setSnippets(lang, key, QString());
         }
     }
     if (currentItem != nullptr)
-        SettingsManager::set(snippetKey(currentItem->text()), editor->toPlainText());
+        SettingsHelper::setSnippets(lang, currentItem->text(), editor->toPlainText());
     updateButtons();
 }
 
@@ -230,7 +229,7 @@ bool CodeSnippetsPage::switchToSnippet(QListWidgetItem *item, bool force)
         {
             rightWidget->setCurrentWidget(snippetWidget);
             snippetNameLabel->setText(item->text());
-            editor->setPlainText(SettingsManager::get(snippetKey(item->text())).toString());
+            editor->setPlainText(SettingsHelper::getSnippets(lang, item->text()));
         }
         updateActions();
         updateButtons();
@@ -245,11 +244,11 @@ bool CodeSnippetsPage::aboutToSwitchToSnippet()
     if (currentItem == nullptr)
         return true;
 
-    if (SettingsManager::contains(snippetKey(currentItem->text())) &&
-        editor->toPlainText() == SettingsManager::get(snippetKey(currentItem->text())))
+    if (SettingsHelper::hasSnippets(lang, currentItem->text()) &&
+        editor->toPlainText() == SettingsHelper::getSnippets(lang, currentItem->text()))
         return true;
 
-    if (!SettingsManager::contains(snippetKey(currentItem->text())) && editor->toPlainText().isEmpty())
+    if (!SettingsHelper::hasSnippets(lang, currentItem->text()) && editor->toPlainText().isEmpty())
         return true;
 
     auto res =
@@ -260,7 +259,7 @@ bool CodeSnippetsPage::aboutToSwitchToSnippet()
     switch (res)
     {
     case QMessageBox::Save:
-        SettingsManager::set(snippetKey(currentItem->text()), editor->toPlainText());
+        SettingsHelper::setSnippets(lang, currentItem->text(), editor->toPlainText());
         updateButtons();
         emit settingsApplied(path());
         return true;
@@ -328,12 +327,12 @@ void CodeSnippetsPage::loadSnippetsFromFiles()
             break;
         }
         auto name = QFileInfo(file).completeBaseName();
-        if (snippetItem.contains(name) || SettingsManager::contains(snippetKey(name)))
+        if (snippetItem.contains(name) || SettingsHelper::hasSnippets(lang, name))
             name = getNewSnippetName(name, true);
         if (name.isEmpty())
             break;
         addSnippet(name);
-        SettingsManager::set(snippetKey(name), content);
+        SettingsHelper::setSnippets(lang, name, content);
     }
 }
 
@@ -344,9 +343,7 @@ void CodeSnippetsPage::extractSnippetsToFiles()
         return;
     auto dir = QDir(dirPath);
 
-    auto names = SettingsManager::keyStartsWith(snippetKey(""));
-    for (auto &name : names)
-        name = name.mid(snippetKey("").length());
+    auto names = SettingsHelper::querySnippets(lang);
 
     QString suffix;
     if (lang == "C++")
@@ -367,7 +364,7 @@ void CodeSnippetsPage::extractSnippetsToFiles()
         }
         if (filePath.isEmpty())
             break;
-        if (!Util::saveFile(filePath, SettingsManager::get(snippetKey(name)).toString(), "Extract Snippets"))
+        if (!Util::saveFile(filePath, SettingsHelper::getSnippets(lang, name), "Extract Snippets"))
         {
             QMessageBox::warning(this, tr("Extract Snippets"),
                                  tr("Failed to write to [%1]. Do I have write permission?").arg(filePath));
@@ -381,7 +378,7 @@ QString CodeSnippetsPage::getNewSnippetName(const QString &oldName, bool avoidCo
     QString name;
     bool firstTime = true;
     while (name.isEmpty() || snippetItem.contains(name) ||
-           (avoidConflictWithSettings && SettingsManager::contains(snippetKey(name))))
+           (avoidConflictWithSettings && SettingsHelper::hasSnippets(lang, name)))
     {
         bool ok;
         QString head;
@@ -449,11 +446,6 @@ void CodeSnippetsPage::deleteSnippet(QListWidgetItem *item)
         updateActions();
         updateButtons();
     }
-}
-
-QString CodeSnippetsPage::snippetKey(const QString &name)
-{
-    return QString("Snippets/%1/%2").arg(lang, name);
 }
 
 void CodeSnippetsPage::updateActions()

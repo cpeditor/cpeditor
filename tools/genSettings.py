@@ -36,6 +36,7 @@ if __name__ == "__main__":
 #include "Settings/SettingsManager.hpp"
 #include <QFont>
 #include <QRect>
+#include <QVariant>
 
 namespace SettingsHelper
 {
@@ -54,6 +55,13 @@ namespace SettingsHelper
             for i in range(1, depth + 1):
                 setting_helper.write(f", key{i}")
             setting_helper.write(f"}}.join('/'), data); }}\n")
+            setting_helper.write(f"    inline void remove{key}(")
+            for i in range(1, depth):
+                setting_helper.write(f"QString key{i}, ")
+            setting_helper.write(f"QString key{depth}) {{ SettingsManager::remove({{QStringList {{{json.dumps(name)}")
+            for i in range(1, depth + 1):
+                setting_helper.write(f", key{i}")
+            setting_helper.write(f"}}.join('/')}}); }}\n")
             setting_helper.write(f"    inline {final} get{key}(")
             for i in range(1, depth):
                 setting_helper.write(f"QString key{i}, ")
@@ -61,6 +69,24 @@ namespace SettingsHelper
             for i in range(1, depth + 1):
                 setting_helper.write(f", key{i}")
             setting_helper.write(f"}}.join('/')).value<{final}>(); }}\n")
+            setting_helper.write(f"    inline bool has{key}(")
+            for i in range(1, depth):
+                setting_helper.write(f"QString key{i}, ")
+            setting_helper.write(f"QString key{depth}) {{ return SettingsManager::contains(QStringList {{{json.dumps(name)}")
+            for i in range(1, depth + 1):
+                setting_helper.write(f", key{i}")
+            setting_helper.write(f"}}.join('/')); }}\n")
+            for i in range(depth):
+                setting_helper.write(
+                    f"    inline QStringList query{key}(")
+                for j in range(1, i):
+                    setting_helper.write(f"QString key{j}, ")
+                if i > 0:
+                    setting_helper.write(f"QString key{i}")
+                setting_helper.write(f") {{ QString head = QStringList {{{json.dumps(name)}")
+                for j in range(i):
+                    setting_helper.write(f", key{j + 1}")
+                setting_helper.write(f"}}.join('/') + '/'; QStringList temp = SettingsManager::keyStartsWith(head); for (QString &k : temp) {{ k = k.mid(head.length()); }} return temp; }}\n")
         else:
             setting_helper.write(
                 f"    inline void set{key}({typename} value) {{ SettingsManager::set({json.dumps(name)}, value); }}\n")
