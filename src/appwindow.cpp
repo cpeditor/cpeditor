@@ -110,7 +110,7 @@ AppWindow::AppWindow(bool noHotExit, QWidget *parent) : QMainWindow(parent), ui(
         {
             if (progress.wasCanceled())
                 break;
-            auto status = MainWindow::EditorStatus(SettingsManager::get(QString("Editor Status/%1").arg(i)).toMap());
+            auto status = MainWindow::EditorStatus(SettingsHelper::getEditorStatus(QString("%1").arg(i)));
             progress.setValue(i);
             openTab("");
             currentWindow()->loadStatus(status);
@@ -520,7 +520,8 @@ void AppWindow::openContest(const QString &path, const QString &lang, int number
 
 void AppWindow::saveEditorStatus()
 {
-    SettingsManager::remove(SettingsManager::keyStartsWith("Editor Status/"));
+    for (const QString &i : SettingsHelper::queryEditorStatus())
+        SettingsHelper::removeEditorStatus(i);
     if (ui->tabWidget->count() == 1 && windowAt(0)->isUntitled() && !windowAt(0)->isTextChanged() &&
         windowAt(0)->getProblemURL().isEmpty())
     {
@@ -532,7 +533,7 @@ void AppWindow::saveEditorStatus()
         SettingsHelper::setHotExitTabCount(ui->tabWidget->count());
         SettingsHelper::setHotExitCurrentIndex(ui->tabWidget->currentIndex());
         for (int i = 0; i < ui->tabWidget->count(); ++i)
-            SettingsManager::set(QString("Editor Status/%1").arg(i), windowAt(i)->toStatus().toMap());
+            SettingsHelper::setEditorStatus(QString("%1").arg(i), windowAt(i)->toStatus().toMap());
     }
 }
 
