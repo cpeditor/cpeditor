@@ -91,7 +91,27 @@ void SettingsManager::loadSettings(const QString &path)
         // load most of settings
         for (const SettingInfo &si : settingInfo)
         {
-            if (setting.contains(si.key()) && setting.value(si.key()).isValid())
+            if (si.type.startsWith("QMap("))
+            {
+                int depth = si.type.mid(5, si.type.length() - 6).toInt();
+                std::function<void(QString, int)> load;
+                load = [&](QString prefix, int depth) {
+                    if (depth == 0)
+                        for (const QString &key : setting.childKeys())
+                            set(QString("%1/%2").arg(prefix, key), setting.value(key));
+                    else
+                        for (const QString &key : setting.childGroups())
+                        {
+                            setting.beginGroup(key);
+                            load(QString("%1/%2").arg(prefix, key), depth - 1);
+                            setting.endGroup();
+                        }
+                };
+                setting.beginGroup(si.key());
+                load(si.name, depth - 1);
+                setting.endGroup();
+            }
+            else if (setting.contains(si.key()) && setting.value(si.key()).isValid())
                 set(si.name, setting.value(si.key()));
             else
                 for (const QString &old : si.old)
@@ -101,34 +121,6 @@ void SettingsManager::loadSettings(const QString &path)
                         break;
                     }
         }
-
-        // load snippets
-        setting.beginGroup("snippets");
-        QStringList langs = setting.childGroups();
-        if (langs.contains("Cpp"))
-        {
-            setting.beginGroup("Cpp");
-            QStringList keys = setting.allKeys();
-            for (const QString &key : keys)
-                set(QString("Snippets/C++/%1").arg(key), setting.value(key));
-            setting.endGroup();
-            langs.removeOne("Cpp");
-        }
-        for (const QString &lang : langs)
-        {
-            setting.beginGroup(lang);
-            QStringList keys = setting.allKeys();
-            for (const QString &key : keys)
-                set(QString("Snippets/%1/%2").arg(lang, key), setting.value(key));
-            setting.endGroup();
-        }
-        setting.endGroup();
-
-        // load editor status
-        setting.beginGroup("editor_status");
-        for (const QString &index : setting.allKeys())
-            set(QString("Editor Status/%1").arg(index), setting.value(index));
-        setting.endGroup();
 
         // load file problem binding
         FileProblemBinder::fromVariant(setting.value("file_problem_binding"));
@@ -154,21 +146,11 @@ void SettingsManager::saveSettings(const QString &path)
 
     // save most settings
     for (const SettingInfo &si : settingInfo)
-        setting.setValue(si.key(), get(si.name));
-
-    // save snippets
-    for (QString key : keyStartsWith("Snippets/"))
-    {
-        auto saveKey = key;
-        setting.setValue(saveKey.replace("Snippets/", "snippets/"), get(key));
-    }
-
-    // save editor status
-    for (QString key : keyStartsWith("Editor Status/"))
-    {
-        auto saveKey = key;
-        setting.setValue(saveKey.replace("Editor Status/", "editor_status/"), get(key));
-    }
+        if (si.type.startsWith("QMap("))
+            for (const QString &key : keyStartsWith(QString("%1/").arg(si.name)))
+                setting.setValue(QString("%1/%2").arg(si.key(), key.mid(si.name.length() + 1)), get(key));
+        else
+            setting.setValue(si.key(), get(si.name));
 
     // save file problem binding
     setting.setValue("file_problem_binding", FileProblemBinder::toVariant());

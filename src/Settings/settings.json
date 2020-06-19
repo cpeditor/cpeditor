@@ -757,5 +757,17 @@
         "default": "default",
         "param": "Core::StyleManager::styleList()",
         "tip": "The style of the whole application."
+    },
+    {
+        "name": "Snippets",
+        "type": "QMap",
+        "final": "QString",
+        "depth": 2
+    },
+    {
+        "name": "Editor Status",
+        "type": "QMap",
+        "final": "QVariantMap",
+        "depth": 1
     }
 ]

@@ -44,14 +44,32 @@ namespace SettingsHelper
         name = t["name"]
         key = name.replace(" ", "").replace("/", "").replace("+", "p")
         typename = t["type"]
-        setting_helper.write(
-            f"    inline void set{key}({typename} value) {{ SettingsManager::set({json.dumps(name)}, value); }}\n")
-        if typename == "bool":
-            setting_helper.write(
-                f"    inline bool is{key}() {{ return SettingsManager::get({json.dumps(name)}).toBool(); }}\n")
+        if typename == "QMap":
+            depth = t["depth"]
+            final = t["final"]
+            setting_helper.write(f"    inline void set{key}(")
+            for i in range(1, depth + 1):
+                setting_helper.write(f"QString key{i}, ")
+            setting_helper.write(f"{final} data) {{ SettingsManager::set(QStringList {{{json.dumps(name)}")
+            for i in range(1, depth + 1):
+                setting_helper.write(f", key{i}")
+            setting_helper.write(f"}}.join('/'), data); }}\n")
+            setting_helper.write(f"    inline {final} get{key}(")
+            for i in range(1, depth):
+                setting_helper.write(f"QString key{i}, ")
+            setting_helper.write(f"QString key{depth}) {{ return SettingsManager::get(QStringList {{{json.dumps(name)}")
+            for i in range(1, depth + 1):
+                setting_helper.write(f", key{i}")
+            setting_helper.write(f"}}.join('/')).value<{final}>(); }}\n")
         else:
             setting_helper.write(
-                f"    inline {typename} get{key}() {{ return SettingsManager::get({json.dumps(name)}).value<{typename}>(); }}\n")
+                f"    inline void set{key}({typename} value) {{ SettingsManager::set({json.dumps(name)}, value); }}\n")
+            if typename == "bool":
+                setting_helper.write(
+                    f"    inline bool is{key}() {{ return SettingsManager::get({json.dumps(name)}).toBool(); }}\n")
+            else:
+                setting_helper.write(
+                    f"    inline {typename} get{key}() {{ return SettingsManager::get({json.dumps(name)}).value<{typename}>(); }}\n")
     setting_helper.write("""}
 
 #endif // SETTINGSHELPER_HPP""")
@@ -133,7 +151,11 @@ void updateSettingInfo()
             setting_info.write(f"QCoreApplication::translate(\"Setting\", {json.dumps(desc).replace('Python', '%1')}).arg(\"Python\")")
         else:
             setting_info.write(f"QCoreApplication::translate(\"Setting\", {json.dumps(desc)})")
-        setting_info.write(f", \"{typename}\", \"{ui}\", QCoreApplication::translate(\"Setting\", {json.dumps(tip)}), QCoreApplication::translate(\"Setting\", {json.dumps(hlp)}), {{")
+        temptype = typename
+        if temptype == "QMap":
+            depth = t["depth"]
+            temptype = f"QMap({depth})"
+        setting_info.write(f", \"{temptype}\", \"{ui}\", QCoreApplication::translate(\"Setting\", {json.dumps(tip)}), QCoreApplication::translate(\"Setting\", {json.dumps(hlp)}), {{")
 
         if "old" in t:
             olds = ""
@@ -156,7 +178,8 @@ void updateSettingInfo()
                 'bool': 'false',
                 'QRect': 'QRect()',
                 'QByteArray': 'QByteArray()',
-                'QVariantList': 'QVariantList()'
+                'QVariantList': 'QVariantList()',
+                'QMap': 'QVariantMap()'
             }
             setting_info.write(defs[typename])
         if "param" in t:
