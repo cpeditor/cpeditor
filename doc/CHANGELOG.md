@@ -1,8 +1,13 @@
 ## UNRELEASED
 
+### Fixed
+
+- Fix wrong default setting for C++ executable file path.
+
 ### Added
 
 - On Windows, install VC Redist along with the application.
+- Now you can use `${tempdir}` as an alternaltive of `${tmpdir}` in C++ executable file path setting and Java class file path setting.
 
 ## 6.5.1 (Beta)
 
