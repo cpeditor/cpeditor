@@ -1,5 +1,7 @@
 ## UNRELEASED
 
+## 6.5.2 (Beta)
+
 ### Fixed
 
 - Fix wrong default setting for C++ executable file path.
