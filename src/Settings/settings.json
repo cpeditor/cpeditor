@@ -757,5 +757,11 @@
         "default": "default",
         "param": "Core::StyleManager::styleList()",
         "tip": "The style of the whole application."
+    },
+    {
+        "name": "Run On Empty Testcase",
+        "desc": "Allow running your code on empty testcase",
+        "type": "bool",
+        "tip": "Run your code on all testcases even if the input is empty."
     }
 ]
