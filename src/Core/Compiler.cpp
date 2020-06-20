@@ -128,7 +128,8 @@ QString Compiler::outputPath(const QString &tmpFilePath, const QString &sourceFi
                                               .toString()
                                               .replace("${filename}", fileInfo.fileName())
                                               .replace("${basename}", fileInfo.completeBaseName())
-                                              .replace("${tmpdir}", QFileInfo(tmpFilePath).absolutePath()));
+                                              .replace("${tmpdir}", QFileInfo(tmpFilePath).absolutePath())
+                                              .replace("${tempdir}", QFileInfo(tmpFilePath).absolutePath()));
     if (lang == "C++")
         QDir().mkpath(QFileInfo(res).absolutePath());
     else if (lang == "Java")

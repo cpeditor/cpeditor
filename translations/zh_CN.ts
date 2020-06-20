@@ -1236,22 +1236,22 @@ p, li { white-space: pre-wrap; }
         <translation>语言错误，请设置语言</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="178"/>
+        <location filename="../src/mainwindow.cpp" line="183"/>
         <source>All inputs are empty, nothing to run</source>
         <translation>所有输入均为空，没有需要运行的</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="230"/>
+        <location filename="../src/mainwindow.cpp" line="235"/>
         <source>Submit</source>
         <translation>提交</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="238"/>
+        <location filename="../src/mainwindow.cpp" line="243"/>
         <source>Sure to submit</source>
         <translation>确认提交</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="239"/>
+        <location filename="../src/mainwindow.cpp" line="244"/>
         <source>Are you sure you want to submit this solution to Codeforces?
 
  URL: %1
@@ -1262,49 +1262,49 @@ p, li { white-space: pre-wrap; }
 语言：%2</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="248"/>
-        <location filename="../src/mainwindow.cpp" line="262"/>
+        <location filename="../src/mainwindow.cpp" line="253"/>
+        <location filename="../src/mainwindow.cpp" line="267"/>
         <source>CF Tool</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="249"/>
+        <location filename="../src/mainwindow.cpp" line="254"/>
         <source>Failed to save the temp file, and the solution is not submitted.</source>
         <translation>保存临时文件失败，代码未提交。</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="263"/>
+        <location filename="../src/mainwindow.cpp" line="268"/>
         <source>You will not be able to submit code to Codeforces because CF Tool is not installed or is not on SYSTEM PATH. You can set it manually in settings.</source>
         <translation>你无法将代码提交至 Codeforces，因为 CF Tool 没有安装，或是它不在 PATH 环境变量里。你可以在设置中手动设置 CF Tool 的路径。</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="279"/>
+        <location filename="../src/mainwindow.cpp" line="284"/>
         <source>Untitled-%1</source>
         <translation>未命名-%1</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="551"/>
+        <location filename="../src/mainwindow.cpp" line="556"/>
         <source>Save as</source>
         <translation>另存为</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="612"/>
+        <location filename="../src/mainwindow.cpp" line="617"/>
         <source>Open %1 Template</source>
         <translation>打开 %1 的模板</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="754"/>
-        <location filename="../src/mainwindow.cpp" line="762"/>
+        <location filename="../src/mainwindow.cpp" line="759"/>
+        <location filename="../src/mainwindow.cpp" line="767"/>
         <source>Open File</source>
         <translation>打开文件</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="763"/>
+        <location filename="../src/mainwindow.cpp" line="768"/>
         <source>The file [%1] contains more than %2 characters, so it&apos;s not opened. You can change the open file length limit in Preferences-&gt;Advanced-&gt;Limits-&gt;Open File Length Limit</source>
         <translation>文件 [%1] 包含超过 %2 个字符，因此没有被打开。你可以在设置-&gt;高级-&gt;限制-&gt;打开文件长度限制中更改长度限制</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="867"/>
+        <location filename="../src/mainwindow.cpp" line="872"/>
         <source>Save File</source>
         <translation>保存</translation>
     </message>
@@ -1966,21 +1966,6 @@ The cursor will be at the end of the template if there&apos;s no match of the re
         <translation>编译 C++ 代码所用命令。这里不应该包含源代码路径或是&quot;-o &lt;output file&gt;&quot;。</translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="40"/>
-        <source>The path of the compiled executable file.
-It&apos;s relative to the source file, or the temporary directory if the tab is untitled.
-No &quot;.exe&quot; is needed.
-You can use &quot;${filename}&quot; for the complete file name,
-&quot;${basename}&quot; for the base file name without the suffix,
-&quot;${tmpdir}&quot; for the absolute path of the temporary directory.</source>
-        <translation>编译后生成的可执行文件的路径。
-是一个相对于源代码所在路径的相对路径。如果当前页未命名，则相对于临时目录。
-不需要 &quot;.exe&quot; 后缀。
-你可以使用&quot;${filename}&quot;来代指完整的源文件名；
-使用&quot;${basename}&quot;来代指无后缀的源文件名；
-使用&quot;${tmpdir}&quot;来代指临时目录的绝对路径。</translation>
-    </message>
-    <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="41"/>
         <source>The runtime arguments when executing a C++ program</source>
         <translation>执行 C++ 程序时提供的命令行参数</translation>
@@ -2021,6 +2006,19 @@ It should NOT include the path to the source file or the path of the compiled cl
         <location filename="../build/generated/SettingsInfo.cpp" line="48"/>
         <source>%1 Class Path</source>
         <translation>%1 类路径</translation>
+    </message>
+    <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="48"/>
+        <source>The path of the parent directory of the compiled class file.
+It&apos;s relative to the source file, or the temporary directory if the tab is untitled.
+You can use &quot;${filename}&quot; for the complete file name,
+&quot;${basename}&quot; for the base file name without the suffix,
+&quot;${tmpdir}&quot; or &quot;${tempdir}&quot; for the absolute path of the temporary directory.</source>
+        <translation>编译后生成的类文件所在的目录。
+是一个相对于源代码所在路径的相对路径。如果当前页未命名，则相对于临时目录。
+你可以使用 &quot;${filename}&quot; 来代指完整的源文件名；
+使用 &quot;${basename}&quot; 来代指无后缀的源文件名；
+使用 &quot;${tmpdir}&quot; 或 &quot;${tempdir}&quot; 来代指临时目录的绝对路径。</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="53"/>
@@ -2156,6 +2154,21 @@ This can be overridden for each parenthesis in each language.</source>
         <translation>%1 可执行文件路径</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="40"/>
+        <source>The path of the compiled executable file.
+It&apos;s relative to the source file, or the temporary directory if the tab is untitled.
+No &quot;.exe&quot; is needed.
+You can use &quot;${filename}&quot; for the complete file name,
+&quot;${basename}&quot; for the base file name without the suffix,
+&quot;${tmpdir}&quot; or &quot;${tempdir}&quot; for the absolute path of the temporary directory.</source>
+        <translation>编译后生成的可执行文件的路径。
+是一个相对于源代码所在路径的相对路径。如果当前页未命名，则相对于临时目录。
+不需要 &quot;.exe&quot; 后缀。
+你可以使用 &quot;${filename}&quot; 来代指完整的源文件名；
+使用 &quot;${basename}&quot; 来代指无后缀的源文件名；
+使用 &quot;${tmpdir}&quot; 或 &quot;${tempdir}&quot; 来代指临时目录的绝对路径。</translation>
+    </message>
+    <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="41"/>
         <location filename="../build/generated/SettingsInfo.cpp" line="45"/>
         <location filename="../build/generated/SettingsInfo.cpp" line="57"/>
@@ -2173,19 +2186,6 @@ This can be overridden for each parenthesis in each language.</source>
         <location filename="../build/generated/SettingsInfo.cpp" line="47"/>
         <source>The name of the non-public main class of your solution.</source>
         <translation>你的代码中非 public 主类的名称。</translation>
-    </message>
-    <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="48"/>
-        <source>The path of the parent directory of the compiled class file.
-It&apos;s relative to the source file, or the temporary directory if the tab is untitled.
-You can use &quot;${filename}&quot; for the complete file name,
-&quot;${basename}&quot; for the base file name without the suffix,
-&quot;${tmpdir}&quot; for the absolute path of the temporary directory.</source>
-        <translation>编译后生成的类文件所在的目录。
-是一个相对于源代码所在路径的相对路径。如果当前页未命名，则相对于临时目录。
-你可以使用&quot;${filename}&quot;来代指完整的源文件名；
-使用&quot;${basename}&quot;来代指无后缀的源文件名；
-使用&quot;${tmpdir}&quot;来代指临时目录的绝对路径。</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="62"/>
@@ -2773,6 +2773,16 @@ from Competitive Companion again, the old file will be opened.</source>
         <location filename="../build/generated/SettingsInfo.cpp" line="130"/>
         <source>The style of the whole application.</source>
         <translation>整个应用程序的风格。</translation>
+    </message>
+    <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="130"/>
+        <source>Allow running your code on empty testcase</source>
+        <translation>允许在空测试点执行</translation>
+    </message>
+    <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="130"/>
+        <source>Run your code on all testcases even if the input is empty.</source>
+        <translation>执行所有测试点即使其输入为空。</translation>
     </message>
 </context>
 <context>

@@ -1225,22 +1225,22 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="178"/>
+        <location filename="../src/mainwindow.cpp" line="183"/>
         <source>All inputs are empty, nothing to run</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="230"/>
+        <location filename="../src/mainwindow.cpp" line="235"/>
         <source>Submit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="238"/>
+        <location filename="../src/mainwindow.cpp" line="243"/>
         <source>Sure to submit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="239"/>
+        <location filename="../src/mainwindow.cpp" line="244"/>
         <source>Are you sure you want to submit this solution to Codeforces?
 
  URL: %1
@@ -1248,49 +1248,49 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="248"/>
-        <location filename="../src/mainwindow.cpp" line="262"/>
+        <location filename="../src/mainwindow.cpp" line="253"/>
+        <location filename="../src/mainwindow.cpp" line="267"/>
         <source>CF Tool</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="249"/>
+        <location filename="../src/mainwindow.cpp" line="254"/>
         <source>Failed to save the temp file, and the solution is not submitted.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="263"/>
+        <location filename="../src/mainwindow.cpp" line="268"/>
         <source>You will not be able to submit code to Codeforces because CF Tool is not installed or is not on SYSTEM PATH. You can set it manually in settings.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="279"/>
+        <location filename="../src/mainwindow.cpp" line="284"/>
         <source>Untitled-%1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="551"/>
+        <location filename="../src/mainwindow.cpp" line="556"/>
         <source>Save as</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="612"/>
+        <location filename="../src/mainwindow.cpp" line="617"/>
         <source>Open %1 Template</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="754"/>
-        <location filename="../src/mainwindow.cpp" line="762"/>
+        <location filename="../src/mainwindow.cpp" line="759"/>
+        <location filename="../src/mainwindow.cpp" line="767"/>
         <source>Open File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="763"/>
+        <location filename="../src/mainwindow.cpp" line="768"/>
         <source>The file [%1] contains more than %2 characters, so it&apos;s not opened. You can change the open file length limit in Preferences-&gt;Advanced-&gt;Limits-&gt;Open File Length Limit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="867"/>
+        <location filename="../src/mainwindow.cpp" line="872"/>
         <source>Save File</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1944,16 +1944,6 @@ The cursor will be at the end of the template if there&apos;s no match of the re
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="40"/>
-        <source>The path of the compiled executable file.
-It&apos;s relative to the source file, or the temporary directory if the tab is untitled.
-No &quot;.exe&quot; is needed.
-You can use &quot;${filename}&quot; for the complete file name,
-&quot;${basename}&quot; for the base file name without the suffix,
-&quot;${tmpdir}&quot; for the absolute path of the temporary directory.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="41"/>
         <source>The runtime arguments when executing a C++ program</source>
         <translation type="unfinished"></translation>
@@ -1993,6 +1983,15 @@ It should NOT include the path to the source file or the path of the compiled cl
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="48"/>
         <source>%1 Class Path</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="48"/>
+        <source>The path of the parent directory of the compiled class file.
+It&apos;s relative to the source file, or the temporary directory if the tab is untitled.
+You can use &quot;${filename}&quot; for the complete file name,
+&quot;${basename}&quot; for the base file name without the suffix,
+&quot;${tmpdir}&quot; or &quot;${tempdir}&quot; for the absolute path of the temporary directory.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2126,6 +2125,16 @@ This can be overridden for each parenthesis in each language.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="40"/>
+        <source>The path of the compiled executable file.
+It&apos;s relative to the source file, or the temporary directory if the tab is untitled.
+No &quot;.exe&quot; is needed.
+You can use &quot;${filename}&quot; for the complete file name,
+&quot;${basename}&quot; for the base file name without the suffix,
+&quot;${tmpdir}&quot; or &quot;${tempdir}&quot; for the absolute path of the temporary directory.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="41"/>
         <location filename="../build/generated/SettingsInfo.cpp" line="45"/>
         <location filename="../build/generated/SettingsInfo.cpp" line="57"/>
@@ -2142,15 +2151,6 @@ This can be overridden for each parenthesis in each language.</source>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="47"/>
         <source>The name of the non-public main class of your solution.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="48"/>
-        <source>The path of the parent directory of the compiled class file.
-It&apos;s relative to the source file, or the temporary directory if the tab is untitled.
-You can use &quot;${filename}&quot; for the complete file name,
-&quot;${basename}&quot; for the base file name without the suffix,
-&quot;${tmpdir}&quot; for the absolute path of the temporary directory.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2713,6 +2713,16 @@ from Competitive Companion again, the old file will be opened.</source>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="130"/>
         <source>The style of the whole application.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="130"/>
+        <source>Allow running your code on empty testcase</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="130"/>
+        <source>Run your code on all testcases even if the input is empty.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
