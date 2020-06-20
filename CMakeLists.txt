@@ -126,6 +126,8 @@ add_executable(cpeditor
     src/Settings/PreferencesWindow.hpp
     src/Settings/SettingsManager.cpp
     src/Settings/SettingsManager.hpp
+    src/Settings/SettingsUpdater.cpp
+    src/Settings/SettingsUpdater.hpp
     src/Settings/ShortcutItem.cpp
     src/Settings/ShortcutItem.hpp
     src/Settings/StringListsItem.cpp

@@ -18,6 +18,7 @@
 #include "Settings/SettingsManager.hpp"
 #include "Core/EventLogger.hpp"
 #include "Settings/FileProblemBinder.hpp"
+#include "Settings/SettingsUpdater.hpp"
 #include "generated/SettingsInfo.hpp"
 #include "generated/portable.hpp"
 #include <QDebug>
@@ -118,6 +119,7 @@ void SettingsManager::loadSettings(const QString &path)
             }
         };
         load("", settingInfo);
+        SettingsUpdater::updateSetting(setting);
 
         // load file problem binding
         FileProblemBinder::fromVariant(setting.value("file_problem_binding"));
