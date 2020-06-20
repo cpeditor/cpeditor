@@ -16,7 +16,7 @@
     {
         "name": "Editor Font",
         "type": "QFont",
-        "default": "[](){ QFont font = QFontDatabase::systemFont(QFontDatabase::FixedFont); font.setPointSize(12); font.setStyleHint(QFont::TypeWriter); return font; }()",
+        "default": "[](){ QFont font = QFontDatabase::systemFont(QFontDatabase::FixedFont); font.setStyleHint(QFont::TypeWriter); return font; }()",
         "old": [
             "font"
         ],
@@ -700,7 +700,7 @@
     {
         "name": "Test Cases Font",
         "type": "QFont",
-        "default": "[](){ QFont font = QFontDatabase::systemFont(QFontDatabase::FixedFont); font.setPointSize(12); font.setStyleHint(QFont::TypeWriter); return font; }()",
+        "default": "[](){ QFont font = QFontDatabase::systemFont(QFontDatabase::FixedFont); font.setStyleHint(QFont::TypeWriter); return font; }()",
         "tip": "The font of test cases"
     },
     {
@@ -712,7 +712,7 @@
     {
         "name": "Message Logger Font",
         "type": "QFont",
-        "default": "[](){ QFont font = QFontDatabase::systemFont(QFontDatabase::FixedFont); font.setPointSize(12); font.setStyleHint(QFont::TypeWriter); return font; }()",
+        "default": "[](){ QFont font = QFontDatabase::systemFont(QFontDatabase::FixedFont); font.setStyleHint(QFont::TypeWriter); return font; }()",
         "tip": "The font of the message logger"
     },
     {
