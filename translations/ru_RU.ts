@@ -2088,6 +2088,14 @@ from Competitive Companion again, the old file will be opened.</source>
         <source>Run your code on all non-hidden test cases even if the input is empty.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Check your answer on test cases with empty output</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Check your answer even if your output or the expected the output is empty.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Settings::PathItem</name>

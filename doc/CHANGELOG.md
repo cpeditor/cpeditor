@@ -12,6 +12,7 @@ With the portable version, you can easily store it in something like a USB disk,
 - Now you can use `${tempdir}` as an alternative of `${tmpdir}` in C++ executable file path setting and Java class file path setting.
 - Add the translation system and Simplified Chinese translation. (#377 and #384)
 - In-application UI style setting and built-in light/dark style. (#265 and #404)
+- Now testcases with empty outputs can also be checked. (#208 and #430)
 
 ### Fixed
 

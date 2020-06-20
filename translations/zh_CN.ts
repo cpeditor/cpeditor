@@ -2147,6 +2147,14 @@ from Competitive Companion again, the old file will be opened.</source>
         <source>Run your code on all non-hidden test cases even if the input is empty.</source>
         <translation>在所有未隐藏的测试点运行你的代码，即使输入为空。</translation>
     </message>
+    <message>
+        <source>Check your answer on test cases with empty output</source>
+        <translation>在输出为空的测试点上检查输出的正确性</translation>
+    </message>
+    <message>
+        <source>Check your answer even if your output or the expected the output is empty.</source>
+        <translation>即使你的输出或答案的输出为空，依然检查输出的正确性。</translation>
+    </message>
 </context>
 <context>
     <name>Settings::PathItem</name>
