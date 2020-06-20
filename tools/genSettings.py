@@ -142,7 +142,6 @@ namespace SettingsHelper
 struct SettingInfo
 {
     QString name, desc, type, ui, tip, help;
-    QStringList old;
     QVariant def;
     QVariant param;
     QList<SettingInfo> child;
