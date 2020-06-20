@@ -62,7 +62,7 @@ namespace SettingsHelper
 #define SETTINGSINFO_HPP
 
 #include <QCoreApplication>
-#include <QFont>
+#include <QFontDatabase>
 #include <QRect>
 #include <QVariant>
 #include "Core/StyleManager.hpp"

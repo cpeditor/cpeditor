@@ -17,10 +17,12 @@ With the portable version, you can easily store it in something like a USB disk,
 ### Fixed
 
 - Fix the wrong default setting for C++ executable file path.
+- Fix the displayed size of the default font is not the same as the actual size of the default font. (#425)
 
 ### Changed
 
 - Now the lengths of the files added by "Add Pairs of Testcases From Files" are limited by Preferences->Advanced->Limits->Load Test Case File Length Limit. (#405)
+- The default font is set to the system fixed-width font instead of the font named "Monospace". (#422)
 
 ## v6.5
 
