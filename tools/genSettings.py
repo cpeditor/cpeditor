@@ -40,46 +40,25 @@ def writeInfo(f, obj, lst):
         name = t["name"]
         key = name.replace(" ", "").replace("/", "").replace("+", "p")
         typename = t["type"]
-        if "desc" in t:
-            desc = t["desc"]
-        else:
-            desc = name.replace('/', ' ')
-        if "ui" in t:
-            ui = t["ui"]
-        else:
-            ui = ""
-        if "tip" in t:
-            tip = t["tip"]
-        else:
-            tip = ""
-        if "help" in t:
-            hlp = t["hlp"]
-        else:
-            hlp = ""
+        desc = t.get("desc", name.replace('/', ' '))
+        ui = t.get("ui", "")
+        tip = t.get("tip", "")
+        hlp = t.get("help", "")
         if typename == "config":
             f.write(f"    QList<SettingInfo> LIST{key};\n")
             writeInfo(f, t["sub"], f"LIST{key}")
         f.write(f"    {lst}.append(SettingInfo {{{json.dumps(name)}, ")
-        if "C++" in json.dumps(desc):
-            f.write(f"QCoreApplication::translate(\"Setting\", {json.dumps(desc).replace('C++', '%1')}).arg(\"C++\")")
-        elif "Java" in json.dumps(desc):
-            f.write(f"QCoreApplication::translate(\"Setting\", {json.dumps(desc).replace('Java', '%1')}).arg(\"Java\")")
-        elif "Python" in json.dumps(desc):
-            f.write(f"QCoreApplication::translate(\"Setting\", {json.dumps(desc).replace('Python', '%1')}).arg(\"Python\")")
-        else:
-            f.write(f"QCoreApplication::translate(\"Setting\", {json.dumps(desc)})")
+        desccode = f"QCoreApplication::translate(\"Setting\", {json.dumps(desc)})"
+        for lang in [ "C++", "Java", "Python" ]:
+            if lang in desc:
+                desccode = f"QCoreApplication::translate(\"Setting\", {json.dumps(desc.replace(lang, '%1'))}).arg(\"{lang}\")"
+                break
+        f.write(desccode)
         tempname = typename
         if typename == "QMap":
             final = t["final"]
             tempname = f"QMap:{final}"
-        f.write(f", \"{tempname}\", \"{ui}\", QCoreApplication::translate(\"Setting\", {json.dumps(tip)}), QCoreApplication::translate(\"Setting\", {json.dumps(hlp)}), {{")
-
-        if "old" in t:
-            olds = ""
-            for s in t["old"]:
-                olds = olds + '"' + s + '", '
-            f.write(olds)
-        f.write("}, ")
+        f.write(f", \"{tempname}\", \"{ui}\", QCoreApplication::translate(\"Setting\", {json.dumps(tip)}), QCoreApplication::translate(\"Setting\", {json.dumps(hlp)}), ")
         if typename != "config":
             if "default" in t:
                 if typename == "QString":
@@ -102,10 +81,7 @@ def writeInfo(f, obj, lst):
                 f.write(defs[typename])
         else:
             f.write(f'QVariant()')
-        if "param" in t:
-            f.write(f', {t["param"]}')
-        else:
-            f.write(f", QVariant()")
+        f.write(f', {t.get("param", "QVariant()")}')
         if typename == "config":
             f.write(f", LIST{key}")
         f.write("});\n")
