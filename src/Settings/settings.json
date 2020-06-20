@@ -16,7 +16,10 @@
     {
         "name": "Editor Font",
         "type": "QFont",
-        "default": "QFont(\"monospace\")",
+        "default": {
+            "Windows": "QFont(\"Consolas\")",
+            "other": "QFont(\"monospace\")"
+        },
         "old": [
             "font"
         ],
@@ -700,7 +703,10 @@
     {
         "name": "Test Cases Font",
         "type": "QFont",
-        "default": "QFont(\"monospace\")",
+        "default": {
+            "Windows": "QFont(\"Consolas\")",
+            "other": "QFont(\"monospace\")"
+        },
         "tip": "The font of test cases"
     },
     {
@@ -712,7 +718,10 @@
     {
         "name": "Message Logger Font",
         "type": "QFont",
-        "default": "QFont(\"monospace\")",
+        "default": {
+            "Windows": "QFont(\"Consolas\")",
+            "other": "QFont(\"monospace\")"
+        },
         "tip": "The font of the message logger"
     },
     {

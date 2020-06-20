@@ -1,8 +1,10 @@
+
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
 
 import sys
 import json
+import platform
 
 if __name__ == "__main__":
     obj = json.load(open(sys.argv[1], mode="r", encoding="utf-8"))
@@ -147,6 +149,13 @@ void updateSettingInfo()
             else:
                 if isinstance(t["default"], bool):
                     setting_info.write(str(t["default"]).lower())
+                elif isinstance(t["default"], dict):
+                    if typename == "QFont":
+                        platform_name = platform.system()
+                        if t["default"].get(platform_name):
+                            setting_info.write(str(t["default"][platform_name]))
+                        else:
+                            setting_info.write(str(t["default"]["other"]))
                 else:
                     setting_info.write(str(t["default"]))
         else:
