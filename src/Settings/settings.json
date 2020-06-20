@@ -760,8 +760,8 @@
     },
     {
         "name": "Run On Empty Testcase",
-        "desc": "Allow running your code on empty testcase",
+        "desc": "Run you codes on empty test cases",
         "type": "bool",
-        "tip": "Run your code on all testcases even if the input is empty."
+        "tip": "Run your code on all non-hidden test cases even if the input is empty."
     }
 ]
