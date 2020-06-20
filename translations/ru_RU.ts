@@ -1105,27 +1105,22 @@ Do you want to reload it?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1241"/>
         <source>Time Limit Exceeded</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1247"/>
         <source>The %1 of the process running on the testcase #%2 contains more than %3 characters, which is longer than the output length limit, so the process is killed. You can change the output length limit in Preferences-&gt;Advanced-&gt;Limits-&gt;Output Length Limit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1258"/>
         <source>%1 has been killed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1259"/>
         <source>Detached runner</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1259"/>
         <source>Runner for testcase #%1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2091,6 +2086,14 @@ from Competitive Companion again, the old file will be opened.</source>
     </message>
     <message>
         <source>Run your code on all non-hidden test cases even if the input is empty.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Check your answer on test cases with empty output</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Check your answer even if your output or the expected the output is empty.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
