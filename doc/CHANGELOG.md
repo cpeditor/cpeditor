@@ -16,7 +16,7 @@ With the portable version, you can easily store it in something like a USB disk,
 ### Fixed
 
 - Fix the wrong default setting for C++ executable file path.
-- Fix Font Size restores to small size after set to default or first launch.
+- Fix the displayed size of the default font is not the same as the actual size of the default font. (#425)
 
 ### Changed
 
