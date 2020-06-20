@@ -124,13 +124,13 @@ CodeSnippetsPage::CodeSnippetsPage(const QString &language, QWidget *parent) : P
 
 bool CodeSnippetsPage::areSettingsChanged()
 {
-    auto settingsKeys = SettingsHelper::querySnippets(lang);
+    auto settingsKeys = SettingsHelper::getLanguageConfig(lang).querySnippets();
     auto UIkeys = snippetItem.keys();
     if (settingsKeys != UIkeys)
         return true;
     if (currentItem == nullptr)
         return false;
-    return editor->toPlainText() != SettingsHelper::getSnippets(lang, currentItem->text());
+    return editor->toPlainText() != SettingsHelper::getLanguageConfig(lang).getSnippets(currentItem->text());
     ;
 }
 
@@ -150,7 +150,7 @@ void CodeSnippetsPage::makeUITheSameAsDefault()
 void CodeSnippetsPage::makeUITheSameAsSettings()
 {
     Util::applySettingsToEditor(editor, lang);
-    auto settingsKeys = SettingsHelper::querySnippets(lang);
+    auto settingsKeys = SettingsHelper::getLanguageConfig(lang).querySnippets();
     for (auto key : settingsKeys)
     {
         if (!snippetItem.contains(key))
@@ -170,18 +170,18 @@ void CodeSnippetsPage::makeUITheSameAsSettings()
     {
         auto cursor = editor->textCursor();
         cursor.select(QTextCursor::Document);
-        cursor.insertText(SettingsHelper::getSnippets(lang, currentItem->text()));
+        cursor.insertText(SettingsHelper::getLanguageConfig(lang).getSnippets(currentItem->text()));
     }
 }
 
 void CodeSnippetsPage::makeSettingsTheSameAsUI()
 {
-    auto settingsKeys = SettingsHelper::querySnippets(lang);
+    auto settingsKeys = SettingsHelper::getLanguageConfig(lang).querySnippets();
     for (auto key : settingsKeys)
     {
         if (!snippetItem.contains(key))
         {
-            SettingsHelper::removeSnippets(lang, key);
+            SettingsHelper::getLanguageConfig(lang).removeSnippets(key);
         }
     }
     auto UIKeys = snippetItem.keys();
@@ -189,11 +189,11 @@ void CodeSnippetsPage::makeSettingsTheSameAsUI()
     {
         if (!settingsKeys.contains(key))
         {
-            SettingsHelper::setSnippets(lang, key, QString());
+            SettingsHelper::getLanguageConfig(lang).setSnippets(key, QString());
         }
     }
     if (currentItem != nullptr)
-        SettingsHelper::setSnippets(lang, currentItem->text(), editor->toPlainText());
+        SettingsHelper::getLanguageConfig(lang).setSnippets(currentItem->text(), editor->toPlainText());
     updateButtons();
 }
 
@@ -229,7 +229,7 @@ bool CodeSnippetsPage::switchToSnippet(QListWidgetItem *item, bool force)
         {
             rightWidget->setCurrentWidget(snippetWidget);
             snippetNameLabel->setText(item->text());
-            editor->setPlainText(SettingsHelper::getSnippets(lang, item->text()));
+            editor->setPlainText(SettingsHelper::getLanguageConfig(lang).getSnippets(item->text()));
         }
         updateActions();
         updateButtons();
@@ -244,11 +244,12 @@ bool CodeSnippetsPage::aboutToSwitchToSnippet()
     if (currentItem == nullptr)
         return true;
 
-    if (SettingsHelper::hasSnippets(lang, currentItem->text()) &&
-        editor->toPlainText() == SettingsHelper::getSnippets(lang, currentItem->text()))
+    if (SettingsHelper::getLanguageConfig(lang).querySnippets().contains(currentItem->text()) &&
+        editor->toPlainText() == SettingsHelper::getLanguageConfig(lang).getSnippets(currentItem->text()))
         return true;
 
-    if (!SettingsHelper::hasSnippets(lang, currentItem->text()) && editor->toPlainText().isEmpty())
+    if (!SettingsHelper::getLanguageConfig(lang).querySnippets().contains(currentItem->text()) &&
+        editor->toPlainText().isEmpty())
         return true;
 
     auto res =
@@ -259,7 +260,7 @@ bool CodeSnippetsPage::aboutToSwitchToSnippet()
     switch (res)
     {
     case QMessageBox::Save:
-        SettingsHelper::setSnippets(lang, currentItem->text(), editor->toPlainText());
+        SettingsHelper::getLanguageConfig(lang).setSnippets(currentItem->text(), editor->toPlainText());
         updateButtons();
         emit settingsApplied(path());
         return true;
@@ -327,12 +328,12 @@ void CodeSnippetsPage::loadSnippetsFromFiles()
             break;
         }
         auto name = QFileInfo(file).completeBaseName();
-        if (snippetItem.contains(name) || SettingsHelper::hasSnippets(lang, name))
+        if (snippetItem.contains(name) || SettingsHelper::getLanguageConfig(lang).querySnippets().contains(name))
             name = getNewSnippetName(name, true);
         if (name.isEmpty())
             break;
         addSnippet(name);
-        SettingsHelper::setSnippets(lang, name, content);
+        SettingsHelper::getLanguageConfig(lang).setSnippets(name, content);
     }
 }
 
@@ -343,7 +344,7 @@ void CodeSnippetsPage::extractSnippetsToFiles()
         return;
     auto dir = QDir(dirPath);
 
-    auto names = SettingsHelper::querySnippets(lang);
+    auto names = SettingsHelper::getLanguageConfig(lang).querySnippets();
 
     QString suffix;
     if (lang == "C++")
@@ -364,7 +365,7 @@ void CodeSnippetsPage::extractSnippetsToFiles()
         }
         if (filePath.isEmpty())
             break;
-        if (!Util::saveFile(filePath, SettingsHelper::getSnippets(lang, name), "Extract Snippets"))
+        if (!Util::saveFile(filePath, SettingsHelper::getLanguageConfig(lang).getSnippets(name), "Extract Snippets"))
         {
             QMessageBox::warning(this, tr("Extract Snippets"),
                                  tr("Failed to write to [%1]. Do I have write permission?").arg(filePath));
@@ -378,7 +379,7 @@ QString CodeSnippetsPage::getNewSnippetName(const QString &oldName, bool avoidCo
     QString name;
     bool firstTime = true;
     while (name.isEmpty() || snippetItem.contains(name) ||
-           (avoidConflictWithSettings && SettingsHelper::hasSnippets(lang, name)))
+           (avoidConflictWithSettings && SettingsHelper::getLanguageConfig(lang).querySnippets().contains(name)))
     {
         bool ok;
         QString head;

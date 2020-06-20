@@ -759,15 +759,19 @@
         "tip": "The style of the whole application."
     },
     {
-        "name": "Snippets",
-        "type": "QMap",
-        "final": "QString",
-        "depth": 2
-    },
-    {
         "name": "Editor Status",
         "type": "QMap",
-        "final": "QVariantMap",
-        "depth": 1
+        "final": "QVariantMap"
+    },
+    {
+        "name": "Language Config",
+        "type": "config",
+        "sub": [
+            {
+                "name": "Snippets",
+                "type": "QMap",
+                "final": "QString"
+            }
+        ]
     }
 ]

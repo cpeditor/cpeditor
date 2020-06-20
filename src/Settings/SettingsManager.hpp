@@ -36,6 +36,7 @@ class SettingsManager
     static void reset();
 
     static QStringList keyStartsWith(const QString &head);
+    static QStringList itemUnder(const QString &head);
 
   private:
     static QVariantMap *cur;
