@@ -759,9 +759,9 @@
         "tip": "The style of the whole application."
     },
     {
-        "name": "Always Run",
-        "desc": "Always run the program",
+        "name": "Run On Empty Testcase",
+        "desc": "Allow running your code on empty testcase",
         "type": "bool",
-        "tip": "Always run the program even if inputs are empty."
+        "tip": "Run your code on all testcases even if the input is empty."
     }
 ]

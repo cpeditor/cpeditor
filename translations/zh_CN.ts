@@ -2766,13 +2766,13 @@ from Competitive Companion again, the old file will be opened.</source>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="130"/>
-        <source>Always run the program</source>
-        <translation type="unfinished">总是执行程序</translation>
+        <source>Allow running your code on empty testcase</source>
+        <translation>允许在空测试点执行</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="130"/>
-        <source>Always run the program even if inputs are empty.</source>
-        <translation type="unfinished">即使输入为空也执行程序。</translation>
+        <source>Run your code on all testcases even if the input is empty.</source>
+        <translation>执行所有测试点即使其输入为空。</translation>
     </message>
 </context>
 <context>

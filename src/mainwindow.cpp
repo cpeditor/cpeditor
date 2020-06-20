@@ -170,7 +170,7 @@ void MainWindow::run()
     {
         if (testcases->input(i).trimmed().isEmpty())
         {
-            if (SettingsHelper::isAlwaysRun())
+            if (SettingsHelper::isRunOnEmptyTestcase())
                 run(i);
         }
         else if (testcases->isShow(i))

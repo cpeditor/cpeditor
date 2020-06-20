@@ -2707,12 +2707,12 @@ from Competitive Companion again, the old file will be opened.</source>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="130"/>
-        <source>Always run the program</source>
+        <source>Allow running your code on empty testcase</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="130"/>
-        <source>Always run the program even if inputs are empty.</source>
+        <source>Run your code on all testcases even if the input is empty.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
