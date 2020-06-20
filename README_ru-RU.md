@@ -11,7 +11,7 @@ CP Editor - это легкий кросс-платформенный редак
 ---
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-38-orange.svg)](#contributors-sparkles)
+[![All Contributors](https://img.shields.io/badge/all_contributors-39-orange.svg)](#contributors-sparkles)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/ce0f297f31f74485b0d340949d08d605)](https://www.codacy.com/gh/cpeditor/cpeditor)
 [![Все релизы GitHub](https://img.shields.io/github/downloads/cpeditor/cpeditor/total?label=downloads%40all)](https://github.com/cpeditor/cpeditor/releases)
@@ -203,6 +203,9 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     </td>
     <td align="center">
       <a href="https://github.com/tb148"><img src="https://avatars1.githubusercontent.com/u/28220642?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/tb148"><sub><b>Tony Brown</b></sub></a><br /><a href="#ideas-tb148" title="Ideas, Planning, & Feedback">🤔</a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/sonulohani"><img src="https://avatars1.githubusercontent.com/u/2958681?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/sonulohani"><sub><b>Sonu Lohani</b></sub></a><br /><a href="https://github.com/cpeditor/cpeditor/issues?q=author%3Asonulohani" title="Bug reports">🐛</a>
     </td>
   </tr>
 </table>
