@@ -765,7 +765,7 @@
         "tip": "Run your code on all non-hidden test cases even if the input is empty."
     },
     {
-        "name": "Check On Empty Output",
+        "name": "Check On Testcases With Empty Output",
         "desc": "Check your answer on test cases with empty output",
         "type": "bool",
         "tip": "Check your answer on all non-hidden test cases even if the output is empty."
