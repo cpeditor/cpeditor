@@ -168,12 +168,8 @@ void MainWindow::run()
 
     for (int i = 0; i < testcases->count(); ++i)
     {
-        if (testcases->input(i).trimmed().isEmpty())
-        {
-            if (SettingsHelper::isRunOnEmptyTestcase())
-                run(i);
-        }
-        else if (testcases->isShow(i))
+        if ((!testcases->input(i).trimmed().isEmpty() || SettingsHelper::isRunOnEmptyTestcase()) &&
+            testcases->isShow(i))
         {
             run(i);
         }

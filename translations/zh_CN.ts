@@ -1203,55 +1203,55 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/mainwindow.cpp" line="125"/>
         <location filename="../src/mainwindow.cpp" line="142"/>
-        <location filename="../src/mainwindow.cpp" line="1133"/>
-        <location filename="../src/mainwindow.cpp" line="1145"/>
-        <location filename="../src/mainwindow.cpp" line="1152"/>
-        <location filename="../src/mainwindow.cpp" line="1189"/>
-        <location filename="../src/mainwindow.cpp" line="1196"/>
+        <location filename="../src/mainwindow.cpp" line="1129"/>
+        <location filename="../src/mainwindow.cpp" line="1141"/>
+        <location filename="../src/mainwindow.cpp" line="1148"/>
+        <location filename="../src/mainwindow.cpp" line="1185"/>
+        <location filename="../src/mainwindow.cpp" line="1192"/>
         <source>Compiler</source>
         <translation>编译器</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="142"/>
-        <location filename="../src/mainwindow.cpp" line="936"/>
+        <location filename="../src/mainwindow.cpp" line="932"/>
         <source>Please set the language</source>
         <translation>请设置语言</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="157"/>
         <location filename="../src/mainwindow.cpp" line="165"/>
-        <location filename="../src/mainwindow.cpp" line="183"/>
-        <location filename="../src/mainwindow.cpp" line="212"/>
-        <location filename="../src/mainwindow.cpp" line="1137"/>
-        <location filename="../src/mainwindow.cpp" line="1166"/>
-        <location filename="../src/mainwindow.cpp" line="1172"/>
+        <location filename="../src/mainwindow.cpp" line="179"/>
+        <location filename="../src/mainwindow.cpp" line="208"/>
+        <location filename="../src/mainwindow.cpp" line="1133"/>
+        <location filename="../src/mainwindow.cpp" line="1162"/>
+        <location filename="../src/mainwindow.cpp" line="1168"/>
         <source>Runner</source>
         <translation>运行器</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="165"/>
-        <location filename="../src/mainwindow.cpp" line="212"/>
-        <location filename="../src/mainwindow.cpp" line="1172"/>
+        <location filename="../src/mainwindow.cpp" line="208"/>
+        <location filename="../src/mainwindow.cpp" line="1168"/>
         <source>Wrong language, please set the language</source>
         <translation>语言错误，请设置语言</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="183"/>
+        <location filename="../src/mainwindow.cpp" line="179"/>
         <source>All inputs are empty, nothing to run</source>
         <translation>所有输入均为空，没有需要运行的</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="235"/>
+        <location filename="../src/mainwindow.cpp" line="231"/>
         <source>Submit</source>
         <translation>提交</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="243"/>
+        <location filename="../src/mainwindow.cpp" line="239"/>
         <source>Sure to submit</source>
         <translation>确认提交</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="244"/>
+        <location filename="../src/mainwindow.cpp" line="240"/>
         <source>Are you sure you want to submit this solution to Codeforces?
 
  URL: %1
@@ -1262,106 +1262,106 @@ p, li { white-space: pre-wrap; }
 语言：%2</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="253"/>
-        <location filename="../src/mainwindow.cpp" line="267"/>
+        <location filename="../src/mainwindow.cpp" line="249"/>
+        <location filename="../src/mainwindow.cpp" line="263"/>
         <source>CF Tool</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="254"/>
+        <location filename="../src/mainwindow.cpp" line="250"/>
         <source>Failed to save the temp file, and the solution is not submitted.</source>
         <translation>保存临时文件失败，代码未提交。</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="268"/>
+        <location filename="../src/mainwindow.cpp" line="264"/>
         <source>You will not be able to submit code to Codeforces because CF Tool is not installed or is not on SYSTEM PATH. You can set it manually in settings.</source>
         <translation>你无法将代码提交至 Codeforces，因为 CF Tool 没有安装，或是它不在 PATH 环境变量里。你可以在设置中手动设置 CF Tool 的路径。</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="284"/>
+        <location filename="../src/mainwindow.cpp" line="280"/>
         <source>Untitled-%1</source>
         <translation>未命名-%1</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="556"/>
+        <location filename="../src/mainwindow.cpp" line="552"/>
         <source>Save as</source>
         <translation>另存为</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="617"/>
+        <location filename="../src/mainwindow.cpp" line="613"/>
         <source>Open %1 Template</source>
         <translation>打开 %1 的模板</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="759"/>
-        <location filename="../src/mainwindow.cpp" line="767"/>
+        <location filename="../src/mainwindow.cpp" line="755"/>
+        <location filename="../src/mainwindow.cpp" line="763"/>
         <source>Open File</source>
         <translation>打开文件</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="768"/>
+        <location filename="../src/mainwindow.cpp" line="764"/>
         <source>The file [%1] contains more than %2 characters, so it&apos;s not opened. You can change the open file length limit in Preferences-&gt;Advanced-&gt;Limits-&gt;Open File Length Limit</source>
         <translation>文件 [%1] 包含超过 %2 个字符，因此没有被打开。你可以在设置-&gt;高级-&gt;限制-&gt;打开文件长度限制中更改长度限制</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="872"/>
+        <location filename="../src/mainwindow.cpp" line="868"/>
         <source>Save File</source>
         <translation>保存</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="922"/>
+        <location filename="../src/mainwindow.cpp" line="918"/>
+        <location filename="../src/mainwindow.cpp" line="932"/>
         <location filename="../src/mainwindow.cpp" line="936"/>
-        <location filename="../src/mainwindow.cpp" line="940"/>
         <source>Temp File</source>
         <translation>临时文件</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="922"/>
+        <location filename="../src/mainwindow.cpp" line="918"/>
         <source>Failed to create the temporary directory</source>
         <translation>未能成功创建临时文件夹</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="952"/>
+        <location filename="../src/mainwindow.cpp" line="948"/>
         <source>Read %1 Template</source>
         <translation>读取 %1 的模板</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="977"/>
+        <location filename="../src/mainwindow.cpp" line="973"/>
         <source>Save changes</source>
         <translation>保存更改</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="978"/>
+        <location filename="../src/mainwindow.cpp" line="974"/>
         <source>Save changes to [%1] before closing?</source>
         <translation>关闭前将更改保存至 [%1]？</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="978"/>
+        <location filename="../src/mainwindow.cpp" line="974"/>
         <source>New File</source>
         <translation>新文件</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="981"/>
+        <location filename="../src/mainwindow.cpp" line="977"/>
         <source>Save</source>
         <translation>保存</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1007"/>
+        <location filename="../src/mainwindow.cpp" line="1003"/>
         <source>Set Tab language</source>
         <translation>设置标签页语言</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1007"/>
+        <location filename="../src/mainwindow.cpp" line="1003"/>
         <source>Set the language to use in this Tab</source>
         <translation>设置该标签页所使用的语言</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1044"/>
+        <location filename="../src/mainwindow.cpp" line="1040"/>
         <source>Reload</source>
         <translation>重载</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1044"/>
+        <location filename="../src/mainwindow.cpp" line="1040"/>
         <source>[%1]
 
 has been changed on disk.
@@ -1372,112 +1372,112 @@ Do you want to reload it?</source>
 你希望重新加载它吗？</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1079"/>
+        <location filename="../src/mainwindow.cpp" line="1075"/>
         <source>Line %1, Column %2</source>
         <translation>行 %1，列 %2</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1091"/>
+        <location filename="../src/mainwindow.cpp" line="1087"/>
         <source>%1 lines, %2 charachters selected</source>
         <translation>共有 %1 行，%2 个字符被选择</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1093"/>
+        <location filename="../src/mainwindow.cpp" line="1089"/>
         <source>%1 characters selected</source>
         <translation>共有 %1 个字符被选择</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1134"/>
+        <location filename="../src/mainwindow.cpp" line="1130"/>
         <source>The compile command for %1 is invalid. Is the compiler in the system PATH?</source>
         <translation>语言 %1 的编译命令不可用。编译器是否在环境变量 PATH 中？</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1138"/>
+        <location filename="../src/mainwindow.cpp" line="1134"/>
         <source>The run command for %1 is invalid. Is the runner in the system Path?</source>
         <translation>语言 %1 的运行命令不可用。解释器是否在环境变量 PATH 中？</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1145"/>
+        <location filename="../src/mainwindow.cpp" line="1141"/>
         <source>Compilation has started</source>
         <translation>编译已开始</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1152"/>
+        <location filename="../src/mainwindow.cpp" line="1148"/>
         <source>Compilation has finished</source>
         <translation>编译已结束</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1155"/>
+        <location filename="../src/mainwindow.cpp" line="1151"/>
         <source>Compile Warnings</source>
         <translation>编译警告</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1189"/>
+        <location filename="../src/mainwindow.cpp" line="1185"/>
         <source>Error occurred while compiling</source>
         <translation>编译时发生错误</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1191"/>
+        <location filename="../src/mainwindow.cpp" line="1187"/>
         <source>Compile Errors</source>
         <translation>编译错误</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1196"/>
+        <location filename="../src/mainwindow.cpp" line="1192"/>
         <source>Compilation is killed</source>
         <translation>编译已终止</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1204"/>
+        <location filename="../src/mainwindow.cpp" line="1200"/>
         <source>Detached Runner</source>
         <translation>终端运行器</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1205"/>
+        <location filename="../src/mainwindow.cpp" line="1201"/>
         <source>Runner[%1]</source>
         <translation>运行器[%1]</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1210"/>
+        <location filename="../src/mainwindow.cpp" line="1206"/>
         <source>Execution has started</source>
         <translation>程序已开始运行</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1219"/>
+        <location filename="../src/mainwindow.cpp" line="1215"/>
         <source>Execution for test case #%1 has finished in %2ms</source>
         <translation>程序在测试点 #%1 上运行了 %2ms 后终止了</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1224"/>
+        <location filename="../src/mainwindow.cpp" line="1220"/>
         <source>Execution for test case #%1 has finished with non-zero exitcode %2 in %3ms</source>
         <translation>程序在测试点 #%1 上运行了 %3ms 后以非零返回值 %2 终止了</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1231"/>
+        <location filename="../src/mainwindow.cpp" line="1227"/>
         <source>/stderr</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1244"/>
+        <location filename="../src/mainwindow.cpp" line="1240"/>
         <source>Time Limit Exceeded</source>
         <translation>超出时间限制</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1250"/>
+        <location filename="../src/mainwindow.cpp" line="1246"/>
         <source>The %1 of the process running on the testcase #%2 contains more than %3 characters, which is longer than the output length limit, so the process is killed. You can change the output length limit in Preferences-&gt;Advanced-&gt;Limits-&gt;Output Length Limit</source>
         <translation>在测试点 #%2 上运行的程序的 %1 包含多于 %3 个字符，超出了输出长度限制，因此进程被结束。你可以在设置-&gt;高级-&gt;限制-&gt;输出限制中更改长度限制</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1261"/>
+        <location filename="../src/mainwindow.cpp" line="1257"/>
         <source>%1 has been killed</source>
         <translation>%1 已被终止</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1262"/>
+        <location filename="../src/mainwindow.cpp" line="1258"/>
         <source>Detached runner</source>
         <translation>终端运行器</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1262"/>
+        <location filename="../src/mainwindow.cpp" line="1258"/>
         <source>Runner for testcase #%1</source>
         <translation>在测试点 #%1 上运行的程序</translation>
     </message>
@@ -2766,13 +2766,13 @@ from Competitive Companion again, the old file will be opened.</source>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="130"/>
-        <source>Allow running your code on empty testcase</source>
-        <translation>允许在空测试点执行</translation>
+        <source>Run you codes on empty test cases</source>
+        <translation>在空的测试点上运行你的代码</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="130"/>
-        <source>Run your code on all testcases even if the input is empty.</source>
-        <translation>执行所有测试点即使其输入为空。</translation>
+        <source>Run your code on all non-hidden test cases even if the input is empty.</source>
+        <translation>在所有未隐藏的测试点运行你的代码，即使输入为空。</translation>
     </message>
 </context>
 <context>
