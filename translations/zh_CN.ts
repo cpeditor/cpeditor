@@ -2766,7 +2766,7 @@ from Competitive Companion again, the old file will be opened.</source>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="130"/>
-        <source>Run you codes on empty test cases</source>
+        <source>Run your codes on empty test cases</source>
         <translation>在空的测试点上运行你的代码</translation>
     </message>
     <message>

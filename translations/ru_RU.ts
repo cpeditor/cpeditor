@@ -2707,7 +2707,7 @@ from Competitive Companion again, the old file will be opened.</source>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="130"/>
-        <source>Run you codes on empty test cases</source>
+        <source>Run your codes on empty test cases</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
