@@ -757,5 +757,11 @@
         "default": "default",
         "param": "Core::StyleManager::styleList()",
         "tip": "The style of the whole application."
+    },
+    {
+        "name": "Always Run",
+        "desc": "Always run the program",
+        "type": "bool",
+        "tip": "Always run the program even if inputs are empty."
     }
 ]
