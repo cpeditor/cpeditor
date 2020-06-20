@@ -2160,7 +2160,7 @@ from Competitive Companion again, the old file will be opened.</source>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="131"/>
         <source>Check your answer even if your output or the expected the output is empty.</source>
-        <translation>在所有测试点评测你的代码，即使输出为空。</translation>
+        <translation>即使你的输出或答案的输出为空，依然检查输出的正确性。</translation>
     </message>
 </context>
 <context>
