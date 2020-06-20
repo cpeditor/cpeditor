@@ -899,7 +899,8 @@ bool MainWindow::saveFile(SaveMode mode, const QString &head, bool safe)
     }
 
     setFilePath(filePath); // make sure that the file path is the canonical file path and the file watcher is working
-    emit editorTextChanged(this, EditorTextChangeType::NoChange); // make sure that the tab title is updated. Nothing actually changed
+    emit editorTextChanged(
+        this, EditorTextChangeType::NoChange); // make sure that the tab title is updated. Nothing actually changed
 
     saveTests(safe);
 
@@ -1013,7 +1014,8 @@ void MainWindow::onFileWatcherChanged(const QString &path)
 {
     LOG_INFO(INFO_OF(path));
 
-    emit editorTextChanged(this, EditorTextChangeType::ExternalChange); // File changed externally not from within the editor.
+    emit editorTextChanged(this,
+                           EditorTextChangeType::ExternalChange); // File changed externally not from within the editor.
 
     auto currentText = editor->toPlainText();
 

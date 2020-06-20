@@ -393,7 +393,8 @@ void AppWindow::openTab(const QString &path)
     connect(fsp, SIGNAL(editorTmpPathChanged(MainWindow *, const QString &)), this,
             SLOT(onEditorTmpPathChanged(MainWindow *, const QString &)));
     connect(fsp, SIGNAL(editorLanguageChanged(MainWindow *)), this, SLOT(onEditorLanguageChanged(MainWindow *)));
-    connect(fsp, SIGNAL(editorTextChanged(MainWindow *, MainWindow::EditorTextChangeType)), this, SLOT(onEditorTextChanged(MainWindow *, MainWindow::EditorTextChangeType)));
+    connect(fsp, SIGNAL(editorTextChanged(MainWindow *, MainWindow::EditorTextChangeType)), this,
+            SLOT(onEditorTextChanged(MainWindow *, MainWindow::EditorTextChangeType)));
     connect(fsp, SIGNAL(requestToastMessage(const QString &, const QString &)), trayIcon,
             SLOT(showMessage(const QString &, const QString &)));
     connect(fsp, SIGNAL(compileOrRunTriggered()), this, SLOT(onCompileOrRunTriggered()));
@@ -914,7 +915,7 @@ void AppWindow::onEditorTextChanged(MainWindow *window, MainWindow::EditorTextCh
         if (windowAt(index)->isTextChanged())
             title += " *";
         ui->tabWidget->setTabText(index, title);
-        
+
         auto lang = window->getLanguage();
 
         if (lang == "C++")
