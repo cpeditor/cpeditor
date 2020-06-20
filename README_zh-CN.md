@@ -215,7 +215,7 @@ CP Editor 是一个基于 Qt 的轻量级跨平台代码编辑器，专为算法
       <a href="https://github.com/tb148"><img src="https://avatars1.githubusercontent.com/u/28220642?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/tb148"><sub><b>Tony Brown</b></sub></a><br /><a href="#ideas-tb148" title="Ideas, Planning, & Feedback">🤔</a>
     </td>
     <td align="center">
-      <a href="https://github.com/sonulohani"><img src="https://avatars1.githubusercontent.com/u/2958681?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/sonulohani"><sub><b>Sonu Lohani</b></sub></a><br /><a href="https://github.com/cpeditor/cpeditor/issues?q=author%3Asonulohani" title="Bug reports">🐛</a>
+      <a href="https://github.com/sonulohani"><img src="https://avatars1.githubusercontent.com/u/2958681?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/sonulohani"><sub><b>Sonu Lohani</b></sub></a><br /><a href="https://github.com/cpeditor/cpeditor/issues?q=author%3Asonulohani" title="Bug reports">🐛</a> <a href="https://github.com/cpeditor/cpeditor/commits?author=sonulohani" title="Code">💻</a>
     </td>
   </tr>
 </table>
