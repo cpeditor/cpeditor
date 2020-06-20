@@ -2155,7 +2155,7 @@ from Competitive Companion again, the old file will be opened.</source>
 	<message>
         <location filename="../build/generated/SettingsInfo.cpp" line="131"/>
         <source>Check your answer on test cases with empty output</source>
-        <translation>在标准输出为空的测试点上评测你的代码</translation>
+        <translation>在输出为空的测试点上检查输出的正确性</translation>
     </message>
     <message>
         <location filename="../build/generated/SettingsInfo.cpp" line="131"/>
