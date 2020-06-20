@@ -719,7 +719,7 @@
         "name": "Message Logger Font",
         "type": "QFont",
         "default": {
-            "Windows": "QFont(\"Consolas\")",
+            "Windows": "QFont(\"Consolas\", 12)",
             "other": "QFont(\"monospace\")"
         },
         "tip": "The font of the message logger"
