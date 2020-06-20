@@ -20,6 +20,7 @@ With the portable version, you can easily store it in something like a USB disk,
 ### Changed
 
 - Now the lengths of the files added by "Add Pairs of Testcases From Files" are limited by Preferences->Advanced->Limits->Load Test Case File Length Limit. (#405)
+- Default font is set to consolas for windows operating system. (#422)
 
 ## v6.5
 
