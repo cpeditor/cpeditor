@@ -150,12 +150,11 @@ void updateSettingInfo()
                 if isinstance(t["default"], bool):
                     setting_info.write(str(t["default"]).lower())
                 elif isinstance(t["default"], dict):
-                    if typename == "QFont":
-                        platform_name = platform.system()
-                        if t["default"].get(platform_name):
-                            setting_info.write(str(t["default"][platform_name]))
-                        else:
-                            setting_info.write(str(t["default"]["other"]))
+                    platform_name = platform.system()
+                    if t["default"].get(platform_name):
+                        setting_info.write(str(t["default"][platform_name]))
+                    else:
+                        setting_info.write(str(t["default"]["other"]))
                 else:
                     setting_info.write(str(t["default"]))
         else:
