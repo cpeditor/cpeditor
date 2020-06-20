@@ -2774,6 +2774,16 @@ from Competitive Companion again, the old file will be opened.</source>
         <source>Run your code on all non-hidden test cases even if the input is empty.</source>
         <translation>在所有未隐藏的测试点运行你的代码，即使输入为空。</translation>
     </message>
+	<message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="131"/>
+        <source>Check your answer on test cases with empty output</source>
+        <translation>在标准输出为空的测试点上评测你的代码</translation>
+    </message>
+    <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="131"/>
+        <source>Check your answer even if your output or the expected the output is empty.</source>
+        <translation>在所有测试点评测你的代码，即使输出为空。</translation>
+    </message>
 </context>
 <context>
     <name>Settings::PathItem</name>
