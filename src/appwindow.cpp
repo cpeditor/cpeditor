@@ -393,7 +393,7 @@ void AppWindow::openTab(const QString &path)
     connect(fsp, SIGNAL(editorTmpPathChanged(MainWindow *, const QString &)), this,
             SLOT(onEditorTmpPathChanged(MainWindow *, const QString &)));
     connect(fsp, SIGNAL(editorLanguageChanged(MainWindow *)), this, SLOT(onEditorLanguageChanged(MainWindow *)));
-    connect(fsp, SIGNAL(editorTextChanged(MainWindow *)), this, SLOT(onEditorTextChanged(MainWindow *)));
+    connect(fsp, SIGNAL(editorTextChanged(MainWindow *, MainWindow::EditorTextChangeType)), this, SLOT(onEditorTextChanged(MainWindow *, MainWindow::EditorTextChangeType)));
     connect(fsp, SIGNAL(requestToastMessage(const QString &, const QString &)), trayIcon,
             SLOT(showMessage(const QString &, const QString &)));
     connect(fsp, SIGNAL(compileOrRunTriggered()), this, SLOT(onCompileOrRunTriggered()));
@@ -902,7 +902,7 @@ void AppWindow::onEditorFileChanged()
     }
 }
 
-void AppWindow::onEditorTextChanged(MainWindow *window)
+void AppWindow::onEditorTextChanged(MainWindow *window, MainWindow::EditorTextChangeType type)
 {
     int index = ui->tabWidget->indexOf(window);
     if (index != -1)
@@ -914,13 +914,18 @@ void AppWindow::onEditorTextChanged(MainWindow *window)
         if (windowAt(index)->isTextChanged())
             title += " *";
         ui->tabWidget->setTabText(index, title);
+        
+        auto lang = window->getLanguage();
 
-        if (window->getLanguage() == "C++")
+        if (lang == "C++")
             lspTimerCpp->start();
-        else if (window->getLanguage() == "Java")
+        else if (lang == "Java")
             lspTimerJava->start();
-        else
+        else if (lang == "Python")
             lspTimerPython->start();
+
+        if (SettingsHelper::isAutoSave() && type == MainWindow::EditorTextChangeType::InternalChange)
+            autoSaveTimer->start();
     }
 }
 
@@ -953,6 +958,8 @@ void AppWindow::onSaveTimerElapsed()
     {
         tab->save(false, tr("Auto Save"), false);
     }
+
+    autoSaveTimer->stop();
 }
 
 void AppWindow::onLSPTimerElapsedCpp()
@@ -998,7 +1005,7 @@ void AppWindow::onSettingsApplied(const QString &pagePath)
     for (int i = 0; i < ui->tabWidget->count(); ++i)
     {
         windowAt(i)->applySettings(pagePath, i == ui->tabWidget->currentIndex());
-        onEditorTextChanged(windowAt(i));
+        onEditorTextChanged(windowAt(i), MainWindow::EditorTextChangeType::NoChange);
     }
 
     if (pagePath.isEmpty() || pagePath == "Key Bindings")

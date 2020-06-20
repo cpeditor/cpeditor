@@ -20,9 +20,9 @@
 
 #include <QMainWindow>
 #include <QSystemTrayIcon>
+#include <mainwindow.hpp>
 
 class FindReplaceDialog;
-class MainWindow;
 class MessageLogger;
 class PreferencesWindow;
 class QMenu;
@@ -113,7 +113,7 @@ class AppWindow : public QMainWindow
 
     void onEditorFileChanged();
 
-    void onEditorTextChanged(MainWindow *window);
+    void onEditorTextChanged(MainWindow *window, MainWindow::EditorTextChangeType type);
 
     void onEditorTmpPathChanged(MainWindow *window, const QString &path);
 

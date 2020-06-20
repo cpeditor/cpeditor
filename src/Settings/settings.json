@@ -292,7 +292,7 @@
         "type": "int",
         "default": 10000,
         "param": "QVariantList {100, 36000000}",
-        "tip": "The time interval in miliseconds between two auto-saves."
+        "tip": "The time interval in miliseconds between last change and auto-saves."
     },
     {
         "name": "Wrap Text",
