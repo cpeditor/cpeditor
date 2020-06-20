@@ -1457,27 +1457,27 @@ Do you want to reload it?</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1240"/>
+        <location filename="../src/mainwindow.cpp" line="1241"/>
         <source>Time Limit Exceeded</source>
         <translation>超出时间限制</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1246"/>
+        <location filename="../src/mainwindow.cpp" line="1247"/>
         <source>The %1 of the process running on the testcase #%2 contains more than %3 characters, which is longer than the output length limit, so the process is killed. You can change the output length limit in Preferences-&gt;Advanced-&gt;Limits-&gt;Output Length Limit</source>
         <translation>在测试点 #%2 上运行的程序的 %1 包含多于 %3 个字符，超出了输出长度限制，因此进程被结束。你可以在设置-&gt;高级-&gt;限制-&gt;输出限制中更改长度限制</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1257"/>
+        <location filename="../src/mainwindow.cpp" line="1258"/>
         <source>%1 has been killed</source>
         <translation>%1 已被终止</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1258"/>
+        <location filename="../src/mainwindow.cpp" line="1259"/>
         <source>Detached runner</source>
         <translation>终端运行器</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1258"/>
+        <location filename="../src/mainwindow.cpp" line="1259"/>
         <source>Runner for testcase #%1</source>
         <translation>在测试点 #%1 上运行的程序</translation>
     </message>
