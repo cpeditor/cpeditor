@@ -208,7 +208,7 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
         .end()
         .page("Appearance", tr("Appearance"), new AppearancePage())
         .dir("Actions", tr("Actions"))
-            .page("General", tr("General"), {"Hot Exit/Enable", "Run On Empty Testcase"})
+            .page("General", tr("General"), {"Hot Exit/Enable", "Run On Empty Testcase", "Check On Empty Output"})
             .page("Save", tr("Save"), {"Auto Save", "Save Faster", "Auto Format", "Save File On Compilation",
                                "Save File On Execution", "Save Tests"})
             .page("Bind file and problem", tr("Bind file and problem"), {"Restore Old Problem Url", "Open Old File For Old Problem Url"})
