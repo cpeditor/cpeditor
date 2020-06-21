@@ -935,7 +935,7 @@ void AppWindow::onEditorTabUpdate(MainWindow *window)
         // Apply only to current window
 
         auto lang = window->getLanguage();
-        
+
         if (lang == "C++")
             lspTimerCpp->start();
         else if (lang == "Java")

@@ -115,7 +115,7 @@ class AppWindow : public QMainWindow
 
     void onEditorTextChanged(MainWindow *window, bool isInternalFileChange);
 
-    void onEditorTabUpdate(MainWindow* window);
+    void onEditorTabUpdate(MainWindow *window);
 
     void onEditorTmpPathChanged(MainWindow *window, const QString &path);
 
