@@ -1594,10 +1594,6 @@ You can use &quot;${filename}&quot; for the complete file name,
         <translation>自动保存</translation>
     </message>
     <message>
-        <source>Automatically save the file every 3 seconds.</source>
-        <translation>每 3 秒自动保存代码。</translation>
-    </message>
-    <message>
         <source>Wrap Text</source>
         <translation>文本自动换行</translation>
     </message>
@@ -2154,6 +2150,18 @@ from Competitive Companion again, the old file will be opened.</source>
     <message>
         <source>Check your answer even if your output or the expected the output is empty.</source>
         <translation>即使你的输出或答案的输出为空，依然检查输出的正确性。</translation>
+    </message>
+    <message>
+        <source>Automatically save the file.</source>
+        <translation>自动保存文件。</translation>
+    </message>
+    <message>
+        <source>Auto Save Interval (ms)</source>
+        <translation>自动保存时间间隔 (ms)</translation>
+    </message>
+    <message>
+        <source>The time interval in miliseconds between the last change and an auto-save.</source>
+        <translation>自上一次修改到自动保存之间的时间间隔。</translation>
     </message>
 </context>
 <context>

@@ -1568,10 +1568,6 @@ You can use &quot;${filename}&quot; for the complete file name,
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Automatically save the file every 3 seconds.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Wrap Text</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2094,6 +2090,18 @@ from Competitive Companion again, the old file will be opened.</source>
     </message>
     <message>
         <source>Check your answer even if your output or the expected the output is empty.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Automatically save the file.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Auto Save Interval (ms)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The time interval in miliseconds between the last change and an auto-save.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -1048,7 +1048,7 @@ void AppWindow::onSettingsApplied(const QString &pagePath)
                 auto tmp = windowAt(i);
                 if (tmp != currentWindow() && !tmp->isUntitled())
                 {
-                    tmp->save(false, tr("AutoSave"), false);
+                    tmp->save(false, tr("Auto Save"), false);
                 }
             }
             autoSaveTimer->start();
