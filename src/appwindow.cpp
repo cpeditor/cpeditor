@@ -393,8 +393,8 @@ void AppWindow::openTab(const QString &path)
     connect(fsp, SIGNAL(editorTmpPathChanged(MainWindow *, const QString &)), this,
             SLOT(onEditorTmpPathChanged(MainWindow *, const QString &)));
     connect(fsp, SIGNAL(editorLanguageChanged(MainWindow *)), this, SLOT(onEditorLanguageChanged(MainWindow *)));
-    connect(fsp, SIGNAL(editorTextChanged(MainWindow *, MainWindow::EditorTextChangeType)), this,
-            SLOT(onEditorTextChanged(MainWindow *, MainWindow::EditorTextChangeType)));
+    connect(fsp, SIGNAL(editorTextChanged(MainWindow *, bool)), this, SLOT(onEditorTextChanged(MainWindow *, bool)));
+    connect(fsp, SIGNAL(editorTabUpdate(MainWindow *)), this, SLOT(onEditorTabUpdate(MainWindow *)));
     connect(fsp, SIGNAL(requestToastMessage(const QString &, const QString &)), trayIcon,
             SLOT(showMessage(const QString &, const QString &)));
     connect(fsp, SIGNAL(compileOrRunTriggered()), this, SLOT(onCompileOrRunTriggered()));
@@ -903,11 +903,24 @@ void AppWindow::onEditorFileChanged()
     }
 }
 
-void AppWindow::onEditorTextChanged(MainWindow *window, MainWindow::EditorTextChangeType type)
+void AppWindow::onEditorTextChanged(MainWindow *window, bool isInternalFileChange)
+{
+    onEditorTabUpdate(window);
+    int index = ui->tabWidget->indexOf(window);
+    if (index != -1)
+    {
+        if (SettingsHelper::isAutoSave() && isInternalFileChange)
+            autoSaveTimer->start();
+    }
+}
+
+void AppWindow::onEditorTabUpdate(MainWindow *window)
 {
     int index = ui->tabWidget->indexOf(window);
     if (index != -1)
     {
+        // Apply to all tabs
+
         auto title = ui->tabWidget->tabText(index);
         // assume the clean title doesn't end with " *"
         if (title.endsWith(" *"))
@@ -916,17 +929,19 @@ void AppWindow::onEditorTextChanged(MainWindow *window, MainWindow::EditorTextCh
             title += " *";
         ui->tabWidget->setTabText(index, title);
 
-        auto lang = window->getLanguage();
+        if (currentWindow() != window)
+            return;
 
+        // Apply only to current window
+
+        auto lang = window->getLanguage();
+        
         if (lang == "C++")
             lspTimerCpp->start();
         else if (lang == "Java")
             lspTimerJava->start();
         else if (lang == "Python")
             lspTimerPython->start();
-
-        if (SettingsHelper::isAutoSave() && type == MainWindow::EditorTextChangeType::InternalChange)
-            autoSaveTimer->start();
     }
 }
 
@@ -1006,7 +1021,7 @@ void AppWindow::onSettingsApplied(const QString &pagePath)
     for (int i = 0; i < ui->tabWidget->count(); ++i)
     {
         windowAt(i)->applySettings(pagePath, i == ui->tabWidget->currentIndex());
-        onEditorTextChanged(windowAt(i), MainWindow::EditorTextChangeType::NoChange);
+        onEditorTabUpdate(windowAt(i));
     }
 
     if (pagePath.isEmpty() || pagePath == "Key Bindings")

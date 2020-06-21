@@ -72,13 +72,6 @@ class MainWindow : public QMainWindow
         QMap<QString, QVariant> toMap() const;
     };
 
-    enum EditorTextChangeType
-    {
-        InternalChange, // Internal text change from within the editor
-        ExternalChange, // External text change by file watcher
-        NoChange        // No change, just emit for UI updates like on Save
-    };
-
     explicit MainWindow(const QString &fileOpen, int index, QWidget *parent);
     ~MainWindow() override;
 
@@ -159,7 +152,8 @@ class MainWindow : public QMainWindow
   signals:
     void editorFileChanged();
     void editorTmpPathChanged(MainWindow *window, const QString &path);
-    void editorTextChanged(MainWindow *window, MainWindow::EditorTextChangeType type);
+    void editorTextChanged(MainWindow *window,bool isInternalCodeChange);
+    void editorTabUpdate(MainWindow *window);
     void confirmTriggered(MainWindow *widget);
     void requestToastMessage(const QString &head, const QString &body);
     void editorLanguageChanged(MainWindow *window);
