@@ -168,12 +168,8 @@ void MainWindow::run()
 
     for (int i = 0; i < testcases->count(); ++i)
     {
-        if (testcases->input(i).trimmed().isEmpty())
-        {
-            if (SettingsHelper::isRunOnEmptyTestcase())
-                run(i);
-        }
-        else if (testcases->isShow(i))
+        if ((!testcases->input(i).trimmed().isEmpty() || SettingsHelper::isRunOnEmptyTestcase()) &&
+            testcases->isShow(i))
         {
             run(i);
         }
@@ -1238,7 +1234,8 @@ void MainWindow::onRunFinished(int index, const QString &out, const QString &err
     if (!err.trimmed().isEmpty())
         log->error(head + tr("/stderr"), err);
     testcases->setOutput(index, out);
-    if (!out.isEmpty() && !testcases->expected(index).isEmpty())
+    if ((!out.isEmpty() && !testcases->expected(index).isEmpty()) ||
+        (SettingsHelper::isCheckOnTestcasesWithEmptyOutput() && exitCode == 0))
         checker->reqeustCheck(index, testcases->input(index), out, testcases->expected(index));
 }
 

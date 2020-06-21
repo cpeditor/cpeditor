@@ -16,7 +16,7 @@
     {
         "name": "Editor Font",
         "type": "QFont",
-        "default": "QFont(\"monospace\")",
+        "default": "[](){ QFont font = QFontDatabase::systemFont(QFontDatabase::FixedFont); font.setStyleHint(QFont::TypeWriter); return font; }()",
         "old": [
             "font"
         ],
@@ -708,7 +708,7 @@
     {
         "name": "Test Cases Font",
         "type": "QFont",
-        "default": "QFont(\"monospace\")",
+        "default": "[](){ QFont font = QFontDatabase::systemFont(QFontDatabase::FixedFont); font.setStyleHint(QFont::TypeWriter); return font; }()",
         "tip": "The font of test cases"
     },
     {
@@ -720,7 +720,7 @@
     {
         "name": "Message Logger Font",
         "type": "QFont",
-        "default": "QFont(\"monospace\")",
+        "default": "[](){ QFont font = QFontDatabase::systemFont(QFontDatabase::FixedFont); font.setStyleHint(QFont::TypeWriter); return font; }()",
         "tip": "The font of the message logger"
     },
     {
@@ -768,8 +768,14 @@
     },
     {
         "name": "Run On Empty Testcase",
-        "desc": "Allow running your code on empty testcase",
+        "desc": "Run your codes on empty test cases",
         "type": "bool",
-        "tip": "Run your code on all testcases even if the input is empty."
+        "tip": "Run your code on all non-hidden test cases even if the input is empty."
+    },
+    {
+        "name": "Check On Testcases With Empty Output",
+        "desc": "Check your answer on test cases with empty output",
+        "type": "bool",
+        "tip": "Check your answer even if your output or the expected the output is empty."
     }
 ]
