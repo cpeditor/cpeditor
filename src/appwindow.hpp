@@ -123,8 +123,6 @@ class AppWindow : public QMainWindow
 
     void onTabChanged(int);
 
-    void onSaveTimerElapsed();
-
     void onLSPTimerElapsedCpp();
 
     void onLSPTimerElapsedPython();
@@ -194,7 +192,6 @@ class AppWindow : public QMainWindow
   private:
     Ui::AppWindow *ui;
     MessageLogger *activeLogger = nullptr;
-    QTimer *autoSaveTimer = nullptr;
 
     QTimer *lspTimerCpp = nullptr;
     QTimer *lspTimerPython = nullptr;

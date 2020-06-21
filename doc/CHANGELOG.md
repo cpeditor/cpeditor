@@ -13,11 +13,13 @@ With the portable version, you can easily store it in something like a USB disk,
 - Add the translation system and Simplified Chinese translation. (#377 and #384)
 - In-application UI style setting and built-in light/dark style. (#265 and #404)
 - Now testcases with empty outputs can also be checked. (#208 and #430)
+- Auto-save time interval.
 
 ### Fixed
 
 - Fix the wrong default setting for C++ executable file path.
 - Fix the displayed size of the default font is not the same as the actual size of the default font. (#425)
+- Fix false external file changes when auto-save is enabled. (#392)
 
 ### Changed
 
