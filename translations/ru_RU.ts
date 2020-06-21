@@ -60,10 +60,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Auto Save</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Snippets</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1156,6 +1152,10 @@ Do you want to reload it?</source>
         <source>C++</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Auto Save</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MessageLogger</name>
@@ -1414,6 +1414,10 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     </message>
     <message>
         <source>Limits</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Auto Save</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2094,6 +2098,24 @@ from Competitive Companion again, the old file will be opened.</source>
     </message>
     <message>
         <source>Check your answer even if your output or the expected the output is empty.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Auto Save Interval (ms)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The time interval between a modification and an auto-save, or between two auto-saves.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Auto Save Interval Type</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>After the last modification: the timer will be reset after a modification to the code.
+After the first modification: the timer will start after a modification, if at that time the timer is not running.
+Without modification: auto-save happens with an constant inverval no matter there are modifications or not.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
