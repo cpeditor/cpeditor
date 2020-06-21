@@ -60,10 +60,6 @@
         <translation>你确定要重置所有设置吗？</translation>
     </message>
     <message>
-        <source>Auto Save</source>
-        <translation>自动保存</translation>
-    </message>
-    <message>
         <source>Snippets</source>
         <translation>代码片段</translation>
     </message>
@@ -1173,6 +1169,10 @@ Do you want to reload it?</source>
         <source>C++</source>
         <translation></translation>
     </message>
+    <message>
+        <source>Auto Save</source>
+        <translation>自动保存</translation>
+    </message>
 </context>
 <context>
     <name>MessageLogger</name>
@@ -1434,6 +1434,10 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     <message>
         <source>Limits</source>
         <translation>限制</translation>
+    </message>
+    <message>
+        <source>Auto Save</source>
+        <translation>自动保存</translation>
     </message>
 </context>
 <context>
@@ -2154,6 +2158,26 @@ from Competitive Companion again, the old file will be opened.</source>
     <message>
         <source>Check your answer even if your output or the expected the output is empty.</source>
         <translation>即使你的输出或答案的输出为空，依然检查输出的正确性。</translation>
+    </message>
+    <message>
+        <source>Auto Save Interval (ms)</source>
+        <translation>自动保存间隔 (ms)</translation>
+    </message>
+    <message>
+        <source>The time interval between a modification and an auto-save, or between two auto-saves.</source>
+        <translation>修改代码到自动保存之间或两次自动保存之间的时间间隔。</translation>
+    </message>
+    <message>
+        <source>Auto Save Interval Type</source>
+        <translation>自动保存间隔类型</translation>
+    </message>
+    <message>
+        <source>After the last modification: the timer will be reset after a modification to the code.
+After the first modification: the timer will start after a modification, if at that time the timer is not running.
+Without modification: auto-save happens with an constant inverval no matter there are modifications or not.</source>
+        <translation>After the last modification: 计时器会在修改代码后重置。
+After the first modification: 在修改代码时，若计时器未在运行，则计时器会开始运行。
+Without modification: 以恒定的时间间隔自动保存，无论是否进行了修改。</translation>
     </message>
 </context>
 <context>

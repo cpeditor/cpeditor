@@ -287,6 +287,22 @@
         "tip": "Automatically save the file every 3 seconds."
     },
     {
+        "name": "Auto Save Interval",
+        "desc": "Auto Save Interval (ms)",
+        "type": "int",
+        "default": 1000,
+        "param": "QVariantList {100, 36000000}",
+        "tip": "The time interval between a modification and an auto-save, or between two auto-saves."
+    },
+    {
+        "name": "Auto Save Interval Type",
+        "type": "QString",
+        "ui": "QComboBox",
+        "param": "QStringList { \"After the last modification\", \"After the first modification\", \"Without modification\" }",
+        "default": "After the last modification",
+        "tip": "After the last modification: the timer will be reset after a modification to the code.\nAfter the first modification: the timer will start after a modification, if at that time the timer is not running.\nWithout modification: auto-save happens with an constant inverval no matter there are modifications or not."
+    },
+    {
         "name": "Wrap Text",
         "type": "bool",
         "tip": "Wrap a line into several lines if it doesn't fit into the screen."

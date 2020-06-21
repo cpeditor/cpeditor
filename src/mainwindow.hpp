@@ -200,6 +200,8 @@ class MainWindow : public QMainWindow
 
     Widgets::TestCases *testcases = nullptr;
 
+    QTimer *autoSaveTimer = nullptr;
+
     void setTestCases();
     void setEditor();
     void setupCore();
