@@ -55,7 +55,7 @@ It makes your competitive coding life easier :grin: by automating many things fo
 - I am using Java and the editor can't run my codes.
    - You have to use a **non-public** class for your solution, its name can be configured in Preferences->Language->Commands->Java Class Name.
 - I get **DLL Missing error** when launching the application?
-   - Please download  [Microsoft Visual C++ Redistributable for Visual Studio 2015, 2017 and 2019](https://support.microsoft.com/en-us/help/2977003/the-latest-supported-visual-c-downloads). The [6.5.2](https://github.com/cpeditor/cpeditor/releases/tag/6.5.2) bundles it with the installer.
+   - Please download  [Microsoft Visual C++ Redistributable for Visual Studio 2015, 2017 and 2019](https://support.microsoft.com/en-us/help/2977003/the-latest-supported-visual-c-downloads). Starting [6.5.2](https://github.com/cpeditor/cpeditor/releases/tag/6.5.2) we bundle it with the installer.
 - How to use whole-application dark theme?
    - Now you can use whole-application dark theme on KDE, macOS and Windows 10. You need to set the system theme to dark theme, then CP Editor will use dark theme, too. However, on Windows 10, if you use the dark theme, you may need to restart the application after changing the theme of the code editor.
 - How to fetch testcases from the websites?
