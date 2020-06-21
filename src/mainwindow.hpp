@@ -152,7 +152,7 @@ class MainWindow : public QMainWindow
   signals:
     void editorFileChanged();
     void editorTmpPathChanged(MainWindow *window, const QString &path);
-    void editorTextChanged(MainWindow *window,bool isInternalCodeChange);
+    void editorTextChanged(MainWindow *window, bool isInternalCodeChange);
     void editorTabUpdate(MainWindow *window);
     void confirmTriggered(MainWindow *widget);
     void requestToastMessage(const QString &head, const QString &body);
