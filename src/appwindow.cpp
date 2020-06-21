@@ -394,7 +394,7 @@ void AppWindow::openTab(const QString &path)
             SLOT(onEditorTmpPathChanged(MainWindow *, const QString &)));
     connect(fsp, SIGNAL(editorLanguageChanged(MainWindow *)), this, SLOT(onEditorLanguageChanged(MainWindow *)));
     connect(fsp, SIGNAL(editorTextChanged(MainWindow *, bool)), this, SLOT(onEditorTextChanged(MainWindow *, bool)));
-    connect(fsp, SIGNAL(editorTabUpdate(MainWindow *)), this, SLOT(onEditorTabUpdate(MainWindow *)));
+    connect(fsp, SIGNAL(editorTabUpdated(MainWindow *)), this, SLOT(onEditorTabUpdated(MainWindow *)));
     connect(fsp, SIGNAL(requestToastMessage(const QString &, const QString &)), trayIcon,
             SLOT(showMessage(const QString &, const QString &)));
     connect(fsp, SIGNAL(compileOrRunTriggered()), this, SLOT(onCompileOrRunTriggered()));
@@ -905,7 +905,7 @@ void AppWindow::onEditorFileChanged()
 
 void AppWindow::onEditorTextChanged(MainWindow *window, bool isInternalFileChange)
 {
-    onEditorTabUpdate(window);
+    onEditorTabUpdated(window);
     int index = ui->tabWidget->indexOf(window);
     if (index != -1)
     {
@@ -914,7 +914,7 @@ void AppWindow::onEditorTextChanged(MainWindow *window, bool isInternalFileChang
     }
 }
 
-void AppWindow::onEditorTabUpdate(MainWindow *window)
+void AppWindow::onEditorTabUpdated(MainWindow *window)
 {
     int index = ui->tabWidget->indexOf(window);
     if (index != -1)
@@ -1021,7 +1021,7 @@ void AppWindow::onSettingsApplied(const QString &pagePath)
     for (int i = 0; i < ui->tabWidget->count(); ++i)
     {
         windowAt(i)->applySettings(pagePath, i == ui->tabWidget->currentIndex());
-        onEditorTabUpdate(windowAt(i));
+        onEditorTabUpdated(windowAt(i));
     }
 
     if (pagePath.isEmpty() || pagePath == "Key Bindings")

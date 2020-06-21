@@ -900,7 +900,7 @@ bool MainWindow::saveFile(SaveMode mode, const QString &head, bool safe)
     }
 
     setFilePath(filePath); // make sure that the file path is the canonical file path and the file watcher is working
-    emit editorTabUpdate(this);
+    emit editorTabUpdated(this);
 
     saveTests(safe);
 

@@ -153,7 +153,7 @@ class MainWindow : public QMainWindow
     void editorFileChanged();
     void editorTmpPathChanged(MainWindow *window, const QString &path);
     void editorTextChanged(MainWindow *window, bool isInternalCodeChange);
-    void editorTabUpdate(MainWindow *window);
+    void editorTabUpdated(MainWindow *window);
     void confirmTriggered(MainWindow *widget);
     void requestToastMessage(const QString &head, const QString &body);
     void editorLanguageChanged(MainWindow *window);

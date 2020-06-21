@@ -22,8 +22,8 @@
 #include <QSystemTrayIcon>
 
 class FindReplaceDialog;
-class MessageLogger;
 class MainWindow;
+class MessageLogger;
 class PreferencesWindow;
 class QMenu;
 class QShortcut;
@@ -115,7 +115,7 @@ class AppWindow : public QMainWindow
 
     void onEditorTextChanged(MainWindow *window, bool isInternalFileChange);
 
-    void onEditorTabUpdate(MainWindow *window);
+    void onEditorTabUpdated(MainWindow *window);
 
     void onEditorTmpPathChanged(MainWindow *window, const QString &path);
 
