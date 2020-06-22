@@ -40,7 +40,7 @@ class SessionManager : public QObject
     static void updateSession();
 
     // unsafe to be invoked multiple times.
-    static void restoreSession(bool withUI);
+    static void restoreSession();
 
     static void setAutoUpdateSession(bool shouldAutoUpdate);
 

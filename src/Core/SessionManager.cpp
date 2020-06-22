@@ -91,7 +91,7 @@ void SessionManager::updateSession()
     Util::saveFile(sessionFileLocation, sessionText, "Editor Session", true, nullptr, true);
 }
 
-void SessionManager::restoreSession(bool withUI)
+void SessionManager::restoreSession()
 {
     auto text = Util::readFile(sessionFileLocation);
     QJsonObject object = QJsonDocument::fromJson(text.toUtf8()).object();
@@ -106,11 +106,8 @@ void SessionManager::restoreSession(bool withUI)
     auto oldSize = app->size();
     app->setUpdatesEnabled(false);
 
-    if (withUI)
-    {
-        progressDialog->show();
-        progressDialog->setFocus();
-    }
+    progressDialog->show();
+    progressDialog->setFocus();
 
     int i = 1;
     for (auto const &tab : tabs)
