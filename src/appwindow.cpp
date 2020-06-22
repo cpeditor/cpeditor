@@ -510,7 +510,7 @@ void AppWindow::openContest(const QString &path, const QString &lang, int number
 
 void AppWindow::saveEditorStatus()
 {
-    for (const QString &i : SettingsHelper::queryEditorStatus())
+    for (const QString &i : SettingsHelper::getEditorStatus())
         SettingsHelper::removeEditorStatus(i);
     if (ui->tabWidget->count() == 1 && windowAt(0)->isUntitled() && !windowAt(0)->isTextChanged() &&
         windowAt(0)->getProblemURL().isEmpty())
@@ -1149,7 +1149,7 @@ void AppWindow::on_actionUse_Snippets_triggered()
     if (current != nullptr)
     {
         QString lang = current->getLanguage();
-        QStringList names = SettingsHelper::getLanguageConfig(lang).querySnippets();
+        QStringList names = SettingsHelper::getLanguageConfig(lang).getSnippets();
         if (names.isEmpty())
         {
             activeLogger->warn(
