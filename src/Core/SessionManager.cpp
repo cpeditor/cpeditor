@@ -113,9 +113,9 @@ void SessionManager::restoreSession(bool withUI)
     {
         progressDialog->show();
     }
-        
+
     int i = 1;
-    for (auto const & tab : tabs)
+    for (auto const &tab : tabs)
     {
         if (progressDialog->wasCanceled())
             break;
@@ -136,7 +136,6 @@ void SessionManager::restoreSession(bool withUI)
         app->ui->tabWidget->setCurrentIndex(currentIndex);
 
     progressDialog->hide();
-
 }
 
 void SessionManager::setAutoUpdateSession(bool shouldAutoUpdate)
