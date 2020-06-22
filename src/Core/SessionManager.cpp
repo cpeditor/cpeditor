@@ -48,7 +48,7 @@ SessionManager::SessionManager(AppWindow *appwindow) : QObject(appwindow), app(a
 void SessionManager::updateSession()
 {
     QJsonObject json;
-    json.insert("selectedTab", app->ui->tabWidget->currentIndex());
+    json.insert("currentIndex", app->ui->tabWidget->currentIndex());
 
     QJsonArray arr;
     for (int t = 0; t < app->ui->tabWidget->count(); t++)
@@ -82,7 +82,7 @@ void SessionManager::restoreSession(const QString &path)
 
     QJsonObject object = QJsonDocument::fromJson(text.toUtf8()).object();
 
-    const int currentIndex = object["selectedTab"].toInt();
+    const int currentIndex = object["currentIndex"].toInt();
     auto tabs = object["tabs"].toArray();
 
     QProgressDialog progressDialog(app);
