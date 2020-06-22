@@ -17,6 +17,7 @@
 
 #include "appwindow.hpp"
 #include "../ui/ui_appwindow.h"
+#include "Core/SessionManager.hpp"
 #include "Core/EventLogger.hpp"
 #include "Core/MessageLogger.hpp"
 #include "Core/StyleManager.hpp"
@@ -56,6 +57,7 @@ AppWindow::AppWindow(bool noHotExit, QWidget *parent) : QMainWindow(parent), ui(
     allocate();
     setConnections();
 
+    Core::SessionManager::initiate(this);
     Core::StyleManager::setDefault();
 
     QApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
@@ -95,36 +97,9 @@ AppWindow::AppWindow(bool noHotExit, QWidget *parent) : QMainWindow(parent), ui(
                 break;
         }
 
-        int length = SettingsHelper::getHotExitTabCount();
+        if (Core::SessionManager::hasSession())
+            Core::SessionManager::restoreSession(true /* restore with progress Dialog */);
 
-        QProgressDialog progress(this);
-        progress.setWindowModality(Qt::WindowModal);
-        progress.setWindowTitle(tr("Restoring Last Session"));
-        progress.setMaximum(length);
-        progress.setValue(0);
-
-        auto oldSize = size();
-        setUpdatesEnabled(false);
-
-        for (int i = 0; i < length; ++i)
-        {
-            if (progress.wasCanceled())
-                break;
-            auto status = MainWindow::EditorStatus(SettingsManager::get(QString("Editor Status/%1").arg(i)).toMap());
-            progress.setValue(i);
-            openTab("");
-            currentWindow()->loadStatus(status);
-            progress.setLabelText(currentWindow()->getTabTitle(true, false));
-        }
-
-        progress.setValue(length);
-
-        setUpdatesEnabled(true);
-        resize(oldSize);
-
-        int currentIndex = SettingsHelper::getHotExitCurrentIndex();
-        if (currentIndex >= 0 && currentIndex < ui->tabWidget->count())
-            ui->tabWidget->setCurrentIndex(currentIndex);
     } while (false);
 }
 
@@ -188,6 +163,8 @@ AppWindow::~AppWindow()
     delete findReplaceDialog;
 
     SettingsManager::deinit();
+    Core::SessionManager::deinit();
+
     LOG_INFO("Destruction finished");
 }
 
@@ -508,23 +485,6 @@ void AppWindow::openContest(const QString &path, const QString &lang, int number
     openTabs(tabs);
 }
 
-void AppWindow::saveEditorStatus()
-{
-    SettingsManager::remove(SettingsManager::keyStartsWith("Editor Status/"));
-    if (ui->tabWidget->count() == 1 && windowAt(0)->isUntitled() && !windowAt(0)->isTextChanged() &&
-        windowAt(0)->getProblemURL().isEmpty())
-    {
-        SettingsHelper::setHotExitTabCount(0);
-        SettingsHelper::setHotExitCurrentIndex(-1);
-    }
-    else
-    {
-        SettingsHelper::setHotExitTabCount(ui->tabWidget->count());
-        SettingsHelper::setHotExitCurrentIndex(ui->tabWidget->currentIndex());
-        for (int i = 0; i < ui->tabWidget->count(); ++i)
-            SettingsManager::set(QString("Editor Status/%1").arg(i), windowAt(i)->toStatus().toMap());
-    }
-}
 
 bool AppWindow::quit()
 {
@@ -533,7 +493,7 @@ bool AppWindow::quit()
     if (SettingsHelper::isHotExitEnable() || SettingsHelper::isForceClose())
     {
         LOG_INFO("quit() with hotexit");
-        saveEditorStatus();
+        Core::SessionManager::updateSession();
     }
     else
     {

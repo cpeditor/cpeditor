@@ -47,6 +47,11 @@ namespace Telemetry
 class UpdateChecker;
 }
 
+namespace Core
+{
+class SessionManager;
+}
+
 class AppWindow : public QMainWindow
 {
     Q_OBJECT
@@ -223,13 +228,14 @@ class AppWindow : public QMainWindow
     void openPaths(const QStringList &paths, bool cpp = true, bool java = true, bool python = true, int depth = -1);
     QStringList openFolder(const QString &path, bool cpp, bool java, bool python, int depth);
     void openContest(const QString &path, const QString &lang, int number);
-    void saveEditorStatus();
     bool quit();
     int getNewUntitledIndex();
     void reAttachLanguageServer(MainWindow *window);
 
     MainWindow *currentWindow();
     MainWindow *windowAt(int index);
+    
+    friend class Core::SessionManager;
 };
 
 #endif // APPWINDOW_HPP

@@ -486,21 +486,6 @@
         "tip": "Save the status of the editor when the application exits and\nload the status of the last session when the application starts.\nWhen this is enabled, you won't be asked whether to save\nthe unsaved files or not when exiting."
     },
     {
-        "name": "Hot Exit/Tab Count",
-        "type": "int",
-        "old": [
-            "number_of_tabs"
-        ]
-    },
-    {
-        "name": "Hot Exit/Current Index",
-        "type": "int",
-        "default": -1,
-        "old": [
-            "current_index"
-        ]
-    },
-    {
         "name": "Force Close",
         "type": "bool"
     },
