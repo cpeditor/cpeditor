@@ -110,7 +110,7 @@ AppWindow::AppWindow(bool noHotExit, QWidget *parent) : QMainWindow(parent), ui(
         {
             if (progress.wasCanceled())
                 break;
-            auto status = MainWindow::EditorStatus(SettingsManager::get(QString("Editor Status/%1").arg(i)).toMap());
+            auto status = MainWindow::EditorStatus(SettingsHelper::getEditorStatus(QString("%1").arg(i)));
             progress.setValue(i);
             openTab("");
             currentWindow()->loadStatus(status);
@@ -510,7 +510,8 @@ void AppWindow::openContest(const QString &path, const QString &lang, int number
 
 void AppWindow::saveEditorStatus()
 {
-    SettingsManager::remove(SettingsManager::keyStartsWith("Editor Status/"));
+    for (const QString &i : SettingsHelper::getEditorStatus())
+        SettingsHelper::removeEditorStatus(i);
     if (ui->tabWidget->count() == 1 && windowAt(0)->isUntitled() && !windowAt(0)->isTextChanged() &&
         windowAt(0)->getProblemURL().isEmpty())
     {
@@ -522,7 +523,7 @@ void AppWindow::saveEditorStatus()
         SettingsHelper::setHotExitTabCount(ui->tabWidget->count());
         SettingsHelper::setHotExitCurrentIndex(ui->tabWidget->currentIndex());
         for (int i = 0; i < ui->tabWidget->count(); ++i)
-            SettingsManager::set(QString("Editor Status/%1").arg(i), windowAt(i)->toStatus().toMap());
+            SettingsHelper::setEditorStatus(QString("%1").arg(i), windowAt(i)->toStatus().toMap());
     }
 }
 
@@ -1148,10 +1149,7 @@ void AppWindow::on_actionUse_Snippets_triggered()
     if (current != nullptr)
     {
         QString lang = current->getLanguage();
-        QString head = QString("Snippets/%1/").arg(lang);
-        QStringList names = SettingsManager::keyStartsWith(head);
-        for (QString &key : names)
-            key = key.mid(head.size());
+        QStringList names = SettingsHelper::getLanguageConfig(lang).getSnippets();
         if (names.isEmpty())
         {
             activeLogger->warn(
@@ -1168,7 +1166,7 @@ void AppWindow::on_actionUse_Snippets_triggered()
                 if (names.contains(name))
                 {
                     LOG_INFO("Found snippet and inserted");
-                    QString content = SettingsManager::get(QString("Snippets/%1/%2").arg(lang, name)).toString();
+                    QString content = SettingsHelper::getLanguageConfig(lang).getSnippet(name);
                     current->insertText(content);
                 }
                 else

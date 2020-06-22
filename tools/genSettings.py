@@ -4,6 +4,90 @@
 import sys
 import json
 
+def writeHelper(f, obj, pre, indent):
+    ids = "    " * indent
+    for t in obj:
+        name = t["name"]
+        key = name.replace(" ", "").replace("/", "").replace("+", "p")
+        typename = t["type"]
+        if typename == "Object":
+            f.write(f"{ids}struct {key} {{\n")
+            f.write(f"{ids}    QString pre;\n")
+            f.write(f"{ids}    {key}(QString p) : pre(p) {{}}\n")
+            writeHelper(f, t["sub"], "pre, ", indent + 1)
+            f.write(f"{ids}}};\n")
+            f.write(f"{ids}inline {key} get{key}(QString key) {{ return {key}(QStringList {{{pre} {json.dumps(name)}, key}}.join('/')); }}\n")
+            f.write(f"{ids}inline void remove{key}(QString key) {{ SettingsManager::remove(SettingsManager::keyStartsWith(QStringList {{{pre} {json.dumps(name)}, key}}.join('/'))); }}\n")
+            f.write(f"{ids}inline QStringList query{key}() {{ return SettingsManager::itemUnder(QStringList {{{pre} {json.dumps(name)}}}.join('/') + '/'); }}\n")
+        elif typename == "QMap":
+            final = t["final"]
+            pname = t.get("plural", name)
+            pkey = pname.replace(" ", "").replace("/", "").replace("+", "p")
+            f.write(f"{ids}inline void set{key}(QString key, {final} data) {{ SettingsManager::set(QStringList {{{pre} {json.dumps(name)}, key}}.join('/'), data); }}\n")
+            f.write(f"{ids}inline void remove{key}(QString key) {{ SettingsManager::remove({{QStringList {{{pre} {json.dumps(name)}, key}}.join('/')}}); }}\n")
+            f.write(f"{ids}inline {final} get{key}(QString key) {{ return SettingsManager::get(QStringList {{{pre} {json.dumps(name)}, key}}.join('/')).value<{final}>(); }}\n")
+            f.write(f"{ids}inline QStringList get{pkey}() {{ return SettingsManager::itemUnder(QStringList {{{pre} {json.dumps(name)}}}.join('/') + '/'); }}\n")
+        else:
+            f.write(
+                f"{ids}inline void set{key}({typename} value) {{ SettingsManager::set({json.dumps(name)}, value); }}\n")
+            if typename == "bool":
+                f.write(
+                    f"{ids}inline bool is{key}() {{ return SettingsManager::get({json.dumps(name)}).toBool(); }}\n")
+            else:
+                f.write(
+                    f"{ids}inline {typename} get{key}() {{ return SettingsManager::get({json.dumps(name)}).value<{typename}>(); }}\n")
+
+def writeInfo(f, obj, lst):
+    for t in obj:
+        name = t["name"]
+        key = name.replace(" ", "").replace("/", "").replace("+", "p")
+        typename = t["type"]
+        desc = t.get("desc", name.replace('/', ' '))
+        ui = t.get("ui", "")
+        tip = t.get("tip", "")
+        hlp = t.get("help", "")
+        if typename == "Object":
+            f.write(f"    QList<SettingInfo> LIST{key};\n")
+            writeInfo(f, t["sub"], f"LIST{key}")
+        f.write(f"    {lst}.append(SettingInfo {{{json.dumps(name)}, ")
+        desccode = f"QCoreApplication::translate(\"Setting\", {json.dumps(desc)})"
+        for lang in [ "C++", "Java", "Python" ]:
+            if lang in desc:
+                desccode = f"QCoreApplication::translate(\"Setting\", {json.dumps(desc.replace(lang, '%1'))}).arg(\"{lang}\")"
+                break
+        f.write(desccode)
+        tempname = typename
+        if typename == "QMap":
+            final = t["final"]
+            tempname = f"QMap:{final}"
+        f.write(f", \"{tempname}\", \"{ui}\", QCoreApplication::translate(\"Setting\", {json.dumps(tip)}), QCoreApplication::translate(\"Setting\", {json.dumps(hlp)}), ")
+        if typename != "Object":
+            if "default" in t:
+                if typename == "QString":
+                    f.write(json.dumps(t["default"]))
+                else:
+                    if isinstance(t["default"], bool):
+                        f.write(str(t["default"]).lower())
+                    else:
+                        f.write(str(t["default"]))
+            else:
+                defs = {
+                    'QString': '""',
+                    'int': '0',
+                    'bool': 'false',
+                    'QRect': 'QRect()',
+                    'QByteArray': 'QByteArray()',
+                    'QVariantList': 'QVariantList()',
+                    'QMap': 'QVariantMap()'
+                }
+                f.write(defs[typename])
+        else:
+            f.write(f'QVariant()')
+        f.write(f', {t.get("param", "QVariant()")}')
+        if typename == "Object":
+            f.write(f", LIST{key}")
+        f.write("});\n")
+
 if __name__ == "__main__":
     obj = json.load(open(sys.argv[1], mode="r", encoding="utf-8"))
     head = """/*
@@ -36,22 +120,12 @@ if __name__ == "__main__":
 #include "Settings/SettingsManager.hpp"
 #include <QFont>
 #include <QRect>
+#include <QVariant>
 
 namespace SettingsHelper
 {
 """)
-    for t in obj:
-        name = t["name"]
-        key = name.replace(" ", "").replace("/", "").replace("+", "p")
-        typename = t["type"]
-        setting_helper.write(
-            f"    inline void set{key}({typename} value) {{ SettingsManager::set({json.dumps(name)}, value); }}\n")
-        if typename == "bool":
-            setting_helper.write(
-                f"    inline bool is{key}() {{ return SettingsManager::get({json.dumps(name)}).toBool(); }}\n")
-        else:
-            setting_helper.write(
-                f"    inline {typename} get{key}() {{ return SettingsManager::get({json.dumps(name)}).value<{typename}>(); }}\n")
+    writeHelper(setting_helper, obj, "", 1)
     setting_helper.write("""}
 
 #endif // SETTINGSHELPER_HPP""")
@@ -70,9 +144,9 @@ namespace SettingsHelper
 struct SettingInfo
 {
     QString name, desc, type, ui, tip, help;
-    QStringList old;
     QVariant def;
     QVariant param;
+    QList<SettingInfo> child;
 
     QString key() const
     {
@@ -84,15 +158,16 @@ extern QList<SettingInfo> settingInfo;
 
 void updateSettingInfo();
 
-inline SettingInfo findSetting(const QString &name)
+inline SettingInfo findSetting(const QString &name, const QList<SettingInfo> &infos = settingInfo)
 {
-    for (const SettingInfo &si: settingInfo)
+    for (const SettingInfo &si: infos)
         if (si.name == name)
             return si;
     return SettingInfo();
 }
 
 #endif // SETTINGSINFO_HPP""")
+    setting_info.close()
 
     setting_info = open("generated/SettingsInfo.cpp", mode="w", encoding="utf-8")
     setting_info.write(head)
@@ -104,63 +179,6 @@ void updateSettingInfo()
 {
     settingInfo.clear();
 """)
-    for t in obj:
-        name = t["name"]
-        typename = t["type"]
-        if "desc" in t:
-            desc = t["desc"]
-        else:
-            desc = name.replace('/', ' ')
-        if "ui" in t:
-            ui = t["ui"]
-        else:
-            ui = ""
-        if "tip" in t:
-            tip = t["tip"]
-        else:
-            tip = ""
-        if "help" in t:
-            hlp = t["hlp"]
-        else:
-            hlp = ""
-
-        setting_info.write(f"    settingInfo.append(SettingInfo {{{json.dumps(name)}, ")
-        if "C++" in json.dumps(desc):
-            setting_info.write(f"QCoreApplication::translate(\"Setting\", {json.dumps(desc).replace('C++', '%1')}).arg(\"C++\")")
-        elif "Java" in json.dumps(desc):
-            setting_info.write(f"QCoreApplication::translate(\"Setting\", {json.dumps(desc).replace('Java', '%1')}).arg(\"Java\")")
-        elif "Python" in json.dumps(desc):
-            setting_info.write(f"QCoreApplication::translate(\"Setting\", {json.dumps(desc).replace('Python', '%1')}).arg(\"Python\")")
-        else:
-            setting_info.write(f"QCoreApplication::translate(\"Setting\", {json.dumps(desc)})")
-        setting_info.write(f", \"{typename}\", \"{ui}\", QCoreApplication::translate(\"Setting\", {json.dumps(tip)}), QCoreApplication::translate(\"Setting\", {json.dumps(hlp)}), {{")
-
-        if "old" in t:
-            olds = ""
-            for s in t["old"]:
-                olds = olds + '"' + s + '", '
-            setting_info.write(olds)
-        setting_info.write("}, ")
-        if "default" in t:
-            if typename == "QString":
-                setting_info.write(json.dumps(t["default"]))
-            else:
-                if isinstance(t["default"], bool):
-                    setting_info.write(str(t["default"]).lower())
-                else:
-                    setting_info.write(str(t["default"]))
-        else:
-            defs = {
-                'QString': '""',
-                'int': '0',
-                'bool': 'false',
-                'QRect': 'QRect()',
-                'QByteArray': 'QByteArray()',
-                'QVariantList': 'QVariantList()'
-            }
-            setting_info.write(defs[typename])
-        if "param" in t:
-            setting_info.write(f', {t["param"]}')
-        setting_info.write("});\n")
+    writeInfo(setting_info, obj, "settingInfo")
     setting_info.write("};\n")
     setting_info.close()
