@@ -18,6 +18,8 @@
 #ifndef SESSION_MANAGER_HPP
 #define SESSION_MANAGER_HPP
 
+#include <QObject>
+
 class AppWindow;
 class QTimer;
 class QProgressDialog;
@@ -25,8 +27,10 @@ class QJsonDocument;
 
 namespace Core
 {
-class SessionManager
+class SessionManager : public QObject
 {
+    Q_OBJECT
+
   public:
     static void initiate(AppWindow *);
     static bool hasSession();

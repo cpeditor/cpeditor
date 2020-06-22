@@ -21,7 +21,6 @@
 #include "appwindow.hpp"
 #include "generated/portable.hpp"
 #include "mainwindow.hpp"
-#include <QApplication>
 #include <QFile>
 #include <QJsonArray>
 #include <QJsonDocument>
@@ -58,7 +57,7 @@ void SessionManager::initiate(AppWindow *appwindow)
     }); // make it DirectConnection, I could not find a way to do so.
 
     progressDialog->setWindowModality(Qt::WindowModal);
-    progressDialog->setWindowTitle(QApplication::tr("Restoring Last Session"));
+    progressDialog->setWindowTitle(tr("Restoring Last Session"));
 }
 
 void SessionManager::deinit()
