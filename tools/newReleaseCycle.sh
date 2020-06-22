@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 if (($# != 8)); then
   echo 'newReleaseCycle.sh <stable major> <stable minor> <stable patch> <beta major> <beta minor> <beta patch> <new major> <new minor>'

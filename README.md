@@ -11,7 +11,7 @@ It makes your competitive coding life easier :grin: by automating many things fo
 ---
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-38-orange.svg)](#contributors-sparkles)
+[![All Contributors](https://img.shields.io/badge/all_contributors-39-orange.svg)](#contributors-sparkles)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/ce0f297f31f74485b0d340949d08d605)](https://www.codacy.com/gh/cpeditor/cpeditor)
 [![GitHub All Releases](https://img.shields.io/github/downloads/cpeditor/cpeditor/total?label=downloads%40all)](https://github.com/cpeditor/cpeditor/releases)
@@ -55,7 +55,7 @@ It makes your competitive coding life easier :grin: by automating many things fo
 - I am using Java and the editor can't run my codes.
    - You have to use a **non-public** class for your solution, its name can be configured in Preferences->Language->Commands->Java Class Name.
 - I get **DLL Missing error** when launching the application?
-   - Please download  [Microsoft Visual C++ Redistributable for Visual Studio 2015, 2017 and 2019](https://support.microsoft.com/en-us/help/2977003/the-latest-supported-visual-c-downloads).
+   - Please download  [Microsoft Visual C++ Redistributable for Visual Studio 2015, 2017 and 2019](https://support.microsoft.com/en-us/help/2977003/the-latest-supported-visual-c-downloads). Or you can install versions higher than or equal to [6.5.2](https://github.com/cpeditor/cpeditor/releases/tag/6.5.2) because since this version the VC Redist is bundled with the installer.
 - How to use whole-application dark theme?
    - Now you can use whole-application dark theme on KDE, macOS and Windows 10. You need to set the system theme to dark theme, then CP Editor will use dark theme, too. However, on Windows 10, if you use the dark theme, you may need to restart the application after changing the theme of the code editor.
 - How to fetch testcases from the websites?
@@ -116,10 +116,16 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
       <a href="https://github.com/palob"><img src="https://avatars2.githubusercontent.com/u/7050624?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/palob"><sub><b>Vincent Bermel</b></sub></a><br /><a href="#infra-palob" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a>
     </td>
     <td align="center">
-      <a href="https://github.com/Ravenclaw-OIer"><img src="https://avatars2.githubusercontent.com/u/44526586?v=4" width="100px;" alt=""/></a><br /><a href="http://ravenclaw-oier.github.io"><sub><b>Ravenclaw-OIer</b></sub></a><br /><a href="#ideas-Ravenclaw-OIer" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/cpeditor/cpeditor/issues?q=author%3ARavenclaw-OIer" title="Bug reports">🐛</a>
+      <a href="https://github.com/tb148"><img src="https://avatars1.githubusercontent.com/u/28220642?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/tb148"><sub><b>Tony Brown</b></sub></a><br /><a href="#ideas-tb148" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/cpeditor/cpeditor/commits?author=tb148" title="Code">💻</a>
     </td>
   </tr>
   <tr>
+    <td align="center">
+      <a href="https://github.com/sonulohani"><img src="https://avatars1.githubusercontent.com/u/2958681?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/sonulohani"><sub><b>Sonu Lohani</b></sub></a><br /><a href="https://github.com/cpeditor/cpeditor/issues?q=author%3Asonulohani" title="Bug reports">🐛</a> <a href="https://github.com/cpeditor/cpeditor/commits?author=sonulohani" title="Code">💻</a> <a href="#ideas-sonulohani" title="Ideas, Planning, & Feedback">🤔</a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/Ravenclaw-OIer"><img src="https://avatars2.githubusercontent.com/u/44526586?v=4" width="100px;" alt=""/></a><br /><a href="http://ravenclaw-oier.github.io"><sub><b>Ravenclaw-OIer</b></sub></a><br /><a href="#ideas-Ravenclaw-OIer" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/cpeditor/cpeditor/issues?q=author%3ARavenclaw-OIer" title="Bug reports">🐛</a> <a href="https://github.com/cpeditor/cpeditor/commits?author=Ravenclaw-OIer" title="Documentation">📖</a>
+    </td>
     <td align="center">
       <a href="https://github.com/tuwuna"><img src="https://avatars3.githubusercontent.com/u/56817415?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/tuwuna"><sub><b>tuwuna</b></sub></a><br /><a href="#ideas-tuwuna" title="Ideas, Planning, & Feedback">🤔</a>
     </td>
@@ -132,14 +138,14 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center">
       <a href="https://github.com/Brijesh1in"><img src="https://avatars3.githubusercontent.com/u/33791137?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/Brijesh1in"><sub><b>Brijesh1in</b></sub></a><br /><a href="#ideas-Brijesh1in" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/cpeditor/cpeditor/issues?q=author%3ABrijesh1in" title="Bug reports">🐛</a>
     </td>
+  </tr>
+  <tr>
     <td align="center">
       <a href="https://github.com/DarkWarrior703"><img src="https://avatars0.githubusercontent.com/u/56077342?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/DarkWarrior703"><sub><b>DarkWarrior703</b></sub></a><br /><a href="#ideas-DarkWarrior703" title="Ideas, Planning, & Feedback">🤔</a>
     </td>
     <td align="center">
       <a href="https://github.com/1CH1GO"><img src="https://avatars2.githubusercontent.com/u/56096830?v=4" width="100px;" alt=""/></a><br /><a href="http://pavankumar31072000@gmail.com"><sub><b>v-O_O-v</b></sub></a><br /><a href="https://github.com/cpeditor/cpeditor/issues?q=author%3A1CH1GO" title="Bug reports">🐛</a>
     </td>
-  </tr>
-  <tr>
     <td align="center">
       <a href="https://github.com/ApoorvaRajBhadani"><img src="https://avatars1.githubusercontent.com/u/11313858?v=4" width="100px;" alt=""/></a><br /><a href="http://www.apoorvarajbhadani.blogspot.com"><sub><b>Apoorva Raj Bhadani</b></sub></a><br /><a href="https://github.com/cpeditor/cpeditor/issues?q=author%3AApoorvaRajBhadani" title="Bug reports">🐛</a>
     </td>
@@ -152,14 +158,14 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center">
       <a href="https://github.com/GoToCoding"><img src="https://avatars3.githubusercontent.com/u/16542586?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/GoToCoding"><sub><b>Ruzal Ibragimov</b></sub></a><br /><a href="https://github.com/cpeditor/cpeditor/issues?q=author%3AGoToCoding" title="Bug reports">🐛</a>
     </td>
+  </tr>
+  <tr>
     <td align="center">
       <a href="https://github.com/Salil03"><img src="https://avatars0.githubusercontent.com/u/32109637?v=4" width="100px;" alt=""/></a><br /><a href="https://salil03.github.io/"><sub><b>Salil Gokhale</b></sub></a><br /><a href="#ideas-Salil03" title="Ideas, Planning, & Feedback">🤔</a>
     </td>
     <td align="center">
       <a href="https://github.com/WYWFlash"><img src="https://avatars1.githubusercontent.com/u/42882043?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/WYWFlash"><sub><b>WYWFlash</b></sub></a><br /><a href="https://github.com/cpeditor/cpeditor/issues?q=author%3AWYWFlash" title="Bug reports">🐛</a>
     </td>
-  </tr>
-  <tr>
     <td align="center">
       <a href="https://github.com/WZKSDN"><img src="https://avatars1.githubusercontent.com/u/14256391?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/WZKSDN"><sub><b>nocriz</b></sub></a><br /><a href="https://github.com/cpeditor/cpeditor/issues?q=author%3AWZKSDN" title="Bug reports">🐛</a>
     </td>
@@ -172,14 +178,14 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center">
       <a href="https://github.com/ankur314"><img src="https://avatars2.githubusercontent.com/u/37039680?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/ankur314"><sub><b>Ankur Ojha</b></sub></a><br /><a href="#ideas-ankur314" title="Ideas, Planning, & Feedback">🤔</a>
     </td>
+  </tr>
+  <tr>
     <td align="center">
       <a href="https://github.com/cs-mshah"><img src="https://avatars1.githubusercontent.com/u/56499208?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/cs-mshah"><sub><b>cs-mshah</b></sub></a><br /><a href="#ideas-cs-mshah" title="Ideas, Planning, & Feedback">🤔</a>
     </td>
     <td align="center">
       <a href="https://github.com/fedimser"><img src="https://avatars3.githubusercontent.com/u/14271071?v=4" width="100px;" alt=""/></a><br /><a href="http://fedimser.github.io"><sub><b>Dmytro Fedoriaka</b></sub></a><br /><a href="https://github.com/cpeditor/cpeditor/issues?q=author%3Afedimser" title="Bug reports">🐛</a>
     </td>
-  </tr>
-  <tr>
     <td align="center">
       <a href="https://github.com/m3h3d1"><img src="https://avatars0.githubusercontent.com/u/39239695?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/m3h3d1"><sub><b>m3h3d1</b></sub></a><br /><a href="#ideas-m3h3d1" title="Ideas, Planning, & Feedback">🤔</a>
     </td>
@@ -192,19 +198,16 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center">
       <a href="https://github.com/samael042"><img src="https://avatars3.githubusercontent.com/u/44134245?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/samael042"><sub><b>samael042</b></sub></a><br /><a href="https://github.com/cpeditor/cpeditor/issues?q=author%3Asamael042" title="Bug reports">🐛</a>
     </td>
+  </tr>
+  <tr>
     <td align="center">
       <a href="https://github.com/2740365712"><img src="https://avatars0.githubusercontent.com/u/33799658?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/2740365712"><sub><b>Starlit_Night</b></sub></a><br /><a href="#ideas-2740365712" title="Ideas, Planning, & Feedback">🤔</a>
     </td>
     <td align="center">
       <a href="https://github.com/shakeabi"><img src="https://avatars2.githubusercontent.com/u/36559835?v=4" width="100px;" alt=""/></a><br /><a href="http://abishake.co"><sub><b>Abishake</b></sub></a><br /><a href="#ideas-shakeabi" title="Ideas, Planning, & Feedback">🤔</a>
     </td>
-  </tr>
-  <tr>
     <td align="center">
       <a href="https://github.com/sahil-ra"><img src="https://avatars0.githubusercontent.com/u/30044253?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/sahil-ra"><sub><b>sahil-ra</b></sub></a><br /><a href="#ideas-sahil-ra" title="Ideas, Planning, & Feedback">🤔</a>
-    </td>
-    <td align="center">
-      <a href="https://github.com/tb148"><img src="https://avatars1.githubusercontent.com/u/28220642?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/tb148"><sub><b>Tony Brown</b></sub></a><br /><a href="#ideas-tb148" title="Ideas, Planning, & Feedback">🤔</a>
     </td>
   </tr>
 </table>

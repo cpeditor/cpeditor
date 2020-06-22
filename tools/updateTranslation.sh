@@ -1,5 +1,13 @@
 #!/bin/bash
 
+if [[ $1 == 'r' ]]; then
+	LOCATIONS=relative
+elif [[ $1 == 'a' ]]; then
+	LOCATIONS=absolute
+else
+	LOCATIONS=none
+fi
+
 declare -a SOURCES
 declare -a DIRS
 declare -a INCS
@@ -13,5 +21,5 @@ for i in "${DIRS[@]}"; do
 done
 
 for i in zh_CN ru_RU; do
-	lupdate -no-obsolete "${SOURCES[@]}" -ts translations/$i.ts -I src "${INCS[@]}"
+	lupdate -no-obsolete "${SOURCES[@]}" -locations "$LOCATIONS" -ts translations/$i.ts -I src "${INCS[@]}"
 done

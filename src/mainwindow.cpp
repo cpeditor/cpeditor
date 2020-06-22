@@ -52,7 +52,8 @@
 // ***************************** RAII  ****************************
 
 MainWindow::MainWindow(const QString &fileOpen, int index, QWidget *parent)
-    : QMainWindow(parent), ui(new Ui::MainWindow), untitledIndex(index), fileWatcher(new QFileSystemWatcher(this))
+    : QMainWindow(parent), ui(new Ui::MainWindow), untitledIndex(index), fileWatcher(new QFileSystemWatcher(this)),
+      autoSaveTimer(new QTimer(this))
 {
     LOG_INFO(INFO_OF(fileOpen) << INFO_OF(index));
 
@@ -61,6 +62,9 @@ MainWindow::MainWindow(const QString &fileOpen, int index, QWidget *parent)
     setTestCases();
     setEditor();
     connect(fileWatcher, SIGNAL(fileChanged(const QString &)), this, SLOT(onFileWatcherChanged(const QString &)));
+    connect(
+        autoSaveTimer, &QTimer::timeout, autoSaveTimer, [this] { saveFile(IgnoreUntitled, tr("Auto Save"), false); },
+        Qt::DirectConnection);
     applySettings("", true);
     loadFile(fileOpen);
     if (testcases->count() == 0)
@@ -78,10 +82,11 @@ MainWindow::~MainWindow()
         delete tmpDir;
 
     delete ui;
-    delete editor;
+    delete autoSaveTimer;
     delete testcases;
     delete formatter;
     delete fileWatcher;
+    delete editor;
     delete log;
 }
 
@@ -168,7 +173,8 @@ void MainWindow::run()
 
     for (int i = 0; i < testcases->count(); ++i)
     {
-        if (!testcases->input(i).trimmed().isEmpty() && testcases->isShow(i))
+        if ((!testcases->input(i).trimmed().isEmpty() || SettingsHelper::isRunOnEmptyTestcase()) &&
+            testcases->isShow(i))
         {
             run(i);
         }
@@ -537,6 +543,18 @@ void MainWindow::applySettings(const QString &pagePath, bool shouldPerformDigoni
 
     if (pagePath.isEmpty() || pagePath == "Language/C++/C++ Commands")
         updateChecker();
+
+    if (pagePath.isEmpty() || pagePath == "Actions/Auto Save")
+    {
+        if (SettingsHelper::isAutoSave())
+        {
+            autoSaveTimer->setSingleShot(SettingsHelper::getAutoSaveIntervalType() != "Without modification");
+            autoSaveTimer->setInterval(SettingsHelper::getAutoSaveInterval());
+            autoSaveTimer->start();
+        }
+        else
+            autoSaveTimer->stop();
+    }
 }
 
 bool MainWindow::save(bool force, const QString &head, bool safe)
@@ -871,6 +889,8 @@ bool MainWindow::saveFile(SaveMode mode, const QString &head, bool safe)
         if (!Util::saveFile(newFilePath, editor->toPlainText(), head, safe, log, true))
             return beforeReturn(false);
 
+        savedText = editor->toPlainText();
+
         setFilePath(newFilePath);
 
         SettingsHelper::setSavePath(QFileInfo(filePath).canonicalPath());
@@ -889,6 +909,8 @@ bool MainWindow::saveFile(SaveMode mode, const QString &head, bool safe)
     {
         if (!Util::saveFile(filePath, editor->toPlainText(), head, safe, log, true))
             return false;
+
+        savedText = editor->toPlainText();
     }
     else
     {
@@ -1018,6 +1040,9 @@ void MainWindow::onFileWatcherChanged(const QString &path)
 
     if (!fileText.isNull())
     {
+        if (fileText == savedText)
+            return;
+
         if (fileText == currentText)
         {
             savedText = fileText;
@@ -1051,6 +1076,11 @@ void MainWindow::onFileWatcherChanged(const QString &path)
 
 void MainWindow::onTextChanged()
 {
+    if (SettingsHelper::isAutoSave() && SettingsHelper::getAutoSaveIntervalType() != "Without modification" &&
+        (!autoSaveTimer->isActive() || SettingsHelper::getAutoSaveIntervalType() == "After the last modification"))
+    {
+        autoSaveTimer->start();
+    }
     emit editorTextChanged(this);
 }
 
@@ -1225,7 +1255,8 @@ void MainWindow::onRunFinished(int index, const QString &out, const QString &err
     if (!err.trimmed().isEmpty())
         log->error(head + tr("/stderr"), err);
     testcases->setOutput(index, out);
-    if (!out.isEmpty() && !testcases->expected(index).isEmpty())
+    if ((!out.isEmpty() && !testcases->expected(index).isEmpty()) ||
+        (SettingsHelper::isCheckOnTestcasesWithEmptyOutput() && exitCode == 0))
         checker->reqeustCheck(index, testcases->input(index), out, testcases->expected(index));
 }
 

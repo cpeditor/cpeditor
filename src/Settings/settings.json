@@ -13,7 +13,7 @@
     {
         "name": "Editor Font",
         "type": "QFont",
-        "default": "QFont(\"monospace\")",
+        "default": "[](){ QFont font = QFontDatabase::systemFont(QFontDatabase::FixedFont); font.setStyleHint(QFont::TypeWriter); return font; }()",
         "tip": "The font of the code editor"
     },
     {
@@ -234,6 +234,22 @@
         "desc": "Enable Auto Save",
         "type": "bool",
         "tip": "Automatically save the file every 3 seconds."
+    },
+    {
+        "name": "Auto Save Interval",
+        "desc": "Auto Save Interval (ms)",
+        "type": "int",
+        "default": 1000,
+        "param": "QVariantList {100, 36000000}",
+        "tip": "The time interval between a modification and an auto-save, or between two auto-saves."
+    },
+    {
+        "name": "Auto Save Interval Type",
+        "type": "QString",
+        "ui": "QComboBox",
+        "param": "QStringList { \"After the last modification\", \"After the first modification\", \"Without modification\" }",
+        "default": "After the last modification",
+        "tip": "After the last modification: the timer will be reset after a modification to the code.\nAfter the first modification: the timer will start after a modification, if at that time the timer is not running.\nWithout modification: auto-save happens with an constant inverval no matter there are modifications or not."
     },
     {
         "name": "Wrap Text",
@@ -586,7 +602,7 @@
     {
         "name": "Test Cases Font",
         "type": "QFont",
-        "default": "QFont(\"monospace\")",
+        "default": "[](){ QFont font = QFontDatabase::systemFont(QFontDatabase::FixedFont); font.setStyleHint(QFont::TypeWriter); return font; }()",
         "tip": "The font of test cases"
     },
     {
@@ -598,7 +614,7 @@
     {
         "name": "Message Logger Font",
         "type": "QFont",
-        "default": "QFont(\"monospace\")",
+        "default": "[](){ QFont font = QFontDatabase::systemFont(QFontDatabase::FixedFont); font.setStyleHint(QFont::TypeWriter); return font; }()",
         "tip": "The font of the message logger"
     },
     {
@@ -657,5 +673,17 @@
                 "final": "QString"
             }
         ]
+    },
+    {
+        "name": "Run On Empty Testcase",
+        "desc": "Run your codes on empty test cases",
+        "type": "bool",
+        "tip": "Run your code on all non-hidden test cases even if the input is empty."
+    },
+    {
+        "name": "Check On Testcases With Empty Output",
+        "desc": "Check your answer on test cases with empty output",
+        "type": "bool",
+        "tip": "Check your answer even if your output or the expected the output is empty."
     }
 ]

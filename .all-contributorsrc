@@ -131,13 +131,35 @@
       ]
     },
     {
+      "login": "tb148",
+      "name": "Tony Brown",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/28220642?v=4",
+      "profile": "https://github.com/tb148",
+      "contributions": [
+        "ideas",
+        "code"
+      ]
+    },
+    {
+      "login": "sonulohani",
+      "name": "Sonu Lohani",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/2958681?v=4",
+      "profile": "https://github.com/sonulohani",
+      "contributions": [
+        "bug",
+        "code",
+        "ideas"
+      ]
+    },
+    {
       "login": "Ravenclaw-OIer",
       "name": "Ravenclaw-OIer",
       "avatar_url": "https://avatars2.githubusercontent.com/u/44526586?v=4",
       "profile": "http://ravenclaw-oier.github.io",
       "contributions": [
         "ideas",
-        "bug"
+        "bug",
+        "doc"
       ]
     },
     {
@@ -363,15 +385,6 @@
       "name": "sahil-ra",
       "avatar_url": "https://avatars0.githubusercontent.com/u/30044253?v=4",
       "profile": "https://github.com/sahil-ra",
-      "contributions": [
-        "ideas"
-      ]
-    },
-    {
-      "login": "tb148",
-      "name": "Tony Brown",
-      "avatar_url": "https://avatars1.githubusercontent.com/u/28220642?v=4",
-      "profile": "https://github.com/tb148",
       "contributions": [
         "ideas"
       ]

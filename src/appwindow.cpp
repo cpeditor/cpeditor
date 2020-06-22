@@ -177,7 +177,6 @@ AppWindow::~AppWindow()
     Extensions::EditorTheme::release();
     delete ui;
     delete preferencesWindow;
-    delete autoSaveTimer;
     delete lspTimerCpp;
     delete lspTimerJava;
     delete lspTimerPython;
@@ -228,7 +227,6 @@ void AppWindow::setConnections()
     ui->tabWidget->tabBar()->setContextMenuPolicy(Qt::CustomContextMenu);
     connect(ui->tabWidget->tabBar(), SIGNAL(customContextMenuRequested(const QPoint &)), this,
             SLOT(onTabContextMenuRequested(const QPoint &)));
-    connect(autoSaveTimer, SIGNAL(timeout()), this, SLOT(onSaveTimerElapsed()));
 
     connect(lspTimerCpp, SIGNAL(timeout()), this, SLOT(onLSPTimerElapsedCpp()));
     connect(lspTimerJava, SIGNAL(timeout()), this, SLOT(onLSPTimerElapsedJava()));
@@ -246,7 +244,6 @@ void AppWindow::setConnections()
 
 void AppWindow::allocate()
 {
-    autoSaveTimer = new QTimer();
     lspTimerCpp = new QTimer();
     lspTimerJava = new QTimer();
     lspTimerPython = new QTimer();
@@ -264,16 +261,9 @@ void AppWindow::allocate()
     findReplaceDialog->setWindowFlags(Qt::Window | Qt::WindowMinimizeButtonHint | Qt::WindowMaximizeButtonHint |
                                       Qt::WindowCloseButtonHint);
 
-    autoSaveTimer->setInterval(3000);
-    autoSaveTimer->setSingleShot(false);
-
     lspTimerCpp->setInterval(SettingsHelper::getLSPDelayCpp());
     lspTimerJava->setInterval(SettingsHelper::getLSPDelayJava());
     lspTimerPython->setInterval(SettingsHelper::getLSPDelayPython());
-
-    lspTimerCpp->setSingleShot(false);
-    lspTimerJava->setSingleShot(false);
-    lspTimerPython->setSingleShot(false);
 
     trayIconMenu = new QMenu();
     trayIconMenu->addAction(tr("Show Main Window"), this, SLOT(showOnTop()));
@@ -951,18 +941,6 @@ void AppWindow::onEditorLanguageChanged(MainWindow *window)
         reAttachLanguageServer(window);
 }
 
-void AppWindow::onSaveTimerElapsed()
-{
-    for (int t = 0; t < ui->tabWidget->count(); t++)
-    {
-        auto tmp = windowAt(t);
-        if (!tmp->isUntitled())
-        {
-            tmp->save(false, tr("Auto Save"), false);
-        }
-    }
-}
-
 void AppWindow::onLSPTimerElapsedCpp()
 {
     auto tab = currentWindow();
@@ -1018,14 +996,6 @@ void AppWindow::onSettingsApplied(const QString &pagePath)
             server->updatePort(SettingsHelper::getCompetitiveCompanionConnectionPort());
         else
             server->updatePort(0);
-    }
-
-    if (pagePath.isEmpty() || pagePath == "Actions/Save")
-    {
-        if (SettingsHelper::isAutoSave())
-            autoSaveTimer->start();
-        else
-            autoSaveTimer->stop();
     }
 
     if (pagePath.isEmpty() || pagePath == "Appearance")
