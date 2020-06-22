@@ -143,4 +143,16 @@ QString configFilePath(QString path)
         .replace("$HOME", QStandardPaths::writableLocation(QStandardPaths::HomeLocation))
         .replace("$BINARY", QCoreApplication::applicationDirPath());
 }
+
+QString findFirstExistPath(const QStringList &paths)
+{
+    for (const QString &path : paths)
+    {
+        QString realPath = configFilePath(path);
+        if (QFile::exists(realPath))
+            return realPath;
+    }
+    return QString();
+}
+
 } // namespace Util

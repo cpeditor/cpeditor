@@ -41,19 +41,9 @@ static const QStringList noUnknownKeyWarning = {"C++/Run Command", "Python/Compi
 
 void SettingsManager::init()
 {
-    // find existing config file
-    QString loadPath;
-    for (auto path : configFileLocations)
-    {
-        path = Util::configFilePath(path);
-        if (QFile::exists(path))
-        {
-            loadPath = path;
-            break;
-        }
-    }
-
-    loadSettings(loadPath);
+    QString path = Util::findFirstExistPath(configFileLocations);
+    if (!path.isEmpty())
+        loadSettings(path);
 }
 
 void SettingsManager::deinit()

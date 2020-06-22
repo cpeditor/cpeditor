@@ -57,6 +57,15 @@ QString readFile(const QString &path, const QString &head = "Read File", Message
  * @note available place holders: $APPCONFIG, $HOME, $BINARY
  */
 QString configFilePath(QString path);
+
+/**
+ * @brief find the first exist path
+ * @param paths the path list
+ * @return the first exist path, or QString() if no path exist
+ * @note will call configFilePath to replace arguments
+ */
+QString findFirstExistPath(const QStringList &paths);
+
 } // namespace Util
 
 #endif // FILEUTIL_HPP
