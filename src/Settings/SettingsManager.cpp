@@ -19,6 +19,7 @@
 #include "Core/EventLogger.hpp"
 #include "Settings/FileProblemBinder.hpp"
 #include "Settings/SettingsUpdater.hpp"
+#include "Util/FileUtil.hpp"
 #include "generated/SettingsInfo.hpp"
 #include "generated/portable.hpp"
 #include <QDebug>
@@ -26,12 +27,11 @@
 #include <QFont>
 #include <QRect>
 #include <QSettings>
-#include <QStandardPaths>
 
 QVariantMap *SettingsManager::cur = nullptr;
 QVariantMap *SettingsManager::def = nullptr;
 
-static QStringList configFileLocation = {
+const static QStringList configFileLocations = {
 #ifdef PORTABLE_VERSION
     "$BINARY/cp_editor_settings.ini",
 #endif
@@ -41,15 +41,11 @@ static const QStringList noUnknownKeyWarning = {"C++/Run Command", "Python/Compi
 
 void SettingsManager::init()
 {
-    for (QString &location : configFileLocation)
-        location = location.replace("$APPCONFIG", QStandardPaths::writableLocation(QStandardPaths::AppConfigLocation))
-                       .replace("$HOME", QStandardPaths::writableLocation(QStandardPaths::HomeLocation))
-                       .replace("$BINARY", QCoreApplication::applicationDirPath());
-
-    // find exist config file
+    // find existing config file
     QString loadPath;
-    for (auto path : configFileLocation)
+    for (auto path : configFileLocations)
     {
+        path = Util::configFilePath(path);
         if (QFile::exists(path))
         {
             loadPath = path;
@@ -62,7 +58,7 @@ void SettingsManager::init()
 
 void SettingsManager::deinit()
 {
-    saveSettings(configFileLocation[0]);
+    saveSettings(Util::configFilePath(configFileLocations[0]));
 
     delete cur;
     delete def;

@@ -50,6 +50,13 @@ bool saveFile(const QString &path, const QString &content, const QString &head =
  */
 QString readFile(const QString &path, const QString &head = "Read File", MessageLogger *log = nullptr,
                  bool notExistWarning = false);
+/**
+ * @brief get the path of a configuration file
+ * @param path the original path
+ * @return the converted path
+ * @note available place holders: $APPCONFIG, $HOME, $BINARY
+ */
+QString configFilePath(QString path);
 } // namespace Util
 
 #endif // FILEUTIL_HPP

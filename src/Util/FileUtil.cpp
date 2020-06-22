@@ -18,12 +18,13 @@
 #include "Util/FileUtil.hpp"
 #include "Core/EventLogger.hpp"
 #include "Core/MessageLogger.hpp"
+#include "generated/SettingsHelper.hpp"
 #include <QCoreApplication>
 #include <QDir>
 #include <QFile>
 #include <QFileInfo>
 #include <QSaveFile>
-#include <generated/SettingsHelper.hpp>
+#include <QStandardPaths>
 
 namespace Util
 {
@@ -134,5 +135,12 @@ QString readFile(const QString &path, const QString &head, MessageLogger *log, b
     if (content.isNull())
         return "";
     return content;
+}
+
+QString configFilePath(QString path)
+{
+    return path.replace("$APPCONFIG", QStandardPaths::writableLocation(QStandardPaths::AppConfigLocation))
+        .replace("$HOME", QStandardPaths::writableLocation(QStandardPaths::HomeLocation))
+        .replace("$BINARY", QCoreApplication::applicationDirPath());
 }
 } // namespace Util

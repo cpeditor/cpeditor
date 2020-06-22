@@ -57,7 +57,6 @@ AppWindow::AppWindow(bool noHotExit, QWidget *parent) : QMainWindow(parent), ui(
     allocate();
     setConnections();
 
-    Core::SessionManager::initiate(this);
     Core::StyleManager::setDefault();
 
     QApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
@@ -80,27 +79,27 @@ AppWindow::AppWindow(bool noHotExit, QWidget *parent) : QMainWindow(parent), ui(
     if (SettingsHelper::isCheckUpdate())
         updateChecker->checkUpdate(true);
 
-    do
+    if (noHotExit || (!SettingsHelper::isForceClose() && !SettingsHelper::isHotExitEnable()))
+        return;
+
+    SettingsHelper::setForceClose(false);
+
+    auto lastSessionPath = sessionManager->lastSessionPath();
+
+    if (lastSessionPath.isEmpty())
+        return;
+
+    if (!SettingsHelper::isHotExitEnable())
     {
-        if (noHotExit || (!SettingsHelper::isForceClose() && !SettingsHelper::isHotExitEnable()))
-            break;
+        auto res = QMessageBox::question(
+            this, tr("Hot Exit"),
+            tr("In the last session, CP Editor was abnormally killed, do you want to restore the last session?"),
+            QMessageBox::Yes | QMessageBox::No);
+        if (res == QMessageBox::No)
+            return;
+    }
 
-        SettingsHelper::setForceClose(false);
-
-        if (!SettingsHelper::isHotExitEnable())
-        {
-            auto res = QMessageBox::question(
-                this, tr("Hot Exit"),
-                tr("In the last session, CP Editor was abnormally killed, do you want to restore the last session?"),
-                QMessageBox::Yes | QMessageBox::No);
-            if (res == QMessageBox::No)
-                break;
-        }
-
-        if (Core::SessionManager::hasSession())
-            Core::SessionManager::restoreSession();
-
-    } while (false);
+    sessionManager->restoreSession(lastSessionPath);
 }
 
 AppWindow::AppWindow(int depth, bool cpp, bool java, bool python, bool noHotExit, const QStringList &paths,
@@ -161,9 +160,9 @@ AppWindow::~AppWindow()
     delete updateChecker;
     delete server;
     delete findReplaceDialog;
+    delete sessionManager;
 
     SettingsManager::deinit();
-    Core::SessionManager::deinit();
 
     LOG_INFO("Destruction finished");
 }
@@ -250,6 +249,8 @@ void AppWindow::allocate()
     trayIcon->setIcon(QIcon(":/icon.png"));
     trayIcon->setContextMenu(trayIconMenu);
     trayIcon->show();
+
+    sessionManager = new Core::SessionManager(this);
 }
 
 void AppWindow::applySettings()
@@ -492,7 +493,7 @@ bool AppWindow::quit()
     if (SettingsHelper::isHotExitEnable() || SettingsHelper::isForceClose())
     {
         LOG_INFO("quit() with hotexit");
-        Core::SessionManager::updateSession();
+        sessionManager->updateSession();
     }
     else
     {

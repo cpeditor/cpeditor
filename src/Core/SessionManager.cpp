@@ -17,6 +17,7 @@
 
 #include "Core/SessionManager.hpp"
 #include "../../ui/ui_appwindow.h"
+#include "Core/EventLogger.hpp"
 #include "Util/FileUtil.hpp"
 #include "appwindow.hpp"
 #include "generated/portable.hpp"
@@ -27,49 +28,27 @@
 #include <QJsonObject>
 #include <QProgressDialog>
 #include <QSizePolicy>
-#include <QStandardPaths>
 #include <QTimer>
 #include <QVariantMap>
 
 namespace Core
 {
-
-static QString sessionFileLocation = {
+const static QStringList sessionFileLocations = {
 #ifdef PORTABLE_VERSION
     "$BINARY/cp_editor_session.json",
 #endif
     "$APPCONFIG/cp_editor_session.json"};
 
-QTimer *SessionManager::timer;
-AppWindow *SessionManager::app = nullptr;
-bool SessionManager::isAutoUpdateSession = false;
-QProgressDialog *SessionManager::progressDialog = nullptr;
-
-void SessionManager::initiate(AppWindow *appwindow)
+SessionManager::SessionManager(AppWindow *appwindow) : QObject(appwindow), app(appwindow)
 {
-    initPath();
-    timer = new QTimer();
-    progressDialog = new QProgressDialog(appwindow);
+    timer = new QTimer(this);
+    progressDialog = new QProgressDialog(app);
 
-    app = appwindow;
-    timer->setInterval(3000); // default to 3000ms
-    QObject::connect(
-        timer, &QTimer::timeout, timer, [] { SessionManager::updateSession(); }, Qt::DirectConnection);
+    timer->setInterval(10000);
+    connect(timer, SIGNAL(timeout()), this, SLOT(updateSession()), Qt::DirectConnection);
 
     progressDialog->setWindowModality(Qt::WindowModal);
     progressDialog->setWindowTitle(tr("Restoring Last Session"));
-}
-
-void SessionManager::deinit()
-{
-    delete timer;
-    delete progressDialog;
-}
-
-void SessionManager::initPath()
-{
-    sessionFileLocation.replace("$BINARY", QCoreApplication::applicationDirPath())
-        .replace("$APPCONFIG", QStandardPaths::writableLocation(QStandardPaths::AppConfigLocation));
 }
 
 void SessionManager::updateSession()
@@ -88,12 +67,27 @@ void SessionManager::updateSession()
     json.insert("tabs", arr);
     auto sessionText = QJsonDocument::fromVariant(json.toVariantMap()).toJson();
 
-    Util::saveFile(sessionFileLocation, sessionText, "Editor Session", true, nullptr, true);
+    Util::saveFile(Util::configFilePath(sessionFileLocations[0]), sessionText, "Editor Session", true, nullptr, true);
 }
 
-void SessionManager::restoreSession()
+void SessionManager::restoreSession(const QString &path)
 {
-    auto text = Util::readFile(sessionFileLocation);
+    if (restored)
+    {
+        LOG_ERR("Trying to restore session for the second time");
+        return;
+    }
+
+    restored = true;
+
+    auto text = Util::readFile(path);
+
+    if (text.isNull())
+    {
+        LOG_ERR(QString("Failed to load session from [%1]").arg(path));
+        return;
+    }
+
     QJsonObject object = QJsonDocument::fromJson(text.toUtf8()).object();
 
     const int n = object["tabCount"].toInt();
@@ -147,10 +141,16 @@ void SessionManager::setAutoUpdateDuration(unsigned int duration)
     timer->setInterval(duration);
 }
 
-bool SessionManager::hasSession()
+QString SessionManager::lastSessionPath()
 {
-    initPath();
-    return QFile::exists(sessionFileLocation);
+    for (auto path : sessionFileLocations)
+    {
+        path = Util::configFilePath(path);
+        if (QFile::exists(path))
+        {
+            return path;
+        }
+    }
+    return QString();
 }
-
 } // namespace Core

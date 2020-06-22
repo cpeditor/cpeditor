@@ -32,29 +32,24 @@ class SessionManager : public QObject
     Q_OBJECT
 
   public:
-    static void initiate(AppWindow *appwindow);
+    explicit SessionManager(AppWindow *appwindow);
 
-    // This function should be called before initiate(). The call to initiate() deletes the last session file.
-    static bool hasSession();
+    void restoreSession(const QString &path);
 
-    static void updateSession();
+    void setAutoUpdateSession(bool shouldAutoUpdate);
 
-    // unsafe to be invoked multiple times.
-    static void restoreSession();
+    void setAutoUpdateDuration(unsigned int duration);
 
-    static void setAutoUpdateSession(bool shouldAutoUpdate);
+    QString lastSessionPath();
 
-    static void setAutoUpdateDuration(unsigned int duration);
-
-    static void deinit();
+  public slots:
+    void updateSession();
 
   private:
-    static void initPath();
-
-    static bool isAutoUpdateSession;
-    static QTimer *timer;
-    static AppWindow *app;
-    static QProgressDialog *progressDialog;
+    bool restored = false;
+    QTimer *timer = nullptr;
+    AppWindow *app = nullptr;
+    QProgressDialog *progressDialog = nullptr;
 };
 } // namespace Core
 

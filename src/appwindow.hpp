@@ -198,6 +198,8 @@ class AppWindow : public QMainWindow
     Ui::AppWindow *ui;
     MessageLogger *activeLogger = nullptr;
 
+    Core::SessionManager *sessionManager = nullptr;
+
     QTimer *lspTimerCpp = nullptr;
     QTimer *lspTimerPython = nullptr;
     QTimer *lspTimerJava = nullptr;
