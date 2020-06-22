@@ -38,13 +38,12 @@ class SessionManager
     static void deinit();
 
   private:
-
     static void initPath();
 
     static bool isAutoUpdateSession;
-    static QTimer* timer;
+    static QTimer *timer;
     static AppWindow *app;
-    static QProgressDialog* progressDialog;
+    static QProgressDialog *progressDialog;
 };
 } // namespace Core
 
