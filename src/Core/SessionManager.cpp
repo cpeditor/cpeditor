@@ -130,6 +130,6 @@ void SessionManager::setAutoUpdateDuration(unsigned int duration)
 
 QString SessionManager::lastSessionPath()
 {
-    return Util::findFirstExistPath(sessionFileLocations);
+    return Util::firstExistingConfigPath(sessionFileLocations);
 }
 } // namespace Core

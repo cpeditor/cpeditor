@@ -59,12 +59,12 @@ QString readFile(const QString &path, const QString &head = "Read File", Message
 QString configFilePath(QString path);
 
 /**
- * @brief find the first exist path
+ * @brief find the first existing path
  * @param paths the path list
- * @return the first exist path, or QString() if no path exist
+ * @return the first existing path, or QString() if no path exists
  * @note will call configFilePath to replace arguments
  */
-QString findFirstExistPath(const QStringList &paths);
+QString firstExistingConfigPath(const QStringList &paths);
 
 } // namespace Util
 

@@ -144,7 +144,7 @@ QString configFilePath(QString path)
         .replace("$BINARY", QCoreApplication::applicationDirPath());
 }
 
-QString findFirstExistPath(const QStringList &paths)
+QString firstExistingConfigPath(const QStringList &paths)
 {
     for (const QString &path : paths)
     {
