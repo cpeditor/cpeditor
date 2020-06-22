@@ -122,7 +122,7 @@ void SessionManager::restoreSession(bool withUI)
         app->openTab("");
         app->currentWindow()->loadStatus(status);
         progressDialog->setLabelText(
-            QString(QApplication::tr("Restoring: [%1]")).arg(app->currentWindow()->getTabTitle(true, false)));
+            QString(tr("Restoring: [%1]")).arg(app->currentWindow()->getTabTitle(true, false)));
         i++;
     }
 
