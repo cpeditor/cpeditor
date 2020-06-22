@@ -12,10 +12,6 @@
         <translation>在最后一次会话中，CP Editor 被意外关闭，你希望从最后一次会话中恢复吗？</translation>
     </message>
     <message>
-        <source>Restoring Last Session</source>
-        <translation>恢复最后一次会话</translation>
-    </message>
-    <message>
         <source>Show Main Window</source>
         <translation>显示主窗口</translation>
     </message>
@@ -695,6 +691,17 @@
     <message>
         <source>Please install xterm in order to use Detached Run.</source>
         <translation>请安装 xterm 以使用在终端中运行。</translation>
+    </message>
+</context>
+<context>
+    <name>Core::SessionManager</name>
+    <message>
+        <source>Restoring Last Session</source>
+        <translation type="unfinished">正在恢复最后一次会话</translation>
+    </message>
+    <message>
+        <source>Restoring: [%1]</source>
+        <translation type="unfinished">正在恢复：[%1]</translation>
     </message>
 </context>
 <context>
@@ -1817,14 +1824,6 @@ This can be overridden for each parenthesis in each language.</source>
     <message>
         <source>Enable Hot Exit</source>
         <translation>启用热退出</translation>
-    </message>
-    <message>
-        <source>Hot Exit Tab Count</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>Hot Exit Current Index</source>
-        <translation></translation>
     </message>
     <message>
         <source>Force Close</source>

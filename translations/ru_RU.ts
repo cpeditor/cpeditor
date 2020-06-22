@@ -12,10 +12,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Restoring Last Session</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Show Main Window</source>
         <translation type="unfinished"></translation>
     </message>
@@ -691,6 +687,17 @@
     </message>
     <message>
         <source>Please install xterm in order to use Detached Run.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>Core::SessionManager</name>
+    <message>
+        <source>Restoring Last Session</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Restoring: [%1]</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1780,14 +1787,6 @@ This can be overridden for each parenthesis in each language.</source>
     </message>
     <message>
         <source>Enable Hot Exit</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Hot Exit Tab Count</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Hot Exit Current Index</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
