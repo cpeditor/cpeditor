@@ -74,10 +74,11 @@ void SettingsUpdater::updateSetting(QSettings &setting)
     if (setting.childGroups().contains("snippets"))
     {
         setting.beginGroup("snippets");
-        for (const QString &lang : {"C++", "Java", "Python"})
+        auto langs = setting.childGroups();
+        for (const QString &lang : langs)
         {
             setting.beginGroup(lang);
-            auto obj = SettingsHelper::getLanguageConfig(lang);
+            auto obj = SettingsHelper::getLanguageConfig(lang == "Cpp" ? "C++" : lang);
             QStringList used = obj.getSnippets();
             for (const QString &key : setting.childKeys())
             {
@@ -86,15 +87,6 @@ void SettingsUpdater::updateSetting(QSettings &setting)
             }
             setting.endGroup();
         }
-        setting.beginGroup("Cpp");
-        auto obj = SettingsHelper::getLanguageConfig("C++");
-        QStringList used = obj.getSnippets();
-        for (const QString &key : setting.childKeys())
-        {
-            if (!used.contains(key))
-                obj.setSnippet(key, setting.value(key).toString());
-        }
-        setting.endGroup();
         setting.endGroup();
     }
 }
