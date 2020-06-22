@@ -98,7 +98,7 @@ AppWindow::AppWindow(bool noHotExit, QWidget *parent) : QMainWindow(parent), ui(
         }
 
         if (Core::SessionManager::hasSession())
-            Core::SessionManager::restoreSession(true /* restore with progress Dialog */);
+            Core::SessionManager::restoreSession(true);
 
     } while (false);
 }

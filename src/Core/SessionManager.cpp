@@ -52,9 +52,8 @@ void SessionManager::initiate(AppWindow *appwindow)
 
     app = appwindow;
     timer->setInterval(3000); // default to 3000ms
-    QObject::connect(timer, &QTimer::timeout, [] {
-        SessionManager::updateSession();
-    }); // make it DirectConnection, I could not find a way to do so.
+    QObject::connect(
+        timer, &QTimer::timeout, timer, [] { SessionManager::updateSession(); }, Qt::DirectConnection);
 
     progressDialog->setWindowModality(Qt::WindowModal);
     progressDialog->setWindowTitle(tr("Restoring Last Session"));
@@ -68,9 +67,8 @@ void SessionManager::deinit()
 
 void SessionManager::initPath()
 {
-    sessionFileLocation =
-        sessionFileLocation.replace("$BINARY", QCoreApplication::applicationDirPath())
-            .replace("$APPCONFIG", QStandardPaths::writableLocation(QStandardPaths::AppConfigLocation));
+    sessionFileLocation.replace("$BINARY", QCoreApplication::applicationDirPath())
+        .replace("$APPCONFIG", QStandardPaths::writableLocation(QStandardPaths::AppConfigLocation));
 }
 
 void SessionManager::updateSession()
@@ -89,11 +87,9 @@ void SessionManager::updateSession()
     json.insert("tabs", arr);
     auto sessionText = QJsonDocument::fromVariant(json.toVariantMap()).toJson();
 
-    Util::saveFile(sessionFileLocation, sessionText, "Editor Session", true /*safe*/, nullptr,
-                   true /*directoryCreate*/);
+    Util::saveFile(sessionFileLocation, sessionText, "Editor Session", true, nullptr, true);
 }
 
-// unsafe to be invoked multiple times.
 void SessionManager::restoreSession(bool withUI)
 {
     auto text = Util::readFile(sessionFileLocation);
@@ -151,13 +147,9 @@ void SessionManager::setAutoUpdateDuration(unsigned int duration)
     timer->setInterval(duration);
 }
 
-// This function should be called before initiate(). The call to initiate() deletes the last session file.
 bool SessionManager::hasSession()
 {
-    if (sessionFileLocation.contains("$BINARY") || sessionFileLocation.contains("$APPCONFIG"))
-    {
-        initPath();
-    }
+    initPath();
     return QFile::exists(sessionFileLocation);
 }
 

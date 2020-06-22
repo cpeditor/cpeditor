@@ -32,12 +32,19 @@ class SessionManager : public QObject
     Q_OBJECT
 
   public:
-    static void initiate(AppWindow *);
+    static void initiate(AppWindow *appwindow);
+
+    // This function should be called before initiate(). The call to initiate() deletes the last session file.
     static bool hasSession();
+
     static void updateSession();
-    static void restoreSession(bool);
-    static void setAutoUpdateSession(bool);
-    static void setAutoUpdateDuration(unsigned int);
+
+    // unsafe to be invoked multiple times.
+    static void restoreSession(bool withUI);
+
+    static void setAutoUpdateSession(bool shouldAutoUpdate);
+
+    static void setAutoUpdateDuration(unsigned int duration);
 
     static void deinit();
 
