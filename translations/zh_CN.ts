@@ -2179,6 +2179,21 @@ Without modification: auto-save happens with an constant inverval no matter ther
 After the first modification: 在修改代码时，若计时器未在运行，则计时器会开始运行。
 Without modification: 以恒定的时间间隔自动保存，无论是否进行了修改。</translation>
     </message>
+    <message>
+        <source>Editor Status</source>
+        <translatorcomment>not in UI</translatorcomment>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Snippet</source>
+        <translatorcomment>not in UI</translatorcomment>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Language Config</source>
+        <translatorcomment>not in UI</translatorcomment>
+        <translation></translation>
+    </message>
 </context>
 <context>
     <name>Settings::PathItem</name>

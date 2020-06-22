@@ -1108,10 +1108,7 @@ void AppWindow::on_actionUse_Snippets_triggered()
     if (current != nullptr)
     {
         QString lang = current->getLanguage();
-        QString head = QString("Snippets/%1/").arg(lang);
-        QStringList names = SettingsManager::keyStartsWith(head);
-        for (QString &key : names)
-            key = key.mid(head.size());
+        QStringList names = SettingsHelper::getLanguageConfig(lang).getSnippets();
         if (names.isEmpty())
         {
             activeLogger->warn(
@@ -1128,7 +1125,7 @@ void AppWindow::on_actionUse_Snippets_triggered()
                 if (names.contains(name))
                 {
                     LOG_INFO("Found snippet and inserted");
-                    QString content = SettingsManager::get(QString("Snippets/%1/%2").arg(lang, name)).toString();
+                    QString content = SettingsHelper::getLanguageConfig(lang).getSnippet(name);
                     current->insertText(content);
                 }
                 else

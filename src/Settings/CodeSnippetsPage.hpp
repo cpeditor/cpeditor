@@ -120,11 +120,6 @@ class CodeSnippetsPage : public PreferencesPage
     void deleteSnippet(QListWidgetItem *item);
 
     /**
-     * @brief get the key of the snippet name in the SettingsManager
-     */
-    QString snippetKey(const QString &name);
-
-    /**
      * @brief set enabled for deleleButton, renameAction and extractSnippetsToFilesAction
      */
     void updateActions();

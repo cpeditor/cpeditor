@@ -2118,6 +2118,18 @@ After the first modification: the timer will start after a modification, if at t
 Without modification: auto-save happens with an constant inverval no matter there are modifications or not.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Editor Status</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Snippet</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Language Config</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Settings::PathItem</name>
