@@ -234,7 +234,7 @@ class AppWindow : public QMainWindow
 
     MainWindow *currentWindow();
     MainWindow *windowAt(int index);
-    
+
     friend class Core::SessionManager;
 };
 

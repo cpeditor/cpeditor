@@ -17,9 +17,9 @@
 
 #include "appwindow.hpp"
 #include "../ui/ui_appwindow.h"
-#include "Core/SessionManager.hpp"
 #include "Core/EventLogger.hpp"
 #include "Core/MessageLogger.hpp"
+#include "Core/SessionManager.hpp"
 #include "Core/StyleManager.hpp"
 #include "Extensions/CFTool.hpp"
 #include "Extensions/CompanionServer.hpp"
@@ -484,7 +484,6 @@ void AppWindow::openContest(const QString &path, const QString &lang, int number
 
     openTabs(tabs);
 }
-
 
 bool AppWindow::quit()
 {
