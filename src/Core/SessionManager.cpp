@@ -42,24 +42,18 @@ const static QStringList sessionFileLocations = {
 SessionManager::SessionManager(AppWindow *appwindow) : QObject(appwindow), app(appwindow)
 {
     timer = new QTimer(this);
-    progressDialog = new QProgressDialog(app);
 
     timer->setInterval(10000);
     connect(timer, SIGNAL(timeout()), this, SLOT(updateSession()), Qt::DirectConnection);
-
-    progressDialog->setWindowModality(Qt::WindowModal);
-    progressDialog->setWindowTitle(tr("Restoring Last Session"));
 }
 
 void SessionManager::updateSession()
 {
-    const int n = app->ui->tabWidget->count();
     QJsonObject json;
-    json.insert("tabCount", n);
     json.insert("selectedTab", app->ui->tabWidget->currentIndex());
 
     QJsonArray arr;
-    for (int t = 0; t < n; t++)
+    for (int t = 0; t < app->ui->tabWidget->count(); t++)
     {
         arr.push_back(QJsonDocument::fromVariant(app->windowAt(t)->toStatus().toMap()).object());
     }
@@ -90,42 +84,35 @@ void SessionManager::restoreSession(const QString &path)
 
     QJsonObject object = QJsonDocument::fromJson(text.toUtf8()).object();
 
-    const int n = object["tabCount"].toInt();
     const int currentIndex = object["selectedTab"].toInt();
     auto tabs = object["tabs"].toArray();
 
-    progressDialog->setMaximum(n);
-    progressDialog->setValue(0);
+    QProgressDialog progressDialog(app);
+    progressDialog.setWindowModality(Qt::WindowModal);
+    progressDialog.setWindowTitle(tr("Restoring Last Session"));
+
+    progressDialog.setMaximum(tabs.count());
+    progressDialog.setValue(0);
 
     auto oldSize = app->size();
     app->setUpdatesEnabled(false);
 
-    progressDialog->show();
-    progressDialog->setFocus();
-
-    int i = 1;
     for (auto const &tab : tabs)
     {
-        if (progressDialog->wasCanceled())
+        if (progressDialog.wasCanceled())
             break;
         auto status = MainWindow::EditorStatus(tab.toObject().toVariantMap());
-        progressDialog->setValue(i);
         app->openTab("");
         app->currentWindow()->loadStatus(status);
-        progressDialog->setLabelText(
-            QString(tr("Restoring: [%1]")).arg(app->currentWindow()->getTabTitle(true, false)));
-        i++;
+        progressDialog.setLabelText(QString(tr("Restoring: [%1]")).arg(app->currentWindow()->getTabTitle(true, false)));
+        progressDialog.setValue(progressDialog.value() + 1);
     }
-
-    progressDialog->setValue(n);
 
     app->setUpdatesEnabled(true);
     app->resize(oldSize);
 
     if (currentIndex >= 0 && currentIndex < app->ui->tabWidget->count())
         app->ui->tabWidget->setCurrentIndex(currentIndex);
-
-    progressDialog->close();
 }
 
 void SessionManager::setAutoUpdateSession(bool shouldAutoUpdate)

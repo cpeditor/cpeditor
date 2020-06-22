@@ -49,7 +49,6 @@ class SessionManager : public QObject
     bool restored = false;
     QTimer *timer = nullptr;
     AppWindow *app = nullptr;
-    QProgressDialog *progressDialog = nullptr;
 };
 } // namespace Core
 
