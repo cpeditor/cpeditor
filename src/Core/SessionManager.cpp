@@ -27,9 +27,7 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QProgressDialog>
-#include <QSizePolicy>
 #include <QTimer>
-#include <QVariantMap>
 
 namespace Core
 {
