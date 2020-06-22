@@ -10,7 +10,7 @@ def writeHelper(f, obj, pre, indent):
         name = t["name"]
         key = name.replace(" ", "").replace("/", "").replace("+", "p")
         typename = t["type"]
-        if typename == "config":
+        if typename == "Object":
             f.write(f"{ids}struct {key} {{\n")
             f.write(f"{ids}    QString pre;\n")
             f.write(f"{ids}    {key}(QString p) : pre(p) {{}}\n")
@@ -44,7 +44,7 @@ def writeInfo(f, obj, lst):
         ui = t.get("ui", "")
         tip = t.get("tip", "")
         hlp = t.get("help", "")
-        if typename == "config":
+        if typename == "Object":
             f.write(f"    QList<SettingInfo> LIST{key};\n")
             writeInfo(f, t["sub"], f"LIST{key}")
         f.write(f"    {lst}.append(SettingInfo {{{json.dumps(name)}, ")
@@ -59,7 +59,7 @@ def writeInfo(f, obj, lst):
             final = t["final"]
             tempname = f"QMap:{final}"
         f.write(f", \"{tempname}\", \"{ui}\", QCoreApplication::translate(\"Setting\", {json.dumps(tip)}), QCoreApplication::translate(\"Setting\", {json.dumps(hlp)}), ")
-        if typename != "config":
+        if typename != "Object":
             if "default" in t:
                 if typename == "QString":
                     f.write(json.dumps(t["default"]))
@@ -82,7 +82,7 @@ def writeInfo(f, obj, lst):
         else:
             f.write(f'QVariant()')
         f.write(f', {t.get("param", "QVariant()")}')
-        if typename == "config":
+        if typename == "Object":
             f.write(f", LIST{key}")
         f.write("});\n")
 

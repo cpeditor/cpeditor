@@ -93,7 +93,7 @@ void SettingsManager::loadSettings(const QString &path)
         load = [&](QString prefix, const QList<SettingInfo> &infos) {
             for (const SettingInfo &si : infos)
             {
-                if (si.type == "config")
+                if (si.type == "Object")
                 {
                     setting.beginGroup(si.name);
                     for (const QString &sub : setting.childGroups())
@@ -146,7 +146,7 @@ void SettingsManager::saveSettings(const QString &path)
     std::function<void(QString, const QList<SettingInfo> &)> save;
     save = [&](QString prefix, const QList<SettingInfo> &infos) {
         for (const SettingInfo &si : infos)
-            if (si.type == "config")
+            if (si.type == "Object")
             {
                 QString head = QString("%1%2/").arg(prefix, si.name);
                 QStringList keys = itemUnder(head);

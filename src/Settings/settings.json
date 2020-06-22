@@ -648,7 +648,7 @@
     },
     {
         "name": "Language Config",
-        "type": "config",
+        "type": "Object",
         "sub": [
             {
                 "name": "Snippets",
