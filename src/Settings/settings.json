@@ -651,8 +651,8 @@
         "type": "Object",
         "sub": [
             {
-                "name": "Snippets",
-                "sname": "Snippet",
+                "name": "Snippet",
+                "plural": "Snippets",
                 "type": "QMap",
                 "final": "QString"
             }
