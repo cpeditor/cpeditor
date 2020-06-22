@@ -78,17 +78,21 @@ void SettingsUpdater::updateSetting(QSettings &setting)
         {
             setting.beginGroup(lang);
             auto obj = SettingsHelper::getLanguageConfig(lang);
+            QStringList used = obj.getSnippets();
             for (const QString &key : setting.childKeys())
             {
-                obj.setSnippet(key, setting.value(key).toString());
+                if (!used.contains(key))
+                    obj.setSnippet(key, setting.value(key).toString());
             }
             setting.endGroup();
         }
         setting.beginGroup("Cpp");
         auto obj = SettingsHelper::getLanguageConfig("C++");
+        QStringList used = obj.getSnippets();
         for (const QString &key : setting.childKeys())
         {
-            obj.setSnippet(key, setting.value(key).toString());
+            if (!used.contains(key))
+                obj.setSnippet(key, setting.value(key).toString());
         }
         setting.endGroup();
         setting.endGroup();
