@@ -71,9 +71,9 @@ void SettingsUpdater::updateSetting(QSettings &setting)
             SettingsManager::set(nw, setting.value(old));
         }
     }
-    if (setting.childGroups().contains("Snippets"))
+    if (setting.childGroups().contains("snippets"))
     {
-        setting.beginGroup("Snippets");
+        setting.beginGroup("snippets");
         for (const QString &lang : {"C++", "Java", "Python"})
         {
             setting.beginGroup(lang);
