@@ -17,7 +17,9 @@
 
 #include "Core/SessionManager.hpp"
 #include "../../ui/ui_appwindow.h"
+#include "Util/FileUtil.hpp"
 #include "appwindow.hpp"
+#include "generated/portable.hpp"
 #include "mainwindow.hpp"
 #include <QApplication>
 #include <QFile>
@@ -28,7 +30,6 @@
 #include <QStandardPaths>
 #include <QTimer>
 #include <QVariantMap>
-#include <Util/FileUtil.hpp>
 
 namespace Core
 {
