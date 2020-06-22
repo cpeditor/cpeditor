@@ -55,8 +55,6 @@ const static QMap<QString, QString> updateInfo = {{"tab_stop", "Tab Width"},
                                                   {"hotkey_mode_toggle", "Hotkey/Change View Mode"},
                                                   {"hotkey_snippets", "Hotkey/Snippets"},
                                                   {"use_hot_exit", "Hot Exit/Enable"},
-                                                  {"number_of_tabs", "Hot Exit/Tab Count"},
-                                                  {"current_index", "Hot Exit/Current Index"},
                                                   {"cf_path", "CF/Path"},
                                                   {"compile_and_run_only", "Show Compile And Run Only"},
                                                   {"language", "Locale"}};

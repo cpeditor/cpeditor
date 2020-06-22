@@ -25,6 +25,7 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QProgressDialog>
+#include <QSizePolicy>
 #include <QStandardPaths>
 #include <QTimer>
 #include <QVariantMap>
@@ -42,7 +43,7 @@ static QString sessionFileLocation = {
 QTimer *SessionManager::timer;
 AppWindow *SessionManager::app = nullptr;
 bool SessionManager::isAutoUpdateSession = false;
-QProgressDialog *SessionManager::progressDialog;
+QProgressDialog *SessionManager::progressDialog = nullptr;
 
 void SessionManager::initiate(AppWindow *appwindow)
 {
@@ -112,6 +113,7 @@ void SessionManager::restoreSession(bool withUI)
     if (withUI)
     {
         progressDialog->show();
+        progressDialog->setFocus();
     }
 
     int i = 1;
@@ -121,10 +123,11 @@ void SessionManager::restoreSession(bool withUI)
             break;
         auto status = MainWindow::EditorStatus(tab.toObject().toVariantMap());
         progressDialog->setValue(i);
-        i++;
         app->openTab("");
         app->currentWindow()->loadStatus(status);
-        progressDialog->setLabelText(app->currentWindow()->getTabTitle(true, false));
+        progressDialog->setLabelText(
+            QString(QApplication::tr("Restoring: [%1]")).arg(app->currentWindow()->getTabTitle(true, false)));
+        i++;
     }
 
     progressDialog->setValue(n);
@@ -135,7 +138,7 @@ void SessionManager::restoreSession(bool withUI)
     if (currentIndex >= 0 && currentIndex < app->ui->tabWidget->count())
         app->ui->tabWidget->setCurrentIndex(currentIndex);
 
-    progressDialog->hide();
+    progressDialog->close();
 }
 
 void SessionManager::setAutoUpdateSession(bool shouldAutoUpdate)
