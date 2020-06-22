@@ -69,6 +69,56 @@ void SettingsManager::deinit()
     cur = def = nullptr;
 }
 
+void SettingsManager::load(QSettings &setting, const QString &prefix, const QList<SettingInfo> &infos)
+{
+    for (const SettingInfo &si : infos)
+    {
+        if (si.type == "Object")
+        {
+            setting.beginGroup(si.name);
+            for (const QString &sub : setting.childGroups())
+            {
+                setting.beginGroup(sub);
+                load(setting, QString("%1%2/%3/").arg(prefix, si.name, sub), si.child);
+                setting.endGroup();
+            }
+            setting.endGroup();
+        }
+        else if (si.type.startsWith("QMap:"))
+        {
+            QString final = si.type.mid(5);
+            setting.beginGroup(si.key());
+            for (const QString &key : setting.childKeys())
+            {
+                set(QString("%1%2/%3").arg(prefix, si.name, key), setting.value(key));
+            }
+            setting.endGroup();
+        }
+        else if (setting.contains(si.key()) && setting.value(si.key()).isValid())
+            set(si.name, setting.value(si.key()));
+    }
+}
+
+void SettingsManager::save(QSettings &setting, const QString &prefix, const QList<SettingInfo> &infos)
+{
+    for (const SettingInfo &si : infos)
+        if (si.type == "Object")
+        {
+            QString head = QString("%1%2/").arg(prefix, si.name);
+            QStringList keys = itemUnder(head);
+            for (const QString &k : keys)
+            {
+                save(setting, QString("%1%2/").arg(head, k), si.child);
+            }
+        }
+        else if (si.type.startsWith("QMap:"))
+            for (const QString &key : itemUnder(QString("%1%2/").arg(prefix, si.name)))
+                setting.setValue(QString("%1%2/%3").arg(prefix, si.key(), key),
+                                 get(QString("%1%2/%3").arg(prefix, si.name, key)));
+        else
+            setting.setValue(QString("%1%2").arg(prefix, si.key()), get(si.name));
+}
+
 void SettingsManager::loadSettings(const QString &path)
 {
     LOG_INFO("Start loading settings from " + path);
@@ -88,37 +138,7 @@ void SettingsManager::loadSettings(const QString &path)
     if (!path.isEmpty())
     {
         QSettings setting(path, QSettings::IniFormat);
-
-        std::function<void(QString, const QList<SettingInfo> &)> load;
-        load = [&](QString prefix, const QList<SettingInfo> &infos) {
-            for (const SettingInfo &si : infos)
-            {
-                if (si.type == "Object")
-                {
-                    setting.beginGroup(si.name);
-                    for (const QString &sub : setting.childGroups())
-                    {
-                        setting.beginGroup(sub);
-                        load(QString("%1%2/%3/").arg(prefix, si.name, sub), si.child);
-                        setting.endGroup();
-                    }
-                    setting.endGroup();
-                }
-                else if (si.type.startsWith("QMap:"))
-                {
-                    QString final = si.type.mid(5);
-                    setting.beginGroup(si.key());
-                    for (const QString &key : setting.childKeys())
-                    {
-                        set(QString("%1%2/%3").arg(prefix, si.name, key), setting.value(key));
-                    }
-                    setting.endGroup();
-                }
-                else if (setting.contains(si.key()) && setting.value(si.key()).isValid())
-                    set(si.name, setting.value(si.key()));
-            }
-        };
-        load("", settingInfo);
+        load(setting, "", settingInfo);
         SettingsUpdater::updateSetting(setting);
 
         // load file problem binding
@@ -142,27 +162,7 @@ void SettingsManager::saveSettings(const QString &path)
 
     QSettings setting(path, QSettings::IniFormat);
     setting.clear(); // Otherwise SettingsManager::remove won't work
-
-    std::function<void(QString, const QList<SettingInfo> &)> save;
-    save = [&](QString prefix, const QList<SettingInfo> &infos) {
-        for (const SettingInfo &si : infos)
-            if (si.type == "Object")
-            {
-                QString head = QString("%1%2/").arg(prefix, si.name);
-                QStringList keys = itemUnder(head);
-                for (const QString &k : keys)
-                {
-                    save(QString("%1%2/").arg(head, k), si.child);
-                }
-            }
-            else if (si.type.startsWith("QMap:"))
-                for (const QString &key : itemUnder(QString("%1%2/").arg(prefix, si.name)))
-                    setting.setValue(QString("%1%2/%3").arg(prefix, si.key(), key),
-                                     get(QString("%1%2/%3").arg(prefix, si.name, key)));
-            else
-                setting.setValue(QString("%1%2").arg(prefix, si.key()), get(si.name));
-    };
-    save("", settingInfo);
+    save(setting, "", settingInfo);
 
     // save file problem binding
     setting.setValue("file_problem_binding", FileProblemBinder::toVariant());

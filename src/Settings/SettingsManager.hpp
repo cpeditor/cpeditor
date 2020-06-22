@@ -20,8 +20,15 @@
 
 #include <QMetaType>
 
+class QSettings;
+struct SettingInfo;
+
 class SettingsManager
 {
+  private:
+    static void load(QSettings &setting, const QString &prefix, const QList<SettingInfo> &infos);
+    static void save(QSettings &setting, const QString &prefix, const QList<SettingInfo> &infos);
+
   public:
     static void init();
     static void deinit();
