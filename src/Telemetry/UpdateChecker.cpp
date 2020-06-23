@@ -156,13 +156,24 @@ void UpdateChecker::managerFinished(QNetworkReply *reply)
             bool used = false;
             if (currentVersion < version)
             {
-                if ((version.major == latestVersion.major && version.minor == latestVersion.minor) ||
-                    (version.major != last.major || version.minor != last.minor))
+                do
                 {
+                    if (version.major == latestVersion.major && version.minor == latestVersion.minor)
+                    {
+                        if (!latestInfo.preview && release.second.preview)
+                        {
+                            break;
+                        }
+                    }
+                    else if (version.major == last.major && version.minor == last.minor)
+                    {
+                        break;
+                    }
+
                     used = true;
                     last = version;
                     changelog.push_back(release.second.changelog);
-                }
+                } while (false);
             }
             LOG_INFO(QString("Version %1 is %2 the changelog")
                          .arg(release.second.version)
