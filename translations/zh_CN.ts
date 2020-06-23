@@ -2261,6 +2261,14 @@ kill the application with SIGKILL which could not be handled by the application.
         <source>The time interval between two auto-saves of the current session.</source>
         <translation>两次自动保存会话之间的时间间隔。</translation>
     </message>
+    <message>
+        <source>Test Case Maximum Height</source>
+        <translation>测试用例最大高度</translation>
+    </message>
+    <message>
+        <source>The maximum height of a test case without a scrollbar.</source>
+        <translation>无需滚动条时一个测试用例的最大高度。</translation>
+    </message>
 </context>
 <context>
     <name>Settings::PathItem</name>
