@@ -219,6 +219,16 @@ void TestCase::updateHeight()
     expectedEdit->startAnimation();
 }
 
+QList<int> TestCase::splitterSizes() const
+{
+    return splitter->sizes();
+}
+
+void TestCase::restoreSplitterSizes(const QList<int> &sizes)
+{
+    splitter->setSizes(sizes);
+}
+
 void TestCase::onShowCheckBoxToggled(bool checked)
 {
     if (checked)

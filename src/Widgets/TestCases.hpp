@@ -81,6 +81,9 @@ class TestCases : public QWidget
 
     void updateHeights();
 
+    QVariantList splitterStates() const;
+    void restoreSplitterStates(const QVariantList &states);
+
   public slots:
     void setVerdict(int index, Core::Checker::Verdict verdict);
 
