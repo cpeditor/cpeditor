@@ -365,10 +365,10 @@ void TestCases::setTestCaseEditFont(const QFont &font)
         t->setTestCaseEditFont(font);
 }
 
-void TestCases::updateSizes()
+void TestCases::updateHeights()
 {
     for (auto t : testcases)
-        t->updateSize();
+        t->updateHeight();
 }
 
 int TestCases::id(TestCase *testcase) const

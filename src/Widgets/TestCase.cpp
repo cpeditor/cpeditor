@@ -212,7 +212,7 @@ void TestCase::setTestCaseEditFont(const QFont &font)
     expectedEdit->setFont(font);
 }
 
-void TestCase::updateSize()
+void TestCase::updateHeight()
 {
     inputEdit->startAnimation();
     outputEdit->startAnimation();
