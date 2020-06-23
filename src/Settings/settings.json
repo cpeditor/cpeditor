@@ -743,6 +743,6 @@
         "type": "int",
         "default": 300,
         "param": "QVariantList {30, 2000}",
-        "tip": "The maximum height of a test case without a scrollbar."
+        "tip": "The maximum height of a test case without a scrollbar in pixel."
     }
 ]

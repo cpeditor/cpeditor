@@ -2202,7 +2202,7 @@ kill the application with SIGKILL which could not be handled by the application.
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>The maximum height of a test case without a scrollbar.</source>
+        <source>The maximum height of a test case without a scrollbar in pixel.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

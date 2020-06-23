@@ -2266,8 +2266,8 @@ kill the application with SIGKILL which could not be handled by the application.
         <translation>测试用例最大高度</translation>
     </message>
     <message>
-        <source>The maximum height of a test case without a scrollbar.</source>
-        <translation>无需滚动条时一个测试用例的最大高度。</translation>
+        <source>The maximum height of a test case without a scrollbar in pixel.</source>
+        <translation>无需滚动条时一个测试用例的最大高度，以像素为单位。</translation>
     </message>
 </context>
 <context>
