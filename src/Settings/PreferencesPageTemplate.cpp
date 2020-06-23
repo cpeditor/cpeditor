@@ -91,7 +91,7 @@ PreferencesPageTemplate::PreferencesPageTemplate(QStringList opts, bool alignTop
             auto dependWidget = qobject_cast<QCheckBox *>(widgets[options.indexOf(depend)]->coreWidget());
             depends[currentWidget].push_back(dependWidget);
             connect(dependWidget, &QCheckBox::toggled,
-                    [this, &si, currentWidget] { onDependencyUpdated(currentWidget, si.requireAllDepends); });
+                    [this, si, currentWidget] { onDependencyUpdated(currentWidget, si.requireAllDepends); });
         }
         onDependencyUpdated(currentWidget, si.requireAllDepends);
     }
