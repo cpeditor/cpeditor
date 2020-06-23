@@ -980,6 +980,12 @@ void AppWindow::onSettingsApplied(const QString &pagePath)
         pythonServer->updateSettings();
         lspTimerPython->setInterval(SettingsHelper::getLSPDelayPython());
     }
+
+    if (pagePath.isEmpty() || pagePath == "Actions/Save Session")
+    {
+        sessionManager->setAutoUpdateDuration(SettingsHelper::getHotExitAutoSaveInterval());
+        sessionManager->setAutoUpdateSession(SettingsHelper::isHotExitEnable() && SettingsHelper::isHotExitAutoSave());
+    }
 }
 
 void AppWindow::onIncomingCompanionRequest(const Extensions::CompanionData &data)

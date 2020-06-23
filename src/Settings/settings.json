@@ -378,10 +378,24 @@
     },
     {
         "name": "Hot Exit/Enable",
-        "desc": "Enable Hot Exit",
+        "desc": "Restore last session at startup",
         "type": "bool",
         "default": true,
-        "tip": "Save the status of the editor when the application exits and\nload the status of the last session when the application starts.\nWhen this is enabled, you won't be asked whether to save\nthe unsaved files or not when exiting."
+        "tip": "Restore the last session when the application starts.\nWhen this is enabled, you won't be asked whether to save unsaved files when exiting."
+    },
+    {
+        "name": "Hot Exit/Auto Save",
+        "desc": "Auto-save the current session periodically",
+        "type": "bool",
+        "tip": "Auto-save the current session periodically instead of only save when the application exists.\nThis is useful if your computer is frozen and you have to cut off the power or\nkill the application with SIGKILL which could not be handled by the application."
+    },
+    {
+        "name": "Hot Exit/Auto Save Interval",
+        "desc": "Auto-save Session Interval",
+        "type": "int",
+        "default": 20000,
+        "param": "QVariantList {1000, 36000000}",
+        "tip": "The time interval between two auto-saves of the current session."
     },
     {
         "name": "Force Close",
