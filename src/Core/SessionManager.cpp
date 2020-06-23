@@ -57,9 +57,8 @@ void SessionManager::updateSession()
     }
 
     json.insert("tabs", arr);
-    auto sessionText = QJsonDocument::fromVariant(json.toVariantMap()).toJson();
 
-    Util::saveFile(Util::configFilePath(sessionFileLocations[0]), sessionText, "Editor Session", true, nullptr, true);
+    saveSession(QJsonDocument::fromVariant(json.toVariantMap()).toJson());
 }
 
 void SessionManager::restoreSession(const QString &path)
@@ -129,5 +128,10 @@ void SessionManager::setAutoUpdateDuration(unsigned int duration)
 QString SessionManager::lastSessionPath()
 {
     return Util::firstExistingConfigPath(sessionFileLocations);
+}
+
+void SessionManager::saveSession(const QString &sessionText)
+{
+    Util::saveFile(Util::configFilePath(sessionFileLocations[0]), sessionText, "Save Session", true, nullptr, true);
 }
 } // namespace Core

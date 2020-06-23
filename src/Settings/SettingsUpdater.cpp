@@ -16,8 +16,12 @@
  */
 
 #include "Settings/SettingsUpdater.hpp"
+#include "Core/SessionManager.hpp"
 #include "Settings/SettingsManager.hpp"
 #include "generated/SettingsHelper.hpp"
+#include <QJsonArray>
+#include <QJsonDocument>
+#include <QJsonObject>
 #include <QMap>
 #include <QSettings>
 
@@ -69,6 +73,7 @@ void SettingsUpdater::updateSetting(QSettings &setting)
             SettingsManager::set(nw, setting.value(old));
         }
     }
+
     if (setting.childGroups().contains("snippets"))
     {
         setting.beginGroup("snippets");
@@ -86,5 +91,25 @@ void SettingsUpdater::updateSetting(QSettings &setting)
             setting.endGroup();
         }
         setting.endGroup();
+    }
+
+    if (setting.childGroups().contains("editor_status") && Core::SessionManager::lastSessionPath().isEmpty())
+    {
+        QJsonObject json;
+        json.insert("currentIndex", setting.value("hot_exit/current_index").toInt());
+
+        QJsonArray arr;
+
+        setting.beginGroup("editor_status");
+        auto indices = setting.childKeys();
+        for (const auto &index : indices)
+        {
+            arr.push_back(QJsonDocument::fromVariant(setting.value(index).toMap()).object());
+        }
+        setting.endGroup();
+
+        json.insert("tabs", arr);
+
+        Core::SessionManager::saveSession(QJsonDocument::fromVariant(json.toVariantMap()).toJson());
     }
 }

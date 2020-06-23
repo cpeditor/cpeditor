@@ -40,7 +40,9 @@ class SessionManager : public QObject
 
     void setAutoUpdateDuration(unsigned int duration);
 
-    QString lastSessionPath();
+    static QString lastSessionPath();
+
+    static void saveSession(const QString &sessionText);
 
   public slots:
     void updateSession();
