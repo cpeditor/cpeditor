@@ -649,11 +649,6 @@
         "tip": "The style of the whole application."
     },
     {
-        "name": "Editor Status",
-        "type": "QMap",
-        "final": "QVariantMap"
-    },
-    {
         "name": "Language Config",
         "type": "Object",
         "sub": [

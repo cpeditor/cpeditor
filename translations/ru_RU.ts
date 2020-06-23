@@ -2118,10 +2118,6 @@ Without modification: auto-save happens with an constant inverval no matter ther
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Editor Status</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Snippet</source>
         <translation type="unfinished"></translation>
     </message>

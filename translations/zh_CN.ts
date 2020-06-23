@@ -697,11 +697,11 @@
     <name>Core::SessionManager</name>
     <message>
         <source>Restoring Last Session</source>
-        <translation type="unfinished">正在恢复最后一次会话</translation>
+        <translation>正在恢复最后一次会话</translation>
     </message>
     <message>
         <source>Restoring: [%1]</source>
-        <translation type="unfinished">正在恢复：[%1]</translation>
+        <translation>正在恢复：[%1]</translation>
     </message>
 </context>
 <context>
@@ -2177,11 +2177,6 @@ Without modification: auto-save happens with an constant inverval no matter ther
         <translation>After the last modification: 计时器会在修改代码后重置。
 After the first modification: 在修改代码时，若计时器未在运行，则计时器会开始运行。
 Without modification: 以恒定的时间间隔自动保存，无论是否进行了修改。</translation>
-    </message>
-    <message>
-        <source>Editor Status</source>
-        <translatorcomment>not in UI</translatorcomment>
-        <translation></translation>
     </message>
     <message>
         <source>Snippet</source>
