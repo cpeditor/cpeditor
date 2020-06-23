@@ -14,6 +14,7 @@ With the portable version, you can easily store it in something like a USB disk,
 - In-application UI style setting and built-in light/dark style. (#265 and #404)
 - Now testcases with empty outputs can also be checked. (#208 and #430)
 - Auto-save time interval.
+- Now you can auto-save the current session, besides saving it when the application exists. (#437 and #442)
 
 ### Fixed
 
@@ -25,6 +26,7 @@ With the portable version, you can easily store it in something like a USB disk,
 
 - Now the lengths of the files added by "Add Pairs of Testcases From Files" are limited by Preferences->Advanced->Limits->Load Test Case File Length Limit. (#405)
 - The default font is set to the system fixed-width font instead of the font named "Monospace". (#422)
+- Now the session is stored in a separate file, which was stored along with the settings. So now when exporting/importing settings, the session won't be included, but you can export/load the session separately. (#437 and #442)
 
 ## v6.5
 
