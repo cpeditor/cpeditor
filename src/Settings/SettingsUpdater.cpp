@@ -96,7 +96,9 @@ void SettingsUpdater::updateSetting(QSettings &setting)
     if (setting.childGroups().contains("editor_status") && Core::SessionManager::lastSessionPath().isEmpty())
     {
         QJsonObject json;
-        json.insert("currentIndex", setting.value("hot_exit/current_index").toInt());
+        json.insert("currentIndex", setting.contains("hot_exit/current_index")
+                                        ? setting.value("hot_exit/current_index").toInt()
+                                        : setting.value("current_index").toInt());
 
         QJsonArray arr;
 
