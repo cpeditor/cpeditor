@@ -18,8 +18,9 @@
 #include "Settings/PreferencesPageTemplate.hpp"
 #include "Settings/SettingsManager.hpp"
 #include "Settings/ValueWrapper.hpp"
+#include "generated/SettingsInfo.hpp"
+#include <QCheckBox>
 #include <QDebug>
-#include <generated/SettingsInfo.hpp>
 
 PreferencesPageTemplate::PreferencesPageTemplate(QStringList opts, bool alignTop, QWidget *parent)
     : PreferencesGridPage(alignTop, parent), options(opts)
@@ -66,6 +67,33 @@ PreferencesPageTemplate::PreferencesPageTemplate(QStringList opts, bool alignTop
             addRow(wrapper, si.tip, si.help, si.desc);
             widgets.push_back(wrapper);
         }
+    }
+
+    for (const QString &name : options)
+    {
+        SettingInfo si = findSetting(name);
+        if (si.depends.isEmpty())
+            continue;
+        auto currentWidget = widgets[options.indexOf(name)]->coreWidget();
+        for (auto depend : si.depends)
+        {
+            if (!options.contains(depend))
+            {
+                qDebug() << name << " depends on unknown option " << depend;
+                continue;
+            }
+            SettingInfo dependInfo = findSetting(depend);
+            if (dependInfo.type != "bool")
+            {
+                qDebug() << name << " depends on " << depend << " which is not a bool option";
+                continue;
+            }
+            auto dependWidget = qobject_cast<QCheckBox *>(widgets[options.indexOf(depend)]->coreWidget());
+            depends[currentWidget].push_back(dependWidget);
+            connect(dependWidget, &QCheckBox::toggled,
+                    [this, &si, currentWidget] { onDependencyUpdated(currentWidget, si.requireAllDepends); });
+        }
+        onDependencyUpdated(currentWidget, si.requireAllDepends);
     }
 }
 
@@ -124,5 +152,33 @@ void PreferencesPageTemplate::makeSettingsTheSameAsUI()
         ValueWidget *widget = widgets[i];
         SettingInfo si = findSetting(options[i]);
         SettingsManager::set(si.name, widget->getVariant());
+    }
+}
+
+void PreferencesPageTemplate::onDependencyUpdated(QWidget *widget, bool requireAllDepends)
+{
+    if (requireAllDepends)
+    {
+        for (auto checkBox : depends[widget])
+        {
+            if (!checkBox->isChecked())
+            {
+                widget->setEnabled(false);
+                return;
+            }
+        }
+        widget->setEnabled(true);
+    }
+    else
+    {
+        for (auto checkBox : depends[widget])
+        {
+            if (checkBox->isChecked())
+            {
+                widget->setEnabled(true);
+                return;
+            }
+        }
+        widget->setEnabled(false);
     }
 }

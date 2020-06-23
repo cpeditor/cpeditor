@@ -46,6 +46,8 @@ def writeInfo(f, obj, lst):
         ui = t.get("ui", "")
         tip = t.get("tip", "")
         hlp = t.get("help", "")
+        requireAllDepends = t.get("requireAllDepends", True)
+        depends = t.get("depends", [])
         if typename == "Object":
             f.write(f"    QList<SettingInfo> LIST{key};\n")
             writeInfo(f, t["sub"], f"LIST{key}")
@@ -60,7 +62,7 @@ def writeInfo(f, obj, lst):
         if typename == "QMap":
             final = t["final"]
             tempname = f"QMap:{final}"
-        f.write(f", \"{tempname}\", \"{ui}\", QCoreApplication::translate(\"Setting\", {json.dumps(tip)}), QCoreApplication::translate(\"Setting\", {json.dumps(hlp)}), ")
+        f.write(f", \"{tempname}\", \"{ui}\", QCoreApplication::translate(\"Setting\", {json.dumps(tip)}), QCoreApplication::translate(\"Setting\", {json.dumps(hlp)}), {json.dumps(requireAllDepends)}, {{{json.dumps(depends)[1:-1]}}}, ")
         if typename != "Object":
             if "default" in t:
                 if typename == "QString":
@@ -144,6 +146,8 @@ namespace SettingsHelper
 struct SettingInfo
 {
     QString name, desc, type, ui, tip, help;
+    bool requireAllDepends; // false for one of the depends, true for all depends
+    QStringList depends;
     QVariant def;
     QVariant param;
     QList<SettingInfo> child;
