@@ -529,6 +529,7 @@ void MainWindow::applySettings(const QString &pagePath, bool shouldPerformDigoni
     {
         ui->compiler_edit->setFont(SettingsHelper::getMessageLoggerFont());
         testcases->setTestCaseEditFont(SettingsHelper::getTestCasesFont());
+        testcases->updateSizes();
         if (SettingsHelper::isShowCompileAndRunOnly())
         {
             ui->compile->hide();

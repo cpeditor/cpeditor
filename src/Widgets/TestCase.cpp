@@ -212,6 +212,13 @@ void TestCase::setTestCaseEditFont(const QFont &font)
     expectedEdit->setFont(font);
 }
 
+void TestCase::updateSize()
+{
+    inputEdit->startAnimation();
+    outputEdit->startAnimation();
+    expectedEdit->startAnimation();
+}
+
 void TestCase::onShowCheckBoxToggled(bool checked)
 {
     if (checked)

@@ -79,6 +79,8 @@ class TestCases : public QWidget
 
     void setTestCaseEditFont(const QFont &font);
 
+    void updateSizes();
+
   public slots:
     void setVerdict(int index, Core::Checker::Verdict verdict);
 

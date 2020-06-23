@@ -365,6 +365,12 @@ void TestCases::setTestCaseEditFont(const QFont &font)
         t->setTestCaseEditFont(font);
 }
 
+void TestCases::updateSizes()
+{
+    for (auto t : testcases)
+        t->updateSize();
+}
+
 int TestCases::id(TestCase *testcase) const
 {
     return testcases.indexOf(testcase);

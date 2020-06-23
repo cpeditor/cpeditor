@@ -55,6 +55,7 @@ class TestCase : public QWidget
     void setShow(bool show);
     bool isShow() const;
     void setTestCaseEditFont(const QFont &font);
+    void updateSize();
 
   signals:
     void deleted(TestCase *widget);
