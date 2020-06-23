@@ -9,11 +9,7 @@
     </message>
     <message>
         <source>In the last session, CP Editor was abnormally killed, do you want to restore the last session?</source>
-        <translation>在最后一次会话中，CP Editor 被意外关闭，你希望从最后一次会话中恢复吗？</translation>
-    </message>
-    <message>
-        <source>Restoring Last Session</source>
-        <translation>恢复最后一次会话</translation>
+        <translation>在上一次会话中，CP Editor 被意外关闭，你希望恢复上一次会话吗？</translation>
     </message>
     <message>
         <source>Show Main Window</source>
@@ -499,6 +495,54 @@
         <source>&amp;Help</source>
         <translation>帮助(&amp;H)</translation>
     </message>
+    <message>
+        <source>Export settings to a file</source>
+        <translation>将设置导出至文件</translation>
+    </message>
+    <message>
+        <source>Import settings from a file</source>
+        <translation>从文件中导入设置</translation>
+    </message>
+    <message>
+        <source>Export current session to a file</source>
+        <translation>将当前会话导出至文件</translation>
+    </message>
+    <message>
+        <source>Export Session</source>
+        <translation>导出会话</translation>
+    </message>
+    <message>
+        <source>Failed to export the current session to [%1]</source>
+        <translation>未能成功将当前会话导出至 [%1]</translation>
+    </message>
+    <message>
+        <source>Load Session</source>
+        <translation>加载会话</translation>
+    </message>
+    <message>
+        <source>Load a session from a file will close all tabs in the current session without saving the files. Are you sure to continue?</source>
+        <translation>从文件中加载会话会关闭当前的所有标签页并且不会保存文件。你确定要继续吗？</translation>
+    </message>
+    <message>
+        <source>Load session from a file</source>
+        <translation>从文件中加载会话</translation>
+    </message>
+    <message>
+        <source>Export Session...</source>
+        <translation>导出会话...</translation>
+    </message>
+    <message>
+        <source>Load Session...</source>
+        <translation>加载会话...</translation>
+    </message>
+    <message>
+        <source>CP Editor Settings File</source>
+        <translation>CP Editor 配置文件</translation>
+    </message>
+    <message>
+        <source>CP Editor Session File</source>
+        <translation>CP Editor 会话文件</translation>
+    </message>
 </context>
 <context>
     <name>AppearancePage</name>
@@ -695,6 +739,17 @@
     <message>
         <source>Please install xterm in order to use Detached Run.</source>
         <translation>请安装 xterm 以使用在终端中运行。</translation>
+    </message>
+</context>
+<context>
+    <name>Core::SessionManager</name>
+    <message>
+        <source>Restoring Last Session</source>
+        <translation>正在恢复上一次会话</translation>
+    </message>
+    <message>
+        <source>Restoring: [%1]</source>
+        <translation>正在恢复：[%1]</translation>
     </message>
 </context>
 <context>
@@ -1439,6 +1494,14 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
         <source>Auto Save</source>
         <translation>自动保存</translation>
     </message>
+    <message>
+        <source>Save Session</source>
+        <translation>保存会话</translation>
+    </message>
+    <message>
+        <source>Empty Test Cases</source>
+        <translation>空测试点</translation>
+    </message>
 </context>
 <context>
     <name>Setting</name>
@@ -1616,14 +1679,6 @@ You can use &quot;${filename}&quot; for the complete file name,
     <message>
         <source>Check for updates marked as pre-releases, which are considered not very stable but have more features.</source>
         <translation>检查更新时包含测试版本。测试版将会包含更多功能，但可能不太稳定。</translation>
-    </message>
-    <message>
-        <source>Save the status of the editor when the application exits and
-load the status of the last session when the application starts.
-When this is enabled, you won&apos;t be asked whether to save
-the unsaved files or not when exiting.</source>
-        <translation>在退出应用时保存当前会话的各项状态，并在下次启动时恢复它们。
-若这项设置已启用，退出时你将不会被询问是否保存已更改的文件。</translation>
     </message>
     <message>
         <source>Pairs of regular expressions used when adding pairs of test cases from files.
@@ -1813,18 +1868,6 @@ This can be overridden for each parenthesis in each language.</source>
     <message>
         <source>Use Snippets</source>
         <translation>使用代码片段</translation>
-    </message>
-    <message>
-        <source>Enable Hot Exit</source>
-        <translation>启用热退出</translation>
-    </message>
-    <message>
-        <source>Hot Exit Tab Count</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>Hot Exit Current Index</source>
-        <translation></translation>
     </message>
     <message>
         <source>Force Close</source>
@@ -2180,11 +2223,6 @@ After the first modification: 在修改代码时，若计时器未在运行，�
 Without modification: 以恒定的时间间隔自动保存，无论是否进行了修改。</translation>
     </message>
     <message>
-        <source>Editor Status</source>
-        <translatorcomment>not in UI</translatorcomment>
-        <translation></translation>
-    </message>
-    <message>
         <source>Snippet</source>
         <translatorcomment>not in UI</translatorcomment>
         <translation></translation>
@@ -2193,6 +2231,35 @@ Without modification: 以恒定的时间间隔自动保存，无论是否进行�
         <source>Language Config</source>
         <translatorcomment>not in UI</translatorcomment>
         <translation></translation>
+    </message>
+    <message>
+        <source>Restore last session at startup</source>
+        <translation>在启动时恢复上一次会话</translation>
+    </message>
+    <message>
+        <source>Restore the last session when the application starts.
+When this is enabled, you won&apos;t be asked whether to save unsaved files when exiting.</source>
+        <translation>在程序启动时恢复上一次会话。
+当这个选项启用时，你不会在退出时被询问是否保存已修改的文件。</translation>
+    </message>
+    <message>
+        <source>Auto-save the current session periodically</source>
+        <translation>定期自动保存当前会话</translation>
+    </message>
+    <message>
+        <source>Auto-save the current session periodically instead of only save when the application exists.
+This is useful if your computer is frozen and you have to cut off the power or
+kill the application with SIGKILL which could not be handled by the application.</source>
+        <translation>每隔一段时间就自动保存当前会话，而不是只在退出时保存。
+这在你的电脑卡死而需要强制断开电源或使用 SIGKILL 来强制结束程序时有用。</translation>
+    </message>
+    <message>
+        <source>Auto-save Session Interval</source>
+        <translation>自动保存会话的间隔</translation>
+    </message>
+    <message>
+        <source>The time interval between two auto-saves of the current session.</source>
+        <translation>两次自动保存会话之间的时间间隔。</translation>
     </message>
 </context>
 <context>

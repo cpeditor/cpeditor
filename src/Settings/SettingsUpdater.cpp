@@ -16,8 +16,12 @@
  */
 
 #include "Settings/SettingsUpdater.hpp"
+#include "Core/SessionManager.hpp"
 #include "Settings/SettingsManager.hpp"
 #include "generated/SettingsHelper.hpp"
+#include <QJsonArray>
+#include <QJsonDocument>
+#include <QJsonObject>
 #include <QMap>
 #include <QSettings>
 
@@ -55,8 +59,6 @@ const static QMap<QString, QString> updateInfo = {{"tab_stop", "Tab Width"},
                                                   {"hotkey_mode_toggle", "Hotkey/Change View Mode"},
                                                   {"hotkey_snippets", "Hotkey/Snippets"},
                                                   {"use_hot_exit", "Hot Exit/Enable"},
-                                                  {"number_of_tabs", "Hot Exit/Tab Count"},
-                                                  {"current_index", "Hot Exit/Current Index"},
                                                   {"cf_path", "CF/Path"},
                                                   {"compile_and_run_only", "Show Compile And Run Only"},
                                                   {"language", "Locale"}};
@@ -71,6 +73,7 @@ void SettingsUpdater::updateSetting(QSettings &setting)
             SettingsManager::set(nw, setting.value(old));
         }
     }
+
     if (setting.childGroups().contains("snippets"))
     {
         setting.beginGroup("snippets");
@@ -88,5 +91,27 @@ void SettingsUpdater::updateSetting(QSettings &setting)
             setting.endGroup();
         }
         setting.endGroup();
+    }
+
+    if (setting.childGroups().contains("editor_status") && Core::SessionManager::lastSessionPath().isEmpty())
+    {
+        QJsonObject json;
+        json.insert("currentIndex", setting.contains("hot_exit/current_index")
+                                        ? setting.value("hot_exit/current_index").toInt()
+                                        : setting.value("current_index").toInt());
+
+        QJsonArray arr;
+
+        setting.beginGroup("editor_status");
+        auto indices = setting.childKeys();
+        for (const auto &index : indices)
+        {
+            arr.push_back(QJsonDocument::fromVariant(setting.value(index).toMap()).object());
+        }
+        setting.endGroup();
+
+        json.insert("tabs", arr);
+
+        Core::SessionManager::saveSession(QJsonDocument(json).toJson());
     }
 }

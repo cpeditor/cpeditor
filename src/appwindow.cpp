@@ -19,6 +19,7 @@
 #include "../ui/ui_appwindow.h"
 #include "Core/EventLogger.hpp"
 #include "Core/MessageLogger.hpp"
+#include "Core/SessionManager.hpp"
 #include "Core/StyleManager.hpp"
 #include "Extensions/CFTool.hpp"
 #include "Extensions/CompanionServer.hpp"
@@ -78,54 +79,27 @@ AppWindow::AppWindow(bool noHotExit, QWidget *parent) : QMainWindow(parent), ui(
     if (SettingsHelper::isCheckUpdate())
         updateChecker->checkUpdate(true);
 
-    do
+    if (noHotExit || (!SettingsHelper::isForceClose() && !SettingsHelper::isHotExitEnable()))
+        return;
+
+    SettingsHelper::setForceClose(false);
+
+    auto lastSessionPath = sessionManager->lastSessionPath();
+
+    if (lastSessionPath.isEmpty())
+        return;
+
+    if (!SettingsHelper::isHotExitEnable())
     {
-        if (noHotExit || (!SettingsHelper::isForceClose() && !SettingsHelper::isHotExitEnable()))
-            break;
+        auto res = QMessageBox::question(
+            this, tr("Hot Exit"),
+            tr("In the last session, CP Editor was abnormally killed, do you want to restore the last session?"),
+            QMessageBox::Yes | QMessageBox::No);
+        if (res == QMessageBox::No)
+            return;
+    }
 
-        SettingsHelper::setForceClose(false);
-
-        if (!SettingsHelper::isHotExitEnable())
-        {
-            auto res = QMessageBox::question(
-                this, tr("Hot Exit"),
-                tr("In the last session, CP Editor was abnormally killed, do you want to restore the last session?"),
-                QMessageBox::Yes | QMessageBox::No);
-            if (res == QMessageBox::No)
-                break;
-        }
-
-        int length = SettingsHelper::getHotExitTabCount();
-
-        QProgressDialog progress(this);
-        progress.setWindowModality(Qt::WindowModal);
-        progress.setWindowTitle(tr("Restoring Last Session"));
-        progress.setMaximum(length);
-        progress.setValue(0);
-
-        auto oldSize = size();
-        setUpdatesEnabled(false);
-
-        for (int i = 0; i < length; ++i)
-        {
-            if (progress.wasCanceled())
-                break;
-            auto status = MainWindow::EditorStatus(SettingsHelper::getEditorStatus(QString("%1").arg(i)));
-            progress.setValue(i);
-            openTab("");
-            currentWindow()->loadStatus(status);
-            progress.setLabelText(currentWindow()->getTabTitle(true, false));
-        }
-
-        progress.setValue(length);
-
-        setUpdatesEnabled(true);
-        resize(oldSize);
-
-        int currentIndex = SettingsHelper::getHotExitCurrentIndex();
-        if (currentIndex >= 0 && currentIndex < ui->tabWidget->count())
-            ui->tabWidget->setCurrentIndex(currentIndex);
-    } while (false);
+    sessionManager->restoreSession(lastSessionPath);
 }
 
 AppWindow::AppWindow(int depth, bool cpp, bool java, bool python, bool noHotExit, const QStringList &paths,
@@ -186,8 +160,10 @@ AppWindow::~AppWindow()
     delete updateChecker;
     delete server;
     delete findReplaceDialog;
+    delete sessionManager;
 
     SettingsManager::deinit();
+
     LOG_INFO("Destruction finished");
 }
 
@@ -273,6 +249,8 @@ void AppWindow::allocate()
     trayIcon->setIcon(QIcon(":/icon.png"));
     trayIcon->setContextMenu(trayIconMenu);
     trayIcon->show();
+
+    sessionManager = new Core::SessionManager(this);
 }
 
 void AppWindow::applySettings()
@@ -508,25 +486,6 @@ void AppWindow::openContest(const QString &path, const QString &lang, int number
     openTabs(tabs);
 }
 
-void AppWindow::saveEditorStatus()
-{
-    for (const QString &i : SettingsHelper::getEditorStatus())
-        SettingsHelper::removeEditorStatus(i);
-    if (ui->tabWidget->count() == 1 && windowAt(0)->isUntitled() && !windowAt(0)->isTextChanged() &&
-        windowAt(0)->getProblemURL().isEmpty())
-    {
-        SettingsHelper::setHotExitTabCount(0);
-        SettingsHelper::setHotExitCurrentIndex(-1);
-    }
-    else
-    {
-        SettingsHelper::setHotExitTabCount(ui->tabWidget->count());
-        SettingsHelper::setHotExitCurrentIndex(ui->tabWidget->currentIndex());
-        for (int i = 0; i < ui->tabWidget->count(); ++i)
-            SettingsHelper::setEditorStatus(QString("%1").arg(i), windowAt(i)->toStatus().toMap());
-    }
-}
-
 bool AppWindow::quit()
 {
     if (preferencesWindow->isVisible() && !preferencesWindow->close())
@@ -534,7 +493,7 @@ bool AppWindow::quit()
     if (SettingsHelper::isHotExitEnable() || SettingsHelper::isForceClose())
     {
         LOG_INFO("quit() with hotexit");
-        saveEditorStatus();
+        sessionManager->updateSession();
     }
     else
     {
@@ -737,21 +696,49 @@ void AppWindow::on_action_reset_settings_triggered()
 
 void AppWindow::on_action_export_settings_triggered()
 {
-    auto path = QFileDialog::getSaveFileName(this, "Export settings to a file", QString(),
-                                             "CP Editor Settings File (*.cpeditor)");
+    auto path = QFileDialog::getSaveFileName(this, tr("Export settings to a file"), QString(),
+                                             tr("CP Editor Settings File") + " (*.cpeditor)");
     if (!path.isEmpty())
         SettingsManager::saveSettings(path);
 }
 
 void AppWindow::on_action_import_settings_triggered()
 {
-    auto path = QFileDialog::getOpenFileName(this, "Import settings from a file", QString(),
-                                             "CP Editor Settings File (*.cpeditor)");
+    auto path = QFileDialog::getOpenFileName(this, tr("Import settings from a file"), QString(),
+                                             tr("CP Editor Settings File") + " (*.cpeditor)");
     if (!path.isEmpty())
     {
         SettingsManager::loadSettings(path);
         onSettingsApplied("");
     }
+}
+
+void AppWindow::on_action_export_session_triggered()
+{
+    auto path = QFileDialog::getSaveFileName(this, tr("Export current session to a file"), QString(),
+                                             tr("CP Editor Session File") + " (*.json)");
+    if (!path.isEmpty())
+    {
+        if (!Util::saveFile(path, sessionManager->currentSessionText(), "Export Session"))
+        {
+            QMessageBox::warning(this, tr("Export Session"),
+                                 tr("Failed to export the current session to [%1]").arg(path));
+        }
+    }
+}
+
+void AppWindow::on_action_load_session_triggered()
+{
+    auto res = QMessageBox::question(this, tr("Load Session"),
+                                     tr("Load a session from a file will close all tabs in the current session without "
+                                        "saving the files. Are you sure to continue?"),
+                                     QMessageBox::Yes | QMessageBox::No);
+    if (res == QMessageBox::No)
+        return;
+    auto path = QFileDialog::getOpenFileName(this, tr("Load session from a file"), QString(),
+                                             tr("CP Editor Session File") + " (*.json)");
+    if (!path.isEmpty())
+        sessionManager->restoreSession(path);
 }
 
 void AppWindow::on_actionSettings_triggered()
@@ -1020,6 +1007,12 @@ void AppWindow::onSettingsApplied(const QString &pagePath)
     {
         pythonServer->updateSettings();
         lspTimerPython->setInterval(SettingsHelper::getLSPDelayPython());
+    }
+
+    if (pagePath.isEmpty() || pagePath == "Actions/Save Session")
+    {
+        sessionManager->setAutoUpdateDuration(SettingsHelper::getHotExitAutoSaveInterval());
+        sessionManager->setAutoUpdateSession(SettingsHelper::isHotExitEnable() && SettingsHelper::isHotExitAutoSave());
     }
 }
 

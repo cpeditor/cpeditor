@@ -12,10 +12,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Restoring Last Session</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Show Main Window</source>
         <translation type="unfinished"></translation>
     </message>
@@ -499,6 +495,54 @@
         <source>&amp;Help</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Export settings to a file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Import settings from a file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Export current session to a file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Export Session</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed to export the current session to [%1]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Load Session</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Load a session from a file will close all tabs in the current session without saving the files. Are you sure to continue?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Load session from a file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Export Session...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Load Session...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>CP Editor Settings File</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>CP Editor Session File</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>AppearancePage</name>
@@ -691,6 +735,17 @@
     </message>
     <message>
         <source>Please install xterm in order to use Detached Run.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>Core::SessionManager</name>
+    <message>
+        <source>Restoring Last Session</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Restoring: [%1]</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1420,6 +1475,14 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
         <source>Auto Save</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Save Session</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Empty Test Cases</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Setting</name>
@@ -1589,13 +1652,6 @@ You can use &quot;${filename}&quot; for the complete file name,
     </message>
     <message>
         <source>Check for updates marked as pre-releases, which are considered not very stable but have more features.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Save the status of the editor when the application exits and
-load the status of the last session when the application starts.
-When this is enabled, you won&apos;t be asked whether to save
-the unsaved files or not when exiting.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1776,18 +1832,6 @@ This can be overridden for each parenthesis in each language.</source>
     </message>
     <message>
         <source>Use Snippets</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Enable Hot Exit</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Hot Exit Tab Count</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Hot Exit Current Index</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2119,15 +2163,38 @@ Without modification: auto-save happens with an constant inverval no matter ther
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Editor Status</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Snippet</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Language Config</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Restore last session at startup</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Restore the last session when the application starts.
+When this is enabled, you won&apos;t be asked whether to save unsaved files when exiting.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Auto-save the current session periodically</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Auto-save the current session periodically instead of only save when the application exists.
+This is useful if your computer is frozen and you have to cut off the power or
+kill the application with SIGKILL which could not be handled by the application.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Auto-save Session Interval</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The time interval between two auto-saves of the current session.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

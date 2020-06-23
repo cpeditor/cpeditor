@@ -241,6 +241,9 @@
         "type": "int",
         "default": 1000,
         "param": "QVariantList {100, 36000000}",
+        "depends": [
+            "Auto Save"
+        ],
         "tip": "The time interval between a modification and an auto-save, or between two auto-saves."
     },
     {
@@ -249,6 +252,9 @@
         "ui": "QComboBox",
         "param": "QStringList { \"After the last modification\", \"After the first modification\", \"Without modification\" }",
         "default": "After the last modification",
+        "depends": [
+            "Auto Save"
+        ],
         "tip": "After the last modification: the timer will be reset after a modification to the code.\nAfter the first modification: the timer will start after a modification, if at that time the timer is not running.\nWithout modification: auto-save happens with an constant inverval no matter there are modifications or not."
     },
     {
@@ -325,6 +331,9 @@
         "type": "int",
         "default": 10045,
         "param": "QVariantList {1024,49151}",
+        "depends": [
+            "Competitive Companion/Enable"
+        ],
         "tip": "The port used to receive data from Competitive Companion"
     },
     {
@@ -332,6 +341,9 @@
         "desc": "Open New Tabs",
         "type": "bool",
         "default": true,
+        "depends": [
+            "Competitive Companion/Enable"
+        ],
         "tip": "Open a new tab for each problem parsed by Competitive Companion."
     },
     {
@@ -378,19 +390,31 @@
     },
     {
         "name": "Hot Exit/Enable",
-        "desc": "Enable Hot Exit",
+        "desc": "Restore last session at startup",
         "type": "bool",
         "default": true,
-        "tip": "Save the status of the editor when the application exits and\nload the status of the last session when the application starts.\nWhen this is enabled, you won't be asked whether to save\nthe unsaved files or not when exiting."
+        "tip": "Restore the last session when the application starts.\nWhen this is enabled, you won't be asked whether to save unsaved files when exiting."
     },
     {
-        "name": "Hot Exit/Tab Count",
-        "type": "int"
+        "name": "Hot Exit/Auto Save",
+        "desc": "Auto-save the current session periodically",
+        "type": "bool",
+        "depends": [
+            "Hot Exit/Enable"
+        ],
+        "tip": "Auto-save the current session periodically instead of only save when the application exists.\nThis is useful if your computer is frozen and you have to cut off the power or\nkill the application with SIGKILL which could not be handled by the application."
     },
     {
-        "name": "Hot Exit/Current Index",
+        "name": "Hot Exit/Auto Save Interval",
+        "desc": "Auto-save Session Interval",
         "type": "int",
-        "default": -1
+        "default": 20000,
+        "param": "QVariantList {1000, 36000000}",
+        "depends": [
+            "Hot Exit/Enable",
+            "Hot Exit/Auto Save"
+        ],
+        "tip": "The time interval between two auto-saves of the current session."
     },
     {
         "name": "Force Close",
@@ -475,6 +499,10 @@
         "default": "clangd",
         "type": "QString",
         "param": "0",
+        "requireAllDepends": false,
+        "depends": [
+            "LSP/Use Linting C++"
+        ],
         "tip": "The path to the C++ Language Server executable"
     },
     {
@@ -483,6 +511,10 @@
         "desc": "Path to LSP executable",
         "type": "QString",
         "param": "0",
+        "requireAllDepends": false,
+        "depends": [
+            "LSP/Use Linting Java"
+        ],
         "tip": "The path to the Java Language Server executable"
     },
     {
@@ -492,6 +524,10 @@
         "default": "python",
         "type": "QString",
         "param": "0",
+        "requireAllDepends": false,
+        "depends": [
+            "LSP/Use Linting Python"
+        ],
         "tip": "The path to the Python Language Server executable"
     },
     {
@@ -536,6 +572,9 @@
         "desc": "Delay in Linting (ms)",
         "default": 2000,
         "param": "QVariantList {10, 3600000}",
+        "depends": [
+            "LSP/Use Linting C++"
+        ],
         "tip": "Delay in linting in miliseconds after last modification to code"
     },
     {
@@ -544,6 +583,9 @@
         "desc": "Delay in Linting (ms)",
         "default": 2000,
         "param": "QVariantList {10, 3600000}",
+        "depends": [
+            "LSP/Use Linting Java"
+        ],
         "tip": "Delay in linting in miliseconds after last modification to code"
     },
     {
@@ -552,18 +594,29 @@
         "desc": "Delay in Linting (ms)",
         "default": 2000,
         "param": "QVariantList {10, 3600000}",
+        "depends": [
+            "LSP/Use Linting Python"
+        ],
         "tip": "Delay in linting in miliseconds after last modification to code"
     },
     {
         "name": "LSP/Args C++",
         "desc": "Arguments for Language Server",
         "type": "QString",
+        "requireAllDepends": false,
+        "depends": [
+            "LSP/Use Linting C++"
+        ],
         "tip": "Arguments to pass to Language server executable"
     },
     {
         "name": "LSP/Args Java",
         "desc": "Arguments for Language Server",
         "type": "QString",
+        "requireAllDepends": false,
+        "depends": [
+            "LSP/Use Linting Java"
+        ],
         "tip": "Arguments to pass to Language server executable"
     },
     {
@@ -571,6 +624,10 @@
         "desc": "Arguments for Language Server",
         "default": "-m pyls",
         "type": "QString",
+        "requireAllDepends": false,
+        "depends": [
+            "LSP/Use Linting Python"
+        ],
         "tip": "Arguments to pass to Language server executable"
     },
     {
@@ -656,11 +713,6 @@
         "default": "default",
         "param": "Core::StyleManager::styleList()",
         "tip": "The style of the whole application."
-    },
-    {
-        "name": "Editor Status",
-        "type": "QMap",
-        "final": "QVariantMap"
     },
     {
         "name": "Language Config",
