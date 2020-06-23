@@ -22,8 +22,6 @@
 
 class AppWindow;
 class QTimer;
-class QProgressDialog;
-class QJsonDocument;
 
 namespace Core
 {
