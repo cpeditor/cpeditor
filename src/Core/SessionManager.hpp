@@ -40,6 +40,8 @@ class SessionManager : public QObject
 
     void setAutoUpdateDuration(unsigned int duration);
 
+    QString currentSessionText();
+
     static QString lastSessionPath();
 
     static void saveSession(const QString &sessionText);
@@ -48,7 +50,6 @@ class SessionManager : public QObject
     void updateSession();
 
   private:
-    bool restored = false;
     QTimer *timer = nullptr;
     AppWindow *app = nullptr;
 };

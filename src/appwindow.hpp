@@ -100,6 +100,10 @@ class AppWindow : public QMainWindow
 
     void on_action_import_settings_triggered();
 
+    void on_action_export_session_triggered();
+
+    void on_action_load_session_triggered();
+
     void on_actionSettings_triggered();
 
     void on_actionSave_triggered();

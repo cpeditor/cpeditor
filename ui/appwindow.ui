@@ -113,6 +113,8 @@
     <addaction name="separator"/>
     <addaction name="action_export_settings"/>
     <addaction name="action_import_settings"/>
+    <addaction name="action_export_session"/>
+    <addaction name="action_load_session"/>
     <addaction name="separator"/>
     <addaction name="actionShow_Logs"/>
     <addaction name="actionClear_Logs"/>
@@ -394,6 +396,16 @@
   <action name="action_import_settings">
    <property name="text">
     <string>Import Settings...</string>
+   </property>
+  </action>
+  <action name="action_export_session">
+   <property name="text">
+    <string>Export Session...</string>
+   </property>
+  </action>
+  <action name="action_load_session">
+   <property name="text">
+    <string>Load Session...</string>
    </property>
   </action>
   <action name="actionManual">

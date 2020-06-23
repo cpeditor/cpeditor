@@ -696,21 +696,49 @@ void AppWindow::on_action_reset_settings_triggered()
 
 void AppWindow::on_action_export_settings_triggered()
 {
-    auto path = QFileDialog::getSaveFileName(this, "Export settings to a file", QString(),
-                                             "CP Editor Settings File (*.cpeditor)");
+    auto path = QFileDialog::getSaveFileName(this, tr("Export settings to a file"), QString(),
+                                             tr("CP Editor Settings File (*.cpeditor)"));
     if (!path.isEmpty())
         SettingsManager::saveSettings(path);
 }
 
 void AppWindow::on_action_import_settings_triggered()
 {
-    auto path = QFileDialog::getOpenFileName(this, "Import settings from a file", QString(),
-                                             "CP Editor Settings File (*.cpeditor)");
+    auto path = QFileDialog::getOpenFileName(this, tr("Import settings from a file"), QString(),
+                                             tr("CP Editor Settings File (*.cpeditor)"));
     if (!path.isEmpty())
     {
         SettingsManager::loadSettings(path);
         onSettingsApplied("");
     }
+}
+
+void AppWindow::on_action_export_session_triggered()
+{
+    auto path = QFileDialog::getSaveFileName(this, tr("Export current session to a file"), QString(),
+                                             tr("CP Editor Session File (*.json)"));
+    if (!path.isEmpty())
+    {
+        if (!Util::saveFile(path, sessionManager->currentSessionText(), "Export Session"))
+        {
+            QMessageBox::warning(this, tr("Export Session"),
+                                 tr("Failed to export the current session to [%1]").arg(path));
+        }
+    }
+}
+
+void AppWindow::on_action_load_session_triggered()
+{
+    auto res = QMessageBox::question(this, tr("Load Session"),
+                                     tr("Load a session from a file will close all tabs in the current session without "
+                                        "saving the files. Are you sure to continue?"),
+                                     QMessageBox::Yes | QMessageBox::No);
+    if (res == QMessageBox::No)
+        return;
+    auto path = QFileDialog::getOpenFileName(this, tr("Load session from a file"), QString(),
+                                             tr("CP Editor Session File (*.json)"));
+    if (!path.isEmpty())
+        sessionManager->restoreSession(path);
 }
 
 void AppWindow::on_actionSettings_triggered()

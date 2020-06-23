@@ -45,31 +45,9 @@ SessionManager::SessionManager(AppWindow *appwindow) : QObject(appwindow), app(a
     connect(timer, SIGNAL(timeout()), this, SLOT(updateSession()), Qt::DirectConnection);
 }
 
-void SessionManager::updateSession()
-{
-    QJsonObject json;
-    json.insert("currentIndex", app->ui->tabWidget->currentIndex());
-
-    QJsonArray arr;
-    for (int t = 0; t < app->ui->tabWidget->count(); t++)
-    {
-        arr.push_back(QJsonDocument::fromVariant(app->windowAt(t)->toStatus().toMap()).object());
-    }
-
-    json.insert("tabs", arr);
-
-    saveSession(QJsonDocument::fromVariant(json.toVariantMap()).toJson());
-}
-
 void SessionManager::restoreSession(const QString &path)
 {
-    if (restored)
-    {
-        LOG_ERR("Trying to restore session for the second time");
-        return;
-    }
-
-    restored = true;
+    LOG_INFO(INFO_OF(path));
 
     auto text = Util::readFile(path);
 
@@ -79,7 +57,22 @@ void SessionManager::restoreSession(const QString &path)
         return;
     }
 
-    QJsonObject object = QJsonDocument::fromJson(text.toUtf8()).object();
+    auto document = QJsonDocument::fromJson(text.toUtf8());
+
+    if (document.isNull())
+    {
+        LOG_ERR("Invalid session JSON: " << text);
+        return;
+    }
+
+    while (app->ui->tabWidget->count() > 0)
+    {
+        auto tmp = app->windowAt(0);
+        app->ui->tabWidget->removeTab(0);
+        delete tmp;
+    }
+
+    QJsonObject object = document.object();
 
     const int currentIndex = object["currentIndex"].toInt();
     auto tabs = object["tabs"].toArray();
@@ -125,6 +118,22 @@ void SessionManager::setAutoUpdateDuration(unsigned int duration)
     timer->setInterval(duration);
 }
 
+QString SessionManager::currentSessionText()
+{
+    QJsonObject json;
+    json.insert("currentIndex", app->ui->tabWidget->currentIndex());
+
+    QJsonArray arr;
+    for (int t = 0; t < app->ui->tabWidget->count(); t++)
+    {
+        arr.push_back(QJsonDocument::fromVariant(app->windowAt(t)->toStatus().toMap()).object());
+    }
+
+    json.insert("tabs", arr);
+
+    return QJsonDocument(json).toJson();
+}
+
 QString SessionManager::lastSessionPath()
 {
     return Util::firstExistingConfigPath(sessionFileLocations);
@@ -133,5 +142,10 @@ QString SessionManager::lastSessionPath()
 void SessionManager::saveSession(const QString &sessionText)
 {
     Util::saveFile(Util::configFilePath(sessionFileLocations[0]), sessionText, "Save Session", true, nullptr, true);
+}
+
+void SessionManager::updateSession()
+{
+    saveSession(currentSessionText());
 }
 } // namespace Core

@@ -110,6 +110,6 @@ void SettingsUpdater::updateSetting(QSettings &setting)
 
         json.insert("tabs", arr);
 
-        Core::SessionManager::saveSession(QJsonDocument::fromVariant(json.toVariantMap()).toJson());
+        Core::SessionManager::saveSession(QJsonDocument(json).toJson());
     }
 }
