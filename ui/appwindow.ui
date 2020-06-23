@@ -113,6 +113,7 @@
     <addaction name="separator"/>
     <addaction name="action_export_settings"/>
     <addaction name="action_import_settings"/>
+    <addaction name="separator"/>
     <addaction name="action_export_session"/>
     <addaction name="action_load_session"/>
     <addaction name="separator"/>

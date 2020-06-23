@@ -495,6 +495,54 @@
         <source>&amp;Help</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Export settings to a file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Import settings from a file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Export current session to a file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Export Session</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed to export the current session to [%1]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Load Session</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Load a session from a file will close all tabs in the current session without saving the files. Are you sure to continue?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Load session from a file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Export Session...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Load Session...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>CP Editor Settings File</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>CP Editor Session File</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>AppearancePage</name>

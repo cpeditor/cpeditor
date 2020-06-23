@@ -697,7 +697,7 @@ void AppWindow::on_action_reset_settings_triggered()
 void AppWindow::on_action_export_settings_triggered()
 {
     auto path = QFileDialog::getSaveFileName(this, tr("Export settings to a file"), QString(),
-                                             tr("CP Editor Settings File (*.cpeditor)"));
+                                             tr("CP Editor Settings File") + " (*.cpeditor)");
     if (!path.isEmpty())
         SettingsManager::saveSettings(path);
 }
@@ -705,7 +705,7 @@ void AppWindow::on_action_export_settings_triggered()
 void AppWindow::on_action_import_settings_triggered()
 {
     auto path = QFileDialog::getOpenFileName(this, tr("Import settings from a file"), QString(),
-                                             tr("CP Editor Settings File (*.cpeditor)"));
+                                             tr("CP Editor Settings File") + " (*.cpeditor)");
     if (!path.isEmpty())
     {
         SettingsManager::loadSettings(path);
@@ -716,7 +716,7 @@ void AppWindow::on_action_import_settings_triggered()
 void AppWindow::on_action_export_session_triggered()
 {
     auto path = QFileDialog::getSaveFileName(this, tr("Export current session to a file"), QString(),
-                                             tr("CP Editor Session File (*.json)"));
+                                             tr("CP Editor Session File") + " (*.json)");
     if (!path.isEmpty())
     {
         if (!Util::saveFile(path, sessionManager->currentSessionText(), "Export Session"))
@@ -736,7 +736,7 @@ void AppWindow::on_action_load_session_triggered()
     if (res == QMessageBox::No)
         return;
     auto path = QFileDialog::getOpenFileName(this, tr("Load session from a file"), QString(),
-                                             tr("CP Editor Session File (*.json)"));
+                                             tr("CP Editor Session File") + " (*.json)");
     if (!path.isEmpty())
         sessionManager->restoreSession(path);
 }

@@ -495,6 +495,54 @@
         <source>&amp;Help</source>
         <translation>帮助(&amp;H)</translation>
     </message>
+    <message>
+        <source>Export settings to a file</source>
+        <translation>将设置导出至文件</translation>
+    </message>
+    <message>
+        <source>Import settings from a file</source>
+        <translation>从文件中导入设置</translation>
+    </message>
+    <message>
+        <source>Export current session to a file</source>
+        <translation>将当前会话导出至文件</translation>
+    </message>
+    <message>
+        <source>Export Session</source>
+        <translation>导出会话</translation>
+    </message>
+    <message>
+        <source>Failed to export the current session to [%1]</source>
+        <translation>未能成功将当前会话导出至 [%1]</translation>
+    </message>
+    <message>
+        <source>Load Session</source>
+        <translation>加载会话</translation>
+    </message>
+    <message>
+        <source>Load a session from a file will close all tabs in the current session without saving the files. Are you sure to continue?</source>
+        <translation>从文件中加载会话会关闭当前的所有标签页并且不会保存文件。你确定要继续吗？</translation>
+    </message>
+    <message>
+        <source>Load session from a file</source>
+        <translation>从文件中加载会话</translation>
+    </message>
+    <message>
+        <source>Export Session...</source>
+        <translation>导出会话...</translation>
+    </message>
+    <message>
+        <source>Load Session...</source>
+        <translation>加载会话...</translation>
+    </message>
+    <message>
+        <source>CP Editor Settings File</source>
+        <translation>CP Editor 配置文件</translation>
+    </message>
+    <message>
+        <source>CP Editor Session File</source>
+        <translation>CP Editor 会话文件</translation>
+    </message>
 </context>
 <context>
     <name>AppearancePage</name>
