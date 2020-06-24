@@ -634,7 +634,7 @@
         "name": "Testcases Matching Rules",
         "type": "QVariantList",
         "default": "QVariantList { QStringList {\"(.*)\\\\.in\", \"\\\\1.ans\"}, QStringList {\"(.*)\\\\.in\", \"\\\\1.out\"}}",
-        "param": "QVariantList { QStringList {QCoreApplication::translate(\"Setting\", \"Input Regex\"), QCoreApplication::translate(\"Setting\", \"The regular expression which matches the whole input file name\")}, QStringList {QCoreApplication::translate(\"Setting\", \"Answer Replace\"), QCoreApplication::translate(\"Setting\", \"The replace expression for the answer file name.\\nYou can use \\\"\\\\1\\\" for the first captured group.\")}}",
+        "param": "QVariantList { QStringList {tr(\"Input Regex\"), tr(\"The regular expression which matches the whole input file name\")}, QStringList {tr(\"Answer Replace\"), tr(\"The replace expression for the answer file name.\\nYou can use \\\"\\\\1\\\" for the first captured group.\")}}",
         "tip": "Pairs of regular expressions used when adding pairs of test cases from files.\nEach pair of regular expressions represents a test case."
     },
     {
@@ -653,7 +653,7 @@
         "name": "Default File Paths For Problem URLs",
         "type": "QVariantList",
         "default": "QVariantList {}",
-        "param": "QVariantList { QStringList { QCoreApplication::translate(\"Setting\", \"Problem URL\"), QCoreApplication::translate(\"Setting\", \"The regular expression which matches a part of the problem URL\")}, QStringList {QCoreApplication::translate(\"Setting\", \"File Path\"), QCoreApplication::translate(\"Setting\", \"The replace expression for the file path, without file name suffix.\\nYou can use \\\"\\\\1\\\" for the first captured group.\")}}",
+        "param": "QVariantList { QStringList { tr(\"Problem URL\"), tr(\"The regular expression which matches a part of the problem URL\")}, QStringList {tr(\"File Path\"), tr(\"The replace expression for the file path, without file name suffix.\\nYou can use \\\"\\\\1\\\" for the first captured group.\")}}",
         "tip": "The default file path used when saving a new file while the problem URL is set"
     },
     {

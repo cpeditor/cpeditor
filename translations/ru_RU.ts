@@ -1500,7 +1500,7 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     </message>
 </context>
 <context>
-    <name>Setting</name>
+    <name>SettingsInfo</name>
     <message>
         <source>Tab Width</source>
         <translation type="unfinished"></translation>

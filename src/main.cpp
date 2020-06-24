@@ -17,11 +17,11 @@
 
 #include "Core/EventLogger.hpp"
 #include "Core/Translator.hpp"
+#include "Settings/SettingsInfo.hpp"
 #include "SignalHandler.hpp"
 #include "Util/Util.hpp"
 #include "appwindow.hpp"
 #include "generated/SettingsHelper.hpp"
-#include "generated/SettingsInfo.hpp"
 #include "mainwindow.hpp"
 #include <QApplication>
 #include <QCommandLineParser>
@@ -141,7 +141,7 @@ int main(int argc, char *argv[])
     Core::Log::init(instance, shouldDumpTostderr);
     LOG_INFO(INFO_OF(instance));
 
-    updateSettingInfo(); // generate an English version, so that we can use SettingsHelper
+    SettingsInfo::updateSettingInfo(); // generate an English version, so that we can use SettingsHelper
     SettingsManager::init();
     Core::Translator::setLocale(SettingsHelper::getLocale());
 

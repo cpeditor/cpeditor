@@ -16,9 +16,9 @@
  */
 
 #include "Settings/PreferencesPageTemplate.hpp"
+#include "Settings/SettingsInfo.hpp"
 #include "Settings/SettingsManager.hpp"
 #include "Settings/ValueWrapper.hpp"
-#include "generated/SettingsInfo.hpp"
 #include <QCheckBox>
 #include <QDebug>
 
@@ -27,7 +27,7 @@ PreferencesPageTemplate::PreferencesPageTemplate(QStringList opts, bool alignTop
 {
     for (const QString &name : options)
     {
-        SettingInfo si = findSetting(name);
+        auto si = SettingsInfo::findSetting(name);
 #ifdef QT_DEBUG
         if (name != si.name)
             qDebug() << "Unknown option" << name;
@@ -71,7 +71,7 @@ PreferencesPageTemplate::PreferencesPageTemplate(QStringList opts, bool alignTop
 
     for (const QString &name : options)
     {
-        SettingInfo si = findSetting(name);
+        auto si = SettingsInfo::findSetting(name);
         if (si.depends.isEmpty())
             continue;
         auto currentWidget = widgets[options.indexOf(name)]->coreWidget();
@@ -82,7 +82,7 @@ PreferencesPageTemplate::PreferencesPageTemplate(QStringList opts, bool alignTop
                 qDebug() << name << " depends on unknown option " << depend;
                 continue;
             }
-            SettingInfo dependInfo = findSetting(depend);
+            auto dependInfo = SettingsInfo::findSetting(depend);
             if (dependInfo.type != "bool")
             {
                 qDebug() << name << " depends on " << depend << " which is not a bool option";
@@ -102,7 +102,7 @@ QStringList PreferencesPageTemplate::content()
     QStringList ret = options;
     for (auto opt : options)
     {
-        SettingInfo si = findSetting(opt);
+        auto si = SettingsInfo::findSetting(opt);
         if (!si.desc.isEmpty())
             ret += si.desc;
         if (!si.tip.isEmpty())
@@ -118,7 +118,7 @@ bool PreferencesPageTemplate::areSettingsChanged()
     for (int i = 0; i < options.size(); ++i)
     {
         ValueWidget *widget = widgets[i];
-        SettingInfo si = findSetting(options[i]);
+        auto si = SettingsInfo::findSetting(options[i]);
         if (widget->getVariant() != SettingsManager::get(si.name))
             return true;
     }
@@ -130,7 +130,7 @@ void PreferencesPageTemplate::makeUITheSameAsDefault()
     for (int i = 0; i < options.size(); ++i)
     {
         ValueWidget *widget = widgets[i];
-        SettingInfo si = findSetting(options[i]);
+        auto si = SettingsInfo::findSetting(options[i]);
         widget->setVariant(SettingsManager::get(si.name, true));
     }
 }
@@ -140,7 +140,7 @@ void PreferencesPageTemplate::makeUITheSameAsSettings()
     for (int i = 0; i < options.size(); ++i)
     {
         ValueWidget *widget = widgets[i];
-        SettingInfo si = findSetting(options[i]);
+        auto si = SettingsInfo::findSetting(options[i]);
         widget->setVariant(SettingsManager::get(si.name));
     }
 }
@@ -150,7 +150,7 @@ void PreferencesPageTemplate::makeSettingsTheSameAsUI()
     for (int i = 0; i < options.size(); ++i)
     {
         ValueWidget *widget = widgets[i];
-        SettingInfo si = findSetting(options[i]);
+        auto si = SettingsInfo::findSetting(options[i]);
         SettingsManager::set(si.name, widget->getVariant());
     }
 }

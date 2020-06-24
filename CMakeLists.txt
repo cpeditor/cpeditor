@@ -58,7 +58,7 @@ ENDIF(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/.git)
 configure_file(cmake/version.hpp.in ${CMAKE_BINARY_DIR}/generated/version.hpp)
 configure_file(cmake/portable.hpp.in ${CMAKE_BINARY_DIR}/generated/portable.hpp)
 
-add_custom_command(OUTPUT ${CMAKE_BINARY_DIR}/generated/SettingsHelper.hpp ${CMAKE_BINARY_DIR}/generated/SettingsInfo.hpp ${CMAKE_BINARY_DIR}/generated/SettingsInfo.cpp
+add_custom_command(OUTPUT ${CMAKE_BINARY_DIR}/generated/SettingsHelper.hpp ${CMAKE_BINARY_DIR}/generated/SettingsInfo.cpp
                    COMMAND ${Python3_EXECUTABLE} ${PROJECT_SOURCE_DIR}/tools/genSettings.py ${PROJECT_SOURCE_DIR}/src/Settings/settings.json
                    WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
                    DEPENDS ${PROJECT_SOURCE_DIR}/src/Settings/settings.json ${PROJECT_SOURCE_DIR}/tools/genSettings.py)
@@ -71,7 +71,7 @@ qt5_add_translation(QMFILES ${TSS})
 
 file(COPY ${CMAKE_SOURCE_DIR}/translations/translations.qrc DESTINATION ${CMAKE_BINARY_DIR}/translations)
 
-set_property(SOURCE ${CMAKE_BINARY_DIR}/generated/SettingsHelper.hpp ${CMAKE_BINARY_DIR}/generated/SettingsInfo.hpp ${CMAKE_BINARY_DIR}/generated/SettingsInfo.cpp PROPERTY SKIP_AUTOGEN ON)
+set_property(SOURCE ${CMAKE_BINARY_DIR}/generated/SettingsHelper.hpp ${CMAKE_BINARY_DIR}/generated/SettingsInfo.cpp PROPERTY SKIP_AUTOGEN ON)
 
 add_executable(cpeditor
     ${GUI_TYPE}
@@ -178,7 +178,7 @@ add_executable(cpeditor
 
     ${CMAKE_BINARY_DIR}/generated/version.hpp
     ${CMAKE_BINARY_DIR}/generated/SettingsHelper.hpp
-    ${CMAKE_BINARY_DIR}/generated/SettingsInfo.hpp
+    src/Settings/SettingsInfo.hpp
     ${CMAKE_BINARY_DIR}/generated/SettingsInfo.cpp
 
     ${CMAKE_BINARY_DIR}/translations/translations.qrc
