@@ -55,6 +55,11 @@ class PathItem : public QWidget
     void onButtonClicked();
 
   private:
+    QString getFilters(int index);
+
+    QString getTitles(int index);
+
+  private:
     QString filter, title;
     QHBoxLayout *layout = nullptr;
     QLineEdit *lineEdit = nullptr;
