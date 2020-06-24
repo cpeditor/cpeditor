@@ -1280,6 +1280,21 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     </message>
 </context>
 <context>
+    <name>PathItem</name>
+    <message>
+        <source>Excutable</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Choose Excutable</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Choose %1 Sources</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>PreferencesHomePage</name>
     <message>
         <source>Welcome to CP Editor! Let&apos;s get started.</source>
@@ -1485,7 +1500,7 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     </message>
 </context>
 <context>
-    <name>Setting</name>
+    <name>SettingsInfo</name>
     <message>
         <source>Tab Width</source>
         <translation type="unfinished"></translation>
@@ -2203,21 +2218,6 @@ kill the application with SIGKILL which could not be handled by the application.
     </message>
     <message>
         <source>The maximum height of a test case without a scrollbar in pixels.</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>Settings::PathItem</name>
-    <message>
-        <source>Excutable</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Choose Excutable</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Choose %1 Sources</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

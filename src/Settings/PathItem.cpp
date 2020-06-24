@@ -26,12 +26,12 @@
 #include <QStyle>
 #include <QToolButton>
 
-inline QString getFilters(int index)
+QString PathItem::getFilters(int index)
 {
     switch (index)
     {
     case 0:
-        return QCoreApplication::translate("Settings::PathItem", "Excutable") + " (*" + Util::exeSuffix + ")";
+        return tr("Excutable") + " (*" + Util::exeSuffix + ")";
     case 1:
     case 2:
     case 3:
@@ -42,17 +42,16 @@ inline QString getFilters(int index)
     }
 }
 
-inline QString getTitles(int index)
+QString PathItem::getTitles(int index)
 {
     switch (index)
     {
     case 0:
-        return QCoreApplication::translate("Settings::PathItem", "Choose Excutable");
+        return tr("Choose Excutable");
     case 1:
     case 2:
     case 3:
-        return QCoreApplication::translate("Settings::PathItem", "Choose %1 Sources")
-            .arg(QStringList{"C++", "Java", "Python"}[index - 1]);
+        return tr("Choose %1 Sources").arg(QStringList{"C++", "Java", "Python"}[index - 1]);
     default:
         LOG_ERR("Unknown index: " INFO_OF(index));
         return QString();

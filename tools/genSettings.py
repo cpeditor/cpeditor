@@ -52,17 +52,17 @@ def writeInfo(f, obj, lst):
             f.write(f"    QList<SettingInfo> LIST{key};\n")
             writeInfo(f, t["sub"], f"LIST{key}")
         f.write(f"    {lst}.append(SettingInfo {{{json.dumps(name)}, ")
-        desccode = f"QCoreApplication::translate(\"Setting\", {json.dumps(desc)})"
+        desccode = f"tr({json.dumps(desc)})"
         for lang in [ "C++", "Java", "Python" ]:
             if lang in desc:
-                desccode = f"QCoreApplication::translate(\"Setting\", {json.dumps(desc.replace(lang, '%1'))}).arg(\"{lang}\")"
+                desccode = f"tr({json.dumps(desc.replace(lang, '%1'))}).arg(\"{lang}\")"
                 break
         f.write(desccode)
         tempname = typename
         if typename == "QMap":
             final = t["final"]
             tempname = f"QMap:{final}"
-        f.write(f", \"{tempname}\", \"{ui}\", QCoreApplication::translate(\"Setting\", {json.dumps(tip)}), QCoreApplication::translate(\"Setting\", {json.dumps(hlp)}), {json.dumps(requireAllDepends)}, {{{json.dumps(depends)[1:-1]}}}, ")
+        f.write(f", \"{tempname}\", \"{ui}\", tr({json.dumps(tip)}), tr({json.dumps(hlp)}), {json.dumps(requireAllDepends)}, {{{json.dumps(depends)[1:-1]}}}, ")
         if typename != "Object":
             if "default" in t:
                 if typename == "QString":
@@ -132,57 +132,20 @@ namespace SettingsHelper
 
 #endif // SETTINGSHELPER_HPP""")
     setting_helper.close()
-    setting_info = open("generated/SettingsInfo.hpp", mode="w", encoding="utf-8")
-    setting_info.write(head)
-    setting_info.write("""#ifndef SETTINGSINFO_HPP
-#define SETTINGSINFO_HPP
-
-#include <QCoreApplication>
-#include <QFontDatabase>
-#include <QRect>
-#include <QVariant>
-#include "Core/StyleManager.hpp"
-
-struct SettingInfo
-{
-    QString name, desc, type, ui, tip, help;
-    bool requireAllDepends; // false for one of the depends, true for all depends
-    QStringList depends;
-    QVariant def;
-    QVariant param;
-    QList<SettingInfo> child;
-
-    QString key() const
-    {
-        return name.toLower().replace('+', 'p').replace(' ', '_');
-    }
-};
-
-extern QList<SettingInfo> settingInfo;
-
-void updateSettingInfo();
-
-inline SettingInfo findSetting(const QString &name, const QList<SettingInfo> &infos = settingInfo)
-{
-    for (const SettingInfo &si: infos)
-        if (si.name == name)
-            return si;
-    return SettingInfo();
-}
-
-#endif // SETTINGSINFO_HPP""")
-    setting_info.close()
 
     setting_info = open("generated/SettingsInfo.cpp", mode="w", encoding="utf-8")
     setting_info.write(head)
-    setting_info.write("""#include "SettingsInfo.hpp"
+    setting_info.write("""#include "Settings/SettingsInfo.hpp"
+#include <QFontDatabase>
+#include <QRect>
+#include "Core/StyleManager.hpp"
 
-QList<SettingInfo> settingInfo;
+QList<SettingsInfo::SettingInfo> SettingsInfo::settings;
 
-void updateSettingInfo()
+void SettingsInfo::updateSettingInfo()
 {
-    settingInfo.clear();
+    settings.clear();
 """)
-    writeInfo(setting_info, obj, "settingInfo")
+    writeInfo(setting_info, obj, "settings")
     setting_info.write("};\n")
     setting_info.close()

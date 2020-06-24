@@ -196,7 +196,6 @@ void Log::revealInFileManager()
     }
 #else
     QDesktopServices::openUrl(QUrl::fromLocalFile(QFileInfo(filePath).path()));
-}
 #endif
 } // namespace Core
 

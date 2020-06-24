@@ -20,7 +20,6 @@
 #include "Settings/FileProblemBinder.hpp"
 #include "Settings/SettingsUpdater.hpp"
 #include "Util/FileUtil.hpp"
-#include "generated/SettingsInfo.hpp"
 #include "generated/portable.hpp"
 #include <QDebug>
 #include <QFile>
@@ -55,9 +54,9 @@ void SettingsManager::deinit()
     cur = def = nullptr;
 }
 
-void SettingsManager::load(QSettings &setting, const QString &prefix, const QList<SettingInfo> &infos)
+void SettingsManager::load(QSettings &setting, const QString &prefix, const QList<SettingsInfo::SettingInfo> &infos)
 {
-    for (const SettingInfo &si : infos)
+    for (const auto &si : infos)
     {
         if (si.type == "Object")
         {
@@ -85,9 +84,9 @@ void SettingsManager::load(QSettings &setting, const QString &prefix, const QLis
     }
 }
 
-void SettingsManager::save(QSettings &setting, const QString &prefix, const QList<SettingInfo> &infos)
+void SettingsManager::save(QSettings &setting, const QString &prefix, const QList<SettingsInfo::SettingInfo> &infos)
 {
-    for (const SettingInfo &si : infos)
+    for (const auto &si : infos)
         if (si.type == "Object")
         {
             QString head = QString("%1%2/").arg(prefix, si.name);
@@ -118,13 +117,13 @@ void SettingsManager::loadSettings(const QString &path)
     def = new QVariantMap();
 
     // default settings
-    for (const SettingInfo &si : settingInfo)
+    for (const auto &si : SettingsInfo::settings)
         def->insert(si.name, si.def);
 
     if (!path.isEmpty())
     {
         QSettings setting(path, QSettings::IniFormat);
-        load(setting, "", settingInfo);
+        load(setting, "", SettingsInfo::settings);
         SettingsUpdater::updateSetting(setting);
 
         // load file problem binding
@@ -148,7 +147,7 @@ void SettingsManager::saveSettings(const QString &path)
 
     QSettings setting(path, QSettings::IniFormat);
     setting.clear(); // Otherwise SettingsManager::remove won't work
-    save(setting, "", settingInfo);
+    save(setting, "", SettingsInfo::settings);
 
     // save file problem binding
     setting.setValue("file_problem_binding", FileProblemBinder::toVariant());

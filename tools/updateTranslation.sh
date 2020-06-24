@@ -21,5 +21,5 @@ for i in "${DIRS[@]}"; do
 done
 
 for i in zh_CN ru_RU; do
-	lupdate -no-obsolete "${SOURCES[@]}" -locations "$LOCATIONS" -ts translations/$i.ts -I src "${INCS[@]}"
+	lupdate -no-obsolete "${SOURCES[@]}" -locations "$LOCATIONS" -tr-function-alias tr+=TRKEY -ts translations/$i.ts -I src "${INCS[@]}"
 done

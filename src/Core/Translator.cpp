@@ -17,7 +17,7 @@
 
 #include "Core/Translator.hpp"
 #include "Core/EventLogger.hpp"
-#include "generated/SettingsInfo.hpp"
+#include "Settings/SettingsInfo.hpp"
 #include <QMap>
 #include <QTranslator>
 
@@ -55,7 +55,7 @@ void Translator::setLocale(const QString &language)
         translator = new QTranslator(qApp);
         translator->load(QString(":/translations/%1.qm").arg(locale));
         LOG_ERR_IF(!qApp->installTranslator(translator), "Failed to load the translator " << translator);
-        updateSettingInfo();
+        SettingsInfo::updateSettingInfo();
     }
 }
 } // namespace Core

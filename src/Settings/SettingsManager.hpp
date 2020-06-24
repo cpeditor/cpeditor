@@ -18,16 +18,15 @@
 #ifndef SETTINGSMANAGER_HPP
 #define SETTINGSMANAGER_HPP
 
-#include <QMetaType>
+#include "Settings/SettingsInfo.hpp"
 
 class QSettings;
-struct SettingInfo;
 
 class SettingsManager
 {
   private:
-    static void load(QSettings &setting, const QString &prefix, const QList<SettingInfo> &infos);
-    static void save(QSettings &setting, const QString &prefix, const QList<SettingInfo> &infos);
+    static void load(QSettings &setting, const QString &prefix, const QList<SettingsInfo::SettingInfo> &infos);
+    static void save(QSettings &setting, const QString &prefix, const QList<SettingsInfo::SettingInfo> &infos);
 
   public:
     static void init();

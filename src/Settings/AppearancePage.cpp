@@ -17,10 +17,10 @@
 
 #include "Settings/AppearancePage.hpp"
 #include "Core/Translator.hpp"
+#include "Settings/SettingsInfo.hpp"
 #include "Settings/SettingsManager.hpp"
 #include "Settings/ValueWrapper.hpp"
 #include <QMessageBox>
-#include <generated/SettingsInfo.hpp>
 
 AppearancePage::AppearancePage(QWidget *parent)
     : PreferencesPageTemplate({"Locale", "UI Style", "Editor Theme", "Editor Font", "Test Cases Font",
@@ -35,7 +35,7 @@ void AppearancePage::makeSettingsTheSameAsUI()
     for (int i = 0; i < options.size(); ++i)
     {
         ValueWidget *widget = widgets[i];
-        SettingInfo si = findSetting(options[i]);
+        auto si = SettingsInfo::findSetting(options[i]);
         if (si.name == "Locale" && SettingsManager::get(si.name) != widget->getVariant())
         {
             Core::Translator::setLocale(widget->getVariant().toString());
