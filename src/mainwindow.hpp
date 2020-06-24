@@ -64,6 +64,7 @@ class MainWindow : public QMainWindow
         int editorCursor, editorAnchor, horizontalScrollBarValue, verticalScrollbarValue, untitledIndex, checkerIndex;
         QStringList input, expected, customCheckers;
         QVariantList testcasesIsShow;
+        QVariantList testCaseSplitterStates;
 
         EditorStatus(){};
 

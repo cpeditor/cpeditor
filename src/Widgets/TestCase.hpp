@@ -27,6 +27,7 @@ class QHBoxLayout;
 class QLabel;
 class QMenu;
 class QPushButton;
+class QSplitter;
 class QVBoxLayout;
 
 namespace Widgets
@@ -54,6 +55,9 @@ class TestCase : public QWidget
     void setShow(bool show);
     bool isShow() const;
     void setTestCaseEditFont(const QFont &font);
+    void updateHeight();
+    QList<int> splitterSizes() const;
+    void restoreSplitterSizes(const QList<int> &state);
 
   signals:
     void deleted(TestCase *widget);
@@ -68,6 +72,8 @@ class TestCase : public QWidget
 
   private:
     QHBoxLayout *mainLayout = nullptr, *inputUpLayout = nullptr, *outputUpLayout = nullptr, *expectedUpLayout = nullptr;
+    QSplitter *splitter = nullptr;
+    QWidget *inputWidget = nullptr, *outputWidget = nullptr, *expectedWidget = nullptr;
     QVBoxLayout *inputLayout = nullptr, *outputLayout = nullptr, *expectedLayout = nullptr;
     QCheckBox *showCheckBox = nullptr;
     QLabel *inputLabel = nullptr, *outputLabel = nullptr, *expectedLabel = nullptr;

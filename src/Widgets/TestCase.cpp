@@ -27,6 +27,7 @@
 #include <QMenu>
 #include <QMessageBox>
 #include <QPushButton>
+#include <QSplitter>
 #include <QVBoxLayout>
 #include <generated/SettingsHelper.hpp>
 
@@ -40,19 +41,23 @@ TestCase::TestCase(int index, MessageLogger *logger, QWidget *parent, const QStr
     inputUpLayout = new QHBoxLayout();
     outputUpLayout = new QHBoxLayout();
     expectedUpLayout = new QHBoxLayout();
-    inputLayout = new QVBoxLayout();
-    outputLayout = new QVBoxLayout();
-    expectedLayout = new QVBoxLayout();
-    showCheckBox = new QCheckBox();
-    inputLabel = new QLabel(tr("Input"));
-    outputLabel = new QLabel(tr("Output"));
-    expectedLabel = new QLabel(tr("Expected"));
-    runButton = new QPushButton(tr("Run"));
-    diffButton = new QPushButton("**");
-    delButton = new QPushButton(tr("Del"));
-    inputEdit = new TestCaseEdit(true, log, in);
-    outputEdit = new TestCaseEdit(false, log);
-    expectedEdit = new TestCaseEdit(true, log, exp);
+    splitter = new QSplitter(this);
+    inputWidget = new QWidget(this);
+    outputWidget = new QWidget(this);
+    expectedWidget = new QWidget(this);
+    inputLayout = new QVBoxLayout(inputWidget);
+    outputLayout = new QVBoxLayout(outputWidget);
+    expectedLayout = new QVBoxLayout(expectedWidget);
+    showCheckBox = new QCheckBox(this);
+    inputLabel = new QLabel(tr("Input"), this);
+    outputLabel = new QLabel(tr("Output"), this);
+    expectedLabel = new QLabel(tr("Expected"), this);
+    runButton = new QPushButton(tr("Run"), this);
+    diffButton = new QPushButton("**", this);
+    delButton = new QPushButton(tr("Del"), this);
+    inputEdit = new TestCaseEdit(true, log, in, this);
+    outputEdit = new TestCaseEdit(false, log, QString(), this);
+    expectedEdit = new TestCaseEdit(true, log, exp, this);
     diffViewer = new DiffViewer(this);
 
     setID(index);
@@ -76,12 +81,18 @@ TestCase::TestCase(int index, MessageLogger *logger, QWidget *parent, const QStr
     inputLayout->addWidget(inputEdit);
     outputLayout->addLayout(outputUpLayout);
     outputLayout->addWidget(outputEdit);
-
     expectedLayout->addLayout(expectedUpLayout);
     expectedLayout->addWidget(expectedEdit);
-    mainLayout->addLayout(inputLayout);
-    mainLayout->addLayout(outputLayout);
-    mainLayout->addLayout(expectedLayout);
+    splitter->addWidget(inputWidget);
+    splitter->addWidget(outputWidget);
+    splitter->addWidget(expectedWidget);
+    mainLayout->addWidget(splitter);
+
+    inputLayout->setContentsMargins(3, 0, 3, 0);
+    outputLayout->setContentsMargins(3, 0, 3, 0);
+    expectedLayout->setContentsMargins(3, 0, 3, 0);
+
+    splitter->setChildrenCollapsible(false);
 
     runButton->setToolTip(tr("Test on a single testcase"));
     diffButton->setToolTip(tr("Open the Diff Viewer"));
@@ -199,6 +210,23 @@ void TestCase::setTestCaseEditFont(const QFont &font)
     inputEdit->setFont(font);
     outputEdit->setFont(font);
     expectedEdit->setFont(font);
+}
+
+void TestCase::updateHeight()
+{
+    inputEdit->startAnimation();
+    outputEdit->startAnimation();
+    expectedEdit->startAnimation();
+}
+
+QList<int> TestCase::splitterSizes() const
+{
+    return splitter->sizes();
+}
+
+void TestCase::restoreSplitterSizes(const QList<int> &sizes)
+{
+    splitter->setSizes(sizes);
 }
 
 void TestCase::onShowCheckBoxToggled(bool checked)

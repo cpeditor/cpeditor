@@ -82,7 +82,8 @@ void TestCaseEdit::modifyText(const QString &text)
 
 void TestCaseEdit::startAnimation()
 {
-    int newHeight = qMin(fontMetrics().lineSpacing() * (document()->lineCount() + 2) + 5, 300);
+    int newHeight = qMin(fontMetrics().boundingRect("f").height() * (document()->lineCount() + 2),
+                         SettingsHelper::getTestCaseMaximumHeight());
     if (newHeight != minimumHeight())
     {
         animation->stop();

@@ -365,6 +365,36 @@ void TestCases::setTestCaseEditFont(const QFont &font)
         t->setTestCaseEditFont(font);
 }
 
+void TestCases::updateHeights()
+{
+    for (auto t : testcases)
+        t->updateHeight();
+}
+
+QVariantList TestCases::splitterStates() const
+{
+    QVariantList states;
+    for (auto t : testcases)
+    {
+        QVariantList tmp;
+        for (auto size : t->splitterSizes())
+            tmp.push_back(size);
+        states.push_back(tmp);
+    }
+    return states;
+}
+
+void TestCases::restoreSplitterStates(const QVariantList &states)
+{
+    for (int i = 0; i < count() && i < states.count(); ++i)
+    {
+        QList<int> sizes;
+        for (auto var : states[i].toList())
+            sizes.push_back(var.toInt());
+        testcases[i]->restoreSplitterSizes(sizes);
+    }
+}
+
 int TestCases::id(TestCase *testcase) const
 {
     return testcases.indexOf(testcase);

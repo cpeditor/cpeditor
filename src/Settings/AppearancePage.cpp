@@ -24,8 +24,8 @@
 
 AppearancePage::AppearancePage(QWidget *parent)
     : PreferencesPageTemplate({"Locale", "UI Style", "Editor Theme", "Editor Font", "Test Cases Font",
-                               "Message Logger Font", "Opacity", "Show Compile And Run Only", "Display EOLN In Diff",
-                               "Extra Bottom Margin"},
+                               "Message Logger Font", "Opacity", "Test Case Maximum Height",
+                               "Show Compile And Run Only", "Display EOLN In Diff", "Extra Bottom Margin"},
                               true, parent)
 {
 }

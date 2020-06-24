@@ -2197,6 +2197,14 @@ kill the application with SIGKILL which could not be handled by the application.
         <source>The time interval between two auto-saves of the current session.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Test Case Maximum Height</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The maximum height of a test case without a scrollbar in pixels.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Settings::PathItem</name>

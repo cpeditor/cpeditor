@@ -15,6 +15,7 @@ With the portable version, you can easily store it in something like a USB disk,
 - Now testcases with empty outputs can also be checked. (#208 and #430)
 - Auto-save time interval.
 - Now you can auto-save the current session, besides saving it when the application exists. (#437 and #442)
+- Now the width of the input/output/expected of each test case is adjustable, and the maximum height of a test case can be set in the preferences. (#414 and #444)
 
 ### Fixed
 

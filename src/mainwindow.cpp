@@ -382,6 +382,7 @@ MainWindow::EditorStatus::EditorStatus(const QMap<QString, QVariant> &status)
     FROMSTATUS(expected).toStringList();
     FROMSTATUS(customCheckers).toStringList();
     FROMSTATUS(testcasesIsShow).toList();
+    FROMSTATUS(testCaseSplitterStates).toList();
 }
 #undef FROMSTATUS
 
@@ -406,6 +407,7 @@ QMap<QString, QVariant> MainWindow::EditorStatus::toMap() const
     TOSTATUS(expected);
     TOSTATUS(customCheckers);
     TOSTATUS(testcasesIsShow);
+    TOSTATUS(testCaseSplitterStates);
     return status;
 }
 #undef TOSTATUS
@@ -430,6 +432,7 @@ MainWindow::EditorStatus MainWindow::toStatus() const
     status.expected = testcases->expecteds();
     for (int i = 0; i < testcases->count(); ++i)
         status.testcasesIsShow.push_back(testcases->isShow(i));
+    status.testCaseSplitterStates = testcases->splitterStates();
 
     return status;
 }
@@ -455,6 +458,7 @@ void MainWindow::loadStatus(const EditorStatus &status)
     testcases->loadStatus(status.input, status.expected);
     for (int i = 0; i < status.testcasesIsShow.count() && i < testcases->count(); ++i)
         testcases->setShow(i, status.testcasesIsShow[i].toBool());
+    testcases->restoreSplitterStates(status.testCaseSplitterStates);
 }
 
 void MainWindow::applyCompanion(const Extensions::CompanionData &data)
@@ -529,6 +533,7 @@ void MainWindow::applySettings(const QString &pagePath, bool shouldPerformDigoni
     {
         ui->compiler_edit->setFont(SettingsHelper::getMessageLoggerFont());
         testcases->setTestCaseEditFont(SettingsHelper::getTestCasesFont());
+        testcases->updateHeights();
         if (SettingsHelper::isShowCompileAndRunOnly())
         {
             ui->compile->hide();
