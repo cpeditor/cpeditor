@@ -139,6 +139,15 @@ class PreferencesWindow : public QMainWindow
     QTreeWidgetItem *getChild(QTreeWidgetItem *item, const QString &text);
 
     /**
+     * @brief get the index of the next/previous non-hidden page (including the home page)
+     * @param index the index of the current page in the stackedWidget
+     * @param direction either 1 or -1, 1 for the next non-hidden page and -1 for the previous non-hidden-page
+     * @param includingSelf when it's true, the result can be the current page
+     * @returns the index of the (strictly) next/previous non-hidden page in the stackedWidget
+     */
+    int nextNonHiddenPage(int index, int direction = 1, bool includingSelf = false);
+
+    /**
      * The GUI:
      *
      * - splitter

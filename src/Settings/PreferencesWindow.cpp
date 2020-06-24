@@ -16,6 +16,7 @@
  */
 
 #include "Settings/PreferencesWindow.hpp"
+#include "Core/EventLogger.hpp"
 #include "Settings/AppearancePage.hpp"
 #include "Settings/CodeSnippetsPage.hpp"
 #include "Settings/ParenthesesPage.hpp"
@@ -152,15 +153,12 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
     connect(exitShortcut, SIGNAL(activated()), this, SLOT(close()));
 
     travelShortcut = new QShortcut({"Ctrl+Tab"}, this);
-    connect(travelShortcut, &QShortcut::activated, [this]() {
-        switchToPage(stackedWidget->widget((stackedWidget->currentIndex() + 1) % stackedWidget->count()));
-    });
+    connect(travelShortcut, &QShortcut::activated,
+            [this]() { switchToPage(stackedWidget->widget(nextNonHiddenPage(stackedWidget->currentIndex()))); });
 
     travelBackShortcut = new QShortcut({"Ctrl+Shift+Tab"}, this);
-    connect(travelBackShortcut, &QShortcut::activated, [this]() {
-        switchToPage(stackedWidget->widget((stackedWidget->currentIndex() + stackedWidget->count() - 1) %
-                                           stackedWidget->count()));
-    });
+    connect(travelBackShortcut, &QShortcut::activated,
+            [this]() { switchToPage(stackedWidget->widget(nextNonHiddenPage(stackedWidget->currentIndex(), -1))); });
 
     // clang-format off
     AddPageHelper(this)
@@ -433,4 +431,33 @@ QTreeWidgetItem *PreferencesWindow::getChild(QTreeWidgetItem *item, const QStrin
         }
     }
     return nullptr;
+}
+
+int PreferencesWindow::nextNonHiddenPage(int index, int direction, bool includingSelf)
+{
+    if (index < 0 || index >= stackedWidget->count())
+    {
+        LOG_WTF("Invalid index: " << index);
+        return 0;
+    }
+    if (direction != 1 && direction != -1)
+    {
+        LOG_WTF("Invalid direction: " << direction);
+        return 0;
+    }
+    if (includingSelf)
+    {
+        if (index == 0)
+            return 0;
+        auto currentWidget = qobject_cast<PreferencesPage *>(stackedWidget->widget(index));
+        auto currentItem = pageTreeItem[currentWidget];
+        if (currentItem == nullptr)
+        {
+            LOG_WTF("Failed to get the current item");
+            return 0;
+        }
+        if (!currentItem->isHidden())
+            return index;
+    }
+    return nextNonHiddenPage((index + direction + stackedWidget->count()) % stackedWidget->count(), direction, true);
 }
