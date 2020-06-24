@@ -163,13 +163,16 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
     });
 
     // clang-format off
+
+#define TRKEY(x) x, tr(x)
+
     AddPageHelper(this)
-        .page("Code Edit", tr("Code Edit"),
+        .page(TRKEY("Code Edit"),
               {"Tab Width", "Auto Indent", "Wrap Text", "Auto Complete Parentheses", "Auto Remove Parentheses",
                "Tab Jump Out Parentheses", "Replace Tabs"})
-        .dir("Language", tr("Language"))
-            .page("General", tr("General"), {"Default Language"})
-            .dir("C++", tr("C++"))
+        .dir(TRKEY("Language"))
+            .page(TRKEY("General"), {"Default Language"})
+            .dir(TRKEY("C++"))
                 .page("C++ Commands", tr("%1 Commands").arg(tr("C++")),
                       {"C++/Compile Command", "C++/Output Path", "C++/Run Arguments"})
                 .page("C++ Template", tr("%1 Template").arg(tr("C++")),
@@ -181,7 +184,7 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
                       {"C++ Parentheses", "C++ Brackets", "C++ Braces", "C++ Auto Complete", "C++ Auto Remove",
                        "C++ Tab Jump Out"})
             .end()
-            .dir("Java", tr("Java"))
+            .dir(TRKEY("Java"))
                 .page("Java Commands", tr("%1 Commands").arg(tr("Java")),
                       {"Java/Compile Command", "Java/Output Path", "Java/Class Name", "Java/Run Command", "Java/Run Arguments"})
                 .page("Java Template", tr("%1 Template").arg(tr("Java")),
@@ -193,7 +196,7 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
                       {"Java Parentheses", "Java Brackets", "Java Braces", "Java Auto Complete", "Java Auto Remove",
                        "Java Tab Jump Out"})
             .end()
-            .dir("Python", tr("Python"))
+            .dir(TRKEY("Python"))
                 .page("Python Commands", tr("%1 Commands").arg(tr("Python")),
                       {"Python/Run Command", "Python/Run Arguments"})
                 .page("Python Template", tr("%1 Template").arg(tr("Python")),
@@ -206,37 +209,40 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
                        "Python Tab Jump Out"})
             .end()
         .end()
-        .page("Appearance", tr("Appearance"), new AppearancePage())
-        .dir("Actions", tr("Actions"))
-            .page("Save", tr("Save"), {"Save Faster", "Auto Format", "Save File On Compilation",
+        .page(TRKEY("Appearance"), new AppearancePage())
+        .dir(TRKEY("Actions"))
+            .page(TRKEY("Save"), {"Save Faster", "Auto Format", "Save File On Compilation",
                                "Save File On Execution", "Save Tests"})
-            .page("Auto Save", tr("Auto Save"), {"Auto Save", "Auto Save Interval", "Auto Save Interval Type"})
-            .page("Save Session", tr("Save Session"), {"Hot Exit/Enable", "Hot Exit/Auto Save", "Hot Exit/Auto Save Interval"})
-            .page("Bind file and problem", tr("Bind file and problem"), {"Restore Old Problem Url", "Open Old File For Old Problem Url"})
-            .page("Empty Test Cases", tr("Empty Test Cases"), {"Run On Empty Testcase", "Check On Testcases With Empty Output"})
+            .page(TRKEY("Auto Save"), {"Auto Save", "Auto Save Interval", "Auto Save Interval Type"})
+            .page(TRKEY("Save Session"), {"Hot Exit/Enable", "Hot Exit/Auto Save", "Hot Exit/Auto Save Interval"})
+            .page(TRKEY("Bind file and problem"), {"Restore Old Problem Url", "Open Old File For Old Problem Url"})
+            .page(TRKEY("Empty Test Cases"), {"Run On Empty Testcase", "Check On Testcases With Empty Output"})
         .end()
-        .dir("Extensions", tr("Extensions"))
-            .page("Clang Format", tr("Clang Format"), new PreferencesPageTemplate({"Clang Format/Path", "Clang Format/Style"}, false))
-            .dir("Language Server", tr("Language Server"))
+        .dir(TRKEY("Extensions"))
+            .page(TRKEY("Clang Format"), new PreferencesPageTemplate({"Clang Format/Path", "Clang Format/Style"}, false))
+            .dir(TRKEY("Language Server"))
                 .page("C++ Server", tr("%1 Server").arg(tr("C++")), {"LSP/Use Linting C++", "LSP/Delay C++", "LSP/Path C++", "LSP/Args C++"})
                 .page("Java Server", tr("%1 Server").arg(tr("Java")), {"LSP/Use Linting Java", "LSP/Delay Java", "LSP/Path Java", "LSP/Args Java"})
                 .page("Python Server", tr("%1 Server").arg(tr("Python")), {"LSP/Use Linting Python", "LSP/Delay Python", "LSP/Path Python", "LSP/Args Python"})
             .end()
-            .page("Competitive Companion", tr("Competitive Companion"), {"Competitive Companion/Enable", "Competitive Companion/Open New Tab",
+            .page(TRKEY("Competitive Companion"), {"Competitive Companion/Enable", "Competitive Companion/Open New Tab",
                                                 "Competitive Companion/Connection Port"})
-            .page("CF Tool", tr("CF Tool"), {"CF/Path"})
+            .page(TRKEY("CF Tool"), {"CF/Path"})
         .end()
-        .dir("File Path", tr("File Path"))
-            .page("Testcases", tr("Testcases"), {"Input File Save Path", "Answer File Save Path", "Testcases Matching Rules"})
-            .page("Problem URL", tr("Problem URL"), {"Default File Paths For Problem URLs"})
+        .dir(TRKEY("File Path"))
+            .page(TRKEY("Testcases"), {"Input File Save Path", "Answer File Save Path", "Testcases Matching Rules"})
+            .page(TRKEY("Problem URL"), {"Default File Paths For Problem URLs"})
         .end()
-        .page("Key Bindings", tr("Key Bindings"), {"Hotkey/Compile", "Hotkey/Run", "Hotkey/Compile Run", "Hotkey/Format", "Hotkey/Kill",
+        .page(TRKEY("Key Bindings"), {"Hotkey/Compile", "Hotkey/Run", "Hotkey/Compile Run", "Hotkey/Format", "Hotkey/Kill",
                                    "Hotkey/Change View Mode", "Hotkey/Snippets"})
-        .dir("Advanced", tr("Advanced"))
-            .page("Update", tr("Update"), {"Check Update", "Beta"})
-            .page("Limits", tr("Limits"), {"Time Limit", "Output Length Limit", "Message Length Limit", "HTML Diff Viewer Length Limit",
+        .dir(TRKEY("Advanced"))
+            .page(TRKEY("Update"), {"Check Update", "Beta"})
+            .page(TRKEY("Limits"), {"Time Limit", "Output Length Limit", "Message Length Limit", "HTML Diff Viewer Length Limit",
                                  "Open File Length Limit", "Load Test Case File Length Limit"})
         .end();
+
+#undef TRKEY
+
     // clang-format on
 }
 
