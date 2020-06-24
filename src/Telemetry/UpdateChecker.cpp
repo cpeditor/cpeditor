@@ -212,7 +212,7 @@ void UpdateChecker::updateProxy()
         manager->setProxy(proxy);
     }
     else
-        manager->setProxy({QNetworkProxy::NoProxy});
+        manager->setProxy({QNetworkProxy::DefaultProxy});
 }
 
 UpdateChecker::Version::Version(const QString &version)
