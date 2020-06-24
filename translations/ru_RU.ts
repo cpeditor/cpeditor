@@ -2272,6 +2272,22 @@ kill the application with SIGKILL which could not be handled by the application.
         <source>The type of the proxy. &quot;System&quot; for using the system proxy.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Use Custom Application Font</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use a custom font for the whole application instead of the default system font.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Custom Application Font</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The custom font for the whole application</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ShortcutItem</name>

@@ -14,7 +14,25 @@
         "name": "Editor Font",
         "type": "QFont",
         "default": "[](){ QFont font = QFontDatabase::systemFont(QFontDatabase::FixedFont); font.setStyleHint(QFont::TypeWriter); return font; }()",
+        "param": "true",
         "tip": "The font of the code editor"
+    },
+    {
+        "name": "Use Custom Application Font",
+        "type": "bool",
+        "tip": "Use a custom font for the whole application instead of the default system font."
+    },
+    {
+        "name": "Custom Application Font",
+        "type": "QFont",
+        "default": "QFontDatabase::systemFont(QFontDatabase::GeneralFont)",
+        "param": "false",
+        "depends": [
+            {
+                "name": "Use Custom Application Font"
+            }
+        ],
+        "tip": "The custom font for the whole application"
     },
     {
         "name": "Default Language",
@@ -692,6 +710,7 @@
         "name": "Test Cases Font",
         "type": "QFont",
         "default": "[](){ QFont font = QFontDatabase::systemFont(QFontDatabase::FixedFont); font.setStyleHint(QFont::TypeWriter); return font; }()",
+        "param": "true",
         "tip": "The font of test cases"
     },
     {
@@ -704,6 +723,7 @@
         "name": "Message Logger Font",
         "type": "QFont",
         "default": "[](){ QFont font = QFontDatabase::systemFont(QFontDatabase::FixedFont); font.setStyleHint(QFont::TypeWriter); return font; }()",
+        "param": "true",
         "tip": "The font of the message logger"
     },
     {
