@@ -103,7 +103,16 @@ void UpdateChecker::managerFinished(QNetworkReply *reply)
     if (reply->error())
     {
         LOG_ERR(INFO_OF(reply->errorString()));
-        progress->onUpdateFailed(reply->errorString());
+        auto error = reply->errorString();
+        if (error.contains("TLS initialization failed"))
+        {
+            error += "<br /><br />" +
+                     tr("This error is probably caused by the lack of the OpenSSL library. You can visit "
+                        "<a href=\"https://wiki.openssl.org/index.php/Binaries\">the OpenSSLWiki</a> to find a binary "
+                        "to install, or install it via your favourite package manager. Try using different versions "
+                        "of OpenSSL if this still happens after the installation.");
+        }
+        progress->onUpdateFailed(error);
         return;
     }
 
