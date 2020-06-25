@@ -32,6 +32,7 @@ UpdateProgressDialog::UpdateProgressDialog()
     progressBar->setMinimumWidth(width());
 
     information = new QLabel(this);
+    information->setWordWrap(true);
 
     cancelUpdate = new QPushButton(tr("Cancel"), this);
     cancelUpdate->setToolTip(tr("Close this dialog and abort the update check"));
