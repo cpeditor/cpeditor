@@ -2297,10 +2297,6 @@ kill the application with SIGKILL which could not be handled by the application.
         <translation>检查更新时启用代理</translation>
     </message>
     <message>
-        <source>The type of the proxy</source>
-        <translation>代理的类型</translation>
-    </message>
-    <message>
         <source>The host name of the proxy, e.g. 127.0.0.1</source>
         <translation>代理的主机名，例如：127.0.0.1</translation>
     </message>
@@ -2335,6 +2331,10 @@ kill the application with SIGKILL which could not be handled by the application.
     <message>
         <source>Password</source>
         <translation>密码</translation>
+    </message>
+    <message>
+        <source>The type of the proxy. &quot;System&quot; for using the system proxy.</source>
+        <translation>代理的类型。类型 &quot;System&quot; 会使用系统代理设置。</translation>
     </message>
 </context>
 <context>

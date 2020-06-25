@@ -2233,10 +2233,6 @@ kill the application with SIGKILL which could not be handled by the application.
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>The type of the proxy</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>The host name of the proxy, e.g. 127.0.0.1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2270,6 +2266,10 @@ kill the application with SIGKILL which could not be handled by the application.
     </message>
     <message>
         <source>Password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The type of the proxy. &quot;System&quot; for using the system proxy.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
