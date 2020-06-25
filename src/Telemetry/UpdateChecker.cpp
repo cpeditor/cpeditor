@@ -139,14 +139,16 @@ void UpdateChecker::managerFinished(QNetworkReply *reply)
     auto latestInfo = releases.last().second;
     Version currentVersion(APP_VERSION);
 
-    if (latestInfo.assetDownloadUrl.isEmpty())
-    {
-        LOG_INFO("No download URL");
-        progress->onUpdateFailed(tr("No download URL of the version [%1] is found.").arg(latestInfo.version));
-    }
-    else if (currentVersion < latestVersion)
+    if (currentVersion < latestVersion)
     {
         LOG_INFO("Update available");
+
+        if (latestInfo.assetDownloadUrl.isEmpty())
+        {
+            LOG_INFO("No download URL");
+            progress->onUpdateFailed(tr("No download URL of the version [%1] is found.").arg(latestInfo.version));
+        }
+
         auto last = currentVersion;
         QStringList changelog;
         for (auto release : releases)
