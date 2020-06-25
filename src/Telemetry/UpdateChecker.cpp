@@ -200,21 +200,28 @@ void UpdateChecker::closeAll()
 
 void UpdateChecker::updateProxy()
 {
-    if (SettingsHelper::isProxyEnabled())
+    if (!SettingsHelper::isProxyEnabled())
+        manager->setProxy({QNetworkProxy::NoProxy});
+    else if (SettingsHelper::getProxyType() == "System")
+        manager->setProxy({QNetworkProxy::DefaultProxy});
+    else
     {
         QNetworkProxy proxy;
         if (SettingsHelper::getProxyType() == "Http")
             proxy.setType(QNetworkProxy::HttpProxy);
         else if (SettingsHelper::getProxyType() == "Socks5")
             proxy.setType(QNetworkProxy::Socks5Proxy);
+        else
+        {
+            LOG_WTF("Unknown proxy type: " << SettingsHelper::getProxyType());
+            proxy.setType(QNetworkProxy::DefaultProxy);
+        }
         proxy.setHostName(SettingsHelper::getProxyHostName());
         proxy.setPort(SettingsHelper::getProxyPort());
         proxy.setUser(SettingsHelper::getProxyUser());
         proxy.setPassword(SettingsHelper::getProxyPassword());
         manager->setProxy(proxy);
     }
-    else
-        manager->setProxy({QNetworkProxy::DefaultProxy});
 }
 
 UpdateChecker::Version::Version(const QString &version)

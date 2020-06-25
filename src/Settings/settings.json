@@ -781,21 +781,22 @@
         "name": "Proxy/Enabled",
         "desc": "Enable Proxy",
         "type": "bool",
+        "default": "true",
         "tip": "Enable proxy for checking updates"
     },
     {
         "name": "Proxy/Type",
         "desc": "Type",
         "type": "QString",
-        "default": "Http",
+        "default": "System",
         "ui": "QComboBox",
-        "param": "QStringList { \"Http\", \"Socks5\" }",
+        "param": "QStringList { \"System\", \"Http\", \"Socks5\" }",
         "depends": [
             {
                 "name": "Proxy/Enabled"
             }
         ],
-        "tip": "The type of the proxy"
+        "tip": "The type of the proxy. \"System\" for using the system proxy."
     },
     {
         "name": "Proxy/Host Name",
@@ -805,6 +806,10 @@
         "depends": [
             {
                 "name": "Proxy/Enabled"
+            },
+            {
+                "name": "Proxy/Type",
+                "check": "return var.toString() != \"System\";"
             }
         ],
         "tip": "The host name of the proxy, e.g. 127.0.0.1"
@@ -818,6 +823,10 @@
         "depends": [
             {
                 "name": "Proxy/Enabled"
+            },
+            {
+                "name": "Proxy/Type",
+                "check": "return var.toString() != \"System\";"
             }
         ],
         "tip": "The port of the proxy, e.g. 1080"
@@ -829,6 +838,10 @@
         "depends": [
             {
                 "name": "Proxy/Enabled"
+            },
+            {
+                "name": "Proxy/Type",
+                "check": "return var.toString() != \"System\";"
             }
         ],
         "tip": "The user of the proxy server. It can be empty if the proxy server doesn't require authentication."
@@ -840,6 +853,10 @@
         "depends": [
             {
                 "name": "Proxy/Enabled"
+            },
+            {
+                "name": "Proxy/Type",
+                "check": "return var.toString() != \"System\";"
             }
         ],
         "tip": "The password of the proxy server. It can be empty if the proxy server doesn't require authentication."
