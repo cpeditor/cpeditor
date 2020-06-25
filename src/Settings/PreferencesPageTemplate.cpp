@@ -74,26 +74,17 @@ PreferencesPageTemplate::PreferencesPageTemplate(QStringList opts, bool alignTop
         auto si = SettingsInfo::findSetting(name);
         if (si.depends.isEmpty())
             continue;
-        auto currentWidget = widgets[options.indexOf(name)]->coreWidget();
         for (auto depend : si.depends)
         {
-            if (!options.contains(depend))
+            if (!options.contains(depend.first))
             {
-                qDebug() << name << " depends on unknown option " << depend;
+                qDebug() << name << " depends on unknown option " << depend.first;
                 continue;
             }
-            auto dependInfo = SettingsInfo::findSetting(depend);
-            if (dependInfo.type != "bool")
-            {
-                qDebug() << name << " depends on " << depend << " which is not a bool option";
-                continue;
-            }
-            auto dependWidget = qobject_cast<QCheckBox *>(widgets[options.indexOf(depend)]->coreWidget());
-            depends[currentWidget].push_back(dependWidget);
-            connect(dependWidget, &QCheckBox::toggled,
-                    [this, si, currentWidget] { onDependencyUpdated(currentWidget, si.requireAllDepends); });
+            auto dependWidget = widgets[options.indexOf(depend.first)];
+            connect(dependWidget, &ValueWidget::valueChanged, [this, name] { onDependencyUpdated(name); });
         }
-        onDependencyUpdated(currentWidget, si.requireAllDepends);
+        onDependencyUpdated(name);
     }
 }
 
@@ -155,30 +146,32 @@ void PreferencesPageTemplate::makeSettingsTheSameAsUI()
     }
 }
 
-void PreferencesPageTemplate::onDependencyUpdated(QWidget *widget, bool requireAllDepends)
+void PreferencesPageTemplate::onDependencyUpdated(const QString &settingName)
 {
-    if (requireAllDepends)
+    auto si = SettingsInfo::findSetting(settingName);
+    auto currentWidget = widgets[options.indexOf(settingName)]->coreWidget();
+    for (auto depend : si.depends)
     {
-        for (auto checkBox : depends[widget])
+        auto dependWidget = widgets[options.indexOf(depend.first)];
+        if (depend.second(dependWidget->getVariant()))
         {
-            if (!checkBox->isChecked())
+            if (!si.requireAllDepends)
             {
-                widget->setEnabled(false);
+                currentWidget->setEnabled(true);
                 return;
             }
         }
-        widget->setEnabled(true);
+        else
+        {
+            if (si.requireAllDepends)
+            {
+                currentWidget->setEnabled(false);
+                return;
+            }
+        }
     }
+    if (si.requireAllDepends)
+        currentWidget->setEnabled(true);
     else
-    {
-        for (auto checkBox : depends[widget])
-        {
-            if (checkBox->isChecked())
-            {
-                widget->setEnabled(true);
-                return;
-            }
-        }
-        widget->setEnabled(false);
-    }
+        currentWidget->setEnabled(false);
 }

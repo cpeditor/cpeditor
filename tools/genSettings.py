@@ -4,6 +4,7 @@
 import sys
 import json
 
+
 def writeHelper(f, obj, pre, indent):
     ids = "    " * indent
     for t in obj:
@@ -16,7 +17,8 @@ def writeHelper(f, obj, pre, indent):
             f.write(f"{ids}    {key}(QString p) : pre(p) {{}}\n")
             writeHelper(f, t["sub"], "pre, ", indent + 1)
             f.write(f"{ids}}};\n")
-            f.write(f"{ids}inline {key} get{key}(QString key) {{ return {key}(QStringList {{{pre} {json.dumps(name)}, key}}.join('/')); }}\n")
+            f.write(
+                f"{ids}inline {key} get{key}(QString key) {{ return {key}(QStringList {{{pre} {json.dumps(name)}, key}}.join('/')); }}\n")
             f.write(f"{ids}inline void remove{key}(QString key) {{ SettingsManager::remove(SettingsManager::keyStartsWith(QStringList {{{pre} {json.dumps(name)}, key}}.join('/'))); }}\n")
             f.write(f"{ids}inline QStringList query{key}() {{ return SettingsManager::itemUnder(QStringList {{{pre} {json.dumps(name)}}}.join('/') + '/'); }}\n")
         elif typename == "QMap":
@@ -37,6 +39,7 @@ def writeHelper(f, obj, pre, indent):
                 f.write(
                     f"{ids}inline {typename} get{key}() {{ return SettingsManager::get({json.dumps(name)}).value<{typename}>(); }}\n")
 
+
 def writeInfo(f, obj, lst):
     for t in obj:
         name = t["name"]
@@ -53,7 +56,7 @@ def writeInfo(f, obj, lst):
             writeInfo(f, t["sub"], f"LIST{key}")
         f.write(f"    {lst}.append(SettingInfo {{{json.dumps(name)}, ")
         desccode = f"tr({json.dumps(desc)})"
-        for lang in [ "C++", "Java", "Python" ]:
+        for lang in ["C++", "Java", "Python"]:
             if lang in desc:
                 desccode = f"tr({json.dumps(desc.replace(lang, '%1'))}).arg(\"{lang}\")"
                 break
@@ -62,7 +65,11 @@ def writeInfo(f, obj, lst):
         if typename == "QMap":
             final = t["final"]
             tempname = f"QMap:{final}"
-        f.write(f", \"{tempname}\", \"{ui}\", tr({json.dumps(tip)}), tr({json.dumps(hlp)}), {json.dumps(requireAllDepends)}, {{{json.dumps(depends)[1:-1]}}}, ")
+        dependsString = "{"
+        for depend in depends:
+            dependsString += f"{{{json.dumps(depend.get('name', ''))}, [](const QVariant &var) {{ {depend.get('check', 'return var.toBool();')} }}}}, "
+        dependsString += "}"
+        f.write(f", \"{tempname}\", \"{ui}\", tr({json.dumps(tip)}), tr({json.dumps(hlp)}), {json.dumps(requireAllDepends)}, {dependsString}, ")
         if typename != "Object":
             if "default" in t:
                 if typename == "QString":
@@ -90,6 +97,7 @@ def writeInfo(f, obj, lst):
             f.write(f", LIST{key}")
         f.write("});\n")
 
+
 if __name__ == "__main__":
     obj = json.load(open(sys.argv[1], mode="r", encoding="utf-8"))
     head = """/*
@@ -114,7 +122,8 @@ if __name__ == "__main__":
  */
 
 """
-    setting_helper = open("generated/SettingsHelper.hpp", mode="w", encoding="utf-8")
+    setting_helper = open("generated/SettingsHelper.hpp",
+                          mode="w", encoding="utf-8")
     setting_helper.write(head)
     setting_helper.write("""#ifndef SETTINGSHELPER_HPP
 #define SETTINGSHELPER_HPP
@@ -133,7 +142,8 @@ namespace SettingsHelper
 #endif // SETTINGSHELPER_HPP""")
     setting_helper.close()
 
-    setting_info = open("generated/SettingsInfo.cpp", mode="w", encoding="utf-8")
+    setting_info = open("generated/SettingsInfo.cpp",
+                        mode="w", encoding="utf-8")
     setting_info.write(head)
     setting_info.write("""#include "Settings/SettingsInfo.hpp"
 #include <QFontDatabase>
