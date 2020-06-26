@@ -27,6 +27,7 @@
 #include <QtNetwork/QNetworkAccessManager>
 #include <QtNetwork/QNetworkReply>
 #include <QtNetwork/QNetworkRequest>
+#include <QtNetwork/QSslSocket>
 #include <algorithm>
 
 namespace Telemetry
@@ -109,8 +110,9 @@ void UpdateChecker::managerFinished(QNetworkReply *reply)
             error += "<br /><br />" +
                      tr("This error is probably caused by the lack of the OpenSSL library. You can visit "
                         "<a href=\"https://wiki.openssl.org/index.php/Binaries\">the OpenSSLWiki</a> to find a binary "
-                        "to install, or install it via your favourite package manager. Try using different versions "
-                        "of OpenSSL if this still happens after the installation.");
+                        "to install, or install it via your favourite package manager. You have to install a version "
+                        "compatible with this version: [%1]")
+                         .arg(QSslSocket::sslLibraryBuildVersionString());
         }
         progress->onUpdateFailed(error);
         return;
