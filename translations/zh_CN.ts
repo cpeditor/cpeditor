@@ -2346,8 +2346,8 @@ kill the application with SIGKILL which could not be handled by the application.
         <translation>没有发现版本 [%1] 可用的下载链接。</translation>
     </message>
     <message>
-        <source>This error is probably caused by the lack of the OpenSSL library. You can visit &lt;a href=&quot;https://wiki.openssl.org/index.php/Binaries&quot;&gt;the OpenSSLWiki&lt;/a&gt; to find a binary to install, or install it via your favourite package manager. Try using different versions of OpenSSL if this still happens after the installation.</source>
-        <translation>这个错误很可能是缺失 OpenSSL 库导致的。你可以访问 &lt;a href=&quot;https://wiki.openssl.org/index.php/Binaries&quot;&gt;OpenSSLWiki&lt;/a&gt; 来获取 OpenSSL 的下载地址，或使用你喜欢的包管理器来安装。若安装后问题依然存在，请尝试使用不同版本的 OpenSSL。</translation>
+        <source>This error is probably caused by the lack of the OpenSSL library. You can visit &lt;a href=&quot;https://wiki.openssl.org/index.php/Binaries&quot;&gt;the OpenSSLWiki&lt;/a&gt; to find a binary to install, or install it via your favourite package manager. You have to install a version compatible with this version: [%1]</source>
+        <translation>这个错误很可能是缺失 OpenSSL 库导致的。你可以访问 &amp;lt;a href=&amp;quot;https://wiki.openssl.org/index.php/Binaries&amp;quot;&amp;gt;OpenSSLWiki&amp;lt;/a&amp;gt; 来获取 OpenSSL 的下载地址，或使用你喜欢的包管理器来安装。你需要安装一个和此版本兼容的版本：[%1]</translation>
     </message>
 </context>
 <context>

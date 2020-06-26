@@ -2282,7 +2282,7 @@ kill the application with SIGKILL which could not be handled by the application.
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>This error is probably caused by the lack of the OpenSSL library. You can visit &lt;a href=&quot;https://wiki.openssl.org/index.php/Binaries&quot;&gt;the OpenSSLWiki&lt;/a&gt; to find a binary to install, or install it via your favourite package manager. Try using different versions of OpenSSL if this still happens after the installation.</source>
+        <source>This error is probably caused by the lack of the OpenSSL library. You can visit &lt;a href=&quot;https://wiki.openssl.org/index.php/Binaries&quot;&gt;the OpenSSLWiki&lt;/a&gt; to find a binary to install, or install it via your favourite package manager. You have to install a version compatible with this version: [%1]</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
