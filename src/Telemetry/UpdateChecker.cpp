@@ -25,6 +25,7 @@
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QtNetwork/QNetworkAccessManager>
+#include <QtNetwork/QNetworkProxy>
 #include <QtNetwork/QNetworkReply>
 #include <QtNetwork/QNetworkRequest>
 #include <QtNetwork/QSslSocket>
@@ -36,9 +37,7 @@ UpdateChecker::UpdateChecker()
 {
     progress = new Widgets::UpdateProgressDialog();
     presenter = new Widgets::UpdatePresenter();
-    manager = new QNetworkAccessManager();
     request = new QNetworkRequest(QUrl("https://api.github.com/repos/cpeditor/cpeditor/releases"));
-    connect(manager, SIGNAL(finished(QNetworkReply *)), this, SLOT(managerFinished(QNetworkReply *)));
     connect(progress, SIGNAL(canceled()), this, SLOT(cancelCheckUpdate()));
 }
 
@@ -61,10 +60,10 @@ void UpdateChecker::checkUpdate(bool silent)
 
 void UpdateChecker::cancelCheckUpdate()
 {
-    if (manager == nullptr)
-        return;
-    delete manager;
+    if (manager)
+        delete manager;
     manager = new QNetworkAccessManager();
+    updateProxy();
     connect(manager, SIGNAL(finished(QNetworkReply *)), this, SLOT(managerFinished(QNetworkReply *)));
 }
 
@@ -151,14 +150,16 @@ void UpdateChecker::managerFinished(QNetworkReply *reply)
     auto latestInfo = releases.last().second;
     Version currentVersion(APP_VERSION);
 
-    if (latestInfo.assetDownloadUrl.isEmpty())
-    {
-        LOG_INFO("No download URL");
-        progress->onUpdateFailed(tr("No download URL of the version [%1] is found.").arg(latestInfo.version));
-    }
-    else if (currentVersion < latestVersion)
+    if (currentVersion < latestVersion)
     {
         LOG_INFO("Update available");
+
+        if (latestInfo.assetDownloadUrl.isEmpty())
+        {
+            LOG_INFO("No download URL");
+            progress->onUpdateFailed(tr("No download URL of the version [%1] is found.").arg(latestInfo.version));
+        }
+
         auto last = currentVersion;
         QStringList changelog;
         for (auto release : releases)
@@ -206,6 +207,32 @@ void UpdateChecker::closeAll()
 {
     progress->close();
     presenter->close();
+}
+
+void UpdateChecker::updateProxy()
+{
+    if (!SettingsHelper::isProxyEnabled())
+        manager->setProxy({QNetworkProxy::NoProxy});
+    else if (SettingsHelper::getProxyType() == "System")
+        manager->setProxy({QNetworkProxy::DefaultProxy});
+    else
+    {
+        QNetworkProxy proxy;
+        if (SettingsHelper::getProxyType() == "Http")
+            proxy.setType(QNetworkProxy::HttpProxy);
+        else if (SettingsHelper::getProxyType() == "Socks5")
+            proxy.setType(QNetworkProxy::Socks5Proxy);
+        else
+        {
+            LOG_WTF("Unknown proxy type: " << SettingsHelper::getProxyType());
+            proxy.setType(QNetworkProxy::DefaultProxy);
+        }
+        proxy.setHostName(SettingsHelper::getProxyHostName());
+        proxy.setPort(SettingsHelper::getProxyPort());
+        proxy.setUser(SettingsHelper::getProxyUser());
+        proxy.setPassword(SettingsHelper::getProxyPassword());
+        manager->setProxy(proxy);
+    }
 }
 
 UpdateChecker::Version::Version(const QString &version)

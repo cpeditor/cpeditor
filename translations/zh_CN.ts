@@ -1517,6 +1517,10 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
         <source>Empty Test Cases</source>
         <translation>空测试点</translation>
     </message>
+    <message>
+        <source>Network Proxy</source>
+        <translation>网络代理</translation>
+    </message>
 </context>
 <context>
     <name>SettingsInfo</name>
@@ -2283,6 +2287,54 @@ kill the application with SIGKILL which could not be handled by the application.
     <message>
         <source>The maximum height of a test case without a scrollbar in pixels.</source>
         <translation>无需滚动条时一个测试用例的最大高度，以像素为单位。</translation>
+    </message>
+    <message>
+        <source>Enable Proxy</source>
+        <translation>启用代理</translation>
+    </message>
+    <message>
+        <source>Enable proxy for checking updates</source>
+        <translation>检查更新时启用代理</translation>
+    </message>
+    <message>
+        <source>The host name of the proxy, e.g. 127.0.0.1</source>
+        <translation>代理的主机名，例如：127.0.0.1</translation>
+    </message>
+    <message>
+        <source>The port of the proxy, e.g. 1080</source>
+        <translation>代理的端口，例如：1080</translation>
+    </message>
+    <message>
+        <source>The user of the proxy server. It can be empty if the proxy server doesn&apos;t require authentication.</source>
+        <translation>代理的用户名。若代理服务器不需要认证则可以留空。</translation>
+    </message>
+    <message>
+        <source>The password of the proxy server. It can be empty if the proxy server doesn&apos;t require authentication.</source>
+        <translation>代理的密码。若代理服务器不需要认证则可以留空。</translation>
+    </message>
+    <message>
+        <source>Type</source>
+        <translation>类型</translation>
+    </message>
+    <message>
+        <source>Host Name</source>
+        <translation>主机名</translation>
+    </message>
+    <message>
+        <source>Port</source>
+        <translation>端口</translation>
+    </message>
+    <message>
+        <source>User</source>
+        <translation>用户名</translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation>密码</translation>
+    </message>
+    <message>
+        <source>The type of the proxy. &quot;System&quot; for using the system proxy.</source>
+        <translation>代理的类型。类型 &quot;System&quot; 会使用系统代理设置。</translation>
     </message>
 </context>
 <context>

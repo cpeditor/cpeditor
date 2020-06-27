@@ -1498,6 +1498,10 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
         <source>Empty Test Cases</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Network Proxy</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SettingsInfo</name>
@@ -2218,6 +2222,54 @@ kill the application with SIGKILL which could not be handled by the application.
     </message>
     <message>
         <source>The maximum height of a test case without a scrollbar in pixels.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable Proxy</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable proxy for checking updates</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The host name of the proxy, e.g. 127.0.0.1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The port of the proxy, e.g. 1080</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The user of the proxy server. It can be empty if the proxy server doesn&apos;t require authentication.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The password of the proxy server. It can be empty if the proxy server doesn&apos;t require authentication.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Type</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Host Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Port</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>User</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The type of the proxy. &quot;System&quot; for using the system proxy.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

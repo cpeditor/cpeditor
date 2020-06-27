@@ -242,7 +242,9 @@
         "default": 1000,
         "param": "QVariantList {100, 36000000}",
         "depends": [
-            "Auto Save"
+            {
+                "name": "Auto Save"
+            }
         ],
         "tip": "The time interval between a modification and an auto-save, or between two auto-saves."
     },
@@ -253,7 +255,9 @@
         "param": "QStringList { \"After the last modification\", \"After the first modification\", \"Without modification\" }",
         "default": "After the last modification",
         "depends": [
-            "Auto Save"
+            {
+                "name": "Auto Save"
+            }
         ],
         "tip": "After the last modification: the timer will be reset after a modification to the code.\nAfter the first modification: the timer will start after a modification, if at that time the timer is not running.\nWithout modification: auto-save happens with an constant inverval no matter there are modifications or not."
     },
@@ -332,7 +336,9 @@
         "default": 10045,
         "param": "QVariantList {1024,49151}",
         "depends": [
-            "Competitive Companion/Enable"
+            {
+                "name": "Competitive Companion/Enable"
+            }
         ],
         "tip": "The port used to receive data from Competitive Companion"
     },
@@ -342,7 +348,9 @@
         "type": "bool",
         "default": true,
         "depends": [
-            "Competitive Companion/Enable"
+            {
+                "name": "Competitive Companion/Enable"
+            }
         ],
         "tip": "Open a new tab for each problem parsed by Competitive Companion."
     },
@@ -400,7 +408,9 @@
         "desc": "Auto-save the current session periodically",
         "type": "bool",
         "depends": [
-            "Hot Exit/Enable"
+            {
+                "name": "Hot Exit/Enable"
+            }
         ],
         "tip": "Auto-save the current session periodically instead of only save when the application exists.\nThis is useful if your computer is frozen and you have to cut off the power or\nkill the application with SIGKILL which could not be handled by the application."
     },
@@ -411,8 +421,12 @@
         "default": 20000,
         "param": "QVariantList {1000, 36000000}",
         "depends": [
-            "Hot Exit/Enable",
-            "Hot Exit/Auto Save"
+            {
+                "name": "Hot Exit/Enable"
+            },
+            {
+                "name": "Hot Exit/Auto Save"
+            }
         ],
         "tip": "The time interval between two auto-saves of the current session."
     },
@@ -501,7 +515,9 @@
         "param": "0",
         "requireAllDepends": false,
         "depends": [
-            "LSP/Use Linting C++"
+            {
+                "name": "LSP/Use Linting C++"
+            }
         ],
         "tip": "The path to the C++ Language Server executable"
     },
@@ -513,7 +529,9 @@
         "param": "0",
         "requireAllDepends": false,
         "depends": [
-            "LSP/Use Linting Java"
+            {
+                "name": "LSP/Use Linting Java"
+            }
         ],
         "tip": "The path to the Java Language Server executable"
     },
@@ -526,7 +544,9 @@
         "param": "0",
         "requireAllDepends": false,
         "depends": [
-            "LSP/Use Linting Python"
+            {
+                "name": "LSP/Use Linting Python"
+            }
         ],
         "tip": "The path to the Python Language Server executable"
     },
@@ -573,7 +593,9 @@
         "default": 2000,
         "param": "QVariantList {10, 3600000}",
         "depends": [
-            "LSP/Use Linting C++"
+            {
+                "name": "LSP/Use Linting C++"
+            }
         ],
         "tip": "Delay in linting in miliseconds after last modification to code"
     },
@@ -584,7 +606,9 @@
         "default": 2000,
         "param": "QVariantList {10, 3600000}",
         "depends": [
-            "LSP/Use Linting Java"
+            {
+                "name": "LSP/Use Linting Java"
+            }
         ],
         "tip": "Delay in linting in miliseconds after last modification to code"
     },
@@ -595,7 +619,9 @@
         "default": 2000,
         "param": "QVariantList {10, 3600000}",
         "depends": [
-            "LSP/Use Linting Python"
+            {
+                "name": "LSP/Use Linting Python"
+            }
         ],
         "tip": "Delay in linting in miliseconds after last modification to code"
     },
@@ -605,7 +631,9 @@
         "type": "QString",
         "requireAllDepends": false,
         "depends": [
-            "LSP/Use Linting C++"
+            {
+                "name": "LSP/Use Linting C++"
+            }
         ],
         "tip": "Arguments to pass to Language server executable"
     },
@@ -615,7 +643,9 @@
         "type": "QString",
         "requireAllDepends": false,
         "depends": [
-            "LSP/Use Linting Java"
+            {
+                "name": "LSP/Use Linting Java"
+            }
         ],
         "tip": "Arguments to pass to Language server executable"
     },
@@ -626,7 +656,9 @@
         "type": "QString",
         "requireAllDepends": false,
         "depends": [
-            "LSP/Use Linting Python"
+            {
+                "name": "LSP/Use Linting Python"
+            }
         ],
         "tip": "Arguments to pass to Language server executable"
     },
@@ -744,5 +776,89 @@
         "default": 300,
         "param": "QVariantList {30, 2000}",
         "tip": "The maximum height of a test case without a scrollbar in pixels."
+    },
+    {
+        "name": "Proxy/Enabled",
+        "desc": "Enable Proxy",
+        "type": "bool",
+        "default": "true",
+        "tip": "Enable proxy for checking updates"
+    },
+    {
+        "name": "Proxy/Type",
+        "desc": "Type",
+        "type": "QString",
+        "default": "System",
+        "ui": "QComboBox",
+        "param": "QStringList { \"System\", \"Http\", \"Socks5\" }",
+        "depends": [
+            {
+                "name": "Proxy/Enabled"
+            }
+        ],
+        "tip": "The type of the proxy. \"System\" for using the system proxy."
+    },
+    {
+        "name": "Proxy/Host Name",
+        "desc": "Host Name",
+        "type": "QString",
+        "default": "127.0.0.1",
+        "depends": [
+            {
+                "name": "Proxy/Enabled"
+            },
+            {
+                "name": "Proxy/Type",
+                "check": "return var.toString() != \"System\";"
+            }
+        ],
+        "tip": "The host name of the proxy, e.g. 127.0.0.1"
+    },
+    {
+        "name": "Proxy/Port",
+        "desc": "Port",
+        "type": "int",
+        "default": 1080,
+        "param": "QVariantList {1024,49151}",
+        "depends": [
+            {
+                "name": "Proxy/Enabled"
+            },
+            {
+                "name": "Proxy/Type",
+                "check": "return var.toString() != \"System\";"
+            }
+        ],
+        "tip": "The port of the proxy, e.g. 1080"
+    },
+    {
+        "name": "Proxy/User",
+        "desc": "User",
+        "type": "QString",
+        "depends": [
+            {
+                "name": "Proxy/Enabled"
+            },
+            {
+                "name": "Proxy/Type",
+                "check": "return var.toString() != \"System\";"
+            }
+        ],
+        "tip": "The user of the proxy server. It can be empty if the proxy server doesn't require authentication."
+    },
+    {
+        "name": "Proxy/Password",
+        "desc": "Password",
+        "type": "QString",
+        "depends": [
+            {
+                "name": "Proxy/Enabled"
+            },
+            {
+                "name": "Proxy/Type",
+                "check": "return var.toString() != \"System\";"
+            }
+        ],
+        "tip": "The password of the proxy server. It can be empty if the proxy server doesn't require authentication."
     }
 ]

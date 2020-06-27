@@ -19,9 +19,6 @@
 #define PREFERENCESPAGETEMPLATE_HPP
 
 #include "Settings/PreferencesGridPage.hpp"
-#include <QMap>
-
-class QCheckBox;
 
 class PreferencesPageTemplate : public PreferencesGridPage
 {
@@ -38,12 +35,11 @@ class PreferencesPageTemplate : public PreferencesGridPage
     void makeUITheSameAsSettings() override;
     void makeSettingsTheSameAsUI() override;
 
-    void onDependencyUpdated(QWidget *widget, bool requireAllDepends);
+    void onDependencyUpdated(const QString &settingName);
 
   protected:
     QStringList options;
     QVector<ValueWidget *> widgets;
-    QMap<QWidget *, QVector<QCheckBox *>> depends;
 };
 
 #endif // PREFERENCESPAGETEMPLATE_HPP

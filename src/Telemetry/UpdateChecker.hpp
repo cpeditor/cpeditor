@@ -68,6 +68,7 @@ class UpdateChecker : public QObject
         bool operator<(const Version &rhs) const;
     };
 
+    void updateProxy();
     UpdateMetaInformation toMetaInformation(const QJsonDocument &release);
 
     Widgets::UpdateProgressDialog *progress = nullptr;
