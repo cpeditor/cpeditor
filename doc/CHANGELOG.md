@@ -17,6 +17,7 @@ With the portable version, you can easily store it in something like a USB disk,
 - Now you can auto-save the current session, besides saving it when the application exists. (#437 and #442)
 - Now the width of the input/output/expected of each test case is adjustable, and the maximum height of a test case can be set in the preferences. (#414 and #444)
 - Now you can use proxy to check for updates. (#448)
+- Now you can set a custom font for the whole application. (#169 and #453)
 
 ### Fixed
 
