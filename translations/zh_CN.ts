@@ -543,6 +543,10 @@
         <source>CP Editor Session File</source>
         <translation>CP Editor 会话文件</translation>
     </message>
+    <message>
+        <source>Troubleshooting</source>
+        <translation>报告问题</translation>
+    </message>
 </context>
 <context>
     <name>AppearancePage</name>

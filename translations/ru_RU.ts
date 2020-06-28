@@ -543,6 +543,10 @@
         <source>CP Editor Session File</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Troubleshooting</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>AppearancePage</name>
