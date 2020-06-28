@@ -70,6 +70,12 @@
         "name": "C++/Template Cursor Position Regex",
         "type": "QString",
         "default": "main\\(\\)",
+        "depends": [
+            {
+                "name": "C++/Template Path",
+                "check": "return !var.toString().isEmpty();"
+            }
+        ],
         "tip": "The regular expression which matches a part of the code template.\nWhen opening a template, the position of the cursor is the position of the regex with an offset.\nThe cursor will be at the end of the template if there's no match of the regex."
     },
     {
@@ -78,6 +84,12 @@
         "default": "end",
         "ui": "QComboBox",
         "param": "QStringList {\"start\", \"end\"}",
+        "depends": [
+            {
+                "name": "C++/Template Path",
+                "check": "return !var.toString().isEmpty();"
+            }
+        ],
         "tip": "Whether the offset is relative to the start of the regex or the end of the regex."
     },
     {
@@ -85,6 +97,12 @@
         "type": "int",
         "default": 4,
         "param": "QVariantList {-1000000, 1000000}",
+        "depends": [
+            {
+                "name": "C++/Template Path",
+                "check": "return !var.toString().isEmpty();"
+            }
+        ],
         "tip": "The offset relative to the match of the regex in the number of characters, including white spaces."
     },
     {
@@ -151,6 +169,12 @@
     {
         "name": "Java/Template Cursor Position Regex",
         "type": "QString",
+        "depends": [
+            {
+                "name": "Java/Template Path",
+                "check": "return !var.toString().isEmpty();"
+            }
+        ],
         "tip": "The regular expression which matches a part of the code template.\nWhen opening a template, the position of the cursor is the position of the regex with an offset.\nThe cursor will be at the end of the template if there's no match of the regex."
     },
     {
@@ -159,12 +183,24 @@
         "default": "end",
         "ui": "QComboBox",
         "param": "QStringList {\"start\", \"end\"}",
+        "depends": [
+            {
+                "name": "Java/Template Path",
+                "check": "return !var.toString().isEmpty();"
+            }
+        ],
         "tip": "Whether the offset is relative to the start of the regex or the end of the regex."
     },
     {
         "name": "Java/Template Cursor Position Offset Characters",
         "type": "int",
         "param": "QVariantList {-1000000, 1000000}",
+        "depends": [
+            {
+                "name": "Java/Template Path",
+                "check": "return !var.toString().isEmpty();"
+            }
+        ],
         "tip": "The offset relative to the match of the regex in the number of characters, including white spaces."
     },
     {
@@ -182,6 +218,12 @@
     {
         "name": "Python/Template Cursor Position Regex",
         "type": "QString",
+        "depends": [
+            {
+                "name": "Python/Template Path",
+                "check": "return !var.toString().isEmpty();"
+            }
+        ],
         "tip": "The regular expression which matches a part of the code template.\nWhen opening a template, the position of the cursor is the position of the regex with an offset.\nThe cursor will be at the end of the template if there's no match of the regex."
     },
     {
@@ -190,12 +232,24 @@
         "default": "end",
         "ui": "QComboBox",
         "param": "QStringList {\"start\", \"end\"}",
+        "depends": [
+            {
+                "name": "Python/Template Path",
+                "check": "return !var.toString().isEmpty();"
+            }
+        ],
         "tip": "Whether the offset is relative to the start of the regex or the end of the regex."
     },
     {
         "name": "Python/Template Cursor Position Offset Characters",
         "type": "int",
         "param": "QVariantList {-1000000, 1000000}",
+        "depends": [
+            {
+                "name": "Python/Template Path",
+                "check": "return !var.toString().isEmpty();"
+            }
+        ],
         "tip": "The offset relative to the match of the regex in the number of characters, including white spaces."
     },
     {
