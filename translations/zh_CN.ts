@@ -544,7 +544,7 @@
         <translation>CP Editor 会话文件</translation>
     </message>
     <message>
-        <source>Troubleshooting</source>
+        <source>Report issues</source>
         <translation>报告问题</translation>
     </message>
 </context>

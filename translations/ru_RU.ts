@@ -544,7 +544,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Troubleshooting</source>
+        <source>Report issues</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
