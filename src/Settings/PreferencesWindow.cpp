@@ -166,7 +166,7 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
 
     AddPageHelper(this)
         .page(TRKEY("Code Edit"),
-              {"Tab Width", "Auto Indent", "Wrap Text", "Auto Complete Parentheses", "Auto Remove Parentheses",
+              {"Tab Width", "Auto Indent", "Indentation Guide", "Wrap Text", "Auto Complete Parentheses", "Auto Remove Parentheses",
                "Tab Jump Out Parentheses", "Replace Tabs"})
         .dir(TRKEY("Language"))
             .page(TRKEY("General"), {"Default Language"})

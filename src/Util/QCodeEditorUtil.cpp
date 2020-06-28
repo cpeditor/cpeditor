@@ -34,6 +34,7 @@ void applySettingsToEditor(QCodeEditor *editor, const QString &language)
     editor->setTabReplace(SettingsHelper::isReplaceTabs());
     editor->setTabReplaceSize(SettingsHelper::getTabWidth());
     editor->setAutoIndentation(SettingsHelper::isAutoIndent());
+    editor->setIndentationGuide(SettingsHelper::isIndentationGuide());
 
     editor->setFont(SettingsHelper::getEditorFont());
 

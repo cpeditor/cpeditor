@@ -229,6 +229,12 @@
         "default": true,
         "tip": "Add an indent when entering a new line after a \"{\"."
     },
+	{
+        "name": "Indentation Guide",
+        "type": "bool",
+        "default": true,
+        "tip": "Display an indentation guide if enabled."
+    },
     {
         "name": "Auto Save",
         "desc": "Enable Auto Save",
