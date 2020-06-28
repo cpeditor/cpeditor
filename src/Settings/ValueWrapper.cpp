@@ -223,9 +223,9 @@ void SliderWrapper::set(int i)
     qobject_cast<QSlider *>(widget)->setValue(i);
 }
 
-void FontItemWrapper::init(QWidget *parent, QVariant)
+void FontItemWrapper::init(QWidget *parent, QVariant param)
 {
-    FontItem *item = new FontItem(parent);
+    FontItem *item = new FontItem(parent, param);
     connect(item, &FontItem::fontChanged, this, &ValueWidget::emitSignal);
     widget = item;
 }

@@ -2336,6 +2336,22 @@ kill the application with SIGKILL which could not be handled by the application.
         <source>The type of the proxy. &quot;System&quot; for using the system proxy.</source>
         <translation>代理的类型。类型 &quot;System&quot; 会使用系统代理设置。</translation>
     </message>
+    <message>
+        <source>Use Custom Application Font</source>
+        <translation>使用自定义的全局字体</translation>
+    </message>
+    <message>
+        <source>Use a custom font for the whole application instead of the default system font.</source>
+        <translation>使用一个自定义的字体作为整个 CP Editor 的字体，而非使用默认的系统字体。</translation>
+    </message>
+    <message>
+        <source>Custom Application Font</source>
+        <translation>自定义全局字体</translation>
+    </message>
+    <message>
+        <source>The custom font for the whole application</source>
+        <translation>整个 CP Editor 使用的自定义字体</translation>
+    </message>
 </context>
 <context>
     <name>ShortcutItem</name>

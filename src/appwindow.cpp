@@ -37,6 +37,7 @@
 #include <QDesktopServices>
 #include <QDragEnterEvent>
 #include <QFileDialog>
+#include <QFontDatabase>
 #include <QInputDialog>
 #include <QJsonDocument>
 #include <QMessageBox>
@@ -989,6 +990,10 @@ void AppWindow::onSettingsApplied(const QString &pagePath)
     {
         setWindowOpacity(SettingsHelper::getOpacity() / 100.0);
         Core::StyleManager::setStyle(SettingsHelper::getUIStyle());
+        if (SettingsHelper::isUseCustomApplicationFont())
+            qApp->setFont(SettingsHelper::getCustomApplicationFont());
+        else
+            qApp->setFont(QFontDatabase::systemFont(QFontDatabase::GeneralFont));
     }
 
     if (pagePath.isEmpty() || pagePath == "Extensions/Language Server/C++ Server")

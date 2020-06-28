@@ -17,20 +17,13 @@
 
 #include "Settings/FontItem.hpp"
 #include <QFontDialog>
+#include <QVariant>
 
-FontItem::FontItem(QWidget *parent) : QPushButton(parent)
+FontItem::FontItem(QWidget *parent, const QVariant &param) : QPushButton(parent)
 {
     Q_ASSERT(parent != nullptr);
+    monospace = param.toBool();
     connect(this, SIGNAL(clicked(bool)), this, SLOT(onButtonClicked()));
-}
-
-void FontItem::setFont(const QString &desc)
-{
-    QFont newFont;
-    if (newFont.fromString(desc))
-    {
-        setFont(newFont);
-    }
 }
 
 void FontItem::setFont(QFont newFont)
@@ -38,9 +31,12 @@ void FontItem::setFont(QFont newFont)
     if (newFont != font)
     {
         font = newFont;
-        setText(QString("%1 %2").arg(font.family()).arg(font.pointSize()));
         emit fontChanged(font);
     }
+
+    // out of the if statement, because it's useful if this function is called for the first time and the newFont is the
+    // default font
+    setText(QString("%1 %2").arg(font.family()).arg(font.pointSize()));
 }
 
 QFont FontItem::getFont()
@@ -51,7 +47,8 @@ QFont FontItem::getFont()
 void FontItem::onButtonClicked()
 {
     bool ok;
-    QFont newFont = QFontDialog::getFont(&ok, font, this, QString(), QFontDialog::MonospacedFonts);
+    QFont newFont = QFontDialog::getFont(&ok, font, this, QString(),
+                                         monospace ? QFontDialog::MonospacedFonts : QFontDialog::FontDialogOption());
     if (ok)
         setFont(newFont);
     parentWidget()->raise();

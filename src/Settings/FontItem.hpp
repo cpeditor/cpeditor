@@ -28,9 +28,8 @@ class FontItem : public QPushButton
 {
     Q_OBJECT
   public:
-    explicit FontItem(QWidget *parent);
+    explicit FontItem(QWidget *parent, const QVariant &param);
 
-    void setFont(const QString &desc);
     void setFont(QFont newFont);
     QFont getFont();
 
@@ -41,6 +40,7 @@ class FontItem : public QPushButton
     void onButtonClicked();
 
   private:
+    bool monospace;
     QFont font;
 };
 
