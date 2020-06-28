@@ -80,6 +80,8 @@ class AppWindow : public QMainWindow
 
     void on_actionManual_triggered();
 
+    void on_action_report_issues_triggered();
+
     void on_actionAbout_triggered();
 
     void on_actionAboutQt_triggered();

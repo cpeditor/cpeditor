@@ -125,6 +125,7 @@
      <string>&amp;Help</string>
     </property>
     <addaction name="actionManual"/>
+    <addaction name="action_report_issues"/>
     <addaction name="actionAbout"/>
     <addaction name="actionAboutQt"/>
     <addaction name="actionBuildInfo"/>
@@ -412,6 +413,11 @@
   <action name="actionManual">
    <property name="text">
     <string>Manual</string>
+   </property>
+  </action>
+  <action name="action_report_issues">
+   <property name="text">
+    <string>Report issues</string>
    </property>
   </action>
   <action name="actionAbout">

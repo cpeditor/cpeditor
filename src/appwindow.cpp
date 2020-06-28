@@ -544,6 +544,11 @@ void AppWindow::on_actionManual_triggered()
         QUrl(tr("https://github.com/cpeditor/cpeditor/blob/%1/doc/MANUAL.md").arg(APP_VERSION), QUrl::TolerantMode));
 }
 
+void AppWindow::on_action_report_issues_triggered()
+{
+    QDesktopServices::openUrl(QUrl("https://github.com/cpeditor/cpeditor/issues", QUrl::TolerantMode));
+}
+
 void AppWindow::on_actionAbout_triggered()
 {
     QMessageBox::about(
