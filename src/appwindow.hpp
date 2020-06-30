@@ -203,8 +203,6 @@ class AppWindow : public QMainWindow
 
     void onViewModeToggle();
 
-
-
   private:
     Ui::AppWindow *ui;
     MessageLogger *activeLogger = nullptr;
