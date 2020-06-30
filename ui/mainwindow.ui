@@ -79,7 +79,7 @@
       <widget class="QWidget" name="right_widget">
        <layout class="QVBoxLayout" name="rightPane">
         <item>
-         <layout class="QVBoxLayout" name="inputOuputArea">
+         <layout class="QVBoxLayout" name="inputOutputArea">
           <item>
            <layout class="QHBoxLayout" name="inputOutputActions">
             <item>
