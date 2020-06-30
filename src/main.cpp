@@ -22,6 +22,7 @@
 #include "Util/Util.hpp"
 #include "appwindow.hpp"
 #include "generated/SettingsHelper.hpp"
+#include "generated/version.hpp"
 #include "mainwindow.hpp"
 #include <QApplication>
 #include <QCommandLineParser>
@@ -33,7 +34,6 @@
 #include <QJsonObject>
 #include <QProgressDialog>
 #include <QTextStream>
-#include <generated/version.hpp>
 #include <iostream>
 #include <singleapplication.h>
 
@@ -43,7 +43,7 @@ int main(int argc, char *argv[])
 {
     SingleApplication app(argc, argv, true);
     SingleApplication::setApplicationName("CP Editor");
-    SingleApplication::setApplicationVersion(APP_VERSION "+g" GIT_COMMIT_HASH);
+    SingleApplication::setApplicationVersion(DISPLAY_VERSION);
     QApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
     QApplication::setWindowIcon(QIcon(":/icon.png"));
 

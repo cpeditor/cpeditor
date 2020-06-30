@@ -62,7 +62,7 @@ PreferencesHomePage::PreferencesHomePage(QWidget *parent) : QWidget(parent)
     manualLabel = new QLabel(
         tr("You can read the <a href=\"https://github.com/cpeditor/cpeditor/blob/%1/doc/MANUAL.md\">Manual</a> or go "
            "through the settings for more information.")
-            .arg(APP_VERSION));
+            .arg(GIT_COMMIT_HASH));
     manualLabel->setOpenExternalLinks(true);
     layout->addWidget(manualLabel);
     layout->setAlignment(manualLabel, Qt::AlignCenter);
