@@ -668,18 +668,18 @@ void MainWindow::setViewMode(const QString &mode)
 {
     if (mode == "code")
     {
-        ui->left_widget->show();
-        ui->right_widget->hide();
+        ui->leftWidget->show();
+        ui->rightWidget->hide();
     }
     else if (mode == "io")
     {
-        ui->left_widget->hide();
-        ui->right_widget->show();
+        ui->leftWidget->hide();
+        ui->rightWidget->show();
     }
     else
     {
-        ui->left_widget->show();
-        ui->right_widget->show();
+        ui->leftWidget->show();
+        ui->rightWidget->show();
         ui->splitter->restoreState(SettingsHelper::getSplitterSize());
     }
 }

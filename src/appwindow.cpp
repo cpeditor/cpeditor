@@ -300,17 +300,17 @@ void AppWindow::maybeSetHotkeys()
     if (!SettingsHelper::getHotkeyCompileRun().isEmpty())
     {
         hotkeyObjects.push_back(
-            new QShortcut(SettingsHelper::getHotkeyCompileRun(), this, SLOT(on_actionCompile_Run_triggered())));
+            new QShortcut(SettingsHelper::getHotkeyCompileRun(), this, SLOT(on_actionCompileRun_triggered())));
     }
     if (!SettingsHelper::getHotkeyFormat().isEmpty())
     {
         hotkeyObjects.push_back(
-            new QShortcut(SettingsHelper::getHotkeyFormat(), this, SLOT(on_actionFormat_code_triggered())));
+            new QShortcut(SettingsHelper::getHotkeyFormat(), this, SLOT(on_actionFormatCode_triggered())));
     }
     if (!SettingsHelper::getHotkeyKill().isEmpty())
     {
         hotkeyObjects.push_back(
-            new QShortcut(SettingsHelper::getHotkeyKill(), this, SLOT(on_actionKill_Processes_triggered())));
+            new QShortcut(SettingsHelper::getHotkeyKill(), this, SLOT(on_actionKillProcesses_triggered())));
     }
     if (!SettingsHelper::getHotkeyChangeViewMode().isEmpty())
     {
@@ -320,7 +320,7 @@ void AppWindow::maybeSetHotkeys()
     if (!SettingsHelper::getHotkeySnippets().isEmpty())
     {
         hotkeyObjects.push_back(
-            new QShortcut(SettingsHelper::getHotkeySnippets(), this, SLOT(on_actionUse_Snippets_triggered())));
+            new QShortcut(SettingsHelper::getHotkeySnippets(), this, SLOT(on_actionUseSnippets_triggered())));
     }
 }
 
