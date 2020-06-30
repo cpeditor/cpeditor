@@ -1218,7 +1218,15 @@ void MainWindow::onCompilationErrorOccurred(const QString &error)
 {
     log->error(tr("Compiler"), tr("Error occurred while compiling"));
     if (!error.trimmed().isEmpty())
+    {
         log->error(tr("Compile Errors"), error);
+        if (language == "Java" && error.contains("public class"))
+        {
+            log->warn(tr("Compile Errors"),
+                      tr("Have you set a proper name for the main class in your solution? If not, you can set it in "
+                         "Preferences->Lanugages->Java->Java Commands->Java Class Name."));
+        }
+    }
 }
 
 void MainWindow::onCompilationKilled()
