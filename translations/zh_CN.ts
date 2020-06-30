@@ -1763,7 +1763,7 @@ You can use &quot;${filename}&quot; for the complete file name,
         <translation>%1 括号</translation>
     </message>
     <message>
-        <source>The name of the non-public main class of your solution.</source>
+        <source>The name of the main class of your solution.</source>
         <translation>你的代码中非 public 主类的名称。</translation>
     </message>
     <message>

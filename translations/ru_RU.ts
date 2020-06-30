@@ -1730,7 +1730,7 @@ You can use &quot;${filename}&quot; for the complete file name,
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>The name of the non-public main class of your solution.</source>
+        <source>The name of the main class of your solution.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

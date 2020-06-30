@@ -946,13 +946,13 @@ QString MainWindow::tmpPath()
         }
         created = true;
     }
-    QString name = "sol.";
+    QString name;
     if (language == "C++")
-        name += Util::cppSuffix.first();
+        name = "sol." + Util::cppSuffix.first();
     else if (language == "Java")
-        name += Util::javaSuffix.first();
+        name = SettingsHelper::getJavaClassName() + "." + Util::javaSuffix.first();
     else if (language == "Python")
-        name += Util::pythonSuffix.first();
+        name = "sol." + Util::pythonSuffix.first();
     else
     {
         log->error(tr("Temp File"), tr("Please set the language"));
