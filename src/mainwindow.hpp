@@ -120,10 +120,6 @@ class MainWindow : public QMainWindow
     QString tmpPath();
 
   private slots:
-    void on_compile_clicked();
-    void on_runOnly_clicked();
-    void on_run_clicked();
-
     void onCompilationStarted();
     void onCompilationFinished(const QString &warning);
     void onCompilationErrorOccurred(const QString &error);
@@ -136,19 +132,23 @@ class MainWindow : public QMainWindow
     void onRunOutputLimitExceeded(int index, const QString &type);
     void onRunKilled(int index);
 
-    void on_clear_messages_button_clicked();
+    void onFileWatcherChanged(const QString &);
+    void onTextChanged();
+    void updateCursorInfo();
+    void updateChecker();
+    void runTestCase(int index);
+
+    // UI Slots
+
+    void on_compile_clicked();
+
+    void on_runOnly_clicked();
+
+    void on_run_clicked();
+
+    void on_clearMessagesButton_clicked();
 
     void on_changeLanguageButton_clicked();
-
-    void onFileWatcherChanged(const QString &);
-
-    void onTextChanged();
-
-    void updateCursorInfo();
-
-    void updateChecker();
-
-    void runTestCase(int index);
 
   signals:
     void editorFileChanged();

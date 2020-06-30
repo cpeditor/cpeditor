@@ -95,7 +95,7 @@ MainWindow::~MainWindow()
 void MainWindow::setTestCases()
 {
     testcases = new Widgets::TestCases(log, this);
-    ui->test_cases_layout->addWidget(testcases);
+    ui->testCasesLayout->addWidget(testcases);
     connect(testcases, SIGNAL(checkerChanged()), this, SLOT(updateChecker()));
     connect(testcases, SIGNAL(requestRun(int)), this, SLOT(runTestCase(int)));
 }
@@ -106,7 +106,7 @@ void MainWindow::setEditor()
     editor->setSizePolicy(QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Expanding);
     editor->setAcceptDrops(false);
 
-    ui->verticalLayout_8->addWidget(editor);
+    ui->editorArea->addWidget(editor);
 
     connect(editor, SIGNAL(textChanged()), this, SLOT(onTextChanged()));
 
@@ -119,7 +119,7 @@ void MainWindow::setEditor()
 void MainWindow::setupCore()
 {
     log = new MessageLogger();
-    log->setContainer(ui->compiler_edit);
+    log->setContainer(ui->compilerEdit);
     formatter = new Extensions::ClangFormatter(SettingsHelper::getClangFormatPath(),
                                                SettingsHelper::getClangFormatStyle(), log);
 }
@@ -237,7 +237,7 @@ void MainWindow::setCFToolUI()
         cftool = new Extensions::CFTool(cftoolPath, log);
         connect(cftool, SIGNAL(requestToastMessage(const QString &, const QString &)), this,
                 SIGNAL(requestToastMessage(const QString &, const QString &)));
-        ui->compile_and_run_buttons->addWidget(submitToCodeforces);
+        ui->compileAndRunButtons->addWidget(submitToCodeforces);
         connect(submitToCodeforces, &QPushButton::clicked, this, [this] {
             emit confirmTriggered(this);
             auto response = QMessageBox::warning(
@@ -531,7 +531,7 @@ void MainWindow::applySettings(const QString &pagePath, bool shouldPerformDigoni
 
     if (pagePath.isEmpty() || pagePath == "Appearance")
     {
-        ui->compiler_edit->setFont(SettingsHelper::getMessageLoggerFont());
+        ui->compilerEdit->setFont(SettingsHelper::getMessageLoggerFont());
         testcases->setTestCaseEditFont(SettingsHelper::getTestCasesFont());
         testcases->updateHeights();
         if (SettingsHelper::isShowCompileAndRunOnly())
@@ -668,18 +668,18 @@ void MainWindow::setViewMode(const QString &mode)
 {
     if (mode == "code")
     {
-        ui->left_widget->show();
-        ui->right_widget->hide();
+        ui->leftWidget->show();
+        ui->rightWidget->hide();
     }
     else if (mode == "io")
     {
-        ui->left_widget->hide();
-        ui->right_widget->show();
+        ui->leftWidget->hide();
+        ui->rightWidget->show();
     }
     else
     {
-        ui->left_widget->show();
-        ui->right_widget->show();
+        ui->leftWidget->show();
+        ui->rightWidget->show();
         ui->splitter->restoreState(SettingsHelper::getSplitterSize());
     }
 }
@@ -725,10 +725,10 @@ void MainWindow::setText(const QString &text, bool keep)
     if (keep)
     {
         auto cursor = editor->textCursor();
-        int old_pos = cursor.position();
+        int oldPos = cursor.position();
         cursor.select(QTextCursor::Document);
         cursor.insertText(text);
-        cursor.setPosition(old_pos);
+        cursor.setPosition(oldPos);
         editor->setTextCursor(cursor);
     }
     else
@@ -1008,7 +1008,7 @@ bool MainWindow::closeConfirm()
     return confirmed;
 }
 
-void MainWindow::on_clear_messages_button_clicked()
+void MainWindow::on_clearMessagesButton_clicked()
 {
     log->clear();
 }
@@ -1122,7 +1122,7 @@ void MainWindow::updateCursorInfo()
         else
             info = tr("%1 characters selected").arg(selection.length());
     }
-    ui->cursor_info->setText(info);
+    ui->cursorInfo->setText(info);
 }
 
 void MainWindow::updateChecker()
@@ -1144,7 +1144,7 @@ QSplitter *MainWindow::getSplitter()
 
 QSplitter *MainWindow::getRightSplitter()
 {
-    return ui->right_splitter;
+    return ui->rightSplitter;
 }
 
 void MainWindow::performCompileAndRunDiagonistics()
