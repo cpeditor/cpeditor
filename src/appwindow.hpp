@@ -76,11 +76,12 @@ class AppWindow : public QMainWindow
     void showOnTop();
 
   private slots:
-    void on_actionSupport_me_triggered();
+    // UI Slots
+    void on_actionSupportMe_triggered();
 
     void on_actionManual_triggered();
 
-    void on_action_report_issues_triggered();
+    void on_actionReportIssues_triggered();
 
     void on_actionAbout_triggered();
 
@@ -90,39 +91,91 @@ class AppWindow : public QMainWindow
 
     void on_actionQuit_triggered();
 
-    void on_actionNew_Tab_triggered();
+    void on_actionNewTab_triggered();
 
     void on_actionOpen_triggered();
 
     void on_actionOpenContest_triggered();
 
-    void on_action_reset_settings_triggered();
+    void on_actionResetSettings_triggered();
 
-    void on_action_export_settings_triggered();
+    void on_actionExportSettings_triggered();
 
-    void on_action_import_settings_triggered();
+    void on_actionImportSettings_triggered();
 
-    void on_action_export_session_triggered();
+    void on_actionExportSession_triggered();
 
-    void on_action_load_session_triggered();
+    void on_actionLoadSession_triggered();
 
     void on_actionSettings_triggered();
 
     void on_actionSave_triggered();
 
-    void on_actionSave_As_triggered();
+    void on_actionSaveAs_triggered();
 
-    void on_actionSave_All_triggered();
+    void on_actionSaveAll_triggered();
 
-    void on_actionClose_Current_triggered();
+    void on_actionCloseCurrent_triggered();
 
-    void on_actionClose_All_triggered();
+    void on_actionCloseAll_triggered();
 
-    void on_actionClose_Saved_triggered();
+    void on_actionCloseSaved_triggered();
 
-    void on_actionCheck_for_updates_triggered();
+    void on_actionCheckForUpdates_triggered();
+
+    void on_actionCompile_triggered();
+
+    void on_actionCompileRun_triggered();
+
+    void on_actionRun_triggered();
+
+    void on_actionFindReplace_triggered();
+
+    void on_actionFormatCode_triggered();
+
+    void on_actionRunDetached_triggered();
+
+    void on_actionKillProcesses_triggered();
+
+    void on_actionUseSnippets_triggered();
+
+    void on_actionEditorMode_triggered();
+
+    void on_actionIOMode_triggered();
+
+    void on_actionSplitMode_triggered();
+
+    void on_actionIndent_triggered();
+
+    void on_actionUnindent_triggered();
+
+    void on_actionSwapLineUp_triggered();
+
+    void on_actionSwapLineDown_triggered();
+
+    void on_actionDuplicateLine_triggered();
+
+    void on_actionDeleteLine_triggered();
+
+    void on_actionToggleComment_triggered();
+
+    void on_actionToggleBlockComment_triggered();
+
+    void on_actionShowLogs_triggered();
+
+    void on_actionClearLogs_triggered();
+
+    // Non-UI Slots
+
+    void onTrayIconActivated(QSystemTrayIcon::ActivationReason reason);
+
+    void onCompileOrRunTriggered();
 
     void onEditorFileChanged();
+
+    void onConfirmTriggered(MainWindow *widget);
+
+    void onTabContextMenuRequested(const QPoint &pos);
 
     void onEditorTextChanged(MainWindow *window);
 
@@ -150,55 +203,7 @@ class AppWindow : public QMainWindow
 
     void onViewModeToggle();
 
-    void on_actionCompile_triggered();
 
-    void on_actionCompile_Run_triggered();
-
-    void on_actionRun_triggered();
-
-    void on_action_find_replace_triggered();
-
-    void on_actionFormat_code_triggered();
-
-    void on_actionRun_Detached_triggered();
-
-    void on_actionKill_Processes_triggered();
-
-    void on_actionUse_Snippets_triggered();
-
-    void on_actionEditor_Mode_triggered();
-
-    void on_actionIO_Mode_triggered();
-
-    void on_actionSplit_Mode_triggered();
-
-    void on_action_indent_triggered();
-
-    void on_action_unindent_triggered();
-
-    void on_action_swap_line_up_triggered();
-
-    void on_action_swap_line_down_triggered();
-
-    void on_action_duplicate_line_triggered();
-
-    void on_action_delete_line_triggered();
-
-    void on_action_toggle_comment_triggered();
-
-    void on_action_toggle_block_comment_triggered();
-
-    void on_confirmTriggered(MainWindow *widget);
-
-    void onTabContextMenuRequested(const QPoint &pos);
-
-    void on_actionShow_Logs_triggered();
-
-    void on_actionClear_Logs_triggered();
-
-    void onTrayIconActivated(QSystemTrayIcon::ActivationReason reason);
-
-    void onCompileOrRunTriggered();
 
   private:
     Ui::AppWindow *ui;

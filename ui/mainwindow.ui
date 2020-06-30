@@ -24,7 +24,7 @@
        <enum>Qt::Horizontal</enum>
       </property>
       <widget class="QWidget" name="left_widget">
-       <layout class="QVBoxLayout" name="left_pane" stretch="0,0">
+       <layout class="QVBoxLayout" name="leftPane" stretch="0,0">
         <property name="spacing">
          <number>1</number>
         </property>
@@ -32,14 +32,14 @@
          <enum>QLayout::SetDefaultConstraint</enum>
         </property>
         <item>
-         <layout class="QVBoxLayout" name="verticalLayout_8"/>
+         <layout class="QVBoxLayout" name="verticalLayout8"/>
         </item>
         <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_9">
+         <layout class="QHBoxLayout" name="horizontalLayout9">
           <item>
-           <layout class="QHBoxLayout" name="horizontalLayout_2">
+           <layout class="QHBoxLayout" name="horizontalLayout2">
             <item>
-             <widget class="QLabel" name="cursor_info">
+             <widget class="QLabel" name="cursorInfo">
               <property name="text">
                <string>cursor info</string>
               </property>
@@ -48,7 +48,7 @@
            </layout>
           </item>
           <item>
-           <layout class="QHBoxLayout" name="compile_and_run_buttons">
+           <layout class="QHBoxLayout" name="compileAndRunButtons">
             <item>
              <widget class="QPushButton" name="compile">
               <property name="text">
@@ -77,13 +77,13 @@
        </layout>
       </widget>
       <widget class="QWidget" name="right_widget">
-       <layout class="QVBoxLayout" name="right_pane">
+       <layout class="QVBoxLayout" name="rightPane">
         <item>
-         <layout class="QVBoxLayout" name="verticalLayout_5">
+         <layout class="QVBoxLayout" name="verticalLayout5">
           <item>
-           <layout class="QHBoxLayout" name="horizontalLayout_6">
+           <layout class="QHBoxLayout" name="horizontalLayout6">
             <item>
-             <widget class="QLabel" name="compiler_out">
+             <widget class="QLabel" name="compilerOut">
               <property name="font">
                <font>
                 <weight>75</weight>
@@ -96,7 +96,7 @@
              </widget>
             </item>
             <item>
-             <spacer name="horizontalSpacer_3">
+             <spacer name="horizontalSpacer3">
               <property name="orientation">
                <enum>Qt::Horizontal</enum>
               </property>
@@ -109,7 +109,7 @@
              </spacer>
             </item>
             <item>
-             <widget class="QPushButton" name="clear_messages_button">
+             <widget class="QPushButton" name="clearMessagesButton">
               <property name="text">
                <string>Clear</string>
               </property>
@@ -137,13 +137,13 @@
            </layout>
           </item>
           <item>
-           <widget class="QSplitter" name="right_splitter">
+           <widget class="QSplitter" name="rightSplitter">
             <property name="orientation">
              <enum>Qt::Vertical</enum>
             </property>
-            <widget class="QTextBrowser" name="compiler_edit"/>
+            <widget class="QTextBrowser" name="compilerEdit"/>
             <widget class="QWidget" name="test_cases_widget">
-             <layout class="QVBoxLayout" name="test_cases_layout"/>
+             <layout class="QVBoxLayout" name="testCasesLayout"/>
             </widget>
            </widget>
           </item>
