@@ -364,7 +364,7 @@ void AppWindow::openTab(const QString &path)
     }
 
     auto fsp = new MainWindow(path, getNewUntitledIndex(), this);
-    connect(fsp, SIGNAL(confirmTriggered(MainWindow *)), this, SLOT(on_confirmTriggered(MainWindow *)));
+    connect(fsp, SIGNAL(confirmTriggered(MainWindow *)), this, SLOT(onConfirmTriggered(MainWindow *)));
     connect(fsp, SIGNAL(editorFileChanged()), this, SLOT(onEditorFileChanged()));
     connect(fsp, SIGNAL(editorTmpPathChanged(MainWindow *, const QString &)), this,
             SLOT(onEditorTmpPathChanged(MainWindow *, const QString &)));

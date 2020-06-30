@@ -32,12 +32,12 @@
          <enum>QLayout::SetDefaultConstraint</enum>
         </property>
         <item>
-         <layout class="QVBoxLayout" name="verticalLayout8"/>
+         <layout class="QVBoxLayout" name="editorArea"/>
         </item>
         <item>
-         <layout class="QHBoxLayout" name="horizontalLayout9">
+         <layout class="QHBoxLayout" name="editorActionsArea">
           <item>
-           <layout class="QHBoxLayout" name="horizontalLayout2">
+           <layout class="QHBoxLayout" name="cursorInfoArea">
             <item>
              <widget class="QLabel" name="cursorInfo">
               <property name="text">
@@ -79,9 +79,9 @@
       <widget class="QWidget" name="right_widget">
        <layout class="QVBoxLayout" name="rightPane">
         <item>
-         <layout class="QVBoxLayout" name="verticalLayout5">
+         <layout class="QVBoxLayout" name="inputOuputArea">
           <item>
-           <layout class="QHBoxLayout" name="horizontalLayout6">
+           <layout class="QHBoxLayout" name="inputOutputActions">
             <item>
              <widget class="QLabel" name="compilerOut">
               <property name="font">
@@ -96,7 +96,7 @@
              </widget>
             </item>
             <item>
-             <spacer name="horizontalSpacer3">
+             <spacer name="spacer">
               <property name="orientation">
                <enum>Qt::Horizontal</enum>
               </property>

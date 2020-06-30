@@ -45,7 +45,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>25</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -117,8 +117,8 @@
     <addaction name="actionExportSession"/>
     <addaction name="actionLoadSession"/>
     <addaction name="separator"/>
-    <addaction name="actionShow_Logs"/>
-    <addaction name="actionClear_Logs"/>
+    <addaction name="actionShowLogs"/>
+    <addaction name="actionClearLogs"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
@@ -469,12 +469,12 @@
     <string>Split Mode</string>
    </property>
   </action>
-  <action name="actionShow_Logs">
+  <action name="actionShowLogs">
    <property name="text">
     <string>Show Log Files</string>
    </property>
   </action>
-  <action name="actionClear_Logs">
+  <action name="actionClearLogs">
    <property name="text">
     <string>Delete Log Files</string>
    </property>

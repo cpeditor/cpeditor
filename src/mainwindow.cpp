@@ -106,7 +106,7 @@ void MainWindow::setEditor()
     editor->setSizePolicy(QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Expanding);
     editor->setAcceptDrops(false);
 
-    ui->verticalLayout8->addWidget(editor);
+    ui->editorArea->addWidget(editor);
 
     connect(editor, SIGNAL(textChanged()), this, SLOT(onTextChanged()));
 
