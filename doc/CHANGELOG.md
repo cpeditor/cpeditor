@@ -35,6 +35,8 @@ With the portable version, you can easily store it in something like a USB disk,
 - Now the hidden (not in the search result) pages are skipped when navigating pages in the preferences window via Ctrl+Tab and Ctrl+Shift+Tab. (#447)
 - Now when you open the Find/Replace dialog with some text selected in the code editor and the text-to-find changes, the undo history of the text-to-find won't be cleared. (#460)
 - Now the default main class name of Java is `Main` instead of `a`. (#461)
+- Now the version displayed in `cpeditor --version` is `X.Y.Z.rXX.gGITHASH` if the current commit (HEAD) has no tag, otherwise, it is the actual version. (#468)
+- Now the manual URL contains the commit hash instead of the version number, so that it works on the master branch. (#468)
 
 ## v6.5
 
