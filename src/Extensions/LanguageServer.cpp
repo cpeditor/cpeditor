@@ -145,12 +145,12 @@ void LanguageServer::updateSettings()
         LOG_INFO("Recreated Language server Process");
         if (m_editor != nullptr)
         {
-            auto tmp_editor = m_editor;
-            auto tmp_path = openFile;
-            auto tmp_log = logger;
+            auto tmpEditor = m_editor;
+            auto tmpPath = openFile;
+            auto tmpLog = logger;
             if (isDocumentOpen())
                 closeDocument();
-            openDocument(tmp_path, tmp_editor, tmp_log);
+            openDocument(tmpPath, tmpEditor, tmpLog);
             LOG_INFO("Reopened document after restart");
         }
     }
@@ -160,10 +160,10 @@ void LanguageServer::updatePath(QString newPath)
 {
     if (lsp == nullptr || (openFile == newPath))
         return;
-    auto tmp_logger = logger;
-    auto tmp_editor = m_editor;
+    auto tmpLogger = logger;
+    auto tmpEditor = m_editor;
     closeDocument();
-    openDocument(newPath, tmp_editor, tmp_logger);
+    openDocument(newPath, tmpEditor, tmpLogger);
 }
 
 // Private methods

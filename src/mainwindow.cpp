@@ -725,10 +725,10 @@ void MainWindow::setText(const QString &text, bool keep)
     if (keep)
     {
         auto cursor = editor->textCursor();
-        int old_pos = cursor.position();
+        int oldPos = cursor.position();
         cursor.select(QTextCursor::Document);
         cursor.insertText(text);
-        cursor.setPosition(old_pos);
+        cursor.setPosition(oldPos);
         editor->setTextCursor(cursor);
     }
     else
