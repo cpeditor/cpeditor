@@ -31,6 +31,7 @@ With the portable version, you can easily store it in something like a USB disk,
 - The default font is set to the system fixed-width font instead of the font named "Monospace". (#422)
 - Now the session is stored in a separate file, which was stored along with the settings. So now when exporting/importing settings, the session won't be included, but you can export/load the session separately. (#437 and #442)
 - Now the hidden (not in the search result) pages are skipped when navigating pages in the preferences window via Ctrl+Tab and Ctrl+Shift+Tab. (#447)
+- Now when you open the Find/Replace dialog with some text selected in the code editor and the text-to-find changes, the undo history of the text-to-find won't be cleared. (#460)
 
 ## v6.5
 
