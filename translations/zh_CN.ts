@@ -725,6 +725,10 @@
         <source>Unsupported programming language &quot;%1&quot;</source>
         <translation>编程语言“%1”不受支持</translation>
     </message>
+    <message>
+        <source>Failed to start compilation. Please check the compile command in the settings.</source>
+        <translation>未能成功启动编译。请在设置中检查编译命令。</translation>
+    </message>
 </context>
 <context>
     <name>Core::Runner</name>

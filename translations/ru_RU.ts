@@ -722,6 +722,10 @@
         <source>Unsupported programming language &quot;%1&quot;</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Failed to start compilation. Please check the compile command in the settings.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Core::Runner</name>

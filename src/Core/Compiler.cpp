@@ -20,7 +20,6 @@
 #include "Settings/SettingsManager.hpp"
 #include <QDir>
 #include <QFileInfo>
-#include <QProcess>
 
 namespace Core
 {
@@ -31,6 +30,8 @@ Compiler::Compiler()
     compileProcess = new QProcess();
     connect(compileProcess, SIGNAL(started()), this, SIGNAL(compilationStarted()));
     connect(compileProcess, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(onProcessFinished(int)));
+    connect(compileProcess, SIGNAL(errorOccurred(QProcess::ProcessError)), this,
+            SLOT(onProcessErrorOccurred(QProcess::ProcessError)));
 }
 
 Compiler::~Compiler()
@@ -90,7 +91,7 @@ void Compiler::start(const QString &tmpFilePath, const QString &sourceFilePath, 
         return;
     }
 
-    LOG_INFO(INFO_OF(lang) << INFO_OF(args.join(" ")));
+    LOG_INFO(INFO_OF(lang) << INFO_OF(program) << INFO_OF(args.join(" ")));
     // start compilation
     compileProcess->start(program, args);
 }
@@ -144,6 +145,16 @@ void Compiler::onProcessFinished(int exitCode)
         emit compilationFinished(compileProcess->readAllStandardError());
     else
         emit compilationErrorOccurred(compileProcess->readAllStandardError());
+}
+
+void Compiler::onProcessErrorOccurred(QProcess::ProcessError error)
+{
+    LOG_WARN(INFO_OF(error));
+    if (error == QProcess::FailedToStart)
+    {
+        emit compilationErrorOccurred(
+            tr("Failed to start compilation. Please check the compile command in the settings."));
+    }
 }
 
 } // namespace Core
