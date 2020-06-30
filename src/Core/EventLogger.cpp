@@ -98,6 +98,7 @@ void Log::platformInformation()
     LOG_INFO(INFO_OF(QSysInfo::productVersion()));
 
     LOG_INFO(INFO_OF(APP_VERSION));
+    LOG_INFO(INFO_OF(DISPLAY_VERSION));
     LOG_INFO(INFO_OF(GIT_COMMIT_HASH));
     LOG_INFO(INFO_OF(__DATE__));
     LOG_INFO(INFO_OF(__TIME__));
