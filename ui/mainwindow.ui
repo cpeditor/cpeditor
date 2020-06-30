@@ -142,7 +142,7 @@
              <enum>Qt::Vertical</enum>
             </property>
             <widget class="QTextBrowser" name="compilerEdit"/>
-            <widget class="QWidget" name="test_cases_widget">
+            <widget class="QWidget" name="testCasesWidget">
              <layout class="QVBoxLayout" name="testCasesLayout"/>
             </widget>
            </widget>
