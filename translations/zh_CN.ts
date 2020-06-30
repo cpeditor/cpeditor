@@ -1232,6 +1232,10 @@ Do you want to reload it?</source>
         <source>Auto Save</source>
         <translation>自动保存</translation>
     </message>
+    <message>
+        <source>Have you set a proper name for the main class in your solution? If not, you can set it in Preferences-&gt;Lanugages-&gt;Java-&gt;Java Commands-&gt;Java Class Name.</source>
+        <translation>你设置了你代码中主类的名字吗？如果没有，你可以在 设置-&gt;语言-&gt;Java-&gt;Java 命令-&gt;Java 类名称 中进行设置。</translation>
+    </message>
 </context>
 <context>
     <name>MessageLogger</name>
@@ -1763,7 +1767,7 @@ You can use &quot;${filename}&quot; for the complete file name,
         <translation>%1 括号</translation>
     </message>
     <message>
-        <source>The name of the non-public main class of your solution.</source>
+        <source>The name of the main class of your solution.</source>
         <translation>你的代码中非 public 主类的名称。</translation>
     </message>
     <message>

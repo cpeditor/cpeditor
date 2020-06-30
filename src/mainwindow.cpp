@@ -946,13 +946,13 @@ QString MainWindow::tmpPath()
         }
         created = true;
     }
-    QString name = "sol.";
+    QString name;
     if (language == "C++")
-        name += Util::cppSuffix.first();
+        name = "sol." + Util::cppSuffix.first();
     else if (language == "Java")
-        name += Util::javaSuffix.first();
+        name = SettingsHelper::getJavaClassName() + "." + Util::javaSuffix.first();
     else if (language == "Python")
-        name += Util::pythonSuffix.first();
+        name = "sol." + Util::pythonSuffix.first();
     else
     {
         log->error(tr("Temp File"), tr("Please set the language"));
@@ -1218,7 +1218,15 @@ void MainWindow::onCompilationErrorOccurred(const QString &error)
 {
     log->error(tr("Compiler"), tr("Error occurred while compiling"));
     if (!error.trimmed().isEmpty())
+    {
         log->error(tr("Compile Errors"), error);
+        if (language == "Java" && error.contains("public class"))
+        {
+            log->warn(tr("Compile Errors"),
+                      tr("Have you set a proper name for the main class in your solution? If not, you can set it in "
+                         "Preferences->Lanugages->Java->Java Commands->Java Class Name."));
+        }
+    }
 }
 
 void MainWindow::onCompilationKilled()

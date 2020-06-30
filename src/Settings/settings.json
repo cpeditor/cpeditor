@@ -156,8 +156,8 @@
     {
         "name": "Java/Class Name",
         "type": "QString",
-        "default": "a",
-        "tip": "The name of the non-public main class of your solution."
+        "default": "Main",
+        "tip": "The name of the main class of your solution."
     },
     {
         "name": "Java/Output Path",

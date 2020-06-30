@@ -1215,6 +1215,10 @@ Do you want to reload it?</source>
         <source>Auto Save</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Have you set a proper name for the main class in your solution? If not, you can set it in Preferences-&gt;Lanugages-&gt;Java-&gt;Java Commands-&gt;Java Class Name.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MessageLogger</name>
@@ -1730,7 +1734,7 @@ You can use &quot;${filename}&quot; for the complete file name,
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>The name of the non-public main class of your solution.</source>
+        <source>The name of the main class of your solution.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

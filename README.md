@@ -52,8 +52,6 @@ It makes your competitive coding life easier :grin: by automating many things fo
 
 ## FAQ
 
-- I am using Java and the editor can't run my codes.
-   - You have to use a **non-public** class for your solution, its name can be configured in Preferences->Language->Commands->Java Class Name.
 - I get **DLL Missing error** when launching the application?
    - Please download  [Microsoft Visual C++ Redistributable for Visual Studio 2015, 2017 and 2019](https://support.microsoft.com/en-us/help/2977003/the-latest-supported-visual-c-downloads). Or you can install versions higher than or equal to [6.5.2](https://github.com/cpeditor/cpeditor/releases/tag/6.5.2) because since this version the VC Redist is bundled with the installer.
 - How to use whole-application dark theme?

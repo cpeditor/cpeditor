@@ -20,10 +20,6 @@
 
 你需要使用 Competitive Companion 获取题目样例，或者在标签页的右键菜单中设置题目地址，然后就有提交按钮了。如果 CF Tool 没有被找到，提交按钮就无法点击，可以在 Preferences->Extensions->CF Tool 中设置 CF Tool 的路径。
 
-## 如果你使用 Java
-
-你的代码需要使用一个 non-public class，名称可以在 Preferences->Language->Commands->Java Class Name 中设定。
-
 ## 设置
 
 ### 快捷键

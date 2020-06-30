@@ -18,6 +18,7 @@ With the portable version, you can easily store it in something like a USB disk,
 - Now the width of the input/output/expected of each test case is adjustable, and the maximum height of a test case can be set in the preferences. (#414 and #444)
 - Now you can use proxy to check for updates. (#448)
 - Now you can set a custom font for the whole application. (#169 and #453)
+- Now Java programmers can use a public class as your main class. (#459 and #461)
 
 ### Fixed
 
@@ -32,6 +33,7 @@ With the portable version, you can easily store it in something like a USB disk,
 - Now the session is stored in a separate file, which was stored along with the settings. So now when exporting/importing settings, the session won't be included, but you can export/load the session separately. (#437 and #442)
 - Now the hidden (not in the search result) pages are skipped when navigating pages in the preferences window via Ctrl+Tab and Ctrl+Shift+Tab. (#447)
 - Now when you open the Find/Replace dialog with some text selected in the code editor and the text-to-find changes, the undo history of the text-to-find won't be cleared. (#460)
+- Now the default main class name of Java is `Main` instead of `a`. (#461)
 
 ## v6.5
 
