@@ -19,6 +19,7 @@ With the portable version, you can easily store it in something like a USB disk,
 - Now you can use proxy to check for updates. (#448)
 - Now you can set a custom font for the whole application. (#169 and #453)
 - Now Java programmers can use a public class as your main class. (#459 and #461)
+- A warning when it failed to start compilation. (#463)
 
 ### Fixed
 

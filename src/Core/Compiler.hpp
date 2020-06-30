@@ -28,8 +28,7 @@
 #define COMPILER_HPP
 
 #include <QObject>
-
-class QProcess;
+#include <QProcess>
 
 namespace Core
 {
@@ -108,6 +107,8 @@ class Compiler : public QObject
      * @param the exit code of the compilation process
      */
     void onProcessFinished(int exitCode);
+
+    void onProcessErrorOccurred(QProcess::ProcessError error);
 
   private:
     QProcess *compileProcess = nullptr; // the compilation process
