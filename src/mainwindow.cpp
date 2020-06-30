@@ -1122,7 +1122,7 @@ void MainWindow::updateCursorInfo()
         else
             info = tr("%1 characters selected").arg(selection.length());
     }
-   ui->cursorInfo->setText(info);
+    ui->cursorInfo->setText(info);
 }
 
 void MainWindow::updateChecker()
