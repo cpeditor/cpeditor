@@ -29,11 +29,11 @@ sha256sums=('SKIP')
 
 build() {
 	cd "$_pkgdir"
-	cmake -H. -Bbuild -DCMAKE_INSTALL_PREFIX=/usr
+	cmake -Bbuild -DCMAKE_INSTALL_PREFIX=/usr -DPORTABLE_VERSION=Off -DCMAKE_BUILD_TYPE=Release -GNinja
 	cmake --build build -j$(nproc)
 }
 
 package() {
 	cd "$_pkgdir/build"
-	make DESTDIR="$pkgdir" install
+	DESTDIR="$pkgdir/" ninja install
 }
