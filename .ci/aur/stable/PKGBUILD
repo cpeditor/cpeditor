@@ -12,6 +12,7 @@ depends=('qt5-base>=5.15.0')
 makedepends=(
 	"cmake"
 	"git"
+	"ninja"
 	"python3"
 	"qt5-tools"
 )
