@@ -16,9 +16,10 @@
  */
 
 #include "Util/Util.hpp"
+#include "Core/EventLogger.hpp"
 #include <QTextCodec>
 #include <QWidget>
-
+#include <unicode/ucsdet.h>
 namespace Util
 {
 
@@ -32,19 +33,38 @@ void showWidgetOnTop(QWidget *widget)
 
 QString guessCodec(const QByteArray &data, QTextCodec *&codec)
 {
-    QList<QByteArray> scanList{"UTF-8", "GB2312", "KOI8-RU"};
-    for (const QByteArray &name : scanList)
+    UErrorCode status;
+    UCharsetDetector *detector = ucsdet_open(&status);
+    ucsdet_setText(detector, data.data(), data.size(), &status);
+    int count;
+    const UCharsetMatch **matchs = ucsdet_detectAll(detector, &count, &status);
+    QTextCodec *utf8 = QTextCodec::codecForName("UTF-8");
+    QTextCodec *guess = utf8;
+    QByteArray name;
+    LOG_INFO("Find " << count << " matches");
+    if (count > 0)
     {
-        QTextCodec *c = QTextCodec::codecForName(name);
-        QTextCodec::ConverterState state;
-        QString res = c->toUnicode(data.data(), data.size(), &state);
-        if (!state.invalidChars)
+        int cfd = ucsdet_getConfidence(matchs[0], &status);
+        LOG_INFO("Highest confidence is " << cfd);
+        if (cfd == 10) // means the text don't match any. treat them as utf-8
         {
-            codec = c;
-            return res;
+            name = "UTF-8";
+            LOG_WARN("Fallback to UTF-8");
+        }
+        else
+        {
+            name = ucsdet_getName(matchs[0], &status);
+            LOG_INFO("Pick " << name);
+        }
+        guess = QTextCodec::codecForName(name.toUpper());
+        if (!guess)
+        {
+            LOG_WARN("Cannot find codec for " << name << ", Use UTF-8 instead.");
+            guess = utf8;
         }
     }
-    codec = QTextCodec::codecForName("UTF-8");
+    ucsdet_close(detector);
+    codec = guess;
     return codec->toUnicode(data);
 }
 
