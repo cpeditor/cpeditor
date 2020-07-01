@@ -49,18 +49,18 @@ if(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/.git)
       COMMAND ${GIT_EXECUTABLE} rev-parse --short HEAD
       WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}"
       OUTPUT_VARIABLE "GIT_COMMIT_HASH"
-      ERROR_QUIET
       OUTPUT_STRIP_TRAILING_WHITESPACE)
     message(STATUS "Git commit hash: ${GIT_COMMIT_HASH}")
     execute_process(
       COMMAND ${GIT_EXECUTABLE} describe --long --tags
       WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}"
       OUTPUT_VARIABLE "GIT_DESCRIBE"
-      ERROR_QUIET
       OUTPUT_STRIP_TRAILING_WHITESPACE)
-    string(REGEX REPLACE "(.+)-(.+)-(.+)" "\\2" "COMMITS_SINCE_LAST_RELEASE" "${GIT_DESCRIBE}")
-    if(NOT "${COMMITS_SINCE_LAST_RELEASE}" EQUAL "0")
-      string(REGEX REPLACE "(.+)-(.+)-(.+)" "\\1.r\\2.\\3" "DISPLAY_VERSION" "${GIT_DESCRIBE}")
+    if(NOT "${GIT_DESCRIBE}" EQUAL "")
+      string(REGEX REPLACE "(.+)-(.+)-(.+)" "\\2" "COMMITS_SINCE_LAST_RELEASE" "${GIT_DESCRIBE}")
+      if(NOT "${COMMITS_SINCE_LAST_RELEASE}" EQUAL "0")
+        string(REGEX REPLACE "(.+)-(.+)-(.+)" "\\1.r\\2.\\3" "DISPLAY_VERSION" "${GIT_DESCRIBE}")
+      endif()
     endif()
   endif()
 endif()
