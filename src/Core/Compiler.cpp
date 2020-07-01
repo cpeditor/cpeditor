@@ -18,8 +18,10 @@
 #include "Core/Compiler.hpp"
 #include "Core/EventLogger.hpp"
 #include "Settings/SettingsManager.hpp"
+#include "Util/Util.hpp"
 #include <QDir>
 #include <QFileInfo>
+#include <QTextCodec>
 
 namespace Core
 {
@@ -141,10 +143,21 @@ QString Compiler::outputPath(const QString &tmpFilePath, const QString &sourceFi
 void Compiler::onProcessFinished(int exitCode)
 {
     // emit different signals due to different exit codes
+    QTextCodec *codec;
     if (exitCode == 0)
-        emit compilationFinished(compileProcess->readAllStandardError());
+    {
+        QString err = Util::guessCodec(compileProcess->readAllStandardError(), codec);
+        if (codec->name() != "UTF-8")
+            err = QString("<%1>\n%2").arg(codec->name(), err);
+        emit compilationFinished(err);
+    }
     else
-        emit compilationErrorOccurred(compileProcess->readAllStandardError());
+    {
+        QString out = Util::guessCodec(compileProcess->readAllStandardError(), codec);
+        if (codec->name() != "UTF-8")
+            out = QString("<%1>\n%2").arg(codec->name(), out);
+        emit compilationErrorOccurred(out);
+    }
 }
 
 void Compiler::onProcessErrorOccurred(QProcess::ProcessError error)

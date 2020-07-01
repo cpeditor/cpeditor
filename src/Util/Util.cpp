@@ -16,6 +16,7 @@
  */
 
 #include "Util/Util.hpp"
+#include <QTextCodec>
 #include <QWidget>
 
 namespace Util
@@ -27,6 +28,24 @@ void showWidgetOnTop(QWidget *widget)
     widget->setWindowState((widget->windowState() & ~Qt::WindowMinimized) | Qt::WindowActive);
     widget->activateWindow();
     widget->raise();
+}
+
+QString guessCodec(const QByteArray &data, QTextCodec *&codec)
+{
+    QList<QByteArray> scanList{"UTF-8", "GB2312", "KOI8-RU"};
+    for (const QByteArray &name : scanList)
+    {
+        QTextCodec *c = QTextCodec::codecForName(name);
+        QTextCodec::ConverterState state;
+        QString res = c->toUnicode(data.data(), data.size(), &state);
+        if (!state.invalidChars)
+        {
+            codec = c;
+            return res;
+        }
+    }
+    codec = QTextCodec::codecForName("UTF-8");
+    return codec->toUnicode(data);
 }
 
 } // namespace Util

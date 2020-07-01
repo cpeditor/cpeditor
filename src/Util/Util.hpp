@@ -20,11 +20,16 @@
 
 class QPalette;
 class QWidget;
+class QByteArray;
+class QTextCodec;
+class QString;
 
 namespace Util
 {
 
 void showWidgetOnTop(QWidget *widget);
+QString guessCodec(const QByteArray &data, QTextCodec *&codec);
+
 } // namespace Util
 
 #endif // UTIL_HPP
