@@ -160,23 +160,14 @@ void ShortcutItemWrapper::set(QString s)
 
 void CodecBoxWrapper::init(QWidget *parent, QVariant)
 {
-    QStringList data;
-    for (const QByteArray &name : QTextCodec::availableCodecs())
-        data.push_back(QString::fromUtf8(name));
-    QComboBox *item = new QComboBox(parent);
-    item->addItems(data);
-    connect(item, &QComboBox::currentTextChanged, this, &ValueWidget::emitSignal);
-    widget = item;
-}
-
-QString CodecBoxWrapper::get()
-{
-    return qobject_cast<QComboBox *>(widget)->currentText();
-}
-
-void CodecBoxWrapper::set(QString s)
-{
-    qobject_cast<QComboBox *>(widget)->setCurrentText(s);
+    QStringList names;
+    for (auto mib : QTextCodec::availableMibs())
+    {
+        names.push_back(QString::fromLocal8Bit(QTextCodec::codecForMib(mib)->name()));
+    }
+    names.sort(Qt::CaseInsensitive);
+    names.removeDuplicates();
+    ComboBoxWrapper::init(parent, names);
 }
 
 void SpinBoxWrapper::init(QWidget *parent, QVariant param)
