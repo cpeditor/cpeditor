@@ -23,7 +23,7 @@
 namespace Util
 {
 
-static QMap<QString, QByteArray> codecs = {{"zh", "GB18030"}, {"ru", "KOI8-RU"}};
+const static QMap<QString, QByteArray> codecs = {{"zh", "GB18030"}, {"ru", "KOI8-RU"}};
 
 void showWidgetOnTop(QWidget *widget)
 {
@@ -35,7 +35,7 @@ void showWidgetOnTop(QWidget *widget)
 
 QString guessCodec(const QByteArray &data, QTextCodec *&codec)
 {
-    QString name = QLocale::system().name();
+    auto name = QLocale::system().name();
     if (name.indexOf("_") != -1)
         name = name.left(name.indexOf("_"));
     QTextCodec *utf8 = QTextCodec::codecForName("UTF-8");
