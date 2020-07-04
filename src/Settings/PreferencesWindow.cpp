@@ -172,7 +172,7 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
             .page(TRKEY("General"), {"Default Language"})
             .dir(TRKEY("C++"))
                 .page("C++ Commands", tr("%1 Commands").arg(tr("C++")),
-                      {"C++/Compile Command", "C++/Compiler Output Codec", "C++/Output Path", "C++/Run Arguments"})
+                      {"C++/Compile Command", "C++/Output Path", "C++/Run Arguments", "C++/Compiler Output Codec"})
                 .page("C++ Template", tr("%1 Template").arg(tr("C++")),
                       {"C++/Template Path", "C++/Template Cursor Position Regex",
                        "C++/Template Cursor Position Offset Type", "C++/Template Cursor Position Offset Characters"})
@@ -184,7 +184,7 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
             .end()
             .dir(TRKEY("Java"))
                 .page("Java Commands", tr("%1 Commands").arg(tr("Java")),
-                      {"Java/Compile Command", "Java/Compiler Output Codec", "Java/Output Path", "Java/Class Name", "Java/Run Command", "Java/Run Arguments"})
+                      {"Java/Compile Command", "Java/Output Path", "Java/Class Name", "Java/Run Command", "Java/Run Arguments", "Java/Compiler Output Codec"})
                 .page("Java Template", tr("%1 Template").arg(tr("Java")),
                       {"Java/Template Path", "Java/Template Cursor Position Regex", "Java/Template Cursor Position Offset Type",
                        "Java/Template Cursor Position Offset Characters"})
