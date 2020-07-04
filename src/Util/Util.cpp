@@ -17,13 +17,10 @@
 
 #include "Util/Util.hpp"
 #include "Core/EventLogger.hpp"
-#include <QTextCodec>
 #include <QWidget>
 
 namespace Util
 {
-
-const static QMap<QString, QByteArray> codecs = {{"zh", "GB18030"}, {"ru", "KOI8-RU"}};
 
 void showWidgetOnTop(QWidget *widget)
 {
@@ -31,40 +28,6 @@ void showWidgetOnTop(QWidget *widget)
     widget->setWindowState((widget->windowState() & ~Qt::WindowMinimized) | Qt::WindowActive);
     widget->activateWindow();
     widget->raise();
-}
-
-QString guessCodec(const QByteArray &data, QTextCodec *&codec)
-{
-    auto name = QLocale::system().name();
-    if (name.indexOf("_") != -1)
-        name = name.left(name.indexOf("_"));
-    QTextCodec *utf8 = QTextCodec::codecForName("UTF-8");
-    QTextCodec *sysc = nullptr;
-    if (codecs.contains(name))
-    {
-        sysc = QTextCodec::codecForName(codecs[name]);
-    }
-    if (sysc)
-    {
-        QTextCodec::ConverterState state1, state2;
-        QString sys = sysc->toUnicode(data.data(), data.size(), &state1);
-        QString utf = utf8->toUnicode(data.data(), data.size(), &state2);
-        if (state2.invalidChars <= state1.invalidChars)
-        {
-            codec = utf8;
-            return utf;
-        }
-        else
-        {
-            codec = sysc;
-            return sys;
-        }
-    }
-    else
-    {
-        codec = utf8;
-        return QString::fromUtf8(data);
-    }
 }
 
 } // namespace Util

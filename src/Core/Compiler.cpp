@@ -17,8 +17,7 @@
 
 #include "Core/Compiler.hpp"
 #include "Core/EventLogger.hpp"
-#include "Settings/SettingsManager.hpp"
-#include "Util/Util.hpp"
+#include "generated/SettingsHelper.hpp"
 #include <QDir>
 #include <QFileInfo>
 #include <QTextCodec>
@@ -54,6 +53,7 @@ Compiler::~Compiler()
 void Compiler::start(const QString &tmpFilePath, const QString &sourceFilePath, const QString &compileCommand,
                      const QString &lang)
 {
+    this->lang = lang;
     if (!QFile::exists(tmpFilePath))
     {
         // quit with error if the source file is not found
@@ -142,22 +142,20 @@ QString Compiler::outputPath(const QString &tmpFilePath, const QString &sourceFi
 
 void Compiler::onProcessFinished(int exitCode)
 {
+    QString codecName = "UTF-8";
+    if (lang == "C++")
+        codecName = SettingsHelper::getCppCompilerOutputCodec();
+    else if (lang == "Java")
+        codecName = SettingsHelper::getJavaCompilerOutputCodec();
+    QTextCodec *codec = QTextCodec::codecForName(codecName.toUtf8());
+    if (!codec)
+        codec = QTextCodec::codecForName("UTF-8");
+    QString output = codec->toUnicode(compileProcess->readAllStandardError());
     // emit different signals due to different exit codes
-    QTextCodec *codec;
     if (exitCode == 0)
-    {
-        QString err = Util::guessCodec(compileProcess->readAllStandardError(), codec);
-        if (codec->name() != "UTF-8")
-            err = QString("<%1>\n%2").arg(codec->name(), err);
-        emit compilationFinished(err);
-    }
+        emit compilationFinished(output);
     else
-    {
-        QString out = Util::guessCodec(compileProcess->readAllStandardError(), codec);
-        if (codec->name() != "UTF-8")
-            out = QString("<%1>\n%2").arg(codec->name(), out);
-        emit compilationErrorOccurred(out);
-    }
+        emit compilationErrorOccurred(output);
 }
 
 void Compiler::onProcessErrorOccurred(QProcess::ProcessError error)

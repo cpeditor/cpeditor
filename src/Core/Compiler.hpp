@@ -112,6 +112,7 @@ class Compiler : public QObject
 
   private:
     QProcess *compileProcess = nullptr; // the compilation process
+    QString lang;
 };
 
 } // namespace Core
