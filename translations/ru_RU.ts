@@ -2305,7 +2305,7 @@ kill the application with SIGKILL which could not be handled by the application.
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Codec of compiler output</source>
+        <source>Text codec of the compiler output (errors, warnings, etc.)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

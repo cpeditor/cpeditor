@@ -940,13 +940,13 @@
         "type": "QString",
         "default": "UTF-8",
         "ui": "CodecBox",
-        "tip": ""
+        "tip": "Text codec of the compiler output (errors, warnings, etc.)"
     },
     {
         "name": "Java/Compiler Output Codec",
         "type": "QString",
         "default": "UTF-8",
         "ui": "CodecBox",
-        "tip": "Codec of compiler output"
+        "tip": "Text codec of the compiler output (errors, warnings, etc.)"
     }
 ]

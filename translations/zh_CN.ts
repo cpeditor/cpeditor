@@ -2369,8 +2369,8 @@ kill the application with SIGKILL which could not be handled by the application.
         <translation>%1 编译器输出编码</translation>
     </message>
     <message>
-        <source>Codec of compiler output</source>
-        <translation>编译器输出所用编码</translation>
+        <source>Text codec of the compiler output (errors, warnings, etc.)</source>
+        <translation>编译器输出（错误，警告等）的文字编码</translation>
     </message>
 </context>
 <context>
