@@ -26,6 +26,7 @@
 #include <QComboBox>
 #include <QLineEdit>
 #include <QPlainTextEdit>
+#include <QTextCodec>
 
 // int
 #include <QScrollBar>
@@ -157,6 +158,18 @@ void ShortcutItemWrapper::set(QString s)
     qobject_cast<ShortcutItem *>(widget)->setShortcut(s);
 }
 
+void CodecBoxWrapper::init(QWidget *parent, QVariant)
+{
+    QStringList names;
+    for (auto mib : QTextCodec::availableMibs())
+    {
+        names.push_back(QString::fromLocal8Bit(QTextCodec::codecForMib(mib)->name()));
+    }
+    names.sort(Qt::CaseInsensitive);
+    names.removeDuplicates();
+    ComboBoxWrapper::init(parent, names);
+}
+
 void SpinBoxWrapper::init(QWidget *parent, QVariant param)
 {
     QSpinBox *item = new QSpinBox(parent);
@@ -280,6 +293,8 @@ Wrapper<QString> *createStringWrapper(QString type)
         return new PathItemWrapper();
     else if (type == "ShortcutItem")
         return new ShortcutItemWrapper();
+    else if (type == "CodecBox")
+        return new CodecBoxWrapper();
     return nullptr;
 }
 

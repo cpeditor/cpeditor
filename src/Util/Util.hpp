@@ -18,13 +18,13 @@
 #ifndef UTIL_HPP
 #define UTIL_HPP
 
-class QPalette;
 class QWidget;
 
 namespace Util
 {
 
 void showWidgetOnTop(QWidget *widget);
+
 } // namespace Util
 
 #endif // UTIL_HPP

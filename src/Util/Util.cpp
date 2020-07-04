@@ -16,6 +16,7 @@
  */
 
 #include "Util/Util.hpp"
+#include "Core/EventLogger.hpp"
 #include <QWidget>
 
 namespace Util

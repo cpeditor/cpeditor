@@ -133,6 +133,11 @@ struct ShortcutItemWrapper : public Wrapper<QString>
     virtual void set(QString s) override;
 };
 
+struct CodecBoxWrapper : public ComboBoxWrapper
+{
+    virtual void init(QWidget *parent, QVariant param = QVariant()) override;
+};
+
 struct SpinBoxWrapper : public Wrapper<int>
 {
     virtual void init(QWidget *parent, QVariant param = QVariant()) override;

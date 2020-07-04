@@ -2374,6 +2374,14 @@ kill the application with SIGKILL which could not be handled by the application.
         <source>The custom font for the whole application</source>
         <translation>整个 CP Editor 使用的自定义字体</translation>
     </message>
+    <message>
+        <source>%1 Compiler Output Codec</source>
+        <translation>%1 编译器输出编码</translation>
+    </message>
+    <message>
+        <source>Text codec of the compiler output (errors, warnings, etc.)</source>
+        <translation>编译器输出（错误，警告等）的文字编码</translation>
+    </message>
 </context>
 <context>
     <name>ShortcutItem</name>

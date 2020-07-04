@@ -2307,6 +2307,14 @@ kill the application with SIGKILL which could not be handled by the application.
         <source>The custom font for the whole application</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>%1 Compiler Output Codec</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Text codec of the compiler output (errors, warnings, etc.)</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ShortcutItem</name>

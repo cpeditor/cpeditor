@@ -934,5 +934,19 @@
             }
         ],
         "tip": "The password of the proxy server. It can be empty if the proxy server doesn't require authentication."
+    },
+    {
+        "name": "C++/Compiler Output Codec",
+        "type": "QString",
+        "default": "UTF-8",
+        "ui": "CodecBox",
+        "tip": "Text codec of the compiler output (errors, warnings, etc.)"
+    },
+    {
+        "name": "Java/Compiler Output Codec",
+        "type": "QString",
+        "default": "UTF-8",
+        "ui": "CodecBox",
+        "tip": "Text codec of the compiler output (errors, warnings, etc.)"
     }
 ]
