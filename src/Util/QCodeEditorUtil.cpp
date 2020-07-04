@@ -88,26 +88,23 @@ void applySettingsToEditor(QCodeEditor *editor, const QString &language)
         auto left = li[0].toChar();
         auto right = li[1].toChar();
 
-        auto getFlag = [](bool &flag, Qt::CheckState state, bool def) {
+        auto getFlag = [](Qt::CheckState state, bool def) {
             switch (state)
             {
             case Qt::Checked:
-                flag = true;
-                break;
+                return true;
             case Qt::PartiallyChecked:
-                flag = def;
-                break;
+                return def;
             case Qt::Unchecked:
-                flag = false;
-                break;
+                return false;
+            default:
+                Q_UNREACHABLE();
             }
         };
 
-        bool autoComplete, autoRemove, tabJumpOut;
-
-        getFlag(autoComplete, Qt::CheckState(li[2].toInt()), SettingsHelper::isAutoCompleteParentheses());
-        getFlag(autoRemove, Qt::CheckState(li[3].toInt()), SettingsHelper::isAutoRemoveParentheses());
-        getFlag(tabJumpOut, Qt::CheckState(li[4].toInt()), SettingsHelper::isTabJumpOutParentheses());
+        bool autoComplete = getFlag(Qt::CheckState(li[2].toInt()), SettingsHelper::isAutoCompleteParentheses());
+        bool autoRemove = getFlag(Qt::CheckState(li[3].toInt()), SettingsHelper::isAutoRemoveParentheses());
+        bool tabJumpOut = getFlag(Qt::CheckState(li[4].toInt()), SettingsHelper::isTabJumpOutParentheses());
 
         parentheses.push_back({left, right, autoComplete, autoRemove, tabJumpOut});
     }
