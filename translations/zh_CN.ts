@@ -547,6 +547,16 @@
         <source>Report issues</source>
         <translation>报告问题</translation>
     </message>
+    <message>
+        <source>App version: %1
+Git commit hash: %2
+Build time: %3
+OS: %4</source>
+        <translation>应用版本: %1
+git 提交编号: %2
+构建时间: %3
+操作系统: %4</translation>
+    </message>
 </context>
 <context>
     <name>AppearancePage</name>

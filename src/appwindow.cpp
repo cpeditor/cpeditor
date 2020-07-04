@@ -571,18 +571,19 @@ void AppWindow::on_actionAboutQt_triggered()
 
 void AppWindow::on_actionBuildInfo_triggered()
 {
-    QMessageBox::about(this, "Build Info",
-                       "App version: " APP_VERSION "\n"
-                       "Git commit hash: " GIT_COMMIT_HASH "\n"
-                       "Build time: " __DATE__ " " __TIME__ "\n"
+    QMessageBox::about(this, tr("Build Info"),
+                       tr("App version: %1\nGit commit hash: %2\nBuild time: %3\nOS: %4")
+                           .arg(APP_VERSION)
+                           .arg(GIT_COMMIT_HASH)
+                           .arg(__DATE__ " " __TIME__)
 #if defined(Q_OS_UNIX)
-                       "OS: Linux\n"
+                           .arg("Linux")
 #elif defined(Q_OS_WIN)
-                       "OS: Windows\n"
+                           .arg("Windows")
 #elif defined(Q_OS_MACOS)
-                       "OS: MacOS\n"
+                           .arg("macOS")
 #else
-                       "OS: Unknown\n"
+                           .arg("Unknown")
 #endif
     );
 }
