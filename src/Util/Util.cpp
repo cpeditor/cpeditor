@@ -19,9 +19,11 @@
 #include "Core/EventLogger.hpp"
 #include <QTextCodec>
 #include <QWidget>
-#include <unicode/ucsdet.h>
+
 namespace Util
 {
+
+static QMap<QString, QByteArray> codecs = {{"zh", "GB18030"}, {"ru", "KOI8-RU"}};
 
 void showWidgetOnTop(QWidget *widget)
 {
@@ -33,39 +35,36 @@ void showWidgetOnTop(QWidget *widget)
 
 QString guessCodec(const QByteArray &data, QTextCodec *&codec)
 {
-    UErrorCode status;
-    UCharsetDetector *detector = ucsdet_open(&status);
-    ucsdet_setText(detector, data.data(), data.size(), &status);
-    int count;
-    const UCharsetMatch **matchs = ucsdet_detectAll(detector, &count, &status);
+    QString name = QLocale::system().name();
+    if (name.indexOf("_") != -1)
+        name = name.left(name.indexOf("_"));
     QTextCodec *utf8 = QTextCodec::codecForName("UTF-8");
-    QTextCodec *guess = utf8;
-    QByteArray name;
-    LOG_INFO("Find " << count << " matches");
-    if (count > 0)
+    QTextCodec *sysc = nullptr;
+    if (codecs.contains(name))
     {
-        int cfd = ucsdet_getConfidence(matchs[0], &status);
-        LOG_INFO("Highest confidence is " << cfd);
-        if (cfd == 10) // means the text don't match any. treat them as utf-8
+        sysc = QTextCodec::codecForName(codecs[name]);
+    }
+    if (sysc)
+    {
+        QTextCodec::ConverterState state1, state2;
+        QString sys = sysc->toUnicode(data.data(), data.size(), &state1);
+        QString utf = utf8->toUnicode(data.data(), data.size(), &state2);
+        if (state2.invalidChars <= state1.invalidChars)
         {
-            name = "UTF-8";
-            LOG_WARN("Fallback to UTF-8");
+            codec = utf8;
+            return utf;
         }
         else
         {
-            name = ucsdet_getName(matchs[0], &status);
-            LOG_INFO("Pick " << name);
-        }
-        guess = QTextCodec::codecForName(name.toUpper());
-        if (!guess)
-        {
-            LOG_WARN("Cannot find codec for " << name << ", Use UTF-8 instead.");
-            guess = utf8;
+            codec = sysc;
+            return sys;
         }
     }
-    ucsdet_close(detector);
-    codec = guess;
-    return codec->toUnicode(data);
+    else
+    {
+        codec = utf8;
+        return QString::fromUtf8(data);
+    }
 }
 
 } // namespace Util

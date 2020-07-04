@@ -23,7 +23,6 @@ find_package(Qt5 COMPONENTS Widgets REQUIRED)
 find_package(Qt5 COMPONENTS Network REQUIRED)
 find_package(Qt5 COMPONENTS LinguistTools REQUIRED)
 find_package(Python3 COMPONENTS Interpreter REQUIRED)
-find_package(ICU COMPONENTS uc i18n REQUIRED)
 
 add_subdirectory(third_party/QCodeEditor)
 
@@ -211,8 +210,6 @@ target_link_libraries(cpeditor PRIVATE LSPClient)
 target_link_libraries(cpeditor PRIVATE QCodeEditor)
 target_link_libraries(cpeditor PRIVATE Qt5::Network)
 target_link_libraries(cpeditor PRIVATE Qt5::Widgets)
-target_link_libraries(cpeditor PRIVATE ICU::uc)
-target_link_libraries(cpeditor PRIVATE ICU::i18n)
 target_link_libraries(cpeditor PRIVATE QtFindReplaceDialog)
 target_link_libraries(cpeditor PRIVATE SingleApplication)
 
