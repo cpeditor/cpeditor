@@ -370,6 +370,7 @@ void AppWindow::openTab(const QString &path)
             SLOT(onEditorTmpPathChanged(MainWindow *, const QString &)));
     connect(fsp, SIGNAL(editorLanguageChanged(MainWindow *)), this, SLOT(onEditorLanguageChanged(MainWindow *)));
     connect(fsp, SIGNAL(editorTextChanged(MainWindow *)), this, SLOT(onEditorTextChanged(MainWindow *)));
+    connect(fsp, &MainWindow::editorFontChanged, this, [this] { onSettingsApplied("Appearance"); });
     connect(fsp, SIGNAL(requestToastMessage(const QString &, const QString &)), trayIcon,
             SLOT(showMessage(const QString &, const QString &)));
     connect(fsp, SIGNAL(compileOrRunTriggered()), this, SLOT(onCompileOrRunTriggered()));
