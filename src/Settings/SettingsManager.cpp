@@ -128,14 +128,6 @@ void SettingsManager::loadSettings(const QString &path)
 
         // load file problem binding
         FileProblemBinder::fromVariant(setting.value("file_problem_binding"));
-
-        // rename themes
-        QString theme = get("Editor Theme")
-                            .toString()
-                            .replace("Monkai", "Monokai")
-                            .replace("Drakula", "Dracula")
-                            .replace("Solarised", "Solarized");
-        set("Editor Theme", theme);
     }
 
     LOG_INFO("Settings have been loaded from " + path);

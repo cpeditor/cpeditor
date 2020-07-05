@@ -114,4 +114,11 @@ void SettingsUpdater::updateSetting(QSettings &setting)
 
         Core::SessionManager::saveSession(QJsonDocument(json).toJson());
     }
+
+    QString theme = SettingsManager::get("Editor Theme")
+                        .toString()
+                        .replace("Monkai", "Monokai")
+                        .replace("Drakula", "Dracula")
+                        .replace("Solarised", "Solarized");
+    SettingsManager::set("Editor Theme", theme);
 }
