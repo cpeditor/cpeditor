@@ -122,6 +122,8 @@ def addDefaultPaths(obj):
             "default": action[1],
             "trtip": f'tr("The default path used when choosing a path for %1.\\nYou can use ${{<default path name>}} as a place holder.").arg(tr("{action[0]}"))'
         })
+        if action[0] == "Save File":
+            obj[-1]["trtip"] += ' + "\\n" + tr("It can be overridden by %1.").arg(tr("Default File Paths For Problem URLs"))'
         obj.append({
             "name": f"Default Path/Action/{action[0]}/Changes",
             "trdesc": f'tr("Default paths changed by %1").arg(tr("{action[0]}"))',

@@ -2399,6 +2399,10 @@ It is a list of &lt;default path name&gt;s, separated by commas, and can be empt
         <source>Default paths changed by %1</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>It can be overridden by %1.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ShortcutItem</name>

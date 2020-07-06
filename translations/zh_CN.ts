@@ -2470,6 +2470,10 @@ It is a list of &lt;default path name&gt;s, separated by commas, and can be empt
         <source>Extract And Load Snippets</source>
         <translation>导出和加载代码片段</translation>
     </message>
+    <message>
+        <source>It can be overridden by %1.</source>
+        <translation>它可以被 %1 覆盖。</translation>
+    </message>
 </context>
 <context>
     <name>ShortcutItem</name>
