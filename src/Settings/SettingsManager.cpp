@@ -117,13 +117,13 @@ void SettingsManager::loadSettings(const QString &path)
     def = new QVariantMap();
 
     // default settings
-    for (const auto &si : SettingsInfo::settings)
+    for (const auto &si : SettingsInfo::getSettings())
         def->insert(si.name, si.def);
 
     if (!path.isEmpty())
     {
         QSettings setting(path, QSettings::IniFormat);
-        load(setting, "", SettingsInfo::settings);
+        load(setting, "", SettingsInfo::getSettings());
         SettingsUpdater::updateSetting(setting);
 
         // load file problem binding
@@ -139,7 +139,7 @@ void SettingsManager::saveSettings(const QString &path)
 
     QSettings setting(path, QSettings::IniFormat);
     setting.clear(); // Otherwise SettingsManager::remove won't work
-    save(setting, "", SettingsInfo::settings);
+    save(setting, "", SettingsInfo::getSettings());
 
     // save file problem binding
     setting.setValue("file_problem_binding", FileProblemBinder::toVariant());
@@ -166,9 +166,9 @@ QVariant SettingsManager::get(QString key, bool alwaysDefault)
     }
 }
 
-bool SettingsManager::contains(const QString &key)
+bool SettingsManager::contains(const QString &key, bool includingDefault)
 {
-    return cur->contains(key);
+    return cur->contains(key) || (includingDefault && def->contains(key));
 }
 
 void SettingsManager::set(const QString &key, QVariant value)

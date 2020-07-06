@@ -25,6 +25,7 @@
 #include "Extensions/CompanionServer.hpp"
 #include "Extensions/EditorTheme.hpp"
 #include "Extensions/LanguageServer.hpp"
+#include "Settings/DefaultPathManager.hpp"
 #include "Settings/FileProblemBinder.hpp"
 #include "Settings/PreferencesWindow.hpp"
 #include "Telemetry/UpdateChecker.hpp"
@@ -36,7 +37,6 @@
 #include <QClipboard>
 #include <QDesktopServices>
 #include <QDragEnterEvent>
-#include <QFileDialog>
 #include <QFontDatabase>
 #include <QInputDialog>
 #include <QJsonDocument>
@@ -607,15 +607,15 @@ void AppWindow::on_actionNewTab_triggered()
 
 void AppWindow::on_actionOpen_triggered()
 {
-    auto fileNames = QFileDialog::getOpenFileNames(this, tr("Open Files"), SettingsHelper::getSavePath(),
-                                                   Util::fileNameFilter(true, true, true));
+    auto fileNames = DefaultPathManager::getOpenFileNames("Open File", this, tr("Open Files"),
+                                                          Util::fileNameFilter(true, true, true));
     LOG_INFO("Filename " << fileNames.join(", "));
     openTabs(fileNames);
 }
 
 void AppWindow::on_actionOpenContest_triggered()
 {
-    auto path = QFileDialog::getExistingDirectory(this, tr("Open Contest"));
+    auto path = DefaultPathManager::getExistingDirectory("Open Contest", this, tr("Open Contest"));
     if (QFile::exists(path) && QFileInfo(path).isDir())
     {
         bool ok = false;
@@ -704,16 +704,24 @@ void AppWindow::on_actionResetSettings_triggered()
 
 void AppWindow::on_actionExportSettings_triggered()
 {
-    auto path = QFileDialog::getSaveFileName(this, tr("Export settings to a file"), QString(),
-                                             tr("CP Editor Settings File") + " (*.cpeditor)");
+    auto path = DefaultPathManager::getSaveFileName("Export And Import Settings", this, tr("Export settings to a file"),
+                                                    tr("CP Editor Settings File") + " (*.cpeditor)");
     if (!path.isEmpty())
         SettingsManager::saveSettings(path);
 }
 
 void AppWindow::on_actionImportSettings_triggered()
 {
-    auto path = QFileDialog::getOpenFileName(this, tr("Import settings from a file"), QString(),
-                                             tr("CP Editor Settings File") + " (*.cpeditor)");
+    auto res = QMessageBox::question(
+        this, tr("Import Settings"),
+        tr("All current settings will lose after importing settings from a file. Are you sure to continue?"),
+        QMessageBox::Yes | QMessageBox::No);
+    if (res == QMessageBox::No)
+        return;
+
+    auto path =
+        DefaultPathManager::getOpenFileName("Export And Import Settings", this, tr("Import settings from a file"),
+                                            tr("CP Editor Settings File") + " (*.cpeditor)");
     if (!path.isEmpty())
     {
         SettingsManager::loadSettings(path);
@@ -723,8 +731,9 @@ void AppWindow::on_actionImportSettings_triggered()
 
 void AppWindow::on_actionExportSession_triggered()
 {
-    auto path = QFileDialog::getSaveFileName(this, tr("Export current session to a file"), QString(),
-                                             tr("CP Editor Session File") + " (*.json)");
+    auto path =
+        DefaultPathManager::getSaveFileName("Export And Load Session", this, tr("Export current session to a file"),
+                                            tr("CP Editor Session File") + " (*.json)");
     if (!path.isEmpty())
     {
         if (!Util::saveFile(path, sessionManager->currentSessionText(), "Export Session"))
@@ -738,13 +747,14 @@ void AppWindow::on_actionExportSession_triggered()
 void AppWindow::on_actionLoadSession_triggered()
 {
     auto res = QMessageBox::question(this, tr("Load Session"),
-                                     tr("Load a session from a file will close all tabs in the current session without "
-                                        "saving the files. Are you sure to continue?"),
+                                     tr("Loading a session from a file will close all tabs in the current session "
+                                        "without saving the files. Are you sure to continue?"),
                                      QMessageBox::Yes | QMessageBox::No);
     if (res == QMessageBox::No)
         return;
-    auto path = QFileDialog::getOpenFileName(this, tr("Load session from a file"), QString(),
-                                             tr("CP Editor Session File") + " (*.json)");
+
+    auto path = DefaultPathManager::getOpenFileName("Export And Load Session", this, tr("Load session from a file"),
+                                                    tr("CP Editor Session File") + " (*.json)");
     if (!path.isEmpty())
         sessionManager->restoreSession(path);
 }
@@ -982,10 +992,12 @@ void AppWindow::onSettingsApplied(const QString &pagePath)
         onEditorTextChanged(windowAt(i));
     }
 
-    if (pagePath.isEmpty() || pagePath == "Key Bindings")
+    auto pageChanged = [pagePath](const QString &page) { return pagePath.isEmpty() || pagePath == page; };
+
+    if (pageChanged("Key Bindings"))
         maybeSetHotkeys();
 
-    if (pagePath.isEmpty() || pagePath == "Extensions/Competitive Companion")
+    if (pageChanged("Extensions/Competitive Companion"))
     {
         if (SettingsHelper::isCompetitiveCompanionEnable())
             server->updatePort(SettingsHelper::getCompetitiveCompanionConnectionPort());
@@ -993,7 +1005,7 @@ void AppWindow::onSettingsApplied(const QString &pagePath)
             server->updatePort(0);
     }
 
-    if (pagePath.isEmpty() || pagePath == "Appearance")
+    if (pageChanged("Appearance"))
     {
         setWindowOpacity(SettingsHelper::getOpacity() / 100.0);
         Core::StyleManager::setStyle(SettingsHelper::getUIStyle());
@@ -1003,28 +1015,33 @@ void AppWindow::onSettingsApplied(const QString &pagePath)
             qApp->setFont(QFontDatabase::systemFont(QFontDatabase::GeneralFont));
     }
 
-    if (pagePath.isEmpty() || pagePath == "Extensions/Language Server/C++ Server")
+    if (pageChanged("Extensions/Language Server/C++ Server"))
     {
         cppServer->updateSettings();
         lspTimerCpp->setInterval(SettingsHelper::getLSPDelayCpp());
     }
 
-    if (pagePath.isEmpty() || pagePath == "Extensions/Language Server/Java Server")
+    if (pageChanged("Extensions/Language Server/Java Server"))
     {
         javaServer->updateSettings();
         lspTimerJava->setInterval(SettingsHelper::getLSPDelayJava());
     }
 
-    if (pagePath.isEmpty() || pagePath == "Extensions/Language Server/Python Server")
+    if (pageChanged("Extensions/Language Server/Python Server"))
     {
         pythonServer->updateSettings();
         lspTimerPython->setInterval(SettingsHelper::getLSPDelayPython());
     }
 
-    if (pagePath.isEmpty() || pagePath == "Actions/Save Session")
+    if (pageChanged("Actions/Save Session"))
     {
         sessionManager->setAutoUpdateDuration(SettingsHelper::getHotExitAutoSaveInterval());
         sessionManager->setAutoUpdateSession(SettingsHelper::isHotExitEnable() && SettingsHelper::isHotExitAutoSave());
+    }
+
+    if (pageChanged("File Path/Default Paths"))
+    {
+        DefaultPathManager::fromVariantList(SettingsHelper::getDefaultPathNamesAndPaths());
     }
 }
 

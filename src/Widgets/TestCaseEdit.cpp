@@ -18,9 +18,9 @@
 #include "Widgets/TestCaseEdit.hpp"
 #include "Core/EventLogger.hpp"
 #include "Core/MessageLogger.hpp"
+#include "Settings/DefaultPathManager.hpp"
 #include "Util/FileUtil.hpp"
 #include <QApplication>
-#include <QFileDialog>
 #include <QInputDialog>
 #include <QMenu>
 #include <QMimeData>
@@ -101,8 +101,9 @@ void TestCaseEdit::onCustomContextMenuRequested(const QPoint &pos)
         menu->addSeparator();
         menu->addAction(QApplication::style()->standardIcon(QStyle::SP_DialogOpenButton), tr("Load From File"), [this] {
             LOG_INFO("Opening file dialog to Load from file");
-            auto res = QFileDialog::getOpenFileName(this, tr("Load From File"));
-            loadFromFile(res);
+            auto res = DefaultPathManager::getOpenFileName("Load Single Test Case", this, tr("Load From File"));
+            if (!res.isEmpty())
+                loadFromFile(res);
         });
         menu->addAction(
             QApplication::style()->standardIcon(QStyle::SP_TitleBarMaxButton), tr("Edit in Bigger Window"), [this] {

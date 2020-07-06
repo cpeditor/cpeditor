@@ -46,8 +46,10 @@ def writeInfo(f, obj, lst):
         key = name.replace(" ", "").replace("/", "").replace("+", "p")
         typename = t["type"]
         desc = t.get("desc", name.replace('/', ' '))
+        trdesc = t.get("trdesc", f"tr({json.dumps(desc)})")
         ui = t.get("ui", "")
         tip = t.get("tip", "")
+        trtip = t.get("trtip", f"tr({json.dumps(tip)})")
         hlp = t.get("help", "")
         requireAllDepends = t.get("requireAllDepends", True)
         depends = t.get("depends", [])
@@ -55,12 +57,12 @@ def writeInfo(f, obj, lst):
             f.write(f"    QList<SettingInfo> LIST{key};\n")
             writeInfo(f, t["sub"], f"LIST{key}")
         f.write(f"    {lst}.append(SettingInfo {{{json.dumps(name)}, ")
-        desccode = f"tr({json.dumps(desc)})"
-        for lang in ["C++", "Java", "Python"]:
-            if lang in desc:
-                desccode = f"tr({json.dumps(desc.replace(lang, '%1'))}).arg(\"{lang}\")"
-                break
-        f.write(desccode)
+        if "trdesc" not in t:
+            for lang in ["C++", "Java", "Python"]:
+                if lang in desc:
+                    trdesc = f"tr({json.dumps(desc.replace(lang, '%1'))}).arg(\"{lang}\")"
+                    break
+        f.write(trdesc)
         tempname = typename
         if typename == "QMap":
             final = t["final"]
@@ -69,7 +71,8 @@ def writeInfo(f, obj, lst):
         for depend in depends:
             dependsString += f"{{{json.dumps(depend.get('name', ''))}, [](const QVariant &var) {{ {depend.get('check', 'return var.toBool();')} }}}}, "
         dependsString += "}"
-        f.write(f", \"{tempname}\", \"{ui}\", tr({json.dumps(tip)}), tr({json.dumps(hlp)}), {json.dumps(requireAllDepends)}, {dependsString}, ")
+        f.write(
+            f", \"{tempname}\", \"{ui}\", {trtip}, tr({json.dumps(hlp)}), {json.dumps(requireAllDepends)}, {dependsString}, ")
         if typename != "Object":
             if "default" in t:
                 if typename == "QString":
@@ -98,8 +101,41 @@ def writeInfo(f, obj, lst):
         f.write("});\n")
 
 
+def addDefaultPaths(obj):
+    actions = [
+        ("Open File", "${file}", "file, testcase, checker"),
+        ("Save File", "${file}", "file, testcase, checker"),
+        ("Open Contest", "${contest}", "contest, file, testcase, checker"),
+        ("Load Single Test Case", "${testcase}", "testcase"),
+        ("Add Pairs Of Test Cases", "${testcase}", "testcase"),
+        ("Custom Checker", "${checker}", "checker"),
+        ("Export And Import Settings", "${settings}", "settings"),
+        ("Export And Load Session", "${session}", "session"),
+        ("Extract And Load Snippets", "${snippets}", "snippets"),
+    ]
+
+    for action in actions:
+        obj.append({
+            "name": f"Default Path/Action/{action[0]}/Uses",
+            "trdesc": f'tr("The default path used for %1").arg(tr("{action[0]}"))',
+            "type": "QString",
+            "default": action[1],
+            "trtip": f'tr("The default path used when choosing a path for %1.\\nYou can use ${{<default path name>}} as a place holder.").arg(tr("{action[0]}"))'
+        })
+        obj.append({
+            "name": f"Default Path/Action/{action[0]}/Changes",
+            "trdesc": f'tr("The default path changed by %1").arg(tr("{action[0]}"))',
+            "type": "QString",
+            "default": action[2],
+            "trtip": f'tr("The default paths changed after choosing a path for %1.\\nIt is a list of <default path name>s, separated by commas, and can be empty.").arg(tr("{action[0]}"))'
+        })
+
+
 if __name__ == "__main__":
     obj = json.load(open(sys.argv[1], mode="r", encoding="utf-8"))
+
+    addDefaultPaths(obj)
+
     head = """/*
  * Copyright (C) 2019-2020 Ashar Khan <ashar786khan@gmail.com>
  *

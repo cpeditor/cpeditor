@@ -25,12 +25,12 @@
 #include "Extensions/CFTool.hpp"
 #include "Extensions/ClangFormatter.hpp"
 #include "Extensions/CompanionServer.hpp"
+#include "Settings/DefaultPathManager.hpp"
 #include "Settings/FileProblemBinder.hpp"
 #include "Util/FileUtil.hpp"
 #include "Util/QCodeEditorUtil.hpp"
 #include "Widgets/TestCases.hpp"
 #include <QCodeEditor>
-#include <QFileDialog>
 #include <QFileSystemWatcher>
 #include <QFontDialog>
 #include <QInputDialog>
@@ -856,7 +856,8 @@ bool MainWindow::saveFile(SaveMode mode, const QString &head, bool safe)
                 }
             }
             if (defaultPath.isEmpty())
-                defaultPath = QDir(SettingsHelper::getSavePath()).filePath(getTabTitle(false, false));
+                defaultPath =
+                    QDir(DefaultPathManager::defaultPathForAction("Save File")).filePath(getTabTitle(false, false));
             if (language == "C++")
                 defaultPath += ".cpp";
             else if (language == "Java")
@@ -899,7 +900,7 @@ bool MainWindow::saveFile(SaveMode mode, const QString &head, bool safe)
 
         setFilePath(newFilePath);
 
-        SettingsHelper::setSavePath(QFileInfo(filePath).canonicalPath());
+        DefaultPathManager::changeDefaultPathForAction("Save File", QFileInfo(filePath).canonicalPath());
 
         auto suffix = QFileInfo(filePath).suffix();
         if (Util::cppSuffix.contains(suffix))

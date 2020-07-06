@@ -520,7 +520,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Load a session from a file will close all tabs in the current session without saving the files. Are you sure to continue?</source>
+        <source>Loading a session from a file will close all tabs in the current session without saving the files. Are you sure to continue?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -552,6 +552,14 @@
 Git commit hash: %2
 Build time: %3
 OS: %4</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Import Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>All current settings will lose after importing settings from a file. Are you sure to continue?</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1521,6 +1529,10 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
         <source>Network Proxy</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Default Paths</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SettingsInfo</name>
@@ -1878,10 +1890,6 @@ This can be overridden for each parenthesis in each language.</source>
     </message>
     <message>
         <source>The path to the CF Tool executable file</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Save Path</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2313,6 +2321,82 @@ kill the application with SIGKILL which could not be handled by the application.
     </message>
     <message>
         <source>Text codec of the compiler output (errors, warnings, etc.)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Default Path Names And Paths</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>A list of default paths.
+They can be used in actions&apos; corresponding default paths by using ${&lt;default path name&gt;} as a place holder.
+They can be either manually set or automatically changed after choosing a path for an action.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The name of a default path</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The path of a default path</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The default path used for %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open File</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The default path used when choosing a path for %1.
+You can use ${&lt;default path name&gt;} as a place holder.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The default path changed by %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The default paths changed after choosing a path for %1.
+It is a list of &lt;default path name&gt;s, separated by commas, and can be empty.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save File</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open Contest</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Load Single Test Case</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add Pairs Of Test Cases</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Custom Checker</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Export And Import Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Export And Load Session</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Extract And Load Snippets</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

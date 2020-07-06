@@ -19,9 +19,11 @@
 #include "Core/EventLogger.hpp"
 #include "Settings/AppearancePage.hpp"
 #include "Settings/CodeSnippetsPage.hpp"
+#include "Settings/DefaultPathManager.hpp"
 #include "Settings/ParenthesesPage.hpp"
 #include "Settings/PreferencesHomePage.hpp"
 #include "Util/Util.hpp"
+#include "generated/SettingsHelper.hpp"
 #include <QApplication>
 #include <QCloseEvent>
 #include <QHBoxLayout>
@@ -33,7 +35,6 @@
 #include <QStackedWidget>
 #include <QTreeWidget>
 #include <QVBoxLayout>
-#include <generated/SettingsHelper.hpp>
 
 AddPageHelper &AddPageHelper::page(const QString &key, const QString &trkey, const QStringList &content)
 {
@@ -230,6 +231,7 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
         .dir(TRKEY("File Path"))
             .page(TRKEY("Testcases"), {"Input File Save Path", "Answer File Save Path", "Testcases Matching Rules"})
             .page(TRKEY("Problem URL"), {"Default File Paths For Problem URLs"})
+            .page(TRKEY("Default Paths"), DefaultPathManager::actionSettingsList() << "Default Path/Names And Paths")
         .end()
         .page(TRKEY("Key Bindings"), {"Hotkey/Compile", "Hotkey/Run", "Hotkey/Compile Run", "Hotkey/Format", "Hotkey/Kill",
                                    "Hotkey/Change View Mode", "Hotkey/Snippets"})

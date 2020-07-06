@@ -16,11 +16,11 @@
  */
 
 #include "Settings/CodeSnippetsPage.hpp"
+#include "Settings/DefaultPathManager.hpp"
 #include "Util/FileUtil.hpp"
 #include "Util/QCodeEditorUtil.hpp"
 #include "generated/SettingsHelper.hpp"
 #include <QCodeEditor>
-#include <QFileDialog>
 #include <QInputDialog>
 #include <QLabel>
 #include <QListWidget>
@@ -314,8 +314,9 @@ void CodeSnippetsPage::renameSnippet()
 
 void CodeSnippetsPage::loadSnippetsFromFiles()
 {
-    auto files = QFileDialog::getOpenFileNames(this, tr("Load Snippets"), QString(),
-                                               Util::fileNameFilter(lang == "C++", lang == "Java", lang == "Python"));
+    auto files =
+        DefaultPathManager::getOpenFileNames("Extract And Load Snippets", this, tr("Load Snippets"),
+                                             Util::fileNameFilter(lang == "C++", lang == "Java", lang == "Python"));
 
     for (auto file : files)
     {
@@ -338,9 +339,11 @@ void CodeSnippetsPage::loadSnippetsFromFiles()
 
 void CodeSnippetsPage::extractSnippetsToFiles()
 {
-    auto dirPath = QFileDialog::getExistingDirectory(this, tr("Extract Snippets"));
+    auto dirPath = DefaultPathManager::getExistingDirectory("Extract And Load Snippets", this, tr("Extract Snippets"));
+
     if (dirPath.isEmpty())
         return;
+
     auto dir = QDir(dirPath);
 
     auto names = SettingsHelper::getLanguageConfig(lang).getSnippets();
