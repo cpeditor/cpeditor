@@ -2346,20 +2346,12 @@ They can be either manually set or automatically changed after choosing a path f
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>The default path used for %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Open File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>The default path used when choosing a path for %1.
 You can use ${&lt;default path name&gt;} as a place holder.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>The default path changed by %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2397,6 +2389,14 @@ It is a list of &lt;default path name&gt;s, separated by commas, and can be empt
     </message>
     <message>
         <source>Extract And Load Snippets</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Default path used for %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Default paths changed by %1</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

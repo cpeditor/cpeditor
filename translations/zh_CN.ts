@@ -2415,7 +2415,7 @@ They can be either manually set or automatically changed after choosing a path f
         <translation>一个默认路径的路径</translation>
     </message>
     <message>
-        <source>The default path used for %1</source>
+        <source>Default path used for %1</source>
         <translation>用于 %1 的默认路径</translation>
     </message>
     <message>
@@ -2429,7 +2429,7 @@ You can use ${&lt;default path name&gt;} as a place holder.</source>
 你可以使用 ${&lt;默认路径名称&gt;} 来作为占位符。</translation>
     </message>
     <message>
-        <source>The default path changed by %1</source>
+        <source>Default paths changed by %1</source>
         <translation>被 %1 改变的默认路径</translation>
     </message>
     <message>

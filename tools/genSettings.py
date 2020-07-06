@@ -117,14 +117,14 @@ def addDefaultPaths(obj):
     for action in actions:
         obj.append({
             "name": f"Default Path/Action/{action[0]}/Uses",
-            "trdesc": f'tr("The default path used for %1").arg(tr("{action[0]}"))',
+            "trdesc": f'tr("Default path used for %1").arg(tr("{action[0]}"))',
             "type": "QString",
             "default": action[1],
             "trtip": f'tr("The default path used when choosing a path for %1.\\nYou can use ${{<default path name>}} as a place holder.").arg(tr("{action[0]}"))'
         })
         obj.append({
             "name": f"Default Path/Action/{action[0]}/Changes",
-            "trdesc": f'tr("The default path changed by %1").arg(tr("{action[0]}"))',
+            "trdesc": f'tr("Default paths changed by %1").arg(tr("{action[0]}"))',
             "type": "QString",
             "default": action[2],
             "trtip": f'tr("The default paths changed after choosing a path for %1.\\nIt is a list of <default path name>s, separated by commas, and can be empty.").arg(tr("{action[0]}"))'
