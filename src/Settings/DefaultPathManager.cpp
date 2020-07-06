@@ -41,7 +41,7 @@ void DefaultPathManager::changeDefaultPathForAction(const QString &action, const
 
     if (!SettingsManager::contains(settingsKey, true))
     {
-        qDebug() << "Unkown Action:" << action;
+        qDebug() << "Unknown Action:" << action;
         LOG_ERR("Unknown Action");
         return;
     }
