@@ -48,7 +48,7 @@
         "type": "QString",
         "default": "clang-format",
         "ui": "PathItem",
-        "param": "0",
+        "param": "PathItem::Executable",
         "tip": "The path to the Clang Format executable file"
     },
     {
@@ -63,7 +63,7 @@
         "name": "C++/Template Path",
         "type": "QString",
         "ui": "PathItem",
-        "param": "1",
+        "param": "PathItem::CppSource",
         "tip": "The template used when creating a new C++ file"
     },
     {
@@ -132,7 +132,7 @@
         "name": "Java/Template Path",
         "type": "QString",
         "ui": "PathItem",
-        "param": "2",
+        "param": "PathItem::JavaSource",
         "tip": "The template used when creating a new Java file"
     },
     {
@@ -212,7 +212,7 @@
         "name": "Python/Template Path",
         "type": "QString",
         "ui": "PathItem",
-        "param": "3",
+        "param": "PathItem::PythonSource",
         "tip": "The template used when creating a new Python file"
     },
     {
@@ -512,7 +512,7 @@
         "type": "QString",
         "default": "cf",
         "ui": "PathItem",
-        "param": "0",
+        "param": "PathItem::Executable",
         "tip": "The path to the CF Tool executable file"
     },
     {
@@ -584,7 +584,7 @@
         "desc": "Path to LSP executable",
         "default": "clangd",
         "type": "QString",
-        "param": "0",
+        "param": "PathItem::Executable",
         "requireAllDepends": false,
         "depends": [
             {
@@ -598,7 +598,7 @@
         "ui": "PathItem",
         "desc": "Path to LSP executable",
         "type": "QString",
-        "param": "0",
+        "param": "PathItem::Executable",
         "requireAllDepends": false,
         "depends": [
             {
@@ -613,7 +613,7 @@
         "desc": "Path to LSP executable",
         "default": "python",
         "type": "QString",
-        "param": "0",
+        "param": "PathItem::Executable",
         "requireAllDepends": false,
         "depends": [
             {

@@ -26,40 +26,7 @@
 #include <QStyle>
 #include <QToolButton>
 
-QString PathItem::getFilters(int index)
-{
-    switch (index)
-    {
-    case 0:
-        return tr("Excutable") + " (*" + Util::exeSuffix + ")";
-    case 1:
-    case 2:
-    case 3:
-        return Util::fileNameFilter(index == 1, index == 2, index == 3);
-    default:
-        LOG_ERR("Unknown index: " INFO_OF(index));
-        return QString();
-    }
-}
-
-QString PathItem::getTitles(int index)
-{
-    switch (index)
-    {
-    case 0:
-        return tr("Choose Excutable");
-    case 1:
-    case 2:
-    case 3:
-        return tr("Choose %1 Sources").arg(QStringList{"C++", "Java", "Python"}[index - 1]);
-    default:
-        LOG_ERR("Unknown index: " INFO_OF(index));
-        return QString();
-    }
-}
-
-PathItem::PathItem(const QString &pathFilter, const QString &dialogTitle, QWidget *parent)
-    : QWidget(parent), filter(pathFilter), title(dialogTitle)
+PathItem::PathItem(Type type, QWidget *parent) : QWidget(parent), fileType(type)
 {
     layout = new QHBoxLayout(this);
     layout->setContentsMargins(0, 0, 0, 0);
@@ -69,15 +36,10 @@ PathItem::PathItem(const QString &pathFilter, const QString &dialogTitle, QWidge
     layout->addWidget(lineEdit);
 
     toolButton = new QToolButton();
-    toolButton->setToolTip("Choose a file");
+    toolButton->setToolTip(tr("Choose a file"));
     toolButton->setIcon(QApplication::style()->standardIcon(QStyle::SP_DialogOpenButton));
     connect(toolButton, SIGNAL(clicked()), this, SLOT(onButtonClicked()));
     layout->addWidget(toolButton);
-}
-
-PathItem::PathItem(int filterId, int titleId, QWidget *parent)
-    : PathItem(getFilters(filterId), getTitles(titleId), parent)
-{
 }
 
 QLineEdit *PathItem::getLineEdit()
@@ -87,7 +49,43 @@ QLineEdit *PathItem::getLineEdit()
 
 void PathItem::onButtonClicked()
 {
-    auto path = QFileDialog::getOpenFileName(this, title, lineEdit->text(), filter);
+    auto path = QFileDialog::getOpenFileName(this, title(), lineEdit->text(), filter());
     if (!path.isEmpty())
         lineEdit->setText(path);
+}
+
+QString PathItem::filter() const
+{
+    switch (fileType)
+    {
+    case AnyFile:
+        return QString();
+    case CppSource:
+    case JavaSource:
+    case PythonSource:
+        return Util::fileNameFilter(fileType == CppSource, fileType == JavaSource, fileType == PythonSource);
+    case Executable:
+        return tr("Excutable Files") + " (*" + Util::exeSuffix + ")";
+    default:
+        Q_UNREACHABLE();
+    }
+}
+
+QString PathItem::title() const
+{
+    switch (fileType)
+    {
+    case AnyFile:
+        return tr("Choose a file");
+    case CppSource:
+        return tr("Choose a %1 source file").arg("C++");
+    case JavaSource:
+        return tr("Choose a %1 source file").arg("Java");
+    case PythonSource:
+        return tr("Choose a %1 source file").arg("Python");
+    case Executable:
+        return tr("Choose an excutable file");
+    default:
+        Q_UNREACHABLE();
+    }
 }

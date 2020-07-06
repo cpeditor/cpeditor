@@ -146,9 +146,10 @@ namespace SettingsHelper
                         mode="w", encoding="utf-8")
     setting_info.write(head)
     setting_info.write("""#include "Settings/SettingsInfo.hpp"
+#include "Core/StyleManager.hpp"
+#include "Settings/PathItem.hpp"
 #include <QFontDatabase>
 #include <QRect>
-#include "Core/StyleManager.hpp"
 
 QList<SettingsInfo::SettingInfo> SettingsInfo::settings;
 

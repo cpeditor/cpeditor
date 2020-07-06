@@ -33,15 +33,19 @@ class PathItem : public QWidget
     Q_OBJECT
 
   public:
-    /**
-     * @brief construct a PathItem
-     */
-    explicit PathItem(const QString &pathFilter, const QString &dialogTitle, QWidget *parent = nullptr);
+    enum Type
+    {
+        AnyFile,
+        CppSource,
+        JavaSource,
+        PythonSource,
+        Executable,
+    };
 
     /**
-     * @brief construct a PathItem use builtin filter and title
+     * @brief construct a PathItem with the given type
      */
-    explicit PathItem(int filterId, int titleId, QWidget *parent = nullptr);
+    explicit PathItem(Type type = AnyFile, QWidget *parent = nullptr);
 
     /**
      * @brief get the line edit of the PathItem
@@ -55,12 +59,12 @@ class PathItem : public QWidget
     void onButtonClicked();
 
   private:
-    QString getFilters(int index);
+    QString filter() const;
 
-    QString getTitles(int index);
+    QString title() const;
 
   private:
-    QString filter, title;
+    Type fileType;
     QHBoxLayout *layout = nullptr;
     QLineEdit *lineEdit = nullptr;
     QToolButton *toolButton = nullptr;

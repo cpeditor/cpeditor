@@ -1301,15 +1301,19 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
 <context>
     <name>PathItem</name>
     <message>
-        <source>Excutable</source>
+        <source>Choose a file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Choose Excutable</source>
+        <source>Excutable Files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Choose %1 Sources</source>
+        <source>Choose a %1 source file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Choose an excutable file</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
