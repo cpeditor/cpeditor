@@ -1323,16 +1323,20 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
 <context>
     <name>PathItem</name>
     <message>
-        <source>Excutable</source>
+        <source>Choose a file</source>
+        <translation>选择一个文件</translation>
+    </message>
+    <message>
+        <source>Excutable Files</source>
         <translation>可执行文件</translation>
     </message>
     <message>
-        <source>Choose Excutable</source>
-        <translation>选择可执行文件</translation>
+        <source>Choose a %1 source file</source>
+        <translation>选择一个 %1 源文件</translation>
     </message>
     <message>
-        <source>Choose %1 Sources</source>
-        <translation>选择 %1 源代码</translation>
+        <source>Choose an excutable file</source>
+        <translation>选择一个可执行文件</translation>
     </message>
 </context>
 <context>

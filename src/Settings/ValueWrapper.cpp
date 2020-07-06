@@ -125,8 +125,7 @@ void ComboBoxWrapper::set(QString s)
 
 void PathItemWrapper::init(QWidget *parent, QVariant param)
 {
-    int id = param.toInt();
-    PathItem *item = new PathItem(id, id, parent); // TODO: split to two param
+    PathItem *item = new PathItem(PathItem::Type(param.toInt()), parent);
     connect(item->getLineEdit(), &QLineEdit::textChanged, this, &ValueWidget::emitSignal);
     widget = item;
 }
