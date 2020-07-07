@@ -1559,6 +1559,10 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
         <source>Default Paths</source>
         <translation>默认路径</translation>
     </message>
+    <message>
+        <source>Load External File Changes</source>
+        <translation>加载外部文件修改</translation>
+    </message>
 </context>
 <context>
     <name>SettingsInfo</name>
@@ -2477,6 +2481,26 @@ It is a list of &lt;default path name&gt;s, separated by commas, and can be empt
     <message>
         <source>It can be overridden by %1.</source>
         <translation>它可以被 %1 覆盖。</translation>
+    </message>
+    <message>
+        <source>Auto-load external file changes if there&apos;s no unsaved modification</source>
+        <translation>若没有未保存的修改，自动加载外部文件修改</translation>
+    </message>
+    <message>
+        <source>Automatically load file changes that are not made in CP Editor if there&apos;s no unsaved modification in CP Editor.</source>
+        <translation>如果 CP Editor 内部没有未保存的修改，自动加载不是在 CP Editor 内进行的文件修改。</translation>
+    </message>
+    <message>
+        <source>Ask whether to load external file changes</source>
+        <translation>询问是否加载外部文件修改</translation>
+    </message>
+    <message>
+        <source>When there are file changes that are not made in CP Editor and is not automatically loaded by
+&quot;%1&quot;, ask for whether to load the changes.
+If this is disabled, external file changes will be ignored unless they are loaded by
+&quot;%1&quot;.</source>
+        <translation>当 CP Editor 外部的文件修改发生且没有被“%1”自动加载时，询问是否加载修改。
+如果这个选项被禁用，那么除非被“%1”自动加载，外部文件修改会被忽略。</translation>
     </message>
 </context>
 <context>

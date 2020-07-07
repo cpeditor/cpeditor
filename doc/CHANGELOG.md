@@ -23,6 +23,7 @@ With the portable version, you can easily store it in something like a USB disk,
 - Now you can change the text codec of the compiler output. (#469)
 - Now you can use the mouse wheel to change the font of the code editor. (#475)
 - A flexible system to set and change default paths for several path choosing actions. (#483)
+- Settings to control whether to load external file changes. (#486)
 
 ### Fixed
 

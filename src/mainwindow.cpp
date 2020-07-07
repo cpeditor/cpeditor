@@ -1056,13 +1056,13 @@ void MainWindow::onFileWatcherChanged(const QString &path)
             return;
         }
 
-        if (savedText == currentText)
+        if (savedText == currentText && SettingsHelper::isAutoLoadExternalChangesIfNoUnsavedModification())
         {
             loadFile(path);
             return;
         }
 
-        if (!reloading)
+        if (!reloading && SettingsHelper::isAskForLoadingExternalChanges())
         {
             reloading = true;
 

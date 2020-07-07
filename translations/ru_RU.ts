@@ -1537,6 +1537,10 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
         <source>Default Paths</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Load External File Changes</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SettingsInfo</name>
@@ -2405,6 +2409,25 @@ It is a list of &lt;default path name&gt;s, separated by commas, and can be empt
     </message>
     <message>
         <source>It can be overridden by %1.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Auto-load external file changes if there&apos;s no unsaved modification</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Automatically load file changes that are not made in CP Editor if there&apos;s no unsaved modification in CP Editor.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ask whether to load external file changes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>When there are file changes that are not made in CP Editor and is not automatically loaded by
+&quot;%1&quot;, ask for whether to load the changes.
+If this is disabled, external file changes will be ignored unless they are loaded by
+&quot;%1&quot;.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
