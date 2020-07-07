@@ -1809,14 +1809,6 @@ This can be overridden for each parenthesis in each language.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Format Codes on Save</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Use Clang Format to format the codes when saving it.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Opacity</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2405,6 +2397,22 @@ It is a list of &lt;default path name&gt;s, separated by commas, and can be empt
     </message>
     <message>
         <source>It can be overridden by %1.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use Clang Format to format the code when auto-saving it.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Format code on manually save</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use Clang Format to format the code when manually saving it.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Format code on auto-save</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

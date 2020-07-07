@@ -165,6 +165,7 @@ class MainWindow : public QMainWindow
     enum SaveMode
     {
         IgnoreUntitled, // save only when filePath is not empty
+        AutoSave,       // basically the same as IgnoreUntitled, only different in auto-format
         AlwaysSave,     // save to filePath if it's not empty, otherwise ask for new path
         SaveAs,         // ask for new path no matter filePath is empty or not
     };

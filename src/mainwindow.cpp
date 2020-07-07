@@ -63,7 +63,7 @@ MainWindow::MainWindow(const QString &fileOpen, int index, QWidget *parent)
     setEditor();
     connect(fileWatcher, SIGNAL(fileChanged(const QString &)), this, SLOT(onFileWatcherChanged(const QString &)));
     connect(
-        autoSaveTimer, &QTimer::timeout, autoSaveTimer, [this] { saveFile(IgnoreUntitled, tr("Auto Save"), false); },
+        autoSaveTimer, &QTimer::timeout, autoSaveTimer, [this] { saveFile(AutoSave, tr("Auto Save"), false); },
         Qt::DirectConnection);
     applySettings("", true);
     loadFile(fileOpen);
@@ -826,7 +826,9 @@ void MainWindow::loadFile(const QString &loadPath)
 bool MainWindow::saveFile(SaveMode mode, const QString &head, bool safe)
 {
     LOG_INFO(INFO_OF(mode) << INFO_OF(head) << BOOL_INFO_OF(safe));
-    if (SettingsHelper::isAutoFormat())
+
+    if ((mode != AutoSave && SettingsHelper::isClangFormatFormatOnManuallySave()) ||
+        (mode == AutoSave && SettingsHelper::isClangFormatFormatOnAutoSave()))
         formatter->format(editor, filePath, language, false);
 
     if (mode == SaveAs || (isUntitled() && mode == AlwaysSave))
