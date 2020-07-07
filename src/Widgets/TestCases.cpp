@@ -18,11 +18,11 @@
 #include "Widgets/TestCases.hpp"
 #include "Core/EventLogger.hpp"
 #include "Core/MessageLogger.hpp"
+#include "Settings/DefaultPathManager.hpp"
 #include "Util/FileUtil.hpp"
 #include "Widgets/TestCase.hpp"
 #include "generated/SettingsHelper.hpp"
 #include <QComboBox>
-#include <QFileDialog>
 #include <QFileInfo>
 #include <QHBoxLayout>
 #include <QLabel>
@@ -74,9 +74,10 @@ TestCases::TestCases(MessageLogger *logger, QWidget *parent) : QWidget(parent), 
     moreMenu = new QMenu();
 
     moreMenu->addAction(tr("Add Pairs of Testcases From Files"), [this] {
-        QStringList paths = QFileDialog::getOpenFileNames(this, tr("Choose Testcase Files"), "");
+        QStringList paths =
+            DefaultPathManager::getOpenFileNames("Add Pairs Of Test Cases", this, tr("Choose Testcase Files"));
         LOG_INFO(paths.join(", "));
-        if (paths.size())
+        if (!paths.isEmpty())
         {
             QVariantList rules = SettingsHelper::getTestcasesMatchingRules();
             QSet<QString> remain;
@@ -485,7 +486,8 @@ void TestCases::on_addButton_clicked()
 void TestCases::on_addCheckerButton_clicked()
 {
     LOG_INFO("Add checker button clicked");
-    auto path = QFileInfo(QFileDialog::getOpenFileName(this, tr("Add Checker"))).canonicalFilePath();
+    auto path =
+        QFileInfo(DefaultPathManager::getOpenFileName("Custom Checker", this, tr("Add Checker"))).canonicalFilePath();
     if (!path.isEmpty())
     {
         checkerComboBox->addItem(path);

@@ -115,6 +115,15 @@ void SettingsUpdater::updateSetting(QSettings &setting)
         Core::SessionManager::saveSession(QJsonDocument(json).toJson());
     }
 
+    if (setting.contains("save_path"))
+    {
+        if (SettingsHelper::getDefaultPathNamesAndPaths().isEmpty())
+        {
+            SettingsHelper::setDefaultPathNamesAndPaths(
+                QVariantList{QStringList{"file", setting.value("save_path").toString()}});
+        }
+    }
+
     QString theme = SettingsManager::get("Editor Theme")
                         .toString()
                         .replace("Monkai", "Monokai")

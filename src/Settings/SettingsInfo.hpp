@@ -52,10 +52,13 @@ class SettingsInfo
         return SettingInfo();
     }
 
+    static QList<SettingInfo> getSettings()
+    {
+        return settings;
+    }
+
   private:
     static QList<SettingInfo> settings;
-
-    friend class SettingsManager;
 };
 
 #endif // SETTINGSINFO_HPP

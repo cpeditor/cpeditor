@@ -516,10 +516,6 @@
         "tip": "The path to the CF Tool executable file"
     },
     {
-        "name": "Save Path",
-        "type": "QString"
-    },
-    {
         "name": "Show Compile And Run Only",
         "type": "bool",
         "tip": "Hide the Compile Only button and the Run Only button under the code editor in the main window."
@@ -948,5 +944,11 @@
         "default": "UTF-8",
         "ui": "CodecBox",
         "tip": "Text codec of the compiler output (errors, warnings, etc.)"
+    },
+    {
+        "name": "Default Path/Names And Paths",
+        "type": "QVariantList",
+        "param": "QVariantList { QStringList { tr(\"Name\"), tr(\"The name of a default path\") }, QStringList { tr(\"Path\"), tr(\"The path of a default path\") } }",
+        "tip": "A list of default paths.\nThey can be used in actions' corresponding default paths by using ${<default path name>} as a place holder.\nThey can be either manually set or automatically changed after choosing a path for an action."
     }
 ]
