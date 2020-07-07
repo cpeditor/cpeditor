@@ -622,7 +622,7 @@ void MainWindow::compileAndRun()
 void MainWindow::formatSource()
 {
     LOG_INFO("Requested code format");
-    formatter->format(editor, filePath, language, true);
+    formatter->format(editor, filePath, language, true, true);
 }
 
 void MainWindow::setLanguage(const QString &lang)
@@ -829,7 +829,7 @@ bool MainWindow::saveFile(SaveMode mode, const QString &head, bool safe)
 
     if ((mode != AutoSave && SettingsHelper::isClangFormatFormatOnManuallySave()) ||
         (mode == AutoSave && SettingsHelper::isClangFormatFormatOnAutoSave()))
-        formatter->format(editor, filePath, language, false);
+        formatter->format(editor, filePath, language, false, false);
 
     if (mode == SaveAs || (isUntitled() && mode == AlwaysSave))
     {
