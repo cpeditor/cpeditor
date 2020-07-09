@@ -25,7 +25,7 @@ With the portable version, you can easily store it in something like a USB disk,
 - A flexible system to set and change default paths for several path choosing actions. (#483)
 - Settings to control whether to load external file changes. (#486)
 - Separated settings for format on manual save and format on auto-save. (#488)
-- Now empty testcases can also be runned. (#408 and #420)
+- Now you can choose to run on empty test cases. (#408, #420, #426 and #427)
 
 ### Fixed
 
