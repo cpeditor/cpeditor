@@ -25,6 +25,7 @@ With the portable version, you can easily store it in something like a USB disk,
 - A flexible system to set and change default paths for several path choosing actions. (#483)
 - Settings to control whether to load external file changes. (#486)
 - Separated settings for format on manual save and format on auto-save. (#488)
+- Now the test cases will be elided if they are too long. (#491)
 
 ### Fixed
 
