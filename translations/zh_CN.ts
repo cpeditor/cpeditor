@@ -2479,11 +2479,11 @@ It is a list of &lt;default path name&gt;s, separated by commas, and can be empt
         <translation>自动保存代码时使用 Clang Format 进行格式化。</translation>
     </message>
     <message>
-        <source>Format code on manually save</source>
+        <source>Format code on manual save</source>
         <translation>手动保存时格式化代码</translation>
     </message>
     <message>
-        <source>Use Clang Format to format the code when manually saving it.</source>
+        <source>Use Clang Format to format the code when saving it manually.</source>
         <translation>手动保存代码时使用 Clang Format 进行格式化。</translation>
     </message>
     <message>

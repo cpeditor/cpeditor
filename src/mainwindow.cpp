@@ -827,7 +827,7 @@ bool MainWindow::saveFile(SaveMode mode, const QString &head, bool safe)
 {
     LOG_INFO(INFO_OF(mode) << INFO_OF(head) << BOOL_INFO_OF(safe));
 
-    if ((mode != AutoSave && SettingsHelper::isClangFormatFormatOnManuallySave()) ||
+    if ((mode != AutoSave && SettingsHelper::isClangFormatFormatOnManualSave()) ||
         (mode == AutoSave && SettingsHelper::isClangFormatFormatOnAutoSave()))
         formatter->format(editor, filePath, language, false, false);
 

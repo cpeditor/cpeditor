@@ -218,7 +218,7 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
             .page(TRKEY("Load External File Changes"), {"Auto Load External Changes If No Unsaved Modification", "Ask For Loading External Changes"})
         .end()
         .dir(TRKEY("Extensions"))
-            .page(TRKEY("Clang Format"), new PreferencesPageTemplate({"Clang Format/Path", "Clang Format/Format On Manually Save",
+            .page(TRKEY("Clang Format"), new PreferencesPageTemplate({"Clang Format/Path", "Clang Format/Format On Manual Save",
                                          "Clang Format/Format On Auto Save", "Clang Format/Style"}, false))
             .dir(TRKEY("Language Server"))
                 .page("C++ Server", tr("%1 Server").arg(tr("C++")), {"LSP/Use Linting C++", "LSP/Delay C++", "LSP/Path C++", "LSP/Args C++"})

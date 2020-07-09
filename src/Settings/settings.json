@@ -60,10 +60,10 @@
         "tip": "The Clang Format style options, which are often saved in a .clang-format configuration file.\nYou can learn about it at <https://clang.llvm.org/docs/ClangFormatStyleOptions.html>."
     },
     {
-        "name": "Clang Format/Format On Manually Save",
-        "desc": "Format code on manually save",
+        "name": "Clang Format/Format On Manual Save",
+        "desc": "Format code on manual save",
         "type": "bool",
-        "tip": "Use Clang Format to format the code when manually saving it."
+        "tip": "Use Clang Format to format the code when saving it manually."
     },
     {
         "name": "Clang Format/Format On Auto Save",

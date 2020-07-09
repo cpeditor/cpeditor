@@ -2408,11 +2408,11 @@ It is a list of &lt;default path name&gt;s, separated by commas, and can be empt
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Format code on manually save</source>
+        <source>Format code on manual save</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Use Clang Format to format the code when manually saving it.</source>
+        <source>Use Clang Format to format the code when saving it manually.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
