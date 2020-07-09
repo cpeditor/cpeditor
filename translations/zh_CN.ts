@@ -2510,6 +2510,14 @@ If this is disabled, external file changes will be ignored unless they are loade
         <translation>当 CP Editor 外部的文件修改发生且没有被“%1”自动加载时，询问是否加载修改。
 如果这个选项被禁用，那么除非被“%1”自动加载，外部文件修改会被忽略。</translation>
     </message>
+    <message>
+        <source>Show toast messages for submission verdicts</source>
+        <translation>为评测结果显示气泡消息</translation>
+    </message>
+    <message>
+        <source>Show a toast message when the verdict of a submission is known. You can see the message outside of CP Editor.</source>
+        <translation>当获知了一个提交的评测结果时，显示一条气泡消息。你可以在 CP Editor 外看到这条消息。</translation>
+    </message>
 </context>
 <context>
     <name>ShortcutItem</name>

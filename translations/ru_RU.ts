@@ -2438,6 +2438,14 @@ If this is disabled, external file changes will be ignored unless they are loade
 &quot;%1&quot;.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Show toast messages for submission verdicts</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show a toast message when the verdict of a submission is known. You can see the message outside of CP Editor.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ShortcutItem</name>
