@@ -1984,7 +1984,7 @@ stdout 或 stderr 过长的程序将会被终止。</translation>
         <source>The maximum number of characters in each message in the top-right corner of the main window.
 The message will be elided if it&apos;s too long.</source>
         <translation>主窗口右上角内每条信息的最大长度。
-超出部分将会被省略。</translation>
+超长部分将会被省略。</translation>
     </message>
     <message>
         <source>HTML Diff Viewer Length Limit</source>
@@ -2008,13 +2008,7 @@ A source file won&apos;t be opened if it&apos;s too long.</source>
     </message>
     <message>
         <source>Load Test Case File Length Limit</source>
-        <translation>加载测试用例文件最大长度</translation>
-    </message>
-    <message>
-        <source>The maximum number of characters in a testcase file to load.
-A testcase file won&apos;t be loaded if it&apos;s too long.</source>
-        <translation>允许加载的测试文件的最大字符数。
-如果超长，将不会加载。</translation>
+        <translation>加载测试用例文件长度限制</translation>
     </message>
     <message>
         <source>Path to LSP executable</source>
@@ -2510,6 +2504,20 @@ If this is disabled, external file changes will be ignored unless they are loade
         <translation>当 CP Editor 外部的文件修改发生且没有被“%1”自动加载时，询问是否加载修改。
 如果这个选项被禁用，那么除非被“%1”自动加载，外部文件修改会被忽略。</translation>
     </message>
+    <message>
+        <source>Output Display Length Limit</source>
+        <translation>输出显示长度限制</translation>
+    </message>
+    <message>
+        <source>The maximum number of characters to be displayed for the output of the program.
+If the output is too long, it will be elided.</source>
+        <translation>会显示出来的程序输出的最大字符数。如果输出过长，超长部分会被省略。</translation>
+    </message>
+    <message>
+        <source>The maximum number of characters in a test case file to load.
+A test case loaded from file will be elided and read-only if it&apos;s too long.</source>
+        <translation>被加载的测试用例文件的最大字符数。从文件中加载的测试用例如果过长，超长部分会被省略。</translation>
+    </message>
 </context>
 <context>
     <name>ShortcutItem</name>
@@ -2645,18 +2653,6 @@ If this is disabled, external file changes will be ignored unless they are loade
         <translation>打开差异查看器</translation>
     </message>
     <message>
-        <source>Output Length Limit Exceeded</source>
-        <translation>超出输出长度限制（OLE）</translation>
-    </message>
-    <message>
-        <source>Testcases</source>
-        <translation>测试点</translation>
-    </message>
-    <message>
-        <source>The output #%1 contains more than %2 characters, so it&apos;s not displayed. You can set the output length limit in Preferences-&gt;Advanced-&gt;Limits-&gt;Output Length Limit</source>
-        <translation>测试点 #%1 的输出包含超过 %2 个字符，因此没有显示。你可以在设置-&gt;高级-&gt;限制-&gt;输出限制中更改限制大小</translation>
-    </message>
-    <message>
         <source>Input #%1</source>
         <translation>输入 #%1</translation>
     </message>
@@ -2700,12 +2696,32 @@ If this is disabled, external file changes will be ignored unless they are loade
         <translation>编辑测试点</translation>
     </message>
     <message>
-        <source>Testcases</source>
-        <translation>测试点</translation>
+        <source>input</source>
+        <translation>输入</translation>
     </message>
     <message>
-        <source>The testcase file [%1] contains more than %2 characters, so it&apos;s not loaded. You can change the length limit in Preferences-&gt;Advanced-&gt;Limits-&gt;Load Test Case File Length Limit</source>
-        <translation>测试点文件 [%1] 包含超过 %2 个字符，因此没有被加载。你可以在设置-&gt;高级-&gt;限制-&gt;加载测试用例文件最大长度长度限制中更改限制大小</translation>
+        <source>output</source>
+        <translation>输出</translation>
+    </message>
+    <message>
+        <source>expected</source>
+        <translation>答案</translation>
+    </message>
+    <message>
+        <source>Preferences-&gt;Advanced-&gt;Limits-&gt;Output Display Length Limit</source>
+        <translation>设置-&gt;高级-&gt;限制-&gt;输出显示长度限制</translation>
+    </message>
+    <message>
+        <source>Preferences-&gt;Advanced-&gt;Limits-&gt;Load Test Case File Length Limit</source>
+        <translation>设置-&gt;高级-&gt;限制-&gt;加载测试用例文件长度限制</translation>
+    </message>
+    <message>
+        <source>The %1 is too long, only the first %2 characters are shown. You can set the length limit in %3.
+
+%4...</source>
+        <translation>%1太长了，只有开头 %2 个字符会被显示。你可以在 %3 中设置长度限制。
+
+%4……</translation>
     </message>
 </context>
 <context>
@@ -2857,10 +2873,6 @@ If this is disabled, external file changes will be ignored unless they are loade
     <message>
         <source>Testcases</source>
         <translation>测试点</translation>
-    </message>
-    <message>
-        <source>The testcase file [%1] contains more than %2 characters, so it&apos;s not loaded. You can change the length limit in Preferences-&gt;Advanced-&gt;Limits-&gt;Load Test Case File Length Limit</source>
-        <translation>测试点文件 [%1] 包含超过 %2 个字符，因此没有被加载。你可以在设置-&gt;高级-&gt;限制-&gt;加载测试用例文件最大长度长度限制中更改限制大小</translation>
     </message>
 </context>
 <context>

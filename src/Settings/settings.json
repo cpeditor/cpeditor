@@ -553,6 +553,13 @@
         "tip": "The maximum number of characters in the output of the program.\nThe program will be killed if either of its stdout or stderr is too long."
     },
     {
+        "name": "Output Display Length Limit",
+        "type": "int",
+        "default": 50000,
+        "param": "QVariantList {2,100000000}",
+        "tip": "The maximum number of characters to be displayed for the output of the program.\nIf the output is too long, it will be elided."
+    },
+    {
         "name": "Message Length Limit",
         "type": "int",
         "default": 20000,
@@ -578,7 +585,7 @@
         "type": "int",
         "default": 500000,
         "param": "QVariantList {2,1000000000}",
-        "tip": "The maximum number of characters in a testcase file to load.\nA testcase file won't be loaded if it's too long."
+        "tip": "The maximum number of characters in a test case file to load.\nA test case loaded from file will be elided and read-only if it's too long."
     },
     {
         "name": "LSP/Path C++",

@@ -1967,11 +1967,6 @@ A source file won&apos;t be opened if it&apos;s too long.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>The maximum number of characters in a testcase file to load.
-A testcase file won&apos;t be loaded if it&apos;s too long.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Path to LSP executable</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2438,6 +2433,20 @@ If this is disabled, external file changes will be ignored unless they are loade
 &quot;%1&quot;.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Output Display Length Limit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The maximum number of characters to be displayed for the output of the program.
+If the output is too long, it will be elided.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The maximum number of characters in a test case file to load.
+A test case loaded from file will be elided and read-only if it&apos;s too long.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ShortcutItem</name>
@@ -2573,18 +2582,6 @@ If this is disabled, external file changes will be ignored unless they are loade
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Output Length Limit Exceeded</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Testcases</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>The output #%1 contains more than %2 characters, so it&apos;s not displayed. You can set the output length limit in Preferences-&gt;Advanced-&gt;Limits-&gt;Output Length Limit</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Input #%1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2628,11 +2625,29 @@ If this is disabled, external file changes will be ignored unless they are loade
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Testcases</source>
+        <source>input</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>The testcase file [%1] contains more than %2 characters, so it&apos;s not loaded. You can change the length limit in Preferences-&gt;Advanced-&gt;Limits-&gt;Load Test Case File Length Limit</source>
+        <source>output</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>expected</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Preferences-&gt;Advanced-&gt;Limits-&gt;Output Display Length Limit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Preferences-&gt;Advanced-&gt;Limits-&gt;Load Test Case File Length Limit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The %1 is too long, only the first %2 characters are shown. You can set the length limit in %3.
+
+%4...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2784,10 +2799,6 @@ If this is disabled, external file changes will be ignored unless they are loade
     </message>
     <message>
         <source>Testcases</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>The testcase file [%1] contains more than %2 characters, so it&apos;s not loaded. You can change the length limit in Preferences-&gt;Advanced-&gt;Limits-&gt;Load Test Case File Length Limit</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

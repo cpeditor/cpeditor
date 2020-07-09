@@ -30,12 +30,19 @@ class TestCaseEdit : public QPlainTextEdit
     Q_OBJECT
 
   public:
-    explicit TestCaseEdit(bool autoAnimation, MessageLogger *logger, const QString &text = QString(),
-                          QWidget *parent = nullptr);
+    enum Role
+    {
+        Input,
+        Output,
+        Expected
+    };
+
+    explicit TestCaseEdit(Role role, MessageLogger *logger, const QString &text = QString(), QWidget *parent = nullptr);
     void dragEnterEvent(QDragEnterEvent *event) override;
     void dragMoveEvent(QDragMoveEvent *event) override;
     void dropEvent(QDropEvent *event) override;
-    void modifyText(const QString &text);
+    void modifyText(const QString &text, bool keepHistory = true);
+    QString getText();
 
   public slots:
     void startAnimation();
@@ -49,6 +56,8 @@ class TestCaseEdit : public QPlainTextEdit
   private:
     QPropertyAnimation *animation;
     MessageLogger *log;
+    QString text;
+    Role role;
 };
 } // namespace Widgets
 #endif // TESTCASEEDIT_HPP

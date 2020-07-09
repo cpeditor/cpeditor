@@ -238,8 +238,8 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
                                    "Hotkey/Change View Mode", "Hotkey/Snippets"})
         .dir(TRKEY("Advanced"))
             .page(TRKEY("Update"), {"Check Update", "Beta"})
-            .page(TRKEY("Limits"), {"Time Limit", "Output Length Limit", "Message Length Limit", "HTML Diff Viewer Length Limit",
-                                 "Open File Length Limit", "Load Test Case File Length Limit"})
+            .page(TRKEY("Limits"), {"Time Limit", "Output Length Limit", "Output Display Length Limit", "Message Length Limit",
+                                    "HTML Diff Viewer Length Limit", "Open File Length Limit", "Load Test Case File Length Limit"})
             .page(TRKEY("Network Proxy"), {"Proxy/Enabled", "Proxy/Type", "Proxy/Host Name", "Proxy/Port", "Proxy/User", "Proxy/Password"})
         .end();
 

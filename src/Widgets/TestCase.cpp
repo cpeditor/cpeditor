@@ -55,16 +55,12 @@ TestCase::TestCase(int index, MessageLogger *logger, QWidget *parent, const QStr
     runButton = new QPushButton(tr("Run"), this);
     diffButton = new QPushButton("**", this);
     delButton = new QPushButton(tr("Del"), this);
-    inputEdit = new TestCaseEdit(true, log, in, this);
-    outputEdit = new TestCaseEdit(false, log, QString(), this);
-    expectedEdit = new TestCaseEdit(true, log, exp, this);
+    inputEdit = new TestCaseEdit(TestCaseEdit::Input, log, in, this);
+    outputEdit = new TestCaseEdit(TestCaseEdit::Output, log, QString(), this);
+    expectedEdit = new TestCaseEdit(TestCaseEdit::Expected, log, exp, this);
     diffViewer = new DiffViewer(this);
 
     setID(index);
-    outputEdit->setReadOnly(true);
-    inputEdit->setWordWrapMode(QTextOption::NoWrap);
-    outputEdit->setWordWrapMode(QTextOption::NoWrap);
-    expectedEdit->setWordWrapMode(QTextOption::NoWrap);
 
     showCheckBox->setMinimumWidth(20);
     showCheckBox->setChecked(true);
@@ -111,23 +107,11 @@ void TestCase::setInput(const QString &text)
 
 void TestCase::setOutput(const QString &text)
 {
-    auto newOutput = text;
-
-    if (text.length() > SettingsHelper::getOutputLengthLimit())
-    {
-        newOutput = tr("Output Length Limit Exceeded");
-        log->error(tr("Testcases"),
-                   tr("The output #%1 contains more than %2 characters, so it's not displayed. You can set the "
-                      "output length limit in Preferences->Advanced->Limits->Output Length Limit")
-                       .arg(id + 1)
-                       .arg(SettingsHelper::getOutputLengthLimit()));
-    }
-
-    outputEdit->modifyText(newOutput);
+    outputEdit->modifyText(text);
     outputEdit->startAnimation();
 
     if (!diffViewer->isHidden())
-        diffViewer->setText(newOutput, expected());
+        diffViewer->setText(text, expected());
 }
 
 void TestCase::setExpected(const QString &text)
@@ -145,17 +129,17 @@ void TestCase::clearOutput()
 
 QString TestCase::input() const
 {
-    return inputEdit->toPlainText();
+    return inputEdit->getText();
 }
 
 QString TestCase::output() const
 {
-    return outputEdit->toPlainText();
+    return outputEdit->getText();
 }
 
 QString TestCase::expected() const
 {
-    return expectedEdit->toPlainText();
+    return expectedEdit->getText();
 }
 
 void TestCase::setID(int index)
