@@ -122,7 +122,7 @@ CP Editor 是一个基于 Qt 的轻量级跨平台代码编辑器，专为算法
       <a href="https://github.com/palob"><img src="https://avatars2.githubusercontent.com/u/7050624?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/palob"><sub><b>Vincent Bermel</b></sub></a><br /><a href="#infra-palob" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a>
     </td>
     <td align="center">
-      <a href="https://github.com/tb148"><img src="https://avatars1.githubusercontent.com/u/28220642?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/tb148"><sub><b>Tony Brown</b></sub></a><br /><a href="#ideas-tb148" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/cpeditor/cpeditor/commits?author=tb148" title="Code">💻</a>
+      <a href="https://github.com/tb148"><img src="https://avatars1.githubusercontent.com/u/28220642?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/tb148"><sub><b>Tony Brown</b></sub></a><br /><a href="#ideas-tb148" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/cpeditor/cpeditor/commits?author=tb148" title="Code">💻</a> <a href="https://github.com/cpeditor/cpeditor/commits?author=tb148" title="Documentation">📖</a>
     </td>
   </tr>
   <tr>
