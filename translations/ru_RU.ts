@@ -1963,7 +1963,7 @@ A source file won&apos;t be opened if it&apos;s too long.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Load Test Case File Length Limit</source>
+        <source>Load Test Case Length Limit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2443,8 +2443,8 @@ If the output is too long, it will be elided.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>The maximum number of characters in a test case file to load.
-A test case loaded from file will be elided and read-only if it&apos;s too long.</source>
+        <source>The maximum number of characters in a test case to be loaded.
+A loaded test case will be elided and read-only if it&apos;s too long.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2641,7 +2641,7 @@ A test case loaded from file will be elided and read-only if it&apos;s too long.
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Preferences-&gt;Advanced-&gt;Limits-&gt;Load Test Case File Length Limit</source>
+        <source>Preferences-&gt;Advanced-&gt;Limits-&gt;Load Test Case Length Limit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

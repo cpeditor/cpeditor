@@ -64,6 +64,7 @@ const static QMap<QString, QString> updateInfo = {
     {"cf_path", "CF/Path"},
     {"compile_and_run_only", "Show Compile And Run Only"},
     {"language", "Locale"},
+    {"load_test_case_file_length_limit", "Load Test Case Length Limit"},
 };
 
 void SettingsUpdater::updateSetting(QSettings &setting)

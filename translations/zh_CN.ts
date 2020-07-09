@@ -2007,8 +2007,8 @@ A source file won&apos;t be opened if it&apos;s too long.</source>
 如果超长，将不会打开。</translation>
     </message>
     <message>
-        <source>Load Test Case File Length Limit</source>
-        <translation>加载测试用例文件长度限制</translation>
+        <source>Load Test Case Length Limit</source>
+        <translation>加载测试用例长度限制</translation>
     </message>
     <message>
         <source>Path to LSP executable</source>
@@ -2514,9 +2514,9 @@ If the output is too long, it will be elided.</source>
         <translation>会显示出来的程序输出的最大字符数。如果输出过长，超长部分会被省略。</translation>
     </message>
     <message>
-        <source>The maximum number of characters in a test case file to load.
-A test case loaded from file will be elided and read-only if it&apos;s too long.</source>
-        <translation>被加载的测试用例文件的最大字符数。从文件中加载的测试用例如果过长，超长部分会被省略。</translation>
+        <source>The maximum number of characters in a test case to be loaded.
+A loaded test case will be elided and read-only if it&apos;s too long.</source>
+        <translation>一个被加载的测试用例中最大的字符数量。一个被加载的测试用例如果过长，超长部分会被省略。</translation>
     </message>
 </context>
 <context>
@@ -2712,8 +2712,8 @@ A test case loaded from file will be elided and read-only if it&apos;s too long.
         <translation>设置-&gt;高级-&gt;限制-&gt;输出显示长度限制</translation>
     </message>
     <message>
-        <source>Preferences-&gt;Advanced-&gt;Limits-&gt;Load Test Case File Length Limit</source>
-        <translation>设置-&gt;高级-&gt;限制-&gt;加载测试用例文件长度限制</translation>
+        <source>Preferences-&gt;Advanced-&gt;Limits-&gt;Load Test Case Length Limit</source>
+        <translation>设置-&gt;高级-&gt;限制-&gt;加载测试用例长度限制</translation>
     </message>
     <message>
         <source>The %1 is too long, only the first %2 characters are shown. You can set the length limit in %3.

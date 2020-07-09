@@ -92,8 +92,8 @@ void TestCaseEdit::modifyText(const QString &text, bool keepHistory)
 {
     this->text = text;
 
-    const int limit = role == Output ? SettingsHelper::getOutputDisplayLengthLimit()
-                                     : SettingsHelper::getLoadTestCaseFileLengthLimit();
+    const int limit =
+        role == Output ? SettingsHelper::getOutputDisplayLengthLimit() : SettingsHelper::getLoadTestCaseLengthLimit();
 
     QString displayText;
 
@@ -110,9 +110,8 @@ void TestCaseEdit::modifyText(const QString &text, bool keepHistory)
         setReadOnly(true);
 
         const QString name = role == Input ? tr("input") : (role == Output ? tr("output") : tr("expected"));
-        const QString setLimitPlace = role == Output
-                                          ? tr("Preferences->Advanced->Limits->Output Display Length Limit")
-                                          : tr("Preferences->Advanced->Limits->Load Test Case File Length Limit");
+        const QString setLimitPlace = role == Output ? tr("Preferences->Advanced->Limits->Output Display Length Limit")
+                                                     : tr("Preferences->Advanced->Limits->Load Test Case Length Limit");
 
         displayText = tr("The %1 is too long, only the first %2 characters are shown. You can set the length limit in "
                          "%3.\n\n%4...")

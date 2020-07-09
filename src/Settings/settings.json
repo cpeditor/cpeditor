@@ -581,11 +581,11 @@
         "tip": "The maximum number of characters in a source file to open.\nA source file won't be opened if it's too long."
     },
     {
-        "name": "Load Test Case File Length Limit",
+        "name": "Load Test Case Length Limit",
         "type": "int",
         "default": 500000,
         "param": "QVariantList {2,1000000000}",
-        "tip": "The maximum number of characters in a test case file to load.\nA test case loaded from file will be elided and read-only if it's too long."
+        "tip": "The maximum number of characters in a test case to be loaded.\nA loaded test case will be elided and read-only if it's too long."
     },
     {
         "name": "LSP/Path C++",
