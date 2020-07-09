@@ -12,6 +12,7 @@ With the portable version, you can easily store it in something like a USB disk,
 - Now you can use `${tempdir}` as an alternative of `${tmpdir}` in C++ executable file path setting and Java class file path setting.
 - Add the translation system and Simplified Chinese translation. (#377 and #384)
 - In-application UI style setting and built-in light/dark style. (#265 and #404)
+- Now you can choose to run on empty test cases. (#408, #420, #426 and #427)
 - Now testcases with empty outputs can also be checked. (#208 and #430)
 - Auto-save time interval.
 - Now you can auto-save the current session, besides saving it when the application exists. (#437 and #442)
@@ -25,6 +26,7 @@ With the portable version, you can easily store it in something like a USB disk,
 - A flexible system to set and change default paths for several path choosing actions. (#483)
 - Settings to control whether to load external file changes. (#486)
 - Separated settings for format on manual save and format on auto-save. (#488)
+- An option to disable toast messages of CF Tool. (#489)
 - Now the test cases will be elided if they are too long. (#491)
 
 ### Fixed

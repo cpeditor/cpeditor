@@ -2518,6 +2518,14 @@ If the output is too long, it will be elided.</source>
 A loaded test case will be elided and read-only if it&apos;s too long.</source>
         <translation>一个被加载的测试用例中最大的字符数量。一个被加载的测试用例如果过长，超长部分会被省略。</translation>
     </message>
+    <message>
+        <source>Show toast messages for submission verdicts</source>
+        <translation>为评测结果显示气泡消息</translation>
+    </message>
+    <message>
+        <source>Show a toast message when the verdict of a submission is known. You can see the message outside of CP Editor.</source>
+        <translation>当获知了一个提交的评测结果时，显示一条气泡消息。你可以在 CP Editor 外看到这条消息。</translation>
+    </message>
 </context>
 <context>
     <name>ShortcutItem</name>

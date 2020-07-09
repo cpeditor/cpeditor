@@ -18,6 +18,7 @@
 #include "Extensions/CFTool.hpp"
 #include "Core/EventLogger.hpp"
 #include "Core/MessageLogger.hpp"
+#include "generated/SettingsHelper.hpp"
 #include <QFileInfo>
 #include <QProcess>
 #include <QRegularExpression>
@@ -182,7 +183,8 @@ void CFTool::onFinished(int exitCode)
 
 void CFTool::showToastMessage(const QString &message)
 {
-    emit requestToastMessage(tr("Contest %1 Problem %2").arg(problemContestId).arg(problemCode), message);
+    if (SettingsHelper::isCFShowToastMessages())
+        emit requestToastMessage(tr("Contest %1 Problem %2").arg(problemContestId).arg(problemCode), message);
 }
 
 QString CFTool::getCFToolVersion() const

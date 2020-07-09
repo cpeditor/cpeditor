@@ -2447,6 +2447,14 @@ If the output is too long, it will be elided.</source>
 A loaded test case will be elided and read-only if it&apos;s too long.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Show toast messages for submission verdicts</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show a toast message when the verdict of a submission is known. You can see the message outside of CP Editor.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ShortcutItem</name>
