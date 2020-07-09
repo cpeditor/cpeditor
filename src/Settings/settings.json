@@ -60,6 +60,18 @@
         "tip": "The Clang Format style options, which are often saved in a .clang-format configuration file.\nYou can learn about it at <https://clang.llvm.org/docs/ClangFormatStyleOptions.html>."
     },
     {
+        "name": "Clang Format/Format On Manual Save",
+        "desc": "Format code on manual save",
+        "type": "bool",
+        "tip": "Use Clang Format to format the code when saving it manually."
+    },
+    {
+        "name": "Clang Format/Format On Auto Save",
+        "desc": "Format code on auto-save",
+        "type": "bool",
+        "tip": "Use Clang Format to format the code when auto-saving it."
+    },
+    {
         "name": "C++/Template Path",
         "type": "QString",
         "ui": "PathItem",
@@ -366,12 +378,6 @@
         "type": "bool",
         "default": true,
         "tip": "Check whether there's a new version of CP Editor when starting CP Editor."
-    },
-    {
-        "name": "Auto Format",
-        "desc": "Format Codes on Save",
-        "type": "bool",
-        "tip": "Use Clang Format to format the codes when saving it."
     },
     {
         "name": "Opacity",

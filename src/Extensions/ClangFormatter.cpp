@@ -82,7 +82,8 @@ void ClangFormatter::updateStyle(const QString &newStyle)
     style = newStyle;
 }
 
-void ClangFormatter::format(QCodeEditor *editor, const QString &filePath, const QString &lang, bool selectionOnly)
+void ClangFormatter::format(QCodeEditor *editor, const QString &filePath, const QString &lang, bool selectionOnly,
+                            bool verbose)
 {
     LOG_INFO(BOOL_INFO_OF(editor == nullptr) << INFO_OF(filePath) << BOOL_INFO_OF(selectionOnly));
 
@@ -139,6 +140,14 @@ void ClangFormatter::format(QCodeEditor *editor, const QString &filePath, const 
     auto res = getFormatResult(args);
     if (res.first == -1)
     {
+        return;
+    }
+
+    if (res.second == editor->toPlainText())
+    {
+        LOG_INFO("Already formatted");
+        if (verbose)
+            log->info(tr("Formatter"), tr("Formatting completed"));
         return;
     }
 

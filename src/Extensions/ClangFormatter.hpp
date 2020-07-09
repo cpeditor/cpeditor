@@ -53,8 +53,9 @@ class ClangFormatter : public QObject
      * @param lang the language to be formatted
      * @param selectionOnly whether to format the selection only if there is one, doesn't matter if there is no
      *        selection
+     * @param verbose if verbose, "Formatting completed" will be logged even if the code is unchanged after formatting
      */
-    void format(QCodeEditor *editor, const QString &filePath, const QString &lang, bool selectionOnly);
+    void format(QCodeEditor *editor, const QString &filePath, const QString &lang, bool selectionOnly, bool verbose);
 
     /**
      * @brief check whether the given settings are valid

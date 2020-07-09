@@ -1851,14 +1851,6 @@ This can be overridden for each parenthesis in each language.</source>
         <translation>在启动程序时检查有无新版本。</translation>
     </message>
     <message>
-        <source>Format Codes on Save</source>
-        <translation>保存时自动格式化代码</translation>
-    </message>
-    <message>
-        <source>Use Clang Format to format the codes when saving it.</source>
-        <translation>在保存文件时使用 Clang Format 格式化代码。</translation>
-    </message>
-    <message>
         <source>Opacity</source>
         <translation>不透明度</translation>
     </message>
@@ -2481,6 +2473,22 @@ It is a list of &lt;default path name&gt;s, separated by commas, and can be empt
     <message>
         <source>It can be overridden by %1.</source>
         <translation>它可以被 %1 覆盖。</translation>
+    </message>
+    <message>
+        <source>Use Clang Format to format the code when auto-saving it.</source>
+        <translation>自动保存代码时使用 Clang Format 进行格式化。</translation>
+    </message>
+    <message>
+        <source>Format code on manual save</source>
+        <translation>手动保存时格式化代码</translation>
+    </message>
+    <message>
+        <source>Use Clang Format to format the code when saving it manually.</source>
+        <translation>手动保存代码时使用 Clang Format 进行格式化。</translation>
+    </message>
+    <message>
+        <source>Format code on auto-save</source>
+        <translation>自动保存时格式化代码</translation>
     </message>
     <message>
         <source>Auto-load external file changes if there&apos;s no unsaved modification</source>
