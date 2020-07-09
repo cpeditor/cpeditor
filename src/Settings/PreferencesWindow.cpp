@@ -227,7 +227,7 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
             .end()
             .page(TRKEY("Competitive Companion"), {"Competitive Companion/Enable", "Competitive Companion/Open New Tab",
                                                 "Competitive Companion/Connection Port"})
-            .page(TRKEY("CF Tool"), {"CF/Path"})
+            .page(TRKEY("CF Tool"), {"CF/Path", "CF/Show Toast Messages"})
         .end()
         .dir(TRKEY("File Path"))
             .page(TRKEY("Testcases"), {"Input File Save Path", "Answer File Save Path", "Testcases Matching Rules"})
