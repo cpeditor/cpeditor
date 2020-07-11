@@ -522,6 +522,13 @@
         "tip": "The path to the CF Tool executable file"
     },
     {
+        "name": "CF/Show Toast Messages",
+        "desc": "Show toast messages for submission verdicts",
+        "type": "bool",
+        "default": "true",
+        "tip": "Show a toast message when the verdict of a submission is known. You can see the message outside of CP Editor."
+    },
+    {
         "name": "Show Compile And Run Only",
         "type": "bool",
         "tip": "Hide the Compile Only button and the Run Only button under the code editor in the main window."
