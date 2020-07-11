@@ -277,7 +277,7 @@
     </message>
     <message>
         <source>Unindent</source>
-        <translation>Убарть отступ</translation>
+        <translation>Убрать отступ</translation>
     </message>
     <message>
         <source>Ctrl+[</source>
@@ -425,11 +425,11 @@
     </message>
     <message>
         <source>Export Settings...</source>
-        <translation>Экспортировать настройки</translation>
+        <translation>Экспорт настроек...</translation>
     </message>
     <message>
         <source>Import Settings...</source>
-        <translation>Импортировать настройки</translation>
+        <translation>Импорт настроек...</translation>
     </message>
     <message>
         <source>Ctrl+P</source>
@@ -493,7 +493,7 @@
     </message>
     <message>
         <source>&amp;Help</source>
-        <translation>&amp; Помощь</translation>
+        <translation>&amp;Помощь</translation>
     </message>
     <message>
         <source>Export settings to a file</source>
@@ -501,11 +501,11 @@
     </message>
     <message>
         <source>Import settings from a file</source>
-        <translation>Испортировать настройки из файла</translation>
+        <translation>Испорт настроек из файла</translation>
     </message>
     <message>
         <source>Export current session to a file</source>
-        <translation>Экспортировать текущуб сессию в файл</translation>
+        <translation>Экспортировать текущую сессию в файл</translation>
     </message>
     <message>
         <source>Export Session</source>
@@ -601,7 +601,7 @@ OS: %4</source>
     </message>
     <message>
         <source>Extract Snippets To Files</source>
-        <translation>Извлечь сниппет в файл</translation>
+        <translation>Извлечь сниппет в файлы</translation>
     </message>
     <message>
         <source>More</source>
@@ -2514,11 +2514,11 @@ If this is disabled, external file changes will be ignored unless they are loade
     </message>
     <message>
         <source>Show toast messages for submission verdicts</source>
-        <translation type="unfinished"></translation>
+        <translation>Показывать оповещения о вердиктах решения</translation>
     </message>
     <message>
         <source>Show a toast message when the verdict of a submission is known. You can see the message outside of CP Editor.</source>
-        <translation type="unfinished"></translation>
+        <translation>Показывать уведомление, когда вердикт решения известен. Вы можете увидеть сообщение за пределами CP Editor.</translation>
     </message>
 </context>
 <context>
