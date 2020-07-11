@@ -32,11 +32,20 @@ void MessageLogger::setContainer(QTextBrowser *container)
     box->setOpenExternalLinks(true);
 }
 
-void MessageLogger::message(const QString &head, const QString &body, const QString &color)
+void MessageLogger::message(const QString &head, const QString &body, const QString &color, bool htmlEscaped)
 {
-    // replace spaces by "&nbsp;" to avoid multiple spaces becoming one, important for compilation errors
-    auto newHead = head.toHtmlEscaped().replace(" ", "&nbsp;");
-    auto newBody = body.toHtmlEscaped().replace(" ", "&nbsp;");
+    QString newHead, newBody;
+    if (htmlEscaped)
+    {
+        // replace spaces by "&nbsp;" to avoid multiple spaces becoming one, important for compilation errors
+        newHead = head.toHtmlEscaped().replace(" ", "&nbsp;");
+        newBody = body.toHtmlEscaped().replace(" ", "&nbsp;");
+    }
+    else
+    {
+        newHead = head;
+        newBody = body;
+    }
 
     // don't display too long messages, otherwise the application may stuck
     if (newBody.length() > SettingsHelper::getMessageLengthLimit())
@@ -58,22 +67,22 @@ void MessageLogger::message(const QString &head, const QString &body, const QStr
     box->append(res);
 }
 
-void MessageLogger::info(const QString &head, const QString &body)
+void MessageLogger::info(const QString &head, const QString &body, bool htmlEscaped)
 {
     LOG_INFO("MessageLogger Information " << INFO_OF(head) << INFO_OF(body));
-    message(head, body, "");
+    message(head, body, "", htmlEscaped);
 }
 
-void MessageLogger::warn(const QString &head, const QString &body)
+void MessageLogger::warn(const QString &head, const QString &body, bool htmlEscaped)
 {
     LOG_INFO("MessageLogger Warning " << INFO_OF(head) << INFO_OF(body));
-    message(head, body, "green");
+    message(head, body, "green", htmlEscaped);
 }
 
-void MessageLogger::error(const QString &head, const QString &body)
+void MessageLogger::error(const QString &head, const QString &body, bool htmlEscaped)
 {
     LOG_INFO("MessageLogger Error " << INFO_OF(head) << INFO_OF(body));
-    message(head, body, "red");
+    message(head, body, "red", htmlEscaped);
 }
 
 void MessageLogger::clear()

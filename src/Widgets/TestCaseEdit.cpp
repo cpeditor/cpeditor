@@ -30,8 +30,8 @@
 
 namespace Widgets
 {
-TestCaseEdit::TestCaseEdit(Role role, MessageLogger *logger, const QString &text, QWidget *parent)
-    : QPlainTextEdit(parent), log(logger), role(role)
+TestCaseEdit::TestCaseEdit(Role role, int id, MessageLogger *logger, const QString &text, QWidget *parent)
+    : QPlainTextEdit(parent), log(logger), role(role), id(id)
 {
     setFont(SettingsHelper::getTestCasesFont());
     setWordWrapMode(QTextOption::NoWrap);
@@ -78,7 +78,7 @@ void TestCaseEdit::dragMoveEvent(QDragMoveEvent *event)
 
 void TestCaseEdit::dropEvent(QDropEvent *event)
 {
-    LOG_INFO("Object dropped into testcase widget");
+    LOG_INFO(INFO_OF(id));
     auto urls = event->mimeData()->urls();
     if (role != Output && !urls.isEmpty())
     {
@@ -105,20 +105,23 @@ void TestCaseEdit::modifyText(const QString &text, bool keepHistory)
     }
     else
     {
-        LOG_INFO("Too long: " << INFO_OF(role) << INFO_OF(text.length()));
+        LOG_INFO("Too long: " << INFO_OF(role) << INFO_OF(id) << INFO_OF(text.length()));
 
         setReadOnly(true);
 
-        const QString name = role == Input ? tr("input") : (role == Output ? tr("output") : tr("expected"));
+        displayText = text.left(limit) + "...";
+
+        const QString name = role == Input ? tr("Input") : (role == Output ? tr("Output") : tr("Expected"));
         const QString setLimitPlace = role == Output ? tr("Preferences->Advanced->Limits->Output Display Length Limit")
                                                      : tr("Preferences->Advanced->Limits->Load Test Case Length Limit");
 
-        displayText = tr("The %1 is too long, only the first %2 characters are shown. You can set the length limit in "
-                         "%3.\n\n%4...")
-                          .arg(name)
-                          .arg(limit)
-                          .arg(setLimitPlace)
-                          .arg(text.left(limit));
+        log->warn(
+            QString("%1[%2]").arg(name).arg(id + 1),
+            QString("<span title='%1'>%2</span>")
+                .arg(
+                    tr("Now the test case editor is read-only. You can set the length limit in %1.").arg(setLimitPlace))
+                .arg(tr("Only the first %1 characters are shown.").arg(limit)),
+            false);
     }
 
     if (keepHistory)

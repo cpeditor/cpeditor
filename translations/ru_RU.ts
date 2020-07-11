@@ -2633,18 +2633,6 @@ A loaded test case will be elided and read-only if it&apos;s too long.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>input</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>output</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>expected</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Preferences-&gt;Advanced-&gt;Limits-&gt;Output Display Length Limit</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2653,9 +2641,23 @@ A loaded test case will be elided and read-only if it&apos;s too long.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>The %1 is too long, only the first %2 characters are shown. You can set the length limit in %3.
-
-%4...</source>
+        <source>Input</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Output</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Expected</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Now the test case editor is read-only. You can set the length limit in %1.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Only the first %1 characters are shown.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -2704,18 +2704,6 @@ A loaded test case will be elided and read-only if it&apos;s too long.</source>
         <translation>编辑测试点</translation>
     </message>
     <message>
-        <source>input</source>
-        <translation>输入</translation>
-    </message>
-    <message>
-        <source>output</source>
-        <translation>输出</translation>
-    </message>
-    <message>
-        <source>expected</source>
-        <translation>答案</translation>
-    </message>
-    <message>
         <source>Preferences-&gt;Advanced-&gt;Limits-&gt;Output Display Length Limit</source>
         <translation>设置-&gt;高级-&gt;限制-&gt;输出显示长度限制</translation>
     </message>
@@ -2724,12 +2712,24 @@ A loaded test case will be elided and read-only if it&apos;s too long.</source>
         <translation>设置-&gt;高级-&gt;限制-&gt;加载测试用例长度限制</translation>
     </message>
     <message>
-        <source>The %1 is too long, only the first %2 characters are shown. You can set the length limit in %3.
-
-%4...</source>
-        <translation>%1太长了，只有开头 %2 个字符会被显示。你可以在 %3 中设置长度限制。
-
-%4……</translation>
+        <source>Input</source>
+        <translation>输入</translation>
+    </message>
+    <message>
+        <source>Output</source>
+        <translation>输出</translation>
+    </message>
+    <message>
+        <source>Expected</source>
+        <translation>答案</translation>
+    </message>
+    <message>
+        <source>Now the test case editor is read-only. You can set the length limit in %1.</source>
+        <translation>现在测试用例编辑器是只读的。你可以在 %1 中设置长度限制。</translation>
+    </message>
+    <message>
+        <source>Only the first %1 characters are shown.</source>
+        <translation>只显示了前 %1 个字符。</translation>
     </message>
 </context>
 <context>

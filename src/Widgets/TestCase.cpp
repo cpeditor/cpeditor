@@ -55,9 +55,9 @@ TestCase::TestCase(int index, MessageLogger *logger, QWidget *parent, const QStr
     runButton = new QPushButton(tr("Run"), this);
     diffButton = new QPushButton("**", this);
     delButton = new QPushButton(tr("Del"), this);
-    inputEdit = new TestCaseEdit(TestCaseEdit::Input, log, in, this);
-    outputEdit = new TestCaseEdit(TestCaseEdit::Output, log, QString(), this);
-    expectedEdit = new TestCaseEdit(TestCaseEdit::Expected, log, exp, this);
+    inputEdit = new TestCaseEdit(TestCaseEdit::Input, index, log, in, this);
+    outputEdit = new TestCaseEdit(TestCaseEdit::Output, index, log, QString(), this);
+    expectedEdit = new TestCaseEdit(TestCaseEdit::Expected, index, log, exp, this);
     diffViewer = new DiffViewer(this);
 
     setID(index);
