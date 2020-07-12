@@ -27,6 +27,7 @@ With the portable version, you can easily store it in something like a USB disk,
 - Settings to control whether to load external file changes. (#486)
 - Separated settings for format on manual save and format on auto-save. (#488)
 - An option to disable toast messages of CF Tool. (#489)
+- Add Russian translations. (#494)
 
 ### Fixed
 
