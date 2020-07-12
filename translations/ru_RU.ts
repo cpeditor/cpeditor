@@ -1997,7 +1997,7 @@ The message will be elided if it&apos;s too long.</source>
         <source>The maximum number of characters in the HTML Diff Viewer.
 The Diff Viewer will fall back to plain text if either of the output or the expected output is too long.</source>
         <translation>Максимальное количество символов в HTML Diff Viewer.
-Средство просмотра различий вернется к простому тексту, если либо вывод, либо ожидаемый вывод слишком длинный.</translation>
+Средство просмотра различий вернется к простому тексту, если либо вывод, либо ответ слишком длинный.</translation>
     </message>
     <message>
         <source>Open File Length Limit</source>
@@ -2251,7 +2251,7 @@ from Competitive Companion again, the old file will be opened.</source>
     </message>
     <message>
         <source>Check your answer even if your output or the expected the output is empty.</source>
-        <translation>Проверить свой ответ, даже если ваш вывод или ожидаемый вывод пуст.</translation>
+        <translation>Проверить свой ответ, даже если ваш вывод или ответ пуст.</translation>
     </message>
     <message>
         <source>Auto Save Interval (ms)</source>
@@ -2692,7 +2692,7 @@ If this is disabled, external file changes will be ignored unless they are loade
     </message>
     <message>
         <source>The output/expected contains more than %1 characters, HTML diff viewer is disabled. You can change the length limit in Preferences-&gt;Advanced-&gt;Limits-&gt;HTML Diff Viewer Length Limit</source>
-        <translation>Вывод/ожидаемый вывод содержит более %1 знаков, HTML diff viewer отключён. Вы можете изменить лимит длины в Настройки-&gt;Дополнительно-&gt;Лимиты-&gt;Лимит длины HTML Diff Viewer</translation>
+        <translation>Вывод/ответ содержит более %1 знаков, HTML diff viewer отключён. Вы можете изменить лимит длины в Настройки-&gt;Дополнительно-&gt;Лимиты-&gt;Лимит длины HTML Diff Viewer</translation>
     </message>
 </context>
 <context>
@@ -2858,7 +2858,7 @@ If this is disabled, external file changes will be ignored unless they are loade
     </message>
     <message>
         <source>Save Expected #%1</source>
-        <translation>Сохранить ожидаемый вывод #%1</translation>
+        <translation>Сохранить ответ #%1</translation>
     </message>
     <message>
         <source>Load %1</source>
