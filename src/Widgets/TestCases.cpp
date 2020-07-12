@@ -347,17 +347,7 @@ void TestCases::saveToFiles(const QString &filePath, bool safe)
 
 QString TestCases::loadTestCaseFromFile(const QString &path, const QString &head)
 {
-    auto content = Util::readFile(path, tr("Load %1").arg(head), log, true);
-    if (content.length() > SettingsHelper::getLoadTestCaseFileLengthLimit())
-    {
-        log->error(tr("Testcases"),
-                   tr("The testcase file [%1] contains more than %2 characters, so it's not loaded. You can "
-                      "change the length limit in Preferences->Advanced->Limits->Load Test Case File Length Limit")
-                       .arg(path)
-                       .arg(SettingsHelper::getLoadTestCaseFileLengthLimit()));
-        return QString();
-    }
-    return content;
+    return Util::readFile(path, tr("Load %1").arg(head), log, true);
 }
 
 void TestCases::setTestCaseEditFont(const QFont &font)

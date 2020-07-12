@@ -1963,12 +1963,7 @@ A source file won&apos;t be opened if it&apos;s too long.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Load Test Case File Length Limit</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>The maximum number of characters in a testcase file to load.
-A testcase file won&apos;t be loaded if it&apos;s too long.</source>
+        <source>Load Test Case Length Limit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2439,6 +2434,20 @@ If this is disabled, external file changes will be ignored unless they are loade
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Output Display Length Limit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The maximum number of characters to be displayed for the output of the program.
+If the output is too long, it will be elided.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The maximum number of characters in a test case to be loaded.
+A loaded test case will be elided and read-only if it&apos;s too long.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Show toast messages for submission verdicts</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2581,18 +2590,6 @@ If this is disabled, external file changes will be ignored unless they are loade
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Output Length Limit Exceeded</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Testcases</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>The output #%1 contains more than %2 characters, so it&apos;s not displayed. You can set the output length limit in Preferences-&gt;Advanced-&gt;Limits-&gt;Output Length Limit</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Input #%1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2636,11 +2633,31 @@ If this is disabled, external file changes will be ignored unless they are loade
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Testcases</source>
+        <source>Preferences-&gt;Advanced-&gt;Limits-&gt;Output Display Length Limit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>The testcase file [%1] contains more than %2 characters, so it&apos;s not loaded. You can change the length limit in Preferences-&gt;Advanced-&gt;Limits-&gt;Load Test Case File Length Limit</source>
+        <source>Preferences-&gt;Advanced-&gt;Limits-&gt;Load Test Case Length Limit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Input</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Output</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Expected</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Now the test case editor is read-only. You can set the length limit in %1.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Only the first %1 characters are shown.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2792,10 +2809,6 @@ If this is disabled, external file changes will be ignored unless they are loade
     </message>
     <message>
         <source>Testcases</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>The testcase file [%1] contains more than %2 characters, so it&apos;s not loaded. You can change the length limit in Preferences-&gt;Advanced-&gt;Limits-&gt;Load Test Case File Length Limit</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

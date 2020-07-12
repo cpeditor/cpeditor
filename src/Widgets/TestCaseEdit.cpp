@@ -30,13 +30,28 @@
 
 namespace Widgets
 {
-TestCaseEdit::TestCaseEdit(bool autoAnimation, MessageLogger *logger, const QString &text, QWidget *parent)
-    : QPlainTextEdit(text, parent), log(logger)
+TestCaseEdit::TestCaseEdit(Role role, int id, MessageLogger *logger, const QString &text, QWidget *parent)
+    : QPlainTextEdit(parent), log(logger), role(role), id(id)
 {
     setFont(SettingsHelper::getTestCasesFont());
+    setWordWrapMode(QTextOption::NoWrap);
+    modifyText(text, false);
+
     animation = new QPropertyAnimation(this, "minimumHeight", this);
-    if (autoAnimation)
+
+    switch (role)
+    {
+    case Input:
+    case Expected:
         connect(this, SIGNAL(textChanged()), this, SLOT(startAnimation()));
+        break;
+    case Output:
+        setReadOnly(true);
+        break;
+    default:
+        Q_UNREACHABLE();
+    }
+
     startAnimation();
     setContextMenuPolicy(Qt::CustomContextMenu);
     connect(this, SIGNAL(customContextMenuRequested(const QPoint &)), this,
@@ -63,9 +78,9 @@ void TestCaseEdit::dragMoveEvent(QDragMoveEvent *event)
 
 void TestCaseEdit::dropEvent(QDropEvent *event)
 {
-    LOG_INFO("Object dropped into testcase widget");
+    LOG_INFO(INFO_OF(id));
     auto urls = event->mimeData()->urls();
-    if (!isReadOnly() && !urls.isEmpty())
+    if (role != Output && !urls.isEmpty())
     {
         LOG_INFO("Dropped file is " << urls[0].toLocalFile());
         loadFromFile(urls[0].toLocalFile());
@@ -73,11 +88,59 @@ void TestCaseEdit::dropEvent(QDropEvent *event)
     }
 }
 
-void TestCaseEdit::modifyText(const QString &text)
+void TestCaseEdit::modifyText(const QString &text, bool keepHistory)
 {
-    auto cursor = textCursor();
-    cursor.select(QTextCursor::Document);
-    cursor.insertText(text);
+    this->text = text;
+
+    const int limit =
+        role == Output ? SettingsHelper::getOutputDisplayLengthLimit() : SettingsHelper::getLoadTestCaseLengthLimit();
+
+    QString displayText;
+
+    if (text.length() <= limit)
+    {
+        displayText = text;
+        if (role != Output)
+            setReadOnly(false);
+    }
+    else
+    {
+        LOG_INFO("Too long: " << INFO_OF(role) << INFO_OF(id) << INFO_OF(text.length()));
+
+        setReadOnly(true);
+
+        displayText = text.left(limit) + "...";
+
+        const QString name = role == Input ? tr("Input") : (role == Output ? tr("Output") : tr("Expected"));
+        const QString setLimitPlace = role == Output ? tr("Preferences->Advanced->Limits->Output Display Length Limit")
+                                                     : tr("Preferences->Advanced->Limits->Load Test Case Length Limit");
+
+        log->warn(
+            QString("%1[%2]").arg(name).arg(id + 1),
+            QString("<span title='%1'>%2</span>")
+                .arg(
+                    tr("Now the test case editor is read-only. You can set the length limit in %1.").arg(setLimitPlace))
+                .arg(tr("Only the first %1 characters are shown.").arg(limit)),
+            false);
+    }
+
+    if (keepHistory)
+    {
+        auto cursor = textCursor();
+        cursor.select(QTextCursor::Document);
+        cursor.insertText(displayText);
+    }
+    else
+    {
+        setPlainText(displayText);
+    }
+}
+
+QString TestCaseEdit::getText()
+{
+    if (!isReadOnly())
+        text = toPlainText();
+    return text;
 }
 
 void TestCaseEdit::startAnimation()
@@ -96,7 +159,7 @@ void TestCaseEdit::startAnimation()
 void TestCaseEdit::onCustomContextMenuRequested(const QPoint &pos)
 {
     auto menu = createStandardContextMenu();
-    if (!isReadOnly())
+    if (role != Output)
     {
         menu->addSeparator();
         menu->addAction(QApplication::style()->standardIcon(QStyle::SP_DialogOpenButton), tr("Load From File"), [this] {
@@ -109,7 +172,7 @@ void TestCaseEdit::onCustomContextMenuRequested(const QPoint &pos)
             QApplication::style()->standardIcon(QStyle::SP_TitleBarMaxButton), tr("Edit in Bigger Window"), [this] {
                 LOG_INFO("Opening for edit in big window");
                 bool ok = false;
-                auto res = QInputDialog::getMultiLineText(this, tr("Edit Testcase"), QString(), toPlainText(), &ok);
+                auto res = QInputDialog::getMultiLineText(this, tr("Edit Testcase"), QString(), getText(), &ok);
                 if (ok)
                     modifyText(res);
             });
@@ -121,17 +184,6 @@ void TestCaseEdit::loadFromFile(const QString &path)
 {
     auto content = Util::readFile(path, "Load Testcase From File", log);
     if (!content.isNull())
-    {
-        if (content.length() > SettingsHelper::getLoadTestCaseFileLengthLimit())
-        {
-            log->error(tr("Testcases"),
-                       tr("The testcase file [%1] contains more than %2 characters, so it's not loaded. You can change "
-                          "the length limit in Preferences->Advanced->Limits->Load Test Case File Length Limit")
-                           .arg(path)
-                           .arg(SettingsHelper::getLoadTestCaseFileLengthLimit()));
-        }
-        else
-            modifyText(content);
-    }
+        modifyText(content);
 }
 } // namespace Widgets

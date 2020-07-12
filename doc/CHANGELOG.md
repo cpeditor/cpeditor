@@ -27,6 +27,7 @@ With the portable version, you can easily store it in something like a USB disk,
 - Settings to control whether to load external file changes. (#486)
 - Separated settings for format on manual save and format on auto-save. (#488)
 - An option to disable toast messages of CF Tool. (#489)
+- Now the test cases will be elided if they are too long. (#491)
 
 ### Fixed
 
@@ -36,7 +37,6 @@ With the portable version, you can easily store it in something like a USB disk,
 
 ### Changed
 
-- Now the lengths of the files added by "Add Pairs of Testcases From Files" are limited by Preferences->Advanced->Limits->Load Test Case File Length Limit. (#405)
 - The default font is set to the system fixed-width font instead of the font named "Monospace". (#422)
 - Now the session is stored in a separate file, which was stored along with the settings. So now when exporting/importing settings, the session won't be included, but you can export/load the session separately. (#437 and #442)
 - Now the hidden (not in the search result) pages are skipped when navigating pages in the preferences window via Ctrl+Tab and Ctrl+Shift+Tab. (#447)

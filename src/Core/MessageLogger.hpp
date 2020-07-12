@@ -38,32 +38,36 @@ class MessageLogger : public QObject
      * @param head the head of the message, indicates where the message is from
      * @param body the main part of the message
      * @param color the color of the message, use the default color if this parameter is empty
+     * @param htmlEscaped convert the message to the HTML escaped format to avoid hidden "<>" and wrong spaces
      */
-    void message(const QString &head, const QString &body, const QString &color);
+    void message(const QString &head, const QString &body, const QString &color, bool htmlEscaped = true);
 
     /**
      * @brief show a warning message
      * @param head the head of the message, indicates where the message is from
      * @param body the main part of the message
+     * @param htmlEscaped convert the message to the HTML escaped format to avoid hidden "<>" and wrong spaces
      * @note the message is green
      */
-    void warn(const QString &head, const QString &body);
+    void warn(const QString &head, const QString &body, bool htmlEscaped = true);
 
     /**
      * @brief show a infomation message
      * @param head the head of the message, indicates where the message is from
      * @param body the main part of the message
+     * @param htmlEscaped convert the message to the HTML escaped format to avoid hidden "<>" and wrong spaces
      * @note the message is in the default color
      */
-    void info(const QString &head, const QString &body);
+    void info(const QString &head, const QString &body, bool htmlEscaped = true);
 
     /**
      * @brief show a error message
      * @param head the head of the message, indicates where the message is from
      * @param body the main part of the message
+     * @param htmlEscaped convert the message to the HTML escaped format to avoid hidden "<>" and wrong spaces
      * @note the message is red
      */
-    void error(const QString &head, const QString &body);
+    void error(const QString &head, const QString &body, bool htmlEscaped = true);
 
     /**
      * @brief clear all messages in the message logger
