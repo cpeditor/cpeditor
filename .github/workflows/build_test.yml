@@ -194,3 +194,9 @@ jobs:
         with:
           name: "cpeditor-${{ matrix.config.os }}-${{ github.sha }}"
           path: build/${{ matrix.config.binary }}
+
+      - name: Check translations are up-to-date
+        if: startsWith(matrix.config.os, 'ubuntu')
+        run: |
+          tools/updateTranslation.sh
+          git diff --exit-code HEAD
