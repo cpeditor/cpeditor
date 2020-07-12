@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1">
+<TS version="2.1" language="ru_RU" sourcelanguage="en_US">
 <context>
     <name>AppWindow</name>
     <message>
@@ -29,7 +29,7 @@
     </message>
     <message>
         <source>&lt;p&gt;&lt;b&gt;CP Editor&lt;/b&gt; is a native Qt-based code editor. It&apos;s specially designed for competitive programming, unlike other editors/IDEs which are mainly for developers. It helps you focus on your algorithm and automates the compilation, executing and testing. It even fetches test cases for you from different platforms and submits solutions to Codeforces!&lt;/p&gt;&lt;p&gt;Copyright (C) 2019-2020 Ashar Khan &amp;lt;ashar786khan@gmail.com&amp;gt;&lt;/p&gt;&lt;p&gt;This is free software; see the source for copying conditions. There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. The source code for CP Editor is available at &lt;a href=&quot;https://github.com/cpeditor/cpeditor&quot;&gt; https://github.com/cpeditor/cpeditor&lt;/a&gt;.&lt;/p&gt;</source>
-        <translation>&lt;p&gt;&lt;b&gt;CP Editor&lt;/b&gt; - редактор кода, созданный на Qt. Дизвайн CP Editor специально рассчитан на спортивное программирование, в отличии от других редакторов/IDE, который больше подходят разработчикам. Наш редкатор кода помогает сфокусироваться на построении алгоритма, автодополняя, запуская и тестируя его. Он также может использоваьб тест-кейсы разных платформ и отправлять решения на Codeforces!&lt;/p&gt;&lt;p&gt;Copyright (C) 2019-2020 Ashar Khan &amp;lt;ashar786khan@gmail.com&amp;gt;&lt;/p&gt;&lt;p&gt;Это бесплатное ПО; см. источник исходного кода. АВТОР НЕ ДАЕТ НИКАКИХ ГАРАНТИЙ; ни для пригодности для использования, ни для личных целей. Исходный код CP Editor доступен на &lt;a href=&quot;https://github.com/cpeditor/cpeditor&quot;&gt; https://github.com/cpeditor/cpeditor&lt;/a&gt;.&lt;/p&gt;</translation>
+        <translation>&lt;p&gt;&lt;b&gt;CP Editor&lt;/b&gt; - редактор кода, созданный на Qt. Дизайн CP Editor специально рассчитан на спортивное программирование, в отличии от других редакторов/IDE, который больше подходят разработчикам. Наш редакатор кода помогает сфокусироваться на построении алгоритма, автодополняя, запуская и тестируя его. Он также может использовать тест-кейсы разных платформ и отправлять решения на Codeforces!&lt;/p&gt;&lt;p&gt;Copyright (C) 2019-2020 Ashar Khan &amp;lt;ashar786khan@gmail.com&amp;gt;&lt;/p&gt;&lt;p&gt;Это бесплатное ПО; см. источник исходного кода. АВТОР НЕ ДАЕТ НИКАКИХ ГАРАНТИЙ; ни для пригодности для использования, ни для личных целей. Исходный код CP Editor доступен на &lt;a href=&quot;https://github.com/cpeditor/cpeditor&quot;&gt; https://github.com/cpeditor/cpeditor&lt;/a&gt;.&lt;/p&gt;</translation>
     </message>
     <message>
         <source>Open Files</source>
@@ -41,7 +41,7 @@
     </message>
     <message>
         <source>Number of problems in this contest:</source>
-        <translation>Число задач в соревновании</translation>
+        <translation>Число задач в соревновании:</translation>
     </message>
     <message>
         <source>Choose a language</source>
@@ -53,7 +53,7 @@
     </message>
     <message>
         <source>Are you sure you want to reset the all preferences to default?</source>
-        <translation>Вы действительно хотите сбросить настрйоки?</translation>
+        <translation>Вы действительно хотите сбросить настройки?</translation>
     </message>
     <message>
         <source>Snippets</source>
@@ -61,19 +61,19 @@
     </message>
     <message>
         <source>There are no snippets for %1. Please add snippets in the preference window.</source>
-        <translation>Отстутсвуют сниппеты для %1. Пожалуйста, добавьте соотвествущий сниппет в настройках.</translation>
+        <translation>Отсутсвуют сниппеты для %1. Пожалуйста, добавьте соответствущий сниппет в настройках.</translation>
     </message>
     <message>
         <source>Use Snippets</source>
-        <translation>Исопльзовать сниппет</translation>
+        <translation>Использовать сниппет</translation>
     </message>
     <message>
         <source>Choose a snippet:</source>
-        <translation>Выбарть сниппет</translation>
+        <translation>Выбарть сниппет:</translation>
     </message>
     <message>
         <source>There is no snippet named %1 for %2</source>
-        <translation>Отсутвуют сниппеты под названием %1 для %2></translation>
+        <translation>Отсутствуют сниппеты под названием %1 для %2></translation>
     </message>
     <message>
         <source>Close</source>
@@ -109,7 +109,7 @@
     </message>
     <message>
         <source>Reveal in File Manager</source>
-        <translation>Показать в файловом менджере</translation>
+        <translation>Показать в файловом менеджере</translation>
     </message>
     <message>
         <source>Copy path</source>
@@ -129,15 +129,15 @@
     </message>
     <message>
         <source>Set CF URL</source>
-        <translation>Усатновить CF URL</translation>
+        <translation>Установить CF URL</translation>
     </message>
     <message>
         <source>Enter the contest ID:</source>
-        <translation>Ввести İD cоревнования</translation>
+        <translation>Ввести ID соревнования:</translation>
     </message>
     <message>
         <source>Enter the problem Code (A-Z):</source>
-        <translation>Ввести код задачи (A-Z)</translation>
+        <translation>Ввести код задачи (A-Z):</translation>
     </message>
     <message>
         <source>Set Problem URL</source>
@@ -145,7 +145,7 @@
     </message>
     <message>
         <source>Enter the new problem URL:</source>
-        <translation>Задать URL для новой задачи </translation>
+        <translation>Задать URL для новой задачи:</translation>
     </message>
     <message>
         <source>EventLogger</source>
@@ -173,7 +173,7 @@
     </message>
     <message>
         <source>Save As...</source>
-        <translation>Сохранить как</translation>
+        <translation>Сохранить как...</translation>
     </message>
     <message>
         <source>Save as new file</source>
@@ -189,7 +189,7 @@
     </message>
     <message>
         <source>Save all opened files</source>
-        <translation>Сохранить вск открытые файлы</translation>
+        <translation>Сохранить все открытые файлы</translation>
     </message>
     <message>
         <source>Ctrl+Alt+Shift+S</source>
@@ -245,7 +245,7 @@
     </message>
     <message>
         <source>Open File...</source>
-        <translation>Открыть файл</translation>
+        <translation>Открыть файл....</translation>
     </message>
     <message>
         <source>Open files</source>
@@ -257,7 +257,7 @@
     </message>
     <message>
         <source>Open Contest...</source>
-        <translation>Окрыть соревнование...</translation>
+        <translation>Открыть соревнование...</translation>
     </message>
     <message>
         <source>Open a Contest</source>
@@ -268,7 +268,7 @@
         <translation>Ctrl+Shift+O</translation>
     </message>
     <message>
-        <source>Отступ</source>
+        <source>Indent</source>
         <translation>Отступ</translation>
     </message>
     <message>
@@ -333,7 +333,7 @@
     </message>
     <message>
         <source>Compile</source>
-        <translation>Компилировать</translation>
+        <translation>Скомпилировать</translation>
     </message>
     <message>
         <source>Ctrl+Shift+C</source>
@@ -341,7 +341,7 @@
     </message>
     <message>
         <source>Compile and Run</source>
-        <translation>Компилировать и запустить</translation>
+        <translation>Скомпилировать и запустить</translation>
     </message>
     <message>
         <source>Ctrl+Shift+R</source>
@@ -457,7 +457,7 @@
     </message>
     <message>
         <source>IO Mode</source>
-        <translation>Редим ввода/вывода</translation>
+        <translation>Режим ввода/вывода</translation>
     </message>
     <message>
         <source>Split Mode</source>
@@ -501,7 +501,7 @@
     </message>
     <message>
         <source>Import settings from a file</source>
-        <translation>Испорт настроек из файла</translation>
+        <translation>Импорт настроек из файла</translation>
     </message>
     <message>
         <source>Export current session to a file</source>
@@ -513,7 +513,7 @@
     </message>
     <message>
         <source>Failed to export the current session to [%1]</source>
-        <translation>Не удалось экспортировать текующую сессию</translation>
+        <translation>Не удалось экспортировать текущую сессию как [%1]</translation>
     </message>
     <message>
         <source>Load Session</source>
@@ -521,7 +521,7 @@
     </message>
     <message>
         <source>Loading a session from a file will close all tabs in the current session without saving the files. Are you sure to continue?</source>
-        <translation>Загрузка сессии из файла закроет все открытые вкладки в текущей сессии без сохранения файлов</translation>
+        <translation>Загрузка сессии из файла закроет все открытые вкладки в текущей сессии без сохранения файлов. Вы действительно хотите продолжить?</translation>
     </message>
     <message>
         <source>Load session from a file</source>
@@ -563,7 +563,7 @@ OS: %4</source>
     </message>
     <message>
         <source>All current settings will lose after importing settings from a file. Are you sure to continue?</source>
-        <translation>Все текущие настройки будут потеряны после импорта файла настроки. Вы хотите продолжить?</translation>
+        <translation>Все текущие настройки будут потеряны после импорта файла настройки. Вы хотите продолжить?</translation>
     </message>
 </context>
 <context>
@@ -574,7 +574,7 @@ OS: %4</source>
     </message>
     <message>
         <source>You need to restart the application to completely apply the locale change.</source>
-        <translation>Вам необходмио перезагрузить программу для полноценного применения изменений языковых параметров</translation>
+        <translation>Вам необходимо перезагрузить программу для полноценного применения изменений языковых параметров.</translation>
     </message>
 </context>
 <context>
@@ -613,7 +613,7 @@ OS: %4</source>
     </message>
     <message>
         <source>Unsaved Snippets</source>
-        <translation>Несохраненные снипеты</translation>
+        <translation>Несохраненные сниппеты</translation>
     </message>
     <message>
         <source>The snippet [%1] has been changed. Do you want to save it or discard the changes?</source>
@@ -625,15 +625,15 @@ OS: %4</source>
     </message>
     <message>
         <source>Do you really want to delete the snippet [%1]?</source>
-        <translation>Вы действительно хотите удалить сниппет</translation>
+        <translation>Вы действительно хотите удалить сниппет [%1]?</translation>
     </message>
     <message>
         <source>Load Snippets</source>
-        <translation>Загруззить сниппет</translation>
+        <translation>Загрузить сниппет</translation>
     </message>
     <message>
         <source>Failed to open [%1]. Do I have read permission?</source>
-        <translation>Не удалоось открыть [%1]. Предоставлен ли доступ к чтению файла?</translation>
+        <translation>Не удалось открыть [%1]. Предоставлен ли доступ к чтению файла?</translation>
     </message>
     <message>
         <source>Extract Snippets</source>
@@ -645,12 +645,13 @@ OS: %4</source>
     </message>
     <message>
         <source>Failed to write to [%1]. Do I have write permission?</source>
-        <translation>Не удалось записать изменения в файл [%1]. Предоставлен ли доступ к измениению фалйла?</translation>
+        <translation>Не удалось записать изменения в файл [%1]. Предоставлен ли доступ к изменению фалйла?</translation>
     </message>
     <message>
         <source>Snippet name can&apos;t be empty.
 </source>
-        <translation>Назавние сниппета не может пустым</translation>
+        <translation>Название сниппета не может пустым.
+</translation>
     </message>
     <message>
         <source>Snippet Name Conflict</source>
@@ -658,7 +659,7 @@ OS: %4</source>
     </message>
     <message>
         <source>The name &quot;%1&quot; is already in use. Do you want to override it? (The old snippet with this name will be deleted.)</source>
-        <translation>Название &quot;%1&quot; уже используется. Вы хотите перезаписать сниппет с таким именем?</translation>
+        <translation>Название &quot;%1&quot; уже используется. Вы хотите перезаписать сниппет с таким именем? (Старый сниппет будет удален.)</translation>
     </message>
     <message>
         <source>The name &quot;%1&quot; is already in use.
@@ -672,7 +673,7 @@ OS: %4</source>
     </message>
     <message>
         <source>New Snippet Name:</source>
-        <translation>Новое имя сниппета</translation>
+        <translation>Новое имя сниппета:</translation>
     </message>
 </context>
 <context>
@@ -687,7 +688,7 @@ OS: %4</source>
     </message>
     <message>
         <source>Failed to create temporary directory</source>
-        <translation>Ошибка при созданнии временной директории</translation>
+        <translation>Ошибка при создании временной директории</translation>
     </message>
     <message>
         <source>Read testlib.h</source>
@@ -709,7 +710,7 @@ OS: %4</source>
     </message>
     <message>
         <source>Checker exited with exit code %1</source>
-        <translation>Чекер завершил работу с кодом %!</translation>
+        <translation>Чекер завершил работу с кодом %1</translation>
     </message>
     <message>
         <source>Checker exited with unknown exit code %1</source>
@@ -717,7 +718,7 @@ OS: %4</source>
     </message>
     <message>
         <source>Time Limit Exceeded</source>
-        <translation>Превышено ограничение по вермени (TLE)</translation>
+        <translation>Превышено ограничение по времени (TLE)</translation>
     </message>
     <message>
         <source>The %1 of the process running on the testcase #%2 contains more than %3 characters, which is longer than the output length limit, so the process is killed. You can change the output length limit in Preferences-&gt;Advanced-&gt;Limits-&gt;Output Length Limit</source>
@@ -736,7 +737,7 @@ OS: %4</source>
     </message>
     <message>
         <source>The compile command for %1 is empty</source>
-        <translation>Комнады компиляции для %1 пуста</translation>
+        <translation>Команады компиляции для %1 пуста</translation>
     </message>
     <message>
         <source>Unsupported programming language &quot;%1&quot;</source>
@@ -763,7 +764,7 @@ OS: %4</source>
     </message>
     <message>
         <source>Please install xterm in order to use Detached Run.</source>
-        <translation>Пожалуйста, установите xterm, если вы хотите использовать Отдельный запуск</translation>
+        <translation>Пожалуйста, установите xterm, если вы хотите использовать Отдельный запуск.</translation>
     </message>
 </context>
 <context>
@@ -789,7 +790,7 @@ OS: %4</source>
     </message>
     <message>
         <source>The problem code is 0, now use A automatically. If the actual problem code is not A, please set the problem code manually in the right-click menu of the current tab.</source>
-        <translation>Код задачи - 0, поэтому используется код A автоматический. Если код задачи не А, пожалуйста, установите код вручную в подменю (правая кнопка мыши) текущей вкладки</translation>
+        <translation>Код задачи - 0, поэтому используется код A автоматический. Если код задачи не А, пожалуйста, установите код вручную в подменю (правая кнопка мыши) текущей вкладки.</translation>
     </message>
     <message>
         <source>Failed to get the version of CF Tool. Have you set the correct path to CF Tool in Preferences?</source>
@@ -813,7 +814,7 @@ OS: %4</source>
     </message>
     <message>
         <source>CF Tool finished with non-zero exit code %1</source>
-        <translation>CF Tool заврешил работу с кодом %1 отличным от нуля</translation>
+        <translation>CF Tool заверешил работу с кодом %1 отличным от нуля</translation>
     </message>
     <message>
         <source>Contest %1 Problem %2</source>
@@ -867,11 +868,11 @@ OS: %4</source>
     </message>
     <message>
         <source>Port is set to %1</source>
-        <translation>Порт устанволен на %1</translation>
+        <translation>Порт установолен на %1</translation>
     </message>
     <message>
         <source>Failed to listen to port %1. Is there another process listening?</source>
-        <translation>Ошибка в прослушивании порта %1. Возможно другой просцесс уже работает с этим портом?</translation>
+        <translation>Ошибка в прослушивании порта %1. Возможно другой процесс уже работает с этим портом?</translation>
     </message>
     <message>
         <source>Stopped Server</source>
@@ -896,7 +897,7 @@ OS: %4</source>
     </message>
     <message>
         <source>Language server sent an error. Please check log for details.</source>
-        <translation>Langauge server выдает ошибку. Пожалуйста, проверьте логи</translation>
+        <translation>Langauge server выдает ошибку. Пожалуйста, проверьте логи.</translation>
     </message>
     <message>
         <source>Failed to start LSP Process. Have you set the path to the Language Server program in Preferences-&gt;Extensions-&gt;Language Server?</source>
@@ -916,7 +917,7 @@ OS: %4</source>
     </message>
     <message>
         <source>An unknown error has occurred in LSP Process</source>
-        <translation>Произощла неизвестная ошибка в Процессе LSP</translation>
+        <translation>Произошла неизвестная ошибка в Процессе LSP</translation>
     </message>
 </context>
 <context>
@@ -934,11 +935,11 @@ OS: %4</source>
     </message>
     <message>
         <source>Find:</source>
-        <translation>Найти</translation>
+        <translation>Найти:</translation>
     </message>
     <message>
         <source>Replace with:</source>
-        <translation>Заменить на</translation>
+        <translation>Заменить на:</translation>
     </message>
     <message>
         <source>errorLabel</source>
@@ -1027,7 +1028,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Submit</source>
-        <translation>Отпрваить</translation>
+        <translation>Отправить</translation>
     </message>
     <message>
         <source>Sure to submit</source>
@@ -1049,11 +1050,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Failed to save the temp file, and the solution is not submitted.</source>
-        <translation>Ошибка в сохранении временного файла. Решение не было отправлено</translation>
+        <translation>Ошибка в сохранении временного файла. Решение не было отправлено.</translation>
     </message>
     <message>
         <source>You will not be able to submit code to Codeforces because CF Tool is not installed or is not on SYSTEM PATH. You can set it manually in settings.</source>
-        <translation>Вы не можете отправить решение на Codeforces, потому что CF Tool не установлен или не добавлен в переменные окружения. Пожалуйста, установите его вручную в настройках</translation>
+        <translation>Вы не можете отправить решение на Codeforces, потому что CF Tool не установлен или не добавлен в переменные окружения. Пожалуйста, установите его вручную в настройках.</translation>
     </message>
     <message>
         <source>Untitled-%1</source>
@@ -1073,7 +1074,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>The file [%1] contains more than %2 characters, so it&apos;s not opened. You can change the open file length limit in Preferences-&gt;Advanced-&gt;Limits-&gt;Open File Length Limit</source>
-        <translation>Файл [%1] содержит более чем %2 символов и он не был открыт. Вы можете установить лимит количетсва символов в файле в Параметрах-&gt;Дополонительно-&gt;Лимиты-&gt;Лмиит символов в открываемом файле</translation>
+        <translation>Файл [%1] содержит более чем %2 символов и он не был открыт. Вы можете установить лимит количества символов в файле в Параметрах-&gt;Дополонительно-&gt;Лимиты-&gt;Лмиит символов в открываемом файле</translation>
     </message>
     <message>
         <source>Save File</source>
@@ -1131,7 +1132,7 @@ Do you want to reload it?</source>
     </message>
     <message>
         <source>Line %1, Column %2</source>
-        <translation>Сторка %1, столбец %2</translation>
+        <translation>Строка %1, символ %2</translation>
     </message>
     <message>
         <source>%1 lines, %2 charachters selected</source>
@@ -1147,11 +1148,11 @@ Do you want to reload it?</source>
     </message>
     <message>
         <source>The run command for %1 is invalid. Is the runner in the system Path?</source>
-        <translation>Заускающая команда %1 неверна. Находится ли runner в Path?</translation>
+        <translation>Запускающая команда %1 неверна. Находится ли runner в Path?</translation>
     </message>
     <message>
         <source>Compilation has started</source>
-        <translation>Начался процессс компиляции</translation>
+        <translation>Начался процесс компиляции</translation>
     </message>
     <message>
         <source>Compilation has finished</source>
@@ -1171,7 +1172,7 @@ Do you want to reload it?</source>
     </message>
     <message>
         <source>Compilation is killed</source>
-        <translation>Компиляция остановленна</translation>
+        <translation>Компиляция остановлена</translation>
     </message>
     <message>
         <source>Detached Runner</source>
@@ -1187,7 +1188,7 @@ Do you want to reload it?</source>
     </message>
     <message>
         <source>Execution for test case #%1 has finished in %2ms</source>
-        <translation>Запуск программы для тесткейса #%1 завершился за время %2мс </translation>
+        <translation>Запуск программы для тесткейса #%1 завершился за время %2мс</translation>
     </message>
     <message>
         <source>Execution for test case #%1 has finished with non-zero exitcode %2 in %3ms</source>
@@ -1255,7 +1256,7 @@ Do you want to reload it?</source>
     </message>
     <message>
         <source>Have you set a proper name for the main class in your solution? If not, you can set it in Preferences-&gt;Lanugages-&gt;Java-&gt;Java Commands-&gt;Java Class Name.</source>
-        <translation>Вы установили подходящее имя для главного класса в решении? Если нет, Вы можктк установить имя в Параметрах-&gt;Языки-&gt;Java-&gt;Java Commands-&gt;Java Class Name.</translation>
+        <translation>Вы установили подходящее имя для главного класса в решении? Если нет, Вы можете установить имя в Параметрах-&gt;Языки-&gt;Java-&gt;Java Commands-&gt;Java Class Name.</translation>
     </message>
 </context>
 <context>
@@ -1374,14 +1375,14 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     </message>
     <message>
         <source>You can read the &lt;a href=&quot;https://github.com/cpeditor/cpeditor/blob/%1/doc/MANUAL.md&quot;&gt;Manual&lt;/a&gt; or go through the settings for more information.</source>
-        <translation>Вы можете почитать &lt;a href=&quot;https://github.com/cpeditor/cpeditor/blob/%1/doc/MANUAL_ru-RU.md&quot;&gt;Инструкцию&lt;/a&gt; или посмотреть на настройки для более подробной информации.</translation>
+        <translation>Вы можете почитать &lt;a href=&quot;https://github.com/cpeditor/cpeditor/blob/%1/doc/MANUAL_ru-RU.md&quot;&gt;инструкцию&lt;/a&gt; или просмотреть настройки для более подробной информации.</translation>
     </message>
 </context>
 <context>
     <name>PreferencesPage</name>
     <message>
         <source>Default</source>
-        <translation>По-умолчанию</translation>
+        <translation>По умолчанию</translation>
     </message>
     <message>
         <source>Reset</source>
@@ -1405,7 +1406,7 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     </message>
     <message>
         <source>Unsaved Settings</source>
-        <translation>Несохранённые настройки</translation>
+        <translation>Несохраненные настройки</translation>
     </message>
     <message>
         <source>The settings are changed. Do you want to save the settings or discard them?</source>
@@ -1548,7 +1549,7 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     </message>
     <message>
         <source>Empty Test Cases</source>
-        <translation>Пустык тесткейсы</translation>
+        <translation>Пустые тесткейсы</translation>
     </message>
     <message>
         <source>Network Proxy</source>
@@ -1587,11 +1588,11 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     </message>
     <message>
         <source>Default Language</source>
-        <translation>Язык по-умолчанию</translation>
+        <translation>Язык по умолчанию</translation>
     </message>
     <message>
         <source>The default language used when opening new tabs</source>
-        <translation>Язык по-умолчанию во время создания новой вкладки</translation>
+        <translation>Язык по умолчанию во время создания новой вкладки</translation>
     </message>
     <message>
         <source>Path</source>
@@ -1637,7 +1638,7 @@ The cursor will be at the end of the template if there&apos;s no match of the re
     </message>
     <message>
         <source>The runtime arguments when executing a C++ program</source>
-        <translation>Аргументы при выполнении программы на C++ </translation>
+        <translation>Аргументы при выполнении программы на C++</translation>
     </message>
     <message>
         <source>The template used when creating a new Java file</source>
@@ -1647,7 +1648,7 @@ The cursor will be at the end of the template if there&apos;s no match of the re
         <source>The command used to compile Java.
 It should NOT include the path to the source file or the path of the compiled class file.</source>
         <translation>Команда, используемая для компиляции Java.
-Она НЕ должена включать путь к исходному файлу или путь к скомпилированному файлу класса.</translation>
+Она НЕ должна включать путь к исходному файлу или путь к скомпилированному файлу класса.</translation>
     </message>
     <message>
         <source>The runtime arguments when executing a Java program</source>
@@ -1691,7 +1692,7 @@ You can use &quot;${filename}&quot; for the complete file name,
     </message>
     <message>
         <source>The command to start a Python program. It should NOT include the path to the source file.</source>
-        <translation>Команда для запуска программы на Python. Она не должена включать путь к исходному файлу.</translation>
+        <translation>Команда для запуска программы на Python. Она не должна включать путь к исходному файлу.</translation>
     </message>
     <message>
         <source>Editor Theme</source>
@@ -1723,7 +1724,7 @@ You can use &quot;${filename}&quot; for the complete file name,
     </message>
     <message>
         <source>Automatically save the file every 3 seconds.</source>
-        <translation>Автоматически сохранять файл каждые 3 секунды</translation>
+        <translation>Автоматически сохранять файл каждые 3 секунды.</translation>
     </message>
     <message>
         <source>Wrap Text</source>
@@ -1734,7 +1735,7 @@ You can use &quot;${filename}&quot; for the complete file name,
         <translation>Свернуть строку в несколько строк, если она не помещается на экране.</translation>
     </message>
     <message>
-        <source>Use the beta version</source>
+        <source>Use the beta version.</source>
         <translation>Использовать бета-версию.</translation>
     </message>
     <message>
@@ -1769,7 +1770,7 @@ This can be overridden for each parenthesis in each language.</source>
     </message>
     <message>
         <source>%1 Template Cursor Position Offset Characters</source>
-        <translation>%1 Шаблон символа отступа позиции крусора</translation>
+        <translation>%1 Шаблон символа отступа позиции курсора</translation>
     </message>
     <message>
         <source>%1 Compile Command</source>
@@ -1788,10 +1789,10 @@ You can use &quot;${filename}&quot; for the complete file name,
 &quot;${tmpdir}&quot; or &quot;${tempdir}&quot; for the absolute path of the temporary directory.</source>
         <translation>Путь к скомпилированному исполняемому файлу.
 Имеет значение пути к файлу исходного кода или временной директории, если вкладка не определена.
-Не нужно указывть расширение &quot;.exe&quot;.
+Не нужно указывать расширение &quot;.exe&quot;.
 Вы можете использовать &quot;${filename}&quot; для полного имени файла,
 &quot;${basename}&quot; для основного файла без суффикса,
-&quot;${tmpdir}&quot; или &quot;${tempdir}&quot; для абсолютного пути к временой директории.</translation>
+&quot;${tmpdir}&quot; или &quot;${tempdir}&quot; для абсолютного пути к временной директории.</translation>
     </message>
     <message>
         <source>%1 Run Arguments</source>
@@ -1879,7 +1880,7 @@ This can be overridden for each parenthesis in each language.</source>
     </message>
     <message>
         <source>Receive data sent by Competitive Companion and load the example testcases.</source>
-        <translation>Получать данные с Competitive Companion и загружать примеры тесткейсов</translation>
+        <translation>Получать данные с Competitive Companion и загружать примеры тесткейсов.</translation>
     </message>
     <message>
         <source>Connection Port</source>
@@ -1935,15 +1936,15 @@ This can be overridden for each parenthesis in each language.</source>
     </message>
     <message>
         <source>Show Compile And Run Only</source>
-        <translation>Показывть только "компиляцию и запуск"</translation>
+        <translation>Показывать только "компиляцию и запуск"</translation>
     </message>
     <message>
         <source>Hide the Compile Only button and the Run Only button under the code editor in the main window.</source>
-        <translation>Скрыть кнопку "Только компиляция" и кнопку "Только запуск" под редактором кода в главном окне</translation>
+        <translation>Скрыть кнопку "Только компиляция" и кнопку "Только запуск" под редактором кода в главном окне.</translation>
     </message>
     <message>
         <source>Display EOLN In Diff</source>
-        <translation>Показывть EOLN в Diff</translation>
+        <translation>Показывать EOLN в Diff</translation>
     </message>
     <message>
         <source>Use &quot;¶&quot; to represent for the new line character in the HTML Diff Viewer.</source>
@@ -1951,13 +1952,13 @@ This can be overridden for each parenthesis in each language.</source>
     </message>
     <message>
         <source>Save Files Faster</source>
-        <translation>Сохранять фалйы быстрее</translation>
+        <translation>Сохранять файлы быстрее</translation>
     </message>
     <message>
         <source>Always use QFile instead of QSaveFile to save files.
 This will be faster but with a little bit more risk of losing the file (with a very small possibility).</source>
         <translation>Всегда используйте QFile вместо QSaveFile для сохранения файлов.
-Это будет быстрее, но с немного большим риском потери файла (с очень малой вероятностью). </translation>
+Это будет быстрее, но с немного большим риском потери файла (с очень малой вероятностью).</translation>
     </message>
     <message>
         <source>Time Limit (ms)</source>
@@ -2037,7 +2038,7 @@ A testcase file won&apos;t be loaded if it&apos;s too long.</source>
     </message>
     <message>
         <source>Use Linting with Language Server</source>
-        <translation>Исопльзовать функцию Linting с Language Server</translation>
+        <translation>Использовать функцию Linting с Language Server</translation>
     </message>
     <message>
         <source>Show Error, Warning, Information and Hints in Code Editor for C++ Langauge</source>
@@ -2065,7 +2066,7 @@ A testcase file won&apos;t be loaded if it&apos;s too long.</source>
     </message>
     <message>
         <source>Delay in linting in miliseconds after last modification to code</source>
-        <translation>Задержка в операции Linting (мс) после модификции кода</translation>
+        <translation>Задержка в операции Linting (мс) после модификации кода</translation>
     </message>
     <message>
         <source>Arguments for Language Server</source>
@@ -2139,7 +2140,7 @@ You can use &quot;${filename}&quot; for the complete file name,
     </message>
     <message>
         <source>The default file path used when saving a new file while the problem URL is set</source>
-        <translation>Путь к файлу по умолчанию, используемый при сохранении нового файла, по URL задачи.</translation>
+        <translation>Путь к файлу по умолчанию, используемый при сохранении нового файла, по URL задачи</translation>
     </message>
     <message>
         <source>Problem URL</source>
@@ -2227,7 +2228,7 @@ from Competitive Companion again, the old file will be opened.</source>
     </message>
     <message>
         <source>The language displayed in the UI.</source>
-        <translation>Язык, отображённый на UI</translation>
+        <translation>Язык, отображённый на UI.</translation>
     </message>
     <message>
         <source>UI Style</source>
@@ -2235,7 +2236,7 @@ from Competitive Companion again, the old file will be opened.</source>
     </message>
     <message>
         <source>The style of the whole application.</source>
-        <translation>Стиль всего приложения</translation>
+        <translation>Стиль всего приложения.</translation>
     </message>
     <message>
         <source>Run your codes on empty test cases</source>
@@ -2271,7 +2272,7 @@ After the first modification: the timer will start after a modification, if at t
 Without modification: auto-save happens with an constant inverval no matter there are modifications or not.</source>
         <translation>После последней модификации: таймер будет сброшен после модификации кода.
 После первой модификации: таймер запустится после модификации, если в это время таймер не работает.
-Без модификации: автоматическое сохранение происходит с постоянным инвервалом независимо от того, есть модификации или нет.</translation>
+Без модификации: автоматическое сохранение происходит с постоянным интервалом независимо от того, есть модификации или нет.</translation>
     </message>
     <message>
         <source>Snippet</source>
@@ -2282,7 +2283,7 @@ Without modification: auto-save happens with an constant inverval no matter ther
         <translation>Конфигурация языка</translation>
     </message>
     <message>
-        <source>Restore last session at startup</source>
+        <source>Restore last session at startup.</source>
         <translation>Восстановить последний сеанс при запуске приложения.</translation>
     </message>
     <message>
@@ -2365,7 +2366,7 @@ kill the application with SIGKILL which could not be handled by the application.
     </message>
     <message>
         <source>The type of the proxy. &quot;System&quot; for using the system proxy.</source>
-        <translation>Тип прокси</translation>
+        <translation>Тип прокси.</translation>
     </message>
     <message>
         <source>Use Custom Application Font</source>
@@ -2401,7 +2402,7 @@ They can be used in actions&apos; corresponding default paths by using ${&lt;def
 They can be either manually set or automatically changed after choosing a path for an action.</source>
         <translation>Список путей по умолчанию.
 Их можно использовать в соответствующих путях по умолчанию для действий, используя ${&lt;default path name&gt;} в качестве заполнителя.
-Они могут быть установлены вручную или автоматически изменены после выбора пути для действия</translation>
+Они могут быть установлены вручную или автоматически изменены после выбора пути для действия.</translation>
     </message>
     <message>
         <source>Name</source>
@@ -2422,8 +2423,8 @@ They can be either manually set or automatically changed after choosing a path f
     <message>
         <source>The default path used when choosing a path for %1.
 You can use ${&lt;default path name&gt;} as a place holder.</source>
-        <translation>Путь по умолчанию, используемый при выборе пути для% 1.
-Вы можете использовать ${&lt;default path name&gt;} в качестве заполнителя</translation>
+        <translation>Путь по умолчанию, используемый при выборе пути для %1.
+Вы можете использовать ${&lt;default path name&gt;} в качестве заполнителя.</translation>
     </message>
     <message>
         <source>The default paths changed after choosing a path for %1.
@@ -2464,7 +2465,7 @@ It is a list of &lt;default path name&gt;s, separated by commas, and can be empt
     </message>
     <message>
         <source>Default path used for %1</source>
-        <translation>Стандратный путь для %1</translation>
+        <translation>Стандартный путь для %1</translation>
     </message>
     <message>
         <source>Default paths changed by %1</source>
@@ -2472,7 +2473,7 @@ It is a list of &lt;default path name&gt;s, separated by commas, and can be empt
     </message>
     <message>
         <source>It can be overridden by %1.</source>
-        <translation>Может быть перезаписан %1</translation>
+        <translation>Может быть перезаписан %1.</translation>
     </message>
     <message>
         <source>Use Clang Format to format the code when auto-saving it.</source>
@@ -2507,7 +2508,7 @@ It is a list of &lt;default path name&gt;s, separated by commas, and can be empt
 &quot;%1&quot;, ask for whether to load the changes.
 If this is disabled, external file changes will be ignored unless they are loaded by
 &quot;%1&quot;.</source>
-        <translation>При наличии изменений в файле, которые не создаютсся в CP Editor и не загружаются автоматически
+        <translation>При наличии изменений в файле, которые не создаются в CP Editor и не загружаются автоматически
 &quot;%1&quot;, разрешите загружать изменения.
 Если этот параметр отключен, внешние изменения файлов будут игнорироваться, если они не будут загружены с помощью
 &quot;%1&quot;.</translation>
@@ -2536,7 +2537,7 @@ If this is disabled, external file changes will be ignored unless they are loade
     </message>
     <message>
         <source>Insert a row (Ctrl+N)</source>
-        <translation>Создать ряд (Ctrl+N)</translation>
+        <translation>Вставить ряд (Ctrl+N)</translation>
     </message>
     <message>
         <source>Remove</source>
@@ -2556,7 +2557,7 @@ If this is disabled, external file changes will be ignored unless they are loade
     </message>
     <message>
         <source>Move Up</source>
-        <translation>Переместить вверх?</translation>
+        <translation>Переместить вверх</translation>
     </message>
     <message>
         <source>Move the current row up (Ctrl+Shift+Up)</source>
@@ -2579,11 +2580,11 @@ If this is disabled, external file changes will be ignored unless they are loade
     </message>
     <message>
         <source>No download URL of the version [%1] is found.</source>
-        <translation>Не найдено URL для загрузки версии [%1]</translation>
+        <translation>Не найдено URL для загрузки версии [%1].</translation>
     </message>
     <message>
         <source>This error is probably caused by the lack of the OpenSSL library. You can visit &lt;a href=&quot;https://wiki.openssl.org/index.php/Binaries&quot;&gt;the OpenSSLWiki&lt;/a&gt; to find a binary to install, or install it via your favourite package manager. You have to install a version compatible with this version: [%1]</source>
-        <translation>Эта ошибка, вероятно, вызвана отсутствием библиотеки OpenSSL. Вы можете посетить &lt;a href=&quot;https://wiki.openssl.org/index.php/Binaries&quot;&gt;OpenSSLWiki&lt;/a&gt; для установки бинарного файла, или установите его через Ваш пакетный менеджер. Рекомендуется установить версию, совместимую с этой версией: [%1] </translation>
+        <translation>Эта ошибка, вероятно, вызвана отсутствием библиотеки OpenSSL. Вы можете посетить &lt;a href=&quot;https://wiki.openssl.org/index.php/Binaries&quot;&gt;OpenSSLWiki&lt;/a&gt; для установки бинарного файла, или установите его через Ваш пакетный менеджер. Рекомендуется установить версию, совместимую с этой версией: [%1]</translation>
     </message>
 </context>
 <context>
@@ -2598,7 +2599,7 @@ If this is disabled, external file changes will be ignored unless they are loade
     </message>
     <message>
         <source>Failed to save to [%1]. Do I have write permission?</source>
-        <translation>Не удалось сохранить [%1]. Предоставлен ли доступ  к записи в фалйл</translation>
+        <translation>Не удалось сохранить [%1]. Предоставлен ли доступ  к записи в фалйл?</translation>
     </message>
     <message>
         <source>The file [%1] does not exist</source>
@@ -2715,7 +2716,7 @@ If this is disabled, external file changes will be ignored unless they are loade
     </message>
     <message>
         <source>The testcase file [%1] contains more than %2 characters, so it&apos;s not loaded. You can change the length limit in Preferences-&gt;Advanced-&gt;Limits-&gt;Load Test Case File Length Limit</source>
-        <translation>Файл тесткейсов [%1] содержит более 2 символов, из-за чего он не загружается. Вы можете изменить ограничение длины в Настройки-&gt;Дополнительно-&gt;Лимиты-&gt;Ограничение длины файла тесткейса</translation>
+        <translation>Файл тесткейсов [%1] содержит более %2 символов, из-за чего он не загружается. Вы можете изменить ограничение длины в Настройки-&gt;Дополнительно-&gt;Лимиты-&gt;Ограничение длины файла тесткейса</translation>
     </message>
 </context>
 <context>
@@ -2870,7 +2871,7 @@ If this is disabled, external file changes will be ignored unless they are loade
     </message>
     <message>
         <source>The testcase file [%1] contains more than %2 characters, so it&apos;s not loaded. You can change the length limit in Preferences-&gt;Advanced-&gt;Limits-&gt;Load Test Case File Length Limit</source>
-        <translation>Файл тесткейсов [%1] содержит более 2 символов, из-за чего он не загружается. Вы можете изменить ограничение длины в Настройки-&gt;Дополнительно-&gt;Лимиты-&gt;Ограничение длины файла тесткейса&gt;</translation>
+        <translation>Файл тесткейсов [%1] содержит более %2 символов, из-за чего он не загружается. Вы можете изменить ограничение длины в Настройки-&gt;Дополнительно-&gt;Лимиты-&gt;Ограничение длины файла тесткейса&gt;</translation>
     </message>
 </context>
 <context>
