@@ -2818,7 +2818,7 @@ If this is disabled, external file changes will be ignored unless they are loade
     </message>
     <message>
         <source>rcmp4 - Compare doubles, max error 1e-4</source>
-        <translation>rcmp9 - Сравнение doubles, максимальная погрешность 1e-4</translation>
+        <translation>rcmp4 - Сравнение doubles, максимальная погрешность 1e-4</translation>
     </message>
     <message>
         <source>rcmp6 - Compare doubles, max error 1e-6</source>
