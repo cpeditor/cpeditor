@@ -2822,7 +2822,7 @@ If this is disabled, external file changes will be ignored unless they are loade
     </message>
     <message>
         <source>rcmp6 - Compare doubles, max error 1e-6</source>
-        <translation>rcmp9 - Сравнение doubles, максимальная погрешность 1e-6</translation>
+        <translation>rcmp6 - Сравнение doubles, максимальная погрешность 1e-6</translation>
     </message>
     <message>
         <source>rcmp9 - Compare doubles, max error 1e-9</source>
