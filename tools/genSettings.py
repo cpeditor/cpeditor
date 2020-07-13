@@ -4,7 +4,6 @@
 import sys
 import json
 
-
 def writeHelper(f, obj, pre, indent):
     ids = "    " * indent
     for t in obj:
@@ -12,33 +11,29 @@ def writeHelper(f, obj, pre, indent):
         key = name.replace(" ", "").replace("/", "").replace("+", "p")
         typename = t["type"]
         if typename == "Object":
-            f.write(f"{ids}struct {key} {{\n")
-            f.write(f"{ids}    QString pre;\n")
-            f.write(f"{ids}    {key}(QString p) : pre(p) {{}}\n")
-            writeHelper(f, t["sub"], "pre, ", indent + 1)
-            f.write(f"{ids}}};\n")
-            f.write(
-                f"{ids}inline {key} get{key}(QString key) {{ return {key}(QStringList {{{pre} {json.dumps(name)}, key}}.join('/')); }}\n")
-            f.write(f"{ids}inline void remove{key}(QString key) {{ SettingsManager::remove(SettingsManager::keyStartsWith(QStringList {{{pre} {json.dumps(name)}, key}}.join('/'))); }}\n")
-            f.write(f"{ids}inline QStringList query{key}() {{ return SettingsManager::itemUnder(QStringList {{{pre} {json.dumps(name)}}}.join('/') + '/'); }}\n")
+            f = f + f"{ids}struct {key} {{\n"
+            f = f + f"{ids}    QString pre;\n"
+            f = f + f"{ids}    {key}(QString p) : pre(p) {{}}\n"
+            f = writeHelper(f, t["sub"], "pre, ", indent + 1)
+            f = f + f"{ids}}};\n"
+            f = f + f"{ids}inline {key} get{key}(QString key) {{ return {key}(QStringList {{{pre} {json.dumps(name)}, key}}.join('/')); }}\n"
+            f = f + f"{ids}inline void remove{key}(QString key) {{ SettingsManager::remove(SettingsManager::keyStartsWith(QStringList {{{pre} {json.dumps(name)}, key}}.join('/'))); }}\n"
+            f = f + f"{ids}inline QStringList query{key}() {{ return SettingsManager::itemUnder(QStringList {{{pre} {json.dumps(name)}}}.join('/') + '/'); }}\n"
         elif typename == "QMap":
             final = t["final"]
             pname = t.get("plural", name)
             pkey = pname.replace(" ", "").replace("/", "").replace("+", "p")
-            f.write(f"{ids}inline void set{key}(QString key, {final} data) {{ SettingsManager::set(QStringList {{{pre} {json.dumps(name)}, key}}.join('/'), data); }}\n")
-            f.write(f"{ids}inline void remove{key}(QString key) {{ SettingsManager::remove({{QStringList {{{pre} {json.dumps(name)}, key}}.join('/')}}); }}\n")
-            f.write(f"{ids}inline {final} get{key}(QString key) {{ return SettingsManager::get(QStringList {{{pre} {json.dumps(name)}, key}}.join('/')).value<{final}>(); }}\n")
-            f.write(f"{ids}inline QStringList get{pkey}() {{ return SettingsManager::itemUnder(QStringList {{{pre} {json.dumps(name)}}}.join('/') + '/'); }}\n")
+            f = f + f"{ids}inline void set{key}(QString key, {final} data) {{ SettingsManager::set(QStringList {{{pre} {json.dumps(name)}, key}}.join('/'), data); }}\n"
+            f = f + f"{ids}inline void remove{key}(QString key) {{ SettingsManager::remove({{QStringList {{{pre} {json.dumps(name)}, key}}.join('/')}}); }}\n"
+            f = f + f"{ids}inline {final} get{key}(QString key) {{ return SettingsManager::get(QStringList {{{pre} {json.dumps(name)}, key}}.join('/')).value<{final}>(); }}\n"
+            f = f + f"{ids}inline QStringList get{pkey}() {{ return SettingsManager::itemUnder(QStringList {{{pre} {json.dumps(name)}}}.join('/') + '/'); }}\n"
         else:
-            f.write(
-                f"{ids}inline void set{key}({typename} value) {{ SettingsManager::set({json.dumps(name)}, value); }}\n")
+            f = f + f"{ids}inline void set{key}({typename} value) {{ SettingsManager::set({json.dumps(name)}, value); }}\n"
             if typename == "bool":
-                f.write(
-                    f"{ids}inline bool is{key}() {{ return SettingsManager::get({json.dumps(name)}).toBool(); }}\n")
+                f = f + f"{ids}inline bool is{key}() {{ return SettingsManager::get({json.dumps(name)}).toBool(); }}\n"
             else:
-                f.write(
-                    f"{ids}inline {typename} get{key}() {{ return SettingsManager::get({json.dumps(name)}).value<{typename}>(); }}\n")
-
+                f = f + f"{ids}inline {typename} get{key}() {{ return SettingsManager::get({json.dumps(name)}).value<{typename}>(); }}\n"
+    return f
 
 def writeInfo(f, obj, lst):
     for t in obj:
@@ -54,15 +49,15 @@ def writeInfo(f, obj, lst):
         requireAllDepends = t.get("requireAllDepends", True)
         depends = t.get("depends", [])
         if typename == "Object":
-            f.write(f"    QList<SettingInfo> LIST{key};\n")
-            writeInfo(f, t["sub"], f"LIST{key}")
-        f.write(f"    {lst}.append(SettingInfo {{{json.dumps(name)}, ")
+            f = f + f"    QList<SettingInfo> LIST{key};\n"
+            f = writeInfo(f, t["sub"], f"LIST{key}")
+        f = f + f"    {lst}.append(SettingInfo {{{json.dumps(name)}, "
         if "trdesc" not in t:
             for lang in ["C++", "Java", "Python"]:
                 if lang in desc:
                     trdesc = f"tr({json.dumps(desc.replace(lang, '%1'))}).arg(\"{lang}\")"
                     break
-        f.write(trdesc)
+        f = f + trdesc
         tempname = typename
         if typename == "QMap":
             final = t["final"]
@@ -71,17 +66,16 @@ def writeInfo(f, obj, lst):
         for depend in depends:
             dependsString += f"{{{json.dumps(depend.get('name', ''))}, [](const QVariant &var) {{ {depend.get('check', 'return var.toBool();')} }}}}, "
         dependsString += "}"
-        f.write(
-            f", \"{tempname}\", \"{ui}\", {trtip}, tr({json.dumps(hlp)}), {json.dumps(requireAllDepends)}, {dependsString}, ")
+        f = f + f", \"{tempname}\", \"{ui}\", {trtip}, tr({json.dumps(hlp)}), {json.dumps(requireAllDepends)}, {dependsString}, "
         if typename != "Object":
             if "default" in t:
                 if typename == "QString":
-                    f.write(json.dumps(t["default"]))
+                    f = f + json.dumps(t["default"])
                 else:
                     if isinstance(t["default"], bool):
-                        f.write(str(t["default"]).lower())
+                        f = f + str(t["default"]).lower()
                     else:
-                        f.write(str(t["default"]))
+                        f = f + str(t["default"])
             else:
                 defs = {
                     'QString': '""',
@@ -92,14 +86,14 @@ def writeInfo(f, obj, lst):
                     'QVariantList': 'QVariantList()',
                     'QMap': 'QVariantMap()'
                 }
-                f.write(defs[typename])
+                f = f + defs[typename]
         else:
-            f.write(f'QVariant()')
-        f.write(f', {t.get("param", "QVariant()")}')
+            f = f + f'QVariant()'
+        f = f + f', {t.get("param", "QVariant()")}'
         if typename == "Object":
-            f.write(f", LIST{key}")
-        f.write("});\n")
-
+            f = f + f", LIST{key}"
+        f = f + "});\n"
+    return f
 
 def addDefaultPaths(obj):
     actions = [
@@ -132,6 +126,16 @@ def addDefaultPaths(obj):
             "trtip": f'tr("The default paths changed after choosing a path for %1.\\nIt is a list of <default path name>s, separated by commas, and can be empty.").arg(tr("{action[0]}"))'
         })
 
+def updateIfNeeded(path, text):
+    file = open(path, mode="r", encoding="utf-8")
+    buf = file.read()
+    file.close()
+    if buf == text:
+        print(f"Skip update {path} as no changes applied")
+        return
+    file = open(path, mode="w", encoding="utf-8")
+    file.write(text)
+    file.close()
 
 if __name__ == "__main__":
     obj = json.load(open(sys.argv[1], mode="r", encoding="utf-8"))
@@ -160,10 +164,8 @@ if __name__ == "__main__":
  */
 
 """
-    setting_helper = open("generated/SettingsHelper.hpp",
-                          mode="w", encoding="utf-8")
-    setting_helper.write(head)
-    setting_helper.write("""#ifndef SETTINGSHELPER_HPP
+    buf = head
+    buf = buf + """#ifndef SETTINGSHELPER_HPP
 #define SETTINGSHELPER_HPP
 
 #include "Settings/SettingsManager.hpp"
@@ -173,17 +175,15 @@ if __name__ == "__main__":
 
 namespace SettingsHelper
 {
-""")
-    writeHelper(setting_helper, obj, "", 1)
-    setting_helper.write("""}
+"""
+    buf = writeHelper(buf, obj, "", 1)
+    buf = buf + """}
 
-#endif // SETTINGSHELPER_HPP""")
-    setting_helper.close()
+#endif // SETTINGSHELPER_HPP"""
+    updateIfNeeded("generated/SettingsHelper.hpp", buf)
 
-    setting_info = open("generated/SettingsInfo.cpp",
-                        mode="w", encoding="utf-8")
-    setting_info.write(head)
-    setting_info.write("""#include "Settings/SettingsInfo.hpp"
+    buf = head
+    buf = buf + """#include "Settings/SettingsInfo.hpp"
 #include "Core/StyleManager.hpp"
 #include "Settings/PathItem.hpp"
 #include <QFontDatabase>
@@ -194,7 +194,7 @@ QList<SettingsInfo::SettingInfo> SettingsInfo::settings;
 void SettingsInfo::updateSettingInfo()
 {
     settings.clear();
-""")
-    writeInfo(setting_info, obj, "settings")
-    setting_info.write("};\n")
-    setting_info.close()
+"""
+    buf = writeInfo(buf, obj, "settings")
+    buf = buf + "};\n"
+    updateIfNeeded("generated/SettingsInfo.cpp", buf)
