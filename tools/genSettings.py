@@ -88,7 +88,7 @@ def writeInfo(f, obj, lst):
                 }
                 f = f + defs[typename]
         else:
-            f = f + f'QVariant()'
+            f = f + "QVariant()"
         f = f + f', {t.get("param", "QVariant()")}'
         if typename == "Object":
             f = f + f", LIST{key}"
@@ -198,3 +198,6 @@ void SettingsInfo::updateSettingInfo()
     buf = writeInfo(buf, obj, "settings")
     buf = buf + "};\n"
     updateIfNeeded("generated/SettingsInfo.cpp", buf)
+
+    file = open("generated/GENSETTING", mode="w")
+    file.close()

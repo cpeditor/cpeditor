@@ -82,7 +82,7 @@ message(STATUS "Display version: ${DISPLAY_VERSION}")
 configure_file(cmake/version.hpp.in ${CMAKE_BINARY_DIR}/generated/version.hpp)
 configure_file(cmake/portable.hpp.in ${CMAKE_BINARY_DIR}/generated/portable.hpp)
 
-add_custom_command(OUTPUT ${CMAKE_BINARY_DIR}/generated/SettingsHelper.hpp ${CMAKE_BINARY_DIR}/generated/SettingsInfo.cpp
+add_custom_command(OUTPUT ${CMAKE_BINARY_DIR}/generated/GENSETTING
                    COMMAND ${Python3_EXECUTABLE} ${PROJECT_SOURCE_DIR}/tools/genSettings.py ${PROJECT_SOURCE_DIR}/src/Settings/settings.json
                    WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
                    DEPENDS ${PROJECT_SOURCE_DIR}/src/Settings/settings.json ${PROJECT_SOURCE_DIR}/tools/genSettings.py)
@@ -209,7 +209,9 @@ add_executable(cpeditor
 
     ${CMAKE_BINARY_DIR}/translations/translations.qrc
     resources/resources.qrc
-    assets/appicon.rc)
+    assets/appicon.rc
+    
+    ${CMAKE_BINARY_DIR}/generated/GENSETTING)
 
 include_directories("generated/")
 include_directories("src/")
