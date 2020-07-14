@@ -29,7 +29,9 @@ jobs:
         run: |
           mkdir -p downloads
           cd downloads
-          dn() { wget -c "https://github.com/${{ github.repository }}/releases/download/${{ steps.get_version.outputs.VERSION }}/cpeditor-${{ steps.get_version.outputs.VERSION }}-$1" }
+          dn() {
+            wget -c "https://github.com/${{ github.repository }}/releases/download/${{ steps.get_version.outputs.VERSION }}/cpeditor-${{ steps.get_version.outputs.VERSION }}-$1"
+          }
           dn linux-x86_64.AppImage
           dn linux-x86_64-portable.AppImage
           dn windows-x64-setup.exe

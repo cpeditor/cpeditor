@@ -180,7 +180,7 @@ void Checker::onRunFinished(int index, const QString &out, const QString &err, i
         if (err.isEmpty())
             log->error(tr("Checker[%1]").arg(index + 1), tr("Checker exited with exit code %1").arg(exitCode));
         else
-            log->error(QString("Checker[%1]").arg(index + 1), err);
+            log->error(tr("Checker[%1]").arg(index + 1), err);
         emit checkFinished(index, WA);
     }
     else
@@ -188,7 +188,7 @@ void Checker::onRunFinished(int index, const QString &out, const QString &err, i
         // This exit code is not one of the normal exit codes of a testlib checker, maybe the checker crashed
         log->error(tr("Checker[%1]").arg(index + 1), tr("Checker exited with unknown exit code %1").arg(exitCode));
         if (!err.isEmpty())
-            log->error(QString("Checker[%1]").arg(index + 1), err);
+            log->error(tr("Checker[%1]").arg(index + 1), err);
     }
 }
 
@@ -215,7 +215,7 @@ void Checker::onRunOutputLimitExceeded(int index, const QString &type)
 
 void Checker::onRunKilled(int index)
 {
-    log->error(QString("Checker[%1]").arg(index + 1), tr("Killed"));
+    log->error(tr("Checker[%1]").arg(index + 1), tr("Killed"));
 }
 
 bool Checker::checkIgnoreTrailingSpaces(const QString &output, const QString &expected)

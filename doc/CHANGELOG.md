@@ -28,6 +28,7 @@ With the portable version, you can easily store it in something like a USB disk,
 - Separated settings for format on manual save and format on auto-save. (#488)
 - An option to disable toast messages of CF Tool. (#489)
 - Add Russian translations. (#494)
+- Now the test cases will be elided if they are too long. (#491)
 
 ### Fixed
 
@@ -37,7 +38,6 @@ With the portable version, you can easily store it in something like a USB disk,
 
 ### Changed
 
-- Now the lengths of the files added by "Add Pairs of Testcases From Files" are limited by Preferences->Advanced->Limits->Load Test Case File Length Limit. (#405)
 - The default font is set to the system fixed-width font instead of the font named "Monospace". (#422)
 - Now the session is stored in a separate file, which was stored along with the settings. So now when exporting/importing settings, the session won't be included, but you can export/load the session separately. (#437 and #442)
 - Now the hidden (not in the search result) pages are skipped when navigating pages in the preferences window via Ctrl+Tab and Ctrl+Shift+Tab. (#447)
@@ -45,6 +45,7 @@ With the portable version, you can easily store it in something like a USB disk,
 - Now the default main class name of Java is `Main` instead of `a`. (#461)
 - Now the version displayed in `cpeditor --version` is `X.Y.Z.rXX.gGITHASH` if the current commit (HEAD) has no tag, otherwise, it is the actual version. (#468)
 - Now the manual URL contains the commit hash instead of the version number, so that it works on the master branch. (#468)
+- Now Tab Jump Out Parentheses is disabled by default. (#499)
 
 ## v6.5
 

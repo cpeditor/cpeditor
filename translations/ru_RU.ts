@@ -2526,6 +2526,20 @@ A loaded test case will be elided and read-only if it&apos;s too long.</source>
 Если тесткейс большой, то он будет опущен и досупен только для чтения.</translation>
     </message>
     <message>
+        <source>Output Display Length Limit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The maximum number of characters to be displayed for the output of the program.
+If the output is too long, it will be elided.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The maximum number of characters in a test case to be loaded.
+A loaded test case will be elided and read-only if it&apos;s too long.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Show toast messages for submission verdicts</source>
         <translation>Показывать всплывающие уведомления для вердиктов отправок</translation>
     </message>
