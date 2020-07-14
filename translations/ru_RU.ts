@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="ru_RU" sourcelanguage="en_US">
+<TS version="2.1" language="ru" sourcelanguage="en">
 <context>
     <name>AppWindow</name>
     <message>
@@ -73,7 +73,7 @@
     </message>
     <message>
         <source>There is no snippet named %1 for %2</source>
-        <translation>Отсутствуют сниппеты под названием %1 для %2></translation>
+        <translation>Отсутствуют сниппеты под названием %1 для %2</translation>
     </message>
     <message>
         <source>Close</source>
@@ -149,7 +149,7 @@
     </message>
     <message>
         <source>EventLogger</source>
-        <translation>Логгер Событий</translation>
+        <translation>Логгер cобытий</translation>
     </message>
     <message>
         <source>All logs except for current session has been deleted</source>
@@ -273,7 +273,7 @@
     </message>
     <message>
         <source>Ctrl+]</source>
-        <translation>Ctrl+] (Ctrl + Ъ)</translation>
+        <translation>Ctrl+] (Ctrl+Ъ)</translation>
     </message>
     <message>
         <source>Unindent</source>
@@ -281,7 +281,7 @@
     </message>
     <message>
         <source>Ctrl+[</source>
-        <translation>Ctrl+[ (Ctrl + Х)</translation>
+        <translation>Ctrl+[ (Ctrl+Х)</translation>
     </message>
     <message>
         <source>Swap Line Up</source>
@@ -553,9 +553,9 @@ Git commit hash: %2
 Build time: %3
 OS: %4</source>
         <translation>Версия программы: %1
-        Git commit hash: %2
-        Время Сборки: %3
-        ОС: %4</translation>
+Git commit hash: %2
+Время Сборки: %3
+ОС: %4</translation>
     </message>
     <message>
         <source>Import Settings</source>
@@ -581,7 +581,7 @@ OS: %4</source>
     <name>CodeSnippetsPage</name>
     <message>
         <source>Search...</source>
-        <translation>Поиск...</translation>
+        <translation>Search...</translation>
     </message>
     <message>
         <source>Add</source>
@@ -605,7 +605,7 @@ OS: %4</source>
     </message>
     <message>
         <source>More</source>
-        <translation>Дополнительно</translation>
+        <translation>Еще</translation>
     </message>
     <message>
         <source>No Snippet Selected</source>
@@ -714,7 +714,7 @@ OS: %4</source>
     </message>
     <message>
         <source>Checker exited with unknown exit code %1</source>
-        <translation>Чекер завершил работу с неизвестным кодом ошибки %1</translation>
+        <translation>Чекер завершил работу с неизвестым кодом %1</translation>
     </message>
     <message>
         <source>Time Limit Exceeded</source>
@@ -841,7 +841,7 @@ OS: %4</source>
     </message>
     <message>
         <source>The format process didn&apos;t finish in 2 seconds. This is probably because the clang-format binary is not found by CP Editor. You can set the path to clang-format in Preferences-&gt;Extensions-&gt;Clang Format.</source>
-        <translation>Процесс форматировния не завершился за 2 секунды. Возможно исполняемый файл clang-format не найден CP Editor'ом. Вы можете установить путь к clang-format в Параметры-&gt;Расширения-&gt;Clang Format.</translation>
+        <translation>Процесс форматировния не завершился за 2 секунды. Возможно исполняемый файл clang-format не найден CP Editor&apos;ом. Вы можете установить путь к clang-format в Параметры-&gt;Расширения-&gt;Clang Format.</translation>
     </message>
     <message>
         <source>The format command is: %1 %2</source>
@@ -978,7 +978,7 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;You may want to take a look at the syntax of regular expressions:&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://doc.trolltech.com/qregexp.html&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://doc.trolltech.com/qregexp.html&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
@@ -1224,7 +1224,7 @@ Do you want to reload it?</source>
     </message>
     <message>
         <source>cursor info</source>
-        <translation>Информация о курсоре</translation>
+        <translation>информация с курсора</translation>
     </message>
     <message>
         <source>Compile</source>
@@ -1240,7 +1240,7 @@ Do you want to reload it?</source>
     </message>
     <message>
         <source>Messages</source>
-        <translation>Лог</translation>
+        <translation>Сообщения</translation>
     </message>
     <message>
         <source>Clear</source>
@@ -1394,15 +1394,15 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     </message>
     <message>
         <source>Restore the default settings on the current page. (Ctrl+D)</source>
-        <translation>Восстановите настройки по умолчанию на текущей странице. (Ctrl+D)</translation>
+        <translation>Восстановить настройки по умолчанию на текущей странице. (Ctrl+D)</translation>
     </message>
     <message>
         <source>Discard all changes on the current page. (Ctrl+R)</source>
-        <translation>Отбросьте все изменения на текущей странице. (Ctrl+R)</translation>
+        <translation>Сбросить все изменения на текущей странице. (Ctrl+R)</translation>
     </message>
     <message>
         <source>Save the changes on the current page. (Ctrl+S)</source>
-        <translation>Сохраните изменения на текущей странице. (Ctrl+S)</translation>
+        <translation>Сохранить изменения на текущей странице. (Ctrl+S)</translation>
     </message>
     <message>
         <source>Unsaved Settings</source>
@@ -1417,7 +1417,7 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     <name>PreferencesWindow</name>
     <message>
         <source>Preferences</source>
-        <translation>Настройки</translation>
+        <translation>Параметры</translation>
     </message>
     <message>
         <source>Search...</source>
@@ -1429,7 +1429,7 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     </message>
     <message>
         <source>Go to the home page</source>
-        <translation>Назад в основную страницу</translation>
+        <translation>Назад на основную страницу</translation>
     </message>
     <message>
         <source>Code Edit</source>
@@ -1626,7 +1626,8 @@ The cursor will be at the end of the template if there&apos;s no match of the re
     </message>
     <message>
         <source>Whether the offset is relative to the start of the regex or the end of the regex.</source>
-        <translation>Относительно смещения относительно начала регулярного выражения или конца регулярного выражения.</translation>
+        <translatorcomment>Относительное смещение относительно начала регулярного выражения или конца регулярного выражения.</translatorcomment>
+        <translation></translation>
     </message>
     <message>
         <source>The offset relative to the match of the regex in the number of characters, including white spaces.</source>
@@ -1735,8 +1736,8 @@ You can use &quot;${filename}&quot; for the complete file name,
         <translation>Свернуть строку в несколько строк, если она не помещается на экране.</translation>
     </message>
     <message>
-        <source>Use the beta version.</source>
-        <translation>Использовать бета-версию.</translation>
+        <source>Use the beta version</source>
+        <translation>Использовать бета-версию</translation>
     </message>
     <message>
         <source>Check for updates marked as pre-releases, which are considered not very stable but have more features.</source>
@@ -1836,7 +1837,7 @@ This can be overridden for each parenthesis in each language.</source>
     </message>
     <message>
         <source>Save Testcases on Save</source>
-        <translation>Сохранять тесткейса при нажатии на "Сохранить"</translation>
+        <translation>Сохранять тесткейса при нажатии на &quot;Сохранить&quot;</translation>
     </message>
     <message>
         <source>Save the testcases on the disk when saving a file, and load the saved testcases when opening a file.</source>
@@ -1936,11 +1937,11 @@ This can be overridden for each parenthesis in each language.</source>
     </message>
     <message>
         <source>Show Compile And Run Only</source>
-        <translation>Показывать только "компиляцию и запуск"</translation>
+        <translation>Показывать только &quot;компиляцию и запуск&quot;</translation>
     </message>
     <message>
         <source>Hide the Compile Only button and the Run Only button under the code editor in the main window.</source>
-        <translation>Скрыть кнопку "Только компиляция" и кнопку "Только запуск" под редактором кода в главном окне.</translation>
+        <translation>Скрыть кнопку &quot;Только компиляция&quot; и кнопку &quot;Только запуск&quot; под редактором кода в главном окне.</translation>
     </message>
     <message>
         <source>Display EOLN In Diff</source>
@@ -2011,14 +2012,8 @@ A source file won&apos;t be opened if it&apos;s too long.</source>
 Исходный файл не будет открыт, если он слишком длинный.</translation>
     </message>
     <message>
-        <source>Load Test Case File Length Limit</source>
+        <source>Load Test Case Length Limit</source>
         <translation>Лмимт длины загружаемых тесткейсов</translation>
-    </message>
-    <message>
-        <source>The maximum number of characters in a testcase file to load.
-A testcase file won&apos;t be loaded if it&apos;s too long.</source>
-        <translation>Максимальное количество символов в тестовом файле для загрузки.
-Файл теста не будет загружен, если он слишком длинный.</translation>
     </message>
     <message>
         <source>Path to LSP executable</source>
@@ -2108,7 +2103,7 @@ This setting is a relative path to the source file.
 You can use &quot;${filename}&quot; for the complete file name,
 &quot;${basename}&quot; for the base file name without the suffix,
 &quot;${0-index}&quot; for the index of the test case started from 0,
-&quot;${0-index}&quot; for the index of the test case started from 1.</source>
+&quot;${1-index}&quot; for the index of the test case started from 1.</source>
         <translation>Путь, куда сохраняются входные файлы.
 Этот параметр является относительным путем к исходному файлу.
 Вы можете использовать &quot;${filename}&quot; для полного имени файла,
@@ -2240,7 +2235,7 @@ from Competitive Companion again, the old file will be opened.</source>
     </message>
     <message>
         <source>Run your codes on empty test cases</source>
-        <translation>Запустить свои коды на пустых тесткейсах</translation>
+        <translation>Запустить свой код на пустых тесткейсах</translation>
     </message>
     <message>
         <source>Run your code on all non-hidden test cases even if the input is empty.</source>
@@ -2256,7 +2251,7 @@ from Competitive Companion again, the old file will be opened.</source>
     </message>
     <message>
         <source>Auto Save Interval (ms)</source>
-        <translation>Интервал автосохранения (ms)</translation>
+        <translation>Интервал автосохранения (мс)</translation>
     </message>
     <message>
         <source>The time interval between a modification and an auto-save, or between two auto-saves.</source>
@@ -2283,8 +2278,8 @@ Without modification: auto-save happens with an constant inverval no matter ther
         <translation>Конфигурация языка</translation>
     </message>
     <message>
-        <source>Restore last session at startup.</source>
-        <translation>Восстановить последний сеанс при запуске приложения.</translation>
+        <source>Restore last session at startup</source>
+        <translation>Восстановить последний сеанс при запуске приложения</translation>
     </message>
     <message>
         <source>Restore the last session when the application starts.
@@ -2314,7 +2309,7 @@ kill the application with SIGKILL which could not be handled by the application.
     </message>
     <message>
         <source>Test Case Maximum Height</source>
-        <translation>Максимальная высота тесткейса</translation>
+        <translation>Максимальная высота панели тесткейсов</translation>
     </message>
     <message>
         <source>The maximum height of a test case without a scrollbar in pixels.</source>
@@ -2346,7 +2341,7 @@ kill the application with SIGKILL which could not be handled by the application.
     </message>
     <message>
         <source>Type</source>
-        <translation>Вид</translation>
+        <translation>Тип</translation>
     </message>
     <message>
         <source>Host Name</source>
@@ -2429,7 +2424,8 @@ You can use ${&lt;default path name&gt;} as a place holder.</source>
     <message>
         <source>The default paths changed after choosing a path for %1.
 It is a list of &lt;default path name&gt;s, separated by commas, and can be empty.</source>
-        <translation>Путь по умолчанию сменён после выбора пути %1.</translation>
+        <translation>Стандратные пути изменятся после выбора пути для %1.
+Это список &lt;default path name&gt;s, разделенный запятыми, который не может быть пустым.</translation>
     </message>
     <message>
         <source>Save File</source>
@@ -2437,7 +2433,7 @@ It is a list of &lt;default path name&gt;s, separated by commas, and can be empt
     </message>
     <message>
         <source>Open Contest</source>
-        <translation>Открыть контест</translation>
+        <translation>Открыть соревнование</translation>
     </message>
     <message>
         <source>Load Single Test Case</source>
@@ -2445,7 +2441,7 @@ It is a list of &lt;default path name&gt;s, separated by commas, and can be empt
     </message>
     <message>
         <source>Add Pairs Of Test Cases</source>
-        <translation>Добавить пару тесткейсов</translation>
+        <translation>Добавить пары тесткейсов</translation>
     </message>
     <message>
         <source>Custom Checker</source>
@@ -2477,7 +2473,7 @@ It is a list of &lt;default path name&gt;s, separated by commas, and can be empt
     </message>
     <message>
         <source>Use Clang Format to format the code when auto-saving it.</source>
-        <translation>Использовать формат Clang для форматирования кода при его автоматическом сохранении.</translation>
+        <translation>Использовать Clang Format для форматирования кода при его автоматическом сохранении.</translation>
     </message>
     <message>
         <source>Format code on manual save</source>
@@ -2485,7 +2481,7 @@ It is a list of &lt;default path name&gt;s, separated by commas, and can be empt
     </message>
     <message>
         <source>Use Clang Format to format the code when saving it manually.</source>
-        <translation>Использовать формат Clang для форматирования кода при его ручном сохранении.</translation>
+        <translation>Использовать Clang Format для форматирования кода при его ручном сохранении.</translation>
     </message>
     <message>
         <source>Format code on auto-save</source>
@@ -2514,12 +2510,28 @@ If this is disabled, external file changes will be ignored unless they are loade
 &quot;%1&quot;.</translation>
     </message>
     <message>
-        <source>Show toast messages for submission verdicts</source>
+        <source>Output Display Length Limit</source>
         <translation>Показывать оповещения о вердиктах решения</translation>
     </message>
     <message>
+        <source>The maximum number of characters to be displayed for the output of the program.
+If the output is too long, it will be elided.</source>
+        <translation>Максимальное число символов, которые будут отображены в выводе программы.
+Если вывод очень большой, то он будет опущен.</translation>
+    </message>
+    <message>
+        <source>The maximum number of characters in a test case to be loaded.
+A loaded test case will be elided and read-only if it&apos;s too long.</source>
+        <translation>Максимальное число символов, в загруженном тесткейсе.
+Если тесткейс большой, то он будет опущен и досупен только для чтения.</translation>
+    </message>
+    <message>
+        <source>Show toast messages for submission verdicts</source>
+        <translation>Показывать всплывающие уведомления для вердиктов отправок</translation>
+    </message>
+    <message>
         <source>Show a toast message when the verdict of a submission is known. You can see the message outside of CP Editor.</source>
-        <translation>Показывать уведомление, когда вердикт решения известен. Вы можете увидеть сообщение за пределами CP Editor.</translation>
+        <translation>Показывать всплывающие уведомления, когда известен вердикт отправки. Вы сможете видеть сообщения за пределами CP Editor.</translation>
     </message>
 </context>
 <context>
@@ -2591,7 +2603,7 @@ If this is disabled, external file changes will be ignored unless they are loade
     <name>Util::FileUtil</name>
     <message>
         <source>%1Source Files (%2)</source>
-        <translation>%1Загрузить файлы (%2)</translation>
+        <translation>%1Исходные файлы (%2)</translation>
     </message>
     <message>
         <source>Failed to open [%1]. Do I have write permission?</source>
@@ -2656,18 +2668,6 @@ If this is disabled, external file changes will be ignored unless they are loade
         <translation>Открыть отображение различий</translation>
     </message>
     <message>
-        <source>Output Length Limit Exceeded</source>
-        <translation>Лимит длины вывода превышен</translation>
-    </message>
-    <message>
-        <source>Testcases</source>
-        <translation>Тесткейсы</translation>
-    </message>
-    <message>
-        <source>The output #%1 contains more than %2 characters, so it&apos;s not displayed. You can set the output length limit in Preferences-&gt;Advanced-&gt;Limits-&gt;Output Length Limit</source>
-        <translation>Вывод #%1 содержит больше, чем %2 символов, из-за чего он не отображается. Вы можете изменить лимит длины вывода в Настройки-&gt;Дополнительно-&gt;Лимиты-&gt;Лимит длины вывода</translation>
-    </message>
-    <message>
         <source>Input #%1</source>
         <translation>Ввод #%1</translation>
     </message>
@@ -2677,7 +2677,7 @@ If this is disabled, external file changes will be ignored unless they are loade
     </message>
     <message>
         <source>Expected #%1</source>
-        <translation>Ожидаемый вывод #%1</translation>
+        <translation>Ожидаемый вовод #%1</translation>
     </message>
     <message>
         <source>Delete Testcase</source>
@@ -2693,7 +2693,7 @@ If this is disabled, external file changes will be ignored unless they are loade
     </message>
     <message>
         <source>The output/expected contains more than %1 characters, HTML diff viewer is disabled. You can change the length limit in Preferences-&gt;Advanced-&gt;Limits-&gt;HTML Diff Viewer Length Limit</source>
-        <translation>Вывод/ответ содержит более %1 знаков, HTML diff viewer отключён. Вы можете изменить лимит длины в Настройки-&gt;Дополнительно-&gt;Лимиты-&gt;Лимит длины HTML Diff Viewer</translation>
+        <translation>Вывод/ответ содержит более %1 знаков, HTML diff viewer отключён. Вы можете изменить лимит длины в Параметры-&gt;Дополнительно-&gt;Лимиты-&gt;Лимит длины HTML Diff Viewer</translation>
     </message>
 </context>
 <context>
@@ -2704,19 +2704,39 @@ If this is disabled, external file changes will be ignored unless they are loade
     </message>
     <message>
         <source>Edit in Bigger Window</source>
-        <translation>Отредактировать в большом окне</translation>
+        <translation>Отредактировать в большем окне</translation>
     </message>
     <message>
         <source>Edit Testcase</source>
         <translation>Изменить тесткейс</translation>
     </message>
     <message>
-        <source>Testcases</source>
-        <translation>Тесткейсы</translation>
+        <source>Preferences-&gt;Advanced-&gt;Limits-&gt;Output Display Length Limit</source>
+        <translation>Параметры-&gt;Дополнительный-&gt;Лимиты-&gt;Лимит длины выводимых данных</translation>
     </message>
     <message>
-        <source>The testcase file [%1] contains more than %2 characters, so it&apos;s not loaded. You can change the length limit in Preferences-&gt;Advanced-&gt;Limits-&gt;Load Test Case File Length Limit</source>
-        <translation>Файл тесткейсов [%1] содержит более %2 символов, из-за чего он не загружается. Вы можете изменить ограничение длины в Настройки-&gt;Дополнительно-&gt;Лимиты-&gt;Ограничение длины файла тесткейса</translation>
+        <source>Preferences-&gt;Advanced-&gt;Limits-&gt;Load Test Case Length Limit</source>
+        <translation>Параметры-&gt;Дополнительный-&gt;Лимиты-&gt;Лимит длины тесткейсов</translation>
+    </message>
+    <message>
+        <source>Input</source>
+        <translation>Ввод</translation>
+    </message>
+    <message>
+        <source>Output</source>
+        <translation>Вывод</translation>
+    </message>
+    <message>
+        <source>Expected</source>
+        <translation>Ожидаемый вывод</translation>
+    </message>
+    <message>
+        <source>Now the test case editor is read-only. You can set the length limit in %1.</source>
+        <translation>Сейчас тесткейсы доступны только для чтения. Вы можете установить лимит длины в %1.</translation>
+    </message>
+    <message>
+        <source>Only the first %1 characters are shown.</source>
+        <translation>Отображены только первые %1 символов.</translation>
     </message>
 </context>
 <context>
@@ -2743,7 +2763,7 @@ If this is disabled, external file changes will be ignored unless they are loade
     </message>
     <message>
         <source>Wrong Answer / Accepted / Total</source>
-        <translation>Неправильный ответ / Принято / Всего</translation>
+        <translation>Неправильный ответ / Полное решение / Всего</translation>
     </message>
     <message>
         <source>Add a custom testlib checker</source>
@@ -2771,11 +2791,11 @@ If this is disabled, external file changes will be ignored unless they are loade
     </message>
     <message>
         <source>The following files are not loaded because they are not matched:%1. You can set the matching rules at Preferences-&gt;File Path-&gt;Testcases-&gt;Add Testcases From Files Rules.</source>
-        <translation>Следующие файлы не загружаются, потому что они не совпадают:%1. Можно установить правила соответствия в Настройки-&gt;Путь файла-&gt;Тесткейсы-&gt;Добавить тесткейсы по правилам файлов.</translation>
+        <translation>Следующие файлы не загружаются, потому что они не совпадают:%1. Можно установить правила соответствия в Параметры-&gt;Путь файла-&gt;Тесткейсы-&gt;Добавить тесткейсы по правилам файлов.</translation>
     </message>
     <message>
         <source>Remove Empty</source>
-        <translation>Удалить пустое</translation>
+        <translation>Удалить пустые</translation>
     </message>
     <message>
         <source>Remove All</source>
@@ -2791,7 +2811,7 @@ If this is disabled, external file changes will be ignored unless they are loade
     </message>
     <message>
         <source>Hide AC</source>
-        <translation>Скрыть AC</translation>
+        <translation>Скрыть Полные решения</translation>
     </message>
     <message>
         <source>Show All</source>
@@ -2803,7 +2823,7 @@ If this is disabled, external file changes will be ignored unless they are loade
     </message>
     <message>
         <source>Invert</source>
-        <translation>Перевернуть</translation>
+        <translation>Инвертировать</translation>
     </message>
     <message>
         <source>Ignore trailing spaces</source>
@@ -2831,11 +2851,11 @@ If this is disabled, external file changes will be ignored unless they are loade
     </message>
     <message>
         <source>wcmp - Compare tokens</source>
-        <translation>wcmp - Сравнение токенов</translation> 
+        <translation>wcmp - Сравнение токенов</translation>
     </message>
     <message>
         <source>nyesno - Compare YES/NOs, case insensitive</source>
-        <translation>nyesno - проверить YES/NOs без учёта регистра</translation>
+        <translation>nyesno - Сравнение YES/NO без учёта регистра</translation>
     </message>
     <message>
         <source>Add Test Case</source>
@@ -2868,10 +2888,6 @@ If this is disabled, external file changes will be ignored unless they are loade
     <message>
         <source>Testcases</source>
         <translation>Тесткейсы</translation>
-    </message>
-    <message>
-        <source>The testcase file [%1] contains more than %2 characters, so it&apos;s not loaded. You can change the length limit in Preferences-&gt;Advanced-&gt;Limits-&gt;Load Test Case File Length Limit</source>
-        <translation>Файл тесткейсов [%1] содержит более %2 символов, из-за чего он не загружается. Вы можете изменить ограничение длины в Настройки-&gt;Дополнительно-&gt;Лимиты-&gt;Ограничение длины файла тесткейса&gt;</translation>
     </message>
 </context>
 <context>
@@ -2929,6 +2945,7 @@ If this is disabled, external file changes will be ignored unless they are loade
     </message>
     <message>
         <source>Hooray!! You are already using the latest release of CP Editor.</source>
+        <translatorcomment>The most suitable translation</translatorcomment>
         <translation>Вы уже используете последнюю версию CP Editor. Ура-а-а-а!</translation>
     </message>
 </context>
