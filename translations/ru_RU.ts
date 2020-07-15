@@ -273,7 +273,7 @@
     </message>
     <message>
         <source>Ctrl+]</source>
-        <translation>Ctrl+] (Ctrl+Ъ)</translation>
+        <translation>Ctrl+]</translation>
     </message>
     <message>
         <source>Unindent</source>
@@ -281,7 +281,7 @@
     </message>
     <message>
         <source>Ctrl+[</source>
-        <translation>Ctrl+[ (Ctrl+Х)</translation>
+        <translation>Ctrl+[</translation>
     </message>
     <message>
         <source>Swap Line Up</source>
@@ -2634,7 +2634,7 @@ A loaded test case will be elided and read-only if it&apos;s too long.</source>
     </message>
     <message>
         <source>Expected</source>
-        <translation>Ожидаемый вывод</translation>
+        <translation>Ожидаемо</translation>
     </message>
 </context>
 <context>
@@ -2649,11 +2649,11 @@ A loaded test case will be elided and read-only if it&apos;s too long.</source>
     </message>
     <message>
         <source>Expected</source>
-        <translation>Ожидаемый вывод</translation>
+        <translation>Ожидаемо</translation>
     </message>
     <message>
         <source>Run</source>
-        <translation>Запустить</translation>
+        <translation>Запуск</translation>
     </message>
     <message>
         <source>Del</source>
@@ -2677,7 +2677,7 @@ A loaded test case will be elided and read-only if it&apos;s too long.</source>
     </message>
     <message>
         <source>Expected #%1</source>
-        <translation>Ожидаемый вовод #%1</translation>
+        <translation>Ожидаемо #%1</translation>
     </message>
     <message>
         <source>Delete Testcase</source>
@@ -2728,7 +2728,7 @@ A loaded test case will be elided and read-only if it&apos;s too long.</source>
     </message>
     <message>
         <source>Expected</source>
-        <translation>Ожидаемый вывод</translation>
+        <translation>Ожидаемо</translation>
     </message>
     <message>
         <source>Now the test case editor is read-only. You can set the length limit in %1.</source>
@@ -2871,7 +2871,7 @@ A loaded test case will be elided and read-only if it&apos;s too long.</source>
     </message>
     <message>
         <source>Expected #%1</source>
-        <translation>Ожидаемый вывод #%1</translation>
+        <translation>Ожидаемо #%1</translation>
     </message>
     <message>
         <source>Save Input #%1</source>
