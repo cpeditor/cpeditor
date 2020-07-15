@@ -38,22 +38,6 @@ const static QStringList configFileLocations = {
 
 static const QStringList noUnknownKeyWarning = {"C++/Run Command", "Python/Compile Command"};
 
-void SettingsManager::init()
-{
-    QString path = Util::firstExistingConfigPath(configFileLocations);
-    if (!path.isEmpty())
-        loadSettings(path);
-}
-
-void SettingsManager::deinit()
-{
-    saveSettings(Util::configFilePath(configFileLocations[0]));
-
-    delete cur;
-    delete def;
-    cur = def = nullptr;
-}
-
 void SettingsManager::load(QSettings &setting, const QString &prefix, const QList<SettingsInfo::SettingInfo> &infos)
 {
     for (const auto &si : infos)
@@ -104,10 +88,8 @@ void SettingsManager::save(QSettings &setting, const QString &prefix, const QLis
             setting.setValue(QString("%1%2").arg(prefix, si.key()), get(si.name));
 }
 
-void SettingsManager::loadSettings(const QString &path)
+void SettingsManager::init()
 {
-    LOG_INFO("Start loading settings from " + path);
-
     if (cur)
         delete cur;
     if (def)
@@ -116,19 +98,42 @@ void SettingsManager::loadSettings(const QString &path)
     cur = new QVariantMap();
     def = new QVariantMap();
 
-    // default settings
+    generateDefaultSettings();
+
+    QString path = Util::firstExistingConfigPath(configFileLocations);
+    if (!path.isEmpty())
+        loadSettings(path);
+}
+
+void SettingsManager::deinit()
+{
+    saveSettings(Util::configFilePath(configFileLocations[0]));
+
+    delete cur;
+    delete def;
+    cur = def = nullptr;
+}
+
+void SettingsManager::generateDefaultSettings()
+{
+    LOG_INFO("Generating default settings");
+
     for (const auto &si : SettingsInfo::getSettings())
         def->insert(si.name, si.def);
 
-    if (!path.isEmpty())
-    {
-        QSettings setting(path, QSettings::IniFormat);
-        load(setting, "", SettingsInfo::getSettings());
-        SettingsUpdater::updateSetting(setting);
+    LOG_INFO("Default settings are generated")
+}
 
-        // load file problem binding
-        FileProblemBinder::fromVariant(setting.value("file_problem_binding"));
-    }
+void SettingsManager::loadSettings(const QString &path)
+{
+    LOG_INFO("Start loading settings from " + path);
+
+    QSettings setting(path, QSettings::IniFormat);
+    load(setting, "", SettingsInfo::getSettings());
+    SettingsUpdater::updateSetting(setting);
+
+    // load file problem binding
+    FileProblemBinder::fromVariant(setting.value("file_problem_binding"));
 
     LOG_INFO("Settings have been loaded from " + path);
 }
