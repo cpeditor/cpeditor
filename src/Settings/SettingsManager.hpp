@@ -32,6 +32,8 @@ class SettingsManager
     static void init();
     static void deinit();
 
+    static void generateDefaultSettings();
+
     static void loadSettings(const QString &path);
     static void saveSettings(const QString &path);
 
