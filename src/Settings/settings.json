@@ -824,7 +824,7 @@
         "type": "QString",
         "ui": "QComboBox",
         "default": "system",
-        "param": "QStringList { \"system\", \"English\", \"简体中文\" }",
+        "param": "QStringList { \"system\", \"English\", \"Русский\", \"简体中文\" }",
         "tip": "The language displayed in the UI."
     },
     {
