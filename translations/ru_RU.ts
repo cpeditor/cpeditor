@@ -1626,8 +1626,7 @@ The cursor will be at the end of the template if there&apos;s no match of the re
     </message>
     <message>
         <source>Whether the offset is relative to the start of the regex or the end of the regex.</source>
-        <translatorcomment>Относительное смещение относительно начала регулярного выражения или конца регулярного выражения.</translatorcomment>
-        <translation></translation>
+        <translation>Относительное смещение относительно начала регулярного выражения или конца регулярного выражения.</translation>
     </message>
     <message>
         <source>The offset relative to the match of the regex in the number of characters, including white spaces.</source>
