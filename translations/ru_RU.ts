@@ -567,7 +567,7 @@ Git commit hash: %2
     </message>
     <message>
         <source>Duplicate Tab</source>
-        <translation type="unfinished"></translation>
+        <translation>дублировать вкладку</translation>
     </message>
 </context>
 <context>
