@@ -438,7 +438,7 @@ MainWindow::EditorStatus MainWindow::toStatus() const
     return status;
 }
 
-void MainWindow::loadStatus(const EditorStatus &status)
+void MainWindow::loadStatus(const EditorStatus &status, bool withoutFilePath)
 {
     LOG_INFO("Requesting loadStatus");
     setProblemURL(status.problemURL);
@@ -447,7 +447,8 @@ void MainWindow::loadStatus(const EditorStatus &status)
     untitledIndex = status.untitledIndex;
     testcases->addCustomCheckers(status.customCheckers);
     testcases->setCheckerIndex(status.checkerIndex);
-    setFilePath(status.filePath);
+    if (!withoutFilePath)
+        setFilePath(status.filePath);
     savedText = status.savedText;
     editor->setPlainText(status.editorText);
     auto cursor = editor->textCursor();

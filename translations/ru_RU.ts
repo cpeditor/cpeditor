@@ -301,7 +301,7 @@
     </message>
     <message>
         <source>Duplicate Line</source>
-        <translation>Клонировать строку</translation>
+        <translation>Дублировать строку</translation>
     </message>
     <message>
         <source>Ctrl+Shift+D</source>
@@ -564,6 +564,10 @@ Git commit hash: %2
     <message>
         <source>All current settings will lose after importing settings from a file. Are you sure to continue?</source>
         <translation>Все текущие настройки будут потеряны после импорта файла настройки. Вы хотите продолжить?</translation>
+    </message>
+    <message>
+        <source>Duplicate Tab</source>
+        <translation>Дублировать вкладку</translation>
     </message>
 </context>
 <context>

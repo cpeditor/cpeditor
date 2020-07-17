@@ -29,6 +29,7 @@ With the portable version, you can easily store it in something like a USB disk,
 - An option to disable toast messages of CF Tool. (#489)
 - Add Russian translations. (#494)
 - Now the test cases will be elided if they are too long. (#491)
+- Duplicate Tab (in the context menu of tabs). (#481 and #505)
 
 ### Fixed
 

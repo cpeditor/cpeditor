@@ -565,6 +565,10 @@ git 提交编号: %2
         <source>All current settings will lose after importing settings from a file. Are you sure to continue?</source>
         <translation>当前所有设置都会在从文件中导入设置后丢失。你确定要继续吗？</translation>
     </message>
+    <message>
+        <source>Duplicate Tab</source>
+        <translation>复制标签页</translation>
+    </message>
 </context>
 <context>
     <name>AppearancePage</name>
