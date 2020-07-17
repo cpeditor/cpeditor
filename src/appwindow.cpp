@@ -1341,6 +1341,13 @@ void AppWindow::onTabContextMenuRequested(const QPoint &pos)
         tabMenu->addAction(tr("Close All"), [this] { on_actionCloseAll_triggered(); });
         QString filePath = widget->getFilePath();
 
+        tabMenu->addSeparator();
+
+        tabMenu->addAction(tr("Duplicate Tab"), [widget, this] {
+            openTab("");
+            currentWindow()->loadStatus(widget->toStatus(), true);
+        });
+
         LOG_INFO(INFO_OF(filePath));
 
         if (!widget->isUntitled() && QFile::exists(filePath))

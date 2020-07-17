@@ -565,6 +565,10 @@ Git commit hash: %2
         <source>All current settings will lose after importing settings from a file. Are you sure to continue?</source>
         <translation>Все текущие настройки будут потеряны после импорта файла настройки. Вы хотите продолжить?</translation>
     </message>
+    <message>
+        <source>Duplicate Tab</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>AppearancePage</name>

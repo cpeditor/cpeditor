@@ -89,7 +89,7 @@ class MainWindow : public QMainWindow
     void setUntitledIndex(int index);
 
     EditorStatus toStatus() const;
-    void loadStatus(const EditorStatus &status);
+    void loadStatus(const EditorStatus &status, bool withoutFilePath = false);
 
     bool save(bool force, const QString &head, bool safe = true);
     void saveAs();
