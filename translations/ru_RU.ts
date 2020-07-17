@@ -301,7 +301,7 @@
     </message>
     <message>
         <source>Duplicate Line</source>
-        <translation>Клонировать строку</translation>
+        <translation>Дублировать строку</translation>
     </message>
     <message>
         <source>Ctrl+Shift+D</source>
