@@ -565,15 +565,19 @@ Build type: %2
 Git commit hash: %3
 Build time: %4
 OS: %5</source>
-        <translation type="unfinished"></translation>
+        <translation>Версия программы: %1
+Тип сборки: %2
+Git commit hash: %3
+Время сборки: %4
+ОС: %5</translation>
     </message>
     <message>
         <source>Portable Version</source>
-        <translation type="unfinished"></translation>
+        <translation>Portable-версия</translation>
     </message>
     <message>
         <source>Setup Version</source>
-        <translation type="unfinished"></translation>
+        <translation>Версия для установки</translation>
     </message>
 </context>
 <context>
