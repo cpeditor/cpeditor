@@ -85,9 +85,9 @@ UpdateChecker::UpdateMetaInformation UpdateChecker::toMetaInformation(const QJso
         if (assetName.contains("linux"))
 #endif
 #ifdef PORTABLE_VERSION
-            if (assetName.contains("portable"))
+            if (result.assetDownloadUrl.isEmpty() || assetName.contains("portable"))
 #else
-            if (!assetName.contains("portable"))
+            if (result.assetDownloadUrl.isEmpty() || !assetName.contains("portable"))
 #endif
                 result.assetDownloadUrl = asset["browser_download_url"].toString();
     }
