@@ -92,8 +92,7 @@ void SessionManager::restoreSession(const QString &path)
         if (progressDialog.wasCanceled())
             break;
         auto status = MainWindow::EditorStatus(tab.toObject().toVariantMap());
-        app->openTab("");
-        app->currentWindow()->loadStatus(status);
+        app->openTab(status);
         progressDialog.setLabelText(QString(tr("Restoring: [%1]")).arg(app->currentWindow()->getTabTitle(true, false)));
         progressDialog.setValue(progressDialog.value() + 1);
     }

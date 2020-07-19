@@ -18,11 +18,11 @@
 #ifndef APPWINDOW_HPP
 #define APPWINDOW_HPP
 
+#include "mainwindow.hpp"
 #include <QMainWindow>
 #include <QSystemTrayIcon>
 
 class FindReplaceDialog;
-class MainWindow;
 class MessageLogger;
 class PreferencesWindow;
 class QMenu;
@@ -234,7 +234,9 @@ class AppWindow : public QMainWindow
     QVector<QShortcut *> hotkeyObjects;
     void maybeSetHotkeys();
     bool closeTab(int index);
+    void openTab(MainWindow *window);
     void openTab(const QString &path);
+    void openTab(const MainWindow::EditorStatus &status, bool duplicate = false);
     void openTabs(const QStringList &paths);
     void openPaths(const QStringList &paths, bool cpp = true, bool java = true, bool python = true, int depth = -1);
     QStringList openFolder(const QString &path, bool cpp, bool java, bool python, int depth);
