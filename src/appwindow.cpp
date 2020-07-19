@@ -32,6 +32,7 @@
 #include "Util/FileUtil.hpp"
 #include "Util/Util.hpp"
 #include "generated/SettingsHelper.hpp"
+#include "generated/portable.hpp"
 #include "generated/version.hpp"
 #include "mainwindow.hpp"
 #include <QClipboard>
@@ -573,8 +574,13 @@ void AppWindow::on_actionAboutQt_triggered()
 void AppWindow::on_actionBuildInfo_triggered()
 {
     QMessageBox::about(this, tr("Build Info"),
-                       tr("App version: %1\nGit commit hash: %2\nBuild time: %3\nOS: %4")
+                       tr("App version: %1\nBuild type: %2\nGit commit hash: %3\nBuild time: %4\nOS: %5")
                            .arg(APP_VERSION)
+#ifdef PORTABLE_VERSION
+                           .arg(tr("Portable Version"))
+#else
+                           .arg(tr("Setup Version"))
+#endif
                            .arg(GIT_COMMIT_HASH)
                            .arg(__DATE__ " " __TIME__)
 #if defined(Q_OS_UNIX)

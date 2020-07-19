@@ -548,16 +548,6 @@
         <translation>Отчет об ошибках</translation>
     </message>
     <message>
-        <source>App version: %1
-Git commit hash: %2
-Build time: %3
-OS: %4</source>
-        <translation>Версия программы: %1
-Git commit hash: %2
-Время Сборки: %3
-ОС: %4</translation>
-    </message>
-    <message>
         <source>Import Settings</source>
         <translation>Импорт настроек</translation>
     </message>
@@ -568,6 +558,22 @@ Git commit hash: %2
     <message>
         <source>Duplicate Tab</source>
         <translation>Дублировать вкладку</translation>
+    </message>
+    <message>
+        <source>App version: %1
+Build type: %2
+Git commit hash: %3
+Build time: %4
+OS: %5</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Portable Version</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Setup Version</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
