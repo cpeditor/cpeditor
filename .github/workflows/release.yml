@@ -16,12 +16,7 @@ jobs:
       fail-fast: false
       matrix:
         config:
-          - { os: "ubuntu-16.04", portable-option: "Off", portable-name: "" }
-          - {
-              os: "ubuntu-16.04",
-              portable-option: "On",
-              portable-name: "-portable",
-            }
+          - { os: "ubuntu-16.04", portable-option: "Off" }
           - {
               os: "windows-latest",
               portable-option: "Off",
@@ -32,12 +27,8 @@ jobs:
               portable-option: "On",
               portable-name: "-portable.zip",
             }
-          - { os: "macos-latest", portable-option: "Off", portable-name: "" }
-          - {
-              os: "macos-latest",
-              portable-option: "On",
-              portable-name: "-portable",
-            }
+          - { os: "macos-latest", portable-option: "Off" }
+
     steps:
       - uses: actions/checkout@v2
         with:
@@ -93,7 +84,7 @@ jobs:
           cp ../.ci/linux/cpeditor.desktop . && cp ../.ci/linux/cpeditor-icon.png .
           cp cpeditor.desktop default.desktop
           ./linuxdeployqt*.AppImage ./cpeditor -appimage -qmake=../../Qt/${{ env.QT_VERSION }}/gcc_64/bin/qmake
-          mv CP_Editor-${{steps.get_version.outputs.VERSION }}-x86_64.AppImage cpeditor-${{ steps.get_version.outputs.VERSION }}-linux-x86_64${{ matrix.config.portable-name }}.AppImage
+          mv CP_Editor-${{steps.get_version.outputs.VERSION }}-x86_64.AppImage cpeditor-${{ steps.get_version.outputs.VERSION }}-linux-x86_64.AppImage
 
       - name: Release AppImage
         if: startsWith(matrix.config.os, 'ubuntu')
@@ -101,19 +92,19 @@ jobs:
         with:
           draft: true
           prerelease: ${{ steps.get_version.outputs.ISBETA }}
-          files: build/cpeditor-${{ steps.get_version.outputs.VERSION }}-linux-x86_64${{ matrix.config.portable-name }}.AppImage
+          files: build/cpeditor-${{ steps.get_version.outputs.VERSION }}-linux-x86_64.AppImage
           name: CP Editor ${{ steps.get_version.outputs.VERSION }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Package full Source
-        if: startsWith(matrix.config.os, 'ubuntu') && matrix.config.portable-option == 'Off'
+        if: startsWith(matrix.config.os, 'ubuntu')
         run: |
           wget https://raw.githubusercontent.com/Kentzo/git-archive-all/master/git_archive_all.py
           python3 git_archive_all.py cpeditor-${{ steps.get_version.outputs.VERSION }}-full-source.tar.gz
 
       - name: Release full source
-        if: startsWith(matrix.config.os, 'ubuntu') && matrix.config.portable-option == 'Off'
+        if: startsWith(matrix.config.os, 'ubuntu')
         uses: softprops/action-gh-release@v1
         with:
           draft: true
@@ -129,7 +120,7 @@ jobs:
           cd build
           ../../Qt/*/*/bin/macdeployqt cpeditor.app
           cp ../.ci/mac/cpeditor.icns cpeditor.app/Contents/Resources
-          hdiutil create -volname cpeditor-${{ steps.get_version.outputs.VERSION }}-x64 -srcfolder cpeditor.app -ov -format UDZO cpeditor-${{ steps.get_version.outputs.VERSION }}-macos-x64${{ matrix.config.portable-name }}.dmg
+          hdiutil create -volname cpeditor-${{ steps.get_version.outputs.VERSION }}-x64 -srcfolder cpeditor.app -ov -format UDZO cpeditor-${{ steps.get_version.outputs.VERSION }}-macos-x64.dmg
 
       - name: Release on Mac
         if: startsWith(matrix.config.os, 'macos')
@@ -137,7 +128,7 @@ jobs:
         with:
           draft: true
           prerelease: ${{ steps.get_version.outputs.ISBETA }}
-          files: build/cpeditor-${{ steps.get_version.outputs.VERSION }}-macos-x64${{ matrix.config.portable-name }}.dmg
+          files: build/cpeditor-${{ steps.get_version.outputs.VERSION }}-macos-x64.dmg
           name: CP Editor ${{ steps.get_version.outputs.VERSION }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
