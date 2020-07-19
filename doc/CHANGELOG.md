@@ -48,6 +48,10 @@ With the portable version, you can easily store it in something like a USB disk,
 - Now the manual URL contains the commit hash instead of the version number, so that it works on the master branch. (#468)
 - Now Tab Jump Out Parentheses is disabled by default. (#499)
 
+### Improved
+
+- Now restoring the last session is faster. (#509)
+
 ## v6.5
 
 ### Added
