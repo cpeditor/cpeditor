@@ -35,7 +35,7 @@ jobs:
           dn linux-x86_64.AppImage
           dn linux-x86_64-portable.AppImage
           dn windows-x64-setup.exe
-          dn windows-x64-portable.exe
+          dn windows-x64-portable.zip
           dn macos-x64.dmg
           dn macos-x64-portable.dmg
           dn full-source.tar.gz
