@@ -549,13 +549,15 @@
     </message>
     <message>
         <source>App version: %1
-Git commit hash: %2
-Build time: %3
-OS: %4</source>
+Build type: %2
+Git commit hash: %3
+Build time: %4
+OS: %5</source>
         <translation>应用版本: %1
-git 提交编号: %2
-构建时间: %3
-操作系统: %4</translation>
+构建类型: %2
+git 提交编号: %3
+构建时间: %4
+操作系统: %5</translation>
     </message>
     <message>
         <source>Import Settings</source>
@@ -568,6 +570,14 @@ git 提交编号: %2
     <message>
         <source>Duplicate Tab</source>
         <translation>复制标签页</translation>
+    </message>
+    <message>
+        <source>Portable Version</source>
+        <translation>绿色版</translation>
+    </message>
+    <message>
+        <source>Setup Version</source>
+        <translation>安装版</translation>
     </message>
 </context>
 <context>
