@@ -77,7 +77,7 @@ On Windows, you will get `build/cpeditor.exe`, or `build/Release/cpeditor.exe`. 
 
 ## Use Artifacts
 
-If you want to use the latest version (even later than the beta release), but don't want to build from source, you can download Artifacts from [GitHub Actions](https://github.com/cpeditor/cpeditor/actions).
+If you want to use the latest version (even newer than the beta release), but don't want to build from source, you can download Artifacts from [GitHub Actions](https://github.com/cpeditor/cpeditor/actions).
 
 However, it's not recommended to use Artifacts, they are more unstable than beta releases, and may be a work in progress. You should read the commit logs and even the source codes before using Artifacts.
 
