@@ -160,16 +160,8 @@
         <translation>CP Editor: редактор, созданный для спортивного программирования</translation>
     </message>
     <message>
-        <source>Ctrl+N</source>
-        <translation>Ctrl+N</translation>
-    </message>
-    <message>
         <source>Save</source>
         <translation>Сохранить</translation>
-    </message>
-    <message>
-        <source>Ctrl+S</source>
-        <translation>Ctrl+S</translation>
     </message>
     <message>
         <source>Save As...</source>
@@ -180,20 +172,12 @@
         <translation>Сохранить как новый файл</translation>
     </message>
     <message>
-        <source>Ctrl+Shift+S</source>
-        <translation>Ctrl+Shift+S</translation>
-    </message>
-    <message>
         <source>Save All</source>
         <translation>Сохранить все</translation>
     </message>
     <message>
         <source>Save all opened files</source>
         <translation>Сохранить все открытые файлы</translation>
-    </message>
-    <message>
-        <source>Ctrl+Alt+Shift+S</source>
-        <translation>Ctrl+Alt+Shift+S</translation>
     </message>
     <message>
         <source>Close Current</source>
@@ -204,20 +188,12 @@
         <translation>Закрыть текущую вкладку</translation>
     </message>
     <message>
-        <source>Ctrl+W</source>
-        <translation>Ctrl+W</translation>
-    </message>
-    <message>
         <source>Close Saved</source>
         <translation>Закрыть сохраненные</translation>
     </message>
     <message>
         <source>Close saved tabs</source>
         <translation>Закрыть сохраненные вкладки</translation>
-    </message>
-    <message>
-        <source>Ctrl+Alt+W</source>
-        <translation>Ctrl+Alt+W</translation>
     </message>
     <message>
         <source>Close All</source>
@@ -228,20 +204,12 @@
         <translation>Закрыть все вкладки</translation>
     </message>
     <message>
-        <source>Ctrl+Shift+W</source>
-        <translation>Ctrl+Shift+W</translation>
-    </message>
-    <message>
         <source>Quit</source>
         <translation>Выйти</translation>
     </message>
     <message>
         <source>Quit the application</source>
         <translation>Выйти из программы</translation>
-    </message>
-    <message>
-        <source>Ctrl+Q</source>
-        <translation>Ctrl+Q</translation>
     </message>
     <message>
         <source>Open File...</source>
@@ -252,10 +220,6 @@
         <translation>Открыть файлы</translation>
     </message>
     <message>
-        <source>Ctrl+O</source>
-        <translation>Ctrl+O</translation>
-    </message>
-    <message>
         <source>Open Contest...</source>
         <translation>Открыть соревнование...</translation>
     </message>
@@ -264,120 +228,60 @@
         <translation>Открыть соревнование</translation>
     </message>
     <message>
-        <source>Ctrl+Shift+O</source>
-        <translation>Ctrl+Shift+O</translation>
-    </message>
-    <message>
         <source>Indent</source>
         <translation>Отступ</translation>
-    </message>
-    <message>
-        <source>Ctrl+]</source>
-        <translation>Ctrl+]</translation>
     </message>
     <message>
         <source>Unindent</source>
         <translation>Убрать отступ</translation>
     </message>
     <message>
-        <source>Ctrl+[</source>
-        <translation>Ctrl+[</translation>
-    </message>
-    <message>
         <source>Swap Line Up</source>
         <translation>Поднять строку</translation>
-    </message>
-    <message>
-        <source>Ctrl+Shift+Up</source>
-        <translation>Ctrl+Shift+Up</translation>
     </message>
     <message>
         <source>Swap Line Down</source>
         <translation>Опустить строку</translation>
     </message>
     <message>
-        <source>Ctrl+Shift+Down</source>
-        <translation>Ctrl+Shift+Down</translation>
-    </message>
-    <message>
         <source>Duplicate Line</source>
         <translation>Дублировать строку</translation>
-    </message>
-    <message>
-        <source>Ctrl+Shift+D</source>
-        <translation>Ctrl+Shift+D</translation>
     </message>
     <message>
         <source>Delete Line</source>
         <translation>Удалить линию</translation>
     </message>
     <message>
-        <source>Ctrl+Shift+K</source>
-        <translation>Ctrl+Shift+K</translation>
-    </message>
-    <message>
         <source>Toggle Comment</source>
         <translation>Закомментировать строку</translation>
-    </message>
-    <message>
-        <source>Ctrl+/</source>
-        <translation>Ctrl+/</translation>
     </message>
     <message>
         <source>Toggle Block Comment</source>
         <translation>Выбрать блок</translation>
     </message>
     <message>
-        <source>Ctrl+Shift+/</source>
-        <translation>Ctrl+Shift+/</translation>
-    </message>
-    <message>
         <source>Compile</source>
         <translation>Скомпилировать</translation>
-    </message>
-    <message>
-        <source>Ctrl+Shift+C</source>
-        <translation>Ctrl+Shift+C</translation>
     </message>
     <message>
         <source>Compile and Run</source>
         <translation>Скомпилировать и запустить</translation>
     </message>
     <message>
-        <source>Ctrl+Shift+R</source>
-        <translation>Ctrl+Shift+R</translation>
-    </message>
-    <message>
         <source>Run</source>
         <translation>Запустить</translation>
-    </message>
-    <message>
-        <source>Ctrl+R</source>
-        <translation>Ctrl+R</translation>
     </message>
     <message>
         <source>Format code</source>
         <translation>Форматировать код</translation>
     </message>
     <message>
-        <source>Ctrl+Alt+L</source>
-        <translation>Ctrl+Alt+L</translation>
-    </message>
-    <message>
         <source>Run Detached</source>
         <translation>Запустить отдельно</translation>
     </message>
     <message>
-        <source>Ctrl+Alt+D</source>
-        <translation>Ctrl+Alt+D</translation>
-    </message>
-    <message>
         <source>Kill Processes</source>
         <translation>Убить процесс</translation>
-    </message>
-    <message>
-        <source>Ctrl+K</source>
-        <translation>Ctrl+K</translation>
     </message>
     <message>
         <source>Find and Replace</source>
@@ -400,10 +304,6 @@
         <translation>Проверить обновления</translation>
     </message>
     <message>
-        <source>Ctrl+F</source>
-        <translation>Ctrl+F</translation>
-    </message>
-    <message>
         <source>New File</source>
         <translation>Новый файл</translation>
     </message>
@@ -420,20 +320,12 @@
         <translation>Использовать сниппет...</translation>
     </message>
     <message>
-        <source>Ctrl+T</source>
-        <translation>Ctrl+T</translation>
-    </message>
-    <message>
         <source>Export Settings...</source>
         <translation>Экспорт настроек...</translation>
     </message>
     <message>
         <source>Import Settings...</source>
         <translation>Импорт настроек...</translation>
-    </message>
-    <message>
-        <source>Ctrl+P</source>
-        <translation>Ctrl+P</translation>
     </message>
     <message>
         <source>Reset Settings</source>
