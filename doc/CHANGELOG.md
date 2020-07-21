@@ -47,6 +47,7 @@ With the portable version, you can easily store it in something like a USB disk,
 - Now the version displayed in `cpeditor --version` is `X.Y.Z.rXX.gGITHASH` if the current commit (HEAD) has no tag, otherwise, it is the actual version. (#468)
 - Now the manual URL contains the commit hash instead of the version number, so that it works on the master branch. (#468)
 - Now Tab Jump Out Parentheses is disabled by default. (#499)
+- The default shortcut to format codes is changed to `Ctrl+Shift+I`. (#512)
 
 ### Improved
 
