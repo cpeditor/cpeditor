@@ -1,6 +1,6 @@
 ## UNRELEASED
 
-## 6.6.1 (Beta)
+## v6.6
 
 ### The Portable Version
 
