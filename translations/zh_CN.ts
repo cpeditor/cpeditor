@@ -160,16 +160,8 @@
         <translation>CP Editor: 一款为算法竞赛量身定制的编辑器</translation>
     </message>
     <message>
-        <source>Ctrl+N</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>Save</source>
         <translation>保存</translation>
-    </message>
-    <message>
-        <source>Ctrl+S</source>
-        <translation></translation>
     </message>
     <message>
         <source>Save As...</source>
@@ -180,20 +172,12 @@
         <translation>保存到一个新文件</translation>
     </message>
     <message>
-        <source>Ctrl+Shift+S</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>Save All</source>
         <translation>保存所有</translation>
     </message>
     <message>
         <source>Save all opened files</source>
         <translation>保存所有打开的文件</translation>
-    </message>
-    <message>
-        <source>Ctrl+Alt+Shift+S</source>
-        <translation></translation>
     </message>
     <message>
         <source>Close Current</source>
@@ -204,20 +188,12 @@
         <translation>关闭当前标签页</translation>
     </message>
     <message>
-        <source>Ctrl+W</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>Close Saved</source>
         <translation>关闭已保存</translation>
     </message>
     <message>
         <source>Close saved tabs</source>
         <translation>关闭已保存的标签页</translation>
-    </message>
-    <message>
-        <source>Ctrl+Alt+W</source>
-        <translation></translation>
     </message>
     <message>
         <source>Close All</source>
@@ -228,20 +204,12 @@
         <translation>关闭所有标签页</translation>
     </message>
     <message>
-        <source>Ctrl+Shift+W</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>Quit</source>
         <translation>退出</translation>
     </message>
     <message>
         <source>Quit the application</source>
         <translation>退出程序</translation>
-    </message>
-    <message>
-        <source>Ctrl+Q</source>
-        <translation></translation>
     </message>
     <message>
         <source>Open File...</source>
@@ -252,10 +220,6 @@
         <translation>打开文件</translation>
     </message>
     <message>
-        <source>Ctrl+O</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>Open Contest...</source>
         <translation>打开比赛...</translation>
     </message>
@@ -264,120 +228,60 @@
         <translation>打开一个比赛</translation>
     </message>
     <message>
-        <source>Ctrl+Shift+O</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>Indent</source>
         <translation>增加缩进</translation>
-    </message>
-    <message>
-        <source>Ctrl+]</source>
-        <translation></translation>
     </message>
     <message>
         <source>Unindent</source>
         <translation>减少缩进</translation>
     </message>
     <message>
-        <source>Ctrl+[</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>Swap Line Up</source>
         <translation>向上交换当前行</translation>
-    </message>
-    <message>
-        <source>Ctrl+Shift+Up</source>
-        <translation></translation>
     </message>
     <message>
         <source>Swap Line Down</source>
         <translation>向下交换当前行</translation>
     </message>
     <message>
-        <source>Ctrl+Shift+Down</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>Duplicate Line</source>
         <translation>复制当前行</translation>
-    </message>
-    <message>
-        <source>Ctrl+Shift+D</source>
-        <translation></translation>
     </message>
     <message>
         <source>Delete Line</source>
         <translation>删除当前行</translation>
     </message>
     <message>
-        <source>Ctrl+Shift+K</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>Toggle Comment</source>
         <translation>开启/关闭单行注释</translation>
-    </message>
-    <message>
-        <source>Ctrl+/</source>
-        <translation></translation>
     </message>
     <message>
         <source>Toggle Block Comment</source>
         <translation>开启/关闭多行注释</translation>
     </message>
     <message>
-        <source>Ctrl+Shift+/</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>Compile</source>
         <translation>编译</translation>
-    </message>
-    <message>
-        <source>Ctrl+Shift+C</source>
-        <translation></translation>
     </message>
     <message>
         <source>Compile and Run</source>
         <translation>编译并运行</translation>
     </message>
     <message>
-        <source>Ctrl+Shift+R</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>Run</source>
         <translation>运行</translation>
-    </message>
-    <message>
-        <source>Ctrl+R</source>
-        <translation></translation>
     </message>
     <message>
         <source>Format code</source>
         <translation>格式化代码</translation>
     </message>
     <message>
-        <source>Ctrl+Alt+L</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>Run Detached</source>
         <translation>在终端中运行</translation>
     </message>
     <message>
-        <source>Ctrl+Alt+D</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>Kill Processes</source>
         <translation>终止所有进程</translation>
-    </message>
-    <message>
-        <source>Ctrl+K</source>
-        <translation></translation>
     </message>
     <message>
         <source>Find and Replace</source>
@@ -400,10 +304,6 @@
         <translation>检查更新</translation>
     </message>
     <message>
-        <source>Ctrl+F</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>New File</source>
         <translation>新建文件</translation>
     </message>
@@ -420,20 +320,12 @@
         <translation>使用代码片段...</translation>
     </message>
     <message>
-        <source>Ctrl+T</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>Export Settings...</source>
         <translation>导出设置...</translation>
     </message>
     <message>
         <source>Import Settings...</source>
         <translation>导入设置...</translation>
-    </message>
-    <message>
-        <source>Ctrl+P</source>
-        <translation></translation>
     </message>
     <message>
         <source>Reset Settings</source>
