@@ -342,7 +342,7 @@
     <string>Format code</string>
    </property>
    <property name="shortcut">
-    <string notr="true">Ctrl+Alt+L</string>
+    <string notr="true">Ctrl+Shift+I</string>
    </property>
   </action>
   <action name="actionRunDetached">
