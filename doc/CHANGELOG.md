@@ -1,5 +1,7 @@
 ## UNRELEASED
 
+## 6.6.2 (Beta)
+
 ### Fixed
 
 - Fixed the diff viewer crashes when the output is empty. (#517)
