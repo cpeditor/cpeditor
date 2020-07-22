@@ -129,6 +129,9 @@ jobs:
           
           ./.ci/linux/install_ecm.sh
           ./.ci/linux/install_ksh.sh
+          
+          chmod -x ./.ci/linux/install_ecm.sh
+          chmod -x ./.ci/linux/install_ksh.sh
 
       - name: Configure CMake
         shell: cmake -P {0}
