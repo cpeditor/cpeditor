@@ -120,6 +120,7 @@ jobs:
         run: |
           tools/install_ecm.bat
           tools/install_ksh.bat
+          echo "::set-env name=KF5SyntaxHighlighting_DIR::C:/Program Files (x86)/ECM/lib/cmake/KF5SyntaxHighlighting"
 
       - name: Set up Dependency - UNIX
         if: startsWith(matrix.config.os, 'ubuntu') || startsWith(matrix.config.os, 'macos')
@@ -159,7 +160,6 @@ jobs:
                 -D CMAKE_MAKE_PROGRAM=ninja
                 -D CMAKE_C_COMPILER_LAUNCHER=ccache
                 -D CMAKE_CXX_COMPILER_LAUNCHER=ccache
-                -D KF5SyntaxHighlighting_DIR=" C:/Program Files (x86)/ECM/lib/cmake/KF5SyntaxHighlighting "
               RESULT_VARIABLE result
             )
           else()
