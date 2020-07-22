@@ -19,7 +19,7 @@
 
 namespace Util
 {
-KSyntaxHighlighting::Repository Singleton::repository{};
+KSyntaxHighlighting::Repository Singleton::repository;
 
 KSyntaxHighlighting::Repository &Singleton::getSyntaxHighlightingRepository()
 {

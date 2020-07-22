@@ -25,6 +25,7 @@ class Singleton
   public:
     static KSyntaxHighlighting::Repository &getSyntaxHighlightingRepository();
 
+  private:
     static KSyntaxHighlighting::Repository repository;
 };
 } // namespace Util
