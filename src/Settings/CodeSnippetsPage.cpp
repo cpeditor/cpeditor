@@ -34,7 +34,6 @@
 // KSyntax highlighter
 #include <syntaxhighlighter.h>
 
-
 CodeSnippetsPage::CodeSnippetsPage(const QString &language, QWidget *parent) : PreferencesPage(parent), lang(language)
 {
     splitter = new QSplitter();

@@ -26,4 +26,4 @@ KSyntaxHighlighting::Repository &Singleton::getSyntaxHighlightingRepository()
     return repository;
 }
 
-}
+} // namespace Util

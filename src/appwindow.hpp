@@ -217,7 +217,7 @@ class AppWindow : public QMainWindow
     QMetaObject::Connection activeSplitterMoveConnection;
     QMetaObject::Connection activeRightSplitterMoveConnection;
     KSyntaxHighlighting::Repository m_repository;
- 
+
     Telemetry::UpdateChecker *updateChecker = nullptr;
     PreferencesWindow *preferencesWindow = nullptr;
     Extensions::CompanionServer *server;

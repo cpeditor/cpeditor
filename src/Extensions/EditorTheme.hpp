@@ -20,7 +20,8 @@
 
 #include <QMap>
 
-namespace KSyntaxHighlighing{
+namespace KSyntaxHighlighing
+{
 class Theme;
 }
 class QSyntaxStyle;
