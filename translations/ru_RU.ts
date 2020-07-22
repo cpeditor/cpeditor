@@ -2438,6 +2438,14 @@ A loaded test case will be elided and read-only if it&apos;s too long.</source>
         <source>Show a toast message when the verdict of a submission is known. You can see the message outside of CP Editor.</source>
         <translation>Показывать всплывающие уведомления, когда известен вердикт отправки. Вы сможете видеть сообщения за пределами CP Editor.</translation>
     </message>
+    <message>
+        <source>Syntax Highlighting Style</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The style of the code syntax highlighting.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ShortcutItem</name>
