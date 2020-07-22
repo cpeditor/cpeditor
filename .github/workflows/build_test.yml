@@ -115,15 +115,39 @@ jobs:
           restore-keys: |
             ${{ matrix.config.os }}-${{ env.QT_VERSION }}-ccache-
 
-      - name: Setup Dependency - Windows
+      - name: Get KDE syntax-highlighting status
+        id: get-kde-syntax-highlighting-status
+        shell: bash
+        run: echo ::set-output name=status::$(git submodule status third_party/syntax-highlighting)
+
+      - name: Restore KDE syntax-highlighting cache - Windows
+        id: kde-syntax-highlighting-cache-windows
         if: startsWith(matrix.config.os, 'windows')
+        uses: actions/cache@v1
+        with:
+          path: C:/Program Files (x86)/ECM
+          key: kde-syntax-highlighting-${{ matrix.config.os }}-${{ env.QT_VERSION }}-${{ steps.get-kde-syntax-highlighting-status.outputs.status }}
+
+      - name: Build KDE syntax-highlighting - Windows
+        if: startsWith(matrix.config.os, 'windows') && !steps.kde-syntax-highlighting-cache-windows.outputs.cache-hit
         run: |
           tools/install_ecm.bat
           tools/install_ksh.bat
-          echo "::set-env name=KF5SyntaxHighlighting_DIR::C:/Program Files (x86)/ECM/lib/cmake/KF5SyntaxHighlighting"
 
-      - name: Set up Dependency - UNIX
+      - name: Set environment for KDE syntax-highlighting
+        if: startsWith(matrix.config.os, 'windows')
+        run: echo "::set-env name=KF5SyntaxHighlighting_DIR::C:/Program Files (x86)/ECM/lib/cmake/KF5SyntaxHighlighting"
+
+      - name: Restore KDE syntax-highlighting cache - Unix
+        id: kde-syntax-highlighting-cache-unix
         if: startsWith(matrix.config.os, 'ubuntu') || startsWith(matrix.config.os, 'macos')
+        uses: actions/cache@v1
+        with:
+          path: /usr/local/share/ECM
+          key: kde-syntax-highlighting-${{ matrix.config.os }}-${{ env.QT_VERSION }}-${{ steps.get-kde-syntax-highlighting-status.outputs.status }}
+
+      - name: Build KDE syntax-highlighting - UNIX
+        if: (startsWith(matrix.config.os, 'ubuntu') || startsWith(matrix.config.os, 'macos')) && !steps.kde-syntax-highlighting-cache-unix.outputs.cache-hit
         run: |
           tools/install_ecm.sh
           tools/install_ksh.sh
@@ -150,31 +174,17 @@ jobs:
             set(path_separator ";")
           endif()
           set(ENV{PATH} "$ENV{GITHUB_WORKSPACE}${path_separator}$ENV{PATH}")
-          if ("${{ runner.os }}" STREQUAL "Windows")
-            execute_process(
-              COMMAND ${{ steps.cmake_and_ninja.outputs.cmake_dir }}/cmake
-                -S .
-                -B build
-                -D CMAKE_BUILD_TYPE=$ENV{BUILD_TYPE}
-                -G Ninja
-                -D CMAKE_MAKE_PROGRAM=ninja
-                -D CMAKE_C_COMPILER_LAUNCHER=ccache
-                -D CMAKE_CXX_COMPILER_LAUNCHER=ccache
-              RESULT_VARIABLE result
-            )
-          else()
-            execute_process(
-              COMMAND ${{ steps.cmake_and_ninja.outputs.cmake_dir }}/cmake
-                -S .
-                -B build
-                -D CMAKE_BUILD_TYPE=$ENV{BUILD_TYPE}
-                -G Ninja
-                -D CMAKE_MAKE_PROGRAM=ninja
-                -D CMAKE_C_COMPILER_LAUNCHER=ccache
-                -D CMAKE_CXX_COMPILER_LAUNCHER=ccache
-              RESULT_VARIABLE result
-            )
-          endif()
+          execute_process(
+            COMMAND ${{ steps.cmake_and_ninja.outputs.cmake_dir }}/cmake
+              -S .
+              -B build
+              -D CMAKE_BUILD_TYPE=$ENV{BUILD_TYPE}
+              -G Ninja
+              -D CMAKE_MAKE_PROGRAM=ninja
+              -D CMAKE_C_COMPILER_LAUNCHER=ccache
+              -D CMAKE_CXX_COMPILER_LAUNCHER=ccache
+            RESULT_VARIABLE result
+          )
           if (NOT result EQUAL 0)
             message(FATAL_ERROR "Bad exit status")
           endif()
