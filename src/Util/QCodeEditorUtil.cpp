@@ -22,15 +22,16 @@
 #include "generated/SettingsHelper.hpp"
 #include <QCodeEditor>
 
-#include <syntaxhighlighter.h>
-#include <definition.h>
-#include <theme.h>
-#include <Util/Singleton.hpp>
 #include <QDebug>
+#include <Util/Singleton.hpp>
+#include <definition.h>
+#include <syntaxhighlighter.h>
+#include <theme.h>
 
 namespace Util
 {
-void applySettingsToEditor(KSyntaxHighlighting::SyntaxHighlighter* highlighter, QCodeEditor *editor, const QString &language)
+void applySettingsToEditor(KSyntaxHighlighting::SyntaxHighlighter *highlighter, QCodeEditor *editor,
+                           const QString &language)
 {
     LOG_INFO("Applying settings to QCodeEditor");
 

@@ -20,12 +20,12 @@
 #include <repository.h>
 namespace Util
 {
-	class Singleton
+class Singleton
 {
-    public:
-        static KSyntaxHighlighting::Repository& getSyntaxHighlightingRepository();
+  public:
+    static KSyntaxHighlighting::Repository &getSyntaxHighlightingRepository();
 
-        static KSyntaxHighlighting::Repository repository;
-    };
-}
+    static KSyntaxHighlighting::Repository repository;
+};
+} // namespace Util
 #endif // !SINGLETON_HPP
