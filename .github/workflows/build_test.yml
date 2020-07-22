@@ -118,14 +118,14 @@ jobs:
       - name: Setup Dependency - Windows
         if: startsWith(matrix.config.os, 'windows')
         run: |
-          ./.ci/win/install_ecm.bat
-          ./.ci/win/install_ksh.bat
+          tools/install_ecm.bat
+          tools/install_ksh.bat
 
       - name: Set up Dependency - UNIX
         if: startsWith(matrix.config.os, 'ubuntu') || startsWith(matrix.config.os, 'macos')
         run: |
-          ./.ci/linux/install_ecm.sh
-          ./.ci/linux/install_ksh.sh
+          tools/install_ecm.sh
+          tools/install_ksh.sh
 
       - name: Configure CMake
         shell: cmake -P {0}
