@@ -115,6 +115,21 @@ jobs:
           restore-keys: |
             ${{ matrix.config.os }}-${{ env.QT_VERSION }}-ccache-
 
+      - name: Setup Dependency - Windows
+        if: startsWith(matrix.config.os, 'windows')
+        run: |
+          ./.ci/win/install_ecm.bat
+          ./.ci/win/install_ksh.bat
+      
+      - name: Set up Dependency - UNIX
+        if: startsWith(matrix.config.os, 'ubuntu') || startsWith(matrix.config.os, 'macos')
+        run: |
+          chmod +x ./.ci/linux/install_ecm.sh
+          chmod +x ./.ci/linux/install_ksh.sh
+          
+          ./.ci/linux/install_ecm.sh
+          ./.ci/linux/install_ksh.sh
+
       - name: Configure CMake
         shell: cmake -P {0}
         run: |
@@ -152,24 +167,6 @@ jobs:
           if (NOT result EQUAL 0)
             message(FATAL_ERROR "Bad exit status")
           endif()
-
-      - name: Setup ECM
-        run: |
-          cd third_party/extra-cmake-modules
-          mkdir build
-          cd build
-          cmake .. -DCMAKE_BUILD_TYPE=Release -DBUILD_HTML_DOCS=OFF -DBUILD_MAN_DOCS=OFF -DBUILD_QTHELP_DOCS=OFF -DBUILD_TESTING=OFF
-          cmake --build . --parallel $(nproc)
-          cmake --build . --target install
-
-      - name: Set up Dependency Syntax Highlighting
-        run: |
-          cd third_party/syntax-highlighting
-          mkdir build
-          cd build
-          cmake .. -DCMAKE_BUILD_TYPE=Release -DBUILD_HTML_DOCS=OFF -DBUILD_MAN_DOCS=OFF -DBUILD_QTHELP_DOCS=OFF -DBUILD_TESTING=OFF
-          cmake --build . --parallel $(nproc)
-          cmake --build . --target install
 
       - name: Build
         shell: cmake -P {0}

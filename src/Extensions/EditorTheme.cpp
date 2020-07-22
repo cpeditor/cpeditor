@@ -22,7 +22,6 @@
 #include <QFile>
 #include <QSyntaxStyle>
 #include <theme.h>
-#include <theme>
 
 namespace Extensions
 {
