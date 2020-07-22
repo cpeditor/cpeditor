@@ -1,6 +1,0 @@
-<Normal Text>normal</Normal Text><br/>
-<Normal Text></Normal Text><br/>
-<List>* </List><List: Normal Text>item1</List: Normal Text><br/>
-<List: Normal Text>still part of item</List: Normal Text><br/>
-<List: Normal Text></List: Normal Text><br/>
-<Normal Text>normal text again</Normal Text><br/>

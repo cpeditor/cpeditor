@@ -1,8 +1,0 @@
-<Preprocessor>#if 1</Preprocessor><br/>
-<Data Type>int</Data Type><Normal Text> x</Normal Text><Symbol>;</Symbol><Normal Text> </Normal Text><Comment>// variable shall not be grey</Comment><br/>
-<Preprocessor>#endif</Preprocessor><br/>
-<Preprocessor>#if defined (A)</Preprocessor><br/>
-<Data Type>int</Data Type><Normal Text> y</Normal Text><Symbol>;</Symbol><Normal Text> </Normal Text><Comment>// variable shall not be grey</Comment><br/>
-<Preprocessor>#elif defined (B)</Preprocessor><br/>
-<Data Type>int</Data Type><Normal Text> z</Normal Text><Symbol>;</Symbol><Normal Text> </Normal Text><Comment>// variable shall not be grey</Comment><br/>
-<Preprocessor>#endif</Preprocessor><br/>
