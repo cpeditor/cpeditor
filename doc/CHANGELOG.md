@@ -1,5 +1,7 @@
 ## UNRELEASED
 
+## v6.6
+
 ### The Portable Version
 
 Now we provide the portable version on Windows. The portable version saves the config file in the same directory as the executable file of CP Editor, instead of the system config directory, and you can run it without installtion.
