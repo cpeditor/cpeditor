@@ -147,20 +147,34 @@ jobs:
           set(path_separator ":")
           if ("${{ runner.os }}" STREQUAL "Windows")
             set(path_separator ";")
-            set(KF5SyntaxHighlighting_DIR "C:/Program Files (x86)/ECM/lib/cmake/KF5SyntaxHighlighting")
           endif()
           set(ENV{PATH} "$ENV{GITHUB_WORKSPACE}${path_separator}$ENV{PATH}")
-          execute_process(
-            COMMAND ${{ steps.cmake_and_ninja.outputs.cmake_dir }}/cmake
-              -S .
-              -B build
-              -D CMAKE_BUILD_TYPE=$ENV{BUILD_TYPE}
-              -G Ninja
-              -D CMAKE_MAKE_PROGRAM=ninja
-              -D CMAKE_C_COMPILER_LAUNCHER=ccache
-              -D CMAKE_CXX_COMPILER_LAUNCHER=ccache
-            RESULT_VARIABLE result
-          )
+          if ("${{ runner.os }}" STREQUAL "Windows")
+            execute_process(
+              COMMAND ${{ steps.cmake_and_ninja.outputs.cmake_dir }}/cmake
+                -S .
+                -B build
+                -D CMAKE_BUILD_TYPE=$ENV{BUILD_TYPE}
+                -G Ninja
+                -D CMAKE_MAKE_PROGRAM=ninja
+                -D CMAKE_C_COMPILER_LAUNCHER=ccache
+                -D CMAKE_CXX_COMPILER_LAUNCHER=ccache
+                -D KF5SyntaxHighlighting_DIR "C:/Program Files (x86)/ECM/lib/cmake/KF5SyntaxHighlighting"
+              RESULT_VARIABLE result
+            )
+          else()
+            execute_process(
+              COMMAND ${{ steps.cmake_and_ninja.outputs.cmake_dir }}/cmake
+                -S .
+                -B build
+                -D CMAKE_BUILD_TYPE=$ENV{BUILD_TYPE}
+                -G Ninja
+                -D CMAKE_MAKE_PROGRAM=ninja
+                -D CMAKE_C_COMPILER_LAUNCHER=ccache
+                -D CMAKE_CXX_COMPILER_LAUNCHER=ccache
+              RESULT_VARIABLE result
+            )
+          endif()
           if (NOT result EQUAL 0)
             message(FATAL_ERROR "Bad exit status")
           endif()
