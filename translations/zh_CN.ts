@@ -436,10 +436,6 @@
         <translation>CP Editor 会话文件</translation>
     </message>
     <message>
-        <source>Report issues</source>
-        <translation>报告问题</translation>
-    </message>
-    <message>
         <source>App version: %1
 Build type: %2
 Git commit hash: %3
@@ -470,6 +466,114 @@ git 提交编号: %3
     <message>
         <source>Setup Version</source>
         <translation>安装版</translation>
+    </message>
+    <message>
+        <source>Ctrl+N</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl+S</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl+Shift+S</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl+Alt+Shift+S</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl+W</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl+Alt+W</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl+Shift+W</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl+Q</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl+O</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl+Shift+O</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl+]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl+[</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl+Shift+Up</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl+Shift+Down</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl+Shift+D</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl+Shift+K</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl+/</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl+Shift+/</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl+Shift+C</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl+Shift+R</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl+R</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl+Alt+L</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl+Alt+D</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl+K</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl+F</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl+T</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl+P</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1707,10 +1811,6 @@ You can use &quot;${filename}&quot; for the complete file name,
         <translation>%1 括号</translation>
     </message>
     <message>
-        <source>The name of the main class of your solution.</source>
-        <translation>你的代码中非 public 主类的名称。</translation>
-    </message>
-    <message>
         <source>Automatically delete the whole pair of parentheses when deleting
 the left element of it if the two elements are adjacent.
 This can be overridden for each parenthesis in each language.</source>
@@ -1911,10 +2011,6 @@ The Diff Viewer will fall back to plain text if either of the output or the expe
 A source file won&apos;t be opened if it&apos;s too long.</source>
         <translation>允许打开的文件的最大字符数。
 如果超长，将不会打开。</translation>
-    </message>
-    <message>
-        <source>Load Test Case Length Limit</source>
-        <translation>加载测试用例长度限制</translation>
     </message>
     <message>
         <source>Path to LSP executable</source>
@@ -2219,225 +2315,28 @@ kill the application with SIGKILL which could not be handled by the application.
         <translation>无需滚动条时一个测试用例的最大高度，以像素为单位。</translation>
     </message>
     <message>
-        <source>Enable Proxy</source>
-        <translation>启用代理</translation>
-    </message>
-    <message>
-        <source>Enable proxy for checking updates</source>
-        <translation>检查更新时启用代理</translation>
-    </message>
-    <message>
-        <source>The host name of the proxy, e.g. 127.0.0.1</source>
-        <translation>代理的主机名，例如：127.0.0.1</translation>
-    </message>
-    <message>
-        <source>The port of the proxy, e.g. 1080</source>
-        <translation>代理的端口，例如：1080</translation>
-    </message>
-    <message>
-        <source>The user of the proxy server. It can be empty if the proxy server doesn&apos;t require authentication.</source>
-        <translation>代理的用户名。若代理服务器不需要认证则可以留空。</translation>
-    </message>
-    <message>
-        <source>The password of the proxy server. It can be empty if the proxy server doesn&apos;t require authentication.</source>
-        <translation>代理的密码。若代理服务器不需要认证则可以留空。</translation>
-    </message>
-    <message>
-        <source>Type</source>
-        <translation>类型</translation>
-    </message>
-    <message>
-        <source>Host Name</source>
-        <translation>主机名</translation>
-    </message>
-    <message>
-        <source>Port</source>
-        <translation>端口</translation>
-    </message>
-    <message>
-        <source>User</source>
-        <translation>用户名</translation>
-    </message>
-    <message>
-        <source>Password</source>
-        <translation>密码</translation>
-    </message>
-    <message>
-        <source>The type of the proxy. &quot;System&quot; for using the system proxy.</source>
-        <translation>代理的类型。类型 &quot;System&quot; 会使用系统代理设置。</translation>
-    </message>
-    <message>
-        <source>Use Custom Application Font</source>
-        <translation>使用自定义的全局字体</translation>
-    </message>
-    <message>
-        <source>Use a custom font for the whole application instead of the default system font.</source>
-        <translation>使用一个自定义的字体作为整个 CP Editor 的字体，而非使用默认的系统字体。</translation>
-    </message>
-    <message>
-        <source>Custom Application Font</source>
-        <translation>自定义全局字体</translation>
-    </message>
-    <message>
-        <source>The custom font for the whole application</source>
-        <translation>整个 CP Editor 使用的自定义字体</translation>
-    </message>
-    <message>
-        <source>%1 Compiler Output Codec</source>
-        <translation>%1 编译器输出编码</translation>
-    </message>
-    <message>
-        <source>Text codec of the compiler output (errors, warnings, etc.)</source>
-        <translation>编译器输出（错误，警告等）的文字编码</translation>
-    </message>
-    <message>
-        <source>Default Path Names And Paths</source>
-        <translation>默认路径的名称和路径</translation>
-    </message>
-    <message>
-        <source>A list of default paths.
-They can be used in actions&apos; corresponding default paths by using ${&lt;default path name&gt;} as a place holder.
-They can be either manually set or automatically changed after choosing a path for an action.</source>
-        <translation>默认路径的列表。
-它们以占位符的形式（${&lt;默认路径名称&gt;}）用于一些动作对应的默认路径中。
-它们可以被手动设置，也可以在为一个动作选择路径后被自动设置。</translation>
-    </message>
-    <message>
-        <source>Name</source>
-        <translation>名称</translation>
-    </message>
-    <message>
-        <source>The name of a default path</source>
-        <translation>一个默认路径的名称</translation>
-    </message>
-    <message>
-        <source>The path of a default path</source>
-        <translation>一个默认路径的路径</translation>
-    </message>
-    <message>
-        <source>Default path used for %1</source>
-        <translation>用于 %1 的默认路径</translation>
-    </message>
-    <message>
-        <source>Open File</source>
-        <translation>打开文件</translation>
-    </message>
-    <message>
-        <source>The default path used when choosing a path for %1.
-You can use ${&lt;default path name&gt;} as a place holder.</source>
-        <translation>选择 %1 的路径时使用的默认路径。
-你可以使用 ${&lt;默认路径名称&gt;} 来作为占位符。</translation>
-    </message>
-    <message>
-        <source>Default paths changed by %1</source>
-        <translation>被 %1 改变的默认路径</translation>
-    </message>
-    <message>
-        <source>The default paths changed after choosing a path for %1.
-It is a list of &lt;default path name&gt;s, separated by commas, and can be empty.</source>
-        <translation>为 %1 选择一个路径后被改变的默认路径。
-它是一个 &lt;默认路径名称&gt; 的列表，相邻两项之间用半角逗号隔开，可以为空。</translation>
-    </message>
-    <message>
-        <source>Save File</source>
-        <translation>保存文件</translation>
-    </message>
-    <message>
-        <source>Open Contest</source>
-        <translation>打开比赛</translation>
-    </message>
-    <message>
-        <source>Load Single Test Case</source>
-        <translation>加载单个测试用例</translation>
-    </message>
-    <message>
-        <source>Add Pairs Of Test Cases</source>
-        <translation>添加多对测试用例</translation>
-    </message>
-    <message>
-        <source>Custom Checker</source>
-        <translation>自定义评测器</translation>
-    </message>
-    <message>
-        <source>Export And Import Settings</source>
-        <translation>导出和导入设置</translation>
-    </message>
-    <message>
-        <source>Export And Load Session</source>
-        <translation>导出和加载会话</translation>
-    </message>
-    <message>
-        <source>Extract And Load Snippets</source>
-        <translation>导出和加载代码片段</translation>
-    </message>
-    <message>
-        <source>It can be overridden by %1.</source>
-        <translation>它可以被 %1 覆盖。</translation>
-    </message>
-    <message>
-        <source>Use Clang Format to format the code when auto-saving it.</source>
-        <translation>自动保存代码时使用 Clang Format 进行格式化。</translation>
-    </message>
-    <message>
-        <source>Format code on manual save</source>
-        <translation>手动保存时格式化代码</translation>
-    </message>
-    <message>
-        <source>Use Clang Format to format the code when saving it manually.</source>
-        <translation>手动保存代码时使用 Clang Format 进行格式化。</translation>
-    </message>
-    <message>
-        <source>Format code on auto-save</source>
-        <translation>自动保存时格式化代码</translation>
-    </message>
-    <message>
-        <source>Auto-load external file changes if there&apos;s no unsaved modification</source>
-        <translation>若没有未保存的修改，自动加载外部文件修改</translation>
-    </message>
-    <message>
-        <source>Automatically load file changes that are not made in CP Editor if there&apos;s no unsaved modification in CP Editor.</source>
-        <translation>如果 CP Editor 内部没有未保存的修改，自动加载不是在 CP Editor 内进行的文件修改。</translation>
-    </message>
-    <message>
-        <source>Ask whether to load external file changes</source>
-        <translation>询问是否加载外部文件修改</translation>
-    </message>
-    <message>
-        <source>When there are file changes that are not made in CP Editor and is not automatically loaded by
-&quot;%1&quot;, ask for whether to load the changes.
-If this is disabled, external file changes will be ignored unless they are loaded by
-&quot;%1&quot;.</source>
-        <translation>当 CP Editor 外部的文件修改发生且没有被“%1”自动加载时，询问是否加载修改。
-如果这个选项被禁用，那么除非被“%1”自动加载，外部文件修改会被忽略。</translation>
-    </message>
-    <message>
-        <source>Output Display Length Limit</source>
-        <translation>输出显示长度限制</translation>
-    </message>
-    <message>
-        <source>The maximum number of characters to be displayed for the output of the program.
-If the output is too long, it will be elided.</source>
-        <translation>会显示出来的程序输出的最大字符数。如果输出过长，超长部分会被省略。</translation>
-    </message>
-    <message>
-        <source>The maximum number of characters in a test case to be loaded.
-A loaded test case will be elided and read-only if it&apos;s too long.</source>
-        <translation>一个被加载的测试用例中最大的字符数量。一个被加载的测试用例如果过长，超长部分会被省略。</translation>
-    </message>
-    <message>
-        <source>Show toast messages for submission verdicts</source>
-        <translation>为评测结果显示气泡消息</translation>
-    </message>
-    <message>
-        <source>Show a toast message when the verdict of a submission is known. You can see the message outside of CP Editor.</source>
-        <translation>当获知了一个提交的评测结果时，显示一条气泡消息。你可以在 CP Editor 外看到这条消息。</translation>
-    </message>
-    <message>
-        <source>Syntax Highlighting Style</source>
+        <source>The name of the non-public main class of your solution.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>The style of the code syntax highlighting.</source>
+        <source>Format Codes on Save</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use Clang Format to format the codes when saving it.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save Path</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Load Test Case File Length Limit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The maximum number of characters in a testcase file to load.
+A testcase file won&apos;t be loaded if it&apos;s too long.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
