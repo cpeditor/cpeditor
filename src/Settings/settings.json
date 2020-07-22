@@ -836,12 +836,12 @@
         "tip": "The style of the whole application."
     },
     {
-      "name": "Syntax Highlighting Style",
-      "type": "QString",
-      "ui": "QComboBox",
-      "default": "Default",
-      "param": "[](){ QStringList list; for(auto const &e : Util::Singleton::getSyntaxHighlightingRepository().themes()) list.append(e.name()); return list;}()",
-      "tip": "The style of the code syntax highlighting."
+        "name": "Syntax Highlighting Style",
+        "type": "QString",
+        "ui": "QComboBox",
+        "default": "Default",
+        "param": "[](){ QStringList list; for(auto const &e : KSyntaxHighlightingRepository::getSyntaxHighlightingRepository().themes()) list.append(e.name()); return list;}()",
+        "tip": "The style of the code syntax highlighting."
     },
     {
         "name": "Language Config",

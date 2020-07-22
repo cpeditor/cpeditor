@@ -17,13 +17,11 @@
 
 #include "Util/QCodeEditorUtil.hpp"
 #include "Core/EventLogger.hpp"
+#include "Core/KSyntaxHighlightingRepository.hpp"
 #include "Extensions/EditorTheme.hpp"
 #include "Settings/SettingsManager.hpp"
 #include "generated/SettingsHelper.hpp"
 #include <QCodeEditor>
-
-#include <QDebug>
-#include <Util/Singleton.hpp>
 #include <definition.h>
 #include <syntaxhighlighter.h>
 #include <theme.h>
@@ -60,9 +58,10 @@ void applySettingsToEditor(KSyntaxHighlighting::SyntaxHighlighter *highlighter, 
     if (language.isEmpty())
         return;
 
-    highlighter->setDefinition(Util::Singleton::getSyntaxHighlightingRepository().definitionForName(language));
-    highlighter->setTheme(
-        Util::Singleton::getSyntaxHighlightingRepository().theme(SettingsHelper::getSyntaxHighlightingStyle()));
+    highlighter->setDefinition(
+        KSyntaxHighlightingRepository::getSyntaxHighlightingRepository().definitionForName(language));
+    highlighter->setTheme(KSyntaxHighlightingRepository::getSyntaxHighlightingRepository().theme(
+        SettingsHelper::getSyntaxHighlightingStyle()));
     highlighter->rehighlight();
 
     if (language == "Python")

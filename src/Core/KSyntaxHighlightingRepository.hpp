@@ -15,15 +15,18 @@
  *
  */
 
-#include <Util/Singleton.hpp>
+#ifndef KSYNTAXHIGHLIGHTINGREPOSITORY_HPP
+#define KSYNTAXHIGHLIGHTINGREPOSITORY_HPP
 
-namespace Util
+#include <repository.h>
+
+class KSyntaxHighlightingRepository
 {
-KSyntaxHighlighting::Repository Singleton::repository;
+  public:
+    static const KSyntaxHighlighting::Repository &getSyntaxHighlightingRepository();
 
-KSyntaxHighlighting::Repository &Singleton::getSyntaxHighlightingRepository()
-{
-    return repository;
-}
+  private:
+    static KSyntaxHighlighting::Repository repository;
+};
 
-} // namespace Util
+#endif // KSYNTAXHIGHLIGHTINGREPOSITORY_HPP

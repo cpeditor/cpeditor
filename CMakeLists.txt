@@ -107,6 +107,8 @@ add_executable(cpeditor
     src/Core/Compiler.hpp
     src/Core/EventLogger.cpp
     src/Core/EventLogger.hpp
+    src/Core/KSyntaxHighlightingRepository.cpp
+    src/Core/KSyntaxHighlightingRepository.hpp
     src/Core/MessageLogger.cpp
     src/Core/MessageLogger.hpp
     src/Core/Runner.cpp
@@ -171,8 +173,6 @@ add_executable(cpeditor
     src/Util/FileUtil.hpp
     src/Util/QCodeEditorUtil.cpp
     src/Util/QCodeEditorUtil.hpp
-    src/Util/Singleton.cpp
-    src/Util/Singleton.hpp
     src/Util/Util.cpp
     src/Util/Util.hpp
 

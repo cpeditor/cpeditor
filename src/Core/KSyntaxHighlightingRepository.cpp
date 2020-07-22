@@ -14,19 +14,12 @@
  * Believe Software is "Software" and it isn't immune to bugs.
  *
  */
-#ifndef SINGLETON_HPP
-#define SINGLETON_HPP
 
-#include <repository.h>
-namespace Util
-{
-class Singleton
-{
-  public:
-    static KSyntaxHighlighting::Repository &getSyntaxHighlightingRepository();
+#include "Core/KSyntaxHighlightingRepository.hpp"
 
-  private:
-    static KSyntaxHighlighting::Repository repository;
-};
-} // namespace Util
-#endif // !SINGLETON_HPP
+KSyntaxHighlighting::Repository KSyntaxHighlightingRepository::repository;
+
+const KSyntaxHighlighting::Repository &KSyntaxHighlightingRepository::getSyntaxHighlightingRepository()
+{
+    return repository;
+}
