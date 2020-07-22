@@ -73,7 +73,9 @@ void DiffViewer::setText(const QString &output, const QString &expected)
         LOG_INFO("Diff viewer is using HTML Text");
         diff_match_patch differ;
         differ.Diff_EditCost = 10;
-        auto diffs = differ.diff_main(output, expected);
+        const auto nonNullOutput = output.isNull() ? "" : output;
+        const auto nonNullExpected = expected.isNull() ? "" : expected;
+        auto diffs = differ.diff_main(nonNullOutput, nonNullExpected);
         differ.diff_cleanupEfficiency(diffs);
 
         QString outputHTML, expectedHTML;
