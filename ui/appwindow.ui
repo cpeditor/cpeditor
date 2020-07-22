@@ -147,7 +147,7 @@
     <string>Open a new tab in the editor</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+N</string>
+    <string notr="true">Ctrl+N</string>
    </property>
   </action>
   <action name="actionSave">
@@ -158,7 +158,7 @@
     <string>Save the file on the disk</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+S</string>
+    <string notr="true">Ctrl+S</string>
    </property>
   </action>
   <action name="actionSaveAs">
@@ -169,7 +169,7 @@
     <string>Save as new file</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+Shift+S</string>
+    <string notr="true">Ctrl+Shift+S</string>
    </property>
   </action>
   <action name="actionSaveAll">
@@ -180,7 +180,7 @@
     <string>Save all opened files</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+Alt+Shift+S</string>
+    <string notr="true">Ctrl+Alt+Shift+S</string>
    </property>
   </action>
   <action name="actionCloseCurrent">
@@ -191,7 +191,7 @@
     <string>Close current tab</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+W</string>
+    <string notr="true">Ctrl+W</string>
    </property>
   </action>
   <action name="actionCloseSaved">
@@ -202,7 +202,7 @@
     <string>Close saved tabs</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+Alt+W</string>
+    <string notr="true">Ctrl+Alt+W</string>
    </property>
   </action>
   <action name="actionCloseAll">
@@ -213,7 +213,7 @@
     <string>Close All the tabs</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+Shift+W</string>
+    <string notr="true">Ctrl+Shift+W</string>
    </property>
   </action>
   <action name="actionQuit">
@@ -224,7 +224,7 @@
     <string>Quit the application</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+Q</string>
+    <string notr="true">Ctrl+Q</string>
    </property>
   </action>
   <action name="actionOpen">
@@ -235,7 +235,7 @@
     <string>Open files</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+O</string>
+    <string notr="true">Ctrl+O</string>
    </property>
   </action>
   <action name="actionOpenContest">
@@ -246,7 +246,7 @@
     <string>Open a Contest</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+Shift+O</string>
+    <string notr="true">Ctrl+Shift+O</string>
    </property>
   </action>
   <action name="actionIndent">
@@ -254,7 +254,7 @@
     <string>Indent</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+]</string>
+    <string notr="true">Ctrl+]</string>
    </property>
   </action>
   <action name="actionUnindent">
@@ -262,7 +262,7 @@
     <string>Unindent</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+[</string>
+    <string notr="true">Ctrl+[</string>
    </property>
   </action>
   <action name="actionSwapLineUp">
@@ -270,7 +270,7 @@
     <string>Swap Line Up</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+Shift+Up</string>
+    <string notr="true">Ctrl+Shift+Up</string>
    </property>
   </action>
   <action name="actionSwapLineDown">
@@ -278,7 +278,7 @@
     <string>Swap Line Down</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+Shift+Down</string>
+    <string notr="true">Ctrl+Shift+Down</string>
    </property>
   </action>
   <action name="actionDuplicateLine">
@@ -286,7 +286,7 @@
     <string>Duplicate Line</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+Shift+D</string>
+    <string notr="true">Ctrl+Shift+D</string>
    </property>
   </action>
   <action name="actionDeleteLine">
@@ -294,7 +294,7 @@
     <string>Delete Line</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+Shift+K</string>
+    <string notr="true">Ctrl+Shift+K</string>
    </property>
   </action>
   <action name="actionToggleComment">
@@ -302,7 +302,7 @@
     <string>Toggle Comment</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+/</string>
+    <string notr="true">Ctrl+/</string>
    </property>
   </action>
   <action name="actionToggleBlockComment">
@@ -310,7 +310,7 @@
     <string>Toggle Block Comment</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+Shift+/</string>
+    <string notr="true">Ctrl+Shift+/</string>
    </property>
   </action>
   <action name="actionCompile">
@@ -318,7 +318,7 @@
     <string>Compile</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+Shift+C</string>
+    <string notr="true">Ctrl+Shift+C</string>
    </property>
   </action>
   <action name="actionCompileRun">
@@ -326,7 +326,7 @@
     <string>Compile and Run</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+Shift+R</string>
+    <string notr="true">Ctrl+Shift+R</string>
    </property>
   </action>
   <action name="actionRun">
@@ -334,7 +334,7 @@
     <string>Run</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+R</string>
+    <string notr="true">Ctrl+R</string>
    </property>
   </action>
   <action name="actionFormatCode">
@@ -342,7 +342,7 @@
     <string>Format code</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+Alt+L</string>
+    <string notr="true">Ctrl+Shift+I</string>
    </property>
   </action>
   <action name="actionRunDetached">
@@ -350,7 +350,7 @@
     <string>Run Detached</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+Alt+D</string>
+    <string notr="true">Ctrl+Alt+D</string>
    </property>
   </action>
   <action name="actionKillProcesses">
@@ -358,7 +358,7 @@
     <string>Kill Processes</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+K</string>
+    <string notr="true">Ctrl+K</string>
    </property>
   </action>
   <action name="actionFindReplace">
@@ -366,7 +366,7 @@
     <string>Find and Replace</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+F</string>
+    <string notr="true">Ctrl+F</string>
    </property>
   </action>
   <action name="actionUseSnippets">
@@ -374,7 +374,7 @@
     <string>Use Snippet...</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+T</string>
+    <string notr="true">Ctrl+T</string>
    </property>
   </action>
   <action name="actionSettings">
@@ -382,7 +382,7 @@
     <string>Preferences</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+P</string>
+    <string notr="true">Ctrl+P</string>
    </property>
   </action>
   <action name="actionResetSettings">

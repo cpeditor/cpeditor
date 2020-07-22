@@ -32,8 +32,8 @@
 #include "Util/FileUtil.hpp"
 #include "Util/Util.hpp"
 #include "generated/SettingsHelper.hpp"
+#include "generated/portable.hpp"
 #include "generated/version.hpp"
-#include "mainwindow.hpp"
 #include <QClipboard>
 #include <QDesktopServices>
 #include <QDragEnterEvent>
@@ -346,6 +346,25 @@ void AppWindow::saveSettings()
     // findReplaceDialog->writeSettings(*SettingsHelper::settings()); FIX IT!!!
 }
 
+void AppWindow::openTab(MainWindow *window)
+{
+    connect(window, SIGNAL(confirmTriggered(MainWindow *)), this, SLOT(onConfirmTriggered(MainWindow *)));
+    connect(window, SIGNAL(editorFileChanged()), this, SLOT(onEditorFileChanged()));
+    connect(window, SIGNAL(editorTmpPathChanged(MainWindow *, const QString &)), this,
+            SLOT(onEditorTmpPathChanged(MainWindow *, const QString &)));
+    connect(window, SIGNAL(editorLanguageChanged(MainWindow *)), this, SLOT(onEditorLanguageChanged(MainWindow *)));
+    connect(window, SIGNAL(editorTextChanged(MainWindow *)), this, SLOT(onEditorTextChanged(MainWindow *)));
+    connect(window, &MainWindow::editorFontChanged, this, [this] { onSettingsApplied("Appearance"); });
+    connect(window, SIGNAL(requestToastMessage(const QString &, const QString &)), trayIcon,
+            SLOT(showMessage(const QString &, const QString &)));
+    connect(window, SIGNAL(compileOrRunTriggered()), this, SLOT(onCompileOrRunTriggered()));
+
+    ui->tabWidget->setCurrentIndex(ui->tabWidget->addTab(window, window->getTabTitle(false, true)));
+
+    window->getEditor()->setFocus();
+    onEditorFileChanged();
+}
+
 void AppWindow::openTab(const QString &path)
 {
     LOG_INFO("OpenTab Path is " << path);
@@ -363,17 +382,7 @@ void AppWindow::openTab(const QString &path)
         }
     }
 
-    auto fsp = new MainWindow(path, getNewUntitledIndex(), this);
-    connect(fsp, SIGNAL(confirmTriggered(MainWindow *)), this, SLOT(onConfirmTriggered(MainWindow *)));
-    connect(fsp, SIGNAL(editorFileChanged()), this, SLOT(onEditorFileChanged()));
-    connect(fsp, SIGNAL(editorTmpPathChanged(MainWindow *, const QString &)), this,
-            SLOT(onEditorTmpPathChanged(MainWindow *, const QString &)));
-    connect(fsp, SIGNAL(editorLanguageChanged(MainWindow *)), this, SLOT(onEditorLanguageChanged(MainWindow *)));
-    connect(fsp, SIGNAL(editorTextChanged(MainWindow *)), this, SLOT(onEditorTextChanged(MainWindow *)));
-    connect(fsp, &MainWindow::editorFontChanged, this, [this] { onSettingsApplied("Appearance"); });
-    connect(fsp, SIGNAL(requestToastMessage(const QString &, const QString &)), trayIcon,
-            SLOT(showMessage(const QString &, const QString &)));
-    connect(fsp, SIGNAL(compileOrRunTriggered()), this, SLOT(onCompileOrRunTriggered()));
+    auto newWindow = new MainWindow(path, getNewUntitledIndex(), this);
 
     QString lang = SettingsHelper::getDefaultLanguage();
 
@@ -386,11 +395,15 @@ void AppWindow::openTab(const QString &path)
     else if (Util::pythonSuffix.contains(suffix))
         lang = "Python";
 
-    ui->tabWidget->setCurrentIndex(ui->tabWidget->addTab(fsp, fsp->getTabTitle(false, true)));
-    fsp->setLanguage(lang);
+    newWindow->setLanguage(lang);
 
-    currentWindow()->getEditor()->setFocus();
-    onEditorFileChanged();
+    openTab(newWindow);
+}
+
+void AppWindow::openTab(const MainWindow::EditorStatus &status, bool duplicate)
+{
+    auto newWindow = new MainWindow(status, duplicate, getNewUntitledIndex(), this);
+    openTab(newWindow);
 }
 
 void AppWindow::openTabs(const QStringList &paths)
@@ -573,8 +586,13 @@ void AppWindow::on_actionAboutQt_triggered()
 void AppWindow::on_actionBuildInfo_triggered()
 {
     QMessageBox::about(this, tr("Build Info"),
-                       tr("App version: %1\nGit commit hash: %2\nBuild time: %3\nOS: %4")
+                       tr("App version: %1\nBuild type: %2\nGit commit hash: %3\nBuild time: %4\nOS: %5")
                            .arg(APP_VERSION)
+#ifdef PORTABLE_VERSION
+                           .arg(tr("Portable Version"))
+#else
+                           .arg(tr("Setup Version"))
+#endif
                            .arg(GIT_COMMIT_HASH)
                            .arg(__DATE__ " " __TIME__)
 #if defined(Q_OS_UNIX)
@@ -1340,6 +1358,10 @@ void AppWindow::onTabContextMenuRequested(const QPoint &pos)
 
         tabMenu->addAction(tr("Close All"), [this] { on_actionCloseAll_triggered(); });
         QString filePath = widget->getFilePath();
+
+        tabMenu->addSeparator();
+
+        tabMenu->addAction(tr("Duplicate Tab"), [widget, this] { openTab(widget->toStatus(), true); });
 
         LOG_INFO(INFO_OF(filePath));
 

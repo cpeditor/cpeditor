@@ -1,3 +1,5 @@
+> Внимание! Данный перевод может быть устаревшим и не соответствовать полноценному переводу актуальной версии документа на английском языке. [Здесь](MANUAL.md) вы можетет прочитать оригинал этой страницы (на английском).
+
 # Начало Работы
 
 Мы рады, что Вы выбрали наш редактор. Давайте начнем прямо сейчас! :tada:
@@ -18,7 +20,25 @@
 
 Вы можете парсить задачу через Competitive Companion, либо вставить URL-адрес задачи через меню вкладок правой кнопкой мыши. Затем вы увидите кнопку "Sumnit". Кнопка доступна только тогда, когда CF Tool будет найден редактором. Вы можете установить путь к нему в Preferences->Extensions->CF Tool.
 
+## Language Server
+
+Вы должны установить [Language Server program](https://microsoft.github.io/language-server-protocol/implementors/servers/) для анализа Lint, автокомпиляции и некоторых других возможностей. Каждый язык программирования имеет свой Language Server.
+
+Шаги по установке Language Server для каждого ЯП:
+
+- **C++**:  Если Вы установили LLVM, у Вас уже есть `clangd`, потому что он идет вместе с компилятором. Но если его , пожалуйста, установите [LLVM](https://releases.llvm.org/download.html) специально для Windows. На Linux и Mac Вы можете установить его через терминал. Вам необходимо установить стартовую команду «clangd» в Preferences -> Extensions -> Language Server -> C++ Server -> Путь, ведущий к исполняемому файлу или просто «clangd», если эта команды уже является переменной окружения.
+
+- **Python**: У Вас должны быть установлены «python» и «pip» и добавлен в «PATH». Установител pip-модуль «python-language-server» при помощи команды «pip install 'python-language-server[all]'». После того, как утсановка успешно завершится, откройте настройки CP Editor`а, откройте Preferences -> Extensions -> Language Server -> Python Server. Установите в «Path» значение «python» и в «Arguments» - «-m pyls». Сохраните изменения и используйте функцию linting для Python.
+
+- **Java**: Вы цже должны иметь установленный пакет «java»  добавленный в «PATH». Скачайте [Eclipse.JDT.ls](http://download.eclipse.org/jdtls/snapshots/jdt-language-server-latest.tar.gz), распакуйте в любую локацию (в новую папку), Для простоты объяснения, давайте будем называть путь к распакованному архиву «<INSTALL_PATH>» (Например «C://Users/Myname/Desktop/EclipseJDT.ls/»). В CP Editor, перейдите в  Preferences -> Extensions -> Language Server -> Java Server. Установите в «Path» значение «java», а в "Arguments" - «-jar $INSTALL_PATH/plugins/org.eclipse.equinox.launcher_1.5.200.v20180922-1751.jar -configuration <INSTALL_PATH>/config_(linux|win|mac)». Например, на Windows, значение аругментов будет выглядить так: «-configuration C://Users/Myname/Desktop/Eclipse.JDT.ls/config_win».
+
+  Полное имя jar-файла до, `org.eclipse.equinox.launcher_1.5.200.v20180922-1751.jar`, может изменяться в зависимости от того, как изменяется JDT проекта. Если java сообщает что «jar not found», посмотрите на версию «org.eclipse.equinox.launcher_*» jar в «<INSTALL_PATH>/plugins» и измените версию перед «-jar» на соответствующую.
+
 ## Персональные настройки
+
+### Shortcuts
+
+Вы можете использовать <kbd>Ctlr+D</kbd>, <kbd>Ctrl+R</kbd> и <kbd>Ctrl+S</kbd> для "По умолчанию", "Сброс" и "Применить" соответственно.
 
 ### Быстрое сохранение файлов
 

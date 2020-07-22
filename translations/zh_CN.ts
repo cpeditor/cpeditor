@@ -160,16 +160,8 @@
         <translation>CP Editor: 一款为算法竞赛量身定制的编辑器</translation>
     </message>
     <message>
-        <source>Ctrl+N</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>Save</source>
         <translation>保存</translation>
-    </message>
-    <message>
-        <source>Ctrl+S</source>
-        <translation></translation>
     </message>
     <message>
         <source>Save As...</source>
@@ -180,20 +172,12 @@
         <translation>保存到一个新文件</translation>
     </message>
     <message>
-        <source>Ctrl+Shift+S</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>Save All</source>
         <translation>保存所有</translation>
     </message>
     <message>
         <source>Save all opened files</source>
         <translation>保存所有打开的文件</translation>
-    </message>
-    <message>
-        <source>Ctrl+Alt+Shift+S</source>
-        <translation></translation>
     </message>
     <message>
         <source>Close Current</source>
@@ -204,20 +188,12 @@
         <translation>关闭当前标签页</translation>
     </message>
     <message>
-        <source>Ctrl+W</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>Close Saved</source>
         <translation>关闭已保存</translation>
     </message>
     <message>
         <source>Close saved tabs</source>
         <translation>关闭已保存的标签页</translation>
-    </message>
-    <message>
-        <source>Ctrl+Alt+W</source>
-        <translation></translation>
     </message>
     <message>
         <source>Close All</source>
@@ -228,20 +204,12 @@
         <translation>关闭所有标签页</translation>
     </message>
     <message>
-        <source>Ctrl+Shift+W</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>Quit</source>
         <translation>退出</translation>
     </message>
     <message>
         <source>Quit the application</source>
         <translation>退出程序</translation>
-    </message>
-    <message>
-        <source>Ctrl+Q</source>
-        <translation></translation>
     </message>
     <message>
         <source>Open File...</source>
@@ -252,10 +220,6 @@
         <translation>打开文件</translation>
     </message>
     <message>
-        <source>Ctrl+O</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>Open Contest...</source>
         <translation>打开比赛...</translation>
     </message>
@@ -264,120 +228,60 @@
         <translation>打开一个比赛</translation>
     </message>
     <message>
-        <source>Ctrl+Shift+O</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>Indent</source>
         <translation>增加缩进</translation>
-    </message>
-    <message>
-        <source>Ctrl+]</source>
-        <translation></translation>
     </message>
     <message>
         <source>Unindent</source>
         <translation>减少缩进</translation>
     </message>
     <message>
-        <source>Ctrl+[</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>Swap Line Up</source>
         <translation>向上交换当前行</translation>
-    </message>
-    <message>
-        <source>Ctrl+Shift+Up</source>
-        <translation></translation>
     </message>
     <message>
         <source>Swap Line Down</source>
         <translation>向下交换当前行</translation>
     </message>
     <message>
-        <source>Ctrl+Shift+Down</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>Duplicate Line</source>
         <translation>复制当前行</translation>
-    </message>
-    <message>
-        <source>Ctrl+Shift+D</source>
-        <translation></translation>
     </message>
     <message>
         <source>Delete Line</source>
         <translation>删除当前行</translation>
     </message>
     <message>
-        <source>Ctrl+Shift+K</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>Toggle Comment</source>
         <translation>开启/关闭单行注释</translation>
-    </message>
-    <message>
-        <source>Ctrl+/</source>
-        <translation></translation>
     </message>
     <message>
         <source>Toggle Block Comment</source>
         <translation>开启/关闭多行注释</translation>
     </message>
     <message>
-        <source>Ctrl+Shift+/</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>Compile</source>
         <translation>编译</translation>
-    </message>
-    <message>
-        <source>Ctrl+Shift+C</source>
-        <translation></translation>
     </message>
     <message>
         <source>Compile and Run</source>
         <translation>编译并运行</translation>
     </message>
     <message>
-        <source>Ctrl+Shift+R</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>Run</source>
         <translation>运行</translation>
-    </message>
-    <message>
-        <source>Ctrl+R</source>
-        <translation></translation>
     </message>
     <message>
         <source>Format code</source>
         <translation>格式化代码</translation>
     </message>
     <message>
-        <source>Ctrl+Alt+L</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>Run Detached</source>
         <translation>在终端中运行</translation>
     </message>
     <message>
-        <source>Ctrl+Alt+D</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>Kill Processes</source>
         <translation>终止所有进程</translation>
-    </message>
-    <message>
-        <source>Ctrl+K</source>
-        <translation></translation>
     </message>
     <message>
         <source>Find and Replace</source>
@@ -400,10 +304,6 @@
         <translation>检查更新</translation>
     </message>
     <message>
-        <source>Ctrl+F</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>New File</source>
         <translation>新建文件</translation>
     </message>
@@ -420,20 +320,12 @@
         <translation>使用代码片段...</translation>
     </message>
     <message>
-        <source>Ctrl+T</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>Export Settings...</source>
         <translation>导出设置...</translation>
     </message>
     <message>
         <source>Import Settings...</source>
         <translation>导入设置...</translation>
-    </message>
-    <message>
-        <source>Ctrl+P</source>
-        <translation></translation>
     </message>
     <message>
         <source>Reset Settings</source>
@@ -549,13 +441,15 @@
     </message>
     <message>
         <source>App version: %1
-Git commit hash: %2
-Build time: %3
-OS: %4</source>
+Build type: %2
+Git commit hash: %3
+Build time: %4
+OS: %5</source>
         <translation>应用版本: %1
-git 提交编号: %2
-构建时间: %3
-操作系统: %4</translation>
+构建类型: %2
+git 提交编号: %3
+构建时间: %4
+操作系统: %5</translation>
     </message>
     <message>
         <source>Import Settings</source>
@@ -564,6 +458,18 @@ git 提交编号: %2
     <message>
         <source>All current settings will lose after importing settings from a file. Are you sure to continue?</source>
         <translation>当前所有设置都会在从文件中导入设置后丢失。你确定要继续吗？</translation>
+    </message>
+    <message>
+        <source>Duplicate Tab</source>
+        <translation>复制标签页</translation>
+    </message>
+    <message>
+        <source>Portable Version</source>
+        <translation>绿色版</translation>
+    </message>
+    <message>
+        <source>Setup Version</source>
+        <translation>安装版</translation>
     </message>
 </context>
 <context>
@@ -2589,7 +2495,7 @@ A loaded test case will be elided and read-only if it&apos;s too long.</source>
     </message>
     <message>
         <source>This error is probably caused by the lack of the OpenSSL library. You can visit &lt;a href=&quot;https://wiki.openssl.org/index.php/Binaries&quot;&gt;the OpenSSLWiki&lt;/a&gt; to find a binary to install, or install it via your favourite package manager. You have to install a version compatible with this version: [%1]</source>
-        <translation>这个错误很可能是缺失 OpenSSL 库导致的。你可以访问 &amp;lt;a href=&amp;quot;https://wiki.openssl.org/index.php/Binaries&amp;quot;&amp;gt;OpenSSLWiki&amp;lt;/a&amp;gt; 来获取 OpenSSL 的下载地址，或使用你喜欢的包管理器来安装。你需要安装一个和此版本兼容的版本：[%1]</translation>
+        <translation>这个错误很可能是缺失 OpenSSL 库导致的。你可以访问 &lt;a href=&quot;https://wiki.openssl.org/index.php/Binaries&quot;&gt;OpenSSLWiki&lt;/a&gt; 来获取 OpenSSL 的下载地址，或使用你喜欢的包管理器来安装。你需要安装一个和此版本兼容的版本：[%1]</translation>
     </message>
 </context>
 <context>

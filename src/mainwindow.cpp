@@ -54,12 +54,11 @@
 
 // ***************************** RAII  ****************************
 
-MainWindow::MainWindow(const QString &fileOpen, int index, QWidget *parent)
+MainWindow::MainWindow(int index, QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow), untitledIndex(index), fileWatcher(new QFileSystemWatcher(this)),
       autoSaveTimer(new QTimer(this))
 {
-    LOG_INFO(INFO_OF(fileOpen) << INFO_OF(index));
-
+    LOG_INFO(INFO_OF(index));
     ui->setupUi(this);
     setupCore();
     setTestCases();
@@ -72,10 +71,22 @@ MainWindow::MainWindow(const QString &fileOpen, int index, QWidget *parent)
         autoSaveTimer, &QTimer::timeout, autoSaveTimer, [this] { saveFile(AutoSave, tr("Auto Save"), false); },
         Qt::DirectConnection);
     applySettings("", true);
+    QTimer::singleShot(0, [this] { setLanguage(language); }); // See issue #187 for more information
+}
+
+MainWindow::MainWindow(const QString &fileOpen, int index, QWidget *parent) : MainWindow(index, parent)
+{
+    LOG_INFO(INFO_OF(fileOpen));
     loadFile(fileOpen);
     if (testcases->count() == 0)
         testcases->addTestCase();
-    QTimer::singleShot(0, [this] { setLanguage(language); }); // See issue #187 for more information
+}
+
+MainWindow::MainWindow(const EditorStatus &status, bool duplicate, int index, QWidget *parent)
+    : MainWindow(index, parent)
+{
+    LOG_INFO(INFO_OF(duplicate));
+    loadStatus(status, duplicate);
 }
 
 MainWindow::~MainWindow()
@@ -445,16 +456,19 @@ MainWindow::EditorStatus MainWindow::toStatus() const
     return status;
 }
 
-void MainWindow::loadStatus(const EditorStatus &status)
+void MainWindow::loadStatus(const EditorStatus &status, bool duplicate)
 {
     LOG_INFO("Requesting loadStatus");
     setProblemURL(status.problemURL);
     if (status.isLanguageSet)
         setLanguage(status.language);
-    untitledIndex = status.untitledIndex;
+    if (!duplicate)
+    {
+        untitledIndex = status.untitledIndex;
+        setFilePath(status.filePath);
+    }
     testcases->addCustomCheckers(status.customCheckers);
     testcases->setCheckerIndex(status.checkerIndex);
-    setFilePath(status.filePath);
     savedText = status.savedText;
     editor->setPlainText(status.editorText);
     auto cursor = editor->textCursor();

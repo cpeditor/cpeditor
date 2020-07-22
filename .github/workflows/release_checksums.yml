@@ -33,11 +33,9 @@ jobs:
             wget -c "https://github.com/${{ github.repository }}/releases/download/${{ steps.get_version.outputs.VERSION }}/cpeditor-${{ steps.get_version.outputs.VERSION }}-$1"
           }
           dn linux-x86_64.AppImage
-          dn linux-x86_64-portable.AppImage
           dn windows-x64-setup.exe
-          dn windows-x64-portable.exe
+          dn windows-x64-portable.zip
           dn macos-x64.dmg
-          dn macos-x64-portable.dmg
           dn full-source.tar.gz
           shasum -a 256 *.* > cpeditor-${{ steps.get_version.outputs.VERSION }}-sha256-checksums.txt
 

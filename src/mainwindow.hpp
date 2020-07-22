@@ -78,7 +78,9 @@ class MainWindow : public QMainWindow
         QMap<QString, QVariant> toMap() const;
     };
 
+    explicit MainWindow(int index, QWidget *parent);
     explicit MainWindow(const QString &fileOpen, int index, QWidget *parent);
+    explicit MainWindow(const EditorStatus &status, bool duplicate, int index, QWidget *parent);
     ~MainWindow() override;
 
     int getUntitledIndex() const;
@@ -94,7 +96,7 @@ class MainWindow : public QMainWindow
     void setUntitledIndex(int index);
 
     EditorStatus toStatus() const;
-    void loadStatus(const EditorStatus &status);
+    void loadStatus(const EditorStatus &status, bool duplicate = false);
 
     bool save(bool force, const QString &head, bool safe = true);
     void saveAs();

@@ -2,7 +2,7 @@
 
 ### The Portable Version
 
-The portable version saves the config file in the same directory as the executable file of CP Editor, instead of the system config directory. And you can run it without installtion on Windows (on Linux and macOS, the normal version can also be run without installation).
+Now we provide the portable version on Windows. The portable version saves the config file in the same directory as the executable file of CP Editor, instead of the system config directory, and you can run it without installtion.
 
 With the portable version, you can easily store it in something like a USB disk, and the configs are always with you no matter you run it on which machine. However, the file paths in the settings can be broken when you change the machine.
 
@@ -27,7 +27,9 @@ With the portable version, you can easily store it in something like a USB disk,
 - Settings to control whether to load external file changes. (#486)
 - Separated settings for format on manual save and format on auto-save. (#488)
 - An option to disable toast messages of CF Tool. (#489)
+- Add Russian translations. (#494)
 - Now the test cases will be elided if they are too long. (#491)
+- Duplicate Tab (in the context menu of tabs). (#481 and #505)
 
 ### Fixed
 
@@ -45,6 +47,11 @@ With the portable version, you can easily store it in something like a USB disk,
 - Now the version displayed in `cpeditor --version` is `X.Y.Z.rXX.gGITHASH` if the current commit (HEAD) has no tag, otherwise, it is the actual version. (#468)
 - Now the manual URL contains the commit hash instead of the version number, so that it works on the master branch. (#468)
 - Now Tab Jump Out Parentheses is disabled by default. (#499)
+- The default shortcut to format codes is changed to `Ctrl+Shift+I`. (#512)
+
+### Improved
+
+- Now restoring the last session is faster. (#509)
 
 ## v6.5
 
