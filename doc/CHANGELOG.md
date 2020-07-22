@@ -1,5 +1,9 @@
 ## UNRELEASED
 
+### Fixed
+
+- Fixed the diff viewer crashes when the output is empty. (#517)
+
 ## 6.6.1 (Beta)
 
 ### The Portable Version
