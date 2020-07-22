@@ -436,6 +436,10 @@
         <translation>Файл сессии CP Editor</translation>
     </message>
     <message>
+        <source>Report issues</source>
+        <translation>Отчет об ошибках</translation>
+    </message>
+    <message>
         <source>Import Settings</source>
         <translation>Импорт настроек</translation>
     </message>
@@ -466,114 +470,6 @@ Git commit hash: %3
     <message>
         <source>Setup Version</source>
         <translation>Версия для установки</translation>
-    </message>
-    <message>
-        <source>Ctrl+N</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Ctrl+S</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Ctrl+Shift+S</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Ctrl+Alt+Shift+S</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Ctrl+W</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Ctrl+Alt+W</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Ctrl+Shift+W</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Ctrl+Q</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Ctrl+O</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Ctrl+Shift+O</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Ctrl+]</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Ctrl+[</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Ctrl+Shift+Up</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Ctrl+Shift+Down</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Ctrl+Shift+D</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Ctrl+Shift+K</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Ctrl+/</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Ctrl+Shift+/</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Ctrl+Shift+C</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Ctrl+Shift+R</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Ctrl+R</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Ctrl+Alt+L</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Ctrl+Alt+D</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Ctrl+K</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Ctrl+F</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Ctrl+T</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Ctrl+P</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1813,6 +1709,10 @@ You can use &quot;${filename}&quot; for the complete file name,
         <translation>%1 Скобки</translation>
     </message>
     <message>
+        <source>The name of the main class of your solution.</source>
+        <translation>Название основного класса вашего решения.</translation>
+    </message>
+    <message>
         <source>Automatically delete the whole pair of parentheses when deleting
 the left element of it if the two elements are adjacent.
 This can be overridden for each parenthesis in each language.</source>
@@ -2015,6 +1915,10 @@ The Diff Viewer will fall back to plain text if either of the output or the expe
 A source file won&apos;t be opened if it&apos;s too long.</source>
         <translation>Максимальное количество символов в исходном файле для открытия.
 Исходный файл не будет открыт, если он слишком длинный.</translation>
+    </message>
+    <message>
+        <source>Load Test Case Length Limit</source>
+        <translation>Лмимт длины загружаемых тесткейсов</translation>
     </message>
     <message>
         <source>Path to LSP executable</source>
@@ -2317,29 +2221,222 @@ kill the application with SIGKILL which could not be handled by the application.
         <translation>Максимальная высота тестового набора без полосы прокрутки в пикселях.</translation>
     </message>
     <message>
-        <source>The name of the non-public main class of your solution.</source>
-        <translation type="unfinished"></translation>
+        <source>Enable Proxy</source>
+        <translation>Включить прокси</translation>
     </message>
     <message>
-        <source>Format Codes on Save</source>
-        <translation type="unfinished"></translation>
+        <source>Enable proxy for checking updates</source>
+        <translation>Включить прокси для проверки обновлений</translation>
     </message>
     <message>
-        <source>Use Clang Format to format the codes when saving it.</source>
-        <translation type="unfinished"></translation>
+        <source>The host name of the proxy, e.g. 127.0.0.1</source>
+        <translation>Название хоста прокси, например 127.0.0.1</translation>
     </message>
     <message>
-        <source>Save Path</source>
-        <translation type="unfinished"></translation>
+        <source>The port of the proxy, e.g. 1080</source>
+        <translation>Порт прокси, например 1080</translation>
     </message>
     <message>
-        <source>Load Test Case File Length Limit</source>
-        <translation type="unfinished"></translation>
+        <source>The user of the proxy server. It can be empty if the proxy server doesn&apos;t require authentication.</source>
+        <translation>Пользователь прокси-сервера. Он может быть пустым, если прокси-сервер не требует аутентификации.</translation>
     </message>
     <message>
-        <source>The maximum number of characters in a testcase file to load.
-A testcase file won&apos;t be loaded if it&apos;s too long.</source>
-        <translation type="unfinished"></translation>
+        <source>The password of the proxy server. It can be empty if the proxy server doesn&apos;t require authentication.</source>
+        <translation>Пароль прокси-сервера. Он может быть пустым, если прокси-сервер не требует аутентификации.</translation>
+    </message>
+    <message>
+        <source>Type</source>
+        <translation>Тип</translation>
+    </message>
+    <message>
+        <source>Host Name</source>
+        <translation>Имя хоста</translation>
+    </message>
+    <message>
+        <source>Port</source>
+        <translation>Порт</translation>
+    </message>
+    <message>
+        <source>User</source>
+        <translation>Пользователь</translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation>Пароль</translation>
+    </message>
+    <message>
+        <source>The type of the proxy. &quot;System&quot; for using the system proxy.</source>
+        <translation>Тип прокси.</translation>
+    </message>
+    <message>
+        <source>Use Custom Application Font</source>
+        <translation>Использовать свой шрифт для приложения</translation>
+    </message>
+    <message>
+        <source>Use a custom font for the whole application instead of the default system font.</source>
+        <translation>Используйте свой шрифт для всего приложения вместо системного шрифта.</translation>
+    </message>
+    <message>
+        <source>Custom Application Font</source>
+        <translation>Кастомный шрифт для программы</translation>
+    </message>
+    <message>
+        <source>The custom font for the whole application</source>
+        <translation>Кастомный шрифт для всего приложения</translation>
+    </message>
+    <message>
+        <source>%1 Compiler Output Codec</source>
+        <translation>%1 Кодек выхода компилятора</translation>
+    </message>
+    <message>
+        <source>Text codec of the compiler output (errors, warnings, etc.)</source>
+        <translation>Текстовый кодек выхода компилятора (ошибки, предупреждения и т.д.)</translation>
+    </message>
+    <message>
+        <source>Default Path Names And Paths</source>
+        <translation>Сделать названия путей по умолчанию</translation>
+    </message>
+    <message>
+        <source>A list of default paths.
+They can be used in actions&apos; corresponding default paths by using ${&lt;default path name&gt;} as a place holder.
+They can be either manually set or automatically changed after choosing a path for an action.</source>
+        <translation>Список путей по умолчанию.
+Их можно использовать в соответствующих путях по умолчанию для действий, используя ${&lt;default path name&gt;} в качестве заполнителя.
+Они могут быть установлены вручную или автоматически изменены после выбора пути для действия.</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Название</translation>
+    </message>
+    <message>
+        <source>The name of a default path</source>
+        <translation>Название стандартного пути</translation>
+    </message>
+    <message>
+        <source>The path of a default path</source>
+        <translation>Стандартный путь</translation>
+    </message>
+    <message>
+        <source>Open File</source>
+        <translation>Открыть файл</translation>
+    </message>
+    <message>
+        <source>The default path used when choosing a path for %1.
+You can use ${&lt;default path name&gt;} as a place holder.</source>
+        <translation>Путь по умолчанию, используемый при выборе пути для %1.
+Вы можете использовать ${&lt;default path name&gt;} в качестве заполнителя.</translation>
+    </message>
+    <message>
+        <source>The default paths changed after choosing a path for %1.
+It is a list of &lt;default path name&gt;s, separated by commas, and can be empty.</source>
+        <translation>Стандратные пути изменятся после выбора пути для %1.
+Это список &lt;default path name&gt;s, разделенный запятыми, который не может быть пустым.</translation>
+    </message>
+    <message>
+        <source>Save File</source>
+        <translation>Сохранить файл</translation>
+    </message>
+    <message>
+        <source>Open Contest</source>
+        <translation>Открыть соревнование</translation>
+    </message>
+    <message>
+        <source>Load Single Test Case</source>
+        <translation>Добавить один тесткейс</translation>
+    </message>
+    <message>
+        <source>Add Pairs Of Test Cases</source>
+        <translation>Добавить пары тесткейсов</translation>
+    </message>
+    <message>
+        <source>Custom Checker</source>
+        <translation>Кастомный чекер</translation>
+    </message>
+    <message>
+        <source>Export And Import Settings</source>
+        <translation>Экспорт и импорт настроек</translation>
+    </message>
+    <message>
+        <source>Export And Load Session</source>
+        <translation>Экспорт и загрузка сессии</translation>
+    </message>
+    <message>
+        <source>Extract And Load Snippets</source>
+        <translation>Экспорт и загрузка сниппетов</translation>
+    </message>
+    <message>
+        <source>Default path used for %1</source>
+        <translation>Стандартный путь для %1</translation>
+    </message>
+    <message>
+        <source>Default paths changed by %1</source>
+        <translation>Стандартные пути могут быть изменены %1</translation>
+    </message>
+    <message>
+        <source>It can be overridden by %1.</source>
+        <translation>Может быть перезаписан %1.</translation>
+    </message>
+    <message>
+        <source>Use Clang Format to format the code when auto-saving it.</source>
+        <translation>Использовать Clang Format для форматирования кода при его автоматическом сохранении.</translation>
+    </message>
+    <message>
+        <source>Format code on manual save</source>
+        <translation>Форматировать код при ручном сохранении</translation>
+    </message>
+    <message>
+        <source>Use Clang Format to format the code when saving it manually.</source>
+        <translation>Использовать Clang Format для форматирования кода при его ручном сохранении.</translation>
+    </message>
+    <message>
+        <source>Format code on auto-save</source>
+        <translation>Форматировать код при автосохранении</translation>
+    </message>
+    <message>
+        <source>Auto-load external file changes if there&apos;s no unsaved modification</source>
+        <translation>Автоматическая загрузка внешних изменений файлов, если нет несохраненных изменений</translation>
+    </message>
+    <message>
+        <source>Automatically load file changes that are not made in CP Editor if there&apos;s no unsaved modification in CP Editor.</source>
+        <translation>Автоматически загружайте изменения в файлы, которые не были сделаны в CP Editor, если в CP Editor нет несохраненных изменений.</translation>
+    </message>
+    <message>
+        <source>Ask whether to load external file changes</source>
+        <translation>Разрешить загружать внешние изменения в файлы</translation>
+    </message>
+    <message>
+        <source>When there are file changes that are not made in CP Editor and is not automatically loaded by
+&quot;%1&quot;, ask for whether to load the changes.
+If this is disabled, external file changes will be ignored unless they are loaded by
+&quot;%1&quot;.</source>
+        <translation>При наличии изменений в файле, которые не создаются в CP Editor и не загружаются автоматически
+&quot;%1&quot;, разрешите загружать изменения.
+Если этот параметр отключен, внешние изменения файлов будут игнорироваться, если они не будут загружены с помощью
+&quot;%1&quot;.</translation>
+    </message>
+    <message>
+        <source>Output Display Length Limit</source>
+        <translation>Показывать оповещения о вердиктах решения</translation>
+    </message>
+    <message>
+        <source>The maximum number of characters to be displayed for the output of the program.
+If the output is too long, it will be elided.</source>
+        <translation>Максимальное число символов, которые будут отображены в выводе программы.
+Если вывод очень большой, то он будет опущен.</translation>
+    </message>
+    <message>
+        <source>The maximum number of characters in a test case to be loaded.
+A loaded test case will be elided and read-only if it&apos;s too long.</source>
+        <translation>Максимальное число символов, в загруженном тесткейсе.
+Если тесткейс большой, то он будет опущен и досупен только для чтения.</translation>
+    </message>
+    <message>
+        <source>Show toast messages for submission verdicts</source>
+        <translation>Показывать всплывающие уведомления для вердиктов отправок</translation>
+    </message>
+    <message>
+        <source>Show a toast message when the verdict of a submission is known. You can see the message outside of CP Editor.</source>
+        <translation>Показывать всплывающие уведомления, когда известен вердикт отправки. Вы сможете видеть сообщения за пределами CP Editor.</translation>
     </message>
 </context>
 <context>
