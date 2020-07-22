@@ -1,0 +1,115 @@
+<!-- Mustache / Handlebars / Ractive template -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{{title}}</title>
+    </head>
+    <!-- CSS -->
+    <style>
+        /* Mustache variable support in CSS is incomplete */
+        {{mustache}}
+        [ {{other}} ]
+        body {
+            {{{other}}}
+            font-size: 15pt;
+            font-family: Verdana;
+        }
+    </style>
+    <!-- JavaScript -->
+    <script>
+        var foo = {{bar}};
+        `template {{foo}} ${ var a = {{b}} }`
+    </script>
+
+    <body>
+    {{#movie}}
+        <div>
+            <h1>{{title}}</h1>
+            <img src="{{poster}}" alt="{{title}}"/>
+        </div>
+        <div>
+            Rating - {{ratings.critics_rating}}
+        </div>
+    {{/movie}}
+    {{^movie}}
+        <div>
+            Movie Does Not Exist :(
+        </div>
+    {{/movie}}
+    {{! this is a comment TODO ALERT }}
+
+    This is a partial {{> partial1 }}
+    {{#block
+        param=foo
+        param2=bar}}
+        {{block foo=bar}}
+    {{/block}}
+
+    <!-- Handlebars -->
+
+    {{#list people}}{{firstName}} {{lastName}}{{/list}}
+    {{#noop}}{{body}}{{/noop}}
+    {{#with story}}
+        <div class="intro">{{{intro}}}</div>
+        <div class="body">{{{body}}}</div>
+    {{/with}}
+    {{#each comments}}
+        <div class="comment">
+            <h2>{{subject}}</h2>
+            {{{body}}}
+        </div>
+    {{/each}}
+    {{#list nav}}
+        <a href="{{url}}">{{title}}</a>
+    {{/list}}
+
+    {{!-- Conditionals --}}
+    {{#if isActive}}
+        <img src="star.gif" alt="Active">
+    {{else if isInactive}}
+        <img src="cry.gif" alt="Inactive">
+    {{else}}
+        <img src="cry.gif" alt="">
+    {{/if}}
+
+    {{!-- Escaping --}}
+    \{{escaped}}
+    {{{{raw}}}}
+        {{escaped}}
+    {{{{/raw}}}}
+
+    {{!-- Whitespace Control --}}
+    {{#each nav ~}}
+        <a href="{{url}}">
+            {{~#if test}}
+                {{~title}}
+            {{~^~}}
+                Empty
+            {{~/if~}}
+        </a>
+    {{~/each}}
+
+    {{!-- Helpers --}}
+    {{link "See more..." story.url}}
+    {{log "Look at me!" level="error"}}
+
+    {{!-- Partial --}}
+    {{> myPartial name=../name }}
+    {{#> myPartial }}
+        Failover content
+    {{/myPartial}}
+    {{#*inline "myPartial"}}
+        My Content
+    {{/inline}}
+    {{#each children}}
+        {{> myPartial}}
+    {{/each}}
+
+    <!-- Delimiters in tags (folding) -->
+    word<div>word
+
+    word</div>word
+
+    </body>
+</html>

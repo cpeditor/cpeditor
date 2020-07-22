@@ -1,0 +1,32 @@
+; Example Inno Setup script
+
+#include "external.iss"
+
+<endfold id='1'></endfold id='1'><beginfold id='1'>[Setup]</beginfold id='1'>
+AppName=Example Application
+AppVersion=1.2.3
+AppPublisher=example.com
+AppPublisherURL=http://www.example.com/
+WizardStyle=modern
+DefaultDirName={autopf}\Example Application
+DefaultGroupName=Example Application
+Compression=lzma2/max
+SolidCompression=yes
+Uninstallable=not PortableCheck
+UninstallDisplayIcon={app}\Compil32.exe
+LicenseFile=license.txt
+#ifdef SIGNTOOL
+SignTool=issigntool
+SignTool=issigntool256
+SignedUninstaller=yes
+#endif
+
+<endfold id='1'></endfold id='1'><beginfold id='1'>[Files]</beginfold id='1'>
+Source: "license.txt"; DestDir: "{app}"; Flags: ignoreversion touch
+Source: "files\MyApp.exe"; DestDir: "{app}"; Flags: ignoreversion signonce touch
+
+<endfold id='1'></endfold id='1'><beginfold id='1'>[Code]</beginfold id='1'>
+function PortableCheck: Boolean;
+<beginfold id='2'>begin</beginfold id='2'>
+  Result := ExpandConstant('{param:portable|0}') = '1';
+<endfold id='2'>end</endfold id='2'>;

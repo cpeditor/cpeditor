@@ -1,0 +1,58 @@
+<% 'kate: hl ASP;
+<beginfold id='1'>if</beginfold id='1'> ( instr(request.servervariables("PATH_INFO"),"login.asp") <= 0 and instr(request.servervariables("PATH_INFO"),"inset") <= 0 and instr(request.servervariables("PATH_INFO"),"Data") <= 0 and instr(request.servervariables("PATH_INFO"),"dropDown") <= 0 ) then
+	Session("originalRequestedPage") = Request.ServerVariables("PATH_INFO") & "?" & Request.ServerVariables("QUERY_STRING")
+<endfold id='1'>end if</endfold id='1'>
+
+<beginfold id='2'>function</beginfold id='2'> countRecords( rsToCount )
+	numRecs = 0
+
+	<beginfold id='5'>do</beginfold id='5'> until rsToCount.eof
+		numRecs = numRecs + 1
+
+		rsToCount.movenext
+	<endfold id='5'>loop</endfold id='5'>
+
+	rsToCount.close ' just to make sure nobody
+		' tries to operate on the recordset,
+		' which has already reached eof
+
+	countRecords = numRecs
+<endfold id='2'>end function</endfold id='2'>
+
+<beginfold id='2'>function</beginfold id='2'> unique( rs, sortColumn ) ' return unique instances of text in sortColumn within rs
+	dim sorted()
+
+	redim sorted(1)
+	dim i
+	i = 0
+	<beginfold id='5'>do</beginfold id='5'> until rs.eof
+		<beginfold id='1'>if</beginfold id='1'> (not find( rs(sortColumn), sorted )) then
+			redim preserve sorted(i+1)
+			sorted(i) = rs(sortColumn)
+		 	i = i + 1
+		<endfold id='1'>end if</endfold id='1'>
+		rs.MoveNext
+	<endfold id='5'>loop</endfold id='5'>
+
+	redim preserve sorted(i-1) ' the function will add an extra blank entry to the array
+
+	rs.Close 	' close the recordset - we'll be using it again - and reset i - well be using it again, too
+
+	unique = sorted
+<endfold id='2'>end function</endfold id='2'>
+
+<beginfold id='3'>sub</beginfold id='3'> testSub( variable ) ' do nothing impressive...
+	dim newVar
+
+	newVar = variable
+
+	<beginfold id='1'>if</beginfold id='1'> ( variable = true )
+		response.end
+	<endfold id='1'></endfold id='1'><beginfold id='1'>else</beginfold id='1'> %>
+
+<p>We are writing text.</p>
+<p class="stuff"><%=newVar%></p>
+<p>We have written text and outputted a variable.</p>
+
+<% 	<endfold id='1'>end if</endfold id='1'>
+<endfold id='3'>end sub</endfold id='3'> %>

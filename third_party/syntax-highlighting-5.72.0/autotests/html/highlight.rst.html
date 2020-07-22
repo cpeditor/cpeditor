@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title>highlight.rst</title>
+<meta name="generator" content="KF5::SyntaxHighlighting (reStructuredText)"/>
+</head><body style="color:#1f1c1b"><pre>
+<span style="color:#006e28;">http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html</span>
+
+A heading
+#########
+
+<span style="color:#644a9b;">:field:</span>     A field
+    On another line, <span style="font-style:italic;">*with inline*</span> <span style="font-weight:bold;">**markup**</span>.
+:py:field:  A field with a colon (not handled correctly, currently)
+<span style="color:#644a9b;">:and space:</span>
+
+<span style="color:#898887;">.. comment</span>
+
+text
+
+<span style="color:#898887;">.. multi-line</span>
+<span style="color:#0057ae;">   </span><span style="color:#898887;"> comment</span>
+
+text again
+
+<span style="color:#898887;">..</span>
+<span style="color:#0057ae;">   </span><span style="color:#898887;"> also multiline comment</span>
+<span style="color:#898887;">..</span>
+
+<span style="color:#0057ae;">.. directive:: </span>argument another
+    <span style="color:#644a9b;">:option:</span> value
+
+    Directive content.
+
+<span style="color:#0057ae;">.. py:function:: </span>a directive with a colon
+    :py:option: an option with a colon (not handled correctly, currently)
+    <span style="color:#644a9b;">:option a:</span> an option with a space
+
+<span style="color:#0057ae;">.. code-block::</span>
+
+<span style="color:#0057ae;">    A code block</span>
+
+<span style="color:#0057ae;">.. code::</span>
+
+<span style="color:#0057ae;">    But this is a code block, too.</span>
+
+Inline <span style="color:#0057ae;">``code``</span>, <span style="font-weight:bold;">:ref:</span><span style="color:#b08000;">`interpreted role`</span>, <span style="color:#b08000;">`trailing`</span><span style="font-weight:bold;">:ref:</span>,
+<span style="font-weight:bold;">:py:ref:</span><span style="color:#b08000;">`role with a colon`</span>. The <span style="color:#b08000;">`default interpreted role`</span> and regular text
+after.
+
+A <span style="color:#006e28;">reference_</span>, <span style="color:#006e28;">`link &lt;https://kde.org&gt;`_</span> Plain link: <span style="color:#006e28;">https://kde.org</span>. A footnote
+reference <span style="color:#006e28;">[1]_</span>.
+
+<span style="color:#0057ae;">.. [1] </span>Footnote content
+
+A text block.
+
+    Block quote
+
+    -- attribution
+
+-   A list
+-   Another item
+
+    -   Sub item
+    -   More
+
+1.  Ordered
+2.  list
+
+Definition title
+    Definition description
+Definition title
+    Definition description
+
+(<span style="color:#0057ae;">``code between parentheses``</span>)
+</pre></body></html>

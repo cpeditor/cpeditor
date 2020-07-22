@@ -1,0 +1,50 @@
+# tcl syntax highlighting sample script for Kate
+#
+# author: JM. Philippe 15/03/04
+
+# escaped characters
+set String \{
+set String \{
+set String \"
+set String " \" "
+set String " \{ "
+
+#comments and not comments
+# is comments
+;#is comments
+	# is comments
+# <h1> is html comment </h1>
+puts ok;	# is comments
+set String [string map <beginfold id='2'>{</beginfold id='2'></a> <beginfold id='2'>{</beginfold id='2'><span>&#187;is not comments</span></a><endfold id='2'>}</endfold id='2'><endfold id='2'>}</endfold id='2'> $String]
+set String \#not_a_comment
+
+# blocks
+proc test <beginfold id='2'>{</beginfold id='2'>arg1 <beginfold id='2'>{</beginfold id='2'>arg2 <beginfold id='2'>{</beginfold id='2'><endfold id='2'>}</endfold id='2'><endfold id='2'>}</endfold id='2'> <beginfold id='2'>{</beginfold id='2'>arg3 <beginfold id='2'>{</beginfold id='2'>fr fq r<endfold id='2'>}</endfold id='2'><endfold id='2'>}</endfold id='2'><endfold id='2'>}</endfold id='2'> <beginfold id='2'>{</beginfold id='2'>
+	if <beginfold id='2'>{</beginfold id='2'>1<endfold id='2'>}</endfold id='2'> <beginfold id='2'>{</beginfold id='2'>;	#comments
+		set String \{;	# not a block start
+	<endfold id='2'>}</endfold id='2'>
+<endfold id='2'>}</endfold id='2'>
+
+proc test args <beginfold id='2'>{</beginfold id='2'>
+	set String \};	# not a block end
+<endfold id='2'>}</endfold id='2'>
+
+<beginfold id='1'># BEGIN - collapsable comments</beginfold id='1'>
+# blablabla
+<endfold id='1'># END</endfold id='1'>
+
+# strings
+set String "feqr feqr $gqer gqe"
+set String "feqr
+feqr \" $gqer \
+gqe
+"
+set String <beginfold id='2'>{</beginfold id='2'>feqr
+feqr \{ $gqer \
+gqe
+<endfold id='2'>}</endfold id='2'>
+
+# variables
+set b+1 [incr b]
+set <beginfold id='2'>{</beginfold id='2'>incr-b<endfold id='2'>}</endfold id='2'> ${b+1}
+puts ${incr-b}

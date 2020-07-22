@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title>test.htm</title>
+<meta name="generator" content="KF5::SyntaxHighlighting (HTML)"/>
+</head><body style="color:#1f1c1b"><pre>
+<span style="color:#0057ae;font-weight:bold;">&lt;!DOCTYPE </span>HTML PUBLIC &quot;-//W3C//DTD HTML 4.01//EN&quot; &quot;http://www.w3.org/TR/html4/strict.dtd&quot;<span style="color:#0057ae;font-weight:bold;">&gt;</span>
+<span style="font-weight:bold;">&lt;html&gt;</span>
+  <span style="font-weight:bold;">&lt;head&gt;</span>
+    <span style="font-weight:bold;">&lt;title&gt;</span>This is a title<span style="font-weight:bold;">&lt;/title&gt;</span>
+    <span style="font-weight:bold;">&lt;style&gt;</span>
+    <span style="color:#898887;">/* comment */</span>
+    <span style="color:#006e28;font-weight:bold;">#xyz</span> { <span style="font-weight:bold;">color</span>: <span style="color:#aa5500;">red</span>; }
+    h1 { <span style="font-weight:bold;">font</span>: <span style="color:#bf0303;">&quot;Comic Sans&quot;</span>; }
+    <span style="font-weight:bold;">&lt;/style&gt;</span>
+  <span style="font-weight:bold;">&lt;/head&gt;</span>
+  <span style="font-weight:bold;">&lt;body</span><span style="color:#006e28;"> class=</span><span style="color:#bf0303;">&quot;ui main&quot;</span><span style="font-weight:bold;">&gt;</span>
+    <span style="font-weight:bold;">&lt;p</span><span style="color:#006e28;"> *ngFor=</span><span style="color:#bf0303;">&quot;let name of names&quot;</span><span style="font-weight:bold;">&gt;</span>Hello, {{ name }}!<span style="font-weight:bold;">&lt;/p&gt;</span>
+  <span style="font-weight:bold;">&lt;/body&gt;</span>
+
+  <span style="color:#898887;">&lt;!-- JavaScript code --&gt;</span>
+  <span style="font-weight:bold;">&lt;script&gt;</span>
+    <span style="color:#644a9b;font-weight:bold;">document</span>.<span style="color:#0057ae;font-style:italic;">body</span>.<span style="color:#644a9b;font-style:italic;">appendChild</span>(<span style="color:#644a9b;font-weight:bold;">document</span>.<span style="color:#644a9b;font-style:italic;">createTextNode</span>(<span style="color:#bf0303;">'Hello World!'</span>)); <span style="color:#898887;">// comment</span>
+  <span style="font-weight:bold;">&lt;/script&gt;</span>
+
+  <span style="color:#898887;">&lt;!-- TypeScript code --&gt;</span>
+  <span style="font-weight:bold;">&lt;script</span><span style="color:#006e28;"> type=</span><span style="color:#bf0303;">&quot;text/typescript&quot;</span><span style="font-weight:bold;">&gt;</span>
+    <span style="font-weight:bold;font-style:italic;">class</span> Student {
+        fullName: <span style="color:#0057ae;">string</span>;
+        <span style="font-weight:bold;font-style:italic;">constructor</span>(<span style="font-weight:bold;font-style:italic;">public</span> firstName: <span style="color:#0057ae;">string</span>, <span style="font-weight:bold;font-style:italic;">public</span> middleInitial: <span style="color:#0057ae;">string</span>, <span style="font-weight:bold;font-style:italic;">public</span> lastName: <span style="color:#0057ae;">string</span>) {
+            <span style="font-weight:bold;">this</span>.<span style="color:#0057ae;">fullName</span> = firstName + <span style="color:#bf0303;">&quot; &quot;</span> + middleInitial + <span style="color:#bf0303;">&quot; &quot;</span> + lastName;
+        }
+    }
+    <span style="font-weight:bold;font-style:italic;">let</span> a: <span style="color:#0057ae;">null</span> = <span style="font-weight:bold;">null</span>;
+    <span style="font-weight:bold;font-style:italic;">let</span> b: <span style="color:#0057ae;">number</span> = <span style="color:#b08000;">12___3</span>;
+  <span style="font-weight:bold;">&lt;/script&gt;</span>
+
+  <span style="color:#898887;">&lt;!-- JSX code --&gt;</span>
+  <span style="font-weight:bold;">&lt;script</span><span style="color:#006e28;"> src=</span><span style="color:#bf0303;">&quot;https://unpkg.com/babel-standalone@6/babel.min.js&quot;</span><span style="font-weight:bold;">&gt;&lt;/script&gt;</span>
+  <span style="font-weight:bold;">&lt;script</span><span style="color:#006e28;"> type=</span><span style="color:#bf0303;">&quot;text/babel&quot;</span><span style="font-weight:bold;">&gt;</span>
+    ReactDOM.<span style="color:#644a9b;">render</span>(
+      <span style="font-weight:bold;">&lt;h1&gt;</span>Hello, world!<span style="font-weight:bold;">&lt;/h1&gt;</span>,
+      <span style="color:#644a9b;font-weight:bold;">document</span>.<span style="color:#644a9b;font-style:italic;">getElementById</span>(<span style="color:#bf0303;">'root'</span>)
+    );
+    <span style="font-weight:bold;">function</span> <span style="color:#644a9b;">Story</span>(props) {
+      <span style="font-weight:bold;">const</span> SpecificStory = components[props.<span style="color:#0057ae;">storyType</span>];
+      <span style="font-weight:bold;">return </span><span style="color:#644a9b;font-weight:bold;">&lt;SpecificStory</span> <span style="color:#006e28;">story</span>=<span style="color:#0057ae;">{</span> props.<span style="color:#0057ae;">story</span> <span style="color:#0057ae;">}</span> <span style="color:#006e28;">attr2</span>=<span style="color:#bf0303;">&quot;</span><span style="color:#b08000;">&amp;ref;</span><span style="color:#bf0303;">&quot;</span> <span style="color:#006e28;">attr3</span>=<span style="color:#bf0303;">&quot;Hello\n&quot;</span> <span style="color:#644a9b;font-weight:bold;">/&gt;</span>;
+    }
+  <span style="font-weight:bold;">&lt;/script&gt;</span>
+
+  <span style="color:#898887;">&lt;!-- Mustache/Handlebars --&gt;</span>
+  <span style="font-weight:bold;">&lt;script</span><span style="color:#006e28;"> type=</span><span style="color:#bf0303;">&quot;x-tmpl-mustache&quot;</span><span style="font-weight:bold;">&gt;</span>
+    <span style="color:#644a9b;font-weight:bold;">{{#movie}}</span>
+        <span style="font-weight:bold;">&lt;div&gt;</span>
+            <span style="font-weight:bold;">&lt;h1&gt;</span><span style="color:#0057ae;">{{</span>title<span style="color:#0057ae;">}}</span><span style="font-weight:bold;">&lt;/h1&gt;</span>
+            <span style="font-weight:bold;">&lt;img</span><span style="color:#006e28;"> src</span>=<span style="color:#bf0303;">&quot;</span><span style="color:#0057ae;">{{</span>poster<span style="color:#0057ae;">}}</span><span style="color:#bf0303;">&quot;</span><span style="color:#006e28;"> alt</span>=<span style="color:#bf0303;">&quot;</span><span style="color:#0057ae;">{{</span>title<span style="color:#0057ae;">}}</span><span style="color:#bf0303;">&quot;</span><span style="font-weight:bold;">/&gt;</span>
+        <span style="font-weight:bold;">&lt;/div&gt;</span>
+        <span style="font-weight:bold;">&lt;div&gt;</span>
+            Rating - <span style="color:#0057ae;">{{</span>ratings.critics_rating<span style="color:#0057ae;">}}</span>
+        <span style="font-weight:bold;">&lt;/div&gt;</span>
+    <span style="color:#644a9b;font-weight:bold;">{{/movie}}</span>
+    <span style="color:#644a9b;font-weight:bold;">{{^movie}}</span>
+        <span style="font-weight:bold;">&lt;div&gt;</span>
+            Movie Does Not Exist :(
+        <span style="font-weight:bold;">&lt;/div&gt;</span>
+    <span style="color:#644a9b;font-weight:bold;">{{/movie}}</span>
+    <span style="color:#898887;">{{! comment }}</span>
+  <span style="font-weight:bold;">&lt;/script&gt;</span>
+
+  <span style="color:#898887;">&lt;!-- HTML template --&gt;</span>
+  <span style="font-weight:bold;">&lt;script</span><span style="color:#006e28;"> type=</span><span style="color:#bf0303;">&quot;text/html&quot;</span><span style="font-weight:bold;">&gt;</span>
+    <span style="font-weight:bold;">&lt;li&gt;&lt;a</span><span style="color:#006e28;"> href=</span><span style="color:#bf0303;">&quot;link&quot;</span><span style="font-weight:bold;">&gt;</span>Hello<span style="font-weight:bold;">&lt;/a&gt;&lt;/li&gt;</span>
+  <span style="font-weight:bold;">&lt;/script&gt;</span>
+
+  <span style="color:#898887;">&lt;!-- Close the block correctly after &quot;?&quot; in the JavaScript highlighter --&gt;</span>
+  <span style="font-weight:bold;">&lt;script&gt;</span>
+    ?
+  <span style="font-weight:bold;">&lt;/script&gt;</span>
+
+<span style="font-weight:bold;">&lt;/html&gt;</span>
+</pre></body></html>

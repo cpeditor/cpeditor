@@ -1,0 +1,387 @@
+<Comment># Sieve syntax highlighting test</Comment><br/>
+<Comment># see RFC 5228</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Comment># comments §2.3.</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Comment># Single line with alerts </Comment><Alert Level 2>TODO</Alert Level 2><Comment> </Comment><Alert Level 3>###</Alert Level 3><br/>
+<Comment>/*</Comment><br/>
+<Comment> Multiline comment with alerts </Comment><Alert Level 2>FIXME</Alert Level 2><br/>
+<Comment> this also should be folding region</Comment><br/>
+<Comment> */</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Comment># literal data §2.4.</Comment><br/>
+<Comment># numbers §2.4.1.</Comment><br/>
+<Decimal>42</Decimal><br/>
+<Decimal>100K</Decimal><br/>
+<Decimal>10M</Decimal><br/>
+<Decimal>3G</Decimal><br/>
+<Normal Text></Normal Text><br/>
+<Comment># strings §2.4.2.</Comment><br/>
+<String>"string"</String><br/>
+<String>"string</String><Special Character>\n</Special Character><String>with</String><Special Character>\"</Special Character><String>special chars"</String><br/>
+<Comment># not a string</Comment><br/>
+<String>"multi \</String><br/>
+<String> line \</String><br/>
+<String> #with</String><Special Character>\a</Special Character><String> \</String><br/>
+<String> continuation"</String><br/>
+<Comment># not a string</Comment><br/>
+<String>text:</String><br/>
+<String>Multiline</String><br/>
+<String>string</String><Special Character>\"</Special Character><String> "with quotes"</String><br/>
+<String>or # comments</String><br/>
+<String>this should also be a folding region</String><br/>
+<String>.dot</String><br/>
+<String>..dot</String><br/>
+<String>dotstuffed dot:</String><br/>
+<String>..</String><br/>
+<String>ending with a single .</String><br/>
+<String>.</String><br/>
+<Normal Text></Normal Text><br/>
+<Comment># encoded characters §2.4.2.4.</Comment><br/>
+<Comment># valid</Comment><br/>
+<String>"$</String><Special Character>${hex:24 24}</Special Character><String>"</String><br/>
+<String>"</String><Special Character>${unicode:40}</Special Character><String>"</String><br/>
+<String>"$</String><Special Character>${hex:40}</Special Character><String>"</String><br/>
+<String>"</String><Special Character>${hex: da }</Special Character><String>"</String><br/>
+<String>"</String><Special Character>${hex:FE }</Special Character><String>"</String><br/>
+<String>"</String><Special Character>${HEX: 40}</Special Character><String>"</String><br/>
+<String>"</String><Special Character>${unicode:40}</Special Character><String>"</String><br/>
+<String>"</String><Special Character>${UNICODE:40}</Special Character><String>"</String><br/>
+<String>"</String><Special Character>${UnICoDE:0000040}</Special Character><String>"</String><br/>
+<String>"</String><Special Character>${Unicode:ff}</Special Character><String>"</String><br/>
+<Comment>#invalid</Comment><br/>
+<String>"${hex:40"</String><br/>
+<String>"${hex:4</String><Special Character>${hex:30}</Special Character><String>}"</String><br/>
+<String>"${ unicode:40}"</String><br/>
+<String>"${Unicode:Cool}"</String><br/>
+<Comment># semantic errors, syntactically correct</Comment><br/>
+<String>"</String><Special Character>${hex:400}</Special Character><String>"</String><br/>
+<String>"</String><Special Character>${unicode:200000}</Special Character><String>"</String><br/>
+<String>"</String><Special Character>${Unicode:DF01}</Special Character><String>"</String><br/>
+<Normal Text></Normal Text><br/>
+<Comment># test lists §2.5.1</Comment><br/>
+<Keyword>if</Keyword><Normal Text> </Normal Text><Test>anyof</Test><Normal Text> (</Normal Text><Test>not</Test><Normal Text> </Normal Text><Test>exists</Test><Normal Text> [</Normal Text><String>"From"</String><Normal Text>, </Normal Text><String>"Date"</String><Normal Text>],</Normal Text><br/>
+<Normal Text>          </Normal Text><Test>header</Test><Normal Text> </Normal Text><Match Type>:contains</Match Type><Normal Text> </Normal Text><String>"from"</String><Normal Text> </Normal Text><String>"fool@example.com"</String><Normal Text>) {</Normal Text><br/>
+<Normal Text>    </Normal Text><Action>discard</Action><Normal Text>;</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Keyword>if</Keyword><Normal Text> </Normal Text><Test>allof</Test><Normal Text> (</Normal Text><Test>not</Test><Normal Text> </Normal Text><Test>exists</Test><Normal Text> [</Normal Text><String>"From"</String><Normal Text>, </Normal Text><String>"Date"</String><Normal Text>],</Normal Text><br/>
+<Normal Text>          </Normal Text><Test>header</Test><Normal Text> </Normal Text><Match Type>:contains</Match Type><Normal Text> </Normal Text><String>"from"</String><Normal Text> </Normal Text><String>"fool@example.com"</String><Normal Text>) {</Normal Text><br/>
+<Normal Text>    </Normal Text><Action>discard</Action><Normal Text>;</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment># match types §2.7.1.</Comment><br/>
+<Match Type>:contains</Match Type><br/>
+<Match Type>:matches</Match Type><br/>
+<Match Type>:is</Match Type><br/>
+<Normal Text></Normal Text><br/>
+<Comment># comparators §2.7.3.</Comment><br/>
+<Keyword>if</Keyword><Normal Text> </Normal Text><Test>header</Test><Normal Text> </Normal Text><Match Type>:contains</Match Type><Normal Text> </Normal Text><Argument>:comparator</Argument><Normal Text> </Normal Text><String>"i;octet"</String><Normal Text> </Normal Text><String>"Subject"</String><Normal Text> </Normal Text><String>"MAKE MONEY FAST"</String><Normal Text> {</Normal Text><br/>
+<Normal Text>    </Normal Text><Action>discard</Action><Normal Text>;</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment># comparison against addresses §2.7.4.</Comment><br/>
+<Argument>:localpart</Argument><br/>
+<Argument>:domain</Argument><br/>
+<Argument>:all</Argument><br/>
+<Normal Text></Normal Text><br/>
+<Comment># commands §2.9.</Comment><br/>
+<Action>keep</Action><Normal Text>;</Normal Text><br/>
+<Action>fileinto</Action><Normal Text> </Normal Text><String>"inbox.bla"</String><Normal Text>;</Normal Text><br/>
+<Action>redirect</Action><Normal Text> </Normal Text><String>"test@kde.org"</String><Normal Text>;</Normal Text><br/>
+<Action>discard</Action><Normal Text>;</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment># control if §3.1.</Comment><br/>
+<Comment># this also should create folding regions</Comment><br/>
+<Keyword>if</Keyword><Normal Text> </Normal Text><Test>header</Test><Normal Text> </Normal Text><Match Type>:contains</Match Type><Normal Text> </Normal Text><String>"from"</String><Normal Text> </Normal Text><String>"foo"</String><Normal Text> {</Normal Text><br/>
+<Normal Text>    </Normal Text><Action>discard</Action><Normal Text>;</Normal Text><br/>
+<Normal Text>} </Normal Text><Keyword>elsif</Keyword><Normal Text> </Normal Text><Test>header</Test><Normal Text> </Normal Text><Match Type>:contains</Match Type><Normal Text> [</Normal Text><String>"subject"</String><Normal Text>] [</Normal Text><String>"$$$"</String><Normal Text>] {</Normal Text><br/>
+<Normal Text>    </Normal Text><Action>discard</Action><Normal Text>;</Normal Text><br/>
+<Normal Text>} </Normal Text><Keyword>else</Keyword><Normal Text> {</Normal Text><br/>
+<Normal Text>    </Normal Text><Action>fileinto</Action><Normal Text> </Normal Text><String>"INBOX"</String><Normal Text>;</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment># control require §3.2.</Comment><br/>
+<Keyword>require</Keyword><Normal Text> </Normal Text><String>"fileinto"</String><Normal Text>;</Normal Text><br/>
+<Keyword>require</Keyword><Normal Text> [</Normal Text><String>"vacation"</String><Normal Text>, </Normal Text><String>"imapflags"</String><Normal Text>];</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment># control stop §3.3.</Comment><br/>
+<Action>stop</Action><Normal Text>;</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment># test commands §5.</Comment><br/>
+<Test>address</Test><br/>
+<Test>allof</Test><br/>
+<Test>anyof</Test><br/>
+<Test>exists</Test><br/>
+<Test>false</Test><br/>
+<Test>header</Test><br/>
+<Test>not</Test><br/>
+<Test>size</Test><br/>
+<Test>true</Test><br/>
+<Normal Text></Normal Text><br/>
+<Comment># test address §5.1.</Comment><br/>
+<Keyword>if</Keyword><Normal Text> </Normal Text><Test>address</Test><Normal Text> </Normal Text><Match Type>:is</Match Type><Normal Text> </Normal Text><Argument>:all</Argument><Normal Text> </Normal Text><String>"from"</String><Normal Text> </Normal Text><String>"kde@example.com"</String><Normal Text> {</Normal Text><br/>
+<Normal Text>    </Normal Text><Action>discard</Action><Normal Text>;</Normal Text><br/>
+<Normal Text>} </Normal Text><Keyword>elsif</Keyword><Normal Text> </Normal Text><Test>address</Test><Normal Text> </Normal Text><Argument>:domain</Argument><Normal Text> </Normal Text><Match Type>:is</Match Type><Normal Text> [</Normal Text><String>"From"</String><Normal Text>, </Normal Text><String>"To"</String><Normal Text>] </Normal Text><String>"example.com"</String><Normal Text> { </Normal Text><Comment># comment</Comment><br/>
+<Normal Text>    </Normal Text><Action>keep</Action><Normal Text>; </Normal Text><Comment># comment</Comment><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment># test envelope §5.4.</Comment><br/>
+<Keyword>if</Keyword><Normal Text> </Normal Text><Test>envelope</Test><Normal Text> </Normal Text><Argument>:all</Argument><Normal Text> </Normal Text><Match Type>:is</Match Type><Normal Text> </Normal Text><String>"from"</String><Normal Text> </Normal Text><String>"kde@example.com"</String><Normal Text> {</Normal Text><br/>
+<Normal Text>    </Normal Text><Action>discard</Action><Normal Text>;</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment># test exists §5.5.</Comment><br/>
+<Keyword>if</Keyword><Normal Text> </Normal Text><Test>not</Test><Normal Text> </Normal Text><Test>exists</Test><Normal Text> [</Normal Text><String>"From"</String><Normal Text>,</Normal Text><String>"Date"</String><Normal Text>] {</Normal Text><br/>
+<Normal Text>    </Normal Text><Action>discard</Action><Normal Text>;</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment># test header §5.7.</Comment><br/>
+<Test>not</Test><Normal Text> </Normal Text><Test>header</Test><Normal Text> </Normal Text><Match Type>:matches</Match Type><Normal Text> </Normal Text><String>"Cc"</String><Normal Text> </Normal Text><String>"?*"</String><br/>
+<Normal Text></Normal Text><br/>
+<Comment># test size §5.9.</Comment><br/>
+<Keyword>if</Keyword><Normal Text> </Normal Text><Test>size</Test><Normal Text> </Normal Text><Argument>:over</Argument><Normal Text> </Normal Text><Decimal>500K</Decimal><Normal Text> { </Normal Text><Action>discard</Action><Normal Text>; }</Normal Text><br/>
+<Keyword>if</Keyword><Normal Text> </Normal Text><Test>size</Test><Normal Text> </Normal Text><Argument>:under</Argument><Normal Text> </Normal Text><Decimal>1M</Decimal><Normal Text> { </Normal Text><Action>keep</Action><Normal Text>; } </Normal Text><Keyword>else</Keyword><Normal Text> { </Normal Text><Action>discard</Action><Normal Text>; }</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment>/*</Comment><br/>
+<Comment> * Extensions</Comment><br/>
+<Comment> * see https://www.iana.org/assignments/sieve-extensions/sieve-extensions.xhtml</Comment><br/>
+<Comment> */</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Comment># Body RFC5173</Comment><br/>
+<Argument>:raw</Argument><br/>
+<Argument>:content</Argument><br/>
+<Argument>:text</Argument><br/>
+<Keyword>if</Keyword><Normal Text> </Normal Text><Test>body</Test><Normal Text> </Normal Text><Argument>:raw</Argument><Normal Text> </Normal Text><Match Type>:contains</Match Type><Normal Text> </Normal Text><String>"MAKE MONEY FAST"</String><Normal Text> {</Normal Text><br/>
+<Normal Text>    </Normal Text><Action>discard</Action><Normal Text>;</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Keyword>if</Keyword><Normal Text> </Normal Text><Test>body</Test><Normal Text> </Normal Text><Argument>:content</Argument><Normal Text> </Normal Text><String>"text"</String><Normal Text> </Normal Text><Match Type>:contains</Match Type><Normal Text> [</Normal Text><String>"bla"</String><Normal Text>, </Normal Text><String>"blub"</String><Normal Text>] {</Normal Text><br/>
+<Normal Text>    </Normal Text><Action>fileinto</Action><Normal Text> </Normal Text><String>"inbox.foo"</String><Normal Text>;</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment># Convert RFC6558</Comment><br/>
+<Keyword>require</Keyword><Normal Text> [</Normal Text><String>"convert"</String><Normal Text>];</Normal Text><br/>
+<Action>convert</Action><Normal Text> </Normal Text><String>"image/tiff"</String><Normal Text> </Normal Text><String>"image/jpeg"</String><Normal Text> [</Normal Text><String>"pix-x=320"</String><Normal Text>,</Normal Text><String>"pix-y=240"</String><Normal Text>];</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment># Copy RFC3894</Comment><br/>
+<Keyword>require</Keyword><Normal Text> [</Normal Text><String>"copy"</String><Normal Text>, </Normal Text><String>"fileinto"</String><Normal Text>];</Normal Text><br/>
+<Action>fileinto</Action><Normal Text> </Normal Text><Argument>:copy</Argument><Normal Text> </Normal Text><String>"incoming"</String><Normal Text>;</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment># Date RFC5260</Comment><br/>
+<Keyword>require</Keyword><Normal Text> [</Normal Text><String>"date"</String><Normal Text>, </Normal Text><String>"relational"</String><Normal Text>, </Normal Text><String>"fileinto"</String><Normal Text>];</Normal Text><br/>
+<Keyword>if</Keyword><Normal Text> </Normal Text><Test>allof</Test><Normal Text>(</Normal Text><Test>header</Test><Normal Text> </Normal Text><Match Type>:is</Match Type><Normal Text> </Normal Text><String>"from"</String><Normal Text> </Normal Text><String>"boss@example.com"</String><Normal Text>,</Normal Text><br/>
+<Normal Text>         </Normal Text><Test>date</Test><Normal Text> </Normal Text><Match Type>:value</Match Type><Normal Text> </Normal Text><String>"ge"</String><Normal Text> </Normal Text><Argument>:originalzone</Argument><Normal Text> </Normal Text><String>"date"</String><Normal Text> </Normal Text><String>"hour"</String><Normal Text> </Normal Text><String>"09"</String><Normal Text>,</Normal Text><br/>
+<Normal Text>         </Normal Text><Test>date</Test><Normal Text> </Normal Text><Match Type>:value</Match Type><Normal Text> </Normal Text><String>"lt"</String><Normal Text> </Normal Text><Argument>:originalzone</Argument><Normal Text> </Normal Text><String>"date"</String><Normal Text> </Normal Text><String>"hour"</String><Normal Text> </Normal Text><String>"17"</String><Normal Text>)</Normal Text><br/>
+<Normal Text>    { </Normal Text><Action>fileinto</Action><Normal Text> </Normal Text><String>"urgent"</String><Normal Text>; }</Normal Text><br/>
+<Keyword>if</Keyword><Normal Text> </Normal Text><Test>anyof</Test><Normal Text>(</Normal Text><Test>date</Test><Normal Text> </Normal Text><Match Type>:is</Match Type><Normal Text> </Normal Text><String>"received"</String><Normal Text> </Normal Text><String>"weekday"</String><Normal Text> </Normal Text><String>"0"</String><Normal Text>,</Normal Text><br/>
+<Normal Text>         </Normal Text><Test>date</Test><Normal Text> </Normal Text><Match Type>:is</Match Type><Normal Text> </Normal Text><String>"received"</String><Normal Text> </Normal Text><String>"weekday"</String><Normal Text> </Normal Text><String>"6"</String><Normal Text>)</Normal Text><br/>
+<Normal Text>{ </Normal Text><Action>fileinto</Action><Normal Text> </Normal Text><String>"weekend"</String><Normal Text>; }</Normal Text><br/>
+<Keyword>if</Keyword><Normal Text> </Normal Text><Test>anyof</Test><Normal Text>(</Normal Text><Test>currentdate</Test><Normal Text> </Normal Text><Match Type>:is</Match Type><Normal Text> </Normal Text><String>"weekday"</String><Normal Text> </Normal Text><String>"0"</String><Normal Text>,</Normal Text><br/>
+<Normal Text>         </Normal Text><Test>currentdate</Test><Normal Text> </Normal Text><Match Type>:is</Match Type><Normal Text> </Normal Text><String>"weekday"</String><Normal Text> </Normal Text><String>"6"</String><Normal Text>,</Normal Text><br/>
+<Normal Text>         </Normal Text><Test>currentdate</Test><Normal Text> </Normal Text><Match Type>:value</Match Type><Normal Text> </Normal Text><String>"lt"</String><Normal Text> </Normal Text><String>"hour"</String><Normal Text> </Normal Text><String>"09"</String><Normal Text>,</Normal Text><br/>
+<Normal Text>         </Normal Text><Test>currentdate</Test><Normal Text> </Normal Text><Match Type>:value</Match Type><Normal Text> </Normal Text><String>"ge"</String><Normal Text> </Normal Text><String>"hour"</String><Normal Text> </Normal Text><String>"17"</String><Normal Text>)</Normal Text><br/>
+<Normal Text>{ </Normal Text><Action>redirect</Action><Normal Text> </Normal Text><String>"pager@example.com"</String><Normal Text>; }</Normal Text><br/>
+<Keyword>if</Keyword><Normal Text> </Normal Text><Test>allof</Test><Normal Text>(</Normal Text><Test>currentdate</Test><Normal Text> </Normal Text><Match Type>:value</Match Type><Normal Text> </Normal Text><String>"ge"</String><Normal Text> </Normal Text><String>"date"</String><Normal Text> </Normal Text><String>"2007-06-30"</String><Normal Text>,</Normal Text><br/>
+<Normal Text>         </Normal Text><Test>currentdate</Test><Normal Text> </Normal Text><Match Type>:value</Match Type><Normal Text> </Normal Text><String>"le"</String><Normal Text> </Normal Text><String>"date"</String><Normal Text> </Normal Text><String>"2007-07-07"</String><Normal Text>)</Normal Text><br/>
+<Normal Text>{ </Normal Text><Action>vacation</Action><Normal Text> </Normal Text><Argument>:days</Argument><Normal Text> </Normal Text><Decimal>7</Decimal><Normal Text>  </Normal Text><String>"I'm away during the first week in July."</String><Normal Text>; }</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>require</Keyword><Normal Text> [</Normal Text><String>"date"</String><Normal Text>, </Normal Text><String>"variables"</String><Normal Text>, </Normal Text><String>"fileinto"</String><Normal Text>];</Normal Text><br/>
+<Keyword>if</Keyword><Normal Text> </Normal Text><Test>currentdate</Test><Normal Text> </Normal Text><Match Type>:matches</Match Type><Normal Text> </Normal Text><String>"month"</String><Normal Text> </Normal Text><String>"*"</String><Normal Text> { </Normal Text><Action>set</Action><Normal Text> </Normal Text><String>"month"</String><Normal Text> </Normal Text><String>"</String><Variable>${1}</Variable><String>"</String><Normal Text>; }</Normal Text><br/>
+<Keyword>if</Keyword><Normal Text> </Normal Text><Test>currentdate</Test><Normal Text> </Normal Text><Match Type>:matches</Match Type><Normal Text> </Normal Text><String>"year"</String><Normal Text>  </Normal Text><String>"*"</String><Normal Text> { </Normal Text><Action>set</Action><Normal Text> </Normal Text><String>"year"</String><Normal Text>  </Normal Text><String>"</String><Variable>${1}</Variable><String>"</String><Normal Text>; }</Normal Text><br/>
+<Action>fileinto</Action><Normal Text> </Normal Text><String>"</String><Variable>${month}</Variable><String>-</String><Variable>${year}</Variable><String>"</String><Normal Text>;</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>require</Keyword><Normal Text> [</Normal Text><String>"variables"</String><Normal Text>, </Normal Text><String>"date"</String><Normal Text>, </Normal Text><String>"editheader"</String><Normal Text>];</Normal Text><br/>
+<Keyword>if</Keyword><Normal Text> </Normal Text><Test>currentdate</Test><Normal Text> </Normal Text><Match Type>:matches</Match Type><Normal Text> </Normal Text><String>"std11"</String><Normal Text> </Normal Text><String>"*"</String><Normal Text> {</Normal Text><Action>addheader</Action><Normal Text> </Normal Text><String>"Processing-date"</String><Normal Text> </Normal Text><String>"</String><Variable>${0}</Variable><String>"</String><Normal Text>;}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>require</Keyword><Normal Text> [</Normal Text><String>"date"</String><Normal Text>, </Normal Text><String>"relational"</String><Normal Text>, </Normal Text><String>"index"</String><Normal Text>];</Normal Text><br/>
+<Keyword>if</Keyword><Normal Text> </Normal Text><Test>date</Test><Normal Text> </Normal Text><Match Type>:value</Match Type><Normal Text> </Normal Text><String>"gt"</String><Normal Text> </Normal Text><Argument>:index</Argument><Normal Text> </Normal Text><Decimal>2</Decimal><Normal Text> </Normal Text><Argument>:zone</Argument><Normal Text> </Normal Text><String>"-0500"</String><Normal Text> </Normal Text><String>"received"</String><Normal Text> </Normal Text><String>"iso8601"</String><Normal Text> </Normal Text><String>"2007-02-26T09:00:00-05:00"</String><br/>
+<Normal Text>{ </Normal Text><Action>redirect</Action><Normal Text> </Normal Text><String>"aftercutoff@example.org"</String><Normal Text>; }</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>if</Keyword><Normal Text> </Normal Text><Test>header</Test><Normal Text> </Normal Text><Argument>:index</Argument><Normal Text> </Normal Text><Decimal>1</Decimal><Normal Text> </Normal Text><Match Type>:matches</Match Type><Normal Text> </Normal Text><String>"received"</String><Normal Text> </Normal Text><String>"*(* [*.*.*.*])*"</String><Normal Text> {}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment># Duplicate RFC7352</Comment><br/>
+<Keyword>require</Keyword><Normal Text> [</Normal Text><String>"duplicate"</String><Normal Text>, </Normal Text><String>"variables"</String><Normal Text>];</Normal Text><br/>
+<Keyword>if</Keyword><Normal Text> </Normal Text><Test>duplicate</Test><Normal Text> { </Normal Text><Action>discard</Action><Normal Text>; }</Normal Text><br/>
+<Keyword>if</Keyword><Normal Text> </Normal Text><Test>duplicate</Test><Normal Text> </Normal Text><Argument>:header</Argument><Normal Text> </Normal Text><String>"message-id"</String><Normal Text> { </Normal Text><Action>discard</Action><Normal Text>; }</Normal Text><br/>
+<Keyword>if</Keyword><Normal Text> </Normal Text><Test>header</Test><Normal Text> </Normal Text><Match Type>:matches</Match Type><Normal Text> </Normal Text><String>"message-id"</String><Normal Text> </Normal Text><String>"*"</String><Normal Text> {</Normal Text><br/>
+<Normal Text>    </Normal Text><Keyword>if</Keyword><Normal Text> </Normal Text><Test>duplicate</Test><Normal Text> </Normal Text><Argument>:uniqueid</Argument><Normal Text> </Normal Text><String>"</String><Variable>${0}</Variable><String>"</String><Normal Text> { </Normal Text><Action>discard</Action><Normal Text>; }</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment># Editheader RFC5293</Comment><br/>
+<Action>addheader</Action><Normal Text> </Normal Text><String>"X-Hello"</String><Normal Text> </Normal Text><String>"World"</String><Normal Text>;</Normal Text><br/>
+<Action>deleteheader</Action><Normal Text> </Normal Text><Argument>:index</Argument><Normal Text> </Normal Text><Decimal>1</Decimal><Normal Text> </Normal Text><String>"X-Hello"</String><Normal Text>;</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment># Enclose RFC5703</Comment><br/>
+<Argument>:mime</Argument><br/>
+<Argument>:anychild</Argument><br/>
+<Argument>:type</Argument><br/>
+<Argument>:subtype</Argument><br/>
+<Argument>:contenttype</Argument><br/>
+<Argument>:param</Argument><br/>
+<Action>replace</Action><br/>
+<Action>enclose</Action><br/>
+<Action>extracttext</Action><br/>
+<Keyword>if</Keyword><Normal Text> </Normal Text><Test>header</Test><Normal Text> </Normal Text><Argument>:mime</Argument><Normal Text> </Normal Text><Argument>:type</Argument><Normal Text> </Normal Text><String>"Content-Type"</String><Normal Text> </Normal Text><String>"image"</String><Normal Text> {}</Normal Text><br/>
+<Action>replace</Action><Normal Text> </Normal Text><String>"Executable attachment removed by user filter"</String><Normal Text>;</Normal Text><br/>
+<Keyword>foreverypart</Keyword><Normal Text> {</Normal Text><br/>
+<Normal Text>    </Normal Text><Keyword>if</Keyword><Normal Text> </Normal Text><Test>header</Test><Normal Text> </Normal Text><Argument>:mime</Argument><Normal Text> </Normal Text><Argument>:param</Argument><Normal Text> </Normal Text><String>"filename"</String><Normal Text> </Normal Text><Match Type>:matches</Match Type><Normal Text> [</Normal Text><String>"Content-Type"</String><Normal Text>, </Normal Text><String>"Content-Disposition"</String><Normal Text>]</Normal Text><br/>
+<Normal Text>        [</Normal Text><String>"*.com"</String><Normal Text>, </Normal Text><String>"*.exe"</String><Normal Text>, </Normal Text><String>"*.vbs"</String><Normal Text>, </Normal Text><String>"*.scr"</String><Normal Text>, </Normal Text><String>"*.pif"</String><Normal Text>, </Normal Text><String>"*.hta"</String><Normal Text>, </Normal Text><String>"*.bat"</String><Normal Text>, </Normal Text><String>"*.zip"</String><Normal Text> ] {</Normal Text><br/>
+<Normal Text>        </Normal Text><Comment># these attachment types are executable</Comment><br/>
+<Normal Text>        </Normal Text><Action>enclose</Action><Normal Text> </Normal Text><Argument>:subject</Argument><Normal Text> </Normal Text><String>"Warning"</String><Normal Text> </Normal Text><String>text:</String><br/>
+<String>WARNING! The enclosed message contains executable attachments.</String><br/>
+<String>These attachment types may contain a computer virus program</String><br/>
+<String>that can infect your computer and potentially damage your data.</String><br/>
+<String>.</String><br/>
+<Normal Text>;</Normal Text><br/>
+<Normal Text>        </Normal Text><Action>break</Action><Normal Text>;</Normal Text><br/>
+<Normal Text>    }</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Action>extracttext</Action><Normal Text> </Normal Text><Argument>:first</Argument><Normal Text> </Normal Text><Decimal>100</Decimal><Normal Text> </Normal Text><String>"msgcontent"</String><Normal Text>;</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment># Notify RFC5435</Comment><br/>
+<Action>notify</Action><Normal Text> </Normal Text><Argument>:importance</Argument><Normal Text> </Normal Text><String>"1"</String><Normal Text> </Normal Text><Argument>:message</Argument><Normal Text> </Normal Text><String>"This is probably very important"</String><Normal Text> </Normal Text><String>"mailto:kde@example.com"</String><Normal Text>;</Normal Text><br/>
+<Action>notify</Action><Normal Text> </Normal Text><Argument>:message</Argument><Normal Text> </Normal Text><String>"</String><Variable>${from_addr}${env_from}</Variable><String>: </String><Variable>${subject}</Variable><String>"</String><Normal Text> </Normal Text><String>"mailto:kde@example.com"</String><Normal Text>;</Normal Text><br/>
+<Keyword>if</Keyword><Normal Text> </Normal Text><Test>not</Test><Normal Text> </Normal Text><Test>valid_notify_method</Test><Normal Text> [</Normal Text><String>"mailto:"</String><Normal Text>, </Normal Text><String>"http://gw.example.net/notify?test"</String><Normal Text>] { </Normal Text><Action>stop</Action><Normal Text>; }</Normal Text><br/>
+<Keyword>if</Keyword><Normal Text> </Normal Text><Test>notify_method_capability</Test><Normal Text> </Normal Text><String>"xmpp:tim@example.com?message;subject=SIEVE"</String><Normal Text> </Normal Text><String>"Online"</String><Normal Text> </Normal Text><String>"yes"</String><Normal Text> {}</Normal Text><br/>
+<Action>set</Action><Normal Text> </Normal Text><Argument>:encodeurl</Argument><Normal Text> </Normal Text><String>"body_param"</String><Normal Text> </Normal Text><String>"stuff"</String><Normal Text>;</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment># Envelope DSN RFC6009</Comment><br/>
+<Keyword>if</Keyword><Normal Text> </Normal Text><Test>envelope</Test><Normal Text> </Normal Text><String>"notify"</String><Normal Text> </Normal Text><String>"SUCCESS"</String><Normal Text> {}</Normal Text><br/>
+<Keyword>if</Keyword><Normal Text> </Normal Text><Test>allof</Test><Normal Text> (</Normal Text><Test>envelope</Test><Normal Text> </Normal Text><String>"notify"</String><Normal Text> </Normal Text><String>"FAILURE"</String><Normal Text>, </Normal Text><Test>envelope</Test><Normal Text> </Normal Text><Argument>:comparator</Argument><Normal Text> </Normal Text><String>"i;ascii-numeric"</String><Normal Text> </Normal Text><Match Type>:count</Match Type><Normal Text> </Normal Text><String>"eq"</String><Normal Text> </Normal Text><String>"notify"</String><Normal Text> </Normal Text><String>"1"</String><Normal Text>) {}</Normal Text><br/>
+<Keyword>if</Keyword><Normal Text> </Normal Text><Test>envelope</Test><Normal Text> </Normal Text><Match Type>:matches</Match Type><Normal Text> </Normal Text><String>"orcpt"</String><Normal Text> </Normal Text><String>"rfc822;*@example.com"</String><Normal Text> {}</Normal Text><br/>
+<Keyword>if</Keyword><Normal Text> </Normal Text><Test>anyof</Test><Normal Text> (</Normal Text><Test>envelope</Test><Normal Text> </Normal Text><Match Type>:contains</Match Type><Normal Text> </Normal Text><String>"bytimerelative"</String><Normal Text> </Normal Text><String>"-"</String><Normal Text>, </Normal Text><Test>envelope</Test><Normal Text> </Normal Text><Match Type>:value</Match Type><Normal Text> </Normal Text><String>"eq"</String><Normal Text> </Normal Text><Argument>:comparator</Argument><Normal Text> </Normal Text><String>"i;ascii-numeric"</String><Normal Text> </Normal Text><String>"bytimerelative"</String><Normal Text> </Normal Text><String>"0"</String><Normal Text>) {}</Normal Text><br/>
+<Action>redirect</Action><Normal Text> </Normal Text><Argument>:copy</Argument><Normal Text> </Normal Text><Argument>:notify</Argument><Normal Text> </Normal Text><String>"NEVER"</String><Normal Text> </Normal Text><String>"elsewhere@example.com"</String><Normal Text>;</Normal Text><br/>
+<Action>redirect</Action><Normal Text> </Normal Text><Argument>:copy</Argument><Normal Text> </Normal Text><Argument>:bytimerelative</Argument><Normal Text> </Normal Text><Decimal>600</Decimal><Normal Text> </Normal Text><String>"cellphone@example.com"</String><Normal Text>;</Normal Text><br/>
+<Action>redirect</Action><Normal Text> </Normal Text><Argument>:copy</Argument><Normal Text> </Normal Text><Argument>:bytimeabsolute</Argument><Normal Text> </Normal Text><String>"</String><Variable>${date}</Variable><String>T20:00:00</String><Variable>${zone}</Variable><String>"</String><Normal Text> </Normal Text><Argument>:bymode</Argument><Normal Text> </Normal Text><String>"return"</String><Normal Text> </Normal Text><String>"cellphone@example.com"</String><Normal Text>;</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment># Environment RFC5183</Comment><br/>
+<Keyword>if</Keyword><Normal Text> </Normal Text><Test>environment</Test><Normal Text> </Normal Text><Match Type>:contains</Match Type><Normal Text> </Normal Text><String>"item"</String><Normal Text> </Normal Text><String>""</String><Normal Text> {}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment># Reject RFC5429</Comment><br/>
+<Action>ereject</Action><Normal Text> </Normal Text><String>"I no longer accept mail from this address"</String><Normal Text>;</Normal Text><br/>
+<Action>reject</Action><Normal Text> </Normal Text><String>text:</String><br/>
+<String>Your message is too big.  If you want to send me a big attachment,</String><br/>
+<String>put it on a public web site and send me a URL.</String><br/>
+<String>.</String><br/>
+<Normal Text>;</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment># External Lists RFC6134</Comment><br/>
+<Keyword>if</Keyword><Normal Text> </Normal Text><Test>envelope</Test><Normal Text> </Normal Text><Argument>:list</Argument><Normal Text> </Normal Text><String>"from"</String><Normal Text> </Normal Text><String>":addrbook:default"</String><Normal Text> {}</Normal Text><br/>
+<Keyword>if</Keyword><Normal Text> </Normal Text><Test>currentdate</Test><Normal Text> </Normal Text><Argument>:list</Argument><Normal Text> </Normal Text><String>"date"</String><Normal Text> </Normal Text><String>"tag:example.com,2011-01-01:localHolidays"</String><Normal Text> {}</Normal Text><br/>
+<Keyword>if</Keyword><Normal Text> </Normal Text><Test>allof</Test><Normal Text> (</Normal Text><Test>envelope</Test><Normal Text> </Normal Text><Argument>:detail</Argument><Normal Text> </Normal Text><String>"to"</String><Normal Text> </Normal Text><String>"mylist"</String><Normal Text>, </Normal Text><Test>header</Test><Normal Text> </Normal Text><Argument>:list</Argument><Normal Text> </Normal Text><String>"from"</String><Normal Text> </Normal Text><String>"tag:example.com,2010-05-28:mylist"</String><Normal Text>) {</Normal Text><br/>
+<Normal Text>    </Normal Text><Action>redirect</Action><Normal Text> </Normal Text><Argument>:list</Argument><Normal Text> </Normal Text><String>"tag:example.com,2010-05-28:mylist"</String><Normal Text>;</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Keyword>if</Keyword><Normal Text> </Normal Text><Test>string</Test><Normal Text> </Normal Text><Argument>:list</Argument><Normal Text> </Normal Text><String>"</String><Variable>${ip}</Variable><String>"</String><Normal Text> </Normal Text><String>"tag:example.com,2011-04-10:DisallowedIPs"</String><Normal Text> {}</Normal Text><br/>
+<Keyword>if</Keyword><Normal Text> </Normal Text><Test>header</Test><Normal Text> </Normal Text><Argument>:mime</Argument><Normal Text> </Normal Text><Argument>:param</Argument><Normal Text> </Normal Text><String>"filename"</String><Normal Text> </Normal Text><Argument>:list</Argument><Normal Text> [</Normal Text><String>"Content-Type"</String><Normal Text>, </Normal Text><String>"Content-Disposition"</String><Normal Text>] </Normal Text><String>"tag:example.com,2011-04-10:BadFileNameExts"</String><Normal Text> {}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment># ihave RFC5463</Comment><br/>
+<Keyword>if</Keyword><Normal Text> </Normal Text><Test>ihave</Test><Normal Text> </Normal Text><String>"fileinto"</String><Normal Text> {}</Normal Text><br/>
+<Action>error</Action><Normal Text> </Normal Text><String>"failed!"</String><Normal Text>;</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment># IMAP Sieve RFC6785</Comment><br/>
+<Keyword>if</Keyword><Normal Text> </Normal Text><Test>anyof</Test><Normal Text> (</Normal Text><Test>environment</Test><Normal Text> </Normal Text><Match Type>:is</Match Type><Normal Text> </Normal Text><String>"imap.cause"</String><Normal Text> </Normal Text><String>"APPEND"</String><Normal Text>, </Normal Text><Test>environment</Test><Normal Text> </Normal Text><Match Type>:is</Match Type><Normal Text> </Normal Text><String>"imap.cause"</String><Normal Text> </Normal Text><String>"COPY"</String><Normal Text>)  {</Normal Text><br/>
+<Normal Text>    </Normal Text><Keyword>if</Keyword><Normal Text> </Normal Text><Test>environment</Test><Normal Text> </Normal Text><Match Type>:is</Match Type><Normal Text> </Normal Text><String>"imap.mailbox"</String><Normal Text> </Normal Text><String>"ActionItems"</String><Normal Text> {</Normal Text><br/>
+<Normal Text>        </Normal Text><Action>redirect</Action><Normal Text> </Normal Text><Argument>:copy</Argument><Normal Text> </Normal Text><String>"actionitems@example.com"</String><Normal Text>;</Normal Text><br/>
+<Normal Text>    }</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment># IMAP4 Flags RFC5232</Comment><br/>
+<Action>setflag</Action><Normal Text> </Normal Text><String>"</String><Special Character>\\</Special Character><String>Deleted"</String><Normal Text>;</Normal Text><br/>
+<Action>setflag</Action><Normal Text> </Normal Text><String>"flagvar"</String><Normal Text> </Normal Text><String>"</String><Special Character>\\</Special Character><String>Flagged"</String><Normal Text>;</Normal Text><br/>
+<Action>addflag</Action><Normal Text> </Normal Text><String>"flagvar"</String><Normal Text> </Normal Text><String>"</String><Special Character>\\</Special Character><String>Deleted"</String><Normal Text>;</Normal Text><br/>
+<Action>addflag</Action><Normal Text> </Normal Text><String>"flagvar"</String><Normal Text> [</Normal Text><String>"</String><Special Character>\\</Special Character><String>Deleted"</String><Normal Text>, </Normal Text><String>"</String><Special Character>\\</Special Character><String>Answered"</String><Normal Text>];</Normal Text><br/>
+<Action>removeflag</Action><Normal Text> </Normal Text><String>"flagvar"</String><Normal Text> </Normal Text><String>"$MDNRequired"</String><Normal Text>;</Normal Text><br/>
+<Test>hasflag</Test><Normal Text> </Normal Text><Match Type>:contains</Match Type><Normal Text> </Normal Text><String>"MyVar"</String><Normal Text> </Normal Text><String>"Junk"</String><br/>
+<Test>hasflag</Test><Normal Text> </Normal Text><Match Type>:contains</Match Type><Normal Text> </Normal Text><String>"</String><Variable>${MyVar}</Variable><String>"</String><Normal Text> [</Normal Text><String>"label"</String><Normal Text>, </Normal Text><String>"forward"</String><Normal Text>]</Normal Text><br/>
+<Test>hasflag</Test><Normal Text> </Normal Text><Match Type>:count</Match Type><Normal Text> </Normal Text><String>"ge"</String><Normal Text> </Normal Text><Argument>:comparator</Argument><Normal Text> </Normal Text><String>"i;ascii-numeric"</String><Normal Text> </Normal Text><String>"MyFlags"</String><Normal Text> </Normal Text><Decimal>2</Decimal><br/>
+<Action>fileinto</Action><Normal Text> </Normal Text><Argument>:flags</Argument><Normal Text> </Normal Text><String>"</String><Special Character>\\</Special Character><String>Deleted"</String><Normal Text> </Normal Text><String>"INBOX.bla"</String><Normal Text>;</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment># Include RFC6609</Comment><br/>
+<Action>include</Action><Normal Text> </Normal Text><Argument>:personal</Argument><Normal Text> </Normal Text><String>"always_allow"</String><Normal Text>;</Normal Text><br/>
+<Action>include</Action><Normal Text> </Normal Text><Argument>:global</Argument><Normal Text> </Normal Text><String>"spam_tests"</String><Normal Text>;</Normal Text><br/>
+<Action>return</Action><Normal Text>;</Normal Text><br/>
+<Keyword>global</Keyword><Normal Text> </Normal Text><String>"i_am_on_vacation"</String><Normal Text>;</Normal Text><br/>
+<Action>set</Action><Normal Text> </Normal Text><String>"global.i_am_on_vacation"</String><Normal Text> </Normal Text><String>"1"</String><Normal Text>;</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment># Mailbox RFC5490</Comment><br/>
+<Keyword>if</Keyword><Normal Text> </Normal Text><Test>mailboxexists</Test><Normal Text> </Normal Text><String>"bla"</String><Normal Text> {}</Normal Text><br/>
+<Action>fileinto</Action><Normal Text> </Normal Text><Argument>:create</Argument><Normal Text> </Normal Text><String>"inbox.bla"</String><Normal Text>;</Normal Text><br/>
+<Keyword>if</Keyword><Normal Text> </Normal Text><Test>metadata</Test><Normal Text> </Normal Text><Match Type>:is</Match Type><Normal Text> </Normal Text><String>"INBOX"</String><Normal Text> </Normal Text><String>"/private/vendor/vendor.isode/auto-replies"</String><Normal Text> </Normal Text><String>"on"</String><Normal Text> {}</Normal Text><br/>
+<Keyword>if</Keyword><Normal Text> </Normal Text><Test>metadataexists</Test><Normal Text> </Normal Text><String>"INBOX"</String><Normal Text> </Normal Text><String>"/private/vendor/foo"</String><Normal Text> {}</Normal Text><br/>
+<Keyword>if</Keyword><Normal Text> </Normal Text><Test>servermetadata</Test><Normal Text> </Normal Text><Match Type>:matches</Match Type><Normal Text> </Normal Text><String>"/private/vendor/vendor.isode/notification-uri"</String><Normal Text> </Normal Text><String>"*"</String><Normal Text> {}</Normal Text><br/>
+<Keyword>if</Keyword><Normal Text> </Normal Text><Test>servermetadataexists</Test><Normal Text> </Normal Text><String>"/private/vendor/foo"</String><Normal Text> {}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment># Regexp (draft)</Comment><br/>
+<Keyword>if</Keyword><Normal Text> </Normal Text><Test>not</Test><Normal Text> </Normal Text><Test>address</Test><Normal Text> </Normal Text><Match Type>:regex</Match Type><Normal Text> [</Normal Text><String>"to"</String><Normal Text>, </Normal Text><String>"cc"</String><Normal Text>, </Normal Text><String>"bcc"</String><Normal Text>] </Normal Text><String>"me(</String><Special Character>\\</Special Character><String>+.*)?@company</String><Special Character>\\</Special Character><String>.com"</String><Normal Text> {}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment># Relational RFC5231</Comment><br/>
+<Keyword>if</Keyword><Normal Text> </Normal Text><Test>address</Test><Normal Text> </Normal Text><Match Type>:count</Match Type><Normal Text> </Normal Text><String>"ge"</String><Normal Text> </Normal Text><Argument>:comparator</Argument><Normal Text> </Normal Text><String>"i;ascii-numeric"</String><Normal Text> [</Normal Text><String>"to"</String><Normal Text>, </Normal Text><String>"cc"</String><Normal Text>] [</Normal Text><String>"3"</String><Normal Text>] {}</Normal Text><br/>
+<Keyword>if</Keyword><Normal Text> </Normal Text><Test>header</Test><Normal Text> </Normal Text><Match Type>:value</Match Type><Normal Text> </Normal Text><String>"lt"</String><Normal Text> </Normal Text><Argument>:comparator</Argument><Normal Text> </Normal Text><String>"i;ascii-numeric"</String><Normal Text> [</Normal Text><String>"x-priority"</String><Normal Text>] [</Normal Text><String>"3"</String><Normal Text>] {}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment># Spamtest RFC5235</Comment><br/>
+<Keyword>if</Keyword><Normal Text> </Normal Text><Test>spamtest</Test><Normal Text> </Normal Text><Match Type>:value</Match Type><Normal Text> </Normal Text><String>"eq"</String><Normal Text> </Normal Text><Argument>:comparator</Argument><Normal Text> </Normal Text><String>"i;ascii-numeric"</String><Normal Text> </Normal Text><String>"0"</String><Normal Text> {}</Normal Text><br/>
+<Keyword>elsif</Keyword><Normal Text> </Normal Text><Test>spamtest</Test><Normal Text> </Normal Text><Match Type>:value</Match Type><Normal Text> </Normal Text><String>"ge"</String><Normal Text> </Normal Text><Argument>:comparator</Argument><Normal Text> </Normal Text><String>"i;ascii-numeric"</String><Normal Text> </Normal Text><String>"3"</String><Normal Text> {}</Normal Text><br/>
+<Keyword>elsif</Keyword><Normal Text> </Normal Text><Test>spamtest</Test><Normal Text> </Normal Text><Argument>:percent</Argument><Normal Text> </Normal Text><Match Type>:value</Match Type><Normal Text> </Normal Text><String>"lt"</String><Normal Text> </Normal Text><Argument>:comparator</Argument><Normal Text> </Normal Text><String>"i;ascii-numeric"</String><Normal Text> </Normal Text><String>"37"</String><Normal Text> {}</Normal Text><br/>
+<Keyword>if</Keyword><Normal Text> </Normal Text><Test>virustest</Test><Normal Text> </Normal Text><Match Type>:value</Match Type><Normal Text> </Normal Text><String>"eq"</String><Normal Text> </Normal Text><Argument>:comparator</Argument><Normal Text> </Normal Text><String>"i;ascii-numeric"</String><Normal Text> </Normal Text><String>"4"</String><Normal Text> {}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment># Subaddress RFC5233</Comment><br/>
+<Keyword>if</Keyword><Normal Text> </Normal Text><Test>envelope</Test><Normal Text> </Normal Text><Argument>:user</Argument><Normal Text> </Normal Text><String>"to"</String><Normal Text> </Normal Text><String>"postmaster"</String><Normal Text> {}</Normal Text><br/>
+<Keyword>if</Keyword><Normal Text> </Normal Text><Test>envelope</Test><Normal Text> </Normal Text><Argument>:detail</Argument><Normal Text> </Normal Text><String>"to"</String><Normal Text> </Normal Text><String>"mta-filters"</String><Normal Text> {}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment># Vacation RFC5230</Comment><br/>
+<Action>vacation</Action><Normal Text> </Normal Text><String>"I'm out"</String><Normal Text>;</Normal Text><br/>
+<Action>vacation</Action><Normal Text> </Normal Text><Argument>:subject</Argument><Normal Text> </Normal Text><String>"Automatic response to: </String><Variable>${1}</Variable><String>"</String><br/>
+<Normal Text>                  </Normal Text><String>"I'm away -- send mail to foo in my absence"</String><Normal Text>;</Normal Text><br/>
+<Action>vacation</Action><Normal Text> </Normal Text><Argument>:handle</Argument><Normal Text> </Normal Text><String>"ran-away"</String><Normal Text> </Normal Text><String>"I'm out"</String><Normal Text>;</Normal Text><br/>
+<Action>vacation</Action><Normal Text> </Normal Text><Argument>:mime</Argument><Normal Text> </Normal Text><String>text:</String><br/>
+<String>   Content-Type: multipart/alternative; boundary=foo</String><br/>
+<String></String><br/>
+<String>   --foo</String><br/>
+<String></String><br/>
+<String>   Hello </String><Variable>${sender}</Variable><String>, I'm at the beach relaxing.</String><br/>
+<String></String><br/>
+<String>   --foo</String><br/>
+<String>   Content-Type: text/html; charset=us-ascii</String><br/>
+<String></String><br/>
+<String>   <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"</String><br/>
+<String>    "http://www.w3.org/TR/REC-html40/strict.dtd"></String><br/>
+<String>   <HTML><HEAD><TITLE>How to relax</TITLE></String><br/>
+<String>   <BASE HREF="http://home.example.com/pictures/"></HEAD></String><br/>
+<String>   <BODY><P>I'm at the <A HREF="beach.gif">beach</A> relaxing.</String><br/>
+<String>   </BODY></HTML></String><br/>
+<String></String><br/>
+<String>   --foo--</String><br/>
+<String>.</String><br/>
+<Normal Text>;</Normal Text><br/>
+<Action>vacation</Action><Normal Text> </Normal Text><Argument>:days</Argument><Normal Text> </Normal Text><Decimal>23</Decimal><Normal Text> </Normal Text><Argument>:addresses</Argument><Normal Text> [</Normal Text><String>"kde@example.edu"</String><Normal Text>] </Normal Text><String>"I'm away until October 19."</String><Normal Text>;</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment># Vacation Seconds RFC6131</Comment><br/>
+<Action>vacation</Action><Normal Text> </Normal Text><Argument>:addresses</Argument><Normal Text> [</Normal Text><String>"kde@example.edu"</String><Normal Text>] </Normal Text><Argument>:seconds</Argument><Normal Text> </Normal Text><Decimal>1800</Decimal><br/>
+<Normal Text>    </Normal Text><String>"I am in a meeting, and do not have access to email."</String><Normal Text>;</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment># Variables RFC5229</Comment><br/>
+<String>"&%${}!"</String><Normal Text> </Normal Text><Comment># invalid</Comment><br/>
+<String>"${doh!}"</String><Normal Text> </Normal Text><Comment>#invalid</Comment><br/>
+<String>"</String><Variable>${company}</Variable><String>"</String><br/>
+<String>"bla </String><Variable>${var42}</Variable><String> blub"</String><br/>
+<String>"</String><Variable>${1}</Variable><String>"</String><br/>
+<String>"${BAD</String><Variable>${Company}</Variable><String>"</String><Normal Text> </Normal Text><Comment># second one is the variable</Comment><br/>
+<String>"${President, </String><Variable>${Company}</Variable><String> Inc.}"</String><Normal Text> </Normal Text><Comment># inner one is the variable</Comment><br/>
+<Action>set</Action><Normal Text> </Normal Text><String>"var"</String><Normal Text> </Normal Text><String>"value"</String><Normal Text>;</Normal Text><br/>
+<Action>set</Action><Normal Text> </Normal Text><String>"var2"</String><Normal Text> </Normal Text><String>"</String><Variable>${var}</Variable><String>"</String><Normal Text>;</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Action>set</Action><Normal Text> </Normal Text><String>"a"</String><Normal Text> </Normal Text><String>"juMBlEd lETteRS"</String><Normal Text>;</Normal Text><br/>
+<Action>set</Action><Normal Text> </Normal Text><Argument>:length</Argument><Normal Text> </Normal Text><String>"b"</String><Normal Text> </Normal Text><String>"</String><Variable>${a}</Variable><String>"</String><Normal Text>;</Normal Text><br/>
+<Action>set</Action><Normal Text> </Normal Text><Argument>:lower</Argument><Normal Text> </Normal Text><String>"b"</String><Normal Text> </Normal Text><String>"</String><Variable>${a}</Variable><String>"</String><Normal Text>;</Normal Text><br/>
+<Action>set</Action><Normal Text> </Normal Text><Argument>:upperfirst</Argument><Normal Text> </Normal Text><String>"b"</String><Normal Text> </Normal Text><String>"</String><Variable>${a}</Variable><String>"</String><Normal Text>;</Normal Text><br/>
+<Action>set</Action><Normal Text> </Normal Text><Argument>:upperfirst</Argument><Normal Text> </Normal Text><Argument>:lower</Argument><Normal Text> </Normal Text><String>"b"</String><Normal Text> </Normal Text><String>"</String><Variable>${a}</Variable><String>"</String><Normal Text>;</Normal Text><br/>
+<Action>set</Action><Normal Text> </Normal Text><Argument>:quotewildcard</Argument><Normal Text> </Normal Text><String>"b"</String><Normal Text> </Normal Text><String>"Rock*"</String><Normal Text>;</Normal Text><br/>
+<Action>set</Action><Normal Text> </Normal Text><Argument>:lowerfirst</Argument><Normal Text> </Normal Text><String>"b"</String><Normal Text> </Normal Text><String>"</String><Variable>${a}</Variable><String>"</String><Normal Text>;</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>if</Keyword><Normal Text> </Normal Text><Test>string</Test><Normal Text> </Normal Text><Match Type>:matches</Match Type><Normal Text> </Normal Text><String>" </String><Variable>${state}</Variable><String> "</String><Normal Text> </Normal Text><String>"* pending *"</String><Normal Text> {}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment># Dovecot debug extension</Comment><br/>
+<Keyword>require</Keyword><Normal Text> </Normal Text><String>"vnd.dovecot.debug"</String><Normal Text>;</Normal Text><br/>
+<Keyword>if</Keyword><Normal Text> </Normal Text><Test>header</Test><Normal Text> </Normal Text><Match Type>:contains</Match Type><Normal Text> </Normal Text><String>"subject"</String><Normal Text> </Normal Text><String>"hello"</String><Normal Text> {</Normal Text><br/>
+<Normal Text>    </Normal Text><Action>debug_log</Action><Normal Text> </Normal Text><String>"Subject header contains hello!"</String><Normal Text>;</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>

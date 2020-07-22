@@ -1,0 +1,286 @@
+<beginfold id='3'>/*</beginfold id='3'>*
+ * This is a pseudo CSS file to test Kate's CSS syntax highlighting.
+ <endfold id='3'>*/</endfold id='3'>
+
+@import url("othersheet.css") screen, tv;
+
+body <beginfold id='1'>{</beginfold id='1'>
+	font-size: 15pt;
+	font-family: Verdana, Helvetica, "Bitstream Vera Sans", sans-serif;
+	margin-top: 0px;			<beginfold id='3'>/*</beginfold id='3'> yet another comment <endfold id='3'>*/</endfold id='3'>
+	margin-bottom: 0px;
+	// this is no comment, it's just broken!
+	margin-left: 0px;
+	margin-right: 0px;
+<endfold id='1'>}</endfold id='1'>
+
+.something
+<beginfold id='1'>{</beginfold id='1'>
+	margin-right: 0px;
+	color: #cdd;
+	color: #AAFE04;
+	color: rgb(10%,30%,43%);
+	background: maroon;
+<endfold id='1'>}</endfold id='1'>
+
+a:hover <beginfold id='1'>{</beginfold id='1'>
+<endfold id='1'>}</endfold id='1'>
+
+#header,
+p.intro:first-letter,
+p:lang(nl),
+img[align="right"]
+<beginfold id='1'>{</beginfold id='1'>
+	border: 1px solid Qt::red !important;
+	-moz-border-radius: 15px; <beginfold id='3'>/*</beginfold id='3'> unknown properties render italic <endfold id='3'>*/</endfold id='3'>
+<endfold id='1'>}</endfold id='1'>
+
+@media print <beginfold id='1'>{</beginfold id='1'>
+
+	#header
+	<beginfold id='1'>{</beginfold id='1'>
+		display: none;
+	<endfold id='1'>}</endfold id='1'>
+
+<endfold id='1'>}</endfold id='1'>
+
+<beginfold id='3'>/*</beginfold id='3'>
+TODO: add more tests, e.g. media
+<endfold id='3'>*/</endfold id='3'>
+
+
+.nice-look <beginfold id='1'>{</beginfold id='1'>
+	font-variant-alternates: styleset(nice-style);
+<endfold id='1'>}</endfold id='1'>
+
+ul <beginfold id='1'>{</beginfold id='1'>
+	list-style: thumbs;
+<endfold id='1'>}</endfold id='1'>
+
+<beginfold id='3'>/*</beginfold id='3'> SVG <a> <endfold id='3'>*/</endfold id='3'>
+svg|a <beginfold id='1'>{</beginfold id='1'><endfold id='1'>}</endfold id='1'>
+
+<beginfold id='3'>/*</beginfold id='3'> XHTML and SVG <a> <endfold id='3'>*/</endfold id='3'>
+*|a <beginfold id='1'>{</beginfold id='1'><endfold id='1'>}</endfold id='1'>
+
+*<beginfold id='1'>{</beginfold id='1'><endfold id='1'>}</endfold id='1'>
+.class<beginfold id='1'>{</beginfold id='1'><endfold id='1'>}</endfold id='1'>
+#id<beginfold id='1'>{</beginfold id='1'><endfold id='1'>}</endfold id='1'>
+:hover<beginfold id='1'>{</beginfold id='1'><endfold id='1'>}</endfold id='1'>
+:lang(fr)<beginfold id='1'>{</beginfold id='1'><endfold id='1'>}</endfold id='1'>
+E<beginfold id='1'>{</beginfold id='1'><endfold id='1'>}</endfold id='1'>
+E F<beginfold id='1'>{</beginfold id='1'><endfold id='1'>}</endfold id='1'>
+E>F<beginfold id='1'>{</beginfold id='1'><endfold id='1'>}</endfold id='1'>
+E > F<beginfold id='1'>{</beginfold id='1'><endfold id='1'>}</endfold id='1'>
+E~F<beginfold id='1'>{</beginfold id='1'><endfold id='1'>}</endfold id='1'>
+E ~ F<beginfold id='1'>{</beginfold id='1'><endfold id='1'>}</endfold id='1'>
+E:first-child<beginfold id='1'>{</beginfold id='1'><endfold id='1'>}</endfold id='1'>
+E:visited<beginfold id='1'>{</beginfold id='1'><endfold id='1'>}</endfold id='1'>
+E::after<beginfold id='1'>{</beginfold id='1'><endfold id='1'>}</endfold id='1'>
+E:lang(c)<beginfold id='1'>{</beginfold id='1'><endfold id='1'>}</endfold id='1'>
+E:lang(fr-ca)<beginfold id='1'>{</beginfold id='1'><endfold id='1'>}</endfold id='1'>
+E + F<beginfold id='1'>{</beginfold id='1'><endfold id='1'>}</endfold id='1'>
+E+F<beginfold id='1'>{</beginfold id='1'><endfold id='1'>}</endfold id='1'>
+E[foo]<beginfold id='1'>{</beginfold id='1'><endfold id='1'>}</endfold id='1'>
+E[foo=warning]<beginfold id='1'>{</beginfold id='1'><endfold id='1'>}</endfold id='1'>
+E[foo="warning"]<beginfold id='1'>{</beginfold id='1'><endfold id='1'>}</endfold id='1'>
+E[foo~="warning"]<beginfold id='1'>{</beginfold id='1'><endfold id='1'>}</endfold id='1'>
+E[foo^="warning"]<beginfold id='1'>{</beginfold id='1'><endfold id='1'>}</endfold id='1'>
+E[foo$="warning"]<beginfold id='1'>{</beginfold id='1'><endfold id='1'>}</endfold id='1'>
+E[foo*="warning"]<beginfold id='1'>{</beginfold id='1'><endfold id='1'>}</endfold id='1'>
+E[lang|="en"]<beginfold id='1'>{</beginfold id='1'><endfold id='1'>}</endfold id='1'>
+DIV.warning<beginfold id='1'>{</beginfold id='1'><endfold id='1'>}</endfold id='1'>
+DIV .warning<beginfold id='1'>{</beginfold id='1'><endfold id='1'>}</endfold id='1'>
+E#myid<beginfold id='1'>{</beginfold id='1'><endfold id='1'>}</endfold id='1'>
+E #myid<beginfold id='1'>{</beginfold id='1'><endfold id='1'>}</endfold id='1'>
+E,E<beginfold id='1'>{</beginfold id='1'><endfold id='1'>}</endfold id='1'>
+E, E<beginfold id='1'>{</beginfold id='1'><endfold id='1'>}</endfold id='1'>
+E ,E<beginfold id='1'>{</beginfold id='1'><endfold id='1'>}</endfold id='1'>
+E , E<beginfold id='1'>{</beginfold id='1'><endfold id='1'>}</endfold id='1'>
+
+p:nth-child(2) <beginfold id='1'>{</beginfold id='1'>
+	background: red;
+<endfold id='1'>}</endfold id='1'>
+
+<beginfold id='3'>/*</beginfold id='3'> Elements that are not <div> or <span> elements <endfold id='3'>*/</endfold id='3'>
+body :not(div):not(span) <beginfold id='1'>{</beginfold id='1'>
+	font-weight: bold;
+<endfold id='1'>}</endfold id='1'>
+
+<beginfold id='3'>/*</beginfold id='3'> Elements that are not `.crazy` or `.fancy` <endfold id='3'>*/</endfold id='3'>
+<beginfold id='3'>/*</beginfold id='3'> Note that this syntax is not well supported yet. <endfold id='3'>*/</endfold id='3'>
+body :not(.crazy, .fancy) <beginfold id='1'>{</beginfold id='1'>
+	font-family: sans-serif;
+<endfold id='1'>}</endfold id='1'>
+
+:nth-child(odd) <beginfold id='1'>{</beginfold id='1'> color: lime; <endfold id='1'>}</endfold id='1'>
+:nth-child(even) <beginfold id='1'>{</beginfold id='1'> color: lime; <endfold id='1'>}</endfold id='1'>
+:nth-child(4) <beginfold id='1'>{</beginfold id='1'> color: lime; <endfold id='1'>}</endfold id='1'>
+:nth-child(4n) <beginfold id='1'>{</beginfold id='1'> color: lime; <endfold id='1'>}</endfold id='1'>
+:nth-child(3n+4) <beginfold id='1'>{</beginfold id='1'> color: lime; <endfold id='1'>}</endfold id='1'>
+:nth-child(-n+3) <beginfold id='1'>{</beginfold id='1'> color: lime; <endfold id='1'>}</endfold id='1'>
+:nth-child(n+8):nth-child(-n+15) <beginfold id='1'>{</beginfold id='1'> color: lime; <endfold id='1'>}</endfold id='1'>
+
+.first span:nth-child(2n+1),
+.second span:nth-child(2n+1),
+.third span:nth-of-type(2n+1) <beginfold id='1'>{</beginfold id='1'>
+	background-color: lime;
+	unknown-property: lime;
+<endfold id='1'>}</endfold id='1'>
+
+:root<beginfold id='1'>{</beginfold id='1'>
+	--foo: if(x > 5) this.width = 10; <beginfold id='3'>/*</beginfold id='3'> valid custom property, invalid in any normal property <endfold id='3'>*/</endfold id='3'>
+<endfold id='1'>}</endfold id='1'>
+
+:root,
+:root:lang(en) <beginfold id='1'>{</beginfold id='1'>--external-link: "external link";<endfold id='1'>}</endfold id='1'>
+:root:lang(de) <beginfold id='1'>{</beginfold id='1'>--external-link: "externer Link";<endfold id='1'>}</endfold id='1'>
+
+a[href^="http"]::after <beginfold id='1'>{</beginfold id='1'>content: " (" var(--external-link) ")"<endfold id='1'>}</endfold id='1'>
+
+one   <beginfold id='1'>{</beginfold id='1'> --foo: 10px; <endfold id='1'>}</endfold id='1'>
+two   <beginfold id='1'>{</beginfold id='1'> --bar: calc(var(--foo) + 10px); <endfold id='1'>}</endfold id='1'>
+three <beginfold id='1'>{</beginfold id='1'> --foo: calc(var(--bar) + 10px); <endfold id='1'>}</endfold id='1'>
+.foo <beginfold id='1'>{</beginfold id='1'>
+	--gap: 20;
+	margin-top: var(--gap)px; <beginfold id='3'>/*</beginfold id='3'>20 px<endfold id='3'>*/</endfold id='3'>
+	margin-top: calc(var(--gap) * 1px); <beginfold id='3'>/*</beginfold id='3'>20px<endfold id='3'>*/</endfold id='3'>
+<endfold id='1'>}</endfold id='1'>
+
+foo <beginfold id='1'>{</beginfold id='1'>
+	width: calc(50% -8px); <beginfold id='3'>/*</beginfold id='3'> invalid <endfold id='3'>*/</endfold id='3'>
+	width: calc(50%- 8px); <beginfold id='3'>/*</beginfold id='3'> invalid <endfold id='3'>*/</endfold id='3'>
+	width: calc(50% +8px); <beginfold id='3'>/*</beginfold id='3'> invalid <endfold id='3'>*/</endfold id='3'>
+	width: calc(50%+ 8px); <beginfold id='3'>/*</beginfold id='3'> invalid <endfold id='3'>*/</endfold id='3'>
+	width: calc(2px -var(--a)); <beginfold id='3'>/*</beginfold id='3'> invalid <endfold id='3'>*/</endfold id='3'>
+	width: calc(50%*-8px);
+	width: calc(50% - 8px);
+	width: calc(50% + -8px);
+	width: calc(50% +(8px));
+	width: calc(2px -(var(--a)));
+<endfold id='1'>}</endfold id='1'>
+
+sweet-alert input:focus::-moz-placeholder <beginfold id='1'>{</beginfold id='1'>
+	-webkit-transition: opacity 0.3s 0.03s ease;
+	transition: opacity 0.3s 0.03s ease;
+	opacity: 0.5;
+<endfold id='1'>}</endfold id='1'>
+
+
+@font-feature-values Font One <beginfold id='1'>{</beginfold id='1'>
+	@styleset <beginfold id='1'>{</beginfold id='1'>
+		nice-style: 12;
+	<endfold id='1'>}</endfold id='1'>
+<endfold id='1'>}</endfold id='1'>
+
+@font-feature-values Font Two <beginfold id='1'>{</beginfold id='1'>
+	@styleset <beginfold id='1'>{</beginfold id='1'>
+		nice-style: 4;
+	<endfold id='1'>}</endfold id='1'>
+<endfold id='1'>}</endfold id='1'>
+
+@counter-style thumbs <beginfold id='1'>{</beginfold id='1'>
+	system: cyclic;
+	symbols: "\1F44D";
+	suffix: " ";
+<endfold id='1'>}</endfold id='1'>
+
+@font-face <beginfold id='1'>{</beginfold id='1'>
+	font-family: "Open Sans";
+	src: url("/fonts/OpenSans-Regular-webfont.woff2") format("woff2"),
+	url("/fonts/OpenSans-Regular-webfont.woff") format("woff");
+<endfold id='1'>}</endfold id='1'>
+
+@page <beginfold id='1'>{</beginfold id='1'>
+	margin: 1cm;
+<endfold id='1'>}</endfold id='1'>
+
+@page :first <beginfold id='1'>{</beginfold id='1'>
+	margin: 2cm;
+	<beginfold id='3'>/*</beginfold id='3'> comments <endfold id='3'>*/</endfold id='3'>
+	marks: crop cross;
+<endfold id='1'>}</endfold id='1'>
+
+@page :unknown <beginfold id='1'>{</beginfold id='1'>
+	margin: 2cm;
+<endfold id='1'>}</endfold id='1'>
+
+@font-face <beginfold id='1'>{</beginfold id='1'>
+	unknown: 2px;
+	<beginfold id='3'>/*</beginfold id='3'> comments <endfold id='3'>*/</endfold id='3'>
+	font-family: "Bitstream Vera Serif Bold";
+	src: url("/static/styles/libs/font-awesome/fonts/fontawesome-webfont.fdf491ce5ff5.woff");
+<endfold id='1'>}</endfold id='1'>
+
+@viewport <beginfold id='1'>{</beginfold id='1'>
+	zoom: 0.75;
+	<beginfold id='3'>/*</beginfold id='3'> comments <endfold id='3'>*/</endfold id='3'>
+	min-zoom: 0.5;
+	max-zoom: 0.9;
+<endfold id='1'>}</endfold id='1'>
+
+@viewport <beginfold id='1'>{</beginfold id='1'>
+	orientation: landscape;
+	<beginfold id='3'>/*</beginfold id='3'> comments <endfold id='3'>*/</endfold id='3'>
+	orientation: landscape;
+<endfold id='1'>}</endfold id='1'>
+
+@document url("https://www.example.com/") <beginfold id='1'>{</beginfold id='1'>
+	h1 <beginfold id='1'>{</beginfold id='1'>
+		color: green;
+	<endfold id='1'>}</endfold id='1'>
+<endfold id='1'>}</endfold id='1'>
+
+@supports (display: grid) <beginfold id='1'>{</beginfold id='1'>
+	div <beginfold id='1'>{</beginfold id='1'>
+		display: grid;
+	<endfold id='1'>}</endfold id='1'>
+<endfold id='1'>}</endfold id='1'>
+
+@media (max-width: 600px) <beginfold id='1'>{</beginfold id='1'>
+	.sidebar <beginfold id='1'>{</beginfold id='1'>
+		display: none;
+	<endfold id='1'>}</endfold id='1'>
+<endfold id='1'>}</endfold id='1'>
+
+@import url("fineprint.css") print;
+@import url(fineprint.css) print;
+@import url('bluish.css') speech;
+@import 'custom.css';
+@import url("chrome://communicator/skin/");
+@import "common.css" screen;
+@import url('landscape.css') screen and (orientation:landscape);
+
+@namespace url(http://www.w3.org/1999/xhtml);
+@namespace svg url(http://www.w3.org/2000/svg);
+
+@keyframes important1 <beginfold id='1'>{</beginfold id='1'>
+	from <beginfold id='1'>{</beginfold id='1'> margin-top: 50px; <endfold id='1'>}</endfold id='1'>
+	50%  <beginfold id='1'>{</beginfold id='1'> margin-top: 150px !important; <endfold id='1'>}</endfold id='1'> <beginfold id='3'>/*</beginfold id='3'> ignored <endfold id='3'>*/</endfold id='3'>
+	to   <beginfold id='1'>{</beginfold id='1'> margin-top: 100px; <endfold id='1'>}</endfold id='1'>
+<endfold id='1'>}</endfold id='1'>
+
+@keyframes important2 <beginfold id='1'>{</beginfold id='1'>
+	from <beginfold id='1'>{</beginfold id='1'> margin-top: 50px;
+		margin-bottom: 100px; <endfold id='1'>}</endfold id='1'>
+	to   <beginfold id='1'>{</beginfold id='1'> margin-top: 150px !important; <beginfold id='3'>/*</beginfold id='3'> ignored <endfold id='3'>*/</endfold id='3'>
+		margin-bottom: 50px; <endfold id='1'>}</endfold id='1'>
+<endfold id='1'>}</endfold id='1'>
+
+@keyframes slidein <beginfold id='1'>{</beginfold id='1'>
+	from <beginfold id='1'>{</beginfold id='1'>
+		margin-left: 100%;
+		width: 300%;
+	<endfold id='1'>}</endfold id='1'>
+
+	to <beginfold id='1'>{</beginfold id='1'>
+		margin-left: 0%;
+		width: 100%;
+	<endfold id='1'>}</endfold id='1'>
+<endfold id='1'>}</endfold id='1'>
+
+@media print <beginfold id='1'>{</beginfold id='1'>
+	a:hover <beginfold id='1'>{</beginfold id='1'> color: red <endfold id='1'>}</endfold id='1'>
+	<beginfold id='3'>/*</beginfold id='3'> comments <endfold id='3'>*/</endfold id='3'>
+	a:hover <beginfold id='1'>{</beginfold id='1'> color: red <endfold id='1'>}</endfold id='1'>
+<endfold id='1'>}</endfold id='1'>

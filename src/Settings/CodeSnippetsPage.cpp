@@ -31,6 +31,10 @@
 #include <QStackedWidget>
 #include <QVBoxLayout>
 
+// KSyntax highlighter
+#include <syntaxhighlighter.h>
+
+
 CodeSnippetsPage::CodeSnippetsPage(const QString &language, QWidget *parent) : PreferencesPage(parent), lang(language)
 {
     splitter = new QSplitter();
@@ -98,6 +102,7 @@ CodeSnippetsPage::CodeSnippetsPage(const QString &language, QWidget *parent) : P
     snippetLayout->addWidget(snippetNameLabel);
 
     editor = new QCodeEditor();
+    highlighter = new KSyntaxHighlighting::SyntaxHighlighter(editor->document());
     connect(editor, SIGNAL(textChanged()), this, SLOT(updateButtons()));
     snippetLayout->addWidget(editor);
 
@@ -148,7 +153,7 @@ void CodeSnippetsPage::makeUITheSameAsDefault()
 
 void CodeSnippetsPage::makeUITheSameAsSettings()
 {
-    Util::applySettingsToEditor(editor, lang);
+    Util::applySettingsToEditor(highlighter, editor, lang);
     auto settingsKeys = SettingsHelper::getLanguageConfig(lang).getSnippets();
     for (auto key : settingsKeys)
     {

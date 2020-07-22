@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title>apache.conf</title>
+<meta name="generator" content="KF5::SyntaxHighlighting (Apache Configuration)"/>
+</head><body style="color:#1f1c1b"><pre>
+<span style="color:#898887;"># Apache configuration highlighting unit test</span>
+<span style="color:#898887;"># comment with alters </span><span style="color:#ca9219;background-color:#451e1a;font-weight:bold;">TODO</span><span style="color:#898887;"> </span><span style="color:#ca9219;background-color:#451e1a;font-weight:bold;">FIXME</span><span style="color:#898887;"> </span><span style="color:#81ca2d;background-color:#f7e6e6;font-weight:bold;">###</span>
+
+<span style="color:#644a9b;">&lt;IfModule</span><span style="color:#0057ae;"> mod_dav_fs.c</span><span style="color:#644a9b;">&gt;</span>
+    <span style="color:#0095ff;font-weight:bold;">DAVLockDB</span><span style="color:#bf0303;"> /var/lock/apache/DAVLock</span>
+<span style="color:#644a9b;">&lt;/IfModule&gt;</span>
+
+<span style="color:#644a9b;">&lt;VirtualHost</span><span style="color:#0057ae;"> *:443</span><span style="color:#644a9b;">&gt;</span>
+    <span style="color:#0095ff;font-weight:bold;">Include</span><span style="color:#bf0303;"> something_else.inc</span>
+
+    <span style="color:#0095ff;font-weight:bold;">SSLEngine</span><span style="color:#924c9d;"> </span><span style="font-weight:bold;">on</span>
+    <span style="color:#898887;"># exclude insecure protocols</span>
+    <span style="color:#0095ff;font-weight:bold;">SSLProtocol</span><span style="color:#924c9d;"> </span><span style="font-weight:bold;">all</span><span style="color:#924c9d;"> </span><span style="font-weight:bold;">-SSLv2</span><span style="color:#924c9d;"> </span><span style="font-weight:bold;">-SSLv3</span>
+    <span style="color:#0095ff;font-weight:bold;">SSLHonorCipherOrder</span><span style="color:#924c9d;"> </span><span style="font-weight:bold;">on</span>
+    <span style="color:#898887;"># exclude insecure ciphers</span>
+    <span style="color:#0095ff;font-weight:bold;">SSLCipherSuite</span><span style="color:#bf0303;"> &quot;HIGH !EXP !eNULL !aNULL !LOW !RC4 !3DES !MD5 !EXP !PSK !SRP !DSS !DES !aECDH&quot;</span>
+
+    <span style="color:#0095ff;font-weight:bold;">SSLCertificateFile</span><span style="color:#bf0303;"> /etc/letsencrypt/live/cert.pem</span>
+    <span style="color:#0095ff;font-weight:bold;">SSLCertificateKeyFile</span><span style="color:#bf0303;"> /etc/letsencrypt/live/privkey.pem</span>
+    <span style="color:#0095ff;font-weight:bold;">SSLCertificateChainFile</span><span style="color:#bf0303;"> /etc/letsencrypt/live/chain.pem</span>
+    <span style="color:#0095ff;font-weight:bold;">CustomLog</span><span style="color:#bf0303;"> /var/log/apache2/ssl_request_log   ssl_combined</span>
+<span style="color:#644a9b;">&lt;/VirtualHost&gt;</span>
+
+<span style="color:#644a9b;">&lt;Proxy</span><span style="color:#0057ae;"> &quot;http://localhost:10000/&quot;</span><span style="color:#644a9b;">&gt;</span>
+    <span style="color:#0095ff;font-weight:bold;">SSLRequireSSL</span>
+<span style="color:#644a9b;">&lt;/Proxy&gt;</span>
+
+<span style="color:#644a9b;">&lt;Directory</span><span style="color:#0057ae;"> &quot;/some/quoted/path&quot;</span><span style="color:#644a9b;">&gt;</span>
+    <span style="color:#0095ff;font-weight:bold;">Options</span><span style="color:#924c9d;"> </span><span style="font-weight:bold;">-Indexes</span><span style="color:#924c9d;"> </span><span style="font-weight:bold;">-FollowSymLinks</span>
+    <span style="color:#0095ff;font-weight:bold;">DirectoryIndex</span><span style="color:#bf0303;"> index.php</span>
+    <span style="color:#0095ff;font-weight:bold;">AllowOverride</span><span style="color:#924c9d;"> </span><span style="font-weight:bold;">None</span>
+    <span style="color:#0095ff;font-weight:bold;">Order</span><span style="color:#924c9d;"> </span><span style="font-weight:bold;">allow,deny</span>
+    <span style="color:#0095ff;font-weight:bold;">Allow</span><span style="color:#bf0303;"> from all</span>
+
+    <span style="color:#0095ff;font-weight:bold;">Options</span><span style="color:#924c9d;"> </span><span style="font-weight:bold;">FollowSymLinks</span>
+    <span style="color:#0095ff;font-weight:bold;">AllowOverride</span><span style="color:#924c9d;"> </span><span style="font-weight:bold;">FileInfo</span><span style="color:#924c9d;"> </span><span style="font-weight:bold;">Options</span><span style="color:#924c9d;"> </span><span style="font-weight:bold;">All</span>
+    <span style="color:#644a9b;">&lt;LimitExcept</span><span style="color:#0057ae;"> GET</span><span style="color:#644a9b;">&gt;</span>
+        <span style="color:#0095ff;font-weight:bold;">Require</span><span style="color:#bf0303;"> valid-user</span>
+    <span style="color:#644a9b;">&lt;/LimitExcept&gt;</span>
+
+    <span style="color:#644a9b;">&lt;Files</span><span style="color:#0057ae;"> ~ &quot;\.(cgi|shtml|phtml|php3?)$&quot;</span><span style="color:#644a9b;">&gt;</span>
+        <span style="color:#0095ff;font-weight:bold;">ForceType</span><span style="color:#bf0303;"> text/plain</span>
+    <span style="color:#644a9b;">&lt;/Files&gt;</span>
+<span style="color:#644a9b;">&lt;/Directory&gt;</span>
+
+<span style="color:#0095ff;font-weight:bold;">Alias</span><span style="color:#bf0303;"> /foo/ &quot;/srv/www/htdocs/foo/&quot;</span>
+
+<span style="color:#0095ff;font-weight:bold;">AuthType</span><span style="color:#924c9d;"> </span><span style="font-weight:bold;">Basic</span>
+<span style="color:#0095ff;font-weight:bold;">AuthName</span><span style="color:#bf0303;"> &quot;KDE&quot;</span>
+<span style="color:#0095ff;font-weight:bold;">AuthUserFile</span><span style="color:#bf0303;"> /srv/www/htpasswd.db</span>
+<span style="color:#0095ff;font-weight:bold;">Require</span><span style="color:#bf0303;"> user konqui</span>
+
+<span style="color:#644a9b;">&lt;VirtualHost</span><span style="color:#0057ae;"> _default_:80</span><span style="color:#644a9b;">&gt;</span>
+    <span style="color:#0095ff;font-weight:bold;">ServerName</span><span style="color:#bf0303;"> www.kde.org</span>
+    <span style="color:#0095ff;font-weight:bold;">ServerAlias</span><span style="color:#bf0303;"> kde.org</span>
+
+    <span style="color:#0095ff;font-weight:bold;">RewriteEngine</span><span style="color:#924c9d;"> </span><span style="font-weight:bold;">On</span>
+    <span style="color:#0095ff;font-weight:bold;">RewriteRule</span><span style="color:#bf0303;"> ^ https://%{SERVER_NAME}%{REQUEST_URI} [L,QSA,R=permanent]</span>
+<span style="color:#644a9b;">&lt;/VirtualHost&gt;</span>
+
+<span style="color:#0095ff;font-weight:bold;">AuthBasicProvider</span><span style="color:#bf0303;"> ldap</span>
+<span style="color:#0095ff;font-weight:bold;">AuthLDAPBindDN</span><span style="color:#bf0303;"> uid=ldapproxy,ou=people,dc=kde,dc=org</span>
+<span style="color:#0095ff;font-weight:bold;">AuthLDAPBindPassword</span><span style="color:#bf0303;">  top_secret</span>
+<span style="color:#0095ff;font-weight:bold;">AuthLDAPURL</span><span style="color:#bf0303;"> ldap://localhost:389/ou=people,dc=kde,dc=org?uid?sub?(objectClass=posixAccount)</span>
+<span style="color:#0095ff;font-weight:bold;">AuthLDAPGroupAttributeIsDN</span><span style="color:#924c9d;"> </span><span style="font-weight:bold;">on</span>
+<span style="color:#0095ff;font-weight:bold;">AuthLDAPGroupAttribute</span><span style="color:#bf0303;"> member</span>
+<span style="color:#0095ff;font-weight:bold;">Require</span><span style="color:#bf0303;"> ldap-group cn=sysadmin,ou=Group,dc=kde,dc=org</span>
+</pre></body></html>

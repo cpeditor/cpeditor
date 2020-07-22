@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title>highlight.gdb</title>
+<meta name="generator" content="KF5::SyntaxHighlighting (GDB)"/>
+</head><body style="color:#1f1c1b"><pre>
+GNU gdb (GDB) 8.1
+Copyright (C) 2018 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later &lt;http://gnu.org/licenses/gpl.html&gt;
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type &quot;show copying&quot;
+and &quot;show warranty&quot; for details.
+This GDB was configured as &quot;x86_64-pc-linux-gnu&quot;.
+Type &quot;show configuration&quot; for configuration details.
+For bug reporting instructions, please see:
+&lt;http://www.gnu.org/software/gdb/bugs/&gt;.
+Find the GDB manual and other documentation resources online at:
+&lt;http://www.gnu.org/software/gdb/documentation/&gt;.
+For help, type &quot;help&quot;.
+Type &quot;apropos word&quot; to search for commands related to &quot;word&quot;...
+Reading symbols from your_application...done.
+<span style="color:#644a9b;">(gdb) </span><span style="font-weight:bold;">break</span><span style="color:#644a9b;"> main</span>
+<span style="color:#898887;"># this is a comment</span>
+<span style="color:#644a9b;">(gdb) </span><span style="font-weight:bold;">run</span><span style="color:#644a9b;"> &lt;arguments for your application&gt;</span>
+...
+Breakpoint 1 at 0x400b56: file yourmain.cpp, line 3
+3: int main(int argc, char* argv[])
+<span style="color:#644a9b;">(gdb) </span><span style="font-weight:bold;">continue</span>
+<span style="color:#644a9b;">(gdb) </span><span style="font-weight:bold;">backtrace</span>
+#0  0x7f59e39bf18d in <span style="color:#644a9b;font-weight:bold;">poll</span> () from<span style="color:#0057ae;"> /usr/lib/libc.so.6</span>
+#1  0x7f59df6c8c7c in <span style="color:#644a9b;font-weight:bold;">??</span> () from<span style="color:#0057ae;"> /usr/lib/libglib-2.0.so.0</span>
+#2  0x7f59df6c8d8c in <span style="color:#644a9b;font-weight:bold;">g_main_context_iteration</span> () from<span style="color:#0057ae;"> /usr/lib/libglib-2.0.so.0</span>
+#3  0x7f59e480b23f in <span style="color:#006e28;">QEventDispatcherGlib::</span><span style="color:#644a9b;font-weight:bold;">processEvents</span>(...)
+    from<span style="color:#0057ae;"> /usr/lib/libQt5Core.so.5</span>
+...
+<span style="color:#644a9b;">(gdb) </span><span style="font-weight:bold;">where</span>
+#0  <span style="color:#644a9b;font-weight:bold;">main</span> (argc=1, argv=0x7fffffffca88) at<span style="color:#0057ae;"> ../../debugging/ex_debugger/main.cpp</span>:11
+<span style="color:#644a9b;">(gdb) </span><span style="font-weight:bold;">list</span>
+10          bool run = true;
+11          while (run) {
+12              // infinite loop! can you make it quit?
+13          }
+<span style="color:#644a9b;">(gdb) </span><span style="font-weight:bold;">info</span><span style="color:#644a9b;"> locals</span>
+app = &lt;incomplete type&gt;
+run = true
+complexData = {{d = 0x61d430, e = 0x61d430}}
+<span style="color:#644a9b;">(gdb) </span><span style="font-weight:bold;">info</span><span style="color:#644a9b;"> scope main.cpp:12</span>
+Scope for main.cpp:12:
+Symbol argc is a variable at frame base reg $rbp offset 0+-8, length 4.
+Symbol argv is a variable at frame base reg $rbp offset 0+-16, length 8.
+<span style="color:#644a9b;">(gdb) </span><span style="font-weight:bold;">ptype</span><span style="color:#644a9b;"> run</span>
+type = bool
+<span style="color:#644a9b;">(gdb) </span><span style="font-weight:bold;">print</span><span style="color:#644a9b;"> run</span>
+run = true
+<span style="color:#644a9b;">(gdb) </span><span style="font-weight:bold;">set</span><span style="color:#644a9b;"> run = false</span>
+<span style="color:#644a9b;">(gdb) </span><span style="font-weight:bold;">print</span><span style="color:#644a9b;"> run</span>
+run = false
+<span style="color:#644a9b;">(gdb) </span><span style="font-weight:bold;">print</span><span style="color:#644a9b;"> myString.size()</span>
+42
+<span style="color:#644a9b;">(gdb) </span><span style="font-weight:bold;">ptype</span><span style="color:#644a9b;"> MyType</span>
+type = class MyType {
+private:
+    int foo;
+public:
+    int foo() const;
+    ...
+}
+<span style="color:#644a9b;">(gdb) </span><span style="font-weight:bold;">break</span><span style="color:#644a9b;"> QMessageLogger::warning</span>
+Breakpoint 1 at 0x7ffff6f143f0 (8 locations)
+<span style="color:#644a9b;">(gdb) </span><span style="font-weight:bold;">command</span><span style="color:#644a9b;"> 1</span>
+Type commands for breakpoint(s) 1, one per line.
+End with a line saying just \&quot;end\&quot;.
+<span style="color:#644a9b;">&gt; </span><span style="font-weight:bold;">backtrace</span>
+<span style="color:#644a9b;">&gt; </span><span style="font-weight:bold;">continue</span>
+<span style="color:#644a9b;">&gt; </span><span style="font-weight:bold;">end</span>
+<span style="color:#644a9b;">(gdb) </span><span style="font-weight:bold;">catch</span><span style="color:#644a9b;"> throw </span><span style="color:#898887;"># or when an exception is thrown</span>
+Catchpoint 2 (throw)
+<span style="color:#644a9b;">(gdb) </span><span style="font-weight:bold;">break</span><span style="color:#644a9b;"> main.cpp:12 </span><span style="color:#898887;"># or when certain code is executed</span>
+Breakpoint 3 at 0x401216: file ../../debugging/ex_debugger/main.cpp, line 12.
+<span style="color:#644a9b;">(gdb) </span><span style="font-weight:bold;">info</span><span style="color:#644a9b;"> breakpoints</span>
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   &lt;MULTIPLE&gt;
+1.1                         y     0x7ffff6f143f0 &lt;QMessageLogger::warning(char const*, …
+...
+2       breakpoint     keep y   0x7ffff66d9b90 exception throw
+3       breakpoint     keep y   0x000000401216 in main(int, char**)
+                                                at debugging/ex_debugger/main.cpp:12
+<span style="color:#644a9b;">(gdb) </span><span style="font-weight:bold;">condition</span><span style="color:#644a9b;"> 3 argc &gt; 5</span>
+                <span style="color:#898887;"># ^-- breakpoint id, see `info breakpoints` above</span>
+<span style="color:#644a9b;">(gdb) </span><span style="font-weight:bold;">call</span><span style="color:#644a9b;"> myFunction()</span>
+<span style="color:#644a9b;">(gdb) </span><span style="font-weight:bold;">set</span><span style="color:#644a9b;"> pagination off</span>
+<span style="color:#644a9b;">(gdb) </span><span style="font-weight:bold;">set</span><span style="color:#644a9b;"> logging file /tmp/warnings.log</span>
+<span style="color:#644a9b;">(gdb) </span><span style="font-weight:bold;">set</span><span style="color:#644a9b;"> logging on</span>
+Copying output to /tmp/warnings.log.
+<span style="color:#644a9b;">(gdb) </span><span style="font-weight:bold;">info</span><span style="color:#644a9b;"> threads</span>
+            Id   Target Id         Frame
+2    Thread 0x7fffe10e1700 (LWP 7271) \&quot;QXcbEventReader\&quot;
+    0x7ffff0b6718d in poll () from /usr/lib/libc.so.6
+* 1    Thread 0x7ffff7edd840 (LWP 7267) \&quot;kwrite\&quot;
+    0x7ffff0b6718d in poll () from /usr/lib/libc.so.6
+<span style="color:#644a9b;">(gdb) </span><span style="font-weight:bold;">thread</span>
+<span style="color:#b08000;">[Current thread is 1 (Thread 0x7ffff7edd840 (LWP 7267))]</span>
+<span style="color:#644a9b;">(gdb) </span><span style="font-weight:bold;">thread</span><span style="color:#644a9b;"> 2</span>
+[Switching to thread 2 (Thread 0x7fffe10e1700 (LWP 9765))]
+<span style="color:#644a9b;">(gdb) </span><span style="font-weight:bold;">thread</span><span style="color:#644a9b;"> apply all backtrace</span>
+<span style="color:#644a9b;">(gdb) </span><span style="font-weight:bold;">info</span><span style="color:#644a9b;"> sharedlibrary</span>
+From                To                  Syms Read   Shared Object Library
+0x7ffff7ddbb80  0x7ffff7df5610  Yes (*)     /lib64/ld-linux-x86-64.so.2
+0x7ffff7690460  0x7ffff7ab723c  Yes         /opt/qt/5.5/gcc_64/lib/libQt5Gui.so.5
+0x7ffff6efdb80  0x7ffff71af318  Yes         /opt/qt/5.5/gcc_64/lib/libQt5Core.so.5
+0x7ffff6c02f60  0x7ffff6c5f852  Yes (*)     /usr/lib/libGL.so.1
+0x7ffff69d3ac0  0x7ffff69e0931  Yes (*)     /usr/lib/libpthread.so.0
+0x7ffff66d5fa0  0x7ffff6781d89  Yes         /usr/lib/libstdc++.so.6
+0x7ffff6353510  0x7ffff63bb33a  Yes (*)     /usr/lib/libm.so.6
+...
+(*): Shared library is missing debugging information.
+<span style="color:#644a9b;">(gdb) </span><span style="font-weight:bold;">list</span><span style="color:#644a9b;"> 64</span>
+59           * If no red can be seen, then the cached implementation is \&quot;good enough\&quot;.
+60           */
+61          void paintEvent(QPaintEvent *event)
+62          {
+63              const QRect rect = event-&gt;rect();
+64
+65              QPainter painter(this);
+66              painter.setRenderHint(QPainter::Antialiasing);
+67              painter.fillRect(rect, Qt::black);
+68
+<span style="color:#644a9b;">(gdb) </span><span style="font-weight:bold;">dprintf</span><span style="color:#644a9b;"> main.cpp:64,\&quot;paint rect(w=%d,h=%d)\\n\&quot;,rect.width(),rect.height()</span>
+Dprintf 1 at 0x403a1e: file path/to/main.cpp, line 64.
+<span style="color:#644a9b;">(gdb) </span><span style="font-weight:bold;">continue</span>
+Continuing.
+paint rect(w=202,h=200)
+paint rect(w=213,h=203)
+<span style="color:#644a9b;">(gdb) </span><span style="font-weight:bold;">target</span><span style="color:#644a9b;"> remote &lt;device ip&gt;:&lt;port&gt;</span>
+Remote debugging using &lt;device ip&gt;:&lt;port&gt;
+Reading /lib64/ld-linux-x86-64.so.2 from remote target...
+warning: File transfers from remote targets can be slow.
+            Use \&quot;set sysroot\&quot;to access files locally instead.
+...
+<span style="color:#644a9b;">(gdb) </span><span style="font-weight:bold;">set</span><span style="color:#644a9b;"> sysroot /path/to/sysroot</span>
+<span style="color:#644a9b;">(gdb) </span><span style="font-weight:bold;">print</span><span style="color:#644a9b;"> myMap</span>
+$1 = QMap&lt;QString, int&gt; = {
+    [\&quot;bar\&quot;] = 1,
+    [\&quot;foo\&quot;] = 2
+}
+<span style="color:#644a9b;">(gdb) </span><span style="font-weight:bold;">print</span><span style="color:#644a9b;"> money</span>
+$1 {
+    {value = 1.20000005, currency = Money::Euro},
+    {value = 3.4000001, currency = Money::Dollar}
+}
+<span style="color:#644a9b;">(gdb) </span><span style="font-weight:bold;">python</span>
+&gt; <span style="color:#ff5500;">import</span> sys
+&gt; sys.path.insert(<span style="color:#b08000;">0</span>, <span style="color:#bf0303;">'/path/to/addon/debugging/ex_gdb_pretty_printer'</span>)
+&gt; <span style="color:#ff5500;">import</span> money_printer
+&gt; <span style="font-weight:bold;">end</span>
+<span style="color:#644a9b;">(gdb) </span><span style="font-weight:bold;">print</span><span style="color:#644a9b;"> money</span>
+$2 = {
+    \&quot;1.200000 Euro\&quot;,
+    \&quot;3.400000 Dollar\&quot;
+}
+<span style="color:#644a9b;">(gdb) </span><span style="font-weight:bold;">continue</span>
+<span style="color:#644a9b;">(gdb) </span><span style="font-weight:bold;">detach</span>
+<span style="color:#644a9b;">(gdb) </span><span style="font-weight:bold;">quit</span>
+</pre></body></html>

@@ -1,0 +1,52 @@
+<Comment>#!/usr</Comment><br/>
+<Comment># AWK hl test</Comment><br/>
+<Normal></Normal><br/>
+<Comment># </Comment><Region Marker>BEGIN</Region Marker><Comment> and </Comment><Region Marker>END</Region Marker><Comment> are also matched as patterns</Comment><br/>
+<Special>BEGIN</Special><Normal> </Normal><Symbol>{</Symbol><br/>
+<Normal>	p </Normal><Operator>=</Operator><Normal> </Normal><Decimal>0</Decimal><Separator Symbol>;</Separator Symbol><br/>
+<Symbol>}</Symbol><br/>
+<Normal></Normal><br/>
+<Regex Op>/</Regex Op><Regex>some pattern</Regex><Regex Op>/</Regex Op><Normal> </Normal><Symbol>{</Symbol><br/>
+<Normal>	p</Normal><Operator>++</Operator><Separator Symbol>;</Separator Symbol><br/>
+<Symbol>}</Symbol><br/>
+<Normal></Normal><br/>
+<Comment># / inside brackets is not considered end of expression</Comment><br/>
+<Comment># a loose division operator (/) is not mismatched as a pattern.</Comment><br/>
+<Field>$1</Field><Normal> </Normal><Operator>=~</Operator><Normal> </Normal><Regex Op>/[^</Regex Op><Regex>abc/</Regex><Regex Op>]</Regex Op><Regex>def</Regex><Regex Op>/</Regex Op><Normal> </Normal><Operator>||</Operator><Normal> b </Normal><Operator>==</Operator><Normal> </Normal><Decimal>3</Decimal><Normal> </Normal><Operator>/</Operator><Normal> </Normal><Decimal>5</Decimal><Normal> </Normal><Symbol>{</Symbol><br/>
+<Normal></Normal><br/>
+<Normal>	</Normal><Function>gsub</Function><Normal> </Normal><Symbol>(</Symbol><Normal> </Normal><Builtin>FILENAME</Builtin><Normal> </Normal><Symbol>)</Symbol><Separator Symbol>;</Separator Symbol><br/>
+<Normal></Normal><br/>
+<Symbol>}</Symbol><br/>
+<Normal></Normal><br/>
+<Comment># </Comment><Alert Level 2>TODO</Alert Level 2><Comment> and </Comment><Alert Level 2>FIXME</Alert Level 2><Comment> also work in comments in Awk.</Comment><br/>
+<Normal></Normal><br/>
+<Comment># Also backslash in patterns works.</Comment><br/>
+<Regex Op>/\</Regex Op><Escape>/</Escape><Regex>usr</Regex><Regex Op>\</Regex Op><Escape>/</Escape><Regex>bin</Regex><Regex Op>\</Regex Op><Escape>/</Escape><Regex>awk</Regex><Regex Op>/</Regex Op><Normal> </Normal><Symbol>{</Symbol><Normal> </Normal><Keyword>print</Keyword><Normal> </Normal><String>"This is me"</String><Separator Symbol>;</Separator Symbol><Normal> </Normal><Symbol>}</Symbol><br/>
+<Normal></Normal><br/>
+<Special>END</Special><Normal> </Normal><Symbol>{</Symbol><br/>
+<Normal>	</Normal><Keyword>print</Keyword><Normal> p</Normal><Separator Symbol>;</Separator Symbol><br/>
+<Symbol>}</Symbol><br/>
+<Normal></Normal><br/>
+<Keyword>function</Keyword><Normal> myfunc</Normal><Symbol>()</Symbol><br/>
+<Symbol>{</Symbol><br/>
+<Normal>    </Normal><Keyword>print</Keyword><Normal> </Normal><Decimal>42</Decimal><br/>
+<Symbol>}</Symbol><br/>
+<Normal></Normal><br/>
+<Regex Op>/</Regex Op><Regex>abc</Regex><Regex Op>/</Regex Op><Separator Symbol>,</Separator Symbol><Regex Op>/</Regex Op><Regex>a</Regex><Regex Op>[</Regex Op><Regex>b</Regex><Regex Op>]</Regex Op><Regex>c</Regex><Regex Op>/</Regex Op><Symbol>{</Symbol><br/>
+<Normal>	</Normal><Comment># parameter with a regex</Comment><br/>
+<Normal>	</Normal><ControlFlow>if</ControlFlow><Normal> </Normal><Symbol>(</Symbol><Function>match</Function><Symbol>(</Symbol><Field>$0</Field><Separator Symbol>,</Separator Symbol><Normal> </Normal><Regex Op>/</Regex Op><Regex>a</Regex><Regex Op>/</Regex Op><Symbol>))</Symbol><Normal> </Normal><Symbol>{}</Symbol><br/>
+<Normal></Normal><br/>
+<Normal>	</Normal><String>"x</String><Escape>\a</Escape><String>x</String><Escape>\n</Escape><String>x</String><Escape>\</Escape><Error>e</Error><String>x</String><Escape>\</Escape><Error>z</Error><String>x</String><Escape>\023</Escape><String>x</String><Escape>\2</Escape><String>x</String><Escape>\xff</Escape><String>x</String><Escape>\xFf\xa</Escape><String>x</String><Escape>\12</Escape><String>x"</String><br/>
+<Normal></Normal><br/>
+<Normal>	a </Normal><Operator>=~</Operator><Normal> </Normal><Regex Op>/[</Regex Op><CharClass>[:alpha:]</CharClass><Regex Op>]/</Regex Op><br/>
+<Normal>	a </Normal><Operator>=~</Operator><Normal> </Normal><Regex Op>/[</Regex Op><Regex>xx</Regex><CharClass>[:alpha:]</CharClass><Regex>xx</Regex><Regex Op>]/</Regex Op><br/>
+<Normal>	a </Normal><Operator>=~</Operator><Normal> </Normal><Regex Op>/[</Regex Op><Regex>a</Regex><Regex Op>-</Regex Op><Regex>z</Regex><CharClass>[:alpha:]</CharClass><Regex>xx-</Regex><Regex Op>]/</Regex Op><br/>
+<Normal>	a </Normal><Operator>=~</Operator><Normal> </Normal><Regex Op>/[</Regex Op><Regex>]a</Regex><Regex Op>]/</Regex Op><br/>
+<Normal>	a </Normal><Operator>=~</Operator><Normal> </Normal><Regex Op>/[</Regex Op><Regex>-a</Regex><Regex Op>]/</Regex Op><br/>
+<Normal>	a </Normal><Operator>=~</Operator><Normal> </Normal><Regex Op>/[^</Regex Op><Regex>]a</Regex><Regex Op>]/</Regex Op><br/>
+<Normal>	a </Normal><Operator>=~</Operator><Normal> </Normal><Regex Op>/[^</Regex Op><Regex>-a</Regex><Regex Op>]/</Regex Op><br/>
+<Normal>	a </Normal><Operator>=~</Operator><Normal> </Normal><Regex Op>/[</Regex Op><Regex>a</Regex><Regex Op>]</Regex Op><Regex>a</Regex><Regex Op>\</Regex Op><Escape>/</Escape><Regex Op>\</Regex Op><Escape>n</Escape><Regex Op>/</Regex Op><br/>
+<Normal>	</Normal><Comment># incomplete regex</Comment><br/>
+<Normal>	a </Normal><Operator>=~</Operator><Normal> </Normal><Regex Op>/[</Regex Op><Regex>xx</Regex><CharClass>[:</CharClass><Custom>alph</Custom><br/>
+<Normal>	a </Normal><Operator>=</Operator><Normal> </Normal><Float>23.2</Float><br/>
+<Symbol>}</Symbol><br/>

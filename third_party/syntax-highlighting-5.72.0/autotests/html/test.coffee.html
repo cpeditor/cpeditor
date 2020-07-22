@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title>test.coffee</title>
+<meta name="generator" content="KF5::SyntaxHighlighting (CoffeeScript)"/>
+</head><body style="color:#1f1c1b"><pre>
+<span style="color:#898887;"># CoffeeScript test</span>
+<span style="color:#898887;"># Source: https://coffeescript.org</span>
+
+<span style="color:#898887;">### Multiline</span>
+<span style="color:#898887;">  comment ###</span>
+<span style="color:#bf0303;background-color:#f7e6e6;font-weight:bold;">import</span> <span style="color:#bf0303;">'local-file.coffee'</span>
+
+<span style="color:#898887;"># Assignment:</span>
+number   <span style="font-weight:bold;">=</span> <span style="color:#b08000;">42</span>
+opposite <span style="font-weight:bold;">=</span> <span style="color:#006e28;">true</span>
+
+<span style="color:#898887;"># Conditions:</span>
+number <span style="font-weight:bold;">=</span> <span style="font-weight:bold;">-</span><span style="color:#b08000;">42</span> <span style="font-weight:bold;">if</span> opposite
+
+<span style="color:#898887;"># Functions:</span>
+square <span style="font-weight:bold;">=</span> <span style="color:#644a9b;">(x) -&gt;</span> x <span style="font-weight:bold;">*</span> x
+
+<span style="color:#898887;"># Arrays:</span>
+list <span style="font-weight:bold;">=</span> <span style="font-weight:bold;">[</span><span style="color:#b08000;">1</span><span style="font-weight:bold;">,</span> <span style="color:#b08000;">2</span><span style="font-weight:bold;">,</span> <span style="color:#b08000;">3</span><span style="font-weight:bold;">,</span> <span style="color:#b08000;">4</span><span style="font-weight:bold;">,</span> <span style="color:#b08000;">5</span><span style="font-weight:bold;">]</span>
+
+<span style="color:#898887;"># Objects:</span>
+math <span style="font-weight:bold;">=</span>
+  root<span style="font-weight:bold;">:</span>   <span style="color:#006e28;">Math</span><span style="font-weight:bold;">.</span>sqrt
+  square<span style="font-weight:bold;">:</span> square
+  cube<span style="font-weight:bold;">:</span>   <span style="color:#644a9b;">(x) -&gt;</span> x <span style="font-weight:bold;">*</span> square x
+
+<span style="color:#898887;"># Splats:</span>
+race <span style="font-weight:bold;">=</span> <span style="color:#644a9b;">(winner, runners...) -&gt;</span>
+  print winner<span style="font-weight:bold;">,</span> runners
+
+<span style="color:#898887;"># Existence:</span>
+alert <span style="color:#bf0303;">&quot;I knew it!&quot;</span> <span style="font-weight:bold;">if</span> elvis<span style="font-weight:bold;">?</span>
+
+<span style="color:#898887;"># Array comprehensions:</span>
+cubes <span style="font-weight:bold;">=</span> <span style="font-weight:bold;">(</span>math<span style="font-weight:bold;">.</span>cube num <span style="font-weight:bold;">for</span> num <span style="font-weight:bold;">in</span> list<span style="font-weight:bold;">)</span>
+
+<span style="color:#898887;"># Classes:</span>
+<span style="font-weight:bold;">class</span> <span style="color:#0057ae;font-weight:bold;">Animal</span>
+  <span style="font-weight:bold;">constructor</span><span style="font-weight:bold;">:</span> <span style="color:#644a9b;">(@name) -&gt;</span>
+
+  move<span style="font-weight:bold;">:</span> <span style="color:#644a9b;">(meters) -&gt;</span>
+    alert <span style="color:#0057ae;">@name</span> <span style="font-weight:bold;">+</span> <span style="color:#bf0303;">&quot; moved </span><span style="color:#924c9d;">#{</span>meters<span style="color:#924c9d;">}</span><span style="color:#bf0303;">m.&quot;</span>
+
+<span style="color:#898887;"># Switch/When/Else:</span>
+<span style="font-weight:bold;">switch</span> day
+  <span style="font-weight:bold;">when</span> <span style="color:#bf0303;">&quot;Mon&quot;</span> <span style="font-weight:bold;">then</span> go work
+  <span style="font-weight:bold;">when</span> <span style="color:#bf0303;">&quot;Tue&quot;</span> <span style="font-weight:bold;">then</span> go relax
+  <span style="font-weight:bold;">when</span> <span style="color:#bf0303;">&quot;Thu&quot;</span> <span style="font-weight:bold;">then</span> go iceFishing
+  <span style="font-weight:bold;">when</span> <span style="color:#bf0303;">&quot;Fri&quot;</span><span style="font-weight:bold;">,</span> <span style="color:#bf0303;">&quot;Sat&quot;</span>
+    <span style="font-weight:bold;">if</span> day <span style="font-weight:bold;">is</span> bingoDay
+      go bingo
+      go dancing
+  <span style="font-weight:bold;">when</span> <span style="color:#bf0303;">&quot;Sun&quot;</span> <span style="font-weight:bold;">then</span> go church
+  <span style="font-weight:bold;">else</span> go work
+
+<span style="color:#898887;"># Member objects:</span>
+<span style="color:#006e28;">Object</span><span style="font-weight:bold;">.</span>prop<span style="font-weight:bold;">.</span>  Object <span style="font-weight:bold;">.</span>Object <span style="color:#006e28;">Object</span>
+timelineEvent<span style="font-weight:bold;">.</span>class
+
+<span style="color:#898887;"># Embedded JavaScript Code</span>
+markdown <span style="font-weight:bold;">=</span> <span style="color:#bf0303;background-color:#f7e6e6;font-weight:bold;font-style:italic;">`</span><span style="font-weight:bold;">function</span> () {
+  <span style="color:#644a9b;">return</span> <span style="color:#bf0303;">\`In Markdown, write code like </span><span style="color:#3daee9;">\\\`</span><span style="color:#bf0303;">this</span><span style="color:#3daee9;">\\\`</span><span style="color:#bf0303;">\`</span>;
+}<span style="color:#bf0303;background-color:#f7e6e6;font-weight:bold;font-style:italic;">`</span>
+
+<span style="color:#bf0303;background-color:#f7e6e6;font-weight:bold;font-style:italic;">```</span>
+  <span style="color:#898887;">// Comment</span>
+  <span style="font-weight:bold;">var</span> array = <span style="font-weight:bold;">new</span> <span style="color:#644a9b;font-weight:bold;">Array</span>(<span style="color:#b08000;">500</span>);
+  <span style="font-weight:bold;">var</span> name = <span style="color:#bf0303;">&quot;Willy&quot;</span>;
+  <span style="color:#644a9b;">alert</span>(<span style="color:#bf0303;">`Hello </span><span style="color:#3daee9;">${</span>name<span style="color:#3daee9;">}</span><span style="color:#bf0303;">!`</span>);
+<span style="color:#bf0303;background-color:#f7e6e6;font-weight:bold;font-style:italic;">```</span>
+<span style="color:#bf0303;background-color:#f7e6e6;font-weight:bold;font-style:italic;">`</span> <span style="color:#644a9b;font-weight:bold;">String</span>.<span style="color:#644a9b;">raw</span><span style="color:#bf0303;">\`String ${x} \`</span> <span style="color:#bf0303;background-color:#f7e6e6;font-weight:bold;font-style:italic;">`</span>
+
+<span style="color:#bf0303;background-color:#f7e6e6;font-weight:bold;font-style:italic;">`</span> <span style="color:#898887;">// Regular Expression after template</span>
+  <span style="font-weight:bold;">const</span> a = <span style="color:#bf0303;">\`6\`</span> / <span style="color:#b08000;">2</span>; <span style="color:#898887;">/*comment*/</span>
+  <span style="color:#bf0303;">\`template\`</span> <span style="color:#ff5500;">/regex/</span> <span style="color:#bf0303;background-color:#f7e6e6;font-weight:bold;font-style:italic;">`</span>
+
+<span style="color:#bf0303;background-color:#f7e6e6;font-weight:bold;font-style:italic;">`</span> <span style="color:#898887;">// Tagged template literals</span>
+  <span style="color:#644a9b;">tagFunc</span><span style="color:#bf0303;">\`Setting </span><span style="color:#3daee9;">${</span>setting<span style="color:#3daee9;">}</span><span style="color:#bf0303;"> is </span><span style="color:#3daee9;">${</span>value<span style="color:#3daee9;">}</span><span style="color:#bf0303;">!\`</span> <span style="color:#bf0303;background-color:#f7e6e6;font-weight:bold;font-style:italic;">`</span>
+</pre></body></html>

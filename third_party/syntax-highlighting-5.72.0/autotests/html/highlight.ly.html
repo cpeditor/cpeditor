@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title>highlight.ly</title>
+<meta name="generator" content="KF5::SyntaxHighlighting (LilyPond)"/>
+</head><body style="color:#1f1c1b"><pre>
+<span style="color:#898887;">% This is a file to test the Lilypond highlighting features of Katepart.</span>
+<span style="color:#898887;">% This is NOT a valid lilypond file, because it also shows the</span>
+<span style="color:#898887;">% highlighting of some invalid lilypond constructs!</span>
+<span style="color:#898887;">% This is a line comment.</span>
+
+<span style="color:#898887;">%{</span>
+<span style="color:#898887;">this is a block comment, that can occur inside a line, or across</span>
+<span style="color:#898887;">multiple lines.</span>
+<span style="color:#898887;">%}</span>
+
+<span style="font-weight:bold;">\header {</span>
+  title = <span style="color:#bf0303;">&quot;Katepart Lilypond syntax highlighting test file&quot;</span>
+  <span style="color:#0057ae;">composer</span> = <span style="color:#898887;">%{&quot;Wilbert Berendsen&quot;%}</span> <span style="color:#bf0303;">&quot;Anonymus&quot;</span>
+  <span style="color:#0057ae;">poet</span> = <span style="color:#bf0303;">&quot;The KDE team&quot;</span>
+  <span style="color:#0057ae;">opus</span> = <span style="color:#bf0303;">&quot;1&quot;</span>
+  <span style="color:#0057ae;">copyright</span> = <span style="color:#bf0303;">&quot;Share and enjoy!&quot;</span>
+<span style="font-weight:bold;">}</span>
+
+<span style="font-weight:bold;">\paper {</span>
+  <span style="color:#b08000;background-color:#fff6ff;">#</span><span style="color:#b08000;background-color:#fff6ff;font-weight:bold;">(</span><span style="color:#b08000;background-color:#fff6ff;">set-paper-size </span><span style="color:#bf0303;background-color:#fff6ff;">&quot;a4&quot;</span><span style="color:#b08000;background-color:#fff6ff;font-weight:bold;">)</span>  <span style="color:#898887;">% a hash introduces scheme</span>
+  <span style="color:#0057ae;">indent</span> = 0              <span style="color:#898887;">% recognize variable names inside \paper, \layout etc.</span>
+  <span style="color:#0057ae;">between-system-space</span> = 3<span style="color:#644a9b;font-weight:bold;">\mm</span>
+<span style="font-weight:bold;">}</span>
+
+<span style="font-weight:bold;">\layout {</span>
+  <span style="font-weight:bold;">\context</span> <span style="font-weight:bold;">{</span>
+    <span style="color:#644a9b;">\Score</span>
+    <span style="font-weight:bold;">\remove</span> <span style="color:#0057ae;">Bar_number_engraver</span>   <span style="color:#898887;">% recognize engraver names</span>
+    <span style="font-weight:bold;">\remove</span> <span style="color:#0057ae;">&quot;Bar_number_engraver&quot;</span> <span style="color:#898887;">% also when quoted!</span>
+  <span style="font-weight:bold;">}</span>
+<span style="font-weight:bold;">}</span>
+
+<span style="color:#898887;">% { and &lt;&lt; block are folded</span>
+<span style="font-weight:bold;">\score</span> <span style="font-weight:bold;">{</span>
+  <span style="font-weight:bold;">\new</span> <span style="color:#0057ae;font-weight:bold;">StaffGroup</span> <span style="font-weight:bold;">&lt;&lt;</span>
+    <span style="font-weight:bold;">\new</span> <span style="color:#0057ae;font-weight:bold;">ChordNames</span> <span style="color:#0094e4;font-weight:bold;">\chordmode </span><span style="font-weight:bold;">{</span> c<span style="color:#0057ae;">2</span><span style="color:#0094e4;">sus4/f</span> g<span style="color:#0057ae;">2</span><span style="color:#0094e4;">/d</span> c<span style="color:#0057ae;">1</span> <span style="font-weight:bold;">}</span>
+    <span style="font-weight:bold;">\new</span> <span style="color:#0057ae;font-weight:bold;">Staff</span> <span style="font-weight:bold;">\new</span> <span style="color:#0057ae;font-weight:bold;">Voice</span> =<span style="color:#bf0303;">&quot;mel&quot;</span> <span style="font-weight:bold;">{</span>
+      <span style="color:#644a9b;font-weight:bold;">\key f</span> <span style="color:#644a9b;font-weight:bold;">\major</span>
+      <span style="color:#644a9b;font-weight:bold;">\time 4/4</span>
+      <span style="color:#644a9b;font-weight:bold;">\partial 4</span>
+      <span style="font-weight:bold;">\set</span> <span style="color:#0057ae;font-weight:bold;">Staff</span>.<span style="color:#0057ae;">instrumentName</span> = <span style="color:#bf0303;">&quot;Bla.&quot;</span>
+      <span style="font-weight:bold;">\once</span> <span style="font-weight:bold;">\override</span> <span style="color:#0057ae;font-weight:bold;">Staff</span>.<span style="color:#0057ae;">NoteHead</span> <span style="color:#b08000;background-color:#fff6ff;">#'color</span> = <span style="color:#b08000;background-color:#fff6ff;">#red</span>
+      <span style="color:#898887;">% dynamics, articulations and markup</span>
+      c<span style="color:#0057ae;">8</span><span style="color:#ee5000;font-weight:bold;">\p</span> d<span style="color:#ee5000;font-weight:bold;">\&lt;</span> e<span style="color:#ee5000;font-weight:bold;">-.</span> f<span style="color:#ee5000;font-weight:bold;">-&gt;</span> g a<span style="color:#ee5000;font-weight:bold;">\f</span> c<span style="color:#ee5000;font-weight:bold;">-5</span><span style="color:#009817;">\markup</span> <span style="font-weight:bold;">{</span>Hoi<span style="font-weight:bold;">}</span>
+      <span style="color:#0094e4;font-weight:bold;">\notemode </span><span style="font-weight:bold;">{</span> c d e f <span style="font-weight:bold;">}</span>
+      <span style="color:#644a9b;font-weight:bold;">\repeat volta 2</span> <span style="font-weight:bold;">{</span>
+        <span style="color:#898887;">% complex durations are highlighted:</span>
+        g<span style="color:#0057ae;">4*2/3</span>
+      <span style="font-weight:bold;">}</span>
+      <span style="color:#644a9b;font-weight:bold;">\times 2/3</span> <span style="font-weight:bold;">{</span>e<span style="color:#0057ae;">8</span> f g<span style="font-weight:bold;">}</span>
+      <span style="color:#898887;">% there is some error checking:</span>
+      <span style="color:#898887;">% often made mistake to have octavemarks after the duration:</span>
+      <span style="color:#bf0303;text-decoration:underline;">c2'</span>
+      <span style="color:#898887;">% invalid durations are caught:</span>
+      g<span style="color:#bf0303;text-decoration:underline;">3</span>
+    <span style="font-weight:bold;">}</span>
+    <span style="font-weight:bold;">\context</span> <span style="color:#0057ae;font-weight:bold;">Lyrics</span> <span style="color:#007010;font-weight:bold;">\lyricsto </span><span style="color:#bf0303;">&quot;mel&quot;</span> <span style="font-weight:bold;">{</span>
+<span style="color:#007010;">      </span><span style="font-weight:bold;">\set</span> <span style="color:#0057ae;">fontSize</span><span style="color:#007010;"> = </span><span style="color:#b08000;background-color:#fff6ff;">#</span><span style="color:#b08000;background-color:#fff6ff;">1</span>
+<span style="color:#007010;">      this is a line of ly </span><span style="color:#007010;font-weight:bold;">--</span><span style="color:#007010;"> rics.</span>
+<span style="color:#007010;">      with</span><span style="color:#0057ae;">4</span><span style="color:#007010;"> dur </span><span style="color:#007010;font-weight:bold;">--</span><span style="color:#007010;"> a </span><span style="color:#007010;font-weight:bold;">--</span><span style="color:#007010;"> tions.</span><span style="color:#0057ae;">2.</span>
+<span style="color:#007010;">      </span><span style="color:#898887;">% errors like forgetting spaces are found:</span>
+<span style="color:#007010;">      </span><span style="color:#bf0303;text-decoration:underline;">space--</span><span style="color:#007010;"> flight </span><span style="color:#898887;">%{i.s.o.%}</span><span style="color:#007010;"> space </span><span style="color:#007010;font-weight:bold;">--</span><span style="color:#007010;"> flight</span>
+<span style="color:#007010;">      space at end for </span><span style="color:#007010;font-weight:bold;">--</span><span style="color:#007010;"> got </span><span style="color:#007010;font-weight:bold;">--</span><span style="color:#007010;"> ten as </span><span style="color:#bf0303;text-decoration:underline;">well.}</span>
+    
+    <span style="font-weight:bold;">\new</span> <span style="color:#0057ae;font-weight:bold;">DrumStaff</span> <span style="color:#0094e4;font-weight:bold;">\drummode </span><span style="font-weight:bold;">{</span> <span style="color:#0094e4;">hihat</span><span style="color:#0057ae;">4</span> <span style="color:#0094e4;">bassdrum</span><span style="color:#0057ae;">8</span> <span style="font-weight:bold;">}</span>
+    <span style="font-weight:bold;">\new</span> <span style="color:#0057ae;font-weight:bold;">FiguredBass</span> <span style="color:#0094e4;font-weight:bold;">\figuremode </span><span style="font-weight:bold;">{</span>
+      <span style="color:#0057ae;font-weight:bold;">&lt;</span>5 4<span style="color:#0057ae;font-weight:bold;">&gt;</span><span style="color:#0057ae;">8</span> <span style="color:#0057ae;font-weight:bold;">&lt;</span>6-<span style="color:#0057ae;font-weight:bold;">&gt;</span>
+    <span style="font-weight:bold;">}</span>
+  <span style="font-weight:bold;">&gt;&gt;</span>
+  <span style="font-weight:bold;">\midi {</span>
+    <span style="font-weight:bold;">\context</span> <span style="font-weight:bold;">{</span>
+      <span style="color:#644a9b;">\Score</span>
+      <span style="color:#0057ae;">tempoWholesPerMinute</span> = <span style="color:#b08000;background-color:#fff6ff;">#</span><span style="color:#b08000;background-color:#fff6ff;font-weight:bold;">(</span><span style="color:#b08000;background-color:#fff6ff;">ly:make-moment </span><span style="color:#b08000;background-color:#fff6ff;">60</span><span style="color:#b08000;background-color:#fff6ff;"> </span><span style="color:#b08000;background-color:#fff6ff;">2</span><span style="color:#b08000;background-color:#fff6ff;font-weight:bold;">)</span>
+    <span style="font-weight:bold;">}</span>
+  <span style="font-weight:bold;">}</span>
+<span style="font-weight:bold;">}</span>
+
+<span style="color:#644a9b;">av</span> = <span style="color:#b08000;background-color:#fff6ff;">#</span><span style="color:#b08000;background-color:#fff6ff;font-weight:bold;">(define-music-function</span><span style="color:#b08000;background-color:#fff6ff;"> (parser location voice)</span>
+<span style="color:#b08000;background-color:#fff6ff;">(</span><span style="color:#b08000;background-color:#fff6ff;font-weight:bold;">string?</span><span style="color:#b08000;background-color:#fff6ff;">)</span>
+<span style="color:#898887;background-color:#fff6ff;">; scheme comments are recognized in scheme</span>
+<span style="color:#898887;background-color:#fff6ff;">; Lilypond inside scheme works as well:</span>
+<span style="color:#b08000;background-color:#fff6ff;font-weight:bold;">#{</span>
+  <span style="font-weight:bold;">\set</span> <span style="color:#0057ae;">associatedVoice</span> = <span style="color:#b08000;background-color:#fff6ff;font-weight:bold;">$voice</span>
+<span style="color:#b08000;background-color:#fff6ff;font-weight:bold;">#})</span>
+
+
+
+      
+<span style="color:#898887;">% inside scheme some elements are highlighted:    </span>
+<span style="color:#b08000;background-color:#fff6ff;">#</span><span style="color:#b08000;background-color:#fff6ff;font-weight:bold;">(define</span><span style="color:#b08000;background-color:#fff6ff;">  (naturalise-pitch p)</span>
+<span style="color:#b08000;background-color:#fff6ff;">  (</span><span style="color:#b08000;background-color:#fff6ff;font-weight:bold;">let*</span><span style="color:#b08000;background-color:#fff6ff;"> ((o (ly:pitch-octave p))</span>
+<span style="color:#b08000;background-color:#fff6ff;">         (a (* </span><span style="color:#b08000;background-color:#fff6ff;">4</span><span style="color:#b08000;background-color:#fff6ff;"> (ly:pitch-alteration p))) </span>
+<span style="color:#b08000;background-color:#fff6ff;">         (n (ly:pitch-notename p)))</span>
+<span style="color:#b08000;background-color:#fff6ff;">         (bla '</span><span style="color:#b08000;background-color:#fff6ff;font-weight:bold;">ArticulationEvent</span><span style="color:#b08000;background-color:#fff6ff;"> '</span><span style="color:#b08000;background-color:#fff6ff;font-weight:bold;">ChoirStaff</span><span style="color:#b08000;background-color:#fff6ff;">)</span>
+<span style="color:#b08000;background-color:#fff6ff;">    (</span><span style="color:#b08000;background-color:#fff6ff;font-weight:bold;">cond</span>
+<span style="color:#b08000;background-color:#fff6ff;">     ((&gt; a </span><span style="color:#b08000;background-color:#fff6ff;">2</span><span style="color:#b08000;background-color:#fff6ff;">) (</span><span style="color:#b08000;background-color:#fff6ff;font-weight:bold;">set!</span><span style="color:#b08000;background-color:#fff6ff;"> a (- a </span><span style="color:#b08000;background-color:#fff6ff;">4</span><span style="color:#b08000;background-color:#fff6ff;">)) (</span><span style="color:#b08000;background-color:#fff6ff;font-weight:bold;">set!</span><span style="color:#b08000;background-color:#fff6ff;"> n (+ n </span><span style="color:#b08000;background-color:#fff6ff;">1</span><span style="color:#b08000;background-color:#fff6ff;">)))</span>
+<span style="color:#b08000;background-color:#fff6ff;">     ((&lt; a </span><span style="color:#b08000;background-color:#fff6ff;">-2</span><span style="color:#b08000;background-color:#fff6ff;">) (</span><span style="color:#b08000;background-color:#fff6ff;font-weight:bold;">set!</span><span style="color:#b08000;background-color:#fff6ff;"> a (+ a </span><span style="color:#b08000;background-color:#fff6ff;">4</span><span style="color:#b08000;background-color:#fff6ff;">)) (</span><span style="color:#b08000;background-color:#fff6ff;font-weight:bold;">set!</span><span style="color:#b08000;background-color:#fff6ff;"> n (- n </span><span style="color:#b08000;background-color:#fff6ff;">1</span><span style="color:#b08000;background-color:#fff6ff;">))))</span>
+
+<span style="color:#b08000;background-color:#fff6ff;">    (</span><span style="color:#b08000;background-color:#fff6ff;font-weight:bold;">if</span><span style="color:#b08000;background-color:#fff6ff;"> (&lt; n </span><span style="color:#b08000;background-color:#fff6ff;">0</span><span style="color:#b08000;background-color:#fff6ff;">) (</span><span style="color:#b08000;background-color:#fff6ff;font-weight:bold;">begin</span><span style="color:#b08000;background-color:#fff6ff;"> (</span><span style="color:#b08000;background-color:#fff6ff;font-weight:bold;">set!</span><span style="color:#b08000;background-color:#fff6ff;">  o (- o </span><span style="color:#b08000;background-color:#fff6ff;">1</span><span style="color:#b08000;background-color:#fff6ff;">)) (</span><span style="color:#b08000;background-color:#fff6ff;font-weight:bold;">set!</span><span style="color:#b08000;background-color:#fff6ff;"> n (+ n </span><span style="color:#b08000;background-color:#fff6ff;">7</span><span style="color:#b08000;background-color:#fff6ff;">))))</span>
+<span style="color:#b08000;background-color:#fff6ff;">    (</span><span style="color:#b08000;background-color:#fff6ff;font-weight:bold;">if</span><span style="color:#b08000;background-color:#fff6ff;"> (&gt; n </span><span style="color:#b08000;background-color:#fff6ff;">6</span><span style="color:#b08000;background-color:#fff6ff;">) (</span><span style="color:#b08000;background-color:#fff6ff;font-weight:bold;">begin</span><span style="color:#b08000;background-color:#fff6ff;"> (</span><span style="color:#b08000;background-color:#fff6ff;font-weight:bold;">set!</span><span style="color:#b08000;background-color:#fff6ff;">  o (+ o </span><span style="color:#b08000;background-color:#fff6ff;">1</span><span style="color:#b08000;background-color:#fff6ff;">)) (</span><span style="color:#b08000;background-color:#fff6ff;font-weight:bold;">set!</span><span style="color:#b08000;background-color:#fff6ff;"> n (- n </span><span style="color:#b08000;background-color:#fff6ff;">7</span><span style="color:#b08000;background-color:#fff6ff;">))))</span>
+
+<span style="color:#b08000;background-color:#fff6ff;">    (ly:make-pitch o n (/ a </span><span style="color:#b08000;background-color:#fff6ff;">4</span><span style="color:#b08000;background-color:#fff6ff;">)))</span><span style="color:#b08000;background-color:#fff6ff;font-weight:bold;">)</span>
+
+<span style="color:#898887;">% markup is also highlighted</span>
+<span style="color:#009817;">\markup</span> <span style="font-weight:bold;">{</span>
+  <span style="color:#009817;">\line</span> <span style="font-weight:bold;">{</span>
+    text test Voice Staff <span style="color:#898887;">% note Lilypond keywords are not highlighted here</span>
+  <span style="font-weight:bold;">}</span>
+  <span style="color:#009817;">\score</span><span style="color:#0094e4;font-weight:bold;"> </span><span style="font-weight:bold;">{</span> <span style="color:#644a9b;font-weight:bold;">\relative c'</span> <span style="font-weight:bold;">{</span> <span style="color:#0057ae;font-weight:bold;">&lt;</span>ceg<span style="color:#0057ae;font-weight:bold;">&gt;</span><span style="color:#0057ae;">2</span><span style="color:#924c9d;font-weight:bold;">(</span> d<span style="color:#924c9d;font-weight:bold;">)</span> <span style="font-weight:bold;">}</span> <span style="font-weight:bold;">}</span>
+  <span style="color:#009817;">\italic</span> bla
+  <span style="color:#009817;">\override</span> <span style="color:#b08000;background-color:#fff6ff;">#'</span><span style="color:#b08000;background-color:#fff6ff;font-weight:bold;">(</span><span style="color:#b08000;background-color:#fff6ff;">baseline-skip . </span><span style="color:#b08000;background-color:#fff6ff;">2</span><span style="color:#b08000;background-color:#fff6ff;font-weight:bold;">)</span> <span style="font-weight:bold;">{</span>
+    <span style="color:#009817;">\underline</span> blu
+  <span style="font-weight:bold;">}</span>
+<span style="font-weight:bold;">}</span>
+</pre></body></html>

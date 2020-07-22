@@ -1,0 +1,466 @@
+<Comment>/* </Comment><br/>
+<Comment>   Highlighting test case for Logtalk</Comment><br/>
+<Comment></Comment><br/>
+<Comment>   Copied from the Logtalk distribution by the Logtalk copright holder</Comment><br/>
+<Comment>   and contributed using the Apache License 2.0</Comment><br/>
+<Comment>*/</Comment><br/>
+<Normal></Normal><br/>
+<Normal>:-</Normal><Directive> encoding</Directive><Normal>(</Normal><Variable>Encoding</Variable><Normal>).	</Normal><Comment>% this is a single-line comment</Comment><br/>
+<Normal></Normal><br/>
+<Comment>/*</Comment><br/>
+<Comment>this is</Comment><br/>
+<Comment>a block</Comment><br/>
+<Comment>comment</Comment><br/>
+<Comment>*/</Comment><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Normal>:-</Normal><Directive> if</Directive><Normal>(</Normal><Variable>Goal</Variable><Normal>).</Normal><br/>
+<Normal>	</Normal><Comment>% conditional</Comment><br/>
+<Normal>:-</Normal><Directive> elif</Directive><Normal>(</Normal><Variable>Goal</Variable><Normal>).</Normal><br/>
+<Normal>	</Normal><Comment>% compilation</Comment><br/>
+<Normal>:-</Normal><Directive> else</Directive><Normal>.</Normal><br/>
+<Normal>	</Normal><Comment>% directives</Comment><br/>
+<Normal>:-</Normal><Directive> endif</Directive><Normal>.</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Normal>:-</Normal><Directive> initialization</Directive><Normal>(</Normal><Variable>Goal</Variable><Normal>).</Normal><br/>
+<Normal>:-</Normal><Directive> op</Directive><Normal>(</Normal><Variable>Precedence</Variable><Normal>, </Normal><Variable>Associativity</Variable><Normal>, </Normal><Variable>Operator</Variable><Normal>).</Normal><br/>
+<Normal>:-</Normal><Directive> ensure_loaded</Directive><Normal>(</Normal><Variable>File</Variable><Normal>).</Normal><br/>
+<Normal>:-</Normal><Directive> include</Directive><Normal>(</Normal><Variable>File</Variable><Normal>).</Normal><br/>
+<Normal>:-</Normal><Directive> set_prolog_flag</Directive><Normal>(</Normal><Variable>Flag</Variable><Normal>, </Normal><Variable>Value</Variable><Normal>).</Normal><br/>
+<Normal>:-</Normal><Directive> set_logtalk_flag</Directive><Normal>(</Normal><Variable>Flag</Variable><Normal>, </Normal><Variable>Value</Variable><Normal>).</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Normal>:-</Normal><Directive> object</Directive><Normal>(prototype,</Normal><br/>
+<Normal>	</Normal><Directive>implements</Directive><Normal>(protocol),</Normal><br/>
+<Normal>	</Normal><Directive>imports</Directive><Normal>(category),</Normal><br/>
+<Normal>	</Normal><Directive>extends</Directive><Normal>(parent)).</Normal><br/>
+<Normal></Normal><br/>
+<Normal>	:-</Normal><Directive> info</Directive><Normal>([</Normal><br/>
+<Normal>		version </Normal><Operator>is</Operator><Normal> </Normal><Number>1</Number><Operator>:</Operator><Number>47</Number><Operator>:</Operator><Number>0</Number><Normal>,</Normal><br/>
+<Normal>		author </Normal><Operator>is</Operator><Normal> </Normal><String>'Paulo Moura'</String><Normal>,</Normal><br/>
+<Normal>		date </Normal><Operator>is</Operator><Normal> </Normal><Number>2019</Number><Operator>-</Operator><Number>09</Number><Operator>-</Operator><Number>18</Number><Normal>,</Normal><br/>
+<Normal>		comment </Normal><Operator>is</Operator><Normal> </Normal><String>'Sample prototype for testing syntax coloring.'</String><br/>
+<Normal>	]).</Normal><br/>
+<Normal></Normal><br/>
+<Normal>	:-</Normal><Directive> built_in</Directive><Normal>.</Normal><br/>
+<Normal>	:-</Normal><Directive> threaded</Directive><Normal>.</Normal><br/>
+<Normal>	:-</Normal><Directive> dynamic</Directive><Normal>.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>	:-</Normal><Directive> initialization</Directive><Normal>(some_goal(</Normal><Variable>X</Variable><Normal>, </Normal><Variable>Y</Variable><Normal>)).</Normal><br/>
+<Normal></Normal><br/>
+<Normal>	:-</Normal><Directive> uses</Directive><Normal>([</Normal><br/>
+<Normal>		foobar </Normal><Operator>as</Operator><Normal> fb</Normal><br/>
+<Normal>	]).</Normal><br/>
+<Normal></Normal><br/>
+<Normal>	:-</Normal><Directive> alias</Directive><Normal>(set, [member</Normal><Operator>/</Operator><Number>2</Number><Normal> </Normal><Operator>as</Operator><Normal> set_member</Normal><Operator>/</Operator><Number>2</Number><Normal>]).</Normal><br/>
+<Normal>	:-</Normal><Directive> alias</Directive><Normal>(words, [singular</Normal><Operator>//</Operator><Number>0</Number><Normal> </Normal><Operator>as</Operator><Normal> peculiar</Normal><Operator>//</Operator><Number>0</Number><Normal>]).</Normal><br/>
+<Normal></Normal><br/>
+<Normal>	:-</Normal><Directive> uses</Directive><Normal>(list, [append</Normal><Operator>/</Operator><Number>3</Number><Normal>, member</Normal><Operator>/</Operator><Number>2</Number><Normal>]).</Normal><br/>
+<Normal>	:-</Normal><Directive> uses</Directive><Normal>(queues, [new</Normal><Operator>/</Operator><Number>1</Number><Normal> </Normal><Operator>as</Operator><Normal> new_queue</Normal><Operator>/</Operator><Number>1</Number><Normal>]).</Normal><br/>
+<Normal></Normal><br/>
+<Normal>	:-</Normal><Directive> use_module</Directive><Normal>(module).</Normal><br/>
+<Normal>	:-</Normal><Directive> use_module</Directive><Normal>(module, [append</Normal><Operator>/</Operator><Number>3</Number><Normal>, member</Normal><Operator>/</Operator><Number>2</Number><Normal>]).</Normal><br/>
+<Normal></Normal><br/>
+<Normal>	:-</Normal><Directive> multifile</Directive><Normal>(zzz</Normal><Operator>/</Operator><Number>1</Number><Normal>).</Normal><br/>
+<Normal>	:-</Normal><Directive> multifile</Directive><Normal>(module</Normal><Operator>:</Operator><Normal>zzz</Normal><Operator>/</Operator><Number>1</Number><Normal>).</Normal><br/>
+<Normal>	:-</Normal><Directive> multifile</Directive><Normal>(object</Normal><Operator>::</Operator><Normal>zzz</Normal><Operator>/</Operator><Number>1</Number><Normal>).</Normal><br/>
+<Normal></Normal><br/>
+<Normal>	:-</Normal><Directive> coinductive</Directive><Normal>(comember</Normal><Operator>/</Operator><Number>1</Number><Normal>).</Normal><br/>
+<Normal></Normal><br/>
+<Normal>	:-</Normal><Directive> use_module</Directive><Normal>(module, [xxx</Normal><Operator>/</Operator><Number>1</Number><Normal>, yyy</Normal><Operator>/</Operator><Number>2</Number><Normal>, zzz</Normal><Operator>/</Operator><Number>3</Number><Normal>]).</Normal><br/>
+<Normal>	:-</Normal><Directive> export</Directive><Normal>(bbb</Normal><Operator>/</Operator><Number>3</Number><Normal>).</Normal><br/>
+<Normal>	:-</Normal><Directive> reexport</Directive><Normal>(cccc</Normal><Operator>/</Operator><Number>4</Number><Normal>).</Normal><br/>
+<Normal></Normal><br/>
+<Normal>	:-</Normal><Directive> public</Directive><Normal>(aaa</Normal><Operator>/</Operator><Number>2</Number><Normal>).</Normal><br/>
+<Normal>	:-</Normal><Directive> meta_predicate</Directive><Normal>(aaa(</Normal><Operator>::</Operator><Normal>, </Normal><Operator>*</Operator><Normal>)).</Normal><br/>
+<Normal>	:-</Normal><Directive> discontiguous</Directive><Normal>(aaa</Normal><Operator>/</Operator><Number>2</Number><Normal>).</Normal><br/>
+<Normal>	:-</Normal><Directive> mode</Directive><Normal>(aaa(</Normal><Operator>+</Operator><Normal>callable, </Normal><Operator>?</Operator><Normal>integer), zero_or_one).</Normal><br/>
+<Normal>	:-</Normal><Directive> info</Directive><Normal>(position</Normal><Operator>/</Operator><Number>2</Number><Normal>, [</Normal><br/>
+<Normal>		comment </Normal><Operator>is</Operator><Normal> </Normal><String>'Predicate brief description.'</String><Normal>,</Normal><br/>
+<Normal>		arguments </Normal><Operator>is</Operator><Normal> [</Normal><String>'Arg1'</String><Operator>-</Operator><String>'Arg1 description'</String><Normal>, </Normal><String>'Arg2'</String><Operator>-</Operator><String>'Arg2 description'</String><Normal>]</Normal><br/>
+<Normal>	]).</Normal><br/>
+<Normal></Normal><br/>
+<Normal>	:-</Normal><Directive> public</Directive><Normal>(nt</Normal><Operator>//</Operator><Number>2</Number><Normal>).</Normal><br/>
+<Normal>	:-</Normal><Directive> meta_non_terminal</Directive><Normal>(nt(</Normal><Number>1</Number><Normal>, </Normal><Operator>*</Operator><Normal>)).</Normal><br/>
+<Normal></Normal><br/>
+<Normal>	:-</Normal><Directive> protected</Directive><Normal>(bbb</Normal><Operator>/</Operator><Number>2</Number><Normal>).</Normal><br/>
+<Normal>	:-</Normal><Directive> synchronized</Directive><Normal>(bbb</Normal><Operator>/</Operator><Number>2</Number><Normal>).</Normal><br/>
+<Normal>	:-</Normal><Directive> mode</Directive><Normal>(bbb(</Normal><Operator>+</Operator><Normal>integer, </Normal><Operator>-</Operator><Normal>float), one).</Normal><br/>
+<Normal>	:-</Normal><Directive> info</Directive><Normal>(bbb</Normal><Operator>/</Operator><Number>2</Number><Normal>, [</Normal><br/>
+<Normal>		comment </Normal><Operator>is</Operator><Normal> </Normal><String>'Predicate brief description.'</String><Normal>,</Normal><br/>
+<Normal>		argnames </Normal><Operator>is</Operator><Normal> [</Normal><String>'Arg1'</String><Normal>, </Normal><String>'Arg2'</String><Normal>]</Normal><br/>
+<Normal>	]).</Normal><br/>
+<Normal></Normal><br/>
+<Normal>	:-</Normal><Directive> private</Directive><Normal>(ccc</Normal><Operator>/</Operator><Number>2</Number><Normal>).</Normal><br/>
+<Normal>	:-</Normal><Directive> dynamic</Directive><Normal>(ccc</Normal><Operator>/</Operator><Number>2</Number><Normal>).</Normal><br/>
+<Normal>	:-</Normal><Directive> mode</Directive><Normal>(ccc(</Normal><Operator>@</Operator><Normal>atom, </Normal><Operator>?</Operator><Normal>atom, </Normal><Operator>++</Operator><Normal>list, </Normal><Operator>--</Operator><Normal>ground), one_or_more).</Normal><br/>
+<Normal>	:-</Normal><Directive> info</Directive><Normal>(ccc</Normal><Operator>/</Operator><Number>2</Number><Normal>, [</Normal><br/>
+<Normal>		comment </Normal><Operator>is</Operator><Normal> </Normal><String>'Predicate brief description.'</String><Normal>,</Normal><br/>
+<Normal>		argnames </Normal><Operator>is</Operator><Normal> [</Normal><String>'Arg1'</String><Normal>, </Normal><String>'Arg2'</String><Normal>]</Normal><br/>
+<Normal>	]).</Normal><br/>
+<Normal></Normal><br/>
+<Normal>	enumerating_entities(</Normal><Variable>Object</Variable><Normal>, </Normal><Variable>Protocol</Variable><Normal>, </Normal><Variable>Category</Variable><Normal>) </Normal><Operator>:-</Operator><br/>
+<Normal>		</Normal><Built-in>current_category</Built-in><Normal>(</Normal><Variable>Category</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>current_object</Built-in><Normal>(</Normal><Variable>Object</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>current_protocol</Built-in><Normal>(</Normal><Variable>Protocol</Variable><Normal>).</Normal><br/>
+<Normal></Normal><br/>
+<Normal>	enumerating_properties </Normal><Operator>:-</Operator><br/>
+<Normal>		</Normal><Built-in>category_property</Built-in><Normal>(</Normal><Variable>Category</Variable><Normal>, </Normal><Variable>Property</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>object_property</Built-in><Normal>(</Normal><Variable>Object</Variable><Normal>, </Normal><Variable>Property</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>protocol_property</Built-in><Normal>(</Normal><Variable>Protocol</Variable><Normal>, </Normal><Variable>Property</Variable><Normal>).</Normal><br/>
+<Normal></Normal><br/>
+<Normal>	creating_entities(</Normal><Variable>Object</Variable><Normal>, </Normal><Variable>Protocol</Variable><Normal>, </Normal><Variable>Category</Variable><Normal>) </Normal><Operator>:-</Operator><br/>
+<Normal>		</Normal><Built-in>create_category</Built-in><Normal>(</Normal><Variable>Category</Variable><Normal>, </Normal><Variable>Relations</Variable><Normal>, </Normal><Variable>Directives</Variable><Normal>, </Normal><Variable>Clauses</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>create_object</Built-in><Normal>(</Normal><Variable>Object</Variable><Normal>, </Normal><Variable>Relations</Variable><Normal>, </Normal><Variable>Directives</Variable><Normal>, </Normal><Variable>Clauses</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>create_protocol</Built-in><Normal>(</Normal><Variable>Protocol</Variable><Normal>, </Normal><Variable>Relations</Variable><Normal>, </Normal><Variable>Directives</Variable><Normal>).</Normal><br/>
+<Normal></Normal><br/>
+<Normal>	abolishing_entities(</Normal><Variable>Object</Variable><Normal>, </Normal><Variable>Protocol</Variable><Normal>, </Normal><Variable>Category</Variable><Normal>) </Normal><Operator>:-</Operator><br/>
+<Normal>		</Normal><Built-in>abolish_category</Built-in><Normal>(</Normal><Variable>Category</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>abolish_object</Built-in><Normal>(</Normal><Variable>Object</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>abolish_protocol</Built-in><Normal>(</Normal><Variable>Protocol</Variable><Normal>).</Normal><br/>
+<Normal></Normal><br/>
+<Normal>	entity_relations </Normal><Operator>:-</Operator><br/>
+<Normal>		</Normal><Built-in>extends_object</Built-in><Normal>(</Normal><Variable>Prototype</Variable><Normal>, </Normal><Variable>Parent</Variable><Normal>, </Normal><Variable>Scope</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>extends_protocol</Built-in><Normal>(</Normal><Variable>Protocol1</Variable><Normal>, </Normal><Variable>Protocol2</Variable><Normal>, </Normal><Variable>Scope</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>extends_category</Built-in><Normal>(</Normal><Variable>Category1</Variable><Normal>, </Normal><Variable>Category2</Variable><Normal>, </Normal><Variable>Scope</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>implements_protocol</Built-in><Normal>(</Normal><Variable>Object</Variable><Normal>, </Normal><Variable>Protocol</Variable><Normal>, </Normal><Variable>Scope</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>imports_category</Built-in><Normal>(</Normal><Variable>Object</Variable><Normal>, </Normal><Variable>Category</Variable><Normal>, </Normal><Variable>Scope</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>instantiates_class</Built-in><Normal>(</Normal><Variable>Instance</Variable><Normal>, </Normal><Variable>Class</Variable><Normal>, </Normal><Variable>Scope</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>specializes_class</Built-in><Normal>(</Normal><Variable>Class</Variable><Normal>, </Normal><Variable>Superclass</Variable><Normal>, </Normal><Variable>Scope</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>complements_object</Built-in><Normal>(</Normal><Variable>Category</Variable><Normal>, </Normal><Variable>Object</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>conforms_to_protocol</Built-in><Normal>(</Normal><Variable>ObjOrCtg</Variable><Normal>, </Normal><Variable>Protocol</Variable><Normal>, </Normal><Variable>Scope</Variable><Normal>).</Normal><br/>
+<Normal></Normal><br/>
+<Normal>	event_handling </Normal><Operator>:-</Operator><br/>
+<Normal>		</Normal><Built-in>abolish_events</Built-in><Normal>(</Normal><Variable>Event</Variable><Normal>, </Normal><Variable>Object</Variable><Normal>, </Normal><Variable>Message</Variable><Normal>, </Normal><Variable>Sender</Variable><Normal>, </Normal><Variable>Monitor</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>current_event</Built-in><Normal>(</Normal><Variable>Event</Variable><Normal>, </Normal><Variable>Object</Variable><Normal>, </Normal><Variable>Message</Variable><Normal>, </Normal><Variable>Sender</Variable><Normal>, </Normal><Variable>Monitor</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>define_events</Built-in><Normal>(</Normal><Variable>Event</Variable><Normal>, </Normal><Variable>Object</Variable><Normal>, </Normal><Variable>Message</Variable><Normal>, </Normal><Variable>Sender</Variable><Normal>, </Normal><Variable>Monitor</Variable><Normal>).</Normal><br/>
+<Normal></Normal><br/>
+<Normal>	multi_threading </Normal><Operator>:-</Operator><br/>
+<Normal>		</Normal><Built-in>threaded</Built-in><Normal>(</Normal><Variable>Goals</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>threaded_call</Built-in><Normal>(</Normal><Variable>Goal</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>threaded_call</Built-in><Normal>(</Normal><Variable>Goal</Variable><Normal>, </Normal><Variable>Tag</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>threaded_once</Built-in><Normal>(</Normal><Variable>Goal</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>threaded_once</Built-in><Normal>(</Normal><Variable>Goal</Variable><Normal>, </Normal><Variable>Tag</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>threaded_ignore</Built-in><Normal>(</Normal><Variable>Goal</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>threaded_exit</Built-in><Normal>(</Normal><Variable>Goal</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>threaded_exit</Built-in><Normal>(</Normal><Variable>Goal</Variable><Normal>, </Normal><Variable>Tag</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>threaded_peek</Built-in><Normal>(</Normal><Variable>Goal</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>threaded_peek</Built-in><Normal>(</Normal><Variable>Goal</Variable><Normal>, </Normal><Variable>Tag</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>threaded_cancel</Built-in><Normal>(</Normal><Variable>Tag</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>threaded_wait</Built-in><Normal>(</Normal><Variable>Notification</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>threaded_notify</Built-in><Normal>(</Normal><Variable>Notification</Variable><Normal>).</Normal><br/>
+<Normal></Normal><br/>
+<Normal>	engines </Normal><Operator>:-</Operator><br/>
+<Normal>		</Normal><Built-in>threaded_engine</Built-in><Normal>(</Normal><Variable>Engine</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>threaded_engine_create</Built-in><Normal>(</Normal><Variable>AnswerTemplate</Variable><Normal>, </Normal><Variable>Goal</Variable><Normal>, </Normal><Variable>Engine</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>threaded_engine_destroy</Built-in><Normal>(</Normal><Variable>Engine</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>threaded_engine_self</Built-in><Normal>(</Normal><Variable>Engine</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>threaded_engine_next</Built-in><Normal>(</Normal><Variable>Engine</Variable><Normal>, </Normal><Variable>Answer</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>threaded_engine_next_reified</Built-in><Normal>(</Normal><Variable>Engine</Variable><Normal>, </Normal><Variable>Answer</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>threaded_engine_yield</Built-in><Normal>(</Normal><Variable>Answer</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>threaded_engine_post</Built-in><Normal>(</Normal><Variable>Engine</Variable><Normal>, </Normal><Variable>Term</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>threaded_engine_fetch</Built-in><Normal>(</Normal><Variable>Term</Variable><Normal>).</Normal><br/>
+<Normal></Normal><br/>
+<Normal>	compiling_and_loading </Normal><Operator>:-</Operator><br/>
+<Normal>		</Normal><Built-in>logtalk_compile</Built-in><Normal>(</Normal><Variable>File</Variable><Normal>, </Normal><Variable>Options</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>logtalk_load</Built-in><Normal>(</Normal><Variable>File</Variable><Normal>, </Normal><Variable>Options</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>logtalk_library_path</Built-in><Normal>(</Normal><Variable>Library</Variable><Normal>, </Normal><Variable>Path</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>logtalk_load_context</Built-in><Normal>(</Normal><Variable>Key</Variable><Normal>, </Normal><Variable>Value</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>logtalk_make</Built-in><Normal>(</Normal><Variable>Action</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>logtalk_make</Built-in><Normal>,</Normal><br/>
+<Normal>		</Normal><Built-in>logtalk_make_target_action</Built-in><Normal>(</Normal><Variable>Target</Variable><Normal>).</Normal><br/>
+<Normal></Normal><br/>
+<Normal>	flags </Normal><Operator>:-</Operator><br/>
+<Normal>		</Normal><Built-in>current_logtalk_flag</Built-in><Normal>(</Normal><Variable>Flag</Variable><Normal>, </Normal><Variable>Value</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>set_logtalk_flag</Built-in><Normal>(</Normal><Variable>Flag</Variable><Normal>, </Normal><Variable>Value</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>create_logtalk_flag</Built-in><Normal>(</Normal><Variable>Flag</Variable><Normal>, </Normal><Variable>Value</Variable><Normal>, </Normal><Variable>Options</Variable><Normal>).</Normal><br/>
+<Normal></Normal><br/>
+<Normal>	execution_context_methods </Normal><Operator>:-</Operator><br/>
+<Normal>		</Normal><Built-in>context</Built-in><Normal>(</Normal><Variable>Context</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>parameter</Built-in><Normal>(</Normal><Variable>N</Variable><Normal>, </Normal><Variable>Parameter</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>self</Built-in><Normal>(</Normal><Variable>Self</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>sender</Built-in><Normal>(</Normal><Variable>Sender</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>this</Built-in><Normal>(</Normal><Variable>This</Variable><Normal>).</Normal><br/>
+<Normal></Normal><br/>
+<Normal>	reflection_methods </Normal><Operator>:-</Operator><br/>
+<Normal>		</Normal><Built-in>current_predicate</Built-in><Normal>(</Normal><Variable>Predicate</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>predicate_property</Built-in><Normal>(</Normal><Variable>Predicate</Variable><Normal>, </Normal><Variable>Property</Variable><Normal>).</Normal><br/>
+<Normal></Normal><br/>
+<Normal>	database_methods </Normal><Operator>:-</Operator><br/>
+<Normal>		</Normal><Built-in>abolish</Built-in><Normal>(</Normal><Variable>Name</Variable><Operator>/</Operator><Variable>Arity</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>asserta</Built-in><Normal>(</Normal><Variable>Clause</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>assertz</Built-in><Normal>(</Normal><Variable>Clause</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>clause</Built-in><Normal>(</Normal><Variable>Head</Variable><Normal>, </Normal><Variable>Body</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>retract</Built-in><Normal>(</Normal><Variable>Clause</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>retractall</Built-in><Normal>(</Normal><Variable>Head</Variable><Normal>).</Normal><br/>
+<Normal></Normal><br/>
+<Normal>	exception_methods </Normal><Operator>:-</Operator><br/>
+<Normal>		</Normal><Built-in>catch</Built-in><Normal>(</Normal><Variable>Goal</Variable><Normal>, </Normal><Variable>Error</Variable><Normal>, </Normal><Variable>Catcher</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>throw</Built-in><Normal>(</Normal><Variable>Error</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>instantiation_error</Built-in><Normal>,</Normal><br/>
+<Normal>		</Normal><Built-in>type_error</Built-in><Normal>(</Normal><Variable>Type</Variable><Normal>, </Normal><Variable>Culprit</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>domain_error</Built-in><Normal>(</Normal><Variable>Domain</Variable><Normal>, </Normal><Variable>Culprit</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>existence_error</Built-in><Normal>(</Normal><Variable>Thing</Variable><Normal>, </Normal><Variable>Culprit</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>permission_error</Built-in><Normal>(</Normal><Variable>Operation</Variable><Normal>, </Normal><Variable>Permission</Variable><Normal>, </Normal><Variable>Culprit</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>representation_error</Built-in><Normal>(</Normal><Variable>Flag</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>evaluation_error</Built-in><Normal>(</Normal><Variable>Exception</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>resource_error</Built-in><Normal>(</Normal><Variable>Resource</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>syntax_error</Built-in><Normal>(</Normal><Variable>Description</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>system_error</Built-in><Normal>.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>	all_solutions_methods </Normal><Operator>:-</Operator><br/>
+<Normal>		</Normal><Built-in>bagof</Built-in><Normal>(</Normal><Variable>Term</Variable><Normal>, </Normal><Variable>Goal</Variable><Normal>, </Normal><Variable>List</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>bagof</Built-in><Normal>(</Normal><Variable>Term</Variable><Normal>, </Normal><Variable>Var</Variable><Operator>^</Operator><Variable>Goal</Variable><Normal>, </Normal><Variable>List</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>findall</Built-in><Normal>(</Normal><Variable>Term</Variable><Normal>, </Normal><Variable>Goal</Variable><Normal>, </Normal><Variable>List</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>forall</Built-in><Normal>(</Normal><Variable>Generate</Variable><Normal>, </Normal><Variable>Test</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>setof</Built-in><Normal>(</Normal><Variable>Term</Variable><Normal>, </Normal><Variable>Goal</Variable><Normal>, </Normal><Variable>List</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>setof</Built-in><Normal>(</Normal><Variable>Term</Variable><Normal>, </Normal><Variable>Var1</Variable><Operator>^</Operator><Variable>Var2</Variable><Operator>^</Operator><Variable>Goal</Variable><Normal>, </Normal><Variable>List</Variable><Normal>).</Normal><br/>
+<Normal></Normal><br/>
+<Normal>	event_handler_methods </Normal><Operator>:-</Operator><br/>
+<Normal>		</Normal><Built-in>before</Built-in><Normal>(</Normal><Variable>Object</Variable><Normal>, </Normal><Variable>Message</Variable><Normal>, </Normal><Variable>Sender</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>after</Built-in><Normal>(</Normal><Variable>Object</Variable><Normal>, </Normal><Variable>Message</Variable><Normal>, </Normal><Variable>Sender</Variable><Normal>).</Normal><br/>
+<Normal></Normal><br/>
+<Normal>	message_forwarding_method </Normal><Operator>:-</Operator><br/>
+<Normal>		</Normal><Built-in>forward</Built-in><Normal>(</Normal><Variable>Message</Variable><Normal>).</Normal><br/>
+<Normal></Normal><br/>
+<Normal>	dcg_rules_parsing_methods </Normal><Operator>:-</Operator><br/>
+<Normal>		</Normal><Built-in>phrase</Built-in><Normal>(</Normal><Variable>NonTerminal</Variable><Normal>, </Normal><Variable>Input</Variable><Normal>, </Normal><Variable>Rest</Variable><Normal>).</Normal><br/>
+<Normal></Normal><br/>
+<Normal>	term_expansion_methods </Normal><Operator>:-</Operator><br/>
+<Normal>		</Normal><Built-in>expand_term</Built-in><Normal>(</Normal><Variable>Term</Variable><Normal>, </Normal><Variable>Expanded</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>expand_goal</Built-in><Normal>(</Normal><Variable>Goal</Variable><Normal>, </Normal><Variable>Expanded</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>term_expansion</Built-in><Normal>(</Normal><Variable>Term</Variable><Normal>, </Normal><Variable>Expanded</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>goal_expansion</Built-in><Normal>(</Normal><Variable>Goal</Variable><Normal>, </Normal><Variable>Expanded</Variable><Normal>).</Normal><br/>
+<Normal></Normal><br/>
+<Normal>	message_sending </Normal><Operator>:-</Operator><br/>
+<Normal>		</Normal><Variable>Object</Variable><Operator>::</Operator><Variable>Message</Variable><Normal>,</Normal><br/>
+<Normal>		</Normal><Operator>::</Operator><Variable>Message</Variable><Normal>,</Normal><br/>
+<Normal>		</Normal><Operator>^^</Operator><Variable>Message</Variable><Normal>.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>	calling_external_code </Normal><Operator>:-</Operator><br/>
+<Normal>		</Normal><Operator>{</Operator><Normal>goal1, goal2, goal3</Normal><Operator>}</Operator><Normal>.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>	context_switching_calls </Normal><Operator>:-</Operator><br/>
+<Normal>		</Normal><Variable>Object</Variable><Operator><<</Operator><Variable>Goal</Variable><Normal>.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>	lambda_expressions </Normal><Operator>:-</Operator><br/>
+<Normal>		</Normal><Operator>{</Operator><Variable>X</Variable><Normal>,</Normal><Variable>Y</Variable><Normal>,</Normal><Variable>Z</Variable><Operator>}/</Operator><Normal>[</Normal><Variable>P</Variable><Normal>,</Normal><Variable>Q</Variable><Normal>]</Normal><Operator>>></Operator><Variable>Goal</Variable><Normal>.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>	explicitly_qualified_module_calls </Normal><Operator>:-</Operator><br/>
+<Normal>		</Normal><Variable>Module</Variable><Operator>:</Operator><Variable>Goal</Variable><Normal>.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>	if_then_else </Normal><Operator>:-</Operator><br/>
+<Normal>		(	</Normal><Variable>If</Variable><Normal> </Normal><Operator>-></Operator><br/>
+<Normal>			</Normal><Variable>Then</Variable><br/>
+<Normal>		</Normal><Operator>;</Operator><Normal>	</Normal><Variable>Else</Variable><br/>
+<Normal>		).</Normal><br/>
+<Normal></Normal><br/>
+<Normal>	numbers </Normal><Operator>:-</Operator><br/>
+<Normal>		</Normal><Variable>X1</Variable><Normal> </Normal><Operator>is</Operator><Normal> </Normal><Number>13</Number><Normal>, </Normal><Variable>X2</Variable><Normal> </Normal><Operator>is</Operator><Normal> </Normal><Operator>-</Operator><Number>13</Number><Normal>, </Normal><Variable>X3</Variable><Normal> </Normal><Operator>is</Operator><Normal> </Normal><Operator>+</Operator><Number>13</Number><Normal>,</Normal><br/>
+<Normal>		</Normal><Variable>Y1</Variable><Normal> </Normal><Operator>is</Operator><Normal> </Normal><Number>13.13</Number><Normal>, </Normal><Variable>Y2</Variable><Normal> </Normal><Operator>is</Operator><Normal> </Normal><Operator>-</Operator><Number>13.13</Number><Normal>, </Normal><Variable>Y3</Variable><Normal> </Normal><Operator>is</Operator><Normal> </Normal><Operator>+</Operator><Number>13.13</Number><Normal>,</Normal><br/>
+<Normal>		</Normal><Variable>Z1</Variable><Normal> </Normal><Operator>is</Operator><Normal> </Normal><Number>13.13e-23</Number><Normal>, </Normal><Variable>Z2</Variable><Normal> </Normal><Operator>is</Operator><Normal> </Normal><Operator>-</Operator><Number>13.13e-23</Number><Normal>, </Normal><Variable>Z3</Variable><Normal> </Normal><Operator>is</Operator><Normal> </Normal><Operator>+</Operator><Number>13.13e-23</Number><Normal>,</Normal><br/>
+<Normal>		</Normal><Variable>C1</Variable><Normal> </Normal><Operator>is</Operator><Normal> </Normal><Number>0'A</Number><Normal>, </Normal><Variable>C2</Variable><Normal> </Normal><Operator>is</Operator><Normal> </Normal><Number>0''</Number><Normal>, </Normal><Variable>C3</Variable><Normal> </Normal><Operator>is</Operator><Normal> </Normal><Number>0'"</Number><Normal>, </Normal><Variable>C4</Variable><Normal> </Normal><Operator>is</Operator><Normal> </Normal><Number>0'%</Number><Normal>,</Normal><br/>
+<Normal>		</Normal><Variable>C5</Variable><Normal> </Normal><Operator>is</Operator><Normal> </Normal><Number>0'\n</Number><Normal>, </Normal><Variable>C6</Variable><Normal> </Normal><Operator>is</Operator><Normal> </Normal><Number>0'\\</Number><Normal>, </Normal><Variable>C7</Variable><Normal> </Normal><Operator>is</Operator><Normal> </Normal><Number>0'\'</Number><Normal>, </Normal><Variable>C8</Variable><Normal> </Normal><Operator>is</Operator><Normal> </Normal><Number>0'\"</Number><Normal>, </Normal><Variable>C9</Variable><Normal> </Normal><Operator>is</Operator><Normal> </Normal><Number>0'\`</Number><Normal>,</Normal><br/>
+<Normal>		</Normal><Variable>B1</Variable><Normal> </Normal><Operator>is</Operator><Normal> </Normal><Number>0b1011101</Number><Normal>,</Normal><br/>
+<Normal>		</Normal><Variable>O1</Variable><Normal> </Normal><Operator>is</Operator><Normal> </Normal><Number>0o1234560</Number><Normal>,</Normal><br/>
+<Normal>		</Normal><Variable>H1</Variable><Normal> </Normal><Operator>is</Operator><Normal> </Normal><Number>0x1234567890abcDEF</Number><Normal>.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>	functions </Normal><Operator>:-</Operator><br/>
+<Normal>		</Normal><Variable>A</Variable><Normal> </Normal><Operator>is</Operator><Normal> </Normal><Built-in>atan</Built-in><Normal>(</Normal><Number>3.14</Number><Normal>) </Normal><Operator>+</Operator><Normal> </Normal><Built-in>atan2</Built-in><Normal>(</Normal><Number>1</Number><Normal>, </Normal><Number>0</Number><Normal>) </Normal><Operator>+</Operator><Normal> </Normal><Built-in>acos</Built-in><Normal>(</Normal><Number>0.5</Number><Normal>) </Normal><Operator>+</Operator><Normal> </Normal><Built-in>asin</Built-in><Normal>(</Normal><Number>0.5</Number><Normal>) </Normal><Operator>+</Operator><Normal> </Normal><Built-in>sin</Built-in><Normal>(</Normal><Number>0.77</Number><Normal>) </Normal><Operator>-</Operator><Normal> </Normal><Built-in>cos</Built-in><Normal>(</Normal><Number>123.23</Number><Normal>) </Normal><Operator>-</Operator><Normal> </Normal><Built-in>tan</Built-in><Normal>(</Normal><Number>0.33</Number><Normal>),</Normal><br/>
+<Normal>		</Normal><Variable>B</Variable><Normal> </Normal><Operator>is</Operator><Normal> </Normal><Built-in>sign</Built-in><Normal>(</Normal><Operator>-</Operator><Number>12</Number><Normal>) </Normal><Operator>*</Operator><Normal> </Normal><Built-in>abs</Built-in><Normal>(</Normal><Number>35</Number><Operator>/</Operator><Number>78</Number><Normal>),</Normal><br/>
+<Normal>		</Normal><Variable>C</Variable><Normal> </Normal><Operator>is</Operator><Normal> </Normal><Built-in>truncate</Built-in><Normal>(</Normal><Number>3.14</Number><Normal>) </Normal><Operator>+</Operator><Normal> </Normal><Built-in>round</Built-in><Normal>(</Normal><Operator>-</Operator><Number>7.8</Number><Normal>) </Normal><Operator>-</Operator><Normal> </Normal><Built-in>ceiling</Built-in><Normal>(</Normal><Number>111.88</Number><Normal>),</Normal><br/>
+<Normal>		</Normal><Variable>D</Variable><Normal> </Normal><Operator>is</Operator><Normal> </Normal><Built-in>exp</Built-in><Normal>(</Normal><Number>3.8</Number><Normal>) </Normal><Operator>-</Operator><Normal> </Normal><Built-in>log</Built-in><Normal>(</Normal><Number>123.98</Number><Normal>) </Normal><Operator>/</Operator><Normal> </Normal><Built-in>sqrt</Built-in><Normal>(</Normal><Number>33</Number><Normal>) </Normal><Operator>*</Operator><Normal> </Normal><Number>23</Number><Normal> </Normal><Operator>**</Operator><Normal> </Normal><Number>4</Number><Normal> </Normal><Operator>+</Operator><Normal> </Normal><Number>12345</Number><Operator>^</Operator><Number>2</Number><Normal>,</Normal><br/>
+<Normal>		</Normal><Variable>E</Variable><Normal> </Normal><Operator>is</Operator><Normal> </Normal><Built-in>rem</Built-in><Normal>(</Normal><Number>3</Number><Normal>, </Normal><Number>2</Number><Normal>) </Normal><Operator>+</Operator><Normal> </Normal><Built-in>mod</Built-in><Normal>(</Normal><Number>5</Number><Normal>, </Normal><Number>3</Number><Normal>) </Normal><Operator>-</Operator><Normal> </Normal><Built-in>div</Built-in><Normal>(</Normal><Number>8</Number><Normal>, </Normal><Number>4</Number><Normal>) </Normal><Operator>*</Operator><Normal> </Normal><Number>2</Number><Normal> </Normal><Operator>rem</Operator><Normal> </Normal><Number>2</Number><Normal> </Normal><Operator>//</Operator><Normal> </Normal><Number>5</Number><Normal> </Normal><Operator>mod</Operator><Normal> </Normal><Number>3</Number><Normal> </Normal><Operator>-</Operator><Normal> </Normal><Number>8</Number><Normal> </Normal><Operator>div</Operator><Normal> </Normal><Number>4</Number><Normal> </Normal><Operator>+</Operator><Normal> </Normal><Operator>pi</Operator><Normal> </Normal><Operator>*</Operator><Normal> </Normal><Operator>e</Operator><Normal>,</Normal><br/>
+<Normal>		</Normal><Variable>F</Variable><Normal> </Normal><Operator>is</Operator><Normal> </Normal><Built-in>float_fractional_part</Built-in><Normal>(</Normal><Number>3.14</Number><Normal>) </Normal><Operator>+</Operator><Normal> </Normal><Built-in>float_integer_part</Built-in><Normal>(</Normal><Number>3.14</Number><Normal>),</Normal><br/>
+<Normal>		</Normal><Variable>G</Variable><Normal> </Normal><Operator>is</Operator><Normal> </Normal><Built-in>float</Built-in><Normal>(</Normal><Number>33</Number><Normal>) </Normal><Operator>+</Operator><Normal> </Normal><Built-in>floor</Built-in><Normal>(</Normal><Number>99.99</Number><Normal>),</Normal><br/>
+<Normal>		</Normal><Variable>I</Variable><Normal> </Normal><Operator>is</Operator><Normal> </Normal><Built-in>min</Built-in><Normal>(</Normal><Number>3</Number><Normal>,</Normal><Number>4</Number><Normal>) </Normal><Operator>+</Operator><Normal> </Normal><Built-in>max</Built-in><Normal>(</Normal><Number>4</Number><Normal>,</Normal><Number>5</Number><Normal>).</Normal><br/>
+<Normal></Normal><br/>
+<Normal>	bitwise </Normal><Operator>:-</Operator><br/>
+<Normal>		</Normal><Variable>A</Variable><Normal> </Normal><Operator>is</Operator><Normal> </Normal><Number>16</Number><Normal> </Normal><Operator>>></Operator><Normal> </Normal><Number>2</Number><Normal>,</Normal><br/>
+<Normal>		</Normal><Variable>B</Variable><Normal> </Normal><Operator>is</Operator><Normal> </Normal><Number>16</Number><Normal> </Normal><Operator><<</Operator><Normal> </Normal><Number>2</Number><Normal>,</Normal><br/>
+<Normal>		</Normal><Variable>C</Variable><Normal> </Normal><Operator>is</Operator><Normal> </Normal><Number>10</Number><Normal> </Normal><Operator>/\</Operator><Normal> </Normal><Number>12</Number><Normal>,</Normal><br/>
+<Normal>		</Normal><Variable>D</Variable><Normal> </Normal><Operator>is</Operator><Normal> </Normal><Number>10</Number><Normal> </Normal><Operator>\/</Operator><Normal> </Normal><Number>12</Number><Normal>,</Normal><br/>
+<Normal>		</Normal><Variable>E</Variable><Normal> </Normal><Operator>is</Operator><Normal> \ </Normal><Number>10</Number><Normal>,</Normal><br/>
+<Normal>		</Normal><Variable>F</Variable><Normal> </Normal><Operator>is</Operator><Normal> </Normal><Built-in>xor</Built-in><Normal>(</Normal><Number>13</Number><Normal>, </Normal><Number>7</Number><Normal>).</Normal><br/>
+<Normal></Normal><br/>
+<Normal>	term_unification </Normal><Operator>:-</Operator><br/>
+<Normal>		</Normal><Variable>Term1</Variable><Normal> </Normal><Operator>=</Operator><Normal> </Normal><Variable>Term2</Variable><Normal>,</Normal><br/>
+<Normal>		</Normal><Variable>Term1</Variable><Normal> </Normal><Operator>\=</Operator><Normal> </Normal><Variable>Term2</Variable><Normal>,</Normal><br/>
+<Normal>		</Normal><Built-in>unify_with_occurs_check</Built-in><Normal>(</Normal><Variable>Term1</Variable><Normal>, </Normal><Variable>Term2</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>subsumes_term</Built-in><Normal>(</Normal><Variable>General</Variable><Normal>, </Normal><Variable>Specific</Variable><Normal>).</Normal><br/>
+<Normal></Normal><br/>
+<Normal>	term_testing </Normal><Operator>:-</Operator><br/>
+<Normal>		</Normal><Built-in>atom</Built-in><Normal>(</Normal><Variable>Atom</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>atomic</Built-in><Normal>(</Normal><Variable>Atomic</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>integer</Built-in><Normal>(</Normal><Variable>Integer</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>float</Built-in><Normal>(</Normal><Variable>Float</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>callable</Built-in><Normal>(</Normal><Variable>Term</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>compound</Built-in><Normal>(</Normal><Variable>Term</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>nonvar</Built-in><Normal>(</Normal><Variable>Term</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>var</Built-in><Normal>(</Normal><Variable>Term</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>number</Built-in><Normal>(</Normal><Variable>Number</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>ground</Built-in><Normal>(</Normal><Variable>Term</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>acyclic_term</Built-in><Normal>(</Normal><Variable>Term</Variable><Normal>).</Normal><br/>
+<Normal></Normal><br/>
+<Normal>	term_comparison </Normal><Operator>:-</Operator><br/>
+<Normal>		</Normal><Built-in>compare</Built-in><Normal>(</Normal><Variable>Order</Variable><Normal>, </Normal><Variable>Term1</Variable><Normal>, </Normal><Variable>Term2</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Variable>Term1</Variable><Normal> </Normal><Operator>==</Operator><Normal> </Normal><Variable>Term2</Variable><Normal>,</Normal><br/>
+<Normal>		</Normal><Variable>Term1</Variable><Normal> </Normal><Operator>\==</Operator><Normal> </Normal><Variable>Term2</Variable><Normal>,</Normal><br/>
+<Normal>		</Normal><Variable>Term1</Variable><Normal> </Normal><Operator>@<</Operator><Normal> </Normal><Variable>Term2</Variable><Normal>,</Normal><br/>
+<Normal>		</Normal><Variable>Term1</Variable><Normal> </Normal><Operator>@=<</Operator><Normal> </Normal><Variable>Term2</Variable><Normal>,</Normal><br/>
+<Normal>		</Normal><Variable>Term1</Variable><Normal> </Normal><Operator>@>=</Operator><Normal> </Normal><Variable>Term2</Variable><Normal>,</Normal><br/>
+<Normal>		</Normal><Variable>Term1</Variable><Normal> </Normal><Operator>@></Operator><Normal> </Normal><Variable>Term2</Variable><Normal>.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>	term_creation_and_decomposition </Normal><Operator>:-</Operator><br/>
+<Normal>		</Normal><Built-in>functor</Built-in><Normal>(</Normal><Variable>Term</Variable><Normal>, </Normal><Variable>Name</Variable><Normal>, </Normal><Variable>Arity</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>arg</Built-in><Normal>(</Normal><Variable>N</Variable><Normal>, </Normal><Variable>Term</Variable><Normal>, </Normal><Variable>Arg</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Variable>Term</Variable><Normal> </Normal><Operator>=..</Operator><Normal> [</Normal><Variable>Functor</Variable><Normal>| </Normal><Variable>Args</Variable><Normal>],</Normal><br/>
+<Normal>		</Normal><Built-in>copy_term</Built-in><Normal>(</Normal><Variable>Term</Variable><Normal>, </Normal><Variable>Copy</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>numbervars</Built-in><Normal>(</Normal><Variable>Term</Variable><Normal>, </Normal><Variable>Start</Variable><Normal>, </Normal><Variable>End</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>term_variables</Built-in><Normal>(</Normal><Variable>Term</Variable><Normal>, </Normal><Variable>Variables</Variable><Normal>).</Normal><br/>
+<Normal></Normal><br/>
+<Normal>	arithmetic_evaluation </Normal><Operator>:-</Operator><br/>
+<Normal>		</Normal><Variable>X</Variable><Normal> </Normal><Operator>is</Operator><Normal> </Normal><Variable>Expression</Variable><Normal>.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>	arithmetic_comparison </Normal><Operator>:-</Operator><br/>
+<Normal>		</Normal><Variable>Exp1</Variable><Normal> </Normal><Operator>=:=</Operator><Normal> </Normal><Variable>Exp2</Variable><Normal>,</Normal><br/>
+<Normal>		</Normal><Variable>Exp1</Variable><Normal> </Normal><Operator>=\=</Operator><Normal> </Normal><Variable>Exp2</Variable><Normal>,</Normal><br/>
+<Normal>		</Normal><Variable>Exp1</Variable><Normal> </Normal><Operator><</Operator><Normal> </Normal><Variable>Exp2</Variable><Normal>,</Normal><br/>
+<Normal>		</Normal><Variable>Exp1</Variable><Normal> </Normal><Operator>=<</Operator><Normal> </Normal><Variable>Exp2</Variable><Normal>,</Normal><br/>
+<Normal>		</Normal><Variable>Exp1</Variable><Normal> </Normal><Operator>></Operator><Normal> </Normal><Variable>Exp2</Variable><Normal>,</Normal><br/>
+<Normal>		</Normal><Variable>Exp1</Variable><Normal> </Normal><Operator>>=</Operator><Normal> </Normal><Variable>Exp2</Variable><Normal>.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>	stream_selection_and_control </Normal><Operator>:-</Operator><br/>
+<Normal>		</Normal><Built-in>current_input</Built-in><Normal>(</Normal><Variable>Stream</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>current_output</Built-in><Normal>(</Normal><Variable>Stream</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>set_input</Built-in><Normal>(</Normal><Variable>Stream</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>set_output</Built-in><Normal>(</Normal><Variable>Stream</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>open</Built-in><Normal>(</Normal><Variable>Source</Variable><Normal>, </Normal><Variable>Mode</Variable><Normal>, </Normal><Variable>Stream</Variable><Normal>, </Normal><Variable>Options</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>close</Built-in><Normal>(</Normal><Variable>Stream</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>flush_output</Built-in><Normal>(</Normal><Variable>Stream</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>stream_property</Built-in><Normal>(</Normal><Variable>Stream</Variable><Normal>, </Normal><Variable>Property</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>at_end_of_stream</Built-in><Normal>(</Normal><Variable>Stream</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>set_stream_position</Built-in><Normal>(</Normal><Variable>Stream</Variable><Normal>, </Normal><Variable>Position</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>flush_output</Built-in><Normal>,</Normal><br/>
+<Normal>		</Normal><Built-in>at_end_of_stream</Built-in><Normal>.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>	character_input_output </Normal><Operator>:-</Operator><br/>
+<Normal>		</Normal><Built-in>get_char</Built-in><Normal>(</Normal><Variable>Char</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>get_code</Built-in><Normal>(</Normal><Variable>Code</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>peek_char</Built-in><Normal>(</Normal><Variable>Char</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>peek_code</Built-in><Normal>(</Normal><Variable>Code</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>put_char</Built-in><Normal>(</Normal><Variable>Char</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>put_code</Built-in><Normal>(</Normal><Variable>Code</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>nl</Built-in><Normal>(</Normal><Variable>Stream</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>nl</Built-in><Normal>.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>	byte_input_output </Normal><Operator>:-</Operator><br/>
+<Normal>		</Normal><Built-in>get_byte</Built-in><Normal>(</Normal><Variable>Byte</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>peek_byte</Built-in><Normal>(</Normal><Variable>Byte</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>put_byte</Built-in><Normal>(</Normal><Variable>Byte</Variable><Normal>).</Normal><br/>
+<Normal></Normal><br/>
+<Normal>	term_input_output </Normal><Operator>:-</Operator><br/>
+<Normal>		</Normal><Built-in>read</Built-in><Normal>(</Normal><Variable>Term</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>read_term</Built-in><Normal>(</Normal><Variable>Stream</Variable><Normal>, </Normal><Variable>Term</Variable><Normal>, </Normal><Variable>Options</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>write</Built-in><Normal>(</Normal><Variable>Term</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>write</Built-in><Normal>(</Normal><Variable>Term</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>write_canonical</Built-in><Normal>(</Normal><Variable>Term</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>write_term</Built-in><Normal>(</Normal><Variable>Stream</Variable><Normal>, </Normal><Variable>Term</Variable><Normal>, </Normal><Variable>Options</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>current_op</Built-in><Normal>(</Normal><Variable>Precedence</Variable><Normal>, </Normal><Variable>Associativity</Variable><Normal>, </Normal><Variable>Operator</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>op</Built-in><Normal>(</Normal><Variable>Precedence</Variable><Normal>, </Normal><Variable>Associativity</Variable><Normal>, </Normal><Variable>Operator</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>current_char_conversion</Built-in><Normal>(</Normal><Variable>InChar</Variable><Normal>, </Normal><Variable>OutChar</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>char_conversion</Built-in><Normal>(</Normal><Variable>InChar</Variable><Normal>, </Normal><Variable>OutChar</Variable><Normal>).</Normal><br/>
+<Normal></Normal><br/>
+<Normal>	logic_and_control </Normal><Operator>:-</Operator><br/>
+<Normal>		</Normal><Operator>\+</Operator><Normal> </Normal><Variable>Goal</Variable><Normal>,</Normal><br/>
+<Normal>		</Normal><Built-in>call</Built-in><Normal>(</Normal><Variable>Goal</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>once</Built-in><Normal>(</Normal><Variable>Goal</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>ignore</Built-in><Normal>(</Normal><Variable>Goal</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>true</Built-in><Normal>,</Normal><br/>
+<Normal>		</Normal><Built-in>fail</Built-in><Normal>,</Normal><br/>
+<Normal>		</Normal><Built-in>false</Built-in><Normal>,</Normal><br/>
+<Normal>		</Normal><Built-in>repeat</Built-in><Normal>,</Normal><br/>
+<Normal>		</Normal><Operator>!</Operator><Normal>.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>	atomic_term_processing </Normal><Operator>:-</Operator><br/>
+<Normal>		</Normal><Built-in>atom_length</Built-in><Normal>(</Normal><Variable>Atom</Variable><Normal>, </Normal><Variable>Length</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>atom_chars</Built-in><Normal>(</Normal><Variable>Atom</Variable><Normal>, </Normal><Variable>Chars</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>atom_codes</Built-in><Normal>(</Normal><Variable>Atom</Variable><Normal>, </Normal><Variable>Codes</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>atom_concat</Built-in><Normal>(</Normal><Variable>Atom1</Variable><Normal>, </Normal><Variable>Atom2</Variable><Normal>, </Normal><Variable>Atom</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>sub_atom</Built-in><Normal>(</Normal><Variable>Atom</Variable><Normal>, </Normal><Variable>Before</Variable><Normal>, </Normal><Variable>Length</Variable><Normal>, </Normal><Variable>After</Variable><Normal>, </Normal><Variable>SubAtom</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>char_code</Built-in><Normal>(</Normal><Variable>Char</Variable><Normal>, </Normal><Variable>Code</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>number_chars</Built-in><Normal>(</Normal><Variable>Number</Variable><Normal>, </Normal><Variable>Chars</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>number_codes</Built-in><Normal>(</Normal><Variable>Number</Variable><Normal>, </Normal><Variable>Codes</Variable><Normal>).</Normal><br/>
+<Normal></Normal><br/>
+<Normal>	implementation_defined_hooks </Normal><Operator>:-</Operator><br/>
+<Normal>		</Normal><Built-in>current_prolog_flag</Built-in><Normal>(</Normal><Variable>Flag</Variable><Normal>, </Normal><Variable>Value</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>set_prolog_flag</Built-in><Normal>(</Normal><Variable>Flag</Variable><Normal>, </Normal><Variable>Value</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>halt</Built-in><Normal>(</Normal><Variable>ExitCode</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>halt</Built-in><Normal>.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>	sorting </Normal><Operator>:-</Operator><br/>
+<Normal>		</Normal><Built-in>keysort</Built-in><Normal>(</Normal><Variable>List</Variable><Normal>, </Normal><Variable>Sorted</Variable><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>sort</Built-in><Normal>(</Normal><Variable>List</Variable><Normal>, </Normal><Variable>Sorted</Variable><Normal>).</Normal><br/>
+<Normal></Normal><br/>
+<Normal>	</Normal><Built-in>number</Built-in><Normal>(</Normal><Variable>C</Variable><Normal>) </Normal><Operator>--></Operator><Normal> </Normal><String>"+"</String><Normal>, </Normal><Built-in>number</Built-in><Normal>(</Normal><Variable>C</Variable><Normal>).</Normal><br/>
+<Normal>	</Normal><Built-in>number</Built-in><Normal>(</Normal><Variable>C</Variable><Normal>) </Normal><Operator>--></Operator><Normal> </Normal><String>"-"</String><Normal>, </Normal><Built-in>number</Built-in><Normal>(</Normal><Variable>X</Variable><Normal>), </Normal><Operator>{</Operator><Variable>C</Variable><Normal> </Normal><Operator>is</Operator><Normal> </Normal><Operator>-</Operator><Variable>X</Variable><Operator>}</Operator><Normal>.</Normal><br/>
+<Normal>	</Normal><Built-in>number</Built-in><Normal>(</Normal><Variable>X</Variable><Normal>) </Normal><Operator>--></Operator><Normal> [</Normal><Variable>C</Variable><Normal>], </Normal><Operator>{</Operator><Number>0'0</Number><Normal> </Normal><Operator>=<</Operator><Normal> </Normal><Variable>C</Variable><Normal>, </Normal><Variable>C</Variable><Normal> </Normal><Operator>=<</Operator><Normal> </Normal><Number>0'9</Number><Normal>, </Normal><Variable>X</Variable><Normal> </Normal><Operator>is</Operator><Normal> </Normal><Variable>C</Variable><Normal> </Normal><Operator>-</Operator><Normal> </Normal><Number>0'0</Number><Operator>}</Operator><Normal>.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>	escape_sequences </Normal><Operator>:-</Operator><br/>
+<Normal>		</Normal><Built-in>write</Built-in><Normal>(</Normal><String>'Quoted atom with a quote ('') inside.'</String><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>write</Built-in><Normal>(</Normal><String>'Quoted atom with a quote (</String><String Char>\'</String Char><String>) inside using a control escape sequence.'</String><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>write</Built-in><Normal>(</Normal><String>'Quoted atom with a backslash (</String><String Char>\\</String Char><String>) inside.'</String><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>write</Built-in><Normal>(</Normal><String>'Quoted atom with control escape sequences: </String><String Char>\a</String Char><String> </String><String Char>\b</String Char><String> </String><String Char>\r</String Char><String> </String><String Char>\f</String Char><String> </String><String Char>\t</String Char><String> </String><String Char>\n</String Char><String> </String><String Char>\v</String Char><String>'</String><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>write</Built-in><Normal>(</Normal><String>'Quoted atom with an octal escape sequence: </String><String Char>\123\</String Char><String>.'</String><Normal>),</Normal><br/>
+<Normal>		</Normal><Built-in>write</Built-in><Normal>(</Normal><String>'Quoted atom with an hexadecimal escape sequence: </String><String Char>\x123f\</String Char><String>.'</String><Normal>).</Normal><br/>
+<Normal></Normal><br/>
+<Normal>	</Normal><Comment>% nothing in the following predicate definition should be highlighted</Comment><br/>
+<Normal>	sort </Normal><Operator>:-</Operator><br/>
+<Normal>		forall,</Normal><br/>
+<Normal>		object,</Normal><br/>
+<Normal>		write,</Normal><br/>
+<Normal>		number.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>:-</Normal><Directive> end_object</Directive><Normal>.</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Normal>:-</Normal><Directive> object</Directive><Normal>(class,</Normal><br/>
+<Normal>	</Normal><Directive>implements</Directive><Normal>(protected</Normal><Operator>::</Operator><Normal>protocol),</Normal><br/>
+<Normal>	</Normal><Directive>imports</Directive><Normal>(private</Normal><Operator>::</Operator><Normal>category),</Normal><br/>
+<Normal>	</Normal><Directive>instantiates</Directive><Normal>(metaclass),</Normal><br/>
+<Normal>	</Normal><Directive>specializes</Directive><Normal>(superclass)).</Normal><br/>
+<Normal></Normal><br/>
+<Normal>:-</Normal><Directive> end_object</Directive><Normal>.</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Normal>:-</Normal><Directive> object</Directive><Normal>(parametric(</Normal><Variable>Parameter</Variable><Normal>, </Normal><String>"String"</String><Normal>, </Normal><Number>33.78</Number><Normal>),</Normal><br/>
+<Normal>	</Normal><Directive>implements</Directive><Normal>(protocol),</Normal><br/>
+<Normal>	</Normal><Directive>imports</Directive><Normal>(category),</Normal><br/>
+<Normal>	</Normal><Directive>extends</Directive><Normal>(parent(</Normal><Variable>Parameter</Variable><Normal>))).</Normal><br/>
+<Normal></Normal><br/>
+<Normal>:-</Normal><Directive> end_object</Directive><Normal>.</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Normal>:-</Normal><Directive> category</Directive><Normal>(category,</Normal><br/>
+<Normal>	</Normal><Directive>implements</Directive><Normal>(protocol),</Normal><br/>
+<Normal>	</Normal><Directive>extends</Directive><Normal>(other_category)).</Normal><br/>
+<Normal></Normal><br/>
+<Normal>:-</Normal><Directive> end_category</Directive><Normal>.</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Normal>:-</Normal><Directive> protocol</Directive><Normal>(extended,</Normal><br/>
+<Normal>	</Normal><Directive>extends</Directive><Normal>(minimal)).</Normal><br/>
+<Normal></Normal><br/>
+<Normal>:-</Normal><Directive> end_protocol</Directive><Normal>.</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Normal>:-</Normal><Directive> module</Directive><Normal>(module, [foo</Normal><Operator>/</Operator><Number>1</Number><Normal>, bar</Normal><Operator>/</Operator><Number>2</Number><Normal>]).</Normal><br/>
+<Normal></Normal><br/>
+<Normal>:-</Normal><Directive> use_module</Directive><Normal>(library).</Normal><br/>
+<Normal>:-</Normal><Directive> use_module</Directive><Normal>(library, [baz</Normal><Operator>/</Operator><Number>3</Number><Normal>]).</Normal><br/>
+<Normal></Normal><br/>
+<Normal>:-</Normal><Directive> reexport</Directive><Normal>(library).</Normal><br/>
+<Normal>:-</Normal><Directive> reexport</Directive><Normal>(library, [qux</Normal><Operator>/</Operator><Number>4</Number><Normal>]).</Normal><br/>
+<Normal></Normal><br/>
+<Normal>:-</Normal><Directive> export</Directive><Normal>(quux</Normal><Operator>/</Operator><Number>5</Number><Normal>).</Normal><br/>

@@ -1,0 +1,65 @@
+<Comment># Test file for qdocconf highlighting</Comment><br/>
+<Comment>#</Comment><br/>
+<Comment># Alerts: </Comment><Alert Level 3>###</Alert Level 3><Comment> </Comment><Alert Level 2>TODO</Alert Level 2><br/>
+<Normal Text></Normal Text><br/>
+<Comment># example fragments from GammaRay:</Comment><br/>
+<Keyword>project</Keyword><Normal Text> = </Normal Text><String>"GammaRay"</String><br/>
+<Keyword>description</Keyword><Normal Text> = </Normal Text><String>"GammaRay User Manual"</String><br/>
+<Keyword>url</Keyword><Normal Text> = https://doc.qt.io/GammaRay</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>sourcedirs</Keyword><Normal Text> = .</Normal Text><br/>
+<Keyword>sources</Keyword><Normal Text>.fileextensions = </Normal Text><String>"*.qdoc"</String><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>imagedirs</Keyword><Normal Text> = images</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>exampledirs</Keyword><Normal Text> = ../../examples</Normal Text><br/>
+<Keyword>examples</Keyword><Normal Text>.fileextensions = </Normal Text><String>"*.h *.cpp *.qml"</String><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>depends</Keyword><Normal Text> += qtcore qtnetwork qtgui qtwidgets qtqml qtquick qt3d qtwaylandcompositor</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>qhp</Keyword><Normal Text>.</Normal Text><Keyword>projects</Keyword><Normal Text> = GammaRay</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>qhp</Keyword><Normal Text>.GammaRay.</Normal Text><Keyword>file</Keyword><Normal Text> = gammaray-manual.qhp</Normal Text><br/>
+<Keyword>qhp</Keyword><Normal Text>.GammaRay.</Normal Text><Keyword>namespace</Keyword><Normal Text> = com.kdab.GammaRay.</Normal Text><Variable>$QT_VERSION_TAG</Variable><br/>
+<Keyword>qhp</Keyword><Normal Text>.GammaRay.</Normal Text><Keyword>virtualFolder</Keyword><Normal Text> = gammaray</Normal Text><br/>
+<Keyword>qhp</Keyword><Normal Text>.GammaRay.</Normal Text><Keyword>indexTitle</Keyword><Normal Text> = GammaRay User Manual</Normal Text><br/>
+<Keyword>qhp</Keyword><Normal Text>.GammaRay.</Normal Text><Keyword>indexRoot</Keyword><Normal Text> =</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>qhp</Keyword><Normal Text>.GammaRay.</Normal Text><Keyword>subprojects</Keyword><Normal Text> = </Normal Text><Selector>manual</Selector><br/>
+<Keyword>qhp</Keyword><Normal Text>.GammaRay.</Normal Text><Keyword>subprojects</Keyword><Normal Text>.manual.</Normal Text><Keyword>title</Keyword><Normal Text> = GammaRay User Manual</Normal Text><br/>
+<Keyword>qhp</Keyword><Normal Text>.GammaRay.</Normal Text><Keyword>subprojects</Keyword><Normal Text>.manual.</Normal Text><Keyword>indexTitle</Keyword><Normal Text> = GammaRay User Manual</Normal Text><br/>
+<Keyword>qhp</Keyword><Normal Text>.GammaRay.</Normal Text><Keyword>subprojects</Keyword><Normal Text>.manual.</Normal Text><Keyword>type</Keyword><Normal Text> = </Normal Text><Selector>manual</Selector><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>navigation</Keyword><Normal Text>.homepage    = </Normal Text><String>"GammaRay User Manual"</String><br/>
+<Keyword>navigation</Keyword><Normal Text>.landingpage = </Normal Text><String>"GammaRay User Manual"</String><br/>
+<Keyword>buildversion</Keyword><Normal Text> = </Normal Text><String>"GammaRay User Manual </String><Variable>$QT_VERSION</Variable><String>"</String><br/>
+<Normal Text></Normal Text><br/>
+<Comment># backward compatibility with Qt < 5.7</Comment><br/>
+<Keyword>macro</Keyword><Normal Text>.borderedimage = </Normal Text><String>"</String><Special Character>\\</Special Character><String>div {class=</String><Special Character>\"</Special Character><String>border</String><Special Character>\"</Special Character><String>} </String><Special Character>\\</Special Character><String>image </String><Special Character>\1\n\\</Special Character><String>enddiv"</String><br/>
+<Normal Text></Normal Text><br/>
+<Function>include</Function><Normal Text>(gammaray-manual.qdocconf)</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>HTML</Keyword><Normal Text>.stylesheets += \</Normal Text><br/>
+<Normal Text>    style/qt5-sidebar.html \</Normal Text><br/>
+<Normal Text>    style/gammaray-manual-splash-screen.png \</Normal Text><br/>
+<Normal Text>    style/gammaray-logo-256.png \</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment># this goes between breadcrumb and sidebar</Comment><br/>
+<Keyword>HTML</Keyword><Normal Text>.postpostheader = \</Normal Text><br/>
+<Normal Text>    </Normal Text><String>"</ul></div></nav></String><Special Character>\n</Special Character><String>"</String><Normal Text> \</Normal Text><br/>
+<Normal Text>    </Normal Text><String>"<div class=</String><Special Character>\"</Special Character><String>container</String><Special Character>\"</Special Character><String>></String><Special Character>\n</Special Character><String>"</String><Normal Text> \</Normal Text><br/>
+<Normal Text>    </Normal Text><String>"<div class=</String><Special Character>\"</Special Character><String>row</String><Special Character>\"</Special Character><String>></String><Special Character>\n</Special Character><String>"</String><br/>
+<Normal Text></Normal Text><br/>
+<Comment># this goes between sidebar and actual content</Comment><br/>
+<Keyword>HTML</Keyword><Normal Text>.prologue = \</Normal Text><br/>
+<Normal Text>    </Normal Text><String>" <div class=</String><Special Character>\"</Special Character><String>content</String><Special Character>\"</Special Character><String> id=</String><Special Character>\"</Special Character><String>content</String><Special Character>\"</Special Character><String>></String><Special Character>\n</Special Character><String>"</String><Normal Text> \</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment># selector use from qtbase:</Comment><br/>
+<Keyword>qhp</Keyword><Normal Text>.QtCore.</Normal Text><Keyword>filterAttributes</Keyword><Normal Text>    = qtcore </Normal Text><Variable>$QT_VERSION</Variable><Normal Text> qtrefdoc</Normal Text><br/>
+<Keyword>qhp</Keyword><Normal Text>.QtCore.</Normal Text><Keyword>customFilters</Keyword><Normal Text>.Qt.</Normal Text><Keyword>name</Keyword><Normal Text> = QtCore </Normal Text><Variable>$QT_VERSION</Variable><br/>
+<Keyword>qhp</Keyword><Normal Text>.QtCore.</Normal Text><Keyword>customFilters</Keyword><Normal Text>.Qt.</Normal Text><Keyword>filterAttributes</Keyword><Normal Text> = qtcore </Normal Text><Variable>$QT_VERSION</Variable><br/>
+<Keyword>qhp</Keyword><Normal Text>.QtCore.</Normal Text><Keyword>subprojects</Keyword><Normal Text>         = classes</Normal Text><br/>
+<Keyword>qhp</Keyword><Normal Text>.QtCore.</Normal Text><Keyword>subprojects</Keyword><Normal Text>.classes.</Normal Text><Keyword>title</Keyword><Normal Text> = C++ Classes</Normal Text><br/>
+<Keyword>qhp</Keyword><Normal Text>.QtCore.</Normal Text><Keyword>subprojects</Keyword><Normal Text>.classes.</Normal Text><Keyword>indexTitle</Keyword><Normal Text> = Qt Core C++ Classes</Normal Text><br/>
+<Keyword>qhp</Keyword><Normal Text>.QtCore.</Normal Text><Keyword>subprojects</Keyword><Normal Text>.classes.</Normal Text><Keyword>selectors</Keyword><Normal Text> = </Normal Text><Selector>class</Selector><Normal Text> </Normal Text><Selector>fake</Selector><Normal Text>:</Normal Text><Selector>headerfile</Selector><br/>
+<Keyword>qhp</Keyword><Normal Text>.QtCore.</Normal Text><Keyword>subprojects</Keyword><Normal Text>.classes.</Normal Text><Keyword>sortPages</Keyword><Normal Text> = true</Normal Text><br/>

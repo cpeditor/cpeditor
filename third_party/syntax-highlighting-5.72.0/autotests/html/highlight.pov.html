@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title>highlight.pov</title>
+<meta name="generator" content="KF5::SyntaxHighlighting (POV-Ray)"/>
+</head><body style="color:#1f1c1b"><pre>
+<span style="color:#0057ae;background-color:#e0e9f8;">//BEGIN TEST</span>
+<span style="color:#008000;">// test scene for POV-Ray syntax highlighting</span>
+
+<span style="color:#008000;">/* test comment */</span>
+
+<span style="color:#008000;">/* nested /* comments */</span><span style="color:#000000;"> do not work </span><span style="color:#660099;">*/</span>
+
+<span style="color:#3300ff;font-weight:bold;">#version</span><span style="color:#000000;"> </span><span style="color:#0000ff;">3.5</span><span style="color:#660099;">;</span>
+<span style="color:#0057ae;background-color:#e0e9f8;">//END</span>
+<span style="color:#000080;">global_settings</span><span style="color:#000000;"> </span><span style="color:#660099;">{</span><span style="color:#000000;"> </span><span style="color:#000080;">assumed_gamma</span><span style="color:#000000;"> </span><span style="color:#0000ff;">1.0</span><span style="color:#000000;"> </span><span style="color:#660099;">}</span>
+
+<span style="color:#008000;">// ----------------------------------------</span>
+
+<span style="color:#000080;">camera</span><span style="color:#000000;"> </span><span style="color:#660099;">{</span>
+<span style="color:#000000;">  </span><span style="color:#000080;">location</span><span style="color:#000000;">  </span><span style="color:#660099;">&lt;</span><span style="color:#0000ff;">5.0</span><span style="color:#660099;">,</span><span style="color:#000000;"> </span><span style="color:#660099;">-</span><span style="color:#0000ff;">12.0</span><span style="color:#660099;">,</span><span style="color:#000000;"> </span><span style="color:#0000ff;">2.0</span><span style="color:#660099;">&gt;</span>
+<span style="color:#000000;">  </span><span style="color:#000080;">up</span><span style="color:#000000;"> </span><span style="color:#000080;">z</span><span style="color:#000000;"> </span><span style="color:#000080;">sky</span><span style="color:#000000;"> </span><span style="color:#000080;">z</span>
+<span style="color:#000000;">  </span><span style="color:#000080;">look_at</span><span style="color:#000000;">   </span><span style="color:#660099;">&lt;</span><span style="color:#0000ff;">0.0</span><span style="color:#660099;">,</span><span style="color:#000000;"> </span><span style="color:#0000ff;">0.0</span><span style="color:#660099;">,</span><span style="color:#000000;"> </span><span style="color:#0000ff;">0.5</span><span style="color:#660099;">&gt;</span><span style="color:#000000;"> </span>
+<span style="color:#000000;">  </span><span style="color:#000080;">angle</span><span style="color:#000000;"> </span><span style="color:#0000ff;">40</span>
+<span style="color:#660099;">}</span>
+
+<span style="color:#000080;">sky_sphere</span><span style="color:#000000;"> </span><span style="color:#660099;">{</span>
+<span style="color:#000000;">  </span><span style="color:#000080;">pigment</span><span style="color:#000000;"> </span><span style="color:#660099;">{</span>
+<span style="color:#000000;">    </span><span style="color:#000080;">gradient</span><span style="color:#000000;"> </span><span style="color:#000080;">z</span>
+<span style="color:#000000;">    </span><span style="color:#000080;">color_map</span><span style="color:#000000;"> </span><span style="color:#660099;">{</span>
+<span style="color:#000000;">      </span><span style="color:#660099;">[</span><span style="color:#0000ff;">0.0</span><span style="color:#000000;"> </span><span style="color:#000080;">rgb</span><span style="color:#000000;"> </span><span style="color:#660099;">&lt;</span><span style="color:#0000ff;">0.6</span><span style="color:#660099;">,</span><span style="color:#0000ff;">0.7</span><span style="color:#660099;">,</span><span style="color:#0000ff;">1.0</span><span style="color:#660099;">&gt;]</span>
+<span style="color:#000000;">      </span><span style="color:#660099;">[</span><span style="color:#0000ff;">0.2</span><span style="color:#000000;"> </span><span style="color:#000080;">rgb</span><span style="color:#000000;"> </span><span style="color:#660099;">&lt;</span><span style="color:#0000ff;">0.2</span><span style="color:#660099;">,</span><span style="color:#0000ff;">0.3</span><span style="color:#660099;">,</span><span style="color:#0000ff;">0.9</span><span style="color:#660099;">&gt;]</span>
+<span style="color:#000000;">    </span><span style="color:#660099;">}</span>
+<span style="color:#000000;">  </span><span style="color:#660099;">}</span>
+<span style="color:#660099;">}</span>
+
+<span style="color:#800000;">light_source</span><span style="color:#000000;"> </span><span style="color:#660099;">{</span>
+<span style="color:#000000;">  </span><span style="color:#660099;">&lt;</span><span style="color:#0000ff;">3</span><span style="color:#660099;">,</span><span style="color:#000000;"> </span><span style="color:#0000ff;">1</span><span style="color:#660099;">,</span><span style="color:#000000;"> </span><span style="color:#0000ff;">2</span><span style="color:#660099;">&gt;*</span><span style="color:#0000ff;">1000</span>
+<span style="color:#000000;">  </span><span style="color:#000080;">color</span><span style="color:#000000;"> </span><span style="color:#000080;">rgb</span><span style="color:#000000;"> </span><span style="color:#660099;">&lt;</span><span style="color:#0000ff;">2.2</span><span style="color:#660099;">,</span><span style="color:#000000;"> </span><span style="color:#0000ff;">1.8</span><span style="color:#660099;">,</span><span style="color:#000000;"> </span><span style="color:#0000ff;">1.5</span><span style="color:#660099;">&gt;</span>
+<span style="color:#660099;">}</span><span style="color:#000000;">   </span>
+
+<span style="color:#008000;">// ----------------------------------------</span>
+
+<span style="color:#000080;font-weight:bold;">#declare </span><span style="color:#990099;font-weight:bold;">TEST</span><span style="color:#660099;">=</span><span style="color:#0000ff;">0</span><span style="color:#660099;">;</span>
+
+<span style="color:#3300ff;font-weight:bold;">#ifdef</span><span style="color:#000000;"> </span><span style="color:#660099;">(</span><span style="color:#000000;">TEST</span><span style="color:#660099;">)</span>
+<span style="color:#000000;">  </span><span style="color:#800000;">plane</span><span style="color:#000000;"> </span><span style="color:#660099;">{</span>
+<span style="color:#000000;">    </span><span style="color:#000080;">z</span><span style="color:#660099;">,</span><span style="color:#000000;"> </span><span style="color:#0000ff;">0</span>
+<span style="color:#000000;">    </span><span style="color:#000080;">texture</span><span style="color:#000000;"> </span><span style="color:#660099;">{</span>
+<span style="color:#000000;">      </span><span style="color:#000080;">pigment</span><span style="color:#000000;"> </span><span style="color:#660099;">{</span>
+<span style="color:#000000;">        </span><span style="color:#000080;">checker</span>
+<span style="color:#000000;">        </span><span style="color:#000080;">color</span><span style="color:#000000;"> </span><span style="color:#000080;">rgb</span><span style="color:#000000;"> </span><span style="color:#0000ff;">1</span><span style="color:#660099;">,</span><span style="color:#000000;"> </span><span style="color:#000080;">color</span><span style="color:#000000;"> </span><span style="color:#000080;">rgb</span><span style="color:#000000;"> </span><span style="color:#0000ff;">0</span>
+<span style="color:#000000;">      </span><span style="color:#660099;">}</span>
+<span style="color:#000000;">    </span><span style="color:#660099;">}</span>
+<span style="color:#000000;">  </span><span style="color:#660099;">}</span>
+<span style="color:#3300ff;font-weight:bold;">#end</span>
+
+<span style="color:#000080;font-weight:bold;">#macro </span><span style="color:#cc0000;font-weight:bold;">Sphere</span><span style="color:#660099;">(</span><span style="color:#000000;">Pos</span><span style="color:#660099;">,</span><span style="color:#000000;"> Radius</span><span style="color:#660099;">)</span>
+<span style="color:#000000;">  </span><span style="color:#800000;">sphere</span><span style="color:#000000;"> </span><span style="color:#660099;">{</span>
+<span style="color:#000000;">    </span><span style="color:#660099;">&lt;</span><span style="color:#000000;">Pos</span><span style="color:#660099;">.</span><span style="color:#000080;">x</span><span style="color:#660099;">,</span><span style="color:#000000;"> Pos</span><span style="color:#660099;">.</span><span style="color:#000080;">y</span><span style="color:#660099;">,</span><span style="color:#000000;"> Radius</span><span style="color:#660099;">*</span><span style="color:#0000ff;">1.3</span><span style="color:#660099;">&gt;,</span><span style="color:#000000;"> Radius</span>
+<span style="color:#000000;">    </span><span style="color:#000080;">texture</span><span style="color:#000000;"> </span><span style="color:#660099;">{</span>
+<span style="color:#000000;">      </span><span style="color:#000080;">pigment</span><span style="color:#000000;"> </span><span style="color:#660099;">{</span><span style="color:#000000;"> </span><span style="color:#000080;">color</span><span style="color:#000000;"> </span><span style="color:#000080;">rgb</span><span style="color:#000000;"> </span><span style="color:#0000ff;">1</span><span style="color:#000000;"> </span><span style="color:#660099;">}</span>
+<span style="color:#000000;">      </span><span style="color:#000080;">finish</span><span style="color:#660099;">{</span>
+<span style="color:#000000;">        </span><span style="color:#000080;">diffuse</span><span style="color:#000000;"> </span><span style="color:#0000ff;">0.3</span>
+<span style="color:#000000;">        </span><span style="color:#000080;">ambient</span><span style="color:#000000;"> </span><span style="color:#0000ff;">0.0</span>
+<span style="color:#000000;">        </span><span style="color:#000080;">specular</span><span style="color:#000000;"> </span><span style="color:#0000ff;">0.6</span>
+<span style="color:#000000;">        </span><span style="color:#000080;">reflection</span><span style="color:#000000;"> </span><span style="color:#0000ff;">0.8</span>
+<span style="color:#000000;">      </span><span style="color:#660099;">}</span>
+<span style="color:#000000;">    </span><span style="color:#660099;">}</span>
+<span style="color:#000000;">  </span><span style="color:#660099;">}</span>
+<span style="color:#3300ff;font-weight:bold;">#end</span>
+
+<span style="color:#000080;font-weight:bold;">#local </span><span style="color:#990099;font-weight:bold;">Cnt</span><span style="color:#660099;">=</span><span style="color:#0000ff;">0</span><span style="color:#660099;">;</span>
+<span style="color:#000080;font-weight:bold;">#local </span><span style="color:#990099;font-weight:bold;">Seed</span><span style="color:#660099;">=</span><span style="color:#000080;">seed</span><span style="color:#660099;">(</span><span style="color:#0000ff;">0</span><span style="color:#660099;">);</span>
+
+<span style="color:#3300ff;font-weight:bold;">#while</span><span style="color:#000000;"> </span><span style="color:#660099;">(</span><span style="color:#000000;">Cnt</span><span style="color:#660099;">&lt;</span><span style="color:#0000ff;">10000</span><span style="color:#660099;">)</span>
+<span style="color:#000000;">  Sphere</span><span style="color:#660099;">(</span>
+<span style="color:#000000;">    </span><span style="color:#660099;">-</span><span style="color:#0000ff;">100</span><span style="color:#660099;">+&lt;</span><span style="color:#000080;">rand</span><span style="color:#660099;">(</span><span style="color:#000000;">Seed</span><span style="color:#660099;">),</span><span style="color:#000000;"> </span><span style="color:#000080;">rand</span><span style="color:#660099;">(</span><span style="color:#000000;">Seed</span><span style="color:#660099;">)&gt;*</span><span style="color:#0000ff;">200</span><span style="color:#660099;">,</span><span style="color:#000000;"> </span>
+<span style="color:#000000;">    </span><span style="color:#0000ff;">0.3</span><span style="color:#660099;">+</span><span style="color:#000080;">pow</span><span style="color:#660099;">(</span><span style="color:#000080;">rand</span><span style="color:#660099;">(</span><span style="color:#000000;">Seed</span><span style="color:#660099;">),</span><span style="color:#0000ff;">2</span><span style="color:#660099;">)*</span><span style="color:#0000ff;">0.7</span>
+<span style="color:#000000;">  </span><span style="color:#660099;">)</span><span style="color:#000000;">  </span>
+<span style="color:#000000;">  </span><span style="color:#000080;font-weight:bold;">#local </span><span style="color:#990099;font-weight:bold;">Cnt</span><span style="color:#660099;">=</span><span style="color:#000000;">Cnt</span><span style="color:#660099;">+</span><span style="color:#0000ff;">1</span><span style="color:#660099;">;</span>
+<span style="color:#3300ff;font-weight:bold;">#end</span>
+</pre></body></html>

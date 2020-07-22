@@ -72,7 +72,34 @@ jobs:
           cached: ${{ steps.cache-qt.outputs.cache-hit }}
           version: ${{ env.QT_VERSION }}
 
-      - name: Build
+      - name: Set up Dependency ECM
+        run: |
+          cd third_party/extra-cmake-modules-5.72.0
+          mkdir build
+          cd build
+          cmake .. -DCMAKE_BUILD_TYPE=Release -DBUILD_HTML_DOCS=OFF -DBUILD_MAN_DOCS=OFF -DBUILD_QTHELP_DOCS=OFF -DBUILD_TESTING=OFF
+          cmake --build . --parallel $(nproc)
+          cmake --build . --target install
+
+      - name: Set up Dependency Syntax Highlighting
+        run: |
+          cd third_party/syntax-highlighting-5.72.0
+          mkdir build
+          cd build
+          cmake .. -DCMAKE_BUILD_TYPE=Release -DBUILD_HTML_DOCS=OFF -DBUILD_MAN_DOCS=OFF -DBUILD_QTHELP_DOCS=OFF -DBUILD_TESTING=OFF
+          cmake --build . --parallel $(nproc)
+          cmake --build . --target install
+
+      - name: Build on Windows
+        if: startsWith(matrix.config.os, 'windows')
+        run: |
+          mkdir build
+          cd build
+          cmake .. -DCMAKE_BUILD_TYPE=Release -DPORTABLE_VERSION=${{ matrix.config.portable-option }} --DKF5SyntaxHighlighting_DIR="C:/Program Files (x86)/ECM/lib/cmake/KF5SyntaxHighlighting"
+          cmake --build . --config Release -j2
+
+      - name: Build on Unix
+        if: startsWith(matrix.config.os, 'ubuntu') || startsWith(matrix.config.os, 'mac')
         run: |
           mkdir build
           cd build

@@ -1,0 +1,164 @@
+<beginfold id='1'><!--</beginfold id='1'>
+
+HTML Syntax Highlight Sample File (Standard)
+
+- Follow HTML5 standard.
+- Contain some valid, but not recommended syntax.
+- Can be rendered by modern web browsers.
+
+@author Guo Yunhe guoyunhebrave@gmail.com
+@date   2016-09-17
+
+<endfold id='1'>--></endfold id='1'>
+
+<beginfold id='3'><!DOCTYPE </beginfold id='3'>html<endfold id='3'>></endfold id='3'>
+
+<html>
+
+<head>
+<meta charset="utf-8">
+<title>HTML Syntax Highlight Sample File (Standard)</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+<beginfold id='6'><script</beginfold id='6'> src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"><endfold id='6'></script</endfold id='6'>>
+</head>
+
+<body>
+
+<beginfold id='1'><!--</beginfold id='1'> HTML5 defined elements <endfold id='1'>--></endfold id='1'>
+
+<beginfold id='8'><div</beginfold id='8'>>
+    This is a div. <span>This is a span</span>
+    <beginfold id='8'><div</beginfold id='8'>>
+        This is a div.
+    <endfold id='8'></div</endfold id='8'>>
+<endfold id='8'></div</endfold id='8'>>
+
+<p>
+    This is a paragraph. <em></em>
+</p>
+
+<h1>This is heading 1</h1>
+<h2>This is heading 2</h2>
+<h3>This is heading 3</h3>
+<h4>This is heading 4</h4>
+<h5>This is heading 5</h5>
+<h6>This is heading 6</h6>
+
+<a href="http://www.w3schools.com">This is a link</a>
+
+<br>
+
+<img src="http://placehold.it/200x150" alt="This is an image" width="200" height="150">
+
+<hr>
+
+<beginfold id='10'><ul</beginfold id='10'>>
+    <li>List item</li>
+    <li>List item</li>
+    <li>List item</li>
+    <li>List item</li>
+    <li>List item</li>
+<endfold id='10'></ul</endfold id='10'>>
+
+<beginfold id='11'><ol</beginfold id='11'>>
+    <li>List item</li>
+    <li>List item</li>
+    <li>List item</li>
+    <li>List item</li>
+    <li>List item</li>
+<endfold id='11'></ol</endfold id='11'>>
+
+<beginfold id='9'><table</beginfold id='9'>>
+    <tr>
+        <th>Table head</th>
+        <th>Table head</th>
+        <th>Table head</th>
+    </tr>
+    <tr>
+        <td>Table head</td>
+        <td>Table head</td>
+        <td>Table head</td>
+    </tr>
+<endfold id='9'></table</endfold id='9'>>
+
+<form>
+    <input type="email" name="author"/>
+    <input type="text" name="message"/>
+    <button type="button">Send</button>
+</form>
+
+<beginfold id='19'><main</beginfold id='19'>>
+    <beginfold id='18'><header</beginfold id='18'>>This is a header.<endfold id='18'></header</endfold id='18'>>
+
+    <beginfold id='20'><nav</beginfold id='20'>>This is a nav.<endfold id='20'></nav</endfold id='20'>>
+
+    <beginfold id='13'><article</beginfold id='13'>>
+        <h2>This is an article.</h2>
+        <p>This is an article.</p>
+    <endfold id='13'></article</endfold id='13'>>
+
+    <beginfold id='14'><aside</beginfold id='14'>>
+        <h2>This is an aside.</h2>
+    <endfold id='14'></aside</endfold id='14'>>
+
+    <beginfold id='17'><footer</beginfold id='17'>><endfold id='17'></footer</endfold id='17'>>
+
+<endfold id='19'></main</endfold id='19'>>
+
+<beginfold id='1'><!--</beginfold id='1'> Custom elements <endfold id='1'>--></endfold id='1'>
+
+<booklist>
+    <book>
+        <booktitle>Just For Fun: The Story of an Accidental Revolutionary</booktitle>
+        <author>Linus Torvalds</author>
+        <description
+            class="featured" title="Click to read full text...">
+            A humorous autobiography of Linus Torvalds, the creator of the Linux
+            kernel, co-written with David Diamond. The book primarily theorizes
+            the Law of Linus that all evolution contributed by humanity starts
+            for survival, sustains socially and entertains at last. As well as
+            this the book explains Torvalds' view of himself, the free software
+            movement and the development of Linux.</description>
+    </book>
+</booklist>
+
+<large-space/>
+
+<beginfold id='1'><!--</beginfold id='1'> Ends for single tag elements <endfold id='1'>--></endfold id='1'>
+<br>
+<br/>
+<br />
+<br></br>
+
+<beginfold id='1'><!--</beginfold id='1'> Uppercase elements <endfold id='1'>--></endfold id='1'>
+
+<beginfold id='8'><DIV</beginfold id='8'>>
+    THIS IS A DIV.
+    <P>THIS IS A PARAGRAPH.</P>
+    <H2>THIS IS A HEADING.</H2>
+<endfold id='8'></DIV</endfold id='8'>>
+
+<beginfold id='1'><!--</beginfold id='1'> Arrtibutes <endfold id='1'>--></endfold id='1'>
+
+<a href="#" style="background-color:rgba(0,0,0,0.3)" title="Click me">Magic button</a>
+
+<img src="http://placehold.it/200x150" alt="This is an image" width="200"
+     height="150" title="This is an image">
+
+<beginfold id='1'><!--</beginfold id='1'> Attribute without value <endfold id='1'>--></endfold id='1'>
+
+<select>
+    <option selected>GNU/Linux</option>
+    <option>BSD</option>
+    <option>Windows</option>
+    <option>macOS</option>
+</select>
+
+<beginfold id='1'><!--</beginfold id='1'> Attribute without quotes <endfold id='1'>--></endfold id='1'>
+
+<beginfold id='8'><div</beginfold id='8'> id=name class=a-sweet-block data-counter=175>This is a div.<endfold id='8'></div</endfold id='8'>>
+
+</body>
+
+</html>

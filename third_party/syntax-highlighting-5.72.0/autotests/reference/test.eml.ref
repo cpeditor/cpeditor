@@ -1,0 +1,94 @@
+<Common Header>Return-Path:</Common Header><Normal Text> </Normal Text><Address><kwrite-devel-bounces@kde.org></Address><br/>
+<Other Header>X-Sieve: </Other Header><Normal Text>CMU Sieve 2.3</Normal Text><br/>
+<Other Header>X-Virus-Scanned: </Other Header><Normal Text>amavisd-new at site</Normal Text><br/>
+<Common Header>Authentication-Results:</Common Header><Normal Text> linux.site </Normal Text><Comment>(amavisd-new)</Comment><Normal Text>; dkim=pass </Normal Text><Comment>(1024-bit key)</Comment><br/>
+<Normal Text>	header.d=kde.org</Normal Text><br/>
+<Common Header>Received:</Common Header><Normal Text> from postbox.kde.org </Normal Text><Comment>(localhost.localdomain [127.0.0.1])</Comment><br/>
+<Normal Text>	by postbox.kde.org </Normal Text><Comment>(Postfix)</Comment><Normal Text> with ESMTP id 3167DB6E75;</Normal Text><br/>
+<Normal Text>	Wed,  5 Oct 2016 20:21:47 +0000 </Normal Text><Comment>(UTC)</Comment><br/>
+<Common Header>DKIM-Signature:</Common Header><Normal Text> v=1; a=rsa-sha256; c=simple/simple; d=kde.org; s=default;</Normal Text><br/>
+<Normal Text>	t=1475698907; bh=6i+3UfR6HLC54wVtp5SF4sVWvQn63jzu9vD2zJal/kY=;</Normal Text><br/>
+<Normal Text>	h=From:To:Subject:Date:Reply-To:List-Id:List-Unsubscribe:List-Post:</Normal Text><br/>
+<Normal Text>	 List-Help:List-Subscribe:From;</Normal Text><br/>
+<Normal Text>	b=M5nfHbmJe/4DPuidrJ901dUzX3FmpVpyUrPM961Or9bKrMO+z9gaTUwbfPR74Rq8B</Normal Text><br/>
+<Normal Text>	 Rv66yf3ZaDuRZxv/ARPzpr8qnDTtf13WRFZ/ySdqqqQJKeBqCAd7/wbR0kHhypvpwe</Normal Text><br/>
+<Normal Text>	 z4nY6+bNnjvFelPXR56o16b+/Ib2GTYJ9hwiG97U=</Normal Text><br/>
+<Other Header>X-Original-To: </Other Header><Normal Text>kwrite-devel@kde.org</Normal Text><br/>
+<Common Header>Delivered-To:</Common Header><Normal Text> </Normal Text><Address>kwrite-devel@localhost.kde.org</Address><br/>
+<Common Header>Received-SPF:</Common Header><Normal Text> Neutral </Normal Text><Comment>(access neither permitted nor denied)</Comment><Normal Text> identity=mailfrom;</Normal Text><br/>
+<Normal Text> client-ip=85.214.234.26; helo=h2265959.stratoserver.net;</Normal Text><br/>
+<Normal Text> envelope-from=</Normal Text><Address>vkrause@kde.org</Address><Normal Text>; receiver=</Normal Text><Address>kwrite-devel@kde.org</Address><br/>
+<Common Header>From:</Common Header><Normal Text> Volker Krause </Normal Text><Address><vkrause@kde.org></Address><br/>
+<Common Header>To:</Common Header><Normal Text> </Normal Text><Address>kwrite-devel@kde.org</Address><br/>
+<Common Header>Subject:</Common Header><Normal Text> KSyntaxHighlighting is cool! Happy: :-) Sad: :-(</Normal Text><br/>
+<Normal Text> Subject goes on here > < ] [</Normal Text><br/>
+<Common Header>Date:</Common Header><Normal Text> Wed, 05 Oct 2016 22:19:17 +0200</Normal Text><br/>
+<Common Header>Message-ID:</Common Header><Normal Text> </Normal Text><Address><2420385.jiZKTgWtgY@vkpc5></Address><br/>
+<Common Header>Organization:</Common Header><Normal Text> KDE</Normal Text><br/>
+<Common Header>User-Agent:</Common Header><Normal Text> KMail/4.14.10 </Normal Text><Comment>(Linux/4.1.13-5-default; KDE/4.14.16; x86_64;</Comment><br/>
+<Comment> git-91275a7; 2015-12-13)</Comment><br/>
+<Common Header>MIME-Version:</Common Header><Normal Text> 1.0</Normal Text><br/>
+<Common Header>Content-Type:</Common Header><Normal Text> multipart/signed; boundary=</Normal Text><String>"nextPart1575059.2yRQ5x6HOo"</String><Normal Text>;</Normal Text><br/>
+<Normal Text> micalg=</Normal Text><String>"pgp-sha1"</String><Normal Text>; protocol=</Normal Text><String>"application/pgp-signature"</String><br/>
+<Other Header>X-BeenThere: </Other Header><Normal Text>kwrite-devel@kde.org</Normal Text><br/>
+<Other Header>X-Mailman-Version: </Other Header><Normal Text>2.1.16</Normal Text><br/>
+<Common Header>Precedence:</Common Header><Normal Text> list</Normal Text><br/>
+<Common Header>Reply-To:</Common Header><Normal Text> </Normal Text><Address>kwrite-devel@kde.org</Address><br/>
+<Common Header>List-Id:</Common Header><Normal Text> Kate/KWrite Mailing List <kwrite-devel.kde.org></Normal Text><br/>
+<Common Header>List-Unsubscribe:</Common Header><Normal Text> <https://mail.kde.org/mailman/options/kwrite-devel>,</Normal Text><br/>
+<Normal Text> <mailto:</Normal Text><Address>kwrite-devel-request@kde.org</Address><Normal Text>?subject=unsubscribe></Normal Text><br/>
+<Common Header>List-Post:</Common Header><Normal Text> <mailto:</Normal Text><Address>kwrite-devel@kde.org></Address><br/>
+<Common Header>List-Help:</Common Header><Normal Text> <mailto:</Normal Text><Address>kwrite-devel-request@kde.org</Address><Normal Text>?subject=help></Normal Text><br/>
+<Common Header>List-Subscribe:</Common Header><Normal Text> <https://mail.kde.org/mailman/listinfo/kwrite-devel>,</Normal Text><br/>
+<Normal Text> <mailto:</Normal Text><Address>kwrite-devel-request@kde.org</Address><Normal Text>?subject=subscribe></Normal Text><br/>
+<Common Header>Errors-To:</Common Header><Normal Text> </Normal Text><Address>kwrite-devel-bounces@kde.org</Address><br/>
+<Common Header>Sender:</Common Header><Normal Text> </Normal Text><String>"KWrite-Devel"</String><Normal Text> </Normal Text><Address><kwrite-devel-bounces@kde.org></Address><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Content Boundary>--nextPart1575059.2yRQ5x6HOo</Content Boundary><br/>
+<Common Header>Content-Transfer-Encoding:</Common Header><Normal Text> 7Bit</Normal Text><br/>
+<Common Header>Content-Type:</Common Header><Normal Text> text/plain; charset=</Normal Text><String>"us-ascii"</String><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>Hi,</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>when trying to add the unit test for the new Praat highlighting to</Normal Text><br/>
+<Normal Text>KF5::SyntaxHighlighting it turned out that the output doesn't match at all</Normal Text><br/>
+<Normal Text>that of Kate. We managed to trace this back to the following rather surprising</Normal Text><br/>
+<Normal Text>(and apparently undocumented) behavior in Kate:</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>When a context switch (anywhere in a line) pops more contexts than were on the</Normal Text><br/>
+<Normal Text>stack when starting the line, it executes line end context switches of the</Normal Text><br/>
+<Normal Text>previous line contexts.</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>| | | | | | The corresponding code is in KateHighlighting::generateContextStack(),</Normal Text><br/>
+<Normal Text>| | > | > KF5::SyntaxHighlighting doesn't do this (yet), Praat is apparently the first</Normal Text><br/>
+<Normal Text>> | > format we have tests for that uses this behavior.</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>> Does anyone remember why we do this, or happens to know which highlighting</Normal Text><br/>
+<Normal Text>> files besides Praat rely on this?</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>> > Archeology can trace this back to the dark CVS ages even, one reference</Normal Text><br/>
+<Normal Text>> > Dominik has dug up is a 10 year old SVN commit</Normal Text><br/>
+<Normal Text>> > (https://quickgit.kde.org/?p=kdelibs.git&a=commit&h=90ef47f582277745f727d89f05f72f1e1705fdc4</Normal Text><br/>
+<Normal Text>> >), where Christoph claims to understand what this code does ;)</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>> > > As this is highly unexpected and hard to reason about behavior, Dominik and I</Normal Text><br/>
+<Normal Text>> > > > were wondering if we can possibly drop this, and rather fix affected</Normal Text><br/>
+<Normal Text>> > > > > highlighting files instead?</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>Regards,</Normal Text><br/>
+<Normal Text>Volker</Normal Text><br/>
+<Content Boundary>--nextPart1575059.2yRQ5x6HOo</Content Boundary><br/>
+<Common Header>Content-Type:</Common Header><Normal Text> application/pgp-signature; name=</Normal Text><String>"signature.asc"</String><br/>
+<Common Header>Content-Description:</Common Header><Normal Text> This is a digitally signed message part.</Normal Text><br/>
+<Common Header>Content-Transfer-Encoding:</Common Header><Normal Text> 7Bit</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>-----BEGIN PGP SIGNATURE-----</Normal Text><br/>
+<Normal Text>Version: GnuPG v2</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>iD8DBQBX9WBIf5bM1k0S0kcRAireAJ4lCWa08Y5yU1ezIvKVCAfnkhcUbACgou0O</Normal Text><br/>
+<Normal Text>X4c+lkPI0tti59KV1vetaeU=</Normal Text><br/>
+<Normal Text>=VqDS</Normal Text><br/>
+<Normal Text>-----END PGP SIGNATURE-----</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Content Boundary>--nextPart1575059.2yRQ5x6HOo--</Content Boundary><br/>

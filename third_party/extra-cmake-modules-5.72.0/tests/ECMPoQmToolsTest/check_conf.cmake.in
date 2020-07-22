@@ -1,0 +1,5 @@
+set(TR_TEST_EXEC "$<TARGET_FILE:tr_test>")
+set(TR_TEST_2_EXEC "$<TARGET_FILE:tr_test_2>")
+set(TR_TEST_SUBDIR_EXEC "$<TARGET_FILE:tr_test_subdir>")
+set(TR_THREAD_TEST_EXEC "$<TARGET_FILE:tr_thread_test>")
+set(TR_THREAD_TEST_2_EXEC "$<TARGET_FILE:tr_thread_test_2>")

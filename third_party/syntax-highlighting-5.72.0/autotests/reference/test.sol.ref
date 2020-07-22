@@ -1,0 +1,153 @@
+<Comment>// Solidity Sample File</Comment><br/>
+<Comment>// https://solidity.readthedocs.io/en/latest/solidity-by-example.html#voting</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>pragma</Keyword><Normal Text> </Normal Text><Built-in>solidity</Built-in><Normal Text> >=0.4.22 <0.7.0;</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment>/// </Comment><Custom Tags>@title</Custom Tags><Comment> Voting with delegation.</Comment><br/>
+<Control Structures>contract</Control Structures><Normal Text> Ballot </Normal Text><Symbol>{</Symbol><br/>
+<Normal Text>    </Normal Text><Comment>// This declares a new complex type which will</Comment><br/>
+<Normal Text>    </Normal Text><Comment>// be used for variables later.</Comment><br/>
+<Normal Text>    </Normal Text><Comment>// It will represent a single voter.</Comment><br/>
+<Normal Text>    </Normal Text><Keyword>struct</Keyword><Normal Text> Voter </Normal Text><Symbol>{</Symbol><br/>
+<Normal Text>        </Normal Text><Data Type>uint</Data Type><Normal Text> weight</Normal Text><Symbol>;</Symbol><Normal Text> </Normal Text><Comment>// weight is accumulated by delegation</Comment><br/>
+<Normal Text>        </Normal Text><Data Type>bool</Data Type><Normal Text> voted</Normal Text><Symbol>;</Symbol><Normal Text>  </Normal Text><Comment>// if true, that person already voted</Comment><br/>
+<Normal Text>        </Normal Text><Data Type>address</Data Type><Normal Text> delegate</Normal Text><Symbol>;</Symbol><Normal Text> </Normal Text><Comment>// person delegated to</Comment><br/>
+<Normal Text>        </Normal Text><Data Type>uint</Data Type><Normal Text> vote</Normal Text><Symbol>;</Symbol><Normal Text>   </Normal Text><Comment>// index of the voted proposal</Comment><br/>
+<Normal Text>    </Normal Text><Symbol>}</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>    </Normal Text><Comment>// This is a type for a single proposal.</Comment><br/>
+<Normal Text>    </Normal Text><Keyword>struct</Keyword><Normal Text> Proposal </Normal Text><Symbol>{</Symbol><br/>
+<Normal Text>        </Normal Text><Data Type>bytes32</Data Type><Normal Text> name</Normal Text><Symbol>;</Symbol><Normal Text>   </Normal Text><Comment>// short name (up to 32 bytes)</Comment><br/>
+<Normal Text>        </Normal Text><Data Type>uint</Data Type><Normal Text> voteCount</Normal Text><Symbol>;</Symbol><Normal Text> </Normal Text><Comment>// number of accumulated votes</Comment><br/>
+<Normal Text>    </Normal Text><Symbol>}</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>    </Normal Text><Data Type>address</Data Type><Normal Text> </Normal Text><Keyword>public</Keyword><Normal Text> chairperson</Normal Text><Symbol>;</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>    </Normal Text><Comment>// This declares a state variable that</Comment><br/>
+<Normal Text>    </Normal Text><Comment>// stores a `Voter` struct for each possible address.</Comment><br/>
+<Normal Text>    </Normal Text><Data Type>mapping</Data Type><Symbol>(</Symbol><Data Type>address</Data Type><Normal Text> </Normal Text><Symbol>=></Symbol><Normal Text> Voter</Normal Text><Symbol>)</Symbol><Normal Text> </Normal Text><Keyword>public</Keyword><Normal Text> voters</Normal Text><Symbol>;</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>    </Normal Text><Comment>// A dynamically-sized array of `Proposal` structs.</Comment><br/>
+<Normal Text>    Proposal</Normal Text><Symbol>[]</Symbol><Normal Text> </Normal Text><Keyword>public</Keyword><Normal Text> proposals</Normal Text><Symbol>;</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>    </Normal Text><Comment>/// Create a new ballot to choose one of `proposalNames`.</Comment><br/>
+<Normal Text>    </Normal Text><Control Structures>constructor</Control Structures><Symbol>(</Symbol><Data Type>bytes32</Data Type><Symbol>[]</Symbol><Normal Text> </Normal Text><Keyword>memory</Keyword><Normal Text> proposalNames</Normal Text><Symbol>)</Symbol><Normal Text> </Normal Text><Keyword>public</Keyword><Normal Text> </Normal Text><Symbol>{</Symbol><br/>
+<Normal Text>        chairperson </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Built-in>msg</Built-in><Symbol>.</Symbol><Normal Text>sender</Normal Text><Symbol>;</Symbol><br/>
+<Normal Text>        voters</Normal Text><Symbol>[</Symbol><Normal Text>chairperson</Normal Text><Symbol>].</Symbol><Normal Text>weight </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Decimal>1</Decimal><Symbol>;</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>        </Normal Text><Comment>// For each of the provided proposal names,</Comment><br/>
+<Normal Text>        </Normal Text><Comment>// create a new proposal object and add it</Comment><br/>
+<Normal Text>        </Normal Text><Comment>// to the end of the array.</Comment><br/>
+<Normal Text>        </Normal Text><Control Structures>for</Control Structures><Normal Text> </Normal Text><Symbol>(</Symbol><Data Type>uint</Data Type><Normal Text> i </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Decimal>0</Decimal><Symbol>;</Symbol><Normal Text> i </Normal Text><Symbol><</Symbol><Normal Text> proposalNames</Normal Text><Symbol>.</Symbol><Normal Text>length</Normal Text><Symbol>;</Symbol><Normal Text> i</Normal Text><Built-in>++</Built-in><Symbol>)</Symbol><Normal Text> </Normal Text><Symbol>{</Symbol><br/>
+<Normal Text>            </Normal Text><Comment>// `Proposal({...})` creates a temporary</Comment><br/>
+<Normal Text>            </Normal Text><Comment>// Proposal object and `proposals.push(...)`</Comment><br/>
+<Normal Text>            </Normal Text><Comment>// appends it to the end of `proposals`.</Comment><br/>
+<Normal Text>            proposals</Normal Text><Symbol>.</Symbol><Normal Text>push</Normal Text><Symbol>(</Symbol><Normal Text>Proposal</Normal Text><Symbol>({</Symbol><br/>
+<Normal Text>                name</Normal Text><Symbol>:</Symbol><Normal Text> proposalNames</Normal Text><Symbol>[</Symbol><Normal Text>i</Normal Text><Symbol>],</Symbol><br/>
+<Normal Text>                voteCount</Normal Text><Symbol>:</Symbol><Normal Text> </Normal Text><Decimal>0</Decimal><br/>
+<Normal Text>            </Normal Text><Symbol>}));</Symbol><br/>
+<Normal Text>        </Normal Text><Symbol>}</Symbol><br/>
+<Normal Text>    </Normal Text><Symbol>}</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>    </Normal Text><Comment>// Give `voter` the right to vote on this ballot.</Comment><br/>
+<Normal Text>    </Normal Text><Comment>// May only be called by `chairperson`.</Comment><br/>
+<Normal Text>    </Normal Text><Control Structures>function</Control Structures><Normal Text> giveRightToVote</Normal Text><Symbol>(</Symbol><Data Type>address</Data Type><Normal Text> voter</Normal Text><Symbol>)</Symbol><Normal Text> </Normal Text><Keyword>public</Keyword><Normal Text> </Normal Text><Symbol>{</Symbol><br/>
+<Normal Text>        </Normal Text><Comment>// If the first argument of `require` evaluates</Comment><br/>
+<Normal Text>        </Normal Text><Comment>// to `false`, execution terminates and all</Comment><br/>
+<Normal Text>        </Normal Text><Comment>// changes to the state and to Ether balances</Comment><br/>
+<Normal Text>        </Normal Text><Comment>// are reverted.</Comment><br/>
+<Normal Text>        </Normal Text><Comment>// This used to consume all gas in old EVM versions, but</Comment><br/>
+<Normal Text>        </Normal Text><Comment>// not anymore.</Comment><br/>
+<Normal Text>        </Normal Text><Comment>// It is often a good idea to use `require` to check if</Comment><br/>
+<Normal Text>        </Normal Text><Comment>// functions are called correctly.</Comment><br/>
+<Normal Text>        </Normal Text><Comment>// As a second argument, you can also provide an</Comment><br/>
+<Normal Text>        </Normal Text><Comment>// explanation about what went wrong.</Comment><br/>
+<Normal Text>        </Normal Text><Built-in>require</Built-in><Symbol>(</Symbol><br/>
+<Normal Text>            </Normal Text><Built-in>msg</Built-in><Symbol>.</Symbol><Normal Text>sender </Normal Text><Symbol>==</Symbol><Normal Text> chairperson</Normal Text><Symbol>,</Symbol><br/>
+<Normal Text>            </Normal Text><String>"Only chairperson can give right to vote."</String><br/>
+<Normal Text>        </Normal Text><Symbol>);</Symbol><br/>
+<Normal Text>        </Normal Text><Built-in>require</Built-in><Symbol>(</Symbol><br/>
+<Normal Text>            </Normal Text><Symbol>!</Symbol><Normal Text>voters</Normal Text><Symbol>[</Symbol><Normal Text>voter</Normal Text><Symbol>].</Symbol><Normal Text>voted</Normal Text><Symbol>,</Symbol><br/>
+<Normal Text>            </Normal Text><String>"The voter already voted."</String><br/>
+<Normal Text>        </Normal Text><Symbol>);</Symbol><br/>
+<Normal Text>        </Normal Text><Built-in>require</Built-in><Symbol>(</Symbol><Normal Text>voters</Normal Text><Symbol>[</Symbol><Normal Text>voter</Normal Text><Symbol>].</Symbol><Normal Text>weight </Normal Text><Symbol>==</Symbol><Normal Text> </Normal Text><Decimal>0</Decimal><Symbol>);</Symbol><br/>
+<Normal Text>        voters</Normal Text><Symbol>[</Symbol><Normal Text>voter</Normal Text><Symbol>].</Symbol><Normal Text>weight </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Decimal>1</Decimal><Symbol>;</Symbol><br/>
+<Normal Text>    </Normal Text><Symbol>}</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>    </Normal Text><Comment>/// Delegate your vote to the voter `to`.</Comment><br/>
+<Normal Text>    </Normal Text><Control Structures>function</Control Structures><Normal Text> delegate</Normal Text><Symbol>(</Symbol><Data Type>address</Data Type><Normal Text> to</Normal Text><Symbol>)</Symbol><Normal Text> </Normal Text><Keyword>public</Keyword><Normal Text> </Normal Text><Symbol>{</Symbol><br/>
+<Normal Text>        </Normal Text><Comment>// assigns reference</Comment><br/>
+<Normal Text>        Voter </Normal Text><Keyword>storage</Keyword><Normal Text> sender </Normal Text><Symbol>=</Symbol><Normal Text> voters</Normal Text><Symbol>[</Symbol><Built-in>msg</Built-in><Symbol>.</Symbol><Normal Text>sender</Normal Text><Symbol>];</Symbol><br/>
+<Normal Text>        </Normal Text><Built-in>require</Built-in><Symbol>(!</Symbol><Normal Text>sender</Normal Text><Symbol>.</Symbol><Normal Text>voted</Normal Text><Symbol>,</Symbol><Normal Text> </Normal Text><String>"You already voted."</String><Symbol>);</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>        </Normal Text><Built-in>require</Built-in><Symbol>(</Symbol><Normal Text>to </Normal Text><Symbol>!=</Symbol><Normal Text> </Normal Text><Built-in>msg</Built-in><Symbol>.</Symbol><Normal Text>sender</Normal Text><Symbol>,</Symbol><Normal Text> </Normal Text><String>"Self-delegation is disallowed."</String><Symbol>);</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>        </Normal Text><Comment>// Forward the delegation as long as</Comment><br/>
+<Normal Text>        </Normal Text><Comment>// `to` also delegated.</Comment><br/>
+<Normal Text>        </Normal Text><Comment>// In general, such loops are very dangerous,</Comment><br/>
+<Normal Text>        </Normal Text><Comment>// because if they run too long, they might</Comment><br/>
+<Normal Text>        </Normal Text><Comment>// need more gas than is available in a block.</Comment><br/>
+<Normal Text>        </Normal Text><Comment>// In this case, the delegation will not be executed,</Comment><br/>
+<Normal Text>        </Normal Text><Comment>// but in other situations, such loops might</Comment><br/>
+<Normal Text>        </Normal Text><Comment>// cause a contract to get "stuck" completely.</Comment><br/>
+<Normal Text>        </Normal Text><Control Structures>while</Control Structures><Normal Text> </Normal Text><Symbol>(</Symbol><Normal Text>voters</Normal Text><Symbol>[</Symbol><Normal Text>to</Normal Text><Symbol>].</Symbol><Normal Text>delegate </Normal Text><Symbol>!=</Symbol><Normal Text> </Normal Text><Data Type>address</Data Type><Symbol>(</Symbol><Decimal>0</Decimal><Symbol>))</Symbol><Normal Text> </Normal Text><Symbol>{</Symbol><br/>
+<Normal Text>            to </Normal Text><Symbol>=</Symbol><Normal Text> voters</Normal Text><Symbol>[</Symbol><Normal Text>to</Normal Text><Symbol>].</Symbol><Normal Text>delegate</Normal Text><Symbol>;</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>            </Normal Text><Comment>// We found a loop in the delegation, not allowed.</Comment><br/>
+<Normal Text>            </Normal Text><Built-in>require</Built-in><Symbol>(</Symbol><Normal Text>to </Normal Text><Symbol>!=</Symbol><Normal Text> </Normal Text><Built-in>msg</Built-in><Symbol>.</Symbol><Normal Text>sender</Normal Text><Symbol>,</Symbol><Normal Text> </Normal Text><String>"Found loop in delegation."</String><Symbol>);</Symbol><br/>
+<Normal Text>        </Normal Text><Symbol>}</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>        </Normal Text><Comment>// Since `sender` is a reference, this</Comment><br/>
+<Normal Text>        </Normal Text><Comment>// modifies `voters[msg.sender].voted`</Comment><br/>
+<Normal Text>        sender</Normal Text><Symbol>.</Symbol><Normal Text>voted </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Keyword>true</Keyword><Symbol>;</Symbol><br/>
+<Normal Text>        sender</Normal Text><Symbol>.</Symbol><Normal Text>delegate </Normal Text><Symbol>=</Symbol><Normal Text> to</Normal Text><Symbol>;</Symbol><br/>
+<Normal Text>        Voter </Normal Text><Keyword>storage</Keyword><Normal Text> delegate_ </Normal Text><Symbol>=</Symbol><Normal Text> voters</Normal Text><Symbol>[</Symbol><Normal Text>to</Normal Text><Symbol>];</Symbol><br/>
+<Normal Text>        </Normal Text><Control Structures>if</Control Structures><Normal Text> </Normal Text><Symbol>(</Symbol><Normal Text>delegate_</Normal Text><Symbol>.</Symbol><Normal Text>voted</Normal Text><Symbol>)</Symbol><Normal Text> </Normal Text><Symbol>{</Symbol><br/>
+<Normal Text>            </Normal Text><Comment>// If the delegate already voted,</Comment><br/>
+<Normal Text>            </Normal Text><Comment>// directly add to the number of votes</Comment><br/>
+<Normal Text>            proposals</Normal Text><Symbol>[</Symbol><Normal Text>delegate_</Normal Text><Symbol>.</Symbol><Normal Text>vote</Normal Text><Symbol>].</Symbol><Normal Text>voteCount </Normal Text><Symbol>+=</Symbol><Normal Text> sender</Normal Text><Symbol>.</Symbol><Normal Text>weight</Normal Text><Symbol>;</Symbol><br/>
+<Normal Text>        </Normal Text><Symbol>}</Symbol><Normal Text> </Normal Text><Control Structures>else</Control Structures><Normal Text> </Normal Text><Symbol>{</Symbol><br/>
+<Normal Text>            </Normal Text><Comment>// If the delegate did not vote yet,</Comment><br/>
+<Normal Text>            </Normal Text><Comment>// add to her weight.</Comment><br/>
+<Normal Text>            delegate_</Normal Text><Symbol>.</Symbol><Normal Text>weight </Normal Text><Symbol>+=</Symbol><Normal Text> sender</Normal Text><Symbol>.</Symbol><Normal Text>weight</Normal Text><Symbol>;</Symbol><br/>
+<Normal Text>        </Normal Text><Symbol>}</Symbol><br/>
+<Normal Text>    </Normal Text><Symbol>}</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>    </Normal Text><Comment>/// Give your vote (including votes delegated to you)</Comment><br/>
+<Normal Text>    </Normal Text><Comment>/// to proposal `proposals[proposal].name`.</Comment><br/>
+<Normal Text>    </Normal Text><Control Structures>function</Control Structures><Normal Text> vote</Normal Text><Symbol>(</Symbol><Data Type>uint</Data Type><Normal Text> proposal</Normal Text><Symbol>)</Symbol><Normal Text> </Normal Text><Keyword>public</Keyword><Normal Text> </Normal Text><Symbol>{</Symbol><br/>
+<Normal Text>        Voter </Normal Text><Keyword>storage</Keyword><Normal Text> sender </Normal Text><Symbol>=</Symbol><Normal Text> voters</Normal Text><Symbol>[</Symbol><Built-in>msg</Built-in><Symbol>.</Symbol><Normal Text>sender</Normal Text><Symbol>];</Symbol><br/>
+<Normal Text>        </Normal Text><Built-in>require</Built-in><Symbol>(</Symbol><Normal Text>sender</Normal Text><Symbol>.</Symbol><Normal Text>weight </Normal Text><Symbol>!=</Symbol><Normal Text> </Normal Text><Decimal>0</Decimal><Symbol>,</Symbol><Normal Text> </Normal Text><String>"Has no right to vote"</String><Symbol>);</Symbol><br/>
+<Normal Text>        </Normal Text><Built-in>require</Built-in><Symbol>(!</Symbol><Normal Text>sender</Normal Text><Symbol>.</Symbol><Normal Text>voted</Normal Text><Symbol>,</Symbol><Normal Text> </Normal Text><String>"Already voted."</String><Symbol>);</Symbol><br/>
+<Normal Text>        sender</Normal Text><Symbol>.</Symbol><Normal Text>voted </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Keyword>true</Keyword><Symbol>;</Symbol><br/>
+<Normal Text>        sender</Normal Text><Symbol>.</Symbol><Normal Text>vote </Normal Text><Symbol>=</Symbol><Normal Text> proposal</Normal Text><Symbol>;</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>        </Normal Text><Comment>// If `proposal` is out of the range of the array,</Comment><br/>
+<Normal Text>        </Normal Text><Comment>// this will throw automatically and revert all</Comment><br/>
+<Normal Text>        </Normal Text><Comment>// changes.</Comment><br/>
+<Normal Text>        proposals</Normal Text><Symbol>[</Symbol><Normal Text>proposal</Normal Text><Symbol>].</Symbol><Normal Text>voteCount </Normal Text><Symbol>+=</Symbol><Normal Text> sender</Normal Text><Symbol>.</Symbol><Normal Text>weight</Normal Text><Symbol>;</Symbol><br/>
+<Normal Text>    </Normal Text><Symbol>}</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>    </Normal Text><Comment>/// </Comment><Custom Tags>@dev</Custom Tags><Comment> Computes the winning proposal taking all</Comment><br/>
+<Normal Text>    </Normal Text><Comment>/// previous votes into account.</Comment><br/>
+<Normal Text>    </Normal Text><Control Structures>function</Control Structures><Normal Text> winningProposal</Normal Text><Symbol>()</Symbol><Normal Text> </Normal Text><Keyword>public</Keyword><Normal Text> </Normal Text><Keyword>view</Keyword><br/>
+<Normal Text>            </Normal Text><Keyword>returns</Keyword><Normal Text> </Normal Text><Symbol>(</Symbol><Data Type>uint</Data Type><Normal Text> winningProposal_</Normal Text><Symbol>)</Symbol><br/>
+<Normal Text>    </Normal Text><Symbol>{</Symbol><br/>
+<Normal Text>        </Normal Text><Data Type>uint</Data Type><Normal Text> winningVoteCount </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Decimal>0</Decimal><Symbol>;</Symbol><br/>
+<Normal Text>        </Normal Text><Control Structures>for</Control Structures><Normal Text> </Normal Text><Symbol>(</Symbol><Data Type>uint</Data Type><Normal Text> p </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Decimal>0</Decimal><Symbol>;</Symbol><Normal Text> p </Normal Text><Symbol><</Symbol><Normal Text> proposals</Normal Text><Symbol>.</Symbol><Normal Text>length</Normal Text><Symbol>;</Symbol><Normal Text> p</Normal Text><Built-in>++</Built-in><Symbol>)</Symbol><Normal Text> </Normal Text><Symbol>{</Symbol><br/>
+<Normal Text>            </Normal Text><Control Structures>if</Control Structures><Normal Text> </Normal Text><Symbol>(</Symbol><Normal Text>proposals</Normal Text><Symbol>[</Symbol><Normal Text>p</Normal Text><Symbol>].</Symbol><Normal Text>voteCount </Normal Text><Symbol>></Symbol><Normal Text> winningVoteCount</Normal Text><Symbol>)</Symbol><Normal Text> </Normal Text><Symbol>{</Symbol><br/>
+<Normal Text>                winningVoteCount </Normal Text><Symbol>=</Symbol><Normal Text> proposals</Normal Text><Symbol>[</Symbol><Normal Text>p</Normal Text><Symbol>].</Symbol><Normal Text>voteCount</Normal Text><Symbol>;</Symbol><br/>
+<Normal Text>                winningProposal_ </Normal Text><Symbol>=</Symbol><Normal Text> p</Normal Text><Symbol>;</Symbol><br/>
+<Normal Text>            </Normal Text><Symbol>}</Symbol><br/>
+<Normal Text>        </Normal Text><Symbol>}</Symbol><br/>
+<Normal Text>    </Normal Text><Symbol>}</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>    </Normal Text><Comment>// Calls winningProposal() function to get the index</Comment><br/>
+<Normal Text>    </Normal Text><Comment>// of the winner contained in the proposals array and then</Comment><br/>
+<Normal Text>    </Normal Text><Comment>// returns the name of the winner</Comment><br/>
+<Normal Text>    </Normal Text><Control Structures>function</Control Structures><Normal Text> winnerName</Normal Text><Symbol>()</Symbol><Normal Text> </Normal Text><Keyword>public</Keyword><Normal Text> </Normal Text><Keyword>view</Keyword><br/>
+<Normal Text>            </Normal Text><Keyword>returns</Keyword><Normal Text> </Normal Text><Symbol>(</Symbol><Data Type>bytes32</Data Type><Normal Text> winnerName_</Normal Text><Symbol>)</Symbol><br/>
+<Normal Text>    </Normal Text><Symbol>{</Symbol><br/>
+<Normal Text>        winnerName_ </Normal Text><Symbol>=</Symbol><Normal Text> proposals</Normal Text><Symbol>[</Symbol><Normal Text>winningProposal</Normal Text><Symbol>()].</Symbol><Normal Text>name</Normal Text><Symbol>;</Symbol><br/>
+<Normal Text>    </Normal Text><Symbol>}</Symbol><br/>
+<Symbol>}</Symbol><br/>

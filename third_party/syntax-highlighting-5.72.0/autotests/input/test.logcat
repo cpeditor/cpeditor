@@ -1,0 +1,106 @@
+--------- beginning of system
+02-29 16:51:18.810   188   188 V test    : When he woke up, the dinosaur was still there
+02-29 16:51:18.811   188   188 V test    : When he woke up, the dinosaur was still there
+02-29 16:51:18.821   188   188 I test    : When he woke up, the dinosaur was still there
+02-29 16:51:18.849   188   191 I test    : When he woke up, the dinosaur was still there
+02-29 16:51:18.850   188   191 D test    : When he woke up, the dinosaur was still there
+02-29 16:51:18.850   188   191 D test    : When he woke up, the dinosaur was still there
+02-29 16:51:18.854   188   193 W test    : When he woke up, the dinosaur was still there
+02-29 16:51:18.854   188   193 W test    : When he woke up, the dinosaur was still there
+02-29 16:51:18.854   188   193 E test    : When he woke up, the dinosaur was still there
+02-29 16:51:18.854   188   193 E test    : When he woke up, the dinosaur was still there
+02-29 16:51:18.857   188   193 A test    : When he woke up, the dinosaur was still there
+02-29 16:51:18.857   188   193 A test    : When he woke up, the dinosaur was still there
+02-29 16:51:18.857   188   193 S test    : When he woke up, the dinosaur was still there
+02-29 16:51:29.154   580   580 S test    : When he woke up, the dinosaur was still there
+02-29 16:51:30.423   580   580 F test    : When he woke up, the dinosaur was still there
+02-29 16:51:30.468   580   580 F test    : When he woke up, the dinosaur was still there
+
+--------- beginning of brief format
+V/test    (  119): When he woke up, the dinosaur was still there
+V/test    (  119): When he woke up, the dinosaur was still there
+--------- beginning of year format
+2018-02-29 16:51:40.899  1362  1365 I test    : When he woke up, the dinosaur was still there
+2018-02-29 16:51:40.899  1362  1365 I test    : When he woke up, the dinosaur was still there
+--------- beginning of color format
+[38;5;166m03-20 16:51:40.898  1664  1770 F test    : When he woke up, the dinosaur was still there[0m
+[38;5;166m03-20 16:51:40.899  1664  1779 D test    : When he woke up, the dinosaur was still there[0m
+[38;5;166m03-20 16:51:40.899  1664  1755 D test    : When he woke up, the dinosaur was still there[0m
+--------- beginning of epoch format
+         1521575578.229   188   191 W test    : When he woke up, the dinosaur was still there
+         1521575578.246   188   191 W test    : When he woke up, the dinosaur was still there
+--------- beginning of monotonic format
+    13.418   188   193 E test    : When he woke up, the dinosaur was still there
+    13.419   188   193 E test    : When he woke up, the dinosaur was still there
+--------- beginning of process format
+A(  148) When he woke up, the dinosaur was still there
+A(  148) When he woke up, the dinosaur was still there
+--------- beginning of tag format
+S/test    : When he woke up, the dinosaur was still there
+S/test    : When he woke up, the dinosaur was still there
+--------- beginning of thread format
+F( 1664: 1664) When he woke up, the dinosaur was still there
+F( 1664: 2268) When he woke up, the dinosaur was still there
+E( 1664: 2269) When he woke up, the dinosaur was still there
+E( 1664: 2270) When he woke up, the dinosaur was still there
+--------- beginning of time format
+02-29 19:33:50.940 V/test    (  188): When he woke up, the dinosaur was still there
+02-29 19:33:50.940 V/test    (  188): When he woke up, the dinosaur was still there
+--------- beginning of uid format
+02-29 19:33:50.950  root   188   193 I/test    : When he woke up, the dinosaur was still there
+02-29 19:33:51.049  1000   229   229 I/test    : When he woke up, the dinosaur was still there
+--------- beginning of usec format
+02-29 19:33:51.850400   229   229 D/test    : When he woke up, the dinosaur was still there
+02-29 19:33:51.854069   229   242 D/test    : When he woke up, the dinosaur was still there
+--------- beginning of utc/zone format
+02-29 19:33:51.050 -0300   580   688 W/test    : When he woke up, the dinosaur was still there
+02-29 19:33:51.067 +0000   580   688 W/test    : When he woke up, the dinosaur was still there
+
+--------- beginning of long format
+
+[ 02-29 16:51:18.810   188:  188 V/vold     ]
+When he woke up, the dinosaur was still there
+
+[ 02-29 16:51:18.811   188:  188 I/vold     ]
+When he woke up, the dinosaur was still there
+
+[ 02-29 16:51:18.821   188:  188 D/Vold     ]
+When he woke up,
+	the dinosaur was still there
+
+[ 02-29 16:51:18.849   188:  191 W/vold     ]
+When
+he woke up,
+the dinosaur was still there
+
+[ 02-29 16:51:18.850   188:  191 E/MessageQueue ]
+When he woke up,
+	
+	the dinosaur was still there
+
+[ 02-29 16:51:18.854   188:  193 A/vold     ]
+
+When he woke up, the dinosaur was still there
+
+
+[ 02-29 16:51:18.859   188:  193 S/vold     ]
+When he woke up, the dinosaur was still there
+
+[ 02-29 16:51:18.902   188:  199 F/libc     ]
+When he woke up, the dinosaur was still there
+
+--------- error (different formats)
+
+02-30 20:00:00.123   188   193 E error line : When he woke up, the dinosaur was still there
+02-30 20:00:01.112   188   193 E error line : When he woke up, the dinosaur was still there
+
+13.418   188   193 E test    : When he woke up, the dinosaur was still there
+E(  148) When he woke up, the dinosaur was still there
+E/test    : When he woke up, the dinosaur was still there
+E( 1664: 2269) When he woke up, the dinosaur was still there
+02-30 20:00:03.240 E/test    (  188): When he woke up, the dinosaur was still there
+
+[ 02-30 20:00:04.001   188:  195 E/Error ]
+When he woke up,
+    the dinosaur
+        was still there

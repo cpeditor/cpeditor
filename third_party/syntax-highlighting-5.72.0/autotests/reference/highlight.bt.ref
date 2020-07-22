@@ -1,0 +1,31 @@
+<Thread>Thread 1 "lab_dialog" received signal SIGSEGV, Segmentation fault.</Thread><br/>
+<Normal>0x000055555555a279 in Ui_Window::setupUi (this=0x0, Window=0x7fffffffc350) at ./ui_window.h:56</Normal><br/>
+<Normal>56              centralwidget = new QWidget(Window);</Normal><br/>
+<Normal></Normal><br/>
+<Thread>[Current thread is 1 (Thread 0x7ffff7edd840 (LWP 7267))]</Thread><br/>
+<Normal></Normal><br/>
+<Thread>Thread 3 (Thread 0x7fffe035e700 (LWP 2289)):</Thread><br/>
+<Normal>#0  0x00007ffff565697b in </Normal><Function>poll</Function><Normal> () from</Normal><File> /usr/lib/libc.so.6</File><br/>
+<Normal>#1  0x00007ffff3a29613 in </Normal><Function>??</Function><Normal> () from</Normal><File> /usr/lib/libglib-2.0.so.0</File><br/>
+<Normal>#2  0x00007ffff3a2972e in </Normal><Function>g_main_context_iteration</Function><Normal> () from</Normal><File> /usr/lib/libglib-2.0.so.0</File><br/>
+<Normal>#3  0x00007ffff69ae241 in </Normal><QualifiedIdentifier>QEventDispatcherGlib::processEvents(QFlags<QEventLoop::</QualifiedIdentifier><Function>ProcessEventsFlag>)</Function><Normal> () from</Normal><File> /usr/lib/libQt5Core.so.5</File><br/>
+<Normal>#4  0x00007ffff695032b in </Normal><QualifiedIdentifier>QEventLoop::exec(QFlags<QEventLoop::</QualifiedIdentifier><Function>ProcessEventsFlag>)</Function><Normal> () from</Normal><File> /usr/lib/libQt5Core.so.5</File><br/>
+<Normal>#5  0x00007ffff675f72e in </Normal><QualifiedIdentifier>QThread::</QualifiedIdentifier><Function>exec()</Function><Normal> () from</Normal><File> /usr/lib/libQt5Core.so.5</File><br/>
+<Normal>#6  0x00007fffeed1d416 in </Normal><Function>??</Function><Normal> () from</Normal><File> /usr/lib/libQt5DBus.so.5</File><br/>
+<Normal>#7  0x00007ffff6764acd in </Normal><Function>??</Function><Normal> () from</Normal><File> /usr/lib/libQt5Core.so.5</File><br/>
+<Normal>#8  0x00007ffff621308c in </Normal><Function>start_thread</Function><Normal> () from</Normal><File> /usr/lib/libpthread.so.0</File><br/>
+<Normal>#9  0x00007ffff5660e7f in </Normal><Function>clone</Function><Normal> () from</Normal><File> /usr/lib/libc.so.6</File><br/>
+<Normal></Normal><br/>
+<Thread>Thread 2 (Thread 0x7fffebd8a700 (LWP 2287)):</Thread><br/>
+<Normal>#0  0x00007ffff565697b in </Normal><Function>poll</Function><Normal> () from</Normal><File> /usr/lib/libc.so.6</File><br/>
+<Normal>#1  0x00007ffff011a180 in </Normal><Function>??</Function><Normal> () from</Normal><File> /usr/lib/libxcb.so.1</File><br/>
+<Normal>#2  0x00007ffff011be4b in </Normal><Function>xcb_wait_for_event</Function><Normal> () from</Normal><File> /usr/lib/libxcb.so.1</File><br/>
+<Normal>#3  0x00007fffef21382a in </Normal><Function>??</Function><Normal> () from</Normal><File> /usr/lib/libQt5XcbQpa.so.5</File><br/>
+<Normal>#4  0x00007ffff6764acd in </Normal><Function>??</Function><Normal> () from</Normal><File> /usr/lib/libQt5Core.so.5</File><br/>
+<Normal>#5  0x00007ffff621308c in </Normal><Function>start_thread</Function><Normal> () from</Normal><File> /usr/lib/libpthread.so.0</File><br/>
+<Normal>#6  0x00007ffff5660e7f in </Normal><Function>clone</Function><Normal> () from</Normal><File> /usr/lib/libc.so.6</File><br/>
+<Normal></Normal><br/>
+<Thread>Thread 1 (Thread 0x7ffff7f80cc0 (LWP 2283)):</Thread><br/>
+<Normal>#0  0x000055555555a279 in </Normal><QualifiedIdentifier>Ui_Window::</QualifiedIdentifier><Function>setupUi</Function><Normal> (this=</Normal><Crash>0x0</Crash><Normal>, Window=0x7fffffffc350) at</Normal><File> ./ui_window.h</File><Normal>:56</Normal><br/>
+<Normal>#1  0x0000555555558ea2 in </Normal><QualifiedIdentifier>Window::</QualifiedIdentifier><Function>Window</Function><Normal> (this=0x7fffffffc350, parent=</Normal><Crash>0x0</Crash><Normal>) at</Normal><File> ../window.cpp</File><Normal>:22</Normal><br/>
+<Normal>#2  0x0000555555558b85 in </Normal><Function>main</Function><Normal> (argc=1, argv=0x7fffffffc498) at</Normal><File> ../main.cpp</File><Normal>:20</Normal><br/>

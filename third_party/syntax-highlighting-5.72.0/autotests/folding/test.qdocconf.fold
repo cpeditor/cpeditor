@@ -1,0 +1,65 @@
+# Test file for qdocconf highlighting
+#
+# Alerts: ### TODO
+
+# example fragments from GammaRay:
+project = "GammaRay"
+description = "GammaRay User Manual"
+url = https://doc.qt.io/GammaRay
+
+sourcedirs = .
+sources.fileextensions = "*.qdoc"
+
+imagedirs = images
+
+exampledirs = ../../examples
+examples.fileextensions = "*.h *.cpp *.qml"
+
+depends += qtcore qtnetwork qtgui qtwidgets qtqml qtquick qt3d qtwaylandcompositor
+
+qhp.projects = GammaRay
+
+qhp.GammaRay.file = gammaray-manual.qhp
+qhp.GammaRay.namespace = com.kdab.GammaRay.$QT_VERSION_TAG
+qhp.GammaRay.virtualFolder = gammaray
+qhp.GammaRay.indexTitle = GammaRay User Manual
+qhp.GammaRay.indexRoot =
+
+qhp.GammaRay.subprojects = manual
+qhp.GammaRay.subprojects.manual.title = GammaRay User Manual
+qhp.GammaRay.subprojects.manual.indexTitle = GammaRay User Manual
+qhp.GammaRay.subprojects.manual.type = manual
+
+navigation.homepage    = "GammaRay User Manual"
+navigation.landingpage = "GammaRay User Manual"
+buildversion = "GammaRay User Manual $QT_VERSION"
+
+# backward compatibility with Qt < 5.7
+macro.borderedimage = "\\div {class=\"border\"} \\image \1\n\\enddiv"
+
+include(gammaray-manual.qdocconf)
+
+HTML.stylesheets += \
+    style/qt5-sidebar.html \
+    style/gammaray-manual-splash-screen.png \
+    style/gammaray-logo-256.png \
+
+# this goes between breadcrumb and sidebar
+HTML.postpostheader = \
+    "</ul></div></nav>\n" \
+    "<div class=\"container\">\n" \
+    "<div class=\"row\">\n"
+
+# this goes between sidebar and actual content
+HTML.prologue = \
+    " <div class=\"content\" id=\"content\">\n" \
+
+# selector use from qtbase:
+qhp.QtCore.filterAttributes    = qtcore $QT_VERSION qtrefdoc
+qhp.QtCore.customFilters.Qt.name = QtCore $QT_VERSION
+qhp.QtCore.customFilters.Qt.filterAttributes = qtcore $QT_VERSION
+qhp.QtCore.subprojects         = classes
+qhp.QtCore.subprojects.classes.title = C++ Classes
+qhp.QtCore.subprojects.classes.indexTitle = Qt Core C++ Classes
+qhp.QtCore.subprojects.classes.selectors = class fake:headerfile
+qhp.QtCore.subprojects.classes.sortPages = true

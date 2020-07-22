@@ -1,0 +1,47 @@
+# Highlight words
+word1
+_word2
+/word3
+word4+
+<word5>
+&
+;;;
+w w-word8-
+
+normal word1
+normal _word2
+normal /word3
+normal word4+
+normal <word5>
+normal &
+normal ;;;
+normal w w-word8-
+
+....word1....
+...._word2....
+..../word3....
+....word4+....
+....<word5>....
+....&....
+....;;;....
+....w w-word8-....
+
+normal_word2 <-- _word2
+normal/word3 <-- /word3
+word4+normal <-- word4+
+normal<word5>normal <-- <word5>
+normal&normal <-- &
+normal;;;normal <-- ;;;
+w w-word8-normal <-- w w-word8-
+
+aaa_word2_aaa <-- _word2
+aaa/word3/aaa <-- /word3
+aaa+word4+aaa <-- word4+
+aaa-w w-word8-aaa <-- w w-word8-
+
+# Normal text
+aaaword1aaa
+aaa_word2aaa
+aaa/word3aaa
+aaaword4+aaa
+aaaw w-word8-aaa

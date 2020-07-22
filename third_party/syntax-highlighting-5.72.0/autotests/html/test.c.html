@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title>test.c</title>
+<meta name="generator" content="KF5::SyntaxHighlighting (C)"/>
+</head><body style="color:#1f1c1b"><pre>
+<span style="color:#006e28;">#include </span><span style="color:#ff5500;">&lt;stdio.h&gt;</span>
+<span style="color:#006e28;">#include </span><span style="color:#ff5500;">&quot;stdint.h&quot;</span>
+
+<span style="color:#006e28;">#define SOME_VAR 1</span>
+<span style="color:#006e28;">#ifdef SOME_VAR</span>
+
+<span style="color:#006e28;">#define MULTILINE_MACRO one \</span>
+<span style="color:#006e28;">two \</span>
+<span style="color:#006e28;">three</span>
+
+<span style="color:#0057ae;">static</span> <span style="color:#0057ae;">uint64_t</span> intWithSuffix = <span style="color:#b08000;">42</span><span style="color:#644a9b;font-weight:bold;">ull</span> + ~<span style="color:#b08000;">1233</span><span style="color:#644a9b;font-weight:bold;">L</span>;
+<span style="color:#0057ae;">static</span> <span style="color:#0057ae;">int</span> octNum = <span style="color:#b08000;">07232</span>;
+<span style="color:#0057ae;">static</span> <span style="color:#0057ae;">int</span> invalidOctNum = <span style="color:#bf0303;text-decoration:underline;">09231</span>;
+<span style="color:#0057ae;">static</span> <span style="color:#0057ae;">uint64_t</span> hexNum = <span style="color:#b08000;">0xDEADBEEF42</span>;
+<span style="color:#0057ae;">static</span> <span style="color:#0057ae;">uint64_t</span> invalidHexNum = <span style="color:#bf0303;text-decoration:underline;">0xGLDFKG</span>;
+<span style="color:#0057ae;">static</span> <span style="color:#0057ae;">char</span> binNum = <span style="color:#b08000;">0b0101010</span>;
+
+<span style="color:#0057ae;">static</span> <span style="color:#0057ae;">double</span> d1 = <span style="color:#b08000;">42.</span> + <span style="color:#b08000;">0x1.5p+2</span>;
+<span style="color:#0057ae;">static</span> <span style="color:#0057ae;">double</span> d2 = <span style="color:#b08000;">.42</span>;
+<span style="color:#0057ae;">static</span> <span style="color:#0057ae;">double</span> d3 = <span style="color:#b08000;">42.3e1</span>;
+<span style="color:#0057ae;">static</span> <span style="color:#0057ae;">double</span> d4 = <span style="color:#b08000;">.2e-12</span>;
+<span style="color:#0057ae;">static</span> <span style="color:#0057ae;">double</span> d5 = <span style="color:#b08000;">32.e+12</span>;
+<span style="color:#0057ae;">static</span> <span style="color:#0057ae;">float</span> floatQualifier = <span style="color:#b08000;">23.123</span><span style="color:#644a9b;font-weight:bold;">f</span>;
+
+<span style="color:#0057ae;">static</span> <span style="color:#0057ae;">const</span> <span style="color:#0057ae;">char</span> c1 = <span style="color:#924c9d;">'c'</span>;
+<span style="color:#0057ae;">static</span> <span style="color:#0057ae;">const</span> <span style="color:#0057ae;">char</span> c2 = <span style="color:#924c9d;">'\n'</span>;
+<span style="color:#0057ae;">static</span> <span style="color:#0057ae;">const</span> <span style="color:#0057ae;">char</span> c2a = <span style="color:#924c9d;">'\120'</span>; <span style="color:#898887;">// octal</span>
+<span style="color:#0057ae;">static</span> <span style="color:#0057ae;">const</span> <span style="color:#0057ae;">char</span> c2o = <span style="color:#924c9d;">'\0'</span>; <span style="color:#898887;">// octal, special case</span>
+<span style="color:#0057ae;">static</span> <span style="color:#0057ae;">const</span> <span style="color:#0057ae;">char</span> c2b = <span style="color:#924c9d;">'\x1f'</span>; <span style="color:#898887;">// hex</span>
+<span style="color:#0057ae;">static</span> <span style="color:#0057ae;">const</span> <span style="color:#0057ae;">char</span> c2c = <span style="color:#924c9d;">'\''</span>;
+<span style="color:#0057ae;">static</span> <span style="color:#0057ae;">const</span> <span style="color:#0057ae;">char</span> c2d = <span style="color:#924c9d;">'\\'</span>;
+<span style="color:#0057ae;">static</span> <span style="color:#0057ae;">const</span> <span style="color:#0057ae;">char</span>* c3  = <span style="color:#bf0303;">&quot;string&quot;</span>;
+<span style="color:#0057ae;">static</span> <span style="color:#0057ae;">const</span> <span style="color:#0057ae;">char</span>* c4 = <span style="color:#bf0303;">&quot;</span><span style="color:#3daee9;">\&quot;</span><span style="color:#bf0303;">string</span><span style="color:#3daee9;">\n\t\012\x12\&quot;</span><span style="color:#bf0303;">&quot;</span>;
+<span style="color:#0057ae;">static</span> <span style="color:#0057ae;">const</span> <span style="color:#0057ae;">char</span>* c5 = <span style="color:#bf0303;">&quot;multiline \</span>
+<span style="color:#bf0303;">    string&quot;</span>;
+
+<span style="color:#0057ae;background-color:#e0e9f8;">//BEGIN region</span>
+<span style="color:#898887;">// </span><span style="color:#ca9219;background-color:#451e1a;font-weight:bold;">TODO</span><span style="color:#898887;"> comment </span><span style="color:#ca9219;background-color:#451e1a;font-weight:bold;">FIXME</span><span style="color:#898887;"> comment </span><span style="color:#81ca2d;background-color:#f7e6e6;font-weight:bold;">###</span><span style="color:#898887;"> comment</span>
+<span style="color:#0057ae;background-color:#e0e9f8;">//END region</span>
+
+<span style="color:#bf0303;text-decoration:underline;">#wrong</span>
+
+<span style="color:#898887;">/**</span>
+<span style="color:#898887;"> * Doxygen</span>
+<span style="color:#898887;"> * </span><span style="color:#ca60ca;font-weight:bold;">@param</span><span style="color:#898887;"> </span><span style="color:#0095ff;font-weight:bold;">p1</span><span style="color:#898887;"> text</span>
+<span style="color:#898887;"> * </span><span style="color:#ca60ca;font-weight:bold;">\brief</span><span style="color:#898887;"> </span><span style="font-weight:bold;">&lt;b&gt;</span><span style="color:#898887;">bold text</span><span style="font-weight:bold;">&lt;/b&gt;</span>
+<span style="color:#898887;"> * </span><span style="color:#ca60ca;font-weight:bold;">\dot</span>
+<span style="color:#00a000;font-style:italic;"> </span><span style="color:#898887;">*</span><span style="color:#00a000;font-style:italic;"> a -&gt; b</span>
+<span style="color:#00a000;font-style:italic;"> </span><span style="color:#898887;">*</span><span style="color:#00a000;font-style:italic;"> </span><span style="color:#ca60ca;font-weight:bold;">\enddot</span>
+<span style="color:#898887;"> *</span>
+<span style="color:#898887;"> * </span><span style="color:#ca60ca;font-weight:bold;">\verbatim</span>
+<span style="color:#898887;"> </span><span style="color:#898887;">*</span><span style="color:#898887;"> &lt;dummy&gt;</span>
+<span style="color:#898887;"> </span><span style="color:#898887;">*</span><span style="color:#898887;"> </span><span style="color:#ca60ca;font-weight:bold;">\endverbatim</span>
+<span style="color:#898887;"> * </span><span style="font-weight:bold;">&lt;html&gt;</span><span style="color:#898887;">text</span><span style="font-weight:bold;">&lt;/html&gt;</span>
+<span style="color:#898887;"> */</span>
+
+<span style="color:#006e28;">#endif</span>
+
+<span style="color:#898887;">/*</span>
+<span style="color:#898887;"> * Empty lines after a line continuation character (see bug #405903)</span>
+<span style="color:#898887;"> */</span>
+<span style="color:#006e28;">#define one \</span>
+<span style="color:#006e28;">two \</span>
+
+<span style="color:#0057ae;">int</span> i = <span style="color:#b08000;">0</span>; <span style="color:#898887;">// this should not be highlighted as a macro</span>
+<span style="color:#0057ae;">char</span>* str = <span style="color:#bf0303;">&quot;string \</span>
+
+
+<span style="color:#0057ae;">int</span> i = <span style="color:#b08000;">0</span>; <span style="color:#898887;">// this should not be highlighted as a string</span>
+
+<span style="color:#898887;">/*</span>
+<span style="color:#898887;"> * Digraphs (see bug #411508)</span>
+<span style="color:#898887;"> */</span>
+<span style="color:#006e28;">%:include </span><span style="color:#ff5500;">&lt;stdio.h&gt;</span>
+<span style="color:#0057ae;">int</span> a()
+&lt;%
+    [](){%&gt;();
+}
+</pre></body></html>

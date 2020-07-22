@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title>highlight.y</title>
+<meta name="generator" content="KF5::SyntaxHighlighting (Yacc/Bison)"/>
+</head><body style="color:#1f1c1b"><pre>
+<span style="color:#898887;">/* Yacc / Bison hl test file.</span>
+<span style="color:#898887;"> * It won't compile :-) Sure !</span>
+<span style="color:#898887;"> */</span>
+
+<span style="color:#b08000;font-weight:bold;">%{</span>
+
+<span style="color:#006e28;">#include </span><span style="color:#ff5500;">&lt;iostream&gt;</span>
+<span style="font-weight:bold;">using</span> <span style="font-weight:bold;">namespace</span> std;
+
+<span style="color:#0057ae;">extern</span> KateParser *parser;
+
+<span style="color:#b08000;font-weight:bold;">%}</span>
+
+<span style="font-weight:bold;">%locations</span>
+
+<span style="font-weight:bold;">%union</span> { 
+   <span style="color:#0057ae;">int</span> int_val;
+   <span style="color:#0057ae;">double</span> double_val;
+   <span style="color:#0057ae;">bool</span> bool_val;
+   <span style="color:#0057ae;">char</span> *string_val;
+   <span style="color:#0057ae;">char</span> *ident_val;
+   <span style="font-weight:bold;">struct</span> var *v;
+   <span style="color:#0057ae;">void</span> *ptr;
+}
+
+<span style="font-weight:bold;">%token</span> <span style="color:#0057ae;">&lt;int_val&gt;</span>      TOK_NOT_EQUAL  <span style="color:#bf0303;">&quot;!=&quot;</span>
+<span style="font-weight:bold;">%token</span> <span style="color:#0057ae;">&lt;int_val&gt;</span>      TOK_LESSER_E   <span style="color:#bf0303;">&quot;&lt;=&quot;</span>
+<span style="font-weight:bold;">%token</span> <span style="color:#0057ae;">&lt;int_val&gt;</span>      TOK_GREATER_E  <span style="color:#bf0303;">&quot;&gt;=&quot;</span>
+<span style="font-weight:bold;">%token</span> <span style="color:#0057ae;">&lt;int_val&gt;</span>      TOK_EQUAL_2    <span style="color:#bf0303;">&quot;==&quot;</span> <span style="color:#898887;">//comment</span>
+<span style="font-weight:bold;">%token</span>
+   PERCENT_DEBUG           <span style="color:#bf0303;">&quot;%debug&quot;</span>
+   PERCENT_DEFAULT_PREC    <span style="color:#bf0303;">&quot;%default-prec&quot;</span>
+   PERCENT_DEFINE          <span style="color:#bf0303;">&quot;%define&quot;</span>
+;
+
+<span style="font-weight:bold;">%type</span> <span style="color:#0057ae;">&lt;int_val&gt;</span>       type type_proc
+
+<span style="font-weight:bold;">%code</span> top {
+  <span style="color:#006e28;">#define </span><span style="color:#006e28;">_GNU_SOURCE</span>
+  <span style="color:#006e28;">#include </span><span style="color:#ff5500;">&lt;stdio.h&gt;</span>
+  <span style="color:#0057ae;">int</span> val;
+}
+
+<span style="font-weight:bold;">%destructor</span> { free (<span style="font-weight:bold;">$$</span>); printf (<span style="color:#bf0303;">&quot;</span><span style="color:#3daee9;">%d</span><span style="color:#bf0303;">&quot;</span>, <span style="font-weight:bold;">@$</span>.first_line); } <span style="color:#0057ae;">&lt;*&gt;</span>
+<span style="font-weight:bold;">%lex-param</span>   {scanner_mode *mode};
+<span style="font-weight:bold;">%parse-param</span> {<span style="color:#0057ae;">int</span> *nastiness} {<span style="color:#0057ae;">int</span> *randomness}
+<span style="font-weight:bold;">%initial-action</span> {
+  <span style="font-weight:bold;">@$</span>.initialize (file_name);
+};
+
+<span style="color:#b08000;font-weight:bold;">%%</span>
+
+<span style="color:#bf0303;">prog</span>:                 KW_PROGRAM ident { parser-&gt;start(<span style="font-weight:bold;">$2</span>); } prog_beg_glob_decl instructions { parser-&gt;endproc(<span style="color:#b08000;">0</span>); } dev_procedures KW_ENDP ;
+
+<span style="color:#bf0303;">number</span>:               integer_number
+                      | TOK_DOUBLE
+                      {
+                         <span style="font-weight:bold;">$$</span> = <span style="font-weight:bold;">new</span> var;
+                         <span style="font-weight:bold;">$$</span>-&gt;type = KW_REEL;
+                         <span style="font-weight:bold;">$$</span>-&gt;cl = var::LITTERAL;
+                         <span style="font-weight:bold;">$$</span>-&gt;real = <span style="font-weight:bold;">$</span><span style="color:#0057ae;">&lt;int_val&gt;</span><span style="font-weight:bold;">1</span>;
+                      };
+<span style="color:#bf0303;">words</span>:
+                      <span style="font-weight:bold;">%empty</span>
+                      | words word
+                      ;
+
+<span style="font-weight:bold;">%type</span> <span style="color:#0057ae;">&lt;type&gt;</span> word;
+<span style="font-weight:bold;">%printer</span> { fprintf (yyo, <span style="color:#bf0303;">&quot;</span><span style="color:#3daee9;">%s</span><span style="color:#bf0303;">&quot;</span>, word_string (<span style="font-weight:bold;">$$</span>)); } <span style="color:#0057ae;">&lt;type&gt;</span>;
+<span style="color:#bf0303;">word</span>:
+                      <span style="font-weight:bold;">%?</span>{ boom(<span style="color:#b08000;">1</span>); }
+                      | <span style="color:#bf0303;">&quot;hello&quot;</span>  { <span style="font-weight:bold;">$$</span> = hello; }
+                      | <span style="color:#bf0303;">&quot;bye&quot;</span>  { <span style="font-weight:bold;">$$</span> = bye; }
+                      ;
+
+<span style="color:#bf0303;">foo</span>:                  { <span style="font-weight:bold;">$$</span> = <span style="color:#b08000;">0</span> }
+                      | number { <span style="font-weight:bold;">$$</span> = <span style="font-weight:bold;">$1</span> | <span style="font-weight:bold;">$2</span>; }
+                      | hello { <span style="font-weight:bold;">$$</span> = <span style="font-weight:bold;">$1</span> | <span style="font-weight:bold;">$3</span>; } <span style="color:#898887;">// without a comma</span>
+
+<span style="color:#bf0303;font-weight:bold;">h</span><span style="color:#bf0303;">ello</span>:
+                      gram1 { <span style="font-weight:bold;">$$</span> = <span style="color:#bf0303;">&quot;hi&quot;</span> };
+                      | gram2
+                      ;;
+                      
+<span style="color:#b08000;font-weight:bold;">%%</span>
+
+<span style="color:#006e28;">#include </span><span style="color:#ff5500;">&lt;stdio.h&gt;</span>
+
+<span style="color:#0057ae;">int</span> main(<span style="color:#0057ae;">void</span>)
+{
+  puts(<span style="color:#bf0303;">&quot;Hello, World!&quot;</span>);
+  <span style="font-weight:bold;">return</span> <span style="color:#b08000;">0</span>;
+}
+
+<span style="color:#898887;">// </span><span style="color:#e85848;background-color:#451e1a;font-weight:bold;">ALERT</span><span style="color:#898887;"> </span><span style="color:#81ca2d;background-color:#f7e6e6;font-weight:bold;">NOTE</span>
+</pre></body></html>

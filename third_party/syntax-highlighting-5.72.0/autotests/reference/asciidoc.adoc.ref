@@ -1,0 +1,2813 @@
+<Main Title>= AsciiDoc Syntax Highlighting</Main Title><br/>
+<Comment>// There are multiple level 0 sections, so use book instead of article.</Comment><br/>
+<Attribute>:doctype: </Attribute><Attribute Value>book</Attribute Value><br/>
+<Comment>// For nice admonition and callout icons.</Comment><br/>
+<Attribute>:icons: </Attribute><Attribute Value>font</Attribute Value><br/>
+<Attribute>:toc: </Attribute><Attribute Value>left</Attribute Value><br/>
+<Normal></Normal><br/>
+<Normal>Testing the syntax highlighting support in KDE Frameworks.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>The first of the following sections lists the things that are known not to work.</Normal><br/>
+<Normal>Further sections are intended for testing the supported features of AsciiDoc.</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>= Known Not to Work</Section Title><br/>
+<Normal></Normal><br/>
+<Normal>There are a couple of things that are known not to work.</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>== Block</Section Title><br/>
+<Normal></Normal><br/>
+<List Marker>*</List Marker><Normal> Highlighting of attributes inside a block title.</Normal><br/>
+<Normal></Normal><br/>
+<List Marker>*</List Marker><Normal> Highlighting of formatted text inside a block title other than </Normal><Replacement>...</Replacement><br/>
+<List Marker>**</List Marker><Normal> </Normal><Marked>#marked#</Marked><br/>
+<List Marker>**</List Marker><Normal> </Normal><Monospaced>`monospaced`</Monospaced><br/>
+<Normal></Normal><br/>
+<List Marker>*</List Marker><Normal> Code folding for contiguous blocks.</Normal><br/>
+<Control>+</Control><br/>
+<Normal>This has an advantage too, though.</Normal><br/>
+<Normal>It enables the user to decide on having code folding or not.</Normal><br/>
+<Normal>For short blocks without empty lines where no code folding is desired, use contiguous blocks.</Normal><br/>
+<Normal>For longer blocks which should support code folding, use delimited blocks.</Normal><br/>
+<Normal></Normal><br/>
+<List Marker>*</List Marker><Normal> Multiple lines of meta data.</Normal><br/>
+<Control>+</Control><br/>
+<Block Title>.For delimited blocks, Asciidoctor supports something like this:</Block Title><br/>
+<Delimiter>-----</Delimiter><br/>
+<Verbatim>[source]</Verbatim><br/>
+<Verbatim>[, options="nowrap"]</Verbatim><br/>
+<Verbatim>----</Verbatim><br/>
+<Verbatim>puts 'hello'</Verbatim><br/>
+<Verbatim>----</Verbatim><br/>
+<Delimiter>-----</Delimiter><br/>
+<Control>+</Control><br/>
+<Normal>Syntax highlighting does not recognize the additional meta data lines and will rather interpret this as a contiguous block.</Normal><br/>
+<Normal></Normal><br/>
+<List Marker>*</List Marker><Normal> </Normal><Link>https://asciidoctor.org/docs/user-manual/#discrete-headings[Discrete headings]</Link><Normal>  inside block.</Normal><br/>
+<Control>+</Control><br/>
+<Delimiter>-----</Delimiter><br/>
+<Verbatim>****</Verbatim><br/>
+<Verbatim>Some text.</Verbatim><br/>
+<Verbatim></Verbatim><br/>
+<Verbatim>[discrete]</Verbatim><br/>
+<Verbatim>=== Discrete Heading</Verbatim><br/>
+<Verbatim></Verbatim><br/>
+<Verbatim>Some more text.</Verbatim><br/>
+<Verbatim>****</Verbatim><br/>
+<Delimiter>-----</Delimiter><br/>
+<Control>+</Control><br/>
+<Normal>Syntax highlighting does not recognize discrete headings inside a block.</Normal><br/>
+<Normal>If a normal section title is marked as being discrete, highlighting works.</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>== Custom Styles</Section Title><br/>
+<Normal></Normal><br/>
+<List Marker>*</List Marker><Normal> Highlighting of formatted text within the phrase to be styled.</Normal><br/>
+<Control>+</Control><br/>
+<Verbatim>  Some [big]#big and *strong*# text.</Verbatim><br/>
+<Normal></Normal><br/>
+<List Marker>*</List Marker><Normal> Highlighting of styles with a phrase that spans multiple lines.</Normal><br/>
+<Control>+</Control><br/>
+<Delimiter>----</Delimiter><br/>
+<Verbatim>[big]#this</Verbatim><br/>
+<Verbatim>is</Verbatim><br/>
+<Verbatim>not</Verbatim><br/>
+<Verbatim>highlighted#</Verbatim><br/>
+<Delimiter>----</Delimiter><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>== Formatted/Quoted Text</Section Title><br/>
+<Normal></Normal><br/>
+<List Marker>*</List Marker><Normal> Highlighting of formatted/quoted text (e.g. monospaced) that spans multiple lines.</Normal><br/>
+<Normal></Normal><br/>
+<List Marker>*</List Marker><Normal> Highlighting combinations besides those of emphasized, strong and monospaced.</Normal><br/>
+<List Marker>**</List Marker><Normal> Attributes inside other formatting.</Normal><br/>
+<Control>+</Control><br/>
+<Verbatim>  `{attribute-id} inside monospaced`</Verbatim><br/>
+<Normal></Normal><br/>
+<List Marker>**</List Marker><Normal> Passthrough inside other formatting.</Normal><br/>
+<Control>+</Control><br/>
+<Verbatim>  `+passthrough+ inside monospaced`</Verbatim><br/>
+<Normal></Normal><br/>
+<List Marker>**</List Marker><Normal> Marked text inside other formatting.</Normal><br/>
+<Control>+</Control><br/>
+<Verbatim>  `#marked# inside monospaced`</Verbatim><br/>
+<Normal></Normal><br/>
+<List Marker>**</List Marker><Normal> Subscript inside other formatting.</Normal><br/>
+<Control>+</Control><br/>
+<Verbatim>  `~sub~script inside monospaced`</Verbatim><br/>
+<Normal></Normal><br/>
+<List Marker>**</List Marker><Normal> Superscript inside other formatting.</Normal><br/>
+<Control>+</Control><br/>
+<Verbatim>  `^super^script inside monospaced`</Verbatim><br/>
+<Normal></Normal><br/>
+<Normal>And even more complex combinations.</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>== List</Section Title><br/>
+<Normal></Normal><br/>
+<List Marker>*</List Marker><Normal> Inside a list, indented lines without leading asterisks or hyphen start highlighting for a verbatim paragraph.</Normal><br/>
+<Normal>Asciidoctor renders this as normal text.</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>== Macro</Section Title><br/>
+<Normal></Normal><br/>
+<List Marker>*</List Marker><Normal> Highlighting of macros with a text argument that spans multiple lines.</Normal><br/>
+<Control>+</Control><br/>
+<Delimiter>----</Delimiter><br/>
+<Verbatim>xref:id[this works just fine]</Verbatim><br/>
+<Verbatim></Verbatim><br/>
+<Verbatim>xref:id[</Verbatim><br/>
+<Verbatim>highlighting a macro with</Verbatim><br/>
+<Verbatim>a text that spans multiples</Verbatim><br/>
+<Verbatim>does not work</Verbatim><br/>
+<Verbatim>]</Verbatim><br/>
+<Delimiter>----</Delimiter><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>== Quote, Verse</Section Title><br/>
+<Normal></Normal><br/>
+<List Marker>*</List Marker><Normal> Highlighting for single quote symbol </Normal><Monospaced>`"`</Monospaced><Normal>.</Normal><br/>
+<Control>+</Control><br/>
+<Normal>Highlighting for air quotes </Normal><Monospaced>`""`</Monospaced><Normal> is supported.</Normal><br/>
+<Normal></Normal><br/>
+<List Marker>*</List Marker><Normal> Highlighting for Markdown style quotes.</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>== Replacement</Section Title><br/>
+<Normal></Normal><br/>
+<Normal>Highlighting for replacements is limited to those listed in the </Normal><Link>https://asciidoctor.org/docs/user-manual/#replacements[Asciidoctor Manual]</Link><Normal> and numerical character references.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>Highlighting for other </Normal><Link>https://en.wikipedia.org/wiki/List_of_XML_and_HTML_character_entity_references[HTML/XML character references]</Link><Normal> is not supported.</Normal><br/>
+<Normal></Normal><br/>
+<Block Title>.Examples of supported references</Block Title><br/>
+<List Marker>*</List Marker><Normal> </Normal><Monospaced>`+(C)+`</Monospaced><Normal> resulting in </Normal><Replacement>(C)</Replacement><br/>
+<List Marker>*</List Marker><Normal> </Normal><Monospaced>`+=>+`</Monospaced><Normal> resulting in </Normal><Replacement>=></Replacement><br/>
+<List Marker>*</List Marker><Normal> </Normal><Monospaced>`+&#188;+`</Monospaced><Normal> resulting in </Normal><Replacement>&#188;</Replacement><br/>
+<Normal></Normal><br/>
+<Block Title>.Examples of references that are not supported</Block Title><br/>
+<List Marker>*</List Marker><Normal> </Normal><Monospaced>`+&frac14;+`</Monospaced><Normal> resulting in &frac14;</Normal><br/>
+<List Marker>*</List Marker><Normal> </Normal><Monospaced>`+&phi;+`</Monospaced><Normal> resulting in &phi;</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>== Section</Section Title><br/>
+<Normal></Normal><br/>
+<List Marker>*</List Marker><Normal> Setext style for section titles.</Normal><br/>
+<Control>+</Control><br/>
+<Normal>Only Atx style is supported.</Normal><br/>
+<Control>+</Control><br/>
+<Preprocessor>NOTE:</Preprocessor><Normal> Asciidoctor</Normal><Replacement>'</Replacement><Normal>s </Normal><Link>https://asciidoctor.org/docs/asciidoc-recommended-practices/[recommended practices]</Link><Normal> states </Normal><Emphasized>_not_</Emphasized><Normal> to use Setext style for section titles.</Normal><br/>
+<Normal></Normal><br/>
+<List Marker>*</List Marker><Normal> Highlighting of formatted/quoted text inside section title other than </Normal><Replacement>...</Replacement><br/>
+<List Marker>**</List Marker><Normal> </Normal><Marked>#marked#</Marked><br/>
+<List Marker>**</List Marker><Normal> </Normal><Monospaced>`monospaced`</Monospaced><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>== Table</Section Title><br/>
+<Normal></Normal><br/>
+<List Marker>*</List Marker><Normal> Highlighting of tables with custom separator.</Normal><br/>
+<List Marker>**</List Marker><Normal> The custom separator will </Normal><Emphasized>_not_</Emphasized><Normal> be highlighted.</Normal><br/>
+<List Marker>**</List Marker><Normal> All </Normal><Monospaced>`|`</Monospaced><Normal> inside the table </Normal><Emphasized>_will be falsly_</Emphasized><Normal> highlighted.</Normal><br/>
+<Normal></Normal><br/>
+<List Marker>*</List Marker><Normal> Highlighting of delimiter-separated tables.</Normal><br/>
+<List Marker>**</List Marker><Normal> Table delimiters in shorthand notation and the value separator will </Normal><Emphasized>_not_</Emphasized><Normal> be highlighted.</Normal><br/>
+<List Marker>**</List Marker><Normal> All </Normal><Monospaced>`|`</Monospaced><Normal> inside the table </Normal><Emphasized>_will be falsly_</Emphasized><Normal> highlighted.</Normal><br/>
+<Normal></Normal><br/>
+<List Marker>*</List Marker><Normal> Applying styles on table contents.</Normal><br/>
+<Control>+</Control><br/>
+<Normal>When defining a table, individual columns or cells can be defined to be highlighted </Normal><Strong>*strong*</Strong><Normal> etc..</Normal><br/>
+<Normal>Corresponding highlighting of these cells does not work.</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>= Admonition</Section Title><br/>
+<Normal></Normal><br/>
+<Section Title>== Simple Format</Section Title><br/>
+<Normal></Normal><br/>
+<Preprocessor>NOTE:</Preprocessor><Normal> A simple note.</Normal><br/>
+<Normal></Normal><br/>
+<Comment>////</Comment><br/>
+<Alert Level 2>FIXME</Alert Level 2><Comment>: In the paragraph below is no note as it is started in the middle of the paragraph.</Comment><br/>
+<Comment>This is problematic as we would need to know that the note line is not the first line in the paragraph.</Comment><br/>
+<Comment>////</Comment><br/>
+<Normal>Some text.</Normal><br/>
+<Preprocessor>NOTE:</Preprocessor><Normal> This is not a separate note as it is part of the paragraph started with the line above.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>NOTE:This is not a note as there is no space after the </Normal><Monospaced>`:`</Monospaced><Normal>.</Normal><br/>
+<Normal></Normal><br/>
+<Verbatim>  NOTE: This is not a note as it is indented.</Verbatim><br/>
+<Normal></Normal><br/>
+<Normal>NOTE : This is not a note as there are spaces between </Normal><Monospaced>`NOTE`</Monospaced><Normal> and </Normal><Monospaced>`:`</Monospaced><Normal>.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>NOTE:</Normal><br/>
+<Normal>This is not a note as it is not using block format and the text is not starting on the same line as the label.</Normal><br/>
+<Normal></Normal><br/>
+<Preprocessor>NOTE:</Preprocessor><Normal> This is a lengthy note in simple format.</Normal><br/>
+<Normal>Second line.</Normal><br/>
+<Normal>One more line.</Normal><br/>
+<Normal>And another one.</Normal><br/>
+<Normal>This is the last line.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>This line is not part of the simple note anymore.</Normal><br/>
+<Normal></Normal><br/>
+<Preprocessor>CAUTION:</Preprocessor><Normal> This is a CAUTION.</Normal><br/>
+<Normal></Normal><br/>
+<Preprocessor>IMPORTANT:</Preprocessor><Normal> This is IMPORTANT.</Normal><br/>
+<Normal></Normal><br/>
+<Preprocessor>TIP:</Preprocessor><Normal> This is a TIP. </Normal><Control>+</Control><br/>
+<Normal>This second line is rendered as a line on its own because of the trailing </Normal><Monospaced>`+`</Monospaced><Normal> in the first line.</Normal><br/>
+<Normal></Normal><br/>
+<Preprocessor>WARNING:</Preprocessor><Normal> This is a WARNING.</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>== Block Format</Section Title><br/>
+<Normal></Normal><br/>
+<Block Title>.Contiguous</Block Title><br/>
+<Preprocessor>[NOTE]</Preprocessor><br/>
+<Anchor>[[contiguous-note-id]]</Anchor><br/>
+<Normal>This is a contiguous </Normal><Strong>*note*</Strong><Normal> block.</Normal><br/>
+<Normal>Second line.</Normal><br/>
+<Normal>And one more line.</Normal><br/>
+<Comment>// comment inside block</Comment><br/>
+<Normal>This is the final line.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>This line is not part of the contiguous note block anymore.</Normal><br/>
+<Normal></Normal><br/>
+<Block Title>.Delimited</Block Title><br/>
+<Preprocessor>[NOTE]</Preprocessor><br/>
+<Anchor>[[delimited-note-id]]</Anchor><br/>
+<Delimiter>====</Delimiter><br/>
+<Normal>This is a </Normal><Strong>*note*</Strong><Normal> in block format.</Normal><br/>
+<Normal>As a block, the note may have a title</Normal><br/>
+<Comment>// comment inside block</Comment><br/>
+<Normal></Normal><br/>
+<Normal>In block format, multiple lines, paragraphs etc. are possible.</Normal><br/>
+<Delimiter>====</Delimiter><br/>
+<Normal></Normal><br/>
+<Normal>There is no delimited admonition block without block name.</Normal><br/>
+<Normal>Using </Normal><Monospaced>`====`</Monospaced><Normal> delimiter without a block name results in an example block.</Normal><br/>
+<Normal></Normal><br/>
+<Block Title>.Using open block</Block Title><br/>
+<Preprocessor>[NOTE]</Preprocessor><br/>
+<Delimiter>--</Delimiter><br/>
+<Normal>Inside the open block note.</Normal><br/>
+<Delimiter>--</Delimiter><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>= </Section Title><Anchor>[[main-1]]</Anchor><Section Title>An</Section Title><Anchor>[[main-2]]</Anchor><Section Title>chor</Section Title><Anchor>[[main-3]]</Anchor><Section Title> and Cross Reference</Section Title><br/>
+<Normal></Normal><br/>
+<Section Title>== </Section Title><Anchor>[[section-1]][[section-2]]</Anchor><Section Title> An</Section Title><Anchor>[[section-3]][[section-4]]</Anchor><Section Title>chor</Section Title><Anchor>[[section-5]]</Anchor><br/>
+<Normal></Normal><br/>
+<Anchor>[[isolated-anchor]]</Anchor><br/>
+<Normal>Isolated anchor.</Normal><br/>
+<Normal></Normal><br/>
+<Anchor>[[isolated-anchor-with-label,Isolated Anchor With Label]]</Anchor><br/>
+<Normal>Isolated anchor with label.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>This line has an </Normal><Anchor>[[inline-anchor, Inline Anchor]]</Anchor><Normal>anchor placed inside the text.</Normal><br/>
+<Normal></Normal><br/>
+<Anchor>[#isolated-shorthand]</Anchor><br/>
+<Normal>Isolated anchor using shorthand definition.</Normal><br/>
+<Normal></Normal><br/>
+<Anchor>[#isolated-shorthand, Isolated Shorthand Anchor]</Anchor><br/>
+<Normal>Isolated anchor with label using shorthand definition.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>This line has an </Normal><Anchor>  [    #inline-shorthand    ]#anchor placed inside the text#</Anchor><Normal>  #.</Normal><br/>
+<Normal></Normal><br/>
+<Block Title>.Inside </Block Title><Anchor>[[block-anchor]]</Anchor><Block Title>block title</Block Title><br/>
+<Normal>Works too.</Normal><br/>
+<Normal></Normal><br/>
+<Block Title>.Macro form</Block Title><br/>
+<Normal>There is also a ma</Normal><Preprocessor>anchor:anchor-id[Macro Anchor]</Preprocessor><Normal>cro form for anchor definition.</Normal><br/>
+<Normal></Normal><br/>
+<Preprocessor>NOTE:</Preprocessor><Normal> There is no space needed before the </Normal><Monospaced>`anchor`</Monospaced><Normal> macro name.</Normal><br/>
+<Normal>Also not after the closing </Normal><Monospaced>`]`</Monospaced><Normal>.</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>=== Not an anchor</Section Title><br/>
+<Normal></Normal><br/>
+<Normal>[[ not-an-anchor]]</Normal><br/>
+<Normal>because of the space after the opening brackets.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>[[not-an-anchor ]]</Normal><br/>
+<Normal>because of the space before the closing brackets.</Normal><br/>
+<Normal></Normal><br/>
+<Verbatim> [[not-an-anchor]] because of line starting with spaces.</Verbatim><br/>
+<Normal></Normal><br/>
+<Verbatim> [#not-an-anchor]#because# of line starting with spaces.</Verbatim><br/>
+<Normal></Normal><br/>
+<Normal>[#not-an-anchor] because of trailing text.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>Not an anchor because of leading text [#not-an-anchor]</Normal><br/>
+<Normal></Normal><br/>
+<Normal>Also[</Normal><Marked>#not-an-anchor]#some text#</Marked><Normal> because of missing space before </Normal><Monospaced>`[`</Monospaced><Normal>.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>Also [</Normal><Marked>#not-an-anchor] #some text#</Marked><Normal> because of space after </Normal><Monospaced>`]`</Monospaced><Normal>.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>Also [</Normal><Marked>#not-an-anchor]#</Marked><Normal> some text# because of space after the leading </Normal><Monospaced>`#`</Monospaced><Normal>.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>Also [</Normal><Marked>#not-an-anchor]because of missing referred text (e.g. `#some text#</Marked><Normal>`).</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>=== Escaped</Section Title><br/>
+<Normal></Normal><br/>
+<Normal>This is an escaped \[[anchor-id, some </Normal><Marked>#anchor#</Marked><Normal> label]] anchor.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>This is just some \normal text.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>Some\[[anchor-id]]anchor.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>\[[anchor-id]]</Normal><br/>
+<Normal></Normal><br/>
+<Comment>////</Comment><br/>
+<Alert Level 2>FIXME</Alert Level 2><Comment>: highlighting differs</Comment><br/>
+<Comment>Asciidoctor seems to just pass through the anchor when escaping it.</Comment><br/>
+<Comment>This behaviour is rather unexpected, as in other cases the escaped contents is subject to further highlighting.</Comment><br/>
+<Comment></Comment><br/>
+<Comment>We currently only consume the opening bracket.</Comment><br/>
+<Comment>////</Comment><br/>
+<Normal>This is an escaped \[</Normal><Marked>#shorthand-id]#anchor in shorthand form#</Marked><Normal>.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>Some \[#shorthand-id].</Normal><br/>
+<Normal></Normal><br/>
+<Normal>\[#shorthand-id]</Normal><br/>
+<Normal></Normal><br/>
+<Normal>\[</Normal><Marked>#shorthand-id]#</Marked><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>== Cross References</Section Title><br/>
+<Normal></Normal><br/>
+<Link><<main-1>></Link><br/>
+<Normal></Normal><br/>
+<Link><<main-2>></Link><br/>
+<Normal></Normal><br/>
+<Link><<main-3>></Link><br/>
+<Normal></Normal><br/>
+<Link><<section-1>></Link><br/>
+<Normal></Normal><br/>
+<Normal>This is a reference to </Normal><Link><<section-2>></Link><Normal>.</Normal><br/>
+<Normal></Normal><br/>
+<Link><<section-3>></Link><Normal> some text >> some more text</Normal><br/>
+<Normal></Normal><br/>
+<Normal>some << text <</Normal><Link><<section-4>></Link><Normal>></Normal><br/>
+<Normal></Normal><br/>
+<Link><<section-5>></Link><br/>
+<Normal></Normal><br/>
+<Link><<isolated-anchor>></Link><br/>
+<Normal></Normal><br/>
+<Link><<isolated-anchor-with-label>></Link><br/>
+<Normal></Normal><br/>
+<Link><<inline-anchor>></Link><br/>
+<Normal></Normal><br/>
+<Link><<isolated-shorthand>></Link><br/>
+<Normal></Normal><br/>
+<Link><<inline-shorthand>></Link><Normal>.</Normal><br/>
+<Normal></Normal><br/>
+<Link><<block-anchor>></Link><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>=== Escaped</Section Title><br/>
+<Normal></Normal><br/>
+<Normal>This is not a reference \<<section-1>>.</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>= Attribute</Section Title><br/>
+<Normal></Normal><br/>
+<Section Title>== No Value</Section Title><br/>
+<Normal></Normal><br/>
+<Attribute>:some-attribute:</Attribute><br/>
+<Normal>This line should not be highlighted.</Normal><br/>
+<Normal></Normal><br/>
+<Verbatim>  :not-an-attribute: as the line is indented.</Verbatim><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>== Single Line Value</Section Title><br/>
+<Normal></Normal><br/>
+<Normal>Attributes with values that are rendered as a single line, even if their definition spans multiple lines.</Normal><br/>
+<Normal></Normal><br/>
+<Block Title>.Single line definition</Block Title><br/>
+<Attribute>:single-line: </Attribute><Attribute Value>only one line</Attribute Value><br/>
+<Normal>This line is not part of the attribute value anymore.</Normal><br/>
+<Normal></Normal><br/>
+<Marked>##before##</Marked><Attribute>{single-line}</Attribute><Marked>##after##</Marked><br/>
+<Normal></Normal><br/>
+<Attribute>:attr-in-attr-value: </Attribute><Attribute Value>in multi line definition</Attribute Value><br/>
+<Normal></Normal><br/>
+<Block Title>.Multi line definition</Block Title><br/>
+<Attribute>:single-line-continued: </Attribute><Attribute Value>First line {attr-in-attr-value}.</Attribute Value><Normal> </Normal><Control>\</Control><br/>
+<Attribute Value>Second line.</Attribute Value><Normal> </Normal><Control>\</Control><br/>
+<Attribute Value>Another line.</Attribute Value><br/>
+<Normal>This line is not part of the attribute value anymore.</Normal><br/>
+<Normal></Normal><br/>
+<Marked>##before##</Marked><Attribute>{single-line-continued}</Attribute><Marked>##after##</Marked><br/>
+<Normal></Normal><br/>
+<Preprocessor>IMPORTANT:</Preprocessor><Normal> At least one space is needed before the continuation </Normal><Monospaced>`\`</Monospaced><Normal>.</Normal><br/>
+<Normal></Normal><br/>
+<Block Title>.Line continuation is only highlighted when inside an attribute definition</Block Title><br/>
+<Normal>some \</Normal><br/>
+<Normal>text</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>== Multi Line Value</Section Title><br/>
+<Normal></Normal><br/>
+<Normal>Attributes with values including hard line breaks.</Normal><br/>
+<Normal></Normal><br/>
+<Preprocessor>IMPORTANT:</Preprocessor><Normal> At least one space is needed before the continuation </Normal><Monospaced>`+`</Monospaced><Normal> and between the </Normal><Monospaced>`+`</Monospaced><Normal> and the </Normal><Monospaced>`\`</Monospaced><Normal>.</Normal><br/>
+<Normal></Normal><br/>
+<Attribute>:multi-line: </Attribute><Attribute Value>First line.</Attribute Value><Normal> </Normal><Control>+</Control><Normal> </Normal><Control>\</Control><br/>
+<Attribute Value>Second line.</Attribute Value><Normal>   </Normal><Control>+</Control><Normal>    </Normal><Control>\</Control><br/>
+<Attribute Value>Third line.</Attribute Value><br/>
+<Normal>This line is not part of the attribute value anymore.</Normal><br/>
+<Normal></Normal><br/>
+<Marked>##before##</Marked><Attribute>{multi-line}</Attribute><Marked>##after##</Marked><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>== Inline Definition</Section Title><br/>
+<Normal></Normal><br/>
+<Normal>Inline attribute definitions </Normal><Attribute>{set:inline-attribute:</Attribute><Attribute Value>just fine</Attribute Value><Attribute>}</Attribute><Normal> works </Normal><Attribute>{inline-attribute}</Attribute><Normal>.</Normal><br/>
+<Normal></Normal><br/>
+<Block Title>.Surplus </Block Title><Monospaced>`:`</Monospaced><Block Title> is part of the value</Block Title><br/>
+<Attribute>{set:attr:</Attribute><Attribute Value>:some value</Attribute Value><Attribute>}</Attribute><br/>
+<Attribute>{attr}</Attribute><br/>
+<Normal></Normal><br/>
+<Attribute>{set:attr}</Attribute><br/>
+<Attribute>{attr}</Attribute><br/>
+<Normal></Normal><br/>
+<Block Title>.Not an inline definition as leading </Block Title><Monospaced>`set:`</Monospaced><Block Title> is missing</Block Title><br/>
+<Normal>{single-line:some value}</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>== Unsetting</Section Title><br/>
+<Normal></Normal><br/>
+<Attribute>:!_custom_2-:</Attribute><br/>
+<Attribute>:_custom_2-!:</Attribute><br/>
+<Normal></Normal><br/>
+<Block Title>.Adding a value when unsetting doesn't make sense, but doesn't hurt either</Block Title><br/>
+<Attribute>:some-attribute: </Attribute><Attribute Value>some value</Attribute Value><br/>
+<Normal>Attribute is set to </Normal><Monospaced>`{some-attribute}`</Monospaced><Normal>.</Normal><br/>
+<Normal></Normal><br/>
+<Attribute>:!some-attribute: </Attribute><Attribute Value>some value</Attribute Value><br/>
+<Attribute>{some-attribute}</Attribute><Normal> is not set anymore.</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>== Not an Attribute</Section Title><br/>
+<Normal></Normal><br/>
+<Normal>:not-an-attribute:as there is no space after the terminating column of the identifier</Normal><br/>
+<Normal></Normal><br/>
+<Verbatim>  :not-an-attribute: as it is indented</Verbatim><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>== Combination with Other Highlighting</Section Title><br/>
+<Normal></Normal><br/>
+<Delimiter>****</Delimiter><br/>
+<Attribute>:inside-a-block: </Attribute><Attribute Value>inside a block</Attribute Value><br/>
+<Normal>Using an attribute </Normal><Attribute>{inside-a-block}</Attribute><Normal> works too.</Normal><br/>
+<Delimiter>****</Delimiter><br/>
+<Normal></Normal><br/>
+<Attribute>:inside-formatting: </Attribute><Attribute Value>inside formatting</Attribute Value><br/>
+<Normal>An attribute used </Normal><Monospaced>`{inside-formatting}`</Monospaced><Normal> is not highlighting as attribute.</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>== Escaped</Section Title><br/>
+<Normal></Normal><br/>
+<Normal>\:attr-1: escaped attribute definition + \</Normal><br/>
+<Normal>second line of escaped attribute definition</Normal><br/>
+<Normal></Normal><br/>
+<Normal>\:!attr-1: escaped unset attribute</Normal><br/>
+<Normal></Normal><br/>
+<Normal>\:-attr-1: this is not highlighted as escaped attribute definition as it has an invalid attribute id.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>This \:attr-1: is not highlighted as escaped attribute definition as it is not used at line start.</Normal><br/>
+<Normal></Normal><br/>
+<Attribute>:attr-1: </Attribute><Attribute Value>some attribute</Attribute Value><br/>
+<Normal>This is not rendered as \{attr-1}.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>This is not an inline attribute definition \{set:attr-2:some other attribute}. </Normal><Control>+</Control><br/>
+<Attribute>{attr-2}</Attribute><Normal> is not set.</Normal><br/>
+<Normal></Normal><br/>
+<Delimiter>****</Delimiter><br/>
+<Attribute>:inside-a-block: </Attribute><Attribute Value>inside a block</Attribute Value><br/>
+<Normal>Escaping an attribute \{inside-a-block} works too.</Normal><br/>
+<Delimiter>****</Delimiter><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>= Bibliography</Section Title><br/>
+<Normal></Normal><br/>
+<Section Title>== Using References</Section Title><br/>
+<Normal></Normal><br/>
+<Normal>The first reference has no label, so its id </Normal><Link><<ref-1>></Link><Normal> is rendered.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>The second reference has number </Normal><Link><<r2>></Link><Normal> as label.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>The third reference has </Normal><Link><<r3>></Link><Normal> as label.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>A reference definition inside the text instead of the bibliography section yields some strange result: </Normal><Anchor>[[[ref-o,outside bibliography]]]</Anchor><Normal>].</Normal><br/>
+<Normal>Not sure what to do with this.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>This is trying to use the escaped reference </Normal><Link><<r4>></Link><Normal>.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>This is trying to use reference </Normal><Link><<r6>></Link><Normal>.</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Preprocessor>[bibliography]</Preprocessor><br/>
+<Section Title>== References</Section Title><br/>
+<Normal></Normal><br/>
+<List Marker>-</List Marker><Normal> </Normal><Anchor>[[[ref-1]]]</Anchor><Normal> This is reference 1.</Normal><br/>
+<List Marker>-</List Marker><Normal> </Normal><Anchor>[[[r2,2]]]</Anchor><Normal>This is reference 2.</Normal><br/>
+<List Marker>-</List Marker><Normal> </Normal><Anchor>[[[r3,Some Text]]]</Anchor><br/>
+<Normal>This is reference 3.</Normal><br/>
+<List Marker>-</List Marker><Normal> [\[[r4, escaped]]] This is </Normal><Marked>#escaped#</Marked><Normal>.</Normal><br/>
+<List Marker>-</List Marker><Normal> </Normal><Anchor>[[[r5,5]]]</Anchor><Normal> This is reference 5.</Normal><br/>
+<List Marker>*</List Marker><Normal> </Normal><Anchor>[[[r6,strange]]]</Anchor><Normal> Using an asterisk yields a strange result.</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>= Block</Section Title><br/>
+<Normal></Normal><br/>
+<Preprocessor>[abstract]</Preprocessor><br/>
+<Block Title>.Abstract - contiguous block</Block Title><br/>
+<Normal>This document is used for testing syntax highlighting regarding various types of blocks.</Normal><br/>
+<Normal>E.g. this contiguous abstract block. </Normal><Control>+</Control><br/>
+<Normal>Using block form for the abstract seems to be rendered differently than the section form (see </Normal><Monospaced>`section.adoc`</Monospaced><Normal>).</Normal><br/>
+<Normal></Normal><br/>
+<Preprocessor>[abstract]</Preprocessor><br/>
+<Block Title>.Abstract - delimited open block</Block Title><br/>
+<Delimiter>--</Delimiter><br/>
+<Normal>Using the delimited block form </Normal><Replacement>...</Replacement><br/>
+<Normal></Normal><br/>
+<Normal>enables having empty lines in the abstract.</Normal><br/>
+<Delimiter>--</Delimiter><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>== General</Section Title><br/>
+<Normal></Normal><br/>
+<Preprocessor>NOTE:</Preprocessor><Normal> Starting and ending delimiter must be balanced, meaning they must have the same length.</Normal><br/>
+<Normal></Normal><br/>
+<Block Title>.Block title </Block Title><Marked>#before#</Marked><Block Title> block meta data</Block Title><br/>
+<Preprocessor>[literal]</Preprocessor><br/>
+<Delimiter>....</Delimiter><br/>
+<Verbatim>Inside the block.</Verbatim><br/>
+<Delimiter>....</Delimiter><br/>
+<Normal></Normal><br/>
+<Preprocessor>[literal]</Preprocessor><br/>
+<Block Title>.Block title </Block Title><Monospaced>`after`</Monospaced><Block Title> block meta data</Block Title><br/>
+<Delimiter>....</Delimiter><br/>
+<Verbatim>Inside the block.</Verbatim><br/>
+<Delimiter>....</Delimiter><br/>
+<Normal></Normal><br/>
+<Block Title>.Invalid block name</Block Title><br/>
+<Normal>[ literal]</Normal><br/>
+<Delimiter>....</Delimiter><br/>
+<Verbatim>This block has invalid meta data as there is a space between the opening square bracket and the block name.</Verbatim><br/>
+<Delimiter>....</Delimiter><br/>
+<Normal></Normal><br/>
+<Block Title>.Block with attributes</Block Title><br/>
+<Preprocessor>[literal, some, attributes]</Preprocessor><br/>
+<Delimiter>....</Delimiter><br/>
+<Verbatim>Inside the block.</Verbatim><br/>
+<Delimiter>....</Delimiter><br/>
+<Normal></Normal><br/>
+<Block Title>.Anchor before block name for contiguous block</Block Title><br/>
+<Anchor>[[contiguous_block_id_before_name]]</Anchor><br/>
+<Preprocessor>[literal]</Preprocessor><br/>
+<Verbatim>Inside the block.</Verbatim><br/>
+<Normal></Normal><br/>
+<Block Title>.Anchor after block name for contiguous block</Block Title><br/>
+<Preprocessor>[literal]</Preprocessor><br/>
+<Anchor>[[contiguous_block_id_after_name]]</Anchor><br/>
+<Verbatim>Inside the block.</Verbatim><br/>
+<Normal></Normal><br/>
+<Block Title>.Anchor after block name for delimited block</Block Title><br/>
+<Preprocessor>[literal]</Preprocessor><br/>
+<Anchor>[#delimited_block_id]</Anchor><br/>
+<Delimiter>....</Delimiter><br/>
+<Verbatim>Inside the block.</Verbatim><br/>
+<Delimiter>....</Delimiter><br/>
+<Normal></Normal><br/>
+<Block Title>.Option definition</Block Title><br/>
+<Preprocessor>[literal%some-option, some, attributes]</Preprocessor><br/>
+<Verbatim>Inside the block.</Verbatim><br/>
+<Normal></Normal><br/>
+<Block Title>.Shorthand anchor definition</Block Title><br/>
+<Comment>// </Comment><Alert Level 2>TODO</Alert Level 2><Comment> Would be nice if we could highligth the shorthand ID definition as such.</Comment><br/>
+<Preprocessor>[literal#shorthand-id, some, attributes]</Preprocessor><br/>
+<Verbatim>Inside the block.</Verbatim><br/>
+<Normal></Normal><br/>
+<Normal>Link to </Normal><Link><<contiguous_block_id_before_name>></Link><Normal>.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>Link to </Normal><Link><<contiguous_block_id_after_name>></Link><Normal>.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>Link to </Normal><Link><<shorthand-id>></Link><Normal>.</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>== Admonition</Section Title><br/>
+<Normal></Normal><br/>
+<Normal>See </Normal><Monospaced>`admonition.adoc`</Monospaced><Normal>.</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>== Comment</Section Title><br/>
+<Normal></Normal><br/>
+<Normal>See </Normal><Monospaced>`comment.adoc`</Monospaced><Normal>.</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>== Example</Section Title><br/>
+<Normal></Normal><br/>
+<Block Title>.Contiguous</Block Title><br/>
+<Preprocessor>[example]</Preprocessor><br/>
+<Anchor>[[example-block-id]]</Anchor><br/>
+<Normal>A countiguous </Normal><Strong>*example*</Strong><Normal> block.</Normal><br/>
+<Comment>// some comment</Comment><br/>
+<Normal>Second line of the example block.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>This line is not part of the contiguous example block anymore.</Normal><br/>
+<Normal></Normal><br/>
+<Block Title>.Delimited with block name</Block Title><br/>
+<Preprocessor>[example]</Preprocessor><br/>
+<Comment>// some comment</Comment><br/>
+<Anchor>[[example-block-id]]</Anchor><br/>
+<Comment>// some comment</Comment><br/>
+<Delimiter>====</Delimiter><br/>
+<Comment>// some comment</Comment><br/>
+<Normal>Inside the delimited example block.</Normal><br/>
+<Delimiter>====</Delimiter><br/>
+<Normal></Normal><br/>
+<Block Title>.Delimited without block name</Block Title><br/>
+<Anchor>[[example-block-id]]</Anchor><br/>
+<Delimiter>====</Delimiter><br/>
+<Normal>Inside the delimited example block.</Normal><br/>
+<Delimiter>====</Delimiter><br/>
+<Normal></Normal><br/>
+<Block Title>.Using an open block</Block Title><br/>
+<Preprocessor>[example]</Preprocessor><br/>
+<Anchor>[[example-block-id]]</Anchor><br/>
+<Delimiter>--</Delimiter><br/>
+<Normal>Inside the open block example.</Normal><br/>
+<Delimiter>--</Delimiter><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>== Fenced</Section Title><br/>
+<Normal></Normal><br/>
+<Preprocessor>NOTE:</Preprocessor><Normal> According to the </Normal><Link>https://asciidoctor.org/docs/user-manual/#built-in-blocks-summary[Asciidoctor manual]</Link><Normal>, fenced blocks do not support block names.</Normal><br/>
+<Normal></Normal><br/>
+<Block Title>.Delimited without block name</Block Title><br/>
+<Anchor>[#fenced-block-id]</Anchor><br/>
+<Delimiter>```</Delimiter><br/>
+<Verbatim>Inside the fenced block.</Verbatim><br/>
+<Verbatim>The block contents is rendered verbatim.</Verbatim><br/>
+<Verbatim>So there is *no* text formatting.</Verbatim><br/>
+<Delimiter>```</Delimiter><br/>
+<Normal></Normal><br/>
+<Block Title>.This is not a fenced block</Block Title><br/>
+<Monospaced>``````</Monospaced><br/>
+<Normal>A fenced block</Normal><Replacement>'</Replacement><Normal>s delimiter length is </Normal><Emphasized>_exactly_</Emphasized><Normal> 3.</Normal><br/>
+<Monospaced>``````</Monospaced><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>== Listing</Section Title><br/>
+<Normal></Normal><br/>
+<Block Title>.Contiguous</Block Title><br/>
+<Preprocessor>[listing]</Preprocessor><br/>
+<Anchor>[[listing-block-id]]</Anchor><br/>
+<Verbatim>A countiguous *listing* block.</Verbatim><br/>
+<Verbatim>Last line of the listing.</Verbatim><br/>
+<Normal></Normal><br/>
+<Normal>This line is not part of the contiguous block anymore.</Normal><br/>
+<Normal></Normal><br/>
+<Block Title>.Delimited with block name</Block Title><br/>
+<Preprocessor>[listing]</Preprocessor><br/>
+<Anchor>[[listing-block-id]]</Anchor><br/>
+<Comment>// comment before the opening block delimiter</Comment><br/>
+<Comment>////</Comment><br/>
+<Comment>block comment</Comment><br/>
+<Comment>////</Comment><br/>
+<Delimiter>----</Delimiter><br/>
+<Verbatim>First line inside the *listing* block.</Verbatim><br/>
+<Verbatim>Last line inside the block.</Verbatim><br/>
+<Delimiter>----</Delimiter><br/>
+<Normal></Normal><br/>
+<Block Title>.Delimited without block name</Block Title><br/>
+<Anchor>[[listing-block-id]]</Anchor><br/>
+<Delimiter>----</Delimiter><br/>
+<Verbatim>Inside the delimited listing block.</Verbatim><br/>
+<Delimiter>----</Delimiter><br/>
+<Normal></Normal><br/>
+<Block Title>.Using an open block</Block Title><br/>
+<Preprocessor>[listing]</Preprocessor><br/>
+<Anchor>[[listing-block-id]]</Anchor><br/>
+<Delimiter>--</Delimiter><br/>
+<Verbatim>Inside the open block listing.</Verbatim><br/>
+<Delimiter>--</Delimiter><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>== Literal</Section Title><br/>
+<Normal></Normal><br/>
+<Block Title>.Contiguous</Block Title><br/>
+<Preprocessor>[literal]</Preprocessor><br/>
+<Comment>// some comment</Comment><br/>
+<Anchor>[[literal-block-id]]</Anchor><br/>
+<Comment>// some comment</Comment><br/>
+<Verbatim>Inside the contiguous literal block.</Verbatim><br/>
+<Verbatim>// this should not be highlighted as comment</Verbatim><br/>
+<Verbatim>.this should not be highlighted as title</Verbatim><br/>
+<Verbatim>The block contents is rendered verbatim.</Verbatim><br/>
+<Verbatim>So there is *no* text formatting.</Verbatim><br/>
+<Verbatim>// this should not be highlighted as comment</Verbatim><br/>
+<Normal></Normal><br/>
+<Normal>This line is not part of the contiguous block anymore.</Normal><br/>
+<Normal></Normal><br/>
+<Block Title>.Delimited with block name</Block Title><br/>
+<Preprocessor>[literal]</Preprocessor><br/>
+<Comment>// some comment</Comment><br/>
+<Anchor>[#literal-block-id]</Anchor><br/>
+<Comment>// some comment</Comment><br/>
+<Delimiter>..........</Delimiter><br/>
+<Verbatim>Inside the delimited literal block.</Verbatim><br/>
+<Verbatim>// this should not be highlighted as comment</Verbatim><br/>
+<Verbatim>.this should not be highlighted as title</Verbatim><br/>
+<Delimiter>..........</Delimiter><br/>
+<Normal></Normal><br/>
+<Block Title>.Delimited without block name</Block Title><br/>
+<Anchor>[[literal-block-id]]</Anchor><br/>
+<Comment>// some comment</Comment><br/>
+<Delimiter>..........</Delimiter><br/>
+<Verbatim>Inside the delimited literal block.</Verbatim><br/>
+<Delimiter>..........</Delimiter><br/>
+<Normal></Normal><br/>
+<Block Title>.Using an open block</Block Title><br/>
+<Preprocessor>[literal]</Preprocessor><br/>
+<Comment>// some comment</Comment><br/>
+<Anchor>[[literal-block-id]]</Anchor><br/>
+<Comment>// some comment</Comment><br/>
+<Delimiter>--</Delimiter><br/>
+<Verbatim>// this should not be highlighted as comment</Verbatim><br/>
+<Verbatim>Inside the open block listing.</Verbatim><br/>
+<Delimiter>--</Delimiter><br/>
+<Normal></Normal><br/>
+<Block Title>.Using leading spaces for first line</Block Title><br/>
+<Verbatim>    When using some leading spaces, the whole paragraph is treated as literal.</Verbatim><br/>
+<Verbatim>Only the first line needs to have leading spaces.</Verbatim><br/>
+<Normal></Normal><br/>
+<Normal>This line is not part of the literal paragraph anymore.</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>== Open</Section Title><br/>
+<Normal></Normal><br/>
+<Preprocessor>NOTE:</Preprocessor><Normal> The open block does not have a contiguous form.</Normal><br/>
+<Normal></Normal><br/>
+<Block Title>.Delimited</Block Title><br/>
+<Anchor>[#open-block-id]</Anchor><br/>
+<Delimiter>--</Delimiter><br/>
+<Normal>An open block</Normal><Replacement>'</Replacement><Normal>s delimiter length is </Normal><Emphasized>_exactly_</Emphasized><Normal> 2.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>Last line of the </Normal><Marked>#open#</Marked><Normal> block.</Normal><br/>
+<Delimiter>--</Delimiter><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>== Passthrough</Section Title><br/>
+<Normal></Normal><br/>
+<Block Title>.Contiguous</Block Title><br/>
+<Preprocessor>[pass]</Preprocessor><br/>
+<Anchor>[[contiguous-passthrough-id]]</Anchor><br/>
+<Passthrough>Inside the contiguous passthrough block.</Passthrough><br/>
+<Passthrough>Second line to pass trhough.</Passthrough><br/>
+<Normal></Normal><br/>
+<Normal>This line is not part of the contiguous passthrough block anymore.</Normal><br/>
+<Normal></Normal><br/>
+<Block Title>.Delimited with block name</Block Title><br/>
+<Preprocessor>[pass]</Preprocessor><br/>
+<Anchor>[[delimited-passthrough-id]]</Anchor><br/>
+<Delimiter>++++++</Delimiter><br/>
+<Passthrough>Inside the delimited passthrough block with block name.</Passthrough><br/>
+<Delimiter>++++++</Delimiter><br/>
+<Normal></Normal><br/>
+<Block Title>.Delimited without block name</Block Title><br/>
+<Anchor>[[delimited-passthrough-id]]</Anchor><br/>
+<Delimiter>++++</Delimiter><br/>
+<Passthrough>Inside the delimited passthrough block without block name.</Passthrough><br/>
+<Delimiter>++++</Delimiter><br/>
+<Normal></Normal><br/>
+<Normal>According to the </Normal><Link>https://asciidoctor.org/docs/user-manual/#built-in-blocks-summary[Asciidoctor Manual]</Link><Normal>, passthrough using an open block is not supported.</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>== Quote</Section Title><br/>
+<Normal></Normal><br/>
+<Normal>See </Normal><Monospaced>`quote_verse.adoc`</Monospaced><Normal>.</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>== Sidebar</Section Title><br/>
+<Normal></Normal><br/>
+<Block Title>.Contiguous</Block Title><br/>
+<Preprocessor>[sidebar]</Preprocessor><br/>
+<Anchor>[[sidebar-block-id]]</Anchor><br/>
+<Normal>Inside the </Normal><Strong>*sidebar*</Strong><Normal> block.</Normal><br/>
+<Normal>Second line of the sidebar block.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>This line is not part of the sidbar block anymore.</Normal><br/>
+<Normal></Normal><br/>
+<Block Title>.Delimited with block name</Block Title><br/>
+<Preprocessor>[sidebar]</Preprocessor><br/>
+<Anchor>[[sidebar-block-id]]</Anchor><br/>
+<Delimiter>**********</Delimiter><br/>
+<Normal>Inside the </Normal><Strong>*sidebar*</Strong><Normal> block.</Normal><br/>
+<Delimiter>**********</Delimiter><br/>
+<Normal></Normal><br/>
+<Block Title>.Delimited without block name</Block Title><br/>
+<Anchor>[[sidebar-block-id]]</Anchor><br/>
+<Delimiter>****</Delimiter><br/>
+<Normal>Inside the sidebar block.</Normal><br/>
+<Delimiter>****</Delimiter><br/>
+<Normal></Normal><br/>
+<Block Title>.Using an open block</Block Title><br/>
+<Preprocessor>[sidebar]</Preprocessor><br/>
+<Anchor>[[sidebar-block-id]]</Anchor><br/>
+<Delimiter>--</Delimiter><br/>
+<Normal>Inside the sidebar block.</Normal><br/>
+<Delimiter>--</Delimiter><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>== Source</Section Title><br/>
+<Normal></Normal><br/>
+<Block Title>.Contiguous</Block Title><br/>
+<Preprocessor>[source,ruby]</Preprocessor><br/>
+<Anchor>[[source-block-id]]</Anchor><br/>
+<Verbatim>#This is Ruby source code.</Verbatim><br/>
+<Verbatim>#NOTE: If there is a space after the `#`, Asciidoctor interprets this as a section title.</Verbatim><br/>
+<Verbatim>#Seems in contiguous source blocks, Asciidoctor still interprets the block contents, which is rather unexpected.</Verbatim><br/>
+<Verbatim>import 'needed'</Verbatim><br/>
+<Verbatim>IO.puts "hello"</Verbatim><br/>
+<Normal></Normal><br/>
+<Block Title>.Contiguous using option syntax</Block Title><br/>
+<Preprocessor>[source%mixed,php]</Preprocessor><br/>
+<Verbatim><p></Verbatim><br/>
+<Verbatim><?php echo "Hello, World!"; ?></Verbatim><br/>
+<Verbatim></p></Verbatim><br/>
+<Normal></Normal><br/>
+<Block Title>.Delimited with block name</Block Title><br/>
+<Preprocessor>[source , ruby ]</Preprocessor><br/>
+<Anchor>[[source-block-id]]</Anchor><br/>
+<Delimiter>----</Delimiter><br/>
+<Verbatim># This is Ruby source code.</Verbatim><br/>
+<Verbatim># NOTE: in delimited source blocks, having a space after the `#` in the comment is OK.</Verbatim><br/>
+<Verbatim>import 'needed'</Verbatim><br/>
+<Verbatim></Verbatim><br/>
+<Verbatim>IO.puts "hello"</Verbatim><br/>
+<Delimiter>----</Delimiter><br/>
+<Normal></Normal><br/>
+<Block Title>.Delimited with block name using option syntax</Block Title><br/>
+<Preprocessor>[source%mixed,php]</Preprocessor><br/>
+<Delimiter>----</Delimiter><br/>
+<Verbatim><p></Verbatim><br/>
+<Verbatim><?php echo "Hello, World!"; ?></Verbatim><br/>
+<Verbatim></p></Verbatim><br/>
+<Delimiter>----</Delimiter><br/>
+<Normal></Normal><br/>
+<Block Title>.Delimited without block name</Block Title><br/>
+<Anchor>[[source-block-id]]</Anchor><br/>
+<Delimiter>----</Delimiter><br/>
+<Verbatim># This is Ruby source code.</Verbatim><br/>
+<Verbatim># NOTE: in delimited source blocks, having a space after the `#` in the comment is OK.</Verbatim><br/>
+<Verbatim>import 'needed'</Verbatim><br/>
+<Verbatim></Verbatim><br/>
+<Verbatim>IO.puts "hello"</Verbatim><br/>
+<Delimiter>----</Delimiter><br/>
+<Normal></Normal><br/>
+<Block Title>.Using an open block</Block Title><br/>
+<Preprocessor>[source,ruby]</Preprocessor><br/>
+<Anchor>[[source-block-id]]</Anchor><br/>
+<Delimiter>--</Delimiter><br/>
+<Verbatim>import 'needed'</Verbatim><br/>
+<Verbatim></Verbatim><br/>
+<Verbatim>IO.puts "hello"</Verbatim><br/>
+<Delimiter>--</Delimiter><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>== Stem</Section Title><br/>
+<Normal></Normal><br/>
+<Block Title>.Contiguous</Block Title><br/>
+<Preprocessor>[stem]</Preprocessor><br/>
+<Anchor>[[stem-block-id]]</Anchor><br/>
+<Passthrough>Inside the contiguous stem block.</Passthrough><br/>
+<Passthrough>Second line to pass.</Passthrough><br/>
+<Normal></Normal><br/>
+<Normal>This line is not part of the contiguous Passthrough block anymore.</Normal><br/>
+<Normal></Normal><br/>
+<Block Title>.Delimited with block name</Block Title><br/>
+<Preprocessor>[stem]</Preprocessor><br/>
+<Anchor>[[stem-block-id]]</Anchor><br/>
+<Delimiter>++++++</Delimiter><br/>
+<Passthrough>Inside the delimited stem block with block name.</Passthrough><br/>
+<Delimiter>++++++</Delimiter><br/>
+<Normal></Normal><br/>
+<Block Title>.Delimited without block name</Block Title><br/>
+<Anchor>[[stem-block-id]]</Anchor><br/>
+<Delimiter>++++</Delimiter><br/>
+<Passthrough>Inside the delimited stem block without block name.</Passthrough><br/>
+<Delimiter>++++</Delimiter><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>== Table</Section Title><br/>
+<Normal></Normal><br/>
+<Normal>See </Normal><Monospaced>`table.adoc`</Monospaced><Normal>.</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>== Verse</Section Title><br/>
+<Normal></Normal><br/>
+<Block Title>.Contiguous</Block Title><br/>
+<Preprocessor>[verse]</Preprocessor><br/>
+<Anchor>[[verse-block-id]]</Anchor><br/>
+<Normal>Inside the </Normal><Strong>*verse*</Strong><Normal> block.</Normal><br/>
+<Normal>Second line of the verse block.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>This line is not part of the contiguous verse block anymore.</Normal><br/>
+<Normal></Normal><br/>
+<Block Title>.Delimited with block name</Block Title><br/>
+<Preprocessor>[verse]</Preprocessor><br/>
+<Anchor>[[verse-block-id]]</Anchor><br/>
+<Delimiter>____</Delimiter><br/>
+<Normal>Inside the </Normal><Strong>*verse*</Strong><Normal> block.</Normal><br/>
+<Delimiter>____</Delimiter><br/>
+<Normal></Normal><br/>
+<Block Title>.Delimited without block name</Block Title><br/>
+<Normal>This would be rendered as a quote block as the same delimiters are used.</Normal><br/>
+<Normal></Normal><br/>
+<Block Title>.Using an open block</Block Title><br/>
+<Preprocessor>[verse]</Preprocessor><br/>
+<Anchor>[[verse-block-id]]</Anchor><br/>
+<Delimiter>--</Delimiter><br/>
+<Normal>Inside the </Normal><Strong>*verse*</Strong><Normal> block.</Normal><br/>
+<Delimiter>--</Delimiter><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>== Nested Blocks</Section Title><br/>
+<Normal></Normal><br/>
+<Delimiter>====</Delimiter><br/>
+<Normal>Start of outer example block.</Normal><br/>
+<Normal></Normal><br/>
+<Block Title>.Nested example block</Block Title><br/>
+<Delimiter>=====</Delimiter><br/>
+<Normal>Inside the inner example block.</Normal><br/>
+<Comment>// some comment</Comment><br/>
+<Normal></Normal><br/>
+<Block Title>.Nested literal block</Block Title><br/>
+<Preprocessor>[literal]</Preprocessor><br/>
+<Comment>// some comment</Comment><br/>
+<Delimiter>----</Delimiter><br/>
+<Verbatim>Inside the literal block within the inner example block.</Verbatim><br/>
+<Verbatim>--</Verbatim><br/>
+<Verbatim>Trying to use a block within a verbatim block results in verbatim text, of course.</Verbatim><br/>
+<Verbatim>--</Verbatim><br/>
+<Delimiter>----</Delimiter><br/>
+<Delimiter>=====</Delimiter><br/>
+<Normal>Line in outer block.</Normal><br/>
+<Preprocessor>[listing]</Preprocessor><br/>
+<Delimiter>----</Delimiter><br/>
+<Verbatim>Inside the inner listing block.</Verbatim><br/>
+<Delimiter>----</Delimiter><br/>
+<Normal>End of outer block.</Normal><br/>
+<Delimiter>====</Delimiter><br/>
+<Normal></Normal><br/>
+<Block Title>.Admonition inside some other block</Block Title><br/>
+<Delimiter>====</Delimiter><br/>
+<Normal>Some text.</Normal><br/>
+<Normal></Normal><br/>
+<Preprocessor>NOTE:</Preprocessor><Normal> This is a note in simple format inside a block.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>Some more text.</Normal><br/>
+<Delimiter>====</Delimiter><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>= Callout</Section Title><br/>
+<Comment>// Add `:icons: font` for nice callout icons.</Comment><br/>
+<Normal></Normal><br/>
+<Normal>Callouts are usually used with listing/source blocks, but Asciidoctor renders them also without a listing block.</Normal><br/>
+<Normal></Normal><br/>
+<Callout><1></Callout><Normal>   This is a callout.</Normal><br/>
+<Callout><.></Callout><Normal> This is a callout too.</Normal><br/>
+<Normal></Normal><br/>
+<Verbatim> <2> This is not rendered as a callout as it is indented.</Verbatim><br/>
+<Normal></Normal><br/>
+<Normal>The line below is not rendered as a callout as it has no text in the same line.</Normal><br/>
+<Normal></Normal><br/>
+<Normal><3></Normal><br/>
+<Normal></Normal><br/>
+<Comment>////</Comment><br/>
+<Alert Level 2>FIXME</Alert Level 2><Comment> This should not be highlighted as callout.</Comment><br/>
+<Comment>As it depends on the kind of line before, this is problematic.</Comment><br/>
+<Comment>////</Comment><br/>
+<Normal>The line below is not rendered as callout as it is part of this paragraph.</Normal><br/>
+<Callout><4></Callout><Normal> This should </Normal><Emphasized>_not_</Emphasized><Normal> be highlighted as callout.</Normal><br/>
+<Normal></Normal><br/>
+<Block Title>.Callouts with manual numbering</Block Title><br/>
+<Preprocessor>[source,sh]</Preprocessor><br/>
+<Delimiter>----</Delimiter><br/>
+<Verbatim>ls -l  <2></Verbatim><br/>
+<Verbatim>ls -la  <1></Verbatim><br/>
+<Delimiter>----</Delimiter><br/>
+<Callout><1></Callout><Normal> Explanation for callout number 1.</Normal><br/>
+<Callout><2></Callout><Normal>   Explanation for callout number 2.</Normal><br/>
+<Normal>\<3> This is not a callout as it is escaped.</Normal><br/>
+<Normal></Normal><br/>
+<Block Title>.Callouts with automatic numbering</Block Title><br/>
+<Preprocessor>[source,sh]</Preprocessor><br/>
+<Delimiter>----</Delimiter><br/>
+<Verbatim>ls -l  <.></Verbatim><br/>
+<Verbatim>ls -la  <.></Verbatim><br/>
+<Delimiter>----</Delimiter><br/>
+<Callout><.></Callout><Normal> Explanation for callout number 1.</Normal><br/>
+<Callout><.></Callout><Normal> Explanation for callout number 2.</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>= Comment</Section Title><br/>
+<Normal></Normal><br/>
+<Preprocessor>TIP:</Preprocessor><Normal> Comment highlighting supports the standard </Normal><Link>https://cgit.kde.org/syntax-highlighting.git/tree/data/syntax/alert.xml[KDE alerts]</Link><Normal> (TODO, FIXME, </Normal><Replacement>...</Replacement><Normal>) in both single-line and multi-line comments.</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>== Single Line</Section Title><br/>
+<Normal></Normal><br/>
+<Normal>Single-line comments start with exactly </Normal><Monospaced>`//`</Monospaced><Normal>.</Normal><br/>
+<Normal>If there are any characters - including spaces - before the </Normal><Monospaced>`//`</Monospaced><Normal>, the line will be rendered.</Normal><br/>
+<Normal>If there are more than two consecutive </Normal><Monospaced>`/`</Monospaced><Normal>, the line will be rendered.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>This line // will be rendered completely.</Normal><br/>
+<Normal></Normal><br/>
+<Verbatim>  // This line will be rendered as verbatim text as it is indented.</Verbatim><br/>
+<Normal></Normal><br/>
+<Normal>/// This line will be rendered as it starts with 3 </Normal><Monospaced>`/`</Monospaced><Normal>.</Normal><br/>
+<Normal></Normal><br/>
+<Comment>// This line will be invisible.</Comment><br/>
+<Normal></Normal><br/>
+<Comment>//This line will be invisible.</Comment><br/>
+<Normal></Normal><br/>
+<Comment>//</Comment><br/>
+<Normal></Normal><br/>
+<Normal>\// Escaped comment.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>\// TODO Of course there is no alert highlighting in escaped comments.</Normal><br/>
+<Normal></Normal><br/>
+<Block Title>.Alerts</Block Title><br/>
+<Comment>// </Comment><Alert Level 3>NOTE</Alert Level 3><Comment> testing alerts</Comment><br/>
+<Comment>// </Comment><Alert Level 3>TEST</Alert Level 3><Comment>: testing alerts</Comment><br/>
+<Comment>// </Comment><Alert Level 2>TODO</Alert Level 2><Comment>: testing alerts</Comment><br/>
+<Comment>// </Comment><Alert Level 2>TASK</Alert Level 2><Comment> testing alerts</Comment><br/>
+<Comment>// </Comment><Alert Level 2>WARNING</Alert Level 2><Comment>: testing alerts</Comment><br/>
+<Comment>// </Comment><Alert Level 1>ALERT</Alert Level 1><Comment>: testing alerts</Comment><br/>
+<Comment>// </Comment><Alert Level 1>DANGER</Alert Level 1><Comment>: testing alerts</Comment><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>== Multi Line</Section Title><br/>
+<Normal></Normal><br/>
+<Block Title>.Contiguous block</Block Title><br/>
+<Preprocessor>[comment]</Preprocessor><br/>
+<Comment>Some comment.</Comment><br/>
+<Comment>Alerts:</Comment><br/>
+<Alert Level 3>NOTE</Alert Level 3><Comment> testing alerts</Comment><br/>
+<Alert Level 3>TEST</Alert Level 3><Comment>: testing alerts</Comment><br/>
+<Alert Level 2>TODO</Alert Level 2><Comment>: testing alerts</Comment><br/>
+<Alert Level 2>TASK</Alert Level 2><Comment> testing alerts</Comment><br/>
+<Alert Level 2>WARNING</Alert Level 2><Comment>: testing alerts</Comment><br/>
+<Alert Level 1>ALERT</Alert Level 1><Comment>: testing alerts</Comment><br/>
+<Alert Level 1>DANGER</Alert Level 1><Comment>: testing alerts</Comment><br/>
+<Comment>Last line of contiguous block comment.</Comment><br/>
+<Normal></Normal><br/>
+<Normal>This line is not part of the contiguous block comment anymore.</Normal><br/>
+<Normal></Normal><br/>
+<Block Title>.Delimited block without name</Block Title><br/>
+<Comment>//////</Comment><br/>
+<Comment>This is a multi-line comment.</Comment><br/>
+<Comment>It spans multiple lines.</Comment><br/>
+<Comment></Comment><br/>
+<Comment>Alerts:</Comment><br/>
+<Alert Level 3>NOTE</Alert Level 3><Comment> testing alerts</Comment><br/>
+<Alert Level 3>TEST</Alert Level 3><Comment>: testing alerts</Comment><br/>
+<Alert Level 2>TODO</Alert Level 2><Comment>: testing alerts</Comment><br/>
+<Alert Level 2>TASK</Alert Level 2><Comment> testing alerts</Comment><br/>
+<Alert Level 2>WARNING</Alert Level 2><Comment>: testing alerts</Comment><br/>
+<Alert Level 1>ALERT</Alert Level 1><Comment>: testing alerts</Comment><br/>
+<Alert Level 1>DANGER</Alert Level 1><Comment>: testing alerts</Comment><br/>
+<Comment></Comment><br/>
+<Comment>This is the comment's last line.</Comment><br/>
+<Comment>//////</Comment><br/>
+<Normal></Normal><br/>
+<Preprocessor>[comment]</Preprocessor><br/>
+<Block Title>.Delimited block with name</Block Title><br/>
+<Comment>////</Comment><br/>
+<Comment>This is a multi-line comment.</Comment><br/>
+<Comment>It spans multiple lines.</Comment><br/>
+<Comment></Comment><br/>
+<Comment>Alerts:</Comment><br/>
+<Alert Level 3>NOTE</Alert Level 3><Comment> testing alerts</Comment><br/>
+<Alert Level 3>TEST</Alert Level 3><Comment>: testing alerts</Comment><br/>
+<Alert Level 2>TODO</Alert Level 2><Comment>: testing alerts</Comment><br/>
+<Alert Level 2>TASK</Alert Level 2><Comment> testing alerts</Comment><br/>
+<Alert Level 2>WARNING</Alert Level 2><Comment>: testing alerts</Comment><br/>
+<Alert Level 1>ALERT</Alert Level 1><Comment>: testing alerts</Comment><br/>
+<Alert Level 1>DANGER</Alert Level 1><Comment>: testing alerts</Comment><br/>
+<Comment></Comment><br/>
+<Comment>This is the comment's last line.</Comment><br/>
+<Comment>////</Comment><br/>
+<Normal></Normal><br/>
+<Block Title>.Using open block</Block Title><br/>
+<Preprocessor>[comment]</Preprocessor><br/>
+<Comment>--</Comment><br/>
+<Comment>Inside the open block comment.</Comment><br/>
+<Comment>--</Comment><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>= Counter</Section Title><br/>
+<Normal></Normal><br/>
+<Section Title>== Use and Render</Section Title><br/>
+<Normal></Normal><br/>
+<Block Title>.Start with 1 and render value</Block Title><br/>
+<Normal>New value for </Normal><Monospaced>`c1`</Monospaced><Normal> is </Normal><Attribute>{counter:c1}</Attribute><Normal>.</Normal><br/>
+<Normal></Normal><br/>
+<Block Title>.Increment and render</Block Title><br/>
+<Normal>And now it is </Normal><Attribute>{counter:c1}</Attribute><Normal>.</Normal><br/>
+<Normal></Normal><br/>
+<Block Title>.Render the current value without changing it</Block Title><br/>
+<Normal>Current value is </Normal><Attribute>{c1}</Attribute><Normal>.</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>== Use Without Rendering</Section Title><br/>
+<Normal></Normal><br/>
+<Block Title>.Define the new counter</Block Title><br/>
+<Normal>No new value to be </Normal><Attribute>{counter2:c2}</Attribute><Normal>seen.</Normal><br/>
+<Normal></Normal><br/>
+<Block Title>.Let's see the current value</Block Title><br/>
+<Normal>Current value is </Normal><Attribute>{c2}</Attribute><Normal>.</Normal><br/>
+<Normal></Normal><br/>
+<Block Title>.Increment</Block Title><br/>
+<Normal>No incremented value to be </Normal><Attribute>{counter2:c2}</Attribute><Normal>seen.</Normal><br/>
+<Normal></Normal><br/>
+<Block Title>.Let's see the current value</Block Title><br/>
+<Normal>Current value is </Normal><Attribute>{c2}</Attribute><Normal>.</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>== Using a Start Value</Section Title><br/>
+<Normal></Normal><br/>
+<Block Title>.Start with 3 and render value</Block Title><br/>
+<Normal>New value for </Normal><Monospaced>`c3`</Monospaced><Normal> is </Normal><Attribute>{counter:c3:99}</Attribute><Normal>.</Normal><br/>
+<Normal></Normal><br/>
+<Block Title>.Increment and render</Block Title><br/>
+<Normal>And now it is </Normal><Attribute>{counter:c3}</Attribute><Normal>.</Normal><br/>
+<Normal></Normal><br/>
+<Block Title>.Works with characters too</Block Title><br/>
+<Normal>New value for </Normal><Monospaced>`c4`</Monospaced><Normal> is </Normal><Attribute>{counter:c4:X}</Attribute><br/>
+<Normal></Normal><br/>
+<Block Title>.Increment character counter and render</Block Title><br/>
+<Normal>And now it is </Normal><Attribute>{counter:c4}</Attribute><Normal>.</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>== About using Spaces</Section Title><br/>
+<Normal></Normal><br/>
+<Preprocessor>CAUTION:</Preprocessor><Normal> If you leave spaces after the </Normal><Monospaced>`:`</Monospaced><Normal> or before the closing </Normal><Monospaced>`}`</Monospaced><Normal>, Asciidoctor will make them part of the counter attribute name. </Normal><Control>+</Control><br/>
+<Normal>So it</Normal><Replacement>'</Replacement><Normal>s probably wise to avoid spaces here.</Normal><br/>
+<Normal></Normal><br/>
+<Block Title>.Define a counter</Block Title><br/>
+<Normal>New value is </Normal><Attribute>{counter:c5}</Attribute><Normal>.</Normal><br/>
+<Normal></Normal><br/>
+<Block Title>.This is actually a new counter</Block Title><br/>
+<Normal>New value is </Normal><Attribute>{counter: c5}</Attribute><Normal>.</Normal><br/>
+<Normal></Normal><br/>
+<Block Title>.But you can't access that attribute</Block Title><br/>
+<Normal>Can</Normal><Replacement>'</Replacement><Normal>t just show the current value { c5}</Normal><br/>
+<Normal></Normal><br/>
+<Block Title>.Only if we increment it</Block Title><br/>
+<Normal>Incremented value is </Normal><Attribute>{counter: c5}</Attribute><Normal>.</Normal><br/>
+<Normal></Normal><br/>
+<Block Title>.This is again a new counter</Block Title><br/>
+<Normal>New value is </Normal><Attribute>{counter:  c5}</Attribute><Normal>.</Normal><br/>
+<Normal></Normal><br/>
+<Block Title>.This is also a new counter</Block Title><br/>
+<Normal>New value is </Normal><Attribute>{counter:c5 }</Attribute><Normal>.</Normal><br/>
+<Normal></Normal><br/>
+<Preprocessor>CAUTION:</Preprocessor><Normal> Similar problems occur when using spaces around starting values. </Normal><Control>+</Control><br/>
+<Strong>*Just don't use spaces*</Strong><Normal>.</Normal><br/>
+<Normal></Normal><br/>
+<Block Title>.New counter with start value</Block Title><br/>
+<Normal>New value is </Normal><Attribute>{counter:c6: 9 }</Attribute><br/>
+<Normal></Normal><br/>
+<Block Title>.But when trying to increment</Block Title><br/>
+<Normal>Incremented value is </Normal><Attribute>{counter:c6}</Attribute><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>= Text Formatting</Section Title><br/>
+<Normal></Normal><br/>
+<Preprocessor>TIP:</Preprocessor><Normal> Asciidoctor uses also the term </Normal><Emphasized>_quoted text_</Emphasized><Normal>.</Normal><br/>
+<Normal></Normal><br/>
+<Section Title>== Custom Styles</Section Title><br/>
+<Normal></Normal><br/>
+<Preprocessor>[big]#big text#</Preprocessor><br/>
+<Normal></Normal><br/>
+<Normal>Some </Normal><Preprocessor>[.big]#big text#</Preprocessor><Normal>.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>Some </Normal><Preprocessor>[big]#big and *strong* text#</Preprocessor><Normal>.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>Some text with </Normal><Preprocessor>[foo]#custom style#</Preprocessor><Normal>.</Normal><br/>
+<Normal></Normal><br/>
+<Preprocessor>[foo bar]#foo bar text#</Preprocessor><br/>
+<Normal></Normal><br/>
+<Normal>before!</Normal><Preprocessor>[big]#big text#</Preprocessor><br/>
+<Normal></Normal><br/>
+<Preprocessor>[big]#big text#</Preprocessor><Normal>!after</Normal><br/>
+<Normal></Normal><br/>
+<Preprocessor>[big]##*text*##</Preprocessor><br/>
+<Normal></Normal><br/>
+<Comment>////</Comment><br/>
+<Alert Level 2>FIXME</Alert Level 2><Comment> Highlighting differs.</Comment><br/>
+<Comment>The phrase is rendered as marked.</Comment><br/>
+<Comment>The trailing hash is therefore not visible.</Comment><br/>
+<Comment>////</Comment><br/>
+<Preprocessor>[big]###text##</Preprocessor><Normal>#</Normal><br/>
+<Normal></Normal><br/>
+<Preprocessor>[fo[o]#some text#</Preprocessor><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Preprocessor>[underline]_emphasized and underlined_</Preprocessor><br/>
+<Normal></Normal><br/>
+<Preprocessor>[underline]__emphasized and underlined_</Preprocessor><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Preprocessor>[underline]`monospaced and underlined`</Preprocessor><br/>
+<Normal></Normal><br/>
+<Preprocessor>[underline]``monospaced and underlined``</Preprocessor><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Preprocessor>[underline]*strong and underlined*</Preprocessor><br/>
+<Normal></Normal><br/>
+<Preprocessor>[underline]**strong and underlined**</Preprocessor><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>=== Not rendered as custom style</Section Title><br/>
+<Normal></Normal><br/>
+<Normal>[fo]o]</Normal><Marked>#not a custom style#</Marked><Normal> because of surplus </Normal><Monospaced>`]`</Monospaced><Normal>.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>[big]not a phrase because of missing phrase markers.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>[big]# # because only spaces used as phrase.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>[big]# the phrase# because of leading space in phrase.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>[big]#the phrase # because of trailing space in phrase.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>Before[foo]</Normal><Marked>#the phrase#</Marked><Normal> because of missing non-word character before clause.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>Before [foo]#the phrase#after because of missing non-word character after clause.</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>=== Escaped</Section Title><br/>
+<Normal></Normal><br/>
+<Normal>This is not \[underline]</Normal><Marked>#underlined text#</Marked><Normal>.</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>== Emphasized</Section Title><br/>
+<Normal></Normal><br/>
+<Section Title>=== Rendered formatted</Section Title><br/>
+<Normal></Normal><br/>
+<Normal>This line contains a </Normal><Emphasized>_sequence_</Emphasized><Normal> of </Normal><Emphasized>_multiple emphasized_</Emphasized><Normal> words.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>This line contains a single </Normal><Emphasized>_emphasized_</Emphasized><Normal> word.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>This line contains a single </Normal><Emphasized>__emphasized_</Emphasized><Normal> word.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>This line contains a single </Normal><Emphasized>_emphasized__</Emphasized><Normal> word.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>The text within the brackets should be (</Normal><Emphasized>_emphasized_</Emphasized><Normal>), but the brackets themselves not.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>(</Normal><Emphasized>_emphasized_</Emphasized><Normal>  [</Normal><Emphasized>_emphasized_</Emphasized><Normal>  {</Normal><Emphasized>_emphasized_</Emphasized><Normal>  |</Normal><Emphasized>_emphasized_</Emphasized><Normal>  .</Normal><Emphasized>_emphasized_</Emphasized><Normal>  ,</Normal><Emphasized>_emphasized_</Emphasized><Normal>  !</Normal><Emphasized>_emphasized_</Emphasized><Normal>  ?</Normal><Emphasized>_emphasized_</Emphasized><Normal>  </Normal><Emphasized>_emphasized_</Emphasized><Normal>?</Normal><br/>
+<Normal></Normal><br/>
+<Emphasized>_emphasized_</Emphasized><Normal>) </Normal><Emphasized>_emphasized_</Emphasized><Normal>] </Normal><Emphasized>_emphasized_</Emphasized><Normal>} </Normal><Emphasized>_emphasized_</Emphasized><Normal>| </Normal><Emphasized>_emphasized_</Emphasized><Normal>. </Normal><Emphasized>_emphasized_</Emphasized><Normal>; </Normal><Emphasized>_emphasized_</Emphasized><Normal>,</Normal><br/>
+<Normal></Normal><br/>
+<Emphasized>_emphasized_</Emphasized><Normal>( </Normal><Emphasized>_emphasized_</Emphasized><Normal>( </Normal><Emphasized>_emphasized_</Emphasized><Normal>[ </Normal><Emphasized>_emphasized_</Emphasized><Normal>{</Normal><br/>
+<Normal></Normal><br/>
+<Emphasized>_emphasized_</Emphasized><Normal>)</Normal><br/>
+<Normal></Normal><br/>
+<Emphasized>_emphasized_</Emphasized><br/>
+<Normal></Normal><br/>
+<Emphasized>__aa__</Emphasized><Normal>bb</Normal><br/>
+<Normal></Normal><br/>
+<Normal>aa</Normal><Emphasized>__bb__</Emphasized><br/>
+<Normal></Normal><br/>
+<Normal>aa</Normal><Emphasized>__bb _cc__</Emphasized><Normal>dd</Normal><br/>
+<Normal></Normal><br/>
+<Normal>aa</Normal><Emphasized>__bb cc__</Emphasized><Normal>_dd</Normal><br/>
+<Normal></Normal><br/>
+<Normal>aa</Normal><Emphasized>__ bb __</Emphasized><Normal>cc</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>=== Rendered as-is</Section Title><br/>
+<Normal></Normal><br/>
+<Normal>This line does not contain _some emphasized _ text as there is a surplus space.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>This line does not contain_some emphasized_ text as there is a space missing.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>This line does not contain _some emphasized_text as there is a space missing.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>foo ;_emphasized_ :_emphasized_ }_emphasized_</Normal><br/>
+<Normal></Normal><br/>
+<Normal>;_emphasized_</Normal><br/>
+<Normal>:_emphasized_</Normal><br/>
+<Normal>}_emphasized_</Normal><br/>
+<Normal></Normal><br/>
+<Comment>// </Comment><Alert Level 2>FIXME</Alert Level 2><Comment> Highlighting differs.</Comment><br/>
+<Normal>In this line, there is some </Normal><Emphasized>___very emphasized___</Emphasized><Normal> text.</Normal><br/>
+<Normal>Asciidoctor renders it as normal text, just ignoring all the underscores.</Normal><br/>
+<Normal>That is a bit strange.</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>=== Escaped</Section Title><br/>
+<Normal></Normal><br/>
+<Normal>Not \_emphasized_ as it is escaped.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>Still \_</Normal><Emphasized>_emphasized__</Emphasized><Normal> as only the outermost level is escaped.</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>== Marked</Section Title><br/>
+<Normal></Normal><br/>
+<Section Title>=== Rendered formatted</Section Title><br/>
+<Normal></Normal><br/>
+<Normal>Some # marked # text.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>Works </Normal><Marked>#also for multiple words#</Marked><Normal>.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>Some </Normal><Marked>##marked#</Marked><Normal> text.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>Some </Normal><Marked>#marked#</Marked><Normal># text.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>Some </Normal><Marked>##marked##</Marked><Normal> text.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>Some[big]</Normal><Marked>#marked#</Marked><Normal> text.</Normal><br/>
+<Normal>Not rendered big but marked, because of missing space before </Normal><Monospaced>`[big]`</Monospaced><Normal>.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>Works also for p</Normal><Marked>##art##</Marked><Normal>s of a word.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>p#</Normal><Marked>#art#</Marked><Normal>!s</Normal><br/>
+<Normal></Normal><br/>
+<Normal>!</Normal><Marked>#marked#</Marked><Normal>!</Normal><br/>
+<Normal></Normal><br/>
+<Marked>#marked#</Marked><br/>
+<Normal></Normal><br/>
+<Marked>##marked##</Marked><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>=== Rendered as-is</Section Title><br/>
+<Normal></Normal><br/>
+<Normal>Not rendered # marked# because of space after the leading hash.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>Not rendered #marked # because of space before the trailing hash.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>Not rendered#marked# as there is a space missing.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>Not rendered #marked#as there is a space missing.</Normal><br/>
+<Normal></Normal><br/>
+<Verbatim>  This is #rendered# as a verbatim block as it is indented.</Verbatim><br/>
+<Normal></Normal><br/>
+<Normal>Some </Normal><Preprocessor>[big]#big marked#</Preprocessor><Normal> text.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>Some </Normal><Preprocessor>[big]##big marked##</Preprocessor><Normal> text.</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>=== Escaped</Section Title><br/>
+<Normal></Normal><br/>
+<Normal>Not \#marked# as it is escaped.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>Still \#</Normal><Marked>#marked#</Marked><Normal># as only the outermost level is escaped.</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>== Monospaced</Section Title><br/>
+<Normal></Normal><br/>
+<Section Title>=== Rendered formatted</Section Title><br/>
+<Normal></Normal><br/>
+<Normal>This line contains a </Normal><Monospaced>`sequence of ` multiple monospaced`</Monospaced><Normal> words.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>This line contains a single </Normal><Monospaced>`monospaced`</Monospaced><Normal> word.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>This line contains a single </Normal><Monospaced>``monospaced`</Monospaced><Normal> word.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>This line contains a single </Normal><Monospaced>`monospaced`</Monospaced><Normal>` word.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>The text within the brackets should be (</Normal><Monospaced>`monospaced`</Monospaced><Normal>), but the brackets themselves not.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>before</Normal><Monospaced>``monospaced``</Monospaced><Normal>after.</Normal><br/>
+<Normal></Normal><br/>
+<Monospaced>`monospaced`</Monospaced><br/>
+<Normal></Normal><br/>
+<Normal>(</Normal><Monospaced>`mono`</Monospaced><Normal> [</Normal><Monospaced>`mono`</Monospaced><Normal> {</Normal><Monospaced>`mono`</Monospaced><Normal> |</Normal><Monospaced>`mono`</Monospaced><Normal> .</Normal><Monospaced>`mono`</Monospaced><Normal> ,</Normal><Monospaced>`mono`</Monospaced><Normal> !</Normal><Monospaced>`mono`</Monospaced><Normal> ?</Normal><Monospaced>`mono`</Monospaced><br/>
+<Normal></Normal><br/>
+<Monospaced>`mono`</Monospaced><Normal>) </Normal><Monospaced>`mono`</Monospaced><Normal>) </Normal><Monospaced>`mono`</Monospaced><Normal>] </Normal><Monospaced>`mono`</Monospaced><Normal>} </Normal><Monospaced>`mono`</Monospaced><Normal>| </Normal><Monospaced>`mono`</Monospaced><Normal>. </Normal><Monospaced>`mono`</Monospaced><Normal>; </Normal><Monospaced>`mono`</Monospaced><Normal>, </Normal><Monospaced>`mono`</Monospaced><Normal>?</Normal><br/>
+<Normal></Normal><br/>
+<Monospaced>`mono`</Monospaced><Normal>( </Normal><Monospaced>`mono`</Monospaced><Normal>( </Normal><Monospaced>`mono`</Monospaced><Normal>[ </Normal><Monospaced>`mono`</Monospaced><Normal>{</Normal><br/>
+<Normal></Normal><br/>
+<Monospaced>``aa``</Monospaced><Normal>bb</Normal><br/>
+<Normal></Normal><br/>
+<Normal>aa</Normal><Monospaced>``bb``</Monospaced><br/>
+<Normal></Normal><br/>
+<Normal>aa</Normal><Monospaced>``bb `cc``</Monospaced><Normal>dd</Normal><br/>
+<Normal></Normal><br/>
+<Normal>aa</Normal><Monospaced>``bb cc``</Monospaced><Normal>`dd</Normal><br/>
+<Normal></Normal><br/>
+<Normal>aa</Normal><Monospaced>`` bb ``</Monospaced><Normal>cc</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>=== Rendered as-is</Section Title><br/>
+<Normal></Normal><br/>
+<Normal>Not rendered ` monospaced` because of leading space.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>Not rendered `monospaced ` because of trailing space.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>Not rendered`monospaced` as there is a space missing.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>Not rendered `monospaced`as there is a space missing.</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>=== Escaped</Section Title><br/>
+<Normal></Normal><br/>
+<Normal>Not \`monospaced` as it is escaped.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>Still \`</Normal><Monospaced>`monospaced`</Monospaced><Normal>` as only the outermost level is escaped.</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>== Passthrough</Section Title><br/>
+<Normal></Normal><br/>
+<Section Title>=== Rendered passed through</Section Title><br/>
+<Normal></Normal><br/>
+<Normal>This text is </Normal><Passthrough>+passed _as_ is+</Passthrough><Normal> with no further formatting.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>Matching </Normal><Passthrough>+is _lazy_+</Passthrough><Normal>, so this + is rendered.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>This </Normal><Passthrough>+_is_ passthrough`+</Passthrough><Normal>` as passthrough has higher priority as monospaced.</Normal><br/>
+<Normal></Normal><br/>
+<Passthrough>+passthrough+</Passthrough><Normal> at line start.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>Passthrough at </Normal><Passthrough>+line end.+</Passthrough><br/>
+<Normal></Normal><br/>
+<Normal>Minimal passthrough </Normal><Passthrough>+a+</Passthrough><Normal>.</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Normal>This text is </Normal><Passthrough>++passed _as_ is++</Passthrough><Normal> with no further formatting.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>This text is </Normal><Passthrough>+++passed _as_ is+++</Passthrough><Normal> with no further formatting.</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>=== Rendered as-is</Section Title><br/>
+<Normal></Normal><br/>
+<Normal>No+passthrough+ as there is no space before the leading </Normal><Monospaced>`+`</Monospaced><Normal>.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>No +passthrough+as there is no space after the trailing plus.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>No + passthrough+ as there is a space after the leading </Normal><Monospaced>`+`</Monospaced><Normal>.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>No +passthrough + as there is a space after the trailing plus.</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>=== Escaped</Section Title><br/>
+<Normal></Normal><br/>
+<Normal>This text \+is </Normal><Emphasized>_not_</Emphasized><Normal> passed through+ because of escaping.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>This text \+</Normal><Passthrough>+is _still_ passed through+</Passthrough><Normal>+ as only the outermost level is escaped.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>This text \+</Normal><Passthrough>++is _still_ passed through++</Passthrough><Normal>+ as only the outermost level is escaped.</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>== Strong</Section Title><br/>
+<Normal></Normal><br/>
+<Section Title>=== Rendered formatted</Section Title><br/>
+<Normal></Normal><br/>
+<Normal>This line contains a </Normal><Strong>*sequence of * multiple strong*</Strong><Normal> words.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>This line contains a single </Normal><Strong>**strong*</Strong><Normal> word.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>This line contains a single*</Normal><Strong>*strong*</Strong><Normal> word.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>This line contains a single </Normal><Strong>*strong*</Strong><Normal>* word.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>The text within the brackets should be (</Normal><Strong>*strong*</Strong><Normal>), but the brackets themselves not.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>(</Normal><Strong>*strong*</Strong><Normal> [</Normal><Strong>*strong*</Strong><Normal> {</Normal><Strong>*strong*</Strong><Normal> |</Normal><Strong>*strong*</Strong><Normal> .</Normal><Strong>*strong*</Strong><Normal> ,</Normal><Strong>*strong*</Strong><Normal> !</Normal><Strong>*strong*</Strong><Normal> ?</Normal><Strong>*strong*</Strong><br/>
+<Normal></Normal><br/>
+<Strong>*strong*</Strong><Normal>) </Normal><Strong>*strong*</Strong><Normal>] </Normal><Strong>*strong*</Strong><Normal>} </Normal><Strong>*strong*</Strong><Normal>| </Normal><Strong>*strong*</Strong><Normal>. </Normal><Strong>*strong*</Strong><Normal>; </Normal><Strong>*strong*</Strong><Normal>, </Normal><Strong>*strong*</Strong><Normal>?</Normal><br/>
+<Normal></Normal><br/>
+<Strong>*strong*</Strong><Normal>( </Normal><Strong>*strong*</Strong><Normal>( </Normal><Strong>*strong*</Strong><Normal>[ </Normal><Strong>*strong*</Strong><Normal>{</Normal><br/>
+<Normal></Normal><br/>
+<Strong>*strong*</Strong><Normal>)</Normal><br/>
+<Normal></Normal><br/>
+<Strong>*strong*</Strong><br/>
+<Normal></Normal><br/>
+<Normal>aa</Normal><Strong>**bb**</Strong><br/>
+<Normal></Normal><br/>
+<Strong>**aa**</Strong><Normal>bb</Normal><br/>
+<Normal></Normal><br/>
+<Normal>aa</Normal><Strong>**bb**</Strong><Normal>cc</Normal><br/>
+<Normal></Normal><br/>
+<Normal>aa</Normal><Strong>**bb *cc**</Strong><Normal>dd</Normal><br/>
+<Normal></Normal><br/>
+<Normal>aa</Normal><Strong>**bb cc**</Strong><Normal>*dd</Normal><br/>
+<Normal></Normal><br/>
+<Normal>aa</Normal><Strong>** bb **</Strong><Normal>cc</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>=== Rendered as-is</Section Title><br/>
+<Normal></Normal><br/>
+<Normal>This line does </Normal><Emphasized>_not_</Emphasized><Normal> contain *some strong * text as there is a space before the trailing asterisk.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>This line does </Normal><Emphasized>_not_</Emphasized><Normal> contain*some strong* text as there is a space missing before the leading asterisk.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>This line does </Normal><Emphasized>_not_</Emphasized><Normal> contain *some strong*text as there is a space missing after the trailing asterisk.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>some text ;*strong* :*strong* _*strong* }*strong*</Normal><br/>
+<Normal></Normal><br/>
+<Normal>some text </Normal><Emphasized>_*strong*_</Emphasized><br/>
+<Normal></Normal><br/>
+<Normal>;*strong*</Normal><br/>
+<Normal>:*strong*</Normal><br/>
+<Normal>}*strong*</Normal><br/>
+<Normal></Normal><br/>
+<Verbatim> Not *strong* as there is a leading space in the line, making it verbatim.</Verbatim><br/>
+<Normal></Normal><br/>
+<Comment>// </Comment><Alert Level 2>FIXME</Alert Level 2><Comment> Highlighting differs.</Comment><br/>
+<Normal>In this line, there is some </Normal><Strong>***very strong*</Strong><Normal>** text.</Normal><br/>
+<Normal>It is rendered just ignoring the asterisks.</Normal><br/>
+<Normal>That is a bit strange.</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>=== Escaped</Section Title><br/>
+<Normal></Normal><br/>
+<Normal>Not \*strong* as it is escaped.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>Still \*</Normal><Strong>*strong*</Strong><Normal>* as only the outermost level is escaped.</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>== Subscript</Section Title><br/>
+<Normal></Normal><br/>
+<Section Title>=== Rendered formatted</Section Title><br/>
+<Normal></Normal><br/>
+<Normal>H</Normal><Subscript>~2~</Subscript><Normal>O</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>=== Rendered as-is</Section Title><br/>
+<Normal></Normal><br/>
+<Normal>Not rendered sub~sc ript~ as there is a space within.</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>=== Escaped</Section Title><br/>
+<Normal></Normal><br/>
+<Normal>Not \~subscript~ as it is escaped.</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>== Superscript</Section Title><br/>
+<Normal></Normal><br/>
+<Section Title>=== Rendered formatted</Section Title><br/>
+<Normal></Normal><br/>
+<Normal>E = m c</Normal><Superscript>^2^</Superscript><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>=== Rendered as-is</Section Title><br/>
+<Normal></Normal><br/>
+<Normal>Not rendered super^sc ript^ as there is a space within.</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>=== Escaped</Section Title><br/>
+<Normal></Normal><br/>
+<Normal>Not \^superscript^ as it is escaped.</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>== Combinations</Section Title><br/>
+<Normal></Normal><br/>
+<Preprocessor>IMPORTANT:</Preprocessor><Normal> Combinations are supported by Asciidoctor, as long as the markup sets are entered in the right order.</Normal><br/>
+<Normal>The monospace markup must be the outermost set, then the strong set, and the emphasized markup must always be the innermost set.</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>=== Rendered formatted</Section Title><br/>
+<Normal></Normal><br/>
+<Normal>This is </Normal><Emphasized Strong>*_strong emphasized_*</Emphasized Strong><Normal> text.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>This is </Normal><Emphasized Strong>*__strong _ * emphasized_*</Emphasized Strong><Normal> text.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>This is</Normal><Emphasized Strong>**_strong emphasized_**</Emphasized Strong><Normal>text.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>This is</Normal><Emphasized Strong>**__ strong emphasized_**</Emphasized Strong><Normal>text.</Normal><br/>
+<Normal></Normal><br/>
+<Emphasized Strong>*_strong emphasized_*</Emphasized Strong><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Normal>This is </Normal><Monospaced Strong>`*strong monospaced*`</Monospaced Strong><Normal> text.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>This is </Normal><Monospaced Strong>`**strong ` * monospaced*`</Monospaced Strong><Normal> text.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>This is</Normal><Monospaced Strong>``*strong monospaced*``</Monospaced Strong><Normal>text.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>This is</Normal><Monospaced Strong>``** strong monospaced*``</Monospaced Strong><Normal>text.</Normal><br/>
+<Normal></Normal><br/>
+<Monospaced Strong>`*strong monospaced*`</Monospaced Strong><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Normal>This is </Normal><Emphasized Monospaced>`_emphasized monospaced_`</Emphasized Monospaced><Normal> text.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>This is </Normal><Emphasized Monospaced>`__emphasized ` _ monospaced_`</Emphasized Monospaced><Normal> text.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>This is</Normal><Emphasized Monospaced>``_emphasized monospaced_``</Emphasized Monospaced><Normal>text.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>This is</Normal><Emphasized Monospaced>``__ emphasized monospaced_``</Emphasized Monospaced><Normal>text.</Normal><br/>
+<Normal></Normal><br/>
+<Emphasized Monospaced>`_emphasized monospaced_`</Emphasized Monospaced><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Normal>This is </Normal><Emphasized Monospaced Strong>`*_strong emphasized monospaced_*`</Emphasized Monospaced Strong><Normal> text.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>This is </Normal><Emphasized Monospaced Strong>`*__strong emphasized * ` _ monospaced_*`</Emphasized Monospaced Strong><Normal> text.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>This is</Normal><Emphasized Monospaced Strong>``*_strong emphasized monospaced_*``</Emphasized Monospaced Strong><Normal>text.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>This is</Normal><Emphasized Monospaced Strong>``*__ strong emphasized monospaced_*``</Emphasized Monospaced Strong><Normal>text.</Normal><br/>
+<Normal></Normal><br/>
+<Emphasized Monospaced Strong>`*_strong emphasized monospaced_*`</Emphasized Monospaced Strong><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>=== Unsupported</Section Title><br/>
+<Normal></Normal><br/>
+<Normal>Highlighting for other combinations is currently not supported, as there would be a large number of rules and styles necessary.</Normal><br/>
+<Normal></Normal><br/>
+<List Marker>*</List Marker><Normal> </Normal><Emphasized>_emphasized #marked#_</Emphasized><br/>
+<List Marker>*</List Marker><Normal> </Normal><Marked>#marked *strong*#</Marked><br/>
+<List Marker>*</List Marker><Normal> </Normal><Strong>*strong #marked#*</Strong><br/>
+<List Marker>*</List Marker><Normal> </Normal><Strong>*strong _emphasized #marked#_*</Strong><br/>
+<Normal></Normal><br/>
+<List Marker>*</List Marker><Normal> subscript </Normal><Emphasized>_with~in~ emphasized_</Emphasized><br/>
+<List Marker>*</List Marker><Normal> subscript within marked: </Normal><Marked>#H~2~O#</Marked><br/>
+<List Marker>*</List Marker><Normal> subscript </Normal><Monospaced>`with~in~ monospaced`</Monospaced><br/>
+<List Marker>*</List Marker><Normal> subscript </Normal><Strong>*with~in~ strong*</Strong><br/>
+<Normal></Normal><br/>
+<List Marker>*</List Marker><Normal> superscript </Normal><Emphasized>_with^in^ emphasized_</Emphasized><br/>
+<List Marker>*</List Marker><Normal> superscript within marked: </Normal><Marked>#E = m c^2^#</Marked><br/>
+<List Marker>*</List Marker><Normal> superscript </Normal><Monospaced>`with^in^ monospaced`</Monospaced><br/>
+<List Marker>*</List Marker><Normal> superscript </Normal><Strong>*with^in^ strong*</Strong><br/>
+<Normal></Normal><br/>
+<Normal>And even more complex ones.</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>=== Rendered as-is</Section Title><br/>
+<Normal></Normal><br/>
+<Normal>This is no </Normal><Strong>*_ strong emphasized_*</Strong><Normal> text, it</Normal><Replacement>'</Replacement><Normal>s </Normal><Strong>*strong*</Strong><Normal> only.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>This is no </Normal><Strong>*_strong emphasized _*</Strong><Normal> text, it</Normal><Replacement>'</Replacement><Normal>s </Normal><Strong>*strong*</Strong><Normal> only.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>This is no </Normal><Emphasized>_*strong emphasized*_</Emphasized><Normal> text, it</Normal><Replacement>'</Replacement><Normal>s </Normal><Emphasized>_emphasized_</Emphasized><Normal> only.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>This is no </Normal><Emphasized>_`emphasized monospaced`_</Emphasized><Normal> text, it</Normal><Replacement>'</Replacement><Normal>s </Normal><Emphasized>_emphasized_</Emphasized><Normal> only.</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>=== Escaped</Section Title><br/>
+<Normal></Normal><br/>
+<Normal>This is not rendered \`</Normal><Emphasized>_emphasized monospaced_</Emphasized><Normal>`. </Normal><Control>+</Control><br/>
+<Normal>But it is rendered emphasized.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>This is not rendered \*</Normal><Emphasized>_emphasized strong_</Emphasized><Normal>*. </Normal><Control>+</Control><br/>
+<Normal>But it is rendered emphasized.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>This is not rendered \`</Normal><Strong>*monospaced strong*</Strong><Normal>`. </Normal><Control>+</Control><br/>
+<Normal>But it is rendered strong.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>This is not rendered \`</Normal><Emphasized Strong>*_emphasized monospaced strong_*</Emphasized Strong><Normal>`. </Normal><Control>+</Control><br/>
+<Normal>But it is rendered emphasized strong.</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>= Horizontal Rules</Section Title><br/>
+<Normal></Normal><br/>
+<Section Title>== Simple patterns</Section Title><br/>
+<Normal></Normal><br/>
+<Control>'''</Control><br/>
+<Control>---</Control><br/>
+<Control>***</Control><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>== Patterns with spaces</Section Title><br/>
+<Normal></Normal><br/>
+<Control>- - -</Control><br/>
+<Control>* * *</Control><br/>
+<Normal></Normal><br/>
+<Block Title>.Not a horizontal rule</Block Title><br/>
+<Normal>' ' '</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>== Arbitrary length</Section Title><br/>
+<Normal></Normal><br/>
+<Preprocessor>NOTE:</Preprocessor><Normal> Although the </Normal><Link>https://asciidoctor.org/docs/user-manual/#markdown-style-horizontal-rules[Asciidoctor Manual]</Link><Normal> states that horizontal rule patterns are only supporting up to three characters (ignoring the optional spaces), some longer patterns work too.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>'''''''</Normal><br/>
+<Normal></Normal><br/>
+<Comment>////</Comment><br/>
+<Comment>These patterns don't work, as they start delimited blocks, item lists etc..</Comment><br/>
+<Comment>--------</Comment><br/>
+<Comment>******</Comment><br/>
+<Comment>- - - - - -</Comment><br/>
+<Comment>* * * * * * * * * </Comment><br/>
+<Comment>////</Comment><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>== Inside blocks</Section Title><br/>
+<Normal></Normal><br/>
+<Delimiter>****</Delimiter><br/>
+<Normal>Horizontal rules work also inside blocks.</Normal><br/>
+<Normal>They eventually need an empty line before them, though.</Normal><br/>
+<Normal></Normal><br/>
+<Control>'''</Control><br/>
+<Normal>After the horizontal rule.</Normal><br/>
+<Delimiter>****</Delimiter><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>= Include</Section Title><br/>
+<Attribute>:includedir: </Attribute><Attribute Value>include</Attribute Value><br/>
+<Normal></Normal><br/>
+<Section Title>== Included Contents Rendered</Section Title><br/>
+<Normal></Normal><br/>
+<Preprocessor>IMPORTANT:</Preprocessor><Normal> The include directive is </Normal><Emphasized>_always_</Emphasized><Normal> processed, even within passthrough blocks.</Normal><br/>
+<Normal></Normal><br/>
+<Preprocessor>NOTE:</Preprocessor><Normal> Using file names with spaces works.</Normal><br/>
+<Normal></Normal><br/>
+<Preprocessor>include::{includedir}/demo.adoc[]</Preprocessor><br/>
+<Normal></Normal><br/>
+<Block Title>.Partial include</Block Title><br/>
+<Preprocessor>include::{includedir}/demo.adoc[lines=2..3]</Preprocessor><br/>
+<Normal></Normal><br/>
+<Block Title>.Inside contiguous block</Block Title><br/>
+<Preprocessor>[literal]</Preprocessor><br/>
+<Verbatim>This line shall be highlighted as verbatim.</Verbatim><br/>
+<Preprocessor>include::{includedir}/demo.adoc[lines=2..3]</Preprocessor><br/>
+<Verbatim>This line shall be highlighted as verbatim.</Verbatim><br/>
+<Normal></Normal><br/>
+<Block Title>.Inside delimited block with name</Block Title><br/>
+<Preprocessor>[literal]</Preprocessor><br/>
+<Delimiter>----</Delimiter><br/>
+<Verbatim>This line shall be highlighted as verbatim.</Verbatim><br/>
+<Preprocessor>include::{includedir}/demo.adoc[lines=2..3]</Preprocessor><br/>
+<Verbatim>This line shall be highlighted as verbatim.</Verbatim><br/>
+<Delimiter>----</Delimiter><br/>
+<Normal></Normal><br/>
+<Block Title>.Inside delimited block without name</Block Title><br/>
+<Delimiter>....</Delimiter><br/>
+<Verbatim>This line shall be highlighted as verbatim.</Verbatim><br/>
+<Preprocessor>include::{includedir}/demo.adoc[lines=2..3]</Preprocessor><br/>
+<Verbatim>This line shall be highlighted as verbatim.</Verbatim><br/>
+<Delimiter>....</Delimiter><br/>
+<Normal></Normal><br/>
+<Block Title>.It is also processed within passthrough blocks</Block Title><br/>
+<Preprocessor>[pass]</Preprocessor><br/>
+<Passthrough>This line shall be highlighted as passthrough.</Passthrough><br/>
+<Preprocessor>include::{includedir}/demo.adoc[lines=2..3]</Preprocessor><br/>
+<Passthrough>This line shall be highlighted as passthrough.</Passthrough><br/>
+<Normal></Normal><br/>
+<Preprocessor>[pass]</Preprocessor><br/>
+<Passthrough>--</Passthrough><br/>
+<Passthrough>This line shall be highlighted as passthrough.</Passthrough><br/>
+<Preprocessor>include::{includedir}/demo.adoc[lines=2..3]</Preprocessor><br/>
+<Passthrough>This line shall be highlighted as passthrough.</Passthrough><br/>
+<Passthrough>--</Passthrough><br/>
+<Normal></Normal><br/>
+<Block Title>.Inside table</Block Title><br/>
+<Delimiter>|===</Delimiter><br/>
+<Delimiter>|</Delimiter><Normal>row 1 col 1</Normal><Delimiter>|</Delimiter><Normal>row 2 col 2</Normal><br/>
+<Delimiter>|</Delimiter><br/>
+<Comment>// the include directive must have its own line with nothing else</Comment><br/>
+<Preprocessor>include::{includedir}/demo.adoc[lines=1..1]</Preprocessor><br/>
+<Delimiter>|</Delimiter><Normal>row 2 col2</Normal><br/>
+<Normal></Normal><br/>
+<Delimiter>|</Delimiter><Normal>row 3 col 1</Normal><br/>
+<Delimiter>|</Delimiter><Normal>row 3 col 2</Normal><br/>
+<Delimiter>|===</Delimiter><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>= Index</Section Title><br/>
+<Normal></Normal><br/>
+<Section Title>== Rendered as Index Term</Section Title><br/>
+<Normal></Normal><br/>
+<Normal>This is a </Normal><Preprocessor>((flow))</Preprocessor><Normal> index term.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>This is a </Normal><Preprocessor>indexterm2:[flow]</Preprocessor><Normal> index term.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>This is a </Normal><Preprocessor>(((concealed, index, term)))</Preprocessor><Normal> concealed index term.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>This is a </Normal><Preprocessor>indexterm:[concealed, index, term]</Preprocessor><Normal> concealed index term.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>This is rendered as a </Normal><Preprocessor>((flow index term))</Preprocessor><Normal>).</Normal><br/>
+<Normal></Normal><br/>
+<Normal>This is rendered as a </Normal><Preprocessor>(((flow index term))</Preprocessor><Normal>.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>This is </Normal><Preprocessor>((())</Preprocessor><Normal>) empty but rendered as index term nevertheless.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>Some </Normal><Preprocessor>(((index term)))</Preprocessor><Normal>.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>Some </Normal><Preprocessor>((((index term)))</Preprocessor><Normal>).</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>== Rendered as-is</Section Title><br/>
+<Normal></Normal><br/>
+<Normal>This is (()) not an index term as it is empty.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>This is (not an index term)) as there is a </Normal><Monospaced>`(`</Monospaced><Normal> missing.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>This is ((not an index term) as there is a </Normal><Monospaced>`)`</Monospaced><Normal> missing.</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>== Escaped</Section Title><br/>
+<Normal></Normal><br/>
+<Normal>This is \((not an indexterm)) as it is escaped.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>This is \(</Normal><Preprocessor>((not a concealed index term))</Preprocessor><Normal>), but still a flow index term as only the outer brackets are escaped.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>This is \(\((not an indexterm))) as it is fully escaped.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>This is not a \indexterm2:[flow] index term.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>This is not a \indexterm:[concealed, index, term] concealed index term.</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Preprocessor>[index]</Preprocessor><br/>
+<Section Title>== Index Catalog</Section Title><br/>
+<Normal></Normal><br/>
+<Preprocessor>WARNING:</Preprocessor><Normal> HTML output currently does not support the creation of the index catalog.</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>= Link</Section Title><br/>
+<Normal></Normal><br/>
+<Section Title>== ftp, irc</Section Title><br/>
+<Normal></Normal><br/>
+<List Marker>*</List Marker><Normal> </Normal><Link>ftp://some.org/some/where/file.extension</Link><br/>
+<List Marker>*</List Marker><Normal> </Normal><Link>irc://some.org/some/where/file.extension</Link><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>== http(s)</Section Title><br/>
+<Normal></Normal><br/>
+<List Marker>*</List Marker><Normal> </Normal><Link>http://some.org/some/where/file.extension</Link><br/>
+<List Marker>*</List Marker><Normal> </Normal><Link>https://some.org/some/where/file.extension</Link><br/>
+<Normal></Normal><br/>
+<Comment>// . , ; : followed by a space terminate the link</Comment><br/>
+<List Marker>*</List Marker><Normal> </Normal><Link>https://some.org/some/where/file.extension</Link><Normal>. some text</Normal><br/>
+<List Marker>*</List Marker><Normal> </Normal><Link>https://some.org/some/where/file.extension.some</Link><Normal> text</Normal><br/>
+<List Marker>*</List Marker><Normal> </Normal><Link>https://some.org/some/where/file.extension</Link><Normal>, some text</Normal><br/>
+<List Marker>*</List Marker><Normal> </Normal><Link>https://some.org/some/where/file.extension,some</Link><Normal> text</Normal><br/>
+<List Marker>*</List Marker><Normal> </Normal><Link>https://some.org/some/where/file.extension</Link><Normal>; some text</Normal><br/>
+<List Marker>*</List Marker><Normal> </Normal><Link>https://some.org/some/where/file.extension;some</Link><Normal> text</Normal><br/>
+<List Marker>*</List Marker><Normal> </Normal><Link>https://some.org/some/where/file.extension</Link><Normal>: some text</Normal><br/>
+<List Marker>*</List Marker><Normal> </Normal><Link>https://some.org/some/where/file.extension</Link><Normal> some text</Normal><br/>
+<List Marker>*</List Marker><Normal> </Normal><Link>https://some.org/some/where/file.extension:some</Link><Normal> text</Normal><br/>
+<Normal></Normal><br/>
+<Comment>// unbalanced square brackets always terminate the link</Comment><br/>
+<List Marker>*</List Marker><Normal> </Normal><Link>https://some.org/some/where/file.extension</Link><Normal>[some text</Normal><br/>
+<List Marker>*</List Marker><Normal> </Normal><Link>https://some.org/some/where/file.extension</Link><Normal>[ some text</Normal><br/>
+<List Marker>*</List Marker><Normal> </Normal><Link>https://some.org/some/where/file.extension</Link><Normal>]some text</Normal><br/>
+<List Marker>*</List Marker><Normal> </Normal><Link>https://some.org/some/where/file.extension</Link><Normal>] some text</Normal><br/>
+<Normal></Normal><br/>
+<List Marker>*</List Marker><Normal> </Normal><Link>https://some.org/some/where/file.extension[]</Link><br/>
+<List Marker>*</List Marker><Normal> </Normal><Link>https://some.org/some/where/file.extension[some text]</Link><Normal>trailing text</Normal><br/>
+<List Marker>*</List Marker><Normal> </Normal><Link>https://some.org/some/where/file.extension[some text]</Link><Normal>. trailing text</Normal><br/>
+<List Marker>*</List Marker><Normal> </Normal><Link>https://some.org/some/where/file.extension[some text]</Link><Normal>, trailing text</Normal><br/>
+<List Marker>*</List Marker><Normal> </Normal><Link>https://some.org/some/where/file.extension[some text]</Link><Normal>; trailing text</Normal><br/>
+<List Marker>*</List Marker><Normal> </Normal><Link>https://some.org/some/where/file.extension[some text]</Link><Normal>: trailing text</Normal><br/>
+<List Marker>*</List Marker><Normal> </Normal><Link>https://some.org/some/where/file.extension[some]</Link><Normal>text] trailing text</Normal><br/>
+<List Marker>*</List Marker><Normal> </Normal><Link>https://some.org/some/where/file.extension[some ]</Link><Normal>text] trailing text</Normal><br/>
+<List Marker>*</List Marker><Normal> </Normal><Link>https://some.org/some/where/file.extension[some \]text]</Link><Normal> - with escaped </Normal><Monospaced>`]`</Monospaced><br/>
+<Normal></Normal><br/>
+<Comment>// </Comment><Alert Level 2>TODO</Alert Level 2><Comment>: highlighting of text within [] ?</Comment><br/>
+<List Marker>*</List Marker><Normal> some text </Normal><Link>https://some.org/some/where/file.extension[*some text*]</Link><Normal> trailing text.</Normal><br/>
+<Normal></Normal><br/>
+<Comment>// some characters may be placed before the `http`</Comment><br/>
+<List Marker>*</List Marker><Normal> (</Normal><Link>https://some.org</Link><br/>
+<List Marker>*</List Marker><Normal> )</Normal><Link>https://some.org</Link><br/>
+<List Marker>*</List Marker><Normal> [</Normal><Link>https://some.org</Link><br/>
+<List Marker>*</List Marker><Normal> ]</Normal><Link>https://some.org</Link><br/>
+<List Marker>*</List Marker><Normal> ;</Normal><Link>https://some.org</Link><br/>
+<List Marker>*</List Marker><Normal> <</Normal><Link>https://some.org</Link><br/>
+<List Marker>*</List Marker><Normal> ></Normal><Link>https://some.org</Link><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>=== Not rendered as Link</Section Title><br/>
+<Normal></Normal><br/>
+<List Marker>*</List Marker><Normal> {https://some.org</Normal><br/>
+<List Marker>*</List Marker><Normal> }https://some.org</Normal><br/>
+<List Marker>*</List Marker><Normal> ,https://some.org</Normal><br/>
+<List Marker>*</List Marker><Normal> .https://some.org</Normal><br/>
+<List Marker>*</List Marker><Normal> :https://some.org</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>== link</Section Title><br/>
+<Normal></Normal><br/>
+<List Marker>*</List Marker><Normal> link:relative/path - not rendered as link as </Normal><Monospaced>`[]`</Monospaced><Normal> are misssing</Normal><br/>
+<List Marker>*</List Marker><Normal> </Normal><Link>link:relative/path[]</Link><br/>
+<List Marker>*</List Marker><Normal> </Normal><Marked>##before##</Marked><Link>link:relative/path[]</Link><Marked>##after##</Marked><Normal> - no spaces needed</Normal><br/>
+<List Marker>*</List Marker><Normal> </Normal><Link>link:relative/path/file.extension[local file]</Link><br/>
+<List Marker>*</List Marker><Normal> </Normal><Link>link:relative/path/file.extension[local ]</Link><Normal>file]</Normal><br/>
+<List Marker>*</List Marker><Normal> </Normal><Link>link:relative/path/file.extension[local \]file]</Link><Normal> - with escaped </Normal><Monospaced>`]`</Monospaced><br/>
+<List Marker>*</List Marker><Normal> link:relative/path with spaces/[] - not rendered as link because of spaces</Normal><br/>
+<List Marker>*</List Marker><Normal> link:</Normal><Passthrough>++relative/path with spaces/++</Passthrough><Normal>[] - but this is rendered as link with spaces</Normal><br/>
+<List Marker>*</List Marker><Normal> </Normal><Link>link:external.html#anchor[to anchor of local HTML file]</Link><br/>
+<List Marker>*</List Marker><Normal> </Normal><Link>link:url[optional link text, optional target attribute, optional role attribute]</Link><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>== E-Mail</Section Title><br/>
+<Normal></Normal><br/>
+<List Marker>*</List Marker><Normal> </Normal><Link>some.person@org.com</Link><br/>
+<List Marker>*</List Marker><Normal> </Normal><Link>some.person@org.com</Link><Normal>[some one] - brackets supported only with leading </Normal><Monospaced>`mailto:`</Monospaced><br/>
+<List Marker>*</List Marker><Normal> :some.person@org.com - not rendered as link because of leading </Normal><Monospaced>`:`</Monospaced><br/>
+<List Marker>*</List Marker><Normal> /some.person@org.com - not rendered as link because of leading </Normal><Monospaced>`/`</Monospaced><br/>
+<Normal></Normal><br/>
+<List Marker>*</List Marker><Normal> mailto:some.person@org.com - not rendered as link as </Normal><Monospaced>`[]`</Monospaced><Normal> are misssing</Normal><br/>
+<List Marker>*</List Marker><Normal> </Normal><Link>mailto:some.person@org.com[]</Link><br/>
+<List Marker>*</List Marker><Normal> </Normal><Marked>##before##</Marked><Link>mailto:some.person@org.com[]</Link><Marked>##after##</Marked><Normal> - no spaces needed</Normal><br/>
+<List Marker>*</List Marker><Normal> </Normal><Link>mailto:some.person@org.com[some one]</Link><br/>
+<List Marker>*</List Marker><Normal> mailto::some.person@org.com[] - not rendered as link because of double </Normal><Monospaced>`:`</Monospaced><br/>
+<List Marker>*</List Marker><Normal> mailto: </Normal><Link>some.person@org.com</Link><Normal>[] - not rendered as mailto because of space after </Normal><Monospaced>`:`</Monospaced><Normal>, but still as inline email</Normal><br/>
+<List Marker>*</List Marker><Normal> mailto:[some one] - not rendered as link because of missing address</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>== Escaped</Section Title><br/>
+<Normal></Normal><br/>
+<List Marker>*</List Marker><Normal> \ftp://some.org/some/where/file.extension</Normal><br/>
+<List Marker>*</List Marker><Normal> \irc://some.org/some/where/file.extension</Normal><br/>
+<List Marker>*</List Marker><Normal> \https://some.org/some/where/file.extension</Normal><br/>
+<List Marker>*</List Marker><Normal> \link:relative/path[]</Normal><br/>
+<List Marker>*</List Marker><Normal> \link:relative/path[]</Normal><br/>
+<List Marker>*</List Marker><Normal> \some.person@org.com</Normal><br/>
+<List Marker>*</List Marker><Normal> \:some.person@org.com</Normal><br/>
+<List Marker>*</List Marker><Normal> \/some.person@org.com</Normal><br/>
+<List Marker>*</List Marker><Normal> \mailto:some.person@org.com[]</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>= List</Section Title><br/>
+<Normal></Normal><br/>
+<Section Title>== Bulleted List</Section Title><br/>
+<Normal></Normal><br/>
+<Comment>////</Comment><br/>
+<Alert Level 2>FIXME</Alert Level 2><Comment> The *** without text in the list below should not be highlighted as a horizontal line.</Comment><br/>
+<Comment>This is going to be problematic, as we would need to know that we are currently inside a list.</Comment><br/>
+<Comment>////</Comment><br/>
+<Block Title>.using asterisks</Block Title><br/>
+<List Marker>*</List Marker><Normal> item 1</Normal><br/>
+<List Marker>  *</List Marker><Normal> * item 2</Normal><br/>
+<Normal>Has some text.</Normal><br/>
+<List Marker>**</List Marker><Normal> item 2.1</Normal><br/>
+<Normal>Also has some text.</Normal><br/>
+<Control>+</Control><br/>
+<Normal>And an additional paragraph.</Normal><br/>
+<List Marker>**</List Marker><Normal> item 2.2</Normal><br/>
+<List Marker>***</List Marker><Normal> item 2.2.1</Normal><br/>
+<Control>+</Control><br/>
+<Normal>Markers without a text are </Normal><Emphasized>_no_</Emphasized><Normal> item.</Normal><br/>
+<Control>***</Control><br/>
+<List Marker>**</List Marker><Normal> item 2.3</Normal><br/>
+<List Marker>***</List Marker><Normal> item 2.3.1</Normal><br/>
+<List Marker>****</List Marker><Normal> item 2.3.1.1</Normal><br/>
+<List Marker>*</List Marker><Normal> item 3</Normal><br/>
+<Normal></Normal><br/>
+<List Marker> *</List Marker><Normal> item 4</Normal><br/>
+<List Marker>**</List Marker><Normal>    item 4.1</Normal><br/>
+<Normal>**not an item as there is no space</Normal><br/>
+<List Marker>     **</List Marker><Normal> item 4.2</Normal><br/>
+<Normal></Normal><br/>
+<Block Title>.using hyphens</Block Title><br/>
+<List Marker>-</List Marker><Normal> item 1</Normal><br/>
+<List Marker>   -</List Marker><Normal> item 2</Normal><br/>
+<Verbatim>   -- item 2.1 is not an item as using hyphens is only supported for flat lists</Verbatim><br/>
+<Normal></Normal><br/>
+<Comment>////</Comment><br/>
+<Alert Level 2>FIXME</Alert Level 2><Comment>: The line above should not be highlighted as literal.</Comment><br/>
+<Comment>This is going to be problematic, as we would need to know that we are currently inside a list.</Comment><br/>
+<Comment>////</Comment><br/>
+<Normal></Normal><br/>
+<Block Title>.inside a block</Block Title><br/>
+<Delimiter>****</Delimiter><br/>
+<List Marker>*</List Marker><Normal> item 1</Normal><br/>
+<List Marker>**</List Marker><Normal> item 1.1</Normal><br/>
+<Delimiter>****</Delimiter><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>== Checklist</Section Title><br/>
+<Normal></Normal><br/>
+<Comment>////</Comment><br/>
+<Alert Level 2>FIXME</Alert Level 2><Comment> The invalid checklist items below should not be highlighted as bulleted list items.</Comment><br/>
+<Comment>This is going to be problematic, as we would need to know that we are currently inside a checklist.</Comment><br/>
+<Comment>////</Comment><br/>
+<Normal></Normal><br/>
+<Block Title>.using asterisks</Block Title><br/>
+<List Marker>* [*]</List Marker><Normal> checked</Normal><br/>
+<List Marker>**  [x]</List Marker><Normal>  also checked</Normal><br/>
+<List Marker>*** [x]</List Marker><Normal> also checked</Normal><br/>
+<List Marker>*</List Marker><Normal> [X]  </Normal><Emphasized>_invalid_</Emphasized><Normal> check (capital X), normal list item</Normal><br/>
+<List Marker>*</List Marker><Normal> [o] </Normal><Emphasized>_invalid_</Emphasized><Normal> check (invalid character), normal list item</Normal><br/>
+<List Marker>*</List Marker><Normal> [] </Normal><Emphasized>_invalid_</Emphasized><Normal> check (no space), normal list item</Normal><br/>
+<List Marker>* [ ]</List Marker><Normal> not checked</Normal><br/>
+<List Marker>*</List Marker><Normal>     normal list item</Normal><br/>
+<Normal></Normal><br/>
+<Block Title>.using hyphens</Block Title><br/>
+<List Marker>- [*]</List Marker><Normal> checked</Normal><br/>
+<List Marker>- [*]</List Marker><Normal> also checked</Normal><br/>
+<Replacement>--</Replacement><Normal> [*] </Normal><Emphasized>_not a list item_</Emphasized><Normal> as hyphens are only supported for flat lists</Normal><br/>
+<Verbatim>   -- [*] _not a list item_ as hyphens are only supported for flat lists</Verbatim><br/>
+<Normal></Normal><br/>
+<Comment>////</Comment><br/>
+<Alert Level 2>FIXME</Alert Level 2><Comment>: the line above should not be highlighted as literal.</Comment><br/>
+<Comment>This is going to be problematic, as we would need to know that we are currently inside a list.</Comment><br/>
+<Comment>////</Comment><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>== Description List</Section Title><br/>
+<Normal></Normal><br/>
+<Block Title>.Normal format</Block Title><br/>
+<List Marker>Term normal::</List Marker><Normal> This is a description.</Normal><br/>
+<List Marker>  Term indented::</List Marker><Normal> This works too.</Normal><br/>
+<Normal></Normal><br/>
+<List Marker>Term multi line::</List Marker><br/>
+<Normal>This one has multiple lines.</Normal><br/>
+<Normal>Two lines to be exact.</Normal><br/>
+<List Marker>Term L2:::</List Marker><Normal> This term is on level 2.</Normal><br/>
+<List Marker>Term L3::::</List Marker><Normal> This term is on level 3.</Normal><br/>
+<List Marker>Term L4:::::</List Marker><Normal> This term is on level 4.</Normal><br/>
+<List Marker>Term L5::::::</List Marker><Normal> This term is on level 5.</Normal><br/>
+<List Marker>Term with empty definition::</List Marker><br/>
+<List Marker>Term with separated colons   ::</List Marker><Normal> This one has spaces before the </Normal><Monospaced>`::`</Monospaced><Normal>.</Normal><br/>
+<Normal>Term no space::This is </Normal><Emphasized>_not a description item_</Emphasized><Normal> as there is no space after the </Normal><Monospaced>`::`</Monospaced><Normal>.</Normal><br/>
+<List Marker>Term with unnumbered list::</List Marker><br/>
+<List Marker>*</List Marker><Normal> list item 1</Normal><br/>
+<List Marker>*</List Marker><Normal> list item 2</Normal><br/>
+<List Marker>Term with multiple colons:: in the term::</List Marker><Normal> </Normal><br/>
+<Normal>Having multiple </Normal><Monospaced>`::`</Monospaced><Normal> in one line is OK too.</Normal><br/>
+<Block Title>.;Strange Term = !?*:: This one has a strange term.</Block Title><br/>
+<Normal>Term 9   : : A space between the double </Normal><Monospaced>`:`</Monospaced><Normal> does </Normal><Emphasized>_not_</Emphasized><Normal> work.</Normal><br/>
+<Normal></Normal><br/>
+<Comment>////</Comment><br/>
+<Alert Level 2>FIXME</Alert Level 2><Comment> The line with the "Strange Term" abvoe should not be highlighted as title in this case.</Comment><br/>
+<Comment>This is going to be problematic, as we would need to know that we are currently inside a list.</Comment><br/>
+<Comment>////</Comment><br/>
+<Normal></Normal><br/>
+<Block Title>.Term and description on the same line</Block Title><br/>
+<Preprocessor>[horizontal]</Preprocessor><br/>
+<List Marker>Term 1::</List Marker><Normal> first level.</Normal><br/>
+<List Marker>Term 2:::</List Marker><Normal> second level.</Normal><br/>
+<List Marker>Term 3::</List Marker><Normal> first level again.</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>== Numbered List</Section Title><br/>
+<Normal></Normal><br/>
+<Block Title>.using numbers</Block Title><br/>
+<List Marker>1.</List Marker><Normal> item 1</Normal><br/>
+<List Marker>2.</List Marker><Normal> item 2</Normal><br/>
+<List Marker>  3.</List Marker><Normal> item 3</Normal><br/>
+<Normal>4 Is not an item.</Normal><br/>
+<Normal>Numbers without a trailing dot do </Normal><Emphasized>_not_</Emphasized><Normal> result in an item.</Normal><br/>
+<List Marker>123.</List Marker><Normal> This is an item with an out-of-sequence number.</Normal><br/>
+<Normal>It will be fixed in the rendered output.</Normal><br/>
+<Normal></Normal><br/>
+<Block Title>.using dots</Block Title><br/>
+<List Marker>.</List Marker><Normal> item 1</Normal><br/>
+<List Marker>   .</List Marker><Normal> item 2</Normal><br/>
+<Block Title>..not an item as there is no space</Block Title><br/>
+<List Marker> ..</List Marker><Normal> item 2.1</Normal><br/>
+<List Marker>   ..</List Marker><Normal> item 2.2</Normal><br/>
+<List Marker>...</List Marker><Normal> item 2.2.1</Normal><br/>
+<List Marker>....</List Marker><Normal> item 2.2.1.1</Normal><br/>
+<List Marker> .</List Marker><Normal> item 3</Normal><br/>
+<Normal></Normal><br/>
+<Comment>////</Comment><br/>
+<Alert Level 2>FIXME</Alert Level 2><Comment> The line above starting with "..not an item" should not be highlighted as title in this case.</Comment><br/>
+<Comment>This is going to be problematic, as we would need to know that we are currently inside a list.</Comment><br/>
+<Comment>////</Comment><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>== Question and Answer List</Section Title><br/>
+<Normal></Normal><br/>
+<Comment>////</Comment><br/>
+<Alert Level 2>FIXME</Alert Level 2><Comment> Indented answer is highlighted as verbatim block, messing up further question.</Comment><br/>
+<Comment>This is going to be problematic, as we would need to know that we are currently inside a list.</Comment><br/>
+<Comment>////</Comment><br/>
+<Normal></Normal><br/>
+<Preprocessor>[qanda]</Preprocessor><br/>
+<List Marker>What is Asciidoctor?::</List Marker><br/>
+<Normal>An implementation of the AsciiDoc processor in Ruby.</Normal><br/>
+<List Marker>Must the answer be indented?::</List Marker><br/>
+<Verbatim>  It's not necessary, but possibly.</Verbatim><br/>
+<Verbatim>What is the answer to the Ultimate Question?:: 42</Verbatim><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>= Macro</Section Title><br/>
+<Comment>// for `btn:`, `kbd:`, `menu:`</Comment><br/>
+<Attribute>:experimental:</Attribute><br/>
+<Comment>// for icon:tags[] etc.</Comment><br/>
+<Attribute>:imagesdir: </Attribute><Attribute Value>media</Attribute Value><br/>
+<Comment>// needed to use macro `toc::[]`</Comment><br/>
+<Attribute>:toc: </Attribute><Attribute Value>macro</Attribute Value><br/>
+<Normal></Normal><br/>
+<Section Title>== General Information</Section Title><br/>
+<Normal></Normal><br/>
+<Preprocessor>NOTE:</Preprocessor><Normal> There is no space needed before the macro name or after the closing </Normal><Monospaced>`]`</Monospaced><Normal>.</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>== Anchor</Section Title><br/>
+<Normal></Normal><br/>
+<Normal>There is a macro form </Normal><Preprocessor>anchor:anchor-id[Macro Anchor]</Preprocessor><Normal> for anchor definition.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>See </Normal><Monospaced>`anchor.adoc`</Monospaced><Normal> for other forms.</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>== Cross Reference</Section Title><br/>
+<Normal></Normal><br/>
+<Preprocessor>xref:anchor-id[macro xref]</Preprocessor><br/>
+<Normal></Normal><br/>
+<Preprocessor>WARNING:</Preprocessor><Normal> Highlighting for cross references with text spanning multiple lines is not supported.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>xref:id[</Normal><br/>
+<Normal>Line 1 in cross reference text.</Normal><br/>
+<Normal>Line 2 in cross reference text.</Normal><br/>
+<Normal>]</Normal><br/>
+<Normal></Normal><br/>
+<Normal>\xref:anchor-id[macro xref] escaped</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>== Footnote</Section Title><br/>
+<Normal></Normal><br/>
+<Normal>This text has a foonote</Normal><Preprocessor>footnote:[A simple footnote.]</Preprocessor><Normal>.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>This text has a foonote with id</Normal><Preprocessor>footnoteref:[fn-1, A footnote reference.]</Preprocessor><Normal>.</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>== Icon</Section Title><br/>
+<Normal></Normal><br/>
+<Normal>This is a tag </Normal><Preprocessor>icon:tags[]</Preprocessor><Normal> icon with no color set.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>This is a blue </Normal><Preprocessor>icon:tags[role="blue"]</Preprocessor><Normal> tag.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>This is a big green </Normal><Preprocessor>icon:tags[role="green", size="2x"]</Preprocessor><Normal> tag.</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>== Image</Section Title><br/>
+<Normal></Normal><br/>
+<Normal>An image</Normal><Preprocessor>image:logo-outline-color.svg[Logo,25]</Preprocessor><Normal>within some text.</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>== Keyboard Shortcut</Section Title><br/>
+<Normal></Normal><br/>
+<Preprocessor>kbd:[Ctrl+M]</Preprocessor><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>== Menu Selection</Section Title><br/>
+<Normal></Normal><br/>
+<Preprocessor>menu:File[Save]</Preprocessor><br/>
+<Normal></Normal><br/>
+<Preprocessor>menu:View[Zoom > 1:1]</Preprocessor><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>== Pass</Section Title><br/>
+<Normal></Normal><br/>
+<Comment>// </Comment><Alert Level 2>TODO</Alert Level 2><Comment> Would be nice to highlight the text within the square brackets as passthrough.</Comment><br/>
+<Normal></Normal><br/>
+<Normal>Some </Normal><Preprocessor>pass:[<u>passthrough</u>]</Preprocessor><Normal> HTML.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>Some </Normal><Preprocessor>pass:quotes[<u>passthrough with *quoted* text</u>]</Preprocessor><Normal> HTML.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>Some </Normal><Preprocessor>pass:q[<u>passthrough with *quoted* text</u>]</Preprocessor><Normal> HTML.</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>== Table of Contents</Section Title><br/>
+<Normal></Normal><br/>
+<Preprocessor>toc::[]</Preprocessor><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>== UI Buttons</Section Title><br/>
+<Normal></Normal><br/>
+<Normal>Press the </Normal><Preprocessor>btn:[OK]</Preprocessor><Normal> button when you are finished.</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>== Escaped</Section Title><br/>
+<Normal></Normal><br/>
+<Normal>This is no anchor \anchor:macro-anchor[Macro Anchor].</Normal><br/>
+<Normal></Normal><br/>
+<Normal>This is no button \btn:[Cancel].</Normal><br/>
+<Normal></Normal><br/>
+<Normal>This is no foonote\footnote:[A simple footnote.].</Normal><br/>
+<Normal></Normal><br/>
+<Normal>This is no foonote with id\footnoteref:[fn-1, A footnote reference.].</Normal><br/>
+<Normal></Normal><br/>
+<Normal>This is no image\image:logo-outline-color.svg[Tree, 25].</Normal><br/>
+<Normal></Normal><br/>
+<Normal>This is no icon \icon:tags[].</Normal><br/>
+<Normal></Normal><br/>
+<Normal>This is no keyboard shortcut \kbd:[Ctrl+M].</Normal><br/>
+<Normal></Normal><br/>
+<Normal>This is no menu \menu:File[Save].</Normal><br/>
+<Normal></Normal><br/>
+<Normal>This is no passthrough \pass:[<u>passthrough</u>].</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>= Media</Section Title><br/>
+<Comment>// The name `imagesdir` is a bit misleading as audio and video use also this prefix.</Comment><br/>
+<Attribute>:imagesdir: </Attribute><Attribute Value>media</Attribute Value><br/>
+<Normal></Normal><br/>
+<Section Title>== Audio</Section Title><br/>
+<Normal></Normal><br/>
+<Preprocessor>audio::test.mp3[]</Preprocessor><br/>
+<Normal></Normal><br/>
+<Preprocessor>audio::test.mp3[options="loop"]</Preprocessor><br/>
+<Normal></Normal><br/>
+<Block Title>.Escaped</Block Title><br/>
+<Normal>\audio::test.mp3[]</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>== Image</Section Title><br/>
+<Normal></Normal><br/>
+<Section Title>=== Block Format</Section Title><br/>
+<Normal></Normal><br/>
+<Block Title>.Test SVG</Block Title><br/>
+<Anchor>[#logo]</Anchor><br/>
+<Preprocessor>[link=https://github.com/asciidoctor/brand]</Preprocessor><br/>
+<Preprocessor>image::test.svg[Test, 100]</Preprocessor><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>==== Not highlighted</Section Title><br/>
+<Normal></Normal><br/>
+<Block Title>.leading spaces, literal paragraph</Block Title><br/>
+<Verbatim> image::test.svg[Test, 100]</Verbatim><br/>
+<Normal></Normal><br/>
+<Block Title>.trailing characters</Block Title><br/>
+<Normal>image::test.svg[Test, 100] trailing</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>==== Escaped</Section Title><br/>
+<Normal></Normal><br/>
+<Normal>\image::test.svg[Asciidoctor Logo, 100]</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>=== Inline Format</Section Title><br/>
+<Normal></Normal><br/>
+<Normal>Within</Normal><Preprocessor>image:logo-outline-color.svg[Tree, 25]</Preprocessor><Normal>some text.</Normal><br/>
+<Normal></Normal><br/>
+<Preprocessor>NOTE:</Preprocessor><Normal> There is no space needed before </Normal><Monospaced>`image`</Monospaced><Normal> and none after the closing </Normal><Monospaced>`]`</Monospaced><Normal>.</Normal><br/>
+<Normal></Normal><br/>
+<Preprocessor>image:logo-outline-color.svg[Tree, 25]</Preprocessor><Normal> at line start.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>At line end </Normal><Preprocessor>image:logo-outline-color.svg[Tree, 25]</Preprocessor><br/>
+<Normal></Normal><br/>
+<Normal>(</Normal><Preprocessor>image:logo-outline-color.svg[Tree, 25]</Preprocessor><Normal>) wrapped in non-space characters.</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>==== Not highlighted</Section Title><br/>
+<Normal></Normal><br/>
+<Normal>image</Normal><br/>
+<Normal></Normal><br/>
+<Normal>image:</Normal><br/>
+<Normal></Normal><br/>
+<Normal>someimage:</Normal><br/>
+<Normal></Normal><br/>
+<Normal>some:image</Normal><br/>
+<Normal></Normal><br/>
+<Normal>some image:[]</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>==== Escaped</Section Title><br/>
+<Normal></Normal><br/>
+<Normal>Within\image:logo-outline-color.svg[Tree, 25]some text.</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>== Video</Section Title><br/>
+<Normal></Normal><br/>
+<Preprocessor>video::test.mp4[width=300]</Preprocessor><br/>
+<Normal></Normal><br/>
+<Preprocessor>video::test.mp4[width=200, options=loop]</Preprocessor><br/>
+<Normal></Normal><br/>
+<Block Title>.Escaped</Block Title><br/>
+<Normal>\video::test.mp4[]</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>= Page break</Section Title><br/>
+<Normal></Normal><br/>
+<Section Title>== Rendered as page break</Section Title><br/>
+<Normal></Normal><br/>
+<Control><<<</Control><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>== Not rendered as page break</Section Title><br/>
+<Normal></Normal><br/>
+<Block Title>.Not a page break as it is indented</Block Title><br/>
+<Verbatim> <<<</Verbatim><br/>
+<Normal></Normal><br/>
+<Block Title>.Not a page break as it has trailing non-space characters</Block Title><br/>
+<Normal><<< extra characters</Normal><br/>
+<Normal></Normal><br/>
+<Block Title>.Escaped</Block Title><br/>
+<Normal>\<<<</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>= Preprocessor</Section Title><br/>
+<Normal></Normal><br/>
+<Section Title>== If Defined</Section Title><br/>
+<Normal></Normal><br/>
+<Attribute>:!attr-1:</Attribute><br/>
+<Preprocessor>ifdef::attr-1[]</Preprocessor><br/>
+<Normal>This line is </Normal><Emphasized>_not_</Emphasized><Normal> rendered as the attribute is not defined.</Normal><br/>
+<Preprocessor>endif::[]</Preprocessor><br/>
+<Normal></Normal><br/>
+<Attribute>:attr-1:</Attribute><br/>
+<Preprocessor>ifdef::attr-1[]</Preprocessor><br/>
+<Normal>This line </Normal><Emphasized>_is_</Emphasized><Normal> rendered as the attribute is now defined.</Normal><br/>
+<Preprocessor>endif::[]</Preprocessor><br/>
+<Normal></Normal><br/>
+<Block Title>.Short form avoiding </Block Title><Monospaced>`endif`</Monospaced><br/>
+<Preprocessor>ifdef::attr-1[The attribute `attr-1` is defined]</Preprocessor><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>== If Not Defined</Section Title><br/>
+<Normal></Normal><br/>
+<Attribute>:!attr-1:</Attribute><br/>
+<Preprocessor>ifndef::some-attribute[]</Preprocessor><br/>
+<Normal>This line </Normal><Emphasized>_is_</Emphasized><Normal> rendered as it is inside a 'if-not-defined' statement and </Normal><Monospaced>`some-attribute`</Monospaced><Normal> is not defined.</Normal><br/>
+<Preprocessor>endif::some-attribute[]</Preprocessor><br/>
+<Normal></Normal><br/>
+<Block Title>.Short form avoiding </Block Title><Monospaced>`endif`</Monospaced><br/>
+<Preprocessor>ifndef::some-attribute[The attribute `attr-1` is _not_ defined]</Preprocessor><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>== Any (or)</Section Title><br/>
+<Normal></Normal><br/>
+<Attribute>:!attr-1:</Attribute><br/>
+<Attribute>:!attr-2:</Attribute><br/>
+<Attribute>:attr-3:</Attribute><br/>
+<Preprocessor>ifdef::attr-1,attr-2,attr-3[]</Preprocessor><br/>
+<Normal>This line is rendered as at least one of the attributes is defined.</Normal><br/>
+<Preprocessor>endif::[]</Preprocessor><br/>
+<Normal></Normal><br/>
+<Attribute>:!attr-1:</Attribute><br/>
+<Attribute>:!attr-2:</Attribute><br/>
+<Attribute>:!attr-3:</Attribute><br/>
+<Preprocessor>ifdef::attr-1,attr-2,attr-3[]</Preprocessor><br/>
+<Normal>This line is not rendered as none of the attributes is defined.</Normal><br/>
+<Preprocessor>endif::[]</Preprocessor><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>== None (nor)</Section Title><br/>
+<Normal></Normal><br/>
+<Attribute>:!attr-1:</Attribute><br/>
+<Attribute>:!attr-2:</Attribute><br/>
+<Attribute>:!attr-3:</Attribute><br/>
+<Preprocessor>ifndef::attr-1,attr-2,attr-3[]</Preprocessor><br/>
+<Normal>This line is rendered as none of the attributes is defined.</Normal><br/>
+<Preprocessor>endif::[]</Preprocessor><br/>
+<Normal></Normal><br/>
+<Attribute>:!attr-1:</Attribute><br/>
+<Attribute>:!attr-2:</Attribute><br/>
+<Attribute>:attr-3:</Attribute><br/>
+<Preprocessor>ifndef::attr-1,attr-2,attr-3[]</Preprocessor><br/>
+<Normal>This line is not rendered as at least one of the attributes is defined.</Normal><br/>
+<Preprocessor>endif::[]</Preprocessor><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>== All (and)</Section Title><br/>
+<Normal></Normal><br/>
+<Attribute>:attr-1:</Attribute><br/>
+<Attribute>:attr-2:</Attribute><br/>
+<Attribute>:attr-3:</Attribute><br/>
+<Preprocessor>ifdef::attr-1+attr-2+attr-3[]</Preprocessor><br/>
+<Normal>This line is rendered as all the attributes are defined.</Normal><br/>
+<Preprocessor>endif::[]</Preprocessor><br/>
+<Normal></Normal><br/>
+<Attribute>:attr-1:</Attribute><br/>
+<Attribute>:attr-2:</Attribute><br/>
+<Attribute>:!attr-3:</Attribute><br/>
+<Preprocessor>ifndef::attr-1+attr-2+attr-3[]</Preprocessor><br/>
+<Normal>This line is not rendered as at least one of the attributes is not defined.</Normal><br/>
+<Preprocessor>endif::[]</Preprocessor><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>== Not All (nand)</Section Title><br/>
+<Normal></Normal><br/>
+<Attribute>:attr-1:</Attribute><br/>
+<Attribute>:attr-2:</Attribute><br/>
+<Attribute>:!attr-3:</Attribute><br/>
+<Preprocessor>ifndef::attr-1+attr-2+attr-3[]</Preprocessor><br/>
+<Normal>This line is rendered as at least one of the attributes is defined.</Normal><br/>
+<Preprocessor>endif::[]</Preprocessor><br/>
+<Normal></Normal><br/>
+<Attribute>:attr-1:</Attribute><br/>
+<Attribute>:attr-2:</Attribute><br/>
+<Attribute>:attr-3:</Attribute><br/>
+<Preprocessor>ifndef::attr-1+attr-2+attr-3[]</Preprocessor><br/>
+<Normal>This line is not rendered as all the attributes are not defined.</Normal><br/>
+<Preprocessor>endif::[]</Preprocessor><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>== If Eval</Section Title><br/>
+<Normal></Normal><br/>
+<Attribute>:two: </Attribute><Attribute Value>2</Attribute Value><br/>
+<Preprocessor>ifeval::[{two} > 1]</Preprocessor><br/>
+<Normal>This line is rendered as the expression evaluates to true.</Normal><br/>
+<Preprocessor>endif::[]</Preprocessor><br/>
+<Normal></Normal><br/>
+<Attribute>:not-true: </Attribute><Attribute Value>false</Attribute Value><br/>
+<Preprocessor>ifeval::[{not-true} == true]</Preprocessor><br/>
+<Normal>This line is not rendered as the expression evaluates to false.</Normal><br/>
+<Preprocessor>endif::[]</Preprocessor><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>== Escaped</Section Title><br/>
+<Normal></Normal><br/>
+<Attribute>:!attr-1:</Attribute><br/>
+<Normal>\ifdef::attr-1[]</Normal><br/>
+<Normal>This line is rendered as the </Normal><Monospaced>`ifdef`</Monospaced><Normal>-statement is escaped.</Normal><br/>
+<Normal>\endif::[]</Normal><br/>
+<Normal></Normal><br/>
+<Attribute>:!attr-1:</Attribute><br/>
+<Normal>\ifndef::some-attribute[Only if the attribute is not defined]</Normal><br/>
+<Normal>This line is rendered as the </Normal><Monospaced>`ifndef`</Monospaced><Normal>-statement is escaped.</Normal><br/>
+<Normal>\endif::some-attribute[]</Normal><br/>
+<Normal></Normal><br/>
+<Attribute>:not-true: </Attribute><Attribute Value>false</Attribute Value><br/>
+<Normal>\ifeval::[</Normal><Attribute>{not-true}</Attribute><Normal> == true]</Normal><br/>
+<Normal>This line is rendered as the </Normal><Monospaced>`ifeval`</Monospaced><Normal>-statement is escaped.</Normal><br/>
+<Normal>\endif::[]</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>= Quote and Verse</Section Title><br/>
+<Normal></Normal><br/>
+<Section Title>== Quote</Section Title><br/>
+<Normal></Normal><br/>
+<Block Title>.Contiguous block / paragraph</Block Title><br/>
+<Preprocessor>[quote, attribution, citation title and information]</Preprocessor><br/>
+<Anchor>[[quote-block-id]]</Anchor><br/>
+<Normal>Inside the </Normal><Strong>*contiguous block quote*</Strong><Normal>.</Normal><br/>
+<Normal>Last line of the quote block.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>This line is not part of the contiguous block quote anymore.</Normal><br/>
+<Normal></Normal><br/>
+<Block Title>.Delimited with block name</Block Title><br/>
+<Preprocessor>[quote, attribution, citation title and information]</Preprocessor><br/>
+<Anchor>[[quote-block-id]]</Anchor><br/>
+<Delimiter>____</Delimiter><br/>
+<Normal>Inside the </Normal><Strong>*delimited block quote*</Strong><Normal>.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>May contain emtpy lines.</Normal><br/>
+<Delimiter>____</Delimiter><br/>
+<Normal></Normal><br/>
+<Block Title>.Delimited without block name</Block Title><br/>
+<Anchor>[[quote-block-id]]</Anchor><br/>
+<Delimiter>____</Delimiter><br/>
+<Normal>Inside the </Normal><Strong>*delimited block quote*</Strong><Normal>.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>May contain emtpy lines.</Normal><br/>
+<Delimiter>____</Delimiter><br/>
+<Normal></Normal><br/>
+<Block Title>.Using an open block</Block Title><br/>
+<Preprocessor>[quote]</Preprocessor><br/>
+<Anchor>[[quote-block-id]]</Anchor><br/>
+<Delimiter>--</Delimiter><br/>
+<Normal>Inside the </Normal><Strong>*open block quote*</Strong><Normal>.</Normal><br/>
+<Delimiter>--</Delimiter><br/>
+<Normal></Normal><br/>
+<Block Title>.Nested block quote</Block Title><br/>
+<Preprocessor>[quote, outer attribution, outer citation title and information]</Preprocessor><br/>
+<Anchor>[[quote-block-id]]</Anchor><br/>
+<Delimiter>____</Delimiter><br/>
+<Normal>First line of outer quote.</Normal><br/>
+<Preprocessor>[quote, inner attribution, inner citation title and information]</Preprocessor><br/>
+<Anchor>[[quote-block-id]]</Anchor><br/>
+<Delimiter>______</Delimiter><br/>
+<Normal>Inside the inner quote.</Normal><br/>
+<Delimiter>______</Delimiter><br/>
+<Normal>Last line of outer quote.</Normal><br/>
+<Delimiter>____</Delimiter><br/>
+<Normal></Normal><br/>
+<Comment>// Currently no specific highlighting supported.</Comment><br/>
+<Block Title>.Quoted paragraph</Block Title><br/>
+<Normal>"Inside the </Normal><Strong>*quoted paragraph*</Strong><Normal>.</Normal><br/>
+<Normal>As being a paragraph, no empty lines are supported."</Normal><br/>
+<Replacement>--</Replacement><Normal> attribution, citation title and information</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Block Title>.Air quote</Block Title><br/>
+<Preprocessor>[,attribution, citation title and information]</Preprocessor><br/>
+<Delimiter>"" </Delimiter><br/>
+<Normal>Inside the </Normal><Strong>*air quote*</Strong><Normal>.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>Supports empty lines.</Normal><br/>
+<Delimiter>""</Delimiter><br/>
+<Normal> </Normal><br/>
+<Comment>// Currently no specific highlighting supported.</Comment><br/>
+<Block Title>.Markdown style</Block Title><br/>
+<Normal>> Inside the </Normal><Strong>*markdown quote*</Strong><Normal>.</Normal><br/>
+<Normal>> </Normal><br/>
+<Normal>> May contain emtpy lines.</Normal><br/>
+<Normal>> </Normal><Replacement>--</Replacement><Normal> attribution, citation title and information</Normal><br/>
+<Normal></Normal><br/>
+<Comment>// Currently no specific highlighting supported.</Comment><br/>
+<Block Title>.Nested markdown style</Block Title><br/>
+<Normal>> Start of outer quote.</Normal><br/>
+<Normal>></Normal><br/>
+<Normal>> > Some inner quote.</Normal><br/>
+<Normal>></Normal><br/>
+<Normal>> * can use AsciiDoc </Normal><Replacement>...</Replacement><br/>
+<Normal>> * inside markdown block</Normal><br/>
+<Normal>></Normal><br/>
+<Normal>> > Another inner quote.</Normal><br/>
+<Normal>></Normal><br/>
+<Normal>> End of outer quote.</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>== Verse</Section Title><br/>
+<Normal></Normal><br/>
+<Block Title>.Contiguous block / paragraph</Block Title><br/>
+<Preprocessor>[verse, attribution, citation title and information]</Preprocessor><br/>
+<Anchor>[[verse-block-id]]</Anchor><br/>
+<Normal>Inside the </Normal><Strong>*contiguous block verse*</Strong><Normal>.</Normal><br/>
+<Normal>Second line of the verse block.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>This line is not part of the contiguous verse block anymore.</Normal><br/>
+<Normal></Normal><br/>
+<Block Title>.Delimited block with name</Block Title><br/>
+<Preprocessor>[verse, attribution, citation title and information]</Preprocessor><br/>
+<Anchor>[[verse-block-id]]</Anchor><br/>
+<Delimiter>____</Delimiter><br/>
+<Normal>Inside the </Normal><Strong>*delimited block verse*</Strong><Normal>.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>Supports empty lines.</Normal><br/>
+<Delimiter>____</Delimiter><br/>
+<Normal></Normal><br/>
+<Block Title>.Delimited block without name</Block Title><br/>
+<Normal>This would be rendered as a quote block as the same delimiters are used.</Normal><br/>
+<Normal></Normal><br/>
+<Block Title>.Using an open block</Block Title><br/>
+<Preprocessor>[verse, attribution, citation title and information]</Preprocessor><br/>
+<Anchor>[[verse-block-id]]</Anchor><br/>
+<Delimiter>--</Delimiter><br/>
+<Normal>Inside the </Normal><Strong>*open block verse*</Strong><Normal>.</Normal><br/>
+<Delimiter>--</Delimiter><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>= Replacement</Section Title><br/>
+<Normal></Normal><br/>
+<Preprocessor>TIP:</Preprocessor><Normal> See also the </Normal><Link>https://asciidoctor.org/docs/user-manual/#replacements[corresponding section]</Link><Normal> in the Asciidoctor manual.</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>== Textual symbol replacements</Section Title><br/>
+<Normal></Normal><br/>
+<Delimiter>|===</Delimiter><br/>
+<Delimiter>|</Delimiter><Normal>Name </Normal><Delimiter>|</Delimiter><Normal>Syntax </Normal><Delimiter>|</Delimiter><Normal>Escaped</Normal><br/>
+<Normal></Normal><br/>
+<Delimiter>|</Delimiter><Normal>copyright </Normal><Delimiter>|</Delimiter><Replacement>(C)</Replacement><Normal> </Normal><Delimiter>|</Delimiter><Normal>\(C)</Normal><br/>
+<Delimiter>|</Delimiter><Normal>registered </Normal><Delimiter>|</Delimiter><Replacement>(R)</Replacement><Normal> </Normal><Delimiter>|</Delimiter><Normal>\(R)</Normal><br/>
+<Delimiter>|</Delimiter><Normal>trademark </Normal><Delimiter>|</Delimiter><Replacement>(TM)</Replacement><Normal> </Normal><Delimiter>|</Delimiter><Normal>\(TM)</Normal><br/>
+<Normal></Normal><br/>
+<Delimiter>|</Delimiter><Normal>apostrophe </Normal><Delimiter>|</Delimiter><Normal>KDE</Normal><Replacement>'</Replacement><Normal>s </Normal><Delimiter>|</Delimiter><Normal>KDE\'s</Normal><br/>
+<Delimiter>|</Delimiter><Normal>ellipses </Normal><Delimiter>|</Delimiter><Replacement>...</Replacement><Normal> </Normal><Delimiter>|</Delimiter><Normal>\... </Normal><Preprocessor>footnote:[Escaping has no effect]</Preprocessor><br/>
+<Delimiter>|</Delimiter><Normal>m dash </Normal><Delimiter>|</Delimiter><Replacement>--</Replacement><Normal> </Normal><Delimiter>|</Delimiter><Normal>\-- </Normal><Preprocessor>footnote:[Escaping yields another different dash]</Preprocessor><br/>
+<Normal></Normal><br/>
+<Delimiter>|</Delimiter><Normal>left single arrow </Normal><Delimiter>|</Delimiter><Replacement><-</Replacement><Normal> </Normal><Delimiter>|</Delimiter><Normal>\<-</Normal><br/>
+<Delimiter>|</Delimiter><Normal>right single arrow </Normal><Delimiter>|</Delimiter><Replacement>-></Replacement><Normal> </Normal><Delimiter>|</Delimiter><Normal>\-></Normal><br/>
+<Delimiter>|</Delimiter><Normal>left double arrow </Normal><Delimiter>|</Delimiter><Replacement><=</Replacement><Normal> </Normal><Delimiter>|</Delimiter><Normal>\<=</Normal><br/>
+<Delimiter>|</Delimiter><Normal>right double arrow </Normal><Delimiter>|</Delimiter><Replacement>=></Replacement><Normal> </Normal><Delimiter>|</Delimiter><Normal>\=></Normal><br/>
+<Delimiter>|===</Delimiter><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>=== Not replaced</Section Title><br/>
+<Normal></Normal><br/>
+<Comment>// Single apostrophe must be surrounded by alphabetic characters.</Comment><br/>
+<List Marker>*</List Marker><Normal> a'</Normal><br/>
+<List Marker>*</List Marker><Normal> 'a</Normal><br/>
+<List Marker>*</List Marker><Normal> .'.</Normal><br/>
+<List Marker>*</List Marker><Normal> a'.</Normal><br/>
+<List Marker>*</List Marker><Normal> .'a</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>== Numerical Character Reference</Section Title><br/>
+<Normal></Normal><br/>
+<Section Title>=== Decimal</Section Title><br/>
+<Normal></Normal><br/>
+<Replacement>&#0167;</Replacement><br/>
+<Normal></Normal><br/>
+<Marked>##before##</Marked><Replacement>&#0167;</Replacement><Marked>##after##</Marked><br/>
+<Normal></Normal><br/>
+<Replacement>&#167;</Replacement><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>=== Hexadecimal</Section Title><br/>
+<Normal></Normal><br/>
+<Replacement>&#x00A7;</Replacement><br/>
+<Normal></Normal><br/>
+<Marked>##before##</Marked><Replacement>&#x00A7;</Replacement><Marked>##after##</Marked><br/>
+<Normal></Normal><br/>
+<Replacement>&#xA7;</Replacement><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>=== Escaped</Section Title><br/>
+<Normal></Normal><br/>
+<Normal>\&#0167;</Normal><br/>
+<Normal>\&#167;</Normal><br/>
+<Normal>\&#x00A7;</Normal><br/>
+<Normal>\&#xA7;</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>== HTML/XML Character Entity References</Section Title><br/>
+<Normal></Normal><br/>
+<Normal>See e.g. </Normal><Link>https://en.wikipedia.org/wiki/List_of_XML_and_HTML_character_entity_references[Wikipedia]</Link><Normal>.</Normal><br/>
+<Normal></Normal><br/>
+<Preprocessor>IMPORTANT:</Preprocessor><Normal> Highlighting of HTML/XML character entity references is </Normal><Emphasized>_not_</Emphasized><Normal> supported.</Normal><br/>
+<Normal>There are just too many of them.</Normal><br/>
+<Normal></Normal><br/>
+<Comment>// some examples</Comment><br/>
+<Delimiter>====</Delimiter><br/>
+<Normal>&ne;</Normal><br/>
+<Normal>&equiv;</Normal><br/>
+<Delimiter>====</Delimiter><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>= Section L0</Section Title><br/>
+<Normal></Normal><br/>
+<Preprocessor>[abstract]</Preprocessor><br/>
+<Section Title>== Abstract</Section Title><br/>
+<Normal></Normal><br/>
+<Normal>This document is used for testing various aspects of syntax highlighting regarding sections.</Normal><br/>
+<Normal></Normal><br/>
+<Attribute>:title-attribute: </Attribute><Attribute Value>with attribute</Attribute Value><br/>
+<Normal></Normal><br/>
+<Section Title>== Section L1</Section Title><br/>
+<Normal></Normal><br/>
+<Section Title>=== Section L2</Section Title><br/>
+<Normal></Normal><br/>
+<Section Title>==== Section L3</Section Title><br/>
+<Normal></Normal><br/>
+<Section Title>===== Section L4</Section Title><br/>
+<Normal></Normal><br/>
+<Section Title>====== Section L5</Section Title><br/>
+<Normal></Normal><br/>
+<Normal>======= This is not a new section</Normal><br/>
+<Normal></Normal><br/>
+<Normal>The level would be too deep.</Normal><br/>
+<Normal>Only sections up to level 5 (having 6 leading </Normal><Monospaced>`=`</Monospaced><Normal>) are supported.</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>#### Section L3</Section Title><br/>
+<Normal></Normal><br/>
+<Normal>Using Markdown section syntax works too.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>=</Normal><Marked>#=#</Marked><Normal> This is not a section.</Normal><br/>
+<Normal>Use either </Normal><Monospaced>`=`</Monospaced><Normal> or </Normal><Monospaced>`#`</Monospaced><Normal>, but not mixed.</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>===== </Section Title><Anchor>[[id-1]]</Anchor><Section Title> </Section Title><Anchor>[[id-2]]</Anchor><Section Title> Section L4</Section Title><br/>
+<Normal></Normal><br/>
+<Normal>This section has leading additional achors.</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>==== Section L3 </Section Title><Anchor>[[id-1]][[id-2]]</Anchor><br/>
+<Normal></Normal><br/>
+<Normal>This section has trailing additional anchors.</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>==== </Section Title><Anchor>[[id-1]][[id-2]]</Anchor><Section Title>Section L3</Section Title><Anchor>[[id-3]][[id-4]]</Anchor><br/>
+<Normal></Normal><br/>
+<Normal>This section has both leading and trailing additional anchors.</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>==== Section L3 </Section Title><Attribute>{title-attribute}</Attribute><Section Title> in Title</Section Title><br/>
+<Normal></Normal><br/>
+<Block Title>.Title </Block Title><Attribute>{title-attribute}</Attribute><br/>
+<Normal>This section has an attribute in its title.</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Preprocessor>[discrete]</Preprocessor><br/>
+<Section Title>== Discrete Section</Section Title><br/>
+<Normal></Normal><br/>
+<Normal>This section will not be shown in the table of contents.</Normal><br/>
+<Normal></Normal><br/>
+<Comment>////</Comment><br/>
+<Comment>== Section with _emphasized_ text</Comment><br/>
+<Comment></Comment><br/>
+<Comment>=== Section with escaped \_emphasized_ text</Comment><br/>
+<Comment>////</Comment><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>== Section with </Section Title><Marked>#marked#</Marked><Section Title> text</Section Title><br/>
+<Normal></Normal><br/>
+<Section Title>=== Section with escaped \</Section Title><Normal>#</Normal><Section Title>marked# text</Section Title><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>== Section with </Section Title><Monospaced>`monospaced`</Monospaced><Section Title> text</Section Title><br/>
+<Normal></Normal><br/>
+<Section Title>=== Section with escaped \</Section Title><Normal>`</Normal><Section Title>monospaced` text</Section Title><br/>
+<Normal></Normal><br/>
+<Comment>////</Comment><br/>
+<Comment>== Section with *strong* text</Comment><br/>
+<Comment></Comment><br/>
+<Comment>=== Section with escaped \*strong* text</Comment><br/>
+<Comment>////</Comment><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>= Another Section at Level 0</Section Title><br/>
+<Normal></Normal><br/>
+<Normal>Some text in the second level 0 section.</Normal><br/>
+<Normal></Normal><br/>
+<Section Title>== Section 2.1</Section Title><br/>
+<Normal></Normal><br/>
+<Normal>Some text.</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>= Table</Section Title><br/>
+<Normal></Normal><br/>
+<Section Title>== Default Separator</Section Title><br/>
+<Normal></Normal><br/>
+<Block Title>.PSV</Block Title><br/>
+<Comment>// some comment</Comment><br/>
+<Anchor>[[table-1]]</Anchor><br/>
+<Preprocessor>[.some-role]</Preprocessor><br/>
+<Anchor>[#table-shorthand]</Anchor><br/>
+<Comment>// some comment</Comment><br/>
+<Delimiter>|===</Delimiter><br/>
+<Comment>// some comment</Comment><br/>
+<Delimiter>|</Delimiter><Normal> header col 1           </Normal><Delimiter>|</Delimiter><Normal>      header col 2   </Normal><Delimiter>|</Delimiter><Normal> header col 3</Normal><br/>
+<Comment>// some comment</Comment><br/>
+<Normal></Normal><br/>
+<Comment>// with escaped cell separator</Comment><br/>
+<Delimiter>|</Delimiter><Normal> row 1 \| col 1 </Normal><Delimiter>|</Delimiter><Normal> row 1 col 2 </Normal><Delimiter>|</Delimiter><Normal> row 1 col 3</Normal><br/>
+<Comment>// no spaces needed around `|`</Comment><br/>
+<Delimiter>|</Delimiter><Normal> </Normal><Strong>*row*</Strong><Normal> 2 col 1</Normal><Delimiter>|</Delimiter><Normal>row 2 col 2</Normal><Delimiter>|</Delimiter><Normal>row 2 col 3</Normal><br/>
+<Normal></Normal><br/>
+<Delimiter>|</Delimiter><Normal>row 3 col 1</Normal><br/>
+<Comment>// using attribute</Comment><br/>
+<Delimiter>|</Delimiter><Normal> row 3 col 2 </Normal><Attribute>{vbar}</Attribute><br/>
+<Delimiter>|</Delimiter><Normal>ro3 3 col 3</Normal><br/>
+<Normal></Normal><br/>
+<Delimiter>|</Delimiter><Normal> row 4 col 1 </Normal><Delimiter>a|</Delimiter><Normal>some AsciiDoc in col 2 row 4</Normal><br/>
+<Normal></Normal><br/>
+<List Marker>*</List Marker><Normal> item 1</Normal><br/>
+<List Marker>*</List Marker><Normal> item 2</Normal><br/>
+<Delimiter>|</Delimiter><Normal>row 4 col 3</Normal><br/>
+<Normal></Normal><br/>
+<Delimiter>2*|</Delimiter><Normal> row 5 has same contents in first 2 columns</Normal><br/>
+<Delimiter>|</Delimiter><Normal>row 5 col 3</Normal><br/>
+<Normal></Normal><br/>
+<Delimiter>|</Delimiter><Normal>row 6 col 1 </Normal><Delimiter>2+|</Delimiter><Normal> span row 6 in col 2 and 3</Normal><br/>
+<Normal></Normal><br/>
+<Delimiter>.2+|</Delimiter><Normal>span col 1 in row 6 and 7</Normal><Delimiter>|</Delimiter><Normal>row 6 col 2</Normal><Delimiter>|</Delimiter><Normal>row 6 col 3</Normal><br/>
+<Delimiter>|</Delimiter><Normal>row 7 col 2</Normal><Delimiter>|</Delimiter><Normal>row 7 col 3</Normal><br/>
+<Normal></Normal><br/>
+<Delimiter>2.2+^.^|</Delimiter><Normal>span col 1 and 2 in row 8 and 9</Normal><Delimiter>|</Delimiter><Normal>row 8 col 3</Normal><br/>
+<Delimiter>|</Delimiter><Normal>row 9 col 3</Normal><br/>
+<Normal></Normal><br/>
+<Delimiter>e|</Delimiter><Normal>row 10 col 1 is emphasized (italic)</Normal><br/>
+<Delimiter>s|</Delimiter><Normal>row 10 col 2 is strong (bold)</Normal><br/>
+<Delimiter>m|</Delimiter><Normal>row 10 col 3 is monospaced</Normal><br/>
+<Delimiter>|===</Delimiter><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>== Custom Separator</Section Title><br/>
+<Normal></Normal><br/>
+<Preprocessor>IMPORTANT:</Preprocessor><Normal> Highlighting of tables with custom separator is not supported.</Normal><br/>
+<Normal>All </Normal><Monospaced>`|`</Monospaced><Normal> inside the table will be falsly highlighted.</Normal><br/>
+<Normal></Normal><br/>
+<Preprocessor>[separator=!]</Preprocessor><br/>
+<Delimiter>|===</Delimiter><br/>
+<Comment>// the `|` in the line below should not be highlighted.</Comment><br/>
+<Normal>!row 1 </Normal><Delimiter>|</Delimiter><Normal> col 1 !row 1 col 2</Normal><br/>
+<Normal>s!row 2 col 1 !row 2 col 2</Normal><br/>
+<Delimiter>|===</Delimiter><br/>
+<Normal></Normal><br/>
+<Preprocessor>[separator=a]</Preprocessor><br/>
+<Delimiter>|===</Delimiter><br/>
+<Normal>arow 1 col 1 arow 1 col 2</Normal><br/>
+<Normal>sarow 2 col 1 arow 2 col 2</Normal><br/>
+<Delimiter>|===</Delimiter><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>== Delimiter-Separated Values</Section Title><br/>
+<Normal></Normal><br/>
+<Preprocessor>IMPORTANT:</Preprocessor><Normal> Highlighting for tables with delimiter-separated values is not supported.</Normal><br/>
+<Normal>All </Normal><Monospaced>`|`</Monospaced><Normal> inside the table will be falsly highlighted.</Normal><br/>
+<Normal></Normal><br/>
+<Preprocessor>[format=csv]</Preprocessor><br/>
+<Delimiter>|===</Delimiter><br/>
+<Normal>Col 1 ,Col 2 ,Col 3</Normal><br/>
+<Normal></Normal><br/>
+<Comment>// the `|` in the line below should not be highlighted.</Comment><br/>
+<Normal>row 1 </Normal><Delimiter>|</Delimiter><Normal> col 1 ,row 1 col 2 ,row 1 col 3</Normal><br/>
+<Normal>row 2 col 2,row 2 col 2,row 2 col 3</Normal><br/>
+<Normal></Normal><br/>
+<Normal>row 3 col 3 ,  "row ""3"",    col 2" , row 3 col 3</Normal><br/>
+<Delimiter>|===</Delimiter><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Section Title>=== Shorthand Notation for Data Tables</Section Title><br/>
+<Normal></Normal><br/>
+<Block Title>.CSV</Block Title><br/>
+<Normal>,===</Normal><br/>
+<Normal>Col 1 ,Col 2 ,Col 3</Normal><br/>
+<Normal></Normal><br/>
+<Normal>row 1 col 1 ,row 1 col 2 ,row 1 col 3</Normal><br/>
+<Normal>row 2 col 2,row 2 col 2,row 2 col 3</Normal><br/>
+<Normal></Normal><br/>
+<Normal>row 3 col 3 ,  "row ""3"",    col 2" , row 3 col 3</Normal><br/>
+<Normal>,===</Normal><br/>
+<Normal></Normal><br/>
+<Block Title>.DSV</Block Title><br/>
+<Normal>:===</Normal><br/>
+<Normal>Col 1 :Col 2 :Col 3</Normal><br/>
+<Normal></Normal><br/>
+<Normal>row 1 col 1 :row 1 col 2 :row 1 col 3</Normal><br/>
+<Normal>row 2 col 2:row 2 col 2:row 2 col 3</Normal><br/>
+<Normal>row 3 col 3 :  row 3 col 2 : row 3 col 3</Normal><br/>
+<Normal>:===</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>

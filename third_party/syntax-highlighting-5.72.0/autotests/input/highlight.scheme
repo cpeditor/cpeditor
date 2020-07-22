@@ -1,0 +1,186 @@
+; This is a test file to test kates scheme highlighting
+; This is a comment
+
+;; Another comment, usually used.
+;BEGIN region marker
+;; a vektor
+#(1 2 3 4 5)
+;END region marker
+;; this represents integer 28 (FIXME: does not work perfectly atm!)
+28 028 #e28 #i28       ;; Normal, normal, exact, inexact
+#b11100 #o34 #d28 #x1c ;; Bin, okt, dec, hex
+#oe34 #eo34            ;; combined.
+
+;; char.
+(#\y #\space) ;; list: `y' space.
+(#\  #\\ #\)) ;; list of spaces, backslash and`)'.
+#\newline     ;; a newline-char
+#\NewLine     ;; another one :)
+
+"Hello, world" ;; a string
+
+"hoho, what do you
+want to do  ;; this is NO comment
+with that?"
+
+;; R5RS definiert diese beiden.
+"Das ist \"in Anführungszeichen\" und mit \\ Backslash."
+
+(let ((x (+ 1 2)) (y "blah")) ;; `let' highlighting.
+  (and (number? x)            ;; `and' highlighting.
+       (string? y)))
+
+(let* ((x 2) (y (+ x 1))) ;; `let*' too.
+  (or (negative? x)       ;; `or' anyways.
+      (negative? y)))
+
+(do ((vec (make-vector 5)) ;; `do' you may guess!
+     (i 0 (+ i 1)))
+    ((= i 5) vec)
+  (vector-set! vec i i))
+
+(quasiquote ((+ 1 2) (unquote (+ 1 2))))
+;; same as: `((+ 1 2) ,(+ 1 2))
+
+;; see above.
+(quasiquote ((+ 1 2) (unquote-splicing (list 1 2 3))))
+;; same as: `((+ 1 2) ,@(+ 1 2))
+
+;; not necessary.
+(quote ())
+
+(cond ((string? x) (string->symbol x)) ;; `cond' highlighting.
+      ((symbol? x) => (lambda (x) x))  ;; `=>' highlighting.
+      (else ;; `else' highlighting.
+       (error "Blah")))
+
+(case x ;; `case' highlighting.
+  ((#t) 'true) ((#f) 'false)
+  ((()) 'null)
+  ((0) 'zero))
+
+;; highlight `let-syntax' and `syntax-rules' .
+(let-syntax ((when (syntax-rules ()
+                     ((when test stmt1 stmt2 ...)
+                      ;; hl `begin' .
+                      (if test (begin stmt1 stmt2 ...))))))
+  (let ((if #t)) ;; here`if' is actually no keyword.
+    (when if (set! if 'now)) ;; nor here.
+    if))
+
+(letrec-syntax ...) ;; hl `letrec-syntax'.
+
+(define-syntax when
+  (syntax-rules ()
+    ((when test stmt1 stmt2 ...)
+     (if test (begin stmt1 stmt2 ...))))))
+
+;; variable definitions.
+(define natural-numbers ;; hl `define' and the var name
+  ;; endless stream of all natual numbers.
+  (letrec ((next-cell    ;; hl `letrec'.
+            (lambda (x)  ;; hl `lambda'.
+              ;; hl `delay' .
+              (cons x (delay (next-cell (+ x 1)))))))
+    (next-cell 0)))
+
+;; a procedure with unusual but allowed name.
+(define 1+
+  (lambda (x)
+    (+ x 1)))
+
+;; a predicate
+(define between?
+  (lambda (x y z)
+    (if (and (>= x y) (<= x z))
+        #t ;; True
+      #f))) ;; False.
+
+;; imperative procedure
+(define set-something!
+  (lambda (required-argument another-one . all-remaining-args)
+    (set-car! another-one (lambda all-args
+                            (set-cdr! required-argument
+                                      (append all-remaining-args
+                                              all-args))))))
+
+(define compose
+  (lambda (f g)
+    (lambda (x)
+      (f (g x)))))
+
+;; syntactical sugar for procedure-definitions.
+(define (compose f g)
+  (lambda (x)
+    (f (g x))))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; NOW: Guile extensions ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; procedure-generator.
+(define ((compose f g) x)
+  (f (g x)))
+
+;; scheme doesn't say, which chars may be in variables...
+;; At least: Guile accepts umlauts
+(define-private (timetr??? sprache) ;; hl `define-private'.
+  (list-dialekt? sprache))
+
+(define-public x #t)  ;; hl `define-public'.
+(define-module (foo bar)) ;; hl `define-module'.
+(define-macro (neither . exprs) ;; hl `define-macro'.
+  `(and ,@(map (lambda (x) `(not ,x)) exprs)))
+
+(defmacro neither exprs ;; `defmacro' as well.
+  `(and ,@(map (lambda (x) `(not ,x)) exprs)))
+
+;; hl, but I really don't know what this is supposed to do :-)
+(define-syntax-macro ...)
+
+;; hl GOOPS-`defines'
+(define-method (foo bar (baz <vector>) qux) ...)
+(define-class <foo> ...)
+(define-generic foo)
+(define-accessor bar)
+
+;; Keywords!
+(blah #:foo 33 #:bar 44)
+
+;; another convention for symbols:
+#{foo}#
+
+#{a
+few
+lines}#
+
+#{4711}#
+
+;; more chars.
+#\nul #\nl #\esc #\bs #\bel #\syn #\ack #\sp ;; etc, utc, itc, oops (this is boring)
+
+#!
+ guile block-comment.
+!#
+
+;; now, a bit hairy:
+#! comment !#
+still comment!!!
+!#
+'now-no-comment-anymore
+
+;; more precise:
+#! comment !#
+still comment
+!# still comment!
+!#
+'now-no-comment-anymore
+
+(while (> foo 10) ;; Highlight `while'.
+  (set! foo (- foo 1))
+  (catch #t ;; Highlight `catch'.
+    (lambda () (display foo))
+    (lambda (key . args)
+      (if (eq? key 'system-error)
+          (break) ;; Highlight `break'.
+        (continue))))) ;; Highlight `continue'.

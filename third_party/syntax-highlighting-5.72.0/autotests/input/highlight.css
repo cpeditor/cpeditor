@@ -1,0 +1,286 @@
+/**
+ * This is a pseudo CSS file to test Kate's CSS syntax highlighting.
+ */
+
+@import url("othersheet.css") screen, tv;
+
+body {
+	font-size: 15pt;
+	font-family: Verdana, Helvetica, "Bitstream Vera Sans", sans-serif;
+	margin-top: 0px;			/* yet another comment */
+	margin-bottom: 0px;
+	// this is no comment, it's just broken!
+	margin-left: 0px;
+	margin-right: 0px;
+}
+
+.something
+{
+	margin-right: 0px;
+	color: #cdd;
+	color: #AAFE04;
+	color: rgb(10%,30%,43%);
+	background: maroon;
+}
+
+a:hover {
+}
+
+#header,
+p.intro:first-letter,
+p:lang(nl),
+img[align="right"]
+{
+	border: 1px solid Qt::red !important;
+	-moz-border-radius: 15px; /* unknown properties render italic */
+}
+
+@media print {
+
+	#header
+	{
+		display: none;
+	}
+
+}
+
+/*
+TODO: add more tests, e.g. media
+*/
+
+
+.nice-look {
+	font-variant-alternates: styleset(nice-style);
+}
+
+ul {
+	list-style: thumbs;
+}
+
+/* SVG <a> */
+svg|a {}
+
+/* XHTML and SVG <a> */
+*|a {}
+
+*{}
+.class{}
+#id{}
+:hover{}
+:lang(fr){}
+E{}
+E F{}
+E>F{}
+E > F{}
+E~F{}
+E ~ F{}
+E:first-child{}
+E:visited{}
+E::after{}
+E:lang(c){}
+E:lang(fr-ca){}
+E + F{}
+E+F{}
+E[foo]{}
+E[foo=warning]{}
+E[foo="warning"]{}
+E[foo~="warning"]{}
+E[foo^="warning"]{}
+E[foo$="warning"]{}
+E[foo*="warning"]{}
+E[lang|="en"]{}
+DIV.warning{}
+DIV .warning{}
+E#myid{}
+E #myid{}
+E,E{}
+E, E{}
+E ,E{}
+E , E{}
+
+p:nth-child(2) {
+	background: red;
+}
+
+/* Elements that are not <div> or <span> elements */
+body :not(div):not(span) {
+	font-weight: bold;
+}
+
+/* Elements that are not `.crazy` or `.fancy` */
+/* Note that this syntax is not well supported yet. */
+body :not(.crazy, .fancy) {
+	font-family: sans-serif;
+}
+
+:nth-child(odd) { color: lime; }
+:nth-child(even) { color: lime; }
+:nth-child(4) { color: lime; }
+:nth-child(4n) { color: lime; }
+:nth-child(3n+4) { color: lime; }
+:nth-child(-n+3) { color: lime; }
+:nth-child(n+8):nth-child(-n+15) { color: lime; }
+
+.first span:nth-child(2n+1),
+.second span:nth-child(2n+1),
+.third span:nth-of-type(2n+1) {
+	background-color: lime;
+	unknown-property: lime;
+}
+
+:root{
+	--foo: if(x > 5) this.width = 10; /* valid custom property, invalid in any normal property */
+}
+
+:root,
+:root:lang(en) {--external-link: "external link";}
+:root:lang(de) {--external-link: "externer Link";}
+
+a[href^="http"]::after {content: " (" var(--external-link) ")"}
+
+one   { --foo: 10px; }
+two   { --bar: calc(var(--foo) + 10px); }
+three { --foo: calc(var(--bar) + 10px); }
+.foo {
+	--gap: 20;
+	margin-top: var(--gap)px; /*20 px*/
+	margin-top: calc(var(--gap) * 1px); /*20px*/
+}
+
+foo {
+	width: calc(50% -8px); /* invalid */
+	width: calc(50%- 8px); /* invalid */
+	width: calc(50% +8px); /* invalid */
+	width: calc(50%+ 8px); /* invalid */
+	width: calc(2px -var(--a)); /* invalid */
+	width: calc(50%*-8px);
+	width: calc(50% - 8px);
+	width: calc(50% + -8px);
+	width: calc(50% +(8px));
+	width: calc(2px -(var(--a)));
+}
+
+sweet-alert input:focus::-moz-placeholder {
+	-webkit-transition: opacity 0.3s 0.03s ease;
+	transition: opacity 0.3s 0.03s ease;
+	opacity: 0.5;
+}
+
+
+@font-feature-values Font One {
+	@styleset {
+		nice-style: 12;
+	}
+}
+
+@font-feature-values Font Two {
+	@styleset {
+		nice-style: 4;
+	}
+}
+
+@counter-style thumbs {
+	system: cyclic;
+	symbols: "\1F44D";
+	suffix: " ";
+}
+
+@font-face {
+	font-family: "Open Sans";
+	src: url("/fonts/OpenSans-Regular-webfont.woff2") format("woff2"),
+	url("/fonts/OpenSans-Regular-webfont.woff") format("woff");
+}
+
+@page {
+	margin: 1cm;
+}
+
+@page :first {
+	margin: 2cm;
+	/* comments */
+	marks: crop cross;
+}
+
+@page :unknown {
+	margin: 2cm;
+}
+
+@font-face {
+	unknown: 2px;
+	/* comments */
+	font-family: "Bitstream Vera Serif Bold";
+	src: url("/static/styles/libs/font-awesome/fonts/fontawesome-webfont.fdf491ce5ff5.woff");
+}
+
+@viewport {
+	zoom: 0.75;
+	/* comments */
+	min-zoom: 0.5;
+	max-zoom: 0.9;
+}
+
+@viewport {
+	orientation: landscape;
+	/* comments */
+	orientation: landscape;
+}
+
+@document url("https://www.example.com/") {
+	h1 {
+		color: green;
+	}
+}
+
+@supports (display: grid) {
+	div {
+		display: grid;
+	}
+}
+
+@media (max-width: 600px) {
+	.sidebar {
+		display: none;
+	}
+}
+
+@import url("fineprint.css") print;
+@import url(fineprint.css) print;
+@import url('bluish.css') speech;
+@import 'custom.css';
+@import url("chrome://communicator/skin/");
+@import "common.css" screen;
+@import url('landscape.css') screen and (orientation:landscape);
+
+@namespace url(http://www.w3.org/1999/xhtml);
+@namespace svg url(http://www.w3.org/2000/svg);
+
+@keyframes important1 {
+	from { margin-top: 50px; }
+	50%  { margin-top: 150px !important; } /* ignored */
+	to   { margin-top: 100px; }
+}
+
+@keyframes important2 {
+	from { margin-top: 50px;
+		margin-bottom: 100px; }
+	to   { margin-top: 150px !important; /* ignored */
+		margin-bottom: 50px; }
+}
+
+@keyframes slidein {
+	from {
+		margin-left: 100%;
+		width: 300%;
+	}
+
+	to {
+		margin-left: 0%;
+		width: 100%;
+	}
+}
+
+@media print {
+	a:hover { color: red }
+	/* comments */
+	a:hover { color: red }
+}

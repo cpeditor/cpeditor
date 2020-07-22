@@ -1,0 +1,701 @@
+<Comment>/**</Comment><br/>
+<Comment> * Less syntax highlighting test file</Comment><br/>
+<Comment> *</Comment><br/>
+<Comment> * Based on the Less documentation ((c) 2017 Alexis Sellier, the Less Core Team, Contributors, The MIT License)</Comment><br/>
+<Comment> *</Comment><br/>
+<Comment> * @see http://lesscss.org/features/</Comment><br/>
+<Comment> */</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Selector Class>.mixin</Selector Class><Normal Text>(</Normal Text><Variable>@color</Variable><Normal Text>; </Normal Text><Variable>@padding</Variable><Normal Text>; </Normal Text><Variable>@margin</Variable><Normal Text>: </Normal Text><Number>2</Number><Normal Text>) {</Normal Text><br/>
+<Normal Text>  </Normal Text><Unknown Property>colorr</Unknown Property><Normal Text>: </Normal Text><Variable>@color</Variable><Normal Text>;</Normal Text><br/>
+<Normal Text>  padding-3</Normal Text><Selector Pseudo>:</Selector Pseudo><Normal Text> </Normal Text><At Rule>@padding</At Rule><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Property>margin</Property><Normal Text>: </Normal Text><Variable>@margin</Variable><Normal Text> </Normal Text><Variable>@margin</Variable><Normal Text> </Normal Text><Variable>@margin</Variable><Normal Text> </Normal Text><Variable>@margin</Variable><Normal Text>;</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Variable>@my-ruleset:</Variable><Normal Text> {</Normal Text><br/>
+<Normal Text>  </Normal Text><Selector Class>.my-selector</Selector Class><Normal Text> {</Normal Text><br/>
+<Normal Text>    </Normal Text><Property>background-color</Property><Normal Text>: </Normal Text><Color>black</Color><Normal Text>;</Normal Text><br/>
+<Normal Text>  }</Normal Text><br/>
+<Normal Text>};</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Variable>@bacon:</Variable><Normal Text> </Normal Text><Color>red</Color><Normal Text>;</Normal Text><br/>
+<Variable>@beacon:</Variable><Normal Text> background-color;</Normal Text><br/>
+<Variable>@baecon:</Variable><Normal Text> </Normal Text><Variable>@{w}</Variable><Normal Text> + </Normal Text><Variable>@w</Variable><Normal Text>;</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Selector Class>.noStar</Selector Class><Selector Pseudo>:extend</Selector Pseudo><Normal Text>(</Normal Text><Selector Class>.class</Selector Class><Normal Text> </Normal Text><Selector Id>#sh</Selector Id><Selector Pseudo>:extend</Selector Pseudo><Normal Text>(</Normal Text><Selector Id>#hhh</Selector Id><Normal Text>) ) {}</Normal Text><br/>
+<Selector Class>.noStar</Selector Class><Selector Pseudo>:nth-child</Selector Pseudo><Normal Text>(w: </Normal Text><Color>red</Color><Normal Text>) {}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<At Rule>@media</At Rule><Normal Text> (</Normal Text><Property>max-width</Property><Normal Text>: </Normal Text><Variable>@width2</Variable><Normal Text>) </Normal Text><Control Flow>and</Control Flow><Normal Text> </Normal Text><Value>handheld</Value><Normal Text> {</Normal Text><br/>
+<Normal Text>  </Normal Text><Property>height</Property><Normal Text>: </Normal Text><Value Keyword>auto</Value Keyword><Normal Text>;</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Selector Class>.test</Selector Class><Normal Text> </Normal Text><Control Flow>when </Control Flow><Normal Text>(</Normal Text><Variable>@color</Variable><Normal Text> = </Normal Text><Color>blue</Color><Normal Text>) </Normal Text><Selector Class>.ffff</Selector Class><Normal Text> {</Normal Text><Property>color</Property><Normal Text>: </Normal Text><Color>red</Color><Normal Text>;}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Selector Class>.foo</Selector Class><Normal Text> (</Normal Text><Variable>@bg</Variable><Normal Text>: </Normal Text><Color>#f5f5f5</Color><Normal Text>, </Normal Text><Variable>@color</Variable><Normal Text>: </Normal Text><Color>#900</Color><Normal Text>) {</Normal Text><br/>
+<Normal Text>  </Normal Text><Property>background</Property><Normal Text>: </Normal Text><Variable>@bg</Variable><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Property>color</Property><Normal Text>: </Normal Text><Variable>@color</Variable><Normal Text>;</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>  </Normal Text><Selector Class>.x</Selector Class><Normal Text> {</Normal Text><br/>
+<Normal Text>    </Normal Text><Unknown Property>x</Unknown Property><Normal Text>: </Normal Text><Variable>@nn</Variable><Normal Text>;</Normal Text><br/>
+<Normal Text>    </Normal Text><Unknown Property>a</Unknown Property><Normal Text>: </Normal Text><Color>white</Color><Normal Text> </Normal Text><Variable>@{nn@{ww}}</Variable><Normal Text>;</Normal Text><br/>
+<Normal Text>    </Normal Text><Property>background</Property><Normal Text>: </Normal Text><Color>red</Color><Normal Text>;</Normal Text><br/>
+<Normal Text>  }</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment>// Variables</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Variable>@link-color:</Variable><Normal Text>        </Normal Text><Color>#428bca</Color><Normal Text>; </Normal Text><Comment>// sea blue</Comment><br/>
+<Variable>@link-color-hover:</Variable><Normal Text>  </Normal Text><Function>darken</Function><Normal Text>(</Normal Text><Variable>@link-color</Variable><Normal Text>, </Normal Text><Number>10</Number><Unit>%</Unit><Normal Text>);</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>a, </Normal Text><Selector Class>.link</Selector Class><Normal Text> {</Normal Text><br/>
+<Normal Text>  </Normal Text><Property>color</Property><Normal Text>: </Normal Text><Variable>@link-color</Variable><Normal Text>;</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>a</Normal Text><Selector Pseudo>:hover</Selector Pseudo><Normal Text> {</Normal Text><br/>
+<Normal Text>  </Normal Text><Property>color</Property><Normal Text>: </Normal Text><Variable>@link-color-hover</Variable><Normal Text>;</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Selector Class>.widget</Selector Class><Normal Text> {</Normal Text><br/>
+<Normal Text>  </Normal Text><Property>color</Property><Normal Text>: </Normal Text><Color>#fff</Color><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Property>background</Property><Normal Text>: </Normal Text><Variable>@link-color</Variable><Normal Text>;</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment>// Variable interpolation</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Variable>@my-selector:</Variable><Normal Text> banner;</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Selector Class>.</Selector Class><Variable>@{my-selector}</Variable><Normal Text> </Normal Text><Control Flow>when </Control Flow><Normal Text>(</Normal Text><Variable>@s</Variable><Normal Text> = </Normal Text><Function>calc</Function><Normal Text>(</Normal Text><String>"s"</String><Normal Text>); </Normal Text><Variable>@{s}</Variable><Normal Text> = </Normal Text><Function>calc</Function><Normal Text>(</Normal Text><String>"dddd"</String><Normal Text>)) {</Normal Text><br/>
+<Normal Text>  </Normal Text><Property>font-weight</Property><Normal Text>: </Normal Text><Value>bold</Value><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Property>line-height</Property><Normal Text>+: </Normal Text><Number>40</Number><Unit>px</Unit><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Property>margin</Property><Normal Text>: </Normal Text><Number>0</Number><Normal Text> </Normal Text><Value Keyword>auto</Value Keyword><Normal Text>;</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Variable>@images:</Variable><Normal Text> </Normal Text><String>"../img"</String><Normal Text>;</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>body {</Normal Text><br/>
+<Normal Text>  </Normal Text><Property>color</Property><Normal Text>: </Normal Text><Color>#444</Color><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Property>background</Property><Normal Text>: </Normal Text><Function>url</Function><Normal Text>(</Normal Text><String>"</String><Variable>@{images}</Variable><String>/white-sand.png"</String><Normal Text>);</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Variable>@themes:</Variable><Normal Text> </Normal Text><String>"../../src/themes"</String><Normal Text>;</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<At Rule>@import</At Rule><Normal Text> </Normal Text><String>"</String><Variable>@{themes}</Variable><String>/tidal-wave.less"</String><Normal Text>;</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Variable>@property:</Variable><Normal Text> color;</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Selector Class>.widget</Selector Class><Normal Text> {</Normal Text><br/>
+<Normal Text>  </Normal Text><Variable>@{property}</Variable><Normal Text>: </Normal Text><Color>#0ee</Color><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Unknown Property>background-</Unknown Property><Variable>@{property}</Variable><Normal Text>: </Normal Text><Color>#999</Color><Normal Text>;</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment>// Variable names</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Variable>@fnord:</Variable><Normal Text>  </Normal Text><String>"I am fnord."</String><Normal Text>;</Normal Text><br/>
+<Variable>@var:</Variable><Normal Text>    </Normal Text><String>"fnord"</String><Normal Text>;</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Selector Class>.variable-names-example</Selector Class><Normal Text> {</Normal Text><br/>
+<Normal Text>  </Normal Text><Property>content</Property><Normal Text>: </Normal Text><Variable>@@var</Variable><Normal Text>;</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment>// Lazy Evaluation</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Selector Class>.lazy-eval</Selector Class><Normal Text> {</Normal Text><br/>
+<Normal Text>  </Normal Text><Property>width</Property><Normal Text>: </Normal Text><Variable>@var</Variable><Normal Text>;</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Variable>@var:</Variable><Normal Text> </Normal Text><Variable>@a</Variable><Normal Text>;</Normal Text><br/>
+<Variable>@a:</Variable><Normal Text> </Normal Text><Number>9</Number><Unit>%</Unit><Normal Text>;</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Variable>@var:</Variable><Normal Text> </Normal Text><Number>0</Number><Normal Text>;</Normal Text><br/>
+<Selector Class>.class</Selector Class><Normal Text> {</Normal Text><br/>
+<Normal Text>  </Normal Text><Variable>@var:</Variable><Normal Text> </Normal Text><Number>1</Number><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Selector Class>.brass</Selector Class><Normal Text> {</Normal Text><br/>
+<Normal Text>    </Normal Text><Variable>@var:</Variable><Normal Text> </Normal Text><Number>2</Number><Normal Text>;</Normal Text><br/>
+<Normal Text>    </Normal Text><Unknown Property>three</Unknown Property><Normal Text>: </Normal Text><Variable>@var</Variable><Normal Text>;</Normal Text><br/>
+<Normal Text>    </Normal Text><Variable>@var:</Variable><Normal Text> </Normal Text><Number>3</Number><Normal Text>;</Normal Text><br/>
+<Normal Text>  }</Normal Text><br/>
+<Normal Text>  </Normal Text><Unknown Property>one</Unknown Property><Normal Text>: </Normal Text><Variable>@var</Variable><Normal Text>;</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment>// Default Variables</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Variable>@base-color:</Variable><Normal Text> </Normal Text><Color>green</Color><Normal Text>;</Normal Text><br/>
+<Variable>@dark-color:</Variable><Normal Text> </Normal Text><Function>darken</Function><Normal Text>(</Normal Text><Variable>@base-color</Variable><Normal Text>, </Normal Text><Number>10</Number><Unit>%</Unit><Normal Text>);</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<At Rule>@import</At Rule><Normal Text> </Normal Text><String>"library.less"</String><Normal Text>;</Normal Text><br/>
+<Variable>@base-color:</Variable><Normal Text> </Normal Text><Color>red</Color><Normal Text>;</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment>// Extend</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>nav ul {</Normal Text><br/>
+<Normal Text>  &</Normal Text><Selector Pseudo>:extend</Selector Pseudo><Normal Text>(</Normal Text><Selector Class>.inline</Selector Class><Normal Text>);</Normal Text><br/>
+<Normal Text>  </Normal Text><Property>background</Property><Normal Text>: </Normal Text><Color>blue</Color><Normal Text>;</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Selector Class>.inline</Selector Class><Normal Text> {</Normal Text><br/>
+<Normal Text>  </Normal Text><Property>color</Property><Normal Text>: </Normal Text><Color>red</Color><Normal Text>;</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment>// Extend Syntax</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Selector Class>.e</Selector Class><Selector Pseudo>:extend</Selector Pseudo><Normal Text>(</Normal Text><Selector Class>.f</Selector Class><Normal Text>) {}</Normal Text><br/>
+<Selector Class>.e</Selector Class><Selector Pseudo>:extend</Selector Pseudo><Normal Text>(</Normal Text><Selector Class>.g</Selector Class><Normal Text>) {}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Selector Class>.e</Selector Class><Selector Pseudo>:extend</Selector Pseudo><Normal Text>(</Normal Text><Selector Class>.f</Selector Class><Normal Text>, </Normal Text><Selector Class>.g</Selector Class><Normal Text>) {}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment>// Extend Attached to Selector</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Selector Class>.big-division</Selector Class><Normal Text>,</Normal Text><br/>
+<Selector Class>.big-bag</Selector Class><Selector Pseudo>:extend</Selector Pseudo><Normal Text>(</Normal Text><Selector Class>.bag</Selector Class><Normal Text>),</Normal Text><br/>
+<Selector Class>.big-bucket</Selector Class><Selector Pseudo>:extend</Selector Pseudo><Normal Text>(</Normal Text><Selector Class>.bucket</Selector Class><Normal Text>) {</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment>// Extend Inside Ruleset</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>pre</Normal Text><Selector Pseudo>:hover</Selector Pseudo><Normal Text>,</Normal Text><br/>
+<Selector Class>.some-class</Selector Class><Normal Text> {</Normal Text><br/>
+<Normal Text>  &</Normal Text><Selector Pseudo>:extend</Selector Pseudo><Normal Text>(div pre);</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>pre</Normal Text><Selector Pseudo>:hover:extend</Selector Pseudo><Normal Text>(div pre),</Normal Text><br/>
+<Selector Class>.some-class</Selector Class><Selector Pseudo>:extend</Selector Pseudo><Normal Text>(div pre) {}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment>// Extending Nested Selectors</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Selector Class>.bucket</Selector Class><Normal Text> {</Normal Text><br/>
+<Normal Text>  tr {</Normal Text><br/>
+<Normal Text>    </Normal Text><Property>color</Property><Normal Text>: </Normal Text><Color>blue</Color><Normal Text>;</Normal Text><br/>
+<Normal Text>  }</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Selector Class>.some-class</Selector Class><Selector Pseudo>:extend</Selector Pseudo><Normal Text>(</Normal Text><Selector Class>.bucket</Selector Class><Normal Text> tr) {}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment>// Exact Matching with Extend</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>*</Normal Text><Selector Class>.class</Selector Class><Normal Text> {</Normal Text><br/>
+<Normal Text>  </Normal Text><Property>color</Property><Normal Text>: </Normal Text><Color>blue</Color><Normal Text>;</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Selector Class>.noStar</Selector Class><Selector Pseudo>:extend</Selector Pseudo><Normal Text>(</Normal Text><Selector Class>.class</Selector Class><Normal Text>) {}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>link</Normal Text><Selector Pseudo>:hover:visited</Selector Pseudo><Normal Text> {</Normal Text><br/>
+<Normal Text>  </Normal Text><Property>color</Property><Normal Text>: </Normal Text><Color>blue</Color><Normal Text>;</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Selector Class>.selector</Selector Class><Selector Pseudo>:extend</Selector Pseudo><Normal Text>(link</Normal Text><Selector Pseudo>:visited:hover</Selector Pseudo><Normal Text>) {}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment>// nth Expression</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Selector Pseudo>:nth-child</Selector Pseudo><Normal Text>(</Normal Text><Number>1</Number><Normal Text>n</Normal Text><Number>+3</Number><Normal Text>) {</Normal Text><br/>
+<Normal Text>  </Normal Text><Property>color</Property><Normal Text>: </Normal Text><Color>blue</Color><Normal Text>;</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Selector Class>.child</Selector Class><Selector Pseudo>:extend</Selector Pseudo><Normal Text>(</Normal Text><Selector Pseudo>:nth-child</Selector Pseudo><Normal Text>(n+3)) {}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Selector Attribute>[title=identifier]</Selector Attribute><Normal Text> {</Normal Text><br/>
+<Normal Text>  </Normal Text><Property>color</Property><Normal Text>: </Normal Text><Color>blue</Color><Normal Text>;</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Selector Attribute>[title=</Selector Attribute><String>'identifier'</String><Selector Attribute>]</Selector Attribute><Normal Text> {</Normal Text><br/>
+<Normal Text>  </Normal Text><Property>color</Property><Normal Text>: </Normal Text><Color>blue</Color><Normal Text>;</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Selector Attribute>[title=</Selector Attribute><String>"identifier"</String><Selector Attribute>]</Selector Attribute><Normal Text> {</Normal Text><br/>
+<Normal Text>  </Normal Text><Property>color</Property><Normal Text>: </Normal Text><Color>blue</Color><Normal Text>;</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Selector Class>.noQuote</Selector Class><Selector Pseudo>:extend</Selector Pseudo><Normal Text>(</Normal Text><Selector Attribute>[title=identifier]</Selector Attribute><Normal Text>) {}</Normal Text><br/>
+<Selector Class>.singleQuote</Selector Class><Selector Pseudo>:extend</Selector Pseudo><Normal Text>(</Normal Text><Selector Attribute>[title=</Selector Attribute><String>'identifier'</String><Selector Attribute>]</Selector Attribute><Normal Text>) {}</Normal Text><br/>
+<Selector Class>.doubleQuote</Selector Class><Selector Pseudo>:extend</Selector Pseudo><Normal Text>(</Normal Text><Selector Attribute>[title=</Selector Attribute><String>"identifier"</String><Selector Attribute>]</Selector Attribute><Normal Text>) {}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment>// Extend "all"</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Selector Class>.a.b.test</Selector Class><Normal Text>,</Normal Text><br/>
+<Selector Class>.test.c</Selector Class><Normal Text> {</Normal Text><br/>
+<Normal Text>  </Normal Text><Property>color</Property><Normal Text>: </Normal Text><Color>orange</Color><Normal Text>;</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Selector Class>.test</Selector Class><Normal Text> {</Normal Text><br/>
+<Normal Text>  &</Normal Text><Selector Pseudo>:hover</Selector Pseudo><Normal Text> {</Normal Text><br/>
+<Normal Text>    </Normal Text><Property>color</Property><Normal Text>: </Normal Text><Color>green</Color><Normal Text>;</Normal Text><br/>
+<Normal Text>  }</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Selector Class>.replacement</Selector Class><Selector Pseudo>:extend</Selector Pseudo><Normal Text>(</Normal Text><Selector Class>.test</Selector Class><Normal Text> all) {}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment>// Selector Interpolation with Extend</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Selector Class>.bucket</Selector Class><Normal Text> {</Normal Text><br/>
+<Normal Text>  </Normal Text><Property>color</Property><Normal Text>: </Normal Text><Color>blue</Color><Normal Text>;</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Variable>@{variable}</Variable><Selector Pseudo>:extend</Selector Pseudo><Normal Text>(</Normal Text><Selector Class>.bucket</Selector Class><Normal Text>) {}</Normal Text><br/>
+<Variable>@variable:</Variable><Normal Text> </Normal Text><Value>.</Value><Normal Text>selector;</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment>// Scoping / Extend Inside @media</Comment><br/>
+<Normal Text></Normal Text><br/>
+<At Rule>@media</At Rule><Normal Text> </Normal Text><Value>print</Value><Normal Text> {</Normal Text><br/>
+<Normal Text>  </Normal Text><Selector Class>.screenClass</Selector Class><Selector Pseudo>:extend</Selector Pseudo><Normal Text>(</Normal Text><Selector Class>.selector</Selector Class><Normal Text>) {}</Normal Text><br/>
+<Normal Text>  </Normal Text><Selector Class>.selector</Selector Class><Normal Text> {</Normal Text><br/>
+<Normal Text>    </Normal Text><Property>color</Property><Normal Text>: </Normal Text><Color>black</Color><Normal Text>;</Normal Text><br/>
+<Normal Text>  }</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Selector Class>.selector</Selector Class><Normal Text> {</Normal Text><br/>
+<Normal Text>  </Normal Text><Property>color</Property><Normal Text>: </Normal Text><Color>red</Color><Normal Text>;</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<At Rule>@media</At Rule><Normal Text> </Normal Text><Value>screen</Value><Normal Text> {</Normal Text><br/>
+<Normal Text>  </Normal Text><Selector Class>.selector</Selector Class><Normal Text> {</Normal Text><br/>
+<Normal Text>    </Normal Text><Property>color</Property><Normal Text>: </Normal Text><Color>blue</Color><Normal Text>;</Normal Text><br/>
+<Normal Text>  }</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment>// Use Cases for Extend</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Selector Class>.animal</Selector Class><Normal Text> {</Normal Text><br/>
+<Normal Text>  </Normal Text><Property>background-color</Property><Normal Text>: </Normal Text><Color>black</Color><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Property>color</Property><Normal Text>: </Normal Text><Color>white</Color><Normal Text>;</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Selector Class>.bear</Selector Class><Normal Text> {</Normal Text><br/>
+<Normal Text>  &</Normal Text><Selector Pseudo>:extend</Selector Pseudo><Normal Text>(</Normal Text><Selector Class>.animal</Selector Class><Normal Text>);</Normal Text><br/>
+<Normal Text>  </Normal Text><Property>background-color</Property><Normal Text>: </Normal Text><Color>brown</Color><Normal Text>;</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Selector Class>.my-inline-block</Selector Class><Normal Text> {</Normal Text><br/>
+<Normal Text>  </Normal Text><Property>display</Property><Normal Text>: </Normal Text><Value>inline-block</Value><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Property>font-size</Property><Normal Text>: </Normal Text><Number>0</Number><Normal Text>;</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Selector Class>.thing1</Selector Class><Normal Text> {</Normal Text><br/>
+<Normal Text>  &</Normal Text><Selector Pseudo>:extend</Selector Pseudo><Normal Text>(</Normal Text><Selector Class>.my-inline-block</Selector Class><Normal Text>);</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Selector Class>.thing2</Selector Class><Normal Text> {</Normal Text><br/>
+<Normal Text>  &</Normal Text><Selector Pseudo>:extend</Selector Pseudo><Normal Text>(</Normal Text><Selector Class>.my-inline-block</Selector Class><Normal Text>);</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment>// Mixins</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Selector Class>.a</Selector Class><Normal Text>, </Normal Text><Selector Id>#b</Selector Id><Normal Text> {</Normal Text><br/>
+<Normal Text>  </Normal Text><Property>color</Property><Normal Text>: </Normal Text><Color>red</Color><Normal Text>;</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Selector Class>.mixin-class</Selector Class><Normal Text> {</Normal Text><br/>
+<Normal Text>  </Normal Text><Selector Class>.a</Selector Class><Normal Text>();</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Selector Class>.mixin-id</Selector Class><Normal Text> {</Normal Text><br/>
+<Normal Text>  </Normal Text><Selector Id>#b</Selector Id><Normal Text>();</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment>// Not Outputting the Mixin</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Selector Class>.my-mixin</Selector Class><Normal Text> {</Normal Text><br/>
+<Normal Text>  </Normal Text><Property>color</Property><Normal Text>: </Normal Text><Color>black</Color><Normal Text>;</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Selector Class>.my-other-mixin</Selector Class><Normal Text>() {</Normal Text><br/>
+<Normal Text>  </Normal Text><Property>background</Property><Normal Text>: </Normal Text><Color>white</Color><Normal Text>;</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Selector Class>.class</Selector Class><Normal Text> {</Normal Text><br/>
+<Normal Text>  </Normal Text><Selector Class>.my-mixin</Selector Class><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Selector Class>.my-other-mixin</Selector Class><Normal Text>;</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment>// Selectors in Mixins</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Selector Class>.my-hover-mixin</Selector Class><Normal Text>() {</Normal Text><br/>
+<Normal Text>  &</Normal Text><Selector Pseudo>:hover</Selector Pseudo><Normal Text> {</Normal Text><br/>
+<Normal Text>    </Normal Text><Property>border</Property><Normal Text>: </Normal Text><Number>1</Number><Unit>px</Unit><Normal Text> </Normal Text><Value>solid</Value><Normal Text> </Normal Text><Color>red</Color><Normal Text>;</Normal Text><br/>
+<Normal Text>  }</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text>button {</Normal Text><br/>
+<Normal Text>  </Normal Text><Selector Class>.my-hover-mixin</Selector Class><Normal Text>();</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment>// Namespaces</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Selector Id>#outer</Selector Id><Normal Text> {</Normal Text><br/>
+<Normal Text>  </Normal Text><Selector Class>.inner</Selector Class><Normal Text> {</Normal Text><br/>
+<Normal Text>    </Normal Text><Property>color</Property><Normal Text>: </Normal Text><Color>red</Color><Normal Text>;</Normal Text><br/>
+<Normal Text>  }</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Selector Class>.c</Selector Class><Normal Text> {</Normal Text><br/>
+<Normal Text>  </Normal Text><Selector Id>#outer</Selector Id><Normal Text> > </Normal Text><Selector Class>.inner</Selector Class><Normal Text>;</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Selector Class>.d</Selector Class><Normal Text> {</Normal Text><br/>
+<Normal Text>  </Normal Text><Selector Id>#outer</Selector Id><Normal Text> > </Normal Text><Selector Class>.inner</Selector Class><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Selector Id>#outer</Selector Id><Normal Text> > </Normal Text><Selector Class>.inner</Selector Class><Normal Text>();</Normal Text><br/>
+<Normal Text>  </Normal Text><Selector Id>#outer</Selector Id><Normal Text> </Normal Text><Selector Class>.inner</Selector Class><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Selector Id>#outer</Selector Id><Normal Text> </Normal Text><Selector Class>.inner</Selector Class><Normal Text>();</Normal Text><br/>
+<Normal Text>  </Normal Text><Selector Id>#outer</Selector Id><Selector Class>.inner</Selector Class><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Selector Id>#outer</Selector Id><Selector Class>.inner</Selector Class><Normal Text>();</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment>// Guarded Namespaces</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Selector Id>#namespace</Selector Id><Normal Text> </Normal Text><Control Flow>when </Control Flow><Normal Text>(</Normal Text><Variable>@mode</Variable><Normal Text>=huge) {</Normal Text><br/>
+<Normal Text>  </Normal Text><Selector Class>.mixin</Selector Class><Normal Text>() { </Normal Text><Comment>/* */</Comment><Normal Text> }</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Selector Id>#namespace</Selector Id><Normal Text> {</Normal Text><br/>
+<Normal Text>  </Normal Text><Selector Class>.mixin</Selector Class><Normal Text>() </Normal Text><Control Flow>when </Control Flow><Normal Text>(</Normal Text><Variable>@mode</Variable><Normal Text>=huge) { </Normal Text><Comment>/* */</Comment><Normal Text> }</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Selector Id>#sp_1</Selector Id><Normal Text> </Normal Text><Control Flow>when </Control Flow><Normal Text>(</Normal Text><Function>default</Function><Normal Text>()) {</Normal Text><br/>
+<Normal Text>  </Normal Text><Selector Id>#sp_2</Selector Id><Normal Text> </Normal Text><Control Flow>when </Control Flow><Normal Text>(</Normal Text><Function>default</Function><Normal Text>()) {</Normal Text><br/>
+<Normal Text>    </Normal Text><Selector Class>.mixin</Selector Class><Normal Text>() </Normal Text><Control Flow>when not</Control Flow><Normal Text>(</Normal Text><Function>default</Function><Normal Text>()) { </Normal Text><Comment>/* */</Comment><Normal Text> }</Normal Text><br/>
+<Normal Text>  }</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment>// The !important keyword</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Selector Class>.foo</Selector Class><Normal Text> (</Normal Text><Variable>@bg</Variable><Normal Text>: </Normal Text><Color>#f5f5f5</Color><Normal Text>, </Normal Text><Variable>@color</Variable><Normal Text>: </Normal Text><Color>#900</Color><Normal Text>) {</Normal Text><br/>
+<Normal Text>  </Normal Text><Property>background</Property><Normal Text>: </Normal Text><Variable>@bg</Variable><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Property>color</Property><Normal Text>: </Normal Text><Variable>@color</Variable><Normal Text> </Normal Text><Annotation>!important</Annotation><Normal Text>;</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Selector Class>.unimportant</Selector Class><Normal Text> {</Normal Text><br/>
+<Normal Text>  </Normal Text><Selector Class>.foo</Selector Class><Normal Text>();</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Selector Class>.important</Selector Class><Normal Text> {</Normal Text><br/>
+<Normal Text>  </Normal Text><Selector Class>.foo</Selector Class><Normal Text>() </Normal Text><Annotation>!important</Annotation><Normal Text>;</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment>// Parametric Mixins</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Selector Class>.border-radius</Selector Class><Normal Text>(</Normal Text><Variable>@radius</Variable><Normal Text>) {</Normal Text><br/>
+<Normal Text>  </Normal Text><Property>-webkit-border-radius</Property><Normal Text>: </Normal Text><Variable>@radius</Variable><Normal Text>;</Normal Text><br/>
+<Normal Text>     </Normal Text><Property>-moz-border-radius</Property><Normal Text>: </Normal Text><Variable>@radius</Variable><Normal Text>;</Normal Text><br/>
+<Normal Text>          </Normal Text><Property>border-radius</Property><Normal Text>: </Normal Text><Variable>@radius</Variable><Normal Text>;</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Selector Id>#header</Selector Id><Normal Text> {</Normal Text><br/>
+<Normal Text>  </Normal Text><Selector Class>.border-radius</Selector Class><Normal Text>(</Normal Text><Number>4</Number><Unit>px</Unit><Normal Text>);</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Selector Class>.button</Selector Class><Normal Text> {</Normal Text><br/>
+<Normal Text>  </Normal Text><Selector Class>.border-radius</Selector Class><Normal Text>(</Normal Text><Number>6</Number><Unit>px</Unit><Normal Text>);</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Selector Class>.border-radius</Selector Class><Normal Text>(</Normal Text><Variable>@radius</Variable><Normal Text>: </Normal Text><Number>5</Number><Unit>px</Unit><Normal Text>) {</Normal Text><br/>
+<Normal Text>  </Normal Text><Property>-webkit-border-radius</Property><Normal Text>: </Normal Text><Variable>@radius</Variable><Normal Text>;</Normal Text><br/>
+<Normal Text>     </Normal Text><Property>-moz-border-radius</Property><Normal Text>: </Normal Text><Variable>@radius</Variable><Normal Text>;</Normal Text><br/>
+<Normal Text>          </Normal Text><Property>border-radius</Property><Normal Text>: </Normal Text><Variable>@radius</Variable><Normal Text>;</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Selector Class>.wrap</Selector Class><Normal Text>() {</Normal Text><br/>
+<Normal Text>  </Normal Text><Property>text-wrap</Property><Normal Text>: wrap;</Normal Text><br/>
+<Normal Text>  </Normal Text><Property>white-space</Property><Normal Text>: -moz-pre-wrap;</Normal Text><br/>
+<Normal Text>  </Normal Text><Property>white-space</Property><Normal Text>: </Normal Text><Value>pre-wrap</Value><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Property>word-wrap</Property><Normal Text>: break-word;</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>pre { </Normal Text><Selector Class>.wrap</Selector Class><Normal Text> }</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment>// Mixins with Multiple Parameters</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Selector Class>.mixin</Selector Class><Normal Text>(</Normal Text><Variable>@color</Variable><Normal Text>) {</Normal Text><br/>
+<Normal Text>  color-1</Normal Text><Selector Pseudo>:</Selector Pseudo><Normal Text> </Normal Text><At Rule>@color</At Rule><Normal Text>;</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Selector Class>.mixin</Selector Class><Normal Text>(</Normal Text><Variable>@color</Variable><Normal Text>; </Normal Text><Variable>@padding</Variable><Normal Text>: </Normal Text><Number>2</Number><Normal Text>) {</Normal Text><br/>
+<Normal Text>  color-2</Normal Text><Selector Pseudo>:</Selector Pseudo><Normal Text> </Normal Text><At Rule>@color</At Rule><Normal Text>;</Normal Text><br/>
+<Normal Text>  padding-2</Normal Text><Selector Pseudo>:</Selector Pseudo><Normal Text> </Normal Text><At Rule>@padding</At Rule><Normal Text>;</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Selector Class>.mixin</Selector Class><Normal Text>(</Normal Text><Variable>@color</Variable><Normal Text>; </Normal Text><Variable>@padding</Variable><Normal Text>; </Normal Text><Variable>@margin</Variable><Normal Text>: </Normal Text><Number>2</Number><Normal Text>) {</Normal Text><br/>
+<Normal Text>  color-3</Normal Text><Selector Pseudo>:</Selector Pseudo><Normal Text> </Normal Text><At Rule>@color</At Rule><Normal Text>;</Normal Text><br/>
+<Normal Text>  padding-3</Normal Text><Selector Pseudo>:</Selector Pseudo><Normal Text> </Normal Text><At Rule>@padding</At Rule><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Property>margin</Property><Normal Text>: </Normal Text><Variable>@margin</Variable><Normal Text> </Normal Text><Variable>@margin</Variable><Normal Text> </Normal Text><Variable>@margin</Variable><Normal Text> </Normal Text><Variable>@margin</Variable><Normal Text>;</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Selector Class>.some</Selector Class><Normal Text> </Normal Text><Selector Class>.selector</Selector Class><Normal Text> div {</Normal Text><br/>
+<Normal Text>  </Normal Text><Selector Class>.mixin</Selector Class><Normal Text>(</Normal Text><Color>#008000</Color><Normal Text>);</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment>// Named parameters</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Selector Class>.mixin</Selector Class><Normal Text>(</Normal Text><Variable>@color</Variable><Normal Text>: </Normal Text><Color>black</Color><Normal Text>; </Normal Text><Variable>@margin</Variable><Normal Text>: </Normal Text><Number>10</Number><Unit>px</Unit><Normal Text>; </Normal Text><Variable>@padding</Variable><Normal Text>: </Normal Text><Number>20</Number><Unit>px</Unit><Normal Text>) {</Normal Text><br/>
+<Normal Text>  </Normal Text><Property>color</Property><Normal Text>: </Normal Text><Variable>@color</Variable><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Property>margin</Property><Normal Text>: </Normal Text><Variable>@margin</Variable><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Property>padding</Property><Normal Text>: </Normal Text><Variable>@padding</Variable><Normal Text>;</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Selector Class>.class1</Selector Class><Normal Text> {</Normal Text><br/>
+<Normal Text>  </Normal Text><Selector Class>.mixin</Selector Class><Normal Text>(</Normal Text><Variable>@margin</Variable><Normal Text>: </Normal Text><Number>20</Number><Unit>px</Unit><Normal Text>; </Normal Text><Variable>@color</Variable><Normal Text>: </Normal Text><Color>#33acfe</Color><Normal Text>);</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Selector Class>.class2</Selector Class><Normal Text> {</Normal Text><br/>
+<Normal Text>  </Normal Text><Selector Class>.mixin</Selector Class><Normal Text>(</Normal Text><Color>#efca44</Color><Normal Text>; </Normal Text><Variable>@padding</Variable><Normal Text>: </Normal Text><Number>40</Number><Unit>px</Unit><Normal Text>);</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment>// The @arguments Variable</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Selector Class>.box-shadow</Selector Class><Normal Text>(</Normal Text><Variable>@x</Variable><Normal Text>: </Normal Text><Number>0</Number><Normal Text>; </Normal Text><Variable>@y</Variable><Normal Text>: </Normal Text><Number>0</Number><Normal Text>; </Normal Text><Variable>@blur</Variable><Normal Text>: </Normal Text><Number>1</Number><Unit>px</Unit><Normal Text>; </Normal Text><Variable>@color</Variable><Normal Text>: </Normal Text><Color>#000</Color><Normal Text>) {</Normal Text><br/>
+<Normal Text>  </Normal Text><Property>-webkit-box-shadow</Property><Normal Text>: </Normal Text><Variable>@arguments</Variable><Normal Text>;</Normal Text><br/>
+<Normal Text>     </Normal Text><Property>-moz-box-shadow</Property><Normal Text>: </Normal Text><Variable>@arguments</Variable><Normal Text>;</Normal Text><br/>
+<Normal Text>          </Normal Text><Property>box-shadow</Property><Normal Text>: </Normal Text><Variable>@arguments</Variable><Normal Text>;</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Selector Class>.big-block</Selector Class><Normal Text> {</Normal Text><br/>
+<Normal Text>  </Normal Text><Selector Class>.box-shadow</Selector Class><Normal Text>(</Normal Text><Number>2</Number><Unit>px</Unit><Normal Text>; </Normal Text><Number>5</Number><Unit>px</Unit><Normal Text>);</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment>// Advanced Arguments and the @rest Variable</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Selector Class>.mixin</Selector Class><Normal Text>(</Normal Text><Value>...</Value><Normal Text>) {}        </Normal Text><Comment>// matches 0-N arguments</Comment><br/>
+<Selector Class>.mixin</Selector Class><Normal Text>() {}           </Normal Text><Comment>// matches exactly 0 arguments</Comment><br/>
+<Selector Class>.mixin</Selector Class><Normal Text>(</Normal Text><Variable>@a</Variable><Normal Text>: </Normal Text><Number>1</Number><Normal Text>) {}      </Normal Text><Comment>// matches 0-1 arguments</Comment><br/>
+<Selector Class>.mixin</Selector Class><Normal Text>(</Normal Text><Variable>@a</Variable><Normal Text>: </Normal Text><Number>1</Number><Normal Text>; </Normal Text><Value>...</Value><Normal Text>) {} </Normal Text><Comment>// matches 0-N arguments</Comment><br/>
+<Selector Class>.mixin</Selector Class><Normal Text>(</Normal Text><Variable>@a</Variable><Normal Text>; </Normal Text><Value>...</Value><Normal Text>) {}    </Normal Text><Comment>// matches 1-N arguments</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Selector Class>.mixin</Selector Class><Normal Text>(</Normal Text><Variable>@a</Variable><Normal Text>; </Normal Text><Variable>@rest</Variable><Value>...</Value><Normal Text>) {</Normal Text><br/>
+<Normal Text>   </Normal Text><Comment>// @rest is bound to arguments after @a</Comment><br/>
+<Normal Text>   </Normal Text><Comment>// @arguments is bound to all arguments</Comment><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment>// Pattern-matching</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Selector Class>.mixin</Selector Class><Normal Text>(</Normal Text><Variable>@s</Variable><Normal Text>; </Normal Text><Variable>@color</Variable><Normal Text>) { </Normal Text><Selector Class>...</Selector Class><Normal Text> }</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Selector Class>.class</Selector Class><Normal Text> {</Normal Text><br/>
+<Normal Text>  </Normal Text><Selector Class>.mixin</Selector Class><Normal Text>(</Normal Text><Variable>@switch</Variable><Normal Text>; </Normal Text><Color>#888</Color><Normal Text>);</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Selector Class>.mixin</Selector Class><Normal Text>(dark; </Normal Text><Variable>@color</Variable><Normal Text>) {</Normal Text><br/>
+<Normal Text>  </Normal Text><Property>color</Property><Normal Text>: </Normal Text><Function>darken</Function><Normal Text>(</Normal Text><Variable>@color</Variable><Normal Text>, </Normal Text><Number>10</Number><Unit>%</Unit><Normal Text>);</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Selector Class>.mixin</Selector Class><Normal Text>(</Normal Text><Value>light</Value><Normal Text>; </Normal Text><Variable>@color</Variable><Normal Text>) {</Normal Text><br/>
+<Normal Text>  </Normal Text><Property>color</Property><Normal Text>: </Normal Text><Function>lighten</Function><Normal Text>(</Normal Text><Variable>@color</Variable><Normal Text>, </Normal Text><Number>10</Number><Unit>%</Unit><Normal Text>);</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Selector Class>.mixin</Selector Class><Normal Text>(</Normal Text><Variable>@_</Variable><Normal Text>; </Normal Text><Variable>@color</Variable><Normal Text>) {</Normal Text><br/>
+<Normal Text>  </Normal Text><Property>display</Property><Normal Text>: </Normal Text><Value>block</Value><Normal Text>;</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Variable>@switch:</Variable><Normal Text> </Normal Text><Value>light</Value><Normal Text>;</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Selector Class>.class</Selector Class><Normal Text> {</Normal Text><br/>
+<Normal Text>  </Normal Text><Selector Class>.mixin</Selector Class><Normal Text>(</Normal Text><Variable>@switch</Variable><Normal Text>; </Normal Text><Color>#888</Color><Normal Text>);</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment>// Mixins as Functions</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Selector Class>.average</Selector Class><Normal Text>(</Normal Text><Variable>@x</Variable><Normal Text>, </Normal Text><Variable>@y</Variable><Normal Text>) {</Normal Text><br/>
+<Normal Text>  </Normal Text><Variable>@average:</Variable><Normal Text> ((</Normal Text><Variable>@x</Variable><Normal Text> + </Normal Text><Variable>@y</Variable><Normal Text>) / </Normal Text><Number>2</Number><Normal Text>);</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>div {</Normal Text><br/>
+<Normal Text>  </Normal Text><Selector Class>.average</Selector Class><Normal Text>(</Normal Text><Number>16</Number><Unit>px</Unit><Normal Text>, </Normal Text><Number>50</Number><Unit>px</Unit><Normal Text>); </Normal Text><Comment>// "call" the mixin</Comment><br/>
+<Normal Text>  </Normal Text><Property>padding</Property><Normal Text>: </Normal Text><Variable>@average</Variable><Normal Text>;    </Normal Text><Comment>// use its "return" value</Comment><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment>// Passing Rulesets to Mixins</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Comment>// declare detached ruleset</Comment><br/>
+<Variable>@detached-ruleset:</Variable><Normal Text> { </Normal Text><Property>background</Property><Normal Text>: </Normal Text><Color>red</Color><Normal Text>; };</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment>// use detached ruleset</Comment><br/>
+<Selector Class>.top</Selector Class><Normal Text> {</Normal Text><br/>
+<Normal Text>    </Normal Text><At Rule>@detached-ruleset</At Rule><Normal Text>();</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Selector Class>.desktop-and-old-ie</Selector Class><Normal Text>(</Normal Text><Variable>@rules</Variable><Normal Text>) {</Normal Text><br/>
+<Normal Text>  </Normal Text><At Rule>@media</At Rule><Normal Text> </Normal Text><Value>screen</Value><Normal Text> </Normal Text><Control Flow>and</Control Flow><Normal Text> (</Normal Text><Property>min-width</Property><Normal Text>: </Normal Text><Number>1200</Number><Unit>px</Unit><Normal Text>) { </Normal Text><At Rule>@rules</At Rule><Normal Text>(); }</Normal Text><br/>
+<Normal Text>  html</Normal Text><Selector Class>.lt-ie9</Selector Class><Normal Text> &                         { </Normal Text><At Rule>@rules</At Rule><Normal Text>(); }</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>header {</Normal Text><br/>
+<Normal Text>  </Normal Text><Property>background-color</Property><Normal Text>: </Normal Text><Color>blue</Color><Normal Text>;</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>  </Normal Text><Selector Class>.desktop-and-old-ie</Selector Class><Normal Text>({</Normal Text><br/>
+<Normal Text>    background-color: </Normal Text><Color>red</Color><Normal Text>;</Normal Text><br/>
+<Normal Text>  });</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Variable>@my-ruleset:</Variable><Normal Text> {</Normal Text><br/>
+<Normal Text>  </Normal Text><Selector Class>.my-selector</Selector Class><Normal Text> {</Normal Text><br/>
+<Normal Text>    </Normal Text><Property>background-color</Property><Normal Text>: </Normal Text><Color>black</Color><Normal Text>;</Normal Text><br/>
+<Normal Text>  }</Normal Text><br/>
+<Normal Text>};</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Variable>@my-ruleset:</Variable><Normal Text> {</Normal Text><br/>
+<Normal Text>    </Normal Text><Selector Class>.my-selector</Selector Class><Normal Text> {</Normal Text><br/>
+<Normal Text>      </Normal Text><At Rule>@media</At Rule><Normal Text> </Normal Text><Value>tv</Value><Normal Text> {</Normal Text><br/>
+<Normal Text>        </Normal Text><Property>background-color</Property><Normal Text>: </Normal Text><Color>black</Color><Normal Text>;</Normal Text><br/>
+<Normal Text>      }</Normal Text><br/>
+<Normal Text>    }</Normal Text><br/>
+<Normal Text>  };</Normal Text><br/>
+<At Rule>@media</At Rule><Normal Text> (</Normal Text><Property>orientation</Property><Normal Text>:</Normal Text><Value>portrait</Value><Normal Text>) {</Normal Text><br/>
+<Normal Text>    </Normal Text><At Rule>@my-ruleset</At Rule><Normal Text>();</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment>// Scoping</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Variable>@detached-ruleset:</Variable><Normal Text> {</Normal Text><br/>
+<Normal Text>  </Normal Text><Unknown Property>caller-variable</Unknown Property><Normal Text>: </Normal Text><Variable>@caller-variable</Variable><Normal Text>; </Normal Text><Comment>// variable is undefined here</Comment><br/>
+<Normal Text>  </Normal Text><Selector Class>.caller-mixin</Selector Class><Normal Text>(); </Normal Text><Comment>// mixin is undefined here</Comment><br/>
+<Normal Text>};</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>selector {</Normal Text><br/>
+<Normal Text>  </Normal Text><Comment>// use detached ruleset</Comment><br/>
+<Normal Text>  </Normal Text><At Rule>@detached-ruleset</At Rule><Normal Text>();</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>  </Normal Text><Comment>// define variable and mixin needed inside the detached ruleset</Comment><br/>
+<Normal Text>  </Normal Text><Variable>@caller-variable:</Variable><Normal Text> value;</Normal Text><br/>
+<Normal Text>  </Normal Text><Selector Class>.caller-mixin</Selector Class><Normal Text>() {</Normal Text><br/>
+<Normal Text>    </Normal Text><Unknown Property>variable</Unknown Property><Normal Text>: declaration;</Normal Text><br/>
+<Normal Text>  }</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment>/*</Comment><br/>
+<Comment> * reference: use a Less file but do not output it</Comment><br/>
+<Comment>inline: include the source file in the output but do not process it</Comment><br/>
+<Comment>less: treat the file as a Less file, no matter what the file extension</Comment><br/>
+<Comment>css: treat the file as a CSS file, no matter what the file extension</Comment><br/>
+<Comment>once: only include the file once (this is default behavior)</Comment><br/>
+<Comment>multiple: include the file multiple times</Comment><br/>
+<Comment>optional: continue compiling when file is not found</Comment><br/>
+<Comment> */</Comment><br/>
+<Normal Text></Normal Text><br/>
+<At Rule>@import</At Rule><Normal Text> (optional, reference) </Normal Text><String>"foo.less"</String><Normal Text>;</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment>// Mixin Guards</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Selector Class>.mixin</Selector Class><Normal Text> (</Normal Text><Variable>@a</Variable><Normal Text>) </Normal Text><Control Flow>when </Control Flow><Normal Text>(</Normal Text><Function>lightness</Function><Normal Text>(</Normal Text><Variable>@a</Variable><Normal Text>) >= </Normal Text><Number>50</Number><Unit>%</Unit><Normal Text>) {</Normal Text><br/>
+<Normal Text>  </Normal Text><Property>background-color</Property><Normal Text>: </Normal Text><Color>black</Color><Normal Text>;</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Selector Class>.mixin</Selector Class><Normal Text> (</Normal Text><Variable>@a</Variable><Normal Text>) </Normal Text><Control Flow>when </Control Flow><Normal Text>(</Normal Text><Function>lightness</Function><Normal Text>(</Normal Text><Variable>@a</Variable><Normal Text>) < </Normal Text><Number>50</Number><Unit>%</Unit><Normal Text>) {</Normal Text><br/>
+<Normal Text>  </Normal Text><Property>background-color</Property><Normal Text>: </Normal Text><Color>white</Color><Normal Text>;</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Selector Class>.mixin</Selector Class><Normal Text> (</Normal Text><Variable>@a</Variable><Normal Text>) {</Normal Text><br/>
+<Normal Text>  </Normal Text><Property>color</Property><Normal Text>: </Normal Text><Variable>@a</Variable><Normal Text>;</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment>// Guard Comparison Operators</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Selector Class>.truth</Selector Class><Normal Text> (</Normal Text><Variable>@a</Variable><Normal Text>) </Normal Text><Control Flow>when </Control Flow><Normal Text>(</Normal Text><Variable>@a</Variable><Normal Text>) { }</Normal Text><br/>
+<Selector Class>.truth</Selector Class><Normal Text> (</Normal Text><Variable>@a</Variable><Normal Text>) </Normal Text><Control Flow>when </Control Flow><Normal Text>(</Normal Text><Variable>@a</Variable><Normal Text> = true) { }</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment>// FIXME: @media as variable</Comment><br/>
+<Variable>@media:</Variable><Normal Text> mobile;</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Selector Class>.mixin</Selector Class><Normal Text> (</Normal Text><Variable>@a</Variable><Normal Text>) </Normal Text><Control Flow>when </Control Flow><Normal Text>(</Normal Text><Variable>@media</Variable><Normal Text> = mobile) { }</Normal Text><br/>
+<Selector Class>.mixin</Selector Class><Normal Text> (</Normal Text><Variable>@a</Variable><Normal Text>) </Normal Text><Control Flow>when </Control Flow><Normal Text>(</Normal Text><Variable>@media</Variable><Normal Text> = desktop) { }</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Selector Class>.max</Selector Class><Normal Text> (</Normal Text><Variable>@a</Variable><Normal Text>; </Normal Text><Variable>@b</Variable><Normal Text>) </Normal Text><Control Flow>when </Control Flow><Normal Text>(</Normal Text><Variable>@a</Variable><Normal Text> > </Normal Text><Variable>@b</Variable><Normal Text>) { </Normal Text><Property>width</Property><Normal Text>: </Normal Text><Variable>@a</Variable><Normal Text> }</Normal Text><br/>
+<Selector Class>.max</Selector Class><Normal Text> (</Normal Text><Variable>@a</Variable><Normal Text>; </Normal Text><Variable>@b</Variable><Normal Text>) </Normal Text><Control Flow>when </Control Flow><Normal Text>(</Normal Text><Variable>@a</Variable><Normal Text> < </Normal Text><Variable>@b</Variable><Normal Text>) { </Normal Text><Property>width</Property><Normal Text>: </Normal Text><Variable>@b</Variable><Normal Text> }</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment>// Guard Logical Operators</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Selector Class>.mixin</Selector Class><Normal Text> (</Normal Text><Variable>@a</Variable><Normal Text>) </Normal Text><Control Flow>when </Control Flow><Normal Text>(</Normal Text><Function>isnumber</Function><Normal Text>(</Normal Text><Variable>@a</Variable><Normal Text>)) and (</Normal Text><Variable>@a</Variable><Normal Text> > </Normal Text><Number>0</Number><Normal Text>) {  }</Normal Text><br/>
+<Selector Class>.mixin</Selector Class><Normal Text> (</Normal Text><Variable>@a</Variable><Normal Text>) </Normal Text><Control Flow>when </Control Flow><Normal Text>(</Normal Text><Variable>@a</Variable><Normal Text> > </Normal Text><Number>10</Number><Normal Text>), (</Normal Text><Variable>@a</Variable><Normal Text> < </Normal Text><Number>-10</Number><Normal Text>) {  }</Normal Text><br/>
+<Selector Class>.mixin</Selector Class><Normal Text> (</Normal Text><Variable>@b</Variable><Normal Text>) </Normal Text><Control Flow>when not</Control Flow><Normal Text> (</Normal Text><Variable>@b</Variable><Normal Text> > </Normal Text><Number>0</Number><Normal Text>) { }</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment>// Type Checking Functions</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Selector Class>.mixin</Selector Class><Normal Text> (</Normal Text><Variable>@a</Variable><Normal Text>; </Normal Text><Variable>@b</Variable><Normal Text>: </Normal Text><Number>0</Number><Normal Text>) </Normal Text><Control Flow>when </Control Flow><Normal Text>(</Normal Text><Function>isnumber</Function><Normal Text>(</Normal Text><Variable>@b</Variable><Normal Text>)) { }</Normal Text><br/>
+<Selector Class>.mixin</Selector Class><Normal Text> (</Normal Text><Variable>@a</Variable><Normal Text>; </Normal Text><Variable>@b</Variable><Normal Text>: </Normal Text><Color>black</Color><Normal Text>) </Normal Text><Control Flow>when </Control Flow><Normal Text>(</Normal Text><Function>iscolor</Function><Normal Text>(</Normal Text><Variable>@b</Variable><Normal Text>)) {}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>button </Normal Text><Control Flow>when </Control Flow><Normal Text>(</Normal Text><Variable>@my-option</Variable><Normal Text> = true) {</Normal Text><br/>
+<Normal Text>  </Normal Text><Property>color</Property><Normal Text>: </Normal Text><Color>white</Color><Normal Text>;</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>  & </Normal Text><Control Flow>when </Control Flow><Normal Text>(</Normal Text><Variable>@my-option</Variable><Normal Text> = true) {</Normal Text><br/>
+<Normal Text>  button {</Normal Text><br/>
+<Normal Text>    </Normal Text><Property>color</Property><Normal Text>: </Normal Text><Color>white</Color><Normal Text>;</Normal Text><br/>
+<Normal Text>  }</Normal Text><br/>
+<Normal Text>  a {</Normal Text><br/>
+<Normal Text>    </Normal Text><Property>color</Property><Normal Text>: </Normal Text><Color>blue</Color><Normal Text>;</Normal Text><br/>
+<Normal Text>  }</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment>// Loops</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Selector Class>.loop</Selector Class><Normal Text>(</Normal Text><Variable>@counter</Variable><Normal Text>) </Normal Text><Control Flow>when </Control Flow><Normal Text>(</Normal Text><Variable>@counter</Variable><Normal Text> > </Normal Text><Number>0</Number><Normal Text>) {</Normal Text><br/>
+<Normal Text>  </Normal Text><Selector Class>.loop</Selector Class><Normal Text>((</Normal Text><Variable>@counter</Variable><Normal Text> - </Normal Text><Number>1</Number><Normal Text>));    </Normal Text><Comment>// next iteration</Comment><br/>
+<Normal Text>  </Normal Text><Property>width</Property><Normal Text>: (</Normal Text><Number>10</Number><Unit>px</Unit><Normal Text> * </Normal Text><Variable>@counter</Variable><Normal Text>); </Normal Text><Comment>// code for each iteration</Comment><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>div {</Normal Text><br/>
+<Normal Text>  </Normal Text><Selector Class>.loop</Selector Class><Normal Text>(</Normal Text><Number>5</Number><Normal Text>); </Normal Text><Comment>// launch the loop</Comment><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment>// Merge</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Selector Class>.mixin</Selector Class><Normal Text>() {</Normal Text><br/>
+<Normal Text>  </Normal Text><Property>box-shadow</Property><Normal Text>+: </Normal Text><Value>inset</Value><Normal Text> </Normal Text><Number>0</Number><Normal Text> </Normal Text><Number>0</Number><Normal Text> </Normal Text><Number>10</Number><Unit>px</Unit><Normal Text> </Normal Text><Color>#555</Color><Normal Text>;</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Selector Class>.myclass</Selector Class><Normal Text> {</Normal Text><br/>
+<Normal Text>  </Normal Text><Selector Class>.mixin</Selector Class><Normal Text>();</Normal Text><br/>
+<Normal Text>  </Normal Text><Property>box-shadow</Property><Normal Text>+: </Normal Text><Number>0</Number><Normal Text> </Normal Text><Number>0</Number><Normal Text> </Normal Text><Number>20</Number><Unit>px</Unit><Normal Text> </Normal Text><Color>black</Color><Normal Text>;</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment>// Space</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Selector Class>.mixin</Selector Class><Normal Text>() {</Normal Text><br/>
+<Normal Text>  </Normal Text><Property>transform</Property><Normal Text>+_: </Normal Text><Function>scale</Function><Normal Text>(</Normal Text><Number>2</Number><Normal Text>);</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Selector Class>.myclass</Selector Class><Normal Text> {</Normal Text><br/>
+<Normal Text>  </Normal Text><Selector Class>.mixin</Selector Class><Normal Text>();</Normal Text><br/>
+<Normal Text>  </Normal Text><Property>transform</Property><Normal Text>+_: </Normal Text><Function>rotate</Function><Normal Text>(</Normal Text><Number>15</Number><Unit>deg</Unit><Normal Text>);</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment>// Parent Selectors</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>a {</Normal Text><br/>
+<Normal Text>  </Normal Text><Property>color</Property><Normal Text>: </Normal Text><Color>blue</Color><Normal Text>;</Normal Text><br/>
+<Normal Text>  &</Normal Text><Selector Pseudo>:hover</Selector Pseudo><Normal Text> {</Normal Text><br/>
+<Normal Text>    </Normal Text><Property>color</Property><Normal Text>: </Normal Text><Color>green</Color><Normal Text>;</Normal Text><br/>
+<Normal Text>  }</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Selector Class>.button</Selector Class><Normal Text> {</Normal Text><br/>
+<Normal Text>  &-ok {</Normal Text><br/>
+<Normal Text>    </Normal Text><Property>background-image</Property><Normal Text>: </Normal Text><Function>url</Function><Normal Text>(</Normal Text><String>"ok.png"</String><Normal Text>);</Normal Text><br/>
+<Normal Text>  }</Normal Text><br/>
+<Normal Text>  &-cancel {</Normal Text><br/>
+<Normal Text>    </Normal Text><Property>background-image</Property><Normal Text>: </Normal Text><Function>url</Function><Normal Text>(</Normal Text><String>"cancel.png"</String><Normal Text>);</Normal Text><br/>
+<Normal Text>  }</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>  &-custom {</Normal Text><br/>
+<Normal Text>    </Normal Text><Property>background-image</Property><Normal Text>: </Normal Text><Function>url</Function><Normal Text>(</Normal Text><String>"custom.png"</String><Normal Text>);</Normal Text><br/>
+<Normal Text>  }</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Selector Class>.link</Selector Class><Normal Text> {</Normal Text><br/>
+<Normal Text>  & + & {</Normal Text><br/>
+<Normal Text>    </Normal Text><Property>color</Property><Normal Text>: </Normal Text><Color>red</Color><Normal Text>;</Normal Text><br/>
+<Normal Text>  }</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>  & & {</Normal Text><br/>
+<Normal Text>    </Normal Text><Property>color</Property><Normal Text>: </Normal Text><Color>green</Color><Normal Text>;</Normal Text><br/>
+<Normal Text>  }</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>  && {</Normal Text><br/>
+<Normal Text>    </Normal Text><Property>color</Property><Normal Text>: </Normal Text><Color>blue</Color><Normal Text>;</Normal Text><br/>
+<Normal Text>  }</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>  &, &ish {</Normal Text><br/>
+<Normal Text>    </Normal Text><Property>color</Property><Normal Text>: </Normal Text><Color>cyan</Color><Normal Text>;</Normal Text><br/>
+<Normal Text>  }</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Selector Class>.grand</Selector Class><Normal Text> {</Normal Text><br/>
+<Normal Text>  </Normal Text><Selector Class>.parent</Selector Class><Normal Text> {</Normal Text><br/>
+<Normal Text>    & > & {</Normal Text><br/>
+<Normal Text>      </Normal Text><Property>color</Property><Normal Text>: </Normal Text><Color>red</Color><Normal Text>;</Normal Text><br/>
+<Normal Text>    }</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>    & & {</Normal Text><br/>
+<Normal Text>      </Normal Text><Property>color</Property><Normal Text>: </Normal Text><Color>green</Color><Normal Text>;</Normal Text><br/>
+<Normal Text>    }</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>    && {</Normal Text><br/>
+<Normal Text>      </Normal Text><Property>color</Property><Normal Text>: </Normal Text><Color>blue</Color><Normal Text>;</Normal Text><br/>
+<Normal Text>    }</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>    &, &ish {</Normal Text><br/>
+<Normal Text>      </Normal Text><Property>color</Property><Normal Text>: </Normal Text><Color>cyan</Color><Normal Text>;</Normal Text><br/>
+<Normal Text>    }</Normal Text><br/>
+<Normal Text>  }</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment>// Changing Selector Order</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Selector Class>.header</Selector Class><Normal Text> {</Normal Text><br/>
+<Normal Text>  </Normal Text><Selector Class>.menu</Selector Class><Normal Text> {</Normal Text><br/>
+<Normal Text>    </Normal Text><Property>border-radius</Property><Normal Text>: </Normal Text><Number>5</Number><Unit>px</Unit><Normal Text>;</Normal Text><br/>
+<Normal Text>    </Normal Text><Selector Class>.no-borderradius</Selector Class><Normal Text> & {</Normal Text><br/>
+<Normal Text>      </Normal Text><Property>background-image</Property><Normal Text>: </Normal Text><Function>url</Function><Normal Text>(</Normal Text><String>'images/button-background.png'</String><Normal Text>);</Normal Text><br/>
+<Normal Text>    }</Normal Text><br/>
+<Normal Text>  }</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment>// Combinatorial Explosion</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>p, a, ul, li {</Normal Text><br/>
+<Normal Text>  </Normal Text><Property>border-top</Property><Normal Text>: </Normal Text><Number>2</Number><Unit>px</Unit><Normal Text> </Normal Text><Value>dotted</Value><Normal Text> </Normal Text><Color>#366</Color><Normal Text>;</Normal Text><br/>
+<Normal Text>  & + & {</Normal Text><br/>
+<Normal Text>    </Normal Text><Property>border-top</Property><Normal Text>: </Normal Text><Number>0</Number><Normal Text>;</Normal Text><br/>
+<Normal Text>  }</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>

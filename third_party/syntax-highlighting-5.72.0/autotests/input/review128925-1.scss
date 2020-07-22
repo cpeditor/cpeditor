@@ -1,0 +1,211 @@
+/*
+ * SCSS Syntax Highlight Sample File (Standard)
+ *
+ * This file contains most SCSS syntax, CSS3 properties, advanced code structure.
+ * It is NOT a valid SCSS file that can be compiled by SCSS preprocessors.
+ *
+ * @author  Guo Yunhe guoyunhebrave@gmail.com
+ * @date    2016-09-15
+ */
+
+/*
+ * Block comment
+ *
+ * Alert keywords:
+ * TODO BUG FIXME
+ */
+
+@charset "UTF-8";
+
+@import "mixins/button";
+
+// Variable define
+
+$image-path:            "../../static/images";
+$default-text-color:    #333 !default; // Default can be overrided
+$default-font-size:     16px !default;
+$default-font-family:   Roboto, "Droid Sans", sans-serif;
+$default-font-weight:   400;
+$default-line-height:   $default-font-size * 1.8;
+$shadow-transparence:   0.25;
+$box-shadow:            0 0 3px rgba(0,0,0,$shadow-transparence);
+$page-width:            100rem; // kabab-case
+$gapOfArticle:          20px;   // camelCase
+$body_background_color: white;  // snake_case
+
+// Mixins
+
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+     -moz-border-radius: $radius;
+      -ms-border-radius: $radius;
+          border-radius: $radius;
+}
+
+.box { @include border-radius(10px); }
+
+// Nesting
+
+#home-page {
+
+    header {
+        width: 80%;
+        margin: 0 auto;
+
+        .cover {
+            @include border-radius(20px);
+            max-width: 100%;
+
+            &:hover {
+                background: #ffffff;
+            }
+
+            .like-button {
+                font-size: $default-font-size * 0.8;
+
+                @media (max-width: 300px) and (min-width: 200px) {
+                    font-size: $default-font-size * 0.8;
+
+                    .icon {
+                        width: 20px;
+                        height: 20px;
+                    }
+                }
+
+                @media print {
+                    display: none;
+                }
+            }
+        }
+    }
+}
+
+// Extend and inheritance
+
+.message {
+    border: $border-light;
+    background-color: #f0f0f0;
+}
+
+.message-danger {
+    @extend .message;
+}
+
+
+// Control structures
+
+@mixin does-parent-exist {
+    @if & {
+        &:hover {
+            color: red;
+        }
+    } @else {
+        a {
+            color: red;
+        }
+    }
+}
+
+
+// Operators
+
+.container { width: 100%; }
+
+article[role="main"] {
+  float: left;
+  width: 600px / 960px * 100%;
+}
+
+aside[role="complementary"] {
+  float: right;
+  width: 300px / 960px * 100%;
+}
+
+
+// Functions - see http://sass-lang.com/documentation/Sass/Script/Functions.html
+
+$color1: hsl(120deg, 100%, 50%);
+$color2: rgb($red, $green, blue($color1));
+$color3: mix($color1, $color2, [$weight]);
+
+
+// Properties
+
+html, body {
+    font-family: "Droid Sans", Arial, sans-serif;
+    font-size: 11pt;
+    line-height: 1.5em;
+    max-width: 300px + $page-width - $gap / 2;
+    background: $bg_color;
+    text-shadow: 0 0 2px rgba(0,0,0, $transparence);
+    box-sizing: border-box;
+}
+
+
+// Selectors
+
+blockquote {
+    margin: 0;
+}
+
+header #logo {
+    width: 100px;
+}
+
+div#footer .link {
+    color: blue;
+}
+
+sidebar #subscribe .subscribe_form input[type="text"] {
+    font-size: 20px;
+}
+
+sidebar #subscribe .subscribe_form:nth-child(2n + 1):hover input[class*="small-"] {
+    font-weight: bold;
+}
+
+
+// Media Queries
+
+@media print {
+    .container {
+        width: 100%;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .container {
+        width: 600px;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 960px) {
+    .container {
+        width: 720px;
+    }
+}
+
+
+// Fontface
+
+@font-face {
+    font-family: MyHelvetica;
+    src: local("Helvetica Neue Bold"),
+        local("HelveticaNeue-Bold"),
+        url(MgOpenModernaBold.ttf);
+    font-weight: bold;
+}
+
+// Animation (Keyframes)
+
+@keyframes slidein {
+    from {
+        margin-left: 100%;
+        width: 300%;
+    }
+
+    to {
+        margin-left: 0%;
+        width: 100%;
+    }
+}

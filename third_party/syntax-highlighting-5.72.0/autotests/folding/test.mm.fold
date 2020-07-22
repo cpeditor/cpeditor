@@ -1,0 +1,42 @@
+<beginfold id='1'>$(</beginfold id='1'> Modified version of demo0.mm from 1-Jan-04 <endfold id='1'>$)</endfold id='1'>
+
+<beginfold id='1'>$(</beginfold id='1'>
+                      PUBLIC DOMAIN DEDICATION
+
+This file is placed in the public domain per the Creative Commons Public
+Domain Dedication. http://creativecommons.org/licenses/publicdomain/
+
+Norman Megill - email: nm at alum.mit.edu
+<endfold id='1'>$)</endfold id='1'>
+
+$c 0 + = -> ( ) term wff |- $.
+
+$v t r s P Q $.
+
+tt $f term t $.
+tr $f term r $.
+ts $f term s $.
+wp $f wff P $.
+wq $f wff Q $.
+
+tze $a term 0 $.
+tpl $a term ( t + r ) $.
+
+weq $a wff t = r $.
+wim $a wff ( P -> Q ) $.
+
+a1 $a |- ( t = r -> ( t = s -> r = s ) ) $.
+a2 $a |- ( t + 0 ) = t $.
+<beginfold id='2'>${</beginfold id='2'>
+    <beginfold id='1'>$(</beginfold id='1'> Define the modus ponens inference rule <endfold id='1'>$)</endfold id='1'>
+    min $e |- P $.
+    maj $e |- ( P -> Q ) $.
+    mp  $a |- Q $.
+<endfold id='2'>$}</endfold id='2'>
+
+th1 $p |- t = t <beginfold id='3'>$=</beginfold id='3'>
+    <beginfold id='1'>$(</beginfold id='1'> Here is its proof: <endfold id='1'>$)</endfold id='1'>
+    tt tze tpl tt weq tt tt weq tt a2 tt tze tpl
+    tt weq tt tze tpl tt weq tt tt weq wim tt a2
+    tt tze tpl tt tt a1 mp mp
+<endfold id='3'>$.</endfold id='3'>

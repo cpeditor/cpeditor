@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title>highlight.f90</title>
+<meta name="generator" content="KF5::SyntaxHighlighting (Fortran (Free Format))"/>
+</head><body style="color:#1f1c1b"><pre>
+<span style="color:#898887;">! This file is an example to test the syntax highlighting file fortran-free.xml</span>
+<span style="color:#898887;">! (for fortran, free format)</span>
+
+<span style="color:#898887;">!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</span>
+<span style="color:#898887;">!                      THIS IS AN EXAMPLE OF A MODULE                          !</span>
+<span style="color:#898887;">!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</span>
+<span style="font-weight:bold;">module</span> module_example
+
+  <span style="color:#898887;">! use 'implicit none' when you want all variables to be declared</span>
+  <span style="font-weight:bold;">implicit</span> <span style="font-weight:bold;">none</span>
+
+<span style="color:#898887;">!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</span>
+<span style="color:#898887;">! PUBLICS AND PRIVATES</span>
+
+  <span style="color:#898887;">! In fortran 90 you can define your own operator</span>
+  <span style="color:#0057ae;">public</span> <span style="color:#0057ae;">::</span> <span style="font-weight:bold;">operator</span>(<span style="font-weight:bold;">.norm.</span>)
+  <span style="color:#0057ae;">public</span> <span style="color:#0057ae;">::</span> <span style="font-weight:bold;">operator</span>(<span style="font-weight:bold;">+</span>) <span style="color:#898887;">! &lt;-- you can also overload the usual operators</span>
+  <span style="color:#0057ae;">public</span> <span style="color:#0057ae;">::</span> factorial
+  <span style="color:#0057ae;">public</span> <span style="color:#0057ae;">::</span> example_fn
+
+  <span style="color:#0057ae;">private</span> <span style="color:#0057ae;">::</span> point3d_add
+  <span style="color:#0057ae;">private</span> <span style="color:#0057ae;">::</span> point3d_norm
+
+<span style="color:#898887;">!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</span>
+<span style="color:#898887;">! USER-DEFINED TYPES...</span>
+
+  <span style="color:#898887;">! This is a definition to use in declarations of real variables,</span>
+  <span style="color:#898887;">! parameters, etc.</span>
+  <span style="color:#0057ae;">integer</span>, <span style="color:#0057ae;">parameter</span>, <span style="color:#0057ae;">public</span> <span style="color:#0057ae;">::</span> kr <span style="font-weight:bold;">=</span> <span style="color:#644a9b;font-weight:bold;">selected_real_kind</span>(<span style="color:#b08000;">10</span>)
+
+  <span style="color:#898887;">! This is a user-defined type</span>
+  <span style="color:#0057ae;">type</span>, <span style="color:#0057ae;">public</span> <span style="color:#0057ae;">::</span> point3d
+    <span style="color:#0057ae;">real(kind=kr)</span> <span style="color:#0057ae;">::</span> x, y, z
+  <span style="color:#0057ae;">end type</span> point3d
+
+  <span style="color:#898887;">! This type is useless: it is only an example of type definition!</span>
+  <span style="color:#0057ae;">type</span>, <span style="color:#0057ae;">public</span> <span style="color:#0057ae;">::</span> example_type
+    <span style="color:#0057ae;">complex(kind=kr)</span>            <span style="color:#0057ae;">::</span> c <span style="color:#898887;">! &lt;-- a complex number (two reals of kind kr)!</span>
+    <span style="color:#0057ae;">real</span>, <span style="color:#0057ae;">dimension(-10:10)</span>     <span style="color:#0057ae;">::</span> <span style="font-weight:bold;">&amp;</span> <span style="color:#898887;">! &lt;-- this line does not end here!</span>
+      r1, r2 <span style="color:#898887;">! &lt;-- this is the final part of the previous line</span>
+    <span style="color:#0057ae;">real</span>, <span style="color:#0057ae;">pointer</span>, <span style="color:#0057ae;">dimension(:)</span> <span style="color:#0057ae;">::</span> pointer_to_array_of_real
+    <span style="color:#0057ae;">real</span>, <span style="color:#0057ae;">dimension(:)</span>, <span style="color:#0057ae;">pointer</span> <span style="color:#0057ae;">::</span> array_of_pointer_to_real
+  <span style="color:#0057ae;">end type</span> example_type
+
+<span style="color:#898887;">!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</span>
+<span style="color:#898887;">! INTERFACES...</span>
+
+  <span style="color:#898887;">! Interface for the norm of a 3-D vector</span>
+  <span style="font-weight:bold;">interface</span> <span style="font-weight:bold;">operator</span>(<span style="font-weight:bold;">.norm.</span>)
+    <span style="font-weight:bold;">module procedure</span> point3d_norm
+  <span style="font-weight:bold;">end interface</span>
+
+  <span style="color:#898887;">! Interface for the operator '+'</span>
+  <span style="font-weight:bold;">interface</span> <span style="font-weight:bold;">operator</span>(<span style="font-weight:bold;">+</span>)
+    <span style="font-weight:bold;">module procedure</span> point3d_add
+  <span style="font-weight:bold;">end interface</span>
+
+<span style="color:#898887;">!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</span>
+<span style="color:#898887;">! SOME DECLARATIONS...</span>
+
+  <span style="color:#898887;">! A real number can be declared with the following line:</span>
+  <span style="color:#0057ae;">real(kind=kr)</span> <span style="color:#0057ae;">::</span> real_var1
+  <span style="color:#898887;">! But if you are not interested on the precision of floating point numbers,</span>
+  <span style="color:#898887;">! you can use simply:</span>
+  <span style="color:#0057ae;">real</span> <span style="color:#0057ae;">::</span> real_var2
+
+  <span style="color:#898887;">! An array can be declared in two ways:</span>
+  <span style="color:#0057ae;">real(kind=kr)</span>, <span style="color:#0057ae;">dimension(1:10, -4:5)</span>, <span style="color:#0057ae;">private</span> <span style="color:#0057ae;">::</span> a, b, c
+  <span style="color:#0057ae;">real(kind=kr)</span>, <span style="color:#0057ae;">private</span> <span style="color:#0057ae;">::</span> d(<span style="color:#b08000;">1</span>:<span style="color:#b08000;">10</span>, <span style="font-weight:bold;">-</span><span style="color:#b08000;">4</span>:<span style="color:#b08000;">5</span>)
+
+  <span style="color:#898887;">! This is a string with fixed lenght</span>
+  <span style="color:#0057ae;">character(len=10)</span> <span style="color:#0057ae;">::</span> str_var
+
+  <span style="color:#898887;">! This is an allocatable array, which can be a target of a pointer</span>
+  <span style="color:#0057ae;">type(example_type)</span>, <span style="color:#0057ae;">private</span>, <span style="color:#0057ae;">dimension(:)</span>, <span style="color:#0057ae;">allocatable</span>, <span style="color:#0057ae;">target</span> <span style="color:#0057ae;">::</span> <span style="font-weight:bold;">&amp;</span>
+   many_examples
+
+<span style="color:#898887;">! Fortran 90 hasn't got its own preprocessor, it uses the C preprocessor!</span>
+<span style="color:#006e28;">#ifdef XXX</span>
+
+<span style="color:#006e28;">#endif</span>
+
+<span style="font-weight:bold;">contains</span>
+
+
+  <span style="color:#898887;">! The sum of two points</span>
+  <span style="font-weight:bold;">pure</span> <span style="font-weight:bold;">function</span> point3d_add(a, b) <span style="font-weight:bold;">result</span>(rs)
+    <span style="color:#0057ae;">type(point3d)</span> <span style="color:#0057ae;">::</span> rs
+    <span style="color:#0057ae;">type(point3d)</span>, <span style="color:#0057ae;">intent(in)</span> <span style="color:#0057ae;">::</span> a, b
+    rs%x <span style="font-weight:bold;">=</span> a%x <span style="font-weight:bold;">+</span> b%x
+    rs%y <span style="font-weight:bold;">=</span> a%y <span style="font-weight:bold;">+</span> b%y
+    rs%z <span style="font-weight:bold;">=</span> a%z <span style="font-weight:bold;">+</span> b%z
+  <span style="font-weight:bold;">end function</span> point3d_add
+
+
+  <span style="color:#898887;">! The norm of a point</span>
+  <span style="font-weight:bold;">pure</span> <span style="font-weight:bold;">function</span> point3d_norm(a) <span style="font-weight:bold;">result</span>(rs)
+    <span style="color:#0057ae;">real(kind=kr)</span> <span style="color:#0057ae;">::</span> rs
+    <span style="color:#0057ae;">type(point3d)</span>, <span style="color:#0057ae;">intent(in)</span> <span style="color:#0057ae;">::</span> a
+    rs <span style="font-weight:bold;">=</span> <span style="color:#644a9b;font-weight:bold;">sqrt</span>(a%x <span style="font-weight:bold;">*</span> a%x <span style="font-weight:bold;">+</span> a%y <span style="font-weight:bold;">*</span> a%y <span style="font-weight:bold;">+</span> a%z <span style="font-weight:bold;">*</span> a%z)
+  <span style="font-weight:bold;">end function</span> point3d_norm
+
+
+  <span style="color:#898887;">! A simple recursive function</span>
+  <span style="font-weight:bold;">recursive</span> <span style="font-weight:bold;">function</span> factorial(i) <span style="font-weight:bold;">result</span> (rs)
+    <span style="color:#0057ae;">integer</span> <span style="color:#0057ae;">::</span> rs
+    <span style="color:#0057ae;">integer</span>, <span style="color:#0057ae;">intent(in)</span> <span style="color:#0057ae;">::</span> i
+    <span style="font-weight:bold;">if</span> ( i <span style="font-weight:bold;">&lt;=</span> <span style="color:#b08000;">1</span> ) <span style="font-weight:bold;">then</span>
+      rs <span style="font-weight:bold;">=</span> <span style="color:#b08000;">1</span>
+    <span style="font-weight:bold;">else</span>
+      rs <span style="font-weight:bold;">=</span> i <span style="font-weight:bold;">*</span> factorial(i <span style="font-weight:bold;">-</span> <span style="color:#b08000;">1</span>)
+    <span style="font-weight:bold;">end if</span>
+  <span style="font-weight:bold;">end function</span> factorial
+
+
+  <span style="color:#898887;">! This is a useless function</span>
+  <span style="font-weight:bold;">subroutine</span> example_fn(int_arg, real_arg, str_arg)
+    <span style="color:#0057ae;">integer</span>, <span style="color:#0057ae;">intent(in)</span> <span style="color:#0057ae;">::</span> int_arg
+    <span style="color:#0057ae;">real(kind=kr)</span>, <span style="color:#0057ae;">intent(out)</span> <span style="color:#0057ae;">::</span> real_arg
+    <span style="color:#0057ae;">character(len=*)</span>, <span style="color:#0057ae;">intent(in)</span> <span style="color:#0057ae;">::</span> str_arg
+
+    <span style="color:#0057ae;">type(example_type)</span>, <span style="color:#0057ae;">pointer</span> <span style="color:#0057ae;">::</span> p
+    <span style="color:#0057ae;">integer</span> <span style="color:#0057ae;">::</span> n, i, j
+    <span style="color:#0057ae;">logical</span> <span style="color:#0057ae;">::</span> flag
+
+    flag <span style="font-weight:bold;">=</span> <span style="color:#aa5500;font-weight:bold;">.true.</span> <span style="color:#898887;">! .true. is not an operator!</span>
+    <span style="font-weight:bold;">if</span> ( flag <span style="font-weight:bold;">.and.</span> flag ) <span style="font-weight:bold;">then</span> <span style="color:#898887;">! .and. is a pre-defined operator</span>
+      <span style="color:#644a9b;">print</span> <span style="font-weight:bold;">*</span>, <span style="color:#bf0303;">&quot;blabla&quot;</span>
+    <span style="font-weight:bold;">end if</span>
+
+    <span style="color:#898887;">! Examples of inquiry functions: allocated, lbound, ubound.</span>
+    <span style="font-weight:bold;">if</span> ( <span style="font-weight:bold;">.not.</span> <span style="color:#644a9b;font-weight:bold;font-style:italic;">allocated</span>(many_examples) ) <span style="font-weight:bold;">then</span>
+      <span style="font-weight:bold;">allocate</span>( many_examples(<span style="color:#b08000;">10</span>) )
+    <span style="font-weight:bold;">end if</span>
+    <span style="color:#644a9b;">print</span> <span style="font-weight:bold;">*</span>, <span style="color:#bf0303;">&quot;Lower bound = &quot;</span>, <span style="color:#644a9b;font-weight:bold;font-style:italic;">lbound</span>(many_examples, <span style="color:#b08000;">1</span>)
+    <span style="color:#644a9b;">print</span> <span style="font-weight:bold;">*</span>, <span style="color:#bf0303;">&quot;Upper bound = &quot;</span>, <span style="color:#644a9b;font-weight:bold;font-style:italic;">ubound</span>(many_examples, <span style="color:#b08000;">1</span>)
+
+    p <span style="font-weight:bold;">=</span><span style="font-weight:bold;">&gt;</span> many_examples(<span style="color:#b08000;">5</span>) <span style="color:#898887;">! &lt;-- p is a pointer</span>
+
+    <span style="color:#898887;">! A strange way to calculate i*i: add the first i odd numbers</span>
+    i <span style="font-weight:bold;">=</span> <span style="color:#b08000;">6</span>
+    j <span style="font-weight:bold;">=</span> <span style="color:#b08000;">0</span>
+    <span style="font-weight:bold;">do</span> n <span style="font-weight:bold;">=</span> <span style="color:#b08000;">1</span>, i
+      j <span style="font-weight:bold;">=</span> j <span style="font-weight:bold;">+</span> (<span style="color:#b08000;">2</span><span style="font-weight:bold;">*</span>n <span style="font-weight:bold;">-</span> <span style="color:#b08000;">1</span>)
+    <span style="font-weight:bold;">end do</span>
+    <span style="color:#644a9b;">print</span> <span style="font-weight:bold;">*</span>, <span style="color:#bf0303;">&quot;i*i = &quot;</span>, i<span style="font-weight:bold;">*</span>i, j
+
+    real_arg <span style="font-weight:bold;">=</span> <span style="color:#0057ae;">real(j)</span> <span style="color:#898887;">! &lt;-- here the highlighting is not very good:</span>
+    <span style="color:#898887;">! it is unable to distinguish between this and a definition like:</span>
+    <span style="color:#898887;">!  real(kind=kr) :: a</span>
+    <span style="font-weight:bold;">deallocate</span>( many_examples )
+  <span style="font-weight:bold;">end subroutine</span> example_fn
+
+<span style="font-weight:bold;">end module</span> module_example
+
+
+<span style="color:#898887;">!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</span>
+<span style="color:#898887;">!                         THIS IS THE MAIN PROGRAM                             !</span>
+<span style="color:#898887;">!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</span>
+<span style="font-weight:bold;">program</span> example
+  <span style="font-weight:bold;">use</span> module_example
+
+  <span style="color:#898887;">! this is another example of use of the 'implicit' keyword</span>
+  <span style="font-weight:bold;">implicit</span> <span style="color:#0057ae;">double precision</span> (a<span style="font-weight:bold;">-</span>h,o<span style="font-weight:bold;">-</span>z)
+
+  <span style="color:#0057ae;">real(kind=kr)</span> <span style="color:#0057ae;">::</span> var_out
+
+  <span style="color:#0057ae;">type(point3d)</span> <span style="color:#0057ae;">::</span> <span style="font-weight:bold;">&amp;</span>
+   a <span style="font-weight:bold;">=</span> point3d(<span style="color:#b08000;">0.0_kr</span>, <span style="color:#b08000;">1.0_kr</span>, <span style="color:#b08000;">2.0_kr</span>), <span style="font-weight:bold;">&amp;</span>
+   b <span style="font-weight:bold;">=</span> point3d(<span style="color:#b08000;">4.0_kr</span>, <span style="color:#b08000;">5.0_kr</span>, <span style="color:#b08000;">6.0_kr</span>)
+
+  <span style="color:#644a9b;">print</span> <span style="font-weight:bold;">*</span>, <span style="color:#bf0303;">&quot;a + b = &quot;</span>, <span style="font-weight:bold;">.norm.</span> (a <span style="font-weight:bold;">+</span> b)
+  <span style="color:#644a9b;">print</span> <span style="font-weight:bold;">*</span>, <span style="color:#bf0303;">&quot;factorial of 5 = &quot;</span>, factorial(<span style="color:#b08000;">5</span>)
+
+  <span style="font-weight:bold;">call</span> example_fn(<span style="color:#b08000;">1</span>, var_out, <span style="color:#bf0303;">&quot;hello!&quot;</span>)
+
+<span style="font-weight:bold;">end program</span> example
+</pre></body></html>

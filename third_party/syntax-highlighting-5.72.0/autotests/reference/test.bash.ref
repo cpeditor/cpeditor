@@ -1,0 +1,23 @@
+<Comment>#!/bin/bash</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>for</Keyword><Normal Text> </Normal Text><OtherCommand>i</OtherCommand><Normal Text> </Normal Text><Option>in</Option><Normal Text> </Normal Text><Backquote>`</Backquote><Command>ls</Command><Normal Text> </Normal Text><Path>tests/auto/output/*.html</Path><Backquote>`</Backquote><Control>;</Control><Normal Text> </Normal Text><Keyword>do</Keyword><br/>
+<Normal Text>    </Normal Text><Variable>refFile=</Variable><Backquote>`</Backquote><Builtin>echo</Builtin><Normal Text> </Normal Text><Variable>$i</Variable><Normal Text> </Normal Text><Control>|</Control><Normal Text> </Normal Text><Command>sed</Command><Normal Text> </Normal Text><Option>-e</Option><Normal Text> s,build,src, </Normal Text><Control>|</Control><Normal Text> </Normal Text><Command>sed</Command><Normal Text> </Normal Text><Option>-e</Option><Normal Text> s,output,reference, </Normal Text><Control>|</Control><Normal Text> </Normal Text><Command>sed</Command><Normal Text> </Normal Text><Option>-e</Option><Normal Text> s,.html,.ref.html,</Normal Text><Backquote>`</Backquote><br/>
+<Normal Text>    </Normal Text><Command>cp</Command><Normal Text> </Normal Text><Option>-v</Option><Normal Text> </Normal Text><Variable>$i</Variable><Normal Text> </Normal Text><Variable>$refFile</Variable><br/>
+<Keyword>done</Keyword><br/>
+<Normal Text></Normal Text><br/>
+<Comment>## >Settings >Configure Kate >Fonts & Colors >Highlitghing Text Styles >Scripts/Bash >Option >Change colors to some distinct color</Comment><br/>
+<Comment>## 1- In following line the -ucode should not be colored as option</Comment><br/>
+<Normal Text></Normal Text><br/>
+<OtherCommand>pacman</OtherCommand><Normal Text> </Normal Text><Option>-Syu</Option><Normal Text> </Normal Text><Option>--needed</Option><Normal Text> intel-ucode grub</Normal Text><br/>
+<OtherCommand>pacman</OtherCommand><Normal Text> </Normal Text><Option>-syu</Option><Normal Text> </Normal Text><Option>--needed</Option><Normal Text> intel-ucode grub</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment># Braces (bug ##387915)</Comment><br/>
+<Keyword>[[</Keyword><Normal Text> </Normal Text><Variable>$line_name</Variable><Normal Text> =</Normal Text><Path>~</Path><Normal Text> </Normal Text><Escape>\{</Escape><Normal Text>([0-9]</Normal Text><Escape>{1,}</Escape><Normal Text>)</Normal Text><Escape>\}\{</Escape><Normal Text>([0-9]</Normal Text><Escape>{1,}</Escape><Normal Text>)</Normal Text><Escape>\}</Escape><Normal Text>(.*)</Normal Text><Keyword> ]]</Keyword><br/>
+<Keyword>[[</Keyword><Normal Text> </Normal Text><Variable>$name</Variable><Normal Text> =</Normal Text><Path>~</Path><Normal Text> (.*)_(S[0-9]</Normal Text><Escape>{2}</Escape><Normal Text>)(E[0-9]</Normal Text><Escape>{2,3}</Escape><Normal Text>[a-z]</Normal Text><Escape>{0,1}</Escape><Normal Text>)_(.*)</Normal Text><Keyword> ]]</Keyword><br/>
+<Command>rm</Command><Normal Text> </Normal Text><Path>/data</Path><Normal Text>/</Normal Text><Escape>{hello1,hello2}</Escape><Path>/input</Path><Normal Text>/</Normal Text><Escape>{bye1,</Escape><Variable>$bye2</Variable><Escape>}</Escape><Normal Text>/si</Normal Text><Escape>{a,</Escape><Variable>${b}</Variable><Escape>,c{k,p{e,a}}}</Escape><Path>/*.non</Path><br/>
+<Command>rm</Command><Normal Text> </Normal Text><Path>/data</Path><Normal Text>/{aa,</Normal Text><Escape>{e,i}</Escape><Normal Text>t</Normal Text><Escape>{b,c}</Escape><Normal Text> </Normal Text><Comment># Not closed</Comment><br/>
+<Command>rm</Command><Normal Text> /data</Normal Text><Escape>{aa{bb{cc{dd}}}}</Escape><br/>
+<Command>rm</Command><Normal Text> /data</Normal Text><Escape>{aaa</Escape><Backquote>`</Backquote><OtherCommand>aaa</OtherCommand><Normal Text>}</Normal Text><OtherCommand>aa</OtherCommand><Backquote>`</Backquote><Escape>aaa}</Escape><Normal Text>a</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Variable>${array[0]: -7 : +  22  }</Variable><Normal Text>  </Normal Text><Variable>${array[1]: num  }</Variable><br/>
+<Variable>${parameter##</Variable><Normal Text>word</Normal Text><Variable>}</Variable><Normal Text> </Normal Text><Variable>${parameter%%</Variable><Normal Text>word</Normal Text><Variable>}</Variable><Normal Text> </Normal Text><Variable>${parameter^^</Variable><Normal Text>pattern</Normal Text><Variable>}</Variable><Normal Text> </Normal Text><Variable>${parameter,,</Variable><Normal Text>pattern</Normal Text><Variable>}</Variable><Normal Text> </Normal Text><Variable>${parameter@</Variable><Normal Text>operator</Normal Text><Variable>}</Variable><br/>

@@ -1,0 +1,57 @@
+<Comment>/* highlighting test case for Gradle (which actually uses Groovy syntax) */</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Comment>// single line comment with </Comment><Alert Level 3>###</Alert Level 3><Comment> </Comment><Alert Level 2>TODO</Alert Level 2><Comment> </Comment><Alert Level 2>FIXME</Alert Level 2><br/>
+<Normal Text></Normal Text><br/>
+<Comment>/* multiline comment with </Comment><Alert Level 3>###</Alert Level 3><Comment> </Comment><Alert Level 2>TODO</Alert Level 2><Comment> </Comment><Alert Level 2>FIXME</Alert Level 2><Comment> */</Comment><br/>
+<Normal Text></Normal Text><br/>
+<JavadocFS>/** Javadoc comment with </JavadocFS><Alert Level 3>###</Alert Level 3><JavadocFS> </JavadocFS><Alert Level 2>TODO</Alert Level 2><JavadocFS> </JavadocFS><Alert Level 2>FIXME</Alert Level 2><br/>
+<JavadocFS> * </JavadocFS><BlockTag>@param </BlockTag><JavadocParam>foo </JavadocParam><Javadoc>bla bla </Javadoc><Alert Level 1>ATTENTION</Alert Level 1><br/>
+<Javadoc> </Javadoc><JavadocFS>*</JavadocFS><Javadoc> </Javadoc><BlockTag>@return </BlockTag><Javadoc>abc cde</Javadoc><br/>
+<Javadoc> </Javadoc><JavadocFS>*</JavadocFS><Javadoc> </Javadoc><BlockTag>@see </BlockTag><SeeTag>javadoc.xml</SeeTag><br/>
+<JavadocFS>*/</JavadocFS><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>buildscript </Normal Text><Symbol>{</Symbol><br/>
+<Normal Text>    repositories </Normal Text><Symbol>{</Symbol><br/>
+<Normal Text>        </Normal Text><Function>jcenter</Function><Symbol>()</Symbol><br/>
+<Normal Text>    </Normal Text><Symbol>}</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>    dependencies </Normal Text><Symbol>{</Symbol><br/>
+<Normal Text>        classpath </Normal Text><String>'com.android.tools.build:gradle:2.2.3'</String><br/>
+<Normal Text>    </Normal Text><Symbol>}</Symbol><br/>
+<Symbol>}</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>allprojects </Normal Text><Symbol>{</Symbol><br/>
+<Normal Text>    repositories </Normal Text><Symbol>{</Symbol><br/>
+<Normal Text>        </Normal Text><Function>jcenter</Function><Symbol>()</Symbol><br/>
+<Normal Text>    </Normal Text><Symbol>}</Symbol><br/>
+<Symbol>}</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>apply plugin</Normal Text><Symbol>:</Symbol><Normal Text> </Normal Text><String>'com.android.application'</String><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>dependencies </Normal Text><Symbol>{</Symbol><br/>
+<Normal Text>    compile </Normal Text><Function>fileTree</Function><Symbol>(</Symbol><Normal Text>dir</Normal Text><Symbol>:</Symbol><Normal Text> </Normal Text><String>'libs'</String><Symbol>,</Symbol><Normal Text> include</Normal Text><Symbol>:</Symbol><Normal Text> </Normal Text><Symbol>[</Symbol><String>'*.jar'</String><Symbol>])</Symbol><br/>
+<Normal Text>    compile </Normal Text><String>'org.mnode.ical4j:ical4j:2.2.0'</String><br/>
+<Symbol>}</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>android </Normal Text><Symbol>{</Symbol><br/>
+<Normal Text>    compileSdkVersion androidCompileSdkVersion</Normal Text><Symbol>.</Symbol><Function>toInteger</Function><Symbol>()</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>    buildToolsVersion androidBuildToolsVersion</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>    sourceSets </Normal Text><Symbol>{</Symbol><br/>
+<Normal Text>        main </Normal Text><Symbol>{</Symbol><br/>
+<Normal Text>            manifest</Normal Text><Symbol>.</Symbol><Function>srcFile</Function><Normal Text> </Normal Text><String>'AndroidManifest.xml'</String><br/>
+<Normal Text>            java</Normal Text><Symbol>.</Symbol><Function>srcDirs</Function><Normal Text> </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Symbol>[</Symbol><Normal Text>qt5AndroidDir </Normal Text><Symbol>+</Symbol><Normal Text> </Normal Text><String>'/src'</String><Symbol>,</Symbol><Normal Text> </Normal Text><String>'src'</String><Symbol>,</Symbol><Normal Text> </Normal Text><String>'java'</String><Symbol>]</Symbol><br/>
+<Normal Text>            aidl</Normal Text><Symbol>.</Symbol><Function>srcDirs</Function><Normal Text> </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Symbol>[</Symbol><Normal Text>qt5AndroidDir </Normal Text><Symbol>+</Symbol><Normal Text> </Normal Text><String>'/src'</String><Symbol>,</Symbol><Normal Text> </Normal Text><String>'src'</String><Symbol>,</Symbol><Normal Text> </Normal Text><String>'aidl'</String><Symbol>]</Symbol><br/>
+<Normal Text>            res</Normal Text><Symbol>.</Symbol><Function>srcDirs</Function><Normal Text> </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Symbol>[</Symbol><Normal Text>qt5AndroidDir </Normal Text><Symbol>+</Symbol><Normal Text> </Normal Text><String>'/res'</String><Symbol>,</Symbol><Normal Text> </Normal Text><String>'res'</String><Symbol>]</Symbol><br/>
+<Normal Text>            resources</Normal Text><Symbol>.</Symbol><Function>srcDirs</Function><Normal Text> </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Symbol>[</Symbol><String>'src'</String><Symbol>]</Symbol><br/>
+<Normal Text>            renderscript</Normal Text><Symbol>.</Symbol><Function>srcDirs</Function><Normal Text> </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Symbol>[</Symbol><String>'src'</String><Symbol>]</Symbol><br/>
+<Normal Text>            assets</Normal Text><Symbol>.</Symbol><Function>srcDirs</Function><Normal Text> </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Symbol>[</Symbol><String>'assets'</String><Symbol>]</Symbol><br/>
+<Normal Text>            jniLibs</Normal Text><Symbol>.</Symbol><Function>srcDirs</Function><Normal Text> </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Symbol>[</Symbol><String>'libs'</String><Symbol>]</Symbol><br/>
+<Normal Text>       </Normal Text><Symbol>}</Symbol><br/>
+<Normal Text>    </Normal Text><Symbol>}</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>    lintOptions </Normal Text><Symbol>{</Symbol><br/>
+<Normal Text>        abortOnError </Normal Text><Keyword>false</Keyword><br/>
+<Normal Text>    </Normal Text><Symbol>}</Symbol><br/>
+<Symbol>}</Symbol><br/>

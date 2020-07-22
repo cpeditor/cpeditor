@@ -1,0 +1,651 @@
+#!/usr/bin/perl6
+
+use v6;
+
+if True <beginfold id='1'>{</beginfold id='1'>
+    say "Hello";
+<endfold id='1'>}</endfold id='1'>
+
+if True <beginfold id='1'>{</beginfold id='1'>
+say "Hello"; # Bad indentation intended
+        <endfold id='1'>}</endfold id='1'>
+
+if True <beginfold id='1'>{</beginfold id='1'> say "Hello" <endfold id='1'>}</endfold id='1'>
+
+if True <beginfold id='1'>{</beginfold id='1'>say "Hello"<endfold id='1'>}</endfold id='1'>
+
+if True <beginfold id='1'>{</beginfold id='1'> say "Hello" <endfold id='1'>}</endfold id='1'> else <beginfold id='1'>{</beginfold id='1'> say "Goodbye" <endfold id='1'>}</endfold id='1'>; say "world";
+
+## <beginfold id='14'>BEGIN</beginfold id='14'> Comments
+
+say 1 #`<beginfold id='4'>(</beginfold id='4'> blah TODO blah
+here? <endfold id='4'>)</endfold id='4'> 2 ;
+say 1 #`<beginfold id='4'>{{</beginfold id='4'> blah TODO blah
+here? <endfold id='4'>}}</endfold id='4'> 2 ;
+say 1 #`<beginfold id='4'>[[</beginfold id='4'> blah TODO blah ]
+here? <endfold id='4'>]]</endfold id='4'> 2 ;
+say 1 #`<beginfold id='4'>«««</beginfold id='4'> blah TODO blah
+here? <endfold id='4'>»»»</endfold id='4'> 2 ;
+say 1 #` ( blah TODO blah
+2 ;
+
+#`<beginfold id='4'>[</beginfold id='4'>
+  This is another multi-line comment. <endfold id='4'>]</endfold id='4'>
+my @sorted = @names.sort<beginfold id='1'>(</beginfold id='1'><beginfold id='1'>{</beginfold id='1'> %sets<beginfold id='1'>{</beginfold id='1'>$_<endfold id='1'>}</endfold id='1'> <endfold id='1'>}</endfold id='1'><endfold id='1'>)</endfold id='1'>.sort<beginfold id='1'>(</beginfold id='1'><beginfold id='1'>{</beginfold id='1'> %matches<beginfold id='1'>{</beginfold id='1'>$_<endfold id='1'>}</endfold id='1'> <endfold id='1'>}</endfold id='1'><endfold id='1'>)</endfold id='1'>.reverse;
+#`<beginfold id='4'>{</beginfold id='4'> So is this, though it's not actually multi-line. <endfold id='4'>}</endfold id='4'>
+
+say 'code again';
+
+#`<beginfold id='4'>(</beginfold id='4'>  Multiple line comments `<beginfold id='4'>(</beginfold id='4'> sub-comment <endfold id='4'>)</endfold id='4'>`<endfold id='4'>)</endfold id='4'>`
+
+## <endfold id='14'>END</endfold id='14'> Comments
+
+#`<beginfold id='4'>[</beginfold id='4'>
+And this is how a multi would work.
+That says why we do what we do below.
+<endfold id='4'>]</endfold id='4'>
+
+say "No more";
+
+#`<beginfold id='4'>{{</beginfold id='4'>a}a<endfold id='4'>}}</endfold id='4'> say ok
+
+say "No more";
+
+say "this is code";
+
+=begin <beginfold id='3'>pod</beginfold id='3'>
+
+A very simple Pod6 document
+
+=<endfold id='3'>end</endfold id='3'> pod
+
+=begin <beginfold id='3'>head1</beginfold id='3'>
+Top Level Heading
+=<endfold id='3'>end</endfold id='3'> head1
+
+=head1 Top level heading
+
+=for head1
+Top Level Heading
+
+=cutsdads
+
+=begin <beginfold id='3'>pod</beginfold id='3'>
+
+=head1 This is a head1 title
+
+This is a paragraph.
+
+=head2 Subsection
+# plop
+Here some text for the subsection.
+
+=<endfold id='3'>end</endfold id='3'> pod
+
+=begin <beginfold id='3'>table</beginfold id='3'> :caption<My Tasks>
+mow lawn
+take out trash
+=<endfold id='3'>end</endfold id='3'> table
+
+=head1 This is a heading block
+This is an ordinary paragraph.
+Its text will be squeezed and
+short lines filled. It is terminated by
+the first blank line.
+
+=head2 This is another heading block
+This is yet another ordinary paragraph,
+at the first virtual column set by the
+previous directive
+
+#| Base class for magicians
+class Magician <beginfold id='1'>{</beginfold id='1'>
+  has Int $.level;
+  has Str @.spells;
+<endfold id='1'>}</endfold id='1'>
+
+#| Fight mechanics
+sub duel<beginfold id='1'>(</beginfold id='1'>Magician $a, Magician $b<endfold id='1'>)</endfold id='1'> <beginfold id='1'>{</beginfold id='1'>
+<endfold id='1'>}</endfold id='1'>
+#=<beginfold id='4'>«</beginfold id='4'><((
+ <Magicians only, no mortals. >
+ Magicians only, no mortals.
+))><endfold id='4'>»</endfold id='4'>
+
+say Magician.WHY;
+
+#|<beginfold id='4'><<</beginfold id='4'> This is an example of stringification:
+    * Numbers turn into strings
+ >   * Regexes operate on said strings
+    * C<with> topicalizes and places result into $_
+<endfold id='4'>>></endfold id='4'>
+sub search-in-seq<beginfold id='1'>(</beginfold id='1'> Int $end, Int $number <endfold id='1'>)</endfold id='1'> <beginfold id='1'>{</beginfold id='1'>
+    with <beginfold id='1'>(</beginfold id='1'>^$end<endfold id='1'>)</endfold id='1'>.grep<beginfold id='1'>(</beginfold id='1'> /^$number/ <endfold id='1'>)</endfold id='1'> <beginfold id='1'>{</beginfold id='1'>
+        .say for $_<>;
+    <endfold id='1'>}</endfold id='1'>
+<endfold id='1'>}</endfold id='1'>
+#= Uses     * topic    * decont operator
+
+
+=head1 plop
+abc
+
+=head1 plop
+=para
+abc
+
+=head1 plop
+ abc
+abc
+
+=head1 plop
+abc
+
+say 1;
+
+=head1 plop
+
+say 1;
+
+=for head1
+plop
+
+=for table :conf[str, 'str', "str", 1, True] :conf(str, 'str', "str", 1, True)
+=for table :conf<str 'str' "str" 1 True>
+=for table :conf{k => str, k=>'str', k=>"str", k=>1, k=>True}
+=for table :a :!b :42k :+s
+abc
+
+say 2;
+
+=begin <beginfold id='3'>a</beginfold id='3'>
+abc
+=<endfold id='3'>end</endfold id='3'> a
+
+=begin <beginfold id='3'>b</beginfold id='3'> sa
+=<endfold id='3'>end</endfold id='3'> b
+say 2;
+
+=begin <beginfold id='3'>a</beginfold id='3'>
+abc
+
+abc
+
+abc
+=<endfold id='3'>end</endfold id='3'> a
+say 0 ;
+=begin <beginfold id='3'>a</beginfold id='3'>:config{42}
+abc
+
+=head1 The
+Title
+
+abc
+=<endfold id='3'>end</endfold id='3'> ab
+say 1 ;
+
+=begin <beginfold id='3'>b</beginfold id='3'> sa
+=<endfold id='3'>end</endfold id='3'> b
+=begin <beginfold id='3'>a</beginfold id='3'>
+abc
+=begin <beginfold id='3'>b</beginfold id='3'>
+abc
+=<endfold id='3'>end</endfold id='3'> b a
+abc
+
+abc
+=<endfold id='3'>end</endfold id='3'> a
+say 3 ;
+
+=item a
+=item b
+=begin <beginfold id='3'>code</beginfold id='3'>
+ =item a
+=<endfold id='3'>end</endfold id='3'> code
+
+=begin <beginfold id='3'>code</beginfold id='3'>
+ =item a
+ b
+=end code d
+=<endfold id='3'>end</endfold id='3'> code
+
+=begin <beginfold id='3'>comment</beginfold id='3'>
+Here are several
+lines
+of comment
+=<endfold id='3'>end</endfold id='3'> comment
+
+=begin <beginfold id='3'>pod</beginfold id='3'>
+=head1 acB<<I<a>>>a B<c> U<d> BB<a>
+
+C<my $var = 1; say $var;>
+Perl 6 homepage L<https://perl6.org> L<Perl 6 homepage|https://perl6.org>
+Comments L<#Comments> L<Comments|#Comments>
+Perl 6 is awesome Z<Of course it is!>
+Perl 6 is multi-paradigmatic N<Supporting Procedural, Object Oriented, and Functional programming>
+Enter your name K<John Doe> E<0xBB> characters.
+
+A X<hash|hashes, definition of; associative arrays>
+
+=DISCLAIMER
+P<http://www.MegaGigaTeraPetaCorp.com/std/disclaimer.txt>
+
+A X<hash|hashes, definition of; associative arrays>
+is an unordered collection of scalar values indexed by their
+associated string key.
+
+    my @names = <Foo Bar Baz>;
+    my @upper-case-names = @names.map: { .uc }    # OUTPUT: [FOO BAR BAZ]
+
+=<endfold id='3'>end</endfold id='3'> pod
+
+=begin <beginfold id='3'>table</beginfold id='3'> :caption<My Tasks>
+mow lawn
+take out trash
+=<endfold id='3'>end</endfold id='3'> table
+
+=begin <beginfold id='3'>table</beginfold id='3'> :config{caption => "My Tasks"}
+mow lawn
+take out trash
+=<endfold id='3'>end</endfold id='3'> table
+
+
+say "\c999 \c999999999 \c[LATIN CAPITAL LETTER A, LATIN CAPITAL LETTER B] \c77s \c[77,22]";
+say "\x0 \x00 \x[0] \x[00] \x[f] \xaaa \xfffffff \xffh \x[ffff] \x[fffffff] \x[42,42]";
+say "\o0 \o00 \o[0] \o[00] \o[7] \o333 \o77777777 \o77h \o[333] \o[77777777] \o[42,42]";
+
+say Q[A literal string] ;
+say ｢More plainly.｣ ;
+say Q ^Almost any non-word character can be a delimiter!^ ;
+say Q ｢｢Delimiters can be repeated/nested if they are adjacent.｣｣ ;
+
+say Q (this is fine, because of space after Q) ;
+say Q 'and so is this' ;
+say Q<Make sure you <match> opening and closing delimiters> ;
+say Q{This is still a closing curly brace → \} ;
+
+say Q;yes, this is fine; ;
+say Q('this is a function') ;
+
+say 'Very plain';
+say q[This back\slash stays];
+say q[This back\\slash stays]; # Identical output
+say q{This is not a closing curly brace → \}, but this is → };
+say Q :q $There are no backslashes here, only lots of \$\$\$>!$;
+say '(Just kidding. There\'s no money in that string)';
+say 'No $interpolation {here}!';
+say Q:q!Just a literal "\n" here!;
+say Q:q[a\[]
+say Q[A literal string] ;
+say ｢More plainly.｣ ;
+say Q ^Almost any non-word character can be a delimiter!^ ;
+say Q ｢｢Delimiters can be repeated/nested if they are adjacent.｣｣ ;
+
+say qq[My favorite color is {$n+2}!];
+say qq{My favorite color\- is {$n+2}!};
+say Q:qq{My favorite color\- is {$n+2}!};
+say "My $color[0].uc(
+) $n+$n.^name favorite color \q[1is] {$n+2}!abc&uc('a')";
+
+say qqww|a|;
+say qq:w:w|a|;
+say q:a:v|a|;
+
+say<beginfold id='1'>(</beginfold id='1'>qq:to/TERM INATOR/, 1+1);
+ blah blah
+ TERM INATOR
+
+
+my $don't-do-that = 1;
+my $piece_of_π = 3.14;
+my $駱駝道    = 1;
+my $lexical   = 1;
+my $*dynamic1 = 10;
+my $*dynamic2 = 100;
+
+sub say-all<beginfold id='1'>(</beginfold id='1'><endfold id='1'>)</endfold id='1'> <beginfold id='1'>{</beginfold id='1'>
+    say "$lexical, $*dynamic1, $*dynamic2";
+<endfold id='1'>}</endfold id='1'>
+
+say-all<beginfold id='1'>(</beginfold id='1'><endfold id='1'>)</endfold id='1'>;
+
+<beginfold id='1'>{</beginfold id='1'>
+    my $lexical   = 2;
+    my $*dynamic1 = 11;
+    $*dynamic2    = 101;
+<endfold id='1'>}</endfold id='1'>
+
+my $square = 9 ** 2;
+my @array  = 1, 2, 3;   # Array variable with three elements
+my %hash   = London => 'UK', Berlin => 'Germany';
+
+class FailHash is Hash <beginfold id='1'>{</beginfold id='1'>
+    has Bool $!final = False;
+    multi method AT-KEY <beginfold id='1'>(</beginfold id='1'> ::?CLASS:D: Str:D \key <endfold id='1'>)</endfold id='1'><beginfold id='1'>{</beginfold id='1'>
+        fail X::OutOfRange.new<beginfold id='1'>(</beginfold id='1'>:what<beginfold id='1'>(</beginfold id='1'>"Hash key"<endfold id='1'>)</endfold id='1'>, :got<beginfold id='1'>(</beginfold id='1'>key<endfold id='1'>)</endfold id='1'>,
+          :range<beginfold id='1'>(</beginfold id='1'>self.keys<endfold id='1'>)</endfold id='1'><endfold id='1'>)</endfold id='1'> if $!final && !self.EXISTS-KEY<beginfold id='1'>(</beginfold id='1'>key<endfold id='1'>)</endfold id='1'>;
+        callsame
+    <endfold id='1'>}</endfold id='1'>
+
+    method finalize<beginfold id='1'>(</beginfold id='1'><endfold id='1'>)</endfold id='1'> <beginfold id='1'>{</beginfold id='1'>
+        $!final = True
+    <endfold id='1'>}</endfold id='1'>
+<endfold id='1'>}</endfold id='1'>
+
+my %h is FailHash = oranges => "round", bananas => "bendy";
+
+say %h<oranges>;
+%h.finalize;
+say %h<cherry>;
+CATCH <beginfold id='1'>{</beginfold id='1'> default <beginfold id='1'>{</beginfold id='1'> put .^name, ': ', .Str <endfold id='1'>}</endfold id='1'> <endfold id='1'>}</endfold id='1'>
+
+my <beginfold id='1'>(</beginfold id='1'> @foo, $bar <endfold id='1'>)</endfold id='1'>;
+@foo = <beginfold id='1'>(</beginfold id='1'>$bar<endfold id='1'>)</endfold id='1'> = 42, "str";
+
+say anon class þ <beginfold id='1'>{</beginfold id='1'><endfold id='1'>}</endfold id='1'>;
+say anon sub þ  <beginfold id='1'>{</beginfold id='1'> 42 <endfold id='1'>}</endfold id='1'>;
+
+sub a <beginfold id='1'>{</beginfold id='1'>
+    state @x;
+    state $l = 'A';
+    @x.push<beginfold id='1'>(</beginfold id='1'>$l++<endfold id='1'>)</endfold id='1'>;
+<endfold id='1'>}</endfold id='1'>;
+
+say a for 1..6;
+
+sub foo<beginfold id='1'>(</beginfold id='1'>$x<endfold id='1'>)</endfold id='1'> <beginfold id='1'>{</beginfold id='1'>
+    my $v = @;
+    $v<beginfold id='1'>[</beginfold id='1'>$x<endfold id='1'>]</endfold id='1'> = $x;
+    say $v;
+<endfold id='1'>}</endfold id='1'>
+
+foo<beginfold id='1'>(</beginfold id='1'>$_<endfold id='1'>)</endfold id='1'> for ^3;
+
+use MONKEY-TYPING;
+augment class Int <beginfold id='1'>{</beginfold id='1'>
+    method is-answer <beginfold id='1'>{</beginfold id='1'> self == 42 <endfold id='1'>}</endfold id='1'>
+<endfold id='1'>}</endfold id='1'>
+say 42.is-answer;
+
+my $in = 0;
+
+sub f<beginfold id='1'>(</beginfold id='1'>*@c<endfold id='1'>)</endfold id='1'> <beginfold id='1'>{</beginfold id='1'>
+    <beginfold id='1'>(</beginfold id='1'>temp $in<endfold id='1'>)</endfold id='1'>++;
+     "<f>\n"
+     ~ @c».indent<beginfold id='1'>(</beginfold id='1'>$in<endfold id='1'>)</endfold id='1'>.join<beginfold id='1'>(</beginfold id='1'>"\n"<endfold id='1'>)</endfold id='1'>
+     ~ <beginfold id='1'>(</beginfold id='1'>+@c ?? "\n" !! ""<endfold id='1'>)</endfold id='1'>
+     ~ '</f>'
+<endfold id='1'>}</endfold id='1'>;
+
+for <ab:c d$e fgh ij*> <beginfold id='1'>{</beginfold id='1'>
+    .say if m<beginfold id='2'>/</beginfold id='2'><-alpha><endfold id='2'>/</endfold id='2'>;
+<endfold id='1'>}</endfold id='1'>
+
+for '.' <beginfold id='1'>{</beginfold id='1'>
+    .Str.say when !.IO.d;
+    .IO.dir<beginfold id='1'>(</beginfold id='1'><endfold id='1'>)</endfold id='1'>».&?BLOCK when .IO.d # lets recurse a little!
+<endfold id='1'>}</endfold id='1'>
+
+use Dog:auth<Somebody>:ver<2.0>;
+
+infix:<+>
+infix:<*>
+infix:«<=»
+
+postfix:<²>
+WOW:That'sAwesome
+WOW:That's<<🆒>>
+party:sweet<16>
+
+infix:<+>
+infix:<<+>>
+infix:«+»
+infix:['+']
+infix:('+')
+
+my $a:b<c>:d<e> = 100;
+my $a:d<e>:b<c> = 200;
+say $a:b<c>:d<e>;
+
+use Test; plan 1; constant &term:<👍> = &ok.assuming<beginfold id='1'>(</beginfold id='1'>True<endfold id='1'>)</endfold id='1'>;
+👍
+
+my $x = do if True <beginfold id='1'>{</beginfold id='1'> 42 <endfold id='1'>}</endfold id='1'>;
+
+say 1000000, 1_000_000, 10_00000, 100_00_00;
+say -2, 12345, 0xBEEF, 0o755, :3<1201>;
+say 1.0, 3.14159, -2.5, :3<21.0012>;
+say 1e0, 6.022e23, 1e-9, -2e48, 2e2i, .42;
+say 2.e2, .2, 0o39, 0xfF3u, 0oi, 0xi, :3<>, :23<gg ; # error
+
+
+for $size «[r/]« <beginfold id='1'>(</beginfold id='1'>2**60, 2**50, 2**40, 2**30, 2**20, 2**10<endfold id='1'>)</endfold id='1'>
+          Z      <EB     PB     TB     GB     MB     KB> -> <beginfold id='1'>[</beginfold id='1'>\v,\suffix<endfold id='1'>]</endfold id='1'>
+
+my $a = 32;
+$a += 10;
+$a -= 2;
+$a = 3;
+$a min= 5;
+$s ~= 'b';
+
+sub infix:<space-concat> <beginfold id='1'>(</beginfold id='1'>$a, $b<endfold id='1'>)</endfold id='1'> <beginfold id='1'>{</beginfold id='1'> $a ~ " " ~ $b <endfold id='1'>}</endfold id='1'>;
+my $a = 'word1';
+$a space-concat= 'word2';
+
+my Real $a = 1/2;
+$a = 3.14;
+$a .= round;
+
+my $a = True;
+say so $a != True;
+my $i = 10;
+
+my $release = Date.new<beginfold id='1'>(</beginfold id='1'>:2015year, :12month, :24day<endfold id='1'>)</endfold id='1'>;
+my $today = Date.today;
+say so $release !before $today;
+
+say 4 R/ 12;
+say [R/] 2, 4, 16;
+say [RZ~] <1 2 3>,<4 5 6>
+
+say <beginfold id='1'>(</beginfold id='1'>1, 2, 3<endfold id='1'>)</endfold id='1'> »*» 2;
+say <beginfold id='1'>(</beginfold id='1'>1, 2, 3, 4<endfold id='1'>)</endfold id='1'> »~» <a b>;
+say <beginfold id='1'>(</beginfold id='1'>1, 2, 3<endfold id='1'>)</endfold id='1'> »+« <beginfold id='1'>(</beginfold id='1'>4, 5, 6<endfold id='1'>)</endfold id='1'>;
+say <beginfold id='1'>(</beginfold id='1'>&sin, &cos, &sqrt<endfold id='1'>)</endfold id='1'>».<beginfold id='1'>(</beginfold id='1'>0.5<endfold id='1'>)</endfold id='1'>;
+
+say @a »+=» 1;
+my <beginfold id='1'>(</beginfold id='1'>$a, $b, $c<endfold id='1'>)</endfold id='1'>;
+<beginfold id='1'>(</beginfold id='1'><beginfold id='1'>(</beginfold id='1'>$a, $b<endfold id='1'>)</endfold id='1'>, $c<endfold id='1'>)</endfold id='1'> «=» <beginfold id='1'>(</beginfold id='1'><beginfold id='1'>(</beginfold id='1'>1, 2<endfold id='1'>)</endfold id='1'>, 3<endfold id='1'>)</endfold id='1'>;
+
+say !« @wisdom;
+@a»++;
+say -« <beginfold id='1'>[</beginfold id='1'><beginfold id='1'>[</beginfold id='1'>1, 2<endfold id='1'>]</endfold id='1'>, 3<endfold id='1'>]</endfold id='1'>;
+
+@slops».?this-method-may-not-exist<beginfold id='1'>(</beginfold id='1'><endfold id='1'>)</endfold id='1'>;
+
+my %outer = 1, 2, 3 Z=> <a b c>;
+my %inner = 1, 2 Z=> <x z>;
+say %outer «~» %inner;
+
+say $neighbors »>>+<<» <beginfold id='1'>(</beginfold id='1'>$p, *<endfold id='1'>)</endfold id='1'>;
+
+sub plus <beginfold id='1'>{</beginfold id='1'> $^a + $^b <endfold id='1'>}</endfold id='1'>;
+say [[&plus]] 1, 2, 3;
+
+my @n = <beginfold id='1'>[</beginfold id='1'>\~<endfold id='1'>]</endfold id='1'> 1..*;
+say @n<beginfold id='1'>[</beginfold id='1'>^5<endfold id='1'>]</endfold id='1'>;
+
+@l = <a b c d> Z~ 1, 2, *;
+say so 1 S& 2 S& 3;
+@a X[+=] @b;
+multi sub postfix:<++><beginfold id='1'>(</beginfold id='1'>$x is rw<endfold id='1'>)</endfold id='1'> is assoc<non>
+say $filename++ for 1..3;
+$x % $y == $x - floor<beginfold id='1'>(</beginfold id='1'>$x / $y<endfold id='1'>)</endfold id='1'> * $y
+say <a a b c a d> ⊍ bag<beginfold id='1'>(</beginfold id='1'><a a b c c><endfold id='1'>)</endfold id='1'>;
+say -« <1 2 3>
+
+# This is wrong: creates a Hash of Mixes, not Mix:
+my Mix %mix;
+# Works with $ sigil:
+my Mix $mix;
+# Can be typed:
+my Mix<beginfold id='1'>[</beginfold id='1'>Int<endfold id='1'>]</endfold id='1'> $mix-of-ints;
+
+my $x;
+my $x = 7;
+my Int $x = 7;
+my Int:D $x = 7;
+ndef<endfold id='1'>)</endfold id='1'>
+my Int $x where <beginfold id='1'>{</beginfold id='1'> $_ > 3 <endfold id='1'>}</endfold id='1'> = 7;
+my Int $x where * > 3 = 7;
+
+$str ~~ tr:d:c<beginfold id='2'>!</beginfold id='2'>dol<endfold id='2'>!</endfold id='2'>wne!;
+$str ~~ TR:c<beginfold id='2'>/</beginfold id='2'>dol<endfold id='2'>/</endfold id='2'>wne/;
+$str ~~ s<beginfold id='2'>!</beginfold id='2'>foo<endfold id='2'>!</endfold id='2'>fox!;
+$str ~~ <beginfold id='2'>/</beginfold id='2'>foo<endfold id='2'>/</endfold id='2'>bar/;
+$str ~~ <beginfold id='2'>/</beginfold id='2'><endfold id='2'>/</endfold id='2'>/;
+$str ~~ rx<beginfold id='2'>/</beginfold id='2'>foo<endfold id='2'>/</endfold id='2'>bar/;
+$str ~~ Q :regex /foo/;
+$str ~~ s<beginfold id='2'>{</beginfold id='2'>b(.)r<endfold id='2'>}</endfold id='2'> = " d$0n";
+$str ~~ regex<beginfold id='2'>{</beginfold id='2'>fox<endfold id='2'>}</endfold id='2'>; # error
+$str ~~ regex <beginfold id='2'>{</beginfold id='2'>fox<endfold id='2'>}</endfold id='2'>;
+rx<beginfold id='2'>/</beginfold id='2'> ^ab <endfold id='2'>/</endfold id='2'>;
+/ ^ ab /;
+rx<beginfold id='2'>/</beginfold id='2'> \d ** 2<endfold id='2'>/</endfold id='2'>;
+$str ~~ tr:d:c<beginfold id='2'>!</beginfold id='2'>dol<endfold id='2'>!</endfold id='2'>wne!;
+$str ~~ TR:c<beginfold id='2'>/</beginfold id='2'>dol<endfold id='2'>/</endfold id='2'>wne/;
+$str ~~ s<beginfold id='2'>!</beginfold id='2'>foo<endfold id='2'>!</endfold id='2'>fox!;
+$str ~~ rx<beginfold id='2'>/</beginfold id='2'>foo<endfold id='2'>/</endfold id='2'>;
+$str ~~ regex:ds <beginfold id='2'>{</beginfold id='2'>fox<endfold id='2'>}</endfold id='2'>;
+$str ~~ regex<beginfold id='2'>{</beginfold id='2'>fox<endfold id='2'>}</endfold id='2'>;
+my a = <beginfold id='2'>/</beginfold id='2'>a<endfold id='2'>/</endfold id='2'>;
+rx<beginfold id='2'>/</beginfold id='2'> ^ab <endfold id='2'>/</endfold id='2'>;
+a = <beginfold id='2'>/</beginfold id='2'> ^ ab 'a' "$a" \d \n\n <:L :Script<Latin>> <:Block('Basic Latin')>  <endfold id='2'>/</endfold id='2'>;
+//;
+ rx:sigspace<beginfold id='2'>.</beginfold id='2'>\d+ < :Script +:Block "Basic Latin" + :L> #plop
+'-'<endfold id='2'>.</endfold id='2'>;
+rx<beginfold id='2'>/</beginfold id='2'> \d ** 2 <[\d a d]+[\x233..\] " \c[dsds]]><endfold id='2'>/</endfold id='2'>;
+say $str ~~ m:g<beginfold id='2'>/</beginfold id='2'>[(<[ACGT]> **: 3) \s*]+ \s+ (<[A..Z a a..z \s]>+)<endfold id='2'>/</endfold id='2'>;
+say '$333' ~~ m<beginfold id='2'>/</beginfold id='2'>^^ <?[$]> . \d+ <endfold id='2'>/</endfold id='2'>;
+say '/foo/o/bar/' ~~ <beginfold id='2'>/</beginfold id='2'>\/.**!<beginfold id='1'>{</beginfold id='1'>1..10<endfold id='1'>}</endfold id='1'>\/<endfold id='2'>/</endfold id='2'>;
+rx<beginfold id='1'>(</beginfold id='1'>a<endfold id='1'>)</endfold id='1'>;
+rx <beginfold id='2'>(</beginfold id='2'>a<endfold id='2'>)</endfold id='2'>;
+$str ~~ regex <beginfold id='2'>{</beginfold id='2'>fox<endfold id='2'>}</endfold id='2'>;
+$str ~~ s<beginfold id='2'>{</beginfold id='2'>b(.)r<endfold id='2'>}</endfold id='2'> = " d$0n";
+if 'abc' ~~ <beginfold id='2'>/</beginfold id='2'> [a||b] (c) <endfold id='2'>/</endfold id='2'> <beginfold id='1'>{</beginfold id='1'>
+    say ~$0;                # OUTPUT: «c␤»
+<endfold id='1'>}</endfold id='1'>
+if 'abc' ~~ <beginfold id='2'>/</beginfold id='2'> $<myname> = [ \w+ ] <endfold id='2'>/</endfold id='2'> <beginfold id='1'>{</beginfold id='1'>
+    say ~$<myname>      # OUTPUT: «abc␤»
+<endfold id='1'>}</endfold id='1'>
+say 'abc' ~~ <beginfold id='2'>/</beginfold id='2'> a <( b )> c<endfold id='2'>/</endfold id='2'>;
+say 'abc' ~~ <beginfold id='2'>/</beginfold id='2'> <(a <( b )> c)><endfold id='2'>/</endfold id='2'>;
+say "abc" ~~ <beginfold id='2'>/</beginfold id='2'>a. | ab <beginfold id='1'>{</beginfold id='1'> print "win" <endfold id='1'>}</endfold id='1'> <endfold id='2'>/</endfold id='2'>;
+
+so 'hello world' ~~ m:Perl5<beginfold id='9'>/</beginfold id='9'>^hello (world)<endfold id='9'>/</endfold id='9'>;   # OUTPUT: «True␤»
+so 'hello world' ~~ m<beginfold id='2'>/</beginfold id='2'>^hello (world)<endfold id='2'>/</endfold id='2'>;         # OUTPUT: «False␤»
+so 'hello world' ~~ m<beginfold id='2'>/</beginfold id='2'>^ 'hello ' ('world')<endfold id='2'>/</endfold id='2'>;   # OUTPUT: «True␤»
+
+say "Abra abra CADABRA" ~~ m:exhaustive<beginfold id='2'>/</beginfold id='2'>:i a \w+ a<endfold id='2'>/</endfold id='2'>;
+
+my regex ipv4-octet <beginfold id='2'>{</beginfold id='2'> \d ** 1..3 <?{ $/.Int <= 255 && $/.Int >= 0 }> <endfold id='2'>}</endfold id='2'>
+my regex ipv4-octet <beginfold id='2'>{</beginfold id='2'> \d ** 1..3 <?{ True }> <endfold id='2'>}</endfold id='2'>
+say 'abc' ~~ <beginfold id='2'>/</beginfold id='2'> <?before a> && . <endfold id='2'>/</endfold id='2'>;
+say 'abcdefg' ~~ rx<beginfold id='2'>{</beginfold id='2'> abc <[email protected]ending_letters> <endfold id='2'>}</endfold id='2'>;
+s:g<beginfold id='2'>[</beginfold id='2'>\d+ <?before \s* @units><endfold id='2'>]</endfold id='2'> = 5 * $/;
+
+
+sub walk<beginfold id='1'>(</beginfold id='1'>\thing, *@keys<endfold id='1'>)</endfold id='1'> is rw <beginfold id='1'>{</beginfold id='1'>
+    my $current := thing;
+    for @keys -> $k <beginfold id='1'>{</beginfold id='1'>
+        if $k ~~ Int <beginfold id='1'>{</beginfold id='1'>
+            $current := $current<beginfold id='1'>[</beginfold id='1'>$k<endfold id='1'>]</endfold id='1'>;
+        <endfold id='1'>}</endfold id='1'>
+        else <beginfold id='1'>{</beginfold id='1'>
+            $current := $current<beginfold id='1'>{</beginfold id='1'>$k<endfold id='1'>}</endfold id='1'>;
+        <endfold id='1'>}</endfold id='1'>
+    <endfold id='1'>}</endfold id='1'>
+    $current;
+<endfold id='1'>}</endfold id='1'>
+
+my %hash;
+walk<beginfold id='1'>(</beginfold id='1'>%hash, 'some', 'key', 1, 2<endfold id='1'>)</endfold id='1'> = 'autovivified';
+
+say %hash.perl;
+
+class X::WithoutLineNumber is X::AdHoc <beginfold id='1'>{</beginfold id='1'>
+    multi method gist<beginfold id='1'>(</beginfold id='1'>X::WithoutLineNumber:D:<endfold id='1'>)</endfold id='1'> <beginfold id='1'>{</beginfold id='1'>
+        $.payload
+    <endfold id='1'>}</endfold id='1'>
+<endfold id='1'>}</endfold id='1'>
+die X::WithoutLineNumber.new<beginfold id='1'>(</beginfold id='1'>payload => "message"<endfold id='1'>)</endfold id='1'>
+
+<beginfold id='1'>{</beginfold id='1'> return; CATCH <beginfold id='1'>{</beginfold id='1'> default <beginfold id='1'>{</beginfold id='1'> $*ERR.say: .^name, ': ', .Str <endfold id='1'>}</endfold id='1'> <endfold id='1'>}</endfold id='1'> <endfold id='1'>}</endfold id='1'>
+
+multi sub trait_mod:<is><beginfold id='1'>(</beginfold id='1'>Routine $r, :$export!<endfold id='1'>)</endfold id='1'>
+
+react <beginfold id='1'>{</beginfold id='1'>
+    whenever signal<beginfold id='1'>(</beginfold id='1'>SIGINT<endfold id='1'>)</endfold id='1'> <beginfold id='1'>{</beginfold id='1'>
+        say "goodbye";
+        done
+    <endfold id='1'>}</endfold id='1'>
+<endfold id='1'>}</endfold id='1'>
+
+signal<beginfold id='1'>(</beginfold id='1'>SIGINT<endfold id='1'>)</endfold id='1'>.tap: <beginfold id='1'>{</beginfold id='1'> say "bye"; exit <endfold id='1'>}</endfold id='1'>; loop <beginfold id='1'>{</beginfold id='1'><endfold id='1'>}</endfold id='1'>
+
+method base-repeating<beginfold id='1'>(</beginfold id='1'>Rational:D: Int:D<beginfold id='1'>(</beginfold id='1'><endfold id='1'>)</endfold id='1'> $base = 10<endfold id='1'>)</endfold id='1'>
+
+multi sub prefix:<--><beginfold id='1'>(</beginfold id='1'>$x is rw<endfold id='1'>)</endfold id='1'> is assoc<non>
+
+
+multi MAIN<beginfold id='1'>(</beginfold id='1'>Bool :$man<endfold id='1'>)</endfold id='1'> <beginfold id='1'>{</beginfold id='1'>
+    run $*EXECUTABLE, '--doc', $*PROGRAM;
+<endfold id='1'>}</endfold id='1'>
+
+for $file.lines -> $line <beginfold id='1'>{</beginfold id='1'>
+    next unless $line; # ignore any empty lines
+
+    my <beginfold id='1'>(</beginfold id='1'>$pairing, $result<endfold id='1'>)</endfold id='1'> = $line.split<beginfold id='1'>(</beginfold id='1'>' | '<endfold id='1'>)</endfold id='1'>;
+    my <beginfold id='1'>(</beginfold id='1'>$p1, $p2<endfold id='1'>)</endfold id='1'>          = $pairing.words;
+    my <beginfold id='1'>(</beginfold id='1'>$r1, $r2<endfold id='1'>)</endfold id='1'>          = $result.split<beginfold id='1'>(</beginfold id='1'>':'<endfold id='1'>)</endfold id='1'>;
+
+    %sets<beginfold id='1'>{</beginfold id='1'>$p1<endfold id='1'>}</endfold id='1'> += $r1;
+    %sets<beginfold id='1'>{</beginfold id='1'>$p2<endfold id='1'>}</endfold id='1'> += $r2;
+
+    if $r1 > $r2 <beginfold id='1'>{</beginfold id='1'>
+        %matches<beginfold id='1'>{</beginfold id='1'>$p1<endfold id='1'>}</endfold id='1'>++;
+    <endfold id='1'>}</endfold id='1'> else <beginfold id='1'>{</beginfold id='1'>
+        %matches<beginfold id='1'>{</beginfold id='1'>$p2<endfold id='1'>}</endfold id='1'>++;
+    <endfold id='1'>}</endfold id='1'>
+<endfold id='1'>}</endfold id='1'>
+
+for @sorted -> $n <beginfold id='1'>{</beginfold id='1'>
+    my $match-noun = %matches<beginfold id='1'>{</beginfold id='1'>$n<endfold id='1'>}</endfold id='1'> == 1 ?? 'match' !! 'matches';
+    my $set-noun   = %sets<beginfold id='1'>{</beginfold id='1'>$n<endfold id='1'>}</endfold id='1'> == 1 ?? 'set' !! 'sets';
+    say "$n has won %matches{$n} $match-noun and %sets{$n} $set-noun";
+<endfold id='1'>}</endfold id='1'>
+
+say "Math: { 1 + 2 }";
+
+my @people = <Luke Matthew Mark>;
+say "The synoptics are: {@people}";
+
+say "{%sets}";
+say "we have @flavors[0]";
+say "we have @flavors[]";
+say "we have @flavors.sort()";
+say "we have @flavors.sort.join(', ')";
+
+my @valid-players = $file.get.words;
+
+for $file.lines -> $line <beginfold id='1'>{</beginfold id='1'>
+    my <beginfold id='1'>(</beginfold id='1'>$pairing, $result<endfold id='1'>)</endfold id='1'> = $line.split<beginfold id='1'>(</beginfold id='1'>' | '<endfold id='1'>)</endfold id='1'>;
+    my <beginfold id='1'>(</beginfold id='1'>$p1, $p2<endfold id='1'>)</endfold id='1'>          = $pairing.split<beginfold id='1'>(</beginfold id='1'>' '<endfold id='1'>)</endfold id='1'>;
+    if $p1 ∉ @valid-players <beginfold id='1'>{</beginfold id='1'>
+        say "Warning: '$p1' is not on our list!";
+    <endfold id='1'>}</endfold id='1'>
+    if $p2 ∉ @valid-players <beginfold id='1'>{</beginfold id='1'>
+        say "Warning: '$p2' is not on our list!";
+    <endfold id='1'>}</endfold id='1'>
+<endfold id='1'>}</endfold id='1'>

@@ -1,0 +1,7 @@
+PROC 2 USER TOTAL                                 
+CONTROL NOCAPS                                    
+WRITE *** Protecting users &USER 1 to &USER &TOTAL
+DO &COUNT = 1 TO &TOTAL                           
+   ALU &USER&COUNT NOPASS                         
+END                                               
+WRITE *** DONE                                    

@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title>highlight.scss</title>
+<meta name="generator" content="KF5::SyntaxHighlighting (SCSS)"/>
+</head><body style="color:#1f1c1b"><pre>
+<span style="color:#898887;">/**</span>
+<span style="color:#898887;"> * This is a pseudo SCSS file to test Kate's SCSS syntax highlighting.</span>
+<span style="color:#898887;"> */</span>
+
+<span style="color:#ff5500;">@import</span> <span style="color:#644a9b;">url(</span><span style="color:#bf0303;">&quot;othersheet.css&quot;</span><span style="color:#644a9b;">)</span> <span style="color:#b08000;">screen</span>, tv;
+
+body {
+	<span style="font-weight:bold;">font-size</span>: <span style="color:#b08000;">15</span><span style="color:#0057ae;">pt</span>;
+	<span style="font-weight:bold;">font-family</span>: Verdana, Helvetica, <span style="color:#bf0303;">&quot;Bitstream Vera Sans&quot;</span>, <span style="color:#b08000;">sans-serif</span>;
+	<span style="font-weight:bold;">margin-top</span>: <span style="color:#b08000;">0</span><span style="color:#0057ae;">px</span>;			<span style="color:#898887;">/* yet another comment */</span>
+	<span style="font-weight:bold;">margin-bottom</span>: <span style="color:#b08000;">0</span><span style="color:#0057ae;">px</span>;
+	<span style="font-weight:bold;">margin-left</span>: <span style="color:#b08000;">0</span><span style="color:#0057ae;">px</span>;
+	<span style="font-weight:bold;">margin-right</span>: <span style="color:#b08000;">0</span><span style="color:#0057ae;">px</span>;
+}
+
+<span style="color:#644a9b;">.something</span>
+{
+	<span style="font-weight:bold;">margin-right</span>: <span style="color:#b08000;">0</span><span style="color:#0057ae;">px</span>;
+	<span style="font-weight:bold;">color</span>: <span style="color:#aa5500;">#cdd</span>;
+	<span style="font-weight:bold;">color</span>: <span style="color:#aa5500;">#AAFE04</span>;
+	<span style="font-weight:bold;">color</span>: <span style="color:#644a9b;">rgb(</span><span style="color:#b08000;">10</span><span style="color:#0057ae;">%</span>,<span style="color:#b08000;">30</span><span style="color:#0057ae;">%</span>,<span style="color:#b08000;">43</span><span style="color:#0057ae;">%</span><span style="color:#644a9b;">)</span>;
+	<span style="font-weight:bold;">background</span>: <span style="color:#aa5500;">maroon</span>;
+}
+
+a<span style="color:#b08000;font-style:italic;">:hover</span> {
+}
+
+<span style="color:#006e28;font-weight:bold;">#header</span>,
+p<span style="color:#644a9b;">.intro</span><span style="color:#b08000;font-style:italic;">:first-letter</span>,
+p<span style="color:#b08000;font-style:italic;">:lang(nl)</span>,
+img<span style="color:#0095ff;font-weight:bold;">[align</span>=<span style="color:#bf0303;">&quot;right&quot;</span><span style="color:#0095ff;font-weight:bold;">]</span>
+{
+	<span style="font-weight:bold;">border</span>: <span style="color:#b08000;">1</span><span style="color:#0057ae;">px</span> <span style="color:#b08000;">solid</span> Qt::<span style="color:#aa5500;">red</span> <span style="color:#0057ae;">!important</span>;
+	<span style="font-weight:bold;">-moz-border-radius</span>: <span style="color:#b08000;">15</span><span style="color:#0057ae;">px</span>; <span style="color:#898887;">/* unknown properties render italic */</span>
+}
+
+<span style="color:#ff5500;">@media</span> <span style="color:#b08000;">print</span> {
+
+	<span style="color:#006e28;font-weight:bold;">#header</span>
+	{
+		<span style="font-weight:bold;">display</span>: <span style="color:#b08000;">none</span>;
+	}
+
+}
+
+<span style="color:#898887;">/*</span>
+<span style="color:#ca9219;background-color:#451e1a;font-weight:bold;">TODO</span><span style="color:#898887;">: add more tests, e.g. media</span>
+<span style="color:#898887;">*/</span>
+
+
+<span style="color:#644a9b;">.nice-look</span> {
+	<span style="font-weight:bold;">font-variant-alternates</span>: <span style="color:#644a9b;">styleset(</span>nice-style<span style="color:#644a9b;">)</span>;
+}
+
+ul {
+	<span style="font-weight:bold;">list-style</span>: thumbs;
+}
+
+<span style="color:#898887;">/* SVG &lt;a&gt; */</span>
+svg|a {}
+
+<span style="color:#898887;">/* XHTML and SVG &lt;a&gt; */</span>
+*|a {}
+
+*{}
+<span style="color:#644a9b;">.class</span>{}
+<span style="color:#006e28;font-weight:bold;">#id</span>{}
+<span style="color:#b08000;font-style:italic;">:hover</span>{}
+<span style="color:#b08000;font-style:italic;">:lang(fr)</span>{}
+E{}
+E F{}
+E&gt;F{}
+E &gt; F{}
+E~F{}
+E ~ F{}
+E<span style="color:#b08000;font-style:italic;">:first-child</span>{}
+E<span style="color:#b08000;font-style:italic;">:visited</span>{}
+E<span style="color:#b08000;font-style:italic;">::after</span>{}
+E<span style="color:#b08000;font-style:italic;">:lang(c)</span>{}
+E<span style="color:#b08000;font-style:italic;">:lang(fr-ca)</span>{}
+E + F{}
+E+F{}
+E<span style="color:#0095ff;font-weight:bold;">[foo]</span>{}
+E<span style="color:#0095ff;font-weight:bold;">[foo</span>=<span style="color:#bf0303;">warning</span><span style="color:#0095ff;font-weight:bold;">]</span>{}
+E<span style="color:#0095ff;font-weight:bold;">[foo</span>=<span style="color:#bf0303;">&quot;warning&quot;</span><span style="color:#0095ff;font-weight:bold;">]</span>{}
+E<span style="color:#0095ff;font-weight:bold;">[foo</span>~=<span style="color:#bf0303;">&quot;warning&quot;</span><span style="color:#0095ff;font-weight:bold;">]</span>{}
+E<span style="color:#0095ff;font-weight:bold;">[foo</span>^=<span style="color:#bf0303;">&quot;warning&quot;</span><span style="color:#0095ff;font-weight:bold;">]</span>{}
+E<span style="color:#0095ff;font-weight:bold;">[foo</span>$=<span style="color:#bf0303;">&quot;warning&quot;</span><span style="color:#0095ff;font-weight:bold;">]</span>{}
+E<span style="color:#0095ff;font-weight:bold;">[foo</span>*=<span style="color:#bf0303;">&quot;warning&quot;</span><span style="color:#0095ff;font-weight:bold;">]</span>{}
+E<span style="color:#0095ff;font-weight:bold;">[lang</span>|=<span style="color:#bf0303;">&quot;en&quot;</span><span style="color:#0095ff;font-weight:bold;">]</span>{}
+DIV<span style="color:#644a9b;">.warning</span>{}
+DIV <span style="color:#644a9b;">.warning</span>{}
+E<span style="color:#006e28;font-weight:bold;">#myid</span>{}
+E <span style="color:#006e28;font-weight:bold;">#myid</span>{}
+E,E{}
+E, E{}
+E ,E{}
+E , E{}
+
+p<span style="color:#b08000;font-style:italic;">:nth-child(2)</span> {
+	<span style="font-weight:bold;">background</span>: <span style="color:#aa5500;">red</span>;
+}
+
+<span style="color:#898887;">/* Elements that are not &lt;div&gt; or &lt;span&gt; elements */</span>
+body <span style="color:#b08000;font-style:italic;">:not(</span>div<span style="color:#b08000;font-style:italic;">):not(</span>span<span style="color:#b08000;font-style:italic;">)</span> {
+	<span style="font-weight:bold;">font-weight</span>: <span style="color:#b08000;">bold</span>;
+}
+
+<span style="color:#898887;">/* Elements that are not `.crazy` or `.fancy` */</span>
+<span style="color:#898887;">/* Note that this syntax is not well supported yet. */</span>
+body <span style="color:#b08000;font-style:italic;">:not(</span><span style="color:#644a9b;">.crazy</span><span style="color:#bf0303;text-decoration:underline;">,</span> <span style="color:#644a9b;">.fancy</span><span style="color:#b08000;font-style:italic;">)</span> {
+	<span style="font-weight:bold;">font-family</span>: <span style="color:#b08000;">sans-serif</span>;
+}
+
+<span style="color:#b08000;font-style:italic;">:nth-child(odd)</span> { <span style="font-weight:bold;">color</span>: <span style="color:#aa5500;">lime</span>; }
+<span style="color:#b08000;font-style:italic;">:nth-child(even)</span> { <span style="font-weight:bold;">color</span>: <span style="color:#aa5500;">lime</span>; }
+<span style="color:#b08000;font-style:italic;">:nth-child(4)</span> { <span style="font-weight:bold;">color</span>: <span style="color:#aa5500;">lime</span>; }
+<span style="color:#b08000;font-style:italic;">:nth-child(4n)</span> { <span style="font-weight:bold;">color</span>: <span style="color:#aa5500;">lime</span>; }
+<span style="color:#b08000;font-style:italic;">:nth-child(3n+4)</span> { <span style="font-weight:bold;">color</span>: <span style="color:#aa5500;">lime</span>; }
+<span style="color:#b08000;font-style:italic;">:nth-child(-n+3)</span> { <span style="font-weight:bold;">color</span>: <span style="color:#aa5500;">lime</span>; }
+<span style="color:#b08000;font-style:italic;">:nth-child(n+8):nth-child(-n+15)</span> { <span style="font-weight:bold;">color</span>: <span style="color:#aa5500;">lime</span>; }
+
+<span style="color:#644a9b;">.first</span> span<span style="color:#b08000;font-style:italic;">:nth-child(2n+1)</span>,
+<span style="color:#644a9b;">.second</span> span<span style="color:#b08000;font-style:italic;">:nth-child(2n+1)</span>,
+<span style="color:#644a9b;">.third</span> span<span style="color:#b08000;font-style:italic;">:nth-of-type(2n+1)</span> {
+	<span style="font-weight:bold;">background-color</span>: <span style="color:#aa5500;">lime</span>;
+	unknown-property: <span style="color:#aa5500;">lime</span>;
+}
+
+<span style="color:#b08000;font-style:italic;">:root</span>{
+	<span style="color:#0057ae;">--foo</span>: <span style="color:#644a9b;">if(</span>x &gt; <span style="color:#b08000;">5</span><span style="color:#644a9b;">)</span> this.width = <span style="color:#b08000;">10</span>; <span style="color:#898887;">/* valid custom property, invalid in any normal property */</span>
+}
+
+<span style="color:#b08000;font-style:italic;">:root</span>,
+<span style="color:#b08000;font-style:italic;">:root:lang(en)</span> {<span style="color:#0057ae;">--external-link</span>: <span style="color:#bf0303;">&quot;external link&quot;</span>;}
+<span style="color:#b08000;font-style:italic;">:root:lang(de)</span> {<span style="color:#0057ae;">--external-link</span>: <span style="color:#bf0303;">&quot;externer Link&quot;</span>;}
+
+a<span style="color:#0095ff;font-weight:bold;">[href</span>^=<span style="color:#bf0303;">&quot;http&quot;</span><span style="color:#0095ff;font-weight:bold;">]</span><span style="color:#b08000;font-style:italic;">::after</span> {<span style="font-weight:bold;">content</span>: <span style="color:#bf0303;">&quot; (&quot;</span> <span style="color:#644a9b;">var(</span><span style="color:#0057ae;">--external-link</span><span style="color:#644a9b;">)</span> <span style="color:#bf0303;">&quot;)&quot;</span>}
+
+one   { <span style="color:#0057ae;">--foo</span>: <span style="color:#b08000;">10</span><span style="color:#0057ae;">px</span>; }
+two   { <span style="color:#0057ae;">--bar</span>: <span style="color:#644a9b;">calc(var(</span><span style="color:#0057ae;">--foo</span><span style="color:#644a9b;">)</span> + <span style="color:#b08000;">10</span><span style="color:#0057ae;">px</span><span style="color:#644a9b;">)</span>; }
+three { <span style="color:#0057ae;">--foo</span>: <span style="color:#644a9b;">calc(var(</span><span style="color:#0057ae;">--bar</span><span style="color:#644a9b;">)</span> + <span style="color:#b08000;">10</span><span style="color:#0057ae;">px</span><span style="color:#644a9b;">)</span>; }
+<span style="color:#644a9b;">.foo</span> {
+	<span style="color:#0057ae;">--gap</span>: <span style="color:#b08000;">20</span>;
+	<span style="font-weight:bold;">margin-top</span>: <span style="color:#644a9b;">var(</span><span style="color:#0057ae;">--gap</span><span style="color:#644a9b;">)</span>px; <span style="color:#898887;">/*20 px*/</span>
+	<span style="font-weight:bold;">margin-top</span>: <span style="color:#644a9b;">calc(var(</span><span style="color:#0057ae;">--gap</span><span style="color:#644a9b;">)</span> * <span style="color:#b08000;">1</span><span style="color:#0057ae;">px</span><span style="color:#644a9b;">)</span>; <span style="color:#898887;">/*20px*/</span>
+}
+
+foo {
+	<span style="font-weight:bold;">width</span>: <span style="color:#644a9b;">calc(</span><span style="color:#b08000;">50</span><span style="color:#0057ae;">%</span> -<span style="color:#b08000;">8</span><span style="color:#0057ae;">px</span><span style="color:#644a9b;">)</span>; <span style="color:#898887;">/* invalid */</span>
+	<span style="font-weight:bold;">width</span>: <span style="color:#644a9b;">calc(</span><span style="color:#b08000;">50</span><span style="color:#0057ae;">%</span>- <span style="color:#b08000;">8</span><span style="color:#0057ae;">px</span><span style="color:#644a9b;">)</span>; <span style="color:#898887;">/* invalid */</span>
+	<span style="font-weight:bold;">width</span>: <span style="color:#644a9b;">calc(</span><span style="color:#b08000;">50</span><span style="color:#0057ae;">%</span> +<span style="color:#b08000;">8</span><span style="color:#0057ae;">px</span><span style="color:#644a9b;">)</span>; <span style="color:#898887;">/* invalid */</span>
+	<span style="font-weight:bold;">width</span>: <span style="color:#644a9b;">calc(</span><span style="color:#b08000;">50</span><span style="color:#0057ae;">%</span>+ <span style="color:#b08000;">8</span><span style="color:#0057ae;">px</span><span style="color:#644a9b;">)</span>; <span style="color:#898887;">/* invalid */</span>
+	<span style="font-weight:bold;">width</span>: <span style="color:#644a9b;">calc(</span><span style="color:#b08000;">2</span><span style="color:#0057ae;">px</span> <span style="color:#644a9b;">-var(</span>--a<span style="color:#644a9b;">))</span>; <span style="color:#898887;">/* invalid */</span>
+	<span style="font-weight:bold;">width</span>: <span style="color:#644a9b;">calc(</span><span style="color:#b08000;">50</span><span style="color:#0057ae;">%</span>*-<span style="color:#b08000;">8</span><span style="color:#0057ae;">px</span><span style="color:#644a9b;">)</span>;
+	<span style="font-weight:bold;">width</span>: <span style="color:#644a9b;">calc(</span><span style="color:#b08000;">50</span><span style="color:#0057ae;">%</span> - <span style="color:#b08000;">8</span><span style="color:#0057ae;">px</span><span style="color:#644a9b;">)</span>;
+	<span style="font-weight:bold;">width</span>: <span style="color:#644a9b;">calc(</span><span style="color:#b08000;">50</span><span style="color:#0057ae;">%</span> + -<span style="color:#b08000;">8</span><span style="color:#0057ae;">px</span><span style="color:#644a9b;">)</span>;
+	<span style="font-weight:bold;">width</span>: <span style="color:#644a9b;">calc(</span><span style="color:#b08000;">50</span><span style="color:#0057ae;">%</span> +(<span style="color:#b08000;">8</span><span style="color:#0057ae;">px</span>)<span style="color:#644a9b;">)</span>;
+	<span style="font-weight:bold;">width</span>: <span style="color:#644a9b;">calc(</span><span style="color:#b08000;">2</span><span style="color:#0057ae;">px</span> -(<span style="color:#644a9b;">var(</span><span style="color:#0057ae;">--a</span><span style="color:#644a9b;">)</span>)<span style="color:#644a9b;">)</span>;
+}
+
+sweet-alert input<span style="color:#b08000;font-style:italic;">:focus::-moz-placeholder</span> {
+	<span style="font-weight:bold;">-webkit-transition</span>: opacity <span style="color:#b08000;">0.3</span><span style="color:#0057ae;">s</span> <span style="color:#b08000;">0.03</span><span style="color:#0057ae;">s</span> <span style="color:#b08000;">ease</span>;
+	<span style="font-weight:bold;">transition</span>: opacity <span style="color:#b08000;">0.3</span><span style="color:#0057ae;">s</span> <span style="color:#b08000;">0.03</span><span style="color:#0057ae;">s</span> <span style="color:#b08000;">ease</span>;
+	<span style="font-weight:bold;">opacity</span>: <span style="color:#b08000;">0.5</span>;
+}
+
+
+<span style="color:#ff5500;">@font-feature-values</span> Font One {
+	<span style="color:#ff5500;">@styleset</span> {
+		nice-style: <span style="color:#b08000;">12</span>;
+	}
+}
+
+<span style="color:#ff5500;">@font-feature-values</span> Font Two {
+	<span style="color:#ff5500;">@styleset</span> {
+		nice-style: <span style="color:#b08000;">4</span>;
+	}
+}
+
+<span style="color:#ff5500;">@counter-style</span> thumbs {
+	system: cyclic;
+	symbols: <span style="color:#bf0303;">&quot;</span><span style="color:#3daee9;">\1F44D</span><span style="color:#bf0303;">&quot;</span>;
+	suffix: <span style="color:#bf0303;">&quot; &quot;</span>;
+}
+
+<span style="color:#ff5500;">@font-face</span> {
+	<span style="font-weight:bold;">font-family</span>: <span style="color:#bf0303;">&quot;Open Sans&quot;</span>;
+	<span style="font-weight:bold;">src</span>: <span style="color:#644a9b;">url(</span><span style="color:#bf0303;">&quot;/fonts/OpenSans-Regular-webfont.woff2&quot;</span><span style="color:#644a9b;">)</span> <span style="color:#644a9b;">format(</span><span style="color:#bf0303;">&quot;woff2&quot;</span><span style="color:#644a9b;">)</span>,
+	<span style="color:#644a9b;">url(</span><span style="color:#bf0303;">&quot;/fonts/OpenSans-Regular-webfont.woff&quot;</span><span style="color:#644a9b;">)</span> <span style="color:#644a9b;">format(</span><span style="color:#bf0303;">&quot;woff&quot;</span><span style="color:#644a9b;">)</span>;
+}
+
+<span style="color:#ff5500;">@page</span> {
+	<span style="font-weight:bold;">margin</span>: <span style="color:#b08000;">1</span><span style="color:#0057ae;">cm</span>;
+}
+
+<span style="color:#ff5500;">@page</span> <span style="color:#b08000;font-style:italic;">:first</span> {
+	<span style="font-weight:bold;">margin</span>: <span style="color:#b08000;">2</span><span style="color:#0057ae;">cm</span>;
+	<span style="color:#898887;">/* comments */</span>
+	<span style="font-weight:bold;">marks</span>: <span style="color:#b08000;">crop</span> <span style="color:#b08000;">cross</span>;
+}
+
+<span style="color:#ff5500;">@page</span> <span style="color:#b08000;font-style:italic;">:unknown</span> {
+	<span style="font-weight:bold;">margin</span>: <span style="color:#b08000;">2</span><span style="color:#0057ae;">cm</span>;
+}
+
+<span style="color:#ff5500;">@font-face</span> {
+	unknown: <span style="color:#b08000;">2</span><span style="color:#0057ae;">px</span>;
+	<span style="color:#898887;">/* comments */</span>
+	<span style="font-weight:bold;">font-family</span>: <span style="color:#bf0303;">&quot;Bitstream Vera Serif Bold&quot;</span>;
+	<span style="font-weight:bold;">src</span>: <span style="color:#644a9b;">url(</span><span style="color:#bf0303;">&quot;/static/styles/libs/font-awesome/fonts/fontawesome-webfont.fdf491ce5ff5.woff&quot;</span><span style="color:#644a9b;">)</span>;
+}
+
+<span style="color:#ff5500;">@viewport</span> {
+	<span style="font-weight:bold;">zoom</span>: <span style="color:#b08000;">0.75</span>;
+	<span style="color:#898887;">/* comments */</span>
+	<span style="font-weight:bold;">min-zoom</span>: <span style="color:#b08000;">0.5</span>;
+	<span style="font-weight:bold;">max-zoom</span>: <span style="color:#b08000;">0.9</span>;
+}
+
+<span style="color:#ff5500;">@viewport</span> {
+	<span style="font-weight:bold;">orientation</span>: <span style="color:#b08000;">landscape</span>;
+	<span style="color:#898887;">/* comments */</span>
+	<span style="font-weight:bold;">orientation</span>: <span style="color:#b08000;">landscape</span>;
+}
+
+<span style="color:#ff5500;">@document</span> <span style="color:#644a9b;">url(</span><span style="color:#bf0303;">&quot;https://www.example.com/&quot;</span><span style="color:#644a9b;">)</span> {
+	h1 {
+		<span style="font-weight:bold;">color</span>: <span style="color:#aa5500;">green</span>;
+	}
+}
+
+<span style="color:#ff5500;">@supports</span> (<span style="font-weight:bold;">display</span>: <span style="color:#b08000;">grid</span>) {
+	div {
+		<span style="font-weight:bold;">display</span>: grid;
+	}
+}
+
+<span style="color:#ff5500;">@media</span> (<span style="font-weight:bold;">max-width</span>: <span style="color:#b08000;">600</span><span style="color:#0057ae;">px</span>) {
+	<span style="color:#644a9b;">.sidebar</span> {
+		<span style="font-weight:bold;">display</span>: <span style="color:#b08000;">none</span>;
+	}
+}
+
+<span style="color:#ff5500;">@import</span> <span style="color:#644a9b;">url(</span><span style="color:#bf0303;">&quot;fineprint.css&quot;</span><span style="color:#644a9b;">)</span> <span style="color:#b08000;">print</span>;
+<span style="color:#ff5500;">@import</span> <span style="color:#644a9b;">url(</span><span style="color:#bf0303;">fineprint.css</span><span style="color:#644a9b;">)</span> <span style="color:#b08000;">print</span>;
+<span style="color:#ff5500;">@import</span> <span style="color:#644a9b;">url(</span><span style="color:#bf0303;">'bluish.css'</span><span style="color:#644a9b;">)</span> <span style="color:#b08000;">speech</span>;
+<span style="color:#ff5500;">@import</span> <span style="color:#bf0303;">'custom.css'</span>;
+<span style="color:#ff5500;">@import</span> <span style="color:#644a9b;">url(</span><span style="color:#bf0303;">&quot;chrome://communicator/skin/&quot;</span><span style="color:#644a9b;">)</span>;
+<span style="color:#ff5500;">@import</span> <span style="color:#bf0303;">&quot;common.css&quot;</span> <span style="color:#b08000;">screen</span>;
+<span style="color:#ff5500;">@import</span> <span style="color:#644a9b;">url(</span><span style="color:#bf0303;">'landscape.css'</span><span style="color:#644a9b;">)</span> <span style="color:#b08000;">screen</span> <span style="font-weight:bold;">and</span> (<span style="font-weight:bold;">orientation</span>:<span style="color:#b08000;">landscape</span>);
+
+<span style="color:#ff5500;">@namespace</span> <span style="color:#644a9b;">url(</span><span style="color:#bf0303;">http://www.w3.org/1999/xhtml</span><span style="color:#644a9b;">)</span>;
+<span style="color:#ff5500;">@namespace</span> svg <span style="color:#644a9b;">url(</span><span style="color:#bf0303;">http://www.w3.org/2000/svg</span><span style="color:#644a9b;">)</span>;
+
+<span style="color:#ff5500;">@keyframes</span> important1 {
+	<span style="color:#b08000;">from</span> { <span style="font-weight:bold;">margin-top</span>: <span style="color:#b08000;">50</span><span style="color:#0057ae;">px</span>; }
+	<span style="color:#b08000;">50%</span>  { <span style="font-weight:bold;">margin-top</span>: <span style="color:#b08000;">150</span><span style="color:#0057ae;">px</span> <span style="color:#0057ae;">!important</span>; } <span style="color:#898887;">/* ignored */</span>
+	<span style="color:#b08000;">to</span>   { <span style="font-weight:bold;">margin-top</span>: <span style="color:#b08000;">100</span><span style="color:#0057ae;">px</span>; }
+}
+
+<span style="color:#ff5500;">@keyframes</span> important2 {
+	<span style="color:#b08000;">from</span> { <span style="font-weight:bold;">margin-top</span>: <span style="color:#b08000;">50</span><span style="color:#0057ae;">px</span>;
+		<span style="font-weight:bold;">margin-bottom</span>: <span style="color:#b08000;">100</span><span style="color:#0057ae;">px</span>; }
+	<span style="color:#b08000;">to</span>   { <span style="font-weight:bold;">margin-top</span>: <span style="color:#b08000;">150</span><span style="color:#0057ae;">px</span> <span style="color:#0057ae;">!important</span>; <span style="color:#898887;">/* ignored */</span>
+		<span style="font-weight:bold;">margin-bottom</span>: <span style="color:#b08000;">50</span><span style="color:#0057ae;">px</span>; }
+}
+
+<span style="color:#ff5500;">@keyframes</span> slidein {
+	<span style="color:#b08000;">from</span> {
+		<span style="font-weight:bold;">margin-left</span>: <span style="color:#b08000;">100</span><span style="color:#0057ae;">%</span>;
+		<span style="font-weight:bold;">width</span>: <span style="color:#b08000;">300</span><span style="color:#0057ae;">%</span>;
+	}
+
+	<span style="color:#b08000;">to</span> {
+		<span style="font-weight:bold;">margin-left</span>: <span style="color:#b08000;">0</span><span style="color:#0057ae;">%</span>;
+		<span style="font-weight:bold;">width</span>: <span style="color:#b08000;">100</span><span style="color:#0057ae;">%</span>;
+	}
+}
+
+<span style="color:#ff5500;">@media</span> <span style="color:#b08000;">print</span> {
+	a<span style="color:#b08000;font-style:italic;">:hover</span> { <span style="font-weight:bold;">color</span>: <span style="color:#aa5500;">red</span> }
+	<span style="color:#898887;">/* comments */</span>
+	a<span style="color:#b08000;font-style:italic;">:hover</span> { <span style="font-weight:bold;">color</span>: <span style="color:#aa5500;">red</span> }
+}
+
+<span style="color:#898887;">/**</span>
+<span style="color:#898887;"> * SCSS https://sass-lang.com/documentation/file.SASS_REFERENCE.html</span>
+<span style="color:#898887;"> */</span>
+
+<span style="color:#006e28;font-weight:bold;">#main</span> p {
+  <span style="font-weight:bold;">color</span>: <span style="color:#aa5500;">#00ff00</span>;
+  <span style="font-weight:bold;">width</span>: <span style="color:#b08000;">97</span><span style="color:#0057ae;">%</span>;
+
+  <span style="color:#644a9b;">.redbox</span> {
+    <span style="font-weight:bold;">background-color</span>: <span style="color:#aa5500;">#ff0000</span>;
+    <span style="font-weight:bold;">color</span>: <span style="color:#aa5500;">#000000</span>;
+  }
+}
+
+a {
+  <span style="font-weight:bold;">font-weight</span>: <span style="color:#b08000;">bold</span>;
+  <span style="font-weight:bold;">text-decoration</span>: <span style="color:#b08000;">none</span>;
+  &amp;<span style="color:#b08000;font-style:italic;">:hover</span> { <span style="font-weight:bold;">text-decoration</span>: <span style="color:#b08000;">underline</span>; }
+  body<span style="color:#644a9b;">.firefox</span> &amp; { <span style="font-weight:bold;">font-weight</span>: <span style="color:#b08000;">normal</span>; }
+}
+
+<span style="color:#006e28;font-weight:bold;">#main</span> {
+  <span style="font-weight:bold;">color</span>: <span style="color:#aa5500;">black</span>;
+  a {
+    <span style="font-weight:bold;">font-weight</span>: <span style="color:#b08000;">bold</span>;
+    &amp;<span style="color:#b08000;font-style:italic;">:hover</span> { <span style="font-weight:bold;">color</span>: <span style="color:#aa5500;">red</span>; }
+  }
+}
+
+<span style="color:#006e28;font-weight:bold;">#main</span> {
+  <span style="font-weight:bold;">color</span>: <span style="color:#aa5500;">black</span>;
+  &amp;-sidebar { <span style="font-weight:bold;">border</span>: <span style="color:#b08000;">1</span><span style="color:#0057ae;">px</span> <span style="color:#b08000;">solid</span>; }
+}
+
+<span style="color:#644a9b;">.funky</span> {
+  <span style="font-weight:bold;">font</span>: {
+    <span style="font-weight:bold;">family</span>: <span style="color:#b08000;">fantasy</span>;
+    <span style="font-weight:bold;">size</span>: <span style="color:#b08000;">30</span><span style="color:#0057ae;">em</span>;
+    <span style="font-weight:bold;">weight</span>: <span style="color:#b08000;">bold</span>;
+  }
+}
+
+<span style="color:#644a9b;">.funky</span> {
+  <span style="font-weight:bold;">font</span>: <span style="color:#b08000;">20</span><span style="color:#0057ae;">px</span>/<span style="color:#b08000;">24</span><span style="color:#0057ae;">px</span> <span style="color:#b08000;">fantasy</span> {
+    <span style="font-weight:bold;">weight</span>: <span style="color:#b08000;">bold</span>;
+  }
+}
+
+<span style="color:#898887;">/* This comment is</span>
+<span style="color:#898887;"> * several lines long.</span>
+<span style="color:#898887;"> * since it uses the CSS comment syntax,</span>
+<span style="color:#898887;"> * it will appear in the CSS output. */</span>
+body { <span style="font-weight:bold;">color</span>: <span style="color:#aa5500;">black</span>; }
+
+<span style="color:#898887;">// These comments are only one line long each.</span>
+<span style="color:#898887;">// They won't appear in the CSS output,</span>
+<span style="color:#898887;">// since they use the single-line comment syntax.</span>
+a { <span style="font-weight:bold;">color</span>: <span style="color:#aa5500;">green</span>; }
+
+<span style="color:#0057ae;">$version</span>: <span style="color:#bf0303;">&quot;1.2.3&quot;</span>;
+<span style="color:#898887;">/* This CSS is generated by My Snazzy Framework version #{$version}. */</span>
+
+<span style="color:#0057ae;">$width</span>: <span style="color:#b08000;">5</span><span style="color:#0057ae;">em</span>;
+
+<span style="color:#006e28;font-weight:bold;">#main</span> {
+  <span style="font-weight:bold;">width</span>: <span style="color:#0057ae;">$width</span>;
+}
+
+<span style="color:#006e28;font-weight:bold;">#main</span> {
+  <span style="color:#0057ae;">$width</span>: <span style="color:#b08000;">5</span><span style="color:#0057ae;">em</span> <span style="color:#0057ae;">!global</span>;
+  <span style="font-weight:bold;">width</span>: <span style="color:#0057ae;">$width</span>;
+}
+
+<span style="color:#006e28;font-weight:bold;">#sidebar</span> {
+  <span style="font-weight:bold;">width</span>: <span style="color:#0057ae;">$width</span>;
+}
+
+<span style="color:#ff5500;">@mixin</span> <span style="color:#644a9b;">firefox-message</span>(<span style="color:#0057ae;">$selector</span>) {
+  body<span style="color:#644a9b;">.firefox</span> #{<span style="color:#0057ae;">$selector</span>}<span style="color:#b08000;font-style:italic;">:before</span> {
+    <span style="font-weight:bold;">content</span>: <span style="color:#bf0303;">&quot;Hi, Firefox users!&quot;</span>;
+  }
+}
+
+<span style="color:#ff5500;">@include</span> <span style="color:#644a9b;">firefox-message(</span><span style="color:#bf0303;">&quot;.header&quot;</span><span style="color:#644a9b;">)</span>;
+
+<span style="color:#0057ae;">$map</span>: (key1: value1, key2: value2, key3: value3);
+
+p {
+  <span style="font-weight:bold;">font</span>: <span style="color:#b08000;">10</span><span style="color:#0057ae;">px</span>/<span style="color:#b08000;">8</span><span style="color:#0057ae;">px</span>;             <span style="color:#898887;">// Plain CSS, no division</span>
+  <span style="color:#0057ae;">$width</span>: <span style="color:#b08000;">1000</span><span style="color:#0057ae;">px</span>;
+  <span style="font-weight:bold;">width</span>: <span style="color:#0057ae;">$width</span>/<span style="color:#b08000;">2</span>;            <span style="color:#898887;">// Uses a variable, does division</span>
+  <span style="font-weight:bold;">width</span>: <span style="color:#644a9b;">round(</span><span style="color:#b08000;">1.5</span><span style="color:#644a9b;">)</span>/<span style="color:#b08000;">2</span>;        <span style="color:#898887;">// Uses a function, does division</span>
+  <span style="font-weight:bold;">height</span>: (<span style="color:#b08000;">500</span><span style="color:#0057ae;">px</span>/<span style="color:#b08000;">2</span>);          <span style="color:#898887;">// Uses parentheses, does division</span>
+  <span style="font-weight:bold;">margin-left</span>: <span style="color:#b08000;">5</span><span style="color:#0057ae;">px</span> + <span style="color:#b08000;">8</span><span style="color:#0057ae;">px</span>/<span style="color:#b08000;">2</span><span style="color:#0057ae;">px</span>; <span style="color:#898887;">// Uses +, does division</span>
+  <span style="font-weight:bold;">font</span>: (<span style="color:#b08000;">italic</span> <span style="color:#b08000;">bold</span> <span style="color:#b08000;">10</span><span style="color:#0057ae;">px</span>/<span style="color:#b08000;">8</span><span style="color:#0057ae;">px</span>); <span style="color:#898887;">// In a list, parentheses don't count</span>
+}
+
+p {
+  <span style="color:#0057ae;">$font-size</span>: <span style="color:#b08000;">12</span><span style="color:#0057ae;">px</span>;
+  <span style="color:#0057ae;">$line-height</span>: <span style="color:#b08000;">30</span><span style="color:#0057ae;">px</span>;
+  <span style="font-weight:bold;">font</span>: #{<span style="color:#0057ae;">$font-size</span>}/#{<span style="color:#0057ae;">$line-height</span>};
+}
+
+p {
+  <span style="font-weight:bold;">color</span>: <span style="color:#aa5500;">#010203</span> + <span style="color:#aa5500;">#040506</span>;
+  <span style="font-weight:bold;">color</span>: <span style="color:#644a9b;">rgba(</span><span style="color:#b08000;">255</span>, <span style="color:#b08000;">0</span>, <span style="color:#b08000;">0</span>, <span style="color:#b08000;">0.75</span><span style="color:#644a9b;">)</span> + <span style="color:#644a9b;">rgba(</span><span style="color:#b08000;">0</span>, <span style="color:#b08000;">255</span>, <span style="color:#b08000;">0</span>, <span style="color:#b08000;">0.75</span><span style="color:#644a9b;">)</span>;
+}
+
+<span style="color:#0057ae;">$translucent-red</span>: <span style="color:#644a9b;">rgba(</span><span style="color:#b08000;">255</span>, <span style="color:#b08000;">0</span>, <span style="color:#b08000;">0</span>, <span style="color:#b08000;">0.5</span><span style="color:#644a9b;">)</span>;
+p {
+  <span style="font-weight:bold;">color</span>: <span style="color:#644a9b;">opacify(</span><span style="color:#0057ae;">$translucent-red</span>, <span style="color:#b08000;">0.3</span><span style="color:#644a9b;">)</span>;
+  <span style="font-weight:bold;">background-color</span>: <span style="color:#644a9b;">transparentize(</span><span style="color:#0057ae;">$translucent-red</span>, <span style="color:#b08000;">0.25</span><span style="color:#644a9b;">)</span>;
+}
+
+<span style="color:#0057ae;">$translucent-red</span>: <span style="color:#644a9b;">rgba(</span><span style="color:#b08000;">255</span>, <span style="color:#b08000;">0</span>, <span style="color:#b08000;">0</span>, <span style="color:#b08000;">0.5</span><span style="color:#644a9b;">)</span>;
+<span style="color:#0057ae;">$green</span>: <span style="color:#aa5500;">#00ff00</span>;
+div {
+  <span style="font-weight:bold;">filter</span>: progid:DXImageTransform.Microsoft.<span style="color:#644a9b;">gradient(</span>enabled=<span style="color:#bf0303;">'false'</span>, startColorstr=<span style="color:#bf0303;">'</span>#{<span style="color:#644a9b;">ie-hex-str(</span><span style="color:#0057ae;">$green</span><span style="color:#644a9b;">)</span>}<span style="color:#bf0303;">'</span>, endColorstr=<span style="color:#bf0303;">'</span>#{<span style="color:#644a9b;">ie-hex-str(</span><span style="color:#0057ae;">$translucent-red</span><span style="color:#644a9b;">)</span>}<span style="color:#bf0303;">'</span><span style="color:#644a9b;">)</span>;
+}
+p {
+  <span style="font-weight:bold;">cursor</span>: e + -resize;
+}
+p<span style="color:#b08000;font-style:italic;">:before</span> {
+  <span style="font-weight:bold;">content</span>: <span style="color:#bf0303;">&quot;Foo &quot;</span> + Bar;
+  <span style="font-weight:bold;">font-family</span>: sans- + <span style="color:#bf0303;">&quot;serif&quot;</span>;
+}
+p<span style="color:#b08000;font-style:italic;">:before</span> {
+  <span style="font-weight:bold;">content</span>: <span style="color:#bf0303;">&quot;I ate </span>#{<span style="color:#b08000;">5</span> + <span style="color:#b08000;">10</span>}<span style="color:#bf0303;"> pies!&quot;</span>;
+}
+<span style="color:#0057ae;">$value</span>: <span style="color:#644a9b;font-weight:bold;">null</span>;
+p<span style="color:#b08000;font-style:italic;">:before</span> {
+  <span style="font-weight:bold;">content</span>: <span style="color:#bf0303;">&quot;I ate </span>#{<span style="color:#0057ae;">$value</span>}<span style="color:#bf0303;"> pies!&quot;</span>;
+}
+p {
+  <span style="font-weight:bold;">width</span>: <span style="color:#b08000;">1</span><span style="color:#0057ae;">em</span> + (<span style="color:#b08000;">2</span><span style="color:#0057ae;">em</span> * <span style="color:#b08000;">3</span>);
+}
+p {
+  <span style="font-weight:bold;">color</span>: <span style="color:#644a9b;">hsl(</span><span style="color:#0057ae;">$hue</span>: <span style="color:#b08000;">0</span>, <span style="color:#0057ae;">$saturation</span>: <span style="color:#b08000;">100</span><span style="color:#0057ae;">%</span>, <span style="color:#0057ae;">$lightness</span>: <span style="color:#b08000;">50</span><span style="color:#0057ae;">%</span><span style="color:#644a9b;">)</span>;
+}
+<span style="color:#0057ae;">$name</span>: foo;
+<span style="color:#0057ae;">$attr</span>: border;
+p<span style="color:#644a9b;">.</span>#{<span style="color:#0057ae;">$name</span>} {
+  #{<span style="color:#0057ae;">$attr</span>}-color: <span style="color:#aa5500;">blue</span>;
+}
+p {
+  <span style="color:#0057ae;">$font-size</span>: <span style="color:#b08000;">12</span><span style="color:#0057ae;">px</span>;
+  <span style="color:#0057ae;">$line-height</span>: <span style="color:#b08000;">30</span><span style="color:#0057ae;">px</span>;
+  <span style="font-weight:bold;">font</span>: #{<span style="color:#0057ae;">$font-size</span>}/#{<span style="color:#0057ae;">$line-height</span>};
+}
+
+<span style="color:#644a9b;">.foo.bar</span> <span style="color:#644a9b;">.baz.bang</span>, <span style="color:#644a9b;">.bip.qux</span> {
+    <span style="color:#0057ae;">$selector</span>: &amp;;
+}
+
+<span style="color:#ff5500;">@mixin</span> <span style="color:#644a9b;">does-parent-exist</span> {
+  <span style="color:#ff5500;">@if</span> &amp; {
+    &amp;<span style="color:#b08000;font-style:italic;">:hover</span> {
+      <span style="font-weight:bold;">color</span>: <span style="color:#aa5500;">red</span>;
+    }
+  } <span style="color:#ff5500;">@else</span> {
+    a {
+      <span style="font-weight:bold;">color</span>: <span style="color:#aa5500;">red</span>;
+    }
+  }
+}
+
+<span style="color:#0057ae;">$content</span>: <span style="color:#bf0303;">&quot;First content&quot;</span>;
+<span style="color:#0057ae;">$content</span>: <span style="color:#bf0303;">&quot;Second content?&quot;</span> <span style="color:#0057ae;">!default</span>;
+<span style="color:#0057ae;">$new_content</span>: <span style="color:#bf0303;">&quot;First time reference&quot;</span> <span style="color:#0057ae;">!default</span>;
+
+<span style="color:#006e28;font-weight:bold;">#main</span> {
+  <span style="font-weight:bold;">content</span>: <span style="color:#0057ae;">$content</span>;
+  new-content: <span style="color:#0057ae;">$new_content</span>;
+}
+
+<span style="color:#ff5500;">@import</span> <span style="color:#bf0303;">&quot;foo.css&quot;</span>;
+<span style="color:#ff5500;">@import</span> <span style="color:#bf0303;">&quot;foo&quot;</span> <span style="color:#b08000;">screen</span>;
+<span style="color:#ff5500;">@import</span> <span style="color:#bf0303;">&quot;http://foo.com/bar&quot;</span>;
+<span style="color:#ff5500;">@import</span> <span style="color:#644a9b;">url(</span><span style="color:#bf0303;">foo</span><span style="color:#644a9b;">)</span>;
+
+<span style="color:#0057ae;">$family</span>: <span style="color:#644a9b;">unquote(</span><span style="color:#bf0303;">&quot;Droid+Sans&quot;</span><span style="color:#644a9b;">)</span>;
+<span style="color:#ff5500;">@import</span> <span style="color:#644a9b;">url(</span><span style="color:#bf0303;">&quot;http://fonts.googleapis.com/css?family=</span>#{<span style="color:#0057ae;">$family</span>}<span style="color:#bf0303;">&quot;</span><span style="color:#644a9b;">)</span>;
+<span style="color:#006e28;font-weight:bold;">#main</span> {
+  <span style="color:#ff5500;">@import</span> <span style="color:#bf0303;">&quot;example&quot;</span>;
+}
+
+<span style="color:#644a9b;">.sidebar</span> {
+  <span style="font-weight:bold;">width</span>: <span style="color:#b08000;">300</span><span style="color:#0057ae;">px</span>;
+  <span style="color:#ff5500;">@media</span> <span style="color:#b08000;">screen</span> <span style="font-weight:bold;">and</span> (<span style="font-weight:bold;">orientation</span>: <span style="color:#b08000;">landscape</span>) {
+    <span style="font-weight:bold;">width</span>: <span style="color:#b08000;">500</span><span style="color:#0057ae;">px</span>;
+  }
+}
+<span style="color:#ff5500;">@media</span> <span style="color:#b08000;">screen</span> {
+  <span style="color:#644a9b;">.sidebar</span> {
+    <span style="color:#ff5500;">@media</span> (<span style="font-weight:bold;">orientation</span>: <span style="color:#b08000;">landscape</span>) {
+      <span style="font-weight:bold;">width</span>: <span style="color:#b08000;">500</span><span style="color:#0057ae;">px</span>;
+    }
+  }
+}
+
+<span style="color:#0057ae;">$media</span>: screen;
+<span style="color:#0057ae;">$feature</span>: -webkit-min-device-pixel-ratio;
+<span style="color:#0057ae;">$value</span>: <span style="color:#b08000;">1.5</span>;
+
+<span style="color:#ff5500;">@media</span> #{<span style="color:#0057ae;">$media</span>} <span style="font-weight:bold;">and</span> (<span style="color:#0057ae;">$feature</span>: <span style="color:#0057ae;">$value</span>) {
+  <span style="color:#644a9b;">.sidebar</span> {
+    <span style="font-weight:bold;">width</span>: <span style="color:#b08000;">500</span><span style="color:#0057ae;">px</span>;
+  }
+}
+
+<span style="color:#644a9b;">.error</span> {
+  <span style="font-weight:bold;">border</span>: <span style="color:#b08000;">1</span><span style="color:#0057ae;">px</span> <span style="color:#aa5500;">#f00</span>;
+  <span style="font-weight:bold;">background-color</span>: <span style="color:#aa5500;">#fdd</span>;
+}
+<span style="color:#644a9b;">.seriousError</span> {
+  <span style="color:#ff5500;">@extend</span> <span style="color:#644a9b;">.error</span>;
+  <span style="font-weight:bold;">border-width</span>: <span style="color:#b08000;">3</span><span style="color:#0057ae;">px</span>;
+}
+
+<span style="color:#644a9b;">.hoverlink</span> {
+  <span style="color:#ff5500;">@extend</span> a<span style="color:#b08000;font-style:italic;">:hover</span>;
+}
+a<span style="color:#b08000;font-style:italic;">:hover</span> {
+  <span style="font-weight:bold;">text-decoration</span>: <span style="color:#b08000;">underline</span>;
+}
+
+<span style="color:#006e28;font-weight:bold;">#context</span> a<span style="color:#644a9b;font-weight:bold;">%extreme</span> a <span style="color:#644a9b;font-weight:bold;">%extreme</span> {
+  <span style="font-weight:bold;">color</span>: <span style="color:#aa5500;">blue</span>;
+  <span style="font-weight:bold;">font-weight</span>: <span style="color:#b08000;">bold</span>;
+  <span style="font-weight:bold;">font-size</span>: <span style="color:#b08000;">2</span><span style="color:#0057ae;">em</span>;
+}
+<span style="color:#644a9b;">.notice</span> {
+  <span style="color:#ff5500;">@extend</span> <span style="color:#644a9b;font-weight:bold;">%extreme</span>;
+}
+
+a<span style="color:#644a9b;">.important</span> {
+  <span style="color:#ff5500;">@extend</span> <span style="color:#644a9b;">.notice</span> !optional;
+}
+
+<span style="color:#ff5500;">@media</span> <span style="color:#b08000;">print</span> {
+  <span style="color:#644a9b;">.page</span> {
+    <span style="font-weight:bold;">width</span>: <span style="color:#b08000;">8</span><span style="color:#0057ae;">in</span>;
+    <span style="color:#ff5500;">@at-root</span> (<span style="font-weight:bold;">without</span>: media) {
+      <span style="font-weight:bold;">color</span>: <span style="color:#aa5500;">red</span>;
+    }
+  }
+}
+
+<span style="color:#ff5500;">@debug</span> <span style="color:#b08000;">10</span><span style="color:#0057ae;">em</span> + <span style="color:#b08000;">12</span><span style="color:#0057ae;">em</span>;
+
+<span style="color:#ff5500;">@mixin</span> <span style="color:#644a9b;">adjust-location</span>(<span style="color:#0057ae;">$x</span>, <span style="color:#0057ae;">$y</span>) {
+  <span style="color:#ff5500;">@if</span> <span style="color:#644a9b;">unitless(</span><span style="color:#0057ae;">$x</span><span style="color:#644a9b;">)</span> {
+    <span style="color:#ff5500;">@warn</span> <span style="color:#bf0303;">&quot;Assuming </span>#{<span style="color:#0057ae;">$x</span>}<span style="color:#bf0303;"> to be in pixels&quot;</span>;
+    <span style="color:#0057ae;">$x</span>: <span style="color:#b08000;">1</span><span style="color:#0057ae;">px</span> * <span style="color:#0057ae;">$x</span>;
+  }
+  <span style="color:#ff5500;">@if</span> <span style="color:#644a9b;">unitless(</span><span style="color:#0057ae;">$y</span><span style="color:#644a9b;">)</span> {
+    <span style="color:#ff5500;">@warn</span> <span style="color:#bf0303;">&quot;Assuming </span>#{<span style="color:#0057ae;">$y</span>}<span style="color:#bf0303;"> to be in pixels&quot;</span>;
+    <span style="color:#0057ae;">$y</span>: <span style="color:#b08000;">1</span><span style="color:#0057ae;">px</span> * <span style="color:#0057ae;">$y</span>;
+  }
+  <span style="font-weight:bold;">position</span>: <span style="color:#b08000;">relative</span>; <span style="font-weight:bold;">left</span>: <span style="color:#0057ae;">$x</span>; <span style="font-weight:bold;">top</span>: <span style="color:#0057ae;">$y</span>;
+}
+
+<span style="color:#ff5500;">@mixin</span> <span style="color:#644a9b;">adjust-location</span>(<span style="color:#0057ae;">$x</span>, <span style="color:#0057ae;">$y</span>) {
+  <span style="color:#ff5500;">@if</span> <span style="color:#644a9b;">unitless(</span><span style="color:#0057ae;">$x</span><span style="color:#644a9b;">)</span> {
+    <span style="color:#ff5500;">@error</span> <span style="color:#bf0303;">&quot;$x may not be unitless, was </span>#{<span style="color:#0057ae;">$x</span>}<span style="color:#bf0303;">.&quot;</span>;
+  }
+  <span style="color:#ff5500;">@if</span> <span style="color:#644a9b;">unitless(</span><span style="color:#0057ae;">$y</span><span style="color:#644a9b;">)</span> {
+    <span style="color:#ff5500;">@error</span> <span style="color:#bf0303;">&quot;$y may not be unitless, was </span>#{<span style="color:#0057ae;">$y</span>}<span style="color:#bf0303;">.&quot;</span>;
+  }
+  <span style="font-weight:bold;">position</span>: <span style="color:#b08000;">relative</span>; <span style="font-weight:bold;">left</span>: <span style="color:#0057ae;">$x</span>; <span style="font-weight:bold;">top</span>: <span style="color:#0057ae;">$y</span>;
+}
+
+p {
+  <span style="color:#ff5500;">@if</span> <span style="color:#b08000;">1</span> + <span style="color:#b08000;">1</span> == <span style="color:#b08000;">2</span> { <span style="font-weight:bold;">border</span>: <span style="color:#b08000;">1</span><span style="color:#0057ae;">px</span> <span style="color:#b08000;">solid</span>;  }
+  <span style="color:#ff5500;">@if</span> <span style="color:#b08000;">5</span> &lt; <span style="color:#b08000;">3</span>      { <span style="font-weight:bold;">border</span>: <span style="color:#b08000;">2</span><span style="color:#0057ae;">px</span> <span style="color:#b08000;">dotted</span>; }
+  <span style="color:#ff5500;">@if</span> <span style="color:#644a9b;font-weight:bold;">null</span>       { <span style="font-weight:bold;">border</span>: <span style="color:#b08000;">3</span><span style="color:#0057ae;">px</span> <span style="color:#b08000;">double</span>; }
+}
+
+<span style="color:#0057ae;">$type</span>: monster;
+p {
+  <span style="color:#ff5500;">@if</span> <span style="color:#0057ae;">$type</span> == ocean {
+    <span style="font-weight:bold;">color</span>: <span style="color:#aa5500;">blue</span>;
+  } <span style="color:#ff5500;">@else</span> <span style="color:#ff5500;">if</span> <span style="color:#0057ae;">$type</span> == matador {
+    <span style="font-weight:bold;">color</span>: <span style="color:#aa5500;">red</span>;
+  } <span style="color:#ff5500;">@else</span> <span style="color:#ff5500;">if</span> <span style="color:#0057ae;">$type</span> == monster {
+    <span style="font-weight:bold;">color</span>: <span style="color:#aa5500;">green</span>;
+  } <span style="color:#ff5500;">@else</span> {
+    <span style="font-weight:bold;">color</span>: <span style="color:#aa5500;">black</span>;
+  }
+}
+
+<span style="color:#ff5500;">@for</span> <span style="color:#0057ae;">$i</span> from <span style="color:#b08000;">1</span> through <span style="color:#b08000;">3</span> {
+  <span style="color:#644a9b;">.item-</span>#{<span style="color:#0057ae;">$i</span>} { <span style="font-weight:bold;">width</span>: <span style="color:#b08000;">2</span><span style="color:#0057ae;">em</span> * <span style="color:#0057ae;">$i</span>; }
+}
+
+<span style="color:#ff5500;">@each</span> <span style="color:#0057ae;">$animal</span> in puma, sea-slug, egret, salamander {
+  <span style="color:#644a9b;">.</span>#{<span style="color:#0057ae;">$animal</span>}-icon {
+    <span style="font-weight:bold;">background-image</span>: <span style="color:#644a9b;">url(</span><span style="color:#bf0303;">'/images/</span>#{<span style="color:#0057ae;">$animal</span>}<span style="color:#bf0303;">.png'</span><span style="color:#644a9b;">)</span>;
+  }
+}
+
+<span style="color:#ff5500;">@each</span> <span style="color:#0057ae;">$animal</span>, <span style="color:#0057ae;">$color</span>, <span style="color:#0057ae;">$cursor</span> in (puma, <span style="color:#aa5500;">black</span>, <span style="color:#b08000;">default</span>),
+                                  (sea-slug, <span style="color:#aa5500;">blue</span>, <span style="color:#b08000;">pointer</span>),
+                                  (egret, <span style="color:#aa5500;">white</span>, <span style="color:#b08000;">move</span>) {
+  <span style="color:#644a9b;">.</span>#{<span style="color:#0057ae;">$animal</span>}-icon {
+    <span style="font-weight:bold;">background-image</span>: <span style="color:#644a9b;">url(</span><span style="color:#bf0303;">'/images/</span>#{<span style="color:#0057ae;">$animal</span>}<span style="color:#bf0303;">.png'</span><span style="color:#644a9b;">)</span>;
+    <span style="font-weight:bold;">border</span>: <span style="color:#b08000;">2</span><span style="color:#0057ae;">px</span> <span style="color:#b08000;">solid</span> <span style="color:#0057ae;">$color</span>;
+    <span style="font-weight:bold;">cursor</span>: <span style="color:#0057ae;">$cursor</span>;
+  }
+}
+
+<span style="color:#ff5500;">@each</span> <span style="color:#0057ae;">$header</span>, <span style="color:#0057ae;">$size</span> in (h1: <span style="color:#b08000;">2</span><span style="color:#0057ae;">em</span>, h2: <span style="color:#b08000;">1.5</span><span style="color:#0057ae;">em</span>, h3: <span style="color:#b08000;">1.2</span><span style="color:#0057ae;">em</span>) {
+  #{<span style="color:#0057ae;">$header</span>} {
+    <span style="font-weight:bold;">font-size</span>: <span style="color:#0057ae;">$size</span>;
+  }
+}
+
+<span style="color:#0057ae;">$i</span>: <span style="color:#b08000;">6</span>;
+<span style="color:#ff5500;">@while</span> <span style="color:#0057ae;">$i</span> &gt; <span style="color:#b08000;">0</span> {
+  <span style="color:#644a9b;">.item-</span>#{<span style="color:#0057ae;">$i</span>} { <span style="font-weight:bold;">width</span>: <span style="color:#b08000;">2</span><span style="color:#0057ae;">em</span> * <span style="color:#0057ae;">$i</span>; }
+  <span style="color:#0057ae;">$i</span>: <span style="color:#0057ae;">$i</span> - <span style="color:#b08000;">2</span>;
+}
+
+<span style="color:#ff5500;">@mixin</span> <span style="color:#644a9b;">large-text</span> {
+  <span style="font-weight:bold;">font</span>: {
+    <span style="font-weight:bold;">family</span>: Arial;
+    <span style="font-weight:bold;">size</span>: <span style="color:#b08000;">20</span><span style="color:#0057ae;">px</span>;
+    <span style="font-weight:bold;">weight</span>: <span style="color:#b08000;">bold</span>;
+  }
+  <span style="font-weight:bold;">color</span>: <span style="color:#aa5500;">#ff0000</span>;
+}
+
+<span style="color:#ff5500;">@mixin</span> <span style="color:#644a9b;">clearfix</span> {
+  <span style="font-weight:bold;">display</span>: <span style="color:#b08000;">inline-block</span>;
+  &amp;<span style="color:#b08000;font-style:italic;">:after</span> {
+    <span style="font-weight:bold;">content</span>: <span style="color:#bf0303;">&quot;.&quot;</span>;
+    <span style="font-weight:bold;">display</span>: <span style="color:#b08000;">block</span>;
+    <span style="font-weight:bold;">height</span>: <span style="color:#b08000;">0</span>;
+    <span style="font-weight:bold;">clear</span>: <span style="color:#b08000;">both</span>;
+    <span style="font-weight:bold;">visibility</span>: <span style="color:#b08000;">hidden</span>;
+  }
+  * html &amp; { <span style="font-weight:bold;">height</span>: <span style="color:#b08000;">1</span><span style="color:#0057ae;">px</span> }
+}
+
+<span style="color:#644a9b;">.page-title</span> {
+  <span style="color:#ff5500;">@include</span> large-text;
+  <span style="font-weight:bold;">padding</span>: <span style="color:#b08000;">4</span><span style="color:#0057ae;">px</span>;
+  <span style="font-weight:bold;">margin-top</span>: <span style="color:#b08000;">10</span><span style="color:#0057ae;">px</span>;
+}
+
+<span style="color:#ff5500;">@mixin</span> <span style="color:#644a9b;">compound</span> {
+  <span style="color:#ff5500;">@include</span> highlighted-background;
+  <span style="color:#ff5500;">@include</span> header-text;
+}
+
+<span style="color:#ff5500;">@mixin</span> <span style="color:#644a9b;">highlighted-background</span> { <span style="font-weight:bold;">background-color</span>: <span style="color:#aa5500;">#fc0</span>; }
+<span style="color:#ff5500;">@mixin</span> <span style="color:#644a9b;">header-text</span> { <span style="font-weight:bold;">font-size</span>: <span style="color:#b08000;">20</span><span style="color:#0057ae;">px</span>; }
+
+<span style="color:#ff5500;">@mixin</span> <span style="color:#644a9b;">sexy-border</span>(<span style="color:#0057ae;">$color</span>, <span style="color:#0057ae;">$width</span>) {
+  <span style="font-weight:bold;">border</span>: {
+    <span style="font-weight:bold;">color</span>: <span style="color:#0057ae;">$color</span>;
+    <span style="font-weight:bold;">width</span>: <span style="color:#0057ae;">$width</span>;
+    <span style="font-weight:bold;">style</span>: <span style="color:#b08000;">dashed</span>;
+  }
+}
+
+p { <span style="color:#ff5500;">@include</span> <span style="color:#644a9b;">sexy-border(</span><span style="color:#aa5500;">blue</span>, <span style="color:#b08000;">1</span><span style="color:#0057ae;">in</span><span style="color:#644a9b;">)</span>; }
+
+p { <span style="color:#ff5500;">@include</span> <span style="color:#644a9b;">sexy-border(</span><span style="color:#0057ae;">$color</span>: <span style="color:#aa5500;">blue</span><span style="color:#644a9b;">)</span>; }
+h1 { <span style="color:#ff5500;">@include</span> <span style="color:#644a9b;">sexy-border(</span><span style="color:#0057ae;">$color</span>: <span style="color:#aa5500;">blue</span>, <span style="color:#0057ae;">$width</span>: <span style="color:#b08000;">2</span><span style="color:#0057ae;">in</span><span style="color:#644a9b;">)</span>; }
+
+
+<span style="color:#ff5500;">@mixin</span> <span style="color:#644a9b;">colors</span>(<span style="color:#0057ae;">$text</span>, <span style="color:#0057ae;">$background</span>, <span style="color:#0057ae;">$border</span>) {
+  <span style="font-weight:bold;">color</span>: <span style="color:#0057ae;">$text</span>;
+  <span style="font-weight:bold;">background-color</span>: <span style="color:#0057ae;">$background</span>;
+  <span style="font-weight:bold;">border-color</span>: <span style="color:#0057ae;">$border</span>;
+}
+
+<span style="color:#0057ae;">$values</span>: <span style="color:#aa5500;">#ff0000</span>, <span style="color:#aa5500;">#00ff00</span>, <span style="color:#aa5500;">#0000ff</span>;
+<span style="color:#644a9b;">.primary</span> {
+  <span style="color:#ff5500;">@include</span> <span style="color:#644a9b;">colors(</span><span style="color:#0057ae;">$values</span>...<span style="color:#644a9b;">)</span>;
+}
+
+<span style="color:#0057ae;">$value-map</span>: (<span style="color:#b08000;">text</span>: <span style="color:#aa5500;">#00ff00</span>, <span style="color:#aa5500;">background</span>: <span style="color:#aa5500;">#0000ff</span>, border: <span style="color:#aa5500;">#ff0000</span>);
+<span style="color:#644a9b;">.secondary</span> {
+  <span style="color:#ff5500;">@include</span> <span style="color:#644a9b;">colors(</span><span style="color:#0057ae;">$value-map</span>...<span style="color:#644a9b;">)</span>;
+}
+
+<span style="color:#ff5500;">@mixin</span> <span style="color:#644a9b;">apply-to-ie6-only</span> {
+  * html {
+    <span style="color:#ff5500;">@content</span>;
+  }
+}
+<span style="color:#ff5500;">@include</span> apply-to-ie6-only {
+  <span style="color:#006e28;font-weight:bold;">#logo</span> {
+    <span style="font-weight:bold;">background-image</span>: <span style="color:#644a9b;">url(</span><span style="color:#bf0303;">/logo.gif</span><span style="color:#644a9b;">)</span>;
+  }
+}
+
+<span style="color:#0057ae;">$grid-width</span>: <span style="color:#b08000;">40</span><span style="color:#0057ae;">px</span>;
+<span style="color:#0057ae;">$gutter-width</span>: <span style="color:#b08000;">10</span><span style="color:#0057ae;">px</span>;
+
+<span style="color:#ff5500;">@function</span> <span style="color:#644a9b;">grid-width</span>(<span style="color:#0057ae;">$n</span>) {
+  <span style="color:#ff5500;">@return</span> <span style="color:#0057ae;">$n</span> * <span style="color:#0057ae;">$grid-width</span> + (<span style="color:#0057ae;">$n</span> - <span style="color:#b08000;">1</span>) * <span style="color:#0057ae;">$gutter-width</span>;
+}
+
+<span style="color:#006e28;font-weight:bold;">#sidebar</span> { <span style="font-weight:bold;">width</span>: <span style="color:#644a9b;">grid-width(</span><span style="color:#b08000;">5</span><span style="color:#644a9b;">)</span>; }
+
+<span style="color:#ff5500;">@mixin</span> <span style="color:#644a9b;">unify-parent</span>(<span style="color:#0057ae;">$child</span>) {
+  <span style="color:#ff5500;">@at-root</span> #{<span style="color:#644a9b;">selector-unify(</span>&amp;, <span style="color:#0057ae;">$child</span><span style="color:#644a9b;">)</span>} {
+    <span style="color:#ff5500;">@content</span>;
+  }
+}
+
+<span style="color:#b08000;font-style:italic;">:root</span> {
+  <span style="color:#0057ae;">--font-family-sans-serif</span>: #{<span style="color:#644a9b;">inspect(</span><span style="color:#0057ae;">$font-family-sans-serif</span><span style="color:#644a9b;">)</span>};
+  <span style="color:#0057ae;">--font-family-monospace</span>: #{<span style="color:#644a9b;">inspect(</span><span style="color:#0057ae;">$font-family-monospace</span><span style="color:#644a9b;">)</span>};
+}
+
+div {
+  <span style="font-weight:bold;">background-image</span>: <span style="color:#644a9b;">url(</span><span style="color:#bf0303;">&quot;/icons/</span>#{<span style="color:#0057ae;">$name</span>}<span style="color:#bf0303;">.svg&quot;</span><span style="color:#644a9b;">)</span>;
+  <span style="font-weight:bold;">font</span>: #{<span style="color:#bf0303;">&quot;string&quot;</span>};
+
+<span style="color:#644a9b;">.icon-</span>#{<span style="color:#0057ae;">$name</span>} {
+  <span style="font-weight:bold;">position</span>: <span style="color:#b08000;">absolute</span>;
+  #{<span style="color:#0057ae;">$top-or-bottom</span>}: <span style="color:#b08000;">0</span>;
+  -#{<span style="color:#0057ae;">$prefix</span>}-#{<span style="color:#0057ae;">$property</span>}: <span style="color:#0057ae;">$value</span>;
+  <span style="color:#644a9b;">.icon-</span>#{<span style="color:#0057ae;">$name</span>} {
+    <span style="font-weight:bold;">position</span>: <span style="color:#b08000;">absolute</span>;
+    #{<span style="color:#0057ae;">$top-or-bottom</span>}: <span style="color:#b08000;">0</span>;
+    -#{<span style="color:#0057ae;">$prefix</span>}-#{<span style="color:#0057ae;">$property</span>}-image: <span style="color:#0057ae;">$value</span>
+  }
+}
+</pre></body></html>

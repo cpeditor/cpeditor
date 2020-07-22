@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE language SYSTEM "language.dtd">
+
+<language name="IncludeRules (Dynamic)" section="Other" extensions="*.dyInclRl;" mimetype="" version="1" kateversion="5.0" priority="100">
+	<highlighting>
+		<contexts>
+			<context name="normal" attribute="Normal" lineEndContext="#stay">
+				<DetectChar char="X" attribute="Operator" context="X"/>
+			</context>
+			
+			<context name="X" attribute="Normal" lineEndContext="#stay">
+				<DetectChar char="{" attribute="Delimiter" context="X brace"/>
+				<RegExpr String="(\S)" attribute="Delimiter" context="X char"/>
+			</context>
+			
+			<context name="X brace" attribute="String" lineEndContext="#stay">
+				<!-- escape the context with a matching delimiter -->
+				<DetectChar char="}" attribute="Delimiter" context="#pop#pop"/>
+				<!-- inherit highlighting rules from "generic" delimiter context -->
+				<IncludeRules context="X char"/>
+			</context>
+			
+			<context name="X char" attribute="String" lineEndContext="#stay">
+				<!-- escape the context with a matching delimiter -->
+				<RegExpr String="%1" dynamic="true" attribute="Delimiter" context="#pop#pop"/>
+				<!-- highlight some random words -->
+				<WordDetect String="other" insensitive="true" attribute="Other"/>
+			</context>
+		</contexts>
+		
+		<itemDatas>
+			<itemData name="Normal" defStyleNum="dsNormal"/>
+			<itemData name="Operator" defStyleNum="dsKeyword"/>
+			<itemData name="Delimiter" defStyleNum="dsExtension"/>
+			<itemData name="String" defStyleNum="dsString"/>
+			<itemData name="Other" defStyleNum="dsImport"/>
+		</itemDatas>
+	</highlighting>
+</language>

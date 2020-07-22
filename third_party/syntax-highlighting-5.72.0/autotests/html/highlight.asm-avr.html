@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title>highlight.asm-avr</title>
+<meta name="generator" content="KF5::SyntaxHighlighting (AVR Assembler)"/>
+</head><body style="color:#1f1c1b"><pre>
+<span style="color:#898887;">;********************************************************************</span>
+<span style="color:#898887;">;* LED flasher: LED will flash with a X on/off ratio at PD6</span>
+<span style="color:#898887;">;*</span>
+<span style="color:#898887;">;* NOTE: delay depends in the value of X, 1 is fast, 255 is slow</span>
+<span style="color:#898887;">;*</span>
+<span style="color:#898887;">;* No copyright ©1998 RES® * FREEWARE *</span>
+<span style="color:#898887;">;*</span>
+<span style="color:#898887;">;* NOTE: Connect a low current LED with a 1k resistor in serie from </span>
+<span style="color:#898887;">;*	 Vdd to pin 11 of the MCU. (Or a normal LED with a 330ohm)</span>
+<span style="color:#898887;">;*									   </span>
+<span style="color:#898887;">;* RES® can be reached by email: digitalaudio@mail.com		   </span>
+<span style="color:#898887;">;* or visit the website: http://home.wanadoo.nl/electro1/avr</span>
+<span style="color:#898887;">;*</span>
+<span style="color:#898887;">;* Version           :1.0 					   </span>
+<span style="color:#898887;">;* Date		     :12/26/98</span>
+<span style="color:#898887;">;* Author	     :Rob's ElectroSoft®</span>
+<span style="color:#898887;">;* Target MCU        :AT90S1200-12PI@4MHz					   </span>
+<span style="color:#898887;">;********************************************************************</span>
+
+.include <span style="color:#bf0303;">&quot;1200def.inc&quot;</span>
+
+	<span style="font-weight:bold;">rjmp</span>	RESET		<span style="color:#898887;">;reset handle</span>
+
+
+<span style="color:#898887;">;* Long delay </span>
+
+<span style="color:#898887;">;* Register variables</span>
+
+	.def  T1      = r1
+	.def  T2      = r2
+	.def  temp    = r19
+
+<span style="color:#898887;">;* Code</span>
+	    
+<span style="color:#644a9b;">longDelay:</span>      
+	<span style="font-weight:bold;">clr</span>   T1		<span style="color:#898887;">;T1 used as delay 2nd count</span>
+	<span style="font-weight:bold;">clr</span>   T2		<span style="color:#898887;">;T2 used as delay 3d count</span>
+<span style="color:#644a9b;">delay_1:</span>    
+	<span style="font-weight:bold;">dec</span>   T2
+	<span style="font-weight:bold;">brne</span>  delay_1            
+	<span style="font-weight:bold;">dec</span>   T1
+	<span style="font-weight:bold;">brne</span>  delay_1           
+	<span style="font-weight:bold;">dec</span>   temp		<span style="color:#898887;">;temp must be preset as </span>
+	<span style="font-weight:bold;">brne</span>  delay_1		<span style="color:#898887;">; delay master count</span>
+	<span style="font-weight:bold;">ret</span>                     
+
+
+<span style="color:#898887;">;* Resets the data direction register D</span>
+
+<span style="color:#898887;">;* Defines</span>
+
+	.equ  led   = <span style="color:#b08000;">6</span>		<span style="color:#898887;">;LED at PD6</span>
+
+<span style="color:#898887;">;* Code</span>
+
+<span style="color:#644a9b;">RESET:</span>
+	<span style="font-weight:bold;">sbi</span>   DDRD, led		<span style="color:#898887;">;connect LED to PORTD pin 6</span>
+	    
+
+<span style="color:#898887;">;* Main program</span>
+
+<span style="color:#898887;">;* This part will let the LED go on and off by X</span>
+
+<span style="color:#898887;">;* Register variables</span>
+
+	.equ  X   =  <span style="color:#b08000;">10</span> 	<span style="color:#898887;">;enter delaytime X</span>
+
+<span style="color:#644a9b;">flash:</span> 
+	<span style="font-weight:bold;">sbi</span>   PORTD, led	<span style="color:#898887;">;LED on</span>
+	<span style="font-weight:bold;">ldi</span>   temp, X		<span style="color:#898887;">;X sec delay           </span>
+	<span style="font-weight:bold;">rcall</span> longDelay             
+	<span style="font-weight:bold;">cbi</span>   PORTD, led	<span style="color:#898887;">;LED off            </span>
+	<span style="font-weight:bold;">ldi</span>   temp, X		<span style="color:#898887;">;X sec delay</span>
+	<span style="font-weight:bold;">rcall</span> longDelay
+	<span style="font-weight:bold;">rjmp</span>  flash		<span style="color:#898887;">;another run</span>
+</pre></body></html>

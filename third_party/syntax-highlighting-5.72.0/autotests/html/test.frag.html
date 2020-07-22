@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title>test.frag</title>
+<meta name="generator" content="KF5::SyntaxHighlighting (GLSL)"/>
+</head><body style="color:#1f1c1b"><pre>
+<span style="color:#006e28;">#version 330 core</span>
+
+<span style="color:#898887;">// single line comment</span>
+
+<span style="color:#898887;">/* single line commonet */</span>
+
+<span style="color:#898887;">/*</span>
+<span style="color:#898887;"> multi line comment</span>
+<span style="color:#898887;"> */</span>
+
+<span style="color:#0057ae;">in</span> ColorFormat {
+    <span style="color:#0057ae;">vec3</span> color;
+} fs_in;
+
+<span style="color:#0057ae;">out</span> <span style="color:#0057ae;">vec4</span> fragColor;
+
+<span style="color:#0057ae;">vec3</span> <span style="color:#644a9b;">fun</span>(<span style="color:#0057ae;">const</span> <span style="color:#0057ae;">in</span> <span style="color:#0057ae;">vec3</span> foo) {
+    foo[<span style="color:#b08000;">2</span>] = foo.<span style="color:#644a9b;">x</span>;
+
+    <span style="font-weight:bold;">return</span> foo;
+}
+
+<span style="color:#0057ae;">void</span> <span style="color:#644a9b;">main</span>()
+{
+    fragColor = <span style="color:#0057ae;">vec4</span>( fs_in.<span style="color:#644a9b;">color</span>, <span style="color:#b08000;">1.0</span> );
+}
+</pre></body></html>

@@ -1,0 +1,186 @@
+<Comment>; This is a test file to test kates scheme highlighting</Comment><br/>
+<Comment>; This is a comment</Comment><br/>
+<Normal></Normal><br/>
+<Comment>;; Another comment, usually used.</Comment><br/>
+<Region Marker>;BEGIN region marker</Region Marker><br/>
+<Comment>;; a vektor</Comment><br/>
+<Normal>#</Normal><Brackets1>(</Brackets1><Decimal>1</Decimal><Normal> </Normal><Decimal>2</Decimal><Normal> </Normal><Decimal>3</Decimal><Normal> </Normal><Decimal>4</Decimal><Normal> </Normal><Decimal>5</Decimal><Brackets1>)</Brackets1><br/>
+<Region Marker>;END region marker</Region Marker><br/>
+<Comment>;; this represents integer 28 (FIXME: does not work perfectly atm!)</Comment><br/>
+<Decimal>28</Decimal><Normal> </Normal><Decimal>028</Decimal><Normal> </Normal><Char>#e</Char><Decimal>28</Decimal><Normal> </Normal><Char>#i</Char><Decimal>28</Decimal><Normal>       </Normal><Comment>;; Normal, normal, exact, inexact</Comment><br/>
+<Char>#b</Char><Decimal>11100</Decimal><Normal> </Normal><Char>#o</Char><Decimal>34</Decimal><Normal> </Normal><Char>#d</Char><Decimal>28</Decimal><Normal> </Normal><Char>#x</Char><Decimal>1</Decimal><Normal>c </Normal><Comment>;; Bin, okt, dec, hex</Comment><br/>
+<Char>#o</Char><Normal>e</Normal><Decimal>34</Decimal><Normal> </Normal><Char>#e</Char><Normal>o</Normal><Decimal>34</Decimal><Normal>            </Normal><Comment>;; combined.</Comment><br/>
+<Normal></Normal><br/>
+<Comment>;; char.</Comment><br/>
+<Brackets1>(</Brackets1><Char>#\y</Char><Normal> </Normal><Char>#\space</Char><Brackets1>)</Brackets1><Normal> </Normal><Comment>;; list: `y' space.</Comment><br/>
+<Brackets1>(</Brackets1><Char>#\ </Char><Normal> </Normal><Char>#\\</Char><Normal> </Normal><Char>#\)</Char><Brackets1>)</Brackets1><Normal> </Normal><Comment>;; list of spaces, backslash and`)'.</Comment><br/>
+<Char>#\newline</Char><Normal>     </Normal><Comment>;; a newline-char</Comment><br/>
+<Char>#\N</Char><Normal>ewLine     </Normal><Comment>;; another one :)</Comment><br/>
+<Normal></Normal><br/>
+<String>"Hello, world"</String><Normal> </Normal><Comment>;; a string</Comment><br/>
+<Normal></Normal><br/>
+<String>"hoho, what do you</String><br/>
+<String>want to do  ;; this is NO comment</String><br/>
+<String>with that?"</String><br/>
+<Normal></Normal><br/>
+<Comment>;; R5RS definiert diese beiden.</Comment><br/>
+<String>"Das ist </String><Char>\"</Char><String>in Anführungszeichen</String><Char>\"</Char><String> und mit </String><Char>\\</Char><String> Backslash."</String><br/>
+<Normal></Normal><br/>
+<Brackets1>(</Brackets1><Keyword>let</Keyword><Normal> </Normal><Brackets2>(</Brackets2><Brackets3>(</Brackets3><Normal>x </Normal><Brackets4>(</Brackets4><Operator>+</Operator><Normal> </Normal><Decimal>1</Decimal><Normal> </Normal><Decimal>2</Decimal><Brackets4>)</Brackets4><Brackets3>)</Brackets3><Normal> </Normal><Brackets3>(</Brackets3><Normal>y </Normal><String>"blah"</String><Brackets3>)</Brackets3><Brackets2>)</Brackets2><Normal> </Normal><Comment>;; `let' highlighting.</Comment><br/>
+<Normal>  </Normal><Brackets2>(</Brackets2><Keyword>and</Keyword><Normal> </Normal><Brackets3>(</Brackets3><Keyword>number?</Keyword><Normal> x</Normal><Brackets3>)</Brackets3><Normal>            </Normal><Comment>;; `and' highlighting.</Comment><br/>
+<Normal>       </Normal><Brackets3>(</Brackets3><Keyword>string?</Keyword><Normal> y</Normal><Brackets3>)</Brackets3><Brackets2>)</Brackets2><Brackets1>)</Brackets1><br/>
+<Normal></Normal><br/>
+<Brackets1>(</Brackets1><Keyword>let*</Keyword><Normal> </Normal><Brackets2>(</Brackets2><Brackets3>(</Brackets3><Normal>x </Normal><Decimal>2</Decimal><Brackets3>)</Brackets3><Normal> </Normal><Brackets3>(</Brackets3><Normal>y </Normal><Brackets4>(</Brackets4><Operator>+</Operator><Normal> x </Normal><Decimal>1</Decimal><Brackets4>)</Brackets4><Brackets3>)</Brackets3><Brackets2>)</Brackets2><Normal> </Normal><Comment>;; `let*' too.</Comment><br/>
+<Normal>  </Normal><Brackets2>(</Brackets2><Keyword>or</Keyword><Normal> </Normal><Brackets3>(</Brackets3><Keyword>negative?</Keyword><Normal> x</Normal><Brackets3>)</Brackets3><Normal>       </Normal><Comment>;; `or' anyways.</Comment><br/>
+<Normal>      </Normal><Brackets3>(</Brackets3><Keyword>negative?</Keyword><Normal> y</Normal><Brackets3>)</Brackets3><Brackets2>)</Brackets2><Brackets1>)</Brackets1><br/>
+<Normal></Normal><br/>
+<Brackets1>(</Brackets1><Keyword>do</Keyword><Normal> </Normal><Brackets2>(</Brackets2><Brackets3>(</Brackets3><Normal>vec </Normal><Brackets4>(</Brackets4><Keyword>make-vector</Keyword><Normal> </Normal><Decimal>5</Decimal><Brackets4>)</Brackets4><Brackets3>)</Brackets3><Normal> </Normal><Comment>;; `do' you may guess!</Comment><br/>
+<Normal>     </Normal><Brackets3>(</Brackets3><Normal>i </Normal><Decimal>0</Decimal><Normal> </Normal><Brackets4>(</Brackets4><Operator>+</Operator><Normal> i </Normal><Decimal>1</Decimal><Brackets4>)</Brackets4><Brackets3>)</Brackets3><Brackets2>)</Brackets2><br/>
+<Normal>    </Normal><Brackets2>(</Brackets2><Brackets3>(</Brackets3><Operator>=</Operator><Normal> i </Normal><Decimal>5</Decimal><Brackets3>)</Brackets3><Normal> vec</Normal><Brackets2>)</Brackets2><br/>
+<Normal>  </Normal><Brackets2>(</Brackets2><Keyword>vector-set!</Keyword><Normal> vec i i</Normal><Brackets2>)</Brackets2><Brackets1>)</Brackets1><br/>
+<Normal></Normal><br/>
+<Brackets1>(</Brackets1><Normal>quasiquote </Normal><Brackets2>(</Brackets2><Brackets3>(</Brackets3><Operator>+</Operator><Normal> </Normal><Decimal>1</Decimal><Normal> </Normal><Decimal>2</Decimal><Brackets3>)</Brackets3><Normal> </Normal><Brackets3>(</Brackets3><Normal>unquote </Normal><Brackets4>(</Brackets4><Operator>+</Operator><Normal> </Normal><Decimal>1</Decimal><Normal> </Normal><Decimal>2</Decimal><Brackets4>)</Brackets4><Brackets3>)</Brackets3><Brackets2>)</Brackets2><Brackets1>)</Brackets1><br/>
+<Comment>;; same as: `((+ 1 2) ,(+ 1 2))</Comment><br/>
+<Normal></Normal><br/>
+<Comment>;; see above.</Comment><br/>
+<Brackets1>(</Brackets1><Normal>quasiquote </Normal><Brackets2>(</Brackets2><Brackets3>(</Brackets3><Operator>+</Operator><Normal> </Normal><Decimal>1</Decimal><Normal> </Normal><Decimal>2</Decimal><Brackets3>)</Brackets3><Normal> </Normal><Brackets3>(</Brackets3><Normal>unquote-splicing </Normal><Brackets4>(</Brackets4><Keyword>list</Keyword><Normal> </Normal><Decimal>1</Decimal><Normal> </Normal><Decimal>2</Decimal><Normal> </Normal><Decimal>3</Decimal><Brackets4>)</Brackets4><Brackets3>)</Brackets3><Brackets2>)</Brackets2><Brackets1>)</Brackets1><br/>
+<Comment>;; same as: `((+ 1 2) ,@(+ 1 2))</Comment><br/>
+<Normal></Normal><br/>
+<Comment>;; not necessary.</Comment><br/>
+<Brackets1>(</Brackets1><Normal>quote </Normal><Brackets2>()</Brackets2><Brackets1>)</Brackets1><br/>
+<Normal></Normal><br/>
+<Brackets1>(</Brackets1><Keyword>cond</Keyword><Normal> </Normal><Brackets2>(</Brackets2><Brackets3>(</Brackets3><Keyword>string?</Keyword><Normal> x</Normal><Brackets3>)</Brackets3><Normal> </Normal><Brackets3>(</Brackets3><Keyword>string->symbol</Keyword><Normal> x</Normal><Brackets3>)</Brackets3><Brackets2>)</Brackets2><Normal> </Normal><Comment>;; `cond' highlighting.</Comment><br/>
+<Normal>      </Normal><Brackets2>(</Brackets2><Brackets3>(</Brackets3><Keyword>symbol?</Keyword><Normal> x</Normal><Brackets3>)</Brackets3><Normal> </Normal><Operator>=></Operator><Normal> </Normal><Brackets3>(</Brackets3><Keyword>lambda</Keyword><Normal> </Normal><Brackets4>(</Brackets4><Normal>x</Normal><Brackets4>)</Brackets4><Normal> x</Normal><Brackets3>)</Brackets3><Brackets2>)</Brackets2><Normal>  </Normal><Comment>;; `=>' highlighting.</Comment><br/>
+<Normal>      </Normal><Brackets2>(</Brackets2><Keyword>else</Keyword><Normal> </Normal><Comment>;; `else' highlighting.</Comment><br/>
+<Normal>       </Normal><Brackets3>(</Brackets3><Normal>error </Normal><String>"Blah"</String><Brackets3>)</Brackets3><Brackets2>)</Brackets2><Brackets1>)</Brackets1><br/>
+<Normal></Normal><br/>
+<Brackets1>(</Brackets1><Keyword>case</Keyword><Normal> x </Normal><Comment>;; `case' highlighting.</Comment><br/>
+<Normal>  </Normal><Brackets2>(</Brackets2><Brackets3>(</Brackets3><Decimal>#t</Decimal><Brackets3>)</Brackets3><Normal> 'true</Normal><Brackets2>)</Brackets2><Normal> </Normal><Brackets2>(</Brackets2><Brackets3>(</Brackets3><Decimal>#f</Decimal><Brackets3>)</Brackets3><Normal> 'false</Normal><Brackets2>)</Brackets2><br/>
+<Normal>  </Normal><Brackets2>(</Brackets2><Brackets3>(</Brackets3><Brackets4>()</Brackets4><Brackets3>)</Brackets3><Normal> 'null</Normal><Brackets2>)</Brackets2><br/>
+<Normal>  </Normal><Brackets2>(</Brackets2><Brackets3>(</Brackets3><Decimal>0</Decimal><Brackets3>)</Brackets3><Normal> 'zero</Normal><Brackets2>)</Brackets2><Brackets1>)</Brackets1><br/>
+<Normal></Normal><br/>
+<Comment>;; highlight `let-syntax' and `syntax-rules' .</Comment><br/>
+<Brackets1>(</Brackets1><Keyword>let-syntax</Keyword><Normal> </Normal><Brackets2>(</Brackets2><Brackets3>(</Brackets3><Normal>when </Normal><Brackets4>(</Brackets4><Keyword>syntax-rules</Keyword><Normal> </Normal><Brackets5>()</Brackets5><br/>
+<Normal>                     </Normal><Brackets5>(</Brackets5><Brackets6>(</Brackets6><Normal>when test stmt1 stmt2 ...</Normal><Brackets6>)</Brackets6><br/>
+<Normal>                      </Normal><Comment>;; hl `begin' .</Comment><br/>
+<Normal>                      </Normal><Brackets6>(</Brackets6><Keyword>if</Keyword><Normal> test </Normal><Brackets1>(</Brackets1><Keyword>begin</Keyword><Normal> stmt1 stmt2 ...</Normal><Brackets1>)</Brackets1><Brackets6>)</Brackets6><Brackets5>)</Brackets5><Brackets4>)</Brackets4><Brackets3>)</Brackets3><Brackets2>)</Brackets2><br/>
+<Normal>  </Normal><Brackets2>(</Brackets2><Keyword>let</Keyword><Normal> </Normal><Brackets3>(</Brackets3><Brackets4>(</Brackets4><Keyword>if</Keyword><Normal> </Normal><Decimal>#t</Decimal><Brackets4>)</Brackets4><Brackets3>)</Brackets3><Normal> </Normal><Comment>;; here`if' is actually no keyword.</Comment><br/>
+<Normal>    </Normal><Brackets3>(</Brackets3><Normal>when </Normal><Keyword>if</Keyword><Normal> </Normal><Brackets4>(</Brackets4><Normal>set! </Normal><Keyword>if</Keyword><Normal> 'now</Normal><Brackets4>)</Brackets4><Brackets3>)</Brackets3><Normal> </Normal><Comment>;; nor here.</Comment><br/>
+<Normal>    </Normal><Keyword>if</Keyword><Brackets2>)</Brackets2><Brackets1>)</Brackets1><br/>
+<Normal></Normal><br/>
+<Brackets1>(</Brackets1><Keyword>letrec-syntax</Keyword><Normal> ...</Normal><Brackets1>)</Brackets1><Normal> </Normal><Comment>;; hl `letrec-syntax'.</Comment><br/>
+<Normal></Normal><br/>
+<Brackets1>(</Brackets1><Definition>define-syntax</Definition><Function> when</Function><br/>
+<Normal>  </Normal><Brackets2>(</Brackets2><Keyword>syntax-rules</Keyword><Normal> </Normal><Brackets3>()</Brackets3><br/>
+<Normal>    </Normal><Brackets3>(</Brackets3><Brackets4>(</Brackets4><Normal>when test stmt1 stmt2 ...</Normal><Brackets4>)</Brackets4><br/>
+<Normal>     </Normal><Brackets4>(</Brackets4><Keyword>if</Keyword><Normal> test </Normal><Brackets5>(</Brackets5><Keyword>begin</Keyword><Normal> stmt1 stmt2 ...</Normal><Brackets5>)</Brackets5><Brackets4>)</Brackets4><Brackets3>)</Brackets3><Brackets2>)</Brackets2><Brackets1>)</Brackets1><Normal>)</Normal><br/>
+<Normal></Normal><br/>
+<Comment>;; variable definitions.</Comment><br/>
+<Brackets1>(</Brackets1><Definition>define</Definition><Function> natural-numbers </Function><Comment>;; hl `define' and the var name</Comment><br/>
+<Normal>  </Normal><Comment>;; endless stream of all natual numbers.</Comment><br/>
+<Normal>  </Normal><Brackets2>(</Brackets2><Keyword>letrec</Keyword><Normal> </Normal><Brackets3>(</Brackets3><Brackets4>(</Brackets4><Normal>next-cell    </Normal><Comment>;; hl `letrec'.</Comment><br/>
+<Normal>            </Normal><Brackets5>(</Brackets5><Keyword>lambda</Keyword><Normal> </Normal><Brackets6>(</Brackets6><Normal>x</Normal><Brackets6>)</Brackets6><Normal>  </Normal><Comment>;; hl `lambda'.</Comment><br/>
+<Normal>              </Normal><Comment>;; hl `delay' .</Comment><br/>
+<Normal>              </Normal><Brackets6>(</Brackets6><Keyword>cons</Keyword><Normal> x </Normal><Brackets1>(</Brackets1><Normal>delay </Normal><Brackets2>(</Brackets2><Normal>next-cell </Normal><Brackets3>(</Brackets3><Operator>+</Operator><Normal> x </Normal><Decimal>1</Decimal><Brackets3>)</Brackets3><Brackets2>)</Brackets2><Brackets1>)</Brackets1><Brackets6>)</Brackets6><Brackets5>)</Brackets5><Brackets4>)</Brackets4><Brackets3>)</Brackets3><br/>
+<Normal>    </Normal><Brackets3>(</Brackets3><Normal>next-cell </Normal><Decimal>0</Decimal><Brackets3>)</Brackets3><Brackets2>)</Brackets2><Brackets1>)</Brackets1><br/>
+<Normal></Normal><br/>
+<Comment>;; a procedure with unusual but allowed name.</Comment><br/>
+<Brackets1>(</Brackets1><Definition>define</Definition><Function> 1+</Function><br/>
+<Normal>  </Normal><Brackets2>(</Brackets2><Keyword>lambda</Keyword><Normal> </Normal><Brackets3>(</Brackets3><Normal>x</Normal><Brackets3>)</Brackets3><br/>
+<Normal>    </Normal><Brackets3>(</Brackets3><Operator>+</Operator><Normal> x </Normal><Decimal>1</Decimal><Brackets3>)</Brackets3><Brackets2>)</Brackets2><Brackets1>)</Brackets1><br/>
+<Normal></Normal><br/>
+<Comment>;; a predicate</Comment><br/>
+<Brackets1>(</Brackets1><Definition>define</Definition><Function> between</Function><Normal>?</Normal><br/>
+<Normal>  </Normal><Brackets2>(</Brackets2><Keyword>lambda</Keyword><Normal> </Normal><Brackets3>(</Brackets3><Normal>x y z</Normal><Brackets3>)</Brackets3><br/>
+<Normal>    </Normal><Brackets3>(</Brackets3><Keyword>if</Keyword><Normal> </Normal><Brackets4>(</Brackets4><Keyword>and</Keyword><Normal> </Normal><Brackets5>(</Brackets5><Operator>>=</Operator><Normal> x y</Normal><Brackets5>)</Brackets5><Normal> </Normal><Brackets5>(</Brackets5><Operator><=</Operator><Normal> x z</Normal><Brackets5>)</Brackets5><Brackets4>)</Brackets4><br/>
+<Normal>        </Normal><Decimal>#t</Decimal><Normal> </Normal><Comment>;; True</Comment><br/>
+<Normal>      </Normal><Decimal>#f</Decimal><Brackets3>)</Brackets3><Brackets2>)</Brackets2><Brackets1>)</Brackets1><Normal> </Normal><Comment>;; False.</Comment><br/>
+<Normal></Normal><br/>
+<Comment>;; imperative procedure</Comment><br/>
+<Brackets1>(</Brackets1><Definition>define</Definition><Function> set-something</Function><Normal>!</Normal><br/>
+<Normal>  </Normal><Brackets2>(</Brackets2><Keyword>lambda</Keyword><Normal> </Normal><Brackets3>(</Brackets3><Normal>required-argument another-one . all-remaining-args</Normal><Brackets3>)</Brackets3><br/>
+<Normal>    </Normal><Brackets3>(</Brackets3><Keyword>set-car!</Keyword><Normal> another-one </Normal><Brackets4>(</Brackets4><Keyword>lambda</Keyword><Normal> all-args</Normal><br/>
+<Normal>                            </Normal><Brackets5>(</Brackets5><Keyword>set-cdr!</Keyword><Normal> required-argument</Normal><br/>
+<Normal>                                      </Normal><Brackets6>(</Brackets6><Keyword>append</Keyword><Normal> all-remaining-args</Normal><br/>
+<Normal>                                              all-args</Normal><Brackets6>)</Brackets6><Brackets5>)</Brackets5><Brackets4>)</Brackets4><Brackets3>)</Brackets3><Brackets2>)</Brackets2><Brackets1>)</Brackets1><br/>
+<Normal></Normal><br/>
+<Brackets1>(</Brackets1><Definition>define</Definition><Function> compose</Function><br/>
+<Normal>  </Normal><Brackets2>(</Brackets2><Keyword>lambda</Keyword><Normal> </Normal><Brackets3>(</Brackets3><Normal>f g</Normal><Brackets3>)</Brackets3><br/>
+<Normal>    </Normal><Brackets3>(</Brackets3><Keyword>lambda</Keyword><Normal> </Normal><Brackets4>(</Brackets4><Normal>x</Normal><Brackets4>)</Brackets4><br/>
+<Normal>      </Normal><Brackets4>(</Brackets4><Normal>f </Normal><Brackets5>(</Brackets5><Normal>g x</Normal><Brackets5>)</Brackets5><Brackets4>)</Brackets4><Brackets3>)</Brackets3><Brackets2>)</Brackets2><Brackets1>)</Brackets1><br/>
+<Normal></Normal><br/>
+<Comment>;; syntactical sugar for procedure-definitions.</Comment><br/>
+<Brackets1>(</Brackets1><Definition>define</Definition><Function> </Function><Brackets2>(</Brackets2><Normal>compose f g</Normal><Brackets2>)</Brackets2><br/>
+<Normal>  </Normal><Brackets2>(</Brackets2><Keyword>lambda</Keyword><Normal> </Normal><Brackets3>(</Brackets3><Normal>x</Normal><Brackets3>)</Brackets3><br/>
+<Normal>    </Normal><Brackets3>(</Brackets3><Normal>f </Normal><Brackets4>(</Brackets4><Normal>g x</Normal><Brackets4>)</Brackets4><Brackets3>)</Brackets3><Brackets2>)</Brackets2><Brackets1>)</Brackets1><br/>
+<Normal></Normal><br/>
+<Comment>;;;;;;;;;;;;;;;;;;;;;;;;;;;</Comment><br/>
+<Comment>;; NOW: Guile extensions ;;</Comment><br/>
+<Comment>;;;;;;;;;;;;;;;;;;;;;;;;;;;</Comment><br/>
+<Normal></Normal><br/>
+<Comment>;; procedure-generator.</Comment><br/>
+<Brackets1>(</Brackets1><Definition>define</Definition><Function> </Function><Brackets2>(</Brackets2><Brackets3>(</Brackets3><Normal>compose f g</Normal><Brackets3>)</Brackets3><Normal> x</Normal><Brackets2>)</Brackets2><br/>
+<Normal>  </Normal><Brackets2>(</Brackets2><Normal>f </Normal><Brackets3>(</Brackets3><Normal>g x</Normal><Brackets3>)</Brackets3><Brackets2>)</Brackets2><Brackets1>)</Brackets1><br/>
+<Normal></Normal><br/>
+<Comment>;; scheme doesn't say, which chars may be in variables...</Comment><br/>
+<Comment>;; At least: Guile accepts umlauts</Comment><br/>
+<Brackets1>(</Brackets1><Definition>define-private</Definition><Function> </Function><Brackets2>(</Brackets2><Normal>timetr??? sprache</Normal><Brackets2>)</Brackets2><Normal> </Normal><Comment>;; hl `define-private'.</Comment><br/>
+<Normal>  </Normal><Brackets2>(</Brackets2><Normal>list-dialekt? sprache</Normal><Brackets2>)</Brackets2><Brackets1>)</Brackets1><br/>
+<Normal></Normal><br/>
+<Brackets1>(</Brackets1><Definition>define-public</Definition><Function> x </Function><Decimal>#t</Decimal><Brackets1>)</Brackets1><Normal>  </Normal><Comment>;; hl `define-public'.</Comment><br/>
+<Brackets1>(</Brackets1><Definition>define-module</Definition><Function> </Function><Brackets2>(</Brackets2><Normal>foo bar</Normal><Brackets2>)</Brackets2><Brackets1>)</Brackets1><Normal> </Normal><Comment>;; hl `define-module'.</Comment><br/>
+<Brackets1>(</Brackets1><Definition>define-macro</Definition><Function> </Function><Brackets2>(</Brackets2><Normal>neither . exprs</Normal><Brackets2>)</Brackets2><Normal> </Normal><Comment>;; hl `define-macro'.</Comment><br/>
+<Normal>  `</Normal><Brackets2>(</Brackets2><Keyword>and</Keyword><Normal> ,@</Normal><Brackets3>(</Brackets3><Normal>map </Normal><Brackets4>(</Brackets4><Keyword>lambda</Keyword><Normal> </Normal><Brackets5>(</Brackets5><Normal>x</Normal><Brackets5>)</Brackets5><Normal> `</Normal><Brackets5>(</Brackets5><Keyword>not</Keyword><Normal> ,x</Normal><Brackets5>)</Brackets5><Brackets4>)</Brackets4><Normal> exprs</Normal><Brackets3>)</Brackets3><Brackets2>)</Brackets2><Brackets1>)</Brackets1><br/>
+<Normal></Normal><br/>
+<Brackets1>(</Brackets1><Definition>defmacro</Definition><Function> neither </Function><Normal>exprs </Normal><Comment>;; `defmacro' as well.</Comment><br/>
+<Normal>  `</Normal><Brackets2>(</Brackets2><Keyword>and</Keyword><Normal> ,@</Normal><Brackets3>(</Brackets3><Normal>map </Normal><Brackets4>(</Brackets4><Keyword>lambda</Keyword><Normal> </Normal><Brackets5>(</Brackets5><Normal>x</Normal><Brackets5>)</Brackets5><Normal> `</Normal><Brackets5>(</Brackets5><Keyword>not</Keyword><Normal> ,x</Normal><Brackets5>)</Brackets5><Brackets4>)</Brackets4><Normal> exprs</Normal><Brackets3>)</Brackets3><Brackets2>)</Brackets2><Brackets1>)</Brackets1><br/>
+<Normal></Normal><br/>
+<Comment>;; hl, but I really don't know what this is supposed to do :-)</Comment><br/>
+<Brackets1>(</Brackets1><Definition>define-syntax-macro</Definition><Function> </Function><Normal>...</Normal><Brackets1>)</Brackets1><br/>
+<Normal></Normal><br/>
+<Comment>;; hl GOOPS-`defines'</Comment><br/>
+<Brackets1>(</Brackets1><Definition>define-method</Definition><Function> </Function><Brackets2>(</Brackets2><Normal>foo bar </Normal><Brackets3>(</Brackets3><Normal>baz <vector></Normal><Brackets3>)</Brackets3><Normal> qux</Normal><Brackets2>)</Brackets2><Normal> ...</Normal><Brackets1>)</Brackets1><br/>
+<Brackets1>(</Brackets1><Definition>define-class</Definition><Function> <foo> </Function><Normal>...</Normal><Brackets1>)</Brackets1><br/>
+<Brackets1>(</Brackets1><Definition>define-generic</Definition><Function> foo</Function><Brackets1>)</Brackets1><br/>
+<Brackets1>(</Brackets1><Definition>define-accessor</Definition><Function> bar</Function><Brackets1>)</Brackets1><br/>
+<Normal></Normal><br/>
+<Comment>;; Keywords!</Comment><br/>
+<Brackets1>(</Brackets1><Normal>blah #:foo </Normal><Decimal>33</Decimal><Normal> #:bar </Normal><Decimal>44</Decimal><Brackets1>)</Brackets1><br/>
+<Normal></Normal><br/>
+<Comment>;; another convention for symbols:</Comment><br/>
+<Normal>#{foo}#</Normal><br/>
+<Normal></Normal><br/>
+<Normal>#{a</Normal><br/>
+<Normal>few</Normal><br/>
+<Normal>lines}#</Normal><br/>
+<Normal></Normal><br/>
+<Normal>#{</Normal><Decimal>4711</Decimal><Normal>}#</Normal><br/>
+<Normal></Normal><br/>
+<Comment>;; more chars.</Comment><br/>
+<Char>#\nul</Char><Normal> </Normal><Char>#\nl</Char><Normal> </Normal><Char>#\esc</Char><Normal> </Normal><Char>#\bs</Char><Normal> </Normal><Char>#\bel</Char><Normal> </Normal><Char>#\syn</Char><Normal> </Normal><Char>#\ack</Char><Normal> </Normal><Char>#\sp</Char><Normal> </Normal><Comment>;; etc, utc, itc, oops (this is boring)</Comment><br/>
+<Normal></Normal><br/>
+<Comment>#!</Comment><br/>
+<Comment> guile block-comment.</Comment><br/>
+<Comment>!#</Comment><br/>
+<Normal></Normal><br/>
+<Comment>;; now, a bit hairy:</Comment><br/>
+<Comment>#! comment !#</Comment><br/>
+<Comment>still comment!!!</Comment><br/>
+<Comment>!#</Comment><br/>
+<Normal>'now-no-comment-anymore</Normal><br/>
+<Normal></Normal><br/>
+<Comment>;; more precise:</Comment><br/>
+<Comment>#! comment !#</Comment><br/>
+<Comment>still comment</Comment><br/>
+<Comment>!# still comment!</Comment><br/>
+<Comment>!#</Comment><br/>
+<Normal>'now-no-comment-anymore</Normal><br/>
+<Normal></Normal><br/>
+<Brackets1>(</Brackets1><Keyword>while</Keyword><Normal> </Normal><Brackets2>(</Brackets2><Operator>></Operator><Normal> foo </Normal><Decimal>10</Decimal><Brackets2>)</Brackets2><Normal> </Normal><Comment>;; Highlight `while'.</Comment><br/>
+<Normal>  </Normal><Brackets2>(</Brackets2><Normal>set! foo </Normal><Brackets3>(</Brackets3><Operator>-</Operator><Normal> foo </Normal><Decimal>1</Decimal><Brackets3>)</Brackets3><Brackets2>)</Brackets2><br/>
+<Normal>  </Normal><Brackets2>(</Brackets2><Keyword>catch</Keyword><Normal> </Normal><Decimal>#t</Decimal><Normal> </Normal><Comment>;; Highlight `catch'.</Comment><br/>
+<Normal>    </Normal><Brackets3>(</Brackets3><Keyword>lambda</Keyword><Normal> </Normal><Brackets4>()</Brackets4><Normal> </Normal><Brackets4>(</Brackets4><Keyword>display</Keyword><Normal> foo</Normal><Brackets4>)</Brackets4><Brackets3>)</Brackets3><br/>
+<Normal>    </Normal><Brackets3>(</Brackets3><Keyword>lambda</Keyword><Normal> </Normal><Brackets4>(</Brackets4><Normal>key . args</Normal><Brackets4>)</Brackets4><br/>
+<Normal>      </Normal><Brackets4>(</Brackets4><Keyword>if</Keyword><Normal> </Normal><Brackets5>(</Brackets5><Keyword>eq?</Keyword><Normal> key 'system-error</Normal><Brackets5>)</Brackets5><br/>
+<Normal>          </Normal><Brackets5>(</Brackets5><Keyword>break</Keyword><Brackets5>)</Brackets5><Normal> </Normal><Comment>;; Highlight `break'.</Comment><br/>
+<Normal>        </Normal><Brackets5>(</Brackets5><Keyword>continue</Keyword><Brackets5>)</Brackets5><Brackets4>)</Brackets4><Brackets3>)</Brackets3><Brackets2>)</Brackets2><Brackets1>)</Brackets1><Normal> </Normal><Comment>;; Highlight `continue'.</Comment><br/>

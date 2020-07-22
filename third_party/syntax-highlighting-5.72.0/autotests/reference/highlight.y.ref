@@ -1,0 +1,95 @@
+<Comment>/* Yacc / Bison hl test file.</Comment><br/>
+<Comment> * It won't compile :-) Sure !</Comment><br/>
+<Comment> */</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Content-Type Delimiter>%{</Content-Type Delimiter><br/>
+<Normal Text></Normal Text><br/>
+<Preprocessor>#include </Preprocessor><Prep. Lib><iostream></Prep. Lib><br/>
+<Keyword>using</Keyword><Normal Text> </Normal Text><Keyword>namespace</Keyword><Normal Text> std</Normal Text><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Type Modifiers>extern</Type Modifiers><Normal Text> KateParser </Normal Text><Symbol>*</Symbol><Normal Text>parser</Normal Text><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Content-Type Delimiter>%}</Content-Type Delimiter><br/>
+<Normal Text></Normal Text><br/>
+<Directive>%locations</Directive><br/>
+<Normal Text></Normal Text><br/>
+<Directive>%union</Directive><Normal Text> { </Normal Text><br/>
+<Normal Text>   </Normal Text><Data Type>int</Data Type><Normal Text> int_val</Normal Text><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text>   </Normal Text><Data Type>double</Data Type><Normal Text> double_val</Normal Text><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text>   </Normal Text><Data Type>bool</Data Type><Normal Text> bool_val</Normal Text><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text>   </Normal Text><Data Type>char</Data Type><Normal Text> </Normal Text><Symbol>*</Symbol><Normal Text>string_val</Normal Text><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text>   </Normal Text><Data Type>char</Data Type><Normal Text> </Normal Text><Symbol>*</Symbol><Normal Text>ident_val</Normal Text><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text>   </Normal Text><Keyword>struct</Keyword><Normal Text> var </Normal Text><Symbol>*</Symbol><Normal Text>v</Normal Text><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text>   </Normal Text><Data Type>void</Data Type><Normal Text> </Normal Text><Symbol>*</Symbol><Normal Text>ptr</Normal Text><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Directive>%token</Directive><Normal Text> </Normal Text><Data Type><int_val></Data Type><Normal Text>      TOK_NOT_EQUAL  </Normal Text><String>"!="</String><br/>
+<Directive>%token</Directive><Normal Text> </Normal Text><Data Type><int_val></Data Type><Normal Text>      TOK_LESSER_E   </Normal Text><String>"<="</String><br/>
+<Directive>%token</Directive><Normal Text> </Normal Text><Data Type><int_val></Data Type><Normal Text>      TOK_GREATER_E  </Normal Text><String>">="</String><br/>
+<Directive>%token</Directive><Normal Text> </Normal Text><Data Type><int_val></Data Type><Normal Text>      TOK_EQUAL_2    </Normal Text><String>"=="</String><Normal Text> </Normal Text><Comment>//comment</Comment><br/>
+<Directive>%token</Directive><br/>
+<Normal Text>   PERCENT_DEBUG           </Normal Text><String>"%debug"</String><br/>
+<Normal Text>   PERCENT_DEFAULT_PREC    </Normal Text><String>"%default-prec"</String><br/>
+<Normal Text>   PERCENT_DEFINE          </Normal Text><String>"%define"</String><br/>
+<Normal Text>;</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Directive>%type</Directive><Normal Text> </Normal Text><Data Type><int_val></Data Type><Normal Text>       type type_proc</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Directive>%code</Directive><Normal Text> top {</Normal Text><br/>
+<Normal Text>  </Normal Text><Preprocessor>#define </Preprocessor><GNU Macros>_GNU_SOURCE</GNU Macros><br/>
+<Normal Text>  </Normal Text><Preprocessor>#include </Preprocessor><Prep. Lib><stdio.h></Prep. Lib><br/>
+<Normal Text>  </Normal Text><Data Type>int</Data Type><Normal Text> val</Normal Text><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Directive>%destructor</Directive><Normal Text> { free </Normal Text><Symbol>(</Symbol><Directive>$$</Directive><Symbol>)</Symbol><Separator Symbol>;</Separator Symbol><Normal Text> printf </Normal Text><Symbol>(</Symbol><String>"</String><String Char>%d</String Char><String>"</String><Separator Symbol>,</Separator Symbol><Normal Text> </Normal Text><Directive>@$</Directive><Symbol>.</Symbol><Normal Text>first_line</Normal Text><Symbol>)</Symbol><Separator Symbol>;</Separator Symbol><Normal Text> } </Normal Text><Data Type><*></Data Type><br/>
+<Directive>%lex-param</Directive><Normal Text>   {scanner_mode </Normal Text><Symbol>*</Symbol><Normal Text>mode};</Normal Text><br/>
+<Directive>%parse-param</Directive><Normal Text> {</Normal Text><Data Type>int</Data Type><Normal Text> </Normal Text><Symbol>*</Symbol><Normal Text>nastiness} {</Normal Text><Data Type>int</Data Type><Normal Text> </Normal Text><Symbol>*</Symbol><Normal Text>randomness}</Normal Text><br/>
+<Directive>%initial-action</Directive><Normal Text> {</Normal Text><br/>
+<Normal Text>  </Normal Text><Directive>@$</Directive><Symbol>.</Symbol><Normal Text>initialize </Normal Text><Symbol>(</Symbol><Normal Text>file_name</Normal Text><Symbol>)</Symbol><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text>};</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Content-Type Delimiter>%%</Content-Type Delimiter><br/>
+<Rule></Rule><br/>
+<Rule>prog</Rule><Normal Text>:</Normal Text><Definition>                 KW_PROGRAM ident </Definition><Normal Text>{ parser</Normal Text><Symbol>-></Symbol><Normal Text>start</Normal Text><Symbol>(</Symbol><Directive>$2</Directive><Symbol>)</Symbol><Separator Symbol>;</Separator Symbol><Normal Text> }</Normal Text><Definition> prog_beg_glob_decl instructions </Definition><Normal Text>{ parser</Normal Text><Symbol>-></Symbol><Normal Text>endproc</Normal Text><Symbol>(</Symbol><Decimal>0</Decimal><Symbol>)</Symbol><Separator Symbol>;</Separator Symbol><Normal Text> }</Normal Text><Definition> dev_procedures KW_ENDP </Definition><Normal Text>;</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Rule>number</Rule><Normal Text>:</Normal Text><Definition>               integer_number</Definition><br/>
+<Definition>                      </Definition><Normal Text>|</Normal Text><Definition> TOK_DOUBLE</Definition><br/>
+<Definition>                      </Definition><Normal Text>{</Normal Text><br/>
+<Normal Text>                         </Normal Text><Directive>$$</Directive><Normal Text> </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Keyword>new</Keyword><Normal Text> var</Normal Text><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text>                         </Normal Text><Directive>$$</Directive><Symbol>-></Symbol><Normal Text>type </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><CONSTS/MACROS>KW_REEL</CONSTS/MACROS><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text>                         </Normal Text><Directive>$$</Directive><Symbol>-></Symbol><Normal Text>cl </Normal Text><Symbol>=</Symbol><Normal Text> var</Normal Text><Symbol>::</Symbol><CONSTS/MACROS>LITTERAL</CONSTS/MACROS><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text>                         </Normal Text><Directive>$$</Directive><Symbol>-></Symbol><Normal Text>real </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Directive>$</Directive><Data Type><int_val></Data Type><Directive>1</Directive><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text>                      };</Normal Text><br/>
+<Rule>words</Rule><Normal Text>:</Normal Text><br/>
+<Definition>                      </Definition><Directive>%empty</Directive><br/>
+<Definition>                      </Definition><Normal Text>|</Normal Text><Definition> words word</Definition><br/>
+<Definition>                      </Definition><Normal Text>;</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Directive>%type</Directive><Normal Text> </Normal Text><Data Type><type></Data Type><Normal Text> word;</Normal Text><br/>
+<Directive>%printer</Directive><Normal Text> { fprintf </Normal Text><Symbol>(</Symbol><Normal Text>yyo</Normal Text><Separator Symbol>,</Separator Symbol><Normal Text> </Normal Text><String>"</String><String Char>%s</String Char><String>"</String><Separator Symbol>,</Separator Symbol><Normal Text> word_string </Normal Text><Symbol>(</Symbol><Directive>$$</Directive><Symbol>))</Symbol><Separator Symbol>;</Separator Symbol><Normal Text> } </Normal Text><Data Type><type></Data Type><Normal Text>;</Normal Text><br/>
+<Rule>word</Rule><Normal Text>:</Normal Text><br/>
+<Definition>                      </Definition><Directive>%?</Directive><Normal Text>{ boom</Normal Text><Symbol>(</Symbol><Decimal>1</Decimal><Symbol>)</Symbol><Separator Symbol>;</Separator Symbol><Normal Text> }</Normal Text><br/>
+<Definition>                      </Definition><Normal Text>|</Normal Text><Definition> </Definition><String>"hello"</String><Definition>  </Definition><Normal Text>{ </Normal Text><Directive>$$</Directive><Normal Text> </Normal Text><Symbol>=</Symbol><Normal Text> hello</Normal Text><Separator Symbol>;</Separator Symbol><Normal Text> }</Normal Text><br/>
+<Definition>                      </Definition><Normal Text>|</Normal Text><Definition> </Definition><String>"bye"</String><Definition>  </Definition><Normal Text>{ </Normal Text><Directive>$$</Directive><Normal Text> </Normal Text><Symbol>=</Symbol><Normal Text> bye</Normal Text><Separator Symbol>;</Separator Symbol><Normal Text> }</Normal Text><br/>
+<Definition>                      </Definition><Normal Text>;</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Rule>foo</Rule><Normal Text>:</Normal Text><Definition>                  </Definition><Normal Text>{ </Normal Text><Directive>$$</Directive><Normal Text> </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Decimal>0</Decimal><Normal Text> }</Normal Text><br/>
+<Definition>                      </Definition><Normal Text>|</Normal Text><Definition> number </Definition><Normal Text>{ </Normal Text><Directive>$$</Directive><Normal Text> </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Directive>$1</Directive><Normal Text> </Normal Text><Symbol>|</Symbol><Normal Text> </Normal Text><Directive>$2</Directive><Separator Symbol>;</Separator Symbol><Normal Text> }</Normal Text><br/>
+<Definition>                      </Definition><Normal Text>|</Normal Text><Definition> hello </Definition><Normal Text>{ </Normal Text><Directive>$$</Directive><Normal Text> </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Directive>$1</Directive><Normal Text> </Normal Text><Symbol>|</Symbol><Normal Text> </Normal Text><Directive>$3</Directive><Separator Symbol>;</Separator Symbol><Normal Text> }</Normal Text><Definition> </Definition><Comment>// without a comma</Comment><br/>
+<Definition></Definition><br/>
+<Open Rule>h</Open Rule><Rule>ello</Rule><Normal Text>:</Normal Text><br/>
+<Definition>                      gram1 </Definition><Normal Text>{ </Normal Text><Directive>$$</Directive><Normal Text> </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><String>"hi"</String><Normal Text> };</Normal Text><br/>
+<Normal Text>                      |</Normal Text><Definition> gram2</Definition><br/>
+<Definition>                      </Definition><Normal Text>;;</Normal Text><br/>
+<Normal Text>                      </Normal Text><br/>
+<Content-Type Delimiter>%%</Content-Type Delimiter><br/>
+<Normal Text></Normal Text><br/>
+<Preprocessor>#include </Preprocessor><Prep. Lib><stdio.h></Prep. Lib><br/>
+<Normal Text></Normal Text><br/>
+<Data Type>int</Data Type><Normal Text> main</Normal Text><Symbol>(</Symbol><Data Type>void</Data Type><Symbol>)</Symbol><br/>
+<Symbol>{</Symbol><br/>
+<Normal Text>  puts</Normal Text><Symbol>(</Symbol><String>"Hello, World!"</String><Symbol>)</Symbol><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text>  </Normal Text><Control Flow>return</Control Flow><Normal Text> </Normal Text><Decimal>0</Decimal><Separator Symbol>;</Separator Symbol><br/>
+<Symbol>}</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Comment>// </Comment><Alert Level 1>ALERT</Alert Level 1><Comment> </Comment><Alert Level 3>NOTE</Alert Level 3><br/>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title>build.ninja</title>
+<meta name="generator" content="KF5::SyntaxHighlighting (Ninja)"/>
+</head><body style="color:#1f1c1b"><pre>
+<span style="color:#898887;"># comment</span>
+<span style="font-weight:bold;">rule</span> b
+<span style="font-weight:bold;">rule</span> c
+<span style="color:#898887;">#d</span>
+<span style="font-weight:bold;">rule</span> c
+<span style="color:#0057ae;">description</span>=a
+<span style="font-weight:bold;">rule</span> d
+  <span style="color:#644a9b;font-weight:bold;">description</span> = ds
+  <span style="color:#644a9b;font-weight:bold;">description</span> = ds
+  <span style="color:#bf0303;text-decoration:underline;">rule=ds</span>
+  <span style="color:#644a9b;font-weight:bold;">description</span> = ds
+<span style="font-weight:bold;">rule</span> b
+
+<span style="font-weight:bold;">rule</span> c
+
+<span style="font-weight:bold;">rule</span> c
+ <span style="color:#898887;"># ds</span>
+ <span style="color:#bf0303;text-decoration:underline;">ds=ds</span>
+<span style="color:#0057ae;">description</span>=a
+<span style="font-weight:bold;">rule</span> d
+  <span style="color:#bf0303;text-decoration:underline;">rule =description = ds</span>
+
+<span style="font-weight:bold;">rule</span> b
+  <span style="color:#644a9b;font-weight:bold;">command</span> = clang -MMD -MF $<span style="color:#644a9b;font-weight:bold;">out</span>.d -o $<span style="color:#644a9b;font-weight:bold;">out</span> -c $<span style="color:#644a9b;font-weight:bold;">in</span>
+  <span style="color:#644a9b;font-weight:bold;">description</span> = building $<span style="color:#644a9b;font-weight:bold;">out</span>
+  <span style="color:#bf0303;text-decoration:underline;">unknown = xyz</span>
+
+<span style="font-weight:bold;">rule</span> dump
+  <span style="color:#644a9b;font-weight:bold;">command</span> = sleep 1<span style="font-weight:bold;">;</span> ls -l /proc/self/fd<span style="font-weight:bold;">;</span> exit 1
+  <span style="color:#644a9b;font-weight:bold;">pool</span> = link_pool
+  <span style="color:#898887;"># blah blah</span>
+  <span style="color:#644a9b;font-weight:bold;">pool</span> = <span style="color:#644a9b;font-weight:bold;">console</span>
+  <span style="color:#644a9b;font-weight:bold;">pool</span> = $<span style="color:#0057ae;">console</span>
+
+<span style="font-weight:bold;">rule</span> xy-z_
+<span style="font-weight:bold;">rule</span> --xy-z_
+<span style="font-weight:bold;">rule</span> _xy-z_
+
+<span style="color:#898887;"># error</span>
+<span style="font-weight:bold;">rule</span> with <span style="color:#bf0303;text-decoration:underline;">error</span>
+<span style="font-weight:bold;">rule</span> a<span style="color:#bf0303;text-decoration:underline;">:a</span>
+<span style="font-weight:bold;">rule</span> a<span style="color:#bf0303;text-decoration:underline;">|a</span>
+<span style="font-weight:bold;">rule</span> a<span style="color:#bf0303;text-decoration:underline;">$</span>
+<span style="font-weight:bold;">rule</span> 0-<span style="color:#bf0303;text-decoration:underline;">@#d</span>
+
+<span style="color:#898887;"># browse_py.h is used to inline browse.py.</span>
+<span style="font-weight:bold;">rule</span> inline
+  <span style="color:#644a9b;font-weight:bold;">command</span> = <span style="font-weight:bold;">&quot;</span>$<span style="color:#0057ae;">root</span>/src/inline.sh<span style="font-weight:bold;">&quot;</span> $<span style="color:#0057ae;">varname</span> <span style="font-weight:bold;">&lt;</span> $<span style="color:#644a9b;font-weight:bold;">in</span> <span style="font-weight:bold;">&gt;</span> $<span style="color:#644a9b;font-weight:bold;">out</span>
+  <span style="color:#644a9b;font-weight:bold;">description</span> = INLINE $<span style="color:#644a9b;font-weight:bold;">out</span>
+
+<span style="font-weight:bold;">default</span> foo bar
+<span style="font-weight:bold;">default</span> baz
+
+<span style="font-weight:bold;">include</span> ninja1.ninja
+
+<span style="font-weight:bold;">subninja</span> ninja2.ninja
+
+<span style="font-weight:bold;">pool</span> link_pool
+  <span style="color:#644a9b;font-weight:bold;">depth</span> = 4
+  <span style="color:#bf0303;text-decoration:underline;">xxx = d</span>
+
+<span style="font-weight:bold;">pool</span> link_pool <span style="color:#bf0303;text-decoration:underline;">d</span>
+  <span style="color:#644a9b;font-weight:bold;">depth</span> = 4
+
+<span style="font-weight:bold;">build</span> a.o: <span style="color:#644a9b;">b</span> a.c
+
+<span style="font-weight:bold;">build</span> a.o|<span style="font-style:italic;">c</span>: <span style="color:#644a9b;">b</span> a.c ||<span style="font-style:italic;"> a </span>|<span style="font-style:italic;"> b</span>
+
+<span style="font-weight:bold;">build</span> a.o |<span style="font-style:italic;"> c </span>: <span style="color:#644a9b;">b</span> a.c |<span style="font-style:italic;"> a </span>||<span style="font-style:italic;"> b</span>
+
+<span style="font-weight:bold;">build</span> $<span style="color:#0057ae;">a</span>.o |<span style="font-style:italic;"> </span>$<span style="color:#0057ae;">c</span><span style="font-style:italic;"> </span>: <span style="color:#644a9b;">b</span> $<span style="color:#0057ae;">a</span>.c |<span style="font-style:italic;"> </span>$<span style="color:#0057ae;">a</span><span style="font-style:italic;"> </span>||<span style="font-style:italic;"> </span>$<span style="color:#0057ae;">b</span>
+
+<span style="font-weight:bold;">build</span> 0: <span style="color:#644a9b;">sleep</span> README
+
+<span style="font-weight:bold;">build</span> 1: <span style="color:#644a9b;">sleep</span> README
+
+<span style="font-weight:bold;">build</span> all: <span style="color:#644a9b;font-weight:bold;">phony</span> 0 1
+<span style="color:#0057ae;">deps</span> = xxx
+<span style="color:#0057ae;">CMD</span> = cc
+<span style="font-weight:bold;">build</span> all: <span style="color:#644a9b;font-weight:bold;">phony</span> 0 1
+
+<span style="font-weight:bold;">build</span> $<span style="color:#0057ae;">builddir</span>/browse_py.h: <span style="color:#644a9b;">inline</span> $<span style="color:#0057ae;">root</span>/src/browse.py |<span style="font-style:italic;"> </span>$<span style="color:#0057ae;">root</span><span style="font-style:italic;">/src/inline.sh</span>
+  <span style="color:#0057ae;">varname</span> = kBrowsePy
+
+<span style="font-weight:bold;">build</span> $<span style="color:#0057ae;">builddir</span>/subprocess-posix.o: <span style="color:#644a9b;">cxx</span> $<span style="color:#0057ae;">root</span>/src/subprocess-posix.cc
+<span style="font-weight:bold;">build</span> $<span style="color:#0057ae;">builddir</span>/libninja.a: <span style="color:#644a9b;">ar</span> $<span style="color:#0057ae;">builddir</span>/browse.o $<span style="color:#0057ae;">builddir</span>/build.o <span style="color:#3daee9;">$</span>
+<span style="color:#3daee9;">    </span>$<span style="color:#0057ae;">builddir</span>/build_log.o $<span style="color:#0057ae;">builddir</span>/clean.o $<span style="color:#0057ae;">builddir</span>/debug_flags.o <span style="color:#3daee9;">$</span>
+<span style="color:#3daee9;">    </span>$<span style="color:#0057ae;">builddir</span>/depfile_parser.o $<span style="color:#0057ae;">builddir</span>/deps_log.o
+
+<span style="font-weight:bold;">build</span> $<span style="color:#0057ae;">root</span>/doc/manual.pdf: <span style="color:#644a9b;">dblatex</span> $<span style="color:#0057ae;">builddir</span>/manual.xml |<span style="font-style:italic;"> </span><span style="color:#3daee9;">$</span>
+<span style="color:#3daee9;">    </span>$<span style="color:#0057ae;">root</span><span style="font-style:italic;">/doc/dblatex.xsl</span>
+
+<span style="color:#644a9b;font-weight:bold;">builddir</span>=/
+<span style="color:#644a9b;font-weight:bold;">builddir</span> =/
+<span style="color:#644a9b;font-weight:bold;">builddir</span>= /
+<span style="color:#0057ae;">ldflags</span> = -L$<span style="color:#0057ae;">builddir</span>
+
+<span style="color:#0057ae;">xx</span> <span style="color:#bf0303;text-decoration:underline;">x</span>
+
+<span style="color:#0057ae;">x</span> = $<span style="color:#0057ae;">a</span>
+<span style="color:#0057ae;">x</span> = $<span style="color:#0057ae;">-a_</span>
+<span style="color:#0057ae;">x</span> = ${<span style="color:#0057ae;">a</span>}
+<span style="color:#0057ae;">x</span> = ${<span style="color:#0057ae;">-a</span>}
+<span style="color:#0057ae;">x</span> = $<span style="color:#0057ae;">a</span>@
+<span style="color:#0057ae;">x</span> = $<span style="color:#bf0303;text-decoration:underline;">@</span>
+<span style="color:#0057ae;">x</span> = <span style="color:#3daee9;">$$</span>
+<span style="color:#0057ae;">x</span> = <span style="color:#3daee9;">$:</span>
+<span style="color:#0057ae;">x</span> = <span style="color:#3daee9;">$ </span>a
+<span style="color:#0057ae;">x</span> = <span style="color:#3daee9;">$</span>
+<span style="color:#3daee9;">    </span>b
+<span style="color:#0057ae;">x</span> = <span style="color:#3daee9;">$</span>
+<span style="color:#3daee9;">    $</span>
+<span style="color:#3daee9;">    </span>a
+<span style="color:#0057ae;">x</span> = <span style="color:#3daee9;">$</span>
+<span style="color:#3daee9;">    </span>$<span style="color:#0057ae;">a</span>
+<span style="color:#0057ae;">x</span> = $<span style="color:#0057ae;">a</span> a
+<span style="color:#0057ae;">x</span> = ${<span style="color:#0057ae;">a</span>} a
+<span style="color:#0057ae;">x</span> = <span style="color:#3daee9;">$$</span> a
+<span style="color:#0057ae;">x</span> = <span style="color:#3daee9;">$:</span> a
+<span style="color:#0057ae;">x</span> = $<span style="color:#bf0303;text-decoration:underline;">! a</span>
+<span style="color:#0057ae;">x</span> = ${<span style="color:#0057ae;">a</span><span style="color:#bf0303;text-decoration:underline;"> b ds</span>
+ <span style="color:#bf0303;text-decoration:underline;">x = a</span>
+</pre></body></html>

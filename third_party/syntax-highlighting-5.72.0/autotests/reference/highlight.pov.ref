@@ -1,0 +1,76 @@
+<Region Marker>//BEGIN TEST</Region Marker><br/>
+<Comment>// test scene for POV-Ray syntax highlighting</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Comment>/* test comment */</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Comment>/* nested /* comments */</Comment><Normal Text> do not work </Normal Text><Symbol>*/</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Directives>#version</Directives><Normal Text> </Normal Text><Float>3.5</Float><Symbol>;</Symbol><br/>
+<Region Marker>//END</Region Marker><br/>
+<Keyword>global_settings</Keyword><Normal Text> </Normal Text><Symbol>{</Symbol><Normal Text> </Normal Text><Keyword>assumed_gamma</Keyword><Normal Text> </Normal Text><Float>1.0</Float><Normal Text> </Normal Text><Symbol>}</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Comment>// ----------------------------------------</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>camera</Keyword><Normal Text> </Normal Text><Symbol>{</Symbol><br/>
+<Normal Text>  </Normal Text><Keyword>location</Keyword><Normal Text>  </Normal Text><Symbol><</Symbol><Float>5.0</Float><Symbol>,</Symbol><Normal Text> </Normal Text><Symbol>-</Symbol><Float>12.0</Float><Symbol>,</Symbol><Normal Text> </Normal Text><Float>2.0</Float><Symbol>></Symbol><br/>
+<Normal Text>  </Normal Text><Keyword>up</Keyword><Normal Text> </Normal Text><Keyword>z</Keyword><Normal Text> </Normal Text><Keyword>sky</Keyword><Normal Text> </Normal Text><Keyword>z</Keyword><br/>
+<Normal Text>  </Normal Text><Keyword>look_at</Keyword><Normal Text>   </Normal Text><Symbol><</Symbol><Float>0.0</Float><Symbol>,</Symbol><Normal Text> </Normal Text><Float>0.0</Float><Symbol>,</Symbol><Normal Text> </Normal Text><Float>0.5</Float><Symbol>></Symbol><Normal Text> </Normal Text><br/>
+<Normal Text>  </Normal Text><Keyword>angle</Keyword><Normal Text> </Normal Text><Float>40</Float><br/>
+<Symbol>}</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>sky_sphere</Keyword><Normal Text> </Normal Text><Symbol>{</Symbol><br/>
+<Normal Text>  </Normal Text><Texturing>pigment</Texturing><Normal Text> </Normal Text><Symbol>{</Symbol><br/>
+<Normal Text>    </Normal Text><Texturing>gradient</Texturing><Normal Text> </Normal Text><Keyword>z</Keyword><br/>
+<Normal Text>    </Normal Text><Texturing>color_map</Texturing><Normal Text> </Normal Text><Symbol>{</Symbol><br/>
+<Normal Text>      </Normal Text><Symbol>[</Symbol><Float>0.0</Float><Normal Text> </Normal Text><Texturing>rgb</Texturing><Normal Text> </Normal Text><Symbol><</Symbol><Float>0.6</Float><Symbol>,</Symbol><Float>0.7</Float><Symbol>,</Symbol><Float>1.0</Float><Symbol>>]</Symbol><br/>
+<Normal Text>      </Normal Text><Symbol>[</Symbol><Float>0.2</Float><Normal Text> </Normal Text><Texturing>rgb</Texturing><Normal Text> </Normal Text><Symbol><</Symbol><Float>0.2</Float><Symbol>,</Symbol><Float>0.3</Float><Symbol>,</Symbol><Float>0.9</Float><Symbol>>]</Symbol><br/>
+<Normal Text>    </Normal Text><Symbol>}</Symbol><br/>
+<Normal Text>  </Normal Text><Symbol>}</Symbol><br/>
+<Symbol>}</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Objects>light_source</Objects><Normal Text> </Normal Text><Symbol>{</Symbol><br/>
+<Normal Text>  </Normal Text><Symbol><</Symbol><Float>3</Float><Symbol>,</Symbol><Normal Text> </Normal Text><Float>1</Float><Symbol>,</Symbol><Normal Text> </Normal Text><Float>2</Float><Symbol>>*</Symbol><Float>1000</Float><br/>
+<Normal Text>  </Normal Text><Texturing>color</Texturing><Normal Text> </Normal Text><Texturing>rgb</Texturing><Normal Text> </Normal Text><Symbol><</Symbol><Float>2.2</Float><Symbol>,</Symbol><Normal Text> </Normal Text><Float>1.8</Float><Symbol>,</Symbol><Normal Text> </Normal Text><Float>1.5</Float><Symbol>></Symbol><br/>
+<Symbol>}</Symbol><Normal Text>   </Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment>// ----------------------------------------</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Declaration>#declare </Declaration><Declare Keyword>TEST</Declare Keyword><Symbol>=</Symbol><Float>0</Float><Symbol>;</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Directives>#ifdef</Directives><Normal Text> </Normal Text><Symbol>(</Symbol><Normal Text>TEST</Normal Text><Symbol>)</Symbol><br/>
+<Normal Text>  </Normal Text><Objects>plane</Objects><Normal Text> </Normal Text><Symbol>{</Symbol><br/>
+<Normal Text>    </Normal Text><Keyword>z</Keyword><Symbol>,</Symbol><Normal Text> </Normal Text><Float>0</Float><br/>
+<Normal Text>    </Normal Text><Texturing>texture</Texturing><Normal Text> </Normal Text><Symbol>{</Symbol><br/>
+<Normal Text>      </Normal Text><Texturing>pigment</Texturing><Normal Text> </Normal Text><Symbol>{</Symbol><br/>
+<Normal Text>        </Normal Text><Texturing>checker</Texturing><br/>
+<Normal Text>        </Normal Text><Texturing>color</Texturing><Normal Text> </Normal Text><Texturing>rgb</Texturing><Normal Text> </Normal Text><Float>1</Float><Symbol>,</Symbol><Normal Text> </Normal Text><Texturing>color</Texturing><Normal Text> </Normal Text><Texturing>rgb</Texturing><Normal Text> </Normal Text><Float>0</Float><br/>
+<Normal Text>      </Normal Text><Symbol>}</Symbol><br/>
+<Normal Text>    </Normal Text><Symbol>}</Symbol><br/>
+<Normal Text>  </Normal Text><Symbol>}</Symbol><br/>
+<Directives>#end</Directives><br/>
+<Normal Text></Normal Text><br/>
+<Macro>#macro </Macro><Declare Macro>Sphere</Declare Macro><Symbol>(</Symbol><Normal Text>Pos</Normal Text><Symbol>,</Symbol><Normal Text> Radius</Normal Text><Symbol>)</Symbol><br/>
+<Normal Text>  </Normal Text><Objects>sphere</Objects><Normal Text> </Normal Text><Symbol>{</Symbol><br/>
+<Normal Text>    </Normal Text><Symbol><</Symbol><Normal Text>Pos</Normal Text><Symbol>.</Symbol><Keyword>x</Keyword><Symbol>,</Symbol><Normal Text> Pos</Normal Text><Symbol>.</Symbol><Keyword>y</Keyword><Symbol>,</Symbol><Normal Text> Radius</Normal Text><Symbol>*</Symbol><Float>1.3</Float><Symbol>>,</Symbol><Normal Text> Radius</Normal Text><br/>
+<Normal Text>    </Normal Text><Texturing>texture</Texturing><Normal Text> </Normal Text><Symbol>{</Symbol><br/>
+<Normal Text>      </Normal Text><Texturing>pigment</Texturing><Normal Text> </Normal Text><Symbol>{</Symbol><Normal Text> </Normal Text><Texturing>color</Texturing><Normal Text> </Normal Text><Texturing>rgb</Texturing><Normal Text> </Normal Text><Float>1</Float><Normal Text> </Normal Text><Symbol>}</Symbol><br/>
+<Normal Text>      </Normal Text><Texturing>finish</Texturing><Symbol>{</Symbol><br/>
+<Normal Text>        </Normal Text><Texturing>diffuse</Texturing><Normal Text> </Normal Text><Float>0.3</Float><br/>
+<Normal Text>        </Normal Text><Texturing>ambient</Texturing><Normal Text> </Normal Text><Float>0.0</Float><br/>
+<Normal Text>        </Normal Text><Texturing>specular</Texturing><Normal Text> </Normal Text><Float>0.6</Float><br/>
+<Normal Text>        </Normal Text><Texturing>reflection</Texturing><Normal Text> </Normal Text><Float>0.8</Float><br/>
+<Normal Text>      </Normal Text><Symbol>}</Symbol><br/>
+<Normal Text>    </Normal Text><Symbol>}</Symbol><br/>
+<Normal Text>  </Normal Text><Symbol>}</Symbol><br/>
+<Directives>#end</Directives><br/>
+<Normal Text></Normal Text><br/>
+<Declaration>#local </Declaration><Declare Keyword>Cnt</Declare Keyword><Symbol>=</Symbol><Float>0</Float><Symbol>;</Symbol><br/>
+<Declaration>#local </Declaration><Declare Keyword>Seed</Declare Keyword><Symbol>=</Symbol><Functions>seed</Functions><Symbol>(</Symbol><Float>0</Float><Symbol>);</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Directives>#while</Directives><Normal Text> </Normal Text><Symbol>(</Symbol><Normal Text>Cnt</Normal Text><Symbol><</Symbol><Float>10000</Float><Symbol>)</Symbol><br/>
+<Normal Text>  Sphere</Normal Text><Symbol>(</Symbol><br/>
+<Normal Text>    </Normal Text><Symbol>-</Symbol><Float>100</Float><Symbol>+<</Symbol><Functions>rand</Functions><Symbol>(</Symbol><Normal Text>Seed</Normal Text><Symbol>),</Symbol><Normal Text> </Normal Text><Functions>rand</Functions><Symbol>(</Symbol><Normal Text>Seed</Normal Text><Symbol>)>*</Symbol><Float>200</Float><Symbol>,</Symbol><Normal Text> </Normal Text><br/>
+<Normal Text>    </Normal Text><Float>0.3</Float><Symbol>+</Symbol><Functions>pow</Functions><Symbol>(</Symbol><Functions>rand</Functions><Symbol>(</Symbol><Normal Text>Seed</Normal Text><Symbol>),</Symbol><Float>2</Float><Symbol>)*</Symbol><Float>0.7</Float><br/>
+<Normal Text>  </Normal Text><Symbol>)</Symbol><Normal Text>  </Normal Text><br/>
+<Normal Text>  </Normal Text><Declaration>#local </Declaration><Declare Keyword>Cnt</Declare Keyword><Symbol>=</Symbol><Normal Text>Cnt</Normal Text><Symbol>+</Symbol><Float>1</Float><Symbol>;</Symbol><br/>
+<Directives>#end</Directives><br/>

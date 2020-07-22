@@ -1,0 +1,10 @@
+<Comment># Comment\</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Comment># </Comment><Keyword>kate:</Keyword><Comment> </Comment><Variable>syntax</Variable><String> Python </String><Variable>;</Variable><Comment> </Comment><Variable>scheme</Variable><String> Normal</String><Variable>;</Variable><br/>
+<Comment># </Comment><Keyword>kate:</Keyword><Comment> </Comment><Variable>font-size</Variable><Comment> </Comment><Number>14</Number><Variable>;</Variable><Comment> </Comment><Variable>background-color</Variable><String> #FAFAFA </String><Variable>;</Variable><br/>
+<Normal Text></Normal Text><br/>
+<Comment># </Comment><Keyword>kate:</Keyword><Comment> </Comment><Variable>remove-trailing-spaces</Variable><Comment> </Comment><Value>*</Value><Variable>;</Variable><br/>
+<Comment># </Comment><Keyword>kate:</Keyword><Comment> </Comment><Variable>remove-trailing-spaces</Variable><Comment> </Comment><Value>all</Value><Variable>;</Variable><br/>
+<Normal Text></Normal Text><br/>
+<Comment># </Comment><Keyword>kate:</Keyword><Comment> </Comment><Variable>replace-tabs</Variable><Comment> </Comment><Option OFF>false</Option OFF><Variable>;</Variable><br/>
+<Comment># </Comment><Keyword>kate:</Keyword><Comment> </Comment><Variable>byte-order-mark</Variable><Comment> </Comment><Option ON>true</Option ON><Comment> </Comment><Variable>;</Variable><br/>

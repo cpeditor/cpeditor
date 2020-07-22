@@ -1,0 +1,141 @@
+<Comment>-- test file for Haskell syntax highlighting in KDE's Kate</Comment><br/>
+<Normal></Normal><br/>
+<Comment>-- The test file for literate Haskell can be easily created like this:</Comment><br/>
+<Comment>--  cat highlight.hs | sed -e "s|^|> |" -e "s|> -- ||" -e "s|^> $||" > highlight.lhs</Comment><br/>
+<Comment>-- You only have to manually edit the multi-line comment below.</Comment><br/>
+<Normal></Normal><br/>
+<Comment>-- this is a single-line comment</Comment><br/>
+<Normal></Normal><br/>
+<Comment>{- this is a multi-line comment</Comment><br/>
+<Comment></Comment><br/>
+<Comment>Things like "a string" or a </Comment><Haddock Hyperlink>'c'</Haddock Hyperlink><Comment> character shouldn't be highlighted in here.</Comment><br/>
+<Comment></Comment><br/>
+<Comment>-- I could even start a new</Comment><br/>
+<Comment>-- one-line comment.</Comment><br/>
+<Comment></Comment><br/>
+<Comment>-}</Comment><br/>
+<Normal></Normal><br/>
+<Keyword>import</Keyword><Normal> </Normal><Type>Prelude</Type><Normal> </Normal><Comment>--</Comment><br/>
+<Normal></Normal><br/>
+<Comment>-- a data definition</Comment><br/>
+<Normal></Normal><br/>
+<Keyword>data</Keyword><Normal> </Normal><Type>Tree</Type><Normal> </Normal><Function>a</Function><Normal> </Normal><Special>=</Special><Normal> </Normal><Type>Br</Type><Normal> (</Normal><Type>Tree</Type><Normal> </Normal><Function>a</Function><Normal>) (</Normal><Type>Tree</Type><Normal> </Normal><Function>a</Function><Normal>) </Normal><Operator>|</Operator><Normal> </Normal><Type>Leaf</Type><Normal> </Normal><Function>a</Function><Normal> </Normal><Operator>|</Operator><Normal> </Normal><Type>Nil</Type><Normal> </Normal><Keyword>deriving</Keyword><Normal> (</Normal><Class Prelude>Show</Class Prelude><Normal>, </Normal><Class Prelude>Eq</Class Prelude><Normal>)</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Comment>-- function definition, "funnyfunction::", </Comment><Haddock Module>"Integer"</Haddock Module><Comment>, </Comment><Haddock Module>"Int"</Haddock Module><Comment>, </Comment><Haddock Module>"Bool"</Haddock Module><Comment> should be highlighted</Comment><br/>
+<Normal></Normal><br/>
+<Signature>funnyfunction</Signature><Special>::</Special><Normal>(</Normal><Type>Tree</Type><Normal> </Normal><Function>a</Function><Normal>)</Normal><Special>=></Special><Normal>[</Normal><Function>a</Function><Normal>]</Normal><Special>-></Special><Type Prelude>Integer</Type Prelude><Special>-></Special><Type Prelude>Int</Type Prelude><Special>-></Special><Type Prelude>Bool</Type Prelude><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Comment>-- strings and chars</Comment><br/>
+<Comment>-- first line of function definitions (type declaration) should be highlighted</Comment><br/>
+<Normal></Normal><br/>
+<Signature>strangefunction</Signature><Special>::</Special><Type Prelude>Int</Type Prelude><Special>-></Special><Type Prelude>String</Type Prelude><br/>
+<Function>strangefunction</Function><Normal> </Normal><Decimal>1</Decimal><Normal> </Normal><Special>=</Special><Normal> </Normal><String>"hello"</String><br/>
+<Function>strangefunction</Function><Normal> </Normal><Decimal>2</Decimal><Normal> </Normal><Special>=</Special><Normal> </Normal><String>"what's up"</String><br/>
+<Function>strangefunction</Function><Normal> </Normal><Decimal>3</Decimal><Normal> </Normal><Special>=</Special><Normal> (</Normal><Function>strangefunction</Function><Normal> </Normal><Decimal>1</Decimal><Normal>) </Normal><Operator>++</Operator><Normal> </Normal><String>", "</String><Normal> </Normal><Operator>++</Operator><Normal> (</Normal><Function>strangefunction</Function><Normal> </Normal><Decimal>2</Decimal><Normal>)</Normal><br/>
+<Function>strangefunction</Function><Normal> </Normal><Decimal>4</Decimal><Normal> </Normal><Special>=</Special><Normal> </Normal><Char>'a'</Char><Operator>:</Operator><Char>'b'</Char><Operator>:</Operator><Char>'c'</Char><Operator>:</Operator><Char>'"'</Char><Operator>:</Operator><Normal>[] </Normal><Comment>-- will return "abc"</Comment><br/>
+<Function>strangefunction</Function><Normal> </Normal><Decimal>5</Decimal><Normal> </Normal><Special>=</Special><Normal> </Normal><Char>'\n'</Char><Operator>:</Operator><Normal>[]</Normal><br/>
+<Function>strangefunction</Function><Normal> </Normal><Decimal>6</Decimal><Normal> </Normal><Special>=</Special><Normal> </Normal><Char>'\invalidhaskell'</Char><Operator>:</Operator><Normal>[]</Normal><br/>
+<Normal></Normal><br/>
+<Comment>-- function name including the single quote character</Comment><br/>
+<Comment>-- and infix operator (`div`)</Comment><br/>
+<Normal></Normal><br/>
+<Signature>justtesting'</Signature><Special>::</Special><Type Prelude>Int</Type Prelude><Special>-></Special><Type Prelude>Int</Type Prelude><br/>
+<Function>justtesting'</Function><Normal> </Normal><Decimal>2</Decimal><Normal> </Normal><Special>=</Special><Normal> </Normal><Decimal>2</Decimal><Operator>+</Operator><Decimal>1</Decimal><br/>
+<Function>justtesting'</Function><Normal> </Normal><Decimal>9</Decimal><Normal> </Normal><Special>=</Special><Normal> </Normal><Decimal>7</Decimal><Normal> </Normal><Function Infix>`div`</Function Infix><Normal> </Normal><Decimal>2</Decimal><br/>
+<Normal></Normal><br/>
+<Comment>-- same definition as above, slightly different function name and a couple more whitespaces</Comment><br/>
+<Normal></Normal><br/>
+<Signature>justtesting''	</Signature><Special>::</Special><Normal>	</Normal><Type Prelude>Int</Type Prelude><Normal> </Normal><Special>-></Special><Normal> </Normal><Type Prelude>Int</Type Prelude><br/>
+<Function>justtesting''</Function><Normal>   </Normal><Decimal>2</Decimal><Normal> </Normal><Special>=</Special><Normal> </Normal><Decimal>3</Decimal><br/>
+<Function>justtesting''</Function><Normal>	</Normal><Decimal>9</Decimal><Normal>	</Normal><Special>=</Special><Normal>   </Normal><Decimal>3</Decimal><Normal> </Normal><Operator>+</Operator><Normal> </Normal><Decimal>9</Decimal><Normal> </Normal><Operator>-</Operator><Normal> </Normal><Decimal>9</Decimal><br/>
+<Normal></Normal><br/>
+<Comment>-- the following lines are copied out of Haskell's "Prelude.hs"</Comment><br/>
+<Normal></Normal><br/>
+<Keyword>infixl</Keyword><Normal> </Normal><Decimal>7</Decimal><Normal>  </Normal><Operator>*</Operator><Normal>, </Normal><Operator>/</Operator><Normal>, </Normal><Function Infix>`quot`</Function Infix><Normal>, </Normal><Function Infix>`rem`</Function Infix><Normal>, </Normal><Function Infix>`div`</Function Infix><Normal>, </Normal><Function Infix>`mod`</Function Infix><Normal>, </Normal><Operator>:%</Operator><Normal>, </Normal><Operator>%</Operator><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Comment>-- everything highlighted except the "a"</Comment><br/>
+<Normal></Normal><br/>
+<Keyword>class</Keyword><Normal> </Normal><Class Prelude>Bounded</Class Prelude><Normal> </Normal><Function>a</Function><Normal> </Normal><Keyword>where</Keyword><br/>
+<Normal>    </Normal><Function Prelude>minBound</Function Prelude><Normal>,</Normal><Signature> maxBound </Signature><Special>::</Special><Normal> </Normal><Function>a</Function><br/>
+<Normal></Normal><br/>
+<Keyword>class</Keyword><Normal> (</Normal><Class Prelude>Num</Class Prelude><Normal> </Normal><Function>a</Function><Normal>, </Normal><Class Prelude>Ord</Class Prelude><Normal> </Normal><Function>a</Function><Normal>) </Normal><Special>=></Special><Normal> </Normal><Class Prelude>Real</Class Prelude><Normal> </Normal><Function>a</Function><Normal> </Normal><Keyword>where</Keyword><br/>
+<Signature>    toRational     </Signature><Special>::</Special><Normal> </Normal><Function>a</Function><Normal> </Normal><Special>-></Special><Normal> </Normal><Type Prelude>Rational</Type Prelude><br/>
+<Normal></Normal><br/>
+<Comment>-- finally, some keyword lists</Comment><br/>
+<Normal></Normal><br/>
+<Comment>-- keywords</Comment><br/>
+<Normal></Normal><br/>
+<Keyword>case</Keyword><Normal>, </Normal><Keyword>class</Keyword><Normal>, </Normal><Keyword>data</Keyword><Normal>, </Normal><Keyword>deriving</Keyword><Normal>, </Normal><Keyword>do</Keyword><Normal>, </Normal><Keyword>else</Keyword><Normal>, </Normal><Keyword>family</Keyword><Normal>, </Normal><Keyword>forall</Keyword><Normal>, </Normal><Keyword>if</Keyword><Normal>, </Normal><Keyword>in</Keyword><Normal>, </Normal><Keyword>infixl</Keyword><Normal>, </Normal><Keyword>infixr</Keyword><Normal>,</Normal><br/>
+<Keyword>instance</Keyword><Normal>, </Normal><Keyword>let</Keyword><Normal>, </Normal><Keyword>module</Keyword><Normal>, </Normal><Keyword>of</Keyword><Normal>, </Normal><Keyword>pattern</Keyword><Normal>, </Normal><Keyword>primitive</Keyword><Normal>,</Normal><br/>
+<Keyword>then</Keyword><Normal>, </Normal><Keyword>type</Keyword><Normal>, </Normal><Keyword>where</Keyword><br/>
+<Normal></Normal><br/>
+<Comment>-- infix operators</Comment><br/>
+<Normal></Normal><br/>
+<Function Prelude>quot</Function Prelude><Normal>, </Normal><Function Prelude>rem</Function Prelude><Normal>, </Normal><Function Prelude>div</Function Prelude><Normal>, </Normal><Function Prelude>mod</Function Prelude><Normal>, </Normal><Function Prelude>elem</Function Prelude><Normal>, </Normal><Function Prelude>notElem</Function Prelude><Normal>, </Normal><Function Prelude>seq</Function Prelude><br/>
+<Normal></Normal><br/>
+<Comment>-- this stuff is not handled yet</Comment><br/>
+<Normal></Normal><br/>
+<Operator>!!</Operator><Normal>, </Normal><Operator>%</Operator><Normal>, </Normal><Operator>&&</Operator><Normal>, </Normal><Operator>$!</Operator><Normal>, </Normal><Operator>$</Operator><Normal>, </Normal><Operator>*</Operator><Normal>, </Normal><Operator>**</Operator><Normal>, </Normal><Operator>-</Operator><Normal>,</Normal><Operator>.</Operator><Normal>, </Normal><Operator>/=</Operator><Normal>, </Normal><Operator><</Operator><Normal>, </Normal><Operator><=</Operator><Normal>, </Normal><Operator>=<<</Operator><Normal>, </Normal><Operator>==</Operator><Normal>, </Normal><Operator>></Operator><Normal>, </Normal><Operator>>=</Operator><Normal>, </Normal><Operator>>></Operator><Normal>, </Normal><Operator>>>=</Operator><Normal>, </Normal><Operator>^</Operator><Normal>, </Normal><Operator>^^</Operator><Normal>, </Normal><Operator>++</Operator><Normal>, </Normal><Operator>||</Operator><br/>
+<Normal></Normal><br/>
+<Comment>-- functions</Comment><br/>
+<Normal></Normal><br/>
+<Function Prelude>abs</Function Prelude><Normal>, </Normal><Function Prelude>acos</Function Prelude><Normal>, </Normal><Function Prelude>acosh</Function Prelude><Normal>, </Normal><Function Prelude>all</Function Prelude><Normal>, </Normal><Function Prelude>and</Function Prelude><Normal>, </Normal><Function Prelude>any</Function Prelude><Normal>, </Normal><Function Prelude>appendFile</Function Prelude><Normal>,</Normal><br/>
+<Function Prelude>approxRational</Function Prelude><Normal>, </Normal><Function Prelude>asTypeOf</Function Prelude><Normal>, </Normal><Function Prelude>asin</Function Prelude><Normal>, </Normal><Function Prelude>asinh</Function Prelude><Normal>, </Normal><Function Prelude>atan</Function Prelude><Normal>, </Normal><Function Prelude>atan2</Function Prelude><Normal>, </Normal><Function Prelude>atanh</Function Prelude><Normal>, </Normal><Function Prelude>basicIORun</Function Prelude><Normal>,</Normal><br/>
+<Function Prelude>break</Function Prelude><Normal>, </Normal><Function Prelude>catch</Function Prelude><Normal>, </Normal><Function Prelude>ceiling</Function Prelude><Normal>, </Normal><Function Prelude>chr</Function Prelude><Normal>, </Normal><Function Prelude>compare</Function Prelude><Normal>, </Normal><Function Prelude>concat</Function Prelude><Normal>, </Normal><Function Prelude>concatMap</Function Prelude><Normal>, </Normal><Function Prelude>const</Function Prelude><Normal>, </Normal><Function Prelude>cos</Function Prelude><Normal>, </Normal><Function Prelude>cosh</Function Prelude><Normal>,</Normal><br/>
+<Function Prelude>curry</Function Prelude><Normal>, </Normal><Function Prelude>cycle</Function Prelude><Normal>, </Normal><Function Prelude>decodeFloat</Function Prelude><Normal>, </Normal><Function Prelude>denominator</Function Prelude><Normal>, </Normal><Function Prelude>digitToInt</Function Prelude><Normal>, </Normal><Function Prelude>div</Function Prelude><Normal>, </Normal><Function Prelude>divMod</Function Prelude><Normal>, </Normal><Function Prelude>drop</Function Prelude><Normal>,</Normal><br/>
+<Function Prelude>dropWhile</Function Prelude><Normal>, </Normal><Function Prelude>either</Function Prelude><Normal>, </Normal><Function Prelude>elem</Function Prelude><Normal>, </Normal><Function Prelude>encodeFloat</Function Prelude><Normal>, </Normal><Function Prelude>enumFrom</Function Prelude><Normal>, </Normal><Function Prelude>enumFromThen</Function Prelude><Normal>,</Normal><br/>
+<Function Prelude>enumFromThenTo</Function Prelude><Normal>, </Normal><Function Prelude>enumFromTo</Function Prelude><Normal>, </Normal><Function Prelude>error</Function Prelude><Normal>, </Normal><Function Prelude>even</Function Prelude><Normal>, </Normal><Function Prelude>exp</Function Prelude><Normal>, </Normal><Function Prelude>exponent</Function Prelude><Normal>, </Normal><Function Prelude>fail</Function Prelude><Normal>, </Normal><Function Prelude>filter</Function Prelude><Normal>, </Normal><Function Prelude>flip</Function Prelude><Normal>,</Normal><br/>
+<Function Prelude>floatDigits</Function Prelude><Normal>, </Normal><Function Prelude>floatRadix</Function Prelude><Normal>, </Normal><Function Prelude>floatRange</Function Prelude><Normal>, </Normal><Function Prelude>floor</Function Prelude><Normal>, </Normal><Function Prelude>fmap</Function Prelude><Normal>, </Normal><Function Prelude>foldl</Function Prelude><Normal>, </Normal><Function Prelude>foldl1</Function Prelude><Normal>, </Normal><Function Prelude>foldr</Function Prelude><Normal>,</Normal><br/>
+<Function Prelude>foldr1</Function Prelude><Normal>, </Normal><Function Prelude>fromDouble</Function Prelude><Normal>, </Normal><Function Prelude>fromEnum</Function Prelude><Normal>, </Normal><Function Prelude>fromInt</Function Prelude><Normal>, </Normal><Function Prelude>fromInteger</Function Prelude><Normal>, </Normal><Function Prelude>fromIntegral</Function Prelude><Normal>,</Normal><br/>
+<Function Prelude>fromRational</Function Prelude><Normal>, </Normal><Function Prelude>fst</Function Prelude><Normal>, </Normal><Function Prelude>gcd</Function Prelude><Normal>, </Normal><Function Prelude>getChar</Function Prelude><Normal>, </Normal><Function Prelude>getContents</Function Prelude><Normal>, </Normal><Function Prelude>getLine</Function Prelude><Normal>, </Normal><Function Prelude>head</Function Prelude><Normal>, </Normal><Function Prelude>id</Function Prelude><Normal>, </Normal><Function Prelude>inRange</Function Prelude><Normal>,</Normal><br/>
+<Function Prelude>index</Function Prelude><Normal>, </Normal><Function Prelude>init</Function Prelude><Normal>, </Normal><Function Prelude>intToDigit</Function Prelude><Normal>, </Normal><Function Prelude>interact</Function Prelude><Normal>, </Normal><Function Prelude>ioError</Function Prelude><Normal>, </Normal><Function Prelude>isAlpha</Function Prelude><Normal>, </Normal><Function Prelude>isAlphaNum</Function Prelude><Normal>, </Normal><Function Prelude>isAscii</Function Prelude><Normal>,</Normal><br/>
+<Function Prelude>isControl</Function Prelude><Normal>, </Normal><Function Prelude>isDenormalized</Function Prelude><Normal>, </Normal><Function Prelude>isDigit</Function Prelude><Normal>, </Normal><Function Prelude>isHexDigit</Function Prelude><Normal>, </Normal><Function Prelude>isIEEE</Function Prelude><Normal>, </Normal><Function Prelude>isInfinite</Function Prelude><Normal>, </Normal><Function Prelude>isLower</Function Prelude><Normal>,</Normal><br/>
+<Function Prelude>isNaN</Function Prelude><Normal>, </Normal><Function Prelude>isNegativeZero</Function Prelude><Normal>, </Normal><Function Prelude>isOctDigit</Function Prelude><Normal>, </Normal><Function Prelude>isPrint</Function Prelude><Normal>, </Normal><Function Prelude>isSpace</Function Prelude><Normal>, </Normal><Function Prelude>isUpper</Function Prelude><Normal>, </Normal><Function Prelude>iterate</Function Prelude><Normal>, </Normal><Function Prelude>last</Function Prelude><Normal>,</Normal><br/>
+<Function Prelude>lcm</Function Prelude><Normal>, </Normal><Function Prelude>length</Function Prelude><Normal>, </Normal><Function Prelude>lex</Function Prelude><Normal>, </Normal><Function Prelude>lexDigits</Function Prelude><Normal>, </Normal><Function Prelude>lexLitChar</Function Prelude><Normal>, </Normal><Function Prelude>lines</Function Prelude><Normal>, </Normal><Function Prelude>log</Function Prelude><Normal>, </Normal><Function Prelude>logBase</Function Prelude><Normal>, </Normal><Function Prelude>lookup</Function Prelude><Normal>, </Normal><Function Prelude>map</Function Prelude><Normal>,</Normal><br/>
+<Function Prelude>mapM</Function Prelude><Normal>, </Normal><Function Prelude>mapM_</Function Prelude><Normal>, </Normal><Function Prelude>max</Function Prelude><Normal>, </Normal><Function Prelude>maxBound</Function Prelude><Normal>, </Normal><Function Prelude>maximum</Function Prelude><Normal>, </Normal><Function Prelude>maybe</Function Prelude><Normal>, </Normal><Function Prelude>min</Function Prelude><Normal>, </Normal><Function Prelude>minBound</Function Prelude><Normal>, </Normal><Function Prelude>minimum</Function Prelude><Normal>, </Normal><Function Prelude>mod</Function Prelude><Normal>,</Normal><br/>
+<Function Prelude>negate</Function Prelude><Normal>, </Normal><Function Prelude>not</Function Prelude><Normal>, </Normal><Function Prelude>notElem</Function Prelude><Normal>, </Normal><Function Prelude>null</Function Prelude><Normal>, </Normal><Function Prelude>numerator</Function Prelude><Normal>, </Normal><Function Prelude>odd</Function Prelude><Normal>, </Normal><Function Prelude>or</Function Prelude><Normal>, </Normal><Function Prelude>ord</Function Prelude><Normal>, </Normal><Function Prelude>otherwise</Function Prelude><Normal>, </Normal><Function Prelude>pi</Function Prelude><Normal>, </Normal><Function Prelude>pred</Function Prelude><Normal>,</Normal><br/>
+<Function Prelude>primExitWith</Function Prelude><Normal>, </Normal><Function Prelude>print</Function Prelude><Normal>, </Normal><Function Prelude>product</Function Prelude><Normal>, </Normal><Function Prelude>properFraction</Function Prelude><Normal>, </Normal><Function Prelude>putChar</Function Prelude><Normal>, </Normal><Function Prelude>putStr</Function Prelude><Normal>, </Normal><Function Prelude>putStrLn</Function Prelude><Normal>,</Normal><br/>
+<Function Prelude>quot</Function Prelude><Normal>, </Normal><Function Prelude>quotRem</Function Prelude><Normal>, </Normal><Function Prelude>range</Function Prelude><Normal>, </Normal><Function Prelude>rangeSize</Function Prelude><Normal>, </Normal><Function Prelude>read</Function Prelude><Normal>, </Normal><Function Prelude>readDec</Function Prelude><Normal>, </Normal><Function Prelude>readFile</Function Prelude><Normal>, </Normal><Function Prelude>readFloat</Function Prelude><Normal>,</Normal><br/>
+<Function Prelude>readHex</Function Prelude><Normal>, </Normal><Function Prelude>readIO</Function Prelude><Normal>, </Normal><Function Prelude>readInt</Function Prelude><Normal>, </Normal><Function Prelude>readList</Function Prelude><Normal>, </Normal><Function Prelude>readLitChar</Function Prelude><Normal>, </Normal><Function Prelude>readLn</Function Prelude><Normal>, </Normal><Function Prelude>readOct</Function Prelude><Normal>, </Normal><Function Prelude>readParen</Function Prelude><Normal>,</Normal><br/>
+<Function Prelude>readSigned</Function Prelude><Normal>, </Normal><Function Prelude>reads</Function Prelude><Normal>, </Normal><Function Prelude>readsPrec</Function Prelude><Normal>, </Normal><Function Prelude>realToFrac</Function Prelude><Normal>, </Normal><Function Prelude>recip</Function Prelude><Normal>, </Normal><Function Prelude>rem</Function Prelude><Normal>, </Normal><Function Prelude>repeat</Function Prelude><Normal>, </Normal><Function Prelude>replicate</Function Prelude><Normal>,</Normal><br/>
+<Function Prelude>return</Function Prelude><Normal>, </Normal><Function Prelude>reverse</Function Prelude><Normal>, </Normal><Function Prelude>round</Function Prelude><Normal>, </Normal><Function Prelude>scaleFloat</Function Prelude><Normal>, </Normal><Function Prelude>scanl</Function Prelude><Normal>, </Normal><Function Prelude>scanl1</Function Prelude><Normal>, </Normal><Function Prelude>scanr</Function Prelude><Normal>, </Normal><Function Prelude>scanr1</Function Prelude><Normal>, </Normal><Function Prelude>seq</Function Prelude><Normal>,</Normal><br/>
+<Function Prelude>sequence</Function Prelude><Normal>, </Normal><Function Prelude>sequence_</Function Prelude><Normal>, </Normal><Function Prelude>show</Function Prelude><Normal>, </Normal><Function Prelude>showChar</Function Prelude><Normal>, </Normal><Function Prelude>showInt</Function Prelude><Normal>, </Normal><Function Prelude>showList</Function Prelude><Normal>, </Normal><Function Prelude>showLitChar</Function Prelude><Normal>,</Normal><br/>
+<Function Prelude>showParen</Function Prelude><Normal>, </Normal><Function Prelude>showSigned</Function Prelude><Normal>, </Normal><Function Prelude>showString</Function Prelude><Normal>, </Normal><Function Prelude>shows</Function Prelude><Normal>, </Normal><Function Prelude>showsPrec</Function Prelude><Normal>, </Normal><Function Prelude>significand</Function Prelude><Normal>, </Normal><Function Prelude>signum</Function Prelude><Normal>,</Normal><br/>
+<Function Prelude>sin</Function Prelude><Normal>, </Normal><Function Prelude>sinh</Function Prelude><Normal>, </Normal><Function Prelude>snd</Function Prelude><Normal>, </Normal><Function Prelude>span</Function Prelude><Normal>, </Normal><Function Prelude>splitAt</Function Prelude><Normal>, </Normal><Function Prelude>sqrt</Function Prelude><Normal>, </Normal><Function Prelude>subtract</Function Prelude><Normal>, </Normal><Function Prelude>succ</Function Prelude><Normal>, </Normal><Function Prelude>sum</Function Prelude><Normal>, </Normal><Function Prelude>tail</Function Prelude><Normal>, </Normal><Function Prelude>take</Function Prelude><Normal>,</Normal><br/>
+<Function Prelude>either</Function Prelude><Normal>, </Normal><Function Prelude>elem</Function Prelude><Normal>, </Normal><Function Prelude>encodeFloat</Function Prelude><Normal>, </Normal><Function Prelude>enumFrom</Function Prelude><Normal>, </Normal><Function Prelude>enumFromThen</Function Prelude><Normal>, </Normal><Function Prelude>enumFromThenTo</Function Prelude><Normal>,</Normal><br/>
+<Function Prelude>enumFromTo</Function Prelude><Normal>, </Normal><Function Prelude>error</Function Prelude><Normal>, </Normal><Function Prelude>even</Function Prelude><Normal>, </Normal><Function Prelude>exp</Function Prelude><Normal>, </Normal><Function Prelude>exponent</Function Prelude><Normal>, </Normal><Function Prelude>fail</Function Prelude><Normal>, </Normal><Function Prelude>filter</Function Prelude><Normal>, </Normal><Function Prelude>flip</Function Prelude><Normal>, </Normal><Function Prelude>floatDigits</Function Prelude><Normal>,</Normal><br/>
+<Function Prelude>floatRadix</Function Prelude><Normal>, </Normal><Function Prelude>floatRange</Function Prelude><Normal>, </Normal><Function Prelude>floor</Function Prelude><Normal>, </Normal><Function Prelude>fmap</Function Prelude><Normal>, </Normal><Function Prelude>takeWhile</Function Prelude><Normal>, </Normal><Function Prelude>tan</Function Prelude><Normal>, </Normal><Function Prelude>tanh</Function Prelude><Normal>, </Normal><Function Prelude>threadToIOResult</Function Prelude><Normal>,</Normal><br/>
+<Function Prelude>toEnum</Function Prelude><Normal>, </Normal><Function Prelude>toInt</Function Prelude><Normal>, </Normal><Function Prelude>toInteger</Function Prelude><Normal>, </Normal><Function Prelude>toLower</Function Prelude><Normal>, </Normal><Function Prelude>toRational</Function Prelude><Normal>, </Normal><Function Prelude>toUpper</Function Prelude><Normal>, </Normal><Function Prelude>truncate</Function Prelude><Normal>, </Normal><Function Prelude>uncurry</Function Prelude><Normal>,</Normal><br/>
+<Function Prelude>undefined</Function Prelude><Normal>, </Normal><Function Prelude>unlines</Function Prelude><Normal>, </Normal><Function Prelude>until</Function Prelude><Normal>, </Normal><Function Prelude>unwords</Function Prelude><Normal>, </Normal><Function Prelude>unzip</Function Prelude><Normal>, </Normal><Function Prelude>unzip3</Function Prelude><Normal>, </Normal><Function Prelude>userError</Function Prelude><Normal>, </Normal><Function Prelude>words</Function Prelude><Normal>,</Normal><br/>
+<Function Prelude>writeFile</Function Prelude><Normal>, </Normal><Function Prelude>zip</Function Prelude><Normal>, </Normal><Function Prelude>zip3</Function Prelude><Normal>, </Normal><Function Prelude>zipWith</Function Prelude><Normal>, </Normal><Function Prelude>zipWith3</Function Prelude><br/>
+<Normal></Normal><br/>
+<Comment>-- type constructors</Comment><br/>
+<Normal></Normal><br/>
+<Type Prelude>Bool</Type Prelude><Normal>, </Normal><Type Prelude>Char</Type Prelude><Normal>, </Normal><Type Prelude>Double</Type Prelude><Normal>, </Normal><Type Prelude>Either</Type Prelude><Normal>, </Normal><Type Prelude>FilePath</Type Prelude><Normal>, </Normal><Type Prelude>Float</Type Prelude><Normal>, </Normal><Type Prelude>IO</Type Prelude><Normal>, </Normal><Type Prelude>IOError</Type Prelude><Normal>, </Normal><Type Prelude>Integer</Type Prelude><Normal>, </Normal><Type Prelude>Int</Type Prelude><Normal>, </Normal><Type Prelude>Maybe</Type Prelude><Normal>,</Normal><br/>
+<Type Prelude>Ordering</Type Prelude><Normal>, </Normal><Type Prelude>Rational</Type Prelude><Normal>, </Normal><Type Prelude>Ratio</Type Prelude><Normal>, </Normal><Type Prelude>ReadS</Type Prelude><Normal>, </Normal><Type Prelude>ShowS</Type Prelude><Normal>, </Normal><Type Prelude>String</Type Prelude><br/>
+<Normal></Normal><br/>
+<Comment>-- classes</Comment><br/>
+<Normal></Normal><br/>
+<Class Prelude>Bounded</Class Prelude><Normal>, </Normal><Class Prelude>Enum</Class Prelude><Normal>, </Normal><Class Prelude>Eq</Class Prelude><Normal>, </Normal><Class Prelude>Floating</Class Prelude><Normal>, </Normal><Class Prelude>Fractional</Class Prelude><Normal>, </Normal><Class Prelude>Functor</Class Prelude><Normal>, </Normal><Class Prelude>Integral</Class Prelude><Normal>, </Normal><Class Prelude>Ix</Class Prelude><Normal>, </Normal><Class Prelude>Monad</Class Prelude><Normal>, </Normal><Class Prelude>Num</Class Prelude><Normal>, </Normal><Class Prelude>Ord</Class Prelude><Normal>, </Normal><Class Prelude>Read</Class Prelude><Normal>, </Normal><Class Prelude>RealFloat</Class Prelude><Normal>,</Normal><br/>
+<Class Prelude>RealFrac</Class Prelude><Normal>, </Normal><Class Prelude>Real</Class Prelude><Normal>, </Normal><Class Prelude>Show</Class Prelude><br/>
+<Normal></Normal><br/>
+<Comment>-- data constructors</Comment><br/>
+<Normal></Normal><br/>
+<Data Prelude>EQ</Data Prelude><Normal>, </Normal><Data Prelude>False</Data Prelude><Normal>, </Normal><Data Prelude>GT</Data Prelude><Normal>, </Normal><Data Prelude>Just</Data Prelude><Normal>, </Normal><Data Prelude>LT</Data Prelude><Normal>, </Normal><Data Prelude>Left</Data Prelude><Normal>, </Normal><Data Prelude>Nothing</Data Prelude><Normal>, </Normal><Data Prelude>Right</Data Prelude><Normal>, </Normal><Data Prelude>True</Data Prelude><br/>
+<Normal></Normal><br/>
+<Comment>-- promoted data constructors</Comment><br/>
+<Normal></Normal><br/>
+<Type>'True</Type><br/>
+<Normal></Normal><br/>
+<Comment>-- pragma with compiler flags</Comment><br/>
+<Normal></Normal><br/>
+<Pragma>{-# OPTIONS_GHC -fno-warn-orphans #-}</Pragma><br/>
+<Normal></Normal><br/>
+<Comment>-- multiline pragma with language extensions</Comment><br/>
+<Normal></Normal><br/>
+<Pragma>{-# LANGUAGE OverlappingInstances,</Pragma><br/>
+<Pragma>             BangPatterns</Pragma><br/>
+<Pragma>#-}</Pragma><br/>

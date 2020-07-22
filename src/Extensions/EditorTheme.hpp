@@ -20,6 +20,9 @@
 
 #include <QMap>
 
+namespace KSyntaxHighlighing{
+class Theme;
+}
 class QSyntaxStyle;
 
 namespace Extensions

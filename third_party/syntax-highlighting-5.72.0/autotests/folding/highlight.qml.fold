@@ -1,0 +1,59 @@
+import Qt 4.6
+
+// some random qml snippets stolen from the qt docs
+
+Rectangle <beginfold id='1'>{</beginfold id='1'>
+    important: true
+    propertyAsdf:
+    id: container
+    signalA: bla
+    property string label
+    signal clicked
+    radius: 5; border.color: "black"
+    color: mouse.pressed ? "steelblue" : "lightsteelblue"
+    gradient: Gradient <beginfold id='1'>{</beginfold id='1'>
+            GradientStop <beginfold id='1'>{</beginfold id='1'> position: mouse.pressed ? 1.0 : 0.0; color: "steelblue" <endfold id='1'>}</endfold id='1'>
+            GradientStop <beginfold id='1'>{</beginfold id='1'> position: mouse.pressed ? 0.0 : 1.0; color: "lightsteelblue" <endfold id='1'>}</endfold id='1'>
+    <endfold id='1'>}</endfold id='1'>
+    MouseRegion <beginfold id='1'>{</beginfold id='1'> id: mouse; anchors.fill: parent; onClicked: container.clicked() <endfold id='1'>}</endfold id='1'>
+    Text <beginfold id='1'>{</beginfold id='1'> anchors.fill: parent; text: container.label; anchors.centerIn: parent <endfold id='1'>}</endfold id='1'>
+<endfold id='1'>}</endfold id='1'>
+
+Rectangle <beginfold id='1'>{</beginfold id='1'>
+    Script <beginfold id='1'>{</beginfold id='1'>
+        function calculateMyHeight() <beginfold id='1'>{</beginfold id='1'>
+            return Math.max(otherItem.height, thirdItem.height);
+        <endfold id='1'>}</endfold id='1'>
+    <endfold id='1'>}</endfold id='1'>
+
+    anchors.centerIn: parent
+    width: Math.min(otherItem.width, 10)
+    height: calculateMyHeight()
+    color: <beginfold id='1'>{</beginfold id='1'> if (width > 10) "blue"; else "red" <endfold id='1'>}</endfold id='1'>
+<endfold id='1'>}</endfold id='1'>
+
+Rectangle <beginfold id='1'>{</beginfold id='1'>
+    default property color innerColor: "black"
+    property color innerColor: "black"
+    property alias text: textElement.text
+    property alias aliasXYZ: testElement.text
+    signal bar
+    signal bar(var blah, string yxcv)
+    width: 240; height: 320;
+    width: 100; height: 30; source: "images/toolbutton.sci"
+    ListView <beginfold id='1'>{</beginfold id='1'>
+        anchors.fill: parent
+        model: contactModel
+        delegate: Component <beginfold id='1'>{</beginfold id='1'>
+            Text <beginfold id='1'>{</beginfold id='1'>
+                text: modelData.firstName + " " + modelData.lastName
+            <endfold id='1'>}</endfold id='1'>
+        <endfold id='1'>}</endfold id='1'>
+    <endfold id='1'>}</endfold id='1'>
+<endfold id='1'>}</endfold id='1'>
+
+Item <beginfold id='1'>{</beginfold id='1'>
+    function say(text) <beginfold id='1'>{</beginfold id='1'>
+        console.log("You said " + text);
+    <endfold id='1'>}</endfold id='1'>
+<endfold id='1'>}</endfold id='1'>

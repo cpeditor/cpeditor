@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title>preprocessor-bug363280.c</title>
+<meta name="generator" content="KF5::SyntaxHighlighting (C)"/>
+</head><body style="color:#1f1c1b"><pre>
+<span style="color:#006e28;">#if 1</span>
+<span style="color:#0057ae;">int</span> x; <span style="color:#898887;">// variable shall not be grey</span>
+<span style="color:#006e28;">#endif</span>
+<span style="color:#006e28;">#if defined (A)</span>
+<span style="color:#0057ae;">int</span> y; <span style="color:#898887;">// variable shall not be grey</span>
+<span style="color:#006e28;">#elif defined (B)</span>
+<span style="color:#0057ae;">int</span> z; <span style="color:#898887;">// variable shall not be grey</span>
+<span style="color:#006e28;">#endif</span>
+</pre></body></html>

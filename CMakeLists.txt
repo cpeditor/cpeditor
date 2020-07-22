@@ -23,6 +23,7 @@ find_package(Qt5 COMPONENTS Widgets REQUIRED)
 find_package(Qt5 COMPONENTS Network REQUIRED)
 find_package(Qt5 COMPONENTS LinguistTools REQUIRED)
 find_package(Python3 COMPONENTS Interpreter REQUIRED)
+find_package(KF5SyntaxHighlighting REQUIRED)
 
 add_subdirectory(third_party/QCodeEditor)
 
@@ -170,6 +171,8 @@ add_executable(cpeditor
     src/Util/FileUtil.hpp
     src/Util/QCodeEditorUtil.cpp
     src/Util/QCodeEditorUtil.hpp
+    src/Util/Singleton.cpp
+    src/Util/Singleton.hpp
     src/Util/Util.cpp
     src/Util/Util.hpp
 
@@ -224,6 +227,7 @@ target_link_libraries(cpeditor PRIVATE Qt5::Network)
 target_link_libraries(cpeditor PRIVATE Qt5::Widgets)
 target_link_libraries(cpeditor PRIVATE QtFindReplaceDialog)
 target_link_libraries(cpeditor PRIVATE SingleApplication)
+target_link_libraries(cpeditor PRIVATE KF5::SyntaxHighlighting)
 
 if(MSVC)
     target_compile_options(cpeditor PUBLIC "/utf-8")

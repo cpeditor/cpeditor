@@ -1,0 +1,48 @@
+<Comment>/* highlighting test case for Java */</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Comment>// single line comment with </Comment><Alert Level 3>###</Alert Level 3><Comment> </Comment><Alert Level 2>TODO</Alert Level 2><Comment> </Comment><Alert Level 2>FIXME</Alert Level 2><br/>
+<Normal Text></Normal Text><br/>
+<Comment>/* multiline comment with </Comment><Alert Level 3>###</Alert Level 3><Comment> </Comment><Alert Level 2>TODO</Alert Level 2><Comment> </Comment><Alert Level 2>FIXME</Alert Level 2><Comment> */</Comment><br/>
+<Normal Text></Normal Text><br/>
+<JavadocFS>/** Javadoc comment with </JavadocFS><Alert Level 3>###</Alert Level 3><JavadocFS> </JavadocFS><Alert Level 2>TODO</Alert Level 2><JavadocFS> </JavadocFS><Alert Level 2>FIXME</Alert Level 2><br/>
+<JavadocFS> * </JavadocFS><BlockTag>@param </BlockTag><JavadocParam>foo </JavadocParam><Javadoc>bla bla </Javadoc><Alert Level 1>ATTENTION</Alert Level 1><br/>
+<Javadoc> </Javadoc><JavadocFS>*</JavadocFS><Javadoc> </Javadoc><BlockTag>@return </BlockTag><Javadoc>abc cde</Javadoc><br/>
+<Javadoc> </Javadoc><JavadocFS>*</JavadocFS><Javadoc> </Javadoc><BlockTag>@see </BlockTag><SeeTag>javadoc.xml</SeeTag><br/>
+<JavadocFS>*/</JavadocFS><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>package</Keyword><Imports> org.kde.itinerary;</Imports><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>import</Keyword><Imports> org.qtproject.qt5.android.bindings.QtActivity;</Imports><br/>
+<Keyword>import</Keyword><Imports> java.io.*;</Imports><br/>
+<Keyword>import</Keyword><Imports> java.util.*;</Imports><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>public</Keyword><Normal Text> </Normal Text><Keyword>class</Keyword><Normal Text> Activity </Normal Text><Keyword>extends</Keyword><Normal Text> QtActivity</Normal Text><br/>
+<Symbol>{</Symbol><br/>
+<Normal Text>    </Normal Text><Keyword>private</Keyword><Normal Text> </Normal Text><Data Type>static</Data Type><Normal Text> </Normal Text><Data Type>final</Data Type><Normal Text> </Normal Text><Java15>String</Java15><Normal Text> TAG </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><String>"org.kde.itinerary"</String><Symbol>;</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>    </Normal Text><Keyword>public</Keyword><Normal Text> </Normal Text><Data Type>void</Data Type><Normal Text> </Normal Text><Function>launchViewIntentFromUri</Function><Symbol>(</Symbol><Java15>String</Java15><Normal Text> uri</Normal Text><Symbol>)</Symbol><br/>
+<Normal Text>    </Normal Text><Symbol>{</Symbol><br/>
+<Normal Text>        Uri mapIntentUri </Normal Text><Symbol>=</Symbol><Normal Text> Uri</Normal Text><Symbol>.</Symbol><Function>parse</Function><Symbol>(</Symbol><Normal Text>uri</Normal Text><Symbol>);</Symbol><br/>
+<Normal Text>        Intent mapIntent </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Keyword>new</Keyword><Normal Text> </Normal Text><Function>Intent</Function><Symbol>(</Symbol><Normal Text>Intent</Normal Text><Symbol>.</Symbol><Function>ACTION_VIEW</Function><Symbol>,</Symbol><Normal Text> mapIntentUri</Normal Text><Symbol>);</Symbol><br/>
+<Normal Text>        </Normal Text><Function>startActivity</Function><Symbol>(</Symbol><Normal Text>mapIntent</Normal Text><Symbol>);</Symbol><br/>
+<Normal Text>    </Normal Text><Symbol>}</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>    </Normal Text><Annotation>@Override</Annotation><br/>
+<Normal Text>    </Normal Text><Keyword>protected</Keyword><Normal Text> </Normal Text><Java15>String</Java15><Normal Text> </Normal Text><Function>stuff</Function><Symbol>()</Symbol><br/>
+<Normal Text>    </Normal Text><Symbol>{</Symbol><br/>
+<Normal Text>        </Normal Text><Keyword>while</Keyword><Normal Text> </Normal Text><Symbol>(</Symbol><Keyword>true</Keyword><Symbol>)</Symbol><Normal Text> </Normal Text><Symbol>{</Symbol><br/>
+<Normal Text>        </Normal Text><Symbol>}</Symbol><br/>
+<Normal Text>        </Normal Text><Data Type>int</Data Type><Normal Text> num </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Decimal>1</Decimal><Symbol>;</Symbol><br/>
+<Normal Text>        num </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Hex>0x2</Hex><Symbol>;</Symbol><br/>
+<Normal Text>        </Normal Text><Data Type>double</Data Type><Normal Text> f </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Float>.4e+49</Float><Symbol>;</Symbol><br/>
+<Normal Text>        </Normal Text><br/>
+<Normal Text>        </Normal Text><Data Type>long</Data Type><Normal Text> int_dec </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Decimal>1__23_48l</Decimal><Symbol>;</Symbol><br/>
+<Normal Text>        </Normal Text><Data Type>long</Data Type><Normal Text> int_oct </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Octal>072034__4l</Octal><Symbol>;</Symbol><br/>
+<Normal Text>        </Normal Text><Data Type>long</Data Type><Normal Text> int_hex </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Hex>0xa__12Ff_13L</Hex><Symbol>;</Symbol><br/>
+<Normal Text>        </Normal Text><Data Type>int</Data Type><Normal Text> int_bin </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Binary>0B1011___01</Binary><Symbol>;</Symbol><br/>
+<Normal Text>        </Normal Text><br/>
+<Normal Text>        </Normal Text><Data Type>double</Data Type><Normal Text> float_hex </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Float>0x1f__a2.d_f10P+1074D</Float><Symbol>;</Symbol><br/>
+<Normal Text>        </Normal Text><Data Type>float</Data Type><Normal Text> float_dec </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Float>1__24.1_32e-1____23F</Float><Symbol>;</Symbol><br/>
+<Normal Text>        </Normal Text><Data Type>float</Data Type><Symbol>[]</Symbol><Normal Text> float_d </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Symbol>{</Symbol><Float>1.</Float><Symbol>,</Symbol><Float>1.E+3</Float><Symbol>,</Symbol><Float>1.E+3f</Float><Symbol>,</Symbol><Float>1.F</Float><Symbol>,</Symbol><Float>1.1E+3d</Float><Symbol>,</Symbol><Float>1.1E+3</Float><Symbol>,</Symbol><Float>1.1f</Float><Symbol>,</Symbol><Float>1.</Float><Decimal>1</Decimal><Symbol>,</Symbol><Float>.1E+3f</Float><Symbol>,</Symbol><Float>.1E+3</Float><Symbol>,</Symbol><Float>.1f</Float><Symbol>,</Symbol><Float>.1</Float><Symbol>,</Symbol><Float>1E+3f</Float><Symbol>,</Symbol><Float>1E+3</Float><Symbol>,</Symbol><Float>1f</Float><Symbol>,</Symbol><Float>1d</Float><Symbol>};</Symbol><br/>
+<Normal Text>    </Normal Text><Symbol>}</Symbol><br/>
+<Symbol>}</Symbol><br/>

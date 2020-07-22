@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title>highlight.rpy</title>
+<meta name="generator" content="KF5::SyntaxHighlighting (RenPy)"/>
+</head><body style="color:#1f1c1b"><pre>
+<span style="color:#898887;"># Declare characters used by this game.</span>
+<span style="font-weight:bold;">define</span> s = <span style="color:#644a9b;font-weight:bold;">Character</span>(<span style="color:#0057ae;">None</span>, kind=<span style="color:#3daee9;">nvl</span>, what_prefix=<span style="color:#bf0303;">&quot;</span><span style="color:#3daee9;">\&quot;</span><span style="color:#bf0303;">&quot;</span>, what_suffix=<span style="color:#bf0303;">&quot;</span><span style="color:#3daee9;">\&quot;</span><span style="color:#bf0303;">&quot;</span>, what_color=<span style="color:#bf0303;">&quot;#c8ffc8&quot;</span>)
+<span style="font-weight:bold;">define</span> m = <span style="color:#644a9b;font-weight:bold;">Character</span>(_(<span style="color:#bf0303;">&quot;Me&quot;</span>), <span style="color:#644a9b;font-weight:bold;">color</span>=<span style="color:#bf0303;">&quot;#c8c8ff&quot;</span>)
+
+<span style="font-weight:bold;">define</span> <span style="font-weight:bold;">menu</span> = <span style="color:#644a9b;font-weight:bold;">nvl_menu</span>
+<span style="font-weight:bold;">default</span> book = <span style="color:#0057ae;">False</span>
+
+<span style="color:#898887;"># The game starts here.</span>
+<span style="font-weight:bold;">label</span> <span style="color:#0057ae;">start</span>:
+    <span style="color:#898887;"># Start by playing some music.</span>
+    <span style="font-weight:bold;">play</span> <span style="color:#0057ae;">music</span> <span style="color:#bf0303;">&quot;illurock.opus&quot;</span>
+
+    <span style="font-weight:bold;">scene</span> bg lecturehall
+    <span style="font-weight:bold;">with</span> <span style="color:#644a9b;font-weight:bold;">fade</span>
+
+    <span style="font-weight:bold;">window</span> <span style="font-weight:bold;">show</span>
+
+    <span style="color:#bf0303;">&quot;bla bla</span><span style="color:#3daee9;">\n</span><span style="color:#bf0303;">&quot;</span>
+    <span style="color:#bf0303;">&quot;bla </span><span style="color:#3daee9;">{b}</span><span style="color:#bf0303;">bla</span><span style="color:#3daee9;">{/b}</span><span style="color:#bf0303;">&quot;</span>
+
+    <span style="font-weight:bold;">window</span> <span style="font-weight:bold;">hide</span>
+    <span style="color:#3daee9;">nvl</span> clear
+
+    <span style="font-weight:bold;">scene</span> bg uni
+    <span style="font-weight:bold;">with</span> <span style="color:#644a9b;font-weight:bold;">fade</span>
+    <span style="font-weight:bold;">window</span> <span style="font-weight:bold;">show</span>
+
+    <span style="font-weight:bold;">show</span> sylvie green normal
+    <span style="font-weight:bold;">with</span> <span style="color:#644a9b;font-weight:bold;">dissolve</span>
+    <span style="font-weight:bold;">window</span> <span style="font-weight:bold;">show</span>
+
+    <span style="font-weight:bold;">menu</span>:
+        <span style="color:#bf0303;">&quot;To ask her later.&quot;</span>:
+            <span style="font-weight:bold;">jump</span> later
+
+
+<span style="font-weight:bold;">label</span> rightaway:
+    <span style="color:#3daee9;">nvl</span> clear
+    <span style="font-weight:bold;">show</span> sylvie green smile
+    m <span style="color:#bf0303;">&quot;&quot;&quot;bla...&quot;</span>
+<span style="color:#bf0303;">    &quot;bla bla bla.&quot;&quot;&quot;</span>
+
+<span style="font-weight:bold;">label</span> <span style="color:#0057ae;">start</span>:
+
+<span style="font-weight:bold;">python</span>:
+    player_health = <span style="color:#644a9b;font-weight:bold;">max</span>(player_health - damage, <span style="color:#b08000;">0</span>)
+    f = <span style="font-weight:bold;">lambda</span> x: <span style="color:#644a9b;font-weight:bold;">print</span>(x)
+
+<span style="font-weight:bold;">label</span> <span style="color:#0057ae;">start</span>:
+    $ flag = <span style="color:#0057ae;">True</span>
+    $ romance_points += <span style="color:#b08000;">1</span>
+    $ f = <span style="font-weight:bold;">lambda</span> x: <span style="color:#644a9b;font-weight:bold;">print</span>(x)
+
+<span style="font-weight:bold;">init</span> <span style="color:#b08000;">1</span> <span style="font-weight:bold;">python</span>:
+    <span style="color:#898887;"># The bad ending is always unlocked.</span>
+    persistent.endings.add(<span style="color:#bf0303;">&quot;bad_ending&quot;</span>)
+
+    f = <span style="font-weight:bold;">lambda</span> x: <span style="color:#644a9b;font-weight:bold;">print</span>(x)
+
+<span style="font-weight:bold;">label</span> <span style="color:#0057ae;">start</span>:
+</pre></body></html>

@@ -11,6 +11,7 @@ pkgbase = cpeditor-git
 	makedepends = python3
 	makedepends = qt5-tools
 	depends = qt5-base>=5.15.0
+	depends = syntax-highlighting
 	optdepends = cf-tool: submit to Codeforces support
 	optdepends = clang: C++ format and language server support
 	optdepends = jdk-openjdk: compile Java support

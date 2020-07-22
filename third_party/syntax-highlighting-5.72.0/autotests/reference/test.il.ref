@@ -1,0 +1,96 @@
+<Comment>// Test file for the Common Intermediate Language</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Comment>/*</Comment><br/>
+<Comment>  multi line comment</Comment><br/>
+<Comment>*/</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Comment>// examples from Wikipedia</Comment><br/>
+<Normal Text>.</Normal Text><Meta Data>assembly</Meta Data><Normal Text> Hello {}</Normal Text><br/>
+<Normal Text>.</Normal Text><Meta Data>assembly</Meta Data><Normal Text> </Normal Text><Keyword>extern</Keyword><Normal Text> mscorlib {}</Normal Text><br/>
+<Normal Text>.</Normal Text><Keyword>method</Keyword><Normal Text> </Normal Text><Keyword>static</Keyword><Normal Text> </Normal Text><Data Type>void</Data Type><Normal Text> Main()</Normal Text><br/>
+<Normal Text>{</Normal Text><br/>
+<Normal Text>     .</Normal Text><Meta Data>entrypoint</Meta Data><br/>
+<Normal Text>     .</Normal Text><Meta Data>maxstack</Meta Data><Normal Text> 1</Normal Text><br/>
+<Normal Text>     </Normal Text><Instructions>ldstr</Instructions><Normal Text> </Normal Text><String>"Hello, world!"</String><br/>
+<Normal Text>     </Normal Text><Instructions>call</Instructions><Normal Text> </Normal Text><Data Type>void</Data Type><Normal Text> [mscorlib]System.Console::WriteLine(</Normal Text><Data Type>string</Data Type><Normal Text>)</Normal Text><br/>
+<Normal Text>     </Normal Text><Instructions>ret</Instructions><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>.</Normal Text><Keyword>method</Keyword><Normal Text> </Normal Text><Keyword>private</Keyword><Normal Text> hidebysig </Normal Text><Keyword>static</Keyword><Normal Text> </Normal Text><Data Type>void</Data Type><Normal Text> Main(</Normal Text><Data Type>string</Data Type><Normal Text>[] args) </Normal Text><Keyword>cil</Keyword><Normal Text> </Normal Text><Keyword>managed</Keyword><br/>
+<Normal Text>{</Normal Text><br/>
+<Normal Text>    .</Normal Text><Meta Data>entrypoint</Meta Data><br/>
+<Normal Text>    .</Normal Text><Meta Data>maxstack</Meta Data><Normal Text>  2</Normal Text><br/>
+<Normal Text>    .</Normal Text><Meta Data>locals</Meta Data><Normal Text> init (</Normal Text><Data Type>int32</Data Type><Normal Text> V_0,</Normal Text><br/>
+<Normal Text>                  </Normal Text><Data Type>int32</Data Type><Normal Text> V_1)</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>              </Normal Text><Instructions>ldc</Instructions><Normal Text>.i4.2</Normal Text><br/>
+<Normal Text>              </Normal Text><Instructions>stloc</Instructions><Normal Text>.0</Normal Text><br/>
+<Normal Text>              </Normal Text><Instructions>br</Instructions><Normal Text>.s       IL_001f</Normal Text><br/>
+<Normal Text>    </Normal Text><Label>IL_0004:</Label><Normal Text>  </Normal Text><Instructions>ldc</Instructions><Normal Text>.i4.2</Normal Text><br/>
+<Normal Text>              </Normal Text><Instructions>stloc</Instructions><Normal Text>.1</Normal Text><br/>
+<Normal Text>              </Normal Text><Instructions>br</Instructions><Normal Text>.s       IL_0011</Normal Text><br/>
+<Normal Text>    </Normal Text><Label>IL_0008:</Label><Normal Text>  </Normal Text><Instructions>ldloc</Instructions><Normal Text>.0</Normal Text><br/>
+<Normal Text>              </Normal Text><Instructions>ldloc</Instructions><Normal Text>.1</Normal Text><br/>
+<Normal Text>              </Normal Text><Instructions>rem</Instructions><br/>
+<Normal Text>              </Normal Text><Instructions>brfalse</Instructions><Normal Text>.s  IL_001b</Normal Text><br/>
+<Normal Text>              </Normal Text><Instructions>ldloc</Instructions><Normal Text>.1</Normal Text><br/>
+<Normal Text>              </Normal Text><Instructions>ldc</Instructions><Normal Text>.i4.1</Normal Text><br/>
+<Normal Text>              </Normal Text><Instructions>add</Instructions><br/>
+<Normal Text>              </Normal Text><Instructions>stloc</Instructions><Normal Text>.1</Normal Text><br/>
+<Normal Text>    </Normal Text><Label>IL_0011:</Label><Normal Text>  </Normal Text><Instructions>ldloc</Instructions><Normal Text>.1</Normal Text><br/>
+<Normal Text>              </Normal Text><Instructions>ldloc</Instructions><Normal Text>.0</Normal Text><br/>
+<Normal Text>              </Normal Text><Instructions>blt</Instructions><Normal Text>.s      IL_0008</Normal Text><br/>
+<Normal Text>              </Normal Text><Instructions>ldloc</Instructions><Normal Text>.0</Normal Text><br/>
+<Normal Text>              </Normal Text><Instructions>call</Instructions><Normal Text>       </Normal Text><Data Type>void</Data Type><Normal Text> [mscorlib]System.Console::WriteLine(</Normal Text><Data Type>int32</Data Type><Normal Text>)</Normal Text><br/>
+<Normal Text>    </Normal Text><Label>IL_001b:</Label><Normal Text>  </Normal Text><Instructions>ldloc</Instructions><Normal Text>.0</Normal Text><br/>
+<Normal Text>              </Normal Text><Instructions>ldc</Instructions><Normal Text>.i4.1</Normal Text><br/>
+<Normal Text>              </Normal Text><Instructions>add</Instructions><br/>
+<Normal Text>              </Normal Text><Instructions>stloc</Instructions><Normal Text>.0</Normal Text><br/>
+<Normal Text>    </Normal Text><Label>IL_001f:</Label><Normal Text>  </Normal Text><Instructions>ldloc</Instructions><Normal Text>.0</Normal Text><br/>
+<Normal Text>              </Normal Text><Instructions>ldc</Instructions><Normal Text>.i4     0x3e8</Normal Text><br/>
+<Normal Text>              </Normal Text><Instructions>blt</Instructions><Normal Text>.s      IL_0004</Normal Text><br/>
+<Normal Text>              </Normal Text><Instructions>ret</Instructions><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>.</Normal Text><Keyword>method</Keyword><Normal Text> </Normal Text><Meta Data>assembly</Meta Data><Normal Text> </Normal Text><Keyword>static</Keyword><Normal Text> </Normal Text><Data Type>void</Data Type><Normal Text> modopt([mscorlib]System.Runtime.CompilerServices.CallConvCdecl)</Normal Text><br/>
+<Normal Text>        test_pointer_operations(</Normal Text><Data Type>int32</Data Type><Normal Text> param) </Normal Text><Keyword>cil</Keyword><Normal Text> </Normal Text><Keyword>managed</Keyword><br/>
+<Normal Text>{</Normal Text><br/>
+<Normal Text>  .vtentry 1 : 1</Normal Text><br/>
+<Normal Text>  </Normal Text><Comment>// Code size       44 (0x2c)</Comment><br/>
+<Normal Text>  .</Normal Text><Meta Data>maxstack</Meta Data><Normal Text>  2</Normal Text><br/>
+<Normal Text>  .</Normal Text><Meta Data>locals</Meta Data><Normal Text> ([0] </Normal Text><Data Type>int32</Data Type><Normal Text>* ptr,</Normal Text><br/>
+<Normal Text>           [1] valuetype A* V_1,</Normal Text><br/>
+<Normal Text>           [2] valuetype A* a,</Normal Text><br/>
+<Normal Text>           [3] </Normal Text><Data Type>int32</Data Type><Normal Text> k)</Normal Text><br/>
+<Comment>// k = 0;</Comment><br/>
+<Normal Text>  </Normal Text><Label>IL_0000:</Label><Normal Text>  </Normal Text><Instructions>ldc</Instructions><Normal Text>.i4.0</Normal Text><br/>
+<Normal Text>  </Normal Text><Label>IL_0001:</Label><Normal Text>  </Normal Text><Instructions>stloc</Instructions><Normal Text>.3</Normal Text><br/>
+<Comment>// ptr = &k;</Comment><br/>
+<Normal Text>  </Normal Text><Label>IL_0002:</Label><Normal Text>  </Normal Text><Instructions>ldloca</Instructions><Normal Text>.s   k </Normal Text><Comment>// load local's address instruction</Comment><br/>
+<Normal Text>  </Normal Text><Label>IL_0004:</Label><Normal Text>  </Normal Text><Instructions>stloc</Instructions><Normal Text>.0</Normal Text><br/>
+<Comment>// *ptr = 1;</Comment><br/>
+<Normal Text>  </Normal Text><Label>IL_0005:</Label><Normal Text>  </Normal Text><Instructions>ldloc</Instructions><Normal Text>.0</Normal Text><br/>
+<Normal Text>  </Normal Text><Label>IL_0006:</Label><Normal Text>  </Normal Text><Instructions>ldc</Instructions><Normal Text>.i4.1</Normal Text><br/>
+<Normal Text>  </Normal Text><Label>IL_0007:</Label><Normal Text>  </Normal Text><Instructions>stind</Instructions><Normal Text>.i4 </Normal Text><Comment>// indirection instruction</Comment><br/>
+<Comment>// ptr = &param</Comment><br/>
+<Normal Text>  </Normal Text><Label>IL_0008:</Label><Normal Text>  </Normal Text><Instructions>ldarga</Instructions><Normal Text>.s   param </Normal Text><Comment>// load parameter's address instruction</Comment><br/>
+<Normal Text>  </Normal Text><Label>IL_000a:</Label><Normal Text>  </Normal Text><Instructions>stloc</Instructions><Normal Text>.0</Normal Text><br/>
+<Comment>// *ptr = 2</Comment><br/>
+<Normal Text>  </Normal Text><Label>IL_000b:</Label><Normal Text>  </Normal Text><Instructions>ldloc</Instructions><Normal Text>.0</Normal Text><br/>
+<Normal Text>  </Normal Text><Label>IL_000c:</Label><Normal Text>  </Normal Text><Instructions>ldc</Instructions><Normal Text>.i4.2</Normal Text><br/>
+<Normal Text>  </Normal Text><Label>IL_000d:</Label><Normal Text>  </Normal Text><Instructions>stind</Instructions><Normal Text>.i4</Normal Text><br/>
+<Comment>// a = new A;</Comment><br/>
+<Normal Text>  </Normal Text><Label>IL_000e:</Label><Normal Text>  </Normal Text><Instructions>ldloca</Instructions><Normal Text>.s   a</Normal Text><br/>
+<Normal Text>  </Normal Text><Label>IL_0010:</Label><Normal Text>  </Normal Text><Instructions>call</Instructions><Normal Text>       valuetype A* modopt([mscorlib]System.Runtime.CompilerServices.CallConvThiscall) 'A.{ctor}'(valuetype A* modopt([mscorlib]System.Runtime.CompilerServices.IsConst) modopt([mscorlib]System.Runtime.CompilerServices.IsConst))</Normal Text><br/>
+<Normal Text>  </Normal Text><Label>IL_0015:</Label><Normal Text>  </Normal Text><Instructions>pop</Instructions><br/>
+<Comment>// ptra = &a;</Comment><br/>
+<Normal Text>  </Normal Text><Label>IL_0016:</Label><Normal Text>  </Normal Text><Instructions>ldloca</Instructions><Normal Text>.s   a</Normal Text><br/>
+<Normal Text>  </Normal Text><Label>IL_0018:</Label><Normal Text>  </Normal Text><Instructions>stloc</Instructions><Normal Text>.1</Normal Text><br/>
+<Comment>// ptra->meth();</Comment><br/>
+<Normal Text>  </Normal Text><Label>IL_0019:</Label><Normal Text>  </Normal Text><Instructions>ldloc</Instructions><Normal Text>.1</Normal Text><br/>
+<Normal Text>  </Normal Text><Label>IL_001a:</Label><Normal Text>  </Normal Text><Instructions>dup</Instructions><br/>
+<Normal Text>  </Normal Text><Label>IL_001b:</Label><Normal Text>  </Normal Text><Instructions>ldind</Instructions><Normal Text>.i4 </Normal Text><Comment>// reading the VMT for virtual call</Comment><br/>
+<Normal Text>  </Normal Text><Label>IL_001c:</Label><Normal Text>  </Normal Text><Instructions>ldind</Instructions><Normal Text>.i4</Normal Text><br/>
+<Normal Text>  </Normal Text><Label>IL_001d:</Label><Normal Text>  </Normal Text><Instructions>calli</Instructions><Normal Text>      unmanaged stdcall </Normal Text><Data Type>void</Data Type><Normal Text> modopt([mscorlib]System.Runtime.CompilerServices.CallConvStdcall)(native int)</Normal Text><br/>
+<Normal Text>  </Normal Text><Label>IL_0022:</Label><Normal Text>  </Normal Text><Instructions>ret</Instructions><br/>
+<Normal Text>} </Normal Text><Comment>// end of method 'Global Functions'::test_pointer_operations</Comment><br/>

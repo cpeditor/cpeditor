@@ -1,0 +1,78 @@
+<Preprocessor>#include </Preprocessor><Prep. Lib><stdio.h></Prep. Lib><br/>
+<Preprocessor>#include </Preprocessor><Prep. Lib>"stdint.h"</Prep. Lib><br/>
+<Normal Text></Normal Text><br/>
+<Preprocessor>#define SOME_VAR 1</Preprocessor><br/>
+<Preprocessor>#ifdef SOME_VAR</Preprocessor><br/>
+<Normal Text></Normal Text><br/>
+<Preprocessor>#define MULTILINE_MACRO one \</Preprocessor><br/>
+<Preprocessor>two \</Preprocessor><br/>
+<Preprocessor>three</Preprocessor><br/>
+<Normal Text></Normal Text><br/>
+<Data Type>static</Data Type><Normal Text> </Normal Text><Data Type>uint64_t</Data Type><Normal Text> intWithSuffix </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Decimal>42</Decimal><Standard Suffix>ull</Standard Suffix><Normal Text> </Normal Text><Symbol>+</Symbol><Normal Text> </Normal Text><Symbol>~</Symbol><Decimal>1233</Decimal><Standard Suffix>L</Standard Suffix><Symbol>;</Symbol><br/>
+<Data Type>static</Data Type><Normal Text> </Normal Text><Data Type>int</Data Type><Normal Text> octNum </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Octal>07232</Octal><Symbol>;</Symbol><br/>
+<Data Type>static</Data Type><Normal Text> </Normal Text><Data Type>int</Data Type><Normal Text> invalidOctNum </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Error>09231</Error><Symbol>;</Symbol><br/>
+<Data Type>static</Data Type><Normal Text> </Normal Text><Data Type>uint64_t</Data Type><Normal Text> hexNum </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Hex>0xDEADBEEF42</Hex><Symbol>;</Symbol><br/>
+<Data Type>static</Data Type><Normal Text> </Normal Text><Data Type>uint64_t</Data Type><Normal Text> invalidHexNum </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Error>0xGLDFKG</Error><Symbol>;</Symbol><br/>
+<Data Type>static</Data Type><Normal Text> </Normal Text><Data Type>char</Data Type><Normal Text> binNum </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Binary>0b0101010</Binary><Symbol>;</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Data Type>static</Data Type><Normal Text> </Normal Text><Data Type>double</Data Type><Normal Text> d1 </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Float>42.</Float><Normal Text> </Normal Text><Symbol>+</Symbol><Normal Text> </Normal Text><Float>0x1.5p+2</Float><Symbol>;</Symbol><br/>
+<Data Type>static</Data Type><Normal Text> </Normal Text><Data Type>double</Data Type><Normal Text> d2 </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Float>.42</Float><Symbol>;</Symbol><br/>
+<Data Type>static</Data Type><Normal Text> </Normal Text><Data Type>double</Data Type><Normal Text> d3 </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Float>42.3e1</Float><Symbol>;</Symbol><br/>
+<Data Type>static</Data Type><Normal Text> </Normal Text><Data Type>double</Data Type><Normal Text> d4 </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Float>.2e-12</Float><Symbol>;</Symbol><br/>
+<Data Type>static</Data Type><Normal Text> </Normal Text><Data Type>double</Data Type><Normal Text> d5 </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Float>32.e+12</Float><Symbol>;</Symbol><br/>
+<Data Type>static</Data Type><Normal Text> </Normal Text><Data Type>float</Data Type><Normal Text> floatQualifier </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Float>23.123</Float><Standard Suffix>f</Standard Suffix><Symbol>;</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Data Type>static</Data Type><Normal Text> </Normal Text><Data Type>const</Data Type><Normal Text> </Normal Text><Data Type>char</Data Type><Normal Text> c1 </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Char>'c'</Char><Symbol>;</Symbol><br/>
+<Data Type>static</Data Type><Normal Text> </Normal Text><Data Type>const</Data Type><Normal Text> </Normal Text><Data Type>char</Data Type><Normal Text> c2 </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Char>'\n'</Char><Symbol>;</Symbol><br/>
+<Data Type>static</Data Type><Normal Text> </Normal Text><Data Type>const</Data Type><Normal Text> </Normal Text><Data Type>char</Data Type><Normal Text> c2a </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Char>'\120'</Char><Symbol>;</Symbol><Normal Text> </Normal Text><Comment>// octal</Comment><br/>
+<Data Type>static</Data Type><Normal Text> </Normal Text><Data Type>const</Data Type><Normal Text> </Normal Text><Data Type>char</Data Type><Normal Text> c2o </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Char>'\0'</Char><Symbol>;</Symbol><Normal Text> </Normal Text><Comment>// octal, special case</Comment><br/>
+<Data Type>static</Data Type><Normal Text> </Normal Text><Data Type>const</Data Type><Normal Text> </Normal Text><Data Type>char</Data Type><Normal Text> c2b </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Char>'\x1f'</Char><Symbol>;</Symbol><Normal Text> </Normal Text><Comment>// hex</Comment><br/>
+<Data Type>static</Data Type><Normal Text> </Normal Text><Data Type>const</Data Type><Normal Text> </Normal Text><Data Type>char</Data Type><Normal Text> c2c </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Char>'\''</Char><Symbol>;</Symbol><br/>
+<Data Type>static</Data Type><Normal Text> </Normal Text><Data Type>const</Data Type><Normal Text> </Normal Text><Data Type>char</Data Type><Normal Text> c2d </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Char>'\\'</Char><Symbol>;</Symbol><br/>
+<Data Type>static</Data Type><Normal Text> </Normal Text><Data Type>const</Data Type><Normal Text> </Normal Text><Data Type>char</Data Type><Symbol>*</Symbol><Normal Text> c3  </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><String>"string"</String><Symbol>;</Symbol><br/>
+<Data Type>static</Data Type><Normal Text> </Normal Text><Data Type>const</Data Type><Normal Text> </Normal Text><Data Type>char</Data Type><Symbol>*</Symbol><Normal Text> c4 </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><String>"</String><String Char>\"</String Char><String>string</String><String Char>\n\t\012\x12\"</String Char><String>"</String><Symbol>;</Symbol><br/>
+<Data Type>static</Data Type><Normal Text> </Normal Text><Data Type>const</Data Type><Normal Text> </Normal Text><Data Type>char</Data Type><Symbol>*</Symbol><Normal Text> c5 </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><String>"multiline \</String><br/>
+<String>    string"</String><Symbol>;</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Region Marker>//BEGIN region</Region Marker><br/>
+<Comment>// </Comment><Alert Level 2>TODO</Alert Level 2><Comment> comment </Comment><Alert Level 2>FIXME</Alert Level 2><Comment> comment </Comment><Alert Level 3>###</Alert Level 3><Comment> comment</Comment><br/>
+<Region Marker>//END region</Region Marker><br/>
+<Normal Text></Normal Text><br/>
+<Error>#wrong</Error><br/>
+<Normal Text></Normal Text><br/>
+<Comment>/**</Comment><br/>
+<Comment> * Doxygen</Comment><br/>
+<Comment> * </Comment><Tags>@param</Tags><Comment> </Comment><Word>p1</Word><Comment> text</Comment><br/>
+<Comment> * </Comment><Tags>\brief</Tags><Comment> </Comment><HTML Tag><b></HTML Tag><Comment>bold text</Comment><HTML Tag></b></HTML Tag><br/>
+<Comment> * </Comment><Tags>\dot</Tags><br/>
+<Dot Graph> </Dot Graph><Comment>*</Comment><Dot Graph> a -> b</Dot Graph><br/>
+<Dot Graph> </Dot Graph><Comment>*</Comment><Dot Graph> </Dot Graph><Tags>\enddot</Tags><br/>
+<Comment> *</Comment><br/>
+<Comment> * </Comment><Tags>\verbatim</Tags><br/>
+<Verbatim> </Verbatim><Comment>*</Comment><Verbatim> <dummy></Verbatim><br/>
+<Verbatim> </Verbatim><Comment>*</Comment><Verbatim> </Verbatim><Tags>\endverbatim</Tags><br/>
+<Comment> * </Comment><HTML Tag><html></HTML Tag><Comment>text</Comment><HTML Tag></html></HTML Tag><br/>
+<Comment> */</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Preprocessor>#endif</Preprocessor><br/>
+<Normal Text></Normal Text><br/>
+<Comment>/*</Comment><br/>
+<Comment> * Empty lines after a line continuation character (see bug #405903)</Comment><br/>
+<Comment> */</Comment><br/>
+<Preprocessor>#define one \</Preprocessor><br/>
+<Preprocessor>two \</Preprocessor><br/>
+<Normal Text></Normal Text><br/>
+<Data Type>int</Data Type><Normal Text> i </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Decimal>0</Decimal><Symbol>;</Symbol><Normal Text> </Normal Text><Comment>// this should not be highlighted as a macro</Comment><br/>
+<Data Type>char</Data Type><Symbol>*</Symbol><Normal Text> str </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><String>"string \</String><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Data Type>int</Data Type><Normal Text> i </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Decimal>0</Decimal><Symbol>;</Symbol><Normal Text> </Normal Text><Comment>// this should not be highlighted as a string</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Comment>/*</Comment><br/>
+<Comment> * Digraphs (see bug #411508)</Comment><br/>
+<Comment> */</Comment><br/>
+<Preprocessor>%:include </Preprocessor><Prep. Lib><stdio.h></Prep. Lib><br/>
+<Data Type>int</Data Type><Normal Text> a</Normal Text><Symbol>()</Symbol><br/>
+<Symbol><%</Symbol><br/>
+<Normal Text>    </Normal Text><Symbol>[](){%>();</Symbol><br/>
+<Symbol>}</Symbol><br/>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE language SYSTEM "language.dtd"
+[
+    <!-- comment line 1
+         comment line 2 -->
+    <!ENTITY name    "(?![0-9])[\w_:][\w.:_-]*">
+    <!ENTITY entref  "&amp;(#[0-9]+|#[xX][0-9A-Fa-f]+|&name;);">
+]>
+<element attr1="a1" attr2="2.03" attr3="&entity;">
+    <sub-element/>
+</element>
+
+<wrong<very wrong>>

@@ -1,0 +1,33 @@
+<Comment># cube.obj</Comment><br/>
+<Comment>#</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>g</Keyword><Normal Text> cube</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>v</Keyword><Normal Text>  </Normal Text><Float>0.0</Float><Normal Text>  </Normal Text><Float>0.0</Float><Normal Text>  </Normal Text><Float>0.0</Float><br/>
+<Keyword>v</Keyword><Normal Text>  </Normal Text><Float>0.0</Float><Normal Text>  </Normal Text><Float>0.0</Float><Normal Text>  </Normal Text><Float>1.0</Float><br/>
+<Keyword>v</Keyword><Normal Text>  </Normal Text><Float>0.0</Float><Normal Text>  </Normal Text><Float>1.0</Float><Normal Text>  </Normal Text><Float>0.0</Float><br/>
+<Keyword>v</Keyword><Normal Text>  </Normal Text><Float>0.0</Float><Normal Text>  </Normal Text><Float>1.0</Float><Normal Text>  </Normal Text><Float>1.0</Float><br/>
+<Keyword>v</Keyword><Normal Text>  </Normal Text><Float>1.0</Float><Normal Text>  </Normal Text><Float>0.0</Float><Normal Text>  </Normal Text><Float>0.0</Float><br/>
+<Keyword>v</Keyword><Normal Text>  </Normal Text><Float>1.0</Float><Normal Text>  </Normal Text><Float>0.0</Float><Normal Text>  </Normal Text><Float>1.0</Float><br/>
+<Keyword>v</Keyword><Normal Text>  </Normal Text><Float>1.0</Float><Normal Text>  </Normal Text><Float>1.0</Float><Normal Text>  </Normal Text><Float>0.0</Float><br/>
+<Keyword>v</Keyword><Normal Text>  </Normal Text><Float>1.0</Float><Normal Text>  </Normal Text><Float>1.0</Float><Normal Text>  </Normal Text><Float>1.0</Float><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>vn</Keyword><Normal Text>  </Normal Text><Float>0.0</Float><Normal Text>  </Normal Text><Float>0.0</Float><Normal Text>  </Normal Text><Float>1.0</Float><br/>
+<Keyword>vn</Keyword><Normal Text>  </Normal Text><Float>0.0</Float><Normal Text>  </Normal Text><Float>0.0</Float><Normal Text> -</Normal Text><Float>1.0</Float><br/>
+<Keyword>vn</Keyword><Normal Text>  </Normal Text><Float>0.0</Float><Normal Text>  </Normal Text><Float>1.0</Float><Normal Text>  </Normal Text><Float>0.0</Float><br/>
+<Keyword>vn</Keyword><Normal Text>  </Normal Text><Float>0.0</Float><Normal Text> -</Normal Text><Float>1.0</Float><Normal Text>  </Normal Text><Float>0.0</Float><br/>
+<Keyword>vn</Keyword><Normal Text>  </Normal Text><Float>1.0</Float><Normal Text>  </Normal Text><Float>0.0</Float><Normal Text>  </Normal Text><Float>0.0</Float><br/>
+<Keyword>vn</Keyword><Normal Text> -</Normal Text><Float>1.0</Float><Normal Text>  </Normal Text><Float>0.0</Float><Normal Text>  </Normal Text><Float>0.0</Float><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>f</Keyword><Normal Text>  </Normal Text><Decimal>1</Decimal><Normal Text>//</Normal Text><Decimal>2</Decimal><Normal Text>  </Normal Text><Decimal>7</Decimal><Normal Text>//</Normal Text><Decimal>2</Decimal><Normal Text>  </Normal Text><Decimal>5</Decimal><Normal Text>//</Normal Text><Decimal>2</Decimal><br/>
+<Keyword>f</Keyword><Normal Text>  </Normal Text><Decimal>1</Decimal><Normal Text>//</Normal Text><Decimal>2</Decimal><Normal Text>  </Normal Text><Decimal>3</Decimal><Normal Text>//</Normal Text><Decimal>2</Decimal><Normal Text>  </Normal Text><Decimal>7</Decimal><Normal Text>//</Normal Text><Decimal>2</Decimal><br/>
+<Keyword>f</Keyword><Normal Text>  </Normal Text><Decimal>1</Decimal><Normal Text>//</Normal Text><Decimal>6</Decimal><Normal Text>  </Normal Text><Decimal>4</Decimal><Normal Text>//</Normal Text><Decimal>6</Decimal><Normal Text>  </Normal Text><Decimal>3</Decimal><Normal Text>//</Normal Text><Decimal>6</Decimal><br/>
+<Keyword>f</Keyword><Normal Text>  </Normal Text><Decimal>1</Decimal><Normal Text>//</Normal Text><Decimal>6</Decimal><Normal Text>  </Normal Text><Decimal>2</Decimal><Normal Text>//</Normal Text><Decimal>6</Decimal><Normal Text>  </Normal Text><Decimal>4</Decimal><Normal Text>//</Normal Text><Decimal>6</Decimal><br/>
+<Keyword>f</Keyword><Normal Text>  </Normal Text><Decimal>3</Decimal><Normal Text>//</Normal Text><Decimal>3</Decimal><Normal Text>  </Normal Text><Decimal>8</Decimal><Normal Text>//</Normal Text><Decimal>3</Decimal><Normal Text>  </Normal Text><Decimal>7</Decimal><Normal Text>//</Normal Text><Decimal>3</Decimal><br/>
+<Keyword>f</Keyword><Normal Text>  </Normal Text><Decimal>3</Decimal><Normal Text>//</Normal Text><Decimal>3</Decimal><Normal Text>  </Normal Text><Decimal>4</Decimal><Normal Text>//</Normal Text><Decimal>3</Decimal><Normal Text>  </Normal Text><Decimal>8</Decimal><Normal Text>//</Normal Text><Decimal>3</Decimal><br/>
+<Keyword>f</Keyword><Normal Text>  </Normal Text><Decimal>5</Decimal><Normal Text>//</Normal Text><Decimal>5</Decimal><Normal Text>  </Normal Text><Decimal>7</Decimal><Normal Text>//</Normal Text><Decimal>5</Decimal><Normal Text>  </Normal Text><Decimal>8</Decimal><Normal Text>//</Normal Text><Decimal>5</Decimal><br/>
+<Keyword>f</Keyword><Normal Text>  </Normal Text><Decimal>5</Decimal><Normal Text>//</Normal Text><Decimal>5</Decimal><Normal Text>  </Normal Text><Decimal>8</Decimal><Normal Text>//</Normal Text><Decimal>5</Decimal><Normal Text>  </Normal Text><Decimal>6</Decimal><Normal Text>//</Normal Text><Decimal>5</Decimal><br/>
+<Keyword>f</Keyword><Normal Text>  </Normal Text><Decimal>1</Decimal><Normal Text>//</Normal Text><Decimal>4</Decimal><Normal Text>  </Normal Text><Decimal>5</Decimal><Normal Text>//</Normal Text><Decimal>4</Decimal><Normal Text>  </Normal Text><Decimal>6</Decimal><Normal Text>//</Normal Text><Decimal>4</Decimal><br/>
+<Keyword>f</Keyword><Normal Text>  </Normal Text><Decimal>1</Decimal><Normal Text>//</Normal Text><Decimal>4</Decimal><Normal Text>  </Normal Text><Decimal>6</Decimal><Normal Text>//</Normal Text><Decimal>4</Decimal><Normal Text>  </Normal Text><Decimal>2</Decimal><Normal Text>//</Normal Text><Decimal>4</Decimal><br/>
+<Keyword>f</Keyword><Normal Text>  </Normal Text><Decimal>2</Decimal><Normal Text>//</Normal Text><Decimal>1</Decimal><Normal Text>  </Normal Text><Decimal>6</Decimal><Normal Text>//</Normal Text><Decimal>1</Decimal><Normal Text>  </Normal Text><Decimal>8</Decimal><Normal Text>//</Normal Text><Decimal>1</Decimal><br/>
+<Keyword>f</Keyword><Normal Text>  </Normal Text><Decimal>2</Decimal><Normal Text>//</Normal Text><Decimal>1</Decimal><Normal Text>  </Normal Text><Decimal>8</Decimal><Normal Text>//</Normal Text><Decimal>1</Decimal><Normal Text>  </Normal Text><Decimal>4</Decimal><Normal Text>//</Normal Text><Decimal>1</Decimal><br/>

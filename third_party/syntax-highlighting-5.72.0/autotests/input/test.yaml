@@ -1,0 +1,157 @@
+# YAML test
+
+# Comment
+
+key: value
+another key: Another value
+boolean: true
+null_value: null
+single quotes: 'have ''one'' escape pattern'
+double quotes: "have many: \", \0, \t, \u263A, \x0d\x0a == \r\n, and more."
+
+decimal: +12345
+negative: -1_4
+zero: 0
+octal: 0o14
+another octal: 014_2
+hexadecimal: 0x_Ca2
+float: 1.23015e+3
+exponential: 12.3015e+02
+fixed: 12__30.1_5
+sexagesimal: 19_0:20:30.15
+sexagesimal-inline: [123:45:12, 123:45:32.234_32, +12__3:23]
+infinity: !!float .inf
+not a number: !!float .NaN
+datetime: 2001-12-15T02:59:43.1Z
+date: 2002-12-14
+
+json_map: {"key": "value"}
+json_seq: [3, 2, -.inf, "value"]
+another key: {key: [+0x12a, , !!hello: bye, 1, off, {a: [{b: ''}]}]}
+
+? !!python/tuple [5, 7]
+: Fifty Seven
+
+? set2:
+  item1: null
+  item2: null
+
+foo: &foo
+  <<: *base
+  age: 10
+
+!!seq [
+  !!str "Block scalar\n",
+  !!map {
+    ? &B1 !!str "foo"
+    : !!str "bar",
+    ? !!str "baz"
+    : *B1,
+  },
+  !!map {
+     !!str "sun" : !!str "yellow",
+  },
+]
+
+!!map {
+  !!str "Booleans": !!seq [
+    !!bool "true", !!bool "false"
+  ],
+  !!str "Invalid": !!seq [
+    # Rejected by the schema
+    True, Null, 0o7, 0x3A, +12.3,
+  ],
+}
+
+--- !clarkevans.com,2002/graph/^shape
+- !^circle
+  center: &ORIGIN {x: 73, y: 129}
+  radius: 7
+
+? - Dog
+  - Cat
+: [ 2018-08-11, 2016-01-01 ]
+
+# Literal/Folded Style
+
+--- |
+  \//||\/||
+  // ||  ||__
+
+--- >
+  Mark McGwire's
+  year was crippled
+  by a knee injury.
+ 
+? |
+  This is a key
+  that has multiple lines
+: |
+  and this is it's literal value
+
+# Capture the indentation of the Key. The "-" and "?" operators
+# are considered as part of the indentation:
+key1:
+   key2: !!hello |
+    literal: " text" # [ ]
+
+    # literal { }
+   key3: |+
+    literal: 'text'
+   no-literal: " text"
+    #comment
+
+?  key: |-
+    literal: "text"
+   no-literal: "text"
+- item1
+    - item2
+        - - - key: >-
+               "literal text" # [ ]
+
+               'literal block'
+              no-literal: 12
+
+? - - - - ? key: |
+             literal: [ ]
+            no-literal: [ ]
+
+# Capture the indentation of the literal/folded operator:
+|-
+ literal: "text"
+
+!!binary |
+ R0lGODlhDAAMAIQAAP//9/X
+ 17unp5WZmZgAAAOfn515eXv
+ Pz7Y6OjuDg4J+fn5OTk6enp
+ 56enmleECcgggoBADs=
+
+key1:
+  key2:
+   |
+   literal: "text"
+  key3:
+   !!str |
+   literal: "text"
+   #literal
+
+# Capture the indentation of the operators "-" or "?":
+? - - - !!hello |+
+       literal: "sdfsd" # [ ]
+      no-literal: "sdfsd" # [ ]
+
+- - - - >-
+       literal: "text"
+       #literal
+      no-literal: "text" 
+
+# This implementation of literal blocks has a limitation:
+# it only supports 6 dashes at most.
+- - - - - - - key: |
+               literal? "dfsf"
+
+# Only comments after spaces & strings in multiline attributes (bug #407060)
+reg_list:
+- reg: ?#XPath //div[@class="product_item cf"][@id] ))(?sx)
+    id="product(?P<code>[^"]+)"
+    .+?<h4><a\s+[^>]+>(?P<title>[^<]+)</a></h4>

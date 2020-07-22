@@ -1,0 +1,41 @@
+#VRML V2.0 utf8
+#
+# VRML highlighting test for Kate's syntax highlighting
+#
+
+# Keywords
+DEF, EXTERNPROTO, FALSE, IS, NULL, PROTO, ROUTE, TO, TRUE, USE, eventIn,
+eventOut, exposedField, field
+
+# Data types
+MFColor, MFFloat, MFInt32, MFNode. MFRotation, MFString, MFTime, MFVec2f,
+MFVec3f, SFBool, SFColor, SFFloat, SFImage, SFInt32, SFNode, SFRotation,
+SFString, SFTime, SFVec2f, SFVec3f
+
+# Predefined nodes
+Anchor, Appearance, AudioClip, Background, Billboard, Box, Collision, Color,
+ColorInterpolator, Cone, Coordinate, CoordinateInterpolator, Cylinder, 
+CylinderSensor, DirectionalLight, ElevationGrid, Extrusion, Fog, FontStyle,
+Group, ImageTexture, IndexedFaceSet, IndexedLineSet, Inline, LOD, Material,
+MovieTexture, NavigationInfo, Normal, NormalInterpolator, OrientationInterpolator,
+PixelTexture, PlaneSensor, PointLight, PointSet, PositionInterpolator,
+ProximitySensor, ScalarInterpolator, Script, Shape, Sound, Sphere, SphereSensor,
+SpotLight, Switch, Text, TextureCoordinate, TextureTransform, TimeSensor,
+TouchSensor, Transform, Viewpoint, VisibilitySensor, WorldInfo
+
+# Some real VRML constructs to see if highlighting of int, float etc. works
+NavigationInfo <beginfold id='1'>{</beginfold id='1'> 
+	avatarSize      [0.25, 1.6, 0.75]
+	headlight       TRUE
+	speed           1
+	type            ["WALK", "ANY"]
+	visibilityLimit 0.0
+<endfold id='1'>}</endfold id='1'>
+
+# some further testing for strings: linefeeds are allowed within strings
+Text <beginfold id='1'>{</beginfold id='1'> 
+	string ["some special in-string characters: \" \\
+	        some more text in the next line
+	        and yet another line"]
+<endfold id='1'>}</endfold id='1'>
+

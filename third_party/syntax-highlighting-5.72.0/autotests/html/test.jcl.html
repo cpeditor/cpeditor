@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title>test.jcl</title>
+<meta name="generator" content="KF5::SyntaxHighlighting (JCL)"/>
+</head><body style="color:#1f1c1b"><pre>
+<span style="color:#0057ae;">//KATEJOB1</span> <span style="color:#0057ae;">JOB</span> (INFO),<span style="color:#bf0303;">'TEST for Highlighting'</span>,
+<span style="color:#0057ae;">//</span>   <span style="color:#0057ae;">NOTIFY</span>=<span style="font-weight:bold;">&amp;SYSUID</span>,
+<span style="color:#0057ae;">//</span>   <span style="color:#0057ae;">MSGCLASS</span>=H,
+<span style="color:#0057ae;">//</span>   <span style="color:#0057ae;">MSGLEVEL</span>=(1,1),
+<span style="color:#0057ae;">//</span>   <span style="color:#0057ae;">REGION</span>=0M
+<span style="color:#898887;">//* Example JCL to be used to test kate syntax highlighting</span>
+<span style="color:#898887;">//* License MIT</span>
+<span style="color:#b08000;">//GREP     </span><span style="font-weight:bold;">EXEC</span> <span style="font-weight:bold;">PGM</span>=ISRSUPC,
+<span style="color:#0057ae;">//</span>         <span style="font-weight:bold;">PARM</span>=(SRCHCMP,ANYC,IDPFX,NOPRTCC)
+<span style="color:#0057ae;">//NEWDD</span>    <span style="font-weight:bold;">DD</span> <span style="font-weight:bold;">DSN</span>=<span style="color:#0057ae;">KATE.REXXLIB</span>,<span style="font-weight:bold;">DISP</span>=OLD
+<span style="color:#898887;">//* OUTDD    DD SYSOUT=*</span>
+<span style="color:#0057ae;">//OUTDD</span>    <span style="font-weight:bold;">DD</span> <span style="font-weight:bold;">PATHOPTS</span>=(ORDWR,OTRUNC,OCREAT),
+<span style="color:#0057ae;">//</span>             <span style="font-weight:bold;">PATHMODE</span>=(SIRWXU,SIRWXO),
+<span style="color:#0057ae;">//</span>             <span style="font-weight:bold;">PATHDISP</span>=(KEEP,DELETE),
+<span style="color:#0057ae;">//</span>             <span style="font-weight:bold;">FILEDATA</span>=TEXT,
+<span style="color:#0057ae;">//</span>             <span style="font-weight:bold;">PATH</span>=<span style="color:#bf0303;">'/tmp/searched.3'</span>
+<span style="color:#0057ae;">//SYSIN</span>    <span style="font-weight:bold;">DD</span> *
+<span style="color:#644a9b;"> SRCHFOR  'STORAGE'</span>
+<span style="color:#644a9b;">/*</span>
+<span style="color:#b08000;">//RACFSR   </span><span style="font-weight:bold;">EXEC</span> <span style="font-weight:bold;">PGM</span>=IKJEFT01
+<span style="color:#0057ae;">//SYSTSPRT</span> <span style="font-weight:bold;">DD</span> <span style="font-weight:bold;">DISP</span>=SHR,<span style="font-weight:bold;">DSN</span>=<span style="font-weight:bold;">&amp;&amp;KATE</span>(SRCHABC)
+<span style="color:#0057ae;">//SYSOUT</span>   <span style="font-weight:bold;">DD</span> <span style="font-weight:bold;">SYSOUT</span>=*
+<span style="color:#0057ae;">//SYSTSIN</span>  <span style="font-weight:bold;">DD</span> *
+<span style="color:#644a9b;"> SEARCH CLASS(DATASET) FILTER(**) NOMASK</span>
+<span style="color:#b08000;">//LIST     </span><span style="font-weight:bold;">EXEC</span> <span style="font-weight:bold;">PGM</span>=IKJEFT01
+<span style="color:#0057ae;">//SYSTSPRT</span> <span style="font-weight:bold;">DD</span> <span style="font-weight:bold;">DISP</span>=SHR,<span style="font-weight:bold;">DSN</span>=<span style="font-weight:bold;">&amp;&amp;REPORT</span>(LISTABC)
+<span style="color:#0057ae;">//SYSOUT</span>   <span style="font-weight:bold;">DD</span> <span style="font-weight:bold;">SYSOUT</span>=*
+<span style="color:#0057ae;">//SYSTSIN</span>  <span style="font-weight:bold;">DD</span> <span style="font-weight:bold;">DISP</span>=SHR,<span style="font-weight:bold;">DSN</span>=<span style="font-weight:bold;">&amp;&amp;KATE</span>(SRCHABC)   
+<span style="color:#0057ae;">//</span> <span style="font-weight:bold;">IF</span> (<span style="font-weight:bold;">RC</span> <span style="font-weight:bold;">GT</span> 0) <span style="font-weight:bold;">THEN</span>
+<span style="color:#b08000;">//CATFILE  </span><span style="font-weight:bold;">EXEC</span> <span style="font-weight:bold;">PGM</span>=IEBGENER
+<span style="color:#0057ae;">//SYSUT1</span>   <span style="font-weight:bold;">DD</span>  <span style="font-weight:bold;">DSN</span>=<span style="font-weight:bold;">&amp;&amp;REPORT</span>(LISTABC)
+<span style="color:#0057ae;">//</span>         <span style="font-weight:bold;">DISP</span>=SHR
+<span style="color:#0057ae;">//SYSUT2</span>   <span style="font-weight:bold;">DD</span>  <span style="font-weight:bold;">SYSOUT</span>=*
+<span style="color:#0057ae;">//SYSPRINT</span> <span style="font-weight:bold;">DD</span>  <span style="font-weight:bold;">SYSOUT</span>=*
+<span style="color:#0057ae;">//SYSIN</span>    <span style="font-weight:bold;">DD</span>  <span style="font-weight:bold;">DUMMY</span>
+<span style="color:#0057ae;">//</span> <span style="font-weight:bold;">ELSE</span>
+<span style="color:#b08000;">//UNIXID   </span><span style="font-weight:bold;">EXEC</span> <span style="font-weight:bold;">PGM</span>=BPXBATCH,<span style="color:#0057ae;">REGION</span>=8M
+<span style="color:#0057ae;">//STDIN</span>    <span style="font-weight:bold;">DD</span> <span style="font-weight:bold;">SYSOUT</span>=*
+<span style="color:#0057ae;">//STDOUT</span>   <span style="font-weight:bold;">DD</span> <span style="font-weight:bold;">SYSOUT</span>=*
+<span style="color:#0057ae;">//STDPARM</span>  <span style="font-weight:bold;">DD</span>   *
+<span style="color:#644a9b;">SH id</span>
+<span style="color:#644a9b;">/*</span>
+<span style="color:#0057ae;">//</span> <span style="font-weight:bold;">ENDIF</span>
+</pre></body></html>

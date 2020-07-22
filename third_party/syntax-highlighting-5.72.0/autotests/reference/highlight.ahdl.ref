@@ -1,0 +1,43 @@
+<Comment>-- Test file for kate's syntax highlighting</Comment><br/>
+<Keyword>Title</Keyword><Normal Text> </Normal Text><String>"Test file"</String><Normal Text>;</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Region Marker>-- BEGIN region (a region marker region) :)</Region Marker><br/>
+<Normal Text></Normal Text><br/>
+<Comment>% multiline comment</Comment><br/>
+<Comment>goes on here %</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Region Marker>-- END</Region Marker><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>FUNCTION</Keyword><Normal Text> FCT (Clk, Key) </Normal Text><Keyword>RETURNS</Keyword><Normal Text> (pulse);</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>SUBDESIGN</Keyword><Normal Text> CDCLOCK2</Normal Text><br/>
+<Normal Text>(</Normal Text><br/>
+<Keyword>in</Keyword><Normal Text>           : </Normal Text><Keyword>INPUT</Keyword><Normal Text>;  </Normal Text><Comment>-- go in</Comment><br/>
+<Normal Text>out[</Normal Text><Decimal>3</Decimal><Normal Text>..</Normal Text><Decimal>0</Decimal><Normal Text>]    : </Normal Text><Keyword>OUTPUT</Keyword><Normal Text>; </Normal Text><Comment>-- come out</Comment><br/>
+<Normal Text>)</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>VARIABLE</Keyword><br/>
+<Normal Text>start        : </Normal Text><Data Type>soft</Data Type><Normal Text>;</Normal Text><br/>
+<Normal Text>usec[</Normal Text><Decimal>3</Decimal><Normal Text>..</Normal Text><Decimal>0</Decimal><Normal Text>]   : </Normal Text><Keyword>node</Keyword><Normal Text>;</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>BEGIN</Keyword><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>in</Keyword><Normal Text> = FCT(clock, some_key);  </Normal Text><Comment>-- senseless code</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Comment>-- comment</Comment><br/>
+<Normal Text>blubb = (blobb[] == </Normal Text><Hex>H"3ff"</Hex><Normal Text>); </Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>IF</Keyword><Normal Text> </Normal Text><Keyword>in</Keyword><Normal Text> </Normal Text><Keyword>THEN</Keyword><Normal Text> asdf</Normal Text><br/>
+<Comment>-- folde me</Comment><br/>
+<Keyword>END IF</Keyword><Normal Text>; </Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>TABLE</Keyword><br/>
+<Comment>-- missing code</Comment><br/>
+<Keyword>END TABLE</Keyword><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>END</Keyword><Normal Text>;</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment>-- hex, octal, binary</Comment><br/>
+<Hex>H"0"</Hex><Normal Text> => </Normal Text><Bit>B"1000000"</Bit><Normal Text>;</Normal Text><br/>
+<Normal Text>O</Normal Text><String>"01234567"</String><Normal Text>;</Normal Text><br/>

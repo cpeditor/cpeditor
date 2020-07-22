@@ -1,0 +1,51 @@
+% Single-line comment
+\name<beginfold id='2'>{</beginfold id='2'>foo<endfold id='2'>}</endfold id='2'>
+<beginfold id='1'>#ifdef</beginfold id='1'> unix
+\alias<beginfold id='2'>{</beginfold id='2'>bar<endfold id='2'>}</endfold id='2'>
+<endfold id='1'>#endif</endfold id='1'> ignored
+\title<beginfold id='2'>{</beginfold id='2'>Foo<endfold id='2'>}</endfold id='2'>
+\description<beginfold id='2'>{</beginfold id='2'>
+    We have a list
+    \itemize<beginfold id='2'>{</beginfold id='2'>
+        \item foo,
+        \item bar.
+    <endfold id='2'>}</endfold id='2'>
+    Also a table: \tabular<beginfold id='2'>{</beginfold id='2'>lr<endfold id='2'>}</endfold id='2'><beginfold id='2'>{</beginfold id='2'>
+        foo \tab \code<beginfold id='2'>{</beginfold id='2'>foo<endfold id='2'>}</endfold id='2'> \cr
+        bar \tab \preformatted<beginfold id='2'>{</beginfold id='2'>bar<endfold id='2'>}</endfold id='2'>
+    <endfold id='2'>}</endfold id='2'>
+    \samp error<beginfold id='2'>{</beginfold id='2'>code<endfold id='2'>}</endfold id='2'>
+<endfold id='2'>}</endfold id='2'>
+\section<beginfold id='2'>{</beginfold id='2'>Section<endfold id='2'>}</endfold id='2'><beginfold id='2'>{</beginfold id='2'>
+    Escaped braces don't need balance \}
+    \subsection<beginfold id='2'>{</beginfold id='2'>Subsection<endfold id='2'>}</endfold id='2'><beginfold id='2'>{</beginfold id='2'>
+        \subsection<beginfold id='2'>{</beginfold id='2'>Subsubsection<endfold id='2'>}</endfold id='2'><beginfold id='2'>{</beginfold id='2'>
+            Sections can be nested.
+        <endfold id='2'>}</endfold id='2'>
+    <endfold id='2'>}</endfold id='2'>
+<endfold id='2'>}</endfold id='2'>
+\usage<beginfold id='2'>{</beginfold id='2'>
+foo(a, b = default)
+\method<beginfold id='2'>{</beginfold id='2'>[<endfold id='2'>}</endfold id='2'><beginfold id='2'>{</beginfold id='2'>foo<endfold id='2'>}</endfold id='2'>(x, \dots)
+<endfold id='2'>}</endfold id='2'>
+\newcommand<beginfold id='2'>{</beginfold id='2'>\macro<endfold id='2'>}</endfold id='2'><beginfold id='2'>{</beginfold id='2'>Test#1<endfold id='2'>}</endfold id='2'>
+\arguments<beginfold id='2'>{</beginfold id='2'>
+  \item<beginfold id='2'>{</beginfold id='2'>a<endfold id='2'>}</endfold id='2'><beginfold id='2'>{</beginfold id='2'>\if<beginfold id='2'>{</beginfold id='2'>html<endfold id='2'>}</endfold id='2'><beginfold id='2'>{</beginfold id='2'>&pi; =<endfold id='2'>}</endfold id='2'> \Sexpr<beginfold id='3'>[</beginfold id='3'>stage=build<endfold id='3'>]</endfold id='3'><beginfold id='2'>{</beginfold id='2'>4*atan(1)<endfold id='2'>}</endfold id='2'><endfold id='2'>}</endfold id='2'>
+  \item<beginfold id='2'>{</beginfold id='2'>\dots<endfold id='2'>}</endfold id='2'><beginfold id='2'>{</beginfold id='2'>\macro<beginfold id='2'>{</beginfold id='2'>text<endfold id='2'>}</endfold id='2'> \link<beginfold id='3'>[</beginfold id='3'>pkg:bar<endfold id='3'>]</endfold id='3'><beginfold id='2'>{</beginfold id='2'>fooo<endfold id='2'>}</endfold id='2'><endfold id='2'>}</endfold id='2'>
+<endfold id='2'>}</endfold id='2'>
+\value<beginfold id='2'>{</beginfold id='2'>
+  Return a \code<beginfold id='2'>{</beginfold id='2'>\link<beginfold id='2'>{</beginfold id='2'>foo<endfold id='2'>}</endfold id='2'><endfold id='2'>}</endfold id='2'>.
+<endfold id='2'>}</endfold id='2'>
+\seealso<beginfold id='2'>{</beginfold id='2'>
+  \code<beginfold id='2'>{</beginfold id='2'>\link<beginfold id='2'>{</beginfold id='2'>bar<endfold id='2'>}</endfold id='2'><endfold id='2'>}</endfold id='2'>
+<endfold id='2'>}</endfold id='2'>
+\examples<beginfold id='2'>{</beginfold id='2'>
+# R comment
+% Rdoc comment
+foo(1)
+\donttest<beginfold id='2'>{</beginfold id='2'>foo(2)<endfold id='2'>}</endfold id='2'>
+\dontrun<beginfold id='2'>{</beginfold id='2'>foo(3)<endfold id='2'>}</endfold id='2'>
+for (i in 1:10)
+    foo(i)
+<endfold id='2'>}</endfold id='2'>
+\keyword<beginfold id='2'>{</beginfold id='2'>foo<endfold id='2'>}</endfold id='2'>

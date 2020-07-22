@@ -1,0 +1,145 @@
+<Comment>/*</Comment><br/>
+<Comment>------------------------------------------------------------------------</Comment><br/>
+<Comment>Efficient Galois Fields in Maxima</Comment><br/>
+<Comment></Comment><br/>
+<Comment>by Alasdair McAndrew</Comment><br/>
+<Comment>and later extended by Fabrizio Caruso and Jacopo Daurizio</Comment><br/>
+<Comment></Comment><br/>
+<Comment>it is distribuited together with gf_roots by Jacopo Daurizio</Comment><br/>
+<Comment></Comment><br/>
+<Comment>Authors:</Comment><br/>
+<Comment></Comment><br/>
+<Comment>Fabrizio Caruso   (optimizations, testing)</Comment><br/>
+<Comment>Jacopo D'Aurizio   (optimizations, modular roots)</Comment><br/>
+<Comment>Alasdair McAndrew (original version of the package, pohlig-helman log, etc... )</Comment><br/>
+<Comment>------------------------------------------------------------------------*/</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Comment>/* Released under terms of the GNU General Public License, version 2,</Comment><br/>
+<Comment> * by permission of the authors to Robert Dodier circa 2007-12-02.</Comment><br/>
+<Comment> */</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Comment>/* Defines a flag for dealing with large fields.  If it is set to "false",</Comment><br/>
+<Comment>then lookup tables are used for exponentiation and logarithms.  Otherwise</Comment><br/>
+<Comment>other algorithms are used */</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Function>define_variable</Function><Normal Text>(</Normal Text><Label>largefield</Label><Normal Text>,</Normal Text><Keyword>true</Keyword><Normal Text>,</Normal Text><Label>bool</Label><Normal Text>)$</Normal Text><br/>
+<Function>define_variable</Function><Normal Text>(</Normal Text><Label>gf_char</Label><Normal Text>,</Normal Text><Integer>0</Integer><Normal Text>,</Normal Text><Label>integer</Label><Normal Text>)$</Normal Text><br/>
+<Function>define_variable</Function><Normal Text>(</Normal Text><Label>gf_exp</Label><Normal Text>,</Normal Text><Integer>0</Integer><Normal Text>,</Normal Text><Label>integer</Label><Normal Text>)$</Normal Text><br/>
+<Function>define_variable</Function><Normal Text>(</Normal Text><Label>gf_order</Label><Normal Text>,</Normal Text><Integer>0</Integer><Normal Text>,</Normal Text><Label>integer</Label><Normal Text>)$</Normal Text><br/>
+<Function>define_variable</Function><Normal Text> (</Normal Text><Label>gf_one</Label><Normal Text>, </Normal Text><Quote>'</Quote><Label>gf_one</Label><Normal Text>, </Normal Text><Label>any_check</Label><Normal Text>)$</Normal Text><br/>
+<Function>define_variable</Function><Normal Text> (</Normal Text><Label>gf_prim</Label><Normal Text>, </Normal Text><Quote>'</Quote><Label>gf_prim</Label><Normal Text>, </Normal Text><Label>any_check</Label><Normal Text>)$</Normal Text><br/>
+<Function>define_variable</Function><Normal Text> (</Normal Text><Label>gf_irr</Label><Normal Text>, </Normal Text><Quote>'</Quote><Label>gf_irr</Label><Normal Text>, </Normal Text><Label>any_check</Label><Normal Text>)$</Normal Text><br/>
+<Function>define_variable</Function><Normal Text> (</Normal Text><Label>gf_list</Label><Normal Text>, </Normal Text><Quote>'</Quote><Label>gf_list</Label><Normal Text>, </Normal Text><Label>any_check</Label><Normal Text>)$</Normal Text><br/>
+<Function>define_variable</Function><Normal Text> (</Normal Text><Label>gen_powers</Label><Normal Text>, </Normal Text><Quote>'</Quote><Label>gf_list</Label><Normal Text>, </Normal Text><Label>any_check</Label><Normal Text>)$</Normal Text><br/>
+<Function>remvalue</Function><Normal Text>(</Normal Text><Label>x</Label><Normal Text>,</Normal Text><Label>z</Label><Normal Text>,</Normal Text><Label>gf_char</Label><Normal Text>,</Normal Text><Label>gf_exp</Label><Normal Text>,</Normal Text><Label>gf_irr</Label><Normal Text>,</Normal Text><Label>pg</Label><Normal Text>,</Normal Text><Label>gp</Label><Normal Text>,</Normal Text><Label>lg</Label><Normal Text>,</Normal Text><Label>gf_prim</Label><Normal Text>,</Normal Text><Label>gf_one</Label><Normal Text>,</Normal Text><Label>gf_order</Label><Normal Text>,</Normal Text><Label>gf_list</Label><Normal Text>,</Normal Text><Label>gen_powers</Label><Normal Text>)$</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment>/* --------------------------------------------------------------------------------------------- */</Comment><br/>
+<Comment>/* Settings */</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Label>GF_VERBOSE</Label><Normal Text>:</Normal Text><Keyword>false</Keyword><Normal Text>; </Normal Text><Comment>/* Verbosity */</Comment><br/>
+<Label>GF_WARNING</Label><Normal Text>: </Normal Text><Keyword>true</Keyword><Normal Text>; </Normal Text><Comment>/* Warnings */</Comment><br/>
+<Label>GF_IRREDUCIBILITY_CHECK</Label><Normal Text>:</Normal Text><Keyword>false</Keyword><Normal Text>;   </Normal Text><Comment>/* Irreducibility test for the minimal polynomial of the extension */</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Comment>/*</Comment><br/>
+<Comment>------------------------------------------------------------------------------------------------ */</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment>/* It defines a new current field with gf_char=b, min. pol.= p of deg= e*/</Comment><br/>
+<Label>gf_set</Label><Normal Text>([</Normal Text><Label>ars</Label><Normal Text>]):=</Normal Text><Function>block</Function><Normal Text>([</Normal Text><Label>gj</Label><Normal Text>,</Normal Text><Label>m</Label><Normal Text>,</Normal Text><Label>i</Label><Normal Text>,</Normal Text><Label>j</Label><Normal Text>,</Normal Text><Label>dg</Label><Normal Text>],</Normal Text><br/>
+<Normal Text>  </Normal Text><Keyword>if</Keyword><Normal Text> </Normal Text><Function>length</Function><Normal Text>(</Normal Text><Label>ars</Label><Normal Text>)=</Normal Text><Integer>1</Integer><Normal Text> </Normal Text><Keyword>then</Keyword><br/>
+<Normal Text>    (</Normal Text><br/>
+<Normal Text>    </Normal Text><Label>gf_setp</Label><Normal Text>(</Normal Text><Label>ars</Label><Normal Text>[</Normal Text><Integer>1</Integer><Normal Text>]),</Normal Text><br/>
+<Normal Text>    </Normal Text><Function>return</Function><Normal Text>(</Normal Text><Keyword>true</Keyword><Normal Text>)</Normal Text><br/>
+<Normal Text>    )</Normal Text><br/>
+<Normal Text>  </Normal Text><Keyword>else</Keyword><br/>
+<Normal Text>    (</Normal Text><br/>
+<Normal Text>    </Normal Text><Keyword>if</Keyword><Normal Text> </Normal Text><Function>length</Function><Normal Text>(</Normal Text><Label>ars</Label><Normal Text>)=</Normal Text><Integer>2</Integer><Normal Text> </Normal Text><Keyword>then</Keyword><br/>
+<Normal Text>       (</Normal Text><br/>
+<Normal Text>       </Normal Text><Keyword>if</Keyword><Normal Text> </Normal Text><Function>numberp</Function><Normal Text>(</Normal Text><Label>ars</Label><Normal Text>[</Normal Text><Integer>2</Integer><Normal Text>]) </Normal Text><Keyword>then</Keyword><br/>
+<Normal Text>         (</Normal Text><br/>
+<Normal Text>         </Normal Text><Keyword>if</Keyword><Normal Text> </Normal Text><Label>ars</Label><Normal Text>[</Normal Text><Integer>2</Integer><Normal Text>]=</Normal Text><Integer>0</Integer><Normal Text> </Normal Text><Keyword>and</Keyword><Normal Text> </Normal Text><Label>GF_WARNING</Label><Normal Text> </Normal Text><Keyword>then</Keyword><br/>
+<Normal Text>           (</Normal Text><br/>
+<Normal Text>           </Normal Text><Function>print</Function><Normal Text>(</Normal Text><String>"WARNING: the irreducible is zero! We assume GF("</String><Normal Text>,</Normal Text><Label>ars</Label><Normal Text>[</Normal Text><Integer>1</Integer><Normal Text>],</Normal Text><String>")"</String><Normal Text>),</Normal Text><br/>
+<Normal Text>           </Normal Text><Label>gf_setp</Label><Normal Text>(</Normal Text><Label>ars</Label><Normal Text>[</Normal Text><Integer>1</Integer><Normal Text>]),</Normal Text><br/>
+<Normal Text>           </Normal Text><Function>return</Function><Normal Text>(</Normal Text><Keyword>true</Keyword><Normal Text>)</Normal Text><br/>
+<Normal Text>           )</Normal Text><br/>
+<Normal Text>         </Normal Text><Keyword>else</Keyword><br/>
+<Normal Text>           (</Normal Text><br/>
+<Normal Text>           </Normal Text><Function>error</Function><Normal Text>(</Normal Text><String>"ERROR: you tried to extend with a non-zero constant!"</String><Normal Text>),</Normal Text><br/>
+<Normal Text>           </Normal Text><Function>return</Function><Normal Text>(</Normal Text><Keyword>false</Keyword><Normal Text>)</Normal Text><br/>
+<Normal Text>           )</Normal Text><br/>
+<Normal Text>         )</Normal Text><br/>
+<Normal Text>       </Normal Text><Keyword>else</Keyword><br/>
+<Normal Text>         (</Normal Text><br/>
+<Normal Text>         </Normal Text><Label>dg</Label><Normal Text>:</Normal Text><Function>hipow</Function><Normal Text>(</Normal Text><Label>ars</Label><Normal Text>[</Normal Text><Integer>2</Integer><Normal Text>],</Normal Text><Label>x</Label><Normal Text>),</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>         </Normal Text><Keyword>if</Keyword><Normal Text> </Normal Text><Label>dg</Label><Normal Text>=</Normal Text><Integer>1</Integer><Normal Text> </Normal Text><Keyword>then</Keyword><br/>
+<Normal Text>           </Normal Text><Label>gf_setp</Label><Normal Text>(</Normal Text><Label>ars</Label><Normal Text>[</Normal Text><Integer>1</Integer><Normal Text>]),</Normal Text><br/>
+<Normal Text>         </Normal Text><Label>gf_irr</Label><Normal Text>:</Normal Text><Label>ars</Label><Normal Text>[</Normal Text><Integer>2</Integer><Normal Text>],</Normal Text><br/>
+<Normal Text>         </Normal Text><Label>gf_exp</Label><Normal Text>:</Normal Text><Label>dg</Label><Normal Text>,</Normal Text><br/>
+<Normal Text>         </Normal Text><Function>return</Function><Normal Text>(</Normal Text><Keyword>true</Keyword><Normal Text>)</Normal Text><br/>
+<Normal Text>         )</Normal Text><br/>
+<Normal Text>       )</Normal Text><br/>
+<Normal Text>    </Normal Text><Keyword>else</Keyword><br/>
+<Normal Text>       (</Normal Text><br/>
+<Normal Text>       </Normal Text><Label>gf_exp</Label><Normal Text>:</Normal Text><Label>ars</Label><Normal Text>[</Normal Text><Integer>2</Integer><Normal Text>],</Normal Text><br/>
+<Normal Text>       </Normal Text><Keyword>if</Keyword><Normal Text> </Normal Text><Label>gf_exp</Label><Normal Text>=</Normal Text><Integer>1</Integer><Normal Text> </Normal Text><Keyword>then</Keyword><br/>
+<Normal Text>          (</Normal Text><br/>
+<Normal Text>          </Normal Text><Label>gf_setp</Label><Normal Text>(</Normal Text><Label>ars</Label><Normal Text>[</Normal Text><Integer>1</Integer><Normal Text>]),</Normal Text><br/>
+<Normal Text>          </Normal Text><Label>gf_irr</Label><Normal Text>:</Normal Text><Function>rat</Function><Normal Text>(</Normal Text><Label>ars</Label><Normal Text>[</Normal Text><Integer>3</Integer><Normal Text>]),</Normal Text><br/>
+<Normal Text>          </Normal Text><Function>return</Function><Normal Text>(</Normal Text><Keyword>true</Keyword><Normal Text>)</Normal Text><br/>
+<Normal Text>          ),</Normal Text><br/>
+<Normal Text>       </Normal Text><Label>gf_irr</Label><Normal Text>:</Normal Text><Function>rat</Function><Normal Text>(</Normal Text><Label>ars</Label><Normal Text>[</Normal Text><Integer>3</Integer><Normal Text>])</Normal Text><br/>
+<Normal Text>       )</Normal Text><br/>
+<Normal Text>    ),</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>  </Normal Text><Label>gf_char</Label><Normal Text>:</Normal Text><Label>ars</Label><Normal Text>[</Normal Text><Integer>1</Integer><Normal Text>],</Normal Text><br/>
+<Normal Text>  </Normal Text><Label>gf_one</Label><Normal Text>:</Normal Text><Function>rat</Function><Normal Text>(</Normal Text><Integer>1</Integer><Normal Text>,</Normal Text><Label>x</Label><Normal Text>),</Normal Text><br/>
+<Normal Text>  </Normal Text><Label>gf_order</Label><Normal Text>:</Normal Text><Label>gf_char</Label><Normal Text>^</Normal Text><Label>gf_exp</Label><Integer>-1</Integer><Normal Text>,</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>  </Normal Text><Label>m</Label><Normal Text>:</Normal Text><Function>makelist</Function><Normal Text>(</Normal Text><Function>coeff</Function><Normal Text>(</Normal Text><Label>gf_irr</Label><Normal Text>,</Normal Text><Label>x</Label><Normal Text>,</Normal Text><Label>i</Label><Normal Text>),</Normal Text><Label>i</Label><Normal Text>,</Normal Text><Integer>0</Integer><Normal Text>,</Normal Text><Label>gf_exp</Label><Normal Text>),</Normal Text><br/>
+<Normal Text>  </Normal Text><Label>gf_list</Label><Normal Text>:[[</Normal Text><Function>first</Function><Normal Text>(</Normal Text><Label>m</Label><Normal Text>),</Normal Text><Integer>0</Integer><Normal Text>]],</Normal Text><Label>j</Label><Normal Text>:</Normal Text><Integer>1</Integer><Normal Text>,</Normal Text><br/>
+<Normal Text>  </Normal Text><Keyword>for</Keyword><Normal Text> </Normal Text><Label>i</Label><Normal Text>:</Normal Text><Integer>2</Integer><Normal Text> </Normal Text><Keyword>thru</Keyword><Normal Text> </Normal Text><Label>gf_exp</Label><Integer>+1</Integer><Normal Text> </Normal Text><Keyword>do</Keyword><Normal Text> </Normal Text><Keyword>if</Keyword><Normal Text> </Normal Text><Label>m</Label><Normal Text>[</Normal Text><Label>i</Label><Normal Text>]=</Normal Text><Integer>0</Integer><Normal Text> </Normal Text><Keyword>then</Keyword><Normal Text> </Normal Text><Label>j</Label><Normal Text>:</Normal Text><Label>j</Label><Integer>+1</Integer><Normal Text> </Normal Text><Keyword>else</Keyword><Normal Text> ( </Normal Text><Label>gf_list</Label><Normal Text>:</Normal Text><Function>endcons</Function><Normal Text>([</Normal Text><Label>m</Label><Normal Text>[</Normal Text><Label>i</Label><Normal Text>],</Normal Text><Label>j</Label><Normal Text>],</Normal Text><Label>gf_list</Label><Normal Text>), </Normal Text><Label>j</Label><Normal Text>:</Normal Text><Integer>1</Integer><Normal Text> ),</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>  </Normal Text><Keyword>if</Keyword><Normal Text> </Normal Text><Keyword>not</Keyword><Normal Text>(</Normal Text><Function>primep</Function><Normal Text>(</Normal Text><Label>gf_char</Label><Normal Text>)) </Normal Text><Keyword>then</Keyword><Normal Text> </Normal Text><Function>error</Function><Normal Text>(</Normal Text><String>"ERROR: Gf_Char must be a prime number."</String><Normal Text>)</Normal Text><br/>
+<Normal Text>    </Normal Text><Keyword>else</Keyword><br/>
+<Normal Text>      </Normal Text><Variable>modulus</Variable><Normal Text>:</Normal Text><Label>gf_char</Label><Normal Text>,</Normal Text><br/>
+<Normal Text>  </Normal Text><Keyword>if</Keyword><Normal Text> </Normal Text><Label>GF_IRREDUCIBILITY_CHECK</Label><Normal Text> </Normal Text><Keyword>and</Keyword><br/>
+<Normal Text>       </Normal Text><Function>hipow</Function><Normal Text>(</Normal Text><Function>args</Function><Normal Text>(</Normal Text><Function>factor</Function><Normal Text>(</Normal Text><Label>ars</Label><Normal Text>[</Normal Text><Integer>3</Integer><Normal Text>]))[</Normal Text><Integer>1</Integer><Normal Text>],</Normal Text><Label>x</Label><Normal Text>)#</Normal Text><Function>hipow</Function><Normal Text>(</Normal Text><Function>rat</Function><Normal Text>(</Normal Text><Label>ars</Label><Normal Text>[</Normal Text><Integer>3</Integer><Normal Text>]),</Normal Text><Label>x</Label><Normal Text>) </Normal Text><Keyword>then</Keyword><br/>
+<Normal Text>      </Normal Text><Function>error</Function><Normal Text>(</Normal Text><String>"ERROR: Polynomial is not irreducible"</String><Normal Text>),</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>  </Normal Text><Keyword>if</Keyword><Normal Text> </Normal Text><Keyword>not</Keyword><Normal Text>(</Normal Text><Label>largefield</Label><Normal Text>) </Normal Text><Keyword>then</Keyword><br/>
+<Normal Text>     (</Normal Text><br/>
+<Normal Text>     </Normal Text><Label>pg</Label><Normal Text>:</Normal Text><Label>mkpowers</Label><Normal Text>(),</Normal Text><br/>
+<Normal Text>     </Normal Text><Label>lg</Label><Normal Text>:</Normal Text><Label>mklogs</Label><Normal Text>()</Normal Text><br/>
+<Normal Text>     )</Normal Text><br/>
+<Normal Text>  </Normal Text><Keyword>else</Keyword><br/>
+<Normal Text>     (</Normal Text><br/>
+<Normal Text>     </Normal Text><Keyword>if</Keyword><Normal Text> </Normal Text><Label>GF_VERBOSE</Label><Normal Text> </Normal Text><Keyword>then</Keyword><br/>
+<Normal Text>       </Normal Text><Function>print</Function><Normal Text>(</Normal Text><String>"finding a primitive element..."</String><Normal Text>),</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>     </Normal Text><Label>gf_prim</Label><Normal Text>:</Normal Text><Function>rat</Function><Normal Text>(</Normal Text><Label>gf_findprim</Label><Normal Text>(),</Normal Text><Label>x</Label><Normal Text>),</Normal Text><br/>
+<Normal Text>     </Normal Text><Keyword>if</Keyword><Normal Text> </Normal Text><Label>GF_VERBOSE</Label><Normal Text> </Normal Text><Keyword>then</Keyword><br/>
+<Normal Text>     </Normal Text><Function>print</Function><Normal Text>(</Normal Text><String>"...primitive element found."</String><Normal Text>)</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>     ),</Normal Text><br/>
+<Normal Text>  </Normal Text><Variable>modulus</Variable><Normal Text>:</Normal Text><Keyword>false</Keyword><Normal Text>, </Normal Text><Comment>/* it resets the modulus */</Comment><br/>
+<Normal Text>  </Normal Text><Function>return</Function><Normal Text>(</Normal Text><Keyword>true</Keyword><Normal Text>)</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>  )$</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment>/* Prints out information about the field */</Comment><br/>
+<Label>gf_info</Label><Normal Text>():=</Normal Text><Function>block</Function><Normal Text>(</Normal Text><br/>
+<Normal Text>  </Normal Text><Function>print</Function><Normal Text>(</Normal Text><String>"Prime gf_char value: "</String><Normal Text>,</Normal Text><Label>gf_char</Label><Normal Text>),</Normal Text><br/>
+<Normal Text>  </Normal Text><Function>print</Function><Normal Text>(</Normal Text><String>"Exponent: "</String><Normal Text>, </Normal Text><Label>gf_exp</Label><Normal Text>),</Normal Text><br/>
+<Normal Text>  </Normal Text><Function>print</Function><Normal Text>(</Normal Text><String>"Multiplicative order: "</String><Normal Text>,</Normal Text><Label>gf_order</Label><Normal Text>),</Normal Text><br/>
+<Normal Text>  </Normal Text><Function>print</Function><Normal Text>(</Normal Text><String>"Irreducible polynomial: "</String><Normal Text>,</Normal Text><Label>gf_irr</Label><Normal Text>),</Normal Text><br/>
+<Normal Text>  </Normal Text><Function>print</Function><Normal Text>(</Normal Text><String>"Primitive element: "</String><Normal Text>,</Normal Text><Label>gf_prim</Label><Normal Text>),</Normal Text><br/>
+<Normal Text>  </Normal Text><Keyword>if</Keyword><Normal Text> (</Normal Text><Label>largefield</Label><Normal Text>) </Normal Text><Keyword>then</Keyword><br/>
+<Normal Text>    </Normal Text><Function>print</Function><Normal Text>(</Normal Text><String>"Largefield flag is true; powers and logarithms not computed."</String><Normal Text>)</Normal Text><br/>
+<Normal Text>    </Normal Text><Keyword>else</Keyword><br/>
+<Normal Text>    </Normal Text><Function>print</Function><Normal Text>(</Normal Text><String>"Largefield flag is false; powers and logarithms computed."</String><Normal Text>),</Normal Text><br/>
+<Normal Text>  </Normal Text><Function>disp</Function><Normal Text>()</Normal Text><br/>
+<Normal Text>)$</Normal Text><br/>

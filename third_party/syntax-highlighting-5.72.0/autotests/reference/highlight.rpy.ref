@@ -1,0 +1,60 @@
+<Comment># Declare characters used by this game.</Comment><br/>
+<Keyword>define</Keyword><Normal Text> s </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Class>Character</Class><Symbol>(</Symbol><Data Type>None</Data Type><Normal Text>, kind</Normal Text><Symbol>=</Symbol><Special Char>nvl</Special Char><Normal Text>, what_prefix</Normal Text><Symbol>=</Symbol><String>"</String><Special Char>\"</Special Char><String>"</String><Normal Text>, what_suffix</Normal Text><Symbol>=</Symbol><String>"</String><Special Char>\"</Special Char><String>"</String><Normal Text>, what_color</Normal Text><Symbol>=</Symbol><String>"#c8ffc8"</String><Symbol>)</Symbol><br/>
+<Keyword>define</Keyword><Normal Text> m </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Class>Character</Class><Symbol>(</Symbol><Normal Text>_</Normal Text><Symbol>(</Symbol><String>"Me"</String><Symbol>)</Symbol><Normal Text>, </Normal Text><Reserved>color</Reserved><Symbol>=</Symbol><String>"#c8c8ff"</String><Symbol>)</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>define</Keyword><Normal Text> </Normal Text><Keyword>menu</Keyword><Normal Text> </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Reserved>nvl_menu</Reserved><br/>
+<Keyword>default</Keyword><Normal Text> book </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Data Type>False</Data Type><br/>
+<Normal Text></Normal Text><br/>
+<Comment># The game starts here.</Comment><br/>
+<Keyword>label</Keyword><Normal Text> </Normal Text><Property>start</Property><Symbol>:</Symbol><br/>
+<Normal Text>    </Normal Text><Comment># Start by playing some music.</Comment><br/>
+<Normal Text>    </Normal Text><Keyword>play</Keyword><Normal Text> </Normal Text><Property>music</Property><Normal Text> </Normal Text><String>"illurock.opus"</String><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>    </Normal Text><Keyword>scene</Keyword><Normal Text> bg lecturehall</Normal Text><br/>
+<Normal Text>    </Normal Text><Keyword>with</Keyword><Normal Text> </Normal Text><Reserved>fade</Reserved><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>    </Normal Text><Keyword>window</Keyword><Normal Text> </Normal Text><Keyword>show</Keyword><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>    </Normal Text><String>"bla bla</String><Special Char>\n</Special Char><String>"</String><br/>
+<Normal Text>    </Normal Text><String>"bla </String><Special Char>{b}</Special Char><String>bla</String><Special Char>{/b}</Special Char><String>"</String><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>    </Normal Text><Keyword>window</Keyword><Normal Text> </Normal Text><Keyword>hide</Keyword><br/>
+<Normal Text>    </Normal Text><Special Char>nvl</Special Char><Normal Text> clear</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>    </Normal Text><Keyword>scene</Keyword><Normal Text> bg uni</Normal Text><br/>
+<Normal Text>    </Normal Text><Keyword>with</Keyword><Normal Text> </Normal Text><Reserved>fade</Reserved><br/>
+<Normal Text>    </Normal Text><Keyword>window</Keyword><Normal Text> </Normal Text><Keyword>show</Keyword><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>    </Normal Text><Keyword>show</Keyword><Normal Text> sylvie green normal</Normal Text><br/>
+<Normal Text>    </Normal Text><Keyword>with</Keyword><Normal Text> </Normal Text><Reserved>dissolve</Reserved><br/>
+<Normal Text>    </Normal Text><Keyword>window</Keyword><Normal Text> </Normal Text><Keyword>show</Keyword><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>    </Normal Text><Keyword>menu</Keyword><Symbol>:</Symbol><br/>
+<Normal Text>        </Normal Text><String>"To ask her later."</String><Symbol>:</Symbol><br/>
+<Normal Text>            </Normal Text><Control Flow>jump</Control Flow><Normal Text> later</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>label</Keyword><Normal Text> rightaway</Normal Text><Symbol>:</Symbol><br/>
+<Normal Text>    </Normal Text><Special Char>nvl</Special Char><Normal Text> clear</Normal Text><br/>
+<Normal Text>    </Normal Text><Keyword>show</Keyword><Normal Text> sylvie green smile</Normal Text><br/>
+<Normal Text>    m </Normal Text><String>"""bla..."</String><br/>
+<String>    "bla bla bla."""</String><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>label</Keyword><Normal Text> </Normal Text><Property>start</Property><Symbol>:</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>python</Keyword><Symbol>:</Symbol><br/>
+<Normal Text>    </Normal Text><Normal Text>player_health</Normal Text><Normal Text> </Normal Text><Operator>=</Operator><Normal Text> </Normal Text><Builtin Function>max</Builtin Function><Normal Text>(player_health </Normal Text><Operator>-</Operator><Normal Text> damage, </Normal Text><Int>0</Int><Normal Text>)</Normal Text><br/>
+<Normal Text>    f </Normal Text><Operator>=</Operator><Normal Text> </Normal Text><Definition Keyword>lambda</Definition Keyword><Normal Text> x: </Normal Text><Builtin Function>print</Builtin Function><Normal Text>(x)</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>label</Keyword><Normal Text> </Normal Text><Property>start</Property><Symbol>:</Symbol><br/>
+<Normal Text>    </Normal Text><Symbol>$</Symbol><Normal Text> </Normal Text><Normal Text>flag</Normal Text><Normal Text> </Normal Text><Operator>=</Operator><Normal Text> </Normal Text><Special Variable>True</Special Variable><br/>
+<Normal Text>    </Normal Text><Symbol>$</Symbol><Normal Text> </Normal Text><Normal Text>romance_points</Normal Text><Normal Text> </Normal Text><Operator>+=</Operator><Normal Text> </Normal Text><Int>1</Int><br/>
+<Normal Text>    </Normal Text><Symbol>$</Symbol><Normal Text> f </Normal Text><Operator>=</Operator><Normal Text> </Normal Text><Definition Keyword>lambda</Definition Keyword><Normal Text> x: </Normal Text><Builtin Function>print</Builtin Function><Normal Text>(x)</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>init</Keyword><Normal Text> </Normal Text><Int>1</Int><Normal Text> </Normal Text><Keyword>python</Keyword><Symbol>:</Symbol><br/>
+<Normal Text>    </Normal Text><Comment># The bad ending is always unlocked.</Comment><br/>
+<Normal Text>    </Normal Text><Normal Text>persistent</Normal Text><Normal Text>.</Normal Text><Normal Text>endings</Normal Text><Normal Text>.</Normal Text><Normal Text>add(</Normal Text><String>"bad_ending"</String><Normal Text>)</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>    f </Normal Text><Operator>=</Operator><Normal Text> </Normal Text><Definition Keyword>lambda</Definition Keyword><Normal Text> x: </Normal Text><Builtin Function>print</Builtin Function><Normal Text>(x)</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>label</Keyword><Normal Text> </Normal Text><Property>start</Property><Symbol>:</Symbol><br/>

@@ -1,0 +1,94 @@
+Return-Path: <kwrite-devel-bounces@kde.org>
+X-Sieve: CMU Sieve 2.3
+X-Virus-Scanned: amavisd-new at site
+Authentication-Results: linux.site (amavisd-new); dkim=pass (1024-bit key)
+	header.d=kde.org
+Received: from postbox.kde.org (localhost.localdomain [127.0.0.1])
+	by postbox.kde.org (Postfix) with ESMTP id 3167DB6E75;
+	Wed,  5 Oct 2016 20:21:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=kde.org; s=default;
+	t=1475698907; bh=6i+3UfR6HLC54wVtp5SF4sVWvQn63jzu9vD2zJal/kY=;
+	h=From:To:Subject:Date:Reply-To:List-Id:List-Unsubscribe:List-Post:
+	 List-Help:List-Subscribe:From;
+	b=M5nfHbmJe/4DPuidrJ901dUzX3FmpVpyUrPM961Or9bKrMO+z9gaTUwbfPR74Rq8B
+	 Rv66yf3ZaDuRZxv/ARPzpr8qnDTtf13WRFZ/ySdqqqQJKeBqCAd7/wbR0kHhypvpwe
+	 z4nY6+bNnjvFelPXR56o16b+/Ib2GTYJ9hwiG97U=
+X-Original-To: kwrite-devel@kde.org
+Delivered-To: kwrite-devel@localhost.kde.org
+Received-SPF: Neutral (access neither permitted nor denied) identity=mailfrom;
+ client-ip=85.214.234.26; helo=h2265959.stratoserver.net;
+ envelope-from=vkrause@kde.org; receiver=kwrite-devel@kde.org
+From: Volker Krause <vkrause@kde.org>
+To: kwrite-devel@kde.org
+Subject: KSyntaxHighlighting is cool! Happy: :-) Sad: :-(
+ Subject goes on here > < ] [
+Date: Wed, 05 Oct 2016 22:19:17 +0200
+Message-ID: <2420385.jiZKTgWtgY@vkpc5>
+Organization: KDE
+User-Agent: KMail/4.14.10 (Linux/4.1.13-5-default; KDE/4.14.16; x86_64;
+ git-91275a7; 2015-12-13)
+MIME-Version: 1.0
+Content-Type: multipart/signed; boundary="nextPart1575059.2yRQ5x6HOo";
+ micalg="pgp-sha1"; protocol="application/pgp-signature"
+X-BeenThere: kwrite-devel@kde.org
+X-Mailman-Version: 2.1.16
+Precedence: list
+Reply-To: kwrite-devel@kde.org
+List-Id: Kate/KWrite Mailing List <kwrite-devel.kde.org>
+List-Unsubscribe: <https://mail.kde.org/mailman/options/kwrite-devel>,
+ <mailto:kwrite-devel-request@kde.org?subject=unsubscribe>
+List-Post: <mailto:kwrite-devel@kde.org>
+List-Help: <mailto:kwrite-devel-request@kde.org?subject=help>
+List-Subscribe: <https://mail.kde.org/mailman/listinfo/kwrite-devel>,
+ <mailto:kwrite-devel-request@kde.org?subject=subscribe>
+Errors-To: kwrite-devel-bounces@kde.org
+Sender: "KWrite-Devel" <kwrite-devel-bounces@kde.org>
+
+
+--nextPart1575059.2yRQ5x6HOo
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+
+Hi,
+
+when trying to add the unit test for the new Praat highlighting to
+KF5::SyntaxHighlighting it turned out that the output doesn't match at all
+that of Kate. We managed to trace this back to the following rather surprising
+(and apparently undocumented) behavior in Kate:
+
+When a context switch (anywhere in a line) pops more contexts than were on the
+stack when starting the line, it executes line end context switches of the
+previous line contexts.
+
+| | | | | | The corresponding code is in KateHighlighting::generateContextStack(),
+| | > | > KF5::SyntaxHighlighting doesn't do this (yet), Praat is apparently the first
+> | > format we have tests for that uses this behavior.
+
+> Does anyone remember why we do this, or happens to know which highlighting
+> files besides Praat rely on this?
+
+> > Archeology can trace this back to the dark CVS ages even, one reference
+> > Dominik has dug up is a 10 year old SVN commit
+> > (https://quickgit.kde.org/?p=kdelibs.git&a=commit&h=90ef47f582277745f727d89f05f72f1e1705fdc4
+> >), where Christoph claims to understand what this code does ;)
+
+> > > As this is highly unexpected and hard to reason about behavior, Dominik and I
+> > > > were wondering if we can possibly drop this, and rather fix affected
+> > > > > highlighting files instead?
+
+Regards,
+Volker
+--nextPart1575059.2yRQ5x6HOo
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part.
+Content-Transfer-Encoding: 7Bit
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v2
+
+iD8DBQBX9WBIf5bM1k0S0kcRAireAJ4lCWa08Y5yU1ezIvKVCAfnkhcUbACgou0O
+X4c+lkPI0tti59KV1vetaeU=
+=VqDS
+-----END PGP SIGNATURE-----
+
+--nextPart1575059.2yRQ5x6HOo--

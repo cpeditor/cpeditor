@@ -1,0 +1,74 @@
+<beginfold id='3'><!DOCTYPE </beginfold id='3'>HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"<endfold id='3'>></endfold id='3'>
+<html>
+  <head>
+    <title>This is a title</title>
+    <beginfold id='5'><style</beginfold id='5'>>
+    <beginfold id='27'>/*</beginfold id='27'> comment <endfold id='27'>*/</endfold id='27'>
+    #xyz <beginfold id='25'>{</beginfold id='25'> color: red; <endfold id='25'>}</endfold id='25'>
+    h1 <beginfold id='25'>{</beginfold id='25'> font: "Comic Sans"; <endfold id='25'>}</endfold id='25'>
+    <endfold id='5'></style</endfold id='5'>>
+  </head>
+  <body class="ui main">
+    <p *ngFor="let name of names">Hello, {{ name }}!</p>
+  </body>
+
+  <beginfold id='1'><!--</beginfold id='1'> JavaScript code <endfold id='1'>--></endfold id='1'>
+  <beginfold id='6'><script</beginfold id='6'>>
+    document.body.appendChild(document.createTextNode('Hello World!')); // comment
+  <endfold id='6'></script</endfold id='6'>>
+
+  <beginfold id='1'><!--</beginfold id='1'> TypeScript code <endfold id='1'>--></endfold id='1'>
+  <beginfold id='6'><script</beginfold id='6'> type="text/typescript">
+    class Student <beginfold id='47'>{</beginfold id='47'>
+        fullName: string;
+        constructor(public firstName: string, public middleInitial: string, public lastName: string) <beginfold id='47'>{</beginfold id='47'>
+            this.fullName = firstName + " " + middleInitial + " " + lastName;
+        <endfold id='47'>}</endfold id='47'>
+    <endfold id='47'>}</endfold id='47'>
+    let a: null = null;
+    let b: number = 12___3;
+  <endfold id='6'></script</endfold id='6'>>
+
+  <beginfold id='1'><!--</beginfold id='1'> JSX code <endfold id='1'>--></endfold id='1'>
+  <beginfold id='6'><script</beginfold id='6'> src="https://unpkg.com/babel-standalone@6/babel.min.js"><endfold id='6'></script</endfold id='6'>>
+  <beginfold id='6'><script</beginfold id='6'> type="text/babel">
+    ReactDOM.render(
+      <beginfold id='44'><h1</beginfold id='44'>>Hello, world!</h1<endfold id='44'>></endfold id='44'>,
+      document.getElementById('root')
+    );
+    function Story(props) <beginfold id='43'>{</beginfold id='43'>
+      const SpecificStory = components<beginfold id='42'>[</beginfold id='42'>props.storyType<endfold id='42'>]</endfold id='42'>;
+      return <beginfold id='45'><SpecificStory</beginfold id='45'> story=<beginfold id='46'>{</beginfold id='46'> props.story <endfold id='46'>}</endfold id='46'> attr2="&ref;" attr3="Hello\n" <endfold id='45'>/></endfold id='45'>;
+    <endfold id='43'>}</endfold id='43'>
+  <endfold id='6'></script</endfold id='6'>>
+
+  <beginfold id='1'><!--</beginfold id='1'> Mustache/Handlebars <endfold id='1'>--></endfold id='1'>
+  <beginfold id='6'><script</beginfold id='6'> type="x-tmpl-mustache">
+    <beginfold id='56'>{{#movie</beginfold id='56'>}}
+        <beginfold id='60'><div</beginfold id='60'>>
+            <h1>{{title}}</h1>
+            <img src="{{poster}}" alt="{{title}}"/>
+        <endfold id='60'></div</endfold id='60'>>
+        <beginfold id='60'><div</beginfold id='60'>>
+            Rating - {{ratings.critics_rating}}
+        <endfold id='60'></div</endfold id='60'>>
+    <endfold id='56'>{{/movie}}</endfold id='56'>
+    <beginfold id='56'>{{^movie</beginfold id='56'>}}
+        <beginfold id='60'><div</beginfold id='60'>>
+            Movie Does Not Exist :(
+        <endfold id='60'></div</endfold id='60'>>
+    <endfold id='56'>{{/movie}}</endfold id='56'>
+    <beginfold id='58'>{{!</beginfold id='58'> comment <endfold id='58'>}}</endfold id='58'>
+  <endfold id='6'></script</endfold id='6'>>
+
+  <beginfold id='1'><!--</beginfold id='1'> HTML template <endfold id='1'>--></endfold id='1'>
+  <beginfold id='6'><script</beginfold id='6'> type="text/html">
+    <li><a href="link">Hello</a></li>
+  <endfold id='6'></script</endfold id='6'>>
+
+  <beginfold id='1'><!--</beginfold id='1'> Close the block correctly after "?" in the JavaScript highlighter <endfold id='1'>--></endfold id='1'>
+  <beginfold id='6'><script</beginfold id='6'>>
+    ?
+  <endfold id='6'></script</endfold id='6'>>
+
+</html>

@@ -1,0 +1,824 @@
+<indentfold>html,
+body,
+ul,
+ol
+  margin:  0
+  padding: 0
+
+@import reset
+body
+  font: 100% Helvetica, sans-serif
+  background-color: #efefef
+
+$font-stack:    Helvetica, sans-serif
+$primary-color: #333
+
+body
+  font: 100% $font-stack
+  color: $primary-color
+.container
+  width: 100%
+
+article[role="main"]
+  float: left
+  width: 600px / 960px * 100%
+
+%message-shared
+  border: 1px solid #ccc
+  padding: 10px
+  color: #333
+
+.message
+  @extend %message-shared
+
+.success
+  @extend %message-shared
+  border-color: green
+
+=transform($property)
+  -webkit-transform: $property
+  -ms-transform: $property
+  transform: $property
+.box
+  +transform(rotate(30deg))
+
+  // This comment won't be included in the CSS.
+   This is also commented out.
+  #a
+/* But this comment will, except in compressed mode.
+
+/* It can also contain interpolation:
+   1 + 1 = #{1 + 1}
+  1 + 1 = #{1 + 1}
+ 1 + 1 = #{1 + 1}
+#a
+
+// But this comment will, except in compressed mode.
+
+// It can also contain interpolation:
+   1 + 1 = #{1 + 1}
+  1 + 1 = #{1 + 1}
+ 1 + 1 = #{1 + 1}
+#a
+
+/*! This comment will be included even in compressed mode.
+
+#a
+
+/**/
+
+p .sans
+  font: Helvetica, /* Inline comments must be closed. */ sans-serif
+
+p .sans
+  font/*comment*/: Helvetica, /* Inline comments must be closed. */ sans-serif // comment
+
+/// Computes an exponent.
+///
+/// @param {number} $base
+///   The number to multiply by itself.
+/// @param {integer (unitless)} $exponent
+///   The number of `$base`s to multiply together.
+/// @return {number} `$base` to the power of `$exponent`.
+@function pow($base, $exponent)
+  $result: 1
+  @for $_ from 1 through $exponent
+    $result: $result * $base
+
+  @return $result
+
+$roboto-font-path: "../fonts/roboto"
+
+@font-face
+    // This is parsed as a normal function call that takes a quoted string.
+    src: url("#{$roboto-font-path}/Roboto-Thin.woff2") format("woff2")
+    src: url($roboto-font-path + "/Roboto-Light.woff2") format("woff2")
+    src: url(#{$roboto-font-path}/Roboto-Regular.woff2) format("woff2")
+
+    font-family: "Roboto"
+    font-weight: 100
+
+.logo
+  $width: 800px
+  width: $width
+  position: absolute
+  left: calc(50% - #{$width / 2})
+  top: 0
+
+$padding: 12px
+
+.post
+  // Since these max() calls don't use any Sass features other than
+  // interpolation, they're compiled to CSS max() calls.
+  padding-left: max(#{$padding}, env(safe-area-inset-left))
+  padding-right: max(#{$padding}, env(safe-area-inset-right))
+
+
+.sidebar
+  // Since these refer to a Sass variable without interpolation, they call
+  // Sass's built-in max() function.
+  padding-left: max($padding, 20px)
+  padding-right: max($padding, 20px)
+
+.circle
+  $size: 100px
+  width: $size
+  height: $size
+  border-radius: $size / 2
+
+@mixin prefix($property, $value, $prefixes)
+  @each $prefix in $prefixes
+    -#{$prefix}-#{$property}: $value
+
+  #{$property}: $value
+
+
+.gray
+  @include prefix(filter, grayscale(50%), moz webkit)
+
+.enlarge
+  font-size: 14px
+  transition:
+    property: font-size
+    duration: 4s
+    delay: 2s
+
+  &:hover
+    font-size: 36px
+
+.info-page
+  margin: auto
+    bottom: 10px
+    top: 2px
+
+$rounded-corners: false
+
+.button
+  border: 1px solid black
+  border-radius: if($rounded-corners, 5px, null)
+
+$primary: #81899b
+$accent: #ab2e
+$warn: #dfa612aa
+
+:root
+  --primary: #{$primary}
+  --accent: #{$accent}
+  --warn: #{$warn}
+
+  // Even though this looks like a Sass variable, it's valid CSS so it's not
+  // evaluated.
+  --consumed-by-js: $primary
+
+$font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto
+$font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas
+
+:root
+  --font-family-sans-serif: #{inspect($font-family-sans-serif)}
+  --font-family-monospace: #{inspect($font-family-monospace)}
+
+.alert
+  // The parent selector can be used to add pseudo-classes to the outer
+  // selector.
+  &:hover
+    font-weight: bold
+
+
+  // It can also be used to style the outer selector in a certain context, such
+  // as a body set to use a right-to-left language.
+  [dir=rtl] &
+    margin-left: 0
+    margin-right: 10px
+
+
+  // You can even use it as an argument to pseudo-class selectors.
+  :not(&)
+    opacity: 0.8
+
+@mixin unify-parent($child)
+  @at-root #{selector-unify(&, $child)}
+    @content
+
+
+
+.wrapper .field
+  @include unify-parent("input")
+
+@mixin app-background($color)
+  #{if(&, '&.app-background', '.app-background')}
+    background-color: $color
+    color: rgba(#fff, 0.75)
+
+@include app-background(#036)
+
+.sidebar
+  @include app-background(#c6538c)
+
+.accordion
+  max-width: 600px
+  margin: 4rem auto
+
+  &__copy
+    display: none
+    padding: 1rem 1.5rem 2rem 1.5rem
+    line-height: 1.6
+    font-size: 14px
+
+    &--open
+      display: block
+
+
+.alert:hover, %strong-alert
+  font-weight: bold
+
+%strong-alert:hover
+  color: red
+
+%toolbelt
+  box-sizing: border-box
+  border-top: 1px rgba(#000, .12) solid
+
+  &:hover
+    border: 2px rgba(#000, .5) solid
+
+.action-buttons
+  @extend %toolbelt
+  color: #4285f4
+
+$border-dark: rgba($base-color, 0.88)
+$black: #000 !default
+$border-radius: 0.25rem !default
+$box-shadow: 0 0.5rem 1rem rgba($black, 0.15) !default
+$box-shadow: 0 0.5rem 1rem rgba($black, blue($black)) !default
+$border-radius: 0.1rem
+
+@import 'library'
+
+$global-variable: global value
+
+  // This would fail, because $local-variable isn't in scope:
+  // local: $local-variable
+
+$theme-colors: ("success": #28a745, "info": #17a2b8, "warning": #ffc107)
+
+.alert
+  // Instead of $theme-color-#{warning}
+  background-color: map-get($theme-colors, "warning")
+
+@mixin corner-icon($name, $top-or-bottom, $left-or-right)
+  .icon-#{$name}
+    background-image: url("/icons/#{$name}.svg")
+    position: absolute
+    #{$top-or-bottom}: 0
+    #{$left-or-right}: 0
+
+@include corner-icon("mail", top, right)
+
+@mixin inline-animation($duration)
+  $name: inline-#{unique-id()}
+
+  @keyframes #{$name}
+    @content
+
+  animation-name: $name
+  animation-duration: $duration
+  animation-iteration-count: infinite
+
+
+.pulse
+  @include inline-animation(2s)
+    from
+      background-color: yellow
+    to
+      background-color: red
+
+.example
+  unquoted: #{"string"}
+
+  & &
+    padding:
+      bottom: 0
+      left: 0
+
+// style.sass
+@import 'foundation/code', 'foundation/lists'
+
+@import "theme.css"
+@import "http://fonts.googleapis.com/css?family=Droid+Sans"
+@import url(theme)
+@import "landscape" screen and (orientation: landscape)
+
+@mixin google-font($family)
+  @import url("http://fonts.googleapis.com/css?family=#{$family}")
+
+@include google-font("Droid Sans")
+
+@mixin horizontal-list
+  @include reset-list
+
+  li
+    display: inline-block
+    margin:
+      left: -2px
+      right: 2em
+
+nav ul
+  @include horizontal-list
+
+@mixin rtl($property, $ltr-value, $rtl-value)
+  #{$property}: $ltr-value
+
+  [dir=rtl] &
+    #{$property}: $rtl-value
+
+.sidebar
+  @include rtl(float, left, right)
+
+@mixin replace-text($image, $x: 50%, $y: 50%)
+  text-indent: -99999em
+  overflow: hidden
+  text-align: left
+
+  background:
+    image: $image
+    repeat: no-repeat
+    position: $x $y
+
+.mail-icon
+  @include replace-text(url("/images/mail.svg"), 0)
+
+@include order(150px, "input.name", "input.address", "input.zip")
+
+@mixin syntax-colors($args...)
+  @debug keywords($args)  // (string: #080, comment: #800, $variable: $60b)
+
+  @each $name, $color in keywords($args)
+    pre span.stx-#{$name}
+      color: $color
+
+@include syntax-colors($string: #080, $comment: #800, $variable: #60b)
+
+@mixin media($types...)
+  @each $type in $types
+    @media #{$type}
+      @content($type)
+
+@include media(screen, print) using ($type)
+  h1
+    font-size: 40px
+    @if $type == print
+      font-family: Calluna
+
+=reset-list
+  margin: 0
+  padding: 0
+  list-style: none
+
+=horizontal-list
+  +reset-list
+
+  li
+    display: inline-block
+    margin:
+      left: -2px
+      right: 2em
+
+nav ul
+  +horizontal-list
+@function pow($base, $exponent)
+  $result: 1
+  @for $_ from 1 through $exponent
+    $result: $result * $base
+
+  @return $result
+
+.sidebar
+  float: left
+  margin-left: pow(4, 3) * 1px
+
+@function sum($numbers...)
+  $sum: 0
+  @each $number in $numbers
+    $sum: $sum + $number
+
+  @return $sum
+
+.micro
+  width: sum(50px, 30px, 100px)
+@function str-insert($string, $insert, $index)
+  // Avoid making new strings if we don't need to.
+  @if str-length($string) == 0
+    @return $insert
+
+  $before: str-slice($string, 0, $index)
+  $after: str-slice($string, $index)
+  @return $before + $insert + $after
+
+.error
+  border: 1px #f00
+  background-color: #fdd
+
+  &--serious
+    @extend .error
+    border-width: 3px
+
+@mixin reflexive-position($property, $value)
+  @if $property != left and $property != right
+    @error "Property #{$property} must be either left or right."
+
+  $left-value: if($property == right, initial, $value)
+  $right-value: if($property == right, $value, initial)
+
+  left: $left-value
+  right: $right-value
+  [dir=rtl] &
+    left: $right-value
+    right: $left-value
+
+$known-prefixes: webkit, moz, ms, o
+
+@mixin prefix($property, $value, $prefixes)
+  @each $prefix in $prefixes
+    @if not index($known-prefixes, $prefix)
+      @warn "Unknown prefix #{$prefix}."
+
+
+    -#{$prefix}-#{$property}: $value
+
+  #{$property}: $value
+
+
+.tilt
+  // Oops, we typo'd "webkit" as "wekbit"!
+  @include prefix(transform, rotate(15deg), wekbit ms)
+
+@mixin inset-divider-offset($offset, $padding)
+  $divider-offset: (2 * $padding) + $offset
+  @debug "divider offset: #{$divider-offset}"
+
+  margin-left: $divider-offset
+  width: calc(100% - #{$divider-offset})
+
+@mixin unify-parent($child)
+  @at-root #{selector-unify(&, $child)}
+    @content
+
+
+.square-av
+  @include avatar(100px, $circle: false)
+.circle-av
+  @include avatar(100px, $circle: true)
+
+@mixin theme-colors($light-theme: true)
+  @if $light-theme
+    background-color: $light-background
+    color: $light-text
+  @else
+    background-color: $dark-background
+    color: $dark-text
+
+.banner
+  @include theme-colors($light-theme: true)
+  body.dark &
+    @include theme-colors($light-theme: false)
+
+@mixin triangle($size, $color, $direction)
+  height: 0
+  width: 0
+
+  border-color: transparent
+  border-style: solid
+  border-width: $size / 2
+
+  @if $direction == up
+    border-bottom-color: $color
+  @else if $direction == right
+    border-left-color: $color
+  @else if $direction == down
+    border-top-color: $color
+  @else if $direction == left
+    border-right-color: $color
+  @else
+    @error "Unknown direction #{$direction}."
+
+@each $size in $sizes
+  .icon-#{$size}
+    font-size: $size
+    height: $size
+    width: $size
+
+$icons: ("eye": "\f112", "start": "\f12e", "stop": "\f12f")
+
+@each $name, $glyph in $icons
+  .icon-#{$name}:before
+    display: inline-block
+    font-family: "Icon Font"
+    content: $glyph
+
+$icons: "eye" "\f112" 12px, "start" "\f12e" 16px, "stop" "\f12f" 10px
+
+@each $name, $glyph, $size in $icons
+  .icon-#{$name}:before
+    display: inline-block
+    font-family: "Icon Font"
+    content: $glyph
+    font-size: $size
+
+@for $i from 1 through 3
+  ul:nth-child(3n + #{$i})
+    background-color: lighten($base-color, $i * 5%)
+
+/// Divides `$value` by `$ratio` until it's below `$base`.
+@function scale-below($value, $base, $ratio: 1.618)
+  @while $value > $base
+    $value: $value / $ratio
+  @return $value
+
+@namespace svg url(http://www.w3.org/2000/svg)
+
+@font-face
+  font-family: "Open Sans"
+  src: url("/fonts/OpenSans-Regular-webfont.woff2") format("woff2")
+
+@counter-style thumbs
+  system: cyclic
+  symbols: "\1F44D"
+
+@mixin sticky-position
+  position: fixed
+  @supports (position: sticky)
+    position: sticky
+
+@media (hover: hover)
+  .button:hover
+    border: 2px solid black
+
+    @media (color)
+      border-color: #036
+
+@keyframes slide-in
+  from
+    margin-left: 100%
+    width: 300%
+
+
+  70%
+    margin-left: 90%
+    width: 150%
+
+
+  to
+    margin-left: 0%
+    width: 100%
+
+@debug 100  // 100
+@debug 0.8  // 0.8
+@debug 16px  // 16px
+@debug 5px * 2px  // 10px*px (read "square pixels")
+@debug 5.2e3  // 5200
+@debug 6e-2  // 0.06
+@debug 4px * 6px  // 24px*px (read "square pixels")
+@debug 5px / 2s  // 2.5px/s (read "pixels per second")
+@debug 5px * 30deg / 2s / 24em  // 3.125px*deg/s*em
+//                                 (read "pixel-degrees per second-em")
+
+$degrees-per-second: 20deg/1s
+@debug $degrees-per-second  // 20deg/s
+@debug 1 / $degrees-per-second  // 0.05s/deg
+$transition-speed: 1s/50px
+
+@debug unquote(".widget:hover")  // .widget:hover
+@debug quote(bold)  // "bold"
+@debug 0.012345678912345  // 0.0123456789
+@debug 0.01234567891 == 0.01234567899  // true
+@debug 1.00000000009  // 1
+@debug 0.99999999991  // 1
+@debug "\""  // '"'
+@debug \.widget  // \.widget
+@debug "\a"  // "\a" (a string containing only a newline)
+@debug "line1\a line2"  // "line1\a line2" (foo and bar are separated by a newline)
+@debug "Nat + Liz \1F46D"  // "Nat + Liz 👭"
+@debug "Helvetica Neue"  // "Helvetica Neue"
+@debug "C:\\Program Files"  // "C:\\Program Files"
+@debug "\"Don't Fear the Reaper\""  // "\"Don't Fear the Reaper\""
+@debug "line1\a line2"  // "line1\a line2"
+
+$roboto-variant: "Mono"
+@debug "Roboto #{$roboto-variant}"  // "Roboto Mono"
+@debug bold  // bold
+@debug -webkit-flex  // -webkit-flex
+@debug --123  // --123
+
+$prefix: ms
+@debug -#{$prefix}-flex  // -ms-flex
+@debug \1F46D  // 👭
+@debug \21  // \!
+@debug \7Fx  // \7f x
+@debug str-length(\7Fx)  // 5
+@debug str-index("Helvetica Neue", "Helvetica")  // 1
+@debug str-index("Helvetica Neue", "Neue")  // 11
+@debug str-slice("Roboto Mono", -4)  // "Mono"
+@debug #f2ece4 // #f2ece4
+@debug #b37399aa // rgba(179, 115, 153, 67%)
+@debug midnightblue // #191970
+@debug rgb(204, 102, 153) // #c69
+@debug rgba(107, 113, 127, 0.8) // rgba(107, 113, 127, 0.8)
+@debug hsl(228, 7%, 86%) // #dadbdf
+@debug hsla(20, 20%, 85%, 0.7) // rgb(225, 215, 210, 0.7)
+$venus: #998099
+
+@debug scale-color($venus, $lightness: +15%) // #a893a8
+@debug mix($venus, midnightblue) // #594d85
+@debug nth(10px 12px 16px, 2)  // 12px
+@debug nth([line1, line2, line3], -1)  // line3
+$prefixes-by-browser: ("firefox": moz, "safari": webkit, "ie": ms)
+
+@function prefixes-for-browsers($browsers)
+  $prefixes: ()
+  @each $browser in $browsers
+    $prefixes: append($prefixes, map-get($prefixes-by-browser, $browser))
+
+  @return $prefixes
+
+@debug prefixes-for-browsers("firefox" "ie")  // moz ms
+@mixin syntax-colors($args...)
+  @debug keywords($args)  // (string: #080, comment: #800, $variable: $60b)
+
+  @each $name, $color in keywords($args)
+    pre span.stx-#{$name}
+      color: $color
+
+@include syntax-colors($string: #080, $comment: #800, $variable: #60b);
+$font-weights: ("regular": 400, "medium": 500, "bold": 700)
+
+@debug map-get($font-weights, "medium")  // 500
+@debug map-get($font-weights, "extra-bold")  // null
+$icons: ("eye": "\f112", "start": "\f12e", "stop": "\f12f")
+
+@each $name, $glyph in $icons
+  .icon-#{$name}:before
+    display: inline-block
+    font-family: "Icon Font"
+    content: $glyph
+
+$prefixes-by-browser: ("firefox": moz, "safari": webkit, "ie": ms)
+
+@mixin add-browser-prefix($browser, $prefix)
+  $prefixes-by-browser: map-merge($prefixes-by-browser, ($browser: $prefix))
+
+@include add-browser-prefix("opera", o)
+@debug $prefixes-by-browser
+// ("firefox": moz, "safari": webkit, "ie": ms, "opera": o)
+@debug 1px == 2px  // false
+@debug 1px == 1px  // true
+@debug 10px < 3px  // false
+@debug comparable(100px, 3in)  // true
+
+@debug str-index("Helvetica Neue", "Roboto")  // null
+@debug map-get(("large": 20px), "small")  // null
+@debug &  // null
+$fonts: ("serif": "Helvetica Neue", "monospace": "Consolas")
+
+h3
+  font: 18px bold map-get($fonts, "sans")
+
+$fonts: ("serif": "Helvetica Neue", "monospace": "Consolas")
+
+h3
+  font:
+    size: 18px
+    weight: bold
+    family: map-get($fonts, "sans")
+
+copy of $list with all elements for which $condition returns `true`
+/// removed.
+@function remove-where($list, $condition)
+  $new-list: ()
+  $separator: list-separator($list)
+  @each $element in $list
+    @if not call($condition, $element)
+      $new-list: append($new-list, $element, $separator: $separator)
+
+  @return $new-list
+
+$fonts: Tahoma, Geneva, "Helvetica Neue", Helvetica, Arial, sans-serif
+
+content
+  @function contains-helvetica($string)
+    @return str-index($string, "Helvetica")
+
+  font-family: remove-where($fonts, get-function("contains-helvetica"))
+
+@debug 1px == 1px  // true
+@debug 1px != 1em  // true
+@debug 1 != 1px  // true
+@debug 96px == 1in  // true
+
+@debug "Helvetica" == Helvetica  // true
+@debug "Helvetica" != "Arial"  // true
+
+@debug hsl(34, 35%, 92.1%) == #f2ece4  // true
+@debug rgba(179, 115, 153, 0.5) != rgba(179, 115, 153, 0.8)  // true
+
+@debug (5px 7px 10px) == (5px 7px 10px)  // true
+@debug (5px 7px 10px) != (10px 14px 20px)  // true
+@debug (5px 7px 10px) != (5px, 7px, 10px)  // true
+@debug (5px 7px 10px) != [5px 7px 10px]  // true
+
+$theme: ("venus": #998099, "nebula": #d2e1dd)
+@debug $theme == ("venus": #998099, "nebula": #d2e1dd)  // true
+@debug $theme != ("venus": #998099, "iron": #dadbdf)  // true
+
+@debug true == true  // true
+@debug true != false  // true
+@debug null != false  // true
+
+@debug get-function("rgba") == get-function("rgba")  // true
+@debug get-function("rgba") != get-function("hsla")  // true
+
+@debug 10s + 15s  // 25s
+@debug 1in - 10px  // 0.8958333333in
+@debug 5px * 3px  // 15px*px
+@debug (12px/4px)  // 3
+@debug 1in % 9px  // 0.0625in
+@debug 15px / 30px  // 15px/30px
+@debug (10px + 5px) / 30px  // 0.5
+
+$result: 15px / 30px
+@debug $result  // 0.5
+
+@function fifteen-divided-by-thirty()
+  @return 15px / 30px
+
+@debug fifteen-divided-by-thirty()  // 0.5
+
+@debug (15px/30px)  // 0.5
+@debug (bold 15px/30px sans-serif)  // bold 15px/30px sans-serif
+@debug 15px/30px + 1  // 1.5
+
+@debug 4px * 6px  // 24px*px (read "square pixels")
+@debug 5px / 2s  // 2.5px/s (read "pixels per second")
+@debug 5px * 30deg / 2s / 24em  // 3.125px*deg/s*em
+//                                 (read "pixel-degrees per second-em")
+
+$degrees-per-second: 20deg/1s
+@debug $degrees-per-second  // 20deg/s
+@debug 1 / $degrees-per-second  // 0.05s/deg
+@debug 100 > 50  // true
+@debug 10px < 17px  // true
+@debug 96px >= 1in  // true
+@debug 1000ms <= 1s  // true
+@debug "Helvetica" + " Neue"  // "Helvetica Neue"
+@debug sans- + serif  // sans-serif
+@debug #{10px + 5px} / 30px  // 15px/30px
+@debug sans - serif  // sans-serif
+
+@debug "Elapsed time: " + 10s  // "Elapsed time: 10s";
+@debug true + " is a boolean value"  // "true is a boolean value";
+
+@debug / 15px  // /15px
+@debug - moz  // -moz
+@debug not true  // false
+@debug not false  // true
+
+@debug true and true  // true
+@debug true and false  // false
+
+@debug true or false  // true
+@debug false or false  // false
+@debug var(--main-bg-color)  // var(--main-bg-color)
+
+$primary: #f2ece4
+$accent: #e1d7d2
+@debug radial-gradient($primary, $accent)  // radial-gradient(#f2ece4, #e1d7d2)
+@debug str-index("Helvetica Neue", "Helvetica")  // 1
+@debug str-index("Helvetica Neue", "Neue")  // 11
+@debug comparable(2px, 1px)  // true
+@debug comparable(100px, 3em)  // false
+@debug comparable(10cm, 3mm)  // true
+@debug append(10px 20px, 30px)  // 10px 20px 30px
+@debug append((blue, red), green)  // blue, red, green
+@debug append(10px 20px, 30px 40px)  // 10px 20px (30px 40px)
+@debug append(10px, 20px, $separator: comma)  // 10px, 20px
+@debug append((blue, red), green, $separator: space)  // blue red green
+@mixin syntax-colors($args...)
+  @debug keywords($args)  // (string: #080, comment: #800, $variable: $60b)
+
+  @each $name, $color in keywords($args)
+    pre span.stx-#{$name}
+      color: $color
+
+@include syntax-colors($string: #080, $comment: #800, $variable: #60b);
+
+$font-weights: ("regular": 400, "medium": 500, "bold": 700)
+
+@debug map-values($font-weights)  // 400, 500, 700
+
+.icon-#{$name}
+  position: absolute
+  #{$top-or-bottom}: 0
+  -#{$prefix}-#{$property}: $value
+  .icon-#{$name}
+    position: absolute
+    #{$top-or-bottom}: 0
+    -#{$prefix}-#{$property}-image: $value

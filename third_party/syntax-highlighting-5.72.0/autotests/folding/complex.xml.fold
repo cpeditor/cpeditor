@@ -1,0 +1,13 @@
+<beginfold id='4'><?xml</beginfold id='4'> version="1.0" encoding="UTF-8"<endfold id='4'>?></endfold id='4'>
+<beginfold id='3'><!DOCTYPE </beginfold id='3'>language SYSTEM "language.dtd"
+<beginfold id='6'>[</beginfold id='6'>
+    <beginfold id='1'><!--</beginfold id='1'> comment line 1
+         comment line 2 <endfold id='1'>--></endfold id='1'>
+    <!ENTITY name    "(?![0-9])[\w_:][\w.:_-]*">
+    <!ENTITY entref  "&amp;(#[0-9]+|#[xX][0-9A-Fa-f]+|&name;);">
+<endfold id='6'>]</endfold id='6'><endfold id='3'>></endfold id='3'>
+<beginfold id='5'><element</beginfold id='5'> attr1="a1" attr2="2.03" attr3="&entity;">
+    <beginfold id='5'><sub-element</beginfold id='5'><endfold id='5'>/></endfold id='5'>
+</element<endfold id='5'>></endfold id='5'>
+
+<beginfold id='5'><wrong</beginfold id='5'><very wrong>>

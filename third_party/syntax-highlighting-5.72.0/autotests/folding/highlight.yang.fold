@@ -1,0 +1,38 @@
+// from: https://en.wikipedia.org/w/index.php?title=YANG&oldid=792171830#Example
+module example-sports <beginfold id='1'>{</beginfold id='1'>
+
+  namespace "http://example.com/example-sports";
+  prefix sports;
+
+  import ietf-yang-types <beginfold id='1'>{</beginfold id='1'> prefix yang; <endfold id='1'>}</endfold id='1'>
+
+  typedef season <beginfold id='1'>{</beginfold id='1'>
+    type string;
+    description
+      "The name of a sports season, including the type and the year, e.g,
+       'Champions League 2014/2015'.";
+  <endfold id='1'>}</endfold id='1'>
+
+  container sports <beginfold id='1'>{</beginfold id='1'>
+    config true;
+
+    list person <beginfold id='1'>{</beginfold id='1'>
+      key name;
+      leaf name <beginfold id='1'>{</beginfold id='1'> type string; <endfold id='1'>}</endfold id='1'>
+      leaf birthday <beginfold id='1'>{</beginfold id='1'> type yang:date-and-time; mandatory true; <endfold id='1'>}</endfold id='1'>
+    <endfold id='1'>}</endfold id='1'>
+
+    list team <beginfold id='1'>{</beginfold id='1'>
+      key name;
+      leaf name <beginfold id='1'>{</beginfold id='1'> type string; <endfold id='1'>}</endfold id='1'>
+      list player <beginfold id='1'>{</beginfold id='1'>
+        key "name season";
+        unique number;
+        leaf name <beginfold id='1'>{</beginfold id='1'> type leafref <beginfold id='1'>{</beginfold id='1'> path "/sports/person/name"; <endfold id='1'>}</endfold id='1'>  <endfold id='1'>}</endfold id='1'>
+        leaf season <beginfold id='1'>{</beginfold id='1'> type season; <endfold id='1'>}</endfold id='1'>
+        leaf number <beginfold id='1'>{</beginfold id='1'> type uint16; mandatory true; <endfold id='1'>}</endfold id='1'>
+        leaf scores <beginfold id='1'>{</beginfold id='1'> type uint16; default 0; <endfold id='1'>}</endfold id='1'>
+      <endfold id='1'>}</endfold id='1'>
+    <endfold id='1'>}</endfold id='1'>
+  <endfold id='1'>}</endfold id='1'>
+<endfold id='1'>}</endfold id='1'>

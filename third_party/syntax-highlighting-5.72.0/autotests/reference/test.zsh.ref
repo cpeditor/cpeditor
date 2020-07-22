@@ -1,0 +1,66 @@
+<Comment># bug #380229</Comment><br/>
+<Variable>${str:$((${#a[1]}</Variable><Normal Text>+1</Normal Text><Variable>))}</Variable><br/>
+<Normal Text></Normal Text><br/>
+<Comment># from http://zshwiki.org/home/examples/hardstatus</Comment><br/>
+<Keyword>function</Keyword><Function> title</Function><Normal Text> </Normal Text><Keyword>{</Keyword><br/>
+<Normal Text>  </Normal Text><Keyword>if [[</Keyword><Normal Text> </Normal Text><Variable>$TERM</Variable><Normal Text> </Normal Text><Expression>==</Expression><Normal Text> </Normal Text><String DoubleQ>"screen"</String DoubleQ><Keyword> ]]</Keyword><Normal Text>; </Normal Text><Keyword>then</Keyword><br/>
+<Normal Text>    </Normal Text><Comment># Use these two for GNU Screen:</Comment><br/>
+<Normal Text>    </Normal Text><Builtin>print</Builtin><Normal Text> </Normal Text><Option>-nR</Option><Normal Text> </Normal Text><String SingleQ>$'</String SingleQ><String Escape>\033</String Escape><String SingleQ>k'</String SingleQ><Variable>$1</Variable><String SingleQ>$'</String SingleQ><String Escape>\033</String Escape><String SingleQ>'</String SingleQ><Escape>\\</Escape><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>    </Normal Text><Builtin>print</Builtin><Normal Text> </Normal Text><Option>-nR</Option><Normal Text> </Normal Text><String SingleQ>$'</String SingleQ><String Escape>\033</String Escape><String SingleQ>]0;'</String SingleQ><Variable>$2</Variable><String SingleQ>$'</String SingleQ><String Escape>\a</String Escape><String SingleQ>'</String SingleQ><br/>
+<Normal Text>  </Normal Text><Keyword>elif [[</Keyword><Normal Text> </Normal Text><Variable>$TERM</Variable><Normal Text> </Normal Text><Expression>==</Expression><Normal Text> </Normal Text><String DoubleQ>"xterm"</String DoubleQ><Normal Text> || </Normal Text><Variable>$TERM</Variable><Normal Text> </Normal Text><Expression>==</Expression><Normal Text> </Normal Text><String DoubleQ>"rxvt"</String DoubleQ><Keyword> ]]</Keyword><Normal Text>; </Normal Text><Keyword>then</Keyword><br/>
+<Normal Text>    </Normal Text><Comment># Use this one instead for XTerms:</Comment><br/>
+<Normal Text>    </Normal Text><Builtin>print</Builtin><Normal Text> </Normal Text><Option>-nR</Option><Normal Text> </Normal Text><String SingleQ>$'</String SingleQ><String Escape>\033</String Escape><String SingleQ>]0;'</String SingleQ><Variable>$*</Variable><String SingleQ>$'</String SingleQ><String Escape>\a</String Escape><String SingleQ>'</String SingleQ><br/>
+<Normal Text>  </Normal Text><Keyword>fi</Keyword><br/>
+<Keyword>}</Keyword><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>function</Keyword><Function> precmd</Function><Normal Text> </Normal Text><Keyword>{</Keyword><br/>
+<Normal Text>  title </Normal Text><Command>zsh</Command><Normal Text> </Normal Text><String DoubleQ>"</String DoubleQ><Variable>$PWD</Variable><String DoubleQ>"</String DoubleQ><br/>
+<Keyword>}</Keyword><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>function</Keyword><Function> preexec</Function><Normal Text> </Normal Text><Keyword>{</Keyword><br/>
+<Normal Text>  </Normal Text><Builtin>emulate</Builtin><Normal Text> </Normal Text><Option>-L</Option><Normal Text> </Normal Text><Command>zsh</Command><br/>
+<Normal Text>  </Normal Text><Builtin>local</Builtin><Normal Text> </Normal Text><Option>-a</Option><Normal Text> </Normal Text><Variable>cmd</Variable><Normal Text>; </Normal Text><Variable>cmd=(</Variable><Normal Text>$</Normal Text><Escape>{(z)1}</Escape><Variable>)</Variable><br/>
+<Normal Text>  title </Normal Text><Variable>$cmd[1]</Variable><Normal Text>:t </Normal Text><String DoubleQ>"</String DoubleQ><Variable>$cmd[2,-1]</Variable><String DoubleQ>"</String DoubleQ><br/>
+<Keyword>}</Keyword><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>caption always </Normal Text><String DoubleQ>"%3n %t%? (%u)%?%?: %h%?"</String DoubleQ><br/>
+<Normal Text></Normal Text><br/>
+<Function>preexec()</Function><Normal Text> </Normal Text><Keyword>{</Keyword><br/>
+<Normal Text>  </Normal Text><Builtin>emulate</Builtin><Normal Text> </Normal Text><Option>-L</Option><Normal Text> </Normal Text><Command>zsh</Command><br/>
+<Normal Text>  </Normal Text><Builtin>local</Builtin><Normal Text> </Normal Text><Option>-a</Option><Normal Text> </Normal Text><Variable>cmd</Variable><Normal Text>; </Normal Text><Variable>cmd=(</Variable><Normal Text>$</Normal Text><Escape>{(z)1}</Escape><Variable>)</Variable><Normal Text>             </Normal Text><Comment># Re-parse the command line</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>  </Normal Text><Comment># Construct a command that will output the desired job number.</Comment><br/>
+<Normal Text>  </Normal Text><Keyword>case</Keyword><Normal Text> </Normal Text><Variable>$cmd[1]</Variable><Keyword> in</Keyword><br/>
+<Normal Text>      fg</Normal Text><Keyword>)</Keyword><br/>
+<Normal Text>        </Normal Text><Keyword>if</Keyword><Normal Text> </Normal Text><Keyword>((</Keyword><Normal Text> </Normal Text><Variable>$#</Variable><Normal Text>cmd == 1 </Normal Text><Keyword>))</Keyword><Normal Text>; </Normal Text><Keyword>then</Keyword><br/>
+<Normal Text>          </Normal Text><Comment># No arguments, must find the current job</Comment><br/>
+<Normal Text>          </Normal Text><Variable>cmd=(</Variable><Normal Text>builtin jobs -l %+</Normal Text><Variable>)</Variable><br/>
+<Normal Text>        </Normal Text><Keyword>else</Keyword><br/>
+<Normal Text>          </Normal Text><Comment># Replace the command name, ignore extra args.</Comment><br/>
+<Normal Text>          </Normal Text><Variable>cmd=(</Variable><Normal Text>builtin jobs -l $</Normal Text><Escape>{(Q)cmd[2]}</Escape><Variable>)</Variable><br/>
+<Normal Text>        </Normal Text><Keyword>fi;;</Keyword><br/>
+<Normal Text>       %*</Normal Text><Keyword>)</Keyword><Normal Text> </Normal Text><Variable>cmd=(</Variable><Normal Text>builtin jobs -l $</Normal Text><Escape>{(Q)cmd[1]}</Escape><Variable>)</Variable><Keyword>;;</Keyword><Normal Text> </Normal Text><Comment># Same as "else" above</Comment><br/>
+<Normal Text>       exec</Normal Text><Keyword>)</Keyword><Normal Text> </Normal Text><Builtin>shift</Builtin><Normal Text> cmd;</Normal Text><Control>&</Control><Normal Text> </Normal Text><Comment># If the command is 'exec', drop that, because</Comment><br/>
+<Normal Text>          </Normal Text><Comment># we'd rather just see the command that is being</Comment><br/>
+<Normal Text>          </Normal Text><Comment># exec'd. Note the ;& to fall through.</Comment><br/>
+<Normal Text>       *)  title </Normal Text><Variable>$cmd[1]</Variable><Normal Text>:t </Normal Text><String DoubleQ>"</String DoubleQ><Variable>$cmd[2,-1]</Variable><String DoubleQ>"</String DoubleQ><Normal Text>    </Normal Text><Comment># Not resuming a job,</Comment><br/>
+<Normal Text>          </Normal Text><Builtin>return</Builtin><Keyword>;;</Keyword><Normal Text>                        </Normal Text><Comment># so we're all done</Comment><br/>
+<Normal Text>      </Normal Text><Keyword>esac</Keyword><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>  </Normal Text><Builtin>local</Builtin><Normal Text> </Normal Text><Option>-A</Option><Normal Text> </Normal Text><Variable>jt</Variable><Normal Text>; </Normal Text><Variable>jt=(</Variable><Normal Text>$</Normal Text><Escape>{(kv)jobtexts}</Escape><Variable>)</Variable><Normal Text>       </Normal Text><Comment># Copy jobtexts for subshell</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>  </Normal Text><Comment># Run the command, read its output, and look up the jobtext.</Comment><br/>
+<Normal Text>  </Normal Text><Comment># Could parse $rest here, but $jobtexts (via $jt) is easier.</Comment><br/>
+<Normal Text>  </Normal Text><Variable>$cmd</Variable><Normal Text> </Normal Text><Redirection>>></Redirection><Keyword>(</Keyword><Builtin>read</Builtin><Normal Text> </Normal Text><Variable>num</Variable><Normal Text> </Normal Text><Variable>rest</Variable><br/>
+<Normal Text>          </Normal Text><Variable>cmd=(</Variable><Normal Text>$</Normal Text><Escape>{(z)${(e):-\$jt$num}}</Escape><Variable>)</Variable><br/>
+<Normal Text>          title </Normal Text><Variable>$cmd[1]</Variable><Normal Text>:t </Normal Text><String DoubleQ>"</String DoubleQ><Variable>$cmd[2,-1]</Variable><String DoubleQ>"</String DoubleQ><Keyword>)</Keyword><Normal Text> </Normal Text><Redirection>2></Redirection><Path>/dev/null</Path><br/>
+<Keyword>}</Keyword><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>function</Keyword><Function> precmd()</Function><Normal Text> </Normal Text><Keyword>{</Keyword><br/>
+<Normal Text>  title </Normal Text><Command>zsh</Command><Normal Text> </Normal Text><String DoubleQ>"</String DoubleQ><Variable>$IDENTITY</Variable><String DoubleQ>:</String DoubleQ><Variable>$(</Variable><Builtin>print</Builtin><Normal Text> </Normal Text><Option>-P</Option><Normal Text> %</Normal Text><Path>~</Path><Variable>)</Variable><String DoubleQ>"</String DoubleQ><br/>
+<Keyword>}</Keyword><br/>
+<Normal Text></Normal Text><br/>
+<String DoubleQ>"%{^[]0;screen ^En (^Et) ^G%}"</String DoubleQ><br/>
+<Normal Text></Normal Text><br/>
+<Builtin>print</Builtin><Normal Text> </Normal Text><Option>-nRP</Option><Normal Text> </Normal Text><String SingleQ>$'</String SingleQ><String Escape>\033</String Escape><String SingleQ>k%(!.#\[.)'</String SingleQ><Variable>$1</Variable><String SingleQ>$'%'</String SingleQ><Normal Text>$</Normal Text><Escape>\(\(</Escape><Normal Text>20\-$</Normal Text><Escape>{#1}\)\)</Escape><String SingleQ>$'< ..<'</String SingleQ><Normal Text>$</Normal Text><Escape>{${2:+${${${@[${#${@}}]##/*/}</Escape><Normal Text>/#</Normal Text><Path>/</Path><Normal Text> }:-}}</Normal Text><Path>/</Path><Normal Text>/</Normal Text><Escape>\"</Escape><Normal Text>/}</Normal Text><String SingleQ>$'%(!.\].)</String SingleQ><String Escape>\033</String Escape><String SingleQ>'</String SingleQ><Escape>\\</Escape><br/>

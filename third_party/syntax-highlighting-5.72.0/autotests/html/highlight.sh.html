@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title>highlight.sh</title>
+<meta name="generator" content="KF5::SyntaxHighlighting (Bash)"/>
+</head><body style="color:#1f1c1b"><pre>
+<span style="color:#898887;">#! /bin/sh</span>
+<span style="color:#898887;"># This is a test script for the Katepart Bash Syntax Highlighting by</span>
+<span style="color:#898887;">#	Wilbert Berendsen.  This is not runnable !!!</span>
+
+
+<span style="color:#898887;"># The highlighting recognizes basic types of input, and has a few special cases that</span>
+<span style="color:#898887;"># are all in FindCommands.  The main objective is to create really proper nesting of</span>
+<span style="color:#898887;"># (multiline) strings, variables, expressions, etc.</span>
+
+
+
+<span style="color:#898887;"># ============== Tests: ===============</span>
+
+<span style="color:#898887;"># basic types:</span>
+<span style="color:#644a9b;font-weight:bold;">echo</span> <span style="color:#bf0303;">'single quoted string'</span>
+<span style="color:#644a9b;font-weight:bold;">echo</span> <span style="color:#bf0303;">&quot;double quoted string&quot;</span>
+<span style="color:#644a9b;font-weight:bold;">echo</span> <span style="color:#bf0303;">$'string with esc</span><span style="color:#0057ae;">\a</span><span style="color:#bf0303;">pes</span><span style="color:#0057ae;">\x0d</span><span style="color:#bf0303;">in it'</span>
+<span style="color:#644a9b;font-weight:bold;">echo</span> <span style="color:#bf0303;">$&quot;</span><span style="color:#bf0303;">string meant to be translated&quot;</span>
+
+
+<span style="color:#898887;"># comments:</span>
+<span style="color:#898887;"># this is a comment</span>
+<span style="color:#898887;">#this too</span>
+<span style="color:#644a9b;font-weight:bold;">echo</span> this is#nt a comment
+<span style="color:#644a9b;">dcop</span> kate EditInterface#1 <span style="color:#898887;">#this is</span>
+<span style="color:#644a9b;">grep</span> -e <span style="color:#bf0303;">&quot;^default/linux/amd64/&quot;</span> <span style="font-weight:bold;">|</span><span style="color:#0095ff;font-weight:bold;">\ </span><span style="color:#898887;">#this is a comment</span>
+<span style="color:#644a9b;">mkdir</span> this<span style="color:#0057ae;">\ </span>isnt<span style="color:#0057ae;">\ </span>#a<span style="color:#0057ae;">\ </span>comment
+<span style="color:#644a9b;">mkdir</span> this<span style="color:#0057ae;">\ </span>isnt<span style="color:#0057ae;">\\\;</span>#a<span style="color:#0057ae;">\ </span>comment
+<span style="color:#644a9b;">mkdir</span> this<span style="color:#0057ae;">\\</span> <span style="color:#898887;">#is a comment</span>
+
+<span style="color:#898887;"># brace expansion</span>
+<span style="color:#644a9b;">mv</span> my_file.<span style="color:#0057ae;">{JPG,jpg}</span>
+
+
+<span style="color:#898887;"># special characters are escaped:</span>
+<span style="color:#644a9b;font-weight:bold;">echo</span> <span style="color:#0057ae;">\(</span>output<span style="color:#0057ae;">\)</span> <span style="color:#0057ae;">\&amp;\|</span> <span style="color:#0057ae;">\&gt;</span> <span style="color:#0057ae;">\&lt;</span> <span style="color:#0057ae;">\&quot;</span> <span style="color:#0057ae;">\'</span> <span style="color:#0057ae;">\*</span>
+
+
+<span style="color:#898887;"># variable substitution:</span>
+<span style="color:#644a9b;font-weight:bold;">echo</span> <span style="color:#0057ae;">$filename</span>.ext
+<span style="color:#644a9b;font-weight:bold;">echo</span> <span style="color:#0057ae;">$filename_ext</span>
+<span style="color:#644a9b;font-weight:bold;">echo</span> <span style="color:#0057ae;">${filename}</span>_ext
+<span style="color:#644a9b;font-weight:bold;">echo</span> text<span style="color:#0057ae;">${array[$subscript]}</span>.text
+<span style="color:#644a9b;font-weight:bold;">echo</span> text<span style="color:#0057ae;">${array[</span><span style="color:#bf0303;">&quot;string&quot;</span><span style="color:#0057ae;">]}</span>.text
+<span style="color:#644a9b;font-weight:bold;">echo</span> <span style="color:#0057ae;">${!prefix*}</span>
+<span style="color:#644a9b;font-weight:bold;">echo</span> <span style="color:#0057ae;">${!redir}</span>
+<span style="color:#644a9b;font-weight:bold;">echo</span> short are <span style="color:#0057ae;">$_</span>, <span style="color:#0057ae;">$$</span>, <span style="color:#0057ae;">$?</span>, <span style="color:#0057ae;">${@}</span>, etc.
+<span style="color:#644a9b;font-weight:bold;">echo</span> <span style="color:#0057ae;">${variable/</span>a<span style="color:#0057ae;">/</span>d<span style="color:#0057ae;">}</span>
+<span style="color:#644a9b;font-weight:bold;">echo</span> <span style="color:#0057ae;">${1:-</span>default<span style="color:#0057ae;">}</span>
+
+
+<span style="color:#898887;"># expression subst:</span>
+<span style="color:#644a9b;font-weight:bold;">echo</span> <span style="color:#0057ae;">$((</span> cd &lt;&lt; ed + 1 <span style="color:#0057ae;">))</span>
+
+
+<span style="color:#898887;"># command subst:</span>
+<span style="color:#644a9b;font-weight:bold;">echo</span> <span style="color:#0057ae;">$(</span><span style="color:#644a9b;">ls</span> -l<span style="color:#0057ae;">)</span>
+<span style="color:#644a9b;font-weight:bold;">echo</span> <span style="font-weight:bold;">`</span><span style="color:#644a9b;">cat</span> myfile<span style="font-weight:bold;">`</span>
+
+
+<span style="color:#898887;"># file subst:</span>
+<span style="color:#644a9b;font-weight:bold;">echo</span> $(&lt;<span style="color:#0057ae;">$filename</span>)
+<span style="color:#644a9b;font-weight:bold;">echo</span> $(&lt;/path/to/myfile)
+
+<span style="color:#898887;"># process subst:</span>
+<span style="color:#644a9b;">sort</span> &lt;(<span style="color:#0095ff;font-weight:bold;">show_labels</span>) <span style="font-weight:bold;">|</span> <span style="color:#644a9b;">sed</span> <span style="color:#bf0303;">'s/a/bg'</span> &gt; my_file.txt 2&gt;&amp;1
+
+
+<span style="color:#898887;"># All substitutions also work in strings:</span>
+<span style="color:#644a9b;font-weight:bold;">echo</span> <span style="color:#bf0303;">&quot;subst </span><span style="color:#0057ae;">${in}</span><span style="color:#bf0303;">side string&quot;</span>  <span style="color:#bf0303;">'not $inside this ofcourse'</span>
+<span style="color:#644a9b;font-weight:bold;">echo</span> <span style="color:#bf0303;">&quot;The result is </span><span style="color:#0057ae;">$((</span> <span style="color:#0057ae;">$a</span> + <span style="color:#0057ae;">$b</span> <span style="color:#0057ae;">))</span><span style="color:#bf0303;">. Thanks!&quot;</span>
+<span style="color:#644a9b;font-weight:bold;">echo</span> <span style="color:#bf0303;">&quot;Your homedir contains </span><span style="font-weight:bold;">`</span><span style="color:#644a9b;">ls</span> <span style="color:#0057ae;">$HOME</span> <span style="font-weight:bold;">|</span><span style="color:#644a9b;">wc</span> -l<span style="font-weight:bold;">`</span><span style="color:#bf0303;"> files.&quot;</span>
+
+
+<span style="color:#898887;"># Escapes in strings:</span>
+<span style="color:#0057ae;">p=</span><span style="color:#bf0303;">&quot;String </span><span style="color:#0057ae;">\`</span><span style="color:#bf0303;"> with </span><span style="color:#0057ae;">\$</span><span style="color:#bf0303;"> escapes </span><span style="color:#0057ae;">\&quot;</span><span style="color:#bf0303;"> &quot;</span>;
+
+
+<span style="color:#898887;"># keywords are black, builtins dark purple and common commands lighter purple</span>
+<span style="font-weight:bold;">set</span>
+<span style="color:#644a9b;font-weight:bold;">exit</span>
+<span style="color:#644a9b;">login</span>
+
+
+<span style="color:#898887;"># Other colorings:</span>
+<span style="color:#644a9b;">error()</span> <span style="font-weight:bold;">{</span>
+	<span style="color:#644a9b;">cat</span> /usr/bin/lesspipe.sh
+	<span style="color:#0095ff;font-weight:bold;">runscript</span> &gt;<span style="font-weight:bold;">&amp;</span> <span style="color:#0095ff;font-weight:bold;">redir.bak</span>
+	<span style="color:#644a9b;font-weight:bold;">exec</span> 3&gt;&amp;4
+<span style="font-weight:bold;">}</span>
+
+
+<span style="color:#898887;"># do - done make code blocks</span>
+<span style="font-weight:bold;">while</span><span style="color:#644a9b;font-weight:bold;"> [</span> <span style="color:#0057ae;">$p</span> <span style="color:#006e28;">-lt</span> <span style="color:#0057ae;">$q</span><span style="color:#644a9b;font-weight:bold;"> ]</span> 
+<span style="font-weight:bold;">do</span>
+	<span style="color:#644a9b;">chown</span> 0644 <span style="color:#0057ae;">$file</span>.<span style="color:#0057ae;">$p</span>
+<span style="font-weight:bold;">done</span>
+
+
+<span style="color:#898887;"># braces as well</span>
+<span style="color:#0095ff;font-weight:bold;">run_prog</span> <span style="font-weight:bold;">|</span> <span style="color:#644a9b;">sort</span> -u <span style="font-weight:bold;">|</span>
+<span style="font-weight:bold;">{</span>
+	<span style="color:#644a9b;font-weight:bold;">echo</span> Header
+	<span style="font-weight:bold;">while</span> <span style="color:#644a9b;font-weight:bold;">read</span> <span style="color:#0057ae;">a</span> <span style="color:#0057ae;">b</span> <span style="color:#0057ae;">d</span>
+	<span style="font-weight:bold;">do</span>
+		<span style="color:#644a9b;font-weight:bold;">echo</span> <span style="color:#0057ae;">$a</span>/<span style="color:#0057ae;">$b</span>/<span style="color:#0057ae;">$c</span>
+	<span style="font-weight:bold;">done</span>
+	<span style="color:#644a9b;font-weight:bold;">echo</span> Footer
+<span style="font-weight:bold;">}</span>
+
+
+<span style="color:#898887;"># Any constructions can be nested:</span>
+<span style="color:#644a9b;font-weight:bold;">echo</span> <span style="color:#bf0303;">&quot;A long string with </span><span style="color:#0057ae;">$(</span>
+	<span style="font-weight:bold;">if</span><span style="color:#644a9b;font-weight:bold;"> [</span> <span style="color:#0057ae;">$count</span> <span style="color:#006e28;">-gt</span> 100<span style="color:#644a9b;font-weight:bold;"> ]</span> ; <span style="font-weight:bold;">then</span>
+		<span style="color:#644a9b;font-weight:bold;">echo</span> <span style="color:#bf0303;">&quot;much&quot;</span>
+	<span style="font-weight:bold;">else</span>
+		<span style="color:#644a9b;font-weight:bold;">echo</span> <span style="color:#bf0303;">&quot;not much&quot;</span>
+	<span style="font-weight:bold;">fi</span> <span style="color:#0057ae;">)</span><span style="color:#bf0303;"> substitutions.&quot;</span> <span style="font-weight:bold;">;</span>
+
+
+<span style="color:#898887;"># Even the case construct is correctly folded:</span>
+<span style="color:#644a9b;font-weight:bold;">test</span> -f blaat <span style="font-weight:bold;">&amp;&amp;</span>
+<span style="font-weight:bold;">(</span>	<span style="color:#0095ff;font-weight:bold;">do_something</span>
+	<span style="font-weight:bold;">case</span> <span style="color:#0057ae;">$p</span><span style="font-weight:bold;"> in</span>
+		*bak<span style="font-weight:bold;">)</span>
+			<span style="color:#0095ff;font-weight:bold;">do_bak</span> <span style="color:#0057ae;">$p</span>
+			<span style="font-weight:bold;">;;</span>
+		*<span style="font-weight:bold;">)</span>
+			<span style="color:#0095ff;font-weight:bold;">dont_bak</span> <span style="color:#0057ae;">$p</span>
+			<span style="font-weight:bold;">;;</span>
+	<span style="font-weight:bold;">esac</span>
+<span style="font-weight:bold;">)</span> <span style="color:#898887;"># despite the extra parentheses in the case construction.</span>
+
+
+<span style="color:#898887;"># variable assignments:</span>
+<span style="color:#0057ae;">DIR=</span>/dev
+<span style="color:#0057ae;">p=</span><span style="font-weight:bold;">`</span><span style="color:#644a9b;">ls</span><span style="font-weight:bold;">`</span>
+<span style="color:#0057ae;">LC_ALL=</span><span style="color:#bf0303;">&quot;nl&quot;</span> <span style="color:#644a9b;">dcop</span> <span style="color:#bf0303;">'kate*'</span>
+<span style="color:#0057ae;">_VAR=</span>val
+<span style="color:#0057ae;">ARR=(</span>this is an array<span style="color:#0057ae;">)</span>
+<span style="color:#0057ae;">ARR2=([this]=</span>too <span style="color:#0057ae;">[and]=</span><span style="color:#bf0303;">&quot;this too&quot;</span><span style="color:#0057ae;">)</span>
+<span style="color:#0057ae;">usage=</span><span style="color:#bf0303;">&quot;</span><span style="color:#0057ae;">$0</span><span style="color:#bf0303;"> -- version </span><span style="color:#0057ae;">$VERSION</span>
+<span style="color:#bf0303;">Multiple lines of output</span>
+<span style="color:#bf0303;">can be possible.&quot;</span>
+<span style="color:#0057ae;">ANSWER=</span>yes	<span style="color:#898887;"># here 'yes' isn't highlighed as command</span>
+
+
+<span style="color:#898887;"># Some commands expect variable names, these are colored correctly:</span>
+<span style="color:#644a9b;font-weight:bold;">export</span> <span style="color:#0057ae;">PATH=</span>/my/bin:<span style="color:#0057ae;">$PATH</span> <span style="color:#0057ae;">BLAAT</span>
+<span style="color:#644a9b;font-weight:bold;">export</span> <span style="color:#0057ae;">A</span> <span style="color:#0057ae;">B</span> <span style="color:#0057ae;">D</span>
+<span style="color:#644a9b;font-weight:bold;">local</span> <span style="color:#0057ae;">p=</span>3  <span style="color:#0057ae;">x</span>  <span style="color:#0057ae;">y=</span><span style="color:#bf0303;">'\'</span>
+<span style="color:#644a9b;font-weight:bold;">read</span> <span style="color:#0057ae;">x</span> <span style="color:#0057ae;">y</span> <span style="color:#0057ae;">z</span> &lt;&lt;&lt; <span style="color:#0057ae;">$hallo</span>
+<span style="color:#644a9b;font-weight:bold;">unset</span> <span style="color:#0057ae;">B</span>
+<span style="color:#644a9b;font-weight:bold;">declare</span> -a <span style="color:#0057ae;">VAR1</span> <span style="color:#0057ae;">VAR2</span> <span style="font-weight:bold;">&amp;&amp;</span> <span style="color:#644a9b;font-weight:bold;">exit</span>
+<span style="color:#644a9b;font-weight:bold;">declare</span> <span style="color:#0057ae;">less</span> <span style="color:#0057ae;">a</span> <span style="font-weight:bold;">&amp;&amp;</span> <span style="color:#0095ff;font-weight:bold;">b</span> 
+
+<span style="color:#898887;"># options are recoqnized:</span>
+<span style="color:#644a9b;">zip</span> -f=file.zip
+<span style="color:#0095ff;font-weight:bold;">./configure</span>  --destdir=/usr
+<span style="color:#644a9b;">make</span>  destdir=/usr/
+
+
+<span style="color:#898887;"># [[ and [ correctly need spaces to be regarded as structure,</span>
+<span style="color:#898887;"># otherwise they are patterns (currently treated as normal text)</span>
+<span style="font-weight:bold;">if</span><span style="color:#644a9b;font-weight:bold;"> [</span> <span style="color:#bf0303;">&quot;</span><span style="color:#0057ae;">$p</span><span style="color:#bf0303;">&quot;</span> <span style="color:#006e28;">==</span> <span style="color:#bf0303;">&quot;&quot;</span><span style="color:#644a9b;font-weight:bold;"> ]</span> ; <span style="font-weight:bold;">then</span>
+	<span style="color:#644a9b;">ls</span> /usr/bin/[a-z]*
+<span style="font-weight:bold;">elif [[</span> <span style="color:#0057ae;">$p</span> <span style="color:#006e28;">==</span> 0<span style="font-weight:bold;"> ]]</span> ; <span style="font-weight:bold;">then</span>
+	<span style="color:#644a9b;">ls</span> /usr/share/<span style="color:#0057ae;">$p</span>
+<span style="font-weight:bold;">fi</span>
+
+<span style="color:#898887;"># Fixed:</span>
+<span style="color:#644a9b;">ls</span> a[ab]*		<span style="color:#898887;"># dont try to interprete as assignment with subscript (fixed)</span>
+<span style="color:#0095ff;font-weight:bold;">a</span>[ab]
+<span style="color:#0057ae;">a[ab]=</span>sa
+
+
+<span style="color:#898887;"># Here documents are difficult to catch:</span>
+<span style="color:#644a9b;">cat</span> &gt; myfile &lt;&lt; __EOF__
+You're right, this is definitely no bash code
+But ls more <span style="color:#0057ae;">$parameters</span> should be expanded.
+__EOF__
+
+
+<span style="color:#898887;"># quoted:</span>
+<span style="color:#644a9b;">cat</span> &lt;&lt; &quot;EOF&quot; <span style="font-weight:bold;">|</span> <span style="color:#644a9b;">egrep</span> <span style="color:#bf0303;">&quot;this&quot;</span> &gt;&amp;4   <span style="color:#898887;"># the rest of the line is still considered bash source</span>
+You're right, this is definitely no bash code
+But ls more $parameters should be expanded. :-&gt;
+EOF
+
+
+<span style="color:#898887;"># indented:</span>
+<span style="font-weight:bold;">if</span> <span style="color:#644a9b;">true</span>
+<span style="font-weight:bold;">then</span>
+	<span style="color:#644a9b;">cat</span> &lt;&lt;- EOF
+		Indented text with a <span style="color:#0057ae;">$dollar</span> or <span style="color:#0057ae;">\$</span>two
+	EOF
+<span style="font-weight:bold;">elif</span><span style="color:#644a9b;font-weight:bold;"> [</span> <span style="color:#006e28;">-d</span> <span style="color:#0057ae;">$file</span><span style="color:#644a9b;font-weight:bold;"> ]</span>; <span style="font-weight:bold;">then</span>
+	<span style="color:#644a9b;">cat</span> &lt;&lt;- &quot;EOF&quot;
+		Indented text without a $dollar
+	EOF
+<span style="font-weight:bold;">fi</span>
+
+
+<span style="font-weight:bold;">case</span> 1<span style="font-weight:bold;"> in</span> 
+2<span style="font-weight:bold;">)</span> <span style="color:#644a9b;font-weight:bold;">echo</span> xxx<span style="font-weight:bold;">;</span>
+<span style="font-weight:bold;">;;</span>
+1<span style="font-weight:bold;">)</span> <span style="color:#644a9b;font-weight:bold;">echo</span> yyy<span style="font-weight:bold;">;</span>
+<span style="font-weight:bold;">esac</span>
+
+<span style="color:#644a9b;">ls</span> <span style="color:#898887;">#should be outside of case 1 folding block</span>
+</pre></body></html>

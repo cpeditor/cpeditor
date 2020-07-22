@@ -1,0 +1,212 @@
+<Comment># Test file for rpmspec.xml</Comment><br/>
+<Error></Error><br/>
+<Comment># Comments start with a # in column="0":</Comment><br/>
+<Error></Error><br/>
+<Comment># Some comment</Comment><br/>
+<Error></Error><br/>
+<Comment># When they don't start in column="0", that they are recognized as comments, but with an alert:</Comment><br/>
+<Hint> </Hint><Comment># This is a bad comment.</Comment><br/>
+<Comment># RPM spec says clear that comments must start at the begin of the line. However, in practice</Comment><br/>
+<Comment># the RPM software is more permissive, depending on the context. But for our syntax highlighting,</Comment><br/>
+<Comment># we give, while recognizing the as comment, at least a little alert. Comments should not contain</Comment><br/>
+<Comment># the character </Comment><Warning>%</Warning><Comment> (which is marked as warning), but 2 of them are okay: %%. </Comment><Alert Level 2>TODO</Alert Level 2><Comment> is higlighted.</Comment><br/>
+<Error></Error><br/>
+<Comment># A spec file starts with "Normal" context. Here, you can specify values for some tags:</Comment><br/>
+<Tag>Name:                </Tag><String>kradioripper-unstable</String><Fallback for separator spaces> </Fallback for separator spaces><Error>#</Error><Fallback for separator spaces> </Fallback for separator spaces><Error>Note</Error><Fallback for separator spaces> </Fallback for separator spaces><Error>that</Error><Fallback for separator spaces> </Fallback for separator spaces><Error>here</Error><Fallback for separator spaces> </Fallback for separator spaces><Error>in</Error><Fallback for separator spaces> </Fallback for separator spaces><Error>no</Error><Fallback for separator spaces> </Fallback for separator spaces><Error>comment</Error><Fallback for separator spaces> </Fallback for separator spaces><Error>possible!</Error><br/>
+<Tag>Name:                </Tag><String>name</String><Fallback for separator spaces> </Fallback for separator spaces><Error>only</Error><Fallback for separator spaces> </Fallback for separator spaces><Error>_one_</Error><Fallback for separator spaces> </Fallback for separator spaces><Error>word</Error><Fallback for separator spaces> </Fallback for separator spaces><Error>allowed</Error><br/>
+<Tag>Name:                </Tag><Macro call>%macro</Macro call><String> no further syntax check after macro!</String><br/>
+<Comment># Some tags support only _one_ word as value</Comment><br/>
+<Tag>Version:             </Tag><String>0.4test5</String><Fallback for separator spaces> </Fallback for separator spaces><Error>up-from-the-space-this-is-an-error</Error><br/>
+<Comment># Some tag can have parameters: Any char in paranthesis:</Comment><br/>
+<Tag>Summary:             </Tag><String>Recorder for internet radios (based on Streamripper)  </String><br/>
+<Tag>Summary(de.UTF-8):   </Tag><String>Aufnahmeprogramm für Internetradios (basiert auf Streamripper)</String><br/>
+<Comment># requiere free text:</Comment><br/>
+<Tag>License:             </Tag><String>License 1 2 3</String><br/>
+<Comment># requiere a well defines value:</Comment><br/>
+<Tag>Requires( / (  = ):  </Tag><Enumeration>Some</Enumeration><Keyword>,</Keyword><Enumeration> value</Enumeration><Keyword>()</Keyword><br/>
+<Comment># new type "switch" accepts: yes, no, 0, 1</Comment><br/>
+<Tag>AutoReq: </Tag><Enumeration>yes</Enumeration><br/>
+<Tag>AutoReq: </Tag><Enumeration>yes</Enumeration><Fallback for separator spaces> </Fallback for separator spaces><Error>invalid</Error><br/>
+<Tag>AutoReq: </Tag><Macro call>%macro</Macro call><Enumeration> no further syntax check after macro!</Enumeration><br/>
+<Tag>AutoReq: </Tag><Enumeration>no</Enumeration><br/>
+<Tag>AutoReq: </Tag><Enumeration>0</Enumeration><br/>
+<Tag>AutoReq: </Tag><Enumeration>1</Enumeration><br/>
+<Comment># requiere a number:</Comment><br/>
+<Tag>Epoch:               </Tag><Integer>123123</Integer><br/>
+<Tag>Epoch:               </Tag><Integer>123123</Integer><Fallback for separator spaces> </Fallback for separator spaces><Error>invalid</Error><br/>
+<Tag>Epoch:               </Tag><Macro call>%macro</Macro call><Integer> no further syntax check afer macro!</Integer><br/>
+<Comment># If tags are used that are not known, they are not highlighted:</Comment><br/>
+<Error>Invalidtag:</Error><Fallback for separator spaces>          </Fallback for separator spaces><Error>Some</Error><Fallback for separator spaces> </Fallback for separator spaces><Error>value</Error><br/>
+<Error>Invalid</Error><Fallback for separator spaces> </Fallback for separator spaces><Error>content</Error><Fallback for separator spaces> </Fallback for separator spaces><Error>in</Error><Fallback for separator spaces> </Fallback for separator spaces><Error>this</Error><Fallback for separator spaces> </Fallback for separator spaces><Error>section</Error><Fallback for separator spaces> </Fallback for separator spaces><Error>(only</Error><Fallback for separator spaces> </Fallback for separator spaces><Error>tags</Error><Fallback for separator spaces> </Fallback for separator spaces><Error>are</Error><Fallback for separator spaces> </Fallback for separator spaces><Error>allowed)</Error><br/>
+<Fallback for separator spaces>  </Fallback for separator spaces><br/>
+<Comment># You can use conditions in specs (highlighted with region markers):</Comment><br/>
+<Keyword>%if</Keyword><Fallback for separator spaces> </Fallback for separator spaces><Integer>0</Integer><Macro call>%{?mandriva_version}</Macro call><Fallback for separator spaces>  </Fallback for separator spaces><br/>
+<Comment># numbers and strings are distingished: string:</Comment><br/>
+<Keyword>%if</Keyword><Fallback for separator spaces> </Fallback for separator spaces><String>lsdksfj</String><br/>
+<Comment># number:</Comment><br/>
+<Keyword>%if</Keyword><Fallback for separator spaces> </Fallback for separator spaces><Integer>23472398</Integer><br/>
+<Comment># string:</Comment><br/>
+<Keyword>%if</Keyword><Fallback for separator spaces> </Fallback for separator spaces><String>lksdjfsl72939</String><br/>
+<Comment># invalid:</Comment><br/>
+<Keyword>%if</Keyword><Fallback for separator spaces> </Fallback for separator spaces><Integer>92437</Integer><String>lsdkfjdsl</String><br/>
+<Comment># valid:</Comment><br/>
+<Keyword>%if</Keyword><Fallback for separator spaces> </Fallback for separator spaces><String>"lsdfj </String><Macro call>%ksdf(sdfs)</Macro call><String> 3489"</String><br/>
+<Tag>Release:             </Tag><Macro call>%mkrel</Macro call><String> 1.2</String><br/>
+<Keyword>%else</Keyword><Fallback for separator spaces>  </Fallback for separator spaces><br/>
+<Tag>Release:             </Tag><String>0</String><Fallback for separator spaces>  </Fallback for separator spaces><br/>
+<Keyword>%endif</Keyword><Fallback for separator spaces>  </Fallback for separator spaces><br/>
+<Comment># requiere a well defined value:</Comment><br/>
+<Keyword>%ifos</Keyword><Fallback for separator spaces> </Fallback for separator spaces><Warning>fixed_value</Warning><br/>
+<Comment># You must use these special macros (%%if etc.) always at the start of the line - if not,</Comment><br/>
+<Comment># that's bad but not an arror. You must also always use the specified form. Everything else is an</Comment><br/>
+<Comment># error:</Comment><br/>
+<Fallback for separator spaces> </Fallback for separator spaces><Keyword>%if</Keyword><br/>
+<Error>something</Error><Fallback for separator spaces> </Fallback for separator spaces><Error>%if</Error><br/>
+<Error>%{if</Error><Shell commands>}</Shell commands><br/>
+<Error>%if</Error><Shell commands>(some options)</Shell commands><br/>
+<Comment># However, this are different macros and therefore correct:</Comment><br/>
+<Macro call>%ifx</Macro call><br/>
+<Macro call>%{ifx}</Macro call><br/>
+<Macro call>%ifx(some options)</Macro call><br/>
+<Error></Error><br/>
+<Comment># the \ is escaped in the line. At the end of the line it escapes the line break:</Comment><br/>
+<Error>echo</Error><Fallback for separator spaces> </Fallback for separator spaces><Error>This</Error><Fallback for separator spaces> </Fallback for separator spaces><Error>is</Error><Fallback for separator spaces> </Fallback for separator spaces><Error>\"</Error><Fallback for separator spaces> </Fallback for separator spaces><Error>a</Error><Fallback for separator spaces> </Fallback for separator spaces><Error>text</Error><Fallback for separator spaces> </Fallback for separator spaces><Error>\\</Error><Fallback for separator spaces> </Fallback for separator spaces><Error>and</Error><Fallback for separator spaces> </Fallback for separator spaces><Error>here\</Error><br/>
+<Error>it</Error><Fallback for separator spaces> </Fallback for separator spaces><Error>continues.</Error><br/>
+<Error></Error><br/>
+<Keyword>%define</Keyword><Fallback for separator spaces> </Fallback for separator spaces><Enumeration>name</Enumeration><String> value</String><br/>
+<Keyword>%define</Keyword><Fallback for separator spaces> </Fallback for separator spaces><Error>invalid_näme</Error><String> value</String><br/>
+<Keyword>%define</Keyword><Fallback for separator spaces> </Fallback for separator spaces><Enumeration>macroname</Enumeration><String> multi</String><Line break>\</Line break><br/>
+<String>line content with references like %0 %* %# %{-f} %{-f*} %1 %2 and so on</String><br/>
+<Keyword>%global</Keyword><Fallback for separator spaces> </Fallback for separator spaces><Enumeration>name</Enumeration><String> value</String><br/>
+<Keyword>%global</Keyword><Fallback for separator spaces> </Fallback for separator spaces><Error>invalid_näme</Error><String> value</String><br/>
+<Keyword>%undefine</Keyword><Fallback for separator spaces> </Fallback for separator spaces><Enumeration>name</Enumeration><br/>
+<Keyword>%undefine</Keyword><Fallback for separator spaces> </Fallback for separator spaces><Enumeration>name</Enumeration><Fallback for separator spaces> </Fallback for separator spaces><Error>too-many-parameters</Error><br/>
+<Error></Error><br/>
+<Comment># This special comment is treated and highlighted like a tag:</Comment><br/>
+<Tag># norootforbuild</Tag><Fallback for separator spaces>  </Fallback for separator spaces><br/>
+<Comment># It can't have parameters, so every following non-whitespace character is not good:</Comment><br/>
+<Tag># norootforbuild</Tag><Fallback for separator spaces>  </Fallback for separator spaces><Warning>DONT</Warning><Fallback for separator spaces> </Fallback for separator spaces><Warning>WRITE</Warning><Fallback for separator spaces> </Fallback for separator spaces><Warning>ANYTHING</Warning><Fallback for separator spaces> </Fallback for separator spaces><Warning>HERE!</Warning><br/>
+<Comment># wrong spacing is also recognized:</Comment><br/>
+<Warning>#  norootforbuild</Warning><br/>
+<Comment># and also an indeet is not fine for norootforbuild:</Comment><br/>
+<Hint> </Hint><Warning># norootforbuild</Warning><br/>
+<Fallback for separator spaces>  </Fallback for separator spaces><br/>
+<Comment># This following "Conflicts" tag will be removed by set-version.sh,  </Comment><br/>
+<Comment># if it is a "kradioripper" release (and not a "kradioripper-unstable" release)...  </Comment><br/>
+<Tag>Conflicts:           </Tag><Enumeration>kradioripper  </Enumeration><br/>
+<Fallback for separator spaces>  </Fallback for separator spaces><br/>
+<Fallback for separator spaces>  </Fallback for separator spaces><br/>
+<Section>%description</Section><Shell commands>  </Shell commands><br/>
+<Comment># Here, a new section starts. It contains a value for the RPM field "description" and is therefor</Comment><br/>
+<Comment># colored like values:</Comment><br/>
+<String>A KDE program for ripping internet radios. Based on StreamRipper.  </String><br/>
+<String>  </String><br/>
+<String>  </String><br/>
+<Comment># A section start can have parameters:</Comment><br/>
+<Section>%description</Section><Shell commands> -l de.UTF-8  </Shell commands><br/>
+<String>Ein KDE-Aufnahmeprogramm für Internetradios. Basiert auf StreamRipper.   </String><br/>
+<String>  </String><br/>
+<Comment># These sections starts are errors:</Comment><br/>
+<String> </String><Error>%description</Error><String> not at the first line</String><br/>
+<Error>%{description</Error><String>} wrong form</String><br/>
+<Error>%description</Error><String>(no options allowed, only parameters!)</String><br/>
+<String>  </String><br/>
+<String>  </String><br/>
+<Section>%prep</Section><Shell commands>  </Shell commands><br/>
+<Comment># This starts a section that defines the commands to prepare the build.</Comment><br/>
+<Comment># q means quit. n sets the directory:  </Comment><br/>
+<Macro call>%setup</Macro call><Shell commands> -q -n kradioripper  </Shell commands><br/>
+<Shell commands>echo Test</Shell commands><br/>
+<Comment># Macros can have different forms: Valid:</Comment><br/>
+<Macro call>%abc</Macro call><br/>
+<Macro call>%abc</Macro call><Shell commands>ÄndOfMacro</Shell commands><br/>
+<Macro call>%abc(def)</Macro call><Shell commands>EndOfMacro</Shell commands><br/>
+<Macro call>%{abc}</Macro call><Shell commands>EndOfMacro</Shell commands><br/>
+<Macro call>%{something but no single </Macro call><Error>%</Error><Macro call>}</Macro call><Shell commands>EndOfMacro</Shell commands><br/>
+<Macro call>%{abc:def}</Macro call><Shell commands>EndOfMacro</Shell commands><br/>
+<Macro call>%(abc)</Macro call><br/>
+<Comment># Invalid:</Comment><br/>
+<Error>%</Error><Shell commands>ÄInvalidChar</Shell commands><br/>
+<Error>%</Error><br/>
+<Error>%</Error><Shell commands>)</Shell commands><br/>
+<Error>%</Error><Shell commands>}</Shell commands><br/>
+<Comment># You can use macros inside of macro calls: Fine:</Comment><br/>
+<Macro call>%{something %but no %{sin%(fine)gle} }</Macro call><Shell commands>EndOfMacro</Shell commands><br/>
+<Comment># Bad:</Comment><br/>
+<Macro call>%{No closing paranthesis </Macro call><Error>(</Error><Macro call>No syntax highlightig for this error available</Macro call><Error>)</Error><br/>
+<Shell commands>  </Shell commands><br/>
+<Shell commands>  </Shell commands><br/>
+<Section>%build</Section><Shell commands>  </Shell commands><br/>
+<Shell commands>cmake ./ -DCMAKE_INSTALL_PREFIX=</Shell commands><Macro call>%{_prefix}</Macro call><Shell commands>  </Shell commands><br/>
+<Macro call>%__make</Macro call><Shell commands> </Shell commands><Macro call>%{?jobs:-j %jobs}</Macro call><Shell commands>  </Shell commands><br/>
+<Shell commands>  </Shell commands><br/>
+<Shell commands>  </Shell commands><br/>
+<Section>%install</Section><Shell commands>  </Shell commands><br/>
+<Keyword>%if</Keyword><Fallback for separator spaces> </Fallback for separator spaces><Integer>0</Integer><Macro call>%{?suse_version}</Macro call><Fallback for separator spaces>  </Fallback for separator spaces><br/>
+<Macro call>%makeinstall</Macro call><Shell commands>  </Shell commands><br/>
+<Macro call>%suse_update_desktop_file</Macro call><Shell commands> kradioripper  </Shell commands><br/>
+<Keyword>%endif</Keyword><Fallback for separator spaces>  </Fallback for separator spaces><br/>
+<Keyword>%if</Keyword><Fallback for separator spaces> </Fallback for separator spaces><Integer>0</Integer><Macro call>%{?fedora_version}</Macro call><Fallback for separator spaces> </Fallback for separator spaces><Keyword>||</Keyword><Fallback for separator spaces> </Fallback for separator spaces><Integer>0</Integer><Macro call>%{?rhel_version}</Macro call><Fallback for separator spaces> </Fallback for separator spaces><Keyword>||</Keyword><Fallback for separator spaces> </Fallback for separator spaces><Integer>0</Integer><Macro call>%{?centos_version}</Macro call><Fallback for separator spaces>  </Fallback for separator spaces><br/>
+<Shell commands>make install DESTDIR=</Shell commands><Macro call>%{buildroot}</Macro call><Shell commands>  </Shell commands><br/>
+<Shell commands>desktop-file-install --delete-original --vendor fedora --dir=</Shell commands><Macro call>%{buildroot}</Macro call><Shell commands>/</Shell commands><Macro call>%{_datadir}</Macro call><Shell commands>/applications/kde4 </Shell commands><Macro call>%{buildroot}</Macro call><Shell commands>/</Shell commands><Macro call>%{_datadir}</Macro call><Shell commands>/applications/kde4/kradioripper.desktop  </Shell commands><br/>
+<Keyword>%endif</Keyword><Fallback for separator spaces>  </Fallback for separator spaces><br/>
+<Keyword>%if</Keyword><Fallback for separator spaces> </Fallback for separator spaces><Integer>0</Integer><Macro call>%{?mandriva_version}</Macro call><Fallback for separator spaces>  </Fallback for separator spaces><br/>
+<Macro call>%makeinstall_std</Macro call><Shell commands>  </Shell commands><br/>
+<Keyword>%endif</Keyword><Fallback for separator spaces>  </Fallback for separator spaces><br/>
+<Shell commands>  </Shell commands><br/>
+<Shell commands>  </Shell commands><br/>
+<Section>%clean</Section><Shell commands>  </Shell commands><br/>
+<Shell commands>rm -rf "</Shell commands><Macro call>%{buildroot}</Macro call><Shell commands>"  </Shell commands><br/>
+<Shell commands>  </Shell commands><br/>
+<Shell commands>  </Shell commands><br/>
+<Section>%files</Section><Shell commands>  </Shell commands><br/>
+<Macro call>%defattr(-,root,root)</Macro call><Shell commands>  </Shell commands><br/>
+<Keyword>%if</Keyword><Fallback for separator spaces> </Fallback for separator spaces><Integer>0</Integer><Macro call>%{?fedora_version}</Macro call><Fallback for separator spaces> </Fallback for separator spaces><Keyword>||</Keyword><Fallback for separator spaces> </Fallback for separator spaces><Integer>0</Integer><Macro call>%{?rhel_version}</Macro call><Fallback for separator spaces> </Fallback for separator spaces><Keyword>||</Keyword><Fallback for separator spaces> </Fallback for separator spaces><Integer>0</Integer><Macro call>%{?centos_version}</Macro call><Fallback for separator spaces>  </Fallback for separator spaces><br/>
+<Macro call>%{_datadir}</Macro call><Shell commands>/applications/kde4/fedora-kradioripper.desktop  </Shell commands><br/>
+<Keyword>%else</Keyword><Fallback for separator spaces>  </Fallback for separator spaces><br/>
+<Macro call>%{_datadir}</Macro call><Shell commands>/applications/kde4/kradioripper.desktop  </Shell commands><br/>
+<Keyword>%endif</Keyword><Fallback for separator spaces>  </Fallback for separator spaces><br/>
+<Macro call>%{_bindir}</Macro call><Shell commands>/kradioripper  </Shell commands><br/>
+<Macro call>%{_datadir}</Macro call><Shell commands>/locale/*/LC_MESSAGES/kradioripper.mo  </Shell commands><br/>
+<Keyword>%if</Keyword><Fallback for separator spaces> </Fallback for separator spaces><Integer>0</Integer><Macro call>%{?mandriva_version}</Macro call><Fallback for separator spaces>  </Fallback for separator spaces><br/>
+<Comment># </Comment><Alert Level 2>TODO</Alert Level 2><Comment> The %%doc macro is actually broken for mandriva 2009 in build service...</Comment><br/>
+<Macro call>%dir</Macro call><Shell commands> </Shell commands><Macro call>%{_datadir}</Macro call><Shell commands>/apps/kradioripper  </Shell commands><br/>
+<Macro call>%{_datadir}</Macro call><Shell commands>/apps/kradioripper/*  </Shell commands><br/>
+<Keyword>%else</Keyword><Fallback for separator spaces>  </Fallback for separator spaces><br/>
+<Macro call>%doc</Macro call><Shell commands> COPYING LICENSE LICENSE.GPL2 LICENSE.GPL3 NEWS WARRANTY  </Shell commands><br/>
+<Macro call>%dir</Macro call><Shell commands> </Shell commands><Macro call>%{_datadir}</Macro call><Shell commands>/kde4/apps/kradioripper  </Shell commands><br/>
+<Macro call>%{_datadir}</Macro call><Shell commands>/kde4/apps/kradioripper/*  </Shell commands><br/>
+<Keyword>%endif</Keyword><Fallback for separator spaces>  </Fallback for separator spaces><br/>
+<Shell commands>  </Shell commands><br/>
+<Shell commands>  </Shell commands><br/>
+<Section>%changelog</Section><String>  </String><br/>
+<Tag>* Sun May 04 2008 email@email.com</Tag><br/>
+<String>- some text</String><br/>
+<String>- some text</String><br/>
+<String>  in two lines</String><br/>
+<String>- some text</String><br/>
+<String>  in two lines</String><br/>
+<String>  + with subtext</String><br/>
+<String>  - and more subtext</String><br/>
+<String>  in two lines</String><br/>
+<Tag>* Tue Apr 24 2007 Name</Tag><br/>
+<String>- text</String><br/>
+<String>  * When the star isn't at column 0, than it doesn't indicate</String><br/>
+<String>  a new date</String><br/>
+<Tag>* </Tag><Error>Wen</Error><Tag> Sep 08 2003 Wrong weekday</Tag><br/>
+<Tag>* Mon </Tag><Error>Mai</Error><Tag> 08 2003 Wrong month</Tag><br/>
+<Tag>* Mon Sep </Tag><Error>0</Error><Tag> 2003 bad day</Tag><br/>
+<Tag>* Mon Sep 8 2003 good day</Tag><br/>
+<Tag>* Mon Sep 08 2003 good day</Tag><br/>
+<Tag>* Mon Sep </Tag><Error>32</Error><Tag> 2003 bad day</Tag><br/>
+<Tag>* Mon Sep 08 </Tag><Error>03</Error><Tag> bad year</Tag><br/>
+<Tag>* Mon Sep 08 2003 Name</Tag><br/>
+<Comment># When using macros, the error check is disabled:</Comment><br/>
+<Tag>* </Tag><Macro call>%myDataMacro</Macro call><Tag> Title of the entry</Tag><br/>
+<String>- Text</String><br/>
+<String>    - can</String><br/>
+<String>        - be</String><br/>
+<String>        - indeeded</String><br/>
+<String>        - without</String><br/>
+<String>    - problems</String><br/>
+<String></String><br/>

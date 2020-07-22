@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title>highlight.asp</title>
+<meta name="generator" content="KF5::SyntaxHighlighting (ASP)"/>
+</head><body style="color:#1f1c1b"><pre>
+<span style="font-weight:bold;">&lt;%</span> <span style="color:#898887;">'kate: hl ASP;</span>
+if <span style="color:#006e28;">(</span> <span style="color:#644a9b;">instr</span><span style="color:#006e28;">(</span><span style="color:#644a9b;">request</span>.<span style="color:#644a9b;">servervariables</span><span style="color:#006e28;">(</span><span style="color:#bf0303;">&quot;PATH_INFO&quot;</span><span style="color:#006e28;">),</span><span style="color:#bf0303;">&quot;login.asp&quot;</span><span style="color:#006e28;">)</span> &lt;= <span style="color:#b08000;">0</span> <span style="font-weight:bold;">and</span> <span style="color:#644a9b;">instr</span><span style="color:#006e28;">(</span><span style="color:#644a9b;">request</span>.<span style="color:#644a9b;">servervariables</span><span style="color:#006e28;">(</span><span style="color:#bf0303;">&quot;PATH_INFO&quot;</span><span style="color:#006e28;">),</span><span style="color:#bf0303;">&quot;inset&quot;</span><span style="color:#006e28;">)</span> &lt;= <span style="color:#b08000;">0</span> <span style="font-weight:bold;">and</span> <span style="color:#644a9b;">instr</span><span style="color:#006e28;">(</span><span style="color:#644a9b;">request</span>.<span style="color:#644a9b;">servervariables</span><span style="color:#006e28;">(</span><span style="color:#bf0303;">&quot;PATH_INFO&quot;</span><span style="color:#006e28;">),</span><span style="color:#bf0303;">&quot;Data&quot;</span><span style="color:#006e28;">)</span> &lt;= <span style="color:#b08000;">0</span> <span style="font-weight:bold;">and</span> <span style="color:#644a9b;">instr</span><span style="color:#006e28;">(</span><span style="color:#644a9b;">request</span>.<span style="color:#644a9b;">servervariables</span><span style="color:#006e28;">(</span><span style="color:#bf0303;">&quot;PATH_INFO&quot;</span><span style="color:#006e28;">),</span><span style="color:#bf0303;">&quot;dropDown&quot;</span><span style="color:#006e28;">)</span> &lt;= <span style="color:#b08000;">0</span> <span style="color:#006e28;">)</span> then
+	<span style="color:#644a9b;">Session</span><span style="color:#006e28;">(</span><span style="color:#bf0303;">&quot;originalRequestedPage&quot;</span><span style="color:#006e28;">)</span> = <span style="color:#644a9b;">Request</span>.<span style="color:#644a9b;">ServerVariables</span><span style="color:#006e28;">(</span><span style="color:#bf0303;">&quot;PATH_INFO&quot;</span><span style="color:#006e28;">)</span> <span style="font-weight:bold;">&amp;</span> <span style="color:#bf0303;">&quot;?&quot;</span> <span style="font-weight:bold;">&amp;</span> <span style="color:#644a9b;">Request</span>.<span style="color:#644a9b;">ServerVariables</span><span style="color:#006e28;">(</span><span style="color:#bf0303;">&quot;QUERY_STRING&quot;</span><span style="color:#006e28;">)</span>
+end if
+
+<span style="font-weight:bold;">function</span> countRecords<span style="color:#006e28;">(</span> rsToCount <span style="color:#006e28;">)</span>
+	numRecs = <span style="color:#b08000;">0</span>
+
+	do until rsToCount.<span style="font-weight:bold;">eof</span>
+		numRecs = numRecs + <span style="color:#b08000;">1</span>
+
+		rsToCount.<span style="font-weight:bold;">movenext</span>
+	loop
+
+	rsToCount.<span style="font-weight:bold;">close</span> <span style="color:#898887;">' just to make sure nobody</span>
+		<span style="color:#898887;">' tries to operate on the recordset,</span>
+		<span style="color:#898887;">' which has already reached eof</span>
+
+	countRecords = numRecs
+<span style="font-weight:bold;">end function</span>
+
+<span style="font-weight:bold;">function</span> unique<span style="color:#006e28;">(</span> rs<span style="color:#006e28;">,</span> sortColumn <span style="color:#006e28;">)</span> <span style="color:#898887;">' return unique instances of text in sortColumn within rs</span>
+	<span style="font-weight:bold;">dim</span> sorted<span style="color:#006e28;">()</span>
+
+	<span style="font-weight:bold;">redim</span> sorted<span style="color:#006e28;">(</span><span style="color:#b08000;">1</span><span style="color:#006e28;">)</span>
+	<span style="font-weight:bold;">dim</span> i
+	i = <span style="color:#b08000;">0</span>
+	do until rs.<span style="font-weight:bold;">eof</span>
+		if <span style="color:#006e28;">(</span><span style="font-weight:bold;">not</span> find<span style="color:#006e28;">(</span> rs<span style="color:#006e28;">(</span>sortColumn<span style="color:#006e28;">),</span> sorted <span style="color:#006e28;">))</span> then
+			<span style="font-weight:bold;">redim</span> <span style="font-weight:bold;">preserve</span> sorted<span style="color:#006e28;">(</span>i+<span style="color:#b08000;">1</span><span style="color:#006e28;">)</span>
+			sorted<span style="color:#006e28;">(</span>i<span style="color:#006e28;">)</span> = rs<span style="color:#006e28;">(</span>sortColumn<span style="color:#006e28;">)</span>
+		 	i = i + <span style="color:#b08000;">1</span>
+		end if
+		rs.<span style="font-weight:bold;">MoveNext</span>
+	loop
+
+	<span style="font-weight:bold;">redim</span> <span style="font-weight:bold;">preserve</span> sorted<span style="color:#006e28;">(</span>i-<span style="color:#b08000;">1</span><span style="color:#006e28;">)</span> <span style="color:#898887;">' the function will add an extra blank entry to the array</span>
+
+	rs.<span style="font-weight:bold;">Close</span> 	<span style="color:#898887;">' close the recordset - we'll be using it again - and reset i - well be using it again, too</span>
+
+	unique = sorted
+<span style="font-weight:bold;">end function</span>
+
+<span style="font-weight:bold;">sub</span> testSub<span style="color:#006e28;">(</span> variable <span style="color:#006e28;">)</span> <span style="color:#898887;">' do nothing impressive...</span>
+	<span style="font-weight:bold;">dim</span> newVar
+
+	newVar = variable
+
+	if <span style="color:#006e28;">(</span> variable = <span style="font-weight:bold;">true</span> <span style="color:#006e28;">)</span>
+		<span style="color:#644a9b;">response</span>.<span style="color:#644a9b;">end</span>
+	else <span style="font-weight:bold;">%&gt;</span>
+
+<span style="color:#0f0000;font-weight:bold;">&lt;p&gt;</span>We are writing text.<span style="color:#0f0000;font-weight:bold;">&lt;/p&gt;</span>
+<span style="color:#0f0000;font-weight:bold;">&lt;p</span><span style="color:#006e28;"> class=</span><span style="color:#0057ae;">&quot;stuff&quot;</span><span style="color:#0f0000;font-weight:bold;">&gt;</span><span style="font-weight:bold;">&lt;%</span>=newVar<span style="font-weight:bold;">%&gt;</span><span style="color:#0f0000;font-weight:bold;">&lt;/p&gt;</span>
+<span style="color:#0f0000;font-weight:bold;">&lt;p&gt;</span>We have written text and outputted a variable.<span style="color:#0f0000;font-weight:bold;">&lt;/p&gt;</span>
+
+<span style="font-weight:bold;">&lt;%</span> 	end if
+<span style="font-weight:bold;">end sub</span> <span style="font-weight:bold;">%&gt;</span>
+</pre></body></html>

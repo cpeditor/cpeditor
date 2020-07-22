@@ -1,0 +1,104 @@
+// JavaScript React
+
+<beginfold id='12'>/** </beginfold id='12'>@author Willy <willy@wmail.com>
+  * @url https://reactjs.org/ *<endfold id='12'>*/</endfold id='12'>
+
+import React from 'react';
+import <beginfold id='3'>{</beginfold id='3'> PhotoStory, VideoStory <endfold id='3'>}</endfold id='3'> from './stories';
+
+function Story(props) <beginfold id='3'>{</beginfold id='3'>
+  const SpecificStory = components<beginfold id='2'>[</beginfold id='2'>props.storyType<endfold id='2'>]</endfold id='2'>;
+  return <beginfold id='5'><SpecificStory</beginfold id='5'> story=<beginfold id='6'>{</beginfold id='6'> props.story <endfold id='6'>}</endfold id='6'> attr2="&ref;" attr3="Hello\n" <endfold id='5'>/></endfold id='5'>;
+<endfold id='3'>}</endfold id='3'> 
+
+function 
+<beginfold id='5'><Tag</beginfold id='5'> attr1=<beginfold id='6'>{</beginfold id='6'> <beginfold id='4'><tag</beginfold id='4'><endfold id='4'>/></endfold id='4'> function <noTag/> return class var 0x123 <beginfold id='3'>{</beginfold id='3'> <endfold id='3'>}</endfold id='3'> &noRef; hello() React.Component() <endfold id='6'>}</endfold id='6'> attr2="&ref;">
+	/* no comment*/ function <beginfold id='4'><tag</beginfold id='4'><endfold id='4'>/></endfold id='4'> return class var 0x123 &ref; hello() React.Component()
+	.<beginfold id='4'><tag</beginfold id='4'><endfold id='4'>/></endfold id='4'> anyWord <beginfold id='4'><tag</beginfold id='4'><endfold id='4'>/></endfold id='4'>
+	<beginfold id='6'>{</beginfold id='6'> function <tag> return class var 0x123 hello() React.Component() <endfold id='6'>}</endfold id='6'> 
+</Tag<endfold id='5'>></endfold id='5'>
+
+<beginfold id='4'><tag1</beginfold id='4'>> </tag1<endfold id='4'>></endfold id='4'>
+<beginfold id='4'><tag1</beginfold id='4'>> </Tag$<endfold id='4'>></endfold id='4'>
+<beginfold id='5'><Tag$</beginfold id='5'>> </tag<endfold id='5'>></endfold id='5'>
+
+<beginfold id='4'><tag</beginfold id='4'><beginfold id='11'>/*</beginfold id='11'>comment<endfold id='11'>*/</endfold id='11'>attr1<beginfold id='11'>/*</beginfold id='11'>comment<endfold id='11'>*/</endfold id='11'>= <beginfold id='11'>/*</beginfold id='11'>comment<endfold id='11'>*/</endfold id='11'>"value"<beginfold id='11'>/*</beginfold id='11'>comment<endfold id='11'>*/</endfold id='11'>attr2 <beginfold id='11'>/*</beginfold id='11'>comment<endfold id='11'>*/</endfold id='11'>attr3='a' key<beginfold id='11'>/*</beginfold id='11'>comment<endfold id='11'>*/</endfold id='11'>key2 <endfold id='4'>/></endfold id='4'>
+
+// Detect Valid tags
+
+<beginfold id='11'>/*</beginfold id='11'> comment <endfold id='11'>*/</endfold id='11'> <beginfold id='4'><tag</beginfold id='4'>></tag<endfold id='4'>></endfold id='4'>
+<beginfold id='3'>{</beginfold id='3'> <beginfold id='11'>/*</beginfold id='11'> comment 
+	<endfold id='11'>*/</endfold id='11'> <beginfold id='5'><Tag</beginfold id='5'> <endfold id='5'>/></endfold id='5'> 
+	word <noTag/> . <noTag/> <endfold id='3'>}</endfold id='3'> <noTag/>
+return <beginfold id='11'>/*</beginfold id='11'> comment
+	multiline <endfold id='11'>*/</endfold id='11'> <beginfold id='4'><tag</beginfold id='4'><endfold id='4'>/></endfold id='4'> <beginfold id='11'>/*</beginfold id='11'> comment <endfold id='11'>*/</endfold id='11'> <beginfold id='5'><Tag</beginfold id='5'><endfold id='5'>/></endfold id='5'>
+&& <beginfold id='11'>/*</beginfold id='11'>comment<endfold id='11'>*/</endfold id='11'> <beginfold id='5'><Tag</beginfold id='5'><endfold id='5'>/></endfold id='5'>
+& <beginfold id='11'>/*</beginfold id='11'>comment<endfold id='11'>*/</endfold id='11'> <noTag/>
+
+  <beginfold id='4'><tag</beginfold id='4'><endfold id='4'>/></endfold id='4'>
+<beginfold id='3'>{</beginfold id='3'> <beginfold id='4'><hello</beginfold id='4'>>Hello</hello<endfold id='4'>></endfold id='4'> <endfold id='3'>}</endfold id='3'>
+?<beginfold id='5'><Tag</beginfold id='5'> <endfold id='5'>/></endfold id='5'>;
+<beginfold id='2'>[ </beginfold id='2'><beginfold id='4'><tag</beginfold id='4'> <endfold id='4'>/></endfold id='4'>  ( <beginfold id='4'><tag</beginfold id='4'> <endfold id='4'>/></endfold id='4'> <endfold id='2'>]</endfold id='2'>
+,<beginfold id='5'><Tag</beginfold id='5'><endfold id='5'>/></endfold id='5'>    =<beginfold id='5'><Tag</beginfold id='5'><endfold id='5'>/></endfold id='5'>
+&&<beginfold id='4'><tag</beginfold id='4'><endfold id='4'>/></endfold id='4'>   ||<beginfold id='4'><tag</beginfold id='4'><endfold id='4'>/></endfold id='4'>
+return <beginfold id='4'><tag</beginfold id='4'><endfold id='4'>/></endfold id='4'> ;
+default<beginfold id='4'><tag</beginfold id='4'><endfold id='4'>/></endfold id='4'> ;
+<beginfold id='5'><Tag</beginfold id='5'>> <beginfold id='4'><tag</beginfold id='4'>> <beginfold id='5'><tag$</beginfold id='5'><endfold id='5'>/></endfold id='5'> </tag<endfold id='4'>></endfold id='4'> return </Tag<endfold id='5'>></endfold id='5'>
+
+anyWord<noTag>
+anyWord<beginfold id='11'>/*</beginfold id='11'>comment<endfold id='11'>*/</endfold id='11'> <noTag/>
+.<noTag>
+&<notag> | <noTag/>
+% <beginfold id='11'>/*</beginfold id='11'> comment<endfold id='11'>*/</endfold id='11'> <noTag/>
+
+// Non-ASCII tag name & attribute
+<beginfold id='5'><日本語</beginfold id='5'>></日本語<endfold id='5'>></endfold id='5'>;
+<beginfold id='5'><Component</beginfold id='5'> 本本:本-本 aa本:本 aa:aa <endfold id='5'>/></endfold id='5'>
+
+<beginfold id='5'><Namespace.DeepNamespace.Component</beginfold id='5'> <endfold id='5'>/></endfold id='5'>;
+<beginfold id='5'><Component</beginfold id='5'> <beginfold id='6'>{</beginfold id='6'> ... x <endfold id='6'>}</endfold id='6'> y
+=<beginfold id='6'>{</beginfold id='6'>2 <endfold id='6'>}</endfold id='6'> z <endfold id='5'>/></endfold id='5'>;
+
+let k1 = <beginfold id='4'><div</beginfold id='4'>> <beginfold id='4'><h2</beginfold id='4'>> Hello </h2<endfold id='4'>></endfold id='4'> <beginfold id='4'><h1</beginfold id='4'>> world </h1<endfold id='4'>></endfold id='4'></div<endfold id='4'>></endfold id='4'>;
+let k2 = <beginfold id='5'><Button</beginfold id='5'>> <beginfold id='4'><h2</beginfold id='4'>> Hello </h2<endfold id='4'>></endfold id='4'> </Button<endfold id='5'>></endfold id='5'>;
+
+// Empty tags
+<beginfold id='4'><></beginfold id='4'><endfold id='4'></></endfold id='4'>; // no whitespace
+<beginfold id='4'><    ></beginfold id='4'><endfold id='4'></   ></endfold id='4'>; // lots of whitespace
+< <beginfold id='11'>/*</beginfold id='11'>starting wrap<endfold id='11'>*/</endfold id='11'> ></ <beginfold id='11'>/*</beginfold id='11'>ending wrap<endfold id='11'>*/</endfold id='11'>>; // comments in the tags
+<beginfold id='4'><></beginfold id='4'>hi<endfold id='4'></></endfold id='4'>; // text inside
+<beginfold id='4'><></beginfold id='4'><beginfold id='4'><span</beginfold id='4'>>hi</span<endfold id='4'>></endfold id='4'><beginfold id='4'><div</beginfold id='4'>>bye</div<endfold id='4'>></endfold id='4'><endfold id='4'></></endfold id='4'>; // children
+<beginfold id='4'><></beginfold id='4'><beginfold id='4'><span</beginfold id='4'>>1</span<endfold id='4'>></endfold id='4'><beginfold id='4'><></beginfold id='4'><beginfold id='4'><span</beginfold id='4'>>2.1</span<endfold id='4'>></endfold id='4'><beginfold id='4'><span</beginfold id='4'>>2.2</span<endfold id='4'>></endfold id='4'><endfold id='4'></></endfold id='4'><beginfold id='4'><span</beginfold id='4'>>3</span<endfold id='4'>></endfold id='4'><endfold id='4'></></endfold id='4'>; // nested fragments
+<beginfold id='4'><></beginfold id='4'>#<endfold id='4'></></endfold id='4'>; // # would cause scanning error if not in jsxtext
+
+// Tags after substitutions in templates
+<beginfold id='1'>`</beginfold id='1'>aaa${<beginfold id='4'><tag</beginfold id='4'>></tag<endfold id='4'>></endfold id='4'>//comment
+    <beginfold id='11'>/*</beginfold id='11'>comment<endfold id='11'>*/</endfold id='11'><beginfold id='5'><A</beginfold id='5'><endfold id='5'>/></endfold id='5'>}<endfold id='1'>`</endfold id='1'>
+
+// Don't highlight tags within variable declaration
+let myIdentity: <T>(arg: T) => T = identity;
+var myIdentity: <U>(arg: U) => U = identity;
+const myIdentity: <beginfold id='3'>{<</beginfold id='3'>T>(arg: T): T<endfold id='3'>}</endfold id='3'> = identity;
+
+// Don't highlight tags within interfaces and classes
+interface GenericIdentityFn <beginfold id='3'>{</beginfold id='3'>
+    <T>(arg: T): T;
+    <noTag />
+<endfold id='3'>}</endfold id='3'>
+class Handler <beginfold id='3'>{</beginfold id='3'>
+    info: <T>(arg: T): T <noTag />;
+    <beginfold id='4'><tag</beginfold id='4'>> </tag<endfold id='4'>></endfold id='4'>
+<endfold id='3'>}</endfold id='3'>
+
+// Check character after tag name, do not highlight invalid tags
+<noTag ?
+<noTag  ,
+<noTag <beginfold id='11'>/*</beginfold id='11'> comment <endfold id='11'>*/</endfold id='11'> ?
+<noTag#
+<noTag<beginfold id='11'>/*</beginfold id='11'>comment<endfold id='11'>*/</endfold id='11'>#
+
+// Tagged template literals
+tagFunc<beginfold id='1'>`</beginfold id='1'>
+    Hello world!
+    ${ <beginfold id='5'><Tag</beginfold id='5'> <endfold id='5'>/></endfold id='5'>; 22 + "11" }<endfold id='1'>`</endfold id='1'>;
+obj.something.tagFunc<beginfold id='1'>`</beginfold id='1'>Setting ${setting} is ${value}!<endfold id='1'>`</endfold id='1'>;

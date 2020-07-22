@@ -1,0 +1,74 @@
+<Comment>%%=====================================================</Comment><br/>
+<Comment>% MATLAB test code for Kate/Kwrite syntax highlighting</Comment><br/>
+<Comment>%%=====================================================</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Comment>% Numbers _____________________________________________</Comment><br/>
+<Number>5</Number><Operator>,</Operator><Normal Text> </Normal Text><Number>5.5</Number><Operator>,</Operator><Normal Text> </Normal Text><Number>.1</Number><Operator>,</Operator><Normal Text> </Normal Text><Number>0.1</Number><Operator>,</Operator><Normal Text> </Normal Text><Number>0.4e5</Number><Operator>,</Operator><Normal Text> </Normal Text><Number>1.2e-5</Number><Operator>,</Operator><Normal Text> </Normal Text><Number>5i</Number><Operator>,</Operator><Normal Text> </Normal Text><Number>5.3i</Number><Operator>,</Operator><Normal Text> </Normal Text><Number>6j</Number><Operator>,</Operator><Normal Text> </Normal Text><Number>.345</Number><Operator>+</Operator><Number>3i</Number><br/>
+<Number>5</Number><Operator>',</Operator><Normal Text> </Normal Text><Number>5.5</Number><Operator>',</Operator><Normal Text> </Normal Text><Number>.1</Number><Operator>',</Operator><Normal Text> </Normal Text><Number>0.1</Number><Operator>',</Operator><Normal Text> </Normal Text><Number>0.4e5</Number><Operator>',</Operator><Normal Text> </Normal Text><Number>1.2e-5</Number><Operator>',</Operator><Normal Text> </Normal Text><Number>5i</Number><Operator>',</Operator><Normal Text> </Normal Text><Number>5.3i</Number><Operator>',</Operator><Normal Text> </Normal Text><Number>6j</Number><Operator>',</Operator><Normal Text> </Normal Text><Number>.345</Number><Operator>+</Operator><Number>3i</Number><Operator>'</Operator><br/>
+<Normal Text></Normal Text><br/>
+<Comment>% Operators ___________________________________________</Comment><br/>
+<Comment>% relational operators</Comment><br/>
+<CharVector>'asdf'</CharVector><Operator>~=</Operator><Number>4</Number><Operator>,</Operator><Normal Text> </Normal Text><Variable>c</Variable><Operator><=</Operator><Number>4</Number><Operator>,</Operator><Normal Text> </Normal Text><Variable>d</Variable><Operator>>=</Operator><Number>4</Number><Operator>,</Operator><Normal Text> </Normal Text><Variable>a</Variable><Operator><</Operator><Variable>b</Variable><Operator>,</Operator><Normal Text> </Normal Text><Variable>a</Variable><Operator>></Operator><Variable>b</Variable><Operator>,</Operator><Normal Text> </Normal Text><Variable>a</Variable><Operator>==</Operator><Variable>b</Variable><Operator>,</Operator><Normal Text> </Normal Text><Variable>b</Variable><Operator>||</Operator><Variable>c</Variable><Operator>,</Operator><Normal Text> </Normal Text><Variable>b</Variable><Operator>&&</Operator><Variable>c</Variable><br/>
+<Comment>% elementwise arithmetic operators</Comment><br/>
+<Variable>a</Variable><Operator>.^</Operator><Variable>b</Variable><Operator>,</Operator><Normal Text> </Normal Text><Variable>a</Variable><Operator>.*</Operator><Variable>b</Variable><Normal Text> </Normal Text><Variable>a</Variable><Operator>./</Operator><Variable>b</Variable><Operator>,</Operator><Normal Text> </Normal Text><Number>1</Number><Operator>:</Operator><Number>4</Number><Operator>:</Operator><Number>5</Number><br/>
+<Comment>% single-character binary arithmetic</Comment><br/>
+<Variable>a</Variable><Operator>+</Operator><Number>3</Number><Operator>,</Operator><Normal Text> </Normal Text><Variable>a</Variable><Operator>-</Operator><Number>3</Number><Operator>,</Operator><Normal Text> </Normal Text><Variable>a</Variable><Operator>*</Operator><Number>2</Number><Operator>,</Operator><Normal Text> </Normal Text><Variable>a</Variable><Operator>^</Operator><Number>3</Number><Operator>,</Operator><Normal Text> </Normal Text><Variable>a</Variable><Operator>/</Operator><Number>3</Number><Operator>,</Operator><Normal Text> </Normal Text><Variable>a</Variable><Operator>\</Operator><Number>3</Number><Operator>,</Operator><Normal Text> </Normal Text><Variable>a</Variable><Operator>|</Operator><Variable>b</Variable><Operator>,</Operator><Normal Text> </Normal Text><Variable>a</Variable><Operator>&</Operator><Variable>b</Variable><br/>
+<Comment>% unary operators</Comment><br/>
+<Variable>a</Variable><Normal Text> </Normal Text><Operator>=</Operator><Normal Text> </Normal Text><Operator>~</Operator><Variable>g</Variable><Operator>;</Operator><Normal Text> </Normal Text><Variable>g</Variable><Normal Text> </Normal Text><Operator>=</Operator><Normal Text> </Normal Text><Operator>@</Operator><Variable>sfdgdsf</Variable><Delimiter>(</Delimiter><Variable>sdfsd</Variable><Operator>,</Operator><Number>345</Number><Delimiter>)</Delimiter><Operator>;</Operator><Normal Text> </Normal Text><Variable>g</Variable><Operator>.'</Operator><Normal Text> </Normal Text><Operator>+</Operator><Normal Text> </Normal Text><Number>1i</Number><Operator>.'</Operator><Normal Text> </Normal Text><Operator>-</Operator><Normal Text> </Normal Text><Delimiter>(</Delimiter><CharVector>'asdf'</CharVector><Delimiter>)</Delimiter><Operator>.'</Operator><br/>
+<Comment>% separators and delimiter</Comment><br/>
+<Delimiter>(</Delimiter><Variable>asd</Variable><Delimiter>)</Delimiter><Operator>,</Operator><Delimiter>[</Delimiter><Variable>sadf</Variable><Delimiter>]</Delimiter><Operator>;</Operator><Delimiter>{</Delimiter><Variable>asdf</Variable><Delimiter>}</Delimiter><Operator>,;;,;;;</Operator><Delimiter>()</Delimiter><br/>
+<Comment>% continuation</Comment><br/>
+<Variable>a</Variable><Normal Text> </Normal Text><Operator>=</Operator><Normal Text> </Normal Text><Number>1</Number><Operator>+</Operator><Normal Text> </Normal Text><Operator>...</Operator><br/>
+<Normal Text>  </Normal Text><Number>2</Number><Operator>;</Operator><br/>
+<Normal Text></Normal Text><br/>
+<Comment>% Character vectors, strings and adjoint ______________</Comment><br/>
+<Comment>% incomplete character vectors</Comment><br/>
+<Incomplete CharVector>'string</Incomplete CharVector><br/>
+<Incomplete CharVector>'str''</Incomplete CharVector><br/>
+<Incomplete CharVector>'str''ing</Incomplete CharVector><br/>
+<Comment>% complete character vectors</Comment><br/>
+<CharVector>'string'</CharVector><Normal Text> </Normal Text><Comment>% simple string</Comment><br/>
+<CharVector>''''</CharVector><Normal Text> </Normal Text><Comment>% string containing '</Comment><br/>
+<CharVector>'str''ing'</CharVector><Normal Text> </Normal Text><Comment>% one string containing '</Comment><br/>
+<CharVector>'"'</CharVector><Normal Text> </Normal Text><Comment>% string containing "</Comment><br/>
+<CharVector>'str"ing'</CharVector><Normal Text> </Normal Text><Comment>% one string containing "</Comment><br/>
+<CharVector>'string'</CharVector><Normal Text> </Normal Text><CharVector>'string'</CharVector><Normal Text>  </Normal Text><Comment>% two character vectors</Comment><br/>
+<CharVector>'asdf'</CharVector><Normal Text>  </Normal Text><CharVector>'asdf'''</CharVector><Normal Text> </Normal Text><Variable>variable</Variable><Normal Text>  </Normal Text><Comment>% two character vectors and a variable</Comment><br/>
+<CharVector>'asdf''asdf''   fsgdfg'</CharVector><Normal Text> </Normal Text><Operator>+</Operator><Normal Text> </Normal Text><Delimiter>(</Delimiter><Variable>asdf</Variable><Delimiter>)</Delimiter><Operator>'</Operator><Normal Text> </Normal Text><Operator>-</Operator><Normal Text> </Normal Text><CharVector>'asdf'</CharVector><Operator>.'</Operator><Normal Text> </Normal Text><Operator>+</Operator><Normal Text> </Normal Text><Delimiter>[]</Delimiter><Operator>''''.';</Operator><CharVector>''</CharVector><br/>
+<CharVector>'sadf'</CharVector><Operator>.'</Operator><Normal Text> </Normal Text><Comment>% string transpose</Comment><br/>
+<Comment>% adjoint</Comment><br/>
+<Delimiter>{</Delimiter><CharVector>'asdf'</CharVector><Delimiter>}</Delimiter><Operator>'</Operator><Normal Text> </Normal Text><Operator>+</Operator><Normal Text> </Normal Text><Number>1</Number><br/>
+<Delimiter>(</Delimiter><CharVector>'asdf'</CharVector><Delimiter>)</Delimiter><Operator>'</Operator><Normal Text> </Normal Text><Operator>+</Operator><Normal Text> </Normal Text><Number>1</Number><br/>
+<Delimiter>[</Delimiter><CharVector>'asdf'</CharVector><Delimiter>]</Delimiter><Operator>'</Operator><Normal Text> </Normal Text><Operator>+</Operator><Normal Text> </Normal Text><Number>1</Number><br/>
+<CharVector>''</CharVector><Normal Text> </Normal Text><Variable>var</Variable><Operator>'''</Operator><Normal Text> </Normal Text><Comment>% empty string, var with >1 adjoints</Comment><br/>
+<Delimiter>[</Delimiter><Number>5</Number><Delimiter>]</Delimiter><Operator>'*</Operator><Delimiter>{</Delimiter><Number>5</Number><Delimiter>}</Delimiter><Operator>'*</Operator><Delimiter>(</Delimiter><CharVector>'asd'</CharVector><Delimiter>)</Delimiter><Operator>'.'+</Operator><Delimiter>(</Delimiter><Number>5</Number><Delimiter>)</Delimiter><Operator>'*</Operator><Number>6</Number><Operator>'*</Operator><Variable>asdf</Variable><Operator>'*</Operator><Variable>asdf</Variable><Operator>'.'</Operator><Normal Text>  </Normal Text><Comment>% many adjoints</Comment><br/>
+<Variable>A</Variable><Operator>'*</Operator><Variable>B</Variable><Normal Text> </Normal Text><Operator>+</Operator><Normal Text> </Normal Text><Number>1</Number><Normal Text>      </Normal Text><Comment>% adjoint</Comment><br/>
+<Variable>A</Variable><Operator>.'*</Operator><Variable>B</Variable><Normal Text> </Normal Text><Operator>+</Operator><Normal Text> </Normal Text><Number>1</Number><Normal Text>     </Normal Text><Comment>% transpose</Comment><br/>
+<Variable>A</Variable><Operator>.'.'*</Operator><Variable>B</Variable><Normal Text> </Normal Text><Operator>+</Operator><Normal Text> </Normal Text><Number>1</Number><Normal Text>   </Normal Text><Comment>% double transpose</Comment><br/>
+<Variable>A</Variable><Operator>'.'</Operator><Normal Text> </Normal Text><Operator>+</Operator><Normal Text> </Normal Text><Number>1</Number><Normal Text>      </Normal Text><Comment>% adjoint, then transpose</Comment><br/>
+<Variable>A</Variable><Operator>.''</Operator><Normal Text>          </Normal Text><Comment>% transpose, then adjoint</Comment><br/>
+<Comment>% incomplete strings</Comment><br/>
+<Incomplete String>"string</Incomplete String><br/>
+<Incomplete String>"str""</Incomplete String><br/>
+<Incomplete String>"str""ing</Incomplete String><br/>
+<Comment>% complete strings</Comment><br/>
+<String>"string"</String><Normal Text> </Normal Text><Comment>% simple string</Comment><br/>
+<String>"'"</String><Normal Text> </Normal Text><Comment>% string containing '</Comment><br/>
+<String>"str'ing"</String><Normal Text> </Normal Text><Comment>% one string containing '</Comment><br/>
+<String>""""</String><Normal Text> </Normal Text><Comment>% string containing "</Comment><br/>
+<String>"str""ing"</String><Normal Text> </Normal Text><Comment>% one string containing "</Comment><br/>
+<String>"string"</String><Normal Text> </Normal Text><String>"string"</String><Normal Text>  </Normal Text><Comment>% two strings</Comment><br/>
+<String>"asdf"</String><Normal Text>  </Normal Text><String>"asdf"""</String><Normal Text> </Normal Text><Variable>variable</Variable><Normal Text>  </Normal Text><Comment>% two strings and a variable</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Comment>% System command ______________________________________</Comment><br/>
+<System>!hostname</System><br/>
+<System>!cp * /tmp</System><br/>
+<Normal Text></Normal Text><br/>
+<Comment>% Reserved keywords ___________________________________</Comment><br/>
+<Keyword>function</Keyword><Operator>,</Operator><Normal Text> </Normal Text><Keyword>persistent</Keyword><Operator>,</Operator><Normal Text> </Normal Text><Keyword>global</Keyword><br/>
+<Keyword>switch</Keyword><Operator>,</Operator><Normal Text> </Normal Text><Keyword>case</Keyword><Operator>,</Operator><Normal Text> </Normal Text><Keyword>otherwise</Keyword><br/>
+<Keyword>if</Keyword><Operator>,</Operator><Normal Text> </Normal Text><Keyword>else</Keyword><Operator>,</Operator><Normal Text> </Normal Text><Keyword>elseif</Keyword><br/>
+<Keyword>try</Keyword><Operator>,</Operator><Normal Text> </Normal Text><Keyword>catch</Keyword><br/>
+<Keyword>for</Keyword><Operator>,</Operator><Normal Text> </Normal Text><Keyword>while</Keyword><Operator>,</Operator><Normal Text> </Normal Text><Keyword>break</Keyword><Operator>,</Operator><Normal Text> </Normal Text><Keyword>continue</Keyword><br/>
+<Keyword>end</Keyword><Operator>,</Operator><Normal Text> </Normal Text><Keyword>return</Keyword><br/>
+<Keyword>function</Keyword><Operator>,</Operator><Normal Text> </Normal Text><Variable>FUNCTION</Variable><Operator>,</Operator><Normal Text> </Normal Text><Variable>Function</Variable><Normal Text>  </Normal Text><Comment>% case sensitive!</Comment><br/>

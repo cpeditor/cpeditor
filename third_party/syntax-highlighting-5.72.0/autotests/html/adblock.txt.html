@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title>adblock.txt</title>
+<meta name="generator" content="KF5::SyntaxHighlighting (Adblock Plus)"/>
+</head><body style="color:#1f1c1b"><pre>
+<span style="font-weight:bold;">[Adblock Plus 2.0]</span>
+<span style="color:#898887;">! </span><span style="color:#0095ff;">Checksum</span><span style="color:#898887;">: OBK3kgyECgXJtrF4BTO3Fg</span>
+<span style="color:#898887;">! </span><span style="color:#0095ff;">Version</span><span style="color:#898887;">: 201709021630</span>
+<span style="color:#898887;">! </span><span style="color:#0095ff;">Title</span><span style="color:#898887;">: Test Adblock List</span>
+<span style="color:#898887;">! Last modified: 02 Sep 2017 16:30 UTC</span>
+<span style="color:#898887;">! </span><span style="color:#0095ff;">Expires</span><span style="color:#898887;">: 2 days (update frequency)</span>
+<span style="color:#898887;">! </span><span style="color:#0095ff;">Homepage</span><span style="color:#898887;">: https://www.kde.org/</span>
+<span style="color:#898887;">! Licence: MIT</span>
+<span style="color:#898887;">!</span>
+<span style="color:#898887;">! Some more text</span>
+<span style="color:#898887;">!</span>
+
+<span style="color:#898887;">! basic rules</span>
+http://example.com/ads/banner123.gif
+http://example.com/ads/banner*.gif
+http://example.com/ads/*
+http://example.com/*
+
+<span style="color:#898887;">! exception rules</span>
+<span style="color:#0057ae;">@@advice</span>
+<span style="color:#0057ae;">@@||example.com^</span><span style="color:#644a9b;">$document</span>
+
+<span style="color:#898887;">! begin/end matches</span>
+swf|
+||example.com/banner.gif
+
+<span style="color:#898887;">! separator characters</span>
+http://example.com^
+^example.com^
+^%D1%82%D0%B5%D1%81%D1%82^
+
+<span style="color:#898887;">! filter options</span>
+*/ads/*<span style="color:#644a9b;">$script</span>,<span style="color:#644a9b;">match-case</span>
+*<span style="color:#644a9b;">$donottrack</span>,<span style="color:#644a9b;">image</span>,~<span style="color:#644a9b;">image</span>
+*<span style="color:#644a9b;">$domain</span>=example.com|example.net
+*/BannerAd.gif<span style="color:#644a9b;">$match-case</span>
+
+<span style="color:#898887;">! regular expressions</span>
+/banner\d+/
+/\.bla\/[0-9]{2,9}\/<span style="color:#644a9b;">$</span>/$<span style="color:#644a9b;">script</span>,<span style="color:#644a9b;">stylesheet</span>,<span style="color:#644a9b;">third-party</span>,<span style="color:#644a9b;">xmlhttprequest</span>
+
+<span style="color:#898887;">! element selectors</span>
+<span style="color:#bf0303;">##.textad.</span>
+<span style="color:#bf0303;">###sponsorad</span>
+example.com<span style="color:#bf0303;">##.sponsor</span>
+~foo.example.com<span style="color:#bf0303;">##.sponsor</span>
+
+<span style="color:#898887;">! attribute selectors</span>
+<span style="color:#bf0303;">##table[width=&quot;80%&quot;]</span>
+<span style="color:#bf0303;">##div[title^=&quot;adv&quot;][title$=&quot;ert&quot;]</span>
+
+<span style="color:#898887;">! element selector exceptions</span>
+exmaple.com<span style="color:#bf0303;">#@#.adwords</span>
+</pre></body></html>

@@ -1,0 +1,90 @@
+<beginfold id='1'>(*</beginfold id='1'> PIM Modula-2 Syntax highlighting test <endfold id='1'>*)</endfold id='1'>
+
+<beginfold id='1'>(*</beginfold id='1'> dialect tags <endfold id='1'>*)</endfold id='1'>
+
+(*!m2pim*)
+
+
+<beginfold id='1'>(*</beginfold id='1'> pragmas <endfold id='1'>*)</endfold id='1'>
+
+(*$foo*)
+
+
+<beginfold id='1'>(*</beginfold id='1'> foldable comments <endfold id='1'>*)</endfold id='1'>
+
+<beginfold id='1'>(*</beginfold id='1'> foo bar baz
+   <beginfold id='1'>(*</beginfold id='1'> nested comment <endfold id='1'>*)</endfold id='1'>
+   bam boo bee bop <endfold id='1'>*)</endfold id='1'>
+
+
+<beginfold id='1'>(*</beginfold id='1'> reserved words <endfold id='1'>*)</endfold id='1'>
+
+AND ARRAY BEGIN BY CASE CONST DEFINITION DIV DO ELSE ELSIF END EXIT EXPORT FOR
+FROM IF IMPLEMENTATION IMPORT IN LOOP MOD MODULE NOT OF OR POINTER PROCEDURE
+QUALIFIED RECORD REPEAT RETURN SET THEN TO TYPE UNTIL VAR WHILE WITH
+
+
+<beginfold id='1'>(*</beginfold id='1'> built-in constants <endfold id='1'>*)</endfold id='1'>
+
+FALSE NIL TRUE
+
+
+<beginfold id='1'>(*</beginfold id='1'> built-in types <endfold id='1'>*)</endfold id='1'>
+
+BOOLEAN BITSET CARDINAL CHAR INTEGER LONGINT LONGREAL PROC REAL
+
+
+<beginfold id='1'>(*</beginfold id='1'> built-in procedures <endfold id='1'>*)</endfold id='1'>
+
+ABS ALLOCATE CAP CHR DEALLOCATE DEC DISPOSE EXCL FLOAT HALT HIGH
+INC INCL MAX MIN NEW ODD ORD SIZE TRUNC VAL
+
+
+<beginfold id='1'>(*</beginfold id='1'> unsafe facilities <endfold id='1'>*)</endfold id='1'>
+
+<beginfold id='1'>(*</beginfold id='1'> module <endfold id='1'>*)</endfold id='1'>
+
+SYSTEM
+
+<beginfold id='1'>(*</beginfold id='1'> types <endfold id='1'>*)</endfold id='1'>
+
+ADDRESS WORD PROCESS
+
+<beginfold id='1'>(*</beginfold id='1'> procedures <endfold id='1'>*)</endfold id='1'>
+
+ADR NEWPROCESS TRANSFER TSIZE
+
+
+<beginfold id='1'>(*</beginfold id='1'> number literals <endfold id='1'>*)</endfold id='1'>
+
+CONST
+  n = 1000; r = 1.234; x = 0FFFFH; c = 077C;
+
+
+<beginfold id='1'>(*</beginfold id='1'> quoted literals <endfold id='1'>*)</endfold id='1'>
+
+CONST
+  apostrophe = "'"; doublequote = '"';
+  single ='foobar'; double = "bazbam";
+
+
+<beginfold id='1'>(*</beginfold id='1'> sample code <endfold id='1'>*)</endfold id='1'>
+
+TYPE Foo = RECORD
+  bar : Baz;
+  bam : Boo
+END; <beginfold id='1'>(*</beginfold id='1'> Foobar <endfold id='1'>*)</endfold id='1'>
+
+
+VAR
+  foo, bar, baz : CARDINAL;
+
+
+IF foo > bar THEN
+  baz := bam
+ELSE
+  baz := boo
+END;
+
+
+<beginfold id='1'>(*</beginfold id='1'> EOF <endfold id='1'>*)</endfold id='1'>

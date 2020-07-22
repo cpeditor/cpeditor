@@ -1,0 +1,92 @@
+<Comment># This is test comment</Comment><br/>
+<Comment>% this is another comment</Comment><br/>
+<Variable>a</Variable><Normal Text> </Normal Text><Operator>=</Operator><Normal Text> </Normal Text><Number>3</Number><Operator>;</Operator><Normal Text> </Normal Text><Variable>b</Variable><Normal Text> </Normal Text><Operator>=</Operator><Normal Text> </Normal Text><Number>34</Number><Operator>;</Operator><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>function</Keyword><Normal Text> </Normal Text><Variable>retval</Variable><Normal Text> </Normal Text><Operator>=</Operator><Normal Text> </Normal Text><Variable>avg</Variable><Normal Text> </Normal Text><Delimiter>(</Delimiter><Variable>v</Variable><Delimiter>)</Delimiter><br/>
+<Normal Text>  </Normal Text><Variable>retval</Variable><Normal Text> </Normal Text><Operator>=</Operator><Normal Text> </Normal Text><Number>0</Number><Operator>;</Operator><br/>
+<Normal Text>  </Normal Text><Keyword>if</Keyword><Normal Text> </Normal Text><Delimiter>(</Delimiter><Functions>isvector</Functions><Normal Text> </Normal Text><Delimiter>(</Delimiter><Variable>v</Variable><Delimiter>))</Delimiter><br/>
+<Normal Text>    </Normal Text><Variable>retval</Variable><Normal Text> </Normal Text><Operator>=</Operator><Normal Text> </Normal Text><Functions>sum</Functions><Normal Text> </Normal Text><Delimiter>(</Delimiter><Variable>v</Variable><Delimiter>)</Delimiter><Normal Text> </Normal Text><Operator>/</Operator><Normal Text> </Normal Text><Functions>length</Functions><Normal Text> </Normal Text><Delimiter>(</Delimiter><Variable>v</Variable><Delimiter>)</Delimiter><Operator>;</Operator><br/>
+<Normal Text>  </Normal Text><Keyword>else</Keyword><br/>
+<Normal Text>    </Normal Text><Functions>error</Functions><Normal Text> </Normal Text><Delimiter>(</Delimiter><String>"avg: expecting vector argument"</String><Delimiter>)</Delimiter><Operator>;</Operator><br/>
+<Normal Text>  </Normal Text><Keyword>endif</Keyword><br/>
+<Keyword>endfunction</Keyword><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>if</Keyword><Normal Text> </Normal Text><Delimiter>(</Delimiter><Functions>rem</Functions><Normal Text> </Normal Text><Delimiter>(</Delimiter><Variable>x</Variable><Operator>,</Operator><Normal Text> </Normal Text><Number>2</Number><Delimiter>)</Delimiter><Normal Text> </Normal Text><Operator>==</Operator><Normal Text> </Normal Text><Number>0</Number><Delimiter>)</Delimiter><br/>
+<Normal Text>  </Normal Text><Functions>printf</Functions><Normal Text> </Normal Text><Delimiter>(</Delimiter><String>"x is even\n"</String><Delimiter>)</Delimiter><Operator>;</Operator><br/>
+<Keyword>else</Keyword><br/>
+<Normal Text>  </Normal Text><Functions>printf</Functions><Normal Text> </Normal Text><Delimiter>(</Delimiter><String>"x is odd\n"</String><Delimiter>)</Delimiter><Operator>;</Operator><br/>
+<Keyword>endif</Keyword><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>if</Keyword><Normal Text> </Normal Text><Delimiter>(</Delimiter><Functions>rem</Functions><Normal Text> </Normal Text><Delimiter>(</Delimiter><Variable>x</Variable><Operator>,</Operator><Normal Text> </Normal Text><Number>2</Number><Delimiter>)</Delimiter><Normal Text> </Normal Text><Operator>==</Operator><Normal Text> </Normal Text><Number>0</Number><Delimiter>)</Delimiter><br/>
+<Normal Text>  </Normal Text><Functions>printf</Functions><Normal Text> </Normal Text><Delimiter>(</Delimiter><String>"x is even\n"</String><Delimiter>)</Delimiter><Operator>;</Operator><br/>
+<Keyword>elseif</Keyword><Normal Text> </Normal Text><Delimiter>(</Delimiter><Functions>rem</Functions><Normal Text> </Normal Text><Delimiter>(</Delimiter><Variable>x</Variable><Operator>,</Operator><Normal Text> </Normal Text><Number>3</Number><Delimiter>)</Delimiter><Normal Text> </Normal Text><Operator>==</Operator><Normal Text> </Normal Text><Number>0</Number><Delimiter>)</Delimiter><br/>
+<Normal Text>  </Normal Text><Functions>printf</Functions><Normal Text> </Normal Text><Delimiter>(</Delimiter><String>"x is odd and divisible by 3\n"</String><Delimiter>)</Delimiter><Operator>;</Operator><br/>
+<Keyword>else</Keyword><br/>
+<Normal Text>  </Normal Text><Functions>printf</Functions><Normal Text> </Normal Text><Delimiter>(</Delimiter><String>"x is odd\n"</String><Delimiter>)</Delimiter><Operator>;</Operator><br/>
+<Keyword>end</Keyword><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>if</Keyword><Normal Text> </Normal Text><Delimiter>(</Delimiter><Functions>rem</Functions><Delimiter>(</Delimiter><Variable>x</Variable><Operator>,</Operator><Number>2</Number><Delimiter>)</Delimiter><Normal Text> </Normal Text><Operator>==</Operator><Normal Text> </Normal Text><Number>0</Number><Delimiter>)</Delimiter><Normal Text> </Normal Text><Variable>x</Variable><Normal Text> </Normal Text><Operator>=</Operator><Normal Text> </Normal Text><Number>5</Number><Operator>;</Operator><Normal Text> </Normal Text><Keyword>elseif</Keyword><Normal Text> </Normal Text><Delimiter>(</Delimiter><Functions>rem</Functions><Normal Text> </Normal Text><Delimiter>(</Delimiter><Variable>x</Variable><Operator>,</Operator><Number>3</Number><Delimiter>)</Delimiter><Normal Text> </Normal Text><Operator>==</Operator><Normal Text> </Normal Text><Number>0</Number><Delimiter>)</Delimiter><Normal Text> </Normal Text><Variable>x</Variable><Normal Text> </Normal Text><Operator>=</Operator><Normal Text> </Normal Text><Number>3</Number><Operator>;</Operator><Normal Text> </Normal Text><Keyword>else</Keyword><Normal Text> </Normal Text><Variable>x</Variable><Normal Text> </Normal Text><Operator>=</Operator><Normal Text> </Normal Text><Number>0</Number><Operator>;</Operator><Normal Text> </Normal Text><Keyword>end</Keyword><br/>
+<Normal Text></Normal Text><br/>
+<Commands>cd</Commands><Normal Text> ..</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>while</Keyword><Normal Text> </Normal Text><Delimiter>(</Delimiter><Functions>i</Functions><Normal Text> </Normal Text><Operator><=</Operator><Normal Text> </Normal Text><Number>10</Number><Delimiter>)</Delimiter><br/>
+<Normal Text>  </Normal Text><Variable>fib</Variable><Normal Text> </Normal Text><Delimiter>(</Delimiter><Functions>i</Functions><Delimiter>)</Delimiter><Normal Text> </Normal Text><Operator>=</Operator><Normal Text> </Normal Text><Variable>fib</Variable><Normal Text> </Normal Text><Delimiter>(</Delimiter><Functions>i</Functions><Operator>-</Operator><Number>1</Number><Delimiter>)</Delimiter><Normal Text> </Normal Text><Operator>+</Operator><Normal Text> </Normal Text><Variable>fib</Variable><Normal Text> </Normal Text><Delimiter>(</Delimiter><Functions>i</Functions><Operator>-</Operator><Number>2</Number><Delimiter>)</Delimiter><Operator>;</Operator><br/>
+<Normal Text>  </Normal Text><Functions>i</Functions><Operator>++;</Operator><br/>
+<Keyword>endwhile</Keyword><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>classdef</Keyword><Normal Text> </Normal Text><Variable>polynomial2</Variable><br/>
+<Normal Text>  </Normal Text><Keyword>properties</Keyword><br/>
+<Normal Text>    </Normal Text><Functions>poly</Functions><Normal Text> </Normal Text><Operator>=</Operator><Normal Text> </Normal Text><Number>0</Number><Operator>;</Operator><br/>
+<Normal Text>  </Normal Text><Keyword>endproperties</Keyword><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>  </Normal Text><Keyword>methods</Keyword><br/>
+<Normal Text>    </Normal Text><Keyword>function</Keyword><Normal Text> </Normal Text><Variable>p</Variable><Normal Text> </Normal Text><Operator>=</Operator><Normal Text> </Normal Text><Variable>polynomial2</Variable><Normal Text> </Normal Text><Delimiter>(</Delimiter><Variable>a</Variable><Delimiter>)</Delimiter><br/>
+<Normal Text>      </Normal Text><Keyword>if</Keyword><Normal Text> </Normal Text><Delimiter>(</Delimiter><Functions>nargin</Functions><Normal Text> </Normal Text><Operator>></Operator><Normal Text> </Normal Text><Number>1</Number><Delimiter>)</Delimiter><br/>
+<Normal Text>        </Normal Text><Functions>print_usage</Functions><Normal Text> </Normal Text><Delimiter>()</Delimiter><Operator>;</Operator><br/>
+<Normal Text>      </Normal Text><Keyword>endif</Keyword><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>      </Normal Text><Keyword>if</Keyword><Normal Text> </Normal Text><Delimiter>(</Delimiter><Functions>nargin</Functions><Normal Text> </Normal Text><Operator>==</Operator><Normal Text> </Normal Text><Number>1</Number><Delimiter>)</Delimiter><br/>
+<Normal Text>        </Normal Text><Keyword>if</Keyword><Normal Text> </Normal Text><Delimiter>(</Delimiter><Functions>isa</Functions><Normal Text> </Normal Text><Delimiter>(</Delimiter><Variable>a</Variable><Operator>,</Operator><Normal Text> </Normal Text><String>"polynomial2"</String><Delimiter>))</Delimiter><br/>
+<Normal Text>          </Normal Text><Variable>p</Variable><Normal Text>.</Normal Text><Variable>poly</Variable><Normal Text> </Normal Text><Operator>=</Operator><Normal Text> </Normal Text><Variable>a</Variable><Normal Text>.</Normal Text><Variable>poly</Variable><Operator>;</Operator><br/>
+<Normal Text>        </Normal Text><Keyword>elseif</Keyword><Normal Text> </Normal Text><Delimiter>(</Delimiter><Functions>isreal</Functions><Normal Text> </Normal Text><Delimiter>(</Delimiter><Variable>a</Variable><Delimiter>)</Delimiter><Normal Text> </Normal Text><Operator>&&</Operator><Normal Text> </Normal Text><Functions>isvector</Functions><Normal Text> </Normal Text><Delimiter>(</Delimiter><Variable>a</Variable><Delimiter>))</Delimiter><br/>
+<Normal Text>          </Normal Text><Variable>p</Variable><Normal Text>.</Normal Text><Variable>poly</Variable><Normal Text> </Normal Text><Operator>=</Operator><Normal Text> </Normal Text><Variable>a</Variable><Delimiter>(</Delimiter><Operator>:</Operator><Delimiter>)</Delimiter><Operator>.';</Operator><Normal Text>  </Normal Text><Comment># force row vector</Comment><br/>
+<Normal Text>        </Normal Text><Keyword>else</Keyword><br/>
+<Normal Text>          </Normal Text><Functions>error</Functions><Normal Text> </Normal Text><Delimiter>(</Delimiter><String>"polynomial2: A must be a real vector"</String><Delimiter>)</Delimiter><Operator>;</Operator><br/>
+<Normal Text>        </Normal Text><Keyword>endif</Keyword><br/>
+<Normal Text>      </Normal Text><Keyword>endif</Keyword><br/>
+<Normal Text>    </Normal Text><Keyword>endfunction</Keyword><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>    </Normal Text><Keyword>function</Keyword><Normal Text> </Normal Text><Functions>disp</Functions><Normal Text> </Normal Text><Delimiter>(</Delimiter><Variable>p</Variable><Delimiter>)</Delimiter><br/>
+<Normal Text>      </Normal Text><Variable>a</Variable><Normal Text> </Normal Text><Operator>=</Operator><Normal Text> </Normal Text><Variable>p</Variable><Normal Text>.</Normal Text><Variable>poly</Variable><Operator>;</Operator><br/>
+<Normal Text>      </Normal Text><Variable>first</Variable><Normal Text> </Normal Text><Operator>=</Operator><Normal Text> </Normal Text><Functions>true</Functions><Operator>;</Operator><br/>
+<Normal Text>      </Normal Text><Keyword>for</Keyword><Normal Text> </Normal Text><Functions>i</Functions><Normal Text> </Normal Text><Operator>=</Operator><Normal Text> </Normal Text><Number>1</Number><Normal Text> </Normal Text><Operator>:</Operator><Normal Text> </Normal Text><Functions>length</Functions><Normal Text> </Normal Text><Delimiter>(</Delimiter><Variable>a</Variable><Delimiter>)</Delimiter><Operator>;</Operator><br/>
+<Normal Text>        </Normal Text><Keyword>if</Keyword><Normal Text> </Normal Text><Delimiter>(</Delimiter><Variable>a</Variable><Delimiter>(</Delimiter><Functions>i</Functions><Delimiter>)</Delimiter><Normal Text> </Normal Text><Operator>!=</Operator><Normal Text> </Normal Text><Number>0</Number><Delimiter>)</Delimiter><br/>
+<Normal Text>          </Normal Text><Keyword>if</Keyword><Normal Text> </Normal Text><Delimiter>(</Delimiter><Variable>first</Variable><Delimiter>)</Delimiter><br/>
+<Normal Text>            </Normal Text><Variable>first</Variable><Normal Text> </Normal Text><Operator>=</Operator><Normal Text> </Normal Text><Functions>false</Functions><Operator>;</Operator><br/>
+<Normal Text>          </Normal Text><Keyword>elseif</Keyword><Normal Text> </Normal Text><Delimiter>(</Delimiter><Variable>a</Variable><Delimiter>(</Delimiter><Functions>i</Functions><Delimiter>)</Delimiter><Normal Text> </Normal Text><Operator>></Operator><Normal Text> </Normal Text><Number>0</Number><Normal Text> </Normal Text><Operator>||</Operator><Normal Text> </Normal Text><Functions>isnan</Functions><Normal Text> </Normal Text><Delimiter>(</Delimiter><Variable>a</Variable><Delimiter>(</Delimiter><Functions>i</Functions><Delimiter>)))</Delimiter><br/>
+<Normal Text>            </Normal Text><Functions>printf</Functions><Normal Text> </Normal Text><Delimiter>(</Delimiter><String>" +"</String><Delimiter>)</Delimiter><Operator>;</Operator><br/>
+<Normal Text>          </Normal Text><Keyword>endif</Keyword><br/>
+<Normal Text>          </Normal Text><Keyword>if</Keyword><Normal Text> </Normal Text><Delimiter>(</Delimiter><Variable>a</Variable><Delimiter>(</Delimiter><Functions>i</Functions><Delimiter>)</Delimiter><Normal Text> </Normal Text><Operator><</Operator><Normal Text> </Normal Text><Number>0</Number><Delimiter>)</Delimiter><br/>
+<Normal Text>            </Normal Text><Functions>printf</Functions><Normal Text> </Normal Text><Delimiter>(</Delimiter><String>" -"</String><Delimiter>)</Delimiter><Operator>;</Operator><br/>
+<Normal Text>          </Normal Text><Keyword>endif</Keyword><br/>
+<Normal Text>          </Normal Text><Keyword>if</Keyword><Normal Text> </Normal Text><Delimiter>(</Delimiter><Functions>i</Functions><Normal Text> </Normal Text><Operator>==</Operator><Normal Text> </Normal Text><Number>1</Number><Delimiter>)</Delimiter><br/>
+<Normal Text>            </Normal Text><Functions>printf</Functions><Normal Text> </Normal Text><Delimiter>(</Delimiter><String>" %.5g"</String><Operator>,</Operator><Normal Text> </Normal Text><Functions>abs</Functions><Normal Text> </Normal Text><Delimiter>(</Delimiter><Variable>a</Variable><Delimiter>(</Delimiter><Functions>i</Functions><Delimiter>)))</Delimiter><Operator>;</Operator><br/>
+<Normal Text>          </Normal Text><Keyword>elseif</Keyword><Normal Text> </Normal Text><Delimiter>(</Delimiter><Functions>abs</Functions><Normal Text> </Normal Text><Delimiter>(</Delimiter><Variable>a</Variable><Delimiter>(</Delimiter><Functions>i</Functions><Delimiter>))</Delimiter><Normal Text> </Normal Text><Operator>!=</Operator><Normal Text> </Normal Text><Number>1</Number><Delimiter>)</Delimiter><br/>
+<Normal Text>            </Normal Text><Functions>printf</Functions><Normal Text> </Normal Text><Delimiter>(</Delimiter><String>" %.5g *"</String><Operator>,</Operator><Normal Text> </Normal Text><Functions>abs</Functions><Normal Text> </Normal Text><Delimiter>(</Delimiter><Variable>a</Variable><Delimiter>(</Delimiter><Functions>i</Functions><Delimiter>)))</Delimiter><Operator>;</Operator><br/>
+<Normal Text>          </Normal Text><Keyword>endif</Keyword><br/>
+<Normal Text>          </Normal Text><Keyword>if</Keyword><Normal Text> </Normal Text><Delimiter>(</Delimiter><Functions>i</Functions><Normal Text> </Normal Text><Operator>></Operator><Normal Text> </Normal Text><Number>1</Number><Delimiter>)</Delimiter><br/>
+<Normal Text>            </Normal Text><Functions>printf</Functions><Normal Text> </Normal Text><Delimiter>(</Delimiter><String>" X"</String><Delimiter>)</Delimiter><Operator>;</Operator><br/>
+<Normal Text>          </Normal Text><Keyword>endif</Keyword><br/>
+<Normal Text>          </Normal Text><Keyword>if</Keyword><Normal Text> </Normal Text><Delimiter>(</Delimiter><Functions>i</Functions><Normal Text> </Normal Text><Operator>></Operator><Normal Text> </Normal Text><Number>2</Number><Delimiter>)</Delimiter><br/>
+<Normal Text>            </Normal Text><Functions>printf</Functions><Normal Text> </Normal Text><Delimiter>(</Delimiter><String>" ^ %d"</String><Operator>,</Operator><Normal Text> </Normal Text><Functions>i</Functions><Normal Text> </Normal Text><Operator>-</Operator><Normal Text> </Normal Text><Number>1</Number><Delimiter>)</Delimiter><Operator>;</Operator><br/>
+<Normal Text>          </Normal Text><Keyword>endif</Keyword><br/>
+<Normal Text>        </Normal Text><Keyword>endif</Keyword><br/>
+<Normal Text>      </Normal Text><Keyword>endfor</Keyword><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>      </Normal Text><Keyword>if</Keyword><Normal Text> </Normal Text><Delimiter>(</Delimiter><Variable>first</Variable><Delimiter>)</Delimiter><br/>
+<Normal Text>        </Normal Text><Functions>printf</Functions><Normal Text> </Normal Text><Delimiter>(</Delimiter><String>" 0"</String><Delimiter>)</Delimiter><Operator>;</Operator><br/>
+<Normal Text>      </Normal Text><Keyword>endif</Keyword><br/>
+<Normal Text>      </Normal Text><Functions>printf</Functions><Normal Text> </Normal Text><Delimiter>(</Delimiter><String>"\n"</String><Delimiter>)</Delimiter><Operator>;</Operator><br/>
+<Normal Text>    </Normal Text><Keyword>endfunction</Keyword><br/>
+<Normal Text>  </Normal Text><Keyword>endmethods</Keyword><br/>
+<Keyword>endclassdef</Keyword><br/>

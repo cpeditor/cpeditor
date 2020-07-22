@@ -152,6 +152,24 @@ jobs:
             message(FATAL_ERROR "Bad exit status")
           endif()
 
+      - name: Setup ECM
+        run: |
+          cd third_party/extra-cmake-modules-5.72.0
+          mkdir build
+          cd build
+          cmake .. -DCMAKE_BUILD_TYPE=Release -DBUILD_HTML_DOCS=OFF -DBUILD_MAN_DOCS=OFF -DBUILD_QTHELP_DOCS=OFF -DBUILD_TESTING=OFF
+          cmake --build . --parallel $(nproc)
+          cmake --build . --target install
+
+      - name: Set up Dependency Syntax Highlighting
+        run: |
+          cd third_party/syntax-highlighting-5.72.0
+          mkdir build
+          cd build
+          cmake .. -DCMAKE_BUILD_TYPE=Release -DBUILD_HTML_DOCS=OFF -DBUILD_MAN_DOCS=OFF -DBUILD_QTHELP_DOCS=OFF -DBUILD_TESTING=OFF
+          cmake --build . --parallel $(nproc)
+          cmake --build . --target install
+
       - name: Build
         shell: cmake -P {0}
         run: |
@@ -167,6 +185,7 @@ jobs:
           set(path_separator ":")
           if ("${{ runner.os }}" STREQUAL "Windows")
             set(path_separator ";")
+            set(KF5SyntaxHighlighting_DIR "C:/Program Files (x86)/ECM/lib/cmake/KF5SyntaxHighlighting")
           endif()
           set(ENV{PATH} "$ENV{GITHUB_WORKSPACE}${path_separator}$ENV{PATH}")
           file(TO_CMAKE_PATH "$ENV{GITHUB_WORKSPACE}" ccache_basedir)

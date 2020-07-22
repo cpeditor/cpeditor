@@ -1,0 +1,23 @@
+<Comment>/*Basic test file</Comment><br/>
+<Comment>Written by Julian Stirling, 2018</Comment><br/>
+<Comment>License: MIT*/</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment>// This is a comment</Comment><br/>
+<Normal Text>x=5;</Normal Text><br/>
+<Normal Text>y=6;</Normal Text><br/>
+<Normal Text>z=5;</Normal Text><br/>
+<Normal Text>r=2;</Normal Text><br/>
+<Keywords>for</Keywords><Normal Text> (n = [-1.5:1:1.5]){</Normal Text><br/>
+<Normal Text>    </Normal Text><Transformation>translate</Transformation><Normal Text>([n*x,0,0]){cubehole([x,y,z],r);}</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Keywords>module</Keywords><Normal Text> cubehole(size,holerad)</Normal Text><br/>
+<Normal Text>{</Normal Text><br/>
+<Normal Text>    </Normal Text><SpecialVar>$fn</SpecialVar><Normal Text>=28;</Normal Text><br/>
+<Normal Text>    </Normal Text><Boolean>difference</Boolean><Normal Text>()</Normal Text><br/>
+<Normal Text>    {</Normal Text><br/>
+<Normal Text>        </Normal Text><Three Dim>cube</Three Dim><Normal Text>(size,center=true);</Normal Text><br/>
+<Normal Text>        </Normal Text><Three Dim>cylinder</Three Dim><Normal Text>(size[2]+1,r=holerad,center=true);</Normal Text><br/>
+<Normal Text>    }</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>

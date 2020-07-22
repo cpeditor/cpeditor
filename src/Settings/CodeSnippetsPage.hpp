@@ -29,6 +29,11 @@ class QMenu;
 class QSplitter;
 class QStackedWidget;
 
+namespace KSyntaxHighlighting
+{
+class SyntaxHighlighter;
+}
+
 class CodeSnippetsPage : public PreferencesPage
 {
     Q_OBJECT
@@ -168,6 +173,7 @@ class CodeSnippetsPage : public PreferencesPage
     QVBoxLayout *snippetLayout = nullptr;
     QLabel *snippetNameLabel = nullptr;
     QCodeEditor *editor = nullptr;
+    KSyntaxHighlighting::SyntaxHighlighter *highlighter = nullptr;
     QWidget *noSnippetWidget = nullptr;
     QVBoxLayout *VStretchLayout = nullptr;
     QHBoxLayout *HStretchLayout = nullptr;

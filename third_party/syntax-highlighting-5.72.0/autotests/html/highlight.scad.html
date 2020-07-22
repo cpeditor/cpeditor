@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title>highlight.scad</title>
+<meta name="generator" content="KF5::SyntaxHighlighting (OpenSCAD)"/>
+</head><body style="color:#1f1c1b"><pre>
+<span style="color:#898887;">/*Basic test file</span>
+<span style="color:#898887;">Written by Julian Stirling, 2018</span>
+<span style="color:#898887;">License: MIT*/</span>
+
+
+<span style="color:#898887;">// This is a comment</span>
+x=5;
+y=6;
+z=5;
+r=2;
+<span style="color:#644a9b;">for</span> (n = [-1.5:1:1.5]){
+    <span style="color:#644a9b;">translate</span>([n*x,0,0]){cubehole([x,y,z],r);}
+}
+
+<span style="color:#644a9b;">module</span> cubehole(size,holerad)
+{
+    <span style="color:#0057ae;">$fn</span>=28;
+    <span style="color:#644a9b;">difference</span>()
+    {
+        <span style="font-weight:bold;">cube</span>(size,center=true);
+        <span style="font-weight:bold;">cylinder</span>(size[2]+1,r=holerad,center=true);
+    }
+}
+</pre></body></html>

@@ -1,0 +1,89 @@
+<beginfold id='1'>/*</beginfold id='1'> Test file for kate's stata syntax highlighting
+<endfold id='1'>*/</endfold id='1'>
+*! version 1.2.0 2mar2003 E. Leuven
+program define spellsplit
+        version 7
+        syntax [anything], spell(varlist min=2 max=2) [ by(varlist)]
+        tokenize `spell'
+        local date0 `1'
+        local date1 `2'
+        local f0 : format `date0'
+        local f1 : format `date1'
+
+        <beginfold id='1'>/*</beginfold id='1'> set default statistic <endfold id='1'>*/</endfold id='1'>
+        local current "mean"
+
+        gettoken left anything : anything, match(prns)
+        while "`left'"!="" <beginfold id='2'>{</beginfold id='2'>
+                if "`prns'"!="" <beginfold id='2'>{</beginfold id='2'>
+                        if !inlist("`left'","mean","sum") <beginfold id='2'>{</beginfold id='2'>
+                                di as error "Statistic `left' not supported"
+                                exit 198
+                        <endfold id='2'>}</endfold id='2'>
+                        local current "`left'"
+                <endfold id='2'>}</endfold id='2'>
+                else <beginfold id='2'>{</beginfold id='2'>
+                        local `current'vars  ``current'vars' `left'
+                <endfold id='2'>}</endfold id='2'>
+                gettoken left anything : anything, match(prns)
+        <endfold id='2'>}</endfold id='2'>
+        if ("`meanvars'"!="") <beginfold id='2'>{</beginfold id='2'>
+                confirm var `meanvars'
+                unab meanvars : `meanvars'
+        <endfold id='2'>}</endfold id='2'>
+        if ("`sumvars'"!="") <beginfold id='2'>{</beginfold id='2'>
+                confirm var `sumvars'
+                unab sumvars : `sumvars'
+        <endfold id='2'>}</endfold id='2'>
+
+        quietly <beginfold id='2'>{</beginfold id='2'>
+                g _count = 1
+                local xvars `meanvars' `sumvars' _count
+
+                <beginfold id='1'>/*</beginfold id='1'> create dummy by-var if no by option is specified <endfold id='1'>*/</endfold id='1'>
+                if "`by'"=="" <beginfold id='2'>{</beginfold id='2'>
+                        tempvar by
+                        g byte `by' = 1
+                <endfold id='2'>}</endfold id='2'>
+                tempvar `xvars' `by'
+
+                <beginfold id='1'>/*</beginfold id='1'> create negative for subtraction when spell ends <endfold id='1'>*/</endfold id='1'>
+                cap foreach v of varlist `xvars' <beginfold id='2'>{</beginfold id='2'>
+                        g double ``v'' = -`v'
+                        local txvars `txvars' ``v''
+                <endfold id='2'>}</endfold id='2'>
+                cap foreach v of varlist `by' <beginfold id='2'>{</beginfold id='2'>
+                        g double ``v'' = `v'
+                        local txvars `txvars' ``v''
+                <endfold id='2'>}</endfold id='2'>
+
+                stack `date0' `xvars' `by' `date1' `txvars', into(`date0' `xvars' `by') clear
+
+                <beginfold id='1'>/*</beginfold id='1'> calculate totals per date <endfold id='1'>*/</endfold id='1'>
+                cap foreach v of varlist `xvars' <beginfold id='2'>{</beginfold id='2'>
+                        egen double ``v'' = sum(`v'), by(`by' `date0')
+                <endfold id='2'>}</endfold id='2'>
+
+                <beginfold id='1'>/*</beginfold id='1'> unique dates only <endfold id='1'>*/</endfold id='1'>
+                by `by' `date0', sort: keep if _n==1
+
+                <beginfold id='1'>/*</beginfold id='1'> calculate totals (+ when spell starts - when ends) <endfold id='1'>*/</endfold id='1'>
+                sort `by'
+                cap foreach v of varlist `xvars' <beginfold id='2'>{</beginfold id='2'>
+                        by `by': replace `v' = sum(``v'')
+                <endfold id='2'>}</endfold id='2'>
+                by `by': g `date1' = `date0'[_n + 1]
+
+                drop if `date0'>`date1'
+                drop _stack
+                drop if _count==0
+                order `by' `date0' `date1' `xvars'
+                format `date0' `f0'
+                format `date1' `f1'
+
+                cap for var `meanvars': replace X = X/_count
+
+                compress
+        <endfold id='2'>}</endfold id='2'>
+
+end

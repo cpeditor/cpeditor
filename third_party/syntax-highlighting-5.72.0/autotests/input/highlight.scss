@@ -1,0 +1,719 @@
+/**
+ * This is a pseudo SCSS file to test Kate's SCSS syntax highlighting.
+ */
+
+@import url("othersheet.css") screen, tv;
+
+body {
+	font-size: 15pt;
+	font-family: Verdana, Helvetica, "Bitstream Vera Sans", sans-serif;
+	margin-top: 0px;			/* yet another comment */
+	margin-bottom: 0px;
+	margin-left: 0px;
+	margin-right: 0px;
+}
+
+.something
+{
+	margin-right: 0px;
+	color: #cdd;
+	color: #AAFE04;
+	color: rgb(10%,30%,43%);
+	background: maroon;
+}
+
+a:hover {
+}
+
+#header,
+p.intro:first-letter,
+p:lang(nl),
+img[align="right"]
+{
+	border: 1px solid Qt::red !important;
+	-moz-border-radius: 15px; /* unknown properties render italic */
+}
+
+@media print {
+
+	#header
+	{
+		display: none;
+	}
+
+}
+
+/*
+TODO: add more tests, e.g. media
+*/
+
+
+.nice-look {
+	font-variant-alternates: styleset(nice-style);
+}
+
+ul {
+	list-style: thumbs;
+}
+
+/* SVG <a> */
+svg|a {}
+
+/* XHTML and SVG <a> */
+*|a {}
+
+*{}
+.class{}
+#id{}
+:hover{}
+:lang(fr){}
+E{}
+E F{}
+E>F{}
+E > F{}
+E~F{}
+E ~ F{}
+E:first-child{}
+E:visited{}
+E::after{}
+E:lang(c){}
+E:lang(fr-ca){}
+E + F{}
+E+F{}
+E[foo]{}
+E[foo=warning]{}
+E[foo="warning"]{}
+E[foo~="warning"]{}
+E[foo^="warning"]{}
+E[foo$="warning"]{}
+E[foo*="warning"]{}
+E[lang|="en"]{}
+DIV.warning{}
+DIV .warning{}
+E#myid{}
+E #myid{}
+E,E{}
+E, E{}
+E ,E{}
+E , E{}
+
+p:nth-child(2) {
+	background: red;
+}
+
+/* Elements that are not <div> or <span> elements */
+body :not(div):not(span) {
+	font-weight: bold;
+}
+
+/* Elements that are not `.crazy` or `.fancy` */
+/* Note that this syntax is not well supported yet. */
+body :not(.crazy, .fancy) {
+	font-family: sans-serif;
+}
+
+:nth-child(odd) { color: lime; }
+:nth-child(even) { color: lime; }
+:nth-child(4) { color: lime; }
+:nth-child(4n) { color: lime; }
+:nth-child(3n+4) { color: lime; }
+:nth-child(-n+3) { color: lime; }
+:nth-child(n+8):nth-child(-n+15) { color: lime; }
+
+.first span:nth-child(2n+1),
+.second span:nth-child(2n+1),
+.third span:nth-of-type(2n+1) {
+	background-color: lime;
+	unknown-property: lime;
+}
+
+:root{
+	--foo: if(x > 5) this.width = 10; /* valid custom property, invalid in any normal property */
+}
+
+:root,
+:root:lang(en) {--external-link: "external link";}
+:root:lang(de) {--external-link: "externer Link";}
+
+a[href^="http"]::after {content: " (" var(--external-link) ")"}
+
+one   { --foo: 10px; }
+two   { --bar: calc(var(--foo) + 10px); }
+three { --foo: calc(var(--bar) + 10px); }
+.foo {
+	--gap: 20;
+	margin-top: var(--gap)px; /*20 px*/
+	margin-top: calc(var(--gap) * 1px); /*20px*/
+}
+
+foo {
+	width: calc(50% -8px); /* invalid */
+	width: calc(50%- 8px); /* invalid */
+	width: calc(50% +8px); /* invalid */
+	width: calc(50%+ 8px); /* invalid */
+	width: calc(2px -var(--a)); /* invalid */
+	width: calc(50%*-8px);
+	width: calc(50% - 8px);
+	width: calc(50% + -8px);
+	width: calc(50% +(8px));
+	width: calc(2px -(var(--a)));
+}
+
+sweet-alert input:focus::-moz-placeholder {
+	-webkit-transition: opacity 0.3s 0.03s ease;
+	transition: opacity 0.3s 0.03s ease;
+	opacity: 0.5;
+}
+
+
+@font-feature-values Font One {
+	@styleset {
+		nice-style: 12;
+	}
+}
+
+@font-feature-values Font Two {
+	@styleset {
+		nice-style: 4;
+	}
+}
+
+@counter-style thumbs {
+	system: cyclic;
+	symbols: "\1F44D";
+	suffix: " ";
+}
+
+@font-face {
+	font-family: "Open Sans";
+	src: url("/fonts/OpenSans-Regular-webfont.woff2") format("woff2"),
+	url("/fonts/OpenSans-Regular-webfont.woff") format("woff");
+}
+
+@page {
+	margin: 1cm;
+}
+
+@page :first {
+	margin: 2cm;
+	/* comments */
+	marks: crop cross;
+}
+
+@page :unknown {
+	margin: 2cm;
+}
+
+@font-face {
+	unknown: 2px;
+	/* comments */
+	font-family: "Bitstream Vera Serif Bold";
+	src: url("/static/styles/libs/font-awesome/fonts/fontawesome-webfont.fdf491ce5ff5.woff");
+}
+
+@viewport {
+	zoom: 0.75;
+	/* comments */
+	min-zoom: 0.5;
+	max-zoom: 0.9;
+}
+
+@viewport {
+	orientation: landscape;
+	/* comments */
+	orientation: landscape;
+}
+
+@document url("https://www.example.com/") {
+	h1 {
+		color: green;
+	}
+}
+
+@supports (display: grid) {
+	div {
+		display: grid;
+	}
+}
+
+@media (max-width: 600px) {
+	.sidebar {
+		display: none;
+	}
+}
+
+@import url("fineprint.css") print;
+@import url(fineprint.css) print;
+@import url('bluish.css') speech;
+@import 'custom.css';
+@import url("chrome://communicator/skin/");
+@import "common.css" screen;
+@import url('landscape.css') screen and (orientation:landscape);
+
+@namespace url(http://www.w3.org/1999/xhtml);
+@namespace svg url(http://www.w3.org/2000/svg);
+
+@keyframes important1 {
+	from { margin-top: 50px; }
+	50%  { margin-top: 150px !important; } /* ignored */
+	to   { margin-top: 100px; }
+}
+
+@keyframes important2 {
+	from { margin-top: 50px;
+		margin-bottom: 100px; }
+	to   { margin-top: 150px !important; /* ignored */
+		margin-bottom: 50px; }
+}
+
+@keyframes slidein {
+	from {
+		margin-left: 100%;
+		width: 300%;
+	}
+
+	to {
+		margin-left: 0%;
+		width: 100%;
+	}
+}
+
+@media print {
+	a:hover { color: red }
+	/* comments */
+	a:hover { color: red }
+}
+
+/**
+ * SCSS https://sass-lang.com/documentation/file.SASS_REFERENCE.html
+ */
+
+#main p {
+  color: #00ff00;
+  width: 97%;
+
+  .redbox {
+    background-color: #ff0000;
+    color: #000000;
+  }
+}
+
+a {
+  font-weight: bold;
+  text-decoration: none;
+  &:hover { text-decoration: underline; }
+  body.firefox & { font-weight: normal; }
+}
+
+#main {
+  color: black;
+  a {
+    font-weight: bold;
+    &:hover { color: red; }
+  }
+}
+
+#main {
+  color: black;
+  &-sidebar { border: 1px solid; }
+}
+
+.funky {
+  font: {
+    family: fantasy;
+    size: 30em;
+    weight: bold;
+  }
+}
+
+.funky {
+  font: 20px/24px fantasy {
+    weight: bold;
+  }
+}
+
+/* This comment is
+ * several lines long.
+ * since it uses the CSS comment syntax,
+ * it will appear in the CSS output. */
+body { color: black; }
+
+// These comments are only one line long each.
+// They won't appear in the CSS output,
+// since they use the single-line comment syntax.
+a { color: green; }
+
+$version: "1.2.3";
+/* This CSS is generated by My Snazzy Framework version #{$version}. */
+
+$width: 5em;
+
+#main {
+  width: $width;
+}
+
+#main {
+  $width: 5em !global;
+  width: $width;
+}
+
+#sidebar {
+  width: $width;
+}
+
+@mixin firefox-message($selector) {
+  body.firefox #{$selector}:before {
+    content: "Hi, Firefox users!";
+  }
+}
+
+@include firefox-message(".header");
+
+$map: (key1: value1, key2: value2, key3: value3);
+
+p {
+  font: 10px/8px;             // Plain CSS, no division
+  $width: 1000px;
+  width: $width/2;            // Uses a variable, does division
+  width: round(1.5)/2;        // Uses a function, does division
+  height: (500px/2);          // Uses parentheses, does division
+  margin-left: 5px + 8px/2px; // Uses +, does division
+  font: (italic bold 10px/8px); // In a list, parentheses don't count
+}
+
+p {
+  $font-size: 12px;
+  $line-height: 30px;
+  font: #{$font-size}/#{$line-height};
+}
+
+p {
+  color: #010203 + #040506;
+  color: rgba(255, 0, 0, 0.75) + rgba(0, 255, 0, 0.75);
+}
+
+$translucent-red: rgba(255, 0, 0, 0.5);
+p {
+  color: opacify($translucent-red, 0.3);
+  background-color: transparentize($translucent-red, 0.25);
+}
+
+$translucent-red: rgba(255, 0, 0, 0.5);
+$green: #00ff00;
+div {
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled='false', startColorstr='#{ie-hex-str($green)}', endColorstr='#{ie-hex-str($translucent-red)}');
+}
+p {
+  cursor: e + -resize;
+}
+p:before {
+  content: "Foo " + Bar;
+  font-family: sans- + "serif";
+}
+p:before {
+  content: "I ate #{5 + 10} pies!";
+}
+$value: null;
+p:before {
+  content: "I ate #{$value} pies!";
+}
+p {
+  width: 1em + (2em * 3);
+}
+p {
+  color: hsl($hue: 0, $saturation: 100%, $lightness: 50%);
+}
+$name: foo;
+$attr: border;
+p.#{$name} {
+  #{$attr}-color: blue;
+}
+p {
+  $font-size: 12px;
+  $line-height: 30px;
+  font: #{$font-size}/#{$line-height};
+}
+
+.foo.bar .baz.bang, .bip.qux {
+    $selector: &;
+}
+
+@mixin does-parent-exist {
+  @if & {
+    &:hover {
+      color: red;
+    }
+  } @else {
+    a {
+      color: red;
+    }
+  }
+}
+
+$content: "First content";
+$content: "Second content?" !default;
+$new_content: "First time reference" !default;
+
+#main {
+  content: $content;
+  new-content: $new_content;
+}
+
+@import "foo.css";
+@import "foo" screen;
+@import "http://foo.com/bar";
+@import url(foo);
+
+$family: unquote("Droid+Sans");
+@import url("http://fonts.googleapis.com/css?family=#{$family}");
+#main {
+  @import "example";
+}
+
+.sidebar {
+  width: 300px;
+  @media screen and (orientation: landscape) {
+    width: 500px;
+  }
+}
+@media screen {
+  .sidebar {
+    @media (orientation: landscape) {
+      width: 500px;
+    }
+  }
+}
+
+$media: screen;
+$feature: -webkit-min-device-pixel-ratio;
+$value: 1.5;
+
+@media #{$media} and ($feature: $value) {
+  .sidebar {
+    width: 500px;
+  }
+}
+
+.error {
+  border: 1px #f00;
+  background-color: #fdd;
+}
+.seriousError {
+  @extend .error;
+  border-width: 3px;
+}
+
+.hoverlink {
+  @extend a:hover;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+#context a%extreme a %extreme {
+  color: blue;
+  font-weight: bold;
+  font-size: 2em;
+}
+.notice {
+  @extend %extreme;
+}
+
+a.important {
+  @extend .notice !optional;
+}
+
+@media print {
+  .page {
+    width: 8in;
+    @at-root (without: media) {
+      color: red;
+    }
+  }
+}
+
+@debug 10em + 12em;
+
+@mixin adjust-location($x, $y) {
+  @if unitless($x) {
+    @warn "Assuming #{$x} to be in pixels";
+    $x: 1px * $x;
+  }
+  @if unitless($y) {
+    @warn "Assuming #{$y} to be in pixels";
+    $y: 1px * $y;
+  }
+  position: relative; left: $x; top: $y;
+}
+
+@mixin adjust-location($x, $y) {
+  @if unitless($x) {
+    @error "$x may not be unitless, was #{$x}.";
+  }
+  @if unitless($y) {
+    @error "$y may not be unitless, was #{$y}.";
+  }
+  position: relative; left: $x; top: $y;
+}
+
+p {
+  @if 1 + 1 == 2 { border: 1px solid;  }
+  @if 5 < 3      { border: 2px dotted; }
+  @if null       { border: 3px double; }
+}
+
+$type: monster;
+p {
+  @if $type == ocean {
+    color: blue;
+  } @else if $type == matador {
+    color: red;
+  } @else if $type == monster {
+    color: green;
+  } @else {
+    color: black;
+  }
+}
+
+@for $i from 1 through 3 {
+  .item-#{$i} { width: 2em * $i; }
+}
+
+@each $animal in puma, sea-slug, egret, salamander {
+  .#{$animal}-icon {
+    background-image: url('/images/#{$animal}.png');
+  }
+}
+
+@each $animal, $color, $cursor in (puma, black, default),
+                                  (sea-slug, blue, pointer),
+                                  (egret, white, move) {
+  .#{$animal}-icon {
+    background-image: url('/images/#{$animal}.png');
+    border: 2px solid $color;
+    cursor: $cursor;
+  }
+}
+
+@each $header, $size in (h1: 2em, h2: 1.5em, h3: 1.2em) {
+  #{$header} {
+    font-size: $size;
+  }
+}
+
+$i: 6;
+@while $i > 0 {
+  .item-#{$i} { width: 2em * $i; }
+  $i: $i - 2;
+}
+
+@mixin large-text {
+  font: {
+    family: Arial;
+    size: 20px;
+    weight: bold;
+  }
+  color: #ff0000;
+}
+
+@mixin clearfix {
+  display: inline-block;
+  &:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+  }
+  * html & { height: 1px }
+}
+
+.page-title {
+  @include large-text;
+  padding: 4px;
+  margin-top: 10px;
+}
+
+@mixin compound {
+  @include highlighted-background;
+  @include header-text;
+}
+
+@mixin highlighted-background { background-color: #fc0; }
+@mixin header-text { font-size: 20px; }
+
+@mixin sexy-border($color, $width) {
+  border: {
+    color: $color;
+    width: $width;
+    style: dashed;
+  }
+}
+
+p { @include sexy-border(blue, 1in); }
+
+p { @include sexy-border($color: blue); }
+h1 { @include sexy-border($color: blue, $width: 2in); }
+
+
+@mixin colors($text, $background, $border) {
+  color: $text;
+  background-color: $background;
+  border-color: $border;
+}
+
+$values: #ff0000, #00ff00, #0000ff;
+.primary {
+  @include colors($values...);
+}
+
+$value-map: (text: #00ff00, background: #0000ff, border: #ff0000);
+.secondary {
+  @include colors($value-map...);
+}
+
+@mixin apply-to-ie6-only {
+  * html {
+    @content;
+  }
+}
+@include apply-to-ie6-only {
+  #logo {
+    background-image: url(/logo.gif);
+  }
+}
+
+$grid-width: 40px;
+$gutter-width: 10px;
+
+@function grid-width($n) {
+  @return $n * $grid-width + ($n - 1) * $gutter-width;
+}
+
+#sidebar { width: grid-width(5); }
+
+@mixin unify-parent($child) {
+  @at-root #{selector-unify(&, $child)} {
+    @content;
+  }
+}
+
+:root {
+  --font-family-sans-serif: #{inspect($font-family-sans-serif)};
+  --font-family-monospace: #{inspect($font-family-monospace)};
+}
+
+div {
+  background-image: url("/icons/#{$name}.svg");
+  font: #{"string"};
+
+.icon-#{$name} {
+  position: absolute;
+  #{$top-or-bottom}: 0;
+  -#{$prefix}-#{$property}: $value;
+  .icon-#{$name} {
+    position: absolute;
+    #{$top-or-bottom}: 0;
+    -#{$prefix}-#{$property}-image: $value
+  }
+}

@@ -1,0 +1,38 @@
+<Comment>// from: https://en.wikipedia.org/w/index.php?title=YANG&oldid=792171830#Example</Comment><br/>
+<Statement>module</Statement><Normal Text> example-sports {</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>  </Normal Text><Statement>namespace</Statement><Normal Text> </Normal Text><String>"http://example.com/example-sports"</String><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Statement>prefix</Statement><Normal Text> sports;</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>  </Normal Text><Statement>import</Statement><Normal Text> ietf-yang-types { </Normal Text><Statement>prefix</Statement><Normal Text> yang; }</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>  </Normal Text><Statement>typedef</Statement><Normal Text> season {</Normal Text><br/>
+<Normal Text>    </Normal Text><Statement>type</Statement><Normal Text> </Normal Text><Type>string</Type><Normal Text>;</Normal Text><br/>
+<Normal Text>    </Normal Text><Statement>description</Statement><br/>
+<Normal Text>      </Normal Text><String>"The name of a sports season, including the type and the year, e.g,</String><br/>
+<String>       'Champions League 2014/2015'."</String><Normal Text>;</Normal Text><br/>
+<Normal Text>  }</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>  </Normal Text><Statement>container</Statement><Normal Text> sports {</Normal Text><br/>
+<Normal Text>    </Normal Text><Statement>config</Statement><Normal Text> </Normal Text><Boolean>true</Boolean><Normal Text>;</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>    </Normal Text><Statement>list</Statement><Normal Text> person {</Normal Text><br/>
+<Normal Text>      </Normal Text><Statement>key</Statement><Normal Text> name;</Normal Text><br/>
+<Normal Text>      </Normal Text><Statement>leaf</Statement><Normal Text> name { </Normal Text><Statement>type</Statement><Normal Text> </Normal Text><Type>string</Type><Normal Text>; }</Normal Text><br/>
+<Normal Text>      </Normal Text><Statement>leaf</Statement><Normal Text> birthday { </Normal Text><Statement>type</Statement><Normal Text> yang:date-and-time; </Normal Text><Statement>mandatory</Statement><Normal Text> </Normal Text><Boolean>true</Boolean><Normal Text>; }</Normal Text><br/>
+<Normal Text>    }</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>    </Normal Text><Statement>list</Statement><Normal Text> team {</Normal Text><br/>
+<Normal Text>      </Normal Text><Statement>key</Statement><Normal Text> name;</Normal Text><br/>
+<Normal Text>      </Normal Text><Statement>leaf</Statement><Normal Text> name { </Normal Text><Statement>type</Statement><Normal Text> </Normal Text><Type>string</Type><Normal Text>; }</Normal Text><br/>
+<Normal Text>      </Normal Text><Statement>list</Statement><Normal Text> player {</Normal Text><br/>
+<Normal Text>        </Normal Text><Statement>key</Statement><Normal Text> </Normal Text><String>"name season"</String><Normal Text>;</Normal Text><br/>
+<Normal Text>        </Normal Text><Statement>unique</Statement><Normal Text> number;</Normal Text><br/>
+<Normal Text>        </Normal Text><Statement>leaf</Statement><Normal Text> name { </Normal Text><Statement>type</Statement><Normal Text> </Normal Text><Type>leafref</Type><Normal Text> { </Normal Text><Statement>path</Statement><Normal Text> </Normal Text><String>"/sports/person/name"</String><Normal Text>; }  }</Normal Text><br/>
+<Normal Text>        </Normal Text><Statement>leaf</Statement><Normal Text> season { </Normal Text><Statement>type</Statement><Normal Text> season; }</Normal Text><br/>
+<Normal Text>        </Normal Text><Statement>leaf</Statement><Normal Text> number { </Normal Text><Statement>type</Statement><Normal Text> </Normal Text><Type>uint16</Type><Normal Text>; </Normal Text><Statement>mandatory</Statement><Normal Text> </Normal Text><Boolean>true</Boolean><Normal Text>; }</Normal Text><br/>
+<Normal Text>        </Normal Text><Statement>leaf</Statement><Normal Text> scores { </Normal Text><Statement>type</Statement><Normal Text> </Normal Text><Type>uint16</Type><Normal Text>; </Normal Text><Statement>default</Statement><Normal Text> 0; }</Normal Text><br/>
+<Normal Text>      }</Normal Text><br/>
+<Normal Text>    }</Normal Text><br/>
+<Normal Text>  }</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>

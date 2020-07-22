@@ -1,0 +1,145 @@
+<beginfold id='1'>/*</beginfold id='1'>
+------------------------------------------------------------------------
+Efficient Galois Fields in Maxima
+
+by Alasdair McAndrew
+and later extended by Fabrizio Caruso and Jacopo Daurizio
+
+it is distribuited together with gf_roots by Jacopo Daurizio
+
+Authors:
+
+Fabrizio Caruso   (optimizations, testing)
+Jacopo D'Aurizio   (optimizations, modular roots)
+Alasdair McAndrew (original version of the package, pohlig-helman log, etc... )
+------------------------------------------------------------------------<endfold id='1'>*/</endfold id='1'>
+
+<beginfold id='1'>/*</beginfold id='1'> Released under terms of the GNU General Public License, version 2,
+ * by permission of the authors to Robert Dodier circa 2007-12-02.
+ <endfold id='1'>*/</endfold id='1'>
+
+<beginfold id='1'>/*</beginfold id='1'> Defines a flag for dealing with large fields.  If it is set to "false",
+then lookup tables are used for exponentiation and logarithms.  Otherwise
+other algorithms are used <endfold id='1'>*/</endfold id='1'>
+
+define_variable(largefield,true,bool)$
+define_variable(gf_char,0,integer)$
+define_variable(gf_exp,0,integer)$
+define_variable(gf_order,0,integer)$
+define_variable (gf_one, 'gf_one, any_check)$
+define_variable (gf_prim, 'gf_prim, any_check)$
+define_variable (gf_irr, 'gf_irr, any_check)$
+define_variable (gf_list, 'gf_list, any_check)$
+define_variable (gen_powers, 'gf_list, any_check)$
+remvalue(x,z,gf_char,gf_exp,gf_irr,pg,gp,lg,gf_prim,gf_one,gf_order,gf_list,gen_powers)$
+
+
+<beginfold id='1'>/*</beginfold id='1'> --------------------------------------------------------------------------------------------- <endfold id='1'>*/</endfold id='1'>
+<beginfold id='1'>/*</beginfold id='1'> Settings <endfold id='1'>*/</endfold id='1'>
+
+GF_VERBOSE:false; <beginfold id='1'>/*</beginfold id='1'> Verbosity <endfold id='1'>*/</endfold id='1'>
+GF_WARNING: true; <beginfold id='1'>/*</beginfold id='1'> Warnings <endfold id='1'>*/</endfold id='1'>
+GF_IRREDUCIBILITY_CHECK:false;   <beginfold id='1'>/*</beginfold id='1'> Irreducibility test for the minimal polynomial of the extension <endfold id='1'>*/</endfold id='1'>
+
+<beginfold id='1'>/*</beginfold id='1'>
+------------------------------------------------------------------------------------------------ <endfold id='1'>*/</endfold id='1'>
+
+
+<beginfold id='1'>/*</beginfold id='1'> It defines a new current field with gf_char=b, min. pol.= p of deg= e<endfold id='1'>*/</endfold id='1'>
+gf_set([ars]):=block([gj,m,i,j,dg],
+  if length(ars)=1 then
+    (
+    gf_setp(ars[1]),
+    return(true)
+    )
+  else
+    (
+    if length(ars)=2 then
+       (
+       if numberp(ars[2]) then
+         (
+         if ars[2]=0 and GF_WARNING then
+           (
+           print("WARNING: the irreducible is zero! We assume GF(",ars[1],")"),
+           gf_setp(ars[1]),
+           return(true)
+           )
+         else
+           (
+           error("ERROR: you tried to extend with a non-zero constant!"),
+           return(false)
+           )
+         )
+       else
+         (
+         dg:hipow(ars[2],x),
+
+         if dg=1 then
+           gf_setp(ars[1]),
+         gf_irr:ars[2],
+         gf_exp:dg,
+         return(true)
+         )
+       )
+    else
+       (
+       gf_exp:ars[2],
+       if gf_exp=1 then
+          (
+          gf_setp(ars[1]),
+          gf_irr:rat(ars[3]),
+          return(true)
+          ),
+       gf_irr:rat(ars[3])
+       )
+    ),
+
+  gf_char:ars[1],
+  gf_one:rat(1,x),
+  gf_order:gf_char^gf_exp-1,
+
+  m:makelist(coeff(gf_irr,x,i),i,0,gf_exp),
+  gf_list:[[first(m),0]],j:1,
+  for i:2 thru gf_exp+1 do if m[i]=0 then j:j+1 else ( gf_list:endcons([m[i],j],gf_list), j:1 ),
+
+  if not(primep(gf_char)) then error("ERROR: Gf_Char must be a prime number.")
+    else
+      modulus:gf_char,
+  if GF_IRREDUCIBILITY_CHECK and
+       hipow(args(factor(ars[3]))[1],x)#hipow(rat(ars[3]),x) then
+      error("ERROR: Polynomial is not irreducible"),
+
+  if not(largefield) then
+     (
+     pg:mkpowers(),
+     lg:mklogs()
+     )
+  else
+     (
+     if GF_VERBOSE then
+       print("finding a primitive element..."),
+
+     gf_prim:rat(gf_findprim(),x),
+     if GF_VERBOSE then
+     print("...primitive element found.")
+
+     ),
+  modulus:false, <beginfold id='1'>/*</beginfold id='1'> it resets the modulus <endfold id='1'>*/</endfold id='1'>
+  return(true)
+
+  )$
+
+
+<beginfold id='1'>/*</beginfold id='1'> Prints out information about the field <endfold id='1'>*/</endfold id='1'>
+gf_info():=block(
+  print("Prime gf_char value: ",gf_char),
+  print("Exponent: ", gf_exp),
+  print("Multiplicative order: ",gf_order),
+  print("Irreducible polynomial: ",gf_irr),
+  print("Primitive element: ",gf_prim),
+  if (largefield) then
+    print("Largefield flag is true; powers and logarithms not computed.")
+    else
+    print("Largefield flag is false; powers and logarithms computed."),
+  disp()
+)$

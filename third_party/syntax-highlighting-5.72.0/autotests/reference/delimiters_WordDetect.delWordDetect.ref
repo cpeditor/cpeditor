@@ -1,0 +1,47 @@
+<Comment># Highlight words</Comment><br/>
+<Keyword1>word1</Keyword1><br/>
+<Keyword2>_word2</Keyword2><br/>
+<Keyword3>/word3</Keyword3><br/>
+<Keyword4>word4+</Keyword4><br/>
+<Keyword5><word5></Keyword5><br/>
+<Keyword6>&</Keyword6><br/>
+<Keyword7>;;;</Keyword7><br/>
+<Keyword8>w w-word8-</Keyword8><br/>
+<Normal></Normal><br/>
+<Normal>normal </Normal><Keyword1>word1</Keyword1><br/>
+<Normal>normal </Normal><Keyword2>_word2</Keyword2><br/>
+<Normal>normal </Normal><Keyword3>/word3</Keyword3><br/>
+<Normal>normal </Normal><Keyword4>word4+</Keyword4><br/>
+<Normal>normal </Normal><Keyword5><word5></Keyword5><br/>
+<Normal>normal </Normal><Keyword6>&</Keyword6><br/>
+<Normal>normal </Normal><Keyword7>;;;</Keyword7><br/>
+<Normal>normal </Normal><Keyword8>w w-word8-</Keyword8><br/>
+<Normal></Normal><br/>
+<Normal>....</Normal><Keyword1>word1</Keyword1><Normal>....</Normal><br/>
+<Normal>....</Normal><Keyword2>_word2</Keyword2><Normal>....</Normal><br/>
+<Normal>....</Normal><Keyword3>/word3</Keyword3><Normal>....</Normal><br/>
+<Normal>....</Normal><Keyword4>word4+</Keyword4><Normal>....</Normal><br/>
+<Normal>....</Normal><Keyword5><word5></Keyword5><Normal>....</Normal><br/>
+<Normal>....</Normal><Keyword6>&</Keyword6><Normal>....</Normal><br/>
+<Normal>....</Normal><Keyword7>;;;</Keyword7><Normal>....</Normal><br/>
+<Normal>....</Normal><Keyword8>w w-word8-</Keyword8><Normal>....</Normal><br/>
+<Normal></Normal><br/>
+<Normal>normal</Normal><Keyword2>_word2</Keyword2><Normal> <-- </Normal><Keyword2>_word2</Keyword2><br/>
+<Normal>normal</Normal><Keyword3>/word3</Keyword3><Normal> <-- </Normal><Keyword3>/word3</Keyword3><br/>
+<Keyword4>word4+</Keyword4><Normal>normal <-- </Normal><Keyword4>word4+</Keyword4><br/>
+<Normal>normal</Normal><Keyword5><word5></Keyword5><Normal>normal <-- </Normal><Keyword5><word5></Keyword5><br/>
+<Normal>normal</Normal><Keyword6>&</Keyword6><Normal>normal <-- </Normal><Keyword6>&</Keyword6><br/>
+<Normal>normal</Normal><Keyword7>;;;</Keyword7><Normal>normal <-- </Normal><Keyword7>;;;</Keyword7><br/>
+<Keyword8>w w-word8-</Keyword8><Normal>normal <-- </Normal><Keyword8>w w-word8-</Keyword8><br/>
+<Normal></Normal><br/>
+<Normal>aaa</Normal><Keyword2>_word2</Keyword2><Normal>_aaa <-- </Normal><Keyword2>_word2</Keyword2><br/>
+<Normal>aaa</Normal><Keyword3>/word3</Keyword3><Normal>/aaa <-- </Normal><Keyword3>/word3</Keyword3><br/>
+<Normal>aaa+</Normal><Keyword4>word4+</Keyword4><Normal>aaa <-- </Normal><Keyword4>word4+</Keyword4><br/>
+<Normal>aaa-</Normal><Keyword8>w w-word8-</Keyword8><Normal>aaa <-- </Normal><Keyword8>w w-word8-</Keyword8><br/>
+<Normal></Normal><br/>
+<Comment># Normal text</Comment><br/>
+<Normal>aaaword1aaa</Normal><br/>
+<Normal>aaa_word2aaa</Normal><br/>
+<Normal>aaa/word3aaa</Normal><br/>
+<Normal>aaaword4+aaa</Normal><br/>
+<Normal>aaaw w-word8-aaa</Normal><br/>

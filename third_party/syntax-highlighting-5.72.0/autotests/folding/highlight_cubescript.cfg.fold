@@ -1,0 +1,34 @@
+// kate: syntax CubeScript;
+// CubeScript test
+
+i = 0
+rainbowchat = <beginfold id='1'>[</beginfold id='1'>
+    out = ""
+    loop k $numargs <beginfold id='1'>[</beginfold id='1'>
+        word = $(format "arg%1" (+ $k 1))
+        loop j (stringlen $word) <beginfold id='1'>[</beginfold id='1'>
+            out = (format "%1^fz%2%3" $out (substring "rygcbvmr" $i 2) (substring $word $j 1)) 
+            if (> $i 5) <beginfold id='1'>[</beginfold id='1'>i = 0 <endfold id='1'>]</endfold id='1'> <beginfold id='1'>[</beginfold id='1'>i = (+ $i 1)<endfold id='1'>]</endfold id='1'>
+        <endfold id='1'>]</endfold id='1'>
+        out = (format "%1 " $out)
+    <endfold id='1'>]</endfold id='1'>
+    if (< (stringlen $out) 128) <beginfold id='1'>[</beginfold id='1'>
+        say $out
+    <endfold id='1'>]</endfold id='1'> <beginfold id='1'>[</beginfold id='1'>
+        echo (format "This message is %1 chars long - the usual limit is 127. Each letter takes up 5." (stringlen $out))
+    <endfold id='1'>]</endfold id='1'>
+<endfold id='1'>]</endfold id='1'>
+
+setcomplete rainbowchat 1
+listcomplete rainbowchat <beginfold id='1'>[</beginfold id='1'>
+    "BoOoM"
+    "Good game!"
+    "What the f*** was this?!?"
+    "go for it!"
+    "yeeeehaw!"
+    "what a mess >_< "
+<endfold id='1'>]</endfold id='1'>
+
+// Line continuation escape
+"string ^
+    newline"

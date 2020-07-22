@@ -1,0 +1,78 @@
+<Comment># CoffeeScript test</Comment><br/>
+<Comment># Source: https://coffeescript.org</Comment><br/>
+<Normal></Normal><br/>
+<Comment>### Multiline</Comment><br/>
+<Comment>  comment ###</Comment><br/>
+<Reserved>import</Reserved><Normal> </Normal><String>'local-file.coffee'</String><br/>
+<Normal></Normal><br/>
+<Comment># Assignment:</Comment><br/>
+<Identifier>number</Identifier><Normal>   </Normal><Symbol>=</Symbol><Normal> </Normal><Decimal>42</Decimal><br/>
+<Identifier>opposite</Identifier><Normal> </Normal><Symbol>=</Symbol><Normal> </Normal><Value Keywords>true</Value Keywords><br/>
+<Normal></Normal><br/>
+<Comment># Conditions:</Comment><br/>
+<Identifier>number</Identifier><Normal> </Normal><Symbol>=</Symbol><Normal> </Normal><Symbol>-</Symbol><Decimal>42</Decimal><Normal> </Normal><Keyword>if</Keyword><Normal> </Normal><Identifier>opposite</Identifier><br/>
+<Normal></Normal><br/>
+<Comment># Functions:</Comment><br/>
+<Identifier>square</Identifier><Normal> </Normal><Symbol>=</Symbol><Normal> </Normal><Function>(x) -></Function><Normal> </Normal><Identifier>x</Identifier><Normal> </Normal><Symbol>*</Symbol><Normal> </Normal><Identifier>x</Identifier><br/>
+<Normal></Normal><br/>
+<Comment># Arrays:</Comment><br/>
+<Identifier>list</Identifier><Normal> </Normal><Symbol>=</Symbol><Normal> </Normal><Symbol>[</Symbol><Decimal>1</Decimal><Symbol>,</Symbol><Normal> </Normal><Decimal>2</Decimal><Symbol>,</Symbol><Normal> </Normal><Decimal>3</Decimal><Symbol>,</Symbol><Normal> </Normal><Decimal>4</Decimal><Symbol>,</Symbol><Normal> </Normal><Decimal>5</Decimal><Symbol>]</Symbol><br/>
+<Normal></Normal><br/>
+<Comment># Objects:</Comment><br/>
+<Identifier>math</Identifier><Normal> </Normal><Symbol>=</Symbol><br/>
+<Normal>  </Normal><Identifier>root</Identifier><Symbol>:</Symbol><Normal>   </Normal><Globals>Math</Globals><Symbol>.</Symbol><Identifier>sqrt</Identifier><br/>
+<Normal>  </Normal><Identifier>square</Identifier><Symbol>:</Symbol><Normal> </Normal><Identifier>square</Identifier><br/>
+<Normal>  </Normal><Identifier>cube</Identifier><Symbol>:</Symbol><Normal>   </Normal><Function>(x) -></Function><Normal> </Normal><Identifier>x</Identifier><Normal> </Normal><Symbol>*</Symbol><Normal> </Normal><Identifier>square</Identifier><Normal> </Normal><Identifier>x</Identifier><br/>
+<Normal></Normal><br/>
+<Comment># Splats:</Comment><br/>
+<Identifier>race</Identifier><Normal> </Normal><Symbol>=</Symbol><Normal> </Normal><Function>(winner, runners...) -></Function><br/>
+<Normal>  </Normal><Identifier>print</Identifier><Normal> </Normal><Identifier>winner</Identifier><Symbol>,</Symbol><Normal> </Normal><Identifier>runners</Identifier><br/>
+<Normal></Normal><br/>
+<Comment># Existence:</Comment><br/>
+<Browser Globals>alert</Browser Globals><Normal> </Normal><String>"I knew it!"</String><Normal> </Normal><Keyword>if</Keyword><Normal> </Normal><Identifier>elvis</Identifier><Symbol>?</Symbol><br/>
+<Normal></Normal><br/>
+<Comment># Array comprehensions:</Comment><br/>
+<Identifier>cubes</Identifier><Normal> </Normal><Symbol>=</Symbol><Normal> </Normal><Symbol>(</Symbol><Identifier>math</Identifier><Symbol>.</Symbol><Identifier>cube</Identifier><Normal> </Normal><Identifier>num</Identifier><Normal> </Normal><Keyword>for</Keyword><Normal> </Normal><Identifier>num</Identifier><Normal> </Normal><Keyword>in</Keyword><Normal> </Normal><Identifier>list</Identifier><Symbol>)</Symbol><br/>
+<Normal></Normal><br/>
+<Comment># Classes:</Comment><br/>
+<Keyword>class</Keyword><Normal> </Normal><Class>Animal</Class><br/>
+<Normal>  </Normal><Keyword>constructor</Keyword><Symbol>:</Symbol><Normal> </Normal><Function>(@name) -></Function><br/>
+<Normal></Normal><br/>
+<Normal>  </Normal><Identifier>move</Identifier><Symbol>:</Symbol><Normal> </Normal><Function>(meters) -></Function><br/>
+<Normal>    </Normal><Browser Globals>alert</Browser Globals><Normal> </Normal><Accessor>@name</Accessor><Normal> </Normal><Symbol>+</Symbol><Normal> </Normal><String>" moved </String><Embedding>#{</Embedding><Normal>meters</Normal><Embedding>}</Embedding><String>m."</String><br/>
+<Normal></Normal><br/>
+<Comment># Switch/When/Else:</Comment><br/>
+<Keyword>switch</Keyword><Normal> </Normal><Identifier>day</Identifier><br/>
+<Normal>  </Normal><Keyword>when</Keyword><Normal> </Normal><String>"Mon"</String><Normal> </Normal><Keyword>then</Keyword><Normal> </Normal><Identifier>go</Identifier><Normal> </Normal><Identifier>work</Identifier><br/>
+<Normal>  </Normal><Keyword>when</Keyword><Normal> </Normal><String>"Tue"</String><Normal> </Normal><Keyword>then</Keyword><Normal> </Normal><Identifier>go</Identifier><Normal> </Normal><Identifier>relax</Identifier><br/>
+<Normal>  </Normal><Keyword>when</Keyword><Normal> </Normal><String>"Thu"</String><Normal> </Normal><Keyword>then</Keyword><Normal> </Normal><Identifier>go</Identifier><Normal> </Normal><Identifier>iceFishing</Identifier><br/>
+<Normal>  </Normal><Keyword>when</Keyword><Normal> </Normal><String>"Fri"</String><Symbol>,</Symbol><Normal> </Normal><String>"Sat"</String><br/>
+<Normal>    </Normal><Keyword>if</Keyword><Normal> </Normal><Identifier>day</Identifier><Normal> </Normal><Keyword>is</Keyword><Normal> </Normal><Identifier>bingoDay</Identifier><br/>
+<Normal>      </Normal><Identifier>go</Identifier><Normal> </Normal><Identifier>bingo</Identifier><br/>
+<Normal>      </Normal><Identifier>go</Identifier><Normal> </Normal><Identifier>dancing</Identifier><br/>
+<Normal>  </Normal><Keyword>when</Keyword><Normal> </Normal><String>"Sun"</String><Normal> </Normal><Keyword>then</Keyword><Normal> </Normal><Identifier>go</Identifier><Normal> </Normal><Identifier>church</Identifier><br/>
+<Normal>  </Normal><Keyword>else</Keyword><Normal> </Normal><Identifier>go</Identifier><Normal> </Normal><Identifier>work</Identifier><br/>
+<Normal></Normal><br/>
+<Comment># Member objects:</Comment><br/>
+<Globals>Object</Globals><Symbol>.</Symbol><Identifier>prop</Identifier><Symbol>.</Symbol><Identifier>  Object</Identifier><Normal> </Normal><Symbol>.</Symbol><Identifier>Object</Identifier><Normal> </Normal><Globals>Object</Globals><br/>
+<Identifier>timelineEvent</Identifier><Symbol>.</Symbol><Identifier>class</Identifier><br/>
+<Normal></Normal><br/>
+<Comment># Embedded JavaScript Code</Comment><br/>
+<Identifier>markdown</Identifier><Normal> </Normal><Symbol>=</Symbol><Normal> </Normal><Javascript>`</Javascript><Keyword>function</Keyword><Normal Text> () </Normal Text><Normal>{</Normal><br/>
+<Normal>  </Normal><JavaScript Function Name>return</JavaScript Function Name><Normal> </Normal><JavaScript Template>\`In Markdown, write code like </JavaScript Template><Escape>\\\`</Escape><JavaScript Template>this</JavaScript Template><Escape>\\\`</Escape><JavaScript Template>\`</JavaScript Template><Symbol>;</Symbol><br/>
+<Normal>}</Normal><Javascript>`</Javascript><br/>
+<Normal></Normal><br/>
+<Javascript>```</Javascript><br/>
+<Normal Text>  </Normal Text><Comment>// Comment</Comment><br/>
+<Normal Text>  </Normal Text><Keyword>var</Keyword><Normal Text> array </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Keyword>new</Keyword><Normal Text> </Normal Text><Built-in Objects>Array</Built-in Objects><Normal Text>(</Normal Text><Decimal>500</Decimal><Normal Text>)</Normal Text><Symbol>;</Symbol><br/>
+<Normal Text>  </Normal Text><Keyword>var</Keyword><Normal Text> name </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><String>"Willy"</String><Symbol>;</Symbol><br/>
+<Normal Text>  </Normal Text><Function Name>alert</Function Name><Normal Text>(</Normal Text><Template>`Hello </Template><Substitution>${</Substitution><Normal Text>name</Normal Text><Substitution>}</Substitution><Template>!`</Template><Normal Text>)</Normal Text><Symbol>;</Symbol><br/>
+<Javascript>```</Javascript><br/>
+<Javascript>`</Javascript><Normal Text> </Normal Text><JavaScript Built-in Objects>String</JavaScript Built-in Objects><JavaScript Symbol>.</JavaScript Symbol><JavaScript Function Name>raw</JavaScript Function Name><JavaScript Template>\`String ${x} \`</JavaScript Template><Normal Text> </Normal Text><Javascript>`</Javascript><br/>
+<Normal></Normal><br/>
+<Javascript>`</Javascript><Normal Text> </Normal Text><Comment>// Regular Expression after template</Comment><br/>
+<Normal Text>  </Normal Text><Keyword>const</Keyword><Normal Text> a </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><JavaScript Template>\`6\`</JavaScript Template><Normal Text> </Normal Text><Symbol>/</Symbol><Normal Text> </Normal Text><Decimal>2</Decimal><Symbol>;</Symbol><Normal Text> </Normal Text><Comment>/*comment*/</Comment><br/>
+<Normal Text>  </Normal Text><JavaScript Template>\`template\`</JavaScript Template><Normal Text> </Normal Text><Regular Expression>/regex/</Regular Expression><Normal Text> </Normal Text><Javascript>`</Javascript><br/>
+<Normal></Normal><br/>
+<Javascript>`</Javascript><Normal Text> </Normal Text><Comment>// Tagged template literals</Comment><br/>
+<Normal Text>  </Normal Text><JavaScript Function Name>tagFunc</JavaScript Function Name><JavaScript Template>\`Setting </JavaScript Template><JavaScript Substitution>${</JavaScript Substitution><Normal Text>setting</Normal Text><JavaScript Substitution>}</JavaScript Substitution><JavaScript Template> is </JavaScript Template><JavaScript Substitution>${</JavaScript Substitution><Normal Text>value</Normal Text><JavaScript Substitution>}</JavaScript Substitution><JavaScript Template>!\`</JavaScript Template><Normal Text> </Normal Text><Javascript>`</Javascript><br/>

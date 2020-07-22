@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title>test.fbs</title>
+<meta name="generator" content="KF5::SyntaxHighlighting (FlatBuffers)"/>
+</head><body style="color:#1f1c1b"><pre>
+<span style="color:#898887;">// Example IDL file for our monster's schema.</span>
+
+<span style="font-weight:bold;">namespace</span> MyGame.Sample;
+
+<span style="font-weight:bold;">enum</span> Color:<span style="color:#0057ae;">byte</span> { Red = <span style="color:#b08000;">0</span>, Green, Blue = <span style="color:#b08000;">2</span> }
+
+<span style="font-weight:bold;">union</span> Equipment { Weapon } <span style="color:#898887;">// Optionally add more tables.</span>
+
+<span style="font-weight:bold;">struct</span> Vec3 {
+  x:<span style="color:#0057ae;">float</span>;
+  y:<span style="color:#0057ae;">float</span>;
+  z:<span style="color:#0057ae;">float</span>;
+}
+
+<span style="font-weight:bold;">table</span> Monster {
+  pos:Vec3; <span style="color:#898887;">// Struct.</span>
+  mana:<span style="color:#0057ae;">short</span> = <span style="color:#b08000;">150</span>;
+  hp:<span style="color:#0057ae;">short</span> = <span style="color:#b08000;">100</span>;
+  name:<span style="color:#0057ae;">string</span>;
+  friendly:<span style="color:#0057ae;">bool</span> = <span style="color:#b08000;">false</span> (<span style="font-weight:bold;">deprecated</span>);
+  inventory:[<span style="color:#0057ae;">ubyte</span>];  <span style="color:#898887;">// Vector of scalars.</span>
+  color:Color = Blue; <span style="color:#898887;">// Enum.</span>
+  weapons:[Weapon];   <span style="color:#898887;">// Vector of tables.</span>
+  equipped:Equipment; <span style="color:#898887;">// Union.</span>
+  path:[Vec3];        <span style="color:#898887;">// Vector of structs.</span>
+}
+
+<span style="font-weight:bold;">table</span> Weapon {
+  name:<span style="color:#0057ae;">string</span>;
+  damage:<span style="color:#0057ae;">short</span>;
+}
+
+<span style="font-weight:bold;">root_type</span> Monster;
+</pre></body></html>

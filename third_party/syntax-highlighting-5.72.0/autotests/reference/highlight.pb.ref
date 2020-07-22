@@ -1,0 +1,87 @@
+<Comment>; This is a test file for kate's PureBasic highlighting.</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Comment>; BMP2x Converter by Sven Langenkamp</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Functions>UseJPEGImageEncoder</Functions><Separator>()</Separator><br/>
+<Functions>UsePNGImageEncoder</Functions><Separator>()</Separator><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>Declare</Keyword><Normal Text> Convert</Normal Text><Separator>(</Separator><Normal Text>JPEG</Normal Text><Separator>)</Separator><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>Enumeration </Keyword><Number>1</Number><br/>
+<Normal Text>    </Normal Text><Constant>#JPEG</Constant><br/>
+<Normal Text>    </Normal Text><Constant>#PNG</Constant><br/>
+<Keyword>EndEnumeration</Keyword><br/>
+<Normal Text></Normal Text><br/>
+<Region Marker>; BEGIN section</Region Marker><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Region Marker>; END</Region Marker><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>Global</Keyword><Normal Text> Count</Normal Text><br/>
+<Keyword>Global</Keyword><Normal Text> file</Normal Text><Separator>.</Separator><Normal Text>s</Normal Text><br/>
+<Keyword>Global</Keyword><Normal Text> filename</Normal Text><Separator>.</Separator><Normal Text>s</Normal Text><br/>
+<Keyword>Global</Keyword><Normal Text> fileext</Normal Text><Separator>.</Separator><Normal Text>s</Normal Text><br/>
+<Keyword>Global</Keyword><Normal Text> OutputFormat</Normal Text><br/>
+<Keyword>Global</Keyword><Normal Text> JPEGQuality</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>Count        </Normal Text><Operator>=</Operator><Normal Text> </Normal Text><Number>0</Number><br/>
+<Normal Text>OutputFormat </Normal Text><Operator>=</Operator><Normal Text> </Normal Text><Number>1</Number><br/>
+<Normal Text>JPEGQuality  </Normal Text><Operator>=</Operator><Normal Text> </Normal Text><Operator>-</Operator><Number>1</Number><br/>
+<Normal Text></Normal Text><br/>
+<Comment>; MAIN PROGRAM------------------------------------------------------------------</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Comment>;Request Options</Comment><br/>
+<Functions>PrintN</Functions><Separator>(</Separator><String>"Output Format"</String><Separator>)</Separator><br/>
+<Functions>PrintN</Functions><Separator>(</Separator><String>"  [1] JPEG"</String><Separator>)</Separator><br/>
+<Functions>PrintN</Functions><Separator>(</Separator><String>"  [2] PNG"</String><Separator>)</Separator><br/>
+<Functions>Print</Functions><Normal Text> </Normal Text><Separator>(</Separator><String>"> "</String><Separator>)</Separator><br/>
+<Normal Text>OutputFormat </Normal Text><Operator>=</Operator><Normal Text> </Normal Text><Functions>Int</Functions><Separator>(</Separator><Functions>Input</Functions><Separator>())</Separator><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>Select </Keyword><Normal Text>OutputFormat</Normal Text><br/>
+<Normal Text>    </Normal Text><Keyword>Case</Keyword><Normal Text> </Normal Text><Constant>#JPEG</Constant><Separator>:</Separator><br/>
+<Normal Text>        fileext </Normal Text><Operator>=</Operator><Normal Text> </Normal Text><String>".jpg"</String><br/>
+<Normal Text>        </Normal Text><Comment>;Request JPEG Quality</Comment><br/>
+<Normal Text>        </Normal Text><Functions>PrintN</Functions><Separator>(</Separator><String>""</String><Separator>)</Separator><br/>
+<Normal Text>        </Normal Text><Functions>PrintN</Functions><Separator>(</Separator><String>"JPEG Quality"</String><Separator>)</Separator><br/>
+<Normal Text>        </Normal Text><Functions>PrintN</Functions><Separator>(</Separator><String>"  [0-10]"</String><Separator>)</Separator><br/>
+<Normal Text>        </Normal Text><Functions>Print</Functions><Normal Text> </Normal Text><Separator>(</Separator><String>"> "</String><Separator>)</Separator><br/>
+<Normal Text>        JPEGQuality </Normal Text><Operator>=</Operator><Normal Text> </Normal Text><Functions>Int</Functions><Separator>(</Separator><Functions>Input</Functions><Separator>())</Separator><br/>
+<Normal Text>    </Normal Text><br/>
+<Normal Text>    </Normal Text><Keyword>Case</Keyword><Normal Text> </Normal Text><Constant>#PNG</Constant><Separator>:</Separator><br/>
+<Normal Text>        fileext </Normal Text><Operator>=</Operator><Normal Text> </Normal Text><String>".png"</String><br/>
+<Keyword>EndSelect</Keyword><br/>
+<Normal Text></Normal Text><br/>
+<Comment>;Convert all BMP files in the current directory</Comment><br/>
+<Functions>ExamineDirectory</Functions><Separator>(</Separator><Number>0</Number><Separator>,</Separator><Normal Text> </Normal Text><String>""</String><Separator>,</Separator><Normal Text> </Normal Text><String>"*.bmp"</String><Separator>)</Separator><br/>
+<Keyword>While </Keyword><Functions>NextDirectoryEntry</Functions><Separator>()</Separator><Normal Text>   </Normal Text><br/>
+<Normal Text>    file     </Normal Text><Operator>=</Operator><Normal Text> </Normal Text><Functions>DirectoryEntryName</Functions><Separator>()</Separator><br/>
+<Normal Text>    filename </Normal Text><Operator>=</Operator><Normal Text> </Normal Text><Functions>GetFilePart</Functions><Separator>(</Separator><Normal Text>file</Normal Text><Separator>)</Separator><br/>
+<Normal Text>    </Normal Text><br/>
+<Normal Text>    </Normal Text><Keyword>If </Keyword><Functions>LoadImage</Functions><Separator>(</Separator><Number>0</Number><Separator>,</Separator><Normal Text> file</Normal Text><Separator>)</Separator><br/>
+<Normal Text>        </Normal Text><Keyword>Select </Keyword><Normal Text>OutputFormat</Normal Text><br/>
+<Normal Text>	    </Normal Text><Keyword>Case</Keyword><Normal Text> </Normal Text><Constant>#JPEG</Constant><Separator>:</Separator><br/>
+<Normal Text>	      Convert</Normal Text><Separator>(</Separator><Normal Text>JPEGQuality</Normal Text><Separator>)</Separator><br/>
+<Normal Text>	      </Normal Text><br/>
+<Normal Text>	    </Normal Text><Keyword>Case</Keyword><Normal Text> </Normal Text><Constant>#PNG</Constant><Separator>:</Separator><br/>
+<Normal Text>	        Convert</Normal Text><Separator>(</Separator><Operator>-</Operator><Number>1</Number><Separator>)</Separator><br/>
+<Normal Text>	</Normal Text><Keyword>EndSelect</Keyword><br/>
+<Normal Text>	Count </Normal Text><Operator>=</Operator><Normal Text> Count </Normal Text><Operator>+</Operator><Number>1</Number><br/>
+<Normal Text>    </Normal Text><Keyword>EndIf</Keyword><br/>
+<Normal Text>    </Normal Text><br/>
+<Keyword>Wend</Keyword><br/>
+<Normal Text></Normal Text><br/>
+<Functions>PrintN</Functions><Separator>(</Separator><Functions>Str</Functions><Separator>(</Separator><Normal Text>Count</Normal Text><Separator>)</Separator><Normal Text> </Normal Text><Operator>+</Operator><Normal Text> </Normal Text><String>" files converted"</String><Separator>)</Separator><br/>
+<Functions>CloseConsole</Functions><Separator>()</Separator><br/>
+<Normal Text></Normal Text><br/>
+<Comment>; PROCUDURES--------------------------------------------------------------------</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>Procedure </Keyword><Normal Text>Convert</Normal Text><Separator>(</Separator><Normal Text>JPEG</Normal Text><Separator>)</Separator><br/>
+<Normal Text>    </Normal Text><Keyword>Shared</Keyword><Normal Text> filename</Normal Text><Separator>,</Separator><Normal Text> fileext</Normal Text><br/>
+<Normal Text>    </Normal Text><br/>
+<Normal Text>    </Normal Text><Keyword>If </Keyword><Normal Text>JPEG </Normal Text><Operator>></Operator><Normal Text> </Normal Text><Operator>-</Operator><Number>1</Number><br/>
+<Normal Text>        </Normal Text><Functions>SaveImage</Functions><Separator>(</Separator><Number>0</Number><Separator>,</Separator><Normal Text> filename </Normal Text><Operator>+</Operator><Normal Text> fileext</Normal Text><Separator>,</Separator><Normal Text> </Normal Text><Constant>#PB_ImagePlugin_JPEG</Constant><Separator>,</Separator><Normal Text> JPEG</Normal Text><Separator>)</Separator><br/>
+<Normal Text>    </Normal Text><Keyword>Else</Keyword><br/>
+<Normal Text>        </Normal Text><Functions>SaveImage</Functions><Separator>(</Separator><Number>0</Number><Separator>,</Separator><Normal Text> filename </Normal Text><Operator>+</Operator><Normal Text> fileext</Normal Text><Separator>,</Separator><Normal Text> </Normal Text><Constant>#PB_ImagePlugin_PNG</Constant><Separator>)</Separator><Normal Text>    </Normal Text><br/>
+<Normal Text>    </Normal Text><Keyword>EndIf</Keyword><br/>
+<Normal Text>    </Normal Text><Functions>PrintN</Functions><Separator>(</Separator><Normal Text>file </Normal Text><Operator>+</Operator><Normal Text> </Normal Text><String>" converted to "</String><Normal Text> </Normal Text><Operator>+</Operator><Normal Text> filename </Normal Text><Operator>+</Operator><Normal Text> fileext</Normal Text><Separator>)</Separator><br/>
+<Keyword>EndProcedure</Keyword><br/>

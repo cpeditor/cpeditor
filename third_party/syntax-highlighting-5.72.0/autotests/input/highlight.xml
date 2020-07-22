@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE language SYSTEM "language.dtd">
+<!-- we need this tags or this is no valid file -->
+
+
+This is a pseudo XML file to test Kate's XML syntax highlighting.
+
+Doctype:
+	<!DOCTYPE HTML PUBLIC "-//SOME_DOCTYPE 0.01//EN" SYSTEM "foobar.dtd">
+
+Processing instruction:
+	<?php processing instruction ?>
+
+Comments:
+	<!-- a comment -->
+	<!-- another comment,
+	using more than one line -->
+
+Comment inside element:
+	<element attr="foobar">content<!-- comment --></element>
+
+Markup inside comment:
+	<!--
+	This is a comment!
+	<element inside_comment />
+	-->
+
+Empty element:
+	<empty/>
+	<empty  />
+
+Simple element plus content:
+	<element>some content</element>
+	<element attr="foobar">some
+		content</element>
+
+Namespace for elements and attributes:
+	<ns:element>content</ns:element>
+	<element ns:attr="content content">content</element>
+
+Elements containing allowed characters:
+	<element-dash foo="test"/>
+	<element.dot foo="test"/>
+
+Elements containing allowed start characters:
+	<:element foo="test"/>
+	<_element foo="test"/>
+
+Single quotes (the same as double quotes):
+	<element attr='content &nbsp; content'>content</element>
+
+Allowed Whitespace:
+	<element     attr   =   "test"  >
+		content</element>
+
+Entities:
+	&nbsp;
+	&#229;
+	&#xE5;
+	&#Xe5;
+	&#1048;
+	&#x6C34;
+	<element attr="foo &nbsp; &#229; &amp; bar"/>
+
+Illegal XML, should not be highlighted:
+	<0foobar> -- no digit as first character
+	<-foo> -- no dash as first character

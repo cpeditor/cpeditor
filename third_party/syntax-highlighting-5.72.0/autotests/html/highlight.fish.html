@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title>highlight.fish</title>
+<meta name="generator" content="KF5::SyntaxHighlighting (Fish)"/>
+</head><body style="color:#1f1c1b"><pre>
+<span style="color:#898887;">### Comments</span>
+<span style="color:#898887;"># </span><span style="color:#ca9219;background-color:#451e1a;font-weight:bold;">TODO</span>
+<span style="color:#898887;"># </span><span style="color:#0057ae;background-color:#e0e9f8;">BEGIN</span>
+<span style="color:#898887;">#    fg sfg sfh sft</span>
+<span style="color:#898887;"># </span><span style="color:#0057ae;background-color:#e0e9f8;">END</span>
+<span style="color:#898887;">#</span>
+<span style="color:#898887;"># text in (parenthesis) is ok, (even</span>
+<span style="color:#898887;"># over several lines)</span>
+<span style="color:#898887;"># escaped \) and \( are ok</span>
+<span style="color:#898887;"># an unbalanced single </span><span style="color:#bf0303;text-decoration:underline;">)</span> is not ok
+<span style="color:#898887;"># This is due to fish comment handling in command substitutions</span>
+<span style="color:#898887;"># which cannot reasonably handled by kate syntax highlighting</span>
+
+
+<span style="color:#898887;">### Commands and paths</span>
+<span style="color:#644a9b;">ls</span> -l <span style="font-weight:bold;">|</span><span style="color:#644a9b;">sort</span>
+<span style="color:#644a9b;">ls</span> -1
+<span style="color:#0095ff;font-weight:bold;">/usr/bin/</span><span style="color:#644a9b;">ls</span> -l /usr/local/test/ -xyz       <span style="color:#898887;"># option as indicator of CommandArgs context</span>
+<span style="color:#0095ff;font-weight:bold;">./bin/</span><span style="color:#644a9b;">ls</span> -l /usr/abc<span style="font-weight:bold;">**</span>/tes<span style="font-weight:bold;">?</span>/lkhlk	-xyz   <span style="color:#898887;"># tabulator as separator</span>
+<span style="color:#0095ff;font-weight:bold;">../bin/</span><span style="color:#644a9b;">ls</span> -l /usr/abc<span style="font-weight:bold;">**</span>/tes<span style="font-weight:bold;">?</span>/lkhlk
+<span style="color:#0095ff;font-weight:bold;">~/bin/</span><span style="color:#644a9b;">ls</span> -l ../usr/lo<span style="font-weight:bold;">\ </span>cal/test
+<span style="color:#0095ff;font-weight:bold;">~user/bin/</span><span style="color:#644a9b;">ls</span> -l /usr/<span style="color:#3daee9;">{</span>local<span style="font-weight:bold;">,</span>remote<span style="color:#3daee9;">}</span><span style="color:#bf0303;text-decoration:underline;">}</span>/test<span style="font-weight:bold;">|</span><span style="color:#644a9b;">cat</span>  <span style="color:#898887;"># show error</span>
+<span style="color:#0095ff;font-weight:bold;">/usr/bin/../lib/</span><span style="color:#644a9b;">ls</span> -l /usr/local/test.<span style="font-weight:bold;">???</span><span style="font-weight:bold;">|</span><span style="color:#644a9b;">cat</span>
+<span style="color:#0095ff;font-weight:bold;">/usr/bin\ sdfg/</span><span style="color:#644a9b;">ls</span> -l /usr/local/test.<span style="font-weight:bold;">*</span>
+<span style="color:#0095ff;font-weight:bold;">usr/bin/</span><span style="color:#644a9b;">other</span> -l <span style="font-weight:bold;">~user</span>/local/test
+<span style="color:#0095ff;font-weight:bold;">\ usr/bin/</span><span style="color:#644a9b;">other</span> -l <span style="font-weight:bold;">~user</span>/local/test
+<span style="color:#0095ff;font-weight:bold;">/usr/bin/</span><span style="color:#644a9b;">lsother</span>
+<span style="color:#0095ff;font-weight:bold;">../test/root/bin/</span><span style="color:#644a9b;">fish</span> -c <span style="color:#bf0303;">&quot;echo </span><span style="color:#0057ae;">$t8</span><span style="color:#bf0303;">&quot;</span>
+<span style="color:#0095ff;font-weight:bold;">test/root/bin/</span><span style="color:#644a9b;">fish</span> -c <span style="color:#bf0303;">&quot;echo </span><span style="color:#0057ae;">$t8</span><span style="color:#bf0303;">&quot;</span>
+<span style="color:#0095ff;font-weight:bold;">u?r/bin/</span><span style="color:#644a9b;">ls</span>
+<span style="color:#0095ff;font-weight:bold;">usr/b?n/</span><span style="color:#644a9b;">ls</span>
+<span style="color:#0095ff;font-weight:bold;">u*</span><span style="color:#644a9b;">ls</span>        <span style="color:#898887;"># doesn't work, but ok</span>
+<span style="color:#bf0303;">&quot;ls&quot;</span> /tmp/testtest                         <span style="color:#898887;"># Quotes in commands are expanded</span>
+<span style="color:#0095ff;font-weight:bold;">/us</span><span style="color:#bf0303;">&quot;r/bin&quot;</span><span style="color:#0095ff;font-weight:bold;">/xy/</span><span style="color:#644a9b;">ls</span>
+<span style="color:#644a9b;">abcd</span><span style="color:#bf0303;text-decoration:underline;">$</span><span style="color:#644a9b;">a</span>      <span style="color:#898887;"># show error</span>
+<span style="color:#644a9b;">other</span><span style="color:#bf0303;text-decoration:underline;">)</span> abc  <span style="color:#898887;"># show error</span>
+<span style="color:#bf0303;text-decoration:underline;">&lt;</span>other abc  <span style="color:#898887;"># show error</span>
+<span style="color:#644a9b;">other</span>&gt; abc  <span style="color:#898887;"># ok</span>
+<span style="color:#644a9b;">oth</span>&gt;er abc  <span style="color:#898887;"># ok</span>
+<span style="color:#644a9b;">ot</span><span style="color:#bf0303;text-decoration:underline;">(</span><span style="color:#644a9b;">her</span><span style="color:#bf0303;text-decoration:underline;">)</span> abc <span style="color:#898887;"># show error</span>
+
+<span style="color:#644a9b;">ls</span> /ho<span style="color:#bf0303;">&quot;me/te&quot;</span>st<span style="color:#bf0303;">'user'</span>/abc<span style="color:#0057ae;">$dir</span><span style="color:#0057ae;">[3]</span>/ab<span style="color:#3daee9;">(</span><span style="color:#644a9b;font-weight:bold;">echo</span> cdefg<span style="color:#3daee9;">)</span>cd/xyz
+<span style="color:#644a9b;">cat\ alog</span> -abc
+<span style="color:#644a9b;">ls</span> path_not_detected
+<span style="color:#644a9b;">ls</span> <span style="font-weight:bold;">*</span> no_path
+<span style="color:#644a9b;">ls</span> <span style="font-weight:bold;">*</span>path_detected
+<span style="color:#0095ff;font-weight:bold;">ls/</span>
+<span style="color:#644a9b;">ls</span><span style="font-weight:bold;">;</span><span style="color:#644a9b;font-weight:bold;">echo</span> xy
+<span style="color:#644a9b;">flex++</span>
+
+<span style="color:#898887;">#specials</span>
+<span style="color:#644a9b;font-weight:bold;">command</span> -s <span style="color:#644a9b;">ls</span>
+<span style="color:#644a9b;font-weight:bold;">builtin</span> --names <span style="color:#644a9b;font-weight:bold;">jobs</span>
+<span style="color:#644a9b;font-weight:bold;">exec</span> <span style="color:#644a9b;">bash</span>
+<span style="color:#644a9b;font-weight:bold;">exec</span> <span style="color:#0057ae;">$test</span>
+<span style="color:#644a9b;font-weight:bold;">set</span> -e <span style="color:#0057ae;">i</span><span style="color:#0057ae;">[-1]</span>
+<span style="color:#644a9b;font-weight:bold;">set</span> <span style="color:#0057ae;">test1</span><span style="color:#0057ae;">[-1..1]</span> <span style="color:#0057ae;">$test</span><span style="font-weight:bold;">;</span> <span style="color:#644a9b;font-weight:bold;">echo</span> <span style="color:#0057ae;">$test1</span>
+<span style="color:#644a9b;font-weight:bold;">set</span> <span style="color:#0057ae;">test1</span><span style="color:#0057ae;">[1..</span><span style="color:#0057ae;">$n</span><span style="color:#0057ae;">]</span> <span style="color:#0057ae;">$test</span><span style="font-weight:bold;">;</span> <span style="color:#644a9b;font-weight:bold;">echo</span> <span style="color:#0057ae;">$test1</span>
+<span style="color:#644a9b;font-weight:bold;">set</span> <span style="color:#0057ae;">test1</span><span style="color:#0057ae;">[</span><span style="color:#0057ae;">$n</span><span style="color:#0057ae;">..1]</span> <span style="color:#0057ae;">$test</span><span style="font-weight:bold;">;</span> <span style="color:#644a9b;font-weight:bold;">echo</span> <span style="color:#0057ae;">$test1</span>
+<span style="color:#644a9b;font-weight:bold;">set</span> <span style="color:#0057ae;">test1</span><span style="color:#0057ae;">[2..4 -2..-4]</span> <span style="color:#0057ae;">$test1</span><span style="color:#0057ae;">[4..2 -4..-2]</span><span style="font-weight:bold;">;</span> <span style="color:#644a9b;font-weight:bold;">echo</span> <span style="color:#0057ae;">$test1</span>
+<span style="color:#644a9b;font-weight:bold;">set</span> <span style="color:#0057ae;">page_url</span> http://fishshell.com/docs/<span style="color:#0057ae;">$version_string</span>/<span style="color:#0057ae;">$fish_help_page</span>    <span style="color:#898887;"># ???</span>
+<span style="color:#644a9b;font-weight:bold;">string</span> <span style="color:#644a9b;font-weight:bold;">split</span> . example.com
+<span style="color:#644a9b;font-weight:bold;">set</span> <span style="color:#0057ae;">b</span> <span style="color:#3daee9;">(</span><span style="color:#644a9b;font-weight:bold;">string</span> <span style="color:#644a9b;font-weight:bold;">repeat</span> -n 512 x<span style="color:#3daee9;">)</span>
+
+<span style="color:#644a9b;font-weight:bold;">read</span> -gi <span style="color:#0057ae;">test</span>    <span style="color:#898887;"># ok</span>
+<span style="color:#644a9b;font-weight:bold;">read</span> -gi <span style="color:#0057ae;">$test</span>
+<span style="color:#644a9b;font-weight:bold;">read</span> -gi <span style="color:#bf0303;">&quot;test&quot;</span>
+<span style="color:#644a9b;font-weight:bold;">read</span> -gi <span style="color:#3daee9;">(</span><span style="color:#644a9b;font-weight:bold;">echo</span> test<span style="color:#3daee9;">)</span>
+
+<span style="color:#644a9b;font-weight:bold;">set</span> <span style="color:#0057ae;">x</span> <span style="color:#3daee9;">(</span><span style="color:#644a9b;font-weight:bold;">string</span> <span style="color:#644a9b;font-weight:bold;">split</span> --max 1 --right / <span style="color:#3daee9;">(</span><span style="color:#644a9b;font-weight:bold;">status</span> current-filename<span style="color:#3daee9;">)</span> <span style="color:#898887;">#Comment test</span><span style="color:#3daee9;">)</span>
+<span style="color:#644a9b;font-weight:bold;">set</span> <span style="color:#0057ae;">test</span> <span style="color:#3daee9;">(</span><span style="color:#644a9b;font-weight:bold;">exec</span> <span style="color:#0057ae;">$cmd</span><span style="color:#3daee9;">)</span>
+
+<span style="color:#898887;"># direct path</span>
+<span style="color:#644a9b;font-weight:bold;">test</span> -d <span style="color:#0057ae;">$tmpldir</span>/resources
+
+<span style="color:#898887;">### Options</span>
+<span style="color:#644a9b;">cat</span> -l /usr/local/test&gt;logfile
+<span style="color:#644a9b;">ls</span> --longopt=/test
+<span style="color:#644a9b;">ls</span> -l<span style="color:#bf0303;">&quot;kasdflakjs&quot;</span> -r/usr/test -x../test/../bla -z<span style="font-weight:bold;">~xyz</span>/hello
+
+<span style="color:#898887;">### Arguments</span>
+<span style="color:#644a9b;font-weight:bold;">echo</span> abc<span style="color:#bf0303;">&quot;def&quot;</span>ghi
+<span style="color:#644a9b;font-weight:bold;">echo</span> abc/def
+<span style="color:#644a9b;font-weight:bold;">echo</span> abc[de]
+<span style="color:#644a9b;font-weight:bold;">echo</span> abc<span style="color:#3daee9;">(</span><span style="color:#644a9b;font-weight:bold;">echo</span> def<span style="color:#3daee9;">)</span>ghi
+<span style="color:#644a9b;font-weight:bold;">echo</span> abc<span style="color:#3daee9;">{</span>de<span style="font-weight:bold;">,</span>f<span style="color:#3daee9;">}</span>ghi
+
+<span style="color:#898887;"># Path Detection</span>
+<span style="color:#644a9b;font-weight:bold;">cd</span> abc<span style="font-weight:bold;">*</span>efghi  <span style="color:#898887;"># fish assumes * is glob -&gt; path</span>
+<span style="color:#644a9b;font-weight:bold;">cd</span> abc<span style="font-weight:bold;">?</span>efghi
+<span style="color:#644a9b;font-weight:bold;">cd</span> ..
+<span style="color:#644a9b;font-weight:bold;">cd</span> .. <span style="color:#898887;">#</span>
+<span style="color:#644a9b;font-weight:bold;">cd</span> .
+<span style="color:#644a9b;font-weight:bold;">cd</span> . <span style="color:#898887;">#</span>
+<span style="color:#644a9b;font-weight:bold;">cd</span> <span style="font-weight:bold;">~</span>
+<span style="color:#644a9b;font-weight:bold;">cd</span> <span style="font-weight:bold;">~abc</span>/abc/<span style="font-weight:bold;">*</span>.txt
+<span style="color:#644a9b;font-weight:bold;">cd</span> ./abc
+<span style="color:#644a9b;font-weight:bold;">cd</span> ../abc
+<span style="color:#644a9b;font-weight:bold;">cd</span> <span style="font-weight:bold;">\ </span>abc/tmp<span style="font-weight:bold;">\ </span>.txt
+
+<span style="color:#644a9b;font-weight:bold;">test</span> .. abc
+
+<span style="color:#898887;">### Escapes</span>
+<span style="color:#644a9b;">touch</span> a<span style="font-weight:bold;">\?</span>bc<span style="font-weight:bold;">\[\]</span>ax<span style="font-weight:bold;">\~</span>dsf<span style="font-weight:bold;">\#</span>gsd<span style="font-weight:bold;">\a</span>f<span style="font-weight:bold;">\(\)</span>dg<span style="font-weight:bold;">\?</span>sd<span style="font-weight:bold;">\ </span>fg<span style="font-weight:bold;">\b</span>hh<span style="font-weight:bold;">\%</span>j<span style="font-weight:bold;">\$</span>k<span style="font-weight:bold;">\\</span>l<span style="font-weight:bold;">\?</span>sed<span style="font-weight:bold;">\*</span>jk<span style="font-weight:bold;">\&gt;</span>hj<span style="font-weight:bold;">\&lt;</span>hou<span style="font-weight:bold;">\&amp;</span>h<span style="font-weight:bold;">\;</span>hgkj<span style="font-weight:bold;">\^</span>kj<span style="font-weight:bold;">\&quot;</span>kjh<span style="font-weight:bold;">\'</span>jhg
+<span style="color:#644a9b;">touch</span> sdf<span style="font-weight:bold;">\xa5</span>lh<span style="font-weight:bold;">\Xb7</span>kll<span style="font-weight:bold;">\157</span>j<span style="font-weight:bold;">\15</span>8hk<span style="font-weight:bold;">\ua47b</span>z<span style="font-weight:bold;">\U123b5678</span>fs<span style="font-weight:bold;">\cx</span>zdfga
+
+<span style="color:#644a9b;">touch</span> <span style="color:#bf0303;">&quot;a\?bc\[\]a&quot;</span>      <span style="color:#898887;"># no escaping in Quotes</span>
+<span style="color:#644a9b;">touch</span> fgh\y1            <span style="color:#898887;"># \y is no escape sequence in fish, show it as normal text like fish itself</span>
+
+<span style="color:#898887;">### Builtins</span>
+<span style="color:#644a9b;font-weight:bold;">. </span>hallo
+<span style="color:#644a9b;font-weight:bold;">source</span> hallo 
+<span style="color:#644a9b;font-weight:bold;">eval</span> <span style="color:#644a9b;">ls</span> . /tmp
+<span style="color:#644a9b;font-weight:bold;">eval</span> <span style="color:#644a9b;">ls</span> .../tmp
+<span style="color:#644a9b;font-weight:bold;">eval</span> <span style="color:#0057ae;">$var</span>
+<span style="color:#644a9b;font-weight:bold;">eval</span> <span style="color:#644a9b;">abc</span>
+<span style="color:#644a9b;font-weight:bold;">eval</span> <span style="color:#3daee9;">{</span>l<span style="font-weight:bold;">,</span>a<span style="color:#3daee9;">}</span><span style="color:#644a9b;">s</span>  <span style="color:#898887;"># lists ./as. colours not ok, but we cut here</span>
+<span style="color:#644a9b;font-weight:bold;">eval</span> <span style="color:#bf0303;">&quot;echo bla&quot;</span>
+
+<span style="color:#644a9b;font-weight:bold;">history</span> merge
+
+<span style="color:#644a9b;font-weight:bold;">true</span> <span style="font-weight:bold;">;</span><span style="color:#644a9b;">ls</span>
+<span style="color:#644a9b;font-weight:bold;">echo</span> <span style="color:#3daee9;">(</span><span style="color:#644a9b;font-weight:bold;">true</span><span style="color:#3daee9;">)</span>
+<span style="color:#644a9b;font-weight:bold;">echo</span> <span style="color:#3daee9;">(</span><span style="color:#644a9b;font-weight:bold;">true</span> <span style="color:#898887;">#comment</span><span style="color:#3daee9;">)</span>
+<span style="color:#644a9b;font-weight:bold;">echo</span> <span style="color:#3daee9;">(</span><span style="color:#644a9b;font-weight:bold;">true</span>&gt;&gt;xyz/abc<span style="color:#3daee9;">)</span>
+<span style="color:#644a9b;font-weight:bold;">true</span> <span style="color:#bf0303;text-decoration:underline;">-error     </span><span style="color:#898887;"># show error</span>
+<span style="color:#644a9b;font-weight:bold;">pwd</span> &gt; abc
+
+<span style="color:#644a9b;font-weight:bold;">command</span> -s <span style="color:#644a9b;">ls</span><span style="font-weight:bold;">;</span><span style="color:#644a9b;">cat</span> test
+<span style="color:#644a9b;font-weight:bold;">builtin</span> -n<span style="font-weight:bold;">;</span><span style="color:#644a9b;font-weight:bold;">builtin</span> <span style="color:#644a9b;font-weight:bold;">echo</span>
+
+<span style="color:#644a9b;font-weight:bold;">complete</span> -c myprog -s o -l output -a <span style="color:#bf0303;">&quot;yes no&quot;</span>
+<span style="color:#644a9b;font-weight:bold;">builtin</span> <span style="color:#644a9b;font-weight:bold;">jobs</span>
+
+<span style="color:#644a9b;font-weight:bold;">math</span> -s0 10.0 / 6.0
+
+<span style="color:#898887;">#special keywords as directory names:</span>
+<span style="color:#0095ff;font-weight:bold;">/usr/function/</span><span style="color:#644a9b;">testtest</span> /usr/function/testtest
+<span style="color:#0095ff;font-weight:bold;">/usr/for/</span><span style="color:#644a9b;">testtest</span> /usr/for/testtest
+<span style="color:#0095ff;font-weight:bold;">/usr/begin/</span><span style="color:#644a9b;">testtest</span> /usr/begin/testtest
+<span style="color:#0095ff;font-weight:bold;">/usr/switch/</span><span style="color:#644a9b;">testtest</span> /usr/switch/testtest
+<span style="color:#0095ff;font-weight:bold;">/usr/if/</span><span style="color:#644a9b;">testtest</span> /usr/if/testtest
+<span style="color:#0095ff;font-weight:bold;">/usr/while/</span><span style="color:#644a9b;">testtest</span> /usr/while/testtest
+<span style="color:#0095ff;font-weight:bold;">/usr/command/</span><span style="color:#644a9b;">testtest</span> /usr/command/testtest
+<span style="color:#0095ff;font-weight:bold;">/usr/builtin/</span><span style="color:#644a9b;">testtest</span> /usr/builtin/testtest
+<span style="color:#0095ff;font-weight:bold;">/usr/eval/</span><span style="color:#644a9b;">testtest</span> /usr/eval/testtest
+<span style="color:#0095ff;font-weight:bold;">/usr/exec/</span><span style="color:#644a9b;">testtest</span> /usr/exec/testtest
+<span style="color:#0095ff;font-weight:bold;">/usr/set/</span><span style="color:#644a9b;">testtest</span> /usr/set/testtest
+<span style="color:#0095ff;font-weight:bold;">/usr/test/</span><span style="color:#644a9b;">testtest</span> /usr/test/testtest
+
+<span style="color:#898887;">### test</span>
+<span style="color:#644a9b;font-weight:bold;">test</span> NUM1 -eq NUM2
+<span style="color:#644a9b;font-weight:bold;">test</span> -f /tmp/abc -a -e /tmp/def<span style="font-weight:bold;">;</span><span style="color:#644a9b;">cat</span> /tmp/abc<span style="font-weight:bold;">;</span>
+
+<span style="font-weight:bold;">if</span> <span style="color:#644a9b;font-weight:bold;">test</span> <span style="font-weight:bold;">\(</span> -f /foo -o -f /bar <span style="font-weight:bold;">\)</span> -a <span style="font-weight:bold;">\(</span> -f /baz -o -f /bat <span style="font-weight:bold;">\)</span>
+    <span style="color:#644a9b;font-weight:bold;">echo</span> Success.
+<span style="font-weight:bold;">end</span>
+
+<span style="color:#644a9b;font-weight:bold;">[ </span>25 -eq <span style="color:#0057ae;">$NUM2</span><span style="color:#644a9b;font-weight:bold;"> ]</span>
+<span style="color:#644a9b;font-weight:bold;">[ </span><span style="color:#bf0303;">&quot;abc&quot;</span> = <span style="color:#bf0303;">&quot;</span><span style="color:#0057ae;">$STRING2</span><span style="color:#bf0303;">&quot;</span><span style="color:#644a9b;font-weight:bold;"> ]</span>
+
+<span style="font-weight:bold;">if</span> <span style="color:#644a9b;font-weight:bold;">[ </span>! <span style="font-weight:bold;">\(</span>STRING1 != STRING2<span style="font-weight:bold;">\)</span><span style="color:#644a9b;font-weight:bold;"> ]</span><span style="font-weight:bold;">;</span><span style="color:#644a9b;">ls</span><span style="font-weight:bold;">;</span><span style="font-weight:bold;">end</span>
+<span style="font-weight:bold;">if</span> <span style="color:#644a9b;font-weight:bold;">[ </span>-f abc<span style="color:#644a9b;font-weight:bold;"> ]</span><span style="color:#bf0303;text-decoration:underline;">#</span> <span style="color:#bf0303;text-decoration:underline;">show error</span>
+<span style="font-weight:bold;">end</span>
+<span style="font-weight:bold;">if</span> <span style="color:#644a9b;font-weight:bold;">[ </span>-f abc<span style="color:#644a9b;font-weight:bold;"> ]</span> <span style="color:#898887;"># ok</span>
+<span style="font-weight:bold;">end</span>
+
+<span style="font-weight:bold;">if</span> <span style="color:#644a9b;font-weight:bold;">[ </span>! <span style="font-weight:bold;">\(</span>STRING1 != STRING2<span style="font-weight:bold;">\)</span><span style="color:#644a9b;font-weight:bold;"> ]</span> <span style="color:#bf0303;text-decoration:underline;">ls</span><span style="font-weight:bold;">;</span><span style="font-weight:bold;">end</span> <span style="color:#898887;"># show error</span>
+<span style="font-weight:bold;">if</span> <span style="color:#644a9b;font-weight:bold;">[ </span><span style="color:#bf0303;">&quot;abc&quot;</span> != <span style="color:#bf0303;">&quot;def&quot;</span><span style="color:#644a9b;font-weight:bold;"> ]</span> <span style="color:#898887;"># hallo</span>
+   <span style="color:#644a9b;font-weight:bold;">echo</span> x<span style="font-weight:bold;">;</span><span style="font-weight:bold;">end</span>
+
+<span style="color:#898887;">### Redirections</span>
+<span style="color:#644a9b;">ls</span> &lt; SOURCE_FILE         <span style="color:#898887;"># stdin</span>
+<span style="color:#644a9b;">ls</span> &gt; DESTINATION         <span style="color:#898887;"># stdout</span>
+<span style="color:#644a9b;">ls</span> ^ DESTINATION         <span style="color:#898887;"># stderr</span>
+<span style="color:#644a9b;">ls</span> &gt;&gt; DESTINATION_FILE   <span style="color:#898887;"># append</span>
+<span style="color:#644a9b;">ls</span> ^^ DESTINATION_FILE   <span style="color:#898887;"># append</span>
+<span style="color:#644a9b;">ls</span> &gt;? DESTINATION        <span style="color:#898887;"># noclobber</span>
+<span style="color:#644a9b;">ls</span> ^? DESTINATION
+
+<span style="color:#644a9b;">ls</span> ^? <span style="font-weight:bold;">~</span>
+<span style="color:#644a9b;">ls</span> ^? <span style="font-weight:bold;">~testuser</span>/abc
+<span style="color:#644a9b;">ls</span> ^?/DESTINATION
+<span style="color:#644a9b;">ls</span> ^?<span style="color:#bf0303;text-decoration:underline;">#</span>DESTINATION       <span style="color:#898887;"># show error</span>
+
+<span style="color:#644a9b;">ls</span> &gt; <span style="color:#0057ae;">$abc</span><span style="color:#0057ae;">[5]</span>
+<span style="color:#644a9b;">ls</span> &gt;<span style="color:#bf0303;">&quot;abc&quot;</span>/defg<span style="color:#0057ae;">$v</span>/xyz
+
+<span style="color:#644a9b;">ls</span> &gt;<span style="color:#bf0303;text-decoration:underline;">&amp;</span>                   <span style="color:#898887;"># show error</span>
+<span style="color:#644a9b;">ls</span> &gt; <span style="color:#bf0303;text-decoration:underline;">&amp;</span>1                 <span style="color:#898887;"># show error</span>
+<span style="color:#644a9b;">ls</span> abc&gt;&amp;25 xyz /tmp/xyz <span style="color:#0057ae;">$abc</span>
+<span style="color:#644a9b;">ls</span> /tmp/tst&gt;&amp;25<span style="color:#bf0303;text-decoration:underline;">?</span>        <span style="color:#898887;"># show error</span>
+<span style="color:#644a9b;">ls</span> /tmp/tst&gt;&amp;25 <span style="font-weight:bold;">?</span>       <span style="color:#898887;"># ok</span>
+<span style="color:#644a9b;">ls</span> 3&gt;&amp;- xyz
+<span style="color:#644a9b;">ls</span> 1&lt;DESTINATION
+<span style="color:#644a9b;font-weight:bold;">echo</span> Hello &gt; all_output.txt ^&amp;1 xyz
+<span style="color:#644a9b;">ls</span> 2&gt;&amp;-<span style="font-weight:bold;">;</span><span style="color:#644a9b;font-weight:bold;">echo</span> end
+<span style="color:#644a9b;">ls</span> xyz 2&gt;|<span style="color:#644a9b;">cat</span>
+
+<span style="color:#644a9b;">ls</span>&gt;x
+<span style="color:#644a9b;">abs</span>&gt;x
+<span style="color:#0095ff;font-weight:bold;">/bin/</span><span style="color:#644a9b;">ls</span>&gt;x
+<span style="color:#0095ff;font-weight:bold;">/bin/</span><span style="color:#644a9b;">abs</span>&gt;x
+
+<span style="color:#898887;">### Quoting</span>
+<span style="color:#644a9b;font-weight:bold;">echo</span> <span style="color:#bf0303;">'abcdefg'</span>
+<span style="color:#644a9b;font-weight:bold;">echo</span> <span style="color:#bf0303;">'abc</span><span style="font-weight:bold;">\'</span><span style="color:#bf0303;">de</span><span style="font-weight:bold;">\\</span><span style="color:#bf0303;">fg'</span>
+<span style="color:#644a9b;font-weight:bold;">echo</span> <span style="color:#bf0303;">'abc\defg'</span>
+
+<span style="color:#644a9b;font-weight:bold;">echo</span> <span style="color:#bf0303;">&quot;1</span><span style="font-weight:bold;">\&quot;</span><span style="color:#bf0303;">23</span><span style="font-weight:bold;">\$</span><span style="color:#bf0303;">45</span><span style="font-weight:bold;">\\</span><span style="color:#bf0303;">6&quot;</span>
+<span style="color:#644a9b;font-weight:bold;">echo</span> <span style="color:#bf0303;">'1\&quot;23\$45</span><span style="font-weight:bold;">\\</span><span style="color:#bf0303;">6'</span>
+<span style="color:#644a9b;font-weight:bold;">echo</span> <span style="color:#bf0303;">'</span>
+<span style="color:#bf0303;">hallo</span>
+<span style="color:#bf0303;">'</span>
+<span style="color:#644a9b;font-weight:bold;">echo</span> <span style="color:#bf0303;">&quot;</span><span style="color:#0057ae;">$i</span><span style="color:#bf0303;">: '</span><span style="color:#0057ae;">$$name</span><span style="color:#0057ae;">[1][</span><span style="color:#0057ae;">$i</span><span style="color:#0057ae;">]</span><span style="color:#bf0303;">'&quot;</span>
+
+
+<span style="color:#898887;">### Piping, Pipelines and background jobs</span>
+<span style="color:#644a9b;">ls</span> -l /tmp/hello 1&lt;DEST<span style="font-weight:bold;">|</span> <span style="color:#644a9b;">sort</span>
+<span style="color:#644a9b;">comand_1</span><span style="font-weight:bold;">;</span><span style="color:#644a9b;">command_2</span>
+<span style="color:#644a9b;">comand_1</span> <span style="font-weight:bold;">;</span><span style="color:#644a9b;">command_2</span>
+<span style="color:#644a9b;">ls</span><span style="font-weight:bold;">;</span><span style="color:#644a9b;">ls</span>
+<span style="color:#644a9b;">run_long_job</span> <span style="font-weight:bold;">&amp;</span> <span style="color:#644a9b;">ls</span>  <span style="color:#898887;"># yes &amp; is a command sequencing operator like | and ;</span>
+<span style="color:#644a9b;">cat</span> foo.txt <span style="font-weight:bold;">|</span> <span style="color:#644a9b;">head</span>
+<span style="color:#644a9b;">make</span> fish 2&gt;| <span style="color:#644a9b;">less</span> <span style="color:#898887;">#show error</span>
+
+<span style="color:#898887;">### Variable Expansion</span>
+<span style="color:#644a9b;font-weight:bold;">echo</span> <span style="color:#0057ae;">$PATH</span>
+<span style="color:#644a9b;font-weight:bold;">echo</span> <span style="color:#0057ae;">$PATH</span><span style="color:#0057ae;">[1..3]</span>
+<span style="color:#644a9b;font-weight:bold;">echo</span> <span style="color:#0057ae;">$PATH</span><span style="color:#0057ae;">[-1..3 5 9..15]</span>
+<span style="color:#644a9b;font-weight:bold;">echo</span> <span style="color:#0057ae;">$PATH</span><span style="color:#0057ae;">[</span><span style="color:#0057ae;">$n</span><span style="color:#0057ae;">[2]]</span>
+<span style="color:#644a9b;font-weight:bold;">echo</span> <span style="color:#0057ae;">$test</span><span style="color:#0057ae;">[1..</span><span style="color:#0057ae;">$n</span><span style="color:#0057ae;">]</span>
+<span style="color:#644a9b;font-weight:bold;">echo</span> <span style="color:#0057ae;">$test</span><span style="color:#0057ae;">[</span><span style="color:#0057ae;">$n</span><span style="color:#0057ae;">..1]</span>
+<span style="color:#644a9b;font-weight:bold;">echo</span> The plural of <span style="color:#0057ae;">$WORD</span> is <span style="color:#bf0303;">&quot;</span><span style="color:#0057ae;">$WORD</span><span style="color:#bf0303;">&quot;</span>s
+<span style="color:#644a9b;font-weight:bold;">echo</span> The plural of <span style="color:#0057ae;">$WORD</span> is <span style="color:#3daee9;">{</span><span style="color:#0057ae;">$WORD</span><span style="color:#3daee9;">}</span>s
+<span style="color:#644a9b;font-weight:bold;">echo</span> <span style="color:#0057ae;">$$foo</span><span style="color:#0057ae;">[</span><span style="color:#0057ae;">$i</span><span style="color:#0057ae;">]</span>
+<span style="color:#644a9b;font-weight:bold;">echo</span> <span style="color:#0057ae;">$test</span><span style="color:#0057ae;">[</span><span style="color:#3daee9;">(</span><span style="color:#644a9b;font-weight:bold;">count</span> <span style="color:#0057ae;">$test</span><span style="color:#3daee9;">)</span><span style="color:#0057ae;">..1]</span>
+<span style="color:#644a9b;font-weight:bold;">echo</span> <span style="color:#0057ae;">$test</span><span style="color:#0057ae;">[1..</span><span style="color:#3daee9;">(</span><span style="color:#644a9b;font-weight:bold;">count</span> <span style="color:#0057ae;">$test</span><span style="color:#0057ae;">[3]</span><span style="color:#3daee9;">)</span><span style="color:#0057ae;">]</span>
+
+ <span style="color:#898887;">#show error</span>
+<span style="color:#644a9b;font-weight:bold;">echo</span> <span style="color:#0057ae;">$PATH</span><span style="color:#0057ae;">[</span><span style="color:#bf0303;text-decoration:underline;">error</span>
+<span style="color:#644a9b;font-weight:bold;">echo</span> <span style="color:#0057ae;">$PATH</span><span style="color:#0057ae;">[1..</span><span style="color:#bf0303;text-decoration:underline;">error</span><span style="color:#0057ae;">]</span>
+
+<span style="color:#644a9b;font-weight:bold;">echo</span> <span style="color:#0057ae;">$PATH</span><span style="color:#0057ae;">[1 2 34</span> <span style="color:#0057ae;">]</span>
+<span style="color:#644a9b;font-weight:bold;">echo</span> <span style="color:#0057ae;">$PATH</span><span style="color:#0057ae;">[1.. 2]</span>
+<span style="color:#644a9b;font-weight:bold;">echo</span> <span style="color:#0057ae;">$PATH</span><span style="color:#0057ae;">[1</span> <span style="color:#0057ae;">..2]</span>
+
+<span style="color:#898887;">### Brace Expansion</span>
+<span style="color:#644a9b;font-weight:bold;">echo</span> input.<span style="color:#3daee9;">{</span>c<span style="font-weight:bold;">,</span>12h<span style="font-weight:bold;">,</span>TXT<span style="color:#3daee9;">}</span>
+<span style="color:#644a9b;font-weight:bold;">echo</span> input.<span style="color:#3daee9;">{</span>abc<span style="color:#0057ae;">$test</span><span style="color:#0057ae;">[</span><span style="color:#3daee9;">(</span><span style="color:#644a9b;font-weight:bold;">count</span> <span style="color:#0057ae;">$test</span><span style="color:#3daee9;">)</span><span style="color:#0057ae;">..1]</span><span style="font-weight:bold;">,</span><span style="color:#3daee9;">(</span><span style="color:#644a9b;font-weight:bold;">echo</span> <span style="color:#0057ae;">$txt</span><span style="color:#3daee9;">)}</span>
+<span style="color:#644a9b;font-weight:bold;">echo</span> input.<span style="color:#3daee9;">{</span>a<span style="color:#3daee9;">{</span>b<span style="font-weight:bold;">,</span>c<span style="color:#3daee9;">}</span><span style="font-weight:bold;">,</span>12h<span style="font-weight:bold;">,</span>TXT<span style="color:#3daee9;">}</span><span style="color:#bf0303;text-decoration:underline;">}</span>  <span style="color:#898887;"># show error</span>
+
+
+<span style="color:#898887;">### Index range expansion</span>
+<span style="color:#644a9b;font-weight:bold;">echo</span> <span style="color:#3daee9;">(</span><span style="color:#644a9b;font-weight:bold;">echo</span> <span style="color:#0057ae;">$a</span><span style="color:#3daee9;">)</span><span style="color:#0057ae;">[2..5]</span>
+<span style="color:#644a9b;font-weight:bold;">echo</span> <span style="color:#3daee9;">(</span><span style="color:#644a9b;font-weight:bold;">echo</span> <span style="color:#0057ae;">$a</span><span style="color:#3daee9;">)</span><span style="color:#0057ae;">[2..5 1..3]</span>
+<span style="color:#644a9b;font-weight:bold;">echo</span> <span style="color:#3daee9;">(</span><span style="color:#644a9b;font-weight:bold;">echo</span> <span style="color:#0057ae;">$a</span><span style="color:#3daee9;">)</span><span style="color:#0057ae;">[-1..1]</span>
+
+<span style="color:#898887;">### Process expansion</span>
+<span style="color:#644a9b;font-weight:bold;">fg</span> <span style="color:#3daee9;">%</span><span style="color:#ff5500;">ema</span>               <span style="color:#898887;"># ???</span>
+
+
+<span style="color:#898887;">### Command substitution</span>
+<span style="color:#644a9b;font-weight:bold;">echo</span> -n -s <span style="color:#bf0303;">&quot;</span><span style="color:#0057ae;">$USER</span><span style="color:#bf0303;">&quot;</span> @ <span style="color:#bf0303;">&quot;</span><span style="color:#0057ae;">$__fish_prompt_hostname</span><span style="color:#bf0303;">&quot;</span> <span style="color:#bf0303;">' '</span> <span style="color:#3daee9;">(</span><span style="color:#644a9b;font-weight:bold;">set_color</span> <span style="color:#0057ae;">$color_cwd</span><span style="color:#3daee9;">)</span> <span style="color:#3daee9;">(</span><span style="color:#0095ff;font-weight:bold;">/usr/bin/</span><span style="color:#644a9b;">ls</span><span style="color:#3daee9;">)</span> <span style="color:#3daee9;">(</span><span style="color:#644a9b;font-weight:bold;">set_color</span> normal<span style="color:#3daee9;">)</span> 
+
+<span style="color:#644a9b;font-weight:bold;">echo</span> <span style="color:#3daee9;">(</span><span style="color:#898887;">#hallo</span><span style="color:#3daee9;">)</span>abc      <span style="color:#898887;"># ok</span>
+<span style="color:#644a9b;font-weight:bold;">echo</span> <span style="color:#3daee9;">(</span><span style="color:#644a9b;">ls</span> <span style="color:#898887;">#hallo</span><span style="color:#3daee9;">)</span>abc   <span style="color:#898887;"># ok, die context-Tiefe ist anders</span>
+<span style="color:#644a9b;font-weight:bold;">echo</span> <span style="color:#3daee9;">(</span><span style="color:#644a9b;">ls</span><span style="font-weight:bold;">;</span><span style="color:#898887;">#hallo</span><span style="color:#3daee9;">)</span>abc   <span style="color:#898887;">#     als hier.</span>
+<span style="color:#644a9b;font-weight:bold;">echo</span> <span style="color:#3daee9;">(</span><span style="color:#644a9b;">ls#hallo</span><span style="color:#3daee9;">)</span>abc    <span style="color:#898887;"># ok: # may be inner part of function names!</span>
+<span style="color:#644a9b;font-weight:bold;">echo</span> <span style="color:#3daee9;">(</span><span style="color:#0095ff;font-weight:bold;">/usr/bin/</span><span style="color:#644a9b;">ls</span><span style="color:#3daee9;">)</span>
+<span style="color:#644a9b;font-weight:bold;">echo</span> <span style="color:#3daee9;">(</span><span style="color:#644a9b;">ls</span> &gt;&gt;mem/abc<span style="color:#3daee9;">)</span>
+<span style="color:#644a9b;font-weight:bold;">echo</span> <span style="color:#3daee9;">(</span><span style="color:#644a9b;font-weight:bold;">echo</span> <span style="color:#0057ae;">$test</span><span style="color:#0057ae;">[2]</span><span style="color:#3daee9;">)</span>
+<span style="color:#644a9b;font-weight:bold;">echo</span> <span style="color:#3daee9;">(</span><span style="color:#0095ff;font-weight:bold;">/usr</span><span style="color:#bf0303;">&quot;/bi&quot;</span><span style="color:#0095ff;font-weight:bold;">n/</span><span style="color:#644a9b;">ls</span> /tmp<span style="color:#3daee9;">)</span>
+
+<span style="color:#898887;"># multline command substitution</span>
+<span style="color:#644a9b;font-weight:bold;">set</span> <span style="color:#0057ae;">x</span> <span style="color:#3daee9;">(</span><span style="color:#644a9b;font-weight:bold;">echo</span> dirlist<span style="font-weight:bold;">;</span> <span style="color:#898887;"># blabla</span>
+       <span style="color:#644a9b;">ls</span><span style="color:#3daee9;">)</span>
+
+<span style="color:#898887;">## same, but commented out:</span>
+
+<span style="color:#898887;"># set x (echo dirlist; # blabla</span>
+<span style="color:#898887;">#        ls)</span>
+
+<span style="color:#644a9b;font-weight:bold;">set</span> <span style="color:#0057ae;">pi</span> <span style="color:#3daee9;">(</span><span style="color:#644a9b;font-weight:bold;">math</span> <span style="color:#bf0303;">&quot;scale=10; 4*a(1)&quot;</span><span style="color:#3daee9;">)</span>
+
+<span style="color:#898887;">### Continuation lines</span>
+<span style="color:#644a9b;">ls</span> <span style="font-weight:bold;">\</span>
+  /usr/bin
+
+<span style="color:#644a9b;font-weight:bold;">test</span> <span style="color:#bf0303;">&quot;STRING1&quot;</span>=<span style="color:#bf0303;">&quot;STRING2&quot;</span> -a <span style="font-weight:bold;">\</span>
+     <span style="color:#bf0303;">&quot;STRING3&quot;</span> = <span style="color:#3daee9;">(</span><span style="color:#644a9b;font-weight:bold;">echo</span> <span style="color:#bf0303;">&quot;STRING4&quot;</span><span style="color:#3daee9;">)</span>
+
+<span style="color:#644a9b;font-weight:bold;">echo</span> input.<span style="color:#3daee9;">{</span>abc<span style="font-weight:bold;">\</span>
+<span style="font-weight:bold;">,</span>12h<span style="font-weight:bold;">,</span><span style="font-weight:bold;">\</span>
+TXT<span style="color:#3daee9;">}</span>
+
+<span style="color:#644a9b;font-weight:bold;">echo</span> <span style="color:#3daee9;">(</span><span style="font-weight:bold;">\</span>
+      <span style="color:#644a9b;">ls</span><span style="color:#3daee9;">)</span>
+
+<span style="color:#898887;"># no line continuation within single quotes</span>
+<span style="color:#644a9b;font-weight:bold;">echo</span> <span style="color:#bf0303;">'abcdefg\</span>
+<span style="color:#bf0303;">       s$dfg sdf'</span>
+<span style="color:#898887;"># but within double quotes</span>
+<span style="color:#644a9b;font-weight:bold;">echo</span> <span style="color:#bf0303;">&quot;123456</span><span style="font-weight:bold;">\</span>
+<span style="color:#bf0303;">      78910&quot;</span>
+<span style="color:#644a9b;font-weight:bold;">echo</span> <span style="color:#0057ae;">$PATH</span><span style="color:#0057ae;">[1..3</span><span style="font-weight:bold;">\</span>
+          <span style="color:#0057ae;">]</span>
+<span style="color:#644a9b;">ls</span> /usr<span style="font-weight:bold;">\</span>
+local/bin
+<span style="color:#644a9b;font-weight:bold;">echo</span> foo<span style="font-weight:bold;">\ </span>bar
+<span style="color:#644a9b;font-weight:bold;">echo</span> foo<span style="font-weight:bold;">\</span>
+bar
+
+<span style="font-weight:bold;">for</span> <span style="color:#0057ae;">i</span> <span style="font-weight:bold;">\</span>
+    <span style="font-weight:bold;">in</span> <span style="font-weight:bold;">\</span>
+    a b c
+    <span style="color:#644a9b;font-weight:bold;">echo</span> <span style="color:#0057ae;">$i</span>
+<span style="font-weight:bold;">end</span>
+
+<span style="color:#898887;"># Bug?</span>
+<span style="color:#898887;"># Depending on weakDeliminators, either this works:</span>
+<span style="color:#644a9b;">cat\ alog</span> -abc
+<span style="color:#898887;"># or this:</span>
+<span style="color:#644a9b;">builtin</span><span style="font-weight:bold;">\</span>
+ --names jobs
+<span style="color:#644a9b;font-weight:bold;">builtin</span> <span style="font-weight:bold;">\</span>
+--names <span style="color:#644a9b;font-weight:bold;">jobs</span>
+
+<span style="color:#644a9b;font-weight:bold;">command</span> <span style="font-weight:bold;">\</span>
+   <span style="color:#644a9b;">ls</span>
+
+<span style="color:#644a9b;font-weight:bold;">eval</span> <span style="font-weight:bold;">\</span>
+   <span style="color:#644a9b;">ls</span> . /tmp
+<span style="color:#644a9b;">eval</span><span style="font-weight:bold;">\</span>
+   ls .../tmp
+
+<span style="color:#644a9b;font-weight:bold;">set</span> <span style="font-weight:bold;">\</span>
+  -e <span style="color:#0057ae;">i</span><span style="color:#0057ae;">[-1]</span>
+<span style="color:#644a9b;font-weight:bold;">set</span> <span style="font-weight:bold;">\</span>
+   <span style="color:#0057ae;">test1</span><span style="color:#0057ae;">[-1..1]</span> <span style="font-weight:bold;">\</span>
+   <span style="color:#0057ae;">$test</span><span style="font-weight:bold;">;</span> <span style="font-weight:bold;">\</span>
+   <span style="color:#644a9b;font-weight:bold;">echo</span> <span style="color:#0057ae;">$test1</span>
+
+<span style="color:#644a9b;font-weight:bold;">read</span> <span style="font-weight:bold;">\</span>
+  -gi <span style="color:#0057ae;">test</span>
+
+
+
+<span style="color:#898887;"># see https://github.com/fish-shell/fish-shell/pull/1987</span>
+<span style="color:#898887;"># this should work, but I found no way to implement it:</span>
+<span style="color:#644a9b;font-weight:bold;">echo</span> before comment <span style="font-weight:bold;">\</span>
+  <span style="color:#898887;"># comment</span>
+  <span style="color:#898887;"># comment2</span>
+  <span style="color:#644a9b;">after</span> comment <span style="color:#898887;"># error: after should be just another argument</span>
+<span style="color:#644a9b;">from</span> root
+
+<span style="color:#644a9b;font-weight:bold;">echo</span> <span style="color:#bf0303;">&quot;hello&quot;</span> <span style="font-weight:bold;">|</span> <span style="font-weight:bold;">\</span>
+<span style="color:#898887;">#remove 'l'</span>
+<span style="color:#898887;">#and more</span>
+<span style="color:#644a9b;">tr</span> -d <span style="color:#bf0303;">'l'</span>
+
+<span style="color:#898887;">### Trouble</span>
+<span style="color:#644a9b;">make</span><span style="font-weight:bold;">;</span> <span style="font-weight:bold;">and</span> <span style="color:#644a9b;">make</span> install<span style="font-weight:bold;">;</span> <span style="font-weight:bold;">or</span> <span style="color:#644a9b;">make</span> clean              <span style="color:#898887;"># ok</span>
+<span style="color:#644a9b;font-weight:bold;">printf</span> <span style="color:#bf0303;">'%s\t%s\n'</span> flounder fish                    <span style="color:#898887;"># ok</span>
+<span style="color:#644a9b;">diff</span> <span style="color:#3daee9;">(</span><span style="color:#644a9b;">sort</span> a.txt <span style="font-weight:bold;">|</span> <span style="color:#644a9b;font-weight:bold;">psub</span><span style="color:#3daee9;">)</span> <span style="color:#3daee9;">(</span><span style="color:#644a9b;">sort</span> b.txt <span style="font-weight:bold;">|</span> <span style="color:#644a9b;font-weight:bold;">psub</span><span style="color:#3daee9;">)</span>
+<span style="color:#644a9b;">source-highlight</span> -f esc <span style="color:#3daee9;">(</span><span style="color:#644a9b;">cpp</span> main.c <span style="font-weight:bold;">|</span> <span style="color:#644a9b;font-weight:bold;">psub</span> -s .c<span style="color:#3daee9;">)</span>
+
+<span style="font-weight:bold;">while</span> <span style="color:#644a9b;font-weight:bold;">test</span> -f foo.txt  <span style="color:#898887;"># comment</span>
+  <span style="color:#644a9b;font-weight:bold;">echo</span> hallo
+<span style="font-weight:bold;">end</span>
+
+<span style="font-weight:bold;">for</span> <span style="color:#0057ae;">i</span> <span style="font-weight:bold;">in</span> <span style="color:#3daee9;">{</span>1<span style="font-weight:bold;">,</span><span style="color:#3daee9;">(</span><span style="color:#644a9b;">ls</span><span style="color:#3daee9;">)</span><span style="font-weight:bold;">,</span>3<span style="color:#3daee9;">}</span>    <span style="color:#898887;"># comment</span>
+  <span style="color:#644a9b;font-weight:bold;">echo</span> <span style="color:#0057ae;">$i</span>
+<span style="font-weight:bold;">end</span>
+
+<span style="color:#898887;"># function</span>
+<span style="font-weight:bold;">function</span> <span style="color:#644a9b;">__hidden</span>      <span style="color:#898887;"># comment</span>
+  <span style="color:#644a9b;font-weight:bold;">cd</span> /
+<span style="font-weight:bold;">end</span>
+
+<span style="font-weight:bold;">function</span> <span style="color:#644a9b;">ll</span> <span style="font-weight:bold;">\</span>
+  -d <span style="color:#607880;">&quot;multiline</span>
+<span style="color:#607880;">  description&quot;</span>
+    <span style="color:#644a9b;">ls</span> -l <span style="color:#0057ae;">$argv</span>
+<span style="font-weight:bold;">end</span>
+
+<span style="font-weight:bold;">function</span> <span style="color:#644a9b;">ls</span> --description=<span style="color:#607880;">&quot;Description&quot;</span> -a a b c <span style="color:#898887;"># comment</span>
+    <span style="color:#644a9b;font-weight:bold;">command</span> <span style="color:#644a9b;">ls</span> --color=auto <span style="color:#0057ae;">$argv</span>
+    <span style="font-weight:bold;">if</span> <span style="color:#644a9b;font-weight:bold;">test</span> -f foo.txt
+        <span style="color:#644a9b;font-weight:bold;">echo</span> foo.txt exists
+<span style="font-weight:bold;">    else if</span> <span style="color:#644a9b;font-weight:bold;">test</span> -f bar.txt          <span style="color:#898887;"># comment</span>
+        <span style="color:#644a9b;font-weight:bold;">echo</span> bar.txt exists
+<span style="font-weight:bold;">    else</span>
+        <span style="color:#644a9b;font-weight:bold;">echo</span> foo.txt and bar.txt do not exist
+    <span style="font-weight:bold;">end</span>                              <span style="color:#898887;"># comment</span>
+<span style="font-weight:bold;">end</span>
+
+<span style="font-weight:bold;">function</span> <span style="color:#644a9b;">test</span><span style="font-weight:bold;">;</span><span style="color:#644a9b;font-weight:bold;">echo</span> hallo<span style="font-weight:bold;">;</span><span style="font-weight:bold;">end</span>         <span style="color:#898887;"># comment</span>
+
+<span style="font-weight:bold;">switch</span> <span style="color:#0057ae;">$animal</span>   <span style="color:#898887;"># comment</span>
+<span style="font-weight:bold;">    case</span> cat     <span style="color:#898887;"># comment</span>
+        <span style="color:#644a9b;font-weight:bold;">echo</span> evil
+<span style="font-weight:bold;">    case</span> wolf <span style="font-weight:bold;">\</span>
+        dog
+        <span style="color:#644a9b;font-weight:bold;">echo</span> mammal
+<span style="font-weight:bold;">    case</span> <span style="color:#bf0303;">'*'</span>
+        <span style="color:#644a9b;font-weight:bold;">echo</span> I have no idea what a <span style="color:#0057ae;">$animal</span> is
+<span style="font-weight:bold;">end</span>
+
+<span style="font-weight:bold;">if</span> <span style="color:#644a9b;font-weight:bold;">test</span> <span style="color:#3daee9;">(</span><span style="color:#644a9b;font-weight:bold;">count</span> <span style="color:#0057ae;">$argv</span><span style="color:#3daee9;">)</span> = 1
+  <span style="color:#644a9b;font-weight:bold;">echo</span> <span style="color:#0057ae;">$argv</span>
+<span style="font-weight:bold;">else</span>
+  <span style="color:#644a9b;font-weight:bold;">echo</span> <span style="color:#bf0303;">&quot;?&quot;</span>
+<span style="font-weight:bold;">end</span>
+
+<span style="font-weight:bold;">if</span> <span style="font-weight:bold;">not</span> <span style="color:#644a9b;font-weight:bold;">test</span> -f spoon   <span style="color:#898887;">#comment</span>
+  <span style="color:#644a9b;font-weight:bold;">echo</span> There is no spoon
+<span style="font-weight:bold;">else</span>
+  <span style="color:#644a9b;font-weight:bold;">exit</span> 1
+<span style="font-weight:bold;">end</span>
+
+<span style="font-weight:bold;">for</span> <span style="color:#0057ae;">file</span> <span style="font-weight:bold;">in</span> <span style="color:#0057ae;">$cfgfiles</span>
+    <span style="font-weight:bold;">if</span> <span style="color:#644a9b;font-weight:bold;">test</span> -f <span style="color:#0057ae;">$file</span>
+        <span style="color:#644a9b;font-weight:bold;">string</span> <span style="color:#644a9b;font-weight:bold;">match</span> -r <span style="color:#bf0303;">'\[Dialer'</span> &lt; <span style="color:#0057ae;">$file</span> <span style="font-weight:bold;">|</span> <span style="color:#644a9b;font-weight:bold;">string</span> <span style="color:#644a9b;font-weight:bold;">replace</span> -r <span style="color:#bf0303;">'\[Dialer (.+)\]'</span> <span style="color:#bf0303;">'$1'</span>
+    <span style="font-weight:bold;">end</span>
+<span style="font-weight:bold;">end</span> <span style="font-weight:bold;">|</span> <span style="color:#644a9b;">sort</span> -u <span style="font-weight:bold;">|</span> <span style="color:#644a9b;font-weight:bold;">string</span> <span style="color:#644a9b;font-weight:bold;">match</span> -v Defaults
+
+<span style="font-weight:bold;">for</span> <span style="color:#0057ae;">i</span> <span style="font-weight:bold;">in</span> <span style="font-weight:bold;">*</span>.c
+    <span style="font-weight:bold;">if</span> <span style="color:#644a9b;">grep</span> smurf <span style="color:#0057ae;">$i</span>     <span style="color:#898887;"># comment</span>
+        <span style="color:#644a9b;font-weight:bold;">echo</span> Smurfs are present in <span style="color:#0057ae;">$i</span>
+        <span style="color:#644a9b;font-weight:bold;">break</span>
+    <span style="font-weight:bold;">end</span>
+<span style="font-weight:bold;">end</span>
+
+<span style="font-weight:bold;">if</span> <span style="font-weight:bold;">begin</span> <span style="color:#644a9b;font-weight:bold;">contains</span> -- <span style="color:#0057ae;">$argv</span> --force   <span style="color:#898887;"># ohne ; nach begin: geht</span>
+        <span style="font-weight:bold;">or</span> <span style="font-weight:bold;">not</span> <span style="color:#644a9b;font-weight:bold;">status</span> --is-interactive and not status --is-login
+    <span style="font-weight:bold;">end</span>
+    <span style="color:#644a9b;font-weight:bold;">echo</span> <span style="color:#bf0303;">&quot;&quot;</span>
+<span style="font-weight:bold;">end</span>
+
+<span style="font-weight:bold;">begin</span>                    <span style="color:#898887;"># comment</span>
+  <span style="font-weight:bold;">for</span> <span style="color:#0057ae;">i</span> <span style="font-weight:bold;">in</span> <span style="font-weight:bold;">*</span>.tmp
+      <span style="font-weight:bold;">if</span> <span style="color:#644a9b;">grep</span> smurf <span style="color:#0057ae;">$i</span>
+          <span style="color:#644a9b;font-weight:bold;">continue</span>
+      <span style="font-weight:bold;">end</span>
+      <span style="color:#644a9b;">rm</span> <span style="color:#0057ae;">$i</span>
+  <span style="font-weight:bold;">end</span>
+<span style="font-weight:bold;">end</span>
+
+<span style="font-weight:bold;">if</span> <span style="color:#644a9b;font-weight:bold;">[ </span><span style="color:#0057ae;">$status</span> -eq 1<span style="color:#644a9b;font-weight:bold;"> ]</span>
+	<span style="color:#644a9b;font-weight:bold;">set</span> <span style="color:#0057ae;">sta</span> pass
+<span style="font-weight:bold;">else</span>
+	<span style="color:#644a9b;font-weight:bold;">set</span> <span style="color:#0057ae;">sta</span> fail
+<span style="font-weight:bold;">end</span>
+
+<span style="color:#644a9b;font-weight:bold;">exec</span> <span style="color:#bf0303;">&quot;</span><span style="color:#0057ae;">$test</span><span style="color:#bf0303;">&quot;</span>
+
+
+<span style="color:#898887;"># Process Expansion</span>
+<span style="color:#898887;"># see fish issue 4230</span>
+<span style="color:#644a9b;">kill</span> -STOP <span style="color:#3daee9;">%</span><span style="color:#ff5500;">self</span>
+
+</pre></body></html>

@@ -1,0 +1,71 @@
+<Comment>// Test file to test kate's clipper highlighting</Comment><br/>
+<Comment>// kate: hl Clipper;</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Region Marker>//BEGIN INCLUDES</Region Marker><br/>
+<Preprocessor>#include </Preprocessor><Prep. Lib><clip-ui.ch></Prep. Lib><br/>
+<Preprocessor>#include </Preprocessor><Prep. Lib>"logo.ch"</Prep. Lib><br/>
+<Normal Text></Normal Text><br/>
+<Preprocessor>#define PRGVERSION	</Preprocessor><Prep. Lib>"0.0.1"</Prep. Lib><br/>
+<Region Marker>//END</Region Marker><br/>
+<Normal Text></Normal Text><br/>
+<Region Marker>//BEGIN CODE</Region Marker><br/>
+<Keyword>static</Keyword><Normal Text> ws</Normal Text><Symbol>,</Symbol><Normal Text> win</Normal Text><br/>
+<Keyword>static</Keyword><Normal Text> driver </Normal Text><Symbol>:=</Symbol><Normal Text> getDriver</Normal Text><Symbol>()</Symbol><br/>
+<Comment>/* a multiline</Comment><br/>
+<Comment>     comment</Comment><br/>
+<Comment>*/</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>function</Keyword><Normal Text> main</Normal Text><Symbol>(</Symbol><Normal Text> formName </Normal Text><Symbol>)</Symbol><br/>
+<Normal Text>	</Normal Text><Keyword>local</Keyword><Normal Text> </Normal Text><Command>form</Command><br/>
+<Normal Text>	</Normal Text><Keyword>local</Keyword><Normal Text> fileName</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>	</Normal Text><Keyword>if</Keyword><Normal Text> </Normal Text><Function>empty</Function><Symbol>(</Symbol><Normal Text>formName</Normal Text><Symbol>)</Symbol><br/>
+<Normal Text>		</Normal Text><Command>??</Command><Normal Text> </Normal Text><String>"Usage: ./form_ui <form.xfl>&</String><String Char>\n</String Char><String>"</String><br/>
+<Normal Text>		CANCEL</Normal Text><br/>
+<Normal Text>	</Normal Text><Keyword>else</Keyword><br/>
+<Normal Text>		fileName </Normal Text><Symbol>:=</Symbol><Normal Text> formName</Normal Text><br/>
+<Normal Text>	</Normal Text><Keyword>endif</Keyword><br/>
+<Normal Text>	ws  </Normal Text><Symbol>:=</Symbol><Normal Text> UIWorkSpace</Normal Text><Symbol>()</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>	</Normal Text><Command>form</Command><Normal Text> </Normal Text><Symbol>:=</Symbol><Normal Text> UIForm</Normal Text><Symbol>(</Symbol><Normal Text> fileName </Normal Text><Symbol>)</Symbol><br/>
+<Normal Text>	win  </Normal Text><Symbol>:=</Symbol><Normal Text> </Normal Text><Command>form</Command><Symbol>:</Symbol><Normal Text>parseFile</Normal Text><Symbol>()</Symbol><br/>
+<Comment>//	?? valtype(win),chr(10)</Comment><br/>
+<Normal Text>	</Normal Text><Keyword>if</Keyword><Normal Text> win </Normal Text><Symbol>==</Symbol><Normal Text> </Normal Text><Keyword>NIL</Keyword><br/>
+<Normal Text>		CANCEL</Normal Text><br/>
+<Normal Text>	</Normal Text><Keyword>endif</Keyword><br/>
+<Normal Text>	win</Normal Text><Symbol>:</Symbol><Normal Text>show</Normal Text><Symbol>()</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>	ws</Normal Text><Symbol>:</Symbol><Command>run</Command><Symbol>()</Symbol><br/>
+<Normal Text>	ws</Normal Text><Symbol>:</Symbol><Command>quit</Command><Symbol>()</Symbol><br/>
+<Keyword>return</Keyword><Normal Text> 0</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment>/* Setting dialog */</Comment><br/>
+<Keyword>function</Keyword><Normal Text> settingsDialog</Normal Text><Symbol>()</Symbol><br/>
+<Normal Text>	</Normal Text><Command>??</Command><Normal Text> </Normal Text><String>"TODO: Settings dialog&</String><String Char>\n</String Char><String>"</String><br/>
+<Keyword>return</Keyword><br/>
+<Normal Text></Normal Text><br/>
+<Comment>/* About dialog */</Comment><br/>
+<Keyword>function</Keyword><Normal Text> aboutDialog</Normal Text><Symbol>()</Symbol><br/>
+<Normal Text>	</Normal Text><Keyword>local</Keyword><Normal Text> dlg </Normal Text><Symbol>:=</Symbol><Normal Text> UIWindow</Normal Text><Symbol>(</Symbol><String>"About"</String><Symbol>,</Symbol><Normal Text> win</Normal Text><Symbol>,</Symbol><Normal Text> </Normal Text><String>"aboutDlg"</String><Symbol>,</Symbol><Normal Text> </Normal Text><Keyword>.F.</Keyword><Symbol>)</Symbol><br/>
+<Normal Text>	</Normal Text><Keyword>local</Keyword><Normal Text> hl</Normal Text><Symbol>,</Symbol><Normal Text> lside</Normal Text><Symbol>,</Symbol><Normal Text> t</Normal Text><Symbol>,</Symbol><Normal Text> bb</Normal Text><Symbol>,</Symbol><Normal Text> bD</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>	hl  </Normal Text><Symbol>:=</Symbol><Normal Text> UIHBox</Normal Text><Symbol>(,</Symbol><Normal Text>4</Normal Text><Symbol>,</Symbol><Normal Text>8</Normal Text><Symbol>)</Symbol><br/>
+<Normal Text>	lside </Normal Text><Symbol>:=</Symbol><Normal Text> UIVBox</Normal Text><Symbol>()</Symbol><br/>
+<Normal Text>	lside</Normal Text><Symbol>:</Symbol><Normal Text>add</Normal Text><Symbol>(</Symbol><Normal Text>UIImage</Normal Text><Symbol>(</Symbol><Normal Text>eas_logo_mini</Normal Text><Symbol>,</Symbol><Keyword>.T.</Keyword><Symbol>))</Symbol><br/>
+<Normal Text>	hl</Normal Text><Symbol>:</Symbol><Normal Text>add</Normal Text><Symbol>(</Symbol><Normal Text>lside</Normal Text><Symbol>,</Symbol><Keyword>.F.</Keyword><Symbol>,</Symbol><Keyword>.F.</Keyword><Symbol>)</Symbol><br/>
+<Normal Text>	dlg</Normal Text><Symbol>:</Symbol><Normal Text>userSpace</Normal Text><Symbol>:</Symbol><Normal Text>add</Normal Text><Symbol>(</Symbol><Normal Text>hl</Normal Text><Symbol>,</Symbol><Keyword>.T.</Keyword><Symbol>,</Symbol><Keyword>.T.</Keyword><Symbol>)</Symbol><br/>
+<Normal Text>	t   </Normal Text><Symbol>:=</Symbol><Normal Text> UIVBox</Normal Text><Symbol>()</Symbol><br/>
+<Normal Text>	hl</Normal Text><Symbol>:</Symbol><Normal Text>add</Normal Text><Symbol>(</Symbol><Normal Text>t</Normal Text><Symbol>,</Symbol><Keyword>.T.</Keyword><Symbol>,</Symbol><Keyword>.T.</Keyword><Symbol>)</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>	t</Normal Text><Symbol>:</Symbol><Normal Text>add</Normal Text><Symbol>(</Symbol><Normal Text>UILabel</Normal Text><Symbol>(</Symbol><String>"License: GPL version 2 or later"</String><Symbol>))</Symbol><br/>
+<Normal Text>	bb  </Normal Text><Symbol>:=</Symbol><Normal Text> UIButtonBar</Normal Text><Symbol>()</Symbol><br/>
+<Normal Text>	t</Normal Text><Symbol>:</Symbol><Normal Text>add</Normal Text><Symbol>(</Symbol><Normal Text>bb</Normal Text><Symbol>)</Symbol><br/>
+<Normal Text>	bD </Normal Text><Symbol>:=</Symbol><Normal Text> UIButton</Normal Text><Symbol>(</Symbol><Normal Text>win</Normal Text><Symbol>,</Symbol><Normal Text> </Normal Text><String>"&Close"</String><Symbol>,</Symbol><Normal Text> </Normal Text><Eval Block>{|o,e| dlg:close() }</Eval Block><Normal Text> </Normal Text><Symbol>)</Symbol><br/>
+<Normal Text>	bb</Normal Text><Symbol>:</Symbol><Normal Text>add</Normal Text><Symbol>(</Symbol><Normal Text> bD </Normal Text><Symbol>)</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>	dlg</Normal Text><Symbol>:</Symbol><Normal Text>setFocus</Normal Text><Symbol>(</Symbol><Normal Text>bD</Normal Text><Symbol>)</Symbol><br/>
+<Normal Text>	dlg</Normal Text><Symbol>:</Symbol><Normal Text>setDefault</Normal Text><Symbol>(</Symbol><Normal Text>bD</Normal Text><Symbol>)</Symbol><br/>
+<Normal Text>	dlg</Normal Text><Symbol>:</Symbol><Normal Text>setPlacement</Normal Text><Symbol>(</Symbol><Normal Text> </Normal Text><Keyword>.T.</Keyword><Normal Text> </Normal Text><Symbol>)</Symbol><br/>
+<Normal Text>	dlg</Normal Text><Symbol>:</Symbol><Normal Text>show</Normal Text><Symbol>()</Symbol><br/>
+<Keyword>return</Keyword><br/>
+<Region Marker>//END</Region Marker><br/>

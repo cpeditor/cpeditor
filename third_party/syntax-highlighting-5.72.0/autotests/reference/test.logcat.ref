@@ -1,0 +1,106 @@
+<Comment>--------- beginning of system</Comment><br/>
+<DateTime>02-29 16:51:18.810</DateTime><Normal Text>   188   188</Normal Text><Verbose Tag> V test    :</Verbose Tag><Verbose Message> When he woke up, the dinosaur was still there</Verbose Message><br/>
+<DateTime>02-29 16:51:18.811</DateTime><Normal Text>   188   188</Normal Text><Verbose Tag> V test    :</Verbose Tag><Verbose Message> When he woke up, the dinosaur was still there</Verbose Message><br/>
+<DateTime>02-29 16:51:18.821</DateTime><Normal Text>   188   188</Normal Text><Info Tag> I test    :</Info Tag><Info Message> When he woke up, the dinosaur was still there</Info Message><br/>
+<DateTime>02-29 16:51:18.849</DateTime><Normal Text>   188   191</Normal Text><Info Tag> I test    :</Info Tag><Info Message> When he woke up, the dinosaur was still there</Info Message><br/>
+<DateTime>02-29 16:51:18.850</DateTime><Normal Text>   188   191</Normal Text><Debug Tag> D test    :</Debug Tag><Debug Message> When he woke up, the dinosaur was still there</Debug Message><br/>
+<DateTime>02-29 16:51:18.850</DateTime><Normal Text>   188   191</Normal Text><Debug Tag> D test    :</Debug Tag><Debug Message> When he woke up, the dinosaur was still there</Debug Message><br/>
+<DateTime>02-29 16:51:18.854</DateTime><Normal Text>   188   193</Normal Text><Warning Tag> W test    :</Warning Tag><Warning Message> When he woke up, the dinosaur was still there</Warning Message><br/>
+<DateTime>02-29 16:51:18.854</DateTime><Normal Text>   188   193</Normal Text><Warning Tag> W test    :</Warning Tag><Warning Message> When he woke up, the dinosaur was still there</Warning Message><br/>
+<DateTime>02-29 16:51:18.854</DateTime><Normal Text>   188   193</Normal Text><Error Tag> E test    :</Error Tag><Error Message> When he woke up, the dinosaur was still there</Error Message><br/>
+<DateTime>02-29 16:51:18.854</DateTime><Normal Text>   188   193</Normal Text><Error Tag> E test    :</Error Tag><Error Message> When he woke up, the dinosaur was still there</Error Message><br/>
+<DateTime>02-29 16:51:18.857</DateTime><Normal Text>   188   193</Normal Text><Assert Tag> A test    :</Assert Tag><Assert Message> When he woke up, the dinosaur was still there</Assert Message><br/>
+<DateTime>02-29 16:51:18.857</DateTime><Normal Text>   188   193</Normal Text><Assert Tag> A test    :</Assert Tag><Assert Message> When he woke up, the dinosaur was still there</Assert Message><br/>
+<DateTime>02-29 16:51:18.857</DateTime><Normal Text>   188   193</Normal Text><Silent Tag> S test    :</Silent Tag><Silent Message> When he woke up, the dinosaur was still there</Silent Message><br/>
+<DateTime>02-29 16:51:29.154</DateTime><Normal Text>   580   580</Normal Text><Silent Tag> S test    :</Silent Tag><Silent Message> When he woke up, the dinosaur was still there</Silent Message><br/>
+<DateTime>02-29 16:51:30.423</DateTime><Normal Text>   580   580 </Normal Text><Fatal>F test    : When he woke up, the dinosaur was still there</Fatal><br/>
+<DateTime>02-29 16:51:30.468</DateTime><Normal Text>   580   580 </Normal Text><Fatal>F test    : When he woke up, the dinosaur was still there</Fatal><br/>
+<Normal Text></Normal Text><br/>
+<Comment>--------- beginning of brief format</Comment><br/>
+<Verbose Tag>V/test    (  119):</Verbose Tag><Verbose Message> When he woke up, the dinosaur was still there</Verbose Message><br/>
+<Verbose Tag>V/test    (  119):</Verbose Tag><Verbose Message> When he woke up, the dinosaur was still there</Verbose Message><br/>
+<Comment>--------- beginning of year format</Comment><br/>
+<DateTime>2018-02-29 16:51:40.899</DateTime><Normal Text>  1362  1365</Normal Text><Info Tag> I test    :</Info Tag><Info Message> When he woke up, the dinosaur was still there</Info Message><br/>
+<DateTime>2018-02-29 16:51:40.899</DateTime><Normal Text>  1362  1365</Normal Text><Info Tag> I test    :</Info Tag><Info Message> When he woke up, the dinosaur was still there</Info Message><br/>
+<Comment>--------- beginning of color format</Comment><br/>
+<DateTime>[38;5;166m03-20 16:51:40.898</DateTime><Normal Text>  1664  1770</Normal Text><Error Tag> F test    : When he woke up, the dinosaur was still there[0m</Error Tag><br/>
+<DateTime>[38;5;166m03-20 16:51:40.899</DateTime><Normal Text>  1664  1779</Normal Text><Debug Tag> D test    :</Debug Tag><Debug Message> When he woke up, the dinosaur was still there[0m</Debug Message><br/>
+<DateTime>[38;5;166m03-20 16:51:40.899</DateTime><Normal Text>  1664  1755</Normal Text><Debug Tag> D test    :</Debug Tag><Debug Message> When he woke up, the dinosaur was still there[0m</Debug Message><br/>
+<Comment>--------- beginning of epoch format</Comment><br/>
+<Normal Text>         </Normal Text><DateTime>1521575578.229</DateTime><Normal Text>   188   191</Normal Text><Warning Tag> W test    :</Warning Tag><Warning Message> When he woke up, the dinosaur was still there</Warning Message><br/>
+<Normal Text>         </Normal Text><DateTime>1521575578.246</DateTime><Normal Text>   188   191</Normal Text><Warning Tag> W test    :</Warning Tag><Warning Message> When he woke up, the dinosaur was still there</Warning Message><br/>
+<Comment>--------- beginning of monotonic format</Comment><br/>
+<Normal Text>    </Normal Text><DateTime>13.418</DateTime><Normal Text>   188   193</Normal Text><Error Tag> E test    :</Error Tag><Error Message> When he woke up, the dinosaur was still there</Error Message><br/>
+<Normal Text>    </Normal Text><DateTime>13.419</DateTime><Normal Text>   188   193</Normal Text><Error Tag> E test    :</Error Tag><Error Message> When he woke up, the dinosaur was still there</Error Message><br/>
+<Comment>--------- beginning of process format</Comment><br/>
+<Assert Tag>A(  148)</Assert Tag><Assert Message> When he woke up, the dinosaur was still there</Assert Message><br/>
+<Assert Tag>A(  148)</Assert Tag><Assert Message> When he woke up, the dinosaur was still there</Assert Message><br/>
+<Comment>--------- beginning of tag format</Comment><br/>
+<Silent Tag>S/test    :</Silent Tag><Silent Message> When he woke up, the dinosaur was still there</Silent Message><br/>
+<Silent Tag>S/test    :</Silent Tag><Silent Message> When he woke up, the dinosaur was still there</Silent Message><br/>
+<Comment>--------- beginning of thread format</Comment><br/>
+<Fatal>F( 1664: 1664) When he woke up, the dinosaur was still there</Fatal><br/>
+<Fatal>F( 1664: 2268) When he woke up, the dinosaur was still there</Fatal><br/>
+<Error Tag>E( 1664: 2269)</Error Tag><Error Message> When he woke up, the dinosaur was still there</Error Message><br/>
+<Error Tag>E( 1664: 2270)</Error Tag><Error Message> When he woke up, the dinosaur was still there</Error Message><br/>
+<Comment>--------- beginning of time format</Comment><br/>
+<DateTime>02-29 19:33:50.940</DateTime><Verbose Tag> V/test    (  188):</Verbose Tag><Verbose Message> When he woke up, the dinosaur was still there</Verbose Message><br/>
+<DateTime>02-29 19:33:50.940</DateTime><Verbose Tag> V/test    (  188):</Verbose Tag><Verbose Message> When he woke up, the dinosaur was still there</Verbose Message><br/>
+<Comment>--------- beginning of uid format</Comment><br/>
+<DateTime>02-29 19:33:50.950</DateTime><Normal Text>  root   188   193</Normal Text><Info Tag> I/test    :</Info Tag><Info Message> When he woke up, the dinosaur was still there</Info Message><br/>
+<DateTime>02-29 19:33:51.049</DateTime><Normal Text>  1000   229   229</Normal Text><Info Tag> I/test    :</Info Tag><Info Message> When he woke up, the dinosaur was still there</Info Message><br/>
+<Comment>--------- beginning of usec format</Comment><br/>
+<DateTime>02-29 19:33:51.850400</DateTime><Normal Text>   229   229</Normal Text><Debug Tag> D/test    :</Debug Tag><Debug Message> When he woke up, the dinosaur was still there</Debug Message><br/>
+<DateTime>02-29 19:33:51.854069</DateTime><Normal Text>   229   242</Normal Text><Debug Tag> D/test    :</Debug Tag><Debug Message> When he woke up, the dinosaur was still there</Debug Message><br/>
+<Comment>--------- beginning of utc/zone format</Comment><br/>
+<DateTime>02-29 19:33:51.050 -0300</DateTime><Normal Text>   580   688</Normal Text><Warning Tag> W/test    :</Warning Tag><Warning Message> When he woke up, the dinosaur was still there</Warning Message><br/>
+<DateTime>02-29 19:33:51.067 +0000</DateTime><Normal Text>   580   688</Normal Text><Warning Tag> W/test    :</Warning Tag><Warning Message> When he woke up, the dinosaur was still there</Warning Message><br/>
+<Normal Text></Normal Text><br/>
+<Comment>--------- beginning of long format</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>[</Normal Text><DateTime> 02-29 16:51:18.810</DateTime><Normal Text>   188:  188</Normal Text><Verbose Tag> V/vold     </Verbose Tag><Normal Text>]</Normal Text><br/>
+<Verbose Message>When he woke up, the dinosaur was still there</Verbose Message><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>[</Normal Text><DateTime> 02-29 16:51:18.811</DateTime><Normal Text>   188:  188</Normal Text><Info Tag> I/vold     </Info Tag><Normal Text>]</Normal Text><br/>
+<Info Message>When he woke up, the dinosaur was still there</Info Message><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>[</Normal Text><DateTime> 02-29 16:51:18.821</DateTime><Normal Text>   188:  188</Normal Text><Debug Tag> D/Vold     </Debug Tag><Normal Text>]</Normal Text><br/>
+<Debug Message>When he woke up,</Debug Message><br/>
+<Debug Message>	the dinosaur was still there</Debug Message><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>[</Normal Text><DateTime> 02-29 16:51:18.849</DateTime><Normal Text>   188:  191</Normal Text><Warning Tag> W/vold     </Warning Tag><Normal Text>]</Normal Text><br/>
+<Warning Message>When</Warning Message><br/>
+<Warning Message>he woke up,</Warning Message><br/>
+<Warning Message>the dinosaur was still there</Warning Message><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>[</Normal Text><DateTime> 02-29 16:51:18.850</DateTime><Normal Text>   188:  191</Normal Text><Error Tag> E/MessageQueue </Error Tag><Normal Text>]</Normal Text><br/>
+<Error Message>When he woke up,</Error Message><br/>
+<Normal Text>	</Normal Text><br/>
+<Normal Text>	</Normal Text><Error Message>the dinosaur was still there</Error Message><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>[</Normal Text><DateTime> 02-29 16:51:18.854</DateTime><Normal Text>   188:  193</Normal Text><Assert Tag> A/vold     </Assert Tag><Normal Text>]</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Assert Message>When he woke up, the dinosaur was still there</Assert Message><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>[</Normal Text><DateTime> 02-29 16:51:18.859</DateTime><Normal Text>   188:  193</Normal Text><Silent Tag> S/vold     </Silent Tag><Normal Text>]</Normal Text><br/>
+<Silent Message>When he woke up, the dinosaur was still there</Silent Message><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>[</Normal Text><DateTime> 02-29 16:51:18.902</DateTime><Normal Text>   188:  199 </Normal Text><Fatal>F/libc</Fatal><Normal Text>     ]</Normal Text><br/>
+<Fatal>When he woke up, the dinosaur was still there</Fatal><br/>
+<Normal Text></Normal Text><br/>
+<Comment>--------- error (different formats)</Comment><br/>
+<Normal Text></Normal Text><br/>
+<DateTime>02-30 20:00:00.123</DateTime><Normal Text>   188   193</Normal Text><Error Tag> E error line :</Error Tag><Error Message> When he woke up, the dinosaur was still there</Error Message><br/>
+<DateTime>02-30 20:00:01.112</DateTime><Normal Text>   188   193</Normal Text><Error Tag> E error line :</Error Tag><Error Message> When he woke up, the dinosaur was still there</Error Message><br/>
+<Normal Text></Normal Text><br/>
+<DateTime>13.418</DateTime><Normal Text>   188   193</Normal Text><Error Tag> E test    :</Error Tag><Error Message> When he woke up, the dinosaur was still there</Error Message><br/>
+<Error Tag>E(  148)</Error Tag><Error Message> When he woke up, the dinosaur was still there</Error Message><br/>
+<Error Tag>E/test    :</Error Tag><Error Message> When he woke up, the dinosaur was still there</Error Message><br/>
+<Error Tag>E( 1664: 2269)</Error Tag><Error Message> When he woke up, the dinosaur was still there</Error Message><br/>
+<DateTime>02-30 20:00:03.240</DateTime><Error Tag> E/test    (  188):</Error Tag><Error Message> When he woke up, the dinosaur was still there</Error Message><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>[</Normal Text><DateTime> 02-30 20:00:04.001</DateTime><Normal Text>   188:  195</Normal Text><Error Tag> E/Error </Error Tag><Normal Text>]</Normal Text><br/>
+<Error Message>When he woke up,</Error Message><br/>
+<Error Message>    the dinosaur</Error Message><br/>
+<Error Message>        was still there</Error Message><br/>

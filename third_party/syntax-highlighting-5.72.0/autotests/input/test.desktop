@@ -1,0 +1,33 @@
+# test file for .dekstop syntax highlighting
+[Desktop Entry]
+GenericName=Text Editor
+GenericName[ar]=محرّر نصوص
+Name=KWrite
+Name[ar]=كاتبك
+Comment=KDE Text Editor
+Comment[ar]=محرّر نصوص لكدي
+MimeType=text/plain;
+Exec=kwrite %U
+StartupNotify=true
+Icon=kwrite
+X-DocPath=kwrite/index.html
+Type=Application
+Terminal=false
+InitialPreference=8
+X-DBUS-StartupType=Multi
+X-DBUS-ServiceName=org.kde.kwrite
+Categories=Qt;KDE;Utility;TextEditor;
+Actions=new-window;new-tab;
+
+# test folding: the header should not be
+# part of the previous region.
+# NOTE: this options in Exec don't exist.
+[Desktop Action new-window]
+Name=New Window
+Exec=kwrite --new-window
+Icon=kwrite
+
+[Desktop Action new-tab]
+Name=New Tab
+Exec=kwrite --new-tab
+Icon=kwrite

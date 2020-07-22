@@ -1,0 +1,115 @@
+<Comment><!-- Mustache / Handlebars / Ractive template --></Comment><br/>
+<Doctype><!DOCTYPE </Doctype><Normal Text>html</Normal Text><Doctype>></Doctype><br/>
+<Element Tag><html></Element Tag><br/>
+<Normal Text>    </Normal Text><Element Tag><head></Element Tag><br/>
+<Normal Text>        </Normal Text><Element Tag><meta</Element Tag><Attribute> charset</Attribute><Symbol>=</Symbol><Value>"UTF-8"</Value><Normal Text> </Normal Text><Element Tag>/></Element Tag><br/>
+<Normal Text>        </Normal Text><Element Tag><title></Element Tag><Mustache Variable>{{</Mustache Variable><Mustache Inside>title</Mustache Inside><Mustache Variable>}}</Mustache Variable><Element Tag></title></Element Tag><br/>
+<Normal Text>    </Normal Text><Element Tag></head></Element Tag><br/>
+<Normal Text>    </Normal Text><Comment><!-- CSS --></Comment><br/>
+<Normal Text>    </Normal Text><Element Tag><style></Element Tag><br/>
+<Normal Text>        </Normal Text><Comment>/* Mustache variable support in CSS is incomplete */</Comment><br/>
+<Normal Text>        </Normal Text><Mustache Variable>{{</Mustache Variable><Mustache Inside>mustache</Mustache Inside><Mustache Variable>}}</Mustache Variable><br/>
+<Normal Text>        </Normal Text><CSS: Selector Attribute>[ </CSS: Selector Attribute><Mustache Variable>{{</Mustache Variable><Mustache Inside>other</Mustache Inside><Mustache Variable>}}</Mustache Variable><CSS: Selector Attribute> ]</CSS: Selector Attribute><br/>
+<Normal Text>        </Normal Text><Selector Tag>body</Selector Tag><Normal Text> </Normal Text><Normal Text>{</Normal Text><br/>
+<Normal Text>            </Normal Text><Mustache Variable Unescape>{{{</Mustache Variable Unescape><Mustache Inside>other</Mustache Inside><Mustache Variable Unescape>}}}</Mustache Variable Unescape><br/>
+<Normal Text>            </Normal Text><Property>font-size</Property><Normal Text>: </Normal Text><Number>15</Number><Unit>pt</Unit><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text>            </Normal Text><Property>font-family</Property><Normal Text>: Verdana</Normal Text><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text>        }</Normal Text><br/>
+<Normal Text>    </Normal Text><Element Tag></style></Element Tag><br/>
+<Normal Text>    </Normal Text><Comment><!-- JavaScript --></Comment><br/>
+<Normal Text>    </Normal Text><Element Tag><script></Element Tag><br/>
+<Normal Text>        </Normal Text><Keyword>var</Keyword><Normal Text> foo </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Mustache Variable>{{</Mustache Variable><Mustache Inside>bar</Mustache Inside><Mustache Variable>}}</Mustache Variable><Symbol>;</Symbol><br/>
+<Normal Text>        </Normal Text><JS: Template>`template </JS: Template><Mustache Variable>{{</Mustache Variable><Mustache Inside>foo</Mustache Inside><Mustache Variable>}}</Mustache Variable><JS: Template> </JS: Template><JS: Substitution>${</JS: Substitution><Normal Text> </Normal Text><Keyword>var</Keyword><Normal Text> </Normal Text><Normal Text>a </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Mustache Variable>{{</Mustache Variable><Mustache Inside>b</Mustache Inside><Mustache Variable>}}</Mustache Variable><Normal Text> </Normal Text><JS: Substitution>}</JS: Substitution><JS: Template>`</JS: Template><br/>
+<Normal Text>    </Normal Text><Element Tag></script></Element Tag><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>    </Normal Text><Element Tag><body></Element Tag><br/>
+<Normal Text>    </Normal Text><Mustache Block>{{#movie}}</Mustache Block><br/>
+<Normal Text>        </Normal Text><Element Tag><div></Element Tag><br/>
+<Normal Text>            </Normal Text><Element Tag><h1></Element Tag><Mustache Variable>{{</Mustache Variable><Mustache Inside>title</Mustache Inside><Mustache Variable>}}</Mustache Variable><Element Tag></h1></Element Tag><br/>
+<Normal Text>            </Normal Text><Element Tag><img</Element Tag><Attribute> src</Attribute><Symbol>=</Symbol><Value>"</Value><Mustache Variable>{{</Mustache Variable><Mustache Inside>poster</Mustache Inside><Mustache Variable>}}</Mustache Variable><Value>"</Value><Attribute> alt</Attribute><Symbol>=</Symbol><Value>"</Value><Mustache Variable>{{</Mustache Variable><Mustache Inside>title</Mustache Inside><Mustache Variable>}}</Mustache Variable><Value>"</Value><Element Tag>/></Element Tag><br/>
+<Normal Text>        </Normal Text><Element Tag></div></Element Tag><br/>
+<Normal Text>        </Normal Text><Element Tag><div></Element Tag><br/>
+<Normal Text>            Rating - </Normal Text><Mustache Variable>{{</Mustache Variable><Mustache Inside>ratings</Mustache Inside><Symbol>.</Symbol><Mustache Inside>critics_rating</Mustache Inside><Mustache Variable>}}</Mustache Variable><br/>
+<Normal Text>        </Normal Text><Element Tag></div></Element Tag><br/>
+<Normal Text>    </Normal Text><Mustache Block>{{/movie}}</Mustache Block><br/>
+<Normal Text>    </Normal Text><Mustache Block>{{^movie}}</Mustache Block><br/>
+<Normal Text>        </Normal Text><Element Tag><div></Element Tag><br/>
+<Normal Text>            Movie Does Not Exist :(</Normal Text><br/>
+<Normal Text>        </Normal Text><Element Tag></div></Element Tag><br/>
+<Normal Text>    </Normal Text><Mustache Block>{{/movie}}</Mustache Block><br/>
+<Normal Text>    </Normal Text><Comment>{{! this is a comment </Comment><Alert Level 2>TODO</Alert Level 2><Comment> </Comment><Alert Level 1>ALERT</Alert Level 1><Comment> }}</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>    This is a partial </Normal Text><Mustache Variable>{{></Mustache Variable><Mustache Partial> partial1 </Mustache Partial><Mustache Variable>}}</Mustache Variable><br/>
+<Normal Text>    </Normal Text><Mustache Block>{{#block</Mustache Block><br/>
+<Mustache Inside>       </Mustache Inside><Attribute> param</Attribute><Symbol>=</Symbol><Mustache Inside>foo</Mustache Inside><br/>
+<Mustache Inside>       </Mustache Inside><Attribute> param2</Attribute><Symbol>=</Symbol><Mustache Inside>bar</Mustache Inside><Mustache Block>}}</Mustache Block><br/>
+<Normal Text>        </Normal Text><Mustache Variable>{{</Mustache Variable><Mustache Inside>block</Mustache Inside><Attribute> foo</Attribute><Symbol>=</Symbol><Mustache Inside>bar</Mustache Inside><Mustache Variable>}}</Mustache Variable><br/>
+<Normal Text>    </Normal Text><Mustache Block>{{/block}}</Mustache Block><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>    </Normal Text><Comment><!-- Handlebars --></Comment><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>    </Normal Text><Mustache Block>{{#list</Mustache Block><Mustache Inside> people</Mustache Inside><Mustache Block>}}</Mustache Block><Mustache Variable>{{</Mustache Variable><Mustache Inside>firstName</Mustache Inside><Mustache Variable>}}</Mustache Variable><Normal Text> </Normal Text><Mustache Variable>{{</Mustache Variable><Mustache Inside>lastName</Mustache Inside><Mustache Variable>}}</Mustache Variable><Mustache Block>{{/list}}</Mustache Block><br/>
+<Normal Text>    </Normal Text><Mustache Block>{{#noop}}</Mustache Block><Mustache Variable>{{</Mustache Variable><Mustache Inside>body</Mustache Inside><Mustache Variable>}}</Mustache Variable><Mustache Block>{{/noop}}</Mustache Block><br/>
+<Normal Text>    </Normal Text><Mustache Block>{{#with</Mustache Block><Mustache Inside> story</Mustache Inside><Mustache Block>}}</Mustache Block><br/>
+<Normal Text>        </Normal Text><Element Tag><div</Element Tag><Attribute> class</Attribute><Symbol>=</Symbol><Value>"intro"</Value><Element Tag>></Element Tag><Mustache Variable Unescape>{{{</Mustache Variable Unescape><Mustache Inside>intro</Mustache Inside><Mustache Variable Unescape>}}}</Mustache Variable Unescape><Element Tag></div></Element Tag><br/>
+<Normal Text>        </Normal Text><Element Tag><div</Element Tag><Attribute> class</Attribute><Symbol>=</Symbol><Value>"body"</Value><Element Tag>></Element Tag><Mustache Variable Unescape>{{{</Mustache Variable Unescape><Mustache Inside>body</Mustache Inside><Mustache Variable Unescape>}}}</Mustache Variable Unescape><Element Tag></div></Element Tag><br/>
+<Normal Text>    </Normal Text><Mustache Block>{{/with}}</Mustache Block><br/>
+<Normal Text>    </Normal Text><Mustache Block>{{#each</Mustache Block><Mustache Inside> comments</Mustache Inside><Mustache Block>}}</Mustache Block><br/>
+<Normal Text>        </Normal Text><Element Tag><div</Element Tag><Attribute> class</Attribute><Symbol>=</Symbol><Value>"comment"</Value><Element Tag>></Element Tag><br/>
+<Normal Text>            </Normal Text><Element Tag><h2></Element Tag><Mustache Variable>{{</Mustache Variable><Mustache Inside>subject</Mustache Inside><Mustache Variable>}}</Mustache Variable><Element Tag></h2></Element Tag><br/>
+<Normal Text>            </Normal Text><Mustache Variable Unescape>{{{</Mustache Variable Unescape><Mustache Inside>body</Mustache Inside><Mustache Variable Unescape>}}}</Mustache Variable Unescape><br/>
+<Normal Text>        </Normal Text><Element Tag></div></Element Tag><br/>
+<Normal Text>    </Normal Text><Mustache Block>{{/each}}</Mustache Block><br/>
+<Normal Text>    </Normal Text><Mustache Block>{{#list</Mustache Block><Mustache Inside> nav</Mustache Inside><Mustache Block>}}</Mustache Block><br/>
+<Normal Text>        </Normal Text><Element Tag><a</Element Tag><Attribute> href</Attribute><Symbol>=</Symbol><Value>"</Value><Mustache Variable>{{</Mustache Variable><Mustache Inside>url</Mustache Inside><Mustache Variable>}}</Mustache Variable><Value>"</Value><Element Tag>></Element Tag><Mustache Variable>{{</Mustache Variable><Mustache Inside>title</Mustache Inside><Mustache Variable>}}</Mustache Variable><Element Tag></a></Element Tag><br/>
+<Normal Text>    </Normal Text><Mustache Block>{{/list}}</Mustache Block><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>    </Normal Text><Comment>{{!-- Conditionals --}}</Comment><br/>
+<Normal Text>    </Normal Text><Mustache Block>{{#if</Mustache Block><Mustache Inside> isActive</Mustache Inside><Mustache Block>}}</Mustache Block><br/>
+<Normal Text>        </Normal Text><Element Tag><img</Element Tag><Attribute> src</Attribute><Symbol>=</Symbol><Value>"star.gif"</Value><Attribute> alt</Attribute><Symbol>=</Symbol><Value>"Active"</Value><Element Tag>></Element Tag><br/>
+<Normal Text>    </Normal Text><Mustache Block>{{else if</Mustache Block><Mustache Inside> isInactive</Mustache Inside><Mustache Block>}}</Mustache Block><br/>
+<Normal Text>        </Normal Text><Element Tag><img</Element Tag><Attribute> src</Attribute><Symbol>=</Symbol><Value>"cry.gif"</Value><Attribute> alt</Attribute><Symbol>=</Symbol><Value>"Inactive"</Value><Element Tag>></Element Tag><br/>
+<Normal Text>    </Normal Text><Mustache Block>{{else}}</Mustache Block><br/>
+<Normal Text>        </Normal Text><Element Tag><img</Element Tag><Attribute> src</Attribute><Symbol>=</Symbol><Value>"cry.gif"</Value><Attribute> alt</Attribute><Symbol>=</Symbol><Value>""</Value><Element Tag>></Element Tag><br/>
+<Normal Text>    </Normal Text><Mustache Block>{{/if}}</Mustache Block><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>    </Normal Text><Comment>{{!-- Escaping --}}</Comment><br/>
+<Normal Text>    \{{escaped}}</Normal Text><br/>
+<Normal Text>    </Normal Text><Mustache Block>{{{{raw}}}}</Mustache Block><br/>
+<Normal Text>        {{escaped}}</Normal Text><br/>
+<Normal Text>    </Normal Text><Mustache Block>{{{{/raw}}}}</Mustache Block><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>    </Normal Text><Comment>{{!-- Whitespace Control --}}</Comment><br/>
+<Normal Text>    </Normal Text><Mustache Block>{{#each</Mustache Block><Mustache Inside> nav ~</Mustache Inside><Mustache Block>}}</Mustache Block><br/>
+<Normal Text>        </Normal Text><Element Tag><a</Element Tag><Attribute> href</Attribute><Symbol>=</Symbol><Value>"</Value><Mustache Variable>{{</Mustache Variable><Mustache Inside>url</Mustache Inside><Mustache Variable>}}</Mustache Variable><Value>"</Value><Element Tag>></Element Tag><br/>
+<Normal Text>            </Normal Text><Mustache Block>{{~#if</Mustache Block><Mustache Inside> test</Mustache Inside><Mustache Block>}}</Mustache Block><br/>
+<Normal Text>                </Normal Text><Mustache Variable>{{</Mustache Variable><Mustache Inside>~title</Mustache Inside><Mustache Variable>}}</Mustache Variable><br/>
+<Normal Text>            </Normal Text><Mustache Block>{{~^</Mustache Block><Mustache Inside>~</Mustache Inside><Mustache Block>}}</Mustache Block><br/>
+<Normal Text>                Empty</Normal Text><br/>
+<Normal Text>            </Normal Text><Mustache Block>{{~/if</Mustache Block><Mustache Inside>~</Mustache Inside><Mustache Block>}}</Mustache Block><br/>
+<Normal Text>        </Normal Text><Element Tag></a></Element Tag><br/>
+<Normal Text>    </Normal Text><Mustache Block>{{~/each}}</Mustache Block><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>    </Normal Text><Comment>{{!-- Helpers --}}</Comment><br/>
+<Normal Text>    </Normal Text><Mustache Variable>{{link</Mustache Variable><Mustache Inside> </Mustache Inside><String>"See more..."</String><Mustache Inside> story</Mustache Inside><Symbol>.</Symbol><Mustache Inside>url</Mustache Inside><Mustache Variable>}}</Mustache Variable><br/>
+<Normal Text>    </Normal Text><Mustache Variable>{{log</Mustache Variable><Mustache Inside> </Mustache Inside><String>"Look at me!"</String><Attribute> level</Attribute><Symbol>=</Symbol><String>"error"</String><Mustache Variable>}}</Mustache Variable><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>    </Normal Text><Comment>{{!-- Partial --}}</Comment><br/>
+<Normal Text>    </Normal Text><Mustache Variable>{{></Mustache Variable><Mustache Partial> myPartial</Mustache Partial><Attribute> name</Attribute><Symbol>=..</Symbol><Mustache Partial>/name </Mustache Partial><Mustache Variable>}}</Mustache Variable><br/>
+<Normal Text>    </Normal Text><Mustache Block>{{#> myPartial</Mustache Block><Mustache Inside> </Mustache Inside><Mustache Block>}}</Mustache Block><br/>
+<Normal Text>        Failover content</Normal Text><br/>
+<Normal Text>    </Normal Text><Mustache Block>{{/myPartial}}</Mustache Block><br/>
+<Normal Text>    </Normal Text><Mustache Block>{{#*inline</Mustache Block><Mustache Inside> </Mustache Inside><String>"myPartial"</String><Mustache Block>}}</Mustache Block><br/>
+<Normal Text>        My Content</Normal Text><br/>
+<Normal Text>    </Normal Text><Mustache Block>{{/inline}}</Mustache Block><br/>
+<Normal Text>    </Normal Text><Mustache Block>{{#each</Mustache Block><Mustache Inside> children</Mustache Inside><Mustache Block>}}</Mustache Block><br/>
+<Normal Text>        </Normal Text><Mustache Variable>{{></Mustache Variable><Mustache Partial> myPartial</Mustache Partial><Mustache Variable>}}</Mustache Variable><br/>
+<Normal Text>    </Normal Text><Mustache Block>{{/each}}</Mustache Block><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>    </Normal Text><Comment><!-- Delimiters in tags (folding) --></Comment><br/>
+<Normal Text>    word</Normal Text><Element Tag><div></Element Tag><Normal Text>word</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>    word</Normal Text><Element Tag></div></Element Tag><Normal Text>word</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>    </Normal Text><Element Tag></body></Element Tag><br/>
+<Element Tag></html></Element Tag><br/>

@@ -1,0 +1,34 @@
+<Comment>// kate: syntax CubeScript;</Comment><br/>
+<Comment>// CubeScript test</Comment><br/>
+<Normal></Normal><br/>
+<Normal>i </Normal><Operator>=</Operator><Normal> </Normal><Int10>0</Int10><br/>
+<Normal>rainbowchat </Normal><Operator>=</Operator><Normal> </Normal><Brackets>[</Brackets><br/>
+<Normal>    out </Normal><Operator>=</Operator><Normal> </Normal><String>""</String><br/>
+<Normal>    </Normal><Keyword>loop</Keyword><Normal> k </Normal><Lookup>$</Lookup><Key>numargs</Key><Normal> </Normal><Brackets>[</Brackets><br/>
+<Normal>        word </Normal><Operator>=</Operator><Normal> </Normal><Lookup>$</Lookup><LookupBrackets>(</LookupBrackets><Keyword>format</Keyword><Normal> </Normal><String>"arg%1"</String><Normal> </Normal><Brackets>(</Brackets><Operator>+</Operator><Normal> </Normal><Lookup>$k</Lookup><Normal> </Normal><Int10>1</Int10><Brackets>)</Brackets><LookupBrackets>)</LookupBrackets><br/>
+<Normal>        </Normal><Keyword>loop</Keyword><Normal> j </Normal><Brackets>(</Brackets><Normal>stringlen </Normal><Lookup>$word</Lookup><Brackets>)</Brackets><Normal> </Normal><Brackets>[</Brackets><br/>
+<Normal>            out </Normal><Operator>=</Operator><Normal> </Normal><Brackets>(</Brackets><Keyword>format</Keyword><Normal> </Normal><String>"%1</String><Escaped>^fz</Escaped><String>%2%3"</String><Normal> </Normal><Lookup>$out</Lookup><Normal> </Normal><Brackets>(</Brackets><Normal>substring </Normal><String>"rygcbvmr"</String><Normal> </Normal><Lookup>$i</Lookup><Normal> </Normal><Int10>2</Int10><Brackets>)</Brackets><Normal> </Normal><Brackets>(</Brackets><Normal>substring </Normal><Lookup>$word</Lookup><Normal> </Normal><Lookup>$j</Lookup><Normal> </Normal><Int10>1</Int10><Brackets>))</Brackets><Normal> </Normal><br/>
+<Normal>            </Normal><Keyword>if</Keyword><Normal> </Normal><Brackets>(</Brackets><Operator>></Operator><Normal> </Normal><Lookup>$i</Lookup><Normal> </Normal><Int10>5</Int10><Brackets>)</Brackets><Normal> </Normal><Brackets>[</Brackets><Normal>i </Normal><Operator>=</Operator><Normal> </Normal><Int10>0</Int10><Normal> </Normal><Brackets>]</Brackets><Normal> </Normal><Brackets>[</Brackets><Normal>i </Normal><Operator>=</Operator><Normal> </Normal><Brackets>(</Brackets><Operator>+</Operator><Normal> </Normal><Lookup>$i</Lookup><Normal> </Normal><Int10>1</Int10><Brackets>)]</Brackets><br/>
+<Normal>        </Normal><Brackets>]</Brackets><br/>
+<Normal>        out </Normal><Operator>=</Operator><Normal> </Normal><Brackets>(</Brackets><Keyword>format</Keyword><Normal> </Normal><String>"%1 "</String><Normal> </Normal><Lookup>$out</Lookup><Brackets>)</Brackets><br/>
+<Normal>    </Normal><Brackets>]</Brackets><br/>
+<Normal>    </Normal><Keyword>if</Keyword><Normal> </Normal><Brackets>(</Brackets><Operator><</Operator><Normal> </Normal><Brackets>(</Brackets><Normal>stringlen </Normal><Lookup>$out</Lookup><Brackets>)</Brackets><Normal> </Normal><Int10>128</Int10><Brackets>)</Brackets><Normal> </Normal><Brackets>[</Brackets><br/>
+<Normal>        say </Normal><Lookup>$out</Lookup><br/>
+<Normal>    </Normal><Brackets>]</Brackets><Normal> </Normal><Brackets>[</Brackets><br/>
+<Normal>        </Normal><Keyword>echo</Keyword><Normal> </Normal><Brackets>(</Brackets><Keyword>format</Keyword><Normal> </Normal><String>"This message is %1 chars long - the usual limit is 127. Each letter takes up 5."</String><Normal> </Normal><Brackets>(</Brackets><Normal>stringlen </Normal><Lookup>$out</Lookup><Brackets>))</Brackets><br/>
+<Normal>    </Normal><Brackets>]</Brackets><br/>
+<Brackets>]</Brackets><br/>
+<Normal></Normal><br/>
+<Normal>setcomplete rainbowchat </Normal><Int10>1</Int10><br/>
+<Keyword>listcomplete</Keyword><Normal> rainbowchat </Normal><Brackets>[</Brackets><br/>
+<Normal>    </Normal><String>"BoOoM"</String><br/>
+<Normal>    </Normal><String>"Good game!"</String><br/>
+<Normal>    </Normal><String>"What the f*** was this?!?"</String><br/>
+<Normal>    </Normal><String>"go for it!"</String><br/>
+<Normal>    </Normal><String>"yeeeehaw!"</String><br/>
+<Normal>    </Normal><String>"what a mess >_< "</String><br/>
+<Brackets>]</Brackets><br/>
+<Normal></Normal><br/>
+<Comment>// Line continuation escape</Comment><br/>
+<String>"string </String><Escaped>^</Escaped><br/>
+<String>    newline"</String><br/>

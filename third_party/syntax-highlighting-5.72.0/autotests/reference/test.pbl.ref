@@ -1,0 +1,101 @@
+<Comment># Wesnoth Markup Language</Comment><br/>
+<Normal WML Text></Normal WML Text><br/>
+<Preprocessor>#textdomain wesnoth-libs</Preprocessor><br/>
+<Normal WML Text></Normal WML Text><br/>
+<Preprocessor>#define __GUI_WINDOW_HEIGHT</Preprocessor><br/>
+<Normal WML Text>(</Normal WML Text><br/>
+<Normal WML Text>	if(</Normal WML Text><WML Attribute>window_height </WML Attribute><Normal WML Text>= 0, 9999, window_height)</Normal WML Text><br/>
+<Normal WML Text>)</Normal WML Text><Preprocessor>#enddef</Preprocessor><br/>
+<Normal WML Text></Normal WML Text><br/>
+<Preprocessor>#define __GUI_WINDOW_FUNCTIONS</Preprocessor><br/>
+<Normal WML Text>def reevaluate_best_size(w, s)</Normal WML Text><br/>
+<Normal WML Text>(</Normal WML Text><br/>
+<Normal WML Text>[</Normal WML Text><br/>
+<Normal WML Text>	0,</Normal WML Text><br/>
+<Comment>#</Comment><br/>
+<Normal WML Text>	debug_print('window ', w),</Normal WML Text><br/>
+<Normal WML Text>	debug_print('screen ', s)</Normal WML Text><br/>
+<Comment>#</Comment><br/>
+<Normal WML Text>][0]</Normal WML Text><br/>
+<Normal WML Text>);</Normal WML Text><br/>
+<Preprocessor>#enddef</Preprocessor><br/>
+<Normal WML Text></Normal WML Text><br/>
+<Comment># Don't highlight array indices as tags</Comment><br/>
+<Normal WML Text>stored_unit[1].moves</Normal WML Text><br/>
+<Normal WML Text>other[0][1][2]</Normal WML Text><br/>
+<Normal WML Text>other[foo][bar]</Normal WML Text><br/>
+<Normal WML Text></Normal WML Text><br/>
+<Normal WML Text>foo[</Normal WML Text><Macro/Include>{MACRO}</Macro/Include><Normal WML Text>]</Normal WML Text><br/>
+<Normal WML Text>foo[</Normal WML Text><Variable Substitution>$index</Variable Substitution><Normal WML Text>]</Normal WML Text><br/>
+<Normal WML Text>foo[  12 ]</Normal WML Text><br/>
+<Normal WML Text></Normal WML Text><br/>
+<Comment># Nested tags</Comment><br/>
+<WML Node>[allow_undo][/allow_undo][not][true]</WML Node><Normal WML Text>text</Normal WML Text><WML Node>[/true][/not]</WML Node><br/>
+<WML Node>[foo][bar]</WML Node><Normal WML Text>text</Normal WML Text><WML Node>[/bar][/foo]</WML Node><br/>
+<Normal WML Text></Normal WML Text><br/>
+<WML Node>[about]</WML Node><br/>
+<Normal WML Text>	</Normal WML Text><WML Attribute>title</WML Attribute><Normal WML Text>= </Normal WML Text><String>_ "Campaign Designer"</String><br/>
+<Normal WML Text>	</Normal WML Text><WML Attribute>text</WML Attribute><Normal WML Text>=</Normal WML Text><String>"Your Name"</String><br/>
+<WML Node>[/about]</WML Node><br/>
+<Normal WML Text></Normal WML Text><br/>
+<WML Node>[window]</WML Node><br/>
+<Normal WML Text>	</Normal WML Text><WML Attribute>id </WML Attribute><Normal WML Text>= </Normal WML Text><String>"tooltip"</String><br/>
+<Normal WML Text></Normal WML Text><br/>
+<Normal WML Text>	</Normal WML Text><WML Node>[resolution]</WML Node><br/>
+<Normal WML Text>		</Normal WML Text><WML Attribute>definition </WML Attribute><Normal WML Text>= </Normal WML Text><String>"tooltip"</String><br/>
+<Normal WML Text>		</Normal WML Text><WML Attribute>automatic_placement </WML Attribute><Normal WML Text>= false</Normal WML Text><br/>
+<Normal WML Text>		</Normal WML Text><WML Attribute>functions </WML Attribute><Normal WML Text>= </Normal WML Text><String>"</String><Macro/Include>{__GUI_WINDOW_FUNCTIONS}</Macro/Include><String>"</String><br/>
+<Normal WML Text></Normal WML Text><br/>
+<Normal WML Text>		</Normal WML Text><WML Node>[grid]</WML Node><br/>
+<Normal WML Text></Normal WML Text><br/>
+<Normal WML Text>			</Normal WML Text><WML Node>[row]</WML Node><br/>
+<Normal WML Text></Normal WML Text><br/>
+<Normal WML Text>				</Normal WML Text><WML Node>[column]</WML Node><br/>
+<Normal WML Text></Normal WML Text><br/>
+<Normal WML Text>					</Normal WML Text><WML Node>[label]</WML Node><br/>
+<Normal WML Text>						</Normal WML Text><WML Attribute>id </WML Attribute><Normal WML Text>= </Normal WML Text><String>"label"</String><br/>
+<Normal WML Text>						</Normal WML Text><WML Attribute>definition </WML Attribute><Normal WML Text>= </Normal WML Text><String>"default_small"</String><br/>
+<Normal WML Text></Normal WML Text><br/>
+<Normal WML Text>						</Normal WML Text><WML Attribute>use_markup </WML Attribute><Normal WML Text>= true</Normal WML Text><br/>
+<Normal WML Text>						</Normal WML Text><WML Attribute>wrap </WML Attribute><Normal WML Text>= true</Normal WML Text><br/>
+<Normal WML Text>					</Normal WML Text><WML Node>[/label]</WML Node><br/>
+<Normal WML Text></Normal WML Text><br/>
+<Normal WML Text>				</Normal WML Text><WML Node>[/column]</WML Node><br/>
+<Normal WML Text></Normal WML Text><br/>
+<Normal WML Text>			</Normal WML Text><WML Node>[/row]</WML Node><br/>
+<Normal WML Text></Normal WML Text><br/>
+<Normal WML Text>		</Normal WML Text><WML Node>[/grid]</WML Node><br/>
+<Normal WML Text></Normal WML Text><br/>
+<Normal WML Text>	</Normal WML Text><WML Node>[/resolution]</WML Node><br/>
+<Normal WML Text></Normal WML Text><br/>
+<WML Node>[/window]</WML Node><br/>
+<Normal WML Text></Normal WML Text><br/>
+<WML Node>[event]</WML Node><br/>
+<Normal WML Text>	</Normal WML Text><WML Attribute>name </WML Attribute><Normal WML Text>= preload</Normal WML Text><br/>
+<Normal WML Text>	</Normal WML Text><WML Attribute>first_time_only </WML Attribute><Normal WML Text>= no</Normal WML Text><br/>
+<Normal WML Text>	</Normal WML Text><WML Node>[lua]</WML Node><br/>
+<Normal WML Text>		</Normal WML Text><WML Attribute>code </WML Attribute><Normal WML Text>=</Normal WML Text><String> <<</String><br/>
+<Normal Text>			</Normal Text><Keyword>function</Keyword><Normal Text> narrator</Normal Text><Symbols>(</Symbols><Variable>t</Variable><Symbols>)</Symbols><br/>
+<Normal Text>				</Normal Text><Comment>-- Behave like the [message] tag.</Comment><br/>
+<Normal Text>				</Normal Text><Variable>wesnoth</Variable><Symbols>.</Symbols><Normal Text>fire</Normal Text><Symbols>(</Symbols><Strings>"message"</Strings><Symbols>,</Symbols><br/>
+<Normal Text>				  </Normal Text><Symbols>{</Symbols><Normal Text> </Normal Text><Variable>speaker</Variable><Normal Text> </Normal Text><Symbols>=</Symbols><Normal Text> </Normal Text><Strings>"narrator"</Strings><Symbols>,</Symbols><Normal Text> </Normal Text><Variable>message</Variable><Normal Text> </Normal Text><Symbols>=</Symbols><Normal Text> </Normal Text><Variable>t</Variable><Symbols>.</Symbols><Variable>sentence</Variable><Normal Text> </Normal Text><Symbols>})</Symbols><br/>
+<Normal Text>			</Normal Text><Keyword>end</Keyword><br/>
+<Normal Text>		</Normal Text><String>>></String><br/>
+<Normal WML Text>	</Normal WML Text><WML Node>[/lua]</WML Node><br/>
+<WML Node>[/event]</WML Node><br/>
+<Normal WML Text></Normal WML Text><br/>
+<WML Node>[event]</WML Node><br/>
+<Normal WML Text>	</Normal WML Text><WML Attribute>name </WML Attribute><Normal WML Text>= turn 1</Normal WML Text><br/>
+<Normal WML Text>	</Normal WML Text><WML Node>[lua]</WML Node><br/>
+<Normal WML Text>		</Normal WML Text><WML Attribute>code </WML Attribute><Normal WML Text>=</Normal WML Text><String> <<</String><Normal Text> narrator</Normal Text><Symbols>(...)</Symbols><Normal Text> </Normal Text><String>>></String><br/>
+<Normal WML Text>		</Normal WML Text><WML Node>[args]</WML Node><br/>
+<Normal WML Text>			</Normal WML Text><WML Attribute>sentence </WML Attribute><Normal WML Text>= </Normal WML Text><String>_ "Hello world!"</String><br/>
+<Normal WML Text>		</Normal WML Text><WML Node>[/args]</WML Node><br/>
+<Normal WML Text>	</Normal WML Text><WML Node>[/lua]</WML Node><br/>
+<Normal WML Text>	</Normal WML Text><WML Node>[lua]</WML Node><br/>
+<Normal WML Text>		</Normal WML Text><WML Attribute>code </WML Attribute><Normal WML Text>=</Normal WML Text><String> <<</String><Normal Text> narrator</Normal Text><Symbols>(...)</Symbols><Normal Text> </Normal Text><String>>></String><br/>
+<Normal WML Text>		</Normal WML Text><WML Node>[args]</WML Node><br/>
+<Normal WML Text>			</Normal WML Text><WML Attribute>sentence </WML Attribute><Normal WML Text>= </Normal WML Text><String>_ "How are you today?"</String><br/>
+<Normal WML Text>		</Normal WML Text><WML Node>[/args]</WML Node><br/>
+<Normal WML Text>	</Normal WML Text><WML Node>[/lua]</WML Node><br/>
+<WML Node>[/event]</WML Node><br/>

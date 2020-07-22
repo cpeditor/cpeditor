@@ -1,0 +1,1389 @@
+# Translation of syntaxhighlighting5_qt.po into Serbian.
+# Marko Rosic <roske@kde.org.yu>, 2003.
+# Toplica Tanaskovic <toptan@kde.org.yu>, 2003, 2004, 2005.
+# Chusslove Illich <caslav.ilic@gmx.net>, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017.
+# Dalibor Djuric <daliborddjuric@gmail.com>, 2010, 2011.
+msgid ""
+msgstr ""
+"Project-Id-Version: syntaxhighlighting5_qt\n"
+"Report-Msgid-Bugs-To: http://bugs.kde.org\n"
+"POT-Creation-Date: 2016-07-15 07:32+0000\n"
+"PO-Revision-Date: 2017-09-25 19:53+0200\n"
+"Last-Translator: Chusslove Illich <caslav.ilic@gmx.net>\n"
+"Language-Team: Serbian <kde-i18n-sr@kde.org>\n"
+"Language: sr@ijekavian\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Accelerator-Marker: &\n"
+"X-Text-Markup: qtrich\n"
+"X-Environment: kde\n"
+"X-Qt-Contexts: true\n"
+
+msgctxt "Language|"
+msgid "4DOS BatchToMemory"
+msgstr "4ДОС‑ов бач‑у‑меморију"
+
+msgctxt "Language|"
+msgid "ABAP"
+msgstr "АБАП"
+
+msgctxt "Language|"
+msgid "ABC"
+msgstr "АБЦ"
+
+msgctxt "Language|"
+msgid "ActionScript 2.0"
+msgstr "акцискрипт 2.0"
+
+msgctxt "Language|"
+msgid "Ada"
+msgstr "ада"
+
+msgctxt "Language|"
+msgid "Agda"
+msgstr "агда"
+
+msgctxt "Language|"
+msgid "AHDL"
+msgstr "АХДЛ"
+
+msgctxt "Language|"
+msgid "AutoHotKey"
+msgstr "ауто‑хотки"
+
+msgctxt "Language|"
+msgid "Alerts"
+msgstr "позори"
+
+msgctxt "Language|"
+msgid "AMPLE"
+msgstr "АМПЛЕ"
+
+msgctxt "Language|"
+msgid "ANS-Forth94"
+msgstr "АНС форт 94"
+
+msgctxt "Language|"
+msgid "ANSI C89"
+msgstr "АНСИ Ц89"
+
+msgctxt "Language|"
+msgid "Ansys"
+msgstr "ансис"
+
+msgctxt "Language|"
+msgid "Apache Configuration"
+msgstr "апачи-постава"
+
+msgctxt "Language|"
+msgid "AppArmor Security Profile"
+msgstr "Апарморов безбедносни профил"
+
+msgctxt "Language|"
+msgid "AsciiDoc"
+msgstr ""
+
+msgctxt "Language|"
+msgid "Asm6502"
+msgstr "асм6502"
+
+msgctxt "Language|"
+msgid "AVR Assembler"
+msgstr "АВР асемблер"
+
+msgctxt "Language|"
+msgid "Motorola DSP56k"
+msgstr "Моторолин ДСП‑56к"
+
+msgctxt "Language|"
+msgid "Motorola 68k (VASM/Devpac)"
+msgstr "Моторолин 68к (ВАСМ/Девпак)"
+
+msgctxt "Language|"
+msgid "ASN.1"
+msgstr "АСН.1"
+
+msgctxt "Language|"
+msgid "ASP"
+msgstr "АСП"
+
+msgctxt "Language|"
+msgid "AWK"
+msgstr "авк"
+
+msgctxt "Language|"
+msgid "Bash"
+msgstr "басх"
+
+msgctxt "Language|"
+msgid "BibTeX"
+msgstr "бибтех"
+
+msgctxt "Language|"
+msgid "Bitbake"
+msgstr "Битбејк"
+
+msgctxt "Language|"
+msgid "B-Method"
+msgstr "б‑метод"
+
+msgctxt "Language|"
+msgid "Boo"
+msgstr "бу"
+
+msgctxt "Language|"
+msgid "CleanCSS"
+msgstr "клинЦСС"
+
+msgctxt "Language|"
+msgid "CGiS"
+msgstr "ЦГиС"
+
+msgctxt "Language|"
+msgid "Cg"
+msgstr "Цг"
+
+msgctxt "Language|"
+msgid "ChangeLog"
+msgstr "дневник измена"
+
+msgctxt "Language|"
+msgid "Common Intermediate Language (CIL)"
+msgstr ""
+
+msgctxt "Language|"
+msgid "Cisco"
+msgstr "Сиско"
+
+msgctxt "Language|"
+msgid "Clipper"
+msgstr "клипер"
+
+msgctxt "Language|"
+msgid "CLIST"
+msgstr ""
+
+msgctxt "Language|"
+msgid "Clojure"
+msgstr "кложур"
+
+msgctxt "Language|"
+msgid "CoffeeScript"
+msgstr "кафискрипт"
+
+msgctxt "Language|"
+msgid "ColdFusion"
+msgstr "колдфјужн"
+
+msgctxt "Language|"
+msgid "Common Lisp"
+msgstr "комон‑лисп"
+
+msgctxt "Language|"
+msgid "Component-Pascal"
+msgstr "компонент-паскал"
+
+msgctxt "Language|"
+msgid "ConTeXt"
+msgstr "Контехт"
+
+msgctxt "Language|"
+msgid "Crack"
+msgstr "крак"
+
+msgctxt "Language|"
+msgid "CSS"
+msgstr "ЦСС"
+
+msgctxt "Language|"
+msgid "C#"
+msgstr "Ц#"
+
+msgctxt "Language|"
+msgid "CubeScript"
+msgstr "кјубскрипт"
+
+msgctxt "Language|"
+msgid "CUE Sheet"
+msgstr "кју‑лист"
+
+msgctxt "Language|"
+msgid "Curry"
+msgstr "кари"
+
+msgctxt "Language|"
+msgid "C"
+msgstr "Ц"
+
+msgctxt "Language|"
+msgid "Debian Changelog"
+msgstr "Дебијанов дневник измена"
+
+msgctxt "Language|"
+msgid "Debian Control"
+msgstr "Дебијанова контрола"
+
+msgctxt "Language|"
+msgid ".desktop"
+msgstr ".десктоп"
+
+msgctxt "Language|"
+msgid "Diff"
+msgstr "диф"
+
+msgctxt "Language|"
+msgid "Django HTML Template"
+msgstr "Ђангов ХТМЛ шаблон"
+
+msgctxt "Language|"
+msgid "Dockerfile"
+msgstr "докерфајл"
+
+msgctxt "Language|"
+msgid "MS-DOS Batch"
+msgstr "МС‑ДОС бач"
+
+msgctxt "Language|"
+msgid "dot"
+msgstr "ДОТ"
+
+msgctxt "Language|"
+msgid "Doxyfile"
+msgstr "доксифајл"
+
+msgctxt "Language|"
+msgid "DoxygenLua"
+msgstr "доксиген‑луа"
+
+msgctxt "Language|"
+msgid "Doxygen"
+msgstr "доксиген"
+
+msgctxt "Language|"
+msgid "DTD"
+msgstr "ДТД"
+
+msgctxt "Language|"
+msgid "D"
+msgstr "Д"
+
+msgctxt "Language|"
+msgid "Eiffel"
+msgstr "ајфел"
+
+msgctxt "Language|"
+msgid "Elm"
+msgstr ""
+
+msgctxt "Language|"
+msgid "Email"
+msgstr "е‑пошта"
+
+msgctxt "Language|"
+msgid "Erlang"
+msgstr "ерланг"
+
+msgctxt "Language|"
+msgid "Euphoria"
+msgstr "еуфорија"
+
+msgctxt "Language|"
+msgid "E Language"
+msgstr "Е"
+
+msgctxt "Language|"
+msgid "Intel x86 (FASM)"
+msgstr "интел икс86 (ФАСМ)"
+
+msgctxt "Language|"
+msgid "FASTQ"
+msgstr "ФАСТКу"
+
+msgctxt "Language|"
+msgid "ferite"
+msgstr "ферит"
+
+msgctxt "Language|"
+msgid "4GL"
+msgstr "4ГЛ"
+
+msgctxt "Language|"
+msgid "4GL-PER"
+msgstr "4ГЛ‑ПЕР"
+
+msgctxt "Language|"
+msgid "Fish"
+msgstr ""
+
+msgctxt "Language|"
+msgid "FlatBuffers"
+msgstr ""
+
+msgctxt "Language|"
+msgid "Fortran (Fixed Format)"
+msgstr ""
+
+msgctxt "Language|"
+msgid "Fortran (Free Format)"
+msgstr ""
+
+msgctxt "Language|"
+msgid "FreeBASIC"
+msgstr "фрибејзик"
+
+msgctxt "Language|"
+msgid "FSharp"
+msgstr "Ф‑шарп"
+
+msgctxt "Language|"
+msgid "fstab"
+msgstr "фстаб"
+
+msgctxt "Language|"
+msgid "FTL"
+msgstr "ФТЛ"
+
+msgctxt "Language|"
+msgid "GAP"
+msgstr "ГАП"
+
+msgctxt "Language|"
+msgid "G-Code"
+msgstr "Г‑код"
+
+msgctxt "Language|"
+msgid "GDB Backtrace"
+msgstr "ГДБ‑ов контратраг"
+
+msgctxt "Language|"
+msgid "GDB Init"
+msgstr ""
+
+#, fuzzy
+#| msgctxt "Language|"
+#| msgid "GDL"
+msgctxt "Language|"
+msgid "GDB"
+msgstr "ГДЛ"
+
+msgctxt "Language|"
+msgid "GDL"
+msgstr "ГДЛ"
+
+msgctxt "Language|"
+msgid "GNU Gettext"
+msgstr "Гнуов геттекст"
+
+msgctxt "Language|"
+msgid "Git Ignore"
+msgstr "Гитово игнорисање"
+
+msgctxt "Language|"
+msgid "Gitolite"
+msgstr "Гитолајт"
+
+msgctxt "Language|"
+msgid "Git Rebase"
+msgstr "Гитово пребазирање"
+
+msgctxt "Language|"
+msgid "GlossTex"
+msgstr "глостех"
+
+msgctxt "Language|"
+msgid "GLSL"
+msgstr "ГЛСЛ"
+
+msgctxt "Language|"
+msgid "GNU Assembler"
+msgstr "Гнуов асемблер"
+
+msgctxt "Language|"
+msgid "Gnuplot"
+msgstr "гнуплотски"
+
+msgctxt "Language|"
+msgid "Go"
+msgstr "го"
+
+msgctxt "Language|"
+msgid "KDev-PG[-Qt] Grammar"
+msgstr "граматика К‑дев‑ПГ‑а[КуТ]"
+
+msgctxt "Language|"
+msgid "GraphQL"
+msgstr ""
+
+msgctxt "Language|"
+msgid "Groovy"
+msgstr "груви"
+
+msgctxt "Language|"
+msgid "Hamlet"
+msgstr "хамлет"
+
+msgctxt "Language|"
+msgid "Haml"
+msgstr "ХАМЛ"
+
+msgctxt "Language|"
+msgid "Haskell"
+msgstr "хаскел"
+
+msgctxt "Language|"
+msgid "Haxe"
+msgstr "хекс"
+
+msgctxt "Language|"
+msgid "HTML"
+msgstr "ХТМЛ"
+
+msgctxt "Language|"
+msgid "Hunspell Affix File"
+msgstr "Ханспелов фајл афикса"
+
+msgctxt "Language|"
+msgid "Hunspell Thesaurus File"
+msgstr "Ханспелов фајл синонима"
+
+msgctxt "Language|"
+msgid "Hunspell Dictionary File"
+msgstr "Ханспелов фајл речника"
+
+msgctxt "Language|"
+msgid "Quake Script"
+msgstr "квејкскрипт"
+
+msgctxt "Language|"
+msgid "IDL"
+msgstr "ИДЛ"
+
+msgctxt "Language|"
+msgid "ILERPG"
+msgstr "ИЛЕРПГ"
+
+msgctxt "Language|"
+msgid "Inform"
+msgstr "информ"
+
+msgctxt "Language|"
+msgid "INI Files"
+msgstr "ИНИ датотека"
+
+msgctxt "Language|"
+msgid "InnoSetup"
+msgstr ""
+
+msgctxt "Language|"
+msgid "Intel HEX"
+msgstr "Интелов ХЕКС"
+
+msgctxt "Language|"
+msgid "Jam"
+msgstr "џам"
+
+msgctxt "Language|"
+msgid "Javadoc"
+msgstr "јавадок"
+
+#, fuzzy
+#| msgctxt "Language|"
+#| msgid "JavaScript"
+msgctxt "Language|"
+msgid "JavaScript React (JSX)"
+msgstr "јаваскрипт"
+
+msgctxt "Language|"
+msgid "JavaScript"
+msgstr "јаваскрипт"
+
+msgctxt "Language|"
+msgid "Java"
+msgstr "јава"
+
+msgctxt "Language|"
+msgid "JCL"
+msgstr ""
+
+msgctxt "Language|"
+msgid "Jira"
+msgstr "Џира"
+
+msgctxt "Language|"
+msgid "JSON"
+msgstr "ЈСОН"
+
+msgctxt "Language|"
+msgid "JSP"
+msgstr "ЈСП"
+
+msgctxt "Language|"
+msgid "Julia"
+msgstr "јулија"
+
+msgctxt "Language|"
+msgid "J"
+msgstr "Ј"
+
+msgctxt "Language|"
+msgid "KBasic"
+msgstr "к‑бејзик"
+
+msgctxt "Language|"
+msgid "Kconfig"
+msgstr "К‑конфиг"
+
+msgctxt "Language|"
+msgid "Kotlin"
+msgstr "котлин"
+
+msgctxt "Language|"
+msgid "k"
+msgstr "К"
+
+msgctxt "Language|"
+msgid "LaTeX"
+msgstr "латех"
+
+msgctxt "Language|"
+msgid "LDIF"
+msgstr "ЛДИФ"
+
+msgctxt "Language|"
+msgid "GNU Linker Script"
+msgstr "скрипта Гнуовог повезивача"
+
+msgctxt "Language|"
+msgid "LESSCSS"
+msgstr "ЛЕСС"
+
+msgctxt "Language|"
+msgid "Lex/Flex"
+msgstr "лекс/флекс"
+
+msgctxt "Language|"
+msgid "LilyPond"
+msgstr "лилипонд"
+
+msgctxt "Language|"
+msgid "Literate Curry"
+msgstr "писмени кари"
+
+msgctxt "Language|"
+msgid "Literate Haskell"
+msgstr "писмени хаскел"
+
+msgctxt "Language|"
+msgid "Logcat"
+msgstr ""
+
+msgctxt "Language|"
+msgid "Logtalk"
+msgstr "логток"
+
+msgctxt "Language|"
+msgid "LPC"
+msgstr "ЛПЦ"
+
+msgctxt "Language|"
+msgid "LSL"
+msgstr "ЛСЛ"
+
+msgctxt "Language|"
+msgid "Lua"
+msgstr "луа"
+
+msgctxt "Language|"
+msgid "M3U"
+msgstr "М3У"
+
+msgctxt "Language|"
+msgid "GNU M4"
+msgstr "Гнуов М4"
+
+msgctxt "Language|"
+msgid "MAB-DB"
+msgstr "МАД‑ДБ"
+
+msgctxt "Language|"
+msgid "Magma"
+msgstr "Магма"
+
+msgctxt "Language|"
+msgid "Makefile"
+msgstr "справифајл"
+
+msgctxt "Language|"
+msgid "Mako"
+msgstr "мако"
+
+msgctxt "Language|"
+msgid "Troff Mandoc"
+msgstr "троф упутна страна"
+
+msgctxt "Language|"
+msgid "Markdown"
+msgstr "маркдаун"
+
+msgctxt "Language|"
+msgid "Mason"
+msgstr "мејсон"
+
+msgctxt "Language|"
+msgid "Mathematica"
+msgstr "Математика"
+
+msgctxt "Language|"
+msgid "Matlab"
+msgstr "матлабски"
+
+msgctxt "Language|"
+msgid "Maxima"
+msgstr "максимски"
+
+msgctxt "Language|"
+msgid "MediaWiki"
+msgstr "медијавики"
+
+msgctxt "Language|"
+msgid "MEL"
+msgstr "МЕЛ"
+
+msgctxt "Language|"
+msgid "mergetag text"
+msgstr "мерџтаг текст"
+
+msgctxt "Language|"
+msgid "Meson"
+msgstr "Мезон"
+
+msgctxt "Language|"
+msgid "Metapost/Metafont"
+msgstr "метапост/метафонт"
+
+msgctxt "Language|"
+msgid "Metamath"
+msgstr "метамат"
+
+msgctxt "Language|"
+msgid "MIB"
+msgstr ""
+
+msgctxt "Language|"
+msgid "MIPS Assembler"
+msgstr "МИПС асемблер"
+
+msgctxt "Language|"
+msgid "Modelica"
+msgstr "моделика"
+
+msgctxt "Language|"
+msgid "Modelines"
+msgstr "редови режима"
+
+msgctxt "Language|"
+msgid "Modula-2 (ISO only)"
+msgstr ""
+
+msgctxt "Language|"
+msgid "Modula-2 (PIM only)"
+msgstr ""
+
+msgctxt "Language|"
+msgid "Modula-2 (R10 only)"
+msgstr ""
+
+msgctxt "Language|"
+msgid "Modula-2"
+msgstr "модула‑2"
+
+msgctxt "Language|"
+msgid "MonoBasic"
+msgstr "монобејзик"
+
+msgctxt "Language|"
+msgid "Music Publisher"
+msgstr "издавач музике"
+
+msgctxt "Language|"
+msgid "Mustache/Handlebars (HTML)"
+msgstr ""
+
+msgctxt "Language|"
+msgid "Nagios"
+msgstr "Нагиос"
+
+msgctxt "Language|"
+msgid "Intel x86 (NASM)"
+msgstr "интел икс86 (НАСМ)"
+
+msgctxt "Language|"
+msgid "Nemerle"
+msgstr "немерле"
+
+msgctxt "Language|"
+msgid "nesC"
+msgstr "несЦ"
+
+msgctxt "Language|"
+msgid "noweb"
+msgstr "новеб"
+
+msgctxt "Language|"
+msgid "Objective-C++"
+msgstr "објектив‑Ц++"
+
+msgctxt "Language|"
+msgid "Objective-C"
+msgstr "објектив‑Ц"
+
+msgctxt "Language|"
+msgid "Objective Caml Ocamllex"
+msgstr "објектив‑камл — ocamllex"
+
+msgctxt "Language|"
+msgid "Objective Caml"
+msgstr "објектив‑камл"
+
+msgctxt "Language|"
+msgid "Objective Caml Ocamlyacc"
+msgstr "објектив‑камл — ocamlyacc"
+
+msgctxt "Language|"
+msgid "Octave"
+msgstr "октавски"
+
+msgctxt "Language|"
+msgid "OORS"
+msgstr "ООРС"
+
+msgctxt "Language|"
+msgid "OPAL"
+msgstr "ОПАЛ"
+
+msgctxt "Language|"
+msgid "OpenCL"
+msgstr "опенЦЛ"
+
+#, fuzzy
+#| msgctxt "Language|"
+#| msgid "OpenCL"
+msgctxt "Language|"
+msgid "OpenSCAD"
+msgstr "опенЦЛ"
+
+msgctxt "Language|"
+msgid "Overpass QL"
+msgstr ""
+
+msgctxt "Language|"
+msgid "Pango"
+msgstr "⁠панго"
+
+msgctxt "Language|"
+msgid "Pascal"
+msgstr "паскал"
+
+msgctxt "Language|"
+msgid "Perl"
+msgstr "перл"
+
+msgctxt "Language|"
+msgid "PHP/PHP"
+msgstr "ПХП"
+
+msgctxt "Language|"
+msgid "PicAsm"
+msgstr "пикасм"
+
+msgctxt "Language|"
+msgid "Pig"
+msgstr "пиг"
+
+msgctxt "Language|"
+msgid "Pike"
+msgstr "пајк"
+
+msgctxt "Language|"
+msgid "PL/I"
+msgstr "ПЛ/И"
+
+msgctxt "Language|"
+msgid "PLY"
+msgstr "ПЛИ"
+
+msgctxt "Language|"
+msgid "PostScript"
+msgstr "постскрипт"
+
+msgctxt "Language|"
+msgid "POV-Ray"
+msgstr "повреј"
+
+msgctxt "Language|"
+msgid "Praat"
+msgstr "праат"
+
+msgctxt "Language|"
+msgid "progress"
+msgstr "прогрес"
+
+msgctxt "Language|"
+msgid "Protobuf"
+msgstr "протобаф"
+
+msgctxt "Language|"
+msgid "Pug"
+msgstr "паг"
+
+msgctxt "Language|"
+msgid "Puppet"
+msgstr "Папет"
+
+msgctxt "Language|"
+msgid "PureBasic"
+msgstr "пјурбејзик"
+
+msgctxt "Language|"
+msgid "Python"
+msgstr "питон"
+
+msgctxt "Language|"
+msgid "QDoc Configuration"
+msgstr "КуДокова постава"
+
+msgctxt "Language|"
+msgid "QMake"
+msgstr "ку‑мејк"
+
+msgctxt "Language|"
+msgid "QML"
+msgstr "КуМЛ"
+
+msgctxt "Language|"
+msgid "q"
+msgstr "Ку"
+
+msgctxt "Language|"
+msgid "Raku"
+msgstr ""
+
+msgctxt "Language|"
+msgid "RapidQ"
+msgstr "рапид‑ку"
+
+msgctxt "Language|"
+msgid "R documentation"
+msgstr ""
+
+msgctxt "Language|"
+msgid "RelaxNG-Compact"
+msgstr "релакс НГ сажети"
+
+msgctxt "Language|"
+msgid "RenPy"
+msgstr ""
+
+msgctxt "Language|"
+msgid "Replicode"
+msgstr "репликод"
+
+msgctxt "Language|"
+msgid "reStructuredText"
+msgstr "реструктурни-текст"
+
+msgctxt "Language|"
+msgid "REXX"
+msgstr "рекс"
+
+msgctxt "Language|"
+msgid "Ruby/Rails/RHTML"
+msgstr "руби‑рејлс-РХТМЛ"
+
+msgctxt "Language|"
+msgid "RenderMan RIB"
+msgstr "рендерман‑РИБ"
+
+msgctxt "Language|"
+msgid "R Markdown"
+msgstr "Р маркдаун"
+
+msgctxt "Language|"
+msgid "Roff"
+msgstr "роф"
+
+msgctxt "Language|"
+msgid "RPM Spec"
+msgstr "РПМ навод"
+
+msgctxt "Language|"
+msgid "RSI IDL"
+msgstr "РСИ ИДЛ"
+
+msgctxt "Language|"
+msgid "Rich Text Format"
+msgstr "формат богатог текста"
+
+msgctxt "Language|"
+msgid "Ruby"
+msgstr "руби"
+
+msgctxt "Language|"
+msgid "Rust"
+msgstr "раст"
+
+msgctxt "Language|"
+msgid "R Script"
+msgstr "р‑скрипт"
+
+msgctxt "Language|"
+msgid "SASS"
+msgstr ""
+
+msgctxt "Language|"
+msgid "Sather"
+msgstr "сатер"
+
+msgctxt "Language|"
+msgid "Scala"
+msgstr "скала"
+
+msgctxt "Language|"
+msgid "Scheme"
+msgstr "шема"
+
+msgctxt "Language|"
+msgid "scilab"
+msgstr "сцилабски"
+
+msgctxt "Language|"
+msgid "SCSS"
+msgstr "СЦСС"
+
+msgctxt "Language|"
+msgid "sed"
+msgstr "⁠сед"
+
+msgctxt "Language|"
+msgid "SELinux CIL Policy"
+msgstr ""
+
+msgctxt "Language|"
+msgid "SELinux File Contexts"
+msgstr ""
+
+msgctxt "Language|"
+msgid "SELinux Policy"
+msgstr ""
+
+msgctxt "Language|"
+msgid "SGML"
+msgstr "СГМЛ"
+
+msgctxt "Language|"
+msgid "SiSU"
+msgstr "СиСУ"
+
+msgctxt "Language|"
+msgid "Smali"
+msgstr ""
+
+msgctxt "Language|"
+msgid "SML"
+msgstr "СМЛ"
+
+msgctxt "Language|"
+msgid "Solidity"
+msgstr ""
+
+msgctxt "Language|"
+msgid "Spice"
+msgstr "спајс"
+
+msgctxt "Language|"
+msgid "SQL (MySQL)"
+msgstr "СКуЛ (МајСКуЛ)"
+
+msgctxt "Language|"
+msgid "SQL (Oracle)"
+msgstr "СКуЛ (Оракл)"
+
+msgctxt "Language|"
+msgid "SQL (PostgreSQL)"
+msgstr "СКуЛ (ПостгреСКуЛ)"
+
+msgctxt "Language|"
+msgid "SQL"
+msgstr "СКуЛ"
+
+msgctxt "Language|"
+msgid "Stan"
+msgstr ""
+
+msgctxt "Language|"
+msgid "Stata"
+msgstr "стата"
+
+msgctxt "Language|"
+msgid "STL"
+msgstr "СТЛ"
+
+msgctxt "Language|"
+msgid "SubRip Subtitles"
+msgstr ""
+
+msgctxt "Language|"
+msgid "SystemC"
+msgstr "систем‑Ц"
+
+msgctxt "Language|"
+msgid "SystemVerilog"
+msgstr "систем-верилог"
+
+msgctxt "Language|"
+msgid "TADS 3"
+msgstr "ТАДС 3"
+
+msgctxt "Language|"
+msgid "TaskJuggler"
+msgstr "Таскџаглер"
+
+msgctxt "Language|"
+msgid "Tcl/Tk"
+msgstr "тцл‑тк"
+
+msgctxt "Language|"
+msgid "Tcsh"
+msgstr "тцсх"
+
+msgctxt "Language|"
+msgid "Texinfo"
+msgstr "техинфо"
+
+msgctxt "Language|"
+msgid "Textile"
+msgstr "текстајл"
+
+msgctxt "Language|"
+msgid "TI Basic"
+msgstr "ТИ‑бејзик"
+
+msgctxt "Language|"
+msgid "Tiger"
+msgstr "тигар"
+
+msgctxt "Language|"
+msgid "TOML"
+msgstr "ТОМЛ"
+
+msgctxt "Language|"
+msgid "txt2tags"
+msgstr "текст2тагс"
+
+#, fuzzy
+#| msgctxt "Language|"
+#| msgid "JavaScript"
+msgctxt "Language|"
+msgid "TypeScript React (TSX)"
+msgstr "јаваскрипт"
+
+#, fuzzy
+#| msgctxt "Language Section|"
+#| msgid "Scripts"
+msgctxt "Language|"
+msgid "TypeScript"
+msgstr "скриптни"
+
+msgctxt "Language|"
+msgid "UnrealScript"
+msgstr "анрилскрипт"
+
+msgctxt "Language|"
+msgid "Vala"
+msgstr "вала"
+
+msgctxt "Language|"
+msgid "Valgrind Suppression"
+msgstr "Валгриндово потискивање"
+
+msgctxt "Language|"
+msgid "Varnish 4 Configuration Language"
+msgstr "Варнишов поставни језик (4)"
+
+msgctxt "Language|"
+msgid "Varnish 4 module spec file"
+msgstr "Варнишов фајл спецификације модула (4)"
+
+msgctxt "Language|"
+msgid "Varnish 3 module spec file"
+msgstr "Варнишов фајл спецификације модула (3)"
+
+msgctxt "Language|"
+msgid "Varnish 4 Test Case language"
+msgstr "Варнишов језик пробних случајева (4)"
+
+msgctxt "Language|"
+msgid "Varnish Test Case language"
+msgstr "Варнишов језик пробних случајева"
+
+msgctxt "Language|"
+msgid "Varnish Configuration Language"
+msgstr "Варнишов поставни језик"
+
+msgctxt "Language|"
+msgid "vCard, vCalendar, iCalendar"
+msgstr "в‑кард, в‑календар, и‑календар"
+
+msgctxt "Language|"
+msgid "Velocity"
+msgstr "велосити"
+
+msgctxt "Language|"
+msgid "Vera"
+msgstr "вера"
+
+msgctxt "Language|"
+msgid "Verilog"
+msgstr "верилог"
+
+msgctxt "Language|"
+msgid "VHDL"
+msgstr "ВХДЛ"
+
+msgctxt "Language|"
+msgid "VRML"
+msgstr "ВРМЛ"
+
+msgctxt "Language|"
+msgid "Wavefront OBJ"
+msgstr "Вејвфронтов ОБЈ"
+
+msgctxt "Language|"
+msgid "Wayland Trace"
+msgstr ""
+
+msgctxt "Language|"
+msgid "WINE Config"
+msgstr "вине‑постава"
+
+msgctxt "Language|"
+msgid "Wesnoth Markup Language"
+msgstr "Веснотов обележивачки језик"
+
+msgctxt "Language|"
+msgid "xHarbour"
+msgstr "икс‑харбор"
+
+msgctxt "Language|"
+msgid "XML (Debug)"
+msgstr "ИксМЛ (исправљање)"
+
+msgctxt "Language|"
+msgid "XML"
+msgstr "ИксМЛ"
+
+msgctxt "Language|"
+msgid "Xonotic Script"
+msgstr "Ксонотиков скрипт"
+
+msgctxt "Language|"
+msgid "x.org Configuration"
+msgstr "икс.орг‑постава"
+
+msgctxt "Language|"
+msgid "xslt"
+msgstr "ИксСЛТ"
+
+msgctxt "Language|"
+msgid "XUL"
+msgstr "ИксУЛ"
+
+msgctxt "Language|"
+msgid "yacas"
+msgstr "јакас"
+
+msgctxt "Language|"
+msgid "Yacc/Bison"
+msgstr "јац/бизон"
+
+msgctxt "Language|"
+msgid "YAML"
+msgstr "ЈАМЛ"
+
+msgctxt "Language|"
+msgid "YANG"
+msgstr "ЈАНГ"
+
+msgctxt "Language|"
+msgid "Zonnon"
+msgstr "зонон"
+
+msgctxt "Language|"
+msgid "Zsh"
+msgstr "зсх"
+
+msgctxt "Language Section|"
+msgid "Scripts"
+msgstr "скриптни"
+
+msgctxt "Language Section|"
+msgid "Sources"
+msgstr "изворни"
+
+msgctxt "Language Section|"
+msgid "Other"
+msgstr "остали"
+
+msgctxt "Language Section|"
+msgid "Hardware"
+msgstr "хардверски"
+
+msgctxt "Language Section|"
+msgid "Scientific"
+msgstr "научни"
+
+msgctxt "Language Section|"
+msgid "Configuration"
+msgstr "поставни"
+
+msgctxt "Language Section|"
+msgid "Markup"
+msgstr "обиљеживачки"
+
+msgctxt "Language Section|"
+msgid "Assembler"
+msgstr "асемблерски"
+
+msgctxt "Language Section|"
+msgid "Database"
+msgstr "базе"
+
+msgctxt "Language Section|"
+msgid "3D"
+msgstr "3Д"
+
+msgctxt "Theme|"
+msgid "Breeze Dark"
+msgstr ""
+
+msgctxt "Theme|"
+msgid "Default"
+msgstr ""
+
+msgctxt "Theme|"
+msgid "Printing"
+msgstr ""
+
+msgctxt "Theme|"
+msgid "Solarized Dark"
+msgstr ""
+
+msgctxt "Theme|"
+msgid "Solarized Light"
+msgstr ""
+
+#: cli/kate-syntax-highlighter.cpp:49
+msgctxt "SyntaxHighlightingCLI|"
+msgid "Command line syntax highlighter using Kate syntax definitions."
+msgstr "Истицање синтаксе из командне линије на основу Кејтиних дефиниција."
+
+#: cli/kate-syntax-highlighter.cpp:52
+msgctxt "SyntaxHighlightingCLI|"
+msgid "source"
+msgstr "извор"
+
+#: cli/kate-syntax-highlighter.cpp:52
+msgctxt "SyntaxHighlightingCLI|"
+msgid "The source file to highlight."
+msgstr "Изворни фајл за истицање."
+
+#: cli/kate-syntax-highlighter.cpp:54
+msgctxt "SyntaxHighlightingCLI|"
+msgid "List all available syntax definitions."
+msgstr "Набраја све доступне дефиниције синтаксе."
+
+#: cli/kate-syntax-highlighter.cpp:56
+msgctxt "SyntaxHighlightingCLI|"
+msgid "List all available themes."
+msgstr "Набраја све доступне теме."
+
+#: cli/kate-syntax-highlighter.cpp:59
+msgctxt "SyntaxHighlightingCLI|"
+msgid "Download new/updated syntax definitions."
+msgstr "Преузима нове/ажуриране дефиниције синтаксе."
+
+#: cli/kate-syntax-highlighter.cpp:63
+msgctxt "SyntaxHighlightingCLI|"
+msgid "File to write HTML output to (default: stdout)."
+msgstr "Фајл за уписивање ХТМЛ излаза (подразумевано: стдиз)."
+
+#: cli/kate-syntax-highlighter.cpp:63
+msgctxt "SyntaxHighlightingCLI|"
+msgid "output"
+msgstr "излаз"
+
+#: cli/kate-syntax-highlighter.cpp:67
+msgctxt "SyntaxHighlightingCLI|"
+msgid ""
+"Highlight using this syntax definition (default: auto-detect based on input "
+"file)."
+msgstr ""
+"Истицање на основу ове дефиниције синтаксе (подразумевано: аутоматско "
+"откривање по улазном фајл)."
+
+#: cli/kate-syntax-highlighter.cpp:68
+msgctxt "SyntaxHighlightingCLI|"
+msgid "syntax"
+msgstr "синтакса"
+
+#: cli/kate-syntax-highlighter.cpp:72
+msgctxt "SyntaxHighlightingCLI|"
+msgid "Color theme to use for highlighting."
+msgstr "Тема боја за истицање."
+
+#: cli/kate-syntax-highlighter.cpp:72
+msgctxt "SyntaxHighlightingCLI|"
+msgid "theme"
+msgstr "тема"
+
+#: cli/kate-syntax-highlighter.cpp:76
+msgctxt "SyntaxHighlightingCLI|"
+msgid ""
+"Set HTML page's title\n"
+"(default: the filename or \"Kate Syntax Highlighter\" if reading from stdin)."
+msgstr ""
+
+#: cli/kate-syntax-highlighter.cpp:77
+msgctxt "SyntaxHighlightingCLI|"
+msgid "title"
+msgstr ""
+
+#: cli/kate-syntax-highlighter.cpp:80
+msgctxt "SyntaxHighlightingCLI|"
+msgid "Read file from stdin. The -s option must also be used."
+msgstr ""
+
+#: lib/definition_p.h:104
+msgctxt "Language|"
+msgid "None"
+msgstr ""
+
+#: lib/definitiondownloader.cpp:80
+msgctxt "QObject|"
+msgid "All syntax definitions are up-to-date."
+msgstr "Све дефиниције синтаксе ажурне."
+
+#: lib/definitiondownloader.cpp:92
+#, qt-format
+msgctxt "QObject|"
+msgid "Downloading new syntax definition for '%1'..."
+msgstr "Преузимам нову дефиницију синтаксе за „%1“..."
+
+#: lib/definitiondownloader.cpp:99
+#, qt-format
+msgctxt "QObject|"
+msgid "Updating syntax definition for '%1' to version %2..."
+msgstr "Ажурирам дефиницију синтаксе за „%1“ на издање %2..."

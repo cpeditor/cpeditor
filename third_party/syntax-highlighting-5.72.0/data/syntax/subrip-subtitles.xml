@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE language SYSTEM "language.dtd"
+[
+	<!ENTITY time              "\d\d+(?:\:[0-5]\d){2}[\,\.]\d{3}">
+	<!ENTITY coordinates       "(?:\s+[XY][12]\:\d+){0,4}\s*$">
+	<!ENTITY formatTags        "(?:&lt;/?[bius]&gt;|\{/?[bius]\})">
+	<!ENTITY htmlName          "[A-Za-z_\:][\w\.\:\-]*">
+	<!ENTITY htmlAttributeName "[A-Za-z_:\*#\(\[][\)\]\w\.\:_\-]+">
+]>
+
+<!--
+  This file is part of the KDE's KSyntaxHighlighting framework.
+
+  SubRip Text (.SRT) Subtitles Syntax highlighting Definition.
+  Mor information: http://ale5000.altervista.org/subtitles.htm
+
+  Last update: September 24, 2019 (v1)
+-->
+
+<language name="SubRip Subtitles"
+          version="1"
+          kateversion="5.53"
+          section="Other"
+          extensions="*.srt"
+          mimetype="application/x-subrip"
+          priority="9"
+          author="Nibaldo González (nibgonz@gmail.com)"
+          license="MIT">
+
+<highlighting>
+
+	<contexts>
+
+		<context name="Normal" attribute="Normal Text" lineEndContext="#stay">
+			<RegExpr context="FindTime" attribute="Sequence Number" String="\d+(?=\s*$)" firstNonSpace="true" />
+			<RegExpr context="TimeStart" String="&time;\s+\-\-&gt;\s+&time;&coordinates;" firstNonSpace="true" lookAhead="true" />
+			<Int context="FindError" attribute="Normal Text" firstNonSpace="true" />
+		</context>
+
+		<context name="FindTime" attribute="Normal Text" lineEndContext="#stay" lineEmptyContext="#pop">
+			<RegExpr context="#pop!TimeStart" String="&time;\s+\-\-&gt;\s+&time;&coordinates;" firstNonSpace="true" lookAhead="true" />
+			<Int context="#pop!FindError" attribute="Normal Text" firstNonSpace="true" />
+		</context>
+		<context name="TimeStart" attribute="Appearance Time" lineEndContext="#pop">
+			<StringDetect context="#pop!TimeEnd" attribute="Time Arrow" String="--&gt;" />
+		</context>
+		<context name="TimeEnd" attribute="Disappearance Time" lineEndContext="#pop!SubtitleContent">
+			<RegExpr context="#pop!SubtitleContent" attribute="Coordinates" String="&coordinates;" />
+		</context>
+
+		<context name="FindError" attribute="Normal Text" lineEndContext="Error" />
+		<context name="Error" attribute="Normal Text" lineEndContext="#stay" lineEmptyContext="#pop#pop">
+			<RegExpr context="#stay" attribute="Error" String="\S" />
+		</context>
+
+		<context name="SubtitleContent" attribute="Subtitle" lineEndContext="#stay" lineEmptyContext="#pop">
+			<StringDetect context="BoldThan" attribute="Format Tag: Bold" String="&lt;b&gt;" />
+			<StringDetect context="ItalicThan" attribute="Format Tag: Italic" String="&lt;i&gt;" />
+			<StringDetect context="UnderlineThan" attribute="Format Tag: Underline" String="&lt;u&gt;" />
+			<StringDetect context="StrikeoutThan" attribute="Format Tag: Strikethrough" String="&lt;s&gt;" />
+			<StringDetect context="BoldCBracket" attribute="Format Tag: Bold" String="{b}" />
+			<StringDetect context="ItalicCBracket" attribute="Format Tag: Italic" String="{i}" />
+			<StringDetect context="UnderlineCBracket" attribute="Format Tag: Underline" String="{u}" />
+			<StringDetect context="StrikeoutCBracket" attribute="Format Tag: Strikethrough" String="{s}" />
+			<RegExpr context="#stay" attribute="Format Tag" String="&formatTags;" />
+			<IncludeRules context="SubtitleCommon" />
+		</context>
+
+		<context name="SubtitleCommon" attribute="Subtitle" lineEndContext="#stay">
+			<!-- {\anX} -->
+			<RegExpr context="#stay" attribute="Line Alignment Tag" String="\{\\an\d\}" />
+			<!-- {\some_letters_or_numbers_or_chars}, {Y:some_letters_or_numbers_or_chars} -->
+			<RegExpr context="#stay" attribute="Tag" String="\{(?:\\|Y\:)[^\{\}\s][^\{\}]*\}" />
+			<RegExpr context="#stay" attribute="Escape" String="\\[hN&lt;&gt;\{\}]" />
+			<!-- HTML Tag -->
+			<RegExpr context="FindHTML" String="&lt;&htmlName;(?:\s+&htmlAttributeName;(?:\s*\=\s*(?:&quot;(?:[^&quot;\\]|\\.)*&quot;|&apos;(?:[^&apos;\\]|\\.)*&apos;|[^&gt;&lt;&quot;&apos;\s]+))?)*\s*/?&gt;" lookAhead="true" />
+			<RegExpr context="FindHTML" String="&lt;/&htmlName;\s*&gt;" lookAhead="true" />
+		</context>
+		<context name="FindHTML" attribute="Normal Text" lineEndContext="#pop" fallthrough="true" fallthroughContext="#pop">
+			<IncludeRules context="FindHTMLTags##HTML" />
+		</context>
+
+		<!-- Format Tag: <b>, <i>, <u>, <s> -->
+		<context name="BoldThan" attribute="Bold" lineEndContext="#stay" lineEmptyContext="#pop#pop">
+			<StringDetect context="#pop" attribute="Format Tag: Bold" String="&lt;/b&gt;" />
+			<StringDetect context="BoldThan-ItalicThan" attribute="Format Tag: Bold-Italic" String="&lt;i&gt;" />
+			<StringDetect context="BoldThan-UnderlineThan" attribute="Format Tag: Bold-Underline" String="&lt;u&gt;" />
+			<RegExpr context="#stay" attribute="Format Tag: Bold" String="&formatTags;" />
+			<IncludeRules context="SubtitleCommon" />
+		</context>
+		<context name="ItalicThan" attribute="Italic" lineEndContext="#stay" lineEmptyContext="#pop#pop">
+			<StringDetect context="#pop" attribute="Format Tag: Italic" String="&lt;/i&gt;" />
+			<StringDetect context="ItalicThan-BoldThan" attribute="Format Tag: Bold-Italic" String="&lt;b&gt;" />
+			<StringDetect context="ItalicThan-UnderlineThan" attribute="Format Tag: Italic-Underline" String="&lt;u&gt;" />
+			<RegExpr context="#stay" attribute="Format Tag: Italic" String="&formatTags;" />
+			<IncludeRules context="SubtitleCommon" />
+		</context>
+		<context name="UnderlineThan" attribute="Underline" lineEndContext="#stay" lineEmptyContext="#pop#pop">
+			<StringDetect context="#pop" attribute="Format Tag: Underline" String="&lt;/u&gt;" />
+			<StringDetect context="UnderlineThan-BoldThan" attribute="Format Tag: Bold-Underline" String="&lt;b&gt;" />
+			<StringDetect context="UnderlineThan-ItalicThan" attribute="Format Tag: Italic-Underline" String="&lt;i&gt;" />
+			<RegExpr context="#stay" attribute="Format Tag: Underline" String="&formatTags;" />
+			<IncludeRules context="SubtitleCommon" />
+		</context>
+		<context name="StrikeoutThan" attribute="Strikethrough" lineEndContext="#stay" lineEmptyContext="#pop#pop">
+			<StringDetect context="#pop" attribute="Format Tag: Strikethrough" String="&lt;/s&gt;" />
+			<RegExpr context="#stay" attribute="Format Tag: Strikethrough" String="&formatTags;" />
+			<IncludeRules context="SubtitleCommon" />
+		</context>
+
+		<!-- Format Tag: {b}, {i}, {u}, {s} -->
+		<context name="BoldCBracket" attribute="Bold" lineEndContext="#stay" lineEmptyContext="#pop#pop">
+			<StringDetect context="#pop" attribute="Format Tag: Bold" String="{/b}" />
+			<StringDetect context="BoldCBracket-ItalicCBracket" attribute="Format Tag: Bold-Italic" String="{i}" />
+			<StringDetect context="BoldCBracket-UnderlineCBracket" attribute="Format Tag: Bold-Underline" String="{u}" />
+			<RegExpr context="#stay" attribute="Format Tag: Bold" String="&formatTags;" />
+			<IncludeRules context="SubtitleCommon" />
+		</context>
+		<context name="ItalicCBracket" attribute="Italic" lineEndContext="#stay" lineEmptyContext="#pop#pop">
+			<StringDetect context="#pop" attribute="Format Tag: Italic" String="{/i}" />
+			<StringDetect context="ItalicCBracket-BoldCBracket" attribute="Format Tag: Bold-Italic" String="{b}" />
+			<StringDetect context="ItalicCBracket-UnderlineCBracket" attribute="Format Tag: Italic-Underline" String="{u}" />
+			<RegExpr context="#stay" attribute="Format Tag: Italic" String="&formatTags;" />
+			<IncludeRules context="SubtitleCommon" />
+		</context>
+		<context name="UnderlineCBracket" attribute="Underline" lineEndContext="#stay" lineEmptyContext="#pop#pop">
+			<StringDetect context="#pop" attribute="Format Tag: Underline" String="{/u}" />
+			<StringDetect context="UnderlineCBracket-BoldCBracket" attribute="Format Tag: Bold-Underline" String="{b}" />
+			<StringDetect context="UnderlineCBracket-ItalicCBracket" attribute="Format Tag: Italic-Underline" String="{i}" />
+			<RegExpr context="#stay" attribute="Format Tag: Underline" String="&formatTags;" />
+			<IncludeRules context="SubtitleCommon" />
+		</context>
+		<context name="StrikeoutCBracket" attribute="Strikethrough" lineEndContext="#stay" lineEmptyContext="#pop#pop">
+			<StringDetect context="#pop" attribute="Format Tag: Strikethrough" String="{/s}" />
+			<RegExpr context="#stay" attribute="Format Tag: Strikethrough" String="&formatTags;" />
+			<IncludeRules context="SubtitleCommon" />
+		</context>
+
+		<!-- Bold-Italic -->
+
+		<!-- <b> <i> text </i> </b> -->
+		<context name="BoldThan-ItalicThan" attribute="Bold-Italic" lineEndContext="#stay" lineEmptyContext="#pop#pop#pop">
+			<StringDetect context="#pop" attribute="Format Tag: Bold-Italic" String="&lt;/i&gt;" />
+			<StringDetect context="#pop#pop!ItalicThan" attribute="Format Tag: Bold-Italic" String="&lt;/b&gt;" />
+			<RegExpr context="#stay" attribute="Format Tag: Bold-Italic" String="&formatTags;" />
+			<IncludeRules context="SubtitleCommon" />
+		</context>
+		<!-- <i> <b> text </b> </i> -->
+		<context name="ItalicThan-BoldThan" attribute="Bold-Italic" lineEndContext="#stay" lineEmptyContext="#pop#pop#pop">
+			<StringDetect context="#pop" attribute="Format Tag: Bold-Italic" String="&lt;/b&gt;" />
+			<StringDetect context="#pop#pop!BoldThan" attribute="Format Tag: Bold-Italic" String="&lt;/i&gt;" />
+			<RegExpr context="#stay" attribute="Format Tag: Bold-Italic" String="&formatTags;" />
+			<IncludeRules context="SubtitleCommon" />
+		</context>
+		<!-- {b} {i} text {/i} {/b} -->
+		<context name="BoldCBracket-ItalicCBracket" attribute="Bold-Italic" lineEndContext="#stay" lineEmptyContext="#pop#pop#pop">
+			<StringDetect context="#pop" attribute="Format Tag: Bold-Italic" String="{/i}" />
+			<StringDetect context="#pop#pop!ItalicCBracket" attribute="Format Tag: Bold-Italic" String="{/b}" />
+			<RegExpr context="#stay" attribute="Format Tag: Bold-Italic" String="&formatTags;" />
+			<IncludeRules context="SubtitleCommon" />
+		</context>
+		<!-- {i} {b} text {/b} {/i} -->
+		<context name="ItalicCBracket-BoldCBracket" attribute="Bold-Italic" lineEndContext="#stay" lineEmptyContext="#pop#pop#pop">
+			<StringDetect context="#pop" attribute="Format Tag: Bold-Italic" String="{/b}" />
+			<StringDetect context="#pop#pop!BoldCBracket" attribute="Format Tag: Bold-Italic" String="{/i}" />
+			<RegExpr context="#stay" attribute="Format Tag: Bold-Italic" String="&formatTags;" />
+			<IncludeRules context="SubtitleCommon" />
+		</context>
+
+		<!-- Bold-Underline -->
+
+		<!-- <b> <u> text </u> </b> -->
+		<context name="BoldThan-UnderlineThan" attribute="Bold-Underline" lineEndContext="#stay" lineEmptyContext="#pop#pop#pop">
+			<StringDetect context="#pop" attribute="Format Tag: Bold-Underline" String="&lt;/u&gt;" />
+			<StringDetect context="#pop#pop!UnderlineThan" attribute="Format Tag: Bold-Underline" String="&lt;/b&gt;" />
+			<RegExpr context="#stay" attribute="Format Tag: Bold-Underline" String="&formatTags;" />
+			<IncludeRules context="SubtitleCommon" />
+		</context>
+		<!-- <u> <b> text </b> </u> -->
+		<context name="UnderlineThan-BoldThan" attribute="Bold-Underline" lineEndContext="#stay" lineEmptyContext="#pop#pop#pop">
+			<StringDetect context="#pop" attribute="Format Tag: Bold-Underline" String="&lt;/b&gt;" />
+			<StringDetect context="#pop#pop!BoldThan" attribute="Format Tag: Bold-Underline" String="&lt;/u&gt;" />
+			<RegExpr context="#stay" attribute="Format Tag: Bold-Underline" String="&formatTags;" />
+			<IncludeRules context="SubtitleCommon" />
+		</context>
+		<!-- {b} {u} text {/u} {/b} -->
+		<context name="BoldCBracket-UnderlineCBracket" attribute="Bold-Underline" lineEndContext="#stay" lineEmptyContext="#pop#pop#pop">
+			<StringDetect context="#pop" attribute="Format Tag: Bold-Underline" String="{/u}" />
+			<StringDetect context="#pop#pop!UnderlineCBracket" attribute="Format Tag: Bold-Underline" String="{/b}" />
+			<RegExpr context="#stay" attribute="Format Tag: Bold-Underline" String="&formatTags;" />
+			<IncludeRules context="SubtitleCommon" />
+		</context>
+		<!-- {u} {b} text {/b} {/u} -->
+		<context name="UnderlineCBracket-BoldCBracket" attribute="Bold-Underline" lineEndContext="#stay" lineEmptyContext="#pop#pop#pop">
+			<StringDetect context="#pop" attribute="Format Tag: Bold-Underline" String="{/b}" />
+			<StringDetect context="#pop#pop!BoldCBracket" attribute="Format Tag: Bold-Underline" String="{/u}" />
+			<RegExpr context="#stay" attribute="Format Tag: Bold-Underline" String="&formatTags;" />
+			<IncludeRules context="SubtitleCommon" />
+		</context>
+
+		<!-- Italic-Underline -->
+
+		<!-- <i> <u> text </u> </i> -->
+		<context name="ItalicThan-UnderlineThan" attribute="Italic-Underline" lineEndContext="#stay" lineEmptyContext="#pop#pop#pop">
+			<StringDetect context="#pop" attribute="Format Tag: Italic-Underline" String="&lt;/u&gt;" />
+			<StringDetect context="#pop#pop!UnderlineThan" attribute="Format Tag: Italic-Underline" String="&lt;/i&gt;" />
+			<RegExpr context="#stay" attribute="Format Tag: Italic-Underline" String="&formatTags;" />
+			<IncludeRules context="SubtitleCommon" />
+		</context>
+		<!-- <u> <i> text </i> </u> -->
+		<context name="UnderlineThan-ItalicThan" attribute="Italic-Underline" lineEndContext="#stay" lineEmptyContext="#pop#pop#pop">
+			<StringDetect context="#pop" attribute="Format Tag: Italic-Underline" String="&lt;/i&gt;" />
+			<StringDetect context="#pop#pop!ItalicThan" attribute="Format Tag: Italic-Underline" String="&lt;/u&gt;" />
+			<RegExpr context="#stay" attribute="Format Tag: Italic-Underline" String="&formatTags;" />
+			<IncludeRules context="SubtitleCommon" />
+		</context>
+		<!-- {i} {u} text {/u} {/i} -->
+		<context name="ItalicCBracket-UnderlineCBracket" attribute="Italic-Underline" lineEndContext="#stay" lineEmptyContext="#pop#pop#pop">
+			<StringDetect context="#pop" attribute="Format Tag: Italic-Underline" String="{/u}" />
+			<StringDetect context="#pop#pop!UnderlineCBracket" attribute="Format Tag: Italic-Underline" String="{/i}" />
+			<RegExpr context="#stay" attribute="Format Tag: Italic-Underline" String="&formatTags;" />
+			<IncludeRules context="SubtitleCommon" />
+		</context>
+		<!-- {u} {i} text {/i} {/u} -->
+		<context name="UnderlineCBracket-ItalicCBracket" attribute="Italic-Underline" lineEndContext="#stay" lineEmptyContext="#pop#pop#pop">
+			<StringDetect context="#pop" attribute="Format Tag: Italic-Underline" String="{/i}" />
+			<StringDetect context="#pop#pop!ItalicCBracket" attribute="Format Tag: Italic-Underline" String="{/u}" />
+			<RegExpr context="#stay" attribute="Format Tag: Italic-Underline" String="&formatTags;" />
+			<IncludeRules context="SubtitleCommon" />
+		</context>
+
+	</contexts>
+
+	<itemDatas>
+		<itemData name="Normal Text" defStyleNum="dsNormal" spellChecking="false" />
+
+		<itemData name="Sequence Number"    defStyleNum="dsOthers" bold="true" spellChecking="false" />
+		<itemData name="Appearance Time"    defStyleNum="dsComment" italic="false" spellChecking="false" />
+		<itemData name="Disappearance Time" defStyleNum="dsComment" italic="false" spellChecking="false" />
+		<itemData name="Time Arrow"         defStyleNum="dsComment" bold="true" italic="false" spellChecking="false" />
+		<itemData name="Coordinates"        defStyleNum="dsAnnotation" italic="false" spellChecking="false" />
+		<itemData name="Subtitle"           defStyleNum="dsNormal" />
+
+		<itemData name="Tag"                defStyleNum="dsVariable" spellChecking="false" />
+		<itemData name="Line Alignment Tag" defStyleNum="dsVariable" bold="true" spellChecking="false" />
+		<itemData name="Format Tag"         defStyleNum="dsVariable" spellChecking="false" />
+		<itemData name="Format Tag: Bold"   defStyleNum="dsVariable" bold="true" spellChecking="false" />
+		<itemData name="Format Tag: Italic" defStyleNum="dsVariable" italic="true" spellChecking="false" />
+		<itemData name="Format Tag: Underline" defStyleNum="dsVariable" underline="true" spellChecking="false" />
+		<itemData name="Format Tag: Strikethrough" defStyleNum="dsVariable" strikeOut="true" spellChecking="false" />
+		<itemData name="Format Tag: Bold-Italic" defStyleNum="dsVariable" bold="true" italic="true" spellChecking="false" />
+		<itemData name="Format Tag: Bold-Underline" defStyleNum="dsVariable" bold="true" underline="true" spellChecking="false" />
+		<itemData name="Format Tag: Italic-Underline" defStyleNum="dsVariable" italic="true" underline="true" spellChecking="false" />
+		<itemData name="Bold"               defStyleNum="dsNormal" bold="true" />
+		<itemData name="Italic"             defStyleNum="dsNormal" italic="true" />
+		<itemData name="Underline"          defStyleNum="dsNormal" underline="true" />
+		<itemData name="Strikethrough"      defStyleNum="dsNormal" strikeOut="true" />
+		<itemData name="Bold-Italic"        defStyleNum="dsNormal" bold="true" italic="true" />
+		<itemData name="Bold-Underline"     defStyleNum="dsNormal" bold="true" underline="true" />
+		<itemData name="Italic-Underline"   defStyleNum="dsNormal" italic="true" underline="true" />
+
+		<itemData name="Escape"             defStyleNum="dsSpecialChar" spellChecking="false" />
+		<itemData name="Error"              defStyleNum="dsError" />
+	</itemDatas>
+
+</highlighting>
+
+</language>
+<!-- kate: replace-tabs off; tab-width 3; indent-width 3; remove-trailing-spaces mod; dynamic-word-wrap off; -->

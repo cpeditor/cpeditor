@@ -1,0 +1,140 @@
+# Sample SELinux Policy
+
+## <summary>
+##  Sample SELinux Policy
+## </summary>
+## <desc>
+## <p>
+##  This module is not functional,
+##  but only to test the syntax highlighting.
+## </p>
+## </desc>
+## <required val="true">
+##  Depended on by other required modules.
+## </required>
+
+policycap open_perms;
+module myapp 1.0;
+
+require {
+	type httpd_t;
+	type httpd_sys_content_t;
+	type initrc_t;
+	class sock_file write;
+	class unix_stream_socket connectto;
+}
+
+allow httpd_t httpd_sys_content_t:sock_file write;
+allow httpd_t initrc_t:unix_stream_socket connectto;
+
+# Refpolicy
+tunable_policy(`allow_execmem',`
+	/usr/share/holas(/.*)? -- gen_context(system_u:object_r:holas_t,s0,a,b);
+')
+# M4 Macros
+regexp(`GNUs not Unix', `\w\(\w+\)$', `*** \& *** \1 ***')
+ifdef(`distro_ubuntu',`
+	unconfined_domain(chkpwd_t)
+')
+
+dominance { gen_dominance(0,decr($1)) };
+neverallow user=_isolated domain=((?!isolated_app).)*
+
+allow consoletype_t self:capability { sys_admin sys_tty_config };
+allow consoletype_t self:msg { send receive };
+
+# sample for administrative user
+user jadmin roles { staff_r sysadm_r };
+# sample for regular user
+user jdoe roles { user_r };
+
+default_user process source;
+default_range process source low;
+default_range name GLBLUB;
+
+sid devnull;
+sid sysctl;
+
+common file { ioctl read write create getattr setattr lock relabelfrom relabelto append map unlink link rename execute swapon quotaon mounton };
+class dir inherits file { add_name remove_name reparent search rmdir open audit_access execmod };
+class class;
+
+sensitivity s0 alias sens0;
+category c0 alias cat0;
+
+mlsconstrain dir { search read ioctl lock }
+	(( h1 dom h2 ) or ( t1 == mcsreadall ) or
+	(( t1 != mcs_constrained_type ) and (t2 == domain)));
+
+attribute_role dpkg_roles;
+roleattribute system_r dpkg_roles;
+
+role system_r types system_t;
+role_transition hello init_script_file_type system_r;
+
+level s0:c0;
+user user_u roles role_r level s1:c1 range s1:c1 - s2:c2;
+range_transition initrc_t auditd_exec_t:process s15:c0.c255 - s20;
+range_transition source target:class s1 - s2 dsd;
+range_transition source target:class s1 ;
+
+attribute filesystem_type;
+type dhcp_etc_t;
+typealias dhcp_etc_t ALIAS { etc_dhcp_t etc_dhcpc_t etc_dhcpd_t };
+
+bool le_boolean true;
+TUNABLE allow_java_execstack false;
+
+type_transition root_xdrawable_t input_xevent_t:x_event root_input_xevent_t;
+AUDITALLOW xserver_t { root_xdrawable_t x_domain }:x_drawable send;
+
+optional {
+	neverallow untrusted_app *:{ netlink_route_socket netlink_selinux_socket } ioctl;
+	neverallowxperm shell domain:{ rawip_socket tcp_socket udp_socket } ioctl priv_sock_ioctls;
+};
+
+if le_boolean {
+	DONTAUDIT untrusted_app asec_public_file:file { execute execmod };
+} else {
+	ALLOW untrusted_app perfprofd_data_file:file r_file_perms;
+	allow untrusted_app perfprofd_data_file:dir r_dir_perms;
+};
+
+sid devnull system_u:object_r:null_device_t:s0
+genfscon sysfs /devices/system/cpu/online gen_context(system_u:object_r:cpu_online_t,s0)
+genfscon rootfs / gen_context(system_u:object_r:root_t,s0)
+
+genfscon proc /cpuinfo u:object_r:proc_cpuinfo:s0
+genfscon selinuxfs / u:object_r:selinuxfs:s0
+fs_use_trans devtmpfs system_u:object_r:device_t:s0;
+fs_use_task pipefs u:object_r:pipefs:s0;
+fs_use_xattr xfs u:object_r:labeledfs:s0;
+fs_use_xattr btrfs u:object_r:labeledfs:s0;
+
+portcon tcp 80 u:object_r:http_port:s0;
+portcon udp 1024-65535 gen_context(system_u:object_r:unreserved_port_t, s0);
+netifcon $2 gen_context(system_u:object_r:$1,$3) gen_context(system_u:object_r:unlabeled_t,$3);
+
+nodecon 2001:0DB8:AC10:FE01:: 2001:0DE0:DA88:2222:: system_u:object_r:hello_t:s0;
+nodecon ipv4 127.0.0.2 255.255.255.255 system_u:object_r:node_t:s0;
+
+#line 118
+
+# Regular Expressions
+regexp(`Hello(!|\^\^)+', `
+	^\s*(?<hello>\.)
+	(
+		hello[^\s\x12/][1-9]*|  # Hello
+		bye
+	)\s*$
+') 
+"aa/aa(?=sdf sdf)ds(aa aa)df[^ a]"
+"open
+"text\"aaa
+"filename\s\w\%(?=aa)aa"
+"/path\s\w(?=aa)aa"
+
+u:role:type:sen:cat:other
+u:role:type:sen:cat - sen:cat:other
+u:role:type:s0.s1:c0 , c1 - s2.s3:c2.c3,c4:other
+u:role:type:s0,other

@@ -1,0 +1,24 @@
+<beginfold id='6'>/*</beginfold id='6'>
+ * multi line comment
+ <endfold id='6'>*/</endfold id='6'>
+
+// single line comment
+
+import QtQuick 2.0
+
+Rectangle <beginfold id='1'>{</beginfold id='1'>
+    property real myNumProp: 0.1e12;
+    property alias sub.color;
+    signal mySignal(int arg1, string arg2)
+    color: "lightsteelblue"
+    width: 320
+    height: width/2
+
+    Rectangle <beginfold id='1'>{</beginfold id='1'>
+        id: sub
+        width: 0x10
+        height: 007
+        objectName: 'single quote'
+        objectName2: a ? b : c;
+    <endfold id='1'>}</endfold id='1'>
+<endfold id='1'>}</endfold id='1'>

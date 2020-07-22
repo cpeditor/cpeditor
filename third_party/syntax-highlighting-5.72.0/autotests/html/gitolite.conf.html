@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title>gitolite.conf</title>
+<meta name="generator" content="KF5::SyntaxHighlighting (Gitolite)"/>
+</head><body style="color:#1f1c1b"><pre>
+<span style="color:#898887;"># Example gitolite.conf</span>
+
+<span style="color:#006e28;">include</span> <span style="color:#bf0303;">&quot;mygroups.conf&quot;</span>
+
+<span style="color:#0057ae;">@admin</span> <span style="color:#006e28;">=</span> user1 user2
+<span style="color:#0057ae;">@admin</span> <span style="color:#006e28;">=</span> user3@domain.com
+
+<span style="font-weight:bold;">repo</span><span style="color:#0057ae;"> @all</span>
+	<span style="font-weight:bold;">option</span> deny-rules <span style="color:#006e28;">=</span> 1
+	<span style="font-weight:bold;">option</span> hooks.emailprefix <span style="color:#006e28;">=</span> <span style="color:#bf0303;">'[%GL_REPO] '</span>
+
+<span style="font-weight:bold;">repo</span> myrepo
+	- protected$	<span style="color:#006e28;">=</span><span style="color:#0057ae;"> @all</span>		<span style="color:#898887;"># Nobody can push</span>
+	<span style="font-weight:bold;">RW+CD</span>		<span style="color:#006e28;">=</span><span style="color:#0057ae;"> @admin</span>
+	<span style="font-weight:bold;">RW</span>		<span style="color:#006e28;">=</span><span style="color:#0057ae;"> @group1</span>
+	<span style="font-weight:bold;">R</span>		<span style="color:#006e28;">=</span> user3@domain.com
+</pre></body></html>

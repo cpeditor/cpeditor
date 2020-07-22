@@ -1,0 +1,112 @@
+<Comment>-- Agda Sample File</Comment><br/>
+<Comment>-- https://github.com/agda/agda/blob/master/examples/syntax/highlighting/Test.agda</Comment><br/>
+<Normal></Normal><br/>
+<Comment>-- This test file currently lacks module-related stuff.</Comment><br/>
+<Normal></Normal><br/>
+<Comment>{- Nested</Comment><br/>
+<Comment>   {- comment. -} -}</Comment><br/>
+<Normal></Normal><br/>
+<Keyword>module</Keyword><Normal> Test </Normal><Keyword>where</Keyword><br/>
+<Normal></Normal><br/>
+<Keyword>infix</Keyword><Normal>  </Normal><Decimal>12</Decimal><Normal> </Normal><Special>_</Special><Normal>!</Normal><br/>
+<Keyword>infixl</Keyword><Normal>  </Normal><Decimal>7</Decimal><Normal> </Normal><Special>_</Special><Normal>+</Normal><Special>_</Special><Normal> </Normal><Special>_</Special><Normal>-</Normal><Special>_</Special><br/>
+<Keyword>infixr</Keyword><Normal>  </Normal><Decimal>2</Decimal><Normal> -</Normal><Special>_</Special><br/>
+<Normal></Normal><br/>
+<Keyword>postulate</Keyword><Normal> x </Normal><Special>:</Special><Normal> </Normal><Type>Set</Type><br/>
+<Normal></Normal><br/>
+<Normal>f </Normal><Special>:</Special><Normal> </Normal><Special>(</Special><Type>Set</Type><Normal> </Normal><Special>-></Special><Normal> </Normal><Type>Set</Type><Normal> </Normal><Special>-></Special><Normal> </Normal><Type>Set</Type><Special>)</Special><Normal> </Normal><Special>-></Special><Normal> </Normal><Type>Set</Type><br/>
+<Normal>f </Normal><Special>_</Special><Normal>*</Normal><Special>_</Special><Normal> </Normal><Special>=</Special><Normal> x * x</Normal><br/>
+<Normal></Normal><br/>
+<Keyword>data</Keyword><Normal> ℕ </Normal><Special>:</Special><Normal> </Normal><Type>Set</Type><Normal> </Normal><Keyword>where</Keyword><br/>
+<Normal>  zero </Normal><Special>:</Special><Normal> ℕ</Normal><br/>
+<Normal>  suc  </Normal><Special>:</Special><Normal> ℕ </Normal><Special>-></Special><Normal> ℕ</Normal><br/>
+<Normal></Normal><br/>
+<Special>_</Special><Normal>+</Normal><Special>_</Special><Normal> </Normal><Special>:</Special><Normal> ℕ </Normal><Special>-></Special><Normal> ℕ </Normal><Special>-></Special><Normal> ℕ</Normal><br/>
+<Normal>zero  + n </Normal><Special>=</Special><Normal> n</Normal><br/>
+<Normal>suc m + n </Normal><Special>=</Special><Normal> suc </Normal><Special>(</Special><Normal>m + n</Normal><Special>)</Special><br/>
+<Normal></Normal><br/>
+<Keyword>postulate</Keyword><Normal> </Normal><Special>_</Special><Normal>-</Normal><Special>_</Special><Normal> </Normal><Special>:</Special><Normal> ℕ </Normal><Special>-></Special><Normal> ℕ </Normal><Special>-></Special><Normal> ℕ</Normal><br/>
+<Normal></Normal><br/>
+<Normal>-</Normal><Special>_</Special><Normal> </Normal><Special>:</Special><Normal> ℕ </Normal><Special>-></Special><Normal> ℕ</Normal><br/>
+<Normal>- n </Normal><Special>=</Special><Normal> n</Normal><br/>
+<Normal></Normal><br/>
+<Special>_</Special><Normal>! </Normal><Special>:</Special><Normal> ℕ </Normal><Special>-></Special><Normal> ℕ</Normal><br/>
+<Normal>zero  ! </Normal><Special>=</Special><Normal> suc zero</Normal><br/>
+<Normal>suc n ! </Normal><Special>=</Special><Normal> n - n !</Normal><br/>
+<Normal></Normal><br/>
+<Keyword>record</Keyword><Normal> Equiv </Normal><Special>{</Special><Normal>a </Normal><Special>:</Special><Normal> </Normal><Type>Set</Type><Special>}</Special><Normal> </Normal><Special>(_</Special><Normal>≈</Normal><Special>_</Special><Normal> </Normal><Special>:</Special><Normal> a </Normal><Special>-></Special><Normal> a </Normal><Special>-></Special><Normal> </Normal><Type>Set</Type><Special>)</Special><Normal> </Normal><Special>:</Special><Normal> </Normal><Type>Set</Type><Normal> </Normal><Keyword>where</Keyword><br/>
+<Normal>  </Normal><Keyword>field</Keyword><br/>
+<Normal>    refl      </Normal><Special>:</Special><Normal> </Normal><Keyword>forall</Keyword><Normal> x       </Normal><Special>-></Special><Normal> x ≈ x</Normal><br/>
+<Normal>    sym       </Normal><Special>:</Special><Normal> </Normal><Special>{</Special><Normal>x y </Normal><Special>:</Special><Normal> a</Normal><Special>}</Special><Normal>      </Normal><Special>-></Special><Normal> x ≈ y </Normal><Special>-></Special><Normal> y ≈ x</Normal><br/>
+<Normal>    </Normal><Special>_</Special><Normal>`trans`</Normal><Special>_</Special><Normal> </Normal><Special>:</Special><Normal> </Normal><Keyword>forall</Keyword><Normal> </Normal><Special>{</Special><Normal>x y z</Normal><Special>}</Special><Normal> </Normal><Special>-></Special><Normal> x ≈ y </Normal><Special>-></Special><Normal> y ≈ z </Normal><Special>-></Special><Normal> x ≈ z</Normal><br/>
+<Normal></Normal><br/>
+<Keyword>data</Keyword><Normal> </Normal><Special>_</Special><Normal>≡</Normal><Special>_</Special><Normal> </Normal><Special>{</Special><Normal>a </Normal><Special>:</Special><Normal> </Normal><Type>Set</Type><Special>}</Special><Normal> </Normal><Special>(</Special><Normal>x </Normal><Special>:</Special><Normal> a</Normal><Special>)</Special><Normal> </Normal><Special>:</Special><Normal> a </Normal><Special>-></Special><Normal> </Normal><Type>Set</Type><Normal> </Normal><Keyword>where</Keyword><br/>
+<Normal>  refl </Normal><Special>:</Special><Normal> x ≡ x</Normal><br/>
+<Normal></Normal><br/>
+<Normal>subst </Normal><Special>:</Special><Normal> </Normal><Keyword>forall</Keyword><Normal> </Normal><Special>{</Special><Normal>a x y</Normal><Special>}</Special><Normal> </Normal><Special>-></Special><br/>
+<Normal>  </Normal><Special>(</Special><Normal>P </Normal><Special>:</Special><Normal> a </Normal><Special>-></Special><Normal> </Normal><Type>Set</Type><Special>)</Special><Normal> </Normal><Special>-></Special><Normal> x ≡ y </Normal><Special>-></Special><Normal> P x </Normal><Special>-></Special><Normal> P y</Normal><br/>
+<Normal>subst </Normal><Special>{</Special><Normal>x </Normal><Special>=</Special><Normal> x</Normal><Special>}</Special><Normal> </Normal><Special>.{</Special><Normal>y </Normal><Special>=</Special><Normal> x</Normal><Special>}</Special><Normal> </Normal><Special>_</Special><Normal> refl p </Normal><Special>=</Special><Normal> p</Normal><br/>
+<Normal></Normal><br/>
+<Normal>Equiv-≡ </Normal><Special>:</Special><Normal> </Normal><Keyword>forall</Keyword><Normal> </Normal><Special>{</Special><Normal>a</Normal><Special>}</Special><Normal> </Normal><Special>-></Special><Normal> Equiv </Normal><Special>{</Special><Normal>a</Normal><Special>}</Special><Normal> </Normal><Special>_</Special><Normal>≡</Normal><Special>_</Special><br/>
+<Normal>Equiv-≡ </Normal><Special>{</Special><Normal>a</Normal><Special>}</Special><Normal> </Normal><Special>=</Special><br/>
+<Normal>  </Normal><Keyword>record</Keyword><Normal> </Normal><Special>{</Special><Normal> refl      </Normal><Special>=</Special><Normal> </Normal><Special>\_</Special><Normal> </Normal><Special>-></Special><Normal> refl</Normal><br/>
+<Normal>         </Normal><Special>;</Special><Normal> sym       </Normal><Special>=</Special><Normal> sym</Normal><br/>
+<Normal>         </Normal><Special>;</Special><Normal> </Normal><Special>_</Special><Normal>`trans`</Normal><Special>_</Special><Normal> </Normal><Special>=</Special><Normal> </Normal><Special>_</Special><Normal>`trans`</Normal><Special>_</Special><br/>
+<Normal>         </Normal><Special>}</Special><br/>
+<Normal>  </Normal><Keyword>where</Keyword><br/>
+<Normal>  sym </Normal><Special>:</Special><Normal> </Normal><Special>{</Special><Normal>x y </Normal><Special>:</Special><Normal> a</Normal><Special>}</Special><Normal> </Normal><Special>-></Special><Normal> x ≡ y </Normal><Special>-></Special><Normal> y ≡ x</Normal><br/>
+<Normal>  sym refl </Normal><Special>=</Special><Normal> refl</Normal><br/>
+<Normal></Normal><br/>
+<Normal>  </Normal><Special>_</Special><Normal>`trans`</Normal><Special>_</Special><Normal> </Normal><Special>:</Special><Normal> </Normal><Special>{</Special><Normal>x y z </Normal><Special>:</Special><Normal> a</Normal><Special>}</Special><Normal> </Normal><Special>-></Special><Normal> x ≡ y </Normal><Special>-></Special><Normal> y ≡ z </Normal><Special>-></Special><Normal> x ≡ z</Normal><br/>
+<Normal>  refl `trans` refl </Normal><Special>=</Special><Normal> refl</Normal><br/>
+<Normal></Normal><br/>
+<Keyword>postulate</Keyword><br/>
+<Normal>  String </Normal><Special>:</Special><Normal> </Normal><Type>Set</Type><br/>
+<Normal>  Char   </Normal><Special>:</Special><Normal> </Normal><Type>Set</Type><br/>
+<Normal>  Float  </Normal><Special>:</Special><Normal> </Normal><Type>Set</Type><br/>
+<Normal></Normal><br/>
+<Keyword>data</Keyword><Normal> Int </Normal><Special>:</Special><Normal> </Normal><Type>Set</Type><Normal> </Normal><Keyword>where</Keyword><br/>
+<Normal>  pos    </Normal><Special>:</Special><Normal> ℕ </Normal><Special>→</Special><Normal> Int</Normal><br/>
+<Normal>  negsuc </Normal><Special>:</Special><Normal> ℕ </Normal><Special>→</Special><Normal> Int</Normal><br/>
+<Normal></Normal><br/>
+<Pragma>{-# BUILTIN STRING  String #-}</Pragma><br/>
+<Pragma>{-# BUILTIN CHAR    Char   #-}</Pragma><br/>
+<Pragma>{-# BUILTIN FLOAT   Float  #-}</Pragma><br/>
+<Normal></Normal><br/>
+<Pragma>{-# BUILTIN NATURAL ℕ      #-}</Pragma><br/>
+<Normal></Normal><br/>
+<Pragma>{-# BUILTIN INTEGER       Int    #-}</Pragma><br/>
+<Pragma>{-# BUILTIN INTEGERPOS    pos    #-}</Pragma><br/>
+<Pragma>{-# BUILTIN INTEGERNEGSUC negsuc #-}</Pragma><br/>
+<Normal></Normal><br/>
+<Keyword>data</Keyword><Normal> [</Normal><Special>_</Special><Normal>] </Normal><Special>(</Special><Normal>a </Normal><Special>:</Special><Normal> </Normal><Type>Set</Type><Special>)</Special><Normal> </Normal><Special>:</Special><Normal> </Normal><Type>Set</Type><Normal> </Normal><Keyword>where</Keyword><br/>
+<Normal>  []  </Normal><Special>:</Special><Normal> [ a ]</Normal><br/>
+<Normal>  </Normal><Special>_</Special><Normal>∷</Normal><Special>_</Special><Normal> </Normal><Special>:</Special><Normal> a </Normal><Special>-></Special><Normal> [ a ] </Normal><Special>-></Special><Normal> [ a ]</Normal><br/>
+<Normal></Normal><br/>
+<Pragma>{-# BUILTIN LIST [_] #-}</Pragma><br/>
+<Pragma>{-# BUILTIN NIL  []  #-}</Pragma><br/>
+<Pragma>{-# BUILTIN CONS _∷_ #-}</Pragma><br/>
+<Normal></Normal><br/>
+<Keyword>primitive</Keyword><br/>
+<Normal>  primStringToList </Normal><Special>:</Special><Normal> String </Normal><Special>-></Special><Normal> [ Char ]</Normal><br/>
+<Normal></Normal><br/>
+<Normal>string </Normal><Special>:</Special><Normal> [ Char ]</Normal><br/>
+<Normal>string </Normal><Special>=</Special><Normal> primStringToList </Normal><String>"∃ apa"</String><br/>
+<Normal></Normal><br/>
+<Normal>char </Normal><Special>:</Special><Normal> Char</Normal><br/>
+<Normal>char </Normal><Special>=</Special><Normal> </Normal><Char>'∀'</Char><br/>
+<Normal></Normal><br/>
+<Normal>anotherString </Normal><Special>:</Special><Normal> String</Normal><br/>
+<Normal>anotherString </Normal><Special>=</Special><Normal> </Normal><String>"¬ be\</String><br/>
+<String>    \pa"</String><br/>
+<Normal></Normal><br/>
+<Normal>nat </Normal><Special>:</Special><Normal> ℕ</Normal><br/>
+<Normal>nat </Normal><Special>=</Special><Normal> </Normal><Decimal>45</Decimal><br/>
+<Normal></Normal><br/>
+<Normal>float </Normal><Special>:</Special><Normal> Float</Normal><br/>
+<Normal>float </Normal><Special>=</Special><Normal> </Normal><Float>45.0e-37</Float><br/>
+<Normal></Normal><br/>
+<Comment>-- Testing qualified names.</Comment><br/>
+<Normal></Normal><br/>
+<Keyword>open</Keyword><Normal> </Normal><Keyword>import</Keyword><Normal> Test</Normal><br/>
+<Normal>Eq </Normal><Special>=</Special><Normal> Test</Normal><Special>.</Special><Normal>Equiv </Normal><Special>{</Special><Normal>Test</Normal><Special>.</Special><Normal>ℕ</Normal><Special>}</Special><br/>

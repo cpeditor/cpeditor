@@ -1,0 +1,2813 @@
+= AsciiDoc Syntax Highlighting
+// There are multiple level 0 sections, so use book instead of article.
+:doctype: book
+// For nice admonition and callout icons.
+:icons: font
+:toc: left
+
+Testing the syntax highlighting support in KDE Frameworks.
+
+The first of the following sections lists the things that are known not to work.
+Further sections are intended for testing the supported features of AsciiDoc.
+
+
+= Known Not to Work
+
+There are a couple of things that are known not to work.
+
+
+== Block
+
+* Highlighting of attributes inside a block title.
+
+* Highlighting of formatted text inside a block title other than ...
+** #marked#
+** `monospaced`
+
+* Code folding for contiguous blocks.
++
+This has an advantage too, though.
+It enables the user to decide on having code folding or not.
+For short blocks without empty lines where no code folding is desired, use contiguous blocks.
+For longer blocks which should support code folding, use delimited blocks.
+
+* Multiple lines of meta data.
++
+.For delimited blocks, Asciidoctor supports something like this:
+-----
+[source]
+[, options="nowrap"]
+----
+puts 'hello'
+----
+-----
++
+Syntax highlighting does not recognize the additional meta data lines and will rather interpret this as a contiguous block.
+
+* https://asciidoctor.org/docs/user-manual/#discrete-headings[Discrete headings]  inside block.
++
+-----
+****
+Some text.
+
+[discrete]
+=== Discrete Heading
+
+Some more text.
+****
+-----
++
+Syntax highlighting does not recognize discrete headings inside a block.
+If a normal section title is marked as being discrete, highlighting works.
+
+
+== Custom Styles
+
+* Highlighting of formatted text within the phrase to be styled.
++
+  Some [big]#big and *strong*# text.
+
+* Highlighting of styles with a phrase that spans multiple lines.
++
+----
+[big]#this
+is
+not
+highlighted#
+----
+
+
+== Formatted/Quoted Text
+
+* Highlighting of formatted/quoted text (e.g. monospaced) that spans multiple lines.
+
+* Highlighting combinations besides those of emphasized, strong and monospaced.
+** Attributes inside other formatting.
++
+  `{attribute-id} inside monospaced`
+
+** Passthrough inside other formatting.
++
+  `+passthrough+ inside monospaced`
+
+** Marked text inside other formatting.
++
+  `#marked# inside monospaced`
+
+** Subscript inside other formatting.
++
+  `~sub~script inside monospaced`
+
+** Superscript inside other formatting.
++
+  `^super^script inside monospaced`
+
+And even more complex combinations.
+
+
+== List
+
+* Inside a list, indented lines without leading asterisks or hyphen start highlighting for a verbatim paragraph.
+Asciidoctor renders this as normal text.
+
+
+== Macro
+
+* Highlighting of macros with a text argument that spans multiple lines.
++
+----
+xref:id[this works just fine]
+
+xref:id[
+highlighting a macro with
+a text that spans multiples
+does not work
+]
+----
+
+
+== Quote, Verse
+
+* Highlighting for single quote symbol `"`.
++
+Highlighting for air quotes `""` is supported.
+
+* Highlighting for Markdown style quotes.
+
+
+== Replacement
+
+Highlighting for replacements is limited to those listed in the https://asciidoctor.org/docs/user-manual/#replacements[Asciidoctor Manual] and numerical character references.
+
+Highlighting for other https://en.wikipedia.org/wiki/List_of_XML_and_HTML_character_entity_references[HTML/XML character references] is not supported.
+
+.Examples of supported references
+* `+(C)+` resulting in (C)
+* `+=>+` resulting in =>
+* `+&#188;+` resulting in &#188;
+
+.Examples of references that are not supported
+* `+&frac14;+` resulting in &frac14;
+* `+&phi;+` resulting in &phi;
+
+
+== Section
+
+* Setext style for section titles.
++
+Only Atx style is supported.
++
+NOTE: Asciidoctor's https://asciidoctor.org/docs/asciidoc-recommended-practices/[recommended practices] states _not_ to use Setext style for section titles.
+
+* Highlighting of formatted/quoted text inside section title other than ...
+** #marked#
+** `monospaced`
+
+
+== Table
+
+* Highlighting of tables with custom separator.
+** The custom separator will _not_ be highlighted.
+** All `|` inside the table _will be falsly_ highlighted.
+
+* Highlighting of delimiter-separated tables.
+** Table delimiters in shorthand notation and the value separator will _not_ be highlighted.
+** All `|` inside the table _will be falsly_ highlighted.
+
+* Applying styles on table contents.
++
+When defining a table, individual columns or cells can be defined to be highlighted *strong* etc..
+Corresponding highlighting of these cells does not work.
+
+
+
+= Admonition
+
+== Simple Format
+
+NOTE: A simple note.
+
+////
+FIXME: In the paragraph below is no note as it is started in the middle of the paragraph.
+This is problematic as we would need to know that the note line is not the first line in the paragraph.
+////
+Some text.
+NOTE: This is not a separate note as it is part of the paragraph started with the line above.
+
+NOTE:This is not a note as there is no space after the `:`.
+
+  NOTE: This is not a note as it is indented.
+
+NOTE : This is not a note as there are spaces between `NOTE` and `:`.
+
+NOTE:
+This is not a note as it is not using block format and the text is not starting on the same line as the label.
+
+NOTE: This is a lengthy note in simple format.
+Second line.
+One more line.
+And another one.
+This is the last line.
+
+This line is not part of the simple note anymore.
+
+CAUTION: This is a CAUTION.
+
+IMPORTANT: This is IMPORTANT.
+
+TIP: This is a TIP. +
+This second line is rendered as a line on its own because of the trailing `+` in the first line.
+
+WARNING: This is a WARNING.
+
+
+== Block Format
+
+.Contiguous
+[NOTE]
+[[contiguous-note-id]]
+This is a contiguous *note* block.
+Second line.
+And one more line.
+// comment inside block
+This is the final line.
+
+This line is not part of the contiguous note block anymore.
+
+.Delimited
+[NOTE]
+[[delimited-note-id]]
+====
+This is a *note* in block format.
+As a block, the note may have a title
+// comment inside block
+
+In block format, multiple lines, paragraphs etc. are possible.
+====
+
+There is no delimited admonition block without block name.
+Using `====` delimiter without a block name results in an example block.
+
+.Using open block
+[NOTE]
+--
+Inside the open block note.
+--
+
+
+= [[main-1]]An[[main-2]]chor[[main-3]] and Cross Reference
+
+== [[section-1]][[section-2]] An[[section-3]][[section-4]]chor[[section-5]]
+
+[[isolated-anchor]]
+Isolated anchor.
+
+[[isolated-anchor-with-label,Isolated Anchor With Label]]
+Isolated anchor with label.
+
+This line has an [[inline-anchor, Inline Anchor]]anchor placed inside the text.
+
+[#isolated-shorthand]
+Isolated anchor using shorthand definition.
+
+[#isolated-shorthand, Isolated Shorthand Anchor]
+Isolated anchor with label using shorthand definition.
+
+This line has an   [    #inline-shorthand    ]#anchor placed inside the text#  #.
+
+.Inside [[block-anchor]]block title
+Works too.
+
+.Macro form
+There is also a maanchor:anchor-id[Macro Anchor]cro form for anchor definition.
+
+NOTE: There is no space needed before the `anchor` macro name.
+Also not after the closing `]`.
+
+
+=== Not an anchor
+
+[[ not-an-anchor]]
+because of the space after the opening brackets.
+
+[[not-an-anchor ]]
+because of the space before the closing brackets.
+
+ [[not-an-anchor]] because of line starting with spaces.
+
+ [#not-an-anchor]#because# of line starting with spaces.
+
+[#not-an-anchor] because of trailing text.
+
+Not an anchor because of leading text [#not-an-anchor]
+
+Also[#not-an-anchor]#some text# because of missing space before `[`.
+
+Also [#not-an-anchor] #some text# because of space after `]`.
+
+Also [#not-an-anchor]# some text# because of space after the leading `#`.
+
+Also [#not-an-anchor]because of missing referred text (e.g. `#some text#`).
+
+
+=== Escaped
+
+This is an escaped \[[anchor-id, some #anchor# label]] anchor.
+
+This is just some \normal text.
+
+Some\[[anchor-id]]anchor.
+
+\[[anchor-id]]
+
+////
+FIXME: highlighting differs
+Asciidoctor seems to just pass through the anchor when escaping it.
+This behaviour is rather unexpected, as in other cases the escaped contents is subject to further highlighting.
+
+We currently only consume the opening bracket.
+////
+This is an escaped \[#shorthand-id]#anchor in shorthand form#.
+
+Some \[#shorthand-id].
+
+\[#shorthand-id]
+
+\[#shorthand-id]#
+
+
+== Cross References
+
+<<main-1>>
+
+<<main-2>>
+
+<<main-3>>
+
+<<section-1>>
+
+This is a reference to <<section-2>>.
+
+<<section-3>> some text >> some more text
+
+some << text <<<section-4>>>
+
+<<section-5>>
+
+<<isolated-anchor>>
+
+<<isolated-anchor-with-label>>
+
+<<inline-anchor>>
+
+<<isolated-shorthand>>
+
+<<inline-shorthand>>.
+
+<<block-anchor>>
+
+
+=== Escaped
+
+This is not a reference \<<section-1>>.
+
+
+= Attribute
+
+== No Value
+
+:some-attribute:
+This line should not be highlighted.
+
+  :not-an-attribute: as the line is indented.
+
+
+== Single Line Value
+
+Attributes with values that are rendered as a single line, even if their definition spans multiple lines.
+
+.Single line definition
+:single-line: only one line
+This line is not part of the attribute value anymore.
+
+##before##{single-line}##after##
+
+:attr-in-attr-value: in multi line definition
+
+.Multi line definition
+:single-line-continued: First line {attr-in-attr-value}. \
+Second line. \
+Another line.
+This line is not part of the attribute value anymore.
+
+##before##{single-line-continued}##after##
+
+IMPORTANT: At least one space is needed before the continuation `\`.
+
+.Line continuation is only highlighted when inside an attribute definition
+some \
+text
+
+
+== Multi Line Value
+
+Attributes with values including hard line breaks.
+
+IMPORTANT: At least one space is needed before the continuation `+` and between the `+` and the `\`.
+
+:multi-line: First line. + \
+Second line.   +    \
+Third line.
+This line is not part of the attribute value anymore.
+
+##before##{multi-line}##after##
+
+
+== Inline Definition
+
+Inline attribute definitions {set:inline-attribute:just fine} works {inline-attribute}.
+
+.Surplus `:` is part of the value
+{set:attr::some value}
+{attr}
+
+{set:attr}
+{attr}
+
+.Not an inline definition as leading `set:` is missing
+{single-line:some value}
+
+
+== Unsetting
+
+:!_custom_2-:
+:_custom_2-!:
+
+.Adding a value when unsetting doesn't make sense, but doesn't hurt either
+:some-attribute: some value
+Attribute is set to `{some-attribute}`.
+
+:!some-attribute: some value
+{some-attribute} is not set anymore.
+
+
+== Not an Attribute
+
+:not-an-attribute:as there is no space after the terminating column of the identifier
+
+  :not-an-attribute: as it is indented
+
+
+== Combination with Other Highlighting
+
+****
+:inside-a-block: inside a block
+Using an attribute {inside-a-block} works too.
+****
+
+:inside-formatting: inside formatting
+An attribute used `{inside-formatting}` is not highlighting as attribute.
+
+
+== Escaped
+
+\:attr-1: escaped attribute definition + \
+second line of escaped attribute definition
+
+\:!attr-1: escaped unset attribute
+
+\:-attr-1: this is not highlighted as escaped attribute definition as it has an invalid attribute id.
+
+This \:attr-1: is not highlighted as escaped attribute definition as it is not used at line start.
+
+:attr-1: some attribute
+This is not rendered as \{attr-1}.
+
+This is not an inline attribute definition \{set:attr-2:some other attribute}. +
+{attr-2} is not set.
+
+****
+:inside-a-block: inside a block
+Escaping an attribute \{inside-a-block} works too.
+****
+
+
+= Bibliography
+
+== Using References
+
+The first reference has no label, so its id <<ref-1>> is rendered.
+
+The second reference has number <<r2>> as label.
+
+The third reference has <<r3>> as label.
+
+A reference definition inside the text instead of the bibliography section yields some strange result: [[[ref-o,outside bibliography]]]].
+Not sure what to do with this.
+
+This is trying to use the escaped reference <<r4>>.
+
+This is trying to use reference <<r6>>.
+
+
+[bibliography]
+== References
+
+- [[[ref-1]]] This is reference 1.
+- [[[r2,2]]]This is reference 2.
+- [[[r3,Some Text]]]
+This is reference 3.
+- [\[[r4, escaped]]] This is #escaped#.
+- [[[r5,5]]] This is reference 5.
+* [[[r6,strange]]] Using an asterisk yields a strange result.
+
+
+= Block
+
+[abstract]
+.Abstract - contiguous block
+This document is used for testing syntax highlighting regarding various types of blocks.
+E.g. this contiguous abstract block. +
+Using block form for the abstract seems to be rendered differently than the section form (see `section.adoc`).
+
+[abstract]
+.Abstract - delimited open block
+--
+Using the delimited block form ...
+
+enables having empty lines in the abstract.
+--
+
+
+== General
+
+NOTE: Starting and ending delimiter must be balanced, meaning they must have the same length.
+
+.Block title #before# block meta data
+[literal]
+....
+Inside the block.
+....
+
+[literal]
+.Block title `after` block meta data
+....
+Inside the block.
+....
+
+.Invalid block name
+[ literal]
+....
+This block has invalid meta data as there is a space between the opening square bracket and the block name.
+....
+
+.Block with attributes
+[literal, some, attributes]
+....
+Inside the block.
+....
+
+.Anchor before block name for contiguous block
+[[contiguous_block_id_before_name]]
+[literal]
+Inside the block.
+
+.Anchor after block name for contiguous block
+[literal]
+[[contiguous_block_id_after_name]]
+Inside the block.
+
+.Anchor after block name for delimited block
+[literal]
+[#delimited_block_id]
+....
+Inside the block.
+....
+
+.Option definition
+[literal%some-option, some, attributes]
+Inside the block.
+
+.Shorthand anchor definition
+// TODO Would be nice if we could highligth the shorthand ID definition as such.
+[literal#shorthand-id, some, attributes]
+Inside the block.
+
+Link to <<contiguous_block_id_before_name>>.
+
+Link to <<contiguous_block_id_after_name>>.
+
+Link to <<shorthand-id>>.
+
+
+== Admonition
+
+See `admonition.adoc`.
+
+
+== Comment
+
+See `comment.adoc`.
+
+
+== Example
+
+.Contiguous
+[example]
+[[example-block-id]]
+A countiguous *example* block.
+// some comment
+Second line of the example block.
+
+This line is not part of the contiguous example block anymore.
+
+.Delimited with block name
+[example]
+// some comment
+[[example-block-id]]
+// some comment
+====
+// some comment
+Inside the delimited example block.
+====
+
+.Delimited without block name
+[[example-block-id]]
+====
+Inside the delimited example block.
+====
+
+.Using an open block
+[example]
+[[example-block-id]]
+--
+Inside the open block example.
+--
+
+
+== Fenced
+
+NOTE: According to the https://asciidoctor.org/docs/user-manual/#built-in-blocks-summary[Asciidoctor manual], fenced blocks do not support block names.
+
+.Delimited without block name
+[#fenced-block-id]
+```
+Inside the fenced block.
+The block contents is rendered verbatim.
+So there is *no* text formatting.
+```
+
+.This is not a fenced block
+``````
+A fenced block's delimiter length is _exactly_ 3.
+``````
+
+
+== Listing
+
+.Contiguous
+[listing]
+[[listing-block-id]]
+A countiguous *listing* block.
+Last line of the listing.
+
+This line is not part of the contiguous block anymore.
+
+.Delimited with block name
+[listing]
+[[listing-block-id]]
+// comment before the opening block delimiter
+////
+block comment
+////
+----
+First line inside the *listing* block.
+Last line inside the block.
+----
+
+.Delimited without block name
+[[listing-block-id]]
+----
+Inside the delimited listing block.
+----
+
+.Using an open block
+[listing]
+[[listing-block-id]]
+--
+Inside the open block listing.
+--
+
+
+== Literal
+
+.Contiguous
+[literal]
+// some comment
+[[literal-block-id]]
+// some comment
+Inside the contiguous literal block.
+// this should not be highlighted as comment
+.this should not be highlighted as title
+The block contents is rendered verbatim.
+So there is *no* text formatting.
+// this should not be highlighted as comment
+
+This line is not part of the contiguous block anymore.
+
+.Delimited with block name
+[literal]
+// some comment
+[#literal-block-id]
+// some comment
+..........
+Inside the delimited literal block.
+// this should not be highlighted as comment
+.this should not be highlighted as title
+..........
+
+.Delimited without block name
+[[literal-block-id]]
+// some comment
+..........
+Inside the delimited literal block.
+..........
+
+.Using an open block
+[literal]
+// some comment
+[[literal-block-id]]
+// some comment
+--
+// this should not be highlighted as comment
+Inside the open block listing.
+--
+
+.Using leading spaces for first line
+    When using some leading spaces, the whole paragraph is treated as literal.
+Only the first line needs to have leading spaces.
+
+This line is not part of the literal paragraph anymore.
+
+
+== Open
+
+NOTE: The open block does not have a contiguous form.
+
+.Delimited
+[#open-block-id]
+--
+An open block's delimiter length is _exactly_ 2.
+
+Last line of the #open# block.
+--
+
+
+== Passthrough
+
+.Contiguous
+[pass]
+[[contiguous-passthrough-id]]
+Inside the contiguous passthrough block.
+Second line to pass trhough.
+
+This line is not part of the contiguous passthrough block anymore.
+
+.Delimited with block name
+[pass]
+[[delimited-passthrough-id]]
+++++++
+Inside the delimited passthrough block with block name.
+++++++
+
+.Delimited without block name
+[[delimited-passthrough-id]]
+++++
+Inside the delimited passthrough block without block name.
+++++
+
+According to the https://asciidoctor.org/docs/user-manual/#built-in-blocks-summary[Asciidoctor Manual], passthrough using an open block is not supported.
+
+
+== Quote
+
+See `quote_verse.adoc`.
+
+
+== Sidebar
+
+.Contiguous
+[sidebar]
+[[sidebar-block-id]]
+Inside the *sidebar* block.
+Second line of the sidebar block.
+
+This line is not part of the sidbar block anymore.
+
+.Delimited with block name
+[sidebar]
+[[sidebar-block-id]]
+**********
+Inside the *sidebar* block.
+**********
+
+.Delimited without block name
+[[sidebar-block-id]]
+****
+Inside the sidebar block.
+****
+
+.Using an open block
+[sidebar]
+[[sidebar-block-id]]
+--
+Inside the sidebar block.
+--
+
+
+== Source
+
+.Contiguous
+[source,ruby]
+[[source-block-id]]
+#This is Ruby source code.
+#NOTE: If there is a space after the `#`, Asciidoctor interprets this as a section title.
+#Seems in contiguous source blocks, Asciidoctor still interprets the block contents, which is rather unexpected.
+import 'needed'
+IO.puts "hello"
+
+.Contiguous using option syntax
+[source%mixed,php]
+<p>
+<?php echo "Hello, World!"; ?>
+</p>
+
+.Delimited with block name
+[source , ruby ]
+[[source-block-id]]
+----
+# This is Ruby source code.
+# NOTE: in delimited source blocks, having a space after the `#` in the comment is OK.
+import 'needed'
+
+IO.puts "hello"
+----
+
+.Delimited with block name using option syntax
+[source%mixed,php]
+----
+<p>
+<?php echo "Hello, World!"; ?>
+</p>
+----
+
+.Delimited without block name
+[[source-block-id]]
+----
+# This is Ruby source code.
+# NOTE: in delimited source blocks, having a space after the `#` in the comment is OK.
+import 'needed'
+
+IO.puts "hello"
+----
+
+.Using an open block
+[source,ruby]
+[[source-block-id]]
+--
+import 'needed'
+
+IO.puts "hello"
+--
+
+
+== Stem
+
+.Contiguous
+[stem]
+[[stem-block-id]]
+Inside the contiguous stem block.
+Second line to pass.
+
+This line is not part of the contiguous Passthrough block anymore.
+
+.Delimited with block name
+[stem]
+[[stem-block-id]]
+++++++
+Inside the delimited stem block with block name.
+++++++
+
+.Delimited without block name
+[[stem-block-id]]
+++++
+Inside the delimited stem block without block name.
+++++
+
+
+== Table
+
+See `table.adoc`.
+
+
+== Verse
+
+.Contiguous
+[verse]
+[[verse-block-id]]
+Inside the *verse* block.
+Second line of the verse block.
+
+This line is not part of the contiguous verse block anymore.
+
+.Delimited with block name
+[verse]
+[[verse-block-id]]
+____
+Inside the *verse* block.
+____
+
+.Delimited without block name
+This would be rendered as a quote block as the same delimiters are used.
+
+.Using an open block
+[verse]
+[[verse-block-id]]
+--
+Inside the *verse* block.
+--
+
+
+== Nested Blocks
+
+====
+Start of outer example block.
+
+.Nested example block
+=====
+Inside the inner example block.
+// some comment
+
+.Nested literal block
+[literal]
+// some comment
+----
+Inside the literal block within the inner example block.
+--
+Trying to use a block within a verbatim block results in verbatim text, of course.
+--
+----
+=====
+Line in outer block.
+[listing]
+----
+Inside the inner listing block.
+----
+End of outer block.
+====
+
+.Admonition inside some other block
+====
+Some text.
+
+NOTE: This is a note in simple format inside a block.
+
+Some more text.
+====
+
+
+= Callout
+// Add `:icons: font` for nice callout icons.
+
+Callouts are usually used with listing/source blocks, but Asciidoctor renders them also without a listing block.
+
+<1>   This is a callout.
+<.> This is a callout too.
+
+ <2> This is not rendered as a callout as it is indented.
+
+The line below is not rendered as a callout as it has no text in the same line.
+
+<3>
+
+////
+FIXME This should not be highlighted as callout.
+As it depends on the kind of line before, this is problematic.
+////
+The line below is not rendered as callout as it is part of this paragraph.
+<4> This should _not_ be highlighted as callout.
+
+.Callouts with manual numbering
+[source,sh]
+----
+ls -l  <2>
+ls -la  <1>
+----
+<1> Explanation for callout number 1.
+<2>   Explanation for callout number 2.
+\<3> This is not a callout as it is escaped.
+
+.Callouts with automatic numbering
+[source,sh]
+----
+ls -l  <.>
+ls -la  <.>
+----
+<.> Explanation for callout number 1.
+<.> Explanation for callout number 2.
+
+
+= Comment
+
+TIP: Comment highlighting supports the standard https://cgit.kde.org/syntax-highlighting.git/tree/data/syntax/alert.xml[KDE alerts] (TODO, FIXME, ...) in both single-line and multi-line comments.
+
+
+== Single Line
+
+Single-line comments start with exactly `//`.
+If there are any characters - including spaces - before the `//`, the line will be rendered.
+If there are more than two consecutive `/`, the line will be rendered.
+
+This line // will be rendered completely.
+
+  // This line will be rendered as verbatim text as it is indented.
+
+/// This line will be rendered as it starts with 3 `/`.
+
+// This line will be invisible.
+
+//This line will be invisible.
+
+//
+
+\// Escaped comment.
+
+\// TODO Of course there is no alert highlighting in escaped comments.
+
+.Alerts
+// NOTE testing alerts
+// TEST: testing alerts
+// TODO: testing alerts
+// TASK testing alerts
+// WARNING: testing alerts
+// ALERT: testing alerts
+// DANGER: testing alerts
+
+
+== Multi Line
+
+.Contiguous block
+[comment]
+Some comment.
+Alerts:
+NOTE testing alerts
+TEST: testing alerts
+TODO: testing alerts
+TASK testing alerts
+WARNING: testing alerts
+ALERT: testing alerts
+DANGER: testing alerts
+Last line of contiguous block comment.
+
+This line is not part of the contiguous block comment anymore.
+
+.Delimited block without name
+//////
+This is a multi-line comment.
+It spans multiple lines.
+
+Alerts:
+NOTE testing alerts
+TEST: testing alerts
+TODO: testing alerts
+TASK testing alerts
+WARNING: testing alerts
+ALERT: testing alerts
+DANGER: testing alerts
+
+This is the comment's last line.
+//////
+
+[comment]
+.Delimited block with name
+////
+This is a multi-line comment.
+It spans multiple lines.
+
+Alerts:
+NOTE testing alerts
+TEST: testing alerts
+TODO: testing alerts
+TASK testing alerts
+WARNING: testing alerts
+ALERT: testing alerts
+DANGER: testing alerts
+
+This is the comment's last line.
+////
+
+.Using open block
+[comment]
+--
+Inside the open block comment.
+--
+
+
+= Counter
+
+== Use and Render
+
+.Start with 1 and render value
+New value for `c1` is {counter:c1}.
+
+.Increment and render
+And now it is {counter:c1}.
+
+.Render the current value without changing it
+Current value is {c1}.
+
+
+== Use Without Rendering
+
+.Define the new counter
+No new value to be {counter2:c2}seen.
+
+.Let's see the current value
+Current value is {c2}.
+
+.Increment
+No incremented value to be {counter2:c2}seen.
+
+.Let's see the current value
+Current value is {c2}.
+
+
+== Using a Start Value
+
+.Start with 3 and render value
+New value for `c3` is {counter:c3:99}.
+
+.Increment and render
+And now it is {counter:c3}.
+
+.Works with characters too
+New value for `c4` is {counter:c4:X}
+
+.Increment character counter and render
+And now it is {counter:c4}.
+
+
+== About using Spaces
+
+CAUTION: If you leave spaces after the `:` or before the closing `}`, Asciidoctor will make them part of the counter attribute name. +
+So it's probably wise to avoid spaces here.
+
+.Define a counter
+New value is {counter:c5}.
+
+.This is actually a new counter
+New value is {counter: c5}.
+
+.But you can't access that attribute
+Can't just show the current value { c5}
+
+.Only if we increment it
+Incremented value is {counter: c5}.
+
+.This is again a new counter
+New value is {counter:  c5}.
+
+.This is also a new counter
+New value is {counter:c5 }.
+
+CAUTION: Similar problems occur when using spaces around starting values. +
+*Just don't use spaces*.
+
+.New counter with start value
+New value is {counter:c6: 9 }
+
+.But when trying to increment
+Incremented value is {counter:c6}
+
+
+
+= Text Formatting
+
+TIP: Asciidoctor uses also the term _quoted text_.
+
+== Custom Styles
+
+[big]#big text#
+
+Some [.big]#big text#.
+
+Some [big]#big and *strong* text#.
+
+Some text with [foo]#custom style#.
+
+[foo bar]#foo bar text#
+
+before![big]#big text#
+
+[big]#big text#!after
+
+[big]##*text*##
+
+////
+FIXME Highlighting differs.
+The phrase is rendered as marked.
+The trailing hash is therefore not visible.
+////
+[big]###text###
+
+[fo[o]#some text#
+
+
+[underline]_emphasized and underlined_
+
+[underline]__emphasized and underlined_
+
+
+[underline]`monospaced and underlined`
+
+[underline]``monospaced and underlined``
+
+
+[underline]*strong and underlined*
+
+[underline]**strong and underlined**
+
+
+=== Not rendered as custom style
+
+[fo]o]#not a custom style# because of surplus `]`.
+
+[big]not a phrase because of missing phrase markers.
+
+[big]# # because only spaces used as phrase.
+
+[big]# the phrase# because of leading space in phrase.
+
+[big]#the phrase # because of trailing space in phrase.
+
+Before[foo]#the phrase# because of missing non-word character before clause.
+
+Before [foo]#the phrase#after because of missing non-word character after clause.
+
+
+=== Escaped
+
+This is not \[underline]#underlined text#.
+
+
+== Emphasized
+
+=== Rendered formatted
+
+This line contains a _sequence_ of _multiple emphasized_ words.
+
+This line contains a single _emphasized_ word.
+
+This line contains a single __emphasized_ word.
+
+This line contains a single _emphasized__ word.
+
+The text within the brackets should be (_emphasized_), but the brackets themselves not.
+
+(_emphasized_  [_emphasized_  {_emphasized_  |_emphasized_  ._emphasized_  ,_emphasized_  !_emphasized_  ?_emphasized_  _emphasized_?
+
+_emphasized_) _emphasized_] _emphasized_} _emphasized_| _emphasized_. _emphasized_; _emphasized_,
+
+_emphasized_( _emphasized_( _emphasized_[ _emphasized_{
+
+_emphasized_)
+
+_emphasized_
+
+__aa__bb
+
+aa__bb__
+
+aa__bb _cc__dd
+
+aa__bb cc___dd
+
+aa__ bb __cc
+
+
+=== Rendered as-is
+
+This line does not contain _some emphasized _ text as there is a surplus space.
+
+This line does not contain_some emphasized_ text as there is a space missing.
+
+This line does not contain _some emphasized_text as there is a space missing.
+
+foo ;_emphasized_ :_emphasized_ }_emphasized_
+
+;_emphasized_
+:_emphasized_
+}_emphasized_
+
+// FIXME Highlighting differs.
+In this line, there is some ___very emphasized___ text.
+Asciidoctor renders it as normal text, just ignoring all the underscores.
+That is a bit strange.
+
+
+=== Escaped
+
+Not \_emphasized_ as it is escaped.
+
+Still \__emphasized__ as only the outermost level is escaped.
+
+
+== Marked
+
+=== Rendered formatted
+
+Some # marked # text.
+
+Works #also for multiple words#.
+
+Some ##marked# text.
+
+Some #marked## text.
+
+Some ##marked## text.
+
+Some[big]#marked# text.
+Not rendered big but marked, because of missing space before `[big]`.
+
+Works also for p##art##s of a word.
+
+p##art#!s
+
+!#marked#!
+
+#marked#
+
+##marked##
+
+
+=== Rendered as-is
+
+Not rendered # marked# because of space after the leading hash.
+
+Not rendered #marked # because of space before the trailing hash.
+
+Not rendered#marked# as there is a space missing.
+
+Not rendered #marked#as there is a space missing.
+
+  This is #rendered# as a verbatim block as it is indented.
+
+Some [big]#big marked# text.
+
+Some [big]##big marked## text.
+
+
+=== Escaped
+
+Not \#marked# as it is escaped.
+
+Still \##marked## as only the outermost level is escaped.
+
+
+== Monospaced
+
+=== Rendered formatted
+
+This line contains a `sequence of ` multiple monospaced` words.
+
+This line contains a single `monospaced` word.
+
+This line contains a single ``monospaced` word.
+
+This line contains a single `monospaced`` word.
+
+The text within the brackets should be (`monospaced`), but the brackets themselves not.
+
+before``monospaced``after.
+
+`monospaced`
+
+(`mono` [`mono` {`mono` |`mono` .`mono` ,`mono` !`mono` ?`mono`
+
+`mono`) `mono`) `mono`] `mono`} `mono`| `mono`. `mono`; `mono`, `mono`?
+
+`mono`( `mono`( `mono`[ `mono`{
+
+``aa``bb
+
+aa``bb``
+
+aa``bb `cc``dd
+
+aa``bb cc```dd
+
+aa`` bb ``cc
+
+
+=== Rendered as-is
+
+Not rendered ` monospaced` because of leading space.
+
+Not rendered `monospaced ` because of trailing space.
+
+Not rendered`monospaced` as there is a space missing.
+
+Not rendered `monospaced`as there is a space missing.
+
+
+=== Escaped
+
+Not \`monospaced` as it is escaped.
+
+Still \``monospaced`` as only the outermost level is escaped.
+
+
+== Passthrough
+
+=== Rendered passed through
+
+This text is +passed _as_ is+ with no further formatting.
+
+Matching +is _lazy_+, so this + is rendered.
+
+This +_is_ passthrough`+` as passthrough has higher priority as monospaced.
+
++passthrough+ at line start.
+
+Passthrough at +line end.+
+
+Minimal passthrough +a+.
+
+
+This text is ++passed _as_ is++ with no further formatting.
+
+This text is +++passed _as_ is+++ with no further formatting.
+
+
+=== Rendered as-is
+
+No+passthrough+ as there is no space before the leading `+`.
+
+No +passthrough+as there is no space after the trailing plus.
+
+No + passthrough+ as there is a space after the leading `+`.
+
+No +passthrough + as there is a space after the trailing plus.
+
+
+=== Escaped
+
+This text \+is _not_ passed through+ because of escaping.
+
+This text \++is _still_ passed through++ as only the outermost level is escaped.
+
+This text \+++is _still_ passed through+++ as only the outermost level is escaped.
+
+
+== Strong
+
+=== Rendered formatted
+
+This line contains a *sequence of * multiple strong* words.
+
+This line contains a single **strong* word.
+
+This line contains a single**strong* word.
+
+This line contains a single *strong** word.
+
+The text within the brackets should be (*strong*), but the brackets themselves not.
+
+(*strong* [*strong* {*strong* |*strong* .*strong* ,*strong* !*strong* ?*strong*
+
+*strong*) *strong*] *strong*} *strong*| *strong*. *strong*; *strong*, *strong*?
+
+*strong*( *strong*( *strong*[ *strong*{
+
+*strong*)
+
+*strong*
+
+aa**bb**
+
+**aa**bb
+
+aa**bb**cc
+
+aa**bb *cc**dd
+
+aa**bb cc***dd
+
+aa** bb **cc
+
+
+=== Rendered as-is
+
+This line does _not_ contain *some strong * text as there is a space before the trailing asterisk.
+
+This line does _not_ contain*some strong* text as there is a space missing before the leading asterisk.
+
+This line does _not_ contain *some strong*text as there is a space missing after the trailing asterisk.
+
+some text ;*strong* :*strong* _*strong* }*strong*
+
+some text _*strong*_
+
+;*strong*
+:*strong*
+}*strong*
+
+ Not *strong* as there is a leading space in the line, making it verbatim.
+
+// FIXME Highlighting differs.
+In this line, there is some ***very strong*** text.
+It is rendered just ignoring the asterisks.
+That is a bit strange.
+
+
+=== Escaped
+
+Not \*strong* as it is escaped.
+
+Still \**strong** as only the outermost level is escaped.
+
+
+== Subscript
+
+=== Rendered formatted
+
+H~2~O
+
+
+=== Rendered as-is
+
+Not rendered sub~sc ript~ as there is a space within.
+
+
+=== Escaped
+
+Not \~subscript~ as it is escaped.
+
+
+== Superscript
+
+=== Rendered formatted
+
+E = m c^2^
+
+
+=== Rendered as-is
+
+Not rendered super^sc ript^ as there is a space within.
+
+
+=== Escaped
+
+Not \^superscript^ as it is escaped.
+
+
+== Combinations
+
+IMPORTANT: Combinations are supported by Asciidoctor, as long as the markup sets are entered in the right order.
+The monospace markup must be the outermost set, then the strong set, and the emphasized markup must always be the innermost set.
+
+
+=== Rendered formatted
+
+This is *_strong emphasized_* text.
+
+This is *__strong _ * emphasized_* text.
+
+This is**_strong emphasized_**text.
+
+This is**__ strong emphasized_**text.
+
+*_strong emphasized_*
+
+
+This is `*strong monospaced*` text.
+
+This is `**strong ` * monospaced*` text.
+
+This is``*strong monospaced*``text.
+
+This is``** strong monospaced*``text.
+
+`*strong monospaced*`
+
+
+This is `_emphasized monospaced_` text.
+
+This is `__emphasized ` _ monospaced_` text.
+
+This is``_emphasized monospaced_``text.
+
+This is``__ emphasized monospaced_``text.
+
+`_emphasized monospaced_`
+
+
+This is `*_strong emphasized monospaced_*` text.
+
+This is `*__strong emphasized * ` _ monospaced_*` text.
+
+This is``*_strong emphasized monospaced_*``text.
+
+This is``*__ strong emphasized monospaced_*``text.
+
+`*_strong emphasized monospaced_*`
+
+
+=== Unsupported
+
+Highlighting for other combinations is currently not supported, as there would be a large number of rules and styles necessary.
+
+* _emphasized #marked#_
+* #marked *strong*#
+* *strong #marked#*
+* *strong _emphasized #marked#_*
+
+* subscript _with~in~ emphasized_
+* subscript within marked: #H~2~O#
+* subscript `with~in~ monospaced`
+* subscript *with~in~ strong*
+
+* superscript _with^in^ emphasized_
+* superscript within marked: #E = m c^2^#
+* superscript `with^in^ monospaced`
+* superscript *with^in^ strong*
+
+And even more complex ones.
+
+
+=== Rendered as-is
+
+This is no *_ strong emphasized_* text, it's *strong* only.
+
+This is no *_strong emphasized _* text, it's *strong* only.
+
+This is no _*strong emphasized*_ text, it's _emphasized_ only.
+
+This is no _`emphasized monospaced`_ text, it's _emphasized_ only.
+
+
+=== Escaped
+
+This is not rendered \`_emphasized monospaced_`. +
+But it is rendered emphasized.
+
+This is not rendered \*_emphasized strong_*. +
+But it is rendered emphasized.
+
+This is not rendered \`*monospaced strong*`. +
+But it is rendered strong.
+
+This is not rendered \`*_emphasized monospaced strong_*`. +
+But it is rendered emphasized strong.
+
+
+= Horizontal Rules
+
+== Simple patterns
+
+'''
+---
+***
+
+
+== Patterns with spaces
+
+- - -
+* * *
+
+.Not a horizontal rule
+' ' '
+
+
+== Arbitrary length
+
+NOTE: Although the https://asciidoctor.org/docs/user-manual/#markdown-style-horizontal-rules[Asciidoctor Manual] states that horizontal rule patterns are only supporting up to three characters (ignoring the optional spaces), some longer patterns work too.
+
+'''''''
+
+////
+These patterns don't work, as they start delimited blocks, item lists etc..
+--------
+******
+- - - - - -
+* * * * * * * * * 
+////
+
+
+== Inside blocks
+
+****
+Horizontal rules work also inside blocks.
+They eventually need an empty line before them, though.
+
+'''
+After the horizontal rule.
+****
+
+
+= Include
+:includedir: include
+
+== Included Contents Rendered
+
+IMPORTANT: The include directive is _always_ processed, even within passthrough blocks.
+
+NOTE: Using file names with spaces works.
+
+include::{includedir}/demo.adoc[]
+
+.Partial include
+include::{includedir}/demo.adoc[lines=2..3]
+
+.Inside contiguous block
+[literal]
+This line shall be highlighted as verbatim.
+include::{includedir}/demo.adoc[lines=2..3]
+This line shall be highlighted as verbatim.
+
+.Inside delimited block with name
+[literal]
+----
+This line shall be highlighted as verbatim.
+include::{includedir}/demo.adoc[lines=2..3]
+This line shall be highlighted as verbatim.
+----
+
+.Inside delimited block without name
+....
+This line shall be highlighted as verbatim.
+include::{includedir}/demo.adoc[lines=2..3]
+This line shall be highlighted as verbatim.
+....
+
+.It is also processed within passthrough blocks
+[pass]
+This line shall be highlighted as passthrough.
+include::{includedir}/demo.adoc[lines=2..3]
+This line shall be highlighted as passthrough.
+
+[pass]
+--
+This line shall be highlighted as passthrough.
+include::{includedir}/demo.adoc[lines=2..3]
+This line shall be highlighted as passthrough.
+--
+
+.Inside table
+|===
+|row 1 col 1|row 2 col 2
+|
+// the include directive must have its own line with nothing else
+include::{includedir}/demo.adoc[lines=1..1]
+|row 2 col2
+
+|row 3 col 1
+|row 3 col 2
+|===
+
+
+= Index
+
+== Rendered as Index Term
+
+This is a ((flow)) index term.
+
+This is a indexterm2:[flow] index term.
+
+This is a (((concealed, index, term))) concealed index term.
+
+This is a indexterm:[concealed, index, term] concealed index term.
+
+This is rendered as a ((flow index term))).
+
+This is rendered as a (((flow index term)).
+
+This is ((())) empty but rendered as index term nevertheless.
+
+Some (((index term))).
+
+Some ((((index term)))).
+
+
+== Rendered as-is
+
+This is (()) not an index term as it is empty.
+
+This is (not an index term)) as there is a `(` missing.
+
+This is ((not an index term) as there is a `)` missing.
+
+
+== Escaped
+
+This is \((not an indexterm)) as it is escaped.
+
+This is \(((not a concealed index term))), but still a flow index term as only the outer brackets are escaped.
+
+This is \(\((not an indexterm))) as it is fully escaped.
+
+This is not a \indexterm2:[flow] index term.
+
+This is not a \indexterm:[concealed, index, term] concealed index term.
+
+
+[index]
+== Index Catalog
+
+WARNING: HTML output currently does not support the creation of the index catalog.
+
+
+= Link
+
+== ftp, irc
+
+* ftp://some.org/some/where/file.extension
+* irc://some.org/some/where/file.extension
+
+
+== http(s)
+
+* http://some.org/some/where/file.extension
+* https://some.org/some/where/file.extension
+
+// . , ; : followed by a space terminate the link
+* https://some.org/some/where/file.extension. some text
+* https://some.org/some/where/file.extension.some text
+* https://some.org/some/where/file.extension, some text
+* https://some.org/some/where/file.extension,some text
+* https://some.org/some/where/file.extension; some text
+* https://some.org/some/where/file.extension;some text
+* https://some.org/some/where/file.extension: some text
+* https://some.org/some/where/file.extension some text
+* https://some.org/some/where/file.extension:some text
+
+// unbalanced square brackets always terminate the link
+* https://some.org/some/where/file.extension[some text
+* https://some.org/some/where/file.extension[ some text
+* https://some.org/some/where/file.extension]some text
+* https://some.org/some/where/file.extension] some text
+
+* https://some.org/some/where/file.extension[]
+* https://some.org/some/where/file.extension[some text]trailing text
+* https://some.org/some/where/file.extension[some text]. trailing text
+* https://some.org/some/where/file.extension[some text], trailing text
+* https://some.org/some/where/file.extension[some text]; trailing text
+* https://some.org/some/where/file.extension[some text]: trailing text
+* https://some.org/some/where/file.extension[some]text] trailing text
+* https://some.org/some/where/file.extension[some ]text] trailing text
+* https://some.org/some/where/file.extension[some \]text] - with escaped `]`
+
+// TODO: highlighting of text within [] ?
+* some text https://some.org/some/where/file.extension[*some text*] trailing text.
+
+// some characters may be placed before the `http`
+* (https://some.org
+* )https://some.org
+* [https://some.org
+* ]https://some.org
+* ;https://some.org
+* <https://some.org
+* >https://some.org
+
+
+=== Not rendered as Link
+
+* {https://some.org
+* }https://some.org
+* ,https://some.org
+* .https://some.org
+* :https://some.org
+
+
+== link
+
+* link:relative/path - not rendered as link as `[]` are misssing
+* link:relative/path[]
+* ##before##link:relative/path[]##after## - no spaces needed
+* link:relative/path/file.extension[local file]
+* link:relative/path/file.extension[local ]file]
+* link:relative/path/file.extension[local \]file] - with escaped `]`
+* link:relative/path with spaces/[] - not rendered as link because of spaces
+* link:++relative/path with spaces/++[] - but this is rendered as link with spaces
+* link:external.html#anchor[to anchor of local HTML file]
+* link:url[optional link text, optional target attribute, optional role attribute]
+
+
+== E-Mail
+
+* some.person@org.com
+* some.person@org.com[some one] - brackets supported only with leading `mailto:`
+* :some.person@org.com - not rendered as link because of leading `:`
+* /some.person@org.com - not rendered as link because of leading `/`
+
+* mailto:some.person@org.com - not rendered as link as `[]` are misssing
+* mailto:some.person@org.com[]
+* ##before##mailto:some.person@org.com[]##after## - no spaces needed
+* mailto:some.person@org.com[some one]
+* mailto::some.person@org.com[] - not rendered as link because of double `:`
+* mailto: some.person@org.com[] - not rendered as mailto because of space after `:`, but still as inline email
+* mailto:[some one] - not rendered as link because of missing address
+
+
+== Escaped
+
+* \ftp://some.org/some/where/file.extension
+* \irc://some.org/some/where/file.extension
+* \https://some.org/some/where/file.extension
+* \link:relative/path[]
+* \link:relative/path[]
+* \some.person@org.com
+* \:some.person@org.com
+* \/some.person@org.com
+* \mailto:some.person@org.com[]
+
+
+= List
+
+== Bulleted List
+
+////
+FIXME The *** without text in the list below should not be highlighted as a horizontal line.
+This is going to be problematic, as we would need to know that we are currently inside a list.
+////
+.using asterisks
+* item 1
+  * * item 2
+Has some text.
+** item 2.1
+Also has some text.
++
+And an additional paragraph.
+** item 2.2
+*** item 2.2.1
++
+Markers without a text are _no_ item.
+***
+** item 2.3
+*** item 2.3.1
+**** item 2.3.1.1
+* item 3
+
+ * item 4
+**    item 4.1
+**not an item as there is no space
+     ** item 4.2
+
+.using hyphens
+- item 1
+   - item 2
+   -- item 2.1 is not an item as using hyphens is only supported for flat lists
+
+////
+FIXME: The line above should not be highlighted as literal.
+This is going to be problematic, as we would need to know that we are currently inside a list.
+////
+
+.inside a block
+****
+* item 1
+** item 1.1
+****
+
+
+== Checklist
+
+////
+FIXME The invalid checklist items below should not be highlighted as bulleted list items.
+This is going to be problematic, as we would need to know that we are currently inside a checklist.
+////
+
+.using asterisks
+* [*] checked
+**  [x]  also checked
+*** [x] also checked
+* [X]  _invalid_ check (capital X), normal list item
+* [o] _invalid_ check (invalid character), normal list item
+* [] _invalid_ check (no space), normal list item
+* [ ] not checked
+*     normal list item
+
+.using hyphens
+- [*] checked
+- [*] also checked
+-- [*] _not a list item_ as hyphens are only supported for flat lists
+   -- [*] _not a list item_ as hyphens are only supported for flat lists
+
+////
+FIXME: the line above should not be highlighted as literal.
+This is going to be problematic, as we would need to know that we are currently inside a list.
+////
+
+
+== Description List
+
+.Normal format
+Term normal:: This is a description.
+  Term indented:: This works too.
+
+Term multi line::
+This one has multiple lines.
+Two lines to be exact.
+Term L2::: This term is on level 2.
+Term L3:::: This term is on level 3.
+Term L4::::: This term is on level 4.
+Term L5:::::: This term is on level 5.
+Term with empty definition::
+Term with separated colons   :: This one has spaces before the `::`.
+Term no space::This is _not a description item_ as there is no space after the `::`.
+Term with unnumbered list::
+* list item 1
+* list item 2
+Term with multiple colons:: in the term:: 
+Having multiple `::` in one line is OK too.
+.;Strange Term = !?*:: This one has a strange term.
+Term 9   : : A space between the double `:` does _not_ work.
+
+////
+FIXME The line with the "Strange Term" abvoe should not be highlighted as title in this case.
+This is going to be problematic, as we would need to know that we are currently inside a list.
+////
+
+.Term and description on the same line
+[horizontal]
+Term 1:: first level.
+Term 2::: second level.
+Term 3:: first level again.
+
+
+== Numbered List
+
+.using numbers
+1. item 1
+2. item 2
+  3. item 3
+4 Is not an item.
+Numbers without a trailing dot do _not_ result in an item.
+123. This is an item with an out-of-sequence number.
+It will be fixed in the rendered output.
+
+.using dots
+. item 1
+   . item 2
+..not an item as there is no space
+ .. item 2.1
+   .. item 2.2
+... item 2.2.1
+.... item 2.2.1.1
+ . item 3
+
+////
+FIXME The line above starting with "..not an item" should not be highlighted as title in this case.
+This is going to be problematic, as we would need to know that we are currently inside a list.
+////
+
+
+== Question and Answer List
+
+////
+FIXME Indented answer is highlighted as verbatim block, messing up further question.
+This is going to be problematic, as we would need to know that we are currently inside a list.
+////
+
+[qanda]
+What is Asciidoctor?::
+An implementation of the AsciiDoc processor in Ruby.
+Must the answer be indented?::
+  It's not necessary, but possibly.
+What is the answer to the Ultimate Question?:: 42
+
+
+= Macro
+// for `btn:`, `kbd:`, `menu:`
+:experimental:
+// for icon:tags[] etc.
+:imagesdir: media
+// needed to use macro `toc::[]`
+:toc: macro
+
+== General Information
+
+NOTE: There is no space needed before the macro name or after the closing `]`.
+
+
+== Anchor
+
+There is a macro form anchor:anchor-id[Macro Anchor] for anchor definition.
+
+See `anchor.adoc` for other forms.
+
+
+== Cross Reference
+
+xref:anchor-id[macro xref]
+
+WARNING: Highlighting for cross references with text spanning multiple lines is not supported.
+
+xref:id[
+Line 1 in cross reference text.
+Line 2 in cross reference text.
+]
+
+\xref:anchor-id[macro xref] escaped
+
+
+== Footnote
+
+This text has a foonotefootnote:[A simple footnote.].
+
+This text has a foonote with idfootnoteref:[fn-1, A footnote reference.].
+
+
+== Icon
+
+This is a tag icon:tags[] icon with no color set.
+
+This is a blue icon:tags[role="blue"] tag.
+
+This is a big green icon:tags[role="green", size="2x"] tag.
+
+
+== Image
+
+An imageimage:logo-outline-color.svg[Logo,25]within some text.
+
+
+== Keyboard Shortcut
+
+kbd:[Ctrl+M]
+
+
+== Menu Selection
+
+menu:File[Save]
+
+menu:View[Zoom > 1:1]
+
+
+== Pass
+
+// TODO Would be nice to highlight the text within the square brackets as passthrough.
+
+Some pass:[<u>passthrough</u>] HTML.
+
+Some pass:quotes[<u>passthrough with *quoted* text</u>] HTML.
+
+Some pass:q[<u>passthrough with *quoted* text</u>] HTML.
+
+
+== Table of Contents
+
+toc::[]
+
+
+== UI Buttons
+
+Press the btn:[OK] button when you are finished.
+
+
+== Escaped
+
+This is no anchor \anchor:macro-anchor[Macro Anchor].
+
+This is no button \btn:[Cancel].
+
+This is no foonote\footnote:[A simple footnote.].
+
+This is no foonote with id\footnoteref:[fn-1, A footnote reference.].
+
+This is no image\image:logo-outline-color.svg[Tree, 25].
+
+This is no icon \icon:tags[].
+
+This is no keyboard shortcut \kbd:[Ctrl+M].
+
+This is no menu \menu:File[Save].
+
+This is no passthrough \pass:[<u>passthrough</u>].
+
+
+= Media
+// The name `imagesdir` is a bit misleading as audio and video use also this prefix.
+:imagesdir: media
+
+== Audio
+
+audio::test.mp3[]
+
+audio::test.mp3[options="loop"]
+
+.Escaped
+\audio::test.mp3[]
+
+
+== Image
+
+=== Block Format
+
+.Test SVG
+[#logo]
+[link=https://github.com/asciidoctor/brand]
+image::test.svg[Test, 100]
+
+
+==== Not highlighted
+
+.leading spaces, literal paragraph
+ image::test.svg[Test, 100]
+
+.trailing characters
+image::test.svg[Test, 100] trailing
+
+
+==== Escaped
+
+\image::test.svg[Asciidoctor Logo, 100]
+
+
+=== Inline Format
+
+Withinimage:logo-outline-color.svg[Tree, 25]some text.
+
+NOTE: There is no space needed before `image` and none after the closing `]`.
+
+image:logo-outline-color.svg[Tree, 25] at line start.
+
+At line end image:logo-outline-color.svg[Tree, 25]
+
+(image:logo-outline-color.svg[Tree, 25]) wrapped in non-space characters.
+
+
+==== Not highlighted
+
+image
+
+image:
+
+someimage:
+
+some:image
+
+some image:[]
+
+
+==== Escaped
+
+Within\image:logo-outline-color.svg[Tree, 25]some text.
+
+
+== Video
+
+video::test.mp4[width=300]
+
+video::test.mp4[width=200, options=loop]
+
+.Escaped
+\video::test.mp4[]
+
+
+= Page break
+
+== Rendered as page break
+
+<<<
+
+
+== Not rendered as page break
+
+.Not a page break as it is indented
+ <<<
+
+.Not a page break as it has trailing non-space characters
+<<< extra characters
+
+.Escaped
+\<<<
+
+
+= Preprocessor
+
+== If Defined
+
+:!attr-1:
+ifdef::attr-1[]
+This line is _not_ rendered as the attribute is not defined.
+endif::[]
+
+:attr-1:
+ifdef::attr-1[]
+This line _is_ rendered as the attribute is now defined.
+endif::[]
+
+.Short form avoiding `endif`
+ifdef::attr-1[The attribute `attr-1` is defined]
+
+
+== If Not Defined
+
+:!attr-1:
+ifndef::some-attribute[]
+This line _is_ rendered as it is inside a 'if-not-defined' statement and `some-attribute` is not defined.
+endif::some-attribute[]
+
+.Short form avoiding `endif`
+ifndef::some-attribute[The attribute `attr-1` is _not_ defined]
+
+
+== Any (or)
+
+:!attr-1:
+:!attr-2:
+:attr-3:
+ifdef::attr-1,attr-2,attr-3[]
+This line is rendered as at least one of the attributes is defined.
+endif::[]
+
+:!attr-1:
+:!attr-2:
+:!attr-3:
+ifdef::attr-1,attr-2,attr-3[]
+This line is not rendered as none of the attributes is defined.
+endif::[]
+
+
+== None (nor)
+
+:!attr-1:
+:!attr-2:
+:!attr-3:
+ifndef::attr-1,attr-2,attr-3[]
+This line is rendered as none of the attributes is defined.
+endif::[]
+
+:!attr-1:
+:!attr-2:
+:attr-3:
+ifndef::attr-1,attr-2,attr-3[]
+This line is not rendered as at least one of the attributes is defined.
+endif::[]
+
+
+== All (and)
+
+:attr-1:
+:attr-2:
+:attr-3:
+ifdef::attr-1+attr-2+attr-3[]
+This line is rendered as all the attributes are defined.
+endif::[]
+
+:attr-1:
+:attr-2:
+:!attr-3:
+ifndef::attr-1+attr-2+attr-3[]
+This line is not rendered as at least one of the attributes is not defined.
+endif::[]
+
+
+== Not All (nand)
+
+:attr-1:
+:attr-2:
+:!attr-3:
+ifndef::attr-1+attr-2+attr-3[]
+This line is rendered as at least one of the attributes is defined.
+endif::[]
+
+:attr-1:
+:attr-2:
+:attr-3:
+ifndef::attr-1+attr-2+attr-3[]
+This line is not rendered as all the attributes are not defined.
+endif::[]
+
+
+== If Eval
+
+:two: 2
+ifeval::[{two} > 1]
+This line is rendered as the expression evaluates to true.
+endif::[]
+
+:not-true: false
+ifeval::[{not-true} == true]
+This line is not rendered as the expression evaluates to false.
+endif::[]
+
+
+== Escaped
+
+:!attr-1:
+\ifdef::attr-1[]
+This line is rendered as the `ifdef`-statement is escaped.
+\endif::[]
+
+:!attr-1:
+\ifndef::some-attribute[Only if the attribute is not defined]
+This line is rendered as the `ifndef`-statement is escaped.
+\endif::some-attribute[]
+
+:not-true: false
+\ifeval::[{not-true} == true]
+This line is rendered as the `ifeval`-statement is escaped.
+\endif::[]
+
+
+= Quote and Verse
+
+== Quote
+
+.Contiguous block / paragraph
+[quote, attribution, citation title and information]
+[[quote-block-id]]
+Inside the *contiguous block quote*.
+Last line of the quote block.
+
+This line is not part of the contiguous block quote anymore.
+
+.Delimited with block name
+[quote, attribution, citation title and information]
+[[quote-block-id]]
+____
+Inside the *delimited block quote*.
+
+May contain emtpy lines.
+____
+
+.Delimited without block name
+[[quote-block-id]]
+____
+Inside the *delimited block quote*.
+
+May contain emtpy lines.
+____
+
+.Using an open block
+[quote]
+[[quote-block-id]]
+--
+Inside the *open block quote*.
+--
+
+.Nested block quote
+[quote, outer attribution, outer citation title and information]
+[[quote-block-id]]
+____
+First line of outer quote.
+[quote, inner attribution, inner citation title and information]
+[[quote-block-id]]
+______
+Inside the inner quote.
+______
+Last line of outer quote.
+____
+
+// Currently no specific highlighting supported.
+.Quoted paragraph
+"Inside the *quoted paragraph*.
+As being a paragraph, no empty lines are supported."
+-- attribution, citation title and information
+
+
+.Air quote
+[,attribution, citation title and information]
+"" 
+Inside the *air quote*.
+
+Supports empty lines.
+""
+ 
+// Currently no specific highlighting supported.
+.Markdown style
+> Inside the *markdown quote*.
+> 
+> May contain emtpy lines.
+> -- attribution, citation title and information
+
+// Currently no specific highlighting supported.
+.Nested markdown style
+> Start of outer quote.
+>
+> > Some inner quote.
+>
+> * can use AsciiDoc ...
+> * inside markdown block
+>
+> > Another inner quote.
+>
+> End of outer quote.
+
+
+== Verse
+
+.Contiguous block / paragraph
+[verse, attribution, citation title and information]
+[[verse-block-id]]
+Inside the *contiguous block verse*.
+Second line of the verse block.
+
+This line is not part of the contiguous verse block anymore.
+
+.Delimited block with name
+[verse, attribution, citation title and information]
+[[verse-block-id]]
+____
+Inside the *delimited block verse*.
+
+Supports empty lines.
+____
+
+.Delimited block without name
+This would be rendered as a quote block as the same delimiters are used.
+
+.Using an open block
+[verse, attribution, citation title and information]
+[[verse-block-id]]
+--
+Inside the *open block verse*.
+--
+
+
+= Replacement
+
+TIP: See also the https://asciidoctor.org/docs/user-manual/#replacements[corresponding section] in the Asciidoctor manual.
+
+
+== Textual symbol replacements
+
+|===
+|Name |Syntax |Escaped
+
+|copyright |(C) |\(C)
+|registered |(R) |\(R)
+|trademark |(TM) |\(TM)
+
+|apostrophe |KDE's |KDE\'s
+|ellipses |... |\... footnote:[Escaping has no effect]
+|m dash |-- |\-- footnote:[Escaping yields another different dash]
+
+|left single arrow |<- |\<-
+|right single arrow |-> |\->
+|left double arrow |<= |\<=
+|right double arrow |=> |\=>
+|===
+
+
+=== Not replaced
+
+// Single apostrophe must be surrounded by alphabetic characters.
+* a'
+* 'a
+* .'.
+* a'.
+* .'a
+
+
+== Numerical Character Reference
+
+=== Decimal
+
+&#0167;
+
+##before##&#0167;##after##
+
+&#167;
+
+
+=== Hexadecimal
+
+&#x00A7;
+
+##before##&#x00A7;##after##
+
+&#xA7;
+
+
+=== Escaped
+
+\&#0167;
+\&#167;
+\&#x00A7;
+\&#xA7;
+
+
+== HTML/XML Character Entity References
+
+See e.g. https://en.wikipedia.org/wiki/List_of_XML_and_HTML_character_entity_references[Wikipedia].
+
+IMPORTANT: Highlighting of HTML/XML character entity references is _not_ supported.
+There are just too many of them.
+
+// some examples
+====
+&ne;
+&equiv;
+====
+
+
+= Section L0
+
+[abstract]
+== Abstract
+
+This document is used for testing various aspects of syntax highlighting regarding sections.
+
+:title-attribute: with attribute
+
+== Section L1
+
+=== Section L2
+
+==== Section L3
+
+===== Section L4
+
+====== Section L5
+
+======= This is not a new section
+
+The level would be too deep.
+Only sections up to level 5 (having 6 leading `=`) are supported.
+
+
+#### Section L3
+
+Using Markdown section syntax works too.
+
+=#=# This is not a section.
+Use either `=` or `#`, but not mixed.
+
+
+===== [[id-1]] [[id-2]] Section L4
+
+This section has leading additional achors.
+
+
+==== Section L3 [[id-1]][[id-2]]
+
+This section has trailing additional anchors.
+
+
+==== [[id-1]][[id-2]]Section L3[[id-3]][[id-4]]
+
+This section has both leading and trailing additional anchors.
+
+
+==== Section L3 {title-attribute} in Title
+
+.Title {title-attribute}
+This section has an attribute in its title.
+
+
+[discrete]
+== Discrete Section
+
+This section will not be shown in the table of contents.
+
+////
+== Section with _emphasized_ text
+
+=== Section with escaped \_emphasized_ text
+////
+
+
+== Section with #marked# text
+
+=== Section with escaped \#marked# text
+
+
+== Section with `monospaced` text
+
+=== Section with escaped \`monospaced` text
+
+////
+== Section with *strong* text
+
+=== Section with escaped \*strong* text
+////
+
+
+= Another Section at Level 0
+
+Some text in the second level 0 section.
+
+== Section 2.1
+
+Some text.
+
+
+= Table
+
+== Default Separator
+
+.PSV
+// some comment
+[[table-1]]
+[.some-role]
+[#table-shorthand]
+// some comment
+|===
+// some comment
+| header col 1           |      header col 2   | header col 3
+// some comment
+
+// with escaped cell separator
+| row 1 \| col 1 | row 1 col 2 | row 1 col 3
+// no spaces needed around `|`
+| *row* 2 col 1|row 2 col 2|row 2 col 3
+
+|row 3 col 1
+// using attribute
+| row 3 col 2 {vbar}
+|ro3 3 col 3
+
+| row 4 col 1 a|some AsciiDoc in col 2 row 4
+
+* item 1
+* item 2
+|row 4 col 3
+
+2*| row 5 has same contents in first 2 columns
+|row 5 col 3
+
+|row 6 col 1 2+| span row 6 in col 2 and 3
+
+.2+|span col 1 in row 6 and 7|row 6 col 2|row 6 col 3
+|row 7 col 2|row 7 col 3
+
+2.2+^.^|span col 1 and 2 in row 8 and 9|row 8 col 3
+|row 9 col 3
+
+e|row 10 col 1 is emphasized (italic)
+s|row 10 col 2 is strong (bold)
+m|row 10 col 3 is monospaced
+|===
+
+
+== Custom Separator
+
+IMPORTANT: Highlighting of tables with custom separator is not supported.
+All `|` inside the table will be falsly highlighted.
+
+[separator=!]
+|===
+// the `|` in the line below should not be highlighted.
+!row 1 | col 1 !row 1 col 2
+s!row 2 col 1 !row 2 col 2
+|===
+
+[separator=a]
+|===
+arow 1 col 1 arow 1 col 2
+sarow 2 col 1 arow 2 col 2
+|===
+
+
+== Delimiter-Separated Values
+
+IMPORTANT: Highlighting for tables with delimiter-separated values is not supported.
+All `|` inside the table will be falsly highlighted.
+
+[format=csv]
+|===
+Col 1 ,Col 2 ,Col 3
+
+// the `|` in the line below should not be highlighted.
+row 1 | col 1 ,row 1 col 2 ,row 1 col 3
+row 2 col 2,row 2 col 2,row 2 col 3
+
+row 3 col 3 ,  "row ""3"",    col 2" , row 3 col 3
+|===
+
+
+=== Shorthand Notation for Data Tables
+
+.CSV
+,===
+Col 1 ,Col 2 ,Col 3
+
+row 1 col 1 ,row 1 col 2 ,row 1 col 3
+row 2 col 2,row 2 col 2,row 2 col 3
+
+row 3 col 3 ,  "row ""3"",    col 2" , row 3 col 3
+,===
+
+.DSV
+:===
+Col 1 :Col 2 :Col 3
+
+row 1 col 1 :row 1 col 2 :row 1 col 3
+row 2 col 2:row 2 col 2:row 2 col 3
+row 3 col 3 :  row 3 col 2 : row 3 col 3
+:===
+
+

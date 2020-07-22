@@ -1,0 +1,65 @@
+<Comment>-- comment</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>CREATE</Keyword><Normal Text> </Normal Text><Keyword>TABLE</Keyword><Normal Text> stuff </Normal Text><Keyword>COLUMNS</Keyword><Normal Text>(col1 </Normal Text><Data Type>INT</Data Type><Normal Text>, col2 </Normal Text><Data Type>Varchar</Data Type><Normal Text>);</Normal Text><br/>
+<Keyword>SELECT</Keyword><Normal Text> </Normal Text><Operator>*</Operator><Normal Text> </Normal Text><Keyword>FROM</Keyword><Normal Text> stuff </Normal Text><Keyword>WHERE</Keyword><Normal Text> </Normal Text><Keyword>id</Keyword><Normal Text> </Normal Text><Operator>=</Operator><Normal Text> </Normal Text><String>'string'</String><Normal Text>;</Normal Text><br/>
+<Keyword>select</Keyword><Normal Text> </Normal Text><Operator>*</Operator><Normal Text> </Normal Text><Keyword>from</Keyword><Normal Text> stuff </Normal Text><Keyword>where</Keyword><Normal Text> </Normal Text><Keyword>id</Keyword><Normal Text> </Normal Text><Operator><</Operator><Normal Text> </Normal Text><Float>0.42</Float><Normal Text>;</Normal Text><br/>
+<Keyword>Select</Keyword><Normal Text> col1, col2 </Normal Text><Keyword>From</Keyword><Normal Text> stuff </Normal Text><Keyword>Where</Keyword><Normal Text> stuff.col1 </Normal Text><Operator Keyword>IS</Operator Keyword><Normal Text> </Normal Text><Operator Keyword>NOT</Operator Keyword><Normal Text> </Normal Text><Keyword>NuLL</Keyword><Normal Text>;</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>CREATE</Keyword><Normal Text> </Normal Text><Keyword>TABLE</Keyword><Normal Text> Persons (</Normal Text><br/>
+<Normal Text>    </Normal Text><Keyword>ID</Keyword><Normal Text> </Normal Text><Data Type>int</Data Type><Normal Text> </Normal Text><Operator Keyword>NOT</Operator Keyword><Normal Text> </Normal Text><Keyword>NULL</Keyword><Normal Text> AUTO_INCREMENT,</Normal Text><br/>
+<Normal Text>    LastName </Normal Text><Data Type>varchar</Data Type><Normal Text>(</Normal Text><Decimal>255</Decimal><Normal Text>) </Normal Text><Operator Keyword>NOT</Operator Keyword><Normal Text> </Normal Text><Keyword>NULL</Keyword><Normal Text>,</Normal Text><br/>
+<Normal Text>    FirstName </Normal Text><Data Type>varchar</Data Type><Normal Text>(</Normal Text><Decimal>255</Decimal><Normal Text>),</Normal Text><br/>
+<Normal Text>    Age </Normal Text><Data Type>int</Data Type><Normal Text>,</Normal Text><br/>
+<Normal Text>    </Normal Text><Keyword>PRIMARY</Keyword><Normal Text> </Normal Text><Keyword>KEY</Keyword><Normal Text> (</Normal Text><Keyword>ID</Keyword><Normal Text>)</Normal Text><br/>
+<Normal Text>    </Normal Text><Keyword>CONSTRAINT</Keyword><Normal Text> CHK_Person </Normal Text><Keyword>CHECK</Keyword><Normal Text> (Age</Normal Text><Operator>>=</Operator><Decimal>18</Decimal><Normal Text> </Normal Text><Operator Keyword>AND</Operator Keyword><Normal Text> City</Normal Text><Operator>=</Operator><String>'Sandnes'</String><Normal Text>)</Normal Text><br/>
+<Normal Text>);</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>SELECT</Keyword><Normal Text> column_name(s)</Normal Text><br/>
+<Keyword>FROM</Keyword><Normal Text> table1</Normal Text><br/>
+<Keyword>FULL</Keyword><Normal Text> </Normal Text><Keyword>OUTER</Keyword><Normal Text> </Normal Text><Keyword>JOIN</Keyword><Normal Text> table2 </Normal Text><Keyword>ON</Keyword><Normal Text> table1.column_name </Normal Text><Operator>=</Operator><Normal Text> table2.column_name;</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>SELECT</Keyword><Normal Text> </Normal Text><Operator>*</Operator><Normal Text> </Normal Text><Keyword>FROM</Keyword><Normal Text> Customers</Normal Text><br/>
+<Keyword>WHERE</Keyword><Normal Text> City </Normal Text><Operator Keyword>LIKE</Operator Keyword><Normal Text> </Normal Text><String>'[bsp]%'</String><Normal Text>;</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>SELECT</Keyword><Normal Text> </Normal Text><Function>Count</Function><Normal Text>(</Normal Text><Operator>*</Operator><Normal Text>) </Normal Text><Keyword>AS</Keyword><Normal Text> DistinctCountries</Normal Text><br/>
+<Keyword>FROM</Keyword><Normal Text> (</Normal Text><Keyword>SELECT</Keyword><Normal Text> </Normal Text><Keyword>DISTINCT</Keyword><Normal Text> Country </Normal Text><Keyword>FROM</Keyword><Normal Text> Customers)</Normal Text><br/>
+<Keyword>GROUP</Keyword><Normal Text> </Normal Text><Keyword>BY</Keyword><Normal Text> Country</Normal Text><br/>
+<Keyword>HAVING</Keyword><Normal Text> </Normal Text><Function>COUNT</Function><Normal Text>(CustomerID) </Normal Text><Operator>></Operator><Normal Text> </Normal Text><Decimal>5</Decimal><br/>
+<Keyword>ORDER</Keyword><Normal Text> </Normal Text><Keyword>BY</Keyword><Normal Text> </Normal Text><Function>COUNT</Function><Normal Text>(CustomerID) </Normal Text><Keyword>DESC</Keyword><Normal Text>;</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>SELECT</Keyword><Normal Text> </Normal Text><String>'Customer'</String><Normal Text> </Normal Text><Keyword>As</Keyword><Normal Text> </Normal Text><Keyword>Type</Keyword><Normal Text>, ContactName, City, Country</Normal Text><br/>
+<Keyword>FROM</Keyword><Normal Text> Customers</Normal Text><br/>
+<Keyword>UNION</Keyword><br/>
+<Keyword>SELECT</Keyword><Normal Text> </Normal Text><String>'Supplier'</String><Normal Text>, ContactName, City, Country</Normal Text><br/>
+<Keyword>FROM</Keyword><Normal Text> Suppliers;</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>SELECT</Keyword><Normal Text> </Normal Text><Function>COUNT</Function><Normal Text>(ProductID), </Normal Text><Function>AVG</Function><Normal Text>(Price)</Normal Text><br/>
+<Keyword>FROM</Keyword><Normal Text> Products;</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>SET</Keyword><Normal Text> lock_timeout </Normal Text><Operator>=</Operator><Normal Text> </Normal Text><Decimal>0</Decimal><Normal Text>;</Normal Text><br/>
+<Keyword>SET</Keyword><Normal Text> client_encoding </Normal Text><Operator>=</Operator><Normal Text> </Normal Text><String>'UTF8'</String><Normal Text>;</Normal Text><br/>
+<Keyword>SET</Keyword><Normal Text> standard_conforming_strings </Normal Text><Operator>=</Operator><Normal Text> </Normal Text><Keyword>on</Keyword><Normal Text>;</Normal Text><br/>
+<Keyword>SET</Keyword><Normal Text> check_function_bodies </Normal Text><Operator>=</Operator><Normal Text> </Normal Text><Keyword>false</Keyword><Normal Text>;</Normal Text><br/>
+<Keyword>SET</Keyword><Normal Text> client_min_messages </Normal Text><Operator>=</Operator><Normal Text> warning;</Normal Text><br/>
+<Keyword>SET</Keyword><Normal Text> default_tablespace </Normal Text><Operator>=</Operator><Normal Text> </Normal Text><String>''</String><Normal Text>;</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>DROP</Keyword><Normal Text> </Normal Text><Keyword>TABLE</Keyword><Normal Text> </Normal Text><ControlFlow>IF</ControlFlow><Normal Text> </Normal Text><Keyword>EXISTS</Keyword><Normal Text> employees;</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>ALTER</Keyword><Normal Text> </Normal Text><Keyword>TABLE</Keyword><Normal Text> </Normal Text><Keyword>ONLY</Keyword><Normal Text> employees</Normal Text><br/>
+<Normal Text>    </Normal Text><Keyword>ADD</Keyword><Normal Text> </Normal Text><Keyword>CONSTRAINT</Keyword><Normal Text> fk_employees_employees </Normal Text><Keyword>FOREIGN</Keyword><Normal Text> </Normal Text><Keyword>KEY</Keyword><Normal Text> (reportsto) </Normal Text><Keyword>REFERENCES</Keyword><Normal Text> employees;</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>CREATE</Keyword><Normal Text> </Normal Text><Keyword>VIEW</Keyword><Normal Text> [</Normal Text><Keyword>Current</Keyword><Normal Text> Product </Normal Text><Keyword>List</Keyword><Normal Text>] </Normal Text><Keyword>AS</Keyword><br/>
+<Keyword>SELECT</Keyword><Normal Text> ProductID, ProductName</Normal Text><br/>
+<Keyword>FROM</Keyword><Normal Text> Products</Normal Text><br/>
+<Keyword>WHERE</Keyword><Normal Text> Discontinued </Normal Text><Operator>=</Operator><Normal Text> </Normal Text><Keyword>No</Keyword><Normal Text>;</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>SELECT</Keyword><Normal Text> </Normal Text><Operator>*</Operator><Normal Text> </Normal Text><Keyword>FROM</Keyword><Normal Text> [</Normal Text><Keyword>Current</Keyword><Normal Text> Product </Normal Text><Keyword>List</Keyword><Normal Text>];</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>SELECT</Keyword><Normal Text> </Normal Text><Operator>*</Operator><Normal Text> </Normal Text><Keyword>FROM</Keyword><Normal Text> [</Normal Text><Keyword>Category</Keyword><Normal Text> Sales </Normal Text><ControlFlow>For</ControlFlow><Normal Text> </Normal Text><Decimal>1997</Decimal><Normal Text>]</Normal Text><br/>
+<Keyword>WHERE</Keyword><Normal Text> CategoryName </Normal Text><Operator>=</Operator><Normal Text> </Normal Text><String>'Beverages'</String><Normal Text>;</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<ControlFlow>begin</ControlFlow><br/>
+<ControlFlow>end</ControlFlow><br/>
+<Symbol>/</Symbol><br/>
+<Normal Text> </Normal Text><Operator>/</Operator><br/>
+<Operator>/</Operator><Normal Text> u</Normal Text><br/>

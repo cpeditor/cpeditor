@@ -1,0 +1,32 @@
+pick 318aceb Add test for Makefile highlighting
+p 4c7182a Add first batch of test files resurrected from Kate 4.6
+r 6f7d8a7 Sync xml files with KTextEditor
+reword 8f0dbdc Add another batch of resurrected tests from Kate 4.6
+e 828de45 Add some more resurrected tests from Kate 4.6
+edit 6aa6264 Add simple coverage information for syntax definition tests
+s 63df253 Add more syntax highlighting tests from Kate 4.6
+squash 3e7771f Add three more tests recovered from Kate 4.6
+f 5c7fd91 Add Kate 4.6 ASP syntax test
+fixup 7a777ff Implement case-sensitive overrides for keyword rules
+exec 2b16665 Implement dynamic DetectChar rules
+drop dd808dc Quote captured strings we replace in regular expressions
+x 0b703a3 Add a few more tests from the Kate 4.6 test suite
+
+# Rebase a27a854..0b703a3 onto a27a854 (13 command(s))
+#
+# Commands:
+# p, pick = use commit
+# r, reword = use commit, but edit the commit message
+# e, edit = use commit, but stop for amending
+# s, squash = use commit, but meld into previous commit
+# f, fixup = like "squash", but discard this commit's log message
+# x, exec = run command (the rest of the line) using shell
+# d, drop = remove commit
+#
+# These lines can be re-ordered; they are executed from top to bottom.
+#
+# If you remove a line here THAT COMMIT WILL BE LOST.
+#
+# However, if you remove everything, the rebase will be aborted.
+#
+# Note that empty commits are commented out

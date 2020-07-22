@@ -1,0 +1,67 @@
+<Comment># Apache configuration highlighting unit test</Comment><br/>
+<Comment># comment with alters </Comment><Alert Level 2>TODO</Alert Level 2><Comment> </Comment><Alert Level 2>FIXME</Alert Level 2><Comment> </Comment><Alert Level 3>###</Alert Level 3><br/>
+<Normal Text></Normal Text><br/>
+<Container><IfModule</Container><Attribute> mod_dav_fs.c</Attribute><Container>></Container><br/>
+<Normal Text>    </Normal Text><Directives>DAVLockDB</Directives><String> /var/lock/apache/DAVLock</String><br/>
+<Container></IfModule></Container><br/>
+<Normal Text></Normal Text><br/>
+<Container><VirtualHost</Container><Attribute> *:443</Attribute><Container>></Container><br/>
+<Normal Text>    </Normal Text><Directives>Include</Directives><String> something_else.inc</String><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>    </Normal Text><Directives>SSLEngine</Directives><Other> </Other><Alternates>on</Alternates><br/>
+<Normal Text>    </Normal Text><Comment># exclude insecure protocols</Comment><br/>
+<Normal Text>    </Normal Text><Directives>SSLProtocol</Directives><Other> </Other><Alternates>all</Alternates><Other> </Other><Alternates>-SSLv2</Alternates><Other> </Other><Alternates>-SSLv3</Alternates><br/>
+<Normal Text>    </Normal Text><Directives>SSLHonorCipherOrder</Directives><Other> </Other><Alternates>on</Alternates><br/>
+<Normal Text>    </Normal Text><Comment># exclude insecure ciphers</Comment><br/>
+<Normal Text>    </Normal Text><Directives>SSLCipherSuite</Directives><String> "HIGH !EXP !eNULL !aNULL !LOW !RC4 !3DES !MD5 !EXP !PSK !SRP !DSS !DES !aECDH"</String><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>    </Normal Text><Directives>SSLCertificateFile</Directives><String> /etc/letsencrypt/live/cert.pem</String><br/>
+<Normal Text>    </Normal Text><Directives>SSLCertificateKeyFile</Directives><String> /etc/letsencrypt/live/privkey.pem</String><br/>
+<Normal Text>    </Normal Text><Directives>SSLCertificateChainFile</Directives><String> /etc/letsencrypt/live/chain.pem</String><br/>
+<Normal Text>    </Normal Text><Directives>CustomLog</Directives><String> /var/log/apache2/ssl_request_log   ssl_combined</String><br/>
+<Container></VirtualHost></Container><br/>
+<Normal Text></Normal Text><br/>
+<Container><Proxy</Container><Attribute> "http://localhost:10000/"</Attribute><Container>></Container><br/>
+<Normal Text>    </Normal Text><Directives>SSLRequireSSL</Directives><br/>
+<Container></Proxy></Container><br/>
+<Normal Text></Normal Text><br/>
+<Container><Directory</Container><Attribute> "/some/quoted/path"</Attribute><Container>></Container><br/>
+<Normal Text>    </Normal Text><Directives>Options</Directives><Other> </Other><Alternates>-Indexes</Alternates><Other> </Other><Alternates>-FollowSymLinks</Alternates><br/>
+<Normal Text>    </Normal Text><Directives>DirectoryIndex</Directives><String> index.php</String><br/>
+<Normal Text>    </Normal Text><Directives>AllowOverride</Directives><Other> </Other><Alternates>None</Alternates><br/>
+<Normal Text>    </Normal Text><Directives>Order</Directives><Other> </Other><Alternates>allow,deny</Alternates><br/>
+<Normal Text>    </Normal Text><Directives>Allow</Directives><String> from all</String><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>    </Normal Text><Directives>Options</Directives><Other> </Other><Alternates>FollowSymLinks</Alternates><br/>
+<Normal Text>    </Normal Text><Directives>AllowOverride</Directives><Other> </Other><Alternates>FileInfo</Alternates><Other> </Other><Alternates>Options</Alternates><Other> </Other><Alternates>All</Alternates><br/>
+<Normal Text>    </Normal Text><Container><LimitExcept</Container><Attribute> GET</Attribute><Container>></Container><br/>
+<Normal Text>        </Normal Text><Directives>Require</Directives><String> valid-user</String><br/>
+<Normal Text>    </Normal Text><Container></LimitExcept></Container><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>    </Normal Text><Container><Files</Container><Attribute> ~ "\.(cgi|shtml|phtml|php3?)$"</Attribute><Container>></Container><br/>
+<Normal Text>        </Normal Text><Directives>ForceType</Directives><String> text/plain</String><br/>
+<Normal Text>    </Normal Text><Container></Files></Container><br/>
+<Container></Directory></Container><br/>
+<Normal Text></Normal Text><br/>
+<Directives>Alias</Directives><String> /foo/ "/srv/www/htdocs/foo/"</String><br/>
+<Normal Text></Normal Text><br/>
+<Directives>AuthType</Directives><Other> </Other><Alternates>Basic</Alternates><br/>
+<Directives>AuthName</Directives><String> "KDE"</String><br/>
+<Directives>AuthUserFile</Directives><String> /srv/www/htpasswd.db</String><br/>
+<Directives>Require</Directives><String> user konqui</String><br/>
+<Normal Text></Normal Text><br/>
+<Container><VirtualHost</Container><Attribute> _default_:80</Attribute><Container>></Container><br/>
+<Normal Text>    </Normal Text><Directives>ServerName</Directives><String> www.kde.org</String><br/>
+<Normal Text>    </Normal Text><Directives>ServerAlias</Directives><String> kde.org</String><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>    </Normal Text><Directives>RewriteEngine</Directives><Other> </Other><Alternates>On</Alternates><br/>
+<Normal Text>    </Normal Text><Directives>RewriteRule</Directives><String> ^ https://%{SERVER_NAME}%{REQUEST_URI} [L,QSA,R=permanent]</String><br/>
+<Container></VirtualHost></Container><br/>
+<Normal Text></Normal Text><br/>
+<Directives>AuthBasicProvider</Directives><String> ldap</String><br/>
+<Directives>AuthLDAPBindDN</Directives><String> uid=ldapproxy,ou=people,dc=kde,dc=org</String><br/>
+<Directives>AuthLDAPBindPassword</Directives><String>  top_secret</String><br/>
+<Directives>AuthLDAPURL</Directives><String> ldap://localhost:389/ou=people,dc=kde,dc=org?uid?sub?(objectClass=posixAccount)</String><br/>
+<Directives>AuthLDAPGroupAttributeIsDN</Directives><Other> </Other><Alternates>on</Alternates><br/>
+<Directives>AuthLDAPGroupAttribute</Directives><String> member</String><br/>
+<Directives>Require</Directives><String> ldap-group cn=sysadmin,ou=Group,dc=kde,dc=org</String><br/>

@@ -1,0 +1,97 @@
+<Comment>-- Test file for Kate's Euphoria syntax highlighting/code folding.</Comment><br/>
+<Region Marker>-- BEGIN region marker test</Region Marker><br/>
+<Normal Text></Normal Text><br/>
+<Comment>-- code here</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Region Marker>-- END region marker test</Region Marker><br/>
+<Normal Text></Normal Text><br/>
+<Comment>-- The N Queens Problem:</Comment><br/>
+<Comment>-- Place N Queens on an NxN chess board</Comment><br/>
+<Comment>-- such that they don't threaten each other.</Comment><br/>
+<Type>constant</Type><Normal Text> N = </Normal Text><Number>8</Number><Normal Text> </Normal Text><Comment>-- try some other sizes</Comment><br/>
+<Type>constant</Type><Normal Text> ROW = </Normal Text><Number>1</Number><Normal Text>, COLUMN = </Normal Text><Number>2</Number><br/>
+<Type>constant</Type><Normal Text> </Normal Text><GtkKeyword>TRUE</GtkKeyword><Normal Text> = </Normal Text><Number>1</Number><Normal Text>, </Normal Text><GtkKeyword>FALSE</GtkKeyword><Normal Text> = </Normal Text><Number>0</Number><br/>
+<Keyword>type</Keyword><Normal Text> square(</Normal Text><Type>sequence</Type><Normal Text> x)</Normal Text><br/>
+<Comment>-- a square on the board</Comment><br/>
+<Normal Text>    </Normal Text><Keyword>return</Keyword><Normal Text> </Normal Text><Keyword>length</Keyword><Normal Text>(x) = </Normal Text><Number>2</Number><br/>
+<Keyword>end type</Keyword><br/>
+<Keyword>type</Keyword><Normal Text> row(</Normal Text><Type>integer</Type><Normal Text> x)</Normal Text><br/>
+<Comment>-- a row on the board</Comment><br/>
+<Normal Text>    </Normal Text><Keyword>return</Keyword><Normal Text> x >= </Normal Text><Number>1</Number><Normal Text> </Normal Text><Keyword>and</Keyword><Normal Text> x <= N</Normal Text><br/>
+<Keyword>end type</Keyword><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>function</Keyword><Normal Text> threat(square q1, square q2)</Normal Text><br/>
+<Comment>-- do two queens threaten each other?</Comment><br/>
+<Normal Text>    </Normal Text><Keyword>if</Keyword><Normal Text> q1[COLUMN] = q2[COLUMN] </Normal Text><Keyword>then</Keyword><br/>
+<Normal Text> </Normal Text><Keyword>return</Keyword><Normal Text> </Normal Text><GtkKeyword>TRUE</GtkKeyword><br/>
+<Normal Text>    </Normal Text><Keyword>elsif</Keyword><Normal Text> q1[ROW] - q1[COLUMN] = q2[ROW] - q2[COLUMN] </Normal Text><Keyword>then</Keyword><br/>
+<Normal Text> </Normal Text><Keyword>return</Keyword><Normal Text> </Normal Text><GtkKeyword>TRUE</GtkKeyword><br/>
+<Normal Text>    </Normal Text><Keyword>elsif</Keyword><Normal Text> q1[ROW] + q1[COLUMN] = q2[ROW] + q2[COLUMN] </Normal Text><Keyword>then</Keyword><br/>
+<Normal Text> </Normal Text><Keyword>return</Keyword><Normal Text> </Normal Text><GtkKeyword>TRUE</GtkKeyword><br/>
+<Normal Text>    </Normal Text><Keyword>elsif</Keyword><Normal Text> q1[ROW] = q2[ROW] </Normal Text><Keyword>then</Keyword><br/>
+<Normal Text> </Normal Text><Keyword>return</Keyword><Normal Text> </Normal Text><GtkKeyword>TRUE</GtkKeyword><br/>
+<Normal Text>    </Normal Text><Keyword>else</Keyword><br/>
+<Normal Text> </Normal Text><Keyword>return</Keyword><Normal Text> </Normal Text><GtkKeyword>FALSE</GtkKeyword><br/>
+<Normal Text>    </Normal Text><Keyword>end if</Keyword><br/>
+<Keyword>end function</Keyword><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>function</Keyword><Normal Text> conflict(square q, </Normal Text><Type>sequence</Type><Normal Text> queens)</Normal Text><br/>
+<Comment>-- Would square p cause a conflict with other queens on board so far?</Comment><br/>
+<Normal Text>    </Normal Text><Keyword>for</Keyword><Normal Text> i = </Normal Text><Number>1</Number><Normal Text> </Normal Text><Keyword>to</Keyword><Normal Text> </Normal Text><Keyword>length</Keyword><Normal Text>(queens) </Normal Text><Keyword>do</Keyword><br/>
+<Normal Text> </Normal Text><Keyword>if</Keyword><Normal Text> threat(q, queens[i]) </Normal Text><Keyword>then</Keyword><br/>
+<Normal Text>     </Normal Text><Keyword>return</Keyword><Normal Text> </Normal Text><GtkKeyword>TRUE</GtkKeyword><br/>
+<Normal Text> </Normal Text><Keyword>end if</Keyword><br/>
+<Normal Text>    </Normal Text><Keyword>end for</Keyword><br/>
+<Normal Text>    </Normal Text><Keyword>return</Keyword><Normal Text> </Normal Text><GtkKeyword>FALSE</GtkKeyword><br/>
+<Keyword>end function</Keyword><br/>
+<Normal Text></Normal Text><br/>
+<Type>integer</Type><Normal Text> soln</Normal Text><br/>
+<Normal Text>soln = </Normal Text><Number>0</Number><Normal Text> </Normal Text><Comment>-- solution number</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>procedure</Keyword><Normal Text> print_board(</Normal Text><Type>sequence</Type><Normal Text> queens)</Normal Text><br/>
+<Comment>-- print a solution, showing the Queens on the board</Comment><br/>
+<Normal Text>    </Normal Text><Type>integer</Type><Normal Text> k</Normal Text><br/>
+<Normal Text>    </Normal Text><Keyword>position</Keyword><Normal Text>(</Normal Text><Number>1</Number><Normal Text>, </Normal Text><Number>1</Number><Normal Text>)</Normal Text><br/>
+<Normal Text>    </Normal Text><Keyword>printf</Keyword><Normal Text>(</Normal Text><Number>1</Number><Normal Text>, </Normal Text><String>"Solution #%d\n\n  "</String><Normal Text>, soln)</Normal Text><br/>
+<Normal Text>    </Normal Text><Keyword>for</Keyword><Normal Text> c = 'a' </Normal Text><Keyword>to</Keyword><Normal Text> 'a' + N - </Normal Text><Number>1</Number><Normal Text> </Normal Text><Keyword>do</Keyword><br/>
+<Normal Text> </Normal Text><Keyword>printf</Keyword><Normal Text>(</Normal Text><Number>1</Number><Normal Text>, </Normal Text><String>"%2s"</String><Normal Text>, c)</Normal Text><br/>
+<Normal Text>    </Normal Text><Keyword>end for</Keyword><br/>
+<Normal Text>    </Normal Text><Keyword>puts</Keyword><Normal Text>(</Normal Text><Number>1</Number><Normal Text>, </Normal Text><String>"\n"</String><Normal Text>)</Normal Text><br/>
+<Normal Text>    </Normal Text><Keyword>for</Keyword><Normal Text> r = </Normal Text><Number>1</Number><Normal Text> </Normal Text><Keyword>to</Keyword><Normal Text> N </Normal Text><Keyword>do</Keyword><br/>
+<Normal Text> </Normal Text><Keyword>printf</Keyword><Normal Text>(</Normal Text><Number>1</Number><Normal Text>, </Normal Text><String>"%2d "</String><Normal Text>, r)</Normal Text><br/>
+<Normal Text> </Normal Text><Keyword>for</Keyword><Normal Text> c = </Normal Text><Number>1</Number><Normal Text> </Normal Text><Keyword>to</Keyword><Normal Text> N </Normal Text><Keyword>do</Keyword><br/>
+<Normal Text>     </Normal Text><Keyword>if</Keyword><Normal Text> </Normal Text><Keyword>find</Keyword><Normal Text>({r,c}, queens) </Normal Text><Keyword>then</Keyword><br/>
+<Normal Text>  </Normal Text><Keyword>puts</Keyword><Normal Text>(</Normal Text><Number>1</Number><Normal Text>, </Normal Text><String>"Q "</String><Normal Text>)</Normal Text><br/>
+<Normal Text>     </Normal Text><Keyword>else</Keyword><br/>
+<Normal Text>  </Normal Text><Keyword>puts</Keyword><Normal Text>(</Normal Text><Number>1</Number><Normal Text>, </Normal Text><String>". "</String><Normal Text>)</Normal Text><br/>
+<Normal Text>     </Normal Text><Keyword>end if</Keyword><br/>
+<Normal Text> </Normal Text><Keyword>end for</Keyword><br/>
+<Normal Text> </Normal Text><Keyword>puts</Keyword><Normal Text>(</Normal Text><Number>1</Number><Normal Text>, </Normal Text><String>"\n"</String><Normal Text>)</Normal Text><br/>
+<Normal Text>    </Normal Text><Keyword>end for</Keyword><br/>
+<Normal Text>    </Normal Text><Keyword>puts</Keyword><Normal Text>(</Normal Text><Number>1</Number><Normal Text>, </Normal Text><String>"\nPress Enter. (q to quit) "</String><Normal Text>)</Normal Text><br/>
+<Normal Text>    </Normal Text><Keyword>while</Keyword><Normal Text> </Normal Text><GtkKeyword>TRUE</GtkKeyword><Normal Text> </Normal Text><Keyword>do</Keyword><br/>
+<Normal Text> k = </Normal Text><Keyword>get_key</Keyword><Normal Text>()</Normal Text><br/>
+<Normal Text> </Normal Text><Keyword>if</Keyword><Normal Text> k = 'q' </Normal Text><Keyword>then</Keyword><br/>
+<Normal Text>     </Normal Text><Keyword>abort</Keyword><Normal Text>(</Normal Text><Number>0</Number><Normal Text>)</Normal Text><br/>
+<Normal Text> </Normal Text><Keyword>elsif</Keyword><Normal Text> k != -</Normal Text><Number>1</Number><Normal Text> </Normal Text><Keyword>then</Keyword><br/>
+<Normal Text>     </Normal Text><Keyword>exit</Keyword><br/>
+<Normal Text> </Normal Text><Keyword>end if</Keyword><br/>
+<Normal Text>    </Normal Text><Keyword>end while</Keyword><br/>
+<Keyword>end procedure</Keyword><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>procedure</Keyword><Normal Text> place_queen(</Normal Text><Type>sequence</Type><Normal Text> queens)</Normal Text><br/>
+<Comment>-- place queens on a NxN chess board</Comment><br/>
+<Comment>-- (recursive procedure)</Comment><br/>
+<Normal Text>    row r </Normal Text><Comment>-- only need to consider one row for each queen</Comment><br/>
+<Normal Text>    </Normal Text><Keyword>if</Keyword><Normal Text> </Normal Text><Keyword>length</Keyword><Normal Text>(queens) = N </Normal Text><Keyword>then</Keyword><br/>
+<Normal Text> soln += </Normal Text><Number>1</Number><br/>
+<Normal Text> print_board(queens)</Normal Text><br/>
+<Normal Text> </Normal Text><Keyword>return</Keyword><br/>
+<Normal Text>    </Normal Text><Keyword>end if</Keyword><br/>
+<Normal Text>    r = </Normal Text><Keyword>length</Keyword><Normal Text>(queens)+</Normal Text><Number>1</Number><br/>
+<Normal Text>    </Normal Text><Keyword>for</Keyword><Normal Text> c = </Normal Text><Number>1</Number><Normal Text> </Normal Text><Keyword>to</Keyword><Normal Text> N </Normal Text><Keyword>do</Keyword><br/>
+<Normal Text> </Normal Text><Keyword>if</Keyword><Normal Text> </Normal Text><Keyword>not</Keyword><Normal Text> conflict({r,c}, queens) </Normal Text><Keyword>then</Keyword><br/>
+<Normal Text>     place_queen(</Normal Text><Keyword>append</Keyword><Normal Text>(queens, {r,c}))</Normal Text><br/>
+<Normal Text> </Normal Text><Keyword>end if</Keyword><br/>
+<Normal Text>    </Normal Text><Keyword>end for</Keyword><br/>
+<Keyword>end procedure</Keyword><br/>

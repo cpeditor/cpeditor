@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title>test.yaml</title>
+<meta name="generator" content="KF5::SyntaxHighlighting (YAML)"/>
+</head><body style="color:#1f1c1b"><pre>
+<span style="color:#898887;"># YAML test</span>
+
+<span style="color:#898887;"># Comment</span>
+
+<span style="color:#644a9b;font-weight:bold;">key</span><span style="font-weight:bold;">:</span><span style="color:#0057ae;"> value</span>
+<span style="color:#644a9b;font-weight:bold;">another key</span><span style="font-weight:bold;">:</span><span style="color:#0057ae;"> Another value</span>
+<span style="color:#644a9b;font-weight:bold;">boolean</span><span style="font-weight:bold;">:</span><span style="color:#0057ae;"> </span><span style="color:#924c9d;">true</span>
+<span style="color:#644a9b;font-weight:bold;">null_value</span><span style="font-weight:bold;">:</span><span style="color:#0057ae;"> </span><span style="color:#924c9d;">null</span>
+<span style="color:#644a9b;font-weight:bold;">single quotes</span><span style="font-weight:bold;">:</span><span style="color:#0057ae;"> </span><span style="color:#bf0303;">'have </span><span style="color:#3daee9;">''</span><span style="color:#bf0303;">one</span><span style="color:#3daee9;">''</span><span style="color:#bf0303;"> escape pattern'</span>
+<span style="color:#644a9b;font-weight:bold;">double quotes</span><span style="font-weight:bold;">:</span><span style="color:#0057ae;"> </span><span style="color:#bf0303;">&quot;have many: </span><span style="color:#3daee9;">\&quot;</span><span style="color:#bf0303;">, </span><span style="color:#3daee9;">\0</span><span style="color:#bf0303;">, </span><span style="color:#3daee9;">\t</span><span style="color:#bf0303;">, </span><span style="color:#3daee9;">\u263A</span><span style="color:#bf0303;">, </span><span style="color:#3daee9;">\x0d\x0a</span><span style="color:#bf0303;"> == </span><span style="color:#3daee9;">\r\n</span><span style="color:#bf0303;">, and more.&quot;</span>
+
+<span style="color:#644a9b;font-weight:bold;">decimal</span><span style="font-weight:bold;">:</span><span style="color:#0057ae;"> </span><span style="color:#b08000;">+12345</span>
+<span style="color:#644a9b;font-weight:bold;">negative</span><span style="font-weight:bold;">:</span><span style="color:#0057ae;"> </span><span style="color:#b08000;">-1_4</span>
+<span style="color:#644a9b;font-weight:bold;">zero</span><span style="font-weight:bold;">:</span><span style="color:#0057ae;"> </span><span style="color:#b08000;">0</span>
+<span style="color:#644a9b;font-weight:bold;">octal</span><span style="font-weight:bold;">:</span><span style="color:#0057ae;"> </span><span style="color:#b08000;">0o14</span>
+<span style="color:#644a9b;font-weight:bold;">another octal</span><span style="font-weight:bold;">:</span><span style="color:#0057ae;"> </span><span style="color:#b08000;">014_2</span>
+<span style="color:#644a9b;font-weight:bold;">hexadecimal</span><span style="font-weight:bold;">:</span><span style="color:#0057ae;"> </span><span style="color:#b08000;">0x_Ca2</span>
+<span style="color:#644a9b;font-weight:bold;">float</span><span style="font-weight:bold;">:</span><span style="color:#0057ae;"> </span><span style="color:#b08000;">1.23015e+3</span>
+<span style="color:#644a9b;font-weight:bold;">exponential</span><span style="font-weight:bold;">:</span><span style="color:#0057ae;"> </span><span style="color:#b08000;">12.3015e+02</span>
+<span style="color:#644a9b;font-weight:bold;">fixed</span><span style="font-weight:bold;">:</span><span style="color:#0057ae;"> </span><span style="color:#b08000;">12__30.1_5</span>
+<span style="color:#644a9b;font-weight:bold;">sexagesimal</span><span style="font-weight:bold;">:</span><span style="color:#0057ae;"> </span><span style="color:#b08000;">19_0:20:30.15</span>
+<span style="color:#644a9b;font-weight:bold;">sexagesimal-inline</span><span style="font-weight:bold;">:</span><span style="color:#0057ae;"> </span><span style="font-weight:bold;">[</span><span style="color:#b08000;">123:45:12</span><span style="font-weight:bold;">,</span><span style="color:#0057ae;"> </span><span style="color:#b08000;">123:45:32.234_32</span><span style="font-weight:bold;">,</span><span style="color:#0057ae;"> </span><span style="color:#b08000;">+12__3:23</span><span style="font-weight:bold;">]</span>
+<span style="color:#644a9b;font-weight:bold;">infinity</span><span style="font-weight:bold;">:</span><span style="color:#0057ae;"> </span><span style="color:#006e28;">!!float</span><span style="color:#0057ae;"> </span><span style="color:#b08000;">.inf</span>
+<span style="color:#644a9b;font-weight:bold;">not a number</span><span style="font-weight:bold;">:</span><span style="color:#0057ae;"> </span><span style="color:#006e28;">!!float</span><span style="color:#0057ae;"> </span><span style="color:#b08000;">.NaN</span>
+<span style="color:#644a9b;font-weight:bold;">datetime</span><span style="font-weight:bold;">:</span><span style="color:#0057ae;"> 2001-12-15T02:59:43.1Z</span>
+<span style="color:#644a9b;font-weight:bold;">date</span><span style="font-weight:bold;">:</span><span style="color:#0057ae;"> 2002-12-14</span>
+
+<span style="color:#644a9b;font-weight:bold;">json_map</span><span style="font-weight:bold;">:</span><span style="color:#0057ae;"> </span><span style="font-weight:bold;">{</span><span style="color:#644a9b;font-weight:bold;">&quot;key&quot;</span><span style="font-weight:bold;">:</span><span style="color:#0057ae;"> </span><span style="color:#bf0303;">&quot;value&quot;</span><span style="font-weight:bold;">}</span>
+<span style="color:#644a9b;font-weight:bold;">json_seq</span><span style="font-weight:bold;">:</span><span style="color:#0057ae;"> </span><span style="font-weight:bold;">[</span><span style="color:#b08000;">3</span><span style="font-weight:bold;">,</span><span style="color:#0057ae;"> </span><span style="color:#b08000;">2</span><span style="font-weight:bold;">,</span><span style="color:#0057ae;"> </span><span style="color:#b08000;">-.inf</span><span style="font-weight:bold;">,</span><span style="color:#0057ae;"> </span><span style="color:#bf0303;">&quot;value&quot;</span><span style="font-weight:bold;">]</span>
+<span style="color:#644a9b;font-weight:bold;">another key</span><span style="font-weight:bold;">:</span><span style="color:#0057ae;"> </span><span style="font-weight:bold;">{</span><span style="color:#644a9b;font-weight:bold;">key</span><span style="font-weight:bold;">:</span><span style="color:#0057ae;"> </span><span style="font-weight:bold;">[</span><span style="color:#b08000;">+0x12a</span><span style="font-weight:bold;">,</span><span style="color:#0057ae;"> </span><span style="font-weight:bold;">,</span><span style="color:#0057ae;"> </span><span style="color:#644a9b;font-weight:bold;">!!hello</span><span style="font-weight:bold;">:</span><span style="color:#0057ae;"> bye</span><span style="font-weight:bold;">,</span><span style="color:#0057ae;"> </span><span style="color:#b08000;">1</span><span style="font-weight:bold;">,</span><span style="color:#0057ae;"> </span><span style="color:#924c9d;">off</span><span style="font-weight:bold;">,</span><span style="color:#0057ae;"> </span><span style="font-weight:bold;">{</span><span style="color:#644a9b;font-weight:bold;">a</span><span style="font-weight:bold;">:</span><span style="color:#0057ae;"> </span><span style="font-weight:bold;">[{</span><span style="color:#644a9b;font-weight:bold;">b</span><span style="font-weight:bold;">:</span><span style="color:#0057ae;"> </span><span style="color:#bf0303;">''</span><span style="font-weight:bold;">}]}]}</span>
+
+<span style="font-weight:bold;">?</span><span style="color:#0057ae;"> </span><span style="color:#006e28;">!!python/tuple</span><span style="color:#0057ae;"> </span><span style="font-weight:bold;">[</span><span style="color:#b08000;">5</span><span style="font-weight:bold;">,</span><span style="color:#0057ae;"> </span><span style="color:#b08000;">7</span><span style="font-weight:bold;">]</span>
+<span style="font-weight:bold;">:</span><span style="color:#0057ae;"> Fifty Seven</span>
+
+<span style="font-weight:bold;">?</span><span style="color:#0057ae;"> </span><span style="color:#644a9b;font-weight:bold;">set2</span><span style="font-weight:bold;">:</span>
+<span style="color:#0057ae;">  </span><span style="color:#644a9b;font-weight:bold;">item1</span><span style="font-weight:bold;">:</span><span style="color:#0057ae;"> </span><span style="color:#924c9d;">null</span>
+<span style="color:#0057ae;">  </span><span style="color:#644a9b;font-weight:bold;">item2</span><span style="font-weight:bold;">:</span><span style="color:#0057ae;"> </span><span style="color:#924c9d;">null</span>
+
+<span style="color:#644a9b;font-weight:bold;">foo</span><span style="font-weight:bold;">:</span><span style="color:#0057ae;"> </span><span style="color:#006e28;">&amp;foo</span>
+<span style="color:#0057ae;">  </span><span style="color:#644a9b;font-weight:bold;">&lt;&lt;</span><span style="font-weight:bold;">:</span><span style="color:#0057ae;"> </span><span style="color:#006e28;">*base</span>
+<span style="color:#0057ae;">  </span><span style="color:#644a9b;font-weight:bold;">age</span><span style="font-weight:bold;">:</span><span style="color:#0057ae;"> </span><span style="color:#b08000;">10</span>
+
+<span style="color:#006e28;">!!seq</span><span style="color:#0057ae;"> </span><span style="font-weight:bold;">[</span>
+<span style="color:#0057ae;">  </span><span style="color:#006e28;">!!str</span><span style="color:#0057ae;"> </span><span style="color:#bf0303;">&quot;Block scalar</span><span style="color:#3daee9;">\n</span><span style="color:#bf0303;">&quot;</span><span style="font-weight:bold;">,</span>
+<span style="color:#0057ae;">  </span><span style="color:#006e28;">!!map</span><span style="color:#0057ae;"> </span><span style="font-weight:bold;">{</span>
+<span style="color:#0057ae;">    </span><span style="font-weight:bold;">?</span><span style="color:#0057ae;"> </span><span style="color:#006e28;">&amp;B1</span><span style="color:#0057ae;"> </span><span style="color:#006e28;">!!str</span><span style="color:#0057ae;"> </span><span style="color:#bf0303;">&quot;foo&quot;</span>
+<span style="color:#0057ae;">    </span><span style="font-weight:bold;">:</span><span style="color:#0057ae;"> </span><span style="color:#006e28;">!!str</span><span style="color:#0057ae;"> </span><span style="color:#bf0303;">&quot;bar&quot;</span><span style="font-weight:bold;">,</span>
+<span style="color:#0057ae;">    </span><span style="font-weight:bold;">?</span><span style="color:#0057ae;"> </span><span style="color:#006e28;">!!str</span><span style="color:#0057ae;"> </span><span style="color:#bf0303;">&quot;baz&quot;</span>
+<span style="color:#0057ae;">    </span><span style="font-weight:bold;">:</span><span style="color:#0057ae;"> </span><span style="color:#006e28;">*B1,</span>
+<span style="color:#0057ae;">  </span><span style="font-weight:bold;">},</span>
+<span style="color:#0057ae;">  </span><span style="color:#006e28;">!!map</span><span style="color:#0057ae;"> </span><span style="font-weight:bold;">{</span>
+<span style="color:#0057ae;">     </span><span style="color:#644a9b;font-weight:bold;">!!str &quot;sun&quot; </span><span style="font-weight:bold;">:</span><span style="color:#0057ae;"> </span><span style="color:#006e28;">!!str</span><span style="color:#0057ae;"> </span><span style="color:#bf0303;">&quot;yellow&quot;</span><span style="font-weight:bold;">,</span>
+<span style="color:#0057ae;">  </span><span style="font-weight:bold;">},</span>
+<span style="font-weight:bold;">]</span>
+
+<span style="color:#006e28;">!!map</span><span style="color:#0057ae;"> </span><span style="font-weight:bold;">{</span>
+<span style="color:#0057ae;">  </span><span style="color:#644a9b;font-weight:bold;">!!str &quot;Booleans&quot;</span><span style="font-weight:bold;">:</span><span style="color:#0057ae;"> </span><span style="color:#006e28;">!!seq</span><span style="color:#0057ae;"> </span><span style="font-weight:bold;">[</span>
+<span style="color:#0057ae;">    </span><span style="color:#006e28;">!!bool</span><span style="color:#0057ae;"> </span><span style="color:#bf0303;">&quot;true&quot;</span><span style="font-weight:bold;">,</span><span style="color:#0057ae;"> </span><span style="color:#006e28;">!!bool</span><span style="color:#0057ae;"> </span><span style="color:#bf0303;">&quot;false&quot;</span>
+<span style="color:#0057ae;">  </span><span style="font-weight:bold;">],</span>
+<span style="color:#0057ae;">  </span><span style="color:#644a9b;font-weight:bold;">!!str &quot;Invalid&quot;</span><span style="font-weight:bold;">:</span><span style="color:#0057ae;"> </span><span style="color:#006e28;">!!seq</span><span style="color:#0057ae;"> </span><span style="font-weight:bold;">[</span>
+<span style="color:#898887;">    # Rejected by the schema</span>
+<span style="color:#0057ae;">    </span><span style="color:#924c9d;">True</span><span style="font-weight:bold;">,</span><span style="color:#0057ae;"> </span><span style="color:#924c9d;">Null</span><span style="font-weight:bold;">,</span><span style="color:#0057ae;"> </span><span style="color:#b08000;">0o7</span><span style="font-weight:bold;">,</span><span style="color:#0057ae;"> </span><span style="color:#b08000;">0x3A</span><span style="font-weight:bold;">,</span><span style="color:#0057ae;"> </span><span style="color:#b08000;">+12.3</span><span style="font-weight:bold;">,</span>
+<span style="color:#0057ae;">  </span><span style="font-weight:bold;">],</span>
+<span style="font-weight:bold;">}</span>
+
+<span style="color:#006e28;">--- !clarkevans.com,2002/graph/^shape</span>
+<span style="font-weight:bold;">-</span><span style="color:#0057ae;"> </span><span style="color:#0057ae;">!^circle</span>
+<span style="color:#0057ae;">  </span><span style="color:#644a9b;font-weight:bold;">center</span><span style="font-weight:bold;">:</span><span style="color:#0057ae;"> </span><span style="color:#006e28;">&amp;ORIGIN</span><span style="color:#0057ae;"> </span><span style="font-weight:bold;">{</span><span style="color:#644a9b;font-weight:bold;">x</span><span style="font-weight:bold;">:</span><span style="color:#0057ae;"> </span><span style="color:#b08000;">73</span><span style="font-weight:bold;">,</span><span style="color:#0057ae;"> </span><span style="color:#644a9b;font-weight:bold;">y</span><span style="font-weight:bold;">:</span><span style="color:#0057ae;"> </span><span style="color:#b08000;">129</span><span style="font-weight:bold;">}</span>
+<span style="color:#0057ae;">  </span><span style="color:#644a9b;font-weight:bold;">radius</span><span style="font-weight:bold;">:</span><span style="color:#0057ae;"> </span><span style="color:#b08000;">7</span>
+
+<span style="font-weight:bold;">?</span><span style="color:#0057ae;"> </span><span style="font-weight:bold;">-</span><span style="color:#0057ae;"> </span><span style="color:#0057ae;">Dog</span>
+<span style="color:#0057ae;">  </span><span style="font-weight:bold;">-</span><span style="color:#0057ae;"> </span><span style="color:#0057ae;">Cat</span>
+<span style="font-weight:bold;">:</span><span style="color:#0057ae;"> </span><span style="font-weight:bold;">[</span><span style="color:#0057ae;"> 2018-08-11</span><span style="font-weight:bold;">,</span><span style="color:#0057ae;"> 2016-01-01 </span><span style="font-weight:bold;">]</span>
+
+<span style="color:#898887;"># Literal/Folded Style</span>
+
+<span style="color:#006e28;">--- </span><span style="color:#924c9d;font-weight:bold;">|</span>
+  \//||\/||
+  // ||  ||__
+
+<span style="color:#006e28;">--- </span><span style="color:#924c9d;font-weight:bold;">&gt;</span>
+  Mark McGwire's
+  year was crippled
+  by a knee injury.
+ 
+<span style="font-weight:bold;">? </span><span style="color:#924c9d;font-weight:bold;">|</span>
+  This is a key
+  that has multiple lines
+<span style="font-weight:bold;">:</span><span style="color:#0057ae;"> </span><span style="color:#924c9d;font-weight:bold;">|</span>
+  and this is it's literal value
+
+<span style="color:#898887;"># Capture the indentation of the Key. The &quot;-&quot; and &quot;?&quot; operators</span>
+<span style="color:#898887;"># are considered as part of the indentation:</span>
+<span style="color:#644a9b;font-weight:bold;">key1</span><span style="font-weight:bold;">:</span>
+<span style="color:#644a9b;font-weight:bold;">   key2</span><span style="font-weight:bold;">: </span><span style="color:#006e28;">!!hello</span><span style="color:#0057ae;"> </span><span style="color:#924c9d;font-weight:bold;">|</span>
+    literal: &quot; text&quot; # [ ]
+
+    # literal { }
+<span style="color:#644a9b;font-weight:bold;">   key3</span><span style="font-weight:bold;">: </span><span style="color:#924c9d;font-weight:bold;">|+</span>
+    literal: 'text'
+<span style="color:#0057ae;">   </span><span style="color:#644a9b;font-weight:bold;">no-literal</span><span style="font-weight:bold;">:</span><span style="color:#0057ae;"> </span><span style="color:#bf0303;">&quot; text&quot;</span>
+<span style="color:#898887;">    #comment</span>
+
+<span style="font-weight:bold;">?  </span><span style="color:#644a9b;font-weight:bold;">key</span><span style="font-weight:bold;">:</span><span style="color:#0057ae;"> </span><span style="color:#924c9d;font-weight:bold;">|-</span>
+    literal: &quot;text&quot;
+<span style="color:#0057ae;">   </span><span style="color:#644a9b;font-weight:bold;">no-literal</span><span style="font-weight:bold;">:</span><span style="color:#0057ae;"> </span><span style="color:#bf0303;">&quot;text&quot;</span>
+<span style="font-weight:bold;">-</span><span style="color:#0057ae;"> </span><span style="color:#0057ae;">item1</span>
+<span style="color:#0057ae;">    </span><span style="font-weight:bold;">-</span><span style="color:#0057ae;"> </span><span style="color:#0057ae;">item2</span>
+<span style="font-weight:bold;">        - - - </span><span style="color:#644a9b;font-weight:bold;">key</span><span style="font-weight:bold;">:</span><span style="color:#0057ae;"> </span><span style="color:#924c9d;font-weight:bold;">&gt;-</span>
+               &quot;literal text&quot; # [ ]
+
+               'literal block'
+<span style="color:#0057ae;">              </span><span style="color:#644a9b;font-weight:bold;">no-literal</span><span style="font-weight:bold;">:</span><span style="color:#0057ae;"> </span><span style="color:#b08000;">12</span>
+
+<span style="font-weight:bold;">? - - - - ? </span><span style="color:#644a9b;font-weight:bold;">key</span><span style="font-weight:bold;">:</span><span style="color:#0057ae;"> </span><span style="color:#924c9d;font-weight:bold;">|</span>
+             literal: [ ]
+<span style="color:#0057ae;">            </span><span style="color:#644a9b;font-weight:bold;">no-literal</span><span style="font-weight:bold;">:</span><span style="color:#0057ae;"> </span><span style="font-weight:bold;">[</span><span style="color:#0057ae;"> </span><span style="font-weight:bold;">]</span>
+
+<span style="color:#898887;"># Capture the indentation of the literal/folded operator:</span>
+<span style="color:#924c9d;font-weight:bold;">|-</span>
+ literal: &quot;text&quot;
+
+<span style="color:#006e28;">!!binary</span><span style="color:#0057ae;"> </span><span style="color:#924c9d;font-weight:bold;">|</span>
+ R0lGODlhDAAMAIQAAP//9/X
+ 17unp5WZmZgAAAOfn515eXv
+ Pz7Y6OjuDg4J+fn5OTk6enp
+ 56enmleECcgggoBADs=
+
+<span style="color:#644a9b;font-weight:bold;">key1</span><span style="font-weight:bold;">:</span>
+<span style="color:#0057ae;">  </span><span style="color:#644a9b;font-weight:bold;">key2</span><span style="font-weight:bold;">:</span>
+<span style="color:#924c9d;font-weight:bold;">   |</span>
+   literal: &quot;text&quot;
+<span style="color:#0057ae;">  </span><span style="color:#644a9b;font-weight:bold;">key3</span><span style="font-weight:bold;">:</span>
+<span style="color:#006e28;">   !!str</span><span style="color:#0057ae;"> </span><span style="color:#924c9d;font-weight:bold;">|</span>
+   literal: &quot;text&quot;
+   #literal
+
+<span style="color:#898887;"># Capture the indentation of the operators &quot;-&quot; or &quot;?&quot;:</span>
+<span style="font-weight:bold;">? - - - </span><span style="color:#006e28;">!!hello</span><span style="color:#0057ae;"> </span><span style="color:#924c9d;font-weight:bold;">|+</span>
+       literal: &quot;sdfsd&quot; # [ ]
+<span style="color:#0057ae;">      </span><span style="color:#644a9b;font-weight:bold;">no-literal</span><span style="font-weight:bold;">:</span><span style="color:#0057ae;"> </span><span style="color:#bf0303;">&quot;sdfsd&quot;</span><span style="color:#898887;"> # [ ]</span>
+
+<span style="font-weight:bold;">- - - - </span><span style="color:#924c9d;font-weight:bold;">&gt;-</span>
+       literal: &quot;text&quot;
+       #literal
+<span style="color:#0057ae;">      </span><span style="color:#644a9b;font-weight:bold;">no-literal</span><span style="font-weight:bold;">:</span><span style="color:#0057ae;"> </span><span style="color:#bf0303;">&quot;text&quot;</span><span style="color:#0057ae;"> </span>
+
+<span style="color:#898887;"># This implementation of literal blocks has a limitation:</span>
+<span style="color:#898887;"># it only supports 6 dashes at most.</span>
+<span style="font-weight:bold;">-</span><span style="color:#0057ae;"> </span><span style="font-weight:bold;">-</span><span style="color:#0057ae;"> </span><span style="font-weight:bold;">-</span><span style="color:#0057ae;"> </span><span style="font-weight:bold;">-</span><span style="color:#0057ae;"> </span><span style="font-weight:bold;">-</span><span style="color:#0057ae;"> </span><span style="font-weight:bold;">-</span><span style="color:#0057ae;"> </span><span style="font-weight:bold;">-</span><span style="color:#0057ae;"> </span><span style="color:#644a9b;font-weight:bold;">key</span><span style="font-weight:bold;">:</span><span style="color:#0057ae;"> </span><span style="color:#924c9d;font-weight:bold;">|</span>
+<span style="color:#0057ae;">               literal? &quot;dfsf&quot;</span>
+
+<span style="color:#898887;"># Only comments after spaces &amp; strings in multiline attributes (bug #407060)</span>
+<span style="color:#644a9b;font-weight:bold;">reg_list</span><span style="font-weight:bold;">:</span>
+<span style="font-weight:bold;">-</span><span style="color:#0057ae;"> </span><span style="color:#644a9b;font-weight:bold;">reg</span><span style="font-weight:bold;">:</span><span style="color:#0057ae;"> </span><span style="font-weight:bold;">?</span><span style="color:#0057ae;">#XPath //div[@class=&quot;product_item cf&quot;][@id] ))(?sx)</span>
+<span style="color:#0057ae;">    id=&quot;product(?P&lt;code&gt;[^&quot;]+)&quot;</span>
+<span style="color:#0057ae;">    .+?&lt;h4&gt;&lt;a\s+[^&gt;]+&gt;(?P&lt;title&gt;[^&lt;]+)&lt;/a&gt;&lt;/h4&gt;</span>
+</pre></body></html>

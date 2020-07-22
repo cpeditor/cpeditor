@@ -1,0 +1,1636 @@
+# Translation of katepart4.po to Hebrew
+# translation of katepart4.po to Hebrew
+# translation of katepart4.po to
+# KDE Hebrew Localization Project
+#
+# In addition to the copyright owners of the program
+# which this translation accompanies, this translation is
+# Copyright (C) 2001-2002 Meni Livne <livne@kde.org>
+#
+# This translation is subject to the same Open Source
+# license as the program which it accompanies.
+#
+# Diego Iastrubni <elcuco@kde.org>, 2003.
+# Diego Iastrubni <elcuco@kde.org>, 2004.
+# Diego Iastrubni <elcuco@kde.org>, 2005, 2006, 2007, 2008, 2012, 2014.
+# Meni Livne <livne@kde.org>, 2007.
+# Elkana Bardugo <ttv200@gmail.com>, 2017. #zanata
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2017-05-16 06:51-0400\n"
+"Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
+"Language-Team: Hebrew <kde-i18n-doc@kde.org>\n"
+"Language: he\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Zanata 3.9.6\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Qt-Contexts: true\n"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "4DOS BatchToMemory"
+msgstr "תסריט Batch של MS-DOS"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "ABAP"
+msgstr "ABAP"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "ABC"
+msgstr "ABC"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "ActionScript 2.0"
+msgstr "ActionScript 2.0"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "Ada"
+msgstr "Ada"
+
+msgctxt "Language|"
+msgid "Agda"
+msgstr ""
+
+#, fuzzy
+msgctxt "Language|"
+msgid "AHDL"
+msgstr "AHDL"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "AutoHotKey"
+msgstr "AutoHotKey"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "Alerts"
+msgstr "Alerts"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "AMPLE"
+msgstr "AMPLE"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "ANS-Forth94"
+msgstr "ANS-Forth94"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "ANSI C89"
+msgstr "ANSI C89"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "Ansys"
+msgstr "Ansys"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "Apache Configuration"
+msgstr "הגדרות Apache"
+
+msgctxt "Language|"
+msgid "AppArmor Security Profile"
+msgstr ""
+
+msgctxt "Language|"
+msgid "AsciiDoc"
+msgstr ""
+
+#, fuzzy
+msgctxt "Language|"
+msgid "Asm6502"
+msgstr "Asm6502"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "AVR Assembler"
+msgstr "AVR Assembler"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "Motorola DSP56k"
+msgstr "Motorola DSP56k"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "Motorola 68k (VASM/Devpac)"
+msgstr "Motorola 68k (VASM/Devpac)"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "ASN.1"
+msgstr "ASN.1"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "ASP"
+msgstr "ASP"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "AWK"
+msgstr "AWK"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "Bash"
+msgstr "Bash"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "BibTeX"
+msgstr "BibTeX"
+
+msgctxt "Language|"
+msgid "Bitbake"
+msgstr ""
+
+#, fuzzy
+msgctxt "Language|"
+msgid "B-Method"
+msgstr "B-Method"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "Boo"
+msgstr "Boo"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "CleanCSS"
+msgstr "CleanCSS"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "CGiS"
+msgstr "CGiS"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "Cg"
+msgstr "Cg"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "ChangeLog"
+msgstr "ChangeLog"
+
+msgctxt "Language|"
+msgid "Common Intermediate Language (CIL)"
+msgstr ""
+
+#, fuzzy
+msgctxt "Language|"
+msgid "Cisco"
+msgstr "Cisco"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "Clipper"
+msgstr "Clipper"
+
+msgctxt "Language|"
+msgid "CLIST"
+msgstr ""
+
+#, fuzzy
+msgctxt "Language|"
+msgid "Clojure"
+msgstr "Clojure"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "CoffeeScript"
+msgstr "CoffeeScript"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "ColdFusion"
+msgstr "ColdFusion"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "Common Lisp"
+msgstr "Common Lisp"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "Component-Pascal"
+msgstr "Component-Pascal"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "ConTeXt"
+msgstr "ConTeXt"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "Crack"
+msgstr "Crack"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "CSS"
+msgstr "CSS"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "C#"
+msgstr "C#"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "CubeScript"
+msgstr "CubeScript"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "CUE Sheet"
+msgstr "CUE Sheet"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "Curry"
+msgstr "Curry"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "C"
+msgstr "C"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "Debian Changelog"
+msgstr "Debian Changelog"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "Debian Control"
+msgstr "Debian Control"
+
+#, fuzzy
+msgctxt "Language|"
+msgid ".desktop"
+msgstr ".desktop"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "Diff"
+msgstr "Diff"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "Django HTML Template"
+msgstr "תבנית HTML של Django"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "Dockerfile"
+msgstr "Makefile"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "MS-DOS Batch"
+msgstr "תסריט Batch של MS-DOS"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "dot"
+msgstr "dot"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "Doxyfile"
+msgstr "Makefile"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "DoxygenLua"
+msgstr "DoxygenLua"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "Doxygen"
+msgstr "Doxygen"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "DTD"
+msgstr "DTD"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "D"
+msgstr "D"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "Eiffel"
+msgstr "Eiffel"
+
+msgctxt "Language|"
+msgid "Elm"
+msgstr ""
+
+#, fuzzy
+msgctxt "Language|"
+msgid "Email"
+msgstr "Email"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "Erlang"
+msgstr "Erlang"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "Euphoria"
+msgstr "Euphoria"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "E Language"
+msgstr "שפת E"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "Intel x86 (FASM)"
+msgstr "Intel x86 (FASM)"
+
+msgctxt "Language|"
+msgid "FASTQ"
+msgstr ""
+
+#, fuzzy
+msgctxt "Language|"
+msgid "ferite"
+msgstr "ferite"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "4GL"
+msgstr "4GL"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "4GL-PER"
+msgstr "4GL-PER"
+
+msgctxt "Language|"
+msgid "Fish"
+msgstr ""
+
+msgctxt "Language|"
+msgid "FlatBuffers"
+msgstr ""
+
+msgctxt "Language|"
+msgid "Fortran (Fixed Format)"
+msgstr ""
+
+msgctxt "Language|"
+msgid "Fortran (Free Format)"
+msgstr ""
+
+#, fuzzy
+msgctxt "Language|"
+msgid "FreeBASIC"
+msgstr "FreeBASIC"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "FSharp"
+msgstr "FSharp"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "fstab"
+msgstr "fstab"
+
+msgctxt "Language|"
+msgid "FTL"
+msgstr ""
+
+#, fuzzy
+msgctxt "Language|"
+msgid "GAP"
+msgstr "GAP"
+
+msgctxt "Language|"
+msgid "G-Code"
+msgstr ""
+
+#, fuzzy
+msgctxt "Language|"
+msgid "GDB Backtrace"
+msgstr "Backspace"
+
+msgctxt "Language|"
+msgid "GDB Init"
+msgstr ""
+
+#, fuzzy
+msgctxt "Language|"
+msgid "GDB"
+msgstr "GDL"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "GDL"
+msgstr "GDL"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "GNU Gettext"
+msgstr "GNU Gettext"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "Git Ignore"
+msgstr "&התעלם"
+
+msgctxt "Language|"
+msgid "Gitolite"
+msgstr ""
+
+msgctxt "Language|"
+msgid "Git Rebase"
+msgstr ""
+
+#, fuzzy
+msgctxt "Language|"
+msgid "GlossTex"
+msgstr "GlossTex"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "GLSL"
+msgstr "GLSL"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "GNU Assembler"
+msgstr "GNU Assembler"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "Gnuplot"
+msgstr "Gnuplot"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "Go"
+msgstr "עבור"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "KDev-PG[-Qt] Grammar"
+msgstr "תחביר של KDev-PG[-Qt]‎"
+
+msgctxt "Language|"
+msgid "GraphQL"
+msgstr ""
+
+msgctxt "Language|"
+msgid "Groovy"
+msgstr ""
+
+#, fuzzy
+msgctxt "Language|"
+msgid "Hamlet"
+msgstr "Haml"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "Haml"
+msgstr "Haml"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "Haskell"
+msgstr "Haskell"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "Haxe"
+msgstr "Haxe"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "HTML"
+msgstr "HTML"
+
+msgctxt "Language|"
+msgid "Hunspell Affix File"
+msgstr ""
+
+msgctxt "Language|"
+msgid "Hunspell Thesaurus File"
+msgstr ""
+
+msgctxt "Language|"
+msgid "Hunspell Dictionary File"
+msgstr ""
+
+#, fuzzy
+msgctxt "Language|"
+msgid "Quake Script"
+msgstr "תסריט Quake"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "IDL"
+msgstr "IDL"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "ILERPG"
+msgstr "ILERPG"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "Inform"
+msgstr "Inform"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "INI Files"
+msgstr "קבצי INI"
+
+msgctxt "Language|"
+msgid "InnoSetup"
+msgstr ""
+
+msgctxt "Language|"
+msgid "Intel HEX"
+msgstr ""
+
+#, fuzzy
+msgctxt "Language|"
+msgid "Jam"
+msgstr "Jam"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "Javadoc"
+msgstr "Javadoc"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "JavaScript React (JSX)"
+msgstr "JavaScript"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "JavaScript"
+msgstr "JavaScript"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "Java"
+msgstr "Java"
+
+msgctxt "Language|"
+msgid "JCL"
+msgstr ""
+
+#, fuzzy
+msgctxt "Language|"
+msgid "Jira"
+msgstr "Jira"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "JSON"
+msgstr "JSON"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "JSP"
+msgstr "JSP"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "Julia"
+msgstr "Julia"
+
+msgctxt "Language|"
+msgid "J"
+msgstr ""
+
+#, fuzzy
+msgctxt "Language|"
+msgid "KBasic"
+msgstr "KBasic"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "Kconfig"
+msgstr "הגדרות"
+
+msgctxt "Language|"
+msgid "Kotlin"
+msgstr ""
+
+#, fuzzy
+msgctxt "Language|"
+msgid "k"
+msgstr "k"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "LaTeX"
+msgstr "LaTeX"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "LDIF"
+msgstr "LDIF"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "GNU Linker Script"
+msgstr "תסריט של GNU Linker"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "LESSCSS"
+msgstr "LESSCSS"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "Lex/Flex"
+msgstr "Lex/Flex"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "LilyPond"
+msgstr "LilyPond"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "Literate Curry"
+msgstr "Literate Curry"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "Literate Haskell"
+msgstr "Literate Haskell"
+
+msgctxt "Language|"
+msgid "Logcat"
+msgstr ""
+
+#, fuzzy
+msgctxt "Language|"
+msgid "Logtalk"
+msgstr "Logtalk"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "LPC"
+msgstr "LPC"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "LSL"
+msgstr "LSL"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "Lua"
+msgstr "Lua"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "M3U"
+msgstr "M3U"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "GNU M4"
+msgstr "GNU M4"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "MAB-DB"
+msgstr "MAB-DB"
+
+msgctxt "Language|"
+msgid "Magma"
+msgstr ""
+
+#, fuzzy
+msgctxt "Language|"
+msgid "Makefile"
+msgstr "Makefile"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "Mako"
+msgstr "Mako"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "Troff Mandoc"
+msgstr "Troff Mandoc"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "Markdown"
+msgstr "Markdown"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "Mason"
+msgstr "Mason"
+
+msgctxt "Language|"
+msgid "Mathematica"
+msgstr ""
+
+#, fuzzy
+msgctxt "Language|"
+msgid "Matlab"
+msgstr "Matlab"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "Maxima"
+msgstr "Maxima"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "MediaWiki"
+msgstr "MediaWiki"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "MEL"
+msgstr "MEL"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "mergetag text"
+msgstr "mergetag text"
+
+msgctxt "Language|"
+msgid "Meson"
+msgstr ""
+
+#, fuzzy
+msgctxt "Language|"
+msgid "Metapost/Metafont"
+msgstr "Metapost/Metafont"
+
+msgctxt "Language|"
+msgid "Metamath"
+msgstr ""
+
+msgctxt "Language|"
+msgid "MIB"
+msgstr ""
+
+#, fuzzy
+msgctxt "Language|"
+msgid "MIPS Assembler"
+msgstr "MIPS Assembler"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "Modelica"
+msgstr "Modelica"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "Modelines"
+msgstr "Modelica"
+
+msgctxt "Language|"
+msgid "Modula-2 (ISO only)"
+msgstr ""
+
+msgctxt "Language|"
+msgid "Modula-2 (PIM only)"
+msgstr ""
+
+msgctxt "Language|"
+msgid "Modula-2 (R10 only)"
+msgstr ""
+
+#, fuzzy
+msgctxt "Language|"
+msgid "Modula-2"
+msgstr "Modula-2"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "MonoBasic"
+msgstr "MonoBasic"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "Music Publisher"
+msgstr "Music Publisher"
+
+msgctxt "Language|"
+msgid "Mustache/Handlebars (HTML)"
+msgstr ""
+
+#, fuzzy
+msgctxt "Language|"
+msgid "Nagios"
+msgstr "Nagios"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "Intel x86 (NASM)"
+msgstr "Intel x86 (NASM)"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "Nemerle"
+msgstr "Nemerle"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "nesC"
+msgstr "nesC"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "noweb"
+msgstr "noweb"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "Objective-C++"
+msgstr "Objective-C++"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "Objective-C"
+msgstr "Objective-C"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "Objective Caml Ocamllex"
+msgstr "Objective Caml"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "Objective Caml"
+msgstr "Objective Caml"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "Objective Caml Ocamlyacc"
+msgstr "Objective Caml"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "Octave"
+msgstr "Octave"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "OORS"
+msgstr "OORS"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "OPAL"
+msgstr "OPAL"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "OpenCL"
+msgstr "OpenCL"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "OpenSCAD"
+msgstr "OpenCL"
+
+msgctxt "Language|"
+msgid "Overpass QL"
+msgstr ""
+
+#, fuzzy
+msgctxt "Language|"
+msgid "Pango"
+msgstr "Pango"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "Pascal"
+msgstr "Pascal"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "Perl"
+msgstr "Perl"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "PHP/PHP"
+msgstr "PHP/PHP"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "PicAsm"
+msgstr "PicAsm"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "Pig"
+msgstr "Pig"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "Pike"
+msgstr "Pike"
+
+msgctxt "Language|"
+msgid "PL/I"
+msgstr ""
+
+msgctxt "Language|"
+msgid "PLY"
+msgstr ""
+
+#, fuzzy
+msgctxt "Language|"
+msgid "PostScript"
+msgstr "PostScript"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "POV-Ray"
+msgstr "POV-Ray"
+
+msgctxt "Language|"
+msgid "Praat"
+msgstr ""
+
+#, fuzzy
+msgctxt "Language|"
+msgid "progress"
+msgstr "progress"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "Protobuf"
+msgstr "Protobuf"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "Pug"
+msgstr "Pig"
+
+msgctxt "Language|"
+msgid "Puppet"
+msgstr ""
+
+#, fuzzy
+msgctxt "Language|"
+msgid "PureBasic"
+msgstr "PureBasic"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "Python"
+msgstr "Python"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "QDoc Configuration"
+msgstr "הגדרות"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "QMake"
+msgstr "QMake"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "QML"
+msgstr "QML"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "q"
+msgstr "q"
+
+msgctxt "Language|"
+msgid "Raku"
+msgstr ""
+
+#, fuzzy
+msgctxt "Language|"
+msgid "RapidQ"
+msgstr "RapidQ"
+
+msgctxt "Language|"
+msgid "R documentation"
+msgstr ""
+
+#, fuzzy
+msgctxt "Language|"
+msgid "RelaxNG-Compact"
+msgstr "RelaxNG-Compact"
+
+msgctxt "Language|"
+msgid "RenPy"
+msgstr ""
+
+#, fuzzy
+msgctxt "Language|"
+msgid "Replicode"
+msgstr "ה&חלף"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "reStructuredText"
+msgstr "reStructuredText"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "REXX"
+msgstr "REXX"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "Ruby/Rails/RHTML"
+msgstr "Ruby/Rails/RHTML"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "RenderMan RIB"
+msgstr "RenderMan RIB"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "R Markdown"
+msgstr "Markdown"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "Roff"
+msgstr "Roff"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "RPM Spec"
+msgstr "RPM Spec"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "RSI IDL"
+msgstr "RSI IDL"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "Rich Text Format"
+msgstr "תבנית קובץ"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "Ruby"
+msgstr "Ruby"
+
+msgctxt "Language|"
+msgid "Rust"
+msgstr ""
+
+#, fuzzy
+msgctxt "Language|"
+msgid "R Script"
+msgstr "R Script"
+
+msgctxt "Language|"
+msgid "SASS"
+msgstr ""
+
+#, fuzzy
+msgctxt "Language|"
+msgid "Sather"
+msgstr "Sather"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "Scala"
+msgstr "קנה מידה"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "Scheme"
+msgstr "Scheme"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "scilab"
+msgstr "scilab"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "SCSS"
+msgstr "SCSS"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "sed"
+msgstr "sed"
+
+msgctxt "Language|"
+msgid "SELinux CIL Policy"
+msgstr ""
+
+msgctxt "Language|"
+msgid "SELinux File Contexts"
+msgstr ""
+
+msgctxt "Language|"
+msgid "SELinux Policy"
+msgstr ""
+
+#, fuzzy
+msgctxt "Language|"
+msgid "SGML"
+msgstr "SGML"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "SiSU"
+msgstr "SiSU"
+
+msgctxt "Language|"
+msgid "Smali"
+msgstr ""
+
+#, fuzzy
+msgctxt "Language|"
+msgid "SML"
+msgstr "SML"
+
+msgctxt "Language|"
+msgid "Snort/Suricata"
+msgstr ""
+
+msgctxt "Language|"
+msgid "Solidity"
+msgstr ""
+
+#, fuzzy
+msgctxt "Language|"
+msgid "Spice"
+msgstr "Spice"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "SQL (MySQL)"
+msgstr "SQL (MySQL)"
+
+msgctxt "Language|"
+msgid "SQL (Oracle)"
+msgstr ""
+
+#, fuzzy
+msgctxt "Language|"
+msgid "SQL (PostgreSQL)"
+msgstr "SQL (PostgreSQL)"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "SQL"
+msgstr "SQL"
+
+msgctxt "Language|"
+msgid "Stan"
+msgstr ""
+
+#, fuzzy
+msgctxt "Language|"
+msgid "Stata"
+msgstr "Stata"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "STL"
+msgstr "LSL"
+
+msgctxt "Language|"
+msgid "SubRip Subtitles"
+msgstr ""
+
+#, fuzzy
+msgctxt "Language|"
+msgid "SystemC"
+msgstr "SystemC"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "SystemVerilog"
+msgstr "SystemVerilog"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "TADS 3"
+msgstr "TADS 3"
+
+msgctxt "Language|"
+msgid "TaskJuggler"
+msgstr ""
+
+#, fuzzy
+msgctxt "Language|"
+msgid "Tcl/Tk"
+msgstr "Tcl/Tk"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "Tcsh"
+msgstr "Tcsh"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "Texinfo"
+msgstr "Texinfo"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "Textile"
+msgstr "Textile"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "TI Basic"
+msgstr "TI Basic"
+
+msgctxt "Language|"
+msgid "Tiger"
+msgstr ""
+
+msgctxt "Language|"
+msgid "TOML"
+msgstr ""
+
+#, fuzzy
+msgctxt "Language|"
+msgid "txt2tags"
+msgstr "txt2tags"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "TypeScript React (TSX)"
+msgstr "JavaScript"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "TypeScript"
+msgstr "תסריטים"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "UnrealScript"
+msgstr "UnrealScript"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "Vala"
+msgstr "Vala"
+
+msgctxt "Language|"
+msgid "Valgrind Suppression"
+msgstr ""
+
+#, fuzzy
+msgctxt "Language|"
+msgid "Varnish 4 Configuration Language"
+msgstr "שפת הגדרות תצורה של Varnish"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "Varnish 4 module spec file"
+msgstr "שפת הגדרות תצורה של Varnish"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "Varnish 3 module spec file"
+msgstr "שפת הגדרות תצורה של Varnish"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "Varnish 4 Test Case language"
+msgstr "שפת הגדרות תצורה של Varnish"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "Varnish Test Case language"
+msgstr "שפת הגדרות תצורה של Varnish"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "Varnish Configuration Language"
+msgstr "שפת הגדרות תצורה של Varnish"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "vCard, vCalendar, iCalendar"
+msgstr "vCard, vCalendar, iCalendar"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "Velocity"
+msgstr "Velocity"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "Vera"
+msgstr "Vera"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "Verilog"
+msgstr "Verilog"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "VHDL"
+msgstr "VHDL"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "VRML"
+msgstr "VRML"
+
+msgctxt "Language|"
+msgid "Wavefront OBJ"
+msgstr ""
+
+msgctxt "Language|"
+msgid "Wayland Trace"
+msgstr ""
+
+#, fuzzy
+msgctxt "Language|"
+msgid "WINE Config"
+msgstr "הגדרות WINE"
+
+msgctxt "Language|"
+msgid "Wesnoth Markup Language"
+msgstr ""
+
+#, fuzzy
+msgctxt "Language|"
+msgid "xHarbour"
+msgstr "xHarbour"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "XML (Debug)"
+msgstr "XML (Debug)"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "XML"
+msgstr "XML"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "Xonotic Script"
+msgstr "PostScript"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "x.org Configuration"
+msgstr "הגדרות x.org"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "xslt"
+msgstr "xslt"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "XUL"
+msgstr "XUL"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "yacas"
+msgstr "yacas"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "Yacc/Bison"
+msgstr "Yacc/Bison"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "YAML"
+msgstr "YAML"
+
+msgctxt "Language|"
+msgid "YANG"
+msgstr ""
+
+msgctxt "Language|"
+msgid "YARA"
+msgstr ""
+
+#, fuzzy
+msgctxt "Language|"
+msgid "Zonnon"
+msgstr "Zonnon"
+
+#, fuzzy
+msgctxt "Language|"
+msgid "Zsh"
+msgstr "Zsh"
+
+#, fuzzy
+msgctxt "Language Section|"
+msgid "Scripts"
+msgstr "תסריטים"
+
+#, fuzzy
+msgctxt "Language Section|"
+msgid "Sources"
+msgstr "קודי מקור"
+
+#, fuzzy
+msgctxt "Language Section|"
+msgid "Other"
+msgstr "אחר"
+
+#, fuzzy
+msgctxt "Language Section|"
+msgid "Hardware"
+msgstr "חומרה"
+
+#, fuzzy
+msgctxt "Language Section|"
+msgid "Scientific"
+msgstr "מדעי"
+
+#, fuzzy
+msgctxt "Language Section|"
+msgid "Configuration"
+msgstr "הגדרות"
+
+#, fuzzy
+msgctxt "Language Section|"
+msgid "Markup"
+msgstr "סימון"
+
+#, fuzzy
+msgctxt "Language Section|"
+msgid "Assembler"
+msgstr "Assembler"
+
+#, fuzzy
+msgctxt "Language Section|"
+msgid "Database"
+msgstr "מסדי נתונים"
+
+#, fuzzy
+msgctxt "Language Section|"
+msgid "3D"
+msgstr "D"
+
+msgctxt "Theme|"
+msgid "Breeze Dark"
+msgstr ""
+
+#, fuzzy
+msgctxt "Theme|"
+msgid "Default"
+msgstr "השתמש בברירת המחדל"
+
+#, fuzzy
+msgctxt "Theme|"
+msgid "Printing"
+msgstr "מיון"
+
+msgctxt "Theme|"
+msgid "Solarized Dark"
+msgstr ""
+
+msgctxt "Theme|"
+msgid "Solarized Light"
+msgstr ""
+
+#: cli/kate-syntax-highlighter.cpp:49
+msgctxt "SyntaxHighlightingCLI|"
+msgid "Command line syntax highlighter using Kate syntax definitions."
+msgstr ""
+
+#: cli/kate-syntax-highlighter.cpp:52
+#, fuzzy
+msgctxt "SyntaxHighlightingCLI|"
+msgid "source"
+msgstr "קודי מקור"
+
+#: cli/kate-syntax-highlighter.cpp:52
+#, fuzzy
+msgctxt "SyntaxHighlightingCLI|"
+msgid "The source file to highlight."
+msgstr "בחר את צבע הסכמה לשימוש בעת הדפסה."
+
+#: cli/kate-syntax-highlighter.cpp:54
+msgctxt "SyntaxHighlightingCLI|"
+msgid "List all available syntax definitions."
+msgstr ""
+
+#: cli/kate-syntax-highlighter.cpp:56
+msgctxt "SyntaxHighlightingCLI|"
+msgid "List all available themes."
+msgstr ""
+
+#: cli/kate-syntax-highlighter.cpp:59
+msgctxt "SyntaxHighlightingCLI|"
+msgid "Download new/updated syntax definitions."
+msgstr ""
+
+#: cli/kate-syntax-highlighter.cpp:63
+msgctxt "SyntaxHighlightingCLI|"
+msgid "File to write HTML output to (default: stdout)."
+msgstr ""
+
+#: cli/kate-syntax-highlighter.cpp:63
+msgctxt "SyntaxHighlightingCLI|"
+msgid "output"
+msgstr ""
+
+#: cli/kate-syntax-highlighter.cpp:67
+msgctxt "SyntaxHighlightingCLI|"
+msgid ""
+"Highlight using this syntax definition (default: auto-detect based on input "
+"file)."
+msgstr ""
+
+#: cli/kate-syntax-highlighter.cpp:68
+msgctxt "SyntaxHighlightingCLI|"
+msgid "syntax"
+msgstr ""
+
+#: cli/kate-syntax-highlighter.cpp:72
+#, fuzzy
+msgctxt "SyntaxHighlightingCLI|"
+msgid "Color theme to use for highlighting."
+msgstr "הצבעים יובאו עבור ההגדשה: %1"
+
+#: cli/kate-syntax-highlighter.cpp:72
+#, fuzzy
+msgctxt "SyntaxHighlightingCLI|"
+msgid "theme"
+msgstr "Scheme"
+
+#: cli/kate-syntax-highlighter.cpp:76
+msgctxt "SyntaxHighlightingCLI|"
+msgid ""
+"Set HTML page's title\n"
+"(default: the filename or \"Kate Syntax Highlighter\" if reading from stdin)."
+msgstr ""
+
+#: cli/kate-syntax-highlighter.cpp:77
+msgctxt "SyntaxHighlightingCLI|"
+msgid "title"
+msgstr ""
+
+#: cli/kate-syntax-highlighter.cpp:80
+msgctxt "SyntaxHighlightingCLI|"
+msgid "Read file from stdin. The -s option must also be used."
+msgstr ""
+
+#: lib/definition_p.h:104
+msgctxt "Language|"
+msgid "None"
+msgstr ""
+
+#: lib/definitiondownloader.cpp:80
+msgctxt "QObject|"
+msgid "All syntax definitions are up-to-date."
+msgstr ""
+
+#: lib/definitiondownloader.cpp:92
+#, qt-format
+msgctxt "QObject|"
+msgid "Downloading new syntax definition for '%1'..."
+msgstr ""
+
+#: lib/definitiondownloader.cpp:99
+#, qt-format
+msgctxt "QObject|"
+msgid "Updating syntax definition for '%1' to version %2..."
+msgstr ""

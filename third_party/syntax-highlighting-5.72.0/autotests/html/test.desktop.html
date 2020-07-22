@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title>test.desktop</title>
+<meta name="generator" content="KF5::SyntaxHighlighting (.desktop)"/>
+</head><body style="color:#1f1c1b"><pre>
+<span style="color:#898887;"># test file for .dekstop syntax highlighting</span>
+<span style="font-weight:bold;">[Desktop Entry]</span>
+<span style="color:#0057ae;">GenericName</span>=Text Editor
+<span style="color:#0057ae;">GenericName</span><span style="color:#b08000;font-weight:bold;">[ar]</span>=محرّر نصوص
+<span style="color:#0057ae;">Name</span>=KWrite
+<span style="color:#0057ae;">Name</span><span style="color:#b08000;font-weight:bold;">[ar]</span>=كاتبك
+<span style="color:#0057ae;">Comment</span>=KDE Text Editor
+<span style="color:#0057ae;">Comment</span><span style="color:#b08000;font-weight:bold;">[ar]</span>=محرّر نصوص لكدي
+<span style="color:#0057ae;">MimeType</span>=text/plain;
+<span style="color:#0057ae;">Exec</span>=kwrite %U
+<span style="color:#0057ae;">StartupNotify</span>=true
+<span style="color:#0057ae;">Icon</span>=kwrite
+<span style="color:#0057ae;">X-DocPath</span>=kwrite/index.html
+<span style="color:#0057ae;">Type</span>=Application
+<span style="color:#0057ae;">Terminal</span>=false
+<span style="color:#0057ae;">InitialPreference</span>=8
+<span style="color:#0057ae;">X-DBUS-StartupType</span>=Multi
+<span style="color:#0057ae;">X-DBUS-ServiceName</span>=org.kde.kwrite
+<span style="color:#0057ae;">Categories</span>=Qt;KDE;Utility;TextEditor;
+<span style="color:#0057ae;">Actions</span>=new-window;new-tab;
+
+<span style="color:#898887;"># test folding: the header should not be</span>
+<span style="color:#898887;"># part of the previous region.</span>
+<span style="color:#898887;"># NOTE: this options in Exec don't exist.</span>
+<span style="font-weight:bold;">[Desktop Action new-window]</span>
+<span style="color:#0057ae;">Name</span>=New Window
+<span style="color:#0057ae;">Exec</span>=kwrite --new-window
+<span style="color:#0057ae;">Icon</span>=kwrite
+
+<span style="font-weight:bold;">[Desktop Action new-tab]</span>
+<span style="color:#0057ae;">Name</span>=New Tab
+<span style="color:#0057ae;">Exec</span>=kwrite --new-tab
+<span style="color:#0057ae;">Icon</span>=kwrite
+</pre></body></html>

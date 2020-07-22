@@ -1,0 +1,32 @@
+<Comment>; Example Inno Setup script</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Preprocessor>#include </Preprocessor><String>"external.iss"</String><br/>
+<Normal Text></Normal Text><br/>
+<Section>[Setup]</Section><br/>
+<Parameter>AppName=</Parameter><Value>Example Application</Value><br/>
+<Parameter>AppVersion=</Parameter><Value>1.2.3</Value><br/>
+<Parameter>AppPublisher=</Parameter><Value>example.com</Value><br/>
+<Parameter>AppPublisherURL=</Parameter><Value>http://www.example.com/</Value><br/>
+<Parameter>WizardStyle=</Parameter><Value>modern</Value><br/>
+<Parameter>DefaultDirName=</Parameter><Constant>{autopf}</Constant><Value>\Example Application</Value><br/>
+<Parameter>DefaultGroupName=</Parameter><Value>Example Application</Value><br/>
+<Parameter>Compression=</Parameter><Value>lzma2/max</Value><br/>
+<Parameter>SolidCompression=</Parameter><Value>yes</Value><br/>
+<Parameter>Uninstallable=</Parameter><Value>not PortableCheck</Value><br/>
+<Parameter>UninstallDisplayIcon=</Parameter><Constant>{app}</Constant><Value>\Compil32.exe</Value><br/>
+<Parameter>LicenseFile=</Parameter><Value>license.txt</Value><br/>
+<Preprocessor>#ifdef SIGNTOOL</Preprocessor><br/>
+<Parameter>SignTool=</Parameter><Value>issigntool</Value><br/>
+<Parameter>SignTool=</Parameter><Value>issigntool256</Value><br/>
+<Parameter>SignedUninstaller=</Parameter><Value>yes</Value><br/>
+<Preprocessor>#endif</Preprocessor><br/>
+<Normal Text></Normal Text><br/>
+<Section>[Files]</Section><br/>
+<Parameter>Source:</Parameter><Value> </Value><String>"license.txt"</String><Operator>;</Operator><Normal Text> </Normal Text><Parameter>DestDir:</Parameter><Value> </Value><String>"</String><Constant>{app}</Constant><String>"</String><Operator>;</Operator><Normal Text> </Normal Text><Parameter>Flags:</Parameter><Value> </Value><Flag>ignoreversion</Flag><Value> </Value><Flag>touch</Flag><br/>
+<Parameter>Source:</Parameter><Value> </Value><String>"files\MyApp.exe"</String><Operator>;</Operator><Normal Text> </Normal Text><Parameter>DestDir:</Parameter><Value> </Value><String>"</String><Constant>{app}</Constant><String>"</String><Operator>;</Operator><Normal Text> </Normal Text><Parameter>Flags:</Parameter><Value> </Value><Flag>ignoreversion</Flag><Value> </Value><Flag>signonce</Flag><Value> </Value><Flag>touch</Flag><br/>
+<Normal Text></Normal Text><br/>
+<Section>[Code]</Section><br/>
+<Keyword>function</Keyword><Normal Text> PortableCheck: </Normal Text><Type>Boolean</Type><Normal Text>;</Normal Text><br/>
+<Keyword>begin</Keyword><br/>
+<Normal Text>  Result := ExpandConstant(</Normal Text><String>'{param:portable|0}'</String><Normal Text>) = </Normal Text><String>'1'</String><Normal Text>;</Normal Text><br/>
+<Keyword>end</Keyword><Normal Text>;</Normal Text><br/>

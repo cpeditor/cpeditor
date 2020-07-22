@@ -1,0 +1,193 @@
+<Comment>--------------------------------------------------------------------------------</Comment><br/>
+<Comment>-- light52_tb.vhdl -- </Comment><br/>
+<Comment>--------------------------------------------------------------------------------</Comment><br/>
+<Comment>-- This test bench simulates the execution of some program (whose object code</Comment><br/>
+<Comment>-- is in package obj_code_pkg, in the form of a memory init constant) and logs</Comment><br/>
+<Comment>-- the execution to a text file called 'hw_sim_log.txt' (light52_tb_pkg.vhdl).</Comment><br/>
+<Comment>--</Comment><br/>
+<Comment>-- This test bench does no actual tests on the core. Instead, the simulation log</Comment><br/>
+<Comment>-- is meant to be matched against the simulation log produced by running the </Comment><br/>
+<Comment>-- same program on the software simulator B51 (also included with this project).</Comment><br/>
+<Comment>-- </Comment><br/>
+<Comment>-- This will catch errors in the implementation of the CPU if the simulated</Comment><br/>
+<Comment>-- program has anough coverage -- the opcode tester is meant to cover all CPU</Comment><br/>
+<Comment>-- opcodes in many (not all) of their corner cases.</Comment><br/>
+<Comment>-- This scheme will not help in catching errors in the peripheral modules, </Comment><br/>
+<Comment>-- mainly because the current version of B51 does not simulate them.</Comment><br/>
+<Comment>--</Comment><br/>
+<Comment>--------------------------------------------------------------------------------</Comment><br/>
+<Comment>-- Copyright (C) 2012 Jose A. Ruiz</Comment><br/>
+<Comment>--                                                              </Comment><br/>
+<Comment>-- This source file may be used and distributed without         </Comment><br/>
+<Comment>-- restriction provided that this copyright statement is not    </Comment><br/>
+<Comment>-- removed from the file and that any derivative work contains  </Comment><br/>
+<Comment>-- the original copyright notice and the associated disclaimer. </Comment><br/>
+<Comment>--                                                              </Comment><br/>
+<Comment>-- This source file is free software; you can redistribute it   </Comment><br/>
+<Comment>-- and/or modify it under the terms of the GNU Lesser General   </Comment><br/>
+<Comment>-- Public License as published by the Free Software Foundation; </Comment><br/>
+<Comment>-- either version 2.1 of the License, or (at your option) any   </Comment><br/>
+<Comment>-- later version.                                               </Comment><br/>
+<Comment>--                                                              </Comment><br/>
+<Comment>-- This source is distributed in the hope that it will be       </Comment><br/>
+<Comment>-- useful, but WITHOUT ANY WARRANTY; without even the implied   </Comment><br/>
+<Comment>-- warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR      </Comment><br/>
+<Comment>-- PURPOSE.  See the GNU Lesser General Public License for more </Comment><br/>
+<Comment>-- details.                                                     </Comment><br/>
+<Comment>--                                                              </Comment><br/>
+<Comment>-- You should have received a copy of the GNU Lesser General    </Comment><br/>
+<Comment>-- Public License along with this source; if not, download it   </Comment><br/>
+<Comment>-- from http://www.opencores.org/lgpl.shtml</Comment><br/>
+<Comment>--------------------------------------------------------------------------------</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>library</Keyword><Normal Text> ieee;</Normal Text><br/>
+<Keyword>use</Keyword><Normal Text> ieee</Normal Text><Operator>.</Operator><Normal Text>std_logic_1164</Normal Text><Operator>.</Operator><Normal Text>all;</Normal Text><br/>
+<Keyword>use</Keyword><Normal Text> ieee</Normal Text><Operator>.</Operator><Normal Text>std_logic_arith</Normal Text><Operator>.</Operator><Normal Text>all;</Normal Text><br/>
+<Keyword>use</Keyword><Normal Text> ieee</Normal Text><Operator>.</Operator><Normal Text>std_logic_unsigned</Normal Text><Operator>.</Operator><Normal Text>all;</Normal Text><br/>
+<Keyword>use</Keyword><Normal Text> std</Normal Text><Operator>.</Operator><Normal Text>textio</Normal Text><Operator>.</Operator><Normal Text>all;</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>use</Keyword><Normal Text> work</Normal Text><Operator>.</Operator><Normal Text>light52_pkg</Normal Text><Operator>.</Operator><Normal Text>all;</Normal Text><br/>
+<Keyword>use</Keyword><Normal Text> work</Normal Text><Operator>.</Operator><Normal Text>obj_code_pkg</Normal Text><Operator>.</Operator><Normal Text>all;</Normal Text><br/>
+<Keyword>use</Keyword><Normal Text> work</Normal Text><Operator>.</Operator><Normal Text>light52_tb_pkg</Normal Text><Operator>.</Operator><Normal Text>all;</Normal Text><br/>
+<Keyword>use</Keyword><Normal Text> work</Normal Text><Operator>.</Operator><Normal Text>txt_util</Normal Text><Operator>.</Operator><Normal Text>all;</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Control>entity</Control><Normal Text> </Normal Text><Name>light52_tb</Name><Normal Text> </Normal Text><Keyword>is</Keyword><br/>
+<Control>generic</Control><Normal Text> (BCD </Normal Text><Operator>:</Operator><Normal Text> </Normal Text><Data Type>boolean</Data Type><Normal Text> </Normal Text><Operator>:=</Operator><Normal Text> true);</Normal Text><br/>
+<Control>end;</Control><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Control>architecture</Control><Normal Text> </Normal Text><Name>testbench</Name><Normal Text> </Normal Text><Keyword>of</Keyword><Normal Text> </Normal Text><Reference>light52_tb</Reference><Normal Text> </Normal Text><Keyword>is</Keyword><br/>
+<Normal Text></Normal Text><br/>
+<Comment>--------------------------------------------------------------------------------</Comment><br/>
+<Comment>-- Simulation parameters</Comment><br/>
+<Comment>-- </Comment><Alert Level 2>FIXME</Alert Level 2><Comment> these should be in parameter package</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Comment>-- Simulated clock period is the same as the usual target, the DE-1 board</Comment><br/>
+<Signal>constant</Signal><Normal Text> T </Normal Text><Operator>:</Operator><Normal Text> </Normal Text><Data Type>time</Data Type><Normal Text> </Normal Text><Operator>:=</Operator><Normal Text> </Normal Text><Integer>20</Integer><Normal Text> </Normal Text><Data Type>ns</Data Type><Normal Text>; </Normal Text><Comment>-- 50MHz</Comment><br/>
+<Signal>constant</Signal><Normal Text> SIMULATION_LENGTH </Normal Text><Operator>:</Operator><Normal Text> </Normal Text><Data Type>integer</Data Type><Normal Text> </Normal Text><Operator>:=</Operator><Normal Text> </Normal Text><Integer>400000</Integer><Normal Text>;</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment>--------------------------------------------------------------------------------</Comment><br/>
+<Comment>-- MPU interface </Comment><br/>
+<Normal Text></Normal Text><br/>
+<Signal>signal</Signal><Normal Text> clk </Normal Text><Operator>:</Operator><Normal Text>                </Normal Text><Data Type>std_logic</Data Type><Normal Text> </Normal Text><Operator>:=</Operator><Normal Text> </Normal Text><Attribute>'0'</Attribute><Normal Text>;</Normal Text><br/>
+<Signal>signal</Signal><Normal Text> reset </Normal Text><Operator>:</Operator><Normal Text>              </Normal Text><Data Type>std_logic</Data Type><Normal Text> </Normal Text><Operator>:=</Operator><Normal Text> </Normal Text><Attribute>'1'</Attribute><Normal Text>;</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Signal>signal</Signal><Normal Text> p0_out </Normal Text><Operator>:</Operator><Normal Text>             </Normal Text><Data Type>std_logic_vector</Data Type><Normal Text>(</Normal Text><Integer>7</Integer><Normal Text> </Normal Text><Range>downto</Range><Normal Text> </Normal Text><Integer>0</Integer><Normal Text>);</Normal Text><br/>
+<Signal>signal</Signal><Normal Text> p1_out </Normal Text><Operator>:</Operator><Normal Text>             </Normal Text><Data Type>std_logic_vector</Data Type><Normal Text>(</Normal Text><Integer>7</Integer><Normal Text> </Normal Text><Range>downto</Range><Normal Text> </Normal Text><Integer>0</Integer><Normal Text>);</Normal Text><br/>
+<Signal>signal</Signal><Normal Text> p2_in </Normal Text><Operator>:</Operator><Normal Text>              </Normal Text><Data Type>std_logic_vector</Data Type><Normal Text>(</Normal Text><Integer>7</Integer><Normal Text> </Normal Text><Range>downto</Range><Normal Text> </Normal Text><Integer>0</Integer><Normal Text>);</Normal Text><br/>
+<Signal>signal</Signal><Normal Text> p3_in </Normal Text><Operator>:</Operator><Normal Text>              </Normal Text><Data Type>std_logic_vector</Data Type><Normal Text>(</Normal Text><Integer>7</Integer><Normal Text> </Normal Text><Range>downto</Range><Normal Text> </Normal Text><Integer>0</Integer><Normal Text>);</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Signal>signal</Signal><Normal Text> external_irq </Normal Text><Operator>:</Operator><Normal Text>       </Normal Text><Data Type>std_logic_vector</Data Type><Normal Text>(</Normal Text><Integer>7</Integer><Normal Text> </Normal Text><Range>downto</Range><Normal Text> </Normal Text><Integer>0</Integer><Normal Text>);</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Signal>signal</Signal><Normal Text> txd</Normal Text><Operator>,</Operator><Normal Text> rxd </Normal Text><Operator>:</Operator><Normal Text>           </Normal Text><Data Type>std_logic</Data Type><Normal Text>;</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment>--------------------------------------------------------------------------------</Comment><br/>
+<Comment>-- Logging signals & simulation control </Comment><br/>
+<Normal Text></Normal Text><br/>
+<Comment>-- Asserted high to disable the clock and terminate the simulation.</Comment><br/>
+<Signal>signal</Signal><Normal Text> done </Normal Text><Operator>:</Operator><Normal Text>               </Normal Text><Data Type>std_logic</Data Type><Normal Text> </Normal Text><Operator>:=</Operator><Normal Text> </Normal Text><Attribute>'0'</Attribute><Normal Text>;</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment>-- Log file</Comment><br/>
+<Keyword>file</Keyword><Normal Text> log_file</Normal Text><Operator>:</Operator><Normal Text> </Normal Text><Data Type>TEXT</Data Type><Normal Text> </Normal Text><Keyword>open</Keyword><Normal Text> write_mode </Normal Text><Keyword>is</Keyword><Normal Text> </Normal Text><Vector>"hw_sim_log.txt"</Vector><Normal Text>;</Normal Text><br/>
+<Comment>-- Console output log file</Comment><br/>
+<Keyword>file</Keyword><Normal Text> con_file</Normal Text><Operator>:</Operator><Normal Text> </Normal Text><Data Type>TEXT</Data Type><Normal Text> </Normal Text><Keyword>open</Keyword><Normal Text> write_mode </Normal Text><Keyword>is</Keyword><Normal Text> </Normal Text><Vector>"hw_sim_console_log.txt"</Vector><Normal Text>;</Normal Text><br/>
+<Comment>-- Info record needed by the logging fuctions</Comment><br/>
+<Signal>signal</Signal><Normal Text> log_info </Normal Text><Operator>:</Operator><Normal Text>           t_log_info;</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Control>begin</Control><br/>
+<Normal Text></Normal Text><br/>
+<Comment>---- UUT instantiation ---------------------------------------------------------</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Name>uut</Name><Operator>:</Operator><Normal Text> </Normal Text><Reference>entity work.light52_mcu</Reference><br/>
+<Normal Text>    </Normal Text><Keyword>generic map (</Keyword><br/>
+<Normal Text>        IMPLEMENT_BCD_INSTRUCTIONS </Normal Text><Operator>=></Operator><Normal Text> BCD</Normal Text><Operator>,</Operator><br/>
+<Normal Text>        CODE_ROM_SIZE </Normal Text><Operator>=></Operator><Normal Text>    work</Normal Text><Operator>.</Operator><Normal Text>obj_code_pkg</Normal Text><Operator>.</Operator><Normal Text>XCODE_SIZE</Normal Text><Operator>,</Operator><br/>
+<Normal Text>        XDATA_RAM_SIZE </Normal Text><Operator>=></Operator><Normal Text>   work</Normal Text><Operator>.</Operator><Normal Text>obj_code_pkg</Normal Text><Operator>.</Operator><Normal Text>XDATA_SIZE</Normal Text><Operator>,</Operator><br/>
+<Normal Text>        OBJ_CODE </Normal Text><Operator>=></Operator><Normal Text>         work</Normal Text><Operator>.</Operator><Normal Text>obj_code_pkg</Normal Text><Operator>.</Operator><Normal Text>object_code</Normal Text><br/>
+<Normal Text>    )</Normal Text><br/>
+<Normal Text>    </Normal Text><Keyword>port map (</Keyword><br/>
+<Normal Text>        clk             </Normal Text><Operator>=></Operator><Normal Text> clk</Normal Text><Operator>,</Operator><br/>
+<Normal Text>        reset           </Normal Text><Operator>=></Operator><Normal Text> reset</Normal Text><Operator>,</Operator><br/>
+<Normal Text>        </Normal Text><br/>
+<Normal Text>        txd             </Normal Text><Operator>=></Operator><Normal Text> txd</Normal Text><Operator>,</Operator><br/>
+<Normal Text>        rxd             </Normal Text><Operator>=></Operator><Normal Text> rxd</Normal Text><Operator>,</Operator><br/>
+<Normal Text>        </Normal Text><br/>
+<Normal Text>        external_irq    </Normal Text><Operator>=></Operator><Normal Text> external_irq</Normal Text><Operator>,</Operator><br/>
+<Normal Text>                </Normal Text><br/>
+<Normal Text>        p0_out          </Normal Text><Operator>=></Operator><Normal Text> p0_out</Normal Text><Operator>,</Operator><br/>
+<Normal Text>        p1_out          </Normal Text><Operator>=></Operator><Normal Text> p1_out</Normal Text><Operator>,</Operator><br/>
+<Normal Text>        p2_in           </Normal Text><Operator>=></Operator><Normal Text> p2_in</Normal Text><Operator>,</Operator><br/>
+<Normal Text>        p3_in           </Normal Text><Operator>=></Operator><Normal Text> p3_in</Normal Text><br/>
+<Normal Text>    );</Normal Text><br/>
+<Normal Text>    </Normal Text><br/>
+<Normal Text>    </Normal Text><Comment>-- UART is looped back in the test bench.</Comment><br/>
+<Normal Text>    rxd </Normal Text><Operator><=</Operator><Normal Text> txd;</Normal Text><br/>
+<Normal Text>    </Normal Text><br/>
+<Normal Text>    </Normal Text><Comment>-- I/O ports are looped back and otherwise unused.</Comment><br/>
+<Normal Text>    p2_in </Normal Text><Operator><=</Operator><Normal Text> p0_out;</Normal Text><br/>
+<Normal Text>    p3_in </Normal Text><Operator><=</Operator><Normal Text> p1_out;</Normal Text><br/>
+<Normal Text>    </Normal Text><br/>
+<Normal Text>    </Normal Text><Comment>-- External IRQ inputs are tied to port P1 for test purposes</Comment><br/>
+<Normal Text>    external_irq </Normal Text><Operator><=</Operator><Normal Text> p1_out;</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>    </Normal Text><Comment>---- Master clock: free running clock used as main module clock ------------</Comment><br/>
+<Normal Text>    </Normal Text><Name>run_master_clock</Name><Operator>:</Operator><Normal Text> </Normal Text><Process>process</Process><Normal Text>(done</Normal Text><Operator>,</Operator><Normal Text> clk)</Normal Text><br/>
+<Normal Text>    </Normal Text><Process>begin</Process><br/>
+<Normal Text>        </Normal Text><Control>if</Control><Normal Text> done </Normal Text><Operator>=</Operator><Normal Text> </Normal Text><Attribute>'0'</Attribute><Normal Text> </Normal Text><Control>then</Control><br/>
+<Normal Text>            clk </Normal Text><Operator><=</Operator><Normal Text> </Normal Text><Keyword>not</Keyword><Normal Text> clk </Normal Text><Keyword>after</Keyword><Normal Text> T</Normal Text><Operator>/</Operator><Integer>2</Integer><Normal Text>;</Normal Text><br/>
+<Normal Text>        </Normal Text><Control>end if;</Control><br/>
+<Normal Text>    </Normal Text><Process>end process run_master_clock</Process><Normal Text>;</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>    </Normal Text><Comment>---- Main simulation process: reset MCU and wait for fixed period ----------</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>    </Normal Text><Name>drive_uut</Name><Operator>:</Operator><Normal Text> </Normal Text><Process>process</Process><br/>
+<Normal Text>    </Normal Text><Process>begin</Process><br/>
+<Normal Text>        </Normal Text><Comment>-- Leave reset asserted for a few clock cycles...</Comment><br/>
+<Normal Text>        reset </Normal Text><Operator><=</Operator><Normal Text> </Normal Text><Attribute>'1'</Attribute><Normal Text>;</Normal Text><br/>
+<Normal Text>        </Normal Text><Keyword>wait</Keyword><Normal Text> </Normal Text><Keyword>for</Keyword><Normal Text> T</Normal Text><Operator>*</Operator><Integer>4</Integer><Normal Text>;</Normal Text><br/>
+<Normal Text>        reset </Normal Text><Operator><=</Operator><Normal Text> </Normal Text><Attribute>'0'</Attribute><Normal Text>;</Normal Text><br/>
+<Normal Text>        </Normal Text><br/>
+<Normal Text>        </Normal Text><Comment>-- ...and wait for the test to hit a termination condition (evaluated by</Comment><br/>
+<Normal Text>        </Normal Text><Comment>-- function log_cpu_activity) or to just timeout.</Comment><br/>
+<Normal Text>        </Normal Text><Keyword>wait</Keyword><Normal Text> </Normal Text><Keyword>for</Keyword><Normal Text> T</Normal Text><Operator>*</Operator><Normal Text>SIMULATION_LENGTH;</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>        </Normal Text><Comment>-- If we arrive here, the simulation timed out (termination conditions</Comment><br/>
+<Normal Text>        </Normal Text><Comment>-- trigger a failed assertion).</Comment><br/>
+<Normal Text>        </Normal Text><Comment>-- So print a timeout message and quit.</Comment><br/>
+<Normal Text>        print(</Normal Text><Vector>"TB timed out."</Vector><Normal Text>);</Normal Text><br/>
+<Normal Text>        done </Normal Text><Operator><=</Operator><Normal Text> </Normal Text><Attribute>'1'</Attribute><Normal Text>;</Normal Text><br/>
+<Normal Text>        </Normal Text><Keyword>wait</Keyword><Normal Text>;</Normal Text><br/>
+<Normal Text>        </Normal Text><br/>
+<Normal Text>    </Normal Text><Process>end process drive_uut</Process><Normal Text>;</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>    </Normal Text><Comment>-- Logging process: launch logger functions --------------------------------</Comment><br/>
+<Normal Text>    </Normal Text><Name>log_execution</Name><Operator>:</Operator><Normal Text> </Normal Text><Process>process</Process><br/>
+<Normal Text>    </Normal Text><Process>begin</Process><br/>
+<Normal Text>        </Normal Text><Comment>-- Log cpu activity until done='1'.</Comment><br/>
+<Normal Text>        log_cpu_activity(clk</Normal Text><Operator>,</Operator><Normal Text> reset</Normal Text><Operator>,</Operator><Normal Text> done</Normal Text><Operator>,</Operator><Normal Text> </Normal Text><Vector>"/uut"</Vector><Operator>,</Operator><br/>
+<Normal Text>                         log_info</Normal Text><Operator>,</Operator><Normal Text> work</Normal Text><Operator>.</Operator><Normal Text>obj_code_pkg</Normal Text><Operator>.</Operator><Normal Text>XCODE_SIZE</Normal Text><Operator>,</Operator><Normal Text> </Normal Text><Vector>"log_info"</Vector><Operator>,</Operator><Normal Text> </Normal Text><br/>
+<Normal Text>                         X</Normal Text><Vector>"0000"</Vector><Operator>,</Operator><Normal Text> log_file</Normal Text><Operator>,</Operator><Normal Text> con_file);</Normal Text><br/>
+<Normal Text>        </Normal Text><br/>
+<Normal Text>        </Normal Text><Comment>-- Flush console log file when finished.</Comment><br/>
+<Normal Text>        log_flush_console(log_info</Normal Text><Operator>,</Operator><Normal Text> con_file);</Normal Text><br/>
+<Normal Text>        </Normal Text><br/>
+<Normal Text>        </Normal Text><Keyword>wait</Keyword><Normal Text>;</Normal Text><br/>
+<Normal Text>    </Normal Text><Process>end process log_execution</Process><Normal Text>;</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Control>end architecture testbench;</Control><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment>-- these should be the same, see bug #368897</Comment><br/>
+<Normal Text>A(A</Normal Text><Attribute>'high</Attribute><Normal Text>)  </Normal Text><Comment>-- comment</Comment><br/>
+<Normal Text>A(A</Normal Text><Attribute>'high</Attribute><Normal Text> ) </Normal Text><Comment>-- comment</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Comment>-- insensitive keywords</Comment><br/>
+<Control>ENTITY</Control><Normal Text> </Normal Text><Name>ANDGATE</Name><Normal Text> </Normal Text><Keyword>IS</Keyword><br/>
+<Normal Text>  </Normal Text><Control>PORT</Control><Normal Text> (</Normal Text><br/>
+<Normal Text>    I1 </Normal Text><Operator>:</Operator><Normal Text> </Normal Text><Keyword>IN</Keyword><Normal Text> </Normal Text><Data Type>std_logic</Data Type><Normal Text>;</Normal Text><br/>
+<Normal Text>    I2 </Normal Text><Operator>:</Operator><Normal Text> </Normal Text><Keyword>IN</Keyword><Normal Text> </Normal Text><Data Type>std_logic</Data Type><Normal Text>;</Normal Text><br/>
+<Normal Text>    O  </Normal Text><Operator>:</Operator><Normal Text> </Normal Text><Keyword>OUT</Keyword><Normal Text> </Normal Text><Data Type>std_logic</Data Type><Normal Text>);</Normal Text><br/>
+<Control>END ENTITY ANDGATE;</Control><br/>

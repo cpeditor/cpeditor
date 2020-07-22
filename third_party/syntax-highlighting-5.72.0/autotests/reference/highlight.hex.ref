@@ -1,0 +1,8 @@
+<Malformed>THIS IS INVALID</Malformed><br/>
+<Startcode>:</Startcode><Bytecount>02</Bytecount><Address>0000</Address><RecordType>00</RecordType><Data>64287</Data><Checksum>21</Checksum><br/>
+<Startcode>:</Startcode><Bytecount>10</Bytecount><Address>0008</Address><RecordType>00</RecordType><Data>803120007F08FD002700931D0C280D28</Data><Checksum>53</Checksum><br/>
+<Startcode>:</Startcode><Bytecount>06</Bytecount><Address>03D8</Address><RecordType>00</RecordType><Data>890BEA290034</Data><Checksum>44</Checksum><br/>
+<Startcode>:</Startcode><Bytecount>02</Bytecount><Address>0000</Address><RecordType>04</RecordType><Data>0001</Data><Checksum>F9</Checksum><br/>
+<Startcode>:</Startcode><Bytecount>04</Bytecount><Address>000E</Address><RecordType>00</RecordType><Data>84EFFFDE</Data><Checksum>9E</Checksum><br/>
+<Startcode>:</Startcode><Bytecount>04</Bytecount><Address>000E</Address><Malformed>0884EFFFDE9E</Malformed><br/>
+<Startcode>:</Startcode><Bytecount>00</Bytecount><Address>0000</Address><RecordType>01</RecordType><Checksum>FF</Checksum><br/>

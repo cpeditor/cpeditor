@@ -1,0 +1,51 @@
+<Comment>% Single-line comment</Comment><br/>
+<Section>\name</Section><Brace>{</Brace><ItemName>foo</ItemName><Brace>}</Brace><br/>
+<Preprocessor>#ifdef </Preprocessor><Builtin>unix</Builtin><br/>
+<Section>\alias</Section><Brace>{</Brace><Verbatim>bar</Verbatim><Brace>}</Brace><br/>
+<Preprocessor>#endif</Preprocessor><Comment> ignored</Comment><br/>
+<Section>\title</Section><Brace>{</Brace><NormalText>Foo</NormalText><Brace>}</Brace><br/>
+<Section>\description</Section><Brace>{</Brace><br/>
+<NormalText>    We have a list</NormalText><br/>
+<NormalText>    </NormalText><Markup>\itemize</Markup><Brace>{</Brace><br/>
+<NormalText>        </NormalText><Markup>\item</Markup><NormalText> foo,</NormalText><br/>
+<NormalText>        </NormalText><Markup>\item</Markup><NormalText> bar.</NormalText><br/>
+<NormalText>    </NormalText><Brace>}</Brace><br/>
+<NormalText>    Also a table: </NormalText><Markup>\tabular</Markup><Brace>{</Brace><Verbatim>lr</Verbatim><Brace>}{</Brace><br/>
+<NormalText>        foo </NormalText><UserDefinedMacro>\tab</UserDefinedMacro><NormalText> </NormalText><Markup>\code</Markup><Brace>{</Brace><Verbatim>foo</Verbatim><Brace>}</Brace><NormalText> </NormalText><UserDefinedMacro>\cr</UserDefinedMacro><br/>
+<NormalText>        bar </NormalText><UserDefinedMacro>\tab</UserDefinedMacro><NormalText> </NormalText><Markup>\preformatted</Markup><Brace>{</Brace><Verbatim>bar</Verbatim><Brace>}</Brace><br/>
+<NormalText>    </NormalText><Brace>}</Brace><br/>
+<NormalText>    </NormalText><Markup>\samp</Markup><Error> error</Error><Brace>{</Brace><NormalText>code</NormalText><Brace>}</Brace><br/>
+<Brace>}</Brace><br/>
+<Section>\section</Section><Brace>{</Brace><ItemName>Section</ItemName><Brace>}{</Brace><br/>
+<NormalText>    Escaped braces don't need balance </NormalText><Escape>\}</Escape><br/>
+<NormalText>    </NormalText><Section>\subsection</Section><Brace>{</Brace><ItemName>Subsection</ItemName><Brace>}{</Brace><br/>
+<NormalText>        </NormalText><Section>\subsection</Section><Brace>{</Brace><ItemName>Subsubsection</ItemName><Brace>}{</Brace><br/>
+<NormalText>            Sections can be nested.</NormalText><br/>
+<NormalText>        </NormalText><Brace>}</Brace><br/>
+<NormalText>    </NormalText><Brace>}</Brace><br/>
+<Brace>}</Brace><br/>
+<Section>\usage</Section><Brace>{</Brace><br/>
+<Keyword>foo</Keyword><Symbol>(</Symbol><Normal Text>a, </Normal Text><Identifier>b =</Identifier><Normal Text> default</Normal Text><Symbol>)</Symbol><br/>
+<Markup>\method</Markup><Brace>{</Brace><ItemName>[</ItemName><Brace>}{</Brace><NormalText>foo</NormalText><Brace>}</Brace><Symbol>(</Symbol><Normal Text>x, \dots</Normal Text><Symbol>)</Symbol><br/>
+<Brace>}</Brace><br/>
+<Markup>\newcommand</Markup><Brace>{</Brace><UserDefinedMacro>\macro</UserDefinedMacro><Brace>}{</Brace><NormalText>Test</NormalText><UserDefinedMacroArgument>#1</UserDefinedMacroArgument><Brace>}</Brace><br/>
+<Section>\arguments</Section><Brace>{</Brace><br/>
+<NormalText>  </NormalText><Markup>\item</Markup><Brace>{</Brace><ItemName>a</ItemName><Brace>}{</Brace><Markup>\if</Markup><Brace>{</Brace><Builtin>html</Builtin><Brace>}{</Brace><NormalText>&pi; =</NormalText><Brace>}</Brace><NormalText> </NormalText><Markup>\Sexpr</Markup><Brace>[</Brace><Verbatim>stage=build</Verbatim><Brace>]{</Brace><Int>4</Int><Operator>*</Operator><Keyword>atan</Keyword><Symbol>(</Symbol><Int>1</Int><Symbol>)</Symbol><Brace>}}</Brace><br/>
+<NormalText>  </NormalText><Markup>\item</Markup><Brace>{</Brace><UserDefinedMacro>\dots</UserDefinedMacro><Brace>}{</Brace><UserDefinedMacro>\macro</UserDefinedMacro><Brace>{</Brace><NormalText>text</NormalText><Brace>}</Brace><NormalText> </NormalText><Markup>\link</Markup><Brace>[</Brace><Verbatim>pkg:bar</Verbatim><Brace>]{</Brace><ItemName>fooo</ItemName><Brace>}}</Brace><br/>
+<Brace>}</Brace><br/>
+<Section>\value</Section><Brace>{</Brace><br/>
+<NormalText>  Return a </NormalText><Markup>\code</Markup><Brace>{</Brace><Markup>\link</Markup><Brace>{</Brace><ItemName>foo</ItemName><Brace>}}</Brace><NormalText>.</NormalText><br/>
+<Brace>}</Brace><br/>
+<Section>\seealso</Section><Brace>{</Brace><br/>
+<NormalText>  </NormalText><Markup>\code</Markup><Brace>{</Brace><Markup>\link</Markup><Brace>{</Brace><ItemName>bar</ItemName><Brace>}}</Brace><br/>
+<Brace>}</Brace><br/>
+<Section>\examples</Section><Brace>{</Brace><br/>
+<Comment># R comment</Comment><br/>
+<Comment>% Rdoc comment</Comment><br/>
+<Keyword>foo</Keyword><Symbol>(</Symbol><Int>1</Int><Symbol>)</Symbol><br/>
+<Markup>\donttest</Markup><Brace>{</Brace><Keyword>foo</Keyword><Symbol>(</Symbol><Int>2</Int><Symbol>)</Symbol><Brace>}</Brace><br/>
+<Markup>\dontrun</Markup><Brace>{</Brace><Verbatim>foo(3)</Verbatim><Brace>}</Brace><br/>
+<Control Structure>for</Control Structure><RSource> </RSource><Symbol>(</Symbol><Normal Text>i </Normal Text><Control Structure>in</Control Structure><Normal Text> </Normal Text><Int>1</Int><Operator>:</Operator><Int>10</Int><Symbol>)</Symbol><br/>
+<RSource>    </RSource><Keyword>foo</Keyword><Symbol>(</Symbol><Normal Text>i</Normal Text><Symbol>)</Symbol><br/>
+<Brace>}</Brace><br/>
+<Section>\keyword</Section><Brace>{</Brace><ItemName>foo</ItemName><Brace>}</Brace><br/>

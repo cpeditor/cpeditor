@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title>highlight.pike</title>
+<meta name="generator" content="KF5::SyntaxHighlighting (Pike)"/>
+</head><body style="color:#1f1c1b"><pre>
+<span style="color:#898887;">#! /bin/env pike</span>
+
+<span style="color:#898887;">/* This file is a syntax highlight test for Kate.</span>
+<span style="color:#898887;"> * </span><span style="color:#bf0303;background-color:#f7e6e6;font-weight:bold;">FIXME:</span><span style="color:#898887;"> Improve it to contain more (and more unusual) syntax examples.</span>
+<span style="color:#898887;"> */</span>
+
+
+<span style="color:#006e28;">#define PIKE_ON_THE_WEB  </span><span style="color:#898887;">/* Is this address correct? */</span><span style="color:#006e28;">  </span><span style="color:#bf0303;">&quot;http://pike.ida.liu.se/&quot;</span>
+
+
+<span style="color:#0057ae;">int</span> main(<span style="color:#0057ae;">int</span> argc, <span style="color:#0057ae;">array</span>(<span style="color:#0057ae;">string</span>) args)
+{
+  <span style="color:#898887;">// Write funny things with Pike :)</span>
+  write(<span style="color:#644a9b;">`+</span>(<span style="color:#bf0303;">&quot;Command line arguments (%d of them): &quot;</span>, @map(args, <span style="color:#644a9b;">`+</span>, <span style="color:#bf0303;">&quot; &quot;</span>)) + <span style="color:#bf0303;">&quot;</span><span style="color:#924c9d;">\n</span><span style="color:#bf0303;">&quot;</span>, argc);
+                             
+  write(<span style="color:#bf0303;">&quot;</span><span style="color:#924c9d;">\n</span><span style="color:#bf0303;">Visit Pike site at %s</span><span style="color:#924c9d;">\n\n</span><span style="color:#bf0303;">&quot;</span>, PIKE_ON_THE_WEB);
+
+  <span style="font-weight:bold;">for</span> (<span style="color:#0057ae;">int</span> i = <span style="color:#b08000;">1</span>; i &lt;= <span style="color:#b08000;">3</span>; i++)
+    write(<span style="color:#bf0303;">&quot;:&quot;</span> + <span style="color:#bf0303;">&quot;)&quot;</span> * i + <span style="color:#bf0303;">&quot;   &quot;</span>);
+
+  write(<span style="color:#bf0303;">&quot;</span><span style="color:#924c9d;">\n</span><span style="color:#bf0303;">&quot;</span> + ({<span style="color:#bf0303;">&quot;Bye&quot;</span>, <span style="color:#bf0303;">&quot;bye&quot;</span>}) * <span style="color:#bf0303;">&quot;-&quot;</span> + <span style="color:#bf0303;">&quot;!</span><span style="color:#924c9d;">\n</span><span style="color:#bf0303;">&quot;</span>);
+
+  <span style="font-weight:bold;">return</span> <span style="color:#b08000;">0</span>;
+}
+</pre></body></html>

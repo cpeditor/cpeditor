@@ -1,0 +1,19 @@
+<Comment># LGPLv2+ example file</Comment><br/>
+<Normal></Normal><br/>
+<Comment># This is a comment</Comment><br/>
+<Keyword>FROM</Keyword><Normal> ubuntu:14.04</Normal><br/>
+<Keyword>MAINTAINER</Keyword><Normal> James Turnbull <james@example.com> </Normal><Comment># comment</Comment><br/>
+<Keyword>ENV</Keyword><Normal> REFRESHED_AT 2014-06-01</Normal><br/>
+<Normal></Normal><br/>
+<Keyword>RUN</Keyword><Normal> apt-get -yqq update</Normal><br/>
+<Keyword>RUN</Keyword><Normal> apt-get install -yqq software-properties-common python-software-properties</Normal><br/>
+<Keyword>RUN</Keyword><Normal> add-apt-repository ppa:chris-lea/redis-server</Normal><br/>
+<Keyword>RUN</Keyword><Normal> apt-get -yqq update</Normal><br/>
+<Keyword>RUN</Keyword><Normal> apt-get -yqq install redis-server redis-tools</Normal><br/>
+<Keyword>RUN</Keyword><Normal> apt-get -yqq update </Normal><Comment># comment</Comment><br/>
+<Normal></Normal><br/>
+<Keyword>VOLUME</Keyword><Normal> [ </Normal><String>"/var/lib/redis"</String><Normal>, </Normal><String>"/var/log/redis/"</String><Normal> ]</Normal><br/>
+<Normal></Normal><br/>
+<Keyword>EXPOSE</Keyword><Normal> 6379</Normal><br/>
+<Normal></Normal><br/>
+<Keyword>CMD</Keyword><Normal> []</Normal><br/>

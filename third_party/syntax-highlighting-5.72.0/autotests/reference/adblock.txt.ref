@@ -1,0 +1,53 @@
+<Header>[Adblock Plus 2.0]</Header><br/>
+<Comment>! </Comment><Special Comment>Checksum</Special Comment><Comment>: OBK3kgyECgXJtrF4BTO3Fg</Comment><br/>
+<Comment>! </Comment><Special Comment>Version</Special Comment><Comment>: 201709021630</Comment><br/>
+<Comment>! </Comment><Special Comment>Title</Special Comment><Comment>: Test Adblock List</Comment><br/>
+<Comment>! Last modified: 02 Sep 2017 16:30 UTC</Comment><br/>
+<Comment>! </Comment><Special Comment>Expires</Special Comment><Comment>: 2 days (update frequency)</Comment><br/>
+<Comment>! </Comment><Special Comment>Homepage</Special Comment><Comment>: https://www.kde.org/</Comment><br/>
+<Comment>! Licence: MIT</Comment><br/>
+<Comment>!</Comment><br/>
+<Comment>! Some more text</Comment><br/>
+<Comment>!</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Comment>! basic rules</Comment><br/>
+<Normal Text>http://example.com/ads/banner123.gif</Normal Text><br/>
+<Normal Text>http://example.com/ads/banner*.gif</Normal Text><br/>
+<Normal Text>http://example.com/ads/*</Normal Text><br/>
+<Normal Text>http://example.com/*</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment>! exception rules</Comment><br/>
+<Exception Rule>@@advice</Exception Rule><br/>
+<Exception Rule>@@||example.com^</Exception Rule><Filter Option>$document</Filter Option><br/>
+<Normal Text></Normal Text><br/>
+<Comment>! begin/end matches</Comment><br/>
+<Normal Text>swf|</Normal Text><br/>
+<Normal Text>||example.com/banner.gif</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment>! separator characters</Comment><br/>
+<Normal Text>http://example.com^</Normal Text><br/>
+<Normal Text>^example.com^</Normal Text><br/>
+<Normal Text>^%D1%82%D0%B5%D1%81%D1%82^</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment>! filter options</Comment><br/>
+<Normal Text>*/ads/*</Normal Text><Filter Option>$script</Filter Option><Normal Text>,</Normal Text><Filter Option>match-case</Filter Option><br/>
+<Normal Text>*</Normal Text><Filter Option>$donottrack</Filter Option><Normal Text>,</Normal Text><Filter Option>image</Filter Option><Normal Text>,~</Normal Text><Filter Option>image</Filter Option><br/>
+<Normal Text>*</Normal Text><Filter Option>$domain</Filter Option><Normal Text>=example.com|example.net</Normal Text><br/>
+<Normal Text>*/BannerAd.gif</Normal Text><Filter Option>$match-case</Filter Option><br/>
+<Normal Text></Normal Text><br/>
+<Comment>! regular expressions</Comment><br/>
+<Normal Text>/banner\d+/</Normal Text><br/>
+<Normal Text>/\.bla\/[0-9]{2,9}\/</Normal Text><Filter Option>$</Filter Option><Normal Text>/$</Normal Text><Filter Option>script</Filter Option><Normal Text>,</Normal Text><Filter Option>stylesheet</Filter Option><Normal Text>,</Normal Text><Filter Option>third-party</Filter Option><Normal Text>,</Normal Text><Filter Option>xmlhttprequest</Filter Option><br/>
+<Normal Text></Normal Text><br/>
+<Comment>! element selectors</Comment><br/>
+<Element Hiding Rule>##.textad.</Element Hiding Rule><br/>
+<Element Hiding Rule>###sponsorad</Element Hiding Rule><br/>
+<Normal Text>example.com</Normal Text><Element Hiding Rule>##.sponsor</Element Hiding Rule><br/>
+<Normal Text>~foo.example.com</Normal Text><Element Hiding Rule>##.sponsor</Element Hiding Rule><br/>
+<Normal Text></Normal Text><br/>
+<Comment>! attribute selectors</Comment><br/>
+<Element Hiding Rule>##table[width="80%"]</Element Hiding Rule><br/>
+<Element Hiding Rule>##div[title^="adv"][title$="ert"]</Element Hiding Rule><br/>
+<Normal Text></Normal Text><br/>
+<Comment>! element selector exceptions</Comment><br/>
+<Normal Text>exmaple.com</Normal Text><Element Hiding Rule>#@#.adwords</Element Hiding Rule><br/>

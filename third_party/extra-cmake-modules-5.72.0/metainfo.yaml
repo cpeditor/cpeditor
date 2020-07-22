@@ -1,0 +1,18 @@
+maintainer: skelly
+description: Extra CMake modules
+tier: 1
+type: functional
+platforms:
+    - name: Linux
+    - name: FreeBSD
+    - name: Windows
+    - name: MacOSX
+    - name: Android
+portingAid: false
+deprecated: false
+release: true
+cmakename: ECM
+
+public_lib: true
+group: Frameworks
+subgroup: Tier 1

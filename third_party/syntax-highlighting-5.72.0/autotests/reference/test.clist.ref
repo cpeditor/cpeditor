@@ -1,0 +1,7 @@
+<Control>PROC</Control><Normal Text> </Normal Text><Number>2</Number><Normal Text> USER TOTAL                                 </Normal Text><br/>
+<Control>CONTROL</Control><Normal Text> NOCAPS                                    </Normal Text><br/>
+<Control>WRITE</Control><String> *** Protecting users &USER 1 to &USER &TOTAL</String><br/>
+<Control Flow>DO</Control Flow><Normal Text> </Normal Text><Variable>&COUNT</Variable><Normal Text> = </Normal Text><Number>1</Number><Normal Text> </Normal Text><Control Flow>TO</Control Flow><Normal Text> </Normal Text><Variable>&TOTAL</Variable><Normal Text>                           </Normal Text><br/>
+<Normal Text>   ALU </Normal Text><Variable>&USER&COUNT</Variable><Normal Text> NOPASS                         </Normal Text><br/>
+<Control Flow>END</Control Flow><Normal Text>                                               </Normal Text><br/>
+<Control>WRITE</Control><String> *** DONE                                    </String><br/>

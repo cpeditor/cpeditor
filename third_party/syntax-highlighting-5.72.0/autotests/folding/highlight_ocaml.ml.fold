@@ -1,0 +1,105 @@
+<beginfold id='1'>(*</beginfold id='1'> ocaml test file -- a big stew of Objective Caml syntax to use to
+   test Kate's syntax highlighting. This will not run! :-) <endfold id='1'>*)</endfold id='1'>
+
+<beginfold id='1'>(*</beginfold id='1'> First a little piece of real OCaml that should look right: <endfold id='1'>*)</endfold id='1'>
+
+    #load "basic";;
+    <beginfold id='1'>(*</beginfold id='1'> Return a default value for a BASIC variable given its identifer. <endfold id='1'>*)</endfold id='1'>
+    let default_value (ident : string) : basic_value =
+       assert (String.length ident > 0);
+       match ident.[String.length ident - 1] with
+       | '$' -> Str ""
+       | '%' -> Int 0
+       | '!' -> Flt 0.0
+       | _   -> Flt 0.0
+    ;;
+
+<beginfold id='1'>(*</beginfold id='1'> Directives: <endfold id='1'>*)</endfold id='1'>
+#load "pa_o";;
+  #load "pa_o";;
+object # meth ;;  <beginfold id='1'>(*</beginfold id='1'> not a directive - a method call <endfold id='1'>*)</endfold id='1'>
+object
+   # meth ;;  <beginfold id='1'>(*</beginfold id='1'> not a directive - a method call <endfold id='1'>*)</endfold id='1'>
+
+<beginfold id='1'>(*</beginfold id='1'> OCaml keywords: <endfold id='1'>*)</endfold id='1'>
+and as assert asr <beginfold id='1'>(*</beginfold id='1'> etc. there so many... <endfold id='1'>*)</endfold id='1'>
+
+<beginfold id='1'>(*</beginfold id='1'> Additional OCaml Revised Syntax keywords: <endfold id='1'>*)</endfold id='1'>
+<beginfold id='1'>(*</beginfold id='1'> These are in a seperate category so they can be coloured to look
+   like identifiers when ordinary OCaml syntax is being used: <endfold id='1'>*)</endfold id='1'>
+declare where value
+
+<beginfold id='1'>(*</beginfold id='1'> There's no way to reliably highlight all OCaml type expressions,
+   (they can be very complex) so just the built-in type names are highlighted.<endfold id='1'>*)</endfold id='1'>
+exn lazy_t format unit int real char string ref array bool list option
+
+
+let integers : int list = [
+    123456789;              <beginfold id='1'>(*</beginfold id='1'> decimal <endfold id='1'>*)</endfold id='1'>
+    -0xabcedf0123456789;    <beginfold id='1'>(*</beginfold id='1'> hexadecimal <endfold id='1'>*)</endfold id='1'>
+    0xABCDEF0123456789;     <beginfold id='1'>(*</beginfold id='1'> hexadecimal <endfold id='1'>*)</endfold id='1'>
+    -0o1234567;             <beginfold id='1'>(*</beginfold id='1'> octal <endfold id='1'>*)</endfold id='1'>
+    0b01001010101010;       <beginfold id='1'>(*</beginfold id='1'> binary <endfold id='1'>*)</endfold id='1'>
+    -0Xabcedf0123456789;    <beginfold id='1'>(*</beginfold id='1'> hexadecimal <endfold id='1'>*)</endfold id='1'>
+    0XABCDEF0123456789;     <beginfold id='1'>(*</beginfold id='1'> hexadecimal <endfold id='1'>*)</endfold id='1'>
+    -0O1234567;             <beginfold id='1'>(*</beginfold id='1'> octal <endfold id='1'>*)</endfold id='1'>
+    0B01001010101010;       <beginfold id='1'>(*</beginfold id='1'> binary <endfold id='1'>*)</endfold id='1'>
+    -123_456_789;           <beginfold id='1'>(*</beginfold id='1'> Underscores are allowed in numeric constants. <endfold id='1'>*)</endfold id='1'>
+    0x_abce_df01_2345_6789;
+    -0o12_34_567;
+    0b_0100_1010_1010_1101;
+];;
+
+let floats : real list = [
+    12345.6789;
+    -1.23456789e4;      <beginfold id='1'>(*</beginfold id='1'> All variations of the exponent form <endfold id='1'>*)</endfold id='1'>
+    1.23456789e+4;
+    -1.23456789e-4;
+    1.23456789E-4;
+    -1.23456789E+4;
+    12_345.6789;       <beginfold id='1'>(*</beginfold id='1'> Underscores are allowed in numeric constants. <endfold id='1'>*)</endfold id='1'>
+    -1.23_456_789e+4;
+    12_345.6789;
+];;
+
+let characters : char list = [
+    'a';
+    ' ';
+    '�';
+    '\n'; '\r'; '\t'; '\b';    <beginfold id='1'>(*</beginfold id='1'> Control characters. Only these four: not the full C-language range. <endfold id='1'>*)</endfold id='1'>
+    '\000'; '\128';            <beginfold id='1'>(*</beginfold id='1'> Decimal character codes. These are always 3 digits. <endfold id='1'>*)</endfold id='1'>
+    '\x02'; '\xff'; '\xFF';    <beginfold id='1'>(*</beginfold id='1'> Hexadecimal character codes. These are always 3 digits. <endfold id='1'>*)</endfold id='1'>
+    '\\'; '\''; '\"'; '"'      <beginfold id='1'>(*</beginfold id='1'> Quote character escapes. <endfold id='1'>*)</endfold id='1'>
+];;
+
+<beginfold id='1'>(*</beginfold id='1'> Quotes used to mark constants in parsers should
+   not be confused with character constant quotes.
+   "Ticks" at the end of identifiers should
+   not be confused with character constant quotes.  <endfold id='1'>*)</endfold id='1'>
+let basic_identifier =
+  parser
+      [< ''F'; ''N'; name = s >] -> ID (s, 'f')
+    | [< name = s' >] -> ID (s','i')
+;;
+
+let strings : string list = [
+    ""; <beginfold id='1'>(*</beginfold id='1'> Empty string <endfold id='1'>*)</endfold id='1'>
+    "a"; " ";  "�";   "ab";
+    "A\nB"; "A\rB"; "A\tB"; "A\bB";  <beginfold id='1'>(*</beginfold id='1'> Control characters. Only these four: not the full C-language range. <endfold id='1'>*)</endfold id='1'>
+    "A\000B"; "A\128B";              <beginfold id='1'>(*</beginfold id='1'> Decimal character codes. These are always 3 digits. <endfold id='1'>*)</endfold id='1'>
+    "A\x02B"; "A\xffB"; "A\xFFB";    <beginfold id='1'>(*</beginfold id='1'> Hexadecimal character codes. These are always 3 digits. <endfold id='1'>*)</endfold id='1'>
+    "A\\B"; "A\'B"; "A'B";  "A\"B";  <beginfold id='1'>(*</beginfold id='1'> Quote character escapes. <endfold id='1'>*)</endfold id='1'>
+    "A multiline\
+    string";
+];
+
+let camlp4_quotations = [
+    <<A Camlp4 source code quotation.>> ;
+    <:QUOTE<A labelled Camlp4 source code quotation.>> ;
+    <:QU�T�<A labelled Camlp4 source code quotation. (Latin-1 identifier.)>> ;
+    << A quote with an escape: \>> (end-quote symbol) >> ;
+    << A quote with an escape: \<< (plain start quote-symbol) >> ;
+    << A quote with an escape: \<:Trouv�< (labelled start-quote symbol) >> ;
+];;
+
+<beginfold id='1'>(*</beginfold id='1'> end <endfold id='1'>*)</endfold id='1'>

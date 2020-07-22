@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title>test.pbl</title>
+<meta name="generator" content="KF5::SyntaxHighlighting (Wesnoth Markup Language)"/>
+</head><body style="color:#1f1c1b"><pre>
+<span style="color:#898887;"># Wesnoth Markup Language</span>
+
+<span style="color:#006e28;">#textdomain wesnoth-libs</span>
+
+<span style="color:#006e28;">#define __GUI_WINDOW_HEIGHT</span>
+(
+	if(<span style="color:#0057ae;">window_height </span>= 0, 9999, window_height)
+)<span style="color:#006e28;">#enddef</span>
+
+<span style="color:#006e28;">#define __GUI_WINDOW_FUNCTIONS</span>
+def reevaluate_best_size(w, s)
+(
+[
+	0,
+<span style="color:#898887;">#</span>
+	debug_print('window ', w),
+	debug_print('screen ', s)
+<span style="color:#898887;">#</span>
+][0]
+);
+<span style="color:#006e28;">#enddef</span>
+
+<span style="color:#898887;"># Don't highlight array indices as tags</span>
+stored_unit[1].moves
+other[0][1][2]
+other[foo][bar]
+
+foo[<span style="color:#644a9b;">{MACRO}</span>]
+foo[<span style="color:#b08000;">$index</span>]
+foo[  12 ]
+
+<span style="color:#898887;"># Nested tags</span>
+<span style="font-weight:bold;">[allow_undo][/allow_undo][not][true]</span>text<span style="font-weight:bold;">[/true][/not]</span>
+<span style="font-weight:bold;">[foo][bar]</span>text<span style="font-weight:bold;">[/bar][/foo]</span>
+
+<span style="font-weight:bold;">[about]</span>
+	<span style="color:#0057ae;">title</span>= <span style="color:#bf0303;">_ &quot;Campaign Designer&quot;</span>
+	<span style="color:#0057ae;">text</span>=<span style="color:#bf0303;">&quot;Your Name&quot;</span>
+<span style="font-weight:bold;">[/about]</span>
+
+<span style="font-weight:bold;">[window]</span>
+	<span style="color:#0057ae;">id </span>= <span style="color:#bf0303;">&quot;tooltip&quot;</span>
+
+	<span style="font-weight:bold;">[resolution]</span>
+		<span style="color:#0057ae;">definition </span>= <span style="color:#bf0303;">&quot;tooltip&quot;</span>
+		<span style="color:#0057ae;">automatic_placement </span>= false
+		<span style="color:#0057ae;">functions </span>= <span style="color:#bf0303;">&quot;</span><span style="color:#644a9b;">{__GUI_WINDOW_FUNCTIONS}</span><span style="color:#bf0303;">&quot;</span>
+
+		<span style="font-weight:bold;">[grid]</span>
+
+			<span style="font-weight:bold;">[row]</span>
+
+				<span style="font-weight:bold;">[column]</span>
+
+					<span style="font-weight:bold;">[label]</span>
+						<span style="color:#0057ae;">id </span>= <span style="color:#bf0303;">&quot;label&quot;</span>
+						<span style="color:#0057ae;">definition </span>= <span style="color:#bf0303;">&quot;default_small&quot;</span>
+
+						<span style="color:#0057ae;">use_markup </span>= true
+						<span style="color:#0057ae;">wrap </span>= true
+					<span style="font-weight:bold;">[/label]</span>
+
+				<span style="font-weight:bold;">[/column]</span>
+
+			<span style="font-weight:bold;">[/row]</span>
+
+		<span style="font-weight:bold;">[/grid]</span>
+
+	<span style="font-weight:bold;">[/resolution]</span>
+
+<span style="font-weight:bold;">[/window]</span>
+
+<span style="font-weight:bold;">[event]</span>
+	<span style="color:#0057ae;">name </span>= preload
+	<span style="color:#0057ae;">first_time_only </span>= no
+	<span style="font-weight:bold;">[lua]</span>
+		<span style="color:#0057ae;">code </span>=<span style="color:#bf0303;"> &lt;&lt;</span>
+			<span style="font-weight:bold;">function</span> narrator(<span style="color:#5555ff;">t</span>)
+				<span style="color:#898887;">-- Behave like the [message] tag.</span>
+				<span style="color:#5555ff;">wesnoth</span>.fire(<span style="color:#bf0303;">&quot;message&quot;</span>,
+				  { <span style="color:#5555ff;">speaker</span> = <span style="color:#bf0303;">&quot;narrator&quot;</span>, <span style="color:#5555ff;">message</span> = <span style="color:#5555ff;">t</span>.<span style="color:#5555ff;">sentence</span> })
+			<span style="font-weight:bold;">end</span>
+		<span style="color:#bf0303;">&gt;&gt;</span>
+	<span style="font-weight:bold;">[/lua]</span>
+<span style="font-weight:bold;">[/event]</span>
+
+<span style="font-weight:bold;">[event]</span>
+	<span style="color:#0057ae;">name </span>= turn 1
+	<span style="font-weight:bold;">[lua]</span>
+		<span style="color:#0057ae;">code </span>=<span style="color:#bf0303;"> &lt;&lt;</span> narrator(...) <span style="color:#bf0303;">&gt;&gt;</span>
+		<span style="font-weight:bold;">[args]</span>
+			<span style="color:#0057ae;">sentence </span>= <span style="color:#bf0303;">_ &quot;Hello world!&quot;</span>
+		<span style="font-weight:bold;">[/args]</span>
+	<span style="font-weight:bold;">[/lua]</span>
+	<span style="font-weight:bold;">[lua]</span>
+		<span style="color:#0057ae;">code </span>=<span style="color:#bf0303;"> &lt;&lt;</span> narrator(...) <span style="color:#bf0303;">&gt;&gt;</span>
+		<span style="font-weight:bold;">[args]</span>
+			<span style="color:#0057ae;">sentence </span>= <span style="color:#bf0303;">_ &quot;How are you today?&quot;</span>
+		<span style="font-weight:bold;">[/args]</span>
+	<span style="font-weight:bold;">[/lua]</span>
+<span style="font-weight:bold;">[/event]</span>
+</pre></body></html>

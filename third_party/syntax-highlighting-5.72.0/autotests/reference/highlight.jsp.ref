@@ -1,0 +1,173 @@
+<Jsp Comment><%--</Jsp Comment><br/>
+<Jsp Comment>  This page won't actually work, as it is simply designed to display jsp syntax highlighting.</Jsp Comment><br/>
+<Jsp Comment>--%></Jsp Comment><br/>
+<Jsp Directive><%@ page</Jsp Directive><Jsp Param Name> info</Jsp Param Name><Normal Text>=</Normal Text><Jsp Param Value>"A Page to Test Kate Jsp Syntax Highlighting"</Jsp Param Value><Jsp Param Name> language</Jsp Param Name><Normal Text>=</Normal Text><Jsp Param Value>"java"</Jsp Param Value><Jsp Param Name> errorPage</Jsp Param Name><Normal Text>=</Normal Text><Jsp Param Value>"/test-error-page.jsp"</Jsp Param Value><Jsp Directive>%></Jsp Directive><br/>
+<Jsp Directive><%@ include</Jsp Directive><Jsp Param Name> file</Jsp Param Name><Normal Text>=</Normal Text><Jsp Param Value>"/include/myglobalvars.jsp"</Jsp Param Value><Jsp Directive>%></Jsp Directive><Normal Text> --%></Normal Text><br/>
+<Jsp Directive><%@ page</Jsp Directive><Jsp Param Name> import</Jsp Param Name><Normal Text>=</Normal Text><Jsp Param Value>"java.util.*,</Jsp Param Value><br/>
+<Jsp Param Value>                 java.io.*,</Jsp Param Value><br/>
+<Jsp Param Value>                 java.math.*"</Jsp Param Value><Jsp Param Name> </Jsp Param Name><Jsp Directive>%></Jsp Directive><br/>
+<Jsp Directive><%@ taglib</Jsp Directive><Jsp Param Name> uri</Jsp Param Name><Normal Text>=</Normal Text><Jsp Param Value>"/WEB-INF/lib/si_taglib.tld"</Jsp Param Value><Jsp Param Name> prefix</Jsp Param Name><Normal Text>=</Normal Text><Jsp Param Value>"si"</Jsp Param Value><Jsp Directive>%></Jsp Directive><br/>
+<Jsp Directive><jsp:useBean</Jsp Directive><Jsp Param Name> id</Jsp Param Name><Normal Text>=</Normal Text><Jsp Param Value>"aPageBean"</Jsp Param Value><Jsp Param Name> scope</Jsp Param Name><Normal Text>=</Normal Text><Jsp Param Value>"page"</Jsp Param Value><Jsp Param Name> class</Jsp Param Name><Normal Text>=</Normal Text><Jsp Param Value>"my.package.MyPageBean"</Jsp Param Value><Jsp Directive>/></Jsp Directive><br/>
+<Jsp Directive><jsp:useBean</Jsp Directive><Jsp Param Name> id</Jsp Param Name><Normal Text>=</Normal Text><Jsp Param Value>"aRequestBean"</Jsp Param Value><Jsp Param Name> scope</Jsp Param Name><Normal Text>=</Normal Text><Jsp Param Value>"request"</Jsp Param Value><Jsp Param Name> class</Jsp Param Name><Normal Text>=</Normal Text><Jsp Param Value>"my.package.MyRequestBean"</Jsp Param Value><Jsp Directive>/></Jsp Directive><br/>
+<Jsp Scriptlet><%</Jsp Scriptlet><br/>
+<Normal Text>  </Normal Text><Comment>// We can decipher our expected parameters here.</Comment><br/>
+<Normal Text>  </Normal Text><Java15>String</Java15><Normal Text> parm1 </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Function>noNull</Function><Symbol>(</Symbol><Normal Text>request</Normal Text><Symbol>.</Symbol><Function>getParameter</Function><Symbol>(</Symbol><Normal Text>PARAMETER_1</Normal Text><Symbol>)).</Symbol><Function>trim</Function><Symbol>();</Symbol><br/>
+<Normal Text>  </Normal Text><Java15>String</Java15><Normal Text> parm2 </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Function>noNull</Function><Symbol>(</Symbol><Normal Text>request</Normal Text><Symbol>.</Symbol><Function>getParameter</Function><Symbol>(</Symbol><Normal Text>PARAMETER_2</Normal Text><Symbol>)).</Symbol><Function>trim</Function><Symbol>();</Symbol><br/>
+<Normal Text>  </Normal Text><Java15>String</Java15><Normal Text> parm3 </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Function>noNull</Function><Symbol>(</Symbol><Normal Text>request</Normal Text><Symbol>.</Symbol><Function>getParameter</Function><Symbol>(</Symbol><Normal Text>PARAMETER_3</Normal Text><Symbol>)).</Symbol><Function>trim</Function><Symbol>();</Symbol><br/>
+<Normal Text>  </Normal Text><Java15>String</Java15><Normal Text> parm4 </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Function>noNull</Function><Symbol>(</Symbol><Normal Text>request</Normal Text><Symbol>.</Symbol><Function>getParameter</Function><Symbol>(</Symbol><Normal Text>PARAMETER_4</Normal Text><Symbol>)).</Symbol><Function>trim</Function><Symbol>();</Symbol><br/>
+<Normal Text>  </Normal Text><Java15>String</Java15><Normal Text> parm5 </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Function>noNull</Function><Symbol>(</Symbol><Normal Text>request</Normal Text><Symbol>.</Symbol><Function>getParameter</Function><Symbol>(</Symbol><Normal Text>PARAMETER_5</Normal Text><Symbol>)).</Symbol><Function>trim</Function><Symbol>();</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>  </Normal Text><Comment>// A sample collection of Integers to display some code folding.</Comment><br/>
+<Normal Text>  </Normal Text><Java15>List</Java15><Normal Text> intList </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Function>getIntList</Function><Symbol>(</Symbol><Decimal>10</Decimal><Symbol>);</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Jsp Scriptlet>%></Jsp Scriptlet><br/>
+<Normal Text><html></Normal Text><br/>
+<Normal Text>  <title>A Sample Jsp</title></Normal Text><br/>
+<Normal Text>  <head></Normal Text><br/>
+<Normal Text>  <script language=</Normal Text><Types>"javascript"</Types><Normal Text>></Normal Text><Symbol><!--</Symbol><br/>
+<Normal Text>    </Normal Text><Keyword>function</Keyword><Normal Text> </Normal Text><Function Declaration>doAlert1</Function Declaration><Normal Text>() {</Normal Text><br/>
+<Normal Text>      </Normal Text><Function Name>alert</Function Name><Normal Text>(</Normal Text><String>"This is the first javascript example."</String><Normal Text>)</Normal Text><Symbol>;</Symbol><br/>
+<Normal Text>    }</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>    </Normal Text><Keyword>function</Keyword><Normal Text> </Normal Text><Function Declaration>doAlert2</Function Declaration><Normal Text>() {</Normal Text><br/>
+<Normal Text>      </Normal Text><Function Name>alert</Function Name><Normal Text>(</Normal Text><String>"This is the second javascript example."</String><Normal Text>)</Normal Text><Symbol>;</Symbol><br/>
+<Normal Text>    }</Normal Text><br/>
+<Normal Text>  </Normal Text><Jsp Comment>//--></Jsp Comment><Normal Text></script></Normal Text><br/>
+<Normal Text>  <style type=</Normal Text><Types>"text/css"</Types><Normal Text>></Normal Text><br/>
+<Normal Text>    </Normal Text><Selector Tag>body</Selector Tag><Normal Text>{ </Normal Text><Property>color</Property><Normal Text>: </Normal Text><Color>yellow</Color><Separator Symbol>;</Separator Symbol><Normal Text> }</Normal Text><br/>
+<Normal Text>  </Normal Text><Normal Text></style></Normal Text><br/>
+<Normal Text>  </head></Normal Text><br/>
+<Normal Text>  <body></Normal Text><br/>
+<Normal Text>    </Normal Text><Jsp Comment><%-- The top label table. --%></Jsp Comment><br/>
+<Normal Text>    <table</Normal Text><Identifier> width</Identifier><Normal Text>=</Normal Text><Types>"400"</Types><Identifier> cellpadding</Identifier><Normal Text>=</Normal Text><Types>"0"</Types><Identifier> cellspacing</Identifier><Normal Text>=</Normal Text><Types>"0"</Types><Identifier> border</Identifier><Normal Text>=</Normal Text><Types>"0"</Types><Normal Text>></Normal Text><br/>
+<Normal Text>      <tr></Normal Text><br/>
+<Normal Text>        <td><font</Normal Text><Identifier> size</Identifier><Normal Text>=</Normal Text><Types>"3"</Types><Normal Text>><b>The following parameters were detected:</b></font></td></Normal Text><br/>
+<Normal Text>      </tr></Normal Text><br/>
+<Normal Text>    </table></Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>    </Normal Text><Jsp Comment><%-- Display the parameters which might have been passed in. --%></Jsp Comment><br/>
+<Normal Text>    <table</Normal Text><Identifier> width</Identifier><Normal Text>=</Normal Text><Types>"400"</Types><Identifier> cellpadding</Identifier><Normal Text>=</Normal Text><Types>"0"</Types><Identifier> cellspacing</Identifier><Normal Text>=</Normal Text><Types>"0"</Types><Identifier> border</Identifier><Normal Text>=</Normal Text><Types>"0"</Types><Normal Text>></Normal Text><br/>
+<Normal Text>      </Normal Text><Jsp Comment><%-- Label; Actual Parameter String; Value Detected --%></Jsp Comment><br/>
+<Normal Text>      <tr></Normal Text><br/>
+<Normal Text>        <td><b>PARAMETER_1</b></td></Normal Text><br/>
+<Normal Text>        <td</Normal Text><Identifier> align</Identifier><Normal Text>=</Normal Text><Types>"center"</Types><Normal Text>></Normal Text><Jsp Scriptlet><%=</Jsp Scriptlet><Normal Text>PARAMETER_1</Normal Text><Jsp Scriptlet>%></Jsp Scriptlet><Normal Text></td></Normal Text><br/>
+<Normal Text>        <td</Normal Text><Identifier> align</Identifier><Normal Text>=</Normal Text><Types>"right"</Types><Normal Text>>&quot;</Normal Text><Jsp Scriptlet><%=</Jsp Scriptlet><Normal Text>parm1</Normal Text><Jsp Scriptlet>%></Jsp Scriptlet><Normal Text>&quot;</td></Normal Text><br/>
+<Normal Text>      </tr></Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>      </Normal Text><Jsp Comment><%-- Label; Actual Parameter String; Value Detected --%></Jsp Comment><br/>
+<Normal Text>      <tr></Normal Text><br/>
+<Normal Text>        <td><b>PARAMETER_2</b></td></Normal Text><br/>
+<Normal Text>        <td</Normal Text><Identifier> align</Identifier><Normal Text>=</Normal Text><Types>"center"</Types><Normal Text>></Normal Text><Jsp Scriptlet><%=</Jsp Scriptlet><Normal Text>PARAMETER_2</Normal Text><Jsp Scriptlet>%></Jsp Scriptlet><Normal Text></td></Normal Text><br/>
+<Normal Text>        <td</Normal Text><Identifier> align</Identifier><Normal Text>=</Normal Text><Types>"right"</Types><Normal Text>>&quot;</Normal Text><Jsp Scriptlet><%=</Jsp Scriptlet><Normal Text>parm2</Normal Text><Jsp Scriptlet>%></Jsp Scriptlet><Normal Text>&quot;</td></Normal Text><br/>
+<Normal Text>      </tr></Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>      </Normal Text><Jsp Comment><%-- Label; Actual Parameter String; Value Detected --%></Jsp Comment><br/>
+<Normal Text>      <tr></Normal Text><br/>
+<Normal Text>        <td><b>PARAMETER_3</b></td></Normal Text><br/>
+<Normal Text>        <td</Normal Text><Identifier> align</Identifier><Normal Text>=</Normal Text><Types>"center"</Types><Normal Text>></Normal Text><Jsp Scriptlet><%=</Jsp Scriptlet><Normal Text>PARAMETER_3</Normal Text><Jsp Scriptlet>%></Jsp Scriptlet><Normal Text></td></Normal Text><br/>
+<Normal Text>        <td</Normal Text><Identifier> align</Identifier><Normal Text>=</Normal Text><Types>"right"</Types><Normal Text>>&quot;</Normal Text><Jsp Scriptlet><%=</Jsp Scriptlet><Normal Text>parm3</Normal Text><Jsp Scriptlet>%></Jsp Scriptlet><Normal Text>&quot;</td></Normal Text><br/>
+<Normal Text>      </tr></Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>      </Normal Text><Jsp Comment><%-- Label; Actual Parameter String; Value Detected --%></Jsp Comment><br/>
+<Normal Text>      <tr></Normal Text><br/>
+<Normal Text>        <td><b>PARAMETER_4</b></td></Normal Text><br/>
+<Normal Text>        <td</Normal Text><Identifier> align</Identifier><Normal Text>=</Normal Text><Types>"center"</Types><Normal Text>></Normal Text><Jsp Scriptlet><%=</Jsp Scriptlet><Normal Text>PARAMETER_4</Normal Text><Jsp Scriptlet>%></Jsp Scriptlet><Normal Text></td></Normal Text><br/>
+<Normal Text>        <td</Normal Text><Identifier> align</Identifier><Normal Text>=</Normal Text><Types>"right"</Types><Normal Text>>&quot;</Normal Text><Jsp Scriptlet><%=</Jsp Scriptlet><Normal Text>parm4</Normal Text><Jsp Scriptlet>%></Jsp Scriptlet><Normal Text>&quot;</td></Normal Text><br/>
+<Normal Text>      </tr></Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>      </Normal Text><Jsp Comment><%-- Label; Actual Parameter String; Value Detected --%></Jsp Comment><br/>
+<Normal Text>      <tr></Normal Text><br/>
+<Normal Text>        <td><b>PARAMETER_5</b></td></Normal Text><br/>
+<Normal Text>        <td</Normal Text><Identifier> align</Identifier><Normal Text>=</Normal Text><Types>"center"</Types><Normal Text>></Normal Text><Jsp Scriptlet><%=</Jsp Scriptlet><Normal Text>PARAMETER_5</Normal Text><Jsp Scriptlet>%></Jsp Scriptlet><Normal Text></td></Normal Text><br/>
+<Normal Text>        <td</Normal Text><Identifier> align</Identifier><Normal Text>=</Normal Text><Types>"right"</Types><Normal Text>>&quot;</Normal Text><Jsp Scriptlet><%=</Jsp Scriptlet><Normal Text>parm5</Normal Text><Jsp Scriptlet>%></Jsp Scriptlet><Normal Text>&quot;</td></Normal Text><br/>
+<Normal Text>      </tr></Normal Text><br/>
+<Normal Text>    </table></Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>    <br><br></Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>    </Normal Text><Jsp Comment><%-- Display our list of random Integers (shows code folding). --%></Jsp Comment><br/>
+<Normal Text>    <table</Normal Text><Identifier> width</Identifier><Normal Text>=</Normal Text><Types>"400"</Types><Identifier> cellpadding</Identifier><Normal Text>=</Normal Text><Types>"0"</Types><Identifier> cellspacing</Identifier><Normal Text>=</Normal Text><Types>"0"</Types><Identifier> border</Identifier><Normal Text>=</Normal Text><Types>"0"</Types><Normal Text>></Normal Text><br/>
+<Jsp Scriptlet><%</Jsp Scriptlet><br/>
+<Normal Text>  </Normal Text><Keyword>if</Keyword><Normal Text> </Normal Text><Symbol>(</Symbol><Normal Text>intList </Normal Text><Symbol>!=</Symbol><Normal Text> </Normal Text><Keyword>null</Keyword><Normal Text> </Normal Text><Symbol>&&</Symbol><Normal Text> intList</Normal Text><Symbol>.</Symbol><Function>size</Function><Symbol>()</Symbol><Normal Text> </Normal Text><Symbol>></Symbol><Normal Text> </Normal Text><Decimal>0</Decimal><Symbol>)</Symbol><Normal Text> </Normal Text><Symbol>{</Symbol><br/>
+<Jsp Scriptlet>%></Jsp Scriptlet><br/>
+<Normal Text>      <tr><td><b>Here are the elements of intList...</b></td></tr></Normal Text><br/>
+<Jsp Scriptlet><%</Jsp Scriptlet><br/>
+<Normal Text>    </Normal Text><Java15>Iterator</Java15><Normal Text> intListIt </Normal Text><Symbol>=</Symbol><Normal Text> intList</Normal Text><Symbol>.</Symbol><Function>iterator</Function><Symbol>();</Symbol><br/>
+<Normal Text>    </Normal Text><Keyword>while</Keyword><Normal Text> </Normal Text><Symbol>(</Symbol><Normal Text>intListIt</Normal Text><Symbol>.</Symbol><Function>hasNext</Function><Symbol>())</Symbol><Normal Text> </Normal Text><Symbol>{</Symbol><br/>
+<Normal Text>      </Normal Text><Java15>Integer</Java15><Normal Text> i </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Symbol>(</Symbol><Java15>Integer</Java15><Symbol>)</Symbol><Normal Text> intListIt</Normal Text><Symbol>.</Symbol><Function>next</Function><Symbol>();</Symbol><br/>
+<Jsp Scriptlet>%></Jsp Scriptlet><br/>
+<Normal Text>      <tr><td></Normal Text><Jsp Scriptlet><%=</Jsp Scriptlet><Normal Text>i</Normal Text><Symbol>.</Symbol><Function>toString</Function><Symbol>()</Symbol><Jsp Scriptlet>%></Jsp Scriptlet><Normal Text></td></tr></Normal Text><br/>
+<Jsp Scriptlet><%</Jsp Scriptlet><br/>
+<Normal Text>    </Normal Text><Symbol>}</Symbol><br/>
+<Normal Text>  </Normal Text><Symbol>}</Symbol><Normal Text> </Normal Text><Keyword>else</Keyword><Normal Text> </Normal Text><Symbol>{</Symbol><br/>
+<Jsp Scriptlet>%></Jsp Scriptlet><br/>
+<Normal Text>      <tr><td><font</Normal Text><Identifier> color</Identifier><Normal Text>=</Normal Text><Types>"blue"</Types><Normal Text>><b><i>Oooops, we forgot to initialize intList!</i></b></font></td></tr></Normal Text><br/>
+<Jsp Scriptlet><%</Jsp Scriptlet><br/>
+<Normal Text>  </Normal Text><Symbol>}</Symbol><br/>
+<Jsp Scriptlet>%></Jsp Scriptlet><br/>
+<Normal Text>    </table></Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>    <br><br></Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>    </Normal Text><Jsp Comment><%-- We can call javascript functions. --%></Jsp Comment><br/>
+<Normal Text>    <table</Normal Text><Identifier> width</Identifier><Normal Text>=</Normal Text><Types>"400"</Types><Identifier> cellpadding</Identifier><Normal Text>=</Normal Text><Types>"0"</Types><Identifier> cellspacing</Identifier><Normal Text>=</Normal Text><Types>"0"</Types><Identifier> border</Identifier><Normal Text>=</Normal Text><Types>"0"</Types><Normal Text>></Normal Text><br/>
+<Normal Text>      <tr><td</Normal Text><Identifier> colspan</Identifier><Normal Text>=</Normal Text><Types>"2"</Types><Normal Text>><b>Test our javascript...</b></td></tr></Normal Text><br/>
+<Normal Text>      <tr></Normal Text><br/>
+<Normal Text>        <td><input</Normal Text><Identifier> type</Identifier><Normal Text>=</Normal Text><Types>"button"</Types><Identifier> name</Identifier><Normal Text>=</Normal Text><Types>"button1"</Types><Identifier> value</Identifier><Normal Text>=</Normal Text><Types>"Alert 1"</Types><Identifier> onmouseup</Identifier><Normal Text>=</Normal Text><Types>"javascript:doAlert1()"</Types><Normal Text>></td></Normal Text><br/>
+<Normal Text>        <td><input</Normal Text><Identifier> type</Identifier><Normal Text>=</Normal Text><Types>"button"</Types><Identifier> name</Identifier><Normal Text>=</Normal Text><Types>"button2"</Types><Identifier> value</Identifier><Normal Text>=</Normal Text><Types>"Alert 2"</Types><Identifier> onmouseup</Identifier><Normal Text>=</Normal Text><Types>"javascript:doAlert2()"</Types><Normal Text>></td></Normal Text><br/>
+<Normal Text>      </tr></Normal Text><br/>
+<Normal Text>    </table></Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>    <br><br></Normal Text><br/>
+<Normal Text>    </Normal Text><Jsp Comment><%-- If we actually had defined a tag library. --%></Jsp Comment><br/>
+<Normal Text>    <table</Normal Text><Identifier> width</Identifier><Normal Text>=</Normal Text><Types>"400"</Types><Identifier> cellpadding</Identifier><Normal Text>=</Normal Text><Types>"0"</Types><Identifier> cellspacing</Identifier><Normal Text>=</Normal Text><Types>"0"</Types><Identifier> border</Identifier><Normal Text>=</Normal Text><Types>"0"</Types><Normal Text>></Normal Text><br/>
+<Normal Text>      <tr><td></Normal Text><br/>
+<Normal Text>      </Normal Text><Keyword><my:SampleTag</Keyword><Identifier> prop1</Identifier><Normal Text>=</Normal Text><Types>"first"</Types><Identifier> prop2</Identifier><Normal Text>=</Normal Text><Types>"third"</Types><Keyword>></Keyword><br/>
+<Normal Text>        </Normal Text><Keyword><my:SampleTagChild</Keyword><Identifier> nameProp</Identifier><Normal Text>=</Normal Text><Types>"value1"</Types><Keyword>/></Keyword><br/>
+<Normal Text>        </Normal Text><Keyword><my:SampleTagChild</Keyword><Identifier> nameProp</Identifier><Normal Text>=</Normal Text><Types>"value2"</Types><Keyword>/></Keyword><br/>
+<Normal Text>      </Normal Text><Keyword></my:SampleTag></Keyword><br/>
+<Normal Text>      </td></tr></Normal Text><br/>
+<Normal Text>    </table></Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>    <br><br></Normal Text><br/>
+<Normal Text>    </Normal Text><Jsp Comment><%-- Expression language. --%></Jsp Comment><br/>
+<Normal Text>    <table</Normal Text><Identifier> width</Identifier><Normal Text>=</Normal Text><Types>"400"</Types><Identifier> cellpadding</Identifier><Normal Text>=</Normal Text><Types>"0"</Types><Identifier> cellspacing</Identifier><Normal Text>=</Normal Text><Types>"0"</Types><Identifier> border</Identifier><Normal Text>=</Normal Text><Types>"0"</Types><Normal Text>></Normal Text><br/>
+<Normal Text>      </Normal Text><Keyword><c:if</Keyword><Identifier> test</Identifier><Normal Text>=</Normal Text><Types>"</Types><Jsp Expression>${</Jsp Expression><Symbol>!</Symbol><Keyword>empty</Keyword><Normal Text> param</Normal Text><Symbol>.</Symbol><Function>aParam</Function><Jsp Expression>}</Jsp Expression><Types>"</Types><Keyword>></Keyword><br/>
+<Normal Text>        </Normal Text><Keyword><c:set</Keyword><Identifier> var</Identifier><Normal Text>=</Normal Text><Types>"myParam"</Types><Identifier> scope</Identifier><Normal Text>=</Normal Text><Types>"session"</Types><Identifier> value</Identifier><Normal Text>=</Normal Text><Types>"</Types><Jsp Expression>${</Jsp Expression><Normal Text>param</Normal Text><Symbol>.</Symbol><Function>aParam</Function><Jsp Expression>}</Jsp Expression><Types>"</Types><Keyword>/></Keyword><br/>
+<Normal Text>      </Normal Text><Keyword></c:if></Keyword><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>      <tr><td>myParam's value: &quot;</Normal Text><Keyword><c:out</Keyword><Identifier> value</Identifier><Normal Text>=</Normal Text><Types>"</Types><Jsp Expression>${</Jsp Expression><Normal Text>myParam</Normal Text><Jsp Expression>}</Jsp Expression><Types>"</Types><Identifier> default</Identifier><Normal Text>==</Normal Text><Types>"Default"</Types><Keyword>/></Keyword><Normal Text>&quot;</td></tr></Normal Text><br/>
+<Normal Text>    </table></Normal Text><br/>
+<Normal Text>  </body></Normal Text><br/>
+<Normal Text></html></Normal Text><br/>
+<Jsp Scriptlet><%!</Jsp Scriptlet><br/>
+<Normal Text>  </Normal Text><Comment>/* A place for class variables and functions... */</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>  </Normal Text><Comment>// Define some sample parameter names that this page might understand.</Comment><br/>
+<Normal Text>  </Normal Text><Keyword>private</Keyword><Normal Text> </Normal Text><Data Type>static</Data Type><Normal Text> </Normal Text><Data Type>final</Data Type><Normal Text> </Normal Text><Java15>String</Java15><Normal Text> PARAMETER_1            </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><String>"p1"</String><Symbol>;</Symbol><br/>
+<Normal Text>  </Normal Text><Keyword>private</Keyword><Normal Text> </Normal Text><Data Type>static</Data Type><Normal Text> </Normal Text><Data Type>final</Data Type><Normal Text> </Normal Text><Java15>String</Java15><Normal Text> PARAMETER_2            </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><String>"p2"</String><Symbol>;</Symbol><br/>
+<Normal Text>  </Normal Text><Keyword>private</Keyword><Normal Text> </Normal Text><Data Type>static</Data Type><Normal Text> </Normal Text><Data Type>final</Data Type><Normal Text> </Normal Text><Java15>String</Java15><Normal Text> PARAMETER_3            </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><String>"p3"</String><Symbol>;</Symbol><br/>
+<Normal Text>  </Normal Text><Keyword>private</Keyword><Normal Text> </Normal Text><Data Type>static</Data Type><Normal Text> </Normal Text><Data Type>final</Data Type><Normal Text> </Normal Text><Java15>String</Java15><Normal Text> PARAMETER_4            </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><String>"p4"</String><Symbol>;</Symbol><br/>
+<Normal Text>  </Normal Text><Keyword>private</Keyword><Normal Text> </Normal Text><Data Type>static</Data Type><Normal Text> </Normal Text><Data Type>final</Data Type><Normal Text> </Normal Text><Java15>String</Java15><Normal Text> PARAMETER_5            </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><String>"p5"</String><Symbol>;</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>  </Normal Text><Comment>// Returns str trimmed, or an empty string if str is null.</Comment><br/>
+<Normal Text>  </Normal Text><Keyword>private</Keyword><Normal Text> </Normal Text><Data Type>static</Data Type><Normal Text> </Normal Text><Java15>String</Java15><Normal Text> </Normal Text><Function>noNull</Function><Symbol>(</Symbol><Java15>String</Java15><Normal Text> str</Normal Text><Symbol>)</Symbol><Normal Text> </Normal Text><Symbol>{</Symbol><br/>
+<Normal Text>    </Normal Text><Java15>String</Java15><Normal Text> retStr</Normal Text><Symbol>;</Symbol><br/>
+<Normal Text>    </Normal Text><Keyword>if</Keyword><Normal Text> </Normal Text><Symbol>(</Symbol><Normal Text>str </Normal Text><Symbol>==</Symbol><Normal Text> </Normal Text><Keyword>null</Keyword><Symbol>)</Symbol><br/>
+<Normal Text>      retStr </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><String>""</String><Symbol>;</Symbol><br/>
+<Normal Text>    </Normal Text><Keyword>else</Keyword><br/>
+<Normal Text>      retStr </Normal Text><Symbol>=</Symbol><Normal Text> str</Normal Text><Symbol>.</Symbol><Function>trim</Function><Symbol>();</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>    </Normal Text><Keyword>return</Keyword><Normal Text> retStr</Normal Text><Symbol>;</Symbol><br/>
+<Normal Text>  </Normal Text><Symbol>}</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>  </Normal Text><Comment>// Returns a list of Integers with listSize elements.</Comment><br/>
+<Normal Text>  </Normal Text><Keyword>private</Keyword><Normal Text> </Normal Text><Data Type>static</Data Type><Normal Text> </Normal Text><Java15>List</Java15><Normal Text> </Normal Text><Function>getIntList</Function><Symbol>(</Symbol><Data Type>int</Data Type><Normal Text> listSize</Normal Text><Symbol>)</Symbol><Normal Text> </Normal Text><Symbol>{</Symbol><br/>
+<Normal Text>    </Normal Text><Java15>ArrayList</Java15><Normal Text> retList </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Keyword>new</Keyword><Normal Text> </Normal Text><Java15>ArrayList</Java15><Symbol>(</Symbol><Normal Text>listSize</Normal Text><Symbol>);</Symbol><br/>
+<Normal Text>    </Normal Text><Keyword>for</Keyword><Normal Text> </Normal Text><Symbol>(</Symbol><Data Type>int</Data Type><Normal Text> i </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Decimal>0</Decimal><Symbol>;</Symbol><Normal Text> i </Normal Text><Symbol><</Symbol><Normal Text> listSize</Normal Text><Symbol>;</Symbol><Normal Text> i</Normal Text><Symbol>++)</Symbol><br/>
+<Normal Text>      retList</Normal Text><Symbol>.</Symbol><Function>add</Function><Symbol>(</Symbol><Keyword>new</Keyword><Normal Text> </Normal Text><Java15>Integer</Java15><Symbol>(</Symbol><Normal Text> </Normal Text><Symbol>(</Symbol><Data Type>int</Data Type><Symbol>)</Symbol><Normal Text> </Normal Text><Symbol>(</Symbol><Java15>Math</Java15><Symbol>.</Symbol><Function>random</Function><Symbol>()</Symbol><Normal Text> </Normal Text><Symbol>*</Symbol><Normal Text> </Normal Text><Decimal>100</Decimal><Symbol>)</Symbol><Normal Text> </Normal Text><Symbol>));</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>    </Normal Text><Keyword>return</Keyword><Normal Text> retList</Normal Text><Symbol>;</Symbol><br/>
+<Normal Text>  </Normal Text><Symbol>}</Symbol><br/>
+<Jsp Scriptlet>%></Jsp Scriptlet><br/>

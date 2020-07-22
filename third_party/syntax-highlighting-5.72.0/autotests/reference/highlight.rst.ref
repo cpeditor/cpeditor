@@ -1,0 +1,70 @@
+<StandaloneHyperlink>http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html</StandaloneHyperlink><br/>
+<Normal></Normal><br/>
+<Normal>A heading</Normal><br/>
+<Normal>#########</Normal><br/>
+<Normal></Normal><br/>
+<Field>:field:</Field><Normal>     A field</Normal><br/>
+<Normal>    On another line, </Normal><Italic>*with inline*</Italic><Normal> </Normal><Bold>**markup**</Bold><Normal>.</Normal><br/>
+<Normal>:py:field:  A field with a colon (not handled correctly, currently)</Normal><br/>
+<Field>:and space:</Field><br/>
+<Normal></Normal><br/>
+<Comment>.. comment</Comment><br/>
+<Comment></Comment><br/>
+<Normal>text</Normal><br/>
+<Normal></Normal><br/>
+<Comment>.. multi-line</Comment><br/>
+<Code>   </Code><Comment> comment</Comment><br/>
+<Comment></Comment><br/>
+<Normal>text again</Normal><br/>
+<Normal></Normal><br/>
+<Comment>..</Comment><br/>
+<Code>   </Code><Comment> also multiline comment</Comment><br/>
+<Comment>..</Comment><br/>
+<Comment></Comment><br/>
+<Directive>.. directive:: </Directive><Normal>argument another</Normal><br/>
+<Normal>    </Normal><Field>:option:</Field><Normal> value</Normal><br/>
+<Normal></Normal><br/>
+<Normal>    Directive content.</Normal><br/>
+<Normal></Normal><br/>
+<Directive>.. py:function:: </Directive><Normal>a directive with a colon</Normal><br/>
+<Normal>    :py:option: an option with a colon (not handled correctly, currently)</Normal><br/>
+<Normal>    </Normal><Field>:option a:</Field><Normal> an option with a space</Normal><br/>
+<Normal></Normal><br/>
+<Code>.. code-block::</Code><br/>
+<Code></Code><br/>
+<Code>    A code block</Code><br/>
+<Code></Code><br/>
+<Code>.. code::</Code><br/>
+<Code></Code><br/>
+<Code>    But this is a code block, too.</Code><br/>
+<Code></Code><br/>
+<Normal>Inline </Normal><InlineLiteral>``code``</InlineLiteral><Normal>, </Normal><Role>:ref:</Role><InterpretedText>`interpreted role`</InterpretedText><Normal>, </Normal><InterpretedText>`trailing`</InterpretedText><Role>:ref:</Role><Normal>,</Normal><br/>
+<Role>:py:ref:</Role><InterpretedText>`role with a colon`</InterpretedText><Normal>. The </Normal><DefaultRole>`default interpreted role`</DefaultRole><Normal> and regular text</Normal><br/>
+<Normal>after.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>A </Normal><HyperlinkReference>reference_</HyperlinkReference><Normal>, </Normal><HyperlinkReference>`link <https://kde.org>`_</HyperlinkReference><Normal> Plain link: </Normal><StandaloneHyperlink>https://kde.org</StandaloneHyperlink><Normal>. A footnote</Normal><br/>
+<Normal>reference </Normal><FootnoteReference>[1]_</FootnoteReference><Normal>.</Normal><br/>
+<Normal></Normal><br/>
+<Footnote>.. [1] </Footnote><Normal>Footnote content</Normal><br/>
+<Normal></Normal><br/>
+<Normal>A text block.</Normal><br/>
+<Normal></Normal><br/>
+<Normal>    Block quote</Normal><br/>
+<Normal></Normal><br/>
+<Normal>    -- attribution</Normal><br/>
+<Normal></Normal><br/>
+<Normal>-   A list</Normal><br/>
+<Normal>-   Another item</Normal><br/>
+<Normal></Normal><br/>
+<Normal>    -   Sub item</Normal><br/>
+<Normal>    -   More</Normal><br/>
+<Normal></Normal><br/>
+<Normal>1.  Ordered</Normal><br/>
+<Normal>2.  list</Normal><br/>
+<Normal></Normal><br/>
+<Normal>Definition title</Normal><br/>
+<Normal>    Definition description</Normal><br/>
+<Normal>Definition title</Normal><br/>
+<Normal>    Definition description</Normal><br/>
+<Normal></Normal><br/>
+<Normal>(</Normal><InlineLiteral>``code between parentheses``</InlineLiteral><Normal>)</Normal><br/>

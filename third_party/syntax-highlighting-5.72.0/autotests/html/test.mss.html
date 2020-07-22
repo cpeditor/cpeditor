@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title>test.mss</title>
+<meta name="generator" content="KF5::SyntaxHighlighting (CartoCSS)"/>
+</head><body style="color:#1f1c1b"><pre>
+<span style="color:#898887;">/* kate: hl CartoCSS</span>
+<span style="color:#898887;">   This file contains some content coming from</span>
+<span style="color:#898887;">   https://github.com/gravitystorm/openstreetmap-carto</span>
+<span style="color:#898887;">   with CC0 license. This file is just for testing</span>
+<span style="color:#898887;">   katepart highlighting engine.</span>
+<span style="color:#898887;">   */</span>
+
+#world<span style="color:#644a9b;font-weight:bold;"> </span>{
+<span style="color:#898887;">// this syntax</span>
+<span style="color:#644a9b;font-weight:bold;">polygon-opacity</span>:<span style="font-weight:bold;"> </span><span style="color:#b08000;">50%</span>;
+
+<span style="color:#898887;">// is equivalent to</span>
+<span style="color:#644a9b;font-weight:bold;">polygon-opacity</span>:<span style="font-weight:bold;"> </span><span style="color:#b08000;">0.5</span>;
+}
+
+<span style="color:#006e28;">@admin-boundaries</span>:<span style="font-weight:bold;"> </span><span style="color:#aa5500;">#ac46ac</span>;
+
+<span style="color:#898887;">/* For performance reasons, the admin border layers are split into three groups</span>
+<span style="color:#898887;">for low, middle and high zoom levels.</span>
+<span style="color:#898887;">For each zoomlevel, all borders come from a single attachment, to handle</span>
+<span style="color:#898887;">overlapping borders correctly.</span>
+<span style="color:#898887;">*/</span>
+
+#admin-low-zoom[<span style="font-weight:bold;">zoom</span><span style="color:#0057ae;"> </span>&lt;<span style="font-weight:bold;"> </span><span style="color:#b08000;">11</span>]<span style="color:#644a9b;font-weight:bold;">,  </span><span style="color:#898887;">// test</span>
+#admin-mid-zoom[<span style="font-weight:bold;">zoom</span><span style="color:#0057ae;"> </span>&gt;=<span style="font-weight:bold;"> </span><span style="color:#b08000;">11</span>][<span style="font-weight:bold;">zoom</span><span style="color:#0057ae;"> </span>&lt;<span style="font-weight:bold;"> </span><span style="color:#b08000;">13</span>]<span style="color:#644a9b;font-weight:bold;">,</span>
+#admin-high-zoom[<span style="font-weight:bold;">zoom</span><span style="color:#0057ae;"> </span>&gt;=<span style="font-weight:bold;"> </span><span style="color:#b08000;">13</span>]<span style="color:#644a9b;font-weight:bold;"> </span>{
+<span style="color:#644a9b;font-weight:bold;">  </span>[<span style="color:#0057ae;">admin_level </span>=<span style="font-weight:bold;"> </span><span style="color:#bf0303;">'2'</span>]<span style="color:#644a9b;font-weight:bold;">,</span>
+<span style="color:#644a9b;font-weight:bold;">  </span>[<span style="color:#0057ae;">admin_level </span>=<span style="font-weight:bold;"> </span><span style="color:#bf0303;">'3'</span>]<span style="color:#644a9b;font-weight:bold;"> </span>{
+<span style="color:#644a9b;font-weight:bold;">    </span>[<span style="font-weight:bold;">zoom</span><span style="color:#0057ae;"> </span>&gt;=<span style="font-weight:bold;"> </span><span style="color:#b08000;">4</span>]<span style="color:#644a9b;font-weight:bold;"> </span>{
+<span style="color:#644a9b;font-weight:bold;">      </span>background/<span style="color:#644a9b;font-weight:bold;">line-color</span>:<span style="font-weight:bold;"> </span><span style="color:#aa5500;">white</span>;
+<span style="color:#644a9b;font-weight:bold;">      </span>background/<span style="color:#644a9b;font-weight:bold;">line-width</span>:<span style="font-weight:bold;"> </span><span style="color:#b08000;">0.6</span>;
+<span style="color:#644a9b;font-weight:bold;">      line-color</span>:<span style="font-weight:bold;"> </span><span style="color:#006e28;">@admin-boundaries</span>;
+<span style="color:#644a9b;font-weight:bold;">      line-width</span>:<span style="font-weight:bold;"> </span><span style="color:#b08000;">0.6</span>;
+<span style="color:#644a9b;font-weight:bold;">    </span>}
+<span style="color:#644a9b;font-weight:bold;">    </span>[<span style="font-weight:bold;">zoom</span><span style="color:#0057ae;"> </span>&gt;=<span style="font-weight:bold;"> </span><span style="color:#b08000;">7</span>]<span style="color:#644a9b;font-weight:bold;"> </span>{
+<span style="color:#644a9b;font-weight:bold;">      </span>background/<span style="color:#644a9b;font-weight:bold;">line-width</span>:<span style="font-weight:bold;"> </span><span style="color:#b08000;">2</span>;
+<span style="color:#644a9b;font-weight:bold;">      line-width</span>:<span style="font-weight:bold;"> </span><span style="color:#b08000;">2</span>;
+<span style="color:#644a9b;font-weight:bold;">    </span>}
+<span style="color:#644a9b;font-weight:bold;">    </span>[<span style="font-weight:bold;">zoom</span><span style="color:#0057ae;"> </span>&gt;=<span style="font-weight:bold;"> </span><span style="color:#b08000;">10</span>]<span style="color:#644a9b;font-weight:bold;"> </span>{
+<span style="color:#644a9b;font-weight:bold;">      </span>[<span style="color:#0057ae;">admin_level </span>=<span style="font-weight:bold;"> </span><span style="color:#bf0303;">'2'</span>]<span style="color:#644a9b;font-weight:bold;"> </span>{
+<span style="color:#644a9b;font-weight:bold;">        </span>background/<span style="color:#644a9b;font-weight:bold;">line-width</span>:<span style="font-weight:bold;"> </span><span style="color:#b08000;">6</span>;
+<span style="color:#644a9b;font-weight:bold;">        line-width</span>:<span style="font-weight:bold;"> </span><span style="color:#b08000;">6</span>;
+<span style="color:#644a9b;font-weight:bold;">      </span>}
+<span style="color:#644a9b;font-weight:bold;">      </span>[<span style="color:#0057ae;">admin_level </span>=<span style="font-weight:bold;"> </span><span style="color:#bf0303;">'3'</span>]<span style="color:#644a9b;font-weight:bold;"> </span>{
+<span style="color:#644a9b;font-weight:bold;">        </span>background/<span style="color:#644a9b;font-weight:bold;">line-width</span>:<span style="font-weight:bold;"> </span><span style="color:#b08000;">5</span>;
+<span style="color:#644a9b;font-weight:bold;">        line-width</span>:<span style="font-weight:bold;"> </span><span style="color:#b08000;">5</span>;
+<span style="color:#644a9b;font-weight:bold;">        line-dasharray</span>:<span style="font-weight:bold;"> </span><span style="color:#b08000;">4</span>,<span style="color:#b08000;">2</span>;
+<span style="color:#644a9b;font-weight:bold;">        line-clip</span>:<span style="font-weight:bold;"> false</span>;
+<span style="color:#644a9b;font-weight:bold;">      </span>}
+<span style="color:#644a9b;font-weight:bold;">    </span>}
+<span style="color:#644a9b;font-weight:bold;">  </span>}
+<span style="color:#644a9b;font-weight:bold;">  </span>[<span style="color:#0057ae;">admin_level </span>=<span style="font-weight:bold;"> </span><span style="color:#bf0303;">'4'</span>]<span style="color:#644a9b;font-weight:bold;"> </span>{
+<span style="color:#644a9b;font-weight:bold;">    </span>[<span style="font-weight:bold;">zoom</span><span style="color:#0057ae;"> </span>&gt;=<span style="font-weight:bold;"> </span><span style="color:#b08000;">4</span>]<span style="color:#644a9b;font-weight:bold;"> </span>{
+<span style="color:#644a9b;font-weight:bold;">      </span>background/<span style="color:#644a9b;font-weight:bold;">line-color</span>:<span style="font-weight:bold;"> </span><span style="color:#aa5500;">white</span>;
+<span style="color:#644a9b;font-weight:bold;">      </span>background/<span style="color:#644a9b;font-weight:bold;">line-width</span>:<span style="font-weight:bold;"> </span><span style="color:#b08000;">0.6</span>;
+<span style="color:#644a9b;font-weight:bold;">      line-color</span>:<span style="font-weight:bold;"> </span><span style="color:#006e28;">@admin-boundaries</span>;
+<span style="color:#644a9b;font-weight:bold;">      line-width</span>:<span style="font-weight:bold;"> </span><span style="color:#b08000;">0.6</span>;
+<span style="color:#644a9b;font-weight:bold;">      line-dasharray</span>:<span style="font-weight:bold;"> </span><span style="color:#b08000;">4</span>,<span style="color:#b08000;">3</span>;
+<span style="color:#644a9b;font-weight:bold;">      line-clip</span>:<span style="font-weight:bold;"> false</span>;
+<span style="color:#644a9b;font-weight:bold;">    </span>}
+<span style="color:#644a9b;font-weight:bold;">    </span>[<span style="font-weight:bold;">zoom</span><span style="color:#0057ae;"> </span>&gt;=<span style="font-weight:bold;"> </span><span style="color:#b08000;">7</span>]<span style="color:#644a9b;font-weight:bold;"> </span>{
+<span style="color:#644a9b;font-weight:bold;">      </span>background/<span style="color:#644a9b;font-weight:bold;">line-width</span>:<span style="font-weight:bold;"> </span><span style="color:#b08000;">1</span>;
+<span style="color:#644a9b;font-weight:bold;">      line-width</span>:<span style="font-weight:bold;"> </span><span style="color:#b08000;">1</span>;
+<span style="color:#644a9b;font-weight:bold;">    </span>}
+<span style="color:#644a9b;font-weight:bold;">    </span>[<span style="font-weight:bold;">zoom</span><span style="color:#0057ae;"> </span>&gt;=<span style="font-weight:bold;"> </span><span style="color:#b08000;">11</span>]<span style="color:#644a9b;font-weight:bold;"> </span>{
+<span style="color:#644a9b;font-weight:bold;">      </span>background/<span style="color:#644a9b;font-weight:bold;">line-width</span>:<span style="font-weight:bold;"> </span><span style="color:#b08000;">3</span>;
+<span style="color:#644a9b;font-weight:bold;">      line-width</span>:<span style="font-weight:bold;"> </span><span style="color:#b08000;">3</span>;
+<span style="color:#644a9b;font-weight:bold;">    </span>}
+<span style="color:#644a9b;font-weight:bold;">  </span>}
+<span style="color:#644a9b;font-weight:bold;">  </span><span style="color:#898887;">/*</span>
+<span style="color:#898887;">  The following code prevents admin boundaries from being rendered on top of</span>
+<span style="color:#898887;">  each other. Comp-op works on the entire attachment, not on the individual</span>
+<span style="color:#898887;">  border. Therefore, this code generates an attachment containing a set of</span>
+<span style="color:#898887;">  @admin-boundaries/white dashed lines (of which only the top one is visible),</span>
+<span style="color:#898887;">  and with `comp-op: darken` the white part is ignored, while the</span>
+<span style="color:#898887;">  @admin-boundaries colored part is rendered (as long as the background is not</span>
+<span style="color:#898887;">  darker than @admin-boundaries).</span>
+<span style="color:#898887;">  The SQL has `ORDER BY admin_level`, so the boundary with the lowest</span>
+<span style="color:#898887;">  admin_level is rendered on top, and therefore the only visible boundary.</span>
+<span style="color:#898887;">  */</span>
+<span style="color:#644a9b;font-weight:bold;">  opacity</span>:<span style="font-weight:bold;"> </span><span style="color:#b08000;">0.4</span>;
+<span style="color:#644a9b;font-weight:bold;">  comp-op</span>:<span style="font-weight:bold;"> darken</span>;
+}
+
+#admin-mid-zoom[<span style="font-weight:bold;">zoom</span><span style="color:#0057ae;"> </span>&gt;=<span style="font-weight:bold;"> </span><span style="color:#b08000;">11</span>][<span style="font-weight:bold;">zoom</span><span style="color:#0057ae;"> </span>&lt;<span style="font-weight:bold;"> </span><span style="color:#b08000;">13</span>]<span style="color:#644a9b;font-weight:bold;">,</span>
+#admin-high-zoom[<span style="font-weight:bold;">zoom</span><span style="color:#0057ae;"> </span>&gt;=<span style="font-weight:bold;"> </span><span style="color:#b08000;">13</span>]<span style="color:#644a9b;font-weight:bold;"> </span>{
+<span style="color:#644a9b;font-weight:bold;">  </span>[<span style="color:#0057ae;">admin_level </span>=<span style="font-weight:bold;"> </span><span style="color:#bf0303;">'5'</span>][<span style="font-weight:bold;">zoom</span><span style="color:#0057ae;"> </span>&gt;=<span style="font-weight:bold;"> </span><span style="color:#b08000;">11</span>]<span style="color:#644a9b;font-weight:bold;"> </span>{
+<span style="color:#644a9b;font-weight:bold;">    </span>background/<span style="color:#644a9b;font-weight:bold;">line-color</span>:<span style="font-weight:bold;"> </span><span style="color:#aa5500;">white</span>;
+<span style="color:#644a9b;font-weight:bold;">    </span>background/<span style="color:#644a9b;font-weight:bold;">line-width</span>:<span style="font-weight:bold;"> </span><span style="color:#b08000;">2</span>;
+<span style="color:#644a9b;font-weight:bold;">    line-color</span>:<span style="font-weight:bold;"> </span><span style="color:#006e28;">@admin-boundaries</span>;
+<span style="color:#644a9b;font-weight:bold;">    line-width</span>:<span style="font-weight:bold;"> </span><span style="color:#b08000;">2</span>;
+<span style="color:#644a9b;font-weight:bold;">    line-dasharray</span>:<span style="font-weight:bold;"> </span><span style="color:#b08000;">6</span>,<span style="color:#b08000;">3</span>,<span style="color:#b08000;">2</span>,<span style="color:#b08000;">3</span>,<span style="color:#b08000;">2</span>,<span style="color:#b08000;">3</span>;
+<span style="color:#644a9b;font-weight:bold;">    line-clip</span>:<span style="font-weight:bold;"> false</span>;
+<span style="color:#644a9b;font-weight:bold;">  </span>}
+<span style="color:#644a9b;font-weight:bold;">  </span>[<span style="color:#0057ae;">admin_level </span>=<span style="font-weight:bold;"> </span><span style="color:#bf0303;">'6'</span>][<span style="font-weight:bold;">zoom</span><span style="color:#0057ae;"> </span>&gt;=<span style="font-weight:bold;"> </span><span style="color:#b08000;">11</span>]<span style="color:#644a9b;font-weight:bold;"> </span>{
+<span style="color:#644a9b;font-weight:bold;">    </span>background/<span style="color:#644a9b;font-weight:bold;">line-color</span>:<span style="font-weight:bold;"> </span><span style="color:#aa5500;">white</span>;
+<span style="color:#644a9b;font-weight:bold;">    </span>background/<span style="color:#644a9b;font-weight:bold;">line-width</span>:<span style="font-weight:bold;"> </span><span style="color:#b08000;">2</span>;
+<span style="color:#644a9b;font-weight:bold;">    line-color</span>:<span style="font-weight:bold;"> </span><span style="color:#006e28;">@admin-boundaries</span>;
+<span style="color:#644a9b;font-weight:bold;">    line-width</span>:<span style="font-weight:bold;"> </span><span style="color:#b08000;">2</span>;
+<span style="color:#644a9b;font-weight:bold;">    line-dasharray</span>:<span style="font-weight:bold;"> </span><span style="color:#b08000;">6</span>,<span style="color:#b08000;">3</span>,<span style="color:#b08000;">2</span>,<span style="color:#b08000;">3</span>;
+<span style="color:#644a9b;font-weight:bold;">    line-clip</span>:<span style="font-weight:bold;"> false</span>;
+<span style="color:#644a9b;font-weight:bold;">  </span>}
+<span style="color:#644a9b;font-weight:bold;">  </span>[<span style="color:#0057ae;">admin_level </span>=<span style="font-weight:bold;"> </span><span style="color:#bf0303;">'7'</span>]<span style="color:#644a9b;font-weight:bold;">,</span>
+<span style="color:#644a9b;font-weight:bold;">  </span>[<span style="color:#0057ae;">admin_level </span>=<span style="font-weight:bold;"> </span><span style="color:#bf0303;">'8'</span>]<span style="color:#644a9b;font-weight:bold;"> </span>{
+<span style="color:#644a9b;font-weight:bold;">    </span>[<span style="font-weight:bold;">zoom</span><span style="color:#0057ae;"> </span>&gt;=<span style="font-weight:bold;"> </span><span style="color:#b08000;">12</span>]<span style="color:#644a9b;font-weight:bold;"> </span>{
+<span style="color:#644a9b;font-weight:bold;">      </span>background/<span style="color:#644a9b;font-weight:bold;">line-color</span>:<span style="font-weight:bold;"> </span><span style="color:#aa5500;">white</span>;
+<span style="color:#644a9b;font-weight:bold;">      </span>background/<span style="color:#644a9b;font-weight:bold;">line-width</span>:<span style="font-weight:bold;"> </span><span style="color:#b08000;">1.5</span>;
+<span style="color:#644a9b;font-weight:bold;">      line-color</span>:<span style="font-weight:bold;"> </span><span style="color:#006e28;">@admin-boundaries</span>;
+<span style="color:#644a9b;font-weight:bold;">      line-width</span>:<span style="font-weight:bold;"> </span><span style="color:#b08000;">1.5</span>;
+<span style="color:#644a9b;font-weight:bold;">      line-dasharray</span>:<span style="font-weight:bold;"> </span><span style="color:#b08000;">5</span>,<span style="color:#b08000;">2</span>;
+<span style="color:#644a9b;font-weight:bold;">      line-clip</span>:<span style="font-weight:bold;"> false</span>;
+<span style="color:#644a9b;font-weight:bold;">    </span>}
+<span style="color:#644a9b;font-weight:bold;">  </span>}
+<span style="color:#644a9b;font-weight:bold;">  opacity</span>:<span style="font-weight:bold;"> </span><span style="color:#b08000;">0.5</span>;
+<span style="color:#644a9b;font-weight:bold;">  comp-op</span>:<span style="font-weight:bold;"> darken</span>;
+}
+
+#admin-high-zoom[<span style="font-weight:bold;">zoom</span><span style="color:#0057ae;"> </span>&gt;=<span style="font-weight:bold;"> </span><span style="color:#b08000;">13</span>]<span style="color:#644a9b;font-weight:bold;"> </span>{
+<span style="color:#644a9b;font-weight:bold;">  </span>[<span style="color:#0057ae;">admin_level </span>=<span style="font-weight:bold;"> </span><span style="color:#bf0303;">'9'</span>]<span style="color:#644a9b;font-weight:bold;">,</span>
+<span style="color:#644a9b;font-weight:bold;">  </span>[<span style="color:#0057ae;">admin_level </span>=<span style="font-weight:bold;"> </span><span style="color:#bf0303;">'10'</span>]<span style="color:#644a9b;font-weight:bold;"> </span>{
+<span style="color:#644a9b;font-weight:bold;">    </span>[<span style="font-weight:bold;">zoom</span><span style="color:#0057ae;"> </span>&gt;=<span style="font-weight:bold;"> </span><span style="color:#b08000;">13</span>]<span style="color:#644a9b;font-weight:bold;"> </span>{
+<span style="color:#644a9b;font-weight:bold;">      </span>background/<span style="color:#644a9b;font-weight:bold;">line-color</span>:<span style="font-weight:bold;"> </span><span style="color:#aa5500;">white</span>;
+<span style="color:#644a9b;font-weight:bold;">      </span>background/<span style="color:#644a9b;font-weight:bold;">line-width</span>:<span style="font-weight:bold;"> </span><span style="color:#b08000;">2</span>;
+<span style="color:#644a9b;font-weight:bold;">      line-color</span>:<span style="font-weight:bold;"> </span><span style="color:#006e28;">@admin-boundaries</span>;
+<span style="color:#644a9b;font-weight:bold;">      line-width</span>:<span style="font-weight:bold;"> </span><span style="color:#b08000;">2</span>;
+<span style="color:#644a9b;font-weight:bold;">      line-dasharray</span>:<span style="font-weight:bold;"> </span><span style="color:#b08000;">2</span>,<span style="color:#b08000;">3</span>;
+<span style="color:#644a9b;font-weight:bold;">      line-clip</span>:<span style="font-weight:bold;"> false</span>;
+<span style="color:#644a9b;font-weight:bold;">    </span>}
+<span style="color:#644a9b;font-weight:bold;">  </span>}
+<span style="color:#644a9b;font-weight:bold;">  opacity</span>:<span style="font-weight:bold;"> </span><span style="color:#b08000;">0.5</span>;
+<span style="color:#644a9b;font-weight:bold;">  comp-op</span>:<span style="font-weight:bold;"> darken</span>;
+}
+
+
+
+#nature-reserve-boundaries<span style="color:#644a9b;font-weight:bold;"> </span>{
+<span style="color:#644a9b;font-weight:bold;">  </span>[<span style="color:#0057ae;">way_pixels </span>&gt;<span style="font-weight:bold;"> </span><span style="color:#b08000;">100</span>][<span style="font-weight:bold;">zoom</span><span style="color:#0057ae;"> </span>&gt;=<span style="font-weight:bold;"> </span><span style="color:#b08000;">7</span>]<span style="color:#644a9b;font-weight:bold;"> </span>{
+<span style="color:#644a9b;font-weight:bold;">    </span>[<span style="font-weight:bold;">zoom</span><span style="color:#0057ae;"> </span>&lt;<span style="font-weight:bold;"> </span><span style="color:#b08000;">10</span>]<span style="color:#644a9b;font-weight:bold;"> </span>{
+<span style="color:#644a9b;font-weight:bold;">      </span>::fill<span style="color:#644a9b;font-weight:bold;"> </span>{
+<span style="color:#644a9b;font-weight:bold;">        opacity</span>:<span style="font-weight:bold;"> </span><span style="color:#b08000;">0.05</span>;
+<span style="color:#644a9b;font-weight:bold;">        polygon-fill</span>:<span style="font-weight:bold;"> </span><span style="color:#aa5500;">green</span>;
+<span style="color:#644a9b;font-weight:bold;">      </span>}
+<span style="color:#644a9b;font-weight:bold;">    </span>}
+<span style="color:#644a9b;font-weight:bold;">    </span>a/<span style="color:#644a9b;font-weight:bold;">line-width</span>:<span style="font-weight:bold;"> </span><span style="color:#b08000;">1</span>;
+<span style="color:#644a9b;font-weight:bold;">    </span>a/<span style="color:#644a9b;font-weight:bold;">line-offset</span>:<span style="font-weight:bold;"> </span><span style="color:#b08000;">-0.5</span>;
+<span style="color:#644a9b;font-weight:bold;">    </span>a/<span style="color:#644a9b;font-weight:bold;">line-color</span>:<span style="font-weight:bold;"> </span><span style="color:#aa5500;">green</span>;
+<span style="color:#644a9b;font-weight:bold;">    </span>a/<span style="color:#644a9b;font-weight:bold;">line-opacity</span>:<span style="font-weight:bold;"> </span><span style="color:#b08000;">0.15</span>;
+<span style="color:#644a9b;font-weight:bold;">    </span>a/<span style="color:#644a9b;font-weight:bold;">line-join</span>:<span style="font-weight:bold;"> round</span>;
+<span style="color:#644a9b;font-weight:bold;">    </span>a/<span style="color:#644a9b;font-weight:bold;">line-cap</span>:<span style="font-weight:bold;"> round</span>;
+<span style="color:#644a9b;font-weight:bold;">    </span>b/<span style="color:#644a9b;font-weight:bold;">line-width</span>:<span style="font-weight:bold;"> </span><span style="color:#b08000;">2</span>;
+<span style="color:#644a9b;font-weight:bold;">    </span>b/<span style="color:#644a9b;font-weight:bold;">line-offset</span>:<span style="font-weight:bold;"> </span><span style="color:#b08000;">-1</span>;
+<span style="color:#644a9b;font-weight:bold;">    </span>b/<span style="color:#644a9b;font-weight:bold;">line-color</span>:<span style="font-weight:bold;"> </span><span style="color:#aa5500;">green</span>;
+<span style="color:#644a9b;font-weight:bold;">    </span>b/<span style="color:#644a9b;font-weight:bold;">line-opacity</span>:<span style="font-weight:bold;"> </span><span style="color:#b08000;">0.15</span>;
+<span style="color:#644a9b;font-weight:bold;">    </span>b/<span style="color:#644a9b;font-weight:bold;">line-join</span>:<span style="font-weight:bold;"> round</span>;
+<span style="color:#644a9b;font-weight:bold;">    </span>b/<span style="color:#644a9b;font-weight:bold;">line-cap</span>:<span style="font-weight:bold;"> round</span>;
+<span style="color:#644a9b;font-weight:bold;">    </span>[<span style="font-weight:bold;">zoom</span><span style="color:#0057ae;"> </span>&gt;=<span style="font-weight:bold;"> </span><span style="color:#b08000;">10</span>]<span style="color:#644a9b;font-weight:bold;"> </span>{
+<span style="color:#644a9b;font-weight:bold;">      </span>a/<span style="color:#644a9b;font-weight:bold;">line-width</span>:<span style="font-weight:bold;"> </span><span style="color:#b08000;">2</span>;
+<span style="color:#644a9b;font-weight:bold;">      </span>a/<span style="color:#644a9b;font-weight:bold;">line-offset</span>:<span style="font-weight:bold;"> </span><span style="color:#b08000;">-1</span>;
+<span style="color:#644a9b;font-weight:bold;">      </span>b/<span style="color:#644a9b;font-weight:bold;">line-width</span>:<span style="font-weight:bold;"> </span><span style="color:#b08000;">4</span>;
+<span style="color:#644a9b;font-weight:bold;">      </span>b/<span style="color:#644a9b;font-weight:bold;">line-offset</span>:<span style="font-weight:bold;"> </span><span style="color:#b08000;">-2</span>;
+<span style="color:#644a9b;font-weight:bold;">    </span>}
+<span style="color:#644a9b;font-weight:bold;">    </span>[<span style="font-weight:bold;">zoom</span><span style="color:#0057ae;"> </span>&gt;=<span style="font-weight:bold;"> </span><span style="color:#b08000;">14</span>]<span style="color:#644a9b;font-weight:bold;"> </span>{
+<span style="color:#644a9b;font-weight:bold;">      </span>b/<span style="color:#644a9b;font-weight:bold;">line-width</span>:<span style="font-weight:bold;"> </span><span style="color:#b08000;">6</span>;
+<span style="color:#644a9b;font-weight:bold;">      </span>b/<span style="color:#644a9b;font-weight:bold;">line-offset</span>:<span style="font-weight:bold;"> </span><span style="color:#b08000;">-3</span>;
+<span style="color:#644a9b;font-weight:bold;">    </span>}
+<span style="color:#644a9b;font-weight:bold;">  </span>}
+}
+
+#building-text<span style="color:#644a9b;font-weight:bold;"> </span>{
+[<span style="font-weight:bold;">zoom</span><span style="color:#0057ae;"> </span>&gt;=<span style="font-weight:bold;"> </span><span style="color:#b08000;">14</span>][<span style="color:#0057ae;">way_pixels </span>&gt;<span style="font-weight:bold;"> </span><span style="color:#b08000;">3000</span>]<span style="color:#644a9b;font-weight:bold;">,</span>
+[<span style="font-weight:bold;">zoom</span><span style="color:#0057ae;"> </span>&gt;=<span style="font-weight:bold;"> </span><span style="color:#b08000;">17</span>]<span style="color:#644a9b;font-weight:bold;"> </span>{
+<span style="color:#644a9b;font-weight:bold;">text-name</span>:<span style="font-weight:bold;"> </span><span style="color:#ff5500;">&quot;</span><span style="color:#3daee9;">[name]</span><span style="color:#ff5500;">&quot;</span>;
+<span style="color:#644a9b;font-weight:bold;">text-size</span>:<span style="font-weight:bold;"> </span><span style="color:#b08000;">11</span>;
+<span style="color:#644a9b;font-weight:bold;">text-fill</span>:<span style="font-weight:bold;"> </span><span style="color:#aa5500;">#444</span>;
+<span style="color:#644a9b;font-weight:bold;">text-face-name</span>:<span style="font-weight:bold;"> </span><span style="color:#006e28;">@book-fonts</span>;
+<span style="color:#644a9b;font-weight:bold;">text-halo-radius</span>:<span style="font-weight:bold;"> </span><span style="color:#b08000;">1</span>;
+<span style="color:#644a9b;font-weight:bold;">text-wrap-width</span>:<span style="font-weight:bold;"> </span><span style="color:#b08000;">20</span>;
+<span style="color:#644a9b;font-weight:bold;">text-halo-fill</span>:<span style="font-weight:bold;"> rgba</span>(<span style="color:#b08000;">255</span>,<span style="color:#b08000;">255</span>,<span style="color:#b08000;">255</span>,<span style="color:#b08000;">0.5</span>);
+<span style="color:#644a9b;font-weight:bold;">text-placement</span>:<span style="font-weight:bold;"> interior</span>;
+}
+}
+
+<span style="color:#006e28;">@marina-text</span>:<span style="font-weight:bold;"> </span><span style="color:#aa5500;">#576ddf</span>;<span style="color:#644a9b;font-weight:bold;"> </span><span style="color:#898887;">// also swimming_pool</span>
+<span style="color:#006e28;">@landcover-face-name</span>:<span style="font-weight:bold;"> </span><span style="color:#006e28;">@oblique-fonts</span>;
+<span style="color:#006e28;">@standard-wrap-width</span>:<span style="font-weight:bold;"> </span><span style="color:#b08000;">30</span>;
+
+.points<span style="color:#644a9b;font-weight:bold;"> </span>{
+<span style="color:#644a9b;font-weight:bold;">  </span>[<span style="color:#0057ae;">feature </span>=<span style="font-weight:bold;"> </span><span style="color:#bf0303;">'tourism_alpine_hut'</span>][<span style="font-weight:bold;">zoom</span><span style="color:#0057ae;"> </span>&gt;=<span style="font-weight:bold;"> </span><span style="color:#b08000;">13</span>]<span style="color:#644a9b;font-weight:bold;"> </span>{
+<span style="color:#644a9b;font-weight:bold;">    point-file</span>:<span style="font-weight:bold;"> url</span>(<span style="color:#ff5500;">'symbols/alpinehut.p.16.png'</span>);
+<span style="color:#644a9b;font-weight:bold;">    point-placement</span>:<span style="font-weight:bold;"> interior</span>;
+<span style="color:#644a9b;font-weight:bold;">  </span>}
+<span style="color:#644a9b;font-weight:bold;">  </span>}
+
+<span style="color:#644a9b;font-weight:bold;">  </span>[<span style="color:#0057ae;">feature </span>=<span style="font-weight:bold;"> </span><span style="color:#bf0303;">'highway_bus_stop'</span>]<span style="color:#644a9b;font-weight:bold;"> </span>{
+<span style="color:#644a9b;font-weight:bold;">    </span>[<span style="font-weight:bold;">zoom</span><span style="color:#0057ae;"> </span>&gt;=<span style="font-weight:bold;"> </span><span style="color:#b08000;">16</span>]<span style="color:#644a9b;font-weight:bold;"> </span>{
+<span style="color:#644a9b;font-weight:bold;">      marker-file</span>:<span style="font-weight:bold;"> url</span>(<span style="color:#ff5500;">'symbols/square.svg'</span>);
+<span style="color:#644a9b;font-weight:bold;">      marker-fill</span>:<span style="font-weight:bold;"> </span><span style="color:#006e28;">@transportation-icon</span>;
+<span style="color:#644a9b;font-weight:bold;">      marker-placement</span>:<span style="font-weight:bold;"> interior</span>;
+<span style="color:#644a9b;font-weight:bold;">      marker-width</span>:<span style="font-weight:bold;"> </span><span style="color:#b08000;">6</span>;
+<span style="color:#644a9b;font-weight:bold;">    </span>}
+<span style="color:#644a9b;font-weight:bold;">    </span>[<span style="font-weight:bold;">zoom</span><span style="color:#0057ae;"> </span>&gt;=<span style="font-weight:bold;"> </span><span style="color:#b08000;">17</span>]<span style="color:#644a9b;font-weight:bold;"> </span>{
+<span style="color:#644a9b;font-weight:bold;">      marker-file</span>:<span style="font-weight:bold;"> url</span>(<span style="color:#ff5500;">'symbols/bus_stop.p.12.png'</span>);
+<span style="color:#644a9b;font-weight:bold;">      marker-width</span>:<span style="font-weight:bold;"> </span><span style="color:#b08000;">12</span>;
+<span style="color:#644a9b;font-weight:bold;">    </span>}
+<span style="color:#644a9b;font-weight:bold;">  </span>}
+
+[<span style="color:#0057ae;">feature </span>=<span style="font-weight:bold;"> </span><span style="color:#bf0303;">'highway_primary'</span>]<span style="color:#644a9b;font-weight:bold;"> </span>{
+[<span style="font-weight:bold;">zoom</span><span style="color:#0057ae;"> </span>&gt;=<span style="font-weight:bold;"> </span><span style="color:#b08000;">7</span>][<span style="font-weight:bold;">zoom</span><span style="color:#0057ae;"> </span>&lt;<span style="font-weight:bold;"> </span><span style="color:#b08000;">12</span>]<span style="color:#644a9b;font-weight:bold;"> </span>{
+<span style="color:#644a9b;font-weight:bold;">line-width</span>:<span style="font-weight:bold;"> </span><span style="color:#b08000;">0.5</span>;
+<span style="color:#644a9b;font-weight:bold;">line-color</span>:<span style="font-weight:bold;"> </span><span style="color:#006e28;">@primary-fill</span>;
+[<span style="font-weight:bold;">zoom</span><span style="color:#0057ae;"> </span>&gt;=<span style="font-weight:bold;"> </span><span style="color:#b08000;">9</span>]<span style="color:#644a9b;font-weight:bold;"> </span>{<span style="color:#644a9b;font-weight:bold;"> line-width</span>:<span style="font-weight:bold;"> </span><span style="color:#b08000;">1.2</span>;<span style="color:#644a9b;font-weight:bold;"> </span>}
+[<span style="font-weight:bold;">zoom</span><span style="color:#0057ae;"> </span>&gt;=<span style="font-weight:bold;"> </span><span style="color:#b08000;">10</span>]<span style="color:#644a9b;font-weight:bold;"> </span>{<span style="color:#644a9b;font-weight:bold;"> line-width</span>:<span style="font-weight:bold;"> </span><span style="color:#b08000;">2</span>;<span style="color:#644a9b;font-weight:bold;"> </span>}
+[<span style="font-weight:bold;">zoom</span><span style="color:#0057ae;"> </span>&gt;=<span style="font-weight:bold;"> </span><span style="color:#b08000;">11</span>]<span style="color:#644a9b;font-weight:bold;"> </span>{<span style="color:#644a9b;font-weight:bold;"> line-width</span>:<span style="font-weight:bold;"> </span><span style="color:#b08000;">.5</span>;<span style="color:#644a9b;font-weight:bold;"> </span>}
+}
+}
+
+#world<span style="color:#644a9b;font-weight:bold;"> </span>{
+<span style="color:#644a9b;font-weight:bold;">  </span><span style="color:#898887;">// this syntax</span>
+<span style="color:#644a9b;font-weight:bold;">  polygon-opacity</span>:<span style="font-weight:bold;"> </span><span style="color:#b08000;">50%</span>;<span style="color:#644a9b;font-weight:bold;"> </span><span style="color:#898887;">// the parameter “polygon-opacity” gets the value 0.5 (expressed in %)</span>
+<span style="color:#644a9b;font-weight:bold;">  </span><span style="color:#898887;">// is equivalent to</span>
+<span style="color:#644a9b;font-weight:bold;">  polygon-opacity</span>:<span style="font-weight:bold;"> </span><span style="color:#b08000;">0.5</span>;
+}
+
+<span style="color:#898887;">/*</span>
+<span style="color:#898887;">Variables behave similar to C macros</span>
+<span style="color:#898887;">*/</span>
+<span style="color:#006e28;">@lsdjkf</span>:<span style="font-weight:bold;"> </span><span style="color:#006e28;">@sdlfkj</span>;<span style="color:#644a9b;font-weight:bold;"> </span><span style="color:#898887;">// this variable gets defined by the value of another variable</span>
+<span style="color:#006e28;">@admin-boundaries</span>:<span style="font-weight:bold;"> </span><span style="color:#aa5500;">#ac46ac</span>;<span style="color:#644a9b;font-weight:bold;"> </span><span style="color:#898887;">// this variable gets defined by a color value</span>
+<span style="color:#006e28;">@way_pixels</span>:<span style="font-weight:bold;"> </span><span style="color:#ff5500;">&quot;(</span><span style="color:#3daee9;">[way_area]</span><span style="color:#ff5500;">*pow(4,</span><span style="color:#924c9d;">@zoom</span><span style="color:#ff5500;">)/24505740000)&quot;</span>;<span style="color:#644a9b;font-weight:bold;"> </span><span style="color:#898887;">// A rather complex variable. [way_area] marks a data field. @zoom is a special runtime value (inspite of the @ it has nothing to do with ordinary variables)</span>
+
+<span style="color:#898887;">/* This is</span>
+<span style="color:#898887;">a multiline comment.</span>
+<span style="color:#898887;">*/</span>
+
+<span style="color:#898887;">// A single line comment</span>
+#admin-low-zoom[<span style="font-weight:bold;">zoom</span><span style="color:#0057ae;"> </span>&lt;<span style="font-weight:bold;"> </span><span style="color:#b08000;">11</span>]<span style="color:#644a9b;font-weight:bold;">,  </span><span style="color:#898887;">// A single line comment</span>
+#admin-mid-zoom[<span style="font-weight:bold;">zoom</span><span style="color:#0057ae;"> </span>&gt;=<span style="font-weight:bold;"> </span><span style="color:#b08000;">11</span>][<span style="font-weight:bold;">zoom</span><span style="color:#0057ae;"> </span>&lt;<span style="font-weight:bold;"> </span><span style="color:#b08000;">13</span>]<span style="color:#644a9b;font-weight:bold;"> </span>{
+<span style="color:#644a9b;font-weight:bold;">  </span>[<span style="color:#0057ae;">admin_level </span>=<span style="font-weight:bold;"> </span><span style="color:#bf0303;">'2'</span>]<span style="color:#644a9b;font-weight:bold;">, </span><span style="color:#898887;">// Within filters, data fields like “admin_level” are referended without extra [] brackets.</span>
+<span style="color:#644a9b;font-weight:bold;">  </span>[<span style="color:#0057ae;">admin_level </span>=<span style="font-weight:bold;"> </span><span style="color:#bf0303;">'3'</span>]<span style="color:#644a9b;font-weight:bold;"> </span>{<span style="color:#644a9b;font-weight:bold;"> </span><span style="color:#898887;">// These data fields are rendered by default in dark blue, while the data field within expression strings are rendered by default in light blue.</span>
+<span style="color:#644a9b;font-weight:bold;">    </span>[<span style="font-weight:bold;">zoom</span><span style="color:#0057ae;"> </span>&gt;=<span style="font-weight:bold;"> </span><span style="color:#b08000;">4</span>]<span style="color:#644a9b;font-weight:bold;"> </span>{
+<span style="color:#644a9b;font-weight:bold;">      </span>background/<span style="color:#644a9b;font-weight:bold;">line-color</span>:<span style="font-weight:bold;"> </span><span style="color:#aa5500;">white</span>;<span style="color:#644a9b;font-weight:bold;"> </span><span style="color:#898887;">// symbolizer named “background”</span>
+<span style="color:#644a9b;font-weight:bold;">      </span>background/<span style="color:#644a9b;font-weight:bold;">line-width</span>:<span style="font-weight:bold;"> </span><span style="color:#b08000;">0.6</span>;<span style="color:#644a9b;font-weight:bold;"> </span><span style="color:#898887;">// symbolizer named “background”</span>
+<span style="color:#644a9b;font-weight:bold;">      line-color</span>:<span style="font-weight:bold;"> </span><span style="color:#006e28;">@admin-boundaries</span>;<span style="color:#644a9b;font-weight:bold;"> </span><span style="color:#898887;">// default symbolizer (without name)</span>
+<span style="color:#644a9b;font-weight:bold;">      name</span>:<span style="font-weight:bold;"> </span><span style="color:#0057ae;">[test]</span>;<span style="color:#644a9b;font-weight:bold;"> </span><span style="color:#898887;">// simplified reference to the data field “test”</span>
+<span style="color:#644a9b;font-weight:bold;">      name</span>:<span style="font-weight:bold;"> </span><span style="color:#ff5500;">&quot;</span><span style="color:#3daee9;">[test]</span><span style="color:#ff5500;">&quot;</span>;<span style="color:#644a9b;font-weight:bold;"> </span><span style="color:#898887;">// another reference to the data field “test”, this time within an expression string (by default orange)</span>
+<span style="color:#644a9b;font-weight:bold;">      name</span>:<span style="font-weight:bold;"> </span><span style="color:#ff5500;">&quot;(</span><span style="color:#3daee9;">[way_area]</span><span style="color:#ff5500;">*pow(4,</span><span style="color:#924c9d;">@zoom</span><span style="color:#ff5500;">)/24505740000)&quot;</span>;<span style="color:#644a9b;font-weight:bold;"> </span><span style="color:#898887;">// a rather complex expression string that will do some math</span>
+<span style="color:#644a9b;font-weight:bold;">      name</span>:<span style="font-weight:bold;"> </span><span style="color:#ff5500;">&quot;</span><span style="color:#bf0303;">'Value: '</span><span style="color:#3daee9;">[test]</span><span style="color:#ff5500;">&quot;</span>;<span style="color:#644a9b;font-weight:bold;"> </span><span style="color:#898887;">// A verbatim string (by default red) as part of an expression string</span>
+<span style="color:#644a9b;font-weight:bold;">      name</span>:<span style="font-weight:bold;"> </span><span style="color:#ff5500;">'</span><span style="color:#bf0303;">&quot;Value: &quot;</span><span style="color:#3daee9;">[test]</span><span style="color:#ff5500;">'</span>;<span style="color:#644a9b;font-weight:bold;"> </span><span style="color:#898887;">// &quot; and ' are interchangable. The outer is always the expression string and the inner the verbatim string.</span>
+<span style="color:#644a9b;font-weight:bold;">    </span>}
+<span style="color:#644a9b;font-weight:bold;">  </span>}
+<span style="color:#644a9b;font-weight:bold;">  </span>[<span style="color:#0057ae;">admin_level </span>=<span style="font-weight:bold;"> </span><span style="color:#bf0303;">'4'</span>]<span style="color:#644a9b;font-weight:bold;"> </span>{<span style="color:#644a9b;font-weight:bold;"> </span><span style="color:#898887;">// The string '4' is red because at this position it will be interpreted as a verbatim string, not as an expression string.</span>
+<span style="color:#644a9b;font-weight:bold;">    </span>[<span style="font-weight:bold;">zoom</span><span style="color:#0057ae;"> </span>&gt;=<span style="font-weight:bold;"> </span><span style="color:#b08000;">4</span>]<span style="color:#644a9b;font-weight:bold;"> </span>{
+<span style="color:#644a9b;font-weight:bold;">      line-dasharray</span>:<span style="font-weight:bold;"> </span><span style="color:#b08000;">4</span>,<span style="color:#b08000;">3</span>;<span style="color:#644a9b;font-weight:bold;"> </span><span style="color:#898887;">// parameter “line-dasharray” gets as value a list of two integers</span>
+<span style="color:#644a9b;font-weight:bold;">      line-clip</span>:<span style="font-weight:bold;"> false</span>;<span style="color:#644a9b;font-weight:bold;">  </span><span style="color:#898887;">// parameter “line-clip” gets as value a boolean</span>
+<span style="color:#644a9b;font-weight:bold;">    </span>}
+<span style="color:#644a9b;font-weight:bold;">  </span>}
+<span style="color:#644a9b;font-weight:bold;">  comp-op</span>:<span style="font-weight:bold;"> darken</span>;<span style="color:#644a9b;font-weight:bold;"> </span><span style="color:#898887;">// parameter “comp-op” gets as value “darken”.</span>
+}
+
+.nature-reserve-boundaries<span style="color:#644a9b;font-weight:bold;"> </span>{<span style="color:#644a9b;font-weight:bold;"> </span><span style="color:#898887;">// .nature-reserve-boudaries references a class, which is similar to a layer like #building-text, so both are rendered the same way</span>
+<span style="color:#644a9b;font-weight:bold;">  </span>[<span style="color:#0057ae;">way_pixels </span>&gt;<span style="font-weight:bold;"> </span><span style="color:#b08000;">100</span>][<span style="font-weight:bold;">zoom</span><span style="color:#0057ae;"> </span>&gt;=<span style="font-weight:bold;"> </span><span style="color:#b08000;">7</span>]<span style="color:#644a9b;font-weight:bold;"> </span>{<span style="color:#644a9b;font-weight:bold;"> </span><span style="color:#898887;">// Here zoom is a keyword with results in a special filter. However, all other values are interpreted as data fields.</span>
+<span style="color:#644a9b;font-weight:bold;">    </span>[<span style="font-weight:bold;">zoom</span><span style="color:#0057ae;"> </span>&lt;<span style="font-weight:bold;"> </span><span style="color:#b08000;">10</span>]<span style="color:#644a9b;font-weight:bold;"> </span>{
+<span style="color:#644a9b;font-weight:bold;">      </span>::fill<span style="color:#644a9b;font-weight:bold;"> </span>{<span style="color:#644a9b;font-weight:bold;"> </span><span style="color:#898887;">// The :: syntax defined “attachments” (a sort of sub-layer within normal layers). So “fill” is rendered by default in the same style like layer names and class names (but this can be customized).</span>
+<span style="color:#644a9b;font-weight:bold;">        opacity</span>:<span style="font-weight:bold;"> </span><span style="color:#b08000;">0.05</span>;
+<span style="color:#644a9b;font-weight:bold;">        </span><span style="color:#898887;">// various styles to define colors (all except the color function are rendered the same way):</span>
+<span style="color:#644a9b;font-weight:bold;">        polygon-fill</span>:<span style="font-weight:bold;"> </span><span style="color:#aa5500;">white</span>;
+<span style="color:#644a9b;font-weight:bold;">        polygon-fill</span>:<span style="font-weight:bold;"> </span><span style="color:#aa5500;">#ffffff</span>;
+<span style="color:#644a9b;font-weight:bold;">        polygon-fill</span>:<span style="font-weight:bold;"> </span><span style="color:#aa5500;">#fff</span>;
+<span style="color:#644a9b;font-weight:bold;">        polygon-fill</span>:<span style="font-weight:bold;"> rgba</span>(<span style="color:#b08000;">255</span>,<span style="color:#b08000;">255</span>,<span style="color:#b08000;">255</span>,<span style="color:#b08000;">1</span>);<span style="color:#644a9b;font-weight:bold;"> </span><span style="color:#898887;">// define a color by a speciel function</span>
+<span style="color:#644a9b;font-weight:bold;">        polygon-fill</span>:<span style="font-weight:bold;"> #ffff</span>;<span style="color:#644a9b;font-weight:bold;"> </span><span style="color:#898887;">// invalid color value</span>
+<span style="color:#644a9b;font-weight:bold;">        text-placement</span>:<span style="font-weight:bold;"> interior</span>;<span style="color:#644a9b;font-weight:bold;"> </span><span style="color:#898887;">// all unknown values are hightlighted as named values.</span>
+<span style="color:#644a9b;font-weight:bold;">      </span>}
+<span style="color:#644a9b;font-weight:bold;">    </span>}
+<span style="color:#644a9b;font-weight:bold;">  </span>}
+}
+</pre></body></html>

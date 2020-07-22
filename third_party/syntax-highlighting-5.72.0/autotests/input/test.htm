@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <title>This is a title</title>
+    <style>
+    /* comment */
+    #xyz { color: red; }
+    h1 { font: "Comic Sans"; }
+    </style>
+  </head>
+  <body class="ui main">
+    <p *ngFor="let name of names">Hello, {{ name }}!</p>
+  </body>
+
+  <!-- JavaScript code -->
+  <script>
+    document.body.appendChild(document.createTextNode('Hello World!')); // comment
+  </script>
+
+  <!-- TypeScript code -->
+  <script type="text/typescript">
+    class Student {
+        fullName: string;
+        constructor(public firstName: string, public middleInitial: string, public lastName: string) {
+            this.fullName = firstName + " " + middleInitial + " " + lastName;
+        }
+    }
+    let a: null = null;
+    let b: number = 12___3;
+  </script>
+
+  <!-- JSX code -->
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  <script type="text/babel">
+    ReactDOM.render(
+      <h1>Hello, world!</h1>,
+      document.getElementById('root')
+    );
+    function Story(props) {
+      const SpecificStory = components[props.storyType];
+      return <SpecificStory story={ props.story } attr2="&ref;" attr3="Hello\n" />;
+    }
+  </script>
+
+  <!-- Mustache/Handlebars -->
+  <script type="x-tmpl-mustache">
+    {{#movie}}
+        <div>
+            <h1>{{title}}</h1>
+            <img src="{{poster}}" alt="{{title}}"/>
+        </div>
+        <div>
+            Rating - {{ratings.critics_rating}}
+        </div>
+    {{/movie}}
+    {{^movie}}
+        <div>
+            Movie Does Not Exist :(
+        </div>
+    {{/movie}}
+    {{! comment }}
+  </script>
+
+  <!-- HTML template -->
+  <script type="text/html">
+    <li><a href="link">Hello</a></li>
+  </script>
+
+  <!-- Close the block correctly after "?" in the JavaScript highlighter -->
+  <script>
+    ?
+  </script>
+
+</html>

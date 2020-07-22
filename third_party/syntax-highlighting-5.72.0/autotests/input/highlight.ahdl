@@ -1,0 +1,43 @@
+-- Test file for kate's syntax highlighting
+Title "Test file";
+
+-- BEGIN region (a region marker region) :)
+
+% multiline comment
+goes on here %
+
+-- END
+
+FUNCTION FCT (Clk, Key) RETURNS (pulse);
+
+SUBDESIGN CDCLOCK2
+(
+in           : INPUT;  -- go in
+out[3..0]    : OUTPUT; -- come out
+)
+
+VARIABLE
+start        : soft;
+usec[3..0]   : node;
+
+BEGIN
+
+in = FCT(clock, some_key);  -- senseless code
+
+-- comment
+blubb = (blobb[] == H"3ff"); 
+
+IF in THEN asdf
+-- folde me
+END IF; 
+
+TABLE
+-- missing code
+END TABLE
+
+
+END;
+
+-- hex, octal, binary
+H"0" => B"1000000";
+O"01234567";

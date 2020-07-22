@@ -1,0 +1,67 @@
+<beginfold id='4'><?xml</beginfold id='4'> version="1.0" encoding="UTF-8"<endfold id='4'>?></endfold id='4'>
+<beginfold id='3'><!DOCTYPE </beginfold id='3'>language SYSTEM "language.dtd"<endfold id='3'>></endfold id='3'>
+<beginfold id='1'><!--</beginfold id='1'> we need this tags or this is no valid file <endfold id='1'>--></endfold id='1'>
+
+
+This is a pseudo XML file to test Kate's XML syntax highlighting.
+
+Doctype:
+	<beginfold id='3'><!DOCTYPE </beginfold id='3'>HTML PUBLIC "-//SOME_DOCTYPE 0.01//EN" SYSTEM "foobar.dtd"<endfold id='3'>></endfold id='3'>
+
+Processing instruction:
+	<beginfold id='4'><?php</beginfold id='4'> processing instruction <endfold id='4'>?></endfold id='4'>
+
+Comments:
+	<beginfold id='1'><!--</beginfold id='1'> a comment <endfold id='1'>--></endfold id='1'>
+	<beginfold id='1'><!--</beginfold id='1'> another comment,
+	using more than one line <endfold id='1'>--></endfold id='1'>
+
+Comment inside element:
+	<beginfold id='5'><element</beginfold id='5'> attr="foobar">content<beginfold id='1'><!--</beginfold id='1'> comment <endfold id='1'>--></endfold id='1'></element<endfold id='5'>></endfold id='5'>
+
+Markup inside comment:
+	<beginfold id='1'><!--</beginfold id='1'>
+	This is a comment!
+	<element inside_comment />
+	<endfold id='1'>--></endfold id='1'>
+
+Empty element:
+	<beginfold id='5'><empty</beginfold id='5'><endfold id='5'>/></endfold id='5'>
+	<beginfold id='5'><empty</beginfold id='5'>  <endfold id='5'>/></endfold id='5'>
+
+Simple element plus content:
+	<beginfold id='5'><element</beginfold id='5'>>some content</element<endfold id='5'>></endfold id='5'>
+	<beginfold id='5'><element</beginfold id='5'> attr="foobar">some
+		content</element<endfold id='5'>></endfold id='5'>
+
+Namespace for elements and attributes:
+	<beginfold id='5'><ns:element</beginfold id='5'>>content</ns:element<endfold id='5'>></endfold id='5'>
+	<beginfold id='5'><element</beginfold id='5'> ns:attr="content content">content</element<endfold id='5'>></endfold id='5'>
+
+Elements containing allowed characters:
+	<beginfold id='5'><element-dash</beginfold id='5'> foo="test"<endfold id='5'>/></endfold id='5'>
+	<beginfold id='5'><element.dot</beginfold id='5'> foo="test"<endfold id='5'>/></endfold id='5'>
+
+Elements containing allowed start characters:
+	<beginfold id='5'><:element</beginfold id='5'> foo="test"<endfold id='5'>/></endfold id='5'>
+	<beginfold id='5'><_element</beginfold id='5'> foo="test"<endfold id='5'>/></endfold id='5'>
+
+Single quotes (the same as double quotes):
+	<beginfold id='5'><element</beginfold id='5'> attr='content &nbsp; content'>content</element<endfold id='5'>></endfold id='5'>
+
+Allowed Whitespace:
+	<beginfold id='5'><element</beginfold id='5'>     attr   =   "test"  >
+		content</element<endfold id='5'>></endfold id='5'>
+
+Entities:
+	&nbsp;
+	&#229;
+	&#xE5;
+	&#Xe5;
+	&#1048;
+	&#x6C34;
+	<beginfold id='5'><element</beginfold id='5'> attr="foo &nbsp; &#229; &amp; bar"<endfold id='5'>/></endfold id='5'>
+
+Illegal XML, should not be highlighted:
+	<0foobar> -- no digit as first character
+	<-foo> -- no dash as first character

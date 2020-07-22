@@ -1,0 +1,64 @@
+// NOTE: This is a test file for kate's LPC syntax highlighting.
+
+// This is a Single-Line Comment
+<beginfold id='2'>/*</beginfold id='2'> This is a Multi-
+                   Line Comment <endfold id='2'>*/</endfold id='2'>
+
+// This again is a Single-Line Comment which should end here /*
+
+// And this is an evil single line comment \
+   which should include this and the next line because of the \
+   Do not use this style at home, kids.
+<beginfold id='1'>// BEGIN region marker</beginfold id='1'>
+
+<endfold id='1'>// END of region marker</endfold id='1'>
+
+private void create()
+<beginfold id='3'>{</beginfold id='3'>
+// Some Preprocessor stuff:
+#define SOME_STUFF if(foo("bar")) \
+                   { \
+                       bar("foo"); \
+                   } // Preprocessor, Keyword, Preprocessor-String, Multiline
+
+    // Some closures:
+    #'create;
+    #'?!;
+
+
+    <beginfold id='2'>/*</beginfold id='2'> Some other Data Types: <endfold id='2'>*/</endfold id='2'>
+
+    int i = 1;            // Integer.
+    float b = 2.34;       // Float.
+    int c = 0b001;        // Binary
+    int e = 0x019Beef;    // Hexadecimal
+    int f = 0o2345;       // Octal
+    string a = "Wheee";   // String
+    string x = "Wheee\
+     heee";               // Multi-Line String, again, don't use this.
+
+
+
+    <beginfold id='2'>/*</beginfold id='2'> Some keywords: <endfold id='2'>*/</endfold id='2'>
+    if(1)
+    <beginfold id='3'>{</beginfold id='3'>
+        switch(2)
+        <beginfold id='3'>{</beginfold id='3'>
+            case 3:
+                4;
+                break;
+        <endfold id='3'>}</endfold id='3'>
+    <endfold id='3'>}</endfold id='3'>
+
+    else
+    <beginfold id='3'>{</beginfold id='3'>
+        return 0;
+    <endfold id='3'>}</endfold id='3'>
+<endfold id='3'>}</endfold id='3'>
+
+<beginfold id='2'>/*</beginfold id='2'>
+WARNING: If the above function is part of a multi-line comment,
+         it's buggy. The WARNING: itself should be a comment-keyword.
+         That's not actually part of the language, but simply used
+         to highlight important stuff inside comments like TODO: etc.
+<endfold id='2'>*/</endfold id='2'>

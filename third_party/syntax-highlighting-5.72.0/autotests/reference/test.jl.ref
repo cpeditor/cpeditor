@@ -1,0 +1,73 @@
+<Comment># Test file for Julia</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Comment># Comment</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Comment>#= Multi-line</Comment><br/>
+<Comment>   comment =#</Comment><br/>
+<Normal Text></Normal Text><br/>
+<FoldingComment>#BEGIN</FoldingComment><br/>
+<Normal Text></Normal Text><br/>
+<FoldingComment>#END</FoldingComment><br/>
+<Normal Text></Normal Text><br/>
+<String>"""</String><br/>
+<String> Multi-line string</String><br/>
+<String>"""</String><br/>
+<Command String>```</Command String><br/>
+<Command String> Multi-line command</Command String><br/>
+<Command String>```</Command String><br/>
+<String>raw"string\a\\a"</String><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>let</Keyword><Normal Text> </Normal Text><Variable>z</Variable><Normal Text> </Normal Text><Operator>=</Operator><Normal Text> </Normal Text><Function>zip</Function><Delimiter>(</Delimiter><Float>1</Float><Operator>:</Operator><Float>2</Float><Operator>,</Operator><Normal Text> </Normal Text><Float>3</Float><Operator>:</Operator><Float>4</Float><Operator>,</Operator><Normal Text> </Normal Text><Float>5</Float><Operator>:</Operator><Float>6</Float><Delimiter>)</Delimiter><br/>
+<Normal Text>    </Normal Text><Macro>@test</Macro><Normal Text> </Normal Text><Function>size</Function><Delimiter>(</Delimiter><Variable>z</Variable><Delimiter>)</Delimiter><Normal Text> </Normal Text><Operator>==</Operator><Normal Text> </Normal Text><Delimiter>(</Delimiter><Float>2</Float><Operator>,</Operator><Delimiter>)</Delimiter><br/>
+<Normal Text>    </Normal Text><Macro>@test</Macro><Normal Text> </Normal Text><Function>collect</Function><Delimiter>(</Delimiter><Variable>z</Variable><Delimiter>)</Delimiter><Normal Text> </Normal Text><Operator>==</Operator><Normal Text> </Normal Text><Delimiter>[(</Delimiter><Float>1</Float><Operator>,</Operator><Float>3</Float><Operator>,</Operator><Float>5</Float><Delimiter>)</Delimiter><Operator>,</Operator><Normal Text> </Normal Text><Delimiter>(</Delimiter><Float>2</Float><Operator>,</Operator><Float>4</Float><Operator>,</Operator><Float>6</Float><Delimiter>)]</Delimiter><br/>
+<Normal Text>    </Normal Text><Macro>@test</Macro><Normal Text> </Normal Text><Function>eltype</Function><Delimiter>(</Delimiter><Variable>z</Variable><Delimiter>)</Delimiter><Normal Text> </Normal Text><Operator>==</Operator><Normal Text> </Normal Text><Data Type>Tuple</Data Type><Delimiter>{</Delimiter><Data Type>Int</Data Type><Operator>,</Operator><Data Type>Int</Data Type><Operator>,</Operator><Data Type>Int</Data Type><Delimiter>}</Delimiter><br/>
+<Keyword>end</Keyword><br/>
+<Normal Text></Normal Text><br/>
+<Macro>@testset</Macro><Normal Text> </Normal Text><String>"generic conversion from Integer"</String><Normal Text> </Normal Text><Keyword>begin</Keyword><br/>
+<Normal Text>    </Normal Text><Variable>x</Variable><Normal Text> </Normal Text><Operator>=</Operator><Normal Text> </Normal Text><Function>rand</Function><Delimiter>(</Delimiter><Data Type>Int128</Data Type><Delimiter>)</Delimiter><br/>
+<Normal Text>    </Normal Text><Macro>@test</Macro><Normal Text> </Normal Text><Data Type>BigInt</Data Type><Delimiter>(</Delimiter><Variable>x</Variable><Delimiter>)</Delimiter><Normal Text> % </Normal Text><Data Type>Int128</Data Type><Normal Text> </Normal Text><Operator>===</Operator><Normal Text> </Normal Text><Variable>x</Variable><br/>
+<Normal Text>    </Normal Text><Variable>y</Variable><Normal Text> </Normal Text><Operator>=</Operator><Normal Text> </Normal Text><Function>rand</Function><Delimiter>(</Delimiter><Data Type>UInt128</Data Type><Delimiter>)</Delimiter><br/>
+<Normal Text>    </Normal Text><Macro>@test</Macro><Normal Text> </Normal Text><Data Type>BigInt</Data Type><Delimiter>(</Delimiter><Variable>y</Variable><Delimiter>)</Delimiter><Normal Text> % </Normal Text><Data Type>UInt128</Data Type><Normal Text> </Normal Text><Operator>===</Operator><Normal Text> </Normal Text><Variable>y</Variable><br/>
+<Keyword>end</Keyword><br/>
+<Normal Text></Normal Text><br/>
+<Macro>@testset</Macro><Normal Text> </Normal Text><String>"show"</String><Normal Text> </Normal Text><Keyword>begin</Keyword><br/>
+<Normal Text>    </Normal Text><Macro>@test</Macro><Normal Text> </Normal Text><Function>sprint</Function><Delimiter>(</Delimiter><Variable>show</Variable><Operator>,</Operator><Normal Text> </Normal Text><Data Type>BitSet</Data Type><Delimiter>())</Delimiter><Normal Text> </Normal Text><Operator>==</Operator><Normal Text> </Normal Text><String>"BitSet([])"</String><br/>
+<Normal Text>    </Normal Text><Macro>@test</Macro><Normal Text> </Normal Text><Function>sprint</Function><Delimiter>(</Delimiter><Variable>show</Variable><Operator>,</Operator><Normal Text> </Normal Text><Data Type>BitSet</Data Type><Delimiter>([</Delimiter><Float>1</Float><Operator>,</Operator><Float>2</Float><Operator>,</Operator><Float>3</Float><Delimiter>]))</Delimiter><Normal Text> </Normal Text><Operator>==</Operator><Normal Text> </Normal Text><String>"BitSet([1, 2, 3])"</String><br/>
+<Normal Text>    </Normal Text><Function>show</Function><Delimiter>(</Delimiter><Data Type>IOBuffer</Data Type><Delimiter>()</Delimiter><Operator>,</Operator><Normal Text> </Normal Text><Data Type>BitSet</Data Type><Delimiter>())</Delimiter><br/>
+<Keyword>end</Keyword><br/>
+<Normal Text></Normal Text><br/>
+<Variable>cmd</Variable><Normal Text> </Normal Text><Operator>=</Operator><Normal Text> </Normal Text><Command String>`$(Base.julia_cmd()) --depwarn=error --startup-file=no boundscheck_exec.jl`</Command String><br/>
+<Keyword>if</Keyword><Normal Text> </Normal Text><Operator>!</Operator><Function>success</Function><Delimiter>(</Delimiter><Function>pipeline</Function><Delimiter>(</Delimiter><Variable>cmd</Variable><Operator>;</Operator><Normal Text> </Normal Text><Constant>stdout</Constant><Operator>=</Operator><Constant>stdout</Constant><Operator>,</Operator><Normal Text> </Normal Text><Constant>stderr</Constant><Operator>=</Operator><Constant>stderr</Constant><Delimiter>))</Delimiter><br/>
+<Normal Text>    </Normal Text><Function>error</Function><Delimiter>(</Delimiter><String>"boundscheck test failed, cmd : $cmd"</String><Delimiter>)</Delimiter><br/>
+<Keyword>end</Keyword><br/>
+<Normal Text></Normal Text><br/>
+<Macro>@test</Macro><Normal Text> </Normal Text><Function>iterate</Function><Delimiter>(</Delimiter><Variable>I</Variable><Operator>,</Operator><Normal Text> </Normal Text><Data Type>CartesianIndex</Data Type><Delimiter>(</Delimiter><Float>3</Float><Operator>,</Operator><Normal Text> </Normal Text><Function>typemax</Function><Delimiter>(</Delimiter><Data Type>Int</Data Type><Delimiter>)))[</Delimiter><Float>1</Float><Delimiter>]</Delimiter><Normal Text> </Normal Text><Operator>==</Operator><Normal Text> </Normal Text><Data Type>CartesianIndex</Data Type><Delimiter>(</Delimiter><Float>4</Float><Operator>,</Operator><Function>typemax</Function><Delimiter>(</Delimiter><Data Type>Int</Data Type><Delimiter>))</Delimiter><br/>
+<Macro>@test</Macro><Normal Text> </Normal Text><Function>iterate</Function><Delimiter>(</Delimiter><Variable>I</Variable><Operator>,</Operator><Normal Text> </Normal Text><Data Type>CartesianIndex</Data Type><Delimiter>(</Delimiter><Float>4</Float><Operator>,</Operator><Normal Text> </Normal Text><Function>typemax</Function><Delimiter>(</Delimiter><Data Type>Int</Data Type><Delimiter>)))</Delimiter><Normal Text>    </Normal Text><Operator>===</Operator><Normal Text> </Normal Text><Constant>nothing</Constant><br/>
+<Macro>@test_throws</Macro><Normal Text> </Normal Text><Data Type>MethodError</Data Type><Normal Text> </Normal Text><Constant>write</Constant><Delimiter>(</Delimiter><Data Type>IOBuffer</Data Type><Delimiter>()</Delimiter><Operator>,</Operator><Normal Text> </Normal Text><Function>ASCIIChar</Function><Delimiter>(</Delimiter><Char>'x'</Char><Delimiter>))</Delimiter><br/>
+<Macro>@test_throws</Macro><Normal Text> </Normal Text><Data Type>MethodError</Data Type><Normal Text> </Normal Text><Constant>read</Constant><Delimiter>(</Delimiter><Data Type>IOBuffer</Data Type><Delimiter>(</Delimiter><Char>'x'</Char><Delimiter>)</Delimiter><Operator>,</Operator><Normal Text> </Normal Text><Variable>ASCIIChar</Variable><Delimiter>)</Delimiter><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>let</Keyword><Normal Text> </Normal Text><Variable>header</Variable><Normal Text> </Normal Text><Operator>=</Operator><Normal Text> </Normal Text><String>"julia [switches] -- [programfile] [args...]"</String><br/>
+<Normal Text>    </Normal Text><Macro>@test</Macro><Normal Text> </Normal Text><Function>startswith</Function><Delimiter>(</Delimiter><Constant>read</Constant><Delimiter>(</Delimiter><Command String>`$exename -h`</Command String><Operator>,</Operator><Normal Text> </Normal Text><Data Type>String</Data Type><Delimiter>)</Delimiter><Operator>,</Operator><Normal Text> </Normal Text><Variable>header</Variable><Delimiter>)</Delimiter><br/>
+<Normal Text>    </Normal Text><Macro>@test</Macro><Normal Text> </Normal Text><Function>startswith</Function><Delimiter>(</Delimiter><Constant>read</Constant><Delimiter>(</Delimiter><Command String>`$exename --help`</Command String><Operator>,</Operator><Normal Text> </Normal Text><Data Type>String</Data Type><Delimiter>)</Delimiter><Operator>,</Operator><Normal Text> </Normal Text><Variable>header</Variable><Delimiter>)</Delimiter><br/>
+<Keyword>end</Keyword><br/>
+<Normal Text></Normal Text><br/>
+<Macro>@test</Macro><Normal Text> </Normal Text><Function>isequal</Function><Delimiter>(</Delimiter><Function>exp</Function><Delimiter>(</Delimiter><Function>complex</Function><Delimiter>(</Delimiter><Normal Text> </Normal Text><Constant>Inf</Constant><Operator>,</Operator><Normal Text> </Normal Text><Constant>NaN</Constant><Delimiter>))</Delimiter><Operator>,</Operator><Normal Text> </Normal Text><Function>complex</Function><Delimiter>(</Delimiter><Operator>-</Operator><Constant>Inf</Constant><Operator>,</Operator><Normal Text> </Normal Text><Constant>NaN</Constant><Delimiter>))</Delimiter><br/>
+<Macro>@test</Macro><Normal Text> </Normal Text><Function>isequal</Function><Delimiter>(</Delimiter><Function>exp</Function><Delimiter>(</Delimiter><Function>complex</Function><Delimiter>(</Delimiter><Normal Text> </Normal Text><Constant>Inf</Constant><Operator>,</Operator><Normal Text> </Normal Text><Constant>Inf</Constant><Delimiter>))</Delimiter><Operator>,</Operator><Normal Text> </Normal Text><Function>complex</Function><Delimiter>(</Delimiter><Operator>-</Operator><Constant>Inf</Constant><Operator>,</Operator><Normal Text> </Normal Text><Constant>NaN</Constant><Delimiter>))</Delimiter><br/>
+<Normal Text></Normal Text><br/>
+<Comment># Numbers</Comment><br/>
+<Binary>0b10</Binary><br/>
+<Octal>0o01_70</Octal><br/>
+<Hex>0x00000000000000001111__22_2233334444</Hex><br/>
+<Operator>-</Operator><Hex>0x0002im</Hex><br/>
+<Float>1.0e10</Float><br/>
+<Float>0.00025f0</Float><br/>
+<Operator>-</Operator><Float>1.5__5f0</Float><br/>
+<Hex>0xdeadbeefim</Hex><br/>
+<Float>0x1.8p3</Float><br/>
+<Float>0x.4p-1</Float><br/>
+<Normal Text></Normal Text><br/>
+<Variable>chars</Variable><Normal Text> </Normal Text><Operator>=</Operator><Normal Text> </Normal Text><Delimiter>[</Delimiter><Char>'0'</Char><Operator>,</Operator><Normal Text> </Normal Text><Char>'1'</Char><Operator>,</Operator><Normal Text> </Normal Text><Char>'2'</Char><Operator>,</Operator><Normal Text> </Normal Text><Char>'3'</Char><Operator>,</Operator><Normal Text> </Normal Text><Char>'a'</Char><Operator>,</Operator><Normal Text> </Normal Text><Char>'b'</Char><Operator>,</Operator><Normal Text> </Normal Text><Char>'c'</Char><Operator>,</Operator><Normal Text> </Normal Text><Char>'d'</Char><Operator>,</Operator><Normal Text> </Normal Text><Char>'e'</Char><Operator>,</Operator><Normal Text> </Normal Text><Char>'X'</Char><Operator>,</Operator><Normal Text> </Normal Text><Char>'Y'</Char><Operator>,</Operator><Normal Text> </Normal Text><Char>'Z'</Char><Operator>,</Operator><br/>
+<Normal Text>         </Normal Text><Char>'𠀋'</Char><Operator>,</Operator><Normal Text> </Normal Text><Char>'𠀌'</Char><Operator>,</Operator><Normal Text> </Normal Text><Char>'𠀍'</Char><Operator>,</Operator><Normal Text> </Normal Text><Char>'🂠'</Char><Operator>,</Operator><Normal Text> </Normal Text><Char>'🂡'</Char><Operator>,</Operator><Normal Text> </Normal Text><Char>'🂢'</Char><Operator>,</Operator><Normal Text> </Normal Text><Char>'🂣'</Char><Operator>,</Operator><Normal Text> </Normal Text><Char>'🂮'</Char><Delimiter>]</Delimiter><br/>
+<Normal Text></Normal Text><br/>
+<Macro>@test</Macro><Normal Text> </Normal Text><Function>docstrings_equal</Function><Delimiter>(</Delimiter><Macro>@doc</Macro><Delimiter>(</Delimiter><Variable>ModuleMacroDoc</Variable><Delimiter>)</Delimiter><Operator>,</Operator><Normal Text> </Normal Text><String>doc"I am a module"</String><Delimiter>)</Delimiter><br/>
+<Function>match</Function><Delimiter>(</Delimiter><String>r"^</String><String Char>\s*</String Char><Char>(?</Char><String>:#</String><Char>|</Char><String>$</String><Char>)</Char><String>"</String><Operator>,</Operator><Normal Text> </Normal Text><String>"# a comment"</String><Delimiter>)</Delimiter><br/>

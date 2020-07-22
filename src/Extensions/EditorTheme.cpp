@@ -18,8 +18,11 @@
 #include "Extensions/EditorTheme.hpp"
 #include "Core/EventLogger.hpp"
 #include "Util/FileUtil.hpp"
+#include "Util/Singleton.hpp"
 #include <QFile>
 #include <QSyntaxStyle>
+#include <theme.h>
+#include <theme>
 
 namespace Extensions
 {

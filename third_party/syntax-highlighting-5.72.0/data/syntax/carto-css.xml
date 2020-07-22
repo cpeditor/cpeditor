@@ -1,0 +1,294 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE language SYSTEM "language.dtd">
+
+<!-- Kate syntax highlighting definition for Mapbox CartoCSS, see https://github.com/mapbox/carto -->
+
+<language name="CartoCSS" version="2" kateversion="5.0" section="Markup" extensions="*.mss" author="Lukas Sommer" license="CC0 Public Domain Dedication, version 1.0, as published by Creative Commons">
+
+
+	<highlighting>
+
+		<list name="list_colornames">
+            <!-- This list is based on https://github.com/mapbox/carto/blob/35773a5f519b1ded0d88b14d53ac875cd610bb8c/build/vim-carto/syntax/carto.vim#L53
+                 and https://github.com/mapbox/carto/blob/35773a5f519b1ded0d88b14d53ac875cd610bb8c/build/carto.tmbundle/Syntaxes/carto.tmLanguage#L279
+            -->
+			<item>aliceblue</item>
+			<item>antiquewhite</item>
+			<item>aqua</item>
+			<item>aquamarine</item>
+			<item>azure</item>
+			<item>beige</item>
+			<item>bisque</item>
+			<item>black</item>
+			<item>blanchedalmond</item>
+			<item>blue</item>
+			<item>blueviolet</item>
+			<item>brown</item>
+			<item>burlywood</item>
+			<item>cadetblue</item>
+			<item>chartreuse</item>
+			<item>chocolate</item>
+			<item>coral</item>
+			<item>cornflowerblue</item>
+			<item>cornsilk</item>
+			<item>crimson</item>
+			<item>cyan</item>
+			<item>darkblue</item>
+			<item>darkcyan</item>
+			<item>darkgoldenrod</item>
+			<item>darkgray</item>
+			<item>darkgreen</item>
+			<item>darkgrey</item>
+			<item>darkkhaki</item>
+			<item>darkmagenta</item>
+			<item>darkolivegreen</item>
+			<item>darkorange</item>
+			<item>darkorchid</item>
+			<item>darkred</item>
+			<item>darksalmon</item>
+			<item>darkseagreen</item>
+			<item>darkslateblue</item>
+			<item>darkslategrey</item>
+			<item>darkturquoise</item>
+			<item>darkviolet</item>
+			<item>deeppink</item>
+			<item>deepskyblue</item>
+			<item>dimgray</item>
+			<item>dimgrey</item>
+			<item>dodgerblue</item>
+			<item>firebrick</item>
+			<item>floralwhite</item>
+			<item>forestgreen</item>
+			<item>fuchsia</item>
+			<item>gainsboro</item>
+			<item>ghostwhite</item>
+			<item>gold</item>
+			<item>goldenrod</item>
+			<item>gray</item>
+			<item>grey</item>
+			<item>green</item>
+			<item>greenyellow</item>
+			<item>honeydew</item>
+			<item>hotpink</item>
+			<item>indianred</item>
+			<item>indigo</item>
+			<item>ivory</item>
+			<item>khaki</item>
+			<item>lavender</item>
+			<item>lavenderblush</item>
+			<item>lawngreen</item>
+			<item>lemonchiffon</item>
+			<item>lightblue</item>
+			<item>lightcoral</item>
+			<item>lightcyan</item>
+			<item>lightgoldenrodyellow</item>
+			<item>lightgray</item>
+			<item>lightgreen</item>
+			<item>lightgrey</item>
+			<item>lightpink</item>
+			<item>lightsalmon</item>
+			<item>lightseagreen</item>
+			<item>lightskyblue</item>
+			<item>lightslategray</item>
+			<item>lightslategrey</item>
+			<item>lightsteelblue</item>
+			<item>lightyellow</item>
+			<item>lime</item>
+			<item>limegreen</item>
+			<item>linen</item>
+			<item>magenta</item>
+			<item>maroon</item>
+			<item>mediumaquamarine</item>
+			<item>mediumblue</item>
+			<item>mediumorchid</item>
+			<item>mediumpurple</item>
+			<item>mediumseagreen</item>
+			<item>mediumslateblue</item>
+			<item>mediumspringgreen</item>
+			<item>mediumturquoise</item>
+			<item>mediumvioletred</item>
+			<item>midnightblue</item>
+			<item>mintcream</item>
+			<item>mistyrose</item>
+			<item>moccasin</item>
+			<item>navajowhite</item>
+			<item>navy</item>
+			<item>oldlace</item>
+			<item>olive</item>
+			<item>olivedrab</item>
+			<item>orange</item>
+			<item>orangered</item>
+			<item>orchid</item>
+			<item>palegoldenrod</item>
+			<item>palegreen</item>
+			<item>paleturquoise</item>
+			<item>palevioletred</item>
+			<item>papayawhip</item>
+			<item>peachpuff</item>
+			<item>peru</item>
+			<item>pink</item>
+			<item>plum</item>
+			<item>powderblue</item>
+			<item>purple</item>
+			<item>red</item>
+			<item>rosybrown</item>
+			<item>royalblue</item>
+			<item>saddlebrown</item>
+			<item>salmon</item>
+			<item>sandybrown</item>
+			<item>seagreen</item>
+			<item>seashell</item>
+			<item>sienna</item>
+			<item>silver</item>
+			<item>skyblue</item>
+			<item>slateblue</item>
+			<item>slategray</item>
+			<item>slategrey</item>
+			<item>snow</item>
+			<item>springgreen</item>
+			<item>steelblue</item>
+			<item>tan</item>
+			<item>teal</item>
+			<item>thistle</item>
+			<item>tomato</item>
+			<item>turquoise</item>
+			<item>violet</item>
+			<item>wheat</item>
+			<item>white</item>
+			<item>whitesmoke</item>
+			<item>yellow</item>
+			<item>yellowgreen</item>
+			<item>transparent</item>
+		</list>
+
+		<contexts>
+
+			<context attribute="Mapnik Symbolizer Parameter" lineEndContext="#stay" name="context_default">
+				<DetectSpaces/>
+				<Detect2Chars attribute="Comment" context="context_comment_multiline" char="/" char1="*" lookAhead="true" beginRegion="region_comment"/>
+				<Detect2Chars attribute="Comment" context="context_comment_singleline" char="/" char1="/" lookAhead="true" />
+				<DetectChar attribute="Operator" char="{" beginRegion="region_braces"/>
+				<DetectChar attribute="Operator" char="}" endRegion="region_braces"/>
+				<DetectChar attribute="Operator" char="[" context="context_filter_attribute"/> <!-- This rule must be _before_ the “Operator” rule to make sure it is working. -->
+				<RegExpr attribute="Attachment" String="::[\w_-]+"/> <!-- This rule must be _before_ the “Operator” rule to make sure it is working. -->
+				<DetectChar attribute="Operator" char=":" context="context_expression"/>
+				<RegExpr attribute="CartoCSS Variable" String="@[\w_-]+" />
+				<RegExpr attribute="Named instances" String="[\w_-]+/" />
+				<RegExpr attribute="Layer ID" String="#[\w_-]+"/>
+				<RegExpr attribute="Class" String="\.[\w_-]+" />
+			</context>
+
+			<context attribute="Keyword" lineEndContext="#stay" name="context_expression">
+				<Detect2Chars attribute="Comment" context="context_comment_multiline" char="/" char1="*" lookAhead="true" beginRegion="region_comment"/>
+				<Detect2Chars attribute="Comment" context="context_comment_singleline" char="/" char1="/" lookAhead="true" />
+				<DetectChar attribute="Operator" char="{" beginRegion="region_braces"/>
+				<DetectChar attribute="Operator" char="}" endRegion="region_braces"/>
+				<RangeDetect char="["  char1="]" attribute="Data Field" /> <!-- This rule must be _before_ the “Operator” rule to make sure it is working. -->
+				<RegExpr attribute="Number" String="\-?((\d+(\.\d+)?)|(\.\d+))%?" /> <!-- This rule must be _before_ the “Operator” rule to make sure it is working. -->
+				<AnyChar attribute="Operator" String=":,!/*-+[]=&gt;&lt;()%"/>
+				<RegExpr attribute="CartoCSS Variable" String="@[\w_-]+" />
+				<RegExpr attribute="Color" String="(#[\dabcdefABCDEF]{3}|#[\dabcdefABCDEF]{6})(?=(\W|$))" />
+				<keyword attribute="Color" context="#stay" String="list_colornames" />
+				<DetectChar attribute="Expression String" char="&quot;" context="context_string_doublequote"/>
+				<DetectChar attribute="Expression String" char="'" context="context_string_singlequote"/>
+				<DetectChar attribute="Operator" char=";" context="#pop"/>
+			</context>
+
+			<context attribute="Data Field" lineEndContext="#stay" name="context_filter_attribute">
+				<Detect2Chars attribute="Comment" context="context_comment_multiline" char="/" char1="*" lookAhead="true" beginRegion="region_comment"/>
+				<Detect2Chars attribute="Comment" context="context_comment_singleline" char="/" char1="/" lookAhead="true" />
+				<RegExpr attribute="CartoCSS Variable" String="@[\w_-]+" />
+				<AnyChar attribute="Operator" String=":,!/*-+=&gt;&lt;()%" context="context_filter_rule"/>
+				<WordDetect String="zoom" insensitive="true" attribute="Keyword"/>
+				<DetectChar attribute="Data Field" char="&quot;" context="context_filter_attribute_doublequote"/>
+				<DetectChar attribute="Data Field" char="'" context="context_filter_attribute_singlequote"/>
+				<DetectChar attribute="Operator" char="]" context="#pop"/>
+			</context>
+
+			<context attribute="Data Field" lineEndContext="#pop" name="context_filter_attribute_doublequote">
+				<DetectChar char="&quot;" context="#pop"/>
+			</context>
+
+			<context attribute="Data Field" lineEndContext="#pop" name="context_filter_attribute_singlequote">
+				<DetectChar char="'" context="#pop"/>
+			</context>
+
+			<context attribute="Keyword" lineEndContext="#stay" name="context_filter_rule">
+				<Detect2Chars attribute="Comment" context="context_comment_multiline" char="/" char1="*" lookAhead="true" beginRegion="region_comment"/>
+				<Detect2Chars attribute="Comment" context="context_comment_singleline" char="/" char1="/" lookAhead="true" />
+				<RegExpr attribute="Number" String="\-?((\d+(\.\d+)?)|(\.\d+))%?" /> <!-- This rule must be _before_ the “Operator” rule to make sure it is working. -->
+				<AnyChar attribute="Operator" String=":,!/*-+=&gt;&lt;()%"/>
+				<RegExpr attribute="CartoCSS Variable" String="@[\w_-]+" />
+				<WordDetect String="zoom" insensitive="true" attribute="Keyword"/>
+				<RegExpr attribute="Color" String="(#[\dabcdefABCDEF]{3}|#[\dabcdefABCDEF]{6})(?=(\W|$))" />
+				<keyword attribute="Color" context="#stay" String="list_colornames" />
+				<DetectChar attribute="Verbatim String" char="&quot;" context="context_verbatimstring_doublequote"/>
+				<DetectChar attribute="Verbatim String" char="'" context="context_verbatimstring_singlequote"/>
+				<DetectChar attribute="Operator" char="]" context="#pop#pop"/>
+			</context>
+
+			<context attribute="Comment" lineEndContext="#stay" name="context_comment_multiline">
+				<Detect2Chars attribute="Comment" context="#pop" char="*" char1="/" endRegion="region_comment"/>
+				<IncludeRules context="##Alerts"/>
+			</context>
+
+			<context attribute="Comment" lineEndContext="#pop" name="context_comment_singleline">
+				<IncludeRules context="##Alerts"/>
+			</context>
+
+			<context attribute="Expression String" lineEndContext="#pop" name="context_string_doublequote">
+				<DetectChar attribute="Expression String" char="&quot;" context="#pop"/>
+				<RangeDetect char="["  char1="]" attribute="Data Field within String" />
+				<RegExpr attribute="Mapnik Render-Time Variable" String="@[\w_-]+" />
+				<DetectChar attribute="Verbatim String" char="'" context="context_verbatimstring_singlequote"/>
+			</context>
+
+			<context attribute="Expression String" lineEndContext="#pop" name="context_string_singlequote">
+				<DetectChar attribute="Expression String" char="'" context="#pop"/>
+				<RangeDetect char="["  char1="]" attribute="Data Field within String" />
+				<RegExpr attribute="Mapnik Render-Time Variable" String="@[\w_-]+" />
+				<DetectChar attribute="Verbatim String" char="&quot;" context="context_verbatimstring_doublequote"/>
+			</context>
+
+			<context attribute="Verbatim String" lineEndContext="#pop" name="context_verbatimstring_doublequote">
+				<DetectChar attribute="Verbatim String" char="&quot;" context="#pop"/>
+				<Detect2Chars attribute="Special Character" char="\" char1="n"/>
+			</context>
+
+			<context attribute="Verbatim String" lineEndContext="#pop" name="context_verbatimstring_singlequote">
+				<DetectChar attribute="Verbatim String" char="'" context="#pop"/>
+				<Detect2Chars attribute="Special Character" char="\" char1="n"/>
+			</context>
+
+		</contexts>
+
+		<itemDatas>
+			<itemData name="Class" defStyleNum="dsNormal"/>
+			<itemData name="Layer ID" defStyleNum="dsNormal" />
+			<itemData name="Attachment" defStyleNum="dsNormal" />
+			<itemData name="Named instances" defStyleNum="dsNormal" />
+			<itemData name="Mapnik Symbolizer Parameter" defStyleNum="dsBuiltIn" />
+			<itemData name="Operator" defStyleNum="dsOperator" />
+			<itemData name="Keyword" defStyleNum="dsKeyword" />
+			<itemData name="Number"  defStyleNum="dsFloat"/>
+			<itemData name="Color" defStyleNum="dsConstant" />
+			<itemData name="Expression String" defStyleNum="dsSpecialString"/>
+			<itemData name="Mapnik Render-Time Variable"  defStyleNum="dsChar"/>
+			<itemData name="Verbatim String"  defStyleNum="dsString"/>
+			<itemData name="Special Character"  defStyleNum="dsChar"/>
+			<itemData name="Data Field within String" defStyleNum="dsSpecialChar" />
+			<itemData name="Data Field" defStyleNum="dsDataType" />
+			<itemData name="CartoCSS Variable" defStyleNum="dsPreprocessor"/>
+			<itemData name="Comment" defStyleNum="dsComment" />
+		</itemDatas>
+
+	</highlighting>
+
+	<general>
+		<comments>
+			<comment name="singleLine" start="//" position="afterwhitespace"/>
+			<comment name="multiLine" start="/*" end="*/" region="region_comment"/>
+		</comments>
+		<keywords casesensitive="true" weakDeliminator="-"/>
+	</general>
+</language>

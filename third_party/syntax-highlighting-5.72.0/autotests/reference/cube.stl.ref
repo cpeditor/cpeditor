@@ -1,0 +1,30 @@
+<Keyword>solid</Keyword><Normal Text> cube_corner</Normal Text><br/>
+<Normal Text>    </Normal Text><Keyword>facet</Keyword><Normal Text> </Normal Text><Keyword>normal</Keyword><Normal Text> </Normal Text><Float>0.0</Float><Normal Text> -</Normal Text><Float>1.0</Float><Normal Text> </Normal Text><Float>0.0</Float><br/>
+<Normal Text>        </Normal Text><Keyword>outer</Keyword><Normal Text> </Normal Text><Keyword>loop</Keyword><br/>
+<Normal Text>            </Normal Text><Keyword>vertex</Keyword><Normal Text> </Normal Text><Float>0.0</Float><Normal Text> </Normal Text><Float>0.0</Float><Normal Text> </Normal Text><Float>0.0</Float><br/>
+<Normal Text>            </Normal Text><Keyword>vertex</Keyword><Normal Text> </Normal Text><Float>1.0</Float><Normal Text> </Normal Text><Float>0.0</Float><Normal Text> </Normal Text><Float>0.0</Float><br/>
+<Normal Text>            </Normal Text><Keyword>vertex</Keyword><Normal Text> </Normal Text><Float>0.0</Float><Normal Text> </Normal Text><Float>0.0</Float><Normal Text> </Normal Text><Float>1.0</Float><br/>
+<Normal Text>        </Normal Text><Keyword>endloop</Keyword><br/>
+<Normal Text>    </Normal Text><Keyword>endfacet</Keyword><br/>
+<Normal Text>    </Normal Text><Keyword>facet</Keyword><Normal Text> </Normal Text><Keyword>normal</Keyword><Normal Text> </Normal Text><Float>0.0</Float><Normal Text> </Normal Text><Float>0.0</Float><Normal Text> -</Normal Text><Float>1.0</Float><br/>
+<Normal Text>        </Normal Text><Keyword>outer</Keyword><Normal Text> </Normal Text><Keyword>loop</Keyword><br/>
+<Normal Text>            </Normal Text><Keyword>vertex</Keyword><Normal Text> </Normal Text><Float>0.0</Float><Normal Text> </Normal Text><Float>0.0</Float><Normal Text> </Normal Text><Float>0.0</Float><br/>
+<Normal Text>            </Normal Text><Keyword>vertex</Keyword><Normal Text> </Normal Text><Float>0.0</Float><Normal Text> </Normal Text><Float>1.0</Float><Normal Text> </Normal Text><Float>0.0</Float><br/>
+<Normal Text>            </Normal Text><Keyword>vertex</Keyword><Normal Text> </Normal Text><Float>1.0</Float><Normal Text> </Normal Text><Float>0.0</Float><Normal Text> </Normal Text><Float>0.0</Float><br/>
+<Normal Text>        </Normal Text><Keyword>endloop</Keyword><br/>
+<Normal Text>    </Normal Text><Keyword>endfacet</Keyword><br/>
+<Normal Text>    </Normal Text><Keyword>facet</Keyword><Normal Text> </Normal Text><Keyword>normal</Keyword><Normal Text> -</Normal Text><Float>1.0</Float><Normal Text> </Normal Text><Float>0.0</Float><Normal Text> </Normal Text><Float>0.0</Float><br/>
+<Normal Text>        </Normal Text><Keyword>outer</Keyword><Normal Text> </Normal Text><Keyword>loop</Keyword><br/>
+<Normal Text>            </Normal Text><Keyword>vertex</Keyword><Normal Text> </Normal Text><Float>0.0</Float><Normal Text> </Normal Text><Float>0.0</Float><Normal Text> </Normal Text><Float>0.0</Float><br/>
+<Normal Text>            </Normal Text><Keyword>vertex</Keyword><Normal Text> </Normal Text><Float>0.0</Float><Normal Text> </Normal Text><Float>0.0</Float><Normal Text> </Normal Text><Float>1.0</Float><br/>
+<Normal Text>            </Normal Text><Keyword>vertex</Keyword><Normal Text> </Normal Text><Float>0.0</Float><Normal Text> </Normal Text><Float>1.0</Float><Normal Text> </Normal Text><Float>0.0</Float><br/>
+<Normal Text>        </Normal Text><Keyword>endloop</Keyword><br/>
+<Normal Text>    </Normal Text><Keyword>endfacet</Keyword><br/>
+<Normal Text>    </Normal Text><Keyword>facet</Keyword><Normal Text> </Normal Text><Keyword>normal</Keyword><Normal Text> </Normal Text><Float>0.577</Float><Normal Text> </Normal Text><Float>0.577</Float><Normal Text> </Normal Text><Float>0.577</Float><br/>
+<Normal Text>        </Normal Text><Keyword>outer</Keyword><Normal Text> </Normal Text><Keyword>loop</Keyword><br/>
+<Normal Text>            </Normal Text><Keyword>vertex</Keyword><Normal Text> </Normal Text><Float>1.0</Float><Normal Text> </Normal Text><Float>0.0</Float><Normal Text> </Normal Text><Float>0.0</Float><br/>
+<Normal Text>            </Normal Text><Keyword>vertex</Keyword><Normal Text> </Normal Text><Float>0.0</Float><Normal Text> </Normal Text><Float>1.0</Float><Normal Text> </Normal Text><Float>0.0</Float><br/>
+<Normal Text>            </Normal Text><Keyword>vertex</Keyword><Normal Text> </Normal Text><Float>0.0</Float><Normal Text> </Normal Text><Float>0.0</Float><Normal Text> </Normal Text><Float>1.0</Float><br/>
+<Normal Text>        </Normal Text><Keyword>endloop</Keyword><br/>
+<Normal Text>    </Normal Text><Keyword>endfacet</Keyword><br/>
+<Keyword>endsolid</Keyword><br/>

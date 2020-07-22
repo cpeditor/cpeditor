@@ -1,0 +1,116 @@
+# Sample SELinux Labeling Policy File
+
+# Syntax of 'file_contexts' file and other SELinux configuration files:
+
+/usr/lib/.*/program/foo\.so  --  user:role:type:s0:c0-dsds.sd:sdsd
+/.*                system_u:object_r:default_t:s0
+/sys(/.*)?         system_u:object_r:sysfs_t:s0
+/xen(/.*)?         system_u:object_r:xen_image_t:s1
+/mnt(/[^/]*)?  -d  system_u:object_r:mnt_t:s1-5
+/mnt(/[^/]*)?  -l  system_u:object_r:mnt_t:s0.s2
+/tmp/.*            <<none>>
+/root(/.*)?        system_u:object_r:admin_home_t:s0
+/dev/[0-9].*   -c  system_u:object_r:usb_device_t:s0
+/run/.*\.*pid      <<none>>
+/mnt/[^/]*/.*      <<none>>
+/etc/[mg]dm(/.*)?  system_u:object_r:xdm_etc_t:s5-s6:c0
+/dev/(misc/)?psaux  -c  system_u:object_r:mouse_device_t:s0-s3:c0.c5
+
+HOME_DIR/.+                                 system_u:object_r:user_home_t:s0
+HOME_DIR/((www)|(web)|(public_html))(/.+)?  system_u:object_r:httpd_user_content_t:s0
+HOME_DIR/\.cache/google-chrome(/.*)?        system_u:object_r:chrome_sandbox_home_t:s0
+
+/dev/(misc/)?rtc[0-9]*           -c  system_u:object_r:clock_device_t:s0-s2:c1
+/var/(db|adm)/sudo(/.*)?             system_u:object_r:pam_var_run_t:s0
+/dev/pcd[0-3]                    -b  system_u:object_r:removable_device_t:s0
+/etc/ppp(/.*)?                   --  system_u:object_r:pppd_etc_rw_t:s0
+/var/www(/.*)?                       system_u:object_r:httpd_sys_content_t:s0
+/usr/lib(.*/)?bin(/.*)?              system_u:object_r:bin_t:s0
+/dev/shm/.*                          <<none>>
+/usr/lib/(sse2/)?hello-.*\.so.*  --  system_u:object_r:textrel_shlib_t:s0
+/sbin/grub.*                     --  system_u:object_r:bootloader_exec_t:s0.s3
+/sbin/lilo.*                     --  system_u:object_r:bootloader_exec_t:s0
+/etc/group[-\+]?                 --  system_u:object_r:passwd_file_t:s0:c1-c5
+/etc/rc\.d/init\.d/mpd           --  system_u:object_r:mpd_initrc_exec_t:s0
+
+
+# Syntax of *.fc files, from the SELinux reference policy:
+
+/run/sudo/ts/%{USERNAME}     gen_context<beginfold id='1'>(</beginfold id='1'>system_u:object_r:pam_var_run_t,s0,c0<endfold id='1'>)</endfold id='1'>
+/etc/aiccu\.conf         --  gen_context<beginfold id='1'>(</beginfold id='1'>system_u:object_r:aiccu_etc_t,s0-s2,c1.c5<endfold id='1'>)</endfold id='1'>
+HOME_DIR/\.mtpz-data     --  gen_context<beginfold id='1'>(</beginfold id='1'>system_u:object_r:libmtp_home_t,s0<endfold id='1'>)</endfold id='1'>
+/var/log/mariadb(/.*)?       gen_context<beginfold id='1'>(</beginfold id='1'>system_u:object_r:mysqld_log_t,s0<endfold id='1'>)</endfold id='1'>
+/dev/dasd[^/]*           -b  gen_context<beginfold id='1'>(</beginfold id='1'>system_u:object_r:fixed_disk_device_t,mls_systemhigh<endfold id='1'>)</endfold id='1'>
+/dev/dasd[^/]*           -c  gen_context<beginfold id='1'>(</beginfold id='1'>system_u:object_r:fixed_disk_device_t,mls_systemhigh<endfold id='1'>)</endfold id='1'>
+HOME_ROOT                -d  gen_context<beginfold id='1'>(</beginfold id='1'>system_u:object_r:home_root_t,s0-mls_systemhigh,s1<endfold id='1'>)</endfold id='1'>
+HOME_ROOT                -l  gen_context<beginfold id='1'>(</beginfold id='1'>system_u:object_r:home_root_t,s0<endfold id='1'>)</endfold id='1'>
+
+ifdef<beginfold id='1'>(</beginfold id='1'>`distro_debian',`
+	/run/shm  -d  gen_context<beginfold id='1'>(</beginfold id='1'>system_u:object_r:tmpfs_t,s0<endfold id='1'>)</endfold id='1'>
+	/run/shm/.*  <<none>>
+'<endfold id='1'>)</endfold id='1'>
+ifdef<beginfold id='1'>(</beginfold id='1'>`distro_suse',`
+	/success  --  gen_context<beginfold id='1'>(</beginfold id='1'>system_u:object_r:etc_runtime_t,s0<endfold id='1'>)</endfold id='1'>
+'<endfold id='1'>)</endfold id='1'>
+ifdef<beginfold id='1'>(</beginfold id='1'>`init_systemd',`
+	/run/tmpfiles\.d/kmod\.conf  --  gen_context<beginfold id='1'>(</beginfold id='1'>system_u:object_r:kmod_tmpfiles_conf_t,s0<endfold id='1'>)</endfold id='1'>
+'<endfold id='1'>)</endfold id='1'>
+
+# Android contexts
+
+android.hardware.light::ILight  u:object_r:hal_light_hwservice:s0
+android.hardware.nfc::INfc      u:object_r:hal_nfc_hwservice:s0
+*                               u:object_r:default_android_hwservice:s0
+ro.boot.bootloader              u:object_r:exported2_default_prop:s0 exact string
+sys.usb.mtp.device_type         u:object_r:exported2_system_prop:s0 exact int
+
+# Tests
+
+# Variables
+HOME_DIR/path
+HOME_ROOT/path
+/path/HOME_DIR/HOME_ROOT
+
+# Open brackets
+/hello(world
+/hello[wo
+
+/path[^0-8]+
+/path(hello|bye)
+/path.*a+b?
+/path\wa\Wa\sa\da\ba\Ba\(a
+/usr/hi\"esc\sesc\032esc\*3esds
+
+# Security contexts
+user:role
+user:role:
+user:role:type
+user:role:type:level_sensitivity
+user:role:type:level_sensitivity:level_category
+user:role:type:level_sensitivity:level_category:other:other
+user:role:type:level_sensitivity:level_category-sens:cat:other
+user:role:type:s0.s1.s3:c0.c1,c2,c3 - s5.s6:c4,c5:other
+user : role : type : s0 . s1 . s3 : c0 . c1 , c2 , c3 - s5 . s6 : c4 , c5 : other
+user:role:type:s0,other
+
+<beginfold id='1'>(</beginfold id='1'>user:role:type,<endfold id='1'>)</endfold id='1'>
+<beginfold id='1'>(</beginfold id='1'>user:role:type,level_s,<endfold id='1'>)</endfold id='1'>
+<beginfold id='1'>(</beginfold id='1'>user:role:type,level_s,level_c<endfold id='1'>)</endfold id='1'>
+<beginfold id='1'>(</beginfold id='1'>user:role:type,level_s,level_c,other,other,other<endfold id='1'>)</endfold id='1'>
+<beginfold id='1'>(</beginfold id='1'>user:role:type:level_s:level_c,other,other<endfold id='1'>)</endfold id='1'>
+<beginfold id='1'>(</beginfold id='1'>user:role:type:level_s:level_c:other,other,other<endfold id='1'>)</endfold id='1'> 
+
+us  er:role:type:level_s:level_c
+user:ro le:type:level_s:level_c
+user:role:ty  pe:level_s:level_c
+user:role:type:lev el_s:level_c
+user:role:type:level_s:lev el_c
+
+<beginfold id='1'>(</beginfold id='1'>u ser:role:type,level_s,level_c,other,other<endfold id='1'>)</endfold id='1'>
+<beginfold id='1'>(</beginfold id='1'>user:ro le:type,level_s,level_c,other,other<endfold id='1'>)</endfold id='1'>
+<beginfold id='1'>(</beginfold id='1'>user:role:ty pe,level_s,level_c,other,other<endfold id='1'>)</endfold id='1'>
+<beginfold id='1'>(</beginfold id='1'>user:role:type,le vel_s,level_c,other,other<endfold id='1'>)</endfold id='1'>
+<beginfold id='1'>(</beginfold id='1'>user:role:type,level_s,le vel_c,other,other<endfold id='1'>)</endfold id='1'>
+
+<beginfold id='1'>(</beginfold id='1'> user :role:type,  level_s ,  level_c , other <endfold id='1'>)</endfold id='1'>
+<beginfold id='1'>(</beginfold id='1'> user:role:type,  level_s ,  level_c , other <endfold id='1'>)</endfold id='1'>

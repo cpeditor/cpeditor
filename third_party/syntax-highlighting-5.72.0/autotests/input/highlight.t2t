@@ -1,0 +1,90 @@
+txt2tags sample
+
+
+%!--includeconf: config.t2t
+% disabled here because there is no external file
+%!preproc: 'JUST A TEST'    ' '
+%!postproc: '(?i)(<body)'   '\1 id="shots"'
+%!postproc: '(?i)(</title>)'    ' shots\1'
+
+%!--include: menu.t2t
+
+= Title 1 =
+
+
+== My Subtitle 1 ==[some definition]
+
+Some examples:
+
+- A paragraph with **bold**, //italic// and --strike--.
+- You can even __underline your docs__!
+
+- And use **//bold and italic//** 
+- or //**italic and bold**// 
+
+Here is a nice pic: [img/t2tpowered.png].
+
+- And a [link to a cool website http://txt2tags.sf.net]!
+
+- A table : 
+
+  || Name | Age  |  Gender |
+  | John |  33  |    Male |
+  | Mary |  19  |  Female |
+  
+
+``` A verbatim line
+
+And it's working for ``special code`` like this.
+
+```
+Unfortunately I can't color this verbatim content yet.
+```
+
+
+== My Subtitle 2 ==
+
+
+Lorem ipsum etc
+Lorem ipsum etc Lorem ipsum etc
+
+- Test d'écriture avec des accents à la française. Ça marche ou pas ?
+
+== My Subtitle 3 ==
+
+
+Lorem ipsum etc
+Lorem ipsum etc
+
+Here is a direct link: http://kde.org
+
+
+- Another boring part...
+
+
+
+=== My Subsubtitle 1 ===
+
+//It's a level 3 header// 
+
+- list 1
+- list 2
+ - list 2b
+- list 3
+
+
+=== My Subsubtitle 2 ===
+
+//It's another level 3 header// 
+
++ ordered list 1
++ list 2
+ + list 2B
+ + list 2C
++ list 3
+
+
+== My Subtitle 4 ==
+
+nothing to say here...
+

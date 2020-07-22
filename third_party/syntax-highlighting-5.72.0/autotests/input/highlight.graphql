@@ -1,0 +1,31 @@
+# Examples taken from https://graphql.org/learn/schema/#type-language
+#
+# Alerts: TODO FIXME
+
+query Hero($episode: Episode, $withFriends: Boolean!) {
+  hero(episode: $episode) {
+    name
+    friends @include(if: $withFriends) {
+    }
+  }
+}
+
+query {
+  droid(id: "2000", num: 42, active: true) {
+    name
+  }
+}
+
+type Person @addExternalFields(source: "profiles") @excludeField(name: "photo") {
+  name: String
+}
+
+# block strings (from https://github.com/graphql/graphql-spec/blob/master/spec/Section%202%20--%20Language.md)
+
+"""
+This starts with and ends with an empty line,
+which makes it easier to read.
+"""
+
+"""This does not start with or end with any empty lines,
+which makes it a little harder to read."""

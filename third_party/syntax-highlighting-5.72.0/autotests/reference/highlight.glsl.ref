@@ -1,0 +1,62 @@
+<Comment>// This is a test file for the Katepart GLSL Syntax Highlighting.</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>normal text</Normal Text><br/>
+<Comment>// this is a single-line comment</Comment><br/>
+<Normal Text>normal text</Normal Text><br/>
+<Comment>/* this</Comment><br/>
+<Comment>is a multi-line </Comment><br/>
+<Comment>comment */</Comment><br/>
+<Normal Text>normal text</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>some_symbol</Normal Text><Symbol>.</Symbol><Function>some_member</Function><Symbol>;</Symbol><br/>
+<Normal Text>some_symbol</Normal Text><Symbol>.</Symbol><Function>some_member_function</Function><Symbol>();</Symbol><br/>
+<Function>some_function</Function><Symbol>();</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Comment>// this is a function</Comment><br/>
+<Data Type>void</Data Type><Normal Text> </Normal Text><Function>main</Function><Symbol>()</Symbol><br/>
+<Symbol>{</Symbol><br/>
+<Normal Text>	</Normal Text><Data Type>float</Data Type><Normal Text> f </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Float>1.4e3</Float><Symbol>;</Symbol><Normal Text> </Normal Text><Comment>// decimal float literal</Comment><br/>
+<Normal Text>	</Normal Text><Data Type>int</Data Type><Normal Text> i1 </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Decimal>2884</Decimal><Symbol>;</Symbol><Normal Text>   </Normal Text><Comment>// decimal int literal</Comment><br/>
+<Normal Text>	</Normal Text><Data Type>int</Data Type><Normal Text> i2 </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Hex>0x44</Hex><Symbol>;</Symbol><Normal Text>   </Normal Text><Comment>// hex int literal</Comment><br/>
+<Normal Text>	</Normal Text><Data Type>int</Data Type><Normal Text> i3 </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Octal>0456</Octal><Symbol>;</Symbol><Normal Text>   </Normal Text><Comment>// octal int literal</Comment><br/>
+<Symbol>}</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Comment>// this is a structure</Comment><br/>
+<Keyword>struct</Keyword><Normal Text> some_struct</Normal Text><br/>
+<Symbol>{</Symbol><br/>
+<Normal Text>	</Normal Text><Data Type>vec3</Data Type><Normal Text> some_member_vector</Normal Text><Symbol>;</Symbol><br/>
+<Symbol>};</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Preprocessor># this is </Preprocessor><br/>
+<Preprocessor>#preprocessor code</Preprocessor><br/>
+<Normal Text></Normal Text><br/>
+<Comment>// all keywords</Comment><br/>
+<Keyword>break</Keyword><Normal Text> </Normal Text><Keyword>continue</Keyword><Normal Text> </Normal Text><Keyword>do</Keyword><Normal Text> </Normal Text><Keyword>for</Keyword><Normal Text> </Normal Text><Keyword>while</Keyword><br/>
+<Keyword>if</Keyword><Normal Text> </Normal Text><Keyword>else</Keyword><br/>
+<Keyword>true</Keyword><Normal Text> </Normal Text><Keyword>false</Keyword><br/>
+<Keyword>discard</Keyword><Normal Text> </Normal Text><Keyword>return</Keyword><br/>
+<Keyword>struct</Keyword><br/>
+<Normal Text></Normal Text><br/>
+<Comment>// all basic types</Comment><br/>
+<Data Type>float</Data Type><Normal Text> </Normal Text><Data Type>int</Data Type><Normal Text> </Normal Text><Data Type>void</Data Type><Normal Text> </Normal Text><Data Type>bool</Data Type><br/>
+<Data Type>mat2</Data Type><Normal Text> </Normal Text><Data Type>mat3</Data Type><Normal Text> </Normal Text><Data Type>mat4</Data Type><br/>
+<Data Type>vec2</Data Type><Normal Text> </Normal Text><Data Type>vec3</Data Type><Normal Text> </Normal Text><Data Type>vec4</Data Type><br/>
+<Data Type>ivec2</Data Type><Normal Text> </Normal Text><Data Type>ivec3</Data Type><Normal Text> </Normal Text><Data Type>ivec4</Data Type><br/>
+<Data Type>bvec2</Data Type><Normal Text> </Normal Text><Data Type>bvec3</Data Type><Normal Text> </Normal Text><Data Type>bvec4</Data Type><br/>
+<Data Type>sampler1D</Data Type><Normal Text> </Normal Text><Data Type>sampler2D</Data Type><Normal Text> </Normal Text><Data Type>sampler3D</Data Type><br/>
+<Data Type>samplerCube</Data Type><Normal Text> </Normal Text><Data Type>sampler1DShadow</Data Type><Normal Text> </Normal Text><Data Type>sampler1DShadow</Data Type><br/>
+<Normal Text></Normal Text><br/>
+<Comment>// all type qualifiers</Comment><br/>
+<Type Qualifier>attribute</Type Qualifier><Normal Text> </Normal Text><Type Qualifier>const</Type Qualifier><Normal Text> </Normal Text><Keyword>uniform</Keyword><Normal Text> </Normal Text><Type Qualifier>varying</Type Qualifier><br/>
+<Type Qualifier>in</Type Qualifier><Normal Text> </Normal Text><Type Qualifier>out</Type Qualifier><Normal Text> </Normal Text><Type Qualifier>inout</Type Qualifier><br/>
+<Normal Text></Normal Text><br/>
+<Comment>// attensions:</Comment><br/>
+<Comment>// </Comment><Alert>FIXME</Alert><br/>
+<Comment>// </Comment><Alert>TODO</Alert><br/>
+<Comment>// </Comment><Alert>BUG</Alert><br/>
+<Normal Text></Normal Text><br/>
+<Comment>// some of the std functions</Comment><br/>
+<StdFunction>radians</StdFunction><Normal Text> </Normal Text><StdFunction>degrees</StdFunction><Normal Text> </Normal Text><StdFunction>sin</StdFunction><Normal Text> </Normal Text><StdFunction>cos</StdFunction><Normal Text> </Normal Text><StdFunction>tan</StdFunction><Normal Text> </Normal Text><StdFunction>asin</StdFunction><Normal Text> </Normal Text><StdFunction>acos</StdFunction><Normal Text> </Normal Text><StdFunction>atan</StdFunction><br/>
+<Normal Text></Normal Text><br/>
+<Comment>// some of the std variables</Comment><br/>
+<StdFunction>gl_Position</StdFunction><Normal Text> </Normal Text><StdFunction>gl_PointSize</StdFunction><Normal Text> </Normal Text><StdVariable>gl_ClipVertex</StdVariable><br/>

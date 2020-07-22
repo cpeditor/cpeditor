@@ -1,0 +1,31 @@
+<Comment>* This file is an example to test the syntax highlighting file fortran-fixed.xml</Comment><br/>
+<Comment>* (for fortran, fixed format)</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Comment>c <-- this is a comment in the old fortran 77 style (fixed form)</Comment><br/>
+<Comment>c In the free form file, so we shouldn't use this kind of comments!</Comment><br/>
+<Comment>c But fortran 90 still understands fixed form, when parsing sources with</Comment><br/>
+<Comment>c the *.f extension.</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Comment>* this 'c' shouldn't be highlighted as a comment!</Comment><br/>
+<Normal Text> c</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment>*     Prints the values of e ** (j * i * pi / 4) for i = 0, 1, 2, ..., 7</Comment><br/>
+<Comment>*         where j is the imaginary number sqrt(-1)</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>      </Normal Text><Keyword>PROGRAM</Keyword><Normal Text> CMPLXD</Normal Text><br/>
+<Normal Text>          </Normal Text><Keyword>IMPLICIT</Keyword><Normal Text> </Normal Text><Data Type>COMPLEX(X)</Data Type><br/>
+<Normal Text>          </Normal Text><Data Type>PARAMETER</Data Type><Normal Text> </Normal Text><Symbol>(</Symbol><Normal Text>PI </Normal Text><Keyword>=</Keyword><Normal Text> </Normal Text><Float>3.141592653589793</Float><Symbol>,</Symbol><Normal Text> XJ </Normal Text><Keyword>=</Keyword><Normal Text> </Normal Text><Symbol>(</Symbol><Decimal>0</Decimal><Symbol>,</Symbol><Normal Text> </Normal Text><Decimal>1</Decimal><Symbol>))</Symbol><Normal Text>               </Normal Text><Comment>this text should be highlighted as a comment because it is after the 72th column (ignored by the compiler)</Comment><br/>
+<Normal Text>          </Normal Text><Keyword>DO</Keyword><Normal Text> </Normal Text><Decimal>1</Decimal><Symbol>,</Symbol><Normal Text> I </Normal Text><Keyword>=</Keyword><Normal Text> </Normal Text><Decimal>0</Decimal><Symbol>,</Symbol><Normal Text> </Normal Text><Decimal>7</Decimal><br/>
+<Normal Text>              X </Normal Text><Keyword>=</Keyword><Normal Text> </Normal Text><Elemental Procedure>EXP</Elemental Procedure><Symbol>(</Symbol><Normal Text>XJ </Normal Text><Keyword>*</Keyword><Normal Text> I </Normal Text><Keyword>*</Keyword><Normal Text> PI </Normal Text><Keyword>/</Keyword><Normal Text> </Normal Text><Decimal>4</Decimal><Symbol>)</Symbol><br/>
+<Normal Text>              </Normal Text><Keyword>IF</Keyword><Normal Text> </Normal Text><Symbol>(</Symbol><Elemental Procedure>AIMAG</Elemental Procedure><Symbol>(</Symbol><Normal Text>X</Normal Text><Symbol>)</Symbol><Operator>.LT.</Operator><Decimal>0</Decimal><Symbol>)</Symbol><Normal Text> </Normal Text><Keyword>THEN</Keyword><br/>
+<Normal Text>                  </Normal Text><IO Function>PRINT</IO Function><Normal Text> </Normal Text><Decimal>2</Decimal><Symbol>,</Symbol><Normal Text> </Normal Text><String>'e**(j*'</String><Symbol>,</Symbol><Normal Text> I</Normal Text><Symbol>,</Symbol><Normal Text> </Normal Text><String>'*pi/4) = '</String><Symbol>,</Symbol><Normal Text> </Normal Text><Comment>! I am an in-line comment</Comment><br/>
+<Continuation character>     *</Continuation character><Normal Text>                     </Normal Text><Data Type>REAL(X)</Data Type><Symbol>,</Symbol><Normal Text> </Normal Text><String>' - j'</String><Symbol>,</Symbol><Keyword>-</Keyword><Elemental Procedure>AIMAG</Elemental Procedure><Symbol>(</Symbol><Normal Text>X</Normal Text><Symbol>)</Symbol><Normal Text> </Normal Text><Comment>! the character at the 6th column indicate a continuation line and should be highlighted as a continuation character</Comment><br/>
+<Normal Text>              </Normal Text><Keyword>ELSE</Keyword><br/>
+<Normal Text>                  </Normal Text><IO Function>PRINT</IO Function><Normal Text> </Normal Text><Decimal>2</Decimal><Symbol>,</Symbol><Normal Text> </Normal Text><String>'e**(j*'</String><Symbol>,</Symbol><Normal Text> I</Normal Text><Symbol>,</Symbol><Normal Text> </Normal Text><String>'*pi/4) = '</String><Symbol>,</Symbol><br/>
+<Continuation character>     *</Continuation character><Normal Text>                     </Normal Text><Data Type>REAL(X)</Data Type><Symbol>,</Symbol><Normal Text> </Normal Text><String>' + j'</String><Symbol>,</Symbol><Normal Text> </Normal Text><Elemental Procedure>AIMAG</Elemental Procedure><Symbol>(</Symbol><Normal Text>X</Normal Text><Symbol>)</Symbol><br/>
+<Normal Text>              </Normal Text><Keyword>END IF</Keyword><br/>
+<Normal Text>              </Normal Text><IO Function>FORMAT (</IO Function><Normal Text>A</Normal Text><Symbol>,</Symbol><Normal Text> I1</Normal Text><Symbol>,</Symbol><Normal Text> A</Normal Text><Symbol>,</Symbol><Normal Text> F10.7</Normal Text><Symbol>,</Symbol><Normal Text> A</Normal Text><Symbol>,</Symbol><Normal Text> F9.7</Normal Text><IO Function>)</IO Function><br/>
+<Normal Text>              </Normal Text><Keyword>CONTINUE</Keyword><br/>
+<Normal Text>          </Normal Text><Keyword>ENDDO</Keyword><br/>
+<Normal Text>          </Normal Text><Keyword>STOP</Keyword><br/>
+<Normal Text>      </Normal Text><Keyword>END</Keyword><br/>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title>test.bash</title>
+<meta name="generator" content="KF5::SyntaxHighlighting (Bash)"/>
+</head><body style="color:#1f1c1b"><pre>
+<span style="color:#898887;">#!/bin/bash</span>
+
+<span style="font-weight:bold;">for</span> <span style="color:#0095ff;font-weight:bold;">i</span> in <span style="font-weight:bold;">`</span><span style="color:#644a9b;">ls</span> tests/auto/output/*.html<span style="font-weight:bold;">`</span><span style="font-weight:bold;">;</span> <span style="font-weight:bold;">do</span>
+    <span style="color:#0057ae;">refFile=</span><span style="font-weight:bold;">`</span><span style="color:#644a9b;font-weight:bold;">echo</span> <span style="color:#0057ae;">$i</span> <span style="font-weight:bold;">|</span> <span style="color:#644a9b;">sed</span> -e s,build,src, <span style="font-weight:bold;">|</span> <span style="color:#644a9b;">sed</span> -e s,output,reference, <span style="font-weight:bold;">|</span> <span style="color:#644a9b;">sed</span> -e s,.html,.ref.html,<span style="font-weight:bold;">`</span>
+    <span style="color:#644a9b;">cp</span> -v <span style="color:#0057ae;">$i</span> <span style="color:#0057ae;">$refFile</span>
+<span style="font-weight:bold;">done</span>
+
+<span style="color:#898887;">## &gt;Settings &gt;Configure Kate &gt;Fonts &amp; Colors &gt;Highlitghing Text Styles &gt;Scripts/Bash &gt;Option &gt;Change colors to some distinct color</span>
+<span style="color:#898887;">## 1- In following line the -ucode should not be colored as option</span>
+
+<span style="color:#0095ff;font-weight:bold;">pacman</span> -Syu --needed intel-ucode grub
+<span style="color:#0095ff;font-weight:bold;">pacman</span> -syu --needed intel-ucode grub
+
+<span style="color:#898887;"># Braces (bug ##387915)</span>
+<span style="font-weight:bold;">[[</span> <span style="color:#0057ae;">$line_name</span> =~ <span style="color:#0057ae;">\{</span>([0-9]<span style="color:#0057ae;">{1,}</span>)<span style="color:#0057ae;">\}\{</span>([0-9]<span style="color:#0057ae;">{1,}</span>)<span style="color:#0057ae;">\}</span>(.*)<span style="font-weight:bold;"> ]]</span>
+<span style="font-weight:bold;">[[</span> <span style="color:#0057ae;">$name</span> =~ (.*)_(S[0-9]<span style="color:#0057ae;">{2}</span>)(E[0-9]<span style="color:#0057ae;">{2,3}</span>[a-z]<span style="color:#0057ae;">{0,1}</span>)_(.*)<span style="font-weight:bold;"> ]]</span>
+<span style="color:#644a9b;">rm</span> /data/<span style="color:#0057ae;">{hello1,hello2}</span>/input/<span style="color:#0057ae;">{bye1,</span><span style="color:#0057ae;">$bye2</span><span style="color:#0057ae;">}</span>/si<span style="color:#0057ae;">{a,</span><span style="color:#0057ae;">${b}</span><span style="color:#0057ae;">,c{k,p{e,a}}}</span>/*.non
+<span style="color:#644a9b;">rm</span> /data/{aa,<span style="color:#0057ae;">{e,i}</span>t<span style="color:#0057ae;">{b,c}</span> <span style="color:#898887;"># Not closed</span>
+<span style="color:#644a9b;">rm</span> /data<span style="color:#0057ae;">{aa{bb{cc{dd}}}}</span>
+<span style="color:#644a9b;">rm</span> /data<span style="color:#0057ae;">{aaa</span><span style="font-weight:bold;">`</span><span style="color:#0095ff;font-weight:bold;">aaa</span>}<span style="color:#0095ff;font-weight:bold;">aa</span><span style="font-weight:bold;">`</span><span style="color:#0057ae;">aaa}</span>a
+
+<span style="color:#0057ae;">${array[0]: -7 : +  22  }</span>  <span style="color:#0057ae;">${array[1]: num  }</span>
+<span style="color:#0057ae;">${parameter##</span>word<span style="color:#0057ae;">}</span> <span style="color:#0057ae;">${parameter%%</span>word<span style="color:#0057ae;">}</span> <span style="color:#0057ae;">${parameter^^</span>pattern<span style="color:#0057ae;">}</span> <span style="color:#0057ae;">${parameter,,</span>pattern<span style="color:#0057ae;">}</span> <span style="color:#0057ae;">${parameter@</span>operator<span style="color:#0057ae;">}</span>
+</pre></body></html>

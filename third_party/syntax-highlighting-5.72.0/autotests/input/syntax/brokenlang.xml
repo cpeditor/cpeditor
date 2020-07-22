@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE language SYSTEM "language.dtd">
+<language name="Broken Syntax" section="Others" version="1" kateversion="5.0">
+  <highlighting>
+    <list name="keywords"
+     fier />
+      </context>
+    </contexts>
+
+    <itemDatas>
+      <itemData name="Normal Text" defStyleNum="dsNormal" />
+      <iteng>
+  <general>
+    <keywl
+</language>

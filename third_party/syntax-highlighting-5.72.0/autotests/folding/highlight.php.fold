@@ -1,0 +1,69 @@
+<?
+<beginfold id='24'>/*</beginfold id='24'> This is a pseudo PHP file to test Kate's PHP syntax highlighting. <endfold id='24'>*/</endfold id='24'>
+# TODO: this is incomplete, add more syntax examples!
+# this is also a comment.
+// Even this is a comment
+function test($varname) <beginfold id='27'>{</beginfold id='27'>
+	return "bla";	# this is also a comment
+<endfold id='27'>}</endfold id='27'>
+
+?>
+
+<?php echo("hello test"); ?>
+
+<html>
+	<? print "<title>test</title>"; ?>
+
+	<beginfold id='1'><!--</beginfold id='1'> CSS <endfold id='1'>--></endfold id='1'>
+	<beginfold id='5'><style</beginfold id='5'>>
+		.inputText <beginfold id='107'>{</beginfold id='107'>
+			width: <?php echo $width; ?>px;
+			text-indent: 10px;
+		<endfold id='107'>}</endfold id='107'>
+	<endfold id='5'></style</endfold id='5'>>
+
+	<beginfold id='1'><!--</beginfold id='1'> JavaScript <endfold id='1'>--></endfold id='1'>
+	<beginfold id='6'><script</beginfold id='6'>>
+		var some_js_var = <?php echo $somevar; ?> ;
+		<?php echo 'alert("Hello there.");'; ?>
+	<endfold id='6'></script</endfold id='6'>>
+	<beginfold id='1'><!--</beginfold id='1'> JavaScript React <endfold id='1'>--></endfold id='1'>
+	<beginfold id='6'><script</beginfold id='6'> type="text/babel">
+		<beginfold id='119'><Hello</beginfold id='119'>> <?php echo("Hello, hello!"); ?> </Hello<endfold id='119'>></endfold id='119'> <?php <beginfold id='24'>/*</beginfold id='24'> aaa <endfold id='24'>*/</endfold id='24'> ?> <beginfold id='118'><div</beginfold id='118'>></div<endfold id='118'>></endfold id='118'>
+		function a(i) <beginfold id='117'>{</beginfold id='117'>
+			<?php echo "var j = 1;"; ?>
+			return <beginfold id='118'><p</beginfold id='118'>><beginfold id='120'>{</beginfold id='120'> i + j <endfold id='120'>}</endfold id='120'></p<endfold id='118'>></endfold id='118'>;
+		<endfold id='117'>}</endfold id='117'>
+	<endfold id='6'></script</endfold id='6'>>
+	<beginfold id='1'><!--</beginfold id='1'> TypeScript <endfold id='1'>--></endfold id='1'>
+	<beginfold id='6'><script</beginfold id='6'> type="text/typescript">
+		<?php $timestamp = time(); ?>
+		class DateTime <beginfold id='121'>{</beginfold id='121'>
+			info: string;
+			constructor() <beginfold id='121'>{</beginfold id='121'> this.info = <?php echo(date("F d, Y h:i:s", $timestamp)); ?>; <endfold id='121'>}</endfold id='121'>
+			get() <beginfold id='121'>{</beginfold id='121'> return this.info; <endfold id='121'>}</endfold id='121'>
+		<endfold id='121'>}</endfold id='121'>
+	<endfold id='6'></script</endfold id='6'>>
+	<beginfold id='1'><!--</beginfold id='1'> MustacheJS <endfold id='1'>--></endfold id='1'>
+	<beginfold id='6'><script</beginfold id='6'> type="x-tmpl-mustache">
+		<beginfold id='132'>{{!</beginfold id='132'> <?php print "comment"; ?> <endfold id='132'>}}</endfold id='132'>
+		<beginfold id='130'>{{#movie</beginfold id='130'>}}
+			<beginfold id='134'><div</beginfold id='134'>>
+				<h1>{{title}}</h1>
+				<img src="{{poster}}" alt="{{title}}"/>
+				<?php echo $movierating; ?> - {{ratings.critics_rating}}
+			<endfold id='134'></div</endfold id='134'>>
+		<endfold id='130'>{{/movie}}</endfold id='130'>
+	<endfold id='6'></script</endfold id='6'>>
+
+</html>
+
+<?php
+$var = <beginfold id='25'><<<DOOH</beginfold id='25'>
+This is the $string inside the variable (which seems to be rendered as a string)
+It works well, I think.
+<endfold id='25'>DOOH</endfold id='25'>
+
+# bug 382527
+throw new ParserException("Test {$this->some_var[$index]}\nin {$this->file} is missing.\nThis is bad.");
+?>

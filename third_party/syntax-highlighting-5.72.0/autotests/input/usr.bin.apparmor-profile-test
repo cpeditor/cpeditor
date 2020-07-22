@@ -1,0 +1,275 @@
+# Sample AppArmor Profile.
+# License: Public Domain
+
+# NOTE: This profile is not fully functional, since
+# it is designed to test the syntax highlighting.
+
+include <tunables/global>
+
+# Variable assignment
+@{FOO_LIB}=/usr/lib{,32,64}/foo
+@{USER_DIR}
+  = @{HOME}/Public @{HOME}/Desktop #No-Comment
+@{USER_DIR} += @{HOME}/Hello \
+deny owner #No-comment aa#aa
+${BOOL} = true
+
+# Alias
+alias /usr/ -> /mnt/usr/,
+
+# Profile for /usr/bin/foo
+profile foo /usr/bin/foo flags=(attach_disconnected enforce) {
+	#include <abstractions/ubuntu-helpers>
+	#include<abstractions/wayland>
+	#include"/etc/apparmor.d/abstractions/ubuntu-konsole"
+	include "/etc/apparmor.d/abstractions/openssl"
+
+	include if exists <path with spaces>
+	include <include_tests/includes_okay_helper.include> #include <includes/base>
+	/some/file mr, #include <includes/base> /bin/true Px,
+
+	# File rules
+	/{,**/} r,
+	owner /{home,media,mnt,srv,net}/** r,
+	owner @{USER_DIR}/** rw,
+	audit deny owner /**/* mx,
+	/**.[tT][xX][tT] r,  # txt
+
+	owner file @{HOME}/.local/share/foo/{,**} rwkl,
+	owner @{HOME}/.config/*.[a-zA-Z0-9]*      rwk,
+
+	"/usr/share/**" r,
+	"/var/lib/flatpak/exports/share/**" r,
+	"/var/lib/{spaces in
+		string,hello}/a[^ a]a/**" r,
+
+	allow file /etc/nsswitch.conf           r,
+	allow /etc/fstab                        r,
+	deny /etc/xdg/{autostart,systemd}/**    r,
+	deny /boot/**                           rwlkmx,
+
+	owner @{PROC}/@{pid}/{cmdline,mountinfo,mounts,stat,status,vmstat} r,
+	/sys/devices/**/uevent r,
+	@{FOO_LIB}/{@{multiarch},64}/** mr,
+
+	/usr/bin/foo         ixr,
+	/usr/bin/dolphin     pUx,
+	/usr/bin/*           Pixr,
+	/usr/bin/khelpcenter Cx  -> sanitized_helper,
+	/usr/bin/helloworld  cxr ->
+		hello_world,
+
+	# Dbus rules
+	dbus (send)  #No-Comment
+		bus=system
+		path=/org/freedesktop/NetworkManager
+		interface=org.freedesktop.DBus.Introspectable
+		peer=(name=org.freedesktop.NetworkManager label=unconfined),
+	dbus (send receive)
+		bus=system
+		path=/org/freedesktop/NetworkManager
+		interface=org.freedesktop.NetworkManager
+		member={Introspect,state}
+		peer=(name=(org.freedesktop.NetworkManager|org.freedesktop.DBus)),
+	dbus (send)
+		bus=session
+		path=/org/gnome/GConf/Database/*
+		member={AddMatch,AddNotify,AllEntries,LookupExtended,RemoveNotify},
+	dbus (bind)
+		bus=system
+		name=org.bluez,
+
+	# Signal rules
+	signal (send) set=(term) peer="/usr/lib/hello/world// foo helper",
+	signal (send, receive) set=(int exists rtmin+8) peer=/usr/lib/hello/world//foo-helper,
+
+	# Child profile
+	profile hello_world {
+		# File rules (three different ways)
+		file /usr/lib{,32,64}/helloworld/**.so mr,
+		/usr/lib{,32,64}/helloworld/** r,
+		rk /usr/lib{,32,64}/helloworld/hello,file,
+
+		# Link rules (two ways)
+		l /foo1 -> /bar,
+		link /foo2 -> bar,
+		link subset /link* -> /**,
+
+		# Network rules
+		network inet6 tcp,
+		network netlink dgram,
+		network bluetooth,
+		network unspec dgram,
+
+		# Capability rules
+		capability dac_override,
+		capability sys_admin,
+		capability sys_chroot,
+
+		# Mount rules
+		mount options=(rw bind remount nodev noexec) vfstype=ecryptfs /home/*/.helloworld/ -> /home/*/helloworld/,
+		mount options in (rw, bind) / -> /run/hellowordd/*.mnt,
+		mount option=read-only fstype=btrfs /dev/sd[a-z][1-9]* -> /media/*/*,
+		umount /home/*/helloworld/,
+
+		# Pivot Root rules
+		pivot_root oldroot=/mnt/root/old/ /mnt/root/,
+		pivot_root /mnt/root/,
+
+		# Ptrace rules
+		ptrace (trace) peer=unconfined,
+		ptrace (read, trace, tracedby) peer=/usr/lib/hello/helloword,
+
+		# Unix rules
+		unix (connect receive send) type=(stream) peer=(addr=@/tmp/ibus/dbus-*,label=unconfined),
+		unix (send,receive) type=(stream) protocol=0 peer=(addr=none),
+		unix peer=(label=@{profile_name},addr=@helloworld),
+
+		# Rlimit rule
+		set rlimit data  <= 100M,
+		set rlimit nproc <= 10,
+		set rlimit memlock <= 2GB,
+		set rlimit rss <= infinity,
+		set rlimit nice <= -12,
+
+		# Change Profile rules
+		change_profile unsafe /** -> [^u/]**,
+		change_profile unsafe /** -> {u,un,unc,unco,uncon,unconf,unconfi,unconfin,unconfine},
+		change_profile /bin/bash  ->
+			new_profile//hat,
+	}
+
+	# Hat
+	^foo-helper\/ {
+		network unix stream,
+		unix stream,
+
+		/usr/hi\"esc\x23esc\032es\477esc\*es\{esc\ rw r, # Escape expressions
+
+		# Text after a variable is highlighted as path
+		file /my/path r,
+		@{FOO_LIB}file r,
+		@{FOO_LIB}#my/path r, #Comment
+		@{FOO_LIB}ñ* r,
+		unix (/path\t{aa}*,*a @{var}*path,* @{var},*),
+	}
+}
+
+# Syntax Error
+/usr/bin/error (complain, audit) {
+	file #include /hello r,
+
+	# Error: Variable open or with characters not allowed
+	@{var
+	@{sdf&s}
+
+	# Error: Open brackets
+	/{hello{ab,cd}world  kr,
+	/{abc{abc kr,
+	/[abc  kr,
+	/(abc kr,
+
+	# Error: Empty brackets
+	/hello[]hello{}hello()he  kr,
+
+	# Comments not allowed
+	dbus (send)  #No comment
+		path=/org/hello
+		#No comment
+		interface=org.hello #No comment
+		peer=(name=org.hello  #No comment
+		      label=unconfined), #Comment
+
+	# Don't allow assignment of variables within profiles
+	@{VARIABLE} = val1 val2 val3 # Comment
+
+	# Alias rules not allowed within profiles
+	alias /run/ -> /mnt/run/,
+
+	# Error: Open rule
+	/home/*/file rw
+	capability dac_override
+	deny file /etc/fstab w
+	audit network ieee802154,
+
+	dbus (receive
+	unix stream,
+	unix stream,
+}
+
+profile other_tests {
+	# set rlimit
+	set rlimit nice  <= 3,
+	rlimit nice  <= 3, # Without "set"
+	set #comment
+		rlimit
+			nice  <= 3,
+
+	# "remount" keyword
+	mount remount
+		remount,
+	remount remount
+		remount,
+	dbus remount
+		remount,
+	unix remount
+		remount,
+	# "unix" keyword
+	network unix
+		unix,
+	ptrace unix
+		unix,
+	unix unix
+		unix,
+
+	# Transition rules
+	/usr/bin/foo cx -> hello*,                  # profile name
+	/usr/bin/foo Cx -> path/,                   # path
+	/usr/bin/foo cx -> ab[ad/]hello,            # profile name
+	/usr/bin/foo Cx -> ab[cd/]a[ad/]hello/path, # path
+	/usr/bin/foo Cx -> ab[hello/path,           # profile name
+
+	/usr/bin/foo cx -> "hello*",                  # profile name
+	/usr/bin/foo Cx -> "path/",                   # path
+	/usr/bin/foo cx -> "ab[ad/]hello",            # profile name
+	/usr/bin/foo Cx -> "ab[cd/]a[ad/]hello/path", # path
+	/usr/bin/foo Cx -> "ab[hello/path",           # profile name
+
+	/usr/bin/foo cx -> holas//hello/sa,    # path
+	/usr/bin/foo cx -> df///dd//hat,       # path + hat
+	/usr/bin/foo cx -> holas,#sd\323fsdf,  # profile name
+
+	# Access modes
+	/hello/lib/foo rwklms, # s invalid
+	/hello/lib/foo rwmaix, # w & a incompatible
+	/hello/lib/foo kalmw,
+	/hello/lib/foo wa,
+	# OK
+	/hello/lib/foo rrwrwwrwrw,
+	/hello/lib/foo ixixix,
+	# Incompatible exec permissions
+	ixixux, uxuxUxux, ixixixPixix, ixixpx uxuxuxPuxux, UxUxcUxUx,
+	pixpixcixix, cxcxcxix, pixpixpux pixpixix xxix xxpux ixixx puxpuxx,
+	Cuxcux Pixpix, puxpUx puxPUx xxpix xxcx,
+	# Test valid permissions
+	r w a k l m l x ix ux Ux px Px cx Cx ,
+	pix Pix cix Cix pux Pux cux Cux pUx PUx cUx CUx,
+	rwklmx raklmx,
+	r rw rwk rwkl rwklm,
+	rwlmix rwlmUx rwlmPx rwlmcx rwlmPUx,
+	rwixixixkl rwUxUxUxkl rwuxuxuxk rwpxpxpxk rwPxPxkl rwcxcxlm rwCxCxk,
+	rwpixpixk rwPixPixkl wrpuxpuxk rwpUxpUxk rwcixcixcixml rwCixCixk rwCuxCuxk rwCUxCUxl,
+
+	# Profile name
+	profile holas { ... }
+	profile { ... }
+	profile /path { ... }
+	profile holas/abc { ... }
+	profile holas\/abc { ... }
+	profile
+		#holas { ... }
+
+	profile flags=(complain)#asd { ... }
+	profile flags flags=(complain) { ... }
+	profile flags(complain) { ... }
+}

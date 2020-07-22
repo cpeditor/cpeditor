@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE language SYSTEM "language.dtd">
+
+<language name="WordDetect (Delimiters Characters)" section="Other" extensions="*.delWordDetect" version="1" kateversion="5.0" priority="100">
+
+  <highlighting>
+
+    <contexts>
+      <context name="normal" attribute="Normal" lineEndContext="#stay">
+        <WordDetect attribute="Keyword1" String="word1"/>
+        <WordDetect attribute="Keyword2" String="_word2"/>
+        <WordDetect attribute="Keyword3" String="/word3"/>
+        <WordDetect attribute="Keyword4" String="word4+"/>
+        <WordDetect attribute="Keyword5" String="&lt;word5&gt;"/>
+        <WordDetect attribute="Keyword6" String="&amp;"/>
+        <WordDetect attribute="Keyword7" String=";;;"/>
+        <WordDetect attribute="Keyword8" String="w w-word8-"/>
+        <RegExpr attribute="Comment" String="#.*$" firstNonSpace="true"/>
+      </context>
+    </contexts>
+
+    <itemDatas>
+      <itemData name="Normal"  defStyleNum="dsNormal"/>
+      <itemData name="Keyword1" defStyleNum="dsKeyword" bold="1"/>
+      <itemData name="Keyword2" defStyleNum="dsVariable" bold="1"/>
+      <itemData name="Keyword3" defStyleNum="dsOthers" bold="1"/>
+      <itemData name="Keyword4" defStyleNum="dsDecVal" bold="1"/>
+      <itemData name="Keyword5" defStyleNum="dsComment" bold="1"/>
+      <itemData name="Keyword6" defStyleNum="dsChar" bold="1"/>
+      <itemData name="Keyword7" defStyleNum="dsString" bold="1"/>
+      <itemData name="Keyword8" defStyleNum="dsExtension" bold="1"/>
+      <itemData name="Comment" defStyleNum="dsAnnotation"/>
+    </itemDatas>
+
+  </highlighting>
+
+  <general>
+    <keywords additionalDeliminator="_" />
+  </general>
+
+</language>

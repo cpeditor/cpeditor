@@ -1,0 +1,157 @@
+<Comment># YAML test</Comment><br/>
+<Attribute></Attribute><br/>
+<Comment># Comment</Comment><br/>
+<Attribute></Attribute><br/>
+<Key>key</Key><Key Points Operator>:</Key Points Operator><Attribute> value</Attribute><br/>
+<Key>another key</Key><Key Points Operator>:</Key Points Operator><Attribute> Another value</Attribute><br/>
+<Key>boolean</Key><Key Points Operator>:</Key Points Operator><Attribute> </Attribute><Boolean>true</Boolean><br/>
+<Key>null_value</Key><Key Points Operator>:</Key Points Operator><Attribute> </Attribute><Null>null</Null><br/>
+<Key>single quotes</Key><Key Points Operator>:</Key Points Operator><Attribute> </Attribute><String>'have </String><Escaped Character>''</Escaped Character><String>one</String><Escaped Character>''</Escaped Character><String> escape pattern'</String><br/>
+<Key>double quotes</Key><Key Points Operator>:</Key Points Operator><Attribute> </Attribute><String>"have many: </String><Escaped Character>\"</Escaped Character><String>, </String><Escaped Character>\0</Escaped Character><String>, </String><Escaped Character>\t</Escaped Character><String>, </String><Escaped Character>\u263A</Escaped Character><String>, </String><Escaped Character>\x0d\x0a</Escaped Character><String> == </String><Escaped Character>\r\n</Escaped Character><String>, and more."</String><br/>
+<Attribute></Attribute><br/>
+<Key>decimal</Key><Key Points Operator>:</Key Points Operator><Attribute> </Attribute><Integer>+12345</Integer><br/>
+<Key>negative</Key><Key Points Operator>:</Key Points Operator><Attribute> </Attribute><Integer>-1_4</Integer><br/>
+<Key>zero</Key><Key Points Operator>:</Key Points Operator><Attribute> </Attribute><Integer>0</Integer><br/>
+<Key>octal</Key><Key Points Operator>:</Key Points Operator><Attribute> </Attribute><Integer>0o14</Integer><br/>
+<Key>another octal</Key><Key Points Operator>:</Key Points Operator><Attribute> </Attribute><Integer>014_2</Integer><br/>
+<Key>hexadecimal</Key><Key Points Operator>:</Key Points Operator><Attribute> </Attribute><Integer>0x_Ca2</Integer><br/>
+<Key>float</Key><Key Points Operator>:</Key Points Operator><Attribute> </Attribute><Float>1.23015e+3</Float><br/>
+<Key>exponential</Key><Key Points Operator>:</Key Points Operator><Attribute> </Attribute><Float>12.3015e+02</Float><br/>
+<Key>fixed</Key><Key Points Operator>:</Key Points Operator><Attribute> </Attribute><Float>12__30.1_5</Float><br/>
+<Key>sexagesimal</Key><Key Points Operator>:</Key Points Operator><Attribute> </Attribute><Float>19_0:20:30.15</Float><br/>
+<Key>sexagesimal-inline</Key><Key Points Operator>:</Key Points Operator><Attribute> </Attribute><Operator>[</Operator><Integer>123:45:12</Integer><Operator>,</Operator><List> </List><Float>123:45:32.234_32</Float><Operator>,</Operator><List> </List><Integer>+12__3:23</Integer><Operator>]</Operator><br/>
+<Key>infinity</Key><Key Points Operator>:</Key Points Operator><Attribute> </Attribute><Data Types>!!float</Data Types><Attribute> </Attribute><Float>.inf</Float><br/>
+<Key>not a number</Key><Key Points Operator>:</Key Points Operator><Attribute> </Attribute><Data Types>!!float</Data Types><Attribute> </Attribute><Float>.NaN</Float><br/>
+<Key>datetime</Key><Key Points Operator>:</Key Points Operator><Attribute> 2001-12-15T02:59:43.1Z</Attribute><br/>
+<Key>date</Key><Key Points Operator>:</Key Points Operator><Attribute> 2002-12-14</Attribute><br/>
+<Attribute></Attribute><br/>
+<Key>json_map</Key><Key Points Operator>:</Key Points Operator><Attribute> </Attribute><Operator>{</Operator><Key>"key"</Key><Key Points Operator>:</Key Points Operator><Attribute> </Attribute><String>"value"</String><Operator>}</Operator><br/>
+<Key>json_seq</Key><Key Points Operator>:</Key Points Operator><Attribute> </Attribute><Operator>[</Operator><Integer>3</Integer><Operator>,</Operator><List> </List><Integer>2</Integer><Operator>,</Operator><List> </List><Float>-.inf</Float><Operator>,</Operator><List> </List><String>"value"</String><Operator>]</Operator><br/>
+<Key>another key</Key><Key Points Operator>:</Key Points Operator><Attribute> </Attribute><Operator>{</Operator><Key>key</Key><Key Points Operator>:</Key Points Operator><Attribute> </Attribute><Operator>[</Operator><Integer>+0x12a</Integer><Operator>,</Operator><List> </List><Operator>,</Operator><List> </List><Key>!!hello</Key><Key Points Operator>:</Key Points Operator><Attribute> bye</Attribute><Operator>,</Operator><List> </List><Integer>1</Integer><Operator>,</Operator><List> </List><Boolean>off</Boolean><Operator>,</Operator><List> </List><Operator>{</Operator><Key>a</Key><Key Points Operator>:</Key Points Operator><Attribute> </Attribute><Operator>[{</Operator><Key>b</Key><Key Points Operator>:</Key Points Operator><Attribute> </Attribute><String>''</String><Operator>}]}]}</Operator><br/>
+<Attribute></Attribute><br/>
+<Operator>?</Operator><Normal Text> </Normal Text><Data Types>!!python/tuple</Data Types><Normal Text> </Normal Text><Operator>[</Operator><Integer>5</Integer><Operator>,</Operator><List> </List><Integer>7</Integer><Operator>]</Operator><br/>
+<Key Points Operator>:</Key Points Operator><Attribute> Fifty Seven</Attribute><br/>
+<Attribute></Attribute><br/>
+<Operator>?</Operator><Normal Text> </Normal Text><Key>set2</Key><Key Points Operator>:</Key Points Operator><br/>
+<Attribute>  </Attribute><Key>item1</Key><Key Points Operator>:</Key Points Operator><Attribute> </Attribute><Null>null</Null><br/>
+<Attribute>  </Attribute><Key>item2</Key><Key Points Operator>:</Key Points Operator><Attribute> </Attribute><Null>null</Null><br/>
+<Attribute></Attribute><br/>
+<Key>foo</Key><Key Points Operator>:</Key Points Operator><Attribute> </Attribute><Alias>&foo</Alias><br/>
+<Attribute>  </Attribute><Key><<</Key><Key Points Operator>:</Key Points Operator><Attribute> </Attribute><Reference>*base</Reference><br/>
+<Attribute>  </Attribute><Key>age</Key><Key Points Operator>:</Key Points Operator><Attribute> </Attribute><Integer>10</Integer><br/>
+<Attribute></Attribute><br/>
+<Data Types>!!seq</Data Types><Normal Text> </Normal Text><Operator>[</Operator><br/>
+<List>  </List><Data Types>!!str</Data Types><List> </List><String>"Block scalar</String><Escaped Character>\n</Escaped Character><String>"</String><Operator>,</Operator><br/>
+<List>  </List><Data Types>!!map</Data Types><List> </List><Operator>{</Operator><br/>
+<Hash>    </Hash><Operator>?</Operator><Hash> </Hash><Alias>&B1</Alias><Hash> </Hash><Data Types>!!str</Data Types><Hash> </Hash><String>"foo"</String><br/>
+<Hash>    </Hash><Key Points Operator>:</Key Points Operator><Attribute> </Attribute><Data Types>!!str</Data Types><Attribute> </Attribute><String>"bar"</String><Operator>,</Operator><br/>
+<Hash>    </Hash><Operator>?</Operator><Hash> </Hash><Data Types>!!str</Data Types><Hash> </Hash><String>"baz"</String><br/>
+<Hash>    </Hash><Key Points Operator>:</Key Points Operator><Attribute> </Attribute><Reference>*B1,</Reference><br/>
+<Attribute>  </Attribute><Operator>},</Operator><br/>
+<List>  </List><Data Types>!!map</Data Types><List> </List><Operator>{</Operator><br/>
+<Hash>     </Hash><Key>!!str "sun" </Key><Key Points Operator>:</Key Points Operator><Attribute> </Attribute><Data Types>!!str</Data Types><Attribute> </Attribute><String>"yellow"</String><Operator>,</Operator><br/>
+<Hash>  </Hash><Operator>},</Operator><br/>
+<Operator>]</Operator><br/>
+<Attribute></Attribute><br/>
+<Data Types>!!map</Data Types><Normal Text> </Normal Text><Operator>{</Operator><br/>
+<Hash>  </Hash><Key>!!str "Booleans"</Key><Key Points Operator>:</Key Points Operator><Attribute> </Attribute><Data Types>!!seq</Data Types><Attribute> </Attribute><Operator>[</Operator><br/>
+<List>    </List><Data Types>!!bool</Data Types><List> </List><String>"true"</String><Operator>,</Operator><List> </List><Data Types>!!bool</Data Types><List> </List><String>"false"</String><br/>
+<List>  </List><Operator>],</Operator><br/>
+<Hash>  </Hash><Key>!!str "Invalid"</Key><Key Points Operator>:</Key Points Operator><Attribute> </Attribute><Data Types>!!seq</Data Types><Attribute> </Attribute><Operator>[</Operator><br/>
+<Comment>    # Rejected by the schema</Comment><br/>
+<List>    </List><Boolean>True</Boolean><Operator>,</Operator><List> </List><Null>Null</Null><Operator>,</Operator><List> </List><Integer>0o7</Integer><Operator>,</Operator><List> </List><Integer>0x3A</Integer><Operator>,</Operator><List> </List><Float>+12.3</Float><Operator>,</Operator><br/>
+<List>  </List><Operator>],</Operator><br/>
+<Operator>}</Operator><br/>
+<Attribute></Attribute><br/>
+<Document Header>--- !clarkevans.com,2002/graph/^shape</Document Header><br/>
+<Operator>-</Operator><Normal Text> </Normal Text><Attribute>!^circle</Attribute><br/>
+<Attribute>  </Attribute><Key>center</Key><Key Points Operator>:</Key Points Operator><Attribute> </Attribute><Alias>&ORIGIN</Alias><Attribute> </Attribute><Operator>{</Operator><Key>x</Key><Key Points Operator>:</Key Points Operator><Attribute> </Attribute><Integer>73</Integer><Operator>,</Operator><Hash> </Hash><Key>y</Key><Key Points Operator>:</Key Points Operator><Attribute> </Attribute><Integer>129</Integer><Operator>}</Operator><br/>
+<Attribute>  </Attribute><Key>radius</Key><Key Points Operator>:</Key Points Operator><Attribute> </Attribute><Integer>7</Integer><br/>
+<Attribute></Attribute><br/>
+<Operator>?</Operator><Normal Text> </Normal Text><Operator>-</Operator><Normal Text> </Normal Text><Attribute>Dog</Attribute><br/>
+<Attribute>  </Attribute><Operator>-</Operator><Normal Text> </Normal Text><Attribute>Cat</Attribute><br/>
+<Key Points Operator>:</Key Points Operator><Attribute> </Attribute><Operator>[</Operator><List> 2018-08-11</List><Operator>,</Operator><List> 2016-01-01 </List><Operator>]</Operator><br/>
+<Attribute></Attribute><br/>
+<Comment># Literal/Folded Style</Comment><br/>
+<Attribute></Attribute><br/>
+<Document Header>--- </Document Header><Literal/Folded Operator>|</Literal/Folded Operator><br/>
+<Literal/Folded Block>  \//||\/||</Literal/Folded Block><br/>
+<Literal/Folded Block>  // ||  ||__</Literal/Folded Block><br/>
+<Normal Text></Normal Text><br/>
+<Document Header>--- </Document Header><Literal/Folded Operator>></Literal/Folded Operator><br/>
+<Literal/Folded Block>  Mark McGwire's</Literal/Folded Block><br/>
+<Literal/Folded Block>  year was crippled</Literal/Folded Block><br/>
+<Literal/Folded Block>  by a knee injury.</Literal/Folded Block><br/>
+<Literal/Folded Block> </Literal/Folded Block><br/>
+<Operator>? </Operator><Literal/Folded Operator>|</Literal/Folded Operator><br/>
+<Literal/Folded Block>  This is a key</Literal/Folded Block><br/>
+<Literal/Folded Block>  that has multiple lines</Literal/Folded Block><br/>
+<Key Points Operator>:</Key Points Operator><Normal Text> </Normal Text><Literal/Folded Operator>|</Literal/Folded Operator><br/>
+<Literal/Folded Block>  and this is it's literal value</Literal/Folded Block><br/>
+<Normal Text></Normal Text><br/>
+<Comment># Capture the indentation of the Key. The "-" and "?" operators</Comment><br/>
+<Comment># are considered as part of the indentation:</Comment><br/>
+<Key>key1</Key><Key Points Operator>:</Key Points Operator><br/>
+<Key>   key2</Key><Key Points Operator>: </Key Points Operator><Data Types>!!hello</Data Types><Attribute> </Attribute><Literal/Folded Operator>|</Literal/Folded Operator><br/>
+<Literal/Folded Block>    literal: " text" # [ ]</Literal/Folded Block><br/>
+<Normal Text></Normal Text><br/>
+<Literal/Folded Block>    # literal { }</Literal/Folded Block><br/>
+<Key>   key3</Key><Key Points Operator>: </Key Points Operator><Literal/Folded Operator>|+</Literal/Folded Operator><br/>
+<Literal/Folded Block>    literal: 'text'</Literal/Folded Block><br/>
+<Attribute>   </Attribute><Key>no-literal</Key><Key Points Operator>:</Key Points Operator><Attribute> </Attribute><String>" text"</String><br/>
+<Comment>    #comment</Comment><br/>
+<Attribute></Attribute><br/>
+<Operator>?  </Operator><Key>key</Key><Key Points Operator>:</Key Points Operator><Attribute> </Attribute><Literal/Folded Operator>|-</Literal/Folded Operator><br/>
+<Literal/Folded Block>    literal: "text"</Literal/Folded Block><br/>
+<Attribute>   </Attribute><Key>no-literal</Key><Key Points Operator>:</Key Points Operator><Attribute> </Attribute><String>"text"</String><br/>
+<Operator>-</Operator><Normal Text> </Normal Text><Attribute>item1</Attribute><br/>
+<Attribute>    </Attribute><Operator>-</Operator><Normal Text> </Normal Text><Attribute>item2</Attribute><br/>
+<Operator>        - - - </Operator><Key>key</Key><Key Points Operator>:</Key Points Operator><Attribute> </Attribute><Literal/Folded Operator>>-</Literal/Folded Operator><br/>
+<Literal/Folded Block>               "literal text" # [ ]</Literal/Folded Block><br/>
+<Normal Text></Normal Text><br/>
+<Literal/Folded Block>               'literal block'</Literal/Folded Block><br/>
+<Attribute>              </Attribute><Key>no-literal</Key><Key Points Operator>:</Key Points Operator><Attribute> </Attribute><Integer>12</Integer><br/>
+<Attribute></Attribute><br/>
+<Operator>? - - - - ? </Operator><Key>key</Key><Key Points Operator>:</Key Points Operator><Attribute> </Attribute><Literal/Folded Operator>|</Literal/Folded Operator><br/>
+<Literal/Folded Block>             literal: [ ]</Literal/Folded Block><br/>
+<Attribute>            </Attribute><Key>no-literal</Key><Key Points Operator>:</Key Points Operator><Attribute> </Attribute><Operator>[</Operator><List> </List><Operator>]</Operator><br/>
+<Attribute></Attribute><br/>
+<Comment># Capture the indentation of the literal/folded operator:</Comment><br/>
+<Literal/Folded Operator>|-</Literal/Folded Operator><br/>
+<Literal/Folded Block> literal: "text"</Literal/Folded Block><br/>
+<Normal Text></Normal Text><br/>
+<Data Types>!!binary</Data Types><Normal Text> </Normal Text><Literal/Folded Operator>|</Literal/Folded Operator><br/>
+<Literal/Folded Block> R0lGODlhDAAMAIQAAP//9/X</Literal/Folded Block><br/>
+<Literal/Folded Block> 17unp5WZmZgAAAOfn515eXv</Literal/Folded Block><br/>
+<Literal/Folded Block> Pz7Y6OjuDg4J+fn5OTk6enp</Literal/Folded Block><br/>
+<Literal/Folded Block> 56enmleECcgggoBADs=</Literal/Folded Block><br/>
+<Normal Text></Normal Text><br/>
+<Key>key1</Key><Key Points Operator>:</Key Points Operator><br/>
+<Attribute>  </Attribute><Key>key2</Key><Key Points Operator>:</Key Points Operator><br/>
+<Literal/Folded Operator>   |</Literal/Folded Operator><br/>
+<Literal/Folded Block>   literal: "text"</Literal/Folded Block><br/>
+<Attribute>  </Attribute><Key>key3</Key><Key Points Operator>:</Key Points Operator><br/>
+<Data Types>   !!str</Data Types><Normal Text> </Normal Text><Literal/Folded Operator>|</Literal/Folded Operator><br/>
+<Literal/Folded Block>   literal: "text"</Literal/Folded Block><br/>
+<Literal/Folded Block>   #literal</Literal/Folded Block><br/>
+<Normal Text></Normal Text><br/>
+<Comment># Capture the indentation of the operators "-" or "?":</Comment><br/>
+<Operator>? - - - </Operator><Data Types>!!hello</Data Types><Attribute> </Attribute><Literal/Folded Operator>|+</Literal/Folded Operator><br/>
+<Literal/Folded Block>       literal: "sdfsd" # [ ]</Literal/Folded Block><br/>
+<Attribute>      </Attribute><Key>no-literal</Key><Key Points Operator>:</Key Points Operator><Attribute> </Attribute><String>"sdfsd"</String><Comment> # [ ]</Comment><br/>
+<Attribute></Attribute><br/>
+<Operator>- - - - </Operator><Literal/Folded Operator>>-</Literal/Folded Operator><br/>
+<Literal/Folded Block>       literal: "text"</Literal/Folded Block><br/>
+<Literal/Folded Block>       #literal</Literal/Folded Block><br/>
+<Attribute>      </Attribute><Key>no-literal</Key><Key Points Operator>:</Key Points Operator><Attribute> </Attribute><String>"text"</String><Normal Text> </Normal Text><br/>
+<Attribute></Attribute><br/>
+<Comment># This implementation of literal blocks has a limitation:</Comment><br/>
+<Comment># it only supports 6 dashes at most.</Comment><br/>
+<Operator>-</Operator><Normal Text> </Normal Text><Operator>-</Operator><Normal Text> </Normal Text><Operator>-</Operator><Normal Text> </Normal Text><Operator>-</Operator><Normal Text> </Normal Text><Operator>-</Operator><Normal Text> </Normal Text><Operator>-</Operator><Normal Text> </Normal Text><Operator>-</Operator><Normal Text> </Normal Text><Key>key</Key><Key Points Operator>:</Key Points Operator><Attribute> </Attribute><Literal/Folded Operator>|</Literal/Folded Operator><br/>
+<Attribute>               literal? "dfsf"</Attribute><br/>
+<Attribute></Attribute><br/>
+<Comment># Only comments after spaces & strings in multiline attributes (bug #407060)</Comment><br/>
+<Key>reg_list</Key><Key Points Operator>:</Key Points Operator><br/>
+<Operator>-</Operator><Normal Text> </Normal Text><Key>reg</Key><Key Points Operator>:</Key Points Operator><Attribute> </Attribute><Operator>?</Operator><Attribute>#XPath //div[@class="product_item cf"][@id] ))(?sx)</Attribute><br/>
+<Attribute>    id="product(?P<code>[^"]+)"</Attribute><br/>
+<Attribute>    .+?<h4><a\s+[^>]+>(?P<title>[^<]+)</a></h4></Attribute><br/>

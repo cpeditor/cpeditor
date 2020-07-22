@@ -1,0 +1,112 @@
+<indentfold>-- Agda Sample File
+-- https://github.com/agda/agda/blob/master/examples/syntax/highlighting/Test.agda
+
+-- This test file currently lacks module-related stuff.
+
+</indentfold><beginfold id='1'>{-</beginfold id='1'> Nested
+<indentfold>   <beginfold id='1'>{-</beginfold id='1'> comment. <endfold id='1'>-}</endfold id='1'> <endfold id='1'>-}</endfold id='1'>
+
+module Test where
+
+infix  12 _!
+infixl  7 _+_ _-_
+infixr  2 -_
+
+postulate x : Set
+
+f : (Set -> Set -> Set) -> Set
+f _*_ = x * x
+
+data ℕ : Set where
+  zero : ℕ
+  suc  : ℕ -> ℕ
+
+_+_ : ℕ -> ℕ -> ℕ
+zero  + n = n
+suc m + n = suc (m + n)
+
+postulate _-_ : ℕ -> ℕ -> ℕ
+
+-_ : ℕ -> ℕ
+- n = n
+
+_! : ℕ -> ℕ
+zero  ! = suc zero
+suc n ! = n - n !
+
+record Equiv {a : Set} (_≈_ : a -> a -> Set) : Set where
+  field
+    refl      : forall x       -> x ≈ x
+    sym       : {x y : a}      -> x ≈ y -> y ≈ x
+    _`trans`_ : forall {x y z} -> x ≈ y -> y ≈ z -> x ≈ z
+
+data _≡_ {a : Set} (x : a) : a -> Set where
+  refl : x ≡ x
+
+subst : forall {a x y} ->
+  (P : a -> Set) -> x ≡ y -> P x -> P y
+subst {x = x} .{y = x} _ refl p = p
+
+Equiv-≡ : forall {a} -> Equiv {a} _≡_
+Equiv-≡ {a} =
+  record { refl      = \_ -> refl
+         ; sym       = sym
+         ; _`trans`_ = _`trans`_
+         }
+  where
+  sym : {x y : a} -> x ≡ y -> y ≡ x
+  sym refl = refl
+
+  _`trans`_ : {x y z : a} -> x ≡ y -> y ≡ z -> x ≡ z
+  refl `trans` refl = refl
+
+postulate
+  String : Set
+  Char   : Set
+  Float  : Set
+
+data Int : Set where
+  pos    : ℕ → Int
+  negsuc : ℕ → Int
+
+{-# BUILTIN STRING  String #-}
+{-# BUILTIN CHAR    Char   #-}
+{-# BUILTIN FLOAT   Float  #-}
+
+{-# BUILTIN NATURAL ℕ      #-}
+
+{-# BUILTIN INTEGER       Int    #-}
+{-# BUILTIN INTEGERPOS    pos    #-}
+{-# BUILTIN INTEGERNEGSUC negsuc #-}
+
+data [_] (a : Set) : Set where
+  []  : [ a ]
+  _∷_ : a -> [ a ] -> [ a ]
+
+{-# BUILTIN LIST [_] #-}
+{-# BUILTIN NIL  []  #-}
+{-# BUILTIN CONS _∷_ #-}
+
+primitive
+  primStringToList : String -> [ Char ]
+
+string : [ Char ]
+string = primStringToList "∃ apa"
+
+char : Char
+char = '∀'
+
+anotherString : String
+anotherString = "¬ be\
+    \pa"
+
+nat : ℕ
+nat = 45
+
+float : Float
+float = 45.0e-37
+
+-- Testing qualified names.
+
+open import Test
+Eq = Test.Equiv {Test.ℕ}

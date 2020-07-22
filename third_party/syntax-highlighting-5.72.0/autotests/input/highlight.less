@@ -1,0 +1,701 @@
+/**
+ * Less syntax highlighting test file
+ *
+ * Based on the Less documentation ((c) 2017 Alexis Sellier, the Less Core Team, Contributors, The MIT License)
+ *
+ * @see http://lesscss.org/features/
+ */
+
+.mixin(@color; @padding; @margin: 2) {
+  colorr: @color;
+  padding-3: @padding;
+  margin: @margin @margin @margin @margin;
+}
+
+@my-ruleset: {
+  .my-selector {
+    background-color: black;
+  }
+};
+
+@bacon: red;
+@beacon: background-color;
+@baecon: @{w} + @w;
+
+.noStar:extend(.class #sh:extend(#hhh) ) {}
+.noStar:nth-child(w: red) {}
+
+@media (max-width: @width2) and handheld {
+  height: auto;
+}
+
+.test when (@color = blue) .ffff {color: red;}
+
+.foo (@bg: #f5f5f5, @color: #900) {
+  background: @bg;
+  color: @color;
+
+  .x {
+    x: @nn;
+    a: white @{nn@{ww}};
+    background: red;
+  }
+}
+
+// Variables
+
+@link-color:        #428bca; // sea blue
+@link-color-hover:  darken(@link-color, 10%);
+
+a, .link {
+  color: @link-color;
+}
+
+a:hover {
+  color: @link-color-hover;
+}
+
+.widget {
+  color: #fff;
+  background: @link-color;
+}
+
+// Variable interpolation
+
+@my-selector: banner;
+
+.@{my-selector} when (@s = calc("s"); @{s} = calc("dddd")) {
+  font-weight: bold;
+  line-height+: 40px;
+  margin: 0 auto;
+}
+
+@images: "../img";
+
+body {
+  color: #444;
+  background: url("@{images}/white-sand.png");
+}
+
+@themes: "../../src/themes";
+
+@import "@{themes}/tidal-wave.less";
+
+@property: color;
+
+.widget {
+  @{property}: #0ee;
+  background-@{property}: #999;
+}
+
+// Variable names
+
+@fnord:  "I am fnord.";
+@var:    "fnord";
+
+.variable-names-example {
+  content: @@var;
+}
+
+// Lazy Evaluation
+
+.lazy-eval {
+  width: @var;
+}
+
+@var: @a;
+@a: 9%;
+
+@var: 0;
+.class {
+  @var: 1;
+  .brass {
+    @var: 2;
+    three: @var;
+    @var: 3;
+  }
+  one: @var;
+}
+
+// Default Variables
+
+@base-color: green;
+@dark-color: darken(@base-color, 10%);
+
+@import "library.less";
+@base-color: red;
+
+// Extend
+
+nav ul {
+  &:extend(.inline);
+  background: blue;
+}
+.inline {
+  color: red;
+}
+
+// Extend Syntax
+
+.e:extend(.f) {}
+.e:extend(.g) {}
+
+.e:extend(.f, .g) {}
+
+// Extend Attached to Selector
+
+.big-division,
+.big-bag:extend(.bag),
+.big-bucket:extend(.bucket) {
+}
+
+// Extend Inside Ruleset
+
+pre:hover,
+.some-class {
+  &:extend(div pre);
+}
+
+pre:hover:extend(div pre),
+.some-class:extend(div pre) {}
+
+// Extending Nested Selectors
+
+.bucket {
+  tr {
+    color: blue;
+  }
+}
+.some-class:extend(.bucket tr) {}
+
+// Exact Matching with Extend
+
+*.class {
+  color: blue;
+}
+.noStar:extend(.class) {}
+
+link:hover:visited {
+  color: blue;
+}
+.selector:extend(link:visited:hover) {}
+
+// nth Expression
+
+:nth-child(1n+3) {
+  color: blue;
+}
+.child:extend(:nth-child(n+3)) {}
+
+[title=identifier] {
+  color: blue;
+}
+[title='identifier'] {
+  color: blue;
+}
+[title="identifier"] {
+  color: blue;
+}
+
+.noQuote:extend([title=identifier]) {}
+.singleQuote:extend([title='identifier']) {}
+.doubleQuote:extend([title="identifier"]) {}
+
+// Extend "all"
+
+.a.b.test,
+.test.c {
+  color: orange;
+}
+.test {
+  &:hover {
+    color: green;
+  }
+}
+
+.replacement:extend(.test all) {}
+
+// Selector Interpolation with Extend
+
+.bucket {
+  color: blue;
+}
+@{variable}:extend(.bucket) {}
+@variable: .selector;
+
+// Scoping / Extend Inside @media
+
+@media print {
+  .screenClass:extend(.selector) {}
+  .selector {
+    color: black;
+  }
+}
+.selector {
+  color: red;
+}
+@media screen {
+  .selector {
+    color: blue;
+  }
+}
+
+// Use Cases for Extend
+
+.animal {
+  background-color: black;
+  color: white;
+}
+.bear {
+  &:extend(.animal);
+  background-color: brown;
+}
+
+.my-inline-block {
+  display: inline-block;
+  font-size: 0;
+}
+.thing1 {
+  &:extend(.my-inline-block);
+}
+.thing2 {
+  &:extend(.my-inline-block);
+}
+
+// Mixins
+
+.a, #b {
+  color: red;
+}
+.mixin-class {
+  .a();
+}
+.mixin-id {
+  #b();
+}
+
+// Not Outputting the Mixin
+
+.my-mixin {
+  color: black;
+}
+.my-other-mixin() {
+  background: white;
+}
+.class {
+  .my-mixin;
+  .my-other-mixin;
+}
+
+// Selectors in Mixins
+
+.my-hover-mixin() {
+  &:hover {
+    border: 1px solid red;
+  }
+}
+button {
+  .my-hover-mixin();
+}
+
+// Namespaces
+
+#outer {
+  .inner {
+    color: red;
+  }
+}
+
+.c {
+  #outer > .inner;
+}
+
+.d {
+  #outer > .inner;
+  #outer > .inner();
+  #outer .inner;
+  #outer .inner();
+  #outer.inner;
+  #outer.inner();
+}
+
+// Guarded Namespaces
+
+#namespace when (@mode=huge) {
+  .mixin() { /* */ }
+}
+
+#namespace {
+  .mixin() when (@mode=huge) { /* */ }
+}
+
+#sp_1 when (default()) {
+  #sp_2 when (default()) {
+    .mixin() when not(default()) { /* */ }
+  }
+}
+
+// The !important keyword
+
+.foo (@bg: #f5f5f5, @color: #900) {
+  background: @bg;
+  color: @color !important;
+}
+.unimportant {
+  .foo();
+}
+.important {
+  .foo() !important;
+}
+
+// Parametric Mixins
+
+.border-radius(@radius) {
+  -webkit-border-radius: @radius;
+     -moz-border-radius: @radius;
+          border-radius: @radius;
+}
+
+#header {
+  .border-radius(4px);
+}
+.button {
+  .border-radius(6px);
+}
+
+.border-radius(@radius: 5px) {
+  -webkit-border-radius: @radius;
+     -moz-border-radius: @radius;
+          border-radius: @radius;
+}
+
+.wrap() {
+  text-wrap: wrap;
+  white-space: -moz-pre-wrap;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+pre { .wrap }
+
+// Mixins with Multiple Parameters
+
+.mixin(@color) {
+  color-1: @color;
+}
+.mixin(@color; @padding: 2) {
+  color-2: @color;
+  padding-2: @padding;
+}
+.mixin(@color; @padding; @margin: 2) {
+  color-3: @color;
+  padding-3: @padding;
+  margin: @margin @margin @margin @margin;
+}
+.some .selector div {
+  .mixin(#008000);
+}
+
+// Named parameters
+
+.mixin(@color: black; @margin: 10px; @padding: 20px) {
+  color: @color;
+  margin: @margin;
+  padding: @padding;
+}
+.class1 {
+  .mixin(@margin: 20px; @color: #33acfe);
+}
+.class2 {
+  .mixin(#efca44; @padding: 40px);
+}
+
+// The @arguments Variable
+
+.box-shadow(@x: 0; @y: 0; @blur: 1px; @color: #000) {
+  -webkit-box-shadow: @arguments;
+     -moz-box-shadow: @arguments;
+          box-shadow: @arguments;
+}
+.big-block {
+  .box-shadow(2px; 5px);
+}
+
+// Advanced Arguments and the @rest Variable
+
+.mixin(...) {}        // matches 0-N arguments
+.mixin() {}           // matches exactly 0 arguments
+.mixin(@a: 1) {}      // matches 0-1 arguments
+.mixin(@a: 1; ...) {} // matches 0-N arguments
+.mixin(@a; ...) {}    // matches 1-N arguments
+
+.mixin(@a; @rest...) {
+   // @rest is bound to arguments after @a
+   // @arguments is bound to all arguments
+}
+
+// Pattern-matching
+
+.mixin(@s; @color) { ... }
+
+.class {
+  .mixin(@switch; #888);
+}
+
+.mixin(dark; @color) {
+  color: darken(@color, 10%);
+}
+.mixin(light; @color) {
+  color: lighten(@color, 10%);
+}
+.mixin(@_; @color) {
+  display: block;
+}
+
+@switch: light;
+
+.class {
+  .mixin(@switch; #888);
+}
+
+// Mixins as Functions
+
+.average(@x, @y) {
+  @average: ((@x + @y) / 2);
+}
+
+div {
+  .average(16px, 50px); // "call" the mixin
+  padding: @average;    // use its "return" value
+}
+
+// Passing Rulesets to Mixins
+
+// declare detached ruleset
+@detached-ruleset: { background: red; };
+
+// use detached ruleset
+.top {
+    @detached-ruleset();
+}
+
+.desktop-and-old-ie(@rules) {
+  @media screen and (min-width: 1200px) { @rules(); }
+  html.lt-ie9 &                         { @rules(); }
+}
+
+header {
+  background-color: blue;
+
+  .desktop-and-old-ie({
+    background-color: red;
+  });
+}
+
+@my-ruleset: {
+  .my-selector {
+    background-color: black;
+  }
+};
+
+@my-ruleset: {
+    .my-selector {
+      @media tv {
+        background-color: black;
+      }
+    }
+  };
+@media (orientation:portrait) {
+    @my-ruleset();
+}
+
+// Scoping
+
+@detached-ruleset: {
+  caller-variable: @caller-variable; // variable is undefined here
+  .caller-mixin(); // mixin is undefined here
+};
+
+selector {
+  // use detached ruleset
+  @detached-ruleset();
+
+  // define variable and mixin needed inside the detached ruleset
+  @caller-variable: value;
+  .caller-mixin() {
+    variable: declaration;
+  }
+}
+
+/*
+ * reference: use a Less file but do not output it
+inline: include the source file in the output but do not process it
+less: treat the file as a Less file, no matter what the file extension
+css: treat the file as a CSS file, no matter what the file extension
+once: only include the file once (this is default behavior)
+multiple: include the file multiple times
+optional: continue compiling when file is not found
+ */
+
+@import (optional, reference) "foo.less";
+
+// Mixin Guards
+
+.mixin (@a) when (lightness(@a) >= 50%) {
+  background-color: black;
+}
+.mixin (@a) when (lightness(@a) < 50%) {
+  background-color: white;
+}
+.mixin (@a) {
+  color: @a;
+}
+
+// Guard Comparison Operators
+
+.truth (@a) when (@a) { }
+.truth (@a) when (@a = true) { }
+
+// FIXME: @media as variable
+@media: mobile;
+
+.mixin (@a) when (@media = mobile) { }
+.mixin (@a) when (@media = desktop) { }
+
+.max (@a; @b) when (@a > @b) { width: @a }
+.max (@a; @b) when (@a < @b) { width: @b }
+
+// Guard Logical Operators
+
+.mixin (@a) when (isnumber(@a)) and (@a > 0) {  }
+.mixin (@a) when (@a > 10), (@a < -10) {  }
+.mixin (@b) when not (@b > 0) { }
+
+// Type Checking Functions
+
+.mixin (@a; @b: 0) when (isnumber(@b)) { }
+.mixin (@a; @b: black) when (iscolor(@b)) {}
+
+button when (@my-option = true) {
+  color: white;
+
+  & when (@my-option = true) {
+  button {
+    color: white;
+  }
+  a {
+    color: blue;
+  }
+}
+}
+
+// Loops
+
+.loop(@counter) when (@counter > 0) {
+  .loop((@counter - 1));    // next iteration
+  width: (10px * @counter); // code for each iteration
+}
+
+div {
+  .loop(5); // launch the loop
+}
+
+// Merge
+
+.mixin() {
+  box-shadow+: inset 0 0 10px #555;
+}
+.myclass {
+  .mixin();
+  box-shadow+: 0 0 20px black;
+}
+
+// Space
+
+.mixin() {
+  transform+_: scale(2);
+}
+.myclass {
+  .mixin();
+  transform+_: rotate(15deg);
+}
+
+// Parent Selectors
+
+a {
+  color: blue;
+  &:hover {
+    color: green;
+  }
+}
+
+.button {
+  &-ok {
+    background-image: url("ok.png");
+  }
+  &-cancel {
+    background-image: url("cancel.png");
+  }
+
+  &-custom {
+    background-image: url("custom.png");
+  }
+}
+
+.link {
+  & + & {
+    color: red;
+  }
+
+  & & {
+    color: green;
+  }
+
+  && {
+    color: blue;
+  }
+
+  &, &ish {
+    color: cyan;
+  }
+}
+
+.grand {
+  .parent {
+    & > & {
+      color: red;
+    }
+
+    & & {
+      color: green;
+    }
+
+    && {
+      color: blue;
+    }
+
+    &, &ish {
+      color: cyan;
+    }
+  }
+}
+
+// Changing Selector Order
+
+.header {
+  .menu {
+    border-radius: 5px;
+    .no-borderradius & {
+      background-image: url('images/button-background.png');
+    }
+  }
+}
+
+// Combinatorial Explosion
+
+p, a, ul, li {
+  border-top: 2px dotted #366;
+  & + & {
+    border-top: 0;
+  }
+}

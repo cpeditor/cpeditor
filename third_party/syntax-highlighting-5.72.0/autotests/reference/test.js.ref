@@ -1,0 +1,50 @@
+<Comment>#! shebang</Comment><br/>
+<Normal Text>#</Normal Text><Symbol>!</Symbol><Normal Text> no</Normal Text><Symbol>-</Symbol><Normal Text>shebang</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment>/* comment */</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>function</Keyword><Normal Text> </Normal Text><Function Declaration>fun</Function Declaration><Normal Text>()</Normal Text><br/>
+<Normal Text>{</Normal Text><br/>
+<Normal Text>    </Normal Text><Keyword>var</Keyword><Normal Text> boo </Normal Text><Symbol>=</Symbol><Normal Text> { </Normal Text><String>'key'</String><Symbol>:</Symbol><Normal Text> [ </Normal Text><Decimal>1</Decimal><Symbol>,</Symbol><Normal Text> </Normal Text><Float>2.0</Float><Symbol>,</Symbol><Normal Text> </Normal Text><Float>3.0e1</Float><Symbol>,</Symbol><Normal Text> </Normal Text><Decimal>004</Decimal><Symbol>,</Symbol><Normal Text> </Normal Text><Hex>0x5</Hex><Normal Text> ] }</Normal Text><Symbol>;</Symbol><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Reserved>class</Reserved><Normal Text> MyClass</Normal Text><Symbol>;</Symbol><Normal Text> </Normal Text><Comment>// reserved keywords</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Comment>// Member objects: text after "."</Comment><br/>
+<Objects>object</Objects><Symbol>.</Symbol><Object Member>property</Object Member><Normal Text> </Normal Text><Keyword>instanceof</Keyword><Normal Text> </Normal Text><Built-in Objects>Number</Built-in Objects><Symbol>;</Symbol><br/>
+<Objects>iden1</Objects><Symbol>.</Symbol><Object Member>iden2</Object Member><Normal Text>  </Normal Text><Symbol>.</Symbol><Normal Text> </Normal Text><Object Member>iden3</Object Member><Symbol>.</Symbol><Object Member>class</Object Member><Normal Text> </Normal Text><Reserved>class</Reserved><Symbol>;</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>var</Keyword><Normal Text> escapes </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><String>"aa</String><Escape>\</Escape><Reserved Char. Escape>b</Reserved Char. Escape><Escape>\</Escape><Reserved Char. Escape>n</Reserved Char. Escape><Escape>\</Escape><Reserved Char. Escape>0</Reserved Char. Escape><String>a</String><Escape>\"</Escape><String>a</String><Escape>\x12</Escape><String>a</String><Escape>\32</Escape><String>a</String><Escape>\u{123}</Escape><String>a</String><Escape>\$\%\ \#\y\a</Escape><String>aa</String><Escape>\</Escape><br/>
+<String>aaa"</String><Symbol>;</Symbol><br/>
+<Keyword>var</Keyword><Normal Text> octal </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Octal>0o124</Octal><Symbol>;</Symbol><br/>
+<Keyword>var</Keyword><Normal Text> bin </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Binary>0b1010</Binary><Symbol>;</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Function Name>日本語</Function Name><Normal Text>()</Normal Text><Symbol>.</Symbol><Object Member>ლಠ益ಠლ</Object Member><Symbol>.</Symbol><Object Member>ñá</Object Member><Normal Text> </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Decimal>42</Decimal><Symbol>;</Symbol><br/>
+<Normal Text>δ </Normal Text><Symbol>/</Symbol><Normal Text>No</Normal Text><Symbol>-</Symbol><Normal Text>Regex</Normal Text><Symbol>/</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Comment>// Only highlight valid regular expressions, of a single line, after strings</Comment><br/>
+<Comment>// See: https://github.com/microsoft/TypeScript-TmLanguage/issues/786</Comment><br/>
+<String>"text"</String><Normal Text> </Normal Text><Symbol>/</Symbol><Normal Text>No</Normal Text><Symbol>-</Symbol><Normal Text>Regex</Normal Text><br/>
+<String>"text"</String><Normal Text> </Normal Text><Regular Expression>/Regex</Regular Expression><Pattern Character Class>[:)]</Pattern Character Class><Pattern Internal Operator>*</Pattern Internal Operator><Regular Expression>/</Regular Expression><Symbol>;</Symbol><br/>
+<Keyword>const</Keyword><Normal Text> a </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><String>"6"</String><Normal Text> </Normal Text><Symbol>/</Symbol><Normal Text> </Normal Text><Decimal>2</Decimal><Symbol>;</Symbol><Normal Text> </Normal Text><Comment>/*comment*/</Comment><Normal Text> </Normal Text><Keyword>const</Keyword><Normal Text> b </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Decimal>5</Decimal><Symbol>;</Symbol><br/>
+<Built-in Objects>console</Built-in Objects><Symbol>.</Symbol><Object Method (Built-in)>log</Object Method (Built-in)><Normal Text>(</Normal Text><String>"4"</String><Normal Text> </Normal Text><Symbol>/</Symbol><Normal Text> </Normal Text><String>"2"</String><Normal Text>)</Normal Text><Symbol>;</Symbol><Normal Text> </Normal Text><Comment>// 2</Comment><br/>
+<Comment>// Single quote</Comment><br/>
+<Keyword>const</Keyword><Normal Text> a </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><String>'6'</String><Normal Text> </Normal Text><Symbol>/</Symbol><Normal Text> </Normal Text><Decimal>2</Decimal><Symbol>;</Symbol><Normal Text> </Normal Text><Comment>/*comment*/</Comment><Normal Text> </Normal Text><Keyword>const</Keyword><Normal Text> b </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Decimal>5</Decimal><Symbol>;</Symbol><br/>
+<Built-in Objects>console</Built-in Objects><Symbol>.</Symbol><Object Method (Built-in)>log</Object Method (Built-in)><Normal Text>(</Normal Text><String>'4'</String><Normal Text> </Normal Text><Symbol>/</Symbol><Normal Text> </Normal Text><String>'2'</String><Normal Text>)</Normal Text><Symbol>;</Symbol><Normal Text> </Normal Text><Comment>// 2</Comment><br/>
+<Comment>// Template</Comment><br/>
+<Keyword>const</Keyword><Normal Text> a </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Template>`6`</Template><Normal Text> </Normal Text><Symbol>/</Symbol><Normal Text> </Normal Text><Decimal>2</Decimal><Symbol>;</Symbol><Normal Text> </Normal Text><Comment>/*comment*/</Comment><Normal Text> </Normal Text><Keyword>const</Keyword><Normal Text> b </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Decimal>5</Decimal><Symbol>;</Symbol><br/>
+<Built-in Objects>console</Built-in Objects><Symbol>.</Symbol><Object Method (Built-in)>log</Object Method (Built-in)><Normal Text>(</Normal Text><Template>`4`</Template><Normal Text> </Normal Text><Symbol>/</Symbol><Normal Text> </Normal Text><Template>`2`</Template><Normal Text>)</Normal Text><Symbol>;</Symbol><Normal Text> </Normal Text><Comment>// 2</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Comment>// Built-in</Comment><br/>
+<Keyword>const</Keyword><Normal Text> os </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Function (Built-in)>require</Function (Built-in)><Normal Text>(</Normal Text><String>'os'</String><Normal Text>)</Normal Text><Symbol>;</Symbol><br/>
+<Built-in Objects>JSON</Built-in Objects><Symbol>.</Symbol><Object Method (Built-in)>stringify</Object Method (Built-in)><Normal Text>(</Normal Text><String>"hello"</String><Normal Text>)</Normal Text><Symbol>;</Symbol><br/>
+<Built-in Objects>console</Built-in Objects><Symbol>.</Symbol><Object Method (Built-in)>error</Object Method (Built-in)><Normal Text>(</Normal Text><String>"hello"</String><Normal Text>)</Normal Text><Symbol>;</Symbol><br/>
+<Built-in Objects>Math</Built-in Objects><Symbol>.</Symbol><Constant>LOG10E</Constant><Symbol>;</Symbol><br/>
+<Built-in Objects>Number</Built-in Objects><Symbol>.</Symbol><Constant>MAX_SAFE_INTEGER</Constant><Symbol>;</Symbol><br/>
+<Built-in Objects>String</Built-in Objects><Symbol>.</Symbol><Function Name>raw</Function Name><Template>`raw text \.\n${}`</Template><br/>
+<Normal Text></Normal Text><br/>
+<Comment>// Tagged template literals</Comment><br/>
+<Function Name>tagFunc</Function Name><Template>`</Template><br/>
+<Template>    Hello world!</Template><br/>
+<Template>    </Template><Substitution>${</Substitution><Normal Text> </Normal Text><Function Name>alert</Function Name><Normal Text>(</Normal Text><String>"Hello!"</String><Normal Text>)</Normal Text><Symbol>;</Symbol><Normal Text> </Normal Text><Substitution>}</Substitution><Template>`</Template><Symbol>;</Symbol><br/>
+<Objects>obj</Objects><Symbol>.</Symbol><Object Member>something</Object Member><Symbol>.</Symbol><Function Name>tagFunc</Function Name><Template>`Setting </Template><Substitution>${</Substitution><Normal Text>setting</Normal Text><Substitution>}</Substitution><Template> is </Template><Substitution>${</Substitution><Normal Text>value </Normal Text><Symbol>+</Symbol><Normal Text> </Normal Text><Decimal>5</Decimal><Substitution>}</Substitution><Template>!`</Template><Symbol>;</Symbol><br/>

@@ -1,0 +1,380 @@
+<Comment>/* Stan Highlighting Example</Comment><br/>
+<Comment></Comment><br/>
+<Comment>  This file contains a syntatically correct but nonsensical Stan program that</Comment><br/>
+<Comment>  includes almost every feature of the language needed to validate syntax</Comment><br/>
+<Comment>  highlighters. It will compile (as of Stan 2.17.1), but it does nothing</Comment><br/>
+<Comment>  useful.</Comment><br/>
+<Comment></Comment><br/>
+<Comment>  Author: Jeffrey Arnold <jeffrey.anold@gmail.com></Comment><br/>
+<Comment>  Copyright: Jeffrey Arnold (2018)</Comment><br/>
+<Comment>  License: MIT</Comment><br/>
+<Comment></Comment><br/>
+<Comment>*/</Comment><br/>
+<Comment>// line comment</Comment><br/>
+<Comment># deprecated line comment</Comment><br/>
+<Keyword>functions</Keyword><Normal Text> </Normal Text><Punctuation>{</Punctuation><br/>
+<Normal Text>  </Normal Text><Comment>#include stuff.stan</Comment><br/>
+<Normal Text>  </Normal Text><Comment>#include "morestuff.stan"</Comment><br/>
+<Normal Text>  </Normal Text><Comment>#include 'moststuff.stan'</Comment><br/>
+<Normal Text>  </Normal Text><Comment>#include <evenmorestuff.stan></Comment><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>  </Normal Text><Comment>// declarations</Comment><br/>
+<Normal Text>  </Normal Text><Data Type>void</Data Type><Normal Text> </Normal Text><Identifier>oof</Identifier><Punctuation>(</Punctuation><Data Type>real</Data Type><Normal Text> </Normal Text><Identifier>x</Identifier><Operator>)</Operator><Normal Text>;</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>  </Normal Text><Comment>// definitions</Comment><br/>
+<Normal Text>  </Normal Text><Comment>// return types</Comment><br/>
+<Normal Text>  </Normal Text><Data Type>void</Data Type><Normal Text> </Normal Text><Identifier>oof</Identifier><Punctuation>(</Punctuation><Data Type>real</Data Type><Normal Text> </Normal Text><Identifier>x</Identifier><Operator>)</Operator><Normal Text> </Normal Text><Punctuation>{</Punctuation><br/>
+<Normal Text>    </Normal Text><Keyword>print</Keyword><Punctuation>(</Punctuation><String>"print "</String><Punctuation>,</Punctuation><Normal Text> </Normal Text><Identifier>x</Identifier><Operator>)</Operator><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Punctuation>}</Punctuation><br/>
+<Normal Text>  </Normal Text><Comment>/*</Comment><br/>
+<Comment>    </Comment><Doc Tag>@param</Doc Tag><Comment> x A number</Comment><br/>
+<Comment>    </Comment><Doc Tag>@return</Doc Tag><Comment> x + 1</Comment><br/>
+<Comment>  */</Comment><br/>
+<Normal Text>  </Normal Text><Data Type>real</Data Type><Normal Text> </Normal Text><Identifier>foo</Identifier><Punctuation>(</Punctuation><Data Type>real</Data Type><Normal Text> </Normal Text><Identifier>x</Identifier><Operator>)</Operator><Normal Text> </Normal Text><Punctuation>{</Punctuation><br/>
+<Normal Text>    </Normal Text><Control Flow>return</Control Flow><Normal Text> </Normal Text><Identifier>x</Identifier><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Punctuation>}</Punctuation><br/>
+<Normal Text>  </Normal Text><Data Type>int</Data Type><Normal Text> </Normal Text><Identifier>bar</Identifier><Punctuation>(</Punctuation><Data Type>int</Data Type><Normal Text> </Normal Text><Identifier>x</Identifier><Operator>)</Operator><Normal Text> </Normal Text><Punctuation>{</Punctuation><br/>
+<Normal Text>    </Normal Text><Control Flow>return</Control Flow><Normal Text> </Normal Text><Identifier>x</Identifier><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Punctuation>}</Punctuation><br/>
+<Normal Text>  </Normal Text><Data Type>vector</Data Type><Normal Text> </Normal Text><Identifier>baz</Identifier><Punctuation>(</Punctuation><Data Type>vector</Data Type><Normal Text> </Normal Text><Identifier>x</Identifier><Operator>)</Operator><Normal Text> </Normal Text><Punctuation>{</Punctuation><br/>
+<Normal Text>    </Normal Text><Control Flow>return</Control Flow><Normal Text> </Normal Text><Identifier>x</Identifier><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Punctuation>}</Punctuation><br/>
+<Normal Text>  </Normal Text><Data Type>row_vector</Data Type><Normal Text> </Normal Text><Identifier>qux</Identifier><Punctuation>(</Punctuation><Data Type>row_vector</Data Type><Normal Text> </Normal Text><Identifier>x</Identifier><Operator>)</Operator><Normal Text> </Normal Text><Punctuation>{</Punctuation><br/>
+<Normal Text>    </Normal Text><Control Flow>return</Control Flow><Normal Text> </Normal Text><Identifier>x</Identifier><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Punctuation>}</Punctuation><br/>
+<Normal Text>  </Normal Text><Data Type>matrix</Data Type><Normal Text> </Normal Text><Identifier>quux</Identifier><Punctuation>(</Punctuation><Data Type>matrix</Data Type><Normal Text> </Normal Text><Identifier>x</Identifier><Operator>)</Operator><Normal Text> </Normal Text><Punctuation>{</Punctuation><br/>
+<Normal Text>    </Normal Text><Control Flow>return</Control Flow><Normal Text> </Normal Text><Identifier>x</Identifier><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Punctuation>}</Punctuation><br/>
+<Normal Text>  </Normal Text><Comment>// numbers of arguments</Comment><br/>
+<Normal Text>  </Normal Text><Data Type>void</Data Type><Normal Text> </Normal Text><Identifier>corge</Identifier><Punctuation>(</Punctuation><Operator>)</Operator><Normal Text> </Normal Text><Punctuation>{</Punctuation><br/>
+<Normal Text>    </Normal Text><Keyword>print</Keyword><Punctuation>(</Punctuation><String>"no parameters"</String><Operator>)</Operator><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Punctuation>}</Punctuation><br/>
+<Normal Text>  </Normal Text><Data Type>void</Data Type><Normal Text> </Normal Text><Identifier>grault</Identifier><Punctuation>(</Punctuation><Data Type>int</Data Type><Normal Text> </Normal Text><Identifier>a</Identifier><Punctuation>,</Punctuation><Normal Text> </Normal Text><Data Type>real</Data Type><Normal Text> </Normal Text><Identifier>b</Identifier><Punctuation>,</Punctuation><Normal Text> </Normal Text><Data Type>vector</Data Type><Normal Text> </Normal Text><Identifier>c</Identifier><Punctuation>,</Punctuation><Normal Text> </Normal Text><Data Type>row_vector</Data Type><Normal Text> </Normal Text><Identifier>d</Identifier><Punctuation>,</Punctuation><Normal Text> </Normal Text><Data Type>matrix</Data Type><Normal Text> </Normal Text><Identifier>f</Identifier><Operator>)</Operator><Normal Text> </Normal Text><Punctuation>{</Punctuation><br/>
+<Normal Text>    </Normal Text><Keyword>print</Keyword><Punctuation>(</Punctuation><String>"many parameters"</String><Operator>)</Operator><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Punctuation>}</Punctuation><br/>
+<Normal Text>  </Normal Text><Data Type>void</Data Type><Normal Text> </Normal Text><Identifier>garply</Identifier><Punctuation>(</Punctuation><Data Type>real</Data Type><Normal Text> </Normal Text><Identifier>a</Identifier><Punctuation>,</Punctuation><Normal Text> </Normal Text><Data Type>real</Data Type><Punctuation>[]</Punctuation><Normal Text> </Normal Text><Identifier>b</Identifier><Punctuation>,</Punctuation><Normal Text> </Normal Text><Data Type>real</Data Type><Punctuation>[,]</Punctuation><Normal Text> </Normal Text><Identifier>c</Identifier><Punctuation>,</Punctuation><Normal Text> </Normal Text><Data Type>real</Data Type><Punctuation>[,,]</Punctuation><Normal Text> </Normal Text><Identifier>d</Identifier><Operator>)</Operator><Normal Text> </Normal Text><Punctuation>{</Punctuation><br/>
+<Normal Text>    </Normal Text><Keyword>print</Keyword><Punctuation>(</Punctuation><String>"array arguments"</String><Operator>)</Operator><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Punctuation>}</Punctuation><br/>
+<Normal Text>  </Normal Text><Comment>// array return types</Comment><br/>
+<Normal Text>  </Normal Text><Data Type>int</Data Type><Punctuation>[]</Punctuation><Normal Text> </Normal Text><Identifier>waldo</Identifier><Punctuation>(</Punctuation><Data Type>int</Data Type><Punctuation>[]</Punctuation><Normal Text> </Normal Text><Identifier>x</Identifier><Operator>)</Operator><Normal Text> </Normal Text><Punctuation>{</Punctuation><br/>
+<Normal Text>    </Normal Text><Control Flow>return</Control Flow><Normal Text> </Normal Text><Identifier>x</Identifier><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Punctuation>}</Punctuation><br/>
+<Normal Text>  </Normal Text><Data Type>int</Data Type><Punctuation>[,]</Punctuation><Normal Text> </Normal Text><Identifier>fred</Identifier><Punctuation>(</Punctuation><Data Type>int</Data Type><Punctuation>[,]</Punctuation><Normal Text> </Normal Text><Identifier>x</Identifier><Operator>)</Operator><Normal Text> </Normal Text><Punctuation>{</Punctuation><br/>
+<Normal Text>    </Normal Text><Control Flow>return</Control Flow><Normal Text> </Normal Text><Identifier>x</Identifier><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Punctuation>}</Punctuation><br/>
+<Normal Text>  </Normal Text><Data Type>int</Data Type><Punctuation>[,,]</Punctuation><Normal Text> </Normal Text><Identifier>plough</Identifier><Punctuation>(</Punctuation><Data Type>int</Data Type><Punctuation>[,,]</Punctuation><Normal Text> </Normal Text><Identifier>x</Identifier><Operator>)</Operator><Normal Text> </Normal Text><Punctuation>{</Punctuation><br/>
+<Normal Text>    </Normal Text><Control Flow>return</Control Flow><Normal Text> </Normal Text><Identifier>x</Identifier><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Punctuation>}</Punctuation><br/>
+<Normal Text>  </Normal Text><Comment>// data only function argument</Comment><br/>
+<Normal Text>  </Normal Text><Data Type>real</Data Type><Normal Text> </Normal Text><Identifier>plugh</Identifier><Punctuation>(</Punctuation><Keyword>data</Keyword><Normal Text> </Normal Text><Data Type>real</Data Type><Normal Text> </Normal Text><Identifier>x</Identifier><Operator>)</Operator><Normal Text> </Normal Text><Punctuation>{</Punctuation><br/>
+<Normal Text>    </Normal Text><Control Flow>return</Control Flow><Normal Text> </Normal Text><Identifier>x</Identifier><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Punctuation>}</Punctuation><br/>
+<Normal Text>  </Normal Text><Comment>// ode function</Comment><br/>
+<Normal Text>  </Normal Text><Data Type>real</Data Type><Punctuation>[]</Punctuation><Normal Text> </Normal Text><Identifier>ode_func</Identifier><Punctuation>(</Punctuation><Data Type>real</Data Type><Normal Text> </Normal Text><Identifier>a</Identifier><Punctuation>,</Punctuation><Normal Text> </Normal Text><Data Type>real</Data Type><Punctuation>[]</Punctuation><Normal Text> </Normal Text><Identifier>b</Identifier><Punctuation>,</Punctuation><Normal Text> </Normal Text><Data Type>real</Data Type><Punctuation>[]</Punctuation><Normal Text> </Normal Text><Identifier>c</Identifier><Punctuation>,</Punctuation><Normal Text> </Normal Text><Data Type>real</Data Type><Punctuation>[]</Punctuation><Normal Text> </Normal Text><Identifier>d</Identifier><Punctuation>,</Punctuation><Normal Text> </Normal Text><Data Type>int</Data Type><Punctuation>[]</Punctuation><Normal Text> </Normal Text><Identifier>e</Identifier><Operator>)</Operator><Normal Text> </Normal Text><Punctuation>{</Punctuation><br/>
+<Normal Text>    </Normal Text><Control Flow>return</Control Flow><Normal Text> </Normal Text><Identifier>b</Identifier><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Punctuation>}</Punctuation><br/>
+<Punctuation>}</Punctuation><br/>
+<Keyword>data</Keyword><Normal Text> </Normal Text><Punctuation>{</Punctuation><br/>
+<Normal Text>  </Normal Text><Comment>// non-int variable types</Comment><br/>
+<Normal Text>  </Normal Text><Data Type>int</Data Type><Normal Text> </Normal Text><Identifier>x_int</Identifier><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Data Type>real</Data Type><Normal Text> </Normal Text><Identifier>x_real</Identifier><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Data Type>real</Data Type><Normal Text> </Normal Text><Identifier>y_real</Identifier><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Data Type>vector</Data Type><Punctuation>[</Punctuation><Int>1</Int><Punctuation>]</Punctuation><Normal Text> </Normal Text><Identifier>x_vector</Identifier><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Data Type>ordered</Data Type><Punctuation>[</Punctuation><Int>1</Int><Punctuation>]</Punctuation><Normal Text> </Normal Text><Identifier>x_ordered</Identifier><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Data Type>positive_ordered</Data Type><Punctuation>[</Punctuation><Int>1</Int><Punctuation>]</Punctuation><Normal Text> </Normal Text><Identifier>x_positive_ordered</Identifier><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Data Type>simplex</Data Type><Punctuation>[</Punctuation><Int>1</Int><Punctuation>]</Punctuation><Normal Text> </Normal Text><Identifier>x_simplex</Identifier><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Data Type>unit_vector</Data Type><Punctuation>[</Punctuation><Int>1</Int><Punctuation>]</Punctuation><Normal Text> </Normal Text><Identifier>x_unit_vector</Identifier><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Data Type>row_vector</Data Type><Punctuation>[</Punctuation><Int>1</Int><Punctuation>]</Punctuation><Normal Text> </Normal Text><Identifier>x_row_vector</Identifier><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Data Type>matrix</Data Type><Punctuation>[</Punctuation><Int>1</Int><Punctuation>,</Punctuation><Normal Text> </Normal Text><Int>1</Int><Punctuation>]</Punctuation><Normal Text> </Normal Text><Identifier>x_matrix</Identifier><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Data Type>cholesky_factor_corr</Data Type><Punctuation>[</Punctuation><Int>2</Int><Punctuation>]</Punctuation><Normal Text> </Normal Text><Identifier>x_cholesky_factor_corr</Identifier><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Data Type>cholesky_factor_cov</Data Type><Punctuation>[</Punctuation><Int>2</Int><Punctuation>]</Punctuation><Normal Text> </Normal Text><Identifier>x_cholesky_factor_cov</Identifier><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Data Type>cholesky_factor_cov</Data Type><Punctuation>[</Punctuation><Int>2</Int><Punctuation>,</Punctuation><Normal Text> </Normal Text><Int>3</Int><Punctuation>]</Punctuation><Normal Text> </Normal Text><Identifier>x_cholesky_factor_cov_2</Identifier><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Data Type>corr_matrix</Data Type><Punctuation>[</Punctuation><Int>2</Int><Punctuation>]</Punctuation><Normal Text> </Normal Text><Identifier>x_corr_matrix</Identifier><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Data Type>cov_matrix</Data Type><Punctuation>[</Punctuation><Int>2</Int><Punctuation>]</Punctuation><Normal Text> </Normal Text><Identifier>x_cov_matrix</Identifier><Normal Text>;</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>  </Normal Text><Comment>// range constraints</Comment><br/>
+<Normal Text>  </Normal Text><Data Type>real</Data Type><Operator><</Operator><Keyword>lower</Keyword><Normal Text> </Normal Text><Punctuation>=</Punctuation><Normal Text> </Normal Text><Real>0.</Real><Punctuation>,</Punctuation><Normal Text> </Normal Text><Keyword>upper</Keyword><Normal Text> </Normal Text><Punctuation>=</Punctuation><Normal Text> </Normal Text><Real>1.</Real><Operator>></Operator><Normal Text> </Normal Text><Identifier>alpha</Identifier><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Data Type>real</Data Type><Operator><</Operator><Keyword>lower</Keyword><Normal Text> </Normal Text><Punctuation>=</Punctuation><Normal Text> </Normal Text><Real>0.</Real><Operator>></Operator><Normal Text> </Normal Text><Identifier>bravo</Identifier><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Data Type>real</Data Type><Operator><</Operator><Keyword>upper</Keyword><Normal Text> </Normal Text><Punctuation>=</Punctuation><Normal Text> </Normal Text><Real>1.</Real><Operator>></Operator><Normal Text> </Normal Text><Identifier>charlie</Identifier><Normal Text>;</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>  </Normal Text><Comment>// arrays</Comment><br/>
+<Normal Text>  </Normal Text><Data Type>int</Data Type><Normal Text> </Normal Text><Identifier>echo</Identifier><Punctuation>[</Punctuation><Int>1</Int><Punctuation>]</Punctuation><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Data Type>int</Data Type><Normal Text> </Normal Text><Identifier>foxtrot</Identifier><Punctuation>[</Punctuation><Int>1</Int><Punctuation>,</Punctuation><Normal Text> </Normal Text><Int>1</Int><Punctuation>]</Punctuation><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Data Type>int</Data Type><Normal Text> </Normal Text><Identifier>golf</Identifier><Punctuation>[</Punctuation><Int>1</Int><Punctuation>,</Punctuation><Normal Text> </Normal Text><Int>1</Int><Punctuation>,</Punctuation><Normal Text> </Normal Text><Int>1</Int><Punctuation>]</Punctuation><Normal Text>;</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>  </Normal Text><Comment>// identifier with all valid letters</Comment><br/>
+<Normal Text>  </Normal Text><Data Type>real</Data Type><Normal Text> </Normal Text><Identifier>abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_0123456789</Identifier><Normal Text>;</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>  </Normal Text><Comment>// hard pattern</Comment><br/>
+<Normal Text>  </Normal Text><Data Type>real</Data Type><Operator><</Operator><Keyword>lower</Keyword><Normal Text> </Normal Text><Punctuation>=</Punctuation><Normal Text> </Normal Text><Punctuation>(</Punctuation><Identifier>bravo</Identifier><Normal Text> </Normal Text><Operator><</Operator><Normal Text> </Normal Text><Identifier>charlie</Identifier><Operator>)</Operator><Punctuation>,</Punctuation><Normal Text> </Normal Text><Keyword>upper</Keyword><Normal Text> </Normal Text><Punctuation>=</Punctuation><Normal Text> </Normal Text><Punctuation>(</Punctuation><Identifier>bravo</Identifier><Normal Text> </Normal Text><Operator>></Operator><Normal Text> </Normal Text><Identifier>charlie</Identifier><Operator>)></Operator><Normal Text> </Normal Text><Identifier>ranger</Identifier><Normal Text>;</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>  </Normal Text><Comment>// identifier patterns</Comment><br/>
+<Normal Text>  </Normal Text><Data Type>real</Data Type><Normal Text> </Normal Text><Identifier>a</Identifier><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Data Type>real</Data Type><Normal Text> </Normal Text><Identifier>a3</Identifier><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Data Type>real</Data Type><Normal Text> </Normal Text><Identifier>a_3</Identifier><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Data Type>real</Data Type><Normal Text> </Normal Text><Identifier>Sigma</Identifier><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Data Type>real</Data Type><Normal Text> </Normal Text><Identifier>my_cpp_style_variable</Identifier><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Data Type>real</Data Type><Normal Text> </Normal Text><Identifier>myCamelCaseVariable</Identifier><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Data Type>real</Data Type><Normal Text> </Normal Text><Identifier>abcdefghijklmnojk</Identifier><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Comment>// names beginning with keywords</Comment><br/>
+<Normal Text>  </Normal Text><Data Type>real</Data Type><Normal Text> </Normal Text><Identifier>iffffff</Identifier><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Data Type>real</Data Type><Normal Text> </Normal Text><Identifier>whilest</Identifier><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Comment>// name ending with truncation</Comment><br/>
+<Normal Text>  </Normal Text><Data Type>real</Data Type><Normal Text> </Normal Text><Identifier>fooT</Identifier><Normal Text>;</Normal Text><br/>
+<Punctuation>}</Punctuation><br/>
+<Keyword>transformed data</Keyword><Normal Text> </Normal Text><Punctuation>{</Punctuation><br/>
+<Normal Text>  </Normal Text><Comment>// declaration and assignment</Comment><br/>
+<Normal Text>  </Normal Text><Data Type>int</Data Type><Normal Text> </Normal Text><Identifier>india</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Int>1</Int><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Data Type>real</Data Type><Normal Text> </Normal Text><Identifier>romeo</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Real>1.0</Real><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Data Type>row_vector</Data Type><Punctuation>[</Punctuation><Int>2</Int><Punctuation>]</Punctuation><Normal Text> </Normal Text><Identifier>victor</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Punctuation>[</Punctuation><Int>1</Int><Punctuation>,</Punctuation><Normal Text> </Normal Text><Int>2</Int><Punctuation>]</Punctuation><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Data Type>matrix</Data Type><Punctuation>[</Punctuation><Int>2</Int><Punctuation>,</Punctuation><Normal Text> </Normal Text><Int>2</Int><Punctuation>]</Punctuation><Normal Text> </Normal Text><Identifier>mike</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Punctuation>[[</Punctuation><Int>1</Int><Punctuation>,</Punctuation><Normal Text> </Normal Text><Int>2</Int><Punctuation>],</Punctuation><Normal Text> </Normal Text><Punctuation>[</Punctuation><Int>3</Int><Punctuation>,</Punctuation><Normal Text> </Normal Text><Int>4</Int><Punctuation>]]</Punctuation><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Data Type>real</Data Type><Normal Text> </Normal Text><Identifier>sierra</Identifier><Punctuation>[</Punctuation><Int>2</Int><Punctuation>]</Punctuation><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Punctuation>{</Punctuation><Real>1.</Real><Punctuation>,</Punctuation><Normal Text> </Normal Text><Real>2.</Real><Punctuation>}</Punctuation><Normal Text>;</Normal Text><br/>
+<Punctuation>}</Punctuation><br/>
+<Keyword>parameters</Keyword><Normal Text> </Normal Text><Punctuation>{</Punctuation><br/>
+<Normal Text>  </Normal Text><Data Type>real</Data Type><Normal Text> </Normal Text><Identifier>hotel</Identifier><Normal Text>;</Normal Text><br/>
+<Punctuation>}</Punctuation><br/>
+<Keyword>transformed parameters</Keyword><Normal Text> </Normal Text><Punctuation>{</Punctuation><br/>
+<Normal Text>  </Normal Text><Data Type>real</Data Type><Normal Text> </Normal Text><Identifier>juliette</Identifier><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>juliette</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Identifier>hotel</Identifier><Normal Text> </Normal Text><Operator>*</Operator><Normal Text> </Normal Text><Real>2.</Real><Normal Text>;</Normal Text><br/>
+<Punctuation>}</Punctuation><br/>
+<Keyword>model</Keyword><Normal Text> </Normal Text><Punctuation>{</Punctuation><br/>
+<Normal Text>  </Normal Text><Data Type>real</Data Type><Normal Text> </Normal Text><Identifier>x</Identifier><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Data Type>int</Data Type><Normal Text> </Normal Text><Identifier>k</Identifier><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Data Type>vector</Data Type><Punctuation>[</Punctuation><Int>2</Int><Punctuation>]</Punctuation><Normal Text> </Normal Text><Identifier>y</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Punctuation>[</Punctuation><Real>1.</Real><Punctuation>,</Punctuation><Normal Text> </Normal Text><Real>1.</Real><Punctuation>]</Punctuation><Operator>'</Operator><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Data Type>matrix</Data Type><Punctuation>[</Punctuation><Int>2</Int><Punctuation>,</Punctuation><Normal Text> </Normal Text><Int>2</Int><Punctuation>]</Punctuation><Normal Text> </Normal Text><Identifier>A</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Punctuation>[[</Punctuation><Real>1.</Real><Punctuation>,</Punctuation><Normal Text> </Normal Text><Real>1.</Real><Punctuation>],</Punctuation><Normal Text> </Normal Text><Punctuation>[</Punctuation><Real>1.</Real><Punctuation>,</Punctuation><Normal Text> </Normal Text><Real>1.</Real><Punctuation>]]</Punctuation><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Data Type>real</Data Type><Normal Text> </Normal Text><Identifier>odeout</Identifier><Punctuation>[</Punctuation><Int>2</Int><Punctuation>,</Punctuation><Normal Text> </Normal Text><Int>2</Int><Punctuation>]</Punctuation><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Data Type>real</Data Type><Normal Text> </Normal Text><Identifier>algout</Identifier><Punctuation>[</Punctuation><Int>2</Int><Punctuation>,</Punctuation><Normal Text> </Normal Text><Int>2</Int><Punctuation>]</Punctuation><Normal Text>;</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>  </Normal Text><Comment>// if else statements</Comment><br/>
+<Normal Text>  </Normal Text><Control Flow>if</Control Flow><Normal Text> </Normal Text><Punctuation>(</Punctuation><Identifier>x_real</Identifier><Normal Text> </Normal Text><Operator><</Operator><Normal Text> </Normal Text><Int>0</Int><Operator>)</Operator><Normal Text> </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Real>0.</Real><Normal Text>;</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>  </Normal Text><Control Flow>if</Control Flow><Normal Text> </Normal Text><Punctuation>(</Punctuation><Identifier>x_real</Identifier><Normal Text> </Normal Text><Operator><</Operator><Normal Text> </Normal Text><Int>0</Int><Operator>)</Operator><Normal Text> </Normal Text><Punctuation>{</Punctuation><br/>
+<Normal Text>    </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Real>0.</Real><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Punctuation>}</Punctuation><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>  </Normal Text><Control Flow>if</Control Flow><Normal Text> </Normal Text><Punctuation>(</Punctuation><Identifier>x_real</Identifier><Normal Text> </Normal Text><Operator><</Operator><Normal Text> </Normal Text><Int>0</Int><Operator>)</Operator><Normal Text> </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Real>0.</Real><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Control Flow>else</Control Flow><Normal Text> </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Real>1.</Real><Normal Text>;</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>  </Normal Text><Control Flow>if</Control Flow><Normal Text> </Normal Text><Punctuation>(</Punctuation><Identifier>x_real</Identifier><Normal Text> </Normal Text><Operator><</Operator><Normal Text> </Normal Text><Int>0</Int><Operator>)</Operator><Normal Text> </Normal Text><Punctuation>{</Punctuation><br/>
+<Normal Text>    </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Real>0.</Real><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Punctuation>}</Punctuation><Normal Text> </Normal Text><Control Flow>else</Control Flow><Normal Text> </Normal Text><Punctuation>{</Punctuation><br/>
+<Normal Text>    </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Real>1.</Real><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Punctuation>}</Punctuation><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>  </Normal Text><Control Flow>if</Control Flow><Normal Text> </Normal Text><Punctuation>(</Punctuation><Identifier>x_real</Identifier><Normal Text> </Normal Text><Operator><</Operator><Normal Text> </Normal Text><Int>0</Int><Operator>)</Operator><Normal Text> </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Real>0.</Real><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Control Flow>else</Control Flow><Normal Text> </Normal Text><Control Flow>if</Control Flow><Normal Text> </Normal Text><Punctuation>(</Punctuation><Identifier>x_real</Identifier><Normal Text> </Normal Text><Operator>></Operator><Normal Text> </Normal Text><Int>1</Int><Operator>)</Operator><Normal Text> </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Real>1.</Real><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Control Flow>else</Control Flow><Normal Text> </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Real>0.5</Real><Normal Text>;</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>  </Normal Text><Control Flow>if</Control Flow><Normal Text> </Normal Text><Punctuation>(</Punctuation><Identifier>x_real</Identifier><Normal Text> </Normal Text><Operator><</Operator><Normal Text> </Normal Text><Int>0</Int><Operator>)</Operator><Normal Text> </Normal Text><Punctuation>{</Punctuation><br/>
+<Normal Text>    </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Real>0.</Real><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Punctuation>}</Punctuation><Normal Text> </Normal Text><Control Flow>else</Control Flow><Normal Text> </Normal Text><Control Flow>if</Control Flow><Normal Text> </Normal Text><Punctuation>(</Punctuation><Identifier>x_real</Identifier><Normal Text> </Normal Text><Operator>></Operator><Normal Text> </Normal Text><Int>1</Int><Operator>)</Operator><Normal Text> </Normal Text><Punctuation>{</Punctuation><br/>
+<Normal Text>    </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Real>1.</Real><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Punctuation>}</Punctuation><Normal Text> </Normal Text><Control Flow>else</Control Flow><Normal Text> </Normal Text><Punctuation>{</Punctuation><br/>
+<Normal Text>    </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Real>0.5</Real><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Punctuation>}</Punctuation><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>  </Normal Text><Comment>// for loops</Comment><br/>
+<Normal Text>  </Normal Text><Control Flow>for</Control Flow><Normal Text> </Normal Text><Punctuation>(</Punctuation><Identifier>i</Identifier><Normal Text> </Normal Text><Control Flow>in</Control Flow><Normal Text> </Normal Text><Int>1</Int><Operator>:</Operator><Int>5</Int><Operator>)</Operator><Normal Text> </Normal Text><Punctuation>{</Punctuation><br/>
+<Normal Text>    </Normal Text><Keyword>print</Keyword><Punctuation>(</Punctuation><String>"i = "</String><Punctuation>,</Punctuation><Normal Text> </Normal Text><Identifier>i</Identifier><Operator>)</Operator><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Punctuation>}</Punctuation><br/>
+<Normal Text>  </Normal Text><Comment>// for (j in echo) {</Comment><br/>
+<Normal Text>  </Normal Text><Comment>//   print("j = ", j);</Comment><br/>
+<Normal Text>  </Normal Text><Comment>// }</Comment><br/>
+<Normal Text>  </Normal Text><Comment>// while loop</Comment><br/>
+<Normal Text>  </Normal Text><Control Flow>while</Control Flow><Normal Text> </Normal Text><Punctuation>(</Punctuation><Int>1</Int><Operator>)</Operator><Normal Text> </Normal Text><Punctuation>{</Punctuation><br/>
+<Normal Text>    </Normal Text><Control Flow>break</Control Flow><Normal Text>;</Normal Text><br/>
+<Normal Text>    </Normal Text><Control Flow>continue</Control Flow><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Punctuation>}</Punctuation><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>  </Normal Text><Comment>// reject statement</Comment><br/>
+<Normal Text>  </Normal Text><Keyword>reject</Keyword><Punctuation>(</Punctuation><String>"reject statment "</String><Punctuation>,</Punctuation><Normal Text> </Normal Text><Identifier>x_real</Identifier><Operator>)</Operator><Normal Text>;</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>  </Normal Text><Comment>// print statement</Comment><br/>
+<Normal Text>  </Normal Text><Keyword>print</Keyword><Punctuation>(</Punctuation><String>"print statement "</String><Punctuation>,</Punctuation><Normal Text> </Normal Text><Identifier>x_real</Identifier><Operator>)</Operator><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Keyword>print</Keyword><Punctuation>(</Punctuation><String>"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_~@#$%^&*`'-+={}[].,;: "</String><Operator>)</Operator><Normal Text>;</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>  </Normal Text><Comment>// increment log probability statements;</Comment><br/>
+<Normal Text>  </Normal Text><Keyword>target +=</Keyword><Normal Text> </Normal Text><Real>1.</Real><Normal Text>;</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>  </Normal Text><Comment>// valid integer literals</Comment><br/>
+<Normal Text>  </Normal Text><Identifier>k</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Int>0</Int><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>k</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Int>1</Int><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>k</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Operator>-</Operator><Int>1</Int><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>k</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Int>256</Int><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>k</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Operator>-</Operator><Int>127098</Int><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>k</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Int>007</Int><Normal Text>;</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>  </Normal Text><Comment>// valid real literals</Comment><br/>
+<Normal Text>  </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Real>0.0</Real><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Real>1.0</Real><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Real>3.14</Real><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Real>003.14</Real><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Operator>-</Operator><Real>217.9387</Real><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Real>0.123</Real><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Real>.123</Real><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Real>1.</Real><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Operator>-</Operator><Real>0.123</Real><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Operator>-</Operator><Real>.123</Real><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Operator>-</Operator><Real>1.</Real><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Int>12</Int><Identifier>e34</Identifier><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Int>12</Int><Identifier>E34</Identifier><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Real>12.e34</Real><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Real>12.E34</Real><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Real>12.0e34</Real><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Real>12.0E34</Real><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Real>.1e34</Real><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Real>.1E34</Real><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Operator>-</Operator><Int>12</Int><Identifier>e34</Identifier><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Operator>-</Operator><Int>12</Int><Identifier>E34</Identifier><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Operator>-</Operator><Real>12.e34</Real><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Operator>-</Operator><Real>12.E34</Real><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Operator>-</Operator><Real>12.0e34</Real><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Operator>-</Operator><Real>12.0E34</Real><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Operator>-</Operator><Real>.1e34</Real><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Operator>-</Operator><Real>.1E34</Real><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Int>12</Int><Identifier>e</Identifier><Operator>-</Operator><Int>34</Int><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Int>12</Int><Identifier>E</Identifier><Operator>-</Operator><Int>34</Int><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Real>12.e-34</Real><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Real>12.E-34</Real><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Real>12.0e-34</Real><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Real>12.0E-34</Real><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Real>.1e-34</Real><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Real>.1E-34</Real><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Operator>-</Operator><Int>12</Int><Identifier>e</Identifier><Operator>-</Operator><Int>34</Int><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Operator>-</Operator><Int>12</Int><Identifier>E</Identifier><Operator>-</Operator><Int>34</Int><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Operator>-</Operator><Real>12.e-34</Real><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Operator>-</Operator><Real>12.E-34</Real><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Operator>-</Operator><Real>12.0e-34</Real><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Operator>-</Operator><Real>12.0E-34</Real><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Operator>-</Operator><Real>.1e-34</Real><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Operator>-</Operator><Real>.1E-34</Real><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Int>12</Int><Identifier>e</Identifier><Operator>+</Operator><Int>34</Int><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Int>12</Int><Identifier>E</Identifier><Operator>+</Operator><Int>34</Int><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Real>12.e+34</Real><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Real>12.E+34</Real><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Real>12.0e+34</Real><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Real>12.0E+34</Real><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Real>.1e+34</Real><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Real>.1E+34</Real><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Operator>-</Operator><Int>12</Int><Identifier>e</Identifier><Operator>+</Operator><Int>34</Int><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Operator>-</Operator><Int>12</Int><Identifier>E</Identifier><Operator>+</Operator><Int>34</Int><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Operator>-</Operator><Real>12.e+34</Real><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Operator>-</Operator><Real>12.E+34</Real><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Operator>-</Operator><Real>12.0e+34</Real><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Operator>-</Operator><Real>12.0E+34</Real><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Operator>-</Operator><Real>.1e+34</Real><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Operator>-</Operator><Real>.1E+34</Real><Normal Text>;</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>  </Normal Text><Comment>// assignment statements</Comment><br/>
+<Normal Text>  </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Int>1</Int><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>+=</Assignment><Normal Text> </Normal Text><Real>1.</Real><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>-=</Assignment><Normal Text> </Normal Text><Real>1.</Real><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>*=</Assignment><Normal Text> </Normal Text><Real>1.</Real><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>/=</Assignment><Normal Text> </Normal Text><Real>1.</Real><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>y</Identifier><Normal Text> </Normal Text><Assignment>.*=</Assignment><Normal Text> </Normal Text><Identifier>x_vector</Identifier><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>y</Identifier><Normal Text> </Normal Text><Assignment>./=</Assignment><Normal Text> </Normal Text><Identifier>x_vector</Identifier><Normal Text>;</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>  </Normal Text><Comment>// operators</Comment><br/>
+<Normal Text>  </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Identifier>x_real</Identifier><Normal Text> </Normal Text><Operator>&&</Operator><Normal Text> </Normal Text><Int>1</Int><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Identifier>x_real</Identifier><Normal Text> </Normal Text><Operator>||</Operator><Normal Text> </Normal Text><Int>1</Int><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Identifier>x_real</Identifier><Normal Text> </Normal Text><Operator><</Operator><Normal Text> </Normal Text><Real>1.</Real><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Identifier>x_real</Identifier><Normal Text> </Normal Text><Operator><</Operator><Assignment>=</Assignment><Normal Text> </Normal Text><Real>1.</Real><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Identifier>x_real</Identifier><Normal Text> </Normal Text><Operator>></Operator><Normal Text> </Normal Text><Real>1.</Real><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Identifier>x_real</Identifier><Normal Text> </Normal Text><Operator>>=</Operator><Normal Text> </Normal Text><Real>1.</Real><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Identifier>x_real</Identifier><Normal Text> </Normal Text><Operator>+</Operator><Normal Text> </Normal Text><Real>1.</Real><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Identifier>x_real</Identifier><Normal Text> </Normal Text><Operator>-</Operator><Normal Text> </Normal Text><Real>1.</Real><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Identifier>x_real</Identifier><Normal Text> </Normal Text><Operator>*</Operator><Normal Text> </Normal Text><Real>1.</Real><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Identifier>x_real</Identifier><Normal Text> </Normal Text><Operator>/</Operator><Normal Text> </Normal Text><Real>1.</Real><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Identifier>x_real</Identifier><Normal Text> ^ </Normal Text><Real>2.</Real><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Identifier>x_real</Identifier><Normal Text> </Normal Text><Operator>%</Operator><Normal Text> </Normal Text><Int>2</Int><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> !</Normal Text><Identifier>x_real</Identifier><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Operator>+</Operator><Identifier>x_real</Identifier><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Operator>-</Operator><Identifier>x_real</Identifier><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Identifier>x_int</Identifier><Normal Text> </Normal Text><Operator>?</Operator><Normal Text> </Normal Text><Identifier>x_real</Identifier><Normal Text> </Normal Text><Operator>:</Operator><Normal Text> </Normal Text><Real>0.</Real><Normal Text>;</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>y</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Identifier>x_row_vector</Identifier><Operator>'</Operator><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>y</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Identifier>x_matrix</Identifier><Normal Text> </Normal Text><Operator>\</Operator><Normal Text> </Normal Text><Identifier>x_vector</Identifier><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>y</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Identifier>x_vector</Identifier><Normal Text> </Normal Text><Operator>.*</Operator><Normal Text> </Normal Text><Identifier>x_vector</Identifier><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>y</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Identifier>x_vector</Identifier><Normal Text> </Normal Text><Operator>./</Operator><Normal Text> </Normal Text><Identifier>x_vector</Identifier><Normal Text>;</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>  </Normal Text><Comment>// parenthized expression</Comment><br/>
+<Normal Text>  </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Punctuation>(</Punctuation><Identifier>x_real</Identifier><Normal Text> </Normal Text><Operator>+</Operator><Normal Text> </Normal Text><Identifier>x_real</Identifier><Operator>)</Operator><Normal Text>;</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>  </Normal Text><Comment>// block statement</Comment><br/>
+<Normal Text>  </Normal Text><Punctuation>{</Punctuation><br/>
+<Normal Text>    </Normal Text><Data Type>real</Data Type><Normal Text> </Normal Text><Identifier>z</Identifier><Normal Text>;</Normal Text><br/>
+<Normal Text>    </Normal Text><Identifier>z</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Real>1.</Real><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Punctuation>}</Punctuation><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>  </Normal Text><Comment>// built-in functions</Comment><br/>
+<Normal Text>  </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Identifier>log</Identifier><Punctuation>(</Punctuation><Real>1.</Real><Operator>)</Operator><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Identifier>exp</Identifier><Punctuation>(</Punctuation><Real>1.</Real><Operator>)</Operator><Normal Text>;</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>  </Normal Text><Comment>// non-built-in function</Comment><br/>
+<Normal Text>  </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Identifier>foo</Identifier><Punctuation>(</Punctuation><Real>1.</Real><Operator>)</Operator><Normal Text>;</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>  </Normal Text><Comment>// constants and nullary functions</Comment><br/>
+<Normal Text>  </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Identifier>machine_precision</Identifier><Punctuation>(</Punctuation><Operator>)</Operator><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Identifier>pi</Identifier><Punctuation>(</Punctuation><Operator>)</Operator><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Identifier>e</Identifier><Punctuation>(</Punctuation><Operator>)</Operator><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Identifier>sqrt2</Identifier><Punctuation>(</Punctuation><Operator>)</Operator><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Identifier>log2</Identifier><Punctuation>(</Punctuation><Operator>)</Operator><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Identifier>log10</Identifier><Punctuation>(</Punctuation><Operator>)</Operator><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Comment>// special values</Comment><br/>
+<Normal Text>  </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Identifier>not_a_number</Identifier><Punctuation>(</Punctuation><Operator>)</Operator><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Identifier>positive_infinity</Identifier><Punctuation>(</Punctuation><Operator>)</Operator><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Identifier>negative_infinity</Identifier><Punctuation>(</Punctuation><Operator>)</Operator><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Identifier>machine_precision</Identifier><Punctuation>(</Punctuation><Operator>)</Operator><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Comment>// log probability</Comment><br/>
+<Normal Text>  </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Identifier>target</Identifier><Punctuation>(</Punctuation><Operator>)</Operator><Normal Text>;</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>  </Normal Text><Comment>// sampling statement</Comment><br/>
+<Normal Text>  </Normal Text><Identifier>x_real</Identifier><Normal Text> ~ </Normal Text><Identifier>normal</Identifier><Punctuation>(</Punctuation><Real>0.</Real><Punctuation>,</Punctuation><Normal Text> </Normal Text><Real>1.</Real><Operator>)</Operator><Normal Text>;</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>  </Normal Text><Comment>// truncation</Comment><br/>
+<Normal Text>  </Normal Text><Identifier>x_real</Identifier><Normal Text> ~ </Normal Text><Identifier>normal</Identifier><Punctuation>(</Punctuation><Real>0.</Real><Punctuation>,</Punctuation><Normal Text> </Normal Text><Real>1.</Real><Operator>)</Operator><Normal Text> </Normal Text><Keyword>T</Keyword><Punctuation>[</Punctuation><Operator>-</Operator><Real>1.</Real><Punctuation>,</Punctuation><Normal Text> </Normal Text><Real>1.</Real><Punctuation>]</Punctuation><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>x_real</Identifier><Normal Text> ~ </Normal Text><Identifier>normal</Identifier><Punctuation>(</Punctuation><Real>0.</Real><Punctuation>,</Punctuation><Normal Text> </Normal Text><Real>1.</Real><Operator>)</Operator><Normal Text> </Normal Text><Keyword>T</Keyword><Punctuation>[,</Punctuation><Normal Text> </Normal Text><Real>1.</Real><Punctuation>]</Punctuation><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>x_real</Identifier><Normal Text> ~ </Normal Text><Identifier>normal</Identifier><Punctuation>(</Punctuation><Real>0.</Real><Punctuation>,</Punctuation><Normal Text> </Normal Text><Real>1.</Real><Operator>)</Operator><Normal Text> </Normal Text><Keyword>T</Keyword><Punctuation>[</Punctuation><Operator>-</Operator><Real>1.</Real><Punctuation>,</Punctuation><Normal Text> </Normal Text><Punctuation>]</Punctuation><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>x_real</Identifier><Normal Text> ~ </Normal Text><Identifier>normal</Identifier><Punctuation>(</Punctuation><Real>0.</Real><Punctuation>,</Punctuation><Normal Text> </Normal Text><Real>1.</Real><Operator>)</Operator><Normal Text> </Normal Text><Keyword>T</Keyword><Punctuation>[</Punctuation><Normal Text> </Normal Text><Punctuation>,</Punctuation><Normal Text> </Normal Text><Punctuation>]</Punctuation><Normal Text>;</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>  </Normal Text><Comment>// transformation on lhs of sampling</Comment><br/>
+<Normal Text>  </Normal Text><Identifier>log</Identifier><Punctuation>(</Punctuation><Identifier>x_real</Identifier><Operator>)</Operator><Normal Text> ~ </Normal Text><Identifier>normal</Identifier><Punctuation>(</Punctuation><Real>0.</Real><Punctuation>,</Punctuation><Normal Text> </Normal Text><Real>1.</Real><Operator>)</Operator><Normal Text>;</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>  </Normal Text><Comment>// lhs indexes</Comment><br/>
+<Normal Text>  </Normal Text><Identifier>y</Identifier><Punctuation>[</Punctuation><Int>1</Int><Punctuation>]</Punctuation><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Real>1.</Real><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>A</Identifier><Punctuation>[</Punctuation><Int>1</Int><Punctuation>,</Punctuation><Normal Text> </Normal Text><Int>2</Int><Punctuation>]</Punctuation><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Real>1.</Real><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>A</Identifier><Punctuation>[</Punctuation><Int>1</Int><Punctuation>][</Punctuation><Int>2</Int><Punctuation>]</Punctuation><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Real>1.</Real><Normal Text>;</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>  </Normal Text><Comment>// special functions</Comment><br/>
+<Normal Text>  </Normal Text><Identifier>odeout</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Keyword>integrate_ode</Keyword><Punctuation>(</Punctuation><Identifier>ode_func</Identifier><Punctuation>,</Punctuation><Normal Text> </Normal Text><Punctuation>{</Punctuation><Real>1.</Real><Punctuation>},</Punctuation><Normal Text> </Normal Text><Identifier>x_real</Identifier><Punctuation>,</Punctuation><Normal Text> </Normal Text><Punctuation>{</Punctuation><Real>1.</Real><Punctuation>},</Punctuation><Normal Text> </Normal Text><Punctuation>{</Punctuation><Real>1.</Real><Punctuation>},</Punctuation><Normal Text> </Normal Text><Punctuation>{</Punctuation><Real>1.</Real><Punctuation>},</Punctuation><Normal Text> </Normal Text><Punctuation>{</Punctuation><Int>0</Int><Punctuation>}</Punctuation><Operator>)</Operator><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>odeout</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Keyword>integrate_ode_bdf</Keyword><Punctuation>(</Punctuation><Identifier>ode_func</Identifier><Punctuation>,</Punctuation><Normal Text> </Normal Text><Punctuation>{</Punctuation><Real>1.</Real><Punctuation>},</Punctuation><Normal Text> </Normal Text><Identifier>x_real</Identifier><Punctuation>,</Punctuation><Normal Text> </Normal Text><Punctuation>{</Punctuation><Real>1.</Real><Punctuation>},</Punctuation><Normal Text> </Normal Text><Punctuation>{</Punctuation><Real>1.</Real><Punctuation>},</Punctuation><Normal Text> </Normal Text><Punctuation>{</Punctuation><Real>1.</Real><Punctuation>},</Punctuation><Normal Text> </Normal Text><Punctuation>{</Punctuation><Int>0</Int><Punctuation>},</Punctuation><br/>
+<Normal Text>                             </Normal Text><Identifier>x_real</Identifier><Punctuation>,</Punctuation><Normal Text> </Normal Text><Identifier>x_real</Identifier><Punctuation>,</Punctuation><Normal Text> </Normal Text><Identifier>x_int</Identifier><Operator>)</Operator><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>odeout</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Keyword>integrate_ode_rk45</Keyword><Punctuation>(</Punctuation><Identifier>ode_func</Identifier><Punctuation>,</Punctuation><Normal Text> </Normal Text><Punctuation>{</Punctuation><Real>1.</Real><Punctuation>},</Punctuation><Normal Text> </Normal Text><Identifier>x_real</Identifier><Punctuation>,</Punctuation><Normal Text> </Normal Text><Punctuation>{</Punctuation><Real>1.</Real><Punctuation>},</Punctuation><Normal Text> </Normal Text><Punctuation>{</Punctuation><Real>1.</Real><Punctuation>},</Punctuation><Normal Text> </Normal Text><Punctuation>{</Punctuation><Real>1.</Real><Punctuation>},</Punctuation><Normal Text> </Normal Text><Punctuation>{</Punctuation><Int>0</Int><Punctuation>},</Punctuation><br/>
+<Normal Text>                              </Normal Text><Identifier>x_real</Identifier><Punctuation>,</Punctuation><Normal Text> </Normal Text><Identifier>x_real</Identifier><Punctuation>,</Punctuation><Normal Text> </Normal Text><Identifier>x_int</Identifier><Operator>)</Operator><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Comment>// algout = algebra_solver(algebra_func, x_vector, x_vector, {1.}, {0});</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>  </Normal Text><Comment>// distribution functions</Comment><br/>
+<Normal Text>  </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Identifier>normal_lpdf</Identifier><Punctuation>(</Punctuation><Real>0.5</Real><Normal Text> | </Normal Text><Real>0.</Real><Punctuation>,</Punctuation><Normal Text> </Normal Text><Real>1.</Real><Operator>)</Operator><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Identifier>normal_cdf</Identifier><Punctuation>(</Punctuation><Real>0.5</Real><Punctuation>,</Punctuation><Normal Text> </Normal Text><Real>0.</Real><Punctuation>,</Punctuation><Normal Text> </Normal Text><Real>1.</Real><Operator>)</Operator><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Identifier>normal_lcdf</Identifier><Punctuation>(</Punctuation><Real>0.5</Real><Normal Text> | </Normal Text><Real>0.</Real><Punctuation>,</Punctuation><Normal Text> </Normal Text><Real>1.</Real><Operator>)</Operator><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Identifier>normal_lccdf</Identifier><Punctuation>(</Punctuation><Real>0.5</Real><Normal Text> | </Normal Text><Real>0.</Real><Punctuation>,</Punctuation><Normal Text> </Normal Text><Real>1.</Real><Operator>)</Operator><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Identifier>binomial_lpmf</Identifier><Punctuation>(</Punctuation><Int>1</Int><Normal Text> | </Normal Text><Int>2</Int><Punctuation>,</Punctuation><Normal Text> </Normal Text><Real>0.5</Real><Operator>)</Operator><Normal Text>;</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>  </Normal Text><Comment>// deprecated features</Comment><br/>
+<Normal Text>  </Normal Text><Identifier>foo</Identifier><Normal Text> </Normal Text><Operator><-</Operator><Normal Text> </Normal Text><Int>1</Int><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>increment_log_prob</Identifier><Punctuation>(</Punctuation><Real>0.0</Real><Operator>)</Operator><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>y_hat</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Keyword>integrate_ode</Keyword><Punctuation>(</Punctuation><Identifier>sho</Identifier><Punctuation>,</Punctuation><Normal Text> </Normal Text><Identifier>y0</Identifier><Punctuation>,</Punctuation><Normal Text> </Normal Text><Identifier>t0</Identifier><Punctuation>,</Punctuation><Normal Text> </Normal Text><Identifier>ts</Identifier><Punctuation>,</Punctuation><Normal Text> </Normal Text><Identifier>theta</Identifier><Punctuation>,</Punctuation><Normal Text> </Normal Text><Identifier>x_r</Identifier><Punctuation>,</Punctuation><Normal Text> </Normal Text><Identifier>x_i</Identifier><Operator>)</Operator><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Identifier>get_lp</Identifier><Punctuation>(</Punctuation><Operator>)</Operator><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Identifier>multiply_log</Identifier><Punctuation>(</Punctuation><Real>1.0</Real><Punctuation>,</Punctuation><Normal Text> </Normal Text><Real>1.0</Real><Operator>)</Operator><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Identifier>binomial_coefficient_log</Identifier><Punctuation>(</Punctuation><Real>1.0</Real><Punctuation>,</Punctuation><Normal Text> </Normal Text><Real>1.0</Real><Operator>)</Operator><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Comment>// deprecated distribution functions versions</Comment><br/>
+<Normal Text>  </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Identifier>normal_log</Identifier><Punctuation>(</Punctuation><Real>0.5</Real><Punctuation>,</Punctuation><Normal Text> </Normal Text><Real>0.0</Real><Punctuation>,</Punctuation><Normal Text> </Normal Text><Real>1.0</Real><Operator>)</Operator><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Identifier>normal_cdf_log</Identifier><Punctuation>(</Punctuation><Real>0.5</Real><Punctuation>,</Punctuation><Normal Text> </Normal Text><Real>0.0</Real><Punctuation>,</Punctuation><Normal Text> </Normal Text><Real>1.0</Real><Operator>)</Operator><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Identifier>x</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Identifier>normal_ccdf_log</Identifier><Punctuation>(</Punctuation><Real>0.5</Real><Punctuation>,</Punctuation><Normal Text> </Normal Text><Real>0.0</Real><Punctuation>,</Punctuation><Normal Text> </Normal Text><Real>1.0</Real><Operator>)</Operator><Normal Text>;</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Punctuation>}</Punctuation><br/>
+<Keyword>generated quantities</Keyword><Normal Text> </Normal Text><Punctuation>{</Punctuation><br/>
+<Normal Text>  </Normal Text><Data Type>real</Data Type><Normal Text> </Normal Text><Identifier>Y</Identifier><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Comment>// rng function</Comment><br/>
+<Normal Text>  </Normal Text><Identifier>Y</Identifier><Normal Text> </Normal Text><Assignment>=</Assignment><Normal Text> </Normal Text><Identifier>normal_rng</Identifier><Punctuation>(</Punctuation><Real>0.</Real><Punctuation>,</Punctuation><Normal Text> </Normal Text><Real>1.</Real><Operator>)</Operator><Normal Text>;</Normal Text><br/>
+<Punctuation>}</Punctuation><br/>

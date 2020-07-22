@@ -1,0 +1,122 @@
+<Comment># comment</Comment><br/>
+<Keyword>rule</Keyword><Normal> b</Normal><br/>
+<Keyword>rule</Keyword><Normal> c</Normal><br/>
+<Comment>#d</Comment><br/>
+<Keyword>rule</Keyword><Normal> c</Normal><br/>
+<Key>description</Key><Operator>=</Operator><Normal>a</Normal><br/>
+<Keyword>rule</Keyword><Normal> d</Normal><br/>
+<Normal>  </Normal><Special Key>description</Special Key><Normal> </Normal><Operator>=</Operator><Normal> ds</Normal><br/>
+<Normal>  </Normal><Special Key>description</Special Key><Normal> </Normal><Operator>=</Operator><Normal> ds</Normal><br/>
+<Normal>  </Normal><Error>rule=ds</Error><br/>
+<Normal>  </Normal><Special Key>description</Special Key><Normal> </Normal><Operator>=</Operator><Normal> ds</Normal><br/>
+<Keyword>rule</Keyword><Normal> b</Normal><br/>
+<Normal></Normal><br/>
+<Keyword>rule</Keyword><Normal> c</Normal><br/>
+<Normal></Normal><br/>
+<Keyword>rule</Keyword><Normal> c</Normal><br/>
+<Normal> </Normal><Comment># ds</Comment><br/>
+<Normal> </Normal><Error>ds=ds</Error><br/>
+<Key>description</Key><Operator>=</Operator><Normal>a</Normal><br/>
+<Keyword>rule</Keyword><Normal> d</Normal><br/>
+<Normal>  </Normal><Error>rule =description = ds</Error><br/>
+<Normal></Normal><br/>
+<Keyword>rule</Keyword><Normal> b</Normal><br/>
+<Normal>  </Normal><Special Key>command</Special Key><Normal> </Normal><Operator>=</Operator><Normal> clang -MMD -MF </Normal><Variable Delimiter>$</Variable Delimiter><Special Variable>out</Special Variable><Normal>.d -o </Normal><Variable Delimiter>$</Variable Delimiter><Special Variable>out</Special Variable><Normal> -c </Normal><Variable Delimiter>$</Variable Delimiter><Special Variable>in</Special Variable><br/>
+<Normal>  </Normal><Special Key>description</Special Key><Normal> </Normal><Operator>=</Operator><Normal> building </Normal><Variable Delimiter>$</Variable Delimiter><Special Variable>out</Special Variable><br/>
+<Normal>  </Normal><Error>unknown = xyz</Error><br/>
+<Normal></Normal><br/>
+<Keyword>rule</Keyword><Normal> dump</Normal><br/>
+<Normal>  </Normal><Special Key>command</Special Key><Normal> </Normal><Operator>=</Operator><Normal> sleep 1</Normal><Symbol>;</Symbol><Normal> ls -l /proc/self/fd</Normal><Symbol>;</Symbol><Normal> exit 1</Normal><br/>
+<Normal>  </Normal><Special Key>pool</Special Key><Normal> </Normal><Operator>=</Operator><Normal> link_pool</Normal><br/>
+<Normal>  </Normal><Comment># blah blah</Comment><br/>
+<Normal>  </Normal><Special Key>pool</Special Key><Normal> </Normal><Operator>=</Operator><Normal> </Normal><Special Value>console</Special Value><br/>
+<Normal>  </Normal><Special Key>pool</Special Key><Normal> </Normal><Operator>=</Operator><Normal> </Normal><Variable Delimiter>$</Variable Delimiter><Variable>console</Variable><br/>
+<Normal></Normal><br/>
+<Keyword>rule</Keyword><Normal> xy-z_</Normal><br/>
+<Keyword>rule</Keyword><Normal> --xy-z_</Normal><br/>
+<Keyword>rule</Keyword><Normal> _xy-z_</Normal><br/>
+<Normal></Normal><br/>
+<Comment># error</Comment><br/>
+<Keyword>rule</Keyword><Normal> with </Normal><Error>error</Error><br/>
+<Keyword>rule</Keyword><Normal> a</Normal><Error>:a</Error><br/>
+<Keyword>rule</Keyword><Normal> a</Normal><Error>|a</Error><br/>
+<Keyword>rule</Keyword><Normal> a</Normal><Error>$</Error><br/>
+<Keyword>rule</Keyword><Normal> 0-</Normal><Error>@#d</Error><br/>
+<Normal></Normal><br/>
+<Comment># browse_py.h is used to inline browse.py.</Comment><br/>
+<Keyword>rule</Keyword><Normal> inline</Normal><br/>
+<Normal>  </Normal><Special Key>command</Special Key><Normal> </Normal><Operator>=</Operator><Normal> </Normal><Symbol>"</Symbol><Variable Delimiter>$</Variable Delimiter><Variable>root</Variable><Normal>/src/inline.sh</Normal><Symbol>"</Symbol><Normal> </Normal><Variable Delimiter>$</Variable Delimiter><Variable>varname</Variable><Normal> </Normal><Symbol><</Symbol><Normal> </Normal><Variable Delimiter>$</Variable Delimiter><Special Variable>in</Special Variable><Normal> </Normal><Symbol>></Symbol><Normal> </Normal><Variable Delimiter>$</Variable Delimiter><Special Variable>out</Special Variable><br/>
+<Normal>  </Normal><Special Key>description</Special Key><Normal> </Normal><Operator>=</Operator><Normal> INLINE </Normal><Variable Delimiter>$</Variable Delimiter><Special Variable>out</Special Variable><br/>
+<Normal></Normal><br/>
+<Keyword>default</Keyword><Normal> foo bar</Normal><br/>
+<Keyword>default</Keyword><Normal> baz</Normal><br/>
+<Normal></Normal><br/>
+<Keyword>include</Keyword><Normal> ninja1.ninja</Normal><br/>
+<Normal></Normal><br/>
+<Keyword>subninja</Keyword><Normal> ninja2.ninja</Normal><br/>
+<Normal></Normal><br/>
+<Keyword>pool</Keyword><Normal> link_pool</Normal><br/>
+<Normal>  </Normal><Special Key>depth</Special Key><Normal> </Normal><Operator>=</Operator><Normal> 4</Normal><br/>
+<Normal>  </Normal><Error>xxx = d</Error><br/>
+<Normal></Normal><br/>
+<Keyword>pool</Keyword><Normal> link_pool </Normal><Error>d</Error><br/>
+<Normal>  </Normal><Special Key>depth</Special Key><Normal> </Normal><Operator>=</Operator><Normal> 4</Normal><br/>
+<Normal></Normal><br/>
+<Keyword>build</Keyword><Normal> a.o</Normal><Operator>:</Operator><Normal> </Normal><Rule Name>b</Rule Name><Dependancy> a.c</Dependancy><br/>
+<Normal></Normal><br/>
+<Keyword>build</Keyword><Normal> a.o</Normal><Operator>|</Operator><Implicit Output>c</Implicit Output><Operator>:</Operator><Normal> </Normal><Rule Name>b</Rule Name><Dependancy> a.c </Dependancy><Operator>||</Operator><Implicit Dependancy> a </Implicit Dependancy><Operator>|</Operator><Implicit Dependancy> b</Implicit Dependancy><br/>
+<Normal></Normal><br/>
+<Keyword>build</Keyword><Normal> a.o </Normal><Operator>|</Operator><Implicit Output> c </Implicit Output><Operator>:</Operator><Normal> </Normal><Rule Name>b</Rule Name><Dependancy> a.c </Dependancy><Operator>|</Operator><Implicit Dependancy> a </Implicit Dependancy><Operator>||</Operator><Implicit Dependancy> b</Implicit Dependancy><br/>
+<Normal></Normal><br/>
+<Keyword>build</Keyword><Normal> </Normal><Variable Delimiter>$</Variable Delimiter><Variable>a</Variable><Normal>.o </Normal><Operator>|</Operator><Implicit Output> </Implicit Output><Variable Delimiter>$</Variable Delimiter><Variable>c</Variable><Implicit Output> </Implicit Output><Operator>:</Operator><Normal> </Normal><Rule Name>b</Rule Name><Dependancy> </Dependancy><Variable Delimiter>$</Variable Delimiter><Variable>a</Variable><Dependancy>.c </Dependancy><Operator>|</Operator><Implicit Dependancy> </Implicit Dependancy><Variable Delimiter>$</Variable Delimiter><Variable>a</Variable><Implicit Dependancy> </Implicit Dependancy><Operator>||</Operator><Implicit Dependancy> </Implicit Dependancy><Variable Delimiter>$</Variable Delimiter><Variable>b</Variable><br/>
+<Normal></Normal><br/>
+<Keyword>build</Keyword><Normal> 0</Normal><Operator>:</Operator><Normal> </Normal><Rule Name>sleep</Rule Name><Dependancy> README</Dependancy><br/>
+<Normal></Normal><br/>
+<Keyword>build</Keyword><Normal> 1</Normal><Operator>:</Operator><Normal> </Normal><Rule Name>sleep</Rule Name><Dependancy> README</Dependancy><br/>
+<Normal></Normal><br/>
+<Keyword>build</Keyword><Normal> all</Normal><Operator>:</Operator><Normal> </Normal><Special Rule Name>phony</Special Rule Name><Dependancy> 0 1</Dependancy><br/>
+<Key>deps</Key><Normal> </Normal><Operator>=</Operator><Normal> xxx</Normal><br/>
+<Key>CMD</Key><Normal> </Normal><Operator>=</Operator><Normal> cc</Normal><br/>
+<Keyword>build</Keyword><Normal> all</Normal><Operator>:</Operator><Normal> </Normal><Special Rule Name>phony</Special Rule Name><Dependancy> 0 1</Dependancy><br/>
+<Normal></Normal><br/>
+<Keyword>build</Keyword><Normal> </Normal><Variable Delimiter>$</Variable Delimiter><Variable>builddir</Variable><Normal>/browse_py.h</Normal><Operator>:</Operator><Normal> </Normal><Rule Name>inline</Rule Name><Dependancy> </Dependancy><Variable Delimiter>$</Variable Delimiter><Variable>root</Variable><Dependancy>/src/browse.py </Dependancy><Operator>|</Operator><Implicit Dependancy> </Implicit Dependancy><Variable Delimiter>$</Variable Delimiter><Variable>root</Variable><Implicit Dependancy>/src/inline.sh</Implicit Dependancy><br/>
+<Normal>  </Normal><Key>varname</Key><Normal> </Normal><Operator>=</Operator><Normal> kBrowsePy</Normal><br/>
+<Normal></Normal><br/>
+<Keyword>build</Keyword><Normal> </Normal><Variable Delimiter>$</Variable Delimiter><Variable>builddir</Variable><Normal>/subprocess-posix.o</Normal><Operator>:</Operator><Normal> </Normal><Rule Name>cxx</Rule Name><Dependancy> </Dependancy><Variable Delimiter>$</Variable Delimiter><Variable>root</Variable><Dependancy>/src/subprocess-posix.cc</Dependancy><br/>
+<Keyword>build</Keyword><Normal> </Normal><Variable Delimiter>$</Variable Delimiter><Variable>builddir</Variable><Normal>/libninja.a</Normal><Operator>:</Operator><Normal> </Normal><Rule Name>ar</Rule Name><Dependancy> </Dependancy><Variable Delimiter>$</Variable Delimiter><Variable>builddir</Variable><Dependancy>/browse.o </Dependancy><Variable Delimiter>$</Variable Delimiter><Variable>builddir</Variable><Dependancy>/build.o </Dependancy><Line Continuation>$</Line Continuation><br/>
+<Line Continuation>    </Line Continuation><Variable Delimiter>$</Variable Delimiter><Variable>builddir</Variable><Dependancy>/build_log.o </Dependancy><Variable Delimiter>$</Variable Delimiter><Variable>builddir</Variable><Dependancy>/clean.o </Dependancy><Variable Delimiter>$</Variable Delimiter><Variable>builddir</Variable><Dependancy>/debug_flags.o </Dependancy><Line Continuation>$</Line Continuation><br/>
+<Line Continuation>    </Line Continuation><Variable Delimiter>$</Variable Delimiter><Variable>builddir</Variable><Dependancy>/depfile_parser.o </Dependancy><Variable Delimiter>$</Variable Delimiter><Variable>builddir</Variable><Dependancy>/deps_log.o</Dependancy><br/>
+<Normal></Normal><br/>
+<Keyword>build</Keyword><Normal> </Normal><Variable Delimiter>$</Variable Delimiter><Variable>root</Variable><Normal>/doc/manual.pdf</Normal><Operator>:</Operator><Normal> </Normal><Rule Name>dblatex</Rule Name><Dependancy> </Dependancy><Variable Delimiter>$</Variable Delimiter><Variable>builddir</Variable><Dependancy>/manual.xml </Dependancy><Operator>|</Operator><Implicit Dependancy> </Implicit Dependancy><Line Continuation>$</Line Continuation><br/>
+<Line Continuation>    </Line Continuation><Variable Delimiter>$</Variable Delimiter><Variable>root</Variable><Implicit Dependancy>/doc/dblatex.xsl</Implicit Dependancy><br/>
+<Normal></Normal><br/>
+<Special Key>builddir</Special Key><Operator>=</Operator><Normal>/</Normal><br/>
+<Special Key>builddir</Special Key><Normal> </Normal><Operator>=</Operator><Normal>/</Normal><br/>
+<Special Key>builddir</Special Key><Operator>=</Operator><Normal> /</Normal><br/>
+<Key>ldflags</Key><Normal> </Normal><Operator>=</Operator><Normal> -L</Normal><Variable Delimiter>$</Variable Delimiter><Variable>builddir</Variable><br/>
+<Normal></Normal><br/>
+<Key>xx</Key><Normal> </Normal><Error>x</Error><br/>
+<Normal></Normal><br/>
+<Key>x</Key><Normal> </Normal><Operator>=</Operator><Normal> </Normal><Variable Delimiter>$</Variable Delimiter><Variable>a</Variable><br/>
+<Key>x</Key><Normal> </Normal><Operator>=</Operator><Normal> </Normal><Variable Delimiter>$</Variable Delimiter><Variable>-a_</Variable><br/>
+<Key>x</Key><Normal> </Normal><Operator>=</Operator><Normal> </Normal><Variable Delimiter>${</Variable Delimiter><Variable>a</Variable><Variable Delimiter>}</Variable Delimiter><br/>
+<Key>x</Key><Normal> </Normal><Operator>=</Operator><Normal> </Normal><Variable Delimiter>${</Variable Delimiter><Variable>-a</Variable><Variable Delimiter>}</Variable Delimiter><br/>
+<Key>x</Key><Normal> </Normal><Operator>=</Operator><Normal> </Normal><Variable Delimiter>$</Variable Delimiter><Variable>a</Variable><Normal>@</Normal><br/>
+<Key>x</Key><Normal> </Normal><Operator>=</Operator><Normal> </Normal><Variable Delimiter>$</Variable Delimiter><Error>@</Error><br/>
+<Key>x</Key><Normal> </Normal><Operator>=</Operator><Normal> </Normal><Special Char>$$</Special Char><br/>
+<Key>x</Key><Normal> </Normal><Operator>=</Operator><Normal> </Normal><Special Char>$:</Special Char><br/>
+<Key>x</Key><Normal> </Normal><Operator>=</Operator><Normal> </Normal><Special Char>$ </Special Char><Normal>a</Normal><br/>
+<Key>x</Key><Normal> </Normal><Operator>=</Operator><Normal> </Normal><Line Continuation>$</Line Continuation><br/>
+<Line Continuation>    </Line Continuation><Normal>b</Normal><br/>
+<Key>x</Key><Normal> </Normal><Operator>=</Operator><Normal> </Normal><Line Continuation>$</Line Continuation><br/>
+<Line Continuation>    $</Line Continuation><br/>
+<Line Continuation>    </Line Continuation><Normal>a</Normal><br/>
+<Key>x</Key><Normal> </Normal><Operator>=</Operator><Normal> </Normal><Line Continuation>$</Line Continuation><br/>
+<Line Continuation>    </Line Continuation><Variable Delimiter>$</Variable Delimiter><Variable>a</Variable><br/>
+<Key>x</Key><Normal> </Normal><Operator>=</Operator><Normal> </Normal><Variable Delimiter>$</Variable Delimiter><Variable>a</Variable><Normal> a</Normal><br/>
+<Key>x</Key><Normal> </Normal><Operator>=</Operator><Normal> </Normal><Variable Delimiter>${</Variable Delimiter><Variable>a</Variable><Variable Delimiter>}</Variable Delimiter><Normal> a</Normal><br/>
+<Key>x</Key><Normal> </Normal><Operator>=</Operator><Normal> </Normal><Special Char>$$</Special Char><Normal> a</Normal><br/>
+<Key>x</Key><Normal> </Normal><Operator>=</Operator><Normal> </Normal><Special Char>$:</Special Char><Normal> a</Normal><br/>
+<Key>x</Key><Normal> </Normal><Operator>=</Operator><Normal> </Normal><Variable Delimiter>$</Variable Delimiter><Error>! a</Error><br/>
+<Key>x</Key><Normal> </Normal><Operator>=</Operator><Normal> </Normal><Variable Delimiter>${</Variable Delimiter><Variable>a</Variable><Error> b ds</Error><br/>
+<Normal> </Normal><Error>x = a</Error><br/>

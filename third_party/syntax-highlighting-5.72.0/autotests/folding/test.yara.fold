@@ -1,0 +1,365 @@
+// Sample YARA file for Syntax Highlighting
+// Obtained from: https://yara.readthedocs.io/en/stable/writingrules.html
+
+<beginfold id='1'>/*</beginfold id='1'>
+    This is a multi-line comment ...
+<endfold id='1'>*/</endfold id='1'>
+
+rule silent_banker : banker
+<beginfold id='2'>{</beginfold id='2'>
+    meta:
+        description = "This is just an example"
+        threat_level = 3
+        in_the_wild = true
+    strings:
+        $a = <beginfold id='2'>{</beginfold id='2'>6A 40 68 00 30 00 00 6A 14 8D 91<endfold id='2'>}</endfold id='2'>
+        $b = <beginfold id='2'>{</beginfold id='2'>8D 4D B0 2B C1 83 C0 27 99 6A 4E 59 F7 F9<endfold id='2'>}</endfold id='2'>
+        $c = "UVODFRYSIHLNWPEJXQZAKCBGMT"
+    condition:
+        $a or $b or $c
+<endfold id='2'>}</endfold id='2'>
+
+rule dummy
+<beginfold id='2'>{</beginfold id='2'>
+    condition:
+       false
+<endfold id='2'>}</endfold id='2'>
+
+rule ExampleRule
+<beginfold id='2'>{</beginfold id='2'>
+    strings:
+        $my_text_string = "text here"
+        $my_hex_string = <beginfold id='2'>{</beginfold id='2'> E2 34 A1 C8 23 FB <endfold id='2'>}</endfold id='2'>
+
+    condition:
+        $my_text_string or $my_hex_string
+<endfold id='2'>}</endfold id='2'>
+
+// Hexadecimal strings
+
+rule WildcardExample
+<beginfold id='2'>{</beginfold id='2'>
+    strings:
+       $hex_string = <beginfold id='2'>{</beginfold id='2'> E2 34 ?? C8 A? FB <endfold id='2'>}</endfold id='2'>
+
+    condition:
+       $hex_string
+<endfold id='2'>}</endfold id='2'>
+
+rule JumpExample
+<beginfold id='2'>{</beginfold id='2'>
+        strings:
+           $hex_string = <beginfold id='2'>{</beginfold id='2'> F4 23 [4-6] 62 B4 <endfold id='2'>}</endfold id='2'>
+
+        condition:
+           $hex_string
+<endfold id='2'>}</endfold id='2'>
+
+rule AlternativesExample
+<beginfold id='2'>{</beginfold id='2'>
+    strings:
+       $hex_string = <beginfold id='2'>{</beginfold id='2'> F4 23 ( 62 B4 | 56 | 45 ?? 67 ) 45 <endfold id='2'>}</endfold id='2'>
+
+    condition:
+       $hex_string
+<endfold id='2'>}</endfold id='2'>
+
+// Text strings
+
+rule CaseInsensitiveTextExample
+<beginfold id='2'>{</beginfold id='2'>
+    strings:
+        $text_string = "foobar" nocase
+
+    condition:
+        $text_string
+<endfold id='2'>}</endfold id='2'>
+
+rule WideCharTextExample
+<beginfold id='2'>{</beginfold id='2'>
+    strings:
+        $wide_and_ascii_string = "Borland" wide ascii
+
+    condition:
+       $wide_and_ascii_string
+<endfold id='2'>}</endfold id='2'>
+
+// XOR strings
+
+rule XorExample1
+<beginfold id='2'>{</beginfold id='2'>
+    strings:
+        $xor_string = "This program cannot" xor
+
+    condition:
+        $xor_string
+<endfold id='2'>}</endfold id='2'>
+
+rule XorExample2
+<beginfold id='2'>{</beginfold id='2'>
+    strings:
+        $xor_string_00 = "This program cannot"
+        $xor_string_01 = "Uihr!qsnfs`l!b`oonu"
+        $xor_string_02 = "Vjkq\"rpmepco\"acllmv"
+        // Repeat for every single byte XOR
+    condition:
+        any of them
+<endfold id='2'>}</endfold id='2'>
+
+rule XorExample3
+<beginfold id='2'>{</beginfold id='2'>
+    strings:
+        $xor_string = "This program cannot" xor wide ascii
+    condition:
+        $xor_string
+<endfold id='2'>}</endfold id='2'>
+
+rule XorExample4
+<beginfold id='2'>{</beginfold id='2'>
+    strings:
+        $xor_string_00 = "T\x00h\x00i\x00s\x00 \x00p\x00r\x00o\x00g\x00r\x00a\x00m\x00 \x00c\x00a\x00n\x00n\x00o\x00t\x00"
+        $xor_string_01 = "U\x01i\x01h\x01r\x01!\x01q\x01s\x01n\x01f\x01s\x01`\x01l\x01!\x01b\x01`\x01o\x01o\x01n\x01u\x01"
+        $xor_string_02 = "V\x02j\x02k\x02q\x02\"\x02r\x02p\x02m\x02e\x02p\x02c\x02o\x02\"\x02a\x02c\x02l\x02l\x02m\x02v\x02"
+        // Repeat for every single byte XOR operation.
+    condition:
+        any of them
+<endfold id='2'>}</endfold id='2'>
+
+rule XorExample5
+<beginfold id='2'>{</beginfold id='2'>
+    strings:
+        $xor_string = "This program cannot" xor(0x01-0xff)
+    condition:
+        $xor_string
+<endfold id='2'>}</endfold id='2'>
+
+// Base64 strings
+
+rule Base64Example1
+<beginfold id='2'>{</beginfold id='2'>
+    strings:
+        $a = "This program cannot" base64
+
+    condition:
+        $a
+<endfold id='2'>}</endfold id='2'>
+
+rule Base64Example2
+<beginfold id='2'>{</beginfold id='2'>
+    strings:
+        $a = "This program cannot" base64("!@#$%^&*(){}[].,|ABCDEFGHIJ\x09LMNOPQRSTUVWXYZabcdefghijklmnopqrstu")
+
+    condition:
+        $a
+<endfold id='2'>}</endfold id='2'>
+
+// Regular expressions
+
+rule RegExpExample1
+<beginfold id='2'>{</beginfold id='2'>
+    strings:
+        $re1 = /md5: [0-9a-fA-F]{32}/
+        $re2 = /state: (on|off)/
+
+    condition:
+        $re1 and $re2
+<endfold id='2'>}</endfold id='2'>
+
+// Conditions
+
+rule Example
+<beginfold id='2'>{</beginfold id='2'>
+    strings:
+        $a = "text1"
+        $b = "text2"
+        $c = "text3"
+        $d = "text4"
+
+    condition:
+        ($a or $b) and ($c or $d)
+<endfold id='2'>}</endfold id='2'>
+
+rule CountExample
+<beginfold id='2'>{</beginfold id='2'>
+    strings:
+        $a = "dummy1"
+        $b = "dummy2"
+
+    condition:
+        #a == 6 and #b > 10
+<endfold id='2'>}</endfold id='2'>
+
+
+rule AtExample
+<beginfold id='2'>{</beginfold id='2'>
+    strings:
+        $a = "dummy1"
+        $b = "dummy2"
+
+    condition:
+        $a at 100 and $b at 200
+<endfold id='2'>}</endfold id='2'>
+
+rule InExample
+<beginfold id='2'>{</beginfold id='2'>
+    strings:
+        $a = "dummy1"
+        $b = "dummy2"
+
+    condition:
+        $a in (0..100) and $b in (100..filesize)
+<endfold id='2'>}</endfold id='2'>
+
+// File size
+
+rule FileSizeExample
+<beginfold id='2'>{</beginfold id='2'>
+    condition:
+       filesize > 200KB
+<endfold id='2'>}</endfold id='2'>
+
+// Executable entry point
+
+rule EntryPointExample
+<beginfold id='2'>{</beginfold id='2'>
+    strings:
+        $a = <beginfold id='2'>{</beginfold id='2'> 9C 50 66 A1 ?? ?? ?? 00 66 A9 ?? ?? 58 0F 85 <endfold id='2'>}</endfold id='2'>
+
+    condition:
+       $a in (entrypoint..entrypoint + 10)
+<endfold id='2'>}</endfold id='2'>
+
+
+// Accessing data at a given position
+
+rule IsPE
+<beginfold id='2'>{</beginfold id='2'>
+  condition:
+     // MZ signature at offset 0 and ...
+     uint16(0) == 0x5A4D and
+     // ... PE signature at offset stored in MZ header at 0x3C
+     uint32(uint32(0x3C)) == 0x00004550
+<endfold id='2'>}</endfold id='2'>
+
+// Sets of strings
+
+rule OfExample1
+<beginfold id='2'>{</beginfold id='2'>
+    strings:
+        $a = "dummy1"
+        $b = "dummy2"
+        $c = "dummy3"
+
+    condition:
+        2 of ($a,$b,$c)
+<endfold id='2'>}</endfold id='2'>
+
+rule OfExample2
+<beginfold id='2'>{</beginfold id='2'>
+    strings:
+        $foo1 = "foo1"
+        $foo2 = "foo2"
+        $foo3 = "foo3"
+
+    condition:
+        2 of ($foo*)  // equivalent to 2 of ($foo1,$foo2,$foo3)
+<endfold id='2'>}</endfold id='2'>
+
+rule OfExample3
+<beginfold id='2'>{</beginfold id='2'>
+    strings:
+        $a = "dummy1"
+        $b = "dummy2"
+        $c = "dummy3"
+
+    condition:
+        1 of them // equivalent to 1 of ($*)
+<endfold id='2'>}</endfold id='2'>
+
+// Iterating over string occurrences
+
+rule Occurrences
+<beginfold id='2'>{</beginfold id='2'>
+    strings:
+        $a = "dummy1"
+        $b = "dummy2"
+
+    condition:
+        for all i in (1,2,3) : ( @a[i] + 10 == @b[i] )
+<endfold id='2'>}</endfold id='2'>
+
+// Referencing other rules
+
+rule Rule1
+<beginfold id='2'>{</beginfold id='2'>
+    strings:
+        $a = "dummy1"
+
+    condition:
+        $a
+<endfold id='2'>}</endfold id='2'>
+
+rule Rule2
+<beginfold id='2'>{</beginfold id='2'>
+    strings:
+        $a = "dummy2"
+
+    condition:
+        $a and Rule1
+<endfold id='2'>}</endfold id='2'>
+
+// Metadata
+
+rule MetadataExample
+<beginfold id='2'>{</beginfold id='2'>
+    meta:
+        my_identifier_1 = "Some string data"
+        my_identifier_2 = 24
+        my_identifier_3 = true
+
+    strings:
+        $my_text_string = "text here"
+        $my_hex_string = <beginfold id='2'>{</beginfold id='2'> E2 34 A1 C8 23 FB <endfold id='2'>}</endfold id='2'>
+
+    condition:
+        $my_text_string or $my_hex_string
+<endfold id='2'>}</endfold id='2'>
+
+// External variables
+
+rule ExternalVariableExample1
+<beginfold id='2'>{</beginfold id='2'>
+    condition:
+       ext_var == 10
+<endfold id='2'>}</endfold id='2'>
+
+rule ExternalVariableExample2
+<beginfold id='2'>{</beginfold id='2'>
+    condition:
+       bool_ext_var or filesize < int_ext_var
+<endfold id='2'>}</endfold id='2'>
+
+rule ExternalVariableExample3
+<beginfold id='2'>{</beginfold id='2'>
+    condition:
+        string_ext_var contains "text"
+<endfold id='2'>}</endfold id='2'>
+
+rule ExternalVariableExample4
+<beginfold id='2'>{</beginfold id='2'>
+    condition:
+        string_ext_var matches /[a-z]+/
+<endfold id='2'>}</endfold id='2'>
+
+rule ExternalVariableExample5
+<beginfold id='2'>{</beginfold id='2'>
+    condition:
+        <beginfold id='1'>/*</beginfold id='1'> case insensitive single-line mode <endfold id='1'>*/</endfold id='1'>
+        string_ext_var matches /[a-z]+/is
+<endfold id='2'>}</endfold id='2'>
+
+// Including files
+
+include "other.yar"
+include "./includes/other.yar"
+include "../includes/other.yar"

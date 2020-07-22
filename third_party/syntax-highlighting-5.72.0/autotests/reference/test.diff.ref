@@ -1,0 +1,48 @@
+<Normal Text>commit 2b16665838c8afeaa0f065cafc747438de35876b</Normal Text><br/>
+<Normal Text>Author: Volker Krause <vkrause@kde.org></Normal Text><br/>
+<Normal Text>Date:   Sat Oct 8 13:31:51 2016 +0200</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>    Implement dynamic DetectChar rules</Normal Text><br/>
+<Normal Text>    </Normal Text><br/>
+<Normal Text>    Needed for Perl highlighting.</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<File>diff --git a/src/lib/rule.cpp b/src/lib/rule.cpp</File><br/>
+<Normal Text>index f588985..c4c3b92 100644</Normal Text><br/>
+<Header>--- a/src/lib/rule.cpp</Header><br/>
+<Header>+++ b/src/lib/rule.cpp</Header><br/>
+<Header>@@ -308,12 +308,22 @@ bool DetectChar::doLoad(QXmlStreamReader& reader)</Header><br/>
+<Normal Text>     if (s.isEmpty())</Normal Text><br/>
+<Normal Text>         return false;</Normal Text><br/>
+<Normal Text>     m_char = s.at(0);</Normal Text><br/>
+<Added line>+    if (isDynamic()) {</Added line><br/>
+<Added line>+        m_captureIndex = m_char.digitValue();</Added line><br/>
+<Added line>+    }</Added line><br/>
+<Normal Text>     return true;</Normal Text><br/>
+<Normal Text> }</Normal Text><br/>
+<Normal Text> </Normal Text><br/>
+<Normal Text> MatchResult DetectChar::doMatch(const QString& text, int offset, const QStringList &captures)</Normal Text><br/>
+<Normal Text> {</Normal Text><br/>
+<Removed line>-    Q_UNUSED(captures); // TODO</Removed line><br/>
+<Added line>+    if (isDynamic()) {</Added line><br/>
+<Added line>+        if (captures.size() <= m_captureIndex || captures.at(m_captureIndex).isEmpty())</Added line><br/>
+<Added line>+            return offset;</Added line><br/>
+<Added line>+        if (text.at(offset) == captures.at(m_captureIndex).at(0))</Added line><br/>
+<Added line>+            return offset + 1;</Added line><br/>
+<Added line>+        return offset;</Added line><br/>
+<Added line>+    }</Added line><br/>
+<Added line>+</Added line><br/>
+<Normal Text>     if (text.at(offset) == m_char)</Normal Text><br/>
+<Normal Text>         return offset + 1;</Normal Text><br/>
+<Normal Text>     return offset;</Normal Text><br/>
+<File>diff --git a/src/lib/rule_p.h b/src/lib/rule_p.h</File><br/>
+<Normal Text>index d8862ae..d9cedbf 100644</Normal Text><br/>
+<Header>--- a/src/lib/rule_p.h</Header><br/>
+<Header>+++ b/src/lib/rule_p.h</Header><br/>
+<Header>@@ -103,6 +103,7 @@ protected:</Header><br/>
+<Normal Text> </Normal Text><br/>
+<Normal Text> private:</Normal Text><br/>
+<Normal Text>     QChar m_char;</Normal Text><br/>
+<Added line>+    int m_captureIndex;</Added line><br/>
+<Normal Text> };</Normal Text><br/>
+<Normal Text> </Normal Text><br/>
+<Normal Text> class Detect2Char : public Rule</Normal Text><br/>

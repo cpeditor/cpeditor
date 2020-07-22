@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title>highlight.tig</title>
+<meta name="generator" content="KF5::SyntaxHighlighting (Tiger)"/>
+</head><body style="color:#1f1c1b"><pre>
+<span style="color:#898887;">/* Mandelbrot integer demo</span>
+<span style="color:#898887;"> * Released under the MIT License</span>
+<span style="color:#898887;"> */</span>
+
+<span style="font-weight:bold;">let</span>
+  <span style="color:#898887;">/* Basic types.  */</span>
+  <span style="font-weight:bold;">type</span> bool = <span style="color:#0057ae;">int</span>
+  <span style="font-weight:bold;">type</span> coord = <span style="color:#0057ae;">int</span>
+  <span style="font-weight:bold;">type</span> value = <span style="color:#0057ae;">int</span>
+  <span style="font-weight:bold;">type</span> array2d = <span style="font-weight:bold;">array</span> <span style="font-weight:bold;">of</span> value
+  <span style="font-weight:bold;">type</span> image2d = { nrows : coord, ncols : coord, data : array2d }
+
+  <span style="color:#898887;">/* Image creation.  */</span>
+  <span style="font-weight:bold;">function</span> image_new (ncols : coord, nrows : coord) : image2d =
+    image2d { nrows = nrows, ncols = ncols,
+	      data = array2d[nrows * ncols] <span style="font-weight:bold;">of</span> <span style="color:#b08000;">0</span> }
+
+  <span style="font-weight:bold;">function</span> image_set (input : image2d, col : coord, row : coord,
+		      value : value) =
+    (
+      input.data[row * input.ncols + col] := value
+    )
+
+  <span style="font-weight:bold;">function</span> mandelbrot () =
+    <span style="font-weight:bold;">let</span>
+      <span style="font-weight:bold;">type</span> fp = <span style="color:#0057ae;">int</span>
+      <span style="font-weight:bold;">var</span> X : <span style="color:#0057ae;">int</span> := <span style="color:#b08000;">300</span>
+      <span style="font-weight:bold;">var</span> Y : <span style="color:#0057ae;">int</span> := <span style="color:#b08000;">300</span>
+      <span style="font-weight:bold;">var</span> ima : image2d := image_new (X, Y)
+      <span style="font-weight:bold;">var</span> fixsize: <span style="color:#0057ae;">int</span> := <span style="color:#b08000;">16834</span>
+
+      <span style="font-weight:bold;">function</span> mul(a : fp, b : fp) : fp = (a*b)/fixsize
+      <span style="font-weight:bold;">function</span> frac(n : <span style="color:#0057ae;">int</span>, d : <span style="color:#0057ae;">int</span>) : fp = (n*fixsize)/d
+
+      <span style="font-weight:bold;">var</span> xcenter : fp := frac(<span style="color:#b08000;">0016</span>, <span style="color:#b08000;">10000</span>)
+      <span style="font-weight:bold;">var</span> ycenter : fp := frac(<span style="color:#b08000;">8224</span>, <span style="color:#b08000;">10000</span>)
+      <span style="font-weight:bold;">var</span> xmin : fp := xcenter - frac(<span style="color:#b08000;">5</span>,<span style="color:#b08000;">100</span>)
+      <span style="font-weight:bold;">var</span> ymin : fp := ycenter - frac(<span style="color:#b08000;">5</span>,<span style="color:#b08000;">100</span>)
+      <span style="font-weight:bold;">var</span> xmax : fp := xcenter + frac(<span style="color:#b08000;">5</span>,<span style="color:#b08000;">100</span>)
+      <span style="font-weight:bold;">var</span> ymax : fp := ycenter + frac(<span style="color:#b08000;">5</span>,<span style="color:#b08000;">100</span>)
+      <span style="font-weight:bold;">var</span> xs   : fp := (xmax - xmin)/X
+      <span style="font-weight:bold;">var</span> ys   : fp := (ymax - ymin)/Y
+
+    <span style="font-weight:bold;">function</span> iterations(x:<span style="color:#0057ae;">int</span>, y:<span style="color:#0057ae;">int</span>) : <span style="color:#0057ae;">int</span> =
+    <span style="font-weight:bold;">let</span>
+        <span style="font-weight:bold;">var</span> i : <span style="color:#0057ae;">int</span> := <span style="color:#b08000;">0</span>
+        <span style="font-weight:bold;">var</span> p : fp := xmin+x*xs
+        <span style="font-weight:bold;">var</span> q : fp := ymin+y*ys
+        <span style="font-weight:bold;">var</span> x0 : fp := <span style="color:#b08000;">0</span>
+        <span style="font-weight:bold;">var</span> y0 : fp := <span style="color:#b08000;">0</span>
+        <span style="font-weight:bold;">var</span> xn : fp := <span style="color:#b08000;">0</span>
+        <span style="font-weight:bold;">var</span> four : fp := frac(<span style="color:#b08000;">4</span>,<span style="color:#b08000;">1</span>)
+        <span style="font-weight:bold;">var</span> two  : fp := frac(<span style="color:#b08000;">2</span>,<span style="color:#b08000;">1</span>)
+    <span style="font-weight:bold;">in</span>
+        <span style="font-weight:bold;">while</span> (mul(xn,xn)+mul(y0,y0) &lt; four) &amp; (i &lt; <span style="color:#b08000;">256</span>) <span style="font-weight:bold;">do</span>
+        (
+            i  := i + <span style="color:#b08000;">1</span>;
+            xn := mul((x0+y0),(x0-y0)) + p;
+            y0 := mul(two,mul(x0,y0)) + q;
+            x0 := xn
+        );
+        i
+    <span style="font-weight:bold;">end</span>
+
+    <span style="font-weight:bold;">in</span>
+
+    (<span style="font-weight:bold;">for</span> y := <span style="color:#b08000;">0</span> <span style="font-weight:bold;">to</span> (Y-<span style="color:#b08000;">1</span>) <span style="font-weight:bold;">do</span>
+        <span style="font-weight:bold;">for</span> x := <span style="color:#b08000;">0</span> <span style="font-weight:bold;">to</span> (X-<span style="color:#b08000;">1</span>) <span style="font-weight:bold;">do</span>
+            <span style="font-weight:bold;">let</span>
+                <span style="font-weight:bold;">var</span> i : <span style="color:#0057ae;">int</span>  := iterations(x,y)
+             <span style="font-weight:bold;">in</span>
+                image_set (ima, x, y, i)
+             <span style="font-weight:bold;">end</span>);
+    <span style="font-weight:bold;">end</span>
+<span style="font-weight:bold;">in</span>
+    <span style="color:#644a9b;">print</span>(<span style="color:#bf0303;">&quot;Mandelbrot demo</span><span style="color:#3daee9;">\n</span><span style="color:#bf0303;">&quot;</span>);
+    mandelbrot()
+<span style="font-weight:bold;">end</span>
+</pre></body></html>

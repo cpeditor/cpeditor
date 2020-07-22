@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title>highlight.rb</title>
+<meta name="generator" content="KF5::SyntaxHighlighting (Ruby)"/>
+</head><body style="color:#1f1c1b"><pre>
+<span style="color:#898887;"># This file is a testcase for the highlighting of Ruby code</span>
+<span style="color:#898887;"># It's not executable code, but a collection of code snippets</span>
+<span style="color:#898887;">#</span>
+
+<span style="color:#000080;">require</span> <span style="color:#dd4a4a;">'Config'</span>
+<span style="color:#000080;">require</span> <span style="color:#dd4a4a;">'DO/Clients'</span>
+<span style="color:#000080;">require</span> <span style="color:#dd4a4a;">'DO/DBClients'</span>
+
+  <span style="font-weight:bold;">def</span> <span style="color:#bb1188;font-weight:bold;">CGI</span><span style="color:#ff9fec;">::</span><span style="color:#4000a7;">escapeElement</span>(string, <span style="color:#ff9fec;">*</span>elements)
+    elements <span style="color:#ff9fec;">=</span> elements<span style="color:#ff9fec;">[</span><span style="color:#b08000;">0</span><span style="color:#ff9fec;">]</span> <span style="font-weight:bold;">if</span> elements<span style="color:#ff9fec;">[</span><span style="color:#b08000;">0</span><span style="color:#ff9fec;">]</span><span style="color:#4000a7;">.kind_of?</span>(<span style="color:#0057ae;">Array</span>)
+    <span style="font-weight:bold;">unless</span> elements<span style="color:#4000a7;">.empty?</span>
+      string<span style="color:#4000a7;">.gsub</span>(<span style="color:#4a5704;">/&lt;\/?(?:</span><span style="color:#006e28;">#{</span>elements<span style="color:#4000a7;">.join</span>(<span style="color:#bf0303;">&quot;|&quot;</span>)<span style="color:#006e28;">}</span><span style="color:#4a5704;">)(?!\w)(?:.|\n)*?&gt;/ni</span>) <span style="font-weight:bold;">do</span>
+        <span style="color:#bb1188;font-weight:bold;">CGI</span><span style="color:#ff9fec;">::</span><span style="color:#4000a7;">escapeHTML</span>(<span style="color:#c00000;font-weight:bold;">$&amp;</span>)
+      <span style="font-weight:bold;">end</span>
+    <span style="font-weight:bold;">else</span>
+      string
+    <span style="font-weight:bold;">end</span>
+  <span style="font-weight:bold;">end</span>
+
+<span style="font-weight:bold;">case</span> inputLine
+  <span style="font-weight:bold;">when</span> <span style="color:#bf0303;">&quot;debug&quot;</span>
+    dumpDebugInfo
+    dumpSymbols
+  <span style="font-weight:bold;">when</span> <span style="color:#4a5704;">/p\s+(\w+)/</span>
+    dumpVariable(<span style="color:#c00000;">$1</span>)
+  <span style="font-weight:bold;">when</span> <span style="color:#bf0303;">&quot;quit&quot;</span>, <span style="color:#bf0303;">&quot;exit&quot;</span>
+    <span style="color:#000080;">exit</span>
+  <span style="font-weight:bold;">else</span>
+    <span style="color:#000080;">print</span> <span style="color:#bf0303;">&quot;Illegal command: </span><span style="color:#006e28;">#{</span>inputLine<span style="color:#006e28;">}</span><span style="color:#bf0303;">&quot;</span>
+<span style="font-weight:bold;">end</span>
+
+
+kind <span style="color:#ff9fec;">=</span> <span style="font-weight:bold;">case</span> year <span style="color:#898887;">#hi there</span>
+         <span style="font-weight:bold;">when</span> <span style="color:#b08000;">1850</span><span style="color:#ff9fec;">..</span><span style="color:#b08000;">1889</span> <span style="font-weight:bold;">then</span> <span style="color:#bf0303;">&quot;Blues&quot;</span>
+         <span style="font-weight:bold;">when</span> <span style="color:#b08000;">1890</span><span style="color:#ff9fec;">..</span><span style="color:#b08000;">1909</span> <span style="font-weight:bold;">then</span> <span style="color:#bf0303;">&quot;Ragtime&quot;</span>
+         <span style="font-weight:bold;">when</span> <span style="color:#b08000;">1910</span><span style="color:#ff9fec;">..</span><span style="color:#b08000;">1929</span> <span style="font-weight:bold;">then</span> <span style="color:#bf0303;">&quot;New Orleans Jazz&quot;</span>
+         <span style="font-weight:bold;">when</span> <span style="color:#b08000;">1930</span><span style="color:#ff9fec;">..</span><span style="color:#b08000;">1939</span> <span style="font-weight:bold;">then</span> <span style="color:#bf0303;">&quot;Swing&quot;</span>
+         <span style="font-weight:bold;">when</span> <span style="color:#b08000;">1940</span><span style="color:#ff9fec;">..</span><span style="color:#b08000;">1950</span> <span style="font-weight:bold;">then</span> <span style="color:#bf0303;">&quot;Bebop&quot;</span>
+         <span style="font-weight:bold;">else</span>                 <span style="color:#bf0303;">&quot;Jazz&quot;</span>
+       <span style="font-weight:bold;">end</span>
+
+  <span style="color:#898887;"># URL-encode a string.</span>
+  <span style="color:#898887;">#   url_encoded_string = CGI::escape(&quot;'Stop!' said Fred&quot;)</span>
+  <span style="color:#898887;">#      # =&gt; &quot;%27Stop%21%27+said+Fred&quot;</span>
+  <span style="font-weight:bold;">def</span> <span style="color:#bb1188;font-weight:bold;">CGI</span><span style="color:#ff9fec;">::</span><span style="color:#4000a7;">escape</span>(string)
+    string<span style="color:#4000a7;">.gsub</span>(<span style="color:#4a5704;">/([^ a-zA-Z0-9_.-]+)/n</span>) <span style="font-weight:bold;">do</span>
+      <span style="color:#924c9d;">'%'</span> <span style="color:#ff9fec;">+</span> <span style="color:#c00000;">$1</span><span style="color:#4000a7;">.unpack</span>(<span style="color:#dd4a4a;">'H2'</span> <span style="color:#ff9fec;">*</span> <span style="color:#c00000;">$1</span><span style="color:#4000a7;">.size</span>)<span style="color:#4000a7;">.join</span>(<span style="color:#924c9d;">'%'</span>)<span style="color:#4000a7;">.upcase</span>
+    <span style="font-weight:bold;">end</span><span style="color:#4000a7;">.tr</span>(<span style="color:#924c9d;">' '</span>, <span style="color:#924c9d;">'+'</span>)
+  <span style="font-weight:bold;">end</span>
+
+
+<span style="color:#898887;"># Class ClientManager</span>
+<span style="color:#898887;">#</span>
+<span style="color:#898887;"># definition : Import, store and export the various data used by the application.</span>
+<span style="color:#898887;"># This class is the sole interface between the application and the underlying database.</span>
+
+mon, day, year <span style="color:#ff9fec;">=</span> <span style="color:#c00000;">$1</span>, <span style="color:#c00000;">$2</span>, <span style="color:#c00000;">$3</span> <span style="font-weight:bold;">if</span> <span style="color:#4a5704;">/(\d\d)-(\d\d)-(\d\d)/</span>
+<span style="color:#000080;">puts</span> <span style="color:#bf0303;">&quot;a = </span><span style="color:#006e28;">#{</span>a<span style="color:#006e28;">}</span><span style="color:#bf0303;">&quot;</span> <span style="font-weight:bold;">if</span> fDebug
+<span style="color:#000080;">print</span> total <span style="font-weight:bold;">unless</span> total <span style="color:#ff9fec;">==</span> <span style="color:#b08000;">0</span>
+
+<span style="font-weight:bold;">while</span> <span style="color:#000080;">gets</span>
+  <span style="font-weight:bold;">next</span> <span style="font-weight:bold;">if</span> <span style="color:#4a5704;">/^#/</span>            <span style="color:#898887;"># Skip comments</span>
+  parseLine <span style="font-weight:bold;">unless</span> <span style="color:#4a5704;">/^$/</span>   <span style="color:#898887;"># Don't parse empty lines</span>
+<span style="font-weight:bold;">end</span>
+
+<span style="font-weight:bold;">if</span> artist <span style="color:#ff9fec;">==</span> <span style="color:#bf0303;">&quot;John Coltrane&quot;</span> <span style="color:#898887;">#hi there</span>
+  artist <span style="color:#ff9fec;">=</span> <span style="color:#bf0303;">&quot;'Trane&quot;</span> <span style="color:#898887;">#hi there</span>
+<span style="font-weight:bold;">end</span> <span style="font-weight:bold;">unless</span> nicknames <span style="color:#ff9fec;">==</span> <span style="color:#bf0303;">&quot;no&quot;</span> <span style="color:#898887;">#hi there</span>
+
+handle <span style="font-weight:bold;">= if</span> aSong<span style="color:#4000a7;">.artist</span> <span style="color:#ff9fec;">==</span> <span style="color:#bf0303;">&quot;Gillespie&quot;</span> <span style="font-weight:bold;">then</span> <span style="color:#898887;">#hi there</span>
+           <span style="color:#bf0303;">&quot;Dizzy&quot;</span>
+         <span style="font-weight:bold;">elsif</span> aSong<span style="color:#4000a7;">.artist</span> <span style="color:#ff9fec;">==</span> <span style="color:#bf0303;">&quot;Parker&quot;</span> <span style="font-weight:bold;">then</span>
+           <span style="color:#bf0303;">&quot;Bird&quot;</span>
+         <span style="font-weight:bold;">else</span> <span style="color:#898887;">#hi there</span>
+           <span style="color:#bf0303;">&quot;unknown&quot;</span>
+         <span style="font-weight:bold;">end</span>
+
+<span style="font-weight:bold;">if</span> aSong<span style="color:#4000a7;">.artist</span> <span style="color:#ff9fec;">==</span> <span style="color:#bf0303;">&quot;Gillespie&quot;</span> <span style="font-weight:bold;">then</span>  handle <span style="color:#ff9fec;">=</span> <span style="color:#bf0303;">&quot;Dizzy&quot;</span>
+<span style="font-weight:bold;">elsif</span> aSong<span style="color:#4000a7;">.artist</span> <span style="color:#ff9fec;">==</span> <span style="color:#bf0303;">&quot;Parker&quot;</span> <span style="font-weight:bold;">then</span>  handle <span style="color:#ff9fec;">=</span> <span style="color:#bf0303;">&quot;Bird&quot;</span>
+<span style="font-weight:bold;">else</span>  handle <span style="color:#ff9fec;">=</span> <span style="color:#bf0303;">&quot;unknown&quot;</span>
+<span style="font-weight:bold;">end</span> <span style="color:#898887;">#hi there</span>
+
+<span style="font-weight:bold;">if</span> aSong<span style="color:#4000a7;">.artist</span> <span style="color:#ff9fec;">==</span> <span style="color:#bf0303;">&quot;Gillespie&quot;</span> <span style="font-weight:bold;">then</span>
+  handle <span style="color:#ff9fec;">=</span> <span style="color:#bf0303;">&quot;Dizzy&quot;</span>
+<span style="font-weight:bold;">elsif</span> aSong<span style="color:#4000a7;">.artist</span> <span style="color:#ff9fec;">==</span> <span style="color:#bf0303;">&quot;Parker&quot;</span> <span style="font-weight:bold;">then</span>
+  handle <span style="color:#ff9fec;">=</span> <span style="color:#bf0303;">&quot;Bird&quot;</span>
+<span style="font-weight:bold;">else</span>
+  handle <span style="color:#ff9fec;">=</span> <span style="color:#bf0303;">&quot;unknown&quot;</span>
+<span style="font-weight:bold;">end</span>
+
+<span style="font-weight:bold;">if</span> aSong<span style="color:#4000a7;">.artist</span> <span style="color:#ff9fec;">==</span> <span style="color:#bf0303;">&quot;Gillespie&quot;</span>
+  handle <span style="color:#ff9fec;">=</span> <span style="color:#bf0303;">&quot;Dizzy&quot;</span>
+<span style="font-weight:bold;">elsif</span> aSong<span style="color:#4000a7;">.artist</span> <span style="color:#ff9fec;">==</span> <span style="color:#bf0303;">&quot;Parker&quot;</span>
+  handle <span style="color:#ff9fec;">=</span> <span style="color:#bf0303;">&quot;Bird&quot;</span>
+<span style="font-weight:bold;">else</span>
+  handle <span style="color:#ff9fec;">=</span> <span style="color:#bf0303;">&quot;unknown&quot;</span>
+<span style="font-weight:bold;">end</span>
+
+ <span style="font-weight:bold;">case</span> line
+  <span style="font-weight:bold;">when</span> <span style="color:#4a5704;">/title=(.*)/</span>
+    <span style="color:#000080;">puts</span> <span style="color:#bf0303;">&quot;Title is #$1&quot;</span>
+  <span style="font-weight:bold;">when</span> <span style="color:#4a5704;">/track=(.*)/</span>
+    <span style="color:#000080;">puts</span> <span style="color:#bf0303;">&quot;Track is #$1&quot;</span>
+  <span style="font-weight:bold;">when</span> <span style="color:#4a5704;">/artist=(.*)/</span>
+    <span style="color:#000080;">puts</span> <span style="color:#bf0303;">&quot;Artist is #$1&quot;</span>
+<span style="font-weight:bold;">end</span>
+
+<span style="font-weight:bold;">case</span> shape
+  <span style="font-weight:bold;">when</span> <span style="color:#0057ae;">Square</span>, <span style="color:#0057ae;">Rectangle</span>
+    <span style="color:#898887;"># ...</span>
+  <span style="font-weight:bold;">when</span> <span style="color:#0057ae;">Circle</span>
+    <span style="color:#898887;"># ...</span>
+  <span style="font-weight:bold;">when</span> <span style="color:#0057ae;">Triangle</span>
+    <span style="color:#898887;"># ...</span>
+  <span style="font-weight:bold;">else</span>
+    <span style="color:#898887;"># ...</span>
+<span style="font-weight:bold;">end</span> 
+
+
+<span style="font-weight:bold;">until</span> playList<span style="color:#4000a7;">.duration</span> <span style="color:#ff9fec;">&gt;</span> <span style="color:#b08000;">60</span> <span style="color:#898887;">#hi there</span>
+  playList<span style="color:#4000a7;">.add</span>(songList<span style="color:#4000a7;">.pop</span>)
+<span style="font-weight:bold;">end</span>
+
+<span style="color:#b08000;">3</span><span style="color:#4000a7;">.times</span> <span style="font-weight:bold;">do</span>
+  <span style="color:#000080;">print</span> <span style="color:#bf0303;">&quot;Ho! &quot;</span>
+<span style="font-weight:bold;">end</span>
+
+<span style="color:#000080;">loop</span> <span style="color:#ff9fec;">{</span>
+  <span style="color:#898887;"># block ...</span>
+<span style="color:#ff9fec;">}</span>
+
+songList<span style="color:#4000a7;">.each</span> <span style="font-weight:bold;">do</span> <span style="color:#ff9fec;">|</span>aSong<span style="color:#ff9fec;">|</span>
+  aSong<span style="color:#4000a7;">.play</span>
+<span style="font-weight:bold;">end</span>
+
+<span style="font-weight:bold;">for</span> aSong <span style="font-weight:bold;">in</span> songList
+  aSong<span style="color:#4000a7;">.play</span>
+<span style="font-weight:bold;">end</span>
+
+<span style="font-weight:bold;">for</span> i <span style="font-weight:bold;">in</span> <span style="color:#ff9fec;">[</span><span style="color:#dd4a4a;">'fee'</span>, <span style="color:#dd4a4a;">'fi'</span>, <span style="color:#dd4a4a;">'fo'</span>, <span style="color:#dd4a4a;">'fum'</span><span style="color:#ff9fec;">]</span>
+  <span style="color:#000080;">print</span> i, <span style="color:#bf0303;">&quot; &quot;</span>
+<span style="font-weight:bold;">end</span>
+<span style="font-weight:bold;">for</span> i <span style="font-weight:bold;">in</span> <span style="color:#b08000;">1</span><span style="color:#ff9fec;">..</span><span style="color:#b08000;">3</span>
+  <span style="color:#000080;">print</span> i, <span style="color:#bf0303;">&quot; &quot;</span>
+<span style="font-weight:bold;">end</span>
+<span style="font-weight:bold;">for</span> i <span style="font-weight:bold;">in</span> <span style="color:#0057ae;">File</span><span style="color:#4000a7;">.open</span>(<span style="color:#bf0303;">&quot;ordinal&quot;</span>)<span style="color:#4000a7;">.find_all</span> <span style="color:#ff9fec;">{</span> <span style="color:#ff9fec;">|</span>l<span style="color:#ff9fec;">|</span> l <span style="color:#ff9fec;">=~</span> <span style="color:#4a5704;">/d$/</span><span style="color:#ff9fec;">}</span>
+  <span style="color:#000080;">print</span> i<span style="color:#4000a7;">.chomp</span>, <span style="color:#bf0303;">&quot; &quot;</span>
+<span style="font-weight:bold;">end</span>
+
+<span style="font-weight:bold;">class</span> <span style="color:#0057ae;">Periods</span>
+  <span style="font-weight:bold;">def</span> each
+    <span style="font-weight:bold;">yield</span> <span style="color:#bf0303;">&quot;Classical&quot;</span>
+    <span style="font-weight:bold;">yield</span> <span style="color:#bf0303;">&quot;Jazz&quot;</span>
+    <span style="font-weight:bold;">yield</span> <span style="color:#bf0303;">&quot;Rock&quot;</span>
+  <span style="font-weight:bold;">end</span>
+<span style="font-weight:bold;">end</span>
+
+
+periods <span style="color:#ff9fec;">=</span> <span style="color:#0057ae;">Periods</span><span style="color:#4000a7;">.new</span>
+<span style="font-weight:bold;">for</span> genre <span style="font-weight:bold;">in</span> periods
+  <span style="color:#000080;">print</span> genre, <span style="color:#bf0303;">&quot; &quot;</span>
+<span style="font-weight:bold;">end</span>
+
+<span style="font-weight:bold;">while</span> <span style="color:#000080;">gets</span>
+  <span style="font-weight:bold;">next</span> <span style="font-weight:bold;">if</span> <span style="color:#4a5704;">/^\s*#/</span>   <span style="color:#898887;"># skip comments</span>
+  <span style="font-weight:bold;">break</span> <span style="font-weight:bold;">if</span> <span style="color:#4a5704;">/^END/</span>   <span style="color:#898887;"># stop at end</span>
+                    <span style="color:#898887;"># substitute stuff in backticks and try again</span>
+  <span style="font-weight:bold;">redo</span> <span style="font-weight:bold;">if</span> <span style="color:#000080;">gsub!</span>(<span style="color:#4a5704;">/`(.*?)`/</span>) <span style="color:#ff9fec;">{</span> <span style="color:#000080;">eval</span>(<span style="color:#c00000;">$1</span>) <span style="color:#ff9fec;">}</span>
+  <span style="color:#898887;"># process line ...</span>
+<span style="font-weight:bold;">end</span>
+
+i<span style="color:#ff9fec;">=</span><span style="color:#b08000;">0</span>
+<span style="color:#000080;">loop</span> <span style="font-weight:bold;">do</span>
+  i <span style="color:#ff9fec;">+=</span> <span style="color:#b08000;">1</span>
+  <span style="font-weight:bold;">next</span> <span style="font-weight:bold;">if</span> i <span style="color:#ff9fec;">&lt;</span> <span style="color:#b08000;">3</span>
+  <span style="color:#000080;">print</span> i
+  <span style="font-weight:bold;">break</span> <span style="font-weight:bold;">if</span> i <span style="color:#ff9fec;">&gt;</span> <span style="color:#b08000;">4</span>
+<span style="font-weight:bold;">end</span>
+
+<span style="font-weight:bold;">for</span> i <span style="font-weight:bold;">in</span> <span style="color:#b08000;">1</span><span style="color:#ff9fec;">..</span><span style="color:#b08000;">100</span>
+  <span style="color:#000080;">print</span> <span style="color:#bf0303;">&quot;Now at </span><span style="color:#006e28;">#{</span>i<span style="color:#006e28;">}</span><span style="color:#bf0303;">. Restart? &quot;</span>
+  <span style="font-weight:bold;">retry</span> <span style="font-weight:bold;">if</span> <span style="color:#000080;">gets</span> <span style="color:#ff9fec;">=~</span> <span style="color:#4a5704;">/^y/i</span>
+<span style="font-weight:bold;">end</span>
+
+<span style="font-weight:bold;">def</span> doUntil(cond)
+  <span style="font-weight:bold;">yield</span>
+  <span style="font-weight:bold;">retry</span> <span style="font-weight:bold;">unless</span> cond
+<span style="font-weight:bold;">end</span>
+
+i <span style="color:#ff9fec;">=</span> <span style="color:#b08000;">0</span>
+doUntil(i <span style="color:#ff9fec;">&gt;</span> <span style="color:#b08000;">3</span>) <span style="color:#ff9fec;">{</span>
+  <span style="color:#000080;">print</span> i, <span style="color:#bf0303;">&quot; &quot;</span>
+  i <span style="color:#ff9fec;">+=</span> <span style="color:#b08000;">1</span>
+<span style="color:#ff9fec;">}</span>
+
+<span style="font-weight:bold;">def</span> system_call
+	<span style="color:#898887;"># ... code which throws SystemCallError</span>
+<span style="font-weight:bold;">rescue</span> <span style="color:#0057ae;">SystemCallError</span>
+	<span style="color:#c00000;font-weight:bold;">$stderr</span><span style="color:#4000a7;">.print</span> <span style="color:#bf0303;">&quot;IO failed: &quot;</span> <span style="color:#ff9fec;">+</span> <span style="color:#c00000;font-weight:bold;">$!</span>
+	opFile<span style="color:#4000a7;">.close</span>
+	<span style="color:#0057ae;">File</span><span style="color:#4000a7;">.delete</span>(opName)
+	<span style="color:#000080;">raise</span>
+<span style="font-weight:bold;">end</span>
+
+<span style="font-weight:bold;">class</span> <span style="color:#0057ae;">ClientManager</span>
+	
+	<span style="color:#898887;"># constructor</span>
+	<span style="font-weight:bold;">def</span> initialize(dbase)
+		<span style="color:#006e28;">@dbClient</span> <span style="color:#ff9fec;">=</span> <span style="color:#0057ae;">DBClient</span><span style="color:#4000a7;">.new</span>(dbase)
+		<span style="color:#006e28;">@clients</span> <span style="color:#ff9fec;">=</span> <span style="color:#0057ae;">Clients</span><span style="color:#4000a7;">.new</span>
+	<span style="font-weight:bold;">end</span>
+	
+	<span style="font-weight:bold;">def</span> prout(a, b, xy<span style="color:#ff9fec;">=</span><span style="color:#bf0303;">&quot;jj&quot;</span>) <span style="color:#b08000;">24</span> <span style="font-weight:bold;">end</span> 
+	<span style="color:#898887;">###############################################################</span>
+	<span style="color:#898887;">#</span>
+	<span style="color:#898887;"># CLIENTS SECTION</span>
+	<span style="color:#898887;">#</span>
+	<span style="color:#898887;">###############################################################</span>
+	
+	<span style="color:#898887;"># update the clients object by retrieving the related data from the database</span>
+	<span style="color:#898887;"># returns the number of clients</span>
+	<span style="font-weight:bold;">def</span> refreshClients
+		<span style="color:#006e28;">@clients</span><span style="color:#4000a7;">.clean</span>
+		<span style="font-weight:bold;">unless</span> <span style="color:#006e28;">@sqlQuery</span><span style="color:#4000a7;">.nil?</span> <span style="font-weight:bold;">then</span>
+			<span style="color:#006e28;">@sqlQuery</span><span style="color:#4000a7;">.selectClient.each</span> <span style="font-weight:bold;">do</span> <span style="color:#ff9fec;">|</span>row<span style="color:#ff9fec;">|</span>
+				<span style="color:#006e28;">@clients</span><span style="color:#4000a7;">.addClient</span>(row<span style="color:#ff9fec;">[</span><span style="color:#b08000;">0</span><span style="color:#ff9fec;">]</span>,row<span style="color:#ff9fec;">[</span><span style="color:#b08000;">1</span><span style="color:#ff9fec;">]</span>,row<span style="color:#ff9fec;">[</span><span style="color:#b08000;">2</span><span style="color:#ff9fec;">]</span>,row<span style="color:#ff9fec;">[</span><span style="color:#b08000;">3</span><span style="color:#ff9fec;">]</span>,row<span style="color:#ff9fec;">[</span><span style="color:#b08000;">4</span><span style="color:#ff9fec;">]</span>,row<span style="color:#ff9fec;">[</span><span style="color:#b08000;">5</span><span style="color:#ff9fec;">]</span>, row<span style="color:#ff9fec;">[</span><span style="color:#b08000;">6</span><span style="color:#ff9fec;">]</span>, row<span style="color:#ff9fec;">[</span><span style="color:#b08000;">7</span><span style="color:#ff9fec;">]</span>, row<span style="color:#ff9fec;">[</span><span style="color:#b08000;">8</span><span style="color:#ff9fec;">]</span>)
+			<span style="font-weight:bold;">end</span>
+		<span style="font-weight:bold;">else</span>
+			<span style="color:#000080;">puts</span> <span style="color:#bf0303;">&quot;SqlQuery wasn't created : cannot read data from database&quot;</span>
+		<span style="font-weight:bold;">end</span>
+		<span style="font-weight:bold;">return</span> <span style="color:#006e28;">@clients</span><span style="color:#4000a7;">.length</span>
+	<span style="font-weight:bold;">end</span>
+	
+	<span style="color:#898887;"># insert a client in the database and refreshes the local clients object</span>
+	<span style="color:#898887;"># we assume that none of the arguments is null</span>
+	<span style="color:#898887;"># we assume that the client, identified by raison_sociale doesn't already exists</span>
+	<span style="font-weight:bold;">def</span> addClient(raison_sociale, division, departement, adresse, cp, ville, nom_contact, tel_contact)
+		id <span style="color:#ff9fec;">=</span> <span style="color:#bf0303;">&quot;0&quot;</span>
+		<span style="font-weight:bold;">unless</span> <span style="color:#006e28;">@sqlQuery</span><span style="color:#4000a7;">.nil?</span> <span style="font-weight:bold;">then</span>
+			id <span style="color:#ff9fec;">=</span> <span style="color:#006e28;">@sqlQuery</span><span style="color:#4000a7;">.insertClient</span>(raison_sociale, division, departement, adresse, cp, ville, nom_contact,tel_contact)
+		<span style="font-weight:bold;">else</span>
+			<span style="color:#000080;">puts</span> <span style="color:#bf0303;">&quot;SqlQuery wasn't created : database update cannot be performed&quot;</span>
+		<span style="font-weight:bold;">end</span>
+		<span style="color:#006e28;">@clients</span><span style="color:#4000a7;">.addClient</span>(id, raison_sociale, division, departement, adresse, cp, ville, nom_contact, tel_contact) <span style="color:#898887;"># synchronize local object with DB</span>
+	<span style="font-weight:bold;">end</span>
+	
+	<span style="color:#898887;"># deletes a client from the database and updates the local Clients object accordingly</span>
+	<span style="font-weight:bold;">def</span> delClient(nomclient_brut)
+		raison_sociale, div, dep <span style="color:#ff9fec;">=</span> <span style="color:#0057ae;">Clients</span><span style="color:#4000a7;">.getIdentifiers</span>(nomclient_brut)
+		listeContratsExp, listeContratsSup, listeContratsProd, listePropositionsExp, listePropositionsSup <span style="color:#ff9fec;">=</span> <span style="color:#ff9fec;">[]</span>
+
+		listeContratsExp <span style="color:#ff9fec;">=</span> <span style="color:#006e28;">@contratsExpertise</span><span style="color:#4000a7;">.getContratsFromClient</span>(nomclient_brut)
+		listeContratsSup <span style="color:#ff9fec;">=</span> <span style="color:#006e28;">@contratsSupport</span><span style="color:#4000a7;">.getContratsFromClient</span>(nomclient_brut)
+		listeContratsProd <span style="color:#ff9fec;">=</span> <span style="color:#006e28;">@contratsProduits</span><span style="color:#4000a7;">.getContratsFromClient</span>(nomclient_brut)
+		listePropositionsExp <span style="color:#ff9fec;">=</span> <span style="color:#006e28;">@propositionsExpertise</span><span style="color:#4000a7;">.getPropositionsFromClient</span>(nomclient_brut)
+		listePropositionsSup <span style="color:#ff9fec;">=</span> <span style="color:#006e28;">@propositionsSupport</span><span style="color:#4000a7;">.getPropositionsFromClient</span>(nomclient_brut)
+		
+		<span style="font-weight:bold;">unless</span> <span style="color:#006e28;">@sqlQuery</span><span style="color:#4000a7;">.nil?</span> <span style="font-weight:bold;">then</span>
+			<span style="color:#006e28;">@sqlQuery</span><span style="color:#4000a7;">.deleteClient</span>(raison_sociale, div, dep)
+			
+			<span style="color:#006e28;">@sqlQuery</span><span style="color:#4000a7;">.deleteContracts</span>(<span style="color:#0057ae;">Config</span><span style="color:#ff9fec;">::</span><span style="color:#bb1188;">EXPERTISE</span>,listeContratsExp) 
+			<span style="color:#006e28;">@sqlQuery</span><span style="color:#4000a7;">.deleteContracts</span>(<span style="color:#0057ae;">Config</span><span style="color:#ff9fec;">::</span><span style="color:#bb1188;">SUPPORT</span>,listeContratsSup)
+			<span style="color:#006e28;">@sqlQuery</span><span style="color:#4000a7;">.deleteContracts</span>(<span style="color:#0057ae;">Config</span><span style="color:#ff9fec;">::</span><span style="color:#bb1188;">PRODUIT</span>,listeContratsProd)
+			<span style="color:#006e28;">@sqlQuery</span><span style="color:#4000a7;">.deletePropositions</span>(<span style="color:#0057ae;">Config</span><span style="color:#ff9fec;">::</span><span style="color:#bb1188;">EXPERTISE</span>,listePropositionsExp)
+			<span style="color:#006e28;">@sqlQuery</span><span style="color:#4000a7;">.deletePropositions</span>(<span style="color:#0057ae;">Config</span><span style="color:#ff9fec;">::</span><span style="color:#bb1188;">SUPPORT</span>,listePropositionsSup)
+		<span style="font-weight:bold;">else</span>
+			<span style="color:#000080;">puts</span> <span style="color:#bf0303;">&quot;SqlQuery wasn't created : database update cannot be performed&quot;</span>
+		<span style="font-weight:bold;">end</span>
+		<span style="color:#006e28;">@clients</span><span style="color:#4000a7;">.delClient</span>(raison_sociale,div,dep)
+	
+		<span style="color:#006e28;">@contratsExpertise</span><span style="color:#4000a7;">.deleteContracts</span>(listeContratsExp)
+		<span style="color:#006e28;">@contratsSupport</span><span style="color:#4000a7;">.deleteContracts</span>(listeContratsSup)
+		<span style="color:#006e28;">@contratsProduits</span><span style="color:#4000a7;">.deleteContracts</span>(listeContratsProd)
+		<span style="color:#006e28;">@propositionsExpertise</span><span style="color:#4000a7;">.deletePropositions</span>(listePropositionsExp)
+		<span style="color:#006e28;">@propositionsSupport</span><span style="color:#4000a7;">.deletePropositions</span>(listePropositionsSup)
+	<span style="font-weight:bold;">end</span>
+<span style="font-weight:bold;">end</span>
+
+  <span style="color:#898887;"># Mixin module for HTML version 3 generation methods.</span>
+  <span style="font-weight:bold;">module</span> <span style="color:#0057ae;">Html3</span> <span style="color:#898887;"># :nodoc:</span>
+
+    <span style="color:#898887;"># The DOCTYPE declaration for this version of HTML</span>
+    <span style="font-weight:bold;">def</span> doctype
+<span style="color:#006e28;">      %|</span><span style="color:#bf0303;">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 3.2 Final//EN&quot;&gt;</span><span style="color:#006e28;">|</span>
+    <span style="font-weight:bold;">end</span>
+
+    <span style="color:#898887;"># Initialise the HTML generation methods for this version.</span>
+    <span style="font-weight:bold;">def</span> element_init
+      <span style="color:#000080;">extend</span> <span style="color:#0057ae;">TagMaker</span>
+      methods <span style="color:#ff9fec;">=</span> <span style="color:#bf0303;">&quot;&quot;</span>
+      <span style="color:#898887;"># - -</span>
+      <span style="font-weight:bold;">for</span> element <span style="font-weight:bold;">in</span><span style="color:#006e28;"> %w[</span><span style="color:#bf0303;"> A TT I B U STRIKE BIG SMALL SUB SUP EM STRONG</span>
+<span style="color:#bf0303;">          DFN CODE SAMP KBD VAR CITE FONT ADDRESS DIV center MAP</span>
+<span style="color:#bf0303;">          APPLET PRE XMP LISTING DL OL UL DIR MENU SELECT table TITLE</span>
+<span style="color:#bf0303;">          STYLE SCRIPT H1 H2 H3 H4 H5 H6 TEXTAREA FORM BLOCKQUOTE</span>
+<span style="color:#bf0303;">          CAPTION </span><span style="color:#006e28;">]</span>
+        methods <span style="color:#ff9fec;">+= &lt;&lt;-</span><span style="font-weight:bold;">BEGIN</span><span style="color:#006e28;"> + nn_element_def(element) + &lt;&lt;-END</span>
+<span style="color:#006e28;">          def </span><span style="color:#006e28;">#{</span>element<span style="color:#4000a7;">.downcase</span><span style="color:#006e28;">}</span><span style="color:#006e28;">(attributes = {})</span>
+<span style="color:#006e28;">        </span><span style="font-weight:bold;">BEGIN</span>
+          <span style="font-weight:bold;">end</span>
+        <span style="font-weight:bold;">END</span>
+      <span style="font-weight:bold;">end</span>
+
+      <span style="color:#898887;"># - O EMPTY</span>
+      <span style="font-weight:bold;">for</span> element <span style="font-weight:bold;">in</span><span style="color:#006e28;"> %w[</span><span style="color:#bf0303;"> IMG BASE BASEFONT BR AREA LINK PARAM HR INPUT</span>
+<span style="color:#bf0303;">          ISINDEX META </span><span style="color:#006e28;">]</span>
+        methods <span style="color:#ff9fec;">+= &lt;&lt;-</span><span style="font-weight:bold;">BEGIN</span><span style="color:#006e28;"> + nOE_element_def(element) + &lt;&lt;-END</span>
+<span style="color:#006e28;">          def </span><span style="color:#006e28;">#{</span>element<span style="color:#4000a7;">.downcase</span><span style="color:#006e28;">}</span><span style="color:#006e28;">(attributes = {})</span>
+<span style="color:#006e28;">        </span><span style="font-weight:bold;">BEGIN</span>
+          <span style="font-weight:bold;">end</span>
+        <span style="font-weight:bold;">END</span>
+      <span style="font-weight:bold;">end</span>
+
+      <span style="color:#898887;"># O O or - O</span>
+      <span style="font-weight:bold;">for</span> element <span style="font-weight:bold;">in</span><span style="color:#006e28;"> %w[</span><span style="color:#bf0303;"> HTML HEAD BODY P PLAINTEXT DT DD LI OPTION tr</span>
+<span style="color:#bf0303;">          th td </span><span style="color:#006e28;">]</span>
+        methods <span style="color:#ff9fec;">+= &lt;&lt;-</span><span style="font-weight:bold;">BEGIN</span><span style="color:#006e28;"> + nO_element_def(element) + &lt;&lt;-END</span>
+<span style="color:#006e28;">          def </span><span style="color:#006e28;">#{</span>element<span style="color:#4000a7;">.downcase</span><span style="color:#006e28;">}</span><span style="color:#006e28;">(attributes = {})</span>
+<span style="color:#006e28;">        </span><span style="font-weight:bold;">BEGIN</span>
+          <span style="font-weight:bold;">end</span>
+        <span style="font-weight:bold;">END</span>
+      <span style="font-weight:bold;">end</span>
+      <span style="color:#000080;">eval</span>(methods)
+    <span style="font-weight:bold;">end</span>
+
+  <span style="font-weight:bold;">end</span>
+
+<span style="color:#898887;"># following snippet from Webrick's log.rb</span>
+<span style="color:#898887;"># notice the erronous handling of the query method is_a?</span>
+<span style="font-weight:bold;">def</span> <span style="color:#000080;">format</span>(arg)
+     str <span style="font-weight:bold;">= if</span> arg<span style="color:#4000a7;">.is_a?</span>(<span style="color:#0057ae;">Exception</span>)
+        <span style="color:#bf0303;">&quot;</span><span style="color:#006e28;">#{</span>arg<span style="color:#4000a7;">.class</span><span style="color:#006e28;">}</span><span style="color:#bf0303;">: </span><span style="color:#006e28;">#{</span>arg<span style="color:#4000a7;">.message</span><span style="color:#006e28;">}</span><span style="color:#bf0303;">\n\t&quot;</span> <span style="color:#ff9fec;">&lt;&lt;</span>
+        arg<span style="color:#4000a7;">.backtrace.join</span>(<span style="color:#bf0303;">&quot;\n\t&quot;</span>) <span style="color:#ff9fec;">&lt;&lt;</span> <span style="color:#bf0303;">&quot;\n&quot;</span>
+      <span style="font-weight:bold;">elsif</span> arg<span style="color:#4000a7;">.respond_to?</span>(<span style="color:#d40000;">:to_str</span>)
+        arg<span style="color:#4000a7;">.to_str</span>
+      <span style="font-weight:bold;">else</span>
+        arg<span style="color:#4000a7;">.inspect</span>
+      <span style="font-weight:bold;">end</span>
+<span style="font-weight:bold;">end</span>
+
+<span style="color:#898887;"># following snippet from Webrick's httputils.rb</span>
+<span style="color:#898887;"># Splitting regexps on several lines might be bad form,</span>
+<span style="color:#898887;"># but not illegal in Ruby. </span>
+<span style="color:#898887;"># This should probably be supported in the highlighting</span>
+<span style="font-weight:bold;">def</span> split_header_value(str)
+      str<span style="color:#4000a7;">.scan</span>(<span style="color:#4a5704;">/((?:&quot;(?:\\.|[^&quot;])+?&quot;|[^&quot;,]+)+)</span>
+<span style="color:#4a5704;">                (?:,\s*|\Z)/xn</span>)<span style="color:#4000a7;">.collect</span><span style="color:#ff9fec;">{|</span>v<span style="color:#ff9fec;">|</span> v<span style="color:#ff9fec;">[</span><span style="color:#b08000;">0</span><span style="color:#ff9fec;">]</span> <span style="color:#ff9fec;">}</span>
+<span style="font-weight:bold;">end</span>
+
+<span style="color:#898887;"># snippet from Net::Telnet</span>
+string<span style="color:#4000a7;">.gsub</span>(<span style="color:#4a5704;">/</span><span style="color:#006e28;">#{</span><span style="color:#bb1188;font-weight:bold;">IAC</span><span style="color:#006e28;">}</span><span style="color:#4a5704;">(</span>
+<span style="color:#4a5704;">                   [</span><span style="color:#006e28;">#{</span><span style="color:#bb1188;font-weight:bold;">IAC</span><span style="color:#006e28;">}#{</span><span style="color:#bb1188;font-weight:bold;">AO</span><span style="color:#006e28;">}#{</span><span style="color:#bb1188;font-weight:bold;">AYT</span><span style="color:#006e28;">}#{</span><span style="color:#bb1188;font-weight:bold;">DM</span><span style="color:#006e28;">}#{</span><span style="color:#bb1188;font-weight:bold;">IP</span><span style="color:#006e28;">}#{</span><span style="color:#bb1188;font-weight:bold;">NOP</span><span style="color:#006e28;">}</span><span style="color:#4a5704;">]|</span>
+<span style="color:#4a5704;">                   [</span><span style="color:#006e28;">#{</span><span style="color:#bb1188;font-weight:bold;">DO</span><span style="color:#006e28;">}#{</span><span style="color:#bb1188;font-weight:bold;">DONT</span><span style="color:#006e28;">}#{</span><span style="color:#bb1188;font-weight:bold;">WILL</span><span style="color:#006e28;">}#{</span><span style="color:#bb1188;font-weight:bold;">WONT</span><span style="color:#006e28;">}</span><span style="color:#4a5704;">]</span>
+<span style="color:#4a5704;">                     [</span><span style="color:#006e28;">#{</span><span style="color:#bb1188;font-weight:bold;">OPT_BINARY</span><span style="color:#006e28;">}</span><span style="color:#4a5704;">-</span><span style="color:#006e28;">#{</span><span style="color:#bb1188;font-weight:bold;">OPT_NEW_ENVIRON</span><span style="color:#006e28;">}#{</span><span style="color:#bb1188;font-weight:bold;">OPT_EXOPL</span><span style="color:#006e28;">}</span><span style="color:#4a5704;">]|</span>
+<span style="color:#4a5704;">                   </span><span style="color:#006e28;">#{</span><span style="color:#bb1188;font-weight:bold;">SB</span><span style="color:#006e28;">}</span><span style="color:#4a5704;">[^</span><span style="color:#006e28;">#{</span><span style="color:#bb1188;font-weight:bold;">IAC</span><span style="color:#006e28;">}</span><span style="color:#4a5704;">]*</span><span style="color:#006e28;">#{</span><span style="color:#bb1188;font-weight:bold;">IAC</span><span style="color:#006e28;">}#{</span><span style="color:#bb1188;font-weight:bold;">SE</span><span style="color:#006e28;">}</span>
+<span style="color:#4a5704;">                 )/xno</span>)
+
+<span style="color:#898887;"># following snippet from Webrick's httpresponse.rb</span>
+<span style="color:#898887;"># the HEREDOC is not recognized as such</span>
+<span style="color:#006e28;">@body</span> <span style="color:#ff9fec;">&lt;&lt; &lt;&lt;-</span><span style="font-weight:bold;">_end_of_html_</span>
+<span style="color:#006e28;">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot;&gt;</span>
+<span style="color:#006e28;">&lt;HTML&gt;</span>
+<span style="color:#006e28;">  &lt;HEAD&gt;&lt;TITLE&gt;</span><span style="color:#006e28;">#{</span><span style="color:#0057ae;">HTMLUtils</span><span style="color:#ff9fec;">::</span><span style="color:#4000a7;">escape</span>(<span style="color:#006e28;">@reason_phrase</span>)<span style="color:#006e28;">}</span><span style="color:#006e28;">&lt;/TITLE&gt;&lt;/HEAD&gt;</span>
+<span style="color:#006e28;">  &lt;BODY&gt;</span>
+<span style="color:#006e28;">    &lt;H1&gt;</span><span style="color:#006e28;">#{</span><span style="color:#0057ae;">HTMLUtils</span><span style="color:#ff9fec;">::</span><span style="color:#4000a7;">escape</span>(<span style="color:#006e28;">@reason_phrase</span>)<span style="color:#006e28;">}</span><span style="color:#006e28;">&lt;/H1&gt;</span>
+<span style="color:#006e28;">    </span><span style="color:#006e28;">#{</span><span style="color:#0057ae;">HTMLUtils</span><span style="color:#ff9fec;">::</span><span style="color:#4000a7;">escape</span>(ex<span style="color:#4000a7;">.message</span>)<span style="color:#006e28;">}</span>
+<span style="color:#006e28;">    &lt;HR&gt;</span>
+<span style="font-weight:bold;">_end_of_html_</span>
+
+
+<span style="color:#898887;"># snippet from Webrick's httpproxy.rb</span>
+<span style="color:#898887;"># here we should make sure that the symbol definition ':' doesn't override</span>
+<span style="color:#898887;"># the module operator '::'</span>
+<span style="color:#0057ae;">Net</span><span style="color:#ff9fec;">::</span><span style="color:#bb1188;">HTTP</span><span style="color:#ff9fec;">::</span><span style="color:#4000a7;">version_1_2</span> <span style="font-weight:bold;">if</span> <span style="color:#bb1188;font-weight:bold;">RUBY_VERSION</span> <span style="color:#ff9fec;">&lt;</span> <span style="color:#bf0303;">&quot;1.7&quot;</span>
+
+<span style="color:#898887;"># snippet from Webrick's cookie.rb</span>
+<span style="color:#898887;"># the beginning of the regexp is erronously highlighted like an operator</span>
+key, val <span style="color:#ff9fec;">=</span> x<span style="color:#4000a7;">.split</span>(<span style="color:#4a5704;">/=/</span>,<span style="color:#b08000;">2</span>)
+
+<span style="color:#898887;"># the following are division operators</span>
+<span style="color:#898887;"># it's a bit tricky to keep the operator apart from the regexp</span>
+result <span style="color:#ff9fec;">=</span> <span style="color:#b08000;">8</span> <span style="color:#ff9fec;">/</span> <span style="color:#b08000;">4</span>
+result <span style="color:#ff9fec;">/= </span>divisor
+
+<span style="color:#898887;"># 2008-06-01 regexp and division operator syntax has been fixed:</span>
+result <span style="color:#ff9fec;">=</span> <span style="color:#b08000;">8</span><span style="color:#ff9fec;">/</span><span style="color:#b08000;">4</span>    <span style="color:#898887;"># division</span>
+result <span style="color:#ff9fec;">=</span> <span style="color:#b08000;">8</span><span style="color:#ff9fec;">/</span>foo  <span style="color:#898887;"># division</span>
+result <span style="color:#ff9fec;">=</span> <span style="color:#4a5704;">/8/</span>    <span style="color:#898887;"># regexp</span>
+result <span style="color:#ff9fec;">=</span> <span style="color:#b08000;">8</span><span style="color:#ff9fec;">/</span><span style="color:#4a5704;">/4/</span>  <span style="color:#898887;"># division and regexp</span>
+
+<span style="color:#b08000;">10</span><span style="color:#ff9fec;">/</span><span style="color:#b08000;">10</span>           <span style="color:#898887;"># division</span>
+<span style="color:#b08000;">10</span><span style="color:#ff9fec;">/</span> <span style="color:#b08000;">10</span>          <span style="color:#898887;"># division</span>
+<span style="color:#b08000;">10</span> <span style="color:#ff9fec;">/</span><span style="color:#b08000;">10</span>          <span style="color:#898887;"># division</span>
+<span style="color:#b08000;">10</span> <span style="color:#ff9fec;">/</span> <span style="color:#b08000;">10</span>         <span style="color:#898887;"># division</span>
+
+foo<span style="color:#ff9fec;">/</span><span style="color:#b08000;">10</span>          <span style="color:#898887;"># division</span>
+foo<span style="color:#ff9fec;">/</span> <span style="color:#b08000;">10</span>         <span style="color:#898887;"># division</span>
+foo <span style="color:#4a5704;">/10/</span>        <span style="color:#898887;"># regexp</span>
+foo <span style="color:#ff9fec;">/</span> <span style="color:#b08000;">10</span>        <span style="color:#898887;"># division</span>
+
+foo<span style="color:#ff9fec;">/</span><span style="color:#b08000;">10</span><span style="color:#ff9fec;">/</span><span style="color:#b08000;">10</span>       <span style="color:#898887;"># both division</span>
+total<span style="color:#ff9fec;">/</span>count<span style="color:#ff9fec;">/</span><span style="color:#b08000;">2</span>   <span style="color:#898887;"># both division</span>
+total<span style="color:#ff9fec;">/</span>(count<span style="color:#ff9fec;">/</span><span style="color:#b08000;">2</span>) <span style="color:#898887;"># both division</span>
+
+<span style="color:#006e28;">@foo</span><span style="color:#ff9fec;">/</span><span style="color:#b08000;">10</span>         <span style="color:#898887;"># division</span>
+<span style="color:#006e28;">@foo</span> <span style="color:#ff9fec;">/</span><span style="color:#b08000;">10</span>        <span style="color:#898887;"># division</span>
+
+<span style="color:#bf0303;">&quot;hello&quot;</span><span style="color:#ff9fec;">/</span><span style="color:#b08000;">10</span>      <span style="color:#898887;"># division</span>
+<span style="color:#bf0303;">&quot;hello&quot;</span> <span style="color:#ff9fec;">/</span> <span style="color:#b08000;">10</span>    <span style="color:#898887;"># division</span>
+
+<span style="color:#4a5704;">/regexp/</span><span style="color:#ff9fec;">/</span><span style="color:#b08000;">10</span>     <span style="color:#898887;"># division</span>
+<span style="color:#4a5704;">/regexp/</span> <span style="color:#ff9fec;">/</span> <span style="color:#b08000;">10</span>   <span style="color:#898887;"># division</span>
+
+<span style="color:#0057ae;">Math</span><span style="color:#ff9fec;">::</span><span style="color:#bb1188;">PI</span><span style="color:#ff9fec;">/</span><span style="color:#b08000;">10</span>     <span style="color:#898887;"># division</span>
+<span style="color:#0057ae;">Math</span><span style="color:#ff9fec;">::</span><span style="color:#4000a7;">foo</span> <span style="color:#4a5704;">/rx/</span>  <span style="color:#898887;"># regexp</span>
+
+<span style="color:#898887;"># 2008-06-05 similar fix for modulo operator:</span>
+
+<span style="color:#b08000;">10</span><span style="color:#ff9fec;">%</span><span style="color:#b08000;">4</span>            <span style="color:#898887;"># modulo</span>
+<span style="color:#b08000;">10</span> <span style="color:#ff9fec;">%</span><span style="color:#b08000;">4</span>           <span style="color:#898887;"># modulo</span>
+<span style="color:#b08000;">10</span><span style="color:#ff9fec;">%</span> <span style="color:#b08000;">4</span>           <span style="color:#898887;"># modulo</span>
+<span style="color:#b08000;">10</span> <span style="color:#ff9fec;">%</span> <span style="color:#b08000;">4</span>          <span style="color:#898887;"># modulo</span>
+
+foo<span style="color:#ff9fec;">%</span><span style="color:#b08000;">4</span>           <span style="color:#898887;"># modulo</span>
+<span style="color:#898887;"># foo %4          # illegal %string</span>
+foo<span style="color:#ff9fec;">%</span> <span style="color:#b08000;">4</span>          <span style="color:#898887;"># modulo</span>
+foo <span style="color:#ff9fec;">%</span> <span style="color:#b08000;">4</span>         <span style="color:#898887;"># modulo</span>
+
+foo <span style="color:#ff9fec;">%</span> (<span style="color:#b08000;">4</span>)       <span style="color:#898887;"># modulo</span>
+
+foo <span style="color:#006e28;">%(</span><span style="color:#bf0303;">4</span><span style="color:#006e28;">)</span>        <span style="color:#898887;"># %string</span>
+foo <span style="color:#006e28;">%q(</span><span style="color:#dd4a4a;">4</span><span style="color:#006e28;">)</span>       <span style="color:#898887;"># %string</span>
+foo <span style="color:#006e28;">%Q(</span><span style="color:#bf0303;">4</span><span style="color:#006e28;">)</span>       <span style="color:#898887;"># %string</span>
+foo <span style="color:#006e28;">%%</span><span style="color:#bf0303;">4</span><span style="color:#006e28;">%</span>        <span style="color:#898887;"># %string</span>
+
+foo <span style="color:#ff9fec;">=</span><span style="color:#006e28;"> %|</span><span style="color:#bf0303;">blah</span><span style="color:#006e28;">|</span>   <span style="color:#898887;"># GDL input</span>
+foo <span style="color:#ff9fec;">%</span><span style="color:#006e28;"> %|</span><span style="color:#bf0303;">blah</span><span style="color:#006e28;">|</span>   <span style="color:#898887;"># modulo and GDL</span>
+
+<span style="color:#898887;"># mix in any way you want</span>
+result <span style="color:#ff9fec;">=</span> <span style="color:#b08000;">10</span><span style="color:#ff9fec;">/</span><span style="color:#4a5704;">/regexp/</span><span style="color:#ff9fec;">/</span><span style="color:#b08000;">20</span><span style="color:#ff9fec;">/</span>foo<span style="color:#ff9fec;">/</span><span style="color:#4a5704;">/regexp/</span><span style="color:#ff9fec;">/</span><span style="color:#b08000;">20</span>
+
+<span style="color:#898887;"># test cases for general delimited input</span>
+<span style="color:#898887;"># quoted strings</span>
+<span style="color:#006e28;">%Q|</span><span style="color:#bf0303;">this is a string</span><span style="color:#006e28;">|</span>
+<span style="color:#006e28;">%Q{</span><span style="color:#bf0303;">this is a string</span><span style="color:#006e28;">}</span>
+<span style="color:#006e28;">%Q(</span><span style="color:#bf0303;">this is a string</span><span style="color:#006e28;">)</span>
+<span style="color:#006e28;">%Q&lt;</span><span style="color:#bf0303;">this is a string</span><span style="color:#006e28;">&gt;</span>
+<span style="color:#006e28;">%Q[</span><span style="color:#bf0303;">this is a string</span><span style="color:#006e28;">]</span>
+
+<span style="color:#006e28;">%|</span><span style="color:#bf0303;">also a string</span><span style="color:#006e28;">|</span>
+<span style="color:#006e28;">%{</span><span style="color:#bf0303;">also a string</span><span style="color:#006e28;">}</span>
+<span style="color:#006e28;">%(</span><span style="color:#bf0303;">also a string</span><span style="color:#006e28;">)</span>
+<span style="color:#006e28;">%&lt;</span><span style="color:#bf0303;">also a string</span><span style="color:#006e28;">&gt;</span>
+<span style="color:#006e28;">%[</span><span style="color:#bf0303;">also a string</span><span style="color:#006e28;">]</span>
+
+<span style="color:#898887;"># apostrophed strings</span>
+<span style="color:#006e28;">%q|</span><span style="color:#dd4a4a;">apostrophed</span><span style="color:#006e28;">|</span>
+<span style="color:#006e28;">%q{</span><span style="color:#dd4a4a;">apostrophed</span><span style="color:#006e28;">}</span>
+<span style="color:#006e28;">%q(</span><span style="color:#dd4a4a;">apostrophed</span><span style="color:#006e28;">)</span>
+<span style="color:#006e28;">%q&lt;</span><span style="color:#dd4a4a;">apostrophed</span><span style="color:#006e28;">&gt;</span>
+<span style="color:#006e28;">%q[</span><span style="color:#dd4a4a;">apostrophed</span><span style="color:#006e28;">]</span>
+
+<span style="color:#898887;"># regular expressions</span>
+<span style="color:#006e28;">%r{</span><span style="color:#4a5704;">expression</span><span style="color:#006e28;">}</span>
+<span style="color:#006e28;">%r(</span><span style="color:#4a5704;">expression</span><span style="color:#006e28;">)</span>
+<span style="color:#006e28;">%r&lt;</span><span style="color:#4a5704;">expression</span><span style="color:#006e28;">&gt;</span>
+<span style="color:#006e28;">%r[</span><span style="color:#4a5704;">expression</span><span style="color:#006e28;">]</span>
+<span style="color:#006e28;">%r|</span><span style="color:#4a5704;">expression</span><span style="color:#006e28;">|</span>
+
+<span style="color:#898887;"># shell commands</span>
+<span style="color:#006e28;">%x{</span><span style="color:#aa3000;">ls -l</span><span style="color:#006e28;">}</span>
+<span style="color:#006e28;">%x(</span><span style="color:#aa3000;">ls -l</span><span style="color:#006e28;">)</span>
+<span style="color:#006e28;">%x&lt;</span><span style="color:#aa3000;">ls -l</span><span style="color:#006e28;">&gt;</span>
+<span style="color:#006e28;">%x[</span><span style="color:#aa3000;">ls -l</span><span style="color:#006e28;">]</span>
+
+<span style="color:#898887;"># sometimes it's useful to have the command on multiple lines</span>
+<span style="color:#006e28;">%x{</span><span style="color:#aa3000;">ls -l |</span>
+<span style="color:#aa3000;">grep test </span><span style="color:#006e28;">}</span>
+
+<span style="color:#898887;"># alternative syntax</span>
+<span style="color:#aa3000;">`ls -l`</span>
+<span style="color:#aa3000;">`echo ' '`</span>
+
+<span style="color:#898887;"># token array</span>
+<span style="color:#006e28;">%w{</span><span style="color:#bf0303;">one two three</span><span style="color:#006e28;">}</span>
+<span style="color:#006e28;">%w(</span><span style="color:#bf0303;">one two three</span><span style="color:#006e28;">)</span>
+<span style="color:#006e28;">%w&lt;</span><span style="color:#bf0303;">one two three</span><span style="color:#006e28;">&gt;</span>
+<span style="color:#006e28;">%w[</span><span style="color:#bf0303;">one two three</span><span style="color:#006e28;">]</span>
+
+<span style="color:#898887;"># snippet from Net::IMAP</span>
+<span style="color:#898887;"># I object to putting String, Integer and Array into kernel methods.</span>
+<span style="color:#898887;"># While these classes are builtin in Ruby, this is an implementation detail</span>
+<span style="color:#898887;"># that should not be exposed to the user.</span>
+<span style="color:#898887;"># If we want to handle all std-lib classes, fine. But then they should be in their</span>
+<span style="color:#898887;"># own std-lib keyword category.</span>
+
+<span style="font-weight:bold;">def</span> send_data(data)
+      <span style="font-weight:bold;">case</span> data
+      <span style="font-weight:bold;">when</span> <span style="color:#b08000;">nil</span>
+        put_string(<span style="color:#bf0303;">&quot;NIL&quot;</span>)
+      <span style="font-weight:bold;">when</span> <span style="color:#0057ae;">String</span>
+        send_string_data(data)
+      <span style="font-weight:bold;">when</span> <span style="color:#0057ae;">Integer</span>
+        send_number_data(data)
+      <span style="font-weight:bold;">when</span> <span style="color:#0057ae;">Array</span>
+        send_list_data(data)
+      <span style="font-weight:bold;">when</span> <span style="color:#0057ae;">Time</span>
+        send_time_data(data)
+      <span style="font-weight:bold;">when</span> <span style="color:#0057ae;">Symbol</span>
+        send_symbol_data(data)
+      <span style="font-weight:bold;">else</span>
+        data<span style="color:#4000a7;">.send_data</span>(<span style="color:#b08000;">self</span>)
+      <span style="font-weight:bold;">end</span>
+<span style="font-weight:bold;">end</span>
+
+<span style="color:#898887;"># snippet from Net::POP</span>
+<span style="color:#898887;"># class names can have numbers in them as long as they don't begin with numbers</span>
+<span style="color:#898887;"># Ruby doesn't internally really make much of a difference between a class name and a constant</span>
+
+<span style="color:#898887;"># class aliases</span>
+  <span style="color:#bb1188;font-weight:bold;">POP</span> <span style="color:#ff9fec;">=</span> <span style="color:#bb1188;font-weight:bold;">POP3</span>
+  <span style="color:#0057ae;">POPSession</span>  <span style="color:#ff9fec;">=</span> <span style="color:#bb1188;font-weight:bold;">POP3</span>
+  <span style="color:#0057ae;">POP3Session</span> <span style="color:#ff9fec;">=</span> <span style="color:#bb1188;font-weight:bold;">POP3</span>
+
+<span style="color:#898887;"># &quot;member access&quot;</span>
+<span style="color:#bb1188;font-weight:bold;">POP</span><span style="color:#ff9fec;">::</span><span style="color:#0057ae;">Session</span>.<span style="color:#bb1188;">COUNT</span><span style="color:#4000a7;">.attribute.calc_with</span>(<span style="color:#b08000;">2</span>)<span style="color:#ff9fec;">{</span> <span style="color:#ff9fec;">|</span>arg<span style="color:#ff9fec;">|</span> <span style="color:#000080;">puts</span> arg <span style="color:#ff9fec;">}</span>
+
+<span style="color:#898887;"># snippet from Net::SMTP</span>
+<span style="color:#898887;"># This breaks the code folding. I think we would need to</span>
+<span style="color:#898887;"># handle the '\' that continues the statement to the next line</span>
+<span style="color:#898887;"># in some way to make these kind of things not break something.</span>
+<span style="color:#000080;">raise</span> <span style="color:#0057ae;">ArgumentError</span>, <span style="color:#dd4a4a;">'both user and secret are required'</span>\
+                      <span style="font-weight:bold;">unless</span> user <span style="font-weight:bold;">and</span> secret
+ 
+<span style="color:#898887;"># string escapes must detect escaping the escape char</span>
+str <span style="color:#ff9fec;">=</span> <span style="color:#bf0303;">&quot;\\&quot;</span>
+str <span style="color:#ff9fec;">=</span> <span style="color:#bf0303;">&quot;\\\\&quot;</span>
+<span style="color:#898887;"># this is not part of the string</span>
+<span style="color:#006e28;">%x{</span><span style="color:#aa3000;">echo \\\}\\</span><span style="color:#006e28;">}</span>	<span style="color:#898887;"># prints \}\</span>
+<span style="color:#898887;"># this is not part of the command</span>
+
+<span style="color:#898887;"># these are all symbols</span>
+<span style="color:#d40000;">:abc</span>
+<span style="color:#d40000;">:abc!</span>
+<span style="color:#d40000;">:abc?</span>
+<span style="color:#d40000;">:abc=</span>
+<span style="color:#d40000;">:[]</span>
+<span style="color:#d40000;">:[]=</span>
+<span style="color:#d40000;">:@abc</span>
+<span style="color:#d40000;">:@@abc</span>
+<span style="color:#d40000;">:$abc</span>
+
+<span style="color:#898887;"># squiggly HEREDOC</span>
+<span style="color:#ff9fec;">    &lt;&lt;~</span><span style="font-weight:bold;">HEREDOC</span>
+<span style="color:#006e28;">      Hello!!</span>
+<span style="color:#006e28;">    </span><span style="font-weight:bold;">HEREDOC</span>
+
+<span style="color:#898887;"># HEREDOC with backticks</span>
+<span style="color:#ff9fec;">&lt;&lt;</span><span style="font-weight:bold;">`HEREDOC`</span>
+<span style="color:#006e28;">    echo &quot;hello&quot;</span>
+<span style="font-weight:bold;">HEREDOC</span>
+
+<span style="color:#898887;"># do not highlight HEREDOC markers after the &quot;class&quot; keyword</span>
+<span style="color:#898887;"># (singleton class definition) (bug: #358273)</span>
+<span style="font-weight:bold;">class</span> <span style="color:#ff9fec;">&lt;&lt;</span><span style="color:#0057ae;">Foo</span> <span style="color:#ff9fec;">=</span> <span style="color:#0057ae;">Object</span><span style="color:#4000a7;">.new</span>
+  <span style="color:#006e28;">attr_accessor</span> <span style="color:#d40000;">:foo</span>
+<span style="font-weight:bold;">end</span>
+singleton_class <span style="color:#ff9fec;">=</span> ( <span style="font-weight:bold;">class</span> <span style="color:#ff9fec;">&lt;&lt;</span>foo; <span style="color:#b08000;">self</span>; <span style="font-weight:bold;">end</span> )
+
+<span style="color:#898887;"># highlight regular expressions after &quot;: &quot; (bug: #361875)</span>
+get <span style="color:#dd4a4a;">'files/:slug/:filename'</span>, <span style="color:#d40000;">to: </span><span style="color:#dd4a4a;">'files#download'</span>, <span style="color:#d40000;">slug: </span><span style="color:#4a5704;">/^[a-z]+$/</span>, <span style="color:#d40000;">filename: </span><span style="color:#006e28;">%r|</span><span style="color:#4a5704;">^[/\s]+$</span><span style="color:#006e28;">|</span>
+<span style="color:#d40000;">@@hello!: </span><span style="color:#4a5704;">/regexp/</span>
+<span style="color:#d40000;">[]=: </span><span style="color:#006e28;">%r!</span><span style="color:#4a5704;">regexp</span><span style="color:#006e28;">!</span>
+</pre></body></html>

@@ -1,0 +1,156 @@
+; SELinux CIL Policy
+
+; Tests
+
+(policycap open_perms)  ; Policy config. statement
+(mls true)
+(handleunknown allow)
+
+(sid kernel)  ; Declaration type statement
+(classpermissionset char_w (char (write setattr)))  ; Other statements
+
+(user user) ; Declare identifier 'user' of user type
+(role role)
+(type type)
+(allow allow) (true true) (in in) (xor xor)
+
+; List of permissions
+(class security (compute_av compute_create compute_member check_context load_policy compute_relabel compute_user setenforce setbool setsecparam setcheckreqprot read_policy))
+
+; Highlighting permissions only if there is not a statement keyword
+(class binder (impersonate call set_context_mgr transfer receive))
+(class binder (classcommon impersonate call set_context_mgr transfer receive))
+(impersonate call set_context_mgr transfer receive)
+(tunableif impersonate call set_context_mgr transfer receive)
+
+; This is allowed by the CIL compiler
+( typeattribute;comment
+	all_fs_type_except_usermodehelper_and_proc_security)
+(;comment
+	typeattribute all_fs_type_except_usermodehelper_and_proc_security)
+(  ;comment
+ ;more comments
+	typeattribute all_fs_type_except_usermodehelper_and_proc_security)
+	
+; Paths
+(true true /true true /true/true/ true true/true "true")
+; Global namespace
+(true true .true true true.true true .true.true true.true.true
+	.true. true. true.true. ; invalid
+)
+
+; Keywords in some rules
+
+; filecon
+(filecon "/system/bin/run-as" file runas_exec_context)
+(filecon "/dev/socket/wpa_wlan[0-9]" any u:object_r:wpa.socket:s0-s0)
+(filecon "/data/local/mine" dir ())
+(classcommon file any dir)
+(file any dir)
+; portcon
+(portcon sctp 3333 (unconfined.user object_r unconfined.object levelrange_1))
+(portcon udp 4444 (unconfined.user object_r unconfined.object ((s0) level_2)))
+(defaultrole tcp udp)
+(tcp udp)
+; fsuse
+(fsuse xattr ext4 file.labeledfs_context)
+(fsuse task pipefs file.pipefs_context)
+(fsuse trans tmpfs file.tmpfs_context)
+(typemember xattr task trans)
+(xattr task trans)
+
+(allow unconfined.process self (file (read write)))
+(allow process httpd.object (file (read write)))
+
+(defaultrange db_table glblub)
+
+; Paths
+"/system/(foo|bar)/[^/]*/(hi){2,6}(.*)?"
+"/pa\12th.*a+b?"
+/usr/hi\"esc\032esc\*3es{2,2}ds
+"/data/(open "
+"/data/[open "
+
+
+; Some rules
+
+(call macro1("__kmsg__"))
+(macro macro1 ((string ARG1))
+    (typetransition audit.process device.device chr_file ARG1 device.klog_device)
+)
+
+(allow unconfined.process self (file (read write)))
+(auditallow release_app.process secmark_demo.browser_packet (packet (send recv)))
+(allowx type_1 type_2 (ioctl tcp_socket (range 0x2000 0x20FF)))
+(permissionx ioctl_nodebug (ioctl udp_socket (not (range 0x4000 0x4010))))
+(allowx type_3 type_4 ioctl_nodebug)
+(dontauditx type_1 type_2 (ioctl tcp_socket (range 0x3000 0x30FF)))
+
+(class property_service (set))
+(block av_rules
+    (type type_1)
+    (type type_2)
+    (typeattribute all_types)
+    (typeattributeset all_types ((all)))
+
+    (neverallow type_2 all_types (property_service (set)))
+)
+(macro binder_call ((type ARG1) (type ARG2))
+    (allow ARG1 ARG2 (binder (transfer call)))
+)
+(ipaddr netmask_1 255.255.255.0)
+
+(class dir)
+(class foo)
+(class bar)
+(class baz)
+(classorder (dir foo))
+(classorder (unordered bar foo baz))
+
+(classpermission zygote_2)
+(classpermissionset zygote_2 (zygote
+    (and
+        (all)
+        (not (specifyinvokewith specifyseinfo))
+    )
+))
+
+(permissionx ioctl_3 (ioctl tcp_socket (and (range 0x8000 0x90FF) (not (range 0x8100 0x82FF)))))
+(boolean disableAudioCapture false)
+(booleanif (and (not disableAudio) (not disableAudioCapture))
+    (true
+        (allow process mediaserver.audio_capture_device (chr_file_set (rw_file_perms)))
+    )
+)
+(tunable range_trans_rule false)
+
+(block init
+    (class process (process))
+    (type process)
+    (tunableif range_trans_rule
+        (true
+            (rangetransition process sshd.exec process low_high))))
+
+(validatetrans file (eq t1 unconfined.process))
+(block ext_gateway
+    (optional move_file
+        (typetransition process msg_filter.move_file.in_queue file msg_filter.move_file.in_file)
+        (allow process msg_filter.move_file.in_queue (dir (read getattr write search add_name)))))
+
+(context runas_exec_context (u object_r exec low_low))
+(filecon "/system/bin/run-as" file runas_exec_context)
+
+(in file
+    (genfscon rootfs / rootfs_context)
+    (genfscon selinuxfs / selinuxfs_context)
+)
+
+; ioctl & call: due to the way in which the highlighter treats the parenthesis blocks
+; (each level of different color), it is not possible to differentiate between statement and permission.
+(allowx x bin_t (ioctl policy.file (range 0x1000 0x11FF))) ; ioctl kind
+(ioctl read
+    find connectto) ; kind or permission?
+(ioctl read find connectto) ; ioctl permission
+(ioctl read  )
+(call ioctl read find connectto) ; statement or permission?
+( call  ) ; call permission

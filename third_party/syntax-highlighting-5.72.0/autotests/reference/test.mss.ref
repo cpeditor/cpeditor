@@ -1,0 +1,275 @@
+<Comment>/* kate: hl CartoCSS</Comment><br/>
+<Comment>   This file contains some content coming from</Comment><br/>
+<Comment>   https://github.com/gravitystorm/openstreetmap-carto</Comment><br/>
+<Comment>   with CC0 license. This file is just for testing</Comment><br/>
+<Comment>   katepart highlighting engine.</Comment><br/>
+<Comment>   */</Comment><br/>
+<Mapnik Symbolizer Parameter></Mapnik Symbolizer Parameter><br/>
+<Layer ID>#world</Layer ID><Mapnik Symbolizer Parameter> </Mapnik Symbolizer Parameter><Operator>{</Operator><br/>
+<Comment>// this syntax</Comment><br/>
+<Mapnik Symbolizer Parameter>polygon-opacity</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> </Keyword><Number>50%</Number><Operator>;</Operator><br/>
+<Mapnik Symbolizer Parameter></Mapnik Symbolizer Parameter><br/>
+<Comment>// is equivalent to</Comment><br/>
+<Mapnik Symbolizer Parameter>polygon-opacity</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> </Keyword><Number>0.5</Number><Operator>;</Operator><br/>
+<Operator>}</Operator><br/>
+<Mapnik Symbolizer Parameter></Mapnik Symbolizer Parameter><br/>
+<CartoCSS Variable>@admin-boundaries</CartoCSS Variable><Operator>:</Operator><Keyword> </Keyword><Color>#ac46ac</Color><Operator>;</Operator><br/>
+<Mapnik Symbolizer Parameter></Mapnik Symbolizer Parameter><br/>
+<Comment>/* For performance reasons, the admin border layers are split into three groups</Comment><br/>
+<Comment>for low, middle and high zoom levels.</Comment><br/>
+<Comment>For each zoomlevel, all borders come from a single attachment, to handle</Comment><br/>
+<Comment>overlapping borders correctly.</Comment><br/>
+<Comment>*/</Comment><br/>
+<Mapnik Symbolizer Parameter></Mapnik Symbolizer Parameter><br/>
+<Layer ID>#admin-low-zoom</Layer ID><Operator>[</Operator><Keyword>zoom</Keyword><Data Field> </Data Field><Operator><</Operator><Keyword> </Keyword><Number>11</Number><Operator>]</Operator><Mapnik Symbolizer Parameter>,  </Mapnik Symbolizer Parameter><Comment>// test</Comment><br/>
+<Layer ID>#admin-mid-zoom</Layer ID><Operator>[</Operator><Keyword>zoom</Keyword><Data Field> </Data Field><Operator>>=</Operator><Keyword> </Keyword><Number>11</Number><Operator>][</Operator><Keyword>zoom</Keyword><Data Field> </Data Field><Operator><</Operator><Keyword> </Keyword><Number>13</Number><Operator>]</Operator><Mapnik Symbolizer Parameter>,</Mapnik Symbolizer Parameter><br/>
+<Layer ID>#admin-high-zoom</Layer ID><Operator>[</Operator><Keyword>zoom</Keyword><Data Field> </Data Field><Operator>>=</Operator><Keyword> </Keyword><Number>13</Number><Operator>]</Operator><Mapnik Symbolizer Parameter> </Mapnik Symbolizer Parameter><Operator>{</Operator><br/>
+<Mapnik Symbolizer Parameter>  </Mapnik Symbolizer Parameter><Operator>[</Operator><Data Field>admin_level </Data Field><Operator>=</Operator><Keyword> </Keyword><Verbatim String>'2'</Verbatim String><Operator>]</Operator><Mapnik Symbolizer Parameter>,</Mapnik Symbolizer Parameter><br/>
+<Mapnik Symbolizer Parameter>  </Mapnik Symbolizer Parameter><Operator>[</Operator><Data Field>admin_level </Data Field><Operator>=</Operator><Keyword> </Keyword><Verbatim String>'3'</Verbatim String><Operator>]</Operator><Mapnik Symbolizer Parameter> </Mapnik Symbolizer Parameter><Operator>{</Operator><br/>
+<Mapnik Symbolizer Parameter>    </Mapnik Symbolizer Parameter><Operator>[</Operator><Keyword>zoom</Keyword><Data Field> </Data Field><Operator>>=</Operator><Keyword> </Keyword><Number>4</Number><Operator>]</Operator><Mapnik Symbolizer Parameter> </Mapnik Symbolizer Parameter><Operator>{</Operator><br/>
+<Mapnik Symbolizer Parameter>      </Mapnik Symbolizer Parameter><Named instances>background/</Named instances><Mapnik Symbolizer Parameter>line-color</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> </Keyword><Color>white</Color><Operator>;</Operator><br/>
+<Mapnik Symbolizer Parameter>      </Mapnik Symbolizer Parameter><Named instances>background/</Named instances><Mapnik Symbolizer Parameter>line-width</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> </Keyword><Number>0.6</Number><Operator>;</Operator><br/>
+<Mapnik Symbolizer Parameter>      line-color</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> </Keyword><CartoCSS Variable>@admin-boundaries</CartoCSS Variable><Operator>;</Operator><br/>
+<Mapnik Symbolizer Parameter>      line-width</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> </Keyword><Number>0.6</Number><Operator>;</Operator><br/>
+<Mapnik Symbolizer Parameter>    </Mapnik Symbolizer Parameter><Operator>}</Operator><br/>
+<Mapnik Symbolizer Parameter>    </Mapnik Symbolizer Parameter><Operator>[</Operator><Keyword>zoom</Keyword><Data Field> </Data Field><Operator>>=</Operator><Keyword> </Keyword><Number>7</Number><Operator>]</Operator><Mapnik Symbolizer Parameter> </Mapnik Symbolizer Parameter><Operator>{</Operator><br/>
+<Mapnik Symbolizer Parameter>      </Mapnik Symbolizer Parameter><Named instances>background/</Named instances><Mapnik Symbolizer Parameter>line-width</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> </Keyword><Number>2</Number><Operator>;</Operator><br/>
+<Mapnik Symbolizer Parameter>      line-width</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> </Keyword><Number>2</Number><Operator>;</Operator><br/>
+<Mapnik Symbolizer Parameter>    </Mapnik Symbolizer Parameter><Operator>}</Operator><br/>
+<Mapnik Symbolizer Parameter>    </Mapnik Symbolizer Parameter><Operator>[</Operator><Keyword>zoom</Keyword><Data Field> </Data Field><Operator>>=</Operator><Keyword> </Keyword><Number>10</Number><Operator>]</Operator><Mapnik Symbolizer Parameter> </Mapnik Symbolizer Parameter><Operator>{</Operator><br/>
+<Mapnik Symbolizer Parameter>      </Mapnik Symbolizer Parameter><Operator>[</Operator><Data Field>admin_level </Data Field><Operator>=</Operator><Keyword> </Keyword><Verbatim String>'2'</Verbatim String><Operator>]</Operator><Mapnik Symbolizer Parameter> </Mapnik Symbolizer Parameter><Operator>{</Operator><br/>
+<Mapnik Symbolizer Parameter>        </Mapnik Symbolizer Parameter><Named instances>background/</Named instances><Mapnik Symbolizer Parameter>line-width</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> </Keyword><Number>6</Number><Operator>;</Operator><br/>
+<Mapnik Symbolizer Parameter>        line-width</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> </Keyword><Number>6</Number><Operator>;</Operator><br/>
+<Mapnik Symbolizer Parameter>      </Mapnik Symbolizer Parameter><Operator>}</Operator><br/>
+<Mapnik Symbolizer Parameter>      </Mapnik Symbolizer Parameter><Operator>[</Operator><Data Field>admin_level </Data Field><Operator>=</Operator><Keyword> </Keyword><Verbatim String>'3'</Verbatim String><Operator>]</Operator><Mapnik Symbolizer Parameter> </Mapnik Symbolizer Parameter><Operator>{</Operator><br/>
+<Mapnik Symbolizer Parameter>        </Mapnik Symbolizer Parameter><Named instances>background/</Named instances><Mapnik Symbolizer Parameter>line-width</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> </Keyword><Number>5</Number><Operator>;</Operator><br/>
+<Mapnik Symbolizer Parameter>        line-width</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> </Keyword><Number>5</Number><Operator>;</Operator><br/>
+<Mapnik Symbolizer Parameter>        line-dasharray</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> </Keyword><Number>4</Number><Operator>,</Operator><Number>2</Number><Operator>;</Operator><br/>
+<Mapnik Symbolizer Parameter>        line-clip</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> false</Keyword><Operator>;</Operator><br/>
+<Mapnik Symbolizer Parameter>      </Mapnik Symbolizer Parameter><Operator>}</Operator><br/>
+<Mapnik Symbolizer Parameter>    </Mapnik Symbolizer Parameter><Operator>}</Operator><br/>
+<Mapnik Symbolizer Parameter>  </Mapnik Symbolizer Parameter><Operator>}</Operator><br/>
+<Mapnik Symbolizer Parameter>  </Mapnik Symbolizer Parameter><Operator>[</Operator><Data Field>admin_level </Data Field><Operator>=</Operator><Keyword> </Keyword><Verbatim String>'4'</Verbatim String><Operator>]</Operator><Mapnik Symbolizer Parameter> </Mapnik Symbolizer Parameter><Operator>{</Operator><br/>
+<Mapnik Symbolizer Parameter>    </Mapnik Symbolizer Parameter><Operator>[</Operator><Keyword>zoom</Keyword><Data Field> </Data Field><Operator>>=</Operator><Keyword> </Keyword><Number>4</Number><Operator>]</Operator><Mapnik Symbolizer Parameter> </Mapnik Symbolizer Parameter><Operator>{</Operator><br/>
+<Mapnik Symbolizer Parameter>      </Mapnik Symbolizer Parameter><Named instances>background/</Named instances><Mapnik Symbolizer Parameter>line-color</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> </Keyword><Color>white</Color><Operator>;</Operator><br/>
+<Mapnik Symbolizer Parameter>      </Mapnik Symbolizer Parameter><Named instances>background/</Named instances><Mapnik Symbolizer Parameter>line-width</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> </Keyword><Number>0.6</Number><Operator>;</Operator><br/>
+<Mapnik Symbolizer Parameter>      line-color</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> </Keyword><CartoCSS Variable>@admin-boundaries</CartoCSS Variable><Operator>;</Operator><br/>
+<Mapnik Symbolizer Parameter>      line-width</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> </Keyword><Number>0.6</Number><Operator>;</Operator><br/>
+<Mapnik Symbolizer Parameter>      line-dasharray</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> </Keyword><Number>4</Number><Operator>,</Operator><Number>3</Number><Operator>;</Operator><br/>
+<Mapnik Symbolizer Parameter>      line-clip</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> false</Keyword><Operator>;</Operator><br/>
+<Mapnik Symbolizer Parameter>    </Mapnik Symbolizer Parameter><Operator>}</Operator><br/>
+<Mapnik Symbolizer Parameter>    </Mapnik Symbolizer Parameter><Operator>[</Operator><Keyword>zoom</Keyword><Data Field> </Data Field><Operator>>=</Operator><Keyword> </Keyword><Number>7</Number><Operator>]</Operator><Mapnik Symbolizer Parameter> </Mapnik Symbolizer Parameter><Operator>{</Operator><br/>
+<Mapnik Symbolizer Parameter>      </Mapnik Symbolizer Parameter><Named instances>background/</Named instances><Mapnik Symbolizer Parameter>line-width</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> </Keyword><Number>1</Number><Operator>;</Operator><br/>
+<Mapnik Symbolizer Parameter>      line-width</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> </Keyword><Number>1</Number><Operator>;</Operator><br/>
+<Mapnik Symbolizer Parameter>    </Mapnik Symbolizer Parameter><Operator>}</Operator><br/>
+<Mapnik Symbolizer Parameter>    </Mapnik Symbolizer Parameter><Operator>[</Operator><Keyword>zoom</Keyword><Data Field> </Data Field><Operator>>=</Operator><Keyword> </Keyword><Number>11</Number><Operator>]</Operator><Mapnik Symbolizer Parameter> </Mapnik Symbolizer Parameter><Operator>{</Operator><br/>
+<Mapnik Symbolizer Parameter>      </Mapnik Symbolizer Parameter><Named instances>background/</Named instances><Mapnik Symbolizer Parameter>line-width</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> </Keyword><Number>3</Number><Operator>;</Operator><br/>
+<Mapnik Symbolizer Parameter>      line-width</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> </Keyword><Number>3</Number><Operator>;</Operator><br/>
+<Mapnik Symbolizer Parameter>    </Mapnik Symbolizer Parameter><Operator>}</Operator><br/>
+<Mapnik Symbolizer Parameter>  </Mapnik Symbolizer Parameter><Operator>}</Operator><br/>
+<Mapnik Symbolizer Parameter>  </Mapnik Symbolizer Parameter><Comment>/*</Comment><br/>
+<Comment>  The following code prevents admin boundaries from being rendered on top of</Comment><br/>
+<Comment>  each other. Comp-op works on the entire attachment, not on the individual</Comment><br/>
+<Comment>  border. Therefore, this code generates an attachment containing a set of</Comment><br/>
+<Comment>  @admin-boundaries/white dashed lines (of which only the top one is visible),</Comment><br/>
+<Comment>  and with `comp-op: darken` the white part is ignored, while the</Comment><br/>
+<Comment>  @admin-boundaries colored part is rendered (as long as the background is not</Comment><br/>
+<Comment>  darker than @admin-boundaries).</Comment><br/>
+<Comment>  The SQL has `ORDER BY admin_level`, so the boundary with the lowest</Comment><br/>
+<Comment>  admin_level is rendered on top, and therefore the only visible boundary.</Comment><br/>
+<Comment>  */</Comment><br/>
+<Mapnik Symbolizer Parameter>  opacity</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> </Keyword><Number>0.4</Number><Operator>;</Operator><br/>
+<Mapnik Symbolizer Parameter>  comp-op</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> darken</Keyword><Operator>;</Operator><br/>
+<Operator>}</Operator><br/>
+<Mapnik Symbolizer Parameter></Mapnik Symbolizer Parameter><br/>
+<Layer ID>#admin-mid-zoom</Layer ID><Operator>[</Operator><Keyword>zoom</Keyword><Data Field> </Data Field><Operator>>=</Operator><Keyword> </Keyword><Number>11</Number><Operator>][</Operator><Keyword>zoom</Keyword><Data Field> </Data Field><Operator><</Operator><Keyword> </Keyword><Number>13</Number><Operator>]</Operator><Mapnik Symbolizer Parameter>,</Mapnik Symbolizer Parameter><br/>
+<Layer ID>#admin-high-zoom</Layer ID><Operator>[</Operator><Keyword>zoom</Keyword><Data Field> </Data Field><Operator>>=</Operator><Keyword> </Keyword><Number>13</Number><Operator>]</Operator><Mapnik Symbolizer Parameter> </Mapnik Symbolizer Parameter><Operator>{</Operator><br/>
+<Mapnik Symbolizer Parameter>  </Mapnik Symbolizer Parameter><Operator>[</Operator><Data Field>admin_level </Data Field><Operator>=</Operator><Keyword> </Keyword><Verbatim String>'5'</Verbatim String><Operator>][</Operator><Keyword>zoom</Keyword><Data Field> </Data Field><Operator>>=</Operator><Keyword> </Keyword><Number>11</Number><Operator>]</Operator><Mapnik Symbolizer Parameter> </Mapnik Symbolizer Parameter><Operator>{</Operator><br/>
+<Mapnik Symbolizer Parameter>    </Mapnik Symbolizer Parameter><Named instances>background/</Named instances><Mapnik Symbolizer Parameter>line-color</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> </Keyword><Color>white</Color><Operator>;</Operator><br/>
+<Mapnik Symbolizer Parameter>    </Mapnik Symbolizer Parameter><Named instances>background/</Named instances><Mapnik Symbolizer Parameter>line-width</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> </Keyword><Number>2</Number><Operator>;</Operator><br/>
+<Mapnik Symbolizer Parameter>    line-color</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> </Keyword><CartoCSS Variable>@admin-boundaries</CartoCSS Variable><Operator>;</Operator><br/>
+<Mapnik Symbolizer Parameter>    line-width</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> </Keyword><Number>2</Number><Operator>;</Operator><br/>
+<Mapnik Symbolizer Parameter>    line-dasharray</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> </Keyword><Number>6</Number><Operator>,</Operator><Number>3</Number><Operator>,</Operator><Number>2</Number><Operator>,</Operator><Number>3</Number><Operator>,</Operator><Number>2</Number><Operator>,</Operator><Number>3</Number><Operator>;</Operator><br/>
+<Mapnik Symbolizer Parameter>    line-clip</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> false</Keyword><Operator>;</Operator><br/>
+<Mapnik Symbolizer Parameter>  </Mapnik Symbolizer Parameter><Operator>}</Operator><br/>
+<Mapnik Symbolizer Parameter>  </Mapnik Symbolizer Parameter><Operator>[</Operator><Data Field>admin_level </Data Field><Operator>=</Operator><Keyword> </Keyword><Verbatim String>'6'</Verbatim String><Operator>][</Operator><Keyword>zoom</Keyword><Data Field> </Data Field><Operator>>=</Operator><Keyword> </Keyword><Number>11</Number><Operator>]</Operator><Mapnik Symbolizer Parameter> </Mapnik Symbolizer Parameter><Operator>{</Operator><br/>
+<Mapnik Symbolizer Parameter>    </Mapnik Symbolizer Parameter><Named instances>background/</Named instances><Mapnik Symbolizer Parameter>line-color</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> </Keyword><Color>white</Color><Operator>;</Operator><br/>
+<Mapnik Symbolizer Parameter>    </Mapnik Symbolizer Parameter><Named instances>background/</Named instances><Mapnik Symbolizer Parameter>line-width</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> </Keyword><Number>2</Number><Operator>;</Operator><br/>
+<Mapnik Symbolizer Parameter>    line-color</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> </Keyword><CartoCSS Variable>@admin-boundaries</CartoCSS Variable><Operator>;</Operator><br/>
+<Mapnik Symbolizer Parameter>    line-width</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> </Keyword><Number>2</Number><Operator>;</Operator><br/>
+<Mapnik Symbolizer Parameter>    line-dasharray</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> </Keyword><Number>6</Number><Operator>,</Operator><Number>3</Number><Operator>,</Operator><Number>2</Number><Operator>,</Operator><Number>3</Number><Operator>;</Operator><br/>
+<Mapnik Symbolizer Parameter>    line-clip</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> false</Keyword><Operator>;</Operator><br/>
+<Mapnik Symbolizer Parameter>  </Mapnik Symbolizer Parameter><Operator>}</Operator><br/>
+<Mapnik Symbolizer Parameter>  </Mapnik Symbolizer Parameter><Operator>[</Operator><Data Field>admin_level </Data Field><Operator>=</Operator><Keyword> </Keyword><Verbatim String>'7'</Verbatim String><Operator>]</Operator><Mapnik Symbolizer Parameter>,</Mapnik Symbolizer Parameter><br/>
+<Mapnik Symbolizer Parameter>  </Mapnik Symbolizer Parameter><Operator>[</Operator><Data Field>admin_level </Data Field><Operator>=</Operator><Keyword> </Keyword><Verbatim String>'8'</Verbatim String><Operator>]</Operator><Mapnik Symbolizer Parameter> </Mapnik Symbolizer Parameter><Operator>{</Operator><br/>
+<Mapnik Symbolizer Parameter>    </Mapnik Symbolizer Parameter><Operator>[</Operator><Keyword>zoom</Keyword><Data Field> </Data Field><Operator>>=</Operator><Keyword> </Keyword><Number>12</Number><Operator>]</Operator><Mapnik Symbolizer Parameter> </Mapnik Symbolizer Parameter><Operator>{</Operator><br/>
+<Mapnik Symbolizer Parameter>      </Mapnik Symbolizer Parameter><Named instances>background/</Named instances><Mapnik Symbolizer Parameter>line-color</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> </Keyword><Color>white</Color><Operator>;</Operator><br/>
+<Mapnik Symbolizer Parameter>      </Mapnik Symbolizer Parameter><Named instances>background/</Named instances><Mapnik Symbolizer Parameter>line-width</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> </Keyword><Number>1.5</Number><Operator>;</Operator><br/>
+<Mapnik Symbolizer Parameter>      line-color</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> </Keyword><CartoCSS Variable>@admin-boundaries</CartoCSS Variable><Operator>;</Operator><br/>
+<Mapnik Symbolizer Parameter>      line-width</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> </Keyword><Number>1.5</Number><Operator>;</Operator><br/>
+<Mapnik Symbolizer Parameter>      line-dasharray</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> </Keyword><Number>5</Number><Operator>,</Operator><Number>2</Number><Operator>;</Operator><br/>
+<Mapnik Symbolizer Parameter>      line-clip</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> false</Keyword><Operator>;</Operator><br/>
+<Mapnik Symbolizer Parameter>    </Mapnik Symbolizer Parameter><Operator>}</Operator><br/>
+<Mapnik Symbolizer Parameter>  </Mapnik Symbolizer Parameter><Operator>}</Operator><br/>
+<Mapnik Symbolizer Parameter>  opacity</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> </Keyword><Number>0.5</Number><Operator>;</Operator><br/>
+<Mapnik Symbolizer Parameter>  comp-op</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> darken</Keyword><Operator>;</Operator><br/>
+<Operator>}</Operator><br/>
+<Mapnik Symbolizer Parameter></Mapnik Symbolizer Parameter><br/>
+<Layer ID>#admin-high-zoom</Layer ID><Operator>[</Operator><Keyword>zoom</Keyword><Data Field> </Data Field><Operator>>=</Operator><Keyword> </Keyword><Number>13</Number><Operator>]</Operator><Mapnik Symbolizer Parameter> </Mapnik Symbolizer Parameter><Operator>{</Operator><br/>
+<Mapnik Symbolizer Parameter>  </Mapnik Symbolizer Parameter><Operator>[</Operator><Data Field>admin_level </Data Field><Operator>=</Operator><Keyword> </Keyword><Verbatim String>'9'</Verbatim String><Operator>]</Operator><Mapnik Symbolizer Parameter>,</Mapnik Symbolizer Parameter><br/>
+<Mapnik Symbolizer Parameter>  </Mapnik Symbolizer Parameter><Operator>[</Operator><Data Field>admin_level </Data Field><Operator>=</Operator><Keyword> </Keyword><Verbatim String>'10'</Verbatim String><Operator>]</Operator><Mapnik Symbolizer Parameter> </Mapnik Symbolizer Parameter><Operator>{</Operator><br/>
+<Mapnik Symbolizer Parameter>    </Mapnik Symbolizer Parameter><Operator>[</Operator><Keyword>zoom</Keyword><Data Field> </Data Field><Operator>>=</Operator><Keyword> </Keyword><Number>13</Number><Operator>]</Operator><Mapnik Symbolizer Parameter> </Mapnik Symbolizer Parameter><Operator>{</Operator><br/>
+<Mapnik Symbolizer Parameter>      </Mapnik Symbolizer Parameter><Named instances>background/</Named instances><Mapnik Symbolizer Parameter>line-color</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> </Keyword><Color>white</Color><Operator>;</Operator><br/>
+<Mapnik Symbolizer Parameter>      </Mapnik Symbolizer Parameter><Named instances>background/</Named instances><Mapnik Symbolizer Parameter>line-width</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> </Keyword><Number>2</Number><Operator>;</Operator><br/>
+<Mapnik Symbolizer Parameter>      line-color</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> </Keyword><CartoCSS Variable>@admin-boundaries</CartoCSS Variable><Operator>;</Operator><br/>
+<Mapnik Symbolizer Parameter>      line-width</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> </Keyword><Number>2</Number><Operator>;</Operator><br/>
+<Mapnik Symbolizer Parameter>      line-dasharray</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> </Keyword><Number>2</Number><Operator>,</Operator><Number>3</Number><Operator>;</Operator><br/>
+<Mapnik Symbolizer Parameter>      line-clip</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> false</Keyword><Operator>;</Operator><br/>
+<Mapnik Symbolizer Parameter>    </Mapnik Symbolizer Parameter><Operator>}</Operator><br/>
+<Mapnik Symbolizer Parameter>  </Mapnik Symbolizer Parameter><Operator>}</Operator><br/>
+<Mapnik Symbolizer Parameter>  opacity</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> </Keyword><Number>0.5</Number><Operator>;</Operator><br/>
+<Mapnik Symbolizer Parameter>  comp-op</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> darken</Keyword><Operator>;</Operator><br/>
+<Operator>}</Operator><br/>
+<Mapnik Symbolizer Parameter></Mapnik Symbolizer Parameter><br/>
+<Mapnik Symbolizer Parameter></Mapnik Symbolizer Parameter><br/>
+<Mapnik Symbolizer Parameter></Mapnik Symbolizer Parameter><br/>
+<Layer ID>#nature-reserve-boundaries</Layer ID><Mapnik Symbolizer Parameter> </Mapnik Symbolizer Parameter><Operator>{</Operator><br/>
+<Mapnik Symbolizer Parameter>  </Mapnik Symbolizer Parameter><Operator>[</Operator><Data Field>way_pixels </Data Field><Operator>></Operator><Keyword> </Keyword><Number>100</Number><Operator>][</Operator><Keyword>zoom</Keyword><Data Field> </Data Field><Operator>>=</Operator><Keyword> </Keyword><Number>7</Number><Operator>]</Operator><Mapnik Symbolizer Parameter> </Mapnik Symbolizer Parameter><Operator>{</Operator><br/>
+<Mapnik Symbolizer Parameter>    </Mapnik Symbolizer Parameter><Operator>[</Operator><Keyword>zoom</Keyword><Data Field> </Data Field><Operator><</Operator><Keyword> </Keyword><Number>10</Number><Operator>]</Operator><Mapnik Symbolizer Parameter> </Mapnik Symbolizer Parameter><Operator>{</Operator><br/>
+<Mapnik Symbolizer Parameter>      </Mapnik Symbolizer Parameter><Attachment>::fill</Attachment><Mapnik Symbolizer Parameter> </Mapnik Symbolizer Parameter><Operator>{</Operator><br/>
+<Mapnik Symbolizer Parameter>        opacity</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> </Keyword><Number>0.05</Number><Operator>;</Operator><br/>
+<Mapnik Symbolizer Parameter>        polygon-fill</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> </Keyword><Color>green</Color><Operator>;</Operator><br/>
+<Mapnik Symbolizer Parameter>      </Mapnik Symbolizer Parameter><Operator>}</Operator><br/>
+<Mapnik Symbolizer Parameter>    </Mapnik Symbolizer Parameter><Operator>}</Operator><br/>
+<Mapnik Symbolizer Parameter>    </Mapnik Symbolizer Parameter><Named instances>a/</Named instances><Mapnik Symbolizer Parameter>line-width</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> </Keyword><Number>1</Number><Operator>;</Operator><br/>
+<Mapnik Symbolizer Parameter>    </Mapnik Symbolizer Parameter><Named instances>a/</Named instances><Mapnik Symbolizer Parameter>line-offset</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> </Keyword><Number>-0.5</Number><Operator>;</Operator><br/>
+<Mapnik Symbolizer Parameter>    </Mapnik Symbolizer Parameter><Named instances>a/</Named instances><Mapnik Symbolizer Parameter>line-color</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> </Keyword><Color>green</Color><Operator>;</Operator><br/>
+<Mapnik Symbolizer Parameter>    </Mapnik Symbolizer Parameter><Named instances>a/</Named instances><Mapnik Symbolizer Parameter>line-opacity</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> </Keyword><Number>0.15</Number><Operator>;</Operator><br/>
+<Mapnik Symbolizer Parameter>    </Mapnik Symbolizer Parameter><Named instances>a/</Named instances><Mapnik Symbolizer Parameter>line-join</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> round</Keyword><Operator>;</Operator><br/>
+<Mapnik Symbolizer Parameter>    </Mapnik Symbolizer Parameter><Named instances>a/</Named instances><Mapnik Symbolizer Parameter>line-cap</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> round</Keyword><Operator>;</Operator><br/>
+<Mapnik Symbolizer Parameter>    </Mapnik Symbolizer Parameter><Named instances>b/</Named instances><Mapnik Symbolizer Parameter>line-width</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> </Keyword><Number>2</Number><Operator>;</Operator><br/>
+<Mapnik Symbolizer Parameter>    </Mapnik Symbolizer Parameter><Named instances>b/</Named instances><Mapnik Symbolizer Parameter>line-offset</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> </Keyword><Number>-1</Number><Operator>;</Operator><br/>
+<Mapnik Symbolizer Parameter>    </Mapnik Symbolizer Parameter><Named instances>b/</Named instances><Mapnik Symbolizer Parameter>line-color</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> </Keyword><Color>green</Color><Operator>;</Operator><br/>
+<Mapnik Symbolizer Parameter>    </Mapnik Symbolizer Parameter><Named instances>b/</Named instances><Mapnik Symbolizer Parameter>line-opacity</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> </Keyword><Number>0.15</Number><Operator>;</Operator><br/>
+<Mapnik Symbolizer Parameter>    </Mapnik Symbolizer Parameter><Named instances>b/</Named instances><Mapnik Symbolizer Parameter>line-join</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> round</Keyword><Operator>;</Operator><br/>
+<Mapnik Symbolizer Parameter>    </Mapnik Symbolizer Parameter><Named instances>b/</Named instances><Mapnik Symbolizer Parameter>line-cap</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> round</Keyword><Operator>;</Operator><br/>
+<Mapnik Symbolizer Parameter>    </Mapnik Symbolizer Parameter><Operator>[</Operator><Keyword>zoom</Keyword><Data Field> </Data Field><Operator>>=</Operator><Keyword> </Keyword><Number>10</Number><Operator>]</Operator><Mapnik Symbolizer Parameter> </Mapnik Symbolizer Parameter><Operator>{</Operator><br/>
+<Mapnik Symbolizer Parameter>      </Mapnik Symbolizer Parameter><Named instances>a/</Named instances><Mapnik Symbolizer Parameter>line-width</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> </Keyword><Number>2</Number><Operator>;</Operator><br/>
+<Mapnik Symbolizer Parameter>      </Mapnik Symbolizer Parameter><Named instances>a/</Named instances><Mapnik Symbolizer Parameter>line-offset</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> </Keyword><Number>-1</Number><Operator>;</Operator><br/>
+<Mapnik Symbolizer Parameter>      </Mapnik Symbolizer Parameter><Named instances>b/</Named instances><Mapnik Symbolizer Parameter>line-width</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> </Keyword><Number>4</Number><Operator>;</Operator><br/>
+<Mapnik Symbolizer Parameter>      </Mapnik Symbolizer Parameter><Named instances>b/</Named instances><Mapnik Symbolizer Parameter>line-offset</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> </Keyword><Number>-2</Number><Operator>;</Operator><br/>
+<Mapnik Symbolizer Parameter>    </Mapnik Symbolizer Parameter><Operator>}</Operator><br/>
+<Mapnik Symbolizer Parameter>    </Mapnik Symbolizer Parameter><Operator>[</Operator><Keyword>zoom</Keyword><Data Field> </Data Field><Operator>>=</Operator><Keyword> </Keyword><Number>14</Number><Operator>]</Operator><Mapnik Symbolizer Parameter> </Mapnik Symbolizer Parameter><Operator>{</Operator><br/>
+<Mapnik Symbolizer Parameter>      </Mapnik Symbolizer Parameter><Named instances>b/</Named instances><Mapnik Symbolizer Parameter>line-width</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> </Keyword><Number>6</Number><Operator>;</Operator><br/>
+<Mapnik Symbolizer Parameter>      </Mapnik Symbolizer Parameter><Named instances>b/</Named instances><Mapnik Symbolizer Parameter>line-offset</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> </Keyword><Number>-3</Number><Operator>;</Operator><br/>
+<Mapnik Symbolizer Parameter>    </Mapnik Symbolizer Parameter><Operator>}</Operator><br/>
+<Mapnik Symbolizer Parameter>  </Mapnik Symbolizer Parameter><Operator>}</Operator><br/>
+<Operator>}</Operator><br/>
+<Mapnik Symbolizer Parameter></Mapnik Symbolizer Parameter><br/>
+<Layer ID>#building-text</Layer ID><Mapnik Symbolizer Parameter> </Mapnik Symbolizer Parameter><Operator>{</Operator><br/>
+<Operator>[</Operator><Keyword>zoom</Keyword><Data Field> </Data Field><Operator>>=</Operator><Keyword> </Keyword><Number>14</Number><Operator>][</Operator><Data Field>way_pixels </Data Field><Operator>></Operator><Keyword> </Keyword><Number>3000</Number><Operator>]</Operator><Mapnik Symbolizer Parameter>,</Mapnik Symbolizer Parameter><br/>
+<Operator>[</Operator><Keyword>zoom</Keyword><Data Field> </Data Field><Operator>>=</Operator><Keyword> </Keyword><Number>17</Number><Operator>]</Operator><Mapnik Symbolizer Parameter> </Mapnik Symbolizer Parameter><Operator>{</Operator><br/>
+<Mapnik Symbolizer Parameter>text-name</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> </Keyword><Expression String>"</Expression String><Data Field within String>[name]</Data Field within String><Expression String>"</Expression String><Operator>;</Operator><br/>
+<Mapnik Symbolizer Parameter>text-size</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> </Keyword><Number>11</Number><Operator>;</Operator><br/>
+<Mapnik Symbolizer Parameter>text-fill</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> </Keyword><Color>#444</Color><Operator>;</Operator><br/>
+<Mapnik Symbolizer Parameter>text-face-name</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> </Keyword><CartoCSS Variable>@book-fonts</CartoCSS Variable><Operator>;</Operator><br/>
+<Mapnik Symbolizer Parameter>text-halo-radius</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> </Keyword><Number>1</Number><Operator>;</Operator><br/>
+<Mapnik Symbolizer Parameter>text-wrap-width</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> </Keyword><Number>20</Number><Operator>;</Operator><br/>
+<Mapnik Symbolizer Parameter>text-halo-fill</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> rgba</Keyword><Operator>(</Operator><Number>255</Number><Operator>,</Operator><Number>255</Number><Operator>,</Operator><Number>255</Number><Operator>,</Operator><Number>0.5</Number><Operator>);</Operator><br/>
+<Mapnik Symbolizer Parameter>text-placement</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> interior</Keyword><Operator>;</Operator><br/>
+<Operator>}</Operator><br/>
+<Operator>}</Operator><br/>
+<Mapnik Symbolizer Parameter></Mapnik Symbolizer Parameter><br/>
+<CartoCSS Variable>@marina-text</CartoCSS Variable><Operator>:</Operator><Keyword> </Keyword><Color>#576ddf</Color><Operator>;</Operator><Mapnik Symbolizer Parameter> </Mapnik Symbolizer Parameter><Comment>// also swimming_pool</Comment><br/>
+<CartoCSS Variable>@landcover-face-name</CartoCSS Variable><Operator>:</Operator><Keyword> </Keyword><CartoCSS Variable>@oblique-fonts</CartoCSS Variable><Operator>;</Operator><br/>
+<CartoCSS Variable>@standard-wrap-width</CartoCSS Variable><Operator>:</Operator><Keyword> </Keyword><Number>30</Number><Operator>;</Operator><br/>
+<Mapnik Symbolizer Parameter></Mapnik Symbolizer Parameter><br/>
+<Class>.points</Class><Mapnik Symbolizer Parameter> </Mapnik Symbolizer Parameter><Operator>{</Operator><br/>
+<Mapnik Symbolizer Parameter>  </Mapnik Symbolizer Parameter><Operator>[</Operator><Data Field>feature </Data Field><Operator>=</Operator><Keyword> </Keyword><Verbatim String>'tourism_alpine_hut'</Verbatim String><Operator>][</Operator><Keyword>zoom</Keyword><Data Field> </Data Field><Operator>>=</Operator><Keyword> </Keyword><Number>13</Number><Operator>]</Operator><Mapnik Symbolizer Parameter> </Mapnik Symbolizer Parameter><Operator>{</Operator><br/>
+<Mapnik Symbolizer Parameter>    point-file</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> url</Keyword><Operator>(</Operator><Expression String>'symbols/alpinehut.p.16.png'</Expression String><Operator>);</Operator><br/>
+<Mapnik Symbolizer Parameter>    point-placement</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> interior</Keyword><Operator>;</Operator><br/>
+<Mapnik Symbolizer Parameter>  </Mapnik Symbolizer Parameter><Operator>}</Operator><br/>
+<Mapnik Symbolizer Parameter>  </Mapnik Symbolizer Parameter><Operator>}</Operator><br/>
+<Mapnik Symbolizer Parameter></Mapnik Symbolizer Parameter><br/>
+<Mapnik Symbolizer Parameter>  </Mapnik Symbolizer Parameter><Operator>[</Operator><Data Field>feature </Data Field><Operator>=</Operator><Keyword> </Keyword><Verbatim String>'highway_bus_stop'</Verbatim String><Operator>]</Operator><Mapnik Symbolizer Parameter> </Mapnik Symbolizer Parameter><Operator>{</Operator><br/>
+<Mapnik Symbolizer Parameter>    </Mapnik Symbolizer Parameter><Operator>[</Operator><Keyword>zoom</Keyword><Data Field> </Data Field><Operator>>=</Operator><Keyword> </Keyword><Number>16</Number><Operator>]</Operator><Mapnik Symbolizer Parameter> </Mapnik Symbolizer Parameter><Operator>{</Operator><br/>
+<Mapnik Symbolizer Parameter>      marker-file</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> url</Keyword><Operator>(</Operator><Expression String>'symbols/square.svg'</Expression String><Operator>);</Operator><br/>
+<Mapnik Symbolizer Parameter>      marker-fill</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> </Keyword><CartoCSS Variable>@transportation-icon</CartoCSS Variable><Operator>;</Operator><br/>
+<Mapnik Symbolizer Parameter>      marker-placement</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> interior</Keyword><Operator>;</Operator><br/>
+<Mapnik Symbolizer Parameter>      marker-width</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> </Keyword><Number>6</Number><Operator>;</Operator><br/>
+<Mapnik Symbolizer Parameter>    </Mapnik Symbolizer Parameter><Operator>}</Operator><br/>
+<Mapnik Symbolizer Parameter>    </Mapnik Symbolizer Parameter><Operator>[</Operator><Keyword>zoom</Keyword><Data Field> </Data Field><Operator>>=</Operator><Keyword> </Keyword><Number>17</Number><Operator>]</Operator><Mapnik Symbolizer Parameter> </Mapnik Symbolizer Parameter><Operator>{</Operator><br/>
+<Mapnik Symbolizer Parameter>      marker-file</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> url</Keyword><Operator>(</Operator><Expression String>'symbols/bus_stop.p.12.png'</Expression String><Operator>);</Operator><br/>
+<Mapnik Symbolizer Parameter>      marker-width</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> </Keyword><Number>12</Number><Operator>;</Operator><br/>
+<Mapnik Symbolizer Parameter>    </Mapnik Symbolizer Parameter><Operator>}</Operator><br/>
+<Mapnik Symbolizer Parameter>  </Mapnik Symbolizer Parameter><Operator>}</Operator><br/>
+<Mapnik Symbolizer Parameter></Mapnik Symbolizer Parameter><br/>
+<Operator>[</Operator><Data Field>feature </Data Field><Operator>=</Operator><Keyword> </Keyword><Verbatim String>'highway_primary'</Verbatim String><Operator>]</Operator><Mapnik Symbolizer Parameter> </Mapnik Symbolizer Parameter><Operator>{</Operator><br/>
+<Operator>[</Operator><Keyword>zoom</Keyword><Data Field> </Data Field><Operator>>=</Operator><Keyword> </Keyword><Number>7</Number><Operator>][</Operator><Keyword>zoom</Keyword><Data Field> </Data Field><Operator><</Operator><Keyword> </Keyword><Number>12</Number><Operator>]</Operator><Mapnik Symbolizer Parameter> </Mapnik Symbolizer Parameter><Operator>{</Operator><br/>
+<Mapnik Symbolizer Parameter>line-width</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> </Keyword><Number>0.5</Number><Operator>;</Operator><br/>
+<Mapnik Symbolizer Parameter>line-color</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> </Keyword><CartoCSS Variable>@primary-fill</CartoCSS Variable><Operator>;</Operator><br/>
+<Operator>[</Operator><Keyword>zoom</Keyword><Data Field> </Data Field><Operator>>=</Operator><Keyword> </Keyword><Number>9</Number><Operator>]</Operator><Mapnik Symbolizer Parameter> </Mapnik Symbolizer Parameter><Operator>{</Operator><Mapnik Symbolizer Parameter> line-width</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> </Keyword><Number>1.2</Number><Operator>;</Operator><Mapnik Symbolizer Parameter> </Mapnik Symbolizer Parameter><Operator>}</Operator><br/>
+<Operator>[</Operator><Keyword>zoom</Keyword><Data Field> </Data Field><Operator>>=</Operator><Keyword> </Keyword><Number>10</Number><Operator>]</Operator><Mapnik Symbolizer Parameter> </Mapnik Symbolizer Parameter><Operator>{</Operator><Mapnik Symbolizer Parameter> line-width</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> </Keyword><Number>2</Number><Operator>;</Operator><Mapnik Symbolizer Parameter> </Mapnik Symbolizer Parameter><Operator>}</Operator><br/>
+<Operator>[</Operator><Keyword>zoom</Keyword><Data Field> </Data Field><Operator>>=</Operator><Keyword> </Keyword><Number>11</Number><Operator>]</Operator><Mapnik Symbolizer Parameter> </Mapnik Symbolizer Parameter><Operator>{</Operator><Mapnik Symbolizer Parameter> line-width</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> </Keyword><Number>.5</Number><Operator>;</Operator><Mapnik Symbolizer Parameter> </Mapnik Symbolizer Parameter><Operator>}</Operator><br/>
+<Operator>}</Operator><br/>
+<Operator>}</Operator><br/>
+<Mapnik Symbolizer Parameter></Mapnik Symbolizer Parameter><br/>
+<Layer ID>#world</Layer ID><Mapnik Symbolizer Parameter> </Mapnik Symbolizer Parameter><Operator>{</Operator><br/>
+<Mapnik Symbolizer Parameter>  </Mapnik Symbolizer Parameter><Comment>// this syntax</Comment><br/>
+<Mapnik Symbolizer Parameter>  polygon-opacity</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> </Keyword><Number>50%</Number><Operator>;</Operator><Mapnik Symbolizer Parameter> </Mapnik Symbolizer Parameter><Comment>// the parameter “polygon-opacity” gets the value 0.5 (expressed in %)</Comment><br/>
+<Mapnik Symbolizer Parameter>  </Mapnik Symbolizer Parameter><Comment>// is equivalent to</Comment><br/>
+<Mapnik Symbolizer Parameter>  polygon-opacity</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> </Keyword><Number>0.5</Number><Operator>;</Operator><br/>
+<Operator>}</Operator><br/>
+<Mapnik Symbolizer Parameter></Mapnik Symbolizer Parameter><br/>
+<Comment>/*</Comment><br/>
+<Comment>Variables behave similar to C macros</Comment><br/>
+<Comment>*/</Comment><br/>
+<CartoCSS Variable>@lsdjkf</CartoCSS Variable><Operator>:</Operator><Keyword> </Keyword><CartoCSS Variable>@sdlfkj</CartoCSS Variable><Operator>;</Operator><Mapnik Symbolizer Parameter> </Mapnik Symbolizer Parameter><Comment>// this variable gets defined by the value of another variable</Comment><br/>
+<CartoCSS Variable>@admin-boundaries</CartoCSS Variable><Operator>:</Operator><Keyword> </Keyword><Color>#ac46ac</Color><Operator>;</Operator><Mapnik Symbolizer Parameter> </Mapnik Symbolizer Parameter><Comment>// this variable gets defined by a color value</Comment><br/>
+<CartoCSS Variable>@way_pixels</CartoCSS Variable><Operator>:</Operator><Keyword> </Keyword><Expression String>"(</Expression String><Data Field within String>[way_area]</Data Field within String><Expression String>*pow(4,</Expression String><Mapnik Render-Time Variable>@zoom</Mapnik Render-Time Variable><Expression String>)/24505740000)"</Expression String><Operator>;</Operator><Mapnik Symbolizer Parameter> </Mapnik Symbolizer Parameter><Comment>// A rather complex variable. [way_area] marks a data field. @zoom is a special runtime value (inspite of the @ it has nothing to do with ordinary variables)</Comment><br/>
+<Mapnik Symbolizer Parameter></Mapnik Symbolizer Parameter><br/>
+<Comment>/* This is</Comment><br/>
+<Comment>a multiline comment.</Comment><br/>
+<Comment>*/</Comment><br/>
+<Mapnik Symbolizer Parameter></Mapnik Symbolizer Parameter><br/>
+<Comment>// A single line comment</Comment><br/>
+<Layer ID>#admin-low-zoom</Layer ID><Operator>[</Operator><Keyword>zoom</Keyword><Data Field> </Data Field><Operator><</Operator><Keyword> </Keyword><Number>11</Number><Operator>]</Operator><Mapnik Symbolizer Parameter>,  </Mapnik Symbolizer Parameter><Comment>// A single line comment</Comment><br/>
+<Layer ID>#admin-mid-zoom</Layer ID><Operator>[</Operator><Keyword>zoom</Keyword><Data Field> </Data Field><Operator>>=</Operator><Keyword> </Keyword><Number>11</Number><Operator>][</Operator><Keyword>zoom</Keyword><Data Field> </Data Field><Operator><</Operator><Keyword> </Keyword><Number>13</Number><Operator>]</Operator><Mapnik Symbolizer Parameter> </Mapnik Symbolizer Parameter><Operator>{</Operator><br/>
+<Mapnik Symbolizer Parameter>  </Mapnik Symbolizer Parameter><Operator>[</Operator><Data Field>admin_level </Data Field><Operator>=</Operator><Keyword> </Keyword><Verbatim String>'2'</Verbatim String><Operator>]</Operator><Mapnik Symbolizer Parameter>, </Mapnik Symbolizer Parameter><Comment>// Within filters, data fields like “admin_level” are referended without extra [] brackets.</Comment><br/>
+<Mapnik Symbolizer Parameter>  </Mapnik Symbolizer Parameter><Operator>[</Operator><Data Field>admin_level </Data Field><Operator>=</Operator><Keyword> </Keyword><Verbatim String>'3'</Verbatim String><Operator>]</Operator><Mapnik Symbolizer Parameter> </Mapnik Symbolizer Parameter><Operator>{</Operator><Mapnik Symbolizer Parameter> </Mapnik Symbolizer Parameter><Comment>// These data fields are rendered by default in dark blue, while the data field within expression strings are rendered by default in light blue.</Comment><br/>
+<Mapnik Symbolizer Parameter>    </Mapnik Symbolizer Parameter><Operator>[</Operator><Keyword>zoom</Keyword><Data Field> </Data Field><Operator>>=</Operator><Keyword> </Keyword><Number>4</Number><Operator>]</Operator><Mapnik Symbolizer Parameter> </Mapnik Symbolizer Parameter><Operator>{</Operator><br/>
+<Mapnik Symbolizer Parameter>      </Mapnik Symbolizer Parameter><Named instances>background/</Named instances><Mapnik Symbolizer Parameter>line-color</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> </Keyword><Color>white</Color><Operator>;</Operator><Mapnik Symbolizer Parameter> </Mapnik Symbolizer Parameter><Comment>// symbolizer named “background”</Comment><br/>
+<Mapnik Symbolizer Parameter>      </Mapnik Symbolizer Parameter><Named instances>background/</Named instances><Mapnik Symbolizer Parameter>line-width</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> </Keyword><Number>0.6</Number><Operator>;</Operator><Mapnik Symbolizer Parameter> </Mapnik Symbolizer Parameter><Comment>// symbolizer named “background”</Comment><br/>
+<Mapnik Symbolizer Parameter>      line-color</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> </Keyword><CartoCSS Variable>@admin-boundaries</CartoCSS Variable><Operator>;</Operator><Mapnik Symbolizer Parameter> </Mapnik Symbolizer Parameter><Comment>// default symbolizer (without name)</Comment><br/>
+<Mapnik Symbolizer Parameter>      name</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> </Keyword><Data Field>[test]</Data Field><Operator>;</Operator><Mapnik Symbolizer Parameter> </Mapnik Symbolizer Parameter><Comment>// simplified reference to the data field “test”</Comment><br/>
+<Mapnik Symbolizer Parameter>      name</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> </Keyword><Expression String>"</Expression String><Data Field within String>[test]</Data Field within String><Expression String>"</Expression String><Operator>;</Operator><Mapnik Symbolizer Parameter> </Mapnik Symbolizer Parameter><Comment>// another reference to the data field “test”, this time within an expression string (by default orange)</Comment><br/>
+<Mapnik Symbolizer Parameter>      name</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> </Keyword><Expression String>"(</Expression String><Data Field within String>[way_area]</Data Field within String><Expression String>*pow(4,</Expression String><Mapnik Render-Time Variable>@zoom</Mapnik Render-Time Variable><Expression String>)/24505740000)"</Expression String><Operator>;</Operator><Mapnik Symbolizer Parameter> </Mapnik Symbolizer Parameter><Comment>// a rather complex expression string that will do some math</Comment><br/>
+<Mapnik Symbolizer Parameter>      name</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> </Keyword><Expression String>"</Expression String><Verbatim String>'Value: '</Verbatim String><Data Field within String>[test]</Data Field within String><Expression String>"</Expression String><Operator>;</Operator><Mapnik Symbolizer Parameter> </Mapnik Symbolizer Parameter><Comment>// A verbatim string (by default red) as part of an expression string</Comment><br/>
+<Mapnik Symbolizer Parameter>      name</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> </Keyword><Expression String>'</Expression String><Verbatim String>"Value: "</Verbatim String><Data Field within String>[test]</Data Field within String><Expression String>'</Expression String><Operator>;</Operator><Mapnik Symbolizer Parameter> </Mapnik Symbolizer Parameter><Comment>// " and ' are interchangable. The outer is always the expression string and the inner the verbatim string.</Comment><br/>
+<Mapnik Symbolizer Parameter>    </Mapnik Symbolizer Parameter><Operator>}</Operator><br/>
+<Mapnik Symbolizer Parameter>  </Mapnik Symbolizer Parameter><Operator>}</Operator><br/>
+<Mapnik Symbolizer Parameter>  </Mapnik Symbolizer Parameter><Operator>[</Operator><Data Field>admin_level </Data Field><Operator>=</Operator><Keyword> </Keyword><Verbatim String>'4'</Verbatim String><Operator>]</Operator><Mapnik Symbolizer Parameter> </Mapnik Symbolizer Parameter><Operator>{</Operator><Mapnik Symbolizer Parameter> </Mapnik Symbolizer Parameter><Comment>// The string '4' is red because at this position it will be interpreted as a verbatim string, not as an expression string.</Comment><br/>
+<Mapnik Symbolizer Parameter>    </Mapnik Symbolizer Parameter><Operator>[</Operator><Keyword>zoom</Keyword><Data Field> </Data Field><Operator>>=</Operator><Keyword> </Keyword><Number>4</Number><Operator>]</Operator><Mapnik Symbolizer Parameter> </Mapnik Symbolizer Parameter><Operator>{</Operator><br/>
+<Mapnik Symbolizer Parameter>      line-dasharray</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> </Keyword><Number>4</Number><Operator>,</Operator><Number>3</Number><Operator>;</Operator><Mapnik Symbolizer Parameter> </Mapnik Symbolizer Parameter><Comment>// parameter “line-dasharray” gets as value a list of two integers</Comment><br/>
+<Mapnik Symbolizer Parameter>      line-clip</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> false</Keyword><Operator>;</Operator><Mapnik Symbolizer Parameter>  </Mapnik Symbolizer Parameter><Comment>// parameter “line-clip” gets as value a boolean</Comment><br/>
+<Mapnik Symbolizer Parameter>    </Mapnik Symbolizer Parameter><Operator>}</Operator><br/>
+<Mapnik Symbolizer Parameter>  </Mapnik Symbolizer Parameter><Operator>}</Operator><br/>
+<Mapnik Symbolizer Parameter>  comp-op</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> darken</Keyword><Operator>;</Operator><Mapnik Symbolizer Parameter> </Mapnik Symbolizer Parameter><Comment>// parameter “comp-op” gets as value “darken”.</Comment><br/>
+<Operator>}</Operator><br/>
+<Mapnik Symbolizer Parameter></Mapnik Symbolizer Parameter><br/>
+<Class>.nature-reserve-boundaries</Class><Mapnik Symbolizer Parameter> </Mapnik Symbolizer Parameter><Operator>{</Operator><Mapnik Symbolizer Parameter> </Mapnik Symbolizer Parameter><Comment>// .nature-reserve-boudaries references a class, which is similar to a layer like #building-text, so both are rendered the same way</Comment><br/>
+<Mapnik Symbolizer Parameter>  </Mapnik Symbolizer Parameter><Operator>[</Operator><Data Field>way_pixels </Data Field><Operator>></Operator><Keyword> </Keyword><Number>100</Number><Operator>][</Operator><Keyword>zoom</Keyword><Data Field> </Data Field><Operator>>=</Operator><Keyword> </Keyword><Number>7</Number><Operator>]</Operator><Mapnik Symbolizer Parameter> </Mapnik Symbolizer Parameter><Operator>{</Operator><Mapnik Symbolizer Parameter> </Mapnik Symbolizer Parameter><Comment>// Here zoom is a keyword with results in a special filter. However, all other values are interpreted as data fields.</Comment><br/>
+<Mapnik Symbolizer Parameter>    </Mapnik Symbolizer Parameter><Operator>[</Operator><Keyword>zoom</Keyword><Data Field> </Data Field><Operator><</Operator><Keyword> </Keyword><Number>10</Number><Operator>]</Operator><Mapnik Symbolizer Parameter> </Mapnik Symbolizer Parameter><Operator>{</Operator><br/>
+<Mapnik Symbolizer Parameter>      </Mapnik Symbolizer Parameter><Attachment>::fill</Attachment><Mapnik Symbolizer Parameter> </Mapnik Symbolizer Parameter><Operator>{</Operator><Mapnik Symbolizer Parameter> </Mapnik Symbolizer Parameter><Comment>// The :: syntax defined “attachments” (a sort of sub-layer within normal layers). So “fill” is rendered by default in the same style like layer names and class names (but this can be customized).</Comment><br/>
+<Mapnik Symbolizer Parameter>        opacity</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> </Keyword><Number>0.05</Number><Operator>;</Operator><br/>
+<Mapnik Symbolizer Parameter>        </Mapnik Symbolizer Parameter><Comment>// various styles to define colors (all except the color function are rendered the same way):</Comment><br/>
+<Mapnik Symbolizer Parameter>        polygon-fill</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> </Keyword><Color>white</Color><Operator>;</Operator><br/>
+<Mapnik Symbolizer Parameter>        polygon-fill</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> </Keyword><Color>#ffffff</Color><Operator>;</Operator><br/>
+<Mapnik Symbolizer Parameter>        polygon-fill</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> </Keyword><Color>#fff</Color><Operator>;</Operator><br/>
+<Mapnik Symbolizer Parameter>        polygon-fill</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> rgba</Keyword><Operator>(</Operator><Number>255</Number><Operator>,</Operator><Number>255</Number><Operator>,</Operator><Number>255</Number><Operator>,</Operator><Number>1</Number><Operator>);</Operator><Mapnik Symbolizer Parameter> </Mapnik Symbolizer Parameter><Comment>// define a color by a speciel function</Comment><br/>
+<Mapnik Symbolizer Parameter>        polygon-fill</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> #ffff</Keyword><Operator>;</Operator><Mapnik Symbolizer Parameter> </Mapnik Symbolizer Parameter><Comment>// invalid color value</Comment><br/>
+<Mapnik Symbolizer Parameter>        text-placement</Mapnik Symbolizer Parameter><Operator>:</Operator><Keyword> interior</Keyword><Operator>;</Operator><Mapnik Symbolizer Parameter> </Mapnik Symbolizer Parameter><Comment>// all unknown values are hightlighted as named values.</Comment><br/>
+<Mapnik Symbolizer Parameter>      </Mapnik Symbolizer Parameter><Operator>}</Operator><br/>
+<Mapnik Symbolizer Parameter>    </Mapnik Symbolizer Parameter><Operator>}</Operator><br/>
+<Mapnik Symbolizer Parameter>  </Mapnik Symbolizer Parameter><Operator>}</Operator><br/>
+<Operator>}</Operator><br/>

@@ -1,0 +1,129 @@
+<Comment># This CMakeLists.txt doesn't do anything useful,</Comment><br/>
+<Comment># but it shoudl demonstrate the cmake syntax highlighting</Comment><br/>
+<Comment>#</Comment><br/>
+<Comment># Alex Turbov <i.zaufi@gmail.com></Comment><br/>
+<Comment>#</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Region Marker>#[[.rst:</Region Marker><br/>
+<Comment>Demo</Comment><br/>
+<Comment>----</Comment><br/>
+<Comment></Comment><br/>
+<Comment>This is an </Comment><Bold>**RST**</Bold><Comment> documentation.</Comment><br/>
+<Comment></Comment><br/>
+<Code>::</Code><br/>
+<Code></Code><br/>
+<Code>    # Sample code block</Code><br/>
+<Code>    blah-blah</Code><br/>
+<Code></Code><br/>
+<Comment>But we are about to test CMake here ;-)</Comment><br/>
+<Comment></Comment><br/>
+<Region Marker>#]]</Region Marker><br/>
+<Normal Text></Normal Text><br/>
+<Command>cmake_policy</Command><Normal Text>(</Normal Text><Named Args>VERSION</Named Args><Normal Text> 3.11)</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Command>project</Command><Normal Text>(</Normal Text><br/>
+<Normal Text>    Demo </Normal Text><Named Args>VERSION</Named Args><Normal Text> 1.0</Normal Text><br/>
+<Normal Text>    </Normal Text><Named Args>DESCRIPTION</Named Args><Normal Text> </Normal Text><Strings>"For unit testing purposes"</Strings><br/>
+<Normal Text>    </Normal Text><Comment># </Comment><Alert Level 3>NOTE</Alert Level 3><Comment> that particular languages is a separate style</Comment><br/>
+<Normal Text>    </Normal Text><Comment># to highlight "special" (well known values)</Comment><br/>
+<Normal Text>    </Normal Text><Named Args>LANGUAGES</Named Args><Normal Text> </Normal Text><Special Args>C</Special Args><Normal Text> </Normal Text><Special Args>CXX</Special Args><br/>
+<Normal Text>  )</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Command>set</Command><Normal Text>(SOME_TRUE_OPTION </Normal Text><True Special Arg>TRUE</True Special Arg><Normal Text>)      </Normal Text><Comment># `true` value</Comment><br/>
+<Comment># `false` value and "internal" variable</Comment><br/>
+<Command>set</Command><Normal Text>(</Normal Text><Internal Name>_ANOTHER_FALSE_OPTION</Internal Name><Normal Text> </Normal Text><False Special Arg>OFF</False Special Arg><Normal Text> </Normal Text><Named Args>CACHE</Named Args><Normal Text> </Normal Text><Special Args>INTERNAL</Special Args><Normal Text> </Normal Text><Strings>"Internal option"</Strings><Normal Text>)</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment>#BEGIN Message block</Comment><br/>
+<Command>message</Command><Normal Text>(</Normal Text><Named Args>FATAL_ERROR</Named Args><Normal Text> </Normal Text><Strings>"Ordinal message do </Strings><Variable Substitution>${VARIABLE_EXPANSION}</Variable Substitution><Strings>"</Strings><Normal Text>)</Normal Text><br/>
+<Command>message</Command><Normal Text>(</Normal Text><Named Args>AUTHOR_WARNING</Named Args><Normal Text> </Normal Text><Strings>"... standard variables have a dedicated style"</Strings><Normal Text>)</Normal Text><br/>
+<Command>message</Command><Normal Text>(</Normal Text><Named Args>SEND_ERROR</Named Args><Normal Text> </Normal Text><Strings>"e.g. </Strings><Variable Substitution>${</Variable Substitution><Builtin Variable>PROJECT_DESCRIPTION</Builtin Variable><Variable Substitution>}</Variable Substitution><Strings> or </Strings><Variable Substitution>${</Variable Substitution><Builtin Variable>CMAKE_COMMAND</Builtin Variable><Variable Substitution>}</Variable Substitution><Strings>"</Strings><Normal Text>)</Normal Text><br/>
+<Command>message</Command><Normal Text>(</Normal Text><br/>
+<Normal Text>    </Normal Text><Named Args>STATUS</Named Args><Normal Text> </Normal Text><Strings>[=[</Strings><br/>
+<Strings>        Raw messages do not do ${VARIABLES_EXPANSION} or \n</Strings><br/>
+<Strings>        escape symbols highlighting...</Strings><br/>
+<Strings>    ]=]</Strings><br/>
+<Normal Text>)</Normal Text><br/>
+<Comment>#END Message block</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Comment># </Comment><Alert Level 1>ATTENTION</Alert Level 1><Comment> Every command highlight only its own named keywords...</Comment><br/>
+<Comment># Also, note aliased (most of the time imported) targets higlighted as well</Comment><br/>
+<Command>add_library</Command><Normal Text>(</Normal Text><Aliased Targets>Foo::foo</Aliased Targets><Normal Text> </Normal Text><Named Args>IMPORTED</Named Args><Normal Text> </Normal Text><Named Args>GLOBAL</Named Args><Normal Text>)</Normal Text><br/>
+<Command>set</Command><Normal Text>(KW_HL IMPORTED GLOBAL)      </Normal Text><Comment># `IMPORTED` and `GLOBAL` are not highlighted here!</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Comment># Properties are separate ("special value") style</Comment><br/>
+<Command>set_target_properties</Command><Normal Text>(</Normal Text><Aliased Targets>Foo::foo</Aliased Targets><Normal Text> </Normal Text><Named Args>PROPERTIES</Named Args><Normal Text> </Normal Text><Property>LOCATION</Property><Normal Text> </Normal Text><Strings>"</Strings><Variable Substitution>${FOO_LIBRARY}</Variable Substitution><Strings>"</Strings><Normal Text>)</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment># Generator expressions</Comment><br/>
+<Command>target_compile_definitions</Command><Normal Text>(</Normal Text><br/>
+<Normal Text>    </Normal Text><Comment># </Comment><Alert Level 3>NOTE</Alert Level 3><Comment> Ok w/ CMake >= 3.11</Comment><br/>
+<Normal Text>    </Normal Text><Aliased Targets>Foo::foo</Aliased Targets><br/>
+<Normal Text>    </Normal Text><Generator Expression>$<$<</Generator Expression><Generator Expression Keyword>PLATFORM_ID</Generator Expression Keyword><Generator Expression>:Windows>:WINDOWS_FOO></Generator Expression><br/>
+<Normal Text>    </Normal Text><Generator Expression>$<$<</Generator Expression><Generator Expression Keyword>PLATFORM_ID</Generator Expression Keyword><Generator Expression>:Linux>:</Generator Expression><br/>
+<Generator Expression>        LINUX_FOO</Generator Expression><br/>
+<Generator Expression>        $<$<</Generator Expression><Generator Expression Keyword>BOOL</Generator Expression Keyword><Generator Expression>:</Generator Expression><Variable Substitution>${</Variable Substitution><Internal Name>_has_foo</Internal Name><Variable Substitution>}</Variable Substitution><Generator Expression>>:SOME_FOO_PATH=</Generator Expression><Variable Substitution>${</Variable Substitution><Builtin Variable>PROJECT_BINARY_DIR</Builtin Variable><Variable Substitution>}</Variable Substitution><Generator Expression>/foo></Generator Expression><br/>
+<Generator Expression>    ></Generator Expression><br/>
+<Normal Text>  )</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Region Marker>#[=======================================================================[.rst:</Region Marker><br/>
+<Directive>.. cmake:command:: </Directive><Comment>my_fun</Comment><br/>
+<Comment></Comment><br/>
+<Italic>*RST*</Italic><Comment> documentation </Comment><InlineLiteral>``can``</InlineLiteral><Comment> refer to </Comment><Role>:cmake:command:</Role><InterpretedText>`any_commands`</InterpretedText><Comment> or</Comment><br/>
+<Role>:cmake:variable:</Role><InterpretedText>`variables`</InterpretedText><Comment>...</Comment><br/>
+<Comment></Comment><br/>
+<Code>.. code-block:: cmake</Code><br/>
+<Code>   :caption: **Synopsys**</Code><br/>
+<Code></Code><br/>
+<Code>    my_fun([ANYTHING...])</Code><br/>
+<Code></Code><br/>
+<Region Marker>#]=======================================================================]</Region Marker><br/>
+<Command>function</Command><Normal Text>(my_fun)</Normal Text><br/>
+<Normal Text>    </Normal Text><Comment># </Comment><Alert Level 2>TODO</Alert Level 2><Comment> Add implementation</Comment><br/>
+<Command>endfunction</Command><Normal Text>()</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<User Function/Macro>my_fun</User Function/Macro><Normal Text>(</Normal Text><br/>
+<Normal Text>    </Normal Text><Comment># Custom functions do not highlight "standard" named args ...</Comment><br/>
+<Normal Text>    PUBLIC LOCATION PARENT_SCOPE</Normal Text><br/>
+<Normal Text>    </Normal Text><Comment># only some well-known values ...</Comment><br/>
+<Normal Text>    </Normal Text><False Special Arg>smth-NOTFOUND</False Special Arg><Normal Text> </Normal Text><True Special Arg>ON</True Special Arg><br/>
+<Normal Text>    </Normal Text><Comment># and standard variables</Comment><br/>
+<Normal Text>    </Normal Text><Builtin Variable>PROJECT_VERSION</Builtin Variable><br/>
+<Normal Text>    </Normal Text><Comment># or substitutions</Comment><br/>
+<Normal Text>    </Normal Text><Environment Variable Substitution>$ENV{HOME}</Environment Variable Substitution><Normal Text> OR </Normal Text><Variable Substitution>${</Variable Substitution><Internal Name>_internal_var_is_grey</Internal Name><Variable Substitution>}</Variable Substitution><br/>
+<Normal Text>  )</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment># I dont'recall exactly, but there was some bug with `if`...</Comment><br/>
+<Command>if</Command><Normal Text>((A </Normal Text><Named Args>AND</Named Args><Normal Text> </Normal Text><Strings>"</Strings><Variable Substitution>${B}</Variable Substitution><Strings>"</Strings><Normal Text>) </Normal Text><Named Args>OR</Named Args><Normal Text> C </Normal Text><Named Args>OR</Named Args><Normal Text> (var </Normal Text><Named Args>MATCHES</Named Args><Normal Text> </Normal Text><Strings>"regex"</Strings><Normal Text>))</Normal Text><br/>
+<Normal Text>    </Normal Text><Comment># Anyway... it is Ok nowadays ;-)</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Command>elseif</Command><Normal Text>(</Normal Text><Named Args>POLICY</Named Args><Normal Text> </Normal Text><Special Args>CMP066</Special Args><Normal Text>)</Normal Text><br/>
+<Normal Text>    </Normal Text><Command>add_executable</Command><Normal Text>(</Normal Text><Variable Substitution>${</Variable Substitution><Builtin Variable>PROJECT_NAME</Builtin Variable><Variable Substitution>}</Variable Substitution><Normal Text> </Normal Text><Variable Substitution>${</Variable Substitution><Builtin Variable>PROJECT_NAME</Builtin Variable><Variable Substitution>}</Variable Substitution><Normal Text>.cc)</Normal Text><br/>
+<Normal Text>    </Normal Text><Command>target_link_libraries</Command><Normal Text>(</Normal Text><br/>
+<Normal Text>        </Normal Text><Variable Substitution>${</Variable Substitution><Builtin Variable>PROJECT_NAME</Builtin Variable><Variable Substitution>}</Variable Substitution><br/>
+<Normal Text>        </Normal Text><Named Args>PRIVATE</Named Args><br/>
+<Normal Text>            </Normal Text><Aliased Targets>Qt5::Core</Aliased Targets><br/>
+<Normal Text>            </Normal Text><Generator Expression>$<$<</Generator Expression><Generator Expression Keyword>BOOL</Generator Expression Keyword><Generator Expression>:</Generator Expression><Variable Substitution>${HAS_FOO}</Variable Substitution><Generator Expression>>:</Generator Expression><Aliased Targets>Foo::foo</Aliased Targets><Generator Expression>></Generator Expression><br/>
+<Normal Text>      )</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Command>endif</Command><Normal Text>()</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment># In each function call below, all 3 named parameter lines should apply the same highlighting.</Comment><br/>
+<Command>add_custom_command</Command><Normal Text>(</Normal Text><br/>
+<Normal Text>    </Normal Text><Named Args>COMMAND</Named Args><Normal Text> true</Normal Text><br/>
+<Normal Text>    </Normal Text><Named Args>COMMAND</Named Args><Normal Text> (true)</Normal Text><br/>
+<Normal Text>    </Normal Text><Named Args>COMMAND</Named Args><Normal Text> true</Normal Text><br/>
+<Normal Text>)</Normal Text><br/>
+<Command>add_custom_target</Command><Normal Text>(TargetName</Normal Text><br/>
+<Normal Text>    </Normal Text><Named Args>WORKING_DIRECTORY</Named Args><Normal Text> somedir</Normal Text><br/>
+<Normal Text>    </Normal Text><Named Args>COMMAND</Named Args><Normal Text> (true)</Normal Text><br/>
+<Normal Text>    </Normal Text><Named Args>BYPRODUCTS</Named Args><Normal Text> somefile</Normal Text><br/>
+<Normal Text>)</Normal Text><br/>
+<Command>execute_process</Command><Normal Text>(</Normal Text><br/>
+<Normal Text>    </Normal Text><Named Args>COMMAND</Named Args><Normal Text> true</Normal Text><br/>
+<Normal Text>    </Normal Text><Named Args>COMMAND</Named Args><Normal Text> (true)</Normal Text><br/>
+<Normal Text>    </Normal Text><Named Args>COMMAND</Named Args><Normal Text> true</Normal Text><br/>
+<Normal Text>)</Normal Text><br/>
+<Command>add_test</Command><Normal Text>(</Normal Text><br/>
+<Normal Text>    </Normal Text><Named Args>NAME</Named Args><Normal Text> sometest</Normal Text><br/>
+<Normal Text>    </Normal Text><Named Args>COMMAND</Named Args><Normal Text> (true)</Normal Text><br/>
+<Normal Text>    </Normal Text><Named Args>WORKING_DIRECTORY</Named Args><Normal Text> somedir</Normal Text><br/>
+<Normal Text>)</Normal Text><br/>

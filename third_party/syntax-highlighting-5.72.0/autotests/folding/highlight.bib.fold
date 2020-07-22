@@ -1,0 +1,31 @@
+% test file for kate's bibtex syntax highlighting
+
+@Article<beginfold id='1'>{</beginfold id='1'>artikel,
+author = {Me},
+title = {Something},
+journal = {JHEP},
+year = {2003},
+<endfold id='1'>}</endfold id='1'>
+
+@Book
+
+<beginfold id='1'>{</beginfold id='1'>
+
+boek,
+author = "Someone",
+title = "Something",
+journal = "Nucl. Phys. B",
+year = "2003",
+<endfold id='1'>}</endfold id='1'>
+
+This is ignored by BibTeX, no special highlighting
+%This is not a comment, it is just ignored (thanks to the people in #latex) :)
+
+@string{test="lange string die ik niet vaak opnieuw wil intikken"}
+
+@PhdThesis<beginfold id='1'>{</beginfold id='1'>thesis,
+author = {Me},
+title = {Dunno},
+school = {ITFA},
+year = {2005, hopefully},
+<endfold id='1'>}</endfold id='1'>

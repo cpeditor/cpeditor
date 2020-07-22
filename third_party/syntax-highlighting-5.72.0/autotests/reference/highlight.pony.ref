@@ -1,0 +1,219 @@
+<Comment>// Test file for Pony syntax highlighting, released under MIT License</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>primitive</Keyword><Normal Text> </Normal Text><Data Type>Red</Data Type><Normal Text>   </Normal Text><Keyword>fun</Keyword><Normal Text> </Normal Text><Overloaders>apply</Overloaders><Symbol>():</Symbol><Normal Text> </Normal Text><Data Type>U32</Data Type><Normal Text> </Normal Text><Symbol>=></Symbol><Normal Text> </Normal Text><Hex>0xFFFF0000</Hex><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>primitive</Keyword><Normal Text> </Normal Text><Data Type>Colours</Data Type><br/>
+<Normal Text>  </Normal Text><Keyword>fun</Keyword><Normal Text> </Normal Text><Function>black</Function><Symbol>():</Symbol><Normal Text> </Normal Text><Data Type>U32</Data Type><Normal Text> </Normal Text><Symbol>=></Symbol><Normal Text> </Normal Text><Hex>0xFF000000</Hex><br/>
+<Normal Text>  </Normal Text><Keyword>fun</Keyword><Normal Text> </Normal Text><Function>red</Function><Symbol>():</Symbol><Normal Text> </Normal Text><Data Type>U32</Data Type><Normal Text> </Normal Text><Symbol>=></Symbol><Normal Text> </Normal Text><Hex>0xFFFF0000</Hex><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>primitive</Keyword><Normal Text> </Normal Text><Data Type>Black</Data Type><br/>
+<Keyword>primitive</Keyword><Normal Text> </Normal Text><Data Type>Blue</Data Type><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>type</Keyword><Normal Text> </Normal Text><Data Type>Colour</Data Type><Normal Text> </Normal Text><Keyword>is</Keyword><Normal Text> </Normal Text><Symbol>(</Symbol><Data Type>Black</Data Type><Normal Text> </Normal Text><Symbol>|</Symbol><Normal Text> </Normal Text><Data Type>Blue</Data Type><Normal Text> </Normal Text><Symbol>)</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>primitive</Keyword><Normal Text> </Normal Text><Data Type>ColourList</Data Type><br/>
+<Normal Text>  </Normal Text><Keyword>fun</Keyword><Normal Text> </Normal Text><Capability>tag</Capability><Normal Text> </Normal Text><Overloaders>apply</Overloaders><Symbol>():</Symbol><Normal Text> </Normal Text><Data Type>Array</Data Type><Symbol>[</Symbol><Data Type>Colour</Data Type><Symbol>]</Symbol><Normal Text> </Normal Text><Symbol>=></Symbol><br/>
+<Normal Text>    </Normal Text><Symbol>[</Symbol><Data Type>Black</Data Type><Symbol>;</Symbol><Normal Text> </Normal Text><Data Type>Blue</Data Type><Symbol>]</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Control Flow>for</Control Flow><Normal Text> colour </Normal Text><Keyword>in</Keyword><Normal Text> </Normal Text><Data Type>ColourList</Data Type><Symbol>().</Symbol><Normal Text>values</Normal Text><Symbol>()</Symbol><Normal Text> </Normal Text><Control Flow>do</Control Flow><br/>
+<Control Flow>end</Control Flow><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>type</Keyword><Normal Text> </Normal Text><Data Type>EGLEvent</Data Type><Normal Text> </Normal Text><Keyword>is</Keyword><Normal Text> </Normal Text><Symbol>(</Symbol><Data Type>U8</Data Type><Symbol>,</Symbol><Normal Text> </Normal Text><Data Type>F32</Data Type><Symbol>,</Symbol><Normal Text> </Normal Text><Data Type>F32</Data Type><Symbol>)</Symbol><br/>
+<Symbol>(</Symbol><Keyword>var</Keyword><Normal Text> code</Normal Text><Symbol>,</Symbol><Normal Text> </Normal Text><Keyword>var</Keyword><Normal Text> x</Normal Text><Symbol>,</Symbol><Normal Text> </Normal Text><Keyword>var</Keyword><Normal Text> y</Normal Text><Symbol>)</Symbol><Normal Text> </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><External Function>@getEvent</External Function><Symbol>[</Symbol><Data Type>EGLEvent</Data Type><Symbol>]()</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>primitive</Keyword><Normal Text> </Normal Text><Data Type>_XDisplayHandle</Data Type><br/>
+<Keyword>primitive</Keyword><Normal Text> </Normal Text><Data Type>_EGLDisplayHandle</Data Type><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>let</Keyword><Normal Text> x_dpy </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><External Function>@XOpenDisplay</External Function><Symbol>[</Symbol><Data Type>Pointer</Data Type><Symbol>[</Symbol><Data Type>_XDisplayHandle</Data Type><Symbol>]](</Symbol><Data Type>U32</Data Type><Symbol>(</Symbol><Decimal>0</Decimal><Symbol>))</Symbol><br/>
+<Control Flow>if</Control Flow><Normal Text> x_dpy</Normal Text><Symbol>.</Symbol><Normal Text>is_null</Normal Text><Symbol>()</Symbol><Normal Text> </Normal Text><Control Flow>then</Control Flow><br/>
+<Normal Text>  env</Normal Text><Symbol>.</Symbol><Normal Text>out</Normal Text><Symbol>.</Symbol><Normal Text>print</Normal Text><Symbol>(</Symbol><String>"XOpenDisplay failed"</String><Symbol>)</Symbol><br/>
+<Control Flow>end</Control Flow><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>let</Keyword><Normal Text> e_dpy </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><External Function>@eglGetDisplay</External Function><Symbol>[</Symbol><Data Type>Pointer</Data Type><Symbol>[</Symbol><Data Type>_EGLDisplayHandle</Data Type><Symbol>]](</Symbol><Normal Text>x_dpy</Normal Text><Symbol>)</Symbol><br/>
+<Control Flow>if</Control Flow><Normal Text> e_dpy</Normal Text><Symbol>.</Symbol><Normal Text>is_null</Normal Text><Symbol>()</Symbol><Normal Text> </Normal Text><Control Flow>then</Control Flow><br/>
+<Normal Text>  env</Normal Text><Symbol>.</Symbol><Normal Text>out</Normal Text><Symbol>.</Symbol><Normal Text>print</Normal Text><Symbol>(</Symbol><String>"eglGetDisplay failed"</String><Symbol>)</Symbol><br/>
+<Control Flow>end</Control Flow><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>primitive</Keyword><Normal Text> </Normal Text><Data Type>_EGLConfigHandle</Data Type><br/>
+<Keyword>let</Keyword><Normal Text> a </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Data Type>Array</Data Type><Symbol>[</Symbol><Data Type>U16</Data Type><Symbol>](</Symbol><Decimal>8</Decimal><Symbol>)</Symbol><br/>
+<Normal Text>a</Normal Text><Symbol>.</Symbol><Normal Text>push</Normal Text><Symbol>(</Symbol><Hex>0x3040</Hex><Symbol>)</Symbol><br/>
+<Normal Text>a</Normal Text><Symbol>.</Symbol><Normal Text>push</Normal Text><Symbol>(</Symbol><Binary>0b01011</Binary><Symbol>)</Symbol><br/>
+<Keyword>let</Keyword><Normal Text> config </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Data Type>Pointer</Data Type><Symbol>[</Symbol><Data Type>_EGLConfigHandle</Data Type><Symbol>]</Symbol><br/>
+<Control Flow>if</Control Flow><Normal Text> </Normal Text><External Function>@eglChooseConfig</External Function><Symbol>[</Symbol><Data Type>U32</Data Type><Symbol>](</Symbol><Normal Text>e_dpy</Normal Text><Symbol>,</Symbol><Normal Text> a</Normal Text><Symbol>,</Symbol><Normal Text> config</Normal Text><Symbol>,</Symbol><Normal Text> </Normal Text><Data Type>U32</Data Type><Symbol>(</Symbol><Decimal>1</Decimal><Symbol>),</Symbol><Normal Text> </Normal Text><Data Type>Pointer</Data Type><Symbol>[</Symbol><Data Type>U32</Data Type><Symbol>])</Symbol><Normal Text> </Normal Text><Symbol>==</Symbol><Normal Text> </Normal Text><Decimal>0</Decimal><Normal Text> </Normal Text><Control Flow>then</Control Flow><br/>
+<Normal Text>    env</Normal Text><Symbol>.</Symbol><Normal Text>out</Normal Text><Symbol>.</Symbol><Normal Text>print</Normal Text><Symbol>(</Symbol><String>"eglChooseConfig failed"</String><Symbol>)</Symbol><br/>
+<Control Flow>end</Control Flow><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>actor</Keyword><Normal Text> </Normal Text><Data Type>Main</Data Type><br/>
+<Normal Text>  </Normal Text><Keyword>new</Keyword><Normal Text> </Normal Text><Overloaders>create</Overloaders><Symbol>(</Symbol><Normal Text>env</Normal Text><Symbol>:</Symbol><Normal Text> </Normal Text><Data Type>Env</Data Type><Symbol>)</Symbol><Normal Text> </Normal Text><Symbol>=></Symbol><br/>
+<Normal Text>    </Normal Text><Comment>// The no of arguments</Comment><br/>
+<Normal Text>    env</Normal Text><Symbol>.</Symbol><Normal Text>out</Normal Text><Symbol>.</Symbol><Normal Text>print</Normal Text><Symbol>(</Symbol><Normal Text>env</Normal Text><Symbol>.</Symbol><Normal Text>args</Normal Text><Symbol>.</Symbol><Normal Text>size</Normal Text><Symbol>().</Symbol><Normal Text>string</Normal Text><Symbol>())</Symbol><br/>
+<Normal Text>    </Normal Text><Control Flow>for</Control Flow><Normal Text> value </Normal Text><Keyword>in</Keyword><Normal Text> env</Normal Text><Symbol>.</Symbol><Normal Text>args</Normal Text><Symbol>.</Symbol><Normal Text>values</Normal Text><Symbol>()</Symbol><Normal Text> </Normal Text><Control Flow>do</Control Flow><br/>
+<Normal Text>      env</Normal Text><Symbol>.</Symbol><Normal Text>out</Normal Text><Symbol>.</Symbol><Normal Text>print</Normal Text><Symbol>(</Symbol><Normal Text>value</Normal Text><Symbol>)</Symbol><br/>
+<Normal Text>    </Normal Text><Control Flow>end</Control Flow><br/>
+<Normal Text>    </Normal Text><Comment>// Access the arguments the first one will always be the the appication name</Comment><br/>
+<Normal Text>    </Normal Text><Control Flow>try</Control Flow><Normal Text> env</Normal Text><Symbol>.</Symbol><Normal Text>out</Normal Text><Symbol>.</Symbol><Normal Text>print</Normal Text><Symbol>(</Symbol><Normal Text>env</Normal Text><Symbol>.</Symbol><Normal Text>args</Normal Text><Symbol>(</Symbol><Decimal>0</Decimal><Symbol>)?)</Symbol><Normal Text> </Normal Text><Control Flow>end</Control Flow><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>actor</Keyword><Normal Text> </Normal Text><Data Type>Main</Data Type><br/>
+<Normal Text>  </Normal Text><Keyword>new</Keyword><Normal Text> </Normal Text><Overloaders>create</Overloaders><Symbol>(</Symbol><Normal Text>env</Normal Text><Symbol>:</Symbol><Normal Text> </Normal Text><Data Type>Env</Data Type><Symbol>)</Symbol><Normal Text> </Normal Text><Symbol>=></Symbol><br/>
+<Normal Text>    </Normal Text><Keyword>var</Keyword><Normal Text> options </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Data Type>Options</Data Type><Symbol>(</Symbol><Normal Text>env</Normal Text><Symbol>)</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>    options</Normal Text><br/>
+<Normal Text>      </Normal Text><Symbol>.</Symbol><Normal Text>add</Normal Text><Symbol>(</Symbol><String>"output"</String><Symbol>,</Symbol><Normal Text> </Normal Text><String>"o"</String><Symbol>,</Symbol><Normal Text> </Normal Text><Data Type>StringArgument</Data Type><Symbol>)</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>    env</Normal Text><Symbol>.</Symbol><Normal Text>out</Normal Text><Symbol>.</Symbol><Normal Text>print</Normal Text><Symbol>(</Symbol><Normal Text>options</Normal Text><Symbol>.</Symbol><Normal Text>has_argument</Normal Text><Symbol>())</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>    </Normal Text><Control Flow>for</Control Flow><Normal Text> option </Normal Text><Keyword>in</Keyword><Normal Text> options </Normal Text><Control Flow>do</Control Flow><br/>
+<Normal Text>      </Normal Text><Control Flow>match</Control Flow><Normal Text> option</Normal Text><br/>
+<Normal Text>      </Normal Text><Symbol>|</Symbol><Normal Text> </Normal Text><Symbol>(</Symbol><String>"output"</String><Symbol>,</Symbol><Normal Text> </Normal Text><Keyword>var</Keyword><Normal Text> arg</Normal Text><Symbol>:</Symbol><Normal Text> </Normal Text><Data Type>String</Data Type><Symbol>)</Symbol><Normal Text> </Normal Text><Symbol>=></Symbol><Normal Text> _outputFileName </Normal Text><Symbol>=</Symbol><Normal Text> arg</Normal Text><Symbol>.</Symbol><Normal Text>string</Normal Text><Symbol>()</Symbol><br/>
+<Normal Text>      </Normal Text><Symbol>|</Symbol><Normal Text> </Normal Text><Keyword>let</Keyword><Normal Text> err</Normal Text><Symbol>:</Symbol><Normal Text> </Normal Text><Data Type>ParseError</Data Type><Normal Text> </Normal Text><Symbol>=></Symbol><br/>
+<Normal Text>          err</Normal Text><Symbol>.</Symbol><Normal Text>report</Normal Text><Symbol>(</Symbol><Normal Text>env</Normal Text><Symbol>.</Symbol><Normal Text>out</Normal Text><Symbol>)</Symbol><br/>
+<Normal Text>          env</Normal Text><Symbol>.</Symbol><Normal Text>out</Normal Text><Symbol>.</Symbol><Normal Text>print</Normal Text><Symbol>(</Symbol><br/>
+<Normal Text>            </Normal Text><String>"""</String><br/>
+<String>            pony-embed [OPTIONS]</String><br/>
+<String>              --output     name   string output filename.</String><br/>
+<String>            """</String><br/>
+<Normal Text>          </Normal Text><Symbol>)</Symbol><br/>
+<Normal Text>      </Normal Text><Control Flow>end</Control Flow><br/>
+<Normal Text>    </Normal Text><Control Flow>end</Control Flow><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>use</Keyword><Normal Text> </Normal Text><String>"ponytest"</String><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>actor</Keyword><Normal Text> </Normal Text><Data Type>Main</Data Type><Normal Text> </Normal Text><Keyword>is</Keyword><Normal Text> </Normal Text><Data Type>TestList</Data Type><br/>
+<Normal Text>  </Normal Text><Keyword>new</Keyword><Normal Text> </Normal Text><Overloaders>create</Overloaders><Symbol>(</Symbol><Normal Text>env</Normal Text><Symbol>:</Symbol><Normal Text> </Normal Text><Data Type>Env</Data Type><Symbol>)</Symbol><Normal Text> </Normal Text><Symbol>=></Symbol><Normal Text> </Normal Text><Data Type>PonyTest</Data Type><Symbol>(</Symbol><Normal Text>env</Normal Text><Symbol>,</Symbol><Normal Text> </Normal Text><Keyword>this</Keyword><Symbol>)</Symbol><br/>
+<Normal Text>  </Normal Text><Keyword>new</Keyword><Normal Text> </Normal Text><Function>make</Function><Symbol>()</Symbol><Normal Text> </Normal Text><Symbol>=></Symbol><Normal Text> </Normal Text><Data Type>None</Data Type><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>  </Normal Text><Keyword>fun</Keyword><Normal Text> </Normal Text><Capability>tag</Capability><Normal Text> </Normal Text><Function>tests</Function><Symbol>(</Symbol><Normal Text>test</Normal Text><Symbol>:</Symbol><Normal Text> </Normal Text><Data Type>PonyTest</Data Type><Symbol>)</Symbol><Normal Text> </Normal Text><Symbol>=></Symbol><br/>
+<Normal Text>    test</Normal Text><Symbol>(</Symbol><Data Type>_TestAddition</Data Type><Symbol>)</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>class</Keyword><Normal Text> </Normal Text><Capability>iso</Capability><Normal Text> </Normal Text><Data Type>_TestAddition</Data Type><Normal Text> </Normal Text><Keyword>is</Keyword><Normal Text> </Normal Text><Data Type>UnitTest</Data Type><br/>
+<Normal Text>  </Normal Text><String>"""</String><br/>
+<String>  Adding 2 numbers</String><br/>
+<String>  """</String><br/>
+<Normal Text>  </Normal Text><Keyword>fun</Keyword><Normal Text> </Normal Text><Function>name</Function><Symbol>():</Symbol><Normal Text> </Normal Text><Data Type>String</Data Type><Normal Text> </Normal Text><Symbol>=></Symbol><Normal Text> </Normal Text><String>"u32/add"</String><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>  </Normal Text><Keyword>fun</Keyword><Normal Text> </Normal Text><Overloaders>apply</Overloaders><Symbol>(</Symbol><Normal Text>h</Normal Text><Symbol>:</Symbol><Normal Text> </Normal Text><Data Type>TestHelper</Data Type><Symbol>):</Symbol><Normal Text> </Normal Text><Data Type>TestResult</Data Type><Normal Text> </Normal Text><Symbol>=></Symbol><br/>
+<Normal Text>    h</Normal Text><Symbol>.</Symbol><Normal Text>expect_eq</Normal Text><Symbol>[</Symbol><Data Type>U32</Data Type><Symbol>](</Symbol><Decimal>2</Decimal><Normal Text> </Normal Text><Symbol>+</Symbol><Normal Text> </Normal Text><Decimal>2</Decimal><Symbol>,</Symbol><Normal Text> </Normal Text><Decimal>4</Decimal><Symbol>)</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>fun</Keyword><Normal Text> </Normal Text><Capability>tag</Capability><Normal Text> </Normal Text><Function>log</Function><Symbol>(</Symbol><Normal Text>msg</Normal Text><Symbol>:</Symbol><Normal Text> </Normal Text><Data Type>String</Data Type><Symbol>,</Symbol><Normal Text> verbose</Normal Text><Symbol>:</Symbol><Normal Text> </Normal Text><Data Type>Bool</Data Type><Normal Text> </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Keyword>false</Keyword><Symbol>)</Symbol><br/>
+<Keyword>be</Keyword><Normal Text> </Normal Text><Function>fail</Function><Symbol>()</Symbol><Normal Text> </Normal Text><Symbol>=></Symbol><br/>
+<Keyword>be</Keyword><Normal Text> </Normal Text><Function>assert_failed</Function><Symbol>(</Symbol><Normal Text>msg</Normal Text><Symbol>:</Symbol><Normal Text> </Normal Text><Data Type>String</Data Type><Symbol>)</Symbol><Normal Text> </Normal Text><Symbol>=></Symbol><br/>
+<Keyword>fun</Keyword><Normal Text> </Normal Text><Capability>tag</Capability><Normal Text> </Normal Text><Function>assert_true</Function><Symbol>(</Symbol><Normal Text>actual</Normal Text><Symbol>:</Symbol><Normal Text> </Normal Text><Data Type>Bool</Data Type><Symbol>,</Symbol><Normal Text> msg</Normal Text><Symbol>:</Symbol><Normal Text> </Normal Text><Data Type>String</Data Type><Normal Text> </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><String>""</String><Symbol>)</Symbol><Normal Text> </Normal Text><Symbol>?</Symbol><br/>
+<Keyword>fun</Keyword><Normal Text> </Normal Text><Capability>tag</Capability><Normal Text> </Normal Text><Function>expect_true</Function><Symbol>(</Symbol><Normal Text>actual</Normal Text><Symbol>:</Symbol><Normal Text> </Normal Text><Data Type>Bool</Data Type><Symbol>,</Symbol><Normal Text> msg</Normal Text><Symbol>:</Symbol><Normal Text> </Normal Text><Data Type>String</Data Type><Normal Text> </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><String>""</String><Symbol>):</Symbol><Normal Text> </Normal Text><Data Type>Bool</Data Type><br/>
+<Keyword>fun</Keyword><Normal Text> </Normal Text><Capability>tag</Capability><Normal Text> </Normal Text><Function>expect_eq</Function><Symbol>[</Symbol><Data Type>A</Data Type><Symbol>:</Symbol><Normal Text> </Normal Text><Symbol>(</Symbol><Data Type>Equatable</Data Type><Symbol>[</Symbol><Data Type>A</Data Type><Symbol>]</Symbol><Normal Text> </Normal Text><Constraint>#read</Constraint><Normal Text> </Normal Text><Symbol>&</Symbol><Normal Text> </Normal Text><Data Type>Stringable</Data Type><Symbol>)]</Symbol><br/>
+<Normal Text>  </Normal Text><Symbol>(</Symbol><Normal Text>expect</Normal Text><Symbol>:</Symbol><Normal Text> </Normal Text><Data Type>A</Data Type><Symbol>,</Symbol><Normal Text> actual</Normal Text><Symbol>:</Symbol><Normal Text> </Normal Text><Data Type>A</Data Type><Symbol>,</Symbol><Normal Text> msg</Normal Text><Symbol>:</Symbol><Normal Text> </Normal Text><Data Type>String</Data Type><Normal Text> </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><String>""</String><Symbol>):</Symbol><Normal Text> </Normal Text><Data Type>Bool</Data Type><br/>
+<Keyword>fun</Keyword><Normal Text> </Normal Text><Capability>tag</Capability><Normal Text> </Normal Text><Function>expect_eq</Function><Symbol>[</Symbol><Data Type>A</Data Type><Symbol>:</Symbol><Normal Text> </Normal Text><Symbol>(</Symbol><Data Type>Equatable</Data Type><Symbol>[</Symbol><Data Type>A</Data Type><Symbol>]</Symbol><Normal Text> </Normal Text><Error>#unknown</Error><Normal Text> </Normal Text><Symbol>&</Symbol><Normal Text> </Normal Text><Data Type>Stringable</Data Type><Symbol>)]</Symbol><br/>
+<Normal Text>  </Normal Text><Symbol>(</Symbol><Normal Text>expect</Normal Text><Symbol>:</Symbol><Normal Text> </Normal Text><Data Type>A</Data Type><Symbol>,</Symbol><Normal Text> actual</Normal Text><Symbol>:</Symbol><Normal Text> </Normal Text><Data Type>A</Data Type><Symbol>,</Symbol><Normal Text> msg</Normal Text><Symbol>:</Symbol><Normal Text> </Normal Text><Data Type>String</Data Type><Normal Text> </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><String>""</String><Symbol>):</Symbol><Normal Text> </Normal Text><Data Type>Bool</Data Type><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>fun</Keyword><Normal Text> </Normal Text><Overloaders>add</Overloaders><Symbol>(</Symbol><Normal Text>other</Normal Text><Symbol>:</Symbol><Normal Text> </Normal Text><Data Type>A</Data Type><Symbol>):</Symbol><Normal Text> </Normal Text><Data Type>A</Data Type><br/>
+<Keyword>fun</Keyword><Normal Text> </Normal Text><Overloaders>sub</Overloaders><Symbol>(</Symbol><Normal Text>other</Normal Text><Symbol>:</Symbol><Normal Text> </Normal Text><Data Type>A</Data Type><Symbol>):</Symbol><Normal Text> </Normal Text><Data Type>A</Data Type><br/>
+<Keyword>fun</Keyword><Normal Text> </Normal Text><Overloaders>mul</Overloaders><Symbol>(</Symbol><Normal Text>other</Normal Text><Symbol>:</Symbol><Normal Text> </Normal Text><Data Type>A</Data Type><Symbol>):</Symbol><Normal Text> </Normal Text><Data Type>A</Data Type><br/>
+<Keyword>fun</Keyword><Normal Text> </Normal Text><Overloaders>div</Overloaders><Symbol>(</Symbol><Normal Text>other</Normal Text><Symbol>:</Symbol><Normal Text> </Normal Text><Data Type>A</Data Type><Symbol>):</Symbol><Normal Text> </Normal Text><Data Type>A</Data Type><br/>
+<Keyword>fun</Keyword><Normal Text> </Normal Text><Overloaders>mod</Overloaders><Symbol>(</Symbol><Normal Text>other</Normal Text><Symbol>:</Symbol><Normal Text> </Normal Text><Data Type>A</Data Type><Symbol>):</Symbol><Normal Text> </Normal Text><Data Type>A</Data Type><br/>
+<Keyword>fun</Keyword><Normal Text> </Normal Text><Overloaders>eq</Overloaders><Symbol>(</Symbol><Normal Text>other</Normal Text><Symbol>:</Symbol><Normal Text> </Normal Text><Data Type>A</Data Type><Symbol>):</Symbol><Normal Text> </Normal Text><Data Type>Bool</Data Type><br/>
+<Keyword>fun</Keyword><Normal Text> </Normal Text><Overloaders>ne</Overloaders><Symbol>(</Symbol><Normal Text>other</Normal Text><Symbol>:</Symbol><Normal Text> </Normal Text><Data Type>A</Data Type><Symbol>):</Symbol><Normal Text> </Normal Text><Data Type>Bool</Data Type><br/>
+<Keyword>fun</Keyword><Normal Text> </Normal Text><Overloaders>lt</Overloaders><Symbol>(</Symbol><Normal Text>other</Normal Text><Symbol>:</Symbol><Normal Text> </Normal Text><Data Type>A</Data Type><Symbol>):</Symbol><Normal Text> </Normal Text><Data Type>Bool</Data Type><br/>
+<Keyword>fun</Keyword><Normal Text> </Normal Text><Overloaders>le</Overloaders><Symbol>(</Symbol><Normal Text>other</Normal Text><Symbol>:</Symbol><Normal Text> </Normal Text><Data Type>A</Data Type><Symbol>):</Symbol><Normal Text> </Normal Text><Data Type>Bool</Data Type><br/>
+<Keyword>fun</Keyword><Normal Text> </Normal Text><Overloaders>ge</Overloaders><Symbol>(</Symbol><Normal Text>other</Normal Text><Symbol>:</Symbol><Normal Text> </Normal Text><Data Type>A</Data Type><Symbol>):</Symbol><Normal Text> </Normal Text><Data Type>Bool</Data Type><br/>
+<Keyword>fun</Keyword><Normal Text> </Normal Text><Overloaders>gt</Overloaders><Symbol>(</Symbol><Normal Text>other</Normal Text><Symbol>:</Symbol><Normal Text> </Normal Text><Data Type>A</Data Type><Symbol>):</Symbol><Normal Text> </Normal Text><Data Type>Bool</Data Type><br/>
+<Keyword>fun</Keyword><Normal Text> </Normal Text><Overloaders>shl</Overloaders><Symbol>(</Symbol><Normal Text>other</Normal Text><Symbol>:</Symbol><Normal Text> </Normal Text><Data Type>A</Data Type><Symbol>):</Symbol><Normal Text> </Normal Text><Data Type>A</Data Type><br/>
+<Keyword>fun</Keyword><Normal Text> </Normal Text><Overloaders>shr</Overloaders><Symbol>(</Symbol><Normal Text>other</Normal Text><Symbol>:</Symbol><Normal Text> </Normal Text><Data Type>A</Data Type><Symbol>):</Symbol><Normal Text> </Normal Text><Data Type>A</Data Type><br/>
+<Keyword>fun</Keyword><Normal Text> </Normal Text><Overloaders>op_and</Overloaders><Symbol>(</Symbol><Normal Text>other</Normal Text><Symbol>:</Symbol><Data Type>A</Data Type><Symbol>):</Symbol><Normal Text> </Normal Text><Data Type>A</Data Type><br/>
+<Keyword>fun</Keyword><Normal Text> </Normal Text><Overloaders>op_or</Overloaders><Symbol>(</Symbol><Normal Text>other</Normal Text><Symbol>:</Symbol><Normal Text> </Normal Text><Data Type>A</Data Type><Symbol>):</Symbol><Normal Text> </Normal Text><Data Type>A</Data Type><br/>
+<Keyword>fun</Keyword><Normal Text> </Normal Text><Overloaders>op_xor</Overloaders><Symbol>(</Symbol><Normal Text>othr</Normal Text><Symbol>:</Symbol><Normal Text> </Normal Text><Data Type>A</Data Type><Symbol>):</Symbol><Normal Text> </Normal Text><Data Type>A</Data Type><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>class</Keyword><Normal Text> </Normal Text><Data Type>Test</Data Type><br/>
+<Normal Text>  </Normal Text><Keyword>fun</Keyword><Normal Text> </Normal Text><Function>alpha</Function><Symbol>()</Symbol><Normal Text> </Normal Text><Symbol>=></Symbol><br/>
+<Normal Text>    </Normal Text><String>"""</String><br/>
+<String>    """</String><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>let</Keyword><Normal Text> dice</Normal Text><Symbol>:</Symbol><Normal Text> </Normal Text><Data Type>Array</Data Type><Symbol>[</Symbol><Data Type>U32</Data Type><Symbol>]</Symbol><Normal Text> </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Symbol>[</Symbol><Decimal>1</Decimal><Symbol>;</Symbol><Normal Text> </Normal Text><Decimal>2</Decimal><Symbol>;</Symbol><Normal Text> </Normal Text><Decimal>3</Decimal><br/>
+<Normal Text>  </Normal Text><Decimal>4</Decimal><br/>
+<Normal Text>  </Normal Text><Decimal>5</Decimal><br/>
+<Normal Text>  </Normal Text><Decimal>6</Decimal><br/>
+<Symbol>]</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>actor</Keyword><Normal Text> </Normal Text><Data Type>Main</Data Type><br/>
+<Normal Text>  </Normal Text><Keyword>fun</Keyword><Normal Text> </Normal Text><Function>foo</Function><Symbol>(</Symbol><Normal Text>n</Normal Text><Symbol>:</Symbol><Data Type>U32</Data Type><Symbol>):</Symbol><Normal Text> </Normal Text><Symbol>{</Symbol><Capability>ref</Capability><Symbol>(</Symbol><Data Type>U32</Data Type><Symbol>):</Symbol><Normal Text> </Normal Text><Data Type>U32</Data Type><Symbol>}</Symbol><Normal Text> </Normal Text><Symbol>=></Symbol><br/>
+<Normal Text>    </Normal Text><Keyword>var</Keyword><Normal Text> s</Normal Text><Symbol>:</Symbol><Normal Text> </Normal Text><Data Type>Array</Data Type><Symbol>[</Symbol><Data Type>U32</Data Type><Symbol>]</Symbol><Normal Text> </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Data Type>Array</Data Type><Symbol>[</Symbol><Data Type>U32</Data Type><Symbol>].</Symbol><Normal Text>init</Normal Text><Symbol>(</Symbol><Normal Text>n</Normal Text><Symbol>,</Symbol><Normal Text> </Normal Text><Decimal>1</Decimal><Symbol>)</Symbol><br/>
+<Normal Text>    </Normal Text><Symbol>{</Symbol><Capability>ref</Capability><Symbol>(</Symbol><Normal Text>i</Normal Text><Symbol>:</Symbol><Data Type>U32</Data Type><Symbol>)(</Symbol><Normal Text>s</Normal Text><Symbol>):</Symbol><Normal Text> </Normal Text><Data Type>U32</Data Type><Normal Text> </Normal Text><Symbol>=></Symbol><br/>
+<Normal Text>      </Normal Text><Control Flow>try</Control Flow><br/>
+<Normal Text>        s</Normal Text><Symbol>(</Symbol><Decimal>0</Decimal><Symbol>)</Symbol><Normal Text> </Normal Text><Symbol>=</Symbol><Normal Text> s</Normal Text><Symbol>(</Symbol><Decimal>0</Decimal><Symbol>)</Symbol><Normal Text> </Normal Text><Symbol>+</Symbol><Normal Text> i</Normal Text><br/>
+<Normal Text>        s</Normal Text><Symbol>(</Symbol><Decimal>0</Decimal><Symbol>)</Symbol><br/>
+<Normal Text>      </Normal Text><Control Flow>else</Control Flow><br/>
+<Normal Text>        </Normal Text><Decimal>0</Decimal><br/>
+<Normal Text>      </Normal Text><Control Flow>end</Control Flow><br/>
+<Normal Text>    </Normal Text><Symbol>}</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>  </Normal Text><Keyword>new</Keyword><Normal Text> </Normal Text><Overloaders>create</Overloaders><Symbol>(</Symbol><Normal Text>env</Normal Text><Symbol>:</Symbol><Data Type>Env</Data Type><Symbol>)</Symbol><Normal Text> </Normal Text><Symbol>=></Symbol><br/>
+<Normal Text>    </Normal Text><Keyword>var</Keyword><Normal Text> f </Normal Text><Symbol>=</Symbol><Normal Text> foo</Normal Text><Symbol>(</Symbol><Decimal>5</Decimal><Symbol>)</Symbol><br/>
+<Normal Text>    env</Normal Text><Symbol>.</Symbol><Normal Text>out</Normal Text><Symbol>.</Symbol><Normal Text>print</Normal Text><Symbol>(</Symbol><Normal Text>f</Normal Text><Symbol>(</Symbol><Decimal>10</Decimal><Symbol>).</Symbol><Normal Text>string</Normal Text><Symbol>())</Symbol><br/>
+<Normal Text>    env</Normal Text><Symbol>.</Symbol><Normal Text>out</Normal Text><Symbol>.</Symbol><Normal Text>print</Normal Text><Symbol>(</Symbol><Normal Text>f</Normal Text><Symbol>(</Symbol><Decimal>20</Decimal><Symbol>).</Symbol><Normal Text>string</Normal Text><Symbol>())</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Comment>/* nested /* commentary */ */</Comment><br/>
+<Comment>// single comment</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>class</Keyword><Normal Text> </Normal Text><Data Type>A</Data Type><br/>
+<Keyword>class</Keyword><Normal Text> </Normal Text><Data Type>_A</Data Type><br/>
+<Normal Text>x'</Normal Text><br/>
+<Normal Text>x''</Normal Text><br/>
+<Normal Text>x'</Normal Text><Symbol>.</Symbol><Normal Text>string</Normal Text><Symbol>()</Symbol><br/>
+<Special Char>'\uaaaa'</Special Char><br/>
+<Special Char>'\Ubbbbbb'</Special Char><br/>
+<Special Char>'\xcc'</Special Char><br/>
+<Special Char>'\''</Special Char><br/>
+<Special Char>'\n'</Special Char><br/>
+<String>"</String><Special Char>\uaaaa</Special Char><String>a"</String><br/>
+<String>"</String><Special Char>\Ubbbbbb</Special Char><String>b"</String><br/>
+<String>"</String><Special Char>\xcc</Special Char><String>c"</String><br/>
+<String>"</String><Special Char>\"</Special Char><String>"</String><br/>
+<String>"</String><Special Char>\n</Special Char><String>"</String><br/>
+<Float>34.4</Float><br/>
+<Float>34.4e43</Float><br/>
+<Float>43e4</Float><br/>
+<Hex>0x3040</Hex><br/>
+<Hex>0xaF</Hex><br/>
+<Binary>0b01</Binary><br/>
+<Decimal>3_43_4</Decimal><br/>
+<Hex>0x0_4</Hex><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>fun</Keyword><Normal Text> </Normal Text><Function>create</Function><Symbol>():</Symbol><Normal Text> </Normal Text><Data Type>U32</Data Type><Normal Text> </Normal Text><Symbol>=></Symbol><Normal Text> </Normal Text><Decimal>0</Decimal><br/>
+<Keyword>fun</Keyword><Normal Text> </Normal Text><Capability>iso</Capability><Normal Text> </Normal Text><Function>create</Function><Symbol>():</Symbol><Normal Text> </Normal Text><Data Type>U32</Data Type><Normal Text> </Normal Text><Symbol>=></Symbol><Normal Text> </Normal Text><Decimal>0</Decimal><br/>
+<Keyword>fun</Keyword><Normal Text> </Normal Text><Attributes>\\ abc \\</Attributes><Normal Text>  </Normal Text><Capability>iso</Capability><Normal Text> </Normal Text><Function>create</Function><Symbol>():</Symbol><Normal Text> </Normal Text><Data Type>U32</Data Type><Normal Text> </Normal Text><Symbol>=></Symbol><Normal Text> </Normal Text><Decimal>0</Decimal><br/>
+<Keyword>class</Keyword><Normal Text> </Normal Text><Attributes>\\ packet, blah \\</Attributes><Normal Text> </Normal Text><Capability>iso</Capability><Normal Text> </Normal Text><Data Type>Xyz</Data Type><br/>
+<Control Flow>if</Control Flow><Normal Text> </Normal Text><Attributes>\\ likely \\</Attributes><Normal Text> a </Normal Text><Control Flow>then</Control Flow><br/>
+<Control Flow>end</Control Flow><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>a</Normal Text><Symbol>.</Symbol><Normal Text>endnormal</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>print</Normal Text><Symbol>();</Symbol><Normal Text>print</Normal Text><Symbol>()</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Comment>/* syntactically false: */</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>class</Keyword><Normal Text> </Normal Text><Error>_aA</Error><br/>
+<Keyword>class</Keyword><Normal Text> </Normal Text><Error>_a</Error><br/>
+<Keyword>class</Keyword><Normal Text> </Normal Text><Error>a</Error><br/>
+<Error>0b2332</Error><br/>
+<Error>0b</Error><br/>
+<Error>0x</Error><br/>
+<Error>0xgf</Error><br/>
+<Error>0f00</Error><br/>
+<Error>3.</Error><br/>
+<Error>.3</Error><br/>
+<Error>3.</Error><Normal Text>e3</Normal Text><br/>
+<Error>3_</Error><br/>
+<Error>3__43_4</Error><br/>
+<Error>''</Error><br/>
+<Error>'</Error><Normal Text>\u'</Normal Text><br/>
+<Error>'</Error><Normal Text>\ua'</Normal Text><br/>
+<Error>'</Error><Normal Text>\uaaa'</Normal Text><br/>
+<Error>'</Error><Normal Text>\uaaaaa'</Normal Text><br/>
+<Error>'</Error><Normal Text>\uyyyy'</Normal Text><br/>
+<String>"</String><Error>\u</Error><String>"</String><br/>
+<String>"</String><Error>\u</Error><String>a"</String><br/>
+<String>"</String><Error>\u</Error><String>aaa"</String><br/>
+<String>"</String><Error>\u</Error><String>yyyy"</String><br/>
+<Normal Text>a</Normal Text><Error>'</Error><Normal Text>a</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>class</Keyword><Normal Text> </Normal Text><Error>badType</Error><br/>
+<Normal Text>print</Normal Text><Symbol>()</Symbol><Error>;</Error><br/>

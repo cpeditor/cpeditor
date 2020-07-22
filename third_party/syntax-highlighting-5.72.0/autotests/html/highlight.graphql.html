@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title>highlight.graphql</title>
+<meta name="generator" content="KF5::SyntaxHighlighting (GraphQL)"/>
+</head><body style="color:#1f1c1b"><pre>
+<span style="color:#898887;"># Examples taken from https://graphql.org/learn/schema/#type-language</span>
+<span style="color:#898887;">#</span>
+<span style="color:#898887;"># Alerts: </span><span style="color:#ca9219;background-color:#451e1a;font-weight:bold;">TODO</span><span style="color:#898887;"> </span><span style="color:#ca9219;background-color:#451e1a;font-weight:bold;">FIXME</span>
+
+<span style="font-weight:bold;">query</span> Hero(<span style="color:#0057ae;">$episode</span>: Episode, <span style="color:#0057ae;">$withFriends</span>: <span style="color:#0057ae;">Boolean</span>!) {
+  hero(episode: <span style="color:#0057ae;">$episode</span>) {
+    name
+    friends <span style="color:#0057ae;">@include</span>(if: <span style="color:#0057ae;">$withFriends</span>) {
+    }
+  }
+}
+
+<span style="font-weight:bold;">query</span> {
+  droid(id: <span style="color:#bf0303;">&quot;2000&quot;</span>, num: <span style="color:#b08000;">42</span>, active: <span style="color:#aa5500;">true</span>) {
+    name
+  }
+}
+
+<span style="font-weight:bold;">type</span> Person <span style="color:#0057ae;">@addExternalFields</span>(source: <span style="color:#bf0303;">&quot;profiles&quot;</span>) <span style="color:#0057ae;">@excludeField</span>(name: <span style="color:#bf0303;">&quot;photo&quot;</span>) {
+  name: <span style="color:#0057ae;">String</span>
+}
+
+<span style="color:#898887;"># block strings (from https://github.com/graphql/graphql-spec/blob/master/spec/Section%202%20--%20Language.md)</span>
+
+<span style="color:#bf0303;">&quot;&quot;&quot;</span>
+<span style="color:#bf0303;">This starts with and ends with an empty line,</span>
+<span style="color:#bf0303;">which makes it easier to read.</span>
+<span style="color:#bf0303;">&quot;&quot;&quot;</span>
+
+<span style="color:#bf0303;">&quot;&quot;&quot;This does not start with or end with any empty lines,</span>
+<span style="color:#bf0303;">which makes it a little harder to read.&quot;&quot;&quot;</span>
+</pre></body></html>

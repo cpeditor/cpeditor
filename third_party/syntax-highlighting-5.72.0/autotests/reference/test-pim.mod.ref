@@ -1,0 +1,90 @@
+<Comment>(* PIM Modula-2 Syntax highlighting test *)</Comment><br/>
+<Plain Source></Plain Source><br/>
+<Comment>(* dialect tags *)</Comment><br/>
+<Plain Source></Plain Source><br/>
+<DialectTag>(*!m2pim*)</DialectTag><br/>
+<Plain Source></Plain Source><br/>
+<Plain Source></Plain Source><br/>
+<Comment>(* pragmas *)</Comment><br/>
+<Plain Source></Plain Source><br/>
+<Pragma>(*$foo*)</Pragma><br/>
+<Plain Source></Plain Source><br/>
+<Plain Source></Plain Source><br/>
+<Comment>(* foldable comments *)</Comment><br/>
+<Plain Source></Plain Source><br/>
+<Comment>(* foo bar baz</Comment><br/>
+<Comment>   (* nested comment *)</Comment><br/>
+<Comment>   bam boo bee bop *)</Comment><br/>
+<Plain Source></Plain Source><br/>
+<Plain Source></Plain Source><br/>
+<Comment>(* reserved words *)</Comment><br/>
+<Plain Source></Plain Source><br/>
+<Keyword>AND</Keyword><Plain Source> </Plain Source><Keyword>ARRAY</Keyword><Plain Source> </Plain Source><Keyword>BEGIN</Keyword><Plain Source> </Plain Source><Keyword>BY</Keyword><Plain Source> </Plain Source><Keyword>CASE</Keyword><Plain Source> </Plain Source><Keyword>CONST</Keyword><Plain Source> </Plain Source><Keyword>DEFINITION</Keyword><Plain Source> </Plain Source><Keyword>DIV</Keyword><Plain Source> </Plain Source><Keyword>DO</Keyword><Plain Source> </Plain Source><Keyword>ELSE</Keyword><Plain Source> </Plain Source><Keyword>ELSIF</Keyword><Plain Source> </Plain Source><Keyword>END</Keyword><Plain Source> </Plain Source><Keyword>EXIT</Keyword><Plain Source> </Plain Source><Keyword>EXPORT</Keyword><Plain Source> </Plain Source><Keyword>FOR</Keyword><br/>
+<Keyword>FROM</Keyword><Plain Source> </Plain Source><Keyword>IF</Keyword><Plain Source> </Plain Source><Keyword>IMPLEMENTATION</Keyword><Plain Source> </Plain Source><Keyword>IMPORT</Keyword><Plain Source> </Plain Source><Keyword>IN</Keyword><Plain Source> </Plain Source><Keyword>LOOP</Keyword><Plain Source> </Plain Source><Keyword>MOD</Keyword><Plain Source> </Plain Source><Keyword>MODULE</Keyword><Plain Source> </Plain Source><Keyword>NOT</Keyword><Plain Source> </Plain Source><Keyword>OF</Keyword><Plain Source> </Plain Source><Keyword>OR</Keyword><Plain Source> </Plain Source><Keyword>POINTER</Keyword><Plain Source> </Plain Source><Keyword>PROCEDURE</Keyword><br/>
+<Keyword>QUALIFIED</Keyword><Plain Source> </Plain Source><Keyword>RECORD</Keyword><Plain Source> </Plain Source><Keyword>REPEAT</Keyword><Plain Source> </Plain Source><Keyword>RETURN</Keyword><Plain Source> </Plain Source><Keyword>SET</Keyword><Plain Source> </Plain Source><Keyword>THEN</Keyword><Plain Source> </Plain Source><Keyword>TO</Keyword><Plain Source> </Plain Source><Keyword>TYPE</Keyword><Plain Source> </Plain Source><Keyword>UNTIL</Keyword><Plain Source> </Plain Source><Keyword>VAR</Keyword><Plain Source> </Plain Source><Keyword>WHILE</Keyword><Plain Source> </Plain Source><Keyword>WITH</Keyword><br/>
+<Plain Source></Plain Source><br/>
+<Plain Source></Plain Source><br/>
+<Comment>(* built-in constants *)</Comment><br/>
+<Plain Source></Plain Source><br/>
+<Const>FALSE</Const><Plain Source> </Plain Source><Const>NIL</Const><Plain Source> </Plain Source><Const>TRUE</Const><br/>
+<Plain Source></Plain Source><br/>
+<Plain Source></Plain Source><br/>
+<Comment>(* built-in types *)</Comment><br/>
+<Plain Source></Plain Source><br/>
+<Type>BOOLEAN</Type><Plain Source> </Plain Source><Type>BITSET</Type><Plain Source> </Plain Source><Type>CARDINAL</Type><Plain Source> </Plain Source><Type>CHAR</Type><Plain Source> </Plain Source><Type>INTEGER</Type><Plain Source> </Plain Source><Type>LONGINT</Type><Plain Source> </Plain Source><Type>LONGREAL</Type><Plain Source> </Plain Source><Type>PROC</Type><Plain Source> </Plain Source><Type>REAL</Type><br/>
+<Plain Source></Plain Source><br/>
+<Plain Source></Plain Source><br/>
+<Comment>(* built-in procedures *)</Comment><br/>
+<Plain Source></Plain Source><br/>
+<Builtin>ABS</Builtin><Plain Source> </Plain Source><Builtin>ALLOCATE</Builtin><Plain Source> </Plain Source><Builtin>CAP</Builtin><Plain Source> </Plain Source><Builtin>CHR</Builtin><Plain Source> </Plain Source><Builtin>DEALLOCATE</Builtin><Plain Source> </Plain Source><Builtin>DEC</Builtin><Plain Source> </Plain Source><Builtin>DISPOSE</Builtin><Plain Source> </Plain Source><Builtin>EXCL</Builtin><Plain Source> </Plain Source><Builtin>FLOAT</Builtin><Plain Source> </Plain Source><Builtin>HALT</Builtin><Plain Source> </Plain Source><Builtin>HIGH</Builtin><br/>
+<Builtin>INC</Builtin><Plain Source> </Plain Source><Builtin>INCL</Builtin><Plain Source> </Plain Source><Builtin>MAX</Builtin><Plain Source> </Plain Source><Builtin>MIN</Builtin><Plain Source> </Plain Source><Builtin>NEW</Builtin><Plain Source> </Plain Source><Builtin>ODD</Builtin><Plain Source> </Plain Source><Builtin>ORD</Builtin><Plain Source> </Plain Source><Builtin>SIZE</Builtin><Plain Source> </Plain Source><Builtin>TRUNC</Builtin><Plain Source> </Plain Source><Builtin>VAL</Builtin><br/>
+<Plain Source></Plain Source><br/>
+<Plain Source></Plain Source><br/>
+<Comment>(* unsafe facilities *)</Comment><br/>
+<Plain Source></Plain Source><br/>
+<Comment>(* module *)</Comment><br/>
+<Plain Source></Plain Source><br/>
+<Unsafe>SYSTEM</Unsafe><br/>
+<Plain Source></Plain Source><br/>
+<Comment>(* types *)</Comment><br/>
+<Plain Source></Plain Source><br/>
+<Unsafe>ADDRESS</Unsafe><Plain Source> </Plain Source><Unsafe>WORD</Unsafe><Plain Source> </Plain Source><Unsafe>PROCESS</Unsafe><br/>
+<Plain Source></Plain Source><br/>
+<Comment>(* procedures *)</Comment><br/>
+<Plain Source></Plain Source><br/>
+<Unsafe>ADR</Unsafe><Plain Source> </Plain Source><Unsafe>NEWPROCESS</Unsafe><Plain Source> </Plain Source><Unsafe>TRANSFER</Unsafe><Plain Source> </Plain Source><Unsafe>TSIZE</Unsafe><br/>
+<Plain Source></Plain Source><br/>
+<Plain Source></Plain Source><br/>
+<Comment>(* number literals *)</Comment><br/>
+<Plain Source></Plain Source><br/>
+<Keyword>CONST</Keyword><br/>
+<Plain Source>  n = </Plain Source><Number>1000</Number><Plain Source>; r = </Plain Source><Number>1.234</Number><Plain Source>; x = </Plain Source><Number>0FFFFH</Number><Plain Source>; c = </Plain Source><Number>077C</Number><Plain Source>;</Plain Source><br/>
+<Plain Source></Plain Source><br/>
+<Plain Source></Plain Source><br/>
+<Comment>(* quoted literals *)</Comment><br/>
+<Plain Source></Plain Source><br/>
+<Keyword>CONST</Keyword><br/>
+<Plain Source>  apostrophe = </Plain Source><String>"'"</String><Plain Source>; doublequote = </Plain Source><String>'"'</String><Plain Source>;</Plain Source><br/>
+<Plain Source>  single =</Plain Source><String>'foobar'</String><Plain Source>; double = </Plain Source><String>"bazbam"</String><Plain Source>;</Plain Source><br/>
+<Plain Source></Plain Source><br/>
+<Plain Source></Plain Source><br/>
+<Comment>(* sample code *)</Comment><br/>
+<Plain Source></Plain Source><br/>
+<Keyword>TYPE</Keyword><Plain Source> Foo = </Plain Source><Keyword>RECORD</Keyword><br/>
+<Plain Source>  bar : Baz;</Plain Source><br/>
+<Plain Source>  bam : Boo</Plain Source><br/>
+<Keyword>END</Keyword><Plain Source>; </Plain Source><Comment>(* Foobar *)</Comment><br/>
+<Plain Source></Plain Source><br/>
+<Plain Source></Plain Source><br/>
+<Keyword>VAR</Keyword><br/>
+<Plain Source>  foo, bar, baz : </Plain Source><Type>CARDINAL</Type><Plain Source>;</Plain Source><br/>
+<Plain Source></Plain Source><br/>
+<Plain Source></Plain Source><br/>
+<Keyword>IF</Keyword><Plain Source> foo > bar </Plain Source><Keyword>THEN</Keyword><br/>
+<Plain Source>  baz := bam</Plain Source><br/>
+<Keyword>ELSE</Keyword><br/>
+<Plain Source>  baz := boo</Plain Source><br/>
+<Keyword>END</Keyword><Plain Source>;</Plain Source><br/>
+<Plain Source></Plain Source><br/>
+<Plain Source></Plain Source><br/>
+<Comment>(* EOF *)</Comment><br/>

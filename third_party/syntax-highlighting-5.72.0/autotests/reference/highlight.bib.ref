@@ -1,0 +1,31 @@
+<Comment>% test file for kate's bibtex syntax highlighting</Comment><br/>
+<Comment></Comment><br/>
+<Entry>@Article</Entry><Normal Text>{</Normal Text><Ref Key>artikel</Ref Key><Normal Text>,</Normal Text><br/>
+<Field>author</Field><Normal Text> = {Me},</Normal Text><br/>
+<Field>title</Field><Normal Text> = {Something},</Normal Text><br/>
+<Field>journal</Field><Normal Text> = {JHEP},</Normal Text><br/>
+<Field>year</Field><Normal Text> = {2003},</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Comment></Comment><br/>
+<Entry>@Book</Entry><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>{</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Ref Key>boek</Ref Key><Normal Text>,</Normal Text><br/>
+<Field>author</Field><Normal Text> = "</Normal Text><String>Someone</String><Normal Text>",</Normal Text><br/>
+<Field>title</Field><Normal Text> = "</Normal Text><String>Something</String><Normal Text>",</Normal Text><br/>
+<Field>journal</Field><Normal Text> = "</Normal Text><String>Nucl. Phys. B</String><Normal Text>",</Normal Text><br/>
+<Field>year</Field><Normal Text> = "</Normal Text><String>2003</String><Normal Text>",</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Comment></Comment><br/>
+<Comment>This is ignored by BibTeX, no special highlighting</Comment><br/>
+<Comment>%This is not a comment, it is just ignored (thanks to the people in #latex) :)</Comment><br/>
+<Comment></Comment><br/>
+<Command>@string</Command><Normal Text>{test="lange string die ik niet vaak opnieuw wil intikken"</Normal Text><Comment>}</Comment><br/>
+<Comment></Comment><br/>
+<Entry>@PhdThesis</Entry><Normal Text>{</Normal Text><Ref Key>thesis</Ref Key><Normal Text>,</Normal Text><br/>
+<Field>author</Field><Normal Text> = {Me},</Normal Text><br/>
+<Field>title</Field><Normal Text> = {Dunno},</Normal Text><br/>
+<Field>school</Field><Normal Text> = {ITFA},</Normal Text><br/>
+<Field>year</Field><Normal Text> = {2005, hopefully},</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>

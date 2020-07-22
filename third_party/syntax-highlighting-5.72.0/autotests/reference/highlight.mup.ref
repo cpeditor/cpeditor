@@ -1,0 +1,103 @@
+<Comment>// This is a MUP highlighting test.</Comment><br/>
+<Comment>// Mup is a shareware music publisher from www.arkkra.com</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Comment>// contexts</Comment><br/>
+<Context>score</Context><br/>
+<Context>music</Context><br/>
+<Context>staff</Context><Normal Text> 1</Normal Text><br/>
+<Context>voice</Context><Normal Text> 1 3</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Context>top</Context><br/>
+<Context>top2</Context><br/>
+<Context>bottom</Context><br/>
+<Context>bottom2</Context><br/>
+<Context>grids</Context><br/>
+<Normal Text></Normal Text><br/>
+<Context>headshapes</Context><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Context>header</Context><br/>
+<Context>footer</Context><br/>
+<Context>header2</Context><br/>
+<Context>footer2</Context><br/>
+<Normal Text></Normal Text><br/>
+<Comment>// parameters and values</Comment><br/>
+<Context>score</Context><br/>
+<Normal Text>	</Normal Text><Parameter>units </Parameter><Normal Text>= </Normal Text><Value>cm</Value><Normal Text>;</Normal Text><br/>
+<Normal Text>	</Normal Text><Parameter>key </Parameter><Normal Text>= </Normal Text><Value>3#minor</Value><br/>
+<Normal Text>	</Normal Text><Parameter>key </Parameter><Normal Text>= </Normal Text><Value>3#</Value><Normal Text> </Normal Text><Value>minor</Value><br/>
+<Normal Text>	</Normal Text><Parameter>rehstyle</Parameter><Normal Text>=</Normal Text><Value>circled</Value><Normal Text> </Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Print Command>mussym</Print Command><Note> </Note><Print Command>above</Print Command><Normal Text> </Normal Text><Print Command>all</Print Command><Normal Text>: </Normal Text><Note>1 </Note><String>"ferm"</String><Note> </Note><Normal Text>;</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Macro>define</Macro><Note> </Note><Macro>NAME</Macro><br/>
+<Comment>// this is a macro definition, these are collapsable</Comment><br/>
+<Macro>@</Macro><br/>
+<Normal Text></Normal Text><br/>
+<Macro>ifdef</Macro><Note> </Note><Macro>NAME</Macro><br/>
+<Comment>// this is conditionally "compiled"</Comment><br/>
+<Macro>endif</Macro><br/>
+<Normal Text></Normal Text><br/>
+<Macro>ifndef</Macro><Note> </Note><Macro>NAME</Macro><br/>
+<Comment>// this is conditionally "compiled" when the macro has not been defined</Comment><br/>
+<Macro>else</Macro><br/>
+<Comment>// else clause</Comment><br/>
+<Macro>endif</Macro><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment>// Various Tests </Comment><br/>
+<Normal Text></Normal Text><br/>
+<Comment>// tablature</Comment><br/>
+<Normal Text>1: </Normal Text><Note>e </Note><Normal Text>^</Normal Text><Note>f</Note><Normal Text>; </Normal Text><Note>f</Note><Normal Text>; </Normal Text><Note>b </Note><Normal Text>^</Normal Text><Note>c5</Note><Normal Text>; </Normal Text><Note>c#5</Note><Normal Text>;</Normal Text><br/>
+<Barline>bar</Barline><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>1: </Normal Text><Note>d+</Note><Normal Text>^</Normal Text><Note>e+ g</Note><Normal Text>^</Normal Text><Note>a</Note><Normal Text>; </Normal Text><Note>e+a</Note><Normal Text>; </Normal Text><Note>g </Note><Normal Text>^/; </Normal Text><Note>c </Note><Normal Text>^/ </Normal Text><Note>c+</Note><Normal Text>^/;</Normal Text><br/>
+<Barline>bar</Barline><br/>
+<Normal Text></Normal Text><br/>
+<Comment>// cross-staff stems</Comment><br/>
+<Normal Text>1: </Normal Text><Note>1e+g+c++</Note><Normal Text>;</Normal Text><br/>
+<Normal Text>2: </Normal Text><Note>cc+</Note><Normal Text>; </Normal Text><Note>ee+</Note><Normal Text>; </Normal Text><Note>g </Note><Print Command>with</Print Command><Normal Text> </Normal Text><Note>g+ </Note><Print Command>above</Print Command><Normal Text>;</Normal Text><Note> </Note><Print Command>with</Print Command><Normal Text> </Normal Text><Note>c+c++ </Note><Print Command>above</Print Command><Normal Text>;</Normal Text><br/>
+<Barline>bar</Barline><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>1: 2+</Normal Text><Note>4ceg</Note><Normal Text>;</Normal Text><Note>4</Note><Normal Text>;    </Normal Text><Comment>// tie implied by added time values</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Comment>// slurs</Comment><br/>
+<Normal Text>1: </Normal Text><Note>2f</Note><Note Attribute><d></Note Attribute><Normal Text> </Normal Text><Note>a</Note><Note Attribute><b></Note Attribute><Normal Text> </Normal Text><Note>c+</Note><Note Attribute><d+></Note Attribute><Normal Text>; </Normal Text><Note>dbd+</Note><Normal Text>;</Normal Text><br/>
+<Barline>bar</Barline><br/>
+<Normal Text>1: </Normal Text><Note>2fac+ </Note><Note Attribute>slur</Note Attribute><Normal Text>; </Normal Text><Note>dbd+</Note><Normal Text>;</Normal Text><br/>
+<Barline>bar</Barline><br/>
+<Normal Text></Normal Text><br/>
+<Comment>// alternation</Comment><br/>
+<Normal Text>1: </Normal Text><Note>2c </Note><Note Attribute>alt 2</Note Attribute><Normal Text>; </Normal Text><Note>2c+</Note><Normal Text>;</Normal Text><Note>2g</Note><Normal Text>;</Normal Text><br/>
+<Barline>bar</Barline><br/>
+<Normal Text></Normal Text><br/>
+<Comment>// bar to draw if repeatstart happens to be on new line</Comment><br/>
+<Normal Text>(</Normal Text><Barline>dblbar</Barline><Normal Text>) </Normal Text><Barline>repeatstart</Barline><br/>
+<Normal Text>1: </Normal Text><Special Char>[</Special Char><Note Attribute>up</Note Attribute><Special Char>]</Special Char><Note>8f </Note><Note Attribute>bm with staff below</Note Attribute><Normal Text>;</Normal Text><Note>a</Note><Normal Text>;</Normal Text><Note>4s </Note><Note Attribute>ebm</Note Attribute><Normal Text>;</Normal Text><Note>4s </Note><Note Attribute>bm with staff below</Note Attribute><Normal Text>;</Normal Text><Note>8b</Note><Normal Text>;</Normal Text><Special Char>[</Special Char><Note Attribute>len 11</Note Attribute><Special Char>]</Special Char><Note>d </Note><Note Attribute>ebm</Note Attribute><Normal Text>;</Normal Text><br/>
+<Normal Text>2: </Normal Text><Note>4s </Note><Note Attribute>bm with staff above</Note Attribute><Normal Text>;</Normal Text><Note>8a</Note><Normal Text>;</Normal Text><Note>b </Note><Note Attribute>ebm</Note Attribute><Normal Text>;</Normal Text><Special Char>[</Special Char><Note Attribute>down</Note Attribute><Normal Text>;</Normal Text><Note Attribute>len 14</Note Attribute><Special Char>]</Special Char><Note>b </Note><Note Attribute>bm with staff above</Note Attribute><Normal Text>;</Normal Text><Note>d</Note><Normal Text>;</Normal Text><Note>4s </Note><Note Attribute>ebm</Note Attribute><Normal Text>;</Normal Text><br/>
+<Barline>bar</Barline><br/>
+<Normal Text></Normal Text><br/>
+<Comment>// locations</Comment><br/>
+<Normal Text>3: </Normal Text><Note>2cf</Note><Normal Text>; </Normal Text><Special Char>[</Special Char><Location>=h</Location><Special Char>]</Special Char><Normal Text> </Normal Text><Note>egc+</Note><Normal Text>;</Normal Text><br/>
+<Normal Text>1: </Normal Text><Special Char>[</Special Char><Note Attribute>cue</Note Attribute><Normal Text>; </Normal Text><Note Attribute>with ></Note Attribute><Normal Text>; </Normal Text><Location>=_ch</Location><Special Char>]</Special Char><Normal Text> </Normal Text><Note>fa</Note><Normal Text>;</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Print Command>roll</Print Command><Normal Text> </Normal Text><Print Command>up</Print Command><Normal Text> 1 1 </Normal Text><Print Command>to</Print Command><Normal Text> 1 2: </Normal Text><Note>2</Note><Normal Text>; </Normal Text><Note>4</Note><Normal Text>;</Normal Text><br/>
+<Print Command>roll</Print Command><Normal Text> </Normal Text><Print Command>down</Print Command><Normal Text> 1 1 </Normal Text><Print Command>to</Print Command><Normal Text> 1 2: </Normal Text><Note>2</Note><Normal Text>; </Normal Text><Note>4</Note><Normal Text>;</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Lyrics>lyrics</Lyrics><Note> </Note><Print Command>above</Print Command><Normal Text> 1,3</Normal Text><Note> </Note><Normal Text>; </Normal Text><Print Command>below</Print Command><Normal Text> 2,</Normal Text><Note>4 </Note><Normal Text>; </Normal Text><Print Command>between</Print Command><Normal Text> 5&6 :</Normal Text><Note> </Note><String>"</String><String Lyrics><</String Lyrics><String>1.  </String><String Lyrics>></String Lyrics><String>Hi, hi"</String><Normal Text>;</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Print Command>title </Print Command><String>"page </String><String Special>\%</String Special><String> of </String><String Special>\#</String Special><String>"</String><br/>
+<Normal Text></Normal Text><br/>
+<Comment>// shaped whole rests</Comment><br/>
+<Normal Text>1:	</Normal Text><Note>4mr</Note><Normal Text>;   </Normal Text><Comment>// use a quarter rest symbol</Comment><br/>
+<Normal Text>1:	</Normal Text><Note>1/4mr</Note><Normal Text>;  </Normal Text><Comment>// use a quadruple whole rest symbol</Comment><br/>
+<Normal Text>2:	2.. </Normal Text><Note>mr</Note><Normal Text>;  </Normal Text><Comment>// use a double-dotted half rest</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Comment>// tuplets</Comment><br/>
+<Normal Text>1: </Normal Text><Special Char>{</Special Char><Note>4f</Note><Normal Text>; </Normal Text><Note>g</Note><Normal Text>;</Normal Text><Special Char>}</Special Char><Tuplet>3n</Tuplet><Error>um</Error><Normal Text>,4.+2.</Normal Text><br/>
+<Barline>bar</Barline><br/>
+<Normal Text></Normal Text><br/>

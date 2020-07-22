@@ -1,0 +1,600 @@
+<beginfold id='1'>---</beginfold id='1'>
+Title:    A Sample Markdown Document
+Author:   Fletcher T. Penney
+Date:     February 9, 2011
+Comment:  This is a comment intended to demonstrate 
+          metadata that spans multiple lines.
+<endfold id='1'>---</endfold id='1'>
+
+# H1
+
+## H2
+
+### H3
+
+Multi-line paragraph bla bla bla
+bla bla bla.
+
+Intentional line break  
+via two spaces at line.
+
+Formats: _italic_, **bold**, `monospace`, ~~strikeout~~
+
+Bullet list:
+
+* item1
+* item2
+
+Numbered list:
+
+1. item 1
+2. item 2
+
+Task list:
+
+- [x] Finish my changes
+- [ ] Push my commits
+- [ ] Open a pull request
+
+A link as normal text: http://example.com
+
+[link](http://kde.org)
+
+Auto-link: <http://kate-editor.org>
+Mail: <mailto:mark@kde.org>
+
+This is [an example](http://example.com/ "Title") inline link.
+
+See my [About](/about/) page for details.
+
+This is [an example] [id] reference-style link.
+
+[id]: http://example.com/  "Optional Title Here"
+[foo]: http://example.com/ 'Optional Title Here'
+[bar]: http://example.com/ (Optional Title Here)
+[id2]: <http://example.com/>  "Optional Title Here"
+
+![Alt text](/path/to/img.jpg)
+
+![Alt text](/path/to/img.jpg "Optional title")
+
+[![Alt text](https://url/to/img.svg)](https://link.com/example/)
+
+    code 1
+    code 2
+
+normal text
+
+> block quote _italic_
+> more block quote
+
+normal text
+
+Title: some text
+
+normal text
+
+# Lists
+
+1. item
+   * This is a list item
+     with multiple lines.
+     <beginfold id='3'></beginfold id='3'>```
+     code
+     <endfold id='3'>```</endfold id='3'>
+
+     > This is a
+     blockquote
+
+     This is a new paragraph, which
+     is part of the item in the
+     previous list.
+
+         indented code block
+
+       Other paragraph.
+
+     * subitem
+       * subitem
+         with multiple
+            lines.
+
+         New paragraph of
+         the previous subitem.
+
+             code block
+
+          -----------------------
+
+            Other paragraph of
+            the subitem.
+
+          30. numlist item
+          31. numlist item
+
+                 New paragraph of
+                 the previous item.
+
+                 > Blockquote
+
+                  code block
+  
+              Other paragraph.
+
+# Inline HTML
+
+&copy;
+<strong>bold</strong>
+<code>code</code>
+
+<beginfold id='56'><table</beginfold id='56'>>
+    <tr>
+        <th>a</th>
+        <th>b</th>
+    </tr>
+    <tr>
+        <th><beginfold id='57'><ul</beginfold id='57'>>
+            <li>c</li>
+            <li>d</li>
+        <endfold id='57'></ul</endfold id='57'>></th>
+        <th>e</th>
+    </tr>
+<endfold id='56'></table</endfold id='56'>>
+
+normal text *italic*
+
+# Code
+
+`simple code`
+
+``simple ` code``
+
+```simple `` ` code ```
+
+````simple`code````
+
+normal text
+    normal text
+    normal text
+        normal text
+
+    code blocks are only allowed
+    after an empty line.
+
+* list
+    list
+    
+    normal text
+    
+1. num-list
+    num-list
+
+    normal text
+
+> quote
+    quote
+    
+    code block
+
+normal
+<beginfold id='2'><!--</beginfold id='2'> comment <endfold id='2'>--></endfold id='2'>
+    <!-- code, not comment -->
+    code
+
+normal
+
+<beginfold id='2'>  <!--</beginfold id='2'> coment <endfold id='2'>--></endfold id='2'>
+    code
+
+# Fenced code blocks (bug 356974)
+
+## Bash
+
+<beginfold id='3'></beginfold id='3'>```bash
+#!/usr/bin/env bash
+
+for f in *; <beginfold id='9'>do</beginfold id='9'>
+    echo "$f"
+<endfold id='9'>done</endfold id='9'>
+<endfold id='3'>```</endfold id='3'>
+
+## C++
+
+<beginfold id='3'></beginfold id='3'>```cpp
+#include <QtCore/QObject>
+
+class Q : public QObject <beginfold id='32'>{</beginfold id='32'>
+Q_OBJECT
+public:
+    Q();
+<endfold id='32'>}</endfold id='32'>
+
+Q::Q() :QObject(NULL) <beginfold id='32'>{</beginfold id='32'>
+<endfold id='32'>}</endfold id='32'>
+<endfold id='3'>```</endfold id='3'>
+
+## C
+
+<beginfold id='3'></beginfold id='3'>```c
+#include <stdio.h>
+#include "stdint.h"
+#define SOME_VAR 1
+
+static uint64_t intWithSuffix = 42ull + ~1233L;
+static int octNum = 07232;
+<endfold id='3'>```</endfold id='3'>
+
+## C#  ##
+
+<beginfold id='3'></beginfold id='3'>```csharp
+var arr = new[] <beginfold id='36'>{</beginfold id='36'> 0, 1, 2, 3, 4 <endfold id='36'>}</endfold id='36'>;
+var anon = new <beginfold id='36'>{</beginfold id='36'> Country = "Germany", Inhabitants = 80000000 <endfold id='36'>}</endfold id='36'>;
+<endfold id='3'>```</endfold id='3'>
+
+## CMake
+
+<beginfold id='3'></beginfold id='3'>```cmake
+cmake_minimum_required(VERSION 3.10 FATAL_ERROR)
+
+project (hello_world)
+
+set(QT_MIN_VERSION "5.6.0")
+<endfold id='3'>```</endfold id='3'>
+
+## CSS
+
+<beginfold id='3'></beginfold id='3'>```css
+h1.main::hover <beginfold id='38'>{</beginfold id='38'>
+    font-size: 100;
+    color: green;
+<endfold id='38'>}</endfold id='38'>
+<endfold id='3'>```</endfold id='3'>
+
+## Email
+
+<beginfold id='3'></beginfold id='3'>```email
+From: Konqi Dragon <konqi@kde.org>
+To: All <all@kde.og>
+Subject: highlights
+<endfold id='3'>```</endfold id='3'>
+
+## Go
+
+<beginfold id='3'></beginfold id='3'>```go
+package main
+
+import "fmt"
+
+func main() <beginfold id='41'>{</beginfold id='41'>
+  fmt.Println("Hola, mundo.")
+<endfold id='41'>}</endfold id='41'>
+<endfold id='3'>```</endfold id='3'>
+
+## Haskell
+
+<beginfold id='3'></beginfold id='3'>```haskell
+module Main (main) where
+
+main :: IO ()
+main = putStrLn "Hello, World!"
+<endfold id='3'>```</endfold id='3'>
+
+## HTML
+
+<beginfold id='3'></beginfold id='3'>```html
+<html>
+  <body>
+    <p class="main">Hello world!</p>
+  </body>
+</html>
+<endfold id='3'>```</endfold id='3'>
+
+## Java
+
+<beginfold id='3'></beginfold id='3'>```java
+package fibsandlies;
+import java.util.HashMap;
+
+<beginfold id='111'>/**</beginfold id='111'>
+ * This is an example of a Javadoc comment; Javadoc can compile documentation
+ * from this text. Javadoc comments must immediately precede the class, method, or field being documented.
+ <endfold id='111'>*/</endfold id='111'>
+public class FibCalculator extends Fibonacci implements Calculator <beginfold id='110'>{</beginfold id='110'>
+
+    private static Map<Integer, Integer> memoized = new HashMap<Integer, Integer>();
+    public static void main(String[] args) <beginfold id='110'>{</beginfold id='110'>
+        memoized.put(1, 1);
+        memoized.put(2, 1);
+        System.out.println(fibonacci(12));
+    <endfold id='110'>}</endfold id='110'>
+<endfold id='110'>}</endfold id='110'>
+<endfold id='3'>```</endfold id='3'>
+
+## JavaScript
+
+<beginfold id='3'></beginfold id='3'>```js
+function factorial(n) <beginfold id='43'>{</beginfold id='43'>
+    if (n === 0) <beginfold id='43'>{</beginfold id='43'>
+        return 1;  // 0! = 1
+    <endfold id='43'>}</endfold id='43'>
+    return n * factorial(n - 1);
+<endfold id='43'>}</endfold id='43'>
+<endfold id='3'>```</endfold id='3'>
+
+## JavaScript React (JSX)
+
+<beginfold id='3'></beginfold id='3'>```jsx
+<beginfold id='73'><hello</beginfold id='73'> <endfold id='73'>/></endfold id='73'>
+function Story(props) <beginfold id='72'>{</beginfold id='72'>
+  const SpecificStory = components<beginfold id='71'>[</beginfold id='71'>props.storyType<endfold id='71'>]</endfold id='71'>;
+  return <beginfold id='74'><SpecificStory</beginfold id='74'> story=<beginfold id='75'>{</beginfold id='75'> props.story <endfold id='75'>}</endfold id='75'> attr2="&ref;" attr3="Hello\n" <endfold id='74'>/></endfold id='74'>;
+<endfold id='72'>}</endfold id='72'>
+<endfold id='3'>```</endfold id='3'>
+
+## JSON
+
+<beginfold id='3'></beginfold id='3'>```json
+<beginfold id='113'>[</beginfold id='113'><beginfold id='112'>{</beginfold id='112'>
+    "hello": "world",
+    "count": 1,
+    "bool": true
+<endfold id='112'>}</endfold id='112'><endfold id='113'>]</endfold id='113'>
+<endfold id='3'>```</endfold id='3'>
+
+## Matlab
+
+<beginfold id='3'></beginfold id='3'>```matlab
+% Numbers _____________________________________________
+5, 5.5, .1, 0.1, 0.4e5, 1.2e-5, 5i, 5.3i, 6j, .345+3i
+5', 5.5', .1', 0.1', 0.4e5', 1.2e-5', 5i', 5.3i', 6j', .345+3i'
+<endfold id='3'>```</endfold id='3'>
+
+## Markdown
+
+<beginfold id='3'></beginfold id='3'>```markdown
+**bold** `code`
+> quote
+
+<endfold id='3'>```</endfold id='3'>
+
+## Mustache/Handlebars
+
+<beginfold id='3'></beginfold id='3'>```handlebars
+<beginfold id='85'>{{#movie</beginfold id='85'>}}
+    <beginfold id='89'><div</beginfold id='89'>>
+        <h1>{{title}}</h1>
+        <img src="{{poster}}" alt="{{title}}"/>
+    <endfold id='89'></div</endfold id='89'>>
+    <beginfold id='89'><div</beginfold id='89'>>
+        Rating - {{ratings.critics_rating}}
+    <endfold id='89'></div</endfold id='89'>>
+<endfold id='85'>{{/movie}}</endfold id='85'>
+<endfold id='3'>```</endfold id='3'>
+
+## Perl
+
+<beginfold id='3'></beginfold id='3'>```perl
+my $var = shift;
+
+$var =~ s<beginfold id='118'>/</beginfold id='118'>bla<endfold id='118'></endfold id='118'><beginfold id='120'>/</beginfold id='120'>foo<endfold id='120'>/igs</endfold id='120'>;
+$var =~ s<beginfold id='118'>!</beginfold id='118'>bla<endfold id='118'></endfold id='118'><beginfold id='120'>!</beginfold id='120'>foo<endfold id='120'>!igs</endfold id='120'>;
+$var =~ s<beginfold id='118'>#</beginfold id='118'>bla<endfold id='118'></endfold id='118'><beginfold id='120'>#</beginfold id='120'>foo<endfold id='120'>#igs</endfold id='120'>;
+<endfold id='3'>```</endfold id='3'>
+
+## PHP
+
+<beginfold id='3'></beginfold id='3'>```php
+namespace Application\Controller;
+
+use Zend\Mvc\Controller\AbstractActionController;
+
+class IndexController extends AbstractActionController
+<beginfold id='126'>{</beginfold id='126'>
+<endfold id='126'>}</endfold id='126'>
+<endfold id='3'>```</endfold id='3'>
+
+## Python
+
+<beginfold id='3'></beginfold id='3'>```python
+def addXToY<beginfold id='130'>(</beginfold id='130'>x, y<endfold id='130'>)</endfold id='130'>:
+    total = x + y
+    print total
+<endfold id='3'>```</endfold id='3'>
+
+## QML
+
+<beginfold id='3'></beginfold id='3'>```qml
+Text <beginfold id='133'>{</beginfold id='133'>
+    id: hello
+    width: 100
+    text: "Hello world!"
+<endfold id='133'>}</endfold id='133'>
+<endfold id='3'>```</endfold id='3'>
+
+## R
+
+<beginfold id='3'></beginfold id='3'>```r
+# Declare function “f” with parameters “x”, “y“
+# that returns a linear combination of x and y.
+f <- function(x, y) <beginfold id='134'>{</beginfold id='134'>
+  z <- 3 * x + 4 * y
+  return(z)
+<endfold id='134'>}</endfold id='134'>
+<endfold id='3'>```</endfold id='3'>
+
+## Raku
+
+<beginfold id='3'></beginfold id='3'>```raku
+grammar Parser <beginfold id='135'>{</beginfold id='135'>
+    rule  TOP  <beginfold id='136'>{</beginfold id='136'> I <love> <lang> <endfold id='136'>}</endfold id='136'>
+    token love <beginfold id='136'>{</beginfold id='136'> '♥' | love <endfold id='136'>}</endfold id='136'>
+    token lang <beginfold id='136'>{</beginfold id='136'> < Raku Perl Rust Go Python Ruby > <endfold id='136'>}</endfold id='136'>
+<endfold id='135'>}</endfold id='135'>
+
+say Parser.parse: 'I ♥ Raku';
+
+say 1 #`<beginfold id='138'>«««</beginfold id='138'> blah TODO blah
+here? <endfold id='138'>»»»</endfold id='138'> 2 ;
+say 1 #` ( blah TODO blah
+2 ;
+rx<beginfold id='136'>-</beginfold id='136'> regex <endfold id='136'>-</endfold id='136'>
+<endfold id='3'>```</endfold id='3'>
+
+## Ruby
+
+<beginfold id='3'></beginfold id='3'>```ruby
+require 'Config'
+  <beginfold id='139'>def</beginfold id='139'> CGI::escape(string)
+    string.gsub(/([^ a-zA-Z0-9_.-]+)/n) <beginfold id='139'>do</beginfold id='139'>
+      '%' + $1.unpack('H2' * $1.size).join('%').upcase
+    <endfold id='139'>end</endfold id='139'>.tr(' ', '+')
+  <endfold id='139'>end</endfold id='139'>
+<endfold id='3'>```</endfold id='3'>
+
+## Rust
+
+<beginfold id='3'></beginfold id='3'>```rust
+fn main() <beginfold id='145'>{</beginfold id='145'>
+    println!("Hello world!");
+<endfold id='145'>}</endfold id='145'>
+<endfold id='3'>```</endfold id='3'>
+
+## MySQL
+
+<beginfold id='3'></beginfold id='3'>```mysql
+-- comment
+CREATE TABLE stuff COLUMNS(col1 INT, col2 Varchar);
+SELECT * FROM stuff WHERE id = 'string';
+select * from stuff where id < 0.42;
+Select col1, col2 From stuff Where stuff.col1 IS NOT NuLL;
+<endfold id='3'>```</endfold id='3'>
+
+## TypeScript
+
+<beginfold id='3'></beginfold id='3'>```ts
+class Student <beginfold id='76'>{</beginfold id='76'>
+    fullName: string;
+    constructor(public firstName: string, public middleInitial: string, public lastName: string) <beginfold id='76'>{</beginfold id='76'>
+        this.fullName = firstName + " " + middleInitial + " " + lastName;
+    <endfold id='76'>}</endfold id='76'>
+<endfold id='76'>}</endfold id='76'>
+<endfold id='3'>```</endfold id='3'>
+
+## XML
+
+<beginfold id='3'></beginfold id='3'>```xml
+<beginfold id='152'><tag</beginfold id='152'> attribute="3">
+  <beginfold id='152'><nested</beginfold id='152'><endfold id='152'>/></endfold id='152'>
+</tag<endfold id='152'>></endfold id='152'>
+<endfold id='3'>```</endfold id='3'>
+
+## reStructuredText
+
+<beginfold id='3'></beginfold id='3'>```rst
+Section Header
+==============
+
+.. image:: /path/to/image.jpg
+
+- A bullet list item
+<endfold id='3'>```</endfold id='3'>
+
+## Doxygen
+
+<beginfold id='3'></beginfold id='3'>```doxygen
+a normal member taking two arguments and returning an integer value.
+@param a an integer argument.
+@param s a constant character pointer.
+@see Javadoc_Test()
+@see publicVar()
+@return The test results
+<endfold id='3'>```</endfold id='3'>
+
+## No language specified
+
+<beginfold id='3'></beginfold id='3'>```
+No language is specified, but it should be still rendered as code block.
+<endfold id='3'>```</endfold id='3'>
+
+# Fenced code blocks with more than 3 backticks or tildes
+
+<beginfold id='3'></beginfold id='3'>~~~
+Fenced code block with 3 tildes.
+<endfold id='3'>~~~</endfold id='3'>
+
+<beginfold id='3'></beginfold id='3'>`````````
+Some implementations of Markdown/MultiMarkdown support more than 3 backticks or tildes.
+```
+The block ends with the same amount of backticks.
+<endfold id='3'>`````````</endfold id='3'>
+
+<beginfold id='3'></beginfold id='3'>~~~~~~~~~~~~
+Fenced code block with more tildes.
+<endfold id='3'>~~~~~~~~~~~~</endfold id='3'>
+
+## With languages
+
+<beginfold id='3'></beginfold id='3'>```````html
+<html>
+  <body>
+    <p class="main">Hello world!</p>
+  </body>
+</html>
+``` <beginfold id='48'><!--</beginfold id='48'> <= doesn't end here <endfold id='48'>--></endfold id='48'>
+<endfold id='3'>```````</endfold id='3'>
+
+<beginfold id='3'></beginfold id='3'>~~~bash
+for f in *; <beginfold id='9'>do</beginfold id='9'>
+    echo "$f"
+<endfold id='9'>done</endfold id='9'>
+<endfold id='3'>~~~</endfold id='3'>
+
+<beginfold id='3'></beginfold id='3'>~~~~~~~~~python
+def addXToY<beginfold id='130'>(</beginfold id='130'>x, y<endfold id='130'>)</endfold id='130'>:
+    total = x + y
+    print total
+~~~ # <= doesn't end here
+<endfold id='3'>~~~~~~~~~</endfold id='3'>
+
+# Italic and bold text
+
+**b** *i* __b__ _i_
+***ib*** ___ib___
+**_ib_** __*ib*__
+
+* _italic_ **bold** ***ib*** ~~strikeout~~
+
+> _italic_ **bold** ***ib*** ~~strikeout~~
+
+## Bold
+**bold*___text** normal
+__bold_***text__ normal
+
+## Italic
+*italic _ text* normal
+_italic * text_ normal
+
+## Italic-Bold
+***italic-bold ** italic-bold*** normal
+***bold-italic text **bold-italic text*** normal
+***bold*italic*** normal
+**_bold-italic text_** normal
+
+<beginfold id='2'><!--</beginfold id='2'> A non-space character is required after or before * or _ <endfold id='2'>--></endfold id='2'>
+_ normal text_ * normal text *
+*italic text*normal text*
+*italic text *italic text*
+**bold text**normal text**
+**bold text **bold text**
+
+<beginfold id='2'><!--</beginfold id='2'> A delimiter is required after or before _ <endfold id='2'>--></endfold id='2'>
+aaa**bold text**aaaaa
+aaa__normal text__aaaaa
+пристаням_стремятся_
+
+<beginfold id='2'><!--</beginfold id='2'> Escapes within bold or italic text <endfold id='2'>--></endfold id='2'>
+\*normal text*
+_normal text\_
+**italic text\**
+***only bold\***
+**bold\** bold**

@@ -1,0 +1,103 @@
+// This is a MUP highlighting test.
+// Mup is a shareware music publisher from www.arkkra.com
+
+// contexts
+score
+music
+staff 1
+voice 1 3
+
+top
+top2
+bottom
+bottom2
+grids
+
+headshapes
+
+
+header
+footer
+header2
+footer2
+
+// parameters and values
+score
+	units = cm;
+	key = 3#minor
+	key = 3# minor
+	rehstyle=circled 
+
+
+
+
+mussym above all: 1 "ferm" ;
+
+<beginfold id='1'>define</beginfold id='1'> NAME
+// this is a macro definition, these are collapsable
+<endfold id='1'>@</endfold id='1'>
+
+<beginfold id='1'>ifdef</beginfold id='1'> NAME
+// this is conditionally "compiled"
+<endfold id='1'>endif</endfold id='1'>
+
+<beginfold id='1'>ifndef</beginfold id='1'> NAME
+// this is conditionally "compiled" when the macro has not been defined
+else
+// else clause
+<endfold id='1'>endif</endfold id='1'>
+
+
+// Various Tests 
+
+// tablature
+1: e ^f; f; b ^c5; c#5;
+bar
+
+1: d+^e+ g^a; e+a; g ^/; c ^/ c+^/;
+bar
+
+// cross-staff stems
+1: 1e+g+c++;
+2: cc+; ee+; g with g+ above; with c+c++ above;
+bar
+
+1: 2+4ceg;4;    // tie implied by added time values
+
+// slurs
+1: 2f<d> a<b> c+<d+>; dbd+;
+bar
+1: 2fac+ slur; dbd+;
+bar
+
+// alternation
+1: 2c alt 2; 2c+;2g;
+bar
+
+// bar to draw if repeatstart happens to be on new line
+(dblbar) repeatstart
+1: [up]8f bm with staff below;a;4s ebm;4s bm with staff below;8b;[len 11]d ebm;
+2: 4s bm with staff above;8a;b ebm;[down;len 14]b bm with staff above;d;4s ebm;
+bar
+
+// locations
+3: 2cf; [=h] egc+;
+1: [cue; with >; =_ch] fa;
+
+
+roll up 1 1 to 1 2: 2; 4;
+roll down 1 1 to 1 2: 2; 4;
+
+lyrics above 1,3 ; below 2,4 ; between 5&6 : "<1.  >Hi, hi";
+
+title "page \% of \#"
+
+// shaped whole rests
+1:	4mr;   // use a quarter rest symbol
+1:	1/4mr;  // use a quadruple whole rest symbol
+2:	2.. mr;  // use a double-dotted half rest
+
+// tuplets
+1: {4f; g;}3num,4.+2.
+bar
+

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title>test.jl</title>
+<meta name="generator" content="KF5::SyntaxHighlighting (Julia)"/>
+</head><body style="color:#1f1c1b"><pre>
+<span style="color:#898887;"># Test file for Julia</span>
+
+<span style="color:#898887;"># Comment</span>
+
+<span style="color:#898887;">#= Multi-line</span>
+<span style="color:#898887;">   comment =#</span>
+
+<span style="color:#0057ae;background-color:#e0e9f8;">#BEGIN</span>
+
+<span style="color:#0057ae;background-color:#e0e9f8;">#END</span>
+
+<span style="color:#bf0303;">&quot;&quot;&quot;</span>
+<span style="color:#bf0303;"> Multi-line string</span>
+<span style="color:#bf0303;">&quot;&quot;&quot;</span>
+<span style="color:#ff5500;">```</span>
+<span style="color:#ff5500;"> Multi-line command</span>
+<span style="color:#ff5500;">```</span>
+<span style="color:#bf0303;">raw&quot;string\a\\a&quot;</span>
+
+<span style="font-weight:bold;">let</span> z = zip(<span style="color:#b08000;">1</span>:<span style="color:#b08000;">2</span>, <span style="color:#b08000;">3</span>:<span style="color:#b08000;">4</span>, <span style="color:#b08000;">5</span>:<span style="color:#b08000;">6</span>)
+    <span style="color:#006e28;">@test</span> size(z) == (<span style="color:#b08000;">2</span>,)
+    <span style="color:#006e28;">@test</span> collect(z) == [(<span style="color:#b08000;">1</span>,<span style="color:#b08000;">3</span>,<span style="color:#b08000;">5</span>), (<span style="color:#b08000;">2</span>,<span style="color:#b08000;">4</span>,<span style="color:#b08000;">6</span>)]
+    <span style="color:#006e28;">@test</span> eltype(z) == <span style="color:#0057ae;">Tuple</span>{<span style="color:#0057ae;">Int</span>,<span style="color:#0057ae;">Int</span>,<span style="color:#0057ae;">Int</span>}
+<span style="font-weight:bold;">end</span>
+
+<span style="color:#006e28;">@testset</span> <span style="color:#bf0303;">&quot;generic conversion from Integer&quot;</span> <span style="font-weight:bold;">begin</span>
+    x = rand(<span style="color:#0057ae;">Int128</span>)
+    <span style="color:#006e28;">@test</span> <span style="color:#0057ae;">BigInt</span>(x) % <span style="color:#0057ae;">Int128</span> === x
+    y = rand(<span style="color:#0057ae;">UInt128</span>)
+    <span style="color:#006e28;">@test</span> <span style="color:#0057ae;">BigInt</span>(y) % <span style="color:#0057ae;">UInt128</span> === y
+<span style="font-weight:bold;">end</span>
+
+<span style="color:#006e28;">@testset</span> <span style="color:#bf0303;">&quot;show&quot;</span> <span style="font-weight:bold;">begin</span>
+    <span style="color:#006e28;">@test</span> sprint(show, <span style="color:#0057ae;">BitSet</span>()) == <span style="color:#bf0303;">&quot;BitSet([])&quot;</span>
+    <span style="color:#006e28;">@test</span> sprint(show, <span style="color:#0057ae;">BitSet</span>([<span style="color:#b08000;">1</span>,<span style="color:#b08000;">2</span>,<span style="color:#b08000;">3</span>])) == <span style="color:#bf0303;">&quot;BitSet([1, 2, 3])&quot;</span>
+    show(<span style="color:#0057ae;">IOBuffer</span>(), <span style="color:#0057ae;">BitSet</span>())
+<span style="font-weight:bold;">end</span>
+
+cmd = <span style="color:#ff5500;">`$(Base.julia_cmd()) --depwarn=error --startup-file=no boundscheck_exec.jl`</span>
+<span style="font-weight:bold;">if</span> !success(pipeline(cmd; <span style="color:#aa5500;">stdout</span>=<span style="color:#aa5500;">stdout</span>, <span style="color:#aa5500;">stderr</span>=<span style="color:#aa5500;">stderr</span>))
+    error(<span style="color:#bf0303;">&quot;boundscheck test failed, cmd : $cmd&quot;</span>)
+<span style="font-weight:bold;">end</span>
+
+<span style="color:#006e28;">@test</span> iterate(I, <span style="color:#0057ae;">CartesianIndex</span>(<span style="color:#b08000;">3</span>, typemax(<span style="color:#0057ae;">Int</span>)))[<span style="color:#b08000;">1</span>] == <span style="color:#0057ae;">CartesianIndex</span>(<span style="color:#b08000;">4</span>,typemax(<span style="color:#0057ae;">Int</span>))
+<span style="color:#006e28;">@test</span> iterate(I, <span style="color:#0057ae;">CartesianIndex</span>(<span style="color:#b08000;">4</span>, typemax(<span style="color:#0057ae;">Int</span>)))    === <span style="color:#aa5500;">nothing</span>
+<span style="color:#006e28;">@test_throws</span> <span style="color:#0057ae;">MethodError</span> <span style="color:#aa5500;">write</span>(<span style="color:#0057ae;">IOBuffer</span>(), ASCIIChar(<span style="color:#924c9d;">'x'</span>))
+<span style="color:#006e28;">@test_throws</span> <span style="color:#0057ae;">MethodError</span> <span style="color:#aa5500;">read</span>(<span style="color:#0057ae;">IOBuffer</span>(<span style="color:#924c9d;">'x'</span>), ASCIIChar)
+
+<span style="font-weight:bold;">let</span> header = <span style="color:#bf0303;">&quot;julia [switches] -- [programfile] [args...]&quot;</span>
+    <span style="color:#006e28;">@test</span> startswith(<span style="color:#aa5500;">read</span>(<span style="color:#ff5500;">`$exename -h`</span>, <span style="color:#0057ae;">String</span>), header)
+    <span style="color:#006e28;">@test</span> startswith(<span style="color:#aa5500;">read</span>(<span style="color:#ff5500;">`$exename --help`</span>, <span style="color:#0057ae;">String</span>), header)
+<span style="font-weight:bold;">end</span>
+
+<span style="color:#006e28;">@test</span> isequal(exp(complex( <span style="color:#aa5500;">Inf</span>, <span style="color:#aa5500;">NaN</span>)), complex(-<span style="color:#aa5500;">Inf</span>, <span style="color:#aa5500;">NaN</span>))
+<span style="color:#006e28;">@test</span> isequal(exp(complex( <span style="color:#aa5500;">Inf</span>, <span style="color:#aa5500;">Inf</span>)), complex(-<span style="color:#aa5500;">Inf</span>, <span style="color:#aa5500;">NaN</span>))
+
+<span style="color:#898887;"># Numbers</span>
+<span style="color:#b08000;">0b10</span>
+<span style="color:#b08000;">0o01_70</span>
+<span style="color:#b08000;">0x00000000000000001111__22_2233334444</span>
+-<span style="color:#b08000;">0x0002im</span>
+<span style="color:#b08000;">1.0e10</span>
+<span style="color:#b08000;">0.00025f0</span>
+-<span style="color:#b08000;">1.5__5f0</span>
+<span style="color:#b08000;">0xdeadbeefim</span>
+<span style="color:#b08000;">0x1.8p3</span>
+<span style="color:#b08000;">0x.4p-1</span>
+
+chars = [<span style="color:#924c9d;">'0'</span>, <span style="color:#924c9d;">'1'</span>, <span style="color:#924c9d;">'2'</span>, <span style="color:#924c9d;">'3'</span>, <span style="color:#924c9d;">'a'</span>, <span style="color:#924c9d;">'b'</span>, <span style="color:#924c9d;">'c'</span>, <span style="color:#924c9d;">'d'</span>, <span style="color:#924c9d;">'e'</span>, <span style="color:#924c9d;">'X'</span>, <span style="color:#924c9d;">'Y'</span>, <span style="color:#924c9d;">'Z'</span>,
+         <span style="color:#924c9d;">'𠀋'</span>, <span style="color:#924c9d;">'𠀌'</span>, <span style="color:#924c9d;">'𠀍'</span>, <span style="color:#924c9d;">'🂠'</span>, <span style="color:#924c9d;">'🂡'</span>, <span style="color:#924c9d;">'🂢'</span>, <span style="color:#924c9d;">'🂣'</span>, <span style="color:#924c9d;">'🂮'</span>]
+
+<span style="color:#006e28;">@test</span> docstrings_equal(<span style="color:#006e28;">@doc</span>(ModuleMacroDoc), <span style="color:#bf0303;">doc&quot;I am a module&quot;</span>)
+match(<span style="color:#bf0303;">r&quot;^</span><span style="color:#3daee9;">\s*</span><span style="color:#924c9d;">(?</span><span style="color:#bf0303;">:#</span><span style="color:#924c9d;">|</span><span style="color:#bf0303;">$</span><span style="color:#924c9d;">)</span><span style="color:#bf0303;">&quot;</span>, <span style="color:#bf0303;">&quot;# a comment&quot;</span>)
+</pre></body></html>

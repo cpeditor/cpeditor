@@ -1,0 +1,54 @@
+-- kate: hl SQL (Oracle)
+-- test case shipped with highlighting in bugzilla, LGPL
+
+declare
+  v_nchar NCHAR(12);
+begin
+	q'{adfasdf'sadfasdf j}'{' hkjhkhkjhkjh khlkhklj'fghdfghdfgh'hkjh'jkhkh'a'
+	nQ'(asldflahsl;'dkjfhklsdfh)'
+	Nq'[asdasd;'asdasd'a]sd'asd'asasd]';11111111[1']; asdasdasdasd'errrrrrrrrrrrrrr-p
+
+	nq'agdfgsdfgfhfghjfgh'f'f'sdfg'sdfg'dfg#a' dafdfadasfasdf;
+	v_nchar := n'NCHAR STRING';
+	if_n := 0;
+
+	Q'#gdfgsdfgsdfgsdfgsdfg#' afgasasdfasdfasfasdfasdfasdfasdfsdf
+
+	if sldfjsdj then
+		case
+			when 1=1 then
+				aslfjsldkfj;
+			when 2=2 then
+				asdfg;
+			else
+				null;
+		end case;
+
+		if sdfjh then
+			for i in 1 .. 2
+			LOOP
+				dbms_output.put_line(q';ololo;');
+			END Loop;
+
+			while true
+			loop
+				dbms_output.put_line('1111');
+			end loop;
+		end if;
+		ksjfklasjd;
+		fklj;
+	elsif
+		sdklfjsdklfj;
+	else
+		sdfdfsdf;
+	end if;
+end;
+
+CREATE TABLE Persons (
+    ID int NOT NULL,
+    LastName varchar(255) NOT NULL,
+    FirstName varchar(255),
+    Age int,
+    City varchar(255),
+    CONSTRAINT CHK_Person CHECK (Age>=18 AND City='Sandnes')
+);

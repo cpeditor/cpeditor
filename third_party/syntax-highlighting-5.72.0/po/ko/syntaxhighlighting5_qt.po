@@ -1,0 +1,1383 @@
+# Korean messages for katepart.
+# Copyright (C) 2001,2002,2003,2004,2007 Free Software Foundation, Inc.
+# Sae-keun Kim <segni@susekorea.net>, 2001.
+# Louis JANG <louis@mizi.com>, 2001.
+# KIM KyungHeon <tody@teoal.net>, 2001, 2002, 2003, 2004.
+# Shinjo Park <kde@peremen.name>, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020.
+# JungHee Lee <daemul72@gmail.com>, 2019.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: katepart4\n"
+"Report-Msgid-Bugs-To: http://bugs.kde.org\n"
+"POT-Creation-Date: 2016-09-08 07:30+0000\n"
+"PO-Revision-Date: 2020-06-15 19:17+0200\n"
+"Last-Translator: Shinjo Park <kde@peremen.name>\n"
+"Language-Team: Korean <kde-kr@kde.org>\n"
+"Language: ko\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Lokalize 19.12.3\n"
+"X-Qt-Contexts: true\n"
+
+msgctxt "Language|"
+msgid "4DOS BatchToMemory"
+msgstr "4DOS BatchToMemory"
+
+msgctxt "Language|"
+msgid "ABAP"
+msgstr "ABAP"
+
+msgctxt "Language|"
+msgid "ABC"
+msgstr "ABC"
+
+msgctxt "Language|"
+msgid "ActionScript 2.0"
+msgstr "ActionScript 2.0"
+
+msgctxt "Language|"
+msgid "Ada"
+msgstr "Ada"
+
+msgctxt "Language|"
+msgid "Agda"
+msgstr "Agda"
+
+msgctxt "Language|"
+msgid "AHDL"
+msgstr "AHDL"
+
+msgctxt "Language|"
+msgid "AutoHotKey"
+msgstr "AutoHotKey"
+
+msgctxt "Language|"
+msgid "Alerts"
+msgstr "Alerts"
+
+msgctxt "Language|"
+msgid "AMPLE"
+msgstr "AMPLE"
+
+msgctxt "Language|"
+msgid "ANS-Forth94"
+msgstr "ANS-Forth94"
+
+msgctxt "Language|"
+msgid "ANSI C89"
+msgstr "ANSI C89"
+
+msgctxt "Language|"
+msgid "Ansys"
+msgstr "Ansys"
+
+msgctxt "Language|"
+msgid "Apache Configuration"
+msgstr "Apache 환경 설정"
+
+msgctxt "Language|"
+msgid "AppArmor Security Profile"
+msgstr "AppArmor 보안 프로필"
+
+msgctxt "Language|"
+msgid "AsciiDoc"
+msgstr "AsciiDoc"
+
+msgctxt "Language|"
+msgid "Asm6502"
+msgstr "Asm6502"
+
+msgctxt "Language|"
+msgid "AVR Assembler"
+msgstr "AVR 어셈블러"
+
+msgctxt "Language|"
+msgid "Motorola DSP56k"
+msgstr "모토로라 DSP56k"
+
+msgctxt "Language|"
+msgid "Motorola 68k (VASM/Devpac)"
+msgstr "모토로라 68k(VASM/Devpac)"
+
+msgctxt "Language|"
+msgid "ASN.1"
+msgstr "ASN.1"
+
+msgctxt "Language|"
+msgid "ASP"
+msgstr "ASP"
+
+msgctxt "Language|"
+msgid "AWK"
+msgstr "AWK"
+
+msgctxt "Language|"
+msgid "Bash"
+msgstr "Bash"
+
+msgctxt "Language|"
+msgid "BibTeX"
+msgstr "BibTeX"
+
+msgctxt "Language|"
+msgid "Bitbake"
+msgstr "Bitbake"
+
+msgctxt "Language|"
+msgid "B-Method"
+msgstr "B-Method"
+
+msgctxt "Language|"
+msgid "Boo"
+msgstr "Boo"
+
+msgctxt "Language|"
+msgid "CleanCSS"
+msgstr "CleanCSS"
+
+msgctxt "Language|"
+msgid "CGiS"
+msgstr "CGiS"
+
+msgctxt "Language|"
+msgid "Cg"
+msgstr "Cg"
+
+msgctxt "Language|"
+msgid "ChangeLog"
+msgstr "ChangeLog"
+
+msgctxt "Language|"
+msgid "Common Intermediate Language (CIL)"
+msgstr "공통 중간 언어(CIL)"
+
+msgctxt "Language|"
+msgid "Cisco"
+msgstr "Cisco"
+
+msgctxt "Language|"
+msgid "Clipper"
+msgstr "Clipper"
+
+msgctxt "Language|"
+msgid "CLIST"
+msgstr "CLIST"
+
+msgctxt "Language|"
+msgid "Clojure"
+msgstr "Clojure"
+
+msgctxt "Language|"
+msgid "CoffeeScript"
+msgstr "CoffeeScript"
+
+msgctxt "Language|"
+msgid "ColdFusion"
+msgstr "ColdFusion"
+
+msgctxt "Language|"
+msgid "Common Lisp"
+msgstr "Common Lisp"
+
+msgctxt "Language|"
+msgid "Component-Pascal"
+msgstr "Component-Pascal"
+
+msgctxt "Language|"
+msgid "ConTeXt"
+msgstr "ConTeXt"
+
+msgctxt "Language|"
+msgid "Crack"
+msgstr "Crack"
+
+msgctxt "Language|"
+msgid "CSS"
+msgstr "CSS"
+
+msgctxt "Language|"
+msgid "C#"
+msgstr "C#"
+
+msgctxt "Language|"
+msgid "CubeScript"
+msgstr "CubeScript"
+
+msgctxt "Language|"
+msgid "CUE Sheet"
+msgstr "CUE 시트"
+
+msgctxt "Language|"
+msgid "Curry"
+msgstr "Curry"
+
+msgctxt "Language|"
+msgid "C"
+msgstr "C"
+
+msgctxt "Language|"
+msgid "Debian Changelog"
+msgstr "데비안 Changelog"
+
+msgctxt "Language|"
+msgid "Debian Control"
+msgstr "데비안 Control"
+
+msgctxt "Language|"
+msgid ".desktop"
+msgstr ".desktop"
+
+msgctxt "Language|"
+msgid "Diff"
+msgstr "Diff"
+
+msgctxt "Language|"
+msgid "Django HTML Template"
+msgstr "Django HTML 템플릿"
+
+msgctxt "Language|"
+msgid "Dockerfile"
+msgstr "Dockerfile"
+
+msgctxt "Language|"
+msgid "MS-DOS Batch"
+msgstr "MS-DOS 배치 파일"
+
+msgctxt "Language|"
+msgid "dot"
+msgstr "dot"
+
+msgctxt "Language|"
+msgid "Doxyfile"
+msgstr "Doxyfile"
+
+msgctxt "Language|"
+msgid "DoxygenLua"
+msgstr "DoxygenLua"
+
+msgctxt "Language|"
+msgid "Doxygen"
+msgstr "Doxygen"
+
+msgctxt "Language|"
+msgid "DTD"
+msgstr "DTD"
+
+msgctxt "Language|"
+msgid "D"
+msgstr "D"
+
+msgctxt "Language|"
+msgid "Eiffel"
+msgstr "Eiffel"
+
+msgctxt "Language|"
+msgid "Elm"
+msgstr "Elm"
+
+msgctxt "Language|"
+msgid "Email"
+msgstr "이메일"
+
+msgctxt "Language|"
+msgid "Erlang"
+msgstr "Erlang"
+
+msgctxt "Language|"
+msgid "Euphoria"
+msgstr "Euphoria"
+
+msgctxt "Language|"
+msgid "E Language"
+msgstr "E 언어"
+
+msgctxt "Language|"
+msgid "Intel x86 (FASM)"
+msgstr "인텔 x86(FASM)"
+
+msgctxt "Language|"
+msgid "FASTQ"
+msgstr "FASTQ"
+
+msgctxt "Language|"
+msgid "ferite"
+msgstr "ferite"
+
+msgctxt "Language|"
+msgid "4GL"
+msgstr "4GL"
+
+msgctxt "Language|"
+msgid "4GL-PER"
+msgstr "4GL-PER"
+
+msgctxt "Language|"
+msgid "Fish"
+msgstr "Fish"
+
+msgctxt "Language|"
+msgid "FlatBuffers"
+msgstr "FlatBuffers"
+
+msgctxt "Language|"
+msgid "Fortran (Fixed Format)"
+msgstr "포트란(고정 형식)"
+
+msgctxt "Language|"
+msgid "Fortran (Free Format)"
+msgstr "포트란(자유 형식)"
+
+msgctxt "Language|"
+msgid "FreeBASIC"
+msgstr "FreeBASIC"
+
+msgctxt "Language|"
+msgid "FSharp"
+msgstr "FSharp"
+
+msgctxt "Language|"
+msgid "fstab"
+msgstr "fstab"
+
+msgctxt "Language|"
+msgid "FTL"
+msgstr "FTL"
+
+msgctxt "Language|"
+msgid "GAP"
+msgstr "GAP"
+
+msgctxt "Language|"
+msgid "G-Code"
+msgstr "G 코드"
+
+msgctxt "Language|"
+msgid "GDB Backtrace"
+msgstr "GDB 역추적"
+
+msgctxt "Language|"
+msgid "GDB Init"
+msgstr "GDB 초기화"
+
+msgctxt "Language|"
+msgid "GDB"
+msgstr "GDB"
+
+msgctxt "Language|"
+msgid "GDL"
+msgstr "GDL"
+
+msgctxt "Language|"
+msgid "GNU Gettext"
+msgstr "GNU Gettext"
+
+msgctxt "Language|"
+msgid "Git Ignore"
+msgstr "Git Ignore"
+
+msgctxt "Language|"
+msgid "Gitolite"
+msgstr "Gitolite"
+
+msgctxt "Language|"
+msgid "Git Rebase"
+msgstr "Git Rebase"
+
+msgctxt "Language|"
+msgid "GlossTex"
+msgstr "GlossTex"
+
+msgctxt "Language|"
+msgid "GLSL"
+msgstr "GLSL"
+
+msgctxt "Language|"
+msgid "GNU Assembler"
+msgstr "GNU 어셈블러"
+
+msgctxt "Language|"
+msgid "Gnuplot"
+msgstr "Gnuplot"
+
+msgctxt "Language|"
+msgid "Go"
+msgstr "Go"
+
+msgctxt "Language|"
+msgid "KDev-PG[-Qt] Grammar"
+msgstr "KDev-PG[-Qt] 문법"
+
+msgctxt "Language|"
+msgid "GraphQL"
+msgstr "GraphQL"
+
+msgctxt "Language|"
+msgid "Groovy"
+msgstr "Groovy"
+
+msgctxt "Language|"
+msgid "Hamlet"
+msgstr "Hamlet"
+
+msgctxt "Language|"
+msgid "Haml"
+msgstr "Haml"
+
+msgctxt "Language|"
+msgid "Haskell"
+msgstr "하스켈"
+
+msgctxt "Language|"
+msgid "Haxe"
+msgstr "Haxe"
+
+msgctxt "Language|"
+msgid "HTML"
+msgstr "HTML"
+
+msgctxt "Language|"
+msgid "Hunspell Affix File"
+msgstr "Hunspell 접사 파일"
+
+msgctxt "Language|"
+msgid "Hunspell Thesaurus File"
+msgstr "Hunspell 동의어 사전 파일"
+
+msgctxt "Language|"
+msgid "Hunspell Dictionary File"
+msgstr "Hunspell 사전 파일"
+
+msgctxt "Language|"
+msgid "Quake Script"
+msgstr "Quake 스크립트"
+
+msgctxt "Language|"
+msgid "IDL"
+msgstr "IDL"
+
+msgctxt "Language|"
+msgid "ILERPG"
+msgstr "ILERPG"
+
+msgctxt "Language|"
+msgid "Inform"
+msgstr "Inform"
+
+msgctxt "Language|"
+msgid "INI Files"
+msgstr "INI 파일"
+
+msgctxt "Language|"
+msgid "InnoSetup"
+msgstr "InnoSetup"
+
+msgctxt "Language|"
+msgid "Intel HEX"
+msgstr "인텔 HEX"
+
+msgctxt "Language|"
+msgid "Jam"
+msgstr "Jam"
+
+msgctxt "Language|"
+msgid "Javadoc"
+msgstr "Javadoc"
+
+msgctxt "Language|"
+msgid "JavaScript React (JSX)"
+msgstr "자바스크립트 React(JSX)"
+
+msgctxt "Language|"
+msgid "JavaScript"
+msgstr "자바스크립트"
+
+msgctxt "Language|"
+msgid "Java"
+msgstr "자바"
+
+msgctxt "Language|"
+msgid "JCL"
+msgstr "JCL"
+
+msgctxt "Language|"
+msgid "Jira"
+msgstr "Jira"
+
+msgctxt "Language|"
+msgid "JSON"
+msgstr "JSON"
+
+msgctxt "Language|"
+msgid "JSP"
+msgstr "JSP"
+
+msgctxt "Language|"
+msgid "Julia"
+msgstr "Julia"
+
+msgctxt "Language|"
+msgid "J"
+msgstr "J"
+
+msgctxt "Language|"
+msgid "KBasic"
+msgstr "KBasic"
+
+msgctxt "Language|"
+msgid "Kconfig"
+msgstr "Kconfig"
+
+msgctxt "Language|"
+msgid "Kotlin"
+msgstr "Kotlin"
+
+msgctxt "Language|"
+msgid "k"
+msgstr "k"
+
+msgctxt "Language|"
+msgid "LaTeX"
+msgstr "LaTeX"
+
+msgctxt "Language|"
+msgid "LDIF"
+msgstr "LDIF"
+
+msgctxt "Language|"
+msgid "GNU Linker Script"
+msgstr "GNU 링커 스크립트"
+
+msgctxt "Language|"
+msgid "LESSCSS"
+msgstr "LESSCSS"
+
+msgctxt "Language|"
+msgid "Lex/Flex"
+msgstr "Lex/Flex"
+
+msgctxt "Language|"
+msgid "LilyPond"
+msgstr "LilyPond"
+
+msgctxt "Language|"
+msgid "Literate Curry"
+msgstr "Literate Curry"
+
+msgctxt "Language|"
+msgid "Literate Haskell"
+msgstr "Literate Haskell"
+
+msgctxt "Language|"
+msgid "Logcat"
+msgstr "Logcat"
+
+msgctxt "Language|"
+msgid "Logtalk"
+msgstr "Logtalk"
+
+msgctxt "Language|"
+msgid "LPC"
+msgstr "LPC"
+
+msgctxt "Language|"
+msgid "LSL"
+msgstr "LSL"
+
+msgctxt "Language|"
+msgid "Lua"
+msgstr "Lua"
+
+msgctxt "Language|"
+msgid "M3U"
+msgstr "M3U"
+
+msgctxt "Language|"
+msgid "GNU M4"
+msgstr "GNU M4"
+
+msgctxt "Language|"
+msgid "MAB-DB"
+msgstr "MAB-DB"
+
+msgctxt "Language|"
+msgid "Magma"
+msgstr "Magma"
+
+msgctxt "Language|"
+msgid "Makefile"
+msgstr "Makefile"
+
+msgctxt "Language|"
+msgid "Mako"
+msgstr "Mako"
+
+msgctxt "Language|"
+msgid "Troff Mandoc"
+msgstr "Troff Mandoc"
+
+msgctxt "Language|"
+msgid "Markdown"
+msgstr "마크다운"
+
+msgctxt "Language|"
+msgid "Mason"
+msgstr "Mason"
+
+msgctxt "Language|"
+msgid "Mathematica"
+msgstr "Mathematica"
+
+msgctxt "Language|"
+msgid "Matlab"
+msgstr "Matlab"
+
+msgctxt "Language|"
+msgid "Maxima"
+msgstr "Maxima"
+
+msgctxt "Language|"
+msgid "MediaWiki"
+msgstr "미디어위키"
+
+msgctxt "Language|"
+msgid "MEL"
+msgstr "MEL"
+
+msgctxt "Language|"
+msgid "mergetag text"
+msgstr "mergetag 텍스트"
+
+msgctxt "Language|"
+msgid "Meson"
+msgstr "Meson"
+
+msgctxt "Language|"
+msgid "Metapost/Metafont"
+msgstr "Metapost/Metafont"
+
+msgctxt "Language|"
+msgid "Metamath"
+msgstr "Metamath"
+
+msgctxt "Language|"
+msgid "MIB"
+msgstr "MIB"
+
+msgctxt "Language|"
+msgid "MIPS Assembler"
+msgstr "MIPS 어셈블러"
+
+msgctxt "Language|"
+msgid "Modelica"
+msgstr "Modelica"
+
+msgctxt "Language|"
+msgid "Modelines"
+msgstr "Modelines"
+
+msgctxt "Language|"
+msgid "Modula-2 (ISO only)"
+msgstr "Modula-2(ISO 전용)"
+
+msgctxt "Language|"
+msgid "Modula-2 (PIM only)"
+msgstr "Modula-2(PIM 전용)"
+
+msgctxt "Language|"
+msgid "Modula-2 (R10 only)"
+msgstr "Modula-2(R10 전용)"
+
+msgctxt "Language|"
+msgid "Modula-2"
+msgstr "Modula-2"
+
+msgctxt "Language|"
+msgid "MonoBasic"
+msgstr "MonoBasic"
+
+msgctxt "Language|"
+msgid "Music Publisher"
+msgstr "Music Publisher"
+
+msgctxt "Language|"
+msgid "Mustache/Handlebars (HTML)"
+msgstr "Mustache/Handlebars(HTML)"
+
+msgctxt "Language|"
+msgid "Nagios"
+msgstr "Nagios"
+
+msgctxt "Language|"
+msgid "Intel x86 (NASM)"
+msgstr "인텔 x86(NASM)"
+
+msgctxt "Language|"
+msgid "Nemerle"
+msgstr "Nemerle"
+
+msgctxt "Language|"
+msgid "nesC"
+msgstr "nesC"
+
+msgctxt "Language|"
+msgid "noweb"
+msgstr "noweb"
+
+msgctxt "Language|"
+msgid "Objective-C++"
+msgstr "Objective-C++"
+
+msgctxt "Language|"
+msgid "Objective-C"
+msgstr "Objective-C"
+
+msgctxt "Language|"
+msgid "Objective Caml Ocamllex"
+msgstr "Objective Caml Ocamllex"
+
+msgctxt "Language|"
+msgid "Objective Caml"
+msgstr "Objective Caml"
+
+msgctxt "Language|"
+msgid "Objective Caml Ocamlyacc"
+msgstr "Objective Caml Ocamlyacc"
+
+msgctxt "Language|"
+msgid "Octave"
+msgstr "Octave"
+
+msgctxt "Language|"
+msgid "OORS"
+msgstr "OORS"
+
+msgctxt "Language|"
+msgid "OPAL"
+msgstr "OPAL"
+
+msgctxt "Language|"
+msgid "OpenCL"
+msgstr "OpenCL"
+
+msgctxt "Language|"
+msgid "OpenSCAD"
+msgstr "OpenSCAD"
+
+msgctxt "Language|"
+msgid "Overpass QL"
+msgstr "Overpass QL"
+
+msgctxt "Language|"
+msgid "Pango"
+msgstr "Pango"
+
+msgctxt "Language|"
+msgid "Pascal"
+msgstr "Pascal"
+
+msgctxt "Language|"
+msgid "Perl"
+msgstr "Perl"
+
+msgctxt "Language|"
+msgid "PHP/PHP"
+msgstr "PHP/PHP"
+
+msgctxt "Language|"
+msgid "PicAsm"
+msgstr "PicAsm"
+
+msgctxt "Language|"
+msgid "Pig"
+msgstr "Pig"
+
+msgctxt "Language|"
+msgid "Pike"
+msgstr "Pike"
+
+msgctxt "Language|"
+msgid "PL/I"
+msgstr "PL/I"
+
+msgctxt "Language|"
+msgid "PLY"
+msgstr "PLY"
+
+msgctxt "Language|"
+msgid "PostScript"
+msgstr "포스트스크립트"
+
+msgctxt "Language|"
+msgid "POV-Ray"
+msgstr "POV-Ray"
+
+msgctxt "Language|"
+msgid "Praat"
+msgstr "Praat"
+
+msgctxt "Language|"
+msgid "progress"
+msgstr "progress"
+
+msgctxt "Language|"
+msgid "Protobuf"
+msgstr "Protobuf"
+
+msgctxt "Language|"
+msgid "Pug"
+msgstr "Pug"
+
+msgctxt "Language|"
+msgid "Puppet"
+msgstr "Puppet"
+
+msgctxt "Language|"
+msgid "PureBasic"
+msgstr "PureBasic"
+
+msgctxt "Language|"
+msgid "Python"
+msgstr "Python"
+
+msgctxt "Language|"
+msgid "QDoc Configuration"
+msgstr "QDoc 설정"
+
+msgctxt "Language|"
+msgid "QMake"
+msgstr "QMake"
+
+msgctxt "Language|"
+msgid "QML"
+msgstr "QML"
+
+msgctxt "Language|"
+msgid "q"
+msgstr "q"
+
+msgctxt "Language|"
+msgid "Raku"
+msgstr "Raku"
+
+msgctxt "Language|"
+msgid "RapidQ"
+msgstr "RapidQ"
+
+msgctxt "Language|"
+msgid "R documentation"
+msgstr "R 문서"
+
+msgctxt "Language|"
+msgid "RelaxNG-Compact"
+msgstr "RelaxNG-Compact"
+
+msgctxt "Language|"
+msgid "RenPy"
+msgstr "RenPy"
+
+msgctxt "Language|"
+msgid "Replicode"
+msgstr "Replicode"
+
+msgctxt "Language|"
+msgid "reStructuredText"
+msgstr "reStructuredText"
+
+msgctxt "Language|"
+msgid "REXX"
+msgstr "REXX"
+
+msgctxt "Language|"
+msgid "Ruby/Rails/RHTML"
+msgstr "Ruby/Rails/RHTML"
+
+msgctxt "Language|"
+msgid "RenderMan RIB"
+msgstr "RenderMan RIB"
+
+msgctxt "Language|"
+msgid "R Markdown"
+msgstr "R 마크다운"
+
+msgctxt "Language|"
+msgid "Roff"
+msgstr "Roff"
+
+msgctxt "Language|"
+msgid "RPM Spec"
+msgstr "RPM Spec"
+
+msgctxt "Language|"
+msgid "RSI IDL"
+msgstr "RSI IDL"
+
+msgctxt "Language|"
+msgid "Rich Text Format"
+msgstr "서식 있는 텍스트 형식"
+
+msgctxt "Language|"
+msgid "Ruby"
+msgstr "Ruby"
+
+msgctxt "Language|"
+msgid "Rust"
+msgstr "Rust"
+
+msgctxt "Language|"
+msgid "R Script"
+msgstr "R Script"
+
+msgctxt "Language|"
+msgid "SASS"
+msgstr "SASS"
+
+msgctxt "Language|"
+msgid "Sather"
+msgstr "Sather"
+
+msgctxt "Language|"
+msgid "Scala"
+msgstr "Scala"
+
+msgctxt "Language|"
+msgid "Scheme"
+msgstr "Scheme"
+
+msgctxt "Language|"
+msgid "scilab"
+msgstr "scilab"
+
+msgctxt "Language|"
+msgid "SCSS"
+msgstr "SCSS"
+
+msgctxt "Language|"
+msgid "sed"
+msgstr "sed"
+
+msgctxt "Language|"
+msgid "SELinux CIL Policy"
+msgstr "SELinux CIL 정책"
+
+msgctxt "Language|"
+msgid "SELinux File Contexts"
+msgstr "SELinux 파일 콘텍스트"
+
+msgctxt "Language|"
+msgid "SELinux Policy"
+msgstr "SELinux 정책"
+
+msgctxt "Language|"
+msgid "SGML"
+msgstr "SGML"
+
+msgctxt "Language|"
+msgid "SiSU"
+msgstr "SiSU"
+
+msgctxt "Language|"
+msgid "Smali"
+msgstr "Smali"
+
+msgctxt "Language|"
+msgid "SML"
+msgstr "SML"
+
+msgctxt "Language|"
+msgid "Snort/Suricata"
+msgstr ""
+
+msgctxt "Language|"
+msgid "Solidity"
+msgstr "Solidity"
+
+msgctxt "Language|"
+msgid "Spice"
+msgstr "Spice"
+
+msgctxt "Language|"
+msgid "SQL (MySQL)"
+msgstr "SQL(MySQL)"
+
+msgctxt "Language|"
+msgid "SQL (Oracle)"
+msgstr "SQL(Oracle)"
+
+msgctxt "Language|"
+msgid "SQL (PostgreSQL)"
+msgstr "SQL(PostgreSQL)"
+
+msgctxt "Language|"
+msgid "SQL"
+msgstr "SQL"
+
+msgctxt "Language|"
+msgid "Stan"
+msgstr "Stan"
+
+msgctxt "Language|"
+msgid "Stata"
+msgstr "Stata"
+
+msgctxt "Language|"
+msgid "STL"
+msgstr "FTL"
+
+msgctxt "Language|"
+msgid "SubRip Subtitles"
+msgstr "SubRip 자막"
+
+msgctxt "Language|"
+msgid "SystemC"
+msgstr "SystemC"
+
+msgctxt "Language|"
+msgid "SystemVerilog"
+msgstr "SystemVerilog"
+
+msgctxt "Language|"
+msgid "TADS 3"
+msgstr "TADS 3"
+
+msgctxt "Language|"
+msgid "TaskJuggler"
+msgstr "TaskJuggler"
+
+msgctxt "Language|"
+msgid "Tcl/Tk"
+msgstr "Tcl/Tk"
+
+msgctxt "Language|"
+msgid "Tcsh"
+msgstr "Tcsh"
+
+msgctxt "Language|"
+msgid "Texinfo"
+msgstr "Texinfo"
+
+msgctxt "Language|"
+msgid "Textile"
+msgstr "Textile"
+
+msgctxt "Language|"
+msgid "TI Basic"
+msgstr "TI Basic"
+
+msgctxt "Language|"
+msgid "Tiger"
+msgstr "Tiger"
+
+msgctxt "Language|"
+msgid "TOML"
+msgstr "TOML"
+
+msgctxt "Language|"
+msgid "txt2tags"
+msgstr "txt2tags"
+
+msgctxt "Language|"
+msgid "TypeScript React (TSX)"
+msgstr "TypeScript React(TSX)"
+
+msgctxt "Language|"
+msgid "TypeScript"
+msgstr "TypeScript"
+
+msgctxt "Language|"
+msgid "UnrealScript"
+msgstr "UnrealScript"
+
+msgctxt "Language|"
+msgid "Vala"
+msgstr "Vala"
+
+msgctxt "Language|"
+msgid "Valgrind Suppression"
+msgstr "Valgrind Suppression"
+
+msgctxt "Language|"
+msgid "Varnish 4 Configuration Language"
+msgstr "Varnish 4 설정 언어"
+
+msgctxt "Language|"
+msgid "Varnish 4 module spec file"
+msgstr "Varnish 4 모듈 스펙 파일"
+
+msgctxt "Language|"
+msgid "Varnish 3 module spec file"
+msgstr "Varnish 3 모듈 스펙 파일"
+
+msgctxt "Language|"
+msgid "Varnish 4 Test Case language"
+msgstr "Varnish 4 테스트 케이스 언어"
+
+msgctxt "Language|"
+msgid "Varnish Test Case language"
+msgstr "Varnish 테스트 케이스 언어"
+
+msgctxt "Language|"
+msgid "Varnish Configuration Language"
+msgstr "Varnish 설정 언어"
+
+msgctxt "Language|"
+msgid "vCard, vCalendar, iCalendar"
+msgstr "vCard, vCalendar, iCalendar"
+
+msgctxt "Language|"
+msgid "Velocity"
+msgstr "Velocity"
+
+msgctxt "Language|"
+msgid "Vera"
+msgstr "Vera"
+
+msgctxt "Language|"
+msgid "Verilog"
+msgstr "Verilog"
+
+msgctxt "Language|"
+msgid "VHDL"
+msgstr "VHDL"
+
+msgctxt "Language|"
+msgid "VRML"
+msgstr "VRML"
+
+msgctxt "Language|"
+msgid "Wavefront OBJ"
+msgstr "Wavefront OBJ"
+
+msgctxt "Language|"
+msgid "Wayland Trace"
+msgstr "Wayland 추적"
+
+msgctxt "Language|"
+msgid "WINE Config"
+msgstr "WINE 설정"
+
+msgctxt "Language|"
+msgid "Wesnoth Markup Language"
+msgstr "Wesnoth Markup 언어"
+
+msgctxt "Language|"
+msgid "xHarbour"
+msgstr "xHarbour"
+
+msgctxt "Language|"
+msgid "XML (Debug)"
+msgstr "XML(디버그)"
+
+msgctxt "Language|"
+msgid "XML"
+msgstr "XML"
+
+msgctxt "Language|"
+msgid "Xonotic Script"
+msgstr "Xonotic 스크립트"
+
+msgctxt "Language|"
+msgid "x.org Configuration"
+msgstr "x.org 설정"
+
+msgctxt "Language|"
+msgid "xslt"
+msgstr "xslt"
+
+msgctxt "Language|"
+msgid "XUL"
+msgstr "XUL"
+
+msgctxt "Language|"
+msgid "yacas"
+msgstr "yacas"
+
+msgctxt "Language|"
+msgid "Yacc/Bison"
+msgstr "Yacc/Bison"
+
+msgctxt "Language|"
+msgid "YAML"
+msgstr "YAML"
+
+msgctxt "Language|"
+msgid "YANG"
+msgstr "YANG"
+
+msgctxt "Language|"
+msgid "YARA"
+msgstr ""
+
+msgctxt "Language|"
+msgid "Zonnon"
+msgstr "Zonnon"
+
+msgctxt "Language|"
+msgid "Zsh"
+msgstr "Zsh"
+
+msgctxt "Language Section|"
+msgid "Scripts"
+msgstr "스크립트"
+
+msgctxt "Language Section|"
+msgid "Sources"
+msgstr "소스 코드"
+
+msgctxt "Language Section|"
+msgid "Other"
+msgstr "기타"
+
+msgctxt "Language Section|"
+msgid "Hardware"
+msgstr "하드웨어"
+
+msgctxt "Language Section|"
+msgid "Scientific"
+msgstr "과학"
+
+msgctxt "Language Section|"
+msgid "Configuration"
+msgstr "설정 파일"
+
+msgctxt "Language Section|"
+msgid "Markup"
+msgstr "마크업"
+
+msgctxt "Language Section|"
+msgid "Assembler"
+msgstr "어셈블러"
+
+msgctxt "Language Section|"
+msgid "Database"
+msgstr "데이터베이스"
+
+msgctxt "Language Section|"
+msgid "3D"
+msgstr "3D"
+
+msgctxt "Theme|"
+msgid "Breeze Dark"
+msgstr "어두운 Breeze"
+
+msgctxt "Theme|"
+msgid "Default"
+msgstr "기본값"
+
+msgctxt "Theme|"
+msgid "Printing"
+msgstr "인쇄"
+
+msgctxt "Theme|"
+msgid "Solarized Dark"
+msgstr "어두운 Solarized"
+
+msgctxt "Theme|"
+msgid "Solarized Light"
+msgstr "밝은 Solarized"
+
+#: cli/kate-syntax-highlighter.cpp:49
+msgctxt "SyntaxHighlightingCLI|"
+msgid "Command line syntax highlighter using Kate syntax definitions."
+msgstr "Kate 구문 강조 정의 파일을 사용하는 명령행 구문 강조 도구입니다."
+
+#: cli/kate-syntax-highlighter.cpp:52
+msgctxt "SyntaxHighlightingCLI|"
+msgid "source"
+msgstr "원본"
+
+#: cli/kate-syntax-highlighter.cpp:52
+msgctxt "SyntaxHighlightingCLI|"
+msgid "The source file to highlight."
+msgstr "구문을 강조할 원본 파일입니다."
+
+#: cli/kate-syntax-highlighter.cpp:54
+msgctxt "SyntaxHighlightingCLI|"
+msgid "List all available syntax definitions."
+msgstr "모든 사용 가능한 구문 강조를 표시합니다."
+
+#: cli/kate-syntax-highlighter.cpp:56
+msgctxt "SyntaxHighlightingCLI|"
+msgid "List all available themes."
+msgstr "모든 사용 가능한 테마를 표시합니다."
+
+#: cli/kate-syntax-highlighter.cpp:59
+msgctxt "SyntaxHighlightingCLI|"
+msgid "Download new/updated syntax definitions."
+msgstr "새로 올라왔거나 업데이트된 구문 강조 정의 파일을 다운로드합니다."
+
+#: cli/kate-syntax-highlighter.cpp:63
+msgctxt "SyntaxHighlightingCLI|"
+msgid "File to write HTML output to (default: stdout)."
+msgstr "HTML 출력을 저장할 파일입니다(기본값: 표준 출력)."
+
+#: cli/kate-syntax-highlighter.cpp:63
+msgctxt "SyntaxHighlightingCLI|"
+msgid "output"
+msgstr "출력"
+
+#: cli/kate-syntax-highlighter.cpp:67
+msgctxt "SyntaxHighlightingCLI|"
+msgid ""
+"Highlight using this syntax definition (default: auto-detect based on input "
+"file)."
+msgstr ""
+"이 구문 정의를 사용하여 강조 표시합니다(기본값: 입력 파일에 따라 자동 인식)."
+
+#: cli/kate-syntax-highlighter.cpp:68
+msgctxt "SyntaxHighlightingCLI|"
+msgid "syntax"
+msgstr "구문"
+
+#: cli/kate-syntax-highlighter.cpp:72
+msgctxt "SyntaxHighlightingCLI|"
+msgid "Color theme to use for highlighting."
+msgstr "구문 강조에 사용할 테마입니다."
+
+#: cli/kate-syntax-highlighter.cpp:72
+msgctxt "SyntaxHighlightingCLI|"
+msgid "theme"
+msgstr "테마"
+
+#: cli/kate-syntax-highlighter.cpp:76
+msgctxt "SyntaxHighlightingCLI|"
+msgid ""
+"Set HTML page's title\n"
+"(default: the filename or \"Kate Syntax Highlighter\" if reading from stdin)."
+msgstr ""
+"HTML 페이지 제목 설정\n"
+"(기본값: 파일 이름, 표준 입력에서 읽는 경우 \"Kate 구문 강조 도구\")."
+
+#: cli/kate-syntax-highlighter.cpp:77
+msgctxt "SyntaxHighlightingCLI|"
+msgid "title"
+msgstr "제목"
+
+#: cli/kate-syntax-highlighter.cpp:80
+msgctxt "SyntaxHighlightingCLI|"
+msgid "Read file from stdin. The -s option must also be used."
+msgstr "표준 입력에서 파일을 읽습니다. -s 옵션도 사용해야 합니다."
+
+#: lib/definition_p.h:104
+msgctxt "Language|"
+msgid "None"
+msgstr "없음"
+
+#: lib/definitiondownloader.cpp:80
+msgctxt "QObject|"
+msgid "All syntax definitions are up-to-date."
+msgstr "모든 구문 강조 정의 파일이 최신 상태입니다."
+
+#: lib/definitiondownloader.cpp:92
+#, qt-format
+msgctxt "QObject|"
+msgid "Downloading new syntax definition for '%1'..."
+msgstr "'%1'의 새 구문 강조 정의 다운로드 중..."
+
+#: lib/definitiondownloader.cpp:99
+#, qt-format
+msgctxt "QObject|"
+msgid "Updating syntax definition for '%1' to version %2..."
+msgstr "'%1'의 구문 강조 정의를 버전 %2(으)로 업데이트 중..."

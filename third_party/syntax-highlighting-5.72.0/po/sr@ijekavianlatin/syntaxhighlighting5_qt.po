@@ -1,0 +1,1389 @@
+# Translation of syntaxhighlighting5_qt.po into Serbian.
+# Marko Rosic <roske@kde.org.yu>, 2003.
+# Toplica Tanaskovic <toptan@kde.org.yu>, 2003, 2004, 2005.
+# Chusslove Illich <caslav.ilic@gmx.net>, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017.
+# Dalibor Djuric <daliborddjuric@gmail.com>, 2010, 2011.
+msgid ""
+msgstr ""
+"Project-Id-Version: syntaxhighlighting5_qt\n"
+"Report-Msgid-Bugs-To: http://bugs.kde.org\n"
+"POT-Creation-Date: 2016-07-15 07:32+0000\n"
+"PO-Revision-Date: 2017-09-25 19:53+0200\n"
+"Last-Translator: Chusslove Illich <caslav.ilic@gmx.net>\n"
+"Language-Team: Serbian <kde-i18n-sr@kde.org>\n"
+"Language: sr@ijekavianlatin\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Accelerator-Marker: &\n"
+"X-Text-Markup: qtrich\n"
+"X-Environment: kde\n"
+"X-Qt-Contexts: true\n"
+
+msgctxt "Language|"
+msgid "4DOS BatchToMemory"
+msgstr "4DOS‑ov bač‑u‑memoriju"
+
+msgctxt "Language|"
+msgid "ABAP"
+msgstr "ABAP"
+
+msgctxt "Language|"
+msgid "ABC"
+msgstr "ABC"
+
+msgctxt "Language|"
+msgid "ActionScript 2.0"
+msgstr "ActionScript 2.0"
+
+msgctxt "Language|"
+msgid "Ada"
+msgstr "Ada"
+
+msgctxt "Language|"
+msgid "Agda"
+msgstr "Agda"
+
+msgctxt "Language|"
+msgid "AHDL"
+msgstr "AHDL"
+
+msgctxt "Language|"
+msgid "AutoHotKey"
+msgstr "AutoHotkey"
+
+msgctxt "Language|"
+msgid "Alerts"
+msgstr "pozori"
+
+msgctxt "Language|"
+msgid "AMPLE"
+msgstr "AMPLE"
+
+msgctxt "Language|"
+msgid "ANS-Forth94"
+msgstr "ANS Forth 94"
+
+msgctxt "Language|"
+msgid "ANSI C89"
+msgstr "ANSI C89"
+
+msgctxt "Language|"
+msgid "Ansys"
+msgstr "Ansys"
+
+msgctxt "Language|"
+msgid "Apache Configuration"
+msgstr "Apache-postava"
+
+msgctxt "Language|"
+msgid "AppArmor Security Profile"
+msgstr "AppArmorov bezbednosni profil"
+
+msgctxt "Language|"
+msgid "AsciiDoc"
+msgstr ""
+
+msgctxt "Language|"
+msgid "Asm6502"
+msgstr "Asm6502"
+
+msgctxt "Language|"
+msgid "AVR Assembler"
+msgstr "AVR asembler"
+
+msgctxt "Language|"
+msgid "Motorola DSP56k"
+msgstr "Motorolin DSP‑56k"
+
+msgctxt "Language|"
+msgid "Motorola 68k (VASM/Devpac)"
+msgstr "Motorolin 68k (VASM/Devpac)"
+
+msgctxt "Language|"
+msgid "ASN.1"
+msgstr "ASN.1"
+
+msgctxt "Language|"
+msgid "ASP"
+msgstr "ASP"
+
+msgctxt "Language|"
+msgid "AWK"
+msgstr "awk"
+
+msgctxt "Language|"
+msgid "Bash"
+msgstr "Bash"
+
+msgctxt "Language|"
+msgid "BibTeX"
+msgstr "BibTeX"
+
+msgctxt "Language|"
+msgid "Bitbake"
+msgstr "BitBake"
+
+msgctxt "Language|"
+msgid "B-Method"
+msgstr "B‑Method"
+
+msgctxt "Language|"
+msgid "Boo"
+msgstr "Boo"
+
+msgctxt "Language|"
+msgid "CleanCSS"
+msgstr "CleanCSS"
+
+msgctxt "Language|"
+msgid "CGiS"
+msgstr "CGiS"
+
+msgctxt "Language|"
+msgid "Cg"
+msgstr "Cg"
+
+msgctxt "Language|"
+msgid "ChangeLog"
+msgstr "dnevnik izmena"
+
+msgctxt "Language|"
+msgid "Common Intermediate Language (CIL)"
+msgstr ""
+
+msgctxt "Language|"
+msgid "Cisco"
+msgstr "Cisco"
+
+msgctxt "Language|"
+msgid "Clipper"
+msgstr "Clipper"
+
+msgctxt "Language|"
+msgid "CLIST"
+msgstr ""
+
+msgctxt "Language|"
+msgid "Clojure"
+msgstr "Clojure"
+
+msgctxt "Language|"
+msgid "CoffeeScript"
+msgstr "CoffeeScript"
+
+msgctxt "Language|"
+msgid "ColdFusion"
+msgstr "ColdFusion"
+
+msgctxt "Language|"
+msgid "Common Lisp"
+msgstr "Common Lisp"
+
+msgctxt "Language|"
+msgid "Component-Pascal"
+msgstr "Component-Pascal"
+
+msgctxt "Language|"
+msgid "ConTeXt"
+msgstr "ConTeXt"
+
+msgctxt "Language|"
+msgid "Crack"
+msgstr "Crack"
+
+msgctxt "Language|"
+msgid "CSS"
+msgstr "CSS"
+
+msgctxt "Language|"
+msgid "C#"
+msgstr "C#"
+
+msgctxt "Language|"
+msgid "CubeScript"
+msgstr "CubeScript"
+
+msgctxt "Language|"
+msgid "CUE Sheet"
+msgstr "kju‑list"
+
+msgctxt "Language|"
+msgid "Curry"
+msgstr "Curry"
+
+msgctxt "Language|"
+msgid "C"
+msgstr "C"
+
+msgctxt "Language|"
+msgid "Debian Changelog"
+msgstr "Debianov dnevnik izmena"
+
+msgctxt "Language|"
+msgid "Debian Control"
+msgstr "Debianova kontrola"
+
+msgctxt "Language|"
+msgid ".desktop"
+msgstr ".desktop"
+
+msgctxt "Language|"
+msgid "Diff"
+msgstr "diff"
+
+msgctxt "Language|"
+msgid "Django HTML Template"
+msgstr "Djangov HTML šablon"
+
+msgctxt "Language|"
+msgid "Dockerfile"
+msgstr "Dockerfile"
+
+msgctxt "Language|"
+msgid "MS-DOS Batch"
+msgstr "MS‑DOS bač"
+
+msgctxt "Language|"
+msgid "dot"
+msgstr "DOT"
+
+msgctxt "Language|"
+msgid "Doxyfile"
+msgstr "Doxyfile"
+
+msgctxt "Language|"
+msgid "DoxygenLua"
+msgstr "Doxygen‑Lua"
+
+msgctxt "Language|"
+msgid "Doxygen"
+msgstr "Doxygen"
+
+msgctxt "Language|"
+msgid "DTD"
+msgstr "DTD"
+
+msgctxt "Language|"
+msgid "D"
+msgstr "D"
+
+msgctxt "Language|"
+msgid "Eiffel"
+msgstr "Eiffel"
+
+msgctxt "Language|"
+msgid "Elm"
+msgstr ""
+
+msgctxt "Language|"
+msgid "Email"
+msgstr "e‑pošta"
+
+msgctxt "Language|"
+msgid "Erlang"
+msgstr "Erlang"
+
+msgctxt "Language|"
+msgid "Euphoria"
+msgstr "Euphoria"
+
+msgctxt "Language|"
+msgid "E Language"
+msgstr "E"
+
+msgctxt "Language|"
+msgid "Intel x86 (FASM)"
+msgstr "Intel x86 (FASM)"
+
+msgctxt "Language|"
+msgid "FASTQ"
+msgstr "FASTQ"
+
+msgctxt "Language|"
+msgid "ferite"
+msgstr "Ferite"
+
+msgctxt "Language|"
+msgid "4GL"
+msgstr "4GL"
+
+msgctxt "Language|"
+msgid "4GL-PER"
+msgstr "4GL‑PER"
+
+msgctxt "Language|"
+msgid "Fish"
+msgstr ""
+
+msgctxt "Language|"
+msgid "FlatBuffers"
+msgstr ""
+
+msgctxt "Language|"
+msgid "Fortran (Fixed Format)"
+msgstr ""
+
+msgctxt "Language|"
+msgid "Fortran (Free Format)"
+msgstr ""
+
+msgctxt "Language|"
+msgid "FreeBASIC"
+msgstr "FreeBASIC"
+
+msgctxt "Language|"
+msgid "FSharp"
+msgstr "FSharp"
+
+msgctxt "Language|"
+msgid "fstab"
+msgstr "fstab"
+
+msgctxt "Language|"
+msgid "FTL"
+msgstr "FTL"
+
+msgctxt "Language|"
+msgid "GAP"
+msgstr "GAP"
+
+msgctxt "Language|"
+msgid "G-Code"
+msgstr "G‑code"
+
+msgctxt "Language|"
+msgid "GDB Backtrace"
+msgstr "GDB‑ov kontratrag"
+
+msgctxt "Language|"
+msgid "GDB Init"
+msgstr ""
+
+#, fuzzy
+#| msgctxt "Language|"
+#| msgid "GDL"
+msgctxt "Language|"
+msgid "GDB"
+msgstr "GDL"
+
+msgctxt "Language|"
+msgid "GDL"
+msgstr "GDL"
+
+msgctxt "Language|"
+msgid "GNU Gettext"
+msgstr "GNU‑ov Gettext"
+
+msgctxt "Language|"
+msgid "Git Ignore"
+msgstr "Gitovo ignorisanje"
+
+msgctxt "Language|"
+msgid "Gitolite"
+msgstr "Gitolite"
+
+msgctxt "Language|"
+msgid "Git Rebase"
+msgstr "Gitovo prebaziranje"
+
+msgctxt "Language|"
+msgid "GlossTex"
+msgstr "GlossTex"
+
+msgctxt "Language|"
+msgid "GLSL"
+msgstr "GLSL"
+
+msgctxt "Language|"
+msgid "GNU Assembler"
+msgstr "GNU asembler"
+
+msgctxt "Language|"
+msgid "Gnuplot"
+msgstr "gnuplotski"
+
+msgctxt "Language|"
+msgid "Go"
+msgstr "go"
+
+msgctxt "Language|"
+msgid "KDev-PG[-Qt] Grammar"
+msgstr "gramatika KDev‑PG‑a[Qt]"
+
+msgctxt "Language|"
+msgid "GraphQL"
+msgstr ""
+
+msgctxt "Language|"
+msgid "Groovy"
+msgstr "Groovy"
+
+msgctxt "Language|"
+msgid "Hamlet"
+msgstr "Hamlet"
+
+msgctxt "Language|"
+msgid "Haml"
+msgstr "HAML"
+
+msgctxt "Language|"
+msgid "Haskell"
+msgstr "Haskell"
+
+msgctxt "Language|"
+msgid "Haxe"
+msgstr "Haxe"
+
+msgctxt "Language|"
+msgid "HTML"
+msgstr "HTML"
+
+msgctxt "Language|"
+msgid "Hunspell Affix File"
+msgstr "Hunspellov fajl afiksa"
+
+msgctxt "Language|"
+msgid "Hunspell Thesaurus File"
+msgstr "Hunspellov fajl sinonima"
+
+msgctxt "Language|"
+msgid "Hunspell Dictionary File"
+msgstr "Hunspellov fajl rečnika"
+
+msgctxt "Language|"
+msgid "Quake Script"
+msgstr "Quake Script"
+
+msgctxt "Language|"
+msgid "IDL"
+msgstr "IDL"
+
+msgctxt "Language|"
+msgid "ILERPG"
+msgstr "ILERPG"
+
+msgctxt "Language|"
+msgid "Inform"
+msgstr "Inform"
+
+msgctxt "Language|"
+msgid "INI Files"
+msgstr "INI postavke"
+
+msgctxt "Language|"
+msgid "InnoSetup"
+msgstr ""
+
+msgctxt "Language|"
+msgid "Intel HEX"
+msgstr "Intelov HEX"
+
+msgctxt "Language|"
+msgid "Jam"
+msgstr "Jam"
+
+msgctxt "Language|"
+msgid "Javadoc"
+msgstr "Javadoc"
+
+#, fuzzy
+#| msgctxt "Language|"
+#| msgid "JavaScript"
+msgctxt "Language|"
+msgid "JavaScript React (JSX)"
+msgstr "JavaScript"
+
+msgctxt "Language|"
+msgid "JavaScript"
+msgstr "JavaScript"
+
+msgctxt "Language|"
+msgid "Java"
+msgstr "Java"
+
+msgctxt "Language|"
+msgid "JCL"
+msgstr ""
+
+msgctxt "Language|"
+msgid "Jira"
+msgstr "Jira"
+
+msgctxt "Language|"
+msgid "JSON"
+msgstr "JSON"
+
+msgctxt "Language|"
+msgid "JSP"
+msgstr "JSP"
+
+msgctxt "Language|"
+msgid "Julia"
+msgstr "Julia"
+
+msgctxt "Language|"
+msgid "J"
+msgstr "J"
+
+msgctxt "Language|"
+msgid "KBasic"
+msgstr "KBasic"
+
+msgctxt "Language|"
+msgid "Kconfig"
+msgstr "KConfig"
+
+msgctxt "Language|"
+msgid "Kotlin"
+msgstr "Kotlin"
+
+msgctxt "Language|"
+msgid "k"
+msgstr "K"
+
+msgctxt "Language|"
+msgid "LaTeX"
+msgstr "LaTeX"
+
+msgctxt "Language|"
+msgid "LDIF"
+msgstr "LDIF"
+
+msgctxt "Language|"
+msgid "GNU Linker Script"
+msgstr "skripta GNU‑ovog povezivača"
+
+msgctxt "Language|"
+msgid "LESSCSS"
+msgstr "LESS"
+
+msgctxt "Language|"
+msgid "Lex/Flex"
+msgstr "Lex/Flex"
+
+msgctxt "Language|"
+msgid "LilyPond"
+msgstr "LilyPond"
+
+msgctxt "Language|"
+msgid "Literate Curry"
+msgstr "pismeni Curry"
+
+msgctxt "Language|"
+msgid "Literate Haskell"
+msgstr "pismeni Haskell"
+
+msgctxt "Language|"
+msgid "Logcat"
+msgstr ""
+
+msgctxt "Language|"
+msgid "Logtalk"
+msgstr "Logtalk"
+
+msgctxt "Language|"
+msgid "LPC"
+msgstr "LPC"
+
+msgctxt "Language|"
+msgid "LSL"
+msgstr "LSL"
+
+msgctxt "Language|"
+msgid "Lua"
+msgstr "Lua"
+
+msgctxt "Language|"
+msgid "M3U"
+msgstr "M3U"
+
+msgctxt "Language|"
+msgid "GNU M4"
+msgstr "GNU‑ov M4"
+
+msgctxt "Language|"
+msgid "MAB-DB"
+msgstr "MAB‑DB"
+
+msgctxt "Language|"
+msgid "Magma"
+msgstr "Magma"
+
+msgctxt "Language|"
+msgid "Makefile"
+msgstr "spravifajl"
+
+msgctxt "Language|"
+msgid "Mako"
+msgstr "Mako"
+
+msgctxt "Language|"
+msgid "Troff Mandoc"
+msgstr "Troff uputna strana"
+
+msgctxt "Language|"
+msgid "Markdown"
+msgstr "Markdown"
+
+msgctxt "Language|"
+msgid "Mason"
+msgstr "Mason"
+
+msgctxt "Language|"
+msgid "Mathematica"
+msgstr "Mathematica"
+
+msgctxt "Language|"
+msgid "Matlab"
+msgstr "matlabski"
+
+msgctxt "Language|"
+msgid "Maxima"
+msgstr "maximski"
+
+msgctxt "Language|"
+msgid "MediaWiki"
+msgstr "MediaWiki"
+
+msgctxt "Language|"
+msgid "MEL"
+msgstr "MEL"
+
+msgctxt "Language|"
+msgid "mergetag text"
+msgstr "mergetag text"
+
+msgctxt "Language|"
+msgid "Meson"
+msgstr "Meson"
+
+msgctxt "Language|"
+msgid "Metapost/Metafont"
+msgstr "Metapost/Metafont"
+
+msgctxt "Language|"
+msgid "Metamath"
+msgstr "Metamath"
+
+msgctxt "Language|"
+msgid "MIB"
+msgstr ""
+
+msgctxt "Language|"
+msgid "MIPS Assembler"
+msgstr "MIPS asembler"
+
+msgctxt "Language|"
+msgid "Modelica"
+msgstr "Modelica"
+
+msgctxt "Language|"
+msgid "Modelines"
+msgstr "redovi režima"
+
+msgctxt "Language|"
+msgid "Modula-2 (ISO only)"
+msgstr ""
+
+msgctxt "Language|"
+msgid "Modula-2 (PIM only)"
+msgstr ""
+
+msgctxt "Language|"
+msgid "Modula-2 (R10 only)"
+msgstr ""
+
+msgctxt "Language|"
+msgid "Modula-2"
+msgstr "Modula‑2"
+
+msgctxt "Language|"
+msgid "MonoBasic"
+msgstr "MonoBasic"
+
+msgctxt "Language|"
+msgid "Music Publisher"
+msgstr "izdavač muzike"
+
+msgctxt "Language|"
+msgid "Mustache/Handlebars (HTML)"
+msgstr ""
+
+msgctxt "Language|"
+msgid "Nagios"
+msgstr "Nagios"
+
+msgctxt "Language|"
+msgid "Intel x86 (NASM)"
+msgstr "Intel x86 (NASM)"
+
+msgctxt "Language|"
+msgid "Nemerle"
+msgstr "Nemerle"
+
+msgctxt "Language|"
+msgid "nesC"
+msgstr "nesC"
+
+msgctxt "Language|"
+msgid "noweb"
+msgstr "noweb"
+
+msgctxt "Language|"
+msgid "Objective-C++"
+msgstr "Objective‑C++"
+
+msgctxt "Language|"
+msgid "Objective-C"
+msgstr "Objective‑C"
+
+msgctxt "Language|"
+msgid "Objective Caml Ocamllex"
+msgstr "Objective‑Caml — ocamllex"
+
+msgctxt "Language|"
+msgid "Objective Caml"
+msgstr "Objective‑Caml"
+
+msgctxt "Language|"
+msgid "Objective Caml Ocamlyacc"
+msgstr "Objective‑Caml — ocamlyacc"
+
+msgctxt "Language|"
+msgid "Octave"
+msgstr "octavski"
+
+msgctxt "Language|"
+msgid "OORS"
+msgstr "OORS"
+
+msgctxt "Language|"
+msgid "OPAL"
+msgstr "OPAL"
+
+msgctxt "Language|"
+msgid "OpenCL"
+msgstr "OpenCL"
+
+#, fuzzy
+#| msgctxt "Language|"
+#| msgid "OpenCL"
+msgctxt "Language|"
+msgid "OpenSCAD"
+msgstr "OpenCL"
+
+msgctxt "Language|"
+msgid "Overpass QL"
+msgstr ""
+
+msgctxt "Language|"
+msgid "Pango"
+msgstr "⁠pango"
+
+msgctxt "Language|"
+msgid "Pascal"
+msgstr "Pascal"
+
+msgctxt "Language|"
+msgid "Perl"
+msgstr "Perl"
+
+msgctxt "Language|"
+msgid "PHP/PHP"
+msgstr "PHP"
+
+msgctxt "Language|"
+msgid "PicAsm"
+msgstr "PicAsm"
+
+msgctxt "Language|"
+msgid "Pig"
+msgstr "Pig"
+
+msgctxt "Language|"
+msgid "Pike"
+msgstr "Pike"
+
+msgctxt "Language|"
+msgid "PL/I"
+msgstr "PL/I"
+
+msgctxt "Language|"
+msgid "PLY"
+msgstr "PLI"
+
+msgctxt "Language|"
+msgid "PostScript"
+msgstr "PostScript"
+
+msgctxt "Language|"
+msgid "POV-Ray"
+msgstr "POV‑Ray"
+
+msgctxt "Language|"
+msgid "Praat"
+msgstr "Praat"
+
+msgctxt "Language|"
+msgid "progress"
+msgstr "progress"
+
+msgctxt "Language|"
+msgid "Protobuf"
+msgstr "Protobuf"
+
+msgctxt "Language|"
+msgid "Pug"
+msgstr "Pug"
+
+msgctxt "Language|"
+msgid "Puppet"
+msgstr "Puppet"
+
+msgctxt "Language|"
+msgid "PureBasic"
+msgstr "PureBasic"
+
+msgctxt "Language|"
+msgid "Python"
+msgstr "Python"
+
+msgctxt "Language|"
+msgid "QDoc Configuration"
+msgstr "QDocova postava"
+
+msgctxt "Language|"
+msgid "QMake"
+msgstr "QMake"
+
+msgctxt "Language|"
+msgid "QML"
+msgstr "QML"
+
+msgctxt "Language|"
+msgid "q"
+msgstr "Q"
+
+msgctxt "Language|"
+msgid "Raku"
+msgstr ""
+
+msgctxt "Language|"
+msgid "RapidQ"
+msgstr "RapidQ"
+
+msgctxt "Language|"
+msgid "R documentation"
+msgstr ""
+
+msgctxt "Language|"
+msgid "RelaxNG-Compact"
+msgstr "Relax NG sažeti"
+
+msgctxt "Language|"
+msgid "RenPy"
+msgstr ""
+
+msgctxt "Language|"
+msgid "Replicode"
+msgstr "Replicode"
+
+msgctxt "Language|"
+msgid "reStructuredText"
+msgstr "restrukturni-tekst"
+
+msgctxt "Language|"
+msgid "REXX"
+msgstr "REXX"
+
+msgctxt "Language|"
+msgid "Ruby/Rails/RHTML"
+msgstr "Ruby/Rails/RHTML"
+
+msgctxt "Language|"
+msgid "RenderMan RIB"
+msgstr "RenderMan‑RIB"
+
+msgctxt "Language|"
+msgid "R Markdown"
+msgstr "R Markdown"
+
+msgctxt "Language|"
+msgid "Roff"
+msgstr "Roff"
+
+msgctxt "Language|"
+msgid "RPM Spec"
+msgstr "RPM navod"
+
+msgctxt "Language|"
+msgid "RSI IDL"
+msgstr "RSI IDL"
+
+msgctxt "Language|"
+msgid "Rich Text Format"
+msgstr "format bogatog teksta"
+
+msgctxt "Language|"
+msgid "Ruby"
+msgstr "Ruby"
+
+msgctxt "Language|"
+msgid "Rust"
+msgstr "Rust"
+
+msgctxt "Language|"
+msgid "R Script"
+msgstr "R Script"
+
+msgctxt "Language|"
+msgid "SASS"
+msgstr ""
+
+msgctxt "Language|"
+msgid "Sather"
+msgstr "Sather"
+
+msgctxt "Language|"
+msgid "Scala"
+msgstr "Scala"
+
+msgctxt "Language|"
+msgid "Scheme"
+msgstr "Scheme"
+
+msgctxt "Language|"
+msgid "scilab"
+msgstr "scilabski"
+
+msgctxt "Language|"
+msgid "SCSS"
+msgstr "SCSS"
+
+msgctxt "Language|"
+msgid "sed"
+msgstr "⁠sed"
+
+msgctxt "Language|"
+msgid "SELinux CIL Policy"
+msgstr ""
+
+msgctxt "Language|"
+msgid "SELinux File Contexts"
+msgstr ""
+
+msgctxt "Language|"
+msgid "SELinux Policy"
+msgstr ""
+
+msgctxt "Language|"
+msgid "SGML"
+msgstr "SGML"
+
+msgctxt "Language|"
+msgid "SiSU"
+msgstr "SiSU"
+
+msgctxt "Language|"
+msgid "Smali"
+msgstr ""
+
+msgctxt "Language|"
+msgid "SML"
+msgstr "SML"
+
+msgctxt "Language|"
+msgid "Solidity"
+msgstr ""
+
+msgctxt "Language|"
+msgid "Spice"
+msgstr "Spice"
+
+msgctxt "Language|"
+msgid "SQL (MySQL)"
+msgstr "SQL (MySQL)"
+
+msgctxt "Language|"
+msgid "SQL (Oracle)"
+msgstr "SQL (Oracle)"
+
+msgctxt "Language|"
+msgid "SQL (PostgreSQL)"
+msgstr "SQL (PostgreSQ)"
+
+msgctxt "Language|"
+msgid "SQL"
+msgstr "SQL"
+
+msgctxt "Language|"
+msgid "Stan"
+msgstr ""
+
+msgctxt "Language|"
+msgid "Stata"
+msgstr "Stata"
+
+msgctxt "Language|"
+msgid "STL"
+msgstr "STL"
+
+msgctxt "Language|"
+msgid "SubRip Subtitles"
+msgstr ""
+
+msgctxt "Language|"
+msgid "SystemC"
+msgstr "SystemC"
+
+msgctxt "Language|"
+msgid "SystemVerilog"
+msgstr "SystemVerilog"
+
+msgctxt "Language|"
+msgid "TADS 3"
+msgstr "TADS 3"
+
+msgctxt "Language|"
+msgid "TaskJuggler"
+msgstr "TaskJuggler"
+
+msgctxt "Language|"
+msgid "Tcl/Tk"
+msgstr "Tcl/Tk"
+
+msgctxt "Language|"
+msgid "Tcsh"
+msgstr "Tcsh"
+
+msgctxt "Language|"
+msgid "Texinfo"
+msgstr "TeXinfo"
+
+msgctxt "Language|"
+msgid "Textile"
+msgstr "Textile"
+
+msgctxt "Language|"
+msgid "TI Basic"
+msgstr "TI Basic"
+
+msgctxt "Language|"
+msgid "Tiger"
+msgstr "Tiger"
+
+msgctxt "Language|"
+msgid "TOML"
+msgstr "TOML"
+
+msgctxt "Language|"
+msgid "txt2tags"
+msgstr "txt2tags"
+
+#, fuzzy
+#| msgctxt "Language|"
+#| msgid "JavaScript"
+msgctxt "Language|"
+msgid "TypeScript React (TSX)"
+msgstr "JavaScript"
+
+#, fuzzy
+#| msgctxt "Language Section|"
+#| msgid "Scripts"
+msgctxt "Language|"
+msgid "TypeScript"
+msgstr "skriptni"
+
+msgctxt "Language|"
+msgid "UnrealScript"
+msgstr "UnrealScript"
+
+msgctxt "Language|"
+msgid "Vala"
+msgstr "Vala"
+
+msgctxt "Language|"
+msgid "Valgrind Suppression"
+msgstr "Valgrindovo potiskivanje"
+
+msgctxt "Language|"
+msgid "Varnish 4 Configuration Language"
+msgstr "Varnishov postavni jezik (4)"
+
+msgctxt "Language|"
+msgid "Varnish 4 module spec file"
+msgstr "Varnishov fajl specifikacije modula (4)"
+
+msgctxt "Language|"
+msgid "Varnish 3 module spec file"
+msgstr "Varnishov fajl specifikacije modula (3)"
+
+msgctxt "Language|"
+msgid "Varnish 4 Test Case language"
+msgstr "Varnishov jezik probnih slučajeva (4)"
+
+msgctxt "Language|"
+msgid "Varnish Test Case language"
+msgstr "Varnishov jezik probnih slučajeva"
+
+msgctxt "Language|"
+msgid "Varnish Configuration Language"
+msgstr "Varnishov postavni jezik"
+
+msgctxt "Language|"
+msgid "vCard, vCalendar, iCalendar"
+msgstr "vCard, v‑kalendar, i‑kalendar"
+
+msgctxt "Language|"
+msgid "Velocity"
+msgstr "Velocity"
+
+msgctxt "Language|"
+msgid "Vera"
+msgstr "Vera"
+
+msgctxt "Language|"
+msgid "Verilog"
+msgstr "Verilog"
+
+msgctxt "Language|"
+msgid "VHDL"
+msgstr "VHDL"
+
+msgctxt "Language|"
+msgid "VRML"
+msgstr "VRML"
+
+msgctxt "Language|"
+msgid "Wavefront OBJ"
+msgstr "Wavefrontov OBJ"
+
+msgctxt "Language|"
+msgid "Wayland Trace"
+msgstr ""
+
+msgctxt "Language|"
+msgid "WINE Config"
+msgstr "WINE‑postava"
+
+msgctxt "Language|"
+msgid "Wesnoth Markup Language"
+msgstr "Vesnotov obeleživački jezik"
+
+msgctxt "Language|"
+msgid "xHarbour"
+msgstr "xHarbour"
+
+msgctxt "Language|"
+msgid "XML (Debug)"
+msgstr "XML (ispravljanje)"
+
+msgctxt "Language|"
+msgid "XML"
+msgstr "XML"
+
+msgctxt "Language|"
+msgid "Xonotic Script"
+msgstr "Xonoticov skript"
+
+msgctxt "Language|"
+msgid "x.org Configuration"
+msgstr "x.org‑postava"
+
+msgctxt "Language|"
+msgid "xslt"
+msgstr "XSLT"
+
+msgctxt "Language|"
+msgid "XUL"
+msgstr "XUL"
+
+msgctxt "Language|"
+msgid "yacas"
+msgstr "yacas"
+
+msgctxt "Language|"
+msgid "Yacc/Bison"
+msgstr "Yacc/Bison"
+
+msgctxt "Language|"
+msgid "YAML"
+msgstr "YAML"
+
+msgctxt "Language|"
+msgid "YANG"
+msgstr "YANG"
+
+msgctxt "Language|"
+msgid "Zonnon"
+msgstr "Zonnon"
+
+msgctxt "Language|"
+msgid "Zsh"
+msgstr "Zsh"
+
+msgctxt "Language Section|"
+msgid "Scripts"
+msgstr "skriptni"
+
+msgctxt "Language Section|"
+msgid "Sources"
+msgstr "izvorni"
+
+msgctxt "Language Section|"
+msgid "Other"
+msgstr "ostali"
+
+msgctxt "Language Section|"
+msgid "Hardware"
+msgstr "hardverski"
+
+msgctxt "Language Section|"
+msgid "Scientific"
+msgstr "naučni"
+
+msgctxt "Language Section|"
+msgid "Configuration"
+msgstr "postavni"
+
+msgctxt "Language Section|"
+msgid "Markup"
+msgstr "obilježivački"
+
+msgctxt "Language Section|"
+msgid "Assembler"
+msgstr "asemblerski"
+
+msgctxt "Language Section|"
+msgid "Database"
+msgstr "baze"
+
+msgctxt "Language Section|"
+msgid "3D"
+msgstr "3D"
+
+msgctxt "Theme|"
+msgid "Breeze Dark"
+msgstr ""
+
+msgctxt "Theme|"
+msgid "Default"
+msgstr ""
+
+msgctxt "Theme|"
+msgid "Printing"
+msgstr ""
+
+msgctxt "Theme|"
+msgid "Solarized Dark"
+msgstr ""
+
+msgctxt "Theme|"
+msgid "Solarized Light"
+msgstr ""
+
+#: cli/kate-syntax-highlighter.cpp:49
+msgctxt "SyntaxHighlightingCLI|"
+msgid "Command line syntax highlighter using Kate syntax definitions."
+msgstr "Isticanje sintakse iz komandne linije na osnovu Kateinih definicija."
+
+#: cli/kate-syntax-highlighter.cpp:52
+msgctxt "SyntaxHighlightingCLI|"
+msgid "source"
+msgstr "izvor"
+
+#: cli/kate-syntax-highlighter.cpp:52
+msgctxt "SyntaxHighlightingCLI|"
+msgid "The source file to highlight."
+msgstr "Izvorni fajl za isticanje."
+
+#: cli/kate-syntax-highlighter.cpp:54
+msgctxt "SyntaxHighlightingCLI|"
+msgid "List all available syntax definitions."
+msgstr "Nabraja sve dostupne definicije sintakse."
+
+#: cli/kate-syntax-highlighter.cpp:56
+msgctxt "SyntaxHighlightingCLI|"
+msgid "List all available themes."
+msgstr "Nabraja sve dostupne teme."
+
+#: cli/kate-syntax-highlighter.cpp:59
+msgctxt "SyntaxHighlightingCLI|"
+msgid "Download new/updated syntax definitions."
+msgstr "Preuzima nove/ažurirane definicije sintakse."
+
+#: cli/kate-syntax-highlighter.cpp:63
+msgctxt "SyntaxHighlightingCLI|"
+msgid "File to write HTML output to (default: stdout)."
+msgstr "Fajl za upisivanje HTML izlaza (podrazumevano: stdiz)."
+
+#: cli/kate-syntax-highlighter.cpp:63
+msgctxt "SyntaxHighlightingCLI|"
+msgid "output"
+msgstr "izlaz"
+
+#: cli/kate-syntax-highlighter.cpp:67
+msgctxt "SyntaxHighlightingCLI|"
+msgid ""
+"Highlight using this syntax definition (default: auto-detect based on input "
+"file)."
+msgstr ""
+"Isticanje na osnovu ove definicije sintakse (podrazumevano: automatsko "
+"otkrivanje po ulaznom fajl)."
+
+#: cli/kate-syntax-highlighter.cpp:68
+msgctxt "SyntaxHighlightingCLI|"
+msgid "syntax"
+msgstr "sintaksa"
+
+#: cli/kate-syntax-highlighter.cpp:72
+msgctxt "SyntaxHighlightingCLI|"
+msgid "Color theme to use for highlighting."
+msgstr "Tema boja za isticanje."
+
+#: cli/kate-syntax-highlighter.cpp:72
+msgctxt "SyntaxHighlightingCLI|"
+msgid "theme"
+msgstr "tema"
+
+#: cli/kate-syntax-highlighter.cpp:76
+msgctxt "SyntaxHighlightingCLI|"
+msgid ""
+"Set HTML page's title\n"
+"(default: the filename or \"Kate Syntax Highlighter\" if reading from stdin)."
+msgstr ""
+
+#: cli/kate-syntax-highlighter.cpp:77
+msgctxt "SyntaxHighlightingCLI|"
+msgid "title"
+msgstr ""
+
+#: cli/kate-syntax-highlighter.cpp:80
+msgctxt "SyntaxHighlightingCLI|"
+msgid "Read file from stdin. The -s option must also be used."
+msgstr ""
+
+#: lib/definition_p.h:104
+msgctxt "Language|"
+msgid "None"
+msgstr ""
+
+#: lib/definitiondownloader.cpp:80
+msgctxt "QObject|"
+msgid "All syntax definitions are up-to-date."
+msgstr "Sve definicije sintakse ažurne."
+
+#: lib/definitiondownloader.cpp:92
+#, qt-format
+msgctxt "QObject|"
+msgid "Downloading new syntax definition for '%1'..."
+msgstr "Preuzimam novu definiciju sintakse za „%1“..."
+
+#: lib/definitiondownloader.cpp:99
+#, qt-format
+msgctxt "QObject|"
+msgid "Updating syntax definition for '%1' to version %2..."
+msgstr "Ažuriram definiciju sintakse za „%1“ na izdanje %2..."

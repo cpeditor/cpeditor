@@ -1,0 +1,92 @@
+# This is test comment
+% this is another comment
+a = 3; b = 34;
+
+<beginfold id='1'>function</beginfold id='1'> retval = avg (v)
+  retval = 0;
+  <beginfold id='1'>if</beginfold id='1'> (isvector (v))
+    retval = sum (v) / length (v);
+  else
+    error ("avg: expecting vector argument");
+  <endfold id='1'>endif</endfold id='1'>
+<endfold id='1'>endfunction</endfold id='1'>
+
+<beginfold id='1'>if</beginfold id='1'> (rem (x, 2) == 0)
+  printf ("x is even\n");
+else
+  printf ("x is odd\n");
+<endfold id='1'>endif</endfold id='1'>
+
+<beginfold id='1'>if</beginfold id='1'> (rem (x, 2) == 0)
+  printf ("x is even\n");
+elseif (rem (x, 3) == 0)
+  printf ("x is odd and divisible by 3\n");
+else
+  printf ("x is odd\n");
+<endfold id='1'>end</endfold id='1'>
+
+<beginfold id='1'>if</beginfold id='1'> (rem(x,2) == 0) x = 5; elseif (rem (x,3) == 0) x = 3; else x = 0; <endfold id='1'>end</endfold id='1'>
+
+cd ..
+
+<beginfold id='1'>while</beginfold id='1'> (i <= 10)
+  fib (i) = fib (i-1) + fib (i-2);
+  i++;
+<endfold id='1'>endwhile</endfold id='1'>
+
+<beginfold id='1'>classdef</beginfold id='1'> polynomial2
+  <beginfold id='1'>properties</beginfold id='1'>
+    poly = 0;
+  <endfold id='1'>endproperties</endfold id='1'>
+
+  <beginfold id='1'>methods</beginfold id='1'>
+    <beginfold id='1'>function</beginfold id='1'> p = polynomial2 (a)
+      <beginfold id='1'>if</beginfold id='1'> (nargin > 1)
+        print_usage ();
+      <endfold id='1'>endif</endfold id='1'>
+
+      <beginfold id='1'>if</beginfold id='1'> (nargin == 1)
+        <beginfold id='1'>if</beginfold id='1'> (isa (a, "polynomial2"))
+          p.poly = a.poly;
+        elseif (isreal (a) && isvector (a))
+          p.poly = a(:).';  # force row vector
+        else
+          error ("polynomial2: A must be a real vector");
+        <endfold id='1'>endif</endfold id='1'>
+      <endfold id='1'>endif</endfold id='1'>
+    <endfold id='1'>endfunction</endfold id='1'>
+
+    <beginfold id='1'>function</beginfold id='1'> disp (p)
+      a = p.poly;
+      first = true;
+      <beginfold id='1'>for</beginfold id='1'> i = 1 : length (a);
+        <beginfold id='1'>if</beginfold id='1'> (a(i) != 0)
+          <beginfold id='1'>if</beginfold id='1'> (first)
+            first = false;
+          elseif (a(i) > 0 || isnan (a(i)))
+            printf (" +");
+          <endfold id='1'>endif</endfold id='1'>
+          <beginfold id='1'>if</beginfold id='1'> (a(i) < 0)
+            printf (" -");
+          <endfold id='1'>endif</endfold id='1'>
+          <beginfold id='1'>if</beginfold id='1'> (i == 1)
+            printf (" %.5g", abs (a(i)));
+          elseif (abs (a(i)) != 1)
+            printf (" %.5g *", abs (a(i)));
+          <endfold id='1'>endif</endfold id='1'>
+          <beginfold id='1'>if</beginfold id='1'> (i > 1)
+            printf (" X");
+          <endfold id='1'>endif</endfold id='1'>
+          <beginfold id='1'>if</beginfold id='1'> (i > 2)
+            printf (" ^ %d", i - 1);
+          <endfold id='1'>endif</endfold id='1'>
+        <endfold id='1'>endif</endfold id='1'>
+      <endfold id='1'>endfor</endfold id='1'>
+
+      <beginfold id='1'>if</beginfold id='1'> (first)
+        printf (" 0");
+      <endfold id='1'>endif</endfold id='1'>
+      printf ("\n");
+    <endfold id='1'>endfunction</endfold id='1'>
+  <endfold id='1'>endmethods</endfold id='1'>
+<endfold id='1'>endclassdef</endfold id='1'>

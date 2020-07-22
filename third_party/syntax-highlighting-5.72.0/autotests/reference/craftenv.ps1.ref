@@ -1,0 +1,111 @@
+<Comment><#</Comment><br/>
+<Comment>   Copied from Craft for testing syntax highlighting</Comment><br/>
+<Comment>#></Comment><br/>
+<Normal Text></Normal Text><br/>
+<HereString>@" multi</HereString><br/>
+<HereString>   line</HereString><br/>
+<HereString>   string</HereString><br/>
+<HereString>"@</HereString><br/>
+<Normal Text></Normal Text><br/>
+<Variable>$foo</Variable><Normal Text> </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><String>"Test </String><String Char>`u{2013}</String Char><String> String</String><String Char>`n</String Char><String>with </String><String Char>`"</String Char><String>escapes</String><String Char>`"</String Char><String>"</String><br/>
+<Normal Text></Normal Text><br/>
+<Comment>#    this file sets some environment variables that are needed</Comment><br/>
+<Comment>#    for finding programs and libraries etc.</Comment><br/>
+<Comment>#    by Hannah von Reth <vonreth@kde.org></Comment><br/>
+<Comment>#    you should copy kdesettings.ini to ..\etc\kdesettings.ini</Comment><br/>
+<Comment>#    and adapt it to your needs (see that file for more info)</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Comment>#    this file should contain all path settings - and provide thus an environment</Comment><br/>
+<Comment>#    to build and run kde programs</Comment><br/>
+<Comment>#    based on kdeenv.bat</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Function>cls</Function><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Variable>$env</Variable><Symbol>:</Symbol><Normal Text>CraftRoot</Normal Text><Symbol>=[</Symbol><Normal Text>System</Normal Text><Symbol>.</Symbol><Function>IO</Function><Symbol>.</Symbol><Function>Path</Function><Symbol>]::</Symbol><Normal Text>GetDirectoryName</Normal Text><Symbol>(</Symbol><Variable>$myInvocation</Variable><Symbol>.</Symbol><Function>MyCommand</Function><Symbol>.</Symbol><Function>Definition</Function><Symbol>)</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Variable>$CRAFT_ARGUMENTS</Variable><Normal Text> </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Variable>$args</Variable><br/>
+<Normal Text></Normal Text><br/>
+<Symbol>&{</Symbol><br/>
+<Symbol>[</Symbol><Normal Text>version</Normal Text><Symbol>]</Symbol><Variable>$minPythonVersion</Variable><Normal Text> </Normal Text><Symbol>=</Symbol><Normal Text> 3</Normal Text><Symbol>.</Symbol><Function>6</Function><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>function</Keyword><Normal Text> findPython</Normal Text><Symbol>([</Symbol><Data Type>string</Data Type><Symbol>]</Symbol><Normal Text> </Normal Text><Variable>$name</Variable><Symbol>)</Symbol><br/>
+<Symbol>{</Symbol><br/>
+<Normal Text>    </Normal Text><Variable>$py</Variable><Normal Text> </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Symbol>(</Symbol><Function>Get-Command</Function><Normal Text> </Normal Text><Variable>$name</Variable><Normal Text> </Normal Text><Symbol>-</Symbol><Normal Text>ErrorAction SilentlyContinue</Normal Text><Symbol>)</Symbol><br/>
+<Normal Text>    </Normal Text><Keyword>if</Keyword><Normal Text> </Normal Text><Symbol>(</Symbol><Variable>$py</Variable><Normal Text> </Normal Text><Symbol>-</Symbol><Normal Text>and </Normal Text><Symbol>(</Symbol><Variable>$py</Variable><Normal Text> </Normal Text><Symbol>|</Symbol><Normal Text> </Normal Text><Function>Get-Member</Function><Normal Text> Version</Normal Text><Symbol>)</Symbol><Normal Text> </Normal Text><Symbol>-</Symbol><Normal Text>and </Normal Text><Variable>$py</Variable><Symbol>.</Symbol><Function>Version</Function><Normal Text> </Normal Text><Symbol>-</Symbol><Normal Text>ge </Normal Text><Variable>$minPythonVersion</Variable><Symbol>)</Symbol><Normal Text> </Normal Text><Symbol>{</Symbol><br/>
+<Normal Text>        </Normal Text><Variable>$env</Variable><Symbol>:</Symbol><Normal Text>CRAFT_PYTHON</Normal Text><Symbol>=</Symbol><Variable>$py</Variable><Symbol>.</Symbol><Function>Source</Function><br/>
+<Normal Text>    </Normal Text><Symbol>}</Symbol><br/>
+<Symbol>}</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>findPython</Normal Text><Symbol>(</Symbol><String>"python3"</String><Symbol>)</Symbol><br/>
+<Normal Text>findPython</Normal Text><Symbol>(</Symbol><String>"python"</String><Symbol>)</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>function</Keyword><Normal Text> readINI</Normal Text><Symbol>([</Symbol><Data Type>string</Data Type><Symbol>]</Symbol><Normal Text> </Normal Text><Variable>$fileName</Variable><Symbol>)</Symbol><br/>
+<Symbol>{</Symbol><br/>
+<Normal Text>   </Normal Text><Variable>$ini</Variable><Normal Text> </Normal Text><Symbol>=</Symbol><Normal Text> @</Normal Text><Symbol>{}</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>  </Normal Text><Keyword>switch</Keyword><Normal Text> </Normal Text><Symbol>-</Symbol><Normal Text>regex </Normal Text><Symbol>-</Symbol><Normal Text>file </Normal Text><Variable>$fileName</Variable><Normal Text> </Normal Text><Symbol>{</Symbol><br/>
+<Normal Text>    </Normal Text><String>"^\[(.+)\]$"</String><Normal Text> </Normal Text><Symbol>{</Symbol><br/>
+<Normal Text>      </Normal Text><Variable>$section</Variable><Normal Text> </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Variable>$matches</Variable><Symbol>[</Symbol><Normal Text>1</Normal Text><Symbol>].</Symbol><Function>Trim</Function><Symbol>()</Symbol><br/>
+<Normal Text>      </Normal Text><Variable>$ini</Variable><Symbol>[</Symbol><Variable>$section</Variable><Symbol>]</Symbol><Normal Text> </Normal Text><Symbol>=</Symbol><Normal Text> @</Normal Text><Symbol>{}</Symbol><br/>
+<Normal Text>    </Normal Text><Symbol>}</Symbol><br/>
+<Normal Text>    </Normal Text><String>"^\s*([^#].+?)\s*=\s*(.*)"</String><Normal Text> </Normal Text><Symbol>{</Symbol><br/>
+<Normal Text>      </Normal Text><Variable>$name</Variable><Symbol>,</Symbol><Variable>$value</Variable><Normal Text> </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Variable>$matches</Variable><Symbol>[</Symbol><Normal Text>1</Normal Text><Symbol>..</Symbol><Function>2</Function><Symbol>]</Symbol><br/>
+<Normal Text>      </Normal Text><Variable>$ini</Variable><Symbol>[</Symbol><Variable>$section</Variable><Symbol>][</Symbol><Variable>$name</Variable><Symbol>]</Symbol><Normal Text> </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Variable>$value</Variable><Symbol>.</Symbol><Function>Trim</Function><Symbol>()</Symbol><br/>
+<Normal Text>    </Normal Text><Symbol>}</Symbol><br/>
+<Normal Text>  </Normal Text><Symbol>}</Symbol><br/>
+<Normal Text>  </Normal Text><Variable>$ini</Variable><br/>
+<Symbol>}</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>if</Keyword><Symbol>(</Symbol><Function>test-path</Function><Normal Text> </Normal Text><Symbol>-</Symbol><Normal Text>path </Normal Text><Variable>$env</Variable><Symbol>:</Symbol><Normal Text>CraftRoot\</Normal Text><Symbol>..</Symbol><Normal Text>\etc\kdesettings</Normal Text><Symbol>.</Symbol><Function>ini</Function><Symbol>)</Symbol><br/>
+<Symbol>{</Symbol><br/>
+<Normal Text>    </Normal Text><Variable>$settings</Variable><Normal Text> </Normal Text><Symbol>=</Symbol><Normal Text> readINI </Normal Text><Variable>$env</Variable><Symbol>:</Symbol><Normal Text>CraftRoot\</Normal Text><Symbol>..</Symbol><Normal Text>\etc\kdesettings</Normal Text><Symbol>.</Symbol><Function>ini</Function><br/>
+<Symbol>}</Symbol><br/>
+<Keyword>else</Keyword><br/>
+<Symbol>{</Symbol><br/>
+<Normal Text>    </Normal Text><Function>Write-Error</Function><Symbol>(</Symbol><String>"$env:CraftRoot\..\etc\kdesettings.ini Does not exist"</String><Symbol>)</Symbol><br/>
+<Normal Text>    </Normal Text><Keyword>break</Keyword><br/>
+<Symbol>}</Symbol><br/>
+<Keyword>if</Keyword><Symbol>(</Symbol><Normal Text> </Normal Text><Variable>$CRAFT_ARGUMENTS</Variable><Symbol>[</Symbol><Normal Text>0</Normal Text><Symbol>]</Symbol><Normal Text> </Normal Text><Symbol>-</Symbol><Normal Text>eq </Normal Text><String>"--get"</String><Symbol>)</Symbol><br/>
+<Symbol>{</Symbol><br/>
+<Normal Text>    </Normal Text><Function>Write-Host</Function><Symbol>(</Symbol><Variable>$settings</Variable><Symbol>[</Symbol><Variable>$CRAFT_ARGUMENTS</Variable><Symbol>[</Symbol><Normal Text>1</Normal Text><Symbol>]][</Symbol><Variable>$CRAFT_ARGUMENTS</Variable><Symbol>[</Symbol><Normal Text>2</Normal Text><Symbol>]])</Symbol><br/>
+<Normal Text>    </Normal Text><Keyword>break</Keyword><br/>
+<Symbol>}</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>function</Keyword><Normal Text> prependPATH</Normal Text><Symbol>([</Symbol><Data Type>string</Data Type><Symbol>]</Symbol><Normal Text> </Normal Text><Variable>$path</Variable><Symbol>)</Symbol><br/>
+<Symbol>{</Symbol><br/>
+<Normal Text>    </Normal Text><Variable>$env</Variable><Symbol>:</Symbol><Normal Text>PATH</Normal Text><Symbol>=</Symbol><String>"$path{0}$env:PATH"</String><Normal Text> </Normal Text><Symbol>-</Symbol><Normal Text>f </Normal Text><Symbol>[</Symbol><Normal Text>IO</Normal Text><Symbol>.</Symbol><Function>Path</Function><Symbol>]::</Symbol><Normal Text>PathSeparator</Normal Text><br/>
+<Symbol>}</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>if</Keyword><Symbol>(</Symbol><Normal Text> </Normal Text><Symbol>-</Symbol><Normal Text>Not </Normal Text><Variable>$env</Variable><Symbol>:</Symbol><Normal Text>CRAFT_PYTHON</Normal Text><Symbol>)</Symbol><br/>
+<Symbol>{</Symbol><br/>
+<Normal Text>    prependPATH </Normal Text><Variable>$settings</Variable><Symbol>[</Symbol><String>"Paths"</String><Symbol>][</Symbol><String>"Python"</String><Symbol>]</Symbol><br/>
+<Normal Text>    </Normal Text><Variable>$env</Variable><Symbol>:</Symbol><Normal Text>CRAFT_PYTHON</Normal Text><Symbol>=[</Symbol><Normal Text>IO</Normal Text><Symbol>.</Symbol><Function>PATH</Function><Symbol>]::</Symbol><Normal Text>COMBINE</Normal Text><Symbol>(</Symbol><Variable>$settings</Variable><Symbol>[</Symbol><String>"Paths"</String><Symbol>][</Symbol><String>"Python"</String><Symbol>],</Symbol><Normal Text> </Normal Text><String>"python"</String><Symbol>)</Symbol><br/>
+<Symbol>}</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Symbol>(&</Symbol><Normal Text> </Normal Text><Variable>$env</Variable><Symbol>:</Symbol><Normal Text>CRAFT_PYTHON </Normal Text><Symbol>([</Symbol><Normal Text>IO</Normal Text><Symbol>.</Symbol><Function>PATH</Function><Symbol>]::</Symbol><Normal Text>COMBINE</Normal Text><Symbol>(</Symbol><String>"$env:CraftRoot"</String><Symbol>,</Symbol><Normal Text> </Normal Text><String>"bin"</String><Symbol>,</Symbol><Normal Text> </Normal Text><String>"CraftSetupHelper.py"</String><Symbol>))</Symbol><Normal Text> </Normal Text><String>"--setup"</String><Symbol>)</Symbol><Normal Text> </Normal Text><Symbol>|</Symbol><br/>
+<Keyword>foreach</Keyword><Normal Text> </Normal Text><Symbol>{</Symbol><br/>
+<Normal Text>  </Normal Text><Keyword>if</Keyword><Normal Text> </Normal Text><Symbol>(</Symbol><Variable>$_</Variable><Normal Text> </Normal Text><Symbol>-</Symbol><Normal Text>match </Normal Text><String>"="</String><Symbol>)</Symbol><Normal Text> </Normal Text><Symbol>{</Symbol><br/>
+<Normal Text>    </Normal Text><Variable>$v</Variable><Normal Text> </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Variable>$_</Variable><Symbol>.</Symbol><Function>split</Function><Symbol>(</Symbol><String>"="</String><Symbol>)</Symbol><br/>
+<Normal Text>    </Normal Text><Function>set-item</Function><Normal Text> </Normal Text><Symbol>-</Symbol><Normal Text>force </Normal Text><Symbol>-</Symbol><Normal Text>path </Normal Text><String>"ENV:\$($v[0])"</String><Normal Text>  </Normal Text><Symbol>-</Symbol><Normal Text>value </Normal Text><String>"$($v[1])"</String><br/>
+<Normal Text>    </Normal Text><Comment>#Write-Host("$v[0]=$v[1]")</Comment><br/>
+<Normal Text>  </Normal Text><Symbol>}</Symbol><br/>
+<Symbol>}</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Function>cd</Function><Normal Text> </Normal Text><String>"$env:KDEROOT"</String><br/>
+<Symbol>}</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>function</Keyword><Normal Text> Global</Normal Text><Symbol>:</Symbol><Normal Text>craft</Normal Text><Symbol>()</Symbol><Normal Text> </Normal Text><Symbol>{</Symbol><br/>
+<Normal Text>    </Normal Text><Keyword>return</Keyword><Normal Text> </Normal Text><Symbol>&</Symbol><Normal Text> </Normal Text><Variable>$env</Variable><Symbol>:</Symbol><Normal Text>CRAFT_PYTHON </Normal Text><Symbol>([</Symbol><Normal Text>IO</Normal Text><Symbol>.</Symbol><Function>PATH</Function><Symbol>]::</Symbol><Normal Text>COMBINE</Normal Text><Symbol>(</Symbol><String>"$env:CraftRoot"</String><Symbol>,</Symbol><Normal Text> </Normal Text><String>"bin"</String><Symbol>,</Symbol><Normal Text> </Normal Text><String>"craft.py"</String><Symbol>))</Symbol><Normal Text> </Normal Text><Variable>$args</Variable><br/>
+<Symbol>}</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>if</Keyword><Symbol>(</Symbol><Variable>$args</Variable><Symbol>.</Symbol><Function>Length</Function><Normal Text> </Normal Text><Symbol>-</Symbol><Normal Text>ne 0</Normal Text><Symbol>)</Symbol><br/>
+<Symbol>{</Symbol><br/>
+<Normal Text>    </Normal Text><Function>invoke-expression</Function><Normal Text> </Normal Text><Symbol>-</Symbol><Normal Text>command </Normal Text><String>"$args"</String><br/>
+<Symbol>}</Symbol><br/>

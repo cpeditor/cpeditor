@@ -1,0 +1,18 @@
+; comment
+; comment with ### alerts
+# alternative comments
+
+<endfold id='1'></endfold id='1'><beginfold id='1'>[Empty section]</beginfold id='1'>
+
+<endfold id='1'></endfold id='1'><beginfold id='1'>[Section 2]</beginfold id='1'>
+Key1=String Value
+Key2=42
+Key3=3.14
+Key\SubKey=True
+
+<endfold id='1'></endfold id='1'><beginfold id='1'>[Section 3]</beginfold id='1'>
+; = in values are fine
+; inline comments are not supported, ;/# are part of the value
+key4 = foo = True; bar = False
+key4b = abcd#1234!
+key5/subkey = "foo\nbar"

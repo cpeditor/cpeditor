@@ -1,0 +1,33 @@
+<Comment>// Example IDL file for our monster's schema.</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>namespace</Keyword><Normal Text> MyGame.Sample;</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>enum</Keyword><Normal Text> Color:</Normal Text><Data Type>byte</Data Type><Normal Text> { Red = </Normal Text><Decimal>0</Decimal><Normal Text>, Green, Blue = </Normal Text><Decimal>2</Decimal><Normal Text> }</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>union</Keyword><Normal Text> Equipment { Weapon } </Normal Text><Comment>// Optionally add more tables.</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>struct</Keyword><Normal Text> Vec3 {</Normal Text><br/>
+<Normal Text>  x:</Normal Text><Data Type>float</Data Type><Normal Text>;</Normal Text><br/>
+<Normal Text>  y:</Normal Text><Data Type>float</Data Type><Normal Text>;</Normal Text><br/>
+<Normal Text>  z:</Normal Text><Data Type>float</Data Type><Normal Text>;</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>table</Keyword><Normal Text> Monster {</Normal Text><br/>
+<Normal Text>  pos:Vec3; </Normal Text><Comment>// Struct.</Comment><br/>
+<Normal Text>  mana:</Normal Text><Data Type>short</Data Type><Normal Text> = </Normal Text><Decimal>150</Decimal><Normal Text>;</Normal Text><br/>
+<Normal Text>  hp:</Normal Text><Data Type>short</Data Type><Normal Text> = </Normal Text><Decimal>100</Decimal><Normal Text>;</Normal Text><br/>
+<Normal Text>  name:</Normal Text><Data Type>string</Data Type><Normal Text>;</Normal Text><br/>
+<Normal Text>  friendly:</Normal Text><Data Type>bool</Data Type><Normal Text> = </Normal Text><Integer Constants>false</Integer Constants><Normal Text> (</Normal Text><Keyword>deprecated</Keyword><Normal Text>);</Normal Text><br/>
+<Normal Text>  inventory:[</Normal Text><Data Type>ubyte</Data Type><Normal Text>];  </Normal Text><Comment>// Vector of scalars.</Comment><br/>
+<Normal Text>  color:Color = Blue; </Normal Text><Comment>// Enum.</Comment><br/>
+<Normal Text>  weapons:[Weapon];   </Normal Text><Comment>// Vector of tables.</Comment><br/>
+<Normal Text>  equipped:Equipment; </Normal Text><Comment>// Union.</Comment><br/>
+<Normal Text>  path:[Vec3];        </Normal Text><Comment>// Vector of structs.</Comment><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>table</Keyword><Normal Text> Weapon {</Normal Text><br/>
+<Normal Text>  name:</Normal Text><Data Type>string</Data Type><Normal Text>;</Normal Text><br/>
+<Normal Text>  damage:</Normal Text><Data Type>short</Data Type><Normal Text>;</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>root_type</Keyword><Normal Text> Monster;</Normal Text><br/>

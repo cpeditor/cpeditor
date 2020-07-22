@@ -1,0 +1,286 @@
+<Comment>/**</Comment><br/>
+<Comment> * This is a pseudo CSS file to test Kate's CSS syntax highlighting.</Comment><br/>
+<Comment> */</Comment><br/>
+<Normal Text></Normal Text><br/>
+<At Rule>@import</At Rule><Normal Text> </Normal Text><Function>url(</Function><String>"othersheet.css"</String><Function>)</Function><Normal Text> </Normal Text><Value>screen</Value><Normal Text>, tv</Normal Text><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Selector Tag>body</Selector Tag><Normal Text> {</Normal Text><br/>
+<Normal Text>	</Normal Text><Property>font-size</Property><Normal Text>: </Normal Text><Number>15</Number><Unit>pt</Unit><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text>	</Normal Text><Property>font-family</Property><Normal Text>: Verdana</Normal Text><Separator Symbol>,</Separator Symbol><Normal Text> Helvetica</Normal Text><Separator Symbol>,</Separator Symbol><Normal Text> </Normal Text><String>"Bitstream Vera Sans"</String><Separator Symbol>,</Separator Symbol><Normal Text> </Normal Text><Value>sans-serif</Value><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text>	</Normal Text><Property>margin-top</Property><Normal Text>: </Normal Text><Number>0</Number><Unit>px</Unit><Separator Symbol>;</Separator Symbol><Normal Text>			</Normal Text><Comment>/* yet another comment */</Comment><br/>
+<Normal Text>	</Normal Text><Property>margin-bottom</Property><Normal Text>: </Normal Text><Number>0</Number><Unit>px</Unit><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text>	</Normal Text><Error>// this is no comment, it's just broken!</Error><br/>
+<Normal Text>	</Normal Text><Property>margin-left</Property><Normal Text>: </Normal Text><Number>0</Number><Unit>px</Unit><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text>	</Normal Text><Property>margin-right</Property><Normal Text>: </Normal Text><Number>0</Number><Unit>px</Unit><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Selector Class>.something</Selector Class><br/>
+<Normal Text>{</Normal Text><br/>
+<Normal Text>	</Normal Text><Property>margin-right</Property><Normal Text>: </Normal Text><Number>0</Number><Unit>px</Unit><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text>	</Normal Text><Property>color</Property><Normal Text>: </Normal Text><Color>#cdd</Color><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text>	</Normal Text><Property>color</Property><Normal Text>: </Normal Text><Color>#AAFE04</Color><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text>	</Normal Text><Property>color</Property><Normal Text>: </Normal Text><Function>rgb(</Function><Number>10</Number><Unit>%</Unit><Separator Symbol>,</Separator Symbol><Number>30</Number><Unit>%</Unit><Separator Symbol>,</Separator Symbol><Number>43</Number><Unit>%</Unit><Function>)</Function><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text>	</Normal Text><Property>background</Property><Normal Text>: </Normal Text><Color>maroon</Color><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Selector Tag>a</Selector Tag><Selector Pseudo>:hover</Selector Pseudo><Normal Text> {</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Selector Id>#header</Selector Id><Separator Symbol>,</Separator Symbol><br/>
+<Selector Tag>p</Selector Tag><Selector Class>.intro</Selector Class><Selector Pseudo>:first-letter</Selector Pseudo><Separator Symbol>,</Separator Symbol><br/>
+<Selector Tag>p</Selector Tag><Selector Pseudo>:lang(nl)</Selector Pseudo><Separator Symbol>,</Separator Symbol><br/>
+<Selector Tag>img</Selector Tag><Selector Attribute>[align</Selector Attribute><Operator>=</Operator><String>"right"</String><Selector Attribute>]</Selector Attribute><br/>
+<Normal Text>{</Normal Text><br/>
+<Normal Text>	</Normal Text><Property>border</Property><Normal Text>: </Normal Text><Number>1</Number><Unit>px</Unit><Normal Text> </Normal Text><Value>solid</Value><Normal Text> Qt::</Normal Text><Color>red</Color><Normal Text> </Normal Text><Annotation>!important</Annotation><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text>	</Normal Text><Property>-moz-border-radius</Property><Normal Text>: </Normal Text><Number>15</Number><Unit>px</Unit><Separator Symbol>;</Separator Symbol><Normal Text> </Normal Text><Comment>/* unknown properties render italic */</Comment><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<At Rule>@media</At Rule><Normal Text> </Normal Text><Value>print</Value><Normal Text> {</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>	</Normal Text><Selector Id>#header</Selector Id><br/>
+<Normal Text>	{</Normal Text><br/>
+<Normal Text>		</Normal Text><Property>display</Property><Normal Text>: </Normal Text><Value>none</Value><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text>	}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment>/*</Comment><br/>
+<Alert Level 2>TODO</Alert Level 2><Comment>: add more tests, e.g. media</Comment><br/>
+<Comment>*/</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Selector Class>.nice-look</Selector Class><Normal Text> {</Normal Text><br/>
+<Normal Text>	</Normal Text><Property>font-variant-alternates</Property><Normal Text>: styleset</Normal Text><Function>(</Function><Normal Text>nice-style</Normal Text><Function>)</Function><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Selector Tag>ul</Selector Tag><Normal Text> {</Normal Text><br/>
+<Normal Text>	</Normal Text><Property>list-style</Property><Normal Text>: thumbs</Normal Text><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment>/* SVG <a> */</Comment><br/>
+<Selector Tag>svg</Selector Tag><Operator>|</Operator><Selector Tag>a</Selector Tag><Normal Text> {}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment>/* XHTML and SVG <a> */</Comment><br/>
+<Operator>*|</Operator><Selector Tag>a</Selector Tag><Normal Text> {}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Operator>*</Operator><Normal Text>{}</Normal Text><br/>
+<Selector Class>.class</Selector Class><Normal Text>{}</Normal Text><br/>
+<Selector Id>#id</Selector Id><Normal Text>{}</Normal Text><br/>
+<Selector Pseudo>:hover</Selector Pseudo><Normal Text>{}</Normal Text><br/>
+<Selector Pseudo>:lang(fr)</Selector Pseudo><Normal Text>{}</Normal Text><br/>
+<Selector Tag>E</Selector Tag><Normal Text>{}</Normal Text><br/>
+<Selector Tag>E</Selector Tag><Normal Text> </Normal Text><Selector Tag>F</Selector Tag><Normal Text>{}</Normal Text><br/>
+<Selector Tag>E</Selector Tag><Operator>></Operator><Selector Tag>F</Selector Tag><Normal Text>{}</Normal Text><br/>
+<Selector Tag>E</Selector Tag><Normal Text> </Normal Text><Operator>></Operator><Normal Text> </Normal Text><Selector Tag>F</Selector Tag><Normal Text>{}</Normal Text><br/>
+<Selector Tag>E</Selector Tag><Operator>~</Operator><Selector Tag>F</Selector Tag><Normal Text>{}</Normal Text><br/>
+<Selector Tag>E</Selector Tag><Normal Text> </Normal Text><Operator>~</Operator><Normal Text> </Normal Text><Selector Tag>F</Selector Tag><Normal Text>{}</Normal Text><br/>
+<Selector Tag>E</Selector Tag><Selector Pseudo>:first-child</Selector Pseudo><Normal Text>{}</Normal Text><br/>
+<Selector Tag>E</Selector Tag><Selector Pseudo>:visited</Selector Pseudo><Normal Text>{}</Normal Text><br/>
+<Selector Tag>E</Selector Tag><Selector Pseudo>::after</Selector Pseudo><Normal Text>{}</Normal Text><br/>
+<Selector Tag>E</Selector Tag><Selector Pseudo>:lang(c)</Selector Pseudo><Normal Text>{}</Normal Text><br/>
+<Selector Tag>E</Selector Tag><Selector Pseudo>:lang(fr-ca)</Selector Pseudo><Normal Text>{}</Normal Text><br/>
+<Selector Tag>E</Selector Tag><Normal Text> </Normal Text><Operator>+</Operator><Normal Text> </Normal Text><Selector Tag>F</Selector Tag><Normal Text>{}</Normal Text><br/>
+<Selector Tag>E</Selector Tag><Operator>+</Operator><Selector Tag>F</Selector Tag><Normal Text>{}</Normal Text><br/>
+<Selector Tag>E</Selector Tag><Selector Attribute>[foo]</Selector Attribute><Normal Text>{}</Normal Text><br/>
+<Selector Tag>E</Selector Tag><Selector Attribute>[foo</Selector Attribute><Operator>=</Operator><String>warning</String><Selector Attribute>]</Selector Attribute><Normal Text>{}</Normal Text><br/>
+<Selector Tag>E</Selector Tag><Selector Attribute>[foo</Selector Attribute><Operator>=</Operator><String>"warning"</String><Selector Attribute>]</Selector Attribute><Normal Text>{}</Normal Text><br/>
+<Selector Tag>E</Selector Tag><Selector Attribute>[foo</Selector Attribute><Operator>~=</Operator><String>"warning"</String><Selector Attribute>]</Selector Attribute><Normal Text>{}</Normal Text><br/>
+<Selector Tag>E</Selector Tag><Selector Attribute>[foo</Selector Attribute><Operator>^=</Operator><String>"warning"</String><Selector Attribute>]</Selector Attribute><Normal Text>{}</Normal Text><br/>
+<Selector Tag>E</Selector Tag><Selector Attribute>[foo</Selector Attribute><Operator>$=</Operator><String>"warning"</String><Selector Attribute>]</Selector Attribute><Normal Text>{}</Normal Text><br/>
+<Selector Tag>E</Selector Tag><Selector Attribute>[foo</Selector Attribute><Operator>*=</Operator><String>"warning"</String><Selector Attribute>]</Selector Attribute><Normal Text>{}</Normal Text><br/>
+<Selector Tag>E</Selector Tag><Selector Attribute>[lang</Selector Attribute><Operator>|=</Operator><String>"en"</String><Selector Attribute>]</Selector Attribute><Normal Text>{}</Normal Text><br/>
+<Selector Tag>DIV</Selector Tag><Selector Class>.warning</Selector Class><Normal Text>{}</Normal Text><br/>
+<Selector Tag>DIV</Selector Tag><Normal Text> </Normal Text><Selector Class>.warning</Selector Class><Normal Text>{}</Normal Text><br/>
+<Selector Tag>E</Selector Tag><Selector Id>#myid</Selector Id><Normal Text>{}</Normal Text><br/>
+<Selector Tag>E</Selector Tag><Normal Text> </Normal Text><Selector Id>#myid</Selector Id><Normal Text>{}</Normal Text><br/>
+<Selector Tag>E</Selector Tag><Separator Symbol>,</Separator Symbol><Selector Tag>E</Selector Tag><Normal Text>{}</Normal Text><br/>
+<Selector Tag>E</Selector Tag><Separator Symbol>,</Separator Symbol><Normal Text> </Normal Text><Selector Tag>E</Selector Tag><Normal Text>{}</Normal Text><br/>
+<Selector Tag>E</Selector Tag><Normal Text> </Normal Text><Separator Symbol>,</Separator Symbol><Selector Tag>E</Selector Tag><Normal Text>{}</Normal Text><br/>
+<Selector Tag>E</Selector Tag><Normal Text> </Normal Text><Separator Symbol>,</Separator Symbol><Normal Text> </Normal Text><Selector Tag>E</Selector Tag><Normal Text>{}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Selector Tag>p</Selector Tag><Selector Pseudo>:nth-child(2)</Selector Pseudo><Normal Text> {</Normal Text><br/>
+<Normal Text>	</Normal Text><Property>background</Property><Normal Text>: </Normal Text><Color>red</Color><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment>/* Elements that are not <div> or <span> elements */</Comment><br/>
+<Selector Tag>body</Selector Tag><Normal Text> </Normal Text><Selector Pseudo>:not(</Selector Pseudo><Selector Tag>div</Selector Tag><Selector Pseudo>):not(</Selector Pseudo><Selector Tag>span</Selector Tag><Selector Pseudo>)</Selector Pseudo><Normal Text> {</Normal Text><br/>
+<Normal Text>	</Normal Text><Property>font-weight</Property><Normal Text>: </Normal Text><Value>bold</Value><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment>/* Elements that are not `.crazy` or `.fancy` */</Comment><br/>
+<Comment>/* Note that this syntax is not well supported yet. */</Comment><br/>
+<Selector Tag>body</Selector Tag><Normal Text> </Normal Text><Selector Pseudo>:not(</Selector Pseudo><Selector Class>.crazy</Selector Class><Separator Symbol>,</Separator Symbol><Normal Text> </Normal Text><Selector Class>.fancy</Selector Class><Selector Pseudo>)</Selector Pseudo><Normal Text> {</Normal Text><br/>
+<Normal Text>	</Normal Text><Property>font-family</Property><Normal Text>: </Normal Text><Value>sans-serif</Value><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Selector Pseudo>:nth-child(odd)</Selector Pseudo><Normal Text> { </Normal Text><Property>color</Property><Normal Text>: </Normal Text><Color>lime</Color><Separator Symbol>;</Separator Symbol><Normal Text> }</Normal Text><br/>
+<Selector Pseudo>:nth-child(even)</Selector Pseudo><Normal Text> { </Normal Text><Property>color</Property><Normal Text>: </Normal Text><Color>lime</Color><Separator Symbol>;</Separator Symbol><Normal Text> }</Normal Text><br/>
+<Selector Pseudo>:nth-child(4)</Selector Pseudo><Normal Text> { </Normal Text><Property>color</Property><Normal Text>: </Normal Text><Color>lime</Color><Separator Symbol>;</Separator Symbol><Normal Text> }</Normal Text><br/>
+<Selector Pseudo>:nth-child(4n)</Selector Pseudo><Normal Text> { </Normal Text><Property>color</Property><Normal Text>: </Normal Text><Color>lime</Color><Separator Symbol>;</Separator Symbol><Normal Text> }</Normal Text><br/>
+<Selector Pseudo>:nth-child(3n+4)</Selector Pseudo><Normal Text> { </Normal Text><Property>color</Property><Normal Text>: </Normal Text><Color>lime</Color><Separator Symbol>;</Separator Symbol><Normal Text> }</Normal Text><br/>
+<Selector Pseudo>:nth-child(-n+3)</Selector Pseudo><Normal Text> { </Normal Text><Property>color</Property><Normal Text>: </Normal Text><Color>lime</Color><Separator Symbol>;</Separator Symbol><Normal Text> }</Normal Text><br/>
+<Selector Pseudo>:nth-child(n+8):nth-child(-n+15)</Selector Pseudo><Normal Text> { </Normal Text><Property>color</Property><Normal Text>: </Normal Text><Color>lime</Color><Separator Symbol>;</Separator Symbol><Normal Text> }</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Selector Class>.first</Selector Class><Normal Text> </Normal Text><Selector Tag>span</Selector Tag><Selector Pseudo>:nth-child(2n+1)</Selector Pseudo><Separator Symbol>,</Separator Symbol><br/>
+<Selector Class>.second</Selector Class><Normal Text> </Normal Text><Selector Tag>span</Selector Tag><Selector Pseudo>:nth-child(2n+1)</Selector Pseudo><Separator Symbol>,</Separator Symbol><br/>
+<Selector Class>.third</Selector Class><Normal Text> </Normal Text><Selector Tag>span</Selector Tag><Selector Pseudo>:nth-of-type(2n+1)</Selector Pseudo><Normal Text> {</Normal Text><br/>
+<Normal Text>	</Normal Text><Property>background-color</Property><Normal Text>: </Normal Text><Color>lime</Color><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text>	</Normal Text><Unknown Property>unknown-property</Unknown Property><Normal Text>: </Normal Text><Color>lime</Color><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Selector Pseudo>:root</Selector Pseudo><Normal Text>{</Normal Text><br/>
+<Normal Text>	</Normal Text><Variable>--foo</Variable><Normal Text>: if</Normal Text><Function>(</Function><Normal Text>x > </Normal Text><Number>5</Number><Function>)</Function><Normal Text> this.width = </Normal Text><Number>10</Number><Separator Symbol>;</Separator Symbol><Normal Text> </Normal Text><Comment>/* valid custom property, invalid in any normal property */</Comment><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Selector Pseudo>:root</Selector Pseudo><Separator Symbol>,</Separator Symbol><br/>
+<Selector Pseudo>:root:lang(en)</Selector Pseudo><Normal Text> {</Normal Text><Variable>--external-link</Variable><Normal Text>: </Normal Text><String>"external link"</String><Separator Symbol>;</Separator Symbol><Normal Text>}</Normal Text><br/>
+<Selector Pseudo>:root:lang(de)</Selector Pseudo><Normal Text> {</Normal Text><Variable>--external-link</Variable><Normal Text>: </Normal Text><String>"externer Link"</String><Separator Symbol>;</Separator Symbol><Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Selector Tag>a</Selector Tag><Selector Attribute>[href</Selector Attribute><Operator>^=</Operator><String>"http"</String><Selector Attribute>]</Selector Attribute><Selector Pseudo>::after</Selector Pseudo><Normal Text> {</Normal Text><Property>content</Property><Normal Text>: </Normal Text><String>" ("</String><Normal Text> </Normal Text><Function>var(</Function><Variable>--external-link</Variable><Function>)</Function><Normal Text> </Normal Text><String>")"</String><Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Selector Tag>one</Selector Tag><Normal Text>   { </Normal Text><Variable>--foo</Variable><Normal Text>: </Normal Text><Number>10</Number><Unit>px</Unit><Separator Symbol>;</Separator Symbol><Normal Text> }</Normal Text><br/>
+<Selector Tag>two</Selector Tag><Normal Text>   { </Normal Text><Variable>--bar</Variable><Normal Text>: </Normal Text><Function>calc(var(</Function><Variable>--foo</Variable><Function>)</Function><Normal Text> </Normal Text><Operator>+</Operator><Normal Text> </Normal Text><Number>10</Number><Unit>px</Unit><Function>)</Function><Separator Symbol>;</Separator Symbol><Normal Text> }</Normal Text><br/>
+<Selector Tag>three</Selector Tag><Normal Text> { </Normal Text><Variable>--foo</Variable><Normal Text>: </Normal Text><Function>calc(var(</Function><Variable>--bar</Variable><Function>)</Function><Normal Text> </Normal Text><Operator>+</Operator><Normal Text> </Normal Text><Number>10</Number><Unit>px</Unit><Function>)</Function><Separator Symbol>;</Separator Symbol><Normal Text> }</Normal Text><br/>
+<Selector Class>.foo</Selector Class><Normal Text> {</Normal Text><br/>
+<Normal Text>	</Normal Text><Variable>--gap</Variable><Normal Text>: </Normal Text><Number>20</Number><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text>	</Normal Text><Property>margin-top</Property><Normal Text>: </Normal Text><Function>var(</Function><Variable>--gap</Variable><Function>)</Function><Normal Text>px</Normal Text><Separator Symbol>;</Separator Symbol><Normal Text> </Normal Text><Comment>/*20 px*/</Comment><br/>
+<Normal Text>	</Normal Text><Property>margin-top</Property><Normal Text>: </Normal Text><Function>calc(var(</Function><Variable>--gap</Variable><Function>)</Function><Normal Text> </Normal Text><Operator>*</Operator><Normal Text> </Normal Text><Number>1</Number><Unit>px</Unit><Function>)</Function><Separator Symbol>;</Separator Symbol><Normal Text> </Normal Text><Comment>/*20px*/</Comment><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Selector Tag>foo</Selector Tag><Normal Text> {</Normal Text><br/>
+<Normal Text>	</Normal Text><Property>width</Property><Normal Text>: </Normal Text><Function>calc(</Function><Number>50</Number><Unit>%</Unit><Normal Text> </Normal Text><Number>-8</Number><Unit>px</Unit><Function>)</Function><Separator Symbol>;</Separator Symbol><Normal Text> </Normal Text><Comment>/* invalid */</Comment><br/>
+<Normal Text>	</Normal Text><Property>width</Property><Normal Text>: </Normal Text><Function>calc(</Function><Number>50</Number><Normal Text>%</Normal Text><Operator>-</Operator><Normal Text> </Normal Text><Number>8</Number><Unit>px</Unit><Function>)</Function><Separator Symbol>;</Separator Symbol><Normal Text> </Normal Text><Comment>/* invalid */</Comment><br/>
+<Normal Text>	</Normal Text><Property>width</Property><Normal Text>: </Normal Text><Function>calc(</Function><Number>50</Number><Unit>%</Unit><Normal Text> </Normal Text><Number>+8</Number><Unit>px</Unit><Function>)</Function><Separator Symbol>;</Separator Symbol><Normal Text> </Normal Text><Comment>/* invalid */</Comment><br/>
+<Normal Text>	</Normal Text><Property>width</Property><Normal Text>: </Normal Text><Function>calc(</Function><Number>50</Number><Normal Text>%</Normal Text><Operator>+</Operator><Normal Text> </Normal Text><Number>8</Number><Unit>px</Unit><Function>)</Function><Separator Symbol>;</Separator Symbol><Normal Text> </Normal Text><Comment>/* invalid */</Comment><br/>
+<Normal Text>	</Normal Text><Property>width</Property><Normal Text>: </Normal Text><Function>calc(</Function><Number>2</Number><Unit>px</Unit><Normal Text> -var</Normal Text><Function>(</Function><Normal Text>--a</Normal Text><Function>))</Function><Separator Symbol>;</Separator Symbol><Normal Text> </Normal Text><Comment>/* invalid */</Comment><br/>
+<Normal Text>	</Normal Text><Property>width</Property><Normal Text>: </Normal Text><Function>calc(</Function><Number>50</Number><Unit>%</Unit><Operator>*</Operator><Number>-8</Number><Unit>px</Unit><Function>)</Function><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text>	</Normal Text><Property>width</Property><Normal Text>: </Normal Text><Function>calc(</Function><Number>50</Number><Unit>%</Unit><Normal Text> </Normal Text><Operator>-</Operator><Normal Text> </Normal Text><Number>8</Number><Unit>px</Unit><Function>)</Function><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text>	</Normal Text><Property>width</Property><Normal Text>: </Normal Text><Function>calc(</Function><Number>50</Number><Unit>%</Unit><Normal Text> </Normal Text><Operator>+</Operator><Normal Text> </Normal Text><Number>-8</Number><Unit>px</Unit><Function>)</Function><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text>	</Normal Text><Property>width</Property><Normal Text>: </Normal Text><Function>calc(</Function><Number>50</Number><Unit>%</Unit><Normal Text> </Normal Text><Operator>+</Operator><Normal Text>(</Normal Text><Number>8</Number><Unit>px</Unit><Normal Text>)</Normal Text><Function>)</Function><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text>	</Normal Text><Property>width</Property><Normal Text>: </Normal Text><Function>calc(</Function><Number>2</Number><Unit>px</Unit><Normal Text> </Normal Text><Operator>-</Operator><Normal Text>(</Normal Text><Function>var(</Function><Variable>--a</Variable><Function>)</Function><Normal Text>)</Normal Text><Function>)</Function><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Selector Tag>sweet-alert</Selector Tag><Normal Text> </Normal Text><Selector Tag>input</Selector Tag><Selector Pseudo>:focus::-moz-placeholder</Selector Pseudo><Normal Text> {</Normal Text><br/>
+<Normal Text>	</Normal Text><Property>-webkit-transition</Property><Normal Text>: opacity </Normal Text><Number>0.3</Number><Unit>s</Unit><Normal Text> </Normal Text><Number>0.03</Number><Unit>s</Unit><Normal Text> </Normal Text><Value>ease</Value><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text>	</Normal Text><Property>transition</Property><Normal Text>: opacity </Normal Text><Number>0.3</Number><Unit>s</Unit><Normal Text> </Normal Text><Number>0.03</Number><Unit>s</Unit><Normal Text> </Normal Text><Value>ease</Value><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text>	</Normal Text><Property>opacity</Property><Normal Text>: </Normal Text><Number>0.5</Number><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<At Rule>@font-feature-values</At Rule><Normal Text> Font One {</Normal Text><br/>
+<Normal Text>	</Normal Text><At Rule>@styleset</At Rule><Normal Text> {</Normal Text><br/>
+<Normal Text>		</Normal Text><Unknown Property>nice-style</Unknown Property><Normal Text>: </Normal Text><Number>12</Number><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text>	}</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<At Rule>@font-feature-values</At Rule><Normal Text> Font Two {</Normal Text><br/>
+<Normal Text>	</Normal Text><At Rule>@styleset</At Rule><Normal Text> {</Normal Text><br/>
+<Normal Text>		</Normal Text><Unknown Property>nice-style</Unknown Property><Normal Text>: </Normal Text><Number>4</Number><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text>	}</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<At Rule>@counter-style</At Rule><Normal Text> thumbs {</Normal Text><br/>
+<Normal Text>	</Normal Text><Unknown Property>system</Unknown Property><Normal Text>: cyclic</Normal Text><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text>	</Normal Text><Unknown Property>symbols</Unknown Property><Normal Text>: </Normal Text><String>"</String><SpecialChar>\1F44D</SpecialChar><String>"</String><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text>	</Normal Text><Unknown Property>suffix</Unknown Property><Normal Text>: </Normal Text><String>" "</String><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<At Rule>@font-face</At Rule><Normal Text> {</Normal Text><br/>
+<Normal Text>	</Normal Text><Property>font-family</Property><Normal Text>: </Normal Text><String>"Open Sans"</String><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text>	</Normal Text><Property>src</Property><Normal Text>: </Normal Text><Function>url(</Function><String>"/fonts/OpenSans-Regular-webfont.woff2"</String><Function>)</Function><Normal Text> </Normal Text><Function>format(</Function><String>"woff2"</String><Function>)</Function><Separator Symbol>,</Separator Symbol><br/>
+<Normal Text>	</Normal Text><Function>url(</Function><String>"/fonts/OpenSans-Regular-webfont.woff"</String><Function>)</Function><Normal Text> </Normal Text><Function>format(</Function><String>"woff"</String><Function>)</Function><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<At Rule>@page</At Rule><Normal Text> {</Normal Text><br/>
+<Normal Text>	</Normal Text><Property>margin</Property><Normal Text>: </Normal Text><Number>1</Number><Unit>cm</Unit><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<At Rule>@page</At Rule><Normal Text> </Normal Text><Selector Pseudo>:first</Selector Pseudo><Normal Text> {</Normal Text><br/>
+<Normal Text>	</Normal Text><Property>margin</Property><Normal Text>: </Normal Text><Number>2</Number><Unit>cm</Unit><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text>	</Normal Text><Comment>/* comments */</Comment><br/>
+<Normal Text>	</Normal Text><Property>marks</Property><Normal Text>: </Normal Text><Value>crop</Value><Normal Text> </Normal Text><Value>cross</Value><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<At Rule>@page</At Rule><Normal Text> </Normal Text><Selector Pseudo>:unknown</Selector Pseudo><Normal Text> {</Normal Text><br/>
+<Normal Text>	</Normal Text><Property>margin</Property><Normal Text>: </Normal Text><Number>2</Number><Unit>cm</Unit><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<At Rule>@font-face</At Rule><Normal Text> {</Normal Text><br/>
+<Normal Text>	</Normal Text><Unknown Property>unknown</Unknown Property><Normal Text>: </Normal Text><Number>2</Number><Unit>px</Unit><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text>	</Normal Text><Comment>/* comments */</Comment><br/>
+<Normal Text>	</Normal Text><Property>font-family</Property><Normal Text>: </Normal Text><String>"Bitstream Vera Serif Bold"</String><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text>	</Normal Text><Property>src</Property><Normal Text>: </Normal Text><Function>url(</Function><String>"/static/styles/libs/font-awesome/fonts/fontawesome-webfont.fdf491ce5ff5.woff"</String><Function>)</Function><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<At Rule>@viewport</At Rule><Normal Text> {</Normal Text><br/>
+<Normal Text>	</Normal Text><Property>zoom</Property><Normal Text>: </Normal Text><Number>0.75</Number><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text>	</Normal Text><Comment>/* comments */</Comment><br/>
+<Normal Text>	</Normal Text><Property>min-zoom</Property><Normal Text>: </Normal Text><Number>0.5</Number><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text>	</Normal Text><Property>max-zoom</Property><Normal Text>: </Normal Text><Number>0.9</Number><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<At Rule>@viewport</At Rule><Normal Text> {</Normal Text><br/>
+<Normal Text>	</Normal Text><Property>orientation</Property><Normal Text>: </Normal Text><Value>landscape</Value><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text>	</Normal Text><Comment>/* comments */</Comment><br/>
+<Normal Text>	</Normal Text><Property>orientation</Property><Normal Text>: </Normal Text><Value>landscape</Value><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<At Rule>@document</At Rule><Normal Text> </Normal Text><Function>url(</Function><String>"https://www.example.com/"</String><Function>)</Function><Normal Text> {</Normal Text><br/>
+<Normal Text>	</Normal Text><Selector Tag>h1</Selector Tag><Normal Text> {</Normal Text><br/>
+<Normal Text>		</Normal Text><Property>color</Property><Normal Text>: </Normal Text><Color>green</Color><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text>	}</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<At Rule>@supports</At Rule><Normal Text> (</Normal Text><Property>display</Property><Normal Text>: </Normal Text><Value>grid</Value><Normal Text>) {</Normal Text><br/>
+<Normal Text>	</Normal Text><Selector Tag>div</Selector Tag><Normal Text> {</Normal Text><br/>
+<Normal Text>		</Normal Text><Property>display</Property><Normal Text>: grid</Normal Text><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text>	}</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<At Rule>@media</At Rule><Normal Text> (</Normal Text><Property>max-width</Property><Normal Text>: </Normal Text><Number>600</Number><Unit>px</Unit><Normal Text>) {</Normal Text><br/>
+<Normal Text>	</Normal Text><Selector Class>.sidebar</Selector Class><Normal Text> {</Normal Text><br/>
+<Normal Text>		</Normal Text><Property>display</Property><Normal Text>: </Normal Text><Value>none</Value><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text>	}</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<At Rule>@import</At Rule><Normal Text> </Normal Text><Function>url(</Function><String>"fineprint.css"</String><Function>)</Function><Normal Text> </Normal Text><Value>print</Value><Separator Symbol>;</Separator Symbol><br/>
+<At Rule>@import</At Rule><Normal Text> </Normal Text><Function>url(</Function><String>fineprint.css</String><Function>)</Function><Normal Text> </Normal Text><Value>print</Value><Separator Symbol>;</Separator Symbol><br/>
+<At Rule>@import</At Rule><Normal Text> </Normal Text><Function>url(</Function><String>'bluish.css'</String><Function>)</Function><Normal Text> </Normal Text><Value>speech</Value><Separator Symbol>;</Separator Symbol><br/>
+<At Rule>@import</At Rule><Normal Text> </Normal Text><String>'custom.css'</String><Separator Symbol>;</Separator Symbol><br/>
+<At Rule>@import</At Rule><Normal Text> </Normal Text><Function>url(</Function><String>"chrome://communicator/skin/"</String><Function>)</Function><Separator Symbol>;</Separator Symbol><br/>
+<At Rule>@import</At Rule><Normal Text> </Normal Text><String>"common.css"</String><Normal Text> </Normal Text><Value>screen</Value><Separator Symbol>;</Separator Symbol><br/>
+<At Rule>@import</At Rule><Normal Text> </Normal Text><Function>url(</Function><String>'landscape.css'</String><Function>)</Function><Normal Text> </Normal Text><Value>screen</Value><Normal Text> </Normal Text><Keyword>and</Keyword><Normal Text> (</Normal Text><Property>orientation</Property><Normal Text>:</Normal Text><Value>landscape</Value><Normal Text>)</Normal Text><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text></Normal Text><br/>
+<At Rule>@namespace</At Rule><Normal Text> </Normal Text><Function>url(</Function><String>http://www.w3.org/1999/xhtml</String><Function>)</Function><Separator Symbol>;</Separator Symbol><br/>
+<At Rule>@namespace</At Rule><Normal Text> svg </Normal Text><Function>url(</Function><String>http://www.w3.org/2000/svg</String><Function>)</Function><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text></Normal Text><br/>
+<At Rule>@keyframes</At Rule><Normal Text> important1 {</Normal Text><br/>
+<Normal Text>	</Normal Text><Value>from</Value><Normal Text> { </Normal Text><Property>margin-top</Property><Normal Text>: </Normal Text><Number>50</Number><Unit>px</Unit><Separator Symbol>;</Separator Symbol><Normal Text> }</Normal Text><br/>
+<Normal Text>	</Normal Text><Value>50%</Value><Normal Text>  { </Normal Text><Property>margin-top</Property><Normal Text>: </Normal Text><Number>150</Number><Unit>px</Unit><Normal Text> </Normal Text><Annotation>!important</Annotation><Separator Symbol>;</Separator Symbol><Normal Text> } </Normal Text><Comment>/* ignored */</Comment><br/>
+<Normal Text>	</Normal Text><Value>to</Value><Normal Text>   { </Normal Text><Property>margin-top</Property><Normal Text>: </Normal Text><Number>100</Number><Unit>px</Unit><Separator Symbol>;</Separator Symbol><Normal Text> }</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<At Rule>@keyframes</At Rule><Normal Text> important2 {</Normal Text><br/>
+<Normal Text>	</Normal Text><Value>from</Value><Normal Text> { </Normal Text><Property>margin-top</Property><Normal Text>: </Normal Text><Number>50</Number><Unit>px</Unit><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text>		</Normal Text><Property>margin-bottom</Property><Normal Text>: </Normal Text><Number>100</Number><Unit>px</Unit><Separator Symbol>;</Separator Symbol><Normal Text> }</Normal Text><br/>
+<Normal Text>	</Normal Text><Value>to</Value><Normal Text>   { </Normal Text><Property>margin-top</Property><Normal Text>: </Normal Text><Number>150</Number><Unit>px</Unit><Normal Text> </Normal Text><Annotation>!important</Annotation><Separator Symbol>;</Separator Symbol><Normal Text> </Normal Text><Comment>/* ignored */</Comment><br/>
+<Normal Text>		</Normal Text><Property>margin-bottom</Property><Normal Text>: </Normal Text><Number>50</Number><Unit>px</Unit><Separator Symbol>;</Separator Symbol><Normal Text> }</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<At Rule>@keyframes</At Rule><Normal Text> slidein {</Normal Text><br/>
+<Normal Text>	</Normal Text><Value>from</Value><Normal Text> {</Normal Text><br/>
+<Normal Text>		</Normal Text><Property>margin-left</Property><Normal Text>: </Normal Text><Number>100</Number><Unit>%</Unit><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text>		</Normal Text><Property>width</Property><Normal Text>: </Normal Text><Number>300</Number><Unit>%</Unit><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text>	}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>	</Normal Text><Value>to</Value><Normal Text> {</Normal Text><br/>
+<Normal Text>		</Normal Text><Property>margin-left</Property><Normal Text>: </Normal Text><Number>0</Number><Unit>%</Unit><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text>		</Normal Text><Property>width</Property><Normal Text>: </Normal Text><Number>100</Number><Unit>%</Unit><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text>	}</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<At Rule>@media</At Rule><Normal Text> </Normal Text><Value>print</Value><Normal Text> {</Normal Text><br/>
+<Normal Text>	</Normal Text><Selector Tag>a</Selector Tag><Selector Pseudo>:hover</Selector Pseudo><Normal Text> { </Normal Text><Property>color</Property><Normal Text>: </Normal Text><Color>red</Color><Normal Text> }</Normal Text><br/>
+<Normal Text>	</Normal Text><Comment>/* comments */</Comment><br/>
+<Normal Text>	</Normal Text><Selector Tag>a</Selector Tag><Selector Pseudo>:hover</Selector Pseudo><Normal Text> { </Normal Text><Property>color</Property><Normal Text>: </Normal Text><Color>red</Color><Normal Text> }</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>

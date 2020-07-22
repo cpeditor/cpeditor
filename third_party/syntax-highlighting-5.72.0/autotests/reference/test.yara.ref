@@ -1,0 +1,365 @@
+<Comment>// Sample YARA file for Syntax Highlighting</Comment><br/>
+<Comment>// Obtained from: https://yara.readthedocs.io/en/stable/writingrules.html</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Comment>/*</Comment><br/>
+<Comment>    This is a multi-line comment ...</Comment><br/>
+<Comment>*/</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>rule</Keyword><Normal Text> </Normal Text><Rule>silent_banker</Rule><Normal Text> : banker</Normal Text><br/>
+<Symbol>{</Symbol><br/>
+<Normal Text>    </Normal Text><Keyword>meta</Keyword><Normal Text>:</Normal Text><br/>
+<Normal Text>        description = </Normal Text><String>"This is just an example"</String><br/>
+<Normal Text>        threat_level = </Normal Text><Decimal>3</Decimal><br/>
+<Normal Text>        in_the_wild = </Normal Text><Boolean>true</Boolean><br/>
+<Normal Text>    </Normal Text><Keyword>strings</Keyword><Normal Text>:</Normal Text><br/>
+<Normal Text>        </Normal Text><Identifier>$a</Identifier><Normal Text> = </Normal Text><Symbol>{</Symbol><Hex String>6A 40 68 00 30 00 00 6A 14 8D 91</Hex String><Symbol>}</Symbol><br/>
+<Normal Text>        </Normal Text><Identifier>$b</Identifier><Normal Text> = </Normal Text><Symbol>{</Symbol><Hex String>8D 4D B0 2B C1 83 C0 27 99 6A 4E 59 F7 F9</Hex String><Symbol>}</Symbol><br/>
+<Normal Text>        </Normal Text><Identifier>$c</Identifier><Normal Text> = </Normal Text><String>"UVODFRYSIHLNWPEJXQZAKCBGMT"</String><br/>
+<Normal Text>    </Normal Text><Keyword>condition</Keyword><Normal Text>:</Normal Text><br/>
+<Normal Text>        </Normal Text><Identifier>$a</Identifier><Normal Text> </Normal Text><Keyword>or</Keyword><Normal Text> </Normal Text><Identifier>$b</Identifier><Normal Text> </Normal Text><Keyword>or</Keyword><Normal Text> </Normal Text><Identifier>$c</Identifier><br/>
+<Symbol>}</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>rule</Keyword><Normal Text> </Normal Text><Rule>dummy</Rule><br/>
+<Symbol>{</Symbol><br/>
+<Normal Text>    </Normal Text><Keyword>condition</Keyword><Normal Text>:</Normal Text><br/>
+<Normal Text>       </Normal Text><Boolean>false</Boolean><br/>
+<Symbol>}</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>rule</Keyword><Normal Text> </Normal Text><Rule>ExampleRule</Rule><br/>
+<Symbol>{</Symbol><br/>
+<Normal Text>    </Normal Text><Keyword>strings</Keyword><Normal Text>:</Normal Text><br/>
+<Normal Text>        </Normal Text><Identifier>$my_text_string</Identifier><Normal Text> = </Normal Text><String>"text here"</String><br/>
+<Normal Text>        </Normal Text><Identifier>$my_hex_string</Identifier><Normal Text> = </Normal Text><Symbol>{</Symbol><Hex String> E2 34 A1 C8 23 FB </Hex String><Symbol>}</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>    </Normal Text><Keyword>condition</Keyword><Normal Text>:</Normal Text><br/>
+<Normal Text>        </Normal Text><Identifier>$my_text_string</Identifier><Normal Text> </Normal Text><Keyword>or</Keyword><Normal Text> </Normal Text><Identifier>$my_hex_string</Identifier><br/>
+<Symbol>}</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Comment>// Hexadecimal strings</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>rule</Keyword><Normal Text> </Normal Text><Rule>WildcardExample</Rule><br/>
+<Symbol>{</Symbol><br/>
+<Normal Text>    </Normal Text><Keyword>strings</Keyword><Normal Text>:</Normal Text><br/>
+<Normal Text>       </Normal Text><Identifier>$hex_string</Identifier><Normal Text> = </Normal Text><Symbol>{</Symbol><Hex String> E2 34 ?? C8 A? FB </Hex String><Symbol>}</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>    </Normal Text><Keyword>condition</Keyword><Normal Text>:</Normal Text><br/>
+<Normal Text>       </Normal Text><Identifier>$hex_string</Identifier><br/>
+<Symbol>}</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>rule</Keyword><Normal Text> </Normal Text><Rule>JumpExample</Rule><br/>
+<Symbol>{</Symbol><br/>
+<Normal Text>        </Normal Text><Keyword>strings</Keyword><Normal Text>:</Normal Text><br/>
+<Normal Text>           </Normal Text><Identifier>$hex_string</Identifier><Normal Text> = </Normal Text><Symbol>{</Symbol><Hex String> F4 23 </Hex String><Normal Text>[</Normal Text><Decimal>4</Decimal><Normal Text>-</Normal Text><Decimal>6</Decimal><Normal Text>]</Normal Text><Hex String> 62 B4 </Hex String><Symbol>}</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>        </Normal Text><Keyword>condition</Keyword><Normal Text>:</Normal Text><br/>
+<Normal Text>           </Normal Text><Identifier>$hex_string</Identifier><br/>
+<Symbol>}</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>rule</Keyword><Normal Text> </Normal Text><Rule>AlternativesExample</Rule><br/>
+<Symbol>{</Symbol><br/>
+<Normal Text>    </Normal Text><Keyword>strings</Keyword><Normal Text>:</Normal Text><br/>
+<Normal Text>       </Normal Text><Identifier>$hex_string</Identifier><Normal Text> = </Normal Text><Symbol>{</Symbol><Hex String> F4 23 </Hex String><Normal Text>(</Normal Text><Hex String> 62 B4 </Hex String><Normal Text>|</Normal Text><Hex String> 56 </Hex String><Normal Text>|</Normal Text><Hex String> 45 ?? 67 </Hex String><Normal Text>)</Normal Text><Hex String> 45 </Hex String><Symbol>}</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>    </Normal Text><Keyword>condition</Keyword><Normal Text>:</Normal Text><br/>
+<Normal Text>       </Normal Text><Identifier>$hex_string</Identifier><br/>
+<Symbol>}</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Comment>// Text strings</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>rule</Keyword><Normal Text> </Normal Text><Rule>CaseInsensitiveTextExample</Rule><br/>
+<Symbol>{</Symbol><br/>
+<Normal Text>    </Normal Text><Keyword>strings</Keyword><Normal Text>:</Normal Text><br/>
+<Normal Text>        </Normal Text><Identifier>$text_string</Identifier><Normal Text> = </Normal Text><String>"foobar"</String><Normal Text> </Normal Text><Keyword>nocase</Keyword><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>    </Normal Text><Keyword>condition</Keyword><Normal Text>:</Normal Text><br/>
+<Normal Text>        </Normal Text><Identifier>$text_string</Identifier><br/>
+<Symbol>}</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>rule</Keyword><Normal Text> </Normal Text><Rule>WideCharTextExample</Rule><br/>
+<Symbol>{</Symbol><br/>
+<Normal Text>    </Normal Text><Keyword>strings</Keyword><Normal Text>:</Normal Text><br/>
+<Normal Text>        </Normal Text><Identifier>$wide_and_ascii_string</Identifier><Normal Text> = </Normal Text><String>"Borland"</String><Normal Text> </Normal Text><Keyword>wide</Keyword><Normal Text> </Normal Text><Keyword>ascii</Keyword><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>    </Normal Text><Keyword>condition</Keyword><Normal Text>:</Normal Text><br/>
+<Normal Text>       </Normal Text><Identifier>$wide_and_ascii_string</Identifier><br/>
+<Symbol>}</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Comment>// XOR strings</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>rule</Keyword><Normal Text> </Normal Text><Rule>XorExample1</Rule><br/>
+<Symbol>{</Symbol><br/>
+<Normal Text>    </Normal Text><Keyword>strings</Keyword><Normal Text>:</Normal Text><br/>
+<Normal Text>        </Normal Text><Identifier>$xor_string</Identifier><Normal Text> = </Normal Text><String>"This program cannot"</String><Normal Text> </Normal Text><Keyword>xor</Keyword><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>    </Normal Text><Keyword>condition</Keyword><Normal Text>:</Normal Text><br/>
+<Normal Text>        </Normal Text><Identifier>$xor_string</Identifier><br/>
+<Symbol>}</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>rule</Keyword><Normal Text> </Normal Text><Rule>XorExample2</Rule><br/>
+<Symbol>{</Symbol><br/>
+<Normal Text>    </Normal Text><Keyword>strings</Keyword><Normal Text>:</Normal Text><br/>
+<Normal Text>        </Normal Text><Identifier>$xor_string_00</Identifier><Normal Text> = </Normal Text><String>"This program cannot"</String><br/>
+<Normal Text>        </Normal Text><Identifier>$xor_string_01</Identifier><Normal Text> = </Normal Text><String>"Uihr!qsnfs`l!b`oonu"</String><br/>
+<Normal Text>        </Normal Text><Identifier>$xor_string_02</Identifier><Normal Text> = </Normal Text><String>"Vjkq</String><String Char>\"</String Char><String>rpmepco</String><String Char>\"</String Char><String>acllmv"</String><br/>
+<Normal Text>        </Normal Text><Comment>// Repeat for every single byte XOR</Comment><br/>
+<Normal Text>    </Normal Text><Keyword>condition</Keyword><Normal Text>:</Normal Text><br/>
+<Normal Text>        </Normal Text><Keyword>any</Keyword><Normal Text> </Normal Text><Keyword>of</Keyword><Normal Text> </Normal Text><Keyword>them</Keyword><br/>
+<Symbol>}</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>rule</Keyword><Normal Text> </Normal Text><Rule>XorExample3</Rule><br/>
+<Symbol>{</Symbol><br/>
+<Normal Text>    </Normal Text><Keyword>strings</Keyword><Normal Text>:</Normal Text><br/>
+<Normal Text>        </Normal Text><Identifier>$xor_string</Identifier><Normal Text> = </Normal Text><String>"This program cannot"</String><Normal Text> </Normal Text><Keyword>xor</Keyword><Normal Text> </Normal Text><Keyword>wide</Keyword><Normal Text> </Normal Text><Keyword>ascii</Keyword><br/>
+<Normal Text>    </Normal Text><Keyword>condition</Keyword><Normal Text>:</Normal Text><br/>
+<Normal Text>        </Normal Text><Identifier>$xor_string</Identifier><br/>
+<Symbol>}</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>rule</Keyword><Normal Text> </Normal Text><Rule>XorExample4</Rule><br/>
+<Symbol>{</Symbol><br/>
+<Normal Text>    </Normal Text><Keyword>strings</Keyword><Normal Text>:</Normal Text><br/>
+<Normal Text>        </Normal Text><Identifier>$xor_string_00</Identifier><Normal Text> = </Normal Text><String>"T</String><String Char>\x00</String Char><String>h</String><String Char>\x00</String Char><String>i</String><String Char>\x00</String Char><String>s</String><String Char>\x00</String Char><String> </String><String Char>\x00</String Char><String>p</String><String Char>\x00</String Char><String>r</String><String Char>\x00</String Char><String>o</String><String Char>\x00</String Char><String>g</String><String Char>\x00</String Char><String>r</String><String Char>\x00</String Char><String>a</String><String Char>\x00</String Char><String>m</String><String Char>\x00</String Char><String> </String><String Char>\x00</String Char><String>c</String><String Char>\x00</String Char><String>a</String><String Char>\x00</String Char><String>n</String><String Char>\x00</String Char><String>n</String><String Char>\x00</String Char><String>o</String><String Char>\x00</String Char><String>t</String><String Char>\x00</String Char><String>"</String><br/>
+<Normal Text>        </Normal Text><Identifier>$xor_string_01</Identifier><Normal Text> = </Normal Text><String>"U</String><String Char>\x01</String Char><String>i</String><String Char>\x01</String Char><String>h</String><String Char>\x01</String Char><String>r</String><String Char>\x01</String Char><String>!</String><String Char>\x01</String Char><String>q</String><String Char>\x01</String Char><String>s</String><String Char>\x01</String Char><String>n</String><String Char>\x01</String Char><String>f</String><String Char>\x01</String Char><String>s</String><String Char>\x01</String Char><String>`</String><String Char>\x01</String Char><String>l</String><String Char>\x01</String Char><String>!</String><String Char>\x01</String Char><String>b</String><String Char>\x01</String Char><String>`</String><String Char>\x01</String Char><String>o</String><String Char>\x01</String Char><String>o</String><String Char>\x01</String Char><String>n</String><String Char>\x01</String Char><String>u</String><String Char>\x01</String Char><String>"</String><br/>
+<Normal Text>        </Normal Text><Identifier>$xor_string_02</Identifier><Normal Text> = </Normal Text><String>"V</String><String Char>\x02</String Char><String>j</String><String Char>\x02</String Char><String>k</String><String Char>\x02</String Char><String>q</String><String Char>\x02\"\x02</String Char><String>r</String><String Char>\x02</String Char><String>p</String><String Char>\x02</String Char><String>m</String><String Char>\x02</String Char><String>e</String><String Char>\x02</String Char><String>p</String><String Char>\x02</String Char><String>c</String><String Char>\x02</String Char><String>o</String><String Char>\x02\"\x02</String Char><String>a</String><String Char>\x02</String Char><String>c</String><String Char>\x02</String Char><String>l</String><String Char>\x02</String Char><String>l</String><String Char>\x02</String Char><String>m</String><String Char>\x02</String Char><String>v</String><String Char>\x02</String Char><String>"</String><br/>
+<Normal Text>        </Normal Text><Comment>// Repeat for every single byte XOR operation.</Comment><br/>
+<Normal Text>    </Normal Text><Keyword>condition</Keyword><Normal Text>:</Normal Text><br/>
+<Normal Text>        </Normal Text><Keyword>any</Keyword><Normal Text> </Normal Text><Keyword>of</Keyword><Normal Text> </Normal Text><Keyword>them</Keyword><br/>
+<Symbol>}</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>rule</Keyword><Normal Text> </Normal Text><Rule>XorExample5</Rule><br/>
+<Symbol>{</Symbol><br/>
+<Normal Text>    </Normal Text><Keyword>strings</Keyword><Normal Text>:</Normal Text><br/>
+<Normal Text>        </Normal Text><Identifier>$xor_string</Identifier><Normal Text> = </Normal Text><String>"This program cannot"</String><Normal Text> </Normal Text><Keyword>xor</Keyword><Normal Text>(</Normal Text><Hex>0x01</Hex><Normal Text>-</Normal Text><Hex>0xff</Hex><Normal Text>)</Normal Text><br/>
+<Normal Text>    </Normal Text><Keyword>condition</Keyword><Normal Text>:</Normal Text><br/>
+<Normal Text>        </Normal Text><Identifier>$xor_string</Identifier><br/>
+<Symbol>}</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Comment>// Base64 strings</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>rule</Keyword><Normal Text> </Normal Text><Rule>Base64Example1</Rule><br/>
+<Symbol>{</Symbol><br/>
+<Normal Text>    </Normal Text><Keyword>strings</Keyword><Normal Text>:</Normal Text><br/>
+<Normal Text>        </Normal Text><Identifier>$a</Identifier><Normal Text> = </Normal Text><String>"This program cannot"</String><Normal Text> </Normal Text><Keyword>base64</Keyword><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>    </Normal Text><Keyword>condition</Keyword><Normal Text>:</Normal Text><br/>
+<Normal Text>        </Normal Text><Identifier>$a</Identifier><br/>
+<Symbol>}</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>rule</Keyword><Normal Text> </Normal Text><Rule>Base64Example2</Rule><br/>
+<Symbol>{</Symbol><br/>
+<Normal Text>    </Normal Text><Keyword>strings</Keyword><Normal Text>:</Normal Text><br/>
+<Normal Text>        </Normal Text><Identifier>$a</Identifier><Normal Text> = </Normal Text><String>"This program cannot"</String><Normal Text> </Normal Text><Keyword>base64</Keyword><Normal Text>(</Normal Text><String>"!@#$%^&*(){}[].,|ABCDEFGHIJ</String><String Char>\x09</String Char><String>LMNOPQRSTUVWXYZabcdefghijklmnopqrstu"</String><Normal Text>)</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>    </Normal Text><Keyword>condition</Keyword><Normal Text>:</Normal Text><br/>
+<Normal Text>        </Normal Text><Identifier>$a</Identifier><br/>
+<Symbol>}</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Comment>// Regular expressions</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>rule</Keyword><Normal Text> </Normal Text><Rule>RegExpExample1</Rule><br/>
+<Symbol>{</Symbol><br/>
+<Normal Text>    </Normal Text><Keyword>strings</Keyword><Normal Text>:</Normal Text><br/>
+<Normal Text>        </Normal Text><Identifier>$re1</Identifier><Normal Text> = </Normal Text><Start Regular Expression>/</Start Regular Expression><Regular Expression>md5: </Regular Expression><Pattern Character Class>[0-9a-fA-F]</Pattern Character Class><Pattern Internal Operator>{32}</Pattern Internal Operator><Regular Expression>/</Regular Expression><br/>
+<Normal Text>        </Normal Text><Identifier>$re2</Identifier><Normal Text> = </Normal Text><Start Regular Expression>/</Start Regular Expression><Regular Expression>state: </Regular Expression><Pattern Internal Operator>(</Pattern Internal Operator><Regular Expression>on</Regular Expression><Pattern Internal Operator>|</Pattern Internal Operator><Regular Expression>off</Regular Expression><Pattern Internal Operator>)</Pattern Internal Operator><Regular Expression>/</Regular Expression><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>    </Normal Text><Keyword>condition</Keyword><Normal Text>:</Normal Text><br/>
+<Normal Text>        </Normal Text><Identifier>$re1</Identifier><Normal Text> </Normal Text><Keyword>and</Keyword><Normal Text> </Normal Text><Identifier>$re2</Identifier><br/>
+<Symbol>}</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Comment>// Conditions</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>rule</Keyword><Normal Text> </Normal Text><Rule>Example</Rule><br/>
+<Symbol>{</Symbol><br/>
+<Normal Text>    </Normal Text><Keyword>strings</Keyword><Normal Text>:</Normal Text><br/>
+<Normal Text>        </Normal Text><Identifier>$a</Identifier><Normal Text> = </Normal Text><String>"text1"</String><br/>
+<Normal Text>        </Normal Text><Identifier>$b</Identifier><Normal Text> = </Normal Text><String>"text2"</String><br/>
+<Normal Text>        </Normal Text><Identifier>$c</Identifier><Normal Text> = </Normal Text><String>"text3"</String><br/>
+<Normal Text>        </Normal Text><Identifier>$d</Identifier><Normal Text> = </Normal Text><String>"text4"</String><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>    </Normal Text><Keyword>condition</Keyword><Normal Text>:</Normal Text><br/>
+<Normal Text>        (</Normal Text><Identifier>$a</Identifier><Normal Text> </Normal Text><Keyword>or</Keyword><Normal Text> </Normal Text><Identifier>$b</Identifier><Normal Text>) </Normal Text><Keyword>and</Keyword><Normal Text> (</Normal Text><Identifier>$c</Identifier><Normal Text> </Normal Text><Keyword>or</Keyword><Normal Text> </Normal Text><Identifier>$d</Identifier><Normal Text>)</Normal Text><br/>
+<Symbol>}</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>rule</Keyword><Normal Text> </Normal Text><Rule>CountExample</Rule><br/>
+<Symbol>{</Symbol><br/>
+<Normal Text>    </Normal Text><Keyword>strings</Keyword><Normal Text>:</Normal Text><br/>
+<Normal Text>        </Normal Text><Identifier>$a</Identifier><Normal Text> = </Normal Text><String>"dummy1"</String><br/>
+<Normal Text>        </Normal Text><Identifier>$b</Identifier><Normal Text> = </Normal Text><String>"dummy2"</String><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>    </Normal Text><Keyword>condition</Keyword><Normal Text>:</Normal Text><br/>
+<Normal Text>        #a == </Normal Text><Decimal>6</Decimal><Normal Text> </Normal Text><Keyword>and</Keyword><Normal Text> #b > </Normal Text><Decimal>10</Decimal><br/>
+<Symbol>}</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>rule</Keyword><Normal Text> </Normal Text><Rule>AtExample</Rule><br/>
+<Symbol>{</Symbol><br/>
+<Normal Text>    </Normal Text><Keyword>strings</Keyword><Normal Text>:</Normal Text><br/>
+<Normal Text>        </Normal Text><Identifier>$a</Identifier><Normal Text> = </Normal Text><String>"dummy1"</String><br/>
+<Normal Text>        </Normal Text><Identifier>$b</Identifier><Normal Text> = </Normal Text><String>"dummy2"</String><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>    </Normal Text><Keyword>condition</Keyword><Normal Text>:</Normal Text><br/>
+<Normal Text>        </Normal Text><Identifier>$a</Identifier><Normal Text> </Normal Text><Keyword>at</Keyword><Normal Text> </Normal Text><Decimal>100</Decimal><Normal Text> </Normal Text><Keyword>and</Keyword><Normal Text> </Normal Text><Identifier>$b</Identifier><Normal Text> </Normal Text><Keyword>at</Keyword><Normal Text> </Normal Text><Decimal>200</Decimal><br/>
+<Symbol>}</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>rule</Keyword><Normal Text> </Normal Text><Rule>InExample</Rule><br/>
+<Symbol>{</Symbol><br/>
+<Normal Text>    </Normal Text><Keyword>strings</Keyword><Normal Text>:</Normal Text><br/>
+<Normal Text>        </Normal Text><Identifier>$a</Identifier><Normal Text> = </Normal Text><String>"dummy1"</String><br/>
+<Normal Text>        </Normal Text><Identifier>$b</Identifier><Normal Text> = </Normal Text><String>"dummy2"</String><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>    </Normal Text><Keyword>condition</Keyword><Normal Text>:</Normal Text><br/>
+<Normal Text>        </Normal Text><Identifier>$a</Identifier><Normal Text> </Normal Text><Keyword>in</Keyword><Normal Text> (</Normal Text><Float>0..100</Float><Normal Text>) </Normal Text><Keyword>and</Keyword><Normal Text> </Normal Text><Identifier>$b</Identifier><Normal Text> </Normal Text><Keyword>in</Keyword><Normal Text> (</Normal Text><Float>100.</Float><Normal Text>.</Normal Text><Keyword>filesize</Keyword><Normal Text>)</Normal Text><br/>
+<Symbol>}</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Comment>// File size</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>rule</Keyword><Normal Text> </Normal Text><Rule>FileSizeExample</Rule><br/>
+<Symbol>{</Symbol><br/>
+<Normal Text>    </Normal Text><Keyword>condition</Keyword><Normal Text>:</Normal Text><br/>
+<Normal Text>       </Normal Text><Keyword>filesize</Keyword><Normal Text> > </Normal Text><Decimal>200</Decimal><Normal Text>KB</Normal Text><br/>
+<Symbol>}</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Comment>// Executable entry point</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>rule</Keyword><Normal Text> </Normal Text><Rule>EntryPointExample</Rule><br/>
+<Symbol>{</Symbol><br/>
+<Normal Text>    </Normal Text><Keyword>strings</Keyword><Normal Text>:</Normal Text><br/>
+<Normal Text>        </Normal Text><Identifier>$a</Identifier><Normal Text> = </Normal Text><Symbol>{</Symbol><Hex String> 9C 50 66 A1 ?? ?? ?? 00 66 A9 ?? ?? 58 0F 85 </Hex String><Symbol>}</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>    </Normal Text><Keyword>condition</Keyword><Normal Text>:</Normal Text><br/>
+<Normal Text>       </Normal Text><Identifier>$a</Identifier><Normal Text> </Normal Text><Keyword>in</Keyword><Normal Text> (</Normal Text><Keyword>entrypoint</Keyword><Normal Text>..</Normal Text><Keyword>entrypoint</Keyword><Normal Text> + </Normal Text><Decimal>10</Decimal><Normal Text>)</Normal Text><br/>
+<Symbol>}</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment>// Accessing data at a given position</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>rule</Keyword><Normal Text> </Normal Text><Rule>IsPE</Rule><br/>
+<Symbol>{</Symbol><br/>
+<Normal Text>  </Normal Text><Keyword>condition</Keyword><Normal Text>:</Normal Text><br/>
+<Normal Text>     </Normal Text><Comment>// MZ signature at offset 0 and ...</Comment><br/>
+<Normal Text>     </Normal Text><Keyword>uint16</Keyword><Normal Text>(</Normal Text><Decimal>0</Decimal><Normal Text>) == </Normal Text><Hex>0x5A4D</Hex><Normal Text> </Normal Text><Keyword>and</Keyword><br/>
+<Normal Text>     </Normal Text><Comment>// ... PE signature at offset stored in MZ header at 0x3C</Comment><br/>
+<Normal Text>     </Normal Text><Keyword>uint32</Keyword><Normal Text>(</Normal Text><Keyword>uint32</Keyword><Normal Text>(</Normal Text><Hex>0x3C</Hex><Normal Text>)) == </Normal Text><Hex>0x00004550</Hex><br/>
+<Symbol>}</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Comment>// Sets of strings</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>rule</Keyword><Normal Text> </Normal Text><Rule>OfExample1</Rule><br/>
+<Symbol>{</Symbol><br/>
+<Normal Text>    </Normal Text><Keyword>strings</Keyword><Normal Text>:</Normal Text><br/>
+<Normal Text>        </Normal Text><Identifier>$a</Identifier><Normal Text> = </Normal Text><String>"dummy1"</String><br/>
+<Normal Text>        </Normal Text><Identifier>$b</Identifier><Normal Text> = </Normal Text><String>"dummy2"</String><br/>
+<Normal Text>        </Normal Text><Identifier>$c</Identifier><Normal Text> = </Normal Text><String>"dummy3"</String><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>    </Normal Text><Keyword>condition</Keyword><Normal Text>:</Normal Text><br/>
+<Normal Text>        </Normal Text><Decimal>2</Decimal><Normal Text> </Normal Text><Keyword>of</Keyword><Normal Text> (</Normal Text><Identifier>$a</Identifier><Normal Text>,</Normal Text><Identifier>$b</Identifier><Normal Text>,</Normal Text><Identifier>$c</Identifier><Normal Text>)</Normal Text><br/>
+<Symbol>}</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>rule</Keyword><Normal Text> </Normal Text><Rule>OfExample2</Rule><br/>
+<Symbol>{</Symbol><br/>
+<Normal Text>    </Normal Text><Keyword>strings</Keyword><Normal Text>:</Normal Text><br/>
+<Normal Text>        </Normal Text><Identifier>$foo1</Identifier><Normal Text> = </Normal Text><String>"foo1"</String><br/>
+<Normal Text>        </Normal Text><Identifier>$foo2</Identifier><Normal Text> = </Normal Text><String>"foo2"</String><br/>
+<Normal Text>        </Normal Text><Identifier>$foo3</Identifier><Normal Text> = </Normal Text><String>"foo3"</String><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>    </Normal Text><Keyword>condition</Keyword><Normal Text>:</Normal Text><br/>
+<Normal Text>        </Normal Text><Decimal>2</Decimal><Normal Text> </Normal Text><Keyword>of</Keyword><Normal Text> (</Normal Text><Identifier>$foo</Identifier><Normal Text>*)  </Normal Text><Comment>// equivalent to 2 of ($foo1,$foo2,$foo3)</Comment><br/>
+<Symbol>}</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>rule</Keyword><Normal Text> </Normal Text><Rule>OfExample3</Rule><br/>
+<Symbol>{</Symbol><br/>
+<Normal Text>    </Normal Text><Keyword>strings</Keyword><Normal Text>:</Normal Text><br/>
+<Normal Text>        </Normal Text><Identifier>$a</Identifier><Normal Text> = </Normal Text><String>"dummy1"</String><br/>
+<Normal Text>        </Normal Text><Identifier>$b</Identifier><Normal Text> = </Normal Text><String>"dummy2"</String><br/>
+<Normal Text>        </Normal Text><Identifier>$c</Identifier><Normal Text> = </Normal Text><String>"dummy3"</String><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>    </Normal Text><Keyword>condition</Keyword><Normal Text>:</Normal Text><br/>
+<Normal Text>        </Normal Text><Decimal>1</Decimal><Normal Text> </Normal Text><Keyword>of</Keyword><Normal Text> </Normal Text><Keyword>them</Keyword><Normal Text> </Normal Text><Comment>// equivalent to 1 of ($*)</Comment><br/>
+<Symbol>}</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Comment>// Iterating over string occurrences</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>rule</Keyword><Normal Text> </Normal Text><Rule>Occurrences</Rule><br/>
+<Symbol>{</Symbol><br/>
+<Normal Text>    </Normal Text><Keyword>strings</Keyword><Normal Text>:</Normal Text><br/>
+<Normal Text>        </Normal Text><Identifier>$a</Identifier><Normal Text> = </Normal Text><String>"dummy1"</String><br/>
+<Normal Text>        </Normal Text><Identifier>$b</Identifier><Normal Text> = </Normal Text><String>"dummy2"</String><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>    </Normal Text><Keyword>condition</Keyword><Normal Text>:</Normal Text><br/>
+<Normal Text>        </Normal Text><Keyword>for</Keyword><Normal Text> </Normal Text><Keyword>all</Keyword><Normal Text> i </Normal Text><Keyword>in</Keyword><Normal Text> (</Normal Text><Decimal>1</Decimal><Normal Text>,</Normal Text><Decimal>2</Decimal><Normal Text>,</Normal Text><Decimal>3</Decimal><Normal Text>) : ( @a[i] + </Normal Text><Decimal>10</Decimal><Normal Text> == @b[i] )</Normal Text><br/>
+<Symbol>}</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Comment>// Referencing other rules</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>rule</Keyword><Normal Text> </Normal Text><Rule>Rule1</Rule><br/>
+<Symbol>{</Symbol><br/>
+<Normal Text>    </Normal Text><Keyword>strings</Keyword><Normal Text>:</Normal Text><br/>
+<Normal Text>        </Normal Text><Identifier>$a</Identifier><Normal Text> = </Normal Text><String>"dummy1"</String><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>    </Normal Text><Keyword>condition</Keyword><Normal Text>:</Normal Text><br/>
+<Normal Text>        </Normal Text><Identifier>$a</Identifier><br/>
+<Symbol>}</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>rule</Keyword><Normal Text> </Normal Text><Rule>Rule2</Rule><br/>
+<Symbol>{</Symbol><br/>
+<Normal Text>    </Normal Text><Keyword>strings</Keyword><Normal Text>:</Normal Text><br/>
+<Normal Text>        </Normal Text><Identifier>$a</Identifier><Normal Text> = </Normal Text><String>"dummy2"</String><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>    </Normal Text><Keyword>condition</Keyword><Normal Text>:</Normal Text><br/>
+<Normal Text>        </Normal Text><Identifier>$a</Identifier><Normal Text> </Normal Text><Keyword>and</Keyword><Normal Text> Rule1</Normal Text><br/>
+<Symbol>}</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Comment>// Metadata</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>rule</Keyword><Normal Text> </Normal Text><Rule>MetadataExample</Rule><br/>
+<Symbol>{</Symbol><br/>
+<Normal Text>    </Normal Text><Keyword>meta</Keyword><Normal Text>:</Normal Text><br/>
+<Normal Text>        my_identifier_1 = </Normal Text><String>"Some string data"</String><br/>
+<Normal Text>        my_identifier_2 = </Normal Text><Decimal>24</Decimal><br/>
+<Normal Text>        my_identifier_3 = </Normal Text><Boolean>true</Boolean><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>    </Normal Text><Keyword>strings</Keyword><Normal Text>:</Normal Text><br/>
+<Normal Text>        </Normal Text><Identifier>$my_text_string</Identifier><Normal Text> = </Normal Text><String>"text here"</String><br/>
+<Normal Text>        </Normal Text><Identifier>$my_hex_string</Identifier><Normal Text> = </Normal Text><Symbol>{</Symbol><Hex String> E2 34 A1 C8 23 FB </Hex String><Symbol>}</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>    </Normal Text><Keyword>condition</Keyword><Normal Text>:</Normal Text><br/>
+<Normal Text>        </Normal Text><Identifier>$my_text_string</Identifier><Normal Text> </Normal Text><Keyword>or</Keyword><Normal Text> </Normal Text><Identifier>$my_hex_string</Identifier><br/>
+<Symbol>}</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Comment>// External variables</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>rule</Keyword><Normal Text> </Normal Text><Rule>ExternalVariableExample1</Rule><br/>
+<Symbol>{</Symbol><br/>
+<Normal Text>    </Normal Text><Keyword>condition</Keyword><Normal Text>:</Normal Text><br/>
+<Normal Text>       ext_var == </Normal Text><Decimal>10</Decimal><br/>
+<Symbol>}</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>rule</Keyword><Normal Text> </Normal Text><Rule>ExternalVariableExample2</Rule><br/>
+<Symbol>{</Symbol><br/>
+<Normal Text>    </Normal Text><Keyword>condition</Keyword><Normal Text>:</Normal Text><br/>
+<Normal Text>       bool_ext_var </Normal Text><Keyword>or</Keyword><Normal Text> </Normal Text><Keyword>filesize</Keyword><Normal Text> < int_ext_var</Normal Text><br/>
+<Symbol>}</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>rule</Keyword><Normal Text> </Normal Text><Rule>ExternalVariableExample3</Rule><br/>
+<Symbol>{</Symbol><br/>
+<Normal Text>    </Normal Text><Keyword>condition</Keyword><Normal Text>:</Normal Text><br/>
+<Normal Text>        string_ext_var </Normal Text><Keyword>contains</Keyword><Normal Text> </Normal Text><String>"text"</String><br/>
+<Symbol>}</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>rule</Keyword><Normal Text> </Normal Text><Rule>ExternalVariableExample4</Rule><br/>
+<Symbol>{</Symbol><br/>
+<Normal Text>    </Normal Text><Keyword>condition</Keyword><Normal Text>:</Normal Text><br/>
+<Normal Text>        string_ext_var </Normal Text><Keyword>matches</Keyword><Normal Text> </Normal Text><Start Regular Expression>/</Start Regular Expression><Pattern Character Class>[a-z]</Pattern Character Class><Pattern Internal Operator>+</Pattern Internal Operator><Regular Expression>/</Regular Expression><br/>
+<Symbol>}</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>rule</Keyword><Normal Text> </Normal Text><Rule>ExternalVariableExample5</Rule><br/>
+<Symbol>{</Symbol><br/>
+<Normal Text>    </Normal Text><Keyword>condition</Keyword><Normal Text>:</Normal Text><br/>
+<Normal Text>        </Normal Text><Comment>/* case insensitive single-line mode */</Comment><br/>
+<Normal Text>        string_ext_var </Normal Text><Keyword>matches</Keyword><Normal Text> </Normal Text><Start Regular Expression>/</Start Regular Expression><Pattern Character Class>[a-z]</Pattern Character Class><Pattern Internal Operator>+</Pattern Internal Operator><Regular Expression>/is</Regular Expression><br/>
+<Symbol>}</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Comment>// Including files</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>include</Keyword><Normal Text> </Normal Text><String>"other.yar"</String><br/>
+<Keyword>include</Keyword><Normal Text> </Normal Text><String>"./includes/other.yar"</String><br/>
+<Keyword>include</Keyword><Normal Text> </Normal Text><String>"../includes/other.yar"</String><br/>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE language SYSTEM "language.dtd">
+<language name="Additional Deliminators" section="Other" extensions="*.addDelim" version="1" kateversion="5.0">
+  <highlighting>
+    <list name="keywords">
+      <item>keyword</item>
+    </list>
+    <contexts>
+      <context name="template" attribute="Normal" lineEndContext="#stay">
+        <DetectSpaces attribute="Normal"/>
+        <keyword String="keywords" attribute="Keyword"/>
+      </context>
+    </contexts>
+
+    <itemDatas>
+      <itemData name="Normal"  defStyleNum="dsNormal"/>
+      <itemData name="Keyword" defStyleNum="dsKeyword"/>
+    </itemDatas>
+  </highlighting>
+
+  <general>
+    <keywords additionalDeliminator="&apos;`" />
+  </general>
+</language>

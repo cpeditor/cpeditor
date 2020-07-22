@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title>highlight.xsl</title>
+<meta name="generator" content="KF5::SyntaxHighlighting (xslt)"/>
+</head><body style="color:#1f1c1b"><pre>
+<span style="font-weight:bold;">&lt;?xml</span> version=&quot;1.0&quot; encoding=&quot;iso-8859-15&quot;<span style="font-weight:bold;">?&gt;</span>
+
+<span style="color:#898887;">&lt;!--</span>
+<span style="color:#898887;">	This file is freely distributable, created by Wilbert Berendsen (wbsoft@xs4all.nl)</span>
+
+<span style="color:#898887;">	This is just a simple XSLT file that converts some HTML pages to a XBEL bookmarklist.</span>
+<span style="color:#898887;">	It is included here to test the new XSLT highlighting by Peter Lammich.</span>
+<span style="color:#898887;">	</span>
+<span style="color:#898887;">	</span><span style="color:#bf0303;background-color:#f7e6e6;font-weight:bold;">TODO</span><span style="color:#898887;">: add better test file.</span>
+<span style="color:#898887;">--&gt;</span>
+
+<span style="font-weight:bold;">&lt;</span><span style="color:#000080;font-weight:bold;">xsl:stylesheet</span><span style="color:#006e28;"> xmlns:xsl=</span><span style="color:#800000;">&quot;http://www.w3.org/1999/XSL/Transform&quot;</span><span style="color:#006e28;"> version=</span><span style="color:#800000;">&quot;1.0&quot;</span>
+<span style="color:#006e28;">xmlns:h=</span><span style="color:#800000;">&quot;http://www.w3.org/1999/xhtml&quot;</span><span style="font-weight:bold;">&gt;</span>
+<span style="font-weight:bold;">&lt;</span><span style="color:#000080;font-weight:bold;">xsl:output</span><span style="color:#006e28;"> method=</span><span style="color:#800000;">&quot;xml&quot;</span><span style="color:#006e28;"> encoding=</span><span style="color:#800000;">&quot;iso-8859-15&quot;</span><span style="color:#006e28;"> indent=</span><span style="color:#800000;">&quot;yes&quot;</span>
+<span style="color:#006e28;"> doctype-public=</span><span style="color:#800000;">&quot;+//IDN python.org//DTD XML Bookmark Exchange Language 1.0//EN//XML&quot;</span>
+<span style="color:#006e28;"> doctype-system=</span><span style="color:#800000;">&quot;http://www.python.org/topics/xml/dtds/xbel-1.0.dtd&quot;</span>
+<span style="font-weight:bold;">/&gt;</span>
+
+<span style="color:#898887;">&lt;!-- main --&gt;</span>
+<span style="font-weight:bold;">&lt;</span><span style="color:#000080;font-weight:bold;">xsl:template</span><span style="color:#006e28;"> match=</span><span style="color:#008080;">&quot;/&quot;</span><span style="font-weight:bold;">&gt;</span>
+<span style="font-weight:bold;">&lt;xbel&gt;&lt;folder&gt;&lt;title&gt;</span>Linux at Home Links<span style="font-weight:bold;">&lt;/title&gt;</span>
+<span style="font-weight:bold;">&lt;</span><span style="color:#000080;font-weight:bold;">xsl:for-each</span><span style="color:#006e28;"> select=</span><span style="color:#008080;">&quot;//*[</span><span style="color:#008080;font-style:italic;">@id</span><span style="color:#008080;">=</span><span style="color:#800000;">'maincontents'</span><span style="color:#008080;">]//h:li&quot;</span><span style="font-weight:bold;">&gt;</span>
+  <span style="font-weight:bold;">&lt;</span><span style="color:#000080;font-weight:bold;">xsl:variable</span><span style="color:#006e28;"> name=</span><span style="color:#800000;">&quot;f&quot;</span><span style="color:#006e28;"> select=</span><span style="color:#008080;">&quot;</span><span style="color:#008080;font-weight:bold;">document</span><span style="color:#008080;">(h:a/</span><span style="color:#008080;font-style:italic;">@href</span><span style="color:#008080;">)/h:html&quot;</span><span style="font-weight:bold;">/&gt;</span>
+  <span style="font-weight:bold;">&lt;folder&gt;</span>
+  <span style="font-weight:bold;">&lt;title&gt;&lt;</span><span style="color:#000080;font-weight:bold;">xsl:value-of</span><span style="color:#006e28;"> select=</span><span style="color:#008080;">&quot;h:a/h:strong&quot;</span><span style="font-weight:bold;">/&gt;&lt;/title&gt;</span>
+  <span style="font-weight:bold;">&lt;desc&gt;&lt;</span><span style="color:#000080;font-weight:bold;">xsl:value-of</span><span style="color:#006e28;"> select=</span><span style="color:#008080;">&quot;</span><span style="color:#008080;font-weight:bold;">normalize-space</span><span style="color:#008080;">(h:a/</span><span style="color:#008080;font-weight:bold;">text</span><span style="color:#008080;">())&quot;</span><span style="font-weight:bold;">/&gt;&lt;/desc&gt;</span>
+  <span style="font-weight:bold;">&lt;</span><span style="color:#000080;font-weight:bold;">xsl:for-each</span><span style="color:#006e28;"> select=</span><span style="color:#008080;">&quot;</span><span style="color:#008080;font-style:italic;">$f</span><span style="color:#008080;">//h:div[</span><span style="color:#008080;font-style:italic;">@id</span><span style="color:#008080;">=</span><span style="color:#800000;">'maincontents'</span><span style="color:#008080;">]&quot;</span><span style="font-weight:bold;">&gt;</span>
+  <span style="font-weight:bold;">&lt;</span><span style="color:#000080;font-weight:bold;">xsl:call-template</span><span style="color:#006e28;"> name=</span><span style="color:#800000;">&quot;getbookmarks&quot;</span><span style="font-weight:bold;">/&gt;</span>
+  <span style="font-weight:bold;">&lt;/</span><span style="color:#000080;font-weight:bold;">xsl:for-each</span><span style="font-weight:bold;">&gt;</span>
+  
+  <span style="font-weight:bold;">&lt;/folder&gt;</span>
+<span style="font-weight:bold;">&lt;/</span><span style="color:#000080;font-weight:bold;">xsl:for-each</span><span style="font-weight:bold;">&gt;</span>
+<span style="font-weight:bold;">&lt;/folder&gt;&lt;/xbel&gt;</span>
+<span style="font-weight:bold;">&lt;/</span><span style="color:#000080;font-weight:bold;">xsl:template</span><span style="font-weight:bold;">&gt;</span>
+<span style="color:#898887;">&lt;!-- end of main --&gt;</span>
+
+<span style="color:#898887;">&lt;!-- get bookmarks from a page --&gt;</span>
+<span style="font-weight:bold;">&lt;</span><span style="color:#000080;font-weight:bold;">xsl:template</span><span style="color:#006e28;"> name=</span><span style="color:#800000;">&quot;getbookmarks&quot;</span><span style="font-weight:bold;">&gt;</span>
+
+<span style="font-weight:bold;">&lt;</span><span style="color:#000080;font-weight:bold;">xsl:choose</span><span style="font-weight:bold;">&gt;</span>
+  <span style="color:#898887;">&lt;!-- harvest links from p or li elements --&gt;</span>
+  <span style="font-weight:bold;">&lt;</span><span style="color:#000080;font-weight:bold;">xsl:when</span><span style="color:#006e28;"> test=</span><span style="color:#008080;">&quot;</span><span style="color:#008080;font-style:italic;">self::</span><span style="color:#008080;">h:li or </span><span style="color:#008080;font-style:italic;">self::</span><span style="color:#008080;">h:p&quot;</span><span style="font-weight:bold;">&gt;</span>
+    <span style="font-weight:bold;">&lt;</span><span style="color:#000080;font-weight:bold;">xsl:variable</span><span style="color:#006e28;"> name=</span><span style="color:#800000;">&quot;t&quot;</span><span style="color:#006e28;"> select=</span><span style="color:#008080;">&quot;</span><span style="color:#008080;font-weight:bold;">normalize-space</span><span style="color:#008080;">()&quot;</span><span style="font-weight:bold;">/&gt;</span>
+    <span style="font-weight:bold;">&lt;</span><span style="color:#000080;font-weight:bold;">xsl:for-each</span><span style="color:#006e28;"> select=</span><span style="color:#008080;">&quot;.//h:a[1]&quot;</span><span style="font-weight:bold;">&gt;</span>
+      <span style="font-weight:bold;">&lt;</span><span style="color:#000080;font-weight:bold;">xsl:call-template</span><span style="color:#006e28;"> name=</span><span style="color:#800000;">&quot;bookmark&quot;</span><span style="font-weight:bold;">&gt;</span>
+        <span style="font-weight:bold;">&lt;</span><span style="color:#000080;font-weight:bold;">xsl:with-param</span><span style="color:#006e28;"> name=</span><span style="color:#800000;">&quot;desc&quot;</span><span style="color:#006e28;"> select=</span><span style="color:#008080;">&quot;</span><span style="color:#008080;font-style:italic;">$t</span><span style="color:#008080;">&quot;</span><span style="font-weight:bold;">/&gt;</span>
+      <span style="font-weight:bold;">&lt;/</span><span style="color:#000080;font-weight:bold;">xsl:call-template</span><span style="font-weight:bold;">&gt;</span>
+    <span style="font-weight:bold;">&lt;/</span><span style="color:#000080;font-weight:bold;">xsl:for-each</span><span style="font-weight:bold;">&gt;</span>
+    <span style="font-weight:bold;">&lt;</span><span style="color:#000080;font-weight:bold;">xsl:for-each</span><span style="color:#006e28;"> select=</span><span style="color:#008080;">&quot;.//h:a[</span><span style="color:#008080;font-weight:bold;">position</span><span style="color:#008080;">()!=1]&quot;</span><span style="font-weight:bold;">&gt;</span>
+      <span style="font-weight:bold;">&lt;</span><span style="color:#000080;font-weight:bold;">xsl:call-template</span><span style="color:#006e28;"> name=</span><span style="color:#800000;">&quot;bookmark&quot;</span><span style="font-weight:bold;">/&gt;</span>
+    <span style="font-weight:bold;">&lt;/</span><span style="color:#000080;font-weight:bold;">xsl:for-each</span><span style="font-weight:bold;">&gt;</span>
+  <span style="font-weight:bold;">&lt;/</span><span style="color:#000080;font-weight:bold;">xsl:when</span><span style="font-weight:bold;">&gt;</span>
+
+
+  <span style="font-weight:bold;">&lt;</span><span style="color:#000080;font-weight:bold;">xsl:otherwise</span><span style="font-weight:bold;">&gt;</span>
+    <span style="font-weight:bold;">&lt;</span><span style="color:#000080;font-weight:bold;">xsl:for-each</span><span style="color:#006e28;"> select=</span><span style="color:#008080;">&quot;*&quot;</span><span style="font-weight:bold;">&gt;</span>
+      <span style="font-weight:bold;">&lt;</span><span style="color:#000080;font-weight:bold;">xsl:call-template</span><span style="color:#006e28;"> name=</span><span style="color:#800000;">&quot;getbookmarks&quot;</span><span style="font-weight:bold;">/&gt;</span>
+    <span style="font-weight:bold;">&lt;/</span><span style="color:#000080;font-weight:bold;">xsl:for-each</span><span style="font-weight:bold;">&gt;</span>
+  <span style="font-weight:bold;">&lt;/</span><span style="color:#000080;font-weight:bold;">xsl:otherwise</span><span style="font-weight:bold;">&gt;</span>
+
+<span style="font-weight:bold;">&lt;/</span><span style="color:#000080;font-weight:bold;">xsl:choose</span><span style="font-weight:bold;">&gt;</span>
+
+<span style="font-weight:bold;">&lt;/</span><span style="color:#000080;font-weight:bold;">xsl:template</span><span style="font-weight:bold;">&gt;</span>
+
+
+<span style="font-weight:bold;">&lt;</span><span style="color:#000080;font-weight:bold;">xsl:template</span><span style="color:#006e28;"> name=</span><span style="color:#800000;">&quot;bookmark&quot;</span><span style="font-weight:bold;">&gt;</span>
+  <span style="font-weight:bold;">&lt;</span><span style="color:#000080;font-weight:bold;">xsl:param</span><span style="color:#006e28;"> name=</span><span style="color:#800000;">&quot;href&quot;</span><span style="color:#006e28;"> select=</span><span style="color:#008080;">&quot;</span><span style="color:#008080;font-style:italic;">@href</span><span style="color:#008080;">&quot;</span><span style="font-weight:bold;">/&gt;</span>
+  <span style="font-weight:bold;">&lt;</span><span style="color:#000080;font-weight:bold;">xsl:param</span><span style="color:#006e28;"> name=</span><span style="color:#800000;">&quot;desc&quot;</span><span style="color:#006e28;"> select=</span><span style="color:#008080;">&quot;</span><span style="color:#800000;">''</span><span style="color:#008080;">&quot;</span><span style="font-weight:bold;">/&gt;</span>
+  <span style="font-weight:bold;">&lt;</span><span style="color:#000080;font-weight:bold;">xsl:param</span><span style="color:#006e28;"> name=</span><span style="color:#800000;">&quot;title&quot;</span><span style="color:#006e28;"> select=</span><span style="color:#008080;">&quot;</span><span style="color:#008080;font-weight:bold;">normalize-space</span><span style="color:#008080;">()&quot;</span><span style="font-weight:bold;">/&gt;</span>
+
+  <span style="font-weight:bold;">&lt;</span><span style="color:#000080;font-weight:bold;">xsl:variable</span><span style="color:#006e28;"> name=</span><span style="color:#800000;">&quot;realdesc&quot;</span><span style="font-weight:bold;">&gt;</span>
+    <span style="font-weight:bold;">&lt;</span><span style="color:#000080;font-weight:bold;">xsl:choose</span><span style="font-weight:bold;">&gt;</span>
+      <span style="font-weight:bold;">&lt;</span><span style="color:#000080;font-weight:bold;">xsl:when</span><span style="color:#006e28;"> test=</span><span style="color:#008080;">&quot;</span><span style="color:#008080;font-weight:bold;">starts-with</span><span style="color:#008080;">(</span><span style="color:#008080;font-style:italic;">$desc</span><span style="color:#008080;">,</span><span style="color:#008080;font-style:italic;">$title</span><span style="color:#008080;">)&quot;</span><span style="font-weight:bold;">&gt;</span>
+        <span style="font-weight:bold;">&lt;</span><span style="color:#000080;font-weight:bold;">xsl:choose</span><span style="font-weight:bold;">&gt;</span>
+          <span style="font-weight:bold;">&lt;</span><span style="color:#000080;font-weight:bold;">xsl:when</span><span style="color:#006e28;"> test=</span><span style="color:#008080;">&quot;</span><span style="color:#008080;font-weight:bold;">starts-with</span><span style="color:#008080;">(</span><span style="color:#008080;font-weight:bold;">translate</span><span style="color:#008080;">(</span><span style="color:#008080;font-weight:bold;">substring-after</span><span style="color:#008080;">(</span><span style="color:#008080;font-style:italic;">$desc</span><span style="color:#008080;">,</span><span style="color:#008080;font-style:italic;">$title</span><span style="color:#008080;">),</span><span style="color:#800000;">',.;'</span><span style="color:#008080;">,</span><span style="color:#800000;">'...'</span><span style="color:#008080;">),</span><span style="color:#800000;">'.'</span><span style="color:#008080;">)&quot;</span><span style="font-weight:bold;">&gt;</span>
+            <span style="font-weight:bold;">&lt;</span><span style="color:#000080;font-weight:bold;">xsl:value-of</span><span style="color:#006e28;"> select=</span><span style="color:#008080;">&quot;</span><span style="color:#008080;font-weight:bold;">substring</span><span style="color:#008080;">(</span><span style="color:#008080;font-style:italic;">$desc</span><span style="color:#008080;">,</span><span style="color:#008080;font-weight:bold;">string-length</span><span style="color:#008080;">(</span><span style="color:#008080;font-style:italic;">$title</span><span style="color:#008080;">) + 2)&quot;</span><span style="font-weight:bold;">/&gt;</span>
+          <span style="font-weight:bold;">&lt;/</span><span style="color:#000080;font-weight:bold;">xsl:when</span><span style="font-weight:bold;">&gt;</span>
+          <span style="font-weight:bold;">&lt;</span><span style="color:#000080;font-weight:bold;">xsl:otherwise</span><span style="font-weight:bold;">&gt;</span>
+            <span style="font-weight:bold;">&lt;</span><span style="color:#000080;font-weight:bold;">xsl:value-of</span><span style="color:#006e28;"> select=</span><span style="color:#008080;">&quot;</span><span style="color:#008080;font-weight:bold;">substring-after</span><span style="color:#008080;">(</span><span style="color:#008080;font-style:italic;">$desc</span><span style="color:#008080;">,</span><span style="color:#008080;font-style:italic;">$title</span><span style="color:#008080;">)&quot;</span><span style="font-weight:bold;">/&gt;</span>
+          <span style="font-weight:bold;">&lt;/</span><span style="color:#000080;font-weight:bold;">xsl:otherwise</span><span style="font-weight:bold;">&gt;</span>
+        <span style="font-weight:bold;">&lt;/</span><span style="color:#000080;font-weight:bold;">xsl:choose</span><span style="font-weight:bold;">&gt;</span>
+      <span style="font-weight:bold;">&lt;/</span><span style="color:#000080;font-weight:bold;">xsl:when</span><span style="font-weight:bold;">&gt;</span>
+      <span style="font-weight:bold;">&lt;</span><span style="color:#000080;font-weight:bold;">xsl:otherwise</span><span style="font-weight:bold;">&gt;</span>
+        <span style="font-weight:bold;">&lt;</span><span style="color:#000080;font-weight:bold;">xsl:value-of</span><span style="color:#006e28;"> select=</span><span style="color:#008080;">&quot;</span><span style="color:#008080;font-style:italic;">$desc</span><span style="color:#008080;">&quot;</span><span style="font-weight:bold;">/&gt;</span>
+      <span style="font-weight:bold;">&lt;/</span><span style="color:#000080;font-weight:bold;">xsl:otherwise</span><span style="font-weight:bold;">&gt;</span>
+    <span style="font-weight:bold;">&lt;/</span><span style="color:#000080;font-weight:bold;">xsl:choose</span><span style="font-weight:bold;">&gt;</span>
+  <span style="font-weight:bold;">&lt;/</span><span style="color:#000080;font-weight:bold;">xsl:variable</span><span style="font-weight:bold;">&gt;</span>
+  
+  <span style="font-weight:bold;">&lt;bookmark&gt;</span>
+    <span style="font-weight:bold;">&lt;</span><span style="color:#000080;font-weight:bold;">xsl:attribute</span><span style="color:#006e28;"> name=</span><span style="color:#800000;">&quot;href&quot;</span><span style="font-weight:bold;">&gt;</span>
+      <span style="font-weight:bold;">&lt;</span><span style="color:#000080;font-weight:bold;">xsl:choose</span><span style="font-weight:bold;">&gt;</span>
+        <span style="font-weight:bold;">&lt;</span><span style="color:#000080;font-weight:bold;">xsl:when</span><span style="color:#006e28;"> test=</span><span style="color:#008080;">&quot;</span><span style="color:#008080;font-weight:bold;">starts-with</span><span style="color:#008080;">(</span><span style="color:#008080;font-style:italic;">$href</span><span style="color:#008080;">,</span><span style="color:#800000;">'http://'</span><span style="color:#008080;">) or </span><span style="color:#008080;font-weight:bold;">starts-with</span><span style="color:#008080;">(</span><span style="color:#008080;font-style:italic;">$href</span><span style="color:#008080;">,</span><span style="color:#800000;">'ftp://'</span><span style="color:#008080;">) or </span><span style="color:#008080;font-weight:bold;">starts-with</span><span style="color:#008080;">(</span><span style="color:#008080;font-style:italic;">$href</span><span style="color:#008080;">,</span><span style="color:#800000;">'mailto:'</span><span style="color:#008080;">)&quot;</span><span style="font-weight:bold;">&gt;</span>
+          <span style="font-weight:bold;">&lt;</span><span style="color:#000080;font-weight:bold;">xsl:value-of</span><span style="color:#006e28;"> select=</span><span style="color:#008080;">&quot;</span><span style="color:#008080;font-style:italic;">$href</span><span style="color:#008080;">&quot;</span><span style="font-weight:bold;">/&gt;</span>
+        <span style="font-weight:bold;">&lt;/</span><span style="color:#000080;font-weight:bold;">xsl:when</span><span style="font-weight:bold;">&gt;</span>
+        <span style="font-weight:bold;">&lt;</span><span style="color:#000080;font-weight:bold;">xsl:otherwise</span><span style="font-weight:bold;">&gt;</span>
+          <span style="font-weight:bold;">&lt;</span><span style="color:#000080;font-weight:bold;">xsl:value-of</span><span style="color:#006e28;"> select=</span><span style="color:#008080;">&quot;</span><span style="color:#008080;font-weight:bold;">concat</span><span style="color:#008080;">(</span><span style="color:#800000;">'http://www.xs4all.nl/~wbsoft/linux/links/'</span><span style="color:#008080;">,</span><span style="color:#008080;font-style:italic;">$href</span><span style="color:#008080;">)&quot;</span><span style="font-weight:bold;">/&gt;</span>
+        <span style="font-weight:bold;">&lt;/</span><span style="color:#000080;font-weight:bold;">xsl:otherwise</span><span style="font-weight:bold;">&gt;</span>
+      <span style="font-weight:bold;">&lt;/</span><span style="color:#000080;font-weight:bold;">xsl:choose</span><span style="font-weight:bold;">&gt;</span>
+    <span style="font-weight:bold;">&lt;/</span><span style="color:#000080;font-weight:bold;">xsl:attribute</span><span style="font-weight:bold;">&gt;</span>
+    <span style="font-weight:bold;">&lt;title&gt;&lt;</span><span style="color:#000080;font-weight:bold;">xsl:value-of</span><span style="color:#006e28;"> select=</span><span style="color:#008080;">&quot;</span><span style="color:#008080;font-weight:bold;">normalize-space</span><span style="color:#008080;">(</span><span style="color:#008080;font-style:italic;">$title</span><span style="color:#008080;">)&quot;</span><span style="font-weight:bold;">/&gt;&lt;/title&gt;</span>
+    <span style="font-weight:bold;">&lt;</span><span style="color:#000080;font-weight:bold;">xsl:if</span><span style="color:#006e28;"> test=</span><span style="color:#008080;">&quot;</span><span style="color:#008080;font-weight:bold;">normalize-space</span><span style="color:#008080;">(</span><span style="color:#008080;font-style:italic;">$realdesc</span><span style="color:#008080;">) != </span><span style="color:#800000;">''</span><span style="color:#008080;">&quot;</span><span style="font-weight:bold;">&gt;</span>
+      <span style="font-weight:bold;">&lt;desc&gt;&lt;</span><span style="color:#000080;font-weight:bold;">xsl:value-of</span><span style="color:#006e28;"> select=</span><span style="color:#008080;">&quot;</span><span style="color:#008080;font-weight:bold;">normalize-space</span><span style="color:#008080;">(</span><span style="color:#008080;font-style:italic;">$realdesc</span><span style="color:#008080;">)&quot;</span><span style="font-weight:bold;">/&gt;&lt;/desc&gt;</span>
+    <span style="font-weight:bold;">&lt;/</span><span style="color:#000080;font-weight:bold;">xsl:if</span><span style="font-weight:bold;">&gt;</span>
+  <span style="font-weight:bold;">&lt;/bookmark&gt;</span>
+<span style="font-weight:bold;">&lt;/</span><span style="color:#000080;font-weight:bold;">xsl:template</span><span style="font-weight:bold;">&gt;</span>
+
+
+
+<span style="font-weight:bold;">&lt;/</span><span style="color:#000080;font-weight:bold;">xsl:stylesheet</span><span style="font-weight:bold;">&gt;</span>
+</pre></body></html>

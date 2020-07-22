@@ -1,0 +1,31 @@
+<Comment># Examples taken from https://graphql.org/learn/schema/#type-language</Comment><br/>
+<Comment>#</Comment><br/>
+<Comment># Alerts: </Comment><Alert Level 2>TODO</Alert Level 2><Comment> </Comment><Alert Level 2>FIXME</Alert Level 2><br/>
+<Normal></Normal><br/>
+<Keyword>query</Keyword><Normal> Hero(</Normal><Variable>$episode</Variable><Normal>: Episode, </Normal><Variable>$withFriends</Variable><Normal>: </Normal><Type>Boolean</Type><Normal>!) {</Normal><br/>
+<Normal>  hero(episode: </Normal><Variable>$episode</Variable><Normal>) {</Normal><br/>
+<Normal>    name</Normal><br/>
+<Normal>    friends </Normal><Directive>@include</Directive><Normal>(if: </Normal><Variable>$withFriends</Variable><Normal>) {</Normal><br/>
+<Normal>    }</Normal><br/>
+<Normal>  }</Normal><br/>
+<Normal>}</Normal><br/>
+<Normal></Normal><br/>
+<Keyword>query</Keyword><Normal> {</Normal><br/>
+<Normal>  droid(id: </Normal><String>"2000"</String><Normal>, num: </Normal><Decimal>42</Decimal><Normal>, active: </Normal><Constant>true</Constant><Normal>) {</Normal><br/>
+<Normal>    name</Normal><br/>
+<Normal>  }</Normal><br/>
+<Normal>}</Normal><br/>
+<Normal></Normal><br/>
+<Keyword>type</Keyword><Normal> Person </Normal><Directive>@addExternalFields</Directive><Normal>(source: </Normal><String>"profiles"</String><Normal>) </Normal><Directive>@excludeField</Directive><Normal>(name: </Normal><String>"photo"</String><Normal>) {</Normal><br/>
+<Normal>  name: </Normal><Type>String</Type><br/>
+<Normal>}</Normal><br/>
+<Normal></Normal><br/>
+<Comment># block strings (from https://github.com/graphql/graphql-spec/blob/master/spec/Section%202%20--%20Language.md)</Comment><br/>
+<Normal></Normal><br/>
+<String>"""</String><br/>
+<String>This starts with and ends with an empty line,</String><br/>
+<String>which makes it easier to read.</String><br/>
+<String>"""</String><br/>
+<Normal></Normal><br/>
+<String>"""This does not start with or end with any empty lines,</String><br/>
+<String>which makes it a little harder to read."""</String><br/>

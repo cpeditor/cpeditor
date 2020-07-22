@@ -1,0 +1,53 @@
+[Adblock Plus 2.0]
+! Checksum: OBK3kgyECgXJtrF4BTO3Fg
+! Version: 201709021630
+! Title: Test Adblock List
+! Last modified: 02 Sep 2017 16:30 UTC
+! Expires: 2 days (update frequency)
+! Homepage: https://www.kde.org/
+! Licence: MIT
+!
+! Some more text
+!
+
+! basic rules
+http://example.com/ads/banner123.gif
+http://example.com/ads/banner*.gif
+http://example.com/ads/*
+http://example.com/*
+
+! exception rules
+@@advice
+@@||example.com^$document
+
+! begin/end matches
+swf|
+||example.com/banner.gif
+
+! separator characters
+http://example.com^
+^example.com^
+^%D1%82%D0%B5%D1%81%D1%82^
+
+! filter options
+*/ads/*$script,match-case
+*$donottrack,image,~image
+*$domain=example.com|example.net
+*/BannerAd.gif$match-case
+
+! regular expressions
+/banner\d+/
+/\.bla\/[0-9]{2,9}\/$/$script,stylesheet,third-party,xmlhttprequest
+
+! element selectors
+##.textad.
+###sponsorad
+example.com##.sponsor
+~foo.example.com##.sponsor
+
+! attribute selectors
+##table[width="80%"]
+##div[title^="adv"][title$="ert"]
+
+! element selector exceptions
+exmaple.com#@#.adwords

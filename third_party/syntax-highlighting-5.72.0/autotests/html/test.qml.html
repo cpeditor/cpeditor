@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title>test.qml</title>
+<meta name="generator" content="KF5::SyntaxHighlighting (QML)"/>
+</head><body style="color:#1f1c1b"><pre>
+<span style="color:#898887;">/*</span>
+<span style="color:#898887;"> * multi line comment</span>
+<span style="color:#898887;"> */</span>
+
+<span style="color:#898887;">// single line comment</span>
+
+<span style="font-weight:bold;">import</span><span style="color:#bf0303;"> QtQuick 2.0</span>
+
+<span style="color:#008000;">Rectangle</span> {
+    <span style="font-weight:bold;">property</span> <span style="color:#0057ae;">real</span> myNumProp: <span style="color:#b08000;">0.1e12</span>;
+    <span style="font-weight:bold;">property</span> <span style="color:#0057ae;">alias</span> sub.<span style="color:#0057ae;">color</span>;
+    <span style="color:#0095ff;font-weight:bold;">signal</span> mySignal(<span style="color:#0057ae;">int</span> arg1, <span style="color:#0057ae;">string</span> arg2)
+    <span style="color:#0057ae;">color</span>: <span style="color:#bf0303;">&quot;lightsteelblue&quot;</span>
+    <span style="color:#0057ae;">width</span>: <span style="color:#b08000;">320</span>
+    <span style="color:#0057ae;">height</span>: width/<span style="color:#b08000;">2</span>
+
+    <span style="color:#008000;">Rectangle</span> {
+        <span style="color:#0057ae;">id</span>: sub
+        <span style="color:#0057ae;">width</span>: <span style="color:#b08000;">0x10</span>
+        <span style="color:#0057ae;">height</span>: <span style="color:#b08000;">007</span>
+        <span style="color:#0057ae;">objectName</span>: <span style="color:#bf0303;">'single quote'</span>
+        <span style="color:#0057ae;">objectName2</span>: a ? b : c;
+    }
+}
+</pre></body></html>

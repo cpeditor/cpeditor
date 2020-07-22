@@ -1,0 +1,78 @@
+<beginfold id='1'>/*</beginfold id='1'> Mandelbrot integer demo
+ * Released under the MIT License
+ <endfold id='1'>*/</endfold id='1'>
+
+let
+  <beginfold id='1'>/*</beginfold id='1'> Basic types.  <endfold id='1'>*/</endfold id='1'>
+  type bool = int
+  type coord = int
+  type value = int
+  type array2d = array of value
+  type image2d = { nrows : coord, ncols : coord, data : array2d }
+
+  <beginfold id='1'>/*</beginfold id='1'> Image creation.  <endfold id='1'>*/</endfold id='1'>
+  function image_new (ncols : coord, nrows : coord) : image2d =
+    image2d { nrows = nrows, ncols = ncols,
+	      data = array2d[nrows * ncols] of 0 }
+
+  function image_set (input : image2d, col : coord, row : coord,
+		      value : value) =
+    (
+      input.data[row * input.ncols + col] := value
+    )
+
+  function mandelbrot () =
+    let
+      type fp = int
+      var X : int := 300
+      var Y : int := 300
+      var ima : image2d := image_new (X, Y)
+      var fixsize: int := 16834
+
+      function mul(a : fp, b : fp) : fp = (a*b)/fixsize
+      function frac(n : int, d : int) : fp = (n*fixsize)/d
+
+      var xcenter : fp := frac(0016, 10000)
+      var ycenter : fp := frac(8224, 10000)
+      var xmin : fp := xcenter - frac(5,100)
+      var ymin : fp := ycenter - frac(5,100)
+      var xmax : fp := xcenter + frac(5,100)
+      var ymax : fp := ycenter + frac(5,100)
+      var xs   : fp := (xmax - xmin)/X
+      var ys   : fp := (ymax - ymin)/Y
+
+    function iterations(x:int, y:int) : int =
+    let
+        var i : int := 0
+        var p : fp := xmin+x*xs
+        var q : fp := ymin+y*ys
+        var x0 : fp := 0
+        var y0 : fp := 0
+        var xn : fp := 0
+        var four : fp := frac(4,1)
+        var two  : fp := frac(2,1)
+    in
+        while (mul(xn,xn)+mul(y0,y0) < four) & (i < 256) do
+        (
+            i  := i + 1;
+            xn := mul((x0+y0),(x0-y0)) + p;
+            y0 := mul(two,mul(x0,y0)) + q;
+            x0 := xn
+        );
+        i
+    end
+
+    in
+
+    (for y := 0 to (Y-1) do
+        for x := 0 to (X-1) do
+            let
+                var i : int  := iterations(x,y)
+             in
+                image_set (ima, x, y, i)
+             end);
+    end
+in
+    print("Mandelbrot demo\n");
+    mandelbrot()
+end

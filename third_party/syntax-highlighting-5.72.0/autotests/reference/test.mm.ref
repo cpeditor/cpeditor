@@ -1,0 +1,42 @@
+<Comment>$( Modified version of demo0.mm from 1-Jan-04 $)</Comment><br/>
+<Normal></Normal><br/>
+<Comment>$(</Comment><br/>
+<Comment>                      PUBLIC DOMAIN DEDICATION</Comment><br/>
+<Comment></Comment><br/>
+<Comment>This file is placed in the public domain per the Creative Commons Public</Comment><br/>
+<Comment>Domain Dedication. http://creativecommons.org/licenses/publicdomain/</Comment><br/>
+<Comment></Comment><br/>
+<Comment>Norman Megill - email: nm at alum.mit.edu</Comment><br/>
+<Comment>$)</Comment><br/>
+<Normal></Normal><br/>
+<Keyword>$c</Keyword><Constant> 0 + = -> ( ) term wff |- </Constant><Keyword>$.</Keyword><br/>
+<Normal></Normal><br/>
+<Keyword>$v</Keyword><Variable> t r s P Q </Variable><Keyword>$.</Keyword><br/>
+<Normal></Normal><br/>
+<Label>tt</Label><Normal> </Normal><Keyword>$f</Keyword><Normal> </Normal><Constant>term</Constant><Variable> t </Variable><Keyword>$.</Keyword><br/>
+<Label>tr</Label><Normal> </Normal><Keyword>$f</Keyword><Normal> </Normal><Constant>term</Constant><Variable> r </Variable><Keyword>$.</Keyword><br/>
+<Label>ts</Label><Normal> </Normal><Keyword>$f</Keyword><Normal> </Normal><Constant>term</Constant><Variable> s </Variable><Keyword>$.</Keyword><br/>
+<Label>wp</Label><Normal> </Normal><Keyword>$f</Keyword><Normal> </Normal><Constant>wff</Constant><Variable> P </Variable><Keyword>$.</Keyword><br/>
+<Label>wq</Label><Normal> </Normal><Keyword>$f</Keyword><Normal> </Normal><Constant>wff</Constant><Variable> Q </Variable><Keyword>$.</Keyword><br/>
+<Normal></Normal><br/>
+<Label>tze</Label><Normal> </Normal><Keyword>$a</Keyword><Normal> </Normal><Constant>term</Constant><Variable> 0 </Variable><Keyword>$.</Keyword><br/>
+<Label>tpl</Label><Normal> </Normal><Keyword>$a</Keyword><Normal> </Normal><Constant>term</Constant><Variable> ( t + r ) </Variable><Keyword>$.</Keyword><br/>
+<Normal></Normal><br/>
+<Label>weq</Label><Normal> </Normal><Keyword>$a</Keyword><Normal> </Normal><Constant>wff</Constant><Variable> t = r </Variable><Keyword>$.</Keyword><br/>
+<Label>wim</Label><Normal> </Normal><Keyword>$a</Keyword><Normal> </Normal><Constant>wff</Constant><Variable> ( P -> Q ) </Variable><Keyword>$.</Keyword><br/>
+<Normal></Normal><br/>
+<Label>a1</Label><Normal> </Normal><Keyword>$a</Keyword><Normal> </Normal><Constant>|-</Constant><Variable> ( t = r -> ( t = s -> r = s ) ) </Variable><Keyword>$.</Keyword><br/>
+<Label>a2</Label><Normal> </Normal><Keyword>$a</Keyword><Normal> </Normal><Constant>|-</Constant><Variable> ( t + 0 ) = t </Variable><Keyword>$.</Keyword><br/>
+<Keyword>${</Keyword><br/>
+<Normal>    </Normal><Comment>$( Define the modus ponens inference rule $)</Comment><br/>
+<Normal>    </Normal><Label>min</Label><Normal> </Normal><Keyword>$e</Keyword><Normal> </Normal><Constant>|-</Constant><Variable> P </Variable><Keyword>$.</Keyword><br/>
+<Normal>    </Normal><Label>maj</Label><Normal> </Normal><Keyword>$e</Keyword><Normal> </Normal><Constant>|-</Constant><Variable> ( P -> Q ) </Variable><Keyword>$.</Keyword><br/>
+<Normal>    </Normal><Label>mp</Label><Normal>  </Normal><Keyword>$a</Keyword><Normal> </Normal><Constant>|-</Constant><Variable> Q </Variable><Keyword>$.</Keyword><br/>
+<Keyword>$}</Keyword><br/>
+<Normal></Normal><br/>
+<Label>th1</Label><Normal> </Normal><Keyword>$p</Keyword><Normal> </Normal><Constant>|-</Constant><Variable> t = t </Variable><Keyword>$=</Keyword><br/>
+<Label>    </Label><Comment>$( Here is its proof: $)</Comment><br/>
+<Label>    tt tze tpl tt weq tt tt weq tt a2 tt tze tpl</Label><br/>
+<Label>    tt weq tt tze tpl tt weq tt tt weq wim tt a2</Label><br/>
+<Label>    tt tze tpl tt tt a1 mp mp</Label><br/>
+<Keyword>$.</Keyword><br/>

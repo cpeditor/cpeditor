@@ -1,0 +1,105 @@
+<Comment>(* ocaml test file -- a big stew of Objective Caml syntax to use to</Comment><br/>
+<Comment>   test Kate's syntax highlighting. This will not run! :-) *)</Comment><br/>
+<Operator></Operator><br/>
+<Comment>(* First a little piece of real OCaml that should look right: *)</Comment><br/>
+<Operator></Operator><br/>
+<Operator>    </Operator><Directive>#load "basic";;</Directive><br/>
+<Operator>    </Operator><Comment>(* Return a default value for a BASIC variable given its identifer. *)</Comment><br/>
+<Operator>    </Operator><Keyword>let</Keyword><Operator> </Operator><Lowercase Identifier>default_value</Lowercase Identifier><Operator> (</Operator><Lowercase Identifier>ident</Lowercase Identifier><Operator> : </Operator><Pervasive Types>string</Pervasive Types><Operator>) : </Operator><Lowercase Identifier>basic_value</Lowercase Identifier><Operator> =</Operator><br/>
+<Operator>       </Operator><Keyword>assert</Keyword><Operator> (</Operator><Standard Library Modules>String</Standard Library Modules><Operator>.</Operator><Lowercase Identifier>length</Lowercase Identifier><Operator> </Operator><Lowercase Identifier>ident</Lowercase Identifier><Operator> > </Operator><Decimal>0</Decimal><Operator>);</Operator><br/>
+<Operator>       </Operator><Keyword>match</Keyword><Operator> </Operator><Lowercase Identifier>ident</Lowercase Identifier><Operator>.[</Operator><Standard Library Modules>String</Standard Library Modules><Operator>.</Operator><Lowercase Identifier>length</Lowercase Identifier><Operator> </Operator><Lowercase Identifier>ident</Lowercase Identifier><Operator> - </Operator><Decimal>1</Decimal><Operator>] </Operator><Keyword>with</Keyword><br/>
+<Operator>       | </Operator><Character>'$'</Character><Operator> -> </Operator><Uppercase Identifier>Str</Uppercase Identifier><Operator> </Operator><String>""</String><br/>
+<Operator>       | </Operator><Character>'%'</Character><Operator> -> </Operator><Uppercase Identifier>Int</Uppercase Identifier><Operator> </Operator><Decimal>0</Decimal><br/>
+<Operator>       | </Operator><Character>'!'</Character><Operator> -> </Operator><Uppercase Identifier>Flt</Uppercase Identifier><Operator> </Operator><Float>0.0</Float><br/>
+<Operator>       | </Operator><Lowercase Identifier>_</Lowercase Identifier><Operator>   -> </Operator><Uppercase Identifier>Flt</Uppercase Identifier><Operator> </Operator><Float>0.0</Float><br/>
+<Operator>    ;;</Operator><br/>
+<Operator></Operator><br/>
+<Comment>(* Directives: *)</Comment><br/>
+<Directive>#load "pa_o";;</Directive><br/>
+<Operator>  </Operator><Directive>#load "pa_o";;</Directive><br/>
+<Keyword>object</Keyword><Operator> # </Operator><Lowercase Identifier>meth</Lowercase Identifier><Operator> ;;  </Operator><Comment>(* not a directive - a method call *)</Comment><br/>
+<Keyword>object</Keyword><br/>
+<Operator>   # </Operator><Lowercase Identifier>meth</Lowercase Identifier><Operator> ;;  </Operator><Comment>(* not a directive - a method call *)</Comment><br/>
+<Operator></Operator><br/>
+<Comment>(* OCaml keywords: *)</Comment><br/>
+<Keyword>and</Keyword><Operator> </Operator><Keyword>as</Keyword><Operator> </Operator><Keyword>assert</Keyword><Operator> </Operator><Keyword>asr</Keyword><Operator> </Operator><Comment>(* etc. there so many... *)</Comment><br/>
+<Operator></Operator><br/>
+<Comment>(* Additional OCaml Revised Syntax keywords: *)</Comment><br/>
+<Comment>(* These are in a seperate category so they can be coloured to look</Comment><br/>
+<Comment>   like identifiers when ordinary OCaml syntax is being used: *)</Comment><br/>
+<Revised Syntax Keyword>declare</Revised Syntax Keyword><Operator> </Operator><Revised Syntax Keyword>where</Revised Syntax Keyword><Operator> </Operator><Revised Syntax Keyword>value</Revised Syntax Keyword><br/>
+<Operator></Operator><br/>
+<Comment>(* There's no way to reliably highlight all OCaml type expressions,</Comment><br/>
+<Comment>   (they can be very complex) so just the built-in type names are highlighted.*)</Comment><br/>
+<Pervasive Types>exn</Pervasive Types><Operator> </Operator><Pervasive Types>lazy_t</Pervasive Types><Operator> </Operator><Lowercase Identifier>format</Lowercase Identifier><Operator> </Operator><Pervasive Types>unit</Pervasive Types><Operator> </Operator><Pervasive Types>int</Pervasive Types><Operator> </Operator><Pervasive Types>real</Pervasive Types><Operator> </Operator><Pervasive Types>char</Pervasive Types><Operator> </Operator><Pervasive Types>string</Pervasive Types><Operator> </Operator><Pervasive Functions>ref</Pervasive Functions><Operator> </Operator><Pervasive Types>array</Pervasive Types><Operator> </Operator><Pervasive Types>bool</Pervasive Types><Operator> </Operator><Pervasive Types>list</Pervasive Types><Operator> </Operator><Pervasive Types>option</Pervasive Types><br/>
+<Operator></Operator><br/>
+<Operator></Operator><br/>
+<Keyword>let</Keyword><Operator> </Operator><Lowercase Identifier>integers</Lowercase Identifier><Operator> : </Operator><Pervasive Types>int</Pervasive Types><Operator> </Operator><Pervasive Types>list</Pervasive Types><Operator> = [</Operator><br/>
+<Operator>    </Operator><Decimal>123456789</Decimal><Operator>;              </Operator><Comment>(* decimal *)</Comment><br/>
+<Operator>    </Operator><Hexadecimal>-0xabcedf0123456789</Hexadecimal><Operator>;    </Operator><Comment>(* hexadecimal *)</Comment><br/>
+<Operator>    </Operator><Hexadecimal>0xABCDEF0123456789</Hexadecimal><Operator>;     </Operator><Comment>(* hexadecimal *)</Comment><br/>
+<Operator>    </Operator><Octal>-0o1234567</Octal><Operator>;             </Operator><Comment>(* octal *)</Comment><br/>
+<Operator>    </Operator><Binary>0b01001010101010</Binary><Operator>;       </Operator><Comment>(* binary *)</Comment><br/>
+<Operator>    </Operator><Hexadecimal>-0Xabcedf0123456789</Hexadecimal><Operator>;    </Operator><Comment>(* hexadecimal *)</Comment><br/>
+<Operator>    </Operator><Hexadecimal>0XABCDEF0123456789</Hexadecimal><Operator>;     </Operator><Comment>(* hexadecimal *)</Comment><br/>
+<Operator>    </Operator><Octal>-0O1234567</Octal><Operator>;             </Operator><Comment>(* octal *)</Comment><br/>
+<Operator>    </Operator><Binary>0B01001010101010</Binary><Operator>;       </Operator><Comment>(* binary *)</Comment><br/>
+<Operator>    </Operator><Decimal>-123_456_789</Decimal><Operator>;           </Operator><Comment>(* Underscores are allowed in numeric constants. *)</Comment><br/>
+<Operator>    </Operator><Hexadecimal>0x_abce_df01_2345_6789</Hexadecimal><Operator>;</Operator><br/>
+<Operator>    </Operator><Octal>-0o12_34_567</Octal><Operator>;</Operator><br/>
+<Operator>    </Operator><Binary>0b_0100_1010_1010_1101</Binary><Operator>;</Operator><br/>
+<Operator>];;</Operator><br/>
+<Operator></Operator><br/>
+<Keyword>let</Keyword><Operator> </Operator><Lowercase Identifier>floats</Lowercase Identifier><Operator> : </Operator><Pervasive Types>real</Pervasive Types><Operator> </Operator><Pervasive Types>list</Pervasive Types><Operator> = [</Operator><br/>
+<Operator>    </Operator><Float>12345.6789</Float><Operator>;</Operator><br/>
+<Operator>    </Operator><Float>-1.23456789e4</Float><Operator>;      </Operator><Comment>(* All variations of the exponent form *)</Comment><br/>
+<Operator>    </Operator><Float>1.23456789e+4</Float><Operator>;</Operator><br/>
+<Operator>    </Operator><Float>-1.23456789e-4</Float><Operator>;</Operator><br/>
+<Operator>    </Operator><Float>1.23456789E-4</Float><Operator>;</Operator><br/>
+<Operator>    </Operator><Float>-1.23456789E+4</Float><Operator>;</Operator><br/>
+<Operator>    </Operator><Float>12_345.6789</Float><Operator>;       </Operator><Comment>(* Underscores are allowed in numeric constants. *)</Comment><br/>
+<Operator>    </Operator><Float>-1.23_456_789e+4</Float><Operator>;</Operator><br/>
+<Operator>    </Operator><Float>12_345.6789</Float><Operator>;</Operator><br/>
+<Operator>];;</Operator><br/>
+<Operator></Operator><br/>
+<Keyword>let</Keyword><Operator> </Operator><Lowercase Identifier>characters</Lowercase Identifier><Operator> : </Operator><Pervasive Types>char</Pervasive Types><Operator> </Operator><Pervasive Types>list</Pervasive Types><Operator> = [</Operator><br/>
+<Operator>    </Operator><Character>'a'</Character><Operator>;</Operator><br/>
+<Operator>    </Operator><Character>' '</Character><Operator>;</Operator><br/>
+<Operator>    </Operator><Character>'�'</Character><Operator>;</Operator><br/>
+<Operator>    </Operator><Character>'\n'</Character><Operator>; </Operator><Character>'\r'</Character><Operator>; </Operator><Character>'\t'</Character><Operator>; </Operator><Character>'\b'</Character><Operator>;    </Operator><Comment>(* Control characters. Only these four: not the full C-language range. *)</Comment><br/>
+<Operator>    </Operator><Character>'\000'</Character><Operator>; </Operator><Character>'\128'</Character><Operator>;            </Operator><Comment>(* Decimal character codes. These are always 3 digits. *)</Comment><br/>
+<Operator>    </Operator><Character>'\x02'</Character><Operator>; </Operator><Character>'\xff'</Character><Operator>; </Operator><Character>'\xFF'</Character><Operator>;    </Operator><Comment>(* Hexadecimal character codes. These are always 3 digits. *)</Comment><br/>
+<Operator>    </Operator><Character>'\\'</Character><Operator>; </Operator><Character>'\''</Character><Operator>; </Operator><Character>'\"'</Character><Operator>; </Operator><Character>'"'</Character><Operator>      </Operator><Comment>(* Quote character escapes. *)</Comment><br/>
+<Operator>];;</Operator><br/>
+<Operator></Operator><br/>
+<Comment>(* Quotes used to mark constants in parsers should</Comment><br/>
+<Comment>   not be confused with character constant quotes.</Comment><br/>
+<Comment>   </Comment><String in Comment>"Ticks"</String in Comment><Comment> at the end of identifiers should</Comment><br/>
+<Comment>   not be confused with character constant quotes.  *)</Comment><br/>
+<Keyword>let</Keyword><Operator> </Operator><Lowercase Identifier>basic_identifier</Lowercase Identifier><Operator> =</Operator><br/>
+<Operator>  </Operator><Keyword>parser</Keyword><br/>
+<Operator>      [< '</Operator><Character>'F'</Character><Operator>; '</Operator><Character>'N'</Character><Operator>; </Operator><Lowercase Identifier>name</Lowercase Identifier><Operator> = </Operator><Lowercase Identifier>s</Lowercase Identifier><Operator> >] -> </Operator><Uppercase Identifier>ID</Uppercase Identifier><Operator> (</Operator><Lowercase Identifier>s</Lowercase Identifier><Operator>, </Operator><Character>'f'</Character><Operator>)</Operator><br/>
+<Operator>    | [< </Operator><Lowercase Identifier>name</Lowercase Identifier><Operator> = </Operator><Lowercase Identifier>s'</Lowercase Identifier><Operator> >] -> </Operator><Uppercase Identifier>ID</Uppercase Identifier><Operator> (</Operator><Lowercase Identifier>s'</Lowercase Identifier><Operator>,</Operator><Character>'i'</Character><Operator>)</Operator><br/>
+<Operator>;;</Operator><br/>
+<Operator></Operator><br/>
+<Keyword>let</Keyword><Operator> </Operator><Lowercase Identifier>strings</Lowercase Identifier><Operator> : </Operator><Pervasive Types>string</Pervasive Types><Operator> </Operator><Pervasive Types>list</Pervasive Types><Operator> = [</Operator><br/>
+<Operator>    </Operator><String>""</String><Operator>; </Operator><Comment>(* Empty string *)</Comment><br/>
+<Operator>    </Operator><String>"a"</String><Operator>; </Operator><String>" "</String><Operator>;  </Operator><String>"�"</String><Operator>;   </Operator><String>"ab"</String><Operator>;</Operator><br/>
+<Operator>    </Operator><String>"A</String><Escaped Characters>\n</Escaped Characters><String>B"</String><Operator>; </Operator><String>"A</String><Escaped Characters>\r</Escaped Characters><String>B"</String><Operator>; </Operator><String>"A</String><Escaped Characters>\t</Escaped Characters><String>B"</String><Operator>; </Operator><String>"A</String><Escaped Characters>\b</Escaped Characters><String>B"</String><Operator>;  </Operator><Comment>(* Control characters. Only these four: not the full C-language range. *)</Comment><br/>
+<Operator>    </Operator><String>"A</String><Escaped Characters>\000</Escaped Characters><String>B"</String><Operator>; </Operator><String>"A</String><Escaped Characters>\128</Escaped Characters><String>B"</String><Operator>;              </Operator><Comment>(* Decimal character codes. These are always 3 digits. *)</Comment><br/>
+<Operator>    </Operator><String>"A</String><Escaped Characters>\x02</Escaped Characters><String>B"</String><Operator>; </Operator><String>"A</String><Escaped Characters>\xff</Escaped Characters><String>B"</String><Operator>; </Operator><String>"A</String><Escaped Characters>\xFF</Escaped Characters><String>B"</String><Operator>;    </Operator><Comment>(* Hexadecimal character codes. These are always 3 digits. *)</Comment><br/>
+<Operator>    </Operator><String>"A</String><Escaped Characters>\\</Escaped Characters><String>B"</String><Operator>; </Operator><String>"A</String><Escaped Characters>\'</Escaped Characters><String>B"</String><Operator>; </Operator><String>"A'B"</String><Operator>;  </Operator><String>"A</String><Escaped Characters>\"</Escaped Characters><String>B"</String><Operator>;  </Operator><Comment>(* Quote character escapes. *)</Comment><br/>
+<Operator>    </Operator><String>"A multiline</String><Escaped Characters>\</Escaped Characters><br/>
+<String>    string"</String><Operator>;</Operator><br/>
+<Operator>];</Operator><br/>
+<Operator></Operator><br/>
+<Keyword>let</Keyword><Operator> </Operator><Lowercase Identifier>camlp4_quotations</Lowercase Identifier><Operator> = [</Operator><br/>
+<Operator>    </Operator><Camlp4 Quotation><<A Camlp4 source code quotation.>></Camlp4 Quotation><Operator> ;</Operator><br/>
+<Operator>    </Operator><Camlp4 Quotation><:QUOTE<A labelled Camlp4 source code quotation.>></Camlp4 Quotation><Operator> ;</Operator><br/>
+<Operator>    <:</Operator><Uppercase Identifier>QU</Uppercase Identifier><Operator>�</Operator><Uppercase Identifier>T</Uppercase Identifier><Operator>�<</Operator><Uppercase Identifier>A</Uppercase Identifier><Operator> </Operator><Lowercase Identifier>labelled</Lowercase Identifier><Operator> </Operator><Uppercase Identifier>Camlp4</Uppercase Identifier><Operator> </Operator><Lowercase Identifier>source</Lowercase Identifier><Operator> </Operator><Lowercase Identifier>code</Lowercase Identifier><Operator> </Operator><Lowercase Identifier>quotation</Lowercase Identifier><Operator>. (</Operator><Uppercase Identifier>Latin</Uppercase Identifier><Decimal>-1</Decimal><Operator> </Operator><Lowercase Identifier>identifier</Lowercase Identifier><Operator>.)>> ;</Operator><br/>
+<Operator>    </Operator><Camlp4 Quotation><< A quote with an escape: </Camlp4 Quotation><Escaped Characters>\>></Escaped Characters><Camlp4 Quotation> (end-quote symbol) >></Camlp4 Quotation><Operator> ;</Operator><br/>
+<Operator>    </Operator><Camlp4 Quotation><< A quote with an escape: </Camlp4 Quotation><Escaped Characters>\<<</Escaped Characters><Camlp4 Quotation> (plain start quote-symbol) >></Camlp4 Quotation><Operator> ;</Operator><br/>
+<Operator>    </Operator><Camlp4 Quotation><< A quote with an escape: \<:Trouv�< (labelled start-quote symbol) >></Camlp4 Quotation><Operator> ;</Operator><br/>
+<Operator>];;</Operator><br/>
+<Operator></Operator><br/>
+<Comment>(* end *)</Comment><br/>

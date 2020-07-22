@@ -1,0 +1,54 @@
+-- kate: hl SQL (Oracle)
+-- test case shipped with highlighting in bugzilla, LGPL
+
+declare
+  v_nchar NCHAR(12);
+<beginfold id='4'>begin</beginfold id='4'>
+	q'{adfasdf'sadfasdf j}'{' hkjhkhkjhkjh khlkhklj'fghdfghdfgh'hkjh'jkhkh'a'
+	nQ'(asldflahsl;'dkjfhklsdfh)'
+	Nq'[asdasd;'asdasd'a]sd'asd'asasd]';11111111[1']; asdasdasdasd'errrrrrrrrrrrrrr-p
+
+	nq'agdfgsdfgfhfghjfgh'f'f'sdfg'sdfg'dfg#a' dafdfadasfasdf;
+	v_nchar := n'NCHAR STRING';
+	if_n := 0;
+
+	Q'#gdfgsdfgsdfgsdfgsdfg#' afgasasdfasdfasfasdfasdfasdfasdfsdf
+
+	<beginfold id='1'>if</beginfold id='1'> sldfjsdj then
+		<beginfold id='2'>case</beginfold id='2'>
+			when 1=1 then
+				aslfjsldkfj;
+			when 2=2 then
+				asdfg;
+			else
+				null;
+		<endfold id='2'>end case</endfold id='2'>;
+
+		<beginfold id='1'>if</beginfold id='1'> sdfjh then
+			for i in 1 .. 2
+			<beginfold id='3'>LOOP</beginfold id='3'>
+				dbms_output.put_line(q';ololo;');
+			<endfold id='3'>END Loop</endfold id='3'>;
+
+			while true
+			<beginfold id='3'>loop</beginfold id='3'>
+				dbms_output.put_line('1111');
+			<endfold id='3'>end loop</endfold id='3'>;
+		<endfold id='1'>end if</endfold id='1'>;
+		ksjfklasjd;
+		fklj;
+	elsif
+		sdklfjsdklfj;
+	else
+		sdfdfsdf;
+	<endfold id='1'>end if</endfold id='1'>;
+<endfold id='4'>end</endfold id='4'>;
+
+CREATE TABLE Persons (
+    ID int NOT NULL,
+    LastName varchar(255) NOT NULL,
+    FirstName varchar(255),
+    Age int,
+    City varchar(255),
+    CONSTRAINT CHK_Person CHECK (Age>=18 AND City='Sandnes')
+);

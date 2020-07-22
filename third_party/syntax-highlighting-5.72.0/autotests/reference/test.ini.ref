@@ -1,0 +1,18 @@
+<Comment>; comment</Comment><br/>
+<Comment>; comment with </Comment><Alert Level 3>###</Alert Level 3><Comment> alerts</Comment><br/>
+<Comment># alternative comments</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Section>[Empty section]</Section><br/>
+<Normal Text></Normal Text><br/>
+<Section>[Section 2]</Section><br/>
+<Normal Text>Key1</Normal Text><Assignment>=</Assignment><Value>String Value</Value><br/>
+<Normal Text>Key2</Normal Text><Assignment>=</Assignment><Int>42</Int><br/>
+<Normal Text>Key3</Normal Text><Assignment>=</Assignment><Float>3.14</Float><br/>
+<Normal Text>Key\SubKey</Normal Text><Assignment>=</Assignment><Keyword>True</Keyword><br/>
+<Normal Text></Normal Text><br/>
+<Section>[Section 3]</Section><br/>
+<Comment>; = in values are fine</Comment><br/>
+<Comment>; inline comments are not supported, ;/# are part of the value</Comment><br/>
+<Normal Text>key4 </Normal Text><Assignment>=</Assignment><Value> foo = </Value><Keyword>True</Keyword><Value>; bar = </Value><Keyword>False</Keyword><br/>
+<Normal Text>key4b </Normal Text><Assignment>=</Assignment><Value> abcd#1234!</Value><br/>
+<Normal Text>key5/subkey </Normal Text><Assignment>=</Assignment><Value> "foo\nbar"</Value><br/>

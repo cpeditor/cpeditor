@@ -1,0 +1,82 @@
+<Comment>/* This test file tests kates Lex/Flex highlighting */</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Directive>%option c++</Directive><br/>
+<Directive>%option yyclass="KateTester"</Directive><br/>
+<Directive>%option yylineno</Directive><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text> </Normal Text><Comment>/* This is a C(++) comment */</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Comment>/* This one is a lex comment ! */</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Content-Type Delimiter>%{</Content-Type Delimiter><br/>
+<Preprocessor>#include </Preprocessor><Prep. Lib><iostream></Prep. Lib><br/>
+<Preprocessor>#include </Preprocessor><Prep. Lib>"realparser.hpp"</Prep. Lib><br/>
+<Keyword>using</Keyword><Normal Text> </Normal Text><Keyword>namespace</Keyword><Normal Text> std</Normal Text><Separator Symbol>;</Separator Symbol><br/>
+<Content-Type Delimiter>%}</Content-Type Delimiter><br/>
+<Normal Text></Normal Text><br/>
+<Comment>/* Some definitions */</Comment><br/>
+<Definition>DIGIT    </Definition><RegExpr>[0-9]</RegExpr><br/>
+<Definition>LETTER   </Definition><RegExpr>[_a-zA-Z]</RegExpr><br/>
+<Normal Text></Normal Text><br/>
+<Content-Type Delimiter>%%</Content-Type Delimiter><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text> </Normal Text><Comment>/* Comment *shall be indented here* */</Comment><br/>
+<RegExpr>[ </RegExpr><Backslash Code>\t\n\r</Backslash Code><RegExpr>]+</RegExpr><Normal Text>          </Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text> </Normal Text><Comment>/* Note: there is a bad } just here     vvv */</Comment><br/>
+<Backslash Code>\/\*</Backslash Code><RegExpr>([^</RegExpr><Backslash Code>\*</Backslash Code><RegExpr>]|</RegExpr><Backslash Code>\*</Backslash Code><RegExpr>[^/])*</RegExpr><Backslash Code>\*\/</Backslash Code><Normal Text> { foo</Normal Text><Symbol>(</Symbol><Normal Text>a</Normal Text><Separator Symbol>,</Separator Symbol><Normal Text> b</Normal Text><Separator Symbol>,</Separator Symbol><Normal Text> c</Normal Text><Symbol>)</Symbol><Separator Symbol>;</Separator Symbol><Normal Text> } </Normal Text><Alert>}</Alert><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text> </Normal Text><Comment>/* A start condition scope... */</Comment><br/>
+<RegExpr><ESC></RegExpr><Content-Type Delimiter>{</Content-Type Delimiter><br/>
+<Normal Text>  </Normal Text><RegExpr>"a"</RegExpr><Normal Text> {</Normal Text><br/>
+<Normal Text>  </Normal Text><br/>
+<Normal Text>  </Normal Text><Comment>/* C mode ! */</Comment><br/>
+<Normal Text>  </Normal Text><Control Flow>return</Control Flow><Normal Text> </Normal Text><Decimal>0</Decimal><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>  </Normal Text><RegExpr>"b"</RegExpr><Normal Text> </Normal Text><Content-Type Delimiter>%{</Content-Type Delimiter><br/>
+<Normal Text>  </Normal Text><br/>
+<Normal Text>  </Normal Text><Comment>/* C mode, too ! */</Comment><br/>
+<Normal Text>  </Normal Text><Control Flow>return</Control Flow><Normal Text> </Normal Text><Decimal>0</Decimal><Separator Symbol>;</Separator Symbol><br/>
+<Content-Type Delimiter>%}</Content-Type Delimiter><br/>
+<Normal Text>  </Normal Text><br/>
+<Normal Text>  </Normal Text><RegExpr>"c"</RegExpr><Normal Text> </Normal Text><Control Flow>return</Control Flow><Normal Text> </Normal Text><Decimal>0</Decimal><Separator Symbol>;</Separator Symbol><Normal Text> </Normal Text><Comment>// C++ comment</Comment><br/>
+<Content-Type Delimiter>}</Content-Type Delimiter><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text> </Normal Text><Comment>/* Big rule */</Comment><br/>
+<Backslash Code>\"</Backslash Code><RegExpr>([^"</RegExpr><Backslash Code>\\</Backslash Code><RegExpr>]|</RegExpr><Backslash Code>\\</Backslash Code><RegExpr>.)*</RegExpr><Backslash Code>\"</Backslash Code><Normal Text> {</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>   yylval</Normal Text><Symbol>.</Symbol><Normal Text>string_val </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Keyword>new</Keyword><Normal Text> </Normal Text><Data Type>char</Data Type><Symbol>[</Symbol><Normal Text>strlen</Normal Text><Symbol>(</Symbol><Normal Text>yytext</Normal Text><Symbol>)</Symbol><Normal Text> </Normal Text><Symbol>+</Symbol><Normal Text> </Normal Text><Decimal>1</Decimal><Symbol>]</Symbol><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text>   </Normal Text><Data Type>int</Data Type><Normal Text> j </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Decimal>0</Decimal><Separator Symbol>,</Separator Symbol><Normal Text> i </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Decimal>1</Decimal><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text>   </Normal Text><br/>
+<Normal Text>   </Normal Text><Control Flow>while</Control Flow><Normal Text> </Normal Text><Symbol>(</Symbol><Normal Text>yytext</Normal Text><Symbol>[</Symbol><Normal Text>i</Normal Text><Symbol>]</Symbol><Normal Text> </Normal Text><Symbol>!=</Symbol><Normal Text> </Normal Text><Char>'"'</Char><Symbol>)</Symbol><br/>
+<Normal Text>      </Normal Text><Control Flow>if</Control Flow><Normal Text> </Normal Text><Symbol>(</Symbol><Normal Text>yytext</Normal Text><Symbol>[</Symbol><Normal Text>i</Normal Text><Symbol>]</Symbol><Normal Text> </Normal Text><Symbol>!=</Symbol><Normal Text> </Normal Text><Char>'</Char><String Char>\\</String Char><Char>'</Char><Symbol>)</Symbol><br/>
+<Normal Text>         yylval</Normal Text><Symbol>.</Symbol><Normal Text>string_val</Normal Text><Symbol>[</Symbol><Normal Text>j</Normal Text><Symbol>++]</Symbol><Normal Text> </Normal Text><Symbol>=</Symbol><Normal Text> yytext</Normal Text><Symbol>[</Symbol><Normal Text>i</Normal Text><Symbol>++]</Symbol><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text>      </Normal Text><Control Flow>else</Control Flow><br/>
+<Normal Text>         </Normal Text><Control Flow>switch</Control Flow><Normal Text> </Normal Text><Symbol>(</Symbol><Normal Text>yytext</Normal Text><Symbol>[</Symbol><Normal Text>i </Normal Text><Symbol>+</Symbol><Normal Text> </Normal Text><Decimal>1</Decimal><Symbol>])</Symbol><br/>
+<Normal Text>         {</Normal Text><br/>
+<Normal Text>         </Normal Text><Control Flow>case</Control Flow><Normal Text> </Normal Text><Char>'n'</Char><Symbol>:</Symbol><br/>
+<Normal Text>            yylval</Normal Text><Symbol>.</Symbol><Normal Text>string_val</Normal Text><Symbol>[</Symbol><Normal Text>j</Normal Text><Symbol>++]</Symbol><Normal Text> </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Char>'</Char><String Char>\n</String Char><Char>'</Char><Separator Symbol>;</Separator Symbol><Normal Text> i </Normal Text><Symbol>+=</Symbol><Normal Text> </Normal Text><Decimal>2</Decimal><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text>            </Normal Text><Control Flow>break</Control Flow><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text>         </Normal Text><Control Flow>default</Control Flow><Symbol>:</Symbol><br/>
+<Normal Text>            yylval</Normal Text><Symbol>.</Symbol><Normal Text>string_val</Normal Text><Symbol>[</Symbol><Normal Text>j</Normal Text><Symbol>++]</Symbol><Normal Text> </Normal Text><Symbol><<</Symbol><Normal Text> yytext</Normal Text><Symbol>[</Symbol><Normal Text>i </Normal Text><Symbol>+</Symbol><Normal Text> </Normal Text><Decimal>1</Decimal><Symbol>]</Symbol><Separator Symbol>,</Separator Symbol><Normal Text> i </Normal Text><Symbol>+=</Symbol><Normal Text> </Normal Text><Decimal>2</Decimal><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text>         }</Normal Text><br/>
+<Normal Text>    </Normal Text><br/>
+<Normal Text>    yylval</Normal Text><Symbol>.</Symbol><Normal Text>string_val</Normal Text><Symbol>[</Symbol><Normal Text>j</Normal Text><Symbol>]</Symbol><Normal Text> </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Decimal>0</Decimal><Separator Symbol>;</Separator Symbol><Normal Text>   </Normal Text><br/>
+<Normal Text>    </Normal Text><Control Flow>return</Control Flow><Normal Text> </Normal Text><CONSTS/MACROS>TOK_STRING</CONSTS/MACROS><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text> </Normal Text><Comment>/* Dot (match all) */</Comment><br/>
+<RegExpr>.</RegExpr><Normal Text>             {</Normal Text><Control Flow>return</Control Flow><Normal Text> yylval</Normal Text><Symbol>.</Symbol><Normal Text>int_val </Normal Text><Symbol>=</Symbol><Normal Text> yytext</Normal Text><Symbol>[</Symbol><Decimal>0</Decimal><Symbol>]</Symbol><Separator Symbol>;</Separator Symbol><Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Content-Type Delimiter>%%</Content-Type Delimiter><br/>
+<Normal Text></Normal Text><br/>
+<Comment>// Here is pure C(++)</Comment><br/>
+<Preprocessor>#include </Preprocessor><Prep. Lib><iostream></Prep. Lib><br/>
+<Normal Text></Normal Text><br/>
+<Data Type>int</Data Type><Normal Text> main</Normal Text><Symbol>(</Symbol><Data Type>void</Data Type><Symbol>)</Symbol><br/>
+<Symbol>{</Symbol><br/>
+<Normal Text>  </Normal Text><Standard Classes>std::cout</Standard Classes><Symbol> <<</Symbol><Normal Text> </Normal Text><String>"Hello, World</String><String Char>\n</String Char><String>"</String><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text>  </Normal Text><Control Flow>return</Control Flow><Normal Text> </Normal Text><Decimal>0</Decimal><Separator Symbol>;</Separator Symbol><br/>
+<Symbol>}</Symbol><br/>

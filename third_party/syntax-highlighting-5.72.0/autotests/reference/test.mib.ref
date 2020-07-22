@@ -1,0 +1,526 @@
+<Normal Text>SNMP-FRAMEWORK-MIB </Normal Text><Keyword>DEFINITIONS</Keyword><Normal Text> ::= </Normal Text><Keyword>BEGIN</Keyword><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>IMPORTS</Keyword><br/>
+<Syntax>    </Syntax><Keyword>MODULE-IDENTITY</Keyword><Syntax>, </Syntax><Keyword>OBJECT-TYPE</Keyword><Syntax>,</Syntax><br/>
+<Syntax>    </Syntax><Keyword>OBJECT-IDENTITY</Keyword><Syntax>,</Syntax><br/>
+<Syntax>    snmpModules                           </Syntax><Keyword>FROM</Keyword><Normal Text> SNMPv2-SMI</Normal Text><br/>
+<Syntax>    </Syntax><Keyword>TEXTUAL-CONVENTION</Keyword><Syntax>                    </Syntax><Keyword>FROM</Keyword><Normal Text> SNMPv2-TC</Normal Text><br/>
+<Syntax>    </Syntax><Keyword>MODULE-COMPLIANCE</Keyword><Syntax>, </Syntax><Keyword>OBJECT-GROUP</Keyword><Syntax>       </Syntax><Keyword>FROM</Keyword><Normal Text> SNMPv2-CONF;</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>snmpFrameworkMIB </Normal Text><Keyword>MODULE-IDENTITY</Keyword><br/>
+<Normal Text>    </Normal Text><Keyword>LAST-UPDATED</Keyword><Normal Text> </Normal Text><String>"200210140000Z"</String><br/>
+<Normal Text>    </Normal Text><Keyword>ORGANIZATION</Keyword><Normal Text> </Normal Text><String>"SNMPv3 Working Group"</String><br/>
+<Normal Text>    </Normal Text><Keyword>CONTACT-INFO</Keyword><Normal Text> </Normal Text><String>"WG-EMail:   snmpv3@lists.tislabs.com</String><br/>
+<String>                  Subscribe:  snmpv3-request@lists.tislabs.com</String><br/>
+<String></String><br/>
+<String>                  Co-Chair:   Russ Mundy</String><br/>
+<String>                              Network Associates Laboratories</String><br/>
+<String>                  postal:     15204 Omega Drive, Suite 300</String><br/>
+<String>                              Rockville, MD 20850-4601</String><br/>
+<String>                              USA</String><br/>
+<String>                  EMail:      mundy@tislabs.com</String><br/>
+<String>                  phone:      +1 301-947-7107</String><br/>
+<String></String><br/>
+<String>                  Co-Chair &</String><br/>
+<String>                  Co-editor:  David Harrington</String><br/>
+<String>                              Enterasys Networks</String><br/>
+<String>                  postal:     35 Industrial Way</String><br/>
+<String>                              P. O. Box 5005</String><br/>
+<String>                              Rochester, New Hampshire 03866-5005</String><br/>
+<String>                              USA</String><br/>
+<String>                  EMail:      dbh@enterasys.com</String><br/>
+<String>                  phone:      +1 603-337-2614</String><br/>
+<String></String><br/>
+<String>                  Co-editor:  Randy Presuhn</String><br/>
+<String>                              BMC Software, Inc.</String><br/>
+<String>                  postal:     2141 North First Street</String><br/>
+<String>                              San Jose, California 95131</String><br/>
+<String>                              USA</String><br/>
+<String>                  EMail:      randy_presuhn@bmc.com</String><br/>
+<String>                  phone:      +1 408-546-1006</String><br/>
+<String></String><br/>
+<String>                  Co-editor:  Bert Wijnen</String><br/>
+<String>                              Lucent Technologies</String><br/>
+<String>                  postal:     Schagen 33</String><br/>
+<String>                              3461 GL Linschoten</String><br/>
+<String>                              Netherlands</String><br/>
+<String></String><br/>
+<String>                  EMail:      bwijnen@lucent.com</String><br/>
+<String>                  phone:      +31 348-680-485</String><br/>
+<String>                    "</String><br/>
+<Normal Text>       </Normal Text><Keyword>DESCRIPTION</Keyword><Normal Text>  </Normal Text><String>"The SNMP Management Architecture MIB</String><br/>
+<String></String><br/>
+<String>                     Copyright (C) The Internet Society (2002). This</String><br/>
+<String>                     version of this MIB module is part of RFC 3411;</String><br/>
+<String>                     see the RFC itself for full legal notices.</String><br/>
+<String>                    "</String><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>       </Normal Text><Keyword>REVISION</Keyword><Normal Text>     </Normal Text><String>"200210140000Z"</String><Normal Text>         </Normal Text><Comment>-- 14 October 2002</Comment><br/>
+<Normal Text>       </Normal Text><Keyword>DESCRIPTION</Keyword><Normal Text>  </Normal Text><String>"Changes in this revision:</String><br/>
+<String>                     - Updated various administrative information.</String><br/>
+<String>                     - Corrected some typos.</String><br/>
+<String>                     - Corrected typo in description of SnmpEngineID</String><br/>
+<String>                       that led to range overlap for 127.</String><br/>
+<String>                     - Changed '255a' to '255t' in definition of</String><br/>
+<String>                       SnmpAdminString to align with current SMI.</String><br/>
+<String>                     - Reworded 'reserved' for value zero in</String><br/>
+<String>                       DESCRIPTION of SnmpSecurityModel.</String><br/>
+<String>                     - The algorithm for allocating security models</String><br/>
+<String>                       should give 256 per enterprise block, rather</String><br/>
+<String>                       than 255.</String><br/>
+<String>                     - The example engine ID of 'abcd' is not</String><br/>
+<String>                       legal. Replaced with '800002b804616263'H based</String><br/>
+<String>                       on example enterprise 696, string 'abc'.</String><br/>
+<String>                     - Added clarification that engineID should</String><br/>
+<String>                       persist across re-initializations.</String><br/>
+<String>                     This revision published as RFC 3411.</String><br/>
+<String>                    "</String><br/>
+<Normal Text>       </Normal Text><Keyword>REVISION</Keyword><Normal Text>     </Normal Text><String>"199901190000Z"</String><Normal Text>         </Normal Text><Comment>-- 19 January 1999</Comment><br/>
+<Normal Text>       </Normal Text><Keyword>DESCRIPTION</Keyword><Normal Text>  </Normal Text><String>"Updated editors' addresses, fixed typos.</String><br/>
+<String>                     Published as RFC 2571.</String><br/>
+<String>                    "</String><br/>
+<Normal Text>       </Normal Text><Keyword>REVISION</Keyword><Normal Text>     </Normal Text><String>"199711200000Z"</String><Normal Text>         </Normal Text><Comment>-- 20 November 1997</Comment><br/>
+<Normal Text>       </Normal Text><Keyword>DESCRIPTION</Keyword><Normal Text>  </Normal Text><String>"The initial version, published in RFC 2271.</String><br/>
+<String>                    "</String><br/>
+<Normal Text>       ::= { snmpModules </Normal Text><Decimal>10</Decimal><Normal Text> }</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>   </Normal Text><Comment>-- Textual Conventions used in the SNMP Management Architecture ***</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Syntax>SnmpEngineID</Syntax><Normal Text> ::= </Normal Text><Keyword>TEXTUAL-CONVENTION</Keyword><br/>
+<Normal Text>    </Normal Text><Keyword>STATUS</Keyword><Normal Text>       </Normal Text><Status>current</Status><br/>
+<Normal Text>    </Normal Text><Keyword>DESCRIPTION</Keyword><Normal Text> </Normal Text><String>"An SNMP engine's administratively-unique identifier.</String><br/>
+<String>                 Objects of this type are for identification, not for</String><br/>
+<String>                 addressing, even though it is possible that an</String><br/>
+<String>                 address may have been used in the generation of</String><br/>
+<String>                 a specific value.</String><br/>
+<String></String><br/>
+<String>                 The value for this object may not be all zeros or</String><br/>
+<String>                 all 'ff'H or the empty (zero length) string.</String><br/>
+<String></String><br/>
+<String>                 The initial value for this object may be configured</String><br/>
+<String>                 via an operator console entry or via an algorithmic</String><br/>
+<String>                 function.  In the latter case, the following</String><br/>
+<String>                 example algorithm is recommended.</String><br/>
+<String></String><br/>
+<String>                 In cases where there are multiple engines on the</String><br/>
+<String>                 same system, the use of this algorithm is NOT</String><br/>
+<String>                 appropriate, as it would result in all of those</String><br/>
+<String>                 engines ending up with the same ID value.</String><br/>
+<String></String><br/>
+<String>                 1) The very first bit is used to indicate how the</String><br/>
+<String>                    rest of the data is composed.</String><br/>
+<String></String><br/>
+<String>                    0 - as defined by enterprise using former methods</String><br/>
+<String>                        that existed before SNMPv3. See item 2 below.</String><br/>
+<String></String><br/>
+<String>                    1 - as defined by this architecture, see item 3</String><br/>
+<String>                        below.</String><br/>
+<String></String><br/>
+<String>                    Note that this allows existing uses of the</String><br/>
+<String>                    engineID (also known as AgentID [RFC1910]) to</String><br/>
+<String>                    co-exist with any new uses.</String><br/>
+<String></String><br/>
+<String>                 2) The snmpEngineID has a length of 12 octets.</String><br/>
+<String></String><br/>
+<String>                    The first four octets are set to the binary</String><br/>
+<String>                    equivalent of the agent's SNMP management</String><br/>
+<String>                    private enterprise number as assigned by the</String><br/>
+<String>                    Internet Assigned Numbers Authority (IANA).</String><br/>
+<String>                    For example, if Acme Networks has been assigned</String><br/>
+<String>                    { enterprises 696 }, the first four octets would</String><br/>
+<String>                    be assigned '000002b8'H.</String><br/>
+<String></String><br/>
+<String>                    The remaining eight octets are determined via</String><br/>
+<String>                    one or more enterprise-specific methods. Such</String><br/>
+<String>                    methods must be designed so as to maximize the</String><br/>
+<String>                    possibility that the value of this object will</String><br/>
+<String>                    be unique in the agent's administrative domain.</String><br/>
+<String>                    For example, it may be the IP address of the SNMP</String><br/>
+<String>                    entity, or the MAC address of one of the</String><br/>
+<String>                    interfaces, with each address suitably padded</String><br/>
+<String>                    with random octets.  If multiple methods are</String><br/>
+<String>                    defined, then it is recommended that the first</String><br/>
+<String>                    octet indicate the method being used and the</String><br/>
+<String>                    remaining octets be a function of the method.</String><br/>
+<String></String><br/>
+<String>                 3) The length of the octet string varies.</String><br/>
+<String></String><br/>
+<String>                    The first four octets are set to the binary</String><br/>
+<String>                    equivalent of the agent's SNMP management</String><br/>
+<String>                    private enterprise number as assigned by the</String><br/>
+<String>                    Internet Assigned Numbers Authority (IANA).</String><br/>
+<String>                    For example, if Acme Networks has been assigned</String><br/>
+<String>                    { enterprises 696 }, the first four octets would</String><br/>
+<String>                    be assigned '000002b8'H.</String><br/>
+<String></String><br/>
+<String>                    The very first bit is set to 1. For example, the</String><br/>
+<String>                    above value for Acme Networks now changes to be</String><br/>
+<String>                    '800002b8'H.</String><br/>
+<String></String><br/>
+<String>                    The fifth octet indicates how the rest (6th and</String><br/>
+<String>                    following octets) are formatted. The values for</String><br/>
+<String>                    the fifth octet are:</String><br/>
+<String></String><br/>
+<String>                      0     - reserved, unused.</String><br/>
+<String></String><br/>
+<String>                      1     - IPv4 address (4 octets)</String><br/>
+<String>                              lowest non-special IP address</String><br/>
+<String></String><br/>
+<String>                      2     - IPv6 address (16 octets)</String><br/>
+<String>                              lowest non-special IP address</String><br/>
+<String></String><br/>
+<String>                      3     - MAC address (6 octets)</String><br/>
+<String>                              lowest IEEE MAC address, canonical</String><br/>
+<String>                              order</String><br/>
+<String></String><br/>
+<String>                      4     - Text, administratively assigned</String><br/>
+<String>                              Maximum remaining length 27</String><br/>
+<String></String><br/>
+<String>                      5     - Octets, administratively assigned</String><br/>
+<String>                              Maximum remaining length 27</String><br/>
+<String></String><br/>
+<String>                      6-127 - reserved, unused</String><br/>
+<String></String><br/>
+<String>                    128-255 - as defined by the enterprise</String><br/>
+<String>                              Maximum remaining length 27</String><br/>
+<String>                "</String><br/>
+<Normal Text>    </Normal Text><Keyword>SYNTAX</Keyword><Syntax>       </Syntax><Keyword>OCTET</Keyword><Syntax> </Syntax><Keyword>STRING</Keyword><Syntax> </Syntax><Normal Text>(</Normal Text><Keyword>SIZE</Keyword><Normal Text>(</Normal Text><Decimal>5..32</Decimal><Normal Text>))</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Syntax>SnmpSecurityModel</Syntax><Normal Text> ::= </Normal Text><Keyword>TEXTUAL-CONVENTION</Keyword><br/>
+<Normal Text>    </Normal Text><Keyword>STATUS</Keyword><Normal Text>       </Normal Text><Status>current</Status><br/>
+<Normal Text>    </Normal Text><Keyword>DESCRIPTION</Keyword><Normal Text> </Normal Text><String>"An identifier that uniquely identifies a</String><br/>
+<String>                 Security Model of the Security Subsystem within</String><br/>
+<String>                 this SNMP Management Architecture.</String><br/>
+<String></String><br/>
+<String>                 The values for securityModel are allocated as</String><br/>
+<String>                 follows:</String><br/>
+<String></String><br/>
+<String>                 - The zero value does not identify any particular</String><br/>
+<String>                   security model.</String><br/>
+<String></String><br/>
+<String>                 - Values between 1 and 255, inclusive, are reserved</String><br/>
+<String>                   for standards-track Security Models and are</String><br/>
+<String>                   managed by the Internet Assigned Numbers Authority</String><br/>
+<String>                   (IANA).</String><br/>
+<String>                 - Values greater than 255 are allocated to</String><br/>
+<String>                   enterprise-specific Security Models.  An</String><br/>
+<String>                   enterprise-specific securityModel value is defined</String><br/>
+<String>                   to be:</String><br/>
+<String></String><br/>
+<String>                   enterpriseID * 256 + security model within</String><br/>
+<String>                   enterprise</String><br/>
+<String></String><br/>
+<String>                   For example, the fourth Security Model defined by</String><br/>
+<String>                   the enterprise whose enterpriseID is 1 would be</String><br/>
+<String>                   259.</String><br/>
+<String></String><br/>
+<String>                 This scheme for allocation of securityModel</String><br/>
+<String>                 values allows for a maximum of 255 standards-</String><br/>
+<String>                 based Security Models, and for a maximum of</String><br/>
+<String>                 256 Security Models per enterprise.</String><br/>
+<String></String><br/>
+<String>                 It is believed that the assignment of new</String><br/>
+<String>                 securityModel values will be rare in practice</String><br/>
+<String>                 because the larger the number of simultaneously</String><br/>
+<String>                 utilized Security Models, the larger the</String><br/>
+<String>                 chance that interoperability will suffer.</String><br/>
+<String>                 Consequently, it is believed that such a range</String><br/>
+<String>                 will be sufficient.  In the unlikely event that</String><br/>
+<String>                 the standards committee finds this number to be</String><br/>
+<String>                 insufficient over time, an enterprise number</String><br/>
+<String>                 can be allocated to obtain an additional 256</String><br/>
+<String>                 possible values.</String><br/>
+<String></String><br/>
+<String>                 Note that the most significant bit must be zero;</String><br/>
+<String>                 hence, there are 23 bits allocated for various</String><br/>
+<String>                 organizations to design and define non-standard</String><br/>
+<String></String><br/>
+<String>                 securityModels.  This limits the ability to</String><br/>
+<String>                 define new proprietary implementations of Security</String><br/>
+<String>                 Models to the first 8,388,608 enterprises.</String><br/>
+<String></String><br/>
+<String>                 It is worthwhile to note that, in its encoded</String><br/>
+<String>                 form, the securityModel value will normally</String><br/>
+<String>                 require only a single byte since, in practice,</String><br/>
+<String>                 the leftmost bits will be zero for most messages</String><br/>
+<String>                 and sign extension is suppressed by the encoding</String><br/>
+<String>                 rules.</String><br/>
+<String></String><br/>
+<String>                 As of this writing, there are several values</String><br/>
+<String>                 of securityModel defined for use with SNMP or</String><br/>
+<String>                 reserved for use with supporting MIB objects.</String><br/>
+<String>                 They are as follows:</String><br/>
+<String></String><br/>
+<String>                     0  reserved for 'any'</String><br/>
+<String>                     1  reserved for SNMPv1</String><br/>
+<String>                     2  reserved for SNMPv2c</String><br/>
+<String>                     3  User-Based Security Model (USM)</String><br/>
+<String>                "</String><br/>
+<Normal Text>    </Normal Text><Keyword>SYNTAX</Keyword><Syntax>       </Syntax><Keyword>INTEGER</Keyword><Normal Text>(</Normal Text><Decimal>0</Decimal><Normal Text> </Normal Text><Decimal>..</Decimal><Normal Text> </Normal Text><Decimal>2147483647</Decimal><Normal Text>)</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Syntax>SnmpMessageProcessingModel</Syntax><Normal Text> ::= </Normal Text><Keyword>TEXTUAL-CONVENTION</Keyword><br/>
+<Normal Text>    </Normal Text><Keyword>STATUS</Keyword><Normal Text>       </Normal Text><Status>current</Status><br/>
+<Normal Text>    </Normal Text><Keyword>DESCRIPTION</Keyword><Normal Text> </Normal Text><String>"An identifier that uniquely identifies a Message</String><br/>
+<String>                 Processing Model of the Message Processing</String><br/>
+<String>                 Subsystem within this SNMP Management Architecture.</String><br/>
+<String></String><br/>
+<String>                 The values for messageProcessingModel are</String><br/>
+<String>                 allocated as follows:</String><br/>
+<String></String><br/>
+<String>                 - Values between 0 and 255, inclusive, are</String><br/>
+<String>                   reserved for standards-track Message Processing</String><br/>
+<String>                   Models and are managed by the Internet Assigned</String><br/>
+<String>                   Numbers Authority (IANA).</String><br/>
+<String></String><br/>
+<String>                 - Values greater than 255 are allocated to</String><br/>
+<String>                   enterprise-specific Message Processing Models.</String><br/>
+<String>                   An enterprise messageProcessingModel value is</String><br/>
+<String>                   defined to be:</String><br/>
+<String></String><br/>
+<String>                   enterpriseID * 256 +</String><br/>
+<String>                        messageProcessingModel within enterprise</String><br/>
+<String></String><br/>
+<String>                   For example, the fourth Message Processing Model</String><br/>
+<String>                   defined by the enterprise whose enterpriseID</String><br/>
+<String></String><br/>
+<String>                   is 1 would be 259.</String><br/>
+<String></String><br/>
+<String>                 This scheme for allocating messageProcessingModel</String><br/>
+<String>                 values allows for a maximum of 255 standards-</String><br/>
+<String>                 based Message Processing Models, and for a</String><br/>
+<String>                 maximum of 256 Message Processing Models per</String><br/>
+<String>                 enterprise.</String><br/>
+<String></String><br/>
+<String>                 It is believed that the assignment of new</String><br/>
+<String>                 messageProcessingModel values will be rare</String><br/>
+<String>                 in practice because the larger the number of</String><br/>
+<String>                 simultaneously utilized Message Processing Models,</String><br/>
+<String>                 the larger the chance that interoperability</String><br/>
+<String>                 will suffer. It is believed that such a range</String><br/>
+<String>                 will be sufficient.  In the unlikely event that</String><br/>
+<String>                 the standards committee finds this number to be</String><br/>
+<String>                 insufficient over time, an enterprise number</String><br/>
+<String>                 can be allocated to obtain an additional 256</String><br/>
+<String>                 possible values.</String><br/>
+<String></String><br/>
+<String>                 Note that the most significant bit must be zero;</String><br/>
+<String>                 hence, there are 23 bits allocated for various</String><br/>
+<String>                 organizations to design and define non-standard</String><br/>
+<String>                 messageProcessingModels.  This limits the ability</String><br/>
+<String>                 to define new proprietary implementations of</String><br/>
+<String>                 Message Processing Models to the first 8,388,608</String><br/>
+<String>                 enterprises.</String><br/>
+<String></String><br/>
+<String>                 It is worthwhile to note that, in its encoded</String><br/>
+<String>                 form, the messageProcessingModel value will</String><br/>
+<String>                 normally require only a single byte since, in</String><br/>
+<String>                 practice, the leftmost bits will be zero for</String><br/>
+<String>                 most messages and sign extension is suppressed</String><br/>
+<String>                 by the encoding rules.</String><br/>
+<String></String><br/>
+<String>                 As of this writing, there are several values of</String><br/>
+<String>                 messageProcessingModel defined for use with SNMP.</String><br/>
+<String>                 They are as follows:</String><br/>
+<String></String><br/>
+<String>                     0  reserved for SNMPv1</String><br/>
+<String>                     1  reserved for SNMPv2c</String><br/>
+<String>                     2  reserved for SNMPv2u and SNMPv2*</String><br/>
+<String>                     3  reserved for SNMPv3</String><br/>
+<String>                "</String><br/>
+<Normal Text>    </Normal Text><Keyword>SYNTAX</Keyword><Syntax>       </Syntax><Keyword>INTEGER</Keyword><Normal Text>(</Normal Text><Decimal>0</Decimal><Normal Text> </Normal Text><Decimal>..</Decimal><Normal Text> </Normal Text><Decimal>2147483647</Decimal><Normal Text>)</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Syntax>SnmpSecurityLevel</Syntax><Normal Text> ::= </Normal Text><Keyword>TEXTUAL-CONVENTION</Keyword><br/>
+<Normal Text>    </Normal Text><Keyword>STATUS</Keyword><Normal Text>       </Normal Text><Status>current</Status><br/>
+<Normal Text>    </Normal Text><Keyword>DESCRIPTION</Keyword><Normal Text> </Normal Text><String>"A Level of Security at which SNMP messages can be</String><br/>
+<String>                 sent or with which operations are being processed;</String><br/>
+<String>                 in particular, one of:</String><br/>
+<String></String><br/>
+<String>                   noAuthNoPriv - without authentication and</String><br/>
+<String>                                  without privacy,</String><br/>
+<String>                   authNoPriv   - with authentication but</String><br/>
+<String>                                  without privacy,</String><br/>
+<String>                   authPriv     - with authentication and</String><br/>
+<String>                                  with privacy.</String><br/>
+<String></String><br/>
+<String>                 These three values are ordered such that</String><br/>
+<String>                 noAuthNoPriv is less than authNoPriv and</String><br/>
+<String>                 authNoPriv is less than authPriv.</String><br/>
+<String>                "</String><br/>
+<Normal Text>    </Normal Text><Keyword>SYNTAX</Keyword><Syntax>       </Syntax><Keyword>INTEGER</Keyword><Syntax> </Syntax><Normal Text>{ noAuthNoPriv(</Normal Text><Decimal>1</Decimal><Normal Text>),</Normal Text><br/>
+<Normal Text>                           authNoPriv(</Normal Text><Decimal>2</Decimal><Normal Text>),</Normal Text><br/>
+<Normal Text>                           authPriv(</Normal Text><Decimal>3</Decimal><Normal Text>)</Normal Text><br/>
+<Normal Text>                         }</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Syntax>SnmpAdminString</Syntax><Normal Text> ::= </Normal Text><Keyword>TEXTUAL-CONVENTION</Keyword><br/>
+<Normal Text>    </Normal Text><Keyword>DISPLAY-HINT</Keyword><Normal Text> </Normal Text><String>"255t"</String><br/>
+<Normal Text>    </Normal Text><Keyword>STATUS</Keyword><Normal Text>       </Normal Text><Status>current</Status><br/>
+<Normal Text>    </Normal Text><Keyword>DESCRIPTION</Keyword><Normal Text> </Normal Text><String>"An octet string containing administrative</String><br/>
+<String>                 information, preferably in human-readable form.</String><br/>
+<String></String><br/>
+<String>                 To facilitate internationalization, this</String><br/>
+<String>                 information is represented using the ISO/IEC</String><br/>
+<String>                 IS 10646-1 character set, encoded as an octet</String><br/>
+<String>                 string using the UTF-8 transformation format</String><br/>
+<String>                 described in [RFC2279].</String><br/>
+<String></String><br/>
+<String>                 Since additional code points are added by</String><br/>
+<String>                 amendments to the 10646 standard from time</String><br/>
+<String>                 to time, implementations must be prepared to</String><br/>
+<String>                 encounter any code point from 0x00000000 to</String><br/>
+<String>                 0x7fffffff.  Byte sequences that do not</String><br/>
+<String>                 correspond to the valid UTF-8 encoding of a</String><br/>
+<String>                 code point or are outside this range are</String><br/>
+<String>                 prohibited.</String><br/>
+<String></String><br/>
+<String>                 The use of control codes should be avoided.</String><br/>
+<String></String><br/>
+<String>                 When it is necessary to represent a newline,</String><br/>
+<String>                 the control code sequence CR LF should be used.</String><br/>
+<String></String><br/>
+<String>                 The use of leading or trailing white space should</String><br/>
+<String>                 be avoided.</String><br/>
+<String></String><br/>
+<String>                 For code points not directly supported by user</String><br/>
+<String>                 interface hardware or software, an alternative</String><br/>
+<String>                 means of entry and display, such as hexadecimal,</String><br/>
+<String>                 may be provided.</String><br/>
+<String></String><br/>
+<String>                 For information encoded in 7-bit US-ASCII,</String><br/>
+<String>                 the UTF-8 encoding is identical to the</String><br/>
+<String>                 US-ASCII encoding.</String><br/>
+<String></String><br/>
+<String>                 UTF-8 may require multiple bytes to represent a</String><br/>
+<String>                 single character / code point; thus the length</String><br/>
+<String>                 of this object in octets may be different from</String><br/>
+<String>                 the number of characters encoded.  Similarly,</String><br/>
+<String>                 size constraints refer to the number of encoded</String><br/>
+<String>                 octets, not the number of characters represented</String><br/>
+<String>                 by an encoding.</String><br/>
+<String></String><br/>
+<String>                 Note that when this TC is used for an object that</String><br/>
+<String>                 is used or envisioned to be used as an index, then</String><br/>
+<String>                 a SIZE restriction MUST be specified so that the</String><br/>
+<String>                 number of sub-identifiers for any object instance</String><br/>
+<String>                 does not exceed the limit of 128, as defined by</String><br/>
+<String>                 [RFC3416].</String><br/>
+<String></String><br/>
+<String>                 Note that the size of an SnmpAdminString object is</String><br/>
+<String>                 measured in octets, not characters.</String><br/>
+<String>                "</String><br/>
+<Normal Text>    </Normal Text><Keyword>SYNTAX</Keyword><Syntax>       </Syntax><Keyword>OCTET</Keyword><Syntax> </Syntax><Keyword>STRING</Keyword><Syntax> </Syntax><Normal Text>(</Normal Text><Keyword>SIZE</Keyword><Normal Text> (</Normal Text><Decimal>0..255</Decimal><Normal Text>))</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment>-- Administrative assignments ***************************************</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>snmpFrameworkAdmin</Normal Text><br/>
+<Normal Text>    </Normal Text><Keyword>OBJECT</Keyword><Normal Text> </Normal Text><Keyword>IDENTIFIER</Keyword><Normal Text> ::= { snmpFrameworkMIB </Normal Text><Decimal>1</Decimal><Normal Text> }</Normal Text><br/>
+<Normal Text>snmpFrameworkMIBObjects</Normal Text><br/>
+<Normal Text>    </Normal Text><Keyword>OBJECT</Keyword><Normal Text> </Normal Text><Keyword>IDENTIFIER</Keyword><Normal Text> ::= { snmpFrameworkMIB </Normal Text><Decimal>2</Decimal><Normal Text> }</Normal Text><br/>
+<Normal Text>snmpFrameworkMIBConformance</Normal Text><br/>
+<Normal Text>    </Normal Text><Keyword>OBJECT</Keyword><Normal Text> </Normal Text><Keyword>IDENTIFIER</Keyword><Normal Text> ::= { snmpFrameworkMIB </Normal Text><Decimal>3</Decimal><Normal Text> }</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment>-- the snmpEngine Group ********************************************</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>snmpEngine </Normal Text><Keyword>OBJECT</Keyword><Normal Text> </Normal Text><Keyword>IDENTIFIER</Keyword><Normal Text> ::= { snmpFrameworkMIBObjects </Normal Text><Decimal>1</Decimal><Normal Text> }</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>snmpEngineID     </Normal Text><Keyword>OBJECT-TYPE</Keyword><br/>
+<Normal Text>    </Normal Text><Keyword>SYNTAX</Keyword><Syntax>       SnmpEngineID</Syntax><br/>
+<Normal Text>    </Normal Text><Keyword>MAX-ACCESS</Keyword><Normal Text>   </Normal Text><Accesstype>read-only</Accesstype><br/>
+<Normal Text>    </Normal Text><Keyword>STATUS</Keyword><Normal Text>       </Normal Text><Status>current</Status><br/>
+<Normal Text>    </Normal Text><Keyword>DESCRIPTION</Keyword><Normal Text> </Normal Text><String>"An SNMP engine's administratively-unique identifier.</String><br/>
+<String></String><br/>
+<String>                 This information SHOULD be stored in non-volatile</String><br/>
+<String>                 storage so that it remains constant across</String><br/>
+<String>                 re-initializations of the SNMP engine.</String><br/>
+<String>                "</String><br/>
+<Normal Text>    ::= { snmpEngine </Normal Text><Decimal>1</Decimal><Normal Text> }</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>snmpEngineBoots  </Normal Text><Keyword>OBJECT-TYPE</Keyword><br/>
+<Normal Text>    </Normal Text><Keyword>SYNTAX</Keyword><Syntax>       </Syntax><Keyword>INTEGER</Keyword><Syntax> </Syntax><Normal Text>(</Normal Text><Decimal>1..2147483647</Decimal><Normal Text>)</Normal Text><br/>
+<Normal Text>    </Normal Text><Keyword>MAX-ACCESS</Keyword><Normal Text>   </Normal Text><Accesstype>read-only</Accesstype><br/>
+<Normal Text>    </Normal Text><Keyword>STATUS</Keyword><Normal Text>       </Normal Text><Status>current</Status><br/>
+<Normal Text>    </Normal Text><Keyword>DESCRIPTION</Keyword><Normal Text> </Normal Text><String>"The number of times that the SNMP engine has</String><br/>
+<String>                 (re-)initialized itself since snmpEngineID</String><br/>
+<String>                 was last configured.</String><br/>
+<String>                "</String><br/>
+<Normal Text>    ::= { snmpEngine </Normal Text><Decimal>2</Decimal><Normal Text> }</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>snmpEngineTime   </Normal Text><Keyword>OBJECT-TYPE</Keyword><br/>
+<Normal Text>    </Normal Text><Keyword>SYNTAX</Keyword><Syntax>       </Syntax><Keyword>INTEGER</Keyword><Syntax> </Syntax><Normal Text>(</Normal Text><Decimal>0..2147483647</Decimal><Normal Text>)</Normal Text><br/>
+<Normal Text>    </Normal Text><Keyword>UNITS</Keyword><Normal Text>        </Normal Text><String>"seconds"</String><br/>
+<Normal Text>    </Normal Text><Keyword>MAX-ACCESS</Keyword><Normal Text>   </Normal Text><Accesstype>read-only</Accesstype><br/>
+<Normal Text>    </Normal Text><Keyword>STATUS</Keyword><Normal Text>       </Normal Text><Status>current</Status><br/>
+<Normal Text>    </Normal Text><Keyword>DESCRIPTION</Keyword><Normal Text> </Normal Text><String>"The number of seconds since the value of</String><br/>
+<String>                 the snmpEngineBoots object last changed.</String><br/>
+<String>                 When incrementing this object's value would</String><br/>
+<String>                 cause it to exceed its maximum,</String><br/>
+<String>                 snmpEngineBoots is incremented as if a</String><br/>
+<String>                 re-initialization had occurred, and this</String><br/>
+<String>                 object's value consequently reverts to zero.</String><br/>
+<String>                "</String><br/>
+<Normal Text>    ::= { snmpEngine </Normal Text><Decimal>3</Decimal><Normal Text> }</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>snmpEngineMaxMessageSize </Normal Text><Keyword>OBJECT-TYPE</Keyword><br/>
+<Normal Text>    </Normal Text><Keyword>SYNTAX</Keyword><Syntax>       </Syntax><Keyword>INTEGER</Keyword><Syntax> </Syntax><Normal Text>(</Normal Text><Decimal>484..2147483647</Decimal><Normal Text>)</Normal Text><br/>
+<Normal Text>    </Normal Text><Keyword>MAX-ACCESS</Keyword><Normal Text>   </Normal Text><Accesstype>read-only</Accesstype><br/>
+<Normal Text>    </Normal Text><Keyword>STATUS</Keyword><Normal Text>       </Normal Text><Status>current</Status><br/>
+<Normal Text>    </Normal Text><Keyword>DESCRIPTION</Keyword><Normal Text> </Normal Text><String>"The maximum length in octets of an SNMP message</String><br/>
+<String>                 which this SNMP engine can send or receive and</String><br/>
+<String>                 process, determined as the minimum of the maximum</String><br/>
+<String>                 message size values supported among all of the</String><br/>
+<String>                 transports available to and supported by the engine.</String><br/>
+<String>                "</String><br/>
+<Normal Text>    ::= { snmpEngine </Normal Text><Decimal>4</Decimal><Normal Text> }</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment>-- Registration Points for Authentication and Privacy Protocols **</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>snmpAuthProtocols </Normal Text><Keyword>OBJECT-IDENTITY</Keyword><br/>
+<Normal Text>    </Normal Text><Keyword>STATUS</Keyword><Normal Text>        </Normal Text><Status>current</Status><br/>
+<Normal Text>    </Normal Text><Keyword>DESCRIPTION</Keyword><Normal Text>  </Normal Text><String>"Registration point for standards-track</String><br/>
+<String>                  authentication protocols used in SNMP Management</String><br/>
+<String>                  Frameworks.</String><br/>
+<String>                 "</String><br/>
+<Normal Text>    ::= { snmpFrameworkAdmin </Normal Text><Decimal>1</Decimal><Normal Text> }</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>snmpPrivProtocols </Normal Text><Keyword>OBJECT-IDENTITY</Keyword><br/>
+<Normal Text>    </Normal Text><Keyword>STATUS</Keyword><Normal Text>        </Normal Text><Status>current</Status><br/>
+<Normal Text>    </Normal Text><Keyword>DESCRIPTION</Keyword><Normal Text>  </Normal Text><String>"Registration point for standards-track privacy</String><br/>
+<String>                  protocols used in SNMP Management Frameworks.</String><br/>
+<String>                 "</String><br/>
+<Normal Text>    ::= { snmpFrameworkAdmin </Normal Text><Decimal>2</Decimal><Normal Text> }</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment>-- Conformance information ******************************************</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>snmpFrameworkMIBCompliances</Normal Text><br/>
+<Normal Text>               </Normal Text><Keyword>OBJECT</Keyword><Normal Text> </Normal Text><Keyword>IDENTIFIER</Keyword><Normal Text> ::= {snmpFrameworkMIBConformance </Normal Text><Decimal>1</Decimal><Normal Text>}</Normal Text><br/>
+<Normal Text>snmpFrameworkMIBGroups</Normal Text><br/>
+<Normal Text>               </Normal Text><Keyword>OBJECT</Keyword><Normal Text> </Normal Text><Keyword>IDENTIFIER</Keyword><Normal Text> ::= {snmpFrameworkMIBConformance </Normal Text><Decimal>2</Decimal><Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment>-- compliance statements</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>snmpFrameworkMIBCompliance </Normal Text><Keyword>MODULE-COMPLIANCE</Keyword><br/>
+<Normal Text>    </Normal Text><Keyword>STATUS</Keyword><Normal Text>       </Normal Text><Status>current</Status><br/>
+<Normal Text>    </Normal Text><Keyword>DESCRIPTION</Keyword><Normal Text> </Normal Text><String>"The compliance statement for SNMP engines which</String><br/>
+<String>                 implement the SNMP Management Framework MIB.</String><br/>
+<String>                "</String><br/>
+<Normal Text>    </Normal Text><Keyword>MODULE</Keyword><Normal Text>    </Normal Text><Comment>-- this module</Comment><br/>
+<Normal Text>        </Normal Text><Keyword>MANDATORY-GROUPS</Keyword><Normal Text> { snmpEngineGroup }</Normal Text><br/>
+<Normal Text>    ::= { snmpFrameworkMIBCompliances </Normal Text><Decimal>1</Decimal><Normal Text> }</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment>-- units of conformance</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>snmpEngineGroup </Normal Text><Keyword>OBJECT-GROUP</Keyword><br/>
+<Normal Text>    </Normal Text><Keyword>OBJECTS</Keyword><Normal Text> {</Normal Text><br/>
+<Normal Text>              snmpEngineID,</Normal Text><br/>
+<Normal Text>              snmpEngineBoots,</Normal Text><br/>
+<Normal Text>              snmpEngineTime,</Normal Text><br/>
+<Normal Text>              snmpEngineMaxMessageSize</Normal Text><br/>
+<Normal Text>            }</Normal Text><br/>
+<Normal Text>    </Normal Text><Keyword>STATUS</Keyword><Normal Text>       </Normal Text><Status>current</Status><br/>
+<Normal Text>    </Normal Text><Keyword>DESCRIPTION</Keyword><Normal Text> </Normal Text><String>"A collection of objects for identifying and</String><br/>
+<String>                 determining the configuration and current timeliness</String><br/>
+<String></String><br/>
+<String>                 values of an SNMP engine.</String><br/>
+<String>                "</String><br/>
+<Normal Text>    ::= { snmpFrameworkMIBGroups </Normal Text><Decimal>1</Decimal><Normal Text> }</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>END</Keyword><br/>

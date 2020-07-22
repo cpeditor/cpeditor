@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title>highlight.xml</title>
+<meta name="generator" content="KF5::SyntaxHighlighting (XML)"/>
+</head><body style="color:#1f1c1b"><pre>
+<span style="font-weight:bold;">&lt;?xml</span> version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;<span style="font-weight:bold;">?&gt;</span>
+<span style="color:#0057ae;font-weight:bold;">&lt;!DOCTYPE </span>language SYSTEM &quot;language.dtd&quot;<span style="color:#0057ae;font-weight:bold;">&gt;</span>
+<span style="color:#898887;">&lt;!-- we need this tags or this is no valid file --&gt;</span>
+
+
+This is a pseudo XML file to test Kate's XML syntax highlighting.
+
+Doctype:
+	<span style="color:#0057ae;font-weight:bold;">&lt;!DOCTYPE </span>HTML PUBLIC &quot;-//SOME_DOCTYPE 0.01//EN&quot; SYSTEM &quot;foobar.dtd&quot;<span style="color:#0057ae;font-weight:bold;">&gt;</span>
+
+Processing instruction:
+	<span style="font-weight:bold;">&lt;?php</span> processing instruction <span style="font-weight:bold;">?&gt;</span>
+
+Comments:
+	<span style="color:#898887;">&lt;!-- a comment --&gt;</span>
+	<span style="color:#898887;">&lt;!-- another comment,</span>
+<span style="color:#898887;">	using more than one line --&gt;</span>
+
+Comment inside element:
+	<span style="font-weight:bold;">&lt;element</span><span style="color:#006e28;"> attr=</span><span style="color:#bf0303;">&quot;foobar&quot;</span><span style="font-weight:bold;">&gt;</span>content<span style="color:#898887;">&lt;!-- comment --&gt;</span><span style="font-weight:bold;">&lt;/element&gt;</span>
+
+Markup inside comment:
+	<span style="color:#898887;">&lt;!--</span>
+<span style="color:#898887;">	This is a comment!</span>
+<span style="color:#898887;">	&lt;element inside_comment /&gt;</span>
+<span style="color:#898887;">	--&gt;</span>
+
+Empty element:
+	<span style="font-weight:bold;">&lt;empty/&gt;</span>
+	<span style="font-weight:bold;">&lt;empty</span>  <span style="font-weight:bold;">/&gt;</span>
+
+Simple element plus content:
+	<span style="font-weight:bold;">&lt;element&gt;</span>some content<span style="font-weight:bold;">&lt;/element&gt;</span>
+	<span style="font-weight:bold;">&lt;element</span><span style="color:#006e28;"> attr=</span><span style="color:#bf0303;">&quot;foobar&quot;</span><span style="font-weight:bold;">&gt;</span>some
+		content<span style="font-weight:bold;">&lt;/element&gt;</span>
+
+Namespace for elements and attributes:
+	<span style="font-weight:bold;">&lt;ns:element&gt;</span>content<span style="font-weight:bold;">&lt;/ns:element&gt;</span>
+	<span style="font-weight:bold;">&lt;element</span><span style="color:#006e28;"> ns:attr=</span><span style="color:#bf0303;">&quot;content content&quot;</span><span style="font-weight:bold;">&gt;</span>content<span style="font-weight:bold;">&lt;/element&gt;</span>
+
+Elements containing allowed characters:
+	<span style="font-weight:bold;">&lt;element-dash</span><span style="color:#006e28;"> foo=</span><span style="color:#bf0303;">&quot;test&quot;</span><span style="font-weight:bold;">/&gt;</span>
+	<span style="font-weight:bold;">&lt;element.dot</span><span style="color:#006e28;"> foo=</span><span style="color:#bf0303;">&quot;test&quot;</span><span style="font-weight:bold;">/&gt;</span>
+
+Elements containing allowed start characters:
+	<span style="font-weight:bold;">&lt;:element</span><span style="color:#006e28;"> foo=</span><span style="color:#bf0303;">&quot;test&quot;</span><span style="font-weight:bold;">/&gt;</span>
+	<span style="font-weight:bold;">&lt;_element</span><span style="color:#006e28;"> foo=</span><span style="color:#bf0303;">&quot;test&quot;</span><span style="font-weight:bold;">/&gt;</span>
+
+Single quotes (the same as double quotes):
+	<span style="font-weight:bold;">&lt;element</span><span style="color:#006e28;"> attr=</span><span style="color:#bf0303;">'content </span><span style="color:#b08000;">&amp;nbsp;</span><span style="color:#bf0303;"> content'</span><span style="font-weight:bold;">&gt;</span>content<span style="font-weight:bold;">&lt;/element&gt;</span>
+
+Allowed Whitespace:
+	<span style="font-weight:bold;">&lt;element</span><span style="color:#006e28;">     attr</span>   <span style="color:#006e28;">=</span>   <span style="color:#bf0303;">&quot;test&quot;</span>  <span style="font-weight:bold;">&gt;</span>
+		content<span style="font-weight:bold;">&lt;/element&gt;</span>
+
+Entities:
+	<span style="color:#b08000;">&amp;nbsp;</span>
+	<span style="color:#b08000;">&amp;#229;</span>
+	<span style="color:#b08000;">&amp;#xE5;</span>
+	<span style="color:#b08000;">&amp;#Xe5;</span>
+	<span style="color:#b08000;">&amp;#1048;</span>
+	<span style="color:#b08000;">&amp;#x6C34;</span>
+	<span style="font-weight:bold;">&lt;element</span><span style="color:#006e28;"> attr=</span><span style="color:#bf0303;">&quot;foo </span><span style="color:#b08000;">&amp;nbsp;</span><span style="color:#bf0303;"> </span><span style="color:#b08000;">&amp;#229;</span><span style="color:#bf0303;"> </span><span style="color:#b08000;">&amp;amp;</span><span style="color:#bf0303;"> bar&quot;</span><span style="font-weight:bold;">/&gt;</span>
+
+Illegal XML, should not be highlighted:
+	<span style="color:#bf0303;text-decoration:underline;">&lt;</span>0foobar&gt; -- no digit as first character
+	<span style="color:#bf0303;text-decoration:underline;">&lt;</span>-foo&gt; -- no dash as first character
+</pre></body></html>

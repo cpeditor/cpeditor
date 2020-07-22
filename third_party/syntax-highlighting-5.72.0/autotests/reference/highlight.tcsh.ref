@@ -1,0 +1,42 @@
+<Comment>#!/bin/tcsh -f</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Builtin>[</Builtin><Normal Text> a </Normal Text><Expression>!=</Expression><Normal Text> b</Normal Text><Builtin> ]</Builtin><Normal Text> </Normal Text><Control>&&</Control><Normal Text> </Normal Text><Builtin>echo</Builtin><Normal Text> a </Normal Text><Control>||</Control><Normal Text> </Normal Text><Builtin>echo</Builtin><Normal Text> b</Normal Text><br/>
+<Comment># + not an operator</Comment><br/>
+<Builtin>[</Builtin><Normal Text> 1+2 </Normal Text><Expression>==</Expression><Normal Text> </Normal Text><String SingleQ>'1+2'</String SingleQ><Builtin> ]</Builtin><Normal Text> </Normal Text><Control>&&</Control><Normal Text> </Normal Text><Builtin>echo</Builtin><Normal Text> a </Normal Text><Control>||</Control><Normal Text> </Normal Text><Builtin>echo</Builtin><Normal Text> b</Normal Text><br/>
+<Builtin>[</Builtin><Normal Text> 1 </Normal Text><Expression>!=</Expression><Normal Text> </Normal Text><String SingleQ>'1+2'</String SingleQ><Builtin> ]</Builtin><Normal Text> </Normal Text><Control>&&</Control><Normal Text> </Normal Text><Builtin>echo</Builtin><Normal Text> a </Normal Text><Control>||</Control><Normal Text> </Normal Text><Builtin>echo</Builtin><Normal Text> b</Normal Text><br/>
+<Builtin>[</Builtin><Normal Text> a </Normal Text><Expression>=~</Expression><Normal Text> b</Normal Text><Builtin> ]</Builtin><Normal Text> </Normal Text><Control>&&</Control><Normal Text> </Normal Text><Builtin>echo</Builtin><Normal Text> a </Normal Text><Control>||</Control><Normal Text> </Normal Text><Builtin>echo</Builtin><Normal Text> b</Normal Text><br/>
+<Builtin>[</Builtin><Normal Text> a </Normal Text><Expression>!~</Expression><Normal Text> b</Normal Text><Builtin> ]</Builtin><Normal Text> </Normal Text><Control>&&</Control><Normal Text> </Normal Text><Builtin>echo</Builtin><Normal Text> a </Normal Text><Control>||</Control><Normal Text> </Normal Text><Builtin>echo</Builtin><Normal Text> b</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>set</Keyword><Normal Text> a = 1</Normal Text><br/>
+<Keyword>set</Keyword><Normal Text> b = 2</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment># arithmetic operators</Comment><br/>
+<Control Flow>if</Control Flow><Normal Text> </Normal Text><Keyword>(</Keyword><Variable>$a</Variable><Normal Text> </Normal Text><Expression><</Expression><Normal Text> </Normal Text><Variable>$b</Variable><Keyword>)</Keyword><Normal Text> </Normal Text><Builtin>echo</Builtin><Normal Text> 1</Normal Text><br/>
+<Control Flow>if</Control Flow><Normal Text> </Normal Text><Keyword>(</Keyword><Variable>$a</Variable><Normal Text> </Normal Text><Expression><<</Expression><Normal Text> </Normal Text><Variable>$b</Variable><Keyword>)</Keyword><Normal Text> </Normal Text><Builtin>echo</Builtin><Normal Text> 1</Normal Text><br/>
+<Control Flow>if</Control Flow><Normal Text> </Normal Text><Keyword>(</Keyword><Variable>$a</Variable><Normal Text> </Normal Text><Expression>></Expression><Normal Text> </Normal Text><Variable>$b</Variable><Normal Text> </Normal Text><Expression>-</Expression><Normal Text> 2</Normal Text><Keyword>)</Keyword><Normal Text> </Normal Text><Builtin>echo</Builtin><Normal Text> 1</Normal Text><br/>
+<Control Flow>if</Control Flow><Normal Text> </Normal Text><Keyword>(</Keyword><Variable>$a</Variable><Normal Text> </Normal Text><Expression>+</Expression><Normal Text> 11 </Normal Text><Expression>>></Expression><Normal Text> </Normal Text><Variable>$b</Variable><Keyword>)</Keyword><Normal Text> </Normal Text><Builtin>echo</Builtin><Normal Text> 1</Normal Text><br/>
+<Control Flow>if</Control Flow><Normal Text> </Normal Text><Keyword>(</Keyword><Variable>$a</Variable><Normal Text> </Normal Text><Expression><=</Expression><Normal Text> </Normal Text><Variable>$b</Variable><Keyword>)</Keyword><Normal Text> </Normal Text><Builtin>echo</Builtin><Normal Text> 1</Normal Text><br/>
+<Control Flow>if</Control Flow><Normal Text> </Normal Text><Keyword>(</Keyword><Variable>$a</Variable><Normal Text> </Normal Text><Expression>+</Expression><Normal Text> 1 </Normal Text><Expression>>=</Expression><Normal Text> </Normal Text><Variable>$b</Variable><Keyword>)</Keyword><Normal Text> </Normal Text><Builtin>echo</Builtin><Normal Text> 1</Normal Text><br/>
+<Control Flow>if</Control Flow><Normal Text> </Normal Text><Keyword>(</Keyword><Variable>$a</Variable><Normal Text> </Normal Text><Expression>/</Expression><Normal Text> </Normal Text><Variable>$b</Variable><Normal Text> </Normal Text><Expression>+</Expression><Normal Text> 1</Normal Text><Keyword>)</Keyword><Normal Text> </Normal Text><Builtin>echo</Builtin><Normal Text> 1</Normal Text><br/>
+<Control Flow>if</Control Flow><Normal Text> </Normal Text><Keyword>(</Keyword><Variable>$a</Variable><Normal Text> </Normal Text><Expression>%</Expression><Normal Text> </Normal Text><Variable>$b</Variable><Keyword>)</Keyword><Normal Text> </Normal Text><Builtin>echo</Builtin><Normal Text> 1</Normal Text><br/>
+<Control Flow>if</Control Flow><Normal Text> </Normal Text><Keyword>(</Keyword><Variable>$a</Variable><Normal Text> </Normal Text><Expression>*</Expression><Normal Text> </Normal Text><Variable>$b</Variable><Keyword>)</Keyword><Normal Text> </Normal Text><Builtin>echo</Builtin><Normal Text> 1</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment># string operators</Comment><br/>
+<Control Flow>if</Control Flow><Normal Text> </Normal Text><Keyword>(</Keyword><Variable>$a</Variable><Normal Text> </Normal Text><Expression>==</Expression><Normal Text> </Normal Text><Variable>$b</Variable><Keyword>)</Keyword><Normal Text> </Normal Text><Builtin>echo</Builtin><Normal Text> s</Normal Text><br/>
+<Control Flow>if</Control Flow><Normal Text> </Normal Text><Keyword>(</Keyword><Variable>$a</Variable><Normal Text> </Normal Text><Expression>!=</Expression><Normal Text> </Normal Text><Variable>$b</Variable><Keyword>)</Keyword><Normal Text> </Normal Text><Builtin>echo</Builtin><Normal Text> s</Normal Text><br/>
+<Control Flow>if</Control Flow><Normal Text> </Normal Text><Keyword>(</Keyword><Variable>$a</Variable><Normal Text> </Normal Text><Expression>=~</Expression><Normal Text> </Normal Text><Variable>$b</Variable><Keyword>)</Keyword><Normal Text> </Normal Text><Builtin>echo</Builtin><Normal Text> s</Normal Text><br/>
+<Control Flow>if</Control Flow><Normal Text> </Normal Text><Keyword>(</Keyword><Variable>$a</Variable><Normal Text> </Normal Text><Expression>!~</Expression><Normal Text> </Normal Text><Variable>$b</Variable><Keyword>)</Keyword><Normal Text> </Normal Text><Builtin>echo</Builtin><Normal Text> s</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>set</Keyword><Normal Text> val = 0</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Control Flow>foreach</Control Flow><Normal Text> scen </Normal Text><Keyword>(</Keyword><Normal Text> a b </Normal Text><Keyword>)</Keyword><br/>
+<Normal Text>  </Normal Text><Builtin>echo</Builtin><Normal Text> </Normal Text><Variable>$scen</Variable><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>  </Normal Text><Control Flow>if</Control Flow><Normal Text> </Normal Text><Keyword>(</Keyword><Variable>$scen</Variable><Normal Text> </Normal Text><Expression>==</Expression><Normal Text> a</Normal Text><Keyword>)</Keyword><Normal Text> </Normal Text><Control Flow>then</Control Flow><br/>
+<Normal Text>    </Normal Text><Builtin>echo</Builtin><Normal Text> </Normal Text><Variable>$scen</Variable><br/>
+<Normal Text>  </Normal Text><Control Flow>else if</Control Flow><Normal Text> </Normal Text><Keyword>(</Keyword><Variable>$scen</Variable><Normal Text> </Normal Text><Expression>==</Expression><Normal Text> x</Normal Text><Keyword>)</Keyword><Normal Text> </Normal Text><Control Flow>then</Control Flow><br/>
+<Normal Text>    </Normal Text><Builtin>echo</Builtin><Normal Text> x</Normal Text><br/>
+<Normal Text>  </Normal Text><Control Flow>else</Control Flow><br/>
+<Normal Text>    </Normal Text><Builtin>echo</Builtin><Normal Text> </Normal Text><Variable>$val</Variable><br/>
+<Normal Text>  </Normal Text><Control Flow>endif</Control Flow><br/>
+<Control Flow>end</Control Flow><br/>

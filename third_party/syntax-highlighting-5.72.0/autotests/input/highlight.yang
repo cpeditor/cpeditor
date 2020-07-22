@@ -1,0 +1,38 @@
+// from: https://en.wikipedia.org/w/index.php?title=YANG&oldid=792171830#Example
+module example-sports {
+
+  namespace "http://example.com/example-sports";
+  prefix sports;
+
+  import ietf-yang-types { prefix yang; }
+
+  typedef season {
+    type string;
+    description
+      "The name of a sports season, including the type and the year, e.g,
+       'Champions League 2014/2015'.";
+  }
+
+  container sports {
+    config true;
+
+    list person {
+      key name;
+      leaf name { type string; }
+      leaf birthday { type yang:date-and-time; mandatory true; }
+    }
+
+    list team {
+      key name;
+      leaf name { type string; }
+      list player {
+        key "name season";
+        unique number;
+        leaf name { type leafref { path "/sports/person/name"; }  }
+        leaf season { type season; }
+        leaf number { type uint16; mandatory true; }
+        leaf scores { type uint16; default 0; }
+      }
+    }
+  }
+}

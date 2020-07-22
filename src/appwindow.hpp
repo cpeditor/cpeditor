@@ -20,6 +20,7 @@
 
 #include <QMainWindow>
 #include <QSystemTrayIcon>
+#include <repository.h>
 
 class FindReplaceDialog;
 class MainWindow;
@@ -215,6 +216,8 @@ class AppWindow : public QMainWindow
 
     QMetaObject::Connection activeSplitterMoveConnection;
     QMetaObject::Connection activeRightSplitterMoveConnection;
+    KSyntaxHighlighting::Repository m_repository;
+ 
     Telemetry::UpdateChecker *updateChecker = nullptr;
     PreferencesWindow *preferencesWindow = nullptr;
     Extensions::CompanionServer *server;

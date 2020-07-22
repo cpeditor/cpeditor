@@ -1,0 +1,15 @@
+# 
+
+  find_path(X11_XKB_INCLUDE_PATH X11/XKBlib.h "${X11_INC_SEARCH_PATH}")
+  if (X11_XKB_INCLUDE_PATH)
+    MACRO_PUSH_REQUIRED_VARS()
+    set(CMAKE_REQUIRED_LIBRARIES "${X11_LIBRARIES} ${CMAKE_REQUIRED_LIBRARIES}")
+    check_library_exists(X11 XkbLockModifiers "" HAVE_XKB)
+    MACRO_POP_REQUIRED_VARS()
+    if (HAVE_XKB)
+        set(XKB_FOUND TRUE)
+    endif (HAVE_XKB)
+  endif (X11_XKB_INCLUDE_PATH)
+
+
+

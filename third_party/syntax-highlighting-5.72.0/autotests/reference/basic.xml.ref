@@ -1,0 +1,4 @@
+<Processing Instruction><?xml</Processing Instruction><Other Text> version="1.0" encoding="UTF-8"</Other Text><Processing Instruction>?></Processing Instruction><br/>
+<Element><element</Element><Attribute> attr1=</Attribute><Value>"a1"</Value><Element>></Element><br/>
+<Other Text>    </Other Text><Element><sub-element/></Element><br/>
+<Element></element></Element><br/>

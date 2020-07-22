@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title>test.properties</title>
+<meta name="generator" content="KF5::SyntaxHighlighting (Java Properties)"/>
+</head><body style="color:#1f1c1b"><pre>
+<span style="color:#898887;"># Java Properties Sample File</span>
+
+<span style="color:#898887;"># This is a commment</span>
+<span style="color:#898887;">! This is also a comment</span>
+<span style="color:#006e28;">     </span><span style="color:#898887;"># comment</span>
+<span style="color:#006e28;">     </span><span style="color:#898887;">! comment</span>
+
+<span style="color:#898887;"># keys and values can be separated by '=', ':' or by a series of spaces:</span>
+
+<span style="color:#006e28;">key </span><span style="color:#0057ae;">=</span><span style="color:#bf0303;"> value</span>
+<span style="color:#006e28;">key </span><span style="color:#0057ae;">:</span><span style="color:#bf0303;"> value</span>
+<span style="color:#006e28;">key </span><span style="color:#bf0303;">value</span>
+
+<span style="color:#898887;"># spaces, '=', or ':' can be used in the key by escaping them with a backslash:</span>
+
+<span style="color:#006e28;">key\:continued </span><span style="color:#0057ae;">=</span><span style="color:#bf0303;"> value</span>
+<span style="color:#006e28;">key\=continued </span><span style="color:#0057ae;">=</span><span style="color:#bf0303;"> value</span>
+<span style="color:#006e28;">key\ continued </span><span style="color:#0057ae;">=</span><span style="color:#bf0303;"> value</span>
+
+<span style="color:#898887;"># the key starts with the first non blank character on the line:</span>
+
+<span style="color:#006e28;">    key </span><span style="color:#0057ae;">=</span><span style="color:#bf0303;"> value</span>
+<span style="color:#006e28;">    </span>
+<span style="color:#898887;"># there can be an arbitrary amount of spaces between the key, the value, and the ':' or '=', if present:</span>
+
+<span style="color:#006e28;">key</span><span style="color:#0057ae;">=</span><span style="color:#bf0303;">value</span>
+<span style="color:#006e28;">key     </span><span style="color:#0057ae;">=</span><span style="color:#bf0303;">      value</span>
+
+<span style="color:#006e28;">key</span><span style="color:#0057ae;">:</span><span style="color:#bf0303;">value</span>
+<span style="color:#006e28;">key     </span><span style="color:#0057ae;">:</span><span style="color:#bf0303;">      value</span>
+
+<span style="color:#006e28;">key </span><span style="color:#bf0303;">value</span>
+<span style="color:#006e28;">key                  </span><span style="color:#bf0303;">value</span>
+
+<span style="color:#898887;"># values can be continued on another line by escaping the line end character with a backslash:</span>
+
+<span style="color:#006e28;">key </span><span style="color:#0057ae;">=</span><span style="color:#bf0303;"> value \</span>
+<span style="color:#bf0303;">  value continued</span>
+<span style="color:#006e28;">  </span>
+<span style="color:#898887;"># This works also over more than one line:</span>
+
+<span style="color:#006e28;">key </span><span style="color:#0057ae;">=</span><span style="color:#bf0303;"> value\</span>
+<span style="color:#bf0303;">  value continued 1\</span>
+<span style="color:#bf0303;">  value continued 2\</span>
+<span style="color:#bf0303;">  value continued 3</span>
+<span style="color:#006e28;">  </span>
+<span style="color:#898887;"># But if the line ends with an even number of backslashes, the value is not continued:</span>
+
+<span style="color:#006e28;">key </span><span style="color:#0057ae;">=</span><span style="color:#bf0303;"> value\\</span>
+<span style="color:#006e28;">newkey </span><span style="color:#0057ae;">=</span><span style="color:#bf0303;"> value</span>
+
+<span style="color:#006e28;">key </span><span style="color:#0057ae;">=</span><span style="color:#bf0303;"> value\\\\</span>
+<span style="color:#006e28;">newkey </span><span style="color:#0057ae;">=</span><span style="color:#bf0303;"> value</span>
+
+<span style="color:#898887;"># both key and value can be ommitted, in which case either the key or the value or both equal the empty string:</span>
+
+<span style="color:#006e28;">key </span><span style="color:#0057ae;">=</span>
+<span style="color:#006e28;">key</span>
+<span style="color:#0057ae;">=</span><span style="color:#bf0303;"> value</span>
+
+<span style="color:#0057ae;">=</span>
+<span style="color:#0057ae;">:</span>
+
+</pre></body></html>

@@ -1,0 +1,18 @@
+h1 {
+    text-color: "red";
+}
+
+/* PHP code, invalid in CSS context */
+for() 
+
+<?php echo("hello"); 
+
+// valid code in PHP context
+for()
+
+?>
+
+h2 {
+    text-weight: bold;
+}
+

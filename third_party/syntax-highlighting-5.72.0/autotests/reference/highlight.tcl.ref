@@ -1,0 +1,50 @@
+<Comment># tcl syntax highlighting sample script for Kate</Comment><br/>
+<Comment>#</Comment><br/>
+<Comment># author: JM. Philippe 15/03/04</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Comment># escaped characters</Comment><br/>
+<Keyword>set</Keyword><Normal Text> String </Normal Text><Char>\{</Char><br/>
+<Keyword>set</Keyword><Normal Text> String </Normal Text><Char>\{</Char><br/>
+<Keyword>set</Keyword><Normal Text> String </Normal Text><Char>\"</Char><br/>
+<Keyword>set</Keyword><Normal Text> String </Normal Text><String>" </String><Char>\"</Char><String> "</String><br/>
+<Keyword>set</Keyword><Normal Text> String </Normal Text><String>" </String><Char>\{</Char><String> "</String><br/>
+<Normal Text></Normal Text><br/>
+<Comment>#comments and not comments</Comment><br/>
+<Comment># is comments</Comment><br/>
+<Normal Text>;</Normal Text><Comment>#is comments</Comment><br/>
+<Comment>	# is comments</Comment><br/>
+<Comment># <h1> is html comment </h1></Comment><br/>
+<Keyword>puts</Keyword><Normal Text> ok;</Normal Text><Comment>	# is comments</Comment><br/>
+<Keyword>set</Keyword><Normal Text> String </Normal Text><Keyword>[string</Keyword><Normal Text> </Normal Text><Parameter>map</Parameter><Normal Text> </Normal Text><Keyword>{</Keyword><Normal Text></a> </Normal Text><Keyword>{</Keyword><Normal Text><span>&#187;</Normal Text><Parameter>is</Parameter><Normal Text> not comments</span></a></Normal Text><Keyword>}}</Keyword><Normal Text> </Normal Text><Variable>$String</Variable><Keyword>]</Keyword><br/>
+<Keyword>set</Keyword><Normal Text> String </Normal Text><Char>\#</Char><Normal Text>not_a_comment</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment># blocks</Comment><br/>
+<Keyword>proc</Keyword><Normal Text> test </Normal Text><Keyword>{</Keyword><Normal Text>arg1 </Normal Text><Keyword>{</Keyword><Normal Text>arg2 </Normal Text><Keyword>{}}</Keyword><Normal Text> </Normal Text><Keyword>{</Keyword><Normal Text>arg3 </Normal Text><Keyword>{</Keyword><Normal Text>fr fq r</Normal Text><Keyword>}}}</Keyword><Normal Text> </Normal Text><Keyword>{</Keyword><br/>
+<Normal Text>	</Normal Text><Keyword>if</Keyword><Normal Text> </Normal Text><Keyword>{</Keyword><Decimal>1</Decimal><Keyword>}</Keyword><Normal Text> </Normal Text><Keyword>{</Keyword><Normal Text>;</Normal Text><Comment>	#comments</Comment><br/>
+<Normal Text>		</Normal Text><Keyword>set</Keyword><Normal Text> String </Normal Text><Char>\{</Char><Normal Text>;</Normal Text><Comment>	# not a block start</Comment><br/>
+<Normal Text>	</Normal Text><Keyword>}</Keyword><br/>
+<Keyword>}</Keyword><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>proc</Keyword><Normal Text> test </Normal Text><Parameter>args</Parameter><Normal Text> </Normal Text><Keyword>{</Keyword><br/>
+<Normal Text>	</Normal Text><Keyword>set</Keyword><Normal Text> String </Normal Text><Char>\}</Char><Normal Text>;</Normal Text><Comment>	# not a block end</Comment><br/>
+<Keyword>}</Keyword><br/>
+<Normal Text></Normal Text><br/>
+<Region Marker># BEGIN - collapsable comments</Region Marker><br/>
+<Comment># blablabla</Comment><br/>
+<Region Marker># END</Region Marker><br/>
+<Normal Text></Normal Text><br/>
+<Comment># strings</Comment><br/>
+<Keyword>set</Keyword><Normal Text> String </Normal Text><String>"feqr feqr </String><Variable>$</Variable><String>gqer gqe"</String><br/>
+<Keyword>set</Keyword><Normal Text> String </Normal Text><String>"feqr</String><br/>
+<String>feqr </String><Char>\"</Char><String> </String><Variable>$</Variable><String>gqer \</String><br/>
+<String>gqe</String><br/>
+<String>"</String><br/>
+<Keyword>set</Keyword><Normal Text> String </Normal Text><Keyword>{</Keyword><Normal Text>feqr</Normal Text><br/>
+<Normal Text>feqr </Normal Text><Char>\{</Char><Normal Text> </Normal Text><Variable>$gqer</Variable><Normal Text> \</Normal Text><br/>
+<Normal Text>gqe</Normal Text><br/>
+<Keyword>}</Keyword><br/>
+<Normal Text></Normal Text><br/>
+<Comment># variables</Comment><br/>
+<Keyword>set</Keyword><Normal Text> b+</Normal Text><Decimal>1</Decimal><Normal Text> </Normal Text><Keyword>[incr</Keyword><Normal Text> b</Normal Text><Keyword>]</Keyword><br/>
+<Keyword>set</Keyword><Normal Text> </Normal Text><Keyword>{incr</Keyword><Normal Text>-b</Normal Text><Keyword>}</Keyword><Normal Text> </Normal Text><Variable>${b+1}</Variable><br/>
+<Keyword>puts</Keyword><Normal Text> </Normal Text><Variable>${incr-b}</Variable><br/>

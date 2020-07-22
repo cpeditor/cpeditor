@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title>brightscript.brs</title>
+<meta name="generator" content="KF5::SyntaxHighlighting (BrightScript)"/>
+</head><body style="color:#1f1c1b"><pre>
+
+<span style="color:#006e28;">#i am macro</span>
+
+<span style="color:#ff5500;">library </span><span style="color:#bf0303;">&quot;a&quot;</span>
+
+<span style="font-weight:bold;">function</span> <span style="color:#644a9b;">myfunc</span> ( <span style="color:#0057ae;">foo</span> <span style="font-weight:bold;">as</span> <span style="color:#0057ae;">Integer</span> , <span style="color:#0057ae;">bar</span> <span style="font-weight:bold;">as</span> <span style="color:#0057ae;">Float</span> = <span style="color:#b08000;">3.5</span> ) <span style="font-weight:bold;">as</span> <span style="color:#0057ae;">Void</span>
+<span style="font-weight:bold;">end function</span>
+
+<span style="font-weight:bold;">sub</span> <span style="color:#644a9b;">mysub</span> ( <span style="color:#0057ae;">foo</span> <span style="font-weight:bold;">as</span> <span style="color:#0057ae;">Integer</span> , <span style="color:#0057ae;">bar</span> <span style="font-weight:bold;">as</span> <span style="color:#0057ae;">Float</span> = <span style="color:#b08000;">3.5</span> ) <span style="font-weight:bold;">as</span> <span style="color:#0057ae;">Void</span>
+<span style="font-weight:bold;">end sub</span>
+
+<span style="color:#898887;">' my comment</span>
+
+<span style="font-weight:bold;">Function</span> <span style="color:#644a9b;">MyCamelCaseFunction</span>()
+    <span style="color:#0057ae;">lvalue</span> = <span style="color:#0057ae;">rvalue</span>
+<span style="color:#0057ae;">a</span>=<span style="color:#b08000;">5</span>
+<span style="color:#0057ae;">a</span>=<span style="color:#b08000;">5!</span>
+<span style="color:#0057ae;">a</span>=<span style="color:#b08000;">5#</span>
+<span style="color:#0057ae;">a</span>=<span style="color:#b08000;">5%</span>
+<span style="color:#0057ae;">a</span>=<span style="color:#b08000;">5&amp;</span>
+
+<span style="color:#0057ae;">a$</span>=<span style="color:#b08000;">5</span>
+<span style="color:#0057ae;">a!</span>=<span style="color:#b08000;">5</span>
+<span style="color:#0057ae;">a#</span>=<span style="color:#b08000;">5</span>
+<span style="color:#0057ae;">a%</span>=<span style="color:#b08000;">5</span>
+<span style="color:#0057ae;">a&amp;</span>=<span style="color:#b08000;">5</span>
+
+<span style="color:#0057ae;">a</span>=<span style="color:#0057ae;">a$</span>
+<span style="color:#0057ae;">a</span>=<span style="color:#0057ae;">a!</span>
+<span style="color:#0057ae;">a</span>=<span style="color:#0057ae;">a#</span>
+<span style="color:#0057ae;">a</span>=<span style="color:#0057ae;">a%</span>
+<span style="color:#0057ae;">a</span>=<span style="color:#0057ae;">a&amp;</span>
+
+<span style="color:#644a9b;">foo</span>()
+<span style="color:#0057ae;">a</span>.<span style="color:#644a9b;">foo</span>()
+<span style="color:#0057ae;">a</span>=<span style="color:#0057ae;">a</span>.<span style="color:#644a9b;">foo</span>()
+
+<span style="color:#bf0303;text-decoration:underline;">eval</span>=5
+<span style="color:#644a9b;font-weight:bold;">eval</span>()
+<span style="color:#0057ae;">a</span>.<span style="color:#644a9b;">eval</span>()
+
+<span style="color:#0057ae;">a</span>=<span style="color:#bf0303;text-decoration:underline;">eval</span>
+<span style="color:#0057ae;">a</span>=<span style="color:#644a9b;font-weight:bold;">eval</span>()
+<span style="color:#0057ae;">a</span>=<span style="color:#0057ae;">a</span>.<span style="color:#644a9b;">eval</span>()
+
+<span style="color:#0057ae;">sleep</span>=<span style="color:#b08000;">5</span>
+<span style="color:#644a9b;font-weight:bold;">sleep</span>()
+<span style="color:#0057ae;">a</span>.<span style="color:#644a9b;">sleep</span>()
+
+<span style="color:#0057ae;">a</span>=<span style="color:#0057ae;">sleep</span>
+<span style="color:#0057ae;">a</span>=<span style="color:#644a9b;font-weight:bold;">sleep</span>()
+<span style="color:#0057ae;">a</span>=<span style="color:#0057ae;">a</span>.<span style="color:#644a9b;">sleep</span>()
+
+<span style="font-weight:bold;">if</span> <span style="color:#0057ae;">a</span>=<span style="color:#0057ae;">b</span> <span style="color:#0057ae;">c</span>=<span style="color:#0057ae;">d</span>
+<span style="font-weight:bold;">if</span> <span style="color:#0057ae;">a</span> <span style="color:#644a9b;">foo</span>()
+<span style="font-weight:bold;">if</span> <span style="color:#0057ae;">a</span> <span style="font-weight:bold;">then</span> <span style="color:#644a9b;">foo</span>()
+
+<span style="font-weight:bold;">if</span> <span style="color:#0057ae;">a</span>
+<span style="font-weight:bold;">end if</span>
+
+<span style="font-weight:bold;">if</span> <span style="color:#0057ae;">a</span> <span style="font-weight:bold;">then</span>
+<span style="font-weight:bold;">end if</span>
+
+<span style="font-weight:bold;">if</span> <span style="color:#0057ae;">a</span>
+<span style="font-weight:bold;">else</span> <span style="font-weight:bold;">if</span>
+<span style="font-weight:bold;">else</span>
+<span style="font-weight:bold;">end if</span>
+
+<span style="font-weight:bold;">if</span> <span style="color:#0057ae;">a</span>
+<span style="font-weight:bold;">elseif</span>
+<span style="font-weight:bold;">endif</span>
+
+<span style="font-weight:bold;">for</span> <span style="font-weight:bold;">each</span> <span style="color:#0057ae;">a</span> <span style="font-weight:bold;">in</span> <span style="color:#0057ae;">b</span>
+<span style="font-weight:bold;">end for</span>
+
+<span style="font-weight:bold;">for</span> <span style="color:#0057ae;">a</span>=<span style="color:#b08000;">1</span> <span style="font-weight:bold;">to</span> <span style="color:#b08000;">10</span> <span style="font-weight:bold;">step</span> <span style="color:#b08000;">2</span>
+<span style="font-weight:bold;">endFor</span>
+
+<span style="font-weight:bold;">for</span> <span style="font-weight:bold;">each</span> <span style="color:#0057ae;">a</span> <span style="font-weight:bold;">in</span> <span style="color:#0057ae;">b</span>
+<span style="font-weight:bold;">next</span>
+
+<span style="font-weight:bold;">while</span> <span style="color:#0057ae;">a</span>
+<span style="font-weight:bold;">end while</span>
+
+<span style="font-weight:bold;">while</span> <span style="color:#0057ae;">a</span>
+<span style="font-weight:bold;">endWhile</span>
+
+<span style="color:#0057ae;">a</span> [ <span style="color:#bf0303;">&quot;a&quot;</span> , <span style="color:#b08000;">1</span>, <span style="color:#644a9b;">foo</span>() ] = <span style="color:#b08000;">1</span>
+<span style="color:#0057ae;">a</span>.<span style="color:#644a9b;">foo</span>()[<span style="color:#b08000;">1</span>]=<span style="color:#b08000;">1</span>
+
+<span style="color:#0057ae;">a</span> = {
+    <span style="color:#0057ae;">a</span> : <span style="color:#b08000;">1</span>
+    <span style="color:#0057ae;">b</span> : <span style="color:#bf0303;">&quot;2&quot;</span>
+    <span style="color:#0057ae;">c</span> : <span style="font-weight:bold;">function</span>() <span style="color:#3daee9;">:</span> <span style="font-weight:bold;">end function</span>
+}
+
+<span style="color:#0057ae;">b</span>.<span style="color:#644a9b;">foo</span>(<span style="color:#bf0303;">&quot;string&quot;</span>,<span style="color:#b08000;">1</span>,{<span style="color:#0057ae;">a</span>:<span style="color:#0057ae;">b</span>},<span style="color:#b08000;">1.5</span>,[<span style="color:#b08000;">1</span>,<span style="color:#b08000;">2</span>,<span style="color:#b08000;">3</span>])
+<span style="color:#0057ae;">a</span> = <span style="color:#0057ae;">b</span>.<span style="color:#644a9b;">foo</span>(<span style="color:#bf0303;">&quot;string&quot;</span>,<span style="color:#b08000;">1</span>,{<span style="color:#0057ae;">a</span>:<span style="color:#0057ae;">b</span>},<span style="color:#b08000;">1.5</span>,[<span style="color:#b08000;">1</span>,<span style="color:#b08000;">2</span>,<span style="color:#b08000;">3</span>])
+
+<span style="color:#0057ae;">unnamed_function</span> = <span style="font-weight:bold;">function</span> ( <span style="color:#0057ae;">a</span> <span style="font-weight:bold;">as</span> <span style="color:#0057ae;">Integer</span> ) <span style="font-weight:bold;">as</span> <span style="color:#0057ae;">Float</span>
+
+<span style="color:#0057ae;">a</span> = +-<span style="color:#0057ae;">b</span>
+<span style="color:#0057ae;">a</span> = <span style="color:#b08000;">&amp;h42abcdef</span>
+<span style="color:#0057ae;">c</span> = <span style="color:#0057ae;">var</span>@<span style="color:#0057ae;">attr</span>
+<span style="font-weight:bold;">end function</span>
+
+<span style="color:#0057ae;">unnamed_sub</span> = <span style="font-weight:bold;">sub</span> ( <span style="color:#0057ae;">a</span> <span style="font-weight:bold;">as</span> <span style="color:#0057ae;">Integer</span> ) <span style="font-weight:bold;">as</span> <span style="color:#0057ae;">Void</span>
+<span style="font-weight:bold;">end sub</span>
+<span style="font-weight:bold;">endFunction</span>
+</pre></body></html>

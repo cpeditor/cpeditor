@@ -1,0 +1,157 @@
+<Normal>GNU gdb (GDB) 8.1</Normal><br/>
+<Normal>Copyright (C) 2018 Free Software Foundation, Inc.</Normal><br/>
+<Normal>License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html></Normal><br/>
+<Normal>This is free software: you are free to change and redistribute it.</Normal><br/>
+<Normal>There is NO WARRANTY, to the extent permitted by law.  Type "show copying"</Normal><br/>
+<Normal>and "show warranty" for details.</Normal><br/>
+<Normal>This GDB was configured as "x86_64-pc-linux-gnu".</Normal><br/>
+<Normal>Type "show configuration" for configuration details.</Normal><br/>
+<Normal>For bug reporting instructions, please see:</Normal><br/>
+<Normal><http://www.gnu.org/software/gdb/bugs/>.</Normal><br/>
+<Normal>Find the GDB manual and other documentation resources online at:</Normal><br/>
+<Normal><http://www.gnu.org/software/gdb/documentation/>.</Normal><br/>
+<Normal>For help, type "help".</Normal><br/>
+<Normal>Type "apropos word" to search for commands related to "word"...</Normal><br/>
+<Normal>Reading symbols from your_application...done.</Normal><br/>
+<CommandLine>(gdb) </CommandLine><Command>break</Command><CommandLine> main</CommandLine><br/>
+<Comment># this is a comment</Comment><br/>
+<CommandLine>(gdb) </CommandLine><Command>run</Command><CommandLine> <arguments for your application></CommandLine><br/>
+<Normal>...</Normal><br/>
+<Normal>Breakpoint 1 at 0x400b56: file yourmain.cpp, line 3</Normal><br/>
+<Normal>3: int main(int argc, char* argv[])</Normal><br/>
+<CommandLine>(gdb) </CommandLine><Command>continue</Command><br/>
+<CommandLine>(gdb) </CommandLine><Command>backtrace</Command><br/>
+<Normal>#0  0x7f59e39bf18d in </Normal><Function>poll</Function><Normal> () from</Normal><File> /usr/lib/libc.so.6</File><br/>
+<Normal>#1  0x7f59df6c8c7c in </Normal><Function>??</Function><Normal> () from</Normal><File> /usr/lib/libglib-2.0.so.0</File><br/>
+<Normal>#2  0x7f59df6c8d8c in </Normal><Function>g_main_context_iteration</Function><Normal> () from</Normal><File> /usr/lib/libglib-2.0.so.0</File><br/>
+<Normal>#3  0x7f59e480b23f in </Normal><QualifiedIdentifier>QEventDispatcherGlib::</QualifiedIdentifier><Function>processEvents</Function><Normal>(...)</Normal><br/>
+<Normal>    from</Normal><File> /usr/lib/libQt5Core.so.5</File><br/>
+<Normal>...</Normal><br/>
+<CommandLine>(gdb) </CommandLine><Command>where</Command><br/>
+<Normal>#0  </Normal><Function>main</Function><Normal> (argc=1, argv=0x7fffffffca88) at</Normal><File> ../../debugging/ex_debugger/main.cpp</File><Normal>:</Normal><Normal>11</Normal><br/>
+<CommandLine>(gdb) </CommandLine><Command>list</Command><br/>
+<Normal>10          bool run = true;</Normal><br/>
+<Normal>11          while (run) {</Normal><br/>
+<Normal>12              // infinite loop! can you make it quit?</Normal><br/>
+<Normal>13          }</Normal><br/>
+<CommandLine>(gdb) </CommandLine><Command>info</Command><CommandLine> locals</CommandLine><br/>
+<Normal>app = <incomplete type></Normal><br/>
+<Normal>run = true</Normal><br/>
+<Normal>complexData = {{d = 0x61d430, e = 0x61d430}}</Normal><br/>
+<CommandLine>(gdb) </CommandLine><Command>info</Command><CommandLine> scope main.cpp:12</CommandLine><br/>
+<Normal>Scope for main.cpp:12:</Normal><br/>
+<Normal>Symbol argc is a variable at frame base reg $rbp offset 0+-8, length 4.</Normal><br/>
+<Normal>Symbol argv is a variable at frame base reg $rbp offset 0+-16, length 8.</Normal><br/>
+<CommandLine>(gdb) </CommandLine><Command>ptype</Command><CommandLine> run</CommandLine><br/>
+<Normal>type = bool</Normal><br/>
+<CommandLine>(gdb) </CommandLine><Command>print</Command><CommandLine> run</CommandLine><br/>
+<Normal>run = true</Normal><br/>
+<CommandLine>(gdb) </CommandLine><Command>set</Command><CommandLine> run = false</CommandLine><br/>
+<CommandLine>(gdb) </CommandLine><Command>print</Command><CommandLine> run</CommandLine><br/>
+<Normal>run = false</Normal><br/>
+<CommandLine>(gdb) </CommandLine><Command>print</Command><CommandLine> myString.size()</CommandLine><br/>
+<Normal>42</Normal><br/>
+<CommandLine>(gdb) </CommandLine><Command>ptype</Command><CommandLine> MyType</CommandLine><br/>
+<Normal>type = class MyType {</Normal><br/>
+<Normal>private:</Normal><br/>
+<Normal>    int foo;</Normal><br/>
+<Normal>public:</Normal><br/>
+<Normal>    int foo() const;</Normal><br/>
+<Normal>    ...</Normal><br/>
+<Normal>}</Normal><br/>
+<CommandLine>(gdb) </CommandLine><Command>break</Command><CommandLine> QMessageLogger::warning</CommandLine><br/>
+<Normal>Breakpoint 1 at 0x7ffff6f143f0 (8 locations)</Normal><br/>
+<CommandLine>(gdb) </CommandLine><Command>command</Command><CommandLine> 1</CommandLine><br/>
+<Normal>Type commands for breakpoint(s) 1, one per line.</Normal><br/>
+<Normal>End with a line saying just \"end\".</Normal><br/>
+<CommandLine>> </CommandLine><Command>backtrace</Command><br/>
+<CommandLine>> </CommandLine><Command>continue</Command><br/>
+<CommandLine>> </CommandLine><Command>end</Command><br/>
+<CommandLine>(gdb) </CommandLine><Command>catch</Command><CommandLine> throw </CommandLine><Comment># or when an exception is thrown</Comment><br/>
+<Normal>Catchpoint 2 (throw)</Normal><br/>
+<CommandLine>(gdb) </CommandLine><Command>break</Command><CommandLine> main.cpp:12 </CommandLine><Comment># or when certain code is executed</Comment><br/>
+<Normal>Breakpoint 3 at 0x401216: file ../../debugging/ex_debugger/main.cpp, line 12.</Normal><br/>
+<CommandLine>(gdb) </CommandLine><Command>info</Command><CommandLine> breakpoints</CommandLine><br/>
+<Normal>Num     Type           Disp Enb Address            What</Normal><br/>
+<Normal>1       breakpoint     keep y   <MULTIPLE></Normal><br/>
+<Normal>1.1                         y     0x7ffff6f143f0 <QMessageLogger::warning(char const*, …</Normal><br/>
+<Normal>...</Normal><br/>
+<Normal>2       breakpoint     keep y   0x7ffff66d9b90 exception throw</Normal><br/>
+<Normal>3       breakpoint     keep y   0x000000401216 in main(int, char**)</Normal><br/>
+<Normal>                                                at debugging/ex_debugger/main.cpp:12</Normal><br/>
+<CommandLine>(gdb) </CommandLine><Command>condition</Command><CommandLine> 3 argc > 5</CommandLine><br/>
+<Normal>                </Normal><Comment># ^-- breakpoint id, see `info breakpoints` above</Comment><br/>
+<CommandLine>(gdb) </CommandLine><Command>call</Command><CommandLine> myFunction()</CommandLine><br/>
+<CommandLine>(gdb) </CommandLine><Command>set</Command><CommandLine> pagination off</CommandLine><br/>
+<CommandLine>(gdb) </CommandLine><Command>set</Command><CommandLine> logging file /tmp/warnings.log</CommandLine><br/>
+<CommandLine>(gdb) </CommandLine><Command>set</Command><CommandLine> logging on</CommandLine><br/>
+<Normal>Copying output to /tmp/warnings.log.</Normal><br/>
+<CommandLine>(gdb) </CommandLine><Command>info</Command><CommandLine> threads</CommandLine><br/>
+<Normal>            Id   Target Id         Frame</Normal><br/>
+<Normal>2    Thread 0x7fffe10e1700 (LWP 7271) \"QXcbEventReader\"</Normal><br/>
+<Normal>    0x7ffff0b6718d in poll () from /usr/lib/libc.so.6</Normal><br/>
+<Normal>* 1    Thread 0x7ffff7edd840 (LWP 7267) \"kwrite\"</Normal><br/>
+<Normal>    0x7ffff0b6718d in poll () from /usr/lib/libc.so.6</Normal><br/>
+<CommandLine>(gdb) </CommandLine><Command>thread</Command><br/>
+<Thread>[Current thread is 1 (Thread 0x7ffff7edd840 (LWP 7267))]</Thread><br/>
+<CommandLine>(gdb) </CommandLine><Command>thread</Command><CommandLine> 2</CommandLine><br/>
+<Normal>[Switching to thread 2 (Thread 0x7fffe10e1700 (LWP 9765))]</Normal><br/>
+<CommandLine>(gdb) </CommandLine><Command>thread</Command><CommandLine> apply all backtrace</CommandLine><br/>
+<CommandLine>(gdb) </CommandLine><Command>info</Command><CommandLine> sharedlibrary</CommandLine><br/>
+<Normal>From                To                  Syms Read   Shared Object Library</Normal><br/>
+<Normal>0x7ffff7ddbb80  0x7ffff7df5610  Yes (*)     /lib64/ld-linux-x86-64.so.2</Normal><br/>
+<Normal>0x7ffff7690460  0x7ffff7ab723c  Yes         /opt/qt/5.5/gcc_64/lib/libQt5Gui.so.5</Normal><br/>
+<Normal>0x7ffff6efdb80  0x7ffff71af318  Yes         /opt/qt/5.5/gcc_64/lib/libQt5Core.so.5</Normal><br/>
+<Normal>0x7ffff6c02f60  0x7ffff6c5f852  Yes (*)     /usr/lib/libGL.so.1</Normal><br/>
+<Normal>0x7ffff69d3ac0  0x7ffff69e0931  Yes (*)     /usr/lib/libpthread.so.0</Normal><br/>
+<Normal>0x7ffff66d5fa0  0x7ffff6781d89  Yes         /usr/lib/libstdc++.so.6</Normal><br/>
+<Normal>0x7ffff6353510  0x7ffff63bb33a  Yes (*)     /usr/lib/libm.so.6</Normal><br/>
+<Normal>...</Normal><br/>
+<Normal>(*): Shared library is missing debugging information.</Normal><br/>
+<CommandLine>(gdb) </CommandLine><Command>list</Command><CommandLine> 64</CommandLine><br/>
+<Normal>59           * If no red can be seen, then the cached implementation is \"good enough\".</Normal><br/>
+<Normal>60           */</Normal><br/>
+<Normal>61          void paintEvent(QPaintEvent *event)</Normal><br/>
+<Normal>62          {</Normal><br/>
+<Normal>63              const QRect rect = event->rect();</Normal><br/>
+<Normal>64</Normal><br/>
+<Normal>65              QPainter painter(this);</Normal><br/>
+<Normal>66              painter.setRenderHint(QPainter::Antialiasing);</Normal><br/>
+<Normal>67              painter.fillRect(rect, Qt::black);</Normal><br/>
+<Normal>68</Normal><br/>
+<CommandLine>(gdb) </CommandLine><Command>dprintf</Command><CommandLine> main.cpp:64,\"paint rect(w=%d,h=%d)\\n\",rect.width(),rect.height()</CommandLine><br/>
+<Normal>Dprintf 1 at 0x403a1e: file path/to/main.cpp, line 64.</Normal><br/>
+<CommandLine>(gdb) </CommandLine><Command>continue</Command><br/>
+<Normal>Continuing.</Normal><br/>
+<Normal>paint rect(w=202,h=200)</Normal><br/>
+<Normal>paint rect(w=213,h=203)</Normal><br/>
+<CommandLine>(gdb) </CommandLine><Command>target</Command><CommandLine> remote <device ip>:<port></CommandLine><br/>
+<Normal>Remote debugging using <device ip>:<port></Normal><br/>
+<Normal>Reading /lib64/ld-linux-x86-64.so.2 from remote target...</Normal><br/>
+<Normal>warning: File transfers from remote targets can be slow.</Normal><br/>
+<Normal>            Use \"set sysroot\"to access files locally instead.</Normal><br/>
+<Normal>...</Normal><br/>
+<CommandLine>(gdb) </CommandLine><Command>set</Command><CommandLine> sysroot /path/to/sysroot</CommandLine><br/>
+<CommandLine>(gdb) </CommandLine><Command>print</Command><CommandLine> myMap</CommandLine><br/>
+<Normal>$1 = QMap<QString, int> = {</Normal><br/>
+<Normal>    [\"bar\"] = 1,</Normal><br/>
+<Normal>    [\"foo\"] = 2</Normal><br/>
+<Normal>}</Normal><br/>
+<CommandLine>(gdb) </CommandLine><Command>print</Command><CommandLine> money</CommandLine><br/>
+<Normal>$1 {</Normal><br/>
+<Normal>    {value = 1.20000005, currency = Money::Euro},</Normal><br/>
+<Normal>    {value = 3.4000001, currency = Money::Dollar}</Normal><br/>
+<Normal>}</Normal><br/>
+<CommandLine>(gdb) </CommandLine><Command>python</Command><br/>
+<Operator>></Operator><Normal> </Normal><Import>import</Import><Normal> </Normal><Normal Text>sys</Normal Text><br/>
+<Operator>></Operator><Normal> </Normal><Normal Text>sys</Normal Text><Normal>.</Normal><Normal Text>path</Normal Text><Normal>.</Normal><Normal Text>insert(</Normal Text><Int>0</Int><Normal Text>, </Normal Text><String>'/path/to/addon/debugging/ex_gdb_pretty_printer'</String><Normal Text>)</Normal Text><br/>
+<Operator>></Operator><Normal> </Normal><Import>import</Import><Normal> </Normal><Normal Text>money_printer</Normal Text><br/>
+<Operator>></Operator><Normal> </Normal><Command>end</Command><br/>
+<CommandLine>(gdb) </CommandLine><Command>print</Command><CommandLine> money</CommandLine><br/>
+<Normal>$2 = {</Normal><br/>
+<Normal>    \"1.200000 Euro\",</Normal><br/>
+<Normal>    \"3.400000 Dollar\"</Normal><br/>
+<Normal>}</Normal><br/>
+<CommandLine>(gdb) </CommandLine><Command>continue</Command><br/>
+<CommandLine>(gdb) </CommandLine><Command>detach</Command><br/>
+<CommandLine>(gdb) </CommandLine><Command>quit</Command><br/>

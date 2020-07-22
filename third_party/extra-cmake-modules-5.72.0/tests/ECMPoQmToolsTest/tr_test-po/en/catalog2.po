@@ -1,0 +1,22 @@
+msgid ""
+msgstr ""
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Language: en\n"
+"X-Qt-Contexts: true\n"
+
+#: main.cpp:12
+msgctxt "testcontext|"
+msgid "test string"
+msgstr "2nd english text"
+
+#: main.cpp:13
+#, qt-format
+#| msgid "test plural"
+msgctxt "testcontext|"
+msgid "test plural %n"
+msgid_plural "test plural %n"
+msgstr[0] "2nd english singular form %n"
+msgstr[1] "2nd english plural form %n"

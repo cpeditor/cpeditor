@@ -1,0 +1,83 @@
+<Comment>/* Overpass samples taken from</Comment><br/>
+<Comment>   https://wiki.openstreetmap.org/wiki/Overpass_API/Overpass_QL</Comment><br/>
+<Comment>   https://wiki.openstreetmap.org/wiki/Overpass_API/Overpass_API_by_Example</Comment><br/>
+<Comment></Comment><br/>
+<Normal>*/</Normal><br/>
+<Normal></Normal><br/>
+<Comment>// single line comment with </Comment><Alert Level 2>TODO</Alert Level 2><Comment> alerts</Comment><br/>
+<Normal></Normal><br/>
+<Comment>/* multi-line comment with </Comment><Alert Level 3>###</Alert Level 3><Comment> alerts </Comment><Normal>*/</Normal><br/>
+<Normal></Normal><br/>
+<Normal>[</Normal><Queries>out</Queries><Normal>:json][</Normal><Named Argument>timeout</Named Argument><Normal>:</Normal><Decimal>25</Decimal><Normal>];</Normal><br/>
+<Comment>// gather results</Comment><br/>
+<Normal>(</Normal><br/>
+<Normal>  </Normal><Comment>// query part for: “amenity=post_box”</Comment><br/>
+<Normal>  </Normal><Queries>node</Queries><Normal>[</Normal><String>"amenity"</String><Normal>=</Normal><String>"post_box"</String><Normal>](</Normal><Float>52.0</Float><Normal>, </Normal><Float>13.0</Float><Normal>, </Normal><Float>54.0</Float><Normal>, </Normal><Float>13.5</Float><Normal>);</Normal><br/>
+<Normal>  </Normal><Queries>way</Queries><Normal>[</Normal><String>"amenity"</String><Normal>=</Normal><String>"post_box"</String><Normal>](</Normal><Overpass Turbo Placeholders>{{bbox}}</Overpass Turbo Placeholders><Normal>);</Normal><br/>
+<Normal>  </Normal><Queries>relation</Queries><Normal>[</Normal><String>"amenity"</String><Normal>=</Normal><String>"post_box"</String><Normal>](</Normal><Overpass Turbo Placeholders>{{bbox}}</Overpass Turbo Placeholders><Normal>);</Normal><br/>
+<Normal>);</Normal><br/>
+<Comment>// print results</Comment><br/>
+<Queries>out</Queries><Normal> </Normal><Evaluators>body</Evaluators><Normal>;</Normal><br/>
+<Normal>>;</Normal><br/>
+<Queries>out</Queries><Normal> </Normal><Evaluators>skel</Evaluators><Normal> </Normal><Evaluators>qt</Evaluators><Normal>;</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Normal>[</Normal><Queries>out</Queries><Normal>:csv(::</Normal><Evaluators>type</Evaluators><Normal>, </Normal><String>"de:regionalschluessel"</String><Normal>, name,</Normal><br/>
+<Normal>         ::</Normal><Evaluators>count</Evaluators><Normal>, ::</Normal><String>"count:nodes"</String><Normal>, ::</Normal><String>"count:ways"</String><Normal>, ::</Normal><String>"count:relations"</String><Normal>)];</Normal><br/>
+<Normal></Normal><br/>
+<Comment>//All areas with regional key (German: "Regionalschlüssel") starting with 057</Comment><br/>
+<Queries>area</Queries><Normal>[</Normal><String>"de:regionalschluessel"</String><Normal>~</Normal><String>"^057"</String><Normal>];</Normal><br/>
+<Normal></Normal><br/>
+<Comment>// Count the pharmacies in each area</Comment><br/>
+<Keyword>foreach</Keyword><Normal>->.regio(</Normal><br/>
+<Normal>  </Normal><Comment>// display details for the current area</Comment><br/>
+<Normal>  .regio </Normal><Queries>out</Queries><Normal>;</Normal><br/>
+<Normal></Normal><br/>
+<Normal>  </Normal><Comment>// Collect all Nodes, Ways and Relations with amenity=pharmacy in the current area</Comment><br/>
+<Normal>  ( </Normal><Queries>node</Queries><Normal>(</Normal><Queries>area</Queries><Normal>.regio)[amenity=pharmacy];</Normal><br/>
+<Normal>    </Normal><Queries>way</Queries><Normal>(</Normal><Queries>area</Queries><Normal>.regio)[amenity=pharmacy];</Normal><br/>
+<Normal>    </Normal><Queries>rel</Queries><Normal>(</Normal><Queries>area</Queries><Normal>.regio)[amenity=pharmacy];);</Normal><br/>
+<Normal></Normal><br/>
+<Comment>// Count the elements in the current area Area</Comment><br/>
+<Normal>  </Normal><Queries>out</Queries><Normal> </Normal><Evaluators>count</Evaluators><Normal>;</Normal><br/>
+<Normal>);</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Normal>[</Normal><Named Argument>timeout</Named Argument><Normal>:</Normal><Decimal>300</Decimal><Normal>]</Normal><br/>
+<Normal>[</Normal><Named Argument>bbox</Named Argument><Normal>:</Normal><Float>51.08282186160976</Float><Normal>,-</Normal><Float>12.8759765625</Float><Normal>,</Normal><Float>55.986091533808384</Float><Normal>,-</Normal><Float>1.86767578125</Float><Normal>]</Normal><br/>
+<Normal>[</Normal><Queries>out</Queries><Normal>:csv(::</Normal><Evaluators>id</Evaluators><Normal>, ::</Normal><Evaluators>type</Evaluators><Normal>, name, </Normal><String>"name:en"</String><Normal>, </Normal><String>"name:ga"</String><Normal>)];</Normal><br/>
+<Normal></Normal><br/>
+<Normal>( </Normal><Queries>node</Queries><Normal>[name][</Normal><String>"name:en"</String><Normal>][</Normal><String>"name:ga"</String><Normal>](</Normal><Keyword>if</Keyword><Normal>:(t[</Normal><String>"name"</String><Normal>] != t[</Normal><String>"name:en"</String><Normal>]) && (t[</Normal><String>"name"</String><Normal>] != t[</Normal><String>"name:ga"</String><Normal>]));</Normal><br/>
+<Normal>  </Normal><Queries>way</Queries><Normal>[name][</Normal><String>"name:en"</String><Normal>][</Normal><String>"name:ga"</String><Normal>] (</Normal><Keyword>if</Keyword><Normal>:(t[</Normal><String>"name"</String><Normal>] != t[</Normal><String>"name:en"</String><Normal>]) && (t[</Normal><String>"name"</String><Normal>] != t[</Normal><String>"name:ga"</String><Normal>]));</Normal><br/>
+<Normal>  </Normal><Queries>rel</Queries><Normal>[name][</Normal><String>"name:en"</String><Normal>][</Normal><String>"name:ga"</String><Normal>] (</Normal><Keyword>if</Keyword><Normal>:(t[</Normal><String>"name"</String><Normal>] != t[</Normal><String>"name:en"</String><Normal>]) && (t[</Normal><String>"name"</String><Normal>] != t[</Normal><String>"name:ga"</String><Normal>]));</Normal><br/>
+<Normal>);</Normal><br/>
+<Queries>out</Queries><Normal>;</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Normal>[</Normal><Queries>out</Queries><Normal>:csv(</Normal><Evaluators>version</Evaluators><Normal>,</Normal><Evaluators>timestamp</Evaluators><Normal>,</Normal><Evaluators>changeset</Evaluators><Normal>,</Normal><Evaluators>count</Evaluators><Normal>)];</Normal><br/>
+<Queries>timeline</Queries><Normal>(</Normal><Queries>relation</Queries><Normal>,</Normal><Decimal>2632934</Decimal><Normal>);</Normal><br/>
+<Keyword>for</Keyword><Normal> (t[</Normal><String>"created"</String><Normal>])</Normal><br/>
+<Normal>{</Normal><br/>
+<Normal>  </Normal><Keyword>retro</Keyword><Normal>(_.val)</Normal><br/>
+<Normal>  {</Normal><br/>
+<Normal>    </Normal><Queries>rel</Queries><Normal>(</Normal><Decimal>2632934</Decimal><Normal>);</Normal><br/>
+<Normal>    </Normal><Queries>make</Queries><Normal> stat </Normal><Evaluators>version</Evaluators><Normal>=u(</Normal><Evaluators>version</Evaluators><Normal>()),</Normal><Evaluators>timestamp</Evaluators><Normal>=u(</Normal><Evaluators>timestamp</Evaluators><Normal>()),</Normal><Evaluators>changeset</Evaluators><Normal>=u(</Normal><Evaluators>changeset</Evaluators><Normal>()),</Normal><Evaluators>count</Evaluators><Normal>=u(</Normal><Evaluators>count_members</Evaluators><Normal>());</Normal><br/>
+<Normal>    </Normal><Queries>out</Queries><Normal>;</Normal><br/>
+<Normal>  }</Normal><br/>
+<Normal>}</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Normal>[</Normal><Named Argument>timeout</Named Argument><Normal>:</Normal><Decimal>60</Decimal><Normal>];</Normal><br/>
+<Queries>area</Queries><Normal>[</Normal><String>"name"</String><Normal>=</Normal><String>"Mayenne"</String><Normal>]->.boundaryarea;</Normal><br/>
+<Queries>way</Queries><Normal>(</Normal><Queries>area</Queries><Normal>.boundaryarea)[</Normal><String>"building"</String><Normal>=</Normal><String>"church"</String><Normal>];</Normal><br/>
+<Normal>  </Normal><Keyword>foreach</Keyword><Normal>(</Normal><br/>
+<Normal>    </Normal><Queries>node</Queries><Normal>(w)->.d;                                     </Normal><Comment>// determine all nodes of a way</Comment><br/>
+<Normal>    .n </Normal><Queries>is_in</Queries><Normal>->.a;</Normal><br/>
+<Normal>    </Normal><Queries>area</Queries><Normal>.a[name][boundary=administrative][admin_level~</Normal><String>"^[2-8]$"</String><Normal>] -> .a;</Normal><br/>
+<Normal>    </Normal><Queries>out</Queries><Normal> </Normal><Evaluators>center</Evaluators><Normal>;</Normal><br/>
+<Normal>    </Normal><Queries>convert</Queries><Normal> </Normal><Queries>way</Queries><Normal> ::=::,</Normal><br/>
+<Normal>              ::</Normal><Evaluators>id</Evaluators><Normal> = </Normal><Evaluators>id</Evaluators><Normal>(),</Normal><br/>
+<Normal>              </Normal><Queries>is_in</Queries><Normal>=a.</Normal><Evaluators>set</Evaluators><Normal>(</Normal><String>"{"</String><Normal> + t[</Normal><String>"admin_level"</String><Normal>] + </Normal><String>":"</String><Normal> + t[</Normal><String>"name"</String><Normal>] + </Normal><String>"}"</String><Normal>);</Normal><br/>
+<Normal></Normal><br/>
+<Normal>    </Normal><Queries>out</Queries><Normal>;</Normal><br/>
+<Normal>);</Normal><br/>

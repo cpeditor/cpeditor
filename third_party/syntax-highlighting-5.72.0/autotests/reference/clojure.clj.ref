@@ -1,0 +1,73 @@
+<Comment>; Test file, released under MIT License</Comment><br/>
+<Brackets1>(</Brackets1><Keyword>ns</Keyword><Normal> </Normal><BracketsMeta>^{</BracketsMeta><Modifier2>:doc</Modifier2><Normal> </Normal><Documentation>"Syntax highlighting test file"</Documentation><br/>
+<Normal>      </Normal><Modifier2>:author</Modifier2><Normal> </Normal><Documentation>"Markus Brenneis"</Documentation><BracketsMeta>}</BracketsMeta><br/>
+<Normal>    highlighting</Normal><Brackets1>)</Brackets1><br/>
+<Normal></Normal><br/>
+<Brackets1>(</Brackets1><Definition>defn</Definition><Function> something-else </Function><BracketsSquare>[</BracketsSquare><Normal>f xs</Normal><BracketsSquare>]</BracketsSquare><br/>
+<Normal>  </Normal><Comment>#_</Comment><Brackets2>(</Brackets2><Keyword>map</Keyword><Normal> </Normal><Brackets3>#(</Brackets3><Keyword>apply</Keyword><Normal> f </Normal><Brackets4>(</Brackets4><Variable>%</Variable><Normal> </Normal><BracketsSquare>[</BracketsSquare><Variable>%</Variable><BracketsSquare>]</BracketsSquare><Brackets4>)</Brackets4><Brackets3>)</Brackets3><Normal> </Normal><Brackets3>(</Brackets3><Keyword>cons</Keyword><Normal> </Normal><Decimal>1</Decimal><Normal> xs</Normal><Brackets3>)</Brackets3><Brackets2>)</Brackets2><br/>
+<Normal>  </Normal><Brackets2>(</Brackets2><Keyword>map</Keyword><Normal> </Normal><Brackets3>#(</Brackets3><Keyword>apply</Keyword><Normal> f </Normal><Brackets4>(</Brackets4><Variable>%</Variable><Normal> xs</Normal><Brackets4>)</Brackets4><Brackets3>)</Brackets3><Normal> </Normal><Brackets3>(</Brackets3><Keyword>cons</Keyword><Normal> </Normal><Decimal>1</Decimal><Normal> xs</Normal><Brackets3>)</Brackets3><Brackets2>)</Brackets2><br/>
+<Normal>  </Normal><Comment>#_</Comment><BracketsSquare>[</BracketsSquare><Decimal>1</Decimal><Normal> </Normal><Brackets2>'(</Brackets2><Decimal>2</Decimal><Brackets2>)</Brackets2><BracketsSquare>]</BracketsSquare><br/>
+<Normal>  xs</Normal><Brackets1>)</Brackets1><br/>
+<Normal></Normal><br/>
+<Brackets1>(</Brackets1><Definition>def</Definition><Function> foo </Function><BracketsSquare>[</BracketsSquare><Char>\a</Char><Normal> </Normal><Char>\b</Char><Normal> </Normal><Char>\n</Char><Normal> </Normal><Char>\ucafe</Char><Normal> </Normal><Char>\o123</Char><Normal> </Normal><Char>\n</Char><br/>
+<Normal>          </Normal><Char>\newline</Char><Normal> </Normal><Char>\tab</Char><Normal> </Normal><Char>\space</Char><Normal> </Normal><Char>\formfeed</Char><Normal> </Normal><Char>\backspace</Char><BracketsSquare>]</BracketsSquare><Brackets1>)</Brackets1><br/>
+<Normal></Normal><br/>
+<Brackets1>(</Brackets1><Definition>def</Definition><Function> fizz </Function><BracketsMap>{</BracketsMap><BracketsSet>#{</BracketsSet><Char>\a</Char><Normal> </Normal><Char>\b</Char><BracketsSet>}</BracketsSet><br/>
+<Normal>           </Normal><BracketsSet>#{</BracketsSet><Char>\n</Char><Normal> </Normal><Char>\newline</Char><BracketsSet>}</BracketsSet><BracketsMap>}</BracketsMap><Brackets1>)</Brackets1><br/>
+<Normal></Normal><br/>
+<Brackets1>(</Brackets1><Definition>def</Definition><Function> fizz' </Function><BracketsSet>#{</BracketsSet><BracketsMap>{</BracketsMap><Char>\a</Char><Normal> </Normal><Char>\b</Char><BracketsMap>}</BracketsMap><br/>
+<Normal>             </Normal><BracketsMap>{</BracketsMap><Char>\n</Char><Normal> </Normal><Char>\newline</Char><BracketsMap>}</BracketsMap><BracketsSet>}</BracketsSet><Brackets1>)</Brackets1><br/>
+<Normal></Normal><br/>
+<Brackets1>(</Brackets1><Definition>defn</Definition><Function> bar </Function><BracketsSquare>[</BracketsSquare><Normal>xs</Normal><BracketsSquare>]</BracketsSquare><br/>
+<Normal>  </Normal><Brackets2>(</Brackets2><Keyword>as-></Keyword><Normal> xs <></Normal><br/>
+<Normal>        </Normal><Brackets3>(</Brackets3><Keyword>cons</Keyword><Normal> </Normal><Modifier2>:a</Modifier2><Normal> <></Normal><Brackets3>)</Brackets3><br/>
+<Normal>        </Normal><Brackets3>(</Brackets3><Keyword>map</Keyword><Normal> </Normal><Brackets4>#(</Brackets4><Variable>%1</Variable><Normal> </Normal><Variable>%2</Variable><Brackets4>)</Brackets4><Normal> <></Normal><Brackets3>)</Brackets3><Normal> </Normal><Comment>; </Comment><Alert>TODO</Alert><Comment> improve</Comment><br/>
+<Normal>        </Normal><Brackets3>(</Brackets3><Keyword>into</Keyword><Normal> <> </Normal><BracketsSquare>[</BracketsSquare><Modifier2>:konjure.logic.specs/numShips</Modifier2><BracketsSquare>]</BracketsSquare><Brackets3>)</Brackets3><Brackets2>)</Brackets2><Brackets1>)</Brackets1><br/>
+<Normal></Normal><br/>
+<Brackets1>(</Brackets1><Definition>def</Definition><Function> x-2-y</Function><br/>
+<Normal>  </Normal><Comment>#_</Comment><String>"do </String><String Char>\"</String Char><String> sth"</String><br/>
+<Normal>  </Normal><Brackets2>(</Brackets2><Normal>domonad set-m</Normal><br/>
+<Normal>    </Normal><BracketsSquare>[</BracketsSquare><Normal>x </Normal><BracketsSet>#{</BracketsSet><Float>1.1</Float><Normal>, </Normal><Brackets1>(</Brackets1><Keyword>+</Keyword><Normal> -2 +4</Normal><Brackets1>)</Brackets1><BracketsSet>}</BracketsSet><br/>
+<Normal>     y </Normal><BracketsSet>#{</BracketsSet><Float>1.1</Float><Normal>, </Normal><Brackets1>(</Brackets1><Keyword>-</Keyword><Normal> -2.</Normal><Decimal>0</Decimal><Normal> </Normal><Float>4.0</Float><Brackets1>)</Brackets1><BracketsSet>}</BracketsSet><BracketsSquare>]</BracketsSquare><br/>
+<Normal>    </Normal><Brackets3>(</Brackets3><Keyword>*'</Keyword><Normal> x y</Normal><Brackets3>)</Brackets3><Brackets2>)</Brackets2><Brackets1>)</Brackets1><br/>
+<Normal></Normal><br/>
+<Brackets1>(</Brackets1><Definition>def</Definition><Function> bases</Function><br/>
+<Normal>  </Normal><Brackets2>(</Brackets2><Keyword>and</Keyword><Normal> </Normal><Brackets3>(</Brackets3><Keyword>=</Keyword><Normal> -1 -1N</Normal><Brackets3>)</Brackets3><br/>
+<Normal>       </Normal><Brackets3>(</Brackets3><Keyword>=</Keyword><Normal> </Normal><Float>1/4</Float><Normal> -2.</Normal><Decimal>5</Decimal><Normal>e-1</Normal><Brackets3>)</Brackets3><br/>
+<Normal>       </Normal><Brackets3>(</Brackets3><Keyword>=</Keyword><Normal> -</Normal><Float>1/2</Float><Normal> -0.</Normal><Decimal>5</Decimal><Normal>M</Normal><Brackets3>)</Brackets3><br/>
+<Normal>       </Normal><Brackets3>(</Brackets3><Keyword>=</Keyword><Normal> -</Normal><BaseN>0x1Ab</BaseN><Normal> -</Normal><BaseN>0X1ab</BaseN><Brackets3>)</Brackets3><br/>
+<Normal>       </Normal><Brackets3>(</Brackets3><Keyword>=</Keyword><Normal> +</Normal><BaseN>2r101010</BaseN><Normal> </Normal><BaseN>25R1h</BaseN><Brackets3>)</Brackets3><br/>
+<Normal>       </Normal><Brackets3>(</Brackets3><Keyword>=</Keyword><Normal> </Normal><Error>39r13</Error><Normal> </Normal><Error>42R10</Error><Brackets3>)</Brackets3><Brackets2>)</Brackets2><Brackets1>)</Brackets1><Normal> </Normal><Comment>; </Comment><Alert>FIXME</Alert><Comment> this one is not correct</Comment><br/>
+<Normal></Normal><br/>
+<Brackets1>(</Brackets1><Definition>def</Definition><Function> </Function><BracketsMeta>^{</BracketsMeta><Modifier2>:private</Modifier2><Normal> </Normal><Variable>true</Variable><BracketsMeta>}</BracketsMeta><br/>
+<Normal>  </Normal><Brackets2>(</Brackets2><Keyword>=</Keyword><Normal> </Normal><Brackets3>(</Brackets3><Keyword>last</Keyword><Normal> </Normal><BracketsSet>#{#{}}</BracketsSet><Brackets3>)</Brackets3><Normal> </Normal><BracketsSet>#{</BracketsSet><BracketsMap>{</BracketsMap><BracketsSet>#{}</BracketsSet><BracketsMap>}</BracketsMap><BracketsSet>}</BracketsSet><Brackets2>)</Brackets2><Brackets1>)</Brackets1><br/>
+<Normal></Normal><br/>
+<Brackets1>(</Brackets1><Definition>def</Definition><Function> s </Function><String>"#repl</String><String Char>\n</String Char><String>"</String><Brackets1>)</Brackets1><br/>
+<Brackets1>(</Brackets1><Definition>def</Definition><Function> r </Function><Regexpr>#"repl"</Regexpr><Brackets1>)</Brackets1><br/>
+<Normal></Normal><br/>
+<Brackets1>(</Brackets1><Definition>defn-</Definition><Function> stuff!</Function><br/>
+<Normal>  </Normal><BracketsSquare>[</BracketsSquare><Normal>a</Normal><BracketsSquare>]</BracketsSquare><br/>
+<Normal>  </Normal><String>"This is no </String><String Char>\"</String Char><String>documentation</String><String Char>\"</String Char><String>!"</String><br/>
+<Normal>  </Normal><Brackets2>(</Brackets2><Keyword>=</Keyword><Normal> </Normal><Brackets3>(</Brackets3><Keyword>class</Keyword><Normal> </Normal><Variable>#'+</Variable><Brackets3>)</Brackets3><Normal> </Normal><Brackets3>(</Brackets3><Keyword>class</Keyword><Normal> </Normal><Variable>#'foo</Variable><Brackets3>)</Brackets3><Brackets2>)</Brackets2><br/>
+<Normal>  </Normal><Brackets2>(</Brackets2><Keyword>let</Keyword><Normal> </Normal><BracketsSquare>[</BracketsSquare><Keyword>+</Keyword><Normal> </Normal><Keyword>-</Keyword><BracketsSquare>]</BracketsSquare><Normal> </Normal><BracketsSquare>[</BracketsSquare><Brackets3>(</Brackets3><Keyword>+</Keyword><Normal> a </Normal><Decimal>1</Decimal><Brackets3>)</Brackets3><Normal> </Normal><Brackets3>(</Brackets3><Modifier>@#'+</Modifier><Normal> a </Normal><Decimal>1</Decimal><Brackets3>)</Brackets3><BracketsSquare>]</BracketsSquare><Brackets2>)</Brackets2><Brackets1>)</Brackets1><br/>
+<Normal></Normal><br/>
+<Brackets1>(</Brackets1><Definition>defn-</Definition><Function> throwIllegalArgumentException!</Function><br/>
+<Normal>  </Normal><String>"Throws an </String><String Char>\"</String Char><String>IllegalArgumentException</String><String Char>\"</String Char><String> or</String><br/>
+<String>  a js/Error."</String><br/>
+<Normal>  </Normal><BracketsSquare>[</BracketsSquare><Normal>message</Normal><BracketsSquare>]</BracketsSquare><br/>
+<Normal>  </Normal><Readermacro>#?</Readermacro><Brackets2>(</Brackets2><Modifier2>:clj</Modifier2><Normal>  </Normal><Brackets3>(</Brackets3><Keyword>throw</Keyword><Normal> </Normal><Brackets4>(</Brackets4><Normal>IllegalArgumentException. message</Normal><Brackets4>)</Brackets4><Brackets3>)</Brackets3><br/>
+<Normal>     </Normal><Modifier2>:cljs</Modifier2><Normal> </Normal><Brackets3>(</Brackets3><Keyword>throw</Keyword><Normal> </Normal><Brackets4>(</Brackets4><Normal>js/Error. message</Normal><Brackets4>)</Brackets4><Brackets3>)</Brackets3><Brackets2>)</Brackets2><Brackets1>)</Brackets1><br/>
+<Normal></Normal><br/>
+<Brackets1>(</Brackets1><Definition>defmacro</Definition><Function> let-fn </Function><Documentation>"a nonsense macro"</Documentation><Normal> </Normal><BracketsSquare>[</BracketsSquare><Normal>one-binding & body</Normal><BracketsSquare>]</BracketsSquare><br/>
+<Normal>  </Normal><Brackets2>`(</Brackets2><Keyword>+</Keyword><Normal> </Normal><Decimal>1</Decimal><Normal> ~</Normal><Brackets3>(</Brackets3><Keyword>inc'</Keyword><Normal> </Normal><Decimal>1</Decimal><Brackets3>)</Brackets3><Brackets2>)</Brackets2><br/>
+<Normal>  </Normal><Brackets2>(</Brackets2><Keyword>let</Keyword><Normal> </Normal><BracketsSquare>[[</BracketsSquare><Normal>identifier & fn-body</Normal><BracketsSquare>]</BracketsSquare><Normal> one-binding</Normal><BracketsSquare>]</BracketsSquare><br/>
+<Normal>    </Normal><Brackets3>`(</Brackets3><Keyword>let</Keyword><Normal> </Normal><BracketsSquare>[</BracketsSquare><Modifier>~identifier</Modifier><Normal> </Normal><Brackets4>(</Brackets4><Keyword>fn</Keyword><Normal> </Normal><Modifier>~identifier</Modifier><Normal> </Normal><Modifier>~@fn-body</Modifier><Brackets4>)</Brackets4><BracketsSquare>]</BracketsSquare><br/>
+<Normal>      </Normal><Modifier>~@body</Modifier><Normal> </Normal><Modifier>`a#</Modifier><Brackets3>)</Brackets3><Brackets2>)</Brackets2><Brackets1>)</Brackets1><br/>
+<Normal></Normal><br/>
+<Brackets1>(</Brackets1><Definition>def</Definition><Function> state </Function><Brackets2>(</Brackets2><Keyword>atom</Keyword><Normal> </Normal><BracketsSquare>[</BracketsSquare><Brackets3>(</Brackets3><Keyword>=</Keyword><Normal> </Normal><Variable>false</Variable><Normal> </Normal><Variable>true</Variable><Brackets3>)</Brackets3><Normal> </Normal><Variable>nil</Variable><BracketsSquare>]</BracketsSquare><Brackets2>)</Brackets2><Brackets1>)</Brackets1><br/>
+<Normal></Normal><br/>
+<Brackets1>(</Brackets1><Definition>defn</Definition><Function> something-cool </Function><BracketsSquare>[]</BracketsSquare><Normal> </Normal><Brackets2>(</Brackets2><Keyword>first</Keyword><Normal> </Normal><Modifier>@state</Modifier><Brackets2>)</Brackets2><Brackets1>)</Brackets1><br/>
+<Normal></Normal><br/>
+<Brackets1>(</Brackets1><Definition>defn-</Definition><Function> something-different </Function><BracketsSquare>[]</BracketsSquare><Normal> </Normal><Brackets2>(</Brackets2><Keyword>first</Keyword><Normal> </Normal><Brackets3>(</Brackets3><Keyword>into</Keyword><Normal> </Normal><Modifier>@state</Modifier><Normal> </Normal><BracketsSquare>[</BracketsSquare><Decimal>12</Decimal><BracketsSquare>]</BracketsSquare><Brackets3>)</Brackets3><Brackets2>)</Brackets2><Brackets1>)</Brackets1><br/>
+<Normal></Normal><br/>
+<Brackets1>(</Brackets1><Definition>defn-</Definition><Function> instance-getfield </Function><BracketsSquare>[</BracketsSquare><Normal>this k</Normal><BracketsSquare>]</BracketsSquare><Normal> </Normal><Brackets2>(</Brackets2><Brackets3>@(</Brackets3><Normal>.state this</Normal><Brackets3>)</Brackets3><Normal> k</Normal><Brackets2>)</Brackets2><Brackets1>)</Brackets1><br/>

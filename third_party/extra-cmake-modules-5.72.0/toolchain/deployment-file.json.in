@@ -1,0 +1,19 @@
+{
+   "qt": "@_qt5Core_install_prefix@",
+   "sdk": "@ANDROID_SDK_ROOT@",
+   "ndk": "@CMAKE_ANDROID_NDK@",
+   "toolchain-prefix": "##ANDROID_TOOL_PREFIX##",
+   "tool-prefix": "##ANDROID_COMPILER_PREFIX##",
+   "toolchain-version": "##ANDROID_TOOLCHAIN_VERSION##",
+   "ndk-host": "@_LOWER_CMAKE_HOST_SYSTEM_NAME@-@CMAKE_HOST_SYSTEM_PROCESSOR@",
+   "target-architecture": "@CMAKE_ANDROID_ARCH_ABI@",
+   "application-binary": "@EXECUTABLE_DESTINATION_PATH@",
+   "qml-root-path": "@CMAKE_SOURCE_DIR@",
+   @DEFINE_QML_IMPORT_PATHS@
+   ##EXTRALIBS##
+   ##EXTRAPLUGINS##
+   "android-package-source-directory": "$<TARGET_PROPERTY:create-apk-${QTANDROID_EXPORTED_TARGET},ANDROID_APK_DIR>",
+   "stdcpp-path":##CMAKE_CXX_STANDARD_LIBRARIES##,
+   "sdkBuildToolsRevision": "@ANDROID_SDK_BUILD_TOOLS_REVISION@",
+   "extraPrefixDirs": [ @EXTRA_PREFIX_DIRS@ ]
+}

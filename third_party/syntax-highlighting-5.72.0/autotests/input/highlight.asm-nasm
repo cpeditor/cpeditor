@@ -1,0 +1,27 @@
+; Example file for nasm.xml kate syntax file
+; compile with `nasm example.asm -f elf -o example.o`
+; and link with 'gcc example.o -o example`
+; Public domain
+; kate: hl Intel x86 (NASM);
+
+section .data
+
+hello dd 'Hello World', 0x0A, 0h
+printf_param dd '%s', 0q
+
+section .text
+
+extern printf
+
+global main
+main:
+	push ebp
+	mov ebp, esp
+	
+	push hello
+	push printf_param
+	call printf
+	
+	mov eax, 0b
+	leave
+	ret

@@ -1,0 +1,50 @@
+<Keyword>msgid</Keyword><Normal Text> </Normal Text><String>""</String><br/>
+<Keyword>msgstr</Keyword><Normal Text> </Normal Text><Translated String>""</Translated String><br/>
+<Translated String>"Project-Id-Version: Test</Translated String><Char>\n</Char><Translated String>"</Translated String><br/>
+<Translated String>"POT-Creation-Date: </Translated String><Char>\n</Char><Translated String>"</Translated String><br/>
+<Translated String>".....</Translated String><Char>\n</Char><Translated String>"</Translated String><br/>
+<Normal Text></Normal Text><br/>
+<Reference>#: file.ext:442</Reference><br/>
+<Keyword>msgid</Keyword><Normal Text> </Normal Text><String>"test"</String><br/>
+<Keyword>msgstr</Keyword><Normal Text> </Normal Text><Translated String>"test"</Translated String><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>msgstr</Keyword><br/>
+<Translated String>"test"</Translated String><br/>
+<Translated String>"t</Translated String><StringDiffNewWrap>{+</StringDiffNewWrap><StringDiffNew>est</StringDiffNew><StringDiffNewWrap>+}</StringDiffNewWrap><Translated String>t"</Translated String><br/>
+<Translated String>"t</Translated String><StringDiffOldWrap>{-</StringDiffOldWrap><StringDiffOld>est</StringDiffOld><StringDiffOldWrap>-}</StringDiffOldWrap><Translated String>t"</Translated String><br/>
+<Translated String>"test"</Translated String><br/>
+<Translated String>"t</Translated String><StringDiffNewWrap>{+</StringDiffNewWrap><StringDiffNew>est</StringDiffNew><String>"</String><br/>
+<String>"</String><StringDiffNew>test</StringDiffNew><String>"</String><br/>
+<String>"</String><StringDiffNewWrap>+}</StringDiffNewWrap><Translated String>est"</Translated String><br/>
+<Translated String>"t</Translated String><StringDiffOldWrap>{-</StringDiffOldWrap><StringDiffOld>est</StringDiffOld><String>"</String><br/>
+<String>"</String><StringDiffOld>test</StringDiffOld><String>"</String><br/>
+<String>"</String><StringDiffOldWrap>-}</StringDiffOldWrap><Translated String>est"</Translated String><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>msgid_plural</Keyword><Normal Text> </Normal Text><String>"test"</String><br/>
+<Keyword>msgstr</Keyword><Index>[0]</Index><Normal Text> </Normal Text><Translated String>"test"</Translated String><Normal Text> </Normal Text><Translated String>"test"</Translated String><br/>
+<Keyword>msgstr</Keyword><Index>[1]</Index><Normal Text> </Normal Text><Translated String>"test"</Translated String><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>msgstr</Keyword><Normal Text> </Normal Text><Translated String>"testt</Translated String><StringDiffNewWrap>{+</StringDiffNewWrap><StringDiffNew>estt</StringDiffNew><String>"</String><br/>
+<Keyword>msgid</Keyword><Normal Text> </Normal Text><String>"est+}t</String><StringTag><b></StringTag><String>a</String><StringTag></b></StringTag><String> </String><Entity>&lt;</Entity><String> </String><Entity>&sasa;</Entity><String> </String><Entity>&#12;</Entity><String> </String><Entity>&#xaa;</Entity><String> a < b"</String><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>unknown command</Normal Text><br/>
+<Translator Comment># simple comment</Translator Comment><br/>
+<Extension Comment>#= not Gettext standard</Extension Comment><br/>
+<Automatic Comment>#. extracted comments</Automatic Comment><br/>
+<Flag>#, </Flag><FlagFuzzy>fuzzy</FlagFuzzy><br/>
+<Flag>#, </Flag><FlagFuzzy>fuzzy</FlagFuzzy><Flag>, c-format</Flag><br/>
+<Flag>#, fuzzyerror</Flag><br/>
+<StringPrevious>#|</StringPrevious><Normal Text> </Normal Text><KeywordPrevious>msgid_plural</KeywordPrevious><Normal Text> </Normal Text><StringPrevious>"test</StringPrevious><CharPrevious>\n</CharPrevious><StringDiffNewWrapPrevious>{+</StringDiffNewWrapPrevious><StringDiffNewPrevious>a</StringDiffNewPrevious><StringDiffNewWrapPrevious>+}</StringDiffNewWrapPrevious><StringDiffOldWrapPrevious>{-</StringDiffOldWrapPrevious><StringDiffOldPrevious>S</StringDiffOldPrevious><StringDiffOldWrapPrevious>-}</StringDiffOldWrapPrevious><StringTagPrevious><b></StringTagPrevious><StringPrevious>s</StringPrevious><StringTagPrevious></b></StringTagPrevious><EntityPrevious>&amp;</EntityPrevious><StringPrevious>&;"</StringPrevious><br/>
+<StringPrevious>#|</StringPrevious><Normal Text> msgstr </Normal Text><StringPrevious>"test</StringPrevious><StringDiffNewWrapPrevious>{+</StringDiffNewWrapPrevious><StringPrevious>"</StringPrevious><br/>
+<StringPrevious>#| "</StringPrevious><StringDiffNewPrevious>xx</StringDiffNewPrevious><StringDiffNewWrapPrevious>+}</StringDiffNewWrapPrevious><StringPrevious>x"</StringPrevious><br/>
+<Keyword>msgid</Keyword><Normal Text> </Normal Text><String>"x"</String><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>msgstr</Keyword><Normal Text> </Normal Text><Translated String>"translated-</Translated String><br/>
+<Error>"string"</Error><br/>
+<Translated String>"string"</Translated String><br/>
+<StringPrevious>#|</StringPrevious><Normal Text> </Normal Text><KeywordPrevious>msgid_plural</KeywordPrevious><Normal Text> </Normal Text><StringPrevious>"test</StringPrevious><br/>
+<Error>#| "test"</Error><br/>
+<StringPrevious>#|</StringPrevious><Normal Text> </Normal Text><StringPrevious>"test"</StringPrevious><br/>
+<Normal Text></Normal Text><br/>
+<StringPrevious>#|</StringPrevious><Normal Text> </Normal Text><KeywordPrevious>msgid_plural</KeywordPrevious><Normal Text> </Normal Text><StringPrevious>"test"</StringPrevious><br/>
+<Translator Comment># "test"</Translator Comment><br/>

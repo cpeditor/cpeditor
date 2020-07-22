@@ -1,0 +1,64 @@
+<Single-Line comments>// </Single-Line comments><Alert>NOTE</Alert><Single-Line comments>: This is a test file for kate's LPC syntax highlighting.</Single-Line comments><br/>
+<Default></Default><br/>
+<Single-Line comments>// This is a Single-Line Comment</Single-Line comments><br/>
+<Multi-Line comments>/* This is a Multi-</Multi-Line comments><br/>
+<Multi-Line comments>                   Line Comment */</Multi-Line comments><br/>
+<Default></Default><br/>
+<Single-Line comments>// This again is a Single-Line Comment which should end here /*</Single-Line comments><br/>
+<Default></Default><br/>
+<Single-Line comments>// And this is an evil single line comment \</Single-Line comments><br/>
+<Single-Line comments>   which should include this and the next line because of the \</Single-Line comments><br/>
+<Single-Line comments>   Do not use this style at home, kids.</Single-Line comments><br/>
+<Region Marker>// BEGIN region marker</Region Marker><br/>
+<Default></Default><br/>
+<Region Marker>// END of region marker</Region Marker><br/>
+<Default></Default><br/>
+<Modifier>private</Modifier><Default> </Default><Datatype>void</Datatype><Default> create()</Default><br/>
+<Default>{</Default><br/>
+<Single-Line comments>// Some Preprocessor stuff:</Single-Line comments><br/>
+<Preprocessor>#define SOME_STUFF </Preprocessor><Keywords>if</Keywords><Preprocessor>(foo(</Preprocessor><Preprocessor-Strings>"bar"</Preprocessor-Strings><Preprocessor>)) \</Preprocessor><br/>
+<Preprocessor>                   { \</Preprocessor><br/>
+<Preprocessor>                       bar(</Preprocessor><Preprocessor-Strings>"foo"</Preprocessor-Strings><Preprocessor>); \</Preprocessor><br/>
+<Preprocessor>                   } </Preprocessor><Single-Line comments>// Preprocessor, Keyword, Preprocessor-String, Multiline</Single-Line comments><br/>
+<Default></Default><br/>
+<Default>    </Default><Single-Line comments>// Some closures:</Single-Line comments><br/>
+<Default>    </Default><Closure>#'create</Closure><Default>;</Default><br/>
+<Default>    </Default><Closure>#'?!</Closure><Default>;</Default><br/>
+<Default></Default><br/>
+<Default></Default><br/>
+<Default>    </Default><Multi-Line comments>/* Some other Data Types: */</Multi-Line comments><br/>
+<Default></Default><br/>
+<Default>    </Default><Datatype>int</Datatype><Default> i = </Default><Integer>1</Integer><Default>;            </Default><Single-Line comments>// Integer.</Single-Line comments><br/>
+<Default>    </Default><Datatype>float</Datatype><Default> b = </Default><Floats>2.34</Floats><Default>;       </Default><Single-Line comments>// Float.</Single-Line comments><br/>
+<Default>    </Default><Datatype>int</Datatype><Default> c = </Default><Binary>0b001</Binary><Default>;        </Default><Single-Line comments>// Binary</Single-Line comments><br/>
+<Default>    </Default><Datatype>int</Datatype><Default> e = </Default><Hexadecimal>0x019Beef</Hexadecimal><Default>;    </Default><Single-Line comments>// Hexadecimal</Single-Line comments><br/>
+<Default>    </Default><Datatype>int</Datatype><Default> f = </Default><Octal>0o2345</Octal><Default>;       </Default><Single-Line comments>// Octal</Single-Line comments><br/>
+<Default>    </Default><Datatype>string</Datatype><Default> a = </Default><Strings>"Wheee"</Strings><Default>;   </Default><Single-Line comments>// String</Single-Line comments><br/>
+<Default>    </Default><Datatype>string</Datatype><Default> x = </Default><Strings>"Wheee</Strings><Default>\</Default><br/>
+<Strings>     heee"</Strings><Default>;               </Default><Single-Line comments>// Multi-Line String, again, don't use this.</Single-Line comments><br/>
+<Default></Default><br/>
+<Default></Default><br/>
+<Default></Default><br/>
+<Default>    </Default><Multi-Line comments>/* Some keywords: */</Multi-Line comments><br/>
+<Default>    </Default><Keywords>if</Keywords><Default>(</Default><Integer>1</Integer><Default>)</Default><br/>
+<Default>    {</Default><br/>
+<Default>        </Default><Keywords>switch</Keywords><Default>(</Default><Integer>2</Integer><Default>)</Default><br/>
+<Default>        {</Default><br/>
+<Default>            </Default><Keywords>case</Keywords><Default> </Default><Integer>3</Integer><Default>:</Default><br/>
+<Default>                </Default><Integer>4</Integer><Default>;</Default><br/>
+<Default>                </Default><Keywords>break</Keywords><Default>;</Default><br/>
+<Default>        }</Default><br/>
+<Default>    }</Default><br/>
+<Default></Default><br/>
+<Default>    </Default><Keywords>else</Keywords><br/>
+<Default>    {</Default><br/>
+<Default>        </Default><Keywords>return</Keywords><Default> </Default><Integer>0</Integer><Default>;</Default><br/>
+<Default>    }</Default><br/>
+<Default>}</Default><br/>
+<Default></Default><br/>
+<Multi-Line comments>/*</Multi-Line comments><br/>
+<Alert>WARNING</Alert><Multi-Line comments>: If the above function is part of a multi-line comment,</Multi-Line comments><br/>
+<Multi-Line comments>         it's buggy. The </Multi-Line comments><Alert>WARNING</Alert><Multi-Line comments>: itself should be a comment-keyword.</Multi-Line comments><br/>
+<Multi-Line comments>         That's not actually part of the language, but simply used</Multi-Line comments><br/>
+<Multi-Line comments>         to highlight important stuff inside comments like </Multi-Line comments><Alert>TODO</Alert><Multi-Line comments>: etc.</Multi-Line comments><br/>
+<Multi-Line comments>*/</Multi-Line comments><br/>

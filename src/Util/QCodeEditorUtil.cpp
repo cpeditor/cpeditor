@@ -20,14 +20,17 @@
 #include "Extensions/EditorTheme.hpp"
 #include "Settings/SettingsManager.hpp"
 #include "generated/SettingsHelper.hpp"
-#include <QCXXHighlighter>
 #include <QCodeEditor>
-#include <QJavaHighlighter>
-#include <QPythonHighlighter>
+
+#include <syntaxhighlighter.h>
+#include <definition.h>
+#include <theme.h>
+#include <Util/Singleton.hpp>
+#include <QDebug>
 
 namespace Util
 {
-void applySettingsToEditor(QCodeEditor *editor, const QString &language)
+void applySettingsToEditor(KSyntaxHighlighting::SyntaxHighlighter* highlighter, QCodeEditor *editor, const QString &language)
 {
     LOG_INFO("Applying settings to QCodeEditor");
 
@@ -56,19 +59,21 @@ void applySettingsToEditor(QCodeEditor *editor, const QString &language)
     if (language.isEmpty())
         return;
 
+    highlighter->setDefinition(Util::Singleton::getSyntaxHighlightingRepository().definitionForName(language));
+    highlighter->setTheme(
+        Util::Singleton::getSyntaxHighlightingRepository().theme(SettingsHelper::getSyntaxHighlightingStyle()));
+    highlighter->rehighlight();
+
     if (language == "Python")
     {
-        editor->setHighlighter(new QPythonHighlighter);
         editor->setCompleter(nullptr);
     }
     else if (language == "Java")
     {
-        editor->setHighlighter(new QJavaHighlighter);
         editor->setCompleter(nullptr);
     }
     else
     {
-        editor->setHighlighter(new QCXXHighlighter);
         editor->setCompleter(nullptr);
     }
 

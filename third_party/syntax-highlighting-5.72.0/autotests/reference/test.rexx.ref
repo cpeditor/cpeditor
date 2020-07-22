@@ -1,0 +1,52 @@
+<Comment>/* REXX */</Comment><Normal Text>                                                         </Normal Text><br/>
+<Normal Text>ASCB_PTR </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Built In>C2X</Built In><Symbol>(</Symbol><Built In>STORAGE</Built In><Symbol>(</Symbol><Built In>D2X</Built In><Symbol>(</Symbol><Built In>X2D</Built In><Symbol>(</Symbol><Normal Text>"224"</Normal Text><Symbol>)),</Symbol><Normal Text>4</Normal Text><Symbol>))</Symbol><Normal Text>                         </Normal Text><br/>
+<Instructions>SAY</Instructions><Normal Text> </Normal Text><Built In>X2B</Built In><Symbol>(</Symbol><Normal Text>ASCB_PTR</Normal Text><Symbol>)</Symbol><Normal Text>                                                  </Normal Text><br/>
+<Comment>/* COMMENTS */</Comment><Normal Text>                                                     </Normal Text><br/>
+<Comment>/******************************************************************</Comment><br/>
+<Comment>   END OF COMMENTS */</Comment><Normal Text>                                              </Normal Text><br/>
+<Instructions>SAY</Instructions><Normal Text> </Normal Text><String>'ENTER YOUR NAME'</String><Normal Text>                                              </Normal Text><br/>
+<Instructions>PULL</Instructions><Normal Text> NAME                                                          </Normal Text><br/>
+<Control>DO</Control><Normal Text> </Normal Text><Control>WHILE</Control><Normal Text> NAME \</Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><String>'QUIT'</String><Normal Text>                                            </Normal Text><br/>
+<Normal Text>   </Normal Text><Instructions>SAY</Instructions><Normal Text> </Normal Text><String>'HELLO THERE'</String><Normal Text> NAME                                          </Normal Text><br/>
+<Normal Text>   </Normal Text><Instructions>PULL</Instructions><Normal Text> NAME                                                       </Normal Text><br/>
+<Control>END</Control><Normal Text>                                                                </Normal Text><br/>
+<Normal Text>X </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Built In>OUTTRAP</Built In><Symbol>(</Symbol><String>'LU.'</String><Symbol>)</Symbol><Normal Text>                                                 </Normal Text><br/>
+<Normal Text>"LU"                                                               </Normal Text><br/>
+<Normal Text>X </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Built In>OUTTRAP</Built In><Symbol>(</Symbol><String>'OFF'</String><Symbol>)</Symbol><Normal Text>                                                 </Normal Text><br/>
+<Instructions>SAY</Instructions><Normal Text> </Normal Text><String>'THE NUMBER OF LINES:'</String><Normal Text> LU</Normal Text><Symbol>.</Symbol><Normal Text>0                                    </Normal Text><br/>
+<Control>DO</Control><Normal Text> I </Normal Text><Symbol>=</Symbol><Normal Text> 1 </Normal Text><Control>TO</Control><Normal Text> LU</Normal Text><Symbol>.</Symbol><Normal Text>0                                                   </Normal Text><br/>
+<Normal Text>  </Normal Text><Instructions>SAY</Instructions><Normal Text> LU</Normal Text><Symbol>.</Symbol><Normal Text>I </Normal Text><Comment>/* SAYS THE OUTPUT FROM LU */</Comment><Normal Text>                           </Normal Text><br/>
+<Control>END</Control><Normal Text>                                                                </Normal Text><br/>
+<Instructions>SAY</Instructions><Normal Text> </Normal Text><String>'GOOD-BYE.'</String><Normal Text>                                                    </Normal Text><br/>
+<Control>IF</Control><Normal Text> </Normal Text><Built In>DATE</Built In><Symbol>(</Symbol><String>'D'</String><Symbol>)</Symbol><Normal Text> \</Normal Text><Symbol>=</Symbol><Normal Text> "13" </Normal Text><Control>THEN</Control><Normal Text> </Normal Text><Control>DO</Control><Normal Text>                                       </Normal Text><br/>
+<Normal Text>  Y </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Function>TESTSELECT</Function><Symbol>(</Symbol><Normal Text>15</Normal Text><Symbol>,</Symbol><String>'RAD'</String><Symbol>)</Symbol><Normal Text>                                         </Normal Text><br/>
+<Normal Text>  </Normal Text><Instructions>SAY</Instructions><Normal Text> Y                                                            </Normal Text><br/>
+<Normal Text>  </Normal Text><Instructions>SAY</Instructions><Normal Text> Y </Normal Text><Symbol>||</Symbol><Normal Text> " </Normal Text><Symbol><--</Symbol><Normal Text> TESTSELECT"               </Normal Text><br/>
+<Control>END</Control><Normal Text>                                        </Normal Text><br/>
+<Instructions>EXIT</Instructions><Normal Text> 1                                     </Normal Text><br/>
+<Comment>/* FUNCTIONS */</Comment><Normal Text>                            </Normal Text><br/>
+<Function>TESTSELECT</Function><Symbol>:</Symbol><Normal Text> </Normal Text><Instructions>PROCEDURE</Instructions><Normal Text> </Normal Text><Comment>/* TESTING SELECT */</Comment><Normal Text> </Normal Text><br/>
+<Normal Text> </Normal Text><Instructions>PARSE</Instructions><Normal Text> </Normal Text><Instructions>ARG</Instructions><Normal Text> NUM CAR </Normal Text><Symbol>.</Symbol><Normal Text>                       </Normal Text><br/>
+<Normal Text> </Normal Text><Control>SELECT</Control><Normal Text>                                    </Normal Text><br/>
+<Normal Text>   </Normal Text><Control>WHEN</Control><Normal Text> NUM </Normal Text><Symbol><</Symbol><Normal Text> 25 </Normal Text><Control>THEN</Control><Normal Text>                      </Normal Text><br/>
+<Normal Text>     STATUS </Normal Text><Symbol>=</Symbol><Normal Text> "25</Normal Text><Symbol>%</Symbol><Normal Text>"                        </Normal Text><br/>
+<Normal Text>   </Normal Text><Control>WHEN</Control><Normal Text> NUM </Normal Text><Symbol><</Symbol><Normal Text> 50 </Normal Text><Control>THEN</Control><Normal Text>                      </Normal Text><br/>
+<Normal Text>     </Normal Text><Control>DO</Control><Normal Text>                                    </Normal Text><br/>
+<Normal Text>       </Normal Text><Control>IF</Control><Normal Text> CAR </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><String>'RAD'</String><Normal Text> </Normal Text><Control>THEN</Control><Normal Text>                 </Normal Text><br/>
+<Normal Text>          STATUS </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><String>'DOPE'</String><Normal Text>                  </Normal Text><br/>
+<Normal Text>       </Normal Text><Control>ELSE</Control><Normal Text>                                </Normal Text><br/>
+<Normal Text>          STATUS </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><String>'SICK'</String><Normal Text>                  </Normal Text><br/>
+<Normal Text>     </Normal Text><Control>END</Control><Normal Text>                                   </Normal Text><br/>
+<Normal Text>   </Normal Text><Control>WHEN</Control><Normal Text> NUM </Normal Text><Symbol><</Symbol><Normal Text> 200 </Normal Text><Control>THEN</Control><Normal Text> </Normal Text><Control>DO</Control><Normal Text>                  </Normal Text><br/>
+<Normal Text>     </Normal Text><Instructions>NOP</Instructions><Normal Text>                                   </Normal Text><br/>
+<Normal Text>   </Normal Text><Control>END</Control><Normal Text>                                     </Normal Text><br/>
+<Normal Text>   </Normal Text><Control>WHEN</Control><Normal Text> NUM </Normal Text><Symbol><</Symbol><Normal Text> 75 </Normal Text><Control>THEN</Control><Normal Text>                      </Normal Text><br/>
+<Normal Text>     STATUS </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><String>'SEVENTY FIVE'</String><Normal Text>               </Normal Text><br/>
+<Normal Text>   </Normal Text><Control>OTHERWISE</Control><Normal Text>                               </Normal Text><br/>
+<Normal Text>     </Normal Text><Control>IF</Control><Normal Text> CAR </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><String>'RAD'</String><Normal Text> </Normal Text><Control>THEN</Control><Normal Text>                   </Normal Text><br/>
+<Normal Text>       STATUS </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><String>'COOL'</String><br/>
+<Normal Text>      STATUS </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><String>'COOL'</String><Normal Text>   </Normal Text><br/>
+<Normal Text>    </Normal Text><Control>ELSE</Control><Normal Text>                </Normal Text><br/>
+<Normal Text>      STATUS </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><String>'RADICAL'</String><br/>
+<Control>END</Control><Normal Text>                     </Normal Text><br/>
+<Instructions>RETURN</Instructions><Normal Text> STATUS           </Normal Text><br/>

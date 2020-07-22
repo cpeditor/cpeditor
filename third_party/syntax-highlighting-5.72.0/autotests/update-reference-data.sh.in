@@ -1,0 +1,5 @@
+#!/bin/sh
+
+cp @CMAKE_CURRENT_BINARY_DIR@/output/* @CMAKE_CURRENT_SOURCE_DIR@/reference/
+cp @CMAKE_CURRENT_BINARY_DIR@/html.output/* @CMAKE_CURRENT_SOURCE_DIR@/html/
+cp @CMAKE_CURRENT_BINARY_DIR@/folding.out/* @CMAKE_CURRENT_SOURCE_DIR@/folding/

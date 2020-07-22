@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title>review128925-1.scss</title>
+<meta name="generator" content="KF5::SyntaxHighlighting (SCSS)"/>
+</head><body style="color:#1f1c1b"><pre>
+<span style="color:#898887;">/*</span>
+<span style="color:#898887;"> * SCSS Syntax Highlight Sample File (Standard)</span>
+<span style="color:#898887;"> *</span>
+<span style="color:#898887;"> * This file contains most SCSS syntax, CSS3 properties, advanced code structure.</span>
+<span style="color:#898887;"> * It is NOT a valid SCSS file that can be compiled by SCSS preprocessors.</span>
+<span style="color:#898887;"> *</span>
+<span style="color:#898887;"> * @author  Guo Yunhe guoyunhebrave@gmail.com</span>
+<span style="color:#898887;"> * @date    2016-09-15</span>
+<span style="color:#898887;"> */</span>
+
+<span style="color:#898887;">/*</span>
+<span style="color:#898887;"> * Block comment</span>
+<span style="color:#898887;"> *</span>
+<span style="color:#898887;"> * Alert keywords:</span>
+<span style="color:#898887;"> * </span><span style="color:#ca9219;background-color:#451e1a;font-weight:bold;">TODO</span><span style="color:#898887;"> </span><span style="color:#ca9219;background-color:#451e1a;font-weight:bold;">BUG</span><span style="color:#898887;"> </span><span style="color:#ca9219;background-color:#451e1a;font-weight:bold;">FIXME</span>
+<span style="color:#898887;"> */</span>
+
+<span style="color:#ff5500;">@charset</span> <span style="color:#bf0303;">&quot;UTF-8&quot;</span>;
+
+<span style="color:#ff5500;">@import</span> <span style="color:#bf0303;">&quot;mixins/button&quot;</span>;
+
+<span style="color:#898887;">// Variable define</span>
+
+<span style="color:#0057ae;">$image-path</span>:            <span style="color:#bf0303;">&quot;../../static/images&quot;</span>;
+<span style="color:#0057ae;">$default-text-color</span>:    <span style="color:#aa5500;">#333</span> <span style="color:#0057ae;">!default</span>; <span style="color:#898887;">// Default can be overrided</span>
+<span style="color:#0057ae;">$default-font-size</span>:     <span style="color:#b08000;">16</span><span style="color:#0057ae;">px</span> <span style="color:#0057ae;">!default</span>;
+<span style="color:#0057ae;">$default-font-family</span>:   Roboto, <span style="color:#bf0303;">&quot;Droid Sans&quot;</span>, <span style="color:#b08000;">sans-serif</span>;
+<span style="color:#0057ae;">$default-font-weight</span>:   <span style="color:#b08000;">400</span>;
+<span style="color:#0057ae;">$default-line-height</span>:   <span style="color:#0057ae;">$default-font-size</span> * <span style="color:#b08000;">1.8</span>;
+<span style="color:#0057ae;">$shadow-transparence</span>:   <span style="color:#b08000;">0.25</span>;
+<span style="color:#0057ae;">$box-shadow</span>:            <span style="color:#b08000;">0</span> <span style="color:#b08000;">0</span> <span style="color:#b08000;">3</span><span style="color:#0057ae;">px</span> <span style="color:#644a9b;">rgba(</span><span style="color:#b08000;">0</span>,<span style="color:#b08000;">0</span>,<span style="color:#b08000;">0</span>,<span style="color:#0057ae;">$shadow-transparence</span><span style="color:#644a9b;">)</span>;
+<span style="color:#0057ae;">$page-width</span>:            <span style="color:#b08000;">100</span><span style="color:#0057ae;">rem</span>; <span style="color:#898887;">// kabab-case</span>
+<span style="color:#0057ae;">$gapOfArticle</span>:          <span style="color:#b08000;">20</span><span style="color:#0057ae;">px</span>;   <span style="color:#898887;">// camelCase</span>
+<span style="color:#0057ae;">$body_background_color</span>: <span style="color:#aa5500;">white</span>;  <span style="color:#898887;">// snake_case</span>
+
+<span style="color:#898887;">// Mixins</span>
+
+<span style="color:#ff5500;">@mixin</span> <span style="color:#644a9b;">border-radius</span>(<span style="color:#0057ae;">$radius</span>) {
+  <span style="font-weight:bold;">-webkit-border-radius</span>: <span style="color:#0057ae;">$radius</span>;
+     <span style="font-weight:bold;">-moz-border-radius</span>: <span style="color:#0057ae;">$radius</span>;
+      -ms-border-radius: <span style="color:#0057ae;">$radius</span>;
+          <span style="font-weight:bold;">border-radius</span>: <span style="color:#0057ae;">$radius</span>;
+}
+
+<span style="color:#644a9b;">.box</span> { <span style="color:#ff5500;">@include</span> <span style="color:#644a9b;">border-radius(</span><span style="color:#b08000;">10</span><span style="color:#0057ae;">px</span><span style="color:#644a9b;">)</span>; }
+
+<span style="color:#898887;">// Nesting</span>
+
+<span style="color:#006e28;font-weight:bold;">#home-page</span> {
+
+    header {
+        <span style="font-weight:bold;">width</span>: <span style="color:#b08000;">80</span><span style="color:#0057ae;">%</span>;
+        <span style="font-weight:bold;">margin</span>: <span style="color:#b08000;">0</span> <span style="color:#644a9b;font-weight:bold;">auto</span>;
+
+        <span style="color:#644a9b;">.cover</span> {
+            <span style="color:#ff5500;">@include</span> <span style="color:#644a9b;">border-radius(</span><span style="color:#b08000;">20</span><span style="color:#0057ae;">px</span><span style="color:#644a9b;">)</span>;
+            <span style="font-weight:bold;">max-width</span>: <span style="color:#b08000;">100</span><span style="color:#0057ae;">%</span>;
+
+            &amp;<span style="color:#b08000;font-style:italic;">:hover</span> {
+                <span style="font-weight:bold;">background</span>: <span style="color:#aa5500;">#ffffff</span>;
+            }
+
+            <span style="color:#644a9b;">.like-button</span> {
+                <span style="font-weight:bold;">font-size</span>: <span style="color:#0057ae;">$default-font-size</span> * <span style="color:#b08000;">0.8</span>;
+
+                <span style="color:#ff5500;">@media</span> (<span style="font-weight:bold;">max-width</span>: <span style="color:#b08000;">300</span><span style="color:#0057ae;">px</span>) <span style="font-weight:bold;">and</span> (<span style="font-weight:bold;">min-width</span>: <span style="color:#b08000;">200</span><span style="color:#0057ae;">px</span>) {
+                    <span style="font-weight:bold;">font-size</span>: <span style="color:#0057ae;">$default-font-size</span> * <span style="color:#b08000;">0.8</span>;
+
+                    <span style="color:#644a9b;">.icon</span> {
+                        <span style="font-weight:bold;">width</span>: <span style="color:#b08000;">20</span><span style="color:#0057ae;">px</span>;
+                        <span style="font-weight:bold;">height</span>: <span style="color:#b08000;">20</span><span style="color:#0057ae;">px</span>;
+                    }
+                }
+
+                <span style="color:#ff5500;">@media</span> <span style="color:#b08000;">print</span> {
+                    <span style="font-weight:bold;">display</span>: <span style="color:#b08000;">none</span>;
+                }
+            }
+        }
+    }
+}
+
+<span style="color:#898887;">// Extend and inheritance</span>
+
+<span style="color:#644a9b;">.message</span> {
+    <span style="font-weight:bold;">border</span>: <span style="color:#0057ae;">$border-light</span>;
+    <span style="font-weight:bold;">background-color</span>: <span style="color:#aa5500;">#f0f0f0</span>;
+}
+
+<span style="color:#644a9b;">.message-danger</span> {
+    <span style="color:#ff5500;">@extend</span> <span style="color:#644a9b;">.message</span>;
+}
+
+
+<span style="color:#898887;">// Control structures</span>
+
+<span style="color:#ff5500;">@mixin</span> <span style="color:#644a9b;">does-parent-exist</span> {
+    <span style="color:#ff5500;">@if</span> &amp; {
+        &amp;<span style="color:#b08000;font-style:italic;">:hover</span> {
+            <span style="font-weight:bold;">color</span>: <span style="color:#aa5500;">red</span>;
+        }
+    } <span style="color:#ff5500;">@else</span> {
+        a {
+            <span style="font-weight:bold;">color</span>: <span style="color:#aa5500;">red</span>;
+        }
+    }
+}
+
+
+<span style="color:#898887;">// Operators</span>
+
+<span style="color:#644a9b;">.container</span> { <span style="font-weight:bold;">width</span>: <span style="color:#b08000;">100</span><span style="color:#0057ae;">%</span>; }
+
+article<span style="color:#0095ff;font-weight:bold;">[role</span>=<span style="color:#bf0303;">&quot;main&quot;</span><span style="color:#0095ff;font-weight:bold;">]</span> {
+  <span style="font-weight:bold;">float</span>: <span style="color:#b08000;">left</span>;
+  <span style="font-weight:bold;">width</span>: <span style="color:#b08000;">600</span><span style="color:#0057ae;">px</span> / <span style="color:#b08000;">960</span><span style="color:#0057ae;">px</span> * <span style="color:#b08000;">100</span><span style="color:#0057ae;">%</span>;
+}
+
+aside<span style="color:#0095ff;font-weight:bold;">[role</span>=<span style="color:#bf0303;">&quot;complementary&quot;</span><span style="color:#0095ff;font-weight:bold;">]</span> {
+  <span style="font-weight:bold;">float</span>: <span style="color:#b08000;">right</span>;
+  <span style="font-weight:bold;">width</span>: <span style="color:#b08000;">300</span><span style="color:#0057ae;">px</span> / <span style="color:#b08000;">960</span><span style="color:#0057ae;">px</span> * <span style="color:#b08000;">100</span><span style="color:#0057ae;">%</span>;
+}
+
+
+<span style="color:#898887;">// Functions - see http://sass-lang.com/documentation/Sass/Script/Functions.html</span>
+
+<span style="color:#0057ae;">$color1</span>: <span style="color:#644a9b;">hsl(</span><span style="color:#b08000;">120</span><span style="color:#0057ae;">deg</span>, <span style="color:#b08000;">100</span><span style="color:#0057ae;">%</span>, <span style="color:#b08000;">50</span><span style="color:#0057ae;">%</span><span style="color:#644a9b;">)</span>;
+<span style="color:#0057ae;">$color2</span>: <span style="color:#644a9b;">rgb(</span><span style="color:#0057ae;">$red</span>, <span style="color:#0057ae;">$green</span>, <span style="color:#644a9b;">blue(</span><span style="color:#0057ae;">$color1</span><span style="color:#644a9b;">))</span>;
+<span style="color:#0057ae;">$color3</span>: <span style="color:#644a9b;">mix(</span><span style="color:#0057ae;">$color1</span>, <span style="color:#0057ae;">$color2</span>, [<span style="color:#0057ae;">$weight</span>]<span style="color:#644a9b;">)</span>;
+
+
+<span style="color:#898887;">// Properties</span>
+
+html, body {
+    <span style="font-weight:bold;">font-family</span>: <span style="color:#bf0303;">&quot;Droid Sans&quot;</span>, Arial, <span style="color:#b08000;">sans-serif</span>;
+    <span style="font-weight:bold;">font-size</span>: <span style="color:#b08000;">11</span><span style="color:#0057ae;">pt</span>;
+    <span style="font-weight:bold;">line-height</span>: <span style="color:#b08000;">1.5</span><span style="color:#0057ae;">em</span>;
+    <span style="font-weight:bold;">max-width</span>: <span style="color:#b08000;">300</span><span style="color:#0057ae;">px</span> + <span style="color:#0057ae;">$page-width</span> - <span style="color:#0057ae;">$gap</span> / <span style="color:#b08000;">2</span>;
+    <span style="font-weight:bold;">background</span>: <span style="color:#0057ae;">$bg_color</span>;
+    <span style="font-weight:bold;">text-shadow</span>: <span style="color:#b08000;">0</span> <span style="color:#b08000;">0</span> <span style="color:#b08000;">2</span><span style="color:#0057ae;">px</span> <span style="color:#644a9b;">rgba(</span><span style="color:#b08000;">0</span>,<span style="color:#b08000;">0</span>,<span style="color:#b08000;">0</span>, <span style="color:#0057ae;">$transparence</span><span style="color:#644a9b;">)</span>;
+    <span style="font-weight:bold;">box-sizing</span>: <span style="color:#b08000;">border-box</span>;
+}
+
+
+<span style="color:#898887;">// Selectors</span>
+
+blockquote {
+    <span style="font-weight:bold;">margin</span>: <span style="color:#b08000;">0</span>;
+}
+
+header <span style="color:#006e28;font-weight:bold;">#logo</span> {
+    <span style="font-weight:bold;">width</span>: <span style="color:#b08000;">100</span><span style="color:#0057ae;">px</span>;
+}
+
+div<span style="color:#006e28;font-weight:bold;">#footer</span> <span style="color:#644a9b;">.link</span> {
+    <span style="font-weight:bold;">color</span>: <span style="color:#aa5500;">blue</span>;
+}
+
+sidebar <span style="color:#006e28;font-weight:bold;">#subscribe</span> <span style="color:#644a9b;">.subscribe_form</span> input<span style="color:#0095ff;font-weight:bold;">[type</span>=<span style="color:#bf0303;">&quot;text&quot;</span><span style="color:#0095ff;font-weight:bold;">]</span> {
+    <span style="font-weight:bold;">font-size</span>: <span style="color:#b08000;">20</span><span style="color:#0057ae;">px</span>;
+}
+
+sidebar <span style="color:#006e28;font-weight:bold;">#subscribe</span> <span style="color:#644a9b;">.subscribe_form</span><span style="color:#b08000;font-style:italic;">:nth-child(2n + 1):hover</span> input<span style="color:#0095ff;font-weight:bold;">[class</span>*=<span style="color:#bf0303;">&quot;small-&quot;</span><span style="color:#0095ff;font-weight:bold;">]</span> {
+    <span style="font-weight:bold;">font-weight</span>: <span style="color:#b08000;">bold</span>;
+}
+
+
+<span style="color:#898887;">// Media Queries</span>
+
+<span style="color:#ff5500;">@media</span> <span style="color:#b08000;">print</span> {
+    <span style="color:#644a9b;">.container</span> {
+        <span style="font-weight:bold;">width</span>: <span style="color:#b08000;">100</span><span style="color:#0057ae;">%</span>;
+    }
+}
+
+<span style="color:#ff5500;">@media</span> <span style="color:#b08000;">screen</span> <span style="font-weight:bold;">and</span> (<span style="font-weight:bold;">min-width</span>: <span style="color:#b08000;">768</span><span style="color:#0057ae;">px</span>) {
+    <span style="color:#644a9b;">.container</span> {
+        <span style="font-weight:bold;">width</span>: <span style="color:#b08000;">600</span><span style="color:#0057ae;">px</span>;
+    }
+}
+
+<span style="color:#ff5500;">@media</span> <span style="color:#b08000;">screen</span> <span style="font-weight:bold;">and</span> (<span style="font-weight:bold;">min-width</span>: <span style="color:#b08000;">768</span><span style="color:#0057ae;">px</span>) <span style="font-weight:bold;">and</span> (<span style="font-weight:bold;">max-width</span>: <span style="color:#b08000;">960</span><span style="color:#0057ae;">px</span>) {
+    <span style="color:#644a9b;">.container</span> {
+        <span style="font-weight:bold;">width</span>: <span style="color:#b08000;">720</span><span style="color:#0057ae;">px</span>;
+    }
+}
+
+
+<span style="color:#898887;">// Fontface</span>
+
+<span style="color:#ff5500;">@font-face</span> {
+    <span style="font-weight:bold;">font-family</span>: MyHelvetica;
+    <span style="font-weight:bold;">src</span>: <span style="color:#644a9b;">local(</span><span style="color:#bf0303;">&quot;Helvetica Neue Bold&quot;</span><span style="color:#644a9b;">)</span>,
+        <span style="color:#644a9b;">local(</span><span style="color:#bf0303;">&quot;HelveticaNeue-Bold&quot;</span><span style="color:#644a9b;">)</span>,
+        <span style="color:#644a9b;">url(</span><span style="color:#bf0303;">MgOpenModernaBold.ttf</span><span style="color:#644a9b;">)</span>;
+    <span style="font-weight:bold;">font-weight</span>: <span style="color:#b08000;">bold</span>;
+}
+
+<span style="color:#898887;">// Animation (Keyframes)</span>
+
+<span style="color:#ff5500;">@keyframes</span> slidein {
+    <span style="color:#b08000;">from</span> {
+        <span style="font-weight:bold;">margin-left</span>: <span style="color:#b08000;">100</span><span style="color:#0057ae;">%</span>;
+        <span style="font-weight:bold;">width</span>: <span style="color:#b08000;">300</span><span style="color:#0057ae;">%</span>;
+    }
+
+    <span style="color:#b08000;">to</span> {
+        <span style="font-weight:bold;">margin-left</span>: <span style="color:#b08000;">0</span><span style="color:#0057ae;">%</span>;
+        <span style="font-weight:bold;">width</span>: <span style="color:#b08000;">100</span><span style="color:#0057ae;">%</span>;
+    }
+}
+</pre></body></html>

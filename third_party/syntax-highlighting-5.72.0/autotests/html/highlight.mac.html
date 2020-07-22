@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title>highlight.mac</title>
+<meta name="generator" content="KF5::SyntaxHighlighting (Maxima)"/>
+</head><body style="color:#1f1c1b"><pre>
+<span style="color:#898887;">/*</span>
+<span style="color:#898887;">------------------------------------------------------------------------</span>
+<span style="color:#898887;">Efficient Galois Fields in Maxima</span>
+
+<span style="color:#898887;">by Alasdair McAndrew</span>
+<span style="color:#898887;">and later extended by Fabrizio Caruso and Jacopo Daurizio</span>
+
+<span style="color:#898887;">it is distribuited together with gf_roots by Jacopo Daurizio</span>
+
+<span style="color:#898887;">Authors:</span>
+
+<span style="color:#898887;">Fabrizio Caruso   (optimizations, testing)</span>
+<span style="color:#898887;">Jacopo D'Aurizio   (optimizations, modular roots)</span>
+<span style="color:#898887;">Alasdair McAndrew (original version of the package, pohlig-helman log, etc... )</span>
+<span style="color:#898887;">------------------------------------------------------------------------*/</span>
+
+<span style="color:#898887;">/* Released under terms of the GNU General Public License, version 2,</span>
+<span style="color:#898887;"> * by permission of the authors to Robert Dodier circa 2007-12-02.</span>
+<span style="color:#898887;"> */</span>
+
+<span style="color:#898887;">/* Defines a flag for dealing with large fields.  If it is set to &quot;false&quot;,</span>
+<span style="color:#898887;">then lookup tables are used for exponentiation and logarithms.  Otherwise</span>
+<span style="color:#898887;">other algorithms are used */</span>
+
+<span style="color:#644a9b;">define_variable</span>(<span style="color:#aa5500;">largefield</span>,<span style="font-weight:bold;">true</span>,<span style="color:#aa5500;">bool</span>)$
+<span style="color:#644a9b;">define_variable</span>(<span style="color:#aa5500;">gf_char</span>,<span style="color:#b08000;">0</span>,<span style="color:#aa5500;">integer</span>)$
+<span style="color:#644a9b;">define_variable</span>(<span style="color:#aa5500;">gf_exp</span>,<span style="color:#b08000;">0</span>,<span style="color:#aa5500;">integer</span>)$
+<span style="color:#644a9b;">define_variable</span>(<span style="color:#aa5500;">gf_order</span>,<span style="color:#b08000;">0</span>,<span style="color:#aa5500;">integer</span>)$
+<span style="color:#644a9b;">define_variable</span> (<span style="color:#aa5500;">gf_one</span>, <span style="color:#607880;font-weight:bold;">'</span><span style="color:#aa5500;">gf_one</span>, <span style="color:#aa5500;">any_check</span>)$
+<span style="color:#644a9b;">define_variable</span> (<span style="color:#aa5500;">gf_prim</span>, <span style="color:#607880;font-weight:bold;">'</span><span style="color:#aa5500;">gf_prim</span>, <span style="color:#aa5500;">any_check</span>)$
+<span style="color:#644a9b;">define_variable</span> (<span style="color:#aa5500;">gf_irr</span>, <span style="color:#607880;font-weight:bold;">'</span><span style="color:#aa5500;">gf_irr</span>, <span style="color:#aa5500;">any_check</span>)$
+<span style="color:#644a9b;">define_variable</span> (<span style="color:#aa5500;">gf_list</span>, <span style="color:#607880;font-weight:bold;">'</span><span style="color:#aa5500;">gf_list</span>, <span style="color:#aa5500;">any_check</span>)$
+<span style="color:#644a9b;">define_variable</span> (<span style="color:#aa5500;">gen_powers</span>, <span style="color:#607880;font-weight:bold;">'</span><span style="color:#aa5500;">gf_list</span>, <span style="color:#aa5500;">any_check</span>)$
+<span style="color:#644a9b;">remvalue</span>(<span style="color:#aa5500;">x</span>,<span style="color:#aa5500;">z</span>,<span style="color:#aa5500;">gf_char</span>,<span style="color:#aa5500;">gf_exp</span>,<span style="color:#aa5500;">gf_irr</span>,<span style="color:#aa5500;">pg</span>,<span style="color:#aa5500;">gp</span>,<span style="color:#aa5500;">lg</span>,<span style="color:#aa5500;">gf_prim</span>,<span style="color:#aa5500;">gf_one</span>,<span style="color:#aa5500;">gf_order</span>,<span style="color:#aa5500;">gf_list</span>,<span style="color:#aa5500;">gen_powers</span>)$
+
+
+<span style="color:#898887;">/* --------------------------------------------------------------------------------------------- */</span>
+<span style="color:#898887;">/* Settings */</span>
+
+<span style="color:#aa5500;">GF_VERBOSE</span>:<span style="font-weight:bold;">false</span>; <span style="color:#898887;">/* Verbosity */</span>
+<span style="color:#aa5500;">GF_WARNING</span>: <span style="font-weight:bold;">true</span>; <span style="color:#898887;">/* Warnings */</span>
+<span style="color:#aa5500;">GF_IRREDUCIBILITY_CHECK</span>:<span style="font-weight:bold;">false</span>;   <span style="color:#898887;">/* Irreducibility test for the minimal polynomial of the extension */</span>
+
+<span style="color:#898887;">/*</span>
+<span style="color:#898887;">------------------------------------------------------------------------------------------------ */</span>
+
+
+<span style="color:#898887;">/* It defines a new current field with gf_char=b, min. pol.= p of deg= e*/</span>
+<span style="color:#aa5500;">gf_set</span>([<span style="color:#aa5500;">ars</span>]):=<span style="color:#644a9b;">block</span>([<span style="color:#aa5500;">gj</span>,<span style="color:#aa5500;">m</span>,<span style="color:#aa5500;">i</span>,<span style="color:#aa5500;">j</span>,<span style="color:#aa5500;">dg</span>],
+  <span style="font-weight:bold;">if</span> <span style="color:#644a9b;">length</span>(<span style="color:#aa5500;">ars</span>)=<span style="color:#b08000;">1</span> <span style="font-weight:bold;">then</span>
+    (
+    <span style="color:#aa5500;">gf_setp</span>(<span style="color:#aa5500;">ars</span>[<span style="color:#b08000;">1</span>]),
+    <span style="color:#644a9b;">return</span>(<span style="font-weight:bold;">true</span>)
+    )
+  <span style="font-weight:bold;">else</span>
+    (
+    <span style="font-weight:bold;">if</span> <span style="color:#644a9b;">length</span>(<span style="color:#aa5500;">ars</span>)=<span style="color:#b08000;">2</span> <span style="font-weight:bold;">then</span>
+       (
+       <span style="font-weight:bold;">if</span> <span style="color:#644a9b;">numberp</span>(<span style="color:#aa5500;">ars</span>[<span style="color:#b08000;">2</span>]) <span style="font-weight:bold;">then</span>
+         (
+         <span style="font-weight:bold;">if</span> <span style="color:#aa5500;">ars</span>[<span style="color:#b08000;">2</span>]=<span style="color:#b08000;">0</span> <span style="font-weight:bold;">and</span> <span style="color:#aa5500;">GF_WARNING</span> <span style="font-weight:bold;">then</span>
+           (
+           <span style="color:#644a9b;">print</span>(<span style="color:#bf0303;">&quot;WARNING: the irreducible is zero! We assume GF(&quot;</span>,<span style="color:#aa5500;">ars</span>[<span style="color:#b08000;">1</span>],<span style="color:#bf0303;">&quot;)&quot;</span>),
+           <span style="color:#aa5500;">gf_setp</span>(<span style="color:#aa5500;">ars</span>[<span style="color:#b08000;">1</span>]),
+           <span style="color:#644a9b;">return</span>(<span style="font-weight:bold;">true</span>)
+           )
+         <span style="font-weight:bold;">else</span>
+           (
+           <span style="color:#644a9b;">error</span>(<span style="color:#bf0303;">&quot;ERROR: you tried to extend with a non-zero constant!&quot;</span>),
+           <span style="color:#644a9b;">return</span>(<span style="font-weight:bold;">false</span>)
+           )
+         )
+       <span style="font-weight:bold;">else</span>
+         (
+         <span style="color:#aa5500;">dg</span>:<span style="color:#644a9b;">hipow</span>(<span style="color:#aa5500;">ars</span>[<span style="color:#b08000;">2</span>],<span style="color:#aa5500;">x</span>),
+
+         <span style="font-weight:bold;">if</span> <span style="color:#aa5500;">dg</span>=<span style="color:#b08000;">1</span> <span style="font-weight:bold;">then</span>
+           <span style="color:#aa5500;">gf_setp</span>(<span style="color:#aa5500;">ars</span>[<span style="color:#b08000;">1</span>]),
+         <span style="color:#aa5500;">gf_irr</span>:<span style="color:#aa5500;">ars</span>[<span style="color:#b08000;">2</span>],
+         <span style="color:#aa5500;">gf_exp</span>:<span style="color:#aa5500;">dg</span>,
+         <span style="color:#644a9b;">return</span>(<span style="font-weight:bold;">true</span>)
+         )
+       )
+    <span style="font-weight:bold;">else</span>
+       (
+       <span style="color:#aa5500;">gf_exp</span>:<span style="color:#aa5500;">ars</span>[<span style="color:#b08000;">2</span>],
+       <span style="font-weight:bold;">if</span> <span style="color:#aa5500;">gf_exp</span>=<span style="color:#b08000;">1</span> <span style="font-weight:bold;">then</span>
+          (
+          <span style="color:#aa5500;">gf_setp</span>(<span style="color:#aa5500;">ars</span>[<span style="color:#b08000;">1</span>]),
+          <span style="color:#aa5500;">gf_irr</span>:<span style="color:#644a9b;">rat</span>(<span style="color:#aa5500;">ars</span>[<span style="color:#b08000;">3</span>]),
+          <span style="color:#644a9b;">return</span>(<span style="font-weight:bold;">true</span>)
+          ),
+       <span style="color:#aa5500;">gf_irr</span>:<span style="color:#644a9b;">rat</span>(<span style="color:#aa5500;">ars</span>[<span style="color:#b08000;">3</span>])
+       )
+    ),
+
+  <span style="color:#aa5500;">gf_char</span>:<span style="color:#aa5500;">ars</span>[<span style="color:#b08000;">1</span>],
+  <span style="color:#aa5500;">gf_one</span>:<span style="color:#644a9b;">rat</span>(<span style="color:#b08000;">1</span>,<span style="color:#aa5500;">x</span>),
+  <span style="color:#aa5500;">gf_order</span>:<span style="color:#aa5500;">gf_char</span>^<span style="color:#aa5500;">gf_exp</span><span style="color:#b08000;">-1</span>,
+
+  <span style="color:#aa5500;">m</span>:<span style="color:#644a9b;">makelist</span>(<span style="color:#644a9b;">coeff</span>(<span style="color:#aa5500;">gf_irr</span>,<span style="color:#aa5500;">x</span>,<span style="color:#aa5500;">i</span>),<span style="color:#aa5500;">i</span>,<span style="color:#b08000;">0</span>,<span style="color:#aa5500;">gf_exp</span>),
+  <span style="color:#aa5500;">gf_list</span>:[[<span style="color:#644a9b;">first</span>(<span style="color:#aa5500;">m</span>),<span style="color:#b08000;">0</span>]],<span style="color:#aa5500;">j</span>:<span style="color:#b08000;">1</span>,
+  <span style="font-weight:bold;">for</span> <span style="color:#aa5500;">i</span>:<span style="color:#b08000;">2</span> <span style="font-weight:bold;">thru</span> <span style="color:#aa5500;">gf_exp</span><span style="color:#b08000;">+1</span> <span style="font-weight:bold;">do</span> <span style="font-weight:bold;">if</span> <span style="color:#aa5500;">m</span>[<span style="color:#aa5500;">i</span>]=<span style="color:#b08000;">0</span> <span style="font-weight:bold;">then</span> <span style="color:#aa5500;">j</span>:<span style="color:#aa5500;">j</span><span style="color:#b08000;">+1</span> <span style="font-weight:bold;">else</span> ( <span style="color:#aa5500;">gf_list</span>:<span style="color:#644a9b;">endcons</span>([<span style="color:#aa5500;">m</span>[<span style="color:#aa5500;">i</span>],<span style="color:#aa5500;">j</span>],<span style="color:#aa5500;">gf_list</span>), <span style="color:#aa5500;">j</span>:<span style="color:#b08000;">1</span> ),
+
+  <span style="font-weight:bold;">if</span> <span style="font-weight:bold;">not</span>(<span style="color:#644a9b;">primep</span>(<span style="color:#aa5500;">gf_char</span>)) <span style="font-weight:bold;">then</span> <span style="color:#644a9b;">error</span>(<span style="color:#bf0303;">&quot;ERROR: Gf_Char must be a prime number.&quot;</span>)
+    <span style="font-weight:bold;">else</span>
+      <span style="color:#0057ae;font-style:italic;">modulus</span>:<span style="color:#aa5500;">gf_char</span>,
+  <span style="font-weight:bold;">if</span> <span style="color:#aa5500;">GF_IRREDUCIBILITY_CHECK</span> <span style="font-weight:bold;">and</span>
+       <span style="color:#644a9b;">hipow</span>(<span style="color:#644a9b;">args</span>(<span style="color:#644a9b;">factor</span>(<span style="color:#aa5500;">ars</span>[<span style="color:#b08000;">3</span>]))[<span style="color:#b08000;">1</span>],<span style="color:#aa5500;">x</span>)#<span style="color:#644a9b;">hipow</span>(<span style="color:#644a9b;">rat</span>(<span style="color:#aa5500;">ars</span>[<span style="color:#b08000;">3</span>]),<span style="color:#aa5500;">x</span>) <span style="font-weight:bold;">then</span>
+      <span style="color:#644a9b;">error</span>(<span style="color:#bf0303;">&quot;ERROR: Polynomial is not irreducible&quot;</span>),
+
+  <span style="font-weight:bold;">if</span> <span style="font-weight:bold;">not</span>(<span style="color:#aa5500;">largefield</span>) <span style="font-weight:bold;">then</span>
+     (
+     <span style="color:#aa5500;">pg</span>:<span style="color:#aa5500;">mkpowers</span>(),
+     <span style="color:#aa5500;">lg</span>:<span style="color:#aa5500;">mklogs</span>()
+     )
+  <span style="font-weight:bold;">else</span>
+     (
+     <span style="font-weight:bold;">if</span> <span style="color:#aa5500;">GF_VERBOSE</span> <span style="font-weight:bold;">then</span>
+       <span style="color:#644a9b;">print</span>(<span style="color:#bf0303;">&quot;finding a primitive element...&quot;</span>),
+
+     <span style="color:#aa5500;">gf_prim</span>:<span style="color:#644a9b;">rat</span>(<span style="color:#aa5500;">gf_findprim</span>(),<span style="color:#aa5500;">x</span>),
+     <span style="font-weight:bold;">if</span> <span style="color:#aa5500;">GF_VERBOSE</span> <span style="font-weight:bold;">then</span>
+     <span style="color:#644a9b;">print</span>(<span style="color:#bf0303;">&quot;...primitive element found.&quot;</span>)
+
+     ),
+  <span style="color:#0057ae;font-style:italic;">modulus</span>:<span style="font-weight:bold;">false</span>, <span style="color:#898887;">/* it resets the modulus */</span>
+  <span style="color:#644a9b;">return</span>(<span style="font-weight:bold;">true</span>)
+
+  )$
+
+
+<span style="color:#898887;">/* Prints out information about the field */</span>
+<span style="color:#aa5500;">gf_info</span>():=<span style="color:#644a9b;">block</span>(
+  <span style="color:#644a9b;">print</span>(<span style="color:#bf0303;">&quot;Prime gf_char value: &quot;</span>,<span style="color:#aa5500;">gf_char</span>),
+  <span style="color:#644a9b;">print</span>(<span style="color:#bf0303;">&quot;Exponent: &quot;</span>, <span style="color:#aa5500;">gf_exp</span>),
+  <span style="color:#644a9b;">print</span>(<span style="color:#bf0303;">&quot;Multiplicative order: &quot;</span>,<span style="color:#aa5500;">gf_order</span>),
+  <span style="color:#644a9b;">print</span>(<span style="color:#bf0303;">&quot;Irreducible polynomial: &quot;</span>,<span style="color:#aa5500;">gf_irr</span>),
+  <span style="color:#644a9b;">print</span>(<span style="color:#bf0303;">&quot;Primitive element: &quot;</span>,<span style="color:#aa5500;">gf_prim</span>),
+  <span style="font-weight:bold;">if</span> (<span style="color:#aa5500;">largefield</span>) <span style="font-weight:bold;">then</span>
+    <span style="color:#644a9b;">print</span>(<span style="color:#bf0303;">&quot;Largefield flag is true; powers and logarithms not computed.&quot;</span>)
+    <span style="font-weight:bold;">else</span>
+    <span style="color:#644a9b;">print</span>(<span style="color:#bf0303;">&quot;Largefield flag is false; powers and logarithms computed.&quot;</span>),
+  <span style="color:#644a9b;">disp</span>()
+)$
+</pre></body></html>

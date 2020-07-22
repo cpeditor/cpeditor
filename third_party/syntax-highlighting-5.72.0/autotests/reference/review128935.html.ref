@@ -1,0 +1,164 @@
+<Comment><!--</Comment><br/>
+<Comment></Comment><br/>
+<Comment>HTML Syntax Highlight Sample File (Standard)</Comment><br/>
+<Comment></Comment><br/>
+<Comment>- Follow HTML5 standard.</Comment><br/>
+<Comment>- Contain some valid, but not recommended syntax.</Comment><br/>
+<Comment>- Can be rendered by modern web browsers.</Comment><br/>
+<Comment></Comment><br/>
+<Comment>@author Guo Yunhe guoyunhebrave@gmail.com</Comment><br/>
+<Comment>@date   2016-09-17</Comment><br/>
+<Comment></Comment><br/>
+<Comment>--></Comment><br/>
+<Normal Text></Normal Text><br/>
+<Doctype><!DOCTYPE </Doctype><Other Text>html</Other Text><Doctype>></Doctype><br/>
+<Normal Text></Normal Text><br/>
+<Element><html></Element><br/>
+<Normal Text></Normal Text><br/>
+<Element><head></Element><br/>
+<Element><meta</Element><Attribute> charset=</Attribute><Value>"utf-8"</Value><Element>></Element><br/>
+<Element><title></Element><Normal Text>HTML Syntax Highlight Sample File (Standard)</Normal Text><Element></title></Element><br/>
+<Element><link</Element><Attribute> rel=</Attribute><Value>"stylesheet"</Value><Attribute> href=</Attribute><Value>"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"</Value><Attribute> integrity=</Attribute><Value>"sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"</Value><Attribute> crossorigin=</Attribute><Value>"anonymous"</Value><Element>></Element><br/>
+<Element><link</Element><Attribute> rel=</Attribute><Value>"stylesheet"</Value><Attribute> href=</Attribute><Value>"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"</Value><Attribute> integrity=</Attribute><Value>"sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"</Value><Attribute> crossorigin=</Attribute><Value>"anonymous"</Value><Element>></Element><br/>
+<Element><script</Element><Attribute> src=</Attribute><Value>"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"</Value><Attribute> integrity=</Attribute><Value>"sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"</Value><Attribute> crossorigin=</Attribute><Value>"anonymous"</Value><Element>></script></Element><br/>
+<Element></head></Element><br/>
+<Normal Text></Normal Text><br/>
+<Element><body></Element><br/>
+<Normal Text></Normal Text><br/>
+<Comment><!-- HTML5 defined elements --></Comment><br/>
+<Normal Text></Normal Text><br/>
+<Element><div></Element><br/>
+<Normal Text>    This is a div. </Normal Text><Element><span></Element><Normal Text>This is a span</Normal Text><Element></span></Element><br/>
+<Normal Text>    </Normal Text><Element><div></Element><br/>
+<Normal Text>        This is a div.</Normal Text><br/>
+<Normal Text>    </Normal Text><Element></div></Element><br/>
+<Element></div></Element><br/>
+<Normal Text></Normal Text><br/>
+<Element><p></Element><br/>
+<Normal Text>    This is a paragraph. </Normal Text><Element><em></em></Element><br/>
+<Element></p></Element><br/>
+<Normal Text></Normal Text><br/>
+<Element><h1></Element><Normal Text>This is heading 1</Normal Text><Element></h1></Element><br/>
+<Element><h2></Element><Normal Text>This is heading 2</Normal Text><Element></h2></Element><br/>
+<Element><h3></Element><Normal Text>This is heading 3</Normal Text><Element></h3></Element><br/>
+<Element><h4></Element><Normal Text>This is heading 4</Normal Text><Element></h4></Element><br/>
+<Element><h5></Element><Normal Text>This is heading 5</Normal Text><Element></h5></Element><br/>
+<Element><h6></Element><Normal Text>This is heading 6</Normal Text><Element></h6></Element><br/>
+<Normal Text></Normal Text><br/>
+<Element><a</Element><Attribute> href=</Attribute><Value>"http://www.w3schools.com"</Value><Element>></Element><Normal Text>This is a link</Normal Text><Element></a></Element><br/>
+<Normal Text></Normal Text><br/>
+<Element><br></Element><br/>
+<Normal Text></Normal Text><br/>
+<Element><img</Element><Attribute> src=</Attribute><Value>"http://placehold.it/200x150"</Value><Attribute> alt=</Attribute><Value>"This is an image"</Value><Attribute> width=</Attribute><Value>"200"</Value><Attribute> height=</Attribute><Value>"150"</Value><Element>></Element><br/>
+<Normal Text></Normal Text><br/>
+<Element><hr></Element><br/>
+<Normal Text></Normal Text><br/>
+<Element><ul></Element><br/>
+<Normal Text>    </Normal Text><Element><li></Element><Normal Text>List item</Normal Text><Element></li></Element><br/>
+<Normal Text>    </Normal Text><Element><li></Element><Normal Text>List item</Normal Text><Element></li></Element><br/>
+<Normal Text>    </Normal Text><Element><li></Element><Normal Text>List item</Normal Text><Element></li></Element><br/>
+<Normal Text>    </Normal Text><Element><li></Element><Normal Text>List item</Normal Text><Element></li></Element><br/>
+<Normal Text>    </Normal Text><Element><li></Element><Normal Text>List item</Normal Text><Element></li></Element><br/>
+<Element></ul></Element><br/>
+<Normal Text></Normal Text><br/>
+<Element><ol></Element><br/>
+<Normal Text>    </Normal Text><Element><li></Element><Normal Text>List item</Normal Text><Element></li></Element><br/>
+<Normal Text>    </Normal Text><Element><li></Element><Normal Text>List item</Normal Text><Element></li></Element><br/>
+<Normal Text>    </Normal Text><Element><li></Element><Normal Text>List item</Normal Text><Element></li></Element><br/>
+<Normal Text>    </Normal Text><Element><li></Element><Normal Text>List item</Normal Text><Element></li></Element><br/>
+<Normal Text>    </Normal Text><Element><li></Element><Normal Text>List item</Normal Text><Element></li></Element><br/>
+<Element></ol></Element><br/>
+<Normal Text></Normal Text><br/>
+<Element><table></Element><br/>
+<Normal Text>    </Normal Text><Element><tr></Element><br/>
+<Normal Text>        </Normal Text><Element><th></Element><Normal Text>Table head</Normal Text><Element></th></Element><br/>
+<Normal Text>        </Normal Text><Element><th></Element><Normal Text>Table head</Normal Text><Element></th></Element><br/>
+<Normal Text>        </Normal Text><Element><th></Element><Normal Text>Table head</Normal Text><Element></th></Element><br/>
+<Normal Text>    </Normal Text><Element></tr></Element><br/>
+<Normal Text>    </Normal Text><Element><tr></Element><br/>
+<Normal Text>        </Normal Text><Element><td></Element><Normal Text>Table head</Normal Text><Element></td></Element><br/>
+<Normal Text>        </Normal Text><Element><td></Element><Normal Text>Table head</Normal Text><Element></td></Element><br/>
+<Normal Text>        </Normal Text><Element><td></Element><Normal Text>Table head</Normal Text><Element></td></Element><br/>
+<Normal Text>    </Normal Text><Element></tr></Element><br/>
+<Element></table></Element><br/>
+<Normal Text></Normal Text><br/>
+<Element><form></Element><br/>
+<Normal Text>    </Normal Text><Element><input</Element><Attribute> type=</Attribute><Value>"email"</Value><Attribute> name=</Attribute><Value>"author"</Value><Element>/></Element><br/>
+<Normal Text>    </Normal Text><Element><input</Element><Attribute> type=</Attribute><Value>"text"</Value><Attribute> name=</Attribute><Value>"message"</Value><Element>/></Element><br/>
+<Normal Text>    </Normal Text><Element><button</Element><Attribute> type=</Attribute><Value>"button"</Value><Element>></Element><Normal Text>Send</Normal Text><Element></button></Element><br/>
+<Element></form></Element><br/>
+<Normal Text></Normal Text><br/>
+<Element><main></Element><br/>
+<Normal Text>    </Normal Text><Element><header></Element><Normal Text>This is a header.</Normal Text><Element></header></Element><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>    </Normal Text><Element><nav></Element><Normal Text>This is a nav.</Normal Text><Element></nav></Element><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>    </Normal Text><Element><article></Element><br/>
+<Normal Text>        </Normal Text><Element><h2></Element><Normal Text>This is an article.</Normal Text><Element></h2></Element><br/>
+<Normal Text>        </Normal Text><Element><p></Element><Normal Text>This is an article.</Normal Text><Element></p></Element><br/>
+<Normal Text>    </Normal Text><Element></article></Element><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>    </Normal Text><Element><aside></Element><br/>
+<Normal Text>        </Normal Text><Element><h2></Element><Normal Text>This is an aside.</Normal Text><Element></h2></Element><br/>
+<Normal Text>    </Normal Text><Element></aside></Element><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>    </Normal Text><Element><footer></footer></Element><br/>
+<Normal Text></Normal Text><br/>
+<Element></main></Element><br/>
+<Normal Text></Normal Text><br/>
+<Comment><!-- Custom elements --></Comment><br/>
+<Normal Text></Normal Text><br/>
+<Element><booklist></Element><br/>
+<Normal Text>    </Normal Text><Element><book></Element><br/>
+<Normal Text>        </Normal Text><Element><booktitle></Element><Normal Text>Just For Fun: The Story of an Accidental Revolutionary</Normal Text><Element></booktitle></Element><br/>
+<Normal Text>        </Normal Text><Element><author></Element><Normal Text>Linus Torvalds</Normal Text><Element></author></Element><br/>
+<Normal Text>        </Normal Text><Element><description</Element><br/>
+<Attribute>            class=</Attribute><Value>"featured"</Value><Attribute> title=</Attribute><Value>"Click to read full text..."</Value><Element>></Element><br/>
+<Normal Text>            A humorous autobiography of Linus Torvalds, the creator of the Linux</Normal Text><br/>
+<Normal Text>            kernel, co-written with David Diamond. The book primarily theorizes</Normal Text><br/>
+<Normal Text>            the Law of Linus that all evolution contributed by humanity starts</Normal Text><br/>
+<Normal Text>            for survival, sustains socially and entertains at last. As well as</Normal Text><br/>
+<Normal Text>            this the book explains Torvalds' view of himself, the free software</Normal Text><br/>
+<Normal Text>            movement and the development of Linux.</Normal Text><Element></description></Element><br/>
+<Normal Text>    </Normal Text><Element></book></Element><br/>
+<Element></booklist></Element><br/>
+<Normal Text></Normal Text><br/>
+<Element><large-space/></Element><br/>
+<Normal Text></Normal Text><br/>
+<Comment><!-- Ends for single tag elements --></Comment><br/>
+<Element><br></Element><br/>
+<Element><br/></Element><br/>
+<Element><br</Element><Other Text> </Other Text><Element>/></Element><br/>
+<Element><br></br></Element><br/>
+<Normal Text></Normal Text><br/>
+<Comment><!-- Uppercase elements --></Comment><br/>
+<Normal Text></Normal Text><br/>
+<Element><DIV></Element><br/>
+<Normal Text>    THIS IS A DIV.</Normal Text><br/>
+<Normal Text>    </Normal Text><Element><P></Element><Normal Text>THIS IS A PARAGRAPH.</Normal Text><Element></P></Element><br/>
+<Normal Text>    </Normal Text><Element><H2></Element><Normal Text>THIS IS A HEADING.</Normal Text><Element></H2></Element><br/>
+<Element></DIV></Element><br/>
+<Normal Text></Normal Text><br/>
+<Comment><!-- Arrtibutes --></Comment><br/>
+<Normal Text></Normal Text><br/>
+<Element><a</Element><Attribute> href=</Attribute><Value>"#"</Value><Attribute> style=</Attribute><Value>"background-color:rgba(0,0,0,0.3)"</Value><Attribute> title=</Attribute><Value>"Click me"</Value><Element>></Element><Normal Text>Magic button</Normal Text><Element></a></Element><br/>
+<Normal Text></Normal Text><br/>
+<Element><img</Element><Attribute> src=</Attribute><Value>"http://placehold.it/200x150"</Value><Attribute> alt=</Attribute><Value>"This is an image"</Value><Attribute> width=</Attribute><Value>"200"</Value><br/>
+<Attribute>     height=</Attribute><Value>"150"</Value><Attribute> title=</Attribute><Value>"This is an image"</Value><Element>></Element><br/>
+<Normal Text></Normal Text><br/>
+<Comment><!-- Attribute without value --></Comment><br/>
+<Normal Text></Normal Text><br/>
+<Element><select></Element><br/>
+<Normal Text>    </Normal Text><Element><option</Element><Attribute> selected</Attribute><Element>></Element><Normal Text>GNU/Linux</Normal Text><Element></option></Element><br/>
+<Normal Text>    </Normal Text><Element><option></Element><Normal Text>BSD</Normal Text><Element></option></Element><br/>
+<Normal Text>    </Normal Text><Element><option></Element><Normal Text>Windows</Normal Text><Element></option></Element><br/>
+<Normal Text>    </Normal Text><Element><option></Element><Normal Text>macOS</Normal Text><Element></option></Element><br/>
+<Element></select></Element><br/>
+<Normal Text></Normal Text><br/>
+<Comment><!-- Attribute without quotes --></Comment><br/>
+<Normal Text></Normal Text><br/>
+<Element><div</Element><Attribute> id=</Attribute><Value>name</Value><Attribute> class=</Attribute><Value>a-sweet-block</Value><Attribute> data-counter=</Attribute><Value>175</Value><Element>></Element><Normal Text>This is a div.</Normal Text><Element></div></Element><br/>
+<Normal Text></Normal Text><br/>
+<Element></body></Element><br/>
+<Normal Text></Normal Text><br/>
+<Element></html></Element><br/>

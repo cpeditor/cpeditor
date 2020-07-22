@@ -1,0 +1,9 @@
+set(FILES "@OUT@")
+
+if(WIN32 OR APPLE)
+foreach(f ${FILES})
+    if(NOT EXISTS "${f}")
+        message(SEND_ERROR "${f} was not found")
+    endif()
+endforeach()
+endif()

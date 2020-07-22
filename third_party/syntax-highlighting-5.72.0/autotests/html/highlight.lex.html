@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title>highlight.lex</title>
+<meta name="generator" content="KF5::SyntaxHighlighting (Lex/Flex)"/>
+</head><body style="color:#1f1c1b"><pre>
+<span style="color:#898887;">/* This test file tests kates Lex/Flex highlighting */</span>
+
+<span style="font-weight:bold;">%option c++</span>
+<span style="font-weight:bold;">%option yyclass=&quot;KateTester&quot;</span>
+<span style="font-weight:bold;">%option yylineno</span>
+
+ <span style="color:#898887;">/* This is a C(++) comment */</span>
+
+<span style="color:#898887;">/* This one is a lex comment ! */</span>
+
+<span style="color:#b08000;font-weight:bold;">%{</span>
+<span style="color:#006e28;">#include </span><span style="color:#ff5500;">&lt;iostream&gt;</span>
+<span style="color:#006e28;">#include </span><span style="color:#ff5500;">&quot;realparser.hpp&quot;</span>
+<span style="font-weight:bold;">using</span> <span style="font-weight:bold;">namespace</span> std;
+<span style="color:#b08000;font-weight:bold;">%}</span>
+
+<span style="color:#898887;">/* Some definitions */</span>
+<span style="color:#0057ae;">DIGIT    </span><span style="color:#bf0303;">[0-9]</span>
+<span style="color:#0057ae;">LETTER   </span><span style="color:#bf0303;">[_a-zA-Z]</span>
+
+<span style="color:#b08000;font-weight:bold;">%%</span>
+
+ <span style="color:#898887;">/* Comment *shall be indented here* */</span>
+<span style="color:#bf0303;">[ </span><span style="color:#bf0303;font-weight:bold;">\t\n\r</span><span style="color:#bf0303;">]+</span>          
+
+ <span style="color:#898887;">/* Note: there is a bad } just here     vvv */</span>
+<span style="color:#bf0303;font-weight:bold;">\/\*</span><span style="color:#bf0303;">([^</span><span style="color:#bf0303;font-weight:bold;">\*</span><span style="color:#bf0303;">]|</span><span style="color:#bf0303;font-weight:bold;">\*</span><span style="color:#bf0303;">[^/])*</span><span style="color:#bf0303;font-weight:bold;">\*\/</span> { foo(a, b, c); } <span style="color:#bf0303;background-color:#f7e6e6;font-weight:bold;">}</span>
+
+ <span style="color:#898887;">/* A start condition scope... */</span>
+<span style="color:#bf0303;">&lt;ESC&gt;</span><span style="color:#b08000;font-weight:bold;">{</span>
+  <span style="color:#bf0303;">&quot;a&quot;</span> {
+  
+  <span style="color:#898887;">/* C mode ! */</span>
+  <span style="font-weight:bold;">return</span> <span style="color:#b08000;">0</span>;
+}
+
+  <span style="color:#bf0303;">&quot;b&quot;</span> <span style="color:#b08000;font-weight:bold;">%{</span>
+  
+  <span style="color:#898887;">/* C mode, too ! */</span>
+  <span style="font-weight:bold;">return</span> <span style="color:#b08000;">0</span>;
+<span style="color:#b08000;font-weight:bold;">%}</span>
+  
+  <span style="color:#bf0303;">&quot;c&quot;</span> <span style="font-weight:bold;">return</span> <span style="color:#b08000;">0</span>; <span style="color:#898887;">// C++ comment</span>
+<span style="color:#b08000;font-weight:bold;">}</span>
+
+ <span style="color:#898887;">/* Big rule */</span>
+<span style="color:#bf0303;font-weight:bold;">\&quot;</span><span style="color:#bf0303;">([^&quot;</span><span style="color:#bf0303;font-weight:bold;">\\</span><span style="color:#bf0303;">]|</span><span style="color:#bf0303;font-weight:bold;">\\</span><span style="color:#bf0303;">.)*</span><span style="color:#bf0303;font-weight:bold;">\&quot;</span> {
+
+   yylval.string_val = <span style="font-weight:bold;">new</span> <span style="color:#0057ae;">char</span>[strlen(yytext) + <span style="color:#b08000;">1</span>];
+   <span style="color:#0057ae;">int</span> j = <span style="color:#b08000;">0</span>, i = <span style="color:#b08000;">1</span>;
+   
+   <span style="font-weight:bold;">while</span> (yytext[i] != <span style="color:#924c9d;">'&quot;'</span>)
+      <span style="font-weight:bold;">if</span> (yytext[i] != <span style="color:#924c9d;">'</span><span style="color:#3daee9;">\\</span><span style="color:#924c9d;">'</span>)
+         yylval.string_val[j++] = yytext[i++];
+      <span style="font-weight:bold;">else</span>
+         <span style="font-weight:bold;">switch</span> (yytext[i + <span style="color:#b08000;">1</span>])
+         {
+         <span style="font-weight:bold;">case</span> <span style="color:#924c9d;">'n'</span>:
+            yylval.string_val[j++] = <span style="color:#924c9d;">'</span><span style="color:#3daee9;">\n</span><span style="color:#924c9d;">'</span>; i += <span style="color:#b08000;">2</span>;
+            <span style="font-weight:bold;">break</span>;
+         <span style="font-weight:bold;">default</span>:
+            yylval.string_val[j++] &lt;&lt; yytext[i + <span style="color:#b08000;">1</span>], i += <span style="color:#b08000;">2</span>;
+         }
+    
+    yylval.string_val[j] = <span style="color:#b08000;">0</span>;   
+    <span style="font-weight:bold;">return</span> TOK_STRING;
+
+}
+
+ <span style="color:#898887;">/* Dot (match all) */</span>
+<span style="color:#bf0303;">.</span>             {<span style="font-weight:bold;">return</span> yylval.int_val = yytext[<span style="color:#b08000;">0</span>];}
+
+<span style="color:#b08000;font-weight:bold;">%%</span>
+
+<span style="color:#898887;">// Here is pure C(++)</span>
+<span style="color:#006e28;">#include </span><span style="color:#ff5500;">&lt;iostream&gt;</span>
+
+<span style="color:#0057ae;">int</span> main(<span style="color:#0057ae;">void</span>)
+{
+  <span style="color:#644a9b;font-weight:bold;">std::cout</span> &lt;&lt; <span style="color:#bf0303;">&quot;Hello, World</span><span style="color:#3daee9;">\n</span><span style="color:#bf0303;">&quot;</span>;
+  <span style="font-weight:bold;">return</span> <span style="color:#b08000;">0</span>;
+}
+</pre></body></html>

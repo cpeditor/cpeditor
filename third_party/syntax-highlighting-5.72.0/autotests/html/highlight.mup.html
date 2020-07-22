@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title>highlight.mup</title>
+<meta name="generator" content="KF5::SyntaxHighlighting (Music Publisher)"/>
+</head><body style="color:#1f1c1b"><pre>
+<span style="color:#898887;">// This is a MUP highlighting test.</span>
+<span style="color:#898887;">// Mup is a shareware music publisher from www.arkkra.com</span>
+
+<span style="color:#898887;">// contexts</span>
+<span style="font-weight:bold;">score</span>
+<span style="font-weight:bold;">music</span>
+<span style="font-weight:bold;">staff</span> 1
+<span style="font-weight:bold;">voice</span> 1 3
+
+<span style="font-weight:bold;">top</span>
+<span style="font-weight:bold;">top2</span>
+<span style="font-weight:bold;">bottom</span>
+<span style="font-weight:bold;">bottom2</span>
+<span style="font-weight:bold;">grids</span>
+
+<span style="font-weight:bold;">headshapes</span>
+
+
+<span style="font-weight:bold;">header</span>
+<span style="font-weight:bold;">footer</span>
+<span style="font-weight:bold;">header2</span>
+<span style="font-weight:bold;">footer2</span>
+
+<span style="color:#898887;">// parameters and values</span>
+<span style="font-weight:bold;">score</span>
+	<span style="color:#924c9d;">units </span>= <span style="color:#b08000;">cm</span>;
+	<span style="color:#924c9d;">key </span>= <span style="color:#b08000;">3#minor</span>
+	<span style="color:#924c9d;">key </span>= <span style="color:#b08000;">3#</span> <span style="color:#b08000;">minor</span>
+	<span style="color:#924c9d;">rehstyle</span>=<span style="color:#b08000;">circled</span> 
+
+
+
+
+<span style="color:#b08000;">mussym</span> <span style="color:#b08000;">above</span> <span style="color:#b08000;">all</span>: 1 <span style="color:#bf0303;">&quot;ferm&quot;</span> ;
+
+<span style="color:#1111ff;">define</span> <span style="color:#1111ff;">NAME</span>
+<span style="color:#898887;">// this is a macro definition, these are collapsable</span>
+<span style="color:#1111ff;">@</span>
+
+<span style="color:#1111ff;">ifdef</span> <span style="color:#1111ff;">NAME</span>
+<span style="color:#898887;">// this is conditionally &quot;compiled&quot;</span>
+<span style="color:#1111ff;">endif</span>
+
+<span style="color:#1111ff;">ifndef</span> <span style="color:#1111ff;">NAME</span>
+<span style="color:#898887;">// this is conditionally &quot;compiled&quot; when the macro has not been defined</span>
+<span style="color:#1111ff;">else</span>
+<span style="color:#898887;">// else clause</span>
+<span style="color:#1111ff;">endif</span>
+
+
+<span style="color:#898887;">// Various Tests </span>
+
+<span style="color:#898887;">// tablature</span>
+1: e ^f; f; b ^c5; c#5;
+<span style="color:#cc6622;">bar</span>
+
+1: d+^e+ g^a; e+a; g ^/; c ^/ c+^/;
+<span style="color:#cc6622;">bar</span>
+
+<span style="color:#898887;">// cross-staff stems</span>
+1: 1e+g+c++;
+2: cc+; ee+; g <span style="color:#b08000;">with</span> g+ <span style="color:#b08000;">above</span>; <span style="color:#b08000;">with</span> c+c++ <span style="color:#b08000;">above</span>;
+<span style="color:#cc6622;">bar</span>
+
+1: 2+4ceg;4;    <span style="color:#898887;">// tie implied by added time values</span>
+
+<span style="color:#898887;">// slurs</span>
+1: 2f<span style="color:#0077bb;font-style:italic;">&lt;d&gt;</span> a<span style="color:#0077bb;font-style:italic;">&lt;b&gt;</span> c+<span style="color:#0077bb;font-style:italic;">&lt;d+&gt;</span>; dbd+;
+<span style="color:#cc6622;">bar</span>
+1: 2fac+ <span style="color:#0077bb;font-style:italic;">slur</span>; dbd+;
+<span style="color:#cc6622;">bar</span>
+
+<span style="color:#898887;">// alternation</span>
+1: 2c <span style="color:#0077bb;font-style:italic;">alt 2</span>; 2c+;2g;
+<span style="color:#cc6622;">bar</span>
+
+<span style="color:#898887;">// bar to draw if repeatstart happens to be on new line</span>
+(<span style="color:#cc6622;">dblbar</span>) <span style="color:#cc6622;">repeatstart</span>
+1: <span style="font-weight:bold;">[</span><span style="color:#0077bb;font-style:italic;">up</span><span style="font-weight:bold;">]</span>8f <span style="color:#0077bb;font-style:italic;">bm with staff below</span>;a;4s <span style="color:#0077bb;font-style:italic;">ebm</span>;4s <span style="color:#0077bb;font-style:italic;">bm with staff below</span>;8b;<span style="font-weight:bold;">[</span><span style="color:#0077bb;font-style:italic;">len 11</span><span style="font-weight:bold;">]</span>d <span style="color:#0077bb;font-style:italic;">ebm</span>;
+2: 4s <span style="color:#0077bb;font-style:italic;">bm with staff above</span>;8a;b <span style="color:#0077bb;font-style:italic;">ebm</span>;<span style="font-weight:bold;">[</span><span style="color:#0077bb;font-style:italic;">down</span>;<span style="color:#0077bb;font-style:italic;">len 14</span><span style="font-weight:bold;">]</span>b <span style="color:#0077bb;font-style:italic;">bm with staff above</span>;d;4s <span style="color:#0077bb;font-style:italic;">ebm</span>;
+<span style="color:#cc6622;">bar</span>
+
+<span style="color:#898887;">// locations</span>
+3: 2cf; <span style="font-weight:bold;">[</span><span style="color:#00cc44;font-weight:bold;">=h</span><span style="font-weight:bold;">]</span> egc+;
+1: <span style="font-weight:bold;">[</span><span style="color:#0077bb;font-style:italic;">cue</span>; <span style="color:#0077bb;font-style:italic;">with &gt;</span>; <span style="color:#00cc44;font-weight:bold;">=_ch</span><span style="font-weight:bold;">]</span> fa;
+
+
+<span style="color:#b08000;">roll</span> <span style="color:#b08000;">up</span> 1 1 <span style="color:#b08000;">to</span> 1 2: 2; 4;
+<span style="color:#b08000;">roll</span> <span style="color:#b08000;">down</span> 1 1 <span style="color:#b08000;">to</span> 1 2: 2; 4;
+
+<span style="color:#b08000;font-weight:bold;">lyrics</span> <span style="color:#b08000;">above</span> 1,3 ; <span style="color:#b08000;">below</span> 2,4 ; <span style="color:#b08000;">between</span> 5&amp;6 : <span style="color:#bf0303;">&quot;</span><span style="color:#880000;">&lt;</span><span style="color:#bf0303;">1.  </span><span style="color:#880000;">&gt;</span><span style="color:#bf0303;">Hi, hi&quot;</span>;
+
+<span style="color:#b08000;">title </span><span style="color:#bf0303;">&quot;page </span><span style="color:#bf0303;font-weight:bold;">\%</span><span style="color:#bf0303;"> of </span><span style="color:#bf0303;font-weight:bold;">\#</span><span style="color:#bf0303;">&quot;</span>
+
+<span style="color:#898887;">// shaped whole rests</span>
+1:	4mr;   <span style="color:#898887;">// use a quarter rest symbol</span>
+1:	1/4mr;  <span style="color:#898887;">// use a quadruple whole rest symbol</span>
+2:	2.. mr;  <span style="color:#898887;">// use a double-dotted half rest</span>
+
+<span style="color:#898887;">// tuplets</span>
+1: <span style="font-weight:bold;">{</span>4f; g;<span style="font-weight:bold;">}</span><span style="color:#003355;">3n</span><span style="color:#000000;text-decoration:underline;">um</span>,4.+2.
+<span style="color:#cc6622;">bar</span>
+
+</pre></body></html>

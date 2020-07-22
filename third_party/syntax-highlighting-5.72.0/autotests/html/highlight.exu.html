@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title>highlight.exu</title>
+<meta name="generator" content="KF5::SyntaxHighlighting (Euphoria)"/>
+</head><body style="color:#1f1c1b"><pre>
+<span style="color:#898887;">-- Test file for Kate's Euphoria syntax highlighting/code folding.</span>
+<span style="color:#0057ae;background-color:#e0e9f8;">-- BEGIN region marker test</span>
+
+<span style="color:#898887;">-- code here</span>
+
+<span style="color:#0057ae;background-color:#e0e9f8;">-- END region marker test</span>
+
+<span style="color:#898887;">-- The N Queens Problem:</span>
+<span style="color:#898887;">-- Place N Queens on an NxN chess board</span>
+<span style="color:#898887;">-- such that they don't threaten each other.</span>
+<span style="color:#0057ae;">constant</span> N = <span style="color:#b08000;">8</span> <span style="color:#898887;">-- try some other sizes</span>
+<span style="color:#0057ae;">constant</span> ROW = <span style="color:#b08000;">1</span>, COLUMN = <span style="color:#b08000;">2</span>
+<span style="color:#0057ae;">constant</span> <span style="font-weight:bold;">TRUE</span> = <span style="color:#b08000;">1</span>, <span style="font-weight:bold;">FALSE</span> = <span style="color:#b08000;">0</span>
+<span style="font-weight:bold;">type</span> square(<span style="color:#0057ae;">sequence</span> x)
+<span style="color:#898887;">-- a square on the board</span>
+    <span style="font-weight:bold;">return</span> <span style="font-weight:bold;">length</span>(x) = <span style="color:#b08000;">2</span>
+<span style="font-weight:bold;">end type</span>
+<span style="font-weight:bold;">type</span> row(<span style="color:#0057ae;">integer</span> x)
+<span style="color:#898887;">-- a row on the board</span>
+    <span style="font-weight:bold;">return</span> x &gt;= <span style="color:#b08000;">1</span> <span style="font-weight:bold;">and</span> x &lt;= N
+<span style="font-weight:bold;">end type</span>
+
+<span style="font-weight:bold;">function</span> threat(square q1, square q2)
+<span style="color:#898887;">-- do two queens threaten each other?</span>
+    <span style="font-weight:bold;">if</span> q1[COLUMN] = q2[COLUMN] <span style="font-weight:bold;">then</span>
+ <span style="font-weight:bold;">return</span> <span style="font-weight:bold;">TRUE</span>
+    <span style="font-weight:bold;">elsif</span> q1[ROW] - q1[COLUMN] = q2[ROW] - q2[COLUMN] <span style="font-weight:bold;">then</span>
+ <span style="font-weight:bold;">return</span> <span style="font-weight:bold;">TRUE</span>
+    <span style="font-weight:bold;">elsif</span> q1[ROW] + q1[COLUMN] = q2[ROW] + q2[COLUMN] <span style="font-weight:bold;">then</span>
+ <span style="font-weight:bold;">return</span> <span style="font-weight:bold;">TRUE</span>
+    <span style="font-weight:bold;">elsif</span> q1[ROW] = q2[ROW] <span style="font-weight:bold;">then</span>
+ <span style="font-weight:bold;">return</span> <span style="font-weight:bold;">TRUE</span>
+    <span style="font-weight:bold;">else</span>
+ <span style="font-weight:bold;">return</span> <span style="font-weight:bold;">FALSE</span>
+    <span style="font-weight:bold;">end if</span>
+<span style="font-weight:bold;">end function</span>
+
+<span style="font-weight:bold;">function</span> conflict(square q, <span style="color:#0057ae;">sequence</span> queens)
+<span style="color:#898887;">-- Would square p cause a conflict with other queens on board so far?</span>
+    <span style="font-weight:bold;">for</span> i = <span style="color:#b08000;">1</span> <span style="font-weight:bold;">to</span> <span style="font-weight:bold;">length</span>(queens) <span style="font-weight:bold;">do</span>
+ <span style="font-weight:bold;">if</span> threat(q, queens[i]) <span style="font-weight:bold;">then</span>
+     <span style="font-weight:bold;">return</span> <span style="font-weight:bold;">TRUE</span>
+ <span style="font-weight:bold;">end if</span>
+    <span style="font-weight:bold;">end for</span>
+    <span style="font-weight:bold;">return</span> <span style="font-weight:bold;">FALSE</span>
+<span style="font-weight:bold;">end function</span>
+
+<span style="color:#0057ae;">integer</span> soln
+soln = <span style="color:#b08000;">0</span> <span style="color:#898887;">-- solution number</span>
+
+<span style="font-weight:bold;">procedure</span> print_board(<span style="color:#0057ae;">sequence</span> queens)
+<span style="color:#898887;">-- print a solution, showing the Queens on the board</span>
+    <span style="color:#0057ae;">integer</span> k
+    <span style="font-weight:bold;">position</span>(<span style="color:#b08000;">1</span>, <span style="color:#b08000;">1</span>)
+    <span style="font-weight:bold;">printf</span>(<span style="color:#b08000;">1</span>, <span style="color:#bf0303;">&quot;Solution #%d\n\n  &quot;</span>, soln)
+    <span style="font-weight:bold;">for</span> c = 'a' <span style="font-weight:bold;">to</span> 'a' + N - <span style="color:#b08000;">1</span> <span style="font-weight:bold;">do</span>
+ <span style="font-weight:bold;">printf</span>(<span style="color:#b08000;">1</span>, <span style="color:#bf0303;">&quot;%2s&quot;</span>, c)
+    <span style="font-weight:bold;">end for</span>
+    <span style="font-weight:bold;">puts</span>(<span style="color:#b08000;">1</span>, <span style="color:#bf0303;">&quot;\n&quot;</span>)
+    <span style="font-weight:bold;">for</span> r = <span style="color:#b08000;">1</span> <span style="font-weight:bold;">to</span> N <span style="font-weight:bold;">do</span>
+ <span style="font-weight:bold;">printf</span>(<span style="color:#b08000;">1</span>, <span style="color:#bf0303;">&quot;%2d &quot;</span>, r)
+ <span style="font-weight:bold;">for</span> c = <span style="color:#b08000;">1</span> <span style="font-weight:bold;">to</span> N <span style="font-weight:bold;">do</span>
+     <span style="font-weight:bold;">if</span> <span style="font-weight:bold;">find</span>({r,c}, queens) <span style="font-weight:bold;">then</span>
+  <span style="font-weight:bold;">puts</span>(<span style="color:#b08000;">1</span>, <span style="color:#bf0303;">&quot;Q &quot;</span>)
+     <span style="font-weight:bold;">else</span>
+  <span style="font-weight:bold;">puts</span>(<span style="color:#b08000;">1</span>, <span style="color:#bf0303;">&quot;. &quot;</span>)
+     <span style="font-weight:bold;">end if</span>
+ <span style="font-weight:bold;">end for</span>
+ <span style="font-weight:bold;">puts</span>(<span style="color:#b08000;">1</span>, <span style="color:#bf0303;">&quot;\n&quot;</span>)
+    <span style="font-weight:bold;">end for</span>
+    <span style="font-weight:bold;">puts</span>(<span style="color:#b08000;">1</span>, <span style="color:#bf0303;">&quot;\nPress Enter. (q to quit) &quot;</span>)
+    <span style="font-weight:bold;">while</span> <span style="font-weight:bold;">TRUE</span> <span style="font-weight:bold;">do</span>
+ k = <span style="font-weight:bold;">get_key</span>()
+ <span style="font-weight:bold;">if</span> k = 'q' <span style="font-weight:bold;">then</span>
+     <span style="font-weight:bold;">abort</span>(<span style="color:#b08000;">0</span>)
+ <span style="font-weight:bold;">elsif</span> k != -<span style="color:#b08000;">1</span> <span style="font-weight:bold;">then</span>
+     <span style="font-weight:bold;">exit</span>
+ <span style="font-weight:bold;">end if</span>
+    <span style="font-weight:bold;">end while</span>
+<span style="font-weight:bold;">end procedure</span>
+
+<span style="font-weight:bold;">procedure</span> place_queen(<span style="color:#0057ae;">sequence</span> queens)
+<span style="color:#898887;">-- place queens on a NxN chess board</span>
+<span style="color:#898887;">-- (recursive procedure)</span>
+    row r <span style="color:#898887;">-- only need to consider one row for each queen</span>
+    <span style="font-weight:bold;">if</span> <span style="font-weight:bold;">length</span>(queens) = N <span style="font-weight:bold;">then</span>
+ soln += <span style="color:#b08000;">1</span>
+ print_board(queens)
+ <span style="font-weight:bold;">return</span>
+    <span style="font-weight:bold;">end if</span>
+    r = <span style="font-weight:bold;">length</span>(queens)+<span style="color:#b08000;">1</span>
+    <span style="font-weight:bold;">for</span> c = <span style="color:#b08000;">1</span> <span style="font-weight:bold;">to</span> N <span style="font-weight:bold;">do</span>
+ <span style="font-weight:bold;">if</span> <span style="font-weight:bold;">not</span> conflict({r,c}, queens) <span style="font-weight:bold;">then</span>
+     place_queen(<span style="font-weight:bold;">append</span>(queens, {r,c}))
+ <span style="font-weight:bold;">end if</span>
+    <span style="font-weight:bold;">end for</span>
+<span style="font-weight:bold;">end procedure</span>
+</pre></body></html>

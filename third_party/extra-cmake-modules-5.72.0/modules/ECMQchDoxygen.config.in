@@ -1,0 +1,251 @@
+#---------------------------------------------------------------------------
+# Project related configuration options
+#---------------------------------------------------------------------------
+PROJECT_NAME           = @ECM_QCH_DOXYGEN_PROJECTNAME@
+PROJECT_NUMBER         = @ECM_QCH_DOXYGEN_PROJECTVERSION@
+OUTPUT_DIRECTORY       = @ECM_QCH_DOXYGEN_OUTPUTDIR@
+GENERATE_TAGFILE       = @ECM_QCH_DOXYGEN_TAGFILE@
+CREATE_SUBDIRS         = NO
+OUTPUT_LANGUAGE        = English
+BRIEF_MEMBER_DESC      = YES
+REPEAT_BRIEF           = YES
+ABBREVIATE_BRIEF       = "The \$name class" \
+                         "The \$name widget" \
+                         "The \$name file" \
+                         is \
+                         provides \
+                         specifies \
+                         contains \
+                         represents \
+                         a \
+                         an \
+                         the
+ALWAYS_DETAILED_SEC    = YES
+INLINE_INHERITED_MEMB  = NO
+FULL_PATH_NAMES        = NO
+STRIP_FROM_PATH        = 
+STRIP_FROM_INC_PATH    = 
+SHORT_NAMES            = NO
+# Do not require explicity @brief command for brief description
+JAVADOC_AUTOBRIEF      = YES
+MULTILINE_CPP_IS_BRIEF = NO
+INHERIT_DOCS           = YES
+SEPARATE_MEMBER_PAGES  = NO
+TAB_SIZE               = 8
+OPTIMIZE_OUTPUT_FOR_C  = NO
+OPTIMIZE_OUTPUT_JAVA   = NO
+BUILTIN_STL_SUPPORT    = NO
+DISTRIBUTE_GROUP_DOC   = NO
+SUBGROUPING            = YES
+LAYOUT_FILE            = @ECM_QCH_DOXYGEN_LAYOUTFILE@
+#---------------------------------------------------------------------------
+# Build related configuration options
+#---------------------------------------------------------------------------
+EXTRACT_ALL            = NO
+EXTRACT_PRIVATE        = NO
+EXTRACT_STATIC         = YES
+EXTRACT_LOCAL_CLASSES  = NO
+EXTRACT_LOCAL_METHODS  = NO
+EXTRACT_ANON_NSPACES   = NO
+# Require classes to be documented to appear in apidox, but always document all
+# public and protected members (even if static)
+HIDE_UNDOC_MEMBERS     = NO
+HIDE_UNDOC_CLASSES     = YES
+HIDE_FRIEND_COMPOUNDS  = YES
+HIDE_IN_BODY_DOCS      = NO
+INTERNAL_DOCS          = NO
+CASE_SENSE_NAMES       = YES
+HIDE_SCOPE_NAMES       = NO
+SHOW_INCLUDE_FILES     = YES
+HIDE_COMPOUND_REFERENCE = YES
+INLINE_INFO            = YES
+SORT_MEMBER_DOCS       = YES
+SORT_MEMBERS_CTORS_1ST = YES
+SORT_BRIEF_DOCS        = YES
+SORT_BY_SCOPE_NAME     = NO
+GENERATE_TODOLIST      = NO
+GENERATE_TESTLIST      = NO
+GENERATE_BUGLIST       = NO
+GENERATE_DEPRECATEDLIST = YES
+ENABLED_SECTIONS       = 
+MAX_INITIALIZER_LINES  = 30
+SHOW_USED_FILES        = NO
+SHOW_FILES             = YES
+FILE_VERSION_FILTER    = 
+#---------------------------------------------------------------------------
+# configuration options related to warning and progress messages
+#---------------------------------------------------------------------------
+QUIET                  = @ECM_QCH_DOXYGEN_QUIET@
+WARNINGS               = YES
+WARN_IF_UNDOCUMENTED   = YES
+WARN_IF_DOC_ERROR      = YES
+WARN_NO_PARAMDOC       = YES
+WARN_FORMAT            = "\$file:\$line: \$text"
+WARN_LOGFILE           = @ECM_QCH_DOXYGEN_WARN_LOGFILE@
+#---------------------------------------------------------------------------
+# configuration options related to the input files
+#---------------------------------------------------------------------------
+INPUT                  = @ECM_QCH_DOXYGEN_INPUT@
+FILE_PATTERNS          = @ECM_QCH_DOXYGEN_FILE_PATTERNS@
+RECURSIVE              = YES
+EXCLUDE                = 
+EXCLUDE_SYMLINKS       = NO
+EXCLUDE_PATTERNS       = */.svn/* \
+                         */.git/* \
+                         */cmake/* \
+                         *.moc.* \
+                         moc* \
+                         *.all_cpp.* \
+                         *unload.* \
+                         */test/* \
+                         */tests/* \
+                         */autotests/* \
+                         *_p.cpp \
+                         *_p.h
+# Symbols from Qt that show up occassionlly and we don't want to see
+EXCLUDE_SYMBOLS        = iterator const_iterator
+EXAMPLE_PATH           = @ECM_QCH_DOXYGEN_EXAMPLEDIRS@
+EXAMPLE_PATTERNS       = *
+EXAMPLE_RECURSIVE      = YES
+IMAGE_PATH             = @ECM_QCH_DOXYGEN_IMAGEDIRS@
+INPUT_FILTER           = 
+FILTER_PATTERNS        = 
+FILTER_SOURCE_FILES    = NO
+USE_MDFILE_AS_MAINPAGE = @ECM_QCH_DOXYGEN_MAINPAGE_MDFILE@
+#---------------------------------------------------------------------------
+# configuration options related to the alphabetical class index
+#---------------------------------------------------------------------------
+ALPHABETICAL_INDEX     = NO
+COLS_IN_ALPHA_INDEX    = 5
+IGNORE_PREFIX          = 
+#---------------------------------------------------------------------------
+# do NOT generate any formats other than qhp
+#---------------------------------------------------------------------------
+SOURCE_BROWSER         = NO
+GENERATE_HTML          = YES
+GENERATE_LATEX         = NO
+GENERATE_MAN           = NO
+GENERATE_RTF           = NO
+GENERATE_XML           = NO
+GENERATE_AUTOGEN_DEF   = NO
+GENERATE_PERLMOD       = NO
+DISABLE_INDEX          = YES
+HTML_DYNAMIC_SECTIONS  = NO
+#---------------------------------------------------------------------------
+# configuration options related to the qhp output
+#---------------------------------------------------------------------------
+GENERATE_QHP           = YES
+QCH_FILE               = @ECM_QCH_DOXYGEN_FILEPATH@
+QHP_NAMESPACE          = @ECM_QCH_DOXYGEN_FULLNAMESPACE@
+QHP_VIRTUAL_FOLDER     = @ECM_QCH_DOXYGEN_VIRTUALFOLDER@
+QHG_LOCATION           = @ECM_QCH_DOXYGEN_QHELPGENERATOR_EXECUTABLE@
+#---------------------------------------------------------------------------
+# Configuration options related to the preprocessor   
+#---------------------------------------------------------------------------
+ENABLE_PREPROCESSING   = YES
+MACRO_EXPANSION        = YES
+EXPAND_ONLY_PREDEF     = NO
+SEARCH_INCLUDES        = YES
+INCLUDE_PATH           = @ECM_QCH_DOXYGEN_INCLUDE_PATH@
+INCLUDE_FILE_PATTERNS  = 
+EXPAND_AS_DEFINED      = 
+SKIP_FUNCTION_MACROS   = YES
+#---------------------------------------------------------------------------
+# Configuration::additions related to external references   
+#---------------------------------------------------------------------------
+ALLEXTERNALS           = NO
+EXTERNAL_GROUPS        = YES
+TAGFILES               = @ECM_QCH_DOXYGEN_TAGFILES@
+#---------------------------------------------------------------------------
+# Configuration options related to the dot tool   
+#---------------------------------------------------------------------------
+CLASS_DIAGRAMS         = NO
+HIDE_UNDOC_RELATIONS   = YES
+HAVE_DOT               = NO
+CLASS_GRAPH            = NO
+COLLABORATION_GRAPH    = NO
+GROUP_GRAPHS           = NO
+UML_LOOK               = NO
+TEMPLATE_RELATIONS     = NO
+INCLUDE_GRAPH          = NO
+INCLUDED_BY_GRAPH      = NO
+CALL_GRAPH             = NO
+CALLER_GRAPH           = NO
+GRAPHICAL_HIERARCHY    = NO
+DIRECTORY_GRAPH        = NO
+GENERATE_LEGEND        = NO
+#---------------------------------------------------------------------------
+# Configuration::additions related to the search engine   
+#---------------------------------------------------------------------------
+SEARCHENGINE           = NO
+
+
+### KDE Settings
+ALIASES                = "intern=\par<b>Internal use only.</b>" \
+                         "reimp=\par<b>Reimplemented from superclass.</b>" \
+                         "obsolete=@deprecated" \
+                         "feature=\xrefitem features \"Feature(s)\" \"Features\"" \
+                         "unmaintained=\xrefitem unmaintained \"Unmaintained\" \"Unmaintained\"" \
+                         "requirement=\xrefitem requirements \"Requirement(s)\" \"Requirements\"" \
+                         "faq=\xrefitem FAQ \"F.A.Q.\" \"F.A.Q.\"" \
+                         "authors=\xrefitem authors \"Author(s)\" \"Authors\"" \
+                         "maintainers=\xrefitem maintainers \"Maintainer(s)\" \"Maintainers\"" \
+                         "glossary=\xrefitem glossary \"Glossary\" \"Glossary\"" \
+                         "acronym=\b " \
+                         "licenses=\xrefitem licenses \"License(s)\" \"Licenses\"" \
+                         "FIXME=\xrefitem fixme \"Fixme\" \"Fixme\"" \
+                         "bc=\xrefitem bc \"Binary Compatible\" \"Binary Compatible\"" \
+                         "threadsafe=\xrefitem threadsafe \"Threadsafe\" \"Threadsafe\"" \
+                         "artistic=<a href=\"https://opensource.org/licenses/artistic-license.php\">Artistic</a>" \
+                         "bsd=<a href=\"https://www.xfree86.org/3.3.6/COPYRIGHT2.html#5\">BSD</a>" \
+                         "x11=<a href=\"https://www.xfree86.org/3.3.6/COPYRIGHT2.html#3\">X11</a>" \
+                         "gpl=<a href=\"https://www.gnu.org/licenses/old-licenses/gpl-2.0.html#SEC1\">GPLv2</a>" \
+                         "lgpl=<a href=\"https://www.gnu.org/licenses/old-licenses/lgpl-2.1.html#SEC1\">LGPLv2</a>" \
+                         "mit=<a href=\"https://www.opensource.org/licenses/mit-license.php\">MIT</a>" \
+                         "qpl=<a href=\"https://opensource.org/licenses/QPL-1.0\">QPL</a>"
+
+# K_DOXYGEN set to have preprocessor macros know that kapidox/doxygen processes them
+# DOXYGEN_SHOULD_SKIP_THIS is the deprecated variant (remove for KF6)
+PREDEFINED = DOXYGEN_SHOULD_SKIP_THIS \
+        K_DOXYGEN \
+\
+        Q_WS_X11= \
+        Q_WS_WIN= \
+        Q_WS_MAC= \
+        Q_WS_QWS= \
+        Q_WS_MAEMO_5= \
+        Q_OS_LINUX= \
+        Q_OS_UNIX= \
+        Q_OS_WIN= \
+        Q_OS_MAC= \
+        Q_OS_MACX= \
+        Q_OS_DARWIN= \
+        Q_OS_FREEBSD= \
+        Q_OS_NETBSD= \
+        Q_OS_OPENBSD= \
+        Q_OS_BSD4= \
+        Q_OS_SOLARIS= \
+        Q_OS_IRIX= \
+\
+        Q_SLOTS=slots \
+        Q_SIGNALS=signals \
+        "Q_DECLARE_FLAGS(Flags, Enum)=typedef QFlags<Enum> Flags;" \
+        Q_DECL_CONSTEXPR=constexpr \
+        Q_DECL_RELAXED_CONSTEXPR= \
+        Q_DECL_OVERRIDE=override \
+        Q_DECL_FINAL=final \
+        "Q_DECL_EQ_DEFAULT= = default" \
+        "Q_DECL_EQ_DELETE= = delete" \
+        Q_DECL_NOEXCEPT= \
+        Q_DECL_DEPRECATED= \
+        Q_DECL_UNUSED_MEMBER= \
+        Q_DECL_VARIABLE_DEPRECATED= \
+        Q_DECL_EXPORT= \
+        Q_DECL_IMPORT= \
+        Q_DECL_HIDDEN= \
+        Q_DECL_NULLPTR=nullptr \
+        Q_REQUIRED_RESULT= \
+        Q_SCRIPTABLE= \
+        Q_INVOKABLE= \
+        @ECM_QCH_DOXYGEN_PREDEFINED_MACROS@ \
+        @ECM_QCH_DOXYGEN_BLANK_MACROS@

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title>test.ini</title>
+<meta name="generator" content="KF5::SyntaxHighlighting (INI Files)"/>
+</head><body style="color:#1f1c1b"><pre>
+<span style="color:#898887;">; comment</span>
+<span style="color:#898887;">; comment with </span><span style="color:#81ca2d;background-color:#f7e6e6;font-weight:bold;">###</span><span style="color:#898887;"> alerts</span>
+<span style="color:#898887;"># alternative comments</span>
+
+<span style="font-weight:bold;">[Empty section]</span>
+
+<span style="font-weight:bold;">[Section 2]</span>
+<span style="color:#0057ae;">Key1</span><span style="color:#006e28;">=</span><span style="color:#bf0303;">String Value</span>
+<span style="color:#0057ae;">Key2</span><span style="color:#006e28;">=</span><span style="color:#b08000;">42</span>
+<span style="color:#0057ae;">Key3</span><span style="color:#006e28;">=</span><span style="color:#b08000;">3.14</span>
+<span style="color:#0057ae;">Key\SubKey</span><span style="color:#006e28;">=</span><span style="font-weight:bold;">True</span>
+
+<span style="font-weight:bold;">[Section 3]</span>
+<span style="color:#898887;">; = in values are fine</span>
+<span style="color:#898887;">; inline comments are not supported, ;/# are part of the value</span>
+<span style="color:#0057ae;">key4 </span><span style="color:#006e28;">=</span><span style="color:#bf0303;"> foo = </span><span style="font-weight:bold;">True</span><span style="color:#bf0303;">; bar = </span><span style="font-weight:bold;">False</span>
+<span style="color:#0057ae;">key4b </span><span style="color:#006e28;">=</span><span style="color:#bf0303;"> abcd#1234!</span>
+<span style="color:#0057ae;">key5/subkey </span><span style="color:#006e28;">=</span><span style="color:#bf0303;"> &quot;foo\nbar&quot;</span>
+</pre></body></html>

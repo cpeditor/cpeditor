@@ -1,0 +1,50 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Test\n"
+"POT-Creation-Date: \n"
+".....\n"
+
+#: file.ext:442
+msgid "test"
+msgstr "test"
+
+msgstr
+"test"
+"t{+est+}t"
+"t{-est-}t"
+"test"
+"t{+est"
+"test"
+"+}est"
+"t{-est"
+"test"
+"-}est"
+
+msgid_plural "test"
+msgstr[0] "test" "test"
+msgstr[1] "test"
+
+msgstr "testt{+estt"
+msgid "est+}t<b>a</b> &lt; &sasa; &#12; &#xaa; a < b"
+
+unknown command
+# simple comment
+#= not Gettext standard
+#. extracted comments
+#, fuzzy
+#, fuzzy, c-format
+#, fuzzyerror
+#| msgid_plural "test\n{+a+}{-S-}<b>s</b>&amp;&;"
+#| msgstr "test{+"
+#| "xx+}x"
+msgid "x"
+
+msgstr "translated-
+"string"
+"string"
+#| msgid_plural "test
+#| "test"
+#| "test"
+
+#| msgid_plural "test"
+# "test"

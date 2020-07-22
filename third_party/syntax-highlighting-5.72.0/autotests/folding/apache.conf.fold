@@ -1,0 +1,67 @@
+# Apache configuration highlighting unit test
+# comment with alters TODO FIXME ###
+
+<beginfold id='1'><IfModule</beginfold id='1'> mod_dav_fs.c>
+    DAVLockDB /var/lock/apache/DAVLock
+<endfold id='1'></IfModule</endfold id='1'>>
+
+<beginfold id='1'><VirtualHost</beginfold id='1'> *:443>
+    Include something_else.inc
+
+    SSLEngine on
+    # exclude insecure protocols
+    SSLProtocol all -SSLv2 -SSLv3
+    SSLHonorCipherOrder on
+    # exclude insecure ciphers
+    SSLCipherSuite "HIGH !EXP !eNULL !aNULL !LOW !RC4 !3DES !MD5 !EXP !PSK !SRP !DSS !DES !aECDH"
+
+    SSLCertificateFile /etc/letsencrypt/live/cert.pem
+    SSLCertificateKeyFile /etc/letsencrypt/live/privkey.pem
+    SSLCertificateChainFile /etc/letsencrypt/live/chain.pem
+    CustomLog /var/log/apache2/ssl_request_log   ssl_combined
+<endfold id='1'></VirtualHost</endfold id='1'>>
+
+<beginfold id='1'><Proxy</beginfold id='1'> "http://localhost:10000/">
+    SSLRequireSSL
+<endfold id='1'></Proxy</endfold id='1'>>
+
+<beginfold id='1'><Directory</beginfold id='1'> "/some/quoted/path">
+    Options -Indexes -FollowSymLinks
+    DirectoryIndex index.php
+    AllowOverride None
+    Order allow,deny
+    Allow from all
+
+    Options FollowSymLinks
+    AllowOverride FileInfo Options All
+    <beginfold id='1'><LimitExcept</beginfold id='1'> GET>
+        Require valid-user
+    <endfold id='1'></LimitExcept</endfold id='1'>>
+
+    <beginfold id='1'><Files</beginfold id='1'> ~ "\.(cgi|shtml|phtml|php3?)$">
+        ForceType text/plain
+    <endfold id='1'></Files</endfold id='1'>>
+<endfold id='1'></Directory</endfold id='1'>>
+
+Alias /foo/ "/srv/www/htdocs/foo/"
+
+AuthType Basic
+AuthName "KDE"
+AuthUserFile /srv/www/htpasswd.db
+Require user konqui
+
+<beginfold id='1'><VirtualHost</beginfold id='1'> _default_:80>
+    ServerName www.kde.org
+    ServerAlias kde.org
+
+    RewriteEngine On
+    RewriteRule ^ https://%{SERVER_NAME}%{REQUEST_URI} [L,QSA,R=permanent]
+<endfold id='1'></VirtualHost</endfold id='1'>>
+
+AuthBasicProvider ldap
+AuthLDAPBindDN uid=ldapproxy,ou=people,dc=kde,dc=org
+AuthLDAPBindPassword  top_secret
+AuthLDAPURL ldap://localhost:389/ou=people,dc=kde,dc=org?uid?sub?(objectClass=posixAccount)
+AuthLDAPGroupAttributeIsDN on
+AuthLDAPGroupAttribute member
+Require ldap-group cn=sysadmin,ou=Group,dc=kde,dc=org

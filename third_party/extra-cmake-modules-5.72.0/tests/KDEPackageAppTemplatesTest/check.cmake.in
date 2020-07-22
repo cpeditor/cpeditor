@@ -1,0 +1,37 @@
+set(CMAKE_MODULE_PATH "@MODULES_DIR@/../kde-modules")
+set(CMAKE_CURRENT_SOURCE_DIR "@CMAKE_CURRENT_SOURCE_DIR@")
+set(CMAKE_CURRENT_BINARY_DIR "@CMAKE_CURRENT_BINARY_DIR@")
+
+
+###########################################################
+
+macro(check_exists file)
+    message(STATUS "Checking for ${file}")
+    if (NOT EXISTS ${file})
+        message(FATAL_ERROR "File \"${file}\" does not exist")
+    endif()
+endmacro()
+
+message(STATUS "Test: the packaged template has been generated")
+check_exists(${CMAKE_CURRENT_BINARY_DIR}/qml-plasmoid.tar.bz2 )
+
+message(STATUS "Extracting the packaged template")
+file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/qml-plasmoid)
+execute_process(COMMAND ${CMAKE_COMMAND} -E tar "xvfj" ${CMAKE_CURRENT_BINARY_DIR}/qml-plasmoid.tar.bz2
+                WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/qml-plasmoid
+                RESULT_VARIABLE result
+                ERROR_VARIABLE error
+               )
+
+if(NOT result EQUAL 0)
+    message(FATAL_ERROR "Error extracting the template: ${error}")
+endif()
+
+message(STATUS "Test: the packaged template has been correctly extracted")
+check_exists(${CMAKE_CURRENT_BINARY_DIR}/qml-plasmoid/qml-plasmoid.png )
+check_exists(${CMAKE_CURRENT_BINARY_DIR}/qml-plasmoid/qml-plasmoid.kdevtemplate )
+check_exists(${CMAKE_CURRENT_BINARY_DIR}/qml-plasmoid/package/metadata.desktop )
+
+message(STATUS "Cleaning up generated files")
+file(REMOVE ${CMAKE_CURRENT_BINARY_DIR}/qml-plasmoid.tar.bz2 )
+file(REMOVE_RECURSE ${CMAKE_CURRENT_BINARY_DIR}/qml-plasmoid )

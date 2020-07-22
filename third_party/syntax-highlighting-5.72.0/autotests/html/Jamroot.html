@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title>Jamroot</title>
+<meta name="generator" content="KF5::SyntaxHighlighting (Jam)"/>
+</head><body style="color:#1f1c1b"><pre>
+<span style="color:#644a9b;">project</span>
+    <span style="font-weight:bold;">:</span> requirements <span style="color:#644a9b;font-weight:bold;">&lt;include&gt;</span>/home/ghost/Work/boost <span style="color:#644a9b;font-weight:bold;">&lt;threading&gt;</span>multi
+    <span style="font-weight:bold;">;</span>
+<span style="color:#644a9b;">project</span> a <span style="font-weight:bold;">:</span> <span style="font-weight:bold;">:</span> debug <span style="font-weight:bold;">;</span>
+
+<span style="color:#644a9b;">exe</span> hello <span style="font-weight:bold;">:</span> hello.cpp <span style="font-weight:bold;">;</span>
+
+<span style="color:#644a9b;">exe</span> hello
+    <span style="font-weight:bold;">:</span> hello.cpp
+    <span style="font-weight:bold;">:</span> <span style="color:#644a9b;font-weight:bold;">&lt;include&gt;</span>boost <span style="color:#644a9b;font-weight:bold;">&lt;threading&gt;</span>multi
+    <span style="font-weight:bold;">;</span>
+<span style="color:#644a9b;">exe</span> app <span style="font-weight:bold;">:</span> app.cpp ../util/foo//bar <span style="font-weight:bold;">;</span>
+<span style="color:#644a9b;">exe</span> important <span style="font-weight:bold;">:</span> main.cpp helpers/&lt;link&gt;static <span style="font-weight:bold;">;</span>
+
+<span style="color:#644a9b;">exe</span> b <span style="font-weight:bold;">:</span> <span style="font-weight:bold;">[</span> <span style="color:#644a9b;">glob</span> *.cpp <span style="font-weight:bold;">]</span> <span style="font-weight:bold;">;</span>
+
+<span style="color:#644a9b;">lib</span> tools <span style="font-weight:bold;">:</span>
+    <span style="font-weight:bold;">[</span> <span style="color:#644a9b;">glob</span> *.cpp <span style="font-weight:bold;">]</span> <span style="font-weight:bold;">;</span>
+
+<span style="color:#644a9b;">lib</span> tools <span style="font-weight:bold;">:</span> <span style="font-weight:bold;">[</span> <span style="color:#644a9b;">glob</span> *.cpp <span style="font-weight:bold;">:</span> file_to_exclude.cpp bad*.cpp <span style="font-weight:bold;">]</span> <span style="font-weight:bold;">;</span>
+
+<span style="color:#644a9b;">lib</span> network <span style="font-weight:bold;">:</span> network.cpp
+    <span style="font-weight:bold;">:</span> <span style="color:#644a9b;font-weight:bold;">&lt;conditional&gt;</span>@my-rule
+    <span style="font-weight:bold;">;</span>
+
+<span style="color:#644a9b;">DEPENDS</span> foo.o <span style="font-weight:bold;">:</span> foo.c <span style="font-weight:bold;">;</span>
+
+<span style="color:#644a9b;">using</span> msvc <span style="font-weight:bold;">:</span> <span style="font-weight:bold;">:</span> <span style="color:#bf0303;">&quot;Z:/Programs/Microsoft Visual Studio/vc98/bin/cl&quot;</span> <span style="font-weight:bold;">;</span>
+<span style="color:#644a9b;">using</span> msvc <span style="font-weight:bold;">:</span> <span style="font-weight:bold;">:</span> echo Compiling &amp;&amp; foo/bar/baz/cl <span style="font-weight:bold;">;</span>
+<span style="color:#644a9b;">using</span> gcc <span style="font-weight:bold;">:</span> 5 <span style="font-weight:bold;">:</span> <span style="font-weight:bold;">:</span> <span style="color:#644a9b;font-weight:bold;">&lt;cxxflags&gt;</span><span style="color:#bf0303;">&quot;-std=c++14 -O2&quot;</span> <span style="font-weight:bold;">;</span>
+<span style="color:#644a9b;">using</span> clang <span style="font-weight:bold;">:</span> 3.9 <span style="font-weight:bold;">:</span> <span style="font-weight:bold;">:</span> <span style="color:#644a9b;font-weight:bold;">&lt;cxxflags&gt;</span>-std=c++14 <span style="color:#644a9b;font-weight:bold;">&lt;cxxflags&gt;</span>-O2 <span style="font-weight:bold;">;</span>
+<span style="color:#644a9b;">exe</span> test3 <span style="font-weight:bold;">:</span> test3.cpp <span style="font-weight:bold;">:</span> <span style="font-weight:bold;">-</span><span style="color:#644a9b;font-weight:bold;">&lt;threading&gt;</span>multi <span style="font-weight:bold;">;</span>
+<span style="color:#0057ae;">XYZ </span><span style="font-weight:bold;">+=</span> <span style="color:#644a9b;font-weight:bold;">&lt;cxxflags&gt;</span>-Wzero-as-null-pointer-constant<span style="font-weight:bold;">&amp;&amp;</span>-Wno-zero-as-null-pointer-constant <span style="font-weight:bold;">;</span>
+<span style="color:#644a9b;">exe</span> hello <span style="font-weight:bold;">:</span> hello.cpp <span style="font-weight:bold;">:</span> <span style="color:#644a9b;font-weight:bold;">&lt;os&gt;</span>NT<span style="font-weight:bold;">,</span><span style="color:#644a9b;font-weight:bold;">&lt;toolset&gt;</span>gcc<span style="font-weight:bold;">:</span><span style="color:#644a9b;font-weight:bold;">&lt;link&gt;</span>static <span style="font-weight:bold;">;</span>
+
+<span style="color:#644a9b;">install</span> dist <span style="font-weight:bold;">:</span> hello helpers <span style="font-weight:bold;">:</span>
+    <span style="color:#644a9b;font-weight:bold;">&lt;variant&gt;</span>release<span style="font-weight:bold;">:</span><span style="color:#644a9b;font-weight:bold;">&lt;location&gt;</span>dist/release
+    <span style="color:#644a9b;font-weight:bold;">&lt;variant&gt;</span>debug<span style="font-weight:bold;">:</span><span style="color:#644a9b;font-weight:bold;">&lt;location&gt;</span>dist/debug <span style="font-weight:bold;">;</span>
+<span style="color:#644a9b;">install</span> dist2 <span style="font-weight:bold;">:</span> hello helpers <span style="font-weight:bold;">:</span> <span style="color:#644a9b;font-weight:bold;">&lt;location&gt;</span>$(<span style="color:#0057ae;">DIST</span>) <span style="font-weight:bold;">;</span>
+
+<span style="color:#644a9b;">exe</span> app <span style="font-weight:bold;">:</span> app.cpp <span style="font-weight:bold;">:</span> <span style="font-weight:bold;">[</span> <span style="color:#644a9b;">check-target-builds</span> has_foo <span style="color:#bf0303;">&quot;System has foo&quot;</span> <span style="font-weight:bold;">:</span> <span style="color:#644a9b;font-weight:bold;">&lt;library&gt;</span>foo <span style="font-weight:bold;">:</span> <span style="color:#644a9b;font-weight:bold;">&lt;define&gt;</span>FOO_MISSING=1 <span style="font-weight:bold;">]</span> <span style="font-weight:bold;">;</span>
+
+<span style="color:#644a9b;">import</span> path <span style="font-weight:bold;">:</span> * <span style="font-weight:bold;">;</span>
+
+<span style="color:#644a9b;">using</span> python
+<span style="font-weight:bold;">:</span> 2.7 <span style="color:#898887;"># version</span>
+<span style="font-weight:bold;">:</span> <span style="color:#898887;"># Interpreter/path to dir</span>
+<span style="font-weight:bold;">:</span> /usr/include/python2.7 <span style="color:#898887;"># includes</span>
+<span style="font-weight:bold;">:</span> /usr/lib/x86_64-linux-gnu <span style="color:#898887;"># libs</span>
+<span style="font-weight:bold;">:</span> <span style="color:#898887;"># conditions</span>
+<span style="font-weight:bold;">;</span>
+
+<span style="color:#644a9b;">xx</span> <span style="font-weight:bold;">;</span>
+<span style="color:#644a9b;">xx</span> ;; <span style="font-weight:bold;">;</span>
+<span style="color:#644a9b;">xx</span> ;a <span style="font-weight:bold;">;</span>
+<span style="color:#644a9b;">xx</span> a; <span style="font-weight:bold;">;</span>
+<span style="color:#644a9b;">xx</span> ;a; <span style="font-weight:bold;">;</span>
+
+<span style="color:#898887;font-weight:bold;">## comment title</span>
+<span style="color:#898887;"># </span><span style="color:#ca9219;background-color:#451e1a;font-weight:bold;">BUG</span>
+<span style="color:#898887;"># </span><span style="color:#ca9219;background-color:#451e1a;font-weight:bold;">TODO</span>
+<span style="color:#898887;"># aTODOa</span>
+
+
+<span style="font-weight:bold;">if</span> cond <span style="font-weight:bold;">{</span>
+    <span style="color:#644a9b;">statements</span> <span style="font-weight:bold;">;</span>
+<span style="font-weight:bold;">}</span>
+<span style="font-weight:bold;">else</span> <span style="font-weight:bold;">{</span>
+    <span style="color:#644a9b;">statements</span> <span style="font-weight:bold;">;</span>
+<span style="font-weight:bold;">}</span>
+
+<span style="font-weight:bold;">for</span> <span style="color:#0057ae;">var</span> <span style="font-weight:bold;">in</span> list <span style="font-weight:bold;">{</span>
+    <span style="color:#644a9b;">statements</span> <span style="font-weight:bold;">;</span>
+<span style="font-weight:bold;">}</span>
+
+<span style="font-weight:bold;">while</span> cond <span style="font-weight:bold;">{</span>
+    <span style="color:#644a9b;">statements</span> <span style="font-weight:bold;">;</span>
+<span style="font-weight:bold;">}</span>
+
+<span style="font-weight:bold;">switch</span> value
+<span style="font-weight:bold;">{</span>
+    <span style="font-weight:bold;">case</span> pattern1 <span style="font-weight:bold;">:</span> statements <span style="font-weight:bold;">;</span>
+    <span style="font-weight:bold;">case</span> pattern2 <span style="font-weight:bold;">:</span> statements <span style="font-weight:bold;">;</span>
+    <span style="color:#bf0303;text-decoration:underline;">other</span> <span style="color:#bf0303;text-decoration:underline;">;</span>
+<span style="font-weight:bold;">}</span>
+
+<span style="font-weight:bold;">if</span> xxinxx <span style="font-weight:bold;">{</span>
+<span style="font-weight:bold;">}</span>
+
+<span style="color:#644a9b;">ifxxx</span> s <span style="font-weight:bold;">;</span>
+
+<span style="font-weight:bold;">rule</span> <span style="color:#644a9b;">a?</span> <span style="color:#0057ae;">(</span> <span style="color:#0057ae;">x</span> <span style="color:#0057ae;">)</span>
+<span style="font-weight:bold;">{</span>
+  <span style="color:#644a9b;">echo</span> $(<span style="color:#0057ae;">x</span>) <span style="font-weight:bold;">;</span>
+<span style="font-weight:bold;">}</span>
+<span style="color:#644a9b;">a?</span> 23 <span style="font-weight:bold;">;</span>
+
+<span style="font-weight:bold;">local</span> <span style="font-weight:bold;">rule</span> <span style="color:#644a9b;">test</span> <span style="color:#0057ae;">(</span> <span style="color:#0057ae;">a</span> <span style="color:#0057ae;">)</span>
+<span style="font-weight:bold;">{</span>
+<span style="font-weight:bold;">}</span>
+
+<span style="font-weight:bold;">rule</span> <span style="color:#644a9b;">example</span>
+ <span style="color:#0057ae;">(</span>
+     <span style="color:#0057ae;">parameter1</span> <span style="font-weight:bold;">:</span>
+     <span style="color:#0057ae;">parameter2</span> <span style="color:#0057ae;">?</span> <span style="font-weight:bold;">:</span>
+     <span style="color:#0057ae;">parameter3</span> <span style="color:#0057ae;">+</span> <span style="font-weight:bold;">:</span>
+     <span style="color:#0057ae;">parameter4</span> <span style="color:#0057ae;">*</span>
+ <span style="color:#0057ae;">)</span>
+ <span style="font-weight:bold;">{</span>
+   <span style="font-weight:bold;">if</span> <span style="color:#644a9b;font-weight:bold;">&lt;variant&gt;</span>debug <span style="font-weight:bold;">in</span> $(<span style="color:#0057ae;">properties</span>)
+   <span style="font-weight:bold;">{</span>
+       <span style="color:#0057ae;">OPTIONS </span><span style="font-weight:bold;">on</span> $(<span style="color:#0057ae;">targets</span>) <span style="font-weight:bold;">=</span> --debug <span style="font-weight:bold;">;</span>
+   <span style="font-weight:bold;">}</span>
+ <span style="font-weight:bold;">}</span>
+
+<span style="font-weight:bold;">rule</span> <span style="color:#644a9b;">my-rule</span> <span style="color:#0057ae;">(</span> <span style="color:#0057ae;">properties</span> <span style="color:#0057ae;">*</span> <span style="color:#0057ae;">)</span>
+<span style="font-weight:bold;">{</span>
+    <span style="font-weight:bold;">local</span> <span style="color:#0057ae;">result</span> <span style="font-weight:bold;">;</span>
+    <span style="font-weight:bold;">if</span> <span style="color:#644a9b;font-weight:bold;">&lt;toolset&gt;</span>gcc <span style="color:#644a9b;font-weight:bold;">&lt;optimization&gt;</span>speed <span style="font-weight:bold;">in</span> $(<span style="color:#0057ae;">properties</span>)
+    <span style="font-weight:bold;">{</span>
+        <span style="color:#0057ae;">result </span><span style="font-weight:bold;">+=</span> <span style="color:#644a9b;font-weight:bold;">&lt;define&gt;</span>USE_INLINE_ASSEMBLER <span style="font-weight:bold;">;</span>
+        <span style="font-weight:bold;">return</span> $(<span style="color:#0057ae;">result</span>) <span style="font-weight:bold;">;</span>
+    <span style="font-weight:bold;">}</span>
+
+    <span style="font-weight:bold;">local</span> <span style="color:#0057ae;">m</span> <span style="font-weight:bold;">=</span> <span style="font-weight:bold;">[</span> <span style="color:#644a9b;">CALLER_MODULE</span> <span style="font-weight:bold;">]</span> <span style="font-weight:bold;">;</span>
+    <span style="font-weight:bold;">local</span> <span style="color:#0057ae;">result</span> <span style="font-weight:bold;">;</span>
+    <span style="font-weight:bold;">for</span> <span style="color:#0057ae;">v</span> <span style="font-weight:bold;">in</span> $(<span style="color:#0057ae;">values</span>)
+    <span style="font-weight:bold;">{</span>
+        <span style="font-weight:bold;">if</span> <span style="font-weight:bold;">[</span> <span style="color:#644a9b;">modules.call-in</span> $(<span style="color:#0057ae;">m</span>) <span style="font-weight:bold;">:</span> $(<span style="color:#0057ae;">f</span>) $(<span style="color:#0057ae;">v</span>) <span style="font-weight:bold;">]</span>
+        <span style="font-weight:bold;">{</span>
+            <span style="color:#0057ae;">result </span><span style="font-weight:bold;">+=</span> $(<span style="color:#0057ae;">v</span>) <span style="font-weight:bold;">;</span>
+        <span style="font-weight:bold;">}</span>
+    <span style="font-weight:bold;">}</span>
+    <span style="font-weight:bold;">return</span> result <span style="font-weight:bold;">;</span>
+    <span style="font-weight:bold;">return</span> <span style="color:#644a9b;font-weight:bold;">&lt;name&gt;</span>$(<span style="color:#0057ae;">name</span>) <span style="font-weight:bold;">;</span>
+    <span style="font-weight:bold;">return</span> <span style="font-weight:bold;">[</span> <span style="color:#644a9b;">virtual-target.register</span> $(<span style="color:#0057ae;">t</span>) <span style="font-weight:bold;">]</span> <span style="font-weight:bold;">;</span>
+    <span style="font-weight:bold;">return</span> <span style="font-weight:bold;">[</span> <span style="color:#644a9b;">sequence.transform</span> virtual-target.register <span style="font-weight:bold;">:</span> $(<span style="color:#0057ae;">targets</span>) <span style="font-weight:bold;">]</span> <span style="font-weight:bold;">;</span>
+<span style="font-weight:bold;">}</span>
+
+<span style="font-weight:bold;">rule</span> <span style="color:#644a9b;">run</span> <span style="color:#0057ae;">(</span> <span style="color:#0057ae;">project</span> <span style="color:#0057ae;">name</span> <span style="color:#0057ae;">?</span> <span style="font-weight:bold;">:</span> <span style="color:#0057ae;">property-set</span> <span style="font-weight:bold;">:</span> <span style="color:#0057ae;">sources</span> <span style="color:#0057ae;">*</span> <span style="color:#0057ae;">)</span>
+<span style="font-weight:bold;">{</span>
+    <span style="font-weight:bold;">if</span> <span style="font-weight:bold;">[</span> $(<span style="color:#0057ae;">s</span>).type <span style="font-weight:bold;">]</span> <span style="font-weight:bold;">=</span> PY
+    <span style="font-weight:bold;">{</span>
+        <span style="color:#0057ae;">python </span><span style="font-weight:bold;">=</span> $(<span style="color:#0057ae;">s</span>) <span style="font-weight:bold;">;</span>
+    <span style="font-weight:bold;">}</span>
+
+    <span style="font-weight:bold;">local</span> <span style="color:#0057ae;">new-sources</span> <span style="font-weight:bold;">;</span>
+    <span style="font-weight:bold;">for</span> <span style="font-weight:bold;">local</span> <span style="color:#0057ae;">s</span> <span style="font-weight:bold;">in</span> $(<span style="color:#0057ae;">sources</span>)
+    <span style="font-weight:bold;">{</span>
+        <span style="font-weight:bold;">if</span> <span style="font-weight:bold;">[</span> <span style="color:#644a9b;">type.is-derived</span> <span style="font-weight:bold;">[</span> $(<span style="color:#0057ae;">s</span>).type <span style="font-weight:bold;">]</span> CPP <span style="font-weight:bold;">]</span>
+        <span style="font-weight:bold;">{</span>
+            <span style="font-weight:bold;">local</span> <span style="color:#0057ae;">name</span> <span style="font-weight:bold;">=</span> <span style="font-weight:bold;">[</span> $(<span style="color:#0057ae;">s</span>).name <span style="font-weight:bold;">]</span> <span style="font-weight:bold;">;</span>    <span style="color:#898887;"># get the target's basename</span>
+            <span style="font-weight:bold;">if</span> $(<span style="color:#0057ae;">name</span>) <span style="font-weight:bold;">=</span> <span style="font-weight:bold;">[</span> $(<span style="color:#0057ae;">python</span>).name <span style="font-weight:bold;">]</span>
+            <span style="font-weight:bold;">{</span>
+                <span style="color:#0057ae;">name </span><span style="font-weight:bold;">=</span> $(<span style="color:#0057ae;">name</span>)_ext <span style="font-weight:bold;">;</span>        <span style="color:#898887;"># rename the target</span>
+            <span style="font-weight:bold;">}</span>
+            <span style="color:#0057ae;">new-sources </span><span style="font-weight:bold;">+=</span> <span style="font-weight:bold;">[</span> <span style="color:#644a9b;">generators.construct</span> $(<span style="color:#0057ae;">project</span>) $(<span style="color:#0057ae;">name</span>) <span style="font-weight:bold;">:</span>
+              PYTHON_EXTENSION <span style="font-weight:bold;">:</span> $(<span style="color:#0057ae;">property-set</span>) <span style="font-weight:bold;">:</span> $(<span style="color:#0057ae;">s</span>) $(<span style="color:#0057ae;">libs</span>) <span style="font-weight:bold;">]</span> <span style="font-weight:bold;">;</span>
+        <span style="font-weight:bold;">}</span>
+    <span style="font-weight:bold;">}</span>
+
+    <span style="color:#0057ae;">result </span><span style="font-weight:bold;">=</span> <span style="font-weight:bold;">[</span> <span style="color:#644a9b;">construct-result</span> $(<span style="color:#0057ae;">python</span>) $(<span style="color:#0057ae;">new-sources</span>) <span style="font-weight:bold;">:</span> $(<span style="color:#0057ae;">project</span>) $(<span style="color:#0057ae;">name</span>)
+                 <span style="font-weight:bold;">:</span> $(<span style="color:#0057ae;">property-set</span>) <span style="font-weight:bold;">]</span> <span style="font-weight:bold;">;</span>
+<span style="font-weight:bold;">}</span>
+
+
+<span style="font-weight:bold;">rule</span> <span style="color:#644a9b;">link</span>
+<span style="font-weight:bold;">{</span>
+    <span style="color:#644a9b;">DEPENDS</span> $(<span style="color:#0057ae;">&lt;</span>) <span style="font-weight:bold;">:</span> <span style="font-weight:bold;">[</span> <span style="font-weight:bold;">on</span> $(<span style="color:#0057ae;">&lt;</span>) <span style="font-weight:bold;">return</span> $(<span style="color:#0057ae;">DEF_FILE</span>) <span style="font-weight:bold;">]</span> <span style="font-weight:bold;">;</span>
+<span style="font-weight:bold;">}</span>
+
+
+<span style="font-weight:bold;">actions</span> link <span style="color:#0057ae;">bind</span> <span style="color:#0057ae;">DEF_FILE</span>
+<span style="font-weight:bold;">{</span>
+    $(<span style="color:#0057ae;">.LD</span>) <span style="color:#0095ff;font-weight:bold;">....</span> /DEF:<span style="color:#0057ae;">$(</span><span style="color:#0095ff;font-weight:bold;">DEF_FILE</span><span style="color:#0057ae;">)</span> ....
+<span style="font-weight:bold;">}</span>
+
+<span style="font-weight:bold;">actions</span> create-file-from-another
+<span style="font-weight:bold;">{</span>
+    <span style="color:#0095ff;font-weight:bold;">create-file-from-another</span> <span style="color:#0057ae;">$(</span><span style="color:#0095ff;font-weight:bold;">OPTIONS</span><span style="color:#0057ae;">)</span> $(&lt;) <span style="color:#0057ae;">$(</span>&gt;<span style="color:#0057ae;">)</span>
+<span style="font-weight:bold;">}</span>
+
+
+<span style="color:#0057ae;">mypackage </span><span style="font-weight:bold;">=</span>
+  <span style="font-weight:bold;">[</span> <span style="color:#644a9b;">pkg-config.import</span> mypackage <span style="font-weight:bold;">:</span> usage-requirements <span style="color:#644a9b;font-weight:bold;">&lt;conditional&gt;</span>@define_ns
+  <span style="font-weight:bold;">]</span> <span style="font-weight:bold;">;</span>
+
+<span style="color:#0057ae;">me </span><span style="font-weight:bold;">=</span> <span style="font-weight:bold;">[</span> <span style="color:#644a9b;">modules.binding</span> $(<span style="color:#0057ae;">__name__</span>) <span style="font-weight:bold;">]</span> <span style="font-weight:bold;">;</span>
+
+<span style="font-weight:bold;">local</span> <span style="color:#0057ae;">ZLIB_INCLUDE</span> <span style="font-weight:bold;">=</span> <span style="font-weight:bold;">[</span> <span style="color:#644a9b;">modules.peek</span> <span style="font-weight:bold;">:</span> ZLIB_INCLUDE <span style="font-weight:bold;">]</span> <span style="font-weight:bold;">;</span>
+
+<span style="font-weight:bold;">local</span> <span style="color:#0057ae;">t</span> <span style="font-weight:bold;">=</span> <span style="font-weight:bold;">[</span> <span style="color:#644a9b;">new</span> file-target $(<span style="color:#0057ae;">name</span>) <span style="font-weight:bold;">:</span> CPP <span style="font-weight:bold;">:</span> $(<span style="color:#0057ae;">project</span>) <span style="font-weight:bold;">:</span> $(<span style="color:#0057ae;">a</span>) <span style="font-weight:bold;">]</span> <span style="font-weight:bold;">;</span>
+
+$(<span style="color:#0057ae;">var</span>) <span style="color:#644a9b;">field1</span> <span style="font-weight:bold;">:</span> field2 <span style="font-weight:bold;">:</span> ... <span style="font-weight:bold;">:</span> fieldN <span style="font-weight:bold;">;</span>
+$(<span style="color:#0057ae;">var</span>)<span style="color:#644a9b;">o</span> aaaa <span style="font-weight:bold;">;</span>
+
+<span style="font-weight:bold;">on</span> <span style="font-weight:bold;">target</span> $(<span style="color:#0057ae;">var</span>) field1 <span style="font-weight:bold;">:</span> field2 <span style="font-weight:bold;">:</span> ... <span style="font-weight:bold;">:</span> fieldN <span style="font-weight:bold;">;</span>
+
+<span style="font-weight:bold;">[</span> $(<span style="color:#0057ae;">var</span>) field1 <span style="font-weight:bold;">:</span> field2 <span style="font-weight:bold;">:</span> ... <span style="font-weight:bold;">:</span> fieldN <span style="font-weight:bold;">]</span>
+<span style="font-weight:bold;">[</span> <span style="font-weight:bold;">on</span> <span style="font-weight:bold;">target</span> $(<span style="color:#0057ae;">var</span>) field1 <span style="font-weight:bold;">:</span> field2 <span style="font-weight:bold;">:</span> ... <span style="font-weight:bold;">:</span> fieldN <span style="font-weight:bold;">]</span>
+
+<span style="font-weight:bold;">local</span> <span style="color:#0057ae;">key</span> <span style="font-weight:bold;">=</span> <span style="color:#bf0303;">&quot;HKEY_LOCAL_MACHINE</span><span style="color:#3daee9;">\\</span><span style="color:#bf0303;">SOFTWARE</span><span style="color:#3daee9;">\\</span><span style="color:#bf0303;">Microsoft</span><span style="color:#3daee9;">\\</span><span style="color:#bf0303;">Windows</span><span style="color:#3daee9;">\\</span><span style="color:#bf0303;">CurrentVersion</span><span style="color:#3daee9;">\\</span><span style="color:#bf0303;">App Paths&quot;</span> <span style="font-weight:bold;">;</span>
+<span style="font-weight:bold;">local</span> <span style="color:#0057ae;">values</span> <span style="font-weight:bold;">=</span> <span style="font-weight:bold;">[</span> <span style="color:#644a9b;">W32_GETREGNAMES</span> <span style="color:#bf0303;">&quot;</span>$(<span style="color:#0057ae;">key</span>)<span style="color:#3daee9;">\\</span>$(<span style="color:#0057ae;">subkey</span>)<span style="color:#bf0303;">&quot;</span> <span style="font-weight:bold;">:</span> values <span style="font-weight:bold;">]</span> <span style="font-weight:bold;">;</span>
+
+<span style="color:#0057ae;">variable </span><span style="font-weight:bold;">=</span> $(<span style="color:#0057ae;">b</span>) $(<span style="color:#0057ae;">c</span>) <span style="font-weight:bold;">;</span>
+<span style="color:#0057ae;">variable </span><span style="font-weight:bold;">+=</span> elements <span style="font-weight:bold;">;</span>
+<span style="color:#0057ae;">variable </span><span style="font-weight:bold;">on</span> targets <span style="font-weight:bold;">=</span> elements <span style="font-weight:bold;">;</span>
+<span style="color:#0057ae;">variable </span><span style="font-weight:bold;">on</span> targets <span style="font-weight:bold;">+=</span> <span style="color:#bf0303;">&quot;elements&quot;</span> <span style="font-weight:bold;">;</span>
+<span style="color:#0057ae;">variable </span><span style="font-weight:bold;">default</span> <span style="font-weight:bold;">=</span> elements <span style="font-weight:bold;">;</span>
+<span style="color:#0057ae;">variable </span><span style="font-weight:bold;">?=</span> elements <span style="font-weight:bold;">;</span>
+
+<span style="color:#0057ae;">defs </span><span style="font-weight:bold;">+=</span> <span style="color:#644a9b;font-weight:bold;">&lt;define&gt;</span>NAME='\&quot;$(<span style="color:#0057ae;">VALUE</span>)\&quot;' <span style="font-weight:bold;">;</span>
+
+<span style="color:#0057ae;">x </span><span style="font-weight:bold;">=</span> $($(<span style="color:#0057ae;">Z</span>)) <span style="font-weight:bold;">;</span>
+<span style="color:#0057ae;">x </span><span style="font-weight:bold;">=</span> $(<span style="color:#0057ae;">Z</span>)x <span style="font-weight:bold;">;</span>
+<span style="color:#0057ae;">x </span><span style="font-weight:bold;">=</span> x$(<span style="color:#0057ae;">Z</span>) <span style="font-weight:bold;">;</span>
+<span style="color:#0057ae;">x </span><span style="font-weight:bold;">=</span> x$(<span style="color:#0057ae;">Z</span>)x <span style="font-weight:bold;">;</span>
+
+<span style="color:#0057ae;">x </span><span style="font-weight:bold;">=</span> <span style="color:#bf0303;">&quot;C:</span><span style="color:#3daee9;">\\</span><span style="color:#bf0303;">Program Files</span><span style="color:#3daee9;">\\</span><span style="color:#bf0303;">Borland&quot;</span> <span style="font-weight:bold;">;</span> <span style="color:#644a9b;">ECHO</span> $(<span style="color:#0057ae;">x</span><span style="color:#0057ae;">:T</span>) <span style="font-weight:bold;">;</span>
+
+<span style="font-weight:bold;">module</span> my_module <span style="color:#898887;"># my module</span>
+<span style="font-weight:bold;">{</span>
+    <span style="font-weight:bold;">rule</span> <span style="color:#644a9b;">salute</span> <span style="color:#0057ae;">(</span> <span style="color:#0057ae;">x</span> <span style="color:#0057ae;">)</span> <span style="font-weight:bold;">{</span> <span style="color:#644a9b;">ECHO</span> $(<span style="color:#0057ae;">x</span>), world <span style="font-weight:bold;">;</span> <span style="font-weight:bold;">}</span>
+    <span style="font-weight:bold;">rule</span> <span style="color:#644a9b;">greet</span> <span style="color:#0057ae;">(</span> <span style="color:#0057ae;">)</span> <span style="font-weight:bold;">{</span> <span style="color:#644a9b;">salute</span> hello <span style="font-weight:bold;">;</span> <span style="font-weight:bold;">}</span>
+    <span style="color:#644a9b;">greet</span> <span style="font-weight:bold;">;</span> <span style="color:#898887;"># ok</span>
+<span style="font-weight:bold;">}</span>
+
+<span style="font-weight:bold;">class</span> verbatim-scanner <span style="font-weight:bold;">:</span> common-scanner
+<span style="font-weight:bold;">{</span>
+    <span style="font-weight:bold;">rule</span> <span style="color:#644a9b;">pattern</span> <span style="color:#0057ae;">(</span> <span style="color:#0057ae;">)</span>
+    <span style="font-weight:bold;">{</span>
+        <span style="font-weight:bold;">return</span> <span style="color:#bf0303;">&quot;//###include[ ]*</span><span style="color:#3daee9;">\&quot;</span><span style="color:#bf0303;">([^</span><span style="color:#3daee9;">\&quot;</span><span style="color:#bf0303;">]*)</span><span style="color:#3daee9;">\&quot;</span><span style="color:#bf0303;">&quot;</span> <span style="font-weight:bold;">;</span>
+    <span style="font-weight:bold;">}</span>
+    <span style="color:#bf0303;text-decoration:underline;">greet</span> <span style="color:#bf0303;text-decoration:underline;">;</span> <span style="color:#898887;"># error</span>
+<span style="font-weight:bold;">}</span>
+
+<span style="color:#898887;"># test crazy (and valid) name</span>
+<span style="color:#644a9b;">a&lt;b&gt;</span> a&lt;b&gt; <span style="font-weight:bold;">[</span> <span style="color:#644a9b;">a&lt;b&gt;</span> a&lt;b&gt; a] <span style="font-weight:bold;">]</span> <span style="font-weight:bold;">;</span>
+<span style="font-weight:bold;">rule</span> <span style="color:#644a9b;">a&lt;b&gt;()</span> <span style="color:#0057ae;">()</span> <span style="font-weight:bold;">{</span> <span style="font-weight:bold;">}</span>
+<span style="font-weight:bold;">actions</span> a&lt;b&gt; <span style="font-weight:bold;">{</span> <span style="font-weight:bold;">}</span>
+<span style="font-weight:bold;">local</span> <span style="color:#0057ae;">a&lt;x&gt;</span> <span style="font-weight:bold;">;</span>
+<span style="font-weight:bold;">local</span> <span style="color:#0057ae;">a&lt;x&gt;</span> <span style="font-weight:bold;">=</span> a&lt;b&gt; <span style="font-weight:bold;">;</span>
+</pre></body></html>

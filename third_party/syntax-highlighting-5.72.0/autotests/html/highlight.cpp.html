@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title>highlight.cpp</title>
+<meta name="generator" content="KF5::SyntaxHighlighting (C++)"/>
+</head><body style="color:#1f1c1b"><pre>
+<span style="color:#006e28;">#pragma once</span>
+
+<span style="color:#006e28;">#include </span><span style="color:#ff5500;">&lt;cassert&gt;</span>
+<span style="color:#006e28;">#include </span><span style="color:#ff5500;">&lt;assert.h&gt;</span>
+<span style="color:#006e28;">#include </span><span style="color:#ff5500;">&quot;assert.h&quot;</span>
+<span style="color:#006e28;">#include </span><span style="color:#ff5500;">&quot;assert.hpp&quot;</span><span style="color:#006e28;"> </span><span style="color:#898887;">// abc</span>
+<span style="color:#006e28;">#include </span><span style="color:#ff5500;">&quot;path/assert.hpp&quot;</span>
+<span style="color:#006e28;">#include </span><span style="color:#ff5500;">&quot;assert.h&quot;</span><span style="color:#bf0303;text-decoration:underline;">a</span>
+<span style="color:#006e28;">#include </span><span style="color:#ff5500;">&quot;assert.h&quot;</span><span style="color:#006e28;"> </span><span style="color:#bf0303;text-decoration:underline;">a</span>
+<span style="color:#006e28;">#include </span><span style="color:#ff5500;">&lt;cassert&gt;</span><span style="color:#bf0303;text-decoration:underline;">a</span>
+<span style="color:#006e28;">#include </span><span style="color:#ff5500;">&lt;cassert&gt;</span><span style="color:#006e28;"> </span><span style="color:#bf0303;text-decoration:underline;">a</span>
+<span style="color:#006e28;">#include FOO() error</span>
+<span style="color:#006e28;">#include_next </span><span style="color:#ff5500;">&lt;cassert&gt;</span><span style="color:#006e28;"> </span><span style="color:#bf0303;text-decoration:underline;">a</span>
+<span style="color:#006e28;">#include_next </span><span style="color:#ff5500;">&lt;cassert&gt;</span><span style="color:#006e28;"> </span><span style="color:#898887;">/* a</span>
+<span style="color:#898887;"> */</span><span style="color:#006e28;"> </span><span style="color:#bf0303;text-decoration:underline;">b</span>
+<span style="color:#006e28;">#include PATH_IN_MACRO</span>
+<span style="color:#006e28;">#include PATH_IN_MACRO()</span>
+<span style="color:#006e28;">#include PATH_IN_MACRO(a, b)</span>
+
+<span style="color:#006e28;">#define SOME_VAR </span><span style="color:#b08000;">1</span>
+<span style="color:#006e28;">#ifdef SOME_VAR</span>
+
+<span style="color:#006e28;">#define MULTILINE_MACRO one </span>\
+<span style="color:#006e28;">two </span>\
+<span style="color:#006e28;">three</span>
+
+<span style="color:#006e28;"># define MULTILINE_MACRO_TEXT                        </span>\
+<span style="color:#006e28;">    </span><span style="color:#898887;">/* </span><span style="color:#81ca2d;background-color:#f7e6e6;font-weight:bold;">NOTE</span><span style="color:#898887;"> The contents of macro is too green :D */</span><span style="color:#006e28;"> </span>\
+<span style="color:#006e28;">    </span><span style="color:#0057ae;">char</span><span style="color:#006e28;"> </span><span style="color:#0057ae;">const</span><span style="color:#006e28;"> s</span>[]<span style="color:#006e28;"> </span>=<span style="color:#006e28;"> </span><span style="color:#bf0303;">&quot;a</span><span style="color:#3daee9;">\\</span><span style="color:#bf0303;">b&quot;</span><span style="color:#006e28;">                          </span>\
+<span style="color:#006e28;">    </span><span style="color:#bf0303;">&quot;c</span><span style="color:#3daee9;">\n</span><span style="color:#bf0303;">d&quot;</span>
+
+<span style="color:#006e28;"># define VARIADIC</span>(<span style="color:#006e28;">a</span>,<span style="color:#006e28;"> </span>...)<span style="color:#006e28;">          </span>\
+<span style="color:#006e28;">    f</span>(<span style="color:#006e28;">a##a</span>)<span style="color:#006e28;">                        </span>\
+<span style="color:#006e28;">    f</span>(<span style="color:#006e28;">__VA_ARGS__</span>)<span style="color:#006e28;">                 </span>\
+<span style="color:#006e28;">    f</span>(<span style="color:#006e28;">#</span><span style="color:#006e28;">__VA_ARGS__</span>)<span style="color:#006e28;">                </span>\
+<span style="color:#006e28;">    f</span>(<span style="color:#006e28;">__VA_ARGS__</span>)<span style="color:#006e28;">                 </span>\
+<span style="color:#006e28;">    f</span>(<span style="color:#b08000;">0</span><span style="color:#006e28;"> </span><span style="color:#006e28;">__VA_OPT__</span>(,)<span style="color:#006e28;"> </span><span style="color:#006e28;">__VA_ARGS__</span>)<span style="color:#006e28;"> </span>\
+<span style="color:#006e28;">    x </span><span style="color:#006e28;">__VA_OPT__</span>(=<span style="color:#006e28;"> </span>{<span style="color:#006e28;"> </span><span style="color:#006e28;">__VA_ARGS__</span><span style="color:#006e28;"> </span>})
+
+<span style="color:#006e28;"># define MACRO</span>()<span style="color:#006e28;"> </span>BAD<span style="color:#006e28;"> </span><span style="color:#bf0303;text-decoration:underline;">\</span><span style="color:#006e28;"> </span>ESCAPED
+
+<span style="color:#006e28;"># error dds</span>
+<span style="color:#006e28;"># warning dds</span>
+<span style="color:#006e28;"># line 2 &quot;file.cpp&quot;</span>
+<span style="color:#006e28;"># define A</span>(<span style="color:#006e28;">x</span>,<span style="color:#006e28;"> y</span>)<span style="color:#006e28;"> x##y x#y</span>
+<span style="color:#898887;">// OK(L, a) -&gt; L&quot;a&quot;</span>
+<span style="color:#006e28;"># define OK</span>(<span style="color:#006e28;">x</span>,<span style="color:#006e28;"> y</span>)<span style="color:#006e28;"> x###y</span>
+<span style="color:#006e28;"># define BAD</span>(<span style="color:#006e28;">x</span>,<span style="color:#006e28;"> y</span>)<span style="color:#006e28;"> x####y</span>
+<span style="color:#006e28;"># define A </span><span style="color:#898887;">/* multi line</span>
+<span style="color:#898887;">with comment */</span><span style="color:#006e28;"> expr</span>
+<span style="color:#006e28;"># define A </span><span style="color:#898887;">/* multi line</span>
+<span style="color:#898887;">with comment */</span>
+<span style="color:#b08000;">23</span>
+<span style="color:#006e28;">#else </span><span style="color:#898887;">// x</span>
+<span style="color:#006e28;">#42 </span><span style="color:#898887;">// gcc extension = #line 42</span>
+
+<span style="color:#898887;">// error</span>
+<span style="color:#006e28;">#</span><span style="color:#bf0303;text-decoration:underline;">wrong</span>
+<span style="color:#006e28;"># </span><span style="color:#bf0303;text-decoration:underline;">wrong</span>
+<span style="color:#006e28;">#endif </span><span style="color:#bf0303;text-decoration:underline;">x</span>
+<span style="color:#006e28;">#if DS()</span>
+<span style="color:#006e28;">#else </span><span style="color:#bf0303;text-decoration:underline;">x</span>
+<span style="color:#006e28;">#else </span><span style="color:#898887;">/* */</span><span style="color:#bf0303;text-decoration:underline;">x</span>
+<span style="color:#006e28;">#else </span><span style="color:#898887;">/* x</span>
+<span style="color:#898887;">y */</span><span style="color:#006e28;"> </span><span style="color:#bf0303;text-decoration:underline;">z</span>
+<span style="color:#006e28;">#endif</span>
+
+<span style="color:#898887;">// check that _XXX defines work, bug 397766</span>
+<span style="color:#006e28;">#ifndef _HEADER_GUARD</span>
+<span style="color:#006e28;">#define _HEADER_GUARD </span><span style="color:#b08000;">1</span>
+<span style="color:#006e28;">#endif</span>
+<span style="color:#006e28;">#ifdef _HEADER_GUARD</span>
+<span style="color:#006e28;">#if (_HEADER_GUARD &gt;= 1)</span>
+<span style="color:#006e28;">#endif</span>
+<span style="color:#006e28;">#endif</span>
+
+<span style="color:#0057ae;">static</span> <span style="color:#0057ae;">int</span> <span style="color:#0057ae;">g_global</span>;
+
+<span style="font-weight:bold;">template</span>&lt;<span style="font-weight:bold;">class</span> T, <span style="font-weight:bold;">typename</span> U, <span style="font-weight:bold;">template</span>&lt;<span style="font-weight:bold;">class</span>&gt; <span style="font-weight:bold;">class</span> = <span style="color:#644a9b;font-weight:bold;">std::is_pointer</span>&gt;
+<span style="font-weight:bold;">struct</span> class1
+  : <span style="font-weight:bold;">private</span> <span style="color:#644a9b;font-weight:bold;">std::vector</span>&lt;T&gt;, <span style="font-weight:bold;">public</span> U
+{
+    class1()
+        <span style="font-weight:bold;">try</span>
+        : <span style="color:#808080;">_member1</span>(xxx)
+    {}
+        <span style="font-weight:bold;">catch</span>(...)
+    {}
+
+    class1(class1&amp;&amp;) = <span style="font-weight:bold;">default</span>;
+
+    ~class1()
+    {}
+
+    <span style="color:#0057ae;">void</span> foo() { <span style="font-weight:bold;">return</span>; }
+    <span style="color:#0057ae;">void</span> foo() <span style="color:#0057ae;">const</span> { <span style="font-weight:bold;">return</span>; }
+    <span style="color:#0057ae;">void</span> foo() <span style="font-weight:bold;">noexcept</span> { <span style="font-weight:bold;">return</span>; }
+    <span style="color:#0057ae;">void</span> foo() <span style="color:#0057ae;">const</span> <span style="font-weight:bold;">noexcept</span> { <span style="font-weight:bold;">return</span>; }
+    <span style="font-weight:bold;">virtual</span> <span style="color:#0057ae;">void</span> foo() <span style="color:#0057ae;">const</span> <span style="font-weight:bold;">noexcept</span> { <span style="font-weight:bold;">return</span>; }
+    <span style="color:#0057ae;">static</span> <span style="color:#0057ae;">void</span> foo() { <span style="font-weight:bold;">return</span>; }
+    <span style="font-weight:bold;">constexpr</span> <span style="color:#0057ae;">static</span> <span style="color:#0057ae;">void</span> foo() <span style="color:#0057ae;">const</span>
+        <span style="font-weight:bold;">noexcept</span>(<span style="font-weight:bold;">noexcept</span>(<span style="color:#644a9b;font-weight:bold;">std::is_pointer</span>&lt;U&gt;::value)) <span style="font-weight:bold;">override</span>
+    {
+        xxx::<span style="font-weight:bold;">template</span> ttt&lt;U&gt;::type {};
+        xxx.<span style="font-weight:bold;">template</span> get&lt;U&gt;();
+        xxx.<span style="color:#644a9b;font-weight:bold;">std::rdbuf</span>();
+        <span style="font-weight:bold;">auto</span> x = C&lt;<span style="color:#924c9d;">'a'</span>&gt; + y;
+    }
+
+    <span style="color:#0057ae;">int</span> <span style="font-weight:bold;">operator</span>-&gt;*(T (C::*m)(<span style="color:#0057ae;">int</span>));
+    <span style="font-weight:bold;">operator</span> <span style="color:#0057ae;">value_t</span> ();
+
+<span style="font-weight:bold;">private</span>:
+<span style="font-weight:bold;">protected</span>:
+<span style="font-weight:bold;">public</span>:
+    <span style="color:#0057ae;">value_type</span> <span style="color:#808080;">_member1</span>; <span style="color:#898887;">// </span><span style="color:#81ca2d;background-color:#f7e6e6;font-weight:bold;">NOTE</span><span style="color:#898887;"> internal ?</span>
+    <span style="color:#0057ae;">value_type</span> <span style="color:#808080;">__internal</span>;
+    <span style="color:#0057ae;">value_type</span> <span style="color:#808080;">internal__</span>;
+    <span style="color:#0057ae;">value_type</span> <span style="color:#808080;">_M_internal</span>;
+    <span style="color:#0057ae;">value_t</span> <span style="color:#0057ae;">member2_</span>;
+    <span style="color:#0057ae;">value_type</span> <span style="color:#0057ae;">m_member3</span>;
+
+    <span style="color:#0057ae;">static</span> <span style="color:#0057ae;">int</span> <span style="color:#0057ae;">s_static</span>;
+    <span style="color:#0057ae;">static</span> <span style="font-weight:bold;">constexpr</span> <span style="color:#0057ae;">int</span> <span style="color:#0057ae;">s_static</span>;
+    <span style="color:#0057ae;">static</span> <span style="font-weight:bold;">inline</span> <span style="color:#0057ae;">int</span> <span style="color:#0057ae;">s_static</span>;
+    <span style="color:#0057ae;">static</span> <span style="font-weight:bold;">inline</span> <span style="font-weight:bold;">constexpr</span> <span style="color:#0057ae;">int</span> <span style="color:#0057ae;">s_static</span>;
+};
+
+<span style="font-weight:bold;">constexpr</span> <span style="font-weight:bold;">struct</span> : xyz
+{
+    <span style="font-weight:bold;">using</span> xyz::xyz;
+    <span style="font-weight:bold;">using</span> xyz::<span style="font-weight:bold;">operator</span>=;
+
+    <span style="color:#0057ae;">int</span> a : <span style="color:#b08000;">1</span>;
+    <span style="color:#0057ae;">int</span> b : <span style="color:#b08000;">7</span>;
+} x {};
+
+<span style="font-weight:bold;">template</span>&lt;<span style="font-weight:bold;">class</span> T&gt;
+<span style="font-weight:bold;">using</span> is_pointer = <span style="color:#644a9b;font-weight:bold;">std::is_pointer</span>&lt;T&gt;::type;
+
+<span style="font-weight:bold;">template</span>&lt;<span style="font-weight:bold;">class</span> T&gt;
+<span style="font-weight:bold;">constexpr</span> <span style="font-weight:bold;">auto</span> is_pointer_v = <span style="color:#644a9b;font-weight:bold;">std::is_pointer</span>&lt;T&gt;::value;
+
+<span style="color:#0057ae;">uint64_t</span> namespaces()
+{
+    <span style="color:#644a9b;font-weight:bold;">std::vector</span>&lt;T&gt;;
+    <span style="color:#0095ff;font-weight:bold;">boost::vector</span>&lt;T&gt;;
+    <span style="color:#808080;">detail::vector</span>&lt;T&gt;;
+    <span style="color:#808080;">details::vector</span>&lt;T&gt;;
+    <span style="color:#808080;">aux::vector</span>&lt;T&gt;;
+    <span style="color:#808080;">internals::vector</span>&lt;T&gt;;
+    other::vector&lt;T&gt;;
+}
+
+<span style="color:#006e28;">#if 1</span>
+    <span style="color:#0057ae;">double</span> foo(<span style="color:#0057ae;">const</span> A);
+<span style="color:#006e28;">#else</span><span style="color:#898887;"> // else</span>
+<span style="color:#898887;">    double foo(const A);</span>
+<span style="color:#006e28;">#endif </span><span style="color:#898887;">// end</span>
+
+<span style="color:#006e28;">#if 0</span>
+<span style="color:#898887;">    double foo(const A);</span>
+<span style="color:#006e28;">#else</span> <span style="color:#898887;">// else</span>
+    <span style="color:#0057ae;">double</span> foo(<span style="color:#0057ae;">const</span> A);
+<span style="color:#006e28;">#endif </span><span style="color:#898887;">// end</span>
+
+<span style="color:#006e28;">#if 1</span>
+    <span style="color:#0057ae;">double</span> foo(<span style="color:#0057ae;">const</span> A);
+<span style="color:#006e28;">#elif</span><span style="color:#898887;"> 1</span>
+<span style="color:#898887;">    double foo(const A);</span>
+<span style="color:#898887;">#elif 0</span>
+<span style="color:#898887;">    double foo(const A);</span>
+<span style="color:#006e28;">#endif </span><span style="color:#898887;">// end</span>
+
+<span style="color:#006e28;">#if 0</span>
+<span style="color:#898887;">    double foo(const A);</span>
+<span style="color:#006e28;">#elif 1</span>
+    <span style="color:#0057ae;">double</span> foo(<span style="color:#0057ae;">const</span> A);
+<span style="color:#006e28;">#elif</span><span style="color:#898887;"> 0</span>
+<span style="color:#898887;">    double foo(const A);</span>
+<span style="color:#006e28;">#endif </span><span style="color:#898887;">// end</span>
+
+<span style="color:#006e28;">#if 0</span>
+<span style="color:#898887;">    double foo(const A);</span>
+<span style="color:#006e28;">#elif a</span>
+    <span style="color:#0057ae;">double</span> foo(<span style="color:#0057ae;">const</span> A);
+<span style="color:#006e28;">#elif 0</span>
+<span style="color:#898887;">    double foo(const A);</span>
+<span style="color:#006e28;">#elif a</span>
+    <span style="color:#0057ae;">double</span> foo(<span style="color:#0057ae;">const</span> A);
+<span style="color:#006e28;">#else </span><span style="color:#898887;">// else</span>
+    <span style="color:#0057ae;">double</span> foo(<span style="color:#0057ae;">const</span> A);
+<span style="color:#006e28;">#endif </span><span style="color:#898887;">// end</span>
+
+<span style="color:#006e28;">#if 0 </span><span style="color:#898887;">// blah blah</span>
+<span style="color:#898887;">    double foo(const A);</span>
+<span style="color:#006e28;">#elif 1 </span><span style="color:#898887;">// blah blah</span>
+    <span style="color:#0057ae;">double</span> foo(<span style="color:#0057ae;">const</span> A);
+<span style="color:#006e28;">#else</span><span style="color:#898887;"> // else</span>
+<span style="color:#898887;">    double foo(const A);</span>
+<span style="color:#006e28;">#endif </span><span style="color:#898887;">// end</span>
+
+<span style="color:#006e28;">#if 0 || a</span>
+    <span style="color:#0057ae;">double</span> foo(<span style="color:#0057ae;">const</span> A);
+<span style="color:#006e28;">#else </span><span style="color:#898887;">// else</span>
+    <span style="color:#0057ae;">double</span> foo(<span style="color:#0057ae;">const</span> A);
+<span style="color:#006e28;">#endif </span><span style="color:#898887;">// end</span>
+
+<span style="color:#006e28;">#if 1 || a</span>
+    <span style="color:#0057ae;">double</span> foo(<span style="color:#0057ae;">const</span> A);
+<span style="color:#006e28;">#else</span><span style="color:#898887;"> // else</span>
+<span style="color:#898887;">    double foo(const A);</span>
+<span style="color:#006e28;">#endif </span><span style="color:#898887;">// end</span>
+
+<span style="color:#006e28;">#if 0 &amp;&amp; a</span>
+    <span style="color:#0057ae;">double</span> foo(<span style="color:#0057ae;">const</span> A);
+<span style="color:#006e28;">#else </span><span style="color:#898887;">// else</span>
+    <span style="color:#0057ae;">double</span> foo(<span style="color:#0057ae;">const</span> A);
+<span style="color:#006e28;">#endif </span><span style="color:#898887;">// end</span>
+
+<span style="color:#006e28;">#if 1 &amp;&amp; a</span>
+    <span style="color:#0057ae;">double</span> foo(<span style="color:#0057ae;">const</span> A);
+<span style="color:#006e28;">#else </span><span style="color:#898887;">// else</span>
+    <span style="color:#0057ae;">double</span> foo(<span style="color:#0057ae;">const</span> A);
+<span style="color:#006e28;">#endif </span><span style="color:#898887;">// end</span>
+
+<span style="color:#006e28;">#if a</span>
+    <span style="color:#0057ae;">double</span> foo(<span style="color:#0057ae;">const</span> A);
+<span style="color:#006e28;">#elif 0</span>
+<span style="color:#898887;">    double foo(const A);</span>
+<span style="color:#006e28;">#endif </span><span style="color:#898887;">// end</span>
+
+<span style="color:#006e28;">#if a</span>
+    <span style="color:#0057ae;">double</span> foo(<span style="color:#0057ae;">const</span> A);
+<span style="color:#006e28;">#elif 1</span>
+    <span style="color:#0057ae;">double</span> foo(<span style="color:#0057ae;">const</span> A);
+<span style="color:#006e28;">#endif </span><span style="color:#898887;">// end</span>
+
+<span style="color:#006e28;">#if a</span>
+    <span style="color:#0057ae;">double</span> foo(<span style="color:#0057ae;">const</span> A);
+<span style="color:#006e28;">#elif a</span>
+    <span style="color:#0057ae;">double</span> foo(<span style="color:#0057ae;">const</span> A);
+<span style="color:#006e28;">#endif </span><span style="color:#898887;">// end</span>
+
+<span style="color:#0057ae;">int</span> bar(<span style="color:#0057ae;">void</span>*p, <span style="color:#0057ae;">void</span> * pp)
+{
+<span style="color:#006e28;"># if 0</span>
+<span style="color:#898887;">    double foo();</span>
+<span style="color:#006e28;"># else</span> <span style="color:#898887;">// else</span>
+    <span style="color:#0057ae;">double</span> foo();
+<span style="color:#006e28;"># endif </span><span style="color:#898887;">// end</span>
+}
+
+<span style="color:#006e28;">#if abc 0</span>
+    <span style="color:#0057ae;">double</span> foo();
+<span style="color:#006e28;">#endif </span><span style="color:#898887;">// end</span>
+
+<span style="color:#006e28;">#if xxx</span>
+    <span style="color:#0057ae;">double</span> foo();
+<span style="color:#006e28;">#else</span>
+    <span style="color:#0057ae;">double</span> foo();
+<span style="color:#006e28;">#endif </span><span style="color:#898887;">// end</span>
+
+<span style="color:#006e28;">#if xxx</span>
+    <span style="color:#0057ae;">double</span> foo();
+<span style="color:#006e28;">#elif xxx </span><span style="color:#898887;">// elseif</span>
+    <span style="color:#0057ae;">double</span> foo();
+<span style="color:#006e28;">#elif xxx </span><span style="color:#898887;">// elseif</span>
+    <span style="color:#0057ae;">double</span> foo();
+<span style="color:#006e28;">#endif </span><span style="color:#898887;">// end</span>
+
+<span style="color:#898887;">// error</span>
+<span style="color:#bf0303;text-decoration:underline;">#</span>
+<span style="color:#006e28;">#</span><span style="color:#bf0303;text-decoration:underline;">d</span>
+<span style="color:#006e28;"># </span><span style="color:#bf0303;text-decoration:underline;">d</span>
+<span style="color:#006e28;">#</span><span style="color:#bf0303;text-decoration:underline;">if</span>
+<span style="color:#006e28;">#</span><span style="color:#bf0303;text-decoration:underline;">elif</span>
+<span style="color:#006e28;">#endif</span>
+<span style="color:#006e28;">#</span><span style="color:#bf0303;text-decoration:underline;">ifndef</span>
+<span style="color:#006e28;">#endif</span>
+<span style="color:#006e28;">#</span><span style="color:#bf0303;text-decoration:underline;">ifdef 0</span>
+<span style="color:#006e28;">#endif </span><span style="color:#898887;">// end</span>
+
+<span style="color:#0057ae;">static</span> <span style="color:#0057ae;">uint64_t</span> intWithSuffix = <span style="color:#b08000;">42</span><span style="color:#644a9b;font-weight:bold;">ull</span>;
+<span style="color:#0057ae;">static</span> <span style="color:#0057ae;">long</span> intWithSuffixAndPrefix = <span style="color:#b08000;">0b0101</span><span style="color:#644a9b;font-weight:bold;">L</span>;
+<span style="color:#0057ae;">static</span> <span style="color:#0057ae;">int</span> octNum = <span style="color:#b08000;">07232</span>;
+<span style="color:#0057ae;">static</span> <span style="color:#0057ae;">int</span> invalidOctNum = <span style="color:#bf0303;text-decoration:underline;">09231</span>;
+<span style="color:#0057ae;">static</span> <span style="color:#0057ae;">uint64_t</span> hexNum = <span style="color:#b08000;">0xDEADBEEF42</span>;
+<span style="color:#0057ae;">static</span> <span style="color:#0057ae;">uint64_t</span> invalidHexNum = <span style="color:#bf0303;text-decoration:underline;">0xGLDFKG</span>;
+<span style="color:#0057ae;">static</span> <span style="color:#0057ae;">char</span> binNum = <span style="color:#b08000;">0b0101010</span>;
+
+<span style="color:#0057ae;">static</span> <span style="color:#0057ae;">int64_t</span> intWithSuffix = -<span style="color:#b08000;">42</span><span style="color:#644a9b;font-weight:bold;">LL</span>;
+<span style="color:#0057ae;">static</span> <span style="color:#0057ae;">long</span> intWithSuffixAndPrefix = -<span style="color:#b08000;">0b0101</span><span style="color:#644a9b;font-weight:bold;">L</span>;
+<span style="color:#0057ae;">static</span> <span style="color:#0057ae;">int</span> octNum = -<span style="color:#b08000;">07232</span>;
+<span style="color:#0057ae;">static</span> <span style="color:#0057ae;">int</span> invalidOctNum = -<span style="color:#bf0303;text-decoration:underline;">09231</span>;
+<span style="color:#0057ae;">static</span> <span style="color:#0057ae;">int64_t</span> hexNum = -<span style="color:#b08000;">0xDEADBEEF42</span>;
+<span style="color:#0057ae;">static</span> <span style="color:#0057ae;">int64_t</span> invalidHexNum = -<span style="color:#bf0303;text-decoration:underline;">0xGLDFKG</span>;
+<span style="color:#0057ae;">static</span> <span style="color:#0057ae;">char</span> binNum = -<span style="color:#b08000;">0b0101010</span>;
+
+<span style="color:#0057ae;">static</span> <span style="color:#0057ae;">uint64_t</span> intWithSuffixWithSep = <span style="color:#b08000;">4'2</span><span style="color:#644a9b;font-weight:bold;">ull</span>;
+<span style="color:#0057ae;">static</span> <span style="color:#0057ae;">long</span> intWithSuffixAndPrefixWithSep = <span style="color:#b08000;">0b0'10'1</span><span style="color:#644a9b;font-weight:bold;">L</span>;
+<span style="color:#0057ae;">static</span> <span style="color:#0057ae;">int</span> octNumWithSep = <span style="color:#b08000;">07'232</span>;
+<span style="color:#0057ae;">static</span> <span style="color:#0057ae;">int</span> invalidOctNumWithSep = <span style="color:#bf0303;text-decoration:underline;">09'23'1</span>;
+<span style="color:#0057ae;">static</span> <span style="color:#0057ae;">uint64_t</span> hexNumWithSep = <span style="color:#b08000;">0xD'EAD'BE'EF'42</span>;
+<span style="color:#0057ae;">static</span> <span style="color:#0057ae;">uint64_t</span> invalidHexNumWithSep = <span style="color:#bf0303;text-decoration:underline;">0xGLD'FKG</span>;
+<span style="color:#0057ae;">static</span> <span style="color:#0057ae;">char</span> binNumWithSep = <span style="color:#b08000;">0b0'1010'10</span>;
+
+<span style="color:#0057ae;">static</span> <span style="color:#0057ae;">uint64_t</span> invalidSep = <span style="color:#b08000;">42</span><span style="color:#bf0303;text-decoration:underline;">'</span><span style="color:#644a9b;font-weight:bold;">ull</span>;
+<span style="color:#0057ae;">static</span> <span style="color:#0057ae;">uint64_t</span> invalidSep = <span style="color:#b08000;">42</span><span style="color:#bf0303;text-decoration:underline;">'</span>;
+
+<span style="color:#0057ae;">static</span> <span style="color:#0057ae;">double</span> d1 = <span style="color:#b08000;">42.</span>;
+<span style="color:#0057ae;">static</span> <span style="color:#0057ae;">double</span> d2 = <span style="color:#b08000;">.42</span>;
+<span style="color:#0057ae;">static</span> <span style="color:#0057ae;">double</span> d2a = -<span style="color:#b08000;">0.49</span>;
+<span style="color:#0057ae;">static</span> <span style="color:#0057ae;">double</span> d2b = -<span style="color:#b08000;">0.09</span>;
+<span style="color:#0057ae;">static</span> <span style="color:#0057ae;">double</span> d3 = <span style="color:#b08000;">42.3e1</span>;
+<span style="color:#0057ae;">static</span> <span style="color:#0057ae;">double</span> d4 = <span style="color:#b08000;">.2e-12</span>;
+<span style="color:#0057ae;">static</span> <span style="color:#0057ae;">double</span> d5 = <span style="color:#b08000;">32.e+12</span>;
+<span style="color:#0057ae;">static</span> <span style="color:#0057ae;">double</span> invalidD1 = <span style="color:#b08000;">32.</span><span style="color:#bf0303;text-decoration:underline;">e</span>+a12;
+<span style="color:#0057ae;">static</span> <span style="color:#0057ae;">float</span> floatQualifier = <span style="color:#b08000;">23.123</span><span style="color:#644a9b;font-weight:bold;">f</span>;
+<span style="color:#898887;">// Hexadecimal floating point (c++17)</span>
+<span style="color:#0057ae;">static</span> <span style="color:#0057ae;">double</span> d6 = <span style="color:#b08000;">0x1ffp10</span>;
+<span style="color:#0057ae;">static</span> <span style="color:#0057ae;">double</span> d7 = <span style="color:#b08000;">0X0p-1</span>;
+<span style="color:#0057ae;">static</span> <span style="color:#0057ae;">double</span> d8 = <span style="color:#b08000;">0x1.p0</span>;
+<span style="color:#0057ae;">static</span> <span style="color:#0057ae;">double</span> d9 = <span style="color:#b08000;">0xf.p-1</span><span style="color:#644a9b;font-weight:bold;">L</span>;
+<span style="color:#0057ae;">static</span> <span style="color:#0057ae;">double</span> d10 = <span style="color:#b08000;">0x0.123p-1</span>;
+<span style="color:#0057ae;">static</span> <span style="color:#0057ae;">double</span> d11 = <span style="color:#b08000;">0xa.bp10</span><span style="color:#644a9b;font-weight:bold;">l</span>;
+<span style="color:#0057ae;">static</span> <span style="color:#0057ae;">double</span> invalidD2 = <span style="color:#b08000;">0x0.123</span><span style="color:#bf0303;text-decoration:underline;">p</span>-a;
+<span style="color:#0057ae;">static</span> <span style="color:#0057ae;">float</span> floatQualifier = <span style="color:#b08000;">0xf.p-1</span><span style="color:#644a9b;font-weight:bold;">f</span>;
+
+<span style="color:#b08000;">60</span><span style="color:#644a9b;font-weight:bold;">min</span>; <span style="color:#898887;">// c++17</span>
+<span style="color:#b08000;">60.</span><span style="color:#644a9b;font-weight:bold;">min</span>;
+<span style="color:#b08000;">60.3</span><span style="color:#644a9b;font-weight:bold;">min</span>;
+<span style="color:#b08000;">0x1ffp10</span><span style="color:#644a9b;font-weight:bold;">min</span>;
+<span style="color:#b08000;">2</span><span style="color:#644a9b;font-weight:bold;">d</span>; <span style="color:#898887;">// c++20</span>
+<span style="color:#b08000;">23.</span><span style="color:#b08000;">_f</span>
+<span style="color:#b08000;">23.</span><span style="color:#b08000;">_fd</span>
+<span style="color:#b08000;">2.3</span><span style="color:#b08000;">_f</span>
+<span style="color:#b08000;">2.3</span><span style="color:#b08000;">_fd</span>
+<span style="color:#b08000;">2.</span><span style="color:#b08000;">_f</span>
+<span style="color:#b08000;">2.</span><span style="color:#b08000;">_fd</span>
+<span style="color:#b08000;">2e4</span><span style="color:#b08000;">_f</span>
+<span style="color:#b08000;">2e4</span><span style="color:#b08000;">_fd</span>
+
+<span style="color:#898887;">// error</span>
+<span style="color:#b08000;">23.</span><span style="color:#644a9b;font-weight:bold;">f</span><span style="color:#bf0303;text-decoration:underline;">d</span>
+<span style="color:#b08000;">2</span><span style="color:#bf0303;text-decoration:underline;">e_fd</span>
+<span style="color:#b08000;">2</span><span style="color:#bf0303;text-decoration:underline;">e</span>
+<span style="color:#b08000;">1.</span><span style="color:#bf0303;text-decoration:underline;">y</span>
+<span style="color:#b08000;">1.0</span><span style="color:#bf0303;text-decoration:underline;">_E+</span><span style="color:#b08000;">2.0</span>
+<span style="color:#b08000;">1.0</span><span style="color:#b08000;">_E</span> +<span style="color:#b08000;">2.0</span> <span style="color:#898887;">// ok</span>
+<span style="color:#b08000;">1</span><span style="color:#bf0303;text-decoration:underline;">_p+</span><span style="color:#b08000;">2</span>
+<span style="color:#b08000;">1</span><span style="color:#b08000;">_p</span> +<span style="color:#b08000;">2</span> <span style="color:#898887;">// ok</span>
+<span style="color:#b08000;">4</span><span style="color:#644a9b;font-weight:bold;">s</span><span style="color:#bf0303;text-decoration:underline;">.count</span>()
+<span style="color:#b08000;">4</span><span style="color:#644a9b;font-weight:bold;">s</span><span style="color:#bf0303;text-decoration:underline;">.</span> count()
+<span style="color:#b08000;">4</span><span style="color:#644a9b;font-weight:bold;">s</span> .count() <span style="color:#898887;">// ok</span>
+
+<span style="color:#0057ae;">static</span> <span style="color:#0057ae;">bool</span> yes = <span style="font-weight:bold;">true</span>;
+<span style="color:#0057ae;">static</span> <span style="color:#0057ae;">bool</span> no = <span style="font-weight:bold;">false</span>;
+
+<span style="color:#898887;">// *char*</span>
+<span style="color:#0057ae;">static</span> <span style="color:#0057ae;">const</span> <span style="color:#0057ae;">char</span>     c1 = <span style="color:#924c9d;">'c'</span>;
+<span style="color:#0057ae;">static</span> <span style="color:#0057ae;">const</span> <span style="color:#0057ae;">char</span>     c1a = <span style="color:#924c9d;">u8'c'</span>; <span style="color:#898887;">// utf-8 char (c++17)</span>
+<span style="color:#0057ae;">static</span> <span style="color:#0057ae;">const</span> <span style="color:#0057ae;">char16_t</span> c1b = <span style="color:#924c9d;">u'c'</span>;
+<span style="color:#0057ae;">static</span> <span style="color:#0057ae;">const</span> <span style="color:#0057ae;">char32_t</span> c1c = <span style="color:#924c9d;">U'c'</span>;
+<span style="color:#0057ae;">static</span> <span style="color:#0057ae;">const</span> <span style="color:#0057ae;">wchar_t</span>  c1d = <span style="color:#924c9d;">L'c'</span>;
+<span style="color:#0057ae;">static</span> <span style="color:#0057ae;">const</span> <span style="color:#0057ae;">char</span> c2 = <span style="color:#924c9d;">'</span><span style="color:#3daee9;">\n</span><span style="color:#924c9d;">'</span>;
+<span style="color:#0057ae;">static</span> <span style="color:#0057ae;">const</span> <span style="color:#0057ae;">char</span> c2a = <span style="color:#924c9d;">'</span><span style="color:#3daee9;">\120</span><span style="color:#924c9d;">'</span>; <span style="color:#898887;">// octal</span>
+<span style="color:#0057ae;">static</span> <span style="color:#0057ae;">const</span> <span style="color:#0057ae;">char</span> c2b = <span style="color:#924c9d;">'</span><span style="color:#3daee9;">\x1f</span><span style="color:#924c9d;">'</span>; <span style="color:#898887;">// hex</span>
+<span style="color:#0057ae;">static</span> <span style="color:#0057ae;">const</span> <span style="color:#0057ae;">char</span> c2c = <span style="color:#924c9d;">'</span><span style="color:#3daee9;">\'</span><span style="color:#924c9d;">'</span>;
+<span style="color:#0057ae;">static</span> <span style="color:#0057ae;">const</span> <span style="color:#0057ae;">char</span> c2d = <span style="color:#924c9d;">'</span><span style="color:#3daee9;">\\</span><span style="color:#924c9d;">'</span>;
+<span style="color:#0057ae;">static</span> <span style="color:#0057ae;">const</span> <span style="color:#0057ae;">wchar_t</span> c2e = <span style="color:#924c9d;">L'</span><span style="color:#3daee9;">\x1ff</span><span style="color:#924c9d;">'</span>; <span style="color:#898887;">// hex</span>
+<span style="color:#0057ae;">static</span> <span style="color:#0057ae;">const</span> <span style="color:#0057ae;">wchar_t</span> c2e = <span style="color:#924c9d;">U'</span><span style="color:#3daee9;">\x1fffffff</span><span style="color:#924c9d;">'</span>; <span style="color:#898887;">// hex</span>
+<span style="color:#898887;">// error</span>
+<span style="color:#924c9d;">'</span><span style="color:#3daee9;">\x12</span><span style="color:#bf0303;text-decoration:underline;">3</span><span style="color:#924c9d;">'</span>;
+<span style="color:#924c9d;">'\</span><span style="color:#bf0303;text-decoration:underline;">u1234</span><span style="color:#924c9d;">'</span>;
+<span style="color:#924c9d;">'\</span><span style="color:#bf0303;text-decoration:underline;">U12345678</span><span style="color:#924c9d;">'</span>;
+<span style="color:#924c9d;">U'</span><span style="color:#3daee9;">\u1234</span><span style="color:#bf0303;text-decoration:underline;">5</span><span style="color:#924c9d;">'</span>;
+<span style="color:#924c9d;">u'\</span><span style="color:#bf0303;text-decoration:underline;">u123</span><span style="color:#924c9d;">'</span>;
+<span style="color:#924c9d;">U'\</span><span style="color:#bf0303;text-decoration:underline;">U1234567</span><span style="color:#924c9d;">'</span>;
+<span style="color:#924c9d;">U'</span><span style="color:#3daee9;">\U12345678</span><span style="color:#bf0303;text-decoration:underline;">9</span><span style="color:#924c9d;">'</span>;
+<span style="color:#924c9d;">U'</span><span style="color:#3daee9;">\x12345678</span><span style="color:#bf0303;text-decoration:underline;">9</span><span style="color:#924c9d;">'</span>;
+
+<span style="color:#898887;">// string</span>
+<span style="color:#0057ae;">static</span> <span style="color:#0057ae;">const</span> <span style="color:#0057ae;">char</span>* c3 = <span style="color:#bf0303;">&quot;string&quot;</span>;
+<span style="color:#0057ae;">static</span> <span style="color:#0057ae;">const</span> <span style="color:#0057ae;">char</span>* c4 = <span style="color:#bf0303;">&quot;</span><span style="color:#3daee9;">\&quot;</span><span style="color:#bf0303;">string</span><span style="color:#3daee9;">\n\t\012\x12\&quot;</span><span style="color:#bf0303;">&quot;</span>;
+<span style="color:#0057ae;">static</span> <span style="color:#0057ae;">const</span> <span style="color:#0057ae;">char</span>* c5 = <span style="color:#bf0303;">&quot;multiline \</span>
+<span style="color:#bf0303;">    string&quot;</span>;
+<span style="color:#0057ae;">static</span> <span style="color:#0057ae;">const</span> <span style="color:#0057ae;">char</span>* c6 = <span style="color:#bf0303;">&quot;multifragment&quot;</span> <span style="color:#bf0303;">&quot;other&quot;&quot;string&quot;</span>;
+<span style="color:#0057ae;">static</span> <span style="color:#0057ae;">const</span> <span style="color:#0057ae;">char</span>*      c6a = <span style="color:#bf0303;">u8&quot;string&quot;</span>;
+<span style="color:#0057ae;">static</span> <span style="color:#0057ae;">const</span> <span style="color:#0057ae;">char16_t</span>*  c6b = <span style="color:#bf0303;">u&quot;string&quot;</span>;
+<span style="color:#0057ae;">static</span> <span style="color:#0057ae;">const</span> <span style="color:#0057ae;">char32_t</span>*  c6c = <span style="color:#bf0303;">U&quot;string&quot;</span>;
+<span style="color:#0057ae;">static</span> <span style="color:#0057ae;">const</span> <span style="color:#0057ae;">wchar_t</span>*   c6d = <span style="color:#bf0303;">L&quot;string&quot;</span>;
+<span style="color:#0057ae;">static</span> <span style="color:#0057ae;">const</span> <span style="color:#0057ae;">char</span>* rawString1 = <span style="color:#bf0303;">R&quot;(string)&quot;</span>;
+<span style="color:#0057ae;">static</span> <span style="color:#0057ae;">const</span> <span style="color:#0057ae;">char</span>*      rawString1a = <span style="color:#bf0303;">u8R&quot;(string)&quot;</span>;
+<span style="color:#0057ae;">static</span> <span style="color:#0057ae;">const</span> <span style="color:#0057ae;">char16_t</span>*  rawString1b = <span style="color:#bf0303;">uR&quot;(string)&quot;</span>;
+<span style="color:#0057ae;">static</span> <span style="color:#0057ae;">const</span> <span style="color:#0057ae;">char32_t</span>*  rawString1c = <span style="color:#bf0303;">UR&quot;(string)&quot;</span>;
+<span style="color:#0057ae;">static</span> <span style="color:#0057ae;">const</span> <span style="color:#0057ae;">wchar_t</span>*   rawString1d = <span style="color:#bf0303;">LR&quot;(string\nstring)&quot;</span>;
+<span style="color:#0057ae;">static</span> <span style="color:#0057ae;">const</span> <span style="color:#0057ae;">char</span>* rawString2 = <span style="color:#bf0303;">R&quot;ab(string\nstring)ab&quot;</span>;
+<span style="color:#0057ae;">static</span> <span style="color:#0057ae;">const</span> <span style="color:#0057ae;">char</span>* rawString3 = <span style="color:#bf0303;">R&quot;ab(string</span>
+<span style="color:#bf0303;">string)ab&quot;</span>;
+<span style="color:#bf0303;">&quot; </span><span style="color:#3daee9;">%d</span><span style="color:#bf0303;"> </span><span style="color:#3daee9;">%d</span><span style="color:#bf0303;">f fd&quot;</span> <span style="color:#bf0303;">U&quot;ds </span><span style="color:#3daee9;">%d</span><span style="color:#bf0303;">&quot;</span> <span style="color:#bf0303;">R&quot;(a</span><span style="color:#3daee9;">%d</span><span style="color:#bf0303;">)&quot;</span>;
+  <span style="color:#bf0303;">&quot;</span><span style="color:#3daee9;">\x123</span><span style="color:#bf0303;">xsk&quot;</span>;
+ <span style="color:#bf0303;">u&quot;</span><span style="color:#3daee9;">\x123</span><span style="color:#bf0303;">xsk&quot;</span>;
+<span style="color:#898887;">// error</span>
+<span style="color:#bf0303;">u8&quot;</span><span style="color:#3daee9;">\x12</span><span style="color:#bf0303;text-decoration:underline;">3</span><span style="color:#bf0303;">xsk&quot;</span>;
+
+<span style="color:#898887;">// printf format</span>
+<span style="color:#bf0303;">&quot;a</span><span style="color:#3daee9;">%10s</span><span style="color:#bf0303;">a</span><span style="color:#3daee9;">%-10s</span><span style="color:#bf0303;">a</span><span style="color:#3daee9;">%*s</span><span style="color:#bf0303;">a</span><span style="color:#3daee9;">%-10.*s</span><span style="color:#bf0303;">a</span><span style="color:#3daee9;">%-*.*s</span><span style="color:#bf0303;">a&quot;</span>
+<span style="color:#bf0303;">&quot;a</span><span style="color:#3daee9;">%c</span><span style="color:#bf0303;">a</span><span style="color:#3daee9;">%*c</span><span style="color:#bf0303;">a</span><span style="color:#3daee9;">%%</span><span style="color:#bf0303;">a</span><span style="color:#3daee9;">%i</span><span style="color:#bf0303;">a</span><span style="color:#3daee9;">%d</span><span style="color:#bf0303;">a</span><span style="color:#3daee9;">%.6i</span><span style="color:#bf0303;">a</span><span style="color:#3daee9;">%.0i</span><span style="color:#bf0303;">a</span><span style="color:#3daee9;">%+i</span><span style="color:#bf0303;">a</span><span style="color:#3daee9;">%i</span><span style="color:#bf0303;">a</span><span style="color:#3daee9;">%x</span><span style="color:#bf0303;">a</span><span style="color:#3daee9;">%#x</span><span style="color:#bf0303;">a&quot;</span>
+<span style="color:#bf0303;">&quot;a</span><span style="color:#3daee9;">%.0f</span><span style="color:#bf0303;">a</span><span style="color:#3daee9;">%.32f</span><span style="color:#bf0303;">a</span><span style="color:#3daee9;">%05.2f</span><span style="color:#bf0303;">a</span><span style="color:#3daee9;">%.2f</span><span style="color:#bf0303;">a</span><span style="color:#3daee9;">%5.2f</span><span style="color:#bf0303;">a</span><span style="color:#3daee9;">%E</span><span style="color:#bf0303;">a</span><span style="color:#3daee9;">%a</span><span style="color:#bf0303;">a&quot;</span>
+<span style="color:#898887;">// std::format</span>
+<span style="color:#bf0303;">&quot;a</span><span style="color:#3daee9;">{{</span><span style="color:#bf0303;">:6</span><span style="color:#3daee9;">}}</span><span style="color:#bf0303;">a</span><span style="color:#3daee9;">{}</span><span style="color:#bf0303;">a</span><span style="color:#3daee9;">{:6}</span><span style="color:#bf0303;">a</span><span style="color:#3daee9;">{:*&lt;6}</span><span style="color:#bf0303;">a</span><span style="color:#3daee9;">{:6d}</span><span style="color:#bf0303;">a&quot;</span>
+<span style="color:#bf0303;">&quot;a</span><span style="color:#3daee9;">{0:}</span><span style="color:#bf0303;">a</span><span style="color:#3daee9;">{0:+}</span><span style="color:#bf0303;">a</span><span style="color:#3daee9;">{0:-}</span><span style="color:#bf0303;">a</span><span style="color:#3daee9;">{0: }</span><span style="color:#bf0303;">a&quot;</span>
+<span style="color:#bf0303;">&quot;a</span><span style="color:#3daee9;">{:+06d}</span><span style="color:#bf0303;">a</span><span style="color:#3daee9;">{:#06x}</span><span style="color:#bf0303;">a</span><span style="color:#3daee9;">{:&lt;06}</span><span style="color:#bf0303;">a&quot;</span>
+<span style="color:#bf0303;">&quot;a</span><span style="color:#3daee9;">{:{}}</span><span style="color:#bf0303;">a</span><span style="color:#3daee9;">{0:{1}.{2}f}</span><span style="color:#bf0303;">a&quot;</span>
+;
+
+<span style="color:#898887;">// UDL (c++11)</span>
+
+<span style="font-weight:bold;">operator</span><span style="color:#bf0303;">&quot;&quot;</span>_a(<span style="color:#0057ae;">const</span> <span style="color:#0057ae;">char</span>*);
+<span style="font-weight:bold;">operator</span> <span style="color:#bf0303;">&quot;&quot;</span>_a(<span style="color:#0057ae;">const</span> <span style="color:#0057ae;">char</span>*);
+<span style="font-weight:bold;">operator</span> <span style="color:#bf0303;">&quot;&quot;</span> _a(<span style="color:#0057ae;">const</span> <span style="color:#0057ae;">char</span>*);
+<span style="color:#898887;">// invalid suffix</span>
+<span style="font-weight:bold;">operator</span> <span style="color:#bf0303;">&quot;&quot;</span> <span style="color:#bf0303;text-decoration:underline;">a</span>(<span style="color:#0057ae;">const</span> <span style="color:#0057ae;">char</span>*);
+<span style="font-weight:bold;">operator</span> <span style="color:#bf0303;">&quot;&quot;</span><span style="color:#bf0303;text-decoration:underline;">a</span>(<span style="color:#0057ae;">const</span> <span style="color:#0057ae;">char</span>*);
+<span style="font-weight:bold;">operator</span><span style="color:#bf0303;">&quot;&quot;</span><span style="color:#bf0303;text-decoration:underline;">a</span>(<span style="color:#0057ae;">const</span> <span style="color:#0057ae;">char</span>*);
+
+<span style="color:#bf0303;">&quot;string&quot;</span><span style="color:#bf0303;">_s</span>; <span style="color:#898887;">// user</span>
+<span style="color:#bf0303;">&quot;string&quot;</span><span style="color:#644a9b;font-weight:bold;">s</span>; <span style="color:#898887;">// standard</span>
+<span style="color:#bf0303;">&quot;string&quot;</span><span style="color:#bf0303;">_s</span>-b; <span style="color:#898887;">// -b is not part of the string</span>
+
+<span style="color:#898887;">// Macro</span>
+
+MY_XXX;
+<span style="color:#0095ff;font-weight:bold;">BOOST_XXX</span>;
+<span style="color:#006e28;">__STDC_VERSION__</span>;
+<span style="color:#006e28;">__TIME__</span>;
+<span style="color:#006e28;">__cplusplus</span>;
+
+<span style="color:#898887;">// Attributes</span>
+
+[[<span style="color:#0057ae;font-style:italic;">noreturn</span>]] <span style="color:#0057ae;">void</span> foo();
+[[<span style="color:#0057ae;font-style:italic;">deprecated</span>]] <span style="color:#0057ae;">void</span> foo();
+[[<span style="color:#0057ae;font-style:italic;">deprecated</span>(<span style="color:#bf0303;">&quot;because&quot;</span>)]] <span style="color:#0057ae;">void</span> foo();
+<span style="color:#0057ae;">void</span> foo([[<span style="color:#0057ae;font-style:italic;">carries_dependency</span>]] <span style="color:#0057ae;">int</span>);
+
+[[<span style="color:#0057ae;font-style:italic;">opt</span>(<span style="color:#b08000;">1</span>),<span style="color:#0057ae;font-style:italic;"> debug</span>]]
+[[<span style="font-weight:bold;">using</span><span style="color:#0057ae;font-style:italic;"> CC</span>:<span style="color:#0057ae;font-style:italic;"> opt</span>(<span style="color:#b08000;">1</span>),<span style="color:#0057ae;font-style:italic;"> debug</span>]] <span style="color:#898887;">// c++17</span>
+[[<span style="font-weight:bold;">using</span><span style="color:#0057ae;font-style:italic;"> CC</span>:<span style="color:#0057ae;font-style:italic;"> CC</span>::<span style="color:#0057ae;font-style:italic;">opt</span>(<span style="color:#b08000;">1</span>)]] <span style="color:#898887;">// c++17</span>
+
+[[<span style="color:#0095ff;font-weight:bold;font-style:italic;">gnu::assume_aligned</span>(<span style="color:#b08000;">3'2</span><span style="color:#644a9b;font-weight:bold;">l</span>,<span style="color:#b08000;">2</span>)]] <span style="color:#0057ae;">void</span>* f();
+[[<span style="font-weight:bold;">using</span><span style="color:#0057ae;font-style:italic;"> </span><span style="color:#0095ff;font-weight:bold;font-style:italic;">gnu</span>:<span style="color:#0057ae;font-style:italic;"> assume_aligned</span>(<span style="color:#b08000;">3</span>)]]
+[[<span style="color:#0095ff;font-weight:bold;font-style:italic;">clang::assume_aligned</span>(<span style="color:#b08000;">3</span>)]]
+
+<span style="color:#0057ae;">void</span> f([[<span style="color:#0057ae;font-style:italic;">maybe_unused</span>]] <span style="color:#0057ae;">int</span> val)
+{
+    [[<span style="color:#0057ae;font-style:italic;">maybe_unused</span>]] <span style="color:#0057ae;">int</span> x;
+    <span style="font-weight:bold;">switch</span> (x = foo(); x) {
+        <span style="font-weight:bold;">case</span> <span style="color:#b08000;">1</span>:
+            [[<span style="color:#0057ae;font-style:italic;">fallthrough</span>]];
+        <span style="font-weight:bold;">case</span> XXX:
+        <span style="font-weight:bold;">case</span> Class::foo():
+            [[<span style="color:#0057ae;font-style:italic;">fallthrough</span>]];
+        <span style="font-weight:bold;">default</span>:
+            ;
+    }
+
+    <span style="color:#898887;">// c++17: fold expression</span>
+    (args + ... + (<span style="color:#b08000;">1</span> * <span style="color:#b08000;">2</span>));
+    (v.push_back(args), ...);
+
+    [[<span style="color:#0057ae;font-style:italic;">omp</span>::<span style="color:#0057ae;font-style:italic;">parallel</span>]] <span style="font-weight:bold;">for</span> (<span style="font-weight:bold;">auto</span>&amp;&amp; x : v)
+        x;
+    <span style="font-weight:bold;">for</span> (<span style="font-weight:bold;">auto</span>&amp;&amp; [first,second] : mymap) {
+    }
+
+    <span style="font-weight:bold;">auto</span> [x, y] = foo();
+
+    [x = <span style="color:#b08000;">1</span>, =y](){};
+
+    <span style="font-weight:bold;">decltype</span>((<span style="font-weight:bold;">auto</span>)) x = foo();
+}
+
+<span style="font-weight:bold;">auto</span> f() -&gt; <span style="font-weight:bold;">decltype</span>(foo());
+
+<span style="color:#0095ff;font-weight:bold;font-style:italic;">__attribute__((pure))</span> <span style="color:#0057ae;">void</span> f();
+
+label:
+<span style="font-weight:bold;">goto</span> label;
+
+
+<span style="color:#0057ae;background-color:#e0e9f8;">//BEGIN region</span>
+<span style="color:#898887;">// </span><span style="color:#ca9219;background-color:#451e1a;font-weight:bold;">TODO</span><span style="color:#898887;"> comment </span><span style="color:#ca9219;background-color:#451e1a;font-weight:bold;">FIXME</span><span style="color:#898887;"> comment </span><span style="color:#81ca2d;background-color:#f7e6e6;font-weight:bold;">###</span><span style="color:#898887;"> comment </span><span style="color:#ca9219;background-color:#451e1a;font-weight:bold;">BUG</span><span style="color:#898887;"> comment</span>
+<span style="color:#0057ae;background-color:#e0e9f8;">//END region</span>
+
+<span style="color:#898887;">// \brief blah blah</span>
+<span style="color:#898887;">/// </span><span style="color:#ca60ca;font-weight:bold;">\brief</span><span style="color:#898887;"> blah blah</span>
+
+<span style="color:#898887;">/**</span>
+<span style="color:#898887;"> * Doxygen</span>
+<span style="color:#898887;"> * </span><span style="color:#ca60ca;font-weight:bold;">@param</span><span style="color:#898887;"> </span><span style="color:#0095ff;font-weight:bold;">p1</span><span style="color:#898887;"> text</span>
+<span style="color:#898887;"> * </span><span style="color:#ca60ca;font-weight:bold;">\brief</span><span style="color:#898887;"> </span><span style="font-weight:bold;">&lt;b&gt;</span><span style="color:#898887;">bold text</span><span style="font-weight:bold;">&lt;/b&gt;</span>
+<span style="color:#898887;"> * </span><span style="color:#ca60ca;font-weight:bold;">\dot</span>
+<span style="color:#00a000;font-style:italic;"> </span><span style="color:#898887;">*</span><span style="color:#00a000;font-style:italic;"> a -&gt; b</span>
+<span style="color:#00a000;font-style:italic;"> </span><span style="color:#898887;">*</span><span style="color:#00a000;font-style:italic;"> </span><span style="color:#ca60ca;font-weight:bold;">\enddot</span>
+<span style="color:#898887;"> *</span>
+<span style="color:#898887;"> * </span><span style="color:#ca60ca;font-weight:bold;">\verbatim</span>
+<span style="color:#898887;"> </span><span style="color:#898887;">*</span><span style="color:#898887;"> &lt;dummy&gt;</span>
+<span style="color:#898887;"> </span><span style="color:#898887;">*</span><span style="color:#898887;"> </span><span style="color:#ca60ca;font-weight:bold;">\endverbatim</span>
+<span style="color:#898887;"> * </span><span style="font-weight:bold;">&lt;html&gt;</span><span style="color:#898887;">text</span><span style="font-weight:bold;">&lt;/html&gt;</span>
+<span style="color:#898887;"> */</span>
+
+<span style="color:#006e28;">#endif</span>
+
+<span style="color:#898887;">// Some GNU macros, cross-referenced from gcc.xml to isocpp.xml</span>
+<span style="color:#006e28;">__GCC_ATOMIC_CHAR16_T_LOCK_FREE</span>
+<span style="color:#006e28;">__GNUC__</span>
+<span style="color:#006e28;">__linux__</span>
+
+<span style="color:#898887;">// Digraphs (see bug #411508)</span>
+<span style="color:#006e28;">%:include </span><span style="color:#ff5500;">&lt;stdio.h&gt;</span>
+<span style="color:#0057ae;">int</span> main()
+&lt;%
+    [](){%&gt;();
+}
+&lt;:&lt;:<span style="color:#0057ae;font-style:italic;">fallthrough</span>]]
+</pre></body></html>

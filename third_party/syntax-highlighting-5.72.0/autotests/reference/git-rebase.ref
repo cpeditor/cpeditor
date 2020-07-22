@@ -1,0 +1,32 @@
+<Pick>pick</Pick><Commit> 318aceb</Commit><Summary> Add test for Makefile highlighting</Summary><br/>
+<Pick>p</Pick><Commit> 4c7182a</Commit><Summary> Add first batch of test files resurrected from Kate 4.6</Summary><br/>
+<Reword>r</Reword><Commit> 6f7d8a7</Commit><Summary> Sync xml files with KTextEditor</Summary><br/>
+<Reword>reword</Reword><Commit> 8f0dbdc</Commit><Summary> Add another batch of resurrected tests from Kate 4.6</Summary><br/>
+<Edit>e</Edit><Commit> 828de45</Commit><Summary> Add some more resurrected tests from Kate 4.6</Summary><br/>
+<Edit>edit</Edit><Commit> 6aa6264</Commit><Summary> Add simple coverage information for syntax definition tests</Summary><br/>
+<Squash>s</Squash><Commit> 63df253</Commit><Summary> Add more syntax highlighting tests from Kate 4.6</Summary><br/>
+<Squash>squash</Squash><Commit> 3e7771f</Commit><Summary> Add three more tests recovered from Kate 4.6</Summary><br/>
+<Fixup>f</Fixup><Commit> 5c7fd91</Commit><Summary> Add Kate 4.6 ASP syntax test</Summary><br/>
+<Fixup>fixup</Fixup><Commit> 7a777ff</Commit><Summary> Implement case-sensitive overrides for keyword rules</Summary><br/>
+<Exec>exec</Exec><Commit> 2b16665</Commit><Summary> Implement dynamic DetectChar rules</Summary><br/>
+<Normal Text>drop dd808dc Quote captured strings we replace in regular expressions</Normal Text><br/>
+<Exec>x</Exec><Commit> 0b703a3</Commit><Summary> Add a few more tests from the Kate 4.6 test suite</Summary><br/>
+<Normal Text></Normal Text><br/>
+<Comment># Rebase </Comment><Commit>a27a854</Commit><Comment>..</Comment><Commit>0b703a3</Commit><Comment> onto </Comment><Commit>a27a854</Commit><Comment> (13 command(s))</Comment><br/>
+<Comment>#</Comment><br/>
+<Comment># Commands:</Comment><br/>
+<Comment># p, pick = use commit</Comment><br/>
+<Comment># r, reword = use commit, but edit the commit message</Comment><br/>
+<Comment># e, edit = use commit, but stop for amending</Comment><br/>
+<Comment># s, squash = use commit, but meld into previous commit</Comment><br/>
+<Comment># f, fixup = like "squash", but discard this commit's log message</Comment><br/>
+<Comment># x, exec = run command (the rest of the line) using shell</Comment><br/>
+<Comment># d, drop = remove commit</Comment><br/>
+<Comment>#</Comment><br/>
+<Comment># These lines can be re-ordered; they are executed from top to bottom.</Comment><br/>
+<Comment>#</Comment><br/>
+<Comment># If you remove a line here THAT COMMIT WILL BE LOST.</Comment><br/>
+<Comment>#</Comment><br/>
+<Comment># However, if you remove everything, the rebase will be aborted.</Comment><br/>
+<Comment>#</Comment><br/>
+<Comment># Note that empty commits are commented out</Comment><br/>

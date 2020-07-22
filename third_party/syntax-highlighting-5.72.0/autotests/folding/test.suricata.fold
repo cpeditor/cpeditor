@@ -1,0 +1,18 @@
+# Suricata Samples
+# See: https://suricata.readthedocs.io/en/latest/rules/intro.html
+
+drop tcp $HOME_NET any -> $EXTERNAL_NET any (msg:”ET TROJAN Likely Bot Nick in IRC (USA +..)”; flow:established,to_server; flowbits:isset,is_proto_irc; content:”NICK ”; pcre:”/NICK .*USA.*[0-9]{3,}/i”; reference:url,doc.emergingthreats.net/2008124; classtype:trojan-activity; sid:2008124; rev:2;)
+
+alert tcp 1.2.3.4 1024 -> 5.6.7.8 80
+
+alert http any any -> any any (content:"index.php"; http_uri; sid:1;)
+
+alert http any any -> any any (http_response_line; content:"403 Forbidden"; sid:1;)
+
+alert tcp $EXTERNAL_NET any -> $HOME_NET any (msg:”GPL DELETED typot trojan traffic”; flow:stateless; flags:S,12; window:55808; reference:mcafee,100406; classtype:trojan-activity; sid:2182; rev:8;)
+
+alert tcp $EXTERNAL_NET any -> $HOME_NET any (flags:S,12; tcp.hdr; content:”|02 04|”; offset:20; byte_test:2,<,536,0,big,relative; sid:1234; rev:5;)
+
+# Snort Samples
+
+alert tcp any any -> 192.168.1.0/24 111 (content:"|00 01 86 a5|"; msg: "mountd access";)

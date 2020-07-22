@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title>highlight.yang</title>
+<meta name="generator" content="KF5::SyntaxHighlighting (YANG)"/>
+</head><body style="color:#1f1c1b"><pre>
+<span style="color:#898887;">// from: https://en.wikipedia.org/w/index.php?title=YANG&amp;oldid=792171830#Example</span>
+<span style="font-weight:bold;">module</span> example-sports {
+
+  <span style="font-weight:bold;">namespace</span> <span style="color:#bf0303;">&quot;http://example.com/example-sports&quot;</span>;
+  <span style="font-weight:bold;">prefix</span> sports;
+
+  <span style="font-weight:bold;">import</span> ietf-yang-types { <span style="font-weight:bold;">prefix</span> yang; }
+
+  <span style="font-weight:bold;">typedef</span> season {
+    <span style="font-weight:bold;">type</span> <span style="color:#0057ae;">string</span>;
+    <span style="font-weight:bold;">description</span>
+      <span style="color:#bf0303;">&quot;The name of a sports season, including the type and the year, e.g,</span>
+<span style="color:#bf0303;">       'Champions League 2014/2015'.&quot;</span>;
+  }
+
+  <span style="font-weight:bold;">container</span> sports {
+    <span style="font-weight:bold;">config</span> <span style="color:#0057ae;">true</span>;
+
+    <span style="font-weight:bold;">list</span> person {
+      <span style="font-weight:bold;">key</span> name;
+      <span style="font-weight:bold;">leaf</span> name { <span style="font-weight:bold;">type</span> <span style="color:#0057ae;">string</span>; }
+      <span style="font-weight:bold;">leaf</span> birthday { <span style="font-weight:bold;">type</span> yang:date-and-time; <span style="font-weight:bold;">mandatory</span> <span style="color:#0057ae;">true</span>; }
+    }
+
+    <span style="font-weight:bold;">list</span> team {
+      <span style="font-weight:bold;">key</span> name;
+      <span style="font-weight:bold;">leaf</span> name { <span style="font-weight:bold;">type</span> <span style="color:#0057ae;">string</span>; }
+      <span style="font-weight:bold;">list</span> player {
+        <span style="font-weight:bold;">key</span> <span style="color:#bf0303;">&quot;name season&quot;</span>;
+        <span style="font-weight:bold;">unique</span> number;
+        <span style="font-weight:bold;">leaf</span> name { <span style="font-weight:bold;">type</span> <span style="color:#0057ae;">leafref</span> { <span style="font-weight:bold;">path</span> <span style="color:#bf0303;">&quot;/sports/person/name&quot;</span>; }  }
+        <span style="font-weight:bold;">leaf</span> season { <span style="font-weight:bold;">type</span> season; }
+        <span style="font-weight:bold;">leaf</span> number { <span style="font-weight:bold;">type</span> <span style="color:#0057ae;">uint16</span>; <span style="font-weight:bold;">mandatory</span> <span style="color:#0057ae;">true</span>; }
+        <span style="font-weight:bold;">leaf</span> scores { <span style="font-weight:bold;">type</span> <span style="color:#0057ae;">uint16</span>; <span style="font-weight:bold;">default</span> 0; }
+      }
+    }
+  }
+}
+</pre></body></html>

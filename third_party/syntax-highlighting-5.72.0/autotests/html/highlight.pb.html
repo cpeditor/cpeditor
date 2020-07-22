@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title>highlight.pb</title>
+<meta name="generator" content="KF5::SyntaxHighlighting (PureBasic)"/>
+</head><body style="color:#1f1c1b"><pre>
+<span style="color:#898887;">; This is a test file for kate's PureBasic highlighting.</span>
+
+<span style="color:#898887;">; BMP2x Converter by Sven Langenkamp</span>
+
+<span style="color:#644a9b;">UseJPEGImageEncoder</span>()
+<span style="color:#644a9b;">UsePNGImageEncoder</span>()
+
+<span style="font-weight:bold;">Declare</span> Convert(JPEG)
+
+<span style="font-weight:bold;">Enumeration </span><span style="color:#b08000;">1</span>
+    <span style="color:#0057ae;">#JPEG</span>
+    <span style="color:#0057ae;">#PNG</span>
+<span style="font-weight:bold;">EndEnumeration</span>
+
+<span style="color:#0057ae;background-color:#e0e9f8;">; BEGIN section</span>
+
+
+<span style="color:#0057ae;background-color:#e0e9f8;">; END</span>
+
+<span style="font-weight:bold;">Global</span> Count
+<span style="font-weight:bold;">Global</span> file.s
+<span style="font-weight:bold;">Global</span> filename.s
+<span style="font-weight:bold;">Global</span> fileext.s
+<span style="font-weight:bold;">Global</span> OutputFormat
+<span style="font-weight:bold;">Global</span> JPEGQuality
+
+Count        = <span style="color:#b08000;">0</span>
+OutputFormat = <span style="color:#b08000;">1</span>
+JPEGQuality  = -<span style="color:#b08000;">1</span>
+
+<span style="color:#898887;">; MAIN PROGRAM------------------------------------------------------------------</span>
+
+<span style="color:#898887;">;Request Options</span>
+<span style="color:#644a9b;">PrintN</span>(<span style="color:#bf0303;">&quot;Output Format&quot;</span>)
+<span style="color:#644a9b;">PrintN</span>(<span style="color:#bf0303;">&quot;  [1] JPEG&quot;</span>)
+<span style="color:#644a9b;">PrintN</span>(<span style="color:#bf0303;">&quot;  [2] PNG&quot;</span>)
+<span style="color:#644a9b;">Print</span> (<span style="color:#bf0303;">&quot;&gt; &quot;</span>)
+OutputFormat = <span style="color:#644a9b;">Int</span>(<span style="color:#644a9b;">Input</span>())
+
+<span style="font-weight:bold;">Select </span>OutputFormat
+    <span style="font-weight:bold;">Case</span> <span style="color:#0057ae;">#JPEG</span>:
+        fileext = <span style="color:#bf0303;">&quot;.jpg&quot;</span>
+        <span style="color:#898887;">;Request JPEG Quality</span>
+        <span style="color:#644a9b;">PrintN</span>(<span style="color:#bf0303;">&quot;&quot;</span>)
+        <span style="color:#644a9b;">PrintN</span>(<span style="color:#bf0303;">&quot;JPEG Quality&quot;</span>)
+        <span style="color:#644a9b;">PrintN</span>(<span style="color:#bf0303;">&quot;  [0-10]&quot;</span>)
+        <span style="color:#644a9b;">Print</span> (<span style="color:#bf0303;">&quot;&gt; &quot;</span>)
+        JPEGQuality = <span style="color:#644a9b;">Int</span>(<span style="color:#644a9b;">Input</span>())
+    
+    <span style="font-weight:bold;">Case</span> <span style="color:#0057ae;">#PNG</span>:
+        fileext = <span style="color:#bf0303;">&quot;.png&quot;</span>
+<span style="font-weight:bold;">EndSelect</span>
+
+<span style="color:#898887;">;Convert all BMP files in the current directory</span>
+<span style="color:#644a9b;">ExamineDirectory</span>(<span style="color:#b08000;">0</span>, <span style="color:#bf0303;">&quot;&quot;</span>, <span style="color:#bf0303;">&quot;*.bmp&quot;</span>)
+<span style="font-weight:bold;">While </span><span style="color:#644a9b;">NextDirectoryEntry</span>()   
+    file     = <span style="color:#644a9b;">DirectoryEntryName</span>()
+    filename = <span style="color:#644a9b;">GetFilePart</span>(file)
+    
+    <span style="font-weight:bold;">If </span><span style="color:#644a9b;">LoadImage</span>(<span style="color:#b08000;">0</span>, file)
+        <span style="font-weight:bold;">Select </span>OutputFormat
+	    <span style="font-weight:bold;">Case</span> <span style="color:#0057ae;">#JPEG</span>:
+	      Convert(JPEGQuality)
+	      
+	    <span style="font-weight:bold;">Case</span> <span style="color:#0057ae;">#PNG</span>:
+	        Convert(-<span style="color:#b08000;">1</span>)
+	<span style="font-weight:bold;">EndSelect</span>
+	Count = Count +<span style="color:#b08000;">1</span>
+    <span style="font-weight:bold;">EndIf</span>
+    
+<span style="font-weight:bold;">Wend</span>
+
+<span style="color:#644a9b;">PrintN</span>(<span style="color:#644a9b;">Str</span>(Count) + <span style="color:#bf0303;">&quot; files converted&quot;</span>)
+<span style="color:#644a9b;">CloseConsole</span>()
+
+<span style="color:#898887;">; PROCUDURES--------------------------------------------------------------------</span>
+
+<span style="font-weight:bold;">Procedure </span>Convert(JPEG)
+    <span style="font-weight:bold;">Shared</span> filename, fileext
+    
+    <span style="font-weight:bold;">If </span>JPEG &gt; -<span style="color:#b08000;">1</span>
+        <span style="color:#644a9b;">SaveImage</span>(<span style="color:#b08000;">0</span>, filename + fileext, <span style="color:#0057ae;">#PB_ImagePlugin_JPEG</span>, JPEG)
+    <span style="font-weight:bold;">Else</span>
+        <span style="color:#644a9b;">SaveImage</span>(<span style="color:#b08000;">0</span>, filename + fileext, <span style="color:#0057ae;">#PB_ImagePlugin_PNG</span>)    
+    <span style="font-weight:bold;">EndIf</span>
+    <span style="color:#644a9b;">PrintN</span>(file + <span style="color:#bf0303;">&quot; converted to &quot;</span> + filename + fileext)
+<span style="font-weight:bold;">EndProcedure</span>
+</pre></body></html>

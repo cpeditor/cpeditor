@@ -186,6 +186,8 @@ namespace SettingsHelper
     setting_info.write("""#include "Settings/SettingsInfo.hpp"
 #include "Core/StyleManager.hpp"
 #include "Settings/PathItem.hpp"
+#include "Util/Singleton.hpp"
+#include <theme.h>
 #include <QFontDatabase>
 #include <QRect>
 

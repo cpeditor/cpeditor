@@ -21,9 +21,15 @@
 class QCodeEditor;
 class QString;
 
+namespace KSyntaxHighlighting
+{
+class Repository;
+class SyntaxHighlighter;
+}
+
 namespace Util
 {
-void applySettingsToEditor(QCodeEditor *editor, const QString &language);
+void applySettingsToEditor(KSyntaxHighlighting::SyntaxHighlighter* highlighter, QCodeEditor *editor, const QString &language);
 } // namespace Util
 
 #endif // QCODEEDITORUTIL_HPP

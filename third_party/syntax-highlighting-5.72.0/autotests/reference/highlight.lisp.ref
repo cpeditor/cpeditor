@@ -1,0 +1,36 @@
+<Comment>;; This test file tests kates common lisp highlighting</Comment><br/>
+<Comment>#|</Comment><br/>
+<Comment>multilinecomment :)</Comment><br/>
+<Comment>|#</Comment><br/>
+<Normal></Normal><br/>
+<Region Marker>;BEGIN region marker</Region Marker><br/>
+<Normal></Normal><br/>
+<Region Marker>;END end</Region Marker><br/>
+<Normal></Normal><br/>
+<Brackets>(</Brackets><Definition>defun</Definition><Function> bin-search </Function><Brackets>(</Brackets><Normal>obj vec</Normal><Brackets>)</Brackets><br/>
+<Normal>  </Normal><Brackets>(</Brackets><Keyword>let</Keyword><Normal> </Normal><Brackets>((</Brackets><Normal>len </Normal><Brackets>(</Brackets><Keyword>length</Keyword><Normal> vec</Normal><Brackets>)))</Brackets><br/>
+<Normal>    </Normal><Brackets>(</Brackets><Keyword>and</Keyword><Normal> </Normal><Brackets>(</Brackets><Keyword>not</Keyword><Normal> </Normal><Brackets>(</Brackets><Keyword>zerop</Keyword><Normal> len</Normal><Brackets>))</Brackets><br/>
+<Normal>         </Normal><Brackets>(</Brackets><Normal>finder obj vec </Normal><Decimal>0</Decimal><Normal> </Normal><Brackets>(</Brackets><Operator>-</Operator><Normal> len </Normal><Decimal>1</Decimal><Brackets>)))))</Brackets><br/>
+<Normal></Normal><br/>
+<Brackets>(</Brackets><Definition>defun</Definition><Function> parse-date </Function><Brackets>(</Brackets><Normal>str</Normal><Brackets>)</Brackets><br/>
+<Normal>  </Normal><Brackets>(</Brackets><Keyword>let</Keyword><Normal> </Normal><Brackets>((</Brackets><Normal>toks </Normal><Brackets>(</Brackets><Normal>tokens str #'constituent </Normal><Decimal>0</Decimal><Brackets>)))</Brackets><br/>
+<Normal>    </Normal><Brackets>(</Brackets><Keyword>list</Keyword><Normal> </Normal><Brackets>(</Brackets><Keyword>parse-integer</Keyword><Normal> </Normal><Brackets>(</Brackets><Keyword>first</Keyword><Normal> toks</Normal><Brackets>))</Brackets><br/>
+<Normal>          </Normal><Brackets>(</Brackets><Normal>parse-month   </Normal><Brackets>(</Brackets><Keyword>second</Keyword><Normal> toks</Normal><Brackets>))</Brackets><br/>
+<Normal>          </Normal><Brackets>(</Brackets><Keyword>parse-integer</Keyword><Normal> </Normal><Brackets>(</Brackets><Keyword>third</Keyword><Normal> toks</Normal><Brackets>)))))</Brackets><br/>
+<Normal></Normal><br/>
+<Brackets>(</Brackets><Definition>defconstant</Definition><Function> month-names</Function><br/>
+<Normal>  #</Normal><Brackets>(</Brackets><String>"jan"</String><Normal> </Normal><String>"feb"</String><Normal> </Normal><String>"mar"</String><Normal> </Normal><String>"apr"</String><Normal> </Normal><String>"may"</String><Normal> </Normal><String>"jun"</String><br/>
+<Normal>    </Normal><String>"jul"</String><Normal> </Normal><String>"aug"</String><Normal> </Normal><String>"sep"</String><Normal> </Normal><String>"oct"</String><Normal> </Normal><String>"nov"</String><Normal> </Normal><String>"dec"</String><Brackets>))</Brackets><br/>
+<Normal></Normal><br/>
+<Brackets>(</Brackets><Definition>defstruct</Definition><Function> buf</Function><br/>
+<Normal>  vec </Normal><Brackets>(</Brackets><Normal>start -1</Normal><Brackets>)</Brackets><Normal> </Normal><Brackets>(</Brackets><Normal>used -1</Normal><Brackets>)</Brackets><Normal> </Normal><Brackets>(</Brackets><Normal>new -1</Normal><Brackets>)</Brackets><Normal> </Normal><Brackets>(</Brackets><Normal>end -1</Normal><Brackets>))</Brackets><br/>
+<Normal></Normal><br/>
+<Brackets>(</Brackets><Definition>defparameter</Definition><Function> *words* </Function><Brackets>(</Brackets><Keyword>make-hash-table</Keyword><Normal> :size </Normal><Decimal>10000</Decimal><Brackets>))</Brackets><br/>
+<Normal></Normal><br/>
+<Brackets>(</Brackets><Definition>defmacro</Definition><Function> while </Function><Brackets>(</Brackets><Normal>test &</Normal><Keyword>rest</Keyword><Normal> body</Normal><Brackets>)</Brackets><br/>
+<Normal>  `</Normal><Brackets>(</Brackets><Keyword>do</Keyword><Normal> </Normal><Brackets>()</Brackets><br/>
+<Normal>       </Normal><Brackets>((</Brackets><Keyword>not</Keyword><Normal> ,test</Normal><Brackets>))</Brackets><br/>
+<Normal>     ,@body</Normal><Brackets>))</Brackets><br/>
+<Normal></Normal><br/>
+<Brackets>(</Brackets><Definition>define-modify-macro</Definition><Function> append1f </Function><Brackets>(</Brackets><Normal>val</Normal><Brackets>)</Brackets><br/>
+<Normal>  </Normal><Brackets>(</Brackets><Keyword>lambda</Keyword><Normal> </Normal><Brackets>(</Brackets><Normal>lst val</Normal><Brackets>)</Brackets><Normal> </Normal><Brackets>(</Brackets><Keyword>append</Keyword><Normal> lst </Normal><Brackets>(</Brackets><Keyword>list</Keyword><Normal> val</Normal><Brackets>))))</Brackets><br/>

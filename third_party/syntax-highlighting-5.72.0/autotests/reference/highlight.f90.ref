@@ -1,0 +1,177 @@
+<Comment>! This file is an example to test the syntax highlighting file fortran-free.xml</Comment><br/>
+<Comment>! (for fortran, free format)</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Comment>!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</Comment><br/>
+<Comment>!                      THIS IS AN EXAMPLE OF A MODULE                          !</Comment><br/>
+<Comment>!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</Comment><br/>
+<Keyword>module</Keyword><Normal Text> module_example</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>  </Normal Text><Comment>! use 'implicit none' when you want all variables to be declared</Comment><br/>
+<Normal Text>  </Normal Text><Keyword>implicit</Keyword><Normal Text> </Normal Text><Keyword>none</Keyword><br/>
+<Normal Text></Normal Text><br/>
+<Comment>!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</Comment><br/>
+<Comment>! PUBLICS AND PRIVATES</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>  </Normal Text><Comment>! In fortran 90 you can define your own operator</Comment><br/>
+<Normal Text>  </Normal Text><Data Type>public</Data Type><Normal Text> </Normal Text><Data Type>::</Data Type><Normal Text> </Normal Text><Keyword>operator</Keyword><Symbol>(</Symbol><Operator>.norm.</Operator><Symbol>)</Symbol><br/>
+<Normal Text>  </Normal Text><Data Type>public</Data Type><Normal Text> </Normal Text><Data Type>::</Data Type><Normal Text> </Normal Text><Keyword>operator</Keyword><Symbol>(</Symbol><Keyword>+</Keyword><Symbol>)</Symbol><Normal Text> </Normal Text><Comment>! <-- you can also overload the usual operators</Comment><br/>
+<Normal Text>  </Normal Text><Data Type>public</Data Type><Normal Text> </Normal Text><Data Type>::</Data Type><Normal Text> factorial</Normal Text><br/>
+<Normal Text>  </Normal Text><Data Type>public</Data Type><Normal Text> </Normal Text><Data Type>::</Data Type><Normal Text> example_fn</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>  </Normal Text><Data Type>private</Data Type><Normal Text> </Normal Text><Data Type>::</Data Type><Normal Text> point3d_add</Normal Text><br/>
+<Normal Text>  </Normal Text><Data Type>private</Data Type><Normal Text> </Normal Text><Data Type>::</Data Type><Normal Text> point3d_norm</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment>!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</Comment><br/>
+<Comment>! USER-DEFINED TYPES...</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>  </Normal Text><Comment>! This is a definition to use in declarations of real variables,</Comment><br/>
+<Normal Text>  </Normal Text><Comment>! parameters, etc.</Comment><br/>
+<Normal Text>  </Normal Text><Data Type>integer</Data Type><Symbol>,</Symbol><Normal Text> </Normal Text><Data Type>parameter</Data Type><Symbol>,</Symbol><Normal Text> </Normal Text><Data Type>public</Data Type><Normal Text> </Normal Text><Data Type>::</Data Type><Normal Text> kr </Normal Text><Keyword>=</Keyword><Normal Text> </Normal Text><Transformational Function>selected_real_kind</Transformational Function><Symbol>(</Symbol><Decimal>10</Decimal><Symbol>)</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>  </Normal Text><Comment>! This is a user-defined type</Comment><br/>
+<Normal Text>  </Normal Text><Data Type>type</Data Type><Symbol>,</Symbol><Normal Text> </Normal Text><Data Type>public</Data Type><Normal Text> </Normal Text><Data Type>::</Data Type><Normal Text> point3d</Normal Text><br/>
+<Normal Text>    </Normal Text><Data Type>real(kind=kr)</Data Type><Normal Text> </Normal Text><Data Type>::</Data Type><Normal Text> x</Normal Text><Symbol>,</Symbol><Normal Text> y</Normal Text><Symbol>,</Symbol><Normal Text> z</Normal Text><br/>
+<Normal Text>  </Normal Text><Data Type>end type</Data Type><Normal Text> point3d</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>  </Normal Text><Comment>! This type is useless: it is only an example of type definition!</Comment><br/>
+<Normal Text>  </Normal Text><Data Type>type</Data Type><Symbol>,</Symbol><Normal Text> </Normal Text><Data Type>public</Data Type><Normal Text> </Normal Text><Data Type>::</Data Type><Normal Text> example_type</Normal Text><br/>
+<Normal Text>    </Normal Text><Data Type>complex(kind=kr)</Data Type><Normal Text>            </Normal Text><Data Type>::</Data Type><Normal Text> c </Normal Text><Comment>! <-- a complex number (two reals of kind kr)!</Comment><br/>
+<Normal Text>    </Normal Text><Data Type>real</Data Type><Symbol>,</Symbol><Normal Text> </Normal Text><Data Type>dimension(-10:10)</Data Type><Normal Text>     </Normal Text><Data Type>::</Data Type><Normal Text> </Normal Text><Keyword>&</Keyword><Normal Text> </Normal Text><Comment>! <-- this line does not end here!</Comment><br/>
+<Normal Text>      r1</Normal Text><Symbol>,</Symbol><Normal Text> r2 </Normal Text><Comment>! <-- this is the final part of the previous line</Comment><br/>
+<Normal Text>    </Normal Text><Data Type>real</Data Type><Symbol>,</Symbol><Normal Text> </Normal Text><Data Type>pointer</Data Type><Symbol>,</Symbol><Normal Text> </Normal Text><Data Type>dimension(:)</Data Type><Normal Text> </Normal Text><Data Type>::</Data Type><Normal Text> pointer_to_array_of_real</Normal Text><br/>
+<Normal Text>    </Normal Text><Data Type>real</Data Type><Symbol>,</Symbol><Normal Text> </Normal Text><Data Type>dimension(:)</Data Type><Symbol>,</Symbol><Normal Text> </Normal Text><Data Type>pointer</Data Type><Normal Text> </Normal Text><Data Type>::</Data Type><Normal Text> array_of_pointer_to_real</Normal Text><br/>
+<Normal Text>  </Normal Text><Data Type>end type</Data Type><Normal Text> example_type</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment>!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</Comment><br/>
+<Comment>! INTERFACES...</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>  </Normal Text><Comment>! Interface for the norm of a 3-D vector</Comment><br/>
+<Normal Text>  </Normal Text><Keyword>interface</Keyword><Normal Text> </Normal Text><Keyword>operator</Keyword><Symbol>(</Symbol><Operator>.norm.</Operator><Symbol>)</Symbol><br/>
+<Normal Text>    </Normal Text><Keyword>module procedure</Keyword><Normal Text> point3d_norm</Normal Text><br/>
+<Normal Text>  </Normal Text><Keyword>end interface</Keyword><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>  </Normal Text><Comment>! Interface for the operator '+'</Comment><br/>
+<Normal Text>  </Normal Text><Keyword>interface</Keyword><Normal Text> </Normal Text><Keyword>operator</Keyword><Symbol>(</Symbol><Keyword>+</Keyword><Symbol>)</Symbol><br/>
+<Normal Text>    </Normal Text><Keyword>module procedure</Keyword><Normal Text> point3d_add</Normal Text><br/>
+<Normal Text>  </Normal Text><Keyword>end interface</Keyword><br/>
+<Normal Text></Normal Text><br/>
+<Comment>!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</Comment><br/>
+<Comment>! SOME DECLARATIONS...</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>  </Normal Text><Comment>! A real number can be declared with the following line:</Comment><br/>
+<Normal Text>  </Normal Text><Data Type>real(kind=kr)</Data Type><Normal Text> </Normal Text><Data Type>::</Data Type><Normal Text> real_var1</Normal Text><br/>
+<Normal Text>  </Normal Text><Comment>! But if you are not interested on the precision of floating point numbers,</Comment><br/>
+<Normal Text>  </Normal Text><Comment>! you can use simply:</Comment><br/>
+<Normal Text>  </Normal Text><Data Type>real</Data Type><Normal Text> </Normal Text><Data Type>::</Data Type><Normal Text> real_var2</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>  </Normal Text><Comment>! An array can be declared in two ways:</Comment><br/>
+<Normal Text>  </Normal Text><Data Type>real(kind=kr)</Data Type><Symbol>,</Symbol><Normal Text> </Normal Text><Data Type>dimension(1:10, -4:5)</Data Type><Symbol>,</Symbol><Normal Text> </Normal Text><Data Type>private</Data Type><Normal Text> </Normal Text><Data Type>::</Data Type><Normal Text> a</Normal Text><Symbol>,</Symbol><Normal Text> b</Normal Text><Symbol>,</Symbol><Normal Text> c</Normal Text><br/>
+<Normal Text>  </Normal Text><Data Type>real(kind=kr)</Data Type><Symbol>,</Symbol><Normal Text> </Normal Text><Data Type>private</Data Type><Normal Text> </Normal Text><Data Type>::</Data Type><Normal Text> d</Normal Text><Symbol>(</Symbol><Decimal>1</Decimal><Normal Text>:</Normal Text><Decimal>10</Decimal><Symbol>,</Symbol><Normal Text> </Normal Text><Keyword>-</Keyword><Decimal>4</Decimal><Normal Text>:</Normal Text><Decimal>5</Decimal><Symbol>)</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>  </Normal Text><Comment>! This is a string with fixed lenght</Comment><br/>
+<Normal Text>  </Normal Text><Data Type>character(len=10)</Data Type><Normal Text> </Normal Text><Data Type>::</Data Type><Normal Text> str_var</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>  </Normal Text><Comment>! This is an allocatable array, which can be a target of a pointer</Comment><br/>
+<Normal Text>  </Normal Text><Data Type>type(example_type)</Data Type><Symbol>,</Symbol><Normal Text> </Normal Text><Data Type>private</Data Type><Symbol>,</Symbol><Normal Text> </Normal Text><Data Type>dimension(:)</Data Type><Symbol>,</Symbol><Normal Text> </Normal Text><Data Type>allocatable</Data Type><Symbol>,</Symbol><Normal Text> </Normal Text><Data Type>target</Data Type><Normal Text> </Normal Text><Data Type>::</Data Type><Normal Text> </Normal Text><Keyword>&</Keyword><br/>
+<Normal Text>   many_examples</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment>! Fortran 90 hasn't got its own preprocessor, it uses the C preprocessor!</Comment><br/>
+<Preprocessor>#ifdef XXX</Preprocessor><br/>
+<Normal Text></Normal Text><br/>
+<Preprocessor>#endif</Preprocessor><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>contains</Keyword><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>  </Normal Text><Comment>! The sum of two points</Comment><br/>
+<Normal Text>  </Normal Text><Keyword>pure</Keyword><Normal Text> </Normal Text><Keyword>function</Keyword><Normal Text> point3d_add</Normal Text><Symbol>(</Symbol><Normal Text>a</Normal Text><Symbol>,</Symbol><Normal Text> b</Normal Text><Symbol>)</Symbol><Normal Text> </Normal Text><Keyword>result</Keyword><Symbol>(</Symbol><Normal Text>rs</Normal Text><Symbol>)</Symbol><br/>
+<Normal Text>    </Normal Text><Data Type>type(point3d)</Data Type><Normal Text> </Normal Text><Data Type>::</Data Type><Normal Text> rs</Normal Text><br/>
+<Normal Text>    </Normal Text><Data Type>type(point3d)</Data Type><Symbol>,</Symbol><Normal Text> </Normal Text><Data Type>intent(in)</Data Type><Normal Text> </Normal Text><Data Type>::</Data Type><Normal Text> a</Normal Text><Symbol>,</Symbol><Normal Text> b</Normal Text><br/>
+<Normal Text>    rs%x </Normal Text><Keyword>=</Keyword><Normal Text> a%x </Normal Text><Keyword>+</Keyword><Normal Text> b%x</Normal Text><br/>
+<Normal Text>    rs%y </Normal Text><Keyword>=</Keyword><Normal Text> a%y </Normal Text><Keyword>+</Keyword><Normal Text> b%y</Normal Text><br/>
+<Normal Text>    rs%z </Normal Text><Keyword>=</Keyword><Normal Text> a%z </Normal Text><Keyword>+</Keyword><Normal Text> b%z</Normal Text><br/>
+<Normal Text>  </Normal Text><Keyword>end function</Keyword><Normal Text> point3d_add</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>  </Normal Text><Comment>! The norm of a point</Comment><br/>
+<Normal Text>  </Normal Text><Keyword>pure</Keyword><Normal Text> </Normal Text><Keyword>function</Keyword><Normal Text> point3d_norm</Normal Text><Symbol>(</Symbol><Normal Text>a</Normal Text><Symbol>)</Symbol><Normal Text> </Normal Text><Keyword>result</Keyword><Symbol>(</Symbol><Normal Text>rs</Normal Text><Symbol>)</Symbol><br/>
+<Normal Text>    </Normal Text><Data Type>real(kind=kr)</Data Type><Normal Text> </Normal Text><Data Type>::</Data Type><Normal Text> rs</Normal Text><br/>
+<Normal Text>    </Normal Text><Data Type>type(point3d)</Data Type><Symbol>,</Symbol><Normal Text> </Normal Text><Data Type>intent(in)</Data Type><Normal Text> </Normal Text><Data Type>::</Data Type><Normal Text> a</Normal Text><br/>
+<Normal Text>    rs </Normal Text><Keyword>=</Keyword><Normal Text> </Normal Text><Elemental Procedure>sqrt</Elemental Procedure><Symbol>(</Symbol><Normal Text>a%x </Normal Text><Keyword>*</Keyword><Normal Text> a%x </Normal Text><Keyword>+</Keyword><Normal Text> a%y </Normal Text><Keyword>*</Keyword><Normal Text> a%y </Normal Text><Keyword>+</Keyword><Normal Text> a%z </Normal Text><Keyword>*</Keyword><Normal Text> a%z</Normal Text><Symbol>)</Symbol><br/>
+<Normal Text>  </Normal Text><Keyword>end function</Keyword><Normal Text> point3d_norm</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>  </Normal Text><Comment>! A simple recursive function</Comment><br/>
+<Normal Text>  </Normal Text><Keyword>recursive</Keyword><Normal Text> </Normal Text><Keyword>function</Keyword><Normal Text> factorial</Normal Text><Symbol>(</Symbol><Normal Text>i</Normal Text><Symbol>)</Symbol><Normal Text> </Normal Text><Keyword>result</Keyword><Normal Text> </Normal Text><Symbol>(</Symbol><Normal Text>rs</Normal Text><Symbol>)</Symbol><br/>
+<Normal Text>    </Normal Text><Data Type>integer</Data Type><Normal Text> </Normal Text><Data Type>::</Data Type><Normal Text> rs</Normal Text><br/>
+<Normal Text>    </Normal Text><Data Type>integer</Data Type><Symbol>,</Symbol><Normal Text> </Normal Text><Data Type>intent(in)</Data Type><Normal Text> </Normal Text><Data Type>::</Data Type><Normal Text> i</Normal Text><br/>
+<Normal Text>    </Normal Text><Keyword>if</Keyword><Normal Text> </Normal Text><Symbol>(</Symbol><Normal Text> i </Normal Text><Operator><=</Operator><Normal Text> </Normal Text><Decimal>1</Decimal><Normal Text> </Normal Text><Symbol>)</Symbol><Normal Text> </Normal Text><Keyword>then</Keyword><br/>
+<Normal Text>      rs </Normal Text><Keyword>=</Keyword><Normal Text> </Normal Text><Decimal>1</Decimal><br/>
+<Normal Text>    </Normal Text><Keyword>else</Keyword><br/>
+<Normal Text>      rs </Normal Text><Keyword>=</Keyword><Normal Text> i </Normal Text><Keyword>*</Keyword><Normal Text> factorial</Normal Text><Symbol>(</Symbol><Normal Text>i </Normal Text><Keyword>-</Keyword><Normal Text> </Normal Text><Decimal>1</Decimal><Symbol>)</Symbol><br/>
+<Normal Text>    </Normal Text><Keyword>end if</Keyword><br/>
+<Normal Text>  </Normal Text><Keyword>end function</Keyword><Normal Text> factorial</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>  </Normal Text><Comment>! This is a useless function</Comment><br/>
+<Normal Text>  </Normal Text><Keyword>subroutine</Keyword><Normal Text> example_fn</Normal Text><Symbol>(</Symbol><Normal Text>int_arg</Normal Text><Symbol>,</Symbol><Normal Text> real_arg</Normal Text><Symbol>,</Symbol><Normal Text> str_arg</Normal Text><Symbol>)</Symbol><br/>
+<Normal Text>    </Normal Text><Data Type>integer</Data Type><Symbol>,</Symbol><Normal Text> </Normal Text><Data Type>intent(in)</Data Type><Normal Text> </Normal Text><Data Type>::</Data Type><Normal Text> int_arg</Normal Text><br/>
+<Normal Text>    </Normal Text><Data Type>real(kind=kr)</Data Type><Symbol>,</Symbol><Normal Text> </Normal Text><Data Type>intent(out)</Data Type><Normal Text> </Normal Text><Data Type>::</Data Type><Normal Text> real_arg</Normal Text><br/>
+<Normal Text>    </Normal Text><Data Type>character(len=*)</Data Type><Symbol>,</Symbol><Normal Text> </Normal Text><Data Type>intent(in)</Data Type><Normal Text> </Normal Text><Data Type>::</Data Type><Normal Text> str_arg</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>    </Normal Text><Data Type>type(example_type)</Data Type><Symbol>,</Symbol><Normal Text> </Normal Text><Data Type>pointer</Data Type><Normal Text> </Normal Text><Data Type>::</Data Type><Normal Text> p</Normal Text><br/>
+<Normal Text>    </Normal Text><Data Type>integer</Data Type><Normal Text> </Normal Text><Data Type>::</Data Type><Normal Text> n</Normal Text><Symbol>,</Symbol><Normal Text> i</Normal Text><Symbol>,</Symbol><Normal Text> j</Normal Text><br/>
+<Normal Text>    </Normal Text><Data Type>logical</Data Type><Normal Text> </Normal Text><Data Type>::</Data Type><Normal Text> flag</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>    flag </Normal Text><Keyword>=</Keyword><Normal Text> </Normal Text><Logical>.true.</Logical><Normal Text> </Normal Text><Comment>! .true. is not an operator!</Comment><br/>
+<Normal Text>    </Normal Text><Keyword>if</Keyword><Normal Text> </Normal Text><Symbol>(</Symbol><Normal Text> flag </Normal Text><Operator>.and.</Operator><Normal Text> flag </Normal Text><Symbol>)</Symbol><Normal Text> </Normal Text><Keyword>then</Keyword><Normal Text> </Normal Text><Comment>! .and. is a pre-defined operator</Comment><br/>
+<Normal Text>      </Normal Text><IO Function>print</IO Function><Normal Text> </Normal Text><Keyword>*</Keyword><Symbol>,</Symbol><Normal Text> </Normal Text><String>"blabla"</String><br/>
+<Normal Text>    </Normal Text><Keyword>end if</Keyword><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>    </Normal Text><Comment>! Examples of inquiry functions: allocated, lbound, ubound.</Comment><br/>
+<Normal Text>    </Normal Text><Keyword>if</Keyword><Normal Text> </Normal Text><Symbol>(</Symbol><Normal Text> </Normal Text><Operator>.not.</Operator><Normal Text> </Normal Text><Inquiry Function>allocated</Inquiry Function><Symbol>(</Symbol><Normal Text>many_examples</Normal Text><Symbol>)</Symbol><Normal Text> </Normal Text><Symbol>)</Symbol><Normal Text> </Normal Text><Keyword>then</Keyword><br/>
+<Normal Text>      </Normal Text><Keyword>allocate</Keyword><Symbol>(</Symbol><Normal Text> many_examples</Normal Text><Symbol>(</Symbol><Decimal>10</Decimal><Symbol>)</Symbol><Normal Text> </Normal Text><Symbol>)</Symbol><br/>
+<Normal Text>    </Normal Text><Keyword>end if</Keyword><br/>
+<Normal Text>    </Normal Text><IO Function>print</IO Function><Normal Text> </Normal Text><Keyword>*</Keyword><Symbol>,</Symbol><Normal Text> </Normal Text><String>"Lower bound = "</String><Symbol>,</Symbol><Normal Text> </Normal Text><Inquiry Function>lbound</Inquiry Function><Symbol>(</Symbol><Normal Text>many_examples</Normal Text><Symbol>,</Symbol><Normal Text> </Normal Text><Decimal>1</Decimal><Symbol>)</Symbol><br/>
+<Normal Text>    </Normal Text><IO Function>print</IO Function><Normal Text> </Normal Text><Keyword>*</Keyword><Symbol>,</Symbol><Normal Text> </Normal Text><String>"Upper bound = "</String><Symbol>,</Symbol><Normal Text> </Normal Text><Inquiry Function>ubound</Inquiry Function><Symbol>(</Symbol><Normal Text>many_examples</Normal Text><Symbol>,</Symbol><Normal Text> </Normal Text><Decimal>1</Decimal><Symbol>)</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>    p </Normal Text><Keyword>=</Keyword><Operator>></Operator><Normal Text> many_examples</Normal Text><Symbol>(</Symbol><Decimal>5</Decimal><Symbol>)</Symbol><Normal Text> </Normal Text><Comment>! <-- p is a pointer</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>    </Normal Text><Comment>! A strange way to calculate i*i: add the first i odd numbers</Comment><br/>
+<Normal Text>    i </Normal Text><Keyword>=</Keyword><Normal Text> </Normal Text><Decimal>6</Decimal><br/>
+<Normal Text>    j </Normal Text><Keyword>=</Keyword><Normal Text> </Normal Text><Decimal>0</Decimal><br/>
+<Normal Text>    </Normal Text><Keyword>do</Keyword><Normal Text> n </Normal Text><Keyword>=</Keyword><Normal Text> </Normal Text><Decimal>1</Decimal><Symbol>,</Symbol><Normal Text> i</Normal Text><br/>
+<Normal Text>      j </Normal Text><Keyword>=</Keyword><Normal Text> j </Normal Text><Keyword>+</Keyword><Normal Text> </Normal Text><Symbol>(</Symbol><Decimal>2</Decimal><Keyword>*</Keyword><Normal Text>n </Normal Text><Keyword>-</Keyword><Normal Text> </Normal Text><Decimal>1</Decimal><Symbol>)</Symbol><br/>
+<Normal Text>    </Normal Text><Keyword>end do</Keyword><br/>
+<Normal Text>    </Normal Text><IO Function>print</IO Function><Normal Text> </Normal Text><Keyword>*</Keyword><Symbol>,</Symbol><Normal Text> </Normal Text><String>"i*i = "</String><Symbol>,</Symbol><Normal Text> i</Normal Text><Keyword>*</Keyword><Normal Text>i</Normal Text><Symbol>,</Symbol><Normal Text> j</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>    real_arg </Normal Text><Keyword>=</Keyword><Normal Text> </Normal Text><Data Type>real(j)</Data Type><Normal Text> </Normal Text><Comment>! <-- here the highlighting is not very good:</Comment><br/>
+<Normal Text>    </Normal Text><Comment>! it is unable to distinguish between this and a definition like:</Comment><br/>
+<Normal Text>    </Normal Text><Comment>!  real(kind=kr) :: a</Comment><br/>
+<Normal Text>    </Normal Text><Keyword>deallocate</Keyword><Symbol>(</Symbol><Normal Text> many_examples </Normal Text><Symbol>)</Symbol><br/>
+<Normal Text>  </Normal Text><Keyword>end subroutine</Keyword><Normal Text> example_fn</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>end module</Keyword><Normal Text> module_example</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment>!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</Comment><br/>
+<Comment>!                         THIS IS THE MAIN PROGRAM                             !</Comment><br/>
+<Comment>!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</Comment><br/>
+<Keyword>program</Keyword><Normal Text> example</Normal Text><br/>
+<Normal Text>  </Normal Text><Keyword>use</Keyword><Normal Text> module_example</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>  </Normal Text><Comment>! this is another example of use of the 'implicit' keyword</Comment><br/>
+<Normal Text>  </Normal Text><Keyword>implicit</Keyword><Normal Text> </Normal Text><Data Type>double precision</Data Type><Normal Text> </Normal Text><Symbol>(</Symbol><Normal Text>a</Normal Text><Keyword>-</Keyword><Normal Text>h</Normal Text><Symbol>,</Symbol><Normal Text>o</Normal Text><Keyword>-</Keyword><Normal Text>z</Normal Text><Symbol>)</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>  </Normal Text><Data Type>real(kind=kr)</Data Type><Normal Text> </Normal Text><Data Type>::</Data Type><Normal Text> var_out</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>  </Normal Text><Data Type>type(point3d)</Data Type><Normal Text> </Normal Text><Data Type>::</Data Type><Normal Text> </Normal Text><Keyword>&</Keyword><br/>
+<Normal Text>   a </Normal Text><Keyword>=</Keyword><Normal Text> point3d</Normal Text><Symbol>(</Symbol><Float>0.0_kr</Float><Symbol>,</Symbol><Normal Text> </Normal Text><Float>1.0_kr</Float><Symbol>,</Symbol><Normal Text> </Normal Text><Float>2.0_kr</Float><Symbol>),</Symbol><Normal Text> </Normal Text><Keyword>&</Keyword><br/>
+<Normal Text>   b </Normal Text><Keyword>=</Keyword><Normal Text> point3d</Normal Text><Symbol>(</Symbol><Float>4.0_kr</Float><Symbol>,</Symbol><Normal Text> </Normal Text><Float>5.0_kr</Float><Symbol>,</Symbol><Normal Text> </Normal Text><Float>6.0_kr</Float><Symbol>)</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>  </Normal Text><IO Function>print</IO Function><Normal Text> </Normal Text><Keyword>*</Keyword><Symbol>,</Symbol><Normal Text> </Normal Text><String>"a + b = "</String><Symbol>,</Symbol><Normal Text> </Normal Text><Operator>.norm.</Operator><Normal Text> </Normal Text><Symbol>(</Symbol><Normal Text>a </Normal Text><Keyword>+</Keyword><Normal Text> b</Normal Text><Symbol>)</Symbol><br/>
+<Normal Text>  </Normal Text><IO Function>print</IO Function><Normal Text> </Normal Text><Keyword>*</Keyword><Symbol>,</Symbol><Normal Text> </Normal Text><String>"factorial of 5 = "</String><Symbol>,</Symbol><Normal Text> factorial</Normal Text><Symbol>(</Symbol><Decimal>5</Decimal><Symbol>)</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>  </Normal Text><Keyword>call</Keyword><Normal Text> example_fn</Normal Text><Symbol>(</Symbol><Decimal>1</Decimal><Symbol>,</Symbol><Normal Text> var_out</Normal Text><Symbol>,</Symbol><Normal Text> </Normal Text><String>"hello!"</String><Symbol>)</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>end program</Keyword><Normal Text> example</Normal Text><br/>

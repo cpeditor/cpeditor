@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title>highlight.js</title>
+<meta name="generator" content="KF5::SyntaxHighlighting (JavaScript)"/>
+</head><body style="color:#1f1c1b"><pre>
+<span style="color:#898887;">/* test.js - test for javascript.xml syntax file */</span>
+<span style="color:#898887;">// Note: this script will not, and is not supposed to, compile in any js engine.</span>
+
+<span style="color:#898887;">/* </span>
+<span style="color:#898887;">   </span><span style="color:#81ca2d;background-color:#f7e6e6;font-weight:bold;">NOTE</span><span style="color:#898887;">: The words &quot;todo&quot;, &quot;fixme&quot; and &quot;note&quot; should be rendered in a different style</span>
+<span style="color:#898887;">   within comments, match should be caseless (to test for regexp insensitive attribute).</span>
+<span style="color:#898887;">   The regex used for this rule is */</span>
+   <span style="color:#644a9b;font-weight:bold;">String</span> = <span style="color:#ff5500;">/</span><span style="color:#3daee9;">\b(?</span><span style="color:#ff5500;">:fixme</span><span style="color:#3daee9;">|</span><span style="color:#ff5500;">todo</span><span style="color:#3daee9;">|</span><span style="color:#ff5500;">note</span><span style="color:#3daee9;">)\b</span><span style="color:#ff5500;">/</span>
+   <span style="color:#898887;">/* Thus,  for example &quot;Notebook&quot; is not caught by</span>
+<span style="color:#898887;">   this rule. (the &quot;?:&quot; in the subpattern is there to avoid the regex engine wasting time</span>
+<span style="color:#898887;">   saving a backref, which is not used for anything. I do not know if the overhead of parsing</span>
+<span style="color:#898887;">   that is greater than the time saved by not capturing the text...)</span>
+<span style="color:#898887;">   The rule for catching these words is placed in a context &quot;Comment common&quot;, which is used</span>
+<span style="color:#898887;">   by both comment contexts (single line, multiline) using the new &quot;IncludeRules&quot; item.</span>
+<span style="color:#898887;">*/</span>
+
+<span style="color:#898887;">// test if regex support works - nice with new fallthrough prop in context:)</span>
+somestring.<span style="color:#644a9b;">replace</span>( <span style="color:#ff5500;">/dooh/</span> , <span style="color:#bf0303;">&quot;bah!&quot;</span>);
+re=<span style="color:#ff5500;">/foo/ig</span>; <span style="color:#898887;">// hehe</span>
+
+somestring.<span style="color:#644a9b;">search</span>(
+       <span style="color:#ff5500;">/</span><span style="color:#3daee9;">^</span><span style="color:#ff5500;">foo</span><span style="color:#3daee9;">\w</span><span style="color:#3daee9;">+</span><span style="color:#3daee9;">\s\d</span><span style="color:#3daee9;">{0,15}$</span><span style="color:#ff5500;">/</span>
+                  );
+
+        re =
+        <span style="color:#ff5500;">/dooh/</span>;
+
+<span style="color:#898887;">// This is supposedly legal:</span>
+re = somebool ? <span style="color:#ff5500;">/foo/</span> : <span style="color:#ff5500;">/bar/</span>;
+
+<span style="color:#898887;">// </span><span style="color:#81ca2d;background-color:#f7e6e6;font-weight:bold;">NOTE</span><span style="color:#898887;"> - Special case: an empty regex, not a comment.</span>
+<span style="color:#898887;">// The rule uses a positive lookahead assertion to catch it: &quot;//(?=;)&quot;.</span>
+re = <span style="color:#898887;">//;</span>
+re = <span style="color:#ff5500;">/a</span><span style="color:#3daee9;">|</span><span style="color:#ff5500;">b/</span>;
+
+<span style="color:#898887;">/*</span>
+<span style="color:#898887;">   Tests for the regex parser.</span>
+<span style="color:#898887;">   It will parse classes, quanitfiers, special characters and regex operaters,</span>
+<span style="color:#898887;">   as specified in the netscape documentation for javascript.</span>
+<span style="color:#898887;">   Regexps are only parsed in their clean form, as the RegExp(string) constructor</span>
+<span style="color:#898887;">   is using a quoted string.</span>
+<span style="color:#898887;">   </span><span style="color:#ca9219;background-color:#451e1a;font-weight:bold;">TODO</span><span style="color:#898887;">: Find out if more regex feats should be supported.</span>
+<span style="color:#898887;">         Consider using more itemDatas - assertion, quantifier are options.</span>
+<span style="color:#898887;">*/</span>
+
+re = <span style="color:#ff5500;">/</span><span style="color:#3daee9;">^</span><span style="color:#ff5500;">text</span><span style="color:#3daee9;">\s</span><span style="color:#3daee9;">+</span><span style="color:#3daee9;">\d</span><span style="color:#3daee9;">+</span><span style="color:#3daee9;">\s</span><span style="color:#3daee9;">*$</span><span style="color:#ff5500;">/</span>;
+re = <span style="color:#ff5500;">/a pattern with caret </span><span style="color:#3daee9;">\(</span><span style="color:#ff5500;">^</span><span style="color:#3daee9;">\)</span><span style="color:#ff5500;"> in it/</span>;
+re = <span style="color:#ff5500;">/</span><span style="color:#3daee9;">(</span><span style="color:#3daee9;">\d</span><span style="color:#3daee9;">{0,4})</span><span style="color:#3daee9;">\D</span><span style="color:#ff5500;">/</span>;
+re = <span style="color:#ff5500;">/</span><span style="color:#3daee9;">[a-zA-Z_]</span><span style="color:#3daee9;">+</span><span style="color:#ff5500;">/</span>;
+re = <span style="color:#ff5500;">/</span><span style="color:#3daee9;">[</span><span style="color:#3daee9;">^\d</span><span style="color:#3daee9;">^]</span><span style="color:#3daee9;">+</span><span style="color:#ff5500;">/</span>;
+re = <span style="color:#ff5500;">/</span><span style="color:#3daee9;">\s</span><span style="color:#3daee9;">+?</span><span style="color:#3daee9;">\w</span><span style="color:#3daee9;">+\.$</span><span style="color:#ff5500;">/</span>;
+re = <span style="color:#ff5500;">/</span><span style="color:#3daee9;">\/\/</span><span style="color:#ff5500;">/</span>;
+re = <span style="color:#ff5500;">/a</span><span style="color:#3daee9;">|</span><span style="color:#ff5500;">b/</span>;
+
+<span style="color:#898887;">// the following are not regexps in E4X (=xml embedded into JavaScript)</span>
+<span style="font-weight:bold;">var</span> p = &lt;p&gt;Hello World&lt;/p&gt;
+<span style="font-weight:bold;">var</span> p = <span style="color:#ff5500;">/&lt;/</span>
+<span style="font-weight:bold;">var</span> p = /&gt;/
+
+<span style="color:#898887;">// a test if #pop back from a comment will work</span>
+re = <span style="color:#898887;">/*/foo/*/</span> <span style="color:#ff5500;">/bar/</span>;
+<span style="color:#898887;">//           ^ POP</span>
+<span style="color:#898887;">//             ^ we got back after pop in comment, if there is regexp attribs here :-)</span>
+
+<span style="color:#898887;">/*</span>
+<span style="color:#898887;">   Some tests if the fallthrough works.</span>
+<span style="color:#898887;">   The fallthrough happens if a regexp is not found in a possible (!) position,</span>
+<span style="color:#898887;">   which is after &quot;search(&quot; or &quot;replace(&quot; or &quot;=&quot; or &quot;?&quot; or &quot;:&quot; in version 0.1 of the xml file</span>
+<span style="color:#898887;">*/</span>
+
+<span style="font-weight:bold;">var</span> foo = <span style="color:#bf0303;">'bar'</span>;
+<span style="color:#898887;">//        ^ fallthrough!</span>
+
+
+somestring.<span style="color:#644a9b;">replace</span>( <span style="font-weight:bold;">new</span> <span style="color:#644a9b;font-weight:bold;">RegExp</span>(<span style="color:#bf0303;">&quot;</span><span style="color:#3daee9;">\\</span><span style="color:#bf0303;">b</span><span style="color:#3daee9;">\\</span><span style="color:#bf0303;">w+</span><span style="color:#3daee9;">\\</span><span style="color:#bf0303;">b&quot;</span>), <span style="color:#bf0303;">&quot;word: $1&quot;</span>);
+<span style="color:#898887;">//                  ^ fallthrough expected. (&quot;new&quot; whould be bold)</span>
+
+
+something.<span style="color:#0057ae;">method</span> =
+    <span style="font-weight:bold;">function</span> ( a, b, c ) { <span style="color:#898887;">/* ... */</span> }
+<span style="color:#898887;">//  ^ fallthrough ?!</span>
+
+something.<span style="color:#0057ae;">other</span> =
+<span style="font-weight:bold;">function</span> ( d, e, f ) { <span style="color:#898887;">/* ... */</span> }
+<span style="color:#898887;">// fallthrough expected at col 0 (&quot;function&quot; should be bold)</span>
+
+<span style="font-weight:bold;">var</span> ary = <span style="font-weight:bold;">new</span> <span style="color:#644a9b;font-weight:bold;">Array</span>(<span style="color:#b08000;">5</span>);
+<span style="color:#898887;">//        ^ fallthrough ? (if keyword is correctly rendered)</span>
+
+<span style="font-weight:bold;">var</span> b = a ? <span style="color:#b08000;">1</span> : <span style="color:#b08000;">0</span>;
+<span style="color:#898887;">//          ^   ^ fallthroughs. numbers must be rendered correctly.</span>
+
+<span style="font-weight:bold;">var</span> c = d ? <span style="font-weight:bold;">true</span> : <span style="font-weight:bold;">false</span>;
+
+<span style="font-weight:bold;">var</span> conditinalstring = b ?
+  <span style="color:#bf0303;">&quot;something&quot;</span> :
+  <span style="color:#bf0303;">&quot;something else&quot;</span>;
+<span style="color:#898887;">// guess...</span>
+
+
+<span style="color:#898887;">/*</span>
+<span style="color:#898887;">   Normal program flow...</span>
+<span style="color:#898887;">*/</span>
+
+<span style="font-weight:bold;">if</span> (something)
+  <span style="color:#644a9b;">dostuff</span>();
+<span style="font-weight:bold;">else</span>
+  <span style="color:#644a9b;">dont</span>();
+
+  <span style="font-weight:bold;">return</span>;
+
+<span style="font-weight:bold;">try</span> { <span style="color:#644a9b;">bla</span>() } <span style="font-weight:bold;">catch</span> (e) { <span style="color:#644a9b;">alert</span>(<span style="color:#bf0303;">&quot;ERROR! : &quot;</span> + e) }
+
+<span style="font-weight:bold;">for</span> (int i=<span style="color:#b08000;">0</span>; i &lt; j; i++)
+  <span style="color:#644a9b;font-weight:bold;">document</span>.<span style="color:#644a9b;font-style:italic;">write</span>(<span style="color:#bf0303;">&quot;i is&quot;</span> + i + <span style="color:#bf0303;">&quot;&lt;br&gt;&quot;</span>);
+
+<span style="font-weight:bold;">while</span> (something)
+{
+  <span style="color:#644a9b;">block</span>();
+  <span style="color:#0057ae;">picky</span>:
+    <span style="font-weight:bold;">if</span> (!<span style="color:#b08000;">1</span>)
+      <span style="font-weight:bold;">break</span>;
+    <span style="font-weight:bold;">else</span>
+      <span style="font-weight:bold;">continue</span>;
+}
+
+<span style="font-weight:bold;">with</span> (a) {
+  <span style="font-weight:bold;">do</span> {
+    <span style="color:#644a9b;">stuff</span>( b ); <span style="color:#898887;">// a.b if it exists</span>
+  } <span style="font-weight:bold;">while</span> (itmakessense);
+}
+
+<span style="font-weight:bold;">switch</span> (i) {
+  <span style="font-weight:bold;">case</span> <span style="color:#b08000;">0</span>:
+  <span style="color:#644a9b;">f</span>();
+  <span style="font-weight:bold;">break</span>;
+  <span style="font-weight:bold;">default</span>:
+  <span style="font-weight:bold;">break</span>;
+}
+
+<span style="color:#898887;">// Numerics</span>
+<span style="font-weight:bold;">var</span> a = <span style="color:#b08000;">0xA</span>;
+<span style="font-weight:bold;">var</span> b = <span style="color:#b08000;">0b1</span>;
+<span style="font-weight:bold;">var</span> c = <span style="color:#b08000;">0o7</span>;
+<span style="font-weight:bold;">var</span> d = <span style="color:#b08000;">1.1E+3</span>;
+<span style="font-weight:bold;">var</span> e = <span style="color:#b08000;">1.E+3</span>;
+<span style="font-weight:bold;">var</span> f = <span style="color:#b08000;">.1E+3</span>;
+<span style="font-weight:bold;">var</span> g = <span style="color:#b08000;">1E+3</span>;
+<span style="font-weight:bold;">var</span> h = <span style="color:#b08000;">1.1</span>;
+<span style="font-weight:bold;">var</span> i = <span style="color:#b08000;">1.</span>;
+<span style="font-weight:bold;">var</span> j = <span style="color:#b08000;">.1</span>;
+<span style="font-weight:bold;">var</span> k =  <span style="color:#b08000;">1</span>;
+<span style="color:#898887;">// Bigint</span>
+<span style="font-weight:bold;">const</span> binBig = <span style="color:#b08000;">0b101</span>n;
+<span style="font-weight:bold;">const</span> octBig = <span style="color:#b08000;">0o567</span>n;
+<span style="font-weight:bold;">const</span> hexBig = <span style="color:#b08000;">0xC0B</span>n;
+<span style="font-weight:bold;">const</span> decBig = <span style="color:#b08000;">123</span>n;
+<span style="color:#898887;">// Invalid numbers</span>
+<span style="font-weight:bold;">var</span> l = <span style="color:#bf0303;text-decoration:underline;">0xA1t</span>;
+<span style="font-weight:bold;">var</span> m = <span style="color:#bf0303;text-decoration:underline;">0b0123</span>;
+<span style="font-weight:bold;">var</span> n = <span style="color:#bf0303;text-decoration:underline;">0o29</span>;
+</pre></body></html>

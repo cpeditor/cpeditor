@@ -1,0 +1,81 @@
+/*
+ * SCSS Syntax Highlight Sample File (Complex)
+ *
+ * This file contains complex SCSS syntax that can test unexpected situations.
+ * It is NOT a valid SCSS file that can be compiled by SCSS preprocessors.
+ *
+ * @author  Guo Yunhe guoyunhebrave@gmail.com
+ * @date    2016-09-16
+ */
+
+
+// Comments with special content
+
+// .class-selector #id "string" 'comment' // comment {} [] () /* comment */ text
+
+/*
+ * .class-selector #id "string" 'comment' // comment {} [] ()  /* comment
+ * TODO BUG DEBUG
+ * body {
+ *    margin: 0 !important;
+ * }
+ */
+
+// Comments in special positions
+
+$color: black /* comment here */;
+
+header/* comment here */.active /* comment here */ {
+    /* comment here */ color : /* comment here */ blue/* comment here */;
+    font-family: Arial /* comment here */,
+        "Droid Sans", /* comment here */
+        sans-serif/* comment here */;
+}
+
+@media screen /* comment here */ and (max-width: 300px /* comment here */) /* comment here */ {/* comment here */}
+
+
+// Strings with special content
+
+@import "{} $variable /* comment */";
+@import "{}";
+
+// Without extra breaklines and spaces
+
+pre.primary:hover.large:nth-child(2n-1){font-size:$default-font-size;font-family:"Noto Sans";-webkit-box-shadow:1px 1px 3px rgba(0,0,0,0.3)}
+
+// With unnecessary breaklines and spaces
+
+blockquote .ref
+    {
+             flex : 0 1 30%;
+        flex-wrap : wrap;
+    }
+
+.sidebar {
+  width: 300px; }
+  @media screen and (orientation: landscape) {
+    .sidebar {
+      width: 500px; } }
+
+// Variable interpolation: #{}
+
+$name: foo;
+$attr: border;
+p.#{$name} {
+    #{$attr}-color: blue;
+}
+
+p {
+    $font-size: 12px;
+    $line-height: 30px;
+    font: #{$font-size}/#{$line-height};
+}
+
+// Special selectors: HTML5 allows user defined tags
+
+header {
+    flex {
+        width: 300px;
+    }
+}

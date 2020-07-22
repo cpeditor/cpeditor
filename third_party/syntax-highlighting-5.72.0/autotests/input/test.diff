@@ -1,0 +1,48 @@
+commit 2b16665838c8afeaa0f065cafc747438de35876b
+Author: Volker Krause <vkrause@kde.org>
+Date:   Sat Oct 8 13:31:51 2016 +0200
+
+    Implement dynamic DetectChar rules
+    
+    Needed for Perl highlighting.
+
+diff --git a/src/lib/rule.cpp b/src/lib/rule.cpp
+index f588985..c4c3b92 100644
+--- a/src/lib/rule.cpp
++++ b/src/lib/rule.cpp
+@@ -308,12 +308,22 @@ bool DetectChar::doLoad(QXmlStreamReader& reader)
+     if (s.isEmpty())
+         return false;
+     m_char = s.at(0);
++    if (isDynamic()) {
++        m_captureIndex = m_char.digitValue();
++    }
+     return true;
+ }
+ 
+ MatchResult DetectChar::doMatch(const QString& text, int offset, const QStringList &captures)
+ {
+-    Q_UNUSED(captures); // TODO
++    if (isDynamic()) {
++        if (captures.size() <= m_captureIndex || captures.at(m_captureIndex).isEmpty())
++            return offset;
++        if (text.at(offset) == captures.at(m_captureIndex).at(0))
++            return offset + 1;
++        return offset;
++    }
++
+     if (text.at(offset) == m_char)
+         return offset + 1;
+     return offset;
+diff --git a/src/lib/rule_p.h b/src/lib/rule_p.h
+index d8862ae..d9cedbf 100644
+--- a/src/lib/rule_p.h
++++ b/src/lib/rule_p.h
+@@ -103,6 +103,7 @@ protected:
+ 
+ private:
+     QChar m_char;
++    int m_captureIndex;
+ };
+ 
+ class Detect2Char : public Rule

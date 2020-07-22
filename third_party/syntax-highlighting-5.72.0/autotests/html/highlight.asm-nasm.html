@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title>highlight.asm-nasm</title>
+<meta name="generator" content="KF5::SyntaxHighlighting (Intel x86 (NASM))"/>
+</head><body style="color:#1f1c1b"><pre>
+<span style="color:#898887;">; Example file for nasm.xml kate syntax file</span>
+<span style="color:#898887;">; compile with `nasm example.asm -f elf -o example.o`</span>
+<span style="color:#898887;">; and link with 'gcc example.o -o example`</span>
+<span style="color:#898887;">; Public domain</span>
+<span style="color:#898887;">; kate: hl Intel x86 (NASM);</span>
+
+<span style="font-weight:bold;">section</span> .data
+
+hello <span style="color:#0057ae;">dd</span> <span style="color:#bf0303;">'Hello World'</span><span style="color:#b08000;">, 0x0A, </span><span style="color:#b08000;">0</span>h
+printf_param <span style="color:#0057ae;">dd</span> <span style="color:#bf0303;">'%s'</span><span style="color:#b08000;">, 0q</span>
+
+<span style="font-weight:bold;">section</span> .text
+
+<span style="font-weight:bold;">extern</span> printf
+
+<span style="font-weight:bold;">global</span> main
+<span style="color:#644a9b;">main:</span>
+	<span style="font-weight:bold;">push</span> <span style="font-weight:bold;">ebp</span>
+	<span style="font-weight:bold;">mov</span> <span style="font-weight:bold;">ebp</span>, <span style="font-weight:bold;">esp</span>
+	
+	<span style="font-weight:bold;">push</span> hello
+	<span style="font-weight:bold;">push</span> printf_param
+	<span style="font-weight:bold;">call</span> printf
+	
+	<span style="font-weight:bold;">mov</span> <span style="font-weight:bold;">eax</span><span style="color:#b08000;">, 0b</span>
+	<span style="font-weight:bold;">leave</span>
+	<span style="font-weight:bold;">ret</span>
+</pre></body></html>

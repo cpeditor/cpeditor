@@ -1,0 +1,8 @@
+#<beginfold id='4'></beginfold id='4'>if 1
+int x; // variable shall not be grey
+<endfold id='4'>#endif</endfold id='4'>
+#<beginfold id='4'></beginfold id='4'>if defined (A)
+int y; // variable shall not be grey
+#<endfold id='4'></endfold id='4'><beginfold id='4'></beginfold id='4'>elif defined (B)
+int z; // variable shall not be grey
+#<endfold id='4'>endif</endfold id='4'>

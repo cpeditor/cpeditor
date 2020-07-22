@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title>highlight.overpassql</title>
+<meta name="generator" content="KF5::SyntaxHighlighting (Overpass QL)"/>
+</head><body style="color:#1f1c1b"><pre>
+<span style="color:#898887;">/* Overpass samples taken from</span>
+<span style="color:#898887;">   https://wiki.openstreetmap.org/wiki/Overpass_API/Overpass_QL</span>
+<span style="color:#898887;">   https://wiki.openstreetmap.org/wiki/Overpass_API/Overpass_API_by_Example</span>
+
+*/
+
+<span style="color:#898887;">// single line comment with </span><span style="color:#ca9219;background-color:#451e1a;font-weight:bold;">TODO</span><span style="color:#898887;"> alerts</span>
+
+<span style="color:#898887;">/* multi-line comment with </span><span style="color:#81ca2d;background-color:#f7e6e6;font-weight:bold;">###</span><span style="color:#898887;"> alerts </span>*/
+
+[<span style="color:#644a9b;">out</span>:json][<span style="color:#0057ae;">timeout</span>:<span style="color:#b08000;">25</span>];
+<span style="color:#898887;">// gather results</span>
+(
+  <span style="color:#898887;">// query part for: “amenity=post_box”</span>
+  <span style="color:#644a9b;">node</span>[<span style="color:#bf0303;">&quot;amenity&quot;</span>=<span style="color:#bf0303;">&quot;post_box&quot;</span>](<span style="color:#b08000;">52.0</span>, <span style="color:#b08000;">13.0</span>, <span style="color:#b08000;">54.0</span>, <span style="color:#b08000;">13.5</span>);
+  <span style="color:#644a9b;">way</span>[<span style="color:#bf0303;">&quot;amenity&quot;</span>=<span style="color:#bf0303;">&quot;post_box&quot;</span>](<span style="color:#006e28;">{{bbox}}</span>);
+  <span style="color:#644a9b;">relation</span>[<span style="color:#bf0303;">&quot;amenity&quot;</span>=<span style="color:#bf0303;">&quot;post_box&quot;</span>](<span style="color:#006e28;">{{bbox}}</span>);
+);
+<span style="color:#898887;">// print results</span>
+<span style="color:#644a9b;">out</span> <span style="color:#644a9b;font-weight:bold;">body</span>;
+&gt;;
+<span style="color:#644a9b;">out</span> <span style="color:#644a9b;font-weight:bold;">skel</span> <span style="color:#644a9b;font-weight:bold;">qt</span>;
+
+
+[<span style="color:#644a9b;">out</span>:csv(::<span style="color:#644a9b;font-weight:bold;">type</span>, <span style="color:#bf0303;">&quot;de:regionalschluessel&quot;</span>, name,
+         ::<span style="color:#644a9b;font-weight:bold;">count</span>, ::<span style="color:#bf0303;">&quot;count:nodes&quot;</span>, ::<span style="color:#bf0303;">&quot;count:ways&quot;</span>, ::<span style="color:#bf0303;">&quot;count:relations&quot;</span>)];
+
+<span style="color:#898887;">//All areas with regional key (German: &quot;Regionalschlüssel&quot;) starting with 057</span>
+<span style="color:#644a9b;">area</span>[<span style="color:#bf0303;">&quot;de:regionalschluessel&quot;</span>~<span style="color:#bf0303;">&quot;^057&quot;</span>];
+
+<span style="color:#898887;">// Count the pharmacies in each area</span>
+<span style="font-weight:bold;">foreach</span>-&gt;.regio(
+  <span style="color:#898887;">// display details for the current area</span>
+  .regio <span style="color:#644a9b;">out</span>;
+
+  <span style="color:#898887;">// Collect all Nodes, Ways and Relations with amenity=pharmacy in the current area</span>
+  ( <span style="color:#644a9b;">node</span>(<span style="color:#644a9b;">area</span>.regio)[amenity=pharmacy];
+    <span style="color:#644a9b;">way</span>(<span style="color:#644a9b;">area</span>.regio)[amenity=pharmacy];
+    <span style="color:#644a9b;">rel</span>(<span style="color:#644a9b;">area</span>.regio)[amenity=pharmacy];);
+
+<span style="color:#898887;">// Count the elements in the current area Area</span>
+  <span style="color:#644a9b;">out</span> <span style="color:#644a9b;font-weight:bold;">count</span>;
+);
+
+
+[<span style="color:#0057ae;">timeout</span>:<span style="color:#b08000;">300</span>]
+[<span style="color:#0057ae;">bbox</span>:<span style="color:#b08000;">51.08282186160976</span>,-<span style="color:#b08000;">12.8759765625</span>,<span style="color:#b08000;">55.986091533808384</span>,-<span style="color:#b08000;">1.86767578125</span>]
+[<span style="color:#644a9b;">out</span>:csv(::<span style="color:#644a9b;font-weight:bold;">id</span>, ::<span style="color:#644a9b;font-weight:bold;">type</span>, name, <span style="color:#bf0303;">&quot;name:en&quot;</span>, <span style="color:#bf0303;">&quot;name:ga&quot;</span>)];
+
+( <span style="color:#644a9b;">node</span>[name][<span style="color:#bf0303;">&quot;name:en&quot;</span>][<span style="color:#bf0303;">&quot;name:ga&quot;</span>](<span style="font-weight:bold;">if</span>:(t[<span style="color:#bf0303;">&quot;name&quot;</span>] != t[<span style="color:#bf0303;">&quot;name:en&quot;</span>]) &amp;&amp; (t[<span style="color:#bf0303;">&quot;name&quot;</span>] != t[<span style="color:#bf0303;">&quot;name:ga&quot;</span>]));
+  <span style="color:#644a9b;">way</span>[name][<span style="color:#bf0303;">&quot;name:en&quot;</span>][<span style="color:#bf0303;">&quot;name:ga&quot;</span>] (<span style="font-weight:bold;">if</span>:(t[<span style="color:#bf0303;">&quot;name&quot;</span>] != t[<span style="color:#bf0303;">&quot;name:en&quot;</span>]) &amp;&amp; (t[<span style="color:#bf0303;">&quot;name&quot;</span>] != t[<span style="color:#bf0303;">&quot;name:ga&quot;</span>]));
+  <span style="color:#644a9b;">rel</span>[name][<span style="color:#bf0303;">&quot;name:en&quot;</span>][<span style="color:#bf0303;">&quot;name:ga&quot;</span>] (<span style="font-weight:bold;">if</span>:(t[<span style="color:#bf0303;">&quot;name&quot;</span>] != t[<span style="color:#bf0303;">&quot;name:en&quot;</span>]) &amp;&amp; (t[<span style="color:#bf0303;">&quot;name&quot;</span>] != t[<span style="color:#bf0303;">&quot;name:ga&quot;</span>]));
+);
+<span style="color:#644a9b;">out</span>;
+
+
+[<span style="color:#644a9b;">out</span>:csv(<span style="color:#644a9b;font-weight:bold;">version</span>,<span style="color:#644a9b;font-weight:bold;">timestamp</span>,<span style="color:#644a9b;font-weight:bold;">changeset</span>,<span style="color:#644a9b;font-weight:bold;">count</span>)];
+<span style="color:#644a9b;">timeline</span>(<span style="color:#644a9b;">relation</span>,<span style="color:#b08000;">2632934</span>);
+<span style="font-weight:bold;">for</span> (t[<span style="color:#bf0303;">&quot;created&quot;</span>])
+{
+  <span style="font-weight:bold;">retro</span>(_.val)
+  {
+    <span style="color:#644a9b;">rel</span>(<span style="color:#b08000;">2632934</span>);
+    <span style="color:#644a9b;">make</span> stat <span style="color:#644a9b;font-weight:bold;">version</span>=u(<span style="color:#644a9b;font-weight:bold;">version</span>()),<span style="color:#644a9b;font-weight:bold;">timestamp</span>=u(<span style="color:#644a9b;font-weight:bold;">timestamp</span>()),<span style="color:#644a9b;font-weight:bold;">changeset</span>=u(<span style="color:#644a9b;font-weight:bold;">changeset</span>()),<span style="color:#644a9b;font-weight:bold;">count</span>=u(<span style="color:#644a9b;font-weight:bold;">count_members</span>());
+    <span style="color:#644a9b;">out</span>;
+  }
+}
+
+
+[<span style="color:#0057ae;">timeout</span>:<span style="color:#b08000;">60</span>];
+<span style="color:#644a9b;">area</span>[<span style="color:#bf0303;">&quot;name&quot;</span>=<span style="color:#bf0303;">&quot;Mayenne&quot;</span>]-&gt;.boundaryarea;
+<span style="color:#644a9b;">way</span>(<span style="color:#644a9b;">area</span>.boundaryarea)[<span style="color:#bf0303;">&quot;building&quot;</span>=<span style="color:#bf0303;">&quot;church&quot;</span>];
+  <span style="font-weight:bold;">foreach</span>(
+    <span style="color:#644a9b;">node</span>(w)-&gt;.d;                                     <span style="color:#898887;">// determine all nodes of a way</span>
+    .n <span style="color:#644a9b;">is_in</span>-&gt;.a;
+    <span style="color:#644a9b;">area</span>.a[name][boundary=administrative][admin_level~<span style="color:#bf0303;">&quot;^[2-8]$&quot;</span>] -&gt; .a;
+    <span style="color:#644a9b;">out</span> <span style="color:#644a9b;font-weight:bold;">center</span>;
+    <span style="color:#644a9b;">convert</span> <span style="color:#644a9b;">way</span> ::=::,
+              ::<span style="color:#644a9b;font-weight:bold;">id</span> = <span style="color:#644a9b;font-weight:bold;">id</span>(),
+              <span style="color:#644a9b;">is_in</span>=a.<span style="color:#644a9b;font-weight:bold;">set</span>(<span style="color:#bf0303;">&quot;{&quot;</span> + t[<span style="color:#bf0303;">&quot;admin_level&quot;</span>] + <span style="color:#bf0303;">&quot;:&quot;</span> + t[<span style="color:#bf0303;">&quot;name&quot;</span>] + <span style="color:#bf0303;">&quot;}&quot;</span>);
+
+    <span style="color:#644a9b;">out</span>;
+);
+</pre></body></html>

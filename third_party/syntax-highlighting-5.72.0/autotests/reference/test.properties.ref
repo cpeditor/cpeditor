@@ -1,0 +1,63 @@
+<Comment># Java Properties Sample File</Comment><br/>
+<Key></Key><br/>
+<Comment># This is a commment</Comment><br/>
+<Comment>! This is also a comment</Comment><br/>
+<Key>     </Key><Comment># comment</Comment><br/>
+<Key>     </Key><Comment>! comment</Comment><br/>
+<Key></Key><br/>
+<Comment># keys and values can be separated by '=', ':' or by a series of spaces:</Comment><br/>
+<Key></Key><br/>
+<Key>key </Key><Separator>=</Separator><Value> value</Value><br/>
+<Key>key </Key><Separator>:</Separator><Value> value</Value><br/>
+<Key>key </Key><Value>value</Value><br/>
+<Key></Key><br/>
+<Comment># spaces, '=', or ':' can be used in the key by escaping them with a backslash:</Comment><br/>
+<Key></Key><br/>
+<Key>key\:continued </Key><Separator>=</Separator><Value> value</Value><br/>
+<Key>key\=continued </Key><Separator>=</Separator><Value> value</Value><br/>
+<Key>key\ continued </Key><Separator>=</Separator><Value> value</Value><br/>
+<Key></Key><br/>
+<Comment># the key starts with the first non blank character on the line:</Comment><br/>
+<Key></Key><br/>
+<Key>    key </Key><Separator>=</Separator><Value> value</Value><br/>
+<Key>    </Key><br/>
+<Comment># there can be an arbitrary amount of spaces between the key, the value, and the ':' or '=', if present:</Comment><br/>
+<Key></Key><br/>
+<Key>key</Key><Separator>=</Separator><Value>value</Value><br/>
+<Key>key     </Key><Separator>=</Separator><Value>      value</Value><br/>
+<Key></Key><br/>
+<Key>key</Key><Separator>:</Separator><Value>value</Value><br/>
+<Key>key     </Key><Separator>:</Separator><Value>      value</Value><br/>
+<Key></Key><br/>
+<Key>key </Key><Value>value</Value><br/>
+<Key>key                  </Key><Value>value</Value><br/>
+<Key></Key><br/>
+<Comment># values can be continued on another line by escaping the line end character with a backslash:</Comment><br/>
+<Key></Key><br/>
+<Key>key </Key><Separator>=</Separator><Value> value \</Value><br/>
+<Value>  value continued</Value><br/>
+<Key>  </Key><br/>
+<Comment># This works also over more than one line:</Comment><br/>
+<Key></Key><br/>
+<Key>key </Key><Separator>=</Separator><Value> value\</Value><br/>
+<Value>  value continued 1\</Value><br/>
+<Value>  value continued 2\</Value><br/>
+<Value>  value continued 3</Value><br/>
+<Key>  </Key><br/>
+<Comment># But if the line ends with an even number of backslashes, the value is not continued:</Comment><br/>
+<Key></Key><br/>
+<Key>key </Key><Separator>=</Separator><Value> value\\</Value><br/>
+<Key>newkey </Key><Separator>=</Separator><Value> value</Value><br/>
+<Key></Key><br/>
+<Key>key </Key><Separator>=</Separator><Value> value\\\\</Value><br/>
+<Key>newkey </Key><Separator>=</Separator><Value> value</Value><br/>
+<Key></Key><br/>
+<Comment># both key and value can be ommitted, in which case either the key or the value or both equal the empty string:</Comment><br/>
+<Key></Key><br/>
+<Key>key </Key><Separator>=</Separator><br/>
+<Key>key</Key><br/>
+<Separator>=</Separator><Value> value</Value><br/>
+<Key></Key><br/>
+<Separator>=</Separator><br/>
+<Separator>:</Separator><br/>
+<Key></Key><br/>

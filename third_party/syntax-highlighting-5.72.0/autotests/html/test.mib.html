@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title>test.mib</title>
+<meta name="generator" content="KF5::SyntaxHighlighting (MIB)"/>
+</head><body style="color:#1f1c1b"><pre>
+SNMP-FRAMEWORK-MIB <span style="font-weight:bold;">DEFINITIONS</span> ::= <span style="font-weight:bold;">BEGIN</span>
+
+<span style="font-weight:bold;">IMPORTS</span>
+<span style="color:#ff5500;font-style:italic;">    </span><span style="font-weight:bold;">MODULE-IDENTITY</span><span style="color:#ff5500;font-style:italic;">, </span><span style="font-weight:bold;">OBJECT-TYPE</span><span style="color:#ff5500;font-style:italic;">,</span>
+<span style="color:#ff5500;font-style:italic;">    </span><span style="font-weight:bold;">OBJECT-IDENTITY</span><span style="color:#ff5500;font-style:italic;">,</span>
+<span style="color:#ff5500;font-style:italic;">    snmpModules                           </span><span style="font-weight:bold;">FROM</span> SNMPv2-SMI
+<span style="color:#ff5500;font-style:italic;">    </span><span style="font-weight:bold;">TEXTUAL-CONVENTION</span><span style="color:#ff5500;font-style:italic;">                    </span><span style="font-weight:bold;">FROM</span> SNMPv2-TC
+<span style="color:#ff5500;font-style:italic;">    </span><span style="font-weight:bold;">MODULE-COMPLIANCE</span><span style="color:#ff5500;font-style:italic;">, </span><span style="font-weight:bold;">OBJECT-GROUP</span><span style="color:#ff5500;font-style:italic;">       </span><span style="font-weight:bold;">FROM</span> SNMPv2-CONF;
+
+snmpFrameworkMIB <span style="font-weight:bold;">MODULE-IDENTITY</span>
+    <span style="font-weight:bold;">LAST-UPDATED</span> <span style="color:#bf0303;">&quot;200210140000Z&quot;</span>
+    <span style="font-weight:bold;">ORGANIZATION</span> <span style="color:#bf0303;">&quot;SNMPv3 Working Group&quot;</span>
+    <span style="font-weight:bold;">CONTACT-INFO</span> <span style="color:#bf0303;">&quot;WG-EMail:   snmpv3@lists.tislabs.com</span>
+<span style="color:#bf0303;">                  Subscribe:  snmpv3-request@lists.tislabs.com</span>
+
+<span style="color:#bf0303;">                  Co-Chair:   Russ Mundy</span>
+<span style="color:#bf0303;">                              Network Associates Laboratories</span>
+<span style="color:#bf0303;">                  postal:     15204 Omega Drive, Suite 300</span>
+<span style="color:#bf0303;">                              Rockville, MD 20850-4601</span>
+<span style="color:#bf0303;">                              USA</span>
+<span style="color:#bf0303;">                  EMail:      mundy@tislabs.com</span>
+<span style="color:#bf0303;">                  phone:      +1 301-947-7107</span>
+
+<span style="color:#bf0303;">                  Co-Chair &amp;</span>
+<span style="color:#bf0303;">                  Co-editor:  David Harrington</span>
+<span style="color:#bf0303;">                              Enterasys Networks</span>
+<span style="color:#bf0303;">                  postal:     35 Industrial Way</span>
+<span style="color:#bf0303;">                              P. O. Box 5005</span>
+<span style="color:#bf0303;">                              Rochester, New Hampshire 03866-5005</span>
+<span style="color:#bf0303;">                              USA</span>
+<span style="color:#bf0303;">                  EMail:      dbh@enterasys.com</span>
+<span style="color:#bf0303;">                  phone:      +1 603-337-2614</span>
+
+<span style="color:#bf0303;">                  Co-editor:  Randy Presuhn</span>
+<span style="color:#bf0303;">                              BMC Software, Inc.</span>
+<span style="color:#bf0303;">                  postal:     2141 North First Street</span>
+<span style="color:#bf0303;">                              San Jose, California 95131</span>
+<span style="color:#bf0303;">                              USA</span>
+<span style="color:#bf0303;">                  EMail:      randy_presuhn@bmc.com</span>
+<span style="color:#bf0303;">                  phone:      +1 408-546-1006</span>
+
+<span style="color:#bf0303;">                  Co-editor:  Bert Wijnen</span>
+<span style="color:#bf0303;">                              Lucent Technologies</span>
+<span style="color:#bf0303;">                  postal:     Schagen 33</span>
+<span style="color:#bf0303;">                              3461 GL Linschoten</span>
+<span style="color:#bf0303;">                              Netherlands</span>
+
+<span style="color:#bf0303;">                  EMail:      bwijnen@lucent.com</span>
+<span style="color:#bf0303;">                  phone:      +31 348-680-485</span>
+<span style="color:#bf0303;">                    &quot;</span>
+       <span style="font-weight:bold;">DESCRIPTION</span>  <span style="color:#bf0303;">&quot;The SNMP Management Architecture MIB</span>
+
+<span style="color:#bf0303;">                     Copyright (C) The Internet Society (2002). This</span>
+<span style="color:#bf0303;">                     version of this MIB module is part of RFC 3411;</span>
+<span style="color:#bf0303;">                     see the RFC itself for full legal notices.</span>
+<span style="color:#bf0303;">                    &quot;</span>
+
+       <span style="font-weight:bold;">REVISION</span>     <span style="color:#bf0303;">&quot;200210140000Z&quot;</span>         <span style="color:#898887;">-- 14 October 2002</span>
+       <span style="font-weight:bold;">DESCRIPTION</span>  <span style="color:#bf0303;">&quot;Changes in this revision:</span>
+<span style="color:#bf0303;">                     - Updated various administrative information.</span>
+<span style="color:#bf0303;">                     - Corrected some typos.</span>
+<span style="color:#bf0303;">                     - Corrected typo in description of SnmpEngineID</span>
+<span style="color:#bf0303;">                       that led to range overlap for 127.</span>
+<span style="color:#bf0303;">                     - Changed '255a' to '255t' in definition of</span>
+<span style="color:#bf0303;">                       SnmpAdminString to align with current SMI.</span>
+<span style="color:#bf0303;">                     - Reworded 'reserved' for value zero in</span>
+<span style="color:#bf0303;">                       DESCRIPTION of SnmpSecurityModel.</span>
+<span style="color:#bf0303;">                     - The algorithm for allocating security models</span>
+<span style="color:#bf0303;">                       should give 256 per enterprise block, rather</span>
+<span style="color:#bf0303;">                       than 255.</span>
+<span style="color:#bf0303;">                     - The example engine ID of 'abcd' is not</span>
+<span style="color:#bf0303;">                       legal. Replaced with '800002b804616263'H based</span>
+<span style="color:#bf0303;">                       on example enterprise 696, string 'abc'.</span>
+<span style="color:#bf0303;">                     - Added clarification that engineID should</span>
+<span style="color:#bf0303;">                       persist across re-initializations.</span>
+<span style="color:#bf0303;">                     This revision published as RFC 3411.</span>
+<span style="color:#bf0303;">                    &quot;</span>
+       <span style="font-weight:bold;">REVISION</span>     <span style="color:#bf0303;">&quot;199901190000Z&quot;</span>         <span style="color:#898887;">-- 19 January 1999</span>
+       <span style="font-weight:bold;">DESCRIPTION</span>  <span style="color:#bf0303;">&quot;Updated editors' addresses, fixed typos.</span>
+<span style="color:#bf0303;">                     Published as RFC 2571.</span>
+<span style="color:#bf0303;">                    &quot;</span>
+       <span style="font-weight:bold;">REVISION</span>     <span style="color:#bf0303;">&quot;199711200000Z&quot;</span>         <span style="color:#898887;">-- 20 November 1997</span>
+       <span style="font-weight:bold;">DESCRIPTION</span>  <span style="color:#bf0303;">&quot;The initial version, published in RFC 2271.</span>
+<span style="color:#bf0303;">                    &quot;</span>
+       ::= { snmpModules <span style="color:#b08000;">10</span> }
+
+   <span style="color:#898887;">-- Textual Conventions used in the SNMP Management Architecture ***</span>
+
+<span style="color:#ff5500;font-style:italic;">SnmpEngineID</span> ::= <span style="font-weight:bold;">TEXTUAL-CONVENTION</span>
+    <span style="font-weight:bold;">STATUS</span>       <span style="color:#0057ae;">current</span>
+    <span style="font-weight:bold;">DESCRIPTION</span> <span style="color:#bf0303;">&quot;An SNMP engine's administratively-unique identifier.</span>
+<span style="color:#bf0303;">                 Objects of this type are for identification, not for</span>
+<span style="color:#bf0303;">                 addressing, even though it is possible that an</span>
+<span style="color:#bf0303;">                 address may have been used in the generation of</span>
+<span style="color:#bf0303;">                 a specific value.</span>
+
+<span style="color:#bf0303;">                 The value for this object may not be all zeros or</span>
+<span style="color:#bf0303;">                 all 'ff'H or the empty (zero length) string.</span>
+
+<span style="color:#bf0303;">                 The initial value for this object may be configured</span>
+<span style="color:#bf0303;">                 via an operator console entry or via an algorithmic</span>
+<span style="color:#bf0303;">                 function.  In the latter case, the following</span>
+<span style="color:#bf0303;">                 example algorithm is recommended.</span>
+
+<span style="color:#bf0303;">                 In cases where there are multiple engines on the</span>
+<span style="color:#bf0303;">                 same system, the use of this algorithm is NOT</span>
+<span style="color:#bf0303;">                 appropriate, as it would result in all of those</span>
+<span style="color:#bf0303;">                 engines ending up with the same ID value.</span>
+
+<span style="color:#bf0303;">                 1) The very first bit is used to indicate how the</span>
+<span style="color:#bf0303;">                    rest of the data is composed.</span>
+
+<span style="color:#bf0303;">                    0 - as defined by enterprise using former methods</span>
+<span style="color:#bf0303;">                        that existed before SNMPv3. See item 2 below.</span>
+
+<span style="color:#bf0303;">                    1 - as defined by this architecture, see item 3</span>
+<span style="color:#bf0303;">                        below.</span>
+
+<span style="color:#bf0303;">                    Note that this allows existing uses of the</span>
+<span style="color:#bf0303;">                    engineID (also known as AgentID [RFC1910]) to</span>
+<span style="color:#bf0303;">                    co-exist with any new uses.</span>
+
+<span style="color:#bf0303;">                 2) The snmpEngineID has a length of 12 octets.</span>
+
+<span style="color:#bf0303;">                    The first four octets are set to the binary</span>
+<span style="color:#bf0303;">                    equivalent of the agent's SNMP management</span>
+<span style="color:#bf0303;">                    private enterprise number as assigned by the</span>
+<span style="color:#bf0303;">                    Internet Assigned Numbers Authority (IANA).</span>
+<span style="color:#bf0303;">                    For example, if Acme Networks has been assigned</span>
+<span style="color:#bf0303;">                    { enterprises 696 }, the first four octets would</span>
+<span style="color:#bf0303;">                    be assigned '000002b8'H.</span>
+
+<span style="color:#bf0303;">                    The remaining eight octets are determined via</span>
+<span style="color:#bf0303;">                    one or more enterprise-specific methods. Such</span>
+<span style="color:#bf0303;">                    methods must be designed so as to maximize the</span>
+<span style="color:#bf0303;">                    possibility that the value of this object will</span>
+<span style="color:#bf0303;">                    be unique in the agent's administrative domain.</span>
+<span style="color:#bf0303;">                    For example, it may be the IP address of the SNMP</span>
+<span style="color:#bf0303;">                    entity, or the MAC address of one of the</span>
+<span style="color:#bf0303;">                    interfaces, with each address suitably padded</span>
+<span style="color:#bf0303;">                    with random octets.  If multiple methods are</span>
+<span style="color:#bf0303;">                    defined, then it is recommended that the first</span>
+<span style="color:#bf0303;">                    octet indicate the method being used and the</span>
+<span style="color:#bf0303;">                    remaining octets be a function of the method.</span>
+
+<span style="color:#bf0303;">                 3) The length of the octet string varies.</span>
+
+<span style="color:#bf0303;">                    The first four octets are set to the binary</span>
+<span style="color:#bf0303;">                    equivalent of the agent's SNMP management</span>
+<span style="color:#bf0303;">                    private enterprise number as assigned by the</span>
+<span style="color:#bf0303;">                    Internet Assigned Numbers Authority (IANA).</span>
+<span style="color:#bf0303;">                    For example, if Acme Networks has been assigned</span>
+<span style="color:#bf0303;">                    { enterprises 696 }, the first four octets would</span>
+<span style="color:#bf0303;">                    be assigned '000002b8'H.</span>
+
+<span style="color:#bf0303;">                    The very first bit is set to 1. For example, the</span>
+<span style="color:#bf0303;">                    above value for Acme Networks now changes to be</span>
+<span style="color:#bf0303;">                    '800002b8'H.</span>
+
+<span style="color:#bf0303;">                    The fifth octet indicates how the rest (6th and</span>
+<span style="color:#bf0303;">                    following octets) are formatted. The values for</span>
+<span style="color:#bf0303;">                    the fifth octet are:</span>
+
+<span style="color:#bf0303;">                      0     - reserved, unused.</span>
+
+<span style="color:#bf0303;">                      1     - IPv4 address (4 octets)</span>
+<span style="color:#bf0303;">                              lowest non-special IP address</span>
+
+<span style="color:#bf0303;">                      2     - IPv6 address (16 octets)</span>
+<span style="color:#bf0303;">                              lowest non-special IP address</span>
+
+<span style="color:#bf0303;">                      3     - MAC address (6 octets)</span>
+<span style="color:#bf0303;">                              lowest IEEE MAC address, canonical</span>
+<span style="color:#bf0303;">                              order</span>
+
+<span style="color:#bf0303;">                      4     - Text, administratively assigned</span>
+<span style="color:#bf0303;">                              Maximum remaining length 27</span>
+
+<span style="color:#bf0303;">                      5     - Octets, administratively assigned</span>
+<span style="color:#bf0303;">                              Maximum remaining length 27</span>
+
+<span style="color:#bf0303;">                      6-127 - reserved, unused</span>
+
+<span style="color:#bf0303;">                    128-255 - as defined by the enterprise</span>
+<span style="color:#bf0303;">                              Maximum remaining length 27</span>
+<span style="color:#bf0303;">                &quot;</span>
+    <span style="font-weight:bold;">SYNTAX</span><span style="color:#ff5500;font-style:italic;">       </span><span style="font-weight:bold;">OCTET</span><span style="color:#ff5500;font-style:italic;"> </span><span style="font-weight:bold;">STRING</span><span style="color:#ff5500;font-style:italic;"> </span>(<span style="font-weight:bold;">SIZE</span>(<span style="color:#b08000;">5..32</span>))
+
+<span style="color:#ff5500;font-style:italic;">SnmpSecurityModel</span> ::= <span style="font-weight:bold;">TEXTUAL-CONVENTION</span>
+    <span style="font-weight:bold;">STATUS</span>       <span style="color:#0057ae;">current</span>
+    <span style="font-weight:bold;">DESCRIPTION</span> <span style="color:#bf0303;">&quot;An identifier that uniquely identifies a</span>
+<span style="color:#bf0303;">                 Security Model of the Security Subsystem within</span>
+<span style="color:#bf0303;">                 this SNMP Management Architecture.</span>
+
+<span style="color:#bf0303;">                 The values for securityModel are allocated as</span>
+<span style="color:#bf0303;">                 follows:</span>
+
+<span style="color:#bf0303;">                 - The zero value does not identify any particular</span>
+<span style="color:#bf0303;">                   security model.</span>
+
+<span style="color:#bf0303;">                 - Values between 1 and 255, inclusive, are reserved</span>
+<span style="color:#bf0303;">                   for standards-track Security Models and are</span>
+<span style="color:#bf0303;">                   managed by the Internet Assigned Numbers Authority</span>
+<span style="color:#bf0303;">                   (IANA).</span>
+<span style="color:#bf0303;">                 - Values greater than 255 are allocated to</span>
+<span style="color:#bf0303;">                   enterprise-specific Security Models.  An</span>
+<span style="color:#bf0303;">                   enterprise-specific securityModel value is defined</span>
+<span style="color:#bf0303;">                   to be:</span>
+
+<span style="color:#bf0303;">                   enterpriseID * 256 + security model within</span>
+<span style="color:#bf0303;">                   enterprise</span>
+
+<span style="color:#bf0303;">                   For example, the fourth Security Model defined by</span>
+<span style="color:#bf0303;">                   the enterprise whose enterpriseID is 1 would be</span>
+<span style="color:#bf0303;">                   259.</span>
+
+<span style="color:#bf0303;">                 This scheme for allocation of securityModel</span>
+<span style="color:#bf0303;">                 values allows for a maximum of 255 standards-</span>
+<span style="color:#bf0303;">                 based Security Models, and for a maximum of</span>
+<span style="color:#bf0303;">                 256 Security Models per enterprise.</span>
+
+<span style="color:#bf0303;">                 It is believed that the assignment of new</span>
+<span style="color:#bf0303;">                 securityModel values will be rare in practice</span>
+<span style="color:#bf0303;">                 because the larger the number of simultaneously</span>
+<span style="color:#bf0303;">                 utilized Security Models, the larger the</span>
+<span style="color:#bf0303;">                 chance that interoperability will suffer.</span>
+<span style="color:#bf0303;">                 Consequently, it is believed that such a range</span>
+<span style="color:#bf0303;">                 will be sufficient.  In the unlikely event that</span>
+<span style="color:#bf0303;">                 the standards committee finds this number to be</span>
+<span style="color:#bf0303;">                 insufficient over time, an enterprise number</span>
+<span style="color:#bf0303;">                 can be allocated to obtain an additional 256</span>
+<span style="color:#bf0303;">                 possible values.</span>
+
+<span style="color:#bf0303;">                 Note that the most significant bit must be zero;</span>
+<span style="color:#bf0303;">                 hence, there are 23 bits allocated for various</span>
+<span style="color:#bf0303;">                 organizations to design and define non-standard</span>
+
+<span style="color:#bf0303;">                 securityModels.  This limits the ability to</span>
+<span style="color:#bf0303;">                 define new proprietary implementations of Security</span>
+<span style="color:#bf0303;">                 Models to the first 8,388,608 enterprises.</span>
+
+<span style="color:#bf0303;">                 It is worthwhile to note that, in its encoded</span>
+<span style="color:#bf0303;">                 form, the securityModel value will normally</span>
+<span style="color:#bf0303;">                 require only a single byte since, in practice,</span>
+<span style="color:#bf0303;">                 the leftmost bits will be zero for most messages</span>
+<span style="color:#bf0303;">                 and sign extension is suppressed by the encoding</span>
+<span style="color:#bf0303;">                 rules.</span>
+
+<span style="color:#bf0303;">                 As of this writing, there are several values</span>
+<span style="color:#bf0303;">                 of securityModel defined for use with SNMP or</span>
+<span style="color:#bf0303;">                 reserved for use with supporting MIB objects.</span>
+<span style="color:#bf0303;">                 They are as follows:</span>
+
+<span style="color:#bf0303;">                     0  reserved for 'any'</span>
+<span style="color:#bf0303;">                     1  reserved for SNMPv1</span>
+<span style="color:#bf0303;">                     2  reserved for SNMPv2c</span>
+<span style="color:#bf0303;">                     3  User-Based Security Model (USM)</span>
+<span style="color:#bf0303;">                &quot;</span>
+    <span style="font-weight:bold;">SYNTAX</span><span style="color:#ff5500;font-style:italic;">       </span><span style="font-weight:bold;">INTEGER</span>(<span style="color:#b08000;">0</span> <span style="color:#b08000;">..</span> <span style="color:#b08000;">2147483647</span>)
+
+<span style="color:#ff5500;font-style:italic;">SnmpMessageProcessingModel</span> ::= <span style="font-weight:bold;">TEXTUAL-CONVENTION</span>
+    <span style="font-weight:bold;">STATUS</span>       <span style="color:#0057ae;">current</span>
+    <span style="font-weight:bold;">DESCRIPTION</span> <span style="color:#bf0303;">&quot;An identifier that uniquely identifies a Message</span>
+<span style="color:#bf0303;">                 Processing Model of the Message Processing</span>
+<span style="color:#bf0303;">                 Subsystem within this SNMP Management Architecture.</span>
+
+<span style="color:#bf0303;">                 The values for messageProcessingModel are</span>
+<span style="color:#bf0303;">                 allocated as follows:</span>
+
+<span style="color:#bf0303;">                 - Values between 0 and 255, inclusive, are</span>
+<span style="color:#bf0303;">                   reserved for standards-track Message Processing</span>
+<span style="color:#bf0303;">                   Models and are managed by the Internet Assigned</span>
+<span style="color:#bf0303;">                   Numbers Authority (IANA).</span>
+
+<span style="color:#bf0303;">                 - Values greater than 255 are allocated to</span>
+<span style="color:#bf0303;">                   enterprise-specific Message Processing Models.</span>
+<span style="color:#bf0303;">                   An enterprise messageProcessingModel value is</span>
+<span style="color:#bf0303;">                   defined to be:</span>
+
+<span style="color:#bf0303;">                   enterpriseID * 256 +</span>
+<span style="color:#bf0303;">                        messageProcessingModel within enterprise</span>
+
+<span style="color:#bf0303;">                   For example, the fourth Message Processing Model</span>
+<span style="color:#bf0303;">                   defined by the enterprise whose enterpriseID</span>
+
+<span style="color:#bf0303;">                   is 1 would be 259.</span>
+
+<span style="color:#bf0303;">                 This scheme for allocating messageProcessingModel</span>
+<span style="color:#bf0303;">                 values allows for a maximum of 255 standards-</span>
+<span style="color:#bf0303;">                 based Message Processing Models, and for a</span>
+<span style="color:#bf0303;">                 maximum of 256 Message Processing Models per</span>
+<span style="color:#bf0303;">                 enterprise.</span>
+
+<span style="color:#bf0303;">                 It is believed that the assignment of new</span>
+<span style="color:#bf0303;">                 messageProcessingModel values will be rare</span>
+<span style="color:#bf0303;">                 in practice because the larger the number of</span>
+<span style="color:#bf0303;">                 simultaneously utilized Message Processing Models,</span>
+<span style="color:#bf0303;">                 the larger the chance that interoperability</span>
+<span style="color:#bf0303;">                 will suffer. It is believed that such a range</span>
+<span style="color:#bf0303;">                 will be sufficient.  In the unlikely event that</span>
+<span style="color:#bf0303;">                 the standards committee finds this number to be</span>
+<span style="color:#bf0303;">                 insufficient over time, an enterprise number</span>
+<span style="color:#bf0303;">                 can be allocated to obtain an additional 256</span>
+<span style="color:#bf0303;">                 possible values.</span>
+
+<span style="color:#bf0303;">                 Note that the most significant bit must be zero;</span>
+<span style="color:#bf0303;">                 hence, there are 23 bits allocated for various</span>
+<span style="color:#bf0303;">                 organizations to design and define non-standard</span>
+<span style="color:#bf0303;">                 messageProcessingModels.  This limits the ability</span>
+<span style="color:#bf0303;">                 to define new proprietary implementations of</span>
+<span style="color:#bf0303;">                 Message Processing Models to the first 8,388,608</span>
+<span style="color:#bf0303;">                 enterprises.</span>
+
+<span style="color:#bf0303;">                 It is worthwhile to note that, in its encoded</span>
+<span style="color:#bf0303;">                 form, the messageProcessingModel value will</span>
+<span style="color:#bf0303;">                 normally require only a single byte since, in</span>
+<span style="color:#bf0303;">                 practice, the leftmost bits will be zero for</span>
+<span style="color:#bf0303;">                 most messages and sign extension is suppressed</span>
+<span style="color:#bf0303;">                 by the encoding rules.</span>
+
+<span style="color:#bf0303;">                 As of this writing, there are several values of</span>
+<span style="color:#bf0303;">                 messageProcessingModel defined for use with SNMP.</span>
+<span style="color:#bf0303;">                 They are as follows:</span>
+
+<span style="color:#bf0303;">                     0  reserved for SNMPv1</span>
+<span style="color:#bf0303;">                     1  reserved for SNMPv2c</span>
+<span style="color:#bf0303;">                     2  reserved for SNMPv2u and SNMPv2*</span>
+<span style="color:#bf0303;">                     3  reserved for SNMPv3</span>
+<span style="color:#bf0303;">                &quot;</span>
+    <span style="font-weight:bold;">SYNTAX</span><span style="color:#ff5500;font-style:italic;">       </span><span style="font-weight:bold;">INTEGER</span>(<span style="color:#b08000;">0</span> <span style="color:#b08000;">..</span> <span style="color:#b08000;">2147483647</span>)
+
+<span style="color:#ff5500;font-style:italic;">SnmpSecurityLevel</span> ::= <span style="font-weight:bold;">TEXTUAL-CONVENTION</span>
+    <span style="font-weight:bold;">STATUS</span>       <span style="color:#0057ae;">current</span>
+    <span style="font-weight:bold;">DESCRIPTION</span> <span style="color:#bf0303;">&quot;A Level of Security at which SNMP messages can be</span>
+<span style="color:#bf0303;">                 sent or with which operations are being processed;</span>
+<span style="color:#bf0303;">                 in particular, one of:</span>
+
+<span style="color:#bf0303;">                   noAuthNoPriv - without authentication and</span>
+<span style="color:#bf0303;">                                  without privacy,</span>
+<span style="color:#bf0303;">                   authNoPriv   - with authentication but</span>
+<span style="color:#bf0303;">                                  without privacy,</span>
+<span style="color:#bf0303;">                   authPriv     - with authentication and</span>
+<span style="color:#bf0303;">                                  with privacy.</span>
+
+<span style="color:#bf0303;">                 These three values are ordered such that</span>
+<span style="color:#bf0303;">                 noAuthNoPriv is less than authNoPriv and</span>
+<span style="color:#bf0303;">                 authNoPriv is less than authPriv.</span>
+<span style="color:#bf0303;">                &quot;</span>
+    <span style="font-weight:bold;">SYNTAX</span><span style="color:#ff5500;font-style:italic;">       </span><span style="font-weight:bold;">INTEGER</span><span style="color:#ff5500;font-style:italic;"> </span>{ noAuthNoPriv(<span style="color:#b08000;">1</span>),
+                           authNoPriv(<span style="color:#b08000;">2</span>),
+                           authPriv(<span style="color:#b08000;">3</span>)
+                         }
+
+<span style="color:#ff5500;font-style:italic;">SnmpAdminString</span> ::= <span style="font-weight:bold;">TEXTUAL-CONVENTION</span>
+    <span style="font-weight:bold;">DISPLAY-HINT</span> <span style="color:#bf0303;">&quot;255t&quot;</span>
+    <span style="font-weight:bold;">STATUS</span>       <span style="color:#0057ae;">current</span>
+    <span style="font-weight:bold;">DESCRIPTION</span> <span style="color:#bf0303;">&quot;An octet string containing administrative</span>
+<span style="color:#bf0303;">                 information, preferably in human-readable form.</span>
+
+<span style="color:#bf0303;">                 To facilitate internationalization, this</span>
+<span style="color:#bf0303;">                 information is represented using the ISO/IEC</span>
+<span style="color:#bf0303;">                 IS 10646-1 character set, encoded as an octet</span>
+<span style="color:#bf0303;">                 string using the UTF-8 transformation format</span>
+<span style="color:#bf0303;">                 described in [RFC2279].</span>
+
+<span style="color:#bf0303;">                 Since additional code points are added by</span>
+<span style="color:#bf0303;">                 amendments to the 10646 standard from time</span>
+<span style="color:#bf0303;">                 to time, implementations must be prepared to</span>
+<span style="color:#bf0303;">                 encounter any code point from 0x00000000 to</span>
+<span style="color:#bf0303;">                 0x7fffffff.  Byte sequences that do not</span>
+<span style="color:#bf0303;">                 correspond to the valid UTF-8 encoding of a</span>
+<span style="color:#bf0303;">                 code point or are outside this range are</span>
+<span style="color:#bf0303;">                 prohibited.</span>
+
+<span style="color:#bf0303;">                 The use of control codes should be avoided.</span>
+
+<span style="color:#bf0303;">                 When it is necessary to represent a newline,</span>
+<span style="color:#bf0303;">                 the control code sequence CR LF should be used.</span>
+
+<span style="color:#bf0303;">                 The use of leading or trailing white space should</span>
+<span style="color:#bf0303;">                 be avoided.</span>
+
+<span style="color:#bf0303;">                 For code points not directly supported by user</span>
+<span style="color:#bf0303;">                 interface hardware or software, an alternative</span>
+<span style="color:#bf0303;">                 means of entry and display, such as hexadecimal,</span>
+<span style="color:#bf0303;">                 may be provided.</span>
+
+<span style="color:#bf0303;">                 For information encoded in 7-bit US-ASCII,</span>
+<span style="color:#bf0303;">                 the UTF-8 encoding is identical to the</span>
+<span style="color:#bf0303;">                 US-ASCII encoding.</span>
+
+<span style="color:#bf0303;">                 UTF-8 may require multiple bytes to represent a</span>
+<span style="color:#bf0303;">                 single character / code point; thus the length</span>
+<span style="color:#bf0303;">                 of this object in octets may be different from</span>
+<span style="color:#bf0303;">                 the number of characters encoded.  Similarly,</span>
+<span style="color:#bf0303;">                 size constraints refer to the number of encoded</span>
+<span style="color:#bf0303;">                 octets, not the number of characters represented</span>
+<span style="color:#bf0303;">                 by an encoding.</span>
+
+<span style="color:#bf0303;">                 Note that when this TC is used for an object that</span>
+<span style="color:#bf0303;">                 is used or envisioned to be used as an index, then</span>
+<span style="color:#bf0303;">                 a SIZE restriction MUST be specified so that the</span>
+<span style="color:#bf0303;">                 number of sub-identifiers for any object instance</span>
+<span style="color:#bf0303;">                 does not exceed the limit of 128, as defined by</span>
+<span style="color:#bf0303;">                 [RFC3416].</span>
+
+<span style="color:#bf0303;">                 Note that the size of an SnmpAdminString object is</span>
+<span style="color:#bf0303;">                 measured in octets, not characters.</span>
+<span style="color:#bf0303;">                &quot;</span>
+    <span style="font-weight:bold;">SYNTAX</span><span style="color:#ff5500;font-style:italic;">       </span><span style="font-weight:bold;">OCTET</span><span style="color:#ff5500;font-style:italic;"> </span><span style="font-weight:bold;">STRING</span><span style="color:#ff5500;font-style:italic;"> </span>(<span style="font-weight:bold;">SIZE</span> (<span style="color:#b08000;">0..255</span>))
+
+<span style="color:#898887;">-- Administrative assignments ***************************************</span>
+
+snmpFrameworkAdmin
+    <span style="font-weight:bold;">OBJECT</span> <span style="font-weight:bold;">IDENTIFIER</span> ::= { snmpFrameworkMIB <span style="color:#b08000;">1</span> }
+snmpFrameworkMIBObjects
+    <span style="font-weight:bold;">OBJECT</span> <span style="font-weight:bold;">IDENTIFIER</span> ::= { snmpFrameworkMIB <span style="color:#b08000;">2</span> }
+snmpFrameworkMIBConformance
+    <span style="font-weight:bold;">OBJECT</span> <span style="font-weight:bold;">IDENTIFIER</span> ::= { snmpFrameworkMIB <span style="color:#b08000;">3</span> }
+
+<span style="color:#898887;">-- the snmpEngine Group ********************************************</span>
+
+snmpEngine <span style="font-weight:bold;">OBJECT</span> <span style="font-weight:bold;">IDENTIFIER</span> ::= { snmpFrameworkMIBObjects <span style="color:#b08000;">1</span> }
+
+snmpEngineID     <span style="font-weight:bold;">OBJECT-TYPE</span>
+    <span style="font-weight:bold;">SYNTAX</span><span style="color:#ff5500;font-style:italic;">       SnmpEngineID</span>
+    <span style="font-weight:bold;">MAX-ACCESS</span>   <span style="color:#0057ae;">read-only</span>
+    <span style="font-weight:bold;">STATUS</span>       <span style="color:#0057ae;">current</span>
+    <span style="font-weight:bold;">DESCRIPTION</span> <span style="color:#bf0303;">&quot;An SNMP engine's administratively-unique identifier.</span>
+
+<span style="color:#bf0303;">                 This information SHOULD be stored in non-volatile</span>
+<span style="color:#bf0303;">                 storage so that it remains constant across</span>
+<span style="color:#bf0303;">                 re-initializations of the SNMP engine.</span>
+<span style="color:#bf0303;">                &quot;</span>
+    ::= { snmpEngine <span style="color:#b08000;">1</span> }
+
+snmpEngineBoots  <span style="font-weight:bold;">OBJECT-TYPE</span>
+    <span style="font-weight:bold;">SYNTAX</span><span style="color:#ff5500;font-style:italic;">       </span><span style="font-weight:bold;">INTEGER</span><span style="color:#ff5500;font-style:italic;"> </span>(<span style="color:#b08000;">1..2147483647</span>)
+    <span style="font-weight:bold;">MAX-ACCESS</span>   <span style="color:#0057ae;">read-only</span>
+    <span style="font-weight:bold;">STATUS</span>       <span style="color:#0057ae;">current</span>
+    <span style="font-weight:bold;">DESCRIPTION</span> <span style="color:#bf0303;">&quot;The number of times that the SNMP engine has</span>
+<span style="color:#bf0303;">                 (re-)initialized itself since snmpEngineID</span>
+<span style="color:#bf0303;">                 was last configured.</span>
+<span style="color:#bf0303;">                &quot;</span>
+    ::= { snmpEngine <span style="color:#b08000;">2</span> }
+
+snmpEngineTime   <span style="font-weight:bold;">OBJECT-TYPE</span>
+    <span style="font-weight:bold;">SYNTAX</span><span style="color:#ff5500;font-style:italic;">       </span><span style="font-weight:bold;">INTEGER</span><span style="color:#ff5500;font-style:italic;"> </span>(<span style="color:#b08000;">0..2147483647</span>)
+    <span style="font-weight:bold;">UNITS</span>        <span style="color:#bf0303;">&quot;seconds&quot;</span>
+    <span style="font-weight:bold;">MAX-ACCESS</span>   <span style="color:#0057ae;">read-only</span>
+    <span style="font-weight:bold;">STATUS</span>       <span style="color:#0057ae;">current</span>
+    <span style="font-weight:bold;">DESCRIPTION</span> <span style="color:#bf0303;">&quot;The number of seconds since the value of</span>
+<span style="color:#bf0303;">                 the snmpEngineBoots object last changed.</span>
+<span style="color:#bf0303;">                 When incrementing this object's value would</span>
+<span style="color:#bf0303;">                 cause it to exceed its maximum,</span>
+<span style="color:#bf0303;">                 snmpEngineBoots is incremented as if a</span>
+<span style="color:#bf0303;">                 re-initialization had occurred, and this</span>
+<span style="color:#bf0303;">                 object's value consequently reverts to zero.</span>
+<span style="color:#bf0303;">                &quot;</span>
+    ::= { snmpEngine <span style="color:#b08000;">3</span> }
+
+snmpEngineMaxMessageSize <span style="font-weight:bold;">OBJECT-TYPE</span>
+    <span style="font-weight:bold;">SYNTAX</span><span style="color:#ff5500;font-style:italic;">       </span><span style="font-weight:bold;">INTEGER</span><span style="color:#ff5500;font-style:italic;"> </span>(<span style="color:#b08000;">484..2147483647</span>)
+    <span style="font-weight:bold;">MAX-ACCESS</span>   <span style="color:#0057ae;">read-only</span>
+    <span style="font-weight:bold;">STATUS</span>       <span style="color:#0057ae;">current</span>
+    <span style="font-weight:bold;">DESCRIPTION</span> <span style="color:#bf0303;">&quot;The maximum length in octets of an SNMP message</span>
+<span style="color:#bf0303;">                 which this SNMP engine can send or receive and</span>
+<span style="color:#bf0303;">                 process, determined as the minimum of the maximum</span>
+<span style="color:#bf0303;">                 message size values supported among all of the</span>
+<span style="color:#bf0303;">                 transports available to and supported by the engine.</span>
+<span style="color:#bf0303;">                &quot;</span>
+    ::= { snmpEngine <span style="color:#b08000;">4</span> }
+
+<span style="color:#898887;">-- Registration Points for Authentication and Privacy Protocols **</span>
+
+snmpAuthProtocols <span style="font-weight:bold;">OBJECT-IDENTITY</span>
+    <span style="font-weight:bold;">STATUS</span>        <span style="color:#0057ae;">current</span>
+    <span style="font-weight:bold;">DESCRIPTION</span>  <span style="color:#bf0303;">&quot;Registration point for standards-track</span>
+<span style="color:#bf0303;">                  authentication protocols used in SNMP Management</span>
+<span style="color:#bf0303;">                  Frameworks.</span>
+<span style="color:#bf0303;">                 &quot;</span>
+    ::= { snmpFrameworkAdmin <span style="color:#b08000;">1</span> }
+
+snmpPrivProtocols <span style="font-weight:bold;">OBJECT-IDENTITY</span>
+    <span style="font-weight:bold;">STATUS</span>        <span style="color:#0057ae;">current</span>
+    <span style="font-weight:bold;">DESCRIPTION</span>  <span style="color:#bf0303;">&quot;Registration point for standards-track privacy</span>
+<span style="color:#bf0303;">                  protocols used in SNMP Management Frameworks.</span>
+<span style="color:#bf0303;">                 &quot;</span>
+    ::= { snmpFrameworkAdmin <span style="color:#b08000;">2</span> }
+
+<span style="color:#898887;">-- Conformance information ******************************************</span>
+
+snmpFrameworkMIBCompliances
+               <span style="font-weight:bold;">OBJECT</span> <span style="font-weight:bold;">IDENTIFIER</span> ::= {snmpFrameworkMIBConformance <span style="color:#b08000;">1</span>}
+snmpFrameworkMIBGroups
+               <span style="font-weight:bold;">OBJECT</span> <span style="font-weight:bold;">IDENTIFIER</span> ::= {snmpFrameworkMIBConformance <span style="color:#b08000;">2</span>}
+
+<span style="color:#898887;">-- compliance statements</span>
+
+snmpFrameworkMIBCompliance <span style="font-weight:bold;">MODULE-COMPLIANCE</span>
+    <span style="font-weight:bold;">STATUS</span>       <span style="color:#0057ae;">current</span>
+    <span style="font-weight:bold;">DESCRIPTION</span> <span style="color:#bf0303;">&quot;The compliance statement for SNMP engines which</span>
+<span style="color:#bf0303;">                 implement the SNMP Management Framework MIB.</span>
+<span style="color:#bf0303;">                &quot;</span>
+    <span style="font-weight:bold;">MODULE</span>    <span style="color:#898887;">-- this module</span>
+        <span style="font-weight:bold;">MANDATORY-GROUPS</span> { snmpEngineGroup }
+    ::= { snmpFrameworkMIBCompliances <span style="color:#b08000;">1</span> }
+
+<span style="color:#898887;">-- units of conformance</span>
+
+snmpEngineGroup <span style="font-weight:bold;">OBJECT-GROUP</span>
+    <span style="font-weight:bold;">OBJECTS</span> {
+              snmpEngineID,
+              snmpEngineBoots,
+              snmpEngineTime,
+              snmpEngineMaxMessageSize
+            }
+    <span style="font-weight:bold;">STATUS</span>       <span style="color:#0057ae;">current</span>
+    <span style="font-weight:bold;">DESCRIPTION</span> <span style="color:#bf0303;">&quot;A collection of objects for identifying and</span>
+<span style="color:#bf0303;">                 determining the configuration and current timeliness</span>
+
+<span style="color:#bf0303;">                 values of an SNMP engine.</span>
+<span style="color:#bf0303;">                &quot;</span>
+    ::= { snmpFrameworkMIBGroups <span style="color:#b08000;">1</span> }
+
+<span style="font-weight:bold;">END</span>
+</pre></body></html>

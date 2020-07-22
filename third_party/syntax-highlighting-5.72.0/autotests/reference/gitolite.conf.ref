@@ -1,0 +1,16 @@
+<Comment (Single)># Example gitolite.conf</Comment (Single)><br/>
+<Normal Text></Normal Text><br/>
+<Include>include</Include><Normal Text> </Normal Text><String>"mygroups.conf"</String><br/>
+<Normal Text></Normal Text><br/>
+<Group>@admin</Group><Normal Text> </Normal Text><Symbol>=</Symbol><Normal Text> user1 user2</Normal Text><br/>
+<Group>@admin</Group><Normal Text> </Normal Text><Symbol>=</Symbol><Normal Text> user3@domain.com</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>repo</Keyword><Group> @all</Group><br/>
+<Normal Text>	</Normal Text><Keyword>option</Keyword><Normal Text> deny-rules </Normal Text><Symbol>=</Symbol><Normal Text> 1</Normal Text><br/>
+<Normal Text>	</Normal Text><Keyword>option</Keyword><Normal Text> hooks.emailprefix </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><String>'[%GL_REPO] '</String><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>repo</Keyword><Normal Text> myrepo</Normal Text><br/>
+<Normal Text>	- protected$	</Normal Text><Symbol>=</Symbol><Group> @all</Group><Normal Text>		</Normal Text><Comment (Single)># Nobody can push</Comment (Single)><br/>
+<Normal Text>	</Normal Text><Keyword>RW+CD</Keyword><Normal Text>		</Normal Text><Symbol>=</Symbol><Group> @admin</Group><br/>
+<Normal Text>	</Normal Text><Keyword>RW</Keyword><Normal Text>		</Normal Text><Symbol>=</Symbol><Group> @group1</Group><br/>
+<Normal Text>	</Normal Text><Keyword>R</Keyword><Normal Text>		</Normal Text><Symbol>=</Symbol><Normal Text> user3@domain.com</Normal Text><br/>

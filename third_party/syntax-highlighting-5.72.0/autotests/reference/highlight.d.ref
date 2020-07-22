@@ -1,0 +1,219 @@
+<Comment>/********</Comment><br/>
+<Comment>*</Comment><Ddoc> Highlight testing module.</Ddoc><br/>
+<Comment>*</Comment><br/>
+<Comment>*</Comment><Ddoc> Do not attempt to run this!</Ddoc><br/>
+<Comment>***********/</Comment><br/>
+<Module>module</Module><Module Name> highlighttest</Module Name><Symbol>;</Symbol><br/>
+<Module>import</Module><Module Name> X = null</Module Name><Symbol>;</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Comment>/++</Comment><Ddoc> Pragma directives. DDoc + DDoc embedded items. Special Tokens.</Ddoc><br/>
+<Comment>+</Comment><br/>
+<Comment>+</Comment><Ddoc> </Ddoc><Comment>---</Comment><br/>
+<Comment>+</Comment><DdocCode> </DdocCode><Comment>// comment</Comment><br/>
+<Comment>+</Comment><DdocCode> </DdocCode><Pragma>#line </Pragma><Integer>12</Integer><Pragma> </Pragma><String>"hightlighttest.d"</String><Pragma>	</Pragma><Comment>/* block comment */</Comment><br/>
+<Comment>+</Comment><DdocCode> </DdocCode><Pragma>#line </Pragma><SpecialTokens>__LINE__</SpecialTokens><Pragma> </Pragma><SpecialTokens>__FILE__</SpecialTokens><Pragma>	</Pragma><Comment>/++</Comment><Ddoc> embedded block comment </Ddoc><Comment>+/</Comment><br/>
+<Comment>+</Comment><br/>
+<Comment>+</Comment><DdocCode> </DdocCode><Pragma>pragma </Pragma><Comment>/* */</Comment><Pragma> </Pragma><Normal Text>(</Normal Text><Version Type>msg</Version Type><Normal Text>,</Normal Text><Pragma> </Pragma><String>"what?"</String><Normal Text>)</Normal Text><Symbol>;</Symbol><br/>
+<Comment>+</Comment><DdocCode> </DdocCode><Pragma>pragma</Pragma><Normal Text>(</Normal Text><Comment>/++</Comment><Ddoc> </Ddoc><Comment>+/</Comment><Pragma> </Pragma><Version Type>lib</Version Type><Normal Text>,</Normal Text><Pragma> </Pragma><String>"insane.a"</String><Normal Text>)</Normal Text><Symbol>;</Symbol><br/>
+<Comment>+</Comment><DdocCode> </DdocCode><Pragma>pragma</Pragma><Normal Text>(</Normal Text><Version Type>inline</Version Type><Normal Text>)</Normal Text><Symbol>;</Symbol><br/>
+<Comment>+</Comment><DdocCode> </DdocCode><Pragma>pragma</Pragma><Normal Text>(</Normal Text><Version Type>linkerDirective</Version Type><Normal Text>)</Normal Text><Symbol>;</Symbol><br/>
+<Comment>+</Comment><DdocCode> </DdocCode><Pragma>pragma</Pragma><Normal Text>(</Normal Text><Version Type>mangle</Version Type><Normal Text>)</Normal Text><Symbol>;</Symbol><br/>
+<Comment>+</Comment><DdocCode> </DdocCode><Pragma>pragma</Pragma><Normal Text>(</Normal Text><Version Type>startaddress</Version Type><Normal Text>)</Normal Text><Symbol>;</Symbol><br/>
+<Comment>+</Comment><DdocCode> </DdocCode><Pragma>pragma</Pragma><Normal Text>(D_Custom_Extension,</Normal Text><Pragma> </Pragma><String>"custom data"</String><Normal Text>)</Normal Text><Symbol>;</Symbol><br/>
+<Comment>+</Comment><DdocCode> </DdocCode><Pragma>pragma</Pragma><Normal Text>(foo</Normal Text><Pragma> </Pragma><Error>0</Error><Symbol>);</Symbol><br/>
+<Comment>+</Comment><DdocCode> </DdocCode><Comment>---</Comment><br/>
+<Comment>+/</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Comment>///</Comment><Ddoc> version condition</Ddoc><br/>
+<Version>version</Version><Normal Text> = X;</Normal Text><br/>
+<Version>version</Version><Normal Text> = </Normal Text><Integer>1_2_3</Integer><Normal Text>;</Normal Text><br/>
+<Version>version</Version><Normal Text> (X) </Normal Text><Symbol>;</Symbol><br/>
+<Version>version</Version><Normal Text>(</Normal Text><Version Type>linux</Version Type><Normal Text>) </Normal Text><Symbol>{}</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Comment>///</Comment><Ddoc> linkage</Ddoc><br/>
+<Linkage>extern</Linkage><br/>
+<Normal Text>    (</Normal Text><Linkage Type>C</Linkage Type><Normal Text>) </Normal Text><Symbol>{}</Symbol><br/>
+<Linkage>extern</Linkage><Normal Text> </Normal Text><Symbol>:</Symbol><br/>
+<Symbol>;</Symbol><br/>
+<Linkage>extern</Linkage><Normal Text> (</Normal Text><Linkage Type>C++</Linkage Type><Normal Text>) </Normal Text><Symbol>{}</Symbol><br/>
+<Linkage>extern</Linkage><Normal Text> (</Normal Text><Linkage Type>C++</Linkage Type><Normal Text>, foo.bar.baz) </Normal Text><Symbol>{}</Symbol><br/>
+<Linkage>extern</Linkage><Normal Text> (</Normal Text><Linkage Type>D</Linkage Type><Normal Text>) </Normal Text><Symbol>{}</Symbol><br/>
+<Linkage>extern</Linkage><Normal Text> (</Normal Text><Linkage Type>Windows</Linkage Type><Normal Text>) </Normal Text><Symbol>{}</Symbol><br/>
+<Linkage>extern</Linkage><Normal Text> (</Normal Text><Linkage Type>Pascal</Linkage Type><Normal Text>) </Normal Text><Symbol>{}</Symbol><br/>
+<Linkage>extern</Linkage><Normal Text> (</Normal Text><Linkage Type>System</Linkage Type><Normal Text>) </Normal Text><Symbol>{}</Symbol><br/>
+<Linkage>extern</Linkage><Normal Text> (</Normal Text><Error>unknown</Error><Symbol>)</Symbol><Normal Text> </Normal Text><Symbol>{}</Symbol><br/>
+<Linkage>extern</Linkage><Normal Text> (</Normal Text><Linkage Type>C</Linkage Type><Error>,</Error><Symbol>)</Symbol><Normal Text> </Normal Text><Symbol>{}</Symbol><br/>
+<Linkage>extern</Linkage><Normal Text> (</Normal Text><Linkage Type>C++</Linkage Type><Normal Text>, foo</Normal Text><Error>,</Error><Normal Text> bar) </Normal Text><Symbol>{}</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Comment>///</Comment><Ddoc> alias & typedef</Ddoc><br/>
+<Declarator>alias</Declarator><Normal Text> </Normal Text><Type>int</Type><Normal Text>.</Normal Text><Property>min</Property><Normal Text> minint</Normal Text><Symbol>;</Symbol><br/>
+<Declarator>typedef</Declarator><Normal Text> </Normal Text><Type>int</Type><Normal Text> myint</Normal Text><Symbol>;</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Type>int</Type><Normal Text> main</Normal Text><Symbol>(</Symbol><Type>char</Type><Symbol>[][]</Symbol><Normal Text> args</Normal Text><Symbol>)</Symbol><Normal Text> </Normal Text><Symbol>{</Symbol><br/>
+<Normal Text>    </Normal Text><Comment>///</Comment><Ddoc> statements</Ddoc><br/>
+<Normal Text>    </Normal Text><Statement>if</Statement><Normal Text> </Normal Text><Symbol>(</Symbol><Integer>1</Integer><Symbol>)</Symbol><Normal Text> </Normal Text><Symbol>{}</Symbol><br/>
+<Normal Text>    </Normal Text><Statement>else</Statement><Normal Text> </Normal Text><Symbol>{}</Symbol><br/>
+<Normal Text>    </Normal Text><Statement>with</Statement><Normal Text> </Normal Text><Symbol>(</Symbol><Normal Text>N</Normal Text><Symbol>)</Symbol><Normal Text> </Normal Text><Symbol>{</Symbol><Normal Text>x </Normal Text><Symbol>=</Symbol><Normal Text> B</Normal Text><Symbol>}</Symbol><br/>
+<Normal Text>    </Normal Text><br/>
+<Normal Text>    </Normal Text><Comment>///</Comment><Ddoc> attributes</Ddoc><br/>
+<Normal Text>    </Normal Text><Attribute>auto</Attribute><Normal Text> x </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Integer>1</Integer><Symbol>;</Symbol><br/>
+<Normal Text>    </Normal Text><Attribute>static</Attribute><Normal Text> </Normal Text><Statement>if</Statement><Normal Text> </Normal Text><Symbol>(</Symbol><Expression>true</Expression><Symbol>)</Symbol><Normal Text> </Normal Text><Symbol>{}</Symbol><br/>
+<Normal Text>    </Normal Text><Type>void</Type><Normal Text> </Normal Text><Symbol>(</Symbol><Expression>in</Expression><Normal Text> X</Normal Text><Symbol>,</Symbol><Normal Text> </Normal Text><Attribute>out</Attribute><Normal Text> Y</Normal Text><Symbol>)</Symbol><Normal Text> </Normal Text><Symbol>{}</Symbol><Normal Text>	</Normal Text><Comment>// </Comment><Alert Level 3>NOTE</Alert Level 3><Comment>: using in like this is rare, more common to use as an expression and no way to tell apart?</Comment><br/>
+<Normal Text>    </Normal Text><br/>
+<Normal Text>    </Normal Text><Comment>///</Comment><Ddoc> deprecated</Ddoc><br/>
+<Normal Text>    </Normal Text><Deprecated>deprecated</Deprecated><Normal Text> </Normal Text><Type>void</Type><Normal Text> fct </Normal Text><Symbol>();</Symbol><br/>
+<Normal Text>    </Normal Text><br/>
+<Normal Text>    </Normal Text><Comment>///</Comment><Ddoc> types</Ddoc><br/>
+<Normal Text>    </Normal Text><Type>void</Type><Normal Text> a</Normal Text><Symbol>;</Symbol><br/>
+<Normal Text>    </Normal Text><Type>ushort</Type><Normal Text> u</Normal Text><Symbol>;</Symbol><br/>
+<Normal Text>    </Normal Text><Type>int</Type><Symbol>[</Symbol><Type>uint</Type><Symbol>]</Symbol><Normal Text> AA</Normal Text><Symbol>;</Symbol><br/>
+<Normal Text>    </Normal Text><Declarator>class</Declarator><Normal Text> C</Normal Text><Symbol>;</Symbol><br/>
+<Normal Text>    </Normal Text><Declarator>enum</Declarator><Normal Text> N </Normal Text><Symbol>:</Symbol><Normal Text> </Normal Text><Type>int</Type><Normal Text> </Normal Text><Symbol>{</Symbol><Normal Text> A </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Integer>5</Integer><Symbol>,</Symbol><Normal Text> B </Normal Text><Symbol>}</Symbol><br/>
+<Normal Text>    </Normal Text><Type>typeof</Type><Symbol>(</Symbol><Normal Text>u</Normal Text><Symbol>)</Symbol><Normal Text> u2</Normal Text><Symbol>;</Symbol><br/>
+<Normal Text>    </Normal Text><br/>
+<Normal Text>    </Normal Text><Comment>///</Comment><Ddoc> expressions</Ddoc><br/>
+<Normal Text>    x </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Expression>cast</Expression><Symbol>(</Symbol><Type>int</Type><Symbol>)</Symbol><Normal Text> </Normal Text><Integer>55</Integer><Symbol>;</Symbol><br/>
+<Normal Text>    </Normal Text><Type>void</Type><Symbol>*</Symbol><Normal Text> p </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Expression>null</Expression><Symbol>;</Symbol><br/>
+<Normal Text>    p </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Expression>cast</Expression><Symbol>(</Symbol><Type>void</Type><Symbol>*)</Symbol><Normal Text> </Normal Text><Expression>new</Expression><Normal Text> </Normal Text><Type>int</Type><Symbol>;</Symbol><br/>
+<Normal Text>    x </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Integer>1</Integer><Normal Text> </Normal Text><Expression>in</Expression><Normal Text> AA</Normal Text><Symbol>;</Symbol><Normal Text>	</Normal Text><Comment>// </Comment><Alert Level 3>NOTE</Alert Level 3><Comment>: a THIRD use of in. How to detect??</Comment><br/>
+<Normal Text>    </Normal Text><Expression>assert</Expression><Normal Text> </Normal Text><Symbol>(</Symbol><Expression>true</Expression><Symbol>);</Symbol><br/>
+<Normal Text>        </Normal Text><br/>
+<Normal Text>    </Normal Text><Comment>///</Comment><Ddoc> libsymbols</Ddoc><br/>
+<Normal Text>    </Normal Text><LibrarySymbols>string</LibrarySymbols><Normal Text> s </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><String>""</String><Symbol>;</Symbol><br/>
+<Normal Text>    </Normal Text><Statement>throw</Statement><Normal Text> </Normal Text><Expression>new</Expression><Normal Text> </Normal Text><LibrarySymbols>Exception</LibrarySymbols><Symbol>;</Symbol><br/>
+<Normal Text>    </Normal Text><LibrarySymbols>TypeInfo</LibrarySymbols><Normal Text> ti </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Expression>typeid</Expression><Symbol>(</Symbol><Type>int</Type><Symbol>);</Symbol><br/>
+<Normal Text>    </Normal Text><br/>
+<Normal Text>    </Normal Text><Comment>///</Comment><Ddoc> tests</Ddoc><br/>
+<Normal Text>    </Normal Text><Tests>debug</Tests><Normal Text> </Normal Text><Symbol>{}</Symbol><br/>
+<Normal Text>    </Normal Text><Tests>debug</Tests><Normal Text> </Normal Text><Symbol>(</Symbol><Integer>2</Integer><Symbol>)</Symbol><Normal Text> </Normal Text><Symbol>{}</Symbol><br/>
+<Normal Text>    </Normal Text><Tests>debug</Tests><Normal Text> </Normal Text><Symbol>(</Symbol><Normal Text>DSymb</Normal Text><Symbol>)</Symbol><Normal Text> </Normal Text><Symbol>{}</Symbol><br/>
+<Normal Text>    </Normal Text><Tests>unittest</Tests><Normal Text> </Normal Text><Symbol>{}</Symbol><br/>
+<Normal Text>    </Normal Text><br/>
+<Normal Text>    </Normal Text><Comment>///</Comment><Ddoc> scope (as attribute and as statement)</Ddoc><br/>
+<Normal Text>    </Normal Text><Attribute>scope</Attribute><Normal Text> </Normal Text><Declarator>struct</Declarator><Normal Text> S</Normal Text><Symbol>;</Symbol><br/>
+<Normal Text>    </Normal Text><Statement>scope </Statement><Normal Text>(</Normal Text><Expression>exit</Expression><Normal Text>) </Normal Text><Symbol>{}</Symbol><br/>
+<Normal Text>    </Normal Text><Attribute>scope</Attribute><Normal Text> </Normal Text><br/>
+<Normal Text>     </Normal Text><Symbol>(</Symbol><Normal Text>success</Normal Text><Symbol>)</Symbol><Normal Text> </Normal Text><Symbol>{}</Symbol><Normal Text>	</Normal Text><Comment>// </Comment><Alert Level 3>NOTE</Alert Level 3><Comment>: rules cannot match across new-lines</Comment><br/>
+<Normal Text>    </Normal Text><Statement>scope </Statement><Normal Text>(</Normal Text><Expression>failure</Expression><Normal Text>) </Normal Text><Symbol>{}</Symbol><br/>
+<Normal Text>    </Normal Text><br/>
+<Normal Text>    </Normal Text><Comment>///</Comment><Ddoc> Properties</Ddoc><br/>
+<Normal Text>    x </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Type>int</Type><Normal Text>.</Normal Text><Property>min</Property><Symbol>;</Symbol><br/>
+<Normal Text>    s </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Symbol>(</Symbol><Integer>5</Integer><Symbol>-</Symbol><Integer>3</Integer><Symbol>)</Symbol><Normal Text>.</Normal Text><Property>stringof</Property><Symbol>;</Symbol><br/>
+<Normal Text>    </Normal Text><br/>
+<Normal Text>    </Normal Text><Comment>///</Comment><Ddoc> strings</Ddoc><br/>
+<Normal Text>    s </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><RawString>r"raw string"</RawString><Symbol>;</Symbol><br/>
+<Normal Text>    s </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><HexString>x"00FF"</HexString><Symbol>;</Symbol><br/>
+<Normal Text>    s </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><EscapeSequence>\n</EscapeSequence><Normal Text> </Normal Text><EscapeSequence>\a</EscapeSequence><Symbol>;</Symbol><br/>
+<Normal Text>    s </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><EscapeSequence>\u1234</EscapeSequence><Symbol>;</Symbol><br/>
+<Normal Text>    s </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><EscapeSequence>\U12345678</EscapeSequence><Symbol>;</Symbol><br/>
+<Normal Text>    s </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><EscapeSequence>\&amp;</EscapeSequence><Normal Text> </Normal Text><Symbol>;</Symbol><br/>
+<Normal Text>    </Normal Text><Type>char</Type><Normal Text> c </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Char>'a'</Char><Symbol>;</Symbol><br/>
+<Normal Text>    s </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><String>"abc 012 </String><EscapeSequence>\"</EscapeSequence><String> </String><EscapeSequence>\n</EscapeSequence><String> </String><EscapeSequence>\x12</EscapeSequence><String> </String><EscapeSequence>\u1234</EscapeSequence><String> </String><EscapeSequence>\U12345678</EscapeSequence><String>"</String><Symbol>;</Symbol><br/>
+<Normal Text>    s </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><BQString>`BQString '"`</BQString><Symbol>;</Symbol><br/>
+<Normal Text>    s </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Token String Delimiter>q{</Token String Delimiter><Normal Text>foo </Normal Text><String>"bar"</String><Normal Text> </Normal Text><Integer>123</Integer><Token String Delimiter>}</Token String Delimiter><Symbol>;</Symbol><br/>
+<Normal Text>    s </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Delimited String Delimiter>q"FOO</Delimited String Delimiter><br/>
+<Delimited String Content>foo</Delimited String Content><br/>
+<Delimited String Delimiter>FOO"</Delimited String Delimiter><Symbol>;</Symbol><br/>
+<Normal Text>    s </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Delimited String Delimiter>q"[</Delimited String Delimiter><Delimited String Content>foo [bar] q"[baz]"</Delimited String Content><Delimited String Delimiter>]"</Delimited String Delimiter><Symbol>;</Symbol><br/>
+<Normal Text>    s </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Delimited String Delimiter>q"(</Delimited String Delimiter><Delimited String Content>foo (bar) q"(baz)"</Delimited String Content><Delimited String Delimiter>)"</Delimited String Delimiter><Symbol>;</Symbol><br/>
+<Normal Text>    s </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Delimited String Delimiter>q"<</Delimited String Delimiter><Delimited String Content>foo <bar> q"<baz>"</Delimited String Content><Delimited String Delimiter>>"</Delimited String Delimiter><Symbol>;</Symbol><br/>
+<Normal Text>    s </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Delimited String Delimiter>q"{</Delimited String Delimiter><Delimited String Content>foo {bar} q"{baz}"</Delimited String Content><Delimited String Delimiter>}"</Delimited String Delimiter><Symbol>;</Symbol><br/>
+<Normal Text>    s </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Delimited String Delimiter>q"/</Delimited String Delimiter><Delimited String Content>foo</Delimited String Content><Delimited String Delimiter>/"</Delimited String Delimiter><Symbol>;</Symbol><br/>
+<Normal Text>    s </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Delimited String Delimiter>q"!</Delimited String Delimiter><Delimited String Content>foo</Delimited String Content><Delimited String Delimiter>!"</Delimited String Delimiter><Symbol>;</Symbol><br/>
+<Normal Text>    </Normal Text><br/>
+<Normal Text>    </Normal Text><Comment>///</Comment><Ddoc> region markers</Ddoc><br/>
+<Normal Text>    </Normal Text><Region Marker>//BEGIN x</Region Marker><br/>
+<Normal Text>    </Normal Text><Region Marker>//END x</Region Marker><br/>
+<Normal Text>    </Normal Text><br/>
+<Normal Text>    </Normal Text><Comment>///</Comment><Ddoc> DDoc</Ddoc><br/>
+<Normal Text>    </Normal Text><Comment>/*******</Comment><br/>
+<Ddoc>    </Ddoc><Comment>*</Comment><Ddoc> DDoc</Ddoc><br/>
+<Ddoc>    </Ddoc><Comment>*</Comment><br/>
+<Ddoc>    </Ddoc><Comment>*</Comment><Ddoc> Section:</Ddoc><br/>
+<Ddoc>    </Ddoc><Comment>*</Comment><Ddoc> New section.</Ddoc><br/>
+<Ddoc>    </Ddoc><Comment>*</Comment><Ddoc> </Ddoc><Macros>$(I</Macros><Macro Text> italic</Macro Text><Macros>)</Macros><br/>
+<Ddoc>    </Ddoc><Comment>*******/</Comment><br/>
+<Normal Text>    </Normal Text><Comment>/+++++++</Comment><br/>
+<Ddoc>    </Ddoc><Comment>+</Comment><Ddoc> DDoc</Ddoc><br/>
+<Ddoc>    </Ddoc><Comment>+</Comment><Ddoc> /+</Ddoc><br/>
+<Ddoc>    </Ddoc><Comment>+</Comment><Ddoc> +/</Ddoc><br/>
+<Ddoc>    </Ddoc><Comment>+++++++/</Comment><br/>
+<Normal Text>    </Normal Text><br/>
+<Normal Text>    </Normal Text><Comment>// comments</Comment><br/>
+<Normal Text>    </Normal Text><Comment>// </Comment><Alert Level 2>FIXME</Alert Level 2><Comment> </Comment><Alert Level 3>NOTE</Alert Level 3><br/>
+<Normal Text>    </Normal Text><Comment>/* comment */</Comment><br/>
+<Normal Text>    </Normal Text><Comment>/+ comment /+ nested comment +/ +/</Comment><br/>
+<Normal Text>    </Normal Text><br/>
+<Normal Text>    </Normal Text><Comment>///</Comment><Ddoc> brace folding</Ddoc><br/>
+<Normal Text>    </Normal Text><Symbol>{</Symbol><br/>
+<Normal Text>    </Normal Text><Symbol>}</Symbol><br/>
+<Normal Text>    </Normal Text><br/>
+<Normal Text>    </Normal Text><Comment>/**</Comment><Ddoc> normal text</Ddoc><br/>
+<Ddoc>    </Ddoc><Comment>*</Comment><Ddoc> </Ddoc><Comment>---</Comment><br/>
+<DdocCode>    </DdocCode><Comment>*</Comment><DdocCode> </DdocCode><Normal Text>.x</Normal Text><Symbol>;</Symbol><br/>
+<DdocCode>    </DdocCode><Comment>*</Comment><DdocCode> </DdocCode><Normal Text>..</Normal Text><br/>
+<DdocCode>    </DdocCode><Comment>*</Comment><DdocCode> </DdocCode><Normal Text>...</Normal Text><br/>
+<DdocCode>    </DdocCode><Comment>*</Comment><DdocCode> </DdocCode><Normal Text>....</Normal Text><br/>
+<DdocCode>    </DdocCode><Comment>*</Comment><DdocCode> </DdocCode><Normal Text>.....</Normal Text><br/>
+<DdocCode>    </DdocCode><Comment>*</Comment><DdocCode> </DdocCode><Normal Text>_._</Normal Text><br/>
+<DdocCode>    </DdocCode><Comment>*</Comment><DdocCode> </DdocCode><Normal Text>_e1</Normal Text><br/>
+<DdocCode>    </DdocCode><Comment>*</Comment><DdocCode> </DdocCode><Comment>---</Comment><br/>
+<Ddoc>    </Ddoc><Comment>*/</Comment><br/>
+<Normal Text>    </Normal Text><br/>
+<Normal Text>    </Normal Text><Comment>///</Comment><Ddoc> float and int literals</Ddoc><br/>
+<Normal Text>    </Normal Text><Type>int</Type><Normal Text> i</Normal Text><Symbol>;</Symbol><br/>
+<Normal Text>    </Normal Text><Type>real</Type><Normal Text> r</Normal Text><Symbol>;</Symbol><br/>
+<Normal Text>    </Normal Text><Type>ireal</Type><Normal Text> ir</Normal Text><Symbol>;</Symbol><br/>
+<Normal Text>    r </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Float>.0</Float><Symbol>;</Symbol><br/>
+<Normal Text>    r </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Float>0f</Float><Symbol>;</Symbol><br/>
+<Normal Text>    ir </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Float>0e0i</Float><Symbol>;</Symbol><br/>
+<Normal Text>    ir </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Float>0.fi</Float><Symbol>;</Symbol><br/>
+<Normal Text>    r </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Float>0.0e0</Float><Symbol>;</Symbol><br/>
+<Normal Text>    r </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Float>0xF.Fp0</Float><Symbol>;</Symbol><br/>
+<Normal Text>    r </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Float>0x_._p0_</Float><Symbol>;</Symbol><br/>
+<Normal Text>    i </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Integer>5</Integer><Symbol>;</Symbol><br/>
+<Normal Text>    i </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Symbol>-</Symbol><Integer>1</Integer><Symbol>;</Symbol><br/>
+<Normal Text>    i </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Binary>0b10</Binary><Symbol>;</Symbol><br/>
+<Normal Text>    i </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Octal>0070</Octal><Symbol>;</Symbol><br/>
+<Normal Text>    i </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Octal>00</Octal><Symbol>;</Symbol><br/>
+<Normal Text>    i </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Hex>0xF0</Hex><Symbol>;</Symbol><br/>
+<Normal Text>    </Normal Text><br/>
+<Normal Text>    </Normal Text><Comment>///</Comment><Ddoc> ranges</Ddoc><br/>
+<Normal Text>    </Normal Text><Type>int</Type><Symbol>[]</Symbol><Normal Text> A</Normal Text><Symbol>;</Symbol><br/>
+<Normal Text>    i </Normal Text><Symbol>=</Symbol><Normal Text> A</Normal Text><Symbol>[</Symbol><Integer>1</Integer><Symbol>];</Symbol><br/>
+<Normal Text>    A </Normal Text><Symbol>=</Symbol><Normal Text> A</Normal Text><Symbol>[</Symbol><Integer>0</Integer><Normal Text>..$</Normal Text><Symbol>];</Symbol><br/>
+<Normal Text>    A </Normal Text><Symbol>=</Symbol><Normal Text> A</Normal Text><Symbol>[</Symbol><Integer>0</Integer><Normal Text>..</Normal Text><Integer>0</Integer><Symbol>];</Symbol><br/>
+<Normal Text>    A </Normal Text><Symbol>=</Symbol><Normal Text> A</Normal Text><Symbol>[</Symbol><Integer>0</Integer><Normal Text>..length</Normal Text><Symbol>];</Symbol><br/>
+<Normal Text>    </Normal Text><br/>
+<Normal Text>    </Normal Text><Comment>///</Comment><Ddoc> labels</Ddoc><br/>
+<Normal Text>    label</Normal Text><Symbol>:</Symbol><br/>
+<Normal Text>    </Normal Text><Statement>goto</Statement><Normal Text> label</Normal Text><Symbol>;</Symbol><br/>
+<Normal Text>    </Normal Text><br/>
+<Normal Text>    </Normal Text><Comment>///</Comment><Ddoc> function, delegate</Ddoc><br/>
+<Normal Text>    </Normal Text><Type>creal</Type><Normal Text> </Normal Text><Declarator>function </Declarator><Symbol>()</Symbol><Normal Text> fp </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Expression>function</Expression><Normal Text> </Normal Text><Type>creal</Type><Symbol>()</Symbol><Normal Text> </Normal Text><Symbol>{</Symbol><Normal Text> </Normal Text><Statement>return</Statement><Normal Text> </Normal Text><Float>0f</Float><Symbol>+</Symbol><Float>0fi</Float><Symbol>;</Symbol><Normal Text> </Normal Text><Symbol>};</Symbol><br/>
+<Normal Text>    </Normal Text><Type>void</Type><Normal Text> </Normal Text><Declarator>delegate </Declarator><Symbol>(</Symbol><Expression>in</Expression><Normal Text> </Normal Text><Type>int</Type><Normal Text> i</Normal Text><Symbol>,</Symbol><Normal Text> </Normal Text><Attribute>lazy</Attribute><Normal Text> </Normal Text><Type>int</Type><Normal Text> b</Normal Text><Symbol>)</Symbol><Normal Text> dg </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Expression>delegate</Expression><Normal Text> </Normal Text><Type>void</Type><Normal Text> </Normal Text><Symbol>(</Symbol><Type>int</Type><Symbol>,</Symbol><Normal Text> </Normal Text><Type>int</Type><Symbol>)</Symbol><Normal Text> </Normal Text><Symbol>{}</Symbol><br/>
+<Normal Text>    </Normal Text><br/>
+<Normal Text>    </Normal Text><Comment>///</Comment><Ddoc> in, out, body</Ddoc><br/>
+<Normal Text>    </Normal Text><Comment>// </Comment><Alert Level 3>NOTE</Alert Level 3><Comment>: highlighting in & out as statements here could be difficult</Comment><br/>
+<Normal Text>    </Normal Text><Type>float</Type><Normal Text> F </Normal Text><Symbol>()</Symbol><br/>
+<Normal Text>    </Normal Text><Statement>in </Statement><Symbol>{}</Symbol><br/>
+<Normal Text>    </Normal Text><Statement>out </Statement><Symbol>(</Symbol><Normal Text>result</Normal Text><Symbol>)</Symbol><Normal Text> </Normal Text><Symbol>{}</Symbol><br/>
+<Normal Text>    </Normal Text><Statement>body</Statement><Normal Text> </Normal Text><Symbol>{}</Symbol><br/>
+<Normal Text>    </Normal Text><br/>
+<Normal Text>    </Normal Text><Comment>///</Comment><Ddoc> try, catch, finally</Ddoc><br/>
+<Normal Text>    </Normal Text><Statement>try</Statement><Normal Text> </Normal Text><Symbol>{</Symbol><br/>
+<Normal Text>        </Normal Text><Statement>throw</Statement><Normal Text> </Normal Text><Expression>new</Expression><Normal Text> </Normal Text><LibrarySymbols>Exception</LibrarySymbols><Symbol>(</Symbol><String>"oh no... "</String><Symbol>);</Symbol><br/>
+<Normal Text>    </Normal Text><Symbol>}</Symbol><Normal Text> </Normal Text><Statement>catch</Statement><Normal Text> </Normal Text><Symbol>(</Symbol><LibrarySymbols>Exception</LibrarySymbols><Normal Text> e</Normal Text><Symbol>)</Symbol><Normal Text> </Normal Text><Symbol>{</Symbol><br/>
+<Normal Text>    </Normal Text><Symbol>}</Symbol><Normal Text> </Normal Text><Statement>finally</Statement><Normal Text> </Normal Text><Symbol>{</Symbol><br/>
+<Normal Text>    </Normal Text><Symbol>}</Symbol><br/>
+<Normal Text>    </Normal Text><br/>
+<Normal Text>    </Normal Text><Comment>///</Comment><Ddoc> mixin</Ddoc><br/>
+<Normal Text>    </Normal Text><Statement>mixin</Statement><Symbol>(</Symbol><String>"return false;"</String><Symbol>)</Symbol><Normal Text>.</Normal Text><Property>stringof</Property><Symbol>;</Symbol><br/>
+<Normal Text>    </Normal Text><br/>
+<Normal Text>    </Normal Text><Comment>///</Comment><Ddoc> templates</Ddoc><br/>
+<Normal Text>    </Normal Text><Template>macro</Template><Symbol>;</Symbol><Normal Text> </Normal Text><Comment>// what does this do?</Comment><br/>
+<Normal Text>    </Normal Text><Template>template</Template><Normal Text> Tp </Normal Text><Symbol>(</Symbol><Normal Text>T</Normal Text><Symbol>)</Symbol><Normal Text> </Normal Text><Symbol>{</Symbol><br/>
+<Normal Text>        Tp t</Normal Text><Symbol>;</Symbol><br/>
+<Normal Text>    </Normal Text><Symbol>}</Symbol><br/>
+<Normal Text>    Tp</Normal Text><Symbol>!(</Symbol><Type>int</Type><Symbol>)</Symbol><Normal Text> y</Normal Text><Symbol>;</Symbol><br/>
+<Symbol>}</Symbol><br/>

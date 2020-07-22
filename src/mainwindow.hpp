@@ -52,6 +52,11 @@ namespace Widgets
 class TestCases;
 }
 
+namespace KSyntaxHighlighting
+{
+class SyntaxHighlighter;
+}
+
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -205,6 +210,8 @@ class MainWindow : public QMainWindow
     Widgets::TestCases *testcases = nullptr;
 
     QTimer *autoSaveTimer = nullptr;
+
+    KSyntaxHighlighting::SyntaxHighlighter *m_highlighter;
 
     void setTestCases();
     void setEditor();

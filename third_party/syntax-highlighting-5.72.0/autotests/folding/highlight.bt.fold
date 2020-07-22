@@ -1,0 +1,31 @@
+Thread 1 "lab_dialog" received signal SIGSEGV, Segmentation fault.
+0x000055555555a279 in Ui_Window::setupUi (this=0x0, Window=0x7fffffffc350) at ./ui_window.h:56
+56              centralwidget = new QWidget(Window);
+
+[Current thread is 1 (Thread 0x7ffff7edd840 (LWP 7267))]
+
+Thread 3 (Thread 0x7fffe035e700 (LWP 2289)):
+#0  0x00007ffff565697b in poll () from /usr/lib/libc.so.6
+#1  0x00007ffff3a29613 in ?? () from /usr/lib/libglib-2.0.so.0
+#2  0x00007ffff3a2972e in g_main_context_iteration () from /usr/lib/libglib-2.0.so.0
+#3  0x00007ffff69ae241 in QEventDispatcherGlib::processEvents(QFlags<QEventLoop::ProcessEventsFlag>) () from /usr/lib/libQt5Core.so.5
+#4  0x00007ffff695032b in QEventLoop::exec(QFlags<QEventLoop::ProcessEventsFlag>) () from /usr/lib/libQt5Core.so.5
+#5  0x00007ffff675f72e in QThread::exec() () from /usr/lib/libQt5Core.so.5
+#6  0x00007fffeed1d416 in ?? () from /usr/lib/libQt5DBus.so.5
+#7  0x00007ffff6764acd in ?? () from /usr/lib/libQt5Core.so.5
+#8  0x00007ffff621308c in start_thread () from /usr/lib/libpthread.so.0
+#9  0x00007ffff5660e7f in clone () from /usr/lib/libc.so.6
+
+Thread 2 (Thread 0x7fffebd8a700 (LWP 2287)):
+#0  0x00007ffff565697b in poll () from /usr/lib/libc.so.6
+#1  0x00007ffff011a180 in ?? () from /usr/lib/libxcb.so.1
+#2  0x00007ffff011be4b in xcb_wait_for_event () from /usr/lib/libxcb.so.1
+#3  0x00007fffef21382a in ?? () from /usr/lib/libQt5XcbQpa.so.5
+#4  0x00007ffff6764acd in ?? () from /usr/lib/libQt5Core.so.5
+#5  0x00007ffff621308c in start_thread () from /usr/lib/libpthread.so.0
+#6  0x00007ffff5660e7f in clone () from /usr/lib/libc.so.6
+
+Thread 1 (Thread 0x7ffff7f80cc0 (LWP 2283)):
+#0  0x000055555555a279 in Ui_Window::setupUi (this=0x0, Window=0x7fffffffc350) at ./ui_window.h:56
+#1  0x0000555555558ea2 in Window::Window (this=0x7fffffffc350, parent=0x0) at ../window.cpp:22
+#2  0x0000555555558b85 in main (argc=1, argv=0x7fffffffc498) at ../main.cpp:20

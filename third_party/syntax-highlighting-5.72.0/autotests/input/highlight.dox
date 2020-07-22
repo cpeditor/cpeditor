@@ -1,0 +1,227 @@
+This is a pseudo doxygen file to test Kate's doxyge syntax highlighting.
+
+Normal text, no HL.
+===================
+a multiline comment may begin with a /*! */, too. That should work,
+because it is the same "entrance rule".
+
+popping tests:
+/** multiline */ end of doxygen HL mode
+/*! multiline */ end of doxygen HL mode
+//! singleline, where */ should be ignored! still doxygen HL mode
+/// singleline, where */ should be ignored! still doxygen HL mode
+///< singleline, where */ should be ignored! still doxygen HL mode
+begin and end immediately:
+/********/ actually no doxygen comment - used for "info boxes" :)
+/**/ <-- it really works --- end of doxygen HL mode
+/*!*/ end of doxygen HL mode
+
+<tag> <normal comment HL>
+/** \code rest of line is normal comment HL */ end of doxygen HL mode
+/** \code rest of line is normal comment HL
+ * comment HL mode
+ */ end of doxygen HL mode
+
+<tag> <word> <normal comment HL>
+/** \file aword rest of line is normal comment HL */ end of doxygen HL mode
+/** \file */aword <-- pop! no doxygen HL mode
+/** \file aword rest of line is normal comment HL
+ * comment HL mode
+ */ end of doxygen HL mode
+
+<tag> <rest of line is string>
+/** \brief A short description */ end of doxygen HL mode
+/** \brief */A <-- pop! end of doxygen HL mode
+/** \brief A short description 
+ * comment HL mode
+ */ end of doxygen HL mode
+
+<tag> <word> <rest of line is string>
+/** \page aword rest of line is string */ end of doxygen HL mode
+/** \page */aword <-- pop! end of doxygen HL mode
+/** \page aword rest of line is string 
+ * comment HL mode
+ */ end of doxygen HL mode
+
+<tag> <word> <word> <normal comment HL>
+/** \image aword aword rest of line is normal HL */ end of doxygen HL mode
+/** \image aword */aword <-- pop! end of doxygen HL mode
+/** \image */aword aword <-- pop! end of doxygen HL mode
+/** \image aword aword rest of line is normal HL
+ * comment HL mode
+ */ end of doxygen HL mode
+
+Tests for HTML tags in doxygen HL mode:
+=======================================
+/** <a href="blubb" href='blubb'> */ end of doxygen HL mode
+/** <a href="blubb" href='blubb'*/> end of doxygen HL mode
+/** <a href="blubb" href='blubb*/'> end of doxygen HL mode
+/** <a href="blubb" href='blub*/b'> end of doxygen HL mode
+/** <a href="blubb" href='b*/lubb'> end of doxygen HL mode
+/** <a href="blubb" href='*/blubb'> end of doxygen HL mode
+/** <a href="blubb" href=*/'blubb'> end of doxygen HL mode
+/** <a href="blubb" href*/='blubb'> end of doxygen HL mode
+/** <a href="blubb" hre*/f='blubb'> end of doxygen HL mode
+/** <a href="blubb" */href='blubb'> end of doxygen HL mode
+/** <a href="blubb"> */ end of doxygen HL mode
+/** <a href="blubb"*/> end of doxygen HL mode
+/** <a href="blubb*/"> end of doxygen HL mode
+/** <a href="blub*/b"> end of doxygen HL mode
+/** <a href="*/blubb"> end of doxygen HL mode
+/** <a href=*/"blubb"> end of doxygen HL mode
+/** <a href*/="blubb"> end of doxygen HL mode
+/** <a h*/ref="blubb"> end of doxygen HL mode
+/** <a */href="blubb"> end of doxygen HL mode
+/** <a*/ href="blubb"> end of doxygen HL mode
+/** <*/a href="blubb"> end of doxygen HL mode
+
+//! <a href="blubb" href='blubb'> */ stay in doygen HL mode
+//! <a href="blubb" href='blubb'*/> stay in doygen HL mode
+//! <a href="blubb" href='blubb*/'> stay in doygen HL mode
+//! <a href="blubb" href='blu*/bb'> stay in doygen HL mode
+//! <a href="blubb" href='*/blubb'> stay in doygen HL mode
+//! <a href="blubb" href=*/'blubb'> stay in doygen HL mode
+//! <a href="blubb"> */ stay in doygen HL mode
+//! <a href="blubb"*/> stay in doygen HL mode
+//! <a href="blubb*/"> stay in doygen HL mode
+//! <a href="blub*/b"> stay in doygen HL mode
+//! <a href="*/blubb"> stay in doygen HL mode
+//! <a href=*/"blubb"> stay in doygen HL mode
+//! <a href*/="blubb"> stay in doygen HL mode
+//! <a h*/ref="blubb"> stay in doygen HL mode
+//! <a */href="blubb"> stay in doygen HL mode
+//! <a*/ href="blubb"> stay in doygen HL mode
+//! <*/a href="blubb">  stay in doygen HL mode
+//! <a href="blubb">  stay in doygen HL <mode
+here should be normal HL mode (no doxygen!)
+
+Tests for HTML tags in doxygen HL mode with tags:
+=================================================
+<tag> <normal comment HL>
+/** \code rest <a href="blubb"> of </a href='blubb'> line is normal comment HL */ end of doxygen HL mode
+/** \code rest <a href="blubb"> of </a href='blubb'*/> end of doxygen HL mode
+/** \code rest <a href="blubb"> of </a href='blubb*/'> end of doxygen HL mode
+/** \code rest <a href="blubb"> of </a href='*/blubb'> end of doxygen HL mode
+/** \code rest <a href="blubb"> of </a href=*/'blubb'> end of doxygen HL mode
+/** \code rest <a href="blubb*/"> of </a href=*/'blubb'> end of doxygen HL mode
+/** \code rest <a href=*/"blubb"> of </a href='blubb'> end of doxygen HL mode
+/** \code rest <a h*/ref="blubb"> of </a href='blubb'> end of doxygen HL mode
+/** \code rest <*/a href="blubb"> of </a href='blubb'> end of doxygen HL mode
+/** \code rest of line is normal comment HL
+ * comment HL mode <html> text </html>
+ */ end of doxygen HL mode
+
+<tag> <word> <normal comment HL>
+/** \file awo<html_should_be_ignored_here>rd rest of line is normal comment HL */ end of doxygen HL mode
+/** \file awo<html_should_be_ignored_here>*/rd end of doxygen HL mode
+/** \file awo<html_should_be_i*/gnored_here>rd end of doxygen HL mode
+/** \file awo<*/html_should_be_ignored_here>rd end of doxygen HL mode
+/** \file a*/wo<html_should_be_ignored_here>rd end of doxygen HL mode
+/** \file aword rest of line is normal co<code>mment HL
+ * comment HL mode
+ */ end of doxygen HL mode
+
+<tag> <rest of line is string>
+/** \brief A short <a href="blubb"> of </a href='blubb'> description */ end of doxygen HL mode
+/** \brief A short <a href="blubb"> of </a href='blubb'*/> end of doxygen HL mode
+/** \brief A short <a href="blubb"> of </a href='*/blubb'> end of doxygen HL mode
+/** \brief A short <a href="blubb"> of </a href=*/'blubb'> end of doxygen HL mode
+/** \brief A short <a href="blubb"> of </a href*/='blubb'> end of doxygen HL mode
+/** \brief A short <a href="blubb"> of </a */href='blubb'> end of doxygen HL mode
+/** \brief A short <a href="blubb"> of <*//a href='blubb'> end of doxygen HL mode
+/** \brief A short <a href="blubb"*/> of </a href='blubb'> end of doxygen HL mode
+/** \brief A short <a href="blubb*/"> of </a href='blubb'> end of doxygen HL mode
+/** \brief A short <a href="*/blubb"> of </a href='blubb'> end of doxygen HL mode
+/** \brief A short <a href=*/"blubb"> of </a href='blubb'> end of doxygen HL mode
+/** \brief A short <a href*/="blubb"> of </a href='blubb'> end of doxygen HL mode
+/** \brief A short <a h*/ref="blubb"> of </a href='blubb'> end of doxygen HL mode
+/** \brief A short <a href="blubb"> of </a href='blubb'> description 
+ * comment HL mode
+ */ end of doxygen HL mode
+
+<tag> <word> <rest of line is string>
+/** \page aword A short <a href="blubb"> of </a href='blubb'> description */ end of doxygen HL mode
+/** \page aword A short <a href="blubb"> of </a href='blubb'*/> end of doxygen HL mode
+/** \page aword A short <a href="blubb"> of </a href='*/blubb'> end of doxygen HL mode
+/** \page aword A short <a href="blubb"> of </a href=*/'blubb'> end of doxygen HL mode
+/** \page aword A short <a href="blubb"> of </a href*/='blubb'> end of doxygen HL mode
+/** \page aword A short <a href="blubb"> of </a */href='blubb'> end of doxygen HL mode
+/** \page aword A short <a href="blubb"> of <*//a href='blubb'> end of doxygen HL mode
+/** \page aword A short <a href="blubb"*/> of </a href='blubb'> end of doxygen HL mode
+/** \page aword A short <a href="blubb*/"> of </a href='blubb'> end of doxygen HL mode
+/** \page aword A short <a href="*/blubb"> of </a href='blubb'> end of doxygen HL mode
+/** \page aword A short <a href=*/"blubb"> of </a href='blubb'> end of doxygen HL mode
+/** \page aword A short <a href*/="blubb"> of </a href='blubb'> end of doxygen HL mode
+/** \page aword A short <a h*/ref="blubb"> of </a href='blubb'> end of doxygen HL mode
+/** \page aword A short <*/a href="blubb"> of </a href='blubb'> end of doxygen HL mode
+/** \page aword A shor*/t <a href="blubb"> of </a href='blubb'> end of doxygen HL mode
+/** \page awor*/d A short <a href="blubb"> of </a href='blubb'> end of doxygen HL mode
+/** \page */aword A short <a href="blubb"> of </a href='blubb'> end of doxygen HL mode
+/** \page aword A short <a href="blubb"> of </a href='blubb'> description 
+ * comment HL mode
+ */ end of doxygen HL mode
+
+<tag> <word> <word> <rest of line is string>
+/** \image aword aword rest of line is normal HL */ end of doxygen HL mode
+/** \image aword aword rest of line is*/ end of doxygen HL mode
+/** \image aword aword*/ end of doxygen HL mode
+/** \image aword aw*/ord end of doxygen HL mode
+/** \image aword */aword end of doxygen HL mode
+/** \image aword*/ end of doxygen HL mode
+/** \image awo*/rd end of doxygen HL mode
+/** \image */aword end of doxygen HL mode
+/** \ima*/ge end of doxygen HL mode
+/** \image aword aword rest of line is normal HL
+ * comment HL mode
+ */ end of doxygen HL mode
+ 
+Some further tests for singlelinecomments (* / should not pop!)
+===============================================================
+/// a singlelinecommment blubb blubb  */. stay in doxygen HL mode
+/// \code a singlelinecommment blubb b*/lubb. stay in doxygen HL mode
+/// \code*/ a singlelinecommment blubb blubb. stay in doxygen HL mode
+/// \code a singlelinecommment blubb blubb
+/// \brief a descriptive text (string) stay in doxygen HL mode
+/// \brief a descriptive text (string)*/ description should go on here
+/// \brief a descriptive text */(string) description should go on here
+/// \brief */a descriptive text (string) description should go on here
+/// \ref aword a descriptive text (string) */ description should go on here
+/// \ref aword a descriptive text (str*/ing) description should go on here
+/// \ref aword a des*/criptive text (string) description should go on here
+/// \ref aword*/ a descriptive text (string) description should go on here
+/// \ref aw*/ord a descriptive text (string) description should go on here
+/// \ref */aword a descriptive text (string) description should go on here
+
+HTML comment tests:
+===================
+//! \ref word de<!--*/ -->scriptive text (string)
+normal HL mode.
+//! \ref w descriptive text (string)
+/** \ref word de<!--*/ -->scriptive text (string)
+normal HL mode.
+/** \ref w <!--
+ * HTML comments
+ * -->
+ * normal doxygen HL mode.
+ */
+
+
+And final tests for a word: a single char:
+===========================================
+<tag> <word> <rest of line as string>
+//! \ref word descriptive text (string)
+//! \ref w descriptive text (string)
+
+<tag> <word> <word> <rest is normal HL>
+//! \image word1 word2 b descriptive text (string)
+//! \image a word b descriptive text (string)
+
+<tag> <rest of line is string>
+//! \brief A b c d e description should go on here
+
+<tag> <word> <rest of line is normal doxygen HL mode>
+//! \file word rest of line is normal comment HL
+//! \file a word rest of line is normal comment HL
+
+no doxygen HL mode here.
+== END OF TESTFILE ==

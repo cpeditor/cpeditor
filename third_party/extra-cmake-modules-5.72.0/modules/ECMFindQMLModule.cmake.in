@@ -1,0 +1,37 @@
+#=============================================================================
+# SPDX-FileCopyrightText: 2015 Aleix Pol Gonzalez <aleixpol@blue-systems.com>
+#
+# SPDX-License-Identifier: BSD-3-Clause
+#=============================================================================
+
+include(FindPackageHandleStandardArgs)
+include("${ECM_MODULE_DIR}/ECMQueryQmake.cmake")
+
+query_qmake(qt_binaries_dir QT_INSTALL_BINS)
+
+find_program(QMLPLUGINDUMP_PROGRAM NAMES qmlplugindump HINTS ${qt_binaries_dir})
+if(NOT QMLPLUGINDUMP_PROGRAM)
+    message(WARNING "Could not find qmlplugindump. It is necessary to look up qml module dependencies.")
+endif()
+
+execute_process(COMMAND "${QMLPLUGINDUMP_PROGRAM}" "@MODULE_NAME@" "@VERSION@" ERROR_VARIABLE ERRORS_OUTPUT OUTPUT_VARIABLE DISREGARD_VARIABLE RESULT_VARIABLE ExitCode)
+
+if(ExitCode EQUAL 0)
+    set(@GENMODULE@_FOUND TRUE)
+    set(@GENMODULE@_VERSION "${PACKAGE_FIND_VERSION}")
+else()
+    message(STATUS "qmlplugindump failed for @MODULE_NAME@.")
+    set(@GENMODULE@_FOUND FALSE)
+endif()
+
+find_package_handle_standard_args(@GENMODULE@
+    FOUND_VAR
+        @GENMODULE@_FOUND
+    REQUIRED_VARS
+        @GENMODULE@_FOUND
+    VERSION_VAR
+        @GENMODULE@_VERSION
+    HANDLE_COMPONENTS
+)
+
+

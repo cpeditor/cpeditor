@@ -1,0 +1,52 @@
+<beginfold id='1'>/*</beginfold id='1'> REXX <endfold id='1'>*/</endfold id='1'>                                                         
+ASCB_PTR = C2X(STORAGE(D2X(X2D("224")),4))                         
+SAY X2B(ASCB_PTR)                                                  
+<beginfold id='1'>/*</beginfold id='1'> COMMENTS <endfold id='1'>*/</endfold id='1'>                                                     
+<beginfold id='1'>/*</beginfold id='1'>*****************************************************************
+   END OF COMMENTS <endfold id='1'>*/</endfold id='1'>                                              
+SAY 'ENTER YOUR NAME'                                              
+PULL NAME                                                          
+DO WHILE NAME \= 'QUIT'                                            
+   SAY 'HELLO THERE' NAME                                          
+   PULL NAME                                                       
+END                                                                
+X = OUTTRAP('LU.')                                                 
+"LU"                                                               
+X = OUTTRAP('OFF')                                                 
+SAY 'THE NUMBER OF LINES:' LU.0                                    
+DO I = 1 TO LU.0                                                   
+  SAY LU.I <beginfold id='1'>/*</beginfold id='1'> SAYS THE OUTPUT FROM LU <endfold id='1'>*/</endfold id='1'>                           
+END                                                                
+SAY 'GOOD-BYE.'                                                    
+IF DATE('D') \= "13" THEN DO                                       
+  Y = TESTSELECT(15,'RAD')                                         
+  SAY Y                                                            
+  SAY Y || " <-- TESTSELECT"               
+END                                        
+EXIT 1                                     
+<beginfold id='1'>/*</beginfold id='1'> FUNCTIONS <endfold id='1'>*/</endfold id='1'>                            
+TESTSELECT: PROCEDURE <beginfold id='1'>/*</beginfold id='1'> TESTING SELECT <endfold id='1'>*/</endfold id='1'> 
+ PARSE ARG NUM CAR .                       
+ SELECT                                    
+   WHEN NUM < 25 THEN                      
+     STATUS = "25%"                        
+   WHEN NUM < 50 THEN                      
+     DO                                    
+       IF CAR = 'RAD' THEN                 
+          STATUS = 'DOPE'                  
+       ELSE                                
+          STATUS = 'SICK'                  
+     END                                   
+   WHEN NUM < 200 THEN DO                  
+     NOP                                   
+   END                                     
+   WHEN NUM < 75 THEN                      
+     STATUS = 'SEVENTY FIVE'               
+   OTHERWISE                               
+     IF CAR = 'RAD' THEN                   
+       STATUS = 'COOL'
+      STATUS = 'COOL'   
+    ELSE                
+      STATUS = 'RADICAL'
+END                     
+RETURN STATUS           

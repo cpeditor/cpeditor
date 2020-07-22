@@ -1,0 +1,134 @@
+#!groovy
+
+/*
+The MIT License
+Copyright (c) 2015-, CloudBees, Inc., and a number of other of contributors
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+*/
+
+node(linux) {
+    // We want Timestamps on everything
+    timestamps {
+        // First Thing: Checkout Sources
+        stage('Checkout Sources') {
+            // Actual Application Sources
+            checkout changelog: true, poll: true, scm: [
+            $class: 'GitSCM',
+            branches: [[name: ${branch}]],
+            browser: [$class: 'CGit', repoUrl: 'https://cgit.kde.org/extra-cmake-modules.git'],
+            extensions: [[$class: 'CloneOption', timeout: 120]],
+            userRemoteConfigs: [[url: 'https://anongit.kde.org/extra-cmake-modules.git']]
+      ]
+
+            // Our CI scripts
+            checkout changelog: false, poll: false, scm: [
+            $class: 'GitSCM',
+            branches: [[name: 'master']],
+            extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'ci-tooling/']],
+            userRemoteConfigs: [[url: 'https://anongit.kde.org/sysadmin/ci-tools-experimental.git']]
+      ]
+
+            // Dependency Metadata
+            checkout changelog: false, poll: false, scm: [
+            $class: 'GitSCM',
+            branches: [[name: 'master']],
+            extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'ci-tooling/dependencies/']],
+            userRemoteConfigs: [[url: 'https://anongit.kde.org/kde-build-metadata']]
+            ]
+
+            // KApiDox: For api.kde.org metadata extraction
+            checkout changelog: false, poll: false, scm: [
+            $class: 'GitSCM',
+            branches: [[name: 'master']],
+            extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'ci-tooling/kapidox/']],
+            userRemoteConfigs: [[url: 'https://anongit.kde.org/kapidox']]
+            ]
+
+            // kde-dev-scripts: For packager metadata extraction
+            checkout changelog: false, poll: false, scm: [
+            $class: 'GitSCM',
+            branches: [[name: 'master']],
+            extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'ci-tooling/kde-dev-scripts/']],
+            userRemoteConfigs: [[url: 'https://anongit.kde.org/kde-dev-scripts']]
+            ]
+        }
+        // Now Prepare to Build: Get the dependencies ready
+        stage('Setup Dependencies') {
+            // Now we can determine what our dependencies are
+            // Then update to the latest version of the dependencies available from the master server
+            // Finally extract all of those dependencies in turn into the given 'installTo' directory
+            sh 'python helpers/prepare-dependencies.py --project extra-cmake-modules --branchGroup kf5-qt5 --platform linux --installTo + "$WORKSPACE/install-prefix/"
+        }
+        // Now we can configure our build
+        stage('Configuring Build') {
+            // This is delegated through a helper script to handle minor special cases like inSourceBuilds, non-CMake build systems, etc
+            sh 'python helpers/configure-build.py  --project extra-cmake-modules --branchGroup kf5-qt5 --platform linux '--installTo + "$WORKSPACE/install-prefix/"
+        }
+        // Finally we can build it! (Once again, through a helper)
+        stage('Compiling') {
+            // We use a helper here so we can determine the appropriate number of CPUs (-j) to build with
+            sh 'python helpers/compile-build.py  --project extra-cmake-modules --branchGroup kf5-qt5 --platform linux
+        }
+        // Now ensure that it installs....
+        stage('Installing') {
+            // The helper ensures that DESTDIR and INSTALL_ROOT are set to 'divertTo'
+            // This allows us to capture the install at the next stage for later reuse in the Setup Dependencies step
+            sh 'python helpers/install-build.py  --project extra-cmake-modules --branchGroup kf5-qt5 --platform linux --divertTo + "$WORKSPACE/install-divert/"
+        }
+        // Looks like it built okay - let's capture this for later use
+        // We'll also take the opportunity to extract metadata from CMake used by packagers and api.kde.org
+        stage('Capturing Installation') {
+            // First we create a tar archive of the installation which was diverted
+            // Then we upload a copy of that to the master server and have it publish the new archive
+            // Finally to save bandwidth our copy of the tar archive is moved to our local cache for reuse on later builds on this node
+            sh 'python helpers/capture-install.py  --project extra-cmake-modules --branchGroup kf5-qt5 --platform linux --divertedTo "$WORKSPACE/install-divert/" --installTo "$WORKSPACE/install-prefix/"
+            // Now we extract the CMake metadata and upload that to the appropriate hosts
+            sh 'python helpers/extract-cmake-metadata.py  --project extra-cmake-modules --branchGroup kf5-qt5 --platform linux
+        }
+        // Now we can run our tests
+        stage('Running Tests') {
+            // Run the unit tests for this project
+            // Tests are run in a basic environment (X, DBus)
+            sh 'python helpers/run-tests.py  --project extra-cmake-modules --branchGroup kf5-qt5 --platform linux
+            // Collect our results
+            junit allowEmptyResults: true, testResults: 'build/JUnitTestResults.xml'
+        }
+        // Final thing to do: some code quality checks
+        stage('Checking Code Quality') {
+
+     // cppcheck is not supported by Pipeline at the moment, so we don't run that for now
+     // See https://issues.jenkins-ci.org/browse/JENKINS-35096
+
+    // Cobertura doesn't support Pipeline either, so no code coverage publishing...
+    // See https://issues.jenkins-ci.org/browse/JENKINS-30700
+
+    // Scan the logs and publish a warnings report
+   step( [$class: 'WarningsPublisher', consoleParsers: [[parserName: 'GNU Make + GNU C Compiler (gcc)'], [parserName: 'Appstreamercli']], excludePattern: '/tmp/**'] )
+     }
+     // Send an email notification of this
+     emailext(
+         to: 'ci-builds@kde.org',
+         body: '${JELLY_SCRIPT,template="text"}',
+         subject: 'KDE CI: ${PROJECT_NAME} - Build # ${BUILD_NUMBER} - ${BUILD_STATUS}!',
+         attachLog: true
+         )
+// IRC Notifications are currently not supported by Pipeline
+// See https://issues.jenkins-ci.org/browse/JENKINS-33922
+// We can probably workaround this using Pursuivant and the emails Jenkins sends out
+// This would allow subscribing to build notifications for IRC channels in much the same way one subscribes for Commits and Bugzilla changes
+}
+}

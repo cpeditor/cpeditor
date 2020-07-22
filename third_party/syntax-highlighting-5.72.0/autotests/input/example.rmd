@@ -1,0 +1,68 @@
+---
+title: "test"
+author: "me"
+date: "07.10.2014"
+output: html_document
+---
+
+This is a simple test document. It shows syntax highlighting switches between YAML (above), R blocks
+```{r, echo=FALSE}
+for (i in 1:10) {
+  if(i>=10) print(i)
+}
+# two blank lines below
+
+sessionInfo()
+```
+
+LaTeX equations,
+$$
+h_{i}(t \mid q,C) = h_{0}(t) e^{\beta_{1}quality_{i} + \beta_{2}C_{iq}}
+$$
+
+and Markdown. A [link](http://example.com) in Markdown.
+
+Inline `r y <- 5 + x - sin(3)` R code.
+Inline `y <- 5 + x - sin(3)` code.
+
+
+ Heading
+ =======
+ 
+ Sub-heading
+ -----------
+ A list of editors:
+   * kate
+   * vim
+   * emacs
+
+*italic*, **bold**, `monospace`
+
+    code block
+    more code
+
+normal text
+    normal text
+        normal text
+
+1. item
+   * This is a list item
+     with multiple lines.
+
+     ```{r pressure, echo=FALSE}
+     plot(pressure)
+     ```
+
+     > This is a
+     blockquote `r cos(33) `
+
+     This is a new paragraph, which
+     is part of this $$ \text{item} $$.
+
+         indented code block
+
+       Other paragraph.
+
+     * subitem
+       * subitem
+         $$ A = B + C $$

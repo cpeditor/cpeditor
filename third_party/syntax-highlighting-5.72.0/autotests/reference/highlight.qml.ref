@@ -1,0 +1,59 @@
+<Import>import</Import><ImportValue> Qt 4.6</ImportValue><br/>
+<Normal Text></Normal Text><br/>
+<Comment>// some random qml snippets stolen from the qt docs</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Elements>Rectangle</Elements><Normal Text> {</Normal Text><br/>
+<Normal Text>    </Normal Text><Property Type>important</Property Type><Symbol>:</Symbol><Normal Text> </Normal Text><Keyword>true</Keyword><br/>
+<Normal Text>    </Normal Text><Property Type>propertyAsdf</Property Type><Symbol>:</Symbol><br/>
+<Normal Text>    </Normal Text><Property Type>id</Property Type><Symbol>:</Symbol><Normal Text> </Normal Text><Normal Text>container</Normal Text><br/>
+<Normal Text>    </Normal Text><Property Type>signalA</Property Type><Symbol>:</Symbol><Normal Text> </Normal Text><Normal Text>bla</Normal Text><br/>
+<Normal Text>    </Normal Text><Keywords>property</Keywords><Normal Text> </Normal Text><Property Type>string</Property Type><Normal Text> label</Normal Text><br/>
+<Normal Text>    </Normal Text><Signal>signal</Signal><Normal Text> clicked</Normal Text><br/>
+<Normal Text>    </Normal Text><Property Type>radius</Property Type><Symbol>:</Symbol><Normal Text> </Normal Text><Decimal>5</Decimal><Symbol>;</Symbol><Normal Text> </Normal Text><Objects>border</Objects><Symbol>.</Symbol><Object Member>color</Object Member><Symbol>:</Symbol><Normal Text> </Normal Text><String>"black"</String><br/>
+<Normal Text>    </Normal Text><Property Type>color</Property Type><Symbol>:</Symbol><Normal Text> </Normal Text><Objects>mouse</Objects><Symbol>.</Symbol><Object Member>pressed</Object Member><Normal Text> </Normal Text><Symbol>?</Symbol><Normal Text> </Normal Text><String>"steelblue"</String><Normal Text> </Normal Text><Symbol>:</Symbol><Normal Text> </Normal Text><String>"lightsteelblue"</String><br/>
+<Normal Text>    </Normal Text><Property Type>gradient</Property Type><Symbol>:</Symbol><Normal Text> </Normal Text><Elements>Gradient</Elements><Normal Text> {</Normal Text><br/>
+<Normal Text>            </Normal Text><Elements>GradientStop</Elements><Normal Text> { </Normal Text><Property Type>position</Property Type><Symbol>:</Symbol><Normal Text> </Normal Text><Objects>mouse</Objects><Symbol>.</Symbol><Object Member>pressed</Object Member><Normal Text> </Normal Text><Symbol>?</Symbol><Normal Text> </Normal Text><Float>1.0</Float><Normal Text> </Normal Text><Symbol>:</Symbol><Normal Text> </Normal Text><Float>0.0</Float><Symbol>;</Symbol><Normal Text> </Normal Text><Property Type>color</Property Type><Symbol>:</Symbol><Normal Text> </Normal Text><String>"steelblue"</String><Normal Text> </Normal Text><Normal Text>}</Normal Text><br/>
+<Normal Text>            </Normal Text><Elements>GradientStop</Elements><Normal Text> { </Normal Text><Property Type>position</Property Type><Symbol>:</Symbol><Normal Text> </Normal Text><Objects>mouse</Objects><Symbol>.</Symbol><Object Member>pressed</Object Member><Normal Text> </Normal Text><Symbol>?</Symbol><Normal Text> </Normal Text><Float>0.0</Float><Normal Text> </Normal Text><Symbol>:</Symbol><Normal Text> </Normal Text><Float>1.0</Float><Symbol>;</Symbol><Normal Text> </Normal Text><Property Type>color</Property Type><Symbol>:</Symbol><Normal Text> </Normal Text><String>"lightsteelblue"</String><Normal Text> </Normal Text><Normal Text>}</Normal Text><br/>
+<Normal Text>    }</Normal Text><br/>
+<Normal Text>    </Normal Text><Elements>MouseRegion</Elements><Normal Text> { </Normal Text><Property Type>id</Property Type><Symbol>:</Symbol><Normal Text> </Normal Text><Normal Text>mouse</Normal Text><Symbol>;</Symbol><Normal Text> </Normal Text><Objects>anchors</Objects><Symbol>.</Symbol><Object Member>fill</Object Member><Symbol>:</Symbol><Normal Text> </Normal Text><Normal Text>parent</Normal Text><Symbol>;</Symbol><Normal Text> </Normal Text><Property Type>onClicked</Property Type><Symbol>:</Symbol><Normal Text> </Normal Text><Objects>container</Objects><Symbol>.</Symbol><Function Name>clicked</Function Name><Normal Text>(</Normal Text><Normal Text>) </Normal Text><Normal Text>}</Normal Text><br/>
+<Normal Text>    </Normal Text><Elements>Text</Elements><Normal Text> { </Normal Text><Objects>anchors</Objects><Symbol>.</Symbol><Object Member>fill</Object Member><Symbol>:</Symbol><Normal Text> </Normal Text><Normal Text>parent</Normal Text><Symbol>;</Symbol><Normal Text> </Normal Text><Property Type>text</Property Type><Symbol>:</Symbol><Normal Text> </Normal Text><Objects>container</Objects><Symbol>.</Symbol><Object Member>label</Object Member><Symbol>;</Symbol><Normal Text> </Normal Text><Objects>anchors</Objects><Symbol>.</Symbol><Object Member>centerIn</Object Member><Symbol>:</Symbol><Normal Text> </Normal Text><Normal Text>parent </Normal Text><Normal Text>}</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Elements>Rectangle</Elements><Normal Text> {</Normal Text><br/>
+<Normal Text>    </Normal Text><Elements>Script</Elements><Normal Text> {</Normal Text><br/>
+<Normal Text>        </Normal Text><Keyword>function</Keyword><Normal Text> </Normal Text><Function Declaration>calculateMyHeight</Function Declaration><Normal Text>(</Normal Text><Normal Text>) </Normal Text><Normal Text>{</Normal Text><br/>
+<Normal Text>            </Normal Text><ControlFlow>return</ControlFlow><Normal Text> </Normal Text><Objects>Math</Objects><Symbol>.</Symbol><Object Method (Built-in)>max</Object Method (Built-in)><Normal Text>(</Normal Text><Objects>otherItem</Objects><Symbol>.</Symbol><Object Member>height</Object Member><Symbol>,</Symbol><Normal Text> </Normal Text><Objects>thirdItem</Objects><Symbol>.</Symbol><Object Member>height</Object Member><Normal Text>)</Normal Text><Symbol>;</Symbol><br/>
+<Normal Text>        }</Normal Text><br/>
+<Normal Text>    }</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>    </Normal Text><Objects>anchors</Objects><Symbol>.</Symbol><Object Member>centerIn</Object Member><Symbol>:</Symbol><Normal Text> </Normal Text><Normal Text>parent</Normal Text><br/>
+<Normal Text>    </Normal Text><Property Type>width</Property Type><Symbol>:</Symbol><Normal Text> </Normal Text><Objects>Math</Objects><Symbol>.</Symbol><Object Method (Built-in)>min</Object Method (Built-in)><Normal Text>(</Normal Text><Objects>otherItem</Objects><Symbol>.</Symbol><Object Member>width</Object Member><Symbol>,</Symbol><Normal Text> </Normal Text><Decimal>10</Decimal><Normal Text>)</Normal Text><br/>
+<Normal Text>    </Normal Text><Property Type>height</Property Type><Symbol>:</Symbol><Normal Text> </Normal Text><Function Name>calculateMyHeight</Function Name><Normal Text>(</Normal Text><Normal Text>)</Normal Text><br/>
+<Normal Text>    </Normal Text><Property Type>color</Property Type><Symbol>:</Symbol><Normal Text> { </Normal Text><ControlFlow>if</ControlFlow><Normal Text> (</Normal Text><Normal Text>width </Normal Text><Symbol>></Symbol><Normal Text> </Normal Text><Decimal>10</Decimal><Normal Text>) </Normal Text><String>"blue"</String><Symbol>;</Symbol><Normal Text> </Normal Text><ControlFlow>else</ControlFlow><Normal Text> </Normal Text><String>"red"</String><Normal Text> </Normal Text><Normal Text>}</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Elements>Rectangle</Elements><Normal Text> {</Normal Text><br/>
+<Normal Text>    </Normal Text><Keywords>default property</Keywords><Normal Text> </Normal Text><Property Type>color</Property Type><Normal Text> innerColor: </Normal Text><String>"black"</String><br/>
+<Normal Text>    </Normal Text><Keywords>property</Keywords><Normal Text> </Normal Text><Property Type>color</Property Type><Normal Text> innerColor: </Normal Text><String>"black"</String><br/>
+<Normal Text>    </Normal Text><Keywords>property</Keywords><Normal Text> </Normal Text><Property Type>alias</Property Type><Normal Text> text: </Normal Text><Objects>textElement</Objects><Symbol>.</Symbol><Object Member>text</Object Member><br/>
+<Normal Text>    </Normal Text><Keywords>property</Keywords><Normal Text> </Normal Text><Property Type>alias</Property Type><Normal Text> aliasXYZ: </Normal Text><Objects>testElement</Objects><Symbol>.</Symbol><Object Member>text</Object Member><br/>
+<Normal Text>    </Normal Text><Signal>signal</Signal><Normal Text> bar</Normal Text><br/>
+<Normal Text>    </Normal Text><Signal>signal</Signal><Normal Text> bar(</Normal Text><Property Type>var</Property Type><Normal Text> blah, </Normal Text><Property Type>string</Property Type><Normal Text> yxcv)</Normal Text><br/>
+<Normal Text>    </Normal Text><Property Type>width</Property Type><Symbol>:</Symbol><Normal Text> </Normal Text><Decimal>240</Decimal><Symbol>;</Symbol><Normal Text> </Normal Text><Property Type>height</Property Type><Symbol>:</Symbol><Normal Text> </Normal Text><Decimal>320</Decimal><Symbol>;</Symbol><br/>
+<Normal Text>    </Normal Text><Property Type>width</Property Type><Symbol>:</Symbol><Normal Text> </Normal Text><Decimal>100</Decimal><Symbol>;</Symbol><Normal Text> </Normal Text><Property Type>height</Property Type><Symbol>:</Symbol><Normal Text> </Normal Text><Decimal>30</Decimal><Symbol>;</Symbol><Normal Text> </Normal Text><Property Type>source</Property Type><Symbol>:</Symbol><Normal Text> </Normal Text><String>"images/toolbutton.sci"</String><br/>
+<Normal Text>    </Normal Text><Elements>ListView</Elements><Normal Text> {</Normal Text><br/>
+<Normal Text>        </Normal Text><Objects>anchors</Objects><Symbol>.</Symbol><Object Member>fill</Object Member><Symbol>:</Symbol><Normal Text> </Normal Text><Normal Text>parent</Normal Text><br/>
+<Normal Text>        </Normal Text><Property Type>model</Property Type><Symbol>:</Symbol><Normal Text> </Normal Text><Normal Text>contactModel</Normal Text><br/>
+<Normal Text>        </Normal Text><Property Type>delegate</Property Type><Symbol>:</Symbol><Normal Text> </Normal Text><Elements>Component</Elements><Normal Text> {</Normal Text><br/>
+<Normal Text>            </Normal Text><Elements>Text</Elements><Normal Text> {</Normal Text><br/>
+<Normal Text>                </Normal Text><Property Type>text</Property Type><Symbol>:</Symbol><Normal Text> </Normal Text><Objects>modelData</Objects><Symbol>.</Symbol><Object Member>firstName</Object Member><Normal Text> </Normal Text><Symbol>+</Symbol><Normal Text> </Normal Text><String>" "</String><Normal Text> </Normal Text><Symbol>+</Symbol><Normal Text> </Normal Text><Objects>modelData</Objects><Symbol>.</Symbol><Object Member>lastName</Object Member><br/>
+<Normal Text>            </Normal Text><Normal Text>}</Normal Text><br/>
+<Normal Text>        }</Normal Text><br/>
+<Normal Text>    }</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Elements>Item</Elements><Normal Text> {</Normal Text><br/>
+<Normal Text>    </Normal Text><Keyword>function</Keyword><Normal Text> </Normal Text><Function Declaration>say</Function Declaration><Normal Text>(</Normal Text><Normal Text>text) </Normal Text><Normal Text>{</Normal Text><br/>
+<Normal Text>        </Normal Text><Objects>console</Objects><Symbol>.</Symbol><Function Name>log</Function Name><Normal Text>(</Normal Text><String>"You said "</String><Normal Text> </Normal Text><Symbol>+</Symbol><Normal Text> </Normal Text><Normal Text>text)</Normal Text><Symbol>;</Symbol><br/>
+<Normal Text>    }</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>

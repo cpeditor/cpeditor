@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title>test.ts</title>
+<meta name="generator" content="KF5::SyntaxHighlighting (TypeScript)"/>
+</head><body style="color:#1f1c1b"><pre>
+<span style="color:#898887;">/// </span><span style="font-weight:bold;">&lt;reference</span><span style="color:#006e28;"> types=</span><span style="color:#0057ae;">&quot;node&quot;</span><span style="color:#006e28;"> </span><span style="font-weight:bold;">/&gt;</span>
+
+<span style="color:#898887;">// TypeScript Test</span>
+
+<span style="font-weight:bold;font-style:italic;">class</span> Student {
+    fullName: <span style="color:#0057ae;">string</span>;
+    <span style="font-weight:bold;font-style:italic;">constructor</span>(<span style="font-weight:bold;font-style:italic;">public</span> firstName: <span style="color:#0057ae;">string</span>, <span style="font-weight:bold;font-style:italic;">public</span> middleInitial: <span style="color:#0057ae;">string</span>, <span style="font-weight:bold;font-style:italic;">public</span> lastName: <span style="color:#0057ae;">string</span>) {
+        <span style="font-weight:bold;">this</span>.<span style="color:#0057ae;">fullName</span> = firstName + <span style="color:#bf0303;">&quot; &quot;</span> + middleInitial + <span style="color:#bf0303;">&quot; &quot;</span> + lastName;
+    }
+}
+
+<span style="font-weight:bold;font-style:italic;">interface</span> Person {
+    firstName: <span style="color:#0057ae;">string</span>;
+    lastName: <span style="color:#0057ae;">string</span>;
+}
+
+<span style="font-weight:bold;">function</span> <span style="color:#644a9b;">greeter</span>(person : Person) {
+    <span style="font-weight:bold;">return</span> <span style="color:#bf0303;">&quot;Hello, &quot;</span> + person.<span style="color:#0057ae;">firstName</span> + <span style="color:#bf0303;">&quot; &quot;</span> + person.<span style="color:#0057ae;">lastName</span>;
+}
+
+<span style="font-weight:bold;font-style:italic;">let</span> user = <span style="font-weight:bold;">new</span> <span style="color:#644a9b;">Student</span>(<span style="color:#bf0303;">&quot;Jane&quot;</span>, <span style="color:#bf0303;">&quot;M.&quot;</span>, <span style="color:#bf0303;">&quot;User&quot;</span>);
+
+<span style="color:#898887;">// Built-in</span>
+<span style="color:#644a9b;font-weight:bold;">document</span>.<span style="color:#0057ae;font-style:italic;">body</span>.<span style="color:#0057ae;font-style:italic;">innerHTML</span> = <span style="color:#644a9b;">greeter</span>(user); to
+<span style="color:#644a9b;font-weight:bold;">JSON</span>.<span style="color:#644a9b;font-style:italic;">stringify</span>()
+<span style="color:#644a9b;font-weight:bold;">console</span>.<span style="color:#644a9b;font-style:italic;">log</span>(<span style="color:#bf0303;">&quot;Hello world&quot;</span>);
+<span style="font-weight:bold;">const</span> os = <span style="color:#006e28;">require</span>(<span style="color:#bf0303;">'os'</span>);
+<span style="color:#644a9b;font-weight:bold;">Math</span>.<span style="color:#aa5500;">LOG10E</span>;
+<span style="color:#644a9b;font-weight:bold;">Number</span>.<span style="color:#aa5500;">MAX_SAFE_INTEGER</span>;
+<span style="color:#644a9b;font-weight:bold;">String</span>.<span style="color:#644a9b;">raw</span><span style="color:#bf0303;">`raw text \.\n${}`</span>
+
+<span style="color:#ff5500;">import</span> http =<span style="font-weight:bold;"> require</span>(<span style="color:#bf0303;">&quot;http&quot;</span>);
+<span style="color:#ff5500;">import</span> path =<span style="font-weight:bold;"> require</span>(<span style="color:#bf0303;">&quot;path&quot;</span>);
+<span style="color:#ff5500;">import</span> URL = url.<span style="color:#0057ae;">URL</span>;
+<span style="color:#ff5500;">import</span> { Readable, Writable } <span style="color:#ff5500;">from</span> <span style="color:#bf0303;">&quot;stream&quot;</span>;
+<span style="color:#ff5500;">import</span> { isBuffer, isString, isObject } <span style="color:#ff5500;">from</span> <span style="color:#bf0303;">&quot;util&quot;</span>;
+
+<span style="font-weight:bold;">const</span> port = <span style="color:#b08000;">8__88___8</span>;
+<span style="font-weight:bold;">const</span> baseUrl = <span style="font-weight:bold;">new</span> <span style="color:#644a9b;">URL</span>(<span style="color:#bf0303;">`http://localhost:</span><span style="color:#3daee9;">${</span>port<span style="color:#3daee9;">}</span><span style="color:#bf0303;">/`</span>);
+<span style="font-weight:bold;">const</span> rootDir = path.<span style="color:#644a9b;">dirname</span>(<span style="color:#644a9b;font-weight:bold;">__dirname</span>);
+
+<span style="font-weight:bold;">const</span> defaultBrowser = os.<span style="color:#644a9b;">platform</span>() === <span style="color:#bf0303;">&quot;win32&quot;</span> ? <span style="color:#bf0303;">&quot;edge&quot;</span> : <span style="color:#bf0303;">&quot;chrome&quot;</span>;
+<span style="font-weight:bold;font-style:italic;">let</span> browser: <span style="color:#bf0303;">&quot;edge&quot;</span> | <span style="color:#bf0303;">&quot;chrome&quot;</span> | <span style="color:#bf0303;">&quot;none&quot;</span> = defaultBrowser;
+<span style="font-weight:bold;font-style:italic;">let</span> grep: <span style="color:#0057ae;">string</span> | <span style="color:#0057ae;">undefined</span>;
+
+<span style="font-weight:bold;font-style:italic;">interface</span> FileBasedTestConfiguration {
+    [setting: <span style="color:#0057ae;">string</span>]: <span style="color:#0057ae;">string</span>;
+}
+
+<span style="font-weight:bold;">function</span> <span style="color:#644a9b;">swapCase</span>(s: <span style="color:#0057ae;">string</span>): <span style="color:#0057ae;">string</span> {
+    <span style="font-weight:bold;">return</span> s.<span style="color:#644a9b;">replace</span>(<span style="color:#ff5500;">/</span><span style="color:#3daee9;">\w</span><span style="color:#ff5500;">/g</span>, (ch) <span style="font-weight:bold;">=&gt;</span> {
+        <span style="font-weight:bold;">const</span> up = ch.<span style="color:#644a9b;">toUpperCase</span>();
+        <span style="font-weight:bold;">return</span> ch === up ? ch.<span style="color:#644a9b;">toLowerCase</span>() : up;
+    });
+}
+
+<span style="font-weight:bold;">for</span> (<span style="font-weight:bold;">var</span> i <span style="font-weight:bold;">in</span> pieces) {
+    <span style="font-weight:bold;">switch</span> (<span style="font-weight:bold;">true</span>) {
+        <span style="font-weight:bold;">case</span> <span style="color:#ff5500;">/</span><span style="color:#3daee9;">^\&quot;?</span><span style="color:#ff5500;">Accession</span><span style="color:#3daee9;">\&quot;?</span><span style="color:#ff5500;">/</span>.<span style="color:#644a9b;">test</span>(pieces[i]):
+            numeration[<span style="color:#b08000;">0</span>] = i;
+            <span style="font-weight:bold;">break</span>;
+    }
+}
+
+<span style="font-weight:bold;">const</span> <span style="font-weight:bold;font-style:italic;">enum</span> ResponseCode {
+    Success = <span style="color:#b08000;">200</span>,
+    BadRequest = <span style="color:#b08000;">400</span>
+}
+
+<span style="color:#898887;">// Substitutions</span>
+<span style="color:#ff5500;">export</span> <span style="font-weight:bold;">function</span> <span style="color:#644a9b;">isInOpenInterval</span>(start: <span style="color:#0057ae;">number</span>, end: <span style="color:#0057ae;">number</span>) {
+    <span style="font-weight:bold;">return</span> <span style="color:#644a9b;">tersible</span>(a <span style="font-weight:bold;">=&gt;</span> a &gt; start &amp;&amp; a &lt; end, () <span style="font-weight:bold;">=&gt;</span> <span style="color:#bf0303;">`(</span><span style="color:#3daee9;">${</span>start<span style="color:#3daee9;">}</span><span style="color:#bf0303;">...</span><span style="color:#3daee9;">${</span>end<span style="color:#3daee9;">}</span><span style="color:#bf0303;">)`</span>)
+}
+<span style="font-weight:bold;">const</span> bar = <span style="color:#bf0303;">`</span><span style="color:#3daee9;">${</span>x<span style="color:#3daee9;">}</span><span style="color:#bf0303;"> </span><span style="color:#3daee9;">${</span>y<span style="color:#3daee9;">}</span><span style="color:#bf0303;">`</span>;
+
+<span style="color:#898887;">// readonly</span>
+<span style="font-weight:bold;">function</span> <span style="color:#644a9b;">f1</span>(mt: [<span style="color:#0057ae;">number</span>, <span style="color:#0057ae;">number</span>], rt: <span style="font-weight:bold;font-style:italic;">readonly</span> [<span style="color:#0057ae;">number</span>, <span style="color:#0057ae;">number</span>]) {
+}
+
+<span style="font-weight:bold;">function</span> <span style="color:#644a9b;">f2</span>(ma: <span style="color:#0057ae;">string</span>[], ra: <span style="font-weight:bold;font-style:italic;">readonly</span> <span style="color:#0057ae;">string</span>[], mt: [<span style="color:#0057ae;">string</span>, <span style="color:#0057ae;">string</span>], rt: <span style="font-weight:bold;font-style:italic;">readonly</span> [<span style="color:#0057ae;">string</span>, <span style="color:#0057ae;">string</span>]) {
+}
+
+<span style="font-weight:bold;font-style:italic;">type</span> ReadWrite&lt;T&gt; = { -<span style="font-weight:bold;font-style:italic;">readonly</span> [P <span style="font-weight:bold;">in</span> <span style="font-weight:bold;">keyof</span> T] : T[P] };
+
+<span style="color:#898887;">// const assertion</span>
+<span style="font-weight:bold;font-style:italic;">let</span> obj = { x: <span style="color:#b08000;">10</span>, y: [<span style="color:#b08000;">20</span>, <span style="color:#b08000;">30</span>], z: { a: { b: <span style="color:#b08000;">42</span> } } } <span style="color:#ff5500;">as</span> <span style="font-weight:bold;">const</span>;
+<span style="font-weight:bold;font-style:italic;">let</span> r2 = { x: <span style="color:#b08000;">20</span>, y: <span style="color:#b08000;">10</span> } <span style="color:#ff5500;">as</span> <span style="font-weight:bold;">const</span>;
+<span style="font-weight:bold;font-style:italic;">let</span> r2 = {...p} <span style="color:#ff5500;">as</span> <span style="font-weight:bold;">const</span>;
+<span style="font-weight:bold;font-style:italic;">let</span> p1 = { x: <span style="color:#b08000;">10</span>, y: <span style="color:#b08000;">20</span> <span style="color:#ff5500;">as</span> <span style="font-weight:bold;">const</span> };
+<span style="font-weight:bold;font-style:italic;">let</span> p2 = { <span style="color:#b08000;">10</span> <span style="color:#ff5500;">as</span> <span style="font-weight:bold;">const</span>, <span style="color:#bf0303;">'foo'</span> <span style="color:#ff5500;">as</span> <span style="font-weight:bold;">const</span> };
+
+<span style="color:#898887;">// Definite assignment operator</span>
+<span style="font-weight:bold;font-style:italic;">class</span> Cl {
+    one?: <span style="color:#0057ae;">string</span>;
+    two!: <span style="color:#0057ae;">string</span>;
+}
+<span style="font-weight:bold;font-style:italic;">let</span> x! = <span style="color:#b08000;">1</span>;
+
+<span style="color:#898887;">// Function with multiple arguments</span>
+<span style="font-weight:bold;">const</span> children = [].<span style="color:#644a9b;">map</span>&lt;<span style="color:#644a9b;font-weight:bold;">Set</span>&lt;<span style="color:#644a9b;font-weight:bold;">Map</span>&lt;<span style="color:#0057ae;">number</span>, <span style="color:#0057ae;">string</span>&gt;&gt;&gt;(element <span style="font-weight:bold;">=&gt;</span> {
+    <span style="font-weight:bold;">if</span> (!<span style="font-weight:bold;">this</span>.<span style="color:#0057ae;">identityProvider</span>) {
+        <span style="font-weight:bold;">return</span> element;
+    }
+    <span style="font-weight:bold;">return</span> element;
+});
+
+<span style="color:#898887;">// Numerics</span>
+<span style="font-weight:bold;">var</span> a = <span style="color:#b08000;">0xA</span>;
+<span style="font-weight:bold;">var</span> b = <span style="color:#b08000;">0b1</span>;
+<span style="font-weight:bold;">var</span> c = <span style="color:#b08000;">0o7</span>;
+<span style="font-weight:bold;">var</span> d = <span style="color:#b08000;">1.1E+3</span>;
+<span style="font-weight:bold;">var</span> e = <span style="color:#b08000;">1.E+3</span>;
+<span style="font-weight:bold;">var</span> f = <span style="color:#b08000;">.1E+3</span>;
+<span style="font-weight:bold;">var</span> g = <span style="color:#b08000;">1E+3</span>;
+<span style="font-weight:bold;">var</span> h = <span style="color:#b08000;">1.1</span>;
+<span style="font-weight:bold;">var</span> i = <span style="color:#b08000;">1.</span>;
+<span style="font-weight:bold;">var</span> j = <span style="color:#b08000;">.1</span>;
+<span style="font-weight:bold;">var</span> k =  <span style="color:#b08000;">1</span>;
+<span style="font-weight:bold;">var</span> l = <span style="color:#b08000;">1__.e+3_22</span> | <span style="color:#b08000;">.2____e2</span> | <span style="color:#b08000;">0o1_23</span> | <span style="color:#b08000;">11__.</span> ;
+
+<span style="color:#898887;">// Bigint</span>
+<span style="font-weight:bold;">const</span> binBig = <span style="color:#b08000;">0b101</span>n;
+<span style="font-weight:bold;">const</span> octBig = <span style="color:#b08000;">0o567</span>n;
+<span style="font-weight:bold;">const</span> hexBig = <span style="color:#b08000;">0xC0B</span>n;
+<span style="font-weight:bold;">const</span> decBig = <span style="color:#b08000;">123</span>n;
+
+<span style="color:#898887;">// Types</span>
+<span style="font-weight:bold;font-style:italic;">let</span> a: <span style="color:#0057ae;">null</span> = <span style="font-weight:bold;">null</span>;
+<span style="font-weight:bold;font-style:italic;">let</span> b: <span style="color:#0057ae;">number</span> = <span style="color:#b08000;">123</span>;
+<span style="font-weight:bold;font-style:italic;">let</span> c: <span style="color:#0057ae;">number</span> = <span style="color:#b08000;">123.456</span>;
+<span style="font-weight:bold;font-style:italic;">let</span> d: <span style="color:#0057ae;">string</span> = <span style="color:#bf0303;">`Geeks`</span>;
+<span style="font-weight:bold;font-style:italic;">let</span> e: <span style="color:#0057ae;">undefined</span> = <span style="font-weight:bold;">undefined</span>;
+<span style="font-weight:bold;font-style:italic;">let</span> f: <span style="color:#0057ae;">boolean</span> = <span style="font-weight:bold;">true</span>;
+<span style="font-weight:bold;font-style:italic;">let</span> g: <span style="color:#0057ae;">number</span> = <span style="color:#b08000;">0b111001</span>; <span style="color:#898887;">// Binary</span>
+<span style="font-weight:bold;font-style:italic;">let</span> h: <span style="color:#0057ae;">number</span> = <span style="color:#b08000;">0o436</span>; <span style="color:#898887;">// Octal</span>
+<span style="font-weight:bold;font-style:italic;">let</span> i: <span style="color:#0057ae;">number</span> = <span style="color:#b08000;">0xadf0d</span>; <span style="color:#898887;">// Hexa-Decimal</span>
+<span style="font-weight:bold;font-style:italic;">let</span> j: <span style="color:#0057ae;">bigint</span> = <span style="color:#b08000;">123</span>n;
+
+<span style="font-weight:bold;">const</span> query = <span style="color:#644a9b;">query</span>&lt;[<span style="color:#0057ae;">number</span>], <span style="color:#0057ae;">number</span>&gt;(<span style="color:#bf0303;">`</span>
+<span style="color:#bf0303;">        SELECT *</span>
+<span style="color:#bf0303;">        FROM statistics</span>
+<span style="color:#bf0303;">        WHERE unit_id = $1`</span>)
+
+<span style="font-weight:bold;">function</span> <span style="color:#644a9b;">runQuery</span>() {
+    <span style="font-weight:bold;">const</span> query = <span style="color:#644a9b;">createQuery</span>&lt;[<span style="color:#0057ae;">number</span>[]], Table&lt;Columns&gt;&gt;(<span style="color:#bf0303;">`</span>
+<span style="color:#bf0303;">        some SQL here</span>
+<span style="color:#bf0303;">    `</span>)
+    <span style="font-weight:bold;">return</span> database.<span style="color:#644a9b;">execute</span>(query)
+}
+
+aa: &lt;sdf/&gt; <span style="color:#0057ae;">string</span> ?&lt;ssd/&gt; <span style="color:#0057ae;">string</span>
+ string <span style="color:#898887;">// Don't highlight</span>
+aa: <span style="color:#0057ae;">string</span> assa |
+   <span style="color:#0057ae;">string</span>
+   string ;
+   string
+
+aa: { <span style="color:#0057ae;">string</span>
+    string } <span style="color:#898887;">// Don't highlight</span>
+
+aa: [ <span style="color:#0057ae;">string</span>
+      <span style="color:#0057ae;">string</span> ]
+aa: ( <span style="color:#0057ae;">string</span>
+      string ) <span style="color:#898887;">// Don't highlight</span>
+aa: <span style="color:#0057ae;">string</span> &lt;<span style="color:#0057ae;">string</span>&gt;
+<span style="font-weight:bold;font-style:italic;">interface</span> a {
+    aa: <span style="color:#898887;">/* comment</span>
+<span style="color:#898887;">        */</span> <span style="color:#0057ae;">string</span>,
+    bb: <span style="color:#898887;">/* comment */</span>
+        <span style="color:#0057ae;">number</span>,
+    cc: <span style="color:#898887;">// comment</span>
+        <span style="color:#0057ae;">void</span>,
+    dd:
+        <span style="color:#0057ae;">any</span>,
+}
+
+<span style="font-weight:bold;">null</span>, &lt;{[key]: () <span style="font-weight:bold;">=&gt;</span> <span style="color:#0057ae;">any</span>}&gt; <span style="font-weight:bold;">null</span>
+<span style="font-weight:bold;">null</span>, &lt;{[key]: () <span style="font-weight:bold;">=&gt;</span>{a: <span style="color:#0057ae;">number</span>}}&gt; <span style="font-weight:bold;">null</span>
+
+<span style="color:#898887;">// Correctly highlighting regular expressions</span>
+dt = ((dt[<span style="color:#b08000;">0</span>] * <span style="color:#b08000;">1e9</span> + dt[<span style="color:#b08000;">1</span>]) / <span style="color:#b08000;">1e6</span>).<span style="color:#644a9b;">toFixed</span>(<span style="color:#b08000;">3</span>).<span style="color:#644a9b;">replace</span>(<span style="color:#ff5500;">/</span><span style="color:#3daee9;">\.?</span><span style="color:#ff5500;">0</span><span style="color:#3daee9;">+$</span><span style="color:#ff5500;">/</span>, <span style="color:#bf0303;">''</span>) + <span style="color:#bf0303;">'ms'</span>;
+(a[<span style="color:#b08000;">0</span>] / <span style="color:#b08000;">2</span>) / (<span style="color:#b08000;">2</span>)
+
+<span style="color:#898887;">// Type guards</span>
+<span style="font-weight:bold;">function</span> <span style="color:#644a9b;">isNumber</span>(x: <span style="color:#0057ae;">any</span>): x <span style="font-weight:bold;">is</span> <span style="color:#0057ae;">number</span> {
+    <span style="font-weight:bold;">return</span> <span style="font-weight:bold;">typeof</span> x === <span style="color:#bf0303;">&quot;number&quot;</span>;
+}
+
+<span style="color:#898887;">// Conditional expressions (highlight keywords before &quot;:&quot;)</span>
+<span style="font-weight:bold;font-style:italic;">class</span> C {
+    w = () <span style="font-weight:bold;">=&gt;</span>
+        <span style="font-weight:bold;">this</span>.<span style="color:#644a9b;">a</span>() ? <span style="font-weight:bold;">true</span> : <span style="font-weight:bold;">this</span>.<span style="color:#644a9b;">b</span>() ? <span style="font-weight:bold;">false</span> : <span style="font-weight:bold;">true</span>;
+    z = () <span style="font-weight:bold;">=&gt;</span>
+        <span style="font-weight:bold;">this</span>.<span style="color:#644a9b;">b</span>() ? hello : k;
+}
+
+<span style="font-weight:bold;">function</span> <span style="color:#644a9b;">foo</span>&lt;T <span style="font-weight:bold;font-style:italic;">extends</span> X&gt;(arg: T): T <span style="font-weight:bold;font-style:italic;">extends</span> B ? <span style="color:#0057ae;">number</span> : <span style="color:#0057ae;">string</span> {
+  <span style="font-weight:bold;">if</span> (arg === <span style="color:#bf0303;">&quot;A&quot;</span>) <span style="font-weight:bold;">return</span> &lt;T <span style="font-weight:bold;font-style:italic;">extends</span> B ? <span style="color:#0057ae;">number</span> : <span style="color:#0057ae;">never</span>&gt;<span style="color:#b08000;">111</span>;
+  <span style="font-weight:bold;">return</span> &lt;T <span style="font-weight:bold;font-style:italic;">extends</span> B ? <span style="color:#0057ae;">never</span> : <span style="color:#0057ae;">string</span>&gt;<span style="color:#bf0303;">&quot;returning a string&quot;</span>;
+}
+
+<span style="font-weight:bold;font-style:italic;">let</span> x = (foo === <span style="font-weight:bold;">null</span> || foo === <span style="font-weight:bold;">undefined</span>) ?
+    <span style="font-weight:bold;">undefined</span> :
+    foo.<span style="color:#0057ae;">bar</span>.<span style="color:#644a9b;">baz</span>();
+<span style="font-weight:bold;font-style:italic;">let</span> y = (foo === <span style="font-weight:bold;">null</span> || foo === <span style="font-weight:bold;">undefined</span>) ? <span style="color:#898887;">/* comment */</span> <span style="font-weight:bold;">undefined</span> :
+    foo.<span style="color:#0057ae;">bar</span>.<span style="color:#644a9b;">baz</span>();
+
+<span style="color:#898887;">// Operator ??</span>
+<span style="font-weight:bold;font-style:italic;">let</span> x = foo ?? <span style="color:#644a9b;">bar</span>();
+
+<span style="color:#898887;">// Types and logical `&amp;&amp;` and `||` operators after `as` expression</span>
+<span style="color:#644a9b;font-weight:bold;">Date</span> <span style="color:#ff5500;">as</span> <span style="color:#0057ae;">any</span> || <span style="color:#0057ae;">null</span>;
+
+<span style="color:#898887;">//Assertions</span>
+<span style="font-weight:bold;">const</span> assert: (value: <span style="color:#0057ae;">unknown</span>) <span style="font-weight:bold;">=&gt;</span> <span style="font-weight:bold;">asserts</span> value = value <span style="font-weight:bold;">=&gt;</span> {}
+<span style="font-weight:bold;font-style:italic;">declare</span> <span style="font-weight:bold;">function</span> <span style="color:#644a9b;">assertIsString</span>(value: <span style="color:#0057ae;">unknown</span>): <span style="font-weight:bold;">asserts</span> value <span style="font-weight:bold;">is</span> <span style="color:#0057ae;">string</span>;
+<span style="font-weight:bold;font-style:italic;">declare</span> <span style="font-weight:bold;">function</span> <span style="color:#644a9b;">assertIsArrayOfStrings</span>(value: <span style="color:#0057ae;">unknown</span>): <span style="font-weight:bold;">asserts</span> value <span style="font-weight:bold;">is</span> <span style="color:#0057ae;">string</span>[];
+<span style="font-weight:bold;font-style:italic;">declare</span> <span style="font-weight:bold;">function</span> <span style="color:#644a9b;">assertDefined</span>&lt;T&gt;(value: T): <span style="font-weight:bold;">asserts</span> value <span style="font-weight:bold;">is</span> <span style="color:#644a9b;font-weight:bold;">NonNullable</span>&lt;T&gt;;
+<span style="color:#ff5500;">namespace</span> <span style="color:#0057ae;">Debug</span> {
+    <span style="color:#ff5500;">export</span> <span style="font-weight:bold;font-style:italic;">declare</span> <span style="font-weight:bold;">function</span> <span style="color:#644a9b;">assert</span>(value: <span style="color:#0057ae;">unknown</span>, message?: <span style="color:#0057ae;">string</span>): <span style="font-weight:bold;">asserts</span> value;
+    <span style="color:#ff5500;">export</span> <span style="font-weight:bold;font-style:italic;">declare</span> <span style="font-weight:bold;">function</span> <span style="color:#644a9b;">assertDefined</span>&lt;T&gt;(value: T): <span style="font-weight:bold;">asserts</span> value <span style="font-weight:bold;">is</span> <span style="color:#644a9b;font-weight:bold;">NonNullable</span>&lt;T&gt;;
+}
+
+<span style="color:#898887;">// Only highlight valid regular expressions, of a single line, after strings</span>
+<span style="color:#898887;">// See: https://github.com/microsoft/TypeScript-TmLanguage/issues/786</span>
+<span style="color:#bf0303;">&quot;text&quot;</span> /No-Regex
+<span style="color:#bf0303;">&quot;text&quot;</span> <span style="color:#ff5500;">/Regex</span><span style="color:#3daee9;">[:)]</span><span style="color:#3daee9;">*</span><span style="color:#ff5500;">/</span>;
+<span style="font-weight:bold;">const</span> a = <span style="color:#bf0303;">&quot;6&quot;</span> / <span style="color:#b08000;">2</span>; <span style="color:#898887;">/*comment*/</span> <span style="font-weight:bold;">const</span> b = <span style="color:#b08000;">5</span>;
+<span style="color:#644a9b;font-weight:bold;">console</span>.<span style="color:#644a9b;font-style:italic;">log</span>(<span style="color:#bf0303;">&quot;4&quot;</span> / <span style="color:#bf0303;">&quot;2&quot;</span>); <span style="color:#898887;">// 2</span>
+<span style="color:#898887;">// Single quote</span>
+<span style="font-weight:bold;">const</span> a = <span style="color:#bf0303;">'6'</span> / <span style="color:#b08000;">2</span>; <span style="color:#898887;">/*comment*/</span> <span style="font-weight:bold;">const</span> b = <span style="color:#b08000;">5</span>;
+<span style="color:#644a9b;font-weight:bold;">console</span>.<span style="color:#644a9b;font-style:italic;">log</span>(<span style="color:#bf0303;">'4'</span> / <span style="color:#bf0303;">'2'</span>); <span style="color:#898887;">// 2</span>
+<span style="color:#898887;">// Template</span>
+<span style="font-weight:bold;">const</span> a = <span style="color:#bf0303;">`6`</span> / <span style="color:#b08000;">2</span>; <span style="color:#898887;">/*comment*/</span> <span style="font-weight:bold;">const</span> b = <span style="color:#b08000;">5</span>;
+<span style="color:#644a9b;font-weight:bold;">console</span>.<span style="color:#644a9b;font-style:italic;">log</span>(<span style="color:#bf0303;">`4`</span> / <span style="color:#bf0303;">`2`</span>); <span style="color:#898887;">// 2</span>
+
+ [<span style="color:#b08000;">1</span>, <span style="color:#b08000;">2</span>, <span style="color:#b08000;">3</span>].<span style="color:#644a9b;">reduce</span>&lt;<span style="font-weight:bold;font-style:italic;">readonly</span> <span style="color:#0057ae;">number</span>[]&gt;((previous) <span style="font-weight:bold;">=&gt;</span> previous, []);
+
+<span style="color:#898887;">// Multiline arrow assignment</span>
+<span style="font-weight:bold;">const</span> h = {
+  setSubProperty: &lt;
+      T <span style="font-weight:bold;font-style:italic;">extends</span> A,
+      K <span style="font-weight:bold;font-style:italic;">extends</span> <span style="font-weight:bold;">keyof</span> T,
+      J <span style="font-weight:bold;font-style:italic;">extends</span> <span style="font-weight:bold;">keyof</span> T[K]
+    &gt;(
+      property: K,
+      key: J,
+      value: T[K][J]
+    ) <span style="font-weight:bold;">=&gt;</span>  {}
+}
+
+<span style="color:#898887;">// Private-Named Instance Fields</span>
+<span style="font-weight:bold;font-style:italic;">class</span> Greeter {
+    #name: <span style="color:#0057ae;">string</span>;
+    <span style="font-weight:bold;font-style:italic;">constructor</span>(name: <span style="color:#0057ae;">string</span>) {
+        <span style="font-weight:bold;">this</span>.#<span style="color:#0057ae;">name</span> = name;
+    }
+    <span style="color:#644a9b;">greet</span>() {
+        <span style="color:#644a9b;font-weight:bold;">console</span>.<span style="color:#644a9b;font-style:italic;">log</span>(<span style="color:#bf0303;">`hello </span><span style="color:#3daee9;">${</span><span style="font-weight:bold;">this</span>.#<span style="color:#0057ae;">name</span><span style="color:#3daee9;">}</span><span style="color:#bf0303;">`</span>);
+    }
+}
+<span style="font-weight:bold;font-style:italic;">class</span> Test {
+    #NAME1: () <span style="font-weight:bold;">=&gt;</span> <span style="color:#0057ae;">string</span>;
+    prop1 = x.#<span style="color:#0057ae;">NAMEabc</span>.#<span style="color:#0057ae;">NAMEabc</span>;
+    prop2 = x.#<span style="color:#0057ae;">NAMEabc</span>.#<span style="color:#644a9b;">NAMEabc</span>();
+    prop3 = <span style="font-weight:bold;">this</span>.#<span style="color:#0057ae;">NAMEabc</span>.#<span style="color:#644a9b;">NAME</span>();
+}
+
+<span style="color:#898887;">// Type-only imports and exports</span>
+<span style="color:#ff5500;">import</span> <span style="color:#ff5500;">type</span> T <span style="color:#ff5500;">from</span> <span style="color:#bf0303;">&quot;mod&quot;</span>;
+<span style="color:#ff5500;">import</span> <span style="color:#ff5500;">type</span> { U, V } <span style="color:#ff5500;">from</span> <span style="color:#bf0303;">&quot;mod&quot;</span>;
+<span style="color:#ff5500;">import</span> <span style="color:#ff5500;">type</span> * <span style="color:#ff5500;">as</span> types <span style="color:#ff5500;">from</span> <span style="color:#bf0303;">&quot;mod&quot;</span>;
+<span style="color:#ff5500;">import</span> <span style="color:#ff5500;">type</span> <span style="color:#ff5500;">from</span> <span style="color:#bf0303;">&quot;mod&quot;</span>;
+<span style="color:#ff5500;">import</span> <span style="color:#ff5500;">type</span> =<span style="font-weight:bold;"> require</span>(<span style="color:#bf0303;">&quot;mod&quot;</span>);
+<span style="color:#ff5500;">import</span> <span style="color:#ff5500;">type</span> T =<span style="font-weight:bold;"> require</span>(<span style="color:#bf0303;">&quot;mod&quot;</span>);
+
+<span style="color:#ff5500;">export</span> { a <span style="color:#ff5500;">as</span> b, x };
+<span style="color:#ff5500;">export</span> * <span style="color:#ff5500;">from</span> <span style="color:#bf0303;">&quot;AnotherModule&quot;</span>;
+<span style="color:#ff5500;">export</span> { k <span style="color:#ff5500;">as</span> m, l } <span style="color:#ff5500;">from</span> <span style="color:#bf0303;">&quot;AnotherModule&quot;</span>;
+<span style="color:#ff5500;">export type</span> { T };
+<span style="color:#ff5500;">export type</span> { U } <span style="color:#ff5500;">from</span> <span style="color:#bf0303;">&quot;AnotherModule&quot;</span>;
+
+<span style="color:#898887;">// 'awaited' type operator: https://github.com/microsoft/TypeScript/pull/35998</span>
+<span style="font-weight:bold;font-style:italic;">let</span> v1: <span style="font-weight:bold;">awaited</span> <span style="color:#0057ae;">number</span>;
+<span style="font-weight:bold;font-style:italic;">let</span> v2: <span style="font-weight:bold;">awaited</span> <span style="color:#644a9b;font-weight:bold;">Promise</span>&lt;<span style="color:#0057ae;">number</span>&gt;;
+<span style="font-weight:bold;">function</span> <span style="color:#644a9b;">f7</span>&lt;U&gt;() {
+    <span style="font-weight:bold;font-style:italic;">let</span> v0: <span style="font-weight:bold;">awaited</span> U;
+    <span style="font-weight:bold;font-style:italic;">let</span> v1: <span style="font-weight:bold;">awaited</span> <span style="color:#644a9b;font-weight:bold;">Promise</span>&lt;U&gt;;
+}
+
+<span style="color:#898887;">// Tagged template literals</span>
+<span style="color:#644a9b;">tagFunc</span><span style="color:#bf0303;">`</span>
+<span style="color:#bf0303;">    Hello world!</span>
+<span style="color:#bf0303;">    </span><span style="color:#3daee9;">${</span> <span style="color:#644a9b;">alert</span>(<span style="color:#bf0303;">&quot;Hello!&quot;</span>); <span style="color:#3daee9;">}</span><span style="color:#bf0303;">`</span>;
+obj.<span style="color:#0057ae;">something</span>.<span style="color:#644a9b;">tagFunc</span><span style="color:#bf0303;">`Setting </span><span style="color:#3daee9;">${</span>setting<span style="color:#3daee9;">}</span><span style="color:#bf0303;"> is </span><span style="color:#3daee9;">${</span>value + <span style="color:#b08000;">5</span><span style="color:#3daee9;">}</span><span style="color:#bf0303;">!`</span>;
+</pre></body></html>

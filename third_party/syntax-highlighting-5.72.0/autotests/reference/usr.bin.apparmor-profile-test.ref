@@ -1,0 +1,275 @@
+<Comment># Sample AppArmor Profile.</Comment><br/>
+<Comment># License: Public Domain</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Comment># </Comment><Alert Level 3>NOTE</Alert Level 3><Comment>: This profile is not fully functional, since</Comment><br/>
+<Comment># it is designed to test the syntax highlighting.</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Preprocessor>include </Preprocessor><Prep. Lib><tunables/global></Prep. Lib><br/>
+<Normal Text></Normal Text><br/>
+<Comment># Variable assignment</Comment><br/>
+<Variable>@{FOO_LIB}</Variable><Operator 1>=</Operator 1><Path>/usr/lib</Path><Globbing Brackets>{</Globbing Brackets><Globbing Char of Brackets>,</Globbing Char of Brackets><Globbing Brackets>32</Globbing Brackets><Globbing Char of Brackets>,</Globbing Char of Brackets><Globbing Brackets>64}</Globbing Brackets><Path>/foo</Path><br/>
+<Variable>@{USER_DIR}</Variable><br/>
+<Normal Text>  </Normal Text><Operator 1>=</Operator 1><Path> </Path><Variable>@{HOME}</Variable><Path>/Public </Path><Variable>@{HOME}</Variable><Path>/Desktop </Path><Error>#</Error><Path>No-Comment</Path><br/>
+<Variable>@{USER_DIR}</Variable><Operator 1> +=</Operator 1><Path> </Path><Variable>@{HOME}</Variable><Path>/Hello </Path><Escape Char>\</Escape Char><br/>
+<Path>deny owner </Path><Error>#</Error><Path>No-comment aa#aa</Path><br/>
+<Variable>${BOOL}</Variable><Normal Text> </Normal Text><Operator 1>=</Operator 1><Normal Text> </Normal Text><Other Option>true</Other Option><br/>
+<Normal Text></Normal Text><br/>
+<Comment># Alias</Comment><br/>
+<Rule>alias</Rule><Normal Text> </Normal Text><Path>/usr/</Path><Normal Text> </Normal Text><Operator 2>-></Operator 2><Normal Text> </Normal Text><Path>/mnt/usr/</Path><End of Rule Char>,</End of Rule Char><br/>
+<Normal Text></Normal Text><br/>
+<Comment># Profile for /usr/bin/foo</Comment><br/>
+<Profile Head>profile</Profile Head><Normal Text> </Normal Text><Profile Name>foo</Profile Name><Normal Text> </Normal Text><Path>/usr/bin/foo</Path><Normal Text> </Normal Text><Option>flags</Option><Operator 1>=</Operator 1><Normal Text>(</Normal Text><Flags>attach_disconnected</Flags><Normal Text> </Normal Text><Flags>enforce</Flags><Normal Text>) </Normal Text><Operator 1>{</Operator 1><br/>
+<Normal Text>	</Normal Text><Preprocessor>#include </Preprocessor><Prep. Lib><abstractions/ubuntu-helpers></Prep. Lib><br/>
+<Normal Text>	</Normal Text><Preprocessor>#include</Preprocessor><Prep. Lib><abstractions/wayland></Prep. Lib><br/>
+<Normal Text>	</Normal Text><Preprocessor>#include</Preprocessor><Prep. Lib>"/etc/apparmor.d/abstractions/ubuntu-konsole"</Prep. Lib><br/>
+<Preprocessor>	include </Preprocessor><Prep. Lib>"/etc/apparmor.d/abstractions/openssl"</Prep. Lib><br/>
+<Normal Text></Normal Text><br/>
+<Preprocessor>	include if exists </Preprocessor><Prep. Lib><path with spaces></Prep. Lib><br/>
+<Preprocessor>	include </Preprocessor><Prep. Lib><include_tests/includes_okay_helper.include></Prep. Lib><Normal Text> </Normal Text><Preprocessor>#include </Preprocessor><Prep. Lib><includes/base></Prep. Lib><br/>
+<Normal Text>	</Normal Text><Path>/some/file</Path><Permissions> mr</Permissions><End of Rule Char>,</End of Rule Char><Normal Text> </Normal Text><Preprocessor>#include </Preprocessor><Prep. Lib><includes/base></Prep. Lib><Normal Text> </Normal Text><Path>/bin/true</Path><Permissions> Px</Permissions><End of Rule Char>,</End of Rule Char><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>	</Normal Text><Comment># File rules</Comment><br/>
+<Normal Text>	</Normal Text><Path>/</Path><Globbing Brackets>{</Globbing Brackets><Globbing Char of Brackets>,</Globbing Char of Brackets><Globbing Char>**</Globbing Char><Globbing Brackets>/}</Globbing Brackets><Permissions> r</Permissions><End of Rule Char>,</End of Rule Char><br/>
+<Normal Text>	</Normal Text><File Qualifier>owner</File Qualifier><Normal Text> </Normal Text><Path>/</Path><Globbing Brackets>{home</Globbing Brackets><Globbing Char of Brackets>,</Globbing Char of Brackets><Globbing Brackets>media</Globbing Brackets><Globbing Char of Brackets>,</Globbing Char of Brackets><Globbing Brackets>mnt</Globbing Brackets><Globbing Char of Brackets>,</Globbing Char of Brackets><Globbing Brackets>srv</Globbing Brackets><Globbing Char of Brackets>,</Globbing Char of Brackets><Globbing Brackets>net}</Globbing Brackets><Path>/</Path><Globbing Char>**</Globbing Char><Permissions> r</Permissions><End of Rule Char>,</End of Rule Char><br/>
+<Normal Text>	</Normal Text><File Qualifier>owner</File Qualifier><Normal Text> </Normal Text><Variable>@{USER_DIR}</Variable><Path>/</Path><Globbing Char>**</Globbing Char><Permissions> rw</Permissions><End of Rule Char>,</End of Rule Char><br/>
+<Normal Text>	</Normal Text><Qualifier>audit</Qualifier><Normal Text> </Normal Text><Access Qualifier>deny</Access Qualifier><Normal Text> </Normal Text><File Qualifier>owner</File Qualifier><Normal Text> </Normal Text><Path>/</Path><Globbing Char>**</Globbing Char><Path>/</Path><Globbing Char>*</Globbing Char><Permissions> mx</Permissions><End of Rule Char>,</End of Rule Char><br/>
+<Normal Text>	</Normal Text><Path>/</Path><Globbing Char>**</Globbing Char><Path>.</Path><Globbing Brackets>[tT][xX][tT]</Globbing Brackets><Permissions> r</Permissions><End of Rule Char>,</End of Rule Char><Normal Text>  </Normal Text><Comment># txt</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>	</Normal Text><File Qualifier>owner</File Qualifier><Normal Text> </Normal Text><Rule>file</Rule><Normal Text> </Normal Text><Variable>@{HOME}</Variable><Path>/.local/share/foo/</Path><Globbing Brackets>{</Globbing Brackets><Globbing Char of Brackets>,</Globbing Char of Brackets><Globbing Char>**</Globbing Char><Globbing Brackets>}</Globbing Brackets><Permissions> rwkl</Permissions><End of Rule Char>,</End of Rule Char><br/>
+<Normal Text>	</Normal Text><File Qualifier>owner</File Qualifier><Normal Text> </Normal Text><Variable>@{HOME}</Variable><Path>/.config/</Path><Globbing Char>*</Globbing Char><Path>.</Path><Globbing Brackets>[a-zA-Z0-9]</Globbing Brackets><Globbing Char>*</Globbing Char><Normal Text>     </Normal Text><Permissions> rwk</Permissions><End of Rule Char>,</End of Rule Char><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>	</Normal Text><Text Quoted>"/usr/share/</Text Quoted><Globbing Char>**</Globbing Char><Text Quoted>"</Text Quoted><Permissions> r</Permissions><End of Rule Char>,</End of Rule Char><br/>
+<Normal Text>	</Normal Text><Text Quoted>"/var/lib/flatpak/exports/share/</Text Quoted><Globbing Char>**</Globbing Char><Text Quoted>"</Text Quoted><Permissions> r</Permissions><End of Rule Char>,</End of Rule Char><br/>
+<Normal Text>	</Normal Text><Text Quoted>"/var/lib/</Text Quoted><Globbing Brackets>{spaces in</Globbing Brackets><br/>
+<Globbing Brackets>		string</Globbing Brackets><Globbing Char of Brackets>,</Globbing Char of Brackets><Globbing Brackets>hello}</Globbing Brackets><Text Quoted>/a</Text Quoted><Globbing Brackets>[</Globbing Brackets><Globbing Char of Brackets>^</Globbing Char of Brackets><Globbing Brackets> a]</Globbing Brackets><Text Quoted>a/</Text Quoted><Globbing Char>**</Globbing Char><Text Quoted>"</Text Quoted><Permissions> r</Permissions><End of Rule Char>,</End of Rule Char><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>	</Normal Text><Access Qualifier>allow</Access Qualifier><Normal Text> </Normal Text><Rule>file</Rule><Normal Text> </Normal Text><Path>/etc/nsswitch.conf</Path><Normal Text>          </Normal Text><Permissions> r</Permissions><End of Rule Char>,</End of Rule Char><br/>
+<Normal Text>	</Normal Text><Access Qualifier>allow</Access Qualifier><Normal Text> </Normal Text><Path>/etc/fstab</Path><Normal Text>                       </Normal Text><Permissions> r</Permissions><End of Rule Char>,</End of Rule Char><br/>
+<Normal Text>	</Normal Text><Access Qualifier>deny</Access Qualifier><Normal Text> </Normal Text><Path>/etc/xdg/</Path><Globbing Brackets>{autostart</Globbing Brackets><Globbing Char of Brackets>,</Globbing Char of Brackets><Globbing Brackets>systemd}</Globbing Brackets><Path>/</Path><Globbing Char>**</Globbing Char><Normal Text>   </Normal Text><Permissions> r</Permissions><End of Rule Char>,</End of Rule Char><br/>
+<Normal Text>	</Normal Text><Access Qualifier>deny</Access Qualifier><Normal Text> </Normal Text><Path>/boot/</Path><Globbing Char>**</Globbing Char><Normal Text>                          </Normal Text><Permissions> rwlkmx</Permissions><End of Rule Char>,</End of Rule Char><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>	</Normal Text><File Qualifier>owner</File Qualifier><Normal Text> </Normal Text><Variable>@{PROC}</Variable><Path>/</Path><Variable>@{pid}</Variable><Path>/</Path><Globbing Brackets>{cmdline</Globbing Brackets><Globbing Char of Brackets>,</Globbing Char of Brackets><Globbing Brackets>mountinfo</Globbing Brackets><Globbing Char of Brackets>,</Globbing Char of Brackets><Globbing Brackets>mounts</Globbing Brackets><Globbing Char of Brackets>,</Globbing Char of Brackets><Globbing Brackets>stat</Globbing Brackets><Globbing Char of Brackets>,</Globbing Char of Brackets><Globbing Brackets>status</Globbing Brackets><Globbing Char of Brackets>,</Globbing Char of Brackets><Globbing Brackets>vmstat}</Globbing Brackets><Permissions> r</Permissions><End of Rule Char>,</End of Rule Char><br/>
+<Normal Text>	</Normal Text><Path>/sys/devices/</Path><Globbing Char>**</Globbing Char><Path>/uevent</Path><Permissions> r</Permissions><End of Rule Char>,</End of Rule Char><br/>
+<Normal Text>	</Normal Text><Variable>@{FOO_LIB}</Variable><Path>/</Path><Globbing Brackets>{</Globbing Brackets><Variable>@{multiarch}</Variable><Globbing Char of Brackets>,</Globbing Char of Brackets><Globbing Brackets>64}</Globbing Brackets><Path>/</Path><Globbing Char>**</Globbing Char><Permissions> mr</Permissions><End of Rule Char>,</End of Rule Char><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>	</Normal Text><Path>/usr/bin/foo</Path><Normal Text>        </Normal Text><Permissions> ixr</Permissions><End of Rule Char>,</End of Rule Char><br/>
+<Normal Text>	</Normal Text><Path>/usr/bin/dolphin</Path><Normal Text>    </Normal Text><Permissions> pUx</Permissions><End of Rule Char>,</End of Rule Char><br/>
+<Normal Text>	</Normal Text><Path>/usr/bin/</Path><Globbing Char>*</Globbing Char><Normal Text>          </Normal Text><Permissions> Pixr</Permissions><End of Rule Char>,</End of Rule Char><br/>
+<Normal Text>	</Normal Text><Path>/usr/bin/khelpcenter</Path><Permissions> Cx</Permissions><Normal Text>  </Normal Text><Operator 2>-></Operator 2><Normal Text> </Normal Text><Transition Profile Name>sanitized_helper</Transition Profile Name><End of Rule Char>,</End of Rule Char><br/>
+<Normal Text>	</Normal Text><Path>/usr/bin/helloworld</Path><Normal Text> </Normal Text><Permissions> cxr</Permissions><Normal Text> </Normal Text><Operator 2>-></Operator 2><br/>
+<Normal Text>		</Normal Text><Transition Profile Name>hello_world</Transition Profile Name><End of Rule Char>,</End of Rule Char><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>	</Normal Text><Comment># Dbus rules</Comment><br/>
+<Normal Text>	</Normal Text><Rule>dbus</Rule><Normal Text> (</Normal Text><Permissions>send</Permissions><Normal Text>)  </Normal Text><Error>#</Error><Normal Text>No-Comment</Normal Text><br/>
+<Normal Text>		</Normal Text><Option>bus</Option><Operator 1>=</Operator 1><Other Data>system</Other Data><br/>
+<Normal Text>		</Normal Text><Option>path</Option><Operator 1>=</Operator 1><Path>/org/freedesktop/NetworkManager</Path><br/>
+<Normal Text>		</Normal Text><Option>interface</Option><Operator 1>=</Operator 1><Path>org.freedesktop.DBus.Introspectable</Path><br/>
+<Normal Text>		</Normal Text><Option>peer</Option><Operator 1>=</Operator 1><Normal Text>(</Normal Text><Other Option>name</Other Option><Operator 1>=</Operator 1><Path>org.freedesktop.NetworkManager</Path><Normal Text> </Normal Text><Other Option>label</Other Option><Operator 1>=</Operator 1><Other Data>unconfined</Other Data><Normal Text>)</Normal Text><End of Rule Char>,</End of Rule Char><br/>
+<Normal Text>	</Normal Text><Rule>dbus</Rule><Normal Text> (</Normal Text><Permissions>send</Permissions><Normal Text> </Normal Text><Permissions>receive</Permissions><Normal Text>)</Normal Text><br/>
+<Normal Text>		</Normal Text><Option>bus</Option><Operator 1>=</Operator 1><Other Data>system</Other Data><br/>
+<Normal Text>		</Normal Text><Option>path</Option><Operator 1>=</Operator 1><Path>/org/freedesktop/NetworkManager</Path><br/>
+<Normal Text>		</Normal Text><Option>interface</Option><Operator 1>=</Operator 1><Path>org.freedesktop.NetworkManager</Path><br/>
+<Normal Text>		</Normal Text><Option>member</Option><Operator 1>=</Operator 1><Globbing Brackets>{Introspect</Globbing Brackets><Globbing Char of Brackets>,</Globbing Char of Brackets><Globbing Brackets>state}</Globbing Brackets><br/>
+<Normal Text>		</Normal Text><Option>peer</Option><Operator 1>=</Operator 1><Normal Text>(</Normal Text><Other Option>name</Other Option><Operator 1>=</Operator 1><Globbing Brackets>(org.freedesktop.NetworkManager</Globbing Brackets><Globbing Char of Brackets>|</Globbing Char of Brackets><Globbing Brackets>org.freedesktop.DBus)</Globbing Brackets><Normal Text>)</Normal Text><End of Rule Char>,</End of Rule Char><br/>
+<Normal Text>	</Normal Text><Rule>dbus</Rule><Normal Text> (</Normal Text><Permissions>send</Permissions><Normal Text>)</Normal Text><br/>
+<Normal Text>		</Normal Text><Option>bus</Option><Operator 1>=</Operator 1><Other Data>session</Other Data><br/>
+<Normal Text>		</Normal Text><Option>path</Option><Operator 1>=</Operator 1><Path>/org/gnome/GConf/Database/</Path><Globbing Char>*</Globbing Char><br/>
+<Normal Text>		</Normal Text><Option>member</Option><Operator 1>=</Operator 1><Globbing Brackets>{AddMatch</Globbing Brackets><Globbing Char of Brackets>,</Globbing Char of Brackets><Globbing Brackets>AddNotify</Globbing Brackets><Globbing Char of Brackets>,</Globbing Char of Brackets><Globbing Brackets>AllEntries</Globbing Brackets><Globbing Char of Brackets>,</Globbing Char of Brackets><Globbing Brackets>LookupExtended</Globbing Brackets><Globbing Char of Brackets>,</Globbing Char of Brackets><Globbing Brackets>RemoveNotify}</Globbing Brackets><End of Rule Char>,</End of Rule Char><br/>
+<Normal Text>	</Normal Text><Rule>dbus</Rule><Normal Text> (</Normal Text><Permissions>bind</Permissions><Normal Text>)</Normal Text><br/>
+<Normal Text>		</Normal Text><Option>bus</Option><Operator 1>=</Operator 1><Other Data>system</Other Data><br/>
+<Normal Text>		</Normal Text><Option>name</Option><Operator 1>=</Operator 1><Path>org.bluez</Path><End of Rule Char>,</End of Rule Char><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>	</Normal Text><Comment># Signal rules</Comment><br/>
+<Normal Text>	</Normal Text><Rule>signal</Rule><Normal Text> (</Normal Text><Permissions>send</Permissions><Normal Text>) </Normal Text><Option>set</Option><Operator 1>=</Operator 1><Normal Text>(</Normal Text><Flags>term</Flags><Normal Text>) </Normal Text><Option>peer</Option><Operator 1>=</Operator 1><Text Quoted>"/usr/lib/hello/world</Text Quoted><SubProfile/Hat Operator>//</SubProfile/Hat Operator><SubProfile/Hat> foo helper</SubProfile/Hat><Text Quoted>"</Text Quoted><End of Rule Char>,</End of Rule Char><br/>
+<Normal Text>	</Normal Text><Rule>signal</Rule><Normal Text> (</Normal Text><Permissions>send</Permissions><Normal Text>, </Normal Text><Permissions>receive</Permissions><Normal Text>) </Normal Text><Option>set</Option><Operator 1>=</Operator 1><Normal Text>(</Normal Text><Flags>int</Flags><Normal Text> </Normal Text><Flags>exists</Flags><Normal Text> </Normal Text><Flags>rtmin+8</Flags><Normal Text>) </Normal Text><Option>peer</Option><Operator 1>=</Operator 1><Path>/usr/lib/hello/world</Path><SubProfile/Hat Operator>//</SubProfile/Hat Operator><SubProfile/Hat>foo-helper</SubProfile/Hat><End of Rule Char>,</End of Rule Char><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>	</Normal Text><Comment># Child profile</Comment><br/>
+<Normal Text>	</Normal Text><Profile Head>profile</Profile Head><Normal Text> </Normal Text><Profile Name>hello_world</Profile Name><Normal Text> </Normal Text><Operator 1>{</Operator 1><br/>
+<Normal Text>		</Normal Text><Comment># File rules (three different ways)</Comment><br/>
+<Normal Text>		</Normal Text><Rule>file</Rule><Normal Text> </Normal Text><Path>/usr/lib</Path><Globbing Brackets>{</Globbing Brackets><Globbing Char of Brackets>,</Globbing Char of Brackets><Globbing Brackets>32</Globbing Brackets><Globbing Char of Brackets>,</Globbing Char of Brackets><Globbing Brackets>64}</Globbing Brackets><Path>/helloworld/</Path><Globbing Char>**</Globbing Char><Path>.so</Path><Permissions> mr</Permissions><End of Rule Char>,</End of Rule Char><br/>
+<Normal Text>		</Normal Text><Path>/usr/lib</Path><Globbing Brackets>{</Globbing Brackets><Globbing Char of Brackets>,</Globbing Char of Brackets><Globbing Brackets>32</Globbing Brackets><Globbing Char of Brackets>,</Globbing Char of Brackets><Globbing Brackets>64}</Globbing Brackets><Path>/helloworld/</Path><Globbing Char>**</Globbing Char><Permissions> r</Permissions><End of Rule Char>,</End of Rule Char><br/>
+<Normal Text>	</Normal Text><Permissions>	rk</Permissions><Normal Text> </Normal Text><Path>/usr/lib</Path><Globbing Brackets>{</Globbing Brackets><Globbing Char of Brackets>,</Globbing Char of Brackets><Globbing Brackets>32</Globbing Brackets><Globbing Char of Brackets>,</Globbing Char of Brackets><Globbing Brackets>64}</Globbing Brackets><Path>/helloworld/hello,file</Path><End of Rule Char>,</End of Rule Char><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>		</Normal Text><Comment># Link rules (two ways)</Comment><br/>
+<Normal Text>	</Normal Text><Permissions>	l</Permissions><Normal Text> </Normal Text><Path>/foo1</Path><Normal Text> </Normal Text><Operator 2>-></Operator 2><Normal Text> </Normal Text><Path>/bar</Path><End of Rule Char>,</End of Rule Char><br/>
+<Normal Text>		</Normal Text><Rule>link</Rule><Normal Text> </Normal Text><Path>/foo2</Path><Normal Text> </Normal Text><Operator 2>-></Operator 2><Normal Text> bar</Normal Text><End of Rule Char>,</End of Rule Char><br/>
+<Normal Text>		</Normal Text><Rule>link</Rule><Normal Text> </Normal Text><Data>subset</Data><Normal Text> </Normal Text><Path>/link</Path><Globbing Char>*</Globbing Char><Normal Text> </Normal Text><Operator 2>-></Operator 2><Normal Text> </Normal Text><Path>/</Path><Globbing Char>**</Globbing Char><End of Rule Char>,</End of Rule Char><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>		</Normal Text><Comment># Network rules</Comment><br/>
+<Normal Text>		</Normal Text><Rule>network</Rule><Normal Text> </Normal Text><Data>inet6</Data><Normal Text> </Normal Text><Data>tcp</Data><End of Rule Char>,</End of Rule Char><br/>
+<Normal Text>		</Normal Text><Rule>network</Rule><Normal Text> </Normal Text><Data>netlink</Data><Normal Text> </Normal Text><Data>dgram</Data><End of Rule Char>,</End of Rule Char><br/>
+<Normal Text>		</Normal Text><Rule>network</Rule><Normal Text> </Normal Text><Data>bluetooth</Data><End of Rule Char>,</End of Rule Char><br/>
+<Normal Text>		</Normal Text><Rule>network</Rule><Normal Text> </Normal Text><Other Data>unspec</Other Data><Normal Text> </Normal Text><Data>dgram</Data><End of Rule Char>,</End of Rule Char><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>		</Normal Text><Comment># Capability rules</Comment><br/>
+<Normal Text>		</Normal Text><Rule>capability</Rule><Normal Text> </Normal Text><Data>dac_override</Data><End of Rule Char>,</End of Rule Char><br/>
+<Normal Text>		</Normal Text><Rule>capability</Rule><Normal Text> </Normal Text><Data>sys_admin</Data><End of Rule Char>,</End of Rule Char><br/>
+<Normal Text>		</Normal Text><Rule>capability</Rule><Normal Text> </Normal Text><Data>sys_chroot</Data><End of Rule Char>,</End of Rule Char><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>		</Normal Text><Comment># Mount rules</Comment><br/>
+<Normal Text>		</Normal Text><Rule>mount</Rule><Normal Text> </Normal Text><Option>options</Option><Operator 1>=</Operator 1><Normal Text>(</Normal Text><Permissions>rw</Permissions><Normal Text> </Normal Text><Permissions>bind</Permissions><Normal Text> </Normal Text><Permissions>remount</Permissions><Normal Text> </Normal Text><Permissions>nodev</Permissions><Normal Text> </Normal Text><Permissions>noexec</Permissions><Normal Text>) </Normal Text><Option>vfstype</Option><Operator 1>=</Operator 1><Flags>ecryptfs</Flags><Normal Text> </Normal Text><Path>/home/</Path><Globbing Char>*</Globbing Char><Path>/.helloworld/</Path><Normal Text> </Normal Text><Operator 2>-></Operator 2><Normal Text> </Normal Text><Path>/home/</Path><Globbing Char>*</Globbing Char><Path>/helloworld/</Path><End of Rule Char>,</End of Rule Char><br/>
+<Normal Text>		</Normal Text><Rule>mount</Rule><Normal Text> </Normal Text><Option>options</Option><Normal Text> </Normal Text><Operator 2>in</Operator 2><Normal Text> (</Normal Text><Permissions>rw</Permissions><Normal Text>, </Normal Text><Permissions>bind</Permissions><Normal Text>) </Normal Text><Path>/</Path><Normal Text> </Normal Text><Operator 2>-></Operator 2><Normal Text> </Normal Text><Path>/run/hellowordd/</Path><Globbing Char>*</Globbing Char><Path>.mnt</Path><End of Rule Char>,</End of Rule Char><br/>
+<Normal Text>		</Normal Text><Rule>mount</Rule><Normal Text> </Normal Text><Option>option</Option><Operator 1>=</Operator 1><Permissions>read-only</Permissions><Normal Text> </Normal Text><Option>fstype</Option><Operator 1>=</Operator 1><Flags>btrfs</Flags><Normal Text> </Normal Text><Path>/dev/sd</Path><Globbing Brackets>[a-z][1-9]</Globbing Brackets><Globbing Char>*</Globbing Char><Normal Text> </Normal Text><Operator 2>-></Operator 2><Normal Text> </Normal Text><Path>/media/</Path><Globbing Char>*</Globbing Char><Path>/</Path><Globbing Char>*</Globbing Char><End of Rule Char>,</End of Rule Char><br/>
+<Normal Text>		</Normal Text><Rule>umount</Rule><Normal Text> </Normal Text><Path>/home/</Path><Globbing Char>*</Globbing Char><Path>/helloworld/</Path><End of Rule Char>,</End of Rule Char><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>		</Normal Text><Comment># Pivot Root rules</Comment><br/>
+<Normal Text>		</Normal Text><Rule>pivot_root</Rule><Normal Text> </Normal Text><Option>oldroot</Option><Operator 1>=</Operator 1><Path>/mnt/root/old/</Path><Normal Text> </Normal Text><Path>/mnt/root/</Path><End of Rule Char>,</End of Rule Char><br/>
+<Normal Text>		</Normal Text><Rule>pivot_root</Rule><Normal Text> </Normal Text><Path>/mnt/root/</Path><End of Rule Char>,</End of Rule Char><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>		</Normal Text><Comment># Ptrace rules</Comment><br/>
+<Normal Text>		</Normal Text><Rule>ptrace</Rule><Normal Text> (</Normal Text><Permissions>trace</Permissions><Normal Text>) </Normal Text><Option>peer</Option><Operator 1>=</Operator 1><Other Data>unconfined</Other Data><End of Rule Char>,</End of Rule Char><br/>
+<Normal Text>		</Normal Text><Rule>ptrace</Rule><Normal Text> (</Normal Text><Permissions>read</Permissions><Normal Text>, </Normal Text><Permissions>trace</Permissions><Normal Text>, </Normal Text><Permissions>tracedby</Permissions><Normal Text>) </Normal Text><Option>peer</Option><Operator 1>=</Operator 1><Path>/usr/lib/hello/helloword</Path><End of Rule Char>,</End of Rule Char><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>		</Normal Text><Comment># Unix rules</Comment><br/>
+<Normal Text>		</Normal Text><Rule>unix</Rule><Normal Text> (</Normal Text><Permissions>connect</Permissions><Normal Text> </Normal Text><Permissions>receive</Permissions><Normal Text> </Normal Text><Permissions>send</Permissions><Normal Text>) </Normal Text><Option>type</Option><Operator 1>=</Operator 1><Normal Text>(</Normal Text><Data>stream</Data><Normal Text>) </Normal Text><Option>peer</Option><Operator 1>=</Operator 1><Normal Text>(</Normal Text><Other Option>addr</Other Option><Operator 1>=</Operator 1><Path>@/tmp/ibus/dbus-</Path><Globbing Char>*</Globbing Char><Normal Text>,</Normal Text><Other Option>label</Other Option><Operator 1>=</Operator 1><Other Data>unconfined</Other Data><Normal Text>)</Normal Text><End of Rule Char>,</End of Rule Char><br/>
+<Normal Text>		</Normal Text><Rule>unix</Rule><Normal Text> (</Normal Text><Permissions>send</Permissions><Normal Text>,</Normal Text><Permissions>receive</Permissions><Normal Text>) </Normal Text><Option>type</Option><Operator 1>=</Operator 1><Normal Text>(</Normal Text><Data>stream</Data><Normal Text>) </Normal Text><Option>protocol</Option><Operator 1>=</Operator 1><Normal Text>0 </Normal Text><Option>peer</Option><Operator 1>=</Operator 1><Normal Text>(</Normal Text><Other Option>addr</Other Option><Operator 1>=</Operator 1><Other Data>none</Other Data><Normal Text>)</Normal Text><End of Rule Char>,</End of Rule Char><br/>
+<Normal Text>		</Normal Text><Rule>unix</Rule><Normal Text> </Normal Text><Option>peer</Option><Operator 1>=</Operator 1><Normal Text>(</Normal Text><Other Option>label</Other Option><Operator 1>=</Operator 1><Variable>@{profile_name}</Variable><Normal Text>,</Normal Text><Other Option>addr</Other Option><Operator 1>=</Operator 1><Path>@helloworld</Path><Normal Text>)</Normal Text><End of Rule Char>,</End of Rule Char><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>		</Normal Text><Comment># Rlimit rule</Comment><br/>
+<Normal Text>		</Normal Text><Rule>set</Rule><Normal Text> </Normal Text><Rule>rlimit</Rule><Normal Text> </Normal Text><Data>data</Data><Normal Text>  </Normal Text><Operator 2><=</Operator 2><Normal Text> </Normal Text><Number>100</Number><Numerical Unit>M</Numerical Unit><End of Rule Char>,</End of Rule Char><br/>
+<Normal Text>		</Normal Text><Rule>set</Rule><Normal Text> </Normal Text><Rule>rlimit</Rule><Normal Text> </Normal Text><Data>nproc</Data><Normal Text> </Normal Text><Operator 2><=</Operator 2><Normal Text> </Normal Text><Number>10</Number><End of Rule Char>,</End of Rule Char><br/>
+<Normal Text>		</Normal Text><Rule>set</Rule><Normal Text> </Normal Text><Rule>rlimit</Rule><Normal Text> </Normal Text><Data>memlock</Data><Normal Text> </Normal Text><Operator 2><=</Operator 2><Normal Text> </Normal Text><Number>2</Number><Numerical Unit>GB</Numerical Unit><End of Rule Char>,</End of Rule Char><br/>
+<Normal Text>		</Normal Text><Rule>set</Rule><Normal Text> </Normal Text><Rule>rlimit</Rule><Normal Text> </Normal Text><Data>rss</Data><Normal Text> </Normal Text><Operator 2><=</Operator 2><Normal Text> </Normal Text><Number>infinity</Number><End of Rule Char>,</End of Rule Char><br/>
+<Normal Text>		</Normal Text><Rule>set</Rule><Normal Text> </Normal Text><Rule>rlimit</Rule><Normal Text> </Normal Text><Data>nice</Data><Normal Text> </Normal Text><Operator 2><=</Operator 2><Normal Text> </Normal Text><Number>-12</Number><End of Rule Char>,</End of Rule Char><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>		</Normal Text><Comment># Change Profile rules</Comment><br/>
+<Normal Text>		</Normal Text><Rule>change_profile</Rule><Normal Text> </Normal Text><Data>unsafe</Data><Normal Text> </Normal Text><Path>/</Path><Globbing Char>**</Globbing Char><Normal Text> </Normal Text><Operator 2>-></Operator 2><Normal Text> </Normal Text><Transition Profile Name>[^u/]</Transition Profile Name><Globbing Char in Tran. Prof.>**</Globbing Char in Tran. Prof.><End of Rule Char>,</End of Rule Char><br/>
+<Normal Text>		</Normal Text><Rule>change_profile</Rule><Normal Text> </Normal Text><Data>unsafe</Data><Normal Text> </Normal Text><Path>/</Path><Globbing Char>**</Globbing Char><Normal Text> </Normal Text><Operator 2>-></Operator 2><Normal Text> </Normal Text><Transition Profile Name>{u,un,unc,unco,uncon,unconf,unconfi,unconfin,unconfine}</Transition Profile Name><End of Rule Char>,</End of Rule Char><br/>
+<Normal Text>		</Normal Text><Rule>change_profile</Rule><Normal Text> </Normal Text><Path>/bin/bash</Path><Normal Text>  </Normal Text><Operator 2>-></Operator 2><br/>
+<Normal Text>			</Normal Text><Transition Profile Name>new_profile</Transition Profile Name><Hat Operator in Tran. Prof.>//</Hat Operator in Tran. Prof.><Transition Profile Name>hat</Transition Profile Name><End of Rule Char>,</End of Rule Char><br/>
+<Normal Text>	</Normal Text><Operator 1>}</Operator 1><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>	</Normal Text><Comment># Hat</Comment><br/>
+<Profile Head>	^</Profile Head><Profile Name>foo-helper</Profile Name><Escape Char>\/</Escape Char><Normal Text> </Normal Text><Operator 1>{</Operator 1><br/>
+<Normal Text>		</Normal Text><Rule>network</Rule><Normal Text> </Normal Text><Data>unix</Data><Normal Text> </Normal Text><Data>stream</Data><End of Rule Char>,</End of Rule Char><br/>
+<Normal Text>		</Normal Text><Rule>unix</Rule><Normal Text> </Normal Text><Data>stream</Data><End of Rule Char>,</End of Rule Char><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>		</Normal Text><Path>/usr/hi</Path><Escape Char>\"</Escape Char><Path>esc</Path><Escape Char>\x23</Escape Char><Path>esc</Path><Escape Char>\032</Escape Char><Path>es</Path><Escape Char>\47</Escape Char><Path>7esc</Path><Escape Char>\*</Escape Char><Path>es</Path><Escape Char>\{</Escape Char><Path>esc</Path><Escape Char>\ </Escape Char><Path>rw</Path><Permissions> r</Permissions><End of Rule Char>,</End of Rule Char><Normal Text> </Normal Text><Comment># Escape expressions</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>		</Normal Text><Comment># Text after a variable is highlighted as path</Comment><br/>
+<Normal Text>		</Normal Text><Rule>file</Rule><Normal Text> </Normal Text><Path>/my/path</Path><Permissions> r</Permissions><End of Rule Char>,</End of Rule Char><br/>
+<Normal Text>		</Normal Text><Variable>@{FOO_LIB}</Variable><Path>file</Path><Permissions> r</Permissions><End of Rule Char>,</End of Rule Char><br/>
+<Normal Text>		</Normal Text><Variable>@{FOO_LIB}</Variable><Path>#my/path</Path><Permissions> r</Permissions><End of Rule Char>,</End of Rule Char><Normal Text> </Normal Text><Comment>#Comment</Comment><br/>
+<Normal Text>		</Normal Text><Variable>@{FOO_LIB}</Variable><Path>ñ</Path><Globbing Char>*</Globbing Char><Permissions> r</Permissions><End of Rule Char>,</End of Rule Char><br/>
+<Normal Text>		</Normal Text><Rule>unix</Rule><Normal Text> (</Normal Text><Path>/path</Path><Escape Char>\t</Escape Char><Globbing Brackets>{aa}</Globbing Brackets><Globbing Char>*</Globbing Char><Normal Text>,*a </Normal Text><Variable>@{var}</Variable><Globbing Char>*</Globbing Char><Path>path</Path><Normal Text>,* </Normal Text><Variable>@{var}</Variable><Normal Text>,*)</Normal Text><End of Rule Char>,</End of Rule Char><br/>
+<Normal Text>	</Normal Text><Operator 1>}</Operator 1><br/>
+<Operator 1>}</Operator 1><br/>
+<Normal Text></Normal Text><br/>
+<Comment># Syntax Error</Comment><br/>
+<Path>/usr/bin/error</Path><Normal Text> (</Normal Text><Flags>complain</Flags><Normal Text>, </Normal Text><Flags>audit</Flags><Normal Text>) </Normal Text><Operator 1>{</Operator 1><br/>
+<Normal Text>	</Normal Text><Rule>file</Rule><Normal Text> </Normal Text><Error>#include</Error><Normal Text> </Normal Text><Path>/hello</Path><Permissions> r</Permissions><End of Rule Char>,</End of Rule Char><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>	</Normal Text><Comment># Error: Variable open or with characters not allowed</Comment><br/>
+<Normal Text>	</Normal Text><Error>@</Error><Operator 1>{</Operator 1><Normal Text>var</Normal Text><br/>
+<Normal Text>	</Normal Text><Error>@</Error><Operator 1>{</Operator 1><Normal Text>sdf&s</Normal Text><Operator 1>}</Operator 1><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>	</Normal Text><Comment># Error: Open brackets</Comment><br/>
+<Normal Text>	</Normal Text><Path>/</Path><Globbing Brackets>{hello{ab</Globbing Brackets><Globbing Char of Brackets>,</Globbing Char of Brackets><Globbing Brackets>cd}worl</Globbing Brackets><Open Globbing Brackets>d</Open Globbing Brackets><Normal Text> </Normal Text><Permissions> kr</Permissions><End of Rule Char>,</End of Rule Char><br/>
+<Normal Text>	</Normal Text><Path>/</Path><Globbing Brackets>{abc{ab</Globbing Brackets><Open Globbing Brackets>c</Open Globbing Brackets><Permissions> kr</Permissions><End of Rule Char>,</End of Rule Char><br/>
+<Normal Text>	</Normal Text><Path>/</Path><Globbing Brackets>[ab</Globbing Brackets><Open Globbing Brackets>c</Open Globbing Brackets><Normal Text> </Normal Text><Permissions> kr</Permissions><End of Rule Char>,</End of Rule Char><br/>
+<Normal Text>	</Normal Text><Path>/</Path><Globbing Brackets>(ab</Globbing Brackets><Open Globbing Brackets>c</Open Globbing Brackets><Permissions> kr</Permissions><End of Rule Char>,</End of Rule Char><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>	</Normal Text><Comment># Error: Empty brackets</Comment><br/>
+<Normal Text>	</Normal Text><Path>/hello</Path><Error>[]</Error><Path>hello</Path><Error>{}</Error><Path>hello</Path><Error>()</Error><Path>he</Path><Normal Text> </Normal Text><Permissions> kr</Permissions><End of Rule Char>,</End of Rule Char><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>	</Normal Text><Comment># Comments not allowed</Comment><br/>
+<Normal Text>	</Normal Text><Rule>dbus</Rule><Normal Text> (</Normal Text><Permissions>send</Permissions><Normal Text>)  </Normal Text><Error>#</Error><Normal Text>No comment</Normal Text><br/>
+<Normal Text>		</Normal Text><Option>path</Option><Operator 1>=</Operator 1><Path>/org/hello</Path><br/>
+<Normal Text>		</Normal Text><Error>#</Error><Comment>No comment</Comment><br/>
+<Normal Text>		</Normal Text><Option>interface</Option><Operator 1>=</Operator 1><Path>org.hello</Path><Normal Text> </Normal Text><Error>#</Error><Normal Text>No comment</Normal Text><br/>
+<Normal Text>		</Normal Text><Option>peer</Option><Operator 1>=</Operator 1><Normal Text>(</Normal Text><Other Option>name</Other Option><Operator 1>=</Operator 1><Path>org.hello</Path><Normal Text>  </Normal Text><Error>#</Error><Normal Text>No comment</Normal Text><br/>
+<Normal Text>		      </Normal Text><Other Option>label</Other Option><Operator 1>=</Operator 1><Other Data>unconfined</Other Data><Normal Text>)</Normal Text><End of Rule Char>,</End of Rule Char><Normal Text> </Normal Text><Comment>#Comment</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>	</Normal Text><Comment># Don't allow assignment of variables within profiles</Comment><br/>
+<Normal Text>	</Normal Text><Variable>@{VARIABLE}</Variable><Normal Text> </Normal Text><Error>=</Error><Normal Text> val1 val2 val3 </Normal Text><Comment># Comment</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>	</Normal Text><Comment># Alias rules not allowed within profiles</Comment><br/>
+<Normal Text>	</Normal Text><Error>alias</Error><Normal Text> </Normal Text><Path>/run/</Path><Normal Text> </Normal Text><Operator 2>-></Operator 2><Normal Text> </Normal Text><Path>/mnt/run/</Path><Normal Text>,</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>	</Normal Text><Comment># Error: Open rule</Comment><br/>
+<Normal Text>	</Normal Text><Path>/home/</Path><Globbing Char>*</Globbing Char><Path>/file</Path><Permissions> rw</Permissions><br/>
+<Normal Text>	</Normal Text><Rule Error>capability</Rule Error><Normal Text> </Normal Text><Data>dac_override</Data><br/>
+<Normal Text>	</Normal Text><Access Qualifier Error>deny</Access Qualifier Error><Normal Text> </Normal Text><Rule>file</Rule><Normal Text> </Normal Text><Path>/etc/fstab</Path><Permissions> w</Permissions><br/>
+<Normal Text>	</Normal Text><Qualifier Error>audit</Qualifier Error><Normal Text> </Normal Text><Rule>network</Rule><Normal Text> </Normal Text><Data>ieee802154</Data><End of Rule Char>,</End of Rule Char><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>	</Normal Text><Rule>dbus</Rule><Normal Text> (</Normal Text><Permissions>receive</Permissions><br/>
+<Normal Text>	</Normal Text><Rule Error>unix</Rule Error><Normal Text> </Normal Text><Data>stream</Data><End of Rule Char>,</End of Rule Char><br/>
+<Normal Text>	</Normal Text><Rule>unix</Rule><Normal Text> </Normal Text><Data>stream</Data><End of Rule Char>,</End of Rule Char><br/>
+<Operator 1>}</Operator 1><br/>
+<Normal Text></Normal Text><br/>
+<Profile Head>profile</Profile Head><Normal Text> </Normal Text><Profile Name>other_tests</Profile Name><Normal Text> </Normal Text><Operator 1>{</Operator 1><br/>
+<Normal Text>	</Normal Text><Comment># set rlimit</Comment><br/>
+<Normal Text>	</Normal Text><Rule>set</Rule><Normal Text> </Normal Text><Rule>rlimit</Rule><Normal Text> </Normal Text><Data>nice</Data><Normal Text>  </Normal Text><Operator 2><=</Operator 2><Normal Text> </Normal Text><Number>3</Number><End of Rule Char>,</End of Rule Char><br/>
+<Normal Text>	</Normal Text><Rule Error>rlimit</Rule Error><Normal Text> </Normal Text><Data>nice</Data><Normal Text>  </Normal Text><Operator 2><=</Operator 2><Normal Text> </Normal Text><Number>3</Number><End of Rule Char>,</End of Rule Char><Normal Text> </Normal Text><Comment># Without "set"</Comment><br/>
+<Normal Text>	</Normal Text><Rule>set</Rule><Normal Text> </Normal Text><Comment>#comment</Comment><br/>
+<Normal Text>		</Normal Text><Rule>rlimit</Rule><br/>
+<Normal Text>			</Normal Text><Data>nice</Data><Normal Text>  </Normal Text><Operator 2><=</Operator 2><Normal Text> </Normal Text><Number>3</Number><End of Rule Char>,</End of Rule Char><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>	</Normal Text><Comment># "remount" keyword</Comment><br/>
+<Normal Text>	</Normal Text><Rule>mount</Rule><Normal Text> </Normal Text><Permissions>remount</Permissions><br/>
+<Normal Text>		</Normal Text><Permissions>remount</Permissions><End of Rule Char>,</End of Rule Char><br/>
+<Normal Text>	</Normal Text><Rule>remount</Rule><Normal Text> </Normal Text><Permissions>remount</Permissions><br/>
+<Normal Text>		</Normal Text><Permissions>remount</Permissions><End of Rule Char>,</End of Rule Char><br/>
+<Normal Text>	</Normal Text><Rule>dbus</Rule><Normal Text> remount</Normal Text><br/>
+<Normal Text>		</Normal Text><Rule Error>remount</Rule Error><End of Rule Char>,</End of Rule Char><br/>
+<Normal Text>	</Normal Text><Rule>unix</Rule><Normal Text> remount</Normal Text><br/>
+<Normal Text>		</Normal Text><Rule Error>remount</Rule Error><End of Rule Char>,</End of Rule Char><br/>
+<Normal Text>	</Normal Text><Comment># "unix" keyword</Comment><br/>
+<Normal Text>	</Normal Text><Rule>network</Rule><Normal Text> </Normal Text><Data>unix</Data><br/>
+<Normal Text>		</Normal Text><Data>unix</Data><End of Rule Char>,</End of Rule Char><br/>
+<Normal Text>	</Normal Text><Rule>ptrace</Rule><Normal Text> unix</Normal Text><br/>
+<Normal Text>		</Normal Text><Rule Error>unix</Rule Error><End of Rule Char>,</End of Rule Char><br/>
+<Normal Text>	</Normal Text><Rule>unix</Rule><Normal Text> unix</Normal Text><br/>
+<Normal Text>		</Normal Text><Rule Error>unix</Rule Error><End of Rule Char>,</End of Rule Char><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>	</Normal Text><Comment># Transition rules</Comment><br/>
+<Normal Text>	</Normal Text><Path>/usr/bin/foo</Path><Permissions> cx</Permissions><Normal Text> </Normal Text><Operator 2>-></Operator 2><Normal Text> </Normal Text><Transition Profile Name>hello</Transition Profile Name><Globbing Char in Tran. Prof.>*</Globbing Char in Tran. Prof.><End of Rule Char>,</End of Rule Char><Normal Text>                  </Normal Text><Comment># profile name</Comment><br/>
+<Normal Text>	</Normal Text><Path>/usr/bin/foo</Path><Permissions> Cx</Permissions><Normal Text> </Normal Text><Operator 2>-></Operator 2><Normal Text> path</Normal Text><Path>/</Path><End of Rule Char>,</End of Rule Char><Normal Text>                   </Normal Text><Comment># path</Comment><br/>
+<Normal Text>	</Normal Text><Path>/usr/bin/foo</Path><Permissions> cx</Permissions><Normal Text> </Normal Text><Operator 2>-></Operator 2><Normal Text> </Normal Text><Transition Profile Name>ab[ad/]hello</Transition Profile Name><End of Rule Char>,</End of Rule Char><Normal Text>            </Normal Text><Comment># profile name</Comment><br/>
+<Normal Text>	</Normal Text><Path>/usr/bin/foo</Path><Permissions> Cx</Permissions><Normal Text> </Normal Text><Operator 2>-></Operator 2><Normal Text> ab</Normal Text><Globbing Brackets>[cd/]</Globbing Brackets><Path>a</Path><Globbing Brackets>[ad/]</Globbing Brackets><Path>hello/path</Path><End of Rule Char>,</End of Rule Char><Normal Text> </Normal Text><Comment># path</Comment><br/>
+<Normal Text>	</Normal Text><Path>/usr/bin/foo</Path><Permissions> Cx</Permissions><Normal Text> </Normal Text><Operator 2>-></Operator 2><Normal Text> </Normal Text><Transition Profile Name>ab[hello/path</Transition Profile Name><End of Rule Char>,</End of Rule Char><Normal Text>           </Normal Text><Comment># profile name</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>	</Normal Text><Path>/usr/bin/foo</Path><Permissions> cx</Permissions><Normal Text> </Normal Text><Operator 2>-></Operator 2><Normal Text> </Normal Text><Transition Profile Name>"hello</Transition Profile Name><Globbing Char in Tran. Prof.>*</Globbing Char in Tran. Prof.><Transition Profile Name>"</Transition Profile Name><End of Rule Char>,</End of Rule Char><Normal Text>                  </Normal Text><Comment># profile name</Comment><br/>
+<Normal Text>	</Normal Text><Path>/usr/bin/foo</Path><Permissions> Cx</Permissions><Normal Text> </Normal Text><Operator 2>-></Operator 2><Normal Text> </Normal Text><Text Quoted>"path/"</Text Quoted><End of Rule Char>,</End of Rule Char><Normal Text>                   </Normal Text><Comment># path</Comment><br/>
+<Normal Text>	</Normal Text><Path>/usr/bin/foo</Path><Permissions> cx</Permissions><Normal Text> </Normal Text><Operator 2>-></Operator 2><Normal Text> </Normal Text><Transition Profile Name>"ab[ad/]hello"</Transition Profile Name><End of Rule Char>,</End of Rule Char><Normal Text>            </Normal Text><Comment># profile name</Comment><br/>
+<Normal Text>	</Normal Text><Path>/usr/bin/foo</Path><Permissions> Cx</Permissions><Normal Text> </Normal Text><Operator 2>-></Operator 2><Normal Text> </Normal Text><Text Quoted>"ab</Text Quoted><Globbing Brackets>[cd/]</Globbing Brackets><Text Quoted>a</Text Quoted><Globbing Brackets>[ad/]</Globbing Brackets><Text Quoted>hello/path"</Text Quoted><End of Rule Char>,</End of Rule Char><Normal Text> </Normal Text><Comment># path</Comment><br/>
+<Normal Text>	</Normal Text><Path>/usr/bin/foo</Path><Permissions> Cx</Permissions><Normal Text> </Normal Text><Operator 2>-></Operator 2><Normal Text> </Normal Text><Transition Profile Name>"ab[hello/path"</Transition Profile Name><End of Rule Char>,</End of Rule Char><Normal Text>           </Normal Text><Comment># profile name</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>	</Normal Text><Path>/usr/bin/foo</Path><Permissions> cx</Permissions><Normal Text> </Normal Text><Operator 2>-></Operator 2><Normal Text> holas</Normal Text><Path>//hello/sa</Path><End of Rule Char>,</End of Rule Char><Normal Text>    </Normal Text><Comment># path</Comment><br/>
+<Normal Text>	</Normal Text><Path>/usr/bin/foo</Path><Permissions> cx</Permissions><Normal Text> </Normal Text><Operator 2>-></Operator 2><Normal Text> df</Normal Text><Path>///dd</Path><SubProfile/Hat Operator>//</SubProfile/Hat Operator><SubProfile/Hat>hat</SubProfile/Hat><End of Rule Char>,</End of Rule Char><Normal Text>       </Normal Text><Comment># path + hat</Comment><br/>
+<Normal Text>	</Normal Text><Path>/usr/bin/foo</Path><Permissions> cx</Permissions><Normal Text> </Normal Text><Operator 2>-></Operator 2><Normal Text> </Normal Text><Transition Profile Name>holas,#sd</Transition Profile Name><Globbing Char in Tran. Prof.>\323</Globbing Char in Tran. Prof.><Transition Profile Name>fsdf</Transition Profile Name><End of Rule Char>,</End of Rule Char><Normal Text>  </Normal Text><Comment># profile name</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>	</Normal Text><Comment># Access modes</Comment><br/>
+<Normal Text>	</Normal Text><Path>/hello/lib/foo</Path><Normal Text> rwklms, </Normal Text><Comment># s invalid</Comment><br/>
+<Normal Text>	</Normal Text><Path>/hello/lib/foo</Path><Normal Text> rwmaix, </Normal Text><Comment># w & a incompatible</Comment><br/>
+<Normal Text>	</Normal Text><Path>/hello/lib/foo</Path><Normal Text> kalmw,</Normal Text><br/>
+<Normal Text>	</Normal Text><Path>/hello/lib/foo</Path><Normal Text> wa,</Normal Text><br/>
+<Normal Text>	</Normal Text><Comment># OK</Comment><br/>
+<Normal Text>	</Normal Text><Path>/hello/lib/foo</Path><Permissions> rrwrwwrwrw</Permissions><End of Rule Char>,</End of Rule Char><br/>
+<Normal Text>	</Normal Text><Path>/hello/lib/foo</Path><Permissions> ixixix</Permissions><End of Rule Char>,</End of Rule Char><br/>
+<Normal Text>	</Normal Text><Comment># Incompatible exec permissions</Comment><br/>
+<Normal Text>	ixixux, uxuxUxux, ixixixPixix, ixixpx uxuxuxPuxux, UxUxcUxUx,</Normal Text><br/>
+<Normal Text>	pixpixcixix, cxcxcxix, pixpixpux pixpixix xxix xxpux ixixx puxpuxx,</Normal Text><br/>
+<Normal Text>	Cuxcux Pixpix, puxpUx puxPUx xxpix xxcx,</Normal Text><br/>
+<Normal Text>	</Normal Text><Comment># Test valid permissions</Comment><br/>
+<Permissions>	r w a k l m l x ix ux Ux px Px cx Cx</Permissions><Normal Text> </Normal Text><End of Rule Char>,</End of Rule Char><br/>
+<Permissions>	pix Pix cix Cix pux Pux cux Cux pUx PUx cUx CUx</Permissions><End of Rule Char>,</End of Rule Char><br/>
+<Permissions>	rwklmx raklmx</Permissions><End of Rule Char>,</End of Rule Char><br/>
+<Permissions>	r rw rwk rwkl rwklm</Permissions><End of Rule Char>,</End of Rule Char><br/>
+<Permissions>	rwlmix rwlmUx rwlmPx rwlmcx rwlmPUx</Permissions><End of Rule Char>,</End of Rule Char><br/>
+<Permissions>	rwixixixkl rwUxUxUxkl rwuxuxuxk rwpxpxpxk rwPxPxkl rwcxcxlm rwCxCxk</Permissions><End of Rule Char>,</End of Rule Char><br/>
+<Permissions>	rwpixpixk rwPixPixkl wrpuxpuxk rwpUxpUxk rwcixcixcixml rwCixCixk rwCuxCuxk rwCUxCUxl</Permissions><End of Rule Char>,</End of Rule Char><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>	</Normal Text><Comment># Profile name</Comment><br/>
+<Normal Text>	</Normal Text><Profile Head>profile</Profile Head><Normal Text> </Normal Text><Profile Name>holas</Profile Name><Normal Text> </Normal Text><Operator 1>{</Operator 1><Normal Text> ... </Normal Text><Operator 1>}</Operator 1><br/>
+<Normal Text>	</Normal Text><Profile Head>profile</Profile Head><Normal Text> </Normal Text><Operator 1>{</Operator 1><Normal Text> ... </Normal Text><Operator 1>}</Operator 1><br/>
+<Normal Text>	</Normal Text><Profile Head>profile</Profile Head><Normal Text> </Normal Text><Path>/path</Path><Normal Text> </Normal Text><Operator 1>{</Operator 1><Normal Text> ... </Normal Text><Operator 1>}</Operator 1><br/>
+<Normal Text>	</Normal Text><Profile Head>profile</Profile Head><Normal Text> </Normal Text><Path>holas/abc</Path><Normal Text> </Normal Text><Operator 1>{</Operator 1><Normal Text> ... </Normal Text><Operator 1>}</Operator 1><br/>
+<Normal Text>	</Normal Text><Profile Head>profile</Profile Head><Normal Text> </Normal Text><Profile Name>holas</Profile Name><Escape Char>\/</Escape Char><Profile Name>abc</Profile Name><Normal Text> </Normal Text><Operator 1>{</Operator 1><Normal Text> ... </Normal Text><Operator 1>}</Operator 1><br/>
+<Normal Text>	</Normal Text><Profile Head>profile</Profile Head><br/>
+<Normal Text>		</Normal Text><Profile Name>#holas</Profile Name><Normal Text> </Normal Text><Operator 1>{</Operator 1><Normal Text> ... </Normal Text><Operator 1>}</Operator 1><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>	</Normal Text><Profile Head>profile</Profile Head><Normal Text> </Normal Text><Profile Name>flags</Profile Name><Profile Name Error>=</Profile Name Error><Error>(complain)#asd</Error><Normal Text> </Normal Text><Operator 1>{</Operator 1><Normal Text> ... </Normal Text><Operator 1>}</Operator 1><br/>
+<Normal Text>	</Normal Text><Profile Head>profile</Profile Head><Normal Text> </Normal Text><Profile Name>flags</Profile Name><Normal Text> </Normal Text><Option>flags</Option><Operator 1>=</Operator 1><Normal Text>(</Normal Text><Flags>complain</Flags><Normal Text>) </Normal Text><Operator 1>{</Operator 1><Normal Text> ... </Normal Text><Operator 1>}</Operator 1><br/>
+<Normal Text>	</Normal Text><Profile Head>profile</Profile Head><Normal Text> </Normal Text><Profile Name>flag</Profile Name><Profile Name Error>s</Profile Name Error><Error>(complain)</Error><Normal Text> </Normal Text><Operator 1>{</Operator 1><Normal Text> ... </Normal Text><Operator 1>}</Operator 1><br/>
+<Operator 1>}</Operator 1><br/>

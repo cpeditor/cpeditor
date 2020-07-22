@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title>test.sol</title>
+<meta name="generator" content="KF5::SyntaxHighlighting (Solidity)"/>
+</head><body style="color:#1f1c1b"><pre>
+<span style="color:#898887;">// Solidity Sample File</span>
+<span style="color:#898887;">// https://solidity.readthedocs.io/en/latest/solidity-by-example.html#voting</span>
+
+<span style="font-weight:bold;">pragma</span> <span style="color:#644a9b;font-weight:bold;">solidity</span> &gt;=0.4.22 &lt;0.7.0;
+
+<span style="color:#898887;">/// </span><span style="color:#ca60ca;">@title</span><span style="color:#898887;"> Voting with delegation.</span>
+<span style="font-weight:bold;">contract</span> Ballot {
+    <span style="color:#898887;">// This declares a new complex type which will</span>
+    <span style="color:#898887;">// be used for variables later.</span>
+    <span style="color:#898887;">// It will represent a single voter.</span>
+    <span style="font-weight:bold;">struct</span> Voter {
+        <span style="color:#0057ae;">uint</span> weight; <span style="color:#898887;">// weight is accumulated by delegation</span>
+        <span style="color:#0057ae;">bool</span> voted;  <span style="color:#898887;">// if true, that person already voted</span>
+        <span style="color:#0057ae;">address</span> delegate; <span style="color:#898887;">// person delegated to</span>
+        <span style="color:#0057ae;">uint</span> vote;   <span style="color:#898887;">// index of the voted proposal</span>
+    }
+
+    <span style="color:#898887;">// This is a type for a single proposal.</span>
+    <span style="font-weight:bold;">struct</span> Proposal {
+        <span style="color:#0057ae;">bytes32</span> name;   <span style="color:#898887;">// short name (up to 32 bytes)</span>
+        <span style="color:#0057ae;">uint</span> voteCount; <span style="color:#898887;">// number of accumulated votes</span>
+    }
+
+    <span style="color:#0057ae;">address</span> <span style="font-weight:bold;">public</span> chairperson;
+
+    <span style="color:#898887;">// This declares a state variable that</span>
+    <span style="color:#898887;">// stores a `Voter` struct for each possible address.</span>
+    <span style="color:#0057ae;">mapping</span>(<span style="color:#0057ae;">address</span> =&gt; Voter) <span style="font-weight:bold;">public</span> voters;
+
+    <span style="color:#898887;">// A dynamically-sized array of `Proposal` structs.</span>
+    Proposal[] <span style="font-weight:bold;">public</span> proposals;
+
+    <span style="color:#898887;">/// Create a new ballot to choose one of `proposalNames`.</span>
+    <span style="font-weight:bold;">constructor</span>(<span style="color:#0057ae;">bytes32</span>[] <span style="font-weight:bold;">memory</span> proposalNames) <span style="font-weight:bold;">public</span> {
+        chairperson = <span style="color:#644a9b;font-weight:bold;">msg</span>.sender;
+        voters[chairperson].weight = <span style="color:#b08000;">1</span>;
+
+        <span style="color:#898887;">// For each of the provided proposal names,</span>
+        <span style="color:#898887;">// create a new proposal object and add it</span>
+        <span style="color:#898887;">// to the end of the array.</span>
+        <span style="font-weight:bold;">for</span> (<span style="color:#0057ae;">uint</span> i = <span style="color:#b08000;">0</span>; i &lt; proposalNames.length; i<span style="color:#644a9b;font-weight:bold;">++</span>) {
+            <span style="color:#898887;">// `Proposal({...})` creates a temporary</span>
+            <span style="color:#898887;">// Proposal object and `proposals.push(...)`</span>
+            <span style="color:#898887;">// appends it to the end of `proposals`.</span>
+            proposals.push(Proposal({
+                name: proposalNames[i],
+                voteCount: <span style="color:#b08000;">0</span>
+            }));
+        }
+    }
+
+    <span style="color:#898887;">// Give `voter` the right to vote on this ballot.</span>
+    <span style="color:#898887;">// May only be called by `chairperson`.</span>
+    <span style="font-weight:bold;">function</span> giveRightToVote(<span style="color:#0057ae;">address</span> voter) <span style="font-weight:bold;">public</span> {
+        <span style="color:#898887;">// If the first argument of `require` evaluates</span>
+        <span style="color:#898887;">// to `false`, execution terminates and all</span>
+        <span style="color:#898887;">// changes to the state and to Ether balances</span>
+        <span style="color:#898887;">// are reverted.</span>
+        <span style="color:#898887;">// This used to consume all gas in old EVM versions, but</span>
+        <span style="color:#898887;">// not anymore.</span>
+        <span style="color:#898887;">// It is often a good idea to use `require` to check if</span>
+        <span style="color:#898887;">// functions are called correctly.</span>
+        <span style="color:#898887;">// As a second argument, you can also provide an</span>
+        <span style="color:#898887;">// explanation about what went wrong.</span>
+        <span style="color:#644a9b;font-weight:bold;">require</span>(
+            <span style="color:#644a9b;font-weight:bold;">msg</span>.sender == chairperson,
+            <span style="color:#bf0303;">&quot;Only chairperson can give right to vote.&quot;</span>
+        );
+        <span style="color:#644a9b;font-weight:bold;">require</span>(
+            !voters[voter].voted,
+            <span style="color:#bf0303;">&quot;The voter already voted.&quot;</span>
+        );
+        <span style="color:#644a9b;font-weight:bold;">require</span>(voters[voter].weight == <span style="color:#b08000;">0</span>);
+        voters[voter].weight = <span style="color:#b08000;">1</span>;
+    }
+
+    <span style="color:#898887;">/// Delegate your vote to the voter `to`.</span>
+    <span style="font-weight:bold;">function</span> delegate(<span style="color:#0057ae;">address</span> to) <span style="font-weight:bold;">public</span> {
+        <span style="color:#898887;">// assigns reference</span>
+        Voter <span style="font-weight:bold;">storage</span> sender = voters[<span style="color:#644a9b;font-weight:bold;">msg</span>.sender];
+        <span style="color:#644a9b;font-weight:bold;">require</span>(!sender.voted, <span style="color:#bf0303;">&quot;You already voted.&quot;</span>);
+
+        <span style="color:#644a9b;font-weight:bold;">require</span>(to != <span style="color:#644a9b;font-weight:bold;">msg</span>.sender, <span style="color:#bf0303;">&quot;Self-delegation is disallowed.&quot;</span>);
+
+        <span style="color:#898887;">// Forward the delegation as long as</span>
+        <span style="color:#898887;">// `to` also delegated.</span>
+        <span style="color:#898887;">// In general, such loops are very dangerous,</span>
+        <span style="color:#898887;">// because if they run too long, they might</span>
+        <span style="color:#898887;">// need more gas than is available in a block.</span>
+        <span style="color:#898887;">// In this case, the delegation will not be executed,</span>
+        <span style="color:#898887;">// but in other situations, such loops might</span>
+        <span style="color:#898887;">// cause a contract to get &quot;stuck&quot; completely.</span>
+        <span style="font-weight:bold;">while</span> (voters[to].delegate != <span style="color:#0057ae;">address</span>(<span style="color:#b08000;">0</span>)) {
+            to = voters[to].delegate;
+
+            <span style="color:#898887;">// We found a loop in the delegation, not allowed.</span>
+            <span style="color:#644a9b;font-weight:bold;">require</span>(to != <span style="color:#644a9b;font-weight:bold;">msg</span>.sender, <span style="color:#bf0303;">&quot;Found loop in delegation.&quot;</span>);
+        }
+
+        <span style="color:#898887;">// Since `sender` is a reference, this</span>
+        <span style="color:#898887;">// modifies `voters[msg.sender].voted`</span>
+        sender.voted = <span style="font-weight:bold;">true</span>;
+        sender.delegate = to;
+        Voter <span style="font-weight:bold;">storage</span> delegate_ = voters[to];
+        <span style="font-weight:bold;">if</span> (delegate_.voted) {
+            <span style="color:#898887;">// If the delegate already voted,</span>
+            <span style="color:#898887;">// directly add to the number of votes</span>
+            proposals[delegate_.vote].voteCount += sender.weight;
+        } <span style="font-weight:bold;">else</span> {
+            <span style="color:#898887;">// If the delegate did not vote yet,</span>
+            <span style="color:#898887;">// add to her weight.</span>
+            delegate_.weight += sender.weight;
+        }
+    }
+
+    <span style="color:#898887;">/// Give your vote (including votes delegated to you)</span>
+    <span style="color:#898887;">/// to proposal `proposals[proposal].name`.</span>
+    <span style="font-weight:bold;">function</span> vote(<span style="color:#0057ae;">uint</span> proposal) <span style="font-weight:bold;">public</span> {
+        Voter <span style="font-weight:bold;">storage</span> sender = voters[<span style="color:#644a9b;font-weight:bold;">msg</span>.sender];
+        <span style="color:#644a9b;font-weight:bold;">require</span>(sender.weight != <span style="color:#b08000;">0</span>, <span style="color:#bf0303;">&quot;Has no right to vote&quot;</span>);
+        <span style="color:#644a9b;font-weight:bold;">require</span>(!sender.voted, <span style="color:#bf0303;">&quot;Already voted.&quot;</span>);
+        sender.voted = <span style="font-weight:bold;">true</span>;
+        sender.vote = proposal;
+
+        <span style="color:#898887;">// If `proposal` is out of the range of the array,</span>
+        <span style="color:#898887;">// this will throw automatically and revert all</span>
+        <span style="color:#898887;">// changes.</span>
+        proposals[proposal].voteCount += sender.weight;
+    }
+
+    <span style="color:#898887;">/// </span><span style="color:#ca60ca;">@dev</span><span style="color:#898887;"> Computes the winning proposal taking all</span>
+    <span style="color:#898887;">/// previous votes into account.</span>
+    <span style="font-weight:bold;">function</span> winningProposal() <span style="font-weight:bold;">public</span> <span style="font-weight:bold;">view</span>
+            <span style="font-weight:bold;">returns</span> (<span style="color:#0057ae;">uint</span> winningProposal_)
+    {
+        <span style="color:#0057ae;">uint</span> winningVoteCount = <span style="color:#b08000;">0</span>;
+        <span style="font-weight:bold;">for</span> (<span style="color:#0057ae;">uint</span> p = <span style="color:#b08000;">0</span>; p &lt; proposals.length; p<span style="color:#644a9b;font-weight:bold;">++</span>) {
+            <span style="font-weight:bold;">if</span> (proposals[p].voteCount &gt; winningVoteCount) {
+                winningVoteCount = proposals[p].voteCount;
+                winningProposal_ = p;
+            }
+        }
+    }
+
+    <span style="color:#898887;">// Calls winningProposal() function to get the index</span>
+    <span style="color:#898887;">// of the winner contained in the proposals array and then</span>
+    <span style="color:#898887;">// returns the name of the winner</span>
+    <span style="font-weight:bold;">function</span> winnerName() <span style="font-weight:bold;">public</span> <span style="font-weight:bold;">view</span>
+            <span style="font-weight:bold;">returns</span> (<span style="color:#0057ae;">bytes32</span> winnerName_)
+    {
+        winnerName_ = proposals[winningProposal()].name;
+    }
+}
+</pre></body></html>

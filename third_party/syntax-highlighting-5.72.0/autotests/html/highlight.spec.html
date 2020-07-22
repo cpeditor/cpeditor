@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title>highlight.spec</title>
+<meta name="generator" content="KF5::SyntaxHighlighting (RPM Spec)"/>
+</head><body style="color:#1f1c1b"><pre>
+<span style="color:#898887;"># Test file for rpmspec.xml</span>
+
+<span style="color:#898887;"># Comments start with a # in column=&quot;0&quot;:</span>
+
+<span style="color:#898887;"># Some comment</span>
+
+<span style="color:#898887;"># When they don't start in column=&quot;0&quot;, that they are recognized as comments, but with an alert:</span>
+<span style="color:#bf0303;text-decoration:underline;"> </span><span style="color:#898887;"># This is a bad comment.</span>
+<span style="color:#898887;"># RPM spec says clear that comments must start at the begin of the line. However, in practice</span>
+<span style="color:#898887;"># the RPM software is more permissive, depending on the context. But for our syntax highlighting,</span>
+<span style="color:#898887;"># we give, while recognizing the as comment, at least a little alert. Comments should not contain</span>
+<span style="color:#898887;"># the character </span><span style="color:#bf0303;text-decoration:underline;">%</span><span style="color:#898887;"> (which is marked as warning), but 2 of them are okay: %%. </span><span style="color:#ca9219;background-color:#451e1a;font-weight:bold;">TODO</span><span style="color:#898887;"> is higlighted.</span>
+
+<span style="color:#898887;"># A spec file starts with &quot;Normal&quot; context. Here, you can specify values for some tags:</span>
+<span style="color:#0057ae;">Name:                </span><span style="color:#bf0303;">kradioripper-unstable</span> <span style="color:#bf0303;text-decoration:underline;">#</span> <span style="color:#bf0303;text-decoration:underline;">Note</span> <span style="color:#bf0303;text-decoration:underline;">that</span> <span style="color:#bf0303;text-decoration:underline;">here</span> <span style="color:#bf0303;text-decoration:underline;">in</span> <span style="color:#bf0303;text-decoration:underline;">no</span> <span style="color:#bf0303;text-decoration:underline;">comment</span> <span style="color:#bf0303;text-decoration:underline;">possible!</span>
+<span style="color:#0057ae;">Name:                </span><span style="color:#bf0303;">name</span> <span style="color:#bf0303;text-decoration:underline;">only</span> <span style="color:#bf0303;text-decoration:underline;">_one_</span> <span style="color:#bf0303;text-decoration:underline;">word</span> <span style="color:#bf0303;text-decoration:underline;">allowed</span>
+<span style="color:#0057ae;">Name:                </span><span style="color:#644a9b;">%macro</span><span style="color:#bf0303;"> no further syntax check after macro!</span>
+<span style="color:#898887;"># Some tags support only _one_ word as value</span>
+<span style="color:#0057ae;">Version:             </span><span style="color:#bf0303;">0.4test5</span> <span style="color:#bf0303;text-decoration:underline;">up-from-the-space-this-is-an-error</span>
+<span style="color:#898887;"># Some tag can have parameters: Any char in paranthesis:</span>
+<span style="color:#0057ae;">Summary:             </span><span style="color:#bf0303;">Recorder for internet radios (based on Streamripper)  </span>
+<span style="color:#0057ae;">Summary(de.UTF-8):   </span><span style="color:#bf0303;">Aufnahmeprogramm für Internetradios (basiert auf Streamripper)</span>
+<span style="color:#898887;"># requiere free text:</span>
+<span style="color:#0057ae;">License:             </span><span style="color:#bf0303;">License 1 2 3</span>
+<span style="color:#898887;"># requiere a well defines value:</span>
+<span style="color:#0057ae;">Requires( / (  = ):  </span><span style="color:#006e28;">Some</span><span style="font-weight:bold;">,</span><span style="color:#006e28;"> value</span><span style="font-weight:bold;">()</span>
+<span style="color:#898887;"># new type &quot;switch&quot; accepts: yes, no, 0, 1</span>
+<span style="color:#0057ae;">AutoReq: </span><span style="color:#006e28;">yes</span>
+<span style="color:#0057ae;">AutoReq: </span><span style="color:#006e28;">yes</span> <span style="color:#bf0303;text-decoration:underline;">invalid</span>
+<span style="color:#0057ae;">AutoReq: </span><span style="color:#644a9b;">%macro</span><span style="color:#006e28;"> no further syntax check after macro!</span>
+<span style="color:#0057ae;">AutoReq: </span><span style="color:#006e28;">no</span>
+<span style="color:#0057ae;">AutoReq: </span><span style="color:#006e28;">0</span>
+<span style="color:#0057ae;">AutoReq: </span><span style="color:#006e28;">1</span>
+<span style="color:#898887;"># requiere a number:</span>
+<span style="color:#0057ae;">Epoch:               </span><span style="color:#b08000;">123123</span>
+<span style="color:#0057ae;">Epoch:               </span><span style="color:#b08000;">123123</span> <span style="color:#bf0303;text-decoration:underline;">invalid</span>
+<span style="color:#0057ae;">Epoch:               </span><span style="color:#644a9b;">%macro</span><span style="color:#b08000;"> no further syntax check afer macro!</span>
+<span style="color:#898887;"># If tags are used that are not known, they are not highlighted:</span>
+<span style="color:#bf0303;text-decoration:underline;">Invalidtag:</span>          <span style="color:#bf0303;text-decoration:underline;">Some</span> <span style="color:#bf0303;text-decoration:underline;">value</span>
+<span style="color:#bf0303;text-decoration:underline;">Invalid</span> <span style="color:#bf0303;text-decoration:underline;">content</span> <span style="color:#bf0303;text-decoration:underline;">in</span> <span style="color:#bf0303;text-decoration:underline;">this</span> <span style="color:#bf0303;text-decoration:underline;">section</span> <span style="color:#bf0303;text-decoration:underline;">(only</span> <span style="color:#bf0303;text-decoration:underline;">tags</span> <span style="color:#bf0303;text-decoration:underline;">are</span> <span style="color:#bf0303;text-decoration:underline;">allowed)</span>
+  
+<span style="color:#898887;"># You can use conditions in specs (highlighted with region markers):</span>
+<span style="font-weight:bold;">%if</span> <span style="color:#b08000;">0</span><span style="color:#644a9b;">%{?mandriva_version}</span>  
+<span style="color:#898887;"># numbers and strings are distingished: string:</span>
+<span style="font-weight:bold;">%if</span> <span style="color:#bf0303;">lsdksfj</span>
+<span style="color:#898887;"># number:</span>
+<span style="font-weight:bold;">%if</span> <span style="color:#b08000;">23472398</span>
+<span style="color:#898887;"># string:</span>
+<span style="font-weight:bold;">%if</span> <span style="color:#bf0303;">lksdjfsl72939</span>
+<span style="color:#898887;"># invalid:</span>
+<span style="font-weight:bold;">%if</span> <span style="color:#b08000;">92437</span><span style="color:#bf0303;">lsdkfjdsl</span>
+<span style="color:#898887;"># valid:</span>
+<span style="font-weight:bold;">%if</span> <span style="color:#bf0303;">&quot;lsdfj </span><span style="color:#644a9b;">%ksdf(sdfs)</span><span style="color:#bf0303;"> 3489&quot;</span>
+<span style="color:#0057ae;">Release:             </span><span style="color:#644a9b;">%mkrel</span><span style="color:#bf0303;"> 1.2</span>
+<span style="font-weight:bold;">%else</span>  
+<span style="color:#0057ae;">Release:             </span><span style="color:#bf0303;">0</span>  
+<span style="font-weight:bold;">%endif</span>  
+<span style="color:#898887;"># requiere a well defined value:</span>
+<span style="font-weight:bold;">%ifos</span> <span style="color:#bf0303;text-decoration:underline;">fixed_value</span>
+<span style="color:#898887;"># You must use these special macros (%%if etc.) always at the start of the line - if not,</span>
+<span style="color:#898887;"># that's bad but not an arror. You must also always use the specified form. Everything else is an</span>
+<span style="color:#898887;"># error:</span>
+ <span style="font-weight:bold;">%if</span>
+<span style="color:#bf0303;text-decoration:underline;">something</span> <span style="color:#bf0303;text-decoration:underline;">%if</span>
+<span style="color:#bf0303;text-decoration:underline;">%{if</span>}
+<span style="color:#bf0303;text-decoration:underline;">%if</span>(some options)
+<span style="color:#898887;"># However, this are different macros and therefore correct:</span>
+<span style="color:#644a9b;">%ifx</span>
+<span style="color:#644a9b;">%{ifx}</span>
+<span style="color:#644a9b;">%ifx(some options)</span>
+
+<span style="color:#898887;"># the \ is escaped in the line. At the end of the line it escapes the line break:</span>
+<span style="color:#bf0303;text-decoration:underline;">echo</span> <span style="color:#bf0303;text-decoration:underline;">This</span> <span style="color:#bf0303;text-decoration:underline;">is</span> <span style="color:#bf0303;text-decoration:underline;">\&quot;</span> <span style="color:#bf0303;text-decoration:underline;">a</span> <span style="color:#bf0303;text-decoration:underline;">text</span> <span style="color:#bf0303;text-decoration:underline;">\\</span> <span style="color:#bf0303;text-decoration:underline;">and</span> <span style="color:#bf0303;text-decoration:underline;">here\</span>
+<span style="color:#bf0303;text-decoration:underline;">it</span> <span style="color:#bf0303;text-decoration:underline;">continues.</span>
+
+<span style="font-weight:bold;">%define</span> <span style="color:#006e28;">name</span><span style="color:#bf0303;"> value</span>
+<span style="font-weight:bold;">%define</span> <span style="color:#bf0303;text-decoration:underline;">invalid_näme</span><span style="color:#bf0303;"> value</span>
+<span style="font-weight:bold;">%define</span> <span style="color:#006e28;">macroname</span><span style="color:#bf0303;"> multi</span><span style="font-weight:bold;">\</span>
+<span style="color:#bf0303;">line content with references like %0 %* %# %{-f} %{-f*} %1 %2 and so on</span>
+<span style="font-weight:bold;">%global</span> <span style="color:#006e28;">name</span><span style="color:#bf0303;"> value</span>
+<span style="font-weight:bold;">%global</span> <span style="color:#bf0303;text-decoration:underline;">invalid_näme</span><span style="color:#bf0303;"> value</span>
+<span style="font-weight:bold;">%undefine</span> <span style="color:#006e28;">name</span>
+<span style="font-weight:bold;">%undefine</span> <span style="color:#006e28;">name</span> <span style="color:#bf0303;text-decoration:underline;">too-many-parameters</span>
+
+<span style="color:#898887;"># This special comment is treated and highlighted like a tag:</span>
+<span style="color:#0057ae;"># norootforbuild</span>  
+<span style="color:#898887;"># It can't have parameters, so every following non-whitespace character is not good:</span>
+<span style="color:#0057ae;"># norootforbuild</span>  <span style="color:#bf0303;text-decoration:underline;">DONT</span> <span style="color:#bf0303;text-decoration:underline;">WRITE</span> <span style="color:#bf0303;text-decoration:underline;">ANYTHING</span> <span style="color:#bf0303;text-decoration:underline;">HERE!</span>
+<span style="color:#898887;"># wrong spacing is also recognized:</span>
+<span style="color:#bf0303;text-decoration:underline;">#  norootforbuild</span>
+<span style="color:#898887;"># and also an indeet is not fine for norootforbuild:</span>
+<span style="color:#bf0303;text-decoration:underline;"> </span><span style="color:#bf0303;text-decoration:underline;"># norootforbuild</span>
+  
+<span style="color:#898887;"># This following &quot;Conflicts&quot; tag will be removed by set-version.sh,  </span>
+<span style="color:#898887;"># if it is a &quot;kradioripper&quot; release (and not a &quot;kradioripper-unstable&quot; release)...  </span>
+<span style="color:#0057ae;">Conflicts:           </span><span style="color:#006e28;">kradioripper  </span>
+  
+  
+<span style="color:#0057ae;background-color:#e0e9f8;">%description</span>  
+<span style="color:#898887;"># Here, a new section starts. It contains a value for the RPM field &quot;description&quot; and is therefor</span>
+<span style="color:#898887;"># colored like values:</span>
+<span style="color:#bf0303;">A KDE program for ripping internet radios. Based on StreamRipper.  </span>
+<span style="color:#bf0303;">  </span>
+<span style="color:#bf0303;">  </span>
+<span style="color:#898887;"># A section start can have parameters:</span>
+<span style="color:#0057ae;background-color:#e0e9f8;">%description</span> -l de.UTF-8  
+<span style="color:#bf0303;">Ein KDE-Aufnahmeprogramm für Internetradios. Basiert auf StreamRipper.   </span>
+<span style="color:#bf0303;">  </span>
+<span style="color:#898887;"># These sections starts are errors:</span>
+<span style="color:#bf0303;"> </span><span style="color:#bf0303;text-decoration:underline;">%description</span><span style="color:#bf0303;"> not at the first line</span>
+<span style="color:#bf0303;text-decoration:underline;">%{description</span><span style="color:#bf0303;">} wrong form</span>
+<span style="color:#bf0303;text-decoration:underline;">%description</span><span style="color:#bf0303;">(no options allowed, only parameters!)</span>
+<span style="color:#bf0303;">  </span>
+<span style="color:#bf0303;">  </span>
+<span style="color:#0057ae;background-color:#e0e9f8;">%prep</span>  
+<span style="color:#898887;"># This starts a section that defines the commands to prepare the build.</span>
+<span style="color:#898887;"># q means quit. n sets the directory:  </span>
+<span style="color:#644a9b;">%setup</span> -q -n kradioripper  
+echo Test
+<span style="color:#898887;"># Macros can have different forms: Valid:</span>
+<span style="color:#644a9b;">%abc</span>
+<span style="color:#644a9b;">%abc</span>ÄndOfMacro
+<span style="color:#644a9b;">%abc(def)</span>EndOfMacro
+<span style="color:#644a9b;">%{abc}</span>EndOfMacro
+<span style="color:#644a9b;">%{something but no single </span><span style="color:#bf0303;text-decoration:underline;">%</span><span style="color:#644a9b;">}</span>EndOfMacro
+<span style="color:#644a9b;">%{abc:def}</span>EndOfMacro
+<span style="color:#644a9b;">%(abc)</span>
+<span style="color:#898887;"># Invalid:</span>
+<span style="color:#bf0303;text-decoration:underline;">%</span>ÄInvalidChar
+<span style="color:#bf0303;text-decoration:underline;">%</span>
+<span style="color:#bf0303;text-decoration:underline;">%</span>)
+<span style="color:#bf0303;text-decoration:underline;">%</span>}
+<span style="color:#898887;"># You can use macros inside of macro calls: Fine:</span>
+<span style="color:#644a9b;">%{something %but no %{sin%(fine)gle} }</span>EndOfMacro
+<span style="color:#898887;"># Bad:</span>
+<span style="color:#644a9b;">%{No closing paranthesis </span><span style="color:#bf0303;text-decoration:underline;">(</span><span style="color:#644a9b;">No syntax highlightig for this error available</span><span style="color:#bf0303;text-decoration:underline;">)</span>
+  
+  
+<span style="color:#0057ae;background-color:#e0e9f8;">%build</span>  
+cmake ./ -DCMAKE_INSTALL_PREFIX=<span style="color:#644a9b;">%{_prefix}</span>  
+<span style="color:#644a9b;">%__make</span> <span style="color:#644a9b;">%{?jobs:-j %jobs}</span>  
+  
+  
+<span style="color:#0057ae;background-color:#e0e9f8;">%install</span>  
+<span style="font-weight:bold;">%if</span> <span style="color:#b08000;">0</span><span style="color:#644a9b;">%{?suse_version}</span>  
+<span style="color:#644a9b;">%makeinstall</span>  
+<span style="color:#644a9b;">%suse_update_desktop_file</span> kradioripper  
+<span style="font-weight:bold;">%endif</span>  
+<span style="font-weight:bold;">%if</span> <span style="color:#b08000;">0</span><span style="color:#644a9b;">%{?fedora_version}</span> <span style="font-weight:bold;">||</span> <span style="color:#b08000;">0</span><span style="color:#644a9b;">%{?rhel_version}</span> <span style="font-weight:bold;">||</span> <span style="color:#b08000;">0</span><span style="color:#644a9b;">%{?centos_version}</span>  
+make install DESTDIR=<span style="color:#644a9b;">%{buildroot}</span>  
+desktop-file-install --delete-original --vendor fedora --dir=<span style="color:#644a9b;">%{buildroot}</span>/<span style="color:#644a9b;">%{_datadir}</span>/applications/kde4 <span style="color:#644a9b;">%{buildroot}</span>/<span style="color:#644a9b;">%{_datadir}</span>/applications/kde4/kradioripper.desktop  
+<span style="font-weight:bold;">%endif</span>  
+<span style="font-weight:bold;">%if</span> <span style="color:#b08000;">0</span><span style="color:#644a9b;">%{?mandriva_version}</span>  
+<span style="color:#644a9b;">%makeinstall_std</span>  
+<span style="font-weight:bold;">%endif</span>  
+  
+  
+<span style="color:#0057ae;background-color:#e0e9f8;">%clean</span>  
+rm -rf &quot;<span style="color:#644a9b;">%{buildroot}</span>&quot;  
+  
+  
+<span style="color:#0057ae;background-color:#e0e9f8;">%files</span>  
+<span style="color:#644a9b;">%defattr(-,root,root)</span>  
+<span style="font-weight:bold;">%if</span> <span style="color:#b08000;">0</span><span style="color:#644a9b;">%{?fedora_version}</span> <span style="font-weight:bold;">||</span> <span style="color:#b08000;">0</span><span style="color:#644a9b;">%{?rhel_version}</span> <span style="font-weight:bold;">||</span> <span style="color:#b08000;">0</span><span style="color:#644a9b;">%{?centos_version}</span>  
+<span style="color:#644a9b;">%{_datadir}</span>/applications/kde4/fedora-kradioripper.desktop  
+<span style="font-weight:bold;">%else</span>  
+<span style="color:#644a9b;">%{_datadir}</span>/applications/kde4/kradioripper.desktop  
+<span style="font-weight:bold;">%endif</span>  
+<span style="color:#644a9b;">%{_bindir}</span>/kradioripper  
+<span style="color:#644a9b;">%{_datadir}</span>/locale/*/LC_MESSAGES/kradioripper.mo  
+<span style="font-weight:bold;">%if</span> <span style="color:#b08000;">0</span><span style="color:#644a9b;">%{?mandriva_version}</span>  
+<span style="color:#898887;"># </span><span style="color:#ca9219;background-color:#451e1a;font-weight:bold;">TODO</span><span style="color:#898887;"> The %%doc macro is actually broken for mandriva 2009 in build service...</span>
+<span style="color:#644a9b;">%dir</span> <span style="color:#644a9b;">%{_datadir}</span>/apps/kradioripper  
+<span style="color:#644a9b;">%{_datadir}</span>/apps/kradioripper/*  
+<span style="font-weight:bold;">%else</span>  
+<span style="color:#644a9b;">%doc</span> COPYING LICENSE LICENSE.GPL2 LICENSE.GPL3 NEWS WARRANTY  
+<span style="color:#644a9b;">%dir</span> <span style="color:#644a9b;">%{_datadir}</span>/kde4/apps/kradioripper  
+<span style="color:#644a9b;">%{_datadir}</span>/kde4/apps/kradioripper/*  
+<span style="font-weight:bold;">%endif</span>  
+  
+  
+<span style="color:#0057ae;background-color:#e0e9f8;">%changelog</span><span style="color:#bf0303;">  </span>
+<span style="color:#0057ae;">* Sun May 04 2008 email@email.com</span>
+<span style="color:#bf0303;">- some text</span>
+<span style="color:#bf0303;">- some text</span>
+<span style="color:#bf0303;">  in two lines</span>
+<span style="color:#bf0303;">- some text</span>
+<span style="color:#bf0303;">  in two lines</span>
+<span style="color:#bf0303;">  + with subtext</span>
+<span style="color:#bf0303;">  - and more subtext</span>
+<span style="color:#bf0303;">  in two lines</span>
+<span style="color:#0057ae;">* Tue Apr 24 2007 Name</span>
+<span style="color:#bf0303;">- text</span>
+<span style="color:#bf0303;">  * When the star isn't at column 0, than it doesn't indicate</span>
+<span style="color:#bf0303;">  a new date</span>
+<span style="color:#0057ae;">* </span><span style="color:#bf0303;text-decoration:underline;">Wen</span><span style="color:#0057ae;"> Sep 08 2003 Wrong weekday</span>
+<span style="color:#0057ae;">* Mon </span><span style="color:#bf0303;text-decoration:underline;">Mai</span><span style="color:#0057ae;"> 08 2003 Wrong month</span>
+<span style="color:#0057ae;">* Mon Sep </span><span style="color:#bf0303;text-decoration:underline;">0</span><span style="color:#0057ae;"> 2003 bad day</span>
+<span style="color:#0057ae;">* Mon Sep 8 2003 good day</span>
+<span style="color:#0057ae;">* Mon Sep 08 2003 good day</span>
+<span style="color:#0057ae;">* Mon Sep </span><span style="color:#bf0303;text-decoration:underline;">32</span><span style="color:#0057ae;"> 2003 bad day</span>
+<span style="color:#0057ae;">* Mon Sep 08 </span><span style="color:#bf0303;text-decoration:underline;">03</span><span style="color:#0057ae;"> bad year</span>
+<span style="color:#0057ae;">* Mon Sep 08 2003 Name</span>
+<span style="color:#898887;"># When using macros, the error check is disabled:</span>
+<span style="color:#0057ae;">* </span><span style="color:#644a9b;">%myDataMacro</span><span style="color:#0057ae;"> Title of the entry</span>
+<span style="color:#bf0303;">- Text</span>
+<span style="color:#bf0303;">    - can</span>
+<span style="color:#bf0303;">        - be</span>
+<span style="color:#bf0303;">        - indeeded</span>
+<span style="color:#bf0303;">        - without</span>
+<span style="color:#bf0303;">    - problems</span>
+
+</pre></body></html>

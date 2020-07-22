@@ -1,0 +1,62 @@
+<beginfold id='3'>/*</beginfold id='3'>
+ * CSS Syntax Highlight Sample File (Complex)
+ *
+ * This file contains complex CSS syntax that can test unexpected situations.
+ *
+ * @author  Guo Yunhe guoyunhebrave@gmail.com
+ * @date    2016-09-16
+ <endfold id='3'>*/</endfold id='3'>
+
+
+<beginfold id='3'>/*</beginfold id='3'> Comments with special content <endfold id='3'>*/</endfold id='3'>
+
+<beginfold id='3'>/*</beginfold id='3'>
+ * .class-selector #id "string" 'comment' // comment {} [] ()  /* comment
+ * TODO BUG DEBUG
+ * body {
+ *    margin: 0 !important;
+ * }
+ <endfold id='3'>*/</endfold id='3'>
+
+<beginfold id='3'>/*</beginfold id='3'> Comments in special positions <endfold id='3'>*/</endfold id='3'>
+
+header<beginfold id='3'>/*</beginfold id='3'> comment here <endfold id='3'>*/</endfold id='3'>.active <beginfold id='3'>/*</beginfold id='3'> comment here <endfold id='3'>*/</endfold id='3'> <beginfold id='1'>{</beginfold id='1'>
+    <beginfold id='3'>/*</beginfold id='3'> comment here <endfold id='3'>*/</endfold id='3'> color : <beginfold id='3'>/*</beginfold id='3'> comment here <endfold id='3'>*/</endfold id='3'> blue<beginfold id='3'>/*</beginfold id='3'> comment here <endfold id='3'>*/</endfold id='3'>;
+    font-family: Arial <beginfold id='3'>/*</beginfold id='3'> comment here <endfold id='3'>*/</endfold id='3'>,
+        "Droid Sans", <beginfold id='3'>/*</beginfold id='3'> comment here <endfold id='3'>*/</endfold id='3'>
+        sans-serif<beginfold id='3'>/*</beginfold id='3'> comment here <endfold id='3'>*/</endfold id='3'>;
+<endfold id='1'>}</endfold id='1'>
+
+@media screen <beginfold id='3'>/*</beginfold id='3'> comment here <endfold id='3'>*/</endfold id='3'> and (max-width: 300px <beginfold id='3'>/*</beginfold id='3'> comment here <endfold id='3'>*/</endfold id='3'>) <beginfold id='3'>/*</beginfold id='3'> comment here <endfold id='3'>*/</endfold id='3'> <beginfold id='1'>{</beginfold id='1'><beginfold id='3'>/*</beginfold id='3'> comment here <endfold id='3'>*/</endfold id='3'><endfold id='1'>}</endfold id='1'>
+
+
+<beginfold id='3'>/*</beginfold id='3'> Strings with special content <endfold id='3'>*/</endfold id='3'>
+
+@import url("{} $variable /* comment */");
+
+
+<beginfold id='3'>/*</beginfold id='3'> Without extra breaklines and spaces <endfold id='3'>*/</endfold id='3'>
+
+pre.primary:hover.large:nth-child(2n-1)<beginfold id='1'>{</beginfold id='1'>font-size:17px;font-family:"Noto Sans";-webkit-box-shadow:1px 1px 3px rgba(0,0,0,0.3)<endfold id='1'>}</endfold id='1'>
+
+
+<beginfold id='3'>/*</beginfold id='3'> With unnecessary breaklines and spaces <endfold id='3'>*/</endfold id='3'>
+
+blockquote .ref
+    <beginfold id='1'>{</beginfold id='1'>
+             flex : 0 1 30%;
+        flex-wrap : wrap;
+    <endfold id='1'>}</endfold id='1'>
+
+@media screen and (orientation: landscape) <beginfold id='1'>{</beginfold id='1'>
+  .sidebar <beginfold id='1'>{</beginfold id='1'>
+    width: 500px; <endfold id='1'>}</endfold id='1'> <endfold id='1'>}</endfold id='1'>
+
+
+<beginfold id='3'>/*</beginfold id='3'> Special selectors: HTML5 allows user defined tags <endfold id='3'>*/</endfold id='3'>
+
+header <beginfold id='1'>{</beginfold id='1'>
+    flex <beginfold id='1'>{</beginfold id='1'>
+        width: 300px;
+    <endfold id='1'>}</endfold id='1'>
+<endfold id='1'>}</endfold id='1'>

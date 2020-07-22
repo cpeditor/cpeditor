@@ -1,0 +1,242 @@
+project
+    : requirements <include>/home/ghost/Work/boost <threading>multi
+    ;
+project a : : debug ;
+
+exe hello : hello.cpp ;
+
+exe hello
+    : hello.cpp
+    : <include>boost <threading>multi
+    ;
+exe app : app.cpp ../util/foo//bar ;
+exe important : main.cpp helpers/<link>static ;
+
+exe b : [ glob *.cpp ] ;
+
+lib tools :
+    [ glob *.cpp ] ;
+
+lib tools : [ glob *.cpp : file_to_exclude.cpp bad*.cpp ] ;
+
+lib network : network.cpp
+    : <conditional>@my-rule
+    ;
+
+DEPENDS foo.o : foo.c ;
+
+using msvc : : "Z:/Programs/Microsoft Visual Studio/vc98/bin/cl" ;
+using msvc : : echo Compiling && foo/bar/baz/cl ;
+using gcc : 5 : : <cxxflags>"-std=c++14 -O2" ;
+using clang : 3.9 : : <cxxflags>-std=c++14 <cxxflags>-O2 ;
+exe test3 : test3.cpp : -<threading>multi ;
+XYZ += <cxxflags>-Wzero-as-null-pointer-constant&&-Wno-zero-as-null-pointer-constant ;
+exe hello : hello.cpp : <os>NT,<toolset>gcc:<link>static ;
+
+install dist : hello helpers :
+    <variant>release:<location>dist/release
+    <variant>debug:<location>dist/debug ;
+install dist2 : hello helpers : <location>$(DIST) ;
+
+exe app : app.cpp : [ check-target-builds has_foo "System has foo" : <library>foo : <define>FOO_MISSING=1 ] ;
+
+import path : * ;
+
+using python
+: 2.7 # version
+: # Interpreter/path to dir
+: /usr/include/python2.7 # includes
+: /usr/lib/x86_64-linux-gnu # libs
+: # conditions
+;
+
+xx ;
+xx ;; ;
+xx ;a ;
+xx a; ;
+xx ;a; ;
+
+## comment title
+# BUG
+# TODO
+# aTODOa
+
+
+if cond {
+    statements ;
+}
+else {
+    statements ;
+}
+
+for var in list {
+    statements ;
+}
+
+while cond {
+    statements ;
+}
+
+switch value
+{
+    case pattern1 : statements ;
+    case pattern2 : statements ;
+    other ;
+}
+
+if xxinxx {
+}
+
+ifxxx s ;
+
+rule a? ( x )
+{
+  echo $(x) ;
+}
+a? 23 ;
+
+local rule test ( a )
+{
+}
+
+rule example
+ (
+     parameter1 :
+     parameter2 ? :
+     parameter3 + :
+     parameter4 *
+ )
+ {
+   if <variant>debug in $(properties)
+   {
+       OPTIONS on $(targets) = --debug ;
+   }
+ }
+
+rule my-rule ( properties * )
+{
+    local result ;
+    if <toolset>gcc <optimization>speed in $(properties)
+    {
+        result += <define>USE_INLINE_ASSEMBLER ;
+        return $(result) ;
+    }
+
+    local m = [ CALLER_MODULE ] ;
+    local result ;
+    for v in $(values)
+    {
+        if [ modules.call-in $(m) : $(f) $(v) ]
+        {
+            result += $(v) ;
+        }
+    }
+    return result ;
+    return <name>$(name) ;
+    return [ virtual-target.register $(t) ] ;
+    return [ sequence.transform virtual-target.register : $(targets) ] ;
+}
+
+rule run ( project name ? : property-set : sources * )
+{
+    if [ $(s).type ] = PY
+    {
+        python = $(s) ;
+    }
+
+    local new-sources ;
+    for local s in $(sources)
+    {
+        if [ type.is-derived [ $(s).type ] CPP ]
+        {
+            local name = [ $(s).name ] ;    # get the target's basename
+            if $(name) = [ $(python).name ]
+            {
+                name = $(name)_ext ;        # rename the target
+            }
+            new-sources += [ generators.construct $(project) $(name) :
+              PYTHON_EXTENSION : $(property-set) : $(s) $(libs) ] ;
+        }
+    }
+
+    result = [ construct-result $(python) $(new-sources) : $(project) $(name)
+                 : $(property-set) ] ;
+}
+
+
+rule link
+{
+    DEPENDS $(<) : [ on $(<) return $(DEF_FILE) ] ;
+}
+
+
+actions link bind DEF_FILE
+{
+    $(.LD) .... /DEF:$(DEF_FILE) ....
+}
+
+actions create-file-from-another
+{
+    create-file-from-another $(OPTIONS) $(<) $(>)
+}
+
+
+mypackage =
+  [ pkg-config.import mypackage : usage-requirements <conditional>@define_ns
+  ] ;
+
+me = [ modules.binding $(__name__) ] ;
+
+local ZLIB_INCLUDE = [ modules.peek : ZLIB_INCLUDE ] ;
+
+local t = [ new file-target $(name) : CPP : $(project) : $(a) ] ;
+
+$(var) field1 : field2 : ... : fieldN ;
+$(var)o aaaa ;
+
+on target $(var) field1 : field2 : ... : fieldN ;
+
+[ $(var) field1 : field2 : ... : fieldN ]
+[ on target $(var) field1 : field2 : ... : fieldN ]
+
+local key = "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\App Paths" ;
+local values = [ W32_GETREGNAMES "$(key)\\$(subkey)" : values ] ;
+
+variable = $(b) $(c) ;
+variable += elements ;
+variable on targets = elements ;
+variable on targets += "elements" ;
+variable default = elements ;
+variable ?= elements ;
+
+defs += <define>NAME='\"$(VALUE)\"' ;
+
+x = $($(Z)) ;
+x = $(Z)x ;
+x = x$(Z) ;
+x = x$(Z)x ;
+
+x = "C:\\Program Files\\Borland" ; ECHO $(x:T) ;
+
+module my_module # my module
+{
+    rule salute ( x ) { ECHO $(x), world ; }
+    rule greet ( ) { salute hello ; }
+    greet ; # ok
+}
+
+class verbatim-scanner : common-scanner
+{
+    rule pattern ( )
+    {
+        return "//###include[ ]*\"([^\"]*)\"" ;
+    }
+    greet ; # error
+}
+
+# test crazy (and valid) name
+a<b> a<b> [ a<b> a<b> a] ] ;
+rule a<b>() () { }
+actions a<b> { }
+local a<x> ;
+local a<x> = a<b> ;

@@ -1,0 +1,600 @@
+<Metadata>---</Metadata><br/>
+<Metadata Title>Title:</Metadata Title><Metadata>    A Sample Markdown Document</Metadata><br/>
+<Metadata Title>Author:</Metadata Title><Metadata>   Fletcher T. Penney</Metadata><br/>
+<Metadata Title>Date:</Metadata Title><Metadata>     February 9, 2011</Metadata><br/>
+<Metadata Title>Comment:</Metadata Title><Metadata>  This is a comment intended to demonstrate </Metadata><br/>
+<Metadata>          metadata that spans multiple lines.</Metadata><br/>
+<Metadata>---</Metadata><br/>
+<Normal Text></Normal Text><br/>
+<Header H1># H1</Header H1><br/>
+<Normal Text></Normal Text><br/>
+<Header H2>## H2</Header H2><br/>
+<Normal Text></Normal Text><br/>
+<Header H3>### H3</Header H3><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>Multi-line paragraph bla bla bla</Normal Text><br/>
+<Normal Text>bla bla bla.</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>Intentional line break</Normal Text><Line Break>  </Line Break><br/>
+<Normal Text>via two spaces at line.</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>Formats: </Normal Text><Emphasis Text>_italic_</Emphasis Text><Normal Text>, </Normal Text><Strong Text>**bold**</Strong Text><Normal Text>, </Normal Text><Code>`monospace`</Code><Normal Text>, </Normal Text><Strikethrough Text>~~strikeout~~</Strikethrough Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>Bullet list:</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<List>* </List><List: Normal Text>item1</List: Normal Text><br/>
+<List>* </List><List: Normal Text>item2</List: Normal Text><br/>
+<List: Normal Text></List: Normal Text><br/>
+<Normal Text>Numbered list:</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Number List>1. </Number List><List: Normal Text>item 1</List: Normal Text><br/>
+<Number List>2. </Number List><List: Normal Text>item 2</List: Normal Text><br/>
+<List: Normal Text></List: Normal Text><br/>
+<Normal Text>Task list:</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<List>- </List><List: Checkbox>[x]</List: Checkbox><List: Normal Text> Finish my changes</List: Normal Text><br/>
+<List>- </List><List: Checkbox>[ ]</List: Checkbox><List: Normal Text> Push my commits</List: Normal Text><br/>
+<List>- </List><List: Checkbox>[ ]</List: Checkbox><List: Normal Text> Open a pull request</List: Normal Text><br/>
+<List: Normal Text></List: Normal Text><br/>
+<Normal Text>A link as normal text: </Normal Text><Normal Text: Link>http://example.com</Normal Text: Link><br/>
+<Normal Text></Normal Text><br/>
+<Reference-Link>[</Reference-Link><Reference-Link Name>link</Reference-Link Name><Reference-Link>](</Reference-Link><Reference-Link: Link>http://kde.org</Reference-Link: Link><Reference-Link>)</Reference-Link><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>Auto-link: </Normal Text><Auto-Link><</Auto-Link><Link>http://kate-editor.org</Link><Auto-Link>></Auto-Link><br/>
+<Normal Text>Mail: </Normal Text><Mailto-Link><mailto:</Mailto-Link><Email>mark@kde.org</Email><Mailto-Link>></Mailto-Link><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>This is </Normal Text><Reference-Link>[</Reference-Link><Reference-Link Name>an example</Reference-Link Name><Reference-Link>](</Reference-Link><Reference-Link: Link>http://example.com/</Reference-Link: Link><Reference-Link> "Title")</Reference-Link><Normal Text> inline link.</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>See my </Normal Text><Reference-Link>[</Reference-Link><Reference-Link Name>About</Reference-Link Name><Reference-Link>](/about/)</Reference-Link><Normal Text> page for details.</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>This is </Normal Text><Reference-Link>[</Reference-Link><Reference-Link Name>an example</Reference-Link Name><Reference-Link>] [</Reference-Link><Reference-Link ID>id</Reference-Link ID><Reference-Link>]</Reference-Link><Normal Text> reference-style link.</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Reference-Link Target>[id]: </Reference-Link Target><Reference-Link Target: Link>http://example.com/</Reference-Link Target: Link><Reference-Link Target>  "Optional Title Here"</Reference-Link Target><br/>
+<Reference-Link Target>[foo]: </Reference-Link Target><Reference-Link Target: Link>http://example.com/</Reference-Link Target: Link><Reference-Link Target> 'Optional Title Here'</Reference-Link Target><br/>
+<Reference-Link Target>[bar]: </Reference-Link Target><Reference-Link Target: Link>http://example.com/</Reference-Link Target: Link><Reference-Link Target> (Optional Title Here)</Reference-Link Target><br/>
+<Reference-Link Target>[id2]: <</Reference-Link Target><Reference-Link Target: Link>http://example.com/</Reference-Link Target: Link><Reference-Link Target>>  "Optional Title Here"</Reference-Link Target><br/>
+<Normal Text></Normal Text><br/>
+<Inline Image>![Alt text](/path/to/img.jpg)</Inline Image><br/>
+<Normal Text></Normal Text><br/>
+<Inline Image>![Alt text](/path/to/img.jpg "Optional title")</Inline Image><br/>
+<Normal Text></Normal Text><br/>
+<Reference-Link>[</Reference-Link><Inline Image>![Alt text](</Inline Image><Inline Image: Link>https://url/to/img.svg</Inline Image: Link><Inline Image>)</Inline Image><Reference-Link>](</Reference-Link><Reference-Link: Link>https://link.com/example/</Reference-Link: Link><Reference-Link>)</Reference-Link><br/>
+<Normal Text></Normal Text><br/>
+<Code>    code 1</Code><br/>
+<Code>    code 2</Code><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>normal text</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Blockquote>></Blockquote><Blockquote: Normal Text> block quote </Blockquote: Normal Text><Blockquote: Emphasis Text>_italic_</Blockquote: Emphasis Text><br/>
+<Blockquote>></Blockquote><Blockquote: Normal Text> more block quote</Blockquote: Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>normal text</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>Title: some text</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>normal text</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Header H1># Lists</Header H1><br/>
+<Normal Text></Normal Text><br/>
+<Number List>1. </Number List><List: Normal Text>item</List: Normal Text><br/>
+<List>   * </List><List: Normal Text>This is a list item</List: Normal Text><br/>
+<List: Normal Text>     with multiple lines.</List: Normal Text><br/>
+<List: Normal Text>     </List: Normal Text><Fenced Code>```</Fenced Code><br/>
+<Code>     code</Code><br/>
+<Code>     </Code><Fenced Code>```</Fenced Code><br/>
+<List: Normal Text></List: Normal Text><br/>
+<Blockquote>     ></Blockquote><Blockquote: Normal Text> This is a</Blockquote: Normal Text><br/>
+<Blockquote: Normal Text>     blockquote</Blockquote: Normal Text><br/>
+<List: Normal Text></List: Normal Text><br/>
+<List: Normal Text>     This is a new paragraph, which</List: Normal Text><br/>
+<List: Normal Text>     is part of the item in the</List: Normal Text><br/>
+<List: Normal Text>     previous list.</List: Normal Text><br/>
+<List: Normal Text></List: Normal Text><br/>
+<Code>         indented code block</Code><br/>
+<List: Normal Text></List: Normal Text><br/>
+<List: Normal Text>       Other paragraph.</List: Normal Text><br/>
+<List: Normal Text></List: Normal Text><br/>
+<List>     * </List><List: Normal Text>subitem</List: Normal Text><br/>
+<List>       * </List><List: Normal Text>subitem</List: Normal Text><br/>
+<List: Normal Text>         with multiple</List: Normal Text><br/>
+<List: Normal Text>            lines.</List: Normal Text><br/>
+<List: Normal Text></List: Normal Text><br/>
+<List: Normal Text>         New paragraph of</List: Normal Text><br/>
+<List: Normal Text>         the previous subitem.</List: Normal Text><br/>
+<List: Normal Text></List: Normal Text><br/>
+<Code>             code block</Code><br/>
+<List: Normal Text></List: Normal Text><br/>
+<Horizontal Rule>          -----------------------</Horizontal Rule><br/>
+<List: Normal Text></List: Normal Text><br/>
+<List: Normal Text>            Other paragraph of</List: Normal Text><br/>
+<List: Normal Text>            the subitem.</List: Normal Text><br/>
+<List: Normal Text></List: Normal Text><br/>
+<Number List>          30. </Number List><List: Normal Text>numlist item</List: Normal Text><br/>
+<Number List>          31. </Number List><List: Normal Text>numlist item</List: Normal Text><br/>
+<List: Normal Text></List: Normal Text><br/>
+<List: Normal Text>                 New paragraph of</List: Normal Text><br/>
+<List: Normal Text>                 the previous item.</List: Normal Text><br/>
+<List: Normal Text></List: Normal Text><br/>
+<Blockquote>                 ></Blockquote><Blockquote: Normal Text> Blockquote</Blockquote: Normal Text><br/>
+<List: Normal Text></List: Normal Text><br/>
+<Code>                  code block</Code><br/>
+<List: Normal Text>  </List: Normal Text><br/>
+<List: Normal Text>              Other paragraph.</List: Normal Text><br/>
+<List: Normal Text></List: Normal Text><br/>
+<Header H1># Inline HTML</Header H1><br/>
+<Normal Text></Normal Text><br/>
+<EntityRef>&copy;</EntityRef><br/>
+<Element><strong></Element><Normal Text>bold</Normal Text><Element></strong></Element><br/>
+<Element><code></Element><Normal Text>code</Normal Text><Element></code></Element><br/>
+<Normal Text></Normal Text><br/>
+<Element><table></Element><br/>
+<Normal Text>    </Normal Text><Element><tr></Element><br/>
+<Normal Text>        </Normal Text><Element><th></Element><Normal Text>a</Normal Text><Element></th></Element><br/>
+<Normal Text>        </Normal Text><Element><th></Element><Normal Text>b</Normal Text><Element></th></Element><br/>
+<Normal Text>    </Normal Text><Element></tr></Element><br/>
+<Normal Text>    </Normal Text><Element><tr></Element><br/>
+<Normal Text>        </Normal Text><Element><th><ul></Element><br/>
+<Normal Text>            </Normal Text><Element><li></Element><Normal Text>c</Normal Text><Element></li></Element><br/>
+<Normal Text>            </Normal Text><Element><li></Element><Normal Text>d</Normal Text><Element></li></Element><br/>
+<Normal Text>        </Normal Text><Element></ul></th></Element><br/>
+<Normal Text>        </Normal Text><Element><th></Element><Normal Text>e</Normal Text><Element></th></Element><br/>
+<Normal Text>    </Normal Text><Element></tr></Element><br/>
+<Element></table></Element><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>normal text </Normal Text><Emphasis Text>*italic*</Emphasis Text><br/>
+<Normal Text></Normal Text><br/>
+<Header H1># Code</Header H1><br/>
+<Normal Text></Normal Text><br/>
+<Code>`simple code`</Code><br/>
+<Normal Text></Normal Text><br/>
+<Code>``simple ` code``</Code><br/>
+<Normal Text></Normal Text><br/>
+<Code>```simple `` ` code ```</Code><br/>
+<Normal Text></Normal Text><br/>
+<Code>````simple`code````</Code><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>normal text</Normal Text><br/>
+<Normal Text>    normal text</Normal Text><br/>
+<Normal Text>    normal text</Normal Text><br/>
+<Normal Text>        normal text</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Code>    code blocks are only allowed</Code><br/>
+<Code>    after an empty line.</Code><br/>
+<Normal Text></Normal Text><br/>
+<List>* </List><List: Normal Text>list</List: Normal Text><br/>
+<List: Normal Text>    list</List: Normal Text><br/>
+<List: Normal Text>    </List: Normal Text><br/>
+<List: Normal Text>    normal text</List: Normal Text><br/>
+<List: Normal Text>    </List: Normal Text><br/>
+<Number List>1. </Number List><List: Normal Text>num-list</List: Normal Text><br/>
+<List: Normal Text>    num-list</List: Normal Text><br/>
+<List: Normal Text></List: Normal Text><br/>
+<List: Normal Text>    normal text</List: Normal Text><br/>
+<List: Normal Text></List: Normal Text><br/>
+<Blockquote>></Blockquote><Blockquote: Normal Text> quote</Blockquote: Normal Text><br/>
+<Blockquote: Normal Text>    quote</Blockquote: Normal Text><br/>
+<Normal Text>    </Normal Text><br/>
+<Code>    code block</Code><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>normal</Normal Text><br/>
+<Comment><!-- comment --></Comment><br/>
+<Code>    <!-- code, not comment --></Code><br/>
+<Code>    code</Code><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>normal</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment>  <!-- coment --></Comment><br/>
+<Code>    code</Code><br/>
+<Normal Text></Normal Text><br/>
+<Header H1># Fenced code blocks (bug 356974)</Header H1><br/>
+<Normal Text></Normal Text><br/>
+<Header H2>## Bash</Header H2><br/>
+<Normal Text></Normal Text><br/>
+<Fenced Code>```bash</Fenced Code><br/>
+<Comment>#!/usr/bin/env bash</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>for</Keyword><Normal Text> </Normal Text><OtherCommand>f</OtherCommand><Normal Text> </Normal Text><Option>in</Option><Normal Text> *</Normal Text><Control>;</Control><Normal Text> </Normal Text><Keyword>do</Keyword><br/>
+<Normal Text>    </Normal Text><Builtin>echo</Builtin><Normal Text> </Normal Text><String DoubleQ>"</String DoubleQ><Variable>$f</Variable><String DoubleQ>"</String DoubleQ><br/>
+<Keyword>done</Keyword><br/>
+<Fenced Code>```</Fenced Code><br/>
+<Normal Text></Normal Text><br/>
+<Header H2>## C++</Header H2><br/>
+<Normal Text></Normal Text><br/>
+<Fenced Code>```cpp</Fenced Code><br/>
+<Preprocessor>#include </Preprocessor><Prep. Lib><QtCore/QObject></Prep. Lib><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>class</Keyword><Normal Text> Q </Normal Text><Symbol>:</Symbol><Normal Text> </Normal Text><Keyword>public</Keyword><Normal Text> </Normal Text><Qt Classes>QObject</Qt Classes><Normal Text> </Normal Text><Symbol>{</Symbol><br/>
+<Qt Macros>Q_OBJECT</Qt Macros><br/>
+<Keyword>public</Keyword><Symbol>:</Symbol><br/>
+<Normal Text>    Q</Normal Text><Symbol>()</Symbol><Separator Symbol>;</Separator Symbol><br/>
+<Symbol>}</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>Q</Normal Text><Symbol>::</Symbol><Normal Text>Q</Normal Text><Symbol>()</Symbol><Normal Text> </Normal Text><Symbol>:</Symbol><Qt Classes>QObject</Qt Classes><Symbol>(</Symbol><CONSTS/MACROS>NULL</CONSTS/MACROS><Symbol>)</Symbol><Normal Text> </Normal Text><Symbol>{</Symbol><br/>
+<Symbol>}</Symbol><br/>
+<Fenced Code>```</Fenced Code><br/>
+<Normal Text></Normal Text><br/>
+<Header H2>## C</Header H2><br/>
+<Normal Text></Normal Text><br/>
+<Fenced Code>```c</Fenced Code><br/>
+<Preprocessor>#include </Preprocessor><Prep. Lib><stdio.h></Prep. Lib><br/>
+<Preprocessor>#include </Preprocessor><Prep. Lib>"stdint.h"</Prep. Lib><br/>
+<Preprocessor>#define SOME_VAR 1</Preprocessor><br/>
+<Normal Text></Normal Text><br/>
+<Data Type>static</Data Type><Normal Text> </Normal Text><Data Type>uint64_t</Data Type><Normal Text> intWithSuffix </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Decimal>42</Decimal><Standard Suffix>ull</Standard Suffix><Normal Text> </Normal Text><Symbol>+</Symbol><Normal Text> </Normal Text><Symbol>~</Symbol><Decimal>1233</Decimal><Standard Suffix>L</Standard Suffix><Symbol>;</Symbol><br/>
+<Data Type>static</Data Type><Normal Text> </Normal Text><Data Type>int</Data Type><Normal Text> octNum </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Octal>07232</Octal><Symbol>;</Symbol><br/>
+<Fenced Code>```</Fenced Code><br/>
+<Normal Text></Normal Text><br/>
+<Header H2>## C#  ##</Header H2><br/>
+<Normal Text></Normal Text><br/>
+<Fenced Code>```csharp</Fenced Code><br/>
+<Data Type>var</Data Type><Normal Text> arr </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Keyword>new</Keyword><Symbol>[]</Symbol><Normal Text> </Normal Text><Symbol>{</Symbol><Normal Text> </Normal Text><Decimal>0</Decimal><Symbol>,</Symbol><Normal Text> </Normal Text><Decimal>1</Decimal><Symbol>,</Symbol><Normal Text> </Normal Text><Decimal>2</Decimal><Symbol>,</Symbol><Normal Text> </Normal Text><Decimal>3</Decimal><Symbol>,</Symbol><Normal Text> </Normal Text><Decimal>4</Decimal><Normal Text> </Normal Text><Symbol>};</Symbol><br/>
+<Data Type>var</Data Type><Normal Text> anon </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Keyword>new</Keyword><Normal Text> </Normal Text><Symbol>{</Symbol><Normal Text> Country </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><String>"Germany"</String><Symbol>,</Symbol><Normal Text> Inhabitants </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Decimal>80000000</Decimal><Normal Text> </Normal Text><Symbol>};</Symbol><br/>
+<Fenced Code>```</Fenced Code><br/>
+<Normal Text></Normal Text><br/>
+<Header H2>## CMake</Header H2><br/>
+<Normal Text></Normal Text><br/>
+<Fenced Code>```cmake</Fenced Code><br/>
+<Command>cmake_minimum_required</Command><Normal Text>(</Normal Text><Named Args>VERSION</Named Args><Normal Text> 3.10 </Normal Text><Named Args>FATAL_ERROR</Named Args><Normal Text>)</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Command>project</Command><Normal Text> (hello_world)</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Command>set</Command><Normal Text>(</Normal Text><Builtin Variable>QT_MIN_VERSION</Builtin Variable><Normal Text> </Normal Text><Strings>"5.6.0"</Strings><Normal Text>)</Normal Text><br/>
+<Fenced Code>```</Fenced Code><br/>
+<Normal Text></Normal Text><br/>
+<Header H2>## CSS</Header H2><br/>
+<Normal Text></Normal Text><br/>
+<Fenced Code>```css</Fenced Code><br/>
+<Selector Tag>h1</Selector Tag><Selector Class>.main</Selector Class><Selector Pseudo>::hover</Selector Pseudo><Normal Text> {</Normal Text><br/>
+<Normal Text>    </Normal Text><Property>font-size</Property><Normal Text>: </Normal Text><Number>100</Number><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text>    </Normal Text><Property>color</Property><Normal Text>: </Normal Text><Color>green</Color><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text>}</Normal Text><br/>
+<Fenced Code>```</Fenced Code><br/>
+<Normal Text></Normal Text><br/>
+<Header H2>## Email</Header H2><br/>
+<Normal Text></Normal Text><br/>
+<Fenced Code>```email</Fenced Code><br/>
+<Common Header>From:</Common Header><Normal Text> Konqi Dragon </Normal Text><Address><konqi@kde.org></Address><br/>
+<Common Header>To:</Common Header><Normal Text> All </Normal Text><Address><all@kde.og></Address><br/>
+<Common Header>Subject:</Common Header><Normal Text> highlights</Normal Text><br/>
+<Fenced Code>```</Fenced Code><br/>
+<Normal Text></Normal Text><br/>
+<Header H2>## Go</Header H2><br/>
+<Normal Text></Normal Text><br/>
+<Fenced Code>```go</Fenced Code><br/>
+<Keyword>package</Keyword><Normal Text> main</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>import</Keyword><Normal Text> </Normal Text><String>"fmt"</String><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>func</Keyword><Normal Text> main</Normal Text><Symbol>()</Symbol><Normal Text> </Normal Text><Symbol>{</Symbol><br/>
+<Normal Text>  fmt</Normal Text><Symbol>.</Symbol><Normal Text>Println</Normal Text><Symbol>(</Symbol><String>"Hola, mundo."</String><Symbol>)</Symbol><br/>
+<Symbol>}</Symbol><br/>
+<Fenced Code>```</Fenced Code><br/>
+<Normal Text></Normal Text><br/>
+<Header H2>## Haskell</Header H2><br/>
+<Normal Text></Normal Text><br/>
+<Fenced Code>```haskell</Fenced Code><br/>
+<Keyword>module</Keyword><Normal> </Normal><Type>Main</Type><Normal> (</Normal><Function>main</Function><Normal>) </Normal><Keyword>where</Keyword><br/>
+<Normal></Normal><br/>
+<Signature>main </Signature><Special>::</Special><Normal> </Normal><Type Prelude>IO</Type Prelude><Normal> ()</Normal><br/>
+<Function>main</Function><Normal> </Normal><Special>=</Special><Normal> </Normal><Function Prelude>putStrLn</Function Prelude><Normal> </Normal><String>"Hello, World!"</String><br/>
+<Fenced Code>```</Fenced Code><br/>
+<Normal Text></Normal Text><br/>
+<Header H2>## HTML</Header H2><br/>
+<Normal Text></Normal Text><br/>
+<Fenced Code>```html</Fenced Code><br/>
+<Element><html></Element><br/>
+<Normal Text>  </Normal Text><Element><body></Element><br/>
+<Normal Text>    </Normal Text><Element><p</Element><Attribute> class=</Attribute><Value>"main"</Value><Element>></Element><Normal Text>Hello world!</Normal Text><Element></p></Element><br/>
+<Normal Text>  </Normal Text><Element></body></Element><br/>
+<Element></html></Element><br/>
+<Fenced Code>```</Fenced Code><br/>
+<Normal Text></Normal Text><br/>
+<Header H2>## Java</Header H2><br/>
+<Normal Text></Normal Text><br/>
+<Fenced Code>```java</Fenced Code><br/>
+<Keyword>package</Keyword><Imports> fibsandlies;</Imports><br/>
+<Keyword>import</Keyword><Imports> java.util.HashMap;</Imports><br/>
+<Normal Text></Normal Text><br/>
+<JavadocFS>/**</JavadocFS><br/>
+<JavadocFS> * This is an example of a Javadoc comment; Javadoc can compile documentation</JavadocFS><br/>
+<JavadocFS> * from this text. </JavadocFS><Javadoc>Javadoc comments must immediately precede the class, method, or field being documented.</Javadoc><br/>
+<Javadoc> </Javadoc><JavadocFS>*/</JavadocFS><br/>
+<Keyword>public</Keyword><Normal Text> </Normal Text><Keyword>class</Keyword><Normal Text> FibCalculator </Normal Text><Keyword>extends</Keyword><Normal Text> Fibonacci </Normal Text><Keyword>implements</Keyword><Normal Text> Calculator </Normal Text><Symbol>{</Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>    </Normal Text><Keyword>private</Keyword><Normal Text> </Normal Text><Data Type>static</Data Type><Normal Text> </Normal Text><Java15>Map</Java15><Symbol><</Symbol><Java15>Integer</Java15><Symbol>,</Symbol><Normal Text> </Normal Text><Java15>Integer</Java15><Symbol>></Symbol><Normal Text> memoized </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Keyword>new</Keyword><Normal Text> </Normal Text><Java15>HashMap</Java15><Symbol><</Symbol><Java15>Integer</Java15><Symbol>,</Symbol><Normal Text> </Normal Text><Java15>Integer</Java15><Symbol>>();</Symbol><br/>
+<Normal Text>    </Normal Text><Keyword>public</Keyword><Normal Text> </Normal Text><Data Type>static</Data Type><Normal Text> </Normal Text><Data Type>void</Data Type><Normal Text> </Normal Text><Function>main</Function><Symbol>(</Symbol><Java15>String</Java15><Symbol>[]</Symbol><Normal Text> args</Normal Text><Symbol>)</Symbol><Normal Text> </Normal Text><Symbol>{</Symbol><br/>
+<Normal Text>        memoized</Normal Text><Symbol>.</Symbol><Function>put</Function><Symbol>(</Symbol><Decimal>1</Decimal><Symbol>,</Symbol><Normal Text> </Normal Text><Decimal>1</Decimal><Symbol>);</Symbol><br/>
+<Normal Text>        memoized</Normal Text><Symbol>.</Symbol><Function>put</Function><Symbol>(</Symbol><Decimal>2</Decimal><Symbol>,</Symbol><Normal Text> </Normal Text><Decimal>1</Decimal><Symbol>);</Symbol><br/>
+<Normal Text>        </Normal Text><Java15>System</Java15><Symbol>.</Symbol><Function>out</Function><Symbol>.</Symbol><Function>println</Function><Symbol>(</Symbol><Function>fibonacci</Function><Symbol>(</Symbol><Decimal>12</Decimal><Symbol>));</Symbol><br/>
+<Normal Text>    </Normal Text><Symbol>}</Symbol><br/>
+<Symbol>}</Symbol><br/>
+<Fenced Code>```</Fenced Code><br/>
+<Normal Text></Normal Text><br/>
+<Header H2>## JavaScript</Header H2><br/>
+<Normal Text></Normal Text><br/>
+<Fenced Code>```js</Fenced Code><br/>
+<Keyword>function</Keyword><Normal Text> </Normal Text><Function Declaration>factorial</Function Declaration><Normal Text>(n) {</Normal Text><br/>
+<Normal Text>    </Normal Text><ControlFlow>if</ControlFlow><Normal Text> (n </Normal Text><Symbol>===</Symbol><Normal Text> </Normal Text><Decimal>0</Decimal><Normal Text>) {</Normal Text><br/>
+<Normal Text>        </Normal Text><ControlFlow>return</ControlFlow><Normal Text> </Normal Text><Decimal>1</Decimal><Symbol>;</Symbol><Normal Text>  </Normal Text><Comment>// 0! = 1</Comment><br/>
+<Normal Text>    }</Normal Text><br/>
+<Normal Text>    </Normal Text><ControlFlow>return</ControlFlow><Normal Text> n </Normal Text><Symbol>*</Symbol><Normal Text> </Normal Text><Function Name>factorial</Function Name><Normal Text>(n </Normal Text><Symbol>-</Symbol><Normal Text> </Normal Text><Decimal>1</Decimal><Normal Text>)</Normal Text><Symbol>;</Symbol><br/>
+<Normal Text>}</Normal Text><br/>
+<Fenced Code>```</Fenced Code><br/>
+<Normal Text></Normal Text><br/>
+<Header H2>## JavaScript React (JSX)</Header H2><br/>
+<Normal Text></Normal Text><br/>
+<Fenced Code>```jsx</Fenced Code><br/>
+<Element Tag><hello</Element Tag><Normal Text> </Normal Text><Element Tag>/></Element Tag><br/>
+<Keyword>function</Keyword><Normal Text> </Normal Text><Function Declaration>Story</Function Declaration><Normal Text>(</Normal Text><Normal Text>props) </Normal Text><Normal Text>{</Normal Text><br/>
+<Normal Text>  </Normal Text><Keyword>const</Keyword><Normal Text> </Normal Text><Normal Text>SpecificStory </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Normal Text>components</Normal Text><Normal Text>[</Normal Text><Objects>props</Objects><Symbol>.</Symbol><Object Member>storyType</Object Member><Normal Text>]</Normal Text><Symbol>;</Symbol><br/>
+<Normal Text>  </Normal Text><ControlFlow>return </ControlFlow><Component Tag><SpecificStory</Component Tag><Normal Text> </Normal Text><Attribute>story</Attribute><Symbol>=</Symbol><Code Brackets>{</Code Brackets><Normal Text> </Normal Text><Objects>props</Objects><Symbol>.</Symbol><Object Member>story</Object Member><Normal Text> </Normal Text><Code Brackets>}</Code Brackets><Normal Text> </Normal Text><Attribute>attr2</Attribute><Symbol>=</Symbol><Value>"</Value><EntityRef>&ref;</EntityRef><Value>"</Value><Normal Text> </Normal Text><Attribute>attr3</Attribute><Symbol>=</Symbol><Value>"Hello\n"</Value><Normal Text> </Normal Text><Component Tag>/></Component Tag><Symbol>;</Symbol><br/>
+<Normal Text>}</Normal Text><br/>
+<Fenced Code>```</Fenced Code><br/>
+<Normal Text></Normal Text><br/>
+<Header H2>## JSON</Header H2><br/>
+<Normal Text></Normal Text><br/>
+<Fenced Code>```json</Fenced Code><br/>
+<Style_Seperator_Array>[</Style_Seperator_Array><Style_Seperator_Pair>{</Style_Seperator_Pair><br/>
+<Style_Normal>    </Style_Normal><Style_String_Key>"hello"</Style_String_Key><Style_Seperator_Pair>:</Style_Seperator_Pair><Style_Normal> </Style_Normal><Style_String_Value>"world"</Style_String_Value><Style_Seperator_Pair>,</Style_Seperator_Pair><br/>
+<Style_Normal>    </Style_Normal><Style_String_Key>"count"</Style_String_Key><Style_Seperator_Pair>:</Style_Seperator_Pair><Style_Normal> </Style_Normal><Style_Decimal>1</Style_Decimal><Style_Seperator_Pair>,</Style_Seperator_Pair><br/>
+<Style_Normal>    </Style_Normal><Style_String_Key>"bool"</Style_String_Key><Style_Seperator_Pair>:</Style_Seperator_Pair><Style_Normal> </Style_Normal><Style_Keyword>true</Style_Keyword><br/>
+<Style_Seperator_Pair>}</Style_Seperator_Pair><Style_Seperator_Array>]</Style_Seperator_Array><br/>
+<Fenced Code>```</Fenced Code><br/>
+<Normal Text></Normal Text><br/>
+<Header H2>## Matlab</Header H2><br/>
+<Normal Text></Normal Text><br/>
+<Fenced Code>```matlab</Fenced Code><br/>
+<Comment>% Numbers _____________________________________________</Comment><br/>
+<Number>5</Number><Operator>,</Operator><Normal Text> </Normal Text><Number>5.5</Number><Operator>,</Operator><Normal Text> </Normal Text><Number>.1</Number><Operator>,</Operator><Normal Text> </Normal Text><Number>0.1</Number><Operator>,</Operator><Normal Text> </Normal Text><Number>0.4e5</Number><Operator>,</Operator><Normal Text> </Normal Text><Number>1.2e-5</Number><Operator>,</Operator><Normal Text> </Normal Text><Number>5i</Number><Operator>,</Operator><Normal Text> </Normal Text><Number>5.3i</Number><Operator>,</Operator><Normal Text> </Normal Text><Number>6j</Number><Operator>,</Operator><Normal Text> </Normal Text><Number>.345</Number><Operator>+</Operator><Number>3i</Number><br/>
+<Number>5</Number><Operator>',</Operator><Normal Text> </Normal Text><Number>5.5</Number><Operator>',</Operator><Normal Text> </Normal Text><Number>.1</Number><Operator>',</Operator><Normal Text> </Normal Text><Number>0.1</Number><Operator>',</Operator><Normal Text> </Normal Text><Number>0.4e5</Number><Operator>',</Operator><Normal Text> </Normal Text><Number>1.2e-5</Number><Operator>',</Operator><Normal Text> </Normal Text><Number>5i</Number><Operator>',</Operator><Normal Text> </Normal Text><Number>5.3i</Number><Operator>',</Operator><Normal Text> </Normal Text><Number>6j</Number><Operator>',</Operator><Normal Text> </Normal Text><Number>.345</Number><Operator>+</Operator><Number>3i</Number><Operator>'</Operator><br/>
+<Fenced Code>```</Fenced Code><br/>
+<Normal Text></Normal Text><br/>
+<Header H2>## Markdown</Header H2><br/>
+<Normal Text></Normal Text><br/>
+<Fenced Code>```markdown</Fenced Code><br/>
+<Strong Text>**bold**</Strong Text><Normal Text> </Normal Text><Code>`code`</Code><br/>
+<Blockquote>></Blockquote><Blockquote: Normal Text> quote</Blockquote: Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Fenced Code>```</Fenced Code><br/>
+<Normal Text></Normal Text><br/>
+<Header H2>## Mustache/Handlebars</Header H2><br/>
+<Normal Text></Normal Text><br/>
+<Fenced Code>```handlebars</Fenced Code><br/>
+<Mustache Block>{{#movie}}</Mustache Block><br/>
+<Normal Text>    </Normal Text><Element Tag><div></Element Tag><br/>
+<Normal Text>        </Normal Text><Element Tag><h1></Element Tag><Mustache Variable>{{</Mustache Variable><Mustache Inside>title</Mustache Inside><Mustache Variable>}}</Mustache Variable><Element Tag></h1></Element Tag><br/>
+<Normal Text>        </Normal Text><Element Tag><img</Element Tag><Attribute> src</Attribute><Symbol>=</Symbol><Value>"</Value><Mustache Variable>{{</Mustache Variable><Mustache Inside>poster</Mustache Inside><Mustache Variable>}}</Mustache Variable><Value>"</Value><Attribute> alt</Attribute><Symbol>=</Symbol><Value>"</Value><Mustache Variable>{{</Mustache Variable><Mustache Inside>title</Mustache Inside><Mustache Variable>}}</Mustache Variable><Value>"</Value><Element Tag>/></Element Tag><br/>
+<Normal Text>    </Normal Text><Element Tag></div></Element Tag><br/>
+<Normal Text>    </Normal Text><Element Tag><div></Element Tag><br/>
+<Normal Text>        Rating - </Normal Text><Mustache Variable>{{</Mustache Variable><Mustache Inside>ratings</Mustache Inside><Symbol>.</Symbol><Mustache Inside>critics_rating</Mustache Inside><Mustache Variable>}}</Mustache Variable><br/>
+<Normal Text>    </Normal Text><Element Tag></div></Element Tag><br/>
+<Mustache Block>{{/movie}}</Mustache Block><br/>
+<Fenced Code>```</Fenced Code><br/>
+<Normal Text></Normal Text><br/>
+<Header H2>## Perl</Header H2><br/>
+<Normal Text></Normal Text><br/>
+<Fenced Code>```perl</Fenced Code><br/>
+<Keyword>my</Keyword><Normal Text> </Normal Text><Data Type>$var</Data Type><Normal Text> = </Normal Text><Function>shift</Function><Normal Text>;</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Data Type>$var</Data Type><Normal Text> =~ </Normal Text><Operator>s/</Operator><Pattern>bla</Pattern><Operator>/</Operator><String (interpolated)>foo</String (interpolated)><Operator>/igs</Operator><Normal Text>;</Normal Text><br/>
+<Data Type>$var</Data Type><Normal Text> =~ </Normal Text><Operator>s!</Operator><Pattern>bla</Pattern><Operator>!</Operator><String (interpolated)>foo</String (interpolated)><Operator>!igs</Operator><Normal Text>;</Normal Text><br/>
+<Data Type>$var</Data Type><Normal Text> =~ </Normal Text><Operator>s#</Operator><Pattern>bla</Pattern><Operator>#</Operator><String (interpolated)>foo</String (interpolated)><Operator>#igs</Operator><Normal Text>;</Normal Text><br/>
+<Fenced Code>```</Fenced Code><br/>
+<Normal Text></Normal Text><br/>
+<Header H2>## PHP</Header H2><br/>
+<Normal Text></Normal Text><br/>
+<Fenced Code>```php</Fenced Code><br/>
+<Keyword>namespace</Keyword><PHP Text> Application\Controller</PHP Text><Other>;</Other><br/>
+<PHP Text></PHP Text><br/>
+<Keyword>use</Keyword><PHP Text> Zend\Mvc\Controller\AbstractActionController</PHP Text><Other>;</Other><br/>
+<PHP Text></PHP Text><br/>
+<Keyword>class</Keyword><PHP Text> IndexController </PHP Text><Keyword>extends</Keyword><PHP Text> AbstractActionController</PHP Text><br/>
+<Normal Text>{</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Fenced Code>```</Fenced Code><br/>
+<Normal Text></Normal Text><br/>
+<Header H2>## Python</Header H2><br/>
+<Normal Text></Normal Text><br/>
+<Fenced Code>```python</Fenced Code><br/>
+<Definition Keyword>def</Definition Keyword><Normal Text> addXToY(x, y):</Normal Text><br/>
+<Normal Text>    total </Normal Text><Operator>=</Operator><Normal Text> x </Normal Text><Operator>+</Operator><Normal Text> y</Normal Text><br/>
+<Normal Text>    </Normal Text><Builtin Function>print</Builtin Function><Normal Text> total</Normal Text><br/>
+<Fenced Code>```</Fenced Code><br/>
+<Normal Text></Normal Text><br/>
+<Header H2>## QML</Header H2><br/>
+<Normal Text></Normal Text><br/>
+<Fenced Code>```qml</Fenced Code><br/>
+<Elements>Text</Elements><Normal Text> {</Normal Text><br/>
+<Normal Text>    </Normal Text><Property Type>id</Property Type><Symbol>:</Symbol><Normal Text> </Normal Text><Normal Text>hello</Normal Text><br/>
+<Normal Text>    </Normal Text><Property Type>width</Property Type><Symbol>:</Symbol><Normal Text> </Normal Text><Decimal>100</Decimal><br/>
+<Normal Text>    </Normal Text><Property Type>text</Property Type><Symbol>:</Symbol><Normal Text> </Normal Text><String>"Hello world!"</String><br/>
+<Normal Text>}</Normal Text><br/>
+<Fenced Code>```</Fenced Code><br/>
+<Normal Text></Normal Text><br/>
+<Header H2>## R</Header H2><br/>
+<Normal Text></Normal Text><br/>
+<Fenced Code>```r</Fenced Code><br/>
+<Comment># Declare function “f” with parameters “x”, “y“</Comment><br/>
+<Comment># that returns a linear combination of x and y.</Comment><br/>
+<Normal Text>f </Normal Text><Assign><-</Assign><String> </String><Control Structure>function</Control Structure><Symbol>(</Symbol><Normal Text>x, y</Normal Text><Symbol>)</Symbol><Normal Text> </Normal Text><Symbol>{</Symbol><br/>
+<Normal Text>  z </Normal Text><Assign><-</Assign><String> </String><Int>3</Int><Normal Text> </Normal Text><Operator>*</Operator><String> </String><Normal Text>x </Normal Text><Operator>+</Operator><String> </String><Int>4</Int><Normal Text> </Normal Text><Operator>*</Operator><String> </String><Normal Text>y</Normal Text><br/>
+<Normal Text>  </Normal Text><Keyword>return</Keyword><Symbol>(</Symbol><Normal Text>z</Normal Text><Symbol>)</Symbol><br/>
+<Symbol>}</Symbol><br/>
+<Fenced Code>```</Fenced Code><br/>
+<Normal Text></Normal Text><br/>
+<Header H2>## Raku</Header H2><br/>
+<Normal Text></Normal Text><br/>
+<Fenced Code>```raku</Fenced Code><br/>
+<Keyword>grammar</Keyword><Normal Text> </Normal Text><Data Type>Parser</Data Type><Normal Text> </Normal Text><Operator>{</Operator><br/>
+<Normal Text>    </Normal Text><Keyword>rule</Keyword><Normal Text>  TOP  </Normal Text><Operator>{</Operator><Pattern> I </Pattern><Pattern Meta Character><</Pattern Meta Character><String>love</String><Pattern Meta Character>></Pattern Meta Character><Pattern> </Pattern><Pattern Meta Character><</Pattern Meta Character><String>lang</String><Pattern Meta Character>></Pattern Meta Character><Pattern> </Pattern><Operator>}</Operator><br/>
+<Normal Text>    </Normal Text><Keyword>token</Keyword><Normal Text> love </Normal Text><Operator>{</Operator><Pattern> </Pattern><String Delimiter>'</String Delimiter><String>♥</String><String Delimiter>'</String Delimiter><Pattern> </Pattern><Pattern Control Flow>|</Pattern Control Flow><Pattern> love </Pattern><Operator>}</Operator><br/>
+<Normal Text>    </Normal Text><Keyword>token</Keyword><Normal Text> lang </Normal Text><Operator>{</Operator><Pattern> </Pattern><Pattern Meta Character>< </Pattern Meta Character><String>Raku Perl Rust Go Python Ruby </String><Pattern Meta Character>></Pattern Meta Character><Pattern> </Pattern><Operator>}</Operator><br/>
+<Operator>}</Operator><br/>
+<Normal Text></Normal Text><br/>
+<Operator>say</Operator><Normal Text> </Normal Text><Data Type>Parser</Data Type><Operator>.</Operator><Normal Text>parse</Normal Text><Operator>:</Operator><Normal Text> </Normal Text><String Delimiter>'</String Delimiter><String>I ♥ Raku</String><String Delimiter>'</String Delimiter><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Operator>say</Operator><Normal Text> </Normal Text><Decimal>1</Decimal><Normal Text> </Normal Text><Comment>#`««« blah </Comment><Alert Level 2>TODO</Alert Level 2><Comment> blah</Comment><br/>
+<Comment>here? »»»</Comment><Normal Text> </Normal Text><Decimal>2</Decimal><Normal Text> </Normal Text><Separator Symbol>;</Separator Symbol><br/>
+<Operator>say</Operator><Normal Text> </Normal Text><Decimal>1</Decimal><Normal Text> </Normal Text><Comment>#` ( blah </Comment><Alert Level 2>TODO</Alert Level 2><Comment> blah</Comment><br/>
+<Decimal>2</Decimal><Normal Text> </Normal Text><Separator Symbol>;</Separator Symbol><br/>
+<Operator>rx-</Operator><Pattern> regex </Pattern><Operator>-</Operator><br/>
+<Fenced Code>```</Fenced Code><br/>
+<Normal Text></Normal Text><br/>
+<Header H2>## Ruby</Header H2><br/>
+<Normal Text></Normal Text><br/>
+<Fenced Code>```ruby</Fenced Code><br/>
+<Kernel methods>require</Kernel methods><Normal Text> </Normal Text><Raw String>'Config'</Raw String><br/>
+<Normal Text>  </Normal Text><Keyword>def</Keyword><Normal Text> </Normal Text><Global Constant>CGI</Global Constant><Operator>::</Operator><Message>escape</Message><Normal Text>(string)</Normal Text><br/>
+<Normal Text>    string</Normal Text><Message>.gsub</Message><Normal Text>(</Normal Text><Regular Expression>/([^ a-zA-Z0-9_.-]+)/n</Regular Expression><Normal Text>) </Normal Text><Keyword>do</Keyword><br/>
+<Normal Text>      </Normal Text><Char>'%'</Char><Normal Text> </Normal Text><Operator>+</Operator><Normal Text> </Normal Text><Global Variable>$1</Global Variable><Message>.unpack</Message><Normal Text>(</Normal Text><Raw String>'H2'</Raw String><Normal Text> </Normal Text><Operator>*</Operator><Normal Text> </Normal Text><Global Variable>$1</Global Variable><Message>.size</Message><Normal Text>)</Normal Text><Message>.join</Message><Normal Text>(</Normal Text><Char>'%'</Char><Normal Text>)</Normal Text><Message>.upcase</Message><br/>
+<Normal Text>    </Normal Text><Keyword>end</Keyword><Message>.tr</Message><Normal Text>(</Normal Text><Char>' '</Char><Normal Text>, </Normal Text><Char>'+'</Char><Normal Text>)</Normal Text><br/>
+<Normal Text>  </Normal Text><Keyword>end</Keyword><br/>
+<Fenced Code>```</Fenced Code><br/>
+<Normal Text></Normal Text><br/>
+<Header H2>## Rust</Header H2><br/>
+<Normal Text></Normal Text><br/>
+<Fenced Code>```rust</Fenced Code><br/>
+<Keyword>fn</Keyword><Definition> main</Definition><Normal Text>() </Normal Text><Symbol>{</Symbol><br/>
+<Normal Text>    </Normal Text><Macro>println!</Macro><Normal Text>(</Normal Text><String>"Hello world!"</String><Normal Text>)</Normal Text><Symbol>;</Symbol><br/>
+<Symbol>}</Symbol><br/>
+<Fenced Code>```</Fenced Code><br/>
+<Normal Text></Normal Text><br/>
+<Header H2>## MySQL</Header H2><br/>
+<Normal Text></Normal Text><br/>
+<Fenced Code>```mysql</Fenced Code><br/>
+<Comment>-- comment</Comment><br/>
+<Keyword>CREATE</Keyword><Normal Text> </Normal Text><Keyword>TABLE</Keyword><Normal Text> stuff </Normal Text><Keyword>COLUMNS</Keyword><Normal Text>(col1 </Normal Text><Data Type>INT</Data Type><Normal Text>, col2 </Normal Text><Data Type>Varchar</Data Type><Normal Text>);</Normal Text><br/>
+<Keyword>SELECT</Keyword><Normal Text> </Normal Text><Operator>*</Operator><Normal Text> </Normal Text><Keyword>FROM</Keyword><Normal Text> stuff </Normal Text><Keyword>WHERE</Keyword><Normal Text> id </Normal Text><Operator>=</Operator><Normal Text> </Normal Text><String>'string'</String><Normal Text>;</Normal Text><br/>
+<Keyword>select</Keyword><Normal Text> </Normal Text><Operator>*</Operator><Normal Text> </Normal Text><Keyword>from</Keyword><Normal Text> stuff </Normal Text><Keyword>where</Keyword><Normal Text> id </Normal Text><Operator><</Operator><Normal Text> </Normal Text><Float>0.42</Float><Normal Text>;</Normal Text><br/>
+<Keyword>Select</Keyword><Normal Text> col1, col2 </Normal Text><Keyword>From</Keyword><Normal Text> stuff </Normal Text><Keyword>Where</Keyword><Normal Text> stuff</Normal Text><String Char>.</String Char><Normal Text>col1 </Normal Text><Operator Keyword>IS</Operator Keyword><Normal Text> </Normal Text><Operator Keyword>NOT</Operator Keyword><Normal Text> </Normal Text><Keyword>NuLL</Keyword><Normal Text>;</Normal Text><br/>
+<Fenced Code>```</Fenced Code><br/>
+<Normal Text></Normal Text><br/>
+<Header H2>## TypeScript</Header H2><br/>
+<Normal Text></Normal Text><br/>
+<Fenced Code>```ts</Fenced Code><br/>
+<Reserved>class</Reserved><Normal Text> </Normal Text><Normal Text>Student </Normal Text><Normal Text>{</Normal Text><br/>
+<Normal Text>    </Normal Text><Parameter>fullName</Parameter><Symbol>:</Symbol><Normal Text> </Normal Text><Types>string</Types><Symbol>;</Symbol><br/>
+<Normal Text>    </Normal Text><Reserved>constructor</Reserved><Normal Text>(</Normal Text><Reserved>public</Reserved><Normal Text> </Normal Text><Parameter>firstName</Parameter><Symbol>:</Symbol><Normal Text> </Normal Text><Types>string</Types><Symbol>,</Symbol><Normal Text> </Normal Text><Reserved>public</Reserved><Normal Text> </Normal Text><Parameter>middleInitial</Parameter><Symbol>:</Symbol><Normal Text> </Normal Text><Types>string</Types><Symbol>,</Symbol><Normal Text> </Normal Text><Reserved>public</Reserved><Normal Text> </Normal Text><Parameter>lastName</Parameter><Symbol>:</Symbol><Normal Text> </Normal Text><Types>string</Types><Normal Text>) {</Normal Text><br/>
+<Normal Text>        </Normal Text><Keyword>this</Keyword><Symbol>.</Symbol><Object Member>fullName</Object Member><Normal Text> </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Normal Text>firstName </Normal Text><Symbol>+</Symbol><Normal Text> </Normal Text><String>" "</String><Normal Text> </Normal Text><Symbol>+</Symbol><Normal Text> </Normal Text><Normal Text>middleInitial </Normal Text><Symbol>+</Symbol><Normal Text> </Normal Text><String>" "</String><Normal Text> </Normal Text><Symbol>+</Symbol><Normal Text> </Normal Text><Normal Text>lastName</Normal Text><Symbol>;</Symbol><br/>
+<Normal Text>    }</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Fenced Code>```</Fenced Code><br/>
+<Normal Text></Normal Text><br/>
+<Header H2>## XML</Header H2><br/>
+<Normal Text></Normal Text><br/>
+<Fenced Code>```xml</Fenced Code><br/>
+<Element><tag</Element><Attribute> attribute=</Attribute><Value>"3"</Value><Element>></Element><br/>
+<Other Text>  </Other Text><Element><nested/></Element><br/>
+<Element></tag></Element><br/>
+<Fenced Code>```</Fenced Code><br/>
+<Normal Text></Normal Text><br/>
+<Header H2>## reStructuredText</Header H2><br/>
+<Normal Text></Normal Text><br/>
+<Fenced Code>```rst</Fenced Code><br/>
+<Normal>Section Header</Normal><br/>
+<Normal>==============</Normal><br/>
+<Normal></Normal><br/>
+<Directive>.. image:: </Directive><Normal>/path/to/image.jpg</Normal><br/>
+<Normal></Normal><br/>
+<Normal>- A bullet list item</Normal><br/>
+<Fenced Code>```</Fenced Code><br/>
+<Normal Text></Normal Text><br/>
+<Header H2>## Doxygen</Header H2><br/>
+<Normal Text></Normal Text><br/>
+<Fenced Code>```doxygen</Fenced Code><br/>
+<Comment>a normal member taking two arguments and returning an integer value.</Comment><br/>
+<Tags>@param</Tags><Comment> </Comment><Word>a</Word><Comment> an integer argument.</Comment><br/>
+<Tags>@param</Tags><Comment> </Comment><Word>s</Word><Comment> a constant character pointer.</Comment><br/>
+<Tags>@see</Tags><Comment> Javadoc_Test()</Comment><br/>
+<Tags>@see</Tags><Comment> publicVar()</Comment><br/>
+<Tags>@return</Tags><Comment> The test results</Comment><br/>
+<Fenced Code>```</Fenced Code><br/>
+<Normal Text></Normal Text><br/>
+<Header H2>## No language specified</Header H2><br/>
+<Normal Text></Normal Text><br/>
+<Fenced Code>```</Fenced Code><br/>
+<Code>No language is specified, but it should be still rendered as code block.</Code><br/>
+<Fenced Code>```</Fenced Code><br/>
+<Normal Text></Normal Text><br/>
+<Header H1># Fenced code blocks with more than 3 backticks or tildes</Header H1><br/>
+<Normal Text></Normal Text><br/>
+<Fenced Code>~~~</Fenced Code><br/>
+<Code>Fenced code block with 3 tildes.</Code><br/>
+<Fenced Code>~~~</Fenced Code><br/>
+<Normal Text></Normal Text><br/>
+<Fenced Code>`````````</Fenced Code><br/>
+<Code>Some implementations of Markdown/MultiMarkdown support more than 3 backticks or tildes.</Code><br/>
+<Code>```</Code><br/>
+<Code>The block ends with the same amount of backticks.</Code><br/>
+<Fenced Code>`````````</Fenced Code><br/>
+<Normal Text></Normal Text><br/>
+<Fenced Code>~~~~~~~~~~~~</Fenced Code><br/>
+<Code>Fenced code block with more tildes.</Code><br/>
+<Fenced Code>~~~~~~~~~~~~</Fenced Code><br/>
+<Normal Text></Normal Text><br/>
+<Header H2>## With languages</Header H2><br/>
+<Normal Text></Normal Text><br/>
+<Fenced Code>```````html</Fenced Code><br/>
+<Element><html></Element><br/>
+<Normal Text>  </Normal Text><Element><body></Element><br/>
+<Normal Text>    </Normal Text><Element><p</Element><Attribute> class=</Attribute><Value>"main"</Value><Element>></Element><Normal Text>Hello world!</Normal Text><Element></p></Element><br/>
+<Normal Text>  </Normal Text><Element></body></Element><br/>
+<Element></html></Element><br/>
+<Normal Text>``` </Normal Text><Comment><!-- <= doesn't end here --></Comment><br/>
+<Fenced Code>```````</Fenced Code><br/>
+<Normal Text></Normal Text><br/>
+<Fenced Code>~~~bash</Fenced Code><br/>
+<Keyword>for</Keyword><Normal Text> </Normal Text><OtherCommand>f</OtherCommand><Normal Text> </Normal Text><Option>in</Option><Normal Text> *</Normal Text><Control>;</Control><Normal Text> </Normal Text><Keyword>do</Keyword><br/>
+<Normal Text>    </Normal Text><Builtin>echo</Builtin><Normal Text> </Normal Text><String DoubleQ>"</String DoubleQ><Variable>$f</Variable><String DoubleQ>"</String DoubleQ><br/>
+<Keyword>done</Keyword><br/>
+<Fenced Code>~~~</Fenced Code><br/>
+<Normal Text></Normal Text><br/>
+<Fenced Code>~~~~~~~~~python</Fenced Code><br/>
+<Definition Keyword>def</Definition Keyword><Normal Text> addXToY(x, y):</Normal Text><br/>
+<Normal Text>    total </Normal Text><Operator>=</Operator><Normal Text> x </Normal Text><Operator>+</Operator><Normal Text> y</Normal Text><br/>
+<Normal Text>    </Normal Text><Builtin Function>print</Builtin Function><Normal Text> total</Normal Text><br/>
+<Operator>~~~</Operator><Normal Text> </Normal Text><Comment># <= doesn't end here</Comment><br/>
+<Fenced Code>~~~~~~~~~</Fenced Code><br/>
+<Normal Text></Normal Text><br/>
+<Header H1># Italic and bold text</Header H1><br/>
+<Normal Text></Normal Text><br/>
+<Strong Text>**b**</Strong Text><Normal Text> </Normal Text><Emphasis Text>*i*</Emphasis Text><Normal Text> </Normal Text><Strong Text>__b__</Strong Text><Normal Text> </Normal Text><Emphasis Text>_i_</Emphasis Text><br/>
+<Strong-Emphasis Text>***ib***</Strong-Emphasis Text><Normal Text> </Normal Text><Strong-Emphasis Text>___ib___</Strong-Emphasis Text><br/>
+<Strong-Emphasis Text>**_ib_**</Strong-Emphasis Text><Normal Text> </Normal Text><Strong-Emphasis Text>__*ib*__</Strong-Emphasis Text><br/>
+<Normal Text></Normal Text><br/>
+<List>* </List><List: Emphasis Text>_italic_</List: Emphasis Text><List: Normal Text> </List: Normal Text><List: Strong Text>**bold**</List: Strong Text><List: Normal Text> </List: Normal Text><List: Strong-Emphasis Text>***ib***</List: Strong-Emphasis Text><List: Normal Text> </List: Normal Text><List: Strikethrough Text>~~strikeout~~</List: Strikethrough Text><br/>
+<List: Normal Text></List: Normal Text><br/>
+<Blockquote>></Blockquote><Blockquote: Normal Text> </Blockquote: Normal Text><Blockquote: Emphasis Text>_italic_</Blockquote: Emphasis Text><Blockquote: Normal Text> </Blockquote: Normal Text><Blockquote: Strong Text>**bold**</Blockquote: Strong Text><Blockquote: Normal Text> </Blockquote: Normal Text><Blockquote: Strong-Emphasis Text>***ib***</Blockquote: Strong-Emphasis Text><Blockquote: Normal Text> </Blockquote: Normal Text><Blockquote: Strikethrough Text>~~strikeout~~</Blockquote: Strikethrough Text><br/>
+<Normal Text></Normal Text><br/>
+<Header H2>## Bold</Header H2><br/>
+<Strong Text>**bold*___text**</Strong Text><Normal Text> normal</Normal Text><br/>
+<Strong Text>__bold_***text__</Strong Text><Normal Text> normal</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Header H2>## Italic</Header H2><br/>
+<Emphasis Text>*italic _ text*</Emphasis Text><Normal Text> normal</Normal Text><br/>
+<Emphasis Text>_italic * text_</Emphasis Text><Normal Text> normal</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Header H2>## Italic-Bold</Header H2><br/>
+<Strong-Emphasis Text>***italic-bold ** italic-bold***</Strong-Emphasis Text><Normal Text> normal</Normal Text><br/>
+<Strong-Emphasis Text>***bold-italic text **bold-italic text***</Strong-Emphasis Text><Normal Text> normal</Normal Text><br/>
+<Strong-Emphasis Text>***bold*italic***</Strong-Emphasis Text><Normal Text> normal</Normal Text><br/>
+<Strong-Emphasis Text>**_bold-italic text_**</Strong-Emphasis Text><Normal Text> normal</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment><!-- A non-space character is required after or before * or _ --></Comment><br/>
+<Normal Text>_ normal text_ * normal text *</Normal Text><br/>
+<Emphasis Text>*italic text*</Emphasis Text><Normal Text>normal text*</Normal Text><br/>
+<Emphasis Text>*italic text *italic text*</Emphasis Text><br/>
+<Strong Text>**bold text**</Strong Text><Normal Text>normal text**</Normal Text><br/>
+<Strong Text>**bold text **bold text**</Strong Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment><!-- A delimiter is required after or before _ --></Comment><br/>
+<Normal Text>aaa</Normal Text><Strong Text>**bold text**</Strong Text><Normal Text>aaaaa</Normal Text><br/>
+<Normal Text>aaa__normal text__aaaaa</Normal Text><br/>
+<Normal Text>пристаням</Normal Text><Emphasis Text>_стремятся_</Emphasis Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment><!-- Escapes within bold or italic text --></Comment><br/>
+<Backslash Escape>\*</Backslash Escape><Normal Text>normal text*</Normal Text><br/>
+<Normal Text>_normal text</Normal Text><Backslash Escape>\_</Backslash Escape><br/>
+<Emphasis Text>**italic text\**</Emphasis Text><br/>
+<Strong Text>***only bold\***</Strong Text><br/>
+<Strong Text>**bold\** bold**</Strong Text><br/>

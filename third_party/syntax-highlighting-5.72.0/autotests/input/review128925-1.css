@@ -1,0 +1,112 @@
+/*
+ * CSS Syntax Highlight Sample File (Standard)
+ *
+ * This file contains most CSS syntax, CSS3 properties, @media, @font-face and
+ * @keyframes annotations.
+ *
+ * @author  Guo Yunhe guoyunhebrave@gmail.com
+ * @date    2016-09-16
+ */
+
+/*
+ * Block comment
+ *
+ * Alert keywords:
+ * TODO BUG FIXME
+ */
+
+@charset "UTF-8";
+
+@import url("components/button.css");
+
+
+/* Properties */
+
+html, body {
+    font-family: "Droid Sans", Arial, sans-serif;
+    font-size: 11pt;
+    line-height: 1.5em;
+    max-width: calc(100% - 300px);
+    background: #fff000;
+    text-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+    box-sizing: border-box;
+}
+
+
+/* Selectors */
+
+blockquote {
+    margin: 0;
+}
+
+header #logo {
+    width: 100px;
+}
+
+div#footer .link {
+    color: blue;
+}
+
+sidebar #subscribe .subscribe_form input[type="text"] {
+    font-size: 20px;
+}
+
+sidebar #subscribe .subscribe_form:nth-child(2n + 1):hover input[class*="small-"] {
+    font-weight: bold;
+}
+
+
+/* Media Queries */
+
+@media print {
+    .container {
+        width: 100%;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .container {
+        width: 600px;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 960px) {
+    .container {
+        width: 720px;
+    }
+}
+
+
+/* Fontface */
+
+@font-face {
+    font-family: MyHelvetica;
+    src: local("Helvetica Neue Bold"),
+        local("HelveticaNeue-Bold"),
+        url(MgOpenModernaBold.ttf);
+    font-weight: bold;
+}
+
+/* Animation (Keyframes) */
+
+@keyframes slidein {
+    from {
+        margin-left: 100%;
+        width: 300%;
+    }
+
+    to {
+        margin-left: 0%;
+        width: 100%;
+    }
+}
+
+
+/* Region markers */
+
+/*BEGIN Comment */
+
+
+
+/*END Comment */
+

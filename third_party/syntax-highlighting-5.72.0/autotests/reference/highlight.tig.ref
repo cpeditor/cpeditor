@@ -1,0 +1,78 @@
+<Comment>/* Mandelbrot integer demo</Comment><br/>
+<Comment> * Released under the MIT License</Comment><br/>
+<Comment> */</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>let</Keyword><br/>
+<Normal Text>  </Normal Text><Comment>/* Basic types.  */</Comment><br/>
+<Normal Text>  </Normal Text><Keyword>type</Keyword><Normal Text> bool </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Type>int</Type><br/>
+<Normal Text>  </Normal Text><Keyword>type</Keyword><Normal Text> coord </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Type>int</Type><br/>
+<Normal Text>  </Normal Text><Keyword>type</Keyword><Normal Text> value </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Type>int</Type><br/>
+<Normal Text>  </Normal Text><Keyword>type</Keyword><Normal Text> array2d </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Keyword>array</Keyword><Normal Text> </Normal Text><Keyword>of</Keyword><Normal Text> value</Normal Text><br/>
+<Normal Text>  </Normal Text><Keyword>type</Keyword><Normal Text> image2d </Normal Text><Symbol>=</Symbol><Normal Text> { nrows </Normal Text><Symbol>:</Symbol><Normal Text> coord</Normal Text><Symbol>,</Symbol><Normal Text> ncols </Normal Text><Symbol>:</Symbol><Normal Text> coord</Normal Text><Symbol>,</Symbol><Normal Text> data </Normal Text><Symbol>:</Symbol><Normal Text> array2d }</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>  </Normal Text><Comment>/* Image creation.  */</Comment><br/>
+<Normal Text>  </Normal Text><Keyword>function</Keyword><Normal Text> image_new (ncols </Normal Text><Symbol>:</Symbol><Normal Text> coord</Normal Text><Symbol>,</Symbol><Normal Text> nrows </Normal Text><Symbol>:</Symbol><Normal Text> coord) </Normal Text><Symbol>:</Symbol><Normal Text> image2d </Normal Text><Symbol>=</Symbol><br/>
+<Normal Text>    image2d { nrows </Normal Text><Symbol>=</Symbol><Normal Text> nrows</Normal Text><Symbol>,</Symbol><Normal Text> ncols </Normal Text><Symbol>=</Symbol><Normal Text> ncols</Normal Text><Symbol>,</Symbol><br/>
+<Normal Text>	      data </Normal Text><Symbol>=</Symbol><Normal Text> array2d[nrows </Normal Text><Symbol>*</Symbol><Normal Text> ncols] </Normal Text><Keyword>of</Keyword><Normal Text> </Normal Text><Decimal>0</Decimal><Normal Text> }</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>  </Normal Text><Keyword>function</Keyword><Normal Text> image_set (input </Normal Text><Symbol>:</Symbol><Normal Text> image2d</Normal Text><Symbol>,</Symbol><Normal Text> col </Normal Text><Symbol>:</Symbol><Normal Text> coord</Normal Text><Symbol>,</Symbol><Normal Text> row </Normal Text><Symbol>:</Symbol><Normal Text> coord</Normal Text><Symbol>,</Symbol><br/>
+<Normal Text>		      value </Normal Text><Symbol>:</Symbol><Normal Text> value) </Normal Text><Symbol>=</Symbol><br/>
+<Normal Text>    (</Normal Text><br/>
+<Normal Text>      input</Normal Text><Symbol>.</Symbol><Normal Text>data[row </Normal Text><Symbol>*</Symbol><Normal Text> input</Normal Text><Symbol>.</Symbol><Normal Text>ncols </Normal Text><Symbol>+</Symbol><Normal Text> col] </Normal Text><Symbol>:=</Symbol><Normal Text> value</Normal Text><br/>
+<Normal Text>    )</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>  </Normal Text><Keyword>function</Keyword><Normal Text> mandelbrot () </Normal Text><Symbol>=</Symbol><br/>
+<Normal Text>    </Normal Text><Keyword>let</Keyword><br/>
+<Normal Text>      </Normal Text><Keyword>type</Keyword><Normal Text> fp </Normal Text><Symbol>=</Symbol><Normal Text> </Normal Text><Type>int</Type><br/>
+<Normal Text>      </Normal Text><Keyword>var</Keyword><Normal Text> X </Normal Text><Symbol>:</Symbol><Normal Text> </Normal Text><Type>int</Type><Normal Text> </Normal Text><Symbol>:=</Symbol><Normal Text> </Normal Text><Decimal>300</Decimal><br/>
+<Normal Text>      </Normal Text><Keyword>var</Keyword><Normal Text> Y </Normal Text><Symbol>:</Symbol><Normal Text> </Normal Text><Type>int</Type><Normal Text> </Normal Text><Symbol>:=</Symbol><Normal Text> </Normal Text><Decimal>300</Decimal><br/>
+<Normal Text>      </Normal Text><Keyword>var</Keyword><Normal Text> ima </Normal Text><Symbol>:</Symbol><Normal Text> image2d </Normal Text><Symbol>:=</Symbol><Normal Text> image_new (X</Normal Text><Symbol>,</Symbol><Normal Text> Y)</Normal Text><br/>
+<Normal Text>      </Normal Text><Keyword>var</Keyword><Normal Text> fixsize</Normal Text><Symbol>:</Symbol><Normal Text> </Normal Text><Type>int</Type><Normal Text> </Normal Text><Symbol>:=</Symbol><Normal Text> </Normal Text><Decimal>16834</Decimal><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>      </Normal Text><Keyword>function</Keyword><Normal Text> mul(a </Normal Text><Symbol>:</Symbol><Normal Text> fp</Normal Text><Symbol>,</Symbol><Normal Text> b </Normal Text><Symbol>:</Symbol><Normal Text> fp) </Normal Text><Symbol>:</Symbol><Normal Text> fp </Normal Text><Symbol>=</Symbol><Normal Text> (a</Normal Text><Symbol>*</Symbol><Normal Text>b)</Normal Text><Symbol>/</Symbol><Normal Text>fixsize</Normal Text><br/>
+<Normal Text>      </Normal Text><Keyword>function</Keyword><Normal Text> frac(n </Normal Text><Symbol>:</Symbol><Normal Text> </Normal Text><Type>int</Type><Symbol>,</Symbol><Normal Text> d </Normal Text><Symbol>:</Symbol><Normal Text> </Normal Text><Type>int</Type><Normal Text>) </Normal Text><Symbol>:</Symbol><Normal Text> fp </Normal Text><Symbol>=</Symbol><Normal Text> (n</Normal Text><Symbol>*</Symbol><Normal Text>fixsize)</Normal Text><Symbol>/</Symbol><Normal Text>d</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>      </Normal Text><Keyword>var</Keyword><Normal Text> xcenter </Normal Text><Symbol>:</Symbol><Normal Text> fp </Normal Text><Symbol>:=</Symbol><Normal Text> frac(</Normal Text><Decimal>0016</Decimal><Symbol>,</Symbol><Normal Text> </Normal Text><Decimal>10000</Decimal><Normal Text>)</Normal Text><br/>
+<Normal Text>      </Normal Text><Keyword>var</Keyword><Normal Text> ycenter </Normal Text><Symbol>:</Symbol><Normal Text> fp </Normal Text><Symbol>:=</Symbol><Normal Text> frac(</Normal Text><Decimal>8224</Decimal><Symbol>,</Symbol><Normal Text> </Normal Text><Decimal>10000</Decimal><Normal Text>)</Normal Text><br/>
+<Normal Text>      </Normal Text><Keyword>var</Keyword><Normal Text> xmin </Normal Text><Symbol>:</Symbol><Normal Text> fp </Normal Text><Symbol>:=</Symbol><Normal Text> xcenter </Normal Text><Symbol>-</Symbol><Normal Text> frac(</Normal Text><Decimal>5</Decimal><Symbol>,</Symbol><Decimal>100</Decimal><Normal Text>)</Normal Text><br/>
+<Normal Text>      </Normal Text><Keyword>var</Keyword><Normal Text> ymin </Normal Text><Symbol>:</Symbol><Normal Text> fp </Normal Text><Symbol>:=</Symbol><Normal Text> ycenter </Normal Text><Symbol>-</Symbol><Normal Text> frac(</Normal Text><Decimal>5</Decimal><Symbol>,</Symbol><Decimal>100</Decimal><Normal Text>)</Normal Text><br/>
+<Normal Text>      </Normal Text><Keyword>var</Keyword><Normal Text> xmax </Normal Text><Symbol>:</Symbol><Normal Text> fp </Normal Text><Symbol>:=</Symbol><Normal Text> xcenter </Normal Text><Symbol>+</Symbol><Normal Text> frac(</Normal Text><Decimal>5</Decimal><Symbol>,</Symbol><Decimal>100</Decimal><Normal Text>)</Normal Text><br/>
+<Normal Text>      </Normal Text><Keyword>var</Keyword><Normal Text> ymax </Normal Text><Symbol>:</Symbol><Normal Text> fp </Normal Text><Symbol>:=</Symbol><Normal Text> ycenter </Normal Text><Symbol>+</Symbol><Normal Text> frac(</Normal Text><Decimal>5</Decimal><Symbol>,</Symbol><Decimal>100</Decimal><Normal Text>)</Normal Text><br/>
+<Normal Text>      </Normal Text><Keyword>var</Keyword><Normal Text> xs   </Normal Text><Symbol>:</Symbol><Normal Text> fp </Normal Text><Symbol>:=</Symbol><Normal Text> (xmax </Normal Text><Symbol>-</Symbol><Normal Text> xmin)</Normal Text><Symbol>/</Symbol><Normal Text>X</Normal Text><br/>
+<Normal Text>      </Normal Text><Keyword>var</Keyword><Normal Text> ys   </Normal Text><Symbol>:</Symbol><Normal Text> fp </Normal Text><Symbol>:=</Symbol><Normal Text> (ymax </Normal Text><Symbol>-</Symbol><Normal Text> ymin)</Normal Text><Symbol>/</Symbol><Normal Text>Y</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>    </Normal Text><Keyword>function</Keyword><Normal Text> iterations(x</Normal Text><Symbol>:</Symbol><Type>int</Type><Symbol>,</Symbol><Normal Text> y</Normal Text><Symbol>:</Symbol><Type>int</Type><Normal Text>) </Normal Text><Symbol>:</Symbol><Normal Text> </Normal Text><Type>int</Type><Normal Text> </Normal Text><Symbol>=</Symbol><br/>
+<Normal Text>    </Normal Text><Keyword>let</Keyword><br/>
+<Normal Text>        </Normal Text><Keyword>var</Keyword><Normal Text> i </Normal Text><Symbol>:</Symbol><Normal Text> </Normal Text><Type>int</Type><Normal Text> </Normal Text><Symbol>:=</Symbol><Normal Text> </Normal Text><Decimal>0</Decimal><br/>
+<Normal Text>        </Normal Text><Keyword>var</Keyword><Normal Text> p </Normal Text><Symbol>:</Symbol><Normal Text> fp </Normal Text><Symbol>:=</Symbol><Normal Text> xmin</Normal Text><Symbol>+</Symbol><Normal Text>x</Normal Text><Symbol>*</Symbol><Normal Text>xs</Normal Text><br/>
+<Normal Text>        </Normal Text><Keyword>var</Keyword><Normal Text> q </Normal Text><Symbol>:</Symbol><Normal Text> fp </Normal Text><Symbol>:=</Symbol><Normal Text> ymin</Normal Text><Symbol>+</Symbol><Normal Text>y</Normal Text><Symbol>*</Symbol><Normal Text>ys</Normal Text><br/>
+<Normal Text>        </Normal Text><Keyword>var</Keyword><Normal Text> x0 </Normal Text><Symbol>:</Symbol><Normal Text> fp </Normal Text><Symbol>:=</Symbol><Normal Text> </Normal Text><Decimal>0</Decimal><br/>
+<Normal Text>        </Normal Text><Keyword>var</Keyword><Normal Text> y0 </Normal Text><Symbol>:</Symbol><Normal Text> fp </Normal Text><Symbol>:=</Symbol><Normal Text> </Normal Text><Decimal>0</Decimal><br/>
+<Normal Text>        </Normal Text><Keyword>var</Keyword><Normal Text> xn </Normal Text><Symbol>:</Symbol><Normal Text> fp </Normal Text><Symbol>:=</Symbol><Normal Text> </Normal Text><Decimal>0</Decimal><br/>
+<Normal Text>        </Normal Text><Keyword>var</Keyword><Normal Text> four </Normal Text><Symbol>:</Symbol><Normal Text> fp </Normal Text><Symbol>:=</Symbol><Normal Text> frac(</Normal Text><Decimal>4</Decimal><Symbol>,</Symbol><Decimal>1</Decimal><Normal Text>)</Normal Text><br/>
+<Normal Text>        </Normal Text><Keyword>var</Keyword><Normal Text> two  </Normal Text><Symbol>:</Symbol><Normal Text> fp </Normal Text><Symbol>:=</Symbol><Normal Text> frac(</Normal Text><Decimal>2</Decimal><Symbol>,</Symbol><Decimal>1</Decimal><Normal Text>)</Normal Text><br/>
+<Normal Text>    </Normal Text><Keyword>in</Keyword><br/>
+<Normal Text>        </Normal Text><ControlFlow>while</ControlFlow><Normal Text> (mul(xn</Normal Text><Symbol>,</Symbol><Normal Text>xn)</Normal Text><Symbol>+</Symbol><Normal Text>mul(y0</Normal Text><Symbol>,</Symbol><Normal Text>y0) </Normal Text><Symbol><</Symbol><Normal Text> four) </Normal Text><Symbol>&</Symbol><Normal Text> (i </Normal Text><Symbol><</Symbol><Normal Text> </Normal Text><Decimal>256</Decimal><Normal Text>) </Normal Text><ControlFlow>do</ControlFlow><br/>
+<Normal Text>        (</Normal Text><br/>
+<Normal Text>            i  </Normal Text><Symbol>:=</Symbol><Normal Text> i </Normal Text><Symbol>+</Symbol><Normal Text> </Normal Text><Decimal>1</Decimal><Symbol>;</Symbol><br/>
+<Normal Text>            xn </Normal Text><Symbol>:=</Symbol><Normal Text> mul((x0</Normal Text><Symbol>+</Symbol><Normal Text>y0)</Normal Text><Symbol>,</Symbol><Normal Text>(x0</Normal Text><Symbol>-</Symbol><Normal Text>y0)) </Normal Text><Symbol>+</Symbol><Normal Text> p</Normal Text><Symbol>;</Symbol><br/>
+<Normal Text>            y0 </Normal Text><Symbol>:=</Symbol><Normal Text> mul(two</Normal Text><Symbol>,</Symbol><Normal Text>mul(x0</Normal Text><Symbol>,</Symbol><Normal Text>y0)) </Normal Text><Symbol>+</Symbol><Normal Text> q</Normal Text><Symbol>;</Symbol><br/>
+<Normal Text>            x0 </Normal Text><Symbol>:=</Symbol><Normal Text> xn</Normal Text><br/>
+<Normal Text>        )</Normal Text><Symbol>;</Symbol><br/>
+<Normal Text>        i</Normal Text><br/>
+<Normal Text>    </Normal Text><Keyword>end</Keyword><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>    </Normal Text><Keyword>in</Keyword><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>    (</Normal Text><ControlFlow>for</ControlFlow><Normal Text> y </Normal Text><Symbol>:=</Symbol><Normal Text> </Normal Text><Decimal>0</Decimal><Normal Text> </Normal Text><ControlFlow>to</ControlFlow><Normal Text> (Y</Normal Text><Symbol>-</Symbol><Decimal>1</Decimal><Normal Text>) </Normal Text><ControlFlow>do</ControlFlow><br/>
+<Normal Text>        </Normal Text><ControlFlow>for</ControlFlow><Normal Text> x </Normal Text><Symbol>:=</Symbol><Normal Text> </Normal Text><Decimal>0</Decimal><Normal Text> </Normal Text><ControlFlow>to</ControlFlow><Normal Text> (X</Normal Text><Symbol>-</Symbol><Decimal>1</Decimal><Normal Text>) </Normal Text><ControlFlow>do</ControlFlow><br/>
+<Normal Text>            </Normal Text><Keyword>let</Keyword><br/>
+<Normal Text>                </Normal Text><Keyword>var</Keyword><Normal Text> i </Normal Text><Symbol>:</Symbol><Normal Text> </Normal Text><Type>int</Type><Normal Text>  </Normal Text><Symbol>:=</Symbol><Normal Text> iterations(x</Normal Text><Symbol>,</Symbol><Normal Text>y)</Normal Text><br/>
+<Normal Text>             </Normal Text><Keyword>in</Keyword><br/>
+<Normal Text>                image_set (ima</Normal Text><Symbol>,</Symbol><Normal Text> x</Normal Text><Symbol>,</Symbol><Normal Text> y</Normal Text><Symbol>,</Symbol><Normal Text> i)</Normal Text><br/>
+<Normal Text>             </Normal Text><Keyword>end</Keyword><Normal Text>)</Normal Text><Symbol>;</Symbol><br/>
+<Normal Text>    </Normal Text><Keyword>end</Keyword><br/>
+<Keyword>in</Keyword><br/>
+<Normal Text>    </Normal Text><Function>print</Function><Normal Text>(</Normal Text><String>"Mandelbrot demo</String><Escape>\n</Escape><String>"</String><Normal Text>)</Normal Text><Symbol>;</Symbol><br/>
+<Normal Text>    mandelbrot()</Normal Text><br/>
+<Keyword>end</Keyword><br/>

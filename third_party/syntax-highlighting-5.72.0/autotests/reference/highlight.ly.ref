@@ -1,0 +1,114 @@
+<Comment>% This is a file to test the Lilypond highlighting features of Katepart.</Comment><br/>
+<Comment>% This is NOT a valid lilypond file, because it also shows the</Comment><br/>
+<Comment>% highlighting of some invalid lilypond constructs!</Comment><br/>
+<Comment>% This is a line comment.</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Comment>%{</Comment><br/>
+<Comment>this is a block comment, that can occur inside a line, or across</Comment><br/>
+<Comment>multiple lines.</Comment><br/>
+<Comment>%}</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>\header {</Keyword><br/>
+<Normal Text>  title = </Normal Text><Quoted Text>"Katepart Lilypond syntax highlighting test file"</Quoted Text><br/>
+<Normal Text>  </Normal Text><Variable>composer</Variable><Normal Text> = </Normal Text><Comment>%{"Wilbert Berendsen"%}</Comment><Normal Text> </Normal Text><Quoted Text>"Anonymus"</Quoted Text><br/>
+<Normal Text>  </Normal Text><Variable>poet</Variable><Normal Text> = </Normal Text><Quoted Text>"The KDE team"</Quoted Text><br/>
+<Normal Text>  </Normal Text><Variable>opus</Variable><Normal Text> = </Normal Text><Quoted Text>"1"</Quoted Text><br/>
+<Normal Text>  </Normal Text><Variable>copyright</Variable><Normal Text> = </Normal Text><Quoted Text>"Share and enjoy!"</Quoted Text><br/>
+<Keyword>}</Keyword><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>\paper {</Keyword><br/>
+<Normal Text>  </Normal Text><Scheme>#</Scheme><Scheme Keyword>(</Scheme Keyword><Scheme>set-paper-size </Scheme><Scheme String>"a4"</Scheme String><Scheme Keyword>)</Scheme Keyword><Normal Text>  </Normal Text><Comment>% a hash introduces scheme</Comment><br/>
+<Normal Text>  </Normal Text><Variable>indent</Variable><Normal Text> = 0              </Normal Text><Comment>% recognize variable names inside \paper, \layout etc.</Comment><br/>
+<Normal Text>  </Normal Text><Variable>between-system-space</Variable><Normal Text> = 3</Normal Text><Command>\mm</Command><br/>
+<Keyword>}</Keyword><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>\layout {</Keyword><br/>
+<Normal Text>  </Normal Text><Keyword>\context</Keyword><Normal Text> </Normal Text><Keyword>{</Keyword><br/>
+<Normal Text>    </Normal Text><User Command>\Score</User Command><br/>
+<Normal Text>    </Normal Text><Keyword>\remove</Keyword><Normal Text> </Normal Text><Engraver>Bar_number_engraver</Engraver><Normal Text>   </Normal Text><Comment>% recognize engraver names</Comment><br/>
+<Normal Text>    </Normal Text><Keyword>\remove</Keyword><Normal Text> </Normal Text><Engraver>"Bar_number_engraver"</Engraver><Normal Text> </Normal Text><Comment>% also when quoted!</Comment><br/>
+<Normal Text>  </Normal Text><Keyword>}</Keyword><br/>
+<Keyword>}</Keyword><br/>
+<Normal Text></Normal Text><br/>
+<Comment>% { and << block are folded</Comment><br/>
+<Keyword>\score</Keyword><Normal Text> </Normal Text><Keyword>{</Keyword><br/>
+<Normal Text>  </Normal Text><Keyword>\new</Keyword><Normal Text> </Normal Text><Context>StaffGroup</Context><Normal Text> </Normal Text><Keyword><<</Keyword><br/>
+<Normal Text>    </Normal Text><Keyword>\new</Keyword><Normal Text> </Normal Text><Context>ChordNames</Context><Normal Text> </Normal Text><Other Mode>\chordmode </Other Mode><Keyword>{</Keyword><Normal Text> </Normal Text><Pitch>c</Pitch><Duration>2</Duration><Other Text>sus4/f</Other Text><Normal Text> </Normal Text><Pitch>g</Pitch><Duration>2</Duration><Other Text>/d</Other Text><Normal Text> </Normal Text><Pitch>c</Pitch><Duration>1</Duration><Normal Text> </Normal Text><Keyword>}</Keyword><br/>
+<Normal Text>    </Normal Text><Keyword>\new</Keyword><Normal Text> </Normal Text><Context>Staff</Context><Normal Text> </Normal Text><Keyword>\new</Keyword><Normal Text> </Normal Text><Context>Voice</Context><Normal Text> =</Normal Text><Quoted Text>"mel"</Quoted Text><Normal Text> </Normal Text><Keyword>{</Keyword><br/>
+<Normal Text>      </Normal Text><Command>\key f</Command><Normal Text> </Normal Text><Command>\major</Command><br/>
+<Normal Text>      </Normal Text><Command>\time 4/4</Command><br/>
+<Normal Text>      </Normal Text><Command>\partial 4</Command><br/>
+<Normal Text>      </Normal Text><Keyword>\set</Keyword><Normal Text> </Normal Text><Context>Staff</Context><Normal Text>.</Normal Text><Property>instrumentName</Property><Normal Text> = </Normal Text><Quoted Text>"Bla."</Quoted Text><br/>
+<Normal Text>      </Normal Text><Keyword>\once</Keyword><Normal Text> </Normal Text><Keyword>\override</Keyword><Normal Text> </Normal Text><Context>Staff</Context><Normal Text>.</Normal Text><Layout Object>NoteHead</Layout Object><Normal Text> </Normal Text><Scheme>#'color</Scheme><Normal Text> = </Normal Text><Scheme>#red</Scheme><br/>
+<Normal Text>      </Normal Text><Comment>% dynamics, articulations and markup</Comment><br/>
+<Normal Text>      </Normal Text><Pitch>c</Pitch><Duration>8</Duration><Dynamic>\p</Dynamic><Normal Text> </Normal Text><Pitch>d</Pitch><Dynamic>\<</Dynamic><Normal Text> </Normal Text><Pitch>e</Pitch><Articulation>-.</Articulation><Normal Text> </Normal Text><Pitch>f</Pitch><Articulation>-></Articulation><Normal Text> </Normal Text><Pitch>g</Pitch><Normal Text> </Normal Text><Pitch>a</Pitch><Dynamic>\f</Dynamic><Normal Text> </Normal Text><Pitch>c</Pitch><Articulation>-5</Articulation><Markup>\markup</Markup><Normal Text> </Normal Text><Keyword>{</Keyword><Normal Text>Hoi</Normal Text><Keyword>}</Keyword><br/>
+<Normal Text>      </Normal Text><Other Mode>\notemode </Other Mode><Keyword>{</Keyword><Normal Text> </Normal Text><Pitch>c</Pitch><Normal Text> </Normal Text><Pitch>d</Pitch><Normal Text> </Normal Text><Pitch>e</Pitch><Normal Text> </Normal Text><Pitch>f</Pitch><Normal Text> </Normal Text><Keyword>}</Keyword><br/>
+<Normal Text>      </Normal Text><Command>\repeat volta 2</Command><Normal Text> </Normal Text><Keyword>{</Keyword><br/>
+<Normal Text>        </Normal Text><Comment>% complex durations are highlighted:</Comment><br/>
+<Normal Text>        </Normal Text><Pitch>g</Pitch><Duration>4*2/3</Duration><br/>
+<Normal Text>      </Normal Text><Keyword>}</Keyword><br/>
+<Normal Text>      </Normal Text><Command>\times 2/3</Command><Normal Text> </Normal Text><Keyword>{</Keyword><Pitch>e</Pitch><Duration>8</Duration><Normal Text> </Normal Text><Pitch>f</Pitch><Normal Text> </Normal Text><Pitch>g</Pitch><Keyword>}</Keyword><br/>
+<Normal Text>      </Normal Text><Comment>% there is some error checking:</Comment><br/>
+<Normal Text>      </Normal Text><Comment>% often made mistake to have octavemarks after the duration:</Comment><br/>
+<Normal Text>      </Normal Text><Invalid>c2'</Invalid><br/>
+<Normal Text>      </Normal Text><Comment>% invalid durations are caught:</Comment><br/>
+<Normal Text>      </Normal Text><Pitch>g</Pitch><Invalid>3</Invalid><br/>
+<Normal Text>    </Normal Text><Keyword>}</Keyword><br/>
+<Normal Text>    </Normal Text><Keyword>\context</Keyword><Normal Text> </Normal Text><Context>Lyrics</Context><Normal Text> </Normal Text><Lyricmode>\lyricsto </Lyricmode><Quoted Text>"mel"</Quoted Text><Normal Text> </Normal Text><Keyword>{</Keyword><br/>
+<Lyric Text>      </Lyric Text><Keyword>\set</Keyword><Normal Text> </Normal Text><Property>fontSize</Property><Lyric Text> = </Lyric Text><Scheme>#</Scheme><Scheme Value>1</Scheme Value><br/>
+<Lyric Text>      this is a line of ly </Lyric Text><Lyricmode>--</Lyricmode><Lyric Text> rics.</Lyric Text><br/>
+<Lyric Text>      with</Lyric Text><Duration>4</Duration><Lyric Text> dur </Lyric Text><Lyricmode>--</Lyricmode><Lyric Text> a </Lyric Text><Lyricmode>--</Lyricmode><Lyric Text> tions.</Lyric Text><Duration>2.</Duration><br/>
+<Lyric Text>      </Lyric Text><Comment>% errors like forgetting spaces are found:</Comment><br/>
+<Lyric Text>      </Lyric Text><Invalid>space--</Invalid><Lyric Text> flight </Lyric Text><Comment>%{i.s.o.%}</Comment><Lyric Text> space </Lyric Text><Lyricmode>--</Lyricmode><Lyric Text> flight</Lyric Text><br/>
+<Lyric Text>      space at end for </Lyric Text><Lyricmode>--</Lyricmode><Lyric Text> got </Lyric Text><Lyricmode>--</Lyricmode><Lyric Text> ten as </Lyric Text><Invalid>well.}</Invalid><br/>
+<Normal Text>    </Normal Text><br/>
+<Normal Text>    </Normal Text><Keyword>\new</Keyword><Normal Text> </Normal Text><Context>DrumStaff</Context><Normal Text> </Normal Text><Other Mode>\drummode </Other Mode><Keyword>{</Keyword><Normal Text> </Normal Text><Other Text>hihat</Other Text><Duration>4</Duration><Normal Text> </Normal Text><Other Text>bassdrum</Other Text><Duration>8</Duration><Normal Text> </Normal Text><Keyword>}</Keyword><br/>
+<Normal Text>    </Normal Text><Keyword>\new</Keyword><Normal Text> </Normal Text><Context>FiguredBass</Context><Normal Text> </Normal Text><Other Mode>\figuremode </Other Mode><Keyword>{</Keyword><br/>
+<Normal Text>      </Normal Text><Chord><</Chord><Normal Text>5 4</Normal Text><Chord>></Chord><Duration>8</Duration><Normal Text> </Normal Text><Chord><</Chord><Normal Text>6-</Normal Text><Chord>></Chord><br/>
+<Normal Text>    </Normal Text><Keyword>}</Keyword><br/>
+<Normal Text>  </Normal Text><Keyword>>></Keyword><br/>
+<Normal Text>  </Normal Text><Keyword>\midi {</Keyword><br/>
+<Normal Text>    </Normal Text><Keyword>\context</Keyword><Normal Text> </Normal Text><Keyword>{</Keyword><br/>
+<Normal Text>      </Normal Text><User Command>\Score</User Command><br/>
+<Normal Text>      </Normal Text><Property>tempoWholesPerMinute</Property><Normal Text> = </Normal Text><Scheme>#</Scheme><Scheme Keyword>(</Scheme Keyword><Scheme>ly:make-moment </Scheme><Scheme Value>60</Scheme Value><Scheme> </Scheme><Scheme Value>2</Scheme Value><Scheme Keyword>)</Scheme Keyword><br/>
+<Normal Text>    </Normal Text><Keyword>}</Keyword><br/>
+<Normal Text>  </Normal Text><Keyword>}</Keyword><br/>
+<Keyword>}</Keyword><br/>
+<Normal Text></Normal Text><br/>
+<User Command>av</User Command><Normal Text> = </Normal Text><Scheme>#</Scheme><Scheme Keyword>(define-music-function</Scheme Keyword><Scheme> (parser location voice)</Scheme><br/>
+<Scheme>(</Scheme><Scheme Keyword>string?</Scheme Keyword><Scheme>)</Scheme><br/>
+<Scheme Comment>; scheme comments are recognized in scheme</Scheme Comment><br/>
+<Scheme Comment>; Lilypond inside scheme works as well:</Scheme Comment><br/>
+<Scheme Keyword>#{</Scheme Keyword><br/>
+<Normal Text>  </Normal Text><Keyword>\set</Keyword><Normal Text> </Normal Text><Property>associatedVoice</Property><Normal Text> = </Normal Text><Scheme Subst>$voice</Scheme Subst><br/>
+<Scheme Keyword>#})</Scheme Keyword><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>      </Normal Text><br/>
+<Comment>% inside scheme some elements are highlighted:    </Comment><br/>
+<Scheme>#</Scheme><Scheme Keyword>(define</Scheme Keyword><Scheme>  (naturalise-pitch p)</Scheme><br/>
+<Scheme>  (</Scheme><Scheme Keyword>let*</Scheme Keyword><Scheme> ((o (ly:pitch-octave p))</Scheme><br/>
+<Scheme>         (a (* </Scheme><Scheme Value>4</Scheme Value><Scheme> (ly:pitch-alteration p))) </Scheme><br/>
+<Scheme>         (n (ly:pitch-notename p)))</Scheme><br/>
+<Scheme>         (bla '</Scheme><Scheme Keyword>ArticulationEvent</Scheme Keyword><Scheme> '</Scheme><Scheme Keyword>ChoirStaff</Scheme Keyword><Scheme>)</Scheme><br/>
+<Scheme>    (</Scheme><Scheme Keyword>cond</Scheme Keyword><br/>
+<Scheme>     ((> a </Scheme><Scheme Value>2</Scheme Value><Scheme>) (</Scheme><Scheme Keyword>set!</Scheme Keyword><Scheme> a (- a </Scheme><Scheme Value>4</Scheme Value><Scheme>)) (</Scheme><Scheme Keyword>set!</Scheme Keyword><Scheme> n (+ n </Scheme><Scheme Value>1</Scheme Value><Scheme>)))</Scheme><br/>
+<Scheme>     ((< a </Scheme><Scheme Value>-2</Scheme Value><Scheme>) (</Scheme><Scheme Keyword>set!</Scheme Keyword><Scheme> a (+ a </Scheme><Scheme Value>4</Scheme Value><Scheme>)) (</Scheme><Scheme Keyword>set!</Scheme Keyword><Scheme> n (- n </Scheme><Scheme Value>1</Scheme Value><Scheme>))))</Scheme><br/>
+<Scheme></Scheme><br/>
+<Scheme>    (</Scheme><Scheme Keyword>if</Scheme Keyword><Scheme> (< n </Scheme><Scheme Value>0</Scheme Value><Scheme>) (</Scheme><Scheme Keyword>begin</Scheme Keyword><Scheme> (</Scheme><Scheme Keyword>set!</Scheme Keyword><Scheme>  o (- o </Scheme><Scheme Value>1</Scheme Value><Scheme>)) (</Scheme><Scheme Keyword>set!</Scheme Keyword><Scheme> n (+ n </Scheme><Scheme Value>7</Scheme Value><Scheme>))))</Scheme><br/>
+<Scheme>    (</Scheme><Scheme Keyword>if</Scheme Keyword><Scheme> (> n </Scheme><Scheme Value>6</Scheme Value><Scheme>) (</Scheme><Scheme Keyword>begin</Scheme Keyword><Scheme> (</Scheme><Scheme Keyword>set!</Scheme Keyword><Scheme>  o (+ o </Scheme><Scheme Value>1</Scheme Value><Scheme>)) (</Scheme><Scheme Keyword>set!</Scheme Keyword><Scheme> n (- n </Scheme><Scheme Value>7</Scheme Value><Scheme>))))</Scheme><br/>
+<Scheme></Scheme><br/>
+<Scheme>    (ly:make-pitch o n (/ a </Scheme><Scheme Value>4</Scheme Value><Scheme>)))</Scheme><Scheme Keyword>)</Scheme Keyword><br/>
+<Normal Text></Normal Text><br/>
+<Comment>% markup is also highlighted</Comment><br/>
+<Markup>\markup</Markup><Normal Text> </Normal Text><Keyword>{</Keyword><br/>
+<Normal Text>  </Normal Text><Markup>\line</Markup><Normal Text> </Normal Text><Keyword>{</Keyword><br/>
+<Normal Text>    text test Voice Staff </Normal Text><Comment>% note Lilypond keywords are not highlighted here</Comment><br/>
+<Normal Text>  </Normal Text><Keyword>}</Keyword><br/>
+<Normal Text>  </Normal Text><Markup>\score</Markup><Other Mode> </Other Mode><Keyword>{</Keyword><Normal Text> </Normal Text><Command>\relative c'</Command><Normal Text> </Normal Text><Keyword>{</Keyword><Normal Text> </Normal Text><Chord><</Chord><Normal Text>ceg</Normal Text><Chord>></Chord><Duration>2</Duration><Slur>(</Slur><Normal Text> </Normal Text><Pitch>d</Pitch><Slur>)</Slur><Normal Text> </Normal Text><Keyword>}</Keyword><Normal Text> </Normal Text><Keyword>}</Keyword><br/>
+<Normal Text>  </Normal Text><Markup>\italic</Markup><Normal Text> bla</Normal Text><br/>
+<Normal Text>  </Normal Text><Markup>\override</Markup><Normal Text> </Normal Text><Scheme>#'</Scheme><Scheme Keyword>(</Scheme Keyword><Scheme>baseline-skip . </Scheme><Scheme Value>2</Scheme Value><Scheme Keyword>)</Scheme Keyword><Normal Text> </Normal Text><Keyword>{</Keyword><br/>
+<Normal Text>    </Normal Text><Markup>\underline</Markup><Normal Text> blu</Normal Text><br/>
+<Normal Text>  </Normal Text><Keyword>}</Keyword><br/>
+<Keyword>}</Keyword><br/>

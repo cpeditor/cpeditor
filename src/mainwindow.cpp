@@ -47,6 +47,9 @@
 #include <generated/SettingsHelper.hpp>
 #include <generated/version.hpp>
 
+// KSyntax highlighter
+#include <syntaxhighlighter.h>
+
 #include "../ui/ui_mainwindow.h"
 
 // ***************************** RAII  ****************************
@@ -61,6 +64,9 @@ MainWindow::MainWindow(const QString &fileOpen, int index, QWidget *parent)
     setupCore();
     setTestCases();
     setEditor();
+
+    m_highlighter = new KSyntaxHighlighting::SyntaxHighlighter(editor->document());
+
     connect(fileWatcher, SIGNAL(fileChanged(const QString &)), this, SLOT(onFileWatcherChanged(const QString &)));
     connect(
         autoSaveTimer, &QTimer::timeout, autoSaveTimer, [this] { saveFile(AutoSave, tr("Auto Save"), false); },
@@ -86,6 +92,7 @@ MainWindow::~MainWindow()
     delete testcases;
     delete formatter;
     delete fileWatcher;
+    delete m_highlighter;
     delete editor;
     delete log;
 }
@@ -518,7 +525,7 @@ void MainWindow::applySettings(const QString &pagePath, bool shouldPerformDigoni
 
     if (pagePath.isEmpty() || pagePath == "Code Edit" || pagePath == "Appearance" ||
         pagePath == QString("Language/%1/%1 Parentheses").arg(language))
-        Util::applySettingsToEditor(editor, language);
+        Util::applySettingsToEditor(m_highlighter, editor, language);
 
     if (!isLanguageSet && (pagePath.isEmpty() || pagePath == "Language/General"))
     {
@@ -534,6 +541,7 @@ void MainWindow::applySettings(const QString &pagePath, bool shouldPerformDigoni
     {
         ui->compilerEdit->setFont(SettingsHelper::getMessageLoggerFont());
         testcases->setTestCaseEditFont(SettingsHelper::getTestCasesFont());
+        Util::applySettingsToEditor(m_highlighter, editor, language);
         testcases->updateHeights();
         if (SettingsHelper::isShowCompileAndRunOnly())
         {
@@ -643,7 +651,7 @@ void MainWindow::setLanguage(const QString &lang)
     language = lang;
     if (language != "Python" && language != "Java")
         language = "C++";
-    Util::applySettingsToEditor(editor, language);
+    Util::applySettingsToEditor(m_highlighter, editor, language);
     ui->changeLanguageButton->setText(language);
     performCompileAndRunDiagonistics();
     isLanguageSet = true;

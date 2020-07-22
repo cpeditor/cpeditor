@@ -1,0 +1,122 @@
+# comment
+rule b
+rule c
+#d
+rule c
+description=a
+rule d
+  description = ds
+  description = ds
+  rule=ds
+  description = ds
+rule b
+
+rule c
+
+rule c
+ # ds
+ ds=ds
+description=a
+rule d
+  rule =description = ds
+
+rule b
+  command = clang -MMD -MF $out.d -o $out -c $in
+  description = building $out
+  unknown = xyz
+
+rule dump
+  command = sleep 1; ls -l /proc/self/fd; exit 1
+  pool = link_pool
+  # blah blah
+  pool = console
+  pool = $console
+
+rule xy-z_
+rule --xy-z_
+rule _xy-z_
+
+# error
+rule with error
+rule a:a
+rule a|a
+rule a$
+rule 0-@#d
+
+# browse_py.h is used to inline browse.py.
+rule inline
+  command = "$root/src/inline.sh" $varname < $in > $out
+  description = INLINE $out
+
+default foo bar
+default baz
+
+include ninja1.ninja
+
+subninja ninja2.ninja
+
+pool link_pool
+  depth = 4
+  xxx = d
+
+pool link_pool d
+  depth = 4
+
+build a.o: b a.c
+
+build a.o|c: b a.c || a | b
+
+build a.o | c : b a.c | a || b
+
+build $a.o | $c : b $a.c | $a || $b
+
+build 0: sleep README
+
+build 1: sleep README
+
+build all: phony 0 1
+deps = xxx
+CMD = cc
+build all: phony 0 1
+
+build $builddir/browse_py.h: inline $root/src/browse.py | $root/src/inline.sh
+  varname = kBrowsePy
+
+build $builddir/subprocess-posix.o: cxx $root/src/subprocess-posix.cc
+build $builddir/libninja.a: ar $builddir/browse.o $builddir/build.o $
+    $builddir/build_log.o $builddir/clean.o $builddir/debug_flags.o $
+    $builddir/depfile_parser.o $builddir/deps_log.o
+
+build $root/doc/manual.pdf: dblatex $builddir/manual.xml | $
+    $root/doc/dblatex.xsl
+
+builddir=/
+builddir =/
+builddir= /
+ldflags = -L$builddir
+
+xx x
+
+x = $a
+x = $-a_
+x = ${a}
+x = ${-a}
+x = $a@
+x = $@
+x = $$
+x = $:
+x = $ a
+x = $
+    b
+x = $
+    $
+    a
+x = $
+    $a
+x = $a a
+x = ${a} a
+x = $$ a
+x = $: a
+x = $! a
+x = ${a b ds
+ x = a

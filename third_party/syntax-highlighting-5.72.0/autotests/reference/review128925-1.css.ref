@@ -1,0 +1,112 @@
+<Comment>/*</Comment><br/>
+<Comment> * CSS Syntax Highlight Sample File (Standard)</Comment><br/>
+<Comment> *</Comment><br/>
+<Comment> * This file contains most CSS syntax, CSS3 properties, @media, @font-face and</Comment><br/>
+<Comment> * @keyframes annotations.</Comment><br/>
+<Comment> *</Comment><br/>
+<Comment> * @author  Guo Yunhe guoyunhebrave@gmail.com</Comment><br/>
+<Comment> * @date    2016-09-16</Comment><br/>
+<Comment> */</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Comment>/*</Comment><br/>
+<Comment> * Block comment</Comment><br/>
+<Comment> *</Comment><br/>
+<Comment> * Alert keywords:</Comment><br/>
+<Comment> * </Comment><Alert Level 2>TODO</Alert Level 2><Comment> </Comment><Alert Level 2>BUG</Alert Level 2><Comment> </Comment><Alert Level 2>FIXME</Alert Level 2><br/>
+<Comment> */</Comment><br/>
+<Normal Text></Normal Text><br/>
+<At Rule>@charset</At Rule><Normal Text> </Normal Text><String>"UTF-8"</String><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text></Normal Text><br/>
+<At Rule>@import</At Rule><Normal Text> </Normal Text><Function>url(</Function><String>"components/button.css"</String><Function>)</Function><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment>/* Properties */</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Selector Tag>html</Selector Tag><Separator Symbol>,</Separator Symbol><Normal Text> </Normal Text><Selector Tag>body</Selector Tag><Normal Text> {</Normal Text><br/>
+<Normal Text>    </Normal Text><Property>font-family</Property><Normal Text>: </Normal Text><String>"Droid Sans"</String><Separator Symbol>,</Separator Symbol><Normal Text> Arial</Normal Text><Separator Symbol>,</Separator Symbol><Normal Text> </Normal Text><Value>sans-serif</Value><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text>    </Normal Text><Property>font-size</Property><Normal Text>: </Normal Text><Number>11</Number><Unit>pt</Unit><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text>    </Normal Text><Property>line-height</Property><Normal Text>: </Normal Text><Number>1.5</Number><Unit>em</Unit><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text>    </Normal Text><Property>max-width</Property><Normal Text>: </Normal Text><Function>calc(</Function><Number>100</Number><Unit>%</Unit><Normal Text> </Normal Text><Operator>-</Operator><Normal Text> </Normal Text><Number>300</Number><Unit>px</Unit><Function>)</Function><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text>    </Normal Text><Property>background</Property><Normal Text>: </Normal Text><Color>#fff000</Color><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text>    </Normal Text><Property>text-shadow</Property><Normal Text>: </Normal Text><Number>0</Number><Normal Text> </Normal Text><Number>0</Number><Normal Text> </Normal Text><Number>2</Number><Unit>px</Unit><Normal Text> </Normal Text><Function>rgba(</Function><Number>0</Number><Separator Symbol>,</Separator Symbol><Normal Text> </Normal Text><Number>0</Number><Separator Symbol>,</Separator Symbol><Normal Text> </Normal Text><Number>0</Number><Separator Symbol>,</Separator Symbol><Normal Text> </Normal Text><Number>0.3</Number><Function>)</Function><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text>    </Normal Text><Property>box-sizing</Property><Normal Text>: </Normal Text><Value>border-box</Value><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment>/* Selectors */</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Selector Tag>blockquote</Selector Tag><Normal Text> {</Normal Text><br/>
+<Normal Text>    </Normal Text><Property>margin</Property><Normal Text>: </Normal Text><Number>0</Number><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Selector Tag>header</Selector Tag><Normal Text> </Normal Text><Selector Id>#logo</Selector Id><Normal Text> {</Normal Text><br/>
+<Normal Text>    </Normal Text><Property>width</Property><Normal Text>: </Normal Text><Number>100</Number><Unit>px</Unit><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Selector Tag>div</Selector Tag><Selector Id>#footer</Selector Id><Normal Text> </Normal Text><Selector Class>.link</Selector Class><Normal Text> {</Normal Text><br/>
+<Normal Text>    </Normal Text><Property>color</Property><Normal Text>: </Normal Text><Color>blue</Color><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Selector Tag>sidebar</Selector Tag><Normal Text> </Normal Text><Selector Id>#subscribe</Selector Id><Normal Text> </Normal Text><Selector Class>.subscribe_form</Selector Class><Normal Text> </Normal Text><Selector Tag>input</Selector Tag><Selector Attribute>[type</Selector Attribute><Operator>=</Operator><String>"text"</String><Selector Attribute>]</Selector Attribute><Normal Text> {</Normal Text><br/>
+<Normal Text>    </Normal Text><Property>font-size</Property><Normal Text>: </Normal Text><Number>20</Number><Unit>px</Unit><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Selector Tag>sidebar</Selector Tag><Normal Text> </Normal Text><Selector Id>#subscribe</Selector Id><Normal Text> </Normal Text><Selector Class>.subscribe_form</Selector Class><Selector Pseudo>:nth-child(2n + 1):hover</Selector Pseudo><Normal Text> </Normal Text><Selector Tag>input</Selector Tag><Selector Attribute>[class</Selector Attribute><Operator>*=</Operator><String>"small-"</String><Selector Attribute>]</Selector Attribute><Normal Text> {</Normal Text><br/>
+<Normal Text>    </Normal Text><Property>font-weight</Property><Normal Text>: </Normal Text><Value>bold</Value><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment>/* Media Queries */</Comment><br/>
+<Normal Text></Normal Text><br/>
+<At Rule>@media</At Rule><Normal Text> </Normal Text><Value>print</Value><Normal Text> {</Normal Text><br/>
+<Normal Text>    </Normal Text><Selector Class>.container</Selector Class><Normal Text> {</Normal Text><br/>
+<Normal Text>        </Normal Text><Property>width</Property><Normal Text>: </Normal Text><Number>100</Number><Unit>%</Unit><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text>    }</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<At Rule>@media</At Rule><Normal Text> </Normal Text><Value>screen</Value><Normal Text> </Normal Text><Keyword>and</Keyword><Normal Text> (</Normal Text><Property>min-width</Property><Normal Text>: </Normal Text><Number>768</Number><Unit>px</Unit><Normal Text>) {</Normal Text><br/>
+<Normal Text>    </Normal Text><Selector Class>.container</Selector Class><Normal Text> {</Normal Text><br/>
+<Normal Text>        </Normal Text><Property>width</Property><Normal Text>: </Normal Text><Number>600</Number><Unit>px</Unit><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text>    }</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<At Rule>@media</At Rule><Normal Text> </Normal Text><Value>screen</Value><Normal Text> </Normal Text><Keyword>and</Keyword><Normal Text> (</Normal Text><Property>min-width</Property><Normal Text>: </Normal Text><Number>768</Number><Unit>px</Unit><Normal Text>) </Normal Text><Keyword>and</Keyword><Normal Text> (</Normal Text><Property>max-width</Property><Normal Text>: </Normal Text><Number>960</Number><Unit>px</Unit><Normal Text>) {</Normal Text><br/>
+<Normal Text>    </Normal Text><Selector Class>.container</Selector Class><Normal Text> {</Normal Text><br/>
+<Normal Text>        </Normal Text><Property>width</Property><Normal Text>: </Normal Text><Number>720</Number><Unit>px</Unit><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text>    }</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment>/* Fontface */</Comment><br/>
+<Normal Text></Normal Text><br/>
+<At Rule>@font-face</At Rule><Normal Text> {</Normal Text><br/>
+<Normal Text>    </Normal Text><Property>font-family</Property><Normal Text>: MyHelvetica</Normal Text><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text>    </Normal Text><Property>src</Property><Normal Text>: </Normal Text><Function>local(</Function><String>"Helvetica Neue Bold"</String><Function>)</Function><Separator Symbol>,</Separator Symbol><br/>
+<Normal Text>        </Normal Text><Function>local(</Function><String>"HelveticaNeue-Bold"</String><Function>)</Function><Separator Symbol>,</Separator Symbol><br/>
+<Normal Text>        </Normal Text><Function>url(</Function><String>MgOpenModernaBold.ttf</String><Function>)</Function><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text>    </Normal Text><Property>font-weight</Property><Normal Text>: </Normal Text><Value>bold</Value><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment>/* Animation (Keyframes) */</Comment><br/>
+<Normal Text></Normal Text><br/>
+<At Rule>@keyframes</At Rule><Normal Text> slidein {</Normal Text><br/>
+<Normal Text>    </Normal Text><Value>from</Value><Normal Text> {</Normal Text><br/>
+<Normal Text>        </Normal Text><Property>margin-left</Property><Normal Text>: </Normal Text><Number>100</Number><Unit>%</Unit><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text>        </Normal Text><Property>width</Property><Normal Text>: </Normal Text><Number>300</Number><Unit>%</Unit><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text>    }</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>    </Normal Text><Value>to</Value><Normal Text> {</Normal Text><br/>
+<Normal Text>        </Normal Text><Property>margin-left</Property><Normal Text>: </Normal Text><Number>0</Number><Unit>%</Unit><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text>        </Normal Text><Property>width</Property><Normal Text>: </Normal Text><Number>100</Number><Unit>%</Unit><Separator Symbol>;</Separator Symbol><br/>
+<Normal Text>    }</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment>/* Region markers */</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Region Marker>/*BEGIN Comment */</Region Marker><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Region Marker>/*END Comment */</Region Marker><br/>
+<Normal Text></Normal Text><br/>

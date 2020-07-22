@@ -1,0 +1,13 @@
+<beginfold id='1'>{</beginfold id='1'>
+  "float": 3.1415,
+  "int": 123,
+  "string": "\a \"b' \n",
+  "array": <beginfold id='2'>[</beginfold id='2'> 1, 2, 3 <endfold id='2'>]</endfold id='2'>,
+  "object": <beginfold id='1'>{</beginfold id='1'>
+    "mult-line": "so this folds"
+  <endfold id='1'>}</endfold id='1'>,
+  "folded array": <beginfold id='2'>[</beginfold id='2'>
+    1, 2, 3
+  <endfold id='2'>]</endfold id='2'>
+  "error key": "due to missing comma"
+<endfold id='1'>}</endfold id='1'>

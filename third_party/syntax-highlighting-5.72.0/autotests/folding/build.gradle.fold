@@ -1,0 +1,57 @@
+<beginfold id='3'>/*</beginfold id='3'> highlighting test case for Gradle (which actually uses Groovy syntax) <endfold id='3'>*/</endfold id='3'>
+
+// single line comment with ### TODO FIXME
+
+<beginfold id='3'>/*</beginfold id='3'> multiline comment with ### TODO FIXME <endfold id='3'>*/</endfold id='3'>
+
+<beginfold id='5'>/**</beginfold id='5'> Javadoc comment with ### TODO FIXME
+ * @param foo bla bla ATTENTION
+ * @return abc cde
+ * @see javadoc.xml
+<endfold id='5'>*/</endfold id='5'>
+
+buildscript <beginfold id='4'>{</beginfold id='4'>
+    repositories <beginfold id='4'>{</beginfold id='4'>
+        jcenter()
+    <endfold id='4'>}</endfold id='4'>
+
+    dependencies <beginfold id='4'>{</beginfold id='4'>
+        classpath 'com.android.tools.build:gradle:2.2.3'
+    <endfold id='4'>}</endfold id='4'>
+<endfold id='4'>}</endfold id='4'>
+
+allprojects <beginfold id='4'>{</beginfold id='4'>
+    repositories <beginfold id='4'>{</beginfold id='4'>
+        jcenter()
+    <endfold id='4'>}</endfold id='4'>
+<endfold id='4'>}</endfold id='4'>
+
+apply plugin: 'com.android.application'
+
+dependencies <beginfold id='4'>{</beginfold id='4'>
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'org.mnode.ical4j:ical4j:2.2.0'
+<endfold id='4'>}</endfold id='4'>
+
+android <beginfold id='4'>{</beginfold id='4'>
+    compileSdkVersion androidCompileSdkVersion.toInteger()
+
+    buildToolsVersion androidBuildToolsVersion
+
+    sourceSets <beginfold id='4'>{</beginfold id='4'>
+        main <beginfold id='4'>{</beginfold id='4'>
+            manifest.srcFile 'AndroidManifest.xml'
+            java.srcDirs = [qt5AndroidDir + '/src', 'src', 'java']
+            aidl.srcDirs = [qt5AndroidDir + '/src', 'src', 'aidl']
+            res.srcDirs = [qt5AndroidDir + '/res', 'res']
+            resources.srcDirs = ['src']
+            renderscript.srcDirs = ['src']
+            assets.srcDirs = ['assets']
+            jniLibs.srcDirs = ['libs']
+       <endfold id='4'>}</endfold id='4'>
+    <endfold id='4'>}</endfold id='4'>
+
+    lintOptions <beginfold id='4'>{</beginfold id='4'>
+        abortOnError false
+    <endfold id='4'>}</endfold id='4'>
+<endfold id='4'>}</endfold id='4'>

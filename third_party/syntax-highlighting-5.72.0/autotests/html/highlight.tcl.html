@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title>highlight.tcl</title>
+<meta name="generator" content="KF5::SyntaxHighlighting (Tcl/Tk)"/>
+</head><body style="color:#1f1c1b"><pre>
+<span style="color:#898887;"># tcl syntax highlighting sample script for Kate</span>
+<span style="color:#898887;">#</span>
+<span style="color:#898887;"># author: JM. Philippe 15/03/04</span>
+
+<span style="color:#898887;"># escaped characters</span>
+<span style="font-weight:bold;">set</span> String <span style="color:#924c9d;">\{</span>
+<span style="font-weight:bold;">set</span> String <span style="color:#924c9d;">\{</span>
+<span style="font-weight:bold;">set</span> String <span style="color:#924c9d;">\&quot;</span>
+<span style="font-weight:bold;">set</span> String <span style="color:#bf0303;">&quot; </span><span style="color:#924c9d;">\&quot;</span><span style="color:#bf0303;"> &quot;</span>
+<span style="font-weight:bold;">set</span> String <span style="color:#bf0303;">&quot; </span><span style="color:#924c9d;">\{</span><span style="color:#bf0303;"> &quot;</span>
+
+<span style="color:#898887;">#comments and not comments</span>
+<span style="color:#898887;"># is comments</span>
+;<span style="color:#898887;">#is comments</span>
+<span style="color:#898887;">	# is comments</span>
+<span style="color:#898887;"># &lt;h1&gt; is html comment &lt;/h1&gt;</span>
+<span style="font-weight:bold;">puts</span> ok;<span style="color:#898887;">	# is comments</span>
+<span style="font-weight:bold;">set</span> String <span style="font-weight:bold;">[string</span> <span style="color:#006e28;">map</span> <span style="font-weight:bold;">{</span>&lt;/a&gt; <span style="font-weight:bold;">{</span>&lt;span&gt;&amp;#187;<span style="color:#006e28;">is</span> not comments&lt;/span&gt;&lt;/a&gt;<span style="font-weight:bold;">}}</span> <span style="color:#0057ae;">$String</span><span style="font-weight:bold;">]</span>
+<span style="font-weight:bold;">set</span> String <span style="color:#924c9d;">\#</span>not_a_comment
+
+<span style="color:#898887;"># blocks</span>
+<span style="font-weight:bold;">proc</span> test <span style="font-weight:bold;">{</span>arg1 <span style="font-weight:bold;">{</span>arg2 <span style="font-weight:bold;">{}}</span> <span style="font-weight:bold;">{</span>arg3 <span style="font-weight:bold;">{</span>fr fq r<span style="font-weight:bold;">}}}</span> <span style="font-weight:bold;">{</span>
+	<span style="font-weight:bold;">if</span> <span style="font-weight:bold;">{</span><span style="color:#b08000;">1</span><span style="font-weight:bold;">}</span> <span style="font-weight:bold;">{</span>;<span style="color:#898887;">	#comments</span>
+		<span style="font-weight:bold;">set</span> String <span style="color:#924c9d;">\{</span>;<span style="color:#898887;">	# not a block start</span>
+	<span style="font-weight:bold;">}</span>
+<span style="font-weight:bold;">}</span>
+
+<span style="font-weight:bold;">proc</span> test <span style="color:#006e28;">args</span> <span style="font-weight:bold;">{</span>
+	<span style="font-weight:bold;">set</span> String <span style="color:#924c9d;">\}</span>;<span style="color:#898887;">	# not a block end</span>
+<span style="font-weight:bold;">}</span>
+
+<span style="color:#0057ae;background-color:#e0e9f8;"># BEGIN - collapsable comments</span>
+<span style="color:#898887;"># blablabla</span>
+<span style="color:#0057ae;background-color:#e0e9f8;"># END</span>
+
+<span style="color:#898887;"># strings</span>
+<span style="font-weight:bold;">set</span> String <span style="color:#bf0303;">&quot;feqr feqr </span><span style="color:#0057ae;">$</span><span style="color:#bf0303;">gqer gqe&quot;</span>
+<span style="font-weight:bold;">set</span> String <span style="color:#bf0303;">&quot;feqr</span>
+<span style="color:#bf0303;">feqr </span><span style="color:#924c9d;">\&quot;</span><span style="color:#bf0303;"> </span><span style="color:#0057ae;">$</span><span style="color:#bf0303;">gqer \</span>
+<span style="color:#bf0303;">gqe</span>
+<span style="color:#bf0303;">&quot;</span>
+<span style="font-weight:bold;">set</span> String <span style="font-weight:bold;">{</span>feqr
+feqr <span style="color:#924c9d;">\{</span> <span style="color:#0057ae;">$gqer</span> \
+gqe
+<span style="font-weight:bold;">}</span>
+
+<span style="color:#898887;"># variables</span>
+<span style="font-weight:bold;">set</span> b+<span style="color:#b08000;">1</span> <span style="font-weight:bold;">[incr</span> b<span style="font-weight:bold;">]</span>
+<span style="font-weight:bold;">set</span> <span style="font-weight:bold;">{incr</span>-b<span style="font-weight:bold;">}</span> <span style="color:#0057ae;">${b+1}</span>
+<span style="font-weight:bold;">puts</span> <span style="color:#0057ae;">${incr-b}</span>
+</pre></body></html>

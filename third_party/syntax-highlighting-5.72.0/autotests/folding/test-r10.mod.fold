@@ -1,0 +1,112 @@
+<beginfold id='1'>(*</beginfold id='1'> Modula-2 R10 Syntax highlighting test <endfold id='1'>*)</endfold id='1'>
+
+<beginfold id='1'>(*</beginfold id='1'> dialect tags <endfold id='1'>*)</endfold id='1'>
+
+(*!m2r10*)
+
+
+<beginfold id='1'>(*</beginfold id='1'> pragmas <endfold id='1'>*)</endfold id='1'>
+
+<*foo*>
+
+
+<beginfold id='1'>(*</beginfold id='1'> line comments <endfold id='1'>*)</endfold id='1'>
+
+! foo bar baz bam boo
+
+
+<beginfold id='1'>(*</beginfold id='1'> foldable comments <endfold id='1'>*)</endfold id='1'>
+
+<beginfold id='1'>(*</beginfold id='1'> foo bar baz
+   <beginfold id='1'>(*</beginfold id='1'> nested comment <endfold id='1'>*)</endfold id='1'>
+   bam boo bee bop <endfold id='1'>*)</endfold id='1'>
+
+
+<beginfold id='1'>(*</beginfold id='1'> reserved words <endfold id='1'>*)</endfold id='1'>
+
+ALIAS AND ARGLIST ARRAY BEGIN BLUEPRINT BY CASE CONST COPY DEFINITION DIV DO
+ELSE ELSIF END EXIT FOR FROM GENLIB IF IMPLEMENTATION IMPORT IN LOOP MOD
+MODULE NEW NOT OF OPAQUE OR POINTER PROCEDURE READ RECORD REFERENTIAL RELEASE
+REPEAT RETAIN RETURN SET THEN TO TYPE UNTIL VAR WHILE WRITE YIELD
+
+
+<beginfold id='1'>(*</beginfold id='1'> built-in constants <endfold id='1'>*)</endfold id='1'>
+
+FALSE NIL TRUE
+
+
+<beginfold id='1'>(*</beginfold id='1'> built-in types <endfold id='1'>*)</endfold id='1'>
+
+BOOLEAN CARDINAL CHAR INTEGER LONGCARD LONGINT LONGREAL OCTET REAL
+
+
+<beginfold id='1'>(*</beginfold id='1'> built-in procedures <endfold id='1'>*)</endfold id='1'>
+
+ABS APPEND CAPACITY CHR COUNT ENTIER INSERT LENGTH LOG2 MAX MIN ODD ORD
+POW2 PRED PTR REMOVE SGN SUCC
+
+
+<beginfold id='1'>(*</beginfold id='1'> UNSAFE facilities <endfold id='1'>*)</endfold id='1'>
+
+<beginfold id='1'>(*</beginfold id='1'> module identifier <endfold id='1'>*)</endfold id='1'>
+
+UNSAFE
+
+<beginfold id='1'>(*</beginfold id='1'> reserved words <endfold id='1'>*)</endfold id='1'>
+
+CAST
+
+<beginfold id='1'>(*</beginfold id='1'> constants <endfold id='1'>*)</endfold id='1'>
+
+BitsPerAddress BitsPerByte BytesPerWord BytesPerLongWord
+
+<beginfold id='1'>(*</beginfold id='1'> types <endfold id='1'>*)</endfold id='1'>
+
+ADDRESS BYTE WORD LONGWORD OCTETSEQ
+
+<beginfold id='1'>(*</beginfold id='1'> procedures <endfold id='1'>*)</endfold id='1'>
+
+ADD ADR BIT BWAND BWNOT BWOR HALT SETBIT SHL SHR SUB
+
+
+<beginfold id='1'>(*</beginfold id='1'> number literals <endfold id='1'>*)</endfold id='1'>
+
+CONST
+  b = 0b0110'1001; <beginfold id='1'>(*</beginfold id='1'> base-2 <endfold id='1'>*)</endfold id='1'>
+
+  n = 1000'0000; <beginfold id='1'>(*</beginfold id='1'> base-10 <endfold id='1'>*)</endfold id='1'>
+
+  x = 0xDEAD'BEEF; <beginfold id='1'>(*</beginfold id='1'> base-16 <endfold id='1'>*)</endfold id='1'>
+
+  c = 0u2A; <beginfold id='1'>(*</beginfold id='1'> character code <endfold id='1'>*)</endfold id='1'>
+
+  r = 1.234; <beginfold id='1'>(*</beginfold id='1'> real number <endfold id='1'>*)</endfold id='1'>
+
+
+<beginfold id='1'>(*</beginfold id='1'> quoted literals <endfold id='1'>*)</endfold id='1'>
+
+CONST
+  apostrophe = "'"; doublequote = '"';
+  single ='foobar'; double = "bazbam";
+
+
+<beginfold id='1'>(*</beginfold id='1'> sample code <endfold id='1'>*)</endfold id='1'>
+
+TYPE Foo = RECORD
+  bar : Baz;
+  bam : Boo
+END; <beginfold id='1'>(*</beginfold id='1'> Foobar <endfold id='1'>*)</endfold id='1'>
+
+
+VAR
+  foo, bar, baz : CARDINAL;
+
+
+IF foo > bar THEN
+  baz := bam
+ELSE
+  baz := boo
+END;
+
+
+<beginfold id='1'>(*</beginfold id='1'> EOF <endfold id='1'>*)</endfold id='1'>

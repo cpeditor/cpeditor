@@ -23,7 +23,7 @@
 #include <QMessageBox>
 
 AppearancePage::AppearancePage(QWidget *parent)
-    : PreferencesPageTemplate({"Locale", "UI Style", "Editor Theme", "Editor Font", "Test Cases Font",
+    : PreferencesPageTemplate({"Locale", "UI Style", "Syntax Highlighting Style", "Editor Theme", "Editor Font", "Test Cases Font",
                                "Message Logger Font", "Opacity", "Test Case Maximum Height",
                                "Show Compile And Run Only", "Display EOLN In Diff", "Extra Bottom Margin",
                                "Use Custom Application Font", "Custom Application Font"},

@@ -1,0 +1,701 @@
+<beginfold id='3'>/*</beginfold id='3'>*
+ * Less syntax highlighting test file
+ *
+ * Based on the Less documentation ((c) 2017 Alexis Sellier, the Less Core Team, Contributors, The MIT License)
+ *
+ * @see http://lesscss.org/features/
+ <endfold id='3'>*/</endfold id='3'>
+
+.mixin(@color; @padding; @margin: 2) <beginfold id='1'>{</beginfold id='1'>
+  colorr: @color;
+  padding-3: @padding;
+  margin: @margin @margin @margin @margin;
+<endfold id='1'>}</endfold id='1'>
+
+@my-ruleset: <beginfold id='1'>{</beginfold id='1'>
+  .my-selector <beginfold id='1'>{</beginfold id='1'>
+    background-color: black;
+  <endfold id='1'>}</endfold id='1'>
+<endfold id='1'>}</endfold id='1'>;
+
+@bacon: red;
+@beacon: background-color;
+@baecon: @{w} + @w;
+
+.noStar:extend(.class #sh:extend(#hhh) ) <beginfold id='1'>{</beginfold id='1'><endfold id='1'>}</endfold id='1'>
+.noStar:nth-child(w: red) <beginfold id='1'>{</beginfold id='1'><endfold id='1'>}</endfold id='1'>
+
+@media (max-width: @width2) and handheld <beginfold id='1'>{</beginfold id='1'>
+  height: auto;
+<endfold id='1'>}</endfold id='1'>
+
+.test when (@color = blue) .ffff <beginfold id='1'>{</beginfold id='1'>color: red;<endfold id='1'>}</endfold id='1'>
+
+.foo (@bg: #f5f5f5, @color: #900) <beginfold id='1'>{</beginfold id='1'>
+  background: @bg;
+  color: @color;
+
+  .x <beginfold id='1'>{</beginfold id='1'>
+    x: @nn;
+    a: white @{nn@{ww}};
+    background: red;
+  <endfold id='1'>}</endfold id='1'>
+<endfold id='1'>}</endfold id='1'>
+
+// Variables
+
+@link-color:        #428bca; // sea blue
+@link-color-hover:  darken(@link-color, 10%);
+
+a, .link <beginfold id='1'>{</beginfold id='1'>
+  color: @link-color;
+<endfold id='1'>}</endfold id='1'>
+
+a:hover <beginfold id='1'>{</beginfold id='1'>
+  color: @link-color-hover;
+<endfold id='1'>}</endfold id='1'>
+
+.widget <beginfold id='1'>{</beginfold id='1'>
+  color: #fff;
+  background: @link-color;
+<endfold id='1'>}</endfold id='1'>
+
+// Variable interpolation
+
+@my-selector: banner;
+
+.@{my-selector} when (@s = calc("s"); @{s} = calc("dddd")) <beginfold id='1'>{</beginfold id='1'>
+  font-weight: bold;
+  line-height+: 40px;
+  margin: 0 auto;
+<endfold id='1'>}</endfold id='1'>
+
+@images: "../img";
+
+body <beginfold id='1'>{</beginfold id='1'>
+  color: #444;
+  background: url("@{images}/white-sand.png");
+<endfold id='1'>}</endfold id='1'>
+
+@themes: "../../src/themes";
+
+@import "@{themes}/tidal-wave.less";
+
+@property: color;
+
+.widget <beginfold id='1'>{</beginfold id='1'>
+  @{property}: #0ee;
+  background-@{property}: #999;
+<endfold id='1'>}</endfold id='1'>
+
+// Variable names
+
+@fnord:  "I am fnord.";
+@var:    "fnord";
+
+.variable-names-example <beginfold id='1'>{</beginfold id='1'>
+  content: @@var;
+<endfold id='1'>}</endfold id='1'>
+
+// Lazy Evaluation
+
+.lazy-eval <beginfold id='1'>{</beginfold id='1'>
+  width: @var;
+<endfold id='1'>}</endfold id='1'>
+
+@var: @a;
+@a: 9%;
+
+@var: 0;
+.class <beginfold id='1'>{</beginfold id='1'>
+  @var: 1;
+  .brass <beginfold id='1'>{</beginfold id='1'>
+    @var: 2;
+    three: @var;
+    @var: 3;
+  <endfold id='1'>}</endfold id='1'>
+  one: @var;
+<endfold id='1'>}</endfold id='1'>
+
+// Default Variables
+
+@base-color: green;
+@dark-color: darken(@base-color, 10%);
+
+@import "library.less";
+@base-color: red;
+
+// Extend
+
+nav ul <beginfold id='1'>{</beginfold id='1'>
+  &:extend(.inline);
+  background: blue;
+<endfold id='1'>}</endfold id='1'>
+.inline <beginfold id='1'>{</beginfold id='1'>
+  color: red;
+<endfold id='1'>}</endfold id='1'>
+
+// Extend Syntax
+
+.e:extend(.f) <beginfold id='1'>{</beginfold id='1'><endfold id='1'>}</endfold id='1'>
+.e:extend(.g) <beginfold id='1'>{</beginfold id='1'><endfold id='1'>}</endfold id='1'>
+
+.e:extend(.f, .g) <beginfold id='1'>{</beginfold id='1'><endfold id='1'>}</endfold id='1'>
+
+// Extend Attached to Selector
+
+.big-division,
+.big-bag:extend(.bag),
+.big-bucket:extend(.bucket) <beginfold id='1'>{</beginfold id='1'>
+<endfold id='1'>}</endfold id='1'>
+
+// Extend Inside Ruleset
+
+pre:hover,
+.some-class <beginfold id='1'>{</beginfold id='1'>
+  &:extend(div pre);
+<endfold id='1'>}</endfold id='1'>
+
+pre:hover:extend(div pre),
+.some-class:extend(div pre) <beginfold id='1'>{</beginfold id='1'><endfold id='1'>}</endfold id='1'>
+
+// Extending Nested Selectors
+
+.bucket <beginfold id='1'>{</beginfold id='1'>
+  tr <beginfold id='1'>{</beginfold id='1'>
+    color: blue;
+  <endfold id='1'>}</endfold id='1'>
+<endfold id='1'>}</endfold id='1'>
+.some-class:extend(.bucket tr) <beginfold id='1'>{</beginfold id='1'><endfold id='1'>}</endfold id='1'>
+
+// Exact Matching with Extend
+
+*.class <beginfold id='1'>{</beginfold id='1'>
+  color: blue;
+<endfold id='1'>}</endfold id='1'>
+.noStar:extend(.class) <beginfold id='1'>{</beginfold id='1'><endfold id='1'>}</endfold id='1'>
+
+link:hover:visited <beginfold id='1'>{</beginfold id='1'>
+  color: blue;
+<endfold id='1'>}</endfold id='1'>
+.selector:extend(link:visited:hover) <beginfold id='1'>{</beginfold id='1'><endfold id='1'>}</endfold id='1'>
+
+// nth Expression
+
+:nth-child(1n+3) <beginfold id='1'>{</beginfold id='1'>
+  color: blue;
+<endfold id='1'>}</endfold id='1'>
+.child:extend(:nth-child(n+3)) <beginfold id='1'>{</beginfold id='1'><endfold id='1'>}</endfold id='1'>
+
+[title=identifier] <beginfold id='1'>{</beginfold id='1'>
+  color: blue;
+<endfold id='1'>}</endfold id='1'>
+[title='identifier'] <beginfold id='1'>{</beginfold id='1'>
+  color: blue;
+<endfold id='1'>}</endfold id='1'>
+[title="identifier"] <beginfold id='1'>{</beginfold id='1'>
+  color: blue;
+<endfold id='1'>}</endfold id='1'>
+
+.noQuote:extend([title=identifier]) <beginfold id='1'>{</beginfold id='1'><endfold id='1'>}</endfold id='1'>
+.singleQuote:extend([title='identifier']) <beginfold id='1'>{</beginfold id='1'><endfold id='1'>}</endfold id='1'>
+.doubleQuote:extend([title="identifier"]) <beginfold id='1'>{</beginfold id='1'><endfold id='1'>}</endfold id='1'>
+
+// Extend "all"
+
+.a.b.test,
+.test.c <beginfold id='1'>{</beginfold id='1'>
+  color: orange;
+<endfold id='1'>}</endfold id='1'>
+.test <beginfold id='1'>{</beginfold id='1'>
+  &:hover <beginfold id='1'>{</beginfold id='1'>
+    color: green;
+  <endfold id='1'>}</endfold id='1'>
+<endfold id='1'>}</endfold id='1'>
+
+.replacement:extend(.test all) <beginfold id='1'>{</beginfold id='1'><endfold id='1'>}</endfold id='1'>
+
+// Selector Interpolation with Extend
+
+.bucket <beginfold id='1'>{</beginfold id='1'>
+  color: blue;
+<endfold id='1'>}</endfold id='1'>
+@{variable}:extend(.bucket) <beginfold id='1'>{</beginfold id='1'><endfold id='1'>}</endfold id='1'>
+@variable: .selector;
+
+// Scoping / Extend Inside @media
+
+@media print <beginfold id='1'>{</beginfold id='1'>
+  .screenClass:extend(.selector) <beginfold id='1'>{</beginfold id='1'><endfold id='1'>}</endfold id='1'>
+  .selector <beginfold id='1'>{</beginfold id='1'>
+    color: black;
+  <endfold id='1'>}</endfold id='1'>
+<endfold id='1'>}</endfold id='1'>
+.selector <beginfold id='1'>{</beginfold id='1'>
+  color: red;
+<endfold id='1'>}</endfold id='1'>
+@media screen <beginfold id='1'>{</beginfold id='1'>
+  .selector <beginfold id='1'>{</beginfold id='1'>
+    color: blue;
+  <endfold id='1'>}</endfold id='1'>
+<endfold id='1'>}</endfold id='1'>
+
+// Use Cases for Extend
+
+.animal <beginfold id='1'>{</beginfold id='1'>
+  background-color: black;
+  color: white;
+<endfold id='1'>}</endfold id='1'>
+.bear <beginfold id='1'>{</beginfold id='1'>
+  &:extend(.animal);
+  background-color: brown;
+<endfold id='1'>}</endfold id='1'>
+
+.my-inline-block <beginfold id='1'>{</beginfold id='1'>
+  display: inline-block;
+  font-size: 0;
+<endfold id='1'>}</endfold id='1'>
+.thing1 <beginfold id='1'>{</beginfold id='1'>
+  &:extend(.my-inline-block);
+<endfold id='1'>}</endfold id='1'>
+.thing2 <beginfold id='1'>{</beginfold id='1'>
+  &:extend(.my-inline-block);
+<endfold id='1'>}</endfold id='1'>
+
+// Mixins
+
+.a, #b <beginfold id='1'>{</beginfold id='1'>
+  color: red;
+<endfold id='1'>}</endfold id='1'>
+.mixin-class <beginfold id='1'>{</beginfold id='1'>
+  .a();
+<endfold id='1'>}</endfold id='1'>
+.mixin-id <beginfold id='1'>{</beginfold id='1'>
+  #b();
+<endfold id='1'>}</endfold id='1'>
+
+// Not Outputting the Mixin
+
+.my-mixin <beginfold id='1'>{</beginfold id='1'>
+  color: black;
+<endfold id='1'>}</endfold id='1'>
+.my-other-mixin() <beginfold id='1'>{</beginfold id='1'>
+  background: white;
+<endfold id='1'>}</endfold id='1'>
+.class <beginfold id='1'>{</beginfold id='1'>
+  .my-mixin;
+  .my-other-mixin;
+<endfold id='1'>}</endfold id='1'>
+
+// Selectors in Mixins
+
+.my-hover-mixin() <beginfold id='1'>{</beginfold id='1'>
+  &:hover <beginfold id='1'>{</beginfold id='1'>
+    border: 1px solid red;
+  <endfold id='1'>}</endfold id='1'>
+<endfold id='1'>}</endfold id='1'>
+button <beginfold id='1'>{</beginfold id='1'>
+  .my-hover-mixin();
+<endfold id='1'>}</endfold id='1'>
+
+// Namespaces
+
+#outer <beginfold id='1'>{</beginfold id='1'>
+  .inner <beginfold id='1'>{</beginfold id='1'>
+    color: red;
+  <endfold id='1'>}</endfold id='1'>
+<endfold id='1'>}</endfold id='1'>
+
+.c <beginfold id='1'>{</beginfold id='1'>
+  #outer > .inner;
+<endfold id='1'>}</endfold id='1'>
+
+.d <beginfold id='1'>{</beginfold id='1'>
+  #outer > .inner;
+  #outer > .inner();
+  #outer .inner;
+  #outer .inner();
+  #outer.inner;
+  #outer.inner();
+<endfold id='1'>}</endfold id='1'>
+
+// Guarded Namespaces
+
+#namespace when (@mode=huge) <beginfold id='1'>{</beginfold id='1'>
+  .mixin() <beginfold id='1'>{</beginfold id='1'> <beginfold id='3'>/*</beginfold id='3'> <endfold id='3'>*/</endfold id='3'> <endfold id='1'>}</endfold id='1'>
+<endfold id='1'>}</endfold id='1'>
+
+#namespace <beginfold id='1'>{</beginfold id='1'>
+  .mixin() when (@mode=huge) <beginfold id='1'>{</beginfold id='1'> <beginfold id='3'>/*</beginfold id='3'> <endfold id='3'>*/</endfold id='3'> <endfold id='1'>}</endfold id='1'>
+<endfold id='1'>}</endfold id='1'>
+
+#sp_1 when (default()) <beginfold id='1'>{</beginfold id='1'>
+  #sp_2 when (default()) <beginfold id='1'>{</beginfold id='1'>
+    .mixin() when not(default()) <beginfold id='1'>{</beginfold id='1'> <beginfold id='3'>/*</beginfold id='3'> <endfold id='3'>*/</endfold id='3'> <endfold id='1'>}</endfold id='1'>
+  <endfold id='1'>}</endfold id='1'>
+<endfold id='1'>}</endfold id='1'>
+
+// The !important keyword
+
+.foo (@bg: #f5f5f5, @color: #900) <beginfold id='1'>{</beginfold id='1'>
+  background: @bg;
+  color: @color !important;
+<endfold id='1'>}</endfold id='1'>
+.unimportant <beginfold id='1'>{</beginfold id='1'>
+  .foo();
+<endfold id='1'>}</endfold id='1'>
+.important <beginfold id='1'>{</beginfold id='1'>
+  .foo() !important;
+<endfold id='1'>}</endfold id='1'>
+
+// Parametric Mixins
+
+.border-radius(@radius) <beginfold id='1'>{</beginfold id='1'>
+  -webkit-border-radius: @radius;
+     -moz-border-radius: @radius;
+          border-radius: @radius;
+<endfold id='1'>}</endfold id='1'>
+
+#header <beginfold id='1'>{</beginfold id='1'>
+  .border-radius(4px);
+<endfold id='1'>}</endfold id='1'>
+.button <beginfold id='1'>{</beginfold id='1'>
+  .border-radius(6px);
+<endfold id='1'>}</endfold id='1'>
+
+.border-radius(@radius: 5px) <beginfold id='1'>{</beginfold id='1'>
+  -webkit-border-radius: @radius;
+     -moz-border-radius: @radius;
+          border-radius: @radius;
+<endfold id='1'>}</endfold id='1'>
+
+.wrap() <beginfold id='1'>{</beginfold id='1'>
+  text-wrap: wrap;
+  white-space: -moz-pre-wrap;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+<endfold id='1'>}</endfold id='1'>
+
+pre <beginfold id='1'>{</beginfold id='1'> .wrap <endfold id='1'>}</endfold id='1'>
+
+// Mixins with Multiple Parameters
+
+.mixin(@color) <beginfold id='1'>{</beginfold id='1'>
+  color-1: @color;
+<endfold id='1'>}</endfold id='1'>
+.mixin(@color; @padding: 2) <beginfold id='1'>{</beginfold id='1'>
+  color-2: @color;
+  padding-2: @padding;
+<endfold id='1'>}</endfold id='1'>
+.mixin(@color; @padding; @margin: 2) <beginfold id='1'>{</beginfold id='1'>
+  color-3: @color;
+  padding-3: @padding;
+  margin: @margin @margin @margin @margin;
+<endfold id='1'>}</endfold id='1'>
+.some .selector div <beginfold id='1'>{</beginfold id='1'>
+  .mixin(#008000);
+<endfold id='1'>}</endfold id='1'>
+
+// Named parameters
+
+.mixin(@color: black; @margin: 10px; @padding: 20px) <beginfold id='1'>{</beginfold id='1'>
+  color: @color;
+  margin: @margin;
+  padding: @padding;
+<endfold id='1'>}</endfold id='1'>
+.class1 <beginfold id='1'>{</beginfold id='1'>
+  .mixin(@margin: 20px; @color: #33acfe);
+<endfold id='1'>}</endfold id='1'>
+.class2 <beginfold id='1'>{</beginfold id='1'>
+  .mixin(#efca44; @padding: 40px);
+<endfold id='1'>}</endfold id='1'>
+
+// The @arguments Variable
+
+.box-shadow(@x: 0; @y: 0; @blur: 1px; @color: #000) <beginfold id='1'>{</beginfold id='1'>
+  -webkit-box-shadow: @arguments;
+     -moz-box-shadow: @arguments;
+          box-shadow: @arguments;
+<endfold id='1'>}</endfold id='1'>
+.big-block <beginfold id='1'>{</beginfold id='1'>
+  .box-shadow(2px; 5px);
+<endfold id='1'>}</endfold id='1'>
+
+// Advanced Arguments and the @rest Variable
+
+.mixin(...) <beginfold id='1'>{</beginfold id='1'><endfold id='1'>}</endfold id='1'>        // matches 0-N arguments
+.mixin() <beginfold id='1'>{</beginfold id='1'><endfold id='1'>}</endfold id='1'>           // matches exactly 0 arguments
+.mixin(@a: 1) <beginfold id='1'>{</beginfold id='1'><endfold id='1'>}</endfold id='1'>      // matches 0-1 arguments
+.mixin(@a: 1; ...) <beginfold id='1'>{</beginfold id='1'><endfold id='1'>}</endfold id='1'> // matches 0-N arguments
+.mixin(@a; ...) <beginfold id='1'>{</beginfold id='1'><endfold id='1'>}</endfold id='1'>    // matches 1-N arguments
+
+.mixin(@a; @rest...) <beginfold id='1'>{</beginfold id='1'>
+   // @rest is bound to arguments after @a
+   // @arguments is bound to all arguments
+<endfold id='1'>}</endfold id='1'>
+
+// Pattern-matching
+
+.mixin(@s; @color) <beginfold id='1'>{</beginfold id='1'> ... <endfold id='1'>}</endfold id='1'>
+
+.class <beginfold id='1'>{</beginfold id='1'>
+  .mixin(@switch; #888);
+<endfold id='1'>}</endfold id='1'>
+
+.mixin(dark; @color) <beginfold id='1'>{</beginfold id='1'>
+  color: darken(@color, 10%);
+<endfold id='1'>}</endfold id='1'>
+.mixin(light; @color) <beginfold id='1'>{</beginfold id='1'>
+  color: lighten(@color, 10%);
+<endfold id='1'>}</endfold id='1'>
+.mixin(@_; @color) <beginfold id='1'>{</beginfold id='1'>
+  display: block;
+<endfold id='1'>}</endfold id='1'>
+
+@switch: light;
+
+.class <beginfold id='1'>{</beginfold id='1'>
+  .mixin(@switch; #888);
+<endfold id='1'>}</endfold id='1'>
+
+// Mixins as Functions
+
+.average(@x, @y) <beginfold id='1'>{</beginfold id='1'>
+  @average: ((@x + @y) / 2);
+<endfold id='1'>}</endfold id='1'>
+
+div <beginfold id='1'>{</beginfold id='1'>
+  .average(16px, 50px); // "call" the mixin
+  padding: @average;    // use its "return" value
+<endfold id='1'>}</endfold id='1'>
+
+// Passing Rulesets to Mixins
+
+// declare detached ruleset
+@detached-ruleset: <beginfold id='1'>{</beginfold id='1'> background: red; <endfold id='1'>}</endfold id='1'>;
+
+// use detached ruleset
+.top <beginfold id='1'>{</beginfold id='1'>
+    @detached-ruleset();
+<endfold id='1'>}</endfold id='1'>
+
+.desktop-and-old-ie(@rules) <beginfold id='1'>{</beginfold id='1'>
+  @media screen and (min-width: 1200px) <beginfold id='1'>{</beginfold id='1'> @rules(); <endfold id='1'>}</endfold id='1'>
+  html.lt-ie9 &                         <beginfold id='1'>{</beginfold id='1'> @rules(); <endfold id='1'>}</endfold id='1'>
+<endfold id='1'>}</endfold id='1'>
+
+header <beginfold id='1'>{</beginfold id='1'>
+  background-color: blue;
+
+  .desktop-and-old-ie({
+    background-color: red;
+  });
+<endfold id='1'>}</endfold id='1'>
+
+@my-ruleset: <beginfold id='1'>{</beginfold id='1'>
+  .my-selector <beginfold id='1'>{</beginfold id='1'>
+    background-color: black;
+  <endfold id='1'>}</endfold id='1'>
+<endfold id='1'>}</endfold id='1'>;
+
+@my-ruleset: <beginfold id='1'>{</beginfold id='1'>
+    .my-selector <beginfold id='1'>{</beginfold id='1'>
+      @media tv <beginfold id='1'>{</beginfold id='1'>
+        background-color: black;
+      <endfold id='1'>}</endfold id='1'>
+    <endfold id='1'>}</endfold id='1'>
+  <endfold id='1'>}</endfold id='1'>;
+@media (orientation:portrait) <beginfold id='1'>{</beginfold id='1'>
+    @my-ruleset();
+<endfold id='1'>}</endfold id='1'>
+
+// Scoping
+
+@detached-ruleset: <beginfold id='1'>{</beginfold id='1'>
+  caller-variable: @caller-variable; // variable is undefined here
+  .caller-mixin(); // mixin is undefined here
+<endfold id='1'>}</endfold id='1'>;
+
+selector <beginfold id='1'>{</beginfold id='1'>
+  // use detached ruleset
+  @detached-ruleset();
+
+  // define variable and mixin needed inside the detached ruleset
+  @caller-variable: value;
+  .caller-mixin() <beginfold id='1'>{</beginfold id='1'>
+    variable: declaration;
+  <endfold id='1'>}</endfold id='1'>
+<endfold id='1'>}</endfold id='1'>
+
+<beginfold id='3'>/*</beginfold id='3'>
+ * reference: use a Less file but do not output it
+inline: include the source file in the output but do not process it
+less: treat the file as a Less file, no matter what the file extension
+css: treat the file as a CSS file, no matter what the file extension
+once: only include the file once (this is default behavior)
+multiple: include the file multiple times
+optional: continue compiling when file is not found
+ <endfold id='3'>*/</endfold id='3'>
+
+@import (optional, reference) "foo.less";
+
+// Mixin Guards
+
+.mixin (@a) when (lightness(@a) >= 50%) <beginfold id='1'>{</beginfold id='1'>
+  background-color: black;
+<endfold id='1'>}</endfold id='1'>
+.mixin (@a) when (lightness(@a) < 50%) <beginfold id='1'>{</beginfold id='1'>
+  background-color: white;
+<endfold id='1'>}</endfold id='1'>
+.mixin (@a) <beginfold id='1'>{</beginfold id='1'>
+  color: @a;
+<endfold id='1'>}</endfold id='1'>
+
+// Guard Comparison Operators
+
+.truth (@a) when (@a) <beginfold id='1'>{</beginfold id='1'> <endfold id='1'>}</endfold id='1'>
+.truth (@a) when (@a = true) <beginfold id='1'>{</beginfold id='1'> <endfold id='1'>}</endfold id='1'>
+
+// FIXME: @media as variable
+@media: mobile;
+
+.mixin (@a) when (@media = mobile) <beginfold id='1'>{</beginfold id='1'> <endfold id='1'>}</endfold id='1'>
+.mixin (@a) when (@media = desktop) <beginfold id='1'>{</beginfold id='1'> <endfold id='1'>}</endfold id='1'>
+
+.max (@a; @b) when (@a > @b) <beginfold id='1'>{</beginfold id='1'> width: @a <endfold id='1'>}</endfold id='1'>
+.max (@a; @b) when (@a < @b) <beginfold id='1'>{</beginfold id='1'> width: @b <endfold id='1'>}</endfold id='1'>
+
+// Guard Logical Operators
+
+.mixin (@a) when (isnumber(@a)) and (@a > 0) <beginfold id='1'>{</beginfold id='1'>  <endfold id='1'>}</endfold id='1'>
+.mixin (@a) when (@a > 10), (@a < -10) <beginfold id='1'>{</beginfold id='1'>  <endfold id='1'>}</endfold id='1'>
+.mixin (@b) when not (@b > 0) <beginfold id='1'>{</beginfold id='1'> <endfold id='1'>}</endfold id='1'>
+
+// Type Checking Functions
+
+.mixin (@a; @b: 0) when (isnumber(@b)) <beginfold id='1'>{</beginfold id='1'> <endfold id='1'>}</endfold id='1'>
+.mixin (@a; @b: black) when (iscolor(@b)) <beginfold id='1'>{</beginfold id='1'><endfold id='1'>}</endfold id='1'>
+
+button when (@my-option = true) <beginfold id='1'>{</beginfold id='1'>
+  color: white;
+
+  & when (@my-option = true) <beginfold id='1'>{</beginfold id='1'>
+  button <beginfold id='1'>{</beginfold id='1'>
+    color: white;
+  <endfold id='1'>}</endfold id='1'>
+  a <beginfold id='1'>{</beginfold id='1'>
+    color: blue;
+  <endfold id='1'>}</endfold id='1'>
+<endfold id='1'>}</endfold id='1'>
+<endfold id='1'>}</endfold id='1'>
+
+// Loops
+
+.loop(@counter) when (@counter > 0) <beginfold id='1'>{</beginfold id='1'>
+  .loop((@counter - 1));    // next iteration
+  width: (10px * @counter); // code for each iteration
+<endfold id='1'>}</endfold id='1'>
+
+div <beginfold id='1'>{</beginfold id='1'>
+  .loop(5); // launch the loop
+<endfold id='1'>}</endfold id='1'>
+
+// Merge
+
+.mixin() <beginfold id='1'>{</beginfold id='1'>
+  box-shadow+: inset 0 0 10px #555;
+<endfold id='1'>}</endfold id='1'>
+.myclass <beginfold id='1'>{</beginfold id='1'>
+  .mixin();
+  box-shadow+: 0 0 20px black;
+<endfold id='1'>}</endfold id='1'>
+
+// Space
+
+.mixin() <beginfold id='1'>{</beginfold id='1'>
+  transform+_: scale(2);
+<endfold id='1'>}</endfold id='1'>
+.myclass <beginfold id='1'>{</beginfold id='1'>
+  .mixin();
+  transform+_: rotate(15deg);
+<endfold id='1'>}</endfold id='1'>
+
+// Parent Selectors
+
+a <beginfold id='1'>{</beginfold id='1'>
+  color: blue;
+  &:hover <beginfold id='1'>{</beginfold id='1'>
+    color: green;
+  <endfold id='1'>}</endfold id='1'>
+<endfold id='1'>}</endfold id='1'>
+
+.button <beginfold id='1'>{</beginfold id='1'>
+  &-ok <beginfold id='1'>{</beginfold id='1'>
+    background-image: url("ok.png");
+  <endfold id='1'>}</endfold id='1'>
+  &-cancel <beginfold id='1'>{</beginfold id='1'>
+    background-image: url("cancel.png");
+  <endfold id='1'>}</endfold id='1'>
+
+  &-custom <beginfold id='1'>{</beginfold id='1'>
+    background-image: url("custom.png");
+  <endfold id='1'>}</endfold id='1'>
+<endfold id='1'>}</endfold id='1'>
+
+.link <beginfold id='1'>{</beginfold id='1'>
+  & + & <beginfold id='1'>{</beginfold id='1'>
+    color: red;
+  <endfold id='1'>}</endfold id='1'>
+
+  & & <beginfold id='1'>{</beginfold id='1'>
+    color: green;
+  <endfold id='1'>}</endfold id='1'>
+
+  && <beginfold id='1'>{</beginfold id='1'>
+    color: blue;
+  <endfold id='1'>}</endfold id='1'>
+
+  &, &ish <beginfold id='1'>{</beginfold id='1'>
+    color: cyan;
+  <endfold id='1'>}</endfold id='1'>
+<endfold id='1'>}</endfold id='1'>
+
+.grand <beginfold id='1'>{</beginfold id='1'>
+  .parent <beginfold id='1'>{</beginfold id='1'>
+    & > & <beginfold id='1'>{</beginfold id='1'>
+      color: red;
+    <endfold id='1'>}</endfold id='1'>
+
+    & & <beginfold id='1'>{</beginfold id='1'>
+      color: green;
+    <endfold id='1'>}</endfold id='1'>
+
+    && <beginfold id='1'>{</beginfold id='1'>
+      color: blue;
+    <endfold id='1'>}</endfold id='1'>
+
+    &, &ish <beginfold id='1'>{</beginfold id='1'>
+      color: cyan;
+    <endfold id='1'>}</endfold id='1'>
+  <endfold id='1'>}</endfold id='1'>
+<endfold id='1'>}</endfold id='1'>
+
+// Changing Selector Order
+
+.header <beginfold id='1'>{</beginfold id='1'>
+  .menu <beginfold id='1'>{</beginfold id='1'>
+    border-radius: 5px;
+    .no-borderradius & <beginfold id='1'>{</beginfold id='1'>
+      background-image: url('images/button-background.png');
+    <endfold id='1'>}</endfold id='1'>
+  <endfold id='1'>}</endfold id='1'>
+<endfold id='1'>}</endfold id='1'>
+
+// Combinatorial Explosion
+
+p, a, ul, li <beginfold id='1'>{</beginfold id='1'>
+  border-top: 2px dotted #366;
+  & + & <beginfold id='1'>{</beginfold id='1'>
+    border-top: 0;
+  <endfold id='1'>}</endfold id='1'>
+<endfold id='1'>}</endfold id='1'>

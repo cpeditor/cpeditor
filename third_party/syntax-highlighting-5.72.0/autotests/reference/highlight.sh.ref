@@ -1,0 +1,210 @@
+<Comment>#! /bin/sh</Comment><br/>
+<Comment># This is a test script for the Katepart Bash Syntax Highlighting by</Comment><br/>
+<Comment>#	Wilbert Berendsen.  This is not runnable !!!</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment># The highlighting recognizes basic types of input, and has a few special cases that</Comment><br/>
+<Comment># are all in FindCommands.  The main objective is to create really proper nesting of</Comment><br/>
+<Comment># (multiline) strings, variables, expressions, etc.</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment># ============== Tests: ===============</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Comment># basic types:</Comment><br/>
+<Builtin>echo</Builtin><Normal Text> </Normal Text><String SingleQ>'single quoted string'</String SingleQ><br/>
+<Builtin>echo</Builtin><Normal Text> </Normal Text><String DoubleQ>"double quoted string"</String DoubleQ><br/>
+<Builtin>echo</Builtin><Normal Text> </Normal Text><String SingleQ>$'string with esc</String SingleQ><String Escape>\a</String Escape><String SingleQ>pes</String SingleQ><String Escape>\x0d</String Escape><String SingleQ>in it'</String SingleQ><br/>
+<Builtin>echo</Builtin><Normal Text> </Normal Text><String Transl.>$"</String Transl.><String DoubleQ>string meant to be translated"</String DoubleQ><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment># comments:</Comment><br/>
+<Comment># this is a comment</Comment><br/>
+<Comment>#this too</Comment><br/>
+<Builtin>echo</Builtin><Normal Text> this is#nt a comment</Normal Text><br/>
+<Command>dcop</Command><Normal Text> kate EditInterface#1 </Normal Text><Comment>#this is</Comment><br/>
+<Command>grep</Command><Normal Text> </Normal Text><Option>-e</Option><Normal Text> </Normal Text><String DoubleQ>"^default/linux/amd64/"</String DoubleQ><Normal Text> </Normal Text><Control>|</Control><OtherCommand>\ </OtherCommand><Comment>#this is a comment</Comment><br/>
+<Command>mkdir</Command><Normal Text> this</Normal Text><Escape>\ </Escape><Normal Text>isnt</Normal Text><Escape>\ </Escape><Normal Text>#a</Normal Text><Escape>\ </Escape><Normal Text>comment</Normal Text><br/>
+<Command>mkdir</Command><Normal Text> this</Normal Text><Escape>\ </Escape><Normal Text>isnt</Normal Text><Escape>\\\;</Escape><Normal Text>#a</Normal Text><Escape>\ </Escape><Normal Text>comment</Normal Text><br/>
+<Command>mkdir</Command><Normal Text> this</Normal Text><Escape>\\</Escape><Normal Text> </Normal Text><Comment>#is a comment</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Comment># brace expansion</Comment><br/>
+<Command>mv</Command><Normal Text> my_file.</Normal Text><Escape>{JPG,jpg}</Escape><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment># special characters are escaped:</Comment><br/>
+<Builtin>echo</Builtin><Normal Text> </Normal Text><Escape>\(</Escape><Normal Text>output</Normal Text><Escape>\)</Escape><Normal Text> </Normal Text><Escape>\&\|</Escape><Normal Text> </Normal Text><Escape>\></Escape><Normal Text> </Normal Text><Escape>\<</Escape><Normal Text> </Normal Text><Escape>\"</Escape><Normal Text> </Normal Text><Escape>\'</Escape><Normal Text> </Normal Text><Escape>\*</Escape><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment># variable substitution:</Comment><br/>
+<Builtin>echo</Builtin><Normal Text> </Normal Text><Variable>$filename</Variable><Normal Text>.ext</Normal Text><br/>
+<Builtin>echo</Builtin><Normal Text> </Normal Text><Variable>$filename_ext</Variable><br/>
+<Builtin>echo</Builtin><Normal Text> </Normal Text><Variable>${filename}</Variable><Normal Text>_ext</Normal Text><br/>
+<Builtin>echo</Builtin><Normal Text> text</Normal Text><Variable>${array[$subscript]}</Variable><Normal Text>.text</Normal Text><br/>
+<Builtin>echo</Builtin><Normal Text> text</Normal Text><Variable>${array[</Variable><String DoubleQ>"string"</String DoubleQ><Variable>]}</Variable><Normal Text>.text</Normal Text><br/>
+<Builtin>echo</Builtin><Normal Text> </Normal Text><Variable>${!prefix*}</Variable><br/>
+<Builtin>echo</Builtin><Normal Text> </Normal Text><Variable>${!redir}</Variable><br/>
+<Builtin>echo</Builtin><Normal Text> short are </Normal Text><Variable>$_</Variable><Normal Text>, </Normal Text><Variable>$$</Variable><Normal Text>, </Normal Text><Variable>$?</Variable><Normal Text>, </Normal Text><Variable>${@}</Variable><Normal Text>, etc.</Normal Text><br/>
+<Builtin>echo</Builtin><Normal Text> </Normal Text><Variable>${variable/</Variable><Normal Text>a</Normal Text><Variable>/</Variable><Normal Text>d</Normal Text><Variable>}</Variable><br/>
+<Builtin>echo</Builtin><Normal Text> </Normal Text><Variable>${1:-</Variable><Normal Text>default</Normal Text><Variable>}</Variable><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment># expression subst:</Comment><br/>
+<Builtin>echo</Builtin><Normal Text> </Normal Text><Variable>$((</Variable><Normal Text> cd << ed + 1 </Normal Text><Variable>))</Variable><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment># command subst:</Comment><br/>
+<Builtin>echo</Builtin><Normal Text> </Normal Text><Variable>$(</Variable><Command>ls</Command><Normal Text> </Normal Text><Option>-l</Option><Variable>)</Variable><br/>
+<Builtin>echo</Builtin><Normal Text> </Normal Text><Backquote>`</Backquote><Command>cat</Command><Normal Text> myfile</Normal Text><Backquote>`</Backquote><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment># file subst:</Comment><br/>
+<Builtin>echo</Builtin><Normal Text> </Normal Text><Redirection>$(<</Redirection><Variable>$filename</Variable><Redirection>)</Redirection><br/>
+<Builtin>echo</Builtin><Normal Text> </Normal Text><Redirection>$(<</Redirection><Path>/path/to/myfile</Path><Redirection>)</Redirection><br/>
+<Normal Text></Normal Text><br/>
+<Comment># process subst:</Comment><br/>
+<Command>sort</Command><Normal Text> </Normal Text><Redirection><(</Redirection><OtherCommand>show_labels</OtherCommand><Redirection>)</Redirection><Normal Text> </Normal Text><Control>|</Control><Normal Text> </Normal Text><Command>sed</Command><Normal Text> </Normal Text><String SingleQ>'s/a/bg'</String SingleQ><Normal Text> </Normal Text><Redirection>></Redirection><Normal Text> my_file.txt </Normal Text><Redirection>2>&1</Redirection><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment># All substitutions also work in strings:</Comment><br/>
+<Builtin>echo</Builtin><Normal Text> </Normal Text><String DoubleQ>"subst </String DoubleQ><Variable>${in}</Variable><String DoubleQ>side string"</String DoubleQ><Normal Text>  </Normal Text><String SingleQ>'not $inside this ofcourse'</String SingleQ><br/>
+<Builtin>echo</Builtin><Normal Text> </Normal Text><String DoubleQ>"The result is </String DoubleQ><Variable>$((</Variable><Normal Text> </Normal Text><Variable>$a</Variable><Normal Text> + </Normal Text><Variable>$b</Variable><Normal Text> </Normal Text><Variable>))</Variable><String DoubleQ>. Thanks!"</String DoubleQ><br/>
+<Builtin>echo</Builtin><Normal Text> </Normal Text><String DoubleQ>"Your homedir contains </String DoubleQ><Backquote>`</Backquote><Command>ls</Command><Normal Text> </Normal Text><Variable>$HOME</Variable><Normal Text> </Normal Text><Control>|</Control><Command>wc</Command><Normal Text> </Normal Text><Option>-l</Option><Backquote>`</Backquote><String DoubleQ> files."</String DoubleQ><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment># Escapes in strings:</Comment><br/>
+<Variable>p=</Variable><String DoubleQ>"String </String DoubleQ><String Escape>\`</String Escape><String DoubleQ> with </String DoubleQ><String Escape>\$</String Escape><String DoubleQ> escapes </String DoubleQ><String Escape>\"</String Escape><String DoubleQ> "</String DoubleQ><Normal Text>;</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment># keywords are black, builtins dark purple and common commands lighter purple</Comment><br/>
+<Keyword>set</Keyword><br/>
+<Builtin>exit</Builtin><br/>
+<Command>login</Command><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment># Other colorings:</Comment><br/>
+<Function>error()</Function><Normal Text> </Normal Text><Keyword>{</Keyword><br/>
+<Normal Text>	</Normal Text><Command>cat</Command><Normal Text> </Normal Text><Path>/usr/bin/lesspipe.sh</Path><br/>
+<Normal Text>	</Normal Text><OtherCommand>runscript</OtherCommand><Normal Text> </Normal Text><Redirection>></Redirection><Control>&</Control><Normal Text> </Normal Text><OtherCommand>redir.bak</OtherCommand><br/>
+<Normal Text>	</Normal Text><Builtin>exec</Builtin><Normal Text> </Normal Text><Redirection>3>&4</Redirection><br/>
+<Keyword>}</Keyword><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment># do - done make code blocks</Comment><br/>
+<Keyword>while</Keyword><Builtin> [</Builtin><Normal Text> </Normal Text><Variable>$p</Variable><Normal Text> </Normal Text><Expression>-lt</Expression><Normal Text> </Normal Text><Variable>$q</Variable><Builtin> ]</Builtin><Normal Text> </Normal Text><br/>
+<Keyword>do</Keyword><br/>
+<Normal Text>	</Normal Text><Command>chown</Command><Normal Text> 0644 </Normal Text><Variable>$file</Variable><Normal Text>.</Normal Text><Variable>$p</Variable><br/>
+<Keyword>done</Keyword><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment># braces as well</Comment><br/>
+<OtherCommand>run_prog</OtherCommand><Normal Text> </Normal Text><Control>|</Control><Normal Text> </Normal Text><Command>sort</Command><Normal Text> </Normal Text><Option>-u</Option><Normal Text> </Normal Text><Control>|</Control><br/>
+<Keyword>{</Keyword><br/>
+<Normal Text>	</Normal Text><Builtin>echo</Builtin><Normal Text> Header</Normal Text><br/>
+<Normal Text>	</Normal Text><Keyword>while</Keyword><Normal Text> </Normal Text><Builtin>read</Builtin><Normal Text> </Normal Text><Variable>a</Variable><Normal Text> </Normal Text><Variable>b</Variable><Normal Text> </Normal Text><Variable>d</Variable><br/>
+<Normal Text>	</Normal Text><Keyword>do</Keyword><br/>
+<Normal Text>		</Normal Text><Builtin>echo</Builtin><Normal Text> </Normal Text><Variable>$a</Variable><Path>/</Path><Variable>$b</Variable><Path>/</Path><Variable>$c</Variable><br/>
+<Normal Text>	</Normal Text><Keyword>done</Keyword><br/>
+<Normal Text>	</Normal Text><Builtin>echo</Builtin><Normal Text> Footer</Normal Text><br/>
+<Keyword>}</Keyword><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment># Any constructions can be nested:</Comment><br/>
+<Builtin>echo</Builtin><Normal Text> </Normal Text><String DoubleQ>"A long string with </String DoubleQ><Variable>$(</Variable><br/>
+<Normal Text>	</Normal Text><Keyword>if</Keyword><Builtin> [</Builtin><Normal Text> </Normal Text><Variable>$count</Variable><Normal Text> </Normal Text><Expression>-gt</Expression><Normal Text> 100</Normal Text><Builtin> ]</Builtin><Normal Text> ; </Normal Text><Keyword>then</Keyword><br/>
+<Normal Text>		</Normal Text><Builtin>echo</Builtin><Normal Text> </Normal Text><String DoubleQ>"much"</String DoubleQ><br/>
+<Normal Text>	</Normal Text><Keyword>else</Keyword><br/>
+<Normal Text>		</Normal Text><Builtin>echo</Builtin><Normal Text> </Normal Text><String DoubleQ>"not much"</String DoubleQ><br/>
+<Normal Text>	</Normal Text><Keyword>fi</Keyword><Normal Text> </Normal Text><Variable>)</Variable><String DoubleQ> substitutions."</String DoubleQ><Normal Text> </Normal Text><Control>;</Control><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment># Even the case construct is correctly folded:</Comment><br/>
+<Builtin>test</Builtin><Normal Text> </Normal Text><Option>-f</Option><Normal Text> blaat </Normal Text><Control>&&</Control><br/>
+<Keyword>(</Keyword><Normal Text>	</Normal Text><OtherCommand>do_something</OtherCommand><br/>
+<Normal Text>	</Normal Text><Keyword>case</Keyword><Normal Text> </Normal Text><Variable>$p</Variable><Keyword> in</Keyword><br/>
+<Normal Text>		*bak</Normal Text><Keyword>)</Keyword><br/>
+<Normal Text>			</Normal Text><OtherCommand>do_bak</OtherCommand><Normal Text> </Normal Text><Variable>$p</Variable><br/>
+<Normal Text>			</Normal Text><Keyword>;;</Keyword><br/>
+<Normal Text>		*</Normal Text><Keyword>)</Keyword><br/>
+<Normal Text>			</Normal Text><OtherCommand>dont_bak</OtherCommand><Normal Text> </Normal Text><Variable>$p</Variable><br/>
+<Normal Text>			</Normal Text><Keyword>;;</Keyword><br/>
+<Normal Text>	</Normal Text><Keyword>esac</Keyword><br/>
+<Keyword>)</Keyword><Normal Text> </Normal Text><Comment># despite the extra parentheses in the case construction.</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment># variable assignments:</Comment><br/>
+<Variable>DIR=</Variable><Path>/dev</Path><br/>
+<Variable>p=</Variable><Backquote>`</Backquote><Command>ls</Command><Backquote>`</Backquote><br/>
+<Variable>LC_ALL=</Variable><String DoubleQ>"nl"</String DoubleQ><Normal Text> </Normal Text><Command>dcop</Command><Normal Text> </Normal Text><String SingleQ>'kate*'</String SingleQ><br/>
+<Variable>_VAR=</Variable><Normal Text>val</Normal Text><br/>
+<Variable>ARR=(</Variable><Normal Text>this is an array</Normal Text><Variable>)</Variable><br/>
+<Variable>ARR2=([this]=</Variable><Normal Text>too </Normal Text><Variable>[and]=</Variable><String DoubleQ>"this too"</String DoubleQ><Variable>)</Variable><br/>
+<Variable>usage=</Variable><String DoubleQ>"</String DoubleQ><Variable>$0</Variable><String DoubleQ> -- version </String DoubleQ><Variable>$VERSION</Variable><br/>
+<String DoubleQ>Multiple lines of output</String DoubleQ><br/>
+<String DoubleQ>can be possible."</String DoubleQ><br/>
+<Variable>ANSWER=</Variable><Normal Text>yes	</Normal Text><Comment># here 'yes' isn't highlighed as command</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment># Some commands expect variable names, these are colored correctly:</Comment><br/>
+<Builtin>export</Builtin><Normal Text> </Normal Text><Variable>PATH=</Variable><Path>/my/bin</Path><Normal Text>:</Normal Text><Variable>$PATH</Variable><Normal Text> </Normal Text><Variable>BLAAT</Variable><br/>
+<Builtin>export</Builtin><Normal Text> </Normal Text><Variable>A</Variable><Normal Text> </Normal Text><Variable>B</Variable><Normal Text> </Normal Text><Variable>D</Variable><br/>
+<Builtin>local</Builtin><Normal Text> </Normal Text><Variable>p=</Variable><Normal Text>3  </Normal Text><Variable>x</Variable><Normal Text>  </Normal Text><Variable>y=</Variable><String SingleQ>'\'</String SingleQ><br/>
+<Builtin>read</Builtin><Normal Text> </Normal Text><Variable>x</Variable><Normal Text> </Normal Text><Variable>y</Variable><Normal Text> </Normal Text><Variable>z</Variable><Normal Text> </Normal Text><Redirection><<<</Redirection><Normal Text> </Normal Text><Variable>$hallo</Variable><br/>
+<Builtin>unset</Builtin><Normal Text> </Normal Text><Variable>B</Variable><br/>
+<Builtin>declare</Builtin><Normal Text> </Normal Text><Option>-a</Option><Normal Text> </Normal Text><Variable>VAR1</Variable><Normal Text> </Normal Text><Variable>VAR2</Variable><Normal Text> </Normal Text><Control>&&</Control><Normal Text> </Normal Text><Builtin>exit</Builtin><br/>
+<Builtin>declare</Builtin><Normal Text> </Normal Text><Variable>less</Variable><Normal Text> </Normal Text><Variable>a</Variable><Normal Text> </Normal Text><Control>&&</Control><Normal Text> </Normal Text><OtherCommand>b</OtherCommand><Normal Text> </Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment># options are recoqnized:</Comment><br/>
+<Command>zip</Command><Normal Text> </Normal Text><Option>-f</Option><Normal Text>=file.zip</Normal Text><br/>
+<OtherCommand>./configure</OtherCommand><Normal Text>  </Normal Text><Option>--destdir</Option><Normal Text>=</Normal Text><Path>/usr</Path><br/>
+<Command>make</Command><Normal Text>  destdir=</Normal Text><Path>/usr/</Path><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment># [[ and [ correctly need spaces to be regarded as structure,</Comment><br/>
+<Comment># otherwise they are patterns (currently treated as normal text)</Comment><br/>
+<Keyword>if</Keyword><Builtin> [</Builtin><Normal Text> </Normal Text><String DoubleQ>"</String DoubleQ><Variable>$p</Variable><String DoubleQ>"</String DoubleQ><Normal Text> </Normal Text><Expression>==</Expression><Normal Text> </Normal Text><String DoubleQ>""</String DoubleQ><Builtin> ]</Builtin><Normal Text> ; </Normal Text><Keyword>then</Keyword><br/>
+<Normal Text>	</Normal Text><Command>ls</Command><Normal Text> </Normal Text><Path>/usr/bin</Path><Normal Text>/[a-z]*</Normal Text><br/>
+<Keyword>elif [[</Keyword><Normal Text> </Normal Text><Variable>$p</Variable><Normal Text> </Normal Text><Expression>==</Expression><Normal Text> 0</Normal Text><Keyword> ]]</Keyword><Normal Text> ; </Normal Text><Keyword>then</Keyword><br/>
+<Normal Text>	</Normal Text><Command>ls</Command><Normal Text> </Normal Text><Path>/usr/share/</Path><Variable>$p</Variable><br/>
+<Keyword>fi</Keyword><br/>
+<Normal Text></Normal Text><br/>
+<Comment># Fixed:</Comment><br/>
+<Command>ls</Command><Normal Text> a[ab]*		</Normal Text><Comment># dont try to interprete as assignment with subscript (fixed)</Comment><br/>
+<OtherCommand>a</OtherCommand><Normal Text>[ab]</Normal Text><br/>
+<Variable>a[ab]=</Variable><Normal Text>sa</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment># Here documents are difficult to catch:</Comment><br/>
+<Command>cat</Command><Normal Text> </Normal Text><Redirection>></Redirection><Normal Text> myfile </Normal Text><Redirection><< __EOF__</Redirection><br/>
+<Normal Text>You're right, this is definitely no bash code</Normal Text><br/>
+<Normal Text>But ls more </Normal Text><Variable>$parameters</Variable><Normal Text> should be expanded.</Normal Text><br/>
+<Redirection>__EOF__</Redirection><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment># quoted:</Comment><br/>
+<Command>cat</Command><Normal Text> </Normal Text><Redirection><< "EOF"</Redirection><Normal Text> </Normal Text><Control>|</Control><Normal Text> </Normal Text><Command>egrep</Command><Normal Text> </Normal Text><String DoubleQ>"this"</String DoubleQ><Normal Text> </Normal Text><Redirection>>&4</Redirection><Normal Text>   </Normal Text><Comment># the rest of the line is still considered bash source</Comment><br/>
+<Normal Text>You're right, this is definitely no bash code</Normal Text><br/>
+<Normal Text>But ls more $parameters should be expanded. :-></Normal Text><br/>
+<Redirection>EOF</Redirection><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment># indented:</Comment><br/>
+<Keyword>if</Keyword><Normal Text> </Normal Text><Command>true</Command><br/>
+<Keyword>then</Keyword><br/>
+<Normal Text>	</Normal Text><Command>cat</Command><Normal Text> </Normal Text><Redirection><<- EOF</Redirection><br/>
+<Normal Text>		Indented text with a </Normal Text><Variable>$dollar</Variable><Normal Text> or </Normal Text><Escape>\$</Escape><Normal Text>two</Normal Text><br/>
+<Redirection>	EOF</Redirection><br/>
+<Keyword>elif</Keyword><Builtin> [</Builtin><Normal Text> </Normal Text><Expression>-d</Expression><Normal Text> </Normal Text><Variable>$file</Variable><Builtin> ]</Builtin><Normal Text>; </Normal Text><Keyword>then</Keyword><br/>
+<Normal Text>	</Normal Text><Command>cat</Command><Normal Text> </Normal Text><Redirection><<- "EOF"</Redirection><br/>
+<Normal Text>		Indented text without a $dollar</Normal Text><br/>
+<Redirection>	EOF</Redirection><br/>
+<Keyword>fi</Keyword><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>case</Keyword><Normal Text> 1</Normal Text><Keyword> in</Keyword><Normal Text> </Normal Text><br/>
+<Normal Text>2</Normal Text><Keyword>)</Keyword><Normal Text> </Normal Text><Builtin>echo</Builtin><Normal Text> xxx</Normal Text><Control>;</Control><br/>
+<Keyword>;;</Keyword><br/>
+<Normal Text>1</Normal Text><Keyword>)</Keyword><Normal Text> </Normal Text><Builtin>echo</Builtin><Normal Text> yyy</Normal Text><Control>;</Control><br/>
+<Keyword>esac</Keyword><br/>
+<Normal Text></Normal Text><br/>
+<Command>ls</Command><Normal Text> </Normal Text><Comment>#should be outside of case 1 folding block</Comment><br/>

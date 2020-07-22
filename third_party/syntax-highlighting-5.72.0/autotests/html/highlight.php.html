@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title>highlight.php</title>
+<meta name="generator" content="KF5::SyntaxHighlighting (PHP (HTML))"/>
+</head><body style="color:#1f1c1b"><pre>
+<span style="font-weight:bold;">&lt;?</span>
+<span style="color:#898887;">/* This is a pseudo PHP file to test Kate's PHP syntax highlighting. */</span>
+<span style="color:#898887;"># </span><span style="color:#ca9219;background-color:#451e1a;font-weight:bold;">TODO</span><span style="color:#898887;">: this is incomplete, add more syntax examples!</span>
+<span style="color:#898887;"># this is also a comment.</span>
+<span style="color:#898887;">// Even this is a comment</span>
+<span style="font-weight:bold;">function</span> test<span style="color:#006e28;">(</span><span style="color:#5555ff;">$varname</span><span style="color:#006e28;">)</span> {
+	<span style="color:#a1a100;">return</span> <span style="color:#bf0303;">&quot;bla&quot;</span><span style="color:#006e28;">;</span>	<span style="color:#898887;"># this is also a comment</span>
+}
+
+<span style="font-weight:bold;">?&gt;</span>
+
+<span style="font-weight:bold;">&lt;?php</span> <span style="font-weight:bold;">echo</span><span style="color:#006e28;">(</span><span style="color:#bf0303;">&quot;hello test&quot;</span><span style="color:#006e28;">);</span> <span style="font-weight:bold;">?&gt;</span>
+
+<span style="font-weight:bold;">&lt;html&gt;</span>
+	<span style="font-weight:bold;">&lt;?</span> <span style="font-weight:bold;">print</span> <span style="color:#bf0303;">&quot;&lt;title&gt;test&lt;/title&gt;&quot;</span><span style="color:#006e28;">;</span> <span style="font-weight:bold;">?&gt;</span>
+
+	<span style="color:#898887;">&lt;!-- CSS --&gt;</span>
+	<span style="font-weight:bold;">&lt;style&gt;</span>
+		<span style="color:#644a9b;">.inputText</span> {
+			<span style="font-weight:bold;">width</span>: <span style="font-weight:bold;">&lt;?php</span> <span style="font-weight:bold;">echo</span> <span style="color:#5555ff;">$width</span><span style="color:#006e28;">;</span> <span style="font-weight:bold;">?&gt;</span>px;
+			<span style="font-weight:bold;">text-indent</span>: <span style="color:#b08000;">10</span><span style="color:#0057ae;">px</span>;
+		}
+	<span style="font-weight:bold;">&lt;/style&gt;</span>
+
+	<span style="color:#898887;">&lt;!-- JavaScript --&gt;</span>
+	<span style="font-weight:bold;">&lt;script&gt;</span>
+		<span style="font-weight:bold;">var</span> some_js_var = <span style="font-weight:bold;">&lt;?php</span> <span style="font-weight:bold;">echo</span> <span style="color:#5555ff;">$somevar</span><span style="color:#006e28;">;</span> <span style="font-weight:bold;">?&gt;</span> ;
+		<span style="font-weight:bold;">&lt;?php</span> <span style="font-weight:bold;">echo</span> <span style="color:#bf0303;">'alert(&quot;Hello there.&quot;);'</span><span style="color:#006e28;">;</span> <span style="font-weight:bold;">?&gt;</span>
+	<span style="font-weight:bold;">&lt;/script&gt;</span>
+	<span style="color:#898887;">&lt;!-- JavaScript React --&gt;</span>
+	<span style="font-weight:bold;">&lt;script</span><span style="color:#006e28;"> type=</span><span style="color:#bf0303;">&quot;text/babel&quot;</span><span style="font-weight:bold;">&gt;</span>
+		<span style="color:#644a9b;font-weight:bold;">&lt;Hello&gt;</span> <span style="font-weight:bold;">&lt;?php</span> <span style="font-weight:bold;">echo</span><span style="color:#006e28;">(</span><span style="color:#bf0303;">&quot;Hello, hello!&quot;</span><span style="color:#006e28;">);</span> <span style="font-weight:bold;">?&gt;</span> <span style="color:#644a9b;font-weight:bold;">&lt;/Hello&gt;</span> <span style="font-weight:bold;">&lt;?php</span> <span style="color:#898887;">/* aaa */</span> <span style="font-weight:bold;">?&gt;</span> <span style="font-weight:bold;">&lt;div&gt;&lt;/div&gt;</span>
+		<span style="font-weight:bold;">function</span> <span style="color:#644a9b;">a</span>(i) {
+			<span style="font-weight:bold;">&lt;?php</span> <span style="font-weight:bold;">echo</span> <span style="color:#bf0303;">&quot;var j = 1;&quot;</span><span style="color:#006e28;">;</span> <span style="font-weight:bold;">?&gt;</span>
+			<span style="font-weight:bold;">return </span><span style="font-weight:bold;">&lt;p&gt;</span><span style="color:#0057ae;">{</span> i + j <span style="color:#0057ae;">}</span><span style="font-weight:bold;">&lt;/p&gt;</span>;
+		}
+	<span style="font-weight:bold;">&lt;/script&gt;</span>
+	<span style="color:#898887;">&lt;!-- TypeScript --&gt;</span>
+	<span style="font-weight:bold;">&lt;script</span><span style="color:#006e28;"> type=</span><span style="color:#bf0303;">&quot;text/typescript&quot;</span><span style="font-weight:bold;">&gt;</span>
+		<span style="font-weight:bold;">&lt;?php</span> <span style="color:#5555ff;">$timestamp</span> = <span style="color:#644a9b;">time</span><span style="color:#006e28;">();</span> <span style="font-weight:bold;">?&gt;</span>
+		<span style="font-weight:bold;font-style:italic;">class</span> DateTime {
+			info: <span style="color:#0057ae;">string</span>;
+			<span style="font-weight:bold;font-style:italic;">constructor</span>() { <span style="font-weight:bold;">this</span>.<span style="color:#0057ae;">info</span> = <span style="font-weight:bold;">&lt;?php</span> <span style="font-weight:bold;">echo</span><span style="color:#006e28;">(</span><span style="color:#644a9b;">date</span><span style="color:#006e28;">(</span><span style="color:#bf0303;">&quot;F d, Y h:i:s&quot;</span><span style="color:#006e28;">,</span> <span style="color:#5555ff;">$timestamp</span><span style="color:#006e28;">));</span> <span style="font-weight:bold;">?&gt;</span>; }
+			<span style="font-weight:bold;font-style:italic;">get</span>() { <span style="font-weight:bold;">return</span> <span style="font-weight:bold;">this</span>.<span style="color:#0057ae;">info</span>; }
+		}
+	<span style="font-weight:bold;">&lt;/script&gt;</span>
+	<span style="color:#898887;">&lt;!-- MustacheJS --&gt;</span>
+	<span style="font-weight:bold;">&lt;script</span><span style="color:#006e28;"> type=</span><span style="color:#bf0303;">&quot;x-tmpl-mustache&quot;</span><span style="font-weight:bold;">&gt;</span>
+		<span style="color:#898887;">{{! </span><span style="font-weight:bold;">&lt;?php</span> <span style="font-weight:bold;">print</span> <span style="color:#bf0303;">&quot;comment&quot;</span><span style="color:#006e28;">;</span> <span style="font-weight:bold;">?&gt;</span><span style="color:#898887;"> }}</span>
+		<span style="color:#644a9b;font-weight:bold;">{{#movie}}</span>
+			<span style="font-weight:bold;">&lt;div&gt;</span>
+				<span style="font-weight:bold;">&lt;h1&gt;</span><span style="color:#0057ae;">{{</span>title<span style="color:#0057ae;">}}</span><span style="font-weight:bold;">&lt;/h1&gt;</span>
+				<span style="font-weight:bold;">&lt;img</span><span style="color:#006e28;"> src</span>=<span style="color:#bf0303;">&quot;</span><span style="color:#0057ae;">{{</span>poster<span style="color:#0057ae;">}}</span><span style="color:#bf0303;">&quot;</span><span style="color:#006e28;"> alt</span>=<span style="color:#bf0303;">&quot;</span><span style="color:#0057ae;">{{</span>title<span style="color:#0057ae;">}}</span><span style="color:#bf0303;">&quot;</span><span style="font-weight:bold;">/&gt;</span>
+				<span style="font-weight:bold;">&lt;?php</span> <span style="font-weight:bold;">echo</span> <span style="color:#5555ff;">$movierating</span><span style="color:#006e28;">;</span> <span style="font-weight:bold;">?&gt;</span> - <span style="color:#0057ae;">{{</span>ratings.critics_rating<span style="color:#0057ae;">}}</span>
+			<span style="font-weight:bold;">&lt;/div&gt;</span>
+		<span style="color:#644a9b;font-weight:bold;">{{/movie}}</span>
+	<span style="font-weight:bold;">&lt;/script&gt;</span>
+
+<span style="font-weight:bold;">&lt;/html&gt;</span>
+
+<span style="font-weight:bold;">&lt;?php</span>
+<span style="color:#5555ff;">$var</span> = <span style="color:#0f0f8f;font-weight:bold;">&lt;&lt;&lt;DOOH</span>
+<span style="color:#bf0303;">This is the </span><span style="color:#5555ff;">$string</span><span style="color:#bf0303;"> inside the variable (which seems to be rendered as a string)</span>
+<span style="color:#bf0303;">It works well, I think.</span>
+<span style="color:#0f0f8f;font-weight:bold;">DOOH</span>
+
+<span style="color:#898887;"># bug 382527</span>
+<span style="font-weight:bold;">throw</span> <span style="font-weight:bold;">new</span> ParserException<span style="color:#006e28;">(</span><span style="color:#bf0303;">&quot;Test </span><span style="color:#5555ff;">{$this-&gt;some_var[$index]}</span><span style="color:#0f0f8f;font-weight:bold;">\n</span><span style="color:#bf0303;">in </span><span style="color:#5555ff;">{$this-&gt;file}</span><span style="color:#bf0303;"> is missing.</span><span style="color:#0f0f8f;font-weight:bold;">\n</span><span style="color:#bf0303;">This is bad.&quot;</span><span style="color:#006e28;">);</span>
+<span style="font-weight:bold;">?&gt;</span>
+</pre></body></html>

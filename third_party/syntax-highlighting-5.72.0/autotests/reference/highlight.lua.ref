@@ -1,0 +1,171 @@
+<Comment>#!/usr/bin/env lua</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Comment>-- Metatables</Comment><br/>
+<Variable>t</Variable><Normal Text> </Normal Text><Symbols>=</Symbols><Normal Text> </Normal Text><Symbols>{</Symbols><br/>
+<Normal Text>    </Normal Text><Metamethod>__add</Metamethod><Symbols>=</Symbols><Keyword>function</Keyword><Symbols>(</Symbols><Variable>a</Variable><Symbols>,</Symbols><Variable>b</Variable><Symbols>)</Symbols><Control>return</Control><Normal Text> </Normal Text><Variable>a</Variable><Symbols>+</Symbols><Variable>b</Variable><Normal Text> </Normal Text><Keyword>end</Keyword><Symbols>,</Symbols><br/>
+<Normal Text>    </Normal Text><Metamethod>__sub</Metamethod><Symbols>=</Symbols><Keyword>function</Keyword><Symbols>(</Symbols><Variable>a</Variable><Symbols>,</Symbols><Variable>b</Variable><Symbols>)</Symbols><Control>return</Control><Normal Text> </Normal Text><Variable>a</Variable><Symbols>-</Symbols><Variable>b</Variable><Normal Text> </Normal Text><Keyword>end</Keyword><Symbols>,</Symbols><br/>
+<Normal Text>    </Normal Text><Metamethod>__mul</Metamethod><Symbols>=</Symbols><Keyword>function</Keyword><Symbols>(</Symbols><Variable>a</Variable><Symbols>,</Symbols><Variable>b</Variable><Symbols>)</Symbols><Control>return</Control><Normal Text> </Normal Text><Variable>a</Variable><Symbols>*</Symbols><Variable>b</Variable><Normal Text> </Normal Text><Keyword>end</Keyword><Symbols>,</Symbols><br/>
+<Normal Text>    </Normal Text><Metamethod>__div</Metamethod><Symbols>=</Symbols><Keyword>function</Keyword><Symbols>(</Symbols><Variable>a</Variable><Symbols>,</Symbols><Variable>b</Variable><Symbols>)</Symbols><Control>return</Control><Normal Text> </Normal Text><Variable>a</Variable><Symbols>/</Symbols><Variable>b</Variable><Normal Text> </Normal Text><Keyword>end</Keyword><Symbols>,</Symbols><br/>
+<Normal Text>    </Normal Text><Metamethod>__mod</Metamethod><Symbols>=</Symbols><Keyword>function</Keyword><Symbols>(</Symbols><Variable>a</Variable><Symbols>,</Symbols><Variable>b</Variable><Symbols>)</Symbols><Control>return</Control><Normal Text> </Normal Text><Variable>a</Variable><Symbols>%</Symbols><Variable>b</Variable><Normal Text> </Normal Text><Keyword>end</Keyword><Symbols>,</Symbols><br/>
+<Normal Text>    </Normal Text><Metamethod>__pow</Metamethod><Symbols>=</Symbols><Keyword>function</Keyword><Symbols>(</Symbols><Variable>a</Variable><Symbols>,</Symbols><Variable>b</Variable><Symbols>)</Symbols><Control>return</Control><Normal Text> </Normal Text><Variable>a</Variable><Symbols>^</Symbols><Variable>b</Variable><Normal Text> </Normal Text><Keyword>end</Keyword><Symbols>,</Symbols><br/>
+<Normal Text>    </Normal Text><Metamethod>__unm</Metamethod><Symbols>=</Symbols><Keyword>function</Keyword><Symbols>(</Symbols><Variable>a</Variable><Symbols>)</Symbols><Control>return</Control><Normal Text> </Normal Text><Symbols>-</Symbols><Variable>a</Variable><Normal Text> </Normal Text><Keyword>end</Keyword><Symbols>,</Symbols><br/>
+<Normal Text>    </Normal Text><Metamethod>__idiv</Metamethod><Symbols>=</Symbols><Keyword>function</Keyword><Symbols>(</Symbols><Variable>a</Variable><Symbols>,</Symbols><Variable>b</Variable><Symbols>)</Symbols><Control>return</Control><Normal Text> </Normal Text><Variable>a</Variable><Symbols>//</Symbols><Variable>b</Variable><Normal Text> </Normal Text><Keyword>end</Keyword><Symbols>,</Symbols><br/>
+<Normal Text>    </Normal Text><Metamethod>__band</Metamethod><Symbols>=</Symbols><Keyword>function</Keyword><Symbols>(</Symbols><Variable>a</Variable><Symbols>,</Symbols><Variable>b</Variable><Symbols>)</Symbols><Control>return</Control><Normal Text> </Normal Text><Variable>a</Variable><Symbols>&</Symbols><Variable>b</Variable><Normal Text> </Normal Text><Keyword>end</Keyword><Symbols>,</Symbols><br/>
+<Normal Text>    </Normal Text><Metamethod>__bor</Metamethod><Symbols>=</Symbols><Keyword>function</Keyword><Symbols>(</Symbols><Variable>a</Variable><Symbols>,</Symbols><Variable>b</Variable><Symbols>)</Symbols><Control>return</Control><Normal Text> </Normal Text><Variable>a</Variable><Symbols>|</Symbols><Variable>b</Variable><Normal Text> </Normal Text><Keyword>end</Keyword><Symbols>,</Symbols><br/>
+<Normal Text>    </Normal Text><Metamethod>__bxor</Metamethod><Symbols>=</Symbols><Keyword>function</Keyword><Symbols>(</Symbols><Variable>a</Variable><Symbols>,</Symbols><Variable>b</Variable><Symbols>)</Symbols><Control>return</Control><Normal Text> </Normal Text><Variable>a</Variable><Symbols>~</Symbols><Variable>b</Variable><Normal Text> </Normal Text><Keyword>end</Keyword><Symbols>,</Symbols><br/>
+<Normal Text>    </Normal Text><Metamethod>__bnot</Metamethod><Symbols>=</Symbols><Keyword>function</Keyword><Symbols>(</Symbols><Variable>a</Variable><Symbols>)</Symbols><Control>return</Control><Normal Text> </Normal Text><Symbols>~</Symbols><Variable>a</Variable><Normal Text> </Normal Text><Keyword>end</Keyword><Symbols>,</Symbols><br/>
+<Normal Text>    </Normal Text><Metamethod>__shl</Metamethod><Symbols>=</Symbols><Keyword>function</Keyword><Symbols>(</Symbols><Variable>a</Variable><Symbols>,</Symbols><Variable>b</Variable><Symbols>)</Symbols><Control>return</Control><Normal Text> </Normal Text><Variable>a</Variable><Symbols><<</Symbols><Variable>b</Variable><Normal Text> </Normal Text><Keyword>end</Keyword><Symbols>,</Symbols><br/>
+<Normal Text>    </Normal Text><Metamethod>__shr</Metamethod><Symbols>=</Symbols><Keyword>function</Keyword><Symbols>(</Symbols><Variable>a</Variable><Symbols>,</Symbols><Variable>b</Variable><Symbols>)</Symbols><Control>return</Control><Normal Text> </Normal Text><Variable>a</Variable><Symbols>>></Symbols><Variable>b</Variable><Normal Text> </Normal Text><Keyword>end</Keyword><Symbols>,</Symbols><br/>
+<Normal Text>    </Normal Text><Metamethod>__concat</Metamethod><Symbols>=</Symbols><Keyword>function</Keyword><Symbols>(</Symbols><Variable>a</Variable><Symbols>,</Symbols><Variable>b</Variable><Symbols>)</Symbols><Control>return</Control><Normal Text> </Normal Text><Variable>a</Variable><Symbols>..</Symbols><Variable>b</Variable><Normal Text> </Normal Text><Keyword>end</Keyword><Symbols>,</Symbols><br/>
+<Normal Text>    </Normal Text><Metamethod>__len</Metamethod><Symbols>=</Symbols><Keyword>function</Keyword><Symbols>(</Symbols><Variable>a</Variable><Symbols>)</Symbols><Control>return</Control><Normal Text> </Normal Text><Symbols>#</Symbols><Variable>a</Variable><Normal Text> </Normal Text><Keyword>end</Keyword><Symbols>,</Symbols><br/>
+<Normal Text>    </Normal Text><Metamethod>__eq</Metamethod><Symbols>=</Symbols><Keyword>function</Keyword><Symbols>(</Symbols><Variable>a</Variable><Symbols>,</Symbols><Variable>b</Variable><Symbols>)</Symbols><Control>return</Control><Normal Text> </Normal Text><Variable>a</Variable><Symbols>==</Symbols><Variable>b</Variable><Normal Text> </Normal Text><Keyword>end</Keyword><Symbols>,</Symbols><br/>
+<Normal Text>    </Normal Text><Metamethod>__lt</Metamethod><Symbols>=</Symbols><Keyword>function</Keyword><Symbols>(</Symbols><Variable>a</Variable><Symbols>,</Symbols><Variable>b</Variable><Symbols>)</Symbols><Control>return</Control><Normal Text> </Normal Text><Variable>a</Variable><Symbols><</Symbols><Variable>b</Variable><Normal Text> </Normal Text><Keyword>end</Keyword><Symbols>,</Symbols><br/>
+<Normal Text>    </Normal Text><Metamethod>__le</Metamethod><Symbols>=</Symbols><Keyword>function</Keyword><Symbols>(</Symbols><Variable>a</Variable><Symbols>,</Symbols><Variable>b</Variable><Symbols>)</Symbols><Control>return</Control><Normal Text> </Normal Text><Variable>a</Variable><Symbols><=</Symbols><Variable>b</Variable><Normal Text> </Normal Text><Keyword>end</Keyword><Symbols>,</Symbols><br/>
+<Normal Text>    </Normal Text><Metamethod>__index</Metamethod><Symbols>=</Symbols><Keyword>function</Keyword><Symbols>(</Symbols><Variable>t</Variable><Symbols>,</Symbols><Variable>k</Variable><Symbols>)</Symbols><Control>return</Control><Normal Text> </Normal Text><Variable>t</Variable><Symbols>[</Symbols><Variable>k</Variable><Symbols>]</Symbols><Normal Text> </Normal Text><Keyword>end</Keyword><Symbols>,</Symbols><br/>
+<Normal Text>    </Normal Text><Metamethod>__newindex</Metamethod><Symbols>=</Symbols><Keyword>function</Keyword><Symbols>(</Symbols><Variable>t</Variable><Symbols>,</Symbols><Variable>k</Variable><Symbols>,</Symbols><Variable>v</Variable><Symbols>)</Symbols><Control>return</Control><Normal Text> </Normal Text><Variable>t</Variable><Symbols>[</Symbols><Variable>k</Variable><Symbols>]=</Symbols><Variable>v</Variable><Normal Text> </Normal Text><Keyword>end</Keyword><Symbols>,</Symbols><br/>
+<Normal Text>    </Normal Text><Metamethod>__call</Metamethod><Symbols>=</Symbols><Keyword>function</Keyword><Symbols>(</Symbols><Variable>f</Variable><Symbols>,</Symbols><Normal Text> </Normal Text><Symbols>...)</Symbols><Control>return</Control><Normal Text> f</Normal Text><Symbols>(...)</Symbols><Normal Text> </Normal Text><Keyword>end</Keyword><Symbols>,</Symbols><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>   </Normal Text><Metamethod>__tostring</Metamethod><Symbols>=</Symbols><Keyword>function</Keyword><Symbols>(</Symbols><Variable>a</Variable><Symbols>)</Symbols><Control>return</Control><Normal Text> </Normal Text><BFunc>tostring</BFunc><Symbols>(</Symbols><Variable>a</Variable><Symbols>)</Symbols><Normal Text> </Normal Text><Keyword>end</Keyword><Symbols>,</Symbols><br/>
+<Normal Text>   </Normal Text><Metamethod>__pairs</Metamethod><Symbols>=</Symbols><Keyword>function</Keyword><Symbols>(</Symbols><Variable>t</Variable><Symbols>)</Symbols><Control>return</Control><Normal Text> </Normal Text><BFunc>pairs</BFunc><Symbols>(</Symbols><Variable>a</Variable><Symbols>)</Symbols><Normal Text> </Normal Text><Keyword>end</Keyword><Symbols>,</Symbols><br/>
+<Normal Text>   </Normal Text><Comment>-- setmetatable</Comment><br/>
+<Normal Text>   </Normal Text><Metamethod>__metatable</Metamethod><Symbols>=</Symbols><Keyword>true</Keyword><br/>
+<Normal Text>   </Normal Text><Comment>-- Garbage collector</Comment><br/>
+<Normal Text>   </Normal Text><Metamethod>__gc</Metamethod><Symbols>=</Symbols><Keyword>function</Keyword><Symbols>()</Symbols><Normal Text> </Normal Text><Keyword>end</Keyword><br/>
+<Normal Text>   </Normal Text><Comment>-- Weak table</Comment><br/>
+<Normal Text>   </Normal Text><Metamethod>__mode</Metamethod><Symbols>=</Symbols><Strings>'k'</Strings><Normal Text> </Normal Text><Comment>-- or 'v'</Comment><br/>
+<Symbols>}</Symbols><br/>
+<Normal Text></Normal Text><br/>
+<Variable>a</Variable><Normal Text> </Normal Text><Keyword>or</Keyword><Normal Text> </Normal Text><Variable>b</Variable><br/>
+<Variable>a</Variable><Normal Text> </Normal Text><Keyword>and</Keyword><Normal Text> </Normal Text><Variable>b</Variable><br/>
+<Variable>a</Variable><Symbols>~=</Symbols><Variable>b</Variable><br/>
+<Variable>a</Variable><Symbols>>=</Symbols><Variable>b</Variable><br/>
+<Keyword>true</Keyword><Normal Text> </Normal Text><Keyword>or</Keyword><Normal Text> </Normal Text><Keyword>false</Keyword><br/>
+<Variable>a</Variable><Normal Text> </Normal Text><Keyword>or</Keyword><Normal Text> </Normal Text><Keyword>nil</Keyword><br/>
+<Variable>a</Variable><Symbols>::</Symbols><Variable>m</Variable><br/>
+<Variable>a</Variable><Symbols>.</Symbols><Variable>m</Variable><br/>
+<Variable>a</Variable><Symbols>;</Symbols><Variable>a</Variable><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment>-- String</Comment><br/>
+<Strings>'</Strings><Special Char>\a</Special Char><Strings>'</Strings><br/>
+<Strings>'</Strings><Special Char>\b</Special Char><Strings>'</Strings><br/>
+<Strings>'</Strings><Special Char>\f</Special Char><Strings>'</Strings><br/>
+<Strings>'</Strings><Special Char>\n</Special Char><Strings>'</Strings><br/>
+<Strings>'</Strings><Special Char>\r</Special Char><Strings>'</Strings><br/>
+<Strings>'</Strings><Special Char>\t</Special Char><Strings>'</Strings><br/>
+<Strings>'</Strings><Special Char>\v</Special Char><Strings>'</Strings><br/>
+<Strings>'</Strings><Special Char>\\</Special Char><Strings>'</Strings><br/>
+<Strings>'</Strings><Special Char>\"</Special Char><Strings>'</Strings><br/>
+<Strings>'</Strings><Special Char>\'</Special Char><Strings>'</Strings><br/>
+<Strings>'</Strings><Special Char>\z</Special Char><Strings>'</Strings><br/>
+<Strings>'</Strings><Special Char>\xff</Special Char><Strings>'</Strings><br/>
+<Strings>'</Strings><Special Char>\xFF</Special Char><Strings>'</Strings><br/>
+<Strings>'</Strings><Special Char>\231</Special Char><Strings>'</Strings><br/>
+<Strings>'</Strings><Special Char>\23</Special Char><Strings>'</Strings><br/>
+<Strings>'</Strings><Special Char>\2</Special Char><Strings>'</Strings><br/>
+<Strings>'</Strings><Special Char>\u{100201}</Special Char><Strings>'</Strings><Normal Text> </Normal Text><Comment>-- max 6 digits</Comment><br/>
+<Strings>'</Strings><Special Char>\2</Special Char><Strings>a</Strings><Error>\</Error><Strings>ks'</Strings><Normal Text> </Normal Text><Comment>-- error</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Strings>'multi</Strings><Special Char>\</Special Char><br/>
+<Strings>line'</Strings><br/>
+<Strings>'multi</Strings><Special Char>\z</Special Char><br/>
+<Strings>line'</Strings><br/>
+<Strings>'multi</Strings><Special Char>\z</Special Char><Strings>    line</Strings><Special Char>\</Special Char><br/>
+<Strings>2'</Strings><br/>
+<Normal Text></Normal Text><br/>
+<Variable>a</Variable><Normal Text> </Normal Text><Symbols>=</Symbols><Normal Text> </Normal Text><Strings>'alo</Strings><Special Char>\n</Special Char><Strings>123"'</Strings><br/>
+<Variable>a</Variable><Normal Text> </Normal Text><Symbols>=</Symbols><Normal Text> </Normal Text><Strings>"alo</Strings><Special Char>\n</Special Char><Strings>123</Strings><Special Char>\"</Special Char><Strings>"</Strings><br/>
+<Variable>a</Variable><Normal Text> </Normal Text><Symbols>=</Symbols><Normal Text> </Normal Text><Strings>'</Strings><Special Char>\97</Special Char><Strings>lo</Strings><Special Char>\10\049</Special Char><Strings>23"'</Strings><br/>
+<Variable>a</Variable><Normal Text> </Normal Text><Symbols>=</Symbols><Normal Text> </Normal Text><RawStrings>[[alo</RawStrings><br/>
+<RawStrings>123"]]</RawStrings><br/>
+<Variable>a</Variable><Normal Text> </Normal Text><Symbols>=</Symbols><Normal Text> </Normal Text><RawStrings>[==[</RawStrings><br/>
+<RawStrings>alo</RawStrings><br/>
+<RawStrings>123"]==]</RawStrings><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment>-- Decimal</Comment><br/>
+<Numbers>3</Numbers><br/>
+<Numbers>345</Numbers><br/>
+<Numbers>0xff</Numbers><br/>
+<Numbers>0xBEBADA</Numbers><br/>
+<Normal Text></Normal Text><br/>
+<Comment>-- Float</Comment><br/>
+<Numbers>3.</Numbers><br/>
+<Numbers>.3</Numbers><br/>
+<Numbers>3.0</Numbers><br/>
+<Numbers>3.1416</Numbers><br/>
+<Numbers>314.16e-2</Numbers><br/>
+<Numbers>314.e+2</Numbers><br/>
+<Numbers>0.31416E1</Numbers><br/>
+<Numbers>34e1</Numbers><br/>
+<Numbers>0.e3</Numbers><br/>
+<Numbers>0x0.1E</Numbers><br/>
+<Numbers>0xA23p-4</Numbers><br/>
+<Numbers>0xA.p+4</Numbers><br/>
+<Numbers>0x.ap4</Numbers><br/>
+<Numbers>0X1.921FB54442D18P+1</Numbers><br/>
+<Comment>-- error</Comment><br/>
+<Numbers>32</Numbers><Normal Text>p</Normal Text><br/>
+<Numbers>0</Numbers><Normal Text>xp</Normal Text><Symbols>-</Symbols><Numbers>4</Numbers><br/>
+<Numbers>0</Numbers><Normal Text>x</Normal Text><Symbols>.</Symbols><Variable>p</Variable><Symbols>-</Symbols><Numbers>4</Numbers><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment>-- single comment</Comment><br/>
+<Normal Text>xyz</Normal Text><Symbols>()</Symbols><br/>
+<Comment>--[[</Comment><br/>
+<Comment> long comment</Comment><br/>
+<Comment>]]</Comment><br/>
+<Normal Text>xyz</Normal Text><Symbols>()</Symbols><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Variable>a</Variable><Normal Text> </Normal Text><Symbols>=</Symbols><Normal Text> </Normal Text><Symbols>{</Symbols><Normal Text> </Normal Text><Symbols>[</Symbols><Normal Text>f</Normal Text><Symbols>(</Symbols><Numbers>1</Numbers><Symbols>)]</Symbols><Normal Text> </Normal Text><Symbols>=</Symbols><Normal Text> </Normal Text><Variable>g</Variable><Symbols>;</Symbols><Normal Text> </Normal Text><Strings>"x"</Strings><Symbols>,</Symbols><Normal Text> </Normal Text><Strings>"y"</Strings><Symbols>;</Symbols><Normal Text> </Normal Text><Variable>x</Variable><Normal Text> </Normal Text><Symbols>=</Symbols><Normal Text> </Normal Text><Numbers>1</Numbers><Symbols>,</Symbols><Normal Text> f</Normal Text><Symbols>(</Symbols><Variable>x</Variable><Symbols>),</Symbols><Normal Text> </Normal Text><Symbols>[</Symbols><Numbers>30</Numbers><Symbols>]</Symbols><Normal Text> </Normal Text><Symbols>=</Symbols><Normal Text> </Normal Text><Numbers>23</Numbers><Symbols>;</Symbols><Normal Text> </Normal Text><Numbers>45</Numbers><Normal Text> </Normal Text><Symbols>}</Symbols><br/>
+<Normal Text></Normal Text><br/>
+<Comment>-- is equivalent to</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Control>do</Control><br/>
+<Normal Text>  </Normal Text><Keyword>local</Keyword><Normal Text> </Normal Text><Variable>t</Variable><Normal Text> </Normal Text><Symbols>=</Symbols><Normal Text> </Normal Text><Symbols>{}</Symbols><br/>
+<Normal Text>  </Normal Text><Variable>t</Variable><Symbols>[</Symbols><Normal Text>f</Normal Text><Symbols>(</Symbols><Numbers>1</Numbers><Symbols>)]</Symbols><Normal Text> </Normal Text><Symbols>=</Symbols><Normal Text> </Normal Text><Variable>g</Variable><br/>
+<Normal Text>  </Normal Text><Variable>t</Variable><Symbols>[</Symbols><Numbers>1</Numbers><Symbols>]</Symbols><Normal Text> </Normal Text><Symbols>=</Symbols><Normal Text> </Normal Text><Strings>"x"</Strings><Normal Text> </Normal Text><Comment>-- 1st exp</Comment><br/>
+<Normal Text>  </Normal Text><Variable>t</Variable><Symbols>[</Symbols><Numbers>2</Numbers><Symbols>]</Symbols><Normal Text> </Normal Text><Symbols>=</Symbols><Normal Text> </Normal Text><Strings>"y"</Strings><Normal Text> </Normal Text><Comment>-- 2nd exp</Comment><br/>
+<Normal Text>  </Normal Text><Variable>t</Variable><Symbols>.</Symbols><Variable>x</Variable><Normal Text> </Normal Text><Symbols>=</Symbols><Normal Text> </Normal Text><Numbers>1</Numbers><Normal Text> </Normal Text><Comment>-- t["x"] = 1</Comment><br/>
+<Normal Text>  </Normal Text><Variable>t</Variable><Symbols>[</Symbols><Numbers>3</Numbers><Symbols>]</Symbols><Normal Text> </Normal Text><Symbols>=</Symbols><Normal Text> f</Normal Text><Symbols>(</Symbols><Variable>x</Variable><Symbols>)</Symbols><Normal Text> </Normal Text><Comment>-- 3rd exp</Comment><br/>
+<Normal Text>  </Normal Text><Variable>t</Variable><Symbols>[</Symbols><Numbers>30</Numbers><Symbols>]</Symbols><Normal Text> </Normal Text><Symbols>=</Symbols><Normal Text> </Normal Text><Numbers>23</Numbers><br/>
+<Normal Text>  </Normal Text><Variable>t</Variable><Symbols>[</Symbols><Numbers>4</Numbers><Symbols>]</Symbols><Normal Text> </Normal Text><Symbols>=</Symbols><Normal Text> </Normal Text><Numbers>45</Numbers><Normal Text> </Normal Text><Comment>-- 4th exp</Comment><br/>
+<Normal Text>  </Normal Text><Variable>a</Variable><Normal Text> </Normal Text><Symbols>=</Symbols><Normal Text> </Normal Text><Variable>t</Variable><br/>
+<Control>end</Control><br/>
+<Normal Text></Normal Text><br/>
+<Numbers>32</Numbers><Symbols>-</Symbols><Numbers>0x43</Numbers><Symbols>+</Symbols><Numbers>0x2</Numbers><Symbols>-</Symbols><Numbers>5</Numbers><br/>
+<Control>return</Control><Strings>"a"</Strings><br/>
+<Control>return</Control><Strings>'a'</Strings><br/>
+<Control>return</Control><Symbols>{}</Symbols><br/>
+<Normal Text>f</Normal Text><Symbols>(</Symbols><Numbers>3</Numbers><Symbols>)</Symbols><br/>
+<Normal Text>f</Normal Text><Strings>'a'</Strings><br/>
+<Normal Text>f</Normal Text><Strings>"a"</Strings><br/>
+<Normal Text>f</Normal Text><Symbols>{</Symbols><Variable>s</Variable><Symbols>=</Symbols><Numbers>2</Numbers><Symbols>}</Symbols><br/>
+<Normal Text>f</Normal Text><RawStrings>[[s]]</RawStrings><br/>
+<Normal Text>f</Normal Text><RawStrings>[=[s]=]</RawStrings><br/>
+<Symbols>#</Symbols><Variable>a</Variable><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>local</Keyword><Normal Text> </Normal Text><Constant>CONSTANT</Constant><Normal Text> </Normal Text><Symbols>=</Symbols><Normal Text> </Normal Text><Variable>a</Variable><br/>
+<Normal Text></Normal Text><br/>
+<Variable>a</Variable><Normal Text> </Normal Text><Symbols>=</Symbols><Normal Text> </Normal Text><Symbols>{}</Symbols><br/>
+<Keyword>local</Keyword><Normal Text> </Normal Text><Variable>x</Variable><Normal Text> </Normal Text><Symbols>=</Symbols><Normal Text> </Normal Text><Numbers>20</Numbers><br/>
+<Control>for</Control><Normal Text> </Normal Text><Variable>i</Variable><Symbols>=</Symbols><Numbers>1</Numbers><Symbols>,</Symbols><Numbers>10</Numbers><Normal Text> </Normal Text><Control>do</Control><br/>
+<Normal Text>  </Normal Text><Keyword>local</Keyword><Normal Text> </Normal Text><Variable>y</Variable><Normal Text> </Normal Text><Symbols>=</Symbols><Normal Text> </Normal Text><Numbers>0</Numbers><br/>
+<Normal Text>  </Normal Text><Variable>a</Variable><Symbols>[</Symbols><Variable>i</Variable><Symbols>]</Symbols><Normal Text> </Normal Text><Symbols>=</Symbols><Normal Text> </Normal Text><Keyword>function</Keyword><Normal Text> </Normal Text><Symbols>()</Symbols><Normal Text> </Normal Text><Variable>y</Variable><Symbols>=</Symbols><Variable>y</Variable><Symbols>+</Symbols><Numbers>1</Numbers><Symbols>;</Symbols><Normal Text> </Normal Text><Control>return</Control><Normal Text> </Normal Text><Variable>x</Variable><Symbols>+</Symbols><Variable>y</Variable><Normal Text> </Normal Text><Keyword>end</Keyword><br/>
+<Control>end</Control><br/>
+<Normal Text></Normal Text><br/>
+<Comment>--! </Comment><Tags>\brief</Tags><Comment> gfind is deprecated</Comment><br/>
+<Deprecated>string.gfind</Deprecated><Symbols>(</Symbols><Strings>'s'</Strings><Symbols>)</Symbols><br/>
+<BFunc>string.gmatch</BFunc><Symbols>(</Symbols><Strings>'f'</Strings><Symbols>)</Symbols><br/>
+<Normal Text></Normal Text><br/>
+<Keyword>function</Keyword><Normal Text> foo</Normal Text><Symbols>()</Symbols><br/>
+<Normal Text>  </Normal Text><Control>if</Control><Normal Text> </Normal Text><Variable>x</Variable><Normal Text> </Normal Text><Control>then</Control><br/>
+<Normal Text>    </Normal Text><Keyword>function</Keyword><Symbols>()</Symbols><Normal Text> </Normal Text><Keyword>end</Keyword><br/>
+<Normal Text>    </Normal Text><Variable>bar</Variable><Symbols>=</Symbols><Keyword>function</Keyword><Symbols>()</Symbols><br/>
+<Normal Text>      </Normal Text><Control>if</Control><Normal Text> </Normal Text><Variable>y</Variable><Normal Text> </Normal Text><Control>then</Control><br/>
+<Normal Text>        </Normal Text><Control>if</Control><Normal Text> </Normal Text><Variable>z</Variable><Normal Text> </Normal Text><Control>then</Control><Normal Text> </Normal Text><Control>end</Control><br/>
+<Normal Text>      </Normal Text><Control>end</Control><br/>
+<Normal Text>    </Normal Text><Keyword>end</Keyword><br/>
+<Normal Text>  </Normal Text><Control>end</Control><br/>
+<Keyword>end</Keyword><br/>

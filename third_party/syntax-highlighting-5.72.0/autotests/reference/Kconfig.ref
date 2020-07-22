@@ -1,0 +1,15 @@
+<error>This is wrong but should not crash ] ) } !</error><br/>
+<plain></plain><br/>
+<comment># comment</comment><br/>
+<plain></plain><br/>
+<keyword>config</keyword><plain> </plain><symbolVar>BR2_PACKAGE_GAMMARAY</symbolVar><br/>
+<plain>        </plain><type>bool</type><plain> </plain><quotedPrompt>"gammaray"</quotedPrompt><br/>
+<plain>        </plain><property>depends</property><plain> </plain><property>on</property><plain> </plain><symbolVar>BR2_PACKAGE_QT5</symbolVar><br/>
+<plain>        </plain><property>help</property><br/>
+<helpText>          GammaRay Qt introspection probe.</helpText><br/>
+<helpText>          second line of help, with correct indentation</helpText><br/>
+<plain>         </plain><error>third line underindented and thus wrong</error><br/>
+<plain>        </plain><property>default</property><plain> </plain><symbolConst>'true'</symbolConst><br/>
+<plain></plain><br/>
+<keyword>menu</keyword><plain> </plain><unquotedPrompt>myMenu</unquotedPrompt><br/>
+<keyword>endmenu</keyword><br/>

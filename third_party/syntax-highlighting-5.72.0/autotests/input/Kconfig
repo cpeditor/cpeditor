@@ -1,0 +1,15 @@
+This is wrong but should not crash ] ) } !
+
+# comment
+
+config BR2_PACKAGE_GAMMARAY
+        bool "gammaray"
+        depends on BR2_PACKAGE_QT5
+        help
+          GammaRay Qt introspection probe.
+          second line of help, with correct indentation
+         third line underindented and thus wrong
+        default 'true'
+
+menu myMenu
+endmenu

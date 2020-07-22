@@ -1,0 +1,1810 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title>or1200_du.v</title>
+<meta name="generator" content="KF5::SyntaxHighlighting (Verilog)"/>
+</head><body style="color:#1f1c1b"><pre>
+<span style="color:#898887;">//////////////////////////////////////////////////////////////////////</span>
+<span style="color:#898887;">////                                                              ////</span>
+<span style="color:#898887;">////  OR1200's Debug Unit                                         ////</span>
+<span style="color:#898887;">////                                                              ////</span>
+<span style="color:#898887;">////  This file is part of the OpenRISC 1200 project              ////</span>
+<span style="color:#898887;">////  http://www.opencores.org/project,or1k                       ////</span>
+<span style="color:#898887;">////                                                              ////</span>
+<span style="color:#898887;">////  Description                                                 ////</span>
+<span style="color:#898887;">////  Basic OR1200 debug unit.                                    ////</span>
+<span style="color:#898887;">////                                                              ////</span>
+<span style="color:#898887;">////  To Do:                                                      ////</span>
+<span style="color:#898887;">////   - make it smaller and faster                               ////</span>
+<span style="color:#898887;">////                                                              ////</span>
+<span style="color:#898887;">////  Author(s):                                                  ////</span>
+<span style="color:#898887;">////      - Damjan Lampret, lampret@opencores.org                 ////</span>
+<span style="color:#898887;">////                                                              ////</span>
+<span style="color:#898887;">//////////////////////////////////////////////////////////////////////</span>
+<span style="color:#898887;">////                                                              ////</span>
+<span style="color:#898887;">//// Copyright (C) 2000 Authors and OPENCORES.ORG                 ////</span>
+<span style="color:#898887;">////                                                              ////</span>
+<span style="color:#898887;">//// This source file may be used and distributed without         ////</span>
+<span style="color:#898887;">//// restriction provided that this copyright statement is not    ////</span>
+<span style="color:#898887;">//// removed from the file and that any derivative work contains  ////</span>
+<span style="color:#898887;">//// the original copyright notice and the associated disclaimer. ////</span>
+<span style="color:#898887;">////                                                              ////</span>
+<span style="color:#898887;">//// This source file is free software; you can redistribute it   ////</span>
+<span style="color:#898887;">//// and/or modify it under the terms of the GNU Lesser General   ////</span>
+<span style="color:#898887;">//// Public License as published by the Free Software Foundation; ////</span>
+<span style="color:#898887;">//// either version 2.1 of the License, or (at your option) any   ////</span>
+<span style="color:#898887;">//// later version.                                               ////</span>
+<span style="color:#898887;">////                                                              ////</span>
+<span style="color:#898887;">//// This source is distributed in the hope that it will be       ////</span>
+<span style="color:#898887;">//// useful, but WITHOUT ANY WARRANTY; without even the implied   ////</span>
+<span style="color:#898887;">//// warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR      ////</span>
+<span style="color:#898887;">//// PURPOSE.  See the GNU Lesser General Public License for more ////</span>
+<span style="color:#898887;">//// details.                                                     ////</span>
+<span style="color:#898887;">////                                                              ////</span>
+<span style="color:#898887;">//// You should have received a copy of the GNU Lesser General    ////</span>
+<span style="color:#898887;">//// Public License along with this source; if not, download it   ////</span>
+<span style="color:#898887;">//// from http://www.opencores.org/lgpl.shtml                     ////</span>
+<span style="color:#898887;">////                                                              ////</span>
+<span style="color:#898887;">//////////////////////////////////////////////////////////////////////</span>
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// $Log: or1200_du.v,v $</span>
+<span style="color:#898887;">// Revision 2.0  2010/06/30 11:00:00  ORSoC</span>
+<span style="color:#898887;">// Minor update: </span>
+<span style="color:#898887;">// Bugs fixed. </span>
+
+<span style="color:#898887;">// synopsys translate_off</span>
+<span style="color:#006e28;">`include </span><span style="color:#b08000;">&quot;timescale.v&quot;</span>
+<span style="color:#898887;">// synopsys translate_on</span>
+<span style="color:#006e28;">`include </span><span style="color:#b08000;">&quot;or1200_defines.v&quot;</span>
+
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// Debug unit</span>
+<span style="color:#898887;">//</span>
+
+<span style="font-weight:bold;">module</span> or1200_du(
+	<span style="color:#898887;">// RISC Internal Interface</span>
+	clk, rst,
+	dcpu_cycstb_i, dcpu_we_i, dcpu_adr_i, dcpu_dat_lsu,
+	dcpu_dat_dc, icpu_cycstb_i,
+	ex_freeze, branch_op, ex_insn, id_pc,
+	spr_dat_npc, rf_dataw,
+	du_dsr, du_dmr1, du_stall, du_addr, du_dat_i, du_dat_o,
+	du_read, du_write, du_except_stop, du_hwbkpt, du_flush_pipe,
+	spr_cs, spr_write, spr_addr, spr_dat_i, spr_dat_o,
+
+	<span style="color:#898887;">// External Debug Interface</span>
+	dbg_stall_i, dbg_ewt_i,	dbg_lss_o, dbg_is_o, dbg_wp_o, dbg_bp_o,
+	dbg_stb_i, dbg_we_i, dbg_adr_i, dbg_dat_i, dbg_dat_o, dbg_ack_o
+);
+
+<span style="color:#0057ae;">parameter</span> dw = <span style="color:#006e28;">`OR1200_OPERAND_WIDTH</span>;
+<span style="color:#0057ae;">parameter</span> aw = <span style="color:#006e28;">`OR1200_OPERAND_WIDTH</span>;
+
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// I/O</span>
+<span style="color:#898887;">//</span>
+
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// RISC Internal Interface</span>
+<span style="color:#898887;">//</span>
+<span style="color:#0057ae;">input</span>				clk;		<span style="color:#898887;">// Clock</span>
+<span style="color:#0057ae;">input</span>				rst;		<span style="color:#898887;">// Reset</span>
+<span style="color:#0057ae;">input</span>				dcpu_cycstb_i;	<span style="color:#898887;">// LSU status</span>
+<span style="color:#0057ae;">input</span>				dcpu_we_i;	<span style="color:#898887;">// LSU status</span>
+<span style="color:#0057ae;">input</span>	[<span style="color:#b08000;">31</span>:<span style="color:#b08000;">0</span>]			dcpu_adr_i;	<span style="color:#898887;">// LSU addr</span>
+<span style="color:#0057ae;">input</span>	[<span style="color:#b08000;">31</span>:<span style="color:#b08000;">0</span>]			dcpu_dat_lsu;	<span style="color:#898887;">// LSU store data</span>
+<span style="color:#0057ae;">input</span>	[<span style="color:#b08000;">31</span>:<span style="color:#b08000;">0</span>]			dcpu_dat_dc;	<span style="color:#898887;">// LSU load data</span>
+<span style="color:#0057ae;">input</span>	[<span style="color:#006e28;">`OR1200_FETCHOP_WIDTH</span>-<span style="color:#b08000;">1</span>:<span style="color:#b08000;">0</span>]	icpu_cycstb_i;	<span style="color:#898887;">// IFETCH unit status</span>
+<span style="color:#0057ae;">input</span>				ex_freeze;	<span style="color:#898887;">// EX stage freeze</span>
+<span style="color:#0057ae;">input</span>	[<span style="color:#006e28;">`OR1200_BRANCHOP_WIDTH</span>-<span style="color:#b08000;">1</span>:<span style="color:#b08000;">0</span>]	branch_op;	<span style="color:#898887;">// Branch op</span>
+<span style="color:#0057ae;">input</span>	[dw-<span style="color:#b08000;">1</span>:<span style="color:#b08000;">0</span>]		ex_insn;	<span style="color:#898887;">// EX insn</span>
+<span style="color:#0057ae;">input</span>	[<span style="color:#b08000;">31</span>:<span style="color:#b08000;">0</span>]			id_pc;		<span style="color:#898887;">// insn fetch EA</span>
+<span style="color:#0057ae;">input</span>	[<span style="color:#b08000;">31</span>:<span style="color:#b08000;">0</span>]			spr_dat_npc;	<span style="color:#898887;">// Next PC (for trace)</span>
+<span style="color:#0057ae;">input</span>	[<span style="color:#b08000;">31</span>:<span style="color:#b08000;">0</span>]			rf_dataw;	<span style="color:#898887;">// ALU result (for trace)</span>
+<span style="color:#0057ae;">output</span>	[<span style="color:#006e28;">`OR1200_DU_DSR_WIDTH</span>-<span style="color:#b08000;">1</span>:<span style="color:#b08000;">0</span>]     du_dsr;		<span style="color:#898887;">// DSR</span>
+<span style="color:#0057ae;">output</span>	[<span style="color:#b08000;">24</span>: <span style="color:#b08000;">0</span>]			du_dmr1;
+<span style="color:#0057ae;">output</span>				du_stall;	<span style="color:#898887;">// Debug Unit Stall</span>
+<span style="color:#0057ae;">output</span>	[aw-<span style="color:#b08000;">1</span>:<span style="color:#b08000;">0</span>]		du_addr;	<span style="color:#898887;">// Debug Unit Address</span>
+<span style="color:#0057ae;">input</span>	[dw-<span style="color:#b08000;">1</span>:<span style="color:#b08000;">0</span>]		du_dat_i;	<span style="color:#898887;">// Debug Unit Data In</span>
+<span style="color:#0057ae;">output</span>	[dw-<span style="color:#b08000;">1</span>:<span style="color:#b08000;">0</span>]		du_dat_o;	<span style="color:#898887;">// Debug Unit Data Out</span>
+<span style="color:#0057ae;">output</span>				du_read;	<span style="color:#898887;">// Debug Unit Read Enable</span>
+<span style="color:#0057ae;">output</span>				du_write;	<span style="color:#898887;">// Debug Unit Write Enable</span>
+<span style="color:#0057ae;">input</span>	[<span style="color:#b08000;">13</span>:<span style="color:#b08000;">0</span>]			du_except_stop;	<span style="color:#898887;">// Exception masked by DSR</span>
+<span style="color:#0057ae;">output</span>				du_hwbkpt;	<span style="color:#898887;">// Cause trap exception (HW Breakpoints)</span>
+<span style="color:#0057ae;">output</span>				du_flush_pipe;	<span style="color:#898887;">// Cause pipeline flush and pc&lt;-npc</span>
+<span style="color:#0057ae;">input</span>				spr_cs;		<span style="color:#898887;">// SPR Chip Select</span>
+<span style="color:#0057ae;">input</span>				spr_write;	<span style="color:#898887;">// SPR Read/Write</span>
+<span style="color:#0057ae;">input</span>	[aw-<span style="color:#b08000;">1</span>:<span style="color:#b08000;">0</span>]		spr_addr;	<span style="color:#898887;">// SPR Address</span>
+<span style="color:#0057ae;">input</span>	[dw-<span style="color:#b08000;">1</span>:<span style="color:#b08000;">0</span>]		spr_dat_i;	<span style="color:#898887;">// SPR Data Input</span>
+<span style="color:#0057ae;">output</span>	[dw-<span style="color:#b08000;">1</span>:<span style="color:#b08000;">0</span>]		spr_dat_o;	<span style="color:#898887;">// SPR Data Output</span>
+
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// External Debug Interface</span>
+<span style="color:#898887;">//</span>
+<span style="color:#0057ae;">input</span>			dbg_stall_i;	<span style="color:#898887;">// External Stall Input</span>
+<span style="color:#0057ae;">input</span>			dbg_ewt_i;	<span style="color:#898887;">// External Watchpoint Trigger Input</span>
+<span style="color:#0057ae;">output</span>	[<span style="color:#b08000;">3</span>:<span style="color:#b08000;">0</span>]		dbg_lss_o;	<span style="color:#898887;">// External Load/Store Unit Status</span>
+<span style="color:#0057ae;">output</span>	[<span style="color:#b08000;">1</span>:<span style="color:#b08000;">0</span>]		dbg_is_o;	<span style="color:#898887;">// External Insn Fetch Status</span>
+<span style="color:#0057ae;">output</span>	[<span style="color:#b08000;">10</span>:<span style="color:#b08000;">0</span>]		dbg_wp_o;	<span style="color:#898887;">// Watchpoints Outputs</span>
+<span style="color:#0057ae;">output</span>			dbg_bp_o;	<span style="color:#898887;">// Breakpoint Output</span>
+<span style="color:#0057ae;">input</span>			dbg_stb_i;      <span style="color:#898887;">// External Address/Data Strobe</span>
+<span style="color:#0057ae;">input</span>			dbg_we_i;       <span style="color:#898887;">// External Write Enable</span>
+<span style="color:#0057ae;">input</span>	[aw-<span style="color:#b08000;">1</span>:<span style="color:#b08000;">0</span>]	dbg_adr_i;	<span style="color:#898887;">// External Address Input</span>
+<span style="color:#0057ae;">input</span>	[dw-<span style="color:#b08000;">1</span>:<span style="color:#b08000;">0</span>]	dbg_dat_i;	<span style="color:#898887;">// External Data Input</span>
+<span style="color:#0057ae;">output</span>	[dw-<span style="color:#b08000;">1</span>:<span style="color:#b08000;">0</span>]	dbg_dat_o;	<span style="color:#898887;">// External Data Output</span>
+<span style="color:#0057ae;">output</span>			dbg_ack_o;	<span style="color:#898887;">// External Data Acknowledge (not WB compatible)</span>
+<span style="color:#0057ae;">reg</span>	[dw-<span style="color:#b08000;">1</span>:<span style="color:#b08000;">0</span>]	dbg_dat_o;	<span style="color:#898887;">// External Data Output</span>
+<span style="color:#0057ae;">reg</span>			dbg_ack_o;	<span style="color:#898887;">// External Data Acknowledge (not WB compatible)</span>
+
+
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// Some connections go directly from the CPU through DU to Debug I/F</span>
+<span style="color:#898887;">//</span>
+<span style="color:#006e28;">`ifdef OR1200_DU_STATUS_UNIMPLEMENTED</span>
+<span style="font-weight:bold;">assign</span> dbg_lss_o = <span style="color:#b08000;">4'b0000</span>;
+
+<span style="color:#0057ae;">reg</span>	[<span style="color:#b08000;">1</span>:<span style="color:#b08000;">0</span>]			dbg_is_o;
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// Show insn activity (temp, must be removed)</span>
+<span style="color:#898887;">//</span>
+<span style="font-weight:bold;">always</span> @(<span style="font-weight:bold;">posedge</span> clk <span style="color:#0057ae;">or</span> <span style="color:#006e28;">`OR1200_RST_EVENT</span> rst)
+	<span style="font-weight:bold;">if</span> (rst == <span style="color:#006e28;">`OR1200_RST_VALUE</span>)
+		dbg_is_o &lt;=  <span style="color:#b08000;">2'b00</span>;
+	<span style="font-weight:bold;">else</span> <span style="font-weight:bold;">if</span> (!ex_freeze &amp; ~((ex_insn[<span style="color:#b08000;">31</span>:<span style="color:#b08000;">26</span>] == <span style="color:#006e28;">`OR1200_OR32_NOP</span>) &amp; ex_insn[<span style="color:#b08000;">16</span>]))
+		dbg_is_o &lt;=  ~dbg_is_o;
+<span style="color:#006e28;">`ifdef UNUSED</span>
+<span style="font-weight:bold;">assign</span> dbg_is_o = <span style="color:#b08000;">2'b00</span>;
+<span style="color:#006e28;">`endif</span>
+<span style="color:#006e28;">`else</span>
+<span style="font-weight:bold;">assign</span> dbg_lss_o = dcpu_cycstb_i ? {dcpu_we_i, <span style="color:#b08000;">3'b000</span>} : <span style="color:#b08000;">4'b0000</span>;
+<span style="font-weight:bold;">assign</span> dbg_is_o = {<span style="color:#b08000;">1'b0</span>, icpu_cycstb_i};
+<span style="color:#006e28;">`endif</span>
+<span style="font-weight:bold;">assign</span> dbg_wp_o = <span style="color:#b08000;">11'b000_0000_0000</span>;
+
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// Some connections go directly from Debug I/F through DU to the CPU</span>
+<span style="color:#898887;">//</span>
+<span style="font-weight:bold;">assign</span> du_stall = dbg_stall_i;
+<span style="font-weight:bold;">assign</span> du_addr = dbg_adr_i;
+<span style="font-weight:bold;">assign</span> du_dat_o = dbg_dat_i;
+<span style="font-weight:bold;">assign</span> du_read = dbg_stb_i &amp;&amp; !dbg_we_i;
+<span style="font-weight:bold;">assign</span> du_write = dbg_stb_i &amp;&amp; dbg_we_i;
+
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// After a sw breakpoint, the replaced instruction need to be executed.</span>
+<span style="color:#898887;">// We flush the entire pipeline and set the pc to the current address</span>
+<span style="color:#898887;">// to execute the restored address.</span>
+<span style="color:#898887;">//</span>
+
+<span style="color:#0057ae;">reg</span> du_flush_pipe_r;
+<span style="color:#0057ae;">reg</span> dbg_stall_i_r;
+
+<span style="font-weight:bold;">assign</span> du_flush_pipe = du_flush_pipe_r;
+
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// Register du_flush_pipe</span>
+<span style="color:#898887;">//</span>
+<span style="font-weight:bold;">always</span> @(<span style="font-weight:bold;">posedge</span> clk <span style="color:#0057ae;">or</span> <span style="color:#006e28;">`OR1200_RST_EVENT</span> rst) <span style="font-weight:bold;">begin</span>
+	<span style="font-weight:bold;">if</span> (rst == <span style="color:#006e28;">`OR1200_RST_VALUE</span>) <span style="font-weight:bold;">begin</span>
+		du_flush_pipe_r   &lt;=  <span style="color:#b08000;">1'b0</span>;
+	<span style="font-weight:bold;">end</span>
+	<span style="font-weight:bold;">else</span> <span style="font-weight:bold;">begin</span>
+		du_flush_pipe_r   &lt;=  (dbg_stall_i_r &amp;&amp; !dbg_stall_i &amp;&amp; |du_except_stop);
+	<span style="font-weight:bold;">end</span>
+<span style="font-weight:bold;">end</span>
+
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// Detect dbg_stall falling edge</span>
+<span style="color:#898887;">//</span>
+<span style="font-weight:bold;">always</span> @(<span style="font-weight:bold;">posedge</span> clk <span style="color:#0057ae;">or</span> <span style="color:#006e28;">`OR1200_RST_EVENT</span> rst) <span style="font-weight:bold;">begin</span>
+	<span style="font-weight:bold;">if</span> (rst == <span style="color:#006e28;">`OR1200_RST_VALUE</span>) <span style="font-weight:bold;">begin</span>
+		dbg_stall_i_r   &lt;=  <span style="color:#b08000;">1'b0</span>;
+	<span style="font-weight:bold;">end</span>
+	<span style="font-weight:bold;">else</span> <span style="font-weight:bold;">begin</span>
+		dbg_stall_i_r   &lt;=  dbg_stall_i;
+	<span style="font-weight:bold;">end</span>
+<span style="font-weight:bold;">end</span>
+
+<span style="color:#0057ae;">reg</span>				dbg_ack;
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// Generate acknowledge -- just delay stb signal</span>
+<span style="color:#898887;">//</span>
+<span style="font-weight:bold;">always</span> @(<span style="font-weight:bold;">posedge</span> clk <span style="color:#0057ae;">or</span> <span style="color:#006e28;">`OR1200_RST_EVENT</span> rst) <span style="font-weight:bold;">begin</span>
+	<span style="font-weight:bold;">if</span> (rst == <span style="color:#006e28;">`OR1200_RST_VALUE</span>) <span style="font-weight:bold;">begin</span>
+		dbg_ack   &lt;=  <span style="color:#b08000;">1'b0</span>;
+		dbg_ack_o &lt;=  <span style="color:#b08000;">1'b0</span>;
+	<span style="font-weight:bold;">end</span>
+	<span style="font-weight:bold;">else</span> <span style="font-weight:bold;">begin</span>
+		dbg_ack   &lt;=  dbg_stb_i;		<span style="color:#898887;">// valid when du_dat_i </span>
+		dbg_ack_o &lt;=  dbg_ack &amp; dbg_stb_i;	<span style="color:#898887;">// valid when dbg_dat_o </span>
+	<span style="font-weight:bold;">end</span>
+<span style="font-weight:bold;">end</span>
+
+<span style="color:#898887;">// </span>
+<span style="color:#898887;">// Register data output</span>
+<span style="color:#898887;">//</span>
+<span style="font-weight:bold;">always</span> @(<span style="font-weight:bold;">posedge</span> clk)
+    dbg_dat_o &lt;=  du_dat_i;
+
+<span style="color:#006e28;">`ifdef OR1200_DU_IMPLEMENTED</span>
+
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// Debug Mode Register 1</span>
+<span style="color:#898887;">//</span>
+<span style="color:#006e28;">`ifdef OR1200_DU_DMR1</span>
+<span style="color:#0057ae;">reg</span>	[<span style="color:#b08000;">24</span>:<span style="color:#b08000;">0</span>]			dmr1;		<span style="color:#898887;">// DMR1 implemented</span>
+<span style="color:#006e28;">`else</span>
+<span style="color:#0057ae;">wire</span>	[<span style="color:#b08000;">24</span>:<span style="color:#b08000;">0</span>]			dmr1;		<span style="color:#898887;">// DMR1 not implemented</span>
+<span style="color:#006e28;">`endif</span>
+<span style="font-weight:bold;">assign</span> du_dmr1 = dmr1;
+
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// Debug Mode Register 2</span>
+<span style="color:#898887;">//</span>
+<span style="color:#006e28;">`ifdef OR1200_DU_DMR2</span>
+<span style="color:#0057ae;">reg</span>	[<span style="color:#b08000;">23</span>:<span style="color:#b08000;">0</span>]			dmr2;		<span style="color:#898887;">// DMR2 implemented</span>
+<span style="color:#006e28;">`else</span>
+<span style="color:#0057ae;">wire</span>	[<span style="color:#b08000;">23</span>:<span style="color:#b08000;">0</span>]			dmr2;		<span style="color:#898887;">// DMR2 not implemented</span>
+<span style="color:#006e28;">`endif</span>
+
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// Debug Stop Register</span>
+<span style="color:#898887;">//</span>
+<span style="color:#006e28;">`ifdef OR1200_DU_DSR</span>
+<span style="color:#0057ae;">reg</span>	[<span style="color:#006e28;">`OR1200_DU_DSR_WIDTH</span>-<span style="color:#b08000;">1</span>:<span style="color:#b08000;">0</span>]	dsr;		<span style="color:#898887;">// DSR implemented</span>
+<span style="color:#006e28;">`else</span>
+<span style="color:#0057ae;">wire</span>	[<span style="color:#006e28;">`OR1200_DU_DSR_WIDTH</span>-<span style="color:#b08000;">1</span>:<span style="color:#b08000;">0</span>]	dsr;		<span style="color:#898887;">// DSR not implemented</span>
+<span style="color:#006e28;">`endif</span>
+
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// Debug Reason Register</span>
+<span style="color:#898887;">//</span>
+<span style="color:#006e28;">`ifdef OR1200_DU_DRR</span>
+<span style="color:#0057ae;">reg</span>	[<span style="color:#b08000;">13</span>:<span style="color:#b08000;">0</span>]			drr;		<span style="color:#898887;">// DRR implemented</span>
+<span style="color:#006e28;">`else</span>
+<span style="color:#0057ae;">wire</span>	[<span style="color:#b08000;">13</span>:<span style="color:#b08000;">0</span>]			drr;		<span style="color:#898887;">// DRR not implemented</span>
+<span style="color:#006e28;">`endif</span>
+
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// Debug Value Register N</span>
+<span style="color:#898887;">//</span>
+<span style="color:#006e28;">`ifdef OR1200_DU_DVR0</span>
+<span style="color:#0057ae;">reg</span>	[<span style="color:#b08000;">31</span>:<span style="color:#b08000;">0</span>]			dvr0;
+<span style="color:#006e28;">`else</span>
+<span style="color:#0057ae;">wire</span>	[<span style="color:#b08000;">31</span>:<span style="color:#b08000;">0</span>]			dvr0;
+<span style="color:#006e28;">`endif</span>
+
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// Debug Value Register N</span>
+<span style="color:#898887;">//</span>
+<span style="color:#006e28;">`ifdef OR1200_DU_DVR1</span>
+<span style="color:#0057ae;">reg</span>	[<span style="color:#b08000;">31</span>:<span style="color:#b08000;">0</span>]			dvr1;
+<span style="color:#006e28;">`else</span>
+<span style="color:#0057ae;">wire</span>	[<span style="color:#b08000;">31</span>:<span style="color:#b08000;">0</span>]			dvr1;
+<span style="color:#006e28;">`endif</span>
+
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// Debug Value Register N</span>
+<span style="color:#898887;">//</span>
+<span style="color:#006e28;">`ifdef OR1200_DU_DVR2</span>
+<span style="color:#0057ae;">reg</span>	[<span style="color:#b08000;">31</span>:<span style="color:#b08000;">0</span>]			dvr2;
+<span style="color:#006e28;">`else</span>
+<span style="color:#0057ae;">wire</span>	[<span style="color:#b08000;">31</span>:<span style="color:#b08000;">0</span>]			dvr2;
+<span style="color:#006e28;">`endif</span>
+
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// Debug Value Register N</span>
+<span style="color:#898887;">//</span>
+<span style="color:#006e28;">`ifdef OR1200_DU_DVR3</span>
+<span style="color:#0057ae;">reg</span>	[<span style="color:#b08000;">31</span>:<span style="color:#b08000;">0</span>]			dvr3;
+<span style="color:#006e28;">`else</span>
+<span style="color:#0057ae;">wire</span>	[<span style="color:#b08000;">31</span>:<span style="color:#b08000;">0</span>]			dvr3;
+<span style="color:#006e28;">`endif</span>
+
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// Debug Value Register N</span>
+<span style="color:#898887;">//</span>
+<span style="color:#006e28;">`ifdef OR1200_DU_DVR4</span>
+<span style="color:#0057ae;">reg</span>	[<span style="color:#b08000;">31</span>:<span style="color:#b08000;">0</span>]			dvr4;
+<span style="color:#006e28;">`else</span>
+<span style="color:#0057ae;">wire</span>	[<span style="color:#b08000;">31</span>:<span style="color:#b08000;">0</span>]			dvr4;
+<span style="color:#006e28;">`endif</span>
+
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// Debug Value Register N</span>
+<span style="color:#898887;">//</span>
+<span style="color:#006e28;">`ifdef OR1200_DU_DVR5</span>
+<span style="color:#0057ae;">reg</span>	[<span style="color:#b08000;">31</span>:<span style="color:#b08000;">0</span>]			dvr5;
+<span style="color:#006e28;">`else</span>
+<span style="color:#0057ae;">wire</span>	[<span style="color:#b08000;">31</span>:<span style="color:#b08000;">0</span>]			dvr5;
+<span style="color:#006e28;">`endif</span>
+
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// Debug Value Register N</span>
+<span style="color:#898887;">//</span>
+<span style="color:#006e28;">`ifdef OR1200_DU_DVR6</span>
+<span style="color:#0057ae;">reg</span>	[<span style="color:#b08000;">31</span>:<span style="color:#b08000;">0</span>]			dvr6;
+<span style="color:#006e28;">`else</span>
+<span style="color:#0057ae;">wire</span>	[<span style="color:#b08000;">31</span>:<span style="color:#b08000;">0</span>]			dvr6;
+<span style="color:#006e28;">`endif</span>
+
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// Debug Value Register N</span>
+<span style="color:#898887;">//</span>
+<span style="color:#006e28;">`ifdef OR1200_DU_DVR7</span>
+<span style="color:#0057ae;">reg</span>	[<span style="color:#b08000;">31</span>:<span style="color:#b08000;">0</span>]			dvr7;
+<span style="color:#006e28;">`else</span>
+<span style="color:#0057ae;">wire</span>	[<span style="color:#b08000;">31</span>:<span style="color:#b08000;">0</span>]			dvr7;
+<span style="color:#006e28;">`endif</span>
+
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// Debug Control Register N</span>
+<span style="color:#898887;">//</span>
+<span style="color:#006e28;">`ifdef OR1200_DU_DCR0</span>
+<span style="color:#0057ae;">reg</span>	[<span style="color:#b08000;">7</span>:<span style="color:#b08000;">0</span>]			dcr0;
+<span style="color:#006e28;">`else</span>
+<span style="color:#0057ae;">wire</span>	[<span style="color:#b08000;">7</span>:<span style="color:#b08000;">0</span>]			dcr0;
+<span style="color:#006e28;">`endif</span>
+
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// Debug Control Register N</span>
+<span style="color:#898887;">//</span>
+<span style="color:#006e28;">`ifdef OR1200_DU_DCR1</span>
+<span style="color:#0057ae;">reg</span>	[<span style="color:#b08000;">7</span>:<span style="color:#b08000;">0</span>]			dcr1;
+<span style="color:#006e28;">`else</span>
+<span style="color:#0057ae;">wire</span>	[<span style="color:#b08000;">7</span>:<span style="color:#b08000;">0</span>]			dcr1;
+<span style="color:#006e28;">`endif</span>
+
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// Debug Control Register N</span>
+<span style="color:#898887;">//</span>
+<span style="color:#006e28;">`ifdef OR1200_DU_DCR2</span>
+<span style="color:#0057ae;">reg</span>	[<span style="color:#b08000;">7</span>:<span style="color:#b08000;">0</span>]			dcr2;
+<span style="color:#006e28;">`else</span>
+<span style="color:#0057ae;">wire</span>	[<span style="color:#b08000;">7</span>:<span style="color:#b08000;">0</span>]			dcr2;
+<span style="color:#006e28;">`endif</span>
+
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// Debug Control Register N</span>
+<span style="color:#898887;">//</span>
+<span style="color:#006e28;">`ifdef OR1200_DU_DCR3</span>
+<span style="color:#0057ae;">reg</span>	[<span style="color:#b08000;">7</span>:<span style="color:#b08000;">0</span>]			dcr3;
+<span style="color:#006e28;">`else</span>
+<span style="color:#0057ae;">wire</span>	[<span style="color:#b08000;">7</span>:<span style="color:#b08000;">0</span>]			dcr3;
+<span style="color:#006e28;">`endif</span>
+
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// Debug Control Register N</span>
+<span style="color:#898887;">//</span>
+<span style="color:#006e28;">`ifdef OR1200_DU_DCR4</span>
+<span style="color:#0057ae;">reg</span>	[<span style="color:#b08000;">7</span>:<span style="color:#b08000;">0</span>]			dcr4;
+<span style="color:#006e28;">`else</span>
+<span style="color:#0057ae;">wire</span>	[<span style="color:#b08000;">7</span>:<span style="color:#b08000;">0</span>]			dcr4;
+<span style="color:#006e28;">`endif</span>
+
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// Debug Control Register N</span>
+<span style="color:#898887;">//</span>
+<span style="color:#006e28;">`ifdef OR1200_DU_DCR5</span>
+<span style="color:#0057ae;">reg</span>	[<span style="color:#b08000;">7</span>:<span style="color:#b08000;">0</span>]			dcr5;
+<span style="color:#006e28;">`else</span>
+<span style="color:#0057ae;">wire</span>	[<span style="color:#b08000;">7</span>:<span style="color:#b08000;">0</span>]			dcr5;
+<span style="color:#006e28;">`endif</span>
+
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// Debug Control Register N</span>
+<span style="color:#898887;">//</span>
+<span style="color:#006e28;">`ifdef OR1200_DU_DCR6</span>
+<span style="color:#0057ae;">reg</span>	[<span style="color:#b08000;">7</span>:<span style="color:#b08000;">0</span>]			dcr6;
+<span style="color:#006e28;">`else</span>
+<span style="color:#0057ae;">wire</span>	[<span style="color:#b08000;">7</span>:<span style="color:#b08000;">0</span>]			dcr6;
+<span style="color:#006e28;">`endif</span>
+
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// Debug Control Register N</span>
+<span style="color:#898887;">//</span>
+<span style="color:#006e28;">`ifdef OR1200_DU_DCR7</span>
+<span style="color:#0057ae;">reg</span>	[<span style="color:#b08000;">7</span>:<span style="color:#b08000;">0</span>]			dcr7;
+<span style="color:#006e28;">`else</span>
+<span style="color:#0057ae;">wire</span>	[<span style="color:#b08000;">7</span>:<span style="color:#b08000;">0</span>]			dcr7;
+<span style="color:#006e28;">`endif</span>
+
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// Debug Watchpoint Counter Register 0</span>
+<span style="color:#898887;">//</span>
+<span style="color:#006e28;">`ifdef OR1200_DU_DWCR0</span>
+<span style="color:#0057ae;">reg</span>	[<span style="color:#b08000;">31</span>:<span style="color:#b08000;">0</span>]			dwcr0;
+<span style="color:#006e28;">`else</span>
+<span style="color:#0057ae;">wire</span>	[<span style="color:#b08000;">31</span>:<span style="color:#b08000;">0</span>]			dwcr0;
+<span style="color:#006e28;">`endif</span>
+
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// Debug Watchpoint Counter Register 1</span>
+<span style="color:#898887;">//</span>
+<span style="color:#006e28;">`ifdef OR1200_DU_DWCR1</span>
+<span style="color:#0057ae;">reg</span>	[<span style="color:#b08000;">31</span>:<span style="color:#b08000;">0</span>]			dwcr1;
+<span style="color:#006e28;">`else</span>
+<span style="color:#0057ae;">wire</span>	[<span style="color:#b08000;">31</span>:<span style="color:#b08000;">0</span>]			dwcr1;
+<span style="color:#006e28;">`endif</span>
+
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// Internal wires</span>
+<span style="color:#898887;">//</span>
+<span style="color:#0057ae;">wire</span>				dmr1_sel; 	<span style="color:#898887;">// DMR1 select</span>
+<span style="color:#0057ae;">wire</span>				dmr2_sel; 	<span style="color:#898887;">// DMR2 select</span>
+<span style="color:#0057ae;">wire</span>				dsr_sel; 	<span style="color:#898887;">// DSR select</span>
+<span style="color:#0057ae;">wire</span>				drr_sel; 	<span style="color:#898887;">// DRR select</span>
+<span style="color:#0057ae;">wire</span>				dvr0_sel,
+				dvr1_sel,
+				dvr2_sel,
+				dvr3_sel,
+				dvr4_sel,
+				dvr5_sel,
+				dvr6_sel,
+				dvr7_sel; 	<span style="color:#898887;">// DVR selects</span>
+<span style="color:#0057ae;">wire</span>				dcr0_sel,
+				dcr1_sel,
+				dcr2_sel,
+				dcr3_sel,
+				dcr4_sel,
+				dcr5_sel,
+				dcr6_sel,
+				dcr7_sel; 	<span style="color:#898887;">// DCR selects</span>
+<span style="color:#0057ae;">wire</span>				dwcr0_sel,
+				dwcr1_sel; 	<span style="color:#898887;">// DWCR selects</span>
+<span style="color:#0057ae;">reg</span>				dbg_bp_r;
+<span style="color:#0057ae;">reg</span> 				ex_freeze_q;
+<span style="color:#006e28;">`ifdef OR1200_DU_HWBKPTS</span>
+<span style="color:#0057ae;">reg</span>	[<span style="color:#b08000;">31</span>:<span style="color:#b08000;">0</span>]			match_cond0_ct;
+<span style="color:#0057ae;">reg</span>	[<span style="color:#b08000;">31</span>:<span style="color:#b08000;">0</span>]			match_cond1_ct;
+<span style="color:#0057ae;">reg</span>	[<span style="color:#b08000;">31</span>:<span style="color:#b08000;">0</span>]			match_cond2_ct;
+<span style="color:#0057ae;">reg</span>	[<span style="color:#b08000;">31</span>:<span style="color:#b08000;">0</span>]			match_cond3_ct;
+<span style="color:#0057ae;">reg</span>	[<span style="color:#b08000;">31</span>:<span style="color:#b08000;">0</span>]			match_cond4_ct;
+<span style="color:#0057ae;">reg</span>	[<span style="color:#b08000;">31</span>:<span style="color:#b08000;">0</span>]			match_cond5_ct;
+<span style="color:#0057ae;">reg</span>	[<span style="color:#b08000;">31</span>:<span style="color:#b08000;">0</span>]			match_cond6_ct;
+<span style="color:#0057ae;">reg</span>	[<span style="color:#b08000;">31</span>:<span style="color:#b08000;">0</span>]			match_cond7_ct;
+<span style="color:#0057ae;">reg</span>				match_cond0_stb;
+<span style="color:#0057ae;">reg</span>				match_cond1_stb;
+<span style="color:#0057ae;">reg</span>				match_cond2_stb;
+<span style="color:#0057ae;">reg</span>				match_cond3_stb;
+<span style="color:#0057ae;">reg</span>				match_cond4_stb;
+<span style="color:#0057ae;">reg</span>				match_cond5_stb;
+<span style="color:#0057ae;">reg</span>				match_cond6_stb;
+<span style="color:#0057ae;">reg</span>				match_cond7_stb;
+<span style="color:#0057ae;">reg</span>				match0;
+<span style="color:#0057ae;">reg</span>				match1;
+<span style="color:#0057ae;">reg</span>				match2;
+<span style="color:#0057ae;">reg</span>				match3;
+<span style="color:#0057ae;">reg</span>				match4;
+<span style="color:#0057ae;">reg</span>				match5;
+<span style="color:#0057ae;">reg</span>				match6;
+<span style="color:#0057ae;">reg</span>				match7;
+<span style="color:#0057ae;">reg</span>				wpcntr0_match;
+<span style="color:#0057ae;">reg</span>				wpcntr1_match;
+<span style="color:#0057ae;">reg</span>				incr_wpcntr0;
+<span style="color:#0057ae;">reg</span>				incr_wpcntr1;
+<span style="color:#0057ae;">reg</span>	[<span style="color:#b08000;">10</span>:<span style="color:#b08000;">0</span>]			wp;
+<span style="color:#006e28;">`endif</span>
+<span style="color:#0057ae;">wire</span>				du_hwbkpt;
+<span style="color:#0057ae;">reg</span>				du_hwbkpt_hold;
+<span style="color:#006e28;">`ifdef OR1200_DU_READREGS</span>
+<span style="color:#0057ae;">reg</span>	[<span style="color:#b08000;">31</span>:<span style="color:#b08000;">0</span>]			spr_dat_o;
+<span style="color:#006e28;">`endif</span>
+<span style="color:#0057ae;">reg</span>	[<span style="color:#b08000;">13</span>:<span style="color:#b08000;">0</span>]			except_stop;	<span style="color:#898887;">// Exceptions that stop because of DSR</span>
+<span style="color:#006e28;">`ifdef OR1200_DU_TB_IMPLEMENTED</span>
+<span style="color:#0057ae;">wire</span>				tb_enw;
+<span style="color:#0057ae;">reg</span>	[<span style="color:#b08000;">7</span>:<span style="color:#b08000;">0</span>]			tb_wadr;
+<span style="color:#0057ae;">reg</span> [<span style="color:#b08000;">31</span>:<span style="color:#b08000;">0</span>]			tb_timstmp;
+<span style="color:#006e28;">`endif</span>
+<span style="color:#0057ae;">wire</span>	[<span style="color:#b08000;">31</span>:<span style="color:#b08000;">0</span>]			tbia_dat_o;
+<span style="color:#0057ae;">wire</span>	[<span style="color:#b08000;">31</span>:<span style="color:#b08000;">0</span>]			tbim_dat_o;
+<span style="color:#0057ae;">wire</span>	[<span style="color:#b08000;">31</span>:<span style="color:#b08000;">0</span>]			tbar_dat_o;
+<span style="color:#0057ae;">wire</span>	[<span style="color:#b08000;">31</span>:<span style="color:#b08000;">0</span>]			tbts_dat_o;
+
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// DU registers address decoder</span>
+<span style="color:#898887;">//</span>
+<span style="color:#006e28;">`ifdef OR1200_DU_DMR1</span>
+<span style="font-weight:bold;">assign</span> dmr1_sel = (spr_cs &amp;&amp; (spr_addr[<span style="color:#006e28;">`OR1200_DUOFS_BITS</span>] == <span style="color:#006e28;">`OR1200_DU_DMR1</span>));
+<span style="color:#006e28;">`endif</span>
+<span style="color:#006e28;">`ifdef OR1200_DU_DMR2</span>
+<span style="font-weight:bold;">assign</span> dmr2_sel = (spr_cs &amp;&amp; (spr_addr[<span style="color:#006e28;">`OR1200_DUOFS_BITS</span>] == <span style="color:#006e28;">`OR1200_DU_DMR2</span>));
+<span style="color:#006e28;">`endif</span>
+<span style="color:#006e28;">`ifdef OR1200_DU_DSR</span>
+<span style="font-weight:bold;">assign</span> dsr_sel = (spr_cs &amp;&amp; (spr_addr[<span style="color:#006e28;">`OR1200_DUOFS_BITS</span>] == <span style="color:#006e28;">`OR1200_DU_DSR</span>));
+<span style="color:#006e28;">`endif</span>
+<span style="color:#006e28;">`ifdef OR1200_DU_DRR</span>
+<span style="font-weight:bold;">assign</span> drr_sel = (spr_cs &amp;&amp; (spr_addr[<span style="color:#006e28;">`OR1200_DUOFS_BITS</span>] == <span style="color:#006e28;">`OR1200_DU_DRR</span>));
+<span style="color:#006e28;">`endif</span>
+<span style="color:#006e28;">`ifdef OR1200_DU_DVR0</span>
+<span style="font-weight:bold;">assign</span> dvr0_sel = (spr_cs &amp;&amp; (spr_addr[<span style="color:#006e28;">`OR1200_DUOFS_BITS</span>] == <span style="color:#006e28;">`OR1200_DU_DVR0</span>));
+<span style="color:#006e28;">`endif</span>
+<span style="color:#006e28;">`ifdef OR1200_DU_DVR1</span>
+<span style="font-weight:bold;">assign</span> dvr1_sel = (spr_cs &amp;&amp; (spr_addr[<span style="color:#006e28;">`OR1200_DUOFS_BITS</span>] == <span style="color:#006e28;">`OR1200_DU_DVR1</span>));
+<span style="color:#006e28;">`endif</span>
+<span style="color:#006e28;">`ifdef OR1200_DU_DVR2</span>
+<span style="font-weight:bold;">assign</span> dvr2_sel = (spr_cs &amp;&amp; (spr_addr[<span style="color:#006e28;">`OR1200_DUOFS_BITS</span>] == <span style="color:#006e28;">`OR1200_DU_DVR2</span>));
+<span style="color:#006e28;">`endif</span>
+<span style="color:#006e28;">`ifdef OR1200_DU_DVR3</span>
+<span style="font-weight:bold;">assign</span> dvr3_sel = (spr_cs &amp;&amp; (spr_addr[<span style="color:#006e28;">`OR1200_DUOFS_BITS</span>] == <span style="color:#006e28;">`OR1200_DU_DVR3</span>));
+<span style="color:#006e28;">`endif</span>
+<span style="color:#006e28;">`ifdef OR1200_DU_DVR4</span>
+<span style="font-weight:bold;">assign</span> dvr4_sel = (spr_cs &amp;&amp; (spr_addr[<span style="color:#006e28;">`OR1200_DUOFS_BITS</span>] == <span style="color:#006e28;">`OR1200_DU_DVR4</span>));
+<span style="color:#006e28;">`endif</span>
+<span style="color:#006e28;">`ifdef OR1200_DU_DVR5</span>
+<span style="font-weight:bold;">assign</span> dvr5_sel = (spr_cs &amp;&amp; (spr_addr[<span style="color:#006e28;">`OR1200_DUOFS_BITS</span>] == <span style="color:#006e28;">`OR1200_DU_DVR5</span>));
+<span style="color:#006e28;">`endif</span>
+<span style="color:#006e28;">`ifdef OR1200_DU_DVR6</span>
+<span style="font-weight:bold;">assign</span> dvr6_sel = (spr_cs &amp;&amp; (spr_addr[<span style="color:#006e28;">`OR1200_DUOFS_BITS</span>] == <span style="color:#006e28;">`OR1200_DU_DVR6</span>));
+<span style="color:#006e28;">`endif</span>
+<span style="color:#006e28;">`ifdef OR1200_DU_DVR7</span>
+<span style="font-weight:bold;">assign</span> dvr7_sel = (spr_cs &amp;&amp; (spr_addr[<span style="color:#006e28;">`OR1200_DUOFS_BITS</span>] == <span style="color:#006e28;">`OR1200_DU_DVR7</span>));
+<span style="color:#006e28;">`endif</span>
+<span style="color:#006e28;">`ifdef OR1200_DU_DCR0</span>
+<span style="font-weight:bold;">assign</span> dcr0_sel = (spr_cs &amp;&amp; (spr_addr[<span style="color:#006e28;">`OR1200_DUOFS_BITS</span>] == <span style="color:#006e28;">`OR1200_DU_DCR0</span>));
+<span style="color:#006e28;">`endif</span>
+<span style="color:#006e28;">`ifdef OR1200_DU_DCR1</span>
+<span style="font-weight:bold;">assign</span> dcr1_sel = (spr_cs &amp;&amp; (spr_addr[<span style="color:#006e28;">`OR1200_DUOFS_BITS</span>] == <span style="color:#006e28;">`OR1200_DU_DCR1</span>));
+<span style="color:#006e28;">`endif</span>
+<span style="color:#006e28;">`ifdef OR1200_DU_DCR2</span>
+<span style="font-weight:bold;">assign</span> dcr2_sel = (spr_cs &amp;&amp; (spr_addr[<span style="color:#006e28;">`OR1200_DUOFS_BITS</span>] == <span style="color:#006e28;">`OR1200_DU_DCR2</span>));
+<span style="color:#006e28;">`endif</span>
+<span style="color:#006e28;">`ifdef OR1200_DU_DCR3</span>
+<span style="font-weight:bold;">assign</span> dcr3_sel = (spr_cs &amp;&amp; (spr_addr[<span style="color:#006e28;">`OR1200_DUOFS_BITS</span>] == <span style="color:#006e28;">`OR1200_DU_DCR3</span>));
+<span style="color:#006e28;">`endif</span>
+<span style="color:#006e28;">`ifdef OR1200_DU_DCR4</span>
+<span style="font-weight:bold;">assign</span> dcr4_sel = (spr_cs &amp;&amp; (spr_addr[<span style="color:#006e28;">`OR1200_DUOFS_BITS</span>] == <span style="color:#006e28;">`OR1200_DU_DCR4</span>));
+<span style="color:#006e28;">`endif</span>
+<span style="color:#006e28;">`ifdef OR1200_DU_DCR5</span>
+<span style="font-weight:bold;">assign</span> dcr5_sel = (spr_cs &amp;&amp; (spr_addr[<span style="color:#006e28;">`OR1200_DUOFS_BITS</span>] == <span style="color:#006e28;">`OR1200_DU_DCR5</span>));
+<span style="color:#006e28;">`endif</span>
+<span style="color:#006e28;">`ifdef OR1200_DU_DCR6</span>
+<span style="font-weight:bold;">assign</span> dcr6_sel = (spr_cs &amp;&amp; (spr_addr[<span style="color:#006e28;">`OR1200_DUOFS_BITS</span>] == <span style="color:#006e28;">`OR1200_DU_DCR6</span>));
+<span style="color:#006e28;">`endif</span>
+<span style="color:#006e28;">`ifdef OR1200_DU_DCR7</span>
+<span style="font-weight:bold;">assign</span> dcr7_sel = (spr_cs &amp;&amp; (spr_addr[<span style="color:#006e28;">`OR1200_DUOFS_BITS</span>] == <span style="color:#006e28;">`OR1200_DU_DCR7</span>));
+<span style="color:#006e28;">`endif</span>
+<span style="color:#006e28;">`ifdef OR1200_DU_DWCR0</span>
+<span style="font-weight:bold;">assign</span> dwcr0_sel = (spr_cs &amp;&amp; (spr_addr[<span style="color:#006e28;">`OR1200_DUOFS_BITS</span>] == <span style="color:#006e28;">`OR1200_DU_DWCR0</span>));
+<span style="color:#006e28;">`endif</span>
+<span style="color:#006e28;">`ifdef OR1200_DU_DWCR1</span>
+<span style="font-weight:bold;">assign</span> dwcr1_sel = (spr_cs &amp;&amp; (spr_addr[<span style="color:#006e28;">`OR1200_DUOFS_BITS</span>] == <span style="color:#006e28;">`OR1200_DU_DWCR1</span>));
+<span style="color:#006e28;">`endif</span>
+
+<span style="color:#898887;">// Track previous ex_freeze to detect when signals are updated</span>
+<span style="font-weight:bold;">always</span> @(<span style="font-weight:bold;">posedge</span> clk)
+  ex_freeze_q &lt;= ex_freeze;
+
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// Decode started exception</span>
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// du_except_stop comes from or1200_except</span>
+<span style="color:#898887;">//   </span>
+<span style="font-weight:bold;">always</span> @(du_except_stop <span style="color:#0057ae;">or</span> ex_freeze_q) <span style="font-weight:bold;">begin</span>
+	except_stop = <span style="color:#b08000;">14'b00_0000_0000_0000</span>;
+	<span style="font-weight:bold;">casez</span> (du_except_stop)
+	        <span style="color:#b08000;">14'b1</span>?_????_????_????:
+			except_stop[<span style="color:#006e28;">`OR1200_DU_DRR_TTE</span>] = <span style="color:#b08000;">1'b1</span>;
+		<span style="color:#b08000;">14'b01_</span>????_????_????: <span style="font-weight:bold;">begin</span>
+			except_stop[<span style="color:#006e28;">`OR1200_DU_DRR_IE</span>] = <span style="color:#b08000;">1'b1</span>;
+		<span style="font-weight:bold;">end</span>
+		<span style="color:#b08000;">14'b00_1</span>???_????_????: <span style="font-weight:bold;">begin</span>
+			except_stop[<span style="color:#006e28;">`OR1200_DU_DRR_IME</span>] = <span style="color:#b08000;">1'b1</span>;
+		<span style="font-weight:bold;">end</span>
+		<span style="color:#b08000;">14'b00_01</span>??_????_????:
+			except_stop[<span style="color:#006e28;">`OR1200_DU_DRR_IPFE</span>] = <span style="color:#b08000;">1'b1</span>;
+		<span style="color:#b08000;">14'b00_001</span>?_????_????: <span style="font-weight:bold;">begin</span>
+			except_stop[<span style="color:#006e28;">`OR1200_DU_DRR_BUSEE</span>] = <span style="color:#b08000;">1'b1</span>;
+		<span style="font-weight:bold;">end</span>
+		<span style="color:#b08000;">14'b00_0001_</span>????_????:
+			except_stop[<span style="color:#006e28;">`OR1200_DU_DRR_IIE</span>] = <span style="color:#b08000;">1'b1</span>;
+		<span style="color:#b08000;">14'b00_0000_1</span>???_????: <span style="font-weight:bold;">begin</span>
+			except_stop[<span style="color:#006e28;">`OR1200_DU_DRR_AE</span>] = <span style="color:#b08000;">1'b1</span>;
+		<span style="font-weight:bold;">end</span>
+		<span style="color:#b08000;">14'b00_0000_01</span>??_????: <span style="font-weight:bold;">begin</span>
+			except_stop[<span style="color:#006e28;">`OR1200_DU_DRR_DME</span>] = <span style="color:#b08000;">1'b1</span>;
+		<span style="font-weight:bold;">end</span>
+		<span style="color:#b08000;">14'b00_0000_001</span>?_????:
+			except_stop[<span style="color:#006e28;">`OR1200_DU_DRR_DPFE</span>] = <span style="color:#b08000;">1'b1</span>;
+		<span style="color:#b08000;">14'b00_0000_0001_</span>????:
+			except_stop[<span style="color:#006e28;">`OR1200_DU_DRR_BUSEE</span>] = <span style="color:#b08000;">1'b1</span>;
+		<span style="color:#b08000;">14'b00_0000_0000_1</span>???: <span style="font-weight:bold;">begin</span>
+			except_stop[<span style="color:#006e28;">`OR1200_DU_DRR_RE</span>] = <span style="color:#b08000;">1'b1</span>;
+		<span style="font-weight:bold;">end</span>
+		<span style="color:#b08000;">14'b00_0000_0000_01</span>??: <span style="font-weight:bold;">begin</span>
+			except_stop[<span style="color:#006e28;">`OR1200_DU_DRR_TE</span>] = <span style="color:#b08000;">1'b1</span> &amp; ~ex_freeze_q;
+		<span style="font-weight:bold;">end</span>
+		<span style="color:#b08000;">14'b00_0000_0000_001</span>?: <span style="font-weight:bold;">begin</span>
+		        except_stop[<span style="color:#006e28;">`OR1200_DU_DRR_FPE</span>] = <span style="color:#b08000;">1'b1</span>;
+		<span style="font-weight:bold;">end</span>	  
+		<span style="color:#b08000;">14'b00_0000_0000_0001</span>:
+			except_stop[<span style="color:#006e28;">`OR1200_DU_DRR_SCE</span>] = <span style="color:#b08000;">1'b1</span> &amp; ~ex_freeze_q;
+		<span style="font-weight:bold;">default</span>:
+			except_stop = <span style="color:#b08000;">14'b00_0000_0000_0000</span>;
+	<span style="font-weight:bold;">endcase</span> <span style="color:#898887;">// casez (du_except_stop)</span>
+<span style="font-weight:bold;">end</span>
+
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// dbg_bp_o is registered</span>
+<span style="color:#898887;">//</span>
+<span style="font-weight:bold;">assign</span> dbg_bp_o = dbg_bp_r;
+
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// Breakpoint activation register</span>
+<span style="color:#898887;">//</span>
+<span style="font-weight:bold;">always</span> @(<span style="font-weight:bold;">posedge</span> clk <span style="color:#0057ae;">or</span> <span style="color:#006e28;">`OR1200_RST_EVENT</span> rst)
+	<span style="font-weight:bold;">if</span> (rst == <span style="color:#006e28;">`OR1200_RST_VALUE</span>)
+		dbg_bp_r &lt;=  <span style="color:#b08000;">1'b0</span>;
+	<span style="font-weight:bold;">else</span> <span style="font-weight:bold;">if</span> (!ex_freeze)
+		dbg_bp_r &lt;=  |except_stop
+<span style="color:#006e28;">`ifdef OR1200_DU_DMR1_ST</span>
+                        | ~((ex_insn[<span style="color:#b08000;">31</span>:<span style="color:#b08000;">26</span>] == <span style="color:#006e28;">`OR1200_OR32_NOP</span>) &amp; ex_insn[<span style="color:#b08000;">16</span>]) &amp; dmr1[<span style="color:#006e28;">`OR1200_DU_DMR1_ST</span>]
+<span style="color:#006e28;">`endif</span>
+<span style="color:#006e28;">`ifdef OR1200_DU_DMR1_BT</span>
+                        | (branch_op != <span style="color:#006e28;">`OR1200_BRANCHOP_NOP</span>) &amp; (branch_op != <span style="color:#006e28;">`OR1200_BRANCHOP_RFE</span>) &amp; dmr1[<span style="color:#006e28;">`OR1200_DU_DMR1_BT</span>]
+<span style="color:#006e28;">`endif</span>
+			;
+        <span style="font-weight:bold;">else</span>
+                dbg_bp_r &lt;=  |except_stop;
+
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// Write to DMR1</span>
+<span style="color:#898887;">//</span>
+<span style="color:#006e28;">`ifdef OR1200_DU_DMR1</span>
+<span style="font-weight:bold;">always</span> @(<span style="font-weight:bold;">posedge</span> clk <span style="color:#0057ae;">or</span> <span style="color:#006e28;">`OR1200_RST_EVENT</span> rst)
+	<span style="font-weight:bold;">if</span> (rst == <span style="color:#006e28;">`OR1200_RST_VALUE</span>)
+		dmr1 &lt;= <span style="color:#b08000;">25'h000_0000</span>;
+	<span style="font-weight:bold;">else</span> <span style="font-weight:bold;">if</span> (dmr1_sel &amp;&amp; spr_write)
+<span style="color:#006e28;">`ifdef OR1200_DU_HWBKPTS</span>
+		dmr1 &lt;=  spr_dat_i[<span style="color:#b08000;">24</span>:<span style="color:#b08000;">0</span>];
+<span style="color:#006e28;">`else</span>
+		dmr1 &lt;=  {<span style="color:#b08000;">1'b0</span>, spr_dat_i[<span style="color:#b08000;">23</span>:<span style="color:#b08000;">22</span>], <span style="color:#b08000;">22'h00_0000</span>};
+<span style="color:#006e28;">`endif</span>
+<span style="color:#006e28;">`else</span>
+<span style="font-weight:bold;">assign</span> dmr1 = <span style="color:#b08000;">25'h000_0000</span>;
+<span style="color:#006e28;">`endif</span>
+
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// Write to DMR2</span>
+<span style="color:#898887;">//</span>
+<span style="color:#006e28;">`ifdef OR1200_DU_DMR2</span>
+<span style="font-weight:bold;">always</span> @(<span style="font-weight:bold;">posedge</span> clk <span style="color:#0057ae;">or</span> <span style="color:#006e28;">`OR1200_RST_EVENT</span> rst)
+	<span style="font-weight:bold;">if</span> (rst == <span style="color:#006e28;">`OR1200_RST_VALUE</span>)
+		dmr2 &lt;= <span style="color:#b08000;">24'h00_0000</span>;
+	<span style="font-weight:bold;">else</span> <span style="font-weight:bold;">if</span> (dmr2_sel &amp;&amp; spr_write)
+		dmr2 &lt;=  spr_dat_i[<span style="color:#b08000;">23</span>:<span style="color:#b08000;">0</span>];
+<span style="color:#006e28;">`else</span>
+<span style="font-weight:bold;">assign</span> dmr2 = <span style="color:#b08000;">24'h00_0000</span>;
+<span style="color:#006e28;">`endif</span>
+
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// Write to DSR</span>
+<span style="color:#898887;">//</span>
+<span style="color:#006e28;">`ifdef OR1200_DU_DSR</span>
+<span style="font-weight:bold;">always</span> @(<span style="font-weight:bold;">posedge</span> clk <span style="color:#0057ae;">or</span> <span style="color:#006e28;">`OR1200_RST_EVENT</span> rst)
+	<span style="font-weight:bold;">if</span> (rst == <span style="color:#006e28;">`OR1200_RST_VALUE</span>)
+		dsr &lt;= {<span style="color:#006e28;">`OR1200_DU_DSR_WIDTH</span>{<span style="color:#b08000;">1'b0</span>}};
+	<span style="font-weight:bold;">else</span> <span style="font-weight:bold;">if</span> (dsr_sel &amp;&amp; spr_write)
+		dsr &lt;=  spr_dat_i[<span style="color:#006e28;">`OR1200_DU_DSR_WIDTH</span>-<span style="color:#b08000;">1</span>:<span style="color:#b08000;">0</span>];
+<span style="color:#006e28;">`else</span>
+<span style="font-weight:bold;">assign</span> dsr = {<span style="color:#006e28;">`OR1200_DU_DSR_WIDTH</span>{<span style="color:#b08000;">1'b0</span>}};
+<span style="color:#006e28;">`endif</span>
+
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// Write to DRR</span>
+<span style="color:#898887;">//</span>
+<span style="color:#006e28;">`ifdef OR1200_DU_DRR</span>
+<span style="font-weight:bold;">always</span> @(<span style="font-weight:bold;">posedge</span> clk <span style="color:#0057ae;">or</span> <span style="color:#006e28;">`OR1200_RST_EVENT</span> rst)
+	<span style="font-weight:bold;">if</span> (rst == <span style="color:#006e28;">`OR1200_RST_VALUE</span>)
+		drr &lt;= <span style="color:#b08000;">14'b0</span>;
+	<span style="font-weight:bold;">else</span> <span style="font-weight:bold;">if</span> (drr_sel &amp;&amp; spr_write)
+		drr &lt;=  spr_dat_i[<span style="color:#b08000;">13</span>:<span style="color:#b08000;">0</span>];
+	<span style="font-weight:bold;">else</span>
+		drr &lt;=  drr | except_stop;
+<span style="color:#006e28;">`else</span>
+<span style="font-weight:bold;">assign</span> drr = <span style="color:#b08000;">14'b0</span>;
+<span style="color:#006e28;">`endif</span>
+
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// Write to DVR0</span>
+<span style="color:#898887;">//</span>
+<span style="color:#006e28;">`ifdef OR1200_DU_DVR0</span>
+<span style="font-weight:bold;">always</span> @(<span style="font-weight:bold;">posedge</span> clk <span style="color:#0057ae;">or</span> <span style="color:#006e28;">`OR1200_RST_EVENT</span> rst)
+	<span style="font-weight:bold;">if</span> (rst == <span style="color:#006e28;">`OR1200_RST_VALUE</span>)
+		dvr0 &lt;= <span style="color:#b08000;">32'h0000_0000</span>;
+	<span style="font-weight:bold;">else</span> <span style="font-weight:bold;">if</span> (dvr0_sel &amp;&amp; spr_write)
+		dvr0 &lt;=  spr_dat_i[<span style="color:#b08000;">31</span>:<span style="color:#b08000;">0</span>];
+<span style="color:#006e28;">`else</span>
+<span style="font-weight:bold;">assign</span> dvr0 = <span style="color:#b08000;">32'h0000_0000</span>;
+<span style="color:#006e28;">`endif</span>
+
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// Write to DVR1</span>
+<span style="color:#898887;">//</span>
+<span style="color:#006e28;">`ifdef OR1200_DU_DVR1</span>
+<span style="font-weight:bold;">always</span> @(<span style="font-weight:bold;">posedge</span> clk <span style="color:#0057ae;">or</span> <span style="color:#006e28;">`OR1200_RST_EVENT</span> rst)
+	<span style="font-weight:bold;">if</span> (rst == <span style="color:#006e28;">`OR1200_RST_VALUE</span>)
+		dvr1 &lt;= <span style="color:#b08000;">32'h0000_0000</span>;
+	<span style="font-weight:bold;">else</span> <span style="font-weight:bold;">if</span> (dvr1_sel &amp;&amp; spr_write)
+		dvr1 &lt;=  spr_dat_i[<span style="color:#b08000;">31</span>:<span style="color:#b08000;">0</span>];
+<span style="color:#006e28;">`else</span>
+<span style="font-weight:bold;">assign</span> dvr1 = <span style="color:#b08000;">32'h0000_0000</span>;
+<span style="color:#006e28;">`endif</span>
+
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// Write to DVR2</span>
+<span style="color:#898887;">//</span>
+<span style="color:#006e28;">`ifdef OR1200_DU_DVR2</span>
+<span style="font-weight:bold;">always</span> @(<span style="font-weight:bold;">posedge</span> clk <span style="color:#0057ae;">or</span> <span style="color:#006e28;">`OR1200_RST_EVENT</span> rst)
+	<span style="font-weight:bold;">if</span> (rst == <span style="color:#006e28;">`OR1200_RST_VALUE</span>)
+		dvr2 &lt;= <span style="color:#b08000;">32'h0000_0000</span>;
+	<span style="font-weight:bold;">else</span> <span style="font-weight:bold;">if</span> (dvr2_sel &amp;&amp; spr_write)
+		dvr2 &lt;=  spr_dat_i[<span style="color:#b08000;">31</span>:<span style="color:#b08000;">0</span>];
+<span style="color:#006e28;">`else</span>
+<span style="font-weight:bold;">assign</span> dvr2 = <span style="color:#b08000;">32'h0000_0000</span>;
+<span style="color:#006e28;">`endif</span>
+
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// Write to DVR3</span>
+<span style="color:#898887;">//</span>
+<span style="color:#006e28;">`ifdef OR1200_DU_DVR3</span>
+<span style="font-weight:bold;">always</span> @(<span style="font-weight:bold;">posedge</span> clk <span style="color:#0057ae;">or</span> <span style="color:#006e28;">`OR1200_RST_EVENT</span> rst)
+	<span style="font-weight:bold;">if</span> (rst == <span style="color:#006e28;">`OR1200_RST_VALUE</span>)
+		dvr3 &lt;= <span style="color:#b08000;">32'h0000_0000</span>;
+	<span style="font-weight:bold;">else</span> <span style="font-weight:bold;">if</span> (dvr3_sel &amp;&amp; spr_write)
+		dvr3 &lt;=  spr_dat_i[<span style="color:#b08000;">31</span>:<span style="color:#b08000;">0</span>];
+<span style="color:#006e28;">`else</span>
+<span style="font-weight:bold;">assign</span> dvr3 = <span style="color:#b08000;">32'h0000_0000</span>;
+<span style="color:#006e28;">`endif</span>
+
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// Write to DVR4</span>
+<span style="color:#898887;">//</span>
+<span style="color:#006e28;">`ifdef OR1200_DU_DVR4</span>
+<span style="font-weight:bold;">always</span> @(<span style="font-weight:bold;">posedge</span> clk <span style="color:#0057ae;">or</span> <span style="color:#006e28;">`OR1200_RST_EVENT</span> rst)
+	<span style="font-weight:bold;">if</span> (rst == <span style="color:#006e28;">`OR1200_RST_VALUE</span>)
+		dvr4 &lt;= <span style="color:#b08000;">32'h0000_0000</span>;
+	<span style="font-weight:bold;">else</span> <span style="font-weight:bold;">if</span> (dvr4_sel &amp;&amp; spr_write)
+		dvr4 &lt;=  spr_dat_i[<span style="color:#b08000;">31</span>:<span style="color:#b08000;">0</span>];
+<span style="color:#006e28;">`else</span>
+<span style="font-weight:bold;">assign</span> dvr4 = <span style="color:#b08000;">32'h0000_0000</span>;
+<span style="color:#006e28;">`endif</span>
+
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// Write to DVR5</span>
+<span style="color:#898887;">//</span>
+<span style="color:#006e28;">`ifdef OR1200_DU_DVR5</span>
+<span style="font-weight:bold;">always</span> @(<span style="font-weight:bold;">posedge</span> clk <span style="color:#0057ae;">or</span> <span style="color:#006e28;">`OR1200_RST_EVENT</span> rst)
+	<span style="font-weight:bold;">if</span> (rst == <span style="color:#006e28;">`OR1200_RST_VALUE</span>)
+		dvr5 &lt;= <span style="color:#b08000;">32'h0000_0000</span>;
+	<span style="font-weight:bold;">else</span> <span style="font-weight:bold;">if</span> (dvr5_sel &amp;&amp; spr_write)
+		dvr5 &lt;=  spr_dat_i[<span style="color:#b08000;">31</span>:<span style="color:#b08000;">0</span>];
+<span style="color:#006e28;">`else</span>
+<span style="font-weight:bold;">assign</span> dvr5 = <span style="color:#b08000;">32'h0000_0000</span>;
+<span style="color:#006e28;">`endif</span>
+
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// Write to DVR6</span>
+<span style="color:#898887;">//</span>
+<span style="color:#006e28;">`ifdef OR1200_DU_DVR6</span>
+<span style="font-weight:bold;">always</span> @(<span style="font-weight:bold;">posedge</span> clk <span style="color:#0057ae;">or</span> <span style="color:#006e28;">`OR1200_RST_EVENT</span> rst)
+	<span style="font-weight:bold;">if</span> (rst == <span style="color:#006e28;">`OR1200_RST_VALUE</span>)
+		dvr6 &lt;= <span style="color:#b08000;">32'h0000_0000</span>;
+	<span style="font-weight:bold;">else</span> <span style="font-weight:bold;">if</span> (dvr6_sel &amp;&amp; spr_write)
+		dvr6 &lt;=  spr_dat_i[<span style="color:#b08000;">31</span>:<span style="color:#b08000;">0</span>];
+<span style="color:#006e28;">`else</span>
+<span style="font-weight:bold;">assign</span> dvr6 = <span style="color:#b08000;">32'h0000_0000</span>;
+<span style="color:#006e28;">`endif</span>
+
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// Write to DVR7</span>
+<span style="color:#898887;">//</span>
+<span style="color:#006e28;">`ifdef OR1200_DU_DVR7</span>
+<span style="font-weight:bold;">always</span> @(<span style="font-weight:bold;">posedge</span> clk <span style="color:#0057ae;">or</span> <span style="color:#006e28;">`OR1200_RST_EVENT</span> rst)
+	<span style="font-weight:bold;">if</span> (rst == <span style="color:#006e28;">`OR1200_RST_VALUE</span>)
+		dvr7 &lt;= <span style="color:#b08000;">32'h0000_0000</span>;
+	<span style="font-weight:bold;">else</span> <span style="font-weight:bold;">if</span> (dvr7_sel &amp;&amp; spr_write)
+		dvr7 &lt;=  spr_dat_i[<span style="color:#b08000;">31</span>:<span style="color:#b08000;">0</span>];
+<span style="color:#006e28;">`else</span>
+<span style="font-weight:bold;">assign</span> dvr7 = <span style="color:#b08000;">32'h0000_0000</span>;
+<span style="color:#006e28;">`endif</span>
+
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// Write to DCR0</span>
+<span style="color:#898887;">//</span>
+<span style="color:#006e28;">`ifdef OR1200_DU_DCR0</span>
+<span style="font-weight:bold;">always</span> @(<span style="font-weight:bold;">posedge</span> clk <span style="color:#0057ae;">or</span> <span style="color:#006e28;">`OR1200_RST_EVENT</span> rst)
+	<span style="font-weight:bold;">if</span> (rst == <span style="color:#006e28;">`OR1200_RST_VALUE</span>)
+		dcr0 &lt;= <span style="color:#b08000;">8'h00</span>;
+	<span style="font-weight:bold;">else</span> <span style="font-weight:bold;">if</span> (dcr0_sel &amp;&amp; spr_write)
+		dcr0 &lt;=  spr_dat_i[<span style="color:#b08000;">7</span>:<span style="color:#b08000;">0</span>];
+<span style="color:#006e28;">`else</span>
+<span style="font-weight:bold;">assign</span> dcr0 = <span style="color:#b08000;">8'h00</span>;
+<span style="color:#006e28;">`endif</span>
+
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// Write to DCR1</span>
+<span style="color:#898887;">//</span>
+<span style="color:#006e28;">`ifdef OR1200_DU_DCR1</span>
+<span style="font-weight:bold;">always</span> @(<span style="font-weight:bold;">posedge</span> clk <span style="color:#0057ae;">or</span> <span style="color:#006e28;">`OR1200_RST_EVENT</span> rst)
+	<span style="font-weight:bold;">if</span> (rst == <span style="color:#006e28;">`OR1200_RST_VALUE</span>)
+		dcr1 &lt;= <span style="color:#b08000;">8'h00</span>;
+	<span style="font-weight:bold;">else</span> <span style="font-weight:bold;">if</span> (dcr1_sel &amp;&amp; spr_write)
+		dcr1 &lt;=  spr_dat_i[<span style="color:#b08000;">7</span>:<span style="color:#b08000;">0</span>];
+<span style="color:#006e28;">`else</span>
+<span style="font-weight:bold;">assign</span> dcr1 = <span style="color:#b08000;">8'h00</span>;
+<span style="color:#006e28;">`endif</span>
+
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// Write to DCR2</span>
+<span style="color:#898887;">//</span>
+<span style="color:#006e28;">`ifdef OR1200_DU_DCR2</span>
+<span style="font-weight:bold;">always</span> @(<span style="font-weight:bold;">posedge</span> clk <span style="color:#0057ae;">or</span> <span style="color:#006e28;">`OR1200_RST_EVENT</span> rst)
+	<span style="font-weight:bold;">if</span> (rst == <span style="color:#006e28;">`OR1200_RST_VALUE</span>)
+		dcr2 &lt;= <span style="color:#b08000;">8'h00</span>;
+	<span style="font-weight:bold;">else</span> <span style="font-weight:bold;">if</span> (dcr2_sel &amp;&amp; spr_write)
+		dcr2 &lt;=  spr_dat_i[<span style="color:#b08000;">7</span>:<span style="color:#b08000;">0</span>];
+<span style="color:#006e28;">`else</span>
+<span style="font-weight:bold;">assign</span> dcr2 = <span style="color:#b08000;">8'h00</span>;
+<span style="color:#006e28;">`endif</span>
+
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// Write to DCR3</span>
+<span style="color:#898887;">//</span>
+<span style="color:#006e28;">`ifdef OR1200_DU_DCR3</span>
+<span style="font-weight:bold;">always</span> @(<span style="font-weight:bold;">posedge</span> clk <span style="color:#0057ae;">or</span> <span style="color:#006e28;">`OR1200_RST_EVENT</span> rst)
+	<span style="font-weight:bold;">if</span> (rst == <span style="color:#006e28;">`OR1200_RST_VALUE</span>)
+		dcr3 &lt;= <span style="color:#b08000;">8'h00</span>;
+	<span style="font-weight:bold;">else</span> <span style="font-weight:bold;">if</span> (dcr3_sel &amp;&amp; spr_write)
+		dcr3 &lt;=  spr_dat_i[<span style="color:#b08000;">7</span>:<span style="color:#b08000;">0</span>];
+<span style="color:#006e28;">`else</span>
+<span style="font-weight:bold;">assign</span> dcr3 = <span style="color:#b08000;">8'h00</span>;
+<span style="color:#006e28;">`endif</span>
+
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// Write to DCR4</span>
+<span style="color:#898887;">//</span>
+<span style="color:#006e28;">`ifdef OR1200_DU_DCR4</span>
+<span style="font-weight:bold;">always</span> @(<span style="font-weight:bold;">posedge</span> clk <span style="color:#0057ae;">or</span> <span style="color:#006e28;">`OR1200_RST_EVENT</span> rst)
+	<span style="font-weight:bold;">if</span> (rst == <span style="color:#006e28;">`OR1200_RST_VALUE</span>)
+		dcr4 &lt;= <span style="color:#b08000;">8'h00</span>;
+	<span style="font-weight:bold;">else</span> <span style="font-weight:bold;">if</span> (dcr4_sel &amp;&amp; spr_write)
+		dcr4 &lt;=  spr_dat_i[<span style="color:#b08000;">7</span>:<span style="color:#b08000;">0</span>];
+<span style="color:#006e28;">`else</span>
+<span style="font-weight:bold;">assign</span> dcr4 = <span style="color:#b08000;">8'h00</span>;
+<span style="color:#006e28;">`endif</span>
+
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// Write to DCR5</span>
+<span style="color:#898887;">//</span>
+<span style="color:#006e28;">`ifdef OR1200_DU_DCR5</span>
+<span style="font-weight:bold;">always</span> @(<span style="font-weight:bold;">posedge</span> clk <span style="color:#0057ae;">or</span> <span style="color:#006e28;">`OR1200_RST_EVENT</span> rst)
+	<span style="font-weight:bold;">if</span> (rst == <span style="color:#006e28;">`OR1200_RST_VALUE</span>)
+		dcr5 &lt;= <span style="color:#b08000;">8'h00</span>;
+	<span style="font-weight:bold;">else</span> <span style="font-weight:bold;">if</span> (dcr5_sel &amp;&amp; spr_write)
+		dcr5 &lt;=  spr_dat_i[<span style="color:#b08000;">7</span>:<span style="color:#b08000;">0</span>];
+<span style="color:#006e28;">`else</span>
+<span style="font-weight:bold;">assign</span> dcr5 = <span style="color:#b08000;">8'h00</span>;
+<span style="color:#006e28;">`endif</span>
+
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// Write to DCR6</span>
+<span style="color:#898887;">//</span>
+<span style="color:#006e28;">`ifdef OR1200_DU_DCR6</span>
+<span style="font-weight:bold;">always</span> @(<span style="font-weight:bold;">posedge</span> clk <span style="color:#0057ae;">or</span> <span style="color:#006e28;">`OR1200_RST_EVENT</span> rst)
+	<span style="font-weight:bold;">if</span> (rst == <span style="color:#006e28;">`OR1200_RST_VALUE</span>)
+		dcr6 &lt;= <span style="color:#b08000;">8'h00</span>;
+	<span style="font-weight:bold;">else</span> <span style="font-weight:bold;">if</span> (dcr6_sel &amp;&amp; spr_write)
+		dcr6 &lt;=  spr_dat_i[<span style="color:#b08000;">7</span>:<span style="color:#b08000;">0</span>];
+<span style="color:#006e28;">`else</span>
+<span style="font-weight:bold;">assign</span> dcr6 = <span style="color:#b08000;">8'h00</span>;
+<span style="color:#006e28;">`endif</span>
+
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// Write to DCR7</span>
+<span style="color:#898887;">//</span>
+<span style="color:#006e28;">`ifdef OR1200_DU_DCR7</span>
+<span style="font-weight:bold;">always</span> @(<span style="font-weight:bold;">posedge</span> clk <span style="color:#0057ae;">or</span> <span style="color:#006e28;">`OR1200_RST_EVENT</span> rst)
+	<span style="font-weight:bold;">if</span> (rst == <span style="color:#006e28;">`OR1200_RST_VALUE</span>)
+		dcr7 &lt;= <span style="color:#b08000;">8'h00</span>;
+	<span style="font-weight:bold;">else</span> <span style="font-weight:bold;">if</span> (dcr7_sel &amp;&amp; spr_write)
+		dcr7 &lt;=  spr_dat_i[<span style="color:#b08000;">7</span>:<span style="color:#b08000;">0</span>];
+<span style="color:#006e28;">`else</span>
+<span style="font-weight:bold;">assign</span> dcr7 = <span style="color:#b08000;">8'h00</span>;
+<span style="color:#006e28;">`endif</span>
+
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// Write to DWCR0</span>
+<span style="color:#898887;">//</span>
+<span style="color:#006e28;">`ifdef OR1200_DU_DWCR0</span>
+<span style="font-weight:bold;">always</span> @(<span style="font-weight:bold;">posedge</span> clk <span style="color:#0057ae;">or</span> <span style="color:#006e28;">`OR1200_RST_EVENT</span> rst)
+	<span style="font-weight:bold;">if</span> (rst == <span style="color:#006e28;">`OR1200_RST_VALUE</span>)
+		dwcr0 &lt;= <span style="color:#b08000;">32'h0000_0000</span>;
+	<span style="font-weight:bold;">else</span> <span style="font-weight:bold;">if</span> (dwcr0_sel &amp;&amp; spr_write)
+		dwcr0 &lt;=  spr_dat_i[<span style="color:#b08000;">31</span>:<span style="color:#b08000;">0</span>];
+	<span style="font-weight:bold;">else</span> <span style="font-weight:bold;">if</span> (incr_wpcntr0)
+		dwcr0[<span style="color:#006e28;">`OR1200_DU_DWCR_COUNT</span>] &lt;=  dwcr0[<span style="color:#006e28;">`OR1200_DU_DWCR_COUNT</span>] + <span style="color:#b08000;">16'h0001</span>;
+<span style="color:#006e28;">`else</span>
+<span style="font-weight:bold;">assign</span> dwcr0 = <span style="color:#b08000;">32'h0000_0000</span>;
+<span style="color:#006e28;">`endif</span>
+
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// Write to DWCR1</span>
+<span style="color:#898887;">//</span>
+<span style="color:#006e28;">`ifdef OR1200_DU_DWCR1</span>
+<span style="font-weight:bold;">always</span> @(<span style="font-weight:bold;">posedge</span> clk <span style="color:#0057ae;">or</span> <span style="color:#006e28;">`OR1200_RST_EVENT</span> rst)
+	<span style="font-weight:bold;">if</span> (rst == <span style="color:#006e28;">`OR1200_RST_VALUE</span>)
+		dwcr1 &lt;= <span style="color:#b08000;">32'h0000_0000</span>;
+	<span style="font-weight:bold;">else</span> <span style="font-weight:bold;">if</span> (dwcr1_sel &amp;&amp; spr_write)
+		dwcr1 &lt;=  spr_dat_i[<span style="color:#b08000;">31</span>:<span style="color:#b08000;">0</span>];
+	<span style="font-weight:bold;">else</span> <span style="font-weight:bold;">if</span> (incr_wpcntr1)
+		dwcr1[<span style="color:#006e28;">`OR1200_DU_DWCR_COUNT</span>] &lt;=  dwcr1[<span style="color:#006e28;">`OR1200_DU_DWCR_COUNT</span>] + <span style="color:#b08000;">16'h0001</span>;
+<span style="color:#006e28;">`else</span>
+<span style="font-weight:bold;">assign</span> dwcr1 = <span style="color:#b08000;">32'h0000_0000</span>;
+<span style="color:#006e28;">`endif</span>
+
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// Read DU registers</span>
+<span style="color:#898887;">//</span>
+<span style="color:#006e28;">`ifdef OR1200_DU_READREGS</span>
+<span style="font-weight:bold;">always</span> @(spr_addr <span style="color:#0057ae;">or</span> dsr <span style="color:#0057ae;">or</span> drr <span style="color:#0057ae;">or</span> dmr1 <span style="color:#0057ae;">or</span> dmr2
+	<span style="color:#0057ae;">or</span> dvr0 <span style="color:#0057ae;">or</span> dvr1 <span style="color:#0057ae;">or</span> dvr2 <span style="color:#0057ae;">or</span> dvr3 <span style="color:#0057ae;">or</span> dvr4
+	<span style="color:#0057ae;">or</span> dvr5 <span style="color:#0057ae;">or</span> dvr6 <span style="color:#0057ae;">or</span> dvr7
+	<span style="color:#0057ae;">or</span> dcr0 <span style="color:#0057ae;">or</span> dcr1 <span style="color:#0057ae;">or</span> dcr2 <span style="color:#0057ae;">or</span> dcr3 <span style="color:#0057ae;">or</span> dcr4
+	<span style="color:#0057ae;">or</span> dcr5 <span style="color:#0057ae;">or</span> dcr6 <span style="color:#0057ae;">or</span> dcr7
+	<span style="color:#0057ae;">or</span> dwcr0 <span style="color:#0057ae;">or</span> dwcr1
+<span style="color:#006e28;">`ifdef OR1200_DU_TB_IMPLEMENTED</span>
+	<span style="color:#0057ae;">or</span> tb_wadr <span style="color:#0057ae;">or</span> tbia_dat_o <span style="color:#0057ae;">or</span> tbim_dat_o
+	<span style="color:#0057ae;">or</span> tbar_dat_o <span style="color:#0057ae;">or</span> tbts_dat_o
+<span style="color:#006e28;">`endif</span>
+	)
+	<span style="font-weight:bold;">casez</span> (spr_addr[<span style="color:#006e28;">`OR1200_DUOFS_BITS</span>]) <span style="color:#898887;">// synopsys parallel_case</span>
+<span style="color:#006e28;">`ifdef OR1200_DU_DVR0</span>
+		<span style="color:#006e28;">`OR1200_DU_DVR0</span>:
+			spr_dat_o = dvr0;
+<span style="color:#006e28;">`endif</span>
+<span style="color:#006e28;">`ifdef OR1200_DU_DVR1</span>
+		<span style="color:#006e28;">`OR1200_DU_DVR1</span>:
+			spr_dat_o = dvr1;
+<span style="color:#006e28;">`endif</span>
+<span style="color:#006e28;">`ifdef OR1200_DU_DVR2</span>
+		<span style="color:#006e28;">`OR1200_DU_DVR2</span>:
+			spr_dat_o = dvr2;
+<span style="color:#006e28;">`endif</span>
+<span style="color:#006e28;">`ifdef OR1200_DU_DVR3</span>
+		<span style="color:#006e28;">`OR1200_DU_DVR3</span>:
+			spr_dat_o = dvr3;
+<span style="color:#006e28;">`endif</span>
+<span style="color:#006e28;">`ifdef OR1200_DU_DVR4</span>
+		<span style="color:#006e28;">`OR1200_DU_DVR4</span>:
+			spr_dat_o = dvr4;
+<span style="color:#006e28;">`endif</span>
+<span style="color:#006e28;">`ifdef OR1200_DU_DVR5</span>
+		<span style="color:#006e28;">`OR1200_DU_DVR5</span>:
+			spr_dat_o = dvr5;
+<span style="color:#006e28;">`endif</span>
+<span style="color:#006e28;">`ifdef OR1200_DU_DVR6</span>
+		<span style="color:#006e28;">`OR1200_DU_DVR6</span>:
+			spr_dat_o = dvr6;
+<span style="color:#006e28;">`endif</span>
+<span style="color:#006e28;">`ifdef OR1200_DU_DVR7</span>
+		<span style="color:#006e28;">`OR1200_DU_DVR7</span>:
+			spr_dat_o = dvr7;
+<span style="color:#006e28;">`endif</span>
+<span style="color:#006e28;">`ifdef OR1200_DU_DCR0</span>
+		<span style="color:#006e28;">`OR1200_DU_DCR0</span>:
+			spr_dat_o = {<span style="color:#b08000;">24'h00_0000</span>, dcr0};
+<span style="color:#006e28;">`endif</span>
+<span style="color:#006e28;">`ifdef OR1200_DU_DCR1</span>
+		<span style="color:#006e28;">`OR1200_DU_DCR1</span>:
+			spr_dat_o = {<span style="color:#b08000;">24'h00_0000</span>, dcr1};
+<span style="color:#006e28;">`endif</span>
+<span style="color:#006e28;">`ifdef OR1200_DU_DCR2</span>
+		<span style="color:#006e28;">`OR1200_DU_DCR2</span>:
+			spr_dat_o = {<span style="color:#b08000;">24'h00_0000</span>, dcr2};
+<span style="color:#006e28;">`endif</span>
+<span style="color:#006e28;">`ifdef OR1200_DU_DCR3</span>
+		<span style="color:#006e28;">`OR1200_DU_DCR3</span>:
+			spr_dat_o = {<span style="color:#b08000;">24'h00_0000</span>, dcr3};
+<span style="color:#006e28;">`endif</span>
+<span style="color:#006e28;">`ifdef OR1200_DU_DCR4</span>
+		<span style="color:#006e28;">`OR1200_DU_DCR4</span>:
+			spr_dat_o = {<span style="color:#b08000;">24'h00_0000</span>, dcr4};
+<span style="color:#006e28;">`endif</span>
+<span style="color:#006e28;">`ifdef OR1200_DU_DCR5</span>
+		<span style="color:#006e28;">`OR1200_DU_DCR5</span>:
+			spr_dat_o = {<span style="color:#b08000;">24'h00_0000</span>, dcr5};
+<span style="color:#006e28;">`endif</span>
+<span style="color:#006e28;">`ifdef OR1200_DU_DCR6</span>
+		<span style="color:#006e28;">`OR1200_DU_DCR6</span>:
+			spr_dat_o = {<span style="color:#b08000;">24'h00_0000</span>, dcr6};
+<span style="color:#006e28;">`endif</span>
+<span style="color:#006e28;">`ifdef OR1200_DU_DCR7</span>
+		<span style="color:#006e28;">`OR1200_DU_DCR7</span>:
+			spr_dat_o = {<span style="color:#b08000;">24'h00_0000</span>, dcr7};
+<span style="color:#006e28;">`endif</span>
+<span style="color:#006e28;">`ifdef OR1200_DU_DMR1</span>
+		<span style="color:#006e28;">`OR1200_DU_DMR1</span>:
+			spr_dat_o = {<span style="color:#b08000;">7'h00</span>, dmr1};
+<span style="color:#006e28;">`endif</span>
+<span style="color:#006e28;">`ifdef OR1200_DU_DMR2</span>
+		<span style="color:#006e28;">`OR1200_DU_DMR2</span>:
+			spr_dat_o = {<span style="color:#b08000;">8'h00</span>, dmr2};
+<span style="color:#006e28;">`endif</span>
+<span style="color:#006e28;">`ifdef OR1200_DU_DWCR0</span>
+		<span style="color:#006e28;">`OR1200_DU_DWCR0</span>:
+			spr_dat_o = dwcr0;
+<span style="color:#006e28;">`endif</span>
+<span style="color:#006e28;">`ifdef OR1200_DU_DWCR1</span>
+		<span style="color:#006e28;">`OR1200_DU_DWCR1</span>:
+			spr_dat_o = dwcr1;
+<span style="color:#006e28;">`endif</span>
+<span style="color:#006e28;">`ifdef OR1200_DU_DSR</span>
+		<span style="color:#006e28;">`OR1200_DU_DSR</span>:
+			spr_dat_o = {<span style="color:#b08000;">18'b0</span>, dsr};
+<span style="color:#006e28;">`endif</span>
+<span style="color:#006e28;">`ifdef OR1200_DU_DRR</span>
+		<span style="color:#006e28;">`OR1200_DU_DRR</span>:
+			spr_dat_o = {<span style="color:#b08000;">18'b0</span>, drr};
+<span style="color:#006e28;">`endif</span>
+<span style="color:#006e28;">`ifdef OR1200_DU_TB_IMPLEMENTED</span>
+		<span style="color:#006e28;">`OR1200_DU_TBADR</span>:
+			spr_dat_o = {<span style="color:#b08000;">24'h000000</span>, tb_wadr};
+		<span style="color:#006e28;">`OR1200_DU_TBIA</span>:
+			spr_dat_o = tbia_dat_o;
+		<span style="color:#006e28;">`OR1200_DU_TBIM</span>:
+			spr_dat_o = tbim_dat_o;
+		<span style="color:#006e28;">`OR1200_DU_TBAR</span>:
+			spr_dat_o = tbar_dat_o;
+		<span style="color:#006e28;">`OR1200_DU_TBTS</span>:
+			spr_dat_o = tbts_dat_o;
+<span style="color:#006e28;">`endif</span>
+		<span style="font-weight:bold;">default</span>:
+			spr_dat_o = <span style="color:#b08000;">32'h0000_0000</span>;
+	<span style="font-weight:bold;">endcase</span>
+<span style="color:#006e28;">`endif</span>
+
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// DSR alias</span>
+<span style="color:#898887;">//</span>
+<span style="font-weight:bold;">assign</span> du_dsr = dsr;
+
+<span style="color:#006e28;">`ifdef OR1200_DU_HWBKPTS</span>
+
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// Compare To What (Match Condition 0)</span>
+<span style="color:#898887;">//</span>
+<span style="font-weight:bold;">always</span> @(dcr0 <span style="color:#0057ae;">or</span> id_pc <span style="color:#0057ae;">or</span> dcpu_adr_i <span style="color:#0057ae;">or</span> dcpu_dat_dc
+	<span style="color:#0057ae;">or</span> dcpu_dat_lsu <span style="color:#0057ae;">or</span> dcpu_we_i)
+	<span style="font-weight:bold;">case</span> (dcr0[<span style="color:#006e28;">`OR1200_DU_DCR_CT</span>])		<span style="color:#898887;">// synopsys parallel_case</span>
+		<span style="color:#b08000;">3'b001</span>:	match_cond0_ct = id_pc;		<span style="color:#898887;">// insn fetch EA</span>
+		<span style="color:#b08000;">3'b010</span>:	match_cond0_ct = dcpu_adr_i;	<span style="color:#898887;">// load EA</span>
+		<span style="color:#b08000;">3'b011</span>:	match_cond0_ct = dcpu_adr_i;	<span style="color:#898887;">// store EA</span>
+		<span style="color:#b08000;">3'b100</span>:	match_cond0_ct = dcpu_dat_dc;	<span style="color:#898887;">// load data</span>
+		<span style="color:#b08000;">3'b101</span>:	match_cond0_ct = dcpu_dat_lsu;	<span style="color:#898887;">// store data</span>
+		<span style="color:#b08000;">3'b110</span>:	match_cond0_ct = dcpu_adr_i;	<span style="color:#898887;">// load/store EA</span>
+		<span style="font-weight:bold;">default</span>:match_cond0_ct = dcpu_we_i ? dcpu_dat_lsu : dcpu_dat_dc;
+	<span style="font-weight:bold;">endcase</span>
+
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// When To Compare (Match Condition 0)</span>
+<span style="color:#898887;">//</span>
+<span style="font-weight:bold;">always</span> @(dcr0 <span style="color:#0057ae;">or</span> dcpu_cycstb_i)
+	<span style="font-weight:bold;">case</span> (dcr0[<span style="color:#006e28;">`OR1200_DU_DCR_CT</span>]) 		<span style="color:#898887;">// synopsys parallel_case</span>
+		<span style="color:#b08000;">3'b000</span>:	match_cond0_stb = <span style="color:#b08000;">1'b0</span>;		<span style="color:#898887;">//comparison disabled</span>
+		<span style="color:#b08000;">3'b001</span>:	match_cond0_stb = <span style="color:#b08000;">1'b1</span>;		<span style="color:#898887;">// insn fetch EA</span>
+		<span style="font-weight:bold;">default</span>:match_cond0_stb = dcpu_cycstb_i; <span style="color:#898887;">// any load/store</span>
+	<span style="font-weight:bold;">endcase</span>
+
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// Match Condition 0</span>
+<span style="color:#898887;">//</span>
+<span style="font-weight:bold;">always</span> @(match_cond0_stb <span style="color:#0057ae;">or</span> dcr0 <span style="color:#0057ae;">or</span> dvr0 <span style="color:#0057ae;">or</span> match_cond0_ct)
+	<span style="font-weight:bold;">casex</span> ({match_cond0_stb, dcr0[<span style="color:#006e28;">`OR1200_DU_DCR_CC</span>]})
+		<span style="color:#b08000;">4'b0_xxx</span>,
+		<span style="color:#b08000;">4'b1_000</span>,
+		<span style="color:#b08000;">4'b1_111</span>: match0 = <span style="color:#b08000;">1'b0</span>;
+		<span style="color:#b08000;">4'b1_001</span>: match0 =
+			({(match_cond0_ct[<span style="color:#b08000;">31</span>] ^ dcr0[<span style="color:#006e28;">`OR1200_DU_DCR_SC</span>]), match_cond0_ct[<span style="color:#b08000;">30</span>:<span style="color:#b08000;">0</span>]} ==
+			 {(dvr0[<span style="color:#b08000;">31</span>] ^ dcr0[<span style="color:#006e28;">`OR1200_DU_DCR_SC</span>]), dvr0[<span style="color:#b08000;">30</span>:<span style="color:#b08000;">0</span>]});
+		<span style="color:#b08000;">4'b1_010</span>: match0 = 
+			({(match_cond0_ct[<span style="color:#b08000;">31</span>] ^ dcr0[<span style="color:#006e28;">`OR1200_DU_DCR_SC</span>]), match_cond0_ct[<span style="color:#b08000;">30</span>:<span style="color:#b08000;">0</span>]} &lt;
+			 {(dvr0[<span style="color:#b08000;">31</span>] ^ dcr0[<span style="color:#006e28;">`OR1200_DU_DCR_SC</span>]), dvr0[<span style="color:#b08000;">30</span>:<span style="color:#b08000;">0</span>]});
+		<span style="color:#b08000;">4'b1_011</span>: match0 = 
+			({(match_cond0_ct[<span style="color:#b08000;">31</span>] ^ dcr0[<span style="color:#006e28;">`OR1200_DU_DCR_SC</span>]), match_cond0_ct[<span style="color:#b08000;">30</span>:<span style="color:#b08000;">0</span>]} &lt;=
+			 {(dvr0[<span style="color:#b08000;">31</span>] ^ dcr0[<span style="color:#006e28;">`OR1200_DU_DCR_SC</span>]), dvr0[<span style="color:#b08000;">30</span>:<span style="color:#b08000;">0</span>]});
+		<span style="color:#b08000;">4'b1_100</span>: match0 = 
+			({(match_cond0_ct[<span style="color:#b08000;">31</span>] ^ dcr0[<span style="color:#006e28;">`OR1200_DU_DCR_SC</span>]), match_cond0_ct[<span style="color:#b08000;">30</span>:<span style="color:#b08000;">0</span>]} &gt;
+			 {(dvr0[<span style="color:#b08000;">31</span>] ^ dcr0[<span style="color:#006e28;">`OR1200_DU_DCR_SC</span>]), dvr0[<span style="color:#b08000;">30</span>:<span style="color:#b08000;">0</span>]});
+		<span style="color:#b08000;">4'b1_101</span>: match0 = 
+			({(match_cond0_ct[<span style="color:#b08000;">31</span>] ^ dcr0[<span style="color:#006e28;">`OR1200_DU_DCR_SC</span>]), match_cond0_ct[<span style="color:#b08000;">30</span>:<span style="color:#b08000;">0</span>]} &gt;=
+			 {(dvr0[<span style="color:#b08000;">31</span>] ^ dcr0[<span style="color:#006e28;">`OR1200_DU_DCR_SC</span>]), dvr0[<span style="color:#b08000;">30</span>:<span style="color:#b08000;">0</span>]});
+		<span style="color:#b08000;">4'b1_110</span>: match0 = 
+			({(match_cond0_ct[<span style="color:#b08000;">31</span>] ^ dcr0[<span style="color:#006e28;">`OR1200_DU_DCR_SC</span>]), match_cond0_ct[<span style="color:#b08000;">30</span>:<span style="color:#b08000;">0</span>]} !=
+			 {(dvr0[<span style="color:#b08000;">31</span>] ^ dcr0[<span style="color:#006e28;">`OR1200_DU_DCR_SC</span>]), dvr0[<span style="color:#b08000;">30</span>:<span style="color:#b08000;">0</span>]});
+	<span style="font-weight:bold;">endcase</span>
+
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// Watchpoint 0</span>
+<span style="color:#898887;">//</span>
+<span style="font-weight:bold;">always</span> @(dmr1 <span style="color:#0057ae;">or</span> match0)
+	<span style="font-weight:bold;">case</span> (dmr1[<span style="color:#006e28;">`OR1200_DU_DMR1_CW0</span>])
+		<span style="color:#b08000;">2'b00</span>: wp[<span style="color:#b08000;">0</span>] = match0;
+		<span style="color:#b08000;">2'b01</span>: wp[<span style="color:#b08000;">0</span>] = match0;
+		<span style="color:#b08000;">2'b10</span>: wp[<span style="color:#b08000;">0</span>] = match0;
+		<span style="color:#b08000;">2'b11</span>: wp[<span style="color:#b08000;">0</span>] = <span style="color:#b08000;">1'b0</span>;
+	<span style="font-weight:bold;">endcase</span>
+
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// Compare To What (Match Condition 1)</span>
+<span style="color:#898887;">//</span>
+<span style="font-weight:bold;">always</span> @(dcr1 <span style="color:#0057ae;">or</span> id_pc <span style="color:#0057ae;">or</span> dcpu_adr_i <span style="color:#0057ae;">or</span> dcpu_dat_dc
+	<span style="color:#0057ae;">or</span> dcpu_dat_lsu <span style="color:#0057ae;">or</span> dcpu_we_i)
+	<span style="font-weight:bold;">case</span> (dcr1[<span style="color:#006e28;">`OR1200_DU_DCR_CT</span>])		<span style="color:#898887;">// synopsys parallel_case</span>
+		<span style="color:#b08000;">3'b001</span>:	match_cond1_ct = id_pc;		<span style="color:#898887;">// insn fetch EA</span>
+		<span style="color:#b08000;">3'b010</span>:	match_cond1_ct = dcpu_adr_i;	<span style="color:#898887;">// load EA</span>
+		<span style="color:#b08000;">3'b011</span>:	match_cond1_ct = dcpu_adr_i;	<span style="color:#898887;">// store EA</span>
+		<span style="color:#b08000;">3'b100</span>:	match_cond1_ct = dcpu_dat_dc;	<span style="color:#898887;">// load data</span>
+		<span style="color:#b08000;">3'b101</span>:	match_cond1_ct = dcpu_dat_lsu;	<span style="color:#898887;">// store data</span>
+		<span style="color:#b08000;">3'b110</span>:	match_cond1_ct = dcpu_adr_i;	<span style="color:#898887;">// load/store EA</span>
+		<span style="font-weight:bold;">default</span>:match_cond1_ct = dcpu_we_i ? dcpu_dat_lsu : dcpu_dat_dc;
+	<span style="font-weight:bold;">endcase</span>
+
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// When To Compare (Match Condition 1)</span>
+<span style="color:#898887;">//</span>
+<span style="font-weight:bold;">always</span> @(dcr1 <span style="color:#0057ae;">or</span> dcpu_cycstb_i)
+	<span style="font-weight:bold;">case</span> (dcr1[<span style="color:#006e28;">`OR1200_DU_DCR_CT</span>]) 		<span style="color:#898887;">// synopsys parallel_case</span>
+		<span style="color:#b08000;">3'b000</span>:	match_cond1_stb = <span style="color:#b08000;">1'b0</span>;		<span style="color:#898887;">//comparison disabled</span>
+		<span style="color:#b08000;">3'b001</span>:	match_cond1_stb = <span style="color:#b08000;">1'b1</span>;		<span style="color:#898887;">// insn fetch EA</span>
+		<span style="font-weight:bold;">default</span>:match_cond1_stb = dcpu_cycstb_i; <span style="color:#898887;">// any load/store</span>
+	<span style="font-weight:bold;">endcase</span>
+
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// Match Condition 1</span>
+<span style="color:#898887;">//</span>
+<span style="font-weight:bold;">always</span> @(match_cond1_stb <span style="color:#0057ae;">or</span> dcr1 <span style="color:#0057ae;">or</span> dvr1 <span style="color:#0057ae;">or</span> match_cond1_ct)
+	<span style="font-weight:bold;">casex</span> ({match_cond1_stb, dcr1[<span style="color:#006e28;">`OR1200_DU_DCR_CC</span>]})
+		<span style="color:#b08000;">4'b0_xxx</span>,
+		<span style="color:#b08000;">4'b1_000</span>,
+		<span style="color:#b08000;">4'b1_111</span>: match1 = <span style="color:#b08000;">1'b0</span>;
+		<span style="color:#b08000;">4'b1_001</span>: match1 =
+			({(match_cond1_ct[<span style="color:#b08000;">31</span>] ^ dcr1[<span style="color:#006e28;">`OR1200_DU_DCR_SC</span>]), match_cond1_ct[<span style="color:#b08000;">30</span>:<span style="color:#b08000;">0</span>]} ==
+			 {(dvr1[<span style="color:#b08000;">31</span>] ^ dcr1[<span style="color:#006e28;">`OR1200_DU_DCR_SC</span>]), dvr1[<span style="color:#b08000;">30</span>:<span style="color:#b08000;">0</span>]});
+		<span style="color:#b08000;">4'b1_010</span>: match1 = 
+			({(match_cond1_ct[<span style="color:#b08000;">31</span>] ^ dcr1[<span style="color:#006e28;">`OR1200_DU_DCR_SC</span>]), match_cond1_ct[<span style="color:#b08000;">30</span>:<span style="color:#b08000;">0</span>]} &lt;
+			 {(dvr1[<span style="color:#b08000;">31</span>] ^ dcr1[<span style="color:#006e28;">`OR1200_DU_DCR_SC</span>]), dvr1[<span style="color:#b08000;">30</span>:<span style="color:#b08000;">0</span>]});
+		<span style="color:#b08000;">4'b1_011</span>: match1 = 
+			({(match_cond1_ct[<span style="color:#b08000;">31</span>] ^ dcr1[<span style="color:#006e28;">`OR1200_DU_DCR_SC</span>]), match_cond1_ct[<span style="color:#b08000;">30</span>:<span style="color:#b08000;">0</span>]} &lt;=
+			 {(dvr1[<span style="color:#b08000;">31</span>] ^ dcr1[<span style="color:#006e28;">`OR1200_DU_DCR_SC</span>]), dvr1[<span style="color:#b08000;">30</span>:<span style="color:#b08000;">0</span>]});
+		<span style="color:#b08000;">4'b1_100</span>: match1 = 
+			({(match_cond1_ct[<span style="color:#b08000;">31</span>] ^ dcr1[<span style="color:#006e28;">`OR1200_DU_DCR_SC</span>]), match_cond1_ct[<span style="color:#b08000;">30</span>:<span style="color:#b08000;">0</span>]} &gt;
+			 {(dvr1[<span style="color:#b08000;">31</span>] ^ dcr1[<span style="color:#006e28;">`OR1200_DU_DCR_SC</span>]), dvr1[<span style="color:#b08000;">30</span>:<span style="color:#b08000;">0</span>]});
+		<span style="color:#b08000;">4'b1_101</span>: match1 = 
+			({(match_cond1_ct[<span style="color:#b08000;">31</span>] ^ dcr1[<span style="color:#006e28;">`OR1200_DU_DCR_SC</span>]), match_cond1_ct[<span style="color:#b08000;">30</span>:<span style="color:#b08000;">0</span>]} &gt;=
+			 {(dvr1[<span style="color:#b08000;">31</span>] ^ dcr1[<span style="color:#006e28;">`OR1200_DU_DCR_SC</span>]), dvr1[<span style="color:#b08000;">30</span>:<span style="color:#b08000;">0</span>]});
+		<span style="color:#b08000;">4'b1_110</span>: match1 = 
+			({(match_cond1_ct[<span style="color:#b08000;">31</span>] ^ dcr1[<span style="color:#006e28;">`OR1200_DU_DCR_SC</span>]), match_cond1_ct[<span style="color:#b08000;">30</span>:<span style="color:#b08000;">0</span>]} !=
+			 {(dvr1[<span style="color:#b08000;">31</span>] ^ dcr1[<span style="color:#006e28;">`OR1200_DU_DCR_SC</span>]), dvr1[<span style="color:#b08000;">30</span>:<span style="color:#b08000;">0</span>]});
+	<span style="font-weight:bold;">endcase</span>
+
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// Watchpoint 1</span>
+<span style="color:#898887;">//</span>
+<span style="font-weight:bold;">always</span> @(dmr1 <span style="color:#0057ae;">or</span> match1 <span style="color:#0057ae;">or</span> wp)
+	<span style="font-weight:bold;">case</span> (dmr1[<span style="color:#006e28;">`OR1200_DU_DMR1_CW1</span>])
+		<span style="color:#b08000;">2'b00</span>: wp[<span style="color:#b08000;">1</span>] = match1;
+		<span style="color:#b08000;">2'b01</span>: wp[<span style="color:#b08000;">1</span>] = match1 &amp; wp[<span style="color:#b08000;">0</span>];
+		<span style="color:#b08000;">2'b10</span>: wp[<span style="color:#b08000;">1</span>] = match1 | wp[<span style="color:#b08000;">0</span>];
+		<span style="color:#b08000;">2'b11</span>: wp[<span style="color:#b08000;">1</span>] = <span style="color:#b08000;">1'b0</span>;
+	<span style="font-weight:bold;">endcase</span>
+
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// Compare To What (Match Condition 2)</span>
+<span style="color:#898887;">//</span>
+<span style="font-weight:bold;">always</span> @(dcr2 <span style="color:#0057ae;">or</span> id_pc <span style="color:#0057ae;">or</span> dcpu_adr_i <span style="color:#0057ae;">or</span> dcpu_dat_dc
+	<span style="color:#0057ae;">or</span> dcpu_dat_lsu <span style="color:#0057ae;">or</span> dcpu_we_i)
+	<span style="font-weight:bold;">case</span> (dcr2[<span style="color:#006e28;">`OR1200_DU_DCR_CT</span>])		<span style="color:#898887;">// synopsys parallel_case</span>
+		<span style="color:#b08000;">3'b001</span>:	match_cond2_ct = id_pc;		<span style="color:#898887;">// insn fetch EA</span>
+		<span style="color:#b08000;">3'b010</span>:	match_cond2_ct = dcpu_adr_i;	<span style="color:#898887;">// load EA</span>
+		<span style="color:#b08000;">3'b011</span>:	match_cond2_ct = dcpu_adr_i;	<span style="color:#898887;">// store EA</span>
+		<span style="color:#b08000;">3'b100</span>:	match_cond2_ct = dcpu_dat_dc;	<span style="color:#898887;">// load data</span>
+		<span style="color:#b08000;">3'b101</span>:	match_cond2_ct = dcpu_dat_lsu;	<span style="color:#898887;">// store data</span>
+		<span style="color:#b08000;">3'b110</span>:	match_cond2_ct = dcpu_adr_i;	<span style="color:#898887;">// load/store EA</span>
+		<span style="font-weight:bold;">default</span>:match_cond2_ct = dcpu_we_i ? dcpu_dat_lsu : dcpu_dat_dc;
+	<span style="font-weight:bold;">endcase</span>
+
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// When To Compare (Match Condition 2)</span>
+<span style="color:#898887;">//</span>
+<span style="font-weight:bold;">always</span> @(dcr2 <span style="color:#0057ae;">or</span> dcpu_cycstb_i)
+	<span style="font-weight:bold;">case</span> (dcr2[<span style="color:#006e28;">`OR1200_DU_DCR_CT</span>]) 		<span style="color:#898887;">// synopsys parallel_case</span>
+		<span style="color:#b08000;">3'b000</span>:	match_cond2_stb = <span style="color:#b08000;">1'b0</span>;		<span style="color:#898887;">//comparison disabled</span>
+		<span style="color:#b08000;">3'b001</span>:	match_cond2_stb = <span style="color:#b08000;">1'b1</span>;		<span style="color:#898887;">// insn fetch EA</span>
+		<span style="font-weight:bold;">default</span>:match_cond2_stb = dcpu_cycstb_i; <span style="color:#898887;">// any load/store</span>
+	<span style="font-weight:bold;">endcase</span>
+
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// Match Condition 2</span>
+<span style="color:#898887;">//</span>
+<span style="font-weight:bold;">always</span> @(match_cond2_stb <span style="color:#0057ae;">or</span> dcr2 <span style="color:#0057ae;">or</span> dvr2 <span style="color:#0057ae;">or</span> match_cond2_ct)
+	<span style="font-weight:bold;">casex</span> ({match_cond2_stb, dcr2[<span style="color:#006e28;">`OR1200_DU_DCR_CC</span>]})
+		<span style="color:#b08000;">4'b0_xxx</span>,
+		<span style="color:#b08000;">4'b1_000</span>,
+		<span style="color:#b08000;">4'b1_111</span>: match2 = <span style="color:#b08000;">1'b0</span>;
+		<span style="color:#b08000;">4'b1_001</span>: match2 =
+			({(match_cond2_ct[<span style="color:#b08000;">31</span>] ^ dcr2[<span style="color:#006e28;">`OR1200_DU_DCR_SC</span>]), match_cond2_ct[<span style="color:#b08000;">30</span>:<span style="color:#b08000;">0</span>]} ==
+			 {(dvr2[<span style="color:#b08000;">31</span>] ^ dcr2[<span style="color:#006e28;">`OR1200_DU_DCR_SC</span>]), dvr2[<span style="color:#b08000;">30</span>:<span style="color:#b08000;">0</span>]});
+		<span style="color:#b08000;">4'b1_010</span>: match2 = 
+			({(match_cond2_ct[<span style="color:#b08000;">31</span>] ^ dcr2[<span style="color:#006e28;">`OR1200_DU_DCR_SC</span>]), match_cond2_ct[<span style="color:#b08000;">30</span>:<span style="color:#b08000;">0</span>]} &lt;
+			 {(dvr2[<span style="color:#b08000;">31</span>] ^ dcr2[<span style="color:#006e28;">`OR1200_DU_DCR_SC</span>]), dvr2[<span style="color:#b08000;">30</span>:<span style="color:#b08000;">0</span>]});
+		<span style="color:#b08000;">4'b1_011</span>: match2 = 
+			({(match_cond2_ct[<span style="color:#b08000;">31</span>] ^ dcr2[<span style="color:#006e28;">`OR1200_DU_DCR_SC</span>]), match_cond2_ct[<span style="color:#b08000;">30</span>:<span style="color:#b08000;">0</span>]} &lt;=
+			 {(dvr2[<span style="color:#b08000;">31</span>] ^ dcr2[<span style="color:#006e28;">`OR1200_DU_DCR_SC</span>]), dvr2[<span style="color:#b08000;">30</span>:<span style="color:#b08000;">0</span>]});
+		<span style="color:#b08000;">4'b1_100</span>: match2 = 
+			({(match_cond2_ct[<span style="color:#b08000;">31</span>] ^ dcr2[<span style="color:#006e28;">`OR1200_DU_DCR_SC</span>]), match_cond2_ct[<span style="color:#b08000;">30</span>:<span style="color:#b08000;">0</span>]} &gt;
+			 {(dvr2[<span style="color:#b08000;">31</span>] ^ dcr2[<span style="color:#006e28;">`OR1200_DU_DCR_SC</span>]), dvr2[<span style="color:#b08000;">30</span>:<span style="color:#b08000;">0</span>]});
+		<span style="color:#b08000;">4'b1_101</span>: match2 = 
+			({(match_cond2_ct[<span style="color:#b08000;">31</span>] ^ dcr2[<span style="color:#006e28;">`OR1200_DU_DCR_SC</span>]), match_cond2_ct[<span style="color:#b08000;">30</span>:<span style="color:#b08000;">0</span>]} &gt;=
+			 {(dvr2[<span style="color:#b08000;">31</span>] ^ dcr2[<span style="color:#006e28;">`OR1200_DU_DCR_SC</span>]), dvr2[<span style="color:#b08000;">30</span>:<span style="color:#b08000;">0</span>]});
+		<span style="color:#b08000;">4'b1_110</span>: match2 = 
+			({(match_cond2_ct[<span style="color:#b08000;">31</span>] ^ dcr2[<span style="color:#006e28;">`OR1200_DU_DCR_SC</span>]), match_cond2_ct[<span style="color:#b08000;">30</span>:<span style="color:#b08000;">0</span>]} !=
+			 {(dvr2[<span style="color:#b08000;">31</span>] ^ dcr2[<span style="color:#006e28;">`OR1200_DU_DCR_SC</span>]), dvr2[<span style="color:#b08000;">30</span>:<span style="color:#b08000;">0</span>]});
+	<span style="font-weight:bold;">endcase</span>
+
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// Watchpoint 2</span>
+<span style="color:#898887;">//</span>
+<span style="font-weight:bold;">always</span> @(dmr1 <span style="color:#0057ae;">or</span> match2 <span style="color:#0057ae;">or</span> wp)
+	<span style="font-weight:bold;">case</span> (dmr1[<span style="color:#006e28;">`OR1200_DU_DMR1_CW2</span>])
+		<span style="color:#b08000;">2'b00</span>: wp[<span style="color:#b08000;">2</span>] = match2;
+		<span style="color:#b08000;">2'b01</span>: wp[<span style="color:#b08000;">2</span>] = match2 &amp; wp[<span style="color:#b08000;">1</span>];
+		<span style="color:#b08000;">2'b10</span>: wp[<span style="color:#b08000;">2</span>] = match2 | wp[<span style="color:#b08000;">1</span>];
+		<span style="color:#b08000;">2'b11</span>: wp[<span style="color:#b08000;">2</span>] = <span style="color:#b08000;">1'b0</span>;
+	<span style="font-weight:bold;">endcase</span>
+
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// Compare To What (Match Condition 3)</span>
+<span style="color:#898887;">//</span>
+<span style="font-weight:bold;">always</span> @(dcr3 <span style="color:#0057ae;">or</span> id_pc <span style="color:#0057ae;">or</span> dcpu_adr_i <span style="color:#0057ae;">or</span> dcpu_dat_dc
+	<span style="color:#0057ae;">or</span> dcpu_dat_lsu <span style="color:#0057ae;">or</span> dcpu_we_i)
+	<span style="font-weight:bold;">case</span> (dcr3[<span style="color:#006e28;">`OR1200_DU_DCR_CT</span>])		<span style="color:#898887;">// synopsys parallel_case</span>
+		<span style="color:#b08000;">3'b001</span>:	match_cond3_ct = id_pc;		<span style="color:#898887;">// insn fetch EA</span>
+		<span style="color:#b08000;">3'b010</span>:	match_cond3_ct = dcpu_adr_i;	<span style="color:#898887;">// load EA</span>
+		<span style="color:#b08000;">3'b011</span>:	match_cond3_ct = dcpu_adr_i;	<span style="color:#898887;">// store EA</span>
+		<span style="color:#b08000;">3'b100</span>:	match_cond3_ct = dcpu_dat_dc;	<span style="color:#898887;">// load data</span>
+		<span style="color:#b08000;">3'b101</span>:	match_cond3_ct = dcpu_dat_lsu;	<span style="color:#898887;">// store data</span>
+		<span style="color:#b08000;">3'b110</span>:	match_cond3_ct = dcpu_adr_i;	<span style="color:#898887;">// load/store EA</span>
+		<span style="font-weight:bold;">default</span>:match_cond3_ct = dcpu_we_i ? dcpu_dat_lsu : dcpu_dat_dc;
+	<span style="font-weight:bold;">endcase</span>
+
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// When To Compare (Match Condition 3)</span>
+<span style="color:#898887;">//</span>
+<span style="font-weight:bold;">always</span> @(dcr3 <span style="color:#0057ae;">or</span> dcpu_cycstb_i)
+	<span style="font-weight:bold;">case</span> (dcr3[<span style="color:#006e28;">`OR1200_DU_DCR_CT</span>]) 		<span style="color:#898887;">// synopsys parallel_case</span>
+		<span style="color:#b08000;">3'b000</span>:	match_cond3_stb = <span style="color:#b08000;">1'b0</span>;		<span style="color:#898887;">//comparison disabled</span>
+		<span style="color:#b08000;">3'b001</span>:	match_cond3_stb = <span style="color:#b08000;">1'b1</span>;		<span style="color:#898887;">// insn fetch EA</span>
+		<span style="font-weight:bold;">default</span>:match_cond3_stb = dcpu_cycstb_i; <span style="color:#898887;">// any load/store</span>
+	<span style="font-weight:bold;">endcase</span>
+
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// Match Condition 3</span>
+<span style="color:#898887;">//</span>
+<span style="font-weight:bold;">always</span> @(match_cond3_stb <span style="color:#0057ae;">or</span> dcr3 <span style="color:#0057ae;">or</span> dvr3 <span style="color:#0057ae;">or</span> match_cond3_ct)
+	<span style="font-weight:bold;">casex</span> ({match_cond3_stb, dcr3[<span style="color:#006e28;">`OR1200_DU_DCR_CC</span>]})
+		<span style="color:#b08000;">4'b0_xxx</span>,
+		<span style="color:#b08000;">4'b1_000</span>,
+		<span style="color:#b08000;">4'b1_111</span>: match3 = <span style="color:#b08000;">1'b0</span>;
+		<span style="color:#b08000;">4'b1_001</span>: match3 =
+			({(match_cond3_ct[<span style="color:#b08000;">31</span>] ^ dcr3[<span style="color:#006e28;">`OR1200_DU_DCR_SC</span>]), match_cond3_ct[<span style="color:#b08000;">30</span>:<span style="color:#b08000;">0</span>]} ==
+			 {(dvr3[<span style="color:#b08000;">31</span>] ^ dcr3[<span style="color:#006e28;">`OR1200_DU_DCR_SC</span>]), dvr3[<span style="color:#b08000;">30</span>:<span style="color:#b08000;">0</span>]});
+		<span style="color:#b08000;">4'b1_010</span>: match3 = 
+			({(match_cond3_ct[<span style="color:#b08000;">31</span>] ^ dcr3[<span style="color:#006e28;">`OR1200_DU_DCR_SC</span>]), match_cond3_ct[<span style="color:#b08000;">30</span>:<span style="color:#b08000;">0</span>]} &lt;
+			 {(dvr3[<span style="color:#b08000;">31</span>] ^ dcr3[<span style="color:#006e28;">`OR1200_DU_DCR_SC</span>]), dvr3[<span style="color:#b08000;">30</span>:<span style="color:#b08000;">0</span>]});
+		<span style="color:#b08000;">4'b1_011</span>: match3 = 
+			({(match_cond3_ct[<span style="color:#b08000;">31</span>] ^ dcr3[<span style="color:#006e28;">`OR1200_DU_DCR_SC</span>]), match_cond3_ct[<span style="color:#b08000;">30</span>:<span style="color:#b08000;">0</span>]} &lt;=
+			 {(dvr3[<span style="color:#b08000;">31</span>] ^ dcr3[<span style="color:#006e28;">`OR1200_DU_DCR_SC</span>]), dvr3[<span style="color:#b08000;">30</span>:<span style="color:#b08000;">0</span>]});
+		<span style="color:#b08000;">4'b1_100</span>: match3 = 
+			({(match_cond3_ct[<span style="color:#b08000;">31</span>] ^ dcr3[<span style="color:#006e28;">`OR1200_DU_DCR_SC</span>]), match_cond3_ct[<span style="color:#b08000;">30</span>:<span style="color:#b08000;">0</span>]} &gt;
+			 {(dvr3[<span style="color:#b08000;">31</span>] ^ dcr3[<span style="color:#006e28;">`OR1200_DU_DCR_SC</span>]), dvr3[<span style="color:#b08000;">30</span>:<span style="color:#b08000;">0</span>]});
+		<span style="color:#b08000;">4'b1_101</span>: match3 = 
+			({(match_cond3_ct[<span style="color:#b08000;">31</span>] ^ dcr3[<span style="color:#006e28;">`OR1200_DU_DCR_SC</span>]), match_cond3_ct[<span style="color:#b08000;">30</span>:<span style="color:#b08000;">0</span>]} &gt;=
+			 {(dvr3[<span style="color:#b08000;">31</span>] ^ dcr3[<span style="color:#006e28;">`OR1200_DU_DCR_SC</span>]), dvr3[<span style="color:#b08000;">30</span>:<span style="color:#b08000;">0</span>]});
+		<span style="color:#b08000;">4'b1_110</span>: match3 = 
+			({(match_cond3_ct[<span style="color:#b08000;">31</span>] ^ dcr3[<span style="color:#006e28;">`OR1200_DU_DCR_SC</span>]), match_cond3_ct[<span style="color:#b08000;">30</span>:<span style="color:#b08000;">0</span>]} !=
+			 {(dvr3[<span style="color:#b08000;">31</span>] ^ dcr3[<span style="color:#006e28;">`OR1200_DU_DCR_SC</span>]), dvr3[<span style="color:#b08000;">30</span>:<span style="color:#b08000;">0</span>]});
+	<span style="font-weight:bold;">endcase</span>
+
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// Watchpoint 3</span>
+<span style="color:#898887;">//</span>
+<span style="font-weight:bold;">always</span> @(dmr1 <span style="color:#0057ae;">or</span> match3 <span style="color:#0057ae;">or</span> wp)
+	<span style="font-weight:bold;">case</span> (dmr1[<span style="color:#006e28;">`OR1200_DU_DMR1_CW3</span>])
+		<span style="color:#b08000;">2'b00</span>: wp[<span style="color:#b08000;">3</span>] = match3;
+		<span style="color:#b08000;">2'b01</span>: wp[<span style="color:#b08000;">3</span>] = match3 &amp; wp[<span style="color:#b08000;">2</span>];
+		<span style="color:#b08000;">2'b10</span>: wp[<span style="color:#b08000;">3</span>] = match3 | wp[<span style="color:#b08000;">2</span>];
+		<span style="color:#b08000;">2'b11</span>: wp[<span style="color:#b08000;">3</span>] = <span style="color:#b08000;">1'b0</span>;
+	<span style="font-weight:bold;">endcase</span>
+
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// Compare To What (Match Condition 4)</span>
+<span style="color:#898887;">//</span>
+<span style="font-weight:bold;">always</span> @(dcr4 <span style="color:#0057ae;">or</span> id_pc <span style="color:#0057ae;">or</span> dcpu_adr_i <span style="color:#0057ae;">or</span> dcpu_dat_dc
+	<span style="color:#0057ae;">or</span> dcpu_dat_lsu <span style="color:#0057ae;">or</span> dcpu_we_i)
+	<span style="font-weight:bold;">case</span> (dcr4[<span style="color:#006e28;">`OR1200_DU_DCR_CT</span>])		<span style="color:#898887;">// synopsys parallel_case</span>
+		<span style="color:#b08000;">3'b001</span>:	match_cond4_ct = id_pc;		<span style="color:#898887;">// insn fetch EA</span>
+		<span style="color:#b08000;">3'b010</span>:	match_cond4_ct = dcpu_adr_i;	<span style="color:#898887;">// load EA</span>
+		<span style="color:#b08000;">3'b011</span>:	match_cond4_ct = dcpu_adr_i;	<span style="color:#898887;">// store EA</span>
+		<span style="color:#b08000;">3'b100</span>:	match_cond4_ct = dcpu_dat_dc;	<span style="color:#898887;">// load data</span>
+		<span style="color:#b08000;">3'b101</span>:	match_cond4_ct = dcpu_dat_lsu;	<span style="color:#898887;">// store data</span>
+		<span style="color:#b08000;">3'b110</span>:	match_cond4_ct = dcpu_adr_i;	<span style="color:#898887;">// load/store EA</span>
+		<span style="font-weight:bold;">default</span>:match_cond4_ct = dcpu_we_i ? dcpu_dat_lsu : dcpu_dat_dc;
+	<span style="font-weight:bold;">endcase</span>
+
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// When To Compare (Match Condition 4)</span>
+<span style="color:#898887;">//</span>
+<span style="font-weight:bold;">always</span> @(dcr4 <span style="color:#0057ae;">or</span> dcpu_cycstb_i)
+	<span style="font-weight:bold;">case</span> (dcr4[<span style="color:#006e28;">`OR1200_DU_DCR_CT</span>]) 		<span style="color:#898887;">// synopsys parallel_case</span>
+		<span style="color:#b08000;">3'b000</span>:	match_cond4_stb = <span style="color:#b08000;">1'b0</span>;		<span style="color:#898887;">//comparison disabled</span>
+		<span style="color:#b08000;">3'b001</span>:	match_cond4_stb = <span style="color:#b08000;">1'b1</span>;		<span style="color:#898887;">// insn fetch EA</span>
+		<span style="font-weight:bold;">default</span>:match_cond4_stb = dcpu_cycstb_i; <span style="color:#898887;">// any load/store</span>
+	<span style="font-weight:bold;">endcase</span>
+
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// Match Condition 4</span>
+<span style="color:#898887;">//</span>
+<span style="font-weight:bold;">always</span> @(match_cond4_stb <span style="color:#0057ae;">or</span> dcr4 <span style="color:#0057ae;">or</span> dvr4 <span style="color:#0057ae;">or</span> match_cond4_ct)
+	<span style="font-weight:bold;">casex</span> ({match_cond4_stb, dcr4[<span style="color:#006e28;">`OR1200_DU_DCR_CC</span>]})
+		<span style="color:#b08000;">4'b0_xxx</span>,
+		<span style="color:#b08000;">4'b1_000</span>,
+		<span style="color:#b08000;">4'b1_111</span>: match4 = <span style="color:#b08000;">1'b0</span>;
+		<span style="color:#b08000;">4'b1_001</span>: match4 =
+			({(match_cond4_ct[<span style="color:#b08000;">31</span>] ^ dcr4[<span style="color:#006e28;">`OR1200_DU_DCR_SC</span>]), match_cond4_ct[<span style="color:#b08000;">30</span>:<span style="color:#b08000;">0</span>]} ==
+			 {(dvr4[<span style="color:#b08000;">31</span>] ^ dcr4[<span style="color:#006e28;">`OR1200_DU_DCR_SC</span>]), dvr4[<span style="color:#b08000;">30</span>:<span style="color:#b08000;">0</span>]});
+		<span style="color:#b08000;">4'b1_010</span>: match4 = 
+			({(match_cond4_ct[<span style="color:#b08000;">31</span>] ^ dcr4[<span style="color:#006e28;">`OR1200_DU_DCR_SC</span>]), match_cond4_ct[<span style="color:#b08000;">30</span>:<span style="color:#b08000;">0</span>]} &lt;
+			 {(dvr4[<span style="color:#b08000;">31</span>] ^ dcr4[<span style="color:#006e28;">`OR1200_DU_DCR_SC</span>]), dvr4[<span style="color:#b08000;">30</span>:<span style="color:#b08000;">0</span>]});
+		<span style="color:#b08000;">4'b1_011</span>: match4 = 
+			({(match_cond4_ct[<span style="color:#b08000;">31</span>] ^ dcr4[<span style="color:#006e28;">`OR1200_DU_DCR_SC</span>]), match_cond4_ct[<span style="color:#b08000;">30</span>:<span style="color:#b08000;">0</span>]} &lt;=
+			 {(dvr4[<span style="color:#b08000;">31</span>] ^ dcr4[<span style="color:#006e28;">`OR1200_DU_DCR_SC</span>]), dvr4[<span style="color:#b08000;">30</span>:<span style="color:#b08000;">0</span>]});
+		<span style="color:#b08000;">4'b1_100</span>: match4 = 
+			({(match_cond4_ct[<span style="color:#b08000;">31</span>] ^ dcr4[<span style="color:#006e28;">`OR1200_DU_DCR_SC</span>]), match_cond4_ct[<span style="color:#b08000;">30</span>:<span style="color:#b08000;">0</span>]} &gt;
+			 {(dvr4[<span style="color:#b08000;">31</span>] ^ dcr4[<span style="color:#006e28;">`OR1200_DU_DCR_SC</span>]), dvr4[<span style="color:#b08000;">30</span>:<span style="color:#b08000;">0</span>]});
+		<span style="color:#b08000;">4'b1_101</span>: match4 = 
+			({(match_cond4_ct[<span style="color:#b08000;">31</span>] ^ dcr4[<span style="color:#006e28;">`OR1200_DU_DCR_SC</span>]), match_cond4_ct[<span style="color:#b08000;">30</span>:<span style="color:#b08000;">0</span>]} &gt;=
+			 {(dvr4[<span style="color:#b08000;">31</span>] ^ dcr4[<span style="color:#006e28;">`OR1200_DU_DCR_SC</span>]), dvr4[<span style="color:#b08000;">30</span>:<span style="color:#b08000;">0</span>]});
+		<span style="color:#b08000;">4'b1_110</span>: match4 = 
+			({(match_cond4_ct[<span style="color:#b08000;">31</span>] ^ dcr4[<span style="color:#006e28;">`OR1200_DU_DCR_SC</span>]), match_cond4_ct[<span style="color:#b08000;">30</span>:<span style="color:#b08000;">0</span>]} !=
+			 {(dvr4[<span style="color:#b08000;">31</span>] ^ dcr4[<span style="color:#006e28;">`OR1200_DU_DCR_SC</span>]), dvr4[<span style="color:#b08000;">30</span>:<span style="color:#b08000;">0</span>]});
+	<span style="font-weight:bold;">endcase</span>
+
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// Watchpoint 4</span>
+<span style="color:#898887;">//</span>
+<span style="font-weight:bold;">always</span> @(dmr1 <span style="color:#0057ae;">or</span> match4 <span style="color:#0057ae;">or</span> wp)
+	<span style="font-weight:bold;">case</span> (dmr1[<span style="color:#006e28;">`OR1200_DU_DMR1_CW4</span>])
+		<span style="color:#b08000;">2'b00</span>: wp[<span style="color:#b08000;">4</span>] = match4;
+		<span style="color:#b08000;">2'b01</span>: wp[<span style="color:#b08000;">4</span>] = match4 &amp; wp[<span style="color:#b08000;">3</span>];
+		<span style="color:#b08000;">2'b10</span>: wp[<span style="color:#b08000;">4</span>] = match4 | wp[<span style="color:#b08000;">3</span>];
+		<span style="color:#b08000;">2'b11</span>: wp[<span style="color:#b08000;">4</span>] = <span style="color:#b08000;">1'b0</span>;
+	<span style="font-weight:bold;">endcase</span>
+
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// Compare To What (Match Condition 5)</span>
+<span style="color:#898887;">//</span>
+<span style="font-weight:bold;">always</span> @(dcr5 <span style="color:#0057ae;">or</span> id_pc <span style="color:#0057ae;">or</span> dcpu_adr_i <span style="color:#0057ae;">or</span> dcpu_dat_dc
+	<span style="color:#0057ae;">or</span> dcpu_dat_lsu <span style="color:#0057ae;">or</span> dcpu_we_i)
+	<span style="font-weight:bold;">case</span> (dcr5[<span style="color:#006e28;">`OR1200_DU_DCR_CT</span>])		<span style="color:#898887;">// synopsys parallel_case</span>
+		<span style="color:#b08000;">3'b001</span>:	match_cond5_ct = id_pc;		<span style="color:#898887;">// insn fetch EA</span>
+		<span style="color:#b08000;">3'b010</span>:	match_cond5_ct = dcpu_adr_i;	<span style="color:#898887;">// load EA</span>
+		<span style="color:#b08000;">3'b011</span>:	match_cond5_ct = dcpu_adr_i;	<span style="color:#898887;">// store EA</span>
+		<span style="color:#b08000;">3'b100</span>:	match_cond5_ct = dcpu_dat_dc;	<span style="color:#898887;">// load data</span>
+		<span style="color:#b08000;">3'b101</span>:	match_cond5_ct = dcpu_dat_lsu;	<span style="color:#898887;">// store data</span>
+		<span style="color:#b08000;">3'b110</span>:	match_cond5_ct = dcpu_adr_i;	<span style="color:#898887;">// load/store EA</span>
+		<span style="font-weight:bold;">default</span>:match_cond5_ct = dcpu_we_i ? dcpu_dat_lsu : dcpu_dat_dc;
+	<span style="font-weight:bold;">endcase</span>
+
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// When To Compare (Match Condition 5)</span>
+<span style="color:#898887;">//</span>
+<span style="font-weight:bold;">always</span> @(dcr5 <span style="color:#0057ae;">or</span> dcpu_cycstb_i)
+	<span style="font-weight:bold;">case</span> (dcr5[<span style="color:#006e28;">`OR1200_DU_DCR_CT</span>]) 		<span style="color:#898887;">// synopsys parallel_case</span>
+		<span style="color:#b08000;">3'b000</span>:	match_cond5_stb = <span style="color:#b08000;">1'b0</span>;		<span style="color:#898887;">//comparison disabled</span>
+		<span style="color:#b08000;">3'b001</span>:	match_cond5_stb = <span style="color:#b08000;">1'b1</span>;		<span style="color:#898887;">// insn fetch EA</span>
+		<span style="font-weight:bold;">default</span>:match_cond5_stb = dcpu_cycstb_i; <span style="color:#898887;">// any load/store</span>
+	<span style="font-weight:bold;">endcase</span>
+
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// Match Condition 5</span>
+<span style="color:#898887;">//</span>
+<span style="font-weight:bold;">always</span> @(match_cond5_stb <span style="color:#0057ae;">or</span> dcr5 <span style="color:#0057ae;">or</span> dvr5 <span style="color:#0057ae;">or</span> match_cond5_ct)
+	<span style="font-weight:bold;">casex</span> ({match_cond5_stb, dcr5[<span style="color:#006e28;">`OR1200_DU_DCR_CC</span>]})
+		<span style="color:#b08000;">4'b0_xxx</span>,
+		<span style="color:#b08000;">4'b1_000</span>,
+		<span style="color:#b08000;">4'b1_111</span>: match5 = <span style="color:#b08000;">1'b0</span>;
+		<span style="color:#b08000;">4'b1_001</span>: match5 =
+			({(match_cond5_ct[<span style="color:#b08000;">31</span>] ^ dcr5[<span style="color:#006e28;">`OR1200_DU_DCR_SC</span>]), match_cond5_ct[<span style="color:#b08000;">30</span>:<span style="color:#b08000;">0</span>]} ==
+			 {(dvr5[<span style="color:#b08000;">31</span>] ^ dcr5[<span style="color:#006e28;">`OR1200_DU_DCR_SC</span>]), dvr5[<span style="color:#b08000;">30</span>:<span style="color:#b08000;">0</span>]});
+		<span style="color:#b08000;">4'b1_010</span>: match5 = 
+			({(match_cond5_ct[<span style="color:#b08000;">31</span>] ^ dcr5[<span style="color:#006e28;">`OR1200_DU_DCR_SC</span>]), match_cond5_ct[<span style="color:#b08000;">30</span>:<span style="color:#b08000;">0</span>]} &lt;
+			 {(dvr5[<span style="color:#b08000;">31</span>] ^ dcr5[<span style="color:#006e28;">`OR1200_DU_DCR_SC</span>]), dvr5[<span style="color:#b08000;">30</span>:<span style="color:#b08000;">0</span>]});
+		<span style="color:#b08000;">4'b1_011</span>: match5 = 
+			({(match_cond5_ct[<span style="color:#b08000;">31</span>] ^ dcr5[<span style="color:#006e28;">`OR1200_DU_DCR_SC</span>]), match_cond5_ct[<span style="color:#b08000;">30</span>:<span style="color:#b08000;">0</span>]} &lt;=
+			 {(dvr5[<span style="color:#b08000;">31</span>] ^ dcr5[<span style="color:#006e28;">`OR1200_DU_DCR_SC</span>]), dvr5[<span style="color:#b08000;">30</span>:<span style="color:#b08000;">0</span>]});
+		<span style="color:#b08000;">4'b1_100</span>: match5 = 
+			({(match_cond5_ct[<span style="color:#b08000;">31</span>] ^ dcr5[<span style="color:#006e28;">`OR1200_DU_DCR_SC</span>]), match_cond5_ct[<span style="color:#b08000;">30</span>:<span style="color:#b08000;">0</span>]} &gt;
+			 {(dvr5[<span style="color:#b08000;">31</span>] ^ dcr5[<span style="color:#006e28;">`OR1200_DU_DCR_SC</span>]), dvr5[<span style="color:#b08000;">30</span>:<span style="color:#b08000;">0</span>]});
+		<span style="color:#b08000;">4'b1_101</span>: match5 = 
+			({(match_cond5_ct[<span style="color:#b08000;">31</span>] ^ dcr5[<span style="color:#006e28;">`OR1200_DU_DCR_SC</span>]), match_cond5_ct[<span style="color:#b08000;">30</span>:<span style="color:#b08000;">0</span>]} &gt;=
+			 {(dvr5[<span style="color:#b08000;">31</span>] ^ dcr5[<span style="color:#006e28;">`OR1200_DU_DCR_SC</span>]), dvr5[<span style="color:#b08000;">30</span>:<span style="color:#b08000;">0</span>]});
+		<span style="color:#b08000;">4'b1_110</span>: match5 = 
+			({(match_cond5_ct[<span style="color:#b08000;">31</span>] ^ dcr5[<span style="color:#006e28;">`OR1200_DU_DCR_SC</span>]), match_cond5_ct[<span style="color:#b08000;">30</span>:<span style="color:#b08000;">0</span>]} !=
+			 {(dvr5[<span style="color:#b08000;">31</span>] ^ dcr5[<span style="color:#006e28;">`OR1200_DU_DCR_SC</span>]), dvr5[<span style="color:#b08000;">30</span>:<span style="color:#b08000;">0</span>]});
+	<span style="font-weight:bold;">endcase</span>
+
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// Watchpoint 5</span>
+<span style="color:#898887;">//</span>
+<span style="font-weight:bold;">always</span> @(dmr1 <span style="color:#0057ae;">or</span> match5 <span style="color:#0057ae;">or</span> wp)
+	<span style="font-weight:bold;">case</span> (dmr1[<span style="color:#006e28;">`OR1200_DU_DMR1_CW5</span>])
+		<span style="color:#b08000;">2'b00</span>: wp[<span style="color:#b08000;">5</span>] = match5;
+		<span style="color:#b08000;">2'b01</span>: wp[<span style="color:#b08000;">5</span>] = match5 &amp; wp[<span style="color:#b08000;">4</span>];
+		<span style="color:#b08000;">2'b10</span>: wp[<span style="color:#b08000;">5</span>] = match5 | wp[<span style="color:#b08000;">4</span>];
+		<span style="color:#b08000;">2'b11</span>: wp[<span style="color:#b08000;">5</span>] = <span style="color:#b08000;">1'b0</span>;
+	<span style="font-weight:bold;">endcase</span>
+
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// Compare To What (Match Condition 6)</span>
+<span style="color:#898887;">//</span>
+<span style="font-weight:bold;">always</span> @(dcr6 <span style="color:#0057ae;">or</span> id_pc <span style="color:#0057ae;">or</span> dcpu_adr_i <span style="color:#0057ae;">or</span> dcpu_dat_dc
+	<span style="color:#0057ae;">or</span> dcpu_dat_lsu <span style="color:#0057ae;">or</span> dcpu_we_i)
+	<span style="font-weight:bold;">case</span> (dcr6[<span style="color:#006e28;">`OR1200_DU_DCR_CT</span>])		<span style="color:#898887;">// synopsys parallel_case</span>
+		<span style="color:#b08000;">3'b001</span>:	match_cond6_ct = id_pc;		<span style="color:#898887;">// insn fetch EA</span>
+		<span style="color:#b08000;">3'b010</span>:	match_cond6_ct = dcpu_adr_i;	<span style="color:#898887;">// load EA</span>
+		<span style="color:#b08000;">3'b011</span>:	match_cond6_ct = dcpu_adr_i;	<span style="color:#898887;">// store EA</span>
+		<span style="color:#b08000;">3'b100</span>:	match_cond6_ct = dcpu_dat_dc;	<span style="color:#898887;">// load data</span>
+		<span style="color:#b08000;">3'b101</span>:	match_cond6_ct = dcpu_dat_lsu;	<span style="color:#898887;">// store data</span>
+		<span style="color:#b08000;">3'b110</span>:	match_cond6_ct = dcpu_adr_i;	<span style="color:#898887;">// load/store EA</span>
+		<span style="font-weight:bold;">default</span>:match_cond6_ct = dcpu_we_i ? dcpu_dat_lsu : dcpu_dat_dc;
+	<span style="font-weight:bold;">endcase</span>
+
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// When To Compare (Match Condition 6)</span>
+<span style="color:#898887;">//</span>
+<span style="font-weight:bold;">always</span> @(dcr6 <span style="color:#0057ae;">or</span> dcpu_cycstb_i)
+	<span style="font-weight:bold;">case</span> (dcr6[<span style="color:#006e28;">`OR1200_DU_DCR_CT</span>]) 		<span style="color:#898887;">// synopsys parallel_case</span>
+		<span style="color:#b08000;">3'b000</span>:	match_cond6_stb = <span style="color:#b08000;">1'b0</span>;		<span style="color:#898887;">//comparison disabled</span>
+		<span style="color:#b08000;">3'b001</span>:	match_cond6_stb = <span style="color:#b08000;">1'b1</span>;		<span style="color:#898887;">// insn fetch EA</span>
+		<span style="font-weight:bold;">default</span>:match_cond6_stb = dcpu_cycstb_i; <span style="color:#898887;">// any load/store</span>
+	<span style="font-weight:bold;">endcase</span>
+
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// Match Condition 6</span>
+<span style="color:#898887;">//</span>
+<span style="font-weight:bold;">always</span> @(match_cond6_stb <span style="color:#0057ae;">or</span> dcr6 <span style="color:#0057ae;">or</span> dvr6 <span style="color:#0057ae;">or</span> match_cond6_ct)
+	<span style="font-weight:bold;">casex</span> ({match_cond6_stb, dcr6[<span style="color:#006e28;">`OR1200_DU_DCR_CC</span>]})
+		<span style="color:#b08000;">4'b0_xxx</span>,
+		<span style="color:#b08000;">4'b1_000</span>,
+		<span style="color:#b08000;">4'b1_111</span>: match6 = <span style="color:#b08000;">1'b0</span>;
+		<span style="color:#b08000;">4'b1_001</span>: match6 =
+			({(match_cond6_ct[<span style="color:#b08000;">31</span>] ^ dcr6[<span style="color:#006e28;">`OR1200_DU_DCR_SC</span>]), match_cond6_ct[<span style="color:#b08000;">30</span>:<span style="color:#b08000;">0</span>]} ==
+			 {(dvr6[<span style="color:#b08000;">31</span>] ^ dcr6[<span style="color:#006e28;">`OR1200_DU_DCR_SC</span>]), dvr6[<span style="color:#b08000;">30</span>:<span style="color:#b08000;">0</span>]});
+		<span style="color:#b08000;">4'b1_010</span>: match6 = 
+			({(match_cond6_ct[<span style="color:#b08000;">31</span>] ^ dcr6[<span style="color:#006e28;">`OR1200_DU_DCR_SC</span>]), match_cond6_ct[<span style="color:#b08000;">30</span>:<span style="color:#b08000;">0</span>]} &lt;
+			 {(dvr6[<span style="color:#b08000;">31</span>] ^ dcr6[<span style="color:#006e28;">`OR1200_DU_DCR_SC</span>]), dvr6[<span style="color:#b08000;">30</span>:<span style="color:#b08000;">0</span>]});
+		<span style="color:#b08000;">4'b1_011</span>: match6 = 
+			({(match_cond6_ct[<span style="color:#b08000;">31</span>] ^ dcr6[<span style="color:#006e28;">`OR1200_DU_DCR_SC</span>]), match_cond6_ct[<span style="color:#b08000;">30</span>:<span style="color:#b08000;">0</span>]} &lt;=
+			 {(dvr6[<span style="color:#b08000;">31</span>] ^ dcr6[<span style="color:#006e28;">`OR1200_DU_DCR_SC</span>]), dvr6[<span style="color:#b08000;">30</span>:<span style="color:#b08000;">0</span>]});
+		<span style="color:#b08000;">4'b1_100</span>: match6 = 
+			({(match_cond6_ct[<span style="color:#b08000;">31</span>] ^ dcr6[<span style="color:#006e28;">`OR1200_DU_DCR_SC</span>]), match_cond6_ct[<span style="color:#b08000;">30</span>:<span style="color:#b08000;">0</span>]} &gt;
+			 {(dvr6[<span style="color:#b08000;">31</span>] ^ dcr6[<span style="color:#006e28;">`OR1200_DU_DCR_SC</span>]), dvr6[<span style="color:#b08000;">30</span>:<span style="color:#b08000;">0</span>]});
+		<span style="color:#b08000;">4'b1_101</span>: match6 = 
+			({(match_cond6_ct[<span style="color:#b08000;">31</span>] ^ dcr6[<span style="color:#006e28;">`OR1200_DU_DCR_SC</span>]), match_cond6_ct[<span style="color:#b08000;">30</span>:<span style="color:#b08000;">0</span>]} &gt;=
+			 {(dvr6[<span style="color:#b08000;">31</span>] ^ dcr6[<span style="color:#006e28;">`OR1200_DU_DCR_SC</span>]), dvr6[<span style="color:#b08000;">30</span>:<span style="color:#b08000;">0</span>]});
+		<span style="color:#b08000;">4'b1_110</span>: match6 = 
+			({(match_cond6_ct[<span style="color:#b08000;">31</span>] ^ dcr6[<span style="color:#006e28;">`OR1200_DU_DCR_SC</span>]), match_cond6_ct[<span style="color:#b08000;">30</span>:<span style="color:#b08000;">0</span>]} !=
+			 {(dvr6[<span style="color:#b08000;">31</span>] ^ dcr6[<span style="color:#006e28;">`OR1200_DU_DCR_SC</span>]), dvr6[<span style="color:#b08000;">30</span>:<span style="color:#b08000;">0</span>]});
+	<span style="font-weight:bold;">endcase</span>
+
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// Watchpoint 6</span>
+<span style="color:#898887;">//</span>
+<span style="font-weight:bold;">always</span> @(dmr1 <span style="color:#0057ae;">or</span> match6 <span style="color:#0057ae;">or</span> wp)
+	<span style="font-weight:bold;">case</span> (dmr1[<span style="color:#006e28;">`OR1200_DU_DMR1_CW6</span>])
+		<span style="color:#b08000;">2'b00</span>: wp[<span style="color:#b08000;">6</span>] = match6;
+		<span style="color:#b08000;">2'b01</span>: wp[<span style="color:#b08000;">6</span>] = match6 &amp; wp[<span style="color:#b08000;">5</span>];
+		<span style="color:#b08000;">2'b10</span>: wp[<span style="color:#b08000;">6</span>] = match6 | wp[<span style="color:#b08000;">5</span>];
+		<span style="color:#b08000;">2'b11</span>: wp[<span style="color:#b08000;">6</span>] = <span style="color:#b08000;">1'b0</span>;
+	<span style="font-weight:bold;">endcase</span>
+
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// Compare To What (Match Condition 7)</span>
+<span style="color:#898887;">//</span>
+<span style="font-weight:bold;">always</span> @(dcr7 <span style="color:#0057ae;">or</span> id_pc <span style="color:#0057ae;">or</span> dcpu_adr_i <span style="color:#0057ae;">or</span> dcpu_dat_dc
+	<span style="color:#0057ae;">or</span> dcpu_dat_lsu <span style="color:#0057ae;">or</span> dcpu_we_i)
+	<span style="font-weight:bold;">case</span> (dcr7[<span style="color:#006e28;">`OR1200_DU_DCR_CT</span>])		<span style="color:#898887;">// synopsys parallel_case</span>
+		<span style="color:#b08000;">3'b001</span>:	match_cond7_ct = id_pc;		<span style="color:#898887;">// insn fetch EA</span>
+		<span style="color:#b08000;">3'b010</span>:	match_cond7_ct = dcpu_adr_i;	<span style="color:#898887;">// load EA</span>
+		<span style="color:#b08000;">3'b011</span>:	match_cond7_ct = dcpu_adr_i;	<span style="color:#898887;">// store EA</span>
+		<span style="color:#b08000;">3'b100</span>:	match_cond7_ct = dcpu_dat_dc;	<span style="color:#898887;">// load data</span>
+		<span style="color:#b08000;">3'b101</span>:	match_cond7_ct = dcpu_dat_lsu;	<span style="color:#898887;">// store data</span>
+		<span style="color:#b08000;">3'b110</span>:	match_cond7_ct = dcpu_adr_i;	<span style="color:#898887;">// load/store EA</span>
+		<span style="font-weight:bold;">default</span>:match_cond7_ct = dcpu_we_i ? dcpu_dat_lsu : dcpu_dat_dc;
+	<span style="font-weight:bold;">endcase</span>
+
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// When To Compare (Match Condition 7)</span>
+<span style="color:#898887;">//</span>
+<span style="font-weight:bold;">always</span> @(dcr7 <span style="color:#0057ae;">or</span> dcpu_cycstb_i)
+	<span style="font-weight:bold;">case</span> (dcr7[<span style="color:#006e28;">`OR1200_DU_DCR_CT</span>]) 		<span style="color:#898887;">// synopsys parallel_case</span>
+		<span style="color:#b08000;">3'b000</span>:	match_cond7_stb = <span style="color:#b08000;">1'b0</span>;		<span style="color:#898887;">//comparison disabled</span>
+		<span style="color:#b08000;">3'b001</span>:	match_cond7_stb = <span style="color:#b08000;">1'b1</span>;		<span style="color:#898887;">// insn fetch EA</span>
+		<span style="font-weight:bold;">default</span>:match_cond7_stb = dcpu_cycstb_i; <span style="color:#898887;">// any load/store</span>
+	<span style="font-weight:bold;">endcase</span>
+
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// Match Condition 7</span>
+<span style="color:#898887;">//</span>
+<span style="font-weight:bold;">always</span> @(match_cond7_stb <span style="color:#0057ae;">or</span> dcr7 <span style="color:#0057ae;">or</span> dvr7 <span style="color:#0057ae;">or</span> match_cond7_ct)
+	<span style="font-weight:bold;">casex</span> ({match_cond7_stb, dcr7[<span style="color:#006e28;">`OR1200_DU_DCR_CC</span>]})
+		<span style="color:#b08000;">4'b0_xxx</span>,
+		<span style="color:#b08000;">4'b1_000</span>,
+		<span style="color:#b08000;">4'b1_111</span>: match7 = <span style="color:#b08000;">1'b0</span>;
+		<span style="color:#b08000;">4'b1_001</span>: match7 =
+			({(match_cond7_ct[<span style="color:#b08000;">31</span>] ^ dcr7[<span style="color:#006e28;">`OR1200_DU_DCR_SC</span>]), match_cond7_ct[<span style="color:#b08000;">30</span>:<span style="color:#b08000;">0</span>]} ==
+			 {(dvr7[<span style="color:#b08000;">31</span>] ^ dcr7[<span style="color:#006e28;">`OR1200_DU_DCR_SC</span>]), dvr7[<span style="color:#b08000;">30</span>:<span style="color:#b08000;">0</span>]});
+		<span style="color:#b08000;">4'b1_010</span>: match7 = 
+			({(match_cond7_ct[<span style="color:#b08000;">31</span>] ^ dcr7[<span style="color:#006e28;">`OR1200_DU_DCR_SC</span>]), match_cond7_ct[<span style="color:#b08000;">30</span>:<span style="color:#b08000;">0</span>]} &lt;
+			 {(dvr7[<span style="color:#b08000;">31</span>] ^ dcr7[<span style="color:#006e28;">`OR1200_DU_DCR_SC</span>]), dvr7[<span style="color:#b08000;">30</span>:<span style="color:#b08000;">0</span>]});
+		<span style="color:#b08000;">4'b1_011</span>: match7 = 
+			({(match_cond7_ct[<span style="color:#b08000;">31</span>] ^ dcr7[<span style="color:#006e28;">`OR1200_DU_DCR_SC</span>]), match_cond7_ct[<span style="color:#b08000;">30</span>:<span style="color:#b08000;">0</span>]} &lt;=
+			 {(dvr7[<span style="color:#b08000;">31</span>] ^ dcr7[<span style="color:#006e28;">`OR1200_DU_DCR_SC</span>]), dvr7[<span style="color:#b08000;">30</span>:<span style="color:#b08000;">0</span>]});
+		<span style="color:#b08000;">4'b1_100</span>: match7 = 
+			({(match_cond7_ct[<span style="color:#b08000;">31</span>] ^ dcr7[<span style="color:#006e28;">`OR1200_DU_DCR_SC</span>]), match_cond7_ct[<span style="color:#b08000;">30</span>:<span style="color:#b08000;">0</span>]} &gt;
+			 {(dvr7[<span style="color:#b08000;">31</span>] ^ dcr7[<span style="color:#006e28;">`OR1200_DU_DCR_SC</span>]), dvr7[<span style="color:#b08000;">30</span>:<span style="color:#b08000;">0</span>]});
+		<span style="color:#b08000;">4'b1_101</span>: match7 = 
+			({(match_cond7_ct[<span style="color:#b08000;">31</span>] ^ dcr7[<span style="color:#006e28;">`OR1200_DU_DCR_SC</span>]), match_cond7_ct[<span style="color:#b08000;">30</span>:<span style="color:#b08000;">0</span>]} &gt;=
+			 {(dvr7[<span style="color:#b08000;">31</span>] ^ dcr7[<span style="color:#006e28;">`OR1200_DU_DCR_SC</span>]), dvr7[<span style="color:#b08000;">30</span>:<span style="color:#b08000;">0</span>]});
+		<span style="color:#b08000;">4'b1_110</span>: match7 = 
+			({(match_cond7_ct[<span style="color:#b08000;">31</span>] ^ dcr7[<span style="color:#006e28;">`OR1200_DU_DCR_SC</span>]), match_cond7_ct[<span style="color:#b08000;">30</span>:<span style="color:#b08000;">0</span>]} !=
+			 {(dvr7[<span style="color:#b08000;">31</span>] ^ dcr7[<span style="color:#006e28;">`OR1200_DU_DCR_SC</span>]), dvr7[<span style="color:#b08000;">30</span>:<span style="color:#b08000;">0</span>]});
+	<span style="font-weight:bold;">endcase</span>
+
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// Watchpoint 7</span>
+<span style="color:#898887;">//</span>
+<span style="font-weight:bold;">always</span> @(dmr1 <span style="color:#0057ae;">or</span> match7 <span style="color:#0057ae;">or</span> wp)
+	<span style="font-weight:bold;">case</span> (dmr1[<span style="color:#006e28;">`OR1200_DU_DMR1_CW7</span>])
+		<span style="color:#b08000;">2'b00</span>: wp[<span style="color:#b08000;">7</span>] = match7;
+		<span style="color:#b08000;">2'b01</span>: wp[<span style="color:#b08000;">7</span>] = match7 &amp; wp[<span style="color:#b08000;">6</span>];
+		<span style="color:#b08000;">2'b10</span>: wp[<span style="color:#b08000;">7</span>] = match7 | wp[<span style="color:#b08000;">6</span>];
+		<span style="color:#b08000;">2'b11</span>: wp[<span style="color:#b08000;">7</span>] = <span style="color:#b08000;">1'b0</span>;
+	<span style="font-weight:bold;">endcase</span>
+
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// Increment Watchpoint Counter 0</span>
+<span style="color:#898887;">//</span>
+<span style="font-weight:bold;">always</span> @(wp <span style="color:#0057ae;">or</span> dmr2)
+	<span style="font-weight:bold;">if</span> (dmr2[<span style="color:#006e28;">`OR1200_DU_DMR2_WCE0</span>])
+		incr_wpcntr0 = |(wp &amp; ~dmr2[<span style="color:#006e28;">`OR1200_DU_DMR2_AWTC</span>]);
+	<span style="font-weight:bold;">else</span>
+		incr_wpcntr0 = <span style="color:#b08000;">1'b0</span>;
+
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// Match Condition Watchpoint Counter 0</span>
+<span style="color:#898887;">//</span>
+<span style="font-weight:bold;">always</span> @(dwcr0)
+	<span style="font-weight:bold;">if</span> (dwcr0[<span style="color:#006e28;">`OR1200_DU_DWCR_MATCH</span>] == dwcr0[<span style="color:#006e28;">`OR1200_DU_DWCR_COUNT</span>])
+		wpcntr0_match = <span style="color:#b08000;">1'b1</span>;
+	<span style="font-weight:bold;">else</span>
+		wpcntr0_match = <span style="color:#b08000;">1'b0</span>;
+
+
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// Watchpoint 8</span>
+<span style="color:#898887;">//</span>
+<span style="font-weight:bold;">always</span> @(dmr1 <span style="color:#0057ae;">or</span> wpcntr0_match <span style="color:#0057ae;">or</span> wp)
+	<span style="font-weight:bold;">case</span> (dmr1[<span style="color:#006e28;">`OR1200_DU_DMR1_CW8</span>])
+		<span style="color:#b08000;">2'b00</span>: wp[<span style="color:#b08000;">8</span>] = wpcntr0_match;
+		<span style="color:#b08000;">2'b01</span>: wp[<span style="color:#b08000;">8</span>] = wpcntr0_match &amp; wp[<span style="color:#b08000;">7</span>];
+		<span style="color:#b08000;">2'b10</span>: wp[<span style="color:#b08000;">8</span>] = wpcntr0_match | wp[<span style="color:#b08000;">7</span>];
+		<span style="color:#b08000;">2'b11</span>: wp[<span style="color:#b08000;">8</span>] = <span style="color:#b08000;">1'b0</span>;
+	<span style="font-weight:bold;">endcase</span>
+
+
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// Increment Watchpoint Counter 1</span>
+<span style="color:#898887;">//</span>
+<span style="font-weight:bold;">always</span> @(wp <span style="color:#0057ae;">or</span> dmr2)
+	<span style="font-weight:bold;">if</span> (dmr2[<span style="color:#006e28;">`OR1200_DU_DMR2_WCE1</span>])
+		incr_wpcntr1 = |(wp &amp; dmr2[<span style="color:#006e28;">`OR1200_DU_DMR2_AWTC</span>]);
+	<span style="font-weight:bold;">else</span>
+		incr_wpcntr1 = <span style="color:#b08000;">1'b0</span>;
+
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// Match Condition Watchpoint Counter 1</span>
+<span style="color:#898887;">//</span>
+<span style="font-weight:bold;">always</span> @(dwcr1)
+	<span style="font-weight:bold;">if</span> (dwcr1[<span style="color:#006e28;">`OR1200_DU_DWCR_MATCH</span>] == dwcr1[<span style="color:#006e28;">`OR1200_DU_DWCR_COUNT</span>])
+		wpcntr1_match = <span style="color:#b08000;">1'b1</span>;
+	<span style="font-weight:bold;">else</span>
+		wpcntr1_match = <span style="color:#b08000;">1'b0</span>;
+
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// Watchpoint 9</span>
+<span style="color:#898887;">//</span>
+<span style="font-weight:bold;">always</span> @(dmr1 <span style="color:#0057ae;">or</span> wpcntr1_match <span style="color:#0057ae;">or</span> wp)
+	<span style="font-weight:bold;">case</span> (dmr1[<span style="color:#006e28;">`OR1200_DU_DMR1_CW9</span>])
+		<span style="color:#b08000;">2'b00</span>: wp[<span style="color:#b08000;">9</span>] = wpcntr1_match;
+		<span style="color:#b08000;">2'b01</span>: wp[<span style="color:#b08000;">9</span>] = wpcntr1_match &amp; wp[<span style="color:#b08000;">8</span>];
+		<span style="color:#b08000;">2'b10</span>: wp[<span style="color:#b08000;">9</span>] = wpcntr1_match | wp[<span style="color:#b08000;">8</span>];
+		<span style="color:#b08000;">2'b11</span>: wp[<span style="color:#b08000;">9</span>] = <span style="color:#b08000;">1'b0</span>;
+	<span style="font-weight:bold;">endcase</span>
+
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// Watchpoint 10</span>
+<span style="color:#898887;">//</span>
+<span style="font-weight:bold;">always</span> @(dmr1 <span style="color:#0057ae;">or</span> dbg_ewt_i <span style="color:#0057ae;">or</span> wp)
+	<span style="font-weight:bold;">case</span> (dmr1[<span style="color:#006e28;">`OR1200_DU_DMR1_CW10</span>])
+		<span style="color:#b08000;">2'b00</span>: wp[<span style="color:#b08000;">10</span>] = dbg_ewt_i;
+		<span style="color:#b08000;">2'b01</span>: wp[<span style="color:#b08000;">10</span>] = dbg_ewt_i &amp; wp[<span style="color:#b08000;">9</span>];
+		<span style="color:#b08000;">2'b10</span>: wp[<span style="color:#b08000;">10</span>] = dbg_ewt_i | wp[<span style="color:#b08000;">9</span>];
+		<span style="color:#b08000;">2'b11</span>: wp[<span style="color:#b08000;">10</span>] = <span style="color:#b08000;">1'b0</span>;
+	<span style="font-weight:bold;">endcase</span>
+
+<span style="color:#006e28;">`endif</span>
+
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// Watchpoints can cause trap exception</span>
+<span style="color:#898887;">//</span>
+<span style="color:#006e28;">`ifdef OR1200_DU_HWBKPTS</span>
+<span style="font-weight:bold;">assign</span> du_hwbkpt = |(wp &amp; dmr2[<span style="color:#006e28;">`OR1200_DU_DMR2_WGB</span>]) | du_hwbkpt_hold | (dbg_bp_r &amp; ~dsr[<span style="color:#006e28;">`OR1200_DU_DSR_TE</span>]);
+<span style="color:#006e28;">`else</span>
+<span style="font-weight:bold;">assign</span> du_hwbkpt = <span style="color:#b08000;">1'b0</span>;
+<span style="color:#006e28;">`endif</span>
+
+<span style="color:#898887;">// Hold du_hwbkpt if ex_freeze is active in order to cause trap exception </span>
+<span style="font-weight:bold;">always</span> @(<span style="font-weight:bold;">posedge</span> clk <span style="color:#0057ae;">or</span> <span style="color:#006e28;">`OR1200_RST_EVENT</span> rst)
+	<span style="font-weight:bold;">if</span> (rst == <span style="color:#006e28;">`OR1200_RST_VALUE</span>)
+		du_hwbkpt_hold &lt;=  <span style="color:#b08000;">1'b0</span>;
+	<span style="font-weight:bold;">else</span> <span style="font-weight:bold;">if</span> (du_hwbkpt &amp; ex_freeze)
+		du_hwbkpt_hold &lt;=  <span style="color:#b08000;">1'b1</span>;
+	<span style="font-weight:bold;">else</span> <span style="font-weight:bold;">if</span> (!ex_freeze)
+		du_hwbkpt_hold &lt;=  <span style="color:#b08000;">1'b0</span>;
+
+<span style="color:#006e28;">`ifdef OR1200_DU_TB_IMPLEMENTED</span>
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// Simple trace buffer</span>
+<span style="color:#898887;">// (right now hardcoded for Xilinx Virtex FPGAs)</span>
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// Stores last 256 instruction addresses, instruction</span>
+<span style="color:#898887;">// machine words and ALU results</span>
+<span style="color:#898887;">//</span>
+
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// Trace buffer write enable</span>
+<span style="color:#898887;">//</span>
+<span style="font-weight:bold;">assign</span> tb_enw = ~ex_freeze &amp; ~((ex_insn[<span style="color:#b08000;">31</span>:<span style="color:#b08000;">26</span>] == <span style="color:#006e28;">`OR1200_OR32_NOP</span>) &amp; ex_insn[<span style="color:#b08000;">16</span>]);
+
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// Trace buffer write address pointer</span>
+<span style="color:#898887;">//</span>
+<span style="font-weight:bold;">always</span> @(<span style="font-weight:bold;">posedge</span> clk <span style="color:#0057ae;">or</span> <span style="color:#006e28;">`OR1200_RST_EVENT</span> rst)
+	<span style="font-weight:bold;">if</span> (rst == <span style="color:#006e28;">`OR1200_RST_VALUE</span>)
+		tb_wadr &lt;=  <span style="color:#b08000;">8'h00</span>;
+	<span style="font-weight:bold;">else</span> <span style="font-weight:bold;">if</span> (tb_enw)
+		tb_wadr &lt;=  tb_wadr + <span style="color:#b08000;">8'd1</span>;
+
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// Free running counter (time stamp)</span>
+<span style="color:#898887;">//</span>
+<span style="font-weight:bold;">always</span> @(<span style="font-weight:bold;">posedge</span> clk <span style="color:#0057ae;">or</span> <span style="color:#006e28;">`OR1200_RST_EVENT</span> rst)
+	<span style="font-weight:bold;">if</span> (rst == <span style="color:#006e28;">`OR1200_RST_VALUE</span>)
+		tb_timstmp &lt;=  <span style="color:#b08000;">32'h00000000</span>;
+	<span style="font-weight:bold;">else</span> <span style="font-weight:bold;">if</span> (!dbg_bp_r)
+		tb_timstmp &lt;=  tb_timstmp + <span style="color:#b08000;">32'd1</span>;
+
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// Trace buffer RAMs</span>
+<span style="color:#898887;">//</span>
+
+or1200_dpram_256x32 tbia_ram(
+	.clk_a(clk),
+	.rst_a(<span style="color:#b08000;">1'b0</span>),
+	.addr_a(spr_addr[<span style="color:#b08000;">7</span>:<span style="color:#b08000;">0</span>]),
+	.ce_a(<span style="color:#b08000;">1'b1</span>),
+	.oe_a(<span style="color:#b08000;">1'b1</span>),
+	.do_a(tbia_dat_o),
+
+	.clk_b(clk),
+	.rst_b(<span style="color:#b08000;">1'b0</span>),
+	.addr_b(tb_wadr),
+	.di_b(spr_dat_npc),
+	.ce_b(<span style="color:#b08000;">1'b1</span>),
+	.we_b(tb_enw)
+
+);
+
+or1200_dpram_256x32 tbim_ram(
+	.clk_a(clk),
+	.rst_a(<span style="color:#b08000;">1'b0</span>),
+	.addr_a(spr_addr[<span style="color:#b08000;">7</span>:<span style="color:#b08000;">0</span>]),
+	.ce_a(<span style="color:#b08000;">1'b1</span>),
+	.oe_a(<span style="color:#b08000;">1'b1</span>),
+	.do_a(tbim_dat_o),
+	
+	.clk_b(clk),
+	.rst_b(<span style="color:#b08000;">1'b0</span>),
+	.addr_b(tb_wadr),
+	.di_b(ex_insn),
+	.ce_b(<span style="color:#b08000;">1'b1</span>),
+	.we_b(tb_enw)
+);
+
+or1200_dpram_256x32 tbar_ram(
+	.clk_a(clk),
+	.rst_a(<span style="color:#b08000;">1'b0</span>),
+	.addr_a(spr_addr[<span style="color:#b08000;">7</span>:<span style="color:#b08000;">0</span>]),
+	.ce_a(<span style="color:#b08000;">1'b1</span>),
+	.oe_a(<span style="color:#b08000;">1'b1</span>),
+	.do_a(tbar_dat_o),
+	
+	.clk_b(clk),
+	.rst_b(<span style="color:#b08000;">1'b0</span>),
+	.addr_b(tb_wadr),
+	.di_b(rf_dataw),
+	.ce_b(<span style="color:#b08000;">1'b1</span>),
+	.we_b(tb_enw)
+);
+
+or1200_dpram_256x32 tbts_ram(
+	.clk_a(clk),
+	.rst_a(<span style="color:#b08000;">1'b0</span>),
+	.addr_a(spr_addr[<span style="color:#b08000;">7</span>:<span style="color:#b08000;">0</span>]),
+	.ce_a(<span style="color:#b08000;">1'b1</span>),
+	.oe_a(<span style="color:#b08000;">1'b1</span>),
+	.do_a(tbts_dat_o),
+
+	.clk_b(clk),
+	.rst_b(<span style="color:#b08000;">1'b0</span>),
+	.addr_b(tb_wadr),
+	.di_b(tb_timstmp),
+	.ce_b(<span style="color:#b08000;">1'b1</span>),
+	.we_b(tb_enw)
+);
+
+<span style="color:#006e28;">`else</span>
+
+<span style="font-weight:bold;">assign</span> tbia_dat_o = <span style="color:#b08000;">32'h0000_0000</span>;
+<span style="font-weight:bold;">assign</span> tbim_dat_o = <span style="color:#b08000;">32'h0000_0000</span>;
+<span style="font-weight:bold;">assign</span> tbar_dat_o = <span style="color:#b08000;">32'h0000_0000</span>;
+<span style="font-weight:bold;">assign</span> tbts_dat_o = <span style="color:#b08000;">32'h0000_0000</span>;
+
+<span style="color:#006e28;">`endif	</span><span style="color:#898887;">// OR1200_DU_TB_IMPLEMENTED</span>
+
+<span style="color:#006e28;">`else	</span><span style="color:#898887;">// OR1200_DU_IMPLEMENTED</span>
+
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// When DU is not implemented, drive all outputs as would when DU is disabled</span>
+<span style="color:#898887;">//</span>
+<span style="font-weight:bold;">assign</span> dbg_bp_o = <span style="color:#b08000;">1'b0</span>;
+<span style="font-weight:bold;">assign</span> du_dsr = {<span style="color:#006e28;">`OR1200_DU_DSR_WIDTH</span>{<span style="color:#b08000;">1'b0</span>}};
+<span style="font-weight:bold;">assign</span> du_dmr1 = {<span style="color:#b08000;">25</span>{<span style="color:#b08000;">1'b0</span>}};
+<span style="font-weight:bold;">assign</span> du_hwbkpt = <span style="color:#b08000;">1'b0</span>;
+
+<span style="color:#898887;">//</span>
+<span style="color:#898887;">// Read DU registers</span>
+<span style="color:#898887;">//</span>
+<span style="color:#006e28;">`ifdef OR1200_DU_READREGS</span>
+<span style="font-weight:bold;">assign</span> spr_dat_o = <span style="color:#b08000;">32'h0000_0000</span>;
+<span style="color:#006e28;">`ifdef OR1200_DU_UNUSED_ZERO</span>
+<span style="color:#006e28;">`endif</span>
+<span style="color:#006e28;">`endif</span>
+
+<span style="color:#006e28;">`endif</span>
+
+<span style="font-weight:bold;">endmodule</span>
+</pre></body></html>

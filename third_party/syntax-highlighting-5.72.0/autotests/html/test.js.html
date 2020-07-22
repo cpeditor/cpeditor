@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title>test.js</title>
+<meta name="generator" content="KF5::SyntaxHighlighting (JavaScript)"/>
+</head><body style="color:#1f1c1b"><pre>
+<span style="color:#898887;">#! shebang</span>
+#! no-shebang
+
+<span style="color:#898887;">/* comment */</span>
+
+<span style="font-weight:bold;">function</span> <span style="color:#644a9b;">fun</span>()
+{
+    <span style="font-weight:bold;">var</span> boo = { <span style="color:#bf0303;">'key'</span>: [ <span style="color:#b08000;">1</span>, <span style="color:#b08000;">2.0</span>, <span style="color:#b08000;">3.0e1</span>, <span style="color:#b08000;">004</span>, <span style="color:#b08000;">0x5</span> ] };
+}
+
+<span style="font-weight:bold;font-style:italic;">class</span> MyClass; <span style="color:#898887;">// reserved keywords</span>
+
+<span style="color:#898887;">// Member objects: text after &quot;.&quot;</span>
+object.<span style="color:#0057ae;">property</span> <span style="font-weight:bold;">instanceof</span> <span style="color:#644a9b;font-weight:bold;">Number</span>;
+iden1.<span style="color:#0057ae;">iden2</span>  . <span style="color:#0057ae;">iden3</span>.<span style="color:#0057ae;">class</span> <span style="font-weight:bold;font-style:italic;">class</span>;
+
+<span style="font-weight:bold;">var</span> escapes = <span style="color:#bf0303;">&quot;aa</span><span style="color:#3daee9;">\</span><span style="color:#3daee9;font-weight:bold;">b</span><span style="color:#3daee9;">\</span><span style="color:#3daee9;font-weight:bold;">n</span><span style="color:#3daee9;">\</span><span style="color:#3daee9;font-weight:bold;">0</span><span style="color:#bf0303;">a</span><span style="color:#3daee9;">\&quot;</span><span style="color:#bf0303;">a</span><span style="color:#3daee9;">\x12</span><span style="color:#bf0303;">a</span><span style="color:#3daee9;">\32</span><span style="color:#bf0303;">a</span><span style="color:#3daee9;">\u{123}</span><span style="color:#bf0303;">a</span><span style="color:#3daee9;">\$\%\ \#\y\a</span><span style="color:#bf0303;">aa</span><span style="color:#3daee9;">\</span>
+<span style="color:#bf0303;">aaa&quot;</span>;
+<span style="font-weight:bold;">var</span> octal = <span style="color:#b08000;">0o124</span>;
+<span style="font-weight:bold;">var</span> bin = <span style="color:#b08000;">0b1010</span>;
+
+<span style="color:#644a9b;">日本語</span>().<span style="color:#0057ae;">ლಠ益ಠლ</span>.<span style="color:#0057ae;">ñá</span> = <span style="color:#b08000;">42</span>;
+δ /No-Regex/
+
+<span style="color:#898887;">// Only highlight valid regular expressions, of a single line, after strings</span>
+<span style="color:#898887;">// See: https://github.com/microsoft/TypeScript-TmLanguage/issues/786</span>
+<span style="color:#bf0303;">&quot;text&quot;</span> /No-Regex
+<span style="color:#bf0303;">&quot;text&quot;</span> <span style="color:#ff5500;">/Regex</span><span style="color:#3daee9;">[:)]</span><span style="color:#3daee9;">*</span><span style="color:#ff5500;">/</span>;
+<span style="font-weight:bold;">const</span> a = <span style="color:#bf0303;">&quot;6&quot;</span> / <span style="color:#b08000;">2</span>; <span style="color:#898887;">/*comment*/</span> <span style="font-weight:bold;">const</span> b = <span style="color:#b08000;">5</span>;
+<span style="color:#644a9b;font-weight:bold;">console</span>.<span style="color:#644a9b;font-style:italic;">log</span>(<span style="color:#bf0303;">&quot;4&quot;</span> / <span style="color:#bf0303;">&quot;2&quot;</span>); <span style="color:#898887;">// 2</span>
+<span style="color:#898887;">// Single quote</span>
+<span style="font-weight:bold;">const</span> a = <span style="color:#bf0303;">'6'</span> / <span style="color:#b08000;">2</span>; <span style="color:#898887;">/*comment*/</span> <span style="font-weight:bold;">const</span> b = <span style="color:#b08000;">5</span>;
+<span style="color:#644a9b;font-weight:bold;">console</span>.<span style="color:#644a9b;font-style:italic;">log</span>(<span style="color:#bf0303;">'4'</span> / <span style="color:#bf0303;">'2'</span>); <span style="color:#898887;">// 2</span>
+<span style="color:#898887;">// Template</span>
+<span style="font-weight:bold;">const</span> a = <span style="color:#bf0303;">`6`</span> / <span style="color:#b08000;">2</span>; <span style="color:#898887;">/*comment*/</span> <span style="font-weight:bold;">const</span> b = <span style="color:#b08000;">5</span>;
+<span style="color:#644a9b;font-weight:bold;">console</span>.<span style="color:#644a9b;font-style:italic;">log</span>(<span style="color:#bf0303;">`4`</span> / <span style="color:#bf0303;">`2`</span>); <span style="color:#898887;">// 2</span>
+
+<span style="color:#898887;">// Built-in</span>
+<span style="font-weight:bold;">const</span> os = <span style="color:#006e28;">require</span>(<span style="color:#bf0303;">'os'</span>);
+<span style="color:#644a9b;font-weight:bold;">JSON</span>.<span style="color:#644a9b;font-style:italic;">stringify</span>(<span style="color:#bf0303;">&quot;hello&quot;</span>);
+<span style="color:#644a9b;font-weight:bold;">console</span>.<span style="color:#644a9b;font-style:italic;">error</span>(<span style="color:#bf0303;">&quot;hello&quot;</span>);
+<span style="color:#644a9b;font-weight:bold;">Math</span>.<span style="color:#aa5500;">LOG10E</span>;
+<span style="color:#644a9b;font-weight:bold;">Number</span>.<span style="color:#aa5500;">MAX_SAFE_INTEGER</span>;
+<span style="color:#644a9b;font-weight:bold;">String</span>.<span style="color:#644a9b;">raw</span><span style="color:#bf0303;">`raw text \.\n${}`</span>
+
+<span style="color:#898887;">// Tagged template literals</span>
+<span style="color:#644a9b;">tagFunc</span><span style="color:#bf0303;">`</span>
+<span style="color:#bf0303;">    Hello world!</span>
+<span style="color:#bf0303;">    </span><span style="color:#3daee9;">${</span> <span style="color:#644a9b;">alert</span>(<span style="color:#bf0303;">&quot;Hello!&quot;</span>); <span style="color:#3daee9;">}</span><span style="color:#bf0303;">`</span>;
+obj.<span style="color:#0057ae;">something</span>.<span style="color:#644a9b;">tagFunc</span><span style="color:#bf0303;">`Setting </span><span style="color:#3daee9;">${</span>setting<span style="color:#3daee9;">}</span><span style="color:#bf0303;"> is </span><span style="color:#3daee9;">${</span>value + <span style="color:#b08000;">5</span><span style="color:#3daee9;">}</span><span style="color:#bf0303;">!`</span>;
+</pre></body></html>

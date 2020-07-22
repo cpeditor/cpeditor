@@ -1,0 +1,43 @@
+<JCLopts>//KATEJOB1</JCLopts><Normal Text> </Normal Text><Job Card>JOB</Job Card><Normal Text> (INFO),</Normal Text><String>'TEST for Highlighting'</String><Normal Text>,</Normal Text><br/>
+<JCLopts>//</JCLopts><Normal Text>   </Normal Text><Job Card>NOTIFY</Job Card><Symbol>=</Symbol><Variable>&SYSUID</Variable><Normal Text>,</Normal Text><br/>
+<JCLopts>//</JCLopts><Normal Text>   </Normal Text><Job Card>MSGCLASS</Job Card><Symbol>=</Symbol><Normal Text>H,</Normal Text><br/>
+<JCLopts>//</JCLopts><Normal Text>   </Normal Text><Job Card>MSGLEVEL</Job Card><Symbol>=</Symbol><Normal Text>(1,1),</Normal Text><br/>
+<JCLopts>//</JCLopts><Normal Text>   </Normal Text><Job Card>REGION</Job Card><Symbol>=</Symbol><Normal Text>0M</Normal Text><br/>
+<Comment>//* Example JCL to be used to test kate syntax highlighting</Comment><br/>
+<Comment>//* License MIT</Comment><br/>
+<Step>//GREP     </Step><Instructions>EXEC</Instructions><Normal Text> </Normal Text><Instructions>PGM</Instructions><Symbol>=</Symbol><Normal Text>ISRSUPC,</Normal Text><br/>
+<JCLopts>//</JCLopts><Normal Text>         </Normal Text><Instructions>PARM</Instructions><Symbol>=</Symbol><Normal Text>(SRCHCMP,ANYC,IDPFX,NOPRTCC)</Normal Text><br/>
+<JCLopts>//NEWDD</JCLopts><Normal Text>    </Normal Text><Instructions>DD</Instructions><Normal Text> </Normal Text><Built In>DSN</Built In><Symbol>=</Symbol><Dataset>KATE.REXXLIB</Dataset><Normal Text>,</Normal Text><Built In>DISP</Built In><Symbol>=</Symbol><Normal Text>OLD</Normal Text><br/>
+<Comment>//* OUTDD    DD SYSOUT=*</Comment><br/>
+<JCLopts>//OUTDD</JCLopts><Normal Text>    </Normal Text><Instructions>DD</Instructions><Normal Text> </Normal Text><Built In>PATHOPTS</Built In><Symbol>=</Symbol><Normal Text>(ORDWR,OTRUNC,OCREAT),</Normal Text><br/>
+<JCLopts>//</JCLopts><Normal Text>             </Normal Text><Built In>PATHMODE</Built In><Symbol>=</Symbol><Normal Text>(SIRWXU,SIRWXO),</Normal Text><br/>
+<JCLopts>//</JCLopts><Normal Text>             </Normal Text><Built In>PATHDISP</Built In><Symbol>=</Symbol><Normal Text>(KEEP,DELETE),</Normal Text><br/>
+<JCLopts>//</JCLopts><Normal Text>             </Normal Text><Built In>FILEDATA</Built In><Symbol>=</Symbol><Normal Text>TEXT,</Normal Text><br/>
+<JCLopts>//</JCLopts><Normal Text>             </Normal Text><Built In>PATH</Built In><Symbol>=</Symbol><String>'/tmp/searched.3'</String><br/>
+<JCLopts>//SYSIN</JCLopts><Normal Text>    </Normal Text><Instructions>DD</Instructions><Normal Text> *</Normal Text><br/>
+<InLine> SRCHFOR  'STORAGE'</InLine><br/>
+<InLine>/*</InLine><br/>
+<Step>//RACFSR   </Step><Instructions>EXEC</Instructions><Normal Text> </Normal Text><Instructions>PGM</Instructions><Symbol>=</Symbol><Normal Text>IKJEFT01</Normal Text><br/>
+<JCLopts>//SYSTSPRT</JCLopts><Normal Text> </Normal Text><Instructions>DD</Instructions><Normal Text> </Normal Text><Built In>DISP</Built In><Symbol>=</Symbol><Normal Text>SHR,</Normal Text><Built In>DSN</Built In><Symbol>=</Symbol><Variable>&&KATE</Variable><Normal Text>(SRCHABC)</Normal Text><br/>
+<JCLopts>//SYSOUT</JCLopts><Normal Text>   </Normal Text><Instructions>DD</Instructions><Normal Text> </Normal Text><Built In>SYSOUT</Built In><Symbol>=</Symbol><Normal Text>*</Normal Text><br/>
+<JCLopts>//SYSTSIN</JCLopts><Normal Text>  </Normal Text><Instructions>DD</Instructions><Normal Text> *</Normal Text><br/>
+<InLine> SEARCH CLASS(DATASET) FILTER(**) NOMASK</InLine><br/>
+<Step>//LIST     </Step><Instructions>EXEC</Instructions><Normal Text> </Normal Text><Instructions>PGM</Instructions><Symbol>=</Symbol><Normal Text>IKJEFT01</Normal Text><br/>
+<JCLopts>//SYSTSPRT</JCLopts><Normal Text> </Normal Text><Instructions>DD</Instructions><Normal Text> </Normal Text><Built In>DISP</Built In><Symbol>=</Symbol><Normal Text>SHR,</Normal Text><Built In>DSN</Built In><Symbol>=</Symbol><Variable>&&REPORT</Variable><Normal Text>(LISTABC)</Normal Text><br/>
+<JCLopts>//SYSOUT</JCLopts><Normal Text>   </Normal Text><Instructions>DD</Instructions><Normal Text> </Normal Text><Built In>SYSOUT</Built In><Symbol>=</Symbol><Normal Text>*</Normal Text><br/>
+<JCLopts>//SYSTSIN</JCLopts><Normal Text>  </Normal Text><Instructions>DD</Instructions><Normal Text> </Normal Text><Built In>DISP</Built In><Symbol>=</Symbol><Normal Text>SHR,</Normal Text><Built In>DSN</Built In><Symbol>=</Symbol><Variable>&&KATE</Variable><Normal Text>(SRCHABC)   </Normal Text><br/>
+<JCLopts>//</JCLopts><Normal Text> </Normal Text><Control Flow>IF</Control Flow><Normal Text> (</Normal Text><Operators>RC</Operators><Normal Text> </Normal Text><Operators>GT</Operators><Normal Text> 0) </Normal Text><Control Flow>THEN</Control Flow><br/>
+<Step>//CATFILE  </Step><Instructions>EXEC</Instructions><Normal Text> </Normal Text><Instructions>PGM</Instructions><Symbol>=</Symbol><Normal Text>IEBGENER</Normal Text><br/>
+<JCLopts>//SYSUT1</JCLopts><Normal Text>   </Normal Text><Instructions>DD</Instructions><Normal Text>  </Normal Text><Built In>DSN</Built In><Symbol>=</Symbol><Variable>&&REPORT</Variable><Normal Text>(LISTABC)</Normal Text><br/>
+<JCLopts>//</JCLopts><Normal Text>         </Normal Text><Built In>DISP</Built In><Symbol>=</Symbol><Normal Text>SHR</Normal Text><br/>
+<JCLopts>//SYSUT2</JCLopts><Normal Text>   </Normal Text><Instructions>DD</Instructions><Normal Text>  </Normal Text><Built In>SYSOUT</Built In><Symbol>=</Symbol><Normal Text>*</Normal Text><br/>
+<JCLopts>//SYSPRINT</JCLopts><Normal Text> </Normal Text><Instructions>DD</Instructions><Normal Text>  </Normal Text><Built In>SYSOUT</Built In><Symbol>=</Symbol><Normal Text>*</Normal Text><br/>
+<JCLopts>//SYSIN</JCLopts><Normal Text>    </Normal Text><Instructions>DD</Instructions><Normal Text>  </Normal Text><Built In>DUMMY</Built In><br/>
+<JCLopts>//</JCLopts><Normal Text> </Normal Text><Control Flow>ELSE</Control Flow><br/>
+<Step>//UNIXID   </Step><Instructions>EXEC</Instructions><Normal Text> </Normal Text><Instructions>PGM</Instructions><Symbol>=</Symbol><Normal Text>BPXBATCH,</Normal Text><Job Card>REGION</Job Card><Symbol>=</Symbol><Normal Text>8M</Normal Text><br/>
+<JCLopts>//STDIN</JCLopts><Normal Text>    </Normal Text><Instructions>DD</Instructions><Normal Text> </Normal Text><Built In>SYSOUT</Built In><Symbol>=</Symbol><Normal Text>*</Normal Text><br/>
+<JCLopts>//STDOUT</JCLopts><Normal Text>   </Normal Text><Instructions>DD</Instructions><Normal Text> </Normal Text><Built In>SYSOUT</Built In><Symbol>=</Symbol><Normal Text>*</Normal Text><br/>
+<JCLopts>//STDPARM</JCLopts><Normal Text>  </Normal Text><Instructions>DD</Instructions><Normal Text>   *</Normal Text><br/>
+<InLine>SH id</InLine><br/>
+<InLine>/*</InLine><br/>
+<JCLopts>//</JCLopts><Normal Text> </Normal Text><Control Flow>ENDIF</Control Flow><br/>

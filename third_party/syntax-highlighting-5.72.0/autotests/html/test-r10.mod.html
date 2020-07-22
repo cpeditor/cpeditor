@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title>test-r10.mod</title>
+<meta name="generator" content="KF5::SyntaxHighlighting (Modula-2 (R10 only))"/>
+</head><body style="color:#1f1c1b"><pre>
+<span style="color:#898887;font-style:italic;">(* Modula-2 R10 Syntax highlighting test *)</span>
+
+<span style="color:#898887;font-style:italic;">(* dialect tags *)</span>
+
+<span style="color:#898887;font-weight:bold;">(*!m2r10*)</span>
+
+
+<span style="color:#898887;font-style:italic;">(* pragmas *)</span>
+
+<span style="color:#006e28;font-weight:bold;">&lt;*foo*&gt;</span>
+
+
+<span style="color:#898887;font-style:italic;">(* line comments *)</span>
+
+<span style="color:#898887;font-style:italic;">! foo bar baz bam boo</span>
+
+
+<span style="color:#898887;font-style:italic;">(* foldable comments *)</span>
+
+<span style="color:#898887;font-style:italic;">(* foo bar baz</span>
+<span style="color:#898887;font-style:italic;">   (* nested comment *)</span>
+<span style="color:#898887;font-style:italic;">   bam boo bee bop *)</span>
+
+
+<span style="color:#898887;font-style:italic;">(* reserved words *)</span>
+
+<span style="font-weight:bold;">ALIAS</span> <span style="font-weight:bold;">AND</span> <span style="font-weight:bold;">ARGLIST</span> <span style="font-weight:bold;">ARRAY</span> <span style="font-weight:bold;">BEGIN</span> <span style="font-weight:bold;">BLUEPRINT</span> <span style="font-weight:bold;">BY</span> <span style="font-weight:bold;">CASE</span> <span style="font-weight:bold;">CONST</span> <span style="font-weight:bold;">COPY</span> <span style="font-weight:bold;">DEFINITION</span> <span style="font-weight:bold;">DIV</span> <span style="font-weight:bold;">DO</span>
+<span style="font-weight:bold;">ELSE</span> <span style="font-weight:bold;">ELSIF</span> <span style="font-weight:bold;">END</span> <span style="font-weight:bold;">EXIT</span> <span style="font-weight:bold;">FOR</span> <span style="font-weight:bold;">FROM</span> <span style="font-weight:bold;">GENLIB</span> <span style="font-weight:bold;">IF</span> <span style="font-weight:bold;">IMPLEMENTATION</span> <span style="font-weight:bold;">IMPORT</span> <span style="font-weight:bold;">IN</span> <span style="font-weight:bold;">LOOP</span> <span style="font-weight:bold;">MOD</span>
+<span style="font-weight:bold;">MODULE</span> <span style="font-weight:bold;">NEW</span> <span style="font-weight:bold;">NOT</span> <span style="font-weight:bold;">OF</span> <span style="font-weight:bold;">OPAQUE</span> <span style="font-weight:bold;">OR</span> <span style="font-weight:bold;">POINTER</span> <span style="font-weight:bold;">PROCEDURE</span> <span style="font-weight:bold;">READ</span> <span style="font-weight:bold;">RECORD</span> <span style="font-weight:bold;">REFERENTIAL</span> <span style="font-weight:bold;">RELEASE</span>
+<span style="font-weight:bold;">REPEAT</span> <span style="font-weight:bold;">RETAIN</span> <span style="font-weight:bold;">RETURN</span> <span style="font-weight:bold;">SET</span> <span style="font-weight:bold;">THEN</span> <span style="font-weight:bold;">TO</span> <span style="font-weight:bold;">TYPE</span> <span style="font-weight:bold;">UNTIL</span> <span style="font-weight:bold;">VAR</span> <span style="font-weight:bold;">WHILE</span> <span style="font-weight:bold;">WRITE</span> <span style="font-weight:bold;">YIELD</span>
+
+
+<span style="color:#898887;font-style:italic;">(* built-in constants *)</span>
+
+<span style="color:#644a9b;font-weight:bold;">FALSE</span> <span style="color:#644a9b;font-weight:bold;">NIL</span> <span style="color:#644a9b;font-weight:bold;">TRUE</span>
+
+
+<span style="color:#898887;font-style:italic;">(* built-in types *)</span>
+
+<span style="color:#0057ae;font-weight:bold;">BOOLEAN</span> <span style="color:#0057ae;font-weight:bold;">CARDINAL</span> <span style="color:#0057ae;font-weight:bold;">CHAR</span> <span style="color:#0057ae;font-weight:bold;">INTEGER</span> <span style="color:#0057ae;font-weight:bold;">LONGCARD</span> <span style="color:#0057ae;font-weight:bold;">LONGINT</span> <span style="color:#0057ae;font-weight:bold;">LONGREAL</span> <span style="color:#0057ae;font-weight:bold;">OCTET</span> <span style="color:#0057ae;font-weight:bold;">REAL</span>
+
+
+<span style="color:#898887;font-style:italic;">(* built-in procedures *)</span>
+
+<span style="color:#644a9b;font-weight:bold;">ABS</span> <span style="color:#644a9b;font-weight:bold;">APPEND</span> <span style="color:#644a9b;font-weight:bold;">CAPACITY</span> <span style="color:#644a9b;font-weight:bold;">CHR</span> <span style="color:#644a9b;font-weight:bold;">COUNT</span> <span style="color:#644a9b;font-weight:bold;">ENTIER</span> <span style="color:#644a9b;font-weight:bold;">INSERT</span> <span style="color:#644a9b;font-weight:bold;">LENGTH</span> <span style="color:#644a9b;font-weight:bold;">LOG2</span> <span style="color:#644a9b;font-weight:bold;">MAX</span> <span style="color:#644a9b;font-weight:bold;">MIN</span> <span style="color:#644a9b;font-weight:bold;">ODD</span> <span style="color:#644a9b;font-weight:bold;">ORD</span>
+<span style="color:#644a9b;font-weight:bold;">POW2</span> <span style="color:#644a9b;font-weight:bold;">PRED</span> <span style="color:#644a9b;font-weight:bold;">PTR</span> <span style="color:#644a9b;font-weight:bold;">REMOVE</span> <span style="color:#644a9b;font-weight:bold;">SGN</span> <span style="color:#644a9b;font-weight:bold;">SUCC</span>
+
+
+<span style="color:#898887;font-style:italic;">(* UNSAFE facilities *)</span>
+
+<span style="color:#898887;font-style:italic;">(* module identifier *)</span>
+
+<span style="color:#bf0303;font-weight:bold;">UNSAFE</span>
+
+<span style="color:#898887;font-style:italic;">(* reserved words *)</span>
+
+<span style="color:#bf0303;font-weight:bold;">CAST</span>
+
+<span style="color:#898887;font-style:italic;">(* constants *)</span>
+
+<span style="color:#bf0303;font-weight:bold;">BitsPerAddress</span> <span style="color:#bf0303;font-weight:bold;">BitsPerByte</span> <span style="color:#bf0303;font-weight:bold;">BytesPerWord</span> <span style="color:#bf0303;font-weight:bold;">BytesPerLongWord</span>
+
+<span style="color:#898887;font-style:italic;">(* types *)</span>
+
+<span style="color:#bf0303;font-weight:bold;">ADDRESS</span> <span style="color:#bf0303;font-weight:bold;">BYTE</span> <span style="color:#bf0303;font-weight:bold;">WORD</span> <span style="color:#bf0303;font-weight:bold;">LONGWORD</span> <span style="color:#bf0303;font-weight:bold;">OCTETSEQ</span>
+
+<span style="color:#898887;font-style:italic;">(* procedures *)</span>
+
+<span style="color:#bf0303;font-weight:bold;">ADD</span> <span style="color:#bf0303;font-weight:bold;">ADR</span> <span style="color:#bf0303;font-weight:bold;">BIT</span> <span style="color:#bf0303;font-weight:bold;">BWAND</span> <span style="color:#bf0303;font-weight:bold;">BWNOT</span> <span style="color:#bf0303;font-weight:bold;">BWOR</span> <span style="color:#bf0303;font-weight:bold;">HALT</span> <span style="color:#bf0303;font-weight:bold;">SETBIT</span> <span style="color:#bf0303;font-weight:bold;">SHL</span> <span style="color:#bf0303;font-weight:bold;">SHR</span> <span style="color:#bf0303;font-weight:bold;">SUB</span>
+
+
+<span style="color:#898887;font-style:italic;">(* number literals *)</span>
+
+<span style="font-weight:bold;">CONST</span>
+  b = <span style="color:#b08000;">0b0110'1001</span>; <span style="color:#898887;font-style:italic;">(* base-2 *)</span>
+
+  n = <span style="color:#b08000;">1000'0000</span>; <span style="color:#898887;font-style:italic;">(* base-10 *)</span>
+
+  x = <span style="color:#b08000;">0xDEAD'BEEF</span>; <span style="color:#898887;font-style:italic;">(* base-16 *)</span>
+
+  c = <span style="color:#b08000;">0u2A</span>; <span style="color:#898887;font-style:italic;">(* character code *)</span>
+
+  r = <span style="color:#b08000;">1.234</span>; <span style="color:#898887;font-style:italic;">(* real number *)</span>
+
+
+<span style="color:#898887;font-style:italic;">(* quoted literals *)</span>
+
+<span style="font-weight:bold;">CONST</span>
+  apostrophe = <span style="color:#bf0303;">&quot;'&quot;</span>; doublequote = <span style="color:#bf0303;">'&quot;'</span>;
+  single =<span style="color:#bf0303;">'foobar'</span>; double = <span style="color:#bf0303;">&quot;bazbam&quot;</span>;
+
+
+<span style="color:#898887;font-style:italic;">(* sample code *)</span>
+
+<span style="font-weight:bold;">TYPE</span> Foo = <span style="font-weight:bold;">RECORD</span>
+  bar : Baz;
+  bam : Boo
+<span style="font-weight:bold;">END</span>; <span style="color:#898887;font-style:italic;">(* Foobar *)</span>
+
+
+<span style="font-weight:bold;">VAR</span>
+  foo, bar, baz : <span style="color:#0057ae;font-weight:bold;">CARDINAL</span>;
+
+
+<span style="font-weight:bold;">IF</span> foo &gt; bar <span style="font-weight:bold;">THEN</span>
+  baz := bam
+<span style="font-weight:bold;">ELSE</span>
+  baz := boo
+<span style="font-weight:bold;">END</span>;
+
+
+<span style="color:#898887;font-style:italic;">(* EOF *)</span>
+</pre></body></html>

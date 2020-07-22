@@ -1,0 +1,303 @@
+<Comment>% LaTeX test file for kate's syntax highlighting and code folding</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Macro>\ordinaryLaTeXcommandwithoption</Macro><Normal Text>[10pt,a4paper]{article}</Normal Text><br/>
+<Region Marker>% BEGIN region</Region Marker><br/>
+<Comment>%comment, this is all ok % $ </Comment><br/>
+<Macro>\%</Macro><Normal Text>no comments please</Normal Text><br/>
+<Macro>\\</Macro><Comment>%comment</Comment><br/>
+<Region Marker>% END of region</Region Marker><br/>
+<Normal Text></Normal Text><br/>
+<Macro>\newcommand</Macro><Normal Text>{</Normal Text><Reference>\nohighlighting</Reference><Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Structure>\section</Structure><Normal Text>{</Normal Text><Sectioning Text>normal</Sectioning Text><Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Structure>\ref</Structure><Normal Text>{</Normal Text><Reference>blue</Reference><Normal Text>}</Normal Text><br/>
+<Structure>\pageref</Structure><Normal Text>{</Normal Text><Reference>blue</Reference><Normal Text>}</Normal Text><br/>
+<Structure>\cite</Structure><Normal Text>{</Normal Text><Reference>blue</Reference><Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Structure>\begin</Structure><Normal Text>{</Normal Text><Environment>environmentshavespecialcolors</Environment><Normal Text>}</Normal Text><br/>
+<Normal Text>normal</Normal Text><br/>
+<Structure>\end</Structure><Normal Text>{</Normal Text><Environment>environmentshavespecialcolors</Environment><Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Math>$equations are green, </Math><Macro Mathmode>\commands</Macro Mathmode><Math> somewhat darker$</Math><br/>
+<Normal Text>normal</Normal Text><br/>
+<Math>$$equations are green, </Math><Macro Mathmode>\commands</Macro Mathmode><Math> somewhat darker$$</Math><br/>
+<Normal Text>normal</Normal Text><br/>
+<Math>\( </Math><br/>
+<Macro Mathmode>\frac</Macro Mathmode><Math>{1}{2}</Math><br/>
+<Structure>\begin</Structure><Normal Text>{</Normal Text><Environment>test</Environment><Normal Text>}</Normal Text><br/>
+<Structure>\end</Structure><Normal Text>{</Normal Text><Environment>test</Environment><Normal Text>}</Normal Text><br/>
+<Math>\)</Math><br/>
+<Normal Text>normal</Normal Text><br/>
+<Math>\[</Math><br/>
+<Comment>%comment </Comment><br/>
+<Math>displaymath </Math><br/>
+<Math>\]</Math><br/>
+<Normal Text>normal</Normal Text><br/>
+<Structure>\begin</Structure><Normal Text>{</Normal Text><Environment>equation</Environment><Normal Text>}</Normal Text><br/>
+<Math>green</Math><Macro Mathmode>\darkergreen</Macro Mathmode><br/>
+<Structure>\begin</Structure><Normal Text>{</Normal Text><Environment>test</Environment><Normal Text>}</Normal Text><br/>
+<Macro Mathmode>\test</Macro Mathmode><br/>
+<Structure>\end</Structure><Normal Text>{</Normal Text><Environment>test</Environment><Normal Text>}</Normal Text><br/>
+<Structure>\end</Structure><Normal Text>{</Normal Text><Environment>equation</Environment><Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Structure>\begin</Structure><Normal Text>{</Normal Text><Environment>equation*</Environment><Normal Text>}</Normal Text><br/>
+<Math>green</Math><Macro Mathmode>\darkergreen</Macro Mathmode><br/>
+<Comment>%comment</Comment><br/>
+<Structure>\begin</Structure><Normal Text>{</Normal Text><Environment>test</Environment><Normal Text>}</Normal Text><br/>
+<Macro Mathmode>\test</Macro Mathmode><br/>
+<Structure>\end</Structure><Normal Text>{</Normal Text><Environment>test</Environment><Normal Text>}</Normal Text><br/>
+<Macro Mathmode>\%</Macro Mathmode><Math>no comment</Math><br/>
+<Structure>\end</Structure><Normal Text>{</Normal Text><Environment>equation*</Environment><Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Macro>\{</Macro><Normal Text>     </Normal Text><Comment>%this should be comment</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Macro>\verb</Macro><Normal Text>%</Normal Text><Verbatim>this shouldn't be</Verbatim><Normal Text>%and this should be normal text</Normal Text><br/>
+<Macro>\verb</Macro><Normal Text>!</Normal Text><Verbatim>verbatim text</Verbatim><Normal Text>! normal text</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>text </Normal Text><Macro>\texttt</Macro><Normal Text>{more text}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Structure>\begin</Structure><Normal Text>{</Normal Text><Environment>verbatim</Environment><Normal Text>}</Normal Text><br/>
+<Verbatim>text inside a verbatim environment is also treated special $ %,</Verbatim><br/>
+<Verbatim>you can even put a \begin{verbatim} inside</Verbatim><br/>
+<Structure>\end</Structure><Normal Text>{</Normal Text><Environment>verbatim</Environment><Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>normal</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Structure>\begin</Structure><Normal Text>{</Normal Text><Environment>Verbatim</Environment><Normal Text>}</Normal Text><br/>
+<Verbatim>&@@#^%&^#$</Verbatim><br/>
+<Structure>\end</Structure><Normal Text>{</Normal Text><Environment>Verbatim</Environment><Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Structure>\begin</Structure><Normal Text>{</Normal Text><Environment>Verbatim*</Environment><Normal Text>}</Normal Text><br/>
+<Verbatim>@*&^#@*(^#(*@&</Verbatim><br/>
+<Structure>\end</Structure><Normal Text>{</Normal Text><Environment>Verbatim*</Environment><Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>normal</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Structure>\begin</Structure><Normal Text>{</Normal Text><Environment>Verbatim</Environment><Normal Text>}</Normal Text><br/>
+<Verbatim>\begin{verbatim}</Verbatim><br/>
+<Verbatim>This is a verbatim block.</Verbatim><br/>
+<Verbatim>\end{verbatim}</Verbatim><br/>
+<Structure>\end</Structure><Normal Text>{</Normal Text><Environment>Verbatim</Environment><Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>normal</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment>% test alignat</Comment><br/>
+<Structure>\begin</Structure><Normal Text>{</Normal Text><Environment>alignat</Environment><Normal Text>}{2}</Normal Text><br/>
+<Math>A  &= B &= C </Math><Macro Mathmode>\\</Macro Mathmode><br/>
+<Math>A  &= B &= C</Math><br/>
+<Structure>\end</Structure><Normal Text>{</Normal Text><Environment>alignat</Environment><Normal Text>}</Normal Text><br/>
+<Normal Text>normal text</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment>\iffalse</Comment><br/>
+<Comment>\fill commented out text</Comment><br/>
+<Comment>\fi</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Comment>% Math mode</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>Depending on the value of </Normal Text><Math>$x$</Math><Normal Text> the equation </Normal Text><Math>\( f(x) = </Math><Macro Mathmode>\sum</Macro Mathmode><Math>_{i=0}^{n} </Math><Macro Mathmode>\frac</Macro Mathmode><Math>{a_i}{1+x} \)</Math><Normal Text> may diverge or converge.</Normal Text><br/>
+<Normal Text> </Normal Text><br/>
+<Math>\[ f(x) = </Math><Macro Mathmode>\sum</Macro Mathmode><Math>_{i=0}^{n} </Math><Macro Mathmode>\frac</Macro Mathmode><Math>{a_i}{1+x} \]</Math><br/>
+<Normal Text> </Normal Text><br/>
+<Math>\[</Math><br/>
+<Math>S = </Math><Macro Mathmode>\{</Macro Mathmode><Math> z </Math><Macro Mathmode>\in</Macro Mathmode><Math> </Math><Macro Mathmode>\mathbb</Macro Mathmode><Math>{C}</Math><Macro Mathmode>\,</Macro Mathmode><Math> |</Math><Macro Mathmode>\,</Macro Mathmode><Math> |z| < 1 </Math><Macro Mathmode>\}</Macro Mathmode><Math> </Math><Macro Mathmode>\quad</Macro Mathmode><Math> </Math><Macro Mathmode>\textrm</Macro Mathmode><Normal Text>{and}</Normal Text><Math> </Math><Macro Mathmode>\quad</Macro Mathmode><Math> S_2=</Math><Macro Mathmode>\partial</Macro Mathmode><Math>{S}</Math><br/>
+<Math>\]</Math><br/>
+<Normal Text></Normal Text><br/>
+<Math>\[</Math><br/>
+<Macro Mathmode>\frac</Macro Mathmode><Math>{</Math><br/>
+<Math>    </Math><Structure>\begin</Structure><Normal Text>{</Normal Text><Environment>array</Environment><Normal Text>}</Normal Text><Math>[b]{r}</Math><br/>
+<Math>      </Math><Macro Mathmode>\left</Macro Mathmode><Math>( x_1 x_2 </Math><Macro Mathmode>\right</Macro Mathmode><Math>)</Math><Macro Mathmode>\\</Macro Mathmode><br/>
+<Math>      </Math><Macro Mathmode>\times</Macro Mathmode><Math> </Math><Macro Mathmode>\left</Macro Mathmode><Math>( x'_1 x'_2 </Math><Macro Mathmode>\right</Macro Mathmode><Math>)</Math><br/>
+<Math>    </Math><Structure>\end</Structure><Normal Text>{</Normal Text><Environment>array</Environment><Normal Text>}</Normal Text><br/>
+<Math>  }{</Math><br/>
+<Math>    </Math><Macro Mathmode>\left</Macro Mathmode><Math>( y_1y_2y_3y_4 </Math><Macro Mathmode>\right</Macro Mathmode><Math>)</Math><br/>
+<Math>  }</Math><br/>
+<Math>\]</Math><br/>
+<Normal Text></Normal Text><br/>
+<Structure>\begin</Structure><Normal Text>{</Normal Text><Environment>eqnarray*</Environment><Normal Text>}</Normal Text><br/>
+<Structure>\begin</Structure><Normal Text>{</Normal Text><Error>eqnarray*</Error><Normal Text>}</Normal Text><br/>
+<Math>f(x) = </Math><Macro Mathmode>\sum</Macro Mathmode><Math>_{i=0}^{n} </Math><Macro Mathmode>\frac</Macro Mathmode><Math>{a_i}{1+x} </Math><Macro Mathmode>\\</Macro Mathmode><br/>
+<Macro Mathmode>\textstyle</Macro Mathmode><Math> f(x) = </Math><Macro Mathmode>\textstyle</Macro Mathmode><Math> </Math><Macro Mathmode>\sum</Macro Mathmode><Math>_{i=0}^{n} </Math><Macro Mathmode>\frac</Macro Mathmode><Math>{a_i}{1+x} </Math><Macro Mathmode>\\</Macro Mathmode><br/>
+<Macro Mathmode>\scriptstyle</Macro Mathmode><Math> f(x) = </Math><Macro Mathmode>\scriptstyle</Macro Mathmode><Math> </Math><Macro Mathmode>\sum</Macro Mathmode><Math>_{i=0}^{n} </Math><Macro Mathmode>\frac</Macro Mathmode><Math>{a_i}{1+x} </Math><Macro Mathmode>\\</Macro Mathmode><br/>
+<Macro Mathmode>\scriptscriptstyle</Macro Mathmode><Math> f(x) = </Math><Macro Mathmode>\scriptscriptstyle</Macro Mathmode><Math> </Math><Macro Mathmode>\sum</Macro Mathmode><Math>_{i=0}^{n} </Math><Macro Mathmode>\frac</Macro Mathmode><Math>{a_i}{1+x}</Math><br/>
+<Structure>\end</Structure><Normal Text>{</Normal Text><Environment>eqnarray*</Environment><Normal Text>}</Normal Text><br/>
+<Structure>\end</Structure><Normal Text>{</Normal Text><Environment>eqnarray*</Environment><Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Structure>\begin</Structure><Normal Text>{</Normal Text><Environment>xalignat</Environment><Normal Text>}{3}</Normal Text><br/>
+<Math>i_{11} & =i_{23}</Math><Macro Mathmode>\nonumber</Macro Mathmode><br/>
+<Structure>\end</Structure><Normal Text>{</Normal Text><Environment>xalignat</Environment><Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>c</Normal Text><br/>
+<Structure>\begin</Structure><Normal Text>{</Normal Text><Environment>equation</Environment><Normal Text>}</Normal Text><br/>
+<Math>c</Math><br/>
+<Structure>\begin</Structure><Normal Text>{</Normal Text><Environment>aligned</Environment><Normal Text>}</Normal Text><br/>
+<Math>a & b</Math><Macro Mathmode>\\</Macro Mathmode><br/>
+<Math>c & d</Math><br/>
+<Structure>\end</Structure><Normal Text>{</Normal Text><Environment>aligned</Environment><Normal Text>}</Normal Text><br/>
+<Math>c</Math><br/>
+<Structure>\end</Structure><Normal Text>{</Normal Text><Environment>equation</Environment><Normal Text>}</Normal Text><br/>
+<Normal Text>c</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Math>$$E=mc^2$$</Math><br/>
+<Normal Text> </Normal Text><br/>
+<Structure>\begin</Structure><Normal Text>{</Normal Text><Environment>equation</Environment><Normal Text>}</Normal Text><br/>
+<Math>E=m</Math><br/>
+<Structure>\end</Structure><Normal Text>{</Normal Text><Environment>equation</Environment><Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Structure>\begin</Structure><Normal Text>{</Normal Text><Environment>equation</Environment><br/>
+<Error>x=3\textrm{plop</Error><Normal Text>}</Normal Text><br/>
+<Structure>\end</Structure><Normal Text>{</Normal Text><Environment>equation</Environment><Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Math>\[ </Math><Structure>\begin</Structure><Normal Text>{</Normal Text><Environment>array</Environment><Normal Text>}</Normal Text><Math>{llll}</Math><br/>
+<Math>  x^3 = (-x)^3 & </Math><Macro Mathmode>\text</Macro Mathmode><Normal Text>{if </Normal Text><Math>$x > 0$</Math><Normal Text>}</Normal Text><Macro Mathmode>\\</Macro Mathmode><br/>
+<Math>  x^3 = (-x)^3 & </Math><Macro Mathmode>\text</Macro Mathmode><Normal Text>{if {</Normal Text><Math>$x > 0$</Math><Normal Text>}}</Normal Text><Macro Mathmode>\\</Macro Mathmode><br/>
+<Math>  x^3 = (-x)^3 & </Math><Macro Mathmode>\text</Macro Mathmode><Normal Text>{if {</Normal Text><Macro Mathmode>\color</Macro Mathmode><Normal Text>{green} </Normal Text><Math>$x > 0$</Math><Normal Text>}}</Normal Text><Macro Mathmode>\\</Macro Mathmode><br/>
+<Structure>\end</Structure><Normal Text>{</Normal Text><Environment>array</Environment><Normal Text>}</Normal Text><Math> \]</Math><br/>
+<Normal Text></Normal Text><br/>
+<Structure>\section*</Structure><Normal Text>{</Normal Text><Sectioning Text>Notes for My Paper</Sectioning Text><Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Structure>\begin</Structure><Normal Text>{</Normal Text><Environment>center</Environment><Normal Text>}</Normal Text><br/>
+<Structure>\begin</Structure><Normal Text>{</Normal Text><Environment>tabular</Environment><Normal Text>}{ |c|c|c| } </Normal Text><br/>
+<Normal Text> </Normal Text><Macro>\hline</Macro><br/>
+<Normal Text> cell1 </Normal Text><Ampersand>&</Ampersand><Normal Text> cell2 </Normal Text><Ampersand>&</Ampersand><Normal Text> cell3 </Normal Text><Macro>\\</Macro><Normal Text> </Normal Text><br/>
+<Normal Text> cell4 </Normal Text><Ampersand>&</Ampersand><Normal Text> cell5 </Normal Text><Ampersand>&</Ampersand><Normal Text> cell6 </Normal Text><Macro>\\</Macro><Normal Text> </Normal Text><br/>
+<Normal Text> cell7 </Normal Text><Ampersand>&</Ampersand><Normal Text> cell8 </Normal Text><Ampersand>&</Ampersand><Normal Text> cell9 </Normal Text><Macro>\\</Macro><Normal Text> </Normal Text><br/>
+<Normal Text> </Normal Text><Macro>\hline</Macro><br/>
+<Structure>\end</Structure><Normal Text>{</Normal Text><Environment>tabular</Environment><Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Structure>\begin</Structure><Normal Text>{</Normal Text><Environment>tabular*</Environment><Normal Text>}{0.75</Normal Text><Macro>\textwidth</Macro><Normal Text>}{</Normal Text><Column Separator>@{\extracolsep{\fill} }</Column Separator><Normal Text> | c | c | c | r | }</Normal Text><br/>
+<Normal Text>  </Normal Text><Macro>\hline</Macro><br/>
+<Normal Text>  label 1 </Normal Text><Ampersand>&</Ampersand><Normal Text> label 2 </Normal Text><Ampersand>&</Ampersand><Normal Text> label 3 </Normal Text><Ampersand>&</Ampersand><Normal Text> label 4 </Normal Text><Macro>\\</Macro><br/>
+<Normal Text>  </Normal Text><Macro>\hline</Macro><Normal Text> </Normal Text><br/>
+<Normal Text>  item 1  </Normal Text><Ampersand>&</Ampersand><Normal Text> item 2  </Normal Text><Ampersand>&</Ampersand><Normal Text> item 3  </Normal Text><Ampersand>&</Ampersand><Normal Text> item 4  </Normal Text><Macro>\\</Macro><br/>
+<Normal Text>  </Normal Text><Macro>\hline</Macro><br/>
+<Structure>\end</Structure><Normal Text>{</Normal Text><Environment>tabular*</Environment><Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Structure>\begin</Structure><Normal Text>{</Normal Text><Environment>tabular*</Environment><Normal Text>}{0.75</Normal Text><Macro>\textwidth</Macro><Normal Text>}{ | c | c | c | r | }</Normal Text><br/>
+<Normal Text>  </Normal Text><Macro>\hline</Macro><br/>
+<Normal Text>  label 1 </Normal Text><Ampersand>&</Ampersand><Normal Text> label 2 </Normal Text><Ampersand>&</Ampersand><Normal Text> label 3 </Normal Text><Ampersand>&</Ampersand><Normal Text> label 4 </Normal Text><Macro>\\</Macro><br/>
+<Normal Text>  </Normal Text><Macro>\hline</Macro><Normal Text> </Normal Text><br/>
+<Normal Text>  item 1  </Normal Text><Ampersand>&</Ampersand><Normal Text> item 2  </Normal Text><Ampersand>&</Ampersand><Normal Text> item 3  </Normal Text><Ampersand>&</Ampersand><Normal Text> item 4  </Normal Text><Macro>\\</Macro><br/>
+<Normal Text>  </Normal Text><Macro>\hline</Macro><br/>
+<Structure>\end</Structure><Normal Text>{</Normal Text><Environment>tabular*</Environment><Normal Text>}</Normal Text><br/>
+<Structure>\end</Structure><Normal Text>{</Normal Text><Environment>center</Environment><Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Structure>\begin</Structure><Normal Text>{</Normal Text><Environment>tabularx</Environment><Normal Text>}{1</Normal Text><Macro>\textwidth</Macro><Normal Text>}{ |>{</Normal Text><Macro>\setlength\hsize</Macro><Normal Text>{1</Normal Text><Macro>\hsize</Macro><Normal Text>}</Normal Text><Macro>\centering</Macro><Normal Text>}X|>{</Normal Text><Macro>\setlength\hsize</Macro><Normal Text>{1</Normal Text><Macro>\hsize</Macro><Normal Text>}</Normal Text><Macro>\raggedleft</Macro><Normal Text>}X</Normal Text><Column Separator>@{}</Column Separator><Normal Text> >{</Normal Text><Macro>\setlength\hsize</Macro><Normal Text>{1</Normal Text><Macro>\hsize</Macro><Normal Text>}</Normal Text><Macro>\raggedright</Macro><Normal Text>}X|>{</Normal Text><Macro>\setlength\hsize</Macro><Normal Text>{1</Normal Text><Macro>\hsize</Macro><Normal Text>}</Normal Text><Macro>\centering</Macro><Normal Text>}X| } </Normal Text><br/>
+<Normal Text>  </Normal Text><Macro>\hline</Macro><br/>
+<Normal Text>Label 1 </Normal Text><Ampersand>&</Ampersand><Normal Text> </Normal Text><Macro>\multicolumn</Macro><Normal Text>{2}{>{</Normal Text><Macro>\centering\setlength\hsize</Macro><Normal Text>{2</Normal Text><Macro>\hsize</Macro><Normal Text>} }X|}{Label 2} </Normal Text><Ampersand>&</Ampersand><Normal Text> Label 3</Normal Text><Macro>\tabularnewline</Macro><br/>
+<Macro>\hline</Macro><Normal Text> </Normal Text><br/>
+<Normal Text>  123  </Normal Text><Ampersand>&</Ampersand><Normal Text> 123  </Normal Text><Ampersand>&</Ampersand><Normal Text> 456  </Normal Text><Ampersand>&</Ampersand><Normal Text> 123  </Normal Text><Macro>\tabularnewline</Macro><br/>
+<Normal Text>  </Normal Text><Macro>\hline</Macro><br/>
+<Normal Text>  123  </Normal Text><Ampersand>&</Ampersand><Normal Text> 123  </Normal Text><Ampersand>&</Ampersand><Normal Text> 456  </Normal Text><Ampersand>&</Ampersand><Normal Text> 123  </Normal Text><Macro>\tabularnewline</Macro><br/>
+<Normal Text>  </Normal Text><Macro>\hline</Macro><br/>
+<Structure>\end</Structure><Normal Text>{</Normal Text><Environment>tabularx</Environment><Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Structure>\begin</Structure><Normal Text>{</Normal Text><Environment>lstlisting</Environment><Normal Text>}</Normal Text><br/>
+<Verbatim>Write('Case insensitive ');</Verbatim><br/>
+<Verbatim>Write('Pascal keywords.');</Verbatim><br/>
+<Structure>\end</Structure><Normal Text>{</Normal Text><Environment>lstlisting</Environment><Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Structure>\begin</Structure><Normal Text>{</Normal Text><Environment>lstlisting</Environment><Normal Text>}</Normal Text><Comment>%[frame=single]</Comment><br/>
+<Verbatim>Write('Case insensitive ');</Verbatim><br/>
+<Verbatim>Write('Pascal keywords.');</Verbatim><br/>
+<Structure>\end</Structure><Normal Text>{</Normal Text><Environment>lstlisting</Environment><Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Structure>\begin</Structure><Normal Text>{</Normal Text><Environment>lstlisting</Environment><Normal Text>}[frame=single]</Normal Text><br/>
+<Verbatim>Write('Case insensitive ');</Verbatim><br/>
+<Verbatim>Write('Pascal keywords.');</Verbatim><br/>
+<Structure>\end</Structure><Normal Text>{</Normal Text><Environment>lstlisting</Environment><Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Structure>\begin</Structure><Normal Text>{</Normal Text><Environment>lstlisting</Environment><Normal Text>}[frame=single] </Normal Text><Comment>% blah blah</Comment><br/>
+<Verbatim>Write('Case insensitive ');</Verbatim><br/>
+<Verbatim>Write('Pascal keywords.');</Verbatim><br/>
+<Structure>\end</Structure><Normal Text>{</Normal Text><Environment>lstlisting</Environment><Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Structure>\begin</Structure><Normal Text>{</Normal Text><Environment>lstlisting</Environment><Normal Text>}</Normal Text><br/>
+<Verbatim>[frame=single] % blah blah</Verbatim><br/>
+<Verbatim>Write('Case insensitive ');</Verbatim><br/>
+<Verbatim>Write('Pascal keywords.');</Verbatim><br/>
+<Structure>\end</Structure><Normal Text>{</Normal Text><Environment>lstlisting</Environment><Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Structure>\begin</Structure><Normal Text>{</Normal Text><Environment>minted</Environment><Normal Text>}{python}</Normal Text><br/>
+<Definition Keyword>def</Definition Keyword><Normal Text> </Normal Text><Normal Text>foo(x)</Normal Text><Normal Text>:</Normal Text><br/>
+<Normal Text>    </Normal Text><Flow Control Keyword>return</Flow Control Keyword><Normal Text> x</Normal Text><br/>
+<Structure>\end</Structure><Normal Text>{</Normal Text><Environment>minted</Environment><Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Structure>\begin</Structure><Normal Text>{</Normal Text><Environment>minted</Environment><Normal Text>}</Normal Text><br/>
+<Comment>% blah blah</Comment><br/>
+<Normal Text>{python}</Normal Text><br/>
+<Definition Keyword>def</Definition Keyword><Normal Text> </Normal Text><Normal Text>foo(x)</Normal Text><Normal Text>:</Normal Text><br/>
+<Normal Text>    </Normal Text><Flow Control Keyword>return</Flow Control Keyword><Normal Text> x</Normal Text><br/>
+<Structure>\end</Structure><Normal Text>{</Normal Text><Environment>minted</Environment><Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Structure>\begin</Structure><Normal Text>{</Normal Text><Environment>minted</Environment><Normal Text>}[frame=lines]{python}</Normal Text><br/>
+<Definition Keyword>def</Definition Keyword><Normal Text> </Normal Text><Normal Text>foo(x)</Normal Text><Normal Text>:</Normal Text><br/>
+<Normal Text>    </Normal Text><Flow Control Keyword>return</Flow Control Keyword><Normal Text> x</Normal Text><br/>
+<Structure>\end</Structure><Normal Text>{</Normal Text><Environment>minted</Environment><Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Structure>\begin</Structure><Normal Text>{</Normal Text><Environment>minted</Environment><Normal Text>}</Normal Text><br/>
+<Comment>% plop</Comment><br/>
+<Normal Text>[frame=lines,</Normal Text><br/>
+<Normal Text>fontsize=</Normal Text><Macro>\footnotesize</Macro><br/>
+<Normal Text>]</Normal Text><br/>
+<Comment>% ok</Comment><br/>
+<Normal Text>{python}</Normal Text><br/>
+<Definition Keyword>def</Definition Keyword><Normal Text> </Normal Text><Normal Text>foo(x)</Normal Text><Normal Text>:</Normal Text><br/>
+<Normal Text>    </Normal Text><Flow Control Keyword>return</Flow Control Keyword><Normal Text> x</Normal Text><br/>
+<Structure>\end</Structure><Normal Text>{</Normal Text><Environment>minted</Environment><Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Structure>\begin</Structure><Normal Text>{</Normal Text><Environment>comment</Environment><Normal Text>}</Normal Text><br/>
+<Comment>This is a comment block.</Comment><br/>
+<Structure>\end</Structure><Normal Text>{</Normal Text><Environment>comment</Environment><Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Builtin Macro>\documentclass</Builtin Macro><Normal Text>{</Normal Text><Environment>article</Environment><Normal Text>}</Normal Text><br/>
+<Builtin Macro>\usepackage</Builtin Macro><Normal Text>{</Normal Text><Environment>fancyvrb</Environment><Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Builtin Macro>\documentclass</Builtin Macro><Normal Text>[</Normal Text><Option Text>12pt</Option Text><Normal Text>]{</Normal Text><Environment>article</Environment><Normal Text>}</Normal Text><br/>
+<Structure>\begin</Structure><Normal Text>{</Normal Text><Environment>document</Environment><Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>Text that has a footnote</Normal Text><Macro>\footnote</Macro><Normal Text>{This </Normal Text><Math>$i_s$</Math><Normal Text> the </Normal Text><Math>\[i_s\]</Math><Normal Text> </Normal Text><Math>$$x_i$$</Math><Normal Text> </Normal Text><Math>\(x_i\)</Math><Normal Text>footnote}</Normal Text><Macro>\addtocounter</Macro><Normal Text>{footnote}{-1}</Normal Text><Macro>\addtocounter</Macro><Normal Text>{footnote}{-1} looks like this. Later text referring to same footnote</Normal Text><Macro>\footnotemark</Macro><Normal Text> uses the other command.</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Structure>\end</Structure><Normal Text>{</Normal Text><Environment>document</Environment><Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment>% A delimiter is not required before "\" in keywords of kind "\command" (see bug #413493)</Comment><br/>
+<Structure>\begin</Structure><Normal Text>{</Normal Text><Environment>equation</Environment><Normal Text>}</Normal Text><Math>123</Math><Structure>\end</Structure><Normal Text>{</Normal Text><Environment>equation</Environment><Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Structure>\begin</Structure><Normal Text>{</Normal Text><Environment>comment</Environment><Normal Text>}</Normal Text><Comment>Comment</Comment><Structure>\end</Structure><Normal Text>{</Normal Text><Environment>comment</Environment><Normal Text>}</Normal Text><br/>
+<Comment>\iffalse text\fi</Comment><Normal Text> normal text</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>text</Normal Text><Structure>\begin</Structure><Normal Text>{</Normal Text><Environment>tabular</Environment><Normal Text>}text</Normal Text><Structure>\end</Structure><Normal Text>{</Normal Text><Environment>tabular</Environment><Normal Text>}</Normal Text><br/>
+<Normal Text>text</Normal Text><Structure>\begin</Structure><Normal Text>{</Normal Text><Environment>a</Environment><Normal Text>}text</Normal Text><Structure>\end</Structure><Normal Text>{</Normal Text><Environment>a</Environment><Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment>% Close brackets correctly in some commands (see bug #415384)</Comment><br/>
+<Macro>\input</Macro><Normal Text>{</Normal Text><Macro>\a</Macro><Normal Text>{}}</Normal Text><br/>
+<Structure>\cites</Structure><Normal Text>{</Normal Text><Environment> text </Environment><Normal Text>{</Normal Text><Environment> text </Environment><Normal Text>}</Normal Text><Environment> text </Environment><Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment>% Parentheses within [ ... ] (see bug #418979)</Comment><br/>
+<Structure>\cite</Structure><Normal Text>[eq. (1.1)]{</Normal Text><Reference>some_reference</Reference><Normal Text>}</Normal Text><br/>
+<Structure>\cite</Structure><Normal Text>[eq. </Normal Text><Math>\(x^n + y^n = z^n\)</Math><Normal Text>]{</Normal Text><Reference>some reference</Reference><Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment>% Close folding correctly in "\end{...}" and in region markers (see bug #419125)</Comment><br/>
+<Structure>\begin</Structure><Normal Text>{</Normal Text><Environment>document</Environment><Normal Text>}</Normal Text><br/>
+<Normal Text>  </Normal Text><Structure>\begin</Structure><Normal Text>{</Normal Text><Environment>abstract</Environment><Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>  </Normal Text><Structure>\end</Structure><Normal Text>{</Normal Text><Environment>abstract</Environment><Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>  </Normal Text><Structure>\begin</Structure><Normal Text>{</Normal Text><Environment>itemize</Environment><Normal Text>}</Normal Text><br/>
+<Normal Text>    </Normal Text><Macro>\item</Macro><Normal Text>[</Normal Text><Math>\(</Math><Macro Mathmode>\bullet</Macro Mathmode><Math>\)</Math><Normal Text>]</Normal Text><br/>
+<Normal Text>    </Normal Text><Region Marker>%%  BEGIN something</Region Marker><br/>
+<Normal Text>    Here are some text describiing a new theorem. In the equation</Normal Text><br/>
+<Normal Text>    </Normal Text><Structure>\begin</Structure><Normal Text>{</Normal Text><Environment>equation</Environment><Normal Text>}</Normal Text><br/>
+<Math>      E = mc^2</Math><br/>
+<Math>    </Math><Structure>\end</Structure><Normal Text>{</Normal Text><Environment>equation</Environment><Normal Text>}</Normal Text><br/>
+<Normal Text>    we have a solution for energy-mass equivalence.</Normal Text><br/>
+<Normal Text>    </Normal Text><Region Marker>%% END</Region Marker><br/>
+<Normal Text></Normal Text><br/>
+<Normal Text>    </Normal Text><Macro>\item</Macro><Normal Text>[</Normal Text><Math>\(</Math><Macro Mathmode>\bullet</Macro Mathmode><Math>\)</Math><Normal Text>]</Normal Text><br/>
+<Normal Text>    </Normal Text><Structure>\begin</Structure><Normal Text>{</Normal Text><Environment>align*</Environment><Normal Text>}</Normal Text><br/>
+<Math>      B(z) &= p^r </Math><Macro Mathmode>\sum</Macro Mathmode><Math>_{k </Math><Macro Mathmode>\geq</Macro Mathmode><Math> 0} </Math><Macro Mathmode>\binom</Macro Mathmode><Math>{-r}{k} (-1)^k (1 - p)^k z^k </Math><Macro Mathmode>\\</Macro Mathmode><br/>
+<Math>      B(z) &= p^r </Math><Macro Mathmode>\sum</Macro Mathmode><Math>_{k </Math><Macro Mathmode>\geq</Macro Mathmode><Math> 0} </Math><Macro Mathmode>\binom</Macro Mathmode><Math>{-r}{k} (-(1-p) z)^k</Math><br/>
+<Math>    </Math><Structure>\end</Structure><Normal Text>{</Normal Text><Environment>align*</Environment><Normal Text>}</Normal Text><br/>
+<Normal Text>  </Normal Text><Structure>\end</Structure><Normal Text>{</Normal Text><Environment>itemize</Environment><Normal Text>}</Normal Text><br/>
+<Structure>\end</Structure><Normal Text>{</Normal Text><Environment>document</Environment><Normal Text>}</Normal Text><br/>

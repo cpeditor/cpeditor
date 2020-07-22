@@ -1,0 +1,41 @@
+<Comment>#VRML V2.0 utf8</Comment><br/>
+<Comment>#</Comment><br/>
+<Comment># VRML highlighting test for Kate's syntax highlighting</Comment><br/>
+<Comment>#</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Comment># Keywords</Comment><br/>
+<Keyword>DEF</Keyword><Normal Text>, </Normal Text><Keyword>EXTERNPROTO</Keyword><Normal Text>, </Normal Text><Keyword>FALSE</Keyword><Normal Text>, </Normal Text><Keyword>IS</Keyword><Normal Text>, </Normal Text><Keyword>NULL</Keyword><Normal Text>, </Normal Text><Keyword>PROTO</Keyword><Normal Text>, </Normal Text><Keyword>ROUTE</Keyword><Normal Text>, </Normal Text><Keyword>TO</Keyword><Normal Text>, </Normal Text><Keyword>TRUE</Keyword><Normal Text>, </Normal Text><Keyword>USE</Keyword><Normal Text>, </Normal Text><Keyword>eventIn</Keyword><Normal Text>,</Normal Text><br/>
+<Keyword>eventOut</Keyword><Normal Text>, </Normal Text><Keyword>exposedField</Keyword><Normal Text>, </Normal Text><Keyword>field</Keyword><br/>
+<Normal Text></Normal Text><br/>
+<Comment># Data types</Comment><br/>
+<Data Type>MFColor</Data Type><Normal Text>, </Normal Text><Data Type>MFFloat</Data Type><Normal Text>, </Normal Text><Data Type>MFInt32</Data Type><Normal Text>, </Normal Text><Data Type>MFNode</Data Type><Normal Text>. </Normal Text><Data Type>MFRotation</Data Type><Normal Text>, </Normal Text><Data Type>MFString</Data Type><Normal Text>, </Normal Text><Data Type>MFTime</Data Type><Normal Text>, </Normal Text><Data Type>MFVec2f</Data Type><Normal Text>,</Normal Text><br/>
+<Data Type>MFVec3f</Data Type><Normal Text>, </Normal Text><Data Type>SFBool</Data Type><Normal Text>, </Normal Text><Data Type>SFColor</Data Type><Normal Text>, </Normal Text><Data Type>SFFloat</Data Type><Normal Text>, </Normal Text><Data Type>SFImage</Data Type><Normal Text>, </Normal Text><Data Type>SFInt32</Data Type><Normal Text>, </Normal Text><Data Type>SFNode</Data Type><Normal Text>, </Normal Text><Data Type>SFRotation</Data Type><Normal Text>,</Normal Text><br/>
+<Data Type>SFString</Data Type><Normal Text>, </Normal Text><Data Type>SFTime</Data Type><Normal Text>, </Normal Text><Data Type>SFVec2f</Data Type><Normal Text>, </Normal Text><Data Type>SFVec3f</Data Type><br/>
+<Normal Text></Normal Text><br/>
+<Comment># Predefined nodes</Comment><br/>
+<Node>Anchor</Node><Normal Text>, </Normal Text><Node>Appearance</Node><Normal Text>, </Normal Text><Node>AudioClip</Node><Normal Text>, </Normal Text><Node>Background</Node><Normal Text>, </Normal Text><Node>Billboard</Node><Normal Text>, </Normal Text><Node>Box</Node><Normal Text>, </Normal Text><Node>Collision</Node><Normal Text>, </Normal Text><Node>Color</Node><Normal Text>,</Normal Text><br/>
+<Node>ColorInterpolator</Node><Normal Text>, </Normal Text><Node>Cone</Node><Normal Text>, </Normal Text><Node>Coordinate</Node><Normal Text>, </Normal Text><Node>CoordinateInterpolator</Node><Normal Text>, </Normal Text><Node>Cylinder</Node><Normal Text>, </Normal Text><br/>
+<Node>CylinderSensor</Node><Normal Text>, </Normal Text><Node>DirectionalLight</Node><Normal Text>, </Normal Text><Node>ElevationGrid</Node><Normal Text>, </Normal Text><Node>Extrusion</Node><Normal Text>, </Normal Text><Node>Fog</Node><Normal Text>, </Normal Text><Node>FontStyle</Node><Normal Text>,</Normal Text><br/>
+<Node>Group</Node><Normal Text>, </Normal Text><Node>ImageTexture</Node><Normal Text>, </Normal Text><Node>IndexedFaceSet</Node><Normal Text>, </Normal Text><Node>IndexedLineSet</Node><Normal Text>, </Normal Text><Node>Inline</Node><Normal Text>, </Normal Text><Node>LOD</Node><Normal Text>, </Normal Text><Node>Material</Node><Normal Text>,</Normal Text><br/>
+<Node>MovieTexture</Node><Normal Text>, </Normal Text><Node>NavigationInfo</Node><Normal Text>, </Normal Text><Node>Normal</Node><Normal Text>, </Normal Text><Node>NormalInterpolator</Node><Normal Text>, </Normal Text><Node>OrientationInterpolator</Node><Normal Text>,</Normal Text><br/>
+<Node>PixelTexture</Node><Normal Text>, </Normal Text><Node>PlaneSensor</Node><Normal Text>, </Normal Text><Node>PointLight</Node><Normal Text>, </Normal Text><Node>PointSet</Node><Normal Text>, </Normal Text><Node>PositionInterpolator</Node><Normal Text>,</Normal Text><br/>
+<Node>ProximitySensor</Node><Normal Text>, </Normal Text><Node>ScalarInterpolator</Node><Normal Text>, </Normal Text><Node>Script</Node><Normal Text>, </Normal Text><Node>Shape</Node><Normal Text>, </Normal Text><Node>Sound</Node><Normal Text>, </Normal Text><Node>Sphere</Node><Normal Text>, </Normal Text><Node>SphereSensor</Node><Normal Text>,</Normal Text><br/>
+<Node>SpotLight</Node><Normal Text>, </Normal Text><Node>Switch</Node><Normal Text>, </Normal Text><Node>Text</Node><Normal Text>, </Normal Text><Node>TextureCoordinate</Node><Normal Text>, </Normal Text><Node>TextureTransform</Node><Normal Text>, </Normal Text><Node>TimeSensor</Node><Normal Text>,</Normal Text><br/>
+<Node>TouchSensor</Node><Normal Text>, </Normal Text><Node>Transform</Node><Normal Text>, </Normal Text><Node>Viewpoint</Node><Normal Text>, </Normal Text><Node>VisibilitySensor</Node><Normal Text>, </Normal Text><Node>WorldInfo</Node><br/>
+<Normal Text></Normal Text><br/>
+<Comment># Some real VRML constructs to see if highlighting of int, float etc. works</Comment><br/>
+<Node>NavigationInfo</Node><Normal Text> { </Normal Text><br/>
+<Normal Text>	avatarSize      [</Normal Text><Float>0.25</Float><Normal Text>, </Normal Text><Float>1.6</Float><Normal Text>, </Normal Text><Float>0.75</Float><Normal Text>]</Normal Text><br/>
+<Normal Text>	headlight       </Normal Text><Keyword>TRUE</Keyword><br/>
+<Normal Text>	speed           </Normal Text><Decimal>1</Decimal><br/>
+<Normal Text>	type            [</Normal Text><String>"WALK"</String><Normal Text>, </Normal Text><String>"ANY"</String><Normal Text>]</Normal Text><br/>
+<Normal Text>	visibilityLimit </Normal Text><Float>0.0</Float><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment># some further testing for strings: linefeeds are allowed within strings</Comment><br/>
+<Node>Text</Node><Normal Text> { </Normal Text><br/>
+<Normal Text>	string [</Normal Text><String>"some special in-string characters: </String><String Char>\"</String Char><String> </String><String Char>\\</String Char><br/>
+<String>	        some more text in the next line</String><br/>
+<String>	        and yet another line"</String><Normal Text>]</Normal Text><br/>
+<Normal Text>}</Normal Text><br/>
+<Normal Text></Normal Text><br/>

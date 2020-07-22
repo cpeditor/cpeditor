@@ -1,0 +1,95 @@
+<beginfold id='9'>/*</beginfold id='9'> Yacc / Bison hl test file.
+ * It won't compile :-) Sure !
+ <endfold id='9'>*/</endfold id='9'>
+
+<beginfold id='1'>%{</beginfold id='1'>
+
+#include <iostream>
+using namespace std;
+
+extern KateParser *parser;
+
+<endfold id='1'>%}</endfold id='1'>
+
+<beginfold id='2'></beginfold id='2'>%locations
+
+%union <beginfold id='4'>{</beginfold id='4'> 
+   int int_val;
+   double double_val;
+   bool bool_val;
+   char *string_val;
+   char *ident_val;
+   struct var *v;
+   void *ptr;
+<endfold id='4'>}</endfold id='4'>
+
+%token <int_val>      TOK_NOT_EQUAL  "!="
+%token <int_val>      TOK_LESSER_E   "<="
+%token <int_val>      TOK_GREATER_E  ">="
+%token <int_val>      TOK_EQUAL_2    "==" //comment
+%token
+   PERCENT_DEBUG           "%debug"
+   PERCENT_DEFAULT_PREC    "%default-prec"
+   PERCENT_DEFINE          "%define"
+;
+
+%type <int_val>       type type_proc
+
+%code top <beginfold id='4'>{</beginfold id='4'>
+  #define _GNU_SOURCE
+  #include <stdio.h>
+  int val;
+<endfold id='4'>}</endfold id='4'>
+
+%destructor <beginfold id='5'>{</beginfold id='5'> free ($$); printf ("%d", @$.first_line); <endfold id='5'>}</endfold id='5'> <*>
+%lex-param   <beginfold id='5'>{</beginfold id='5'>scanner_mode *mode<endfold id='5'>}</endfold id='5'>;
+%parse-param <beginfold id='5'>{</beginfold id='5'>int *nastiness<endfold id='5'>}</endfold id='5'> <beginfold id='5'>{</beginfold id='5'>int *randomness<endfold id='5'>}</endfold id='5'>
+%initial-action <beginfold id='5'>{</beginfold id='5'>
+  @$.initialize (file_name);
+<endfold id='5'>}</endfold id='5'>;
+
+<endfold id='2'></endfold id='2'><beginfold id='3'>%%</beginfold id='3'>
+
+prog<beginfold id='7'>:</beginfold id='7'>                 KW_PROGRAM ident <beginfold id='8'>{</beginfold id='8'> parser->start($2); <endfold id='8'>}</endfold id='8'> prog_beg_glob_decl instructions <beginfold id='8'>{</beginfold id='8'> parser->endproc(0); <endfold id='8'>}</endfold id='8'> dev_procedures KW_ENDP <endfold id='7'>;</endfold id='7'>
+
+number<beginfold id='7'>:</beginfold id='7'>               integer_number
+                      | TOK_DOUBLE
+                      <beginfold id='8'>{</beginfold id='8'>
+                         $$ = new var;
+                         $$->type = KW_REEL;
+                         $$->cl = var::LITTERAL;
+                         $$->real = $<int_val>1;
+                      <endfold id='8'>}</endfold id='8'><endfold id='7'>;</endfold id='7'>
+words<beginfold id='7'>:</beginfold id='7'>
+                      %empty
+                      | words word
+                      <endfold id='7'>;</endfold id='7'>
+
+%type <type> word;
+%printer <beginfold id='5'>{</beginfold id='5'> fprintf (yyo, "%s", word_string ($$)); <endfold id='5'>}</endfold id='5'> <type>;
+word<beginfold id='7'>:</beginfold id='7'>
+                      %?<beginfold id='8'>{</beginfold id='8'> boom(1); <endfold id='8'>}</endfold id='8'>
+                      | "hello"  <beginfold id='8'>{</beginfold id='8'> $$ = hello; <endfold id='8'>}</endfold id='8'>
+                      | "bye"  <beginfold id='8'>{</beginfold id='8'> $$ = bye; <endfold id='8'>}</endfold id='8'>
+                      <endfold id='7'>;</endfold id='7'>
+
+foo<beginfold id='7'>:</beginfold id='7'>                  <beginfold id='8'>{</beginfold id='8'> $$ = 0 <endfold id='8'>}</endfold id='8'>
+                      | number <beginfold id='8'>{</beginfold id='8'> $$ = $1 | $2; <endfold id='8'>}</endfold id='8'>
+                      | hello <beginfold id='8'>{</beginfold id='8'> $$ = $1 | $3; <endfold id='8'>}</endfold id='8'> // without a comma
+
+<endfold id='7'>h</endfold id='7'>ello<beginfold id='7'>:</beginfold id='7'>
+                      gram1 <beginfold id='8'>{</beginfold id='8'> $$ = "hi" <endfold id='8'>}</endfold id='8'><endfold id='7'>;</endfold id='7'>
+                      | gram2
+                      <endfold id='7'>;</endfold id='7'>;
+                      
+<endfold id='3'></endfold id='3'><beginfold id='6'>%%</beginfold id='6'>
+
+#include <stdio.h>
+
+int main(void)
+<beginfold id='10'>{</beginfold id='10'>
+  puts("Hello, World!");
+  return 0;
+<endfold id='10'>}</endfold id='10'>
+
+// ALERT NOTE

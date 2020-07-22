@@ -1,0 +1,68 @@
+<Comment>% testing for the erlang syntax highlighter</Comment><br/>
+<Comment>% </Comment><Alert Level 3>NOTE</Alert Level 3><Comment> alerts work in comments to </Comment><Alert Level 2>TODO</Alert Level 2><Comment> !</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Comment>% pragmas (show as keywords)</Comment><br/>
+<Pragma>-module</Pragma><br/>
+<Pragma>-export</Pragma><br/>
+<Pragma>-define</Pragma><br/>
+<Pragma>-undef</Pragma><br/>
+<Pragma>-ifdef</Pragma><br/>
+<Pragma>-ifndef</Pragma><br/>
+<Pragma>-else</Pragma><br/>
+<Pragma>-endif</Pragma><br/>
+<Pragma>-include</Pragma><br/>
+<Pragma>-include</Pragma><Normal Text>_lib</Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment>% key words</Comment><br/>
+<Keyword>after</Keyword><Normal Text> </Normal Text><Keyword>begin</Keyword><Normal Text> </Normal Text><Keyword>case</Keyword><Normal Text> </Normal Text><Keyword>catch</Keyword><Normal Text> </Normal Text><Keyword>cond</Keyword><Normal Text>  </Normal Text><Keyword>end</Keyword><Normal Text> </Normal Text><Keyword>fun</Keyword><Normal Text> </Normal Text><Keyword>if</Keyword><Normal Text> </Normal Text><Keyword>let</Keyword><Normal Text> </Normal Text><Keyword>of</Keyword><Normal Text> </Normal Text><Keyword>query</Keyword><Normal Text> </Normal Text><Keyword>receive</Keyword><Normal Text> </Normal Text><Keyword>all_true</Keyword><Normal Text> </Normal Text><Keyword>some_true</Keyword><Normal Text> </Normal Text><br/>
+<Normal Text></Normal Text><br/>
+<Comment>% operators</Comment><br/>
+<Operator>div</Operator><Normal Text> </Normal Text><Operator>rem</Operator><Normal Text> </Normal Text><Operator>or</Operator><Normal Text> </Normal Text><Operator>xor</Operator><Normal Text> </Normal Text><Operator>bor</Operator><Normal Text> </Normal Text><Operator>bxor</Operator><Normal Text> </Normal Text><Operator>bsl</Operator><Normal Text> </Normal Text><Operator>bsr</Operator><Normal Text> </Normal Text><Operator>and</Operator><Normal Text> </Normal Text><Operator>band</Operator><Normal Text> </Normal Text><Operator>not</Operator><Normal Text> </Normal Text><Operator>bnot</Operator><br/>
+<Operator>+</Operator><Normal Text> </Normal Text><Operator>-</Operator><Normal Text> </Normal Text><Operator>*</Operator><Normal Text> </Normal Text><Operator>/</Operator><Normal Text> </Normal Text><Operator>==</Operator><Normal Text> </Normal Text><Operator>/=</Operator><Normal Text> </Normal Text><Operator>=:=</Operator><Normal Text> </Normal Text><Operator>=/=</Operator><Normal Text> </Normal Text><Operator><</Operator><Normal Text> </Normal Text><Operator>=<</Operator><Normal Text> </Normal Text><Operator>></Operator><Normal Text> </Normal Text><Operator>>=</Operator><Normal Text> </Normal Text><Operator>++</Operator><Normal Text> </Normal Text><Operator>--</Operator><Normal Text> </Normal Text><Operator>=</Operator><Normal Text> </Normal Text><Operator>!</Operator><Normal Text> </Normal Text><Operator><-</Operator><br/>
+<Normal Text></Normal Text><br/>
+<Comment>% separators (show as functions)</Comment><br/>
+<Separator>(</Separator><Normal Text> </Normal Text><Separator>)</Separator><Normal Text> </Normal Text><Separator>{</Separator><Normal Text> </Normal Text><Separator>}</Separator><Normal Text> </Normal Text><Separator>[</Separator><Normal Text> </Normal Text><Separator>]</Separator><Normal Text> </Normal Text><Separator>.</Separator><Normal Text> </Normal Text><Separator>:</Separator><Normal Text> </Normal Text><Separator>|</Separator><Normal Text> </Normal Text><Separator>||</Separator><Normal Text> </Normal Text><Separator>;</Separator><Normal Text> </Normal Text><Separator>,</Separator><Normal Text> </Normal Text><Separator>?</Separator><Normal Text> </Normal Text><Operator>-></Operator><Normal Text> </Normal Text><Separator>#</Separator><br/>
+<Normal Text></Normal Text><br/>
+<Comment>% functions - predefined (part of erlang module) - show as functions</Comment><br/>
+<Function>abs</Function><Normal Text> </Normal Text><Function>accept</Function><Normal Text> </Normal Text><Function>alarm</Function><Normal Text> </Normal Text><Function>apply</Function><Normal Text> </Normal Text><Function>atom_to_list</Function><Normal Text> </Normal Text><Function>binary_to_list</Function><Normal Text> </Normal Text><Function>binary_to_term</Function><Normal Text> </Normal Text><Function>check_process_code</Function><br/>
+<Function>concat_binary</Function><Normal Text> </Normal Text><Function>date</Function><Normal Text> </Normal Text><Function>delete_module</Function><Normal Text> </Normal Text><Function>disconnect_node</Function><Normal Text> </Normal Text><Function>element</Function><Normal Text> </Normal Text><Function>erase</Function><Normal Text> </Normal Text><Function>exit</Function><Normal Text> </Normal Text><Function>float</Function><Normal Text> </Normal Text><Function>float_to_list</Function><br/>
+<Function>garbage_collect</Function><Normal Text> </Normal Text><Function>get</Function><Normal Text> </Normal Text><Function>get_keys</Function><Normal Text> </Normal Text><Function>group_leader</Function><Normal Text> </Normal Text><Function>halt</Function><Normal Text> </Normal Text><Function>hd</Function><Normal Text> </Normal Text><Function>integer_to_list</Function><Normal Text> </Normal Text><Function>is_alive</Function><Normal Text> </Normal Text><Function>is_atom</Function><Normal Text> </Normal Text><Function>is_binary</Function><br/>
+<Function>is_boolean</Function><Normal Text> </Normal Text><Function>is_float</Function><Normal Text> </Normal Text><Function>is_function</Function><Normal Text> </Normal Text><Function>is_integer</Function><Normal Text> </Normal Text><Function>is_list</Function><Normal Text> </Normal Text><Function>is_number</Function><Normal Text> </Normal Text><Function>is_pid</Function><Normal Text> </Normal Text><Function>is_port</Function><Normal Text> </Normal Text><Function>is_process_alive</Function><br/>
+<Function>is_record</Function><Normal Text> </Normal Text><Function>is_reference</Function><Normal Text> </Normal Text><Function>is_tuple</Function><Normal Text> </Normal Text><Function>length</Function><Normal Text> </Normal Text><Function>link</Function><Normal Text> </Normal Text><Function>list_to_atom</Function><Normal Text> </Normal Text><Function>list_to_binary</Function><Normal Text> </Normal Text><Function>list_to_float</Function><Normal Text> </Normal Text><Function>list_to_integer</Function><br/>
+<Function>list_to_pid</Function><Normal Text> </Normal Text><Function>list_to_tuple</Function><Normal Text> </Normal Text><Function>load_module</Function><Normal Text> </Normal Text><Function>loaded</Function><Normal Text> </Normal Text><Function>localtime</Function><Normal Text> </Normal Text><Function>make_ref</Function><Normal Text> </Normal Text><Function>module_loaded</Function><Normal Text> </Normal Text><Function>node</Function><Normal Text> </Normal Text><Function>nodes</Function><Normal Text> </Normal Text><Function>now</Function><br/>
+<Function>open_port</Function><Normal Text> </Normal Text><Function>pid_to_list</Function><Normal Text> </Normal Text><Function>port_close</Function><Normal Text> </Normal Text><Function>port_command</Function><Normal Text> </Normal Text><Function>port_connect</Function><Normal Text> </Normal Text><Function>port_control</Function><Normal Text> </Normal Text><Function>ports</Function><Normal Text> </Normal Text><Function>pre_loaded</Function><Normal Text> </Normal Text><Function>process_flag</Function><br/>
+<Function>process_info</Function><Normal Text> </Normal Text><Function>processes</Function><Normal Text> </Normal Text><Function>purge_module</Function><Normal Text> </Normal Text><Function>put</Function><Normal Text> </Normal Text><Function>register</Function><Normal Text> </Normal Text><Function>registered</Function><Normal Text> </Normal Text><Function>round</Function><Normal Text> </Normal Text><Function>self</Function><Normal Text> </Normal Text><Function>setelement</Function><Normal Text> </Normal Text><Function>size</Function><br/>
+<Function>spawn</Function><Normal Text> </Normal Text><Function>spawn_link</Function><Normal Text> </Normal Text><Function>spawn_opt</Function><Normal Text> </Normal Text><Function>split_binary</Function><Normal Text> </Normal Text><Function>statistics</Function><Normal Text> </Normal Text><Function>term_to_binary</Function><Normal Text> </Normal Text><Function>throw</Function><Normal Text> </Normal Text><Function>time</Function><Normal Text> </Normal Text><Function>tl</Function><Normal Text> </Normal Text><Function>trunc</Function><Normal Text> </Normal Text><Function>tuple_to_list</Function><br/>
+<Function>unlink</Function><Normal Text> </Normal Text><Function>unregister</Function><Normal Text> </Normal Text><Function>whereis</Function><br/>
+<Normal Text></Normal Text><br/>
+<Comment>% functions - inferred</Comment><br/>
+<Function>module:function</Function><br/>
+<Function>function</Function><Separator>()</Separator><br/>
+<Normal Text></Normal Text><br/>
+<Comment>% atoms (show as "char")</Comment><br/>
+<Comment>% begin with underscore, lowercase, contain numbers letters and @ - or anything between ''</Comment><br/>
+<Atom>middle_underscore</Atom><br/>
+<Atom>abc</Atom><Normal Text> </Normal Text><Atom>ab4d</Atom><Normal Text> </Normal Text><Atom>a@cd8</Atom><Normal Text> </Normal Text><Atom>a@</Atom><br/>
+<Atom>'And this is (\012) an atom \'</Atom><Normal Text> </Normal Text><Variable>Atoo</Variable><Atom>' Variable 'atom</Atom><Normal Text> </Normal Text><Atom>again' </Atom><br/>
+<Normal Text></Normal Text><br/>
+<Comment>% variables (begin with capital letter or underscore, contain numbers, letters and @)</Comment><br/>
+<Variable>_leadingUnderscore</Variable><Normal Text> </Normal Text><Variable>AbdD@</Variable><Normal Text> </Normal Text><Variable>B45@c</Variable><br/>
+<Normal Text></Normal Text><br/>
+<Comment>% this is a string </Comment><br/>
+<String>"a string sits between \"</String><Normal Text> </Normal Text><Atom>double</Atom><Normal Text> </Normal Text><Atom>quotes</Atom><String>" atom "</String><Atom>more</Atom><Normal Text> </Normal Text><Atom>string</Atom><String>"</String><br/>
+<Normal Text></Normal Text><br/>
+<Comment>% integers (decimal)</Comment><br/>
+<Integer>1</Integer><Separator>.</Separator><Normal Text> </Normal Text><Integer>234</Integer><Normal Text> </Normal Text><Integer>$A</Integer><br/>
+<Normal Text></Normal Text><br/>
+<Comment>% integers (specified base)</Comment><br/>
+<Number>2#10101</Number><Normal Text> </Normal Text><Number>34#567</Number><br/>
+<Normal Text></Normal Text><br/>
+<Comment>% float</Comment><br/>
+<Float>12.23</Float><Normal Text> </Normal Text><Float>12.9e-67</Float><Normal Text> </Normal Text><Float>12.8E+89</Float><Normal Text> </Normal Text><Float>33.34e89</Float><br/>
+<Normal Text></Normal Text><br/>
+<Comment>% and finally some real code, so we can see what it looks like...</Comment><br/>
+<Pragma>-module</Pragma><Separator>(</Separator><Atom>codetest</Atom><Separator>).</Separator><Normal Text>			</Normal Text><Comment>% everything is in a module</Comment><br/>
+<Pragma>-export</Pragma><Separator>([</Separator><Atom>fac</Atom><Operator>/</Operator><Integer>1</Integer><Separator>]).</Separator><Normal Text>		</Normal Text><Comment>% name and number of arguments - need this to be called outside of the module</Comment><br/>
+<Normal Text></Normal Text><br/>
+<Function>fac</Function><Separator>(</Separator><Variable>N</Variable><Separator>)</Separator><Normal Text> </Normal Text><Atom>when</Atom><Normal Text> </Normal Text><Variable>N</Variable><Normal Text> </Normal Text><Operator>></Operator><Normal Text> </Normal Text><Integer>0</Integer><Normal Text>  </Normal Text><Operator>-></Operator><Normal Text> </Normal Text><Variable>N</Variable><Normal Text> </Normal Text><Operator>*</Operator><Normal Text> </Normal Text><Function>fac</Function><Separator>(</Separator><Variable>N</Variable><Operator>-</Operator><Integer>1</Integer><Separator>);</Separator><br/>
+<Function>fac</Function><Separator>(</Separator><Variable>N</Variable><Separator>)</Separator><Normal Text> </Normal Text><Atom>when</Atom><Normal Text> </Normal Text><Variable>N</Variable><Normal Text> </Normal Text><Operator>==</Operator><Normal Text> </Normal Text><Integer>0</Integer><Normal Text> </Normal Text><Operator>-></Operator><Normal Text> </Normal Text><Integer>1</Integer><Separator>.</Separator><br/>

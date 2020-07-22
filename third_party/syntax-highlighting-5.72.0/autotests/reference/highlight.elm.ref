@@ -1,0 +1,107 @@
+<Keyword>port</Keyword><Normal> </Normal><Keyword>module</Keyword><Normal> </Normal><Type>Test</Type><Normal> </Normal><Keyword>exposing</Keyword><br/>
+<Normal>    ( (</Normal><Operator>&&</Operator><Normal>)</Normal><br/>
+<Normal>    </Normal><Operator>,</Operator><Normal> </Normal><Type>Expect</Type><Normal>(</Normal><Operator>..</Operator><Normal>)</Normal><br/>
+<Normal>    </Normal><Operator>,</Operator><Normal> </Normal><Type>Test</Type><br/>
+<Normal>    </Normal><Operator>,</Operator><Normal> </Normal><Name>run</Name><br/>
+<Normal>    )</Normal><br/>
+<Normal></Normal><br/>
+<Comment>{-| Module documentation</Comment><br/>
+<Comment></Comment><br/>
+<Comment>    # Test</Comment><br/>
+<Comment></Comment><br/>
+<Comment>    @docs Test, Expect</Comment><br/>
+<Comment></Comment><br/>
+<Comment></Comment><br/>
+<Comment>    # Functions</Comment><br/>
+<Comment></Comment><br/>
+<Comment>    @docs run</Comment><br/>
+<Comment></Comment><br/>
+<Comment></Comment><br/>
+<Comment>    # Operator</Comment><br/>
+<Comment></Comment><br/>
+<Comment>    @docs (&&)</Comment><br/>
+<Comment></Comment><br/>
+<Comment>-}</Comment><br/>
+<Normal></Normal><br/>
+<Keyword>import</Keyword><Normal> </Normal><Type>Multiline</Type><Normal> </Normal><Keyword>as</Keyword><Normal> </Normal><Type>ML</Type><br/>
+<Normal>    </Normal><Keyword>exposing</Keyword><br/>
+<Normal>        ( </Normal><Type>Data</Type><Normal>(</Normal><Operator>..</Operator><Normal>)</Normal><br/>
+<Normal>        </Normal><Operator>,</Operator><Normal> </Normal><Type>Payload</Type><Normal>(</Normal><Operator>..</Operator><Normal>)</Normal><br/>
+<Normal>        </Normal><Operator>,</Operator><Normal> </Normal><Name>response</Name><br/>
+<Normal>        )</Normal><br/>
+<Keyword>import</Keyword><Normal> </Normal><Type>Singleline</Type><Normal> </Normal><Keyword>as</Keyword><Normal> </Normal><Type>SL</Type><Normal> </Normal><Keyword>exposing</Keyword><Normal> (</Normal><Type>Dale</Type><Normal>(</Normal><Operator>..</Operator><Normal>)</Normal><Operator>,</Operator><Normal> </Normal><Type>Single</Type><Normal>)</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Comment>-- test file for Elm syntax highlighting in KDE's Kate</Comment><br/>
+<Comment>-- this is a single-line comment</Comment><br/>
+<Comment>{-</Comment><br/>
+<Comment>   this is a multi-line comment</Comment><br/>
+<Comment>-}</Comment><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Keyword>infix</Keyword><Normal> </Normal><Keyword>left</Keyword><Normal>  </Normal><Decimal>0</Decimal><Normal> (</Normal><Operator>|></Operator><Normal>) </Normal><Operator>=</Operator><Normal> </Normal><Name>apR</Name><br/>
+<Keyword>infix</Keyword><Normal> </Normal><Keyword>right</Keyword><Normal> </Normal><Decimal>3</Decimal><Normal> (</Normal><Operator>&&</Operator><Normal>) </Normal><Operator>=</Operator><Normal> </Normal><Name>and</Name><br/>
+<Keyword>infix</Keyword><Normal> </Normal><Keyword>non</Keyword><Normal>   </Normal><Decimal>4</Decimal><Normal> (</Normal><Operator>>=</Operator><Normal>) </Normal><Operator>=</Operator><Normal> </Normal><Name>ge</Name><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Keyword>type</Keyword><Normal> </Normal><Type>T</Type><br/>
+<Normal>    </Normal><Operator>=</Operator><Normal> </Normal><Type>T</Type><br/>
+<Normal>    </Normal><Operator>|</Operator><Normal> </Normal><Type>A</Type><br/>
+<Normal>    </Normal><Operator>|</Operator><Normal> </Normal><Type>G</Type><br/>
+<Normal>    </Normal><Operator>|</Operator><Normal> </Normal><Type>C</Type><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Keyword>type</Keyword><Normal> </Normal><Keyword>alias</Keyword><Normal> </Normal><Type>Alt</Type><Normal> </Normal><Operator>=</Operator><br/>
+<Normal>    </Normal><Type>T</Type><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Name>operator</Name><Normal> : </Normal><Type>Int</Type><Normal> </Normal><Operator>-></Operator><Normal> </Normal><Type>Int</Type><Normal> </Normal><Operator>-></Operator><Normal> </Normal><Type>Int</Type><br/>
+<Name>operator</Name><Normal> </Normal><Operator>=</Operator><br/>
+<Normal>    (</Normal><Operator>+</Operator><Normal>)</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Name>conditional</Name><Normal> : </Normal><Name>number</Name><Normal> </Normal><Operator>-></Operator><Normal> </Normal><Name>number</Name><Normal> </Normal><Operator>-></Operator><Normal> </Normal><Type>Maybe</Type><Normal> </Normal><Name>number</Name><br/>
+<Name>conditional</Name><Normal> </Normal><Name>a</Name><Normal> </Normal><Name>b</Name><Normal> </Normal><Operator>=</Operator><br/>
+<Normal>    </Normal><ControlFlowKeyword>if</ControlFlowKeyword><Normal> </Normal><Name>b</Name><Normal> </Normal><Operator>==</Operator><Normal> </Normal><Decimal>0</Decimal><Normal> </Normal><ControlFlowKeyword>then</ControlFlowKeyword><br/>
+<Normal>        </Normal><Type>Nothing</Type><br/>
+<Normal></Normal><br/>
+<Normal>    </Normal><ControlFlowKeyword>else</ControlFlowKeyword><Normal> </Normal><ControlFlowKeyword>if</ControlFlowKeyword><Normal> </Normal><Name>a</Name><Normal> </Normal><Operator>==</Operator><Normal> </Normal><Decimal>0</Decimal><Normal> </Normal><ControlFlowKeyword>then</ControlFlowKeyword><br/>
+<Normal>        </Normal><Type>Just</Type><Normal> </Normal><Decimal>0</Decimal><br/>
+<Normal></Normal><br/>
+<Normal>    </Normal><ControlFlowKeyword>else</ControlFlowKeyword><br/>
+<Normal>        </Normal><Type>Just</Type><Normal> (</Normal><Name>a</Name><Normal> </Normal><Operator>/</Operator><Normal> </Normal><Name>b</Name><Normal>)</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Name>lambda</Name><Normal> </Normal><Operator>=</Operator><Normal> </Normal><Type>Int</Type><Normal> </Normal><Operator>-></Operator><Normal> </Normal><Type>Int</Type><br/>
+<Name>lambda</Name><Normal> </Normal><Name>a</Name><Normal> </Normal><Operator>=</Operator><br/>
+<Normal>    (\</Normal><Name>a</Name><Normal> </Normal><Operator>-></Operator><Normal> </Normal><Name>a</Name><Normal> </Normal><Operator>+</Operator><Normal> </Normal><Decimal>35</Decimal><Normal>)</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Comment>{-| Documentation comment</Comment><br/>
+<Comment></Comment><br/>
+<Comment>    Should be same as comment</Comment><br/>
+<Comment></Comment><br/>
+<Comment>-}</Comment><br/>
+<Name>caseStatement</Name><Normal> : </Normal><Type>Maybe</Type><Normal> </Normal><Name>number</Name><Normal> </Normal><Operator>-></Operator><Normal> </Normal><Name>number</Name><Normal> </Normal><Operator>-></Operator><Normal> </Normal><Name>number</Name><br/>
+<Name>caseStatement</Name><Normal> </Normal><Name>a</Name><Normal> </Normal><Name>b</Name><Normal> </Normal><Operator>=</Operator><br/>
+<Normal>    </Normal><ControlFlowKeyword>case</ControlFlowKeyword><Normal> </Normal><Name>a</Name><Normal> </Normal><ControlFlowKeyword>of</ControlFlowKeyword><br/>
+<Normal>        </Normal><Type>Just</Type><Normal> </Normal><Name>a_</Name><Normal> </Normal><Operator>-></Operator><br/>
+<Normal>            </Normal><Name>a_</Name><br/>
+<Normal></Normal><br/>
+<Normal>        </Normal><Name>_</Name><Normal> </Normal><Operator>-></Operator><br/>
+<Normal>            </Normal><Name>b</Name><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Name>record</Name><Normal> : { </Normal><Name>float</Name><Normal> : </Normal><Type>Float</Type><Operator>,</Operator><Normal> </Normal><Name>int</Name><Normal> : </Normal><Type>Int</Type><Normal> }</Normal><br/>
+<Name>record</Name><Normal> </Normal><Operator>=</Operator><br/>
+<Normal>    { </Normal><Name>float</Name><Normal> </Normal><Operator>=</Operator><Normal> </Normal><Decimal>1</Decimal><Operator>.</Operator><Decimal>455321</Decimal><Operator>,</Operator><Normal> </Normal><Name>int</Name><Normal> </Normal><Operator>=</Operator><Normal> </Normal><Decimal>83</Decimal><Normal> }</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Name>tuple</Name><Normal> : ( </Normal><Type>Float</Type><Operator>,</Operator><Normal> </Normal><Type>Float</Type><Normal> )</Normal><br/>
+<Name>tuple</Name><Normal> </Normal><Operator>=</Operator><br/>
+<Normal>    ( </Normal><Decimal>3</Decimal><Operator>.</Operator><Decimal>14</Decimal><Operator>,</Operator><Normal> </Normal><Decimal>9</Decimal><Operator>.</Operator><Decimal>553</Decimal><Normal> )</Normal><br/>
+<Normal></Normal><br/>
+<Normal></Normal><br/>
+<Keyword>port</Keyword><Normal> </Normal><Name>portTest</Name><Normal> : () </Normal><Operator>-></Operator><Normal> </Normal><Type>Cmd</Type><Normal> </Normal><Name>msg</Name><br/>
