@@ -118,7 +118,7 @@ jobs:
       - name: Get KDE syntax-highlighting status
         id: get-kde-syntax-highlighting-status
         shell: bash
-        run: echo ::set-output name=status::$(git submodule status third_party/syntax-highlighting)
+        run: echo ::set-output name=status::$(git submodule status third_party/syntax-highlighting)-$(git submodule status third_party/extra-cmake-modules)
 
       - name: Restore KDE syntax-highlighting cache - Windows
         id: kde-syntax-highlighting-cache-windows
