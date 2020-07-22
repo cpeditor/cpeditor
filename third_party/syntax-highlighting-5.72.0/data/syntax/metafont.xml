@@ -145,7 +145,7 @@ author="Yedvilun (yedvilun@gmail.com)" license="LGPL">
       <item>subpath</item>
       <item>curl</item>
       <item>tension</item>
-      <item>atleast</item>
+      <item>at least</item>
       <item>controls</item>
       <item>cycle</item>
 
@@ -277,7 +277,7 @@ author="Yedvilun (yedvilun@gmail.com)" license="LGPL">
 <!--       <item>forever</item> -->
       <item>step</item>
       <item>until</item>
-      <item>upto</item>
+      <item>up to</item>
       <item>exitif</item>
     </list>
 
@@ -511,7 +511,7 @@ author="Yedvilun (yedvilun@gmail.com)" license="LGPL">
       <item>unitsquare</item>
       <item>unitvector</item>
       <item>up</item>
-      <item>upto</item>
+      <item>up to</item>
       <item>vround</item>
 
       <item>w</item>
@@ -596,7 +596,7 @@ author="Yedvilun (yedvilun@gmail.com)" license="LGPL">
 
       <item>base_name</item>
       <item>base_version</item>
-      <item>upto</item>
+      <item>up to</item>
       <item>downto</item>
       <item>exitunless</item>
       <item>relax</item>

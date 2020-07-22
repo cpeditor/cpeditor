@@ -288,7 +288,7 @@ class SipGenerator(object):
                     pass
                 elif is_copy_constructor(member) or is_default_constructor(member):
                     #
-                    # ...we need to pass private copy contructors to the SIP compiler.
+                    # ...we need to pass private copy constructors to the SIP compiler.
                     #
                     pass
                 else:

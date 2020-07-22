@@ -2,7 +2,7 @@
 <!-- Kate syntax highlighting for the Objective Caml 'Ocamlllex' -->
 <!DOCTYPE language SYSTEM "language.dtd"
 [
-<!-- Regular expresion constants: -->
+<!-- Regular expression constants: -->
 <!ENTITY LOWER  "a-z\300-\326\330-\337">         <!-- Lowercase Latin-1 letters. -->
 <!ENTITY UPPER  "A-Z\340-\366\370-\377">         <!-- Uppercase Latin-1 letters. -->
 <!ENTITY LETTER "&LOWER;&UPPER;">                <!-- All Latin-1 letters. -->

@@ -68,7 +68,7 @@ module module_example
   real(kind=kr), dimension(1:10, -4:5), private :: a, b, c
   real(kind=kr), private :: d(1:10, -4:5)
 
-  ! This is a string with fixed lenght
+  ! This is a string with fixed length
   character(len=10) :: str_var
 
   ! This is an allocatable array, which can be a target of a pointer

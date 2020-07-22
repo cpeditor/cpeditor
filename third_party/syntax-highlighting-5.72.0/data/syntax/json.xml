@@ -22,17 +22,17 @@
 
     <contexts>
       <context name="Normal" lineEndContext="#stay" attribute="Style_Error">
-        <DetectChar char="{"       context="Pair" beginRegion="Region_Object" attribute="Style_Seperator_Pair" />
-        <DetectChar char="["       context="Array" beginRegion="Region_Array" attribute="Style_Seperator_Array" />
+        <DetectChar char="{"       context="Pair" beginRegion="Region_Object" attribute="Style_Separator_Pair" />
+        <DetectChar char="["       context="Array" beginRegion="Region_Array" attribute="Style_Separator_Array" />
 
         <DetectSpaces context="#stay" attribute="Style_Normal" />
       </context>
 
       <context name="Pair" lineEndContext="#stay" attribute="Style_Error">
         <DetectChar char="&quot;"  context="String_Key" attribute="Style_String_Key" />
-        <DetectChar char=":"       context="Value" attribute="Style_Seperator_Pair" />
-        <DetectChar char="}"       context="#pop" endRegion="Region_Object" attribute="Style_Seperator_Pair" />
-        <DetectChar char=","       context="#stay" attribute="Style_Seperator_Pair" />
+        <DetectChar char=":"       context="Value" attribute="Style_Separator_Pair" />
+        <DetectChar char="}"       context="#pop" endRegion="Region_Object" attribute="Style_Separator_Pair" />
+        <DetectChar char=","       context="#stay" attribute="Style_Separator_Pair" />
 
         <DetectSpaces context="#stay" attribute="Style_Normal" />
       </context>
@@ -44,8 +44,8 @@
 
       <context name="Value" lineEndContext="#stay" attribute="Style_Error" >
         <DetectChar char="&quot;"  context="String_Value" attribute="Style_String_Value" />
-        <DetectChar char="{"       context="Pair" beginRegion="Region_Object" attribute="Style_Seperator_Pair" />
-        <DetectChar char="["       context="Array" beginRegion="Region_Array" attribute="Style_Seperator_Array" />
+        <DetectChar char="{"       context="Pair" beginRegion="Region_Object" attribute="Style_Separator_Pair" />
+        <DetectChar char="["       context="Array" beginRegion="Region_Array" attribute="Style_Separator_Array" />
         <DetectChar char="}"       context="#pop" lookAhead="true" />
         <DetectChar char=","       context="#pop" lookAhead="true" />
 
@@ -63,11 +63,11 @@
       </context>
 
       <context name="Array" lineEndContext="#stay" attribute="Style_Error">
-        <DetectChar char=","       context="#stay" attribute="Style_Seperator_Array" />
-        <DetectChar char="]"       context="#pop" endRegion="Region_Array" attribute="Style_Seperator_Array" />
+        <DetectChar char=","       context="#stay" attribute="Style_Separator_Array" />
+        <DetectChar char="]"       context="#pop" endRegion="Region_Array" attribute="Style_Separator_Array" />
 
-        <DetectChar char="{"       context="Pair" beginRegion="Region_Object" attribute="Style_Seperator_Pair" />
-        <DetectChar char="["       context="Array" beginRegion="Region_Array" attribute="Style_Seperator_Array" />
+        <DetectChar char="{"       context="Pair" beginRegion="Region_Object" attribute="Style_Separator_Pair" />
+        <DetectChar char="["       context="Array" beginRegion="Region_Array" attribute="Style_Separator_Array" />
         <DetectChar char="&quot;"  context="String_Value" attribute="Style_String_Value" />
 
         <DetectSpaces context="#stay" attribute="Style_Normal" />
@@ -82,8 +82,8 @@
     <itemDatas>
       <itemData name="Style_Normal"             defStyleNum="dsNormal" />
 
-      <itemData name="Style_Seperator_Pair"     defStyleNum="dsFunction" bold="true" />
-      <itemData name="Style_Seperator_Array"    defStyleNum="dsOthers" bold="true" />
+      <itemData name="Style_Separator_Pair"     defStyleNum="dsFunction" bold="true" />
+      <itemData name="Style_Separator_Array"    defStyleNum="dsOthers" bold="true" />
 
       <itemData name="Style_Decimal"            defStyleNum="dsDecVal" />
       <itemData name="Style_Float"              defStyleNum="dsFloat" />

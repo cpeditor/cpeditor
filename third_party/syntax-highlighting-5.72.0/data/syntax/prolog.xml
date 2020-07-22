@@ -32,7 +32,7 @@
 <!DOCTYPE language SYSTEM "language.dtd"
 [<!-- [Regular Expressions, Character Classes & Important Tokens]
 E.g. the dot "." has so many different meanings (i.e. in an RegExpr 'any char',
-'fullstop' of a clause, etc. pp.) that I decided it's usefull to write these out
+'fullstop' of a clause, etc. pp.) that I decided it's useful to write these out
 to make the rules more expressive. -->
 
 <!-- RegExpr for graphic tokens.  Comment start "/*" is catched earlier. -->
@@ -121,7 +121,7 @@ to make the rules more expressive. -->
     - "seq" sequence, "nl" newline, "bs" backslash, "q" quote(d), "cc" char code
     - "KISS" Keep it simple, stupid! (be pragmatic)
     - "style" = "attribute" (the applied text style)
-    - Keep comments as short as possible and as descriptive as neccessary LOL
+    - Keep comments as short as possible and as descriptive as necessary LOL
 -->
 <!-- [Documentation, Bugs, Limitations & Solutions, TODOs]
 ################################################################################
@@ -197,7 +197,7 @@ correctly, as well as many non-ISO Prolog texts.
   Else modify this file.  Save with new name in your HOME directory to
 .kde/share/apps/katepart/syntax/prolog-xy.xml You may read the NOTE at the end
 of this file.  WARNING: Be careful, though: the highlighting works according to
-it's program code, not neccessarily it's documentation...
+it's program code, not necessarily it's documentation...
 
 DONE- Parse (m)any (!) conforming Prolog texts w/ correct highlighting (LIMITS)
     - Parse any erratic text w/o crash or endless loops and highlight errors
@@ -281,7 +281,7 @@ TODO sorted by priority
   - the list functor "." is not a predefined prefix operator.
   - An unquoted graphic token shall not begin with "/*".
   - Multiline comments shall not be nested.
-  - Floats are NOT written with lowercase "e" (i.e. not neccessarily an error if
+  - Floats are NOT written with lowercase "e" (i.e. not necessarily an error if
     e.g. "e" is a pre- or user-defined expr or op and the whole term is valid),
   - and the fractional part and exponent of floats are optional (any and both).
   - A leading minus immediately preceding a number is optional for all numbers

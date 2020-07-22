@@ -318,7 +318,7 @@
 			<!-- In the following contexts, a slash character ('/') is a division operator -->
 			<!-- Everywhere else, it's a regular expression delimiter -->
 
-			<!-- A slash is always a division operator, even if preceeded by whitespace -->
+			<!-- A slash is always a division operator, even if preceded by whitespace -->
 			<context name="check_div_1" attribute="Normal Text" fallthrough="true" fallthroughContext="#pop" lineEndContext="#pop">
 				<RegExpr attribute="Normal Text" String="\s*" context="#stay"/>
 				<AnyChar attribute="Operator" String="/%" context="#pop"/>
@@ -330,7 +330,7 @@
 				<AnyChar attribute="Operator" String="/%" context="#pop#pop"/>
 			</context>
 
-			<!-- A slash is division operator if it's the first character, or if preceeded and followed by whitespace -->
+			<!-- A slash is division operator if it's the first character, or if preceded and followed by whitespace -->
 			<context name="check_div_2" attribute="Normal Text" fallthrough="true" fallthroughContext="#pop" lineEndContext="#pop">
 				<AnyChar attribute="Operator" String="/%" context="#pop"/>
 				<RegExpr attribute="Normal Text" String="\s+" context="check_div_2_internal"/>

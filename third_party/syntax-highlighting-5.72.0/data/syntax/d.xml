@@ -22,7 +22,7 @@
   UPDATE HISTORY:-
   2008.09.22 - d.xml 1.61 - D 1.035/2.019 - Fix for identifiers starting _ and containing numbers.
   2008.08.01 - d.xml 1.60 - D 1.033/2.017 - Merging ddoc.xml 1.14 since there is no advantage to having it separate.
-  2008.07.14 - uncommited                 - Added properties: .tupleof, .offsetof
+  2008.07.14 - uncommitted                 - Added properties: .tupleof, .offsetof
   2008.06.14 - D.XML 1.53 - D 1.030/2.014 - Added user keyword highlighting.
   2008.06.06 - D.XML 1.53 - D 1.030/2.014 - Small fix involving floats starting . in embedded Ddoc.
                                           - Added nothrow and pure attributes (D2.0 only).
@@ -46,7 +46,7 @@
   2007.10.11 - ddoc.xml 1.11              - Safety catch: check for unterminated code sections (i.e. check for end of
                                             ddoc comment even in code sections).
                                           - Used DetectIdentifier to (presumably) improve performance.
-  2007.10.09 - uncommited - ditto         - Changed some context="#pop" tags to context="#stay" within the normal
+  2007.10.09 - uncommitted - ditto         - Changed some context="#pop" tags to context="#stay" within the normal
                                             context (bugfix for ddoc embedded code highlighting).
   2007.10.9  - ddoc.xml 1.10              - Enabled embedded ddoc code highlighting
   2007.10.9  - ddoc.xml 1.00              - Initial version

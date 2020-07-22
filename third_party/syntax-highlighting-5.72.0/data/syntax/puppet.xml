@@ -390,7 +390,7 @@
 
       <!-- BEGIN Node -->
       <context name="node def" attribute="Normal Text" lineEndContext="#stay">
-        <!-- TODO: need a regular expresion here, order is random and seems that Class is not allowed in node(?) -->
+        <!-- TODO: need a regular expression here, order is random and seems that Class is not allowed in node(?) -->
         <DetectSpaces/>
         <IncludeRules context="FindString"/>
         <IncludeRules context="FindRegExp"/>

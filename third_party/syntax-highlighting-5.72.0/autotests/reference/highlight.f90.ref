@@ -68,7 +68,7 @@
 <Normal Text>  </Normal Text><Data Type>real(kind=kr)</Data Type><Symbol>,</Symbol><Normal Text> </Normal Text><Data Type>dimension(1:10, -4:5)</Data Type><Symbol>,</Symbol><Normal Text> </Normal Text><Data Type>private</Data Type><Normal Text> </Normal Text><Data Type>::</Data Type><Normal Text> a</Normal Text><Symbol>,</Symbol><Normal Text> b</Normal Text><Symbol>,</Symbol><Normal Text> c</Normal Text><br/>
 <Normal Text>  </Normal Text><Data Type>real(kind=kr)</Data Type><Symbol>,</Symbol><Normal Text> </Normal Text><Data Type>private</Data Type><Normal Text> </Normal Text><Data Type>::</Data Type><Normal Text> d</Normal Text><Symbol>(</Symbol><Decimal>1</Decimal><Normal Text>:</Normal Text><Decimal>10</Decimal><Symbol>,</Symbol><Normal Text> </Normal Text><Keyword>-</Keyword><Decimal>4</Decimal><Normal Text>:</Normal Text><Decimal>5</Decimal><Symbol>)</Symbol><br/>
 <Normal Text></Normal Text><br/>
-<Normal Text>  </Normal Text><Comment>! This is a string with fixed lenght</Comment><br/>
+<Normal Text>  </Normal Text><Comment>! This is a string with fixed length</Comment><br/>
 <Normal Text>  </Normal Text><Data Type>character(len=10)</Data Type><Normal Text> </Normal Text><Data Type>::</Data Type><Normal Text> str_var</Normal Text><br/>
 <Normal Text></Normal Text><br/>
 <Normal Text>  </Normal Text><Comment>! This is an allocatable array, which can be a target of a pointer</Comment><br/>

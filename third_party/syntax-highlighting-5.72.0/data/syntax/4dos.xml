@@ -30,7 +30,7 @@
 	- internal commands of 4DOS
 	TODO:
 	- if someone finds that PATH-detection makes sense: create it...
-	- whatever doesn't seem to be correctly lit after all the preceeding stuff ...
+	- whatever doesn't seem to be correctly lit after all the preceding stuff ...
 	- follow the TODO-Marks
 -->
 	<highlighting>
@@ -438,12 +438,12 @@
 				<RegExpr attribute="Escape" String="\x18.|&#37;&#61;."/>
 			</context>
 
-	<!-- highlight the command seperator without changing contexts -->
+	<!-- highlight the command separator without changing contexts -->
 			<context name="findCommandSeparator" attribute="Normal" lineEndContext="#stay">
 				<Detect2Chars attribute="Keyword" char="%" char1="+"/>
 			</context>
 
-	<!-- highlight the command seperator and pop a context -->
+	<!-- highlight the command separator and pop a context -->
 			<context name="popNeedEndOfCommand" attribute="Error" lineEndContext="#pop">
 				<Detect2Chars attribute="Keyword" context="#pop" char="%" char1="+"/>
 				<DetectSpaces attribute="Normal"/>

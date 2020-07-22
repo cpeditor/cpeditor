@@ -25,7 +25,7 @@
 <Keyword>and</Keyword><Operator> </Operator><Keyword>as</Keyword><Operator> </Operator><Keyword>assert</Keyword><Operator> </Operator><Keyword>asr</Keyword><Operator> </Operator><Comment>(* etc. there so many... *)</Comment><br/>
 <Operator></Operator><br/>
 <Comment>(* Additional OCaml Revised Syntax keywords: *)</Comment><br/>
-<Comment>(* These are in a seperate category so they can be coloured to look</Comment><br/>
+<Comment>(* These are in a separate category so they can be coloured to look</Comment><br/>
 <Comment>   like identifiers when ordinary OCaml syntax is being used: *)</Comment><br/>
 <Revised Syntax Keyword>declare</Revised Syntax Keyword><Operator> </Operator><Revised Syntax Keyword>where</Revised Syntax Keyword><Operator> </Operator><Revised Syntax Keyword>value</Revised Syntax Keyword><br/>
 <Operator></Operator><br/>

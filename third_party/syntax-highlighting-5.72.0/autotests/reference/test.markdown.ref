@@ -334,11 +334,11 @@
 <Header H2>## JSON</Header H2><br/>
 <Normal Text></Normal Text><br/>
 <Fenced Code>```json</Fenced Code><br/>
-<Style_Seperator_Array>[</Style_Seperator_Array><Style_Seperator_Pair>{</Style_Seperator_Pair><br/>
-<Style_Normal>    </Style_Normal><Style_String_Key>"hello"</Style_String_Key><Style_Seperator_Pair>:</Style_Seperator_Pair><Style_Normal> </Style_Normal><Style_String_Value>"world"</Style_String_Value><Style_Seperator_Pair>,</Style_Seperator_Pair><br/>
-<Style_Normal>    </Style_Normal><Style_String_Key>"count"</Style_String_Key><Style_Seperator_Pair>:</Style_Seperator_Pair><Style_Normal> </Style_Normal><Style_Decimal>1</Style_Decimal><Style_Seperator_Pair>,</Style_Seperator_Pair><br/>
-<Style_Normal>    </Style_Normal><Style_String_Key>"bool"</Style_String_Key><Style_Seperator_Pair>:</Style_Seperator_Pair><Style_Normal> </Style_Normal><Style_Keyword>true</Style_Keyword><br/>
-<Style_Seperator_Pair>}</Style_Seperator_Pair><Style_Seperator_Array>]</Style_Seperator_Array><br/>
+<Style_Separator_Array>[</Style_Separator_Array><Style_Separator_Pair>{</Style_Separator_Pair><br/>
+<Style_Normal>    </Style_Normal><Style_String_Key>"hello"</Style_String_Key><Style_Separator_Pair>:</Style_Separator_Pair><Style_Normal> </Style_Normal><Style_String_Value>"world"</Style_String_Value><Style_Separator_Pair>,</Style_Separator_Pair><br/>
+<Style_Normal>    </Style_Normal><Style_String_Key>"count"</Style_String_Key><Style_Separator_Pair>:</Style_Separator_Pair><Style_Normal> </Style_Normal><Style_Decimal>1</Style_Decimal><Style_Separator_Pair>,</Style_Separator_Pair><br/>
+<Style_Normal>    </Style_Normal><Style_String_Key>"bool"</Style_String_Key><Style_Separator_Pair>:</Style_Separator_Pair><Style_Normal> </Style_Normal><Style_Keyword>true</Style_Keyword><br/>
+<Style_Separator_Pair>}</Style_Separator_Pair><Style_Separator_Array>]</Style_Separator_Array><br/>
 <Fenced Code>```</Fenced Code><br/>
 <Normal Text></Normal Text><br/>
 <Header H2>## Matlab</Header H2><br/>

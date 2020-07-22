@@ -3,7 +3,7 @@
 
 <!DOCTYPE language SYSTEM "language.dtd"
 [
-<!-- Regular expresion constants: -->
+<!-- Regular expression constants: -->
 <!ENTITY LOWER  "a-z\300-\326\330-\337">         <!-- Lowercase Latin-1 letters. -->
 <!ENTITY UPPER  "A-Z\340-\366\370-\377">         <!-- Uppercase Latin-1 letters. -->
 <!ENTITY LETTER "&LOWER;&UPPER;">                <!-- All Latin-1 letters. -->
@@ -510,7 +510,7 @@
         <IncludeRules context="##LaTeX" />
       </context>
 
-      <!-- A single qualified Ocaml identifier, perhaps preceeded by whitespace. } -->
+      <!-- A single qualified Ocaml identifier, perhaps preceded by whitespace. } -->
       <context name="Ocamldoc Identifier" lineEndContext="#stay" attribute="Mismatched Brackets">
         <RegExpr      String="&IDENT;(\.&IDENT;)*" context="#pop" attribute="Ocamldoc Link"  />
         <Detect2Chars char="*" char1=")"           context="#pop" attribute="Mismatched Brackets" />
@@ -543,7 +543,7 @@
         <IncludeRules context="Nested Ocamldoc" />
       </context>
 
-      <!-- A list of qualified Ocaml identifiers, seperated by whitespace and ending with a } -->
+      <!-- A list of qualified Ocaml identifiers, separated by whitespace and ending with a } -->
       <context name="Ocamldoc References" lineEndContext="#stay" attribute="Mismatched Brackets">
         <DetectChar   char="}"                     context="#pop"  attribute="Ocamldoc Markup"  />
         <Detect2Chars char="*" char1=")"           context="#pop"  attribute="Mismatched Brackets" />

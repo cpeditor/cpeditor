@@ -17,7 +17,7 @@
 <contexts>
 
 	<context name="context_dic" attribute="Undefined" lineEndContext="context_spell" >
-		<!-- detect in the first line wether this is a hyphen dictionary (continue with context_hyphen) or a spell check dictionary (continue with context_spell) -->
+		<!-- detect in the first line whether this is a hyphen dictionary (continue with context_hyphen) or a spell check dictionary (continue with context_spell) -->
 		<Int attribute="Number" context="context_spell" column="0" />
 		<RegExpr attribute="Encoding" context="context_hyphen" String=".*" />
 	</context>

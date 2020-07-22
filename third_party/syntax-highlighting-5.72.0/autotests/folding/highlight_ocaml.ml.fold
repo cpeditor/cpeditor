@@ -25,7 +25,7 @@ object
 and as assert asr <beginfold id='1'>(*</beginfold id='1'> etc. there so many... <endfold id='1'>*)</endfold id='1'>
 
 <beginfold id='1'>(*</beginfold id='1'> Additional OCaml Revised Syntax keywords: <endfold id='1'>*)</endfold id='1'>
-<beginfold id='1'>(*</beginfold id='1'> These are in a seperate category so they can be coloured to look
+<beginfold id='1'>(*</beginfold id='1'> These are in a separate category so they can be coloured to look
    like identifiers when ordinary OCaml syntax is being used: <endfold id='1'>*)</endfold id='1'>
 declare where value
 

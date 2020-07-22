@@ -26,7 +26,7 @@ FULL_PATH_NAMES        = NO
 STRIP_FROM_PATH        = 
 STRIP_FROM_INC_PATH    = 
 SHORT_NAMES            = NO
-# Do not require explicity @brief command for brief description
+# Do not require explicitly @brief command for brief description
 JAVADOC_AUTOBRIEF      = YES
 MULTILINE_CPP_IS_BRIEF = NO
 INHERIT_DOCS           = YES

@@ -789,7 +789,7 @@
   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   Dialect tags
   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  Occurence selects specified dialect. Compiler extension suffix is ignored.
+  Occurrence selects specified dialect. Compiler extension suffix is ignored.
 
   EBNF:
 

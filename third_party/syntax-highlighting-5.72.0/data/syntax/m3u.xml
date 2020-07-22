@@ -25,7 +25,7 @@ v1.0:
  </context>
 
  <context name="FindEXTINF" attribute="Normal Text" lineEndContext="#stay">
-  <RegExpr attribute="Lenght" String=":\d+" />
+  <RegExpr attribute="Length" String=":\d+" />
   <RegExpr attribute="Descr" context="#pop" String=",.*$" />
  </context>
 </contexts>
@@ -36,7 +36,7 @@ v1.0:
  <itemData name="Comment" defStyleNum="dsComment" />
 
  <itemData name="EXTINF" defStyleNum="dsOthers" />
- <itemData name="Lenght" defStyleNum="dsDecVal" />
+ <itemData name="Length" defStyleNum="dsDecVal" />
  <itemData name="Descr" defStyleNum="dsString" />
 </itemDatas>
 </highlighting>

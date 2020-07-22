@@ -1803,7 +1803,7 @@
 <item>+camdistance</item>
 <item>+camin</item>
 <item>+cammousemove</item>
-<item>+camout</item>
+<item>+camount</item>
 <item>+campitchdown</item>
 <item>+campitchup</item>
 <item>+camyawleft</item>
@@ -1866,7 +1866,7 @@
 <item>-camdistance</item>
 <item>-camin</item>
 <item>-cammousemove</item>
-<item>-camout</item>
+<item>-camount</item>
 <item>-campitchdown</item>
 <item>-campitchup</item>
 <item>-camyawleft</item>

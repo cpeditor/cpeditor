@@ -187,7 +187,7 @@
 <Normal Text>  </Normal Text><Punctuation>}</Punctuation><br/>
 <Normal Text></Normal Text><br/>
 <Normal Text>  </Normal Text><Comment>// reject statement</Comment><br/>
-<Normal Text>  </Normal Text><Keyword>reject</Keyword><Punctuation>(</Punctuation><String>"reject statment "</String><Punctuation>,</Punctuation><Normal Text> </Normal Text><Identifier>x_real</Identifier><Operator>)</Operator><Normal Text>;</Normal Text><br/>
+<Normal Text>  </Normal Text><Keyword>reject</Keyword><Punctuation>(</Punctuation><String>"reject statement "</String><Punctuation>,</Punctuation><Normal Text> </Normal Text><Identifier>x_real</Identifier><Operator>)</Operator><Normal Text>;</Normal Text><br/>
 <Normal Text></Normal Text><br/>
 <Normal Text>  </Normal Text><Comment>// print statement</Comment><br/>
 <Normal Text>  </Normal Text><Keyword>print</Keyword><Punctuation>(</Punctuation><String>"print statement "</String><Punctuation>,</Punctuation><Normal Text> </Normal Text><Identifier>x_real</Identifier><Operator>)</Operator><Normal Text>;</Normal Text><br/>

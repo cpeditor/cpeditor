@@ -2,7 +2,7 @@
 <!-- Kate syntax highlighting for the Objective Caml 'Ocamlllex' -->
 <!DOCTYPE language SYSTEM "language.dtd"
 [
-<!-- Regular expresion constants: -->
+<!-- Regular expression constants: -->
 <!ENTITY LETTER "A-Za-z\300-\326\330-\366\370-\377">                <!-- Latin-1 letters. -->
 <!ENTITY IDENT  "`?[&LETTER;_][&LETTER;0-9_']*">                    <!-- OCaml identifiers. -->
 <!ENTITY ESC    "(\\[ntbr'&quot;\\]|\\[0-9]{3}|\\x[0-9A-Fa-f]{2})"> <!-- OCaml character code escapes. -->

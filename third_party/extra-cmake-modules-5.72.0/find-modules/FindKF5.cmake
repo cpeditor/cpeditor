@@ -54,7 +54,7 @@ foreach(_module ${KF5_FIND_COMPONENTS})
         ${_exact_arg} ${_quiet_arg}
         CONFIG
     )
-    # CMake >= 3.17 wants to be explictly told we are fine with name mismatch here
+    # CMake >= 3.17 wants to be explicitly told we are fine with name mismatch here
     set(_name_mismatched_arg)
     if(NOT CMAKE_VERSION VERSION_LESS 3.17)
        set(_name_mismatched_arg NAME_MISMATCHED)

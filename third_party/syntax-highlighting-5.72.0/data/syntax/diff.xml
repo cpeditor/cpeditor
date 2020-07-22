@@ -9,7 +9,7 @@
 <!--
     2006-08-02: 1.10 Matthew Woehlke <mw_triad@sourceforge.net>
       Added folding. Context diff changes are now identified as old/new (using
-      seperate attributes). Recognize 'Only in' from 'diff -r' output.
+      separate attributes). Recognize 'Only in' from 'diff -r' output.
       There is currently a bug (KATE limitation?) where regions may sometimes
       pick up one line too many.
     2008-02-13: 1.11 Eduardo Robles Elvira <edulix AT gmail DOT com>

@@ -19,7 +19,7 @@ Parenthesis
 Adverb
 ~ / \ /. \. } b. f. M. t. t:
 
-Conjuction
+Conjunction
 ^: . .. .: :  :. :: ;. !. !: " ` `: @ @. @: & &. &: &.: d. D. D: H. L: S: T.
 
 Control

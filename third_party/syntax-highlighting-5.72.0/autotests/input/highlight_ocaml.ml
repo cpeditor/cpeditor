@@ -25,7 +25,7 @@ object
 and as assert asr (* etc. there so many... *)
 
 (* Additional OCaml Revised Syntax keywords: *)
-(* These are in a seperate category so they can be coloured to look
+(* These are in a separate category so they can be coloured to look
    like identifiers when ordinary OCaml syntax is being used: *)
 declare where value
 

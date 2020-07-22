@@ -187,7 +187,7 @@ model <beginfold id='2'>{</beginfold id='2'>
   <endfold id='2'>}</endfold id='2'>
 
   // reject statement
-  reject("reject statment ", x_real);
+  reject("reject statement ", x_real);
 
   // print statement
   print("print statement ", x_real);

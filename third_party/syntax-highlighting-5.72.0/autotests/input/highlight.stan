@@ -187,7 +187,7 @@ model {
   }
 
   // reject statement
-  reject("reject statment ", x_real);
+  reject("reject statement ", x_real);
 
   // print statement
   print("print statement ", x_real);
