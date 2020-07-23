@@ -285,7 +285,7 @@
         "type": "QString",
         "default": "Light",
         "ui": "QComboBox",
-        "param": "QStringList {\"Light\", \"Dracula\", \"Monokai\", \"Solarized\", \"Solarized Dark\"}",
+        "param": "QStringList {\"Light\", \"Dracula\", \"Monokai\", \"Solarized Light\", \"Solarized Dark\"}",
         "tip": "The syntax highlight theme of the code editor"
     },
     {
@@ -840,7 +840,7 @@
         "type": "QString",
         "ui": "QComboBox",
         "default": "Default",
-        "param": "[](){ QStringList list; for(auto const &e : KSyntaxHighlightingRepository::getSyntaxHighlightingRepository().themes()) list.append(e.name()); return list;}()",
+        "param": "KSyntaxHighlightingRepository::themeNames()",
         "tip": "The style of the code syntax highlighting."
     },
     {

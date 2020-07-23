@@ -21,6 +21,7 @@
 #include "Extensions/EditorTheme.hpp"
 #include "Settings/SettingsManager.hpp"
 #include "generated/SettingsHelper.hpp"
+#include <QSyntaxStyle>
 #include <definition.h>
 #include <syntaxhighlighter.h>
 #include <theme.h>
@@ -60,9 +61,24 @@ void CodeEditor::applySettings(const QString &language)
         return;
 
     highlighter->setDefinition(
-        KSyntaxHighlightingRepository::getSyntaxHighlightingRepository().definitionForName(language));
-    highlighter->setTheme(KSyntaxHighlightingRepository::getSyntaxHighlightingRepository().theme(
-        SettingsHelper::getSyntaxHighlightingStyle()));
+        KSyntaxHighlightingRepository::getSyntaxHighlightingRepository()->definitionForName(language));
+    if (SettingsHelper::getSyntaxHighlightingStyle() == "Default")
+    {
+        if (KSyntaxHighlightingRepository::themeNames().contains(SettingsHelper::getEditorTheme()))
+            highlighter->setTheme(KSyntaxHighlightingRepository::getSyntaxHighlightingRepository()->theme(
+                SettingsHelper::getEditorTheme()));
+        else if (style->getFormat("Text").background().color().lightness() <= 127)
+            highlighter->setTheme(KSyntaxHighlightingRepository::getSyntaxHighlightingRepository()->defaultTheme(
+                KSyntaxHighlighting::Repository::DarkTheme));
+        else
+            highlighter->setTheme(KSyntaxHighlightingRepository::getSyntaxHighlightingRepository()->defaultTheme(
+                KSyntaxHighlighting::Repository::LightTheme));
+    }
+    else
+    {
+        highlighter->setTheme(KSyntaxHighlightingRepository::getSyntaxHighlightingRepository()->theme(
+            SettingsHelper::getSyntaxHighlightingStyle()));
+    }
     highlighter->rehighlight();
 
     QVector<QCodeEditor::Parenthesis> parentheses;

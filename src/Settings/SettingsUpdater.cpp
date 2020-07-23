@@ -132,6 +132,7 @@ void SettingsUpdater::updateSetting(QSettings &setting)
                         .toString()
                         .replace("Monkai", "Monokai")
                         .replace("Drakula", "Dracula")
-                        .replace("Solarised", "Solarized");
+                        .replace("Solarised", "Solarized Light")
+                        .replace("Solarized", "Solarized Light");
     SettingsManager::set("Editor Theme", theme);
 }

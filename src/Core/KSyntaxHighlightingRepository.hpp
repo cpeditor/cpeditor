@@ -20,10 +20,14 @@
 
 #include <repository.h>
 
+class QStringList;
+
 class KSyntaxHighlightingRepository
 {
   public:
-    static const KSyntaxHighlighting::Repository &getSyntaxHighlightingRepository();
+    static KSyntaxHighlighting::Repository *getSyntaxHighlightingRepository();
+
+    static QStringList themeNames();
 
   private:
     static KSyntaxHighlighting::Repository repository;

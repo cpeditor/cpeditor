@@ -16,10 +16,20 @@
  */
 
 #include "Core/KSyntaxHighlightingRepository.hpp"
+#include <QStringList>
+#include <theme.h>
 
 KSyntaxHighlighting::Repository KSyntaxHighlightingRepository::repository;
 
-const KSyntaxHighlighting::Repository &KSyntaxHighlightingRepository::getSyntaxHighlightingRepository()
+KSyntaxHighlighting::Repository *KSyntaxHighlightingRepository::getSyntaxHighlightingRepository()
 {
-    return repository;
+    return &repository;
+}
+
+QStringList KSyntaxHighlightingRepository::themeNames()
+{
+    QStringList names;
+    for (const auto &theme : repository.themes())
+        names.push_back(theme.name());
+    return names;
 }
