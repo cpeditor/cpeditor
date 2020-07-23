@@ -82,16 +82,7 @@ jobs:
           tools/install_ecm.sh
           tools/install_ksh.sh
 
-      - name: Build on Windows
-        if: startsWith(matrix.config.os, 'windows')
-        run: |
-          mkdir build
-          cd build
-          cmake .. -DCMAKE_BUILD_TYPE=Release -DPORTABLE_VERSION=${{ matrix.config.portable-option }} -DKF5SyntaxHighlighting_DIR="C:/Program Files (x86)/ECM/lib/cmake/KF5SyntaxHighlighting"
-          cmake --build . --config Release -j2
-
-      - name: Build on Unix
-        if: startsWith(matrix.config.os, 'ubuntu') || startsWith(matrix.config.os, 'macos')
+      - name: Build
         run: |
           mkdir build
           cd build
