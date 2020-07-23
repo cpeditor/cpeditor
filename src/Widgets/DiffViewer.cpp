@@ -79,6 +79,7 @@ void DiffViewer::setText(const QString &output, const QString &expected)
         differ.diff_cleanupEfficiency(diffs);
 
         QString outputHTML, expectedHTML;
+        outputHTML = expectedHTML = "<body style='background-color: white; color: black;'>";
         for (auto diff : diffs)
         {
             QString text = diff.text.toHtmlEscaped().replace(" ", "&nbsp;");
@@ -100,12 +101,9 @@ void DiffViewer::setText(const QString &output, const QString &expected)
                 break;
             }
         }
-        QPalette p = outputEdit->palette();
-        p.setColor(QPalette::Base, Qt::white); // for system dark theme
-        p.setColor(QPalette::Text, Qt::black);
-        outputEdit->setPalette(p);
+        outputHTML += "</body>";
+        expectedHTML += "</body>";
         outputEdit->setHtml(outputHTML);
-        expectedEdit->setPalette(p);
         expectedEdit->setHtml(expectedHTML);
     }
     else
