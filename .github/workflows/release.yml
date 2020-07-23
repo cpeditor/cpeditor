@@ -178,6 +178,7 @@ jobs:
           mkdir build/out
           mv build/Release/cpeditor.exe build/out
           ../Qt/*/*/bin/windeployqt.exe build/out/cpeditor.exe --no-translations
+          cp "C:/Program Files (x86)/ECM/bin/KF5SyntaxHighlighting.dll" build/out
           cd "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Redist/MSVC"
           echo ::set-env name=VC_REDIST_VERSION::$(ls -dr *.* | head -n1)
 
