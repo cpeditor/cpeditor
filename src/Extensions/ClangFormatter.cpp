@@ -19,7 +19,7 @@
 #include "Core/EventLogger.hpp"
 #include "Core/MessageLogger.hpp"
 #include "Util/FileUtil.hpp"
-#include <QCodeEditor>
+#include "Widgets/CodeEditor.hpp"
 #include <QJsonDocument>
 #include <QProcess>
 #include <QTemporaryDir>
@@ -82,7 +82,7 @@ void ClangFormatter::updateStyle(const QString &newStyle)
     style = newStyle;
 }
 
-void ClangFormatter::format(QCodeEditor *editor, const QString &filePath, const QString &lang, bool selectionOnly,
+void ClangFormatter::format(CodeEditor *editor, const QString &filePath, const QString &lang, bool selectionOnly,
                             bool verbose)
 {
     LOG_INFO(BOOL_INFO_OF(editor == nullptr) << INFO_OF(filePath) << BOOL_INFO_OF(selectionOnly));

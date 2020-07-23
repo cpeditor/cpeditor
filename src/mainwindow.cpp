@@ -28,9 +28,8 @@
 #include "Settings/DefaultPathManager.hpp"
 #include "Settings/FileProblemBinder.hpp"
 #include "Util/FileUtil.hpp"
-#include "Util/QCodeEditorUtil.hpp"
+#include "Widgets/CodeEditor.hpp"
 #include "Widgets/TestCases.hpp"
-#include <QCodeEditor>
 #include <QFileSystemWatcher>
 #include <QFontDialog>
 #include <QInputDialog>
@@ -47,9 +46,6 @@
 #include <generated/SettingsHelper.hpp>
 #include <generated/version.hpp>
 
-// KSyntax highlighter
-#include <syntaxhighlighter.h>
-
 #include "../ui/ui_mainwindow.h"
 
 // ***************************** RAII  ****************************
@@ -63,8 +59,6 @@ MainWindow::MainWindow(int index, QWidget *parent)
     setupCore();
     setTestCases();
     setEditor();
-
-    m_highlighter = new KSyntaxHighlighting::SyntaxHighlighter(editor->document());
 
     connect(fileWatcher, SIGNAL(fileChanged(const QString &)), this, SLOT(onFileWatcherChanged(const QString &)));
     connect(
@@ -103,7 +97,6 @@ MainWindow::~MainWindow()
     delete testcases;
     delete formatter;
     delete fileWatcher;
-    delete m_highlighter;
     delete editor;
     delete log;
 }
@@ -120,7 +113,7 @@ void MainWindow::setTestCases()
 
 void MainWindow::setEditor()
 {
-    editor = new QCodeEditor();
+    editor = new CodeEditor();
     editor->setSizePolicy(QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Expanding);
     editor->setAcceptDrops(false);
 
@@ -338,7 +331,7 @@ QString MainWindow::getTabTitle(bool complete, bool star, int removeLength)
     return tabTitle;
 }
 
-QCodeEditor *MainWindow::getEditor() const
+CodeEditor *MainWindow::getEditor() const
 {
     return editor;
 }
@@ -539,7 +532,7 @@ void MainWindow::applySettings(const QString &pagePath, bool shouldPerformDigoni
 
     if (pagePath.isEmpty() || pagePath == "Code Edit" || pagePath == "Appearance" ||
         pagePath == QString("Language/%1/%1 Parentheses").arg(language))
-        Util::applySettingsToEditor(m_highlighter, editor, language);
+        editor->applySettings(language);
 
     if (!isLanguageSet && (pagePath.isEmpty() || pagePath == "Language/General"))
     {
@@ -555,7 +548,7 @@ void MainWindow::applySettings(const QString &pagePath, bool shouldPerformDigoni
     {
         ui->compilerEdit->setFont(SettingsHelper::getMessageLoggerFont());
         testcases->setTestCaseEditFont(SettingsHelper::getTestCasesFont());
-        Util::applySettingsToEditor(m_highlighter, editor, language);
+        editor->applySettings(language);
         testcases->updateHeights();
         if (SettingsHelper::isShowCompileAndRunOnly())
         {
@@ -665,7 +658,7 @@ void MainWindow::setLanguage(const QString &lang)
     language = lang;
     if (language != "Python" && language != "Java")
         language = "C++";
-    Util::applySettingsToEditor(m_highlighter, editor, language);
+    editor->applySettings(language);
     ui->changeLanguageButton->setText(language);
     performCompileAndRunDiagonistics();
     isLanguageSet = true;

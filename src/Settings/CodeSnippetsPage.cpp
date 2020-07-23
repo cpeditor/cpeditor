@@ -18,9 +18,8 @@
 #include "Settings/CodeSnippetsPage.hpp"
 #include "Settings/DefaultPathManager.hpp"
 #include "Util/FileUtil.hpp"
-#include "Util/QCodeEditorUtil.hpp"
+#include "Widgets/CodeEditor.hpp"
 #include "generated/SettingsHelper.hpp"
-#include <QCodeEditor>
 #include <QInputDialog>
 #include <QLabel>
 #include <QListWidget>
@@ -30,9 +29,6 @@
 #include <QSplitter>
 #include <QStackedWidget>
 #include <QVBoxLayout>
-
-// KSyntax highlighter
-#include <syntaxhighlighter.h>
 
 CodeSnippetsPage::CodeSnippetsPage(const QString &language, QWidget *parent) : PreferencesPage(parent), lang(language)
 {
@@ -100,8 +96,7 @@ CodeSnippetsPage::CodeSnippetsPage(const QString &language, QWidget *parent) : P
     snippetNameLabel = new QLabel();
     snippetLayout->addWidget(snippetNameLabel);
 
-    editor = new QCodeEditor();
-    highlighter = new KSyntaxHighlighting::SyntaxHighlighter(editor->document());
+    editor = new CodeEditor();
     connect(editor, SIGNAL(textChanged()), this, SLOT(updateButtons()));
     snippetLayout->addWidget(editor);
 
@@ -152,7 +147,7 @@ void CodeSnippetsPage::makeUITheSameAsDefault()
 
 void CodeSnippetsPage::makeUITheSameAsSettings()
 {
-    Util::applySettingsToEditor(highlighter, editor, lang);
+    editor->applySettings(lang);
     auto settingsKeys = SettingsHelper::getLanguageConfig(lang).getSnippets();
     for (auto key : settingsKeys)
     {

@@ -15,22 +15,27 @@
  *
  */
 
-#ifndef QCODEEDITORUTIL_HPP
-#define QCODEEDITORUTIL_HPP
+#ifndef CODEEDITOR_HPP
+#define CODEEDITOR_HPP
 
-class QCodeEditor;
-class QString;
+#include <QCodeEditor>
 
 namespace KSyntaxHighlighting
 {
-class Repository;
 class SyntaxHighlighter;
-} // namespace KSyntaxHighlighting
+}
 
-namespace Util
+class CodeEditor : public QCodeEditor
 {
-void applySettingsToEditor(KSyntaxHighlighting::SyntaxHighlighter *highlighter, QCodeEditor *editor,
-                           const QString &language);
-} // namespace Util
+    Q_OBJECT
 
-#endif // QCODEEDITORUTIL_HPP
+  public:
+    explicit CodeEditor(QWidget *parent = nullptr);
+
+    void applySettings(const QString &language);
+
+  private:
+    KSyntaxHighlighting::SyntaxHighlighter *highlighter = nullptr;
+};
+
+#endif // CODEEDITOR_HPP

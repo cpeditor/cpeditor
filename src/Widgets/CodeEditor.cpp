@@ -15,45 +15,46 @@
  *
  */
 
-#include "Util/QCodeEditorUtil.hpp"
+#include "Widgets/CodeEditor.hpp"
 #include "Core/EventLogger.hpp"
 #include "Core/KSyntaxHighlightingRepository.hpp"
 #include "Extensions/EditorTheme.hpp"
 #include "Settings/SettingsManager.hpp"
 #include "generated/SettingsHelper.hpp"
-#include <QCodeEditor>
 #include <definition.h>
 #include <syntaxhighlighter.h>
 #include <theme.h>
 
-namespace Util
+CodeEditor::CodeEditor(QWidget *parent) : QCodeEditor(parent)
 {
-void applySettingsToEditor(KSyntaxHighlighting::SyntaxHighlighter *highlighter, QCodeEditor *editor,
-                           const QString &language)
+    highlighter = new KSyntaxHighlighting::SyntaxHighlighter(document());
+}
+
+void CodeEditor::applySettings(const QString &language)
 {
-    LOG_INFO("Applying settings to QCodeEditor");
+    LOG_INFO("Applying settings to a CodeEditor");
 
-    editor->setTabReplace(SettingsHelper::isReplaceTabs());
-    editor->setTabReplaceSize(SettingsHelper::getTabWidth());
-    editor->setAutoIndentation(SettingsHelper::isAutoIndent());
+    setTabReplace(SettingsHelper::isReplaceTabs());
+    setTabReplaceSize(SettingsHelper::getTabWidth());
+    setAutoIndentation(SettingsHelper::isAutoIndent());
 
-    editor->setFont(SettingsHelper::getEditorFont());
+    setFont(SettingsHelper::getEditorFont());
 
     const int tabStop = SettingsHelper::getTabWidth();
-    QFontMetrics metric(editor->font());
-    editor->setTabReplaceSize(tabStop);
+    QFontMetrics metric(font());
+    setTabReplaceSize(tabStop);
 
     if (SettingsHelper::isWrapText())
-        editor->setWordWrapMode(QTextOption::WordWrap);
+        setWordWrapMode(QTextOption::WordWrap);
     else
-        editor->setWordWrapMode(QTextOption::NoWrap);
+        setWordWrapMode(QTextOption::NoWrap);
 
     auto style = Extensions::EditorTheme::query(SettingsHelper::getEditorTheme());
     if (!style)
         style = Extensions::EditorTheme::query("Light");
-    editor->setSyntaxStyle(style);
+    setSyntaxStyle(style);
 
-    editor->setExtraBottomMargin(SettingsHelper::isExtraBottomMargin());
+    setExtraBottomMargin(SettingsHelper::isExtraBottomMargin());
 
     if (language.isEmpty())
         return;
@@ -63,19 +64,6 @@ void applySettingsToEditor(KSyntaxHighlighting::SyntaxHighlighter *highlighter, 
     highlighter->setTheme(KSyntaxHighlightingRepository::getSyntaxHighlightingRepository().theme(
         SettingsHelper::getSyntaxHighlightingStyle()));
     highlighter->rehighlight();
-
-    if (language == "Python")
-    {
-        editor->setCompleter(nullptr);
-    }
-    else if (language == "Java")
-    {
-        editor->setCompleter(nullptr);
-    }
-    else
-    {
-        editor->setCompleter(nullptr);
-    }
 
     QVector<QCodeEditor::Parenthesis> parentheses;
 
@@ -114,6 +102,5 @@ void applySettingsToEditor(KSyntaxHighlighting::SyntaxHighlighter *highlighter, 
         parentheses.push_back({left, right, autoComplete, autoRemove, tabJumpOut});
     }
 
-    editor->setParentheses(parentheses);
+    setParentheses(parentheses);
 }
-} // namespace Util

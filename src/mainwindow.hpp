@@ -21,15 +21,16 @@
 #include <QMainWindow>
 
 class MessageLogger;
-class QCodeEditor;
+class CodeEditor;
 class QFileSystemWatcher;
 class QPushButton;
 class QSplitter;
 class QTemporaryDir;
 
-QT_BEGIN_NAMESPACE namespace Ui
+QT_BEGIN_NAMESPACE
+namespace Ui
 {
-    class MainWindow;
+class MainWindow;
 }
 QT_END_NAMESPACE
 
@@ -50,11 +51,6 @@ struct CompanionData;
 namespace Widgets
 {
 class TestCases;
-}
-
-namespace KSyntaxHighlighting
-{
-class SyntaxHighlighter;
 }
 
 class MainWindow : public QMainWindow
@@ -89,7 +85,7 @@ class MainWindow : public QMainWindow
     QString getProblemURL() const;
     QString getCompleteTitle() const;
     QString getTabTitle(bool complete, bool star, int removeLength = 0);
-    QCodeEditor *getEditor() const;
+    CodeEditor *getEditor() const;
     bool isUntitled() const;
 
     void setProblemURL(const QString &url);
@@ -184,7 +180,7 @@ class MainWindow : public QMainWindow
     };
 
     Ui::MainWindow *ui;
-    QCodeEditor *editor;
+    CodeEditor *editor;
     QString language;
     bool isLanguageSet = false;
 
@@ -212,8 +208,6 @@ class MainWindow : public QMainWindow
     Widgets::TestCases *testcases = nullptr;
 
     QTimer *autoSaveTimer = nullptr;
-
-    KSyntaxHighlighting::SyntaxHighlighter *m_highlighter;
 
     void setTestCases();
     void setEditor();

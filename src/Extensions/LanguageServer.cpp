@@ -50,7 +50,7 @@ LanguageServer::~LanguageServer()
     }
 }
 
-void LanguageServer::openDocument(QString path, QCodeEditor *editor, MessageLogger *log)
+void LanguageServer::openDocument(QString path, CodeEditor *editor, MessageLogger *log)
 {
     if (isDocumentOpen())
     {

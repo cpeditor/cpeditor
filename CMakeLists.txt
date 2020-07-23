@@ -171,11 +171,11 @@ add_executable(cpeditor
 
     src/Util/FileUtil.cpp
     src/Util/FileUtil.hpp
-    src/Util/QCodeEditorUtil.cpp
-    src/Util/QCodeEditorUtil.hpp
     src/Util/Util.cpp
     src/Util/Util.hpp
 
+    src/Widgets/CodeEditor.cpp
+    src/Widgets/CodeEditor.hpp
     src/Widgets/DiffViewer.cpp
     src/Widgets/DiffViewer.hpp
     src/Widgets/TestCase.cpp

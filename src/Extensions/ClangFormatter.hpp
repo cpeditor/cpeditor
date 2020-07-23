@@ -27,7 +27,7 @@
 #include <QObject>
 
 class MessageLogger;
-class QCodeEditor;
+class CodeEditor;
 
 namespace Extensions
 {
@@ -55,7 +55,7 @@ class ClangFormatter : public QObject
      *        selection
      * @param verbose if verbose, "Formatting completed" will be logged even if the code is unchanged after formatting
      */
-    void format(QCodeEditor *editor, const QString &filePath, const QString &lang, bool selectionOnly, bool verbose);
+    void format(CodeEditor *editor, const QString &filePath, const QString &lang, bool selectionOnly, bool verbose);
 
     /**
      * @brief check whether the given settings are valid

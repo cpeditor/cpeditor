@@ -21,18 +21,13 @@
 #include "Settings/PreferencesPage.hpp"
 #include <QMap>
 
-class QCodeEditor;
+class CodeEditor;
 class QLineEdit;
 class QListWidget;
 class QListWidgetItem;
 class QMenu;
 class QSplitter;
 class QStackedWidget;
-
-namespace KSyntaxHighlighting
-{
-class SyntaxHighlighter;
-}
 
 class CodeSnippetsPage : public PreferencesPage
 {
@@ -172,8 +167,7 @@ class CodeSnippetsPage : public PreferencesPage
     QWidget *snippetWidget = nullptr;
     QVBoxLayout *snippetLayout = nullptr;
     QLabel *snippetNameLabel = nullptr;
-    QCodeEditor *editor = nullptr;
-    KSyntaxHighlighting::SyntaxHighlighter *highlighter = nullptr;
+    CodeEditor *editor = nullptr;
     QWidget *noSnippetWidget = nullptr;
     QVBoxLayout *VStretchLayout = nullptr;
     QHBoxLayout *HStretchLayout = nullptr;
