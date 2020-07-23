@@ -53,13 +53,30 @@ jobs:
           cached: ${{ steps.cache-qt.outputs.cache-hit }}
           version: ${{ env.QT_VERSION }}
 
-      - name: Set up Dependency - Windows
-        if: startsWith(matrix.config.os, 'windows')
-        run: |
-          ./tools/install_ecm.bat
-          ./tools/install_ksh.bat
+      - name: Get KDE syntax-highlighting status
+        id: get-kde-syntax-highlighting-status
+        shell: bash
+        run: echo ::set-output name=status::$(git submodule status third_party/syntax-highlighting)
 
-      - name: Set up Dependency - UNIX
+      - name: Restore KDE syntax-highlighting cache - Windows
+        id: kde-syntax-highlighting-cache-windows
+        if: startsWith(matrix.config.os, 'windows')
+        uses: actions/cache@v1
+        with:
+          path: C:/Program Files (x86)/ECM
+          key: kde-syntax-highlighting-${{ matrix.config.os }}-${{ env.QT_VERSION }}-${{ steps.get-kde-syntax-highlighting-status.outputs.status }}
+
+      - name: Build KDE syntax-highlighting - Windows
+        if: startsWith(matrix.config.os, 'windows') && !steps.kde-syntax-highlighting-cache-windows.outputs.cache-hit
+        run: |
+          tools/install_ecm.bat
+          tools/install_ksh.bat
+
+      - name: Set environment for KDE syntax-highlighting
+        if: startsWith(matrix.config.os, 'windows')
+        run: echo "::set-env name=KF5SyntaxHighlighting_DIR::C:/Program Files (x86)/ECM/lib/cmake/KF5SyntaxHighlighting"
+
+      - name: Build KDE syntax-highlighting - UNIX
         if: startsWith(matrix.config.os, 'ubuntu') || startsWith(matrix.config.os, 'macos')
         run: |
           tools/install_ecm.sh
