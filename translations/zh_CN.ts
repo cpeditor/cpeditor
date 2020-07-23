@@ -1604,10 +1604,6 @@ You can use &quot;${filename}&quot; for the complete file name,
         <translation>编辑器主题</translation>
     </message>
     <message>
-        <source>The syntax highlight theme of the code editor</source>
-        <translation>代码编辑器高亮所用的主题</translation>
-    </message>
-    <message>
         <source>Auto Complete Parentheses</source>
         <translation>自动补全括号</translation>
     </message>
@@ -2439,6 +2435,10 @@ A loaded test case will be elided and read-only if it&apos;s too long.</source>
     <message>
         <source>The style of the code syntax highlighting.</source>
         <translation>代码语法高亮的风格。</translation>
+    </message>
+    <message>
+        <source>The theme of the code editor</source>
+        <translation>代码编辑器的主题</translation>
     </message>
 </context>
 <context>

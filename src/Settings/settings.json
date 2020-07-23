@@ -286,7 +286,7 @@
         "default": "Light",
         "ui": "QComboBox",
         "param": "QStringList {\"Light\", \"Dracula\", \"Monokai\", \"Solarized Light\", \"Solarized Dark\"}",
-        "tip": "The syntax highlight theme of the code editor"
+        "tip": "The theme of the code editor"
     },
     {
         "name": "Auto Complete Parentheses",

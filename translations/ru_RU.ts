@@ -1605,10 +1605,6 @@ You can use &quot;${filename}&quot; for the complete file name,
         <translation>Тема редактора</translation>
     </message>
     <message>
-        <source>The syntax highlight theme of the code editor</source>
-        <translation>Синтаксическая подсветка темы редактора кода</translation>
-    </message>
-    <message>
         <source>Auto Complete Parentheses</source>
         <translation>Автоподстановка скобок</translation>
     </message>
@@ -2444,6 +2440,10 @@ A loaded test case will be elided and read-only if it&apos;s too long.</source>
     </message>
     <message>
         <source>The style of the code syntax highlighting.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The theme of the code editor</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
