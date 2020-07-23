@@ -78,10 +78,10 @@ jobs:
           endif()
           set(ninja_url "https://github.com/ninja-build/ninja/releases/download/v${ninja_version}/ninja-${ninja_suffix}")
           file(DOWNLOAD "${ninja_url}" ./ninja.zip)
-          execute_process(COMMAND ${CMAKE_COMMAND} -E tar xvf ./ninja.zip)
+          execute_process(COMMAND ${CMAKE_COMMAND} -E tar xf ./ninja.zip)
           set(cmake_url "https://github.com/Kitware/CMake/releases/download/v${cmake_version}/cmake-${cmake_version}-${cmake_suffix}")
           file(DOWNLOAD "${cmake_url}" ./cmake.zip)
-          execute_process(COMMAND ${CMAKE_COMMAND} -E tar xvf ./cmake.zip)
+          execute_process(COMMAND ${CMAKE_COMMAND} -E tar xf ./cmake.zip)
           # Save the path for other steps
           file(TO_CMAKE_PATH "$ENV{GITHUB_WORKSPACE}/${cmake_dir}" cmake_dir)
           message("::set-output name=cmake_dir::${cmake_dir}")
@@ -98,7 +98,7 @@ jobs:
         run: |
           set(ccache_url "https://github.com/cristianadam/ccache/releases/download/v$ENV{CCACHE_VERSION}/${{ runner.os }}.tar.xz")
           file(DOWNLOAD "${ccache_url}" ./ccache.tar.xz)
-          execute_process(COMMAND ${CMAKE_COMMAND} -E tar xvf ./ccache.tar.xz)
+          execute_process(COMMAND ${CMAKE_COMMAND} -E tar xf ./ccache.tar.xz)
 
       - name: Prepare ccache timestamp
         id: ccache_cache_timestamp
