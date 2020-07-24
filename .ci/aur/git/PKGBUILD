@@ -27,13 +27,12 @@ optdepends=(
 conflicts=("cpeditor")
 
 source=('git://github.com/cpeditor/cpeditor.git'
-	'git://github.com/cpeditor/QCodeEditor.git'
 	'git://github.com/cpeditor/QtFindReplaceDialog.git'
 	'git://github.com/cpeditor/lsp-cpp.git'
 	'git://github.com/itay-grudev/singleapplication.git'
 	'git://github.com/MikeMirzayanov/testlib.git')
 
-md5sums=('SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP')
+md5sums=('SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP')
 
 pkgver() {
 	cd "$_pkgname"
@@ -44,7 +43,6 @@ prepare() {
 	cd "$_pkgname"
 	git submodule init
 
-	git config submodule.third_party/QCodeEditor.url "$srcdir/QCodeEditor"
 	git config submodule.third_party/QtFindReplaceDialog.url "$srcdir/QtFindReplaceDialog"
 	git config submodule.third_party/lsp-cpp.url "$srcdir/lsp-cpp"
 	git config submodule.third_party/singleapplication.url "$srcdir/singleapplication"

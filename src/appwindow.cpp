@@ -23,7 +23,6 @@
 #include "Core/StyleManager.hpp"
 #include "Extensions/CFTool.hpp"
 #include "Extensions/CompanionServer.hpp"
-#include "Extensions/EditorTheme.hpp"
 #include "Extensions/LanguageServer.hpp"
 #include "Settings/DefaultPathManager.hpp"
 #include "Settings/FileProblemBinder.hpp"
@@ -149,7 +148,6 @@ AppWindow::~AppWindow()
         ui->tabWidget->removeTab(0);
         delete tmp;
     }
-    Extensions::EditorTheme::release();
     delete ui;
     delete preferencesWindow;
     delete lspTimerCpp;
