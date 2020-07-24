@@ -25,8 +25,6 @@ find_package(Qt5 COMPONENTS LinguistTools REQUIRED)
 find_package(Python3 COMPONENTS Interpreter REQUIRED)
 find_package(KF5SyntaxHighlighting REQUIRED)
 
-add_subdirectory(third_party/QCodeEditor)
-
 set(QAPPLICATION_CLASS QApplication CACHE STRING "Inheritance class for SingleApplication")
 
 add_subdirectory(third_party/singleapplication)
@@ -222,7 +220,6 @@ include_directories("third_party/QCodeEditor/include")
 include_directories("third_party/QtFindReplaceDialog")
 
 target_link_libraries(cpeditor PRIVATE LSPClient)
-target_link_libraries(cpeditor PRIVATE QCodeEditor)
 target_link_libraries(cpeditor PRIVATE Qt5::Network)
 target_link_libraries(cpeditor PRIVATE Qt5::Widgets)
 target_link_libraries(cpeditor PRIVATE QtFindReplaceDialog)
