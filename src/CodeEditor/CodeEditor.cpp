@@ -20,7 +20,6 @@
 #include "Core/KSyntaxHighlightingRepository.hpp"
 #include "Settings/SettingsManager.hpp"
 #include "generated/SettingsHelper.hpp"
-#include <QDebug>
 #include <QFontDatabase>
 #include <QMimeData>
 #include <QRegularExpression>
@@ -131,7 +130,7 @@ void CodeEditor::wheelEvent(QWheelEvent *e)
         const auto sizes = QFontDatabase::standardSizes();
         if (sizes.isEmpty())
         {
-            qDebug() << "QFontDatabase::standardSizes() is empty";
+            LOG_ERR("QFontDatabase::standardSizes() is empty");
             return;
         }
         int newSize = font().pointSize();
