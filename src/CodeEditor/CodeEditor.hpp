@@ -65,53 +65,6 @@ class CodeEditor : public QPlainTextEdit
     int getFirstVisibleBlock();
 
     /**
-     * @brief Method for setting tab replacing
-     * enabled.
-     */
-    void setTabReplace(bool enabled);
-
-    /**
-     * @brief Method for getting is tab replacing enabled.
-     * Default value: true
-     */
-    bool tabReplace() const;
-
-    /**
-     * @brief Method for setting amount of spaces, that will
-     * replace tab.
-     * @param val Number of spaces.
-     */
-    void setTabReplaceSize(int val);
-
-    /**
-     * @brief Method for getting number of spaces, that will
-     * replace tab if `tabReplace` is true.
-     * Default: 4
-     */
-    int tabReplaceSize() const;
-
-    /**
-     * @brief Method for setting auto indentation enabled.
-     */
-    void setAutoIndentation(bool enabled);
-
-    /**
-     * @brief Method for setting the parentheses.
-     */
-    void setParentheses(const QVector<Parenthesis> &parentheses);
-
-    /**
-     * @brief Method for setting extra bottom margin enabled.
-     */
-    void setExtraBottomMargin(bool enabled);
-
-    /**
-     * @brief Method for getting is auto indentation enabled.
-     * Default: true
-     */
-    bool autoIndentation() const;
-
-    /**
      * @brief squiggle Puts a underline squiggle under text ranges in Editor
      * @param level defines the color of the underline depending upon the severity
      * @param tooltipMessage The tooltip hover message to show when over selection.
@@ -288,16 +241,13 @@ class CodeEditor : public QPlainTextEdit
         QString m_tooltipText;
     };
 
-    bool m_autoIndentation;
-    bool m_replaceTab;
-    bool m_extraBottomMargin;
-    QString m_tabReplace;
-
     QList<QTextEdit::ExtraSelection> extra1, extra2, extra_squiggles;
+
+    QString m_tabReplace;
 
     QVector<SquiggleInformation> m_squiggler;
 
-    QVector<Parenthesis> m_parentheses;
+    QVector<Parenthesis> parentheses;
 
     KSyntaxHighlighting::SyntaxHighlighter *highlighter;
 

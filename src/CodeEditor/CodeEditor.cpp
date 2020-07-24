@@ -33,9 +33,7 @@
 #include <syntaxhighlighter.h>
 #include <theme.h>
 
-CodeEditor::CodeEditor(QWidget *widget)
-    : QPlainTextEdit(widget), m_autoIndentation(true), m_replaceTab(true), m_extraBottomMargin(true),
-      m_tabReplace(QString(4, ' ')), m_parentheses({{'(', ')'}, {'{', '}'}, {'[', ']'}, {'\"', '\"'}, {'\'', '\''}})
+CodeEditor::CodeEditor(QWidget *widget) : QPlainTextEdit(widget)
 {
     connect(document(), &QTextDocument::blockCountChanged, this, &CodeEditor::updateBottomMargin);
     connect(this, &QPlainTextEdit::cursorPositionChanged, this, &CodeEditor::updateExtraSelection1);
@@ -52,22 +50,17 @@ void CodeEditor::applySettings(const QString &lang)
 
     language = lang;
 
-    setTabReplace(SettingsHelper::isReplaceTabs());
-    setTabReplaceSize(SettingsHelper::getTabWidth());
-    setAutoIndentation(SettingsHelper::isAutoIndent());
+    m_tabReplace = QString(SettingsHelper::getTabWidth(), ' ');
+    setTabStopDistance(fontMetrics().horizontalAdvance(QString(SettingsHelper::getTabWidth() * 200, ' ')) / 200.0);
 
     setFont(SettingsHelper::getEditorFont());
-
-    const int tabStop = SettingsHelper::getTabWidth();
-    QFontMetrics metric(font());
-    setTabReplaceSize(tabStop);
 
     if (SettingsHelper::isWrapText())
         setWordWrapMode(QTextOption::WordWrap);
     else
         setWordWrapMode(QTextOption::NoWrap);
 
-    setExtraBottomMargin(SettingsHelper::isExtraBottomMargin());
+    updateBottomMargin();
 
     if (language.isEmpty())
         return;
@@ -80,7 +73,7 @@ void CodeEditor::applySettings(const QString &lang)
 
     highlighter->rehighlight();
 
-    QVector<Parenthesis> parentheses;
+    parentheses.clear();
 
     auto list = SettingsManager::get(language + "/Parentheses").toList();
 
@@ -116,8 +109,6 @@ void CodeEditor::applySettings(const QString &lang)
 
         parentheses.push_back({left, right, autoComplete, autoRemove, tabJumpOut});
     }
-
-    setParentheses(parentheses);
 }
 
 void CodeEditor::resizeEvent(QResizeEvent *e)
@@ -169,7 +160,7 @@ void CodeEditor::updateBottomMargin()
         auto rf = doc->rootFrame();
         auto format = rf->frameFormat();
         int documentMargin = doc->documentMargin();
-        int bottomMargin = m_extraBottomMargin
+        int bottomMargin = SettingsHelper::isExtraBottomMargin()
                                ? qMax(documentMargin, viewport()->height() - fontMetrics().height()) - documentMargin
                                : documentMargin;
         if (format.bottomMargin() != bottomMargin)
@@ -201,12 +192,12 @@ void CodeEditor::updateExtraSelection2()
 
 void CodeEditor::indent()
 {
-    addInEachLineOfSelection(QRegularExpression("^"), m_replaceTab ? m_tabReplace : "\t");
+    addInEachLineOfSelection(QRegularExpression("^"), SettingsHelper::isReplaceTabs() ? m_tabReplace : "\t");
 }
 
 void CodeEditor::unindent()
 {
-    removeInEachLineOfSelection(QRegularExpression("^(\t| {1," + QString::number(tabReplaceSize()) + "})"), true);
+    removeInEachLineOfSelection(QRegularExpression(QString("^(\t| {1,%1})").arg(SettingsHelper::getTabWidth())), true);
 }
 
 void CodeEditor::swapLineUp()
@@ -401,7 +392,7 @@ void CodeEditor::highlightParenthesis()
     auto currentSymbol = charUnderCursor();
     auto prevSymbol = charUnderCursor(-1);
 
-    for (auto &p : m_parentheses)
+    for (auto &p : parentheses)
     {
         int direction;
 
@@ -597,7 +588,7 @@ void CodeEditor::keyPressEvent(QKeyEvent *e)
         }
 
         auto c = charUnderCursor();
-        for (auto p : m_parentheses)
+        for (auto p : parentheses)
         {
             if (p.tabJumpOut && c == p.right)
             {
@@ -606,7 +597,7 @@ void CodeEditor::keyPressEvent(QKeyEvent *e)
             }
         }
 
-        if (m_replaceTab)
+        if (SettingsHelper::isReplaceTabs())
         {
             insertPlainText(m_tabReplace);
             return;
@@ -632,10 +623,11 @@ void CodeEditor::keyPressEvent(QKeyEvent *e)
 
     // Have Qt Edior like behaviour, if {|} and enter is pressed indent the two
     // parenthesis
-    if (m_autoIndentation && (e->key() == Qt::Key_Return || e->key() == Qt::Key_Enter) &&
+    if (SettingsHelper::isAutoIndent() && (e->key() == Qt::Key_Return || e->key() == Qt::Key_Enter) &&
         e->modifiers() == Qt::NoModifier && charUnderCursor(-1) == '{' && charUnderCursor() == '}')
     {
-        insertPlainText("\n" + indentationSpaces + (m_replaceTab ? m_tabReplace : "\t") + "\n" + indentationSpaces);
+        insertPlainText("\n" + indentationSpaces + (SettingsHelper::isReplaceTabs() ? m_tabReplace : "\t") + "\n" +
+                        indentationSpaces);
 
         for (int i = 0; i <= indentationSpaces.length(); ++i)
             moveCursor(QTextCursor::MoveOperation::Left);
@@ -644,10 +636,10 @@ void CodeEditor::keyPressEvent(QKeyEvent *e)
     }
 
     // Auto-indent for single "{" without "}"
-    if (m_autoIndentation && (e->key() == Qt::Key_Return || e->key() == Qt::Key_Enter) &&
+    if (SettingsHelper::isAutoIndent() && (e->key() == Qt::Key_Return || e->key() == Qt::Key_Enter) &&
         e->modifiers() == Qt::NoModifier && charUnderCursor(-1) == '{')
     {
-        insertPlainText("\n" + indentationSpaces + (m_replaceTab ? m_tabReplace : "\t"));
+        insertPlainText("\n" + indentationSpaces + (SettingsHelper::isReplaceTabs() ? m_tabReplace : "\t"));
         setTextCursor(textCursor()); // scroll to the cursor
         return;
     }
@@ -656,7 +648,7 @@ void CodeEditor::keyPressEvent(QKeyEvent *e)
     {
         auto pre = charUnderCursor(-1);
         auto nxt = charUnderCursor();
-        for (auto p : m_parentheses)
+        for (auto p : parentheses)
         {
             if (p.autoRemove && p.left == pre && p.right == nxt)
             {
@@ -695,7 +687,7 @@ void CodeEditor::keyPressEvent(QKeyEvent *e)
         }
     }
 
-    for (auto p : m_parentheses)
+    for (auto p : parentheses)
     {
         if (p.autoComplete)
         {
@@ -755,48 +747,6 @@ void CodeEditor::keyPressEvent(QKeyEvent *e)
     }
 
     QPlainTextEdit::keyPressEvent(e);
-}
-
-void CodeEditor::setAutoIndentation(bool enabled)
-{
-    m_autoIndentation = enabled;
-}
-
-void CodeEditor::setParentheses(const QVector<Parenthesis> &parentheses)
-{
-    m_parentheses = parentheses;
-}
-
-void CodeEditor::setExtraBottomMargin(bool enabled)
-{
-    m_extraBottomMargin = enabled;
-    updateBottomMargin();
-}
-
-bool CodeEditor::autoIndentation() const
-{
-    return m_autoIndentation;
-}
-
-void CodeEditor::setTabReplace(bool enabled)
-{
-    m_replaceTab = enabled;
-}
-
-bool CodeEditor::tabReplace() const
-{
-    return m_replaceTab;
-}
-
-void CodeEditor::setTabReplaceSize(int val)
-{
-    m_tabReplace.fill(' ', val);
-    setTabStopDistance(fontMetrics().horizontalAdvance(QString(val * 1000, ' ')) / 1000.0);
-}
-
-int CodeEditor::tabReplaceSize() const
-{
-    return m_tabReplace.size();
 }
 
 bool CodeEditor::event(QEvent *event)
