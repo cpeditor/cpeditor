@@ -101,6 +101,9 @@ set_property(SOURCE ${CMAKE_BINARY_DIR}/generated/SettingsHelper.hpp ${CMAKE_BIN
 add_executable(cpeditor
     ${GUI_TYPE}
 
+    src/CodeEditor/CodeEditor.cpp
+    src/CodeEditor/CodeEditor.hpp
+
     src/Core/Checker.cpp
     src/Core/Checker.hpp
     src/Core/Compiler.cpp
@@ -174,8 +177,6 @@ add_executable(cpeditor
     src/Util/Util.cpp
     src/Util/Util.hpp
 
-    src/Widgets/CodeEditor.cpp
-    src/Widgets/CodeEditor.hpp
     src/Widgets/DiffViewer.cpp
     src/Widgets/DiffViewer.hpp
     src/Widgets/TestCase.cpp

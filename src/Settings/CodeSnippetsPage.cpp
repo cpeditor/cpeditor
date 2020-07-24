@@ -16,9 +16,9 @@
  */
 
 #include "Settings/CodeSnippetsPage.hpp"
+#include "CodeEditor/CodeEditor.hpp"
 #include "Settings/DefaultPathManager.hpp"
 #include "Util/FileUtil.hpp"
-#include "Widgets/CodeEditor.hpp"
 #include "generated/SettingsHelper.hpp"
 #include <QInputDialog>
 #include <QLabel>
