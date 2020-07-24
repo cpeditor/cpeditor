@@ -20,6 +20,7 @@
 
 #include <QPlainTextEdit>
 #include <QTextEdit>
+#include <theme.h>
 
 namespace KSyntaxHighlighting
 {
@@ -249,7 +250,9 @@ class CodeEditor : public QPlainTextEdit
 
     QVector<Parenthesis> parentheses;
 
-    KSyntaxHighlighting::SyntaxHighlighter *highlighter;
+    KSyntaxHighlighting::SyntaxHighlighter *highlighter = nullptr;
+
+    KSyntaxHighlighting::Theme theme;
 
     QString language;
 };

@@ -30,7 +30,6 @@
 #include <QToolTip>
 #include <definition.h>
 #include <syntaxhighlighter.h>
-#include <theme.h>
 
 CodeEditor::CodeEditor(QWidget *widget) : QPlainTextEdit(widget)
 {
@@ -67,8 +66,9 @@ void CodeEditor::applySettings(const QString &lang)
     highlighter->setDefinition(
         KSyntaxHighlightingRepository::getSyntaxHighlightingRepository()->definitionForName(language));
 
-    highlighter->setTheme(KSyntaxHighlightingRepository::getSyntaxHighlightingRepository()->theme(
-        SettingsHelper::getSyntaxHighlightingStyle()));
+    theme = KSyntaxHighlightingRepository::getSyntaxHighlightingRepository()->theme(
+        SettingsHelper::getSyntaxHighlightingStyle());
+    highlighter->setTheme(theme);
 
     highlighter->rehighlight();
 
@@ -436,8 +436,6 @@ void CodeEditor::highlightParenthesis()
             }
         }
 
-        // const auto format = m_syntaxStyle->getFormat("Parentheses");
-
         // Found
         if (counter == 0)
         {
@@ -445,7 +443,7 @@ void CodeEditor::highlightParenthesis()
 
             auto directionEnum = direction < 0 ? QTextCursor::MoveOperation::Left : QTextCursor::MoveOperation::Right;
 
-            // selection.format = format;
+            selection.format.setBackground({theme.editorColor(KSyntaxHighlighting::Theme::BracketMatching)});
             selection.cursor = textCursor();
             selection.cursor.clearSelection();
             selection.cursor.movePosition(directionEnum, QTextCursor::MoveMode::MoveAnchor,
@@ -472,8 +470,7 @@ void CodeEditor::highlightCurrentLine()
     {
         QTextEdit::ExtraSelection selection;
 
-        // selection.format = m_syntaxStyle->getFormat("CurrentLine");
-        selection.format.setForeground(QBrush());
+        selection.format.setBackground({theme.editorColor(KSyntaxHighlighting::Theme::CurrentLine)});
         selection.format.setProperty(QTextFormat::FullWidthSelection, true);
         selection.cursor = textCursor();
         selection.cursor.clearSelection();
@@ -501,7 +498,7 @@ void CodeEditor::highlightOccurrences()
                 {
                     QTextEdit::ExtraSelection e;
                     e.cursor = cursor;
-                    // e.format.setBackground(m_syntaxStyle->getFormat("Selection").background());
+                    e.format.setBackground({theme.editorColor(KSyntaxHighlighting::Theme::TextSelection)});
                     extra2.push_back(e);
                 }
                 cursor = doc->find(text, cursor, QTextDocument::FindWholeWords | QTextDocument::FindCaseSensitively);
