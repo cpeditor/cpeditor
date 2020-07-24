@@ -17,6 +17,7 @@
 
 #include "mainwindow.hpp"
 
+#include "CodeEditor/CodeEditor.hpp"
 #include "Core/Checker.hpp"
 #include "Core/Compiler.hpp"
 #include "Core/EventLogger.hpp"
@@ -28,7 +29,6 @@
 #include "Settings/DefaultPathManager.hpp"
 #include "Settings/FileProblemBinder.hpp"
 #include "Util/FileUtil.hpp"
-#include "Widgets/CodeEditor.hpp"
 #include "Widgets/TestCases.hpp"
 #include <QFileSystemWatcher>
 #include <QFontDialog>

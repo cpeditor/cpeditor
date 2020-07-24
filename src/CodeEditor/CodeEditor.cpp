@@ -15,7 +15,7 @@
  *
  */
 
-#include "Widgets/CodeEditor.hpp"
+#include "CodeEditor/CodeEditor.hpp"
 #include "Core/EventLogger.hpp"
 #include "Core/KSyntaxHighlightingRepository.hpp"
 #include "Extensions/EditorTheme.hpp"

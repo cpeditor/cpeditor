@@ -16,10 +16,10 @@
  */
 
 #include "Extensions/ClangFormatter.hpp"
+#include "CodeEditor/CodeEditor.hpp"
 #include "Core/EventLogger.hpp"
 #include "Core/MessageLogger.hpp"
 #include "Util/FileUtil.hpp"
-#include "Widgets/CodeEditor.hpp"
 #include <QJsonDocument>
 #include <QProcess>
 #include <QTemporaryDir>

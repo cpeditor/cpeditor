@@ -18,7 +18,7 @@
 #ifndef LANGUAGE_SERVER_H
 #define LANGUAGE_SERVER_H
 
-#include "Widgets/CodeEditor.hpp"
+#include "CodeEditor/CodeEditor.hpp"
 #include <QJsonObject>
 #include <QProcess>
 
