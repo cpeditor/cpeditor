@@ -257,8 +257,6 @@ class CodeEditor : public QPlainTextEdit
 
     KSyntaxHighlighting::SyntaxHighlighter *highlighter = nullptr;
 
-    KSyntaxHighlighting::Theme theme;
-
     QString language;
 };
 
