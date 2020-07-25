@@ -1485,10 +1485,6 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
         <translation>Геометрия</translation>
     </message>
     <message>
-        <source>Editor Font</source>
-        <translation>Шрифт редактора</translation>
-    </message>
-    <message>
         <source>The font of the code editor</source>
         <translation>Шрифт редактора кода</translation>
     </message>
@@ -1599,10 +1595,6 @@ You can use &quot;${filename}&quot; for the complete file name,
     <message>
         <source>The command to start a Python program. It should NOT include the path to the source file.</source>
         <translation>Команда для запуска программы на Python. Она не должна включать путь к исходному файлу.</translation>
-    </message>
-    <message>
-        <source>Editor Theme</source>
-        <translation>Тема редактора</translation>
     </message>
     <message>
         <source>Auto Complete Parentheses</source>
@@ -2435,15 +2427,15 @@ A loaded test case will be elided and read-only if it&apos;s too long.</source>
         <translation>Показывать всплывающие уведомления, когда известен вердикт отправки. Вы сможете видеть сообщения за пределами CP Editor.</translation>
     </message>
     <message>
-        <source>Syntax Highlighting Style</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>The style of the code syntax highlighting.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>The theme of the code editor</source>
+        <source>Code Editor Font</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Code Editor Theme</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

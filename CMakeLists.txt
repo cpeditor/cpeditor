@@ -101,6 +101,8 @@ add_executable(cpeditor
 
     src/CodeEditor/CodeEditor.cpp
     src/CodeEditor/CodeEditor.hpp
+    src/CodeEditor/CodeEditorSideBar.cpp
+    src/CodeEditor/CodeEditorSideBar.hpp
     src/CodeEditor/KSHRepository.cpp
     src/CodeEditor/KSHRepository.hpp
 

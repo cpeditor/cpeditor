@@ -15,6 +15,30 @@
  *
  */
 
+/* Some codes are from the examples of KDE/syntax-highlighting, which are licensed under the MIT License:
+
+    Copyright (C) 2016 Volker Krause <vkrause@kde.org>
+
+    Permission is hereby granted, free of charge, to any person obtaining
+    a copy of this software and associated documentation files (the
+    "Software"), to deal in the Software without restriction, including
+    without limitation the rights to use, copy, modify, merge, publish,
+    distribute, sublicense, and/or sell copies of the Software, and to
+    permit persons to whom the Software is furnished to do so, subject to
+    the following conditions:
+
+    The above copyright notice and this permission notice shall be included
+    in all copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+    EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+    MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+    IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+    CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+    TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+    SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+*/
+
 #ifndef CODEEDITOR_HPP
 #define CODEEDITOR_HPP
 
@@ -26,6 +50,8 @@ namespace KSyntaxHighlighting
 {
 class SyntaxHighlighter;
 }
+
+class CodeEditorSidebar;
 
 class CodeEditor : public QPlainTextEdit
 {
@@ -81,21 +107,13 @@ class CodeEditor : public QPlainTextEdit
 
     void applySettings(const QString &lang);
 
-  Q_SIGNALS:
+  signals:
     /**
      * @brief Signal, the font is changed by the wheel event.
      */
     void fontChanged(const QFont &newFont);
 
-  public Q_SLOTS:
-
-    /**
-     * @brief Slot, that will proceed extra selection
-     * for current cursor position.
-     */
-    void updateExtraSelection1();
-    void updateExtraSelection2();
-
+  public slots:
     /**
      * @brief Slot, that indent the selected lines.
      */
@@ -178,11 +196,33 @@ class CodeEditor : public QPlainTextEdit
      */
     bool event(QEvent *e) override;
 
-  private Q_SLOTS:
+    int sidebarWidth() const;
+
+    void sidebarPaintEvent(QPaintEvent *event);
+
+    void updateSidebarGeometry();
+
+    void updateSidebarArea(const QRect &rect, int dy);
+
+    QTextBlock blockAtPosition(int y) const;
+
+    bool isFoldable(const QTextBlock &block) const;
+
+    bool isFolded(const QTextBlock &block) const;
+
+    void toggleFold(const QTextBlock &block);
+
+  private slots:
     /**
      * @brief Slot, that updates the bottom margin.
      */
     void updateBottomMargin();
+
+    void highlightParentheses();
+
+    void highlightOccurrences();
+
+    void highlightCurrentLine();
 
   private:
     /**
@@ -191,20 +231,6 @@ class CodeEditor : public QPlainTextEdit
      * @param offset Offset to cursor.
      */
     QChar charUnderCursor(int offset = 0) const;
-
-    /**
-     * @brief Method, that adds highlighting of
-     * currently selected line to extra selection list.
-     */
-    void highlightCurrentLine();
-
-    /**
-     * @brief Method, that adds highlighting of
-     * parenthesis if available.
-     */
-    void highlightParenthesis();
-
-    void highlightOccurrences();
 
     /**
      * @brief Method for remove the first group of regex
@@ -228,7 +254,9 @@ class CodeEditor : public QPlainTextEdit
     /**
      * @brief Set the theme of the Code Editor from KSybtaxHighlighting::Theme
      */
-    void setTheme(const KSyntaxHighlighting::Theme &theme);
+    void setTheme(const KSyntaxHighlighting::Theme &newTheme);
+
+    void updateExtraSelections();
 
     /**
      * @brief The SquiggleInformation struct, Line number will be index of vector+1;
@@ -247,17 +275,24 @@ class CodeEditor : public QPlainTextEdit
         QString m_tooltipText;
     };
 
-    QList<QTextEdit::ExtraSelection> extra1, extra2, extra_squiggles;
+    QList<QTextEdit::ExtraSelection> currentLineExtraSelections, parenthesesExtraSelections, occurrencesExtraSelections,
+        squigglesExtraSelections;
 
     QString m_tabReplace;
 
-    QVector<SquiggleInformation> m_squiggler;
+    QVector<SquiggleInformation> squiggles;
 
     QVector<Parenthesis> parentheses;
 
     KSyntaxHighlighting::SyntaxHighlighter *highlighter = nullptr;
 
+    KSyntaxHighlighting::Theme theme;
+
+    CodeEditorSidebar *sideBar = nullptr;
+
     QString language;
+
+    friend class CodeEditorSidebar;
 };
 
 #endif // CODEEDITOR_HPP

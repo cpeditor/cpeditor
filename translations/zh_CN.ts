@@ -1485,10 +1485,6 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
         <translation></translation>
     </message>
     <message>
-        <source>Editor Font</source>
-        <translation>编辑器字体</translation>
-    </message>
-    <message>
         <source>The font of the code editor</source>
         <translation>代码编辑器的字体</translation>
     </message>
@@ -1598,10 +1594,6 @@ You can use &quot;${filename}&quot; for the complete file name,
     <message>
         <source>The command to start a Python program. It should NOT include the path to the source file.</source>
         <translation>执行 Python 程序时的命令。这里不应该包含源代码路径。</translation>
-    </message>
-    <message>
-        <source>Editor Theme</source>
-        <translation>编辑器主题</translation>
     </message>
     <message>
         <source>Auto Complete Parentheses</source>
@@ -2429,16 +2421,16 @@ A loaded test case will be elided and read-only if it&apos;s too long.</source>
         <translation>当获知了一个提交的评测结果时，显示一条气泡消息。你可以在 CP Editor 外看到这条消息。</translation>
     </message>
     <message>
-        <source>Syntax Highlighting Style</source>
-        <translation>代码高亮风格</translation>
-    </message>
-    <message>
         <source>The style of the code syntax highlighting.</source>
         <translation>代码语法高亮的风格。</translation>
     </message>
     <message>
-        <source>The theme of the code editor</source>
-        <translation>代码编辑器的主题</translation>
+        <source>Code Editor Font</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Code Editor Theme</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

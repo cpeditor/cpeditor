@@ -15,13 +15,40 @@
  *
  */
 
+/* Some codes are from the examples of KDE/syntax-highlighting, which are licensed under the MIT License:
+
+    Copyright (C) 2016 Volker Krause <vkrause@kde.org>
+
+    Permission is hereby granted, free of charge, to any person obtaining
+    a copy of this software and associated documentation files (the
+    "Software"), to deal in the Software without restriction, including
+    without limitation the rights to use, copy, modify, merge, publish,
+    distribute, sublicense, and/or sell copies of the Software, and to
+    permit persons to whom the Software is furnished to do so, subject to
+    the following conditions:
+
+    The above copyright notice and this permission notice shall be included
+    in all copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+    EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+    MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+    IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+    CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+    TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+    SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+*/
+
 #include "CodeEditor/CodeEditor.hpp"
+#include "CodeEditor/CodeEditorSideBar.hpp"
 #include "CodeEditor/KSHRepository.hpp"
 #include "Core/EventLogger.hpp"
 #include "Settings/SettingsManager.hpp"
 #include "generated/SettingsHelper.hpp"
+#include <QApplication>
 #include <QFontDatabase>
 #include <QMimeData>
+#include <QPainter>
 #include <QRegularExpression>
 #include <QRgb>
 #include <QScrollBar>
@@ -34,13 +61,17 @@
 
 CodeEditor::CodeEditor(QWidget *widget) : QPlainTextEdit(widget)
 {
+    highlighter = new KSyntaxHighlighting::SyntaxHighlighter(document());
+    sideBar = new CodeEditorSidebar(this);
+
     connect(document(), &QTextDocument::blockCountChanged, this, &CodeEditor::updateBottomMargin);
-    connect(this, &QPlainTextEdit::cursorPositionChanged, this, &CodeEditor::updateExtraSelection1);
-    connect(this, &QPlainTextEdit::selectionChanged, this, &CodeEditor::updateExtraSelection2);
+    connect(this, &QPlainTextEdit::blockCountChanged, this, &CodeEditor::updateSidebarGeometry);
+    connect(this, &QPlainTextEdit::updateRequest, this, &CodeEditor::updateSidebarArea);
+    connect(this, &QPlainTextEdit::cursorPositionChanged, this, &CodeEditor::highlightCurrentLine);
+    connect(this, &QPlainTextEdit::cursorPositionChanged, this, &CodeEditor::highlightParentheses);
+    connect(this, &QPlainTextEdit::selectionChanged, this, &CodeEditor::highlightOccurrences);
 
     setMouseTracking(true);
-
-    highlighter = new KSyntaxHighlighting::SyntaxHighlighter(document());
 }
 
 void CodeEditor::applySettings(const QString &lang)
@@ -53,8 +84,6 @@ void CodeEditor::applySettings(const QString &lang)
     setTabStopDistance(fontMetrics().horizontalAdvance(QString(SettingsHelper::getTabWidth() * 200, ' ')) / 200.0);
 
     setFont(SettingsHelper::getCodeEditorFont());
-    setTheme(
-        KSyntaxHighlightingRepository::getSyntaxHighlightingRepository()->theme(SettingsHelper::getCodeEditorTheme()));
 
     if (SettingsHelper::isWrapText())
         setWordWrapMode(QTextOption::WordWrap);
@@ -68,6 +97,20 @@ void CodeEditor::applySettings(const QString &lang)
 
     highlighter->setDefinition(
         KSyntaxHighlightingRepository::getSyntaxHighlightingRepository()->definitionForName(language));
+
+    if (SettingsHelper::getCodeEditorTheme() == "Default")
+    {
+        setTheme(QColor(theme.editorColor(KSyntaxHighlighting::Theme::BackgroundColor)).lightness() < 128
+                     ? KSyntaxHighlightingRepository::getSyntaxHighlightingRepository()->defaultTheme(
+                           KSyntaxHighlighting::Repository::DarkTheme)
+                     : KSyntaxHighlightingRepository::getSyntaxHighlightingRepository()->defaultTheme(
+                           KSyntaxHighlighting::Repository::LightTheme));
+    }
+    else
+    {
+        setTheme(KSyntaxHighlightingRepository::getSyntaxHighlightingRepository()->theme(
+            SettingsHelper::getCodeEditorTheme()));
+    }
 
     parentheses.clear();
 
@@ -107,8 +150,10 @@ void CodeEditor::applySettings(const QString &lang)
     }
 }
 
-void CodeEditor::setTheme(const KSyntaxHighlighting::Theme &theme)
+void CodeEditor::setTheme(const KSyntaxHighlighting::Theme &newTheme)
 {
+    theme = newTheme;
+
     if (theme.isValid())
     {
         QRgb backgroundColor = theme.editorColor(KSyntaxHighlighting::Theme::BackgroundColor);
@@ -126,9 +171,163 @@ void CodeEditor::setTheme(const KSyntaxHighlighting::Theme &theme)
     highlightCurrentLine();
 }
 
+int CodeEditor::sidebarWidth() const
+{
+    int digits = 1;
+    auto count = blockCount();
+    while (count >= 10)
+    {
+        ++digits;
+        count /= 10;
+    }
+    return 4 + fontMetrics().horizontalAdvance(QLatin1Char('9')) * digits + fontMetrics().lineSpacing();
+}
+
+void CodeEditor::sidebarPaintEvent(QPaintEvent *event)
+{
+    QPainter painter(sideBar);
+    painter.fillRect(event->rect(), highlighter->theme().editorColor(KSyntaxHighlighting::Theme::IconBorder));
+
+    auto block = firstVisibleBlock();
+    auto blockNumber = block.blockNumber();
+    int top = blockBoundingGeometry(block).translated(contentOffset()).top();
+    int bottom = top + blockBoundingRect(block).height();
+    const int currentBlockNumber = textCursor().blockNumber();
+
+    const auto foldingMarkerSize = fontMetrics().lineSpacing();
+
+    while (block.isValid() && top <= event->rect().bottom())
+    {
+        if (block.isVisible() && bottom >= event->rect().top())
+        {
+            const auto number = QString::number(blockNumber + 1);
+            painter.setPen(highlighter->theme().editorColor((blockNumber == currentBlockNumber)
+                                                                ? KSyntaxHighlighting::Theme::CurrentLineNumber
+                                                                : KSyntaxHighlighting::Theme::LineNumbers));
+            painter.drawText(0, top, sideBar->width() - 2 - foldingMarkerSize, fontMetrics().height(), Qt::AlignRight,
+                             number);
+        }
+
+        // folding marker
+        if (block.isVisible() && isFoldable(block))
+        {
+            QPolygonF polygon;
+            if (isFolded(block))
+            {
+                polygon << QPointF(foldingMarkerSize * 0.4, foldingMarkerSize * 0.25);
+                polygon << QPointF(foldingMarkerSize * 0.4, foldingMarkerSize * 0.75);
+                polygon << QPointF(foldingMarkerSize * 0.8, foldingMarkerSize * 0.5);
+            }
+            else
+            {
+                polygon << QPointF(foldingMarkerSize * 0.25, foldingMarkerSize * 0.4);
+                polygon << QPointF(foldingMarkerSize * 0.75, foldingMarkerSize * 0.4);
+                polygon << QPointF(foldingMarkerSize * 0.5, foldingMarkerSize * 0.8);
+            }
+            painter.save();
+            painter.setRenderHint(QPainter::Antialiasing);
+            painter.setPen(Qt::NoPen);
+            painter.setBrush(QColor(highlighter->theme().editorColor(KSyntaxHighlighting::Theme::CodeFolding)));
+            painter.translate(sideBar->width() - foldingMarkerSize, top);
+            painter.drawPolygon(polygon);
+            painter.restore();
+        }
+
+        block = block.next();
+        top = bottom;
+        bottom = top + blockBoundingRect(block).height();
+        ++blockNumber;
+    }
+}
+
+void CodeEditor::updateSidebarGeometry()
+{
+    setViewportMargins(sidebarWidth(), 0, 0, 0);
+    const auto r = contentsRect();
+    sideBar->setGeometry(QRect(r.left(), r.top(), sidebarWidth(), r.height()));
+}
+
+void CodeEditor::updateSidebarArea(const QRect &rect, int dy)
+{
+    if (dy)
+        sideBar->scroll(0, dy);
+    else
+        sideBar->update(0, rect.y(), sideBar->width(), rect.height());
+}
+
+QTextBlock CodeEditor::blockAtPosition(int y) const
+{
+    auto block = firstVisibleBlock();
+    if (!block.isValid())
+        return QTextBlock();
+
+    int top = blockBoundingGeometry(block).translated(contentOffset()).top();
+    int bottom = top + blockBoundingRect(block).height();
+    do
+    {
+        if (top <= y && y <= bottom)
+            return block;
+        block = block.next();
+        top = bottom;
+        bottom = top + blockBoundingRect(block).height();
+    } while (block.isValid());
+    return QTextBlock();
+}
+
+bool CodeEditor::isFoldable(const QTextBlock &block) const
+{
+    return highlighter->startsFoldingRegion(block);
+}
+
+bool CodeEditor::isFolded(const QTextBlock &block) const
+{
+    if (!block.isValid())
+        return false;
+    const auto nextBlock = block.next();
+    if (!nextBlock.isValid())
+        return false;
+    return !nextBlock.isVisible();
+}
+
+void CodeEditor::toggleFold(const QTextBlock &startBlock)
+{
+    // we also want to fold the last line of the region, therefore the ".next()"
+    const auto endBlock = highlighter->findFoldingRegionEnd(startBlock).next();
+
+    if (isFolded(startBlock))
+    {
+        // unfold
+        auto block = startBlock.next();
+        while (block.isValid() && !block.isVisible())
+        {
+            block.setVisible(true);
+            block.setLineCount(block.layout()->lineCount());
+            block = block.next();
+        }
+    }
+    else
+    {
+        // fold
+        auto block = startBlock.next();
+        while (block.isValid() && block != endBlock)
+        {
+            block.setVisible(false);
+            block.setLineCount(0);
+            block = block.next();
+        }
+    }
+
+    // redraw document
+    document()->markContentsDirty(startBlock.position(), endBlock.position() - startBlock.position() + 1);
+
+    // update scrollbars
+    emit document()->documentLayout()->documentSizeChanged(document()->documentLayout()->documentSize());
+}
+
 void CodeEditor::resizeEvent(QResizeEvent *e)
 {
     QPlainTextEdit::resizeEvent(e);
+    updateSidebarGeometry();
     updateBottomMargin();
 }
 
@@ -176,7 +375,7 @@ void CodeEditor::updateBottomMargin()
         auto format = rf->frameFormat();
         int documentMargin = doc->documentMargin();
         int bottomMargin = SettingsHelper::isExtraBottomMargin()
-                               ? qMax(documentMargin, viewport()->height() - fontMetrics().height()) - documentMargin
+                               ? qMax(0, viewport()->height() - fontMetrics().height() - documentMargin)
                                : documentMargin;
         if (format.bottomMargin() != bottomMargin)
         {
@@ -186,23 +385,37 @@ void CodeEditor::updateBottomMargin()
     }
 }
 
-void CodeEditor::updateExtraSelection1()
+void CodeEditor::highlightOccurrences()
 {
-    extra1.clear();
+    occurrencesExtraSelections.clear();
 
-    highlightCurrentLine();
-    highlightParenthesis();
+    auto cursor = textCursor();
+    if (cursor.hasSelection())
+    {
+        auto text = cursor.selectedText();
+        if (QRegularExpression(
+                R"((?:[_a-zA-Z][_a-zA-Z0-9]*)|(?<=\b|\s|^)(?i)(?:(?:(?:(?:(?:\d+(?:'\d+)*)?\.(?:\d+(?:'\d+)*)(?:e[+-]?(?:\d+(?:'\d+)*))?)|(?:(?:\d+(?:'\d+)*)\.(?:e[+-]?(?:\d+(?:'\d+)*))?)|(?:(?:\d+(?:'\d+)*)(?:e[+-]?(?:\d+(?:'\d+)*)))|(?:0x(?:[0-9a-f]+(?:'[0-9a-f]+)*)?\.(?:[0-9a-f]+(?:'[0-9a-f]+)*)(?:p[+-]?(?:\d+(?:'\d+)*)))|(?:0x(?:[0-9a-f]+(?:'[0-9a-f]+)*)\.?(?:p[+-]?(?:\d+(?:'\d+)*))))[lf]?)|(?:(?:(?:[1-9]\d*(?:'\d+)*)|(?:0[0-7]*(?:'[0-7]+)*)|(?:0x[0-9a-f]+(?:'[0-9a-f]+)*)|(?:0b[01]+(?:'[01]+)*))(?:u?l{0,2}|l{0,2}u?)))(?=\b|\s|$))")
+                .match(text)
+                .captured() == text)
+        {
+            auto doc = document();
+            cursor = doc->find(text, 0, QTextDocument::FindWholeWords | QTextDocument::FindCaseSensitively);
+            while (!cursor.isNull())
+            {
+                if (cursor != textCursor())
+                {
+                    QTextEdit::ExtraSelection e;
+                    e.cursor = cursor;
+                    e.format.setBackground(
+                        {highlighter->theme().editorColor(KSyntaxHighlighting::Theme::TextSelection)});
+                    occurrencesExtraSelections.push_back(e);
+                }
+                cursor = doc->find(text, cursor, QTextDocument::FindWholeWords | QTextDocument::FindCaseSensitively);
+            }
+        }
+    }
 
-    setExtraSelections(extra1 + extra2 + extra_squiggles);
-}
-
-void CodeEditor::updateExtraSelection2()
-{
-    extra2.clear();
-
-    highlightOccurrences();
-
-    setExtraSelections(extra1 + extra2 + extra_squiggles);
+    updateExtraSelections();
 }
 
 void CodeEditor::indent()
@@ -402,8 +615,10 @@ void CodeEditor::toggleBlockComment()
     setTextCursor(cursor);
 }
 
-void CodeEditor::highlightParenthesis()
+void CodeEditor::highlightParentheses()
 {
+    parenthesesExtraSelections.clear();
+
     auto currentSymbol = charUnderCursor();
     auto prevSymbol = charUnderCursor(-1);
 
@@ -455,7 +670,7 @@ void CodeEditor::highlightParenthesis()
         // Found
         if (counter == 0)
         {
-            QTextEdit::ExtraSelection selection{};
+            QTextEdit::ExtraSelection selection;
 
             auto directionEnum = direction < 0 ? QTextCursor::MoveOperation::Left : QTextCursor::MoveOperation::Right;
 
@@ -468,21 +683,25 @@ void CodeEditor::highlightParenthesis()
 
             selection.cursor.movePosition(QTextCursor::MoveOperation::Right, QTextCursor::MoveMode::KeepAnchor, 1);
 
-            extra1.append(selection);
+            parenthesesExtraSelections.append(selection);
 
             selection.cursor = textCursor();
             selection.cursor.clearSelection();
             selection.cursor.movePosition(directionEnum, QTextCursor::MoveMode::KeepAnchor, 1);
 
-            extra1.append(selection);
+            parenthesesExtraSelections.append(selection);
         }
 
         break;
     }
+
+    updateExtraSelections();
 }
 
 void CodeEditor::highlightCurrentLine()
 {
+    currentLineExtraSelections.clear();
+
     if (!isReadOnly())
     {
         QTextEdit::ExtraSelection selection;
@@ -492,37 +711,10 @@ void CodeEditor::highlightCurrentLine()
         selection.cursor = textCursor();
         selection.cursor.clearSelection();
 
-        extra1.append(selection);
+        currentLineExtraSelections.append(selection);
     }
-}
 
-void CodeEditor::highlightOccurrences()
-{
-    auto cursor = textCursor();
-    if (cursor.hasSelection())
-    {
-        auto text = cursor.selectedText();
-        if (QRegularExpression(
-                R"((?:[_a-zA-Z][_a-zA-Z0-9]*)|(?<=\b|\s|^)(?i)(?:(?:(?:(?:(?:\d+(?:'\d+)*)?\.(?:\d+(?:'\d+)*)(?:e[+-]?(?:\d+(?:'\d+)*))?)|(?:(?:\d+(?:'\d+)*)\.(?:e[+-]?(?:\d+(?:'\d+)*))?)|(?:(?:\d+(?:'\d+)*)(?:e[+-]?(?:\d+(?:'\d+)*)))|(?:0x(?:[0-9a-f]+(?:'[0-9a-f]+)*)?\.(?:[0-9a-f]+(?:'[0-9a-f]+)*)(?:p[+-]?(?:\d+(?:'\d+)*)))|(?:0x(?:[0-9a-f]+(?:'[0-9a-f]+)*)\.?(?:p[+-]?(?:\d+(?:'\d+)*))))[lf]?)|(?:(?:(?:[1-9]\d*(?:'\d+)*)|(?:0[0-7]*(?:'[0-7]+)*)|(?:0x[0-9a-f]+(?:'[0-9a-f]+)*)|(?:0b[01]+(?:'[01]+)*))(?:u?l{0,2}|l{0,2}u?)))(?=\b|\s|$))")
-                .match(text)
-                .captured() == text)
-        {
-            auto doc = document();
-            cursor = doc->find(text, 0, QTextDocument::FindWholeWords | QTextDocument::FindCaseSensitively);
-            while (!cursor.isNull())
-            {
-                if (cursor != textCursor())
-                {
-                    QTextEdit::ExtraSelection e;
-                    e.cursor = cursor;
-                    e.format.setBackground(
-                        {highlighter->theme().editorColor(KSyntaxHighlighting::Theme::TextSelection)});
-                    extra2.push_back(e);
-                }
-                cursor = doc->find(text, cursor, QTextDocument::FindWholeWords | QTextDocument::FindCaseSensitively);
-            }
-        }
-    }
+    updateExtraSelections();
 }
 
 int CodeEditor::getFirstVisibleBlock()
@@ -780,7 +972,7 @@ bool CodeEditor::event(QEvent *event)
         QPair<int, int> positionOfTooltip{lineNumber, blockPositionStart};
 
         QString text;
-        for (auto const &e : m_squiggler)
+        for (auto const &e : squiggles)
         {
             if (e.m_startPos <= positionOfTooltip && e.m_stopPos >= positionOfTooltip)
             {
@@ -807,7 +999,7 @@ void CodeEditor::squiggle(SeverityLevel level, QPair<int, int> start, QPair<int,
         return;
 
     SquiggleInformation info(start, stop, tooltipMessage);
-    m_squiggler.push_back(info);
+    squiggles.push_back(info);
 
     auto cursor = textCursor();
 
@@ -844,20 +1036,20 @@ void CodeEditor::squiggle(SeverityLevel level, QPair<int, int> start, QPair<int,
         newcharfmt.setUnderlineStyle(QTextCharFormat::DotLine);
     }
 
-    extra_squiggles.push_back({cursor, newcharfmt});
+    squigglesExtraSelections.push_back({cursor, newcharfmt});
 
-    setExtraSelections(extra1 + extra2 + extra_squiggles);
+    updateExtraSelections();
 }
 
 void CodeEditor::clearSquiggle()
 {
-    if (m_squiggler.empty())
+    if (squiggles.empty())
         return;
 
-    m_squiggler.clear();
-    extra_squiggles.clear();
+    squiggles.clear();
+    squigglesExtraSelections.clear();
 
-    setExtraSelections(extra1 + extra2);
+    updateExtraSelections();
 }
 
 QChar CodeEditor::charUnderCursor(int offset) const
@@ -980,4 +1172,10 @@ void CodeEditor::addInEachLineOfSelection(const QRegularExpression &regex, const
         cursor.setPosition(pos, QTextCursor::KeepAnchor);
     }
     setTextCursor(cursor);
+}
+
+void CodeEditor::updateExtraSelections()
+{
+    QPlainTextEdit::setExtraSelections(currentLineExtraSelections + parenthesesExtraSelections +
+                                       occurrencesExtraSelections + squigglesExtraSelections);
 }
