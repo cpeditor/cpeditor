@@ -127,8 +127,6 @@ add_executable(cpeditor
     src/Extensions/ClangFormatter.hpp
     src/Extensions/CompanionServer.cpp
     src/Extensions/CompanionServer.hpp
-    src/Extensions/EditorTheme.cpp
-    src/Extensions/EditorTheme.hpp
     src/Extensions/LanguageServer.cpp
     src/Extensions/LanguageServer.hpp
 
@@ -217,7 +215,6 @@ include_directories("generated/")
 include_directories("src/")
 include_directories("third_party/diff_match_patch")
 include_directories("third_party/lsp-cpp/include")
-include_directories("third_party/QCodeEditor/include")
 include_directories("third_party/QtFindReplaceDialog")
 
 target_link_libraries(cpeditor PRIVATE LSPClient)

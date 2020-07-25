@@ -200,21 +200,21 @@ void LanguageServer::performConnection()
     LOG_INFO("All language server connections have been established");
 }
 
-QCodeEditor::SeverityLevel LanguageServer::lspSeverity(int in)
+CodeEditor::SeverityLevel LanguageServer::lspSeverity(int in)
 {
     switch (in)
     {
     case 1:
-        return QCodeEditor ::SeverityLevel::Error;
+        return CodeEditor ::SeverityLevel::Error;
     case 2:
-        return QCodeEditor::SeverityLevel::Warning;
+        return CodeEditor::SeverityLevel::Warning;
     case 3:
-        return QCodeEditor::SeverityLevel::Information;
+        return CodeEditor::SeverityLevel::Information;
     case 4:
-        return QCodeEditor::SeverityLevel::Hint;
+        return CodeEditor::SeverityLevel::Hint;
     }
     // Nothing matched
-    return QCodeEditor::SeverityLevel::Error;
+    return CodeEditor::SeverityLevel::Error;
 }
 
 void LanguageServer::initializeLSP(QString filePath)
@@ -235,7 +235,7 @@ void LanguageServer::onLSPServerNotificationArrived(QString method, QJsonObject 
         for (auto e : doc)
         {
             QString tooltip = e.toObject()["message"].toString();
-            QCodeEditor::SeverityLevel level = lspSeverity(e.toObject()["severity"].toInt());
+            CodeEditor::SeverityLevel level = lspSeverity(e.toObject()["severity"].toInt());
 
             auto beg = e.toObject()["range"].toObject()["start"].toObject();
             auto end = e.toObject()["range"].toObject()["end"].toObject();

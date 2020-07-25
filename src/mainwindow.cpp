@@ -39,7 +39,6 @@
 #include <QSaveFile>
 #include <QScrollBar>
 #include <QShortcut>
-#include <QSyntaxStyle>
 #include <QTemporaryDir>
 #include <QTextBlock>
 #include <QTimer>
