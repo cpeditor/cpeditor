@@ -1,5 +1,9 @@
 ## UNRELEASED
 
+### Fixed
+
+- Fixed the old problem URL is not restored when opening an old file with that option on. (#522)
+
 ## 6.5.3
 
 This version is the same as 6.5.2, but it's considered stable now.
