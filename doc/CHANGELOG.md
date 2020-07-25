@@ -3,6 +3,7 @@
 ### Fixed
 
 - Fixed the old problem URL is not restored when opening an old file with that option on. (#522)
+- Fixed the performance issue that makes the editor extremely slow when there are many lines. (cpeditor/QCodeEditor#27)
 
 ## 6.5.3
 
