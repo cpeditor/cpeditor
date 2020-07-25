@@ -1,5 +1,7 @@
 ## UNRELEASED
 
+## 6.5.4
+
 ### Fixed
 
 - Fixed the old problem URL is not restored when opening an old file with that option on. (#522)
