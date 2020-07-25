@@ -1109,7 +1109,7 @@ void MainWindow::onTextChanged()
 
 void MainWindow::onEditorFontChanged(const QFont &newFont)
 {
-    SettingsHelper::setEditorFont(newFont);
+    SettingsHelper::setCodeEditorFont(newFont);
     emit editorFontChanged();
 }
 

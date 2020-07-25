@@ -16,13 +16,14 @@
  */
 
 #include "CodeEditor/CodeEditor.hpp"
+#include "CodeEditor/KSHRepository.hpp"
 #include "Core/EventLogger.hpp"
-#include "Core/KSyntaxHighlightingRepository.hpp"
 #include "Settings/SettingsManager.hpp"
 #include "generated/SettingsHelper.hpp"
 #include <QFontDatabase>
 #include <QMimeData>
 #include <QRegularExpression>
+#include <QRgb>
 #include <QScrollBar>
 #include <QTextBlock>
 #include <QTextCharFormat>
@@ -51,7 +52,9 @@ void CodeEditor::applySettings(const QString &lang)
     m_tabReplace = QString(SettingsHelper::getTabWidth(), ' ');
     setTabStopDistance(fontMetrics().horizontalAdvance(QString(SettingsHelper::getTabWidth() * 200, ' ')) / 200.0);
 
-    setFont(SettingsHelper::getEditorFont());
+    setFont(SettingsHelper::getCodeEditorFont());
+    setTheme(
+        KSyntaxHighlightingRepository::getSyntaxHighlightingRepository()->theme(SettingsHelper::getCodeEditorTheme()));
 
     if (SettingsHelper::isWrapText())
         setWordWrapMode(QTextOption::WordWrap);
@@ -65,12 +68,6 @@ void CodeEditor::applySettings(const QString &lang)
 
     highlighter->setDefinition(
         KSyntaxHighlightingRepository::getSyntaxHighlightingRepository()->definitionForName(language));
-
-    theme = KSyntaxHighlightingRepository::getSyntaxHighlightingRepository()->theme(
-        SettingsHelper::getSyntaxHighlightingStyle());
-    highlighter->setTheme(theme);
-
-    highlighter->rehighlight();
 
     parentheses.clear();
 
@@ -108,6 +105,25 @@ void CodeEditor::applySettings(const QString &lang)
 
         parentheses.push_back({left, right, autoComplete, autoRemove, tabJumpOut});
     }
+}
+
+void CodeEditor::setTheme(const KSyntaxHighlighting::Theme &theme)
+{
+    if (theme.isValid())
+    {
+        QRgb backgroundColor = theme.editorColor(KSyntaxHighlighting::Theme::BackgroundColor);
+        QRgb selectionBackground = theme.editorColor(KSyntaxHighlighting::Theme::TextSelection);
+        QRgb textColor = theme.textColor(KSyntaxHighlighting::Theme::Normal);
+
+        setStyleSheet(QString("QPlainTextEdit { background-color: %1; selection-background-color: %2; color: %3; }")
+                          .arg(QColor(backgroundColor).name())
+                          .arg(QColor(selectionBackground).name())
+                          .arg(QColor(textColor).name()));
+    }
+
+    highlighter->setTheme(theme);
+    highlighter->rehighlight();
+    highlightCurrentLine();
 }
 
 void CodeEditor::resizeEvent(QResizeEvent *e)

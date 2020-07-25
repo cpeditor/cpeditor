@@ -226,6 +226,11 @@ class CodeEditor : public QPlainTextEdit
     void addInEachLineOfSelection(const QRegularExpression &regex, const QString &str);
 
     /**
+     * @brief Set the theme of the Code Editor from KSybtaxHighlighting::Theme
+     */
+    void setTheme(const KSyntaxHighlighting::Theme &theme);
+
+    /**
      * @brief The SquiggleInformation struct, Line number will be index of vector+1;
      */
     struct SquiggleInformation

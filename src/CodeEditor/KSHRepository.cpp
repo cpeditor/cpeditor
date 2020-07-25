@@ -15,22 +15,21 @@
  *
  */
 
-#ifndef KSYNTAXHIGHLIGHTINGREPOSITORY_HPP
-#define KSYNTAXHIGHLIGHTINGREPOSITORY_HPP
+#include "CodeEditor/KSHRepository.hpp"
+#include <QStringList>
+#include <theme.h>
 
-#include <repository.h>
+KSyntaxHighlighting::Repository KSyntaxHighlightingRepository::repository;
 
-class QStringList;
-
-class KSyntaxHighlightingRepository
+KSyntaxHighlighting::Repository *KSyntaxHighlightingRepository::getSyntaxHighlightingRepository()
 {
-  public:
-    static KSyntaxHighlighting::Repository *getSyntaxHighlightingRepository();
+    return &repository;
+}
 
-    static QStringList themeNames();
-
-  private:
-    static KSyntaxHighlighting::Repository repository;
-};
-
-#endif // KSYNTAXHIGHLIGHTINGREPOSITORY_HPP
+QStringList KSyntaxHighlightingRepository::themeNames()
+{
+    QStringList names;
+    for (const auto &theme : repository.themes())
+        names.push_back(theme.name());
+    return names;
+}

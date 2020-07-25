@@ -65,6 +65,7 @@ const static QMap<QString, QString> updateInfo = {
     {"compile_and_run_only", "Show Compile And Run Only"},
     {"language", "Locale"},
     {"load_test_case_file_length_limit", "Load Test Case Length Limit"},
+    {"Editor Font", "Code Editor Font"},
 };
 
 void SettingsUpdater::updateSetting(QSettings &setting)
@@ -127,12 +128,4 @@ void SettingsUpdater::updateSetting(QSettings &setting)
                 QVariantList{QStringList{"file", setting.value("save_path").toString()}});
         }
     }
-
-    QString theme = SettingsManager::get("Editor Theme")
-                        .toString()
-                        .replace("Monkai", "Monokai")
-                        .replace("Drakula", "Dracula")
-                        .replace("Solarised", "Solarized Light")
-                        .replace("Solarized", "Solarized Light");
-    SettingsManager::set("Editor Theme", theme);
 }

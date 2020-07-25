@@ -185,7 +185,7 @@ namespace SettingsHelper
     setting_info.write(head)
     setting_info.write("""#include "Settings/SettingsInfo.hpp"
 #include "Core/StyleManager.hpp"
-#include "Core/KSyntaxHighlightingRepository.hpp"
+#include "CodeEditor/KSHRepository.hpp"
 #include "Settings/PathItem.hpp"
 #include <theme.h>
 #include <QFontDatabase>

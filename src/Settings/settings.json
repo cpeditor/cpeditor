@@ -11,7 +11,7 @@
         "type": "QRect"
     },
     {
-        "name": "Editor Font",
+        "name": "Code Editor Font",
         "type": "QFont",
         "default": "[](){ QFont font = QFontDatabase::systemFont(QFontDatabase::FixedFont); font.setStyleHint(QFont::TypeWriter); return font; }()",
         "param": "true",
@@ -279,14 +279,6 @@
         "name": "Python/Parentheses",
         "type": "QVariantList",
         "default": "QVariantList { QVariantList {'(', ')', Qt::PartiallyChecked, Qt::PartiallyChecked, Qt::PartiallyChecked}, QVariantList {'{', '}', Qt::PartiallyChecked, Qt::PartiallyChecked, Qt::PartiallyChecked}, QVariantList {'[', ']', Qt::PartiallyChecked, Qt::PartiallyChecked, Qt::PartiallyChecked}, QVariantList {'\"', '\"', Qt::PartiallyChecked, Qt::PartiallyChecked, Qt::PartiallyChecked}, QVariantList {'\\'', '\\'', Qt::PartiallyChecked, Qt::PartiallyChecked, Qt::PartiallyChecked} }"
-    },
-    {
-        "name": "Editor Theme",
-        "type": "QString",
-        "default": "Light",
-        "ui": "QComboBox",
-        "param": "QStringList {\"Light\", \"Dracula\", \"Monokai\", \"Solarized Light\", \"Solarized Dark\"}",
-        "tip": "The theme of the code editor"
     },
     {
         "name": "Auto Complete Parentheses",
@@ -836,7 +828,7 @@
         "tip": "The style of the whole application."
     },
     {
-        "name": "Syntax Highlighting Style",
+        "name": "Code Editor Theme",
         "type": "QString",
         "ui": "QComboBox",
         "default": "Default",

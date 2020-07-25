@@ -101,6 +101,8 @@ add_executable(cpeditor
 
     src/CodeEditor/CodeEditor.cpp
     src/CodeEditor/CodeEditor.hpp
+    src/CodeEditor/KSHRepository.cpp
+    src/CodeEditor/KSHRepository.hpp
 
     src/Core/Checker.cpp
     src/Core/Checker.hpp
@@ -108,8 +110,6 @@ add_executable(cpeditor
     src/Core/Compiler.hpp
     src/Core/EventLogger.cpp
     src/Core/EventLogger.hpp
-    src/Core/KSyntaxHighlightingRepository.cpp
-    src/Core/KSyntaxHighlightingRepository.hpp
     src/Core/MessageLogger.cpp
     src/Core/MessageLogger.hpp
     src/Core/Runner.cpp
