@@ -217,7 +217,7 @@ class MainWindow : public QMainWindow
     void loadTests();
     void saveTests(bool safe);
     void setCFToolUI();
-    void setFilePath(QString path);
+    void setFilePath(QString path, bool updateBinder = true);
     void setText(const QString &text, bool keep = false);
     void updateWatcher();
     void loadFile(const QString &loadPath);
