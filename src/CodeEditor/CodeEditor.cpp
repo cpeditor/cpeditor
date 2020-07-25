@@ -169,6 +169,8 @@ void CodeEditor::setTheme(const KSyntaxHighlighting::Theme &newTheme)
     highlighter->setTheme(theme);
     highlighter->rehighlight();
     highlightCurrentLine();
+    highlightOccurrences();
+    highlightParentheses();
 }
 
 int CodeEditor::sidebarWidth() const
