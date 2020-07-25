@@ -322,7 +322,7 @@ bool MainWindow::isUntitled() const
     return filePath.isEmpty();
 }
 
-void MainWindow::setFilePath(QString path)
+void MainWindow::setFilePath(QString path, bool updateBinder)
 {
     if (QFile::exists(path))
         path = QFileInfo(path).canonicalFilePath();
@@ -333,7 +333,8 @@ void MainWindow::setFilePath(QString path)
         return;
     }
     filePath = path;
-    FileProblemBinder::set(path, problemURL);
+    if (updateBinder)
+        FileProblemBinder::set(path, problemURL);
     emit editorFileChanged();
     updateWatcher();
 }
@@ -728,7 +729,7 @@ void MainWindow::loadFile(const QString &loadPath)
     auto path = loadPath;
 
     bool samePath = !isUntitled() && filePath == path;
-    setFilePath(path);
+    setFilePath(path, false);
 
     bool isTemplate = false;
 
