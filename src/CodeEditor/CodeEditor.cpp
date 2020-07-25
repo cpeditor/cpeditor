@@ -119,7 +119,6 @@ void CodeEditor::setTheme(const KSyntaxHighlighting::Theme &theme)
                           .arg(QColor(backgroundColor).name())
                           .arg(QColor(selectionBackground).name())
                           .arg(QColor(textColor).name()));
-
     }
 
     highlighter->setTheme(theme);
@@ -460,7 +459,8 @@ void CodeEditor::highlightParenthesis()
 
             auto directionEnum = direction < 0 ? QTextCursor::MoveOperation::Left : QTextCursor::MoveOperation::Right;
 
-            selection.format.setBackground({highlighter->theme().editorColor(KSyntaxHighlighting::Theme::BracketMatching)});
+            selection.format.setBackground(
+                {highlighter->theme().editorColor(KSyntaxHighlighting::Theme::BracketMatching)});
             selection.cursor = textCursor();
             selection.cursor.clearSelection();
             selection.cursor.movePosition(directionEnum, QTextCursor::MoveMode::MoveAnchor,
@@ -515,7 +515,8 @@ void CodeEditor::highlightOccurrences()
                 {
                     QTextEdit::ExtraSelection e;
                     e.cursor = cursor;
-                    e.format.setBackground({highlighter->theme().editorColor(KSyntaxHighlighting::Theme::TextSelection)});
+                    e.format.setBackground(
+                        {highlighter->theme().editorColor(KSyntaxHighlighting::Theme::TextSelection)});
                     extra2.push_back(e);
                 }
                 cursor = doc->find(text, cursor, QTextDocument::FindWholeWords | QTextDocument::FindCaseSensitively);
@@ -824,24 +825,24 @@ void CodeEditor::squiggle(SeverityLevel level, QPair<int, int> start, QPair<int,
     QTextCharFormat newcharfmt = currentCharFormat();
     newcharfmt.setFontUnderline(true);
 
-     switch (level)
-     {
-     case SeverityLevel::Error:
-         newcharfmt.setUnderlineColor(highlighter->theme().textColor(KSyntaxHighlighting::Theme::Error));
-         //newcharfmt.setUnderlineStyle(m_syntaxStyle->getFormat("Error").underlineStyle());
-         break;
-     case SeverityLevel::Warning:
-         newcharfmt.setUnderlineColor(highlighter->theme().textColor(KSyntaxHighlighting::Theme::Warning));
-         //newcharfmt.setUnderlineStyle(m_syntaxStyle->getFormat("Warning").underlineStyle());
-         break;
-     case SeverityLevel::Information:
-         newcharfmt.setUnderlineColor(highlighter->theme().textColor(KSyntaxHighlighting::Theme::Information));
-         newcharfmt.setUnderlineStyle(QTextCharFormat::DotLine);
-         break;
-     case SeverityLevel::Hint:
-         newcharfmt.setUnderlineColor(highlighter->theme().textColor(KSyntaxHighlighting::Theme::Alert));
-         newcharfmt.setUnderlineStyle(QTextCharFormat::DotLine);
-     }
+    switch (level)
+    {
+    case SeverityLevel::Error:
+        newcharfmt.setUnderlineColor(highlighter->theme().textColor(KSyntaxHighlighting::Theme::Error));
+        // newcharfmt.setUnderlineStyle(m_syntaxStyle->getFormat("Error").underlineStyle());
+        break;
+    case SeverityLevel::Warning:
+        newcharfmt.setUnderlineColor(highlighter->theme().textColor(KSyntaxHighlighting::Theme::Warning));
+        // newcharfmt.setUnderlineStyle(m_syntaxStyle->getFormat("Warning").underlineStyle());
+        break;
+    case SeverityLevel::Information:
+        newcharfmt.setUnderlineColor(highlighter->theme().textColor(KSyntaxHighlighting::Theme::Information));
+        newcharfmt.setUnderlineStyle(QTextCharFormat::DotLine);
+        break;
+    case SeverityLevel::Hint:
+        newcharfmt.setUnderlineColor(highlighter->theme().textColor(KSyntaxHighlighting::Theme::Alert));
+        newcharfmt.setUnderlineStyle(QTextCharFormat::DotLine);
+    }
 
     extra_squiggles.push_back({cursor, newcharfmt});
 
