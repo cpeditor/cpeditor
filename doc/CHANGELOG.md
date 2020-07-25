@@ -1,5 +1,7 @@
 ## UNRELEASED
 
+## 6.6.3 (Beta)
+
 ### Fixed
 
 - Fixed the background color of the diff viewer is black on Windows with the Dark Fusion theme. (#519 and #520)
