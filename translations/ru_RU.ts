@@ -479,6 +479,10 @@ Git commit hash: %3
         <source>No file is opened recently</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Clear Recent Files</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>AppearancePage</name>

@@ -74,6 +74,8 @@ AppWindow::AppWindow(bool noHotExit, QWidget *parent) : QMainWindow(parent), ui(
                 openRecentFilesMenu->addAction(recentFile, [this, recentFile] { openTab(recentFile); });
             }
         }
+        openRecentFilesMenu->addSeparator();
+        openRecentFilesMenu->addAction(tr("Clear Recent Files"), [] { SettingsHelper::setRecentFiles({}); });
     });
 
     Core::StyleManager::setDefault();

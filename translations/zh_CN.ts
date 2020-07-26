@@ -479,6 +479,10 @@ git 提交编号: %3
         <source>No file is opened recently</source>
         <translation>最近没有打开过任何文件</translation>
     </message>
+    <message>
+        <source>Clear Recent Files</source>
+        <translation>清空最近打开的文件</translation>
+    </message>
 </context>
 <context>
     <name>AppearancePage</name>
