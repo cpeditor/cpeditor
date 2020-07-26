@@ -473,15 +473,15 @@ Git commit hash: %3
     </message>
     <message>
         <source>Open Recent Files</source>
-        <translation type="unfinished"></translation>
+        <translation>Открыть последние файлы</translation>
     </message>
     <message>
         <source>No file is opened recently</source>
-        <translation type="unfinished"></translation>
+        <translation>Нет последних файлов</translation>
     </message>
     <message>
         <source>Clear Recent Files</source>
-        <translation type="unfinished"></translation>
+        <translation>Очистить последние файлы</translation>
     </message>
 </context>
 <context>
