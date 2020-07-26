@@ -1,5 +1,14 @@
 ## UNRELEASED
 
+### Fixed
+
+- Fixed the diff viewer crashes when the output is empty. (#517)
+- Fixed the background color of the diff viewer is black on Windows with the Dark Fusion theme. (#519 and #520)
+- Fixed the old problem URL is not restored when opening an old file with that option on. (#522)
+- Fixed the performance issue that makes the editor extremely slow when there are many lines. (cpeditor/QCodeEditor#27)
+
+## v6.6
+
 ### The Portable Version
 
 Now we provide the portable version on Windows. The portable version saves the config file in the same directory as the executable file of CP Editor, instead of the system config directory, and you can run it without installtion.
