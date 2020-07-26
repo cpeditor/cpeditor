@@ -1,5 +1,9 @@
 ## UNRELEASED
 
+### Added
+
+- Open recent files. (#527)
+
 ### Fixed
 
 - Fixed the diff viewer crashes when the output is empty. (#517)
