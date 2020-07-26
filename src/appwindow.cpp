@@ -58,6 +58,24 @@ AppWindow::AppWindow(bool noHotExit, QWidget *parent) : QMainWindow(parent), ui(
     allocate();
     setConnections();
 
+    auto separator = ui->menuFile->insertSeparator(ui->actionSave); // used to insert openRecentFilesMenu
+    auto openRecentFilesMenu = new QMenu(tr("Open Recent Files"), ui->menuFile);
+    ui->menuFile->insertMenu(separator, openRecentFilesMenu);
+    connect(openRecentFilesMenu, &QMenu::aboutToShow, [this, openRecentFilesMenu] {
+        openRecentFilesMenu->clear();
+        if (SettingsHelper::getRecentFiles().isEmpty())
+        {
+            openRecentFilesMenu->addAction(tr("No file is opened recently"))->setDisabled(true);
+        }
+        else
+        {
+            for (const auto &recentFile : SettingsHelper::getRecentFiles())
+            {
+                openRecentFilesMenu->addAction(recentFile, [this, recentFile] { openTab(recentFile); });
+            }
+        }
+    });
+
     Core::StyleManager::setDefault();
 
     QApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);

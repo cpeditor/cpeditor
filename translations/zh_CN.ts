@@ -471,6 +471,14 @@ git 提交编号: %3
         <source>Setup Version</source>
         <translation>安装版</translation>
     </message>
+    <message>
+        <source>Open Recent Files</source>
+        <translation>打开最近的文件</translation>
+    </message>
+    <message>
+        <source>No file is opened recently</source>
+        <translation>最近没有打开过任何文件</translation>
+    </message>
 </context>
 <context>
     <name>AppearancePage</name>
@@ -2431,6 +2439,11 @@ A loaded test case will be elided and read-only if it&apos;s too long.</source>
     <message>
         <source>Show a toast message when the verdict of a submission is known. You can see the message outside of CP Editor.</source>
         <translation>当获知了一个提交的评测结果时，显示一条气泡消息。你可以在 CP Editor 外看到这条消息。</translation>
+    </message>
+    <message>
+        <source>Recent Files</source>
+        <translatorcomment>Not in UI</translatorcomment>
+        <translation></translation>
     </message>
 </context>
 <context>

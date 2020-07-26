@@ -983,5 +983,9 @@
         "type": "bool",
         "default": "true",
         "trtip": "tr(\"When there are file changes that are not made in CP Editor and is not automatically loaded by\\n\\\"%1\\\", ask for whether to load the changes.\\nIf this is disabled, external file changes will be ignored unless they are loaded by\\n\\\"%1\\\".\").arg(tr(\"Auto-load external file changes if there's no unsaved modification\"))"
+    },
+    {
+        "name": "Recent Files",
+        "type": "QStringList"
     }
 ]

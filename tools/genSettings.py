@@ -87,12 +87,12 @@ def writeInfo(f, obj, lst):
                     'QString': '""',
                     'int': '0',
                     'bool': 'false',
-                    'QRect': 'QRect()',
-                    'QByteArray': 'QByteArray()',
-                    'QVariantList': 'QVariantList()',
                     'QMap': 'QVariantMap()'
                 }
-                f.write(defs[typename])
+                if typename in defs:
+                    f.write(defs[typename])
+                else:
+                    f.write(typename + '()')
         else:
             f.write(f'QVariant()')
         f.write(f', {t.get("param", "QVariant()")}')

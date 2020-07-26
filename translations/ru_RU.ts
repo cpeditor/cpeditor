@@ -471,6 +471,14 @@ Git commit hash: %3
         <source>Setup Version</source>
         <translation>Версия для установки</translation>
     </message>
+    <message>
+        <source>Open Recent Files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No file is opened recently</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>AppearancePage</name>
@@ -2437,6 +2445,10 @@ A loaded test case will be elided and read-only if it&apos;s too long.</source>
     <message>
         <source>Show a toast message when the verdict of a submission is known. You can see the message outside of CP Editor.</source>
         <translation>Показывать всплывающие уведомления, когда известен вердикт отправки. Вы сможете видеть сообщения за пределами CP Editor.</translation>
+    </message>
+    <message>
+        <source>Recent Files</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
