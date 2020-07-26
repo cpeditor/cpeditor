@@ -1489,10 +1489,6 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
         <translation>Ширина символов вкладки или количество пробелов на конце</translation>
     </message>
     <message>
-        <source>Geometry</source>
-        <translation>Геометрия</translation>
-    </message>
-    <message>
         <source>Editor Font</source>
         <translation>Шрифт редактора</translation>
     </message>
@@ -1713,10 +1709,6 @@ You can use &quot;${filename}&quot; for the complete file name,
         <translation>%1 Run Arguments</translation>
     </message>
     <message>
-        <source>%1 Parentheses</source>
-        <translation>%1 Скобки</translation>
-    </message>
-    <message>
         <source>The name of the main class of your solution.</source>
         <translation>Название основного класса вашего решения.</translation>
     </message>
@@ -1777,18 +1769,6 @@ This can be overridden for each parenthesis in each language.</source>
         <translation>Прозрачность главного окна</translation>
     </message>
     <message>
-        <source>View Mode</source>
-        <translation>Вид обзора</translation>
-    </message>
-    <message>
-        <source>Splitter Size</source>
-        <translation>Размер разделителя</translation>
-    </message>
-    <message>
-        <source>Right Splitter Size</source>
-        <translation>Размер правого разделителя</translation>
-    </message>
-    <message>
         <source>Enable Competitive Companion</source>
         <translation>Включить Competitive Companion</translation>
     </message>
@@ -1839,10 +1819,6 @@ This can be overridden for each parenthesis in each language.</source>
     <message>
         <source>Use Snippets</source>
         <translation>Использовать сниппеты</translation>
-    </message>
-    <message>
-        <source>Force Close</source>
-        <translation>Принудительно закрыть</translation>
     </message>
     <message>
         <source>The path to the CF Tool executable file</source>
@@ -2183,14 +2159,6 @@ Without modification: auto-save happens with an constant inverval no matter ther
 Без модификации: автоматическое сохранение происходит с постоянным интервалом независимо от того, есть модификации или нет.</translation>
     </message>
     <message>
-        <source>Snippet</source>
-        <translation>Сниппеты</translation>
-    </message>
-    <message>
-        <source>Language Config</source>
-        <translation>Конфигурация языка</translation>
-    </message>
-    <message>
         <source>Restore last session at startup</source>
         <translation>Восстановить последний сеанс при запуске приложения</translation>
     </message>
@@ -2445,10 +2413,6 @@ A loaded test case will be elided and read-only if it&apos;s too long.</source>
     <message>
         <source>Show a toast message when the verdict of a submission is known. You can see the message outside of CP Editor.</source>
         <translation>Показывать всплывающие уведомления, когда известен вердикт отправки. Вы сможете видеть сообщения за пределами CP Editor.</translation>
-    </message>
-    <message>
-        <source>Recent Files</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

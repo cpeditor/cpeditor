@@ -1489,10 +1489,6 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
         <translation>制表符的宽度或缩进的空格个数</translation>
     </message>
     <message>
-        <source>Geometry</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>Editor Font</source>
         <translation>编辑器字体</translation>
     </message>
@@ -1711,10 +1707,6 @@ You can use &quot;${filename}&quot; for the complete file name,
         <translation>%1 运行参数</translation>
     </message>
     <message>
-        <source>%1 Parentheses</source>
-        <translation>%1 括号</translation>
-    </message>
-    <message>
         <source>The name of the main class of your solution.</source>
         <translation>你的代码中非 public 主类的名称。</translation>
     </message>
@@ -1773,18 +1765,6 @@ This can be overridden for each parenthesis in each language.</source>
         <translation>主窗口的不透明度</translation>
     </message>
     <message>
-        <source>View Mode</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>Splitter Size</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>Right Splitter Size</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>Enable Competitive Companion</source>
         <translation>启用 Competitive Companion</translation>
     </message>
@@ -1835,10 +1815,6 @@ This can be overridden for each parenthesis in each language.</source>
     <message>
         <source>Use Snippets</source>
         <translation>使用代码片段</translation>
-    </message>
-    <message>
-        <source>Force Close</source>
-        <translation></translation>
     </message>
     <message>
         <source>The path to the CF Tool executable file</source>
@@ -2180,16 +2156,6 @@ After the first modification: 在修改代码时，若计时器未在运行，�
 Without modification: 以恒定的时间间隔自动保存，无论是否进行了修改。</translation>
     </message>
     <message>
-        <source>Snippet</source>
-        <translatorcomment>not in UI</translatorcomment>
-        <translation></translation>
-    </message>
-    <message>
-        <source>Language Config</source>
-        <translatorcomment>not in UI</translatorcomment>
-        <translation></translation>
-    </message>
-    <message>
         <source>Restore last session at startup</source>
         <translation>在启动时恢复上一次会话</translation>
     </message>
@@ -2439,11 +2405,6 @@ A loaded test case will be elided and read-only if it&apos;s too long.</source>
     <message>
         <source>Show a toast message when the verdict of a submission is known. You can see the message outside of CP Editor.</source>
         <translation>当获知了一个提交的评测结果时，显示一条气泡消息。你可以在 CP Editor 外看到这条消息。</translation>
-    </message>
-    <message>
-        <source>Recent Files</source>
-        <translatorcomment>Not in UI</translatorcomment>
-        <translation></translation>
     </message>
 </context>
 <context>
