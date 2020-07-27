@@ -8,7 +8,8 @@
     },
     {
         "name": "Geometry",
-        "type": "QRect"
+        "type": "QRect",
+        "notr": true
     },
     {
         "name": "Editor Font",
@@ -138,7 +139,8 @@
     {
         "name": "C++/Parentheses",
         "type": "QVariantList",
-        "default": "QVariantList { QVariantList {'(', ')', Qt::PartiallyChecked, Qt::PartiallyChecked, Qt::PartiallyChecked}, QVariantList {'{', '}', Qt::PartiallyChecked, Qt::PartiallyChecked, Qt::PartiallyChecked}, QVariantList {'[', ']', Qt::PartiallyChecked, Qt::PartiallyChecked, Qt::PartiallyChecked}, QVariantList {'\"', '\"', Qt::PartiallyChecked, Qt::PartiallyChecked, Qt::PartiallyChecked}, QVariantList {'\\'', '\\'', Qt::PartiallyChecked, Qt::PartiallyChecked, Qt::PartiallyChecked} }"
+        "default": "QVariantList { QVariantList {'(', ')', Qt::PartiallyChecked, Qt::PartiallyChecked, Qt::PartiallyChecked}, QVariantList {'{', '}', Qt::PartiallyChecked, Qt::PartiallyChecked, Qt::PartiallyChecked}, QVariantList {'[', ']', Qt::PartiallyChecked, Qt::PartiallyChecked, Qt::PartiallyChecked}, QVariantList {'\"', '\"', Qt::PartiallyChecked, Qt::PartiallyChecked, Qt::PartiallyChecked}, QVariantList {'\\'', '\\'', Qt::PartiallyChecked, Qt::PartiallyChecked, Qt::PartiallyChecked} }",
+        "notr": true
     },
     {
         "name": "Java/Template Path",
@@ -218,7 +220,8 @@
     {
         "name": "Java/Parentheses",
         "type": "QVariantList",
-        "default": "QVariantList { QVariantList {'(', ')', Qt::PartiallyChecked, Qt::PartiallyChecked, Qt::PartiallyChecked}, QVariantList {'{', '}', Qt::PartiallyChecked, Qt::PartiallyChecked, Qt::PartiallyChecked}, QVariantList {'[', ']', Qt::PartiallyChecked, Qt::PartiallyChecked, Qt::PartiallyChecked}, QVariantList {'\"', '\"', Qt::PartiallyChecked, Qt::PartiallyChecked, Qt::PartiallyChecked}, QVariantList {'\\'', '\\'', Qt::PartiallyChecked, Qt::PartiallyChecked, Qt::PartiallyChecked} }"
+        "default": "QVariantList { QVariantList {'(', ')', Qt::PartiallyChecked, Qt::PartiallyChecked, Qt::PartiallyChecked}, QVariantList {'{', '}', Qt::PartiallyChecked, Qt::PartiallyChecked, Qt::PartiallyChecked}, QVariantList {'[', ']', Qt::PartiallyChecked, Qt::PartiallyChecked, Qt::PartiallyChecked}, QVariantList {'\"', '\"', Qt::PartiallyChecked, Qt::PartiallyChecked, Qt::PartiallyChecked}, QVariantList {'\\'', '\\'', Qt::PartiallyChecked, Qt::PartiallyChecked, Qt::PartiallyChecked} }",
+        "notr": true
     },
     {
         "name": "Python/Template Path",
@@ -278,7 +281,8 @@
     {
         "name": "Python/Parentheses",
         "type": "QVariantList",
-        "default": "QVariantList { QVariantList {'(', ')', Qt::PartiallyChecked, Qt::PartiallyChecked, Qt::PartiallyChecked}, QVariantList {'{', '}', Qt::PartiallyChecked, Qt::PartiallyChecked, Qt::PartiallyChecked}, QVariantList {'[', ']', Qt::PartiallyChecked, Qt::PartiallyChecked, Qt::PartiallyChecked}, QVariantList {'\"', '\"', Qt::PartiallyChecked, Qt::PartiallyChecked, Qt::PartiallyChecked}, QVariantList {'\\'', '\\'', Qt::PartiallyChecked, Qt::PartiallyChecked, Qt::PartiallyChecked} }"
+        "default": "QVariantList { QVariantList {'(', ')', Qt::PartiallyChecked, Qt::PartiallyChecked, Qt::PartiallyChecked}, QVariantList {'{', '}', Qt::PartiallyChecked, Qt::PartiallyChecked, Qt::PartiallyChecked}, QVariantList {'[', ']', Qt::PartiallyChecked, Qt::PartiallyChecked, Qt::PartiallyChecked}, QVariantList {'\"', '\"', Qt::PartiallyChecked, Qt::PartiallyChecked, Qt::PartiallyChecked}, QVariantList {'\\'', '\\'', Qt::PartiallyChecked, Qt::PartiallyChecked, Qt::PartiallyChecked} }",
+        "notr": true
     },
     {
         "name": "Editor Theme",
@@ -389,15 +393,18 @@
     {
         "name": "View Mode",
         "type": "QString",
-        "default": "split"
+        "default": "split",
+        "notr": true
     },
     {
         "name": "Splitter Size",
-        "type": "QByteArray"
+        "type": "QByteArray",
+        "notr": true
     },
     {
         "name": "Right Splitter Size",
-        "type": "QByteArray"
+        "type": "QByteArray",
+        "notr": true
     },
     {
         "name": "Competitive Companion/Enable",
@@ -509,7 +516,8 @@
     },
     {
         "name": "Force Close",
-        "type": "bool"
+        "type": "bool",
+        "notr": true
     },
     {
         "name": "CF/Path",
@@ -843,9 +851,11 @@
                 "name": "Snippet",
                 "plural": "Snippets",
                 "type": "QMap",
-                "final": "QString"
+                "final": "QString",
+                "notr": true
             }
-        ]
+        ],
+        "notr": true
     },
     {
         "name": "Run On Empty Testcase",
@@ -983,5 +993,10 @@
         "type": "bool",
         "default": "true",
         "trtip": "tr(\"When there are file changes that are not made in CP Editor and is not automatically loaded by\\n\\\"%1\\\", ask for whether to load the changes.\\nIf this is disabled, external file changes will be ignored unless they are loaded by\\n\\\"%1\\\".\").arg(tr(\"Auto-load external file changes if there's no unsaved modification\"))"
+    },
+    {
+        "name": "Recent Files",
+        "type": "QStringList",
+        "notr": true
     }
 ]

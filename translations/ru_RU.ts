@@ -471,6 +471,18 @@ Git commit hash: %3
         <source>Setup Version</source>
         <translation>Версия для установки</translation>
     </message>
+    <message>
+        <source>Open Recent Files</source>
+        <translation>Открыть последние файлы</translation>
+    </message>
+    <message>
+        <source>No file is opened recently</source>
+        <translation>Нет последних файлов</translation>
+    </message>
+    <message>
+        <source>Clear Recent Files</source>
+        <translation>Очистить последние файлы</translation>
+    </message>
 </context>
 <context>
     <name>AppearancePage</name>
@@ -1481,10 +1493,6 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
         <translation>Ширина символов вкладки или количество пробелов на конце</translation>
     </message>
     <message>
-        <source>Geometry</source>
-        <translation>Геометрия</translation>
-    </message>
-    <message>
         <source>Editor Font</source>
         <translation>Шрифт редактора</translation>
     </message>
@@ -1705,10 +1713,6 @@ You can use &quot;${filename}&quot; for the complete file name,
         <translation>%1 Run Arguments</translation>
     </message>
     <message>
-        <source>%1 Parentheses</source>
-        <translation>%1 Скобки</translation>
-    </message>
-    <message>
         <source>The name of the main class of your solution.</source>
         <translation>Название основного класса вашего решения.</translation>
     </message>
@@ -1769,18 +1773,6 @@ This can be overridden for each parenthesis in each language.</source>
         <translation>Прозрачность главного окна</translation>
     </message>
     <message>
-        <source>View Mode</source>
-        <translation>Вид обзора</translation>
-    </message>
-    <message>
-        <source>Splitter Size</source>
-        <translation>Размер разделителя</translation>
-    </message>
-    <message>
-        <source>Right Splitter Size</source>
-        <translation>Размер правого разделителя</translation>
-    </message>
-    <message>
         <source>Enable Competitive Companion</source>
         <translation>Включить Competitive Companion</translation>
     </message>
@@ -1831,10 +1823,6 @@ This can be overridden for each parenthesis in each language.</source>
     <message>
         <source>Use Snippets</source>
         <translation>Использовать сниппеты</translation>
-    </message>
-    <message>
-        <source>Force Close</source>
-        <translation>Принудительно закрыть</translation>
     </message>
     <message>
         <source>The path to the CF Tool executable file</source>
@@ -2173,14 +2161,6 @@ Without modification: auto-save happens with an constant inverval no matter ther
         <translation>После последней модификации: таймер будет сброшен после модификации кода.
 После первой модификации: таймер запустится после модификации, если в это время таймер не работает.
 Без модификации: автоматическое сохранение происходит с постоянным интервалом независимо от того, есть модификации или нет.</translation>
-    </message>
-    <message>
-        <source>Snippet</source>
-        <translation>Сниппеты</translation>
-    </message>
-    <message>
-        <source>Language Config</source>
-        <translation>Конфигурация языка</translation>
     </message>
     <message>
         <source>Restore last session at startup</source>
