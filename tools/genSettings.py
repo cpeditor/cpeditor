@@ -46,7 +46,8 @@ def writeInfo(f, obj, lst):
         key = name.replace(" ", "").replace("/", "").replace("+", "p")
         typename = t["type"]
         desc = t.get("desc", name.replace('/', ' '))
-        trdesc = t.get("trdesc", f"tr({json.dumps(desc)})")
+        trdesc = t.get("trdesc", f"tr({json.dumps(desc)})" if not t.get(
+            "notr", False) else json.dumps(desc))
         ui = t.get("ui", "")
         tip = t.get("tip", "")
         trtip = t.get("trtip", f"tr({json.dumps(tip)})")
@@ -57,7 +58,7 @@ def writeInfo(f, obj, lst):
             f.write(f"    QList<SettingInfo> LIST{key};\n")
             writeInfo(f, t["sub"], f"LIST{key}")
         f.write(f"    {lst}.append(SettingInfo {{{json.dumps(name)}, ")
-        if "trdesc" not in t:
+        if "trdesc" not in t and "notr" not in t:
             for lang in ["C++", "Java", "Python"]:
                 if lang in desc:
                     trdesc = f"tr({json.dumps(desc.replace(lang, '%1'))}).arg(\"{lang}\")"
@@ -87,12 +88,12 @@ def writeInfo(f, obj, lst):
                     'QString': '""',
                     'int': '0',
                     'bool': 'false',
-                    'QRect': 'QRect()',
-                    'QByteArray': 'QByteArray()',
-                    'QVariantList': 'QVariantList()',
                     'QMap': 'QVariantMap()'
                 }
-                f.write(defs[typename])
+                if typename in defs:
+                    f.write(defs[typename])
+                else:
+                    f.write(typename + '()')
         else:
             f.write(f'QVariant()')
         f.write(f', {t.get("param", "QVariant()")}')

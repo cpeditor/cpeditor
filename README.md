@@ -11,7 +11,7 @@ It makes your competitive coding life easier :grin: by automating many things fo
 ---
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-40-orange.svg)](#contributors-sparkles)
+[![All Contributors](https://img.shields.io/badge/all_contributors-41-orange.svg)](#contributors-sparkles)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/ce0f297f31f74485b0d340949d08d605)](https://www.codacy.com/gh/cpeditor/cpeditor)
 [![GitHub All Releases](https://img.shields.io/github/downloads/cpeditor/cpeditor/total?label=downloads%40all)](https://github.com/cpeditor/cpeditor/releases)
@@ -40,7 +40,7 @@ It makes your competitive coding life easier :grin: by automating many things fo
 
 ## Get help
 
-1. Read the [manual](doc/MANUAL.md) and the [FAQ](#faq) first, also go through the menus and preferencecs to see if there are what you are looking for.
+1. Read the [manual](doc/MANUAL.md) and the [FAQ](#faq) first, also go through the menus and preferences to see if there are what you are looking for.
 2. Ask Google first if it's not very editor-related. (e.g. How to install Clang Format? What does this compilation error mean?)
 3. Search in the [Issues](https://github.com/cpeditor/cpeditor/issues) and make sure your bug report/feature request is not duplicated.
 4. Please follow the issue template and provide detailed information, it will help us to give you better feedback.
@@ -207,6 +207,9 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     </td>
     <td align="center">
       <a href="https://github.com/lakshits11"><img src="https://avatars2.githubusercontent.com/u/54276661?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/lakshits11"><sub><b>lakshits11</b></sub></a><br /><a href="#ideas-lakshits11" title="Ideas, Planning, & Feedback">🤔</a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/sahilkhan03"><img src="https://avatars2.githubusercontent.com/u/45485428?v=4" width="100px;" alt=""/></a><br /><a href="http://sahilkhan.me"><sub><b>Md. Sahil Khan</b></sub></a><br /><a href="#ideas-sahilkhan03" title="Ideas, Planning, & Feedback">🤔</a>
     </td>
   </tr>
 </table>

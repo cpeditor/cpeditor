@@ -55,7 +55,6 @@
     <addaction name="actionNewTab"/>
     <addaction name="actionOpen"/>
     <addaction name="actionOpenContest"/>
-    <addaction name="separator"/>
     <addaction name="actionSave"/>
     <addaction name="actionSaveAs"/>
     <addaction name="actionSaveAll"/>
