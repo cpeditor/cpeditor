@@ -40,7 +40,7 @@ It makes your competitive coding life easier :grin: by automating many things fo
 
 ## Get help
 
-1. Read the [manual](doc/MANUAL.md) and the [FAQ](#faq) first, also go through the menus and preferencecs to see if there are what you are looking for.
+1. Read the [manual](doc/MANUAL.md) and the [FAQ](#faq) first, also go through the menus and preferences to see if there are what you are looking for.
 2. Ask Google first if it's not very editor-related. (e.g. How to install Clang Format? What does this compilation error mean?)
 3. Search in the [Issues](https://github.com/cpeditor/cpeditor/issues) and make sure your bug report/feature request is not duplicated.
 4. Please follow the issue template and provide detailed information, it will help us to give you better feedback.
