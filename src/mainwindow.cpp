@@ -356,6 +356,15 @@ void MainWindow::setFilePath(QString path, bool updateBinder)
     filePath = path;
     if (updateBinder)
         FileProblemBinder::set(path, problemURL);
+    if (!isUntitled())
+    {
+        auto recentFiles = SettingsHelper::getRecentFiles();
+        recentFiles.removeAll(filePath);
+        recentFiles.push_front(filePath);
+        if (recentFiles.length() > MAX_NUMBER_OF_RECENT_FILES)
+            recentFiles.erase(recentFiles.begin() + MAX_NUMBER_OF_RECENT_FILES, recentFiles.end());
+        SettingsHelper::setRecentFiles(recentFiles);
+    }
     emit editorFileChanged();
     updateWatcher();
 }
@@ -814,16 +823,6 @@ void MainWindow::loadFile(const QString &loadPath)
         setProblemURL(FileProblemBinder::getProblemForFile(filePath));
 
     setText(content, samePath);
-
-    if (!isUntitled())
-    {
-        auto recentFiles = SettingsHelper::getRecentFiles();
-        recentFiles.removeAll(filePath);
-        recentFiles.push_front(filePath);
-        if (recentFiles.length() > MAX_NUMBER_OF_RECENT_FILES)
-            recentFiles.erase(recentFiles.begin() + MAX_NUMBER_OF_RECENT_FILES, recentFiles.end());
-        SettingsHelper::setRecentFiles(recentFiles);
-    }
 
     if (isTemplate)
     {
