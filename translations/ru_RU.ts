@@ -2499,55 +2499,55 @@ A loaded test case will be elided and read-only if it&apos;s too long.</source>
     <name>Widgets::ContestDialog</name>
     <message>
         <source>Contest Details</source>
-        <translation type="unfinished"></translation>
+        <translation>Детали соревнования</translation>
     </message>
     <message>
         <source>Reset</source>
-        <translation type="unfinished">Сбросить</translation>
+        <translation>Сбросить</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished">Отмена</translation>
+        <translation>Отмена</translation>
     </message>
     <message>
         <source>Create</source>
-        <translation type="unfinished"></translation>
+        <translation>Создать</translation>
     </message>
     <message>
         <source>Contest Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Название соревнования</translation>
     </message>
     <message>
         <source>Contest language</source>
-        <translation type="unfinished"></translation>
+        <translation>Язык соревнования</translation>
     </message>
     <message>
         <source>Number of problems</source>
-        <translation type="unfinished"></translation>
+        <translation>Число задач</translation>
     </message>
     <message>
         <source>Create a new contest</source>
-        <translation type="unfinished"></translation>
+        <translation>Создать новое соревнование</translation>
     </message>
     <message>
         <source>Cannot create contest</source>
-        <translation type="unfinished"></translation>
+        <translation>Невозможно создать соревнование</translation>
     </message>
     <message>
         <source>Choose Contest Root</source>
-        <translation type="unfinished"></translation>
+        <translation>Выбрать корень соревнования</translation>
     </message>
     <message>
         <source>Contest path [ %1 ] does not exists</source>
-        <translation type="unfinished"></translation>
+        <translation>Соревнование с путем [ %1 ] не существует</translation>
     </message>
     <message>
         <source>Cannot create directory with name [ %1 ]</source>
-        <translation type="unfinished"></translation>
+        <translation>Невозможно создать директорию с именем [ %1 ]</translation>
     </message>
     <message>
         <source>Contest Root</source>
-        <translation type="unfinished"></translation>
+        <translation>Корень соревнования</translation>
     </message>
 </context>
 <context>
