@@ -20,11 +20,14 @@
 #include "Core/MessageLogger.hpp"
 #include "generated/SettingsHelper.hpp"
 #include <QCoreApplication>
+#include <QDesktopServices>
 #include <QDir>
 #include <QFile>
 #include <QFileInfo>
+#include <QProcess>
 #include <QSaveFile>
 #include <QStandardPaths>
+#include <QUrl>
 
 namespace Util
 {
@@ -153,6 +156,95 @@ QString firstExistingConfigPath(const QStringList &paths)
             return realPath;
     }
     return QString();
+}
+
+QPair<std::function<void()>, QString> revealInFileManager(const QString &filePath)
+{
+    LOG_INFO("Revealing " << filePath << "in filemanager");
+
+    // Reference: http://lynxline.com/show-in-finder-show-in-explorer/ and https://forum.qt.io/post/296072
+
+    const QPair<std::function<void()>, QString> unknownFileManagerFallBack = {
+        [filePath] { QDesktopServices::openUrl(QUrl::fromLocalFile(QFileInfo(filePath).path())); },
+        QCoreApplication::translate("Util::FileUtil", "Open containing directory")};
+
+#if defined(Q_OS_MACOS)
+    return {[filePath] {
+                QStringList args;
+                args << "-e"
+                     << "tell application \"Finder\""
+                     << "-e"
+                     << "activate"
+                     << "-e" << QStringLiteral("select POSIX file \"%1\"").arg(filePath) << "-e"
+                     << "end tell";
+                QProcess::startDetached("osascript", args);
+            },
+            QCoreApplication::translate("Util::FileUtil", "Reveal in Finder")};
+#elif defined(Q_OS_WIN)
+    return {[filePath] {
+                QStringList args;
+                args << "/select," << QDir::toNativeSeparators(filePath);
+                QProcess::startDetached("explorer", args);
+            },
+            QCoreApplication::translate("Util::FileUtil", "Reveal in Explorer")};
+#elif defined(Q_OS_UNIX)
+    QProcess proc;
+    proc.start("xdg-mime", QStringList() << "query"
+                                         << "default"
+                                         << "inode/directory");
+    auto finished = proc.waitForFinished(2000);
+    if (finished)
+    {
+        auto output = proc.readLine().simplified();
+        QString program;
+        QStringList args;
+        auto nativePath = QUrl::fromLocalFile(filePath).toString();
+        if (output == "dolphin.desktop" || output == "org.kde.dolphin.desktop")
+        {
+            program = "dolphin";
+            args << "--select" << nativePath;
+        }
+        else if (output == "nautilus.desktop" || output == "org.gnome.Nautilus.desktop" ||
+                 output == "nautilus-folder-handler.desktop")
+        {
+            program = "nautilus";
+            args << "--no-desktop" << nativePath;
+        }
+        else if (output == "caja-folder-handler.desktop")
+        {
+            program = "caja";
+            args << "--no-desktop" << nativePath;
+        }
+        else if (output == "nemo.desktop")
+        {
+            program = "nemo";
+            args << "--no-desktop" << nativePath;
+        }
+        else if (output == "kfmclient_dir.desktop")
+        {
+            program = "konqueror";
+            args << "--select" << nativePath;
+        }
+        if (program.isEmpty())
+        {
+            return unknownFileManagerFallBack;
+        }
+        else
+        {
+            return {[program, args] {
+                        QProcess openProcess;
+                        openProcess.startDetached(program, args);
+                    },
+                    QCoreApplication::translate("Util::FileUtil", "Reveal in file manager")};
+        }
+    }
+    else
+    {
+        return unknownFileManagerFallBack;
+    }
+#else
+    return unknownFileManagerFallBack;
+#endif
 }
 
 } // namespace Util
