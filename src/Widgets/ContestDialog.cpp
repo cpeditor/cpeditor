@@ -26,13 +26,13 @@
 #include <QGroupBox>
 #include <QHBoxLayout>
 #include <QLineEdit>
+#include <QMessageBox>
 #include <QPushButton>
 #include <QSpinBox>
 #include <QToolButton>
 #include <QVBoxLayout>
 #include <Widgets/ContestDialog.hpp>
 #include <generated/SettingsHelper.hpp>
-#include <QMessageBox>
 
 namespace Widgets
 {
@@ -53,7 +53,6 @@ ContestDialog::ContestDialog(QWidget *parent) : QDialog(parent)
     QObject::connect(cancel, &QPushButton::clicked, [this]() { close(); });
 
     QObject::connect(create, &QPushButton::clicked, [this]() {
-    
         if (!validate())
         {
             QMessageBox::warning(this, tr("Cannot create contest"), validationErrorMessage);
@@ -63,7 +62,8 @@ ContestDialog::ContestDialog(QWidget *parent) : QDialog(parent)
             ContestDialog::ContestData data;
             data.language = languageComboBox->currentText();
             data.number = problemCountSpinBox->value();
-            data.path = QDir(pathLineEdit->text().append(QDir::separator()).append(contestNameLineEdit->text())).absolutePath();
+            data.path =
+                QDir(pathLineEdit->text().append(QDir::separator()).append(contestNameLineEdit->text())).absolutePath();
             emit onContestCreated(data);
             close();
         }
@@ -154,7 +154,8 @@ bool ContestDialog::validate()
 
     if (!dir.mkpath(contestNameLineEdit->text()))
     {
-        validationErrorMessage = QString(tr("Cannot create directory with name [ %1 ]").arg(contestNameLineEdit->text()));
+        validationErrorMessage =
+            QString(tr("Cannot create directory with name [ %1 ]").arg(contestNameLineEdit->text()));
         return false;
     }
     return true;

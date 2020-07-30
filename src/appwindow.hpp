@@ -18,8 +18,8 @@
 #ifndef APPWINDOW_HPP
 #define APPWINDOW_HPP
 
-#include "mainwindow.hpp"
 #include "Widgets/ContestDialog.hpp"
+#include "mainwindow.hpp"
 #include <QMainWindow>
 #include <QSystemTrayIcon>
 
