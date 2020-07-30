@@ -1,5 +1,9 @@
 ## UNRELEASED
 
+### Fixed
+
+- Now the code snippets won't be in the log file. (#536)
+
 ## 6.6.3 (Beta)
 
 ### Fixed
