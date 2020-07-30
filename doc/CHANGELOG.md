@@ -3,6 +3,7 @@
 ### Added
 
 - Open recent files. (#527)
+- Reveal the executable file in file manager. (#537)
 
 ### Fixed
 
