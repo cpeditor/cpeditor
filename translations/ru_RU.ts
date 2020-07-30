@@ -96,20 +96,8 @@
         <translation>Копировать путь файла</translation>
     </message>
     <message>
-        <source>Reveal in Finder</source>
-        <translation>Показать в Finder</translation>
-    </message>
-    <message>
-        <source>Reveal in Explorer</source>
-        <translation>Показать в Проводнике</translation>
-    </message>
-    <message>
         <source>Open Containing Folder</source>
         <translation>Открыть папку содержания</translation>
-    </message>
-    <message>
-        <source>Reveal in File Manager</source>
-        <translation>Показать в файловом менеджере</translation>
     </message>
     <message>
         <source>Copy path</source>
@@ -2505,6 +2493,22 @@ A loaded test case will be elided and read-only if it&apos;s too long.</source>
     <message>
         <source>Failed to open [%1]. Do I have read permission?</source>
         <translation>Не удалось открыть файл [%1]. Предоставлен ли доступ к чтению фалйла?</translation>
+    </message>
+    <message>
+        <source>Open containing directory</source>
+        <translation>Открыть папку содержания</translation>
+    </message>
+    <message>
+        <source>Reveal in Finder</source>
+        <translation>Показать в Finder</translation>
+    </message>
+    <message>
+        <source>Reveal in Explorer</source>
+        <translation>Показать в Проводнике</translation>
+    </message>
+    <message>
+        <source>Reveal in file manager</source>
+        <translation>Показать в файловом менеджере</translation>
     </message>
 </context>
 <context>

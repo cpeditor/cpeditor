@@ -96,20 +96,8 @@
         <translation>复制文件路径</translation>
     </message>
     <message>
-        <source>Reveal in Finder</source>
-        <translation>在访达中打开</translation>
-    </message>
-    <message>
-        <source>Reveal in Explorer</source>
-        <translation>在资源管理器中打开</translation>
-    </message>
-    <message>
         <source>Open Containing Folder</source>
         <translation>打开文件所在的目录</translation>
-    </message>
-    <message>
-        <source>Reveal in File Manager</source>
-        <translation>在文件管理器中打开</translation>
     </message>
     <message>
         <source>Copy path</source>
@@ -2497,6 +2485,22 @@ A loaded test case will be elided and read-only if it&apos;s too long.</source>
     <message>
         <source>Failed to open [%1]. Do I have read permission?</source>
         <translation>打开 [%1] 失败。你拥有读取权限吗？</translation>
+    </message>
+    <message>
+        <source>Open containing directory</source>
+        <translation>打开文件所在的目录</translation>
+    </message>
+    <message>
+        <source>Reveal in Finder</source>
+        <translation>在访达中打开</translation>
+    </message>
+    <message>
+        <source>Reveal in Explorer</source>
+        <translation>在资源管理器中打开</translation>
+    </message>
+    <message>
+        <source>Reveal in file manager</source>
+        <translation>在文件管理器中打开</translation>
     </message>
 </context>
 <context>
