@@ -2500,7 +2500,7 @@ A loaded test case will be elided and read-only if it&apos;s too long.</source>
     </message>
     <message>
         <source>Reveal %1 in File Manager</source>
-        <translation>在文件管理器中打开%1</translation>
+        <translation>在文件管理器中查看%1</translation>
     </message>
 </context>
 <context>
