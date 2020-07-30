@@ -36,18 +36,6 @@
         <translation>打开文件</translation>
     </message>
     <message>
-        <source>Open Contest</source>
-        <translation>打开比赛</translation>
-    </message>
-    <message>
-        <source>Number of problems in this contest:</source>
-        <translation>比赛题目数量：</translation>
-    </message>
-    <message>
-        <source>Choose a language</source>
-        <translation>选择语言</translation>
-    </message>
-    <message>
         <source>Reset preferences</source>
         <translation>重置设置</translation>
     </message>
@@ -2518,18 +2506,6 @@ A loaded test case will be elided and read-only if it&apos;s too long.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Contest path %1 does not exists</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Cannot create directory with name %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Contest Root Path</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Contest Name</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2539,6 +2515,30 @@ A loaded test case will be elided and read-only if it&apos;s too long.</source>
     </message>
     <message>
         <source>Number of problems</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Create a new contest</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cannot create contest</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Choose Contest Root</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Contest path [ %1 ] does not exists</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cannot create directory with name [ %1 ]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Contest Root</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
