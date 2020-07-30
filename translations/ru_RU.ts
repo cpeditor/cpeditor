@@ -461,15 +461,15 @@ Git commit hash: %3
     </message>
     <message>
         <source>Source File</source>
-        <translation type="unfinished"></translation>
+        <translation>Файл исходного кода</translation>
     </message>
     <message>
         <source>Executable File</source>
-        <translation type="unfinished"></translation>
+        <translation>Исполняемый файл</translation>
     </message>
     <message>
         <source>Open Problem in Browser</source>
-        <translation type="unfinished"></translation>
+        <translation>Открыть задачу в браузере</translation>
     </message>
 </context>
 <context>
@@ -2496,19 +2496,19 @@ A loaded test case will be elided and read-only if it&apos;s too long.</source>
     </message>
     <message>
         <source>Reveal %1 in Finder</source>
-        <translation type="unfinished"></translation>
+        <translation>Показать %1 в Finder</translation>
     </message>
     <message>
         <source>Reveal %1 in Explorer</source>
-        <translation type="unfinished"></translation>
+        <translation>Показать %1 в Проводнике</translation>
     </message>
     <message>
         <source>Open Containing Folder of %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Открыть папку содержащую %1</translation>
     </message>
     <message>
         <source>Reveal %1 in File Manager</source>
-        <translation type="unfinished"></translation>
+        <translation>Показать %1 в Файловом менеджере</translation>
     </message>
 </context>
 <context>
