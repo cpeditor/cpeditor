@@ -686,7 +686,7 @@ void AppWindow::on_actionOpenContest_triggered()
             if (ok)
             {
                 LOG_INFO("Opening contest with args " << INFO_OF(path) << INFO_OF(lang) << INFO_OF(number));
-               // openContest(path, lang, number);
+                // openContest(path, lang, number);
             }
         }
     }
