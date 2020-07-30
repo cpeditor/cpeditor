@@ -2508,6 +2508,49 @@ A loaded test case will be elided and read-only if it&apos;s too long.</source>
     </message>
 </context>
 <context>
+    <name>Widgets::ContestDialog</name>
+    <message>
+        <source>Contest Details</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reset</source>
+        <translation type="unfinished">Сбросить</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation type="unfinished">Отмена</translation>
+    </message>
+    <message>
+        <source>Create</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Contest path %1 does not exists</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cannot create directory with name %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Contest Root Path</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Contest Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Contest language</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Number of problems</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>Widgets::DiffViewer</name>
     <message>
         <source>Diff Viewer</source>
