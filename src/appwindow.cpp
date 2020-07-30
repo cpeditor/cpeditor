@@ -17,6 +17,7 @@
 
 #include "appwindow.hpp"
 #include "../ui/ui_appwindow.h"
+#include "Core/Compiler.hpp"
 #include "Core/EventLogger.hpp"
 #include "Core/MessageLogger.hpp"
 #include "Core/SessionManager.hpp"
@@ -1385,31 +1386,30 @@ void AppWindow::onTabContextMenuRequested(const QPoint &pos)
 
         LOG_INFO(INFO_OF(filePath));
 
-        if (!widget->isUntitled() && QFile::exists(filePath))
-        {
-            LOG_INFO("Not untitled and filepath exists in system");
+        const auto outputFilePath =
+            Core::Compiler::outputFilePath(widget->tmpPath(), widget->getFilePath(), widget->getLanguage(), false);
+
+        const auto revealSourceFile = Util::revealInFileManager(filePath, tr("Source File"));
+        const auto revealExecutableFile = Util::revealInFileManager(outputFilePath, tr("Executable File"));
+
+        if (!revealSourceFile.second.isEmpty() || !revealExecutableFile.second.isEmpty())
             tabMenu->addSeparator();
+
+        if (!revealSourceFile.second.isEmpty())
+        {
             tabMenu->addAction(tr("Copy File Path"), [filePath] { QGuiApplication::clipboard()->setText(filePath); });
-            const auto reveal = Util::revealInFileManager(filePath);
-            tabMenu->addAction(reveal.second, reveal.first);
+            tabMenu->addAction(revealSourceFile.second, revealSourceFile.first);
         }
-        else if (!widget->isUntitled() && QFile::exists(QFileInfo(widget->getFilePath()).path()))
+
+        if (!revealExecutableFile.second.isEmpty())
         {
-            LOG_INFO("The file does not exist, but its parent directory [" << QFileInfo(widget->getFilePath()).path()
-                                                                           << "] exists");
-            tabMenu->addSeparator();
-            tabMenu->addAction(tr("Copy path"), [filePath] {
-                auto clipboard = QGuiApplication::clipboard();
-                clipboard->setText(filePath);
-            });
-            tabMenu->addAction(tr("Open Containing Folder"), [filePath] {
-                QDesktopServices::openUrl(QUrl::fromLocalFile(QFileInfo(filePath).path()));
-            });
+            tabMenu->addAction(revealExecutableFile.second, revealExecutableFile.first);
         }
+
         tabMenu->addSeparator();
         if (!widget->getProblemURL().isEmpty())
         {
-            tabMenu->addAction(tr("Open problem in browser"),
+            tabMenu->addAction(tr("Open Problem in Browser"),
                                [widget] { QDesktopServices::openUrl(widget->getProblemURL()); });
             tabMenu->addAction(tr("Copy Problem URL"),
                                [widget] { QGuiApplication::clipboard()->setText(widget->getProblemURL()); });

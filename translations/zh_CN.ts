@@ -96,18 +96,6 @@
         <translation>复制文件路径</translation>
     </message>
     <message>
-        <source>Open Containing Folder</source>
-        <translation>打开文件所在的目录</translation>
-    </message>
-    <message>
-        <source>Copy path</source>
-        <translation>复制路径</translation>
-    </message>
-    <message>
-        <source>Open problem in browser</source>
-        <translation>在浏览器中打开题目</translation>
-    </message>
-    <message>
         <source>Copy Problem URL</source>
         <translation>复制题目链接</translation>
     </message>
@@ -470,6 +458,18 @@ git 提交编号: %3
     <message>
         <source>Clear Recent Files</source>
         <translation>清空最近打开的文件</translation>
+    </message>
+    <message>
+        <source>Source File</source>
+        <translation>源文件</translation>
+    </message>
+    <message>
+        <source>Executable File</source>
+        <translation>可执行文件</translation>
+    </message>
+    <message>
+        <source>Open Problem in Browser</source>
+        <translation>在浏览器中打开题目</translation>
     </message>
 </context>
 <context>
@@ -2487,20 +2487,20 @@ A loaded test case will be elided and read-only if it&apos;s too long.</source>
         <translation>打开 [%1] 失败。你拥有读取权限吗？</translation>
     </message>
     <message>
-        <source>Open containing directory</source>
-        <translation>打开文件所在的目录</translation>
+        <source>Reveal %1 in Finder</source>
+        <translation>在访达中查看%1</translation>
     </message>
     <message>
-        <source>Reveal in Finder</source>
-        <translation>在访达中打开</translation>
+        <source>Reveal %1 in Explorer</source>
+        <translation>在资源管理器中查看%1</translation>
     </message>
     <message>
-        <source>Reveal in Explorer</source>
-        <translation>在资源管理器中打开</translation>
+        <source>Open Containing Folder of %1</source>
+        <translation>打开包含%1的文件夹</translation>
     </message>
     <message>
-        <source>Reveal in file manager</source>
-        <translation>在文件管理器中打开</translation>
+        <source>Reveal %1 in File Manager</source>
+        <translation>在文件管理器中打开%1</translation>
     </message>
 </context>
 <context>

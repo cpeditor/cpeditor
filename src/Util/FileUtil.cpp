@@ -158,15 +158,23 @@ QString firstExistingConfigPath(const QStringList &paths)
     return QString();
 }
 
-QPair<std::function<void()>, QString> revealInFileManager(const QString &filePath)
+QPair<std::function<void()>, QString> revealInFileManager(const QString &filePath, const QString &name)
 {
     LOG_INFO("Revealing " << filePath << "in filemanager");
 
     // Reference: http://lynxline.com/show-in-finder-show-in-explorer/ and https://forum.qt.io/post/296072
 
-    const QPair<std::function<void()>, QString> unknownFileManagerFallBack = {
+    const QPair<std::function<void()>, QString> fallBack = {
         [filePath] { QDesktopServices::openUrl(QUrl::fromLocalFile(QFileInfo(filePath).path())); },
-        QCoreApplication::translate("Util::FileUtil", "Open containing directory")};
+        QCoreApplication::translate("Util::FileUtil", "Open Containing Folder of %1").arg(name)};
+
+    if (!QFile::exists(filePath))
+    {
+        if (QFile::exists(QFileInfo(filePath).path()))
+            return fallBack;
+        else
+            return {[] {}, QString()};
+    }
 
 #if defined(Q_OS_MACOS)
     return {[filePath] {
@@ -179,14 +187,14 @@ QPair<std::function<void()>, QString> revealInFileManager(const QString &filePat
                      << "end tell";
                 QProcess::startDetached("osascript", args);
             },
-            QCoreApplication::translate("Util::FileUtil", "Reveal in Finder")};
+            QCoreApplication::translate("Util::FileUtil", "Reveal %1 in Finder").arg(name)};
 #elif defined(Q_OS_WIN)
     return {[filePath] {
                 QStringList args;
                 args << "/select," << QDir::toNativeSeparators(filePath);
                 QProcess::startDetached("explorer", args);
             },
-            QCoreApplication::translate("Util::FileUtil", "Reveal in Explorer")};
+            QCoreApplication::translate("Util::FileUtil", "Reveal %1 in Explorer").arg(name)};
 #elif defined(Q_OS_UNIX)
     QProcess proc;
     proc.start("xdg-mime", QStringList() << "query"
@@ -227,7 +235,7 @@ QPair<std::function<void()>, QString> revealInFileManager(const QString &filePat
         }
         if (program.isEmpty())
         {
-            return unknownFileManagerFallBack;
+            return fallBack;
         }
         else
         {
@@ -235,15 +243,15 @@ QPair<std::function<void()>, QString> revealInFileManager(const QString &filePat
                         QProcess openProcess;
                         openProcess.startDetached(program, args);
                     },
-                    QCoreApplication::translate("Util::FileUtil", "Reveal in file manager")};
+                    QCoreApplication::translate("Util::FileUtil", "Reveal %1 in File Manager").arg(name)};
         }
     }
     else
     {
-        return unknownFileManagerFallBack;
+        return fallBack;
     }
 #else
-    return unknownFileManagerFallBack;
+    return fallBack;
 #endif
 }
 
