@@ -998,5 +998,10 @@
         "name": "Recent Files",
         "type": "QStringList",
         "notr": true
+    },
+    {
+       "name": "Last Root Path",
+       "type": "QString",
+       "notr": true
     }
 ]

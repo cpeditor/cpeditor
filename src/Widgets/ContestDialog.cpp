@@ -16,8 +16,11 @@
  */
 
 #include <Core/EventLogger.hpp>
+#include <QApplication>
+#include <QCloseEvent>
 #include <QComboBox>
 #include <QDir>
+#include <QFileDialog>
 #include <QFileInfo>
 #include <QFormLayout>
 #include <QGroupBox>
@@ -29,6 +32,7 @@
 #include <QVBoxLayout>
 #include <Widgets/ContestDialog.hpp>
 #include <generated/SettingsHelper.hpp>
+#include <QMessageBox>
 
 namespace Widgets
 {
@@ -37,17 +41,56 @@ ContestDialog::ContestDialog(QWidget *parent) : QDialog(parent)
     allocate();
     restrictWidgets();
     setupUI();
+    setWindowTitle(tr("Create a new contest"));
 
-    QObject::connect(reset, &QPushButton::clicked, []() {});
-    QObject::connect(cancel, &QPushButton::clicked, []() {});
-    QObject::connect(create, &QPushButton::clicked, []() {});
+    QObject::connect(reset, &QPushButton::clicked, [this]() {
+        pathLineEdit->clear();
+        contestNameLineEdit->clear();
+        problemCountSpinBox->setValue(5);
+        languageComboBox->setCurrentText(SettingsHelper::getDefaultLanguage());
+    });
 
-    QObject::connect(pathToolButton, &QToolButton::clicked, []() {});
+    QObject::connect(cancel, &QPushButton::clicked, [this]() { close(); });
+
+    QObject::connect(create, &QPushButton::clicked, [this]() {
+    
+        if (!validate())
+        {
+            QMessageBox::warning(this, tr("Cannot create contest"), validationErrorMessage);
+        }
+        else
+        {
+            ContestDialog::ContestData data;
+            data.language = languageComboBox->currentText();
+            data.number = problemCountSpinBox->value();
+            data.path = QDir(pathLineEdit->text().append(QDir::separator()).append(contestNameLineEdit->text())).absolutePath();
+            emit onContestCreated(data);
+            close();
+        }
+    });
+
+    QObject::connect(pathToolButton, &QToolButton::clicked, [this]() {
+        auto path = QFileDialog::getExistingDirectory(this, tr("Choose Contest Root"));
+        if (!path.isEmpty())
+            pathLineEdit->setText(path);
+    });
 }
 
 ContestDialog::ContestData &ContestDialog::contestData()
 {
     return _data;
+}
+
+void ContestDialog::closeEvent(QCloseEvent *e)
+{
+    SettingsHelper::setLastRootPath(pathLineEdit->text());
+    e->accept();
+}
+
+void ContestDialog::updateContestDialog()
+{
+    languageComboBox->setCurrentText(SettingsHelper::getDefaultLanguage());
+    pathLineEdit->setText(SettingsHelper::getLastRootPath());
 }
 
 ContestDialog::~ContestDialog()
@@ -60,9 +103,9 @@ ContestDialog::~ContestDialog()
     delete problemCountSpinBox;
     delete formLayout;
     delete groupBox;
+    delete cancel;
     delete reset;
     delete create;
-    delete cancel;
     delete actionButtons;
     delete parentLayout;
 }
@@ -79,12 +122,12 @@ void ContestDialog::allocate()
     pathToolButton = new QToolButton;
     pathItem = new QHBoxLayout(this);
 
-    actionButtons = new QVBoxLayout(this);
+    actionButtons = new QHBoxLayout(this);
     reset = new QPushButton(tr("Reset"), this);
     cancel = new QPushButton(tr("Cancel"), this);
     create = new QPushButton(tr("Create"), this);
 
-    parentLayout = new QHBoxLayout(this);
+    parentLayout = new QVBoxLayout(this);
 }
 
 void ContestDialog::restrictWidgets()
@@ -104,14 +147,14 @@ bool ContestDialog::validate()
     QDir dir(pathLineEdit->text());
     if (!dir.exists())
     {
-        validationErrorMessage = QString(tr("Contest path %1 does not exists").arg(pathLineEdit->text()));
+        validationErrorMessage = QString(tr("Contest path [ %1 ] does not exists").arg(pathLineEdit->text()));
 
         return false;
     }
 
     if (!dir.mkpath(contestNameLineEdit->text()))
     {
-        validationErrorMessage = QString(tr("Cannot create directory with name %1").arg(contestNameLineEdit->text()));
+        validationErrorMessage = QString(tr("Cannot create directory with name [ %1 ]").arg(contestNameLineEdit->text()));
         return false;
     }
     return true;
@@ -123,21 +166,23 @@ void ContestDialog::setupUI()
     pathItem->addWidget(pathLineEdit);
     pathItem->addWidget(pathToolButton);
 
-    formLayout->addRow(tr("Contest Root Path"), pathItem);
+    formLayout->addRow(tr("Contest Root"), pathItem);
     formLayout->addRow(tr("Contest Name"), contestNameLineEdit);
     formLayout->addRow(tr("Contest language"), languageComboBox);
     formLayout->addRow(tr("Number of problems"), problemCountSpinBox);
 
     groupBox->setLayout(formLayout);
 
-    actionButtons->addWidget(cancel, 0, Qt::AlignRight);
-    actionButtons->addWidget(reset, 0, Qt::AlignRight);
-    actionButtons->addWidget(create, 0, Qt::AlignRight);
+    actionButtons->addWidget(cancel, 2);
+    actionButtons->addWidget(reset, 2);
+    actionButtons->addWidget(create, 6);
 
     parentLayout->addWidget(groupBox);
     parentLayout->addLayout(actionButtons);
 
     setLayout(parentLayout);
+
+    pathToolButton->setIcon(QApplication::style()->standardIcon(QStyle::SP_DialogOpenButton));
 }
 
 } // namespace Widgets

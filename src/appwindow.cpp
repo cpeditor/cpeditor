@@ -148,7 +148,11 @@ AppWindow::AppWindow(bool cpp, bool java, bool python, bool noHotExit, int numbe
         lang = "Java";
     else if (python)
         lang = "Python";
-    openContest(path, lang, number);
+    Widgets::ContestDialog::ContestData data;
+    data.path = path;
+    data.language = lang;
+    data.number = number;
+    openContest(data);
     if (ui->tabWidget->count() == 0)
         openTab("");
 
@@ -182,6 +186,7 @@ AppWindow::~AppWindow()
     delete server;
     delete findReplaceDialog;
     delete sessionManager;
+    delete contestDialog;
 
     SettingsManager::deinit();
 
@@ -237,6 +242,7 @@ void AppWindow::setConnections()
     connect(trayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)), this,
             SLOT(onTrayIconActivated(QSystemTrayIcon::ActivationReason)));
     connect(trayIcon, SIGNAL(messageClicked()), this, SLOT(showOnTop()));
+    connect(contestDialog, &Widgets::ContestDialog::onContestCreated, this, &AppWindow::openContest);
 }
 
 void AppWindow::allocate()
@@ -272,6 +278,7 @@ void AppWindow::allocate()
     trayIcon->show();
 
     sessionManager = new Core::SessionManager(this);
+    contestDialog = new Widgets::ContestDialog(this);
 }
 
 void AppWindow::applySettings()
@@ -495,8 +502,12 @@ QStringList AppWindow::openFolder(const QString &path, bool cpp, bool java, bool
     return res;
 }
 
-void AppWindow::openContest(const QString &path, const QString &lang, int number)
+void AppWindow::openContest(Widgets::ContestDialog::ContestData data)
 {
+    const QString &path = data.path;
+    const QString &lang = data.language;
+    int number = data.number;
+
     QDir dir(path), parent(path);
     parent.cdUp();
     if (!dir.exists() && parent.exists())
@@ -653,6 +664,10 @@ void AppWindow::on_actionOpen_triggered()
 
 void AppWindow::on_actionOpenContest_triggered()
 {
+    contestDialog->updateContestDialog();
+    contestDialog->show();
+
+    return;
     auto path = DefaultPathManager::getExistingDirectory("Open Contest", this, tr("Open Contest"));
     if (QFile::exists(path) && QFileInfo(path).isDir())
     {
@@ -671,7 +686,7 @@ void AppWindow::on_actionOpenContest_triggered()
             if (ok)
             {
                 LOG_INFO("Opening contest with args " << INFO_OF(path) << INFO_OF(lang) << INFO_OF(number));
-                openContest(path, lang, number);
+               // openContest(path, lang, number);
             }
         }
     }
@@ -835,7 +850,11 @@ void AppWindow::onReceivedMessage(quint32 instanceId, QByteArray message)
             lang = "Java";
         else if (python)
             lang = "Python";
-        openContest(path, lang, number);
+        Widgets::ContestDialog::ContestData data;
+        data.path = path;
+        data.language = lang;
+        data.number = number;
+        openContest(data);
     }
 }
 

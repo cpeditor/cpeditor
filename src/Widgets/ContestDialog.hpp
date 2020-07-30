@@ -44,7 +44,9 @@ class ContestDialog : public QDialog
     };
 
     explicit ContestDialog(QWidget *parent = nullptr);
+    void updateContestDialog();
     ContestData &contestData();
+    void closeEvent(QCloseEvent* e) override;
     ~ContestDialog();
   signals:
     void onContestCreated(ContestData data);
@@ -67,12 +69,14 @@ class ContestDialog : public QDialog
     QToolButton *pathToolButton = nullptr;
     QHBoxLayout *pathItem = nullptr;
 
-    QVBoxLayout *actionButtons = nullptr;
+    QHBoxLayout *actionButtons = nullptr;
+    
     QPushButton *reset = nullptr;
     QPushButton *create = nullptr;
     QPushButton *cancel = nullptr;
 
-    QHBoxLayout *parentLayout = nullptr;
+
+    QVBoxLayout *parentLayout = nullptr;
 };
 } // namespace Widgets
 

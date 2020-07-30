@@ -19,6 +19,7 @@
 #define APPWINDOW_HPP
 
 #include "mainwindow.hpp"
+#include "Widgets/ContestDialog.hpp"
 #include <QMainWindow>
 #include <QSystemTrayIcon>
 
@@ -50,6 +51,11 @@ class UpdateChecker;
 namespace Core
 {
 class SessionManager;
+}
+
+namespace Widgets
+{
+class ContestDialog;
 }
 
 class AppWindow : public QMainWindow
@@ -208,6 +214,7 @@ class AppWindow : public QMainWindow
     MessageLogger *activeLogger = nullptr;
 
     Core::SessionManager *sessionManager = nullptr;
+    Widgets::ContestDialog *contestDialog = nullptr;
 
     QTimer *lspTimerCpp = nullptr;
     QTimer *lspTimerPython = nullptr;
@@ -240,7 +247,7 @@ class AppWindow : public QMainWindow
     void openTabs(const QStringList &paths);
     void openPaths(const QStringList &paths, bool cpp = true, bool java = true, bool python = true, int depth = -1);
     QStringList openFolder(const QString &path, bool cpp, bool java, bool python, int depth);
-    void openContest(const QString &path, const QString &lang, int number);
+    void openContest(Widgets::ContestDialog::ContestData data);
     bool quit();
     int getNewUntitledIndex();
     void reAttachLanguageServer(MainWindow *window);
