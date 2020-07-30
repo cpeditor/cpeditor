@@ -666,30 +666,6 @@ void AppWindow::on_actionOpenContest_triggered()
 {
     contestDialog->updateContestDialog();
     contestDialog->show();
-
-    return;
-    auto path = DefaultPathManager::getExistingDirectory("Open Contest", this, tr("Open Contest"));
-    if (QFile::exists(path) && QFileInfo(path).isDir())
-    {
-        bool ok = false;
-        int number =
-            QInputDialog::getInt(this, tr("Open Contest"), tr("Number of problems in this contest:"), 5, 0, 26, 1, &ok);
-        if (ok)
-        {
-            int current = 0;
-            if (SettingsHelper::getDefaultLanguage() == "Java")
-                current = 1;
-            else if (SettingsHelper::getDefaultLanguage() == "Python")
-                current = 2;
-            auto lang = QInputDialog::getItem(this, tr("Open Contest"), tr("Choose a language"),
-                                              {"C++", "Java", "Python"}, current, false, &ok);
-            if (ok)
-            {
-                LOG_INFO("Opening contest with args " << INFO_OF(path) << INFO_OF(lang) << INFO_OF(number));
-               // openContest(path, lang, number);
-            }
-        }
-    }
 }
 
 void AppWindow::on_actionSave_triggered()
