@@ -24,6 +24,7 @@ optdepends=(
 	'python: execute Python support'
 	'xterm: detached run support'
 )
+provides=('cpeditor')
 conflicts=("cpeditor")
 
 source=('git://github.com/cpeditor/cpeditor.git'
