@@ -17,6 +17,7 @@
 
 #include "Core/Compiler.hpp"
 #include "Core/EventLogger.hpp"
+#include "Util/FileUtil.hpp"
 #include "generated/SettingsHelper.hpp"
 #include <QDir>
 #include <QFileInfo>
@@ -124,7 +125,8 @@ bool Compiler::check(const QString &compileCommand)
     return finished && checkProcess.exitCode() == 0;
 }
 
-QString Compiler::outputPath(const QString &tmpFilePath, const QString &sourceFilePath, const QString &lang)
+QString Compiler::outputPath(const QString &tmpFilePath, const QString &sourceFilePath, const QString &lang,
+                             bool createDirectory)
 {
     QFileInfo fileInfo(sourceFilePath.isEmpty() ? tmpFilePath : sourceFilePath);
     QString res = fileInfo.dir().filePath(SettingsManager::get(lang + "/Output Path")
@@ -133,11 +135,27 @@ QString Compiler::outputPath(const QString &tmpFilePath, const QString &sourceFi
                                               .replace("${basename}", fileInfo.completeBaseName())
                                               .replace("${tmpdir}", QFileInfo(tmpFilePath).absolutePath())
                                               .replace("${tempdir}", QFileInfo(tmpFilePath).absolutePath()));
-    if (lang == "C++")
-        QDir().mkpath(QFileInfo(res).absolutePath());
-    else if (lang == "Java")
-        QDir().mkpath(res);
+    if (createDirectory)
+    {
+        if (lang == "C++")
+            QDir().mkpath(QFileInfo(res).absolutePath());
+        else if (lang == "Java")
+            QDir().mkpath(res);
+    }
     return res;
+}
+
+QString Compiler::outputFilePath(const QString &tmpFilePath, const QString &sourceFilePath, const QString &lang,
+                                 bool createDirectory)
+{
+    auto path = outputPath(tmpFilePath, sourceFilePath, lang, createDirectory);
+
+    if (lang == "C++")
+        path += Util::exeSuffix;
+    else if (lang == "Java")
+        path = QDir(path).filePath(SettingsHelper::getJavaClassName() + ".class");
+
+    return path;
 }
 
 void Compiler::onProcessFinished(int exitCode)
