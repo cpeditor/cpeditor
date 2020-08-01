@@ -39,6 +39,12 @@ jobs:
           cp .ci/aur/git/.SRCINFO cpeditor-git
           sed -i "s/@PROJECT_VERSION@/$VERSION/" cpeditor-git/PKGBUILD cpeditor-git/.SRCINFO
 
+      - name: Check PKGBUILD
+        uses: 2m/arch-pkgbuild-builder@master
+        with:
+          target: "pkgbuild"
+          pkgname: "cpeditor-git"
+
       - name: Publish to AUR
         run: |
           VERSION=$(git describe --long --tags | sed 's/\([^-]*-g\)/r\1/;s/-/./g')
