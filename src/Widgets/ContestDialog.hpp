@@ -50,10 +50,9 @@ class ContestDialog : public QDialog
     QString validationErrorMessage;
 
     ContestData _data;
-    QComboBox* languageComboBox = nullptr;
+    QComboBox *languageComboBox = nullptr;
     QLineEdit *contestNameLineEdit = nullptr;
     QLineEdit *pathLineEdit = nullptr;
-
 };
 } // namespace Widgets
 
