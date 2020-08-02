@@ -53,7 +53,7 @@ ContestDialog::ContestDialog(QWidget *parent) : QDialog(parent)
     auto create = new QPushButton(tr("Create"), this);
 
     auto parentLayout = new QVBoxLayout(this);
-    
+
     problemCountSpinBox->setMinimum(1);
     problemCountSpinBox->setMaximum(20);
     problemCountSpinBox->setValue(DEFAULT_PROBLEM_COUNT); // default
@@ -61,7 +61,7 @@ ContestDialog::ContestDialog(QWidget *parent) : QDialog(parent)
     languageComboBox->addItems({"C++", "Java", "Python"});
     languageComboBox->setMaxVisibleItems(3);
     languageComboBox->setCurrentText(SettingsHelper::getDefaultLanguage());
- 
+
     pathItem->setContentsMargins(0, 0, 0, 0);
     pathItem->addWidget(pathLineEdit);
     pathItem->addWidget(pathToolButton);
@@ -82,7 +82,7 @@ ContestDialog::ContestDialog(QWidget *parent) : QDialog(parent)
 
     setLayout(parentLayout);
 
-    pathToolButton->setIcon(QApplication::style()->standardIcon(QStyle::SP_DialogOpenButton));   
+    pathToolButton->setIcon(QApplication::style()->standardIcon(QStyle::SP_DialogOpenButton));
 
     setWindowTitle(tr("Create a new contest"));
 
@@ -144,16 +144,18 @@ bool ContestDialog::validate()
     QDir dir(pathLineEdit->text());
     if (!dir.exists())
     {
-	    auto cpyDir = dir;
-	    cpyDir.cdUp();
-	    if(cpyDir.exists())
-	    {
-        validationErrorMessage = QString(tr("Contest path [ %1 ] does not exists. However a parent directory exists. You can create a directory by specifing its name below.").arg(pathLineEdit->text()));
-	    }
-	    else
-	    {
-		    validationErrorMessage = QString(tr("Contest path [ %1 ] does not exists."));
-	    }
+        auto cpyDir = dir;
+        cpyDir.cdUp();
+        if (cpyDir.exists())
+        {
+            validationErrorMessage = QString(tr("Contest path [ %1 ] does not exists. However a parent directory "
+                                                "exists. You can create a directory by specifing its name below.")
+                                                 .arg(pathLineEdit->text()));
+        }
+        else
+        {
+            validationErrorMessage = QString(tr("Contest path [ %1 ] does not exists."));
+        }
         return false;
     }
 
