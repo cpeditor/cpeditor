@@ -84,30 +84,6 @@
         <translation>Копировать путь файла</translation>
     </message>
     <message>
-        <source>Reveal in Finder</source>
-        <translation>Показать в Finder</translation>
-    </message>
-    <message>
-        <source>Reveal in Explorer</source>
-        <translation>Показать в Проводнике</translation>
-    </message>
-    <message>
-        <source>Open Containing Folder</source>
-        <translation>Открыть папку содержания</translation>
-    </message>
-    <message>
-        <source>Reveal in File Manager</source>
-        <translation>Показать в файловом менеджере</translation>
-    </message>
-    <message>
-        <source>Copy path</source>
-        <translation>Копировать путь</translation>
-    </message>
-    <message>
-        <source>Open problem in browser</source>
-        <translation>Открыть в задачу в браузере</translation>
-    </message>
-    <message>
         <source>Copy Problem URL</source>
         <translation>Копировать URL задачи</translation>
     </message>
@@ -470,6 +446,18 @@ Git commit hash: %3
     <message>
         <source>Clear Recent Files</source>
         <translation>Очистить последние файлы</translation>
+    </message>
+    <message>
+        <source>Source File</source>
+        <translation>Файл исходного кода</translation>
+    </message>
+    <message>
+        <source>Executable File</source>
+        <translation>Исполняемый файл</translation>
+    </message>
+    <message>
+        <source>Open Problem in Browser</source>
+        <translation>Открыть задачу в браузере</translation>
     </message>
 </context>
 <context>
@@ -2493,6 +2481,22 @@ A loaded test case will be elided and read-only if it&apos;s too long.</source>
     <message>
         <source>Failed to open [%1]. Do I have read permission?</source>
         <translation>Не удалось открыть файл [%1]. Предоставлен ли доступ к чтению фалйла?</translation>
+    </message>
+    <message>
+        <source>Reveal %1 in Finder</source>
+        <translation>Показать %1 в Finder</translation>
+    </message>
+    <message>
+        <source>Reveal %1 in Explorer</source>
+        <translation>Показать %1 в Проводнике</translation>
+    </message>
+    <message>
+        <source>Open Containing Folder of %1</source>
+        <translation>Открыть папку содержащую %1</translation>
+    </message>
+    <message>
+        <source>Reveal %1 in File Manager</source>
+        <translation>Показать %1 в Файловом менеджере</translation>
     </message>
 </context>
 <context>

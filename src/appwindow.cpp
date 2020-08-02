@@ -17,6 +17,7 @@
 
 #include "appwindow.hpp"
 #include "../ui/ui_appwindow.h"
+#include "Core/Compiler.hpp"
 #include "Core/EventLogger.hpp"
 #include "Core/MessageLogger.hpp"
 #include "Core/SessionManager.hpp"
@@ -1380,113 +1381,30 @@ void AppWindow::onTabContextMenuRequested(const QPoint &pos)
 
         LOG_INFO(INFO_OF(filePath));
 
-        if (!widget->isUntitled() && QFile::exists(filePath))
-        {
-            LOG_INFO("Not untitled and filepath exists in system");
-            tabMenu->addSeparator();
-            tabMenu->addAction(tr("Copy File Path"), [filePath] { QGuiApplication::clipboard()->setText(filePath); });
-            // Reference: http://lynxline.com/show-in-finder-show-in-explorer/ and https://forum.qt.io/post/296072
-#if defined(Q_OS_MACOS)
-            tabMenu->addAction(tr("Reveal in Finder"), [filePath] {
-                QStringList args;
-                args << "-e";
-                args << "tell application \"Finder\"";
-                args << "-e";
-                args << "activate";
-                args << "-e";
-                args << "select POSIX file \"" + filePath + "\"";
-                args << "-e";
-                args << "end tell";
-                QProcess::startDetached("osascript", args);
-            });
-#elif defined(Q_OS_WIN)
-            tabMenu->addAction(tr("Reveal in Explorer"), [filePath] {
-                QStringList args;
-                args << "/select," << QDir::toNativeSeparators(filePath);
-                QProcess::startDetached("explorer", args);
-            });
-#elif defined(Q_OS_UNIX)
-            QProcess proc;
-            proc.start("xdg-mime", QStringList() << "query"
-                                                 << "default"
-                                                 << "inode/directory");
-            auto finished = proc.waitForFinished(2000);
-            if (finished)
-            {
-                auto output = proc.readLine().simplified();
-                QString program;
-                QStringList args;
-                auto nativePath = QUrl::fromLocalFile(filePath).toString();
-                if (output == "dolphin.desktop" || output == "org.kde.dolphin.desktop")
-                {
-                    program = "dolphin";
-                    args << "--select" << nativePath;
-                }
-                else if (output == "nautilus.desktop" || output == "org.gnome.Nautilus.desktop" ||
-                         output == "nautilus-folder-handler.desktop")
-                {
-                    program = "nautilus";
-                    args << "--no-desktop" << nativePath;
-                }
-                else if (output == "caja-folder-handler.desktop")
-                {
-                    program = "caja";
-                    args << "--no-desktop" << nativePath;
-                }
-                else if (output == "nemo.desktop")
-                {
-                    program = "nemo";
-                    args << "--no-desktop" << nativePath;
-                }
-                else if (output == "kfmclient_dir.desktop")
-                {
-                    program = "konqueror";
-                    args << "--select" << nativePath;
-                }
-                if (program.isEmpty())
-                {
-                    tabMenu->addAction(tr("Open Containing Folder"), [filePath] {
-                        QDesktopServices::openUrl(QUrl::fromLocalFile(QFileInfo(filePath).path()));
-                    });
-                }
-                else
-                {
-                    tabMenu->addAction(tr("Reveal in File Manager"), [program, args] {
-                        QProcess openProcess;
-                        openProcess.startDetached(program, args);
-                    });
-                }
-            }
-            else
-            {
+        const auto outputFilePath =
+            Core::Compiler::outputFilePath(widget->tmpPath(), widget->getFilePath(), widget->getLanguage(), false);
 
-                tabMenu->addAction(tr("Open Containing Folder"), [filePath] {
-                    QDesktopServices::openUrl(QUrl::fromLocalFile(QFileInfo(filePath).path()));
-                });
-            }
-#else
-            tabMenu->addAction(tr("Open Containing Folder"), [filePath] {
-                QDesktopServices::openUrl(QUrl::fromLocalFile(QFileInfo(filePath).path()));
-            });
-#endif
-        }
-        else if (!widget->isUntitled() && QFile::exists(QFileInfo(widget->getFilePath()).path()))
-        {
-            LOG_INFO("The file does not exist, but its parent directory [" << QFileInfo(widget->getFilePath()).path()
-                                                                           << "] exists");
+        const auto revealSourceFile = Util::revealInFileManager(filePath, tr("Source File"));
+        const auto revealExecutableFile = Util::revealInFileManager(outputFilePath, tr("Executable File"));
+
+        if (!revealSourceFile.second.isEmpty() || !revealExecutableFile.second.isEmpty())
             tabMenu->addSeparator();
-            tabMenu->addAction(tr("Copy path"), [filePath] {
-                auto clipboard = QGuiApplication::clipboard();
-                clipboard->setText(filePath);
-            });
-            tabMenu->addAction(tr("Open Containing Folder"), [filePath] {
-                QDesktopServices::openUrl(QUrl::fromLocalFile(QFileInfo(filePath).path()));
-            });
+
+        if (!revealSourceFile.second.isEmpty())
+        {
+            tabMenu->addAction(tr("Copy File Path"), [filePath] { QGuiApplication::clipboard()->setText(filePath); });
+            tabMenu->addAction(revealSourceFile.second, revealSourceFile.first);
         }
+
+        if (!revealExecutableFile.second.isEmpty())
+        {
+            tabMenu->addAction(revealExecutableFile.second, revealExecutableFile.first);
+        }
+
         tabMenu->addSeparator();
         if (!widget->getProblemURL().isEmpty())
         {
-            tabMenu->addAction(tr("Open problem in browser"),
+            tabMenu->addAction(tr("Open Problem in Browser"),
                                [widget] { QDesktopServices::openUrl(widget->getProblemURL()); });
             tabMenu->addAction(tr("Copy Problem URL"),
                                [widget] { QGuiApplication::clipboard()->setText(widget->getProblemURL()); });
