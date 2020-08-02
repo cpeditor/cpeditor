@@ -20,14 +20,8 @@
 
 #include <QDialog>
 
-class QGroupBox;
-class QPushButton;
+#define DEFAULT_PROBLEM_COUNT (5)
 class QLineEdit;
-class QToolButton;
-class QHBoxLayout;
-class QVBoxLayout;
-class QFormLayout;
-class QSpinBox;
 class QComboBox;
 
 namespace Widgets
@@ -47,35 +41,19 @@ class ContestDialog : public QDialog
     void updateContestDialog();
     ContestData &contestData();
     void closeEvent(QCloseEvent *e) override;
-    ~ContestDialog();
   signals:
-    void onContestCreated(ContestData data);
+    void onContestCreated(ContestData const &data);
 
   private:
-    void allocate();
-    void setupUI();
     bool validate();
-    void restrictWidgets();
 
     QString validationErrorMessage;
 
     ContestData _data;
-    QGroupBox *groupBox = nullptr;
-    QFormLayout *formLayout = nullptr;
-    QSpinBox *problemCountSpinBox = nullptr;
-    QComboBox *languageComboBox = nullptr;
+    QComboBox* languageComboBox = nullptr;
     QLineEdit *contestNameLineEdit = nullptr;
     QLineEdit *pathLineEdit = nullptr;
-    QToolButton *pathToolButton = nullptr;
-    QHBoxLayout *pathItem = nullptr;
 
-    QHBoxLayout *actionButtons = nullptr;
-
-    QPushButton *reset = nullptr;
-    QPushButton *create = nullptr;
-    QPushButton *cancel = nullptr;
-
-    QVBoxLayout *parentLayout = nullptr;
 };
 } // namespace Widgets
 
