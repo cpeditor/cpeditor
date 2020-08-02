@@ -1000,8 +1000,9 @@
         "notr": true
     },
     {
-       "name": "Last Root Path",
-       "type": "QString",
-       "notr": true
+        "name": "Number Of Problems In Contest",
+        "type": "int",
+        "default": 5,
+        "notr": true
     }
 ]

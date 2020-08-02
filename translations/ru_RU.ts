@@ -2502,59 +2502,51 @@ A loaded test case will be elided and read-only if it&apos;s too long.</source>
 <context>
     <name>Widgets::ContestDialog</name>
     <message>
-        <source>Contest Details</source>
-        <translation>Детали соревнования</translation>
-    </message>
-    <message>
-        <source>Reset</source>
-        <translation>Сбросить</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation>Отмена</translation>
-    </message>
-    <message>
-        <source>Create</source>
-        <translation>Создать</translation>
-    </message>
-    <message>
-        <source>Contest Name</source>
-        <translation>Название соревнования</translation>
-    </message>
-    <message>
-        <source>Contest language</source>
-        <translation>Язык соревнования</translation>
-    </message>
-    <message>
-        <source>Number of problems</source>
-        <translation>Число задач</translation>
-    </message>
-    <message>
         <source>Create a new contest</source>
         <translation>Создать новое соревнование</translation>
     </message>
     <message>
-        <source>Cannot create contest</source>
-        <translation>Невозможно создать соревнование</translation>
-    </message>
-    <message>
-        <source>Choose Contest Root</source>
-        <translation>Выбрать корень соревнования</translation>
-    </message>
-    <message>
-        <source>Cannot create directory with name [ %1 ]</source>
-        <translation>Невозможно создать директорию с именем [ %1 ]</translation>
-    </message>
-    <message>
-        <source>Contest Root</source>
-        <translation>Корень соревнования</translation>
-    </message>
-    <message>
-        <source>Contest path [ %1 ] does not exists. However a parent directory exists. You can create a directory by specifing its name below.</source>
+        <source>Main Directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Contest path [ %1 ] does not exists.</source>
+        <source>Subdirectory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Number of Problems</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Main Directory doesn&apos;t exist</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The Main Directory [%1] doesn&apos;t exist. Do you want to create it and continue?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed to create directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed to create the directory [%1].</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Contest Details</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save Path</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Language</source>
+        <translation type="unfinished">Язык</translation>
+    </message>
+    <message>
+        <source>Choose Main Directory</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

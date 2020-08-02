@@ -2494,60 +2494,52 @@ A loaded test case will be elided and read-only if it&apos;s too long.</source>
 <context>
     <name>Widgets::ContestDialog</name>
     <message>
-        <source>Contest Details</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset</source>
-        <translation type="unfinished">重置</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation type="unfinished">取消</translation>
-    </message>
-    <message>
-        <source>Create</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Contest Name</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Contest language</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Number of problems</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Create a new contest</source>
-        <translation type="unfinished"></translation>
+        <translation>创建一个新比赛</translation>
     </message>
     <message>
-        <source>Cannot create contest</source>
-        <translation type="unfinished"></translation>
+        <source>Main Directory</source>
+        <translation>主目录</translation>
     </message>
     <message>
-        <source>Choose Contest Root</source>
-        <translation type="unfinished"></translation>
+        <source>Subdirectory</source>
+        <translation>子目录</translation>
     </message>
     <message>
-        <source>Cannot create directory with name [ %1 ]</source>
-        <translation type="unfinished"></translation>
+        <source>Number of Problems</source>
+        <translation>题目数量</translation>
     </message>
     <message>
-        <source>Contest Root</source>
-        <translation type="unfinished"></translation>
+        <source>Main Directory doesn&apos;t exist</source>
+        <translation>主目录不存在</translation>
     </message>
     <message>
-        <source>Contest path [ %1 ] does not exists. However a parent directory exists. You can create a directory by specifing its name below.</source>
-        <translation type="unfinished"></translation>
+        <source>The Main Directory [%1] doesn&apos;t exist. Do you want to create it and continue?</source>
+        <translation>主目录 [%1] 不存在。你想要创建目录并继续吗？</translation>
     </message>
     <message>
-        <source>Contest path [ %1 ] does not exists.</source>
-        <translation type="unfinished"></translation>
+        <source>Failed to create directory</source>
+        <translation>创建目录失败</translation>
+    </message>
+    <message>
+        <source>Failed to create the directory [%1].</source>
+        <translation>未能成功创建目录 [%1]。</translation>
+    </message>
+    <message>
+        <source>Contest Details</source>
+        <translation>比赛细节</translation>
+    </message>
+    <message>
+        <source>Save Path</source>
+        <translation>保存路径</translation>
+    </message>
+    <message>
+        <source>Language</source>
+        <translation>语言</translation>
+    </message>
+    <message>
+        <source>Choose Main Directory</source>
+        <translation>选择主目录</translation>
     </message>
 </context>
 <context>

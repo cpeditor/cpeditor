@@ -15,157 +15,145 @@
  *
  */
 
-#include <Core/EventLogger.hpp>
+#include "Widgets/ContestDialog.hpp"
+#include "Core/EventLogger.hpp"
+#include "Settings/DefaultPathManager.hpp"
+#include "generated/SettingsHelper.hpp"
 #include <QApplication>
-#include <QCloseEvent>
 #include <QComboBox>
+#include <QDialogButtonBox>
 #include <QDir>
-#include <QFileDialog>
-#include <QFileInfo>
 #include <QFormLayout>
 #include <QGroupBox>
 #include <QHBoxLayout>
+#include <QLabel>
 #include <QLineEdit>
 #include <QMessageBox>
 #include <QPushButton>
 #include <QSpinBox>
 #include <QToolButton>
 #include <QVBoxLayout>
-#include <Widgets/ContestDialog.hpp>
-#include <generated/SettingsHelper.hpp>
 
 namespace Widgets
 {
+
 ContestDialog::ContestDialog(QWidget *parent) : QDialog(parent)
 {
-    auto groupBox = new QGroupBox(tr("Contest Details"), this);
-    auto formLayout = new QFormLayout(this);
-    auto problemCountSpinBox = new QSpinBox(this);
-    languageComboBox = new QComboBox(this);
-    contestNameLineEdit = new QLineEdit(this);
-    pathLineEdit = new QLineEdit(this);
-    auto pathToolButton = new QToolButton;
-    auto pathItem = new QHBoxLayout(this);
-
-    auto actionButtons = new QHBoxLayout(this);
-    auto reset = new QPushButton(tr("Reset"), this);
-    auto cancel = new QPushButton(tr("Cancel"), this);
-    auto create = new QPushButton(tr("Create"), this);
-
-    auto parentLayout = new QVBoxLayout(this);
-
-    problemCountSpinBox->setMinimum(1);
-    problemCountSpinBox->setMaximum(20);
-    problemCountSpinBox->setValue(DEFAULT_PROBLEM_COUNT); // default
-
-    languageComboBox->addItems({"C++", "Java", "Python"});
-    languageComboBox->setMaxVisibleItems(3);
-    languageComboBox->setCurrentText(SettingsHelper::getDefaultLanguage());
-
-    pathItem->setContentsMargins(0, 0, 0, 0);
-    pathItem->addWidget(pathLineEdit);
-    pathItem->addWidget(pathToolButton);
-
-    formLayout->addRow(tr("Contest Root"), pathItem);
-    formLayout->addRow(tr("Contest Name"), contestNameLineEdit);
-    formLayout->addRow(tr("Contest language"), languageComboBox);
-    formLayout->addRow(tr("Number of problems"), problemCountSpinBox);
-
-    groupBox->setLayout(formLayout);
-
-    actionButtons->addWidget(cancel, 2);
-    actionButtons->addWidget(reset, 2);
-    actionButtons->addWidget(create, 6);
-
-    parentLayout->addWidget(groupBox);
-    parentLayout->addLayout(actionButtons);
-
-    setLayout(parentLayout);
-
-    pathToolButton->setIcon(QApplication::style()->standardIcon(QStyle::SP_DialogOpenButton));
-
     setWindowTitle(tr("Create a new contest"));
 
-    QObject::connect(reset, &QPushButton::clicked, [problemCountSpinBox, this]() {
-        pathLineEdit->clear();
-        contestNameLineEdit->clear();
-        problemCountSpinBox->setValue(DEFAULT_PROBLEM_COUNT);
-        languageComboBox->setCurrentText(SettingsHelper::getDefaultLanguage());
-    });
+    auto mainLayout = new QVBoxLayout(this);
 
-    QObject::connect(cancel, &QPushButton::clicked, [this]() { close(); });
+    auto groupBox = new QGroupBox(tr("Contest Details"));
+    mainLayout->addWidget(groupBox);
 
-    QObject::connect(create, &QPushButton::clicked, [problemCountSpinBox, this]() {
-        if (!validate())
-        {
-            QMessageBox::warning(this, tr("Cannot create contest"), validationErrorMessage);
-        }
-        else
-        {
-            ContestDialog::ContestData data;
-            data.language = languageComboBox->currentText();
-            data.number = problemCountSpinBox->value();
-            data.path =
-                QDir(pathLineEdit->text().append(QDir::separator()).append(contestNameLineEdit->text())).absolutePath();
-            emit onContestCreated(data);
-            close();
-        }
-    });
+    auto formLayout = new QFormLayout(groupBox);
 
-    QObject::connect(pathToolButton, &QToolButton::clicked, [this]() {
-        auto path = QFileDialog::getExistingDirectory(this, tr("Choose Contest Root"));
-        if (!path.isEmpty())
-            pathLineEdit->setText(path);
-    });
+    auto mainDirectoryLayout = new QHBoxLayout();
+    mainDirectoryLayout->setContentsMargins(0, 0, 0, 0);
+    formLayout->addRow(tr("Main Directory"), mainDirectoryLayout);
+
+    mainDirectoryEdit = new QLineEdit();
+    mainDirectoryLayout->addWidget(mainDirectoryEdit);
+
+    auto pathToolButton = new QToolButton();
+    connect(pathToolButton, &QToolButton::clicked, this, &ContestDialog::chooseDirectory);
+    pathToolButton->setIcon(QApplication::style()->standardIcon(QStyle::SP_DialogOpenButton));
+    mainDirectoryLayout->addWidget(pathToolButton);
+
+    subdirectoryEdit = new QLineEdit();
+    formLayout->addRow(tr("Subdirectory"), subdirectoryEdit);
+
+    contestPathLabel = new QLabel();
+    contestPathLabel->setMinimumWidth(50);
+    contestPathLabel->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
+    connect(mainDirectoryEdit, &QLineEdit::textChanged, this, &ContestDialog::updateContestPath);
+    connect(subdirectoryEdit, &QLineEdit::textChanged, this, &ContestDialog::updateContestPath);
+    formLayout->addRow(tr("Save Path"), contestPathLabel);
+
+    languageComboBox = new QComboBox();
+    languageComboBox->addItems({"C++", "Java", "Python"});
+    formLayout->addRow(tr("Language"), languageComboBox);
+
+    problemCountSpinBox = new QSpinBox();
+    problemCountSpinBox->setMinimum(1);
+    problemCountSpinBox->setMaximum(26);
+    formLayout->addRow(tr("Number of Problems"), problemCountSpinBox);
+
+    auto buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel | QDialogButtonBox::Reset);
+    mainLayout->addWidget(buttonBox);
+    connect(buttonBox->button(QDialogButtonBox::Ok), &QPushButton::clicked, this, &ContestDialog::submit);
+    connect(buttonBox->button(QDialogButtonBox::Cancel), &QPushButton::clicked, this, &QDialog::reject);
+    connect(buttonBox->button(QDialogButtonBox::Reset), &QPushButton::clicked, this, &ContestDialog::reset);
+
+    reset();
 }
 
-ContestDialog::ContestData &ContestDialog::contestData()
+ContestDialog::ContestData ContestDialog::contestData() const
 {
-    return _data;
+    return {fullPath(), problemCountSpinBox->value(), languageComboBox->currentText()};
 }
 
-void ContestDialog::closeEvent(QCloseEvent *e)
+void ContestDialog::resizeEvent(QResizeEvent *event)
 {
-    SettingsHelper::setLastRootPath(pathLineEdit->text());
-    e->accept();
+    QDialog::resizeEvent(event);
+    updateContestPath();
 }
 
-void ContestDialog::updateContestDialog()
+void ContestDialog::reset()
 {
+    mainDirectoryEdit->setText(DefaultPathManager::defaultPathForAction("Open Contest"));
+    subdirectoryEdit->clear();
+    problemCountSpinBox->setValue(SettingsHelper::getNumberOfProblemsInContest());
     languageComboBox->setCurrentText(SettingsHelper::getDefaultLanguage());
-    pathLineEdit->setText(SettingsHelper::getLastRootPath());
 }
 
-// Private methods
-
-bool ContestDialog::validate()
+void ContestDialog::submit()
 {
-    validationErrorMessage.clear();
-    QDir dir(pathLineEdit->text());
-    if (!dir.exists())
+    LOG_INFO(INFO_OF(mainDirectoryEdit->text())
+             << INFO_OF(subdirectoryEdit->text()) << INFO_OF(fullPath()) << INFO_OF(languageComboBox->currentText())
+             << INFO_OF(problemCountSpinBox->value()));
+
+    if (!QDir(mainDirectoryEdit->text()).exists())
     {
-        auto cpyDir = dir;
-        cpyDir.cdUp();
-        if (cpyDir.exists())
-        {
-            validationErrorMessage = QString(tr("Contest path [ %1 ] does not exists. However a parent directory "
-                                                "exists. You can create a directory by specifing its name below.")
-                                                 .arg(pathLineEdit->text()));
-        }
-        else
-        {
-            validationErrorMessage = QString(tr("Contest path [ %1 ] does not exists."));
-        }
-        return false;
+        LOG_INFO("Main Diretory doesn't exist");
+        auto res =
+            QMessageBox::question(this, tr("Main Directory doesn't exist"),
+                                  tr("The Main Directory [%1] doesn't exist. Do you want to create it and continue?")
+                                      .arg(mainDirectoryEdit->text()),
+                                  QMessageBox::Yes | QMessageBox::No);
+        if (res == QMessageBox::No)
+            return;
     }
 
-    if (!contestNameLineEdit->text().isEmpty() && !dir.mkpath(contestNameLineEdit->text()))
+    if (!QDir().mkpath(fullPath()))
     {
-        validationErrorMessage =
-            QString(tr("Cannot create directory with name [ %1 ]").arg(contestNameLineEdit->text()));
-        return false;
+        LOG_WARN("Failed to create direcotry");
+        QMessageBox::warning(this, tr("Failed to create directory"),
+                             tr("Failed to create the directory [%1].").arg(fullPath()));
+        return;
     }
-    return true;
+
+    DefaultPathManager::setDefaultPathForAction("Open Contest", mainDirectoryEdit->text());
+    SettingsHelper::setNumberOfProblemsInContest(problemCountSpinBox->value());
+
+    accept();
+}
+
+void ContestDialog::chooseDirectory()
+{
+    const auto path = DefaultPathManager::getExistingDirectory("Open Contest", this, tr("Choose Main Directory"));
+    if (!path.isEmpty())
+        mainDirectoryEdit->setText(path);
+}
+
+void ContestDialog::updateContestPath()
+{
+    contestPathLabel->setText(fontMetrics().elidedText(fullPath(), Qt::ElideMiddle, contestPathLabel->width()));
+}
+
+QString ContestDialog::fullPath() const
+{
+    return QDir(mainDirectoryEdit->text()).filePath(subdirectoryEdit->text());
 }
 
 } // namespace Widgets

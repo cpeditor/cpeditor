@@ -53,11 +53,6 @@ namespace Core
 class SessionManager;
 }
 
-namespace Widgets
-{
-class ContestDialog;
-}
-
 class AppWindow : public QMainWindow
 {
     Q_OBJECT
@@ -214,7 +209,6 @@ class AppWindow : public QMainWindow
     MessageLogger *activeLogger = nullptr;
 
     Core::SessionManager *sessionManager = nullptr;
-    Widgets::ContestDialog *contestDialog = nullptr;
 
     QTimer *lspTimerCpp = nullptr;
     QTimer *lspTimerPython = nullptr;

@@ -20,39 +20,50 @@
 
 #include <QDialog>
 
-#define DEFAULT_PROBLEM_COUNT (5)
-class QLineEdit;
 class QComboBox;
+class QLabel;
+class QLineEdit;
+class QSpinBox;
 
 namespace Widgets
 {
 class ContestDialog : public QDialog
 {
     Q_OBJECT
+
   public:
     struct ContestData
     {
-        int number;
         QString path;
+        int number;
         QString language;
     };
 
     explicit ContestDialog(QWidget *parent = nullptr);
-    void updateContestDialog();
-    ContestData &contestData();
-    void closeEvent(QCloseEvent *e) override;
-  signals:
-    void onContestCreated(ContestData const &data);
+
+    ContestData contestData() const;
+
+  protected:
+    void resizeEvent(QResizeEvent *event) override;
+
+  private slots:
+    void reset();
+
+    void submit();
+
+    void chooseDirectory();
+
+    void updateContestPath();
 
   private:
-    bool validate();
+    QString fullPath() const;
 
-    QString validationErrorMessage;
-
-    ContestData _data;
+  private:
     QComboBox *languageComboBox = nullptr;
-    QLineEdit *contestNameLineEdit = nullptr;
-    QLineEdit *pathLineEdit = nullptr;
+    QLineEdit *mainDirectoryEdit = nullptr;
+    QLineEdit *subdirectoryEdit = nullptr;
+    QLabel *contestPathLabel = nullptr;
+    QSpinBox *problemCountSpinBox = nullptr;
 };
 } // namespace Widgets
 

@@ -928,7 +928,7 @@ bool MainWindow::saveFile(SaveMode mode, const QString &head, bool safe)
 
         setFilePath(newFilePath);
 
-        DefaultPathManager::changeDefaultPathForAction("Save File", QFileInfo(filePath).canonicalPath());
+        DefaultPathManager::setDefaultPathForAction("Save File", QFileInfo(filePath).canonicalPath());
 
         auto suffix = QFileInfo(filePath).suffix();
         if (Util::cppSuffix.contains(suffix))

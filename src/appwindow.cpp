@@ -149,11 +149,7 @@ AppWindow::AppWindow(bool cpp, bool java, bool python, bool noHotExit, int numbe
         lang = "Java";
     else if (python)
         lang = "Python";
-    Widgets::ContestDialog::ContestData data;
-    data.path = path;
-    data.language = lang;
-    data.number = number;
-    openContest(data);
+    openContest({path, number, lang});
     if (ui->tabWidget->count() == 0)
         openTab("");
 
@@ -187,7 +183,6 @@ AppWindow::~AppWindow()
     delete server;
     delete findReplaceDialog;
     delete sessionManager;
-    delete contestDialog;
 
     SettingsManager::deinit();
 
@@ -243,7 +238,6 @@ void AppWindow::setConnections()
     connect(trayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)), this,
             SLOT(onTrayIconActivated(QSystemTrayIcon::ActivationReason)));
     connect(trayIcon, SIGNAL(messageClicked()), this, SLOT(showOnTop()));
-    connect(contestDialog, &Widgets::ContestDialog::onContestCreated, this, &AppWindow::openContest);
 }
 
 void AppWindow::allocate()
@@ -279,7 +273,6 @@ void AppWindow::allocate()
     trayIcon->show();
 
     sessionManager = new Core::SessionManager(this);
-    contestDialog = new Widgets::ContestDialog(this);
 }
 
 void AppWindow::applySettings()
@@ -665,8 +658,9 @@ void AppWindow::on_actionOpen_triggered()
 
 void AppWindow::on_actionOpenContest_triggered()
 {
-    contestDialog->updateContestDialog();
-    contestDialog->show();
+    Widgets::ContestDialog dialog(this);
+    if (dialog.exec() == QDialog::Accepted)
+        openContest(dialog.contestData());
 }
 
 void AppWindow::on_actionSave_triggered()
@@ -827,11 +821,7 @@ void AppWindow::onReceivedMessage(quint32 instanceId, QByteArray message)
             lang = "Java";
         else if (python)
             lang = "Python";
-        Widgets::ContestDialog::ContestData data;
-        data.path = path;
-        data.language = lang;
-        data.number = number;
-        openContest(data);
+        openContest({path, number, lang});
     }
 }
 
