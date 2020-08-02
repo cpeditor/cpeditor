@@ -502,7 +502,7 @@ QStringList AppWindow::openFolder(const QString &path, bool cpp, bool java, bool
     return res;
 }
 
-void AppWindow::openContest(Widgets::ContestDialog::ContestData data)
+void AppWindow::openContest(Widgets::ContestDialog::ContestData const &data)
 {
     const QString &path = data.path;
     const QString &lang = data.language;

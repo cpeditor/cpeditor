@@ -247,7 +247,7 @@ class AppWindow : public QMainWindow
     void openTabs(const QStringList &paths);
     void openPaths(const QStringList &paths, bool cpp = true, bool java = true, bool python = true, int depth = -1);
     QStringList openFolder(const QString &path, bool cpp, bool java, bool python, int depth);
-    void openContest(Widgets::ContestDialog::ContestData data);
+    void openContest(Widgets::ContestDialog::ContestData const &data);
     bool quit();
     int getNewUntitledIndex();
     void reAttachLanguageServer(MainWindow *window);

@@ -2538,16 +2538,20 @@ A loaded test case will be elided and read-only if it&apos;s too long.</source>
         <translation>Выбрать корень соревнования</translation>
     </message>
     <message>
-        <source>Contest path [ %1 ] does not exists</source>
-        <translation>Соревнование с путем [ %1 ] не существует</translation>
-    </message>
-    <message>
         <source>Cannot create directory with name [ %1 ]</source>
         <translation>Невозможно создать директорию с именем [ %1 ]</translation>
     </message>
     <message>
         <source>Contest Root</source>
         <translation>Корень соревнования</translation>
+    </message>
+    <message>
+        <source>Contest path [ %1 ] does not exists. However a parent directory exists. You can create a directory by specifing its name below.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Contest path [ %1 ] does not exists.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
