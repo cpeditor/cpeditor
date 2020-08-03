@@ -2507,47 +2507,47 @@ A loaded test case will be elided and read-only if it&apos;s too long.</source>
     </message>
     <message>
         <source>Main Directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Главная директория</translation>
     </message>
     <message>
         <source>Subdirectory</source>
-        <translation type="unfinished"></translation>
+        <translation>Поддиректория</translation>
     </message>
     <message>
         <source>Number of Problems</source>
-        <translation type="unfinished"></translation>
+        <translation>Число задач</translation>
     </message>
     <message>
         <source>Main Directory doesn&apos;t exist</source>
-        <translation type="unfinished"></translation>
+        <translation>Главная директория не существует</translation>
     </message>
     <message>
         <source>The Main Directory [%1] doesn&apos;t exist. Do you want to create it and continue?</source>
-        <translation type="unfinished"></translation>
+        <translation>Главная директория [%1] не существует. Вы хотите создать ее и продолжить?</translation>
     </message>
     <message>
         <source>Failed to create directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Ошибка при создании директории</translation>
     </message>
     <message>
         <source>Failed to create the directory [%1].</source>
-        <translation type="unfinished"></translation>
+        <translation>Ошибка при создании директории [%1].</translation>
     </message>
     <message>
         <source>Contest Details</source>
-        <translation type="unfinished"></translation>
+        <translation>Детали соревнования</translation>
     </message>
     <message>
         <source>Save Path</source>
-        <translation type="unfinished"></translation>
+        <translation>Сохранить путь</translation>
     </message>
     <message>
         <source>Language</source>
-        <translation type="unfinished">Язык</translation>
+        <translation>Язык</translation>
     </message>
     <message>
         <source>Choose Main Directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Выбрать главную директорию</translation>
     </message>
 </context>
 <context>
