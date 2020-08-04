@@ -36,18 +36,6 @@
         <translation>打开文件</translation>
     </message>
     <message>
-        <source>Open Contest</source>
-        <translation>打开比赛</translation>
-    </message>
-    <message>
-        <source>Number of problems in this contest:</source>
-        <translation>比赛题目数量：</translation>
-    </message>
-    <message>
-        <source>Choose a language</source>
-        <translation>选择语言</translation>
-    </message>
-    <message>
         <source>Reset preferences</source>
         <translation>重置设置</translation>
     </message>
@@ -2501,6 +2489,57 @@ A loaded test case will be elided and read-only if it&apos;s too long.</source>
     <message>
         <source>Reveal %1 in File Manager</source>
         <translation>在文件管理器中查看%1</translation>
+    </message>
+</context>
+<context>
+    <name>Widgets::ContestDialog</name>
+    <message>
+        <source>Create a new contest</source>
+        <translation>创建一个新比赛</translation>
+    </message>
+    <message>
+        <source>Main Directory</source>
+        <translation>主目录</translation>
+    </message>
+    <message>
+        <source>Subdirectory</source>
+        <translation>子目录</translation>
+    </message>
+    <message>
+        <source>Number of Problems</source>
+        <translation>题目数量</translation>
+    </message>
+    <message>
+        <source>Main Directory doesn&apos;t exist</source>
+        <translation>主目录不存在</translation>
+    </message>
+    <message>
+        <source>The Main Directory [%1] doesn&apos;t exist. Do you want to create it and continue?</source>
+        <translation>主目录 [%1] 不存在。你想要创建目录并继续吗？</translation>
+    </message>
+    <message>
+        <source>Failed to create directory</source>
+        <translation>创建目录失败</translation>
+    </message>
+    <message>
+        <source>Failed to create the directory [%1].</source>
+        <translation>未能成功创建目录 [%1]。</translation>
+    </message>
+    <message>
+        <source>Contest Details</source>
+        <translation>比赛细节</translation>
+    </message>
+    <message>
+        <source>Save Path</source>
+        <translation>保存路径</translation>
+    </message>
+    <message>
+        <source>Language</source>
+        <translation>语言</translation>
+    </message>
+    <message>
+        <source>Choose Main Directory</source>
+        <translation>选择主目录</translation>
     </message>
 </context>
 <context>

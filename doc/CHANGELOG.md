@@ -3,6 +3,7 @@
 ### Added
 
 - Open recent files. (#527)
+- Use Dialog box to open new contests (#539 & #467)
 - Reveal the executable file in file manager. (#537)
 
 ### Fixed

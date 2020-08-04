@@ -31,9 +31,9 @@ class DefaultPathManager
     static QString defaultPathForAction(const QString &action);
 
     /**
-     * @brief change the default path after getting the default path for *action*
+     * @brief set the default path after getting the default path for *action*
      */
-    static void changeDefaultPathForAction(const QString &action, const QString &path);
+    static void setDefaultPathForAction(const QString &action, const QString &path);
 
     /**
      * @brief a wrapper for QFileDialog::getExistingDirectory
