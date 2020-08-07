@@ -128,6 +128,9 @@ bool Compiler::check(const QString &compileCommand)
 QString Compiler::outputPath(const QString &tmpFilePath, const QString &sourceFilePath, const QString &lang,
                              bool createDirectory)
 {
+    if (lang == "Python")
+        return tmpFilePath;
+
     QFileInfo fileInfo(sourceFilePath.isEmpty() ? tmpFilePath : sourceFilePath);
     QString res = fileInfo.dir().filePath(SettingsManager::get(lang + "/Output Path")
                                               .toString()
