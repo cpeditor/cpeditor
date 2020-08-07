@@ -195,6 +195,8 @@ class MainWindow : public QMainWindow
     QFileSystemWatcher *fileWatcher;
     bool reloading = false;
 
+    bool killingProcesses = false;
+
     QPushButton *submitToCodeforces = nullptr;
     Extensions::CFTool *cftool = nullptr;
 

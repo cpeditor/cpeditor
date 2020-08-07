@@ -673,6 +673,14 @@ void MainWindow::killProcesses()
 {
     LOG_INFO("Killing all processes");
 
+    if (killingProcesses) // prevent deleting the same pointer multiple times
+    {
+        LOG_INFO("Already killing processes");
+        return;
+    }
+
+    killingProcesses = true;
+
     if (compiler != nullptr)
     {
         delete compiler;
@@ -693,6 +701,8 @@ void MainWindow::killProcesses()
         delete detachedRunner;
         detachedRunner = nullptr;
     }
+
+    killingProcesses = false;
 }
 
 //***************** HELPER FUNCTIONS *****************
