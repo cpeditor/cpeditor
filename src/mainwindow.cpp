@@ -52,7 +52,8 @@
 // ***************************** RAII  ****************************
 
 MainWindow::MainWindow(const QString &fileOpen, int index, QWidget *parent)
-    : QMainWindow(parent), ui(new Ui::MainWindow), untitledIndex(index), fileWatcher(new QFileSystemWatcher(this))
+    : QMainWindow(parent), ui(new Ui::MainWindow), untitledIndex(index), fileWatcher(new QFileSystemWatcher(this)),
+      reloading(false), killingProcesses(false)
 {
     LOG_INFO(INFO_OF(fileOpen) << INFO_OF(index));
 
