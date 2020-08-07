@@ -149,7 +149,7 @@ AppWindow::AppWindow(bool cpp, bool java, bool python, bool noHotExit, int numbe
         lang = "Java";
     else if (python)
         lang = "Python";
-    openContest(path, lang, number);
+    openContest({path, number, lang});
     if (ui->tabWidget->count() == 0)
         openTab("");
 
@@ -496,8 +496,12 @@ QStringList AppWindow::openFolder(const QString &path, bool cpp, bool java, bool
     return res;
 }
 
-void AppWindow::openContest(const QString &path, const QString &lang, int number)
+void AppWindow::openContest(Widgets::ContestDialog::ContestData const &data)
 {
+    const QString &path = data.path;
+    const QString &lang = data.language;
+    int number = data.number;
+
     QDir dir(path), parent(path);
     parent.cdUp();
     if (!dir.exists() && parent.exists())
@@ -654,28 +658,9 @@ void AppWindow::on_actionOpen_triggered()
 
 void AppWindow::on_actionOpenContest_triggered()
 {
-    auto path = DefaultPathManager::getExistingDirectory("Open Contest", this, tr("Open Contest"));
-    if (QFile::exists(path) && QFileInfo(path).isDir())
-    {
-        bool ok = false;
-        int number =
-            QInputDialog::getInt(this, tr("Open Contest"), tr("Number of problems in this contest:"), 5, 0, 26, 1, &ok);
-        if (ok)
-        {
-            int current = 0;
-            if (SettingsHelper::getDefaultLanguage() == "Java")
-                current = 1;
-            else if (SettingsHelper::getDefaultLanguage() == "Python")
-                current = 2;
-            auto lang = QInputDialog::getItem(this, tr("Open Contest"), tr("Choose a language"),
-                                              {"C++", "Java", "Python"}, current, false, &ok);
-            if (ok)
-            {
-                LOG_INFO("Opening contest with args " << INFO_OF(path) << INFO_OF(lang) << INFO_OF(number));
-                openContest(path, lang, number);
-            }
-        }
-    }
+    Widgets::ContestDialog dialog(this);
+    if (dialog.exec() == QDialog::Accepted)
+        openContest(dialog.contestData());
 }
 
 void AppWindow::on_actionSave_triggered()
@@ -836,7 +821,7 @@ void AppWindow::onReceivedMessage(quint32 instanceId, QByteArray message)
             lang = "Java";
         else if (python)
             lang = "Python";
-        openContest(path, lang, number);
+        openContest({path, number, lang});
     }
 }
 

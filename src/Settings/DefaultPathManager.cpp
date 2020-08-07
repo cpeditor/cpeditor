@@ -33,7 +33,7 @@ QString DefaultPathManager::defaultPathForAction(const QString &action)
     return result;
 }
 
-void DefaultPathManager::changeDefaultPathForAction(const QString &action, const QString &path)
+void DefaultPathManager::setDefaultPathForAction(const QString &action, const QString &path)
 {
     LOG_INFO(INFO_OF(action) << INFO_OF(path));
 
@@ -67,7 +67,7 @@ QString DefaultPathManager::getExistingDirectory(const QString &action, QWidget 
 {
     const auto result = QFileDialog::getExistingDirectory(parent, caption, defaultPathForAction(action), options);
     if (!result.isEmpty())
-        changeDefaultPathForAction(action, result);
+        setDefaultPathForAction(action, result);
     return result;
 }
 
@@ -78,7 +78,7 @@ QString DefaultPathManager::getOpenFileName(const QString &action, QWidget *pare
     const auto result =
         QFileDialog::getOpenFileName(parent, caption, defaultPathForAction(action), filter, selectedFilter, options);
     if (!result.isEmpty())
-        changeDefaultPathForAction(action, result);
+        setDefaultPathForAction(action, result);
     return result;
 }
 
@@ -89,7 +89,7 @@ QStringList DefaultPathManager::getOpenFileNames(const QString &action, QWidget 
     const auto result =
         QFileDialog::getOpenFileNames(parent, caption, defaultPathForAction(action), filter, selectedFilter, options);
     if (!result.isEmpty())
-        changeDefaultPathForAction(action, result.front());
+        setDefaultPathForAction(action, result.front());
     return result;
 }
 
@@ -100,7 +100,7 @@ QString DefaultPathManager::getSaveFileName(const QString &action, QWidget *pare
     const auto result =
         QFileDialog::getSaveFileName(parent, caption, defaultPathForAction(action), filter, selectedFilter, options);
     if (!result.isEmpty())
-        changeDefaultPathForAction(action, result);
+        setDefaultPathForAction(action, result);
     return result;
 }
 

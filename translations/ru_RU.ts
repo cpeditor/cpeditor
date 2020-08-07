@@ -36,18 +36,6 @@
         <translation>Открыть файлы</translation>
     </message>
     <message>
-        <source>Open Contest</source>
-        <translation>Открыть соревнование</translation>
-    </message>
-    <message>
-        <source>Number of problems in this contest:</source>
-        <translation>Число задач в соревновании:</translation>
-    </message>
-    <message>
-        <source>Choose a language</source>
-        <translation>Выберите язык</translation>
-    </message>
-    <message>
         <source>Reset preferences</source>
         <translation>Сбросить настройки</translation>
     </message>
@@ -2509,6 +2497,57 @@ A loaded test case will be elided and read-only if it&apos;s too long.</source>
     <message>
         <source>Reveal %1 in File Manager</source>
         <translation>Показать %1 в Файловом менеджере</translation>
+    </message>
+</context>
+<context>
+    <name>Widgets::ContestDialog</name>
+    <message>
+        <source>Create a new contest</source>
+        <translation>Создать новое соревнование</translation>
+    </message>
+    <message>
+        <source>Main Directory</source>
+        <translation>Главная директория</translation>
+    </message>
+    <message>
+        <source>Subdirectory</source>
+        <translation>Поддиректория</translation>
+    </message>
+    <message>
+        <source>Number of Problems</source>
+        <translation>Число задач</translation>
+    </message>
+    <message>
+        <source>Main Directory doesn&apos;t exist</source>
+        <translation>Главная директория не существует</translation>
+    </message>
+    <message>
+        <source>The Main Directory [%1] doesn&apos;t exist. Do you want to create it and continue?</source>
+        <translation>Главная директория [%1] не существует. Вы хотите создать ее и продолжить?</translation>
+    </message>
+    <message>
+        <source>Failed to create directory</source>
+        <translation>Ошибка при создании директории</translation>
+    </message>
+    <message>
+        <source>Failed to create the directory [%1].</source>
+        <translation>Ошибка при создании директории [%1].</translation>
+    </message>
+    <message>
+        <source>Contest Details</source>
+        <translation>Детали соревнования</translation>
+    </message>
+    <message>
+        <source>Save Path</source>
+        <translation>Сохранить путь</translation>
+    </message>
+    <message>
+        <source>Language</source>
+        <translation>Язык</translation>
+    </message>
+    <message>
+        <source>Choose Main Directory</source>
+        <translation>Выбрать главную директорию</translation>
     </message>
 </context>
 <context>
