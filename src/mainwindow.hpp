@@ -193,7 +193,9 @@ class MainWindow : public QMainWindow
     QString savedText;
     QString cftoolPath;
     QFileSystemWatcher *fileWatcher;
-    bool reloading = false;
+
+    std::atomic<bool> reloading;
+    std::atomic<bool> killingProcesses;
 
     QPushButton *submitToCodeforces = nullptr;
     Extensions::CFTool *cftool = nullptr;
