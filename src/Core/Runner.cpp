@@ -133,9 +133,10 @@ void Runner::runDetached(const QString &tmpFilePath, const QString &sourceFilePa
     }
     runProcess->setProgram(terminal);
     auto quotedCommand = getCommand(tmpFilePath, sourceFilePath, lang, runCommand, args);
-    QStringList execArgs = {"-e", "/bin/bash", "-c", QStringLiteral("%1 ; echo \"\n%2\" ; read -n 1")
-                                      .arg(quotedCommand)
-                                      .arg(tr("Program finished with exit code %1\nPress any key to exit").arg("$?"))};
+    QStringList execArgs = {"-e", "/bin/bash", "-c",
+                            QStringLiteral("%1 ; echo \"\n%2\" ; read -n 1")
+                                .arg(quotedCommand)
+                                .arg(tr("Program finished with exit code %1\nPress any key to exit").arg("$?"))};
     if (terminal == "gnome-terminal")
         execArgs.replace(0, "--"); // Gnome terminal has deprecated -e flag
 
