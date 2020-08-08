@@ -125,9 +125,10 @@ void Runner::runDetached(const QString &tmpFilePath, const QString &sourceFilePa
     bool finished = testProcess.waitForFinished(2000);
     if (!finished || testProcess.exitCode() != 0)
     {
-        emit failedToStartRun(runnerIndex, QString(tr("Please install %1 in order to use detached run or change "
-                                                      "Detached Execution Terminal from Preferences."))
-                                               .arg(terminal));
+        emit failedToStartRun(
+            runnerIndex,
+            tr("%1 could not be found. You can change the terminal from Preferences -> Action -> Detached Execution.")
+                .arg(terminal));
         return;
     }
     runProcess->setProgram(terminal);
@@ -135,6 +136,9 @@ void Runner::runDetached(const QString &tmpFilePath, const QString &sourceFilePa
     QStringList execArgs = {"-e", QStringLiteral("/bin/bash -c '%1 ; echo \"\n%2\" ; read -n 1'")
                                       .arg(quotedCommand)
                                       .arg(tr("Program finished with exit code %1\nPress any key to exit").arg("$?"))};
+    if (terminal == "gnome-terminal")
+        execArgs.replace(0, "--"); // Gnome terminal has deprecated -e flag
+
     runProcess->setArguments(execArgs);
     runProcess->start();
 #elif defined(Q_OS_MAC)

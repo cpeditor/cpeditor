@@ -657,7 +657,12 @@ git 提交编号: %3
         <translation>未能成功运行。请先编译。</translation>
     </message>
     <message>
-        <source>Please install %1 in order to use detached run or change Detached Execution Terminal from Preferences.</source>
+        <source>%1 could not be found. You can change the terminal from Preferences -&gt; Action -&gt; Detached Execution.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Program finished with exit code %1
+Press any key to exit</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2395,7 +2400,7 @@ A loaded test case will be elided and read-only if it&apos;s too long.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>The terminal to use when running in detached mode</source>
+        <source>The terminal emulator to use when running in detached mode</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
