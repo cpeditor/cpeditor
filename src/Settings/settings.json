@@ -296,7 +296,7 @@
         "name": "Detached Execution Terminal",
         "type": "QString",
         "default": "xterm",
-        "ui":"QComboBox",
+        "ui": "QComboBox",
         "param": "QStringList { \"xterm\", \"konsole\", \"gnome-terminal\"}",
         "tip": "The terminal emulator to use when running in detached mode"
     },
