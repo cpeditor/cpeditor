@@ -112,24 +112,27 @@ void Runner::runDetached(const QString &tmpFilePath, const QString &sourceFilePa
                          const QString &runCommand, const QString &args)
 {
     // different steps on different OSs
-#if defined(__unix__)
+#if defined(Q_OS_LINUX)
     // use xterm on Linux
     // check whether xterm is installed at first
-    LOG_INFO("Using xterm on unix");
+    
+QString terminal = SettingsHelper::getDetachedExecutionTerminal();
+	
+    LOG_INFO("Using: " << terminal << " on Linux");
     QProcess testProcess;
-    testProcess.start("xterm", {"-v"});
+    testProcess.start(terminal, {"-v"});
     bool finished = testProcess.waitForFinished(2000);
     if (!finished || testProcess.exitCode() != 0)
     {
-        emit failedToStartRun(runnerIndex, tr("Please install xterm in order to use Detached Run."));
+        emit failedToStartRun(runnerIndex, QString(tr("Please install %1 in order to use detached run or change Detached Execution Terminal from Preferences.")).arg(terminal));
         return;
     }
-    runProcess->setProgram("xterm");
+    runProcess->setProgram(terminal);
     runProcess->setArguments({"-e", getCommand(tmpFilePath, sourceFilePath, lang, runCommand, args) +
-                                        "; read -n 1 -s -r -p '\nExecution Done\nPress any key to exit'"});
+                                        "; echo \"\nExecution Done\nPress enter to exit\"; read"});
     LOG_INFO("Xterm args " << runProcess->arguments().join(" "));
     runProcess->start();
-#elif defined(__APPLE__)
+#elif defined(Q_OS_MAC)
     // use apple script on Mac OS
     runProcess->setProgram("osascript");
     runProcess->setArguments({"-l", "AppleScript"});

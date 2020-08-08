@@ -293,6 +293,14 @@
         "tip": "The syntax highlight theme of the code editor"
     },
     {
+	"name": "Detached Execution Terminal",
+	"type": "QString",
+	"default": "xterm",
+	"ui":"QComboBox",
+	"param": "QStringList { \"xterm\", \"konsole\", \"gnome-terminal\"}",
+	"tip": "The terminal to use when running in detached mode"
+    },
+    {
         "name": "Auto Complete Parentheses",
         "type": "bool",
         "default": true,
