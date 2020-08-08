@@ -120,16 +120,18 @@ void Runner::runDetached(const QString &tmpFilePath, const QString &sourceFilePa
 #if defined(Q_OS_LINUX)
     // use xterm on Linux
     // check whether xterm is installed at first
-    
-QString terminal = SettingsHelper::getDetachedExecutionTerminal();
-	
+
+    QString terminal = SettingsHelper::getDetachedExecutionTerminal();
+
     LOG_INFO("Using: " << terminal << " on Linux");
     QProcess testProcess;
     testProcess.start(terminal, {"-v"});
     bool finished = testProcess.waitForFinished(2000);
     if (!finished || testProcess.exitCode() != 0)
     {
-        emit failedToStartRun(runnerIndex, QString(tr("Please install %1 in order to use detached run or change Detached Execution Terminal from Preferences.")).arg(terminal));
+        emit failedToStartRun(runnerIndex, QString(tr("Please install %1 in order to use detached run or change "
+                                                      "Detached Execution Terminal from Preferences."))
+                                               .arg(terminal));
         return;
     }
     runProcess->setProgram(terminal);
