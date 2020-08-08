@@ -657,8 +657,8 @@ Git commit hash: %3
         <translation>Ошибка при запуске. Пожалуйста, сперва запустите компиляцию.</translation>
     </message>
     <message>
-        <source>Please install xterm in order to use Detached Run.</source>
-        <translation>Пожалуйста, установите xterm, если вы хотите использовать Отдельный запуск.</translation>
+        <source>Please install %1 in order to use detached run or change Detached Execution Terminal from Preferences.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1456,6 +1456,10 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     <message>
         <source>Load External File Changes</source>
         <translation>Загрузка внешних файловый изменений</translation>
+    </message>
+    <message>
+        <source>Detached Execution</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2393,6 +2397,14 @@ A loaded test case will be elided and read-only if it&apos;s too long.</source>
     <message>
         <source>Show a toast message when the verdict of a submission is known. You can see the message outside of CP Editor.</source>
         <translation>Показывать всплывающие уведомления, когда известен вердикт отправки. Вы сможете видеть сообщения за пределами CP Editor.</translation>
+    </message>
+    <message>
+        <source>Detached Execution Terminal</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The terminal to use when running in detached mode</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

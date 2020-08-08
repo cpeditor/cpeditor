@@ -657,8 +657,8 @@ git 提交编号: %3
         <translation>未能成功运行。请先编译。</translation>
     </message>
     <message>
-        <source>Please install xterm in order to use Detached Run.</source>
-        <translation>请安装 xterm 以使用在终端中运行。</translation>
+        <source>Please install %1 in order to use detached run or change Detached Execution Terminal from Preferences.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1456,6 +1456,10 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     <message>
         <source>Load External File Changes</source>
         <translation>加载外部文件修改</translation>
+    </message>
+    <message>
+        <source>Detached Execution</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2385,6 +2389,14 @@ A loaded test case will be elided and read-only if it&apos;s too long.</source>
     <message>
         <source>Show a toast message when the verdict of a submission is known. You can see the message outside of CP Editor.</source>
         <translation>当获知了一个提交的评测结果时，显示一条气泡消息。你可以在 CP Editor 外看到这条消息。</translation>
+    </message>
+    <message>
+        <source>Detached Execution Terminal</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The terminal to use when running in detached mode</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
