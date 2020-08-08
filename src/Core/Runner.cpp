@@ -18,11 +18,11 @@
 #include "Core/Runner.hpp"
 #include "Core/Compiler.hpp"
 #include "Core/EventLogger.hpp"
+#include <QDebug>
 #include <QElapsedTimer>
 #include <QFileInfo>
 #include <QTimer>
 #include <generated/SettingsHelper.hpp>
-#include <QDebug>
 
 namespace Core
 {
@@ -135,9 +135,11 @@ void Runner::runDetached(const QString &tmpFilePath, const QString &sourceFilePa
         return;
     }
     runProcess->setProgram(terminal);
-    auto quotedCommand = getCommand(tmpFilePath, sourceFilePath, lang, runCommand, args); 
-qDebug() << quotedCommand;
-    QStringList execArgs = {"-e", "/bin/bash -c '" + quotedCommand +  " ; echo \"\nProgram completed with exit code $?\nPress any key to exit\" ; read -n 1'"}; 
+    auto quotedCommand = getCommand(tmpFilePath, sourceFilePath, lang, runCommand, args);
+    qDebug() << quotedCommand;
+    QStringList execArgs = {
+        "-e", "/bin/bash -c '" + quotedCommand +
+                  " ; echo \"\nProgram completed with exit code $?\nPress any key to exit\" ; read -n 1'"};
     runProcess->setArguments(execArgs);
     runProcess->start();
 #elif defined(Q_OS_MAC)
