@@ -92,6 +92,8 @@ void Runner::run(const QString &tmpFilePath, const QString &sourceFilePath, cons
 
     QString program = command.takeFirst();
 
+    setWorkingDirectory(tmpFilePath, sourceFilePath, lang);
+
     runProcess->start(program, command);
     bool started = runProcess->waitForStarted(2000);
 
@@ -111,6 +113,8 @@ void Runner::run(const QString &tmpFilePath, const QString &sourceFilePath, cons
 void Runner::runDetached(const QString &tmpFilePath, const QString &sourceFilePath, const QString &lang,
                          const QString &runCommand, const QString &args)
 {
+    setWorkingDirectory(tmpFilePath, sourceFilePath, lang);
+
     // different steps on different OSs
 #if defined(Q_OS_LINUX)
     // use xterm on Linux
@@ -226,6 +230,12 @@ QString Runner::getCommand(const QString &tmpFilePath, const QString &sourceFile
     LOG_INFO("Returning runCommand as : " << res);
 
     return res;
+}
+
+void Runner::setWorkingDirectory(const QString &tmpFilePath, const QString &sourceFilePath, const QString &lang)
+{
+    runProcess->setWorkingDirectory(
+        QFileInfo(Compiler::outputFilePath(tmpFilePath, sourceFilePath, lang, false)).path());
 }
 
 } // namespace Core

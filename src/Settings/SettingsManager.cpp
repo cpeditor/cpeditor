@@ -178,7 +178,7 @@ bool SettingsManager::contains(const QString &key, bool includingDefault)
 
 void SettingsManager::set(const QString &key, QVariant value)
 {
-    LOG_INFO_IF(!key.startsWith("Snippets/"), INFO_OF(key) << INFO_OF(value.toString()));
+    LOG_INFO_IF(!key.startsWith("Language Config/"), INFO_OF(key) << INFO_OF(value.toString()));
     cur->insert(key, value);
 }
 

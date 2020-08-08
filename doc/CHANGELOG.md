@@ -2,16 +2,28 @@
 
 ### Added
 
-- Open recent files. (#527)
-- Use Dialog box to open new contests (#539 & #467)
-- Reveal the executable file in file manager. (#537)
+-   Open recent files. (#527)
+-   Reveal the executable file in file manager. (#537)
+-   Use a dialog to open new contests. (#539 and #467)
 
 ### Fixed
 
-- Fixed the diff viewer crashes when the output is empty. (#517)
-- Fixed the background color of the diff viewer is black on Windows with the Dark Fusion theme. (#519 and #520)
-- Fixed the old problem URL is not restored when opening an old file with that option on. (#522)
-- Fixed the performance issue that makes the editor extremely slow when there are many lines. (cpeditor/QCodeEditor#27)
+-   Fixed the diff viewer crashes when the output is empty. (#517)
+-   Fixed the background color of the diff viewer is black on Windows with the Dark Fusion theme. (#519 and #520)
+-   Fixed the old problem URL is not restored when opening an old file with that option on. (#522)
+-   Fixed the performance issue that makes the editor extremely slow when there are many lines. (cpeditor/QCodeEditor#27)
+-   Now the code snippets won't be in the log file. (#536)
+-   Fixed crash when compiling twice in a row with large test cases. (#549 and #550)
+
+### Changed
+
+-   Now the working directory when executing programs is:
+
+    1.  The path of the executable file for C++;
+    2.  The class path for Java;
+    3.  The temp file path for Python.
+
+    If you write to files with relative paths in your codes, you can use "Reveal Executable File" to find the outputs.
 
 ## v6.6
 

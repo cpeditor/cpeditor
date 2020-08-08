@@ -166,6 +166,12 @@ class Runner : public QObject
     static QString getCommand(const QString &tmpFilePath, const QString &sourceFilePath, const QString &lang,
                               const QString &runCommand, const QString &args);
 
+    /**
+     * @brief set the working directory of runProcess
+     * @note the path of the executable file for C++, class path for Java, temp file path for Python
+     */
+    void setWorkingDirectory(const QString &tmpFilePath, const QString &sourceFilePath, const QString &lang);
+
     const int runnerIndex;                   // the index of the testcase
     QProcess *runProcess = nullptr;          // the process to run the program
     QTimer *killTimer = nullptr;             // the timer used to kill the process when the time limit is reached
