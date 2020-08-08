@@ -55,7 +55,7 @@ static const int MAX_NUMBER_OF_RECENT_FILES = 20;
 
 MainWindow::MainWindow(int index, QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow), untitledIndex(index), fileWatcher(new QFileSystemWatcher(this)),
-      autoSaveTimer(new QTimer(this))
+      reloading(false), killingProcesses(false), autoSaveTimer(new QTimer(this))
 {
     LOG_INFO(INFO_OF(index));
     ui->setupUi(this);
@@ -723,6 +723,14 @@ void MainWindow::killProcesses()
 {
     LOG_INFO("Killing all processes");
 
+    if (killingProcesses) // prevent deleting the same pointer multiple times
+    {
+        LOG_INFO("Already killing processes");
+        return;
+    }
+
+    killingProcesses = true;
+
     if (compiler != nullptr)
     {
         delete compiler;
@@ -743,6 +751,8 @@ void MainWindow::killProcesses()
         delete detachedRunner;
         detachedRunner = nullptr;
     }
+
+    killingProcesses = false;
 }
 
 //***************** HELPER FUNCTIONS *****************
