@@ -18,7 +18,6 @@
 #include "Core/Runner.hpp"
 #include "Core/Compiler.hpp"
 #include "Core/EventLogger.hpp"
-#include <QDebug>
 #include <QElapsedTimer>
 #include <QFileInfo>
 #include <QTimer>
@@ -118,9 +117,6 @@ void Runner::runDetached(const QString &tmpFilePath, const QString &sourceFilePa
 
     // different steps on different OSs
 #if defined(Q_OS_LINUX)
-    // use xterm on Linux
-    // check whether xterm is installed at first
-
     QString terminal = SettingsHelper::getDetachedExecutionTerminal();
 
     LOG_INFO("Using: " << terminal << " on Linux");
@@ -136,7 +132,6 @@ void Runner::runDetached(const QString &tmpFilePath, const QString &sourceFilePa
     }
     runProcess->setProgram(terminal);
     auto quotedCommand = getCommand(tmpFilePath, sourceFilePath, lang, runCommand, args);
-    qDebug() << quotedCommand;
     QStringList execArgs = {
         "-e", "/bin/bash -c '" + quotedCommand +
                   " ; echo \"\nProgram completed with exit code $?\nPress any key to exit\" ; read -n 1'"};
