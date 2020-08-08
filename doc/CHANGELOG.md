@@ -12,6 +12,8 @@
 -   Fixed the background color of the diff viewer is black on Windows with the Dark Fusion theme. (#519 and #520)
 -   Fixed the old problem URL is not restored when opening an old file with that option on. (#522)
 -   Fixed the performance issue that makes the editor extremely slow when there are many lines. (cpeditor/QCodeEditor#27)
+-   Now the code snippets won't be in the log file. (#536)
+-   Fixed crash when compiling twice in a row with large test cases. (#549 and #550)
 
 ### Changed
 
