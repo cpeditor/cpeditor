@@ -132,9 +132,9 @@ void Runner::runDetached(const QString &tmpFilePath, const QString &sourceFilePa
     }
     runProcess->setProgram(terminal);
     auto quotedCommand = getCommand(tmpFilePath, sourceFilePath, lang, runCommand, args);
-    QStringList execArgs = {
-        "-e", "/bin/bash -c '" + quotedCommand +
-                  " ; echo \"\nProgram completed with exit code $?\nPress any key to exit\" ; read -n 1'"};
+    QStringList execArgs = {"-e", QStringLiteral("/bin/bash -c '%1 ; echo \"\n%2\" ; read -n 1'")
+                                      .arg(quotedCommand)
+                                      .arg(tr("Program finished with exit code %1\nPress any key to exit").arg("$?"))};
     runProcess->setArguments(execArgs);
     runProcess->start();
 #elif defined(Q_OS_MAC)
