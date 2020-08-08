@@ -1,5 +1,7 @@
 ## UNRELEASED
 
+## 6.5.5
+
 ### Fixed
 
 - Fixed crash when compiling twice in a row with large test cases. (#549 and #550)
