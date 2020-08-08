@@ -22,6 +22,7 @@
 #include <QFileInfo>
 #include <QTimer>
 #include <generated/SettingsHelper.hpp>
+#include <QDebug>
 
 namespace Core
 {
@@ -132,9 +133,10 @@ QString terminal = SettingsHelper::getDetachedExecutionTerminal();
         return;
     }
     runProcess->setProgram(terminal);
-    runProcess->setArguments({"-e", getCommand(tmpFilePath, sourceFilePath, lang, runCommand, args) +
-                                        "; echo \"\nExecution Done\nPress enter to exit\"; read"});
-    LOG_INFO("Xterm args " << runProcess->arguments().join(" "));
+    auto quotedCommand = getCommand(tmpFilePath, sourceFilePath, lang, runCommand, args); 
+qDebug() << quotedCommand;
+    QStringList execArgs = {"-e", "/bin/bash -c '" + quotedCommand +  " ; echo \"\nProgram completed with exit code $?\nPress any key to exit\" ; read -n 1'"}; 
+    runProcess->setArguments(execArgs);
     runProcess->start();
 #elif defined(Q_OS_MAC)
     // use apple script on Mac OS
