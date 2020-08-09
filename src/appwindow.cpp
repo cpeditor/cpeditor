@@ -620,7 +620,7 @@ void AppWindow::on_actionBuildInfo_triggered()
 #endif
                            .arg(GIT_COMMIT_HASH)
                            .arg(__DATE__ " " __TIME__)
-#if defined(Q_OS_UNIX)
+#if defined(Q_OS_LINUX)
                            .arg("Linux")
 #elif defined(Q_OS_WIN)
                            .arg("Windows")

@@ -116,7 +116,24 @@ void Runner::runDetached(const QString &tmpFilePath, const QString &sourceFilePa
     setWorkingDirectory(tmpFilePath, sourceFilePath, lang);
 
     // different steps on different OSs
-#if defined(Q_OS_LINUX)
+#if defined(Q_OS_MACOS)
+    // use apple script on Mac OS
+    runProcess->setProgram("osascript");
+    runProcess->setArguments({"-l", "AppleScript"});
+    QString script = "tell app \"Terminal\" to do script \"" +
+                     getCommand(tmpFilePath, sourceFilePath, lang, runCommand, args).replace("\"", "'") + "\"";
+    runProcess->start();
+    LOG_INFO("Running apple script\n" << script);
+    runProcess->write(script.toUtf8());
+    runProcess->closeWriteChannel();
+#elif defined(Q_OS_WIN)
+    // use cmd on Windows
+    runProcess->start("cmd", QProcess::splitCommand(
+                                 "/C \"start cmd /C " +
+                                 getCommand(tmpFilePath, sourceFilePath, lang, runCommand, args).replace("\"", "^\"") +
+                                 " ^& pause\""));
+    LOG_INFO("CMD Arguemnts " << runProcess->arguments().join(" "));
+#else
     QString terminal = SettingsHelper::getDetachedExecutionTerminal();
 
     LOG_INFO("Using: " << terminal << " on Linux");
@@ -142,24 +159,6 @@ void Runner::runDetached(const QString &tmpFilePath, const QString &sourceFilePa
 
     runProcess->setArguments(execArgs);
     runProcess->start();
-#elif defined(Q_OS_MAC)
-    // use apple script on Mac OS
-    runProcess->setProgram("osascript");
-    runProcess->setArguments({"-l", "AppleScript"});
-    QString script = "tell app \"Terminal\" to do script \"" +
-                     getCommand(tmpFilePath, sourceFilePath, lang, runCommand, args).replace("\"", "'") + "\"";
-    runProcess->start();
-    LOG_INFO("Running apple script\n" << script);
-    runProcess->write(script.toUtf8());
-    runProcess->closeWriteChannel();
-#else
-    // use cmd on Windows
-    runProcess->start("cmd", QProcess::splitCommand(
-                                 "/C \"start cmd /C " +
-                                 getCommand(tmpFilePath, sourceFilePath, lang, runCommand, args).replace("\"", "^\"") +
-                                 " ^& pause\""));
-    LOG_INFO("CMD Arguemnts " << runProcess->arguments().join(" "));
-
 #endif
 }
 
