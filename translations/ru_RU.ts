@@ -658,12 +658,12 @@ Git commit hash: %3
     </message>
     <message>
         <source>%1 could not be found. You can change the terminal from Preferences -&gt; Action -&gt; Detached Execution.</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 не может быть найден. Вы можете изменить терминал в Параметры -&gt; Действия -&gt; Отдельный запуск.</translation>
     </message>
     <message>
         <source>Program finished with exit code %1
 Press any key to exit</source>
-        <translation type="unfinished"></translation>
+        <translation>Программа завершилась с кодом %1 Нажмите на любую клавишу для выхода</translation>
     </message>
 </context>
 <context>
@@ -1464,7 +1464,7 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     </message>
     <message>
         <source>Detached Execution</source>
-        <translation type="unfinished"></translation>
+        <translation>Отдельный запуск</translation>
     </message>
 </context>
 <context>
@@ -2405,11 +2405,11 @@ A loaded test case will be elided and read-only if it&apos;s too long.</source>
     </message>
     <message>
         <source>Detached Execution Terminal</source>
-        <translation type="unfinished"></translation>
+        <translation>Отдельный запуск терминала</translation>
     </message>
     <message>
         <source>The terminal emulator to use when running in detached mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Эмулятор терминала запускаемый при отдельном запуске</translation>
     </message>
 </context>
 <context>
