@@ -659,11 +659,12 @@ git 提交编号: %3
     <message>
         <source>Program finished with exit code %1
 Press any key to exit</source>
-        <translation type="unfinished"></translation>
+        <translation>程序以返回值 %1 结束了
+按任意键退出</translation>
     </message>
     <message>
-        <source>%1 could not be found. You can change the terminal command from Preferences -&gt; Action -&gt; Detached Execution.</source>
-        <translation type="unfinished"></translation>
+        <source>Failed to start detached execution. Please check your terminal emulator settings in Preferences-&gt;Actions-&gt;Detached Execution.</source>
+        <translation>未能成功在终端中运行。请在 设置-&gt;动作-&gt;终端中运行 中检查终端模拟器的设置。</translation>
     </message>
 </context>
 <context>
@@ -1464,7 +1465,7 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     </message>
     <message>
         <source>Detached Execution</source>
-        <translation type="unfinished"></translation>
+        <translation>终端中运行</translation>
     </message>
 </context>
 <context>
@@ -2397,23 +2398,27 @@ A loaded test case will be elided and read-only if it&apos;s too long.</source>
     </message>
     <message>
         <source>Terminal Arguments</source>
-        <translation type="unfinished"></translation>
+        <translation>终端参数</translation>
     </message>
     <message>
         <source>Terminal Program</source>
-        <translation type="unfinished"></translation>
+        <translation>终端程序</translation>
     </message>
     <message>
         <source>The terminal emulator to use when running in detached mode.
 This is usually the name or the path of the terminal emulator.
 Some possible values are konsole, gnome-terminal, xfce-terminal, xterm or any other terminal emulator program.</source>
-        <translation type="unfinished"></translation>
+        <translation>用于”在终端运行“的终端模拟器。这通常是该终端模拟器的名称或路径。
+一些可能的值：konsole, gnome-terminal, xfce-terminal, xterm 或任何其它终端模拟器。</translation>
     </message>
     <message>
         <source>Arguments used to execute a given command in the terminal emulator.
 This is &quot;-e&quot; for most terminal emulators, including konsole, xterm, xfce-terminal but can be &quot;--&quot; for gnome-terminal.
 Consult your terminal emulator for the suitable arguments.</source>
-        <translation type="unfinished"></translation>
+        <translation>用于在终端模拟器中执行指定命令的参数。
+在大多数终端模拟器（包括 konsole, xterm, xfce-terminal）中，这个参数是 &quot;-e&quot;。
+在 gnome-terminal 中，这个参数是 &quot;--&quot;。
+请自行查阅适用于你所使用的终端模拟器的参数。</translation>
     </message>
 </context>
 <context>

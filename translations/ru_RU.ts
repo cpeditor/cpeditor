@@ -662,7 +662,7 @@ Press any key to exit</source>
         <translation>Программа завершилась с кодом %1 Нажмите на любую клавишу для выхода</translation>
     </message>
     <message>
-        <source>%1 could not be found. You can change the terminal command from Preferences -&gt; Action -&gt; Detached Execution.</source>
+        <source>Failed to start detached execution. Please check your terminal emulator settings in Preferences-&gt;Actions-&gt;Detached Execution.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
