@@ -293,12 +293,16 @@
         "tip": "The syntax highlight theme of the code editor"
     },
     {
-        "name": "Detached Execution Terminal",
+        "name": "Terminal Command",
         "type": "QString",
         "default": "xterm",
-        "ui": "QComboBox",
-        "param": "QStringList { \"xterm\", \"konsole\", \"gnome-terminal\"}",
-        "tip": "The terminal emulator to use when running in detached mode"
+        "tip": "The terminal emulator to use when running in detached mode.\nThis is usually the name or path of the terminal to use, \nSome possible values are konsole, gnome-terminal, xfce-terminal, xterm or any other terminal emulator program."
+    },
+    {
+        "name": "Terminal Arguments",
+        "type": "QString",
+        "default": "-e",
+        "tip": "Argument to pass to terminal emulator command to start execution of your program.\nThis is usually -e for most terminals like konsole, xterm, xfce-terminal but can be -- for gnome-terminal. Consult your terminal emulator program for the valid arguments."
     },
     {
         "name": "Auto Complete Parentheses",

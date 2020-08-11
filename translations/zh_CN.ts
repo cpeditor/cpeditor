@@ -657,12 +657,12 @@ git 提交编号: %3
         <translation>未能成功运行。请先编译。</translation>
     </message>
     <message>
-        <source>%1 could not be found. You can change the terminal from Preferences -&gt; Action -&gt; Detached Execution.</source>
+        <source>Program finished with exit code %1
+Press any key to exit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Program finished with exit code %1
-Press any key to exit</source>
+        <source>%1 could not be found. You can change the terminal command from Preferences -&gt; Action -&gt; Detached Execution.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2396,11 +2396,22 @@ A loaded test case will be elided and read-only if it&apos;s too long.</source>
         <translation>当获知了一个提交的评测结果时，显示一条气泡消息。你可以在 CP Editor 外看到这条消息。</translation>
     </message>
     <message>
-        <source>Detached Execution Terminal</source>
+        <source>Terminal Command</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>The terminal emulator to use when running in detached mode</source>
+        <source>The terminal emulator to use when running in detached mode.
+This is usually the name or path of the terminal to use, 
+Some possible values are konsole, gnome-terminal, xfce-terminal, xterm or any other terminal emulator program.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Terminal Arguments</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Argument to pass to terminal emulator command to start execution of your program.
+This is usually -e for most terminals like konsole, xterm, xfce-terminal but can be -- for gnome-terminal. Consult your terminal emulator program for the valid arguments.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

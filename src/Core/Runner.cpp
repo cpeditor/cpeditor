@@ -134,7 +134,7 @@ void Runner::runDetached(const QString &tmpFilePath, const QString &sourceFilePa
                                  " ^& pause\""));
     LOG_INFO("CMD Arguemnts " << runProcess->arguments().join(" "));
 #else
-    QString terminal = SettingsHelper::getDetachedExecutionTerminal();
+    QString terminal = SettingsHelper::getTerminalCommand();
 
     LOG_INFO("Using: " << terminal << " on Linux");
     QProcess testProcess;
@@ -142,20 +142,17 @@ void Runner::runDetached(const QString &tmpFilePath, const QString &sourceFilePa
     bool finished = testProcess.waitForFinished(2000);
     if (!finished || testProcess.exitCode() != 0)
     {
-        emit failedToStartRun(
-            runnerIndex,
-            tr("%1 could not be found. You can change the terminal from Preferences -> Action -> Detached Execution.")
-                .arg(terminal));
+        emit failedToStartRun(runnerIndex, tr("%1 could not be found. You can change the terminal command from "
+                                              "Preferences -> Action -> Detached Execution.")
+                                               .arg(terminal));
         return;
     }
     runProcess->setProgram(terminal);
     auto quotedCommand = getCommand(tmpFilePath, sourceFilePath, lang, runCommand, args);
-    QStringList execArgs = {"-e", "/bin/bash", "-c",
+    QStringList execArgs = {SettingsHelper::getTerminalArguments(), "/bin/bash", "-c",
                             QStringLiteral("%1 ; echo \"\n%2\" ; read -n 1")
                                 .arg(quotedCommand)
                                 .arg(tr("Program finished with exit code %1\nPress any key to exit").arg("$?"))};
-    if (terminal == "gnome-terminal")
-        execArgs.replace(0, "--"); // Gnome terminal has deprecated -e flag
 
     runProcess->setArguments(execArgs);
     runProcess->start();
