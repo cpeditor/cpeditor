@@ -153,6 +153,11 @@ class Runner : public QObject
      */
     void onReadyReadStandardError();
 
+    /**
+     * @brief if the error is FailedToStart, emit failedToStartRun
+     */
+    void onErrorOccurred(QProcess::ProcessError error);
+
   private:
     /**
      * @brief get the command to run a program
@@ -178,7 +183,9 @@ class Runner : public QObject
     QElapsedTimer *runTimer = nullptr;       // the timer used to measure how much time did the execution use
     QString processStdout;                   // the stdout of the process
     QString processStderr;                   // the stderr of the process
+    QString processInput;                    // the input from the test cases
     bool outputLimitExceededEmitted = false; // whether runOutputLimitExceeded is emitted or not
+    bool isDetachedRun = false;
 };
 
 } // namespace Core
