@@ -134,7 +134,7 @@ void Runner::runDetached(const QString &tmpFilePath, const QString &sourceFilePa
                                  " ^& pause\""));
     LOG_INFO("CMD Arguemnts " << runProcess->arguments().join(" "));
 #else
-    QString terminal = SettingsHelper::getTerminalProgram();
+    QString terminal = SettingsHelper::getDetachedRunTerminalProgram();
 
     LOG_INFO("Using: " << terminal << " on Linux");
     QProcess testProcess;
@@ -149,7 +149,7 @@ void Runner::runDetached(const QString &tmpFilePath, const QString &sourceFilePa
     }
     runProcess->setProgram(terminal);
     auto quotedCommand = getCommand(tmpFilePath, sourceFilePath, lang, runCommand, args);
-    QStringList execArgs = {SettingsHelper::getTerminalArguments(), "/bin/bash", "-c",
+    QStringList execArgs = {SettingsHelper::getDetachedRunTerminalArguments(), "/bin/bash", "-c",
                             QStringLiteral("%1 ; echo \"\n%2\" ; read -n 1")
                                 .arg(quotedCommand)
                                 .arg(tr("Program finished with exit code %1\nPress any key to exit").arg("$?"))};
