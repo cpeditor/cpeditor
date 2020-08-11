@@ -663,7 +663,7 @@ Press any key to exit</source>
     </message>
     <message>
         <source>Failed to start detached execution. Please check your terminal emulator settings in Preferences-&gt;Actions-&gt;Detached Execution.</source>
-        <translation type="unfinished"></translation>
+        <translation>Не удалось запустить отдельно. Пожалуйста, проверьте настройки вашего эмулятора терминала в Параметры -&gt; Действия -&gt; Отдельный запуск.</translation>
     </message>
 </context>
 <context>
@@ -2405,23 +2405,27 @@ A loaded test case will be elided and read-only if it&apos;s too long.</source>
     </message>
     <message>
         <source>Terminal Arguments</source>
-        <translation type="unfinished"></translation>
+        <translation>Аргументы терминала</translation>
     </message>
     <message>
         <source>Terminal Program</source>
-        <translation type="unfinished"></translation>
+        <translation>Программа терминала</translation>
     </message>
     <message>
         <source>The terminal emulator to use when running in detached mode.
 This is usually the name or the path of the terminal emulator.
 Some possible values are konsole, gnome-terminal, xfce-terminal, xterm or any other terminal emulator program.</source>
-        <translation type="unfinished"></translation>
+        <translation>Эмулятор терминала используемый при отдельном запуске.
+Это, обычно, название или путь к эмулятору терминала.
+Некоторые возможные значения: konsole, gnome-terminal, xfce-terminal, xterm или некоторые другие эмуляторы терминала.</translation>
     </message>
     <message>
         <source>Arguments used to execute a given command in the terminal emulator.
 This is &quot;-e&quot; for most terminal emulators, including konsole, xterm, xfce-terminal but can be &quot;--&quot; for gnome-terminal.
 Consult your terminal emulator for the suitable arguments.</source>
-        <translation type="unfinished"></translation>
+        <translation>Аргументы используемые для запуска определенной команды в эмуляторе терминала.
+Это &quot;-e&quot; для большинства эмуляторов терминала, включая konsole, xterm, xfce-terminal, но может быть &quot;--&quot; для gnome-terminal.
+Уточните аргументы, доступные для вашего эмулятора терминала.</translation>
     </message>
 </context>
 <context>
