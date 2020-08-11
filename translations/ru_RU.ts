@@ -2404,10 +2404,6 @@ A loaded test case will be elided and read-only if it&apos;s too long.</source>
         <translation>Показывать всплывающие уведомления, когда известен вердикт отправки. Вы сможете видеть сообщения за пределами CP Editor.</translation>
     </message>
     <message>
-        <source>Terminal Command</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>The terminal emulator to use when running in detached mode.
 This is usually the name or path of the terminal to use, 
 Some possible values are konsole, gnome-terminal, xfce-terminal, xterm or any other terminal emulator program.</source>
@@ -2420,6 +2416,10 @@ Some possible values are konsole, gnome-terminal, xfce-terminal, xterm or any ot
     <message>
         <source>Argument to pass to terminal emulator command to start execution of your program.
 This is usually -e for most terminals like konsole, xterm, xfce-terminal but can be -- for gnome-terminal. Consult your terminal emulator program for the valid arguments.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Terminal Program</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

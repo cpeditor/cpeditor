@@ -293,7 +293,7 @@
         "tip": "The syntax highlight theme of the code editor"
     },
     {
-        "name": "Terminal Command",
+        "name": "Terminal Program",
         "type": "QString",
         "default": "xterm",
         "tip": "The terminal emulator to use when running in detached mode.\nThis is usually the name or path of the terminal to use, \nSome possible values are konsole, gnome-terminal, xfce-terminal, xterm or any other terminal emulator program."

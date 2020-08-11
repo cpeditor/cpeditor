@@ -134,7 +134,7 @@ void Runner::runDetached(const QString &tmpFilePath, const QString &sourceFilePa
                                  " ^& pause\""));
     LOG_INFO("CMD Arguemnts " << runProcess->arguments().join(" "));
 #else
-    QString terminal = SettingsHelper::getTerminalCommand();
+    QString terminal = SettingsHelper::getTerminalProgram();
 
     LOG_INFO("Using: " << terminal << " on Linux");
     QProcess testProcess;
