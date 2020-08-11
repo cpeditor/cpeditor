@@ -43,7 +43,17 @@ class SettingsManager
     static void remove(QStringList keys);
     static void reset();
 
+    /**
+     * @breif set the path of a setting in the preferences window
+     * @param key the name of the setting
+     * @param path The path to the setting, in the form "X/Y/Z/<desc>". The <desc> shouldn't contain slashes.
+     */
     static void setPath(const QString &key, const QString &path);
+    /**
+     * @brief get the path of a setting which can be shown in the UI
+     * @param key the name of the setting
+     * @param parent get the path to the parent directory instead of the setting itself
+     */
     static QString getPathText(const QString &key, bool parent = false);
 
     static QStringList keyStartsWith(const QString &head);
