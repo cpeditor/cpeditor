@@ -294,7 +294,7 @@
     },
     {
         "name": "Detached Run Terminal Program",
-        "desc": “Terminal Program"
+        "desc": “Terminal Program",
         "type": "QString",
         "default": "xterm",
         "tip": "The terminal emulator to use when running in detached mode.\nThis is usually the name or the path of the terminal emulator.\nSome possible values are konsole, gnome-terminal, xfce-terminal, xterm or any other terminal emulator program."
