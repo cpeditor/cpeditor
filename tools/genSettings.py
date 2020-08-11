@@ -38,6 +38,8 @@ def writeHelper(f, obj, pre, indent):
             else:
                 f.write(
                     f"{ids}inline {typename} get{key}() {{ return SettingsManager::get({json.dumps(name)}).value<{typename}>(); }}\n")
+        f.write(
+            f"{ids}inline QString pathOf{key}(bool parent = false) {{ return SettingsManager::getPathText({json.dumps(name)}, parent); }}\n")
 
 
 def writeInfo(f, obj, lst):

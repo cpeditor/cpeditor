@@ -95,7 +95,7 @@ class PreferencesPage : public QWidget
     /**
      * @brief set the path to this page in the preferences window
      */
-    void setPath(const QString &path);
+    virtual void setPath(const QString &path);
 
     /**
      * @brief set the title of the page

@@ -821,9 +821,10 @@ void MainWindow::loadFile(const QString &loadPath)
     {
         log->error(tr("Open File"),
                    tr("The file [%1] contains more than %2 characters, so it's not opened. You can change the "
-                      "open file length limit in Preferences->Advanced->Limits->Open File Length Limit")
+                      "open file length limit at %3.")
                        .arg(path)
-                       .arg(SettingsHelper::getOpenFileLengthLimit()));
+                       .arg(SettingsHelper::getOpenFileLengthLimit())
+                       .arg(SettingsHelper::pathOfOpenFileLengthLimit()));
         setText("");
         setFilePath("");
         return;
@@ -1268,9 +1269,10 @@ void MainWindow::onCompilationErrorOccurred(const QString &error)
         log->error(tr("Compile Errors"), error);
         if (language == "Java" && error.contains("public class"))
         {
-            log->warn(tr("Compile Errors"),
-                      tr("Have you set a proper name for the main class in your solution? If not, you can set it in "
-                         "Preferences->Lanugages->Java->Java Commands->Java Class Name."));
+            log->warn(
+                tr("Compile Errors"),
+                tr("Have you set a proper name for the main class in your solution? If not, you can set it at %1.")
+                    .arg(SettingsHelper::pathOfJavaClassName()));
         }
     }
 }
@@ -1331,13 +1333,14 @@ void MainWindow::onRunTimeout(int index)
 
 void MainWindow::onRunOutputLimitExceeded(int index, const QString &type)
 {
-    log->warn(getRunnerHead(index),
-              tr("The %1 of the process running on the testcase #%2 contains more than %3 characters, which is longer "
-                 "than the output length limit, so the process is killed. You can change the output length limit "
-                 "in Preferences->Advanced->Limits->Output Length Limit")
-                  .arg(type)
-                  .arg(index + 1)
-                  .arg(SettingsHelper::getOutputLengthLimit()));
+    log->warn(
+        getRunnerHead(index),
+        tr("The %1 of the process running on the testcase #%2 contains more than %3 characters, which is longer "
+           "than the output length limit, so the process is killed. You can change the output length limit at %4.")
+            .arg(type)
+            .arg(index + 1)
+            .arg(SettingsHelper::getOutputLengthLimit())
+            .arg(SettingsHelper::pathOfOutputLengthLimit()));
 }
 
 void MainWindow::onRunKilled(int index)

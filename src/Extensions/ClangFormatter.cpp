@@ -19,6 +19,7 @@
 #include "Core/EventLogger.hpp"
 #include "Core/MessageLogger.hpp"
 #include "Util/FileUtil.hpp"
+#include "generated/SettingsHelper.hpp"
 #include <QCodeEditor>
 #include <QJsonDocument>
 #include <QProcess>
@@ -195,7 +196,8 @@ QPair<int, QString> ClangFormatter::getFormatResult(const QStringList &args)
         log->warn(
             tr("Formatter"),
             tr("The format process didn't finish in 2 seconds. This is probably because the clang-format binary is not "
-               "found by CP Editor. You can set the path to clang-format in Preferences->Extensions->Clang Format."));
+               "found by CP Editor. You can set the path to clang-format at %1.")
+                .arg(SettingsHelper::pathOfClangFormatPath()));
         return QPair<int, QString>(-1, QString());
     }
 

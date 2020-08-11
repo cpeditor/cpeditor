@@ -204,13 +204,14 @@ void Checker::onRunTimeout(int index)
 
 void Checker::onRunOutputLimitExceeded(int index, const QString &type)
 {
-    log->warn(tr("Checker[%1]").arg(index + 1),
-              tr("The %1 of the process running on the testcase #%2 contains more than %3 characters, which is longer "
-                 "than the output length limit, so the process is killed. You can change the output length limit "
-                 "in Preferences->Advanced->Limits->Output Length Limit")
-                  .arg(type)
-                  .arg(index + 1)
-                  .arg(SettingsHelper::getOutputLengthLimit()));
+    log->warn(
+        tr("Checker[%1]").arg(index + 1),
+        tr("The %1 of the process running on the testcase #%2 contains more than %3 characters, which is longer "
+           "than the output length limit, so the process is killed. You can change the output length limit at %4.")
+            .arg(type)
+            .arg(index + 1)
+            .arg(SettingsHelper::getOutputLengthLimit())
+            .arg(SettingsHelper::pathOfOutputLengthLimit()));
 }
 
 void Checker::onRunKilled(int index)

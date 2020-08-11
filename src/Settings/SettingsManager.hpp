@@ -43,12 +43,16 @@ class SettingsManager
     static void remove(QStringList keys);
     static void reset();
 
+    static void setPath(const QString &key, const QString &path);
+    static QString getPathText(const QString &key, bool parent = false);
+
     static QStringList keyStartsWith(const QString &head);
     static QStringList itemUnder(const QString &head);
 
   private:
     static QVariantMap *cur;
     static QVariantMap *def;
+    static QMap<QString, QString> *settingPath;
 };
 
 #endif // SETTINGSMANAGER_HPP
