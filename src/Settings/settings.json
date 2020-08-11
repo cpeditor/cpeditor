@@ -293,6 +293,20 @@
         "tip": "The syntax highlight theme of the code editor"
     },
     {
+        "name": "Detached Run Terminal Program",
+        "desc": "Terminal Program",
+        "type": "QString",
+        "default": "xterm",
+        "tip": "The terminal emulator to use when running in detached mode.\nThis is usually the name or the path of the terminal emulator.\nSome possible values are konsole, gnome-terminal, xfce-terminal, xterm or any other terminal emulator program."
+    },
+    {
+        "name": "Detached Run Terminal Arguments",
+	"desc": "Terminal Arguments",
+        "type": "QString",
+        "default": "-e",
+        "tip": "Arguments used to execute a given command in the terminal emulator.\nThis is \"-e\" for most terminal emulators, including konsole, xterm, xfce-terminal but can be \"--\" for gnome-terminal.\nConsult your terminal emulator for the suitable arguments."
+    },
+    {
         "name": "Auto Complete Parentheses",
         "type": "bool",
         "default": true,

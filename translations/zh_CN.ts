@@ -657,8 +657,14 @@ git 提交编号: %3
         <translation>未能成功运行。请先编译。</translation>
     </message>
     <message>
-        <source>Please install xterm in order to use Detached Run.</source>
-        <translation>请安装 xterm 以使用在终端中运行。</translation>
+        <source>Program finished with exit code %1
+Press any key to exit</source>
+        <translation>程序以返回值 %1 结束了
+按任意键退出</translation>
+    </message>
+    <message>
+        <source>Failed to start detached execution. Please check your terminal emulator settings in Preferences-&gt;Actions-&gt;Detached Execution.</source>
+        <translation>未能成功在终端中运行。请在 设置-&gt;动作-&gt;终端中运行 中检查终端模拟器的设置。</translation>
     </message>
 </context>
 <context>
@@ -1456,6 +1462,10 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     <message>
         <source>Load External File Changes</source>
         <translation>加载外部文件修改</translation>
+    </message>
+    <message>
+        <source>Detached Execution</source>
+        <translation>终端中运行</translation>
     </message>
 </context>
 <context>
@@ -2385,6 +2395,30 @@ A loaded test case will be elided and read-only if it&apos;s too long.</source>
     <message>
         <source>Show a toast message when the verdict of a submission is known. You can see the message outside of CP Editor.</source>
         <translation>当获知了一个提交的评测结果时，显示一条气泡消息。你可以在 CP Editor 外看到这条消息。</translation>
+    </message>
+    <message>
+        <source>Terminal Arguments</source>
+        <translation>终端参数</translation>
+    </message>
+    <message>
+        <source>Terminal Program</source>
+        <translation>终端程序</translation>
+    </message>
+    <message>
+        <source>The terminal emulator to use when running in detached mode.
+This is usually the name or the path of the terminal emulator.
+Some possible values are konsole, gnome-terminal, xfce-terminal, xterm or any other terminal emulator program.</source>
+        <translation>用于”在终端运行“的终端模拟器。这通常是该终端模拟器的名称或路径。
+一些可能的值：konsole, gnome-terminal, xfce-terminal, xterm 或任何其它终端模拟器。</translation>
+    </message>
+    <message>
+        <source>Arguments used to execute a given command in the terminal emulator.
+This is &quot;-e&quot; for most terminal emulators, including konsole, xterm, xfce-terminal but can be &quot;--&quot; for gnome-terminal.
+Consult your terminal emulator for the suitable arguments.</source>
+        <translation>用于在终端模拟器中执行指定命令的参数。
+在大多数终端模拟器（包括 konsole, xterm, xfce-terminal）中，这个参数是 &quot;-e&quot;。
+在 gnome-terminal 中，这个参数是 &quot;--&quot;。
+请自行查阅适用于你所使用的终端模拟器的参数。</translation>
     </message>
 </context>
 <context>

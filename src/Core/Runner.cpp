@@ -30,6 +30,8 @@ Runner::Runner(int index) : runnerIndex(index)
 {
     runProcess = new QProcess();
     connect(runProcess, SIGNAL(started()), this, SLOT(onStarted()));
+    connect(runProcess, SIGNAL(errorOccurred(QProcess::ProcessError)), this,
+            SLOT(onErrorOccurred(QProcess::ProcessError)));
 }
 
 Runner::~Runner()
@@ -60,6 +62,9 @@ void Runner::run(const QString &tmpFilePath, const QString &sourceFilePath, cons
 {
     LOG_INFO(INFO_OF(tmpFilePath) << INFO_OF(sourceFilePath) << INFO_OF(lang) << INFO_OF(runCommand) << INFO_OF(args)
                                   << INFO_OF(timeLimit));
+
+    isDetachedRun = false;
+
     if (!QFile::exists(tmpFilePath)) // make sure the source file exists, this usually means the executable file exists
     {
         emit failedToStartRun(runnerIndex, tr("The source file %1 doesn't exist.").arg(tmpFilePath));
@@ -94,46 +99,20 @@ void Runner::run(const QString &tmpFilePath, const QString &sourceFilePath, cons
 
     setWorkingDirectory(tmpFilePath, sourceFilePath, lang);
 
+    processInput = input;
+
     runProcess->start(program, command);
-    bool started = runProcess->waitForStarted(2000);
-
-    if (!started)
-    {
-        // usually, fail to start is because it's not compiled
-        emit failedToStartRun(runnerIndex, tr("Failed to start running. Please compile first."));
-        runProcess->kill();
-        return;
-    }
-
-    // write input to the program
-    runProcess->write(input.toStdString().c_str());
-    runProcess->closeWriteChannel();
 }
 
 void Runner::runDetached(const QString &tmpFilePath, const QString &sourceFilePath, const QString &lang,
                          const QString &runCommand, const QString &args)
 {
+    isDetachedRun = true;
+
     setWorkingDirectory(tmpFilePath, sourceFilePath, lang);
 
     // different steps on different OSs
-#if defined(__unix__)
-    // use xterm on Linux
-    // check whether xterm is installed at first
-    LOG_INFO("Using xterm on unix");
-    QProcess testProcess;
-    testProcess.start("xterm", {"-v"});
-    bool finished = testProcess.waitForFinished(2000);
-    if (!finished || testProcess.exitCode() != 0)
-    {
-        emit failedToStartRun(runnerIndex, tr("Please install xterm in order to use Detached Run."));
-        return;
-    }
-    runProcess->setProgram("xterm");
-    runProcess->setArguments({"-e", getCommand(tmpFilePath, sourceFilePath, lang, runCommand, args) +
-                                        "; read -n 1 -s -r -p '\nExecution Done\nPress any key to exit'"});
-    LOG_INFO("Xterm args " << runProcess->arguments().join(" "));
-    runProcess->start();
-#elif defined(__APPLE__)
+#if defined(Q_OS_MACOS)
     // use apple script on Mac OS
     runProcess->setProgram("osascript");
     runProcess->setArguments({"-l", "AppleScript"});
@@ -143,14 +122,23 @@ void Runner::runDetached(const QString &tmpFilePath, const QString &sourceFilePa
     LOG_INFO("Running apple script\n" << script);
     runProcess->write(script.toUtf8());
     runProcess->closeWriteChannel();
-#else
+#elif defined(Q_OS_WIN)
     // use cmd on Windows
     runProcess->start("cmd", QProcess::splitCommand(
                                  "/C \"start cmd /C " +
                                  getCommand(tmpFilePath, sourceFilePath, lang, runCommand, args).replace("\"", "^\"") +
                                  " ^& pause\""));
     LOG_INFO("CMD Arguemnts " << runProcess->arguments().join(" "));
-
+#else
+    auto terminal = SettingsHelper::getDetachedRunTerminalProgram();
+    LOG_INFO("Using: " << terminal << " on Linux");
+    auto quotedCommand = getCommand(tmpFilePath, sourceFilePath, lang, runCommand, args);
+    auto execArgs = QProcess::splitCommand(SettingsHelper::getDetachedRunTerminalArguments()) +
+                    QStringList{"/bin/bash", "-c",
+                                QStringLiteral("%1 ; echo \"\n%2\" ; read -n 1")
+                                    .arg(quotedCommand)
+                                    .arg(tr("Program finished with exit code %1\nPress any key to exit").arg("$?"))};
+    runProcess->start(terminal, execArgs);
 #endif
 }
 
@@ -162,6 +150,11 @@ void Runner::onFinished(int exitCode, QProcess::ExitStatus exitStatus)
 
 void Runner::onStarted()
 {
+    if (!isDetachedRun)
+    {
+        runProcess->write(processInput.toUtf8());
+        runProcess->closeWriteChannel();
+    }
     emit runStarted(runnerIndex);
 }
 
@@ -196,6 +189,18 @@ void Runner::onReadyReadStandardError()
         runProcess->kill();
         LOG_INFO("Process was running, and forcefully killed it because stderr limit was reached");
         emit runOutputLimitExceeded(runnerIndex, "stderr");
+    }
+}
+
+void Runner::onErrorOccurred(QProcess::ProcessError error)
+{
+    if (error == QProcess::FailedToStart)
+    {
+        if (isDetachedRun)
+            emit failedToStartRun(runnerIndex, tr("Failed to start detached execution. Please check your terminal "
+                                                  "emulator settings in Preferences->Actions->Detached Execution."));
+        else
+            emit failedToStartRun(runnerIndex, tr("Failed to start running. Please compile first."));
     }
 }
 

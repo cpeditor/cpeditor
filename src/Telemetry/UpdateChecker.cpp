@@ -79,7 +79,7 @@ UpdateChecker::UpdateMetaInformation UpdateChecker::toMetaInformation(const QJso
         auto assetName = asset["name"].toString();
 #if defined(Q_OS_WIN)
         if (assetName.contains("windows"))
-#elif defined(Q_OS_MAC)
+#elif defined(Q_OS_MACOS)
         if (assetName.contains("macos"))
 #else
         if (assetName.contains("linux"))

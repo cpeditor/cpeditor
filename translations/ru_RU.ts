@@ -657,8 +657,13 @@ Git commit hash: %3
         <translation>Ошибка при запуске. Пожалуйста, сперва запустите компиляцию.</translation>
     </message>
     <message>
-        <source>Please install xterm in order to use Detached Run.</source>
-        <translation>Пожалуйста, установите xterm, если вы хотите использовать Отдельный запуск.</translation>
+        <source>Program finished with exit code %1
+Press any key to exit</source>
+        <translation>Программа завершилась с кодом %1 Нажмите на любую клавишу для выхода</translation>
+    </message>
+    <message>
+        <source>Failed to start detached execution. Please check your terminal emulator settings in Preferences-&gt;Actions-&gt;Detached Execution.</source>
+        <translation>Не удалось запустить отдельно. Пожалуйста, проверьте настройки вашего эмулятора терминала в Параметры -&gt; Действия -&gt; Отдельный запуск.</translation>
     </message>
 </context>
 <context>
@@ -1456,6 +1461,10 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     <message>
         <source>Load External File Changes</source>
         <translation>Загрузка внешних файловый изменений</translation>
+    </message>
+    <message>
+        <source>Detached Execution</source>
+        <translation>Отдельный запуск</translation>
     </message>
 </context>
 <context>
@@ -2393,6 +2402,30 @@ A loaded test case will be elided and read-only if it&apos;s too long.</source>
     <message>
         <source>Show a toast message when the verdict of a submission is known. You can see the message outside of CP Editor.</source>
         <translation>Показывать всплывающие уведомления, когда известен вердикт отправки. Вы сможете видеть сообщения за пределами CP Editor.</translation>
+    </message>
+    <message>
+        <source>Terminal Arguments</source>
+        <translation>Аргументы терминала</translation>
+    </message>
+    <message>
+        <source>Terminal Program</source>
+        <translation>Программа терминала</translation>
+    </message>
+    <message>
+        <source>The terminal emulator to use when running in detached mode.
+This is usually the name or the path of the terminal emulator.
+Some possible values are konsole, gnome-terminal, xfce-terminal, xterm or any other terminal emulator program.</source>
+        <translation>Эмулятор терминала используемый при отдельном запуске.
+Это, обычно, название или путь к эмулятору терминала.
+Некоторые возможные значения: konsole, gnome-terminal, xfce-terminal, xterm или некоторые другие эмуляторы терминала.</translation>
+    </message>
+    <message>
+        <source>Arguments used to execute a given command in the terminal emulator.
+This is &quot;-e&quot; for most terminal emulators, including konsole, xterm, xfce-terminal but can be &quot;--&quot; for gnome-terminal.
+Consult your terminal emulator for the suitable arguments.</source>
+        <translation>Аргументы используемые для запуска определенной команды в эмуляторе терминала.
+Это &quot;-e&quot; для большинства эмуляторов терминала, включая konsole, xterm, xfce-terminal, но может быть &quot;--&quot; для gnome-terminal.
+Уточните аргументы, доступные для вашего эмулятора терминала.</translation>
     </message>
 </context>
 <context>

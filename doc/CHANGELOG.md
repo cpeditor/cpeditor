@@ -5,6 +5,7 @@
 -   Open recent files. (#527)
 -   Reveal the executable file in file manager. (#537)
 -   Use a dialog to open new contests. (#539 and #467)
+-   Choose detached execution terminal on Linux (#554 and #474)
 
 ### Fixed
 
