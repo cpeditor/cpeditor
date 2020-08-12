@@ -496,7 +496,7 @@ void MainWindow::applyCompanion(const Extensions::CompanionData &data)
     {
         QString meta = data.toMetaString();
         meta.prepend("\n");
-        meta.append("Powered by CP Editor (https://github.com/cpeditor/cpeditor)");
+        meta.append("Powered by CP Editor (https://cpeditor.org)");
 
         if (language == "Python")
             meta.replace('\n', "\n# ");
