@@ -659,10 +659,11 @@ Git commit hash: %3
     <message>
         <source>Program finished with exit code %1
 Press any key to exit</source>
-        <translation>Программа завершилась с кодом %1 Нажмите на любую клавишу для выхода</translation>
+        <translation>Программа завершилась с кодом %1
+Нажмите на любую клавишу для выхода</translation>
     </message>
     <message>
-        <source>Failed to start detached execution. Please check your terminal emulator settings %1.</source>
+        <source>Failed to start detached execution. Please check your terminal emulator settings in %1.</source>
         <translation>Не удалось запустить отдельно. Пожалуйста, проверьте настройки вашего эмулятора терминала в %1.</translation>
     </message>
 </context>
@@ -2653,8 +2654,8 @@ Consult your terminal emulator for the suitable arguments.</source>
         <translation>Отображение различий[%1]</translation>
     </message>
     <message>
-        <source>The output/expected contains more than %1 characters, HTML diff viewer is disabled. You can change the length limit at %2</source>
-        <translation>Вывод/ответ содержит более %1 знаков, HTML diff viewer отключён. Вы можете изменить лимит длины в %2</translation>
+        <source>The output/expected contains more than %1 characters, HTML diff viewer is disabled. You can change the length limit at %2.</source>
+        <translation>Вывод/ответ содержит более %1 знаков, HTML diff viewer отключён. Вы можете изменить лимит длины в %2.</translation>
     </message>
 </context>
 <context>
@@ -2684,7 +2685,7 @@ Consult your terminal emulator for the suitable arguments.</source>
         <translation>Ожидаемо</translation>
     </message>
     <message>
-        <source>Now the test case editor is read-only. You can set the length limit in %1.</source>
+        <source>Now the test case editor is read-only. You can set the length limit at %1.</source>
         <translation>Сейчас тесткейсы доступны только для чтения. Вы можете установить лимит длины в %1.</translation>
     </message>
     <message>
