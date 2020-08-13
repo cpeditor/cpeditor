@@ -162,7 +162,7 @@ void TestCaseEdit::onCustomContextMenuRequested(const QPoint &pos)
     auto menu = createStandardContextMenu();
     menu->addSeparator();
     menu->addAction(QApplication::style()->standardIcon(QStyle::SP_FileIcon), tr("Save to file"), [this] {
-        LOG_INFO("Saving output to file");
+        LOG_INFO("Saving test case to file");
         QString fileName = QFileDialog::getSaveFileName(this, tr("Save to file"));
         Util::saveFile(fileName, this->toPlainText(), tr("Save to file"));
     });
