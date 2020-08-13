@@ -2428,6 +2428,10 @@ Consult your terminal emulator for the suitable arguments.</source>
 Это &quot;-e&quot; для большинства эмуляторов терминала, включая konsole, xterm, xfce-terminal, но может быть &quot;--&quot; для gnome-terminal.
 Уточните аргументы, доступные для вашего эмулятора терминала.</translation>
     </message>
+    <message>
+        <source>Save Test Case To A File</source>
+        <translation>Сохранить тесткейс в файл</translation>
+    </message>
 </context>
 <context>
     <name>ShortcutItem</name>
@@ -2691,6 +2695,14 @@ Consult your terminal emulator for the suitable arguments.</source>
     <message>
         <source>Only the first %1 characters are shown.</source>
         <translation>Отображены только первые %1 символов.</translation>
+    </message>
+    <message>
+        <source>Save to file</source>
+        <translation>Сохранить в файл</translation>
+    </message>
+    <message>
+        <source>Save test case to file</source>
+        <translation>Сохранить тесткейс в файл</translation>
     </message>
 </context>
 <context>

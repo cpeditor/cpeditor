@@ -2420,6 +2420,10 @@ Consult your terminal emulator for the suitable arguments.</source>
 在 gnome-terminal 中，这个参数是 &quot;--&quot;。
 请自行查阅适用于你所使用的终端模拟器的参数。</translation>
     </message>
+    <message>
+        <source>Save Test Case To A File</source>
+        <translation>将测试用例保存到文件</translation>
+    </message>
 </context>
 <context>
     <name>ShortcutItem</name>
@@ -2683,6 +2687,14 @@ Consult your terminal emulator for the suitable arguments.</source>
     <message>
         <source>Only the first %1 characters are shown.</source>
         <translation>只显示了前 %1 个字符。</translation>
+    </message>
+    <message>
+        <source>Save to file</source>
+        <translation>保存到文件</translation>
+    </message>
+    <message>
+        <source>Save test case to file</source>
+        <translation>将测试用例保存到文件</translation>
     </message>
 </context>
 <context>
