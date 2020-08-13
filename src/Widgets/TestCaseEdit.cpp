@@ -16,6 +16,10 @@
  */
 
 #include "Widgets/TestCaseEdit.hpp"
+#include "Core/EventLogger.hpp"
+#include "Core/MessageLogger.hpp"
+#include "Settings/DefaultPathManager.hpp"
+#include "Util/FileUtil.hpp"
 
 #include <QApplication>
 #include <QInputDialog>
@@ -25,11 +29,6 @@
 #include <QSaveFile>
 #include <QStyle>
 #include <generated/SettingsHelper.hpp>
-
-#include "Core/EventLogger.hpp"
-#include "Core/MessageLogger.hpp"
-#include "Settings/DefaultPathManager.hpp"
-#include "Util/FileUtil.hpp"
 
 namespace Widgets
 {
