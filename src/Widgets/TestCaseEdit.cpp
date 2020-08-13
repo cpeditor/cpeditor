@@ -16,17 +16,20 @@
  */
 
 #include "Widgets/TestCaseEdit.hpp"
-#include "Core/EventLogger.hpp"
-#include "Core/MessageLogger.hpp"
-#include "Settings/DefaultPathManager.hpp"
-#include "Util/FileUtil.hpp"
+
 #include <QApplication>
 #include <QInputDialog>
 #include <QMenu>
 #include <QMimeData>
 #include <QPropertyAnimation>
+#include <QSaveFile>
 #include <QStyle>
 #include <generated/SettingsHelper.hpp>
+
+#include "Core/EventLogger.hpp"
+#include "Core/MessageLogger.hpp"
+#include "Settings/DefaultPathManager.hpp"
+#include "Util/FileUtil.hpp"
 
 namespace Widgets
 {
@@ -112,16 +115,18 @@ void TestCaseEdit::modifyText(const QString &text, bool keepHistory)
         displayText = text.left(limit) + "...";
 
         const QString name = role == Input ? tr("Input") : (role == Output ? tr("Output") : tr("Expected"));
-        const QString setLimitPlace = role == Output ? tr("Preferences->Advanced->Limits->Output Display Length Limit")
-                                                     : tr("Preferences->Advanced->Limits->Load Test Case Length Limit");
+        const QString setLimitPlace = role == Output ? tr("Preferences->Advanced->Limits->"
+                                                          "Output Display Length Limit")
+                                                     : tr("Preferences->Advanced->Limits->"
+                                                          "Load Test Case Length Limit");
 
-        log->warn(
-            QString("%1[%2]").arg(name).arg(id + 1),
-            QString("<span title='%1'>%2</span>")
-                .arg(
-                    tr("Now the test case editor is read-only. You can set the length limit in %1.").arg(setLimitPlace))
-                .arg(tr("Only the first %1 characters are shown.").arg(limit)),
-            false);
+        log->warn(QString("%1[%2]").arg(name).arg(id + 1),
+                  QString("<span title='%1'>%2</span>")
+                      .arg(tr("Now the test case editor is read-only. You can set "
+                              "the length limit in %1.")
+                               .arg(setLimitPlace))
+                      .arg(tr("Only the first %1 characters are shown.").arg(limit)),
+                  false);
     }
 
     if (keepHistory)
@@ -176,6 +181,28 @@ void TestCaseEdit::onCustomContextMenuRequested(const QPoint &pos)
                 if (ok)
                     modifyText(res);
             });
+    }
+    else if (role == Output)
+    {
+        menu->addSeparator();
+        menu->addAction(QApplication::style()->standardIcon(QStyle::SP_FileIcon), tr("Save to file"), [this] {
+            LOG_INFO("Saving output to file");
+            QString fileName = QFileDialog::getSaveFileName(this, tr("Save to file"));
+            QSaveFile file(fileName);
+            if (file.open(QFile::WriteOnly | QFile::Text))
+            {
+                QTextStream out(&file);
+                out << this->toPlainText();
+                if (!file.commit())
+                {
+                    LOG_ERR("Failed to save output");
+                }
+            }
+            else
+            {
+                LOG_ERR("Failed to save output");
+            }
+        });
     }
     menu->popup(mapToGlobal(pos));
 }
