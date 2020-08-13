@@ -2440,7 +2440,7 @@ ${json.X.Y}: 由 Competitive Companion 提供的数据的一个属性，你可�
     </message>
     <message>
         <source>Time format for the head comments</source>
-        <translation>头部注释的格式</translation>
+        <translation>头部注释的时间格式</translation>
     </message>
     <message>
         <source>The format of the ${time} place holder in the head comments.
