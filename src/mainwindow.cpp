@@ -512,7 +512,7 @@ void MainWindow::applyCompanion(const Extensions::CompanionData &data)
                 value = value[attr];
             if (value.isUndefined())
             {
-                log->error(tr("Companion"),
+                log->error("Companion",
                            tr("Unknown attribute: [%1]. Please check the head comments setting at %2.")
                                .arg(path.join('.').arg(SettingsHelper::pathOfCompetitiveCompanionHeadComments())));
             }

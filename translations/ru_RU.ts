@@ -759,10 +759,6 @@ Press any key to exit</source>
 <context>
     <name>Extensions::CompanionServer</name>
     <message>
-        <source>Companion</source>
-        <translation>Companion</translation>
-    </message>
-    <message>
         <source>Server is closed</source>
         <translation>Сервер не доступен</translation>
     </message>
@@ -1157,10 +1153,6 @@ Do you want to reload it?</source>
     <message>
         <source>Have you set a proper name for the main class in your solution? If not, you can set it at %1.</source>
         <translation>Вы установили подходящее имя для главного класса в решении? Если нет, Вы можете установить имя в at %1.</translation>
-    </message>
-    <message>
-        <source>Companion</source>
-        <translation type="unfinished">Companion</translation>
     </message>
     <message>
         <source>Unknown attribute: [%1]. Please check the head comments setting at %2.</source>
