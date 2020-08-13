@@ -2429,7 +2429,7 @@ Consult your terminal emulator for the suitable arguments.</source>
     </message>
     <message>
         <source>Save Test Case To A File</source>
-        <translation type="unfinished"></translation>
+        <translation>Сохранить тесткейс в файл</translation>
     </message>
 </context>
 <context>
@@ -2705,11 +2705,11 @@ Consult your terminal emulator for the suitable arguments.</source>
     </message>
     <message>
         <source>Save to file</source>
-        <translation type="unfinished"></translation>
+        <translation>Сохранить в файл</translation>
     </message>
     <message>
         <source>Save test case to file</source>
-        <translation type="unfinished"></translation>
+        <translation>Сохранить тесткейс в файл</translation>
     </message>
 </context>
 <context>
