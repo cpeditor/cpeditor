@@ -139,8 +139,9 @@ TestCases::TestCases(MessageLogger *logger, QWidget *parent) : QWidget(parent), 
                     remainPaths.push_back(QString("[%1]").arg(path));
                 log->warn(tr("Load Testcases"),
                           tr("The following files are not loaded because they are not matched:%1. You can set the "
-                             "matching rules at Preferences->File Path->Testcases->Add Testcases From Files Rules.")
-                              .arg(remainPaths.join(", ")));
+                             "matching rules at %2.")
+                              .arg(remainPaths.join(", "))
+                              .arg(SettingsHelper::pathOfTestcasesMatchingRules()));
             }
         }
     });

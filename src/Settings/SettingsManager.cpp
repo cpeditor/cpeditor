@@ -29,6 +29,7 @@
 
 QVariantMap *SettingsManager::cur = nullptr;
 QVariantMap *SettingsManager::def = nullptr;
+QMap<QString, QString> *SettingsManager::settingPath = nullptr;
 
 const static QStringList configFileLocations = {
 #ifdef PORTABLE_VERSION
@@ -94,9 +95,12 @@ void SettingsManager::init()
         delete cur;
     if (def)
         delete def;
+    if (settingPath)
+        delete settingPath;
 
     cur = new QVariantMap();
     def = new QVariantMap();
+    settingPath = new QMap<QString, QString>();
 
     generateDefaultSettings();
 
@@ -111,7 +115,9 @@ void SettingsManager::deinit()
 
     delete cur;
     delete def;
+    delete settingPath;
     cur = def = nullptr;
+    settingPath = nullptr;
 }
 
 void SettingsManager::generateDefaultSettings()
@@ -191,6 +197,31 @@ void SettingsManager::remove(QStringList keys)
 void SettingsManager::reset()
 {
     *cur = *def;
+}
+
+void SettingsManager::setPath(const QString &key, const QString &path)
+{
+    settingPath->insert(key, path);
+}
+
+QString SettingsManager::getPathText(const QString &key, bool parent)
+{
+    if (!settingPath->contains(key))
+    {
+#ifdef QT_DEBUG
+        qDebug() << "SettingsManager: Getting unknown key path: " << key;
+#endif
+        LOG_WARN("Getting unknown key path: " << key);
+        return "Unknown";
+    }
+    auto nodes = settingPath->value(key).split('/');
+    for (int i = 0; i < nodes.count() - 1; ++i)
+        nodes[i] = QCoreApplication::translate("PreferencesWindow", nodes[i].toStdString().c_str());
+    if (parent)
+        nodes.pop_back();
+    else
+        nodes.back() = QCoreApplication::translate("SettingsInfo", nodes.back().toStdString().c_str());
+    return nodes.join("->");
 }
 
 QStringList SettingsManager::keyStartsWith(const QString &head)

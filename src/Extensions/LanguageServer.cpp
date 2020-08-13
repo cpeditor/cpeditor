@@ -288,8 +288,8 @@ void LanguageServer::onLSPServerProcessError(QProcess::ProcessError error)
     {
     case QProcess::FailedToStart:
         logger->error(tr("Langauge Server [%1]").arg(language),
-                      tr("Failed to start LSP Process. Have you set the path to the Language Server program in "
-                         "Preferences->Extensions->Language Server?"));
+                      tr("Failed to start LSP Process. Have you set the path to the Language Server program at %1?")
+                          .arg(SettingsManager::getPathText("LSP/Path " + language)));
         break;
     case QProcess::Crashed:
         break;

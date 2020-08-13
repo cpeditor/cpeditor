@@ -197,10 +197,16 @@ void Runner::onErrorOccurred(QProcess::ProcessError error)
     if (error == QProcess::FailedToStart)
     {
         if (isDetachedRun)
-            emit failedToStartRun(runnerIndex, tr("Failed to start detached execution. Please check your terminal "
-                                                  "emulator settings in Preferences->Actions->Detached Execution."));
+        {
+            emit failedToStartRun(
+                runnerIndex,
+                tr("Failed to start detached execution. Please check your terminal emulator settings in %1.")
+                    .arg(SettingsHelper::pathOfDetachedRunTerminalProgram(true)));
+        }
         else
+        {
             emit failedToStartRun(runnerIndex, tr("Failed to start running. Please compile first."));
+        }
     }
 }
 

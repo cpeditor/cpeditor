@@ -615,8 +615,8 @@ Git commit hash: %3
         <translation>Превышено ограничение по времени (TLE)</translation>
     </message>
     <message>
-        <source>The %1 of the process running on the testcase #%2 contains more than %3 characters, which is longer than the output length limit, so the process is killed. You can change the output length limit in Preferences-&gt;Advanced-&gt;Limits-&gt;Output Length Limit</source>
-        <translation>%1 из процессов при работе на тесткейсе #%2 содержит более чем %3 символов и превосходит лимит. Процесс убит. Вы можете изменить этот лимит в Параметры-&gt;Дополнительно-&gt;Лимиты-&gt;Лимит длины строки вывода</translation>
+        <source>The %1 of the process running on the testcase #%2 contains more than %3 characters, which is longer than the output length limit, so the process is killed. You can change the output length limit at %4.</source>
+        <translation>%1 из процессов при работе на тесткейсе #%2 содержит более чем %3 символов и превосходит лимит. Процесс убит. Вы можете изменить этот лимит в %4.</translation>
     </message>
     <message>
         <source>Killed</source>
@@ -659,11 +659,12 @@ Git commit hash: %3
     <message>
         <source>Program finished with exit code %1
 Press any key to exit</source>
-        <translation>Программа завершилась с кодом %1 Нажмите на любую клавишу для выхода</translation>
+        <translation>Программа завершилась с кодом %1
+Нажмите на любую клавишу для выхода</translation>
     </message>
     <message>
-        <source>Failed to start detached execution. Please check your terminal emulator settings in Preferences-&gt;Actions-&gt;Detached Execution.</source>
-        <translation>Не удалось запустить отдельно. Пожалуйста, проверьте настройки вашего эмулятора терминала в Параметры -&gt; Действия -&gt; Отдельный запуск.</translation>
+        <source>Failed to start detached execution. Please check your terminal emulator settings in %1.</source>
+        <translation>Не удалось запустить отдельно. Пожалуйста, проверьте настройки вашего эмулятора терминала в %1.</translation>
     </message>
 </context>
 <context>
@@ -739,8 +740,8 @@ Press any key to exit</source>
         <translation>Форматирование завершено</translation>
     </message>
     <message>
-        <source>The format process didn&apos;t finish in 2 seconds. This is probably because the clang-format binary is not found by CP Editor. You can set the path to clang-format in Preferences-&gt;Extensions-&gt;Clang Format.</source>
-        <translation>Процесс форматировния не завершился за 2 секунды. Возможно исполняемый файл clang-format не найден CP Editor&apos;ом. Вы можете установить путь к clang-format в Параметры-&gt;Расширения-&gt;Clang Format.</translation>
+        <source>The format process didn&apos;t finish in 2 seconds. This is probably because the clang-format binary is not found by CP Editor. You can set the path to clang-format at %1.</source>
+        <translation>Процесс форматировния не завершился за 2 секунды. Возможно исполняемый файл clang-format не найден CP Editor&apos;ом. Вы можете установить путь к clang-format в %1.</translation>
     </message>
     <message>
         <source>The format command is: %1 %2</source>
@@ -799,8 +800,8 @@ Press any key to exit</source>
         <translation>Langauge server выдает ошибку. Пожалуйста, проверьте логи.</translation>
     </message>
     <message>
-        <source>Failed to start LSP Process. Have you set the path to the Language Server program in Preferences-&gt;Extensions-&gt;Language Server?</source>
-        <translation>Ошибка при старте Процесса LSP. Вы установили путь к программе Language Server в Параметры-&gt;Расширения-&gt;Language Server?</translation>
+        <source>Failed to start LSP Process. Have you set the path to the Language Server program at %1?</source>
+        <translation>Ошибка при старте Процесса LSP. Вы установили путь к программе Language Server в %1?</translation>
     </message>
     <message>
         <source>LSP Process timed out</source>
@@ -972,8 +973,8 @@ p, li { white-space: pre-wrap; }
         <translation>Открыть файл</translation>
     </message>
     <message>
-        <source>The file [%1] contains more than %2 characters, so it&apos;s not opened. You can change the open file length limit in Preferences-&gt;Advanced-&gt;Limits-&gt;Open File Length Limit</source>
-        <translation>Файл [%1] содержит более чем %2 символов и он не был открыт. Вы можете установить лимит количества символов в файле в Параметрах-&gt;Дополонительно-&gt;Лимиты-&gt;Лмиит символов в открываемом файле</translation>
+        <source>The file [%1] contains more than %2 characters, so it&apos;s not opened. You can change the open file length limit at %3.</source>
+        <translation>Файл [%1] содержит более чем %2 символов и он не был открыт. Вы можете установить лимит количества символов в файле в %3.</translation>
     </message>
     <message>
         <source>Save File</source>
@@ -1102,8 +1103,8 @@ Do you want to reload it?</source>
         <translation>Превышен лимит времени выполнения программы (TLE)</translation>
     </message>
     <message>
-        <source>The %1 of the process running on the testcase #%2 contains more than %3 characters, which is longer than the output length limit, so the process is killed. You can change the output length limit in Preferences-&gt;Advanced-&gt;Limits-&gt;Output Length Limit</source>
-        <translation>Процесс %1 на тесткейсе #%2 содержит более %3 символов, что превосходит лимит длины. Процесс будет убит. Вы можете изменить лимит длины выходного файла в Параметры&gt;Дополнительно-&gt;Лимиты-&gt;Лимит длины выходного файла</translation>
+        <source>The %1 of the process running on the testcase #%2 contains more than %3 characters, which is longer than the output length limit, so the process is killed. You can change the output length limit at %4.</source>
+        <translation>Процесс %1 на тесткейсе #%2 содержит более %3 символов, что превосходит лимит длины. Процесс будет убит. Вы можете изменить лимит длины выходного файла в %4.</translation>
     </message>
     <message>
         <source>%1 has been killed</source>
@@ -1154,8 +1155,8 @@ Do you want to reload it?</source>
         <translation>Автосохранение</translation>
     </message>
     <message>
-        <source>Have you set a proper name for the main class in your solution? If not, you can set it in Preferences-&gt;Lanugages-&gt;Java-&gt;Java Commands-&gt;Java Class Name.</source>
-        <translation>Вы установили подходящее имя для главного класса в решении? Если нет, Вы можете установить имя в Параметрах-&gt;Языки-&gt;Java-&gt;Java Commands-&gt;Java Class Name.</translation>
+        <source>Have you set a proper name for the main class in your solution? If not, you can set it at %1.</source>
+        <translation>Вы установили подходящее имя для главного класса в решении? Если нет, Вы можете установить имя в at %1.</translation>
     </message>
 </context>
 <context>
@@ -2653,8 +2654,8 @@ Consult your terminal emulator for the suitable arguments.</source>
         <translation>Отображение различий[%1]</translation>
     </message>
     <message>
-        <source>The output/expected contains more than %1 characters, HTML diff viewer is disabled. You can change the length limit in Preferences-&gt;Advanced-&gt;Limits-&gt;HTML Diff Viewer Length Limit</source>
-        <translation>Вывод/ответ содержит более %1 знаков, HTML diff viewer отключён. Вы можете изменить лимит длины в Параметры-&gt;Дополнительно-&gt;Лимиты-&gt;Лимит длины HTML Diff Viewer</translation>
+        <source>The output/expected contains more than %1 characters, HTML diff viewer is disabled. You can change the length limit at %2.</source>
+        <translation>Вывод/ответ содержит более %1 знаков, HTML diff viewer отключён. Вы можете изменить лимит длины в %2.</translation>
     </message>
 </context>
 <context>
@@ -2672,14 +2673,6 @@ Consult your terminal emulator for the suitable arguments.</source>
         <translation>Изменить тесткейс</translation>
     </message>
     <message>
-        <source>Preferences-&gt;Advanced-&gt;Limits-&gt;Output Display Length Limit</source>
-        <translation>Параметры-&gt;Дополнительный-&gt;Лимиты-&gt;Лимит длины выводимых данных</translation>
-    </message>
-    <message>
-        <source>Preferences-&gt;Advanced-&gt;Limits-&gt;Load Test Case Length Limit</source>
-        <translation>Параметры-&gt;Дополнительный-&gt;Лимиты-&gt;Лимит длины тесткейсов</translation>
-    </message>
-    <message>
         <source>Input</source>
         <translation>Ввод</translation>
     </message>
@@ -2692,7 +2685,7 @@ Consult your terminal emulator for the suitable arguments.</source>
         <translation>Ожидаемо</translation>
     </message>
     <message>
-        <source>Now the test case editor is read-only. You can set the length limit in %1.</source>
+        <source>Now the test case editor is read-only. You can set the length limit at %1.</source>
         <translation>Сейчас тесткейсы доступны только для чтения. Вы можете установить лимит длины в %1.</translation>
     </message>
     <message>
@@ -2751,8 +2744,8 @@ Consult your terminal emulator for the suitable arguments.</source>
         <translation>Вводные данные [%1] загружены</translation>
     </message>
     <message>
-        <source>The following files are not loaded because they are not matched:%1. You can set the matching rules at Preferences-&gt;File Path-&gt;Testcases-&gt;Add Testcases From Files Rules.</source>
-        <translation>Следующие файлы не загружаются, потому что они не совпадают:%1. Можно установить правила соответствия в Параметры-&gt;Путь файла-&gt;Тесткейсы-&gt;Добавить тесткейсы по правилам файлов.</translation>
+        <source>The following files are not loaded because they are not matched:%1. You can set the matching rules at %2.</source>
+        <translation>Следующие файлы не загружаются, потому что они не совпадают:%1. Можно установить правила соответствия в %2.</translation>
     </message>
     <message>
         <source>Remove Empty</source>

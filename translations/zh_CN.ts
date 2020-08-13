@@ -615,8 +615,8 @@ git 提交编号: %3
         <translation>超出时间限制</translation>
     </message>
     <message>
-        <source>The %1 of the process running on the testcase #%2 contains more than %3 characters, which is longer than the output length limit, so the process is killed. You can change the output length limit in Preferences-&gt;Advanced-&gt;Limits-&gt;Output Length Limit</source>
-        <translation>测试点 #%2 的 %1 超过 %3 个字符，超出了输出长度限制，因此进程被结束。你可以在设置-&gt;高级-&gt;限制-&gt;输出长度限制中更改限制大小</translation>
+        <source>The %1 of the process running on the testcase #%2 contains more than %3 characters, which is longer than the output length limit, so the process is killed. You can change the output length limit at %4.</source>
+        <translation>测试点 #%2 的 %1 超过 %3 个字符，超出了输出长度限制，因此进程被结束。你可以在 %4 更改限制大小。</translation>
     </message>
     <message>
         <source>Killed</source>
@@ -663,8 +663,8 @@ Press any key to exit</source>
 按任意键退出</translation>
     </message>
     <message>
-        <source>Failed to start detached execution. Please check your terminal emulator settings in Preferences-&gt;Actions-&gt;Detached Execution.</source>
-        <translation>未能成功在终端中运行。请在 设置-&gt;动作-&gt;终端中运行 中检查终端模拟器的设置。</translation>
+        <source>Failed to start detached execution. Please check your terminal emulator settings in %1.</source>
+        <translation>未能成功在终端中运行。请在 %1 中检查终端模拟器的设置。</translation>
     </message>
 </context>
 <context>
@@ -740,8 +740,8 @@ Press any key to exit</source>
         <translation>格式化完毕</translation>
     </message>
     <message>
-        <source>The format process didn&apos;t finish in 2 seconds. This is probably because the clang-format binary is not found by CP Editor. You can set the path to clang-format in Preferences-&gt;Extensions-&gt;Clang Format.</source>
-        <translation>格式化进程未能在 2 秒内结束。这可能是因为 CP Editor 未能找到 clang-format 的可执行文件。你可以在 设置-&gt;扩展-&gt;Clang Format 中设置 clang-format 可执行文件的路径。</translation>
+        <source>The format process didn&apos;t finish in 2 seconds. This is probably because the clang-format binary is not found by CP Editor. You can set the path to clang-format at %1.</source>
+        <translation>格式化进程未能在 2 秒内结束。这可能是因为 CP Editor 未能找到 clang-format 的可执行文件。你可以在 %1 设置 clang-format 可执行文件的路径。</translation>
     </message>
     <message>
         <source>The format command is: %1 %2</source>
@@ -800,8 +800,8 @@ Press any key to exit</source>
         <translation>Language server 出现错误。请检查日志文件以获取详细信息。</translation>
     </message>
     <message>
-        <source>Failed to start LSP Process. Have you set the path to the Language Server program in Preferences-&gt;Extensions-&gt;Language Server?</source>
-        <translation>启动 Language server 进程失败。你是否已在设置-&gt;扩展-&gt;Language Server 中设置语言服务器的路径？</translation>
+        <source>Failed to start LSP Process. Have you set the path to the Language Server program at %1?</source>
+        <translation>启动 Language server 进程失败。你是否已在 %1 设置语言服务器的路径？</translation>
     </message>
     <message>
         <source>LSP Process timed out</source>
@@ -973,8 +973,8 @@ p, li { white-space: pre-wrap; }
         <translation>打开文件</translation>
     </message>
     <message>
-        <source>The file [%1] contains more than %2 characters, so it&apos;s not opened. You can change the open file length limit in Preferences-&gt;Advanced-&gt;Limits-&gt;Open File Length Limit</source>
-        <translation>文件 [%1] 包含超过 %2 个字符，因此没有被打开。你可以在设置-&gt;高级-&gt;限制-&gt;打开文件长度限制中更改长度限制</translation>
+        <source>The file [%1] contains more than %2 characters, so it&apos;s not opened. You can change the open file length limit at %3.</source>
+        <translation>文件 [%1] 包含超过 %2 个字符，因此没有被打开。你可以在 %3 更改长度限制。</translation>
     </message>
     <message>
         <source>Save File</source>
@@ -1103,8 +1103,8 @@ Do you want to reload it?</source>
         <translation>超出时间限制</translation>
     </message>
     <message>
-        <source>The %1 of the process running on the testcase #%2 contains more than %3 characters, which is longer than the output length limit, so the process is killed. You can change the output length limit in Preferences-&gt;Advanced-&gt;Limits-&gt;Output Length Limit</source>
-        <translation>在测试点 #%2 上运行的程序的 %1 包含多于 %3 个字符，超出了输出长度限制，因此进程被结束。你可以在设置-&gt;高级-&gt;限制-&gt;输出限制中更改长度限制</translation>
+        <source>The %1 of the process running on the testcase #%2 contains more than %3 characters, which is longer than the output length limit, so the process is killed. You can change the output length limit at %4.</source>
+        <translation>在测试点 #%2 上运行的程序的 %1 包含多于 %3 个字符，超出了输出长度限制，因此进程被结束。你可以在 %4 更改长度限制。</translation>
     </message>
     <message>
         <source>%1 has been killed</source>
@@ -1155,8 +1155,8 @@ Do you want to reload it?</source>
         <translation>自动保存</translation>
     </message>
     <message>
-        <source>Have you set a proper name for the main class in your solution? If not, you can set it in Preferences-&gt;Lanugages-&gt;Java-&gt;Java Commands-&gt;Java Class Name.</source>
-        <translation>你设置了你代码中主类的名字吗？如果没有，你可以在 设置-&gt;语言-&gt;Java-&gt;Java 命令-&gt;Java 类名称 中进行设置。</translation>
+        <source>Have you set a proper name for the main class in your solution? If not, you can set it at %1.</source>
+        <translation>你设置了你代码中主类的名字吗？如果没有，你可以在 %1 进行设置。</translation>
     </message>
 </context>
 <context>
@@ -2646,8 +2646,8 @@ Consult your terminal emulator for the suitable arguments.</source>
         <translation>差异查看器[%1]</translation>
     </message>
     <message>
-        <source>The output/expected contains more than %1 characters, HTML diff viewer is disabled. You can change the length limit in Preferences-&gt;Advanced-&gt;Limits-&gt;HTML Diff Viewer Length Limit</source>
-        <translation>输出或答案超过了 %1 个字符，因此 HTML 差异查看器已被禁用。你可以在设置-&gt;高级-&gt;限制-&gt;HTML 差异查看器长度限制中更改限制大小</translation>
+        <source>The output/expected contains more than %1 characters, HTML diff viewer is disabled. You can change the length limit at %2.</source>
+        <translation>输出或答案超过了 %1 个字符，因此 HTML 差异查看器已被禁用。你可以在 %2 更改限制大小。</translation>
     </message>
 </context>
 <context>
@@ -2665,14 +2665,6 @@ Consult your terminal emulator for the suitable arguments.</source>
         <translation>编辑测试点</translation>
     </message>
     <message>
-        <source>Preferences-&gt;Advanced-&gt;Limits-&gt;Output Display Length Limit</source>
-        <translation>设置-&gt;高级-&gt;限制-&gt;输出显示长度限制</translation>
-    </message>
-    <message>
-        <source>Preferences-&gt;Advanced-&gt;Limits-&gt;Load Test Case Length Limit</source>
-        <translation>设置-&gt;高级-&gt;限制-&gt;加载测试用例长度限制</translation>
-    </message>
-    <message>
         <source>Input</source>
         <translation>输入</translation>
     </message>
@@ -2685,7 +2677,7 @@ Consult your terminal emulator for the suitable arguments.</source>
         <translation>答案</translation>
     </message>
     <message>
-        <source>Now the test case editor is read-only. You can set the length limit in %1.</source>
+        <source>Now the test case editor is read-only. You can set the length limit at %1.</source>
         <translation>现在测试用例编辑器是只读的。你可以在 %1 中设置长度限制。</translation>
     </message>
     <message>
@@ -2744,8 +2736,8 @@ Consult your terminal emulator for the suitable arguments.</source>
         <translation>已加载输入 [%1]</translation>
     </message>
     <message>
-        <source>The following files are not loaded because they are not matched:%1. You can set the matching rules at Preferences-&gt;File Path-&gt;Testcases-&gt;Add Testcases From Files Rules.</source>
-        <translation>下列文件由于没有匹配而未加载：%1。你可以在设置-&gt;文件路径-&gt;测试点-&gt;测试数据匹配规则中设置匹配规则。</translation>
+        <source>The following files are not loaded because they are not matched:%1. You can set the matching rules at %2.</source>
+        <translation>下列文件由于没有匹配而未加载：%1。你可以在 %2 设置匹配规则。</translation>
     </message>
     <message>
         <source>Remove Empty</source>
