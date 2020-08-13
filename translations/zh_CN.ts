@@ -1158,6 +1158,15 @@ Do you want to reload it?</source>
         <source>Have you set a proper name for the main class in your solution? If not, you can set it at %1.</source>
         <translation>你设置了你代码中主类的名字吗？如果没有，你可以在 %1 进行设置。</translation>
     </message>
+    <message>
+        <source>Companion</source>
+        <translatorcomment>didn&apos;t translate it because it&apos;s the name of Competitive Companion</translatorcomment>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Unknown attribute: [%1]. Please check the head comments setting at %2.</source>
+        <translation>未知的属性: [%1]。请在 %2 检查头部注释的设置。</translation>
+    </message>
 </context>
 <context>
     <name>MessageLogger</name>
@@ -2419,6 +2428,20 @@ Consult your terminal emulator for the suitable arguments.</source>
 在大多数终端模拟器（包括 konsole, xterm, xfce-terminal）中，这个参数是 &quot;-e&quot;。
 在 gnome-terminal 中，这个参数是 &quot;--&quot;。
 请自行查阅适用于你所使用的终端模拟器的参数。</translation>
+    </message>
+    <message>
+        <source>Head Comments</source>
+        <translation>头部注释</translation>
+    </message>
+    <message>
+        <source>The comments added at the head of the code when parsing a problem.
+Available place holders are:
+${time}: the date and time when parsing the problem
+${json.X.Y}: an attribute of the data provided by Competitive Companion, you can read more at https://github.com/jmerle/competitive-companion#explanation</source>
+        <translation>在获取一道题目时添加在代码开头的注释。
+可用的占位符有：
+${time}: 获取题目时的时间
+${json.X.Y}: 由 Competitive Companion 提供的数据的一个属性，你可以在 https://github.com/jmerle/competitive-companion#explanation 获取更多信息</translation>
     </message>
 </context>
 <context>

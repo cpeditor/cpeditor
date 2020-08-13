@@ -1158,6 +1158,14 @@ Do you want to reload it?</source>
         <source>Have you set a proper name for the main class in your solution? If not, you can set it at %1.</source>
         <translation>Вы установили подходящее имя для главного класса в решении? Если нет, Вы можете установить имя в at %1.</translation>
     </message>
+    <message>
+        <source>Companion</source>
+        <translation type="unfinished">Companion</translation>
+    </message>
+    <message>
+        <source>Unknown attribute: [%1]. Please check the head comments setting at %2.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MessageLogger</name>
@@ -2427,6 +2435,17 @@ Consult your terminal emulator for the suitable arguments.</source>
         <translation>Аргументы используемые для запуска определенной команды в эмуляторе терминала.
 Это &quot;-e&quot; для большинства эмуляторов терминала, включая konsole, xterm, xfce-terminal, но может быть &quot;--&quot; для gnome-terminal.
 Уточните аргументы, доступные для вашего эмулятора терминала.</translation>
+    </message>
+    <message>
+        <source>Head Comments</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The comments added at the head of the code when parsing a problem.
+Available place holders are:
+${time}: the date and time when parsing the problem
+${json.X.Y}: an attribute of the data provided by Competitive Companion, you can read more at https://github.com/jmerle/competitive-companion#explanation</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
