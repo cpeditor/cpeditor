@@ -19,7 +19,6 @@
 #include "Core/EventLogger.hpp"
 #include "Core/MessageLogger.hpp"
 #include <QJsonArray>
-#include <QJsonDocument>
 #include <QJsonObject>
 #include <QTcpServer>
 #include <QTcpSocket>
@@ -116,14 +115,9 @@ void CompanionServer::onReadReady()
         {
             CompanionData payload;
 
-            payload.name = doc["name"].toString();
-            payload.contest = doc["group"].toString();
+            payload.doc = doc;
+
             payload.url = doc["url"].toString();
-            payload.interactive = doc["interactive"].toBool();
-            payload.memoryLimit = doc["memoryLimit"].toInt();
-            payload.timeLimit = doc["timeLimit"].toInt();
-            payload.isInputstdin = doc["input"].toObject()["type"].toString() == "stdin";
-            payload.isOutputstdout = doc["output"].toObject()["type"].toString() == "stdout";
 
             QJsonArray testArray = doc["tests"].toArray();
             for (auto tests : testArray)
@@ -132,14 +126,14 @@ void CompanionServer::onReadReady()
                 auto out = tests.toObject()["output"].toString();
                 payload.testcases.push_back({in, out});
             }
+
             emit onRequestArrived(payload);
         }
         else
         {
             if (log != nullptr)
                 log->error(tr("Companion"), tr("JSON parser reported errors:\n%1").arg(error.errorString()));
-            else
-                LOG_WARN("JSON Parser reported error " << error.errorString());
+            LOG_WARN("JSON parser reported error " << error.errorString());
         }
     }
     else

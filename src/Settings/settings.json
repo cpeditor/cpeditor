@@ -301,7 +301,7 @@
     },
     {
         "name": "Detached Run Terminal Arguments",
-	"desc": "Terminal Arguments",
+        "desc": "Terminal Arguments",
         "type": "QString",
         "default": "-e",
         "tip": "Arguments used to execute a given command in the terminal emulator.\nThis is \"-e\" for most terminal emulators, including konsole, xterm, xfce-terminal but can be \"--\" for gnome-terminal.\nConsult your terminal emulator for the suitable arguments."
@@ -451,6 +451,14 @@
             }
         ],
         "tip": "Open a new tab for each problem parsed by Competitive Companion."
+    },
+    {
+        "name": "Competitive Companion/Head Comments",
+        "desc": "Head Comments",
+        "type": "QString",
+        "ui": "QPlainTextEdit",
+        "default": "Problem: ${json.name}\nContest: ${json.group}\nURL: ${json.url}\nMemory Limit: ${json.memoryLimit} MB\nTime Limit: ${json.timeLimit} ms\n\nPowered by CP Editor (https://cpeditor.org)",
+        "tip": "The comments added at the head of the code when parsing a problem.\nAvailable place holders are:\n${time}: the date and time when parsing the problem\n${json.X.Y}: an attribute of the data provided by Competitive Companion, you can read more at https://github.com/jmerle/competitive-companion#explanation"
     },
     {
         "name": "Hotkey/Format",
