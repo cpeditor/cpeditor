@@ -1160,11 +1160,11 @@ Do you want to reload it?</source>
     </message>
     <message>
         <source>Companion</source>
-        <translation type="unfinished">Companion</translation>
+        <translation>Companion</translation>
     </message>
     <message>
         <source>Unknown attribute: [%1]. Please check the head comments setting at %2.</source>
-        <translation type="unfinished"></translation>
+        <translation>Неизвестный атрибут: [%1]. Пожалуйста, проверьте настройку комментариев шапки в %2.</translation>
     </message>
 </context>
 <context>
@@ -2438,14 +2438,17 @@ Consult your terminal emulator for the suitable arguments.</source>
     </message>
     <message>
         <source>Head Comments</source>
-        <translation type="unfinished"></translation>
+        <translation>Комментарии в шапке</translation>
     </message>
     <message>
         <source>The comments added at the head of the code when parsing a problem.
 Available place holders are:
 ${time}: the date and time when parsing the problem
 ${json.X.Y}: an attribute of the data provided by Competitive Companion, you can read more at https://github.com/jmerle/competitive-companion#explanation</source>
-        <translation type="unfinished"></translation>
+        <translation>Комментарии, добавляемые в шапку кода при парсинге задач
+Доступные заполнители:
+${time}: дата и время парсинга задачи
+${json.X.Y}: атрибут данных, предоставляемых Competitive Companion&apos;ом. Вы можете узанть большее на https://github.com/jmerle/competitive-companion#explanation</translation>
     </message>
 </context>
 <context>
