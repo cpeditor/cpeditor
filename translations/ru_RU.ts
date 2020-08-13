@@ -2433,18 +2433,35 @@ Consult your terminal emulator for the suitable arguments.</source>
         <translation>Комментарии в шапке</translation>
     </message>
     <message>
-        <source>The comments added at the head of the code when parsing a problem.
-Available place holders are:
-${time}: the date and time when parsing the problem
-${json.X.Y}: an attribute of the data provided by Competitive Companion, you can read more at https://github.com/jmerle/competitive-companion#explanation</source>
-        <translation>Комментарии, добавляемые в шапку кода при парсинге задач
-Доступные заполнители:
-${time}: дата и время парсинга задачи
-${json.X.Y}: атрибут данных, предоставляемых Competitive Companion&apos;ом. Вы можете узанть большее на https://github.com/jmerle/competitive-companion#explanation</translation>
-    </message>
-    <message>
         <source>Save Test Case To A File</source>
         <translation>Сохранить тесткейс в файл</translation>
+    </message>
+    <message>
+        <source>The comments added at the head of the code when parsing a problem.
+Available place holders are:
+${time}: the time when parsing the problem
+${json.X.Y}: an attribute of the data provided by Competitive Companion, you can read more at https://github.com/jmerle/competitive-companion#explanation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Time format for the head comments</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The format of the ${time} place holder in the head comments.
+You can read the Qt documentation for available expressions:
+https://doc.qt.io/qt-5/qdate.html#toString
+https://doc.qt.io/qt-5/qtime.html#toString</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add &quot;Powered By CP Editor&quot; in the head comments</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add a line saying &quot;Powered By CP Editor&quot; in the head comments.
+This doesn&apos;t cost you anyting, but helps more people to know CP Editor.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

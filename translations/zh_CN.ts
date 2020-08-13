@@ -2425,9 +2425,13 @@ Consult your terminal emulator for the suitable arguments.</source>
         <translation>头部注释</translation>
     </message>
     <message>
+        <source>Save Test Case To A File</source>
+        <translation>将测试用例保存到文件</translation>
+    </message>
+    <message>
         <source>The comments added at the head of the code when parsing a problem.
 Available place holders are:
-${time}: the date and time when parsing the problem
+${time}: the time when parsing the problem
 ${json.X.Y}: an attribute of the data provided by Competitive Companion, you can read more at https://github.com/jmerle/competitive-companion#explanation</source>
         <translation>在获取一道题目时添加在代码开头的注释。
 可用的占位符有：
@@ -2435,8 +2439,28 @@ ${time}: 获取题目时的时间
 ${json.X.Y}: 由 Competitive Companion 提供的数据的一个属性，你可以在 https://github.com/jmerle/competitive-companion#explanation 获取更多信息</translation>
     </message>
     <message>
-        <source>Save Test Case To A File</source>
-        <translation>将测试用例保存到文件</translation>
+        <source>Time format for the head comments</source>
+        <translation>头部注释的格式</translation>
+    </message>
+    <message>
+        <source>The format of the ${time} place holder in the head comments.
+You can read the Qt documentation for available expressions:
+https://doc.qt.io/qt-5/qdate.html#toString
+https://doc.qt.io/qt-5/qtime.html#toString</source>
+        <translation>头部注释中 ${time} 占位符的格式。
+你可以阅读 Qt 文档来查看有哪些可用的表达式：
+https://doc.qt.io/qt-5/qdate.html#toString
+https://doc.qt.io/qt-5/qtime.html#toString</translation>
+    </message>
+    <message>
+        <source>Add &quot;Powered By CP Editor&quot; in the head comments</source>
+        <translation>在头部注释中添加 &quot;Powered By CP Editor&quot;</translation>
+    </message>
+    <message>
+        <source>Add a line saying &quot;Powered By CP Editor&quot; in the head comments.
+This doesn&apos;t cost you anyting, but helps more people to know CP Editor.</source>
+        <translation>在头部注释中添加一行 &quot;Powered By CP Editor&quot;。
+这可以在不花费任何代价的情况下让更多的人知道 CP Editor。</translation>
     </message>
 </context>
 <context>
