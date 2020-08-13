@@ -6,7 +6,7 @@
 -   Reveal the executable file in file manager. (#537)
 -   Use a dialog to open new contests. (#539 and #467)
 -   Choose detached execution terminal on Linux (#554 and #474)
--   Add 'save to file' in the context menu of the test cases
+-   Add "save to file" in the context menu of the test cases. (#529 and #560)
 
 ### Fixed
 
