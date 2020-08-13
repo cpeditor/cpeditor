@@ -13,7 +13,7 @@ CP Editor 是一个基于 Qt 的轻量级跨平台代码编辑器，专为算法
 ---
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-41-orange.svg)](#contributors-sparkles)
+[![All Contributors](https://img.shields.io/badge/all_contributors-42-orange.svg)](#contributors-sparkles)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/ce0f297f31f74485b0d340949d08d605)](https://www.codacy.com/gh/cpeditor/cpeditor)
 [![GitHub All Releases](https://img.shields.io/github/downloads/cpeditor/cpeditor/total?label=downloads%40all)](https://github.com/cpeditor/cpeditor/releases)
@@ -218,6 +218,9 @@ CP Editor 是一个基于 Qt 的轻量级跨平台代码编辑器，专为算法
     </td>
     <td align="center">
       <a href="https://github.com/sahilkhan03"><img src="https://avatars2.githubusercontent.com/u/45485428?v=4" width="100px;" alt=""/></a><br /><a href="http://sahilkhan.me"><sub><b>Md. Sahil Khan</b></sub></a><br /><a href="#ideas-sahilkhan03" title="Ideas, Planning, & Feedback">🤔</a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/ChungZH"><img src="https://avatars0.githubusercontent.com/u/42088872?v=4" width="100px;" alt=""/></a><br /><a href="https://chungzh.cc/"><sub><b>Flex Zhong</b></sub></a><br /><a href="https://github.com/cpeditor/cpeditor/commits?author=ChungZH" title="Code">💻</a>
     </td>
   </tr>
 </table>
