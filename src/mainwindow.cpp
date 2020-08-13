@@ -494,21 +494,57 @@ void MainWindow::applyCompanion(const Extensions::CompanionData &data)
 
     if (isUntitled() && !isTextChanged())
     {
-        QString meta = data.toMetaString();
-        meta.prepend("\n");
-        meta.append("Powered by CP Editor (https://github.com/cpeditor/cpeditor)");
+        QString comments = SettingsHelper::getCompetitiveCompanionHeadComments().replace(
+            "${time}",
+            QDateTime::currentDateTime().toString(SettingsHelper::getCompetitiveCompanionHeadCommentsTimeFormat()));
+
+        auto it = QRegularExpression(R"(\$\{json\..+?\})").globalMatch(comments);
+
+        QString finalComments = "\n";
+        int lastEnd = 0;
+
+        while (it.hasNext())
+        {
+            auto match = it.next();
+            finalComments += comments.mid(lastEnd, match.capturedStart() - lastEnd);
+            auto path = match.captured().mid(7, match.capturedLength() - 8).split(".");
+            auto value = QJsonValue::fromVariant(data.doc.toVariant());
+            for (auto attr : path)
+                value = value[attr];
+            if (value.isUndefined())
+            {
+                log->error("Companion",
+                           tr("Unknown attribute: [%1]. Please check the head comments setting at %2.")
+                               .arg(path.join('.').arg(SettingsHelper::pathOfCompetitiveCompanionHeadComments())));
+            }
+            else if (value.isObject() || value.isArray())
+            {
+                finalComments += QJsonDocument::fromVariant(value.toVariant()).toJson(QJsonDocument::Compact);
+            }
+            else
+            {
+                // convert to QVariant first so that all types can be converted to string
+                finalComments += value.toVariant().toString();
+            }
+            lastEnd = match.capturedEnd();
+        }
+
+        finalComments += comments.mid(lastEnd);
+
+        if (SettingsHelper::isCompetitiveCompanionHeadCommentsPoweredByCPEditor())
+            finalComments += "\n\nPowered by CP Editor (https://cpeditor.org)";
 
         if (language == "Python")
-            meta.replace('\n', "\n# ");
+            finalComments.replace('\n', "\n# ");
         else
-            meta.replace('\n', "\n// ");
+            finalComments.replace('\n', "\n// ");
 
-        meta.append("\n\n");
+        finalComments += "\n\n";
 
         auto cursor = editor->textCursor();
-        int cursorPos = cursor.position();
-        editor->setPlainText(meta + editor->toPlainText());
-        cursor.setPosition(cursorPos + meta.length());
+        int cursorPos = cursor.position(); // keep Template Cursor Position
+        editor->setPlainText(finalComments + editor->toPlainText());
+        cursor.setPosition(cursorPos + finalComments.length());
         editor->setTextCursor(cursor);
     }
 

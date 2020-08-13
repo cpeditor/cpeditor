@@ -18,6 +18,7 @@
 #ifndef COMPANIONSERVER_HPP
 #define COMPANIONSERVER_HPP
 
+#include <QJsonDocument>
 #include <QObject>
 #include <QVector>
 
@@ -36,29 +37,9 @@ struct CompanionData
         QString output;
     };
 
-    QString name;
-    QString contest;
     QString url;
-    bool interactive;
-    int memoryLimit;
-    int timeLimit;
-    bool isInputstdin;
-    bool isOutputstdout;
+    QJsonDocument doc;
     QVector<TestCases> testcases;
-
-    QString toMetaString() const
-    {
-        return QString("Problem: %1\n"
-                       "Contest: %2\n"
-                       "URL: %3\n"
-                       "Memory Limit: %4 MB\n"
-                       "Time Limit: %5 ms\n")
-            .arg(name)
-            .arg(contest)
-            .arg(url)
-            .arg(memoryLimit)
-            .arg(timeLimit);
-    }
 };
 
 class CompanionServer : public QObject

@@ -759,10 +759,6 @@ Press any key to exit</source>
 <context>
     <name>Extensions::CompanionServer</name>
     <message>
-        <source>Companion</source>
-        <translation>Companion</translation>
-    </message>
-    <message>
         <source>Server is closed</source>
         <translation>Сервер не доступен</translation>
     </message>
@@ -1157,6 +1153,10 @@ Do you want to reload it?</source>
     <message>
         <source>Have you set a proper name for the main class in your solution? If not, you can set it at %1.</source>
         <translation>Вы установили подходящее имя для главного класса в решении? Если нет, Вы можете установить имя в at %1.</translation>
+    </message>
+    <message>
+        <source>Unknown attribute: [%1]. Please check the head comments setting at %2.</source>
+        <translation>Неизвестный атрибут: [%1]. Пожалуйста, проверьте настройку комментариев шапки в %2.</translation>
     </message>
 </context>
 <context>
@@ -2429,8 +2429,46 @@ Consult your terminal emulator for the suitable arguments.</source>
 Уточните аргументы, доступные для вашего эмулятора терминала.</translation>
     </message>
     <message>
+        <source>Head Comments</source>
+        <translation>Комментарии в шапке</translation>
+    </message>
+    <message>
         <source>Save Test Case To A File</source>
         <translation>Сохранить тесткейс в файл</translation>
+    </message>
+    <message>
+        <source>The comments added at the head of the code when parsing a problem.
+Available place holders are:
+${time}: the time when parsing the problem
+${json.X.Y}: an attribute of the data provided by Competitive Companion, you can read more at https://github.com/jmerle/competitive-companion#explanation</source>
+        <translation>Комментарии, добавляемые в шапку кода при парсинге задач.
+Доступные заполнители:
+${time}: время парсинга задачи
+${json.X.Y}: атрибут данных, предоставляемых Competitive Companion&apos;ом. Вы можете узанть большее на https://github.com/jmerle/competitive-companion#explanation</translation>
+    </message>
+    <message>
+        <source>Time format for the head comments</source>
+        <translation>Формат времени для комментариев в шарке</translation>
+    </message>
+    <message>
+        <source>The format of the ${time} place holder in the head comments.
+You can read the Qt documentation for available expressions:
+https://doc.qt.io/qt-5/qdate.html#toString
+https://doc.qt.io/qt-5/qtime.html#toString</source>
+        <translation>Формат времени используемый в комментариев для шапки.
+Вы можете прочитать о дуступных выражениях в документации Qt:
+https://doc.qt.io/qt-5/qdate.html#toString
+https://doc.qt.io/qt-5/qtime.html#toString</translation>
+    </message>
+    <message>
+        <source>Add &quot;Powered By CP Editor&quot; in the head comments</source>
+        <translation>Добавить &quot;Powered By CP Editor&quot; в комментарии шапки</translation>
+    </message>
+    <message>
+        <source>Add a line saying &quot;Powered By CP Editor&quot; in the head comments.
+This doesn&apos;t cost you anyting, but helps more people to know CP Editor.</source>
+        <translation>Добавить строку &quot;Powered By CP Editor&quot; в комментарии шапки
+Это ничего Вам не стоит, но помогает многим людям узнавать о CP Editor.</translation>
     </message>
 </context>
 <context>

@@ -90,6 +90,7 @@ void LineEditWrapper::set(QString s)
 void PlainTextEditWrapper::init(QWidget *parent, QVariant)
 {
     auto *item = new QPlainTextEdit(parent);
+    item->setMinimumWidth(400);
     item->setWordWrapMode(QTextOption::NoWrap);
     connect(item, &QPlainTextEdit::textChanged, this, &ValueWidget::emitSignal);
     widget = item;

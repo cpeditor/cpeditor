@@ -301,7 +301,7 @@
     },
     {
         "name": "Detached Run Terminal Arguments",
-	"desc": "Terminal Arguments",
+        "desc": "Terminal Arguments",
         "type": "QString",
         "default": "-e",
         "tip": "Arguments used to execute a given command in the terminal emulator.\nThis is \"-e\" for most terminal emulators, including konsole, xterm, xfce-terminal but can be \"--\" for gnome-terminal.\nConsult your terminal emulator for the suitable arguments."
@@ -451,6 +451,28 @@
             }
         ],
         "tip": "Open a new tab for each problem parsed by Competitive Companion."
+    },
+    {
+        "name": "Competitive Companion/Head Comments",
+        "desc": "Head Comments",
+        "type": "QString",
+        "ui": "QPlainTextEdit",
+        "default": "Problem: ${json.name}\nContest: ${json.group}\nURL: ${json.url}\nMemory Limit: ${json.memoryLimit} MB\nTime Limit: ${json.timeLimit} ms",
+        "tip": "The comments added at the head of the code when parsing a problem.\nAvailable place holders are:\n${time}: the time when parsing the problem\n${json.X.Y}: an attribute of the data provided by Competitive Companion, you can read more at https://github.com/jmerle/competitive-companion#explanation"
+    },
+    {
+        "name": "Competitive Companion/Head Comments Time Format",
+        "desc": "Time format for the head comments",
+        "type": "QString",
+        "default": "yyyy-MM-dd HH:mm:ss",
+        "tip": "The format of the ${time} place holder in the head comments.\nYou can read the Qt documentation for available expressions:\nhttps://doc.qt.io/qt-5/qdate.html#toString\nhttps://doc.qt.io/qt-5/qtime.html#toString"
+    },
+    {
+        "name": "Competitive Companion/Head Comments Powered By CP Editor",
+        "desc": "Add \"Powered By CP Editor\" in the head comments",
+        "type": "bool",
+        "default": true,
+        "tip": "Add a line saying \"Powered By CP Editor\" in the head comments.\nThis doesn't cost you anyting, but helps more people to know CP Editor."
     },
     {
         "name": "Hotkey/Format",
