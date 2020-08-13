@@ -20,7 +20,6 @@
 #include "Core/MessageLogger.hpp"
 #include "Settings/DefaultPathManager.hpp"
 #include "Util/FileUtil.hpp"
-
 #include <QApplication>
 #include <QInputDialog>
 #include <QMenu>
@@ -163,8 +162,10 @@ void TestCaseEdit::onCustomContextMenuRequested(const QPoint &pos)
     menu->addSeparator();
     menu->addAction(QApplication::style()->standardIcon(QStyle::SP_FileIcon), tr("Save to file"), [this] {
         LOG_INFO("Saving test case to file");
-        QString fileName = QFileDialog::getSaveFileName(this, tr("Save to file"));
-        Util::saveFile(fileName, this->toPlainText(), tr("Save to file"));
+        QString fileName =
+            DefaultPathManager::getSaveFileName("Save Test Case To A File", this, tr("Save test case to file"));
+        if (!fileName.isEmpty())
+            Util::saveFile(fileName, toPlainText(), tr("Save test case to file"), true, log);
     });
     if (role != Output)
     {
