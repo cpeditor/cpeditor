@@ -54,8 +54,6 @@ CP Editor 是一个基于 Qt 的轻量级跨平台代码编辑器，专为算法
 
 ## FAQ
 
-- 如何使整个界面都是暗色主题？
-   - 现在你可以在 KDE, macOS 以及 Windows 10 上使用暗色主题。你需要将系统主题设置为暗色主题，这样的话 CP Editor 也会使用暗色主题。然而，在 Windows 10 上，如果你使用暗色主题，当你切换代码编辑器的主题时，你可能会需要重启 CP Editor。
 - 如何从网站上获取样例？
    - 你需要在浏览器上安装 [Competitive Companion](https://github.com/jmerle/competitive-companion) 插件, 然后在打开 CP Editor 的情况下使用它（点击绿色加号）。
 - 如何在应用内提交代码到 CF 上?
