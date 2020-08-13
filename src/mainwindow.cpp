@@ -495,7 +495,8 @@ void MainWindow::applyCompanion(const Extensions::CompanionData &data)
     if (isUntitled() && !isTextChanged())
     {
         QString comments = SettingsHelper::getCompetitiveCompanionHeadComments().replace(
-            "${time}", QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss"));
+            "${time}",
+            QDateTime::currentDateTime().toString(SettingsHelper::getCompetitiveCompanionHeadCommentsTimeFormat()));
 
         auto it = QRegularExpression(R"(\$\{json\..+?\})").globalMatch(comments);
 
@@ -529,6 +530,9 @@ void MainWindow::applyCompanion(const Extensions::CompanionData &data)
         }
 
         finalComments += comments.mid(lastEnd);
+
+        if (SettingsHelper::isCompetitiveCompanionHeadCommentsPoweredByCPEditor())
+            finalComments += "\n\nPowered by CP Editor (https://cpeditor.org)";
 
         if (language == "Python")
             finalComments.replace('\n', "\n# ");

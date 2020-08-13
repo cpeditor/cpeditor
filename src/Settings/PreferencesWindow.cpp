@@ -228,8 +228,10 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
                 .page("Java Server", tr("%1 Server").arg(tr("Java")), {"LSP/Use Linting Java", "LSP/Delay Java", "LSP/Path Java", "LSP/Args Java"})
                 .page("Python Server", tr("%1 Server").arg(tr("Python")), {"LSP/Use Linting Python", "LSP/Delay Python", "LSP/Path Python", "LSP/Args Python"})
             .end()
-            .page(TRKEY("Competitive Companion"), new PreferencesPageTemplate({"Competitive Companion/Enable", "Competitive Companion/Open New Tab",
-                                                "Competitive Companion/Connection Port", "Competitive Companion/Head Comments"}, false))
+            .page(TRKEY("Competitive Companion"), new PreferencesPageTemplate({"Competitive Companion/Enable",
+                "Competitive Companion/Open New Tab", "Competitive Companion/Connection Port",
+                "Competitive Companion/Head Comments", "Competitive Companion/Head Comments Time Format",
+                "Competitive Companion/Head Comments Powered By CP Editor"}, false))
             .page(TRKEY("CF Tool"), {"CF/Path", "CF/Show Toast Messages"})
         .end()
         .dir(TRKEY("File Path"))
