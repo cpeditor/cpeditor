@@ -26,7 +26,6 @@
 #include <QMenu>
 #include <QMimeData>
 #include <QPropertyAnimation>
-#include <QSaveFile>
 #include <QStyle>
 #include <generated/SettingsHelper.hpp>
 
@@ -163,6 +162,12 @@ void TestCaseEdit::startAnimation()
 void TestCaseEdit::onCustomContextMenuRequested(const QPoint &pos)
 {
     auto menu = createStandardContextMenu();
+    menu->addSeparator();
+    menu->addAction(QApplication::style()->standardIcon(QStyle::SP_FileIcon), tr("Save to file"), [this] {
+        LOG_INFO("Saving output to file");
+        QString fileName = QFileDialog::getSaveFileName(this, tr("Save to file"));
+        Util::saveFile(fileName, this->toPlainText(), tr("Save to file"));
+    });
     if (role != Output)
     {
         menu->addSeparator();
@@ -180,28 +185,6 @@ void TestCaseEdit::onCustomContextMenuRequested(const QPoint &pos)
                 if (ok)
                     modifyText(res);
             });
-    }
-    else if (role == Output)
-    {
-        menu->addSeparator();
-        menu->addAction(QApplication::style()->standardIcon(QStyle::SP_FileIcon), tr("Save to file"), [this] {
-            LOG_INFO("Saving output to file");
-            QString fileName = QFileDialog::getSaveFileName(this, tr("Save to file"));
-            QSaveFile file(fileName);
-            if (file.open(QFile::WriteOnly | QFile::Text))
-            {
-                QTextStream out(&file);
-                out << this->toPlainText();
-                if (!file.commit())
-                {
-                    LOG_ERR("Failed to save output");
-                }
-            }
-            else
-            {
-                LOG_ERR("Failed to save output");
-            }
-        });
     }
     menu->popup(mapToGlobal(pos));
 }
