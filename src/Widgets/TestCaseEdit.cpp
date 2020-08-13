@@ -168,7 +168,6 @@ void TestCaseEdit::onCustomContextMenuRequested(const QPoint &pos)
     });
     if (role != Output)
     {
-        menu->addSeparator();
         menu->addAction(QApplication::style()->standardIcon(QStyle::SP_DialogOpenButton), tr("Load From File"), [this] {
             LOG_INFO("Opening file dialog to Load from file");
             auto res = DefaultPathManager::getOpenFileName("Load Single Test Case", this, tr("Load From File"));
