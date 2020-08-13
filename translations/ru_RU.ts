@@ -2447,6 +2447,10 @@ ${time}: the date and time when parsing the problem
 ${json.X.Y}: an attribute of the data provided by Competitive Companion, you can read more at https://github.com/jmerle/competitive-companion#explanation</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Save Test Case To A File</source>
+        <translation>Сохранить тесткейс в файл</translation>
+    </message>
 </context>
 <context>
     <name>ShortcutItem</name>
@@ -2710,6 +2714,14 @@ ${json.X.Y}: an attribute of the data provided by Competitive Companion, you can
     <message>
         <source>Only the first %1 characters are shown.</source>
         <translation>Отображены только первые %1 символов.</translation>
+    </message>
+    <message>
+        <source>Save to file</source>
+        <translation>Сохранить в файл</translation>
+    </message>
+    <message>
+        <source>Save test case to file</source>
+        <translation>Сохранить тесткейс в файл</translation>
     </message>
 </context>
 <context>

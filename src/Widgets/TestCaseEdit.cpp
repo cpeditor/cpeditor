@@ -159,9 +159,16 @@ void TestCaseEdit::startAnimation()
 void TestCaseEdit::onCustomContextMenuRequested(const QPoint &pos)
 {
     auto menu = createStandardContextMenu();
+    menu->addSeparator();
+    menu->addAction(QApplication::style()->standardIcon(QStyle::SP_FileIcon), tr("Save to file"), [this] {
+        LOG_INFO("Saving test case to file");
+        QString fileName =
+            DefaultPathManager::getSaveFileName("Save Test Case To A File", this, tr("Save test case to file"));
+        if (!fileName.isEmpty())
+            Util::saveFile(fileName, toPlainText(), tr("Save test case to file"), true, log);
+    });
     if (role != Output)
     {
-        menu->addSeparator();
         menu->addAction(QApplication::style()->standardIcon(QStyle::SP_DialogOpenButton), tr("Load From File"), [this] {
             LOG_INFO("Opening file dialog to Load from file");
             auto res = DefaultPathManager::getOpenFileName("Load Single Test Case", this, tr("Load From File"));

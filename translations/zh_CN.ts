@@ -2443,6 +2443,10 @@ ${json.X.Y}: an attribute of the data provided by Competitive Companion, you can
 ${time}: 获取题目时的时间
 ${json.X.Y}: 由 Competitive Companion 提供的数据的一个属性，你可以在 https://github.com/jmerle/competitive-companion#explanation 获取更多信息</translation>
     </message>
+    <message>
+        <source>Save Test Case To A File</source>
+        <translation>将测试用例保存到文件</translation>
+    </message>
 </context>
 <context>
     <name>ShortcutItem</name>
@@ -2706,6 +2710,14 @@ ${json.X.Y}: 由 Competitive Companion 提供的数据的一个属性，你可�
     <message>
         <source>Only the first %1 characters are shown.</source>
         <translation>只显示了前 %1 个字符。</translation>
+    </message>
+    <message>
+        <source>Save to file</source>
+        <translation>保存到文件</translation>
+    </message>
+    <message>
+        <source>Save test case to file</source>
+        <translation>将测试用例保存到文件</translation>
     </message>
 </context>
 <context>

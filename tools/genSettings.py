@@ -111,6 +111,7 @@ def addDefaultPaths(obj):
         ("Open Contest", "${contest}", "contest, file, testcase, checker"),
         ("Load Single Test Case", "${testcase}", "testcase"),
         ("Add Pairs Of Test Cases", "${testcase}", "testcase"),
+        ("Save Test Case To A File", "${testcase}", "testcase"),
         ("Custom Checker", "${checker}", "checker"),
         ("Export And Import Settings", "${settings}", "settings"),
         ("Export And Load Session", "${session}", "session"),
