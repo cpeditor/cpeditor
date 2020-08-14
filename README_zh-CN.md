@@ -126,6 +126,9 @@ CP Editor 是一个基于 Qt 的轻量级跨平台代码编辑器，专为算法
       <a href="https://github.com/sonulohani"><img src="https://avatars1.githubusercontent.com/u/2958681?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/sonulohani"><sub><b>Sonu Lohani</b></sub></a><br /><a href="https://github.com/cpeditor/cpeditor/issues?q=author%3Asonulohani" title="Bug reports">🐛</a> <a href="https://github.com/cpeditor/cpeditor/commits?author=sonulohani" title="Code">💻</a> <a href="#ideas-sonulohani" title="Ideas, Planning, & Feedback">🤔</a>
     </td>
     <td align="center">
+      <a href="https://github.com/ChungZH"><img src="https://avatars0.githubusercontent.com/u/42088872?v=4" width="100px;" alt=""/></a><br /><a href="https://chungzh.cc/"><sub><b>Flex Zhong</b></sub></a><br /><a href="https://github.com/cpeditor/cpeditor/commits?author=ChungZH" title="Code">💻</a>
+    </td>
+    <td align="center">
       <a href="https://github.com/Ravenclaw-OIer"><img src="https://avatars2.githubusercontent.com/u/44526586?v=4" width="100px;" alt=""/></a><br /><a href="http://ravenclaw-oier.github.io"><sub><b>Ravenclaw-OIer</b></sub></a><br /><a href="#ideas-Ravenclaw-OIer" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/cpeditor/cpeditor/issues?q=author%3ARavenclaw-OIer" title="Bug reports">🐛</a> <a href="https://github.com/cpeditor/cpeditor/commits?author=Ravenclaw-OIer" title="Documentation">📖</a>
     </td>
     <td align="center">
@@ -137,11 +140,11 @@ CP Editor 是一个基于 Qt 的轻量级跨平台代码编辑器，专为算法
     <td align="center">
       <a href="https://github.com/Arthur-QQ"><img src="https://avatars0.githubusercontent.com/u/30394349?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/Arthur-QQ"><sub><b>Arthur-QQ</b></sub></a><br /><a href="#ideas-Arthur-QQ" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/cpeditor/cpeditor/issues?q=author%3AArthur-QQ" title="Bug reports">🐛</a>
     </td>
+  </tr>
+  <tr>
     <td align="center">
       <a href="https://github.com/Brijesh1in"><img src="https://avatars3.githubusercontent.com/u/33791137?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/Brijesh1in"><sub><b>Brijesh1in</b></sub></a><br /><a href="#ideas-Brijesh1in" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/cpeditor/cpeditor/issues?q=author%3ABrijesh1in" title="Bug reports">🐛</a>
     </td>
-  </tr>
-  <tr>
     <td align="center">
       <a href="https://github.com/DarkWarrior703"><img src="https://avatars0.githubusercontent.com/u/56077342?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/DarkWarrior703"><sub><b>DarkWarrior703</b></sub></a><br /><a href="#ideas-DarkWarrior703" title="Ideas, Planning, & Feedback">🤔</a>
     </td>
@@ -157,11 +160,11 @@ CP Editor 是一个基于 Qt 的轻量级跨平台代码编辑器，专为算法
     <td align="center">
       <a href="https://github.com/GoBigorGoHome"><img src="https://avatars3.githubusercontent.com/u/9896288?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/GoBigorGoHome"><sub><b>Pat</b></sub></a><br /><a href="#ideas-GoBigorGoHome" title="Ideas, Planning, & Feedback">🤔</a>
     </td>
+  </tr>
+  <tr>
     <td align="center">
       <a href="https://github.com/GoToCoding"><img src="https://avatars3.githubusercontent.com/u/16542586?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/GoToCoding"><sub><b>Ruzal Ibragimov</b></sub></a><br /><a href="https://github.com/cpeditor/cpeditor/issues?q=author%3AGoToCoding" title="Bug reports">🐛</a>
     </td>
-  </tr>
-  <tr>
     <td align="center">
       <a href="https://github.com/Salil03"><img src="https://avatars0.githubusercontent.com/u/32109637?v=4" width="100px;" alt=""/></a><br /><a href="https://salil03.github.io/"><sub><b>Salil Gokhale</b></sub></a><br /><a href="#ideas-Salil03" title="Ideas, Planning, & Feedback">🤔</a>
     </td>
@@ -177,11 +180,11 @@ CP Editor 是一个基于 Qt 的轻量级跨平台代码编辑器，专为算法
     <td align="center">
       <a href="https://github.com/ahmfuad"><img src="https://avatars3.githubusercontent.com/u/42442668?v=4" width="100px;" alt=""/></a><br /><a href="http://www.agamiramra.com"><sub><b>A. H. M Fuad</b></sub></a><br /><a href="https://github.com/cpeditor/cpeditor/issues?q=author%3Aahmfuad" title="Bug reports">🐛</a>
     </td>
+  </tr>
+  <tr>
     <td align="center">
       <a href="https://github.com/ankur314"><img src="https://avatars2.githubusercontent.com/u/37039680?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/ankur314"><sub><b>Ankur Ojha</b></sub></a><br /><a href="#ideas-ankur314" title="Ideas, Planning, & Feedback">🤔</a>
     </td>
-  </tr>
-  <tr>
     <td align="center">
       <a href="https://github.com/cs-mshah"><img src="https://avatars1.githubusercontent.com/u/56499208?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/cs-mshah"><sub><b>cs-mshah</b></sub></a><br /><a href="#ideas-cs-mshah" title="Ideas, Planning, & Feedback">🤔</a>
     </td>
@@ -197,11 +200,11 @@ CP Editor 是一个基于 Qt 的轻量级跨平台代码编辑器，专为算法
     <td align="center">
       <a href="https://github.com/s6059r"><img src="https://avatars0.githubusercontent.com/u/58967102?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/s6059r"><sub><b>Siddharth Singh</b></sub></a><br /><a href="#ideas-s6059r" title="Ideas, Planning, & Feedback">🤔</a>
     </td>
+  </tr>
+  <tr>
     <td align="center">
       <a href="https://github.com/samael042"><img src="https://avatars3.githubusercontent.com/u/44134245?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/samael042"><sub><b>samael042</b></sub></a><br /><a href="https://github.com/cpeditor/cpeditor/issues?q=author%3Asamael042" title="Bug reports">🐛</a>
     </td>
-  </tr>
-  <tr>
     <td align="center">
       <a href="https://github.com/2740365712"><img src="https://avatars0.githubusercontent.com/u/33799658?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/2740365712"><sub><b>Starlit_Night</b></sub></a><br /><a href="#ideas-2740365712" title="Ideas, Planning, & Feedback">🤔</a>
     </td>
@@ -216,9 +219,6 @@ CP Editor 是一个基于 Qt 的轻量级跨平台代码编辑器，专为算法
     </td>
     <td align="center">
       <a href="https://github.com/sahilkhan03"><img src="https://avatars2.githubusercontent.com/u/45485428?v=4" width="100px;" alt=""/></a><br /><a href="http://sahilkhan.me"><sub><b>Md. Sahil Khan</b></sub></a><br /><a href="#ideas-sahilkhan03" title="Ideas, Planning, & Feedback">🤔</a>
-    </td>
-    <td align="center">
-      <a href="https://github.com/ChungZH"><img src="https://avatars0.githubusercontent.com/u/42088872?v=4" width="100px;" alt=""/></a><br /><a href="https://chungzh.cc/"><sub><b>Flex Zhong</b></sub></a><br /><a href="https://github.com/cpeditor/cpeditor/commits?author=ChungZH" title="Code">💻</a>
     </td>
   </tr>
   <tr>
