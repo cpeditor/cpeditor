@@ -154,6 +154,15 @@
       ]
     },
     {
+      "login": "ChungZH",
+      "name": "Flex Zhong",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/42088872?v=4",
+      "profile": "https://chungzh.cc/",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
       "login": "Ravenclaw-OIer",
       "name": "Ravenclaw-OIer",
       "avatar_url": "https://avatars2.githubusercontent.com/u/44526586?v=4",
@@ -410,12 +419,12 @@
       ]
     },
     {
-      "login": "ChungZH",
-      "name": "Flex Zhong",
-      "avatar_url": "https://avatars0.githubusercontent.com/u/42088872?v=4",
-      "profile": "https://chungzh.cc/",
+      "login": "AbhayAravinda",
+      "name": "AbhayAravinda",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/33093450?v=4",
+      "profile": "https://github.com/AbhayAravinda",
       "contributions": [
-        "code"
+        "bug"
       ]
     }
   ],
