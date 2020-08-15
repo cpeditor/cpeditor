@@ -1080,7 +1080,7 @@ void MainWindow::updateCompileCommand()
 void MainWindow::updateTimeLimit()
 {
     bool ok = false;
-    const int limit = QInputDialog::getInt(this, tr("Set Time Limit"), tr("Custom time limit for this tab:"),
+    const int limit = QInputDialog::getInt(this, tr("Set Time Limit"), tr("Custom time limit for this tab: (ms)"),
                                            timeLimit(), 1, 3600000, 1000, &ok);
     if (ok)
         customTimeLimit = limit;

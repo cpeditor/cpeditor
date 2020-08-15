@@ -1179,7 +1179,7 @@ Do you want to reload it?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Custom time limit for this tab:</source>
+        <source>Custom time limit for this tab: (ms)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

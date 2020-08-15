@@ -1179,8 +1179,8 @@ Do you want to reload it?</source>
         <translation>设置时间限制</translation>
     </message>
     <message>
-        <source>Custom time limit for this tab:</source>
-        <translation>这个标签页的自定义时间限制：</translation>
+        <source>Custom time limit for this tab: (ms)</source>
+        <translation>这个标签页的自定义时间限制：(毫秒)</translation>
     </message>
 </context>
 <context>

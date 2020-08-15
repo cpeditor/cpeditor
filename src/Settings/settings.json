@@ -341,7 +341,7 @@
         "desc": "Auto Save Interval (ms)",
         "type": "int",
         "default": 1000,
-        "param": "QVariantList {100, 36000000}",
+        "param": "QVariantList {100, 36000000, 1000}",
         "depends": [
             {
                 "name": "Auto Save"
@@ -565,7 +565,7 @@
         "desc": "Auto-save Session Interval",
         "type": "int",
         "default": 20000,
-        "param": "QVariantList {1000, 36000000}",
+        "param": "QVariantList {1000, 36000000, 1000}",
         "depends": [
             {
                 "name": "Hot Exit/Enable"
@@ -618,7 +618,7 @@
         "desc": "Default Time Limit (ms)",
         "type": "int",
         "default": 5000,
-        "param": "QVariantList {1,3600000}",
+        "param": "QVariantList {1,3600000,1000}",
         "tip": "The default time limit when executing the program.\nThe program will be killed if it doesn't terminate in the time limit."
     },
     {
@@ -748,7 +748,7 @@
         "type": "int",
         "desc": "Delay in Linting (ms)",
         "default": 2000,
-        "param": "QVariantList {10, 3600000}",
+        "param": "QVariantList {10, 3600000, 1000}",
         "depends": [
             {
                 "name": "LSP/Use Linting C++"
@@ -761,7 +761,7 @@
         "type": "int",
         "desc": "Delay in Linting (ms)",
         "default": 2000,
-        "param": "QVariantList {10, 3600000}",
+        "param": "QVariantList {10, 3600000, 1000}",
         "depends": [
             {
                 "name": "LSP/Use Linting Java"
@@ -774,7 +774,7 @@
         "type": "int",
         "desc": "Delay in Linting (ms)",
         "default": 2000,
-        "param": "QVariantList {10, 3600000}",
+        "param": "QVariantList {10, 3600000, 1000}",
         "depends": [
             {
                 "name": "LSP/Use Linting Python"
