@@ -98,6 +98,9 @@ void Compiler::start(const QString &tmpFilePath, const QString &sourceFilePath, 
 
     LOG_INFO(INFO_OF(lang) << INFO_OF(program) << INFO_OF(args.join(" ")));
 
+    compileProcess->setWorkingDirectory(
+        QFileInfo(QFile::exists(sourceFilePath) ? sourceFilePath : tmpFilePath).canonicalPath());
+
     compileProcess->start(program, args);
 }
 
