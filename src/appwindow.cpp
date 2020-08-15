@@ -1369,6 +1369,13 @@ void AppWindow::onTabContextMenuRequested(const QPoint &pos)
 
         tabMenu->addAction(tr("Duplicate Tab"), [widget, this] { openTab(widget->toStatus(), true); });
 
+        tabMenu->addSeparator();
+
+        if (widget->getLanguage() != "Python")
+            tabMenu->addAction(tr("Set Compile Command"), [widget] { widget->updateCompileCommand(); });
+
+        tabMenu->addAction(tr("Set Time Limit"), [widget] { widget->updateTimeLimit(); });
+
         LOG_INFO(INFO_OF(filePath));
 
         const auto outputFilePath =

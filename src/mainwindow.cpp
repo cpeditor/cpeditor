@@ -166,8 +166,7 @@ void MainWindow::compile()
     connect(compiler, SIGNAL(compilationErrorOccurred(const QString &)), this,
             SLOT(onCompilationErrorOccurred(const QString &)));
     connect(compiler, SIGNAL(compilationKilled()), this, SLOT(onCompilationKilled()));
-    compiler->start(path, filePath, SettingsManager::get(QString("%1/Compile Command").arg(language)).toString(),
-                    language);
+    compiler->start(path, filePath, compileCommand(), language);
 }
 
 void MainWindow::run()
@@ -211,7 +210,7 @@ void MainWindow::run(int index)
     connect(tmp, SIGNAL(runKilled(int)), this, SLOT(onRunKilled(int)));
     tmp->run(tmpPath(), filePath, language, SettingsManager::get(QString("%1/Run Command").arg(language)).toString(),
              SettingsManager::get(QString("%1/Run Arguments").arg(language)).toString(), testcases->input(index),
-             SettingsHelper::getTimeLimit());
+             timeLimit());
     runner.push_back(tmp);
 }
 
@@ -388,7 +387,8 @@ void MainWindow::setUntitledIndex(int index)
     untitledIndex = index;
 }
 
-#define FROMSTATUS(x) x = status[#x]
+#define FROMSTATUS(x) x = status.value(#x)
+#define FROMSTATUS_DEFAULT(x, y) x = status.value(#x, y)
 MainWindow::EditorStatus::EditorStatus(const QMap<QString, QVariant> &status)
 {
     LOG_INFO("Window status from map");
@@ -398,12 +398,14 @@ MainWindow::EditorStatus::EditorStatus(const QMap<QString, QVariant> &status)
     FROMSTATUS(problemURL).toString();
     FROMSTATUS(editorText).toString();
     FROMSTATUS(language).toString();
+    FROMSTATUS(customCompileCommand).toString();
     FROMSTATUS(editorCursor).toInt();
     FROMSTATUS(editorAnchor).toInt();
     FROMSTATUS(horizontalScrollBarValue).toInt();
     FROMSTATUS(verticalScrollbarValue).toInt();
     FROMSTATUS(untitledIndex).toInt();
     FROMSTATUS(checkerIndex).toInt();
+    FROMSTATUS_DEFAULT(customTimeLimit, -1).toInt();
     FROMSTATUS(input).toStringList();
     FROMSTATUS(expected).toStringList();
     FROMSTATUS(customCheckers).toStringList();
@@ -423,12 +425,14 @@ QMap<QString, QVariant> MainWindow::EditorStatus::toMap() const
     TOSTATUS(problemURL);
     TOSTATUS(editorText);
     TOSTATUS(language);
+    TOSTATUS(customCompileCommand);
     TOSTATUS(editorCursor);
     TOSTATUS(editorAnchor);
     TOSTATUS(horizontalScrollBarValue);
     TOSTATUS(verticalScrollbarValue);
     TOSTATUS(untitledIndex);
     TOSTATUS(checkerIndex);
+    TOSTATUS(customTimeLimit);
     TOSTATUS(input);
     TOSTATUS(expected);
     TOSTATUS(customCheckers);
@@ -446,6 +450,7 @@ MainWindow::EditorStatus MainWindow::toStatus() const
     status.filePath = filePath;
     status.problemURL = problemURL;
     status.language = language;
+    status.customCompileCommand = customCompileCommand;
     status.untitledIndex = untitledIndex;
     status.checkerIndex = testcases->checkerIndex();
     status.customCheckers = testcases->customCheckers();
@@ -454,6 +459,7 @@ MainWindow::EditorStatus MainWindow::toStatus() const
     status.editorAnchor = editor->textCursor().anchor();
     status.horizontalScrollBarValue = editor->horizontalScrollBar()->value();
     status.verticalScrollbarValue = editor->verticalScrollBar()->value();
+    status.customTimeLimit = customTimeLimit;
     status.input = testcases->inputs();
     status.expected = testcases->expecteds();
     for (int i = 0; i < testcases->count(); ++i)
@@ -469,6 +475,7 @@ void MainWindow::loadStatus(const EditorStatus &status, bool duplicate)
     setProblemURL(status.problemURL);
     if (status.isLanguageSet)
         setLanguage(status.language);
+    customCompileCommand = status.customCompileCommand; // this must be after setLanguage
     if (!duplicate)
     {
         untitledIndex = status.untitledIndex;
@@ -484,6 +491,7 @@ void MainWindow::loadStatus(const EditorStatus &status, bool duplicate)
     editor->setTextCursor(cursor);
     editor->horizontalScrollBar()->setValue(status.horizontalScrollBarValue);
     editor->verticalScrollBar()->setValue(status.verticalScrollbarValue);
+    customTimeLimit = status.customTimeLimit;
     testcases->loadStatus(status.input, status.expected);
     for (int i = 0; i < status.testcasesIsShow.count() && i < testcases->count(); ++i)
         testcases->setShow(i, status.testcasesIsShow[i].toBool());
@@ -713,6 +721,7 @@ void MainWindow::setLanguage(const QString &lang)
     if (language != "Python" && language != "Java")
         language = "C++";
     Util::applySettingsToEditor(editor, language);
+    customCompileCommand.clear();
     ui->changeLanguageButton->setText(language);
     performCompileAndRunDiagonistics();
     isLanguageSet = true;
@@ -1055,6 +1064,25 @@ QString MainWindow::filePathOrTmpPath()
     return isUntitled() ? tmpPath() : filePath;
 }
 
+void MainWindow::updateCompileCommand()
+{
+    bool ok = false;
+    const auto command =
+        QInputDialog::getText(this, tr("Set Compile Command"), tr("Custom compile command for this tab:"),
+                              QLineEdit::Normal, compileCommand(), &ok);
+    if (ok)
+        customCompileCommand = command;
+}
+
+void MainWindow::updateTimeLimit()
+{
+    bool ok = false;
+    const int limit = QInputDialog::getInt(this, tr("Set Time Limit"), tr("Custom time limit for this tab:"),
+                                           timeLimit(), 1, 3600000, 1000, &ok);
+    if (ok)
+        customTimeLimit = limit;
+}
+
 bool MainWindow::isTextChanged() const
 {
     if (isUntitled())
@@ -1261,6 +1289,22 @@ void MainWindow::performCompileAndRunDiagonistics()
     if (!runResult)
         log->error(tr("Runner"),
                    tr("The run command for %1 is invalid. Is the runner in the system Path?").arg(language));
+}
+
+QString MainWindow::compileCommand() const
+{
+    if (customCompileCommand.isEmpty())
+        return SettingsManager::get(QString("%1/Compile Command").arg(language)).toString();
+    else
+        return customCompileCommand;
+}
+
+int MainWindow::timeLimit() const
+{
+    if (customTimeLimit == -1)
+        return SettingsHelper::getTimeLimit();
+    else
+        return customTimeLimit;
 }
 
 // -------------------- COMPILER SLOTS ---------------------------

@@ -60,8 +60,9 @@ class MainWindow : public QMainWindow
     struct EditorStatus
     {
         bool isLanguageSet;
-        QString filePath, savedText, problemURL, editorText, language;
-        int editorCursor, editorAnchor, horizontalScrollBarValue, verticalScrollbarValue, untitledIndex, checkerIndex;
+        QString filePath, savedText, problemURL, editorText, language, customCompileCommand;
+        int editorCursor, editorAnchor, horizontalScrollBarValue, verticalScrollbarValue, untitledIndex, checkerIndex,
+            customTimeLimit;
         QStringList input, expected, customCheckers;
         QVariantList testcasesIsShow;
         QVariantList testCaseSplitterStates;
@@ -125,6 +126,16 @@ class MainWindow : public QMainWindow
      * @brief get the file path of a titled path, get the tmp path of an untitled path
      */
     QString filePathOrTmpPath();
+
+    /**
+     * @brief ask the user for the new compile command for this tab
+     */
+    void updateCompileCommand();
+
+    /**
+     * @brief ask the user for the new time limit for this tab
+     */
+    void updateTimeLimit();
 
   private slots:
     void onCompilationStarted();
@@ -215,6 +226,9 @@ class MainWindow : public QMainWindow
 
     QTimer *autoSaveTimer = nullptr;
 
+    int customTimeLimit = -1;     // the custom time limit for this tab, -1 represents for the same as settings
+    QString customCompileCommand; // the custom compile command for this tab, empty represents for the same as settings
+
     void setTestCases();
     void setEditor();
     void setupCore();
@@ -231,5 +245,7 @@ class MainWindow : public QMainWindow
     bool saveFile(SaveMode mode, const QString &head, bool safe);
     void performCompileAndRunDiagonistics();
     QString getRunnerHead(int index);
+    QString compileCommand() const;
+    int timeLimit() const;
 };
 #endif // MAINWINDOW_HPP
