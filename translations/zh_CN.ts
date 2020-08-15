@@ -459,6 +459,14 @@ git 提交编号: %3
         <source>Open Problem in Browser</source>
         <translation>在浏览器中打开题目</translation>
     </message>
+    <message>
+        <source>Set Compile Command</source>
+        <translation>设置编译命令</translation>
+    </message>
+    <message>
+        <source>Set Time Limit</source>
+        <translation>设置时间限制</translation>
+    </message>
 </context>
 <context>
     <name>AppearancePage</name>
@@ -1157,6 +1165,22 @@ Do you want to reload it?</source>
     <message>
         <source>Unknown attribute: [%1]. Please check the head comments setting at %2.</source>
         <translation>未知的属性: [%1]。请在 %2 检查头部注释的设置。</translation>
+    </message>
+    <message>
+        <source>Set Compile Command</source>
+        <translation>设置编译命令</translation>
+    </message>
+    <message>
+        <source>Custom compile command for this tab:</source>
+        <translation>这个标签页的自定义编译命令：</translation>
+    </message>
+    <message>
+        <source>Set Time Limit</source>
+        <translation>设置时间限制</translation>
+    </message>
+    <message>
+        <source>Custom time limit for this tab:</source>
+        <translation>这个标签页的自定义时间限制：</translation>
     </message>
 </context>
 <context>

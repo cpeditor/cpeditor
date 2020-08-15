@@ -459,6 +459,14 @@ Git commit hash: %3
         <source>Open Problem in Browser</source>
         <translation>Открыть задачу в браузере</translation>
     </message>
+    <message>
+        <source>Set Compile Command</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Set Time Limit</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>AppearancePage</name>
@@ -1157,6 +1165,22 @@ Do you want to reload it?</source>
     <message>
         <source>Unknown attribute: [%1]. Please check the head comments setting at %2.</source>
         <translation>Неизвестный атрибут: [%1]. Пожалуйста, проверьте настройку комментариев шапки в %2.</translation>
+    </message>
+    <message>
+        <source>Set Compile Command</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Custom compile command for this tab:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Set Time Limit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Custom time limit for this tab:</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
