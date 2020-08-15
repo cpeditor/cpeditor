@@ -165,14 +165,17 @@ void Checker::onCompilationKilled()
                SLOT(onCompilationErrorOccurred(const QString &)));
 }
 
-void Checker::onRunFinished(int index, const QString &out, const QString &err, int exitCode)
+void Checker::onRunFinished(int index, const QString &, const QString &err, int exitCode, int, bool tle)
 {
+    if (tle)
+        log->warn(tr("Checker[%1]").arg(index + 1), tr("Time Limit Exceeded"));
+
     if (exitCode == 0)
     {
         // the check process succeeded
         if (!err.isEmpty())
             log->message(tr("Checker[%1]").arg(index + 1), err, "green");
-        emit checkFinished(index, AC);
+        emit checkFinished(index, Widgets::TestCase::AC);
     }
     else if (QList<int>({1, 2, 3, 4, 5, 8, 16}).contains(exitCode)) // this list is from testlib.h::TResult
     {
@@ -181,7 +184,7 @@ void Checker::onRunFinished(int index, const QString &out, const QString &err, i
             log->error(tr("Checker[%1]").arg(index + 1), tr("Checker exited with exit code %1").arg(exitCode));
         else
             log->error(tr("Checker[%1]").arg(index + 1), err);
-        emit checkFinished(index, WA);
+        emit checkFinished(index, Widgets::TestCase::WA);
     }
     else
     {
@@ -195,11 +198,6 @@ void Checker::onRunFinished(int index, const QString &out, const QString &err, i
 void Checker::onFailedToStartRun(int index, const QString &error)
 {
     log->error(tr("Checker[%1]").arg(index + 1), error);
-}
-
-void Checker::onRunTimeout(int index)
-{
-    log->warn(tr("Checker[%1]").arg(index + 1), tr("Time Limit Exceeded"));
 }
 
 void Checker::onRunOutputLimitExceeded(int index, const QString &type)
@@ -276,10 +274,11 @@ void Checker::check(int index, const QString &input, const QString &output, cons
     {
     // check directly if it's a built-in checker
     case IgnoreTrailingSpaces:
-        emit checkFinished(index, checkIgnoreTrailingSpaces(output, expected) ? AC : WA);
+        emit checkFinished(index,
+                           checkIgnoreTrailingSpaces(output, expected) ? Widgets::TestCase::AC : Widgets::TestCase::WA);
         break;
     case Strict:
-        emit checkFinished(index, checkStrict(output, expected) ? AC : WA);
+        emit checkFinished(index, checkStrict(output, expected) ? Widgets::TestCase::AC : Widgets::TestCase::WA);
         break;
     default:
         // if it's a testlib checker, save the input, output and expected files first
@@ -293,11 +292,10 @@ void Checker::check(int index, const QString &input, const QString &output, cons
             // if files are successfully saved, run the checker
             auto tmp = new Runner(index);
             runner.push_back(tmp); // save the checkers in a list, so we can delete them when destructing the checker
-            connect(tmp, SIGNAL(runFinished(int, const QString &, const QString &, int, int)), this,
-                    SLOT(onRunFinished(int, const QString &, const QString &, int)));
+            connect(tmp, SIGNAL(runFinished(int, const QString &, const QString &, int, int, bool)), this,
+                    SLOT(onRunFinished(int, const QString &, const QString &, int, int, bool)));
             connect(tmp, SIGNAL(failedToStartRun(int, const QString &)), this,
                     SLOT(onFailedToStartRun(int, const QString &)));
-            connect(tmp, SIGNAL(runTimeout(int)), this, SLOT(onRunTimeout(int)));
             connect(tmp, SIGNAL(runOutputLimitExceeded(int, const QString &)), this,
                     SLOT(onRunOutputLimitExceeded(int, const QString &)));
             connect(tmp, SIGNAL(runKilled(int)), this, SLOT(onRunKilled(int)));

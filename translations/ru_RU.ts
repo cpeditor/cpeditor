@@ -2766,10 +2766,6 @@ This doesn&apos;t cost you anyting, but helps more people to know CP Editor.</so
         <translation>Добавить чекер</translation>
     </message>
     <message>
-        <source>Wrong Answer / Accepted / Total</source>
-        <translation>Неправильный ответ / Полное решение / Всего</translation>
-    </message>
-    <message>
         <source>Add a custom testlib checker</source>
         <translation>Добавить кастомный чекер</translation>
     </message>
@@ -2892,6 +2888,10 @@ This doesn&apos;t cost you anyting, but helps more people to know CP Editor.</so
     <message>
         <source>Testcases</source>
         <translation>Тесткейсы</translation>
+    </message>
+    <message>
+        <source>Unaccepted / Accepted / Total</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

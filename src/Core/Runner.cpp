@@ -145,7 +145,8 @@ void Runner::runDetached(const QString &tmpFilePath, const QString &sourceFilePa
 void Runner::onFinished(int exitCode, QProcess::ExitStatus exitStatus)
 {
     emit runFinished(runnerIndex, processStdout + runProcess->readAllStandardOutput(),
-                     processStderr + runProcess->readAllStandardError(), exitCode, runTimer->elapsed());
+                     processStderr + runProcess->readAllStandardError(), exitCode, runTimer->elapsed(),
+                     timeLimitExceeded);
 }
 
 void Runner::onStarted()
@@ -163,8 +164,8 @@ void Runner::onTimeout()
     if (runProcess->state() == QProcess::Running)
     {
         LOG_INFO("Process was running, and forcefully killed it because time limit was reached");
+        timeLimitExceeded = true;
         runProcess->kill();
-        emit runTimeout(runnerIndex);
     }
 }
 
