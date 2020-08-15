@@ -8,6 +8,7 @@
 -   Choose detached execution terminal on Linux (#554 and #474)
 -   Add "save to file" in the context menu of the test cases. (#529 and #560)
 -   Customizable head comments. (#203 and #561)
+-   TLE and RE verdicts. (#566)
 
 ### Fixed
 
