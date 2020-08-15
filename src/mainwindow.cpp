@@ -1302,7 +1302,7 @@ QString MainWindow::compileCommand() const
 int MainWindow::timeLimit() const
 {
     if (customTimeLimit == -1)
-        return SettingsHelper::getTimeLimit();
+        return SettingsHelper::getDefaultTimeLimit();
     else
         return customTimeLimit;
 }

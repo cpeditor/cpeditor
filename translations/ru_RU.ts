@@ -1865,16 +1865,6 @@ This will be faster but with a little bit more risk of losing the file (with a v
 Это будет быстрее, но с немного большим риском потери файла (с очень малой вероятностью).</translation>
     </message>
     <message>
-        <source>Time Limit (ms)</source>
-        <translation>Лимит времени (в мс)</translation>
-    </message>
-    <message>
-        <source>The time limit when executing the program.
-The program will be killed if it doesn&apos;t terminate in the time limit.</source>
-        <translation>Ограничение по времени при выполнении программы.
-Программа будет убита, если она не завершится в срок.</translation>
-    </message>
-    <message>
         <source>Output Length Limit</source>
         <translation>Лимит длины выходных данных</translation>
     </message>
@@ -2493,6 +2483,15 @@ https://doc.qt.io/qt-5/qtime.html#toString</translation>
 This doesn&apos;t cost you anyting, but helps more people to know CP Editor.</source>
         <translation>Добавить строку &quot;Powered By CP Editor&quot; в комментарии шапки
 Это ничего Вам не стоит, но помогает многим людям узнавать о CP Editor.</translation>
+    </message>
+    <message>
+        <source>Default Time Limit (ms)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The default time limit when executing the program.
+The program will be killed if it doesn&apos;t terminate in the time limit.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

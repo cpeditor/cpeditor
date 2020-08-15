@@ -65,6 +65,7 @@ const static QMap<QString, QString> updateInfo = {
     {"compile_and_run_only", "Show Compile And Run Only"},
     {"language", "Locale"},
     {"load_test_case_file_length_limit", "Load Test Case Length Limit"},
+    {"time_limit", "Default Time Limit"},
 };
 
 void SettingsUpdater::updateSetting(QSettings &setting)

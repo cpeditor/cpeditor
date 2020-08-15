@@ -1861,16 +1861,6 @@ This will be faster but with a little bit more risk of losing the file (with a v
 这会更快速，但更可能丢失文件（概率极小）。</translation>
     </message>
     <message>
-        <source>Time Limit (ms)</source>
-        <translation>时间限制（毫秒）</translation>
-    </message>
-    <message>
-        <source>The time limit when executing the program.
-The program will be killed if it doesn&apos;t terminate in the time limit.</source>
-        <translation>执行程序的时间限制。
-超时程序将会被终止。</translation>
-    </message>
-    <message>
         <source>Output Length Limit</source>
         <translation>输出长度限制</translation>
     </message>
@@ -2485,6 +2475,16 @@ https://doc.qt.io/qt-5/qtime.html#toString</translation>
 This doesn&apos;t cost you anyting, but helps more people to know CP Editor.</source>
         <translation>在头部注释中添加一行 &quot;Powered By CP Editor&quot;。
 这可以在不花费任何代价的情况下让更多的人知道 CP Editor。</translation>
+    </message>
+    <message>
+        <source>Default Time Limit (ms)</source>
+        <translation>默认时间限制（毫秒）</translation>
+    </message>
+    <message>
+        <source>The default time limit when executing the program.
+The program will be killed if it doesn&apos;t terminate in the time limit.</source>
+        <translation>执行程序的默认时间限制。
+超时的程序会被终止。</translation>
     </message>
 </context>
 <context>

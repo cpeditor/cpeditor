@@ -588,12 +588,12 @@
         "tip": "Always use QFile instead of QSaveFile to save files.\nThis will be faster but with a little bit more risk of losing the file (with a very small possibility)."
     },
     {
-        "name": "Time Limit",
-        "desc": "Time Limit (ms)",
+        "name": "Default Time Limit",
+        "desc": "Default Time Limit (ms)",
         "type": "int",
         "default": 5000,
         "param": "QVariantList {1,3600000}",
-        "tip": "The time limit when executing the program.\nThe program will be killed if it doesn't terminate in the time limit."
+        "tip": "The default time limit when executing the program.\nThe program will be killed if it doesn't terminate in the time limit."
     },
     {
         "name": "Output Length Limit",
