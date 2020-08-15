@@ -371,8 +371,8 @@ void AppWindow::openTab(MainWindow *window)
 {
     connect(window, SIGNAL(confirmTriggered(MainWindow *)), this, SLOT(onConfirmTriggered(MainWindow *)));
     connect(window, SIGNAL(editorFileChanged()), this, SLOT(onEditorFileChanged()));
-    connect(window, SIGNAL(editorTmpPathChanged(MainWindow *, const QString &)), this,
-            SLOT(onEditorTmpPathChanged(MainWindow *, const QString &)));
+    connect(window, SIGNAL(requestUpdateLanguageServerFilePath(MainWindow *, const QString &)), this,
+            SLOT(updateLanguageServerFilePath(MainWindow *, const QString &)));
     connect(window, SIGNAL(editorLanguageChanged(MainWindow *)), this, SLOT(onEditorLanguageChanged(MainWindow *)));
     connect(window, SIGNAL(editorTextChanged(MainWindow *)), this, SLOT(onEditorTextChanged(MainWindow *)));
     connect(window, &MainWindow::editorFontChanged, this, [this] { onSettingsApplied("Appearance"); });
@@ -951,7 +951,7 @@ void AppWindow::onEditorTextChanged(MainWindow *window)
     }
 }
 
-void AppWindow::onEditorTmpPathChanged(MainWindow *window, const QString &path)
+void AppWindow::updateLanguageServerFilePath(MainWindow *window, const QString &path)
 {
     if (currentWindow() == window)
     {
@@ -1455,19 +1455,19 @@ void AppWindow::reAttachLanguageServer(MainWindow *window)
 
     if (window->getLanguage() == "C++")
     {
-        cppServer->openDocument(window->tmpPath(), window->getEditor(), window->getLogger());
+        cppServer->openDocument(window->filePathOrTmpPath(), window->getEditor(), window->getLogger());
         cppServer->requestLinting();
         lspTimerCpp->start();
     }
     else if (window->getLanguage() == "Java")
     {
-        javaServer->openDocument(window->tmpPath(), window->getEditor(), window->getLogger());
+        javaServer->openDocument(window->filePathOrTmpPath(), window->getEditor(), window->getLogger());
         javaServer->requestLinting();
         lspTimerJava->start();
     }
     else if (window->getLanguage() == "Python")
     {
-        pythonServer->openDocument(window->tmpPath(), window->getEditor(), window->getLogger());
+        pythonServer->openDocument(window->filePathOrTmpPath(), window->getEditor(), window->getLogger());
         pythonServer->requestLinting();
         lspTimerPython->start();
     }

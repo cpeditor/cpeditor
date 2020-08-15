@@ -364,6 +364,8 @@ void MainWindow::setFilePath(QString path, bool updateBinder)
         if (recentFiles.length() > MAX_NUMBER_OF_RECENT_FILES)
             recentFiles.erase(recentFiles.begin() + MAX_NUMBER_OF_RECENT_FILES, recentFiles.end());
         SettingsHelper::setRecentFiles(recentFiles);
+
+        emit requestUpdateLanguageServerFilePath(this, path);
     }
     emit editorFileChanged();
     updateWatcher();
@@ -690,6 +692,11 @@ void MainWindow::formatSource()
 void MainWindow::setLanguage(const QString &lang)
 {
     LOG_INFO(INFO_OF(lang));
+    if (lang == language)
+    {
+        LOG_INFO("Language not changed");
+        return;
+    }
     if (!QFile::exists(filePath))
     {
         QString templateContent;
@@ -1038,9 +1045,14 @@ QString MainWindow::tmpPath()
     QString path = tmpDir->filePath(name);
     if (!Util::saveFile(path, editor->toPlainText(), tr("Temp File"), false, log))
         return QString();
-    if (created)
-        emit editorTmpPathChanged(this, path);
+    if (created && isUntitled())
+        emit requestUpdateLanguageServerFilePath(this, path);
     return path;
+}
+
+QString MainWindow::filePathOrTmpPath()
+{
+    return isUntitled() ? tmpPath() : filePath;
 }
 
 bool MainWindow::isTextChanged() const

@@ -121,6 +121,11 @@ class MainWindow : public QMainWindow
     void setViewMode(const QString &mode);
     QString tmpPath();
 
+    /**
+     * @brief get the file path of a titled path, get the tmp path of an untitled path
+     */
+    QString filePathOrTmpPath();
+
   private slots:
     void onCompilationStarted();
     void onCompilationFinished(const QString &warning);
@@ -155,7 +160,7 @@ class MainWindow : public QMainWindow
 
   signals:
     void editorFileChanged();
-    void editorTmpPathChanged(MainWindow *window, const QString &path);
+    void requestUpdateLanguageServerFilePath(MainWindow *window, const QString &path);
     void editorTextChanged(MainWindow *window);
     void editorFontChanged();
     void confirmTriggered(MainWindow *widget);
