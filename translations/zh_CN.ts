@@ -1796,7 +1796,7 @@ This can be overridden for each parenthesis in each language.</source>
     </message>
     <message>
         <source>Open New Tabs</source>
-        <translation>打开新标签</translation>
+        <translation>打开新标签页</translation>
     </message>
     <message>
         <source>Open a new tab for each problem parsed by Competitive Companion.</source>
@@ -2485,6 +2485,14 @@ This doesn&apos;t cost you anyting, but helps more people to know CP Editor.</so
 The program will be killed if it doesn&apos;t terminate in the time limit.</source>
         <translation>执行程序的默认时间限制。
 超时的程序会被终止。</translation>
+    </message>
+    <message>
+        <source>Use the time limit from Competitive Companion</source>
+        <translation>使用从 Competitive Companion 获取的时间限制</translation>
+    </message>
+    <message>
+        <source>Use the time limit parsed by Competitive Companion as the time limit of the corresponding tab.</source>
+        <translation>为对应的标签页使用由 Competitive Companion 解析得到的时间限制。</translation>
     </message>
 </context>
 <context>

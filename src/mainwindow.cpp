@@ -564,6 +564,9 @@ void MainWindow::applyCompanion(const Extensions::CompanionData &data)
         testcases->addTestCase(data.testcases[i].input, data.testcases[i].output);
 
     setProblemURL(data.url);
+
+    if (SettingsHelper::isCompetitiveCompanionSetTimeLimitForTab())
+        customTimeLimit = data.timeLimit;
 }
 
 void MainWindow::applySettings(const QString &pagePath, bool shouldPerformDigonistic)

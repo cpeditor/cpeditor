@@ -229,7 +229,8 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
                 .page("Python Server", tr("%1 Server").arg(tr("Python")), {"LSP/Use Linting Python", "LSP/Delay Python", "LSP/Path Python", "LSP/Args Python"})
             .end()
             .page(TRKEY("Competitive Companion"), new PreferencesPageTemplate({"Competitive Companion/Enable",
-                "Competitive Companion/Open New Tab", "Competitive Companion/Connection Port",
+                "Competitive Companion/Open New Tab", "Competitive Companion/Set Time Limit For Tab",
+                "Competitive Companion/Connection Port",
                 "Competitive Companion/Head Comments", "Competitive Companion/Head Comments Time Format",
                 "Competitive Companion/Head Comments Powered By CP Editor"}, false))
             .page(TRKEY("CF Tool"), {"CF/Path", "CF/Show Toast Messages"})
