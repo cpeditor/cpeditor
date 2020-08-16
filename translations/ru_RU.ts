@@ -461,11 +461,11 @@ Git commit hash: %3
     </message>
     <message>
         <source>Set Compile Command</source>
-        <translation type="unfinished"></translation>
+        <translation>Установить команду компиляции</translation>
     </message>
     <message>
         <source>Set Time Limit</source>
-        <translation type="unfinished"></translation>
+        <translation>Установить лими времени</translation>
     </message>
 </context>
 <context>
@@ -1168,19 +1168,19 @@ Do you want to reload it?</source>
     </message>
     <message>
         <source>Set Compile Command</source>
-        <translation type="unfinished"></translation>
+        <translation>Установить команду компиляции</translation>
     </message>
     <message>
         <source>Custom compile command for this tab:</source>
-        <translation type="unfinished"></translation>
+        <translation>Нестандартная команда компиляции для этой вкладки:</translation>
     </message>
     <message>
         <source>Set Time Limit</source>
-        <translation type="unfinished"></translation>
+        <translation>Установить лимит времени</translation>
     </message>
     <message>
         <source>Custom time limit for this tab: (ms)</source>
-        <translation type="unfinished"></translation>
+        <translation>Нестандартный лимит времени для этой вкладки: (в мс)</translation>
     </message>
 </context>
 <context>
@@ -2486,20 +2486,21 @@ This doesn&apos;t cost you anyting, but helps more people to know CP Editor.</so
     </message>
     <message>
         <source>Default Time Limit (ms)</source>
-        <translation type="unfinished"></translation>
+        <translation>Стандартный лимит времни (в мс)</translation>
     </message>
     <message>
         <source>The default time limit when executing the program.
 The program will be killed if it doesn&apos;t terminate in the time limit.</source>
-        <translation type="unfinished"></translation>
+        <translation>Стандартный лимит времени выполнения при запуске программы.
+Программа будет убита, если будет превышен лимит выполнения.</translation>
     </message>
     <message>
         <source>Use the time limit from Competitive Companion</source>
-        <translation type="unfinished"></translation>
+        <translation>Исопльзовать лимит времени из Competitive Companion</translation>
     </message>
     <message>
         <source>Use the time limit parsed by Competitive Companion as the time limit of the corresponding tab.</source>
-        <translation type="unfinished"></translation>
+        <translation>Использовать лимит времени взятым Competitive Companion-ом как лимит времени соответствующей вкладки.</translation>
     </message>
 </context>
 <context>
