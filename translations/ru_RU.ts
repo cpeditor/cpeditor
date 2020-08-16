@@ -2891,7 +2891,7 @@ This doesn&apos;t cost you anyting, but helps more people to know CP Editor.</so
     </message>
     <message>
         <source>Unaccepted / Accepted / Total</source>
-        <translation type="unfinished"></translation>
+        <translation>Не принято / Принято / Всего</translation>
     </message>
 </context>
 <context>
