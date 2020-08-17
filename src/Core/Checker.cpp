@@ -303,7 +303,7 @@ void Checker::check(int index, const QString &input, const QString &output, cons
             connect(tmp, SIGNAL(runKilled(int)), this, SLOT(onRunKilled(int)));
             tmp->run(checkerPath, "", "C++", "",
                      "\"" + inputPath + "\" \"" + outputPath + "\" \"" + expectedPath + "\"", "",
-                     SettingsHelper::getTimeLimit());
+                     SettingsHelper::getDefaultTimeLimit());
         }
         break;
     }

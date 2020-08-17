@@ -118,6 +118,7 @@ void CompanionServer::onReadReady()
             payload.doc = doc;
 
             payload.url = doc["url"].toString();
+            payload.timeLimit = doc["timeLimit"].toInt();
 
             QJsonArray testArray = doc["tests"].toArray();
             for (auto tests : testArray)

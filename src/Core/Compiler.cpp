@@ -83,6 +83,8 @@ void Compiler::start(const QString &tmpFilePath, const QString &sourceFilePath, 
     if (lang == "C++")
     {
         args << QFileInfo(tmpFilePath).canonicalFilePath() << "-o" << outputPath(tmpFilePath, sourceFilePath, "C++");
+        if (QFile::exists(sourceFilePath))
+            args << "-I" << QFileInfo(sourceFilePath).canonicalPath();
     }
     else if (lang == "Java")
     {
@@ -95,7 +97,10 @@ void Compiler::start(const QString &tmpFilePath, const QString &sourceFilePath, 
     }
 
     LOG_INFO(INFO_OF(lang) << INFO_OF(program) << INFO_OF(args.join(" ")));
-    // start compilation
+
+    compileProcess->setWorkingDirectory(
+        QFileInfo(QFile::exists(sourceFilePath) ? sourceFilePath : tmpFilePath).canonicalPath());
+
     compileProcess->start(program, args);
 }
 

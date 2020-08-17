@@ -180,7 +180,7 @@ class AppWindow : public QMainWindow
 
     void onEditorTextChanged(MainWindow *window);
 
-    void onEditorTmpPathChanged(MainWindow *window, const QString &path);
+    void updateLanguageServerFilePath(MainWindow *window, const QString &path);
 
     void onEditorLanguageChanged(MainWindow *window);
 
