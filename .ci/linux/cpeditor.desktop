@@ -1,7 +1,16 @@
 [Desktop Entry]
+Version=1.0
 Type=Application
 Name=CP Editor
-Comment=The Editor for Competitive Programming
-Exec=cpeditor
-Icon=cpeditor-icon
-Categories=Development;
+GenericName=Competitive Programming Editor
+GenericName[ru]=Редактор кода для спортивного программирования
+GenericName[zh_CN]=竞争编程编辑器
+Exec=/usr/bin/cpeditor
+Comment=CP Editor is a Qt-based, lightweight and cross-platform code editor specially designed for competitive programming.
+Comment[RU]=CP Editor - это легкий кросс-платформенный редактор кода на базе Qt, специально разработанный для спортивного программирования.
+Comment[zh_CN]=CP Editor 是一个基于 Qt 的轻量级跨平台代码编辑器，专为算法竞赛设计。
+Icon=/usr/share/icons/cpeditor
+Terminal=false
+StartupNotify=true
+Encoding=UTF-8
+Categories=Development;TextEditor;Qt;

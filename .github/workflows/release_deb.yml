@@ -67,7 +67,7 @@ jobs:
           mkdir usr && cd usr
           mkdir share && cd share
           mkdir applications && mkdir cpeditor && mkdir cpeditor/bin && mkdir doc && mkdir doc/cpeditor && mkdir icons
-          mv /home/runner/work/cpeditor/cpeditor/.ci/DEB/cpeditor.desktop ./applications
+          mv /home/runner/work/cpeditor/cpeditor/.ci/linux/cpeditor.desktop ./applications
           mv /home/runner/work/cpeditor/cpeditor/.ci/DEB/cpeditor.sh ./cpeditor/
           mv /home/runner/work/cpeditor/cpeditor/build/plugins/ ./cpeditor
           mv /home/runner/work/cpeditor/cpeditor/build/cpeditor ./cpeditor/bin/
