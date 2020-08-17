@@ -459,6 +459,14 @@ git 提交编号: %3
         <source>Open Problem in Browser</source>
         <translation>在浏览器中打开题目</translation>
     </message>
+    <message>
+        <source>Set Compile Command</source>
+        <translation>设置编译命令</translation>
+    </message>
+    <message>
+        <source>Set Time Limit</source>
+        <translation>设置时间限制</translation>
+    </message>
 </context>
 <context>
     <name>AppearancePage</name>
@@ -1158,6 +1166,22 @@ Do you want to reload it?</source>
         <source>Unknown attribute: [%1]. Please check the head comments setting at %2.</source>
         <translation>未知的属性: [%1]。请在 %2 检查头部注释的设置。</translation>
     </message>
+    <message>
+        <source>Set Compile Command</source>
+        <translation>设置编译命令</translation>
+    </message>
+    <message>
+        <source>Custom compile command for this tab:</source>
+        <translation>这个标签页的自定义编译命令：</translation>
+    </message>
+    <message>
+        <source>Set Time Limit</source>
+        <translation>设置时间限制</translation>
+    </message>
+    <message>
+        <source>Custom time limit for this tab: (ms)</source>
+        <translation>这个标签页的自定义时间限制：(毫秒)</translation>
+    </message>
 </context>
 <context>
     <name>MessageLogger</name>
@@ -1772,7 +1796,7 @@ This can be overridden for each parenthesis in each language.</source>
     </message>
     <message>
         <source>Open New Tabs</source>
-        <translation>打开新标签</translation>
+        <translation>打开新标签页</translation>
     </message>
     <message>
         <source>Open a new tab for each problem parsed by Competitive Companion.</source>
@@ -1835,16 +1859,6 @@ This can be overridden for each parenthesis in each language.</source>
 This will be faster but with a little bit more risk of losing the file (with a very small possibility).</source>
         <translation>总是使用 QFile 而不是 QSaveFile 来保存。
 这会更快速，但更可能丢失文件（概率极小）。</translation>
-    </message>
-    <message>
-        <source>Time Limit (ms)</source>
-        <translation>时间限制（毫秒）</translation>
-    </message>
-    <message>
-        <source>The time limit when executing the program.
-The program will be killed if it doesn&apos;t terminate in the time limit.</source>
-        <translation>执行程序的时间限制。
-超时程序将会被终止。</translation>
     </message>
     <message>
         <source>Output Length Limit</source>
@@ -2461,6 +2475,24 @@ https://doc.qt.io/qt-5/qtime.html#toString</translation>
 This doesn&apos;t cost you anyting, but helps more people to know CP Editor.</source>
         <translation>在头部注释中添加一行 &quot;Powered By CP Editor&quot;。
 这可以在不花费任何代价的情况下让更多的人知道 CP Editor。</translation>
+    </message>
+    <message>
+        <source>Default Time Limit (ms)</source>
+        <translation>默认时间限制（毫秒）</translation>
+    </message>
+    <message>
+        <source>The default time limit when executing the program.
+The program will be killed if it doesn&apos;t terminate in the time limit.</source>
+        <translation>执行程序的默认时间限制。
+超时的程序会被终止。</translation>
+    </message>
+    <message>
+        <source>Use the time limit from Competitive Companion</source>
+        <translation>使用从 Competitive Companion 获取的时间限制</translation>
+    </message>
+    <message>
+        <source>Use the time limit parsed by Competitive Companion as the time limit of the corresponding tab.</source>
+        <translation>为对应的标签页使用由 Competitive Companion 解析得到的时间限制。</translation>
     </message>
 </context>
 <context>
