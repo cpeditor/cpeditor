@@ -1,9 +1,7 @@
 name: "Release DEB package"
 
 on:
-  release:
-    types:
-      - published
+  push:
 env:
   QT_VERSION: 5.15.0
 jobs:
@@ -64,32 +62,33 @@ jobs:
       - name: Preparing application files' directory
         run: |
           mkdir -p cpeditor_${VERSION}_amd64/usr/share/
+          echo $PWD
           cd cpeditor_${VERSION}_amd64/usr/share/
 
           mkdir applications/  
-          mv /home/runner/work/cpeditor/cpeditor/.ci/linux/cpeditor.desktop ./applications
+          mv ${{ github.workspace }}/.ci/linux/cpeditor.desktop ./applications
 
           mkdir -p cpeditor/bin/
-          mv /home/runner/work/cpeditor/cpeditor/.ci/DEB/cpeditor.sh ./cpeditor/
-          mv /home/runner/work/cpeditor/cpeditor/build/plugins/ ./cpeditor
-          mv /home/runner/work/cpeditor/cpeditor/build/cpeditor ./cpeditor/bin/
+          mv ${{ github.workspace }}/.ci/DEB/cpeditor.sh ./cpeditor/
+          mv ${{ github.workspace }}/build/plugins/ ./cpeditor
+          mv ${{ github.workspace }}/build/cpeditor ./cpeditor/bin/
 
           mkdir -p doc/cpeditor/
-          mv /home/runner/work/cpeditor/cpeditor/.ci/DEB/copyright ./doc/cpeditor/
+          mv ${{ github.workspace }}/.ci/DEB/copyright ./doc/cpeditor/
 
           mkdir icons/
-          mv /home/runner/work/cpeditor/cpeditor/.ci/linux/cpeditor-icon.png ./icons/cpeditor.png
+          mv ${{ github.workspace }}/.ci/linux/cpeditor-icon.png ./icons/cpeditor.png
 
-          mv /home/runner/work/cpeditor/cpeditor/build/translations/ ./cpeditor
+          mv ${{ github.workspace }}/build/translations/ ./cpeditor
 
           cd ../
           mkdir -p lib/cpeditor/
-          mv /home/runner/work/cpeditor/cpeditor/build/lib/* ./lib/cpeditor
+          mv ${{ github.workspace }}/build/lib/* ./lib/cpeditor
       
       - name: Preapiring and setting DEBIAN version control directory
         run: |
           cd cpeditor_${VERSION}_amd64
-          mv /home/runner/work/cpeditor/cpeditor/.ci/DEB/DEBIAN .
+          mv ${{ github.workspace }}/.ci/DEB/DEBIAN .
           wget -c "http://archive.ubuntu.com/ubuntu/pool/universe/h/hashdeep/md5deep_4.4-4_all.deb"
           wget -c "http://archive.ubuntu.com/ubuntu/pool/universe/h/hashdeep/hashdeep_4.4-4_amd64.deb"
           sudo apt install ./*.deb
@@ -103,13 +102,13 @@ jobs:
 
       - name: Build .deb
         run: |
-          cd /home/runner/work/cpeditor/cpeditor/
+          cd ${{ github.workspace }}/
           fakeroot dpkg-deb --build cpeditor_${VERSION}_amd64
           
       - name: Release .deb
         uses: softprops/action-gh-release@v1
         with:
-          files: /home/runner/work/cpeditor/cpeditor/cpeditor_${{ env.VERSION }}_amd64.deb
+          files: ${{ github.workspace }}/cpeditor_${{ env.VERSION }}_amd64.deb
           name: CP Editor ${{ env.VERSION }}
           draft: true
           prerelease: ${{ env.ISBETA }}
