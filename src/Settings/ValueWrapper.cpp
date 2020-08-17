@@ -177,6 +177,8 @@ void SpinBoxWrapper::init(QWidget *parent, QVariant param)
     {
         QVariantList il = param.toList();
         item->setRange(il[0].toInt(), il[1].toInt());
+        if (il.length() >= 3)
+            item->setSingleStep(il[2].toInt());
     }
     connect(item, QOverload<int>::of(&QSpinBox::valueChanged), this, &SpinBoxWrapper::emitSignal);
     widget = item;

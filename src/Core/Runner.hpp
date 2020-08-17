@@ -71,8 +71,7 @@ class Runner : public QObject
      * @param lang the language to run, one of "C++", "Java" and "Python"
      * @param runCommand the command for running a program
      * @param args the command line arguments added at the back to start the program
-     * @note runFinished, runTimeout and runKilled won't be emitted when using runDetached. failedToStartRun will only
-     *       be emitted when xterm is not installed on Linux, it's not emitted even the source file is not compiled.
+     * @note runFinished and runKilled won't be emitted when using runDetached.
      */
     void runDetached(const QString &tmpFilePath, const QString &sourceFilePath, const QString &lang,
                      const QString &runCommand, const QString &args);
@@ -91,8 +90,9 @@ class Runner : public QObject
      * @param err the stderr of the program
      * @param exitCode the exit code of the program
      * @param timeUsed the time between the execution started and finished
+     * @param tle whether the time limit is exceeded
      */
-    void runFinished(int index, const QString &out, const QString &err, int exitCode, int timeUsed);
+    void runFinished(int index, const QString &out, const QString &err, int exitCode, int timeUsed, bool tle);
 
     /**
      * @brief failed to start the execution
@@ -100,12 +100,6 @@ class Runner : public QObject
      * @param error a string to describe the error
      */
     void failedToStartRun(int index, const QString &error);
-
-    /**
-     * @brief the execution reached the time limit
-     * @param index the index of the testcase
-     */
-    void runTimeout(int index);
 
     /**
      * @brief the stdout/stderr is too long
@@ -185,6 +179,7 @@ class Runner : public QObject
     QString processStderr;                   // the stderr of the process
     QString processInput;                    // the input from the test cases
     bool outputLimitExceededEmitted = false; // whether runOutputLimitExceeded is emitted or not
+    bool timeLimitExceeded = false;
     bool isDetachedRun = false;
 };
 

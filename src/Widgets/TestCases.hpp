@@ -85,7 +85,7 @@ class TestCases : public QWidget
     void restoreSplitterStates(const QVariantList &states);
 
   public slots:
-    void setVerdict(int index, Core::Checker::Verdict verdict);
+    void setVerdict(int index, TestCase::Verdict verdict);
 
   signals:
     void checkerChanged();

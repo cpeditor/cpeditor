@@ -341,7 +341,7 @@
         "desc": "Auto Save Interval (ms)",
         "type": "int",
         "default": 1000,
-        "param": "QVariantList {100, 36000000}",
+        "param": "QVariantList {100, 36000000, 1000}",
         "depends": [
             {
                 "name": "Auto Save"
@@ -453,11 +453,27 @@
         "tip": "Open a new tab for each problem parsed by Competitive Companion."
     },
     {
+        "name": "Competitive Companion/Set Time Limit For Tab",
+        "desc": "Use the time limit from Competitive Companion",
+        "type": "bool",
+        "depends": [
+            {
+                "name": "Competitive Companion/Enable"
+            }
+        ],
+        "tip": "Use the time limit parsed by Competitive Companion as the time limit of the corresponding tab."
+    },
+    {
         "name": "Competitive Companion/Head Comments",
         "desc": "Head Comments",
         "type": "QString",
         "ui": "QPlainTextEdit",
         "default": "Problem: ${json.name}\nContest: ${json.group}\nURL: ${json.url}\nMemory Limit: ${json.memoryLimit} MB\nTime Limit: ${json.timeLimit} ms",
+        "depends": [
+            {
+                "name": "Competitive Companion/Enable"
+            }
+        ],
         "tip": "The comments added at the head of the code when parsing a problem.\nAvailable place holders are:\n${time}: the time when parsing the problem\n${json.X.Y}: an attribute of the data provided by Competitive Companion, you can read more at https://github.com/jmerle/competitive-companion#explanation"
     },
     {
@@ -465,6 +481,11 @@
         "desc": "Time format for the head comments",
         "type": "QString",
         "default": "yyyy-MM-dd HH:mm:ss",
+        "depends": [
+            {
+                "name": "Competitive Companion/Enable"
+            }
+        ],
         "tip": "The format of the ${time} place holder in the head comments.\nYou can read the Qt documentation for available expressions:\nhttps://doc.qt.io/qt-5/qdate.html#toString\nhttps://doc.qt.io/qt-5/qtime.html#toString"
     },
     {
@@ -472,6 +493,11 @@
         "desc": "Add \"Powered By CP Editor\" in the head comments",
         "type": "bool",
         "default": true,
+        "depends": [
+            {
+                "name": "Competitive Companion/Enable"
+            }
+        ],
         "tip": "Add a line saying \"Powered By CP Editor\" in the head comments.\nThis doesn't cost you anyting, but helps more people to know CP Editor."
     },
     {
@@ -539,7 +565,7 @@
         "desc": "Auto-save Session Interval",
         "type": "int",
         "default": 20000,
-        "param": "QVariantList {1000, 36000000}",
+        "param": "QVariantList {1000, 36000000, 1000}",
         "depends": [
             {
                 "name": "Hot Exit/Enable"
@@ -588,12 +614,12 @@
         "tip": "Always use QFile instead of QSaveFile to save files.\nThis will be faster but with a little bit more risk of losing the file (with a very small possibility)."
     },
     {
-        "name": "Time Limit",
-        "desc": "Time Limit (ms)",
+        "name": "Default Time Limit",
+        "desc": "Default Time Limit (ms)",
         "type": "int",
         "default": 5000,
-        "param": "QVariantList {1,3600000}",
-        "tip": "The time limit when executing the program.\nThe program will be killed if it doesn't terminate in the time limit."
+        "param": "QVariantList {1,3600000,1000}",
+        "tip": "The default time limit when executing the program.\nThe program will be killed if it doesn't terminate in the time limit."
     },
     {
         "name": "Output Length Limit",
@@ -722,7 +748,7 @@
         "type": "int",
         "desc": "Delay in Linting (ms)",
         "default": 2000,
-        "param": "QVariantList {10, 3600000}",
+        "param": "QVariantList {10, 3600000, 1000}",
         "depends": [
             {
                 "name": "LSP/Use Linting C++"
@@ -735,7 +761,7 @@
         "type": "int",
         "desc": "Delay in Linting (ms)",
         "default": 2000,
-        "param": "QVariantList {10, 3600000}",
+        "param": "QVariantList {10, 3600000, 1000}",
         "depends": [
             {
                 "name": "LSP/Use Linting Java"
@@ -748,7 +774,7 @@
         "type": "int",
         "desc": "Delay in Linting (ms)",
         "default": 2000,
-        "param": "QVariantList {10, 3600000}",
+        "param": "QVariantList {10, 3600000, 1000}",
         "depends": [
             {
                 "name": "LSP/Use Linting Python"

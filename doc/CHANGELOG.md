@@ -8,6 +8,11 @@
 -   Choose detached execution terminal on Linux (#554 and #474)
 -   Add "save to file" in the context menu of the test cases. (#529 and #560)
 -   Customizable head comments. (#203 and #561)
+-   Now in C++, you can use relative paths to include headers files. (#565)
+-   Now you can set different compile commands and time limits for each tab by setting them in the context menu of the tabs. (#565)
+-   Now you can use the time limit from Competitive Companion as the time limit for the corresponding tab. (#565)
+-   Now the compiler works in the same directory as the source file, so that you can use relative paths in the compile command. For example, you can add `grader.cpp` to compile the source file with the grader in the same directory. (#565)
+-   TLE and RE verdicts. (#566)
 
 ### Fixed
 

@@ -459,6 +459,14 @@ Git commit hash: %3
         <source>Open Problem in Browser</source>
         <translation>Открыть задачу в браузере</translation>
     </message>
+    <message>
+        <source>Set Compile Command</source>
+        <translation>Установить команду компиляции</translation>
+    </message>
+    <message>
+        <source>Set Time Limit</source>
+        <translation>Установить лими времени</translation>
+    </message>
 </context>
 <context>
     <name>AppearancePage</name>
@@ -1158,6 +1166,22 @@ Do you want to reload it?</source>
         <source>Unknown attribute: [%1]. Please check the head comments setting at %2.</source>
         <translation>Неизвестный атрибут: [%1]. Пожалуйста, проверьте настройку комментариев шапки в %2.</translation>
     </message>
+    <message>
+        <source>Set Compile Command</source>
+        <translation>Установить команду компиляции</translation>
+    </message>
+    <message>
+        <source>Custom compile command for this tab:</source>
+        <translation>Нестандартная команда компиляции для этой вкладки:</translation>
+    </message>
+    <message>
+        <source>Set Time Limit</source>
+        <translation>Установить лимит времени</translation>
+    </message>
+    <message>
+        <source>Custom time limit for this tab: (ms)</source>
+        <translation>Нестандартный лимит времени для этой вкладки: (в мс)</translation>
+    </message>
 </context>
 <context>
     <name>MessageLogger</name>
@@ -1841,16 +1865,6 @@ This will be faster but with a little bit more risk of losing the file (with a v
 Это будет быстрее, но с немного большим риском потери файла (с очень малой вероятностью).</translation>
     </message>
     <message>
-        <source>Time Limit (ms)</source>
-        <translation>Лимит времени (в мс)</translation>
-    </message>
-    <message>
-        <source>The time limit when executing the program.
-The program will be killed if it doesn&apos;t terminate in the time limit.</source>
-        <translation>Ограничение по времени при выполнении программы.
-Программа будет убита, если она не завершится в срок.</translation>
-    </message>
-    <message>
         <source>Output Length Limit</source>
         <translation>Лимит длины выходных данных</translation>
     </message>
@@ -2470,6 +2484,24 @@ This doesn&apos;t cost you anyting, but helps more people to know CP Editor.</so
         <translation>Добавить строку &quot;Powered By CP Editor&quot; в комментарии шапки
 Это ничего Вам не стоит, но помогает многим людям узнавать о CP Editor.</translation>
     </message>
+    <message>
+        <source>Default Time Limit (ms)</source>
+        <translation>Стандартный лимит времни (в мс)</translation>
+    </message>
+    <message>
+        <source>The default time limit when executing the program.
+The program will be killed if it doesn&apos;t terminate in the time limit.</source>
+        <translation>Стандартный лимит времени выполнения при запуске программы.
+Программа будет убита, если будет превышен лимит выполнения.</translation>
+    </message>
+    <message>
+        <source>Use the time limit from Competitive Companion</source>
+        <translation>Исопльзовать лимит времени из Competitive Companion</translation>
+    </message>
+    <message>
+        <source>Use the time limit parsed by Competitive Companion as the time limit of the corresponding tab.</source>
+        <translation>Использовать лимит времени взятым Competitive Companion-ом как лимит времени соответствующей вкладки.</translation>
+    </message>
 </context>
 <context>
     <name>ShortcutItem</name>
@@ -2766,10 +2798,6 @@ This doesn&apos;t cost you anyting, but helps more people to know CP Editor.</so
         <translation>Добавить чекер</translation>
     </message>
     <message>
-        <source>Wrong Answer / Accepted / Total</source>
-        <translation>Неправильный ответ / Полное решение / Всего</translation>
-    </message>
-    <message>
         <source>Add a custom testlib checker</source>
         <translation>Добавить кастомный чекер</translation>
     </message>
@@ -2892,6 +2920,10 @@ This doesn&apos;t cost you anyting, but helps more people to know CP Editor.</so
     <message>
         <source>Testcases</source>
         <translation>Тесткейсы</translation>
+    </message>
+    <message>
+        <source>Unaccepted / Accepted / Total</source>
+        <translation>Не принято / Принято / Всего</translation>
     </message>
 </context>
 <context>

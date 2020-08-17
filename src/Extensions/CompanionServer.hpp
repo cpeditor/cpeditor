@@ -38,6 +38,7 @@ struct CompanionData
     };
 
     QString url;
+    int timeLimit;
     QJsonDocument doc;
     QVector<TestCases> testcases;
 };
