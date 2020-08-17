@@ -201,10 +201,9 @@ void MainWindow::run(int index)
 {
     auto tmp = new Core::Runner(index);
     connect(tmp, SIGNAL(runStarted(int)), this, SLOT(onRunStarted(int)));
-    connect(tmp, SIGNAL(runFinished(int, const QString &, const QString &, int, int)), this,
-            SLOT(onRunFinished(int, const QString &, const QString &, int, int)));
+    connect(tmp, SIGNAL(runFinished(int, const QString &, const QString &, int, int, bool)), this,
+            SLOT(onRunFinished(int, const QString &, const QString &, int, int, bool)));
     connect(tmp, SIGNAL(failedToStartRun(int, const QString &)), this, SLOT(onFailedToStartRun(int, const QString &)));
-    connect(tmp, SIGNAL(runTimeout(int)), this, SLOT(onRunTimeout(int)));
     connect(tmp, SIGNAL(runOutputLimitExceeded(int, const QString &)), this,
             SLOT(onRunOutputLimitExceeded(int, const QString &)));
     connect(tmp, SIGNAL(runKilled(int)), this, SLOT(onRunKilled(int)));
@@ -1391,17 +1390,29 @@ void MainWindow::onRunStarted(int index)
     log->info(getRunnerHead(index), tr("Execution has started"));
 }
 
-void MainWindow::onRunFinished(int index, const QString &out, const QString &err, int exitCode, int timeUsed)
+void MainWindow::onRunFinished(int index, const QString &out, const QString &err, int exitCode, int timeUsed, bool tle)
 {
     auto head = getRunnerHead(index);
 
     if (exitCode == 0)
     {
         log->info(head, tr("Execution for test case #%1 has finished in %2ms").arg(index + 1).arg(timeUsed));
+
+        if ((!out.isEmpty() && !testcases->expected(index).isEmpty()) ||
+            (SettingsHelper::isCheckOnTestcasesWithEmptyOutput() && exitCode == 0))
+            checker->reqeustCheck(index, testcases->input(index), out, testcases->expected(index));
     }
 
     else
     {
+        if (tle)
+        {
+            log->warn(head, tr("Time Limit Exceeded"));
+            testcases->setVerdict(index, Widgets::TestCase::TLE);
+        }
+        else
+            testcases->setVerdict(index, Widgets::TestCase::RE);
+
         log->error(head, tr("Execution for test case #%1 has finished with non-zero exitcode %2 in %3ms")
                              .arg(index + 1)
                              .arg(exitCode)
@@ -1411,19 +1422,11 @@ void MainWindow::onRunFinished(int index, const QString &out, const QString &err
     if (!err.trimmed().isEmpty())
         log->error(head + tr("/stderr"), err);
     testcases->setOutput(index, out);
-    if ((!out.isEmpty() && !testcases->expected(index).isEmpty()) ||
-        (SettingsHelper::isCheckOnTestcasesWithEmptyOutput() && exitCode == 0))
-        checker->reqeustCheck(index, testcases->input(index), out, testcases->expected(index));
 }
 
 void MainWindow::onFailedToStartRun(int index, const QString &error)
 {
     log->error(getRunnerHead(index), error);
-}
-
-void MainWindow::onRunTimeout(int index)
-{
-    log->warn(getRunnerHead(index), tr("Time Limit Exceeded"));
 }
 
 void MainWindow::onRunOutputLimitExceeded(int index, const QString &type)

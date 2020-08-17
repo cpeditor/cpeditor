@@ -2798,10 +2798,6 @@ The program will be killed if it doesn&apos;t terminate in the time limit.</sour
         <translation>Добавить чекер</translation>
     </message>
     <message>
-        <source>Wrong Answer / Accepted / Total</source>
-        <translation>Неправильный ответ / Полное решение / Всего</translation>
-    </message>
-    <message>
         <source>Add a custom testlib checker</source>
         <translation>Добавить кастомный чекер</translation>
     </message>
@@ -2924,6 +2920,10 @@ The program will be killed if it doesn&apos;t terminate in the time limit.</sour
     <message>
         <source>Testcases</source>
         <translation>Тесткейсы</translation>
+    </message>
+    <message>
+        <source>Unaccepted / Accepted / Total</source>
+        <translation>Не принято / Принято / Всего</translation>
     </message>
 </context>
 <context>

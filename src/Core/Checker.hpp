@@ -28,8 +28,7 @@
 #ifndef CHECKER_HPP
 #define CHECKER_HPP
 
-#include <QObject>
-#include <QVector>
+#include "Widgets/TestCase.hpp"
 
 class QTemporaryDir;
 class MessageLogger;
@@ -60,15 +59,6 @@ class Checker : public QObject
         Nyesno, // nyesno.cpp in testlib, multiple YES/NO (case insensetive)
         /* custom checkers */
         Custom // a local custom checker chose by the user
-    };
-
-    // The result of a check
-    enum Verdict
-    {
-        AC,     // Accepted
-        WA,     // Wrong answer
-        UNKNOWN // Used when the checker hasn't finished checking, or the checker failed
-                // Usually the checker doesn't return UNKNOWN, the verdict is set to UNKNOWN before the check begins
     };
 
     /**
@@ -118,7 +108,7 @@ class Checker : public QObject
      * @param index the index of the checked testcase
      * @param verdict the result of this check
      */
-    void checkFinished(int index, Verdict verdict);
+    void checkFinished(int index, Widgets::TestCase::Verdict verdict);
 
   private slots:
     /**
@@ -140,11 +130,11 @@ class Checker : public QObject
     /**
      * @brief the checker process is finished
      * @param index the index of the testcase
-     * @param out the stdout of the checker process
      * @param err the stderr of the checker process
      * @param exitCode the exit code of the checker process
+     * @param tle whether the checker process has exceeded the time limit
      */
-    void onRunFinished(int index, const QString &out, const QString &err, int exitCode);
+    void onRunFinished(int index, const QString &, const QString &err, int exitCode, int, bool tle);
 
     /**
      * @brief the checker failed to start
@@ -152,12 +142,6 @@ class Checker : public QObject
      * @param error the error message provided by Core::Runner
      */
     void onFailedToStartRun(int index, const QString &error);
-
-    /**
-     * @brief the checker hasn't finished in the time limit
-     * @param index the index of the testcase
-     */
-    void onRunTimeout(int index);
 
     /**
      * @brief the stdout/stderr of the checker is too long

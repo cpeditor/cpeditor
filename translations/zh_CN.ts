@@ -2790,10 +2790,6 @@ The program will be killed if it doesn&apos;t terminate in the time limit.</sour
         <translation>添加评测器</translation>
     </message>
     <message>
-        <source>Wrong Answer / Accepted / Total</source>
-        <translation>答案错误 / 通过 / 总计</translation>
-    </message>
-    <message>
         <source>Add a custom testlib checker</source>
         <translation>添加基于 testlib 的自定义评测器</translation>
     </message>
@@ -2916,6 +2912,10 @@ The program will be killed if it doesn&apos;t terminate in the time limit.</sour
     <message>
         <source>Testcases</source>
         <translation>测试点</translation>
+    </message>
+    <message>
+        <source>Unaccepted / Accepted / Total</source>
+        <translation>未通过 / 通过 / 总计</translation>
     </message>
 </context>
 <context>

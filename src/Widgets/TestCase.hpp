@@ -18,7 +18,6 @@
 #ifndef TESTCASE_HPP
 #define TESTCASE_HPP
 
-#include "Core/Checker.hpp"
 #include <QWidget>
 
 class MessageLogger;
@@ -40,6 +39,15 @@ class TestCase : public QWidget
     Q_OBJECT
 
   public:
+    enum Verdict
+    {
+        AC,  // Accepted
+        WA,  // Wrong answer
+        TLE, // Time Limit Exceeded
+        RE,  // Runtime Error
+        UNKNOWN
+    };
+
     explicit TestCase(int index, MessageLogger *logger, QWidget *parent = nullptr, const QString &input = QString(),
                       const QString &expected = QString());
     void setInput(const QString &text);
@@ -50,8 +58,8 @@ class TestCase : public QWidget
     QString output() const;
     QString expected() const;
     void setID(int index);
-    void setVerdict(Core::Checker::Verdict verdict);
-    Core::Checker::Verdict verdict() const;
+    void setVerdict(Verdict verdict);
+    Verdict verdict() const;
     void setShow(bool show);
     bool isShow() const;
     void setTestCaseEditFont(const QFont &font);
@@ -81,7 +89,7 @@ class TestCase : public QWidget
     TestCaseEdit *inputEdit = nullptr, *outputEdit = nullptr, *expectedEdit = nullptr;
     DiffViewer *diffViewer = nullptr;
     MessageLogger *log;
-    Core::Checker::Verdict currentVerdict = Core::Checker::UNKNOWN;
+    Verdict currentVerdict = UNKNOWN;
     int id;
 };
 } // namespace Widgets
