@@ -63,21 +63,28 @@ jobs:
           
       - name: Preparing application files' directory
         run: |
-          mkdir cpeditor_${VERSION}_amd64 && cd cpeditor_${VERSION}_amd64
-          mkdir usr && cd usr
-          mkdir share && cd share
-          mkdir applications && mkdir cpeditor && mkdir cpeditor/bin && mkdir doc && mkdir doc/cpeditor && mkdir icons
+          mkdir -p cpeditor_${VERSION}_amd64/usr/share/
+          cd cpeditor_${VERSION}_amd64/usr/share/
+
+          mkdir applications/  
           mv /home/runner/work/cpeditor/cpeditor/.ci/linux/cpeditor.desktop ./applications
+
+          mkdir -p cpeditor/bin/
           mv /home/runner/work/cpeditor/cpeditor/.ci/DEB/cpeditor.sh ./cpeditor/
           mv /home/runner/work/cpeditor/cpeditor/build/plugins/ ./cpeditor
           mv /home/runner/work/cpeditor/cpeditor/build/cpeditor ./cpeditor/bin/
+
+          mkdir -p doc/cpeditor/
           mv /home/runner/work/cpeditor/cpeditor/.ci/DEB/copyright ./doc/cpeditor/
+
+          mkdir icons/
           mv /home/runner/work/cpeditor/cpeditor/.ci/linux/cpeditor-icon.png ./icons/cpeditor.png
+
           mv /home/runner/work/cpeditor/cpeditor/build/translations/ ./cpeditor
+
           cd ../
-          mkdir lib && cd lib
-          mkdir cpeditor
-          mv /home/runner/work/cpeditor/cpeditor/build/lib/* ./cpeditor
+          mkdir -p lib/cpeditor/
+          mv /home/runner/work/cpeditor/cpeditor/build/lib/* ./lib/cpeditor
       
       - name: Preapiring and setting DEBIAN version control directory
         run: |
