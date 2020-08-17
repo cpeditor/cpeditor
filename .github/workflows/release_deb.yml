@@ -66,29 +66,29 @@ jobs:
           cd cpeditor_${VERSION}_amd64/usr/share/
 
           mkdir applications/  
-          mv ${{ github.workspace }}/.ci/linux/cpeditor.desktop ./applications
+          cp ${{ github.workspace }}/.ci/linux/cpeditor.desktop ./applications
 
           mkdir -p cpeditor/bin/
-          mv ${{ github.workspace }}/.ci/DEB/cpeditor.sh ./cpeditor/
-          mv ${{ github.workspace }}/build/plugins/ ./cpeditor
-          mv ${{ github.workspace }}/build/cpeditor ./cpeditor/bin/
+          cp ${{ github.workspace }}/.ci/DEB/cpeditor.sh ./cpeditor/
+          cp -r ${{ github.workspace }}/build/plugins/ ./cpeditor
+          cp ${{ github.workspace }}/build/cpeditor ./cpeditor/bin/
 
           mkdir -p doc/cpeditor/
-          mv ${{ github.workspace }}/.ci/DEB/copyright ./doc/cpeditor/
+          cp ${{ github.workspace }}/.ci/DEB/copyright ./doc/cpeditor/
 
           mkdir icons/
-          mv ${{ github.workspace }}/.ci/linux/cpeditor-icon.png ./icons/cpeditor.png
+          cp ${{ github.workspace }}/.ci/linux/cpeditor-icon.png ./icons/cpeditor.png
 
-          mv ${{ github.workspace }}/build/translations/ ./cpeditor
+          cp -r ${{ github.workspace }}/build/translations/ ./cpeditor
 
           cd ../
           mkdir -p lib/cpeditor/
-          mv ${{ github.workspace }}/build/lib/* ./lib/cpeditor
+          cp ${{ github.workspace }}/build/lib/* ./lib/cpeditor
       
       - name: Preapiring and setting DEBIAN version control directory
         run: |
           cd cpeditor_${VERSION}_amd64
-          mv ${{ github.workspace }}/.ci/DEB/DEBIAN .
+          cp -r ${{ github.workspace }}/.ci/DEB/DEBIAN .
           wget -c "http://archive.ubuntu.com/ubuntu/pool/universe/h/hashdeep/md5deep_4.4-4_all.deb"
           wget -c "http://archive.ubuntu.com/ubuntu/pool/universe/h/hashdeep/hashdeep_4.4-4_amd64.deb"
           sudo apt install ./*.deb
