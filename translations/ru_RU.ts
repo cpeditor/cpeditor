@@ -1039,7 +1039,7 @@ Do you want to reload it?</source>
         <translation>Строка %1, символ %2</translation>
     </message>
     <message>
-        <source>%1 lines, %2 charachters selected</source>
+        <source>%1 lines, %2 characters selected</source>
         <translation>Выбрано %1 линей, %2 символов</translation>
     </message>
     <message>
