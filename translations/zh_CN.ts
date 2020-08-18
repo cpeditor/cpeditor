@@ -1039,7 +1039,7 @@ Do you want to reload it?</source>
         <translation>行 %1，列 %2</translation>
     </message>
     <message>
-        <source>%1 lines, %2 charachters selected</source>
+        <source>%1 lines, %2 characters selected</source>
         <translation>共有 %1 行，%2 个字符被选择</translation>
     </message>
     <message>
