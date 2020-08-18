@@ -77,7 +77,7 @@ jobs:
           cp ${{ github.workspace }}/.ci/DEB/copyright ./doc/cpeditor/
 
           mkdir icons/
-          cp ${{ github.workspace }}/.ci/linux/cpeditor-icon.png ./icons/cpeditor.png
+          cp ${{ github.workspace }}/.ci/linux/cpeditor.png ./icons/
 
           cp -r ${{ github.workspace }}/build/translations/ ./cpeditor
 

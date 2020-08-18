@@ -80,7 +80,7 @@ jobs:
           wget -c "https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage"
           chmod a+x linuxdeployqt*.AppImage
           export VERSION=${{ steps.get_version.outputs.VERSION }}
-          cp ../.ci/linux/cpeditor.desktop . && cp ../.ci/linux/cpeditor-icon.png .
+          cp ../.ci/linux/cpeditor.desktop . && cp ../.ci/linux/cpeditor.png .
           cp cpeditor.desktop default.desktop
           ./linuxdeployqt*.AppImage ./cpeditor -appimage -qmake=../../Qt/${{ env.QT_VERSION }}/gcc_64/bin/qmake
           mv CP_Editor-${{steps.get_version.outputs.VERSION }}-x86_64.AppImage cpeditor-${{ steps.get_version.outputs.VERSION }}-linux-x86_64.AppImage
