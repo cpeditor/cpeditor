@@ -7,7 +7,6 @@ Source: https://github.com/cpeditor/cpeditor
 Homepage: https://cpeditor.org/
 Architecture: amd64
 Priority: optional
-Depends: openssl (>=1.1.1), libx11-6, libx11-xcb1, libxcb-glx0, libxcb-icccm4 (>= 0.4.1), libxcb-image0 (>= 0.2.1), libxcb-keysyms1 (>= 0.4.0), libxcb-randr0 (>= 1.3), libxcb-render-util0, libxcb-render0, libxcb-shape0, libxcb-shm0, libxcb-sync1, libxcb-xfixes0, libxcb-xinerama0, libxcb-xkb1, libxcb1 (>= 1.8), libxi6 (>= 2:1.5.99.2), libxkbcommon-x11-0 (>= 0.5.0), libxkbcommon0 (>= 0.5.0)
 Description: CP Editor is a Qt-based, lightweight and cross-platform code editor specially designed for competitive programming.
  It makes your competitive coding life easier by automating many things for you.
 
