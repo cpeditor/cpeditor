@@ -22,7 +22,6 @@ optdepends=(
 	'jdk-openjdk: compile Java support'
 	'jre-openjdk: execute Java support'
 	'python: execute Python support'
-	'xterm: detached run support'
 )
 provides=('cpeditor')
 conflicts=("cpeditor")
