@@ -95,11 +95,16 @@ jobs:
           name: CP Editor ${{ steps.get_version.outputs.VERSION }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Pack to deb
         if: startsWith(matrix.config.os, 'ubuntu')
+        id: deb-package
         run: |
-          mkdir -p cpeditor_${{ steps.get_version.outputs.VERSION }}_amd64/usr/share/
-          cd cpeditor_${{ steps.get_version.outputs.VERSION }}_amd64/usr/share/
+          pkgname="cpeditor-${{ steps.get_version.outputs.VERSION }}-linux-amd64"
+          echo "::set-output name=pkgname::${pkgname}"
+
+          mkdir -p ${pkgname}/usr/share/
+          cd ${pkgname}/usr/share/
 
           mkdir applications/  
           cp ${{ github.workspace }}/.ci/linux/cpeditor.desktop ./applications
@@ -120,8 +125,8 @@ jobs:
           cd ../
           mkdir -p lib/cpeditor/
           cp ${{ github.workspace }}/build/lib/* ./lib/cpeditor
-          
-          cd ${{ github.workspace }}/cpeditor_${{ steps.get_version.outputs.VERSION }}_amd64
+
+          cd ..
           cp -r ${{ github.workspace }}/.ci/DEB/DEBIAN .
           wget -c "http://archive.ubuntu.com/ubuntu/pool/universe/h/hashdeep/md5deep_4.4-4_all.deb"
           wget -c "http://archive.ubuntu.com/ubuntu/pool/universe/h/hashdeep/hashdeep_4.4-4_amd64.deb"
@@ -131,11 +136,11 @@ jobs:
           cd DEBIAN
           chmod 775 p*
           sed -i "s/\${ver}/${{ steps.get_version.outputs.VERSION }}/" control
-          SIZE=$(du -s ../../cpeditor_${{ steps.get_version.outputs.VERSION }}_amd64/ | cut -f1)
+          SIZE=$(du -s ../../${pkgname} | cut -f1)
           sed -i "s/\${size}/${SIZE}/" control
-          
+
           cd ${{ github.workspace }}/
-          fakeroot dpkg-deb --build cpeditor_${{ steps.get_version.outputs.VERSION }}_amd64
+          fakeroot dpkg-deb --build ${pkgname}
 
       - name: Release deb
         if: startsWith(matrix.config.os, 'ubuntu')
@@ -143,7 +148,7 @@ jobs:
         with:
           draft: true
           prerelease: ${{ steps.get_version.outputs.ISBETA }}
-          files: cpeditor_${{ steps.get_version.outputs.VERSION }}_amd64.deb
+          files: ${{ steps.deb-package.outputs.pkgname }}.deb
           name: CP Editor ${{ steps.get_version.outputs.VERSION }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
