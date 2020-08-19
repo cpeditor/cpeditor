@@ -28,12 +28,6 @@ Download the `setup.exe` in the assets and install it. You may also need to inst
 
 Download the `AppImage` in the assets, add execute permission to it (`chmod +x <AppImagePath>`), then run it.
 
-On Debian-based Linux distributions (Ubuntu, Linux Mint and etc.) you can download `.deb` package in the assets and run the command in terminal:
-```sh
-sudo apt install ./<path to .deb package>
-```
-Then type your root password and agree with the installation. You can also use `Gdebi` or another graphical tools to install `deb` package. Supported: Debian 10 Buster, Ubuntu 18.04 Bionic Beaver, Linux Mint 19 Tara and newer versions of these distributions or based on them.
-
 ### MacOS
 
 Download the `.dmg` file in the assets and install it.
