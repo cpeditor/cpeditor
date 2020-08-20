@@ -28,7 +28,7 @@ Download the `setup.exe` in the assets and install it. You may also need to inst
 
 Download the `AppImage` in the assets, add execute permission to it (`chmod +x <AppImagePath>`), then run it.
 
-On Debian-based Linux distributions (Ubuntu, Linux Mint and etc.) you can download `.deb` package in the assets and run the command in terminal:
+On Debian-based Linux distributions (Ubuntu, Linux Mint, etc.) you can download `.deb` package in the assets and run the command in terminal:
 
     ```sh
     sudo apt install ./<path to .deb package>
