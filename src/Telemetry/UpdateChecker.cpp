@@ -77,19 +77,28 @@ UpdateChecker::UpdateMetaInformation UpdateChecker::toMetaInformation(const QJso
     {
         auto asset = QJsonDocument::fromVariant(e);
         auto assetName = asset["name"].toString();
+
 #if defined(Q_OS_WIN)
-        if (assetName.contains("windows"))
+#ifdef PORTABLE_VERSION
+        if (assetName.contains("windows") && assetName.contains("portable"))
+#else
+        if (assetName.contains("windows") && !assetName.contains("portable"))
+#endif
+        {
+            result.assetDownloadUrl = assetDownloadUrl["browser_download_url"].toString();
+            break;
+        }
+
 #elif defined(Q_OS_MACOS)
         if (assetName.contains("macos"))
+        {
+            result.assetDownloadUrl = assetDownloadUrl["browser_download_url"].toString();
+            break;
+        }
 #else
-        if (assetName.contains("linux"))
+        result.assetDownloadUrl = release["html_url"].toString();
+        break;
 #endif
-#ifdef PORTABLE_VERSION
-            if (result.assetDownloadUrl.isEmpty() || assetName.contains("portable"))
-#else
-            if (result.assetDownloadUrl.isEmpty() || !assetName.contains("portable"))
-#endif
-                result.assetDownloadUrl = asset["browser_download_url"].toString();
     }
     result.preview = release["prerelease"].toBool();
     result.version = release["tag_name"].toString();
