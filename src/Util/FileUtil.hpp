@@ -66,6 +66,16 @@ QString configFilePath(QString path);
  */
 QString firstExistingConfigPath(const QStringList &paths);
 
+/**
+ * @brief reveal a file in the file manager
+ * @param filePath the path to the file
+ * @param name the name of what to be revealed, e.g. Source File, Executable File
+ * @return the first element is a function that reveal the file in the file manager;
+ * the second element is the name of the action. e.g. "Reveal *name* in Explorer" / "Reveal *name* in File Manager".
+ * You can use an empty *name* and QString::simplified if you don't want the *name*.
+ */
+QPair<std::function<void()>, QString> revealInFileManager(const QString &filePath, const QString &name = QString());
+
 } // namespace Util
 
 #endif // FILEUTIL_HPP

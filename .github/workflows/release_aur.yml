@@ -49,6 +49,20 @@ jobs:
           sed -i "s/@PROJECT_VERSION@/${{ steps.get_version.outputs.VERSION }}/" PKGBUILD .SRCINFO
           sed -i "s/SKIP/${sha256sum}/" PKGBUILD .SRCINFO
 
+      - name: Check PKGBUILD
+        if: steps.get_version.outputs.ISSTABLE == 'true'
+        uses: 2m/arch-pkgbuild-builder@master
+        with:
+          target: "pkgbuild"
+          pkgname: "cpeditor"
+
+      - name: "Check .SRCINFO"
+        if: steps.get_version.outputs.ISSTABLE == 'true'
+        uses: 2m/arch-pkgbuild-builder@master
+        with:
+          target: "srcinfo"
+          pkgname: "cpeditor"
+
       - name: Publish to AUR
         if: steps.get_version.outputs.ISSTABLE == 'true'
         run: |

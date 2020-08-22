@@ -16,6 +16,7 @@
  */
 
 #include "Core/EventLogger.hpp"
+#include "Util/FileUtil.hpp"
 #include <QDateTime>
 #include <QDesktopServices>
 #include <QDir>
@@ -125,80 +126,8 @@ QTextStream &Log::log(const QString &priority, QString funcName, int line, QStri
 
 void Log::revealInFileManager()
 {
-    // Reference: http://lynxline.com/show-in-finder-show-in-explorer/ and https://forum.qt.io/post/296072
-    QString filePath = logFile.fileName();
-    LOG_INFO("Revealing " << filePath << "in filemanager");
-#if defined(Q_OS_MACOS)
-    QStringList args;
-    args << "-e";
-    args << "tell application \"Finder\"";
-    args << "-e";
-    args << "activate";
-    args << "-e";
-    args << "select POSIX file \"" + filePath + "\"";
-    args << "-e";
-    args << "end tell";
-    QProcess::startDetached("osascript", args);
-#elif defined(Q_OS_WIN)
-    QStringList args;
-    args << "/select," << QDir::toNativeSeparators(filePath);
-    QProcess::startDetached("explorer", args);
-#elif defined(Q_OS_UNIX)
-    QProcess proc;
-    proc.start("xdg-mime", QStringList() << "query"
-                                         << "default"
-                                         << "inode/directory");
-    auto finished = proc.waitForFinished(2000);
-    if (finished)
-    {
-        auto output = proc.readLine().simplified();
-        QString program;
-        QStringList args;
-        auto nativePath = QUrl::fromLocalFile(filePath).toString();
-        if (output == "dolphin.desktop" || output == "org.kde.dolphin.desktop")
-        {
-            program = "dolphin";
-            args << "--select" << nativePath;
-        }
-        else if (output == "nautilus.desktop" || output == "org.gnome.Nautilus.desktop" ||
-                 output == "nautilus-folder-handler.desktop")
-        {
-            program = "nautilus";
-            args << "--no-desktop" << nativePath;
-        }
-        else if (output == "caja-folder-handler.desktop")
-        {
-            program = "caja";
-            args << "--no-desktop" << nativePath;
-        }
-        else if (output == "nemo.desktop")
-        {
-            program = "nemo";
-            args << "--no-desktop" << nativePath;
-        }
-        else if (output == "kfmclient_dir.desktop")
-        {
-            program = "konqueror";
-            args << "--select" << nativePath;
-        }
-        if (program.isEmpty())
-        {
-            QDesktopServices::openUrl(QUrl::fromLocalFile(QFileInfo(filePath).path()));
-        }
-        else
-        {
-            QProcess openProcess;
-            openProcess.startDetached(program, args);
-        }
-    }
-    else
-    {
-        QDesktopServices::openUrl(QUrl::fromLocalFile(QFileInfo(filePath).path()));
-    }
-#else
-    QDesktopServices::openUrl(QUrl::fromLocalFile(QFileInfo(filePath).path()));
-#endif
-} // namespace Core
+    Util::revealInFileManager(logFile.fileName()).first();
+}
 
 void Log::clearOldLogs()
 {

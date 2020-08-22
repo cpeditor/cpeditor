@@ -29,6 +29,8 @@ class PreferencesPageTemplate : public PreferencesGridPage
 
     virtual QStringList content() override;
 
+    virtual void setPath(const QString &path) override;
+
   private:
     bool areSettingsChanged() override;
     void makeUITheSameAsDefault() override;

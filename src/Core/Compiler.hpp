@@ -68,14 +68,21 @@ class Compiler : public QObject
     static bool check(const QString &compileCommand);
 
     /**
-     * @brief get the output path (executable file path when compiling C++, class path when compiling Java)
+     * @brief get the output path (executable file path for C++, class path for Java, tmp file path for Python)
      * @param tmpFilePath the path to the temporary file which is compiled
      * @param sourceFilePath the path to the original source file, if it's empty, tmpFilePath will be used instead of it
      * @param lang the language being compiled
-     * @note if lang is C++, the parent directory of the result will be created; if lang is Java, the result directory
-     * will be created
+     * @param create the directory if it doesn't exist
      */
-    static QString outputPath(const QString &tmpFilePath, const QString &sourceFilePath, const QString &lang);
+    static QString outputPath(const QString &tmpFilePath, const QString &sourceFilePath, const QString &lang,
+                              bool createDirectory = true);
+
+    /**
+     * @brief Similar to Compiler::outputPath, but returns the path of the output file.
+     * i.e. with .exe on Windows for C++, class file instead of containing directory for Java
+     */
+    static QString outputFilePath(const QString &tmpFilePath, const QString &sourceFilePath, const QString &lang,
+                                  bool createDirectory = true);
 
   signals:
     /**

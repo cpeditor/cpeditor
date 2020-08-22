@@ -104,6 +104,13 @@ QStringList PreferencesPageTemplate::content()
     return ret;
 }
 
+void PreferencesPageTemplate::setPath(const QString &path)
+{
+    PreferencesPage::setPath(path);
+    for (const QString &name : options)
+        SettingsManager::setPath(name, path + "/" + SettingsInfo::findSetting(name).desc);
+}
+
 bool PreferencesPageTemplate::areSettingsChanged()
 {
     for (int i = 0; i < options.size(); ++i)

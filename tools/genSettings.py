@@ -38,6 +38,8 @@ def writeHelper(f, obj, pre, indent):
             else:
                 f.write(
                     f"{ids}inline {typename} get{key}() {{ return SettingsManager::get({json.dumps(name)}).value<{typename}>(); }}\n")
+        f.write(
+            f"{ids}inline QString pathOf{key}(bool parent = false) {{ return SettingsManager::getPathText({json.dumps(name)}, parent); }}\n")
 
 
 def writeInfo(f, obj, lst):
@@ -109,6 +111,7 @@ def addDefaultPaths(obj):
         ("Open Contest", "${contest}", "contest, file, testcase, checker"),
         ("Load Single Test Case", "${testcase}", "testcase"),
         ("Add Pairs Of Test Cases", "${testcase}", "testcase"),
+        ("Save Test Case To A File", "${testcase}", "testcase"),
         ("Custom Checker", "${checker}", "checker"),
         ("Export And Import Settings", "${settings}", "settings"),
         ("Export And Load Session", "${session}", "session"),

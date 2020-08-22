@@ -53,7 +53,7 @@ static const int MAX_NUMBER_OF_RECENT_FILES = 20;
 
 MainWindow::MainWindow(int index, QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow), untitledIndex(index), fileWatcher(new QFileSystemWatcher(this)),
-      autoSaveTimer(new QTimer(this))
+      reloading(false), killingProcesses(false), autoSaveTimer(new QTimer(this))
 {
     LOG_INFO(INFO_OF(index));
     ui->setupUi(this);
@@ -165,8 +165,7 @@ void MainWindow::compile()
     connect(compiler, SIGNAL(compilationErrorOccurred(const QString &)), this,
             SLOT(onCompilationErrorOccurred(const QString &)));
     connect(compiler, SIGNAL(compilationKilled()), this, SLOT(onCompilationKilled()));
-    compiler->start(path, filePath, SettingsManager::get(QString("%1/Compile Command").arg(language)).toString(),
-                    language);
+    compiler->start(path, filePath, compileCommand(), language);
 }
 
 void MainWindow::run()
@@ -201,16 +200,15 @@ void MainWindow::run(int index)
 {
     auto tmp = new Core::Runner(index);
     connect(tmp, SIGNAL(runStarted(int)), this, SLOT(onRunStarted(int)));
-    connect(tmp, SIGNAL(runFinished(int, const QString &, const QString &, int, int)), this,
-            SLOT(onRunFinished(int, const QString &, const QString &, int, int)));
+    connect(tmp, SIGNAL(runFinished(int, const QString &, const QString &, int, int, bool)), this,
+            SLOT(onRunFinished(int, const QString &, const QString &, int, int, bool)));
     connect(tmp, SIGNAL(failedToStartRun(int, const QString &)), this, SLOT(onFailedToStartRun(int, const QString &)));
-    connect(tmp, SIGNAL(runTimeout(int)), this, SLOT(onRunTimeout(int)));
     connect(tmp, SIGNAL(runOutputLimitExceeded(int, const QString &)), this,
             SLOT(onRunOutputLimitExceeded(int, const QString &)));
     connect(tmp, SIGNAL(runKilled(int)), this, SLOT(onRunKilled(int)));
     tmp->run(tmpPath(), filePath, language, SettingsManager::get(QString("%1/Run Command").arg(language)).toString(),
              SettingsManager::get(QString("%1/Run Arguments").arg(language)).toString(), testcases->input(index),
-             SettingsHelper::getTimeLimit());
+             timeLimit());
     runner.push_back(tmp);
 }
 
@@ -363,6 +361,8 @@ void MainWindow::setFilePath(QString path, bool updateBinder)
         if (recentFiles.length() > MAX_NUMBER_OF_RECENT_FILES)
             recentFiles.erase(recentFiles.begin() + MAX_NUMBER_OF_RECENT_FILES, recentFiles.end());
         SettingsHelper::setRecentFiles(recentFiles);
+
+        emit requestUpdateLanguageServerFilePath(this, path);
     }
     emit editorFileChanged();
     updateWatcher();
@@ -385,7 +385,8 @@ void MainWindow::setUntitledIndex(int index)
     untitledIndex = index;
 }
 
-#define FROMSTATUS(x) x = status[#x]
+#define FROMSTATUS(x) x = status.value(#x)
+#define FROMSTATUS_DEFAULT(x, y) x = status.value(#x, y)
 MainWindow::EditorStatus::EditorStatus(const QMap<QString, QVariant> &status)
 {
     LOG_INFO("Window status from map");
@@ -395,12 +396,14 @@ MainWindow::EditorStatus::EditorStatus(const QMap<QString, QVariant> &status)
     FROMSTATUS(problemURL).toString();
     FROMSTATUS(editorText).toString();
     FROMSTATUS(language).toString();
+    FROMSTATUS(customCompileCommand).toString();
     FROMSTATUS(editorCursor).toInt();
     FROMSTATUS(editorAnchor).toInt();
     FROMSTATUS(horizontalScrollBarValue).toInt();
     FROMSTATUS(verticalScrollbarValue).toInt();
     FROMSTATUS(untitledIndex).toInt();
     FROMSTATUS(checkerIndex).toInt();
+    FROMSTATUS_DEFAULT(customTimeLimit, -1).toInt();
     FROMSTATUS(input).toStringList();
     FROMSTATUS(expected).toStringList();
     FROMSTATUS(customCheckers).toStringList();
@@ -420,12 +423,14 @@ QMap<QString, QVariant> MainWindow::EditorStatus::toMap() const
     TOSTATUS(problemURL);
     TOSTATUS(editorText);
     TOSTATUS(language);
+    TOSTATUS(customCompileCommand);
     TOSTATUS(editorCursor);
     TOSTATUS(editorAnchor);
     TOSTATUS(horizontalScrollBarValue);
     TOSTATUS(verticalScrollbarValue);
     TOSTATUS(untitledIndex);
     TOSTATUS(checkerIndex);
+    TOSTATUS(customTimeLimit);
     TOSTATUS(input);
     TOSTATUS(expected);
     TOSTATUS(customCheckers);
@@ -443,6 +448,7 @@ MainWindow::EditorStatus MainWindow::toStatus() const
     status.filePath = filePath;
     status.problemURL = problemURL;
     status.language = language;
+    status.customCompileCommand = customCompileCommand;
     status.untitledIndex = untitledIndex;
     status.checkerIndex = testcases->checkerIndex();
     status.customCheckers = testcases->customCheckers();
@@ -451,6 +457,7 @@ MainWindow::EditorStatus MainWindow::toStatus() const
     status.editorAnchor = editor->textCursor().anchor();
     status.horizontalScrollBarValue = editor->horizontalScrollBar()->value();
     status.verticalScrollbarValue = editor->verticalScrollBar()->value();
+    status.customTimeLimit = customTimeLimit;
     status.input = testcases->inputs();
     status.expected = testcases->expecteds();
     for (int i = 0; i < testcases->count(); ++i)
@@ -466,6 +473,7 @@ void MainWindow::loadStatus(const EditorStatus &status, bool duplicate)
     setProblemURL(status.problemURL);
     if (status.isLanguageSet)
         setLanguage(status.language);
+    customCompileCommand = status.customCompileCommand; // this must be after setLanguage
     if (!duplicate)
     {
         untitledIndex = status.untitledIndex;
@@ -481,6 +489,7 @@ void MainWindow::loadStatus(const EditorStatus &status, bool duplicate)
     editor->setTextCursor(cursor);
     editor->horizontalScrollBar()->setValue(status.horizontalScrollBarValue);
     editor->verticalScrollBar()->setValue(status.verticalScrollbarValue);
+    customTimeLimit = status.customTimeLimit;
     testcases->loadStatus(status.input, status.expected);
     for (int i = 0; i < status.testcasesIsShow.count() && i < testcases->count(); ++i)
         testcases->setShow(i, status.testcasesIsShow[i].toBool());
@@ -493,21 +502,57 @@ void MainWindow::applyCompanion(const Extensions::CompanionData &data)
 
     if (isUntitled() && !isTextChanged())
     {
-        QString meta = data.toMetaString();
-        meta.prepend("\n");
-        meta.append("Powered by CP Editor (https://github.com/cpeditor/cpeditor)");
+        QString comments = SettingsHelper::getCompetitiveCompanionHeadComments().replace(
+            "${time}",
+            QDateTime::currentDateTime().toString(SettingsHelper::getCompetitiveCompanionHeadCommentsTimeFormat()));
+
+        auto it = QRegularExpression(R"(\$\{json\..+?\})").globalMatch(comments);
+
+        QString finalComments = "\n";
+        int lastEnd = 0;
+
+        while (it.hasNext())
+        {
+            auto match = it.next();
+            finalComments += comments.mid(lastEnd, match.capturedStart() - lastEnd);
+            auto path = match.captured().mid(7, match.capturedLength() - 8).split(".");
+            auto value = QJsonValue::fromVariant(data.doc.toVariant());
+            for (auto attr : path)
+                value = value[attr];
+            if (value.isUndefined())
+            {
+                log->error("Companion",
+                           tr("Unknown attribute: [%1]. Please check the head comments setting at %2.")
+                               .arg(path.join('.').arg(SettingsHelper::pathOfCompetitiveCompanionHeadComments())));
+            }
+            else if (value.isObject() || value.isArray())
+            {
+                finalComments += QJsonDocument::fromVariant(value.toVariant()).toJson(QJsonDocument::Compact);
+            }
+            else
+            {
+                // convert to QVariant first so that all types can be converted to string
+                finalComments += value.toVariant().toString();
+            }
+            lastEnd = match.capturedEnd();
+        }
+
+        finalComments += comments.mid(lastEnd);
+
+        if (SettingsHelper::isCompetitiveCompanionHeadCommentsPoweredByCPEditor())
+            finalComments += "\n\nPowered by CP Editor (https://cpeditor.org)";
 
         if (language == "Python")
-            meta.replace('\n', "\n# ");
+            finalComments.replace('\n', "\n# ");
         else
-            meta.replace('\n', "\n// ");
+            finalComments.replace('\n', "\n// ");
 
-        meta.append("\n\n");
+        finalComments += "\n\n";
 
         auto cursor = editor->textCursor();
-        int cursorPos = cursor.position();
-        editor->setPlainText(meta + editor->toPlainText());
-        cursor.setPosition(cursorPos + meta.length());
+        int cursorPos = cursor.position(); // keep Template Cursor Position
+        editor->setPlainText(finalComments + editor->toPlainText());
+        cursor.setPosition(cursorPos + finalComments.length());
         editor->setTextCursor(cursor);
     }
 
@@ -517,6 +562,9 @@ void MainWindow::applyCompanion(const Extensions::CompanionData &data)
         testcases->addTestCase(data.testcases[i].input, data.testcases[i].output);
 
     setProblemURL(data.url);
+
+    if (SettingsHelper::isCompetitiveCompanionSetTimeLimitForTab())
+        customTimeLimit = data.timeLimit;
 }
 
 void MainWindow::applySettings(const QString &pagePath, bool shouldPerformDigonistic)
@@ -654,6 +702,11 @@ void MainWindow::formatSource()
 void MainWindow::setLanguage(const QString &lang)
 {
     LOG_INFO(INFO_OF(lang));
+    if (lang == language)
+    {
+        LOG_INFO("Language not changed");
+        return;
+    }
     if (!QFile::exists(filePath))
     {
         QString templateContent;
@@ -670,6 +723,7 @@ void MainWindow::setLanguage(const QString &lang)
     if (language != "Python" && language != "Java")
         language = "C++";
     editor->applySettings(language);
+    customCompileCommand.clear();
     ui->changeLanguageButton->setText(language);
     performCompileAndRunDiagonistics();
     isLanguageSet = true;
@@ -723,6 +777,14 @@ void MainWindow::killProcesses()
 {
     LOG_INFO("Killing all processes");
 
+    if (killingProcesses) // prevent deleting the same pointer multiple times
+    {
+        LOG_INFO("Already killing processes");
+        return;
+    }
+
+    killingProcesses = true;
+
     if (compiler != nullptr)
     {
         delete compiler;
@@ -743,6 +805,8 @@ void MainWindow::killProcesses()
         delete detachedRunner;
         detachedRunner = nullptr;
     }
+
+    killingProcesses = false;
 }
 
 //***************** HELPER FUNCTIONS *****************
@@ -811,9 +875,10 @@ void MainWindow::loadFile(const QString &loadPath)
     {
         log->error(tr("Open File"),
                    tr("The file [%1] contains more than %2 characters, so it's not opened. You can change the "
-                      "open file length limit in Preferences->Advanced->Limits->Open File Length Limit")
+                      "open file length limit at %3.")
                        .arg(path)
-                       .arg(SettingsHelper::getOpenFileLengthLimit()));
+                       .arg(SettingsHelper::getOpenFileLengthLimit())
+                       .arg(SettingsHelper::pathOfOpenFileLengthLimit()));
         setText("");
         setFilePath("");
         return;
@@ -928,7 +993,7 @@ bool MainWindow::saveFile(SaveMode mode, const QString &head, bool safe)
 
         setFilePath(newFilePath);
 
-        DefaultPathManager::changeDefaultPathForAction("Save File", QFileInfo(filePath).canonicalPath());
+        DefaultPathManager::setDefaultPathForAction("Save File", QFileInfo(filePath).canonicalPath());
 
         auto suffix = QFileInfo(filePath).suffix();
         if (Util::cppSuffix.contains(suffix))
@@ -991,9 +1056,33 @@ QString MainWindow::tmpPath()
     QString path = tmpDir->filePath(name);
     if (!Util::saveFile(path, editor->toPlainText(), tr("Temp File"), false, log))
         return QString();
-    if (created)
-        emit editorTmpPathChanged(this, path);
+    if (created && isUntitled())
+        emit requestUpdateLanguageServerFilePath(this, path);
     return path;
+}
+
+QString MainWindow::filePathOrTmpPath()
+{
+    return isUntitled() ? tmpPath() : filePath;
+}
+
+void MainWindow::updateCompileCommand()
+{
+    bool ok = false;
+    const auto command =
+        QInputDialog::getText(this, tr("Set Compile Command"), tr("Custom compile command for this tab:"),
+                              QLineEdit::Normal, compileCommand(), &ok);
+    if (ok)
+        customCompileCommand = command;
+}
+
+void MainWindow::updateTimeLimit()
+{
+    bool ok = false;
+    const int limit = QInputDialog::getInt(this, tr("Set Time Limit"), tr("Custom time limit for this tab: (ms)"),
+                                           timeLimit(), 1, 3600000, 1000, &ok);
+    if (ok)
+        customTimeLimit = limit;
 }
 
 bool MainWindow::isTextChanged() const
@@ -1154,7 +1243,7 @@ void MainWindow::updateCursorInfo()
         int lineEnd = cursor.blockNumber();
         int selectionLines = lineEnd - lineStart + 1;
         if (selectionLines > 1)
-            info = tr("%1 lines, %2 charachters selected").arg(selectionLines).arg(selection.length());
+            info = tr("%1 lines, %2 characters selected").arg(selectionLines).arg(selection.length());
         else
             info = tr("%1 characters selected").arg(selection.length());
     }
@@ -1202,6 +1291,22 @@ void MainWindow::performCompileAndRunDiagonistics()
     if (!runResult)
         log->error(tr("Runner"),
                    tr("The run command for %1 is invalid. Is the runner in the system Path?").arg(language));
+}
+
+QString MainWindow::compileCommand() const
+{
+    if (customCompileCommand.isEmpty())
+        return SettingsManager::get(QString("%1/Compile Command").arg(language)).toString();
+    else
+        return customCompileCommand;
+}
+
+int MainWindow::timeLimit() const
+{
+    if (customTimeLimit == -1)
+        return SettingsHelper::getDefaultTimeLimit();
+    else
+        return customTimeLimit;
 }
 
 // -------------------- COMPILER SLOTS ---------------------------
@@ -1258,9 +1363,10 @@ void MainWindow::onCompilationErrorOccurred(const QString &error)
         log->error(tr("Compile Errors"), error);
         if (language == "Java" && error.contains("public class"))
         {
-            log->warn(tr("Compile Errors"),
-                      tr("Have you set a proper name for the main class in your solution? If not, you can set it in "
-                         "Preferences->Lanugages->Java->Java Commands->Java Class Name."));
+            log->warn(
+                tr("Compile Errors"),
+                tr("Have you set a proper name for the main class in your solution? If not, you can set it at %1.")
+                    .arg(SettingsHelper::pathOfJavaClassName()));
         }
     }
 }
@@ -1284,17 +1390,29 @@ void MainWindow::onRunStarted(int index)
     log->info(getRunnerHead(index), tr("Execution has started"));
 }
 
-void MainWindow::onRunFinished(int index, const QString &out, const QString &err, int exitCode, int timeUsed)
+void MainWindow::onRunFinished(int index, const QString &out, const QString &err, int exitCode, int timeUsed, bool tle)
 {
     auto head = getRunnerHead(index);
 
     if (exitCode == 0)
     {
         log->info(head, tr("Execution for test case #%1 has finished in %2ms").arg(index + 1).arg(timeUsed));
+
+        if ((!out.isEmpty() && !testcases->expected(index).isEmpty()) ||
+            (SettingsHelper::isCheckOnTestcasesWithEmptyOutput() && exitCode == 0))
+            checker->reqeustCheck(index, testcases->input(index), out, testcases->expected(index));
     }
 
     else
     {
+        if (tle)
+        {
+            log->warn(head, tr("Time Limit Exceeded"));
+            testcases->setVerdict(index, Widgets::TestCase::TLE);
+        }
+        else
+            testcases->setVerdict(index, Widgets::TestCase::RE);
+
         log->error(head, tr("Execution for test case #%1 has finished with non-zero exitcode %2 in %3ms")
                              .arg(index + 1)
                              .arg(exitCode)
@@ -1304,9 +1422,6 @@ void MainWindow::onRunFinished(int index, const QString &out, const QString &err
     if (!err.trimmed().isEmpty())
         log->error(head + tr("/stderr"), err);
     testcases->setOutput(index, out);
-    if ((!out.isEmpty() && !testcases->expected(index).isEmpty()) ||
-        (SettingsHelper::isCheckOnTestcasesWithEmptyOutput() && exitCode == 0))
-        checker->reqeustCheck(index, testcases->input(index), out, testcases->expected(index));
 }
 
 void MainWindow::onFailedToStartRun(int index, const QString &error)
@@ -1314,20 +1429,16 @@ void MainWindow::onFailedToStartRun(int index, const QString &error)
     log->error(getRunnerHead(index), error);
 }
 
-void MainWindow::onRunTimeout(int index)
-{
-    log->warn(getRunnerHead(index), tr("Time Limit Exceeded"));
-}
-
 void MainWindow::onRunOutputLimitExceeded(int index, const QString &type)
 {
-    log->warn(getRunnerHead(index),
-              tr("The %1 of the process running on the testcase #%2 contains more than %3 characters, which is longer "
-                 "than the output length limit, so the process is killed. You can change the output length limit "
-                 "in Preferences->Advanced->Limits->Output Length Limit")
-                  .arg(type)
-                  .arg(index + 1)
-                  .arg(SettingsHelper::getOutputLengthLimit()));
+    log->warn(
+        getRunnerHead(index),
+        tr("The %1 of the process running on the testcase #%2 contains more than %3 characters, which is longer "
+           "than the output length limit, so the process is killed. You can change the output length limit at %4.")
+            .arg(type)
+            .arg(index + 1)
+            .arg(SettingsHelper::getOutputLengthLimit())
+            .arg(SettingsHelper::pathOfOutputLengthLimit()));
 }
 
 void MainWindow::onRunKilled(int index)

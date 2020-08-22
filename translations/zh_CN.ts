@@ -36,18 +36,6 @@
         <translation>打开文件</translation>
     </message>
     <message>
-        <source>Open Contest</source>
-        <translation>打开比赛</translation>
-    </message>
-    <message>
-        <source>Number of problems in this contest:</source>
-        <translation>比赛题目数量：</translation>
-    </message>
-    <message>
-        <source>Choose a language</source>
-        <translation>选择语言</translation>
-    </message>
-    <message>
         <source>Reset preferences</source>
         <translation>重置设置</translation>
     </message>
@@ -94,30 +82,6 @@
     <message>
         <source>Copy File Path</source>
         <translation>复制文件路径</translation>
-    </message>
-    <message>
-        <source>Reveal in Finder</source>
-        <translation>在访达中打开</translation>
-    </message>
-    <message>
-        <source>Reveal in Explorer</source>
-        <translation>在资源管理器中打开</translation>
-    </message>
-    <message>
-        <source>Open Containing Folder</source>
-        <translation>打开文件所在的目录</translation>
-    </message>
-    <message>
-        <source>Reveal in File Manager</source>
-        <translation>在文件管理器中打开</translation>
-    </message>
-    <message>
-        <source>Copy path</source>
-        <translation>复制路径</translation>
-    </message>
-    <message>
-        <source>Open problem in browser</source>
-        <translation>在浏览器中打开题目</translation>
     </message>
     <message>
         <source>Copy Problem URL</source>
@@ -483,6 +447,26 @@ git 提交编号: %3
         <source>Clear Recent Files</source>
         <translation>清空最近打开的文件</translation>
     </message>
+    <message>
+        <source>Source File</source>
+        <translation>源文件</translation>
+    </message>
+    <message>
+        <source>Executable File</source>
+        <translation>可执行文件</translation>
+    </message>
+    <message>
+        <source>Open Problem in Browser</source>
+        <translation>在浏览器中打开题目</translation>
+    </message>
+    <message>
+        <source>Set Compile Command</source>
+        <translation>设置编译命令</translation>
+    </message>
+    <message>
+        <source>Set Time Limit</source>
+        <translation>设置时间限制</translation>
+    </message>
 </context>
 <context>
     <name>AppearancePage</name>
@@ -639,8 +623,8 @@ git 提交编号: %3
         <translation>超出时间限制</translation>
     </message>
     <message>
-        <source>The %1 of the process running on the testcase #%2 contains more than %3 characters, which is longer than the output length limit, so the process is killed. You can change the output length limit in Preferences-&gt;Advanced-&gt;Limits-&gt;Output Length Limit</source>
-        <translation>测试点 #%2 的 %1 超过 %3 个字符，超出了输出长度限制，因此进程被结束。你可以在设置-&gt;高级-&gt;限制-&gt;输出长度限制中更改限制大小</translation>
+        <source>The %1 of the process running on the testcase #%2 contains more than %3 characters, which is longer than the output length limit, so the process is killed. You can change the output length limit at %4.</source>
+        <translation>测试点 #%2 的 %1 超过 %3 个字符，超出了输出长度限制，因此进程被结束。你可以在 %4 更改限制大小。</translation>
     </message>
     <message>
         <source>Killed</source>
@@ -681,8 +665,14 @@ git 提交编号: %3
         <translation>未能成功运行。请先编译。</translation>
     </message>
     <message>
-        <source>Please install xterm in order to use Detached Run.</source>
-        <translation>请安装 xterm 以使用在终端中运行。</translation>
+        <source>Program finished with exit code %1
+Press any key to exit</source>
+        <translation>程序以返回值 %1 结束了
+按任意键退出</translation>
+    </message>
+    <message>
+        <source>Failed to start detached execution. Please check your terminal emulator settings in %1.</source>
+        <translation>未能成功在终端中运行。请在 %1 中检查终端模拟器的设置。</translation>
     </message>
 </context>
 <context>
@@ -758,8 +748,8 @@ git 提交编号: %3
         <translation>格式化完毕</translation>
     </message>
     <message>
-        <source>The format process didn&apos;t finish in 2 seconds. This is probably because the clang-format binary is not found by CP Editor. You can set the path to clang-format in Preferences-&gt;Extensions-&gt;Clang Format.</source>
-        <translation>格式化进程未能在 2 秒内结束。这可能是因为 CP Editor 未能找到 clang-format 的可执行文件。你可以在 设置-&gt;扩展-&gt;Clang Format 中设置 clang-format 可执行文件的路径。</translation>
+        <source>The format process didn&apos;t finish in 2 seconds. This is probably because the clang-format binary is not found by CP Editor. You can set the path to clang-format at %1.</source>
+        <translation>格式化进程未能在 2 秒内结束。这可能是因为 CP Editor 未能找到 clang-format 的可执行文件。你可以在 %1 设置 clang-format 可执行文件的路径。</translation>
     </message>
     <message>
         <source>The format command is: %1 %2</source>
@@ -776,10 +766,6 @@ git 提交编号: %3
 </context>
 <context>
     <name>Extensions::CompanionServer</name>
-    <message>
-        <source>Companion</source>
-        <translation></translation>
-    </message>
     <message>
         <source>Server is closed</source>
         <translation>服务器已关闭</translation>
@@ -818,8 +804,8 @@ git 提交编号: %3
         <translation>Language server 出现错误。请检查日志文件以获取详细信息。</translation>
     </message>
     <message>
-        <source>Failed to start LSP Process. Have you set the path to the Language Server program in Preferences-&gt;Extensions-&gt;Language Server?</source>
-        <translation>启动 Language server 进程失败。你是否已在设置-&gt;扩展-&gt;Language Server 中设置语言服务器的路径？</translation>
+        <source>Failed to start LSP Process. Have you set the path to the Language Server program at %1?</source>
+        <translation>启动 Language server 进程失败。你是否已在 %1 设置语言服务器的路径？</translation>
     </message>
     <message>
         <source>LSP Process timed out</source>
@@ -991,8 +977,8 @@ p, li { white-space: pre-wrap; }
         <translation>打开文件</translation>
     </message>
     <message>
-        <source>The file [%1] contains more than %2 characters, so it&apos;s not opened. You can change the open file length limit in Preferences-&gt;Advanced-&gt;Limits-&gt;Open File Length Limit</source>
-        <translation>文件 [%1] 包含超过 %2 个字符，因此没有被打开。你可以在设置-&gt;高级-&gt;限制-&gt;打开文件长度限制中更改长度限制</translation>
+        <source>The file [%1] contains more than %2 characters, so it&apos;s not opened. You can change the open file length limit at %3.</source>
+        <translation>文件 [%1] 包含超过 %2 个字符，因此没有被打开。你可以在 %3 更改长度限制。</translation>
     </message>
     <message>
         <source>Save File</source>
@@ -1053,7 +1039,7 @@ Do you want to reload it?</source>
         <translation>行 %1，列 %2</translation>
     </message>
     <message>
-        <source>%1 lines, %2 charachters selected</source>
+        <source>%1 lines, %2 characters selected</source>
         <translation>共有 %1 行，%2 个字符被选择</translation>
     </message>
     <message>
@@ -1121,8 +1107,8 @@ Do you want to reload it?</source>
         <translation>超出时间限制</translation>
     </message>
     <message>
-        <source>The %1 of the process running on the testcase #%2 contains more than %3 characters, which is longer than the output length limit, so the process is killed. You can change the output length limit in Preferences-&gt;Advanced-&gt;Limits-&gt;Output Length Limit</source>
-        <translation>在测试点 #%2 上运行的程序的 %1 包含多于 %3 个字符，超出了输出长度限制，因此进程被结束。你可以在设置-&gt;高级-&gt;限制-&gt;输出限制中更改长度限制</translation>
+        <source>The %1 of the process running on the testcase #%2 contains more than %3 characters, which is longer than the output length limit, so the process is killed. You can change the output length limit at %4.</source>
+        <translation>在测试点 #%2 上运行的程序的 %1 包含多于 %3 个字符，超出了输出长度限制，因此进程被结束。你可以在 %4 更改长度限制。</translation>
     </message>
     <message>
         <source>%1 has been killed</source>
@@ -1173,8 +1159,28 @@ Do you want to reload it?</source>
         <translation>自动保存</translation>
     </message>
     <message>
-        <source>Have you set a proper name for the main class in your solution? If not, you can set it in Preferences-&gt;Lanugages-&gt;Java-&gt;Java Commands-&gt;Java Class Name.</source>
-        <translation>你设置了你代码中主类的名字吗？如果没有，你可以在 设置-&gt;语言-&gt;Java-&gt;Java 命令-&gt;Java 类名称 中进行设置。</translation>
+        <source>Have you set a proper name for the main class in your solution? If not, you can set it at %1.</source>
+        <translation>你设置了你代码中主类的名字吗？如果没有，你可以在 %1 进行设置。</translation>
+    </message>
+    <message>
+        <source>Unknown attribute: [%1]. Please check the head comments setting at %2.</source>
+        <translation>未知的属性: [%1]。请在 %2 检查头部注释的设置。</translation>
+    </message>
+    <message>
+        <source>Set Compile Command</source>
+        <translation>设置编译命令</translation>
+    </message>
+    <message>
+        <source>Custom compile command for this tab:</source>
+        <translation>这个标签页的自定义编译命令：</translation>
+    </message>
+    <message>
+        <source>Set Time Limit</source>
+        <translation>设置时间限制</translation>
+    </message>
+    <message>
+        <source>Custom time limit for this tab: (ms)</source>
+        <translation>这个标签页的自定义时间限制：(毫秒)</translation>
     </message>
 </context>
 <context>
@@ -1481,6 +1487,10 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
         <source>Load External File Changes</source>
         <translation>加载外部文件修改</translation>
     </message>
+    <message>
+        <source>Detached Execution</source>
+        <translation>终端中运行</translation>
+    </message>
 </context>
 <context>
     <name>SettingsInfo</name>
@@ -1774,7 +1784,7 @@ This can be overridden for each parenthesis in each language.</source>
     </message>
     <message>
         <source>Open New Tabs</source>
-        <translation>打开新标签</translation>
+        <translation>打开新标签页</translation>
     </message>
     <message>
         <source>Open a new tab for each problem parsed by Competitive Companion.</source>
@@ -1837,16 +1847,6 @@ This can be overridden for each parenthesis in each language.</source>
 This will be faster but with a little bit more risk of losing the file (with a very small possibility).</source>
         <translation>总是使用 QFile 而不是 QSaveFile 来保存。
 这会更快速，但更可能丢失文件（概率极小）。</translation>
-    </message>
-    <message>
-        <source>Time Limit (ms)</source>
-        <translation>时间限制（毫秒）</translation>
-    </message>
-    <message>
-        <source>The time limit when executing the program.
-The program will be killed if it doesn&apos;t terminate in the time limit.</source>
-        <translation>执行程序的时间限制。
-超时程序将会被终止。</translation>
     </message>
     <message>
         <source>Output Length Limit</source>
@@ -2407,6 +2407,90 @@ A loaded test case will be elided and read-only if it&apos;s too long.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Terminal Arguments</source>
+        <translation type="unfinished">终端参数</translation>
+    </message>
+    <message>
+        <source>Terminal Program</source>
+        <translation>终端程序</translation>
+    </message>
+    <message>
+        <source>The terminal emulator to use when running in detached mode.
+This is usually the name or the path of the terminal emulator.
+Some possible values are konsole, gnome-terminal, xfce-terminal, xterm or any other terminal emulator program.</source>
+        <translation>用于”在终端运行“的终端模拟器。这通常是该终端模拟器的名称或路径。
+一些可能的值：konsole, gnome-terminal, xfce-terminal, xterm 或任何其它终端模拟器。</translation>
+    </message>
+    <message>
+        <source>Arguments used to execute a given command in the terminal emulator.
+This is &quot;-e&quot; for most terminal emulators, including konsole, xterm, xfce-terminal but can be &quot;--&quot; for gnome-terminal.
+Consult your terminal emulator for the suitable arguments.</source>
+        <translation>用于在终端模拟器中执行指定命令的参数。
+在大多数终端模拟器（包括 konsole, xterm, xfce-terminal）中，这个参数是 &quot;-e&quot;。
+在 gnome-terminal 中，这个参数是 &quot;--&quot;。
+请自行查阅适用于你所使用的终端模拟器的参数。</translation>
+    </message>
+    <message>
+        <source>Head Comments</source>
+        <translation>头部注释</translation>
+    </message>
+    <message>
+        <source>Save Test Case To A File</source>
+        <translation>将测试用例保存到文件</translation>
+    </message>
+    <message>
+        <source>The comments added at the head of the code when parsing a problem.
+Available place holders are:
+${time}: the time when parsing the problem
+${json.X.Y}: an attribute of the data provided by Competitive Companion, you can read more at https://github.com/jmerle/competitive-companion#explanation</source>
+        <translation>在获取一道题目时添加在代码开头的注释。
+可用的占位符有：
+${time}: 获取题目时的时间
+${json.X.Y}: 由 Competitive Companion 提供的数据的一个属性，你可以在 https://github.com/jmerle/competitive-companion#explanation 获取更多信息</translation>
+    </message>
+    <message>
+        <source>Time format for the head comments</source>
+        <translation>头部注释的时间格式</translation>
+    </message>
+    <message>
+        <source>The format of the ${time} place holder in the head comments.
+You can read the Qt documentation for available expressions:
+https://doc.qt.io/qt-5/qdate.html#toString
+https://doc.qt.io/qt-5/qtime.html#toString</source>
+        <translation>头部注释中 ${time} 占位符的格式。
+你可以阅读 Qt 文档来查看有哪些可用的表达式：
+https://doc.qt.io/qt-5/qdate.html#toString
+https://doc.qt.io/qt-5/qtime.html#toString</translation>
+    </message>
+    <message>
+        <source>Add &quot;Powered By CP Editor&quot; in the head comments</source>
+        <translation>在头部注释中添加 &quot;Powered By CP Editor&quot;</translation>
+    </message>
+    <message>
+        <source>Add a line saying &quot;Powered By CP Editor&quot; in the head comments.
+This doesn&apos;t cost you anyting, but helps more people to know CP Editor.</source>
+        <translation>在头部注释中添加一行 &quot;Powered By CP Editor&quot;。
+这可以在不花费任何代价的情况下让更多的人知道 CP Editor。</translation>
+    </message>
+    <message>
+        <source>Default Time Limit (ms)</source>
+        <translation>默认时间限制（毫秒）</translation>
+    </message>
+    <message>
+        <source>The default time limit when executing the program.
+The program will be killed if it doesn&apos;t terminate in the time limit.</source>
+        <translation>执行程序的默认时间限制。
+超时的程序会被终止。</translation>
+    </message>
+    <message>
+        <source>Use the time limit from Competitive Companion</source>
+        <translation>使用从 Competitive Companion 获取的时间限制</translation>
+    </message>
+    <message>
+        <source>Use the time limit parsed by Competitive Companion as the time limit of the corresponding tab.</source>
+        <translation>为对应的标签页使用由 Competitive Companion 解析得到的时间限制。</translation>
+    </message>
+    <message>
         <source>Code Editor Theme</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2498,6 +2582,73 @@ A loaded test case will be elided and read-only if it&apos;s too long.</source>
         <source>Failed to open [%1]. Do I have read permission?</source>
         <translation>打开 [%1] 失败。你拥有读取权限吗？</translation>
     </message>
+    <message>
+        <source>Reveal %1 in Finder</source>
+        <translation>在访达中查看%1</translation>
+    </message>
+    <message>
+        <source>Reveal %1 in Explorer</source>
+        <translation>在资源管理器中查看%1</translation>
+    </message>
+    <message>
+        <source>Open Containing Folder of %1</source>
+        <translation>打开包含%1的文件夹</translation>
+    </message>
+    <message>
+        <source>Reveal %1 in File Manager</source>
+        <translation>在文件管理器中查看%1</translation>
+    </message>
+</context>
+<context>
+    <name>Widgets::ContestDialog</name>
+    <message>
+        <source>Create a new contest</source>
+        <translation>创建一个新比赛</translation>
+    </message>
+    <message>
+        <source>Main Directory</source>
+        <translation>主目录</translation>
+    </message>
+    <message>
+        <source>Subdirectory</source>
+        <translation>子目录</translation>
+    </message>
+    <message>
+        <source>Number of Problems</source>
+        <translation>题目数量</translation>
+    </message>
+    <message>
+        <source>Main Directory doesn&apos;t exist</source>
+        <translation>主目录不存在</translation>
+    </message>
+    <message>
+        <source>The Main Directory [%1] doesn&apos;t exist. Do you want to create it and continue?</source>
+        <translation>主目录 [%1] 不存在。你想要创建目录并继续吗？</translation>
+    </message>
+    <message>
+        <source>Failed to create directory</source>
+        <translation>创建目录失败</translation>
+    </message>
+    <message>
+        <source>Failed to create the directory [%1].</source>
+        <translation>未能成功创建目录 [%1]。</translation>
+    </message>
+    <message>
+        <source>Contest Details</source>
+        <translation>比赛细节</translation>
+    </message>
+    <message>
+        <source>Save Path</source>
+        <translation>保存路径</translation>
+    </message>
+    <message>
+        <source>Language</source>
+        <translation>语言</translation>
+    </message>
+    <message>
+        <source>Choose Main Directory</source>
+        <translation>选择主目录</translation>
+    </message>
 </context>
 <context>
     <name>Widgets::DiffViewer</name>
@@ -2569,8 +2720,8 @@ A loaded test case will be elided and read-only if it&apos;s too long.</source>
         <translation>差异查看器[%1]</translation>
     </message>
     <message>
-        <source>The output/expected contains more than %1 characters, HTML diff viewer is disabled. You can change the length limit in Preferences-&gt;Advanced-&gt;Limits-&gt;HTML Diff Viewer Length Limit</source>
-        <translation>输出或答案超过了 %1 个字符，因此 HTML 差异查看器已被禁用。你可以在设置-&gt;高级-&gt;限制-&gt;HTML 差异查看器长度限制中更改限制大小</translation>
+        <source>The output/expected contains more than %1 characters, HTML diff viewer is disabled. You can change the length limit at %2.</source>
+        <translation>输出或答案超过了 %1 个字符，因此 HTML 差异查看器已被禁用。你可以在 %2 更改限制大小。</translation>
     </message>
 </context>
 <context>
@@ -2588,14 +2739,6 @@ A loaded test case will be elided and read-only if it&apos;s too long.</source>
         <translation>编辑测试点</translation>
     </message>
     <message>
-        <source>Preferences-&gt;Advanced-&gt;Limits-&gt;Output Display Length Limit</source>
-        <translation>设置-&gt;高级-&gt;限制-&gt;输出显示长度限制</translation>
-    </message>
-    <message>
-        <source>Preferences-&gt;Advanced-&gt;Limits-&gt;Load Test Case Length Limit</source>
-        <translation>设置-&gt;高级-&gt;限制-&gt;加载测试用例长度限制</translation>
-    </message>
-    <message>
         <source>Input</source>
         <translation>输入</translation>
     </message>
@@ -2608,12 +2751,20 @@ A loaded test case will be elided and read-only if it&apos;s too long.</source>
         <translation>答案</translation>
     </message>
     <message>
-        <source>Now the test case editor is read-only. You can set the length limit in %1.</source>
+        <source>Now the test case editor is read-only. You can set the length limit at %1.</source>
         <translation>现在测试用例编辑器是只读的。你可以在 %1 中设置长度限制。</translation>
     </message>
     <message>
         <source>Only the first %1 characters are shown.</source>
         <translation>只显示了前 %1 个字符。</translation>
+    </message>
+    <message>
+        <source>Save to file</source>
+        <translation>保存到文件</translation>
+    </message>
+    <message>
+        <source>Save test case to file</source>
+        <translation>将测试用例保存到文件</translation>
     </message>
 </context>
 <context>
@@ -2637,10 +2788,6 @@ A loaded test case will be elided and read-only if it&apos;s too long.</source>
     <message>
         <source>Add Checker</source>
         <translation>添加评测器</translation>
-    </message>
-    <message>
-        <source>Wrong Answer / Accepted / Total</source>
-        <translation>答案错误 / 通过 / 总计</translation>
     </message>
     <message>
         <source>Add a custom testlib checker</source>
@@ -2667,8 +2814,8 @@ A loaded test case will be elided and read-only if it&apos;s too long.</source>
         <translation>已加载输入 [%1]</translation>
     </message>
     <message>
-        <source>The following files are not loaded because they are not matched:%1. You can set the matching rules at Preferences-&gt;File Path-&gt;Testcases-&gt;Add Testcases From Files Rules.</source>
-        <translation>下列文件由于没有匹配而未加载：%1。你可以在设置-&gt;文件路径-&gt;测试点-&gt;测试数据匹配规则中设置匹配规则。</translation>
+        <source>The following files are not loaded because they are not matched:%1. You can set the matching rules at %2.</source>
+        <translation>下列文件由于没有匹配而未加载：%1。你可以在 %2 设置匹配规则。</translation>
     </message>
     <message>
         <source>Remove Empty</source>
@@ -2765,6 +2912,10 @@ A loaded test case will be elided and read-only if it&apos;s too long.</source>
     <message>
         <source>Testcases</source>
         <translation>测试点</translation>
+    </message>
+    <message>
+        <source>Unaccepted / Accepted / Total</source>
+        <translation>未通过 / 通过 / 总计</translation>
     </message>
 </context>
 <context>

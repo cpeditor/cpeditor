@@ -66,7 +66,7 @@ TestCases::TestCases(MessageLogger *logger, QWidget *parent) : QWidget(parent), 
     mainLayout->addLayout(checkerLayout);
     mainLayout->addWidget(scrollArea);
 
-    verdicts->setToolTip(tr("Wrong Answer / Accepted / Total"));
+    verdicts->setToolTip(tr("Unaccepted / Accepted / Total"));
     addCheckerButton->setToolTip(tr("Add a custom testlib checker"));
 
     updateVerdicts();
@@ -139,8 +139,9 @@ TestCases::TestCases(MessageLogger *logger, QWidget *parent) : QWidget(parent), 
                     remainPaths.push_back(QString("[%1]").arg(path));
                 log->warn(tr("Load Testcases"),
                           tr("The following files are not loaded because they are not matched:%1. You can set the "
-                             "matching rules at Preferences->File Path->Testcases->Add Testcases From Files Rules.")
-                              .arg(remainPaths.join(", ")));
+                             "matching rules at %2.")
+                              .arg(remainPaths.join(", "))
+                              .arg(SettingsHelper::pathOfTestcasesMatchingRules()));
             }
         }
     });
@@ -174,7 +175,7 @@ TestCases::TestCases(MessageLogger *logger, QWidget *parent) : QWidget(parent), 
     moreMenu->addAction(tr("Hide AC"), [this] {
         LOG_INFO("Testcases hiding all Accepted");
         for (auto t : testcases)
-            if (t->verdict() == Core::Checker::AC)
+            if (t->verdict() == TestCase::AC)
                 t->setShow(false);
     });
 
@@ -462,7 +463,7 @@ bool TestCases::isShow(int index) const
     return testcases[index]->isShow();
 }
 
-void TestCases::setVerdict(int index, Core::Checker::Verdict verdict)
+void TestCases::setVerdict(int index, TestCase::Verdict verdict)
 {
     testcases[index]->setVerdict(verdict);
     updateVerdicts();
@@ -498,24 +499,29 @@ void TestCases::onChildDeleted(TestCase *widget)
 
 void TestCases::updateVerdicts()
 {
-    int ac = 0, wa = 0;
+    int accepted = 0, unaccepted = 0;
     for (auto t : testcases)
     {
         switch (t->verdict())
         {
-        case Core::Checker::AC:
-            ++ac;
+        case TestCase::AC:
+            ++accepted;
             break;
-        case Core::Checker::WA:
-            ++wa;
+        case TestCase::WA:
+        case TestCase::TLE:
+        case TestCase::RE:
+            ++unaccepted;
             break;
-        case Core::Checker::UNKNOWN:
+        case TestCase::UNKNOWN:
+            break;
+        default:
+            Q_UNREACHABLE();
             break;
         }
     }
     verdicts->setText(QString("<span style=\"color:red\">%1</span> / <span style=\"color:green\">%2</span> / %3")
-                          .arg(wa)
-                          .arg(ac)
+                          .arg(unaccepted)
+                          .arg(accepted)
                           .arg(count()));
 }
 

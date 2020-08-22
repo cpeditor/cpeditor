@@ -2,14 +2,36 @@
 
 ### Added
 
-- Open recent files. (#527)
+-   Open recent files. (#527)
+-   Reveal the executable file in file manager. (#537)
+-   Use a dialog to open new contests. (#539 and #467)
+-   Choose detached execution terminal on Linux (#554 and #474)
+-   Add "save to file" in the context menu of the test cases. (#529 and #560)
+-   Customizable head comments. (#203 and #561)
+-   Now in C++, you can use relative paths to include headers files. (#565)
+-   Now you can set different compile commands and time limits for each tab by setting them in the context menu of the tabs. (#565)
+-   Now you can use the time limit from Competitive Companion as the time limit for the corresponding tab. (#565)
+-   Now the compiler works in the same directory as the source file, so that you can use relative paths in the compile command. For example, you can add `grader.cpp` to compile the source file with the grader in the same directory. (#565)
+-   TLE and RE verdicts. (#566)
 
 ### Fixed
 
-- Fixed the diff viewer crashes when the output is empty. (#517)
-- Fixed the background color of the diff viewer is black on Windows with the Dark Fusion theme. (#519 and #520)
-- Fixed the old problem URL is not restored when opening an old file with that option on. (#522)
-- Fixed the performance issue that makes the editor extremely slow when there are many lines. (cpeditor/QCodeEditor#27)
+-   Fixed the diff viewer crashes when the output is empty. (#517)
+-   Fixed the background color of the diff viewer is black on Windows with the Dark Fusion theme. (#519 and #520)
+-   Fixed the old problem URL is not restored when opening an old file with that option on. (#522)
+-   Fixed the performance issue that makes the editor extremely slow when there are many lines. (cpeditor/QCodeEditor#27)
+-   Now the code snippets won't be in the log file. (#536)
+-   Fixed crash when compiling twice in a row with large test cases. (#549 and #550)
+
+### Changed
+
+-   Now the working directory when executing programs is:
+
+    1.  The path of the executable file for C++;
+    2.  The class path for Java;
+    3.  The temp file path for Python.
+
+    If you write to files with relative paths in your codes, you can use "Reveal Executable File" to find the outputs.
 
 ## v6.6
 

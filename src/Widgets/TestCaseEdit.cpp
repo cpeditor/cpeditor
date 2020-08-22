@@ -112,14 +112,14 @@ void TestCaseEdit::modifyText(const QString &text, bool keepHistory)
         displayText = text.left(limit) + "...";
 
         const QString name = role == Input ? tr("Input") : (role == Output ? tr("Output") : tr("Expected"));
-        const QString setLimitPlace = role == Output ? tr("Preferences->Advanced->Limits->Output Display Length Limit")
-                                                     : tr("Preferences->Advanced->Limits->Load Test Case Length Limit");
+        const QString setLimitPlace = role == Output ? SettingsHelper::pathOfOutputDisplayLengthLimit()
+                                                     : SettingsHelper::pathOfLoadTestCaseLengthLimit();
 
         log->warn(
             QString("%1[%2]").arg(name).arg(id + 1),
             QString("<span title='%1'>%2</span>")
                 .arg(
-                    tr("Now the test case editor is read-only. You can set the length limit in %1.").arg(setLimitPlace))
+                    tr("Now the test case editor is read-only. You can set the length limit at %1.").arg(setLimitPlace))
                 .arg(tr("Only the first %1 characters are shown.").arg(limit)),
             false);
     }
@@ -159,9 +159,16 @@ void TestCaseEdit::startAnimation()
 void TestCaseEdit::onCustomContextMenuRequested(const QPoint &pos)
 {
     auto menu = createStandardContextMenu();
+    menu->addSeparator();
+    menu->addAction(QApplication::style()->standardIcon(QStyle::SP_FileIcon), tr("Save to file"), [this] {
+        LOG_INFO("Saving test case to file");
+        QString fileName =
+            DefaultPathManager::getSaveFileName("Save Test Case To A File", this, tr("Save test case to file"));
+        if (!fileName.isEmpty())
+            Util::saveFile(fileName, toPlainText(), tr("Save test case to file"), true, log);
+    });
     if (role != Output)
     {
-        menu->addSeparator();
         menu->addAction(QApplication::style()->standardIcon(QStyle::SP_DialogOpenButton), tr("Load From File"), [this] {
             LOG_INFO("Opening file dialog to Load from file");
             auto res = DefaultPathManager::getOpenFileName("Load Single Test Case", this, tr("Load From File"));

@@ -19,7 +19,6 @@
 #include "Core/EventLogger.hpp"
 #include "Core/MessageLogger.hpp"
 #include <QJsonArray>
-#include <QJsonDocument>
 #include <QJsonObject>
 #include <QTcpServer>
 #include <QTcpSocket>
@@ -48,7 +47,7 @@ void CompanionServer::updatePort(int port)
         {
             server = nullptr;
             if (log != nullptr)
-                log->info(tr("Companion"), tr("Server is closed"));
+                log->info("Companion", tr("Server is closed"));
         }
         else
         {
@@ -59,10 +58,10 @@ void CompanionServer::updatePort(int port)
             server->listen(QHostAddress::LocalHost, static_cast<quint16>(port));
             if (log != nullptr)
             {
-                log->info(tr("Companion"), tr("Port is set to %1").arg(port));
+                log->info("Companion", tr("Port is set to %1").arg(port));
                 if (!server->isListening())
                 {
-                    log->error(tr("Companion"),
+                    log->error("Companion",
                                tr("Failed to listen to port %1. Is there another process listening?").arg(portNumber));
                 }
             }
@@ -73,7 +72,7 @@ void CompanionServer::updatePort(int port)
 CompanionServer::~CompanionServer()
 {
     if (log != nullptr)
-        log->info(tr("Companion"), tr("Stopped Server"));
+        log->info("Companion", tr("Stopped Server"));
     delete server;
 }
 
@@ -95,7 +94,7 @@ void CompanionServer::onReadReady()
     if (request.startsWith("POST") && request.contains("Content-Type: application/json"))
     {
         if (log != nullptr)
-            log->info(tr("Companion"), tr("Got a POST Request"));
+            log->info("Companion", tr("Got a POST Request"));
 
         socket->write("HTTP/1.1  OK\r\n"); // \r needs to be before \n
         socket->write("Content-Type: text/html\r\n");
@@ -116,14 +115,10 @@ void CompanionServer::onReadReady()
         {
             CompanionData payload;
 
-            payload.name = doc["name"].toString();
-            payload.contest = doc["group"].toString();
+            payload.doc = doc;
+
             payload.url = doc["url"].toString();
-            payload.interactive = doc["interactive"].toBool();
-            payload.memoryLimit = doc["memoryLimit"].toInt();
             payload.timeLimit = doc["timeLimit"].toInt();
-            payload.isInputstdin = doc["input"].toObject()["type"].toString() == "stdin";
-            payload.isOutputstdout = doc["output"].toObject()["type"].toString() == "stdout";
 
             QJsonArray testArray = doc["tests"].toArray();
             for (auto tests : testArray)
@@ -132,14 +127,14 @@ void CompanionServer::onReadReady()
                 auto out = tests.toObject()["output"].toString();
                 payload.testcases.push_back({in, out});
             }
+
             emit onRequestArrived(payload);
         }
         else
         {
             if (log != nullptr)
-                log->error(tr("Companion"), tr("JSON parser reported errors:\n%1").arg(error.errorString()));
-            else
-                LOG_WARN("JSON Parser reported error " << error.errorString());
+                log->error("Companion", tr("JSON parser reported errors:\n%1").arg(error.errorString()));
+            LOG_WARN("JSON parser reported error " << error.errorString());
         }
     }
     else

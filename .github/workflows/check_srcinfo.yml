@@ -1,0 +1,23 @@
+name: "Check .SRCINFO"
+
+on: [push, pull_request]
+
+jobs:
+  check-srcinfo:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Copy Files
+        run: |
+          cp .ci/aur/stable cpeditor -r
+          cp .ci/aur/git cpeditor-git -r
+      - name: "Check .SRCINFO of cpeditor"
+        uses: 2m/arch-pkgbuild-builder@master
+        with:
+          target: "srcinfo"
+          pkgname: "cpeditor"
+      - name: "Check .SRCINFO of cpeditor-git"
+        uses: 2m/arch-pkgbuild-builder@master
+        with:
+          target: "srcinfo"
+          pkgname: "cpeditor-git"

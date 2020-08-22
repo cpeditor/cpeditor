@@ -175,6 +175,8 @@ add_executable(cpeditor
     src/Util/Util.cpp
     src/Util/Util.hpp
 
+    src/Widgets/ContestDialog.cpp
+    src/Widgets/ContestDialog.hpp
     src/Widgets/DiffViewer.cpp
     src/Widgets/DiffViewer.hpp
     src/Widgets/TestCase.cpp

@@ -13,7 +13,7 @@ CP Editor - это легкий кросс-платформенный редак
 ---
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-41-orange.svg)](#contributors-sparkles)
+[![All Contributors](https://img.shields.io/badge/all_contributors-43-orange.svg)](#contributors-sparkles)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/ce0f297f31f74485b0d340949d08d605)](https://www.codacy.com/gh/cpeditor/cpeditor)
 [![Все релизы GitHub](https://img.shields.io/github/downloads/cpeditor/cpeditor/total?label=downloads%40all)](https://github.com/cpeditor/cpeditor/releases)
@@ -24,8 +24,8 @@ CP Editor - это легкий кросс-платформенный редак
 |  type  |                           branch                           |                                                                                                       build                                                                                                        |                                                                   downloads                                                                    |                                                         AUR                                                         |
 | :----: | :--------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------: |
 | alpha  | [master](https://github.com/cpeditor/cpeditor/tree/master) | [![GitHub Workflow Status](https://github.com/cpeditor/cpeditor/workflows/CI:%20Build%20Test/badge.svg?branch=master&event=push)](https://github.com/cpeditor/cpeditor/actions?query=event%3Apush+branch%3Amaster) |                                                                       -                                                                        | [![AUR version](https://img.shields.io/aur/version/cpeditor-git)](https://aur.archlinux.org/packages/cpeditor-git/) |
-|  beta  |   [v6.6](https://github.com/cpeditor/cpeditor/tree/v6.6)   |   [![GitHub Workflow Status](https://github.com/cpeditor/cpeditor/workflows/CI:%20Build%20Test/badge.svg?branch=v6.6&event=push)](https://github.com/cpeditor/cpeditor/actions?query=event%3Apush+branch%3Av6.6)   | [![Downloads](https://img.shields.io/github/downloads/cpeditor/cpeditor/6.6.3/total)](https://github.com/cpeditor/cpeditor/releases/tag/6.6.3) |                                                          -                                                          |
-| stable |   [v6.5](https://github.com/cpeditor/cpeditor/tree/v6.5)   |   [![GitHub Workflow Status](https://github.com/cpeditor/cpeditor/workflows/CI:%20Build%20Test/badge.svg?branch=v6.5&event=push)](https://github.com/cpeditor/cpeditor/actions?query=event%3Apush+branch%3Av6.5)   | [![Downloads](https://img.shields.io/github/downloads/cpeditor/cpeditor/6.5.4/total)](https://github.com/cpeditor/cpeditor/releases/tag/6.5.4) |     [![AUR version](https://img.shields.io/aur/version/cpeditor)](https://aur.archlinux.org/packages/cpeditor/)     |
+|  beta  |   [v6.6](https://github.com/cpeditor/cpeditor/tree/v6.6)   |   [![GitHub Workflow Status](https://github.com/cpeditor/cpeditor/workflows/CI:%20Build%20Test/badge.svg?branch=v6.6&event=push)](https://github.com/cpeditor/cpeditor/actions?query=event%3Apush+branch%3Av6.6)   | [![Downloads](https://img.shields.io/github/downloads/cpeditor/cpeditor/6.6.4/total)](https://github.com/cpeditor/cpeditor/releases/tag/6.6.4) |                                                          -                                                          |
+| stable |   [v6.5](https://github.com/cpeditor/cpeditor/tree/v6.5)   |   [![GitHub Workflow Status](https://github.com/cpeditor/cpeditor/workflows/CI:%20Build%20Test/badge.svg?branch=v6.5&event=push)](https://github.com/cpeditor/cpeditor/actions?query=event%3Apush+branch%3Av6.5)   | [![Downloads](https://img.shields.io/github/downloads/cpeditor/cpeditor/6.5.5/total)](https://github.com/cpeditor/cpeditor/releases/tag/6.5.5) |     [![AUR version](https://img.shields.io/aur/version/cpeditor)](https://aur.archlinux.org/packages/cpeditor/)     |
 
 ## Начало
 
@@ -54,9 +54,7 @@ CP Editor - это легкий кросс-платформенный редак
 
 ## FAQ
 
-- Как включить темную тему во всем приложении?
-   - Темная тема доступна только на некоторых платформах, включая KDE и Mac OS. Просто установите системную тему, и CP Editor будет использовать эту же тему. Также можно использовать различные темы с помощью опции командной строки `--style`, но это уже особенность, [которую предоставляет Qt](https://doc.qt.io/qt-5/qstyle.html#details), а не CP Editor. Она работает НЕ НА ВСЕХ платформах.
-- Как получить входные/выходные данные с веб-сайтов?
+- Как получить тесткейсы с веб-сайтов?
    - Вам нужно установить [Competitive Companion](https://github.com/jmerle/competitive-companion) на Ваш браузер, и использовать его на веб-сайте, пока открыт CP Editor.
 - Как послать решение в CF внутри редактора?
    - Вы должны либо отправить задачу через Competitive Companion, либо установить URL-адрес задачи в контекстном меню вкладок. Затем вы увидите кнопку "Submit".
@@ -65,7 +63,7 @@ CP Editor - это легкий кросс-платформенный редак
 - Когда я нажимаю кнопку "Submit", я получаю какое-то сообщение, что необходим шаблон?
    - Инструмент `cf` требует предварительной настройки. Пожалуйста, запустите `cf config`, чтобы установить имя пользователя и пароль. Затем добавить шаблон.
 - Я получил ошибку при копировании входных/выходных данных?
-   - Пожалуйста, попробуйте перезагрузить браузер и редактор. Мы знаем, что есть несколько человек, которые получают ошибку даже после перезагрузки (чаще на Google Chrome, чем на Firefox). Нам очень жаль, но если у Вас ещё есть эта ошибка, попробуйте изменить браузер, а пока мы постараемся сделать все возможное, чтобы такой ошибки не было.
+   - Пожалуйста, попробуйте перезагрузить браузер и редактор. Мы знаем, что многие получают эту ошибку даже после перезагрузки и делаем все возможное, чтобы устранить её.
 
 ## Contributors :sparkles:
 
@@ -120,6 +118,9 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
       <a href="https://github.com/sonulohani"><img src="https://avatars1.githubusercontent.com/u/2958681?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/sonulohani"><sub><b>Sonu Lohani</b></sub></a><br /><a href="https://github.com/cpeditor/cpeditor/issues?q=author%3Asonulohani" title="Bug reports">🐛</a> <a href="https://github.com/cpeditor/cpeditor/commits?author=sonulohani" title="Code">💻</a> <a href="#ideas-sonulohani" title="Ideas, Planning, & Feedback">🤔</a>
     </td>
     <td align="center">
+      <a href="https://github.com/ChungZH"><img src="https://avatars0.githubusercontent.com/u/42088872?v=4" width="100px;" alt=""/></a><br /><a href="https://chungzh.cc/"><sub><b>Flex Zhong</b></sub></a><br /><a href="https://github.com/cpeditor/cpeditor/commits?author=ChungZH" title="Code">💻</a>
+    </td>
+    <td align="center">
       <a href="https://github.com/Ravenclaw-OIer"><img src="https://avatars2.githubusercontent.com/u/44526586?v=4" width="100px;" alt=""/></a><br /><a href="http://ravenclaw-oier.github.io"><sub><b>Ravenclaw-OIer</b></sub></a><br /><a href="#ideas-Ravenclaw-OIer" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/cpeditor/cpeditor/issues?q=author%3ARavenclaw-OIer" title="Bug reports">🐛</a> <a href="https://github.com/cpeditor/cpeditor/commits?author=Ravenclaw-OIer" title="Documentation">📖</a>
     </td>
     <td align="center">
@@ -131,11 +132,11 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center">
       <a href="https://github.com/Arthur-QQ"><img src="https://avatars0.githubusercontent.com/u/30394349?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/Arthur-QQ"><sub><b>Arthur-QQ</b></sub></a><br /><a href="#ideas-Arthur-QQ" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/cpeditor/cpeditor/issues?q=author%3AArthur-QQ" title="Bug reports">🐛</a>
     </td>
+  </tr>
+  <tr>
     <td align="center">
       <a href="https://github.com/Brijesh1in"><img src="https://avatars3.githubusercontent.com/u/33791137?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/Brijesh1in"><sub><b>Brijesh1in</b></sub></a><br /><a href="#ideas-Brijesh1in" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/cpeditor/cpeditor/issues?q=author%3ABrijesh1in" title="Bug reports">🐛</a>
     </td>
-  </tr>
-  <tr>
     <td align="center">
       <a href="https://github.com/DarkWarrior703"><img src="https://avatars0.githubusercontent.com/u/56077342?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/DarkWarrior703"><sub><b>DarkWarrior703</b></sub></a><br /><a href="#ideas-DarkWarrior703" title="Ideas, Planning, & Feedback">🤔</a>
     </td>
@@ -151,11 +152,11 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center">
       <a href="https://github.com/GoBigorGoHome"><img src="https://avatars3.githubusercontent.com/u/9896288?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/GoBigorGoHome"><sub><b>Pat</b></sub></a><br /><a href="#ideas-GoBigorGoHome" title="Ideas, Planning, & Feedback">🤔</a>
     </td>
+  </tr>
+  <tr>
     <td align="center">
       <a href="https://github.com/GoToCoding"><img src="https://avatars3.githubusercontent.com/u/16542586?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/GoToCoding"><sub><b>Ruzal Ibragimov</b></sub></a><br /><a href="https://github.com/cpeditor/cpeditor/issues?q=author%3AGoToCoding" title="Bug reports">🐛</a>
     </td>
-  </tr>
-  <tr>
     <td align="center">
       <a href="https://github.com/Salil03"><img src="https://avatars0.githubusercontent.com/u/32109637?v=4" width="100px;" alt=""/></a><br /><a href="https://salil03.github.io/"><sub><b>Salil Gokhale</b></sub></a><br /><a href="#ideas-Salil03" title="Ideas, Planning, & Feedback">🤔</a>
     </td>
@@ -171,11 +172,11 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center">
       <a href="https://github.com/ahmfuad"><img src="https://avatars3.githubusercontent.com/u/42442668?v=4" width="100px;" alt=""/></a><br /><a href="http://www.agamiramra.com"><sub><b>A. H. M Fuad</b></sub></a><br /><a href="https://github.com/cpeditor/cpeditor/issues?q=author%3Aahmfuad" title="Bug reports">🐛</a>
     </td>
+  </tr>
+  <tr>
     <td align="center">
       <a href="https://github.com/ankur314"><img src="https://avatars2.githubusercontent.com/u/37039680?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/ankur314"><sub><b>Ankur Ojha</b></sub></a><br /><a href="#ideas-ankur314" title="Ideas, Planning, & Feedback">🤔</a>
     </td>
-  </tr>
-  <tr>
     <td align="center">
       <a href="https://github.com/cs-mshah"><img src="https://avatars1.githubusercontent.com/u/56499208?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/cs-mshah"><sub><b>cs-mshah</b></sub></a><br /><a href="#ideas-cs-mshah" title="Ideas, Planning, & Feedback">🤔</a>
     </td>
@@ -191,11 +192,11 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center">
       <a href="https://github.com/s6059r"><img src="https://avatars0.githubusercontent.com/u/58967102?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/s6059r"><sub><b>Siddharth Singh</b></sub></a><br /><a href="#ideas-s6059r" title="Ideas, Planning, & Feedback">🤔</a>
     </td>
+  </tr>
+  <tr>
     <td align="center">
       <a href="https://github.com/samael042"><img src="https://avatars3.githubusercontent.com/u/44134245?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/samael042"><sub><b>samael042</b></sub></a><br /><a href="https://github.com/cpeditor/cpeditor/issues?q=author%3Asamael042" title="Bug reports">🐛</a>
     </td>
-  </tr>
-  <tr>
     <td align="center">
       <a href="https://github.com/2740365712"><img src="https://avatars0.githubusercontent.com/u/33799658?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/2740365712"><sub><b>Starlit_Night</b></sub></a><br /><a href="#ideas-2740365712" title="Ideas, Planning, & Feedback">🤔</a>
     </td>
@@ -210,6 +211,11 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     </td>
     <td align="center">
       <a href="https://github.com/sahilkhan03"><img src="https://avatars2.githubusercontent.com/u/45485428?v=4" width="100px;" alt=""/></a><br /><a href="http://sahilkhan.me"><sub><b>Md. Sahil Khan</b></sub></a><br /><a href="#ideas-sahilkhan03" title="Ideas, Planning, & Feedback">🤔</a>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <a href="https://github.com/AbhayAravinda"><img src="https://avatars1.githubusercontent.com/u/33093450?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/AbhayAravinda"><sub><b>AbhayAravinda</b></sub></a><br /><a href="https://github.com/cpeditor/cpeditor/issues?q=author%3AAbhayAravinda" title="Bug reports">🐛</a>
     </td>
   </tr>
 </table>

@@ -17,7 +17,6 @@ pkgbase = cpeditor
 	optdepends = jdk-openjdk: compile Java support
 	optdepends = jre-openjdk: execute Java support
 	optdepends = python: execute Python support
-	optdepends = xterm: detached run support
 	conflicts = cpeditor-git
 	source = https://github.com/cpeditor/cpeditor/releases/download/@PROJECT_VERSION@/cpeditor-@PROJECT_VERSION@-full-source.tar.gz
 	sha256sums = SKIP

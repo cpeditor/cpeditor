@@ -122,7 +122,7 @@ void TestCase::setExpected(const QString &text)
 void TestCase::clearOutput()
 {
     outputEdit->modifyText(QString());
-    currentVerdict = Core::Checker::UNKNOWN;
+    currentVerdict = UNKNOWN;
     diffButton->setStyleSheet("");
     diffButton->setText("**");
 }
@@ -151,7 +151,7 @@ void TestCase::setID(int index)
     expectedLabel->setText(tr("Expected #%1").arg(id + 1));
 }
 
-void TestCase::setVerdict(Core::Checker::Verdict verdict)
+void TestCase::setVerdict(Verdict verdict)
 {
     currentVerdict = verdict;
 
@@ -159,22 +159,33 @@ void TestCase::setVerdict(Core::Checker::Verdict verdict)
 
     switch (currentVerdict)
     {
-    case Core::Checker::UNKNOWN:
+    case UNKNOWN:
         diffButton->setStyleSheet("");
         diffButton->setText("**");
         break;
-    case Core::Checker::AC:
+    case AC:
         diffButton->setStyleSheet("background: #0b0");
         diffButton->setText("AC");
         break;
-    case Core::Checker::WA:
+    case WA:
         diffButton->setStyleSheet("background: #d00");
         diffButton->setText("WA");
+        break;
+    case TLE:
+        diffButton->setStyleSheet("background: #990");
+        diffButton->setText("TLE");
+        break;
+    case RE:
+        diffButton->setStyleSheet("background: #b0b");
+        diffButton->setText("RE");
+        break;
+    default:
+        Q_UNREACHABLE();
         break;
     }
 }
 
-Core::Checker::Verdict TestCase::verdict() const
+TestCase::Verdict TestCase::verdict() const
 {
     return currentVerdict;
 }
@@ -263,8 +274,9 @@ void TestCase::onToLongForHtml()
 {
     log->warn(tr("Diff Viewer[%1]").arg(id + 1),
               tr("The output/expected contains more than %1 characters, HTML diff viewer is disabled. You can change "
-                 "the length limit in Preferences->Advanced->Limits->HTML Diff Viewer Length Limit")
-                  .arg(SettingsHelper::getHTMLDiffViewerLengthLimit()));
+                 "the length limit at %2.")
+                  .arg(SettingsHelper::getHTMLDiffViewerLengthLimit())
+                  .arg(SettingsHelper::pathOfHTMLDiffViewerLengthLimit()));
 }
 
 } // namespace Widgets

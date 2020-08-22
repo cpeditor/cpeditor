@@ -33,7 +33,6 @@ jobs:
       - uses: actions/checkout@v2
         with:
           submodules: recursive
-          fetch-depth: 0
 
       - name: Install Python 3.7
         uses: actions/setup-python@v1
@@ -129,8 +128,12 @@ jobs:
       - name: Package full Source
         if: startsWith(matrix.config.os, 'ubuntu')
         run: |
+          shopt -s extglob # enable "!(...)"
+          mv .git/objects/pack .
+          git unpack-objects < pack/*.pack
+          rm -rf pack .git/objects/!($(git rev-parse @ | cut -c-2)) .git/objects/$(git rev-parse @ | cut -c-2)/!($(git rev-parse @ | cut -c3-))
           wget https://raw.githubusercontent.com/Kentzo/git-archive-all/master/git_archive_all.py
-          python3 git_archive_all.py cpeditor-${{ steps.get_version.outputs.VERSION }}-full-source.tar.gz
+          python3 git_archive_all.py cpeditor-${{ steps.get_version.outputs.VERSION }}-full-source.tar.gz --extra=.git/HEAD --extra=.git/refs --extra=.git/objects
 
       - name: Release full source
         if: startsWith(matrix.config.os, 'ubuntu')

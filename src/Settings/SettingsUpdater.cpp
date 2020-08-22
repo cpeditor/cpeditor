@@ -66,6 +66,7 @@ const static QMap<QString, QString> updateInfo = {
     {"language", "Locale"},
     {"load_test_case_file_length_limit", "Load Test Case Length Limit"},
     {"Editor Font", "Code Editor Font"},
+    {"time_limit", "Default Time Limit"},
 };
 
 void SettingsUpdater::updateSetting(QSettings &setting)

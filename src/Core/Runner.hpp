@@ -71,8 +71,7 @@ class Runner : public QObject
      * @param lang the language to run, one of "C++", "Java" and "Python"
      * @param runCommand the command for running a program
      * @param args the command line arguments added at the back to start the program
-     * @note runFinished, runTimeout and runKilled won't be emitted when using runDetached. failedToStartRun will only
-     *       be emitted when xterm is not installed on Linux, it's not emitted even the source file is not compiled.
+     * @note runFinished and runKilled won't be emitted when using runDetached.
      */
     void runDetached(const QString &tmpFilePath, const QString &sourceFilePath, const QString &lang,
                      const QString &runCommand, const QString &args);
@@ -91,8 +90,9 @@ class Runner : public QObject
      * @param err the stderr of the program
      * @param exitCode the exit code of the program
      * @param timeUsed the time between the execution started and finished
+     * @param tle whether the time limit is exceeded
      */
-    void runFinished(int index, const QString &out, const QString &err, int exitCode, int timeUsed);
+    void runFinished(int index, const QString &out, const QString &err, int exitCode, int timeUsed, bool tle);
 
     /**
      * @brief failed to start the execution
@@ -100,12 +100,6 @@ class Runner : public QObject
      * @param error a string to describe the error
      */
     void failedToStartRun(int index, const QString &error);
-
-    /**
-     * @brief the execution reached the time limit
-     * @param index the index of the testcase
-     */
-    void runTimeout(int index);
 
     /**
      * @brief the stdout/stderr is too long
@@ -153,6 +147,11 @@ class Runner : public QObject
      */
     void onReadyReadStandardError();
 
+    /**
+     * @brief if the error is FailedToStart, emit failedToStartRun
+     */
+    void onErrorOccurred(QProcess::ProcessError error);
+
   private:
     /**
      * @brief get the command to run a program
@@ -166,13 +165,22 @@ class Runner : public QObject
     static QString getCommand(const QString &tmpFilePath, const QString &sourceFilePath, const QString &lang,
                               const QString &runCommand, const QString &args);
 
+    /**
+     * @brief set the working directory of runProcess
+     * @note the path of the executable file for C++, class path for Java, temp file path for Python
+     */
+    void setWorkingDirectory(const QString &tmpFilePath, const QString &sourceFilePath, const QString &lang);
+
     const int runnerIndex;                   // the index of the testcase
     QProcess *runProcess = nullptr;          // the process to run the program
     QTimer *killTimer = nullptr;             // the timer used to kill the process when the time limit is reached
     QElapsedTimer *runTimer = nullptr;       // the timer used to measure how much time did the execution use
     QString processStdout;                   // the stdout of the process
     QString processStderr;                   // the stderr of the process
+    QString processInput;                    // the input from the test cases
     bool outputLimitExceededEmitted = false; // whether runOutputLimitExceeded is emitted or not
+    bool timeLimitExceeded = false;
+    bool isDetachedRun = false;
 };
 
 } // namespace Core

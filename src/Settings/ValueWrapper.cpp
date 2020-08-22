@@ -90,6 +90,7 @@ void LineEditWrapper::set(QString s)
 void PlainTextEditWrapper::init(QWidget *parent, QVariant)
 {
     auto *item = new QPlainTextEdit(parent);
+    item->setMinimumWidth(400);
     item->setWordWrapMode(QTextOption::NoWrap);
     connect(item, &QPlainTextEdit::textChanged, this, &ValueWidget::emitSignal);
     widget = item;
@@ -176,6 +177,8 @@ void SpinBoxWrapper::init(QWidget *parent, QVariant param)
     {
         QVariantList il = param.toList();
         item->setRange(il[0].toInt(), il[1].toInt());
+        if (il.length() >= 3)
+            item->setSingleStep(il[2].toInt());
     }
     connect(item, QOverload<int>::of(&QSpinBox::valueChanged), this, &SpinBoxWrapper::emitSignal);
     widget = item;

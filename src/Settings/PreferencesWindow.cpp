@@ -212,6 +212,9 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
         .dir(TRKEY("Actions"))
             .page(TRKEY("Save"), {"Save Faster", "Save File On Compilation", "Save File On Execution", "Save Tests"})
             .page(TRKEY("Auto Save"), {"Auto Save", "Auto Save Interval", "Auto Save Interval Type"})
+#ifdef Q_OS_LINUX
+            .page(TRKEY("Detached Execution"), {"Detached Run Terminal Program", "Detached Run Terminal Arguments"})
+#endif
             .page(TRKEY("Save Session"), {"Hot Exit/Enable", "Hot Exit/Auto Save", "Hot Exit/Auto Save Interval"})
             .page(TRKEY("Bind file and problem"), {"Restore Old Problem Url", "Open Old File For Old Problem Url"})
             .page(TRKEY("Empty Test Cases"), {"Run On Empty Testcase", "Check On Testcases With Empty Output"})
@@ -225,8 +228,11 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
                 .page("Java Server", tr("%1 Server").arg(tr("Java")), {"LSP/Use Linting Java", "LSP/Delay Java", "LSP/Path Java", "LSP/Args Java"})
                 .page("Python Server", tr("%1 Server").arg(tr("Python")), {"LSP/Use Linting Python", "LSP/Delay Python", "LSP/Path Python", "LSP/Args Python"})
             .end()
-            .page(TRKEY("Competitive Companion"), {"Competitive Companion/Enable", "Competitive Companion/Open New Tab",
-                                                "Competitive Companion/Connection Port"})
+            .page(TRKEY("Competitive Companion"), new PreferencesPageTemplate({"Competitive Companion/Enable",
+                "Competitive Companion/Open New Tab", "Competitive Companion/Set Time Limit For Tab",
+                "Competitive Companion/Connection Port",
+                "Competitive Companion/Head Comments", "Competitive Companion/Head Comments Time Format",
+                "Competitive Companion/Head Comments Powered By CP Editor"}, false))
             .page(TRKEY("CF Tool"), {"CF/Path", "CF/Show Toast Messages"})
         .end()
         .dir(TRKEY("File Path"))
@@ -238,7 +244,7 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
                                    "Hotkey/Change View Mode", "Hotkey/Snippets"})
         .dir(TRKEY("Advanced"))
             .page(TRKEY("Update"), {"Check Update", "Beta"})
-            .page(TRKEY("Limits"), {"Time Limit", "Output Length Limit", "Output Display Length Limit", "Message Length Limit",
+            .page(TRKEY("Limits"), {"Default Time Limit", "Output Length Limit", "Output Display Length Limit", "Message Length Limit",
                                     "HTML Diff Viewer Length Limit", "Open File Length Limit", "Load Test Case Length Limit"})
             .page(TRKEY("Network Proxy"), {"Proxy/Enabled", "Proxy/Type", "Proxy/Host Name", "Proxy/Port", "Proxy/User", "Proxy/Password"})
         .end();

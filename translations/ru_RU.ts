@@ -36,18 +36,6 @@
         <translation>Открыть файлы</translation>
     </message>
     <message>
-        <source>Open Contest</source>
-        <translation>Открыть соревнование</translation>
-    </message>
-    <message>
-        <source>Number of problems in this contest:</source>
-        <translation>Число задач в соревновании:</translation>
-    </message>
-    <message>
-        <source>Choose a language</source>
-        <translation>Выберите язык</translation>
-    </message>
-    <message>
         <source>Reset preferences</source>
         <translation>Сбросить настройки</translation>
     </message>
@@ -94,30 +82,6 @@
     <message>
         <source>Copy File Path</source>
         <translation>Копировать путь файла</translation>
-    </message>
-    <message>
-        <source>Reveal in Finder</source>
-        <translation>Показать в Finder</translation>
-    </message>
-    <message>
-        <source>Reveal in Explorer</source>
-        <translation>Показать в Проводнике</translation>
-    </message>
-    <message>
-        <source>Open Containing Folder</source>
-        <translation>Открыть папку содержания</translation>
-    </message>
-    <message>
-        <source>Reveal in File Manager</source>
-        <translation>Показать в файловом менеджере</translation>
-    </message>
-    <message>
-        <source>Copy path</source>
-        <translation>Копировать путь</translation>
-    </message>
-    <message>
-        <source>Open problem in browser</source>
-        <translation>Открыть в задачу в браузере</translation>
     </message>
     <message>
         <source>Copy Problem URL</source>
@@ -483,6 +447,26 @@ Git commit hash: %3
         <source>Clear Recent Files</source>
         <translation>Очистить последние файлы</translation>
     </message>
+    <message>
+        <source>Source File</source>
+        <translation>Файл исходного кода</translation>
+    </message>
+    <message>
+        <source>Executable File</source>
+        <translation>Исполняемый файл</translation>
+    </message>
+    <message>
+        <source>Open Problem in Browser</source>
+        <translation>Открыть задачу в браузере</translation>
+    </message>
+    <message>
+        <source>Set Compile Command</source>
+        <translation>Установить команду компиляции</translation>
+    </message>
+    <message>
+        <source>Set Time Limit</source>
+        <translation>Установить лими времени</translation>
+    </message>
 </context>
 <context>
     <name>AppearancePage</name>
@@ -639,8 +623,8 @@ Git commit hash: %3
         <translation>Превышено ограничение по времени (TLE)</translation>
     </message>
     <message>
-        <source>The %1 of the process running on the testcase #%2 contains more than %3 characters, which is longer than the output length limit, so the process is killed. You can change the output length limit in Preferences-&gt;Advanced-&gt;Limits-&gt;Output Length Limit</source>
-        <translation>%1 из процессов при работе на тесткейсе #%2 содержит более чем %3 символов и превосходит лимит. Процесс убит. Вы можете изменить этот лимит в Параметры-&gt;Дополнительно-&gt;Лимиты-&gt;Лимит длины строки вывода</translation>
+        <source>The %1 of the process running on the testcase #%2 contains more than %3 characters, which is longer than the output length limit, so the process is killed. You can change the output length limit at %4.</source>
+        <translation>%1 из процессов при работе на тесткейсе #%2 содержит более чем %3 символов и превосходит лимит. Процесс убит. Вы можете изменить этот лимит в %4.</translation>
     </message>
     <message>
         <source>Killed</source>
@@ -681,8 +665,14 @@ Git commit hash: %3
         <translation>Ошибка при запуске. Пожалуйста, сперва запустите компиляцию.</translation>
     </message>
     <message>
-        <source>Please install xterm in order to use Detached Run.</source>
-        <translation>Пожалуйста, установите xterm, если вы хотите использовать Отдельный запуск.</translation>
+        <source>Program finished with exit code %1
+Press any key to exit</source>
+        <translation>Программа завершилась с кодом %1
+Нажмите на любую клавишу для выхода</translation>
+    </message>
+    <message>
+        <source>Failed to start detached execution. Please check your terminal emulator settings in %1.</source>
+        <translation>Не удалось запустить отдельно. Пожалуйста, проверьте настройки вашего эмулятора терминала в %1.</translation>
     </message>
 </context>
 <context>
@@ -758,8 +748,8 @@ Git commit hash: %3
         <translation>Форматирование завершено</translation>
     </message>
     <message>
-        <source>The format process didn&apos;t finish in 2 seconds. This is probably because the clang-format binary is not found by CP Editor. You can set the path to clang-format in Preferences-&gt;Extensions-&gt;Clang Format.</source>
-        <translation>Процесс форматировния не завершился за 2 секунды. Возможно исполняемый файл clang-format не найден CP Editor&apos;ом. Вы можете установить путь к clang-format в Параметры-&gt;Расширения-&gt;Clang Format.</translation>
+        <source>The format process didn&apos;t finish in 2 seconds. This is probably because the clang-format binary is not found by CP Editor. You can set the path to clang-format at %1.</source>
+        <translation>Процесс форматировния не завершился за 2 секунды. Возможно исполняемый файл clang-format не найден CP Editor&apos;ом. Вы можете установить путь к clang-format в %1.</translation>
     </message>
     <message>
         <source>The format command is: %1 %2</source>
@@ -776,10 +766,6 @@ Git commit hash: %3
 </context>
 <context>
     <name>Extensions::CompanionServer</name>
-    <message>
-        <source>Companion</source>
-        <translation>Companion</translation>
-    </message>
     <message>
         <source>Server is closed</source>
         <translation>Сервер не доступен</translation>
@@ -818,8 +804,8 @@ Git commit hash: %3
         <translation>Langauge server выдает ошибку. Пожалуйста, проверьте логи.</translation>
     </message>
     <message>
-        <source>Failed to start LSP Process. Have you set the path to the Language Server program in Preferences-&gt;Extensions-&gt;Language Server?</source>
-        <translation>Ошибка при старте Процесса LSP. Вы установили путь к программе Language Server в Параметры-&gt;Расширения-&gt;Language Server?</translation>
+        <source>Failed to start LSP Process. Have you set the path to the Language Server program at %1?</source>
+        <translation>Ошибка при старте Процесса LSP. Вы установили путь к программе Language Server в %1?</translation>
     </message>
     <message>
         <source>LSP Process timed out</source>
@@ -991,8 +977,8 @@ p, li { white-space: pre-wrap; }
         <translation>Открыть файл</translation>
     </message>
     <message>
-        <source>The file [%1] contains more than %2 characters, so it&apos;s not opened. You can change the open file length limit in Preferences-&gt;Advanced-&gt;Limits-&gt;Open File Length Limit</source>
-        <translation>Файл [%1] содержит более чем %2 символов и он не был открыт. Вы можете установить лимит количества символов в файле в Параметрах-&gt;Дополонительно-&gt;Лимиты-&gt;Лмиит символов в открываемом файле</translation>
+        <source>The file [%1] contains more than %2 characters, so it&apos;s not opened. You can change the open file length limit at %3.</source>
+        <translation>Файл [%1] содержит более чем %2 символов и он не был открыт. Вы можете установить лимит количества символов в файле в %3.</translation>
     </message>
     <message>
         <source>Save File</source>
@@ -1053,7 +1039,7 @@ Do you want to reload it?</source>
         <translation>Строка %1, символ %2</translation>
     </message>
     <message>
-        <source>%1 lines, %2 charachters selected</source>
+        <source>%1 lines, %2 characters selected</source>
         <translation>Выбрано %1 линей, %2 символов</translation>
     </message>
     <message>
@@ -1121,8 +1107,8 @@ Do you want to reload it?</source>
         <translation>Превышен лимит времени выполнения программы (TLE)</translation>
     </message>
     <message>
-        <source>The %1 of the process running on the testcase #%2 contains more than %3 characters, which is longer than the output length limit, so the process is killed. You can change the output length limit in Preferences-&gt;Advanced-&gt;Limits-&gt;Output Length Limit</source>
-        <translation>Процесс %1 на тесткейсе #%2 содержит более %3 символов, что превосходит лимит длины. Процесс будет убит. Вы можете изменить лимит длины выходного файла в Параметры&gt;Дополнительно-&gt;Лимиты-&gt;Лимит длины выходного файла</translation>
+        <source>The %1 of the process running on the testcase #%2 contains more than %3 characters, which is longer than the output length limit, so the process is killed. You can change the output length limit at %4.</source>
+        <translation>Процесс %1 на тесткейсе #%2 содержит более %3 символов, что превосходит лимит длины. Процесс будет убит. Вы можете изменить лимит длины выходного файла в %4.</translation>
     </message>
     <message>
         <source>%1 has been killed</source>
@@ -1173,8 +1159,28 @@ Do you want to reload it?</source>
         <translation>Автосохранение</translation>
     </message>
     <message>
-        <source>Have you set a proper name for the main class in your solution? If not, you can set it in Preferences-&gt;Lanugages-&gt;Java-&gt;Java Commands-&gt;Java Class Name.</source>
-        <translation>Вы установили подходящее имя для главного класса в решении? Если нет, Вы можете установить имя в Параметрах-&gt;Языки-&gt;Java-&gt;Java Commands-&gt;Java Class Name.</translation>
+        <source>Have you set a proper name for the main class in your solution? If not, you can set it at %1.</source>
+        <translation>Вы установили подходящее имя для главного класса в решении? Если нет, Вы можете установить имя в at %1.</translation>
+    </message>
+    <message>
+        <source>Unknown attribute: [%1]. Please check the head comments setting at %2.</source>
+        <translation>Неизвестный атрибут: [%1]. Пожалуйста, проверьте настройку комментариев шапки в %2.</translation>
+    </message>
+    <message>
+        <source>Set Compile Command</source>
+        <translation>Установить команду компиляции</translation>
+    </message>
+    <message>
+        <source>Custom compile command for this tab:</source>
+        <translation>Нестандартная команда компиляции для этой вкладки:</translation>
+    </message>
+    <message>
+        <source>Set Time Limit</source>
+        <translation>Установить лимит времени</translation>
+    </message>
+    <message>
+        <source>Custom time limit for this tab: (ms)</source>
+        <translation>Нестандартный лимит времени для этой вкладки: (в мс)</translation>
     </message>
 </context>
 <context>
@@ -1480,6 +1486,10 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     <message>
         <source>Load External File Changes</source>
         <translation>Загрузка внешних файловый изменений</translation>
+    </message>
+    <message>
+        <source>Detached Execution</source>
+        <translation>Отдельный запуск</translation>
     </message>
 </context>
 <context>
@@ -1841,16 +1851,6 @@ This can be overridden for each parenthesis in each language.</source>
 This will be faster but with a little bit more risk of losing the file (with a very small possibility).</source>
         <translation>Всегда используйте QFile вместо QSaveFile для сохранения файлов.
 Это будет быстрее, но с немного большим риском потери файла (с очень малой вероятностью).</translation>
-    </message>
-    <message>
-        <source>Time Limit (ms)</source>
-        <translation>Лимит времени (в мс)</translation>
-    </message>
-    <message>
-        <source>The time limit when executing the program.
-The program will be killed if it doesn&apos;t terminate in the time limit.</source>
-        <translation>Ограничение по времени при выполнении программы.
-Программа будет убита, если она не завершится в срок.</translation>
     </message>
     <message>
         <source>Output Length Limit</source>
@@ -2415,6 +2415,90 @@ A loaded test case will be elided and read-only if it&apos;s too long.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Terminal Arguments</source>
+        <translation type="unfinished">Аргументы терминала</translation>
+    </message>
+    <message>
+        <source>Terminal Program</source>
+        <translation>Программа терминала</translation>
+    </message>
+    <message>
+        <source>The terminal emulator to use when running in detached mode.
+This is usually the name or the path of the terminal emulator.
+Some possible values are konsole, gnome-terminal, xfce-terminal, xterm or any other terminal emulator program.</source>
+        <translation>Эмулятор терминала используемый при отдельном запуске.
+Это, обычно, название или путь к эмулятору терминала.
+Некоторые возможные значения: konsole, gnome-terminal, xfce-terminal, xterm или некоторые другие эмуляторы терминала.</translation>
+    </message>
+    <message>
+        <source>Arguments used to execute a given command in the terminal emulator.
+This is &quot;-e&quot; for most terminal emulators, including konsole, xterm, xfce-terminal but can be &quot;--&quot; for gnome-terminal.
+Consult your terminal emulator for the suitable arguments.</source>
+        <translation>Аргументы используемые для запуска определенной команды в эмуляторе терминала.
+Это &quot;-e&quot; для большинства эмуляторов терминала, включая konsole, xterm, xfce-terminal, но может быть &quot;--&quot; для gnome-terminal.
+Уточните аргументы, доступные для вашего эмулятора терминала.</translation>
+    </message>
+    <message>
+        <source>Head Comments</source>
+        <translation>Комментарии в шапке</translation>
+    </message>
+    <message>
+        <source>Save Test Case To A File</source>
+        <translation>Сохранить тесткейс в файл</translation>
+    </message>
+    <message>
+        <source>The comments added at the head of the code when parsing a problem.
+Available place holders are:
+${time}: the time when parsing the problem
+${json.X.Y}: an attribute of the data provided by Competitive Companion, you can read more at https://github.com/jmerle/competitive-companion#explanation</source>
+        <translation>Комментарии, добавляемые в шапку кода при парсинге задач.
+Доступные заполнители:
+${time}: время парсинга задачи
+${json.X.Y}: атрибут данных, предоставляемых Competitive Companion&apos;ом. Вы можете узанть большее на https://github.com/jmerle/competitive-companion#explanation</translation>
+    </message>
+    <message>
+        <source>Time format for the head comments</source>
+        <translation>Формат времени для комментариев в шарке</translation>
+    </message>
+    <message>
+        <source>The format of the ${time} place holder in the head comments.
+You can read the Qt documentation for available expressions:
+https://doc.qt.io/qt-5/qdate.html#toString
+https://doc.qt.io/qt-5/qtime.html#toString</source>
+        <translation>Формат времени используемый в комментариев для шапки.
+Вы можете прочитать о дуступных выражениях в документации Qt:
+https://doc.qt.io/qt-5/qdate.html#toString
+https://doc.qt.io/qt-5/qtime.html#toString</translation>
+    </message>
+    <message>
+        <source>Add &quot;Powered By CP Editor&quot; in the head comments</source>
+        <translation>Добавить &quot;Powered By CP Editor&quot; в комментарии шапки</translation>
+    </message>
+    <message>
+        <source>Add a line saying &quot;Powered By CP Editor&quot; in the head comments.
+This doesn&apos;t cost you anyting, but helps more people to know CP Editor.</source>
+        <translation>Добавить строку &quot;Powered By CP Editor&quot; в комментарии шапки
+Это ничего Вам не стоит, но помогает многим людям узнавать о CP Editor.</translation>
+    </message>
+    <message>
+        <source>Default Time Limit (ms)</source>
+        <translation>Стандартный лимит времни (в мс)</translation>
+    </message>
+    <message>
+        <source>The default time limit when executing the program.
+The program will be killed if it doesn&apos;t terminate in the time limit.</source>
+        <translation>Стандартный лимит времени выполнения при запуске программы.
+Программа будет убита, если будет превышен лимит выполнения.</translation>
+    </message>
+    <message>
+        <source>Use the time limit from Competitive Companion</source>
+        <translation>Исопльзовать лимит времени из Competitive Companion</translation>
+    </message>
+    <message>
+        <source>Use the time limit parsed by Competitive Companion as the time limit of the corresponding tab.</source>
+        <translation>Использовать лимит времени взятым Competitive Companion-ом как лимит времени соответствующей вкладки.</translation>
+    </message>
+    <message>
         <source>Code Editor Theme</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2506,6 +2590,73 @@ A loaded test case will be elided and read-only if it&apos;s too long.</source>
         <source>Failed to open [%1]. Do I have read permission?</source>
         <translation>Не удалось открыть файл [%1]. Предоставлен ли доступ к чтению фалйла?</translation>
     </message>
+    <message>
+        <source>Reveal %1 in Finder</source>
+        <translation>Показать %1 в Finder</translation>
+    </message>
+    <message>
+        <source>Reveal %1 in Explorer</source>
+        <translation>Показать %1 в Проводнике</translation>
+    </message>
+    <message>
+        <source>Open Containing Folder of %1</source>
+        <translation>Открыть папку содержащую %1</translation>
+    </message>
+    <message>
+        <source>Reveal %1 in File Manager</source>
+        <translation>Показать %1 в Файловом менеджере</translation>
+    </message>
+</context>
+<context>
+    <name>Widgets::ContestDialog</name>
+    <message>
+        <source>Create a new contest</source>
+        <translation>Создать новое соревнование</translation>
+    </message>
+    <message>
+        <source>Main Directory</source>
+        <translation>Главная директория</translation>
+    </message>
+    <message>
+        <source>Subdirectory</source>
+        <translation>Поддиректория</translation>
+    </message>
+    <message>
+        <source>Number of Problems</source>
+        <translation>Число задач</translation>
+    </message>
+    <message>
+        <source>Main Directory doesn&apos;t exist</source>
+        <translation>Главная директория не существует</translation>
+    </message>
+    <message>
+        <source>The Main Directory [%1] doesn&apos;t exist. Do you want to create it and continue?</source>
+        <translation>Главная директория [%1] не существует. Вы хотите создать ее и продолжить?</translation>
+    </message>
+    <message>
+        <source>Failed to create directory</source>
+        <translation>Ошибка при создании директории</translation>
+    </message>
+    <message>
+        <source>Failed to create the directory [%1].</source>
+        <translation>Ошибка при создании директории [%1].</translation>
+    </message>
+    <message>
+        <source>Contest Details</source>
+        <translation>Детали соревнования</translation>
+    </message>
+    <message>
+        <source>Save Path</source>
+        <translation>Сохранить путь</translation>
+    </message>
+    <message>
+        <source>Language</source>
+        <translation>Язык</translation>
+    </message>
+    <message>
+        <source>Choose Main Directory</source>
+        <translation>Выбрать главную директорию</translation>
+    </message>
 </context>
 <context>
     <name>Widgets::DiffViewer</name>
@@ -2577,8 +2728,8 @@ A loaded test case will be elided and read-only if it&apos;s too long.</source>
         <translation>Отображение различий[%1]</translation>
     </message>
     <message>
-        <source>The output/expected contains more than %1 characters, HTML diff viewer is disabled. You can change the length limit in Preferences-&gt;Advanced-&gt;Limits-&gt;HTML Diff Viewer Length Limit</source>
-        <translation>Вывод/ответ содержит более %1 знаков, HTML diff viewer отключён. Вы можете изменить лимит длины в Параметры-&gt;Дополнительно-&gt;Лимиты-&gt;Лимит длины HTML Diff Viewer</translation>
+        <source>The output/expected contains more than %1 characters, HTML diff viewer is disabled. You can change the length limit at %2.</source>
+        <translation>Вывод/ответ содержит более %1 знаков, HTML diff viewer отключён. Вы можете изменить лимит длины в %2.</translation>
     </message>
 </context>
 <context>
@@ -2596,14 +2747,6 @@ A loaded test case will be elided and read-only if it&apos;s too long.</source>
         <translation>Изменить тесткейс</translation>
     </message>
     <message>
-        <source>Preferences-&gt;Advanced-&gt;Limits-&gt;Output Display Length Limit</source>
-        <translation>Параметры-&gt;Дополнительный-&gt;Лимиты-&gt;Лимит длины выводимых данных</translation>
-    </message>
-    <message>
-        <source>Preferences-&gt;Advanced-&gt;Limits-&gt;Load Test Case Length Limit</source>
-        <translation>Параметры-&gt;Дополнительный-&gt;Лимиты-&gt;Лимит длины тесткейсов</translation>
-    </message>
-    <message>
         <source>Input</source>
         <translation>Ввод</translation>
     </message>
@@ -2616,12 +2759,20 @@ A loaded test case will be elided and read-only if it&apos;s too long.</source>
         <translation>Ожидаемо</translation>
     </message>
     <message>
-        <source>Now the test case editor is read-only. You can set the length limit in %1.</source>
+        <source>Now the test case editor is read-only. You can set the length limit at %1.</source>
         <translation>Сейчас тесткейсы доступны только для чтения. Вы можете установить лимит длины в %1.</translation>
     </message>
     <message>
         <source>Only the first %1 characters are shown.</source>
         <translation>Отображены только первые %1 символов.</translation>
+    </message>
+    <message>
+        <source>Save to file</source>
+        <translation>Сохранить в файл</translation>
+    </message>
+    <message>
+        <source>Save test case to file</source>
+        <translation>Сохранить тесткейс в файл</translation>
     </message>
 </context>
 <context>
@@ -2645,10 +2796,6 @@ A loaded test case will be elided and read-only if it&apos;s too long.</source>
     <message>
         <source>Add Checker</source>
         <translation>Добавить чекер</translation>
-    </message>
-    <message>
-        <source>Wrong Answer / Accepted / Total</source>
-        <translation>Неправильный ответ / Полное решение / Всего</translation>
     </message>
     <message>
         <source>Add a custom testlib checker</source>
@@ -2675,8 +2822,8 @@ A loaded test case will be elided and read-only if it&apos;s too long.</source>
         <translation>Вводные данные [%1] загружены</translation>
     </message>
     <message>
-        <source>The following files are not loaded because they are not matched:%1. You can set the matching rules at Preferences-&gt;File Path-&gt;Testcases-&gt;Add Testcases From Files Rules.</source>
-        <translation>Следующие файлы не загружаются, потому что они не совпадают:%1. Можно установить правила соответствия в Параметры-&gt;Путь файла-&gt;Тесткейсы-&gt;Добавить тесткейсы по правилам файлов.</translation>
+        <source>The following files are not loaded because they are not matched:%1. You can set the matching rules at %2.</source>
+        <translation>Следующие файлы не загружаются, потому что они не совпадают:%1. Можно установить правила соответствия в %2.</translation>
     </message>
     <message>
         <source>Remove Empty</source>
@@ -2773,6 +2920,10 @@ A loaded test case will be elided and read-only if it&apos;s too long.</source>
     <message>
         <source>Testcases</source>
         <translation>Тесткейсы</translation>
+    </message>
+    <message>
+        <source>Unaccepted / Accepted / Total</source>
+        <translation>Не принято / Принято / Всего</translation>
     </message>
 </context>
 <context>
