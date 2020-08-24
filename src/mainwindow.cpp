@@ -1243,7 +1243,7 @@ void MainWindow::updateCursorInfo()
         int lineEnd = cursor.blockNumber();
         int selectionLines = lineEnd - lineStart + 1;
         if (selectionLines > 1)
-            info = tr("%1 lines, %2 charachters selected").arg(selectionLines).arg(selection.length());
+            info = tr("%1 lines, %2 characters selected").arg(selectionLines).arg(selection.length());
         else
             info = tr("%1 characters selected").arg(selection.length());
     }
