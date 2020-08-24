@@ -85,14 +85,14 @@ UpdateChecker::UpdateMetaInformation UpdateChecker::toMetaInformation(const QJso
         if (assetName.contains("windows") && !assetName.contains("portable"))
 #endif
         {
-            result.assetDownloadUrl = assetDownloadUrl["browser_download_url"].toString();
+            result.assetDownloadUrl = asset["browser_download_url"].toString();
             break;
         }
 
 #elif defined(Q_OS_MACOS)
         if (assetName.contains("macos"))
         {
-            result.assetDownloadUrl = assetDownloadUrl["browser_download_url"].toString();
+            result.assetDownloadUrl = asset["browser_download_url"].toString();
             break;
         }
 #else
