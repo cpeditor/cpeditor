@@ -19,6 +19,7 @@
 #define MAINWINDOW_HPP
 
 #include <QMainWindow>
+#include "fakevimhandler.h"
 
 class MessageLogger;
 class QCodeEditor;
@@ -220,6 +221,7 @@ class MainWindow : public QMainWindow
 
     QPushButton *submitToCodeforces = nullptr;
     Extensions::CFTool *cftool = nullptr;
+    FakeVim::Internal::FakeVimHandler* fakevimHandler = nullptr;
 
     Widgets::TestCases *testcases = nullptr;
 

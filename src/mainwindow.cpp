@@ -44,6 +44,7 @@
 #include <QTemporaryDir>
 #include <QTextBlock>
 #include <QTimer>
+#include <Extensions/FakeVimProxy.hpp>
 #include <generated/SettingsHelper.hpp>
 #include <generated/version.hpp>
 
@@ -100,6 +101,7 @@ MainWindow::~MainWindow()
     delete formatter;
     delete fileWatcher;
     delete editor;
+    delete fakevimHandler;
     delete log;
 }
 
@@ -116,6 +118,12 @@ void MainWindow::setTestCases()
 void MainWindow::setEditor()
 {
     editor = new QCodeEditor();
+    fakevimHandler = new FakeVim::Internal::FakeVimHandler(editor, this);
+
+    Extensions::FakeVimProxy::connectSignals(fakevimHandler, this, editor, filePathOrTmpPath());
+    Extensions::FakeVimProxy::initHandler(fakevimHandler);
+    Extensions::FakeVimProxy::clearUndoRedo(editor);
+
     editor->setSizePolicy(QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Expanding);
     editor->setAcceptDrops(false);
 
@@ -128,6 +136,8 @@ void MainWindow::setEditor()
     // a selection (and the cursor is at the begin of the selection)
     connect(editor, SIGNAL(cursorPositionChanged()), this, SLOT(updateCursorInfo()));
     connect(editor, SIGNAL(selectionChanged()), this, SLOT(updateCursorInfo()));
+
+
 }
 
 void MainWindow::setupCore()
