@@ -1,0 +1,4 @@
+#!/bin/bash -e
+ln -fs /usr/share/cpeditor/cpeditor.sh /usr/bin/cpeditor
+chmod a+x /usr/bin/cpeditor
+
