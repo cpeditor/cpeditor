@@ -16,7 +16,7 @@
  */
 
 /* Most of the code in this file is under the following copyright
- 
+
     Copyright (c) 2017, Lukas Holecek <hluk@email.cz>
     This file is part of CopyQ.
     CopyQ is free software: you can redistribute it and/or modify
@@ -51,10 +51,10 @@ class FakeVimProxy : public QObject
   public:
     FakeVimProxy(QWidget *widget, QMainWindow *mw, QObject *parent);
     void openFile(QString const &filename);
-    static void initHandler(FakeVim::Internal::FakeVimHandler* handler);
-    static void clearUndoRedo(QWidget*);
-    static void connectSignals(FakeVim::Internal::FakeVimHandler* handler, QMainWindow* mainwindow, QWidget* widget, QString const& fileToEdit);
-    
+    static void initHandler(FakeVim::Internal::FakeVimHandler *handler);
+    static void clearUndoRedo(QWidget *);
+    static void connectSignals(FakeVim::Internal::FakeVimHandler *handler, QMainWindow *mainwindow, QWidget *widget,
+                               QString const &fileToEdit);
 
   signals:
     void handleInput(QString const &key);
@@ -96,5 +96,5 @@ class FakeVimProxy : public QObject
     QList<QTextEdit::ExtraSelection> m_clearSelection;
     QList<QTextEdit::ExtraSelection> m_blockSelection;
 };
-}
+} // namespace Extensions
 #endif
