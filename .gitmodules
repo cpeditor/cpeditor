@@ -13,3 +13,6 @@
 [submodule "third_party/testlib"]
 	path = third_party/testlib
 	url = https://github.com/MikeMirzayanov/testlib
+[submodule "third_party/FakeVim"]
+	path = third_party/FakeVim
+	url = https://github.com/cpeditor/FakeVim
