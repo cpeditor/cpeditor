@@ -488,7 +488,7 @@ void FakeVimProxy::clearUndoRedo(QWidget *editor)
 }
 
 void FakeVimProxy::connectSignals(FakeVim::Internal::FakeVimHandler *handler, QMainWindow *mainWindow, QWidget *editor,
-                    const QString &fileToEdit)
+                                  const QString &fileToEdit)
 {
     FakeVimProxy *proxy = new FakeVimProxy(editor, mainWindow, handler);
 

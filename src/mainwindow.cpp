@@ -30,6 +30,7 @@
 #include "Util/FileUtil.hpp"
 #include "Util/QCodeEditorUtil.hpp"
 #include "Widgets/TestCases.hpp"
+#include <Extensions/FakeVimProxy.hpp>
 #include <QCodeEditor>
 #include <QFileSystemWatcher>
 #include <QFontDialog>
@@ -44,7 +45,6 @@
 #include <QTemporaryDir>
 #include <QTextBlock>
 #include <QTimer>
-#include <Extensions/FakeVimProxy.hpp>
 #include <generated/SettingsHelper.hpp>
 #include <generated/version.hpp>
 
@@ -136,8 +136,6 @@ void MainWindow::setEditor()
     // a selection (and the cursor is at the begin of the selection)
     connect(editor, SIGNAL(cursorPositionChanged()), this, SLOT(updateCursorInfo()));
     connect(editor, SIGNAL(selectionChanged()), this, SLOT(updateCursorInfo()));
-
-
 }
 
 void MainWindow::setupCore()
