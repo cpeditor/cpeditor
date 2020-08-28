@@ -45,6 +45,7 @@
 #include <QTextEdit>
 #include <QTextStream>
 #include <QWidget>
+#include <QLabel>
 
 namespace Extensions
 {
@@ -53,6 +54,9 @@ using _ = QLatin1String;
 FakeVimProxy::FakeVimProxy(QWidget *widget, QMainWindow *mw, QObject *parent)
     : QObject(parent), m_widget(widget), m_mainWindow(mw)
 {
+	m_statusData = new QLabel(m_mainWindow);
+	m_statusMessage = new QLabel(m_mainWindow);
+	setStatusBar();
 }
 
 void FakeVimProxy::openFile(QString const &fileName)
@@ -63,8 +67,7 @@ void FakeVimProxy::openFile(QString const &fileName)
 
 void FakeVimProxy::changeStatusData(QString const &info)
 {
-    m_statusData = info;
-    updateStatusBar();
+    m_statusData->setText(info);
 }
 void FakeVimProxy::highlightMatches(QString const &pattern)
 {
@@ -131,8 +134,7 @@ void FakeVimProxy::highlightMatches(QString const &pattern)
 
 void FakeVimProxy::changeStatusMessage(QString const &contents, int cursorPos)
 {
-    m_statusMessage = cursorPos == -1 ? contents : contents.left(cursorPos) + QChar(10073) + contents.mid(cursorPos);
-    updateStatusBar();
+    m_statusMessage->setText(cursorPos == -1 ? contents : contents.left(cursorPos) + QChar(10073) + contents.mid(cursorPos));
 }
 
 void FakeVimProxy::changeExtraInformation(QString const &info)
@@ -140,11 +142,10 @@ void FakeVimProxy::changeExtraInformation(QString const &info)
     QMessageBox::information(m_widget, tr("Information"), info);
 }
 
-void FakeVimProxy::updateStatusBar()
+void FakeVimProxy::setStatusBar()
 {
-    int slack = 80 - m_statusMessage.size() - m_statusData.size();
-    QString msg = m_statusMessage + QString(slack, QLatin1Char(' ')) + m_statusData;
-    m_mainWindow->statusBar()->showMessage(msg);
+    m_mainWindow->statusBar()->addPermanentWidget(m_statusData);
+    m_mainWindow->statusBar()->addWidget(m_statusMessage);
 }
 
 void FakeVimProxy::handleExCommand(bool *handled, FakeVim::Internal::ExCommand const &cmd)
@@ -300,7 +301,7 @@ void FakeVimProxy::indentRegion(int beginBlock, int endBlock, QChar typedChar)
     }
     Q_ASSERT(doc);
 
-    const int indentSize = theFakeVimSetting(FakeVim::Internal::ConfigShiftWidth)->value().toInt();
+    const int indentSize = FakeVim::Internal::theFakeVimSetting(FakeVim::Internal::ConfigShiftWidth)->value().toInt();
 
     QTextBlock startBlock = doc->findBlockByNumber(beginBlock);
 

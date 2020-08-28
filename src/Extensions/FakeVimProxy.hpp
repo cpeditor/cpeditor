@@ -41,6 +41,7 @@
 class QStatusBar;
 class QMainWindow;
 class QString;
+class QLabel;
 
 namespace Extensions
 {
@@ -64,7 +65,6 @@ class FakeVimProxy : public QObject
     void highlightMatches(QString const &);
     void changeStatusMessage(QString const &, int);
     void changeExtraInformation(QString const &);
-    void updateStatusBar();
     void handleExCommand(bool *, const FakeVim::Internal::ExCommand &);
     void requestSetBlockSelection(QTextCursor const &);
     void requestDisableBlockSelection();
@@ -81,6 +81,7 @@ class FakeVimProxy : public QObject
     bool wantQuit(FakeVim::Internal::ExCommand const &);
     bool save();
     void cancel();
+    void setStatusBar();
     void invalidate();
     bool hasChanges();
     QTextDocument *document() const;
@@ -88,8 +89,8 @@ class FakeVimProxy : public QObject
 
     QWidget *m_widget;
     QMainWindow *m_mainWindow;
-    QString m_statusMessage;
-    QString m_statusData;
+    QLabel* m_statusMessage = nullptr;
+    QLabel* m_statusData = nullptr;
     QString m_fileName;
 
     QList<QTextEdit::ExtraSelection> m_searchSelection;
