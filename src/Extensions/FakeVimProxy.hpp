@@ -89,8 +89,8 @@ class FakeVimProxy : public QObject
 
     QWidget *m_widget;
     QMainWindow *m_mainWindow;
-    QLabel* m_statusMessage = nullptr;
-    QLabel* m_statusData = nullptr;
+    QLabel *m_statusMessage = nullptr;
+    QLabel *m_statusData = nullptr;
     QString m_fileName;
 
     QList<QTextEdit::ExtraSelection> m_searchSelection;
