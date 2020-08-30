@@ -101,8 +101,8 @@ MainWindow::~MainWindow()
     delete formatter;
     delete fileWatcher;
     delete editor;
-    if(fakevimHandler != nullptr)
-	    delete fakevimHandler;
+    if (fakevimHandler != nullptr)
+        delete fakevimHandler;
     delete log;
 }
 
@@ -646,7 +646,7 @@ void MainWindow::applySettings(const QString &pagePath, bool shouldPerformDigoni
         editor->setVimCursor(SettingsHelper::isFakeVimEnable());
 
         if (!SettingsHelper::isFakeVimEnable())
-	    setStatusBar(nullptr);
+            setStatusBar(nullptr);
 
         if (SettingsHelper::isFakeVimEnable() && fakevimHandler == nullptr)
         {
@@ -655,12 +655,12 @@ void MainWindow::applySettings(const QString &pagePath, bool shouldPerformDigoni
             Extensions::FakeVimProxy::connectSignals(fakevimHandler, this, editor, filePathOrTmpPath());
             Extensions::FakeVimProxy::initHandler(fakevimHandler);
         }
-	else if(fakevimHandler != nullptr)
-	{
-		delete fakevimHandler;
-		fakevimHandler = nullptr;
-	}
-	Extensions::FakeVimProxy::clearUndoRedo(editor);
+        else if (fakevimHandler != nullptr)
+        {
+            delete fakevimHandler;
+            fakevimHandler = nullptr;
+        }
+        Extensions::FakeVimProxy::clearUndoRedo(editor);
     }
 }
 

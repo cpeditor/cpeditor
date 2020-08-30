@@ -46,7 +46,6 @@
 #include <QTextEdit>
 #include <QTextStream>
 #include <QWidget>
-#include <QLabel>
 #include <generated/SettingsHelper.hpp>
 #include <mainwindow.hpp>
 namespace Extensions
@@ -391,10 +390,10 @@ bool FakeVimProxy::wantQuit(const FakeVim::Internal::ExCommand &cmd)
 
 bool FakeVimProxy::save()
 {
-	auto* window = qobject_cast<MainWindow*>(m_mainWindow);
-	if(window)
-	{
-	}
+    auto *window = qobject_cast<MainWindow *>(m_mainWindow);
+    if (window)
+    {
+    }
     if (!hasChanges())
         return true;
 
