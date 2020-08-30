@@ -101,7 +101,8 @@ MainWindow::~MainWindow()
     delete formatter;
     delete fileWatcher;
     delete editor;
-    delete fakevimHandler;
+    if(fakevimHandler != nullptr)
+	    delete fakevimHandler;
     delete log;
 }
 
@@ -118,11 +119,6 @@ void MainWindow::setTestCases()
 void MainWindow::setEditor()
 {
     editor = new QCodeEditor();
-    fakevimHandler = new FakeVim::Internal::FakeVimHandler(editor, this);
-
-    Extensions::FakeVimProxy::connectSignals(fakevimHandler, this, editor, filePathOrTmpPath());
-    Extensions::FakeVimProxy::initHandler(fakevimHandler);
-    Extensions::FakeVimProxy::clearUndoRedo(editor);
 
     editor->setSizePolicy(QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Expanding);
     editor->setAcceptDrops(false);
@@ -642,6 +638,29 @@ void MainWindow::applySettings(const QString &pagePath, bool shouldPerformDigoni
         }
         else
             autoSaveTimer->stop();
+    }
+
+    if (pagePath.isEmpty() || pagePath == "Extensions/Vim Emulation")
+    {
+        editor->setCursorWidth(SettingsHelper::isFakeVimEnable() ? 0 : 1);
+        editor->setVimCursor(SettingsHelper::isFakeVimEnable());
+
+        if (!SettingsHelper::isFakeVimEnable())
+	    setStatusBar(nullptr);
+
+        if (SettingsHelper::isFakeVimEnable() && fakevimHandler == nullptr)
+        {
+            fakevimHandler = new FakeVim::Internal::FakeVimHandler(editor, this);
+
+            Extensions::FakeVimProxy::connectSignals(fakevimHandler, this, editor, filePathOrTmpPath());
+            Extensions::FakeVimProxy::initHandler(fakevimHandler);
+        }
+	else if(fakevimHandler != nullptr)
+	{
+		delete fakevimHandler;
+		fakevimHandler = nullptr;
+	}
+	Extensions::FakeVimProxy::clearUndoRedo(editor);
     }
 }
 

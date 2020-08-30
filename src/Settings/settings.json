@@ -1066,5 +1066,26 @@
         "type": "int",
         "default": 5,
         "notr": true
+    },
+    {
+        "name": "FakeVim/Enable",
+        "desc": "Enable FakeVim emulation",
+	"type": "bool",
+	"tip": "Enable vim Emulation in Code Editor",
+        "notr": true
+    },
+    {
+        "name": "FakeVim/RCLocation",
+	"desc": "Vim RC Location",
+        "type": "QString",
+	"ui": "PathItem",
+        "tip":"Path to your Vim RC file",
+        "notr": true,
+	"depends":
+	[
+		{
+		"name": "FakeVim/Enable"
+		}
+	]
     }
 ]

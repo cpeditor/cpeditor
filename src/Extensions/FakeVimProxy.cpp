@@ -46,7 +46,8 @@
 #include <QTextStream>
 #include <QWidget>
 #include <QLabel>
-
+#include <generated/SettingsHelper.hpp>
+#include <mainwindow.hpp>
 namespace Extensions
 {
 
@@ -388,6 +389,10 @@ bool FakeVimProxy::wantQuit(const FakeVim::Internal::ExCommand &cmd)
 
 bool FakeVimProxy::save()
 {
+	auto* window = qobject_cast<MainWindow*>(m_mainWindow);
+	if(window)
+	{
+	}
     if (!hasChanges())
         return true;
 
@@ -466,10 +471,11 @@ void FakeVimProxy::initHandler(FakeVim::Internal::FakeVimHandler *handler)
     // Set some Vim options.
     handler->handleCommand(_("set expandtab"));
     handler->handleCommand(_("set shiftwidth=8"));
-    handler->handleCommand(_("set tabstop=16"));
+    handler->handleCommand(_("set tabstop=%1").arg(SettingsHelper::getTabWidth()));
     handler->handleCommand(_("set autoindent"));
     handler->handleCommand(_("set smartindent"));
 
+    handler->handleCommand("source " + SettingsHelper::getFakeVimRCLocation());
     handler->installEventFilter();
     handler->setupWidget();
 }
