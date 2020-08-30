@@ -36,6 +36,7 @@
 #include "fakevimhandler.h"
 #include <Extensions/FakeVimProxy.hpp>
 #include <QApplication>
+#include <QLabel>
 #include <QMainWindow>
 #include <QMessageBox>
 #include <QPlainTextEdit>
@@ -55,9 +56,9 @@ using _ = QLatin1String;
 FakeVimProxy::FakeVimProxy(QWidget *widget, QMainWindow *mw, QObject *parent)
     : QObject(parent), m_widget(widget), m_mainWindow(mw)
 {
-	m_statusData = new QLabel(m_mainWindow);
-	m_statusMessage = new QLabel(m_mainWindow);
-	setStatusBar();
+    m_statusData = new QLabel(m_mainWindow);
+    m_statusMessage = new QLabel(m_mainWindow);
+    setStatusBar();
 }
 
 void FakeVimProxy::openFile(QString const &fileName)
@@ -135,7 +136,8 @@ void FakeVimProxy::highlightMatches(QString const &pattern)
 
 void FakeVimProxy::changeStatusMessage(QString const &contents, int cursorPos)
 {
-    m_statusMessage->setText(cursorPos == -1 ? contents : contents.left(cursorPos) + QChar(10073) + contents.mid(cursorPos));
+    m_statusMessage->setText(cursorPos == -1 ? contents
+                                             : contents.left(cursorPos) + QChar(10073) + contents.mid(cursorPos));
 }
 
 void FakeVimProxy::changeExtraInformation(QString const &info)
