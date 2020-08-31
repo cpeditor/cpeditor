@@ -1518,6 +1518,10 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
         <source>Detached Execution</source>
         <translation>Отдельный запуск</translation>
     </message>
+    <message>
+        <source>Vim Emulation</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SettingsInfo</name>
@@ -2528,6 +2532,14 @@ The program will be killed if it doesn&apos;t terminate in the time limit.</sour
     <message>
         <source>Use the time limit parsed by Competitive Companion as the time limit of the corresponding tab.</source>
         <translation>Использовать лимит времени взятым Competitive Companion-ом как лимит времени соответствующей вкладки.</translation>
+    </message>
+    <message>
+        <source>Enable vim Emulation in Code Editor</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Path to your Vim RC file</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
