@@ -72,7 +72,6 @@ void FakeVimProxy::changeStatusData(QString const &info)
 }
 void FakeVimProxy::highlightMatches(QString const &pattern)
 {
-    QTextCursor cur;
     QTextDocument *doc = nullptr;
 
     { // in a block so we don't inadvertently use one of them later
@@ -80,12 +79,10 @@ void FakeVimProxy::highlightMatches(QString const &pattern)
         QTextEdit *editor = qobject_cast<QTextEdit *>(m_widget);
         if (editor)
         {
-            cur = editor->textCursor();
             doc = editor->document();
         }
         else if (plainEditor)
         {
-            cur = plainEditor->textCursor();
             doc = plainEditor->document();
         }
         else
@@ -101,7 +98,7 @@ void FakeVimProxy::highlightMatches(QString const &pattern)
 
     // Highlight matches.
     QRegExp re(pattern);
-    cur = doc->find(re);
+    QTextCursor cur = doc->find(re);
 
     m_searchSelection.clear();
 
