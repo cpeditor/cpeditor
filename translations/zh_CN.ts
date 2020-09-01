@@ -799,26 +799,6 @@ Press any key to exit</source>
         <source>Information</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <source>FakeVim Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Cannot create temporary file: %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Cannot write to file &quot;%1&quot;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>FakeVim Warning</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>File &quot;%1&quot; was changed</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>Extensions::LanguageServer</name>
