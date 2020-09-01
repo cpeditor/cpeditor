@@ -100,6 +100,7 @@ class MainWindow : public QMainWindow
 
     bool isTextChanged() const;
     bool closeConfirm();
+    void closeWindow();
 
     void killProcesses();
     void detachedExecution();
@@ -175,6 +176,7 @@ class MainWindow : public QMainWindow
     void editorTextChanged(MainWindow *window);
     void editorFontChanged();
     void confirmTriggered(MainWindow *widget);
+    void requestWindowClose(MainWindow* window);
     void requestToastMessage(const QString &head, const QString &body);
     void editorLanguageChanged(MainWindow *window);
     void compileOrRunTriggered();

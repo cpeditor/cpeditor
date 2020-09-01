@@ -176,6 +176,8 @@ class AppWindow : public QMainWindow
 
     void onConfirmTriggered(MainWindow *widget);
 
+    void onWindowCloseRequested(MainWindow* window);
+
     void onTabContextMenuRequested(const QPoint &pos);
 
     void onEditorTextChanged(MainWindow *window);
@@ -234,7 +236,7 @@ class AppWindow : public QMainWindow
     void saveSettings();
     QVector<QShortcut *> hotkeyObjects;
     void maybeSetHotkeys();
-    bool closeTab(int index);
+    bool closeTab(int index, bool noConfirmQuit);
     void openTab(MainWindow *window);
     void openTab(const QString &path);
     void openTab(const MainWindow::EditorStatus &status, bool duplicate = false);

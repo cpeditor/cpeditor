@@ -1154,6 +1154,12 @@ bool MainWindow::closeConfirm()
     return confirmed;
 }
 
+void MainWindow::closeWindow()
+{
+    fakevimHandler->disconnectFromEditor();
+    emit requestWindowClose(this);
+}
+
 void MainWindow::on_clearMessagesButton_clicked()
 {
     log->clear();

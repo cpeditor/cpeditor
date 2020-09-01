@@ -387,63 +387,41 @@ bool FakeVimProxy::wantQuit(const FakeVim::Internal::ExCommand &cmd)
 
 bool FakeVimProxy::save()
 {
+    if(!hasChanges()) return true;
     auto *window = qobject_cast<MainWindow *>(m_mainWindow);
     if (window)
-    {
-    }
-    if (!hasChanges())
-        return true;
+        return window->save(true, "Vim Save");
 
-    QTemporaryFile tmpFile;
-    if (!tmpFile.open())
-    {
-        QMessageBox::critical(m_widget, tr("FakeVim Error"),
-                              tr("Cannot create temporary file: %1").arg(tmpFile.errorString()));
-        return false;
-    }
-
-    QTextStream ts(&tmpFile);
-    ts << content();
-    ts.flush();
-
-    QFile::remove(m_fileName);
-    if (!QFile::copy(tmpFile.fileName(), m_fileName))
-    {
-        QMessageBox::critical(m_widget, tr("FakeVim Error"), tr("Cannot write to file \"%1\"").arg(m_fileName));
-        return false;
-    }
-
-    return true;
+    return false;
 }
 
 void FakeVimProxy::cancel()
 {
-    if (hasChanges())
+    auto* window = qobject_cast<MainWindow*>(m_mainWindow);
+    if(window)
     {
-        QMessageBox::critical(m_widget, tr("FakeVim Warning"), tr("File \"%1\" was changed").arg(m_fileName));
-    }
-    else
-    {
-        invalidate();
+        if(hasChanges())
+        {
+            if(window->closeConfirm())
+                window->closeWindow();
+        }
+        else
+            invalidate();
     }
 }
-
 void FakeVimProxy::invalidate()
 {
-    QApplication::quit();
+    auto* window = qobject_cast<MainWindow*>(m_mainWindow);
+    if(window)
+        window->closeWindow();
 }
 
 bool FakeVimProxy::hasChanges()
 {
-    if (m_fileName.isEmpty() && content().isEmpty())
-        return false;
-
-    QFile f(m_fileName);
-    if (!f.open(QIODevice::ReadOnly))
-        return true;
-
-    QTextStream ts(&f);
-    return content() != ts.readAll();
+    auto* window = qobject_cast<MainWindow*>(m_mainWindow);
+    if(window)
+        return window->isTextChanged();
+    return false;
 }
 
 QTextDocument *FakeVimProxy::document() const

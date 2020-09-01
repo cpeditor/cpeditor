@@ -345,11 +345,11 @@ void AppWindow::maybeSetHotkeys()
     }
 }
 
-bool AppWindow::closeTab(int index)
+bool AppWindow::closeTab(int index, bool noConfirmQuit = false)
 {
     LOG_INFO(INFO_OF(index));
     auto tmp = windowAt(index);
-    if (tmp->closeConfirm())
+    if ( noConfirmQuit || tmp->closeConfirm())
     {
         ui->tabWidget->removeTab(index);
         onEditorFileChanged();
@@ -370,6 +370,7 @@ void AppWindow::saveSettings()
 void AppWindow::openTab(MainWindow *window)
 {
     connect(window, SIGNAL(confirmTriggered(MainWindow *)), this, SLOT(onConfirmTriggered(MainWindow *)));
+    connect(window, SIGNAL(requestWindowClose(MainWindow*)), this, SLOT(onWindowCloseRequested(MainWindow*)));
     connect(window, SIGNAL(editorFileChanged()), this, SLOT(onEditorFileChanged()));
     connect(window, SIGNAL(requestUpdateLanguageServerFilePath(MainWindow *, const QString &)), this,
             SLOT(updateLanguageServerFilePath(MainWindow *, const QString &)));
@@ -1326,6 +1327,13 @@ void AppWindow::onConfirmTriggered(MainWindow *widget)
     int index = ui->tabWidget->indexOf(widget);
     if (index != -1)
         ui->tabWidget->setCurrentIndex(index);
+}
+
+void AppWindow::onWindowCloseRequested(MainWindow *window)
+{
+    int index = ui->tabWidget->indexOf(window);
+    if(index != -1)
+        closeTab(index, true);
 }
 
 void AppWindow::onTabContextMenuRequested(const QPoint &pos)
