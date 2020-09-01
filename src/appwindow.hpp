@@ -176,7 +176,7 @@ class AppWindow : public QMainWindow
 
     void onConfirmTriggered(MainWindow *widget);
 
-    void onWindowCloseRequested(MainWindow* window);
+    void onWindowCloseRequested(MainWindow *window);
 
     void onTabContextMenuRequested(const QPoint &pos);
 

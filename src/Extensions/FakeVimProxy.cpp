@@ -387,7 +387,8 @@ bool FakeVimProxy::wantQuit(const FakeVim::Internal::ExCommand &cmd)
 
 bool FakeVimProxy::save()
 {
-    if(!hasChanges()) return true;
+    if (!hasChanges())
+        return true;
     auto *window = qobject_cast<MainWindow *>(m_mainWindow);
     if (window)
         return window->save(true, "Vim Save");
@@ -397,12 +398,12 @@ bool FakeVimProxy::save()
 
 void FakeVimProxy::cancel()
 {
-    auto* window = qobject_cast<MainWindow*>(m_mainWindow);
-    if(window)
+    auto *window = qobject_cast<MainWindow *>(m_mainWindow);
+    if (window)
     {
-        if(hasChanges())
+        if (hasChanges())
         {
-            if(window->closeConfirm())
+            if (window->closeConfirm())
                 window->closeWindow();
         }
         else
@@ -411,15 +412,15 @@ void FakeVimProxy::cancel()
 }
 void FakeVimProxy::invalidate()
 {
-    auto* window = qobject_cast<MainWindow*>(m_mainWindow);
-    if(window)
+    auto *window = qobject_cast<MainWindow *>(m_mainWindow);
+    if (window)
         window->closeWindow();
 }
 
 bool FakeVimProxy::hasChanges()
 {
-    auto* window = qobject_cast<MainWindow*>(m_mainWindow);
-    if(window)
+    auto *window = qobject_cast<MainWindow *>(m_mainWindow);
+    if (window)
         return window->isTextChanged();
     return false;
 }
