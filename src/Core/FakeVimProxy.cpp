@@ -503,4 +503,4 @@ void FakeVimProxy::connectSignals(FakeVim::Internal::FakeVimHandler *handler, QM
         proxy->openFile(fileToEdit);
 }
 
-} // namespace Extensions
+} // namespace Core

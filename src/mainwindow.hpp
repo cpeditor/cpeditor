@@ -53,7 +53,7 @@ class TestCases;
 }
 namespace FakeVim::Internal
 {
-  class FakeVimHandler;
+class FakeVimHandler;
 }
 
 class MainWindow : public QMainWindow
