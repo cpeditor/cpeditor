@@ -596,7 +596,32 @@ void MainWindow::applySettings(const QString &pagePath, bool shouldPerformDigoni
 
     if (pagePath.isEmpty() || pagePath == "Code Edit" || pagePath == "Appearance" ||
         pagePath == QString("Language/%1/%1 Parentheses").arg(language))
+    {
+        if (pagePath == "Code Edit")
+        {
+            editor->setCursorWidth(SettingsHelper::isFakeVimEnable() ? 0 : 1);
+            editor->setVimCursor(SettingsHelper::isFakeVimEnable());
+
+            if (!SettingsHelper::isFakeVimEnable())
+                setStatusBar(nullptr);
+
+            if (SettingsHelper::isFakeVimEnable() && fakevimHandler == nullptr)
+            {
+                fakevimHandler = new FakeVim::Internal::FakeVimHandler(editor, this);
+
+                Extensions::FakeVimProxy::connectSignals(fakevimHandler, this, editor, filePathOrTmpPath());
+                Extensions::FakeVimProxy::initHandler(fakevimHandler);
+            }
+            else if (fakevimHandler != nullptr)
+            {
+                delete fakevimHandler;
+                fakevimHandler = nullptr;
+            }
+            Extensions::FakeVimProxy::clearUndoRedo(editor);
+        }
+
         Util::applySettingsToEditor(editor, language);
+    }
 
     if (!isLanguageSet && (pagePath.isEmpty() || pagePath == "Language/General"))
     {
