@@ -1498,10 +1498,6 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
         <source>Detached Execution</source>
         <translation>Отдельный запуск</translation>
     </message>
-    <message>
-        <source>Vim Emulation</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>SettingsInfo</name>
@@ -2518,7 +2514,16 @@ The program will be killed if it doesn&apos;t terminate in the time limit.</sour
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Path to your Vim RC file</source>
+        <source>Enable Vim Emulation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Vim Configuration</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The contents of Vim RC. It is loaded everytime vim emulation starts. 
+Not all vim commands are supported, please check https://github.com/cpeditor/FakeVim for list of supported commands</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
