@@ -1114,7 +1114,7 @@
         "tip": "Enable vim Emulation in Code Editor"
     },
     {
-        "name": "FakeVim/RCLocation",
+        "name": "FakeVim/RC",
         "desc": "Vim Configuration",
         "type": "QString",
         "ui": "QPlainTextEdit",

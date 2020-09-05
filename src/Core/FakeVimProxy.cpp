@@ -63,7 +63,6 @@ FakeVimProxy::FakeVimProxy(QWidget *widget, QMainWindow *mw, QObject *parent)
 void FakeVimProxy::openFile(QString const &fileName)
 {
     emit handleInput(QString(_(":r %1<CR>")).arg(fileName));
-    m_fileName = fileName;
 }
 
 void FakeVimProxy::changeStatusData(QString const &info)
@@ -442,17 +441,10 @@ QString FakeVimProxy::content() const
 
 void FakeVimProxy::initHandler(FakeVim::Internal::FakeVimHandler *handler)
 {
-    handler->handleCommand(_("set nopasskeys"));
-    handler->handleCommand(_("set nopasscontrolkey"));
+    QStringList lines = SettingsHelper::getFakeVimRC().split(QRegExp("[\r\n]"), Qt::SkipEmptyParts);
+    for (auto const &e : lines)
+        handler->handleCommand(e);
 
-    // Set some Vim options.
-    handler->handleCommand(_("set expandtab"));
-    handler->handleCommand(_("set shiftwidth=8"));
-    handler->handleCommand(_("set tabstop=%1").arg(SettingsHelper::getTabWidth()));
-    handler->handleCommand(_("set autoindent"));
-    handler->handleCommand(_("set smartindent"));
-
-    handler->handleCommand("source " + SettingsHelper::getFakeVimRCLocation());
     handler->installEventFilter();
     handler->setupWidget();
 }
@@ -471,8 +463,7 @@ void FakeVimProxy::clearUndoRedo(QWidget *editor)
     }
 }
 
-void FakeVimProxy::connectSignals(FakeVim::Internal::FakeVimHandler *handler, QMainWindow *mainWindow, QWidget *editor,
-                                  const QString &fileToEdit)
+void FakeVimProxy::connectSignals(FakeVim::Internal::FakeVimHandler *handler, QMainWindow *mainWindow, QWidget *editor)
 {
     FakeVimProxy *proxy = new FakeVimProxy(editor, mainWindow, handler);
 
@@ -498,9 +489,6 @@ void FakeVimProxy::connectSignals(FakeVim::Internal::FakeVimHandler *handler, QM
 
     QObject::connect(proxy, &FakeVimProxy::handleInput, handler,
                      [handler](const QString &text) { handler->handleInput(text); });
-
-    if (!fileToEdit.isEmpty())
-        proxy->openFile(fileToEdit);
 }
 
 } // namespace Core

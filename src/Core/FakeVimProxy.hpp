@@ -54,8 +54,7 @@ class FakeVimProxy : public QObject
     void openFile(QString const &filename);
     static void initHandler(FakeVim::Internal::FakeVimHandler *handler);
     static void clearUndoRedo(QWidget *);
-    static void connectSignals(FakeVim::Internal::FakeVimHandler *handler, QMainWindow *mainwindow, QWidget *widget,
-                               QString const &fileToEdit);
+    static void connectSignals(FakeVim::Internal::FakeVimHandler *handler, QMainWindow *mainwindow, QWidget *widget);
 
   signals:
     void handleInput(QString const &key);
@@ -91,7 +90,6 @@ class FakeVimProxy : public QObject
     QMainWindow *m_mainWindow;
     QLabel *m_statusMessage = nullptr;
     QLabel *m_statusData = nullptr;
-    QString m_fileName;
 
     QList<QTextEdit::ExtraSelection> m_searchSelection;
     QList<QTextEdit::ExtraSelection> m_clearSelection;

@@ -651,6 +651,13 @@ Git commit hash: %3
     </message>
 </context>
 <context>
+    <name>Core::FakeVimProxy</name>
+    <message>
+        <source>Information</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>Core::Runner</name>
     <message>
         <source>The source file %1 doesn&apos;t exist.</source>
@@ -791,13 +798,6 @@ Press any key to exit</source>
 %1</source>
         <translation>JSON parser выдает ошибки:
 %1</translation>
-    </message>
-</context>
-<context>
-    <name>Extensions::FakeVimProxy</name>
-    <message>
-        <source>Information</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

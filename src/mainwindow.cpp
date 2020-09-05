@@ -597,26 +597,27 @@ void MainWindow::applySettings(const QString &pagePath, bool shouldPerformDigoni
     if (pagePath.isEmpty() || pagePath == "Code Edit" || pagePath == "Appearance" ||
         pagePath == QString("Language/%1/%1 Parentheses").arg(language))
     {
-        if (pagePath == "Code Edit")
+        if (pagePath == "Code Edit" || pagePath.isEmpty())
         {
             editor->setCursorWidth(SettingsHelper::isFakeVimEnable() ? 0 : 1);
             editor->setVimCursor(SettingsHelper::isFakeVimEnable());
 
-            if (!SettingsHelper::isFakeVimEnable())
-                setStatusBar(nullptr);
-
-            if (SettingsHelper::isFakeVimEnable() && fakevimHandler == nullptr)
-            {
-                fakevimHandler = new FakeVim::Internal::FakeVimHandler(editor, this);
-
-                Core::FakeVimProxy::connectSignals(fakevimHandler, this, editor, filePathOrTmpPath());
-                Core::FakeVimProxy::initHandler(fakevimHandler);
-            }
-            else if (fakevimHandler != nullptr)
+            // reset FakeVim if it was enabled
+            if (fakevimHandler != nullptr)
             {
                 delete fakevimHandler;
                 fakevimHandler = nullptr;
+                setStatusBar(nullptr);
             }
+
+            if (SettingsHelper::isFakeVimEnable())
+            {
+                fakevimHandler = new FakeVim::Internal::FakeVimHandler(editor, this);
+
+                Core::FakeVimProxy::connectSignals(fakevimHandler, this, editor);
+                Core::FakeVimProxy::initHandler(fakevimHandler);
+            }
+
             Core::FakeVimProxy::clearUndoRedo(editor);
         }
 
