@@ -43,7 +43,7 @@ class QMainWindow;
 class QString;
 class QLabel;
 
-namespace Extensions
+namespace Core
 {
 class FakeVimProxy : public QObject
 {

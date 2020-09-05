@@ -34,7 +34,7 @@
 
 #include "fakevimactions.h"
 #include "fakevimhandler.h"
-#include <Extensions/FakeVimProxy.hpp>
+#include <Core/FakeVimProxy.hpp>
 #include <QApplication>
 #include <QLabel>
 #include <QMainWindow>
@@ -48,7 +48,7 @@
 #include <QWidget>
 #include <generated/SettingsHelper.hpp>
 #include <mainwindow.hpp>
-namespace Extensions
+namespace Core
 {
 
 using _ = QLatin1String;

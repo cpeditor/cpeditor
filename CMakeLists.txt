@@ -108,6 +108,8 @@ add_executable(cpeditor
     src/Core/Compiler.hpp
     src/Core/EventLogger.cpp
     src/Core/EventLogger.hpp
+    src/Core/FakeVimProxy.cpp
+    src/Core/FakeVimProxy.hpp   
     src/Core/MessageLogger.cpp
     src/Core/MessageLogger.hpp
     src/Core/Runner.cpp
@@ -129,8 +131,6 @@ add_executable(cpeditor
     src/Extensions/EditorTheme.hpp
     src/Extensions/LanguageServer.cpp
     src/Extensions/LanguageServer.hpp
-    src/Extensions/FakeVimProxy.cpp
-    src/Extensions/FakeVimProxy.hpp
 
     src/Settings/AppearancePage.cpp
     src/Settings/AppearancePage.hpp

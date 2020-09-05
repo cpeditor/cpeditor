@@ -18,7 +18,6 @@
 #ifndef MAINWINDOW_HPP
 #define MAINWINDOW_HPP
 
-#include "fakevimhandler.h"
 #include <QMainWindow>
 
 class MessageLogger;
@@ -51,6 +50,10 @@ struct CompanionData;
 namespace Widgets
 {
 class TestCases;
+}
+namespace FakeVim::Internal
+{
+  class FakeVimHandler;
 }
 
 class MainWindow : public QMainWindow

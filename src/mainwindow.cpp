@@ -30,7 +30,7 @@
 #include "Util/FileUtil.hpp"
 #include "Util/QCodeEditorUtil.hpp"
 #include "Widgets/TestCases.hpp"
-#include <Extensions/FakeVimProxy.hpp>
+#include "Core/FakeVimProxy.hpp"
 #include <QCodeEditor>
 #include <QFileSystemWatcher>
 #include <QFontDialog>
@@ -609,15 +609,15 @@ void MainWindow::applySettings(const QString &pagePath, bool shouldPerformDigoni
             {
                 fakevimHandler = new FakeVim::Internal::FakeVimHandler(editor, this);
 
-                Extensions::FakeVimProxy::connectSignals(fakevimHandler, this, editor, filePathOrTmpPath());
-                Extensions::FakeVimProxy::initHandler(fakevimHandler);
+                Core::FakeVimProxy::connectSignals(fakevimHandler, this, editor, filePathOrTmpPath());
+                Core::FakeVimProxy::initHandler(fakevimHandler);
             }
             else if (fakevimHandler != nullptr)
             {
                 delete fakevimHandler;
                 fakevimHandler = nullptr;
             }
-            Extensions::FakeVimProxy::clearUndoRedo(editor);
+            Core::FakeVimProxy::clearUndoRedo(editor);
         }
 
         Util::applySettingsToEditor(editor, language);
@@ -663,29 +663,6 @@ void MainWindow::applySettings(const QString &pagePath, bool shouldPerformDigoni
         }
         else
             autoSaveTimer->stop();
-    }
-
-    if (pagePath.isEmpty() || pagePath == "Extensions/Vim Emulation")
-    {
-        editor->setCursorWidth(SettingsHelper::isFakeVimEnable() ? 0 : 1);
-        editor->setVimCursor(SettingsHelper::isFakeVimEnable());
-
-        if (!SettingsHelper::isFakeVimEnable())
-            setStatusBar(nullptr);
-
-        if (SettingsHelper::isFakeVimEnable() && fakevimHandler == nullptr)
-        {
-            fakevimHandler = new FakeVim::Internal::FakeVimHandler(editor, this);
-
-            Extensions::FakeVimProxy::connectSignals(fakevimHandler, this, editor, filePathOrTmpPath());
-            Extensions::FakeVimProxy::initHandler(fakevimHandler);
-        }
-        else if (fakevimHandler != nullptr)
-        {
-            delete fakevimHandler;
-            fakevimHandler = nullptr;
-        }
-        Extensions::FakeVimProxy::clearUndoRedo(editor);
     }
 }
 
