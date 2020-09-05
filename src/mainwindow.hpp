@@ -51,10 +51,13 @@ namespace Widgets
 {
 class TestCases;
 }
-namespace FakeVim::Internal
+namespace FakeVim
+{
+namespace Internal
 {
 class FakeVimHandler;
 }
+} // namespace FakeVim
 
 class MainWindow : public QMainWindow
 {
