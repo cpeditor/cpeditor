@@ -168,7 +168,7 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
     AddPageHelper(this)
         .page(TRKEY("Code Edit"),
               {"Tab Width", "Auto Indent", "Wrap Text", "Auto Complete Parentheses", "Auto Remove Parentheses",
-               "Tab Jump Out Parentheses", "Replace Tabs"})
+               "Tab Jump Out Parentheses", "Replace Tabs", "FakeVim/Enable", "FakeVim/RCLocation"})
         .dir(TRKEY("Language"))
             .page(TRKEY("General"), {"Default Language"})
             .dir(TRKEY("C++"))
@@ -223,7 +223,6 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
         .dir(TRKEY("Extensions"))
             .page(TRKEY("Clang Format"), new PreferencesPageTemplate({"Clang Format/Path", "Clang Format/Format On Manual Save",
                                          "Clang Format/Format On Auto Save", "Clang Format/Style"}, false))
-	    .page(TRKEY("Vim Emulation"), {"FakeVim/Enable", "FakeVim/RCLocation"})
 	    .dir(TRKEY("Language Server"))
                 .page("C++ Server", tr("%1 Server").arg(tr("C++")), {"LSP/Use Linting C++", "LSP/Delay C++", "LSP/Path C++", "LSP/Args C++"})
                 .page("Java Server", tr("%1 Server").arg(tr("Java")), {"LSP/Use Linting Java", "LSP/Delay Java", "LSP/Path Java", "LSP/Args Java"})
