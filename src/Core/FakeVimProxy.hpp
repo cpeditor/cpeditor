@@ -97,5 +97,5 @@ class FakeVimProxy : public QObject
     QList<QTextEdit::ExtraSelection> m_clearSelection;
     QList<QTextEdit::ExtraSelection> m_blockSelection;
 };
-} // namespace Extensions
+} // namespace Core
 #endif
