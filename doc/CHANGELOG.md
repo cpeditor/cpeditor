@@ -23,6 +23,7 @@
 -   Now the code snippets won't be in the log file. (#536)
 -   Fixed crash when compiling twice in a row with large test cases. (#549 and #550)
 -   Fixed a hypothetical Undefined Behaviour in testlib real number checker checker. (#586 and #587)
+
 ### Changed
 
 -   Now the working directory when executing programs is:
