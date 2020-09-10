@@ -441,8 +441,8 @@ void FakeVimProxy::initHandler(FakeVim::Internal::FakeVimHandler *handler)
     if (file.open())
     {
         file.write(SettingsHelper::getFakeVimRC().toLocal8Bit());
-    	file.close();
-	handler->handleCommand("source " + file.fileName());
+        file.close();
+        handler->handleCommand("source " + file.fileName());
     }
 
     handler->installEventFilter();
