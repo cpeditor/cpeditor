@@ -1,5 +1,9 @@
 ## UNRELEASED
 
+### Fixed
+
+-   Fixed a hypothetical undefined behaviour in testlib real number checker. (#586 and #587)
+
 ## 6.6.4 (Beta)
 
 ### Fixed
