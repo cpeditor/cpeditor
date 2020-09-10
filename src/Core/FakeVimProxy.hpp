@@ -51,7 +51,6 @@ class FakeVimProxy : public QObject
 
   public:
     FakeVimProxy(QWidget *widget, QMainWindow *mw, QObject *parent);
-    void openFile(QString const &filename);
     static void initHandler(FakeVim::Internal::FakeVimHandler *handler);
     static void clearUndoRedo(QWidget *);
     static void connectSignals(FakeVim::Internal::FakeVimHandler *handler, QMainWindow *mainwindow, QWidget *widget);

@@ -31,11 +31,11 @@
     along with CopyQ.  If not, see <http://www.gnu.org/licenses/>.
 
 */
-
 #include "fakevimactions.h"
 #include "fakevimhandler.h"
 #include <Core/FakeVimProxy.hpp>
 #include <QApplication>
+#include <QDebug>
 #include <QLabel>
 #include <QMainWindow>
 #include <QMessageBox>
@@ -60,15 +60,11 @@ FakeVimProxy::FakeVimProxy(QWidget *widget, QMainWindow *mw, QObject *parent)
     setStatusBar();
 }
 
-void FakeVimProxy::openFile(QString const &fileName)
-{
-    emit handleInput(QString(_(":r %1<CR>")).arg(fileName));
-}
-
 void FakeVimProxy::changeStatusData(QString const &info)
 {
     m_statusData->setText(info);
 }
+
 void FakeVimProxy::highlightMatches(QString const &pattern)
 {
     QTextDocument *doc = nullptr;
@@ -441,9 +437,13 @@ QString FakeVimProxy::content() const
 
 void FakeVimProxy::initHandler(FakeVim::Internal::FakeVimHandler *handler)
 {
-    QStringList lines = SettingsHelper::getFakeVimRC().split(QRegExp("[\r\n]"), Qt::SkipEmptyParts);
-    for (auto const &e : lines)
-        handler->handleCommand(e);
+    QTemporaryFile file;
+    if (file.open())
+    {
+        file.write(SettingsHelper::getFakeVimRC().toLocal8Bit());
+    	file.close();
+	handler->handleCommand("source " + file.fileName());
+    }
 
     handler->installEventFilter();
     handler->setupWidget();
