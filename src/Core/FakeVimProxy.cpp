@@ -31,6 +31,7 @@
     along with CopyQ.  If not, see <http://www.gnu.org/licenses/>.
 
 */
+#include "Core/EventLogger.hpp"
 #include "fakevimactions.h"
 #include "fakevimhandler.h"
 #include <Core/FakeVimProxy.hpp>
@@ -48,6 +49,7 @@
 #include <QWidget>
 #include <generated/SettingsHelper.hpp>
 #include <mainwindow.hpp>
+
 namespace Core
 {
 
@@ -443,6 +445,10 @@ void FakeVimProxy::initHandler(FakeVim::Internal::FakeVimHandler *handler)
         file.write(SettingsHelper::getFakeVimRC().toLocal8Bit());
         file.close();
         handler->handleCommand("source " + file.fileName());
+    }
+    else
+    {
+        LOG_ERR("Failed to open a temporary file to source vimrc");
     }
 
     handler->installEventFilter();
