@@ -69,6 +69,12 @@ MainWindow::MainWindow(int index, QWidget *parent)
         Qt::DirectConnection);
     applySettings("", true);
     QTimer::singleShot(0, [this] { setLanguage(language); }); // See issue #187 for more information
+
+    // By default new editor is insert mode cursor. Change to insert mode cursor.
+    if (SettingsHelper::isCursorOverwrite())
+    {
+        Util::applyOverwriteCursor(editor);
+    }
 }
 
 MainWindow::MainWindow(const QString &fileOpen, int index, QWidget *parent) : MainWindow(index, parent)

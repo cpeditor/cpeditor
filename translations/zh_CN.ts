@@ -2518,6 +2518,16 @@ The program will be killed if it doesn&apos;t terminate in the time limit.</sour
 Not all vim commands are supported, please check https://github.com/cpeditor/FakeVim for list of supported commands</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Default cursor overwrites</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Default cursor is the cursor you see on opening new tabs.
+If enabled, default cursor will overwrite next character.
+This behaviour can be toggled for each tab by pressing INS/Insert on your keyboard.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ShortcutItem</name>

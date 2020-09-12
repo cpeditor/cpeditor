@@ -111,4 +111,14 @@ void applySettingsToEditor(QCodeEditor *editor, const QString &language)
 
     editor->setParentheses(parentheses);
 }
+
+void applyOverwriteCursor(QCodeEditor *editor)
+{
+    LOG_INFO("Applying overwrite mode to editor");
+    editor->setOverwriteMode(true);
+    QFontMetrics fm(editor->font());
+    const int position = editor->textCursor().position();
+    const QChar c = editor->document()->characterAt(position);
+    editor->setCursorWidth(fm.horizontalAdvance(c));
+}
 } // namespace Util
