@@ -24,7 +24,6 @@ class QString;
 namespace Util
 {
 void applySettingsToEditor(QCodeEditor *editor, const QString &language);
-void applyOverwriteCursor(QCodeEditor *editor);
 } // namespace Util
 
 #endif // QCODEEDITORUTIL_HPP
