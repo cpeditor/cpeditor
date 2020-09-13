@@ -599,7 +599,6 @@ void MainWindow::applySettings(const QString &pagePath, bool shouldPerformDigoni
     {
         if (pagePath == "Code Edit" || pagePath.isEmpty())
         {
-            editor->setCursorWidth(SettingsHelper::isFakeVimEnable() ? 0 : 1);
             editor->setVimCursor(SettingsHelper::isFakeVimEnable());
 
             // reset FakeVim if it was enabled

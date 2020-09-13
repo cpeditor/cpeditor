@@ -31,15 +31,7 @@ void applySettingsToEditor(QCodeEditor *editor, const QString &language)
 {
     LOG_INFO("Applying settings to QCodeEditor");
 
-    editor->setTabReplace(SettingsHelper::isReplaceTabs());
-    editor->setTabReplaceSize(SettingsHelper::getTabWidth());
-    editor->setAutoIndentation(SettingsHelper::isAutoIndent());
-
     editor->setFont(SettingsHelper::getEditorFont());
-
-    const int tabStop = SettingsHelper::getTabWidth();
-    QFontMetrics metric(editor->font());
-    editor->setTabReplaceSize(tabStop);
 
     if (SettingsHelper::isWrapText())
         editor->setWordWrapMode(QTextOption::WordWrap);
@@ -110,6 +102,24 @@ void applySettingsToEditor(QCodeEditor *editor, const QString &language)
     }
 
     editor->setParentheses(parentheses);
+
+    if (editor->vimCursor())
+    {
+        LOG_INFO("Some settings are being turned off because editor is in vim mode.");
+        editor->setTabReplace(false);
+        editor->setTabReplaceSize(8); // default value from fakevim
+        editor->setAutoIndentation(false);
+
+        return;
+    }
+
+    editor->setTabReplace(SettingsHelper::isReplaceTabs());
+    editor->setAutoIndentation(SettingsHelper::isAutoIndent());
+
+    const int tabStop = SettingsHelper::getTabWidth();
+    QFontMetrics metric(editor->font());
+    editor->setTabReplaceSize(tabStop);
+
     if (SettingsHelper::isCursorOverwrite())
     {
         editor->setOverwriteMode(true);
@@ -117,6 +127,11 @@ void applySettingsToEditor(QCodeEditor *editor, const QString &language)
         const int position = editor->textCursor().position();
         const QChar c = editor->document()->characterAt(position);
         editor->setCursorWidth(fm.horizontalAdvance(c));
+    }
+    else
+    {
+        editor->setOverwriteMode(false);
+        editor->setCursorWidth(1);
     }
 }
 

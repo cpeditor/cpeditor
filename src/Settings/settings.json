@@ -316,36 +316,18 @@
         "name": "Auto Complete Parentheses",
         "type": "bool",
         "default": true,
-        "tip": "Automatically complete a pair of parentheses when typing the left element of it,\nand move out of it when typing the right element of it.\nThis can be overridden for each parenthesis in each language.",
-        "depends": [
-            {
-                "name": "FakeVim/Enable",
-                "check": "return !var.toBool();"
-            }
-        ]
+        "tip": "Automatically complete a pair of parentheses when typing the left element of it,\nand move out of it when typing the right element of it.\nThis can be overridden for each parenthesis in each language."
     },
     {
         "name": "Auto Remove Parentheses",
         "type": "bool",
         "default": true,
-        "tip": "Automatically delete the whole pair of parentheses when deleting\nthe left element of it if the two elements are adjacent.\nThis can be overridden for each parenthesis in each language.",
-        "depends": [
-            {
-                "name": "FakeVim/Enable",
-                "check": "return !var.toBool();"
-            }
-        ]
+        "tip": "Automatically delete the whole pair of parentheses when deleting\nthe left element of it if the two elements are adjacent.\nThis can be overridden for each parenthesis in each language."
     },
     {
         "name": "Tab Jump Out Parentheses",
         "desc": "Jump out of a parenthesis by pressing Tab",
         "type": "bool",
-        "depends": [
-            {
-                "name": "FakeVim/Enable",
-                "check": "return !var.toBool();"
-            }
-        ],
         "tip": "When this is enabled, you can use Tab instead of the\nclosing parenthesis to jump out of a parenthesis.\nThis can be overridden for each parenthesis in each language."
     },
     {
