@@ -139,13 +139,13 @@ bool CFTool::parseCfUrl(const QString &url, QString &contestId, QString &problem
         problemCode = match.captured(2);
         return true;
     }
-    
+
     match = QRegularExpression(".*://codeforces.com/gym/([1-9][0-9]*)/problem/(0|[A-Z][1-9]?)").match(url);
-    if(match.hasMatch())
+    if (match.hasMatch())
     {
-            contestId = match.captured(1);
-            problemCode = match.captured(2);
-            return true;
+        contestId = match.captured(1);
+        problemCode = match.captured(2);
+        return true;
     }
     return false;
 }
