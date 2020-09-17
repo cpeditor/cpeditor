@@ -328,7 +328,13 @@
         "name": "Tab Jump Out Parentheses",
         "desc": "Jump out of a parenthesis by pressing Tab",
         "type": "bool",
-        "tip": "When this is enabled, you can use Tab instead of the\nclosing parenthesis to jump out of a parenthesis.\nThis can be overridden for each parenthesis in each language."
+        "tip": "When this is enabled, you can use Tab instead of the\nclosing parenthesis to jump out of a parenthesis.\nThis can be overridden for each parenthesis in each language.",
+        "depends": [
+            {
+                "name": "FakeVim/Enable",
+                "check": "return !var.toBool();"
+            }
+        ]
     },
     {
         "name": "Auto Indent",
@@ -1112,6 +1118,18 @@
         "depends": [
             {
                 "name": "FakeVim/Enable"
+            }
+        ]
+    },
+    {
+        "name": "Highlight Current Line",
+        "type": "bool",
+        "default": "true",
+        "tip": "Highlight the line where cursor exists.\nIn, vim emulation current line is never highlighed",
+        "depends": [
+            {
+                "name": "FakeVim/Enable",
+                "check": "return !var.toBool();"
             }
         ]
     }

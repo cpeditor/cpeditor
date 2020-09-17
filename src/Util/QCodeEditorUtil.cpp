@@ -38,6 +38,7 @@ void applySettingsToEditor(QCodeEditor *editor, const QString &language)
     else
         editor->setWordWrapMode(QTextOption::NoWrap);
 
+    editor->setHighlightCurrentLine(SettingsHelper::isHighlightCurrentLine());
     auto style = Extensions::EditorTheme::query(SettingsHelper::getEditorTheme());
     if (!style)
         style = Extensions::EditorTheme::query("Light");

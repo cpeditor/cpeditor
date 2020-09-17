@@ -1363,10 +1363,6 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
         <translation>回到主页</translation>
     </message>
     <message>
-        <source>Code Edit</source>
-        <translation>代码编辑</translation>
-    </message>
-    <message>
         <source>Language</source>
         <translation>语言</translation>
     </message>
@@ -1497,6 +1493,10 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     <message>
         <source>Detached Execution</source>
         <translation>终端中运行</translation>
+    </message>
+    <message>
+        <source>Code Editing</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2526,6 +2526,15 @@ Not all vim commands are supported, please check https://github.com/cpeditor/Fak
         <source>Default cursor is the cursor you see on opening new tabs.
 If enabled, default cursor will overwrite next character.
 This behaviour can be toggled for each tab by pressing INS/Insert on your keyboard.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Highlight Current Line</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Highlight the line where cursor exists.
+In, vim emulation current line is never highlighed</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

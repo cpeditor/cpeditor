@@ -594,10 +594,10 @@ void MainWindow::applySettings(const QString &pagePath, bool shouldPerformDigoni
         }
     }
 
-    if (pagePath.isEmpty() || pagePath == "Code Edit" || pagePath == "Appearance" ||
+    if (pagePath.isEmpty() || pagePath == "Code Editing" || pagePath == "Appearance" ||
         pagePath == QString("Language/%1/%1 Parentheses").arg(language))
     {
-        if (pagePath == "Code Edit" || pagePath.isEmpty())
+        if (pagePath == "Code Editing" || pagePath.isEmpty())
         {
             editor->setVimCursor(SettingsHelper::isFakeVimEnable());
 
