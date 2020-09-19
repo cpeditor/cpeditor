@@ -23,7 +23,7 @@
 -   Now the code snippets won't be in the log file. (#536)
 -   Fixed crash when compiling twice in a row with large test cases. (#549 and #550)
 -   Fixed a hypothetical Undefined Behaviour in testlib real number checker. (#586 and #587)
--   Fixed the issue where CP Editor could not parse GYM Problems.
+-   Now you can use CF Tool to submit to Gym problems. (#591 and #592)
 
 ### Changed
 
