@@ -32,9 +32,11 @@ jobs:
         run: git clone ssh://aur@aur.archlinux.org/cpeditor-git.git
 
       - name: Update files
+        id: update-files
         run: |
           git fetch --tags
-          VERSION=$(git describe --long --tags | sed 's/\([^-]*-g\)/r\1/;s/-/./g')
+          VERSION=$(git describe --long --tags --abbrev=8 | sed 's/\([^-]*-g\)/r\1/;s/-/./g')
+          echo ::set-output name=VERSION::$VERSION
           cp .ci/aur/git/PKGBUILD cpeditor-git
           cp .ci/aur/git/.SRCINFO cpeditor-git
           sed -i "s/@PROJECT_VERSION@/$VERSION/" cpeditor-git/PKGBUILD cpeditor-git/.SRCINFO
@@ -53,9 +55,8 @@ jobs:
 
       - name: Publish to AUR
         run: |
-          VERSION=$(git describe --long --tags | sed 's/\([^-]*-g\)/r\1/;s/-/./g')
           cd cpeditor-git
           git config --global user.email "ashar786khan@gmail.com"
           git config --global user.name "coder3101"
-          git commit -am "Update from CI: $VERSION"
+          git commit -am "Update from CI: ${ steps.update-files.outputs.VERSION }"
           git push -u origin master
