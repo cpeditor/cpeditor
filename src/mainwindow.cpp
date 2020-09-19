@@ -16,7 +16,6 @@
  */
 
 #include "mainwindow.hpp"
-
 #include "Core/Checker.hpp"
 #include "Core/Compiler.hpp"
 #include "Core/EventLogger.hpp"
@@ -31,6 +30,7 @@
 #include "Util/FileUtil.hpp"
 #include "Util/QCodeEditorUtil.hpp"
 #include "Widgets/TestCases.hpp"
+#include "appwindow.hpp"
 #include <QCodeEditor>
 #include <QFileSystemWatcher>
 #include <QFontDialog>

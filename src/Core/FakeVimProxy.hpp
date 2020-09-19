@@ -36,6 +36,7 @@
 #define FAKE_VIM_PROXY_HPP
 
 #include "fakevimhandler.h"
+#include <Core/FakeVimCommands.hpp>
 #include <QObject>
 
 class QStatusBar;
@@ -62,7 +63,6 @@ class FakeVimProxy : public QObject
     void changeStatusData(QString const &);
     void highlightMatches(QString const &);
     void changeStatusMessage(QString const &, int);
-    void changeExtraInformation(QString const &);
     void handleExCommand(bool *, const FakeVim::Internal::ExCommand &);
     void requestSetBlockSelection(QTextCursor const &);
     void requestDisableBlockSelection();
@@ -87,6 +87,7 @@ class FakeVimProxy : public QObject
 
     QWidget *m_widget;
     QMainWindow *m_mainWindow;
+    FakeVimCommand m_commandHandler;
     QLabel *m_statusMessage = nullptr;
     QLabel *m_statusData = nullptr;
 

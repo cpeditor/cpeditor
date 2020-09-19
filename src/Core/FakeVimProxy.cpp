@@ -55,7 +55,7 @@ namespace Core
 
 using _ = QLatin1String;
 FakeVimProxy::FakeVimProxy(QWidget *widget, QMainWindow *mw, QObject *parent)
-    : QObject(parent), m_widget(widget), m_mainWindow(mw)
+    : QObject(parent), m_widget(widget), m_mainWindow(mw), m_commandHandler(qobject_cast<QMainWindow *>(mw->parent()))
 {
     m_statusData = new QLabel(m_mainWindow);
     m_statusMessage = new QLabel(m_mainWindow);
@@ -133,11 +133,6 @@ void FakeVimProxy::changeStatusMessage(QString const &contents, int cursorPos)
                                              : contents.left(cursorPos) + QChar(10073) + contents.mid(cursorPos));
 }
 
-void FakeVimProxy::changeExtraInformation(QString const &info)
-{
-    QMessageBox::information(m_widget, tr("Information"), info);
-}
-
 void FakeVimProxy::setStatusBar()
 {
     m_mainWindow->statusBar()->addPermanentWidget(m_statusData);
@@ -146,7 +141,19 @@ void FakeVimProxy::setStatusBar()
 
 void FakeVimProxy::handleExCommand(bool *handled, FakeVim::Internal::ExCommand const &cmd)
 {
-    if (wantSaveAndQuit(cmd))
+    qDebug() << "Handling " << cmd.cmd;
+    /**
+     * Here is a unfortunate bug that causes custom handler to return false when Vim mode is enabled after switching to
+     * normal mode
+     */
+    bool res = m_commandHandler.handle(cmd);
+    if (res)
+    {
+        qDebug() << "Handled in a custom manner";
+        *handled = res;
+        return;
+    }
+    else if (wantSaveAndQuit(cmd))
     {
         // :wq
         if (save())
@@ -477,7 +484,6 @@ void FakeVimProxy::connectSignals(FakeVim::Internal::FakeVimHandler *handler, QM
         [proxy](const QString &contents, int cursorPos, int /*anchorPos*/, int /*messageLevel*/) {
             proxy->changeStatusMessage(contents, cursorPos);
         });
-    handler->extraInformationChanged.connect([proxy](const QString &text) { proxy->changeExtraInformation(text); });
     handler->statusDataChanged.connect([proxy](const QString &text) { proxy->changeStatusData(text); });
     handler->highlightMatches.connect([proxy](const QString &needle) { proxy->highlightMatches(needle); });
     handler->handleExCommandRequested.connect(

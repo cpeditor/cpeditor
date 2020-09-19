@@ -51,7 +51,8 @@ class UpdateChecker;
 namespace Core
 {
 class SessionManager;
-}
+class FakeVimCommand;
+} // namespace Core
 
 class AppWindow : public QMainWindow
 {
@@ -252,6 +253,7 @@ class AppWindow : public QMainWindow
     MainWindow *windowAt(int index);
 
     friend class Core::SessionManager;
+    friend class Core::FakeVimCommand;
 };
 
 #endif // APPWINDOW_HPP

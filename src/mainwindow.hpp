@@ -38,6 +38,7 @@ namespace Core
 class Checker;
 class Compiler;
 class Runner;
+class FakeVimCommand;
 } // namespace Core
 
 namespace Extensions
@@ -256,5 +257,7 @@ class MainWindow : public QMainWindow
     QString getRunnerHead(int index);
     QString compileCommand() const;
     int timeLimit() const;
+
+    friend class Core::FakeVimCommand;
 };
 #endif // MAINWINDOW_HPP
