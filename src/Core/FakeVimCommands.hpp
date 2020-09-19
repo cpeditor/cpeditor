@@ -35,7 +35,7 @@ class FakeVimCommand : public QObject
 {
     Q_OBJECT
   public:
-    FakeVimCommand(QMainWindow *window);
+    explicit FakeVimCommand(QMainWindow *window);
 
     bool handle(FakeVim::Internal::ExCommand const &ex);
 
