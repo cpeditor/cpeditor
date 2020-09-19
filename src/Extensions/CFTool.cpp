@@ -125,7 +125,7 @@ void CFTool::updatePath(const QString &p)
 bool CFTool::parseCfUrl(const QString &url, QString &contestId, QString &problemCode)
 {
     LOG_INFO(INFO_OF(url));
-    auto match = QRegularExpression(".*://codeforces.com/contest/([1-9][0-9]*)/problem/(0|[A-Z][1-9]?)").match(url);
+    auto match = QRegularExpression(".*://codeforces.com/(?:gym|contest)/([1-9][0-9]*)/problem/(0|[A-Z][1-9]?)").match(url);
     if (match.hasMatch())
     {
         contestId = match.captured(1);
@@ -140,13 +140,6 @@ bool CFTool::parseCfUrl(const QString &url, QString &contestId, QString &problem
         return true;
     }
 
-    match = QRegularExpression(".*://codeforces.com/gym/([1-9][0-9]*)/problem/(0|[A-Z][1-9]?)").match(url);
-    if (match.hasMatch())
-    {
-        contestId = match.captured(1);
-        problemCode = match.captured(2);
-        return true;
-    }
     return false;
 }
 
