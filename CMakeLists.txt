@@ -62,7 +62,7 @@ if(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/.git)
       OUTPUT_STRIP_TRAILING_WHITESPACE)
     message(STATUS "Git commit hash: ${GIT_COMMIT_HASH}")
     execute_process(
-      COMMAND ${GIT_EXECUTABLE} describe --long --tags
+      COMMAND ${GIT_EXECUTABLE} describe --long --tags --abbrev=8
       WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}"
       OUTPUT_VARIABLE "GIT_DESCRIBE"
       OUTPUT_STRIP_TRAILING_WHITESPACE)
