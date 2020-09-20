@@ -115,7 +115,7 @@ jobs:
           cp ${{ github.workspace }}/build/cpeditor ./cpeditor/bin/
 
           mkdir -p doc/cpeditor/
-          cp ${{ github.workspace }}/.ci/DEB/copyright ./doc/cpeditor/
+          cp ${{ github.workspace }}/LICENSE ./doc/cpeditor/copyright
 
           mkdir icons/
           cp ${{ github.workspace }}/.ci/linux/cpeditor.png ./icons/
