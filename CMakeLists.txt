@@ -245,5 +245,5 @@ if(UNIX AND NOT APPLE)
 		RUNTIME DESTINATION bin
         	LIBRARY DESTINATION lib)
 	install(FILES .ci/linux/cpeditor.desktop DESTINATION share/applications)
-	install(FILES .ci/linux/cpeditor.png DESTINATION share/icons)
+	install(FILES resources/icon.png DESTINATION share/icons/hicolor/512x512/apps RENAME cpeditor.png)
 endif()
