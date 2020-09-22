@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.5)
 
 if(APPLE)
-	set(CMAKE_OSX_DEPLOYMENT_TARGET "10.14" CACHE STRING "Minimum OS X deployment version")
+  set(CMAKE_OSX_DEPLOYMENT_TARGET "10.14" CACHE STRING "Minimum OS X deployment version")
 endif()
 
 project(cpeditor LANGUAGES CXX VERSION 6.7.0)
@@ -16,7 +16,7 @@ set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 if(WIN32)
-    SET(GUI_TYPE WIN32)
+  set(GUI_TYPE WIN32)
 endif()
 
 find_package(Qt5 COMPONENTS Widgets REQUIRED)
@@ -64,7 +64,7 @@ if(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/.git)
       OUTPUT_STRIP_TRAILING_WHITESPACE)
     message(STATUS "Git commit hash: ${GIT_COMMIT_HASH}")
     execute_process(
-      COMMAND ${GIT_EXECUTABLE} describe --long --tags
+      COMMAND ${GIT_EXECUTABLE} describe --long --tags --abbrev=8
       WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}"
       OUTPUT_VARIABLE "GIT_DESCRIBE"
       OUTPUT_STRIP_TRAILING_WHITESPACE)
@@ -236,22 +236,22 @@ target_link_libraries(cpeditor PRIVATE SingleApplication)
 target_link_libraries(cpeditor PRIVATE fakevim)
 
 if(MSVC)
-    target_compile_options(cpeditor PUBLIC "/utf-8")
+  target_compile_options(cpeditor PUBLIC "/utf-8")
 endif(MSVC)
 
 if(APPLE)
-    set_target_properties(cpeditor
-        PROPERTIES
-        MACOSX_BUNDLE TRUE
-	MACOSX_BUNDLE_INFO_PLIST ${CMAKE_SOURCE_DIR}/cmake/Info.plist.in
-        RESOURCE ".ci/mac/cpeditor.icns"
-    )
+  set_target_properties(cpeditor
+    PROPERTIES
+    MACOSX_BUNDLE TRUE
+    MACOSX_BUNDLE_INFO_PLIST ${CMAKE_SOURCE_DIR}/cmake/Info.plist.in
+    RESOURCE ".ci/mac/cpeditor.icns"
+  )
 endif()
 
 if(UNIX AND NOT APPLE)
-	install(TARGETS cpeditor
-		RUNTIME DESTINATION bin
-        	LIBRARY DESTINATION lib)
-	install(FILES .ci/linux/cpeditor.desktop DESTINATION share/applications)
-	install(FILES .ci/linux/cpeditor.png DESTINATION share/icons)
+  install(TARGETS cpeditor
+          RUNTIME DESTINATION bin
+          LIBRARY DESTINATION lib)
+  install(FILES .ci/linux/cpeditor.desktop DESTINATION share/applications)
+  install(FILES resources/icon.png DESTINATION share/icons/hicolor/512x512/apps RENAME cpeditor.png)
 endif()
