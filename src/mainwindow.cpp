@@ -509,7 +509,7 @@ void MainWindow::applyCompanion(const Extensions::CompanionData &data)
 
         auto it = QRegularExpression(R"(\$\{json\..+?\})").globalMatch(comments);
 
-        QString finalComments = "\n";
+        QString finalComments;
         int lastEnd = 0;
 
         while (it.hasNext())
@@ -541,14 +541,24 @@ void MainWindow::applyCompanion(const Extensions::CompanionData &data)
         finalComments += comments.mid(lastEnd);
 
         if (SettingsHelper::isCompetitiveCompanionHeadCommentsPoweredByCPEditor())
-            finalComments += "\n\nPowered by CP Editor (https://cpeditor.org)";
+        {
+            if (!finalComments.isEmpty())
+                finalComments += "\n\n";
+            finalComments += "Powered by CP Editor (https://cpeditor.org)";
+        }
 
-        if (language == "Python")
+        if (language == "Python" && !finalComments.isEmpty())
+        {
+            finalComments = "# " + finalComments;
             finalComments.replace('\n', "\n# ");
-        else
+        }
+        else if(!finalComments.isEmpty())
+        {
+            finalComments = "// " + finalComments;
             finalComments.replace('\n', "\n// ");
-
-        finalComments += "\n\n";
+        }
+        if (!finalComments.isEmpty())
+            finalComments += "\n\n";
 
         auto cursor = editor->textCursor();
         int cursorPos = cursor.position(); // keep Template Cursor Position
