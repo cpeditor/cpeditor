@@ -24,6 +24,7 @@
 -   Fixed crash when compiling twice in a row with large test cases. (#549 and #550)
 -   Fixed a hypothetical Undefined Behaviour in testlib real number checker. (#586 and #587)
 -   Now you can use CF Tool to submit to Gym problems. (#591 and #592)
+-   Now Header comments starts from line 1 with correct formatting in edge cases. (#607 and #609)
 
 ### Changed
 
