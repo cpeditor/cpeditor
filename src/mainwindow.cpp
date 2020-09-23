@@ -552,7 +552,7 @@ void MainWindow::applyCompanion(const Extensions::CompanionData &data)
             finalComments = "# " + finalComments;
             finalComments.replace('\n', "\n# ");
         }
-        else if(!finalComments.isEmpty())
+        else if (!finalComments.isEmpty())
         {
             finalComments = "// " + finalComments;
             finalComments.replace('\n', "\n// ");
