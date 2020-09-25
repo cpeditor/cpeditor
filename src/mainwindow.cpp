@@ -277,15 +277,6 @@ void MainWindow::setCFToolUI()
             }
         });
     }
-    if (!Extensions::CFTool::check(SettingsHelper::getCFPath()))
-    {
-        qDebug() << "CF tool was not found";
-
-        submitToCodeforces->setEnabled(false);
-        log->error(tr("CF Tool"),
-                   tr("You will not be able to submit code to Codeforces because CF Tool is not installed or is "
-                      "not on SYSTEM PATH. You can set it manually in settings."));
-    }
 }
 
 int MainWindow::getUntitledIndex() const
@@ -592,6 +583,7 @@ void MainWindow::applySettings(const QString &pagePath, bool shouldPerformDigoni
 
     if ((pagePath.isEmpty() || pagePath == "Extensions/CF Tool") && submitToCodeforces)
     {
+        log->clear();
 
         if (Extensions::CFTool::check(SettingsHelper::getCFPath()))
         {
