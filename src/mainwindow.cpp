@@ -382,7 +382,10 @@ void MainWindow::setProblemURL(const QString &url)
     problemURL = url;
     FileProblemBinder::set(filePath, url);
     if (problemURL.contains("codeforces.com"))
+    {
         setCFToolUI();
+        applySettings("Extensions/CF Tool", false);
+    }
     emit editorFileChanged();
 }
 
@@ -587,14 +590,20 @@ void MainWindow::applySettings(const QString &pagePath, bool shouldPerformDigoni
         formatter->updateStyle(SettingsHelper::getClangFormatStyle());
     }
 
-    if (pagePath.isEmpty() || pagePath == "Extensions/CF Tool")
+    if ((pagePath.isEmpty() || pagePath == "Extensions/CF Tool") && submitToCodeforces)
     {
 
-        if (cftool != nullptr && Extensions::CFTool::check(SettingsHelper::getCFPath()))
+        if (Extensions::CFTool::check(SettingsHelper::getCFPath()))
         {
             cftool->updatePath(SettingsHelper::getCFPath());
-            if (submitToCodeforces != nullptr)
-                submitToCodeforces->setEnabled(true);
+            submitToCodeforces->setEnabled(true);
+        }
+        else
+        {
+            submitToCodeforces->setEnabled(false);
+            log->error(tr("CF Tool"),
+                       tr("You will not be able to submit code to Codeforces because CF Tool is not installed or is "
+                          "not on SYSTEM PATH. You can set it manually in settings."));
         }
     }
 
