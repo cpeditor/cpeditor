@@ -547,18 +547,12 @@ void MainWindow::applyCompanion(const Extensions::CompanionData &data)
             finalComments += "Powered by CP Editor (https://cpeditor.org)";
         }
 
-        if (language == "Python" && !finalComments.isEmpty())
-        {
-            finalComments = "# " + finalComments;
-            finalComments.replace('\n', "\n# ");
-        }
-        else if (!finalComments.isEmpty())
-        {
-            finalComments = "// " + finalComments;
-            finalComments.replace('\n', "\n// ");
-        }
         if (!finalComments.isEmpty())
+        {
+            finalComments.replace(QRegularExpression("^", QRegularExpression::MultilineOption),
+                                  language == "Python" ? "# " : "// ");
             finalComments += "\n\n";
+        }
 
         auto cursor = editor->textCursor();
         int cursorPos = cursor.position(); // keep Template Cursor Position
