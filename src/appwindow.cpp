@@ -1004,12 +1004,6 @@ void AppWindow::onSettingsApplied(const QString &pagePath)
 {
     LOG_INFO("Apply settings for " << INFO_OF(pagePath));
 
-    for (int i = 0; i < ui->tabWidget->count(); ++i)
-    {
-        windowAt(i)->applySettings(pagePath, i == ui->tabWidget->currentIndex());
-        onEditorTextChanged(windowAt(i));
-    }
-
     auto pageChanged = [pagePath](const QString &page) { return pagePath.isEmpty() || pagePath == page; };
 
     if (pageChanged("Key Bindings"))
@@ -1060,6 +1054,12 @@ void AppWindow::onSettingsApplied(const QString &pagePath)
     if (pageChanged("File Path/Default Paths"))
     {
         DefaultPathManager::fromVariantList(SettingsHelper::getDefaultPathNamesAndPaths());
+    }
+
+    for (int i = 0; i < ui->tabWidget->count(); ++i)
+    {
+        windowAt(i)->applySettings(pagePath, i == ui->tabWidget->currentIndex());
+        onEditorTextChanged(windowAt(i));
     }
 }
 
