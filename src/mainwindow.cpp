@@ -67,8 +67,11 @@ MainWindow::MainWindow(int index, QWidget *parent)
     connect(
         autoSaveTimer, &QTimer::timeout, autoSaveTimer, [this] { saveFile(AutoSave, tr("Auto Save"), false); },
         Qt::DirectConnection);
-    applySettings("", true);
-    QTimer::singleShot(0, [this] { setLanguage(language); }); // See issue #187 for more information
+
+    QTimer::singleShot(0, [this] {
+        applySettings("", true); // See issue #604 for more information
+        setLanguage(language);   // See issue #187 for more information
+    });
 }
 
 MainWindow::MainWindow(const QString &fileOpen, int index, QWidget *parent) : MainWindow(index, parent)
@@ -513,7 +516,7 @@ void MainWindow::applyCompanion(const Extensions::CompanionData &data)
 
         auto it = QRegularExpression(R"(\$\{json\..+?\})").globalMatch(comments);
 
-        QString finalComments = "\n";
+        QString finalComments;
         int lastEnd = 0;
 
         while (it.hasNext())
@@ -545,14 +548,18 @@ void MainWindow::applyCompanion(const Extensions::CompanionData &data)
         finalComments += comments.mid(lastEnd);
 
         if (SettingsHelper::isCompetitiveCompanionHeadCommentsPoweredByCPEditor())
-            finalComments += "\n\nPowered by CP Editor (https://cpeditor.org)";
+        {
+            if (!finalComments.isEmpty())
+                finalComments += "\n\n";
+            finalComments += "Powered by CP Editor (https://cpeditor.org)";
+        }
 
-        if (language == "Python")
-            finalComments.replace('\n', "\n# ");
-        else
-            finalComments.replace('\n', "\n// ");
-
-        finalComments += "\n\n";
+        if (!finalComments.isEmpty())
+        {
+            finalComments.replace(QRegularExpression("^", QRegularExpression::MultilineOption),
+                                  language == "Python" ? "# " : "// ");
+            finalComments += "\n\n";
+        }
 
         auto cursor = editor->textCursor();
         int cursorPos = cursor.position(); // keep Template Cursor Position
