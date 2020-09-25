@@ -404,7 +404,7 @@ void AppWindow::openTab(const QString &path)
         }
     }
 
-    auto newWindow = new MainWindow(path, getNewUntitledIndex(), this);
+    auto newWindow = new MainWindow(path, getNewUntitledIndex(), this, nullptr);
 
     QString lang = SettingsHelper::getDefaultLanguage();
 
@@ -424,7 +424,7 @@ void AppWindow::openTab(const QString &path)
 
 void AppWindow::openTab(const MainWindow::EditorStatus &status, bool duplicate)
 {
-    auto newWindow = new MainWindow(status, duplicate, getNewUntitledIndex(), this);
+    auto newWindow = new MainWindow(status, duplicate, getNewUntitledIndex(), this, nullptr);
     openTab(newWindow);
 }
 

@@ -40,9 +40,10 @@
 #include <QObject>
 
 class QStatusBar;
-class QMainWindow;
+class MainWindow;
 class QString;
 class QLabel;
+class AppWindow;
 
 namespace Core
 {
@@ -51,10 +52,11 @@ class FakeVimProxy : public QObject
     Q_OBJECT
 
   public:
-    FakeVimProxy(QWidget *widget, QMainWindow *mw, QObject *parent);
+    FakeVimProxy(QWidget *widget, MainWindow *mw, AppWindow *aw, QObject *parent);
     static void initHandler(FakeVim::Internal::FakeVimHandler *handler);
     static void clearUndoRedo(QWidget *);
-    static void connectSignals(FakeVim::Internal::FakeVimHandler *handler, QMainWindow *mainwindow, QWidget *widget);
+    static void connectSignals(FakeVim::Internal::FakeVimHandler *handler, QWidget *editor, MainWindow *mainwindow,
+                               AppWindow *appwin);
 
   signals:
     void handleInput(QString const &key);
@@ -86,7 +88,8 @@ class FakeVimProxy : public QObject
     QString content() const;
 
     QWidget *m_widget;
-    QMainWindow *m_mainWindow;
+    MainWindow *m_mainWindow;
+    AppWindow *m_appWindow;
     FakeVimCommand m_commandHandler;
     QLabel *m_statusMessage = nullptr;
     QLabel *m_statusData = nullptr;

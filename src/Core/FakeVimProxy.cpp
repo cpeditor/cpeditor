@@ -32,8 +32,10 @@
 
 */
 #include "Core/EventLogger.hpp"
+#include "appwindow.hpp"
 #include "fakevimactions.h"
 #include "fakevimhandler.h"
+#include "mainwindow.hpp"
 #include <Core/FakeVimProxy.hpp>
 #include <QApplication>
 #include <QDebug>
@@ -48,14 +50,13 @@
 #include <QTextStream>
 #include <QWidget>
 #include <generated/SettingsHelper.hpp>
-#include <mainwindow.hpp>
 
 namespace Core
 {
 
 using _ = QLatin1String;
-FakeVimProxy::FakeVimProxy(QWidget *widget, QMainWindow *mw, QObject *parent)
-    : QObject(parent), m_widget(widget), m_mainWindow(mw), m_commandHandler(qobject_cast<QMainWindow *>(mw->parent()))
+FakeVimProxy::FakeVimProxy(QWidget *widget, MainWindow *mw, AppWindow *aw, QObject *parent)
+    : QObject(parent), m_widget(widget), m_mainWindow(mw), m_commandHandler(aw)
 {
     m_statusData = new QLabel(m_mainWindow);
     m_statusMessage = new QLabel(m_mainWindow);
@@ -476,9 +477,10 @@ void FakeVimProxy::clearUndoRedo(QWidget *editor)
     }
 }
 
-void FakeVimProxy::connectSignals(FakeVim::Internal::FakeVimHandler *handler, QMainWindow *mainWindow, QWidget *editor)
+void FakeVimProxy::connectSignals(FakeVim::Internal::FakeVimHandler *handler, QWidget *editor, MainWindow *mainWindow,
+                                  AppWindow *appWindow)
 {
-    FakeVimProxy *proxy = new FakeVimProxy(editor, mainWindow, handler);
+    FakeVimProxy *proxy = new FakeVimProxy(editor, mainWindow, appWindow, handler);
 
     handler->commandBufferChanged.connect(
         [proxy](const QString &contents, int cursorPos, int /*anchorPos*/, int /*messageLevel*/) {

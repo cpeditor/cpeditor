@@ -14,22 +14,20 @@
  * Believe Software is "Software" and it isn't immune to bugs.
  *
  */
+#include "appwindow.hpp"
 #include "fakevimhandler.h"
 #include <Core/FakeVimCommands.hpp>
-#include <QMainWindow>
+#include <QDebug>
 #include <appwindow.hpp>
 
 namespace Core
 {
-FakeVimCommand::FakeVimCommand(QMainWindow *aw) : appwindow(aw)
+FakeVimCommand::FakeVimCommand(AppWindow *aw) : appwin(aw)
 {
 }
 
 bool FakeVimCommand::handle(FakeVim::Internal::ExCommand const &cmd)
 {
-    auto appwin = qobject_cast<AppWindow *>(appwindow);
-    if (!appwin)
-        return false;
 
     if (!wantNewFile(cmd).isEmpty())
     {

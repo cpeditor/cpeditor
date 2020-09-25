@@ -27,7 +27,7 @@ class ExCommand;
 } // namespace FakeVim
 
 class QString;
-class QMainWindow;
+class AppWindow;
 
 namespace Core
 {
@@ -35,7 +35,7 @@ class FakeVimCommand : public QObject
 {
     Q_OBJECT
   public:
-    explicit FakeVimCommand(QMainWindow *window);
+    explicit FakeVimCommand(AppWindow *window);
 
     bool handle(FakeVim::Internal::ExCommand const &ex);
 
@@ -55,7 +55,7 @@ class FakeVimCommand : public QObject
     bool wantExit(FakeVim::Internal::ExCommand const &ex);
     bool wantMessageLoggerClear(FakeVim::Internal::ExCommand const &ex);
 
-    QMainWindow *appwindow;
+    AppWindow *appwin;
 };
 } // namespace Core
 

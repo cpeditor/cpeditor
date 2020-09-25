@@ -26,6 +26,7 @@ class QFileSystemWatcher;
 class QPushButton;
 class QSplitter;
 class QTemporaryDir;
+class AppWindow;
 
 QT_BEGIN_NAMESPACE namespace Ui
 {
@@ -82,9 +83,9 @@ class MainWindow : public QMainWindow
         QMap<QString, QVariant> toMap() const;
     };
 
-    explicit MainWindow(int index, QWidget *parent);
-    explicit MainWindow(const QString &fileOpen, int index, QWidget *parent);
-    explicit MainWindow(const EditorStatus &status, bool duplicate, int index, QWidget *parent);
+    explicit MainWindow(int index, AppWindow *window, QWidget *parent);
+    explicit MainWindow(const QString &fileOpen, int index, AppWindow *window, QWidget *parent);
+    explicit MainWindow(const EditorStatus &status, bool duplicate, int index, AppWindow *window, QWidget *parent);
     ~MainWindow() override;
 
     int getUntitledIndex() const;
@@ -217,6 +218,8 @@ class MainWindow : public QMainWindow
     AfterCompile afterCompile = Nothing;
 
     MessageLogger *log = nullptr;
+
+    AppWindow *appWindow;
 
     int untitledIndex;
     QString problemURL;
