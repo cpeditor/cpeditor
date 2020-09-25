@@ -212,7 +212,6 @@ class MainWindow : public QMainWindow
     QString problemURL;
     QString filePath;
     QString savedText;
-    QString cftoolPath;
     QFileSystemWatcher *fileWatcher;
 
     std::atomic<bool> reloading;

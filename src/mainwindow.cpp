@@ -249,7 +249,7 @@ void MainWindow::setCFToolUI()
     if (submitToCodeforces == nullptr)
     {
         submitToCodeforces = new QPushButton(tr("Submit"), this);
-        cftool = new Extensions::CFTool(cftoolPath, log);
+        cftool = new Extensions::CFTool(SettingsHelper::getCFPath(), log);
         connect(cftool, SIGNAL(requestToastMessage(const QString &, const QString &)), this,
                 SIGNAL(requestToastMessage(const QString &, const QString &)));
         ui->compileAndRunButtons->addWidget(submitToCodeforces);
@@ -277,8 +277,10 @@ void MainWindow::setCFToolUI()
             }
         });
     }
-    if (!Extensions::CFTool::check(cftoolPath))
+    if (!Extensions::CFTool::check(SettingsHelper::getCFPath()))
     {
+        qDebug() << "CF tool was not found";
+
         submitToCodeforces->setEnabled(false);
         log->error(tr("CF Tool"),
                    tr("You will not be able to submit code to Codeforces because CF Tool is not installed or is "
@@ -587,11 +589,10 @@ void MainWindow::applySettings(const QString &pagePath, bool shouldPerformDigoni
 
     if (pagePath.isEmpty() || pagePath == "Extensions/CF Tool")
     {
-        cftoolPath = SettingsHelper::getCFPath();
 
-        if (cftool != nullptr && Extensions::CFTool::check(cftoolPath))
+        if (cftool != nullptr && Extensions::CFTool::check(SettingsHelper::getCFPath()))
         {
-            cftool->updatePath(cftoolPath);
+            cftool->updatePath(SettingsHelper::getCFPath());
             if (submitToCodeforces != nullptr)
                 submitToCodeforces->setEnabled(true);
         }
