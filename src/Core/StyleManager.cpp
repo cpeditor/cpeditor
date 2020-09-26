@@ -66,7 +66,6 @@ bool StyleManager::setStyle(const QString &styleName)
     }
 #endif
 
-    setStyleSheet(currentStyle);
     setPalette(currentStyle);
 
     if (currentStyle == "default")
@@ -114,18 +113,6 @@ bool StyleManager::isWindowsDarkThemeForApps()
 }
 #endif
 
-void StyleManager::setStyleSheet(const QString &styleName)
-{
-    QString styleSheet;
-
-    if (styleName == "Light Fusion")
-        styleSheet = "QToolTip {color: #000000; background-color: #d57d25 ; border: 1px solid black}";
-    else if (styleName == "Dark Fusion")
-        styleSheet = "QToolTip { color: #ffffff; background-color: #2a82da; border: 1px solid white; }";
-
-    qApp->setStyleSheet(styleSheet);
-}
-
 void StyleManager::setPalette(const QString &styleName)
 {
     if (styleName == "Light Fusion")
@@ -147,7 +134,7 @@ QPalette StyleManager::darkFusionPalette()
     darkPalette.setColor(QPalette::WindowText, Qt::white);
     darkPalette.setColor(QPalette::Base, QColor(18, 18, 18));
     darkPalette.setColor(QPalette::AlternateBase, darkColor);
-    darkPalette.setColor(QPalette::ToolTipBase, Qt::white);
+    darkPalette.setColor(QPalette::ToolTipBase, QColor(18, 18, 18));
     darkPalette.setColor(QPalette::ToolTipText, Qt::white);
     darkPalette.setColor(QPalette::Text, Qt::white);
     darkPalette.setColor(QPalette::Disabled, QPalette::Text, disabledColor);
@@ -174,7 +161,7 @@ QPalette StyleManager::lightFusionPalette()
     lightPalette.setColor(QPalette::WindowText, Qt::black);
     lightPalette.setColor(QPalette::Base, QColor(237, 237, 237));
     lightPalette.setColor(QPalette::AlternateBase, lightColor);
-    lightPalette.setColor(QPalette::ToolTipBase, Qt::black);
+    lightPalette.setColor(QPalette::ToolTipBase, QColor(237, 237, 237));
     lightPalette.setColor(QPalette::ToolTipText, Qt::black);
     lightPalette.setColor(QPalette::Text, Qt::black);
     lightPalette.setColor(QPalette::Disabled, QPalette::Text, disabledColor);
