@@ -17,6 +17,9 @@
 
 #ifndef FAKE_VIM_COMMAND
 #define FAKE_VIM_COMMAND
+
+#define STATUS_RESPONSE_TIMEOUT 3000
+
 #include <QObject>
 namespace FakeVim
 {
@@ -28,6 +31,7 @@ class ExCommand;
 
 class QString;
 class AppWindow;
+template <class A, class B> class QPair;
 
 namespace Core
 {
@@ -40,8 +44,8 @@ class FakeVimCommand : public QObject
     bool handle(FakeVim::Internal::ExCommand const &ex);
 
   private:
-    QString wantNewFile(FakeVim::Internal::ExCommand const &ex);
-    QString wantOpenFile(FakeVim::Internal::ExCommand const &ex);
+    QPair<bool, QString> wantNewFile(FakeVim::Internal::ExCommand const &ex);
+    QPair<bool, QString> wantOpenFile(FakeVim::Internal::ExCommand const &ex);
     bool wantCompile(FakeVim::Internal::ExCommand const &ex);
     int wantCompileRun(FakeVim::Internal::ExCommand const &ex);
     int wantDetachedRun(FakeVim::Internal::ExCommand const &ex);

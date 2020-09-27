@@ -142,15 +142,9 @@ void FakeVimProxy::setStatusBar()
 
 void FakeVimProxy::handleExCommand(bool *handled, FakeVim::Internal::ExCommand const &cmd)
 {
-    qDebug() << "Handling " << cmd.cmd;
-    /**
-     * Here is a unfortunate bug that causes custom handler to return false when Vim mode is enabled after switching to
-     * normal mode
-     */
     bool res = m_commandHandler.handle(cmd);
     if (res)
     {
-        qDebug() << "Handled in a custom manner";
         *handled = res;
         return;
     }

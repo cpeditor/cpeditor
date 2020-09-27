@@ -239,7 +239,7 @@ class AppWindow : public QMainWindow
     void maybeSetHotkeys();
     bool closeTab(int index, bool noConfirmQuit);
     void openTab(MainWindow *window);
-    void openTab(const QString &path);
+    void openTab(const QString &path, const QString &lang = ""); // if lang is empty, detect lang from file suffix.
     void openTab(const MainWindow::EditorStatus &status, bool duplicate = false);
     void openTabs(const QStringList &paths);
     void openPaths(const QStringList &paths, bool cpp = true, bool java = true, bool python = true, int depth = -1);

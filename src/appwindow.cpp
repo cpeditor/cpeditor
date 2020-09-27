@@ -387,7 +387,7 @@ void AppWindow::openTab(MainWindow *window)
     onEditorFileChanged();
 }
 
-void AppWindow::openTab(const QString &path)
+void AppWindow::openTab(const QString &path, const QString &lang)
 {
     LOG_INFO("OpenTab Path is " << path);
     if (!path.isEmpty())
@@ -406,18 +406,21 @@ void AppWindow::openTab(const QString &path)
 
     auto newWindow = new MainWindow(path, getNewUntitledIndex(), this, nullptr);
 
-    QString lang = SettingsHelper::getDefaultLanguage();
+    QString langFromFile = SettingsHelper::getDefaultLanguage();
 
     auto suffix = QFileInfo(path).suffix();
 
     if (Util::cppSuffix.contains(suffix))
-        lang = "C++";
+        langFromFile = "C++";
     else if (Util::javaSuffix.contains(suffix))
-        lang = "Java";
+        langFromFile = "Java";
     else if (Util::pythonSuffix.contains(suffix))
-        lang = "Python";
+        langFromFile = "Python";
 
-    newWindow->setLanguage(lang);
+    if (lang.isEmpty())
+        newWindow->setLanguage(langFromFile);
+    else
+        newWindow->setLanguage(lang);
 
     openTab(newWindow);
 }
