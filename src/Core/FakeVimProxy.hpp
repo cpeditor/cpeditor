@@ -35,8 +35,8 @@
 #ifndef FAKE_VIM_PROXY_HPP
 #define FAKE_VIM_PROXY_HPP
 
+#include "Core/FakeVimCommand.hpp"
 #include "fakevimhandler.h"
-#include <Core/FakeVimCommands.hpp>
 #include <QObject>
 
 class QStatusBar;

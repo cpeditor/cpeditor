@@ -18,12 +18,10 @@
 #include "Util/FileUtil.hpp"
 #include "appwindow.hpp"
 #include "fakevimhandler.h"
+#include "generated/SettingsHelper.hpp"
 #include <QApplication>
-#include <QDebug>
 #include <QFileInfo>
-#include <QPair>
 #include <QStatusBar>
-#include <generated/SettingsHelper.hpp>
 
 namespace Core
 {
@@ -133,7 +131,7 @@ QPair<bool, QString> FakeVimCommand::wantOpenFile(FakeVim::Internal::ExCommand c
         {
             if (appwin->currentWindow())
                 appwin->currentWindow()->statusBar()->showMessage(
-                    QString(QApplication::tr("Error: %1 requires a file path")).arg(ex.cmd), STATUS_RESPONSE_TIMEOUT);
+                    QString(tr("Error: %1 requires a file path")).arg(ex.cmd), STATUS_RESPONSE_TIMEOUT);
             return {true, ""};
         }
 

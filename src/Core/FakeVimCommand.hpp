@@ -21,6 +21,7 @@
 #define STATUS_RESPONSE_TIMEOUT 3000
 
 #include <QObject>
+
 namespace FakeVim
 {
 namespace Internal
@@ -40,7 +41,6 @@ class FakeVimCommand : public QObject
     Q_OBJECT
   public:
     explicit FakeVimCommand(AppWindow *window);
-
     bool handle(FakeVim::Internal::ExCommand const &ex);
 
   private:

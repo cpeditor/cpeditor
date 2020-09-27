@@ -31,12 +31,13 @@
     along with CopyQ.  If not, see <http://www.gnu.org/licenses/>.
 
 */
+#include "Core/FakeVimProxy.hpp"
 #include "Core/EventLogger.hpp"
 #include "appwindow.hpp"
 #include "fakevimactions.h"
 #include "fakevimhandler.h"
+#include "generated/SettingsHelper.hpp"
 #include "mainwindow.hpp"
-#include <Core/FakeVimProxy.hpp>
 #include <QApplication>
 #include <QDebug>
 #include <QLabel>
@@ -49,7 +50,6 @@
 #include <QTextEdit>
 #include <QTextStream>
 #include <QWidget>
-#include <generated/SettingsHelper.hpp>
 
 namespace Core
 {
@@ -388,40 +388,29 @@ bool FakeVimProxy::save()
 {
     if (!hasChanges())
         return true;
-    auto *window = qobject_cast<MainWindow *>(m_mainWindow);
-    if (window)
-        return window->save(true, "Vim Save");
+    return m_mainWindow->save(true, "Vim Save");
 
     return false;
 }
 
 void FakeVimProxy::cancel()
 {
-    auto *window = qobject_cast<MainWindow *>(m_mainWindow);
-    if (window)
+    if (hasChanges())
     {
-        if (hasChanges())
-        {
-            if (window->closeConfirm())
-                window->closeWindow();
-        }
-        else
-            invalidate();
+        if (m_mainWindow->closeConfirm())
+            m_mainWindow->closeWindow();
     }
+    else
+        invalidate();
 }
 void FakeVimProxy::invalidate()
 {
-    auto *window = qobject_cast<MainWindow *>(m_mainWindow);
-    if (window)
-        window->closeWindow();
+    m_mainWindow->closeWindow();
 }
 
 bool FakeVimProxy::hasChanges()
 {
-    auto *window = qobject_cast<MainWindow *>(m_mainWindow);
-    if (window)
-        return window->isTextChanged();
-    return false;
+    return m_mainWindow->isTextChanged();
 }
 
 QTextDocument *FakeVimProxy::document() const
