@@ -14,10 +14,11 @@
  * Believe Software is "Software" and it isn't immune to bugs.
  *
  */
+#include "Core/FakeVimCommand.hpp"
 #include "Util/FileUtil.hpp"
 #include "appwindow.hpp"
 #include "fakevimhandler.h"
-#include <Core/FakeVimCommands.hpp>
+#include <QApplication>
 #include <QDebug>
 #include <QFileInfo>
 #include <QPair>
@@ -115,7 +116,8 @@ QPair<bool, QString> FakeVimCommand::wantNewFile(FakeVim::Internal::ExCommand co
         {
             if (appwin->currentWindow())
                 appwin->currentWindow()->statusBar()->showMessage(
-                    tr("Unknown language: Expected empty or one of \"cpp\", \"java\" and \"python\""),
+                    QString(tr("Error: %1 requires an empty or one of \"cpp\", \"java\" and \"python\" argument"))
+                        .arg(ex.cmd),
                     STATUS_RESPONSE_TIMEOUT);
         }
     }
@@ -130,8 +132,8 @@ QPair<bool, QString> FakeVimCommand::wantOpenFile(FakeVim::Internal::ExCommand c
         if (ex.args.isEmpty())
         {
             if (appwin->currentWindow())
-                appwin->currentWindow()->statusBar()->showMessage(tr("Error : open requires a file path"),
-                                                                  STATUS_RESPONSE_TIMEOUT);
+                appwin->currentWindow()->statusBar()->showMessage(
+                    QString(QApplication::tr("Error: %1 requires a file path")).arg(ex.cmd), STATUS_RESPONSE_TIMEOUT);
             return {true, ""};
         }
 
@@ -140,7 +142,7 @@ QPair<bool, QString> FakeVimCommand::wantOpenFile(FakeVim::Internal::ExCommand c
         {
             if (appwin->currentWindow())
                 appwin->currentWindow()->statusBar()->showMessage(
-                    QString(tr("Error in Opening: File %1 does not exists")).arg(ex.args), STATUS_RESPONSE_TIMEOUT);
+                    QString(tr("Error in Opening: %1 does not exists")).arg(ex.args), STATUS_RESPONSE_TIMEOUT);
             return {true, ""};
         }
         else if (!file.isFile())

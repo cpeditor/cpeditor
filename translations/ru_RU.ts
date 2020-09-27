@@ -827,23 +827,19 @@ Press any key to exit</source>
 <context>
     <name>FakeVimCommand</name>
     <message>
-        <source>Unknown language: Expected empty or one of &quot;cpp&quot;, &quot;java&quot; and &quot;python&quot;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Error : open requires a file path</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Error in Opening: File %1 does not exists</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Error in Opening: %1 is not a file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Error in Opening: %1 is not a source file of C/C++, Java or Python</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Error: %1 requires an empty or one of &quot;cpp&quot;, &quot;java&quot; and &quot;python&quot; argument</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Error in Opening: %1 does not exists</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1512,6 +1508,13 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     </message>
     <message>
         <source>Code Editing</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>QApplication</name>
+    <message>
+        <source>Error: %1 requires a file path</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
