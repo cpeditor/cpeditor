@@ -69,11 +69,8 @@ MainWindow::MainWindow(int index, AppWindow *window, QWidget *parent)
     connect(
         autoSaveTimer, &QTimer::timeout, autoSaveTimer, [this] { saveFile(AutoSave, tr("Auto Save"), false); },
         Qt::DirectConnection);
-
-    QTimer::singleShot(0, [this] {
-        applySettings("", true); // See issue #604 for more information
-        setLanguage(language);   // See issue #187 for more information
-    });
+    applySettings("", true);
+    QTimer::singleShot(0, [this] { setLanguage(language); }); // See issue #187 for more information
 }
 
 MainWindow::MainWindow(const QString &fileOpen, int index, AppWindow *window, QWidget *parent)
