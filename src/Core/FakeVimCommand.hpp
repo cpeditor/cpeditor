@@ -47,9 +47,9 @@ class FakeVimCommand : public QObject
     QPair<bool, QString> wantNewFile(FakeVim::Internal::ExCommand const &ex);
     QPair<bool, QString> wantOpenFile(FakeVim::Internal::ExCommand const &ex);
     bool wantCompile(FakeVim::Internal::ExCommand const &ex);
-    int wantCompileRun(FakeVim::Internal::ExCommand const &ex);
-    int wantDetachedRun(FakeVim::Internal::ExCommand const &ex);
-    int wantRun(FakeVim::Internal::ExCommand const &ex);
+    bool wantCompileRun(FakeVim::Internal::ExCommand const &ex);
+    bool wantDetachedRun(FakeVim::Internal::ExCommand const &ex);
+    QPair<bool, int> wantRun(FakeVim::Internal::ExCommand const &ex);
     bool wantKillAll(FakeVim::Internal::ExCommand const &ex);
     bool wantFormat(FakeVim::Internal::ExCommand const &ex);
     bool wantSnippets(FakeVim::Internal::ExCommand const &ex);

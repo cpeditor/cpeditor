@@ -835,15 +835,23 @@ Press any key to exit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Error in Opening: %1 does not exists</source>
+        <source>Error: %1 does not exists</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Error in Opening: %1 is not a file</source>
+        <source>Error: %1 is not a file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Error in Opening: %1 is not a source file of C/C++, Java or Python</source>
+        <source>Error: %1 is not a source file of C/C++, Java or Python</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 is not a number</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Error: cannot run testcase %1</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

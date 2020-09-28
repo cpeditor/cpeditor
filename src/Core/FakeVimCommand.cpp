@@ -16,6 +16,7 @@
  */
 #include "Core/FakeVimCommand.hpp"
 #include "Util/FileUtil.hpp"
+#include "Widgets/TestCases.hpp"
 #include "appwindow.hpp"
 #include "fakevimhandler.h"
 #include "generated/SettingsHelper.hpp"
@@ -50,14 +51,34 @@ bool FakeVimCommand::handle(FakeVim::Internal::ExCommand const &cmd)
         appwin->on_actionCompile_triggered();
         return true;
     }
-    if (wantCompileRun(cmd) != -1)
+    if (wantCompileRun(cmd))
     {
+        appwin->on_actionCompileRun_triggered();
+        return true;
     }
-    if (wantDetachedRun(cmd) != -1)
+    if (wantDetachedRun(cmd))
     {
+        appwin->on_actionRunDetached_triggered();
+        return true;
     }
-    if (wantRun(cmd) != -1)
+    if (wantRun(cmd).first)
     {
+        auto out = wantRun(cmd).second;
+        if (out == 0)
+        {
+            appwin->on_actionRun_triggered();
+        }
+        else if (out > 0 && appwin->currentWindow() && appwin->currentWindow()->testcases &&
+                 appwin->currentWindow()->testcases->count() >= out)
+        {
+            appwin->currentWindow()->runTestCase(out - 1);
+        }
+        else if (appwin->currentWindow())
+        {
+            appwin->currentWindow()->statusBar()->showMessage(tr("Error: cannot run testcase %1").arg(cmd.args),
+                                                              STATUS_RESPONSE_TIMEOUT);
+        }
+        return true;
     }
     if (wantKillAll(cmd))
     {
@@ -76,6 +97,7 @@ bool FakeVimCommand::handle(FakeVim::Internal::ExCommand const &cmd)
     }
     if (!wantVModeChange(cmd).isEmpty())
     {
+        // NOT IMPLEMENTED
     }
     if (wantPreferences(cmd))
     {
@@ -84,6 +106,7 @@ bool FakeVimCommand::handle(FakeVim::Internal::ExCommand const &cmd)
     }
     if (QStringList({"cpp", "java", "python", "py"}).contains(wantLanguageChange(cmd)))
     {
+        // NOT IMPLEMENTED
     }
     if (wantMessageLoggerClear(cmd) && appwin->currentWindow())
     {
@@ -114,8 +137,7 @@ QPair<bool, QString> FakeVimCommand::wantNewFile(FakeVim::Internal::ExCommand co
         {
             if (appwin->currentWindow())
                 appwin->currentWindow()->statusBar()->showMessage(
-                    QString(tr("Error: %1 requires an empty or one of \"cpp\", \"java\" and \"python\" argument"))
-                        .arg(ex.cmd),
+                    tr("Error: %1 requires an empty or one of \"cpp\", \"java\" and \"python\" argument").arg(ex.cmd),
                     STATUS_RESPONSE_TIMEOUT);
         }
     }
@@ -130,8 +152,8 @@ QPair<bool, QString> FakeVimCommand::wantOpenFile(FakeVim::Internal::ExCommand c
         if (ex.args.isEmpty())
         {
             if (appwin->currentWindow())
-                appwin->currentWindow()->statusBar()->showMessage(
-                    QString(tr("Error: %1 requires a file path")).arg(ex.cmd), STATUS_RESPONSE_TIMEOUT);
+                appwin->currentWindow()->statusBar()->showMessage(tr("Error: %1 requires a file path").arg(ex.cmd),
+                                                                  STATUS_RESPONSE_TIMEOUT);
             return {true, ""};
         }
 
@@ -139,16 +161,16 @@ QPair<bool, QString> FakeVimCommand::wantOpenFile(FakeVim::Internal::ExCommand c
         if (!file.exists())
         {
             if (appwin->currentWindow())
-                appwin->currentWindow()->statusBar()->showMessage(
-                    QString(tr("Error in Opening: %1 does not exists")).arg(ex.args), STATUS_RESPONSE_TIMEOUT);
+                appwin->currentWindow()->statusBar()->showMessage(tr("Error: %1 does not exists").arg(ex.args),
+                                                                  STATUS_RESPONSE_TIMEOUT);
             return {true, ""};
         }
         else if (!file.isFile())
         {
 
             if (appwin->currentWindow())
-                appwin->currentWindow()->statusBar()->showMessage(
-                    QString(tr("Error in Opening: %1 is not a file")).arg(ex.args), STATUS_RESPONSE_TIMEOUT);
+                appwin->currentWindow()->statusBar()->showMessage(tr("Error: %1 is not a file").arg(ex.args),
+                                                                  STATUS_RESPONSE_TIMEOUT);
             return {true, ""};
         }
 
@@ -157,7 +179,7 @@ QPair<bool, QString> FakeVimCommand::wantOpenFile(FakeVim::Internal::ExCommand c
         {
             if (appwin->currentWindow())
                 appwin->currentWindow()->statusBar()->showMessage(
-                    QString(tr("Error in Opening: %1 is not a source file of C/C++, Java or Python")).arg(ex.args),
+                    tr("Error: %1 is not a source file of C/C++, Java or Python").arg(ex.args),
                     STATUS_RESPONSE_TIMEOUT);
 
             return {true, ""};
@@ -175,19 +197,38 @@ bool FakeVimCommand::wantCompile(FakeVim::Internal::ExCommand const &ex)
     return ex.cmd == "compile" || ex.cmd == "cmp";
 }
 
-int FakeVimCommand::wantCompileRun(FakeVim::Internal::ExCommand const &ex)
+bool FakeVimCommand::wantCompileRun(FakeVim::Internal::ExCommand const &ex)
 {
-    return -1;
+    return ex.cmd == "crun" || ex.cmd == "crn";
 }
 
-int FakeVimCommand::wantDetachedRun(FakeVim::Internal::ExCommand const &ex)
+bool FakeVimCommand::wantDetachedRun(FakeVim::Internal::ExCommand const &ex)
 {
-    return -1;
+    return ex.cmd == "drun" || ex.cmd == "drn";
 }
 
-int FakeVimCommand::wantRun(FakeVim::Internal::ExCommand const &ex)
+QPair<bool, int> FakeVimCommand::wantRun(FakeVim::Internal::ExCommand const &ex)
 {
-    return -1;
+    if (ex.cmd == "run")
+    {
+        if (ex.args.isEmpty()) // run all testcases
+        {
+            return {true, 0};
+        }
+        bool ok = false;
+        int caseNum = ex.args.toInt(&ok);
+        if (ok)
+            return {true, caseNum};
+        else
+        {
+            if (appwin->currentWindow())
+                appwin->currentWindow()->statusBar()->showMessage(tr("%1 is not a number").arg(caseNum),
+                                                                  STATUS_RESPONSE_TIMEOUT);
+            return {true, -1};
+        }
+    }
+
+    return {false, -1};
 }
 bool FakeVimCommand::wantKillAll(FakeVim::Internal::ExCommand const &ex)
 {
