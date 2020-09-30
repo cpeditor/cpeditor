@@ -126,6 +126,7 @@ bool FakeVimCommand::handle(FakeVim::Internal::ExCommand const &cmd)
         appwin->on_actionQuit_triggered();
         return true;
     }
+    // return false indicating that custom command handler failed to handle the command
     return false;
 }
 
