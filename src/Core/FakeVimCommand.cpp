@@ -95,18 +95,26 @@ bool FakeVimCommand::handle(FakeVim::Internal::ExCommand const &cmd)
         appwin->on_actionFormatCode_triggered();
         return true;
     }
-    if (!wantVModeChange(cmd).isEmpty())
+    if (wantVModeChange(cmd).first)
     {
-        // NOT IMPLEMENTED
+        auto val = wantVModeChange(cmd).second;
+        if (val == "split")
+            appwin->on_actionSplitMode_triggered();
+        if (val == "edit")
+            appwin->on_actionEditorMode_triggered();
+        return true;
     }
     if (wantPreferences(cmd))
     {
         appwin->on_actionSettings_triggered();
         return true;
     }
-    if (QStringList({"cpp", "java", "python", "py"}).contains(wantLanguageChange(cmd)))
+    if (wantLanguageChange(cmd).first)
     {
-        // NOT IMPLEMENTED
+        auto val = wantLanguageChange(cmd).second;
+        if (appwin->currentWindow() && !val.isEmpty())
+            appwin->currentWindow()->setLanguage(val);
+        return true;
     }
     if (wantMessageLoggerClear(cmd) && appwin->currentWindow())
     {
@@ -242,17 +250,50 @@ bool FakeVimCommand::wantSnippets(FakeVim::Internal::ExCommand const &ex)
 {
     return ex.cmd == "snippet" || ex.cmd == "snp";
 }
-QString FakeVimCommand::wantVModeChange(FakeVim::Internal::ExCommand const &ex)
+QPair<bool, QString> FakeVimCommand::wantVModeChange(FakeVim::Internal::ExCommand const &ex)
 {
-    return "";
+
+    if (ex.cmd == "vmode" || ex.cmd == "vmd")
+    {
+        if (ex.args == "split" || ex.args == "edit")
+            return {true, ex.args};
+        else
+        {
+            if (appwin->currentWindow())
+                appwin->currentWindow()->statusBar()->showMessage(
+                    tr("%1 is not a valid view mode. It should be one of \"split\", \"edit\"").arg(ex.args),
+                    STATUS_RESPONSE_TIMEOUT);
+            return {true, ""};
+        }
+    }
+    return {false, ""};
 }
 bool FakeVimCommand::wantPreferences(FakeVim::Internal::ExCommand const &ex)
 {
     return ex.cmd == "preference" || ex.cmd == "prf";
 }
-QString FakeVimCommand::wantLanguageChange(FakeVim::Internal::ExCommand const &ex)
+QPair<bool, QString> FakeVimCommand::wantLanguageChange(FakeVim::Internal::ExCommand const &ex)
 {
-    return "";
+
+    if (ex.cmd == "lang" || ex.cmd == "lng")
+    {
+        if (ex.args == "cpp")
+            return {true, "C++"};
+        else if (ex.args == "java")
+            return {true, "Java"};
+        else if (ex.args == "py" || ex.args == "python")
+            return {true, "Python"};
+        else
+        {
+            if (appwin->currentWindow())
+                appwin->currentWindow()->statusBar()->showMessage(
+                    tr("%1 is not a valid language name. It should be one of \"cpp\", \"java\" or \"python\"")
+                        .arg(ex.args),
+                    STATUS_RESPONSE_TIMEOUT);
+            return {true, ""};
+        }
+    }
+    return {false, ""};
 }
 bool FakeVimCommand::wantExit(FakeVim::Internal::ExCommand const &ex)
 {

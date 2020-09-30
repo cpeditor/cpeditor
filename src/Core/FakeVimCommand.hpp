@@ -53,9 +53,9 @@ class FakeVimCommand : public QObject
     bool wantKillAll(FakeVim::Internal::ExCommand const &ex);
     bool wantFormat(FakeVim::Internal::ExCommand const &ex);
     bool wantSnippets(FakeVim::Internal::ExCommand const &ex);
-    QString wantVModeChange(FakeVim::Internal::ExCommand const &ex);
+    QPair<bool, QString> wantVModeChange(FakeVim::Internal::ExCommand const &ex);
     bool wantPreferences(FakeVim::Internal::ExCommand const &ex);
-    QString wantLanguageChange(FakeVim::Internal::ExCommand const &ex);
+    QPair<bool, QString> wantLanguageChange(FakeVim::Internal::ExCommand const &ex);
     bool wantExit(FakeVim::Internal::ExCommand const &ex);
     bool wantMessageLoggerClear(FakeVim::Internal::ExCommand const &ex);
 
