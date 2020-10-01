@@ -59,10 +59,9 @@ PreferencesHomePage::PreferencesHomePage(QWidget *parent) : QWidget(parent)
     layout->addSpacing(20);
 
     // add manual label
-    manualLabel = new QLabel(
-        tr("You can read the <a href=\"https://github.com/cpeditor/cpeditor/blob/%1/doc/MANUAL.md\">Manual</a> or go "
-           "through the settings for more information.")
-            .arg(GIT_COMMIT_HASH));
+    manualLabel = new QLabel(tr("You can read the <a href=\"https://cpeditor.org/%1/docs\">Documentation</a> or go "
+                                "through the settings for more information.")
+                                 .arg(MINOR_VERSION));
     manualLabel->setOpenExternalLinks(true);
     layout->addWidget(manualLabel);
     layout->setAlignment(manualLabel, Qt::AlignCenter);

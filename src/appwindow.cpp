@@ -579,8 +579,7 @@ void AppWindow::on_actionSupportMe_triggered()
 
 void AppWindow::on_actionManual_triggered()
 {
-    QDesktopServices::openUrl(QUrl(
-        tr("https://github.com/cpeditor/cpeditor/blob/%1/doc/MANUAL.md").arg(GIT_COMMIT_HASH), QUrl::TolerantMode));
+    QDesktopServices::openUrl(QUrl(tr("https://cpeditor.org/%1/docs").arg(MINOR_VERSION), QUrl::TolerantMode));
 }
 
 void AppWindow::on_actionReportIssues_triggered()

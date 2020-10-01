@@ -20,10 +20,6 @@
         <translation>Открытие файлов</translation>
     </message>
     <message>
-        <source>https://github.com/cpeditor/cpeditor/blob/%1/doc/MANUAL.md</source>
-        <translation>https://github.com/cpeditor/cpeditor/blob/%1/doc/MANUAL_ru-RU.md</translation>
-    </message>
-    <message>
         <source>About CP Editor %1</source>
         <translation>О CP Editor %1</translation>
     </message>
@@ -466,6 +462,10 @@ Git commit hash: %3
     <message>
         <source>Set Time Limit</source>
         <translation>Установить лими времени</translation>
+    </message>
+    <message>
+        <source>https://cpeditor.org/%1/docs</source>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -1298,8 +1298,8 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
         <translation>Внешний вид</translation>
     </message>
     <message>
-        <source>You can read the &lt;a href=&quot;https://github.com/cpeditor/cpeditor/blob/%1/doc/MANUAL.md&quot;&gt;Manual&lt;/a&gt; or go through the settings for more information.</source>
-        <translation>Вы можете почитать &lt;a href=&quot;https://github.com/cpeditor/cpeditor/blob/%1/doc/MANUAL_ru-RU.md&quot;&gt;инструкцию&lt;/a&gt; или просмотреть настройки для более подробной информации.</translation>
+        <source>You can read the &lt;a href=&quot;https://cpeditor.org/%1/docs&quot;&gt;Documentation&lt;/a&gt; or go through the settings for more information.</source>
+        <translation>Вы можете почитать &lt;a href=&quot;https://cpeditor.org/%1/docs&quot;&gt;документация&lt;/a&gt; или просмотреть настройки для более подробной информации.</translation>
     </message>
 </context>
 <context>
