@@ -445,6 +445,15 @@
       "contributions": [
         "bug"
       ]
+    },
+    {
+      "login": "nutzboi",
+      "name": "nutzboi",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/31652809?v=4",
+      "profile": "https://github.com/nutzboi",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 6,
