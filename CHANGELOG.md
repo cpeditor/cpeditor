@@ -37,8 +37,6 @@
 
     If you write to files with relative paths in your codes, you can use "Reveal Executable File" to find the outputs.
 
--   Changed "Code Edit" to "Code Editing" in Settings
-
 ## v6.6
 
 ### The Portable Version
