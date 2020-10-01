@@ -13,7 +13,7 @@ CP Editor 是一个基于 Qt 的轻量级跨平台代码编辑器，专为算法
 ---
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-45-orange.svg)](#contributors-sparkles)
+[![All Contributors](https://img.shields.io/badge/all_contributors-46-orange.svg)](#contributors-sparkles)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/ce0f297f31f74485b0d340949d08d605)](https://www.codacy.com/gh/cpeditor/cpeditor)
 [![GitHub All Releases](https://img.shields.io/github/downloads/cpeditor/cpeditor/total?label=downloads%40all)](https://github.com/cpeditor/cpeditor/releases)
@@ -219,6 +219,9 @@ CP Editor 是一个基于 Qt 的轻量级跨平台代码编辑器，专为算法
     </td>
     <td align="center">
       <a href="https://github.com/AchintyaK20"><img src="https://avatars1.githubusercontent.com/u/56220374?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/AchintyaK20"><sub><b>Achintya Kumar</b></sub></a><br /><a href="https://github.com/cpeditor/cpeditor/issues?q=author%3AAchintyaK20" title="Bug reports">🐛</a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/nutzboi"><img src="https://avatars3.githubusercontent.com/u/31652809?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/nutzboi"><sub><b>nutzboi</b></sub></a><br /><a href="https://github.com/cpeditor/cpeditor/issues?q=author%3Anutzboi" title="Bug reports">🐛</a>
     </td>
   </tr>
 </table>
