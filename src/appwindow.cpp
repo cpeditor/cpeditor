@@ -129,14 +129,7 @@ AppWindow::AppWindow(int depth, bool cpp, bool java, bool python, bool noHotExit
     : AppWindow(noHotExit, parent)
 {
     openPaths(paths, cpp, java, python, depth);
-    if (ui->tabWidget->count() == 0)
-        openTab("");
-
-#ifdef Q_OS_WIN
-    // This is necessary because of setWindowOpacity(0.99) earlier
-    if (SettingsHelper::getOpacity() == 100)
-        setWindowOpacity(1);
-#endif
+    finishConstruction();
 }
 
 AppWindow::AppWindow(bool cpp, bool java, bool python, bool noHotExit, int number, const QString &path, QWidget *parent)
@@ -150,6 +143,12 @@ AppWindow::AppWindow(bool cpp, bool java, bool python, bool noHotExit, int numbe
     else if (python)
         lang = "Python";
     openContest({path, number, lang});
+
+    finishConstruction();
+}
+
+void AppWindow::finishConstruction()
+{
     if (ui->tabWidget->count() == 0)
         openTab("");
 
@@ -158,6 +157,13 @@ AppWindow::AppWindow(bool cpp, bool java, bool python, bool noHotExit, int numbe
     if (SettingsHelper::getOpacity() == 100)
         setWindowOpacity(1);
 #endif
+
+    if (SettingsHelper::isFirstTimeUser())
+    {
+        LOG_INFO("Is first-time user");
+        preferencesWindow->display();
+        SettingsHelper::setFirstTimeUser(false);
+    }
 }
 
 AppWindow::~AppWindow()

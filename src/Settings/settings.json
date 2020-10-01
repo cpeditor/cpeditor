@@ -1132,5 +1132,11 @@
                 "check": "return !var.toBool();"
             }
         ]
+    },
+    {
+        "name": "First Time User",
+        "type": "bool",
+        "default": true,
+        "notr": true
     }
 ]

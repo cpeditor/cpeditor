@@ -16,6 +16,7 @@
 -   Add Vim Emulation using FakeVim. (#220 and #581)
 -   Now you can change the Input mode to Insert/Replace by pressing INS on your keyboard or set a default Input mode in Settings. (#581)
 -   Added an option to disable the current line highlighting.
+-   Now the preferences window pops up at the first launch of CP Editor. (#614)
 
 ### Fixed
 
