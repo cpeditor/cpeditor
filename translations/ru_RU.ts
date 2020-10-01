@@ -1298,8 +1298,12 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
         <translation>Внешний вид</translation>
     </message>
     <message>
-        <source>You can read the &lt;a href=&quot;https://cpeditor.org/%1/docs&quot;&gt;Documentation&lt;/a&gt; or go through the settings for more information.</source>
-        <translation>Вы можете почитать &lt;a href=&quot;https://cpeditor.org/%1/docs&quot;&gt;документация&lt;/a&gt; или просмотреть настройки для более подробной информации.</translation>
+        <source>You can read the &lt;a href=&quot;%1&quot;&gt;documentation&lt;/a&gt; or go through the settings for more information.</source>
+        <translation>Вы можете почитать &lt;a href=&quot;%1&quot;&gt;документация&lt;/a&gt; или просмотреть настройки для более подробной информации.</translation>
+    </message>
+    <message>
+        <source>https://cpeditor.org/%1/docs</source>
+        <translation></translation>
     </message>
 </context>
 <context>

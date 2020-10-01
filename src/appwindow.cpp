@@ -580,17 +580,18 @@ int AppWindow::getNewUntitledIndex()
 
 void AppWindow::on_actionSupportMe_triggered()
 {
-    QDesktopServices::openUrl(QUrl("https://paypal.me/coder3101", QUrl::TolerantMode));
+    QDesktopServices::openUrl(QUrl("https://paypal.me/coder3101"));
 }
 
 void AppWindow::on_actionManual_triggered()
 {
-    QDesktopServices::openUrl(QUrl(tr("https://cpeditor.org/%1/docs").arg(MINOR_VERSION), QUrl::TolerantMode));
+    QDesktopServices::openUrl(
+        QUrl(tr("https://cpeditor.org/%1/docs").arg(MINOR_VERSION)).adjusted(QUrl::NormalizePathSegments));
 }
 
 void AppWindow::on_actionReportIssues_triggered()
 {
-    QDesktopServices::openUrl(QUrl("https://github.com/cpeditor/cpeditor/issues", QUrl::TolerantMode));
+    QDesktopServices::openUrl(QUrl("https://github.com/cpeditor/cpeditor/issues"));
 }
 
 void AppWindow::on_actionAbout_triggered()

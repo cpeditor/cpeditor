@@ -16,11 +16,12 @@
  */
 
 #include "Settings/PreferencesHomePage.hpp"
+#include "generated/version.hpp"
 #include <QLabel>
 #include <QPixmap>
 #include <QPushButton>
+#include <QUrl>
 #include <QVBoxLayout>
-#include <generated/version.hpp>
 
 PreferencesHomePage::PreferencesHomePage(QWidget *parent) : QWidget(parent)
 {
@@ -59,9 +60,10 @@ PreferencesHomePage::PreferencesHomePage(QWidget *parent) : QWidget(parent)
     layout->addSpacing(20);
 
     // add manual label
-    manualLabel = new QLabel(tr("You can read the <a href=\"https://cpeditor.org/%1/docs\">Documentation</a> or go "
-                                "through the settings for more information.")
-                                 .arg(MINOR_VERSION));
+    manualLabel = new QLabel(
+        tr("You can read the <a href=\"%1\">documentation</a> or go "
+           "through the settings for more information.")
+            .arg(QUrl(tr("https://cpeditor.org/%1/docs").arg(MINOR_VERSION)).url(QUrl::NormalizePathSegments)));
     manualLabel->setOpenExternalLinks(true);
     layout->addWidget(manualLabel);
     layout->setAlignment(manualLabel, Qt::AlignCenter);
