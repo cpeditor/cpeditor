@@ -20,10 +20,6 @@
         <translation>打开文件中</translation>
     </message>
     <message>
-        <source>https://github.com/cpeditor/cpeditor/blob/%1/doc/MANUAL.md</source>
-        <translation>https://github.com/cpeditor/cpeditor/blob/%1/doc/MANUAL_zh-CN.md</translation>
-    </message>
-    <message>
         <source>About CP Editor %1</source>
         <translation>关于 CP Editor %1</translation>
     </message>
@@ -466,6 +462,10 @@ git 提交编号: %3
     <message>
         <source>Set Time Limit</source>
         <translation>设置时间限制</translation>
+    </message>
+    <message>
+        <source>https://cpeditor.org/%1/docs</source>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -1298,8 +1298,12 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
         <translation>外观</translation>
     </message>
     <message>
-        <source>You can read the &lt;a href=&quot;https://github.com/cpeditor/cpeditor/blob/%1/doc/MANUAL.md&quot;&gt;Manual&lt;/a&gt; or go through the settings for more information.</source>
-        <translation>你可以阅读 &lt;a href=&quot;https://github.com/cpeditor/cpeditor/blob/%1/doc/MANUAL-zh_CN.md&quot;&gt;手册&lt;/a&gt; 或在设置中浏览以获取更多信息。</translation>
+        <source>You can read the &lt;a href=&quot;%1&quot;&gt;documentation&lt;/a&gt; or go through the settings for more information.</source>
+        <translation>你可以阅读 &lt;a href=&quot;%1&quot;&gt;文档&lt;/a&gt; 或在设置中浏览以获取更多信息。</translation>
+    </message>
+    <message>
+        <source>https://cpeditor.org/%1/docs</source>
+        <translation></translation>
     </message>
 </context>
 <context>

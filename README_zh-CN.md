@@ -8,7 +8,7 @@ CP Editor 是一个基于 Qt 的轻量级跨平台代码编辑器，专为算法
 
 它可以让你刷题/打比赛更加轻松 :grin: 因为它自动化了很多算法竞赛中的流程。
 
-[特性](https://cpeditor.github.io/) | [安装](doc/INSTALL_zh-CN.md) | [使用](doc/MANUAL_zh-CN.md) | [更新日志](doc/CHANGELOG.md) | [贡献指南](CONTRIBUTING_zh-CN.md) | [FAQ](#faq) | [English](README.md) | [Русский](README_ru-RU.md)
+[特性](https://cpeditor.org/) | [文档](https://cpeditor.org/docs/) | [更新日志](CHANGELOG.md) | [贡献指南](CONTRIBUTING_zh-CN.md) | [FAQ](https://cpeditor.org/docs/faq/) | [English](README.md) | [Русский](README_ru-RU.md)
 
 ---
 
@@ -30,8 +30,10 @@ CP Editor 是一个基于 Qt 的轻量级跨平台代码编辑器，专为算法
 ## 开始使用
 
 - [发行版](https://github.com/cpeditor/cpeditor/releases) ([Gitee 镜像](https://gitee.com/ouuan/cpeditor/releases))
-- [各种安装方式](doc/INSTALL_zh-CN.md)
-- [使用说明与提示](doc/MANUAL_zh-CN.md)
+- [安装](https://cpeditor.org/docs/installation/)
+- [开始使用](https://cpeditor.org/docs/setup/)
+- [设置](https://cpeditor.org/docs/preferences)
+- [使用提示](https://cpeditor.org/docs/tips/)
 
 ## 做出贡献
 
@@ -42,7 +44,7 @@ CP Editor 是一个基于 Qt 的轻量级跨平台代码编辑器，专为算法
 
 ## 获取帮助
 
-1. 请首先阅读 [使用指南](doc/MANUAL_zh-CN.md) 和 [FAQ](#faq)，并看看应用菜单和设置中有没有能帮到你的。
+1. 请首先尝试在 [文档](https://cpeditor.org) 中进行搜索，并看看主菜单和设置中有没有能帮到你的。
 2. 如果你要问的问题和 CP Editor 本身不太相关，请尝试通过百度来解决问题（例如：如何安装 Clang Format？这个编译错误是什么意思？）。
 3. 在 [Issues](https://github.com/cpeditor/cpeditor/issues) 中搜索，确保你是第一个发现这个问题/提出这个请求的。
 4. 在提 issue 时，请务必遵守模板，提供详细的信息，这有助于更快地获得更加令您满意的答复。
@@ -51,19 +53,6 @@ CP Editor 是一个基于 Qt 的轻量级跨平台代码编辑器，专为算法
 - [提 issue](https://github.com/cpeditor/cpeditor/issues/new/choose)
 - [在 QQ 群中提问](https://jq.qq.com/?_wv=1027&k=50eq8yF) (1081647997)
 - [在 Slack 上提问](https://join.slack.com/t/cpeditor/shared_invite/zt-ekfy0zb5-SrOi8SIox8oq61oRonBynw)
-
-## FAQ
-
-- 如何从网站上获取样例？
-   - 你需要在浏览器上安装 [Competitive Companion](https://github.com/jmerle/competitive-companion) 插件, 然后在打开 CP Editor 的情况下使用它（点击绿色加号）。
-- 如何在应用内提交代码到 CF 上?
-   - 你需要使用 Competitive Companion 获取 CF 题目的样例，或者在标签页的右键菜单中设置题目地址，然后就可以看到提交按钮了。
-- 为什么提交按钮无法点击？
-   - 这是因为 CP Editor 不能运行 `cf` 命令。你可以将 CF Tool 加入 PATH，或者在首选项中设置 CF Tool 的路径。
-- 提交时让我设置 template，那是什么？
-   - 请在命令行中使用 `cf config` 来设置用户名，密码和模板。
-- 使用 Competitive Companion 时，提示 invalid payload，那是什么?
-   - 一般来说多获取几次样例，重启浏览器和 CP Editor，甚至更换浏览器可以解决这个问题。
 
 ## 关于中文
 

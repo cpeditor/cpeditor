@@ -1,11 +1,11 @@
 blank_issues_enabled: false
 contact_links:
   - name: FAQ
-    url: https://github.com/cpeditor/cpeditor#faq
-    about: You may find your question and the answer here.
-  - name: Manual
-    url: https://github.com/cpeditor/cpeditor/blob/master/doc/MANUAL.md
-    about: Some instructions and tips.
+    url: https://cpeditor.org/docs/faq
+    about: You may find your question and the answer to it here.
+  - name: Documentation
+    url: https://cpeditor.org/docs
+    about: The documentation tells you how to use CP Editor.
   - name: Telegram Group
     url: https://t.me/cpeditor
     about: You can ask questions except for feature requests and bug reports here.
