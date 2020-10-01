@@ -6,7 +6,7 @@ CP Editor is a Qt-based, lightweight and cross-platform code editor specially de
 
 It makes your competitive coding life easier :grin: by automating many things for you.
 
-[Features](https://cpeditor.github.io/) | [Installation](doc/INSTALL.md) | [Usage](doc/MANUAL.md) | [Changelog](doc/CHANGELOG.md) | [Contributing](CONTRIBUTING.md) | [FAQ](#faq) | [中文](README_zh-CN.md) | [Русский](README_ru-RU.md)
+[Features](https://cpeditor.org) | [Documentation](https://cpeditor.org/docs) | [Changelog](CHANGELOG.md) | [Contributing](CONTRIBUTING.md) | [FAQ](https://cpeditor.org/docs/faq/) | [中文](README_zh-CN.md) | [Русский](README_ru-RU.md)
 
 ---
 
@@ -28,8 +28,10 @@ It makes your competitive coding life easier :grin: by automating many things fo
 ## Get Started
 
 - [Releases](https://github.com/cpeditor/cpeditor/releases)
-- [Install in different ways](doc/INSTALL.md)
-- [Get Started and Tips](doc/MANUAL.md)
+- [Installation](https://cpeditor.org/docs/installation/)
+- [Get Started](https://cpeditor.org/docs/setup/)
+- [Preferences](https://cpeditor.org/docs/preferences)
+- [Tips](https://cpeditor.org/docs/tips/)
 
 ## Contributing
 
@@ -40,7 +42,7 @@ It makes your competitive coding life easier :grin: by automating many things fo
 
 ## Get help
 
-1. Read the [manual](doc/MANUAL.md) and the [FAQ](#faq) first, also go through the menus and preferences to see if there are what you are looking for.
+1. Try searching the [documentation](https://cpeditor.org/docs) first. Also go through the menus and preferences to see if there are what you are looking for.
 2. Ask Google first if it's not very editor-related. (e.g. How to install Clang Format? What does this compilation error mean?)
 3. Search in the [Issues](https://github.com/cpeditor/cpeditor/issues) and make sure your bug report/feature request is not duplicated.
 4. Please follow the issue template and provide detailed information, it will help us to give you better feedback.
@@ -49,21 +51,6 @@ It makes your competitive coding life easier :grin: by automating many things fo
 - [Open an issue](https://github.com/cpeditor/cpeditor/issues/new/choose)
 - [Ask on Telegram](https://t.me/cpeditor)
 - [Ask on Slack](https://join.slack.com/t/cpeditor/shared_invite/zt-ekfy0zb5-SrOi8SIox8oq61oRonBynw)
-
-## FAQ
-
-- How to fetch testcases from the websites?
-   - You have to install [Competitive Companion](https://github.com/jmerle/competitive-companion) on your browser, and use it on the website while CP Editor is running.
-- How to submit to CF inside the editor?
-   - You have to either parse the problem from Competitive Companion, or set the problem URL in the right-click menu of the tabs. Then you'll see the submit button.
-- I am using it on Codeforces but the submit button is not clickable.
-   - It's because the editor can't run the `cf` command. Please make sure it's in the PATH or set the path to it in the Preferences.
-- When I click the Submit button, I get some message saying template is required?
-   - `cf` tool requires you to configure it before you use it. Please run `cf config` to set the username & password and add a template.
-- I got an invalid payload when parsing sample testcases?
-   - Please try restarting the browser and the editor. It's a known bug that can occur even after restarting. However, there has been no report of this bug when using Firefox to parse the problems. You can use Firefox for now till then we will try our best to fix it.
-- How to enable error linting in the code editor?
-   - You need to install a [Language Server program](https://microsoft.github.io/language-server-protocol/implementors/servers/) and set the settings in Preferences -> Extensions -> Language Server. You can learn about more details [here](doc/MANUAL.md).
 
 ## Contributors :sparkles:
 

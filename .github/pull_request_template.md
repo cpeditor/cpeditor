@@ -42,4 +42,4 @@
 - [ ] The commit messages are clear and detailed. (Otherwise, use `git reset` and commit again, or use `git rebase -i` and `git commit --amend` to modify the commit messages.)
 - [ ] These changes don't remove an existing feature. (Otherwise, add an option to disable this feature instead, unless it's necessary to remove this feature.)
 - [ ] If there are changes of the text displayed in the UI, I have wrapped them in `tr()` or `QCoreApplication::translate()`.
-- [ ] I have documented these changes in [CHANGELOG.md](https://github.com/cpeditor/cpeditor/blob/master/doc/CHANGELOG.md), or these changes are not notable.
+- [ ] I have documented these changes in [CHANGELOG.md](https://github.com/cpeditor/cpeditor/blob/master/CHANGELOG.md), or these changes are not notable.
