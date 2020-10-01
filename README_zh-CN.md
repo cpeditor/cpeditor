@@ -8,7 +8,7 @@ CP Editor 是一个基于 Qt 的轻量级跨平台代码编辑器，专为算法
 
 它可以让你刷题/打比赛更加轻松 :grin: 因为它自动化了很多算法竞赛中的流程。
 
-[特性](https://cpeditor.org/) | [文档](https://cpeditor.org/docs/) | [更新日志](CHANGELOG.md) | [贡献指南](CONTRIBUTING_zh-CN.md) | [FAQ](https://cpeditor.org/docs/faq/) | [English](README.md) | [Русский](README_ru-RU.md)
+[特性](https://cpeditor.org/zh) | [文档](https://cpeditor.org/zh/docs/) | [更新日志](CHANGELOG.md) | [贡献指南](CONTRIBUTING_zh-CN.md) | [FAQ](https://cpeditor.org/zh/docs/faq/) | [English](README.md) | [Русский](README_ru-RU.md)
 
 ---
 
@@ -30,10 +30,10 @@ CP Editor 是一个基于 Qt 的轻量级跨平台代码编辑器，专为算法
 ## 开始使用
 
 - [发行版](https://github.com/cpeditor/cpeditor/releases) ([Gitee 镜像](https://gitee.com/ouuan/cpeditor/releases))
-- [安装](https://cpeditor.org/docs/installation/)
-- [开始使用](https://cpeditor.org/docs/setup/)
-- [设置](https://cpeditor.org/docs/preferences)
-- [使用提示](https://cpeditor.org/docs/tips/)
+- [安装](https://cpeditor.org/zh/docs/installation/)
+- [开始使用](https://cpeditor.org/zh/docs/setup/)
+- [设置](https://cpeditor.org/zh/docs/preferences)
+- [使用提示](https://cpeditor.org/zh/docs/tips/)
 
 ## 做出贡献
 
@@ -44,7 +44,7 @@ CP Editor 是一个基于 Qt 的轻量级跨平台代码编辑器，专为算法
 
 ## 获取帮助
 
-1. 请首先尝试在 [文档](https://cpeditor.org) 中进行搜索，并看看主菜单和设置中有没有能帮到你的。
+1. 请首先尝试在 [文档](https://cpeditor.org/zh/docs) 中进行搜索，并看看主菜单和设置中有没有能帮到你的。
 2. 如果你要问的问题和 CP Editor 本身不太相关，请尝试通过百度来解决问题（例如：如何安装 Clang Format？这个编译错误是什么意思？）。
 3. 在 [Issues](https://github.com/cpeditor/cpeditor/issues) 中搜索，确保你是第一个发现这个问题/提出这个请求的。
 4. 在提 issue 时，请务必遵守模板，提供详细的信息，这有助于更快地获得更加令您满意的答复。

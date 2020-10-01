@@ -8,7 +8,7 @@ CP Editor - это легкий кросс-платформенный редак
 
 Этот редактор облегчает жизнь спортивного прораммиста :grin: автоматизируя многие вещи.
 
-[Возможности](https://cpeditor.org) | [Документация](https://cpeditor.org/docs/) | [Список изменений](CHANGELOG.md) | [Сотрудничество](CONTRIBUTING_ru-RU.md) | [FAQ](https://cpeditor.org/docs/faq/) | [English](README.md) | [中文](README_zh-CN.md)
+[Возможности](https://cpeditor.org/ru) | [Документация](https://cpeditor.org/ru/docs/) | [Список изменений](CHANGELOG.md) | [Сотрудничество](CONTRIBUTING_ru-RU.md) | [FAQ](https://cpeditor.org/ru/docs/faq/) | [English](README.md) | [中文](README_zh-CN.md)
 
 ---
 
@@ -30,10 +30,10 @@ CP Editor - это легкий кросс-платформенный редак
 ## Начало
 
 - [Релизы](https://github.com/cpeditor/cpeditor/releases)
-- [Установка](https://cpeditor.org/docs/installation/)
-- [Начало](https://cpeditor.org/docs/setup/)
-- [Параметры](https://cpeditor.org/docs/preferences)
-- [подсказки](https://cpeditor.org/docs/tips/)
+- [Установка](https://cpeditor.org/ru/docs/installation/)
+- [Начало](https://cpeditor.org/ru/docs/setup/)
+- [Параметры](https://cpeditor.org/ru/docs/preferences)
+- [подсказки](https://cpeditor.org/ru/docs/tips/)
 
 ## Сотрудничество
 
@@ -44,7 +44,7 @@ CP Editor - это легкий кросс-платформенный редак
 
 ## Получить помощь
 
-1. Прочитайте в первую очередь [документация](https://cpeditor.org/docs/), кроме того, просмотрите меню и настройки, чтобы узнать, есть ли то, что вы ищете.
+1. Прочитайте в первую очередь [документация](https://cpeditor.org/ru/docs/), кроме того, просмотрите меню и настройки, чтобы узнать, есть ли то, что вы ищете.
 2. Сначала поищите в Google или Яндекс. Может проблема не связана с редактором? Например, "как установить ClangFormat?" или "что такое ошибка компиляции?"
 3. Поищите в [Issues](https://github.com/cpeditor/cpeditor/issues) и убедитесь, что такой ошибки/запроса функции еще не было.
 4. Пожалуйста, следуйте шаблону вопроса и предоставьте подробную информацию, т.к. это поможет нам дать наиболее качественный ответ на ваш вопрос.
