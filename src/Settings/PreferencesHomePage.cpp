@@ -16,11 +16,12 @@
  */
 
 #include "Settings/PreferencesHomePage.hpp"
+#include "generated/version.hpp"
 #include <QLabel>
 #include <QPixmap>
 #include <QPushButton>
+#include <QUrl>
 #include <QVBoxLayout>
-#include <generated/version.hpp>
 
 PreferencesHomePage::PreferencesHomePage(QWidget *parent) : QWidget(parent)
 {
@@ -60,9 +61,9 @@ PreferencesHomePage::PreferencesHomePage(QWidget *parent) : QWidget(parent)
 
     // add manual label
     manualLabel = new QLabel(
-        tr("You can read the <a href=\"https://github.com/cpeditor/cpeditor/blob/%1/doc/MANUAL.md\">Manual</a> or go "
+        tr("You can read the <a href=\"%1\">documentation</a> or go "
            "through the settings for more information.")
-            .arg(GIT_COMMIT_HASH));
+            .arg(QUrl(tr("https://cpeditor.org/%1/docs").arg(MINOR_VERSION)).url(QUrl::NormalizePathSegments)));
     manualLabel->setOpenExternalLinks(true);
     layout->addWidget(manualLabel);
     layout->setAlignment(manualLabel, Qt::AlignCenter);
