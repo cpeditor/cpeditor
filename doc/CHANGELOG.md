@@ -13,6 +13,7 @@
 -   Now you can use the time limit from Competitive Companion as the time limit for the corresponding tab. (#565)
 -   Now the compiler works in the same directory as the source file, so that you can use relative paths in the compile command. For example, you can add `grader.cpp` to compile the source file with the grader in the same directory. (#565)
 -   TLE and RE verdicts. (#566)
+-   Now the preferences window pops up at the first launch of CP Editor. (#614)
 
 ### Fixed
 
