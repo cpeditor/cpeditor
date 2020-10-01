@@ -1066,5 +1066,11 @@
         "type": "int",
         "default": 5,
         "notr": true
+    },
+    {
+        "name": "First Time User",
+        "type": "bool",
+        "default": true,
+        "notr": true
     }
 ]

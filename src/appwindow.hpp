@@ -58,7 +58,6 @@ class AppWindow : public QMainWindow
     Q_OBJECT
 
   public:
-    explicit AppWindow(bool noHotExit, QWidget *parent = nullptr);
     explicit AppWindow(int depth, bool cpp, bool java, bool python, bool noHotExit, const QStringList &paths,
                        QWidget *parent = nullptr);
     explicit AppWindow(bool cpp, bool java, bool python, bool noHotExit, int number, const QString &path,
@@ -227,6 +226,9 @@ class AppWindow : public QMainWindow
     Extensions::LanguageServer *cppServer = nullptr;
     Extensions::LanguageServer *javaServer = nullptr;
     Extensions::LanguageServer *pythonServer = nullptr;
+
+    explicit AppWindow(bool noHotExit, QWidget *parent = nullptr);
+    void finishConstruction();
 
     void setConnections();
     void allocate();
