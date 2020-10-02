@@ -114,7 +114,7 @@ Suppose you are releasing the version `2.4.1`:
 Suppose you are releasing `2.3.7` and `2.4.1`:
 
 1.  Create a new branch `v2.4` based on master.
-2.  Checkout to `v2.3`. Do the first 4 steps to [make a new stable release](#the-complete-workflow-to-make-a-new-stable-release), and also the step 5 but the content of the changelog is all changelogs from `2.3.1` to `2.3.7`.
+2.  Checkout to `v2.3`. Change [STABLE_VERSION](.ci/STABLE_VERSION) to `2.3.`. Do the first 4 steps to [make a new stable release](#the-complete-workflow-to-make-a-new-stable-release), and also the step 5 but the content of the changelog is all changelogs from `2.3.1` to `2.3.7`.
 3.  Merge `v2.3` into `v2.4`. Do the first 5 steps to [make a new beta release](#the-complete-workflow-to-make-a-new-beta-release).
 4.  Create a new branch `merge-2.3.7-2.4.1` based on master. Merge `v2.4` into `merge-2.3.7-2.4.1`. Set the version in [CMakeLists.txt](../CMakeLists.txt) to `2.5.0`. Rename `## 2.4.1 (Beta)` in [CHANGELOG.md](CHANGELOG.md) to `## v2.4`. Update the version badges in [README.md](../README.md). Create a PR merging `merge-2.3.7-2.4.1` into master.
 
