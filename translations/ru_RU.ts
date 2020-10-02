@@ -465,7 +465,7 @@ Git commit hash: %3
     </message>
     <message>
         <source>https://cpeditor.org/%1/docs</source>
-        <translation></translation>
+        <translation>https://cpeditor.org/%1/ru/docs</translation>
     </message>
 </context>
 <context>
@@ -1303,7 +1303,7 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     </message>
     <message>
         <source>https://cpeditor.org/%1/docs</source>
-        <translation></translation>
+        <translation>https://cpeditor.org/%1/ru/docs</translation>
     </message>
 </context>
 <context>
