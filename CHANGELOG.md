@@ -1,5 +1,7 @@
 ## UNRELEASED
 
+## v6.7
+
 ### Added
 
 -   Open recent files. (#527)
