@@ -4,6 +4,7 @@
 
 -   Fixed a hypothetical undefined behaviour in testlib real number checker. (#586 and #587)
 -   Fixed an issue where Message Box font was getting reset when using Fusion styles. (#604 and #612)
+-   Fixed Windows sometimes restarts during the setup. (#545 and #619)
 
 ## 6.6.4 (Beta)
 
