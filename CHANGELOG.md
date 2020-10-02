@@ -1,5 +1,7 @@
 ## UNRELEASED
 
+## 6.7.1 (Beta)
+
 ### Added
 
 -   Open recent files. (#527)
