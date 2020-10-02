@@ -26,6 +26,7 @@
 -   Fixed a hypothetical Undefined Behaviour in testlib real number checker. (#586 and #587)
 -   Now you can use CF Tool to submit to Gym problems. (#591 and #592)
 -   Fixed an issue where Message Box font was getting reset when using Fusion styles. (#604 and #612)
+-   Fixed Windows sometimes restarts during the setup. (#545 and #619)
 
 ### Changed
 
