@@ -34,6 +34,8 @@ add_subdirectory(third_party/QtFindReplaceDialog/dialogs)
 
 add_subdirectory(third_party/lsp-cpp)
 
+add_subdirectory(third_party/qhttp)
+
 option(PORTABLE_VERSION "Build the portable version" Off)
 
 if(${PORTABLE_VERSION})
@@ -222,6 +224,7 @@ include_directories("third_party/diff_match_patch")
 include_directories("third_party/lsp-cpp/include")
 include_directories("third_party/QCodeEditor/include")
 include_directories("third_party/QtFindReplaceDialog")
+include_directories("third_party/qhttp/src")
 
 target_link_libraries(cpeditor PRIVATE LSPClient)
 target_link_libraries(cpeditor PRIVATE QCodeEditor)
@@ -229,6 +232,7 @@ target_link_libraries(cpeditor PRIVATE Qt5::Network)
 target_link_libraries(cpeditor PRIVATE Qt5::Widgets)
 target_link_libraries(cpeditor PRIVATE QtFindReplaceDialog)
 target_link_libraries(cpeditor PRIVATE SingleApplication)
+target_link_libraries(cpeditor PRIVATE QHttp)
 
 if(MSVC)
   target_compile_options(cpeditor PUBLIC "/utf-8")

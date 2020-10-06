@@ -23,8 +23,13 @@
 #include <QVector>
 
 class MessageLogger;
-class QTcpServer;
-class QTcpSocket;
+namespace qhttp
+{
+namespace server
+{
+class QHttpServer;
+}
+} // namespace qhttp
 
 namespace Extensions
 {
@@ -48,7 +53,7 @@ class CompanionServer : public QObject
     Q_OBJECT
 
   public:
-    explicit CompanionServer(int port);
+    explicit CompanionServer(int port, QObject *parent = nullptr);
     void setMessageLogger(MessageLogger *log);
 
     void updatePort(int port);
@@ -57,15 +62,11 @@ class CompanionServer : public QObject
   signals:
     void onRequestArrived(const CompanionData &data);
 
-  private slots:
-    void onNewConnection();
-    void onTerminateConnection();
-    void onReadReady();
-
   private:
-    QTcpServer *server = nullptr;
-    QTcpSocket *socket = nullptr;
-    int portNumber = 0;
+    bool startListeningOn(int port);
+
+    qhttp::server::QHttpServer *server = nullptr;
+    int lastListeningPort = -1;
     MessageLogger *log = nullptr;
 };
 } // namespace Extensions

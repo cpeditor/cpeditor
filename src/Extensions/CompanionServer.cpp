@@ -18,16 +18,31 @@
 #include "Extensions/CompanionServer.hpp"
 #include "Core/EventLogger.hpp"
 #include "Core/MessageLogger.hpp"
+#include "qhttpfwd.hpp"
+#include "qhttpserver.hpp"
+#include "qhttpserverconnection.hpp"
+#include "qhttpserverrequest.hpp"
+#include "qhttpserverresponse.hpp"
 #include <QJsonArray>
 #include <QJsonObject>
-#include <QTcpServer>
-#include <QTcpSocket>
+
+#define SAFEILOG(x, y)                                                                                                 \
+    if (log)                                                                                                           \
+        log->info(x, y);
+
+#define SAFEELOG(x, y)                                                                                                 \
+    if (log)                                                                                                           \
+        log->error(x, y);
+
+#define SAFEWLOG(x, y)                                                                                                 \
+    if (log)                                                                                                           \
+        log->warn(x, y);
 
 namespace Extensions
 {
-CompanionServer::CompanionServer(int port)
+CompanionServer::CompanionServer(int port, QObject *parent) : QObject(parent)
 {
-    updatePort(port);
+    startListeningOn(port);
 }
 
 void CompanionServer::setMessageLogger(MessageLogger *log)
@@ -35,56 +50,63 @@ void CompanionServer::setMessageLogger(MessageLogger *log)
     this->log = log;
 }
 
+bool CompanionServer::startListeningOn(int port)
+{
+    if (server)
+        delete server;
+    server = new qhttp::server::QHttpServer(this);
+    server->listen(QString::number(port), [&](qhttp::server::QHttpRequest *req, qhttp::server::QHttpResponse *res) {
+        LOG_INFO("A new request is available " << req);
+
+        req->onEnd([&]() { // When Connection is complete. We can read and examine the type.
+            res->setStatusCode(qhttp::ESTATUS_OK);
+            res->addHeader("connection", "close");
+
+            if (req->methodString() != "HTTP_POST")
+                SAFEWLOG("Companion",
+                         tr("Only HTTP_POST request is accepted. Got request of type %1").arg(req->methodString()));
+        });
+    });
+    return server->isListening();
+}
+
 void CompanionServer::updatePort(int port)
 {
     LOG_INFO(INFO_OF(port));
-    if (portNumber != port)
+    if (port == 0) // Close the server
     {
-        portNumber = port;
-        if (server != nullptr)
+        if (server)
             delete server;
-        if (port == 0)
+        server = nullptr;
+        SAFEILOG("Companion", tr("Server is closed"));
+        lastListeningPort = -1;
+        return;
+    }
+
+    if (lastListeningPort != port) // actually update the port. This involves restarting the qhttpserver
+    {
+        bool started = startListeningOn(port);
+        if (started)
         {
-            server = nullptr;
-            if (log != nullptr)
-                log->info("Companion", tr("Server is closed"));
+            lastListeningPort = port;
+            SAFEILOG("Companion", tr("Port is set to %1").arg(port));
         }
         else
         {
-            server = new QTcpServer(this);
-            portNumber = port;
-            // server->setMaxPendingConnections(1);
-            connect(server, SIGNAL(newConnection()), this, SLOT(onNewConnection()));
-            server->listen(QHostAddress::LocalHost, static_cast<quint16>(port));
-            if (log != nullptr)
-            {
-                log->info("Companion", tr("Port is set to %1").arg(port));
-                if (!server->isListening())
-                {
-                    log->error("Companion",
-                               tr("Failed to listen to port %1. Is there another process listening?").arg(portNumber));
-                }
-            }
+            SAFEELOG("Companion", tr("Failed to listen to port %1. Is there another process listening?").arg(port));
         }
     }
 }
 
 CompanionServer::~CompanionServer()
 {
-    if (log != nullptr)
-        log->info("Companion", tr("Stopped Server"));
-    delete server;
+    SAFEILOG("Companion", tr("Stopped Server"));
+    if (server)
+        delete server;
 }
 
-void CompanionServer::onNewConnection()
-{
-    LOG_INFO("New connection has arrived, reading from queue");
-    socket = server->nextPendingConnection();
-    socket->setSocketOption(QAbstractSocket::KeepAliveOption, 1);
-    QObject::connect(socket, SIGNAL(readyRead()), this, SLOT(onReadReady()));
-    QObject::connect(socket, SIGNAL(disconnected()), this, SLOT(onTerminateConnection()));
-}
-
+/*
+ *
 void CompanionServer::onReadReady()
 {
     QString request = socket->readAll();
@@ -156,10 +178,5 @@ void CompanionServer::onReadReady()
         socket->disconnectFromHost();
     }
 }
-void CompanionServer::onTerminateConnection()
-{
-    LOG_INFO("Socket scheduled to be Deleted");
-    socket->deleteLater();
-}
-
+*/
 } // namespace Extensions
