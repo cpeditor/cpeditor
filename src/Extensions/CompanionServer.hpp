@@ -23,6 +23,7 @@
 #include <QVector>
 
 class MessageLogger;
+class QByteArray;
 namespace qhttp
 {
 namespace server
@@ -64,7 +65,7 @@ class CompanionServer : public QObject
 
   private:
     bool startListeningOn(int port);
-
+    void parseAndEmit(QByteArray &data);
     qhttp::server::QHttpServer *server = nullptr;
     int lastListeningPort = -1;
     MessageLogger *log = nullptr;
