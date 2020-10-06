@@ -783,14 +783,18 @@ Press any key to exit</source>
         <translation>Остановка Сервера</translation>
     </message>
     <message>
-        <source>Got a POST Request</source>
-        <translation>Получен POST Request</translation>
-    </message>
-    <message>
         <source>JSON parser reported errors:
 %1</source>
         <translation>JSON parser выдает ошибки:
 %1</translation>
+    </message>
+    <message>
+        <source>Discarded %1 request</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Competitive Companion sent an unknown application/data type</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

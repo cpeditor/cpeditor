@@ -783,14 +783,18 @@ Press any key to exit</source>
         <translation>服务器已停止</translation>
     </message>
     <message>
-        <source>Got a POST Request</source>
-        <translation>收到了一个 POST 请求</translation>
-    </message>
-    <message>
         <source>JSON parser reported errors:
 %1</source>
         <translation>JSON 解析器报告了错误：
 %1</translation>
+    </message>
+    <message>
+        <source>Discarded %1 request</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Competitive Companion sent an unknown application/data type</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
