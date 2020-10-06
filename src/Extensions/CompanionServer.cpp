@@ -26,17 +26,17 @@
 #include <QJsonArray>
 #include <QJsonObject>
 
-#define SAFEILOG(x, y)                                                                                                 \
+#define USER_INFO(x)                                                                                                   \
     if (log)                                                                                                           \
-        log->info(x, y);
+        log->info("Companion", x);
 
-#define SAFEELOG(x, y)                                                                                                 \
+#define USER_WARN(x)                                                                                                   \
     if (log)                                                                                                           \
-        log->error(x, y);
+        log->warn("Companion", x);
 
-#define SAFEWLOG(x, y)                                                                                                 \
+#define USER_ERR(x)                                                                                                    \
     if (log)                                                                                                           \
-        log->warn(x, y);
+        log->error("Companion", x);
 
 namespace Extensions
 {
@@ -55,44 +55,46 @@ bool CompanionServer::startListeningOn(int port)
     if (server)
         delete server;
     server = new qhttp::server::QHttpServer(this);
-    server->listen(QString::number(port),
-                   [&, this](qhttp::server::QHttpRequest *req, qhttp::server::QHttpResponse *res) {
-                       LOG_INFO("\n--> " << req->methodString() << " : " << qPrintable(req->url().toString().toUtf8()));
-                       req->headers().forEach(
-                           [](auto iter) { LOG_INFO(iter.key().constData() << " : " << iter.value().constData()); });
+    server->listen(QString::number(port), [this](qhttp::server::QHttpRequest *req, qhttp::server::QHttpResponse *res) {
+        LOG_INFO("\n--> " << req->methodString() << " : " << qPrintable(req->url().toString().toUtf8()));
+        req->headers().forEach(
+            [](auto iter) { LOG_INFO(iter.key().constData() << " : " << iter.value().constData()); });
 
-                       QString methodType = req->methodString();
-                       bool isJson = req->headers().keyHasValue("content-type", "application/json");
-                       req->collectData();
+        const QString methodType = req->methodString();
+        const bool isJson = req->headers().keyHasValue("content-type", "application/json");
+        req->collectData();
 
-                       req->onEnd([res, req, methodType, isJson, this]() {
-                           res->addHeader("connection", "close");
-                           res->addHeader("pragma", "no-cache");
+        req->onEnd([=] {
+            res->addHeader("connection", "close");
+            res->addHeader("pragma", "no-cache");
 
-                           if (methodType != "POST")
-                           {
-                               SAFEWLOG("Companion", tr("Discarded %1 request").arg(methodType));
-                               res->setStatusCode(qhttp::ESTATUS_NOT_ACCEPTABLE);
-                               res->end();
-                               return;
-                           }
+            do
+            {
+                if (methodType != "POST")
+                {
+                    USER_ERR(tr("Discarded %1 request").arg(methodType));
+                }
+                else if (!isJson)
+                {
+                    USER_ERR(tr("The request received is not JSON"));
+                }
+                else
+                {
+                    break;
+                }
+                res->setStatusCode(qhttp::ESTATUS_NOT_ACCEPTABLE);
+                res->end();
+                return;
+            } while (false);
 
-                           if (!isJson)
-                           {
-                               SAFEELOG("Companion", tr("Competitive Companion sent an unknown application/data type"));
-                               res->setStatusCode(qhttp::ESTATUS_NOT_ACCEPTABLE);
-                               res->end();
-                               return;
-                           }
+            res->setStatusCode(qhttp::ESTATUS_ACCEPTED);
+            QByteArray data = req->collectedData();
+            LOG_INFO(INFO_OF(data));
+            res->end();
 
-                           res->setStatusCode(qhttp::ESTATUS_ACCEPTED);
-                           QByteArray data = req->collectedData();
-                           LOG_INFO(data)
-                           res->end();
-
-                           parseAndEmit(data);
-                       });
-                   });
+            parseAndEmit(data);
+        });
+    });
     return server->isListening();
 }
 
@@ -104,7 +106,7 @@ void CompanionServer::updatePort(int port)
         if (server)
             delete server;
         server = nullptr;
-        SAFEILOG("Companion", tr("Server is closed"));
+        USER_INFO(tr("Server is closed"));
         lastListeningPort = -1;
         return;
     }
@@ -115,11 +117,11 @@ void CompanionServer::updatePort(int port)
         if (started)
         {
             lastListeningPort = port;
-            SAFEILOG("Companion", tr("Port is set to %1").arg(port));
+            USER_INFO(tr("Port is set to %1").arg(port));
         }
         else
         {
-            SAFEELOG("Companion", tr("Failed to listen to port %1. Is there another process listening?").arg(port));
+            USER_ERR(tr("Failed to listen to port %1. Is there another process listening?").arg(port));
         }
     }
 }
@@ -148,14 +150,14 @@ void CompanionServer::parseAndEmit(QByteArray &data)
     }
     else
     {
-        SAFEELOG("Companion", tr("JSON parser reported errors:\n%1").arg(error.errorString()));
+        USER_ERR(tr("JSON parser reported errors:\n%1").arg(error.errorString()));
         LOG_WARN("JSON parser reported error " << error.errorString());
     }
 }
 
 CompanionServer::~CompanionServer()
 {
-    SAFEILOG("Companion", tr("Stopped Server"));
+    USER_INFO(tr("Stopped Server"));
     if (server)
         delete server;
 }

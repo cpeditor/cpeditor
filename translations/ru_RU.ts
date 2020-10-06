@@ -793,7 +793,7 @@ Press any key to exit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Competitive Companion sent an unknown application/data type</source>
+        <source>The request received is not JSON</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

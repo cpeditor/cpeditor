@@ -790,11 +790,11 @@ Press any key to exit</source>
     </message>
     <message>
         <source>Discarded %1 request</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 请求已取消</translation>
     </message>
     <message>
-        <source>Competitive Companion sent an unknown application/data type</source>
-        <translation type="unfinished"></translation>
+        <source>The request received is not JSON</source>
+        <translation>收到的请求不是 JSON</translation>
     </message>
 </context>
 <context>
