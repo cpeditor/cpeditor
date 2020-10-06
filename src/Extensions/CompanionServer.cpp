@@ -55,44 +55,44 @@ bool CompanionServer::startListeningOn(int port)
     if (server)
         delete server;
     server = new qhttp::server::QHttpServer(this);
-    server->listen(
-        QString::number(port), [&, this](qhttp::server::QHttpRequest *req, qhttp::server::QHttpResponse *res) {
-            LOG_INFO("\n--> " << req->methodString() << " : %s" << qPrintable(req->url().toString().toUtf8()));
-            req->headers().forEach(
-                [](auto iter) { LOG_INFO(iter.key().constData() << " : " << iter.value().constData()); });
+    server->listen(QString::number(port),
+                   [&, this](qhttp::server::QHttpRequest *req, qhttp::server::QHttpResponse *res) {
+                       LOG_INFO("\n--> " << req->methodString() << " : " << qPrintable(req->url().toString().toUtf8()));
+                       req->headers().forEach(
+                           [](auto iter) { LOG_INFO(iter.key().constData() << " : " << iter.value().constData()); });
 
-            QString methodType = req->methodString();
-            bool isJson = req->headers().keyHasValue("content-type", "application/json");
-            req->collectData();
+                       QString methodType = req->methodString();
+                       bool isJson = req->headers().keyHasValue("content-type", "application/json");
+                       req->collectData();
 
-            req->onEnd([res, req, methodType, isJson, this]() {
-                res->addHeader("connection", "close");
-                res->addHeader("pragma", "no-cache");
+                       req->onEnd([res, req, methodType, isJson, this]() {
+                           res->addHeader("connection", "close");
+                           res->addHeader("pragma", "no-cache");
 
-                if (methodType != "POST")
-                {
-                    SAFEWLOG("Companion", tr("Discarded %1 request").arg(methodType));
-                    res->setStatusCode(qhttp::ESTATUS_NOT_ACCEPTABLE);
-                    res->end();
-                    return;
-                }
+                           if (methodType != "POST")
+                           {
+                               SAFEWLOG("Companion", tr("Discarded %1 request").arg(methodType));
+                               res->setStatusCode(qhttp::ESTATUS_NOT_ACCEPTABLE);
+                               res->end();
+                               return;
+                           }
 
-                if (!isJson)
-                {
-                    SAFEELOG("Companion", tr("Competitive Companion sent an unknown application/data type"));
-                    res->setStatusCode(qhttp::ESTATUS_NOT_ACCEPTABLE);
-                    res->end();
-                    return;
-                }
+                           if (!isJson)
+                           {
+                               SAFEELOG("Companion", tr("Competitive Companion sent an unknown application/data type"));
+                               res->setStatusCode(qhttp::ESTATUS_NOT_ACCEPTABLE);
+                               res->end();
+                               return;
+                           }
 
-                res->setStatusCode(qhttp::ESTATUS_ACCEPTED);
-                QByteArray data = req->collectedData();
-                LOG_INFO(data)
-                res->end();
+                           res->setStatusCode(qhttp::ESTATUS_ACCEPTED);
+                           QByteArray data = req->collectedData();
+                           LOG_INFO(data)
+                           res->end();
 
-                parseAndEmit(data);
-            });
-        });
+                           parseAndEmit(data);
+                       });
+                   });
     return server->isListening();
 }
 
@@ -133,11 +133,10 @@ void CompanionServer::parseAndEmit(QByteArray &data)
         CompanionData payload;
 
         payload.doc = doc;
-
         payload.url = doc["url"].toString();
         payload.timeLimit = doc["timeLimit"].toInt();
-
         QJsonArray testArray = doc["tests"].toArray();
+
         for (auto tests : testArray)
         {
             auto in = tests.toObject()["input"].toString();
@@ -161,78 +160,4 @@ CompanionServer::~CompanionServer()
         delete server;
 }
 
-/*
- *
-void CompanionServer::onReadReady()
-{
-    QString request = socket->readAll();
-
-    LOG_INFO("Connection content is\n" << request);
-
-    if (request.startsWith("POST") && request.contains("Content-Type: application/json"))
-    {
-        if (log != nullptr)
-            log->info("Companion", tr("Got a POST Request"));
-
-        socket->write("HTTP/1.1  OK\r\n"); // \r needs to be before \n
-        socket->write("Content-Type: text/html\r\n");
-        socket->write("Connection: close\r\n");
-        socket->write("Pragma: no-cache\r\n");
-        socket->write("\r\n");
-        socket->write("<!DOCTYPE html>\r\n");
-        socket->write("<html><body><h1>Okay, Accepted"
-                      "</h1></body></html>");
-        socket->write(QByteArray());
-        socket->disconnectFromHost();
-
-        request = request.mid(request.indexOf('{'));
-
-        QJsonParseError error;
-        QJsonDocument doc = QJsonDocument::fromJson(request.toUtf8(), &error);
-        if (error.error == QJsonParseError::NoError)
-        {
-            CompanionData payload;
-
-            payload.doc = doc;
-
-            payload.url = doc["url"].toString();
-            payload.timeLimit = doc["timeLimit"].toInt();
-
-            QJsonArray testArray = doc["tests"].toArray();
-            for (auto tests : testArray)
-            {
-                auto in = tests.toObject()["input"].toString();
-                auto out = tests.toObject()["output"].toString();
-                payload.testcases.push_back({in, out});
-            }
-
-            emit onRequestArrived(payload);
-        }
-        else
-        {
-            if (log != nullptr)
-                log->error("Companion", tr("JSON parser reported errors:\n%1").arg(error.errorString()));
-            LOG_WARN("JSON parser reported error " << error.errorString());
-        }
-    }
-    else
-    {
-        if (log != nullptr)
-            log->warn("Companion", "An Invalid Payload was delivered on the listening port");
-        else
-            LOG_WARN("Invalid payload delivered on listing port");
-        socket->write("HTTP/1.1  OK\r\n"); // \r needs to be before \n
-        socket->write("Content-Type: text/html\r\n");
-        socket->write("Connection: close\r\n");
-        socket->write("Pragma: no-cache\r\n");
-        socket->write("\r\n");
-        socket->write("<!DOCTYPE html>\r\n");
-        socket->write("<html><body><h1>Rejected!!! Only POST requests with Content-type JSON "
-                      "are allowed "
-                      "here.</h1></body></html>");
-        socket->write(QByteArray());
-        socket->disconnectFromHost();
-    }
-}
-*/
 } // namespace Extensions
