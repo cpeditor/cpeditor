@@ -68,31 +68,26 @@ bool CompanionServer::startListeningOn(int port)
             res->addHeader("connection", "close");
             res->addHeader("pragma", "no-cache");
 
-            do
+            if (methodType != "POST")
             {
-                if (methodType != "POST")
-                {
-                    USER_ERR(tr("Discarded %1 request").arg(methodType));
-                }
-                else if (!isJson)
-                {
-                    USER_ERR(tr("The request received is not JSON"));
-                }
-                else
-                {
-                    break;
-                }
-                res->setStatusCode(qhttp::ESTATUS_NOT_ACCEPTABLE);
+                USER_ERR(tr("Discarded %1 request").arg(methodType));
+            }
+            else if (!isJson)
+            {
+                USER_ERR(tr("The request received is not JSON"));
+            }
+            else
+            {
+                res->setStatusCode(qhttp::ESTATUS_ACCEPTED);
+                QByteArray data = req->collectedData();
+                LOG_INFO(INFO_OF(data));
                 res->end();
+                parseAndEmit(data);
                 return;
-            } while (false);
+            }
 
-            res->setStatusCode(qhttp::ESTATUS_ACCEPTED);
-            QByteArray data = req->collectedData();
-            LOG_INFO(INFO_OF(data));
+            res->setStatusCode(qhttp::ESTATUS_NOT_ACCEPTABLE);
             res->end();
-
-            parseAndEmit(data);
         });
     });
     return server->isListening();
