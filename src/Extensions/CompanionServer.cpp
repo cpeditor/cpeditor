@@ -70,7 +70,7 @@ bool CompanionServer::startListeningOn(int port)
 
             if (methodType != "POST")
             {
-                USER_ERR(tr("Discarded %1 request").arg(methodType));
+                USER_WARN(tr("A %1 request is received and ignored").arg(methodType));
             }
             else if (!isJson)
             {

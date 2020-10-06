@@ -789,12 +789,12 @@ Press any key to exit</source>
 %1</translation>
     </message>
     <message>
-        <source>Discarded %1 request</source>
-        <translation>%1 请求已取消</translation>
-    </message>
-    <message>
         <source>The request received is not JSON</source>
         <translation>收到的请求不是 JSON</translation>
+    </message>
+    <message>
+        <source>A %1 request is received and ignored</source>
+        <translation>收到并忽略了一个 %1 请求</translation>
     </message>
 </context>
 <context>

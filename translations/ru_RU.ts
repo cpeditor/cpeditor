@@ -789,11 +789,11 @@ Press any key to exit</source>
 %1</translation>
     </message>
     <message>
-        <source>Discarded %1 request</source>
+        <source>The request received is not JSON</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>The request received is not JSON</source>
+        <source>A %1 request is received and ignored</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
