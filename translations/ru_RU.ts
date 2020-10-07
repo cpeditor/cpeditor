@@ -790,11 +790,11 @@ Press any key to exit</source>
     </message>
     <message>
         <source>The request received is not JSON</source>
-        <translation type="unfinished"></translation>
+        <translation>Принятый запрос не является JSON&apos;ом</translation>
     </message>
     <message>
         <source>A %1 request is received and ignored</source>
-        <translation type="unfinished"></translation>
+        <translation>Запрос %1 был получен и проигнорирован</translation>
     </message>
 </context>
 <context>
