@@ -4,7 +4,7 @@
 
 ### Fixed
 
--   We now use QHttp to listen for Competitive Companion data. This should fix an issue where in some cases CP Editor could not get full data from Google Chrome browsers. (#345 and #624)
+-   Fixed an issue where in some cases CP Editor could not get full data from Google Chrome browsers. (#345 and #624)
 
 ## v6.7
 
