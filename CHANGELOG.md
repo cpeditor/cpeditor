@@ -4,7 +4,7 @@
 
 ### Fixed
 
--   Fixed an issue where in some cases CP Editor could not get full data from Google Chrome browsers. (#345 and #624)
+-   Fixed an issue that in some rare cases CP Editor could not get full data from Competitive Companion. (#345 and #624)
 
 ## v6.7
 
