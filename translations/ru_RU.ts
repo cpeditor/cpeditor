@@ -783,14 +783,18 @@ Press any key to exit</source>
         <translation>Остановка Сервера</translation>
     </message>
     <message>
-        <source>Got a POST Request</source>
-        <translation>Получен POST Request</translation>
-    </message>
-    <message>
         <source>JSON parser reported errors:
 %1</source>
         <translation>JSON parser выдает ошибки:
 %1</translation>
+    </message>
+    <message>
+        <source>The request received is not JSON</source>
+        <translation>Принятый запрос не является JSON&apos;ом</translation>
+    </message>
+    <message>
+        <source>A %1 request is received and ignored</source>
+        <translation>Запрос %1 был получен и проигнорирован</translation>
     </message>
 </context>
 <context>
