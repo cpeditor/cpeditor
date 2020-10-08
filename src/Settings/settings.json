@@ -1074,9 +1074,10 @@
         "notr": true
     },
     {
-	"name": "Show Only Monospaced Font",
-	"type": "bool",
-	"default": true,
-	"tip": "Show only monospaced fonts in Font Picker Dialog"
+        "name": "Show Only Monospaced Font",
+        "type": "bool",
+        "default": true,
+        "immediateApply": true,
+        "tip": "Show only monospaced fonts in Font Picker Dialog"
     }
 ]

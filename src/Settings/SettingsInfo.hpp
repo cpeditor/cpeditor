@@ -31,6 +31,7 @@ class SettingsInfo
     {
         QString name, desc, type, ui, tip, help;
         bool requireAllDepends; // false for one of the depends, true for all depends
+        bool immediateApply;
         QList<QPair<QString, std::function<bool(const QVariant &)>>> depends;
         QVariant def;
         QVariant param;
@@ -38,7 +39,7 @@ class SettingsInfo
 
         QString key() const
         {
-            return name.toLower().replace('+', 'p').replace(' ', '_');
+            return name.toLower().replace("c++", "cpp").replace(' ', '_');
         }
     };
 

@@ -141,7 +141,8 @@ void PreferencesPage::addItem(QLayoutItem *item)
 
 void PreferencesPage::registerWidget(ValueWidget *widget)
 {
-    QObject::connect(widget, &ValueWidget::valueChanged, this, &PreferencesPage::updateButtons);
+    // PreferencesPageTemplate::PreferencesPageTemplate uses Qt::DirectConnection
+    QObject::connect(widget, &ValueWidget::valueChanged, this, &PreferencesPage::updateButtons, Qt::QueuedConnection);
 }
 
 void PreferencesPage::loadDefault()

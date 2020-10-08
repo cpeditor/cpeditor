@@ -46,18 +46,3 @@ void AppearancePage::makeSettingsTheSameAsUI()
         SettingsManager::set(si.name, widget->getVariant());
     }
 }
-
-bool AppearancePage::areSettingsChanged()
-{
-    bool changed = false;
-    for (int i = 0; i < options.size(); ++i)
-    {
-        ValueWidget *widget = widgets[i];
-        auto si = SettingsInfo::findSetting(options[i]);
-        if (si.name == "Show Only Monospaced Font")
-            SettingsManager::set(si.name, widget->getVariant());
-        else if (widget->getVariant() != SettingsManager::get(si.name))
-            changed = true;
-    }
-    return changed;
-}

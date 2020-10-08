@@ -67,6 +67,18 @@ PreferencesPageTemplate::PreferencesPageTemplate(QStringList opts, bool alignTop
             addRow(wrapper, si.tip, si.help, si.desc);
             widgets.push_back(wrapper);
         }
+        else
+        {
+            Q_UNREACHABLE();
+        }
+
+        if (si.immediateApply)
+        {
+            auto widget = widgets.back();
+            connect(
+                widget, &ValueWidget::valueChanged, this, [=] { SettingsManager::set(si.name, widget->getVariant()); },
+                Qt::DirectConnection); // PreferencesPage::registerWidget uses Qt::QueuedConnection
+        }
     }
 
     for (const QString &name : options)
