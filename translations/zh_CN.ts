@@ -2498,6 +2498,14 @@ The program will be killed if it doesn&apos;t terminate in the time limit.</sour
         <source>Use the time limit parsed by Competitive Companion as the time limit of the corresponding tab.</source>
         <translation>为对应的标签页使用由 Competitive Companion 解析得到的时间限制。</translation>
     </message>
+    <message>
+        <source>Show Only Monospaced Font</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show only monospaced fonts in Font Picker Dialog</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ShortcutItem</name>

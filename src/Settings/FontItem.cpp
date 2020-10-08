@@ -16,13 +16,13 @@
  */
 
 #include "Settings/FontItem.hpp"
+#include "generated/SettingsHelper.hpp"
 #include <QFontDialog>
 #include <QVariant>
 
 FontItem::FontItem(QWidget *parent, const QVariant &param) : QPushButton(parent)
 {
     Q_ASSERT(parent != nullptr);
-    monospace = param.toBool();
     connect(this, SIGNAL(clicked(bool)), this, SLOT(onButtonClicked()));
 }
 
@@ -48,7 +48,8 @@ void FontItem::onButtonClicked()
 {
     bool ok;
     QFont newFont = QFontDialog::getFont(&ok, font, this, QString(),
-                                         monospace ? QFontDialog::MonospacedFonts : QFontDialog::FontDialogOption());
+                                         SettingsHelper::isShowOnlyMonospacedFont() ? QFontDialog::MonospacedFonts
+                                                                                    : QFontDialog::FontDialogOption());
     if (ok)
         setFont(newFont);
     parentWidget()->raise();

@@ -29,6 +29,7 @@ class AppearancePage : public PreferencesPageTemplate
 
   private:
     void makeSettingsTheSameAsUI() override;
+    bool areSettingsChanged() override;
 };
 
 #endif // APPEARANCEPAGE_HPP
