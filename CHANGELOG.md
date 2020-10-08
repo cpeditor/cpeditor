@@ -1,5 +1,9 @@
 ## UNRELEASED
 
+### Added
+
+-   Now you can set non monospaced fonts in Font Picker Dialog.
+
 ## v6.7
 
 ### Added
