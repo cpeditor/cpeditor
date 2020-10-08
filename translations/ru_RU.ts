@@ -2508,11 +2508,11 @@ The program will be killed if it doesn&apos;t terminate in the time limit.</sour
     </message>
     <message>
         <source>Show Only Monospaced Font</source>
-        <translation type="unfinished"></translation>
+        <translation>Показывать только моноширинный шрифт</translation>
     </message>
     <message>
         <source>Show only monospaced fonts in Font Picker Dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Показывать только моноширинный шрифт в Диалоге выбора шрифтов</translation>
     </message>
 </context>
 <context>
