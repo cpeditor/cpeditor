@@ -1292,11 +1292,11 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     </message>
     <message>
         <source>Appearance Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Настройки внешнего вида</translation>
     </message>
     <message>
         <source>Font Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Настройки шрифтов</translation>
     </message>
 </context>
 <context>
@@ -1490,7 +1490,7 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     </message>
     <message>
         <source>Font</source>
-        <translation type="unfinished"></translation>
+        <translation>Шрифт</translation>
     </message>
 </context>
 <context>
@@ -2509,15 +2509,15 @@ The program will be killed if it doesn&apos;t terminate in the time limit.</sour
     </message>
     <message>
         <source>Change Locale</source>
-        <translation type="unfinished">Изменить языковые параметры</translation>
+        <translation>Изменить язык</translation>
     </message>
     <message>
         <source>You need to restart the application to completely apply the locale change.</source>
-        <translation type="unfinished">Вам необходимо перезагрузить программу для полноценного применения изменений языковых параметров.</translation>
+        <translation>Вам необходимо перезагрузить программу для полноценного применения нового языка.</translation>
     </message>
     <message>
         <source>Show only monospaced fonts when choosing a font</source>
-        <translation type="unfinished"></translation>
+        <translation>Показывать только моноширинные шрифты при выборе</translation>
     </message>
 </context>
 <context>
