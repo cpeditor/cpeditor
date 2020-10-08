@@ -2,7 +2,7 @@
 
 ### Added
 
--   Now you can choose non monospaced fonts in Font Picker Dialog box.
+-   Now you can opt-in non-monospaced fonts when choosing a font in the Preferences. (#217 and #625)
 
 ## v6.7
 

@@ -33,7 +33,7 @@ class SettingsInfo
     {
         QString name, desc, type, ui, tip, help;
         bool requireAllDepends; // false for one of the depends, true for all depends
-        bool immediateApply;
+        bool immediatelyApply;
         std::function<void(SettingInfo *, ValueWidget *, QWidget *)> onApply;
         QList<QPair<QString, std::function<bool(const QVariant &)>>> depends;
         QVariant def;

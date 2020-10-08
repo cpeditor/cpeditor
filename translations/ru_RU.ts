@@ -469,17 +469,6 @@ Git commit hash: %3
     </message>
 </context>
 <context>
-    <name>AppearancePage</name>
-    <message>
-        <source>Change Locale</source>
-        <translation>Изменить языковые параметры</translation>
-    </message>
-    <message>
-        <source>You need to restart the application to completely apply the locale change.</source>
-        <translation>Вам необходимо перезагрузить программу для полноценного применения изменений языковых параметров.</translation>
-    </message>
-</context>
-<context>
     <name>CodeSnippetsPage</name>
     <message>
         <source>Search...</source>
@@ -1294,16 +1283,20 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
         <translation>Команды запуска на Python</translation>
     </message>
     <message>
-        <source>Appearance</source>
-        <translation>Внешний вид</translation>
-    </message>
-    <message>
         <source>You can read the &lt;a href=&quot;%1&quot;&gt;documentation&lt;/a&gt; or go through the settings for more information.</source>
         <translation>Вы можете почитать &lt;a href=&quot;%1&quot;&gt;документация&lt;/a&gt; или просмотреть настройки для более подробной информации.</translation>
     </message>
     <message>
         <source>https://cpeditor.org/%1/docs</source>
         <translation>https://cpeditor.org/%1/ru/docs</translation>
+    </message>
+    <message>
+        <source>Appearance Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Font Settings</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1494,6 +1487,10 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     <message>
         <source>Detached Execution</source>
         <translation>Отдельный запуск</translation>
+    </message>
+    <message>
+        <source>Font</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2511,8 +2508,16 @@ The program will be killed if it doesn&apos;t terminate in the time limit.</sour
         <translation>Показывать только моноширинный шрифт</translation>
     </message>
     <message>
-        <source>Show only monospaced fonts in Font Picker Dialog</source>
-        <translation>Показывать только моноширинный шрифт в Диалоге выбора шрифтов</translation>
+        <source>Change Locale</source>
+        <translation type="unfinished">Изменить языковые параметры</translation>
+    </message>
+    <message>
+        <source>You need to restart the application to completely apply the locale change.</source>
+        <translation type="unfinished">Вам необходимо перезагрузить программу для полноценного применения изменений языковых параметров.</translation>
+    </message>
+    <message>
+        <source>Show only monospaced fonts when choosing a font</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

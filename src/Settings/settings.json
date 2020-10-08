@@ -1078,7 +1078,7 @@
         "name": "Show Only Monospaced Font",
         "type": "bool",
         "default": true,
-        "immediateApply": true,
-        "tip": "Show only monospaced fonts in Font Picker Dialog"
+        "immediatelyApply": true,
+        "tip": "Show only monospaced fonts when choosing a font"
     }
 ]

@@ -72,7 +72,7 @@ PreferencesPageTemplate::PreferencesPageTemplate(QStringList opts, bool alignTop
             Q_UNREACHABLE();
         }
 
-        if (si.immediateApply)
+        if (si.immediatelyApply)
         {
             auto widget = widgets.back();
             connect(

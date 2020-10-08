@@ -55,7 +55,7 @@ def writeInfo(f, obj, lst):
         trtip = t.get("trtip", f"tr({json.dumps(tip)})")
         hlp = t.get("help", "")
         requireAllDepends = t.get("requireAllDepends", True)
-        immediateApply = t.get("immediateApply", False)
+        immediatelyApply = t.get("immediatelyApply", False)
         onApply = f'[](SettingInfo *info, ValueWidget *widget, QWidget *parent){{ {t.get("onApply", "")} }}'
         depends = t.get("depends", [])
         if typename == "Object":
@@ -77,7 +77,7 @@ def writeInfo(f, obj, lst):
             dependsString += f"{{{json.dumps(depend.get('name', ''))}, [](const QVariant &var) {{ {depend.get('check', 'return var.toBool();')} }}}}, "
         dependsString += "}"
         f.write(
-            f", \"{tempname}\", \"{ui}\", {trtip}, tr({json.dumps(hlp)}), {json.dumps(requireAllDepends)}, {json.dumps(immediateApply)}, {onApply}, {dependsString}, ")
+            f", \"{tempname}\", \"{ui}\", {trtip}, tr({json.dumps(hlp)}), {json.dumps(requireAllDepends)}, {json.dumps(immediatelyApply)}, {onApply}, {dependsString}, ")
         if typename != "Object":
             if "default" in t:
                 if typename == "QString":

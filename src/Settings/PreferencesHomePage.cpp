@@ -54,8 +54,8 @@ PreferencesHomePage::PreferencesHomePage(QWidget *parent) : QWidget(parent)
     addButton("Language/C++/C++ Commands", tr("C++ Compile and Run Commands"));
     addButton("Language/Java/Java Commands", tr("Java Compile and Run Commands"));
     addButton("Language/Python/Python Commands", tr("Python Run Commands"));
-    addButton("Appearance/General", tr("Appearance"));
-    addButton("Appearance/Font", tr("Fonts"));
+    addButton("Appearance/General", tr("Appearance Settings"));
+    addButton("Appearance/Font", tr("Font Settings"));
 
     // add spacing between the buttons and the manual label
     layout->addSpacing(20);
