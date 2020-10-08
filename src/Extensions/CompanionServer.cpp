@@ -42,7 +42,10 @@ namespace Extensions
 {
 CompanionServer::CompanionServer(int port, QObject *parent) : QObject(parent)
 {
-    startListeningOn(port);
+    if (startListeningOn(port))
+    {
+        lastListeningPort = port;
+    }
 }
 
 void CompanionServer::setMessageLogger(MessageLogger *log)
