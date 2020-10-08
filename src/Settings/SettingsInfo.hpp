@@ -22,6 +22,8 @@
 #include <QVariant>
 #include <functional>
 
+class ValueWidget;
+
 class SettingsInfo
 {
     Q_DECLARE_TR_FUNCTIONS(SettingsInfo)
@@ -32,6 +34,7 @@ class SettingsInfo
         QString name, desc, type, ui, tip, help;
         bool requireAllDepends; // false for one of the depends, true for all depends
         bool immediateApply;
+        std::function<void(SettingInfo *, ValueWidget *, QWidget *)> onApply;
         QList<QPair<QString, std::function<bool(const QVariant &)>>> depends;
         QVariant def;
         QVariant param;

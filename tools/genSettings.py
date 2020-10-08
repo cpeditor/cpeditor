@@ -56,6 +56,7 @@ def writeInfo(f, obj, lst):
         hlp = t.get("help", "")
         requireAllDepends = t.get("requireAllDepends", True)
         immediateApply = t.get("immediateApply", False)
+        onApply = f'[](SettingInfo *info, ValueWidget *widget, QWidget *parent){{ {t.get("onApply", "")} }}'
         depends = t.get("depends", [])
         if typename == "Object":
             f.write(f"    QList<SettingInfo> LIST{key};\n")
@@ -76,7 +77,7 @@ def writeInfo(f, obj, lst):
             dependsString += f"{{{json.dumps(depend.get('name', ''))}, [](const QVariant &var) {{ {depend.get('check', 'return var.toBool();')} }}}}, "
         dependsString += "}"
         f.write(
-            f", \"{tempname}\", \"{ui}\", {trtip}, tr({json.dumps(hlp)}), {json.dumps(requireAllDepends)}, {json.dumps(immediateApply)}, {dependsString}, ")
+            f", \"{tempname}\", \"{ui}\", {trtip}, tr({json.dumps(hlp)}), {json.dumps(requireAllDepends)}, {json.dumps(immediateApply)}, {onApply}, {dependsString}, ")
         if typename != "Object":
             if "default" in t:
                 if typename == "QString":
@@ -190,8 +191,11 @@ namespace SettingsHelper
     setting_info.write(head)
     setting_info.write("""#include "Settings/SettingsInfo.hpp"
 #include "Core/StyleManager.hpp"
+#include "Core/Translator.hpp"
 #include "Settings/PathItem.hpp"
+#include "Settings/ValueWrapper.hpp"
 #include <QFontDatabase>
+#include <QMessageBox>
 #include <QRect>
 
 QList<SettingsInfo::SettingInfo> SettingsInfo::settings;

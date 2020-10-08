@@ -131,8 +131,6 @@ add_executable(cpeditor
     src/Extensions/LanguageServer.cpp
     src/Extensions/LanguageServer.hpp
 
-    src/Settings/AppearancePage.cpp
-    src/Settings/AppearancePage.hpp
     src/Settings/CodeSnippetsPage.cpp
     src/Settings/CodeSnippetsPage.hpp
     src/Settings/DefaultPathManager.cpp

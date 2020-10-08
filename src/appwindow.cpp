@@ -381,7 +381,7 @@ void AppWindow::openTab(MainWindow *window)
             SLOT(updateLanguageServerFilePath(MainWindow *, const QString &)));
     connect(window, SIGNAL(editorLanguageChanged(MainWindow *)), this, SLOT(onEditorLanguageChanged(MainWindow *)));
     connect(window, SIGNAL(editorTextChanged(MainWindow *)), this, SLOT(onEditorTextChanged(MainWindow *)));
-    connect(window, &MainWindow::editorFontChanged, this, [this] { onSettingsApplied("Appearance"); });
+    connect(window, &MainWindow::editorFontChanged, this, [this] { onSettingsApplied("Appearance/Font"); });
     connect(window, SIGNAL(requestToastMessage(const QString &, const QString &)), trayIcon,
             SLOT(showMessage(const QString &, const QString &)));
     connect(window, SIGNAL(compileOrRunTriggered()), this, SLOT(onCompileOrRunTriggered()));
@@ -1035,10 +1035,14 @@ void AppWindow::onSettingsApplied(const QString &pagePath)
             server->updatePort(0);
     }
 
-    if (pageChanged("Appearance"))
+    if (pageChanged("Appearance/General"))
     {
         setWindowOpacity(SettingsHelper::getOpacity() / 100.0);
         Core::StyleManager::setStyle(SettingsHelper::getUIStyle());
+    }
+
+    if (pageChanged("Appearance/Font"))
+    {
         if (SettingsHelper::isUseCustomApplicationFont())
             qApp->setFont(SettingsHelper::getCustomApplicationFont());
         else

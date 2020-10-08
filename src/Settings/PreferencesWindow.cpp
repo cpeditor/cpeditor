@@ -17,11 +17,11 @@
 
 #include "Settings/PreferencesWindow.hpp"
 #include "Core/EventLogger.hpp"
-#include "Settings/AppearancePage.hpp"
 #include "Settings/CodeSnippetsPage.hpp"
 #include "Settings/DefaultPathManager.hpp"
 #include "Settings/ParenthesesPage.hpp"
 #include "Settings/PreferencesHomePage.hpp"
+#include "Settings/PreferencesPageTemplate.hpp"
 #include "Util/Util.hpp"
 #include "generated/SettingsHelper.hpp"
 #include <QApplication>
@@ -208,7 +208,12 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
                        "Python Tab Jump Out"})
             .end()
         .end()
-        .page(TRKEY("Appearance"), new AppearancePage())
+        .dir(TRKEY("Appearance"))
+            .page(TRKEY("General"),{"Locale", "UI Style", "Editor Theme", "Opacity", "Test Case Maximum Height",
+                                           "Show Compile And Run Only", "Display EOLN In Diff", "Extra Bottom Margin"})
+            .page(TRKEY("Font"), {"Show Only Monospaced Font", "Editor Font", "Test Cases Font", "Message Logger Font",
+                                  "Use Custom Application Font", "Custom Application Font"})
+        .end()
         .dir(TRKEY("Actions"))
             .page(TRKEY("Save"), {"Save Faster", "Save File On Compilation", "Save File On Execution", "Save Tests"})
             .page(TRKEY("Auto Save"), {"Auto Save", "Auto Save Interval", "Auto Save Interval Type"})
