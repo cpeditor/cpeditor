@@ -772,14 +772,18 @@ Press any key to exit</source>
         <translation>服务器已停止</translation>
     </message>
     <message>
-        <source>Got a POST Request</source>
-        <translation>收到了一个 POST 请求</translation>
-    </message>
-    <message>
         <source>JSON parser reported errors:
 %1</source>
         <translation>JSON 解析器报告了错误：
 %1</translation>
+    </message>
+    <message>
+        <source>The request received is not JSON</source>
+        <translation>收到的请求不是 JSON</translation>
+    </message>
+    <message>
+        <source>A %1 request is received and ignored</source>
+        <translation>收到并忽略了一个 %1 请求</translation>
     </message>
 </context>
 <context>

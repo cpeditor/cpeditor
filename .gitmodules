@@ -13,3 +13,6 @@
 [submodule "third_party/testlib"]
 	path = third_party/testlib
 	url = https://github.com/MikeMirzayanov/testlib
+[submodule "third_party/qhttp"]
+	path = third_party/qhttp
+	url = https://github.com/cpeditor/qhttp
