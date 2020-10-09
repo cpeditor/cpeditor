@@ -8,6 +8,9 @@
 
 -   Fixed an issue that in some rare cases CP Editor could not get full data from Competitive Companion. (#345 and #624)
 
+### Changed
+
+-   Font Settings have moved to Appearance/Font, everything else remains in Appearance/General
 
 ## v6.7
 
