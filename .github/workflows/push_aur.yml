@@ -40,7 +40,7 @@ jobs:
           echo ::set-output name=VERSION::$VERSION
           cp .ci/aur/git/PKGBUILD cpeditor-git
           cp .ci/aur/git/.SRCINFO cpeditor-git
-          sed -i "s/@PROJECT_VERSION@/$VERSION/" cpeditor-git/PKGBUILD cpeditor-git/.SRCINFO
+          sed -i "s/@PROJECT_VERSION@/$VERSION/g" cpeditor-git/PKGBUILD cpeditor-git/.SRCINFO
 
       - name: Check PKGBUILD
         uses: 2m/arch-pkgbuild-builder@master

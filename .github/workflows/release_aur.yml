@@ -46,8 +46,8 @@ jobs:
           cd cpeditor
           cp ../.ci/aur/stable/PKGBUILD .
           cp ../.ci/aur/stable/.SRCINFO .
-          sed -i "s/@PROJECT_VERSION@/${{ steps.get_version.outputs.VERSION }}/" PKGBUILD .SRCINFO
-          sed -i "s/SKIP/${sha256sum}/" PKGBUILD .SRCINFO
+          sed -i "s/@PROJECT_VERSION@/${{ steps.get_version.outputs.VERSION }}/g" PKGBUILD .SRCINFO
+          sed -i "s/SKIP/${sha256sum}/g" PKGBUILD .SRCINFO
 
       - name: Check PKGBUILD
         if: steps.get_version.outputs.ISSTABLE == 'true'
