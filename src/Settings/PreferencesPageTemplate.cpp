@@ -67,6 +67,18 @@ PreferencesPageTemplate::PreferencesPageTemplate(QStringList opts, bool alignTop
             addRow(wrapper, si.tip, si.help, si.desc);
             widgets.push_back(wrapper);
         }
+        else
+        {
+            Q_UNREACHABLE();
+        }
+
+        if (si.immediatelyApply)
+        {
+            auto widget = widgets.back();
+            connect(
+                widget, &ValueWidget::valueChanged, this, [=] { SettingsManager::set(si.name, widget->getVariant()); },
+                Qt::DirectConnection); // PreferencesPage::registerWidget uses Qt::QueuedConnection
+        }
     }
 
     for (const QString &name : options)
@@ -149,7 +161,11 @@ void PreferencesPageTemplate::makeSettingsTheSameAsUI()
     {
         ValueWidget *widget = widgets[i];
         auto si = SettingsInfo::findSetting(options[i]);
-        SettingsManager::set(si.name, widget->getVariant());
+        if (SettingsManager::get(si.name) != widget->getVariant())
+        {
+            SettingsManager::set(si.name, widget->getVariant());
+            si.onApply(&si, widget, this);
+        }
     }
 }
 

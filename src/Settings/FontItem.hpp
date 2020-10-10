@@ -40,7 +40,6 @@ class FontItem : public QPushButton
     void onButtonClicked();
 
   private:
-    bool monospace;
     QFont font;
 };
 

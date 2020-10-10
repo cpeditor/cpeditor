@@ -469,17 +469,6 @@ Git commit hash: %3
     </message>
 </context>
 <context>
-    <name>AppearancePage</name>
-    <message>
-        <source>Change Locale</source>
-        <translation>Изменить языковые параметры</translation>
-    </message>
-    <message>
-        <source>You need to restart the application to completely apply the locale change.</source>
-        <translation>Вам необходимо перезагрузить программу для полноценного применения изменений языковых параметров.</translation>
-    </message>
-</context>
-<context>
     <name>CodeSnippetsPage</name>
     <message>
         <source>Search...</source>
@@ -1298,16 +1287,20 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
         <translation>Команды запуска на Python</translation>
     </message>
     <message>
-        <source>Appearance</source>
-        <translation>Внешний вид</translation>
-    </message>
-    <message>
         <source>You can read the &lt;a href=&quot;%1&quot;&gt;documentation&lt;/a&gt; or go through the settings for more information.</source>
         <translation>Вы можете почитать &lt;a href=&quot;%1&quot;&gt;документация&lt;/a&gt; или просмотреть настройки для более подробной информации.</translation>
     </message>
     <message>
         <source>https://cpeditor.org/%1/docs</source>
         <translation>https://cpeditor.org/%1/ru/docs</translation>
+    </message>
+    <message>
+        <source>Appearance Settings</source>
+        <translation>Настройки внешнего вида</translation>
+    </message>
+    <message>
+        <source>Font Settings</source>
+        <translation>Настройки шрифтов</translation>
     </message>
 </context>
 <context>
@@ -1498,6 +1491,10 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     <message>
         <source>Detached Execution</source>
         <translation>Отдельный запуск</translation>
+    </message>
+    <message>
+        <source>Font</source>
+        <translation>Шрифт</translation>
     </message>
 </context>
 <context>
@@ -2509,6 +2506,22 @@ The program will be killed if it doesn&apos;t terminate in the time limit.</sour
     <message>
         <source>Use the time limit parsed by Competitive Companion as the time limit of the corresponding tab.</source>
         <translation>Использовать лимит времени взятым Competitive Companion-ом как лимит времени соответствующей вкладки.</translation>
+    </message>
+    <message>
+        <source>Show Only Monospaced Font</source>
+        <translation>Показывать только моноширинный шрифт</translation>
+    </message>
+    <message>
+        <source>Change Locale</source>
+        <translation>Изменить язык</translation>
+    </message>
+    <message>
+        <source>You need to restart the application to completely apply the locale change.</source>
+        <translation>Вам необходимо перезагрузить программу для полноценного применения нового языка.</translation>
+    </message>
+    <message>
+        <source>Show only monospaced fonts when choosing a font</source>
+        <translation>Показывать только моноширинные шрифты при выборе</translation>
     </message>
 </context>
 <context>

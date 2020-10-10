@@ -469,17 +469,6 @@ git 提交编号: %3
     </message>
 </context>
 <context>
-    <name>AppearancePage</name>
-    <message>
-        <source>Change Locale</source>
-        <translation>改变语言</translation>
-    </message>
-    <message>
-        <source>You need to restart the application to completely apply the locale change.</source>
-        <translation>你需要重启程序以彻底地改变语言。</translation>
-    </message>
-</context>
-<context>
     <name>CodeSnippetsPage</name>
     <message>
         <source>Search...</source>
@@ -1298,16 +1287,20 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
         <translation>Python 运行命令</translation>
     </message>
     <message>
-        <source>Appearance</source>
-        <translation>外观</translation>
-    </message>
-    <message>
         <source>You can read the &lt;a href=&quot;%1&quot;&gt;documentation&lt;/a&gt; or go through the settings for more information.</source>
         <translation>你可以阅读 &lt;a href=&quot;%1&quot;&gt;文档&lt;/a&gt; 或在设置中浏览以获取更多信息。</translation>
     </message>
     <message>
         <source>https://cpeditor.org/%1/docs</source>
         <translation>https://cpeditor.org/%1/zh/docs</translation>
+    </message>
+    <message>
+        <source>Appearance Settings</source>
+        <translation>外观设置</translation>
+    </message>
+    <message>
+        <source>Font Settings</source>
+        <translation>字体设置</translation>
     </message>
 </context>
 <context>
@@ -1498,6 +1491,10 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     <message>
         <source>Detached Execution</source>
         <translation>终端中运行</translation>
+    </message>
+    <message>
+        <source>Font</source>
+        <translation>字体</translation>
     </message>
 </context>
 <context>
@@ -2501,6 +2498,22 @@ The program will be killed if it doesn&apos;t terminate in the time limit.</sour
     <message>
         <source>Use the time limit parsed by Competitive Companion as the time limit of the corresponding tab.</source>
         <translation>为对应的标签页使用由 Competitive Companion 解析得到的时间限制。</translation>
+    </message>
+    <message>
+        <source>Show Only Monospaced Font</source>
+        <translation>仅显示等宽字体</translation>
+    </message>
+    <message>
+        <source>Change Locale</source>
+        <translation>改变语言</translation>
+    </message>
+    <message>
+        <source>You need to restart the application to completely apply the locale change.</source>
+        <translation>你需要重启程序以彻底地改变语言。</translation>
+    </message>
+    <message>
+        <source>Show only monospaced fonts when choosing a font</source>
+        <translation>在选择字体时只显示等宽字体</translation>
     </message>
 </context>
 <context>
