@@ -10,7 +10,7 @@
 
 ### Changed
 
--   Font Settings have moved to Appearance/Font, everything else remains in Appearance/General
+-   Font settings are moved to Appearance/Font, everything else remains in Appearance/General. (#625)
 
 ## v6.7
 
