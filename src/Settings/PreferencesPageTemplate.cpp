@@ -162,8 +162,10 @@ void PreferencesPageTemplate::makeSettingsTheSameAsUI()
         ValueWidget *widget = widgets[i];
         auto si = SettingsInfo::findSetting(options[i]);
         if (SettingsManager::get(si.name) != widget->getVariant())
+        {
+            SettingsManager::set(si.name, widget->getVariant());
             si.onApply(&si, widget, this);
-        SettingsManager::set(si.name, widget->getVariant());
+        }
     }
 }
 
