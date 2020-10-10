@@ -4,7 +4,10 @@
         "type": "int",
         "default": 4,
         "param": "QVariantList {1,16}",
-        "tip": "The width of the tab character, or the number of spaces of an indent"
+        "tip": "The width of the tab character, or the number of spaces of an indent",
+        "old": [
+            "tab_stop"
+        ]
     },
     {
         "name": "Geometry",
@@ -16,7 +19,10 @@
         "type": "QFont",
         "default": "[](){ QFont font = QFontDatabase::systemFont(QFontDatabase::FixedFont); font.setStyleHint(QFont::TypeWriter); return font; }()",
         "param": "true",
-        "tip": "The font of the code editor"
+        "tip": "The font of the code editor",
+        "old": [
+            "font"
+        ]
     },
     {
         "name": "Use Custom Application Font",
@@ -50,7 +56,10 @@
         "default": "clang-format",
         "ui": "PathItem",
         "param": "PathItem::Executable",
-        "tip": "The path to the Clang Format executable file"
+        "tip": "The path to the Clang Format executable file",
+        "old": [
+            "clang_format_binary"
+        ]
     },
     {
         "name": "Clang Format/Style",
@@ -58,13 +67,20 @@
         "type": "QString",
         "default": "BasedOnStyle: Google",
         "ui": "QPlainTextEdit",
-        "tip": "The Clang Format style options, which are often saved in a .clang-format configuration file.\nYou can learn about it at <https://clang.llvm.org/docs/ClangFormatStyleOptions.html>."
+        "tip": "The Clang Format style options, which are often saved in a .clang-format configuration file.\nYou can learn about it at <https://clang.llvm.org/docs/ClangFormatStyleOptions.html>.",
+        "old": [
+            "clang_format_style"
+        ]
     },
     {
         "name": "Clang Format/Format On Manual Save",
         "desc": "Format code on manual save",
         "type": "bool",
-        "tip": "Use Clang Format to format the code when saving it manually."
+        "tip": "Use Clang Format to format the code when saving it manually.",
+        "old": [
+            "format_on_save",
+            "auto_format"
+        ]
     },
     {
         "name": "Clang Format/Format On Auto Save",
@@ -77,7 +93,10 @@
         "type": "QString",
         "ui": "PathItem",
         "param": "PathItem::CppSource",
-        "tip": "The template used when creating a new C++ file"
+        "tip": "The template used when creating a new C++ file",
+        "old": [
+            "template_cpp"
+        ]
     },
     {
         "name": "C++/Template Cursor Position Regex",
@@ -122,7 +141,10 @@
         "name": "C++/Compile Command",
         "type": "QString",
         "default": "g++ -Wall",
-        "tip": "The command used to compile C++. It should NOT include the path to the source file or \"-o <output file>\"."
+        "tip": "The command used to compile C++. It should NOT include the path to the source file or \"-o <output file>\".",
+        "old": [
+            "compile_cpp"
+        ]
     },
     {
         "name": "C++/Output Path",
@@ -134,7 +156,10 @@
     {
         "name": "C++/Run Arguments",
         "type": "QString",
-        "tip": "The runtime arguments when executing a C++ program"
+        "tip": "The runtime arguments when executing a C++ program",
+        "old": [
+            "runtime_cpp"
+        ]
     },
     {
         "name": "C++/Parentheses",
@@ -147,25 +172,37 @@
         "type": "QString",
         "ui": "PathItem",
         "param": "PathItem::JavaSource",
-        "tip": "The template used when creating a new Java file"
+        "tip": "The template used when creating a new Java file",
+        "old": [
+            "template_java"
+        ]
     },
     {
         "name": "Java/Compile Command",
         "type": "QString",
         "default": "javac",
-        "tip": "The command used to compile Java.\nIt should NOT include the path to the source file or the path of the compiled class file."
+        "tip": "The command used to compile Java.\nIt should NOT include the path to the source file or the path of the compiled class file.",
+        "old": [
+            "compile_java"
+        ]
     },
     {
         "name": "Java/Run Arguments",
         "type": "QString",
         "default": "",
-        "tip": "The runtime arguments when executing a Java program"
+        "tip": "The runtime arguments when executing a Java program",
+        "old": [
+            "runtime_java"
+        ]
     },
     {
         "name": "Java/Run Command",
         "type": "QString",
         "default": "java",
-        "tip": "The command to start a Java program. It should NOT include \"-classpath <path> <class name>\"."
+        "tip": "The command to start a Java program. It should NOT include \"-classpath <path> <class name>\".",
+        "old": [
+            "run_java"
+        ]
     },
     {
         "name": "Java/Class Name",
@@ -228,7 +265,10 @@
         "type": "QString",
         "ui": "PathItem",
         "param": "PathItem::PythonSource",
-        "tip": "The template used when creating a new Python file"
+        "tip": "The template used when creating a new Python file",
+        "old": [
+            "template_python"
+        ]
     },
     {
         "name": "Python/Template Cursor Position Regex",
@@ -270,13 +310,19 @@
     {
         "name": "Python/Run Arguments",
         "type": "QString",
-        "tip": "The runtime arguments when executing a Python program"
+        "tip": "The runtime arguments when executing a Python program",
+        "old": [
+            "runtime_python"
+        ]
     },
     {
         "name": "Python/Run Command",
         "type": "QString",
         "default": "python",
-        "tip": "The command to start a Python program. It should NOT include the path to the source file."
+        "tip": "The command to start a Python program. It should NOT include the path to the source file.",
+        "old": [
+            "run_python"
+        ]
     },
     {
         "name": "Python/Parentheses",
@@ -310,7 +356,10 @@
         "name": "Auto Complete Parentheses",
         "type": "bool",
         "default": true,
-        "tip": "Automatically complete a pair of parentheses when typing the left element of it,\nand move out of it when typing the right element of it.\nThis can be overridden for each parenthesis in each language."
+        "tip": "Automatically complete a pair of parentheses when typing the left element of it,\nand move out of it when typing the right element of it.\nThis can be overridden for each parenthesis in each language.",
+        "old": [
+            "auto_parenthesis"
+        ]
     },
     {
         "name": "Auto Remove Parentheses",
@@ -334,7 +383,10 @@
         "name": "Auto Save",
         "desc": "Enable Auto Save",
         "type": "bool",
-        "tip": "Automatically save the file every 3 seconds."
+        "tip": "Automatically save the file every 3 seconds.",
+        "old": [
+            "autosave"
+        ]
     },
     {
         "name": "Auto Save Interval",
@@ -387,14 +439,21 @@
     },
     {
         "name": "Maximized Window",
-        "type": "bool"
+        "type": "bool",
+        "notr": true,
+        "old": [
+            "win_max"
+        ]
     },
     {
         "name": "Check Update",
         "desc": "Check for updates on startup",
         "type": "bool",
         "default": true,
-        "tip": "Check whether there's a new version of CP Editor when starting CP Editor."
+        "tip": "Check whether there's a new version of CP Editor when starting CP Editor.",
+        "old": [
+            "update_start_check"
+        ]
     },
     {
         "name": "Opacity",
@@ -402,7 +461,10 @@
         "default": 100,
         "param": "QVariantList {60,100}",
         "ui": "QSlider",
-        "tip": "The opacity of the main window"
+        "tip": "The opacity of the main window",
+        "old": [
+            "transparency"
+        ]
     },
     {
         "name": "View Mode",
@@ -413,19 +475,28 @@
     {
         "name": "Splitter Size",
         "type": "QByteArray",
-        "notr": true
+        "notr": true,
+        "old": [
+            "splitter_sizes"
+        ]
     },
     {
         "name": "Right Splitter Size",
         "type": "QByteArray",
-        "notr": true
+        "notr": true,
+        "old": [
+            "right_splitter_sizes"
+        ]
     },
     {
         "name": "Competitive Companion/Enable",
         "desc": "Enable Competitive Companion",
         "type": "bool",
         "default": true,
-        "tip": "Receive data sent by Competitive Companion and load the example testcases."
+        "tip": "Receive data sent by Competitive Companion and load the example testcases.",
+        "old": [
+            "competitive_use"
+        ]
     },
     {
         "name": "Competitive Companion/Connection Port",
@@ -438,7 +509,10 @@
                 "name": "Competitive Companion/Enable"
             }
         ],
-        "tip": "The port used to receive data from Competitive Companion"
+        "tip": "The port used to receive data from Competitive Companion",
+        "old": [
+            "connection_port"
+        ]
     },
     {
         "name": "Competitive Companion/Open New Tab",
@@ -450,7 +524,10 @@
                 "name": "Competitive Companion/Enable"
             }
         ],
-        "tip": "Open a new tab for each problem parsed by Competitive Companion."
+        "tip": "Open a new tab for each problem parsed by Competitive Companion.",
+        "old": [
+            "companion_new_tab"
+        ]
     },
     {
         "name": "Competitive Companion/Set Time Limit For Tab",
@@ -504,50 +581,74 @@
         "name": "Hotkey/Format",
         "desc": "Format Codes",
         "type": "QString",
-        "ui": "ShortcutItem"
+        "ui": "ShortcutItem",
+        "old": [
+            "hotkey_format"
+        ]
     },
     {
         "name": "Hotkey/Kill",
         "desc": "Kill All Processes",
         "type": "QString",
-        "ui": "ShortcutItem"
+        "ui": "ShortcutItem",
+        "old": [
+            "hotkey_kill"
+        ]
     },
     {
         "name": "Hotkey/Compile Run",
         "desc": "Compile and Run",
         "type": "QString",
-        "ui": "ShortcutItem"
+        "ui": "ShortcutItem",
+        "old": [
+            "hotkey_compile_run"
+        ]
     },
     {
         "name": "Hotkey/Run",
         "desc": "Run Only",
         "type": "QString",
-        "ui": "ShortcutItem"
+        "ui": "ShortcutItem",
+        "old": [
+            "hotkey_run"
+        ]
     },
     {
         "name": "Hotkey/Compile",
         "desc": "Compile Only",
         "type": "QString",
-        "ui": "ShortcutItem"
+        "ui": "ShortcutItem",
+        "old": [
+            "hotkey_compile"
+        ]
     },
     {
         "name": "Hotkey/Change View Mode",
         "desc": "Change View Mode",
         "type": "QString",
-        "ui": "ShortcutItem"
+        "ui": "ShortcutItem",
+        "old": [
+            "hotkey_mode_toggle"
+        ]
     },
     {
         "name": "Hotkey/Snippets",
         "desc": "Use Snippets",
         "type": "QString",
-        "ui": "ShortcutItem"
+        "ui": "ShortcutItem",
+        "old": [
+            "hotkey_snippets"
+        ]
     },
     {
         "name": "Hot Exit/Enable",
         "desc": "Restore last session at startup",
         "type": "bool",
         "default": true,
-        "tip": "Restore the last session when the application starts.\nWhen this is enabled, you won't be asked whether to save unsaved files when exiting."
+        "tip": "Restore the last session when the application starts.\nWhen this is enabled, you won't be asked whether to save unsaved files when exiting.",
+        "old": [
+            "use_hot_exit"
+        ]
     },
     {
         "name": "Hot Exit/Auto Save",
@@ -588,7 +689,10 @@
         "default": "cf",
         "ui": "PathItem",
         "param": "PathItem::Executable",
-        "tip": "The path to the CF Tool executable file"
+        "tip": "The path to the CF Tool executable file",
+        "old": [
+            "cf_path"
+        ]
     },
     {
         "name": "CF/Show Toast Messages",
@@ -600,7 +704,10 @@
     {
         "name": "Show Compile And Run Only",
         "type": "bool",
-        "tip": "Hide the Compile Only button and the Run Only button under the code editor in the main window."
+        "tip": "Hide the Compile Only button and the Run Only button under the code editor in the main window.",
+        "old": [
+            "compile_and_run_only"
+        ]
     },
     {
         "name": "Display EOLN In Diff",
@@ -619,7 +726,10 @@
         "type": "int",
         "default": 5000,
         "param": "QVariantList {1,3600000,1000}",
-        "tip": "The default time limit when executing the program.\nThe program will be killed if it doesn't terminate in the time limit."
+        "tip": "The default time limit when executing the program.\nThe program will be killed if it doesn't terminate in the time limit.",
+        "old": [
+            "time_limit"
+        ]
     },
     {
         "name": "Output Length Limit",
@@ -661,7 +771,10 @@
         "type": "int",
         "default": 500000,
         "param": "QVariantList {2,1000000000}",
-        "tip": "The maximum number of characters in a test case to be loaded.\nA loaded test case will be elided and read-only if it's too long."
+        "tip": "The maximum number of characters in a test case to be loaded.\nA loaded test case will be elided and read-only if it's too long.",
+        "old": [
+            "load_test_case_file_length_limit"
+        ]
     },
     {
         "name": "LSP/Path C++",

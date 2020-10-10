@@ -36,6 +36,7 @@ class SettingsInfo
         bool immediatelyApply;
         std::function<void(SettingInfo *, ValueWidget *, QWidget *)> onApply;
         QList<QPair<QString, std::function<bool(const QVariant &)>>> depends;
+        QList<QString> old; // the old names for this setting
         QVariant def;
         QVariant param;
         QList<SettingInfo> child;
@@ -63,6 +64,8 @@ class SettingsInfo
 
   private:
     static QList<SettingInfo> settings;
+
+    friend class SettingsUpdater;
 };
 
 #endif // SETTINGSINFO_HPP

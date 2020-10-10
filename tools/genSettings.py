@@ -76,8 +76,9 @@ def writeInfo(f, obj, lst):
         for depend in depends:
             dependsString += f"{{{json.dumps(depend.get('name', ''))}, [](const QVariant &var) {{ {depend.get('check', 'return var.toBool();')} }}}}, "
         dependsString += "}"
+        old = t.get("old", [])
         f.write(
-            f", \"{tempname}\", \"{ui}\", {trtip}, tr({json.dumps(hlp)}), {json.dumps(requireAllDepends)}, {json.dumps(immediatelyApply)}, {onApply}, {dependsString}, ")
+            f", \"{tempname}\", \"{ui}\", {trtip}, tr({json.dumps(hlp)}), {json.dumps(requireAllDepends)}, {json.dumps(immediatelyApply)}, {onApply}, {dependsString}, {{{json.dumps(old)[1:-1]}}}, ")
         if typename != "Object":
             if "default" in t:
                 if typename == "QString":
