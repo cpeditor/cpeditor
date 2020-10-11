@@ -2573,16 +2573,18 @@ This behaviour can be toggled for each tab by pressing INS/Insert on your keyboa
         <translation>在选择字体时只显示等宽字体</translation>
     </message>
     <message>
-        <source>Highlight the line where cursor exists.
-In, vim emulation current line is never highlighed</source>
-        <translation type="unfinished"></translation>
         <source>Display Test Case Length Limit</source>
-        <translation>显示测试用例长度限制</translation>
+        <translation type="unfinished">显示测试用例长度限制</translation>
     </message>
     <message>
         <source>The maximum number of characters in a test case to be displayed.
 A test case will be elided and read-only if it&apos;s too long.</source>
         <translation>会显示出来的测试用例的最大字符数。如果测试用例过长，超长部分会被省略，且测试用例会变得只读。</translation>
+    </message>
+    <message>
+        <source>Highlight the line where cursor exists.
+In, vim emulation current line is never highlighed</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

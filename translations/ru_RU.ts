@@ -2580,17 +2580,19 @@ This behaviour can be toggled for each tab by pressing INS/Insert on your keyboa
         <translation>Показывать только моноширинные шрифты при выборе</translation>
     </message>
     <message>
-        <source>Highlight the line where cursor exists.
-In, vim emulation current line is never highlighed</source>
-        <translation type="unfinished"></translation>
         <source>Display Test Case Length Limit</source>
-        <translation>Показывать лимит длины тесткейса</translation>
+        <translation type="unfinished">Показывать лимит длины тесткейса</translation>
     </message>
     <message>
         <source>The maximum number of characters in a test case to be displayed.
 A test case will be elided and read-only if it&apos;s too long.</source>
         <translation>Максимальное отображаемое число символов в тесткейсе.
 Если тесткейс будет слишком большой, он будет пропущен и доступен только для чтения.</translation>
+    </message>
+    <message>
+        <source>Highlight the line where cursor exists.
+In, vim emulation current line is never highlighed</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
