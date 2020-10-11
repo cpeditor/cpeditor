@@ -10,6 +10,7 @@
                 "name": "FakeVim/Enable",
                 "check": "return !var.toBool();"
             }
+        ],
         "old": [
             "tab_stop"
         ]
