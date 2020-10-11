@@ -2511,12 +2511,13 @@ The program will be killed if it doesn&apos;t terminate in the time limit.</sour
     </message>
     <message>
         <source>Display Test Case Length Limit</source>
-        <translation type="unfinished"></translation>
+        <translation>Показывать лимит длины тесткейса</translation>
     </message>
     <message>
         <source>The maximum number of characters in a test case to be displayed.
 A test case will be elided and read-only if it&apos;s too long.</source>
-        <translation type="unfinished"></translation>
+        <translation>Максимальное отображаемое число символов в тесткейсе.
+Если тесткейс будет слишком большой, он будет пропущен и доступен только для чтения.</translation>
     </message>
 </context>
 <context>
