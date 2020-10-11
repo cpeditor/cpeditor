@@ -1528,10 +1528,12 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
         <translation>终端中运行</translation>
     </message>
     <message>
+        <source>Font</source>
+        <translation type="unfinished">字体</translation>
+    </message>
+    <message>
         <source>Code Editing</source>
         <translation type="unfinished"></translation>
-        <source>Font</source>
-        <translation>字体</translation>
     </message>
 </context>
 <context>
@@ -2568,11 +2570,8 @@ This behaviour can be toggled for each tab by pressing INS/Insert on your keyboa
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Highlight the line where cursor exists.
-In, vim emulation current line is never highlighed</source>
-        <translation type="unfinished"></translation>
         <source>Show Only Monospaced Font</source>
-        <translation>仅显示等宽字体</translation>
+        <translation type="unfinished">仅显示等宽字体</translation>
     </message>
     <message>
         <source>Change Locale</source>
@@ -2585,6 +2584,11 @@ In, vim emulation current line is never highlighed</source>
     <message>
         <source>Show only monospaced fonts when choosing a font</source>
         <translation>在选择字体时只显示等宽字体</translation>
+    </message>
+    <message>
+        <source>Highlight the line where cursor exists.
+In, vim emulation current line is never highlighed</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

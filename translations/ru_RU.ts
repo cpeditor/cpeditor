@@ -1528,10 +1528,12 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
         <translation>Отдельный запуск</translation>
     </message>
     <message>
+        <source>Font</source>
+        <translation type="unfinished">Шрифт</translation>
+    </message>
+    <message>
         <source>Code Editing</source>
         <translation type="unfinished"></translation>
-        <source>Font</source>
-        <translation>Шрифт</translation>
     </message>
 </context>
 <context>
@@ -2576,11 +2578,8 @@ This behaviour can be toggled for each tab by pressing INS/Insert on your keyboa
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Highlight the line where cursor exists.
-In, vim emulation current line is never highlighed</source>
-        <translation type="unfinished"></translation>
         <source>Show Only Monospaced Font</source>
-        <translation>Показывать только моноширинный шрифт</translation>
+        <translation type="unfinished">Показывать только моноширинный шрифт</translation>
     </message>
     <message>
         <source>Change Locale</source>
@@ -2593,6 +2592,11 @@ In, vim emulation current line is never highlighed</source>
     <message>
         <source>Show only monospaced fonts when choosing a font</source>
         <translation>Показывать только моноширинные шрифты при выборе</translation>
+    </message>
+    <message>
+        <source>Highlight the line where cursor exists.
+In, vim emulation current line is never highlighed</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
