@@ -18,16 +18,34 @@
 #include "Extensions/CompanionServer.hpp"
 #include "Core/EventLogger.hpp"
 #include "Core/MessageLogger.hpp"
+#include "qhttpfwd.hpp"
+#include "qhttpserver.hpp"
+#include "qhttpserverconnection.hpp"
+#include "qhttpserverrequest.hpp"
+#include "qhttpserverresponse.hpp"
 #include <QJsonArray>
 #include <QJsonObject>
-#include <QTcpServer>
-#include <QTcpSocket>
+
+#define USER_INFO(x)                                                                                                   \
+    if (log)                                                                                                           \
+        log->info("Companion", x);
+
+#define USER_WARN(x)                                                                                                   \
+    if (log)                                                                                                           \
+        log->warn("Companion", x);
+
+#define USER_ERR(x)                                                                                                    \
+    if (log)                                                                                                           \
+        log->error("Companion", x);
 
 namespace Extensions
 {
-CompanionServer::CompanionServer(int port)
+CompanionServer::CompanionServer(int port, QObject *parent) : QObject(parent)
 {
-    updatePort(port);
+    if (startListeningOn(port))
+    {
+        lastListeningPort = port;
+    }
 }
 
 void CompanionServer::setMessageLogger(MessageLogger *log)
@@ -35,131 +53,111 @@ void CompanionServer::setMessageLogger(MessageLogger *log)
     this->log = log;
 }
 
+bool CompanionServer::startListeningOn(int port)
+{
+    if (server)
+        delete server;
+    server = new qhttp::server::QHttpServer(this);
+    server->listen(QString::number(port), [this](qhttp::server::QHttpRequest *req, qhttp::server::QHttpResponse *res) {
+        LOG_INFO("\n--> " << req->methodString() << " : " << qPrintable(req->url().toString().toUtf8()));
+        req->headers().forEach(
+            [](auto iter) { LOG_INFO(iter.key().constData() << " : " << iter.value().constData()); });
+
+        const QString methodType = req->methodString();
+        const bool isJson = req->headers().keyHasValue("content-type", "application/json");
+        req->collectData();
+
+        req->onEnd([=] {
+            res->addHeader("connection", "close");
+            res->addHeader("pragma", "no-cache");
+
+            if (methodType != "POST")
+            {
+                USER_WARN(tr("A %1 request is received and ignored").arg(methodType));
+            }
+            else if (!isJson)
+            {
+                USER_ERR(tr("The request received is not JSON"));
+            }
+            else
+            {
+                res->setStatusCode(qhttp::ESTATUS_ACCEPTED);
+                QByteArray data = req->collectedData();
+                LOG_INFO(INFO_OF(data));
+                res->end();
+                parseAndEmit(data);
+                return;
+            }
+
+            res->setStatusCode(qhttp::ESTATUS_NOT_ACCEPTABLE);
+            res->end();
+        });
+    });
+    return server->isListening();
+}
+
 void CompanionServer::updatePort(int port)
 {
     LOG_INFO(INFO_OF(port));
-    if (portNumber != port)
+    if (port == 0) // Close the server
     {
-        portNumber = port;
-        if (server != nullptr)
+        if (server)
             delete server;
-        if (port == 0)
+        server = nullptr;
+        USER_INFO(tr("Server is closed"));
+        lastListeningPort = -1;
+        return;
+    }
+
+    if (lastListeningPort != port) // actually update the port. This involves restarting the qhttpserver
+    {
+        bool started = startListeningOn(port);
+        if (started)
         {
-            server = nullptr;
-            if (log != nullptr)
-                log->info("Companion", tr("Server is closed"));
+            lastListeningPort = port;
+            USER_INFO(tr("Port is set to %1").arg(port));
         }
         else
         {
-            server = new QTcpServer(this);
-            portNumber = port;
-            // server->setMaxPendingConnections(1);
-            connect(server, SIGNAL(newConnection()), this, SLOT(onNewConnection()));
-            server->listen(QHostAddress::LocalHost, static_cast<quint16>(port));
-            if (log != nullptr)
-            {
-                log->info("Companion", tr("Port is set to %1").arg(port));
-                if (!server->isListening())
-                {
-                    log->error("Companion",
-                               tr("Failed to listen to port %1. Is there another process listening?").arg(portNumber));
-                }
-            }
+            USER_ERR(tr("Failed to listen to port %1. Is there another process listening?").arg(port));
         }
+    }
+}
+
+void CompanionServer::parseAndEmit(QByteArray &data)
+{
+    QJsonParseError error;
+    QJsonDocument doc = QJsonDocument::fromJson(QString(data).toUtf8(), &error);
+    if (error.error == QJsonParseError::NoError)
+    {
+        CompanionData payload;
+
+        payload.doc = doc;
+        payload.url = doc["url"].toString();
+        payload.timeLimit = doc["timeLimit"].toInt();
+        QJsonArray testArray = doc["tests"].toArray();
+
+        for (auto tests : testArray)
+        {
+            auto in = tests.toObject()["input"].toString();
+            auto out = tests.toObject()["output"].toString();
+            payload.testcases.push_back({in, out});
+        }
+
+        emit onRequestArrived(payload);
+    }
+    else
+    {
+        USER_ERR(tr("JSON parser reported errors:\n%1").arg(error.errorString()));
+        LOG_WARN("JSON parser reported error " << error.errorString());
     }
 }
 
 CompanionServer::~CompanionServer()
 {
-    if (log != nullptr)
-        log->info("Companion", tr("Stopped Server"));
-    delete server;
-}
-
-void CompanionServer::onNewConnection()
-{
-    LOG_INFO("New connection has arrived, reading from queue");
-    socket = server->nextPendingConnection();
-    socket->setSocketOption(QAbstractSocket::KeepAliveOption, 1);
-    QObject::connect(socket, SIGNAL(readyRead()), this, SLOT(onReadReady()));
-    QObject::connect(socket, SIGNAL(disconnected()), this, SLOT(onTerminateConnection()));
-}
-
-void CompanionServer::onReadReady()
-{
-    QString request = socket->readAll();
-
-    LOG_INFO("Connection content is\n" << request);
-
-    if (request.startsWith("POST") && request.contains("Content-Type: application/json"))
-    {
-        if (log != nullptr)
-            log->info("Companion", tr("Got a POST Request"));
-
-        socket->write("HTTP/1.1  OK\r\n"); // \r needs to be before \n
-        socket->write("Content-Type: text/html\r\n");
-        socket->write("Connection: close\r\n");
-        socket->write("Pragma: no-cache\r\n");
-        socket->write("\r\n");
-        socket->write("<!DOCTYPE html>\r\n");
-        socket->write("<html><body><h1>Okay, Accepted"
-                      "</h1></body></html>");
-        socket->write(QByteArray());
-        socket->disconnectFromHost();
-
-        request = request.mid(request.indexOf('{'));
-
-        QJsonParseError error;
-        QJsonDocument doc = QJsonDocument::fromJson(request.toUtf8(), &error);
-        if (error.error == QJsonParseError::NoError)
-        {
-            CompanionData payload;
-
-            payload.doc = doc;
-
-            payload.url = doc["url"].toString();
-            payload.timeLimit = doc["timeLimit"].toInt();
-
-            QJsonArray testArray = doc["tests"].toArray();
-            for (auto tests : testArray)
-            {
-                auto in = tests.toObject()["input"].toString();
-                auto out = tests.toObject()["output"].toString();
-                payload.testcases.push_back({in, out});
-            }
-
-            emit onRequestArrived(payload);
-        }
-        else
-        {
-            if (log != nullptr)
-                log->error("Companion", tr("JSON parser reported errors:\n%1").arg(error.errorString()));
-            LOG_WARN("JSON parser reported error " << error.errorString());
-        }
-    }
-    else
-    {
-        if (log != nullptr)
-            log->warn("Companion", "An Invalid Payload was delivered on the listening port");
-        else
-            LOG_WARN("Invalid payload delivered on listing port");
-        socket->write("HTTP/1.1  OK\r\n"); // \r needs to be before \n
-        socket->write("Content-Type: text/html\r\n");
-        socket->write("Connection: close\r\n");
-        socket->write("Pragma: no-cache\r\n");
-        socket->write("\r\n");
-        socket->write("<!DOCTYPE html>\r\n");
-        socket->write("<html><body><h1>Rejected!!! Only POST requests with Content-type JSON "
-                      "are allowed "
-                      "here.</h1></body></html>");
-        socket->write(QByteArray());
-        socket->disconnectFromHost();
-    }
-}
-void CompanionServer::onTerminateConnection()
-{
-    LOG_INFO("Socket scheduled to be Deleted");
-    socket->deleteLater();
+    USER_INFO(tr("Stopped Server"));
+    if (server)
+        delete server;
 }
 
 } // namespace Extensions

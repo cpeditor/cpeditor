@@ -6,7 +6,7 @@ on:
       - "*"
 
 env:
-  QT_VERSION: 5.15.0
+  QT_VERSION: 5.15.1
 
 jobs:
   release:
@@ -109,8 +109,8 @@ jobs:
           wget -c "https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage"
           chmod a+x linuxdeployqt*.AppImage
           export VERSION=${{ steps.get_version.outputs.VERSION }}
-          cp ../.ci/linux/cpeditor.desktop . && cp ../.ci/linux/cpeditor-icon.png .
-          cp cpeditor.desktop default.desktop
+          cp ../.ci/linux/cpeditor.desktop default.desktop
+          cp ../resources/icon.png cpeditor.png
           ./linuxdeployqt*.AppImage ./cpeditor -appimage -qmake=../../Qt/${{ env.QT_VERSION }}/gcc_64/bin/qmake
           mv CP_Editor-${{steps.get_version.outputs.VERSION }}-x86_64.AppImage cpeditor-${{ steps.get_version.outputs.VERSION }}-linux-x86_64.AppImage
 
@@ -121,6 +121,63 @@ jobs:
           draft: true
           prerelease: ${{ steps.get_version.outputs.ISBETA }}
           files: build/cpeditor-${{ steps.get_version.outputs.VERSION }}-linux-x86_64.AppImage
+          name: CP Editor ${{ steps.get_version.outputs.VERSION }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Pack to deb
+        if: startsWith(matrix.config.os, 'ubuntu')
+        id: deb-package
+        run: |
+          pkgname="cpeditor-${{ steps.get_version.outputs.VERSION }}-linux-amd64"
+          echo "::set-output name=pkgname::${pkgname}"
+
+          mkdir -p ${pkgname}/usr/share/
+          cd ${pkgname}/usr/share/
+
+          mkdir applications/  
+          cp ${{ github.workspace }}/.ci/linux/cpeditor.desktop ./applications
+
+          mkdir -p cpeditor/bin/
+          cp ${{ github.workspace }}/.ci/DEB/cpeditor.sh ./cpeditor/
+          cp -r ${{ github.workspace }}/build/plugins/ ./cpeditor
+          cp ${{ github.workspace }}/build/cpeditor ./cpeditor/bin/
+
+          mkdir -p doc/cpeditor/
+          cp ${{ github.workspace }}/LICENSE ./doc/cpeditor/copyright
+
+          mkdir icons/
+          cp ${{ github.workspace }}/resources/icon.png ./icons/cpeditor.png
+
+          cp -r ${{ github.workspace }}/build/translations/ ./cpeditor
+
+          cd ../
+          mkdir -p lib/cpeditor/
+          cp ${{ github.workspace }}/build/lib/* ./lib/cpeditor
+
+          cd ..
+          cp -r ${{ github.workspace }}/.ci/DEB/DEBIAN .
+          wget -c "http://archive.ubuntu.com/ubuntu/pool/universe/h/hashdeep/md5deep_4.4-4_all.deb"
+          wget -c "http://archive.ubuntu.com/ubuntu/pool/universe/h/hashdeep/hashdeep_4.4-4_amd64.deb"
+          sudo apt install ./*.deb
+          rm *.deb
+          md5deep -rl usr/ > ./DEBIAN/md5sums
+          cd DEBIAN
+          chmod 775 p*
+          sed -i "s/\${ver}/${{ steps.get_version.outputs.VERSION }}/" control
+          SIZE=$(du -s ../../${pkgname} | cut -f1)
+          sed -i "s/\${size}/${SIZE}/" control
+
+          cd ${{ github.workspace }}/
+          fakeroot dpkg-deb --build ${pkgname}
+
+      - name: Release deb
+        if: startsWith(matrix.config.os, 'ubuntu')
+        uses: softprops/action-gh-release@v1
+        with:
+          draft: true
+          prerelease: ${{ steps.get_version.outputs.ISBETA }}
+          files: ${{ steps.deb-package.outputs.pkgname }}.deb
           name: CP Editor ${{ steps.get_version.outputs.VERSION }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

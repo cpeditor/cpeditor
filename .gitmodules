@@ -16,3 +16,6 @@
 [submodule "third_party/syntax-highlighting"]
 	path = third_party/syntax-highlighting
 	url = https://github.com/KDE/syntax-highlighting
+[submodule "third_party/qhttp"]
+	path = third_party/qhttp
+	url = https://github.com/cpeditor/qhttp

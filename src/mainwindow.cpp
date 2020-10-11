@@ -508,7 +508,7 @@ void MainWindow::applyCompanion(const Extensions::CompanionData &data)
 
         auto it = QRegularExpression(R"(\$\{json\..+?\})").globalMatch(comments);
 
-        QString finalComments = "\n";
+        QString finalComments;
         int lastEnd = 0;
 
         while (it.hasNext())
@@ -540,14 +540,18 @@ void MainWindow::applyCompanion(const Extensions::CompanionData &data)
         finalComments += comments.mid(lastEnd);
 
         if (SettingsHelper::isCompetitiveCompanionHeadCommentsPoweredByCPEditor())
-            finalComments += "\n\nPowered by CP Editor (https://cpeditor.org)";
+        {
+            if (!finalComments.isEmpty())
+                finalComments += "\n\n";
+            finalComments += "Powered by CP Editor (https://cpeditor.org)";
+        }
 
-        if (language == "Python")
-            finalComments.replace('\n', "\n# ");
-        else
-            finalComments.replace('\n', "\n// ");
-
-        finalComments += "\n\n";
+        if (!finalComments.isEmpty())
+        {
+            finalComments.replace(QRegularExpression("^", QRegularExpression::MultilineOption),
+                                  language == "Python" ? "# " : "// ");
+            finalComments += "\n\n";
+        }
 
         auto cursor = editor->textCursor();
         int cursorPos = cursor.position(); // keep Template Cursor Position
@@ -571,13 +575,15 @@ void MainWindow::applySettings(const QString &pagePath, bool shouldPerformDigoni
 {
     LOG_INFO(INFO_OF(pagePath) << BOOL_INFO_OF(shouldPerformDigonistic));
 
-    if (pagePath.isEmpty() || pagePath == "Extensions/Clang Format")
+    auto pageChanged = [pagePath](const QString &page) { return pagePath.isEmpty() || pagePath == page; };
+
+    if (pageChanged("Extensions/Clang Format"))
     {
         formatter->updateBinary(SettingsHelper::getClangFormatPath());
         formatter->updateStyle(SettingsHelper::getClangFormatStyle());
     }
 
-    if (pagePath.isEmpty() || pagePath == "Extensions/CF Tool")
+    if (pageChanged("Extensions/CF Tool"))
     {
         cftoolPath = SettingsHelper::getCFPath();
 
@@ -589,25 +595,22 @@ void MainWindow::applySettings(const QString &pagePath, bool shouldPerformDigoni
         }
     }
 
-    if (pagePath.isEmpty() || pagePath == "Code Edit" || pagePath == "Appearance" ||
+    if (pagePath.isEmpty() || pagePath == "Code Edit" || pagePath.startsWith("Appearance/") ||
         pagePath == QString("Language/%1/%1 Parentheses").arg(language))
         editor->applySettings(language);
 
-    if (!isLanguageSet && (pagePath.isEmpty() || pagePath == "Language/General"))
+    if (!isLanguageSet && pageChanged("Language/General"))
     {
         setLanguage(SettingsHelper::getDefaultLanguage());
     }
 
-    if (shouldPerformDigonistic && (pagePath.isEmpty() || pagePath == QString("Language/%1/%1 Commands").arg(language)))
+    if (shouldPerformDigonistic && (pageChanged(QStringLiteral("Language/%1/%1 Commands").arg(language))))
     {
         performCompileAndRunDiagonistics();
     }
 
-    if (pagePath.isEmpty() || pagePath == "Appearance")
+    if (pageChanged("Appearance/General"))
     {
-        ui->compilerEdit->setFont(SettingsHelper::getMessageLoggerFont());
-        testcases->setTestCaseEditFont(SettingsHelper::getTestCasesFont());
-        editor->applySettings(language);
         testcases->updateHeights();
         if (SettingsHelper::isShowCompileAndRunOnly())
         {
@@ -619,6 +622,12 @@ void MainWindow::applySettings(const QString &pagePath, bool shouldPerformDigoni
             ui->compile->show();
             ui->runOnly->show();
         }
+    }
+
+    if (pageChanged("Appearance/Font"))
+    {
+        ui->compilerEdit->setFont(SettingsHelper::getMessageLoggerFont());
+        testcases->setTestCaseEditFont(SettingsHelper::getTestCasesFont());
     }
 
     if (pagePath.isEmpty() || pagePath == "Language/C++/C++ Commands")

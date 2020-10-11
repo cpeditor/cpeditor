@@ -87,25 +87,36 @@ A changelog between versions should be like this:
 
 The changelog of a GitHub Releases is a part of [CHANGELOG.md](CHANGELOG.md), usually of the corresponding single version, but the changelog of a stable release at the beginning of a release cycle on GitHub should be all changelogs of that MINOR version.
 
-### The complete workflow of making a new release
+### The complete workflow to make a new stable release
 
-1. Additional steps for creating a new MINOR version at the beginning of a release cycle:
-   1. Modify [.ci/STABLE_VERSION](../.ci/STABLE_VERSION) in master and the current beta branch (the next stable branch).
-   2. Create a new branch `v$X.$Y` based on the master branch.
-   3. After creating the new branch, create a commit on the master branch which contains exactly the following:
-      - Change the version in [CMakeLists.txt](../CMakeLists.txt) to `$X.$(Y+1).0`.
-      - Move the UNRELEASED changes to the changelog of `v$X.$Y` in [CHANGELOG.md](CHANGELOG.md).
-      - The commit subject is `Start a new release cycle for v$X.$(Y+1)`.
-2. Create a commit on the version branch which contains exactly the following:
-   - Change the version in [CMakeLists.txt](../CMakeLists.txt) to `$X.$Y.$Z`.
-   - Move the UNRELEASED changes to the changelog of `$X.$Y.$Z` in [CHANGELOG.md](CHANGELOG.md).
-   - The commit subject is `Release $X.$Y.$Z`.
-3. Tag the commit created at the step 2 as `$X.$Y.$Z`.
-4. Push both the commit and the tag.
-5. Edit the changelog of the GitHub Release, make it non-draft, and mark it as a pre-release if it is.
-6. Update the badges in [README.md](../README.md) on the master branch.
+Suppose you are releasing the version `2.3.7`:
 
-You can use [release.sh](../tools/release.sh) and [newReleaseCycle.sh](../tools/newReleaseCycle.sh) to do the above except edit the release on GitHub. (Please run them at the root directory.)
+1.  Modify the version in [CMakeLists.txt](CMakeLists.txt) to `2.3.7`.
+2.  Add `## 2.3.7` in [CHANGELOG.md](CHANGELOG.md) under `UNRELEASED`. If there's nothing changed, add `This version is the same as 2.3.6, but it's considered stable now.` in the changelog.
+3.  Commit with the subject: `Release 2.3.7`. Tag it as `2.3.7`.
+4.  Push the commit and the tag.
+5.  Edit the changelog of the GitHub Release (the content is the changelog of `2.3.7`) and publish it.
+6.  Merge `v2.3` into `v2.4`. Create a new branch `merge-2.3.7` based on master. Merge `v2.4` into `merge-2.3.7`. Update the version badges in [README.md](README.md). Create a PR merging `merge-2.3.7` into master.
+
+### The complete workflow to make a new beta release
+
+Suppose you are releasing the version `2.4.1`:
+
+1.  Modify the version in [CMakeLists.txt](CMakeLists.txt) to `2.4.1`.
+2.  Add `## 2.4.1 (Beta)` in [CHANGELOG.md](CHANGELOG.md) under `UNRELEASED`.
+3.  Commit with the subject: `Release 2.4.1`. Tag it as `2.4.1`.
+4.  Push the commit and the tag.
+5.  Edit the changelog of the GitHub Release (the content is the changelog of `2.4.1`) and publish it.
+6.  Create a new branch `merge-2.4.1` based on master. Merge `v2.4` into `merge-2.4.1`. Update the version badges in [README.md](README.md). Create a PR merging `merge-2.4.1` into master.
+
+### The complete workflow to start a new release cycle
+
+Suppose you are releasing `2.3.7` and `2.4.1`:
+
+1.  Create a new branch `v2.4` based on master.
+2.  Checkout to `v2.3`. Change [STABLE_VERSION](.ci/STABLE_VERSION) to `2.3.`. Do the first 4 steps to [make a new stable release](#the-complete-workflow-to-make-a-new-stable-release), and also the step 5 but the content of the changelog is all changelogs from `2.3.1` to `2.3.7`.
+3.  Merge `v2.3` into `v2.4`. Do the first 5 steps to [make a new beta release](#the-complete-workflow-to-make-a-new-beta-release).
+4.  Create a new branch `merge-2.3.7-2.4.1` based on master. Merge `v2.4` into `merge-2.3.7-2.4.1`. Set the version in [CMakeLists.txt](CMakeLists.txt) to `2.5.0`. Rename `## 2.4.1 (Beta)` in [CHANGELOG.md](CHANGELOG.md) to `## v2.4`. Update the version badges in [README.md](README.md). Create a PR merging `merge-2.3.7-2.4.1` into master.
 
 ### Pull requests
 

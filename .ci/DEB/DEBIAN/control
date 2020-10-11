@@ -1,0 +1,13 @@
+Package: cpeditor
+Version: ${ver}
+Installed-Size: ${size}
+Maintainer: Roman Tolstosheyev <izobretatel777@mail.ru>
+Section: development
+Source: https://github.com/cpeditor/cpeditor
+Homepage: https://cpeditor.org/
+Architecture: amd64
+Priority: optional
+Depends: openssl (>=1.1.1)
+Description: CP Editor is a Qt-based, lightweight and cross-platform code editor specially designed for competitive programming.
+ It makes your competitive coding life easier by automating many things for you.
+

@@ -3,9 +3,9 @@ name: "CI: Build Test"
 on: [push, pull_request]
 
 env:
-  QT_VERSION: 5.15.0
-  CMAKE_VERSION: 3.16.8
-  NINJA_VERSION: 1.10.0
+  QT_VERSION: 5.15.1
+  CMAKE_VERSION: 3.18.2
+  NINJA_VERSION: 1.10.1
   CCACHE_VERSION: 3.7.7
   BUILD_TYPE: Release
 

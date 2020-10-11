@@ -16,7 +16,10 @@
         "type": "QFont",
         "default": "[](){ QFont font = QFontDatabase::systemFont(QFontDatabase::FixedFont); font.setStyleHint(QFont::TypeWriter); return font; }()",
         "param": "true",
-        "tip": "The font of the code editor"
+        "tip": "The font of the code editor",
+        "old": [
+            "editor_font"
+        ]
     },
     {
         "name": "Use Custom Application Font",
@@ -887,7 +890,8 @@
         "ui": "QComboBox",
         "default": "system",
         "param": "QStringList { \"system\", \"English\", \"Русский\", \"简体中文\" }",
-        "tip": "The language displayed in the UI."
+        "tip": "The language displayed in the UI.",
+        "onApply": "Core::Translator::setLocale(widget->getVariant().toString()); QMessageBox::warning(parent, tr(\"Change Locale\"), tr(\"You need to restart the application to completely apply the locale change.\"));"
     },
     {
         "name": "UI Style",
@@ -903,7 +907,10 @@
         "ui": "QComboBox",
         "default": "Default",
         "param": "KSyntaxHighlightingRepository::themeNames()",
-        "tip": "The style of the code syntax highlighting."
+        "tip": "The style of the code syntax highlighting.",
+        "old": [
+            "editor_theme"
+        ]
     },
     {
         "name": "Language Config",
@@ -1066,5 +1073,18 @@
         "type": "int",
         "default": 5,
         "notr": true
+    },
+    {
+        "name": "First Time User",
+        "type": "bool",
+        "default": true,
+        "notr": true
+    },
+    {
+        "name": "Show Only Monospaced Font",
+        "type": "bool",
+        "default": true,
+        "immediatelyApply": true,
+        "tip": "Show only monospaced fonts when choosing a font"
     }
 ]

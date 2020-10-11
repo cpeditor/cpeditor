@@ -128,14 +128,7 @@ AppWindow::AppWindow(int depth, bool cpp, bool java, bool python, bool noHotExit
     : AppWindow(noHotExit, parent)
 {
     openPaths(paths, cpp, java, python, depth);
-    if (ui->tabWidget->count() == 0)
-        openTab("");
-
-#ifdef Q_OS_WIN
-    // This is necessary because of setWindowOpacity(0.99) earlier
-    if (SettingsHelper::getOpacity() == 100)
-        setWindowOpacity(1);
-#endif
+    finishConstruction();
 }
 
 AppWindow::AppWindow(bool cpp, bool java, bool python, bool noHotExit, int number, const QString &path, QWidget *parent)
@@ -149,6 +142,12 @@ AppWindow::AppWindow(bool cpp, bool java, bool python, bool noHotExit, int numbe
     else if (python)
         lang = "Python";
     openContest({path, number, lang});
+
+    finishConstruction();
+}
+
+void AppWindow::finishConstruction()
+{
     if (ui->tabWidget->count() == 0)
         openTab("");
 
@@ -157,6 +156,13 @@ AppWindow::AppWindow(bool cpp, bool java, bool python, bool noHotExit, int numbe
     if (SettingsHelper::getOpacity() == 100)
         setWindowOpacity(1);
 #endif
+
+    if (SettingsHelper::isFirstTimeUser())
+    {
+        LOG_INFO("Is first-time user");
+        preferencesWindow->display();
+        SettingsHelper::setFirstTimeUser(false);
+    }
 }
 
 AppWindow::~AppWindow()
@@ -373,7 +379,7 @@ void AppWindow::openTab(MainWindow *window)
             SLOT(updateLanguageServerFilePath(MainWindow *, const QString &)));
     connect(window, SIGNAL(editorLanguageChanged(MainWindow *)), this, SLOT(onEditorLanguageChanged(MainWindow *)));
     connect(window, SIGNAL(editorTextChanged(MainWindow *)), this, SLOT(onEditorTextChanged(MainWindow *)));
-    connect(window, &MainWindow::editorFontChanged, this, [this] { onSettingsApplied("Appearance"); });
+    connect(window, &MainWindow::editorFontChanged, this, [this] { onSettingsApplied("Appearance/Font"); });
     connect(window, SIGNAL(requestToastMessage(const QString &, const QString &)), trayIcon,
             SLOT(showMessage(const QString &, const QString &)));
     connect(window, SIGNAL(compileOrRunTriggered()), this, SLOT(onCompileOrRunTriggered()));
@@ -572,18 +578,18 @@ int AppWindow::getNewUntitledIndex()
 
 void AppWindow::on_actionSupportMe_triggered()
 {
-    QDesktopServices::openUrl(QUrl("https://paypal.me/coder3101", QUrl::TolerantMode));
+    QDesktopServices::openUrl(QUrl("https://paypal.me/coder3101"));
 }
 
 void AppWindow::on_actionManual_triggered()
 {
-    QDesktopServices::openUrl(QUrl(
-        tr("https://github.com/cpeditor/cpeditor/blob/%1/doc/MANUAL.md").arg(GIT_COMMIT_HASH), QUrl::TolerantMode));
+    QDesktopServices::openUrl(
+        QUrl(tr("https://cpeditor.org/%1/docs").arg(MINOR_VERSION)).adjusted(QUrl::NormalizePathSegments));
 }
 
 void AppWindow::on_actionReportIssues_triggered()
 {
-    QDesktopServices::openUrl(QUrl("https://github.com/cpeditor/cpeditor/issues", QUrl::TolerantMode));
+    QDesktopServices::openUrl(QUrl("https://github.com/cpeditor/cpeditor/issues"));
 }
 
 void AppWindow::on_actionAbout_triggered()
@@ -1027,10 +1033,14 @@ void AppWindow::onSettingsApplied(const QString &pagePath)
             server->updatePort(0);
     }
 
-    if (pageChanged("Appearance"))
+    if (pageChanged("Appearance/General"))
     {
         setWindowOpacity(SettingsHelper::getOpacity() / 100.0);
         Core::StyleManager::setStyle(SettingsHelper::getUIStyle());
+    }
+
+    if (pageChanged("Appearance/Font"))
+    {
         if (SettingsHelper::isUseCustomApplicationFont())
             qApp->setFont(SettingsHelper::getCustomApplicationFont());
         else

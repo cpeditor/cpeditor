@@ -2,6 +2,20 @@
 
 ### Added
 
+-   Now you can opt-in non-monospaced fonts when choosing a font in the Preferences. (#217 and #625)
+
+### Fixed
+
+-   Fixed an issue that in some rare cases CP Editor could not get full data from Competitive Companion. (#345 and #624)
+
+### Changed
+
+-   Font settings are moved to Appearance/Font, everything else remains in Appearance/General. (#625)
+
+## v6.7
+
+### Added
+
 -   Open recent files. (#527)
 -   Reveal the executable file in file manager. (#537)
 -   Use a dialog to open new contests. (#539 and #467)
@@ -13,6 +27,7 @@
 -   Now you can use the time limit from Competitive Companion as the time limit for the corresponding tab. (#565)
 -   Now the compiler works in the same directory as the source file, so that you can use relative paths in the compile command. For example, you can add `grader.cpp` to compile the source file with the grader in the same directory. (#565)
 -   TLE and RE verdicts. (#566)
+-   Now the preferences window pops up at the first launch of CP Editor. (#614)
 
 ### Fixed
 
@@ -22,6 +37,10 @@
 -   Fixed the performance issue that makes the editor extremely slow when there are many lines. (cpeditor/QCodeEditor#27)
 -   Now the code snippets won't be in the log file. (#536)
 -   Fixed crash when compiling twice in a row with large test cases. (#549 and #550)
+-   Fixed a hypothetical Undefined Behaviour in testlib real number checker. (#586 and #587)
+-   Now you can use CF Tool to submit to Gym problems. (#591 and #592)
+-   Fixed an issue where Message Box font was getting reset when using Fusion styles. (#604 and #612)
+-   Fixed Windows sometimes restarts during the setup. (#545 and #619)
 
 ### Changed
 

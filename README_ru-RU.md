@@ -8,12 +8,12 @@ CP Editor - это легкий кросс-платформенный редак
 
 Этот редактор облегчает жизнь спортивного прораммиста :grin: автоматизируя многие вещи.
 
-[Возможности](https://cpeditor.github.io/) | [Установка](doc/INSTALL_ru-RU.md) | [Использование](doc/MANUAL_ru-RU.md) | [Список изменений](doc/CHANGELOG.md) | [Сотрудничество](CONTRIBUTING_ru-RU.md) | [FAQ](#faq) | [English](README.md) | [中文](README_zh-CN.md)
+[Возможности](https://cpeditor.org/ru) | [Документация](https://cpeditor.org/ru/docs/) | [Список изменений](CHANGELOG.md) | [Сотрудничество](CONTRIBUTING_ru-RU.md) | [FAQ](https://cpeditor.org/ru/docs/faq/) | [English](README.md) | [中文](README_zh-CN.md)
 
 ---
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-43-orange.svg)](#contributors-sparkles)
+[![All Contributors](https://img.shields.io/badge/all_contributors-46-orange.svg)](#all-contributors)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/ce0f297f31f74485b0d340949d08d605)](https://www.codacy.com/gh/cpeditor/cpeditor)
 [![Все релизы GitHub](https://img.shields.io/github/downloads/cpeditor/cpeditor/total?label=downloads%40all)](https://github.com/cpeditor/cpeditor/releases)
@@ -24,14 +24,16 @@ CP Editor - это легкий кросс-платформенный редак
 |  type  |                           branch                           |                                                                                                       build                                                                                                        |                                                                   downloads                                                                    |                                                         AUR                                                         |
 | :----: | :--------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------: |
 | alpha  | [master](https://github.com/cpeditor/cpeditor/tree/master) | [![GitHub Workflow Status](https://github.com/cpeditor/cpeditor/workflows/CI:%20Build%20Test/badge.svg?branch=master&event=push)](https://github.com/cpeditor/cpeditor/actions?query=event%3Apush+branch%3Amaster) |                                                                       -                                                                        | [![AUR version](https://img.shields.io/aur/version/cpeditor-git)](https://aur.archlinux.org/packages/cpeditor-git/) |
-|  beta  |   [v6.6](https://github.com/cpeditor/cpeditor/tree/v6.6)   |   [![GitHub Workflow Status](https://github.com/cpeditor/cpeditor/workflows/CI:%20Build%20Test/badge.svg?branch=v6.6&event=push)](https://github.com/cpeditor/cpeditor/actions?query=event%3Apush+branch%3Av6.6)   | [![Downloads](https://img.shields.io/github/downloads/cpeditor/cpeditor/6.6.4/total)](https://github.com/cpeditor/cpeditor/releases/tag/6.6.4) |                                                          -                                                          |
-| stable |   [v6.5](https://github.com/cpeditor/cpeditor/tree/v6.5)   |   [![GitHub Workflow Status](https://github.com/cpeditor/cpeditor/workflows/CI:%20Build%20Test/badge.svg?branch=v6.5&event=push)](https://github.com/cpeditor/cpeditor/actions?query=event%3Apush+branch%3Av6.5)   | [![Downloads](https://img.shields.io/github/downloads/cpeditor/cpeditor/6.5.5/total)](https://github.com/cpeditor/cpeditor/releases/tag/6.5.5) |     [![AUR version](https://img.shields.io/aur/version/cpeditor)](https://aur.archlinux.org/packages/cpeditor/)     |
+|  beta  |   [v6.7](https://github.com/cpeditor/cpeditor/tree/v6.7)   |   [![GitHub Workflow Status](https://github.com/cpeditor/cpeditor/workflows/CI:%20Build%20Test/badge.svg?branch=v6.7&event=push)](https://github.com/cpeditor/cpeditor/actions?query=event%3Apush+branch%3Av6.7)   | [![Downloads](https://img.shields.io/github/downloads/cpeditor/cpeditor/6.7.1/total)](https://github.com/cpeditor/cpeditor/releases/tag/6.7.1) |                                                          -                                                          |
+| stable |   [v6.6](https://github.com/cpeditor/cpeditor/tree/v6.6)   |   [![GitHub Workflow Status](https://github.com/cpeditor/cpeditor/workflows/CI:%20Build%20Test/badge.svg?branch=v6.6&event=push)](https://github.com/cpeditor/cpeditor/actions?query=event%3Apush+branch%3Av6.6)   | [![Downloads](https://img.shields.io/github/downloads/cpeditor/cpeditor/6.6.5/total)](https://github.com/cpeditor/cpeditor/releases/tag/6.6.5) |     [![AUR version](https://img.shields.io/aur/version/cpeditor)](https://aur.archlinux.org/packages/cpeditor/)     |
 
 ## Начало
 
 - [Релизы](https://github.com/cpeditor/cpeditor/releases)
-- [Установка разными способами](doc/INSTALL_ru-RU.md)
-- [Начало и советы](doc/MANUAL_ru-RU.md)
+- [Установка](https://cpeditor.org/ru/docs/installation/)
+- [Начало](https://cpeditor.org/ru/docs/setup/)
+- [Параметры](https://cpeditor.org/ru/docs/preferences)
+- [подсказки](https://cpeditor.org/ru/docs/tips/)
 
 ## Сотрудничество
 
@@ -42,7 +44,7 @@ CP Editor - это легкий кросс-платформенный редак
 
 ## Получить помощь
 
-1. Прочитайте в первую очередь [мануал](doc/MANUAL_ru-RU.md) и [FAQ](#faq), кроме того, просмотрите меню и настройки, чтобы узнать, есть ли то, что вы ищете.
+1. Прочитайте в первую очередь [документация](https://cpeditor.org/ru/docs/), кроме того, просмотрите меню и настройки, чтобы узнать, есть ли то, что вы ищете.
 2. Сначала поищите в Google или Яндекс. Может проблема не связана с редактором? Например, "как установить ClangFormat?" или "что такое ошибка компиляции?"
 3. Поищите в [Issues](https://github.com/cpeditor/cpeditor/issues) и убедитесь, что такой ошибки/запроса функции еще не было.
 4. Пожалуйста, следуйте шаблону вопроса и предоставьте подробную информацию, т.к. это поможет нам дать наиболее качественный ответ на ваш вопрос.
@@ -52,20 +54,18 @@ CP Editor - это легкий кросс-платформенный редак
 - [Спросить в Telegram](https://t.me/cpeditor)
 - [Спросить в Slack](https://join.slack.com/t/cpeditor/shared_invite/zt-ekfy0zb5-SrOi8SIox8oq61oRonBynw)
 
-## FAQ
+## Hall of Fame
 
-- Как получить тесткейсы с веб-сайтов?
-   - Вам нужно установить [Competitive Companion](https://github.com/jmerle/competitive-companion) на Ваш браузер, и использовать его на веб-сайте, пока открыт CP Editor.
-- Как послать решение в CF внутри редактора?
-   - Вы должны либо отправить задачу через Competitive Companion, либо установить URL-адрес задачи в контекстном меню вкладок. Затем вы увидите кнопку "Submit".
-- Я использую его на Codeforces, но кнопка "Submit" неактивна.
-   - Это потому, что редактор не может выполнить команду `cf`. Пожалуйста, убедитесь, что он находится в PATH или установите путь в Настройках.
-- Когда я нажимаю кнопку "Submit", я получаю какое-то сообщение, что необходим шаблон?
-   - Инструмент `cf` требует предварительной настройки. Пожалуйста, запустите `cf config`, чтобы установить имя пользователя и пароль. Затем добавить шаблон.
-- Я получил ошибку при копировании входных/выходных данных?
-   - Пожалуйста, попробуйте перезагрузить браузер и редактор. Мы знаем, что многие получают эту ошибку даже после перезагрузки и делаем все возможное, чтобы устранить её.
+[![](https://sourcerer.io/fame/ouuan/cpeditor/cpeditor/images/0)](https://sourcerer.io/fame/ouuan/cpeditor/cpeditor/links/0)
+[![](https://sourcerer.io/fame/ouuan/cpeditor/cpeditor/images/1)](https://sourcerer.io/fame/ouuan/cpeditor/cpeditor/links/1)
+[![](https://sourcerer.io/fame/ouuan/cpeditor/cpeditor/images/2)](https://sourcerer.io/fame/ouuan/cpeditor/cpeditor/links/2)
+[![](https://sourcerer.io/fame/ouuan/cpeditor/cpeditor/images/3)](https://sourcerer.io/fame/ouuan/cpeditor/cpeditor/links/3)
+[![](https://sourcerer.io/fame/ouuan/cpeditor/cpeditor/images/4)](https://sourcerer.io/fame/ouuan/cpeditor/cpeditor/links/4)
+[![](https://sourcerer.io/fame/ouuan/cpeditor/cpeditor/images/5)](https://sourcerer.io/fame/ouuan/cpeditor/cpeditor/links/5)
+[![](https://sourcerer.io/fame/ouuan/cpeditor/cpeditor/images/6)](https://sourcerer.io/fame/ouuan/cpeditor/cpeditor/links/6)
+[![](https://sourcerer.io/fame/ouuan/cpeditor/cpeditor/images/7)](https://sourcerer.io/fame/ouuan/cpeditor/cpeditor/links/7)
 
-## Contributors :sparkles:
+## All Contributors
 
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
 
@@ -87,7 +87,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
       <a href="https://github.com/sadykhzadeh"><img src="https://avatars1.githubusercontent.com/u/51178055?v=4" width="100px;" alt=""/></a><br /><a href="http://sadykhzadeh.github.io"><sub><b>Azer Sadykhzadeh</b></sub></a><br /><a href="#translation-sadykhzadeh" title="Translation">🌍</a>
     </td>
     <td align="center">
-      <a href="https://github.com/IZOBRETATEL777"><img src="https://avatars0.githubusercontent.com/u/32099652?v=4" width="100px;" alt=""/></a><br /><a href="http://izobretatelsoft.moy.su/"><sub><b>IZOBRETATEL777</b></sub></a><br /><a href="#translation-IZOBRETATEL777" title="Translation">🌍</a> <a href="https://github.com/cpeditor/cpeditor/pulls?q=is%3Apr+reviewed-by%3AIZOBRETATEL777" title="Reviewed Pull Requests">👀</a>
+      <a href="https://github.com/IZOBRETATEL777"><img src="https://avatars0.githubusercontent.com/u/32099652?v=4" width="100px;" alt=""/></a><br /><a href="http://izobretatelsoft.moy.su/"><sub><b>IZOBRETATEL777</b></sub></a><br /><a href="#translation-IZOBRETATEL777" title="Translation">🌍</a> <a href="https://github.com/cpeditor/cpeditor/pulls?q=is%3Apr+reviewed-by%3AIZOBRETATEL777" title="Reviewed Pull Requests">👀</a> <a href="#infra-IZOBRETATEL777" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a>
     </td>
     <td align="center">
       <a href="https://github.com/Razdeep"><img src="https://avatars2.githubusercontent.com/u/32531173?v=4" width="100px;" alt=""/></a><br /><a href="https://www.linkedin.com/in/razdeeproychowdhury"><sub><b>Rajdeep Roy Chowdhury</b></sub></a><br /><a href="https://github.com/cpeditor/cpeditor/commits?author=Razdeep" title="Code">💻</a> <a href="#ideas-Razdeep" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/cpeditor/cpeditor/issues?q=author%3ARazdeep" title="Bug reports">🐛</a>
@@ -216,6 +216,15 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   <tr>
     <td align="center">
       <a href="https://github.com/AbhayAravinda"><img src="https://avatars1.githubusercontent.com/u/33093450?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/AbhayAravinda"><sub><b>AbhayAravinda</b></sub></a><br /><a href="https://github.com/cpeditor/cpeditor/issues?q=author%3AAbhayAravinda" title="Bug reports">🐛</a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/ammardab3an"><img src="https://avatars3.githubusercontent.com/u/40296428?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/ammardab3an"><sub><b>AmmarDab3an</b></sub></a><br /><a href="https://github.com/cpeditor/cpeditor/issues?q=author%3Aammardab3an" title="Bug reports">🐛</a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/AchintyaK20"><img src="https://avatars1.githubusercontent.com/u/56220374?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/AchintyaK20"><sub><b>Achintya Kumar</b></sub></a><br /><a href="https://github.com/cpeditor/cpeditor/issues?q=author%3AAchintyaK20" title="Bug reports">🐛</a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/nutzboi"><img src="https://avatars3.githubusercontent.com/u/31652809?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/nutzboi"><sub><b>nutzboi</b></sub></a><br /><a href="https://github.com/cpeditor/cpeditor/issues?q=author%3Anutzboi" title="Bug reports">🐛</a>
     </td>
   </tr>
 </table>

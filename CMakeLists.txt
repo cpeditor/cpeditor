@@ -1,10 +1,10 @@
 cmake_minimum_required(VERSION 3.5)
 
 if(APPLE)
-	set(CMAKE_OSX_DEPLOYMENT_TARGET "10.14" CACHE STRING "Minimum OS X deployment version")
+  set(CMAKE_OSX_DEPLOYMENT_TARGET "10.14" CACHE STRING "Minimum OS X deployment version")
 endif()
 
-project(cpeditor LANGUAGES CXX VERSION 6.7.0)
+project(cpeditor LANGUAGES CXX VERSION 6.8.0)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
@@ -16,7 +16,7 @@ set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 if(WIN32)
-    SET(GUI_TYPE WIN32)
+  set(GUI_TYPE WIN32)
 endif()
 
 find_package(Qt5 COMPONENTS Widgets REQUIRED)
@@ -32,6 +32,8 @@ add_subdirectory(third_party/singleapplication)
 add_subdirectory(third_party/QtFindReplaceDialog/dialogs)
 
 add_subdirectory(third_party/lsp-cpp)
+
+add_subdirectory(third_party/qhttp)
 
 option(PORTABLE_VERSION "Build the portable version" Off)
 
@@ -61,7 +63,7 @@ if(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/.git)
       OUTPUT_STRIP_TRAILING_WHITESPACE)
     message(STATUS "Git commit hash: ${GIT_COMMIT_HASH}")
     execute_process(
-      COMMAND ${GIT_EXECUTABLE} describe --long --tags
+      COMMAND ${GIT_EXECUTABLE} describe --long --tags --abbrev=8
       WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}"
       OUTPUT_VARIABLE "GIT_DESCRIBE"
       OUTPUT_STRIP_TRAILING_WHITESPACE)
@@ -69,6 +71,8 @@ if(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/.git)
       string(REGEX REPLACE "(.+)-(.+)-(.+)" "\\2" "COMMITS_SINCE_LAST_RELEASE" "${GIT_DESCRIBE}")
       if(NOT "${COMMITS_SINCE_LAST_RELEASE}" EQUAL "0")
         string(REGEX REPLACE "(.+)-(.+)-(.+)" "\\1.r\\2.\\3" "DISPLAY_VERSION" "${GIT_DESCRIBE}")
+      else()
+        string(REGEX REPLACE "([0-9]+\\.[0-9]+)\\..+" "v\\1" "MINOR_VERSION" "${GIT_DESCRIBE}")
       endif()
     endif()
   endif()
@@ -77,6 +81,7 @@ if(NOT DEFINED "DISPLAY_VERSION")
   set("DISPLAY_VERSION" "${PROJECT_VERSION}")
 endif()
 message(STATUS "Display version: ${DISPLAY_VERSION}")
+message(STATUS "Minor version: ${MINOR_VERSION}")
 
 configure_file(cmake/version.hpp.in ${CMAKE_BINARY_DIR}/generated/version.hpp)
 configure_file(cmake/portable.hpp.in ${CMAKE_BINARY_DIR}/generated/portable.hpp)
@@ -132,8 +137,6 @@ add_executable(cpeditor
     src/Extensions/LanguageServer.cpp
     src/Extensions/LanguageServer.hpp
 
-    src/Settings/AppearancePage.cpp
-    src/Settings/AppearancePage.hpp
     src/Settings/CodeSnippetsPage.cpp
     src/Settings/CodeSnippetsPage.hpp
     src/Settings/DefaultPathManager.cpp
@@ -220,31 +223,33 @@ include_directories("src/")
 include_directories("third_party/diff_match_patch")
 include_directories("third_party/lsp-cpp/include")
 include_directories("third_party/QtFindReplaceDialog")
+include_directories("third_party/qhttp/src")
 
 target_link_libraries(cpeditor PRIVATE LSPClient)
 target_link_libraries(cpeditor PRIVATE Qt5::Network)
 target_link_libraries(cpeditor PRIVATE Qt5::Widgets)
 target_link_libraries(cpeditor PRIVATE QtFindReplaceDialog)
 target_link_libraries(cpeditor PRIVATE SingleApplication)
+target_link_libraries(cpeditor PRIVATE QHttp)
 target_link_libraries(cpeditor PRIVATE KF5::SyntaxHighlighting)
 
 if(MSVC)
-    target_compile_options(cpeditor PUBLIC "/utf-8")
+  target_compile_options(cpeditor PUBLIC "/utf-8")
 endif(MSVC)
 
 if(APPLE)
-    set_target_properties(cpeditor
-        PROPERTIES
-        MACOSX_BUNDLE TRUE
-	MACOSX_BUNDLE_INFO_PLIST ${CMAKE_SOURCE_DIR}/cmake/Info.plist.in
-        RESOURCE ".ci/mac/cpeditor.icns"
-    )
+  set_target_properties(cpeditor
+    PROPERTIES
+    MACOSX_BUNDLE TRUE
+    MACOSX_BUNDLE_INFO_PLIST ${CMAKE_SOURCE_DIR}/cmake/Info.plist.in
+    RESOURCE ".ci/mac/cpeditor.icns"
+  )
 endif()
 
 if(UNIX AND NOT APPLE)
-	install(TARGETS cpeditor
-		RUNTIME DESTINATION bin
-        	LIBRARY DESTINATION lib)
-	install(FILES .ci/linux/cpeditor.desktop DESTINATION share/applications)
-	install(FILES .ci/linux/cpeditor-icon.png DESTINATION share/icons)
+  install(TARGETS cpeditor
+          RUNTIME DESTINATION bin
+          LIBRARY DESTINATION lib)
+  install(FILES .ci/linux/cpeditor.desktop DESTINATION share/applications)
+  install(FILES resources/icon.png DESTINATION share/icons/hicolor/512x512/apps RENAME cpeditor.png)
 endif()

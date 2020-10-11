@@ -67,7 +67,8 @@
       "profile": "http://izobretatelsoft.moy.su/",
       "contributions": [
         "translation",
-        "review"
+        "review",
+        "infra"
       ]
     },
     {
@@ -426,10 +427,37 @@
       "contributions": [
         "bug"
       ]
+    },
+    {
+      "login": "ammardab3an",
+      "name": "AmmarDab3an",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/40296428?v=4",
+      "profile": "https://github.com/ammardab3an",
+      "contributions": [
+        "bug"
+      ]
+    },
+    {
+      "login": "AchintyaK20",
+      "name": "Achintya Kumar",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/56220374?v=4",
+      "profile": "https://github.com/AchintyaK20",
+      "contributions": [
+        "bug"
+      ]
+    },
+    {
+      "login": "nutzboi",
+      "name": "nutzboi",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/31652809?v=4",
+      "profile": "https://github.com/nutzboi",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 6,
-  "badgeTemplate": "[![All Contributors](https://img.shields.io/badge/all_contributors-<%= contributors.length %>-orange.svg)](#contributors-sparkles)",
+  "badgeTemplate": "[![All Contributors](https://img.shields.io/badge/all_contributors-<%= contributors.length %>-orange.svg)](#all-contributors)",
   "contributorTemplate": "\n      <a href=\"https://github.com/<%= contributor.login %>\"><img src=\"<%= contributor.avatar_url %>\" width=\"<%= options.imageSize %>px;\" alt=\"\"/></a><br /><a href=\"<%= contributor.profile %>\"><sub><b><%= contributor.name %></b></sub></a><br /><%= contributions %>\n    ",
   "projectName": "cpeditor",
   "projectOwner": "cpeditor",
