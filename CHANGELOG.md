@@ -1,5 +1,17 @@
 ## UNRELEASED
 
+### Added
+
+-   Now you can opt-in non-monospaced fonts when choosing a font in the Preferences. (#217 and #625)
+
+### Fixed
+
+-   Fixed an issue that in some rare cases CP Editor could not get full data from Competitive Companion. (#345 and #624)
+
+### Changed
+
+-   Font settings are moved to Appearance/Font, everything else remains in Appearance/General. (#625)
+
 ## v6.7
 
 ### Added

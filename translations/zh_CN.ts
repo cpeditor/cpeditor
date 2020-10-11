@@ -469,17 +469,6 @@ git 提交编号: %3
     </message>
 </context>
 <context>
-    <name>AppearancePage</name>
-    <message>
-        <source>Change Locale</source>
-        <translation>改变语言</translation>
-    </message>
-    <message>
-        <source>You need to restart the application to completely apply the locale change.</source>
-        <translation>你需要重启程序以彻底地改变语言。</translation>
-    </message>
-</context>
-<context>
     <name>CodeSnippetsPage</name>
     <message>
         <source>Search...</source>
@@ -783,14 +772,18 @@ Press any key to exit</source>
         <translation>服务器已停止</translation>
     </message>
     <message>
-        <source>Got a POST Request</source>
-        <translation>收到了一个 POST 请求</translation>
-    </message>
-    <message>
         <source>JSON parser reported errors:
 %1</source>
         <translation>JSON 解析器报告了错误：
 %1</translation>
+    </message>
+    <message>
+        <source>The request received is not JSON</source>
+        <translation>收到的请求不是 JSON</translation>
+    </message>
+    <message>
+        <source>A %1 request is received and ignored</source>
+        <translation>收到并忽略了一个 %1 请求</translation>
     </message>
 </context>
 <context>
@@ -1333,16 +1326,20 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
         <translation>Python 运行命令</translation>
     </message>
     <message>
-        <source>Appearance</source>
-        <translation>外观</translation>
-    </message>
-    <message>
         <source>You can read the &lt;a href=&quot;%1&quot;&gt;documentation&lt;/a&gt; or go through the settings for more information.</source>
         <translation>你可以阅读 &lt;a href=&quot;%1&quot;&gt;文档&lt;/a&gt; 或在设置中浏览以获取更多信息。</translation>
     </message>
     <message>
         <source>https://cpeditor.org/%1/docs</source>
         <translation>https://cpeditor.org/%1/zh/docs</translation>
+    </message>
+    <message>
+        <source>Appearance Settings</source>
+        <translation>外观设置</translation>
+    </message>
+    <message>
+        <source>Font Settings</source>
+        <translation>字体设置</translation>
     </message>
 </context>
 <context>
@@ -1533,6 +1530,8 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     <message>
         <source>Code Editing</source>
         <translation type="unfinished"></translation>
+        <source>Font</source>
+        <translation>字体</translation>
     </message>
 </context>
 <context>
@@ -2572,6 +2571,20 @@ This behaviour can be toggled for each tab by pressing INS/Insert on your keyboa
         <source>Highlight the line where cursor exists.
 In, vim emulation current line is never highlighed</source>
         <translation type="unfinished"></translation>
+        <source>Show Only Monospaced Font</source>
+        <translation>仅显示等宽字体</translation>
+    </message>
+    <message>
+        <source>Change Locale</source>
+        <translation>改变语言</translation>
+    </message>
+    <message>
+        <source>You need to restart the application to completely apply the locale change.</source>
+        <translation>你需要重启程序以彻底地改变语言。</translation>
+    </message>
+    <message>
+        <source>Show only monospaced fonts when choosing a font</source>
+        <translation>在选择字体时只显示等宽字体</translation>
     </message>
 </context>
 <context>

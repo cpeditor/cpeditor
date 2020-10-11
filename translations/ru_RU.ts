@@ -469,17 +469,6 @@ Git commit hash: %3
     </message>
 </context>
 <context>
-    <name>AppearancePage</name>
-    <message>
-        <source>Change Locale</source>
-        <translation>Изменить языковые параметры</translation>
-    </message>
-    <message>
-        <source>You need to restart the application to completely apply the locale change.</source>
-        <translation>Вам необходимо перезагрузить программу для полноценного применения изменений языковых параметров.</translation>
-    </message>
-</context>
-<context>
     <name>CodeSnippetsPage</name>
     <message>
         <source>Search...</source>
@@ -783,14 +772,18 @@ Press any key to exit</source>
         <translation>Остановка Сервера</translation>
     </message>
     <message>
-        <source>Got a POST Request</source>
-        <translation>Получен POST Request</translation>
-    </message>
-    <message>
         <source>JSON parser reported errors:
 %1</source>
         <translation>JSON parser выдает ошибки:
 %1</translation>
+    </message>
+    <message>
+        <source>The request received is not JSON</source>
+        <translation>Принятый запрос не является JSON&apos;ом</translation>
+    </message>
+    <message>
+        <source>A %1 request is received and ignored</source>
+        <translation>Запрос %1 был получен и проигнорирован</translation>
     </message>
 </context>
 <context>
@@ -1333,16 +1326,20 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
         <translation>Команды запуска на Python</translation>
     </message>
     <message>
-        <source>Appearance</source>
-        <translation>Внешний вид</translation>
-    </message>
-    <message>
         <source>You can read the &lt;a href=&quot;%1&quot;&gt;documentation&lt;/a&gt; or go through the settings for more information.</source>
         <translation>Вы можете почитать &lt;a href=&quot;%1&quot;&gt;документация&lt;/a&gt; или просмотреть настройки для более подробной информации.</translation>
     </message>
     <message>
         <source>https://cpeditor.org/%1/docs</source>
         <translation>https://cpeditor.org/%1/ru/docs</translation>
+    </message>
+    <message>
+        <source>Appearance Settings</source>
+        <translation>Настройки внешнего вида</translation>
+    </message>
+    <message>
+        <source>Font Settings</source>
+        <translation>Настройки шрифтов</translation>
     </message>
 </context>
 <context>
@@ -1533,6 +1530,8 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     <message>
         <source>Code Editing</source>
         <translation type="unfinished"></translation>
+        <source>Font</source>
+        <translation>Шрифт</translation>
     </message>
 </context>
 <context>
@@ -2580,6 +2579,20 @@ This behaviour can be toggled for each tab by pressing INS/Insert on your keyboa
         <source>Highlight the line where cursor exists.
 In, vim emulation current line is never highlighed</source>
         <translation type="unfinished"></translation>
+        <source>Show Only Monospaced Font</source>
+        <translation>Показывать только моноширинный шрифт</translation>
+    </message>
+    <message>
+        <source>Change Locale</source>
+        <translation>Изменить язык</translation>
+    </message>
+    <message>
+        <source>You need to restart the application to completely apply the locale change.</source>
+        <translation>Вам необходимо перезагрузить программу для полноценного применения нового языка.</translation>
+    </message>
+    <message>
+        <source>Show only monospaced fonts when choosing a font</source>
+        <translation>Показывать только моноширинные шрифты при выборе</translation>
     </message>
 </context>
 <context>

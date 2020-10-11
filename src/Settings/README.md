@@ -15,13 +15,23 @@ Each item in the json array represents a configuration item, the structure is as
 
 ```javascript
 {
-        "name": "",   // Required, internal key/name of the option
-        "desc": "",   // Optional, prompt text of the option in the setting interface. If not set, it'll be the internal name after replacing splash to space.
-        "type": "",   // Required, data type of the option. Should be the type in the code.
-        "default": 0, // Optional, default value of the option.
-        "old": [],    // Optional, previous key/name of the option for backward compatibility. It should be a list of all old keys.
-        "ui": "",     // Optional, type of QtWidget to use in the settings interface.
-        "param": ""   // Optional, parameters passed for control creation in the setting interface.
+        "name": "",   		// Required, internal key/name of the option
+        "desc": "",   		// Optional, prompt text of the option in the setting interface. If not set, it'll be the internal name after replacing splash to space.
+        "type": "",   		// Required, data type of the option. Should be the type in the code.
+        "default": 0, 		// Optional, default value of the option.
+        "old": [],    		// Optional, previous key/name of the option for backward compatibility. It should be a list of all old keys.
+        "ui": "",     		// Optional, type of QtWidget to use in the settings interface.
+        "param": ""   		// Optional, parameters passed for control creation in the setting interface.
+	"onApply":"<function>"  // Optional, invoked when user click apply button after changing this setting. Good to show warning messages or related information.
+	"depends":[   		// If all dependency satisfied, this setting is enabled, otherwise it is disabled.
+		{
+			"name": // Name of key, this setting depends on. (Should be in same page as this setting)
+			"checks": // a function that return true or false by checking the keys variant.
+		}
+		...
+	]
+	"immediateApply": ""    // a boolean when enabled, this setting is applied as soon as changed by user. It does not require pressing Apply button
+
 }
 ```
 

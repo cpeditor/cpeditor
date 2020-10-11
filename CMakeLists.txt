@@ -35,6 +35,7 @@ add_subdirectory(third_party/QtFindReplaceDialog/dialogs)
 add_subdirectory(third_party/lsp-cpp)
 
 add_subdirectory(third_party/FakeVim)
+add_subdirectory(third_party/qhttp)
 
 option(PORTABLE_VERSION "Build the portable version" Off)
 
@@ -137,8 +138,6 @@ add_executable(cpeditor
     src/Extensions/LanguageServer.cpp
     src/Extensions/LanguageServer.hpp
 
-    src/Settings/AppearancePage.cpp
-    src/Settings/AppearancePage.hpp
     src/Settings/CodeSnippetsPage.cpp
     src/Settings/CodeSnippetsPage.hpp
     src/Settings/DefaultPathManager.cpp
@@ -229,6 +228,7 @@ include_directories("third_party/lsp-cpp/include")
 include_directories("third_party/QCodeEditor/include")
 include_directories("third_party/QtFindReplaceDialog")
 include_directories("third_party/FakeVim/fakevim")
+include_directories("third_party/qhttp/src")
 
 target_link_libraries(cpeditor PRIVATE LSPClient)
 target_link_libraries(cpeditor PRIVATE QCodeEditor)
@@ -237,6 +237,7 @@ target_link_libraries(cpeditor PRIVATE Qt5::Widgets)
 target_link_libraries(cpeditor PRIVATE QtFindReplaceDialog)
 target_link_libraries(cpeditor PRIVATE SingleApplication)
 target_link_libraries(cpeditor PRIVATE fakevim)
+target_link_libraries(cpeditor PRIVATE QHttp)
 
 if(MSVC)
   target_compile_options(cpeditor PUBLIC "/utf-8")
