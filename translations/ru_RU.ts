@@ -1529,7 +1529,7 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     </message>
     <message>
         <source>Font</source>
-        <translation type="unfinished">Шрифт</translation>
+        <translation>Шрифт</translation>
     </message>
     <message>
         <source>Code Editing</source>
@@ -2565,7 +2565,7 @@ This behaviour can be toggled for each tab by pressing INS/Insert on your keyboa
     </message>
     <message>
         <source>Show Only Monospaced Font</source>
-        <translation type="unfinished">Показывать только моноширинный шрифт</translation>
+        <translation>Показывать только моноширинный шрифт</translation>
     </message>
     <message>
         <source>Change Locale</source>
@@ -2581,7 +2581,7 @@ This behaviour can be toggled for each tab by pressing INS/Insert on your keyboa
     </message>
     <message>
         <source>Display Test Case Length Limit</source>
-        <translation type="unfinished">Показывать лимит длины тесткейса</translation>
+        <translation>Показывать лимит длины тесткейса</translation>
     </message>
     <message>
         <source>The maximum number of characters in a test case to be displayed.
