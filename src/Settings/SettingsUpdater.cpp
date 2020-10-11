@@ -19,64 +19,43 @@
 #include "Core/SessionManager.hpp"
 #include "Settings/SettingsManager.hpp"
 #include "generated/SettingsHelper.hpp"
+#include <QDebug>
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
-#include <QMap>
 #include <QSettings>
-
-const static QMap<QString, QString> updateInfo = {
-    {"tab_stop", "Tab Width"},
-    {"font", "Editor Font"},
-    {"clang_format_binary", "Clang Format/Path"},
-    {"clang_format_style", "Clang Format/Style"},
-    {"template_cpp", "C++/Template Path"},
-    {"compile_cpp", "C++/Compile Command"},
-    {"runtime_cpp", "C++/Run Arguments"},
-    {"template_java", "Java/Template Path"},
-    {"compile_java", "Java/Compile Command"},
-    {"runtime_java", "Java/Run Arguments"},
-    {"run_java", "Java/Run Command"},
-    {"template_java", "Python/Template Path"},
-    {"runtime_python", "Python/Run Arguments"},
-    {"run_python", "Python/Run Command"},
-    {"auto_parenthesis", "Auto Complete Parentheses"},
-    {"auto_remove_parentheses", "Auto Remove Parentheses"},
-    {"autosave", "Auto Save"},
-    {"win_max", "Maximized Window"},
-    {"update_start_check", "Check Update"},
-    {"format_on_save", "Clang Format/Format On Manual Save"},
-    {"auto_format", "Clang Format/Format On Manual Save"},
-    {"transparency", "Opacity"},
-    {"splitter_sizes", "Splitter Size"},
-    {"right_splitter_sizes", "Right Splitter Size"},
-    {"competitive_use", "Competitive Companion/Enable"},
-    {"connection_port", "Competitive Companion/Connection Port"},
-    {"companion_new_tab", "Competitive Companion/Open New Tab"},
-    {"hotkey_format", "Hotkey/Format"},
-    {"hotkey_kill", "Hotkey/Kill"},
-    {"hotkey_compile_run", "Hotkey/Compile Run"},
-    {"hotkey_run", "Hotkey/Run"},
-    {"hotkey_compile", "Hotkey/Compile"},
-    {"hotkey_mode_toggle", "Hotkey/Change View Mode"},
-    {"hotkey_snippets", "Hotkey/Snippets"},
-    {"use_hot_exit", "Hot Exit/Enable"},
-    {"cf_path", "CF/Path"},
-    {"compile_and_run_only", "Show Compile And Run Only"},
-    {"language", "Locale"},
-    {"load_test_case_file_length_limit", "Load Test Case Length Limit"},
-    {"Editor Font", "Code Editor Font"},
-    {"time_limit", "Default Time Limit"},
-};
 
 void SettingsUpdater::updateSetting(QSettings &setting)
 {
-    for (const auto &old : updateInfo.keys())
+#ifdef QT_DEBUG
+    // Check for key conflicts
+    QSet<QString> keys;
+
+    auto addKey = [&](const QString &key) {
+        if (keys.contains(key))
+            qFatal("Duplicate key in the settings: %s", key.toStdString().c_str());
+        keys.insert(key);
+    };
+
+    for (const auto &si : qAsConst(SettingsInfo::settings))
     {
-        QString nw = updateInfo[old];
-        if (!SettingsManager::contains(nw) && setting.contains(old))
+        addKey(si.key());
+        std::for_each(si.old.begin(), si.old.end(), addKey);
+    }
+#endif
+
+    for (const auto &si : qAsConst(SettingsInfo::settings))
+    {
+        if (!SettingsManager::contains(si.name))
         {
-            SettingsManager::set(nw, setting.value(old));
+            for (const auto &old : qAsConst(si.old))
+            {
+                if (setting.contains(old))
+                {
+                    SettingsManager::set(si.name, setting.value(old));
+                    break;
+                }
+            }
         }
     }
 

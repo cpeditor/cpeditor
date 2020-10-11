@@ -1752,10 +1752,6 @@ This can be overridden for each parenthesis in each language.</source>
         <translation>在保存文件时一并保存测试用例，在加载时一并加载。</translation>
     </message>
     <message>
-        <source>Maximized Window</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>Check for updates on startup</source>
         <translation>启动时检查更新</translation>
     </message>
@@ -1892,10 +1888,6 @@ The Diff Viewer will fall back to plain text if either of the output or the expe
 A source file won&apos;t be opened if it&apos;s too long.</source>
         <translation>允许打开的文件的最大字符数。
 如果超长，将不会打开。</translation>
-    </message>
-    <message>
-        <source>Load Test Case Length Limit</source>
-        <translation>加载测试用例长度限制</translation>
     </message>
     <message>
         <source>Path to LSP executable</source>
@@ -2391,11 +2383,6 @@ If the output is too long, it will be elided.</source>
         <translation>会显示出来的程序输出的最大字符数。如果输出过长，超长部分会被省略。</translation>
     </message>
     <message>
-        <source>The maximum number of characters in a test case to be loaded.
-A loaded test case will be elided and read-only if it&apos;s too long.</source>
-        <translation>一个被加载的测试用例中最大的字符数量。一个被加载的测试用例如果过长，超长部分会被省略。</translation>
-    </message>
-    <message>
         <source>Show toast messages for submission verdicts</source>
         <translation>为评测结果显示气泡消息</translation>
     </message>
@@ -2514,6 +2501,15 @@ The program will be killed if it doesn&apos;t terminate in the time limit.</sour
     <message>
         <source>Show only monospaced fonts when choosing a font</source>
         <translation>在选择字体时只显示等宽字体</translation>
+    </message>
+    <message>
+        <source>Display Test Case Length Limit</source>
+        <translation>显示测试用例长度限制</translation>
+    </message>
+    <message>
+        <source>The maximum number of characters in a test case to be displayed.
+A test case will be elided and read-only if it&apos;s too long.</source>
+        <translation>会显示出来的测试用例的最大字符数。如果测试用例过长，超长部分会被省略，且测试用例会变得只读。</translation>
     </message>
 </context>
 <context>
