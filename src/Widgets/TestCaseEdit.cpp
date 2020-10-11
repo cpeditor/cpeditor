@@ -92,8 +92,8 @@ void TestCaseEdit::modifyText(const QString &text, bool keepHistory)
 {
     this->text = text;
 
-    const int limit =
-        role == Output ? SettingsHelper::getOutputDisplayLengthLimit() : SettingsHelper::getLoadTestCaseLengthLimit();
+    const int limit = role == Output ? SettingsHelper::getOutputDisplayLengthLimit()
+                                     : SettingsHelper::getDisplayTestCaseLengthLimit();
 
     QString displayText;
 
@@ -113,7 +113,7 @@ void TestCaseEdit::modifyText(const QString &text, bool keepHistory)
 
         const QString name = role == Input ? tr("Input") : (role == Output ? tr("Output") : tr("Expected"));
         const QString setLimitPlace = role == Output ? SettingsHelper::pathOfOutputDisplayLengthLimit()
-                                                     : SettingsHelper::pathOfLoadTestCaseLengthLimit();
+                                                     : SettingsHelper::pathOfDisplayTestCaseLengthLimit();
 
         log->warn(
             QString("%1[%2]").arg(name).arg(id + 1),

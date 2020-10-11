@@ -1768,10 +1768,6 @@ This can be overridden for each parenthesis in each language.</source>
         <translation>Сохраните тесткейсы на диске при сохранении файла и загрузите сохраненные тескейсы при открытии файла.</translation>
     </message>
     <message>
-        <source>Maximized Window</source>
-        <translation>Развернуть окно</translation>
-    </message>
-    <message>
         <source>Check for updates on startup</source>
         <translation>Проверять обновления при запуске программы</translation>
     </message>
@@ -1908,10 +1904,6 @@ The Diff Viewer will fall back to plain text if either of the output or the expe
 A source file won&apos;t be opened if it&apos;s too long.</source>
         <translation>Максимальное количество символов в исходном файле для открытия.
 Исходный файл не будет открыт, если он слишком длинный.</translation>
-    </message>
-    <message>
-        <source>Load Test Case Length Limit</source>
-        <translation>Лмимт длины загружаемых тесткейсов</translation>
     </message>
     <message>
         <source>Path to LSP executable</source>
@@ -2410,12 +2402,6 @@ If the output is too long, it will be elided.</source>
 Если вывод очень большой, то он будет опущен.</translation>
     </message>
     <message>
-        <source>The maximum number of characters in a test case to be loaded.
-A loaded test case will be elided and read-only if it&apos;s too long.</source>
-        <translation>Максимальное число символов, в загруженном тесткейсе.
-Если тесткейс большой, то он будет опущен и досупен только для чтения.</translation>
-    </message>
-    <message>
         <source>Show toast messages for submission verdicts</source>
         <translation>Показывать всплывающие уведомления для вердиктов отправок</translation>
     </message>
@@ -2522,6 +2508,16 @@ The program will be killed if it doesn&apos;t terminate in the time limit.</sour
     <message>
         <source>Show only monospaced fonts when choosing a font</source>
         <translation>Показывать только моноширинные шрифты при выборе</translation>
+    </message>
+    <message>
+        <source>Display Test Case Length Limit</source>
+        <translation>Показывать лимит длины тесткейса</translation>
+    </message>
+    <message>
+        <source>The maximum number of characters in a test case to be displayed.
+A test case will be elided and read-only if it&apos;s too long.</source>
+        <translation>Максимальное отображаемое число символов в тесткейсе.
+Если тесткейс будет слишком большой, он будет пропущен и доступен только для чтения.</translation>
     </message>
 </context>
 <context>
