@@ -30,13 +30,15 @@ void SettingsUpdater::updateSetting(QSettings &setting)
 #ifdef QT_DEBUG
     // Check for key conflicts
     QSet<QString> keys;
+
+    auto addKey = [&](const QString &key) {
+        if (keys.contains(key))
+            qFatal("Duplicate key in the settings: %s", key.toStdString().c_str());
+        keys.insert(key);
+    };
+
     for (const auto &si : qAsConst(SettingsInfo::settings))
     {
-        auto addKey = [&](const QString &key) {
-            if (keys.contains(key))
-                qFatal("Duplicate key in the settings: %s", key.toStdString().c_str());
-            keys.insert(key);
-        };
         addKey(si.key());
         std::for_each(si.old.begin(), si.old.end(), addKey);
     }
