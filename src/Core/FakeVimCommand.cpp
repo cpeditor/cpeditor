@@ -24,6 +24,10 @@
 #include <QFileInfo>
 #include <QStatusBar>
 
+#define SHOW_STATUS_MESSAGE(x)                                                                                         \
+    if (appwin->currentWindow())                                                                                       \
+        appwin->currentWindow()->statusBar()->showMessage(x, STATUS_RESPONSE_TIMEOUT);
+
 namespace Core
 {
 FakeVimCommand::FakeVimCommand(AppWindow *aw) : appwin(aw)
@@ -73,11 +77,8 @@ bool FakeVimCommand::handle(FakeVim::Internal::ExCommand const &cmd)
         {
             appwin->currentWindow()->runTestCase(out - 1);
         }
-        else if (appwin->currentWindow())
-        {
-            appwin->currentWindow()->statusBar()->showMessage(tr("Error: cannot run testcase %1").arg(cmd.args),
-                                                              STATUS_RESPONSE_TIMEOUT);
-        }
+        else // this branch is actually else-if, if is coming from macro
+            SHOW_STATUS_MESSAGE(tr("Error: cannot run testcase %1").arg(cmd.args));
         return true;
     }
     if (wantKillAll(cmd))
@@ -143,12 +144,8 @@ QPair<bool, QString> FakeVimCommand::wantNewFile(FakeVim::Internal::ExCommand co
         else if (ex.args.isEmpty())
             return {true, SettingsHelper::getDefaultLanguage()};
         else
-        {
-            if (appwin->currentWindow())
-                appwin->currentWindow()->statusBar()->showMessage(
-                    tr("Error: %1 requires an empty or one of \"cpp\", \"java\" and \"python\" argument").arg(ex.cmd),
-                    STATUS_RESPONSE_TIMEOUT);
-        }
+            SHOW_STATUS_MESSAGE(
+                tr("Error: %1 requires an empty or one of \"cpp\", \"java\" and \"python\" argument").arg(ex.cmd));
     }
 
     return {false, ""};
@@ -160,37 +157,26 @@ QPair<bool, QString> FakeVimCommand::wantOpenFile(FakeVim::Internal::ExCommand c
     {
         if (ex.args.isEmpty())
         {
-            if (appwin->currentWindow())
-                appwin->currentWindow()->statusBar()->showMessage(tr("Error: %1 requires a file path").arg(ex.cmd),
-                                                                  STATUS_RESPONSE_TIMEOUT);
+            SHOW_STATUS_MESSAGE(tr("Error: %1 requires a file path").arg(ex.cmd));
             return {true, ""};
         }
 
         QFileInfo file(ex.args);
         if (!file.exists())
         {
-            if (appwin->currentWindow())
-                appwin->currentWindow()->statusBar()->showMessage(tr("Error: %1 does not exists").arg(ex.args),
-                                                                  STATUS_RESPONSE_TIMEOUT);
+            SHOW_STATUS_MESSAGE(tr("Error: %1 does not exists").arg(ex.args));
             return {true, ""};
         }
         else if (!file.isFile())
         {
-
-            if (appwin->currentWindow())
-                appwin->currentWindow()->statusBar()->showMessage(tr("Error: %1 is not a file").arg(ex.args),
-                                                                  STATUS_RESPONSE_TIMEOUT);
+            SHOW_STATUS_MESSAGE(tr("Error: %1 is not a file").arg(ex.args));
             return {true, ""};
         }
 
         else if (!Util::cppSuffix.contains(file.suffix()) && !Util::javaSuffix.contains(file.suffix()) &&
                  !Util::javaSuffix.contains(file.suffix()))
         {
-            if (appwin->currentWindow())
-                appwin->currentWindow()->statusBar()->showMessage(
-                    tr("Error: %1 is not a source file of C/C++, Java or Python").arg(ex.args),
-                    STATUS_RESPONSE_TIMEOUT);
-
+            SHOW_STATUS_MESSAGE(tr("Error: %1 is not a source file of C/C++, Java or Python").arg(ex.args));
             return {true, ""};
         }
         else
@@ -230,9 +216,7 @@ QPair<bool, int> FakeVimCommand::wantRun(FakeVim::Internal::ExCommand const &ex)
             return {true, caseNum};
         else
         {
-            if (appwin->currentWindow())
-                appwin->currentWindow()->statusBar()->showMessage(tr("%1 is not a number").arg(caseNum),
-                                                                  STATUS_RESPONSE_TIMEOUT);
+            SHOW_STATUS_MESSAGE(tr("%1 is not a number").arg(caseNum));
             return {true, -1};
         }
     }
@@ -260,10 +244,8 @@ QPair<bool, QString> FakeVimCommand::wantVModeChange(FakeVim::Internal::ExComman
             return {true, ex.args};
         else
         {
-            if (appwin->currentWindow())
-                appwin->currentWindow()->statusBar()->showMessage(
-                    tr("%1 is not a valid view mode. It should be one of \"split\", \"edit\"").arg(ex.args),
-                    STATUS_RESPONSE_TIMEOUT);
+            SHOW_STATUS_MESSAGE(
+                tr("%1 is not a valid view mode. It should be one of \"split\", \"edit\"").arg(ex.args));
             return {true, ""};
         }
     }
@@ -286,11 +268,9 @@ QPair<bool, QString> FakeVimCommand::wantLanguageChange(FakeVim::Internal::ExCom
             return {true, "Python"};
         else
         {
-            if (appwin->currentWindow())
-                appwin->currentWindow()->statusBar()->showMessage(
-                    tr("%1 is not a valid language name. It should be one of \"cpp\", \"java\" or \"python\"")
-                        .arg(ex.args),
-                    STATUS_RESPONSE_TIMEOUT);
+            SHOW_STATUS_MESSAGE(
+                tr("%1 is not a valid language name. It should be one of \"cpp\", \"java\" or \"python\"")
+                    .arg(ex.args));
             return {true, ""};
         }
     }
