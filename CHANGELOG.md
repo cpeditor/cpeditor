@@ -1,7 +1,14 @@
 ## UNRELEASED
 
+Vim Emulation has been added to the Code Editor. Almost all vim commands are supported, a complete list of supported commands could be found [here](https://github.com/cpeditor/FakeVim#supported-features). In vim, Control key is widely used in normal mode, In order to correctly emulate vim, all Control Keys are intercepted by Code Editor and not by the application resulting in some shortcuts not working. Specifically, any CP Editor shortcut that starts and `Ctrl+X+Y`, `X` being any key except `Alt` or `Shift` will be intercepted by Code Editor. Hence **popular shortcuts like `Ctrl+O`, `Ctrl+N` will not work, if Vim mode is enabled**.
+
+In order to compensate for the loss of Control key shortcut in Vim Emulation, we have added some custom commands which can perform various task in CP Editor. These commands are faster and mostly preferred by Vim users. For Example, To open a new tab you can issue `open` or `opn` (shorthand) command. To run the third testcase you can issue `run 3` command. The complete list of all the custom commands could be found [here](https://cpeditor.org/docs/preferences/general/#custom-vim-commands)
+
 ### Added
 
+-   Vim Emulation in Code Editor (#220 and #581)
+-   Now you can disable current line highlighting in Code Editor (#220 and #581)
+-   Now you can choose a default cursor mode or toggle between Insert and Replace mode by pressing INS Key (#220 and #581)
 -   Now you can opt-in non-monospaced fonts when choosing a font in the Preferences. (#217 and #625)
 
 ### Fixed
