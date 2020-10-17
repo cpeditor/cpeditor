@@ -140,7 +140,7 @@
     {
         "name": "C++/Compile Command",
         "type": "QString",
-        "default": "g++ -Wall",
+        "default": "c++ -Wall",
         "tip": "The command used to compile C++. It should NOT include the path to the source file or \"-o <output file>\".",
         "old": [
             "compile_cpp"
