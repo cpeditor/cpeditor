@@ -601,11 +601,11 @@ git 提交编号: %3
     </message>
     <message>
         <source>Checker exited with exit code %1</source>
-        <translation>评测器退出，返回值: %1</translation>
+        <translation>评测器以返回值 %1 退出</translation>
     </message>
     <message>
         <source>Checker exited with unknown exit code %1</source>
-        <translation>评测器退出，未知返回值: %1</translation>
+        <translation>评测器以未知返回值 %1 退出</translation>
     </message>
     <message>
         <source>Time Limit Exceeded</source>
