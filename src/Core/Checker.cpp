@@ -45,7 +45,7 @@ Checker::~Checker()
 {
     if (compiler)
         delete compiler;
-    for (auto &t : runner)
+    for (auto &t : runners)
         delete t;
     if (tmpDir)
         delete tmpDir;
@@ -54,13 +54,7 @@ Checker::~Checker()
 
 void Checker::prepare(const QString &compileCommand)
 {
-    // clear everything
-    for (auto &t : runner)
-        delete t;
-    if (compiler)
-        delete compiler;
-    runner.clear();
-    pendingTasks.clear();
+    clearTasks();
 
     if (!compiled)
     {
@@ -125,6 +119,8 @@ void Checker::prepare(const QString &compileCommand)
             return;
 
         // start the compilation of the checker
+        if (compiler)
+            delete compiler;
         compiler = new Compiler();
         connect(compiler, SIGNAL(compilationFinished(const QString &)), this, SLOT(onCompilationFinished()));
         connect(compiler, SIGNAL(compilationErrorOccurred(const QString &)), this,
@@ -141,6 +137,14 @@ void Checker::reqeustCheck(int index, const QString &input, const QString &outpu
         check(index, input, output, expected); // check immediately if the checker is compiled
     else
         pendingTasks.push_back({index, input, output, expected}); // otherwise push it into the pending tasks list
+}
+
+void Checker::clearTasks()
+{
+    pendingTasks.clear();
+    for (auto &t : runners)
+        delete t;
+    runners.clear();
 }
 
 void Checker::onCompilationFinished()
@@ -291,7 +295,7 @@ void Checker::check(int index, const QString &input, const QString &output, cons
         {
             // if files are successfully saved, run the checker
             auto tmp = new Runner(index);
-            runner.push_back(tmp); // save the checkers in a list, so we can delete them when destructing the checker
+            runners.push_back(tmp); // save the checkers in a list, so we can delete them when destructing the checker
             connect(tmp, SIGNAL(runFinished(int, const QString &, const QString &, int, int, bool)), this,
                     SLOT(onRunFinished(int, const QString &, const QString &, int, int, bool)));
             connect(tmp, SIGNAL(failedToStartRun(int, const QString &)), this,
