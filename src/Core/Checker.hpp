@@ -51,6 +51,7 @@ class Checker : public QObject
         IgnoreTrailingSpaces, // Ignore blank characters at the end of lines and blank lines at the end.
         Strict,               // White space differences matters, except the differences between \n, \r and \r\n
         /* testlib checkers */
+        /* Ncmp should be the first one in the testlib checkers */
         Ncmp,   // ncmp.cpp in testlib, compare ordered sequences of signed int64 numbers
         Rcmp4,  // rcmp4.cpp in testlib, compare two sequences of doubles, max absolute or relative error = 1e-4
         Rcmp6,  // rcmp6.cpp in testlib, compare two sequences of doubles, max absolute or relative error = 1e-6
@@ -111,6 +112,11 @@ class Checker : public QObject
     void checkFinished(int index, Widgets::TestCase::Verdict verdict);
 
   private slots:
+    /**
+     * @brief the compilation of the checker started
+     */
+    void onCompilationStarted();
+
     /**
      * @brief the checker is compiled successfully
      */
@@ -181,6 +187,12 @@ class Checker : public QObject
      * @note this should only be called when the checker is compiled
      */
     void check(int index, const QString &input, const QString &output, const QString &expected);
+
+    /**
+     * @param index the index of the testcase
+     * @returns "Checker[*index*]"
+     */
+    QString head(int index) const;
 
     // a struct with the info of a testcase, or called a check task, used to save check requests
     struct Task

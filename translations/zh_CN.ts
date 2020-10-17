@@ -616,8 +616,16 @@ git 提交编号: %3
         <translation>测试点 #%2 的 %1 超过 %3 个字符，超出了输出长度限制，因此进程被结束。你可以在 %4 更改限制大小。</translation>
     </message>
     <message>
-        <source>Killed</source>
-        <translation>被终止</translation>
+        <source>The checker is killed</source>
+        <translation>评测器已被终止运行</translation>
+    </message>
+    <message>
+        <source>Started compiling the checker</source>
+        <translation>开始编译评测器</translation>
+    </message>
+    <message>
+        <source>The checker is compiled</source>
+        <translation>评测器编译完成</translation>
     </message>
 </context>
 <context>

@@ -616,8 +616,16 @@ Git commit hash: %3
         <translation>%1 из процессов при работе на тесткейсе #%2 содержит более чем %3 символов и превосходит лимит. Процесс убит. Вы можете изменить этот лимит в %4.</translation>
     </message>
     <message>
-        <source>Killed</source>
-        <translation>Убито</translation>
+        <source>The checker is killed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Started compiling the checker</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The checker is compiled</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
