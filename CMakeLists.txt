@@ -223,6 +223,7 @@ include_directories("third_party/lsp-cpp/include")
 include_directories("third_party/QCodeEditor/include")
 include_directories("third_party/QtFindReplaceDialog")
 include_directories("third_party/qhttp/src")
+include_directories("third_party/testlib")
 
 target_link_libraries(cpeditor PRIVATE LSPClient)
 target_link_libraries(cpeditor PRIVATE QCodeEditor)

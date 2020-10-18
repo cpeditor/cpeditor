@@ -24,6 +24,7 @@
 #include <QFile>
 #include <QTemporaryDir>
 #include <generated/SettingsHelper.hpp>
+#include <testlib.h>
 
 namespace Core
 {
@@ -45,7 +46,7 @@ Checker::~Checker()
 {
     if (compiler)
         delete compiler;
-    for (auto &t : runner)
+    for (auto &t : runners)
         delete t;
     if (tmpDir)
         delete tmpDir;
@@ -54,13 +55,7 @@ Checker::~Checker()
 
 void Checker::prepare(const QString &compileCommand)
 {
-    // clear everything
-    for (auto &t : runner)
-        delete t;
-    if (compiler)
-        delete compiler;
-    runner.clear();
-    pendingTasks.clear();
+    clearTasks();
 
     if (!compiled)
     {
@@ -125,6 +120,8 @@ void Checker::prepare(const QString &compileCommand)
             return;
 
         // start the compilation of the checker
+        if (compiler)
+            delete compiler;
         compiler = new Compiler();
         connect(compiler, SIGNAL(compilationStarted()), this, SLOT(onCompilationStarted()));
         connect(compiler, SIGNAL(compilationFinished(const QString &)), this, SLOT(onCompilationFinished()));
@@ -147,6 +144,14 @@ void Checker::reqeustCheck(int index, const QString &input, const QString &outpu
 void Checker::onCompilationStarted()
 {
     log->info(tr("Checker"), tr("Started compiling the checker"));
+}
+
+void Checker::clearTasks()
+{
+    pendingTasks.clear();
+    for (auto &t : runners)
+        delete t;
+    runners.clear();
 }
 
 void Checker::onCompilationFinished()
@@ -178,29 +183,36 @@ void Checker::onRunFinished(int index, const QString &, const QString &err, int 
     if (tle)
         log->warn(head(index), tr("Time Limit Exceeded"));
 
-    if (exitCode == 0)
+    switch (TResult(exitCode))
     {
-        // the check process succeeded
+    case _ok:
         if (!err.isEmpty())
             log->message(head(index), err, "green");
         emit checkFinished(index, Widgets::TestCase::AC);
-    }
-    else if (QList<int>({1, 2, 3, 4, 5, 8, 16}).contains(exitCode)) // this list is from testlib.h::TResult
-    {
-        // This exit code is a normal exit code of a testlib checker, means WA or something else
+        return;
+
+    case _wa:
+    case _pe:
+    case _fail:
+    case _dirt:
+    case _points:
+    case _unexpected_eof:
+    case _partially:
         if (err.isEmpty())
             log->error(head(index), tr("Checker exited with exit code %1").arg(exitCode));
         else
             log->error(head(index), err);
         emit checkFinished(index, Widgets::TestCase::WA);
+        return;
+
+        // use return in each case with no default case and handle other exit codes below
+        // so that if there are unhandled enums there's a compilation warning (-Wswitch)
     }
-    else
-    {
-        // This exit code is not one of the normal exit codes of a testlib checker, maybe the checker crashed
-        log->error(head(index), tr("Checker exited with unknown exit code %1").arg(exitCode));
-        if (!err.isEmpty())
-            log->error(head(index), err);
-    }
+
+    // This exit code is not one of the normal exit codes of a testlib checker, maybe the checker crashed
+    log->error(head(index), tr("Checker exited with unknown exit code %1").arg(exitCode));
+    if (!err.isEmpty())
+        log->error(head(index), err);
 }
 
 void Checker::onFailedToStartRun(int index, const QString &error)
@@ -299,7 +311,7 @@ void Checker::check(int index, const QString &input, const QString &output, cons
         {
             // if files are successfully saved, run the checker
             auto tmp = new Runner(index);
-            runner.push_back(tmp); // save the checkers in a list, so we can delete them when destructing the checker
+            runners.push_back(tmp); // save the checkers in a list, so we can delete them when destructing the checker
             connect(tmp, SIGNAL(runFinished(int, const QString &, const QString &, int, int, bool)), this,
                     SLOT(onRunFinished(int, const QString &, const QString &, int, int, bool)));
             connect(tmp, SIGNAL(failedToStartRun(int, const QString &)), this,

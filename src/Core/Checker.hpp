@@ -103,6 +103,11 @@ class Checker : public QObject
      */
     void reqeustCheck(int index, const QString &input, const QString &output, const QString &expected);
 
+    /**
+     * @brief clear the pending tasks and kill executing tasks
+     */
+    void clearTasks();
+
   signals:
     /**
      * @brief return the check result
@@ -207,7 +212,7 @@ class Checker : public QObject
                                      // It's not needed by built-in checkers
     MessageLogger *log = nullptr;    // the message logger to show messages to the user
     Compiler *compiler = nullptr;    // the compiler used to compile the checker
-    QVector<Runner *> runner;        // the runners used to run the check processes
+    QVector<Runner *> runners;       // the runners used to run the check processes
     QVector<Task> pendingTasks;      // the unsolved check requests
     bool compiled = false;           // whether the testlib checker is compiled or not
                                      // It should be true for built-in checkers.
