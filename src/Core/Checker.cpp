@@ -24,6 +24,7 @@
 #include <QFile>
 #include <QTemporaryDir>
 #include <generated/SettingsHelper.hpp>
+#include <testlib.h>
 
 namespace Core
 {
@@ -170,29 +171,36 @@ void Checker::onRunFinished(int index, const QString &, const QString &err, int 
     if (tle)
         log->warn(tr("Checker[%1]").arg(index + 1), tr("Time Limit Exceeded"));
 
-    if (exitCode == 0)
+    switch (TResult(exitCode))
     {
-        // the check process succeeded
+    case _ok:
         if (!err.isEmpty())
             log->message(tr("Checker[%1]").arg(index + 1), err, "green");
         emit checkFinished(index, Widgets::TestCase::AC);
-    }
-    else if (QList<int>({1, 2, 3, 4, 5, 8, 16}).contains(exitCode)) // this list is from testlib.h::TResult
-    {
-        // This exit code is a normal exit code of a testlib checker, means WA or something else
+        return;
+
+    case _wa:
+    case _pe:
+    case _fail:
+    case _dirt:
+    case _points:
+    case _unexpected_eof:
+    case _partially:
         if (err.isEmpty())
             log->error(tr("Checker[%1]").arg(index + 1), tr("Checker exited with exit code %1").arg(exitCode));
         else
             log->error(tr("Checker[%1]").arg(index + 1), err);
         emit checkFinished(index, Widgets::TestCase::WA);
+        return;
+
+        // use return in each case with no default case and handle other exit codes below
+        // so that if there are unhandled enums there's a compilation warning (-Wswitch)
     }
-    else
-    {
-        // This exit code is not one of the normal exit codes of a testlib checker, maybe the checker crashed
-        log->error(tr("Checker[%1]").arg(index + 1), tr("Checker exited with unknown exit code %1").arg(exitCode));
-        if (!err.isEmpty())
-            log->error(tr("Checker[%1]").arg(index + 1), err);
-    }
+
+    // This exit code is not one of the normal exit codes of a testlib checker, maybe the checker crashed
+    log->error(tr("Checker[%1]").arg(index + 1), tr("Checker exited with unknown exit code %1").arg(exitCode));
+    if (!err.isEmpty())
+        log->error(tr("Checker[%1]").arg(index + 1), err);
 }
 
 void Checker::onFailedToStartRun(int index, const QString &error)
