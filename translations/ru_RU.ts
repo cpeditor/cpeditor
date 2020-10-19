@@ -3064,8 +3064,8 @@ In, vim emulation current line is never highlighed</source>
         <translation>Загружается список релизов...</translation>
     </message>
     <message>
-        <source>Error: %1&lt;br /&gt;&lt;br /&gt;Updater failed to check for update. Please manually check for update at&lt;br /&gt;&lt;a href=&quot;https://cpeditor.github.io/download&quot;&gt;https://cpeditor.github.io/download&lt;/a&gt; or &lt;a href=&quot;https://github.com/cpeditor/cpeditor/releases&quot;&gt;https://github.com/cpeditor/cpeditor/releases&lt;/a&gt;.</source>
-        <translation>Ошибка: %1&lt;br /&gt;&lt;br /&gt;Произошла ошибка при проверке обновления. Пожалуйста, проверьте обновление вручную на &lt;br /&gt;&lt;a href=&quot;https://cpeditor.github.io/download&quot;&gt;https://cpeditor.github.io/download&lt;/a&gt; или &lt;a href=&quot;https://github.com/cpeditor/cpeditor/releases&quot;&gt;https://github.com/cpeditor/cpeditor/releases&lt;/a&gt;.</translation>
+        <source>Error: %1&lt;br /&gt;&lt;br /&gt;Updater failed to check for update. Please manually check for update at&lt;br /&gt;&lt;a href=&quot;https://cpeditor.org/download&quot;&gt;https://cpeditor.org/download&lt;/a&gt; or &lt;a href=&quot;https://github.com/cpeditor/cpeditor/releases&quot;&gt;https://github.com/cpeditor/cpeditor/releases&lt;/a&gt;.</source>
+        <translation>Ошибка: %1&lt;br /&gt;&lt;br /&gt;Произошла ошибка при проверке обновления. Пожалуйста, проверьте обновление вручную на &lt;br /&gt;&lt;a href=&quot;https://cpeditor.org/ru/download&quot;&gt;https://cpeditor.org/ru/download&lt;/a&gt; или &lt;a href=&quot;https://github.com/cpeditor/cpeditor/releases&quot;&gt;https://github.com/cpeditor/cpeditor/releases&lt;/a&gt;.</translation>
     </message>
     <message>
         <source>Close</source>

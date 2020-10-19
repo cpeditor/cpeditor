@@ -191,6 +191,8 @@ void MainWindow::run()
         return;
     }
 
+    checker->clearTasks();
+
     for (int i = 0; i < testcases->count(); ++i)
     {
         if ((!testcases->input(i).trimmed().isEmpty() || SettingsHelper::isRunOnEmptyTestcase()) &&

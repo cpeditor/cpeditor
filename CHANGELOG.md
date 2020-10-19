@@ -19,6 +19,10 @@ In order to compensate for the loss of Control key shortcut in Vim Emulation, we
 
 -   Font settings are moved to Appearance/Font, everything else remains in Appearance/General. (#625)
 
+### Improved
+
+-   Now unfinished checks will be cancelled at the new execution. (#635)
+
 ## v6.7
 
 ### Added

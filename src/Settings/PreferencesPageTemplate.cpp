@@ -76,7 +76,11 @@ PreferencesPageTemplate::PreferencesPageTemplate(QStringList opts, bool alignTop
         {
             auto widget = widgets.back();
             connect(
-                widget, &ValueWidget::valueChanged, this, [=] { SettingsManager::set(si.name, widget->getVariant()); },
+                widget, &ValueWidget::valueChanged, this,
+                [=] {
+                    SettingsManager::set(si.name, widget->getVariant());
+                    emit settingsApplied(path());
+                },
                 Qt::DirectConnection); // PreferencesPage::registerWidget uses Qt::QueuedConnection
         }
     }

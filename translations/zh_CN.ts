@@ -601,11 +601,11 @@ git 提交编号: %3
     </message>
     <message>
         <source>Checker exited with exit code %1</source>
-        <translation>评测器退出，返回值: %1</translation>
+        <translation>评测器以返回值 %1 退出</translation>
     </message>
     <message>
         <source>Checker exited with unknown exit code %1</source>
-        <translation>评测器退出，未知返回值: %1</translation>
+        <translation>评测器以未知返回值 %1 退出</translation>
     </message>
     <message>
         <source>Time Limit Exceeded</source>
@@ -3056,8 +3056,8 @@ In, vim emulation current line is never highlighed</source>
         <translation>获取更新列表中...</translation>
     </message>
     <message>
-        <source>Error: %1&lt;br /&gt;&lt;br /&gt;Updater failed to check for update. Please manually check for update at&lt;br /&gt;&lt;a href=&quot;https://cpeditor.github.io/download&quot;&gt;https://cpeditor.github.io/download&lt;/a&gt; or &lt;a href=&quot;https://github.com/cpeditor/cpeditor/releases&quot;&gt;https://github.com/cpeditor/cpeditor/releases&lt;/a&gt;.</source>
-        <translation>错误：%1&lt;br /&gt;&lt;br /&gt;检查更新失败。请前往 &lt;br /&gt;&lt;a href=&quot;https://cpeditor.github.io/download&quot;&gt;https://cpeditor.github.io/download&lt;/a&gt; 或 &lt;a href=&quot;https://github.com/cpeditor/cpeditor/releases&quot;&gt;https://github.com/cpeditor/cpeditor/releases&lt;/a&gt; 手动检查更新。</translation>
+        <source>Error: %1&lt;br /&gt;&lt;br /&gt;Updater failed to check for update. Please manually check for update at&lt;br /&gt;&lt;a href=&quot;https://cpeditor.org/download&quot;&gt;https://cpeditor.org/download&lt;/a&gt; or &lt;a href=&quot;https://github.com/cpeditor/cpeditor/releases&quot;&gt;https://github.com/cpeditor/cpeditor/releases&lt;/a&gt;.</source>
+        <translation>错误：%1&lt;br /&gt;&lt;br /&gt;检查更新失败。请前往 &lt;br /&gt;&lt;a href=&quot;https://cpeditor.org/zh/download&quot;&gt;https://cpeditor.org/zh/download&lt;/a&gt; 或 &lt;a href=&quot;https://github.com/cpeditor/cpeditor/releases&quot;&gt;https://github.com/cpeditor/cpeditor/releases&lt;/a&gt; 手动检查更新。</translation>
     </message>
     <message>
         <source>Close</source>
