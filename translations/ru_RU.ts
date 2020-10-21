@@ -821,39 +821,39 @@ Press any key to exit</source>
     <name>FakeVimCommand</name>
     <message>
         <source>Error: %1 requires an empty or one of &quot;cpp&quot;, &quot;java&quot; and &quot;python&quot; argument</source>
-        <translation type="unfinished"></translation>
+        <translation>Ошибка: %1 требуется один из  &quot;cpp&quot;, &quot;java&quot; или &quot;python&quot; аргументов или его отсутствие</translation>
     </message>
     <message>
         <source>Error: %1 requires a file path</source>
-        <translation type="unfinished"></translation>
+        <translation>Ошибка: %1 требуется путь к файлу</translation>
     </message>
     <message>
         <source>Error: %1 does not exists</source>
-        <translation type="unfinished"></translation>
+        <translation>Ошибка: %1 не существует</translation>
     </message>
     <message>
         <source>Error: %1 is not a file</source>
-        <translation type="unfinished"></translation>
+        <translation>Ошибка: %1 не файл</translation>
     </message>
     <message>
         <source>Error: %1 is not a source file of C/C++, Java or Python</source>
-        <translation type="unfinished"></translation>
+        <translation>Ошибка: %1 не файл исходного кода C/C++, Java или Python</translation>
     </message>
     <message>
         <source>%1 is not a number</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 не является числом</translation>
     </message>
     <message>
         <source>Error: cannot run testcase %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Ошибка: невозможно запустить тесткейс %1</translation>
     </message>
     <message>
         <source>%1 is not a valid view mode. It should be one of &quot;split&quot;, &quot;edit&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 не ялвляется правильным типом отображения. Должно быть &quot;split&quot; или &quot;edit&quot;</translation>
     </message>
     <message>
         <source>%1 is not a valid language name. It should be one of &quot;cpp&quot;, &quot;java&quot; or &quot;python&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 не является правильным навзванием языка программирования. Должно быть &quot;cpp&quot;, &quot;java&quot; или &quot;python&quot;</translation>
     </message>
 </context>
 <context>
@@ -1533,7 +1533,7 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     </message>
     <message>
         <source>Code Editing</source>
-        <translation type="unfinished"></translation>
+        <translation>Редактирование кода</translation>
     </message>
 </context>
 <context>
@@ -2534,34 +2534,37 @@ The program will be killed if it doesn&apos;t terminate in the time limit.</sour
     </message>
     <message>
         <source>Enable vim Emulation in Code Editor</source>
-        <translation type="unfinished"></translation>
+        <translation>Включить эмуляцию vim в Редакторе кода</translation>
     </message>
     <message>
         <source>Enable Vim Emulation</source>
-        <translation type="unfinished"></translation>
+        <translation>Включить эмуляцию Vim</translation>
     </message>
     <message>
         <source>Vim Configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Настройки Vim</translation>
     </message>
     <message>
         <source>The contents of Vim RC. It is loaded everytime vim emulation starts. 
 Not all vim commands are supported, please check https://github.com/cpeditor/FakeVim for list of supported commands</source>
-        <translation type="unfinished"></translation>
+        <translation>Содержание Vim RC. Оно загружается каждый раз, когда эмуляция vim запускается.
+Не все комманды vim поддерживаются, пожалуйста просетите https://github.com/cpeditor/FakeVim for list of supported commands</translation>
     </message>
     <message>
         <source>Default cursor overwrites</source>
-        <translation type="unfinished"></translation>
+        <translation>Перезаписывание стандартным курсором</translation>
     </message>
     <message>
         <source>Default cursor is the cursor you see on opening new tabs.
 If enabled, default cursor will overwrite next character.
 This behaviour can be toggled for each tab by pressing INS/Insert on your keyboard.</source>
-        <translation type="unfinished"></translation>
+        <translation>Стандратный курсор - это курсор, который Вы видите в при открытии новой вкладки.
+Если влкючено, то стандартный курсор будте перезаписывать следующий символ.
+Поведение может быть переключено для каждой вкладки, нажатием INS/Insert на Вашей клавиатуре.</translation>
     </message>
     <message>
         <source>Highlight Current Line</source>
-        <translation type="unfinished"></translation>
+        <translation>Подстветка текущей линии</translation>
     </message>
     <message>
         <source>Show Only Monospaced Font</source>
@@ -2592,7 +2595,7 @@ A test case will be elided and read-only if it&apos;s too long.</source>
     <message>
         <source>Highlight the line where cursor exists.
 In, vim emulation current line is never highlighed</source>
-        <translation type="unfinished"></translation>
+        <translation>Подсвечивать линию, где находится курсор. В эмуляторе vim текущая линия никогда не подсвечивается</translation>
     </message>
 </context>
 <context>
