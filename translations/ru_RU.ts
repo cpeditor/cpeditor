@@ -617,15 +617,15 @@ Git commit hash: %3
     </message>
     <message>
         <source>The checker is killed</source>
-        <translation type="unfinished"></translation>
+        <translation>Чекер убит</translation>
     </message>
     <message>
         <source>Started compiling the checker</source>
-        <translation type="unfinished"></translation>
+        <translation>Начата компиляция чекера</translation>
     </message>
     <message>
         <source>The checker is compiled</source>
-        <translation type="unfinished"></translation>
+        <translation>Чекер скомпилирован</translation>
     </message>
 </context>
 <context>
