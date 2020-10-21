@@ -123,6 +123,7 @@ void Checker::prepare(const QString &compileCommand)
         if (compiler)
             delete compiler;
         compiler = new Compiler();
+        connect(compiler, SIGNAL(compilationStarted()), this, SLOT(onCompilationStarted()));
         connect(compiler, SIGNAL(compilationFinished(const QString &)), this, SLOT(onCompilationFinished()));
         connect(compiler, SIGNAL(compilationErrorOccurred(const QString &)), this,
                 SLOT(onCompilationErrorOccurred(const QString &)));
@@ -140,6 +141,11 @@ void Checker::reqeustCheck(int index, const QString &input, const QString &outpu
         pendingTasks.push_back({index, input, output, expected}); // otherwise push it into the pending tasks list
 }
 
+void Checker::onCompilationStarted()
+{
+    log->info(tr("Checker"), tr("Started compiling the checker"));
+}
+
 void Checker::clearTasks()
 {
     pendingTasks.clear();
@@ -151,6 +157,8 @@ void Checker::clearTasks()
 void Checker::onCompilationFinished()
 {
     compiled = true; // mark that the checker is compiled
+    if (checkerType >= Ncmp)
+        log->info(tr("Checker"), tr("The checker is compiled"));
     for (auto t : pendingTasks)
         check(t.index, t.input, t.output, t.expected); // solve the pending tasks
     pendingTasks.clear();
@@ -173,13 +181,13 @@ void Checker::onCompilationKilled()
 void Checker::onRunFinished(int index, const QString &, const QString &err, int exitCode, int, bool tle)
 {
     if (tle)
-        log->warn(tr("Checker[%1]").arg(index + 1), tr("Time Limit Exceeded"));
+        log->warn(head(index), tr("Time Limit Exceeded"));
 
     switch (TResult(exitCode))
     {
     case _ok:
         if (!err.isEmpty())
-            log->message(tr("Checker[%1]").arg(index + 1), err, "green");
+            log->message(head(index), err, "green");
         emit checkFinished(index, Widgets::TestCase::AC);
         return;
 
@@ -191,9 +199,9 @@ void Checker::onRunFinished(int index, const QString &, const QString &err, int 
     case _unexpected_eof:
     case _partially:
         if (err.isEmpty())
-            log->error(tr("Checker[%1]").arg(index + 1), tr("Checker exited with exit code %1").arg(exitCode));
+            log->error(head(index), tr("Checker exited with exit code %1").arg(exitCode));
         else
-            log->error(tr("Checker[%1]").arg(index + 1), err);
+            log->error(head(index), err);
         emit checkFinished(index, Widgets::TestCase::WA);
         return;
 
@@ -202,20 +210,20 @@ void Checker::onRunFinished(int index, const QString &, const QString &err, int 
     }
 
     // This exit code is not one of the normal exit codes of a testlib checker, maybe the checker crashed
-    log->error(tr("Checker[%1]").arg(index + 1), tr("Checker exited with unknown exit code %1").arg(exitCode));
+    log->error(head(index), tr("Checker exited with unknown exit code %1").arg(exitCode));
     if (!err.isEmpty())
-        log->error(tr("Checker[%1]").arg(index + 1), err);
+        log->error(head(index), err);
 }
 
 void Checker::onFailedToStartRun(int index, const QString &error)
 {
-    log->error(tr("Checker[%1]").arg(index + 1), error);
+    log->error(head(index), error);
 }
 
 void Checker::onRunOutputLimitExceeded(int index, const QString &type)
 {
     log->warn(
-        tr("Checker[%1]").arg(index + 1),
+        head(index),
         tr("The %1 of the process running on the testcase #%2 contains more than %3 characters, which is longer "
            "than the output length limit, so the process is killed. You can change the output length limit at %4.")
             .arg(type)
@@ -226,7 +234,7 @@ void Checker::onRunOutputLimitExceeded(int index, const QString &type)
 
 void Checker::onRunKilled(int index)
 {
-    log->error(tr("Checker[%1]").arg(index + 1), tr("Killed"));
+    log->error(head(index), tr("The checker is killed"));
 }
 
 bool Checker::checkIgnoreTrailingSpaces(const QString &output, const QString &expected)
@@ -317,6 +325,11 @@ void Checker::check(int index, const QString &input, const QString &output, cons
         }
         break;
     }
+}
+
+QString Checker::head(int index) const
+{
+    return tr("Checker[%1]").arg(index + 1);
 }
 
 } // namespace Core
