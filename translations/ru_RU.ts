@@ -665,7 +665,7 @@ Press any key to exit</source>
     </message>
     <message>
         <source>Detached execution is not supported on your platform</source>
-        <translation type="unfinished"></translation>
+        <translation>Отдельный запуск не поддерживается на вашей системе</translation>
     </message>
 </context>
 <context>
