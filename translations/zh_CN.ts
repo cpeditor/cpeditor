@@ -671,6 +671,10 @@ Press any key to exit</source>
         <source>Failed to start detached execution. Please check your terminal emulator settings in %1.</source>
         <translation>未能成功在终端中运行。请在 %1 中检查终端模拟器的设置。</translation>
     </message>
+    <message>
+        <source>Detached execution is not supported on your platform</source>
+        <translation>你的平台上不支持在终端中运行</translation>
+    </message>
 </context>
 <context>
     <name>Core::SessionManager</name>

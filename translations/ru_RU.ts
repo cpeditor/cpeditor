@@ -671,6 +671,10 @@ Press any key to exit</source>
         <source>Failed to start detached execution. Please check your terminal emulator settings in %1.</source>
         <translation>Не удалось запустить отдельно. Пожалуйста, проверьте настройки вашего эмулятора терминала в %1.</translation>
     </message>
+    <message>
+        <source>Detached execution is not supported on your platform</source>
+        <translation>Отдельный запуск не поддерживается на вашей системе</translation>
+    </message>
 </context>
 <context>
     <name>Core::SessionManager</name>

@@ -129,9 +129,9 @@ void Runner::runDetached(const QString &tmpFilePath, const QString &sourceFilePa
                                  getCommand(tmpFilePath, sourceFilePath, lang, runCommand, args).replace("\"", "^\"") +
                                  " ^& pause\""));
     LOG_INFO("CMD Arguemnts " << runProcess->arguments().join(" "));
-#else
+#elif defined(Q_OS_UNIX)
     auto terminal = SettingsHelper::getDetachedRunTerminalProgram();
-    LOG_INFO("Using: " << terminal << " on Linux");
+    LOG_INFO("Using: " << terminal << " on UNIX");
     auto quotedCommand = getCommand(tmpFilePath, sourceFilePath, lang, runCommand, args);
     auto execArgs = QProcess::splitCommand(SettingsHelper::getDetachedRunTerminalArguments()) +
                     QStringList{"/bin/bash", "-c",
@@ -139,6 +139,8 @@ void Runner::runDetached(const QString &tmpFilePath, const QString &sourceFilePa
                                     .arg(quotedCommand)
                                     .arg(tr("Program finished with exit code %1\nPress any key to exit").arg("$?"))};
     runProcess->start(terminal, execArgs);
+#else
+    emit failedToStartRun(runnerIndex, tr("Detached execution is not supported on your platform"));
 #endif
 }
 
