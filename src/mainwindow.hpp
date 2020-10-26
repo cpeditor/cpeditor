@@ -200,7 +200,7 @@ class MainWindow : public QMainWindow
     bool isLanguageSet = false;
 
     Extensions::ClangFormatter *formatterClang = nullptr;
-	Extensions::YAPFormatter *formatterYapf = nullptr;
+    Extensions::YAPFormatter *formatterYapf = nullptr;
     Core::Compiler *compiler = nullptr;
     QVector<Core::Runner *> runner;
     Core::Checker *checker = nullptr;
