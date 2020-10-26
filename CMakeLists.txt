@@ -132,6 +132,8 @@ add_executable(cpeditor
     src/Extensions/EditorTheme.hpp
     src/Extensions/LanguageServer.cpp
     src/Extensions/LanguageServer.hpp
+	src/Extensions/YAPFormatter.cpp
+	src/Extensions/YAPFormatter.hpp
 
     src/Settings/CodeSnippetsPage.cpp
     src/Settings/CodeSnippetsPage.hpp

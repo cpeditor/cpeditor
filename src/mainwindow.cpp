@@ -25,6 +25,7 @@
 #include "Extensions/CFTool.hpp"
 #include "Extensions/ClangFormatter.hpp"
 #include "Extensions/CompanionServer.hpp"
+#include "Extensions/YAPFormatter.hpp"
 #include "Settings/DefaultPathManager.hpp"
 #include "Settings/FileProblemBinder.hpp"
 #include "Util/FileUtil.hpp"
@@ -97,7 +98,8 @@ MainWindow::~MainWindow()
     delete ui;
     delete autoSaveTimer;
     delete testcases;
-    delete formatter;
+    delete formatterYapf;
+    delete formatterClang;
     delete fileWatcher;
     delete editor;
     delete log;
@@ -134,8 +136,10 @@ void MainWindow::setupCore()
 {
     log = new MessageLogger();
     log->setContainer(ui->compilerEdit);
-    formatter = new Extensions::ClangFormatter(SettingsHelper::getClangFormatPath(),
-                                               SettingsHelper::getClangFormatStyle(), log);
+    formatterClang = new Extensions::ClangFormatter(SettingsHelper::getClangFormatPath(),
+                                                    SettingsHelper::getClangFormatStyle(), log);
+    formatterYapf = new Extensions::YAPFormatter(SettingsHelper::getYAPFPath(), SettingsHelper::getYAPFArguments(),
+                                                 SettingsHelper::getYAPFStyle(), log);
 }
 
 void MainWindow::compile()
@@ -582,8 +586,15 @@ void MainWindow::applySettings(const QString &pagePath, bool shouldPerformDigoni
 
     if (pageChanged("Extensions/Clang Format"))
     {
-        formatter->updateBinary(SettingsHelper::getClangFormatPath());
-        formatter->updateStyle(SettingsHelper::getClangFormatStyle());
+        formatterClang->updateBinary(SettingsHelper::getClangFormatPath());
+        formatterClang->updateStyle(SettingsHelper::getClangFormatStyle());
+    }
+
+    if (pageChanged("Extensions/YAPF Format"))
+    {
+        formatterYapf->updateBinary(SettingsHelper::getYAPFPath());
+        formatterYapf->updateStyle(SettingsHelper::getYAPFStyle());
+        formatterYapf->updateArguments(SettingsHelper::getYAPFArguments());
     }
 
     if (pageChanged("Extensions/CF Tool"))
@@ -708,7 +719,10 @@ void MainWindow::compileAndRun()
 void MainWindow::formatSource()
 {
     LOG_INFO("Requested code format");
-    formatter->format(editor, filePath, language, true, true);
+    if (language != "Python") // clang-format can only format C/C++/Java
+        formatterClang->format(editor, filePath, language, true, true);
+    else
+        formatterYapf->format(editor, filePath, true, true);
 }
 
 void MainWindow::setLanguage(const QString &lang)
@@ -930,9 +944,13 @@ bool MainWindow::saveFile(SaveMode mode, const QString &head, bool safe)
 {
     LOG_INFO(INFO_OF(mode) << INFO_OF(head) << BOOL_INFO_OF(safe));
 
-    if ((mode != AutoSave && SettingsHelper::isClangFormatFormatOnManualSave()) ||
-        (mode == AutoSave && SettingsHelper::isClangFormatFormatOnAutoSave()))
-        formatter->format(editor, filePath, language, false, false);
+    if (language != "Python" && ((mode != AutoSave && SettingsHelper::isClangFormatFormatOnManualSave()) ||
+                                 (mode == AutoSave && SettingsHelper::isClangFormatFormatOnAutoSave())))
+        formatterClang->format(editor, filePath, language, false, false);
+
+    if (language == "Python" && ((mode != AutoSave && SettingsHelper::isYAPFFormatOnManualSave()) ||
+                                 (mode == AutoSave && SettingsHelper::isYAPFFormatOnAutoSave())))
+        formatterYapf->format(editor, filePath, false, false);
 
     if (mode == SaveAs || (isUntitled() && mode == AlwaysSave))
     {

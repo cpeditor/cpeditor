@@ -44,6 +44,7 @@ namespace Extensions
 {
 class CFTool;
 class ClangFormatter;
+class YAPFormatter;
 struct CompanionData;
 } // namespace Extensions
 
@@ -198,7 +199,8 @@ class MainWindow : public QMainWindow
     QString language;
     bool isLanguageSet = false;
 
-    Extensions::ClangFormatter *formatter = nullptr;
+    Extensions::ClangFormatter *formatterClang = nullptr;
+	Extensions::YAPFormatter *formatterYapf = nullptr;
     Core::Compiler *compiler = nullptr;
     QVector<Core::Runner *> runner;
     Core::Checker *checker = nullptr;
