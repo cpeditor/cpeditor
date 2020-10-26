@@ -125,8 +125,8 @@ void YAPFormatter::format(QCodeEditor *editor, const QString &filePath, bool sel
 
         cursor.movePosition(QTextCursor::MoveOperation::Start);
         cursor.movePosition(QTextCursor::MoveOperation::Down, QTextCursor::MoveMode::MoveAnchor, firstLine);
-        cursor.movePosition(QTextCursor::MoveOperation::Down, QTextCursor::MoveMode::KeepAnchor, lastLine - firstLine + 1);
-		
+        cursor.movePosition(QTextCursor::MoveOperation::Down, QTextCursor::MoveMode::KeepAnchor,
+                            lastLine - firstLine + 1);
     }
 
     // apply the cursor changes to the editor

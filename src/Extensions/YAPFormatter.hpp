@@ -45,7 +45,7 @@ class YAPFormatter : public QObject
      * @param parent the parent of the QObject
      */
     YAPFormatter(const QString &yapFormatBinary, const QString &yapArgument, const QString &yapFormatStyle,
-                          MessageLogger *logger, QObject *parent = nullptr);
+                 MessageLogger *logger, QObject *parent = nullptr);
 
     /**
      * @brief format the codes in the given editor
@@ -68,7 +68,7 @@ class YAPFormatter : public QObject
      * @brief update the YAP Format binary of a checker
      * @param newBinary the path to the new YAP Format binary to use
      */
-	void updateArguments(const QString &newArgs);
+    void updateArguments(const QString &newArgs);
 
     /**
      * @brief update the YAP Format style of a checker
@@ -84,9 +84,9 @@ class YAPFormatter : public QObject
      */
     QString getFormatResult(const QStringList &args);
 
-    QString binary;     // the path to the Python binary
-    QString style;      // the YAP Format style
-	QString args;  		// the Argument to start YAP
+    QString binary; // the path to the Python binary
+    QString style;  // the YAP Format style
+    QString args;   // the Argument to start YAP
 
     MessageLogger *log; // the message logger to display messages
 };

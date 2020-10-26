@@ -818,6 +818,37 @@ Press any key to exit</source>
     </message>
 </context>
 <context>
+    <name>Extensions::YAPFormatter</name>
+    <message>
+        <source>Formatter</source>
+        <translation type="unfinished">Форматирование</translation>
+    </message>
+    <message>
+        <source>Failed to create temporary directory</source>
+        <translation type="unfinished">Ошибка при создании временной директории</translation>
+    </message>
+    <message>
+        <source>Formatting completed</source>
+        <translation type="unfinished">Форматирование завершено</translation>
+    </message>
+    <message>
+        <source>The format process didn&apos;t finish in 2 seconds. This is probably because the python binary is not found by CP Editor. You can set the path to python at %1.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The format command is: %1 %2</source>
+        <translation type="unfinished">Команды форматирования: %1 %2</translation>
+    </message>
+    <message>
+        <source>Formatter[stdout]</source>
+        <translation type="unfinished">Форматирование[stdout]</translation>
+    </message>
+    <message>
+        <source>Formatter[stderr]</source>
+        <translation type="unfinished">Форматирование[stderr]</translation>
+    </message>
+</context>
+<context>
     <name>FindReplaceDialog</name>
     <message>
         <source>Find/Replace</source>
@@ -1495,6 +1526,10 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     <message>
         <source>Font</source>
         <translation>Шрифт</translation>
+    </message>
+    <message>
+        <source>YAPF Format</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2518,6 +2553,31 @@ The program will be killed if it doesn&apos;t terminate in the time limit.</sour
 A test case will be elided and read-only if it&apos;s too long.</source>
         <translation>Максимальное отображаемое число символов в тесткейсе.
 Если тесткейс будет слишком большой, он будет пропущен и доступен только для чтения.</translation>
+    </message>
+    <message>
+        <source>The path of python interpreter.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Arguments</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The argument for the interpreter to invoke yapf module.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The YAPF Format style options, which are often saved in a .style.yapf or setup.conf configuration file. 
+You can check all possible configuration by running `yapf --style-help`</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use YAPF Formatter to format the code when saving it manually.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use YAPF Formatter to format the code when auto-saving it.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
