@@ -54,7 +54,7 @@ class PreferencesHomePage : public QWidget
      */
     void addButton(const QString &pagePath, const QString &text);
 
-    QVBoxLayout *layout = nullptr;  // the main layout
+    QVBoxLayout *layout = nullptr; // the main layout
 };
 
 #endif // PREFERENCESHOMEPAGE_HPP
