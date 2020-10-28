@@ -39,9 +39,6 @@ class DiffViewer : public QMainWindow
     void toLongForHtml();
 
   private:
-    QHBoxLayout *layout = nullptr;
-    QWidget *widget = nullptr;
-    QVBoxLayout *leftLayout = nullptr, *rightLayout = nullptr;
     QLabel *outputLabel = nullptr, *expectedLabel = nullptr;
     QTextEdit *outputEdit = nullptr, *expectedEdit = nullptr;
 };

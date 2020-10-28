@@ -55,9 +55,6 @@ class PreferencesHomePage : public QWidget
     void addButton(const QString &pagePath, const QString &text);
 
     QVBoxLayout *layout = nullptr;  // the main layout
-    QLabel *iconLabel = nullptr;    // the application icon
-    QLabel *welcomeLabel = nullptr; // the welcome QLabel
-    QLabel *manualLabel = nullptr;  // the QLabel that lead people to the Manual
 };
 
 #endif // PREFERENCESHOMEPAGE_HPP

@@ -33,7 +33,7 @@ PreferencesHomePage::PreferencesHomePage(QWidget *parent) : QWidget(parent)
     // add stretch so that the contents are vertically centered
     layout->addStretch();
 
-    iconLabel = new QLabel();
+    auto iconLabel = new QLabel();
     iconLabel->setPixmap(QPixmap(":/icon.png").scaledToHeight(128, Qt::SmoothTransformation));
     layout->addWidget(iconLabel);
     layout->setAlignment(iconLabel, Qt::AlignCenter);
@@ -42,7 +42,7 @@ PreferencesHomePage::PreferencesHomePage(QWidget *parent) : QWidget(parent)
     layout->addSpacing(30);
 
     // add welcome label
-    welcomeLabel = new QLabel(tr("Welcome to CP Editor! Let's get started."));
+    auto welcomeLabel = new QLabel(tr("Welcome to CP Editor! Let's get started."));
     layout->addWidget(welcomeLabel);
     layout->setAlignment(welcomeLabel, Qt::AlignCenter);
 
@@ -61,7 +61,7 @@ PreferencesHomePage::PreferencesHomePage(QWidget *parent) : QWidget(parent)
     layout->addSpacing(20);
 
     // add manual label
-    manualLabel = new QLabel(
+    auto manualLabel = new QLabel(
         tr("You can read the <a href=\"%1\">documentation</a> or go "
            "through the settings for more information.")
             .arg(QUrl(tr("https://cpeditor.org/%1/docs").arg(MINOR_VERSION)).url(QUrl::NormalizePathSegments)));

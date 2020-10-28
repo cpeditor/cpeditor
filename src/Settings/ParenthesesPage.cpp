@@ -34,7 +34,7 @@ ParenthesisWidget::ParenthesisWidget(const QString &language, QChar leftParenthe
                                      QWidget *parent)
     : QWidget(parent), lang(language), left(leftParenthesis), right(rightParenthesis)
 {
-    mainLayout = new QVBoxLayout(this);
+    auto mainLayout = new QVBoxLayout(this);
 
     nameLabel = new QLabel(tr("Parenthesis: %1").arg(parenthesis()));
     auto labelFont = font();
@@ -44,15 +44,15 @@ ParenthesisWidget::ParenthesisWidget(const QString &language, QChar leftParenthe
 
     mainLayout->addSpacing(20);
 
-    stretchLayout = new QHBoxLayout();
+    auto stretchLayout = new QHBoxLayout();
     mainLayout->addLayout(stretchLayout);
 
     stretchLayout->addStretch();
 
-    checkBoxesLayout = new QVBoxLayout();
+    auto checkBoxesLayout = new QVBoxLayout();
     stretchLayout->addLayout(checkBoxesLayout);
 
-    auto addOption = [this](QCheckBox *&checkBox, const QString &name, Qt::CheckState state) {
+    auto addOption = [this, &checkBoxesLayout](QCheckBox *&checkBox, const QString &name, Qt::CheckState state) {
         checkBox = new QCheckBox(name);
         checkBox->setTristate(true);
         checkBox->setCheckState(state);
@@ -95,14 +95,14 @@ ParenthesesPage::ParenthesesPage(const QString &language, QWidget *parent) : Pre
     leftWidget = new QWidget();
     splitter->addWidget(leftWidget);
 
-    leftLayout = new QVBoxLayout(leftWidget);
+    auto leftLayout = new QVBoxLayout(leftWidget);
 
     listWidget = new QListWidget();
     connect(listWidget, SIGNAL(itemActivated(QListWidgetItem *)), this, SLOT(switchToParenthesis(QListWidgetItem *)));
     connect(listWidget, SIGNAL(itemClicked(QListWidgetItem *)), this, SLOT(switchToParenthesis(QListWidgetItem *)));
     leftLayout->addWidget(listWidget);
 
-    buttonsLayout = new QHBoxLayout();
+    auto buttonsLayout = new QHBoxLayout();
     leftLayout->addLayout(buttonsLayout);
 
     addButton = new QPushButton(tr("Add"));
@@ -119,20 +119,20 @@ ParenthesesPage::ParenthesesPage(const QString &language, QWidget *parent) : Pre
     stackedWidget = new QStackedWidget();
     splitter->addWidget(stackedWidget);
 
-    noParenthesisWidget = new QWidget();
+    auto noParenthesisWidget = new QWidget();
     stackedWidget->addWidget(noParenthesisWidget);
     stackedWidget->setCurrentWidget(noParenthesisWidget);
 
-    noParenthesisLayout = new QVBoxLayout(noParenthesisWidget);
+    auto noParenthesisLayout = new QVBoxLayout(noParenthesisWidget);
 
     noParenthesisLayout->addStretch();
 
-    noParenthesisStretchLayout = new QHBoxLayout();
+    auto noParenthesisStretchLayout = new QHBoxLayout();
     noParenthesisLayout->addLayout(noParenthesisStretchLayout);
 
     noParenthesisStretchLayout->addStretch();
 
-    noParenthesisLabel = new QLabel(tr("No Parenthesis Selected"));
+    auto noParenthesisLabel = new QLabel(tr("No Parenthesis Selected"));
     noParenthesisStretchLayout->addWidget(noParenthesisLabel);
 
     noParenthesisStretchLayout->addStretch();

@@ -30,14 +30,14 @@ namespace Widgets
 {
 DiffViewer::DiffViewer(QWidget *parent) : QMainWindow(parent)
 {
-    widget = new QWidget(this);
-    layout = new QHBoxLayout();
+    auto widget = new QWidget(this);
+    auto layout = new QHBoxLayout();
     widget->setLayout(layout);
     setCentralWidget(widget);
     setWindowTitle(tr("Diff Viewer"));
     resize(720, 480);
 
-    leftLayout = new QVBoxLayout();
+    auto leftLayout = new QVBoxLayout();
     outputLabel = new QLabel(tr("Output"), widget);
     leftLayout->addWidget(outputLabel);
     outputEdit = new QTextEdit(widget);
@@ -46,7 +46,7 @@ DiffViewer::DiffViewer(QWidget *parent) : QMainWindow(parent)
     leftLayout->addWidget(outputEdit);
     layout->addLayout(leftLayout);
 
-    rightLayout = new QVBoxLayout();
+    auto rightLayout = new QVBoxLayout();
     expectedLabel = new QLabel(tr("Expected"), widget);
     rightLayout->addWidget(expectedLabel);
     expectedEdit = new QTextEdit(widget);

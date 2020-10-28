@@ -165,10 +165,7 @@ class PreferencesWindow : public QMainWindow
      *     - xxx
      */
 
-    QSplitter *splitter = nullptr;
     QWidget *leftWidget = nullptr;
-    QVBoxLayout *leftLayout = nullptr;
-    QHBoxLayout *searchLayout = nullptr;
     QLineEdit *searchEdit = nullptr;
     QPushButton *homeButton = nullptr;
     QTreeWidget *menuTree = nullptr;
