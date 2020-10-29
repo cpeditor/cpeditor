@@ -48,7 +48,7 @@ void CodeFormatter::format(QCodeEditor *editor, const QString &filePath, QString
         return;
     }
 
-    // get the format arguments, if empty is returned. It means some error occured in preparing and bail out.
+    // get the format arguments, if empty is returned. It means some error occurred in preparing and bail out.
     // Error will be logged and reported by the function iteself.
     auto formatArgs = prepareFormatArguments(editor, filePath, language);
     if (formatArgs.isEmpty())
