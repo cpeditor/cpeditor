@@ -98,8 +98,7 @@ MainWindow::~MainWindow()
     delete ui;
     delete autoSaveTimer;
     delete testcases;
-    delete formatterYapf;
-    delete formatterClang;
+    delete formatter;
     delete fileWatcher;
     delete editor;
     delete log;
@@ -136,10 +135,8 @@ void MainWindow::setupCore()
 {
     log = new MessageLogger();
     log->setContainer(ui->compilerEdit);
-    formatterClang = new Extensions::ClangFormatter(SettingsHelper::getClangFormatPath(),
-                                                    SettingsHelper::getClangFormatStyle(), log);
-    formatterYapf = new Extensions::YAPFormatter(SettingsHelper::getYAPFPath(), SettingsHelper::getYAPFArguments(),
-                                                 SettingsHelper::getYAPFStyle(), log);
+    formatter = new Extensions::ClangFormatter(SettingsHelper::getClangFormatPath(),
+                                               SettingsHelper::getClangFormatStyle(), {}, log, this);
 }
 
 void MainWindow::compile()
@@ -584,17 +581,17 @@ void MainWindow::applySettings(const QString &pagePath, bool shouldPerformDigoni
 
     auto pageChanged = [pagePath](const QString &page) { return pagePath.isEmpty() || pagePath == page; };
 
-    if (pageChanged("Extensions/Clang Format"))
+    if (pageChanged("Extensions/Clang Format") && formatter->formatterName() == "Clang Formatter")
     {
-        formatterClang->updateBinary(SettingsHelper::getClangFormatPath());
-        formatterClang->updateStyle(SettingsHelper::getClangFormatStyle());
+        formatter->setBinary(SettingsHelper::getClangFormatPath());
+        formatter->setStyle(SettingsHelper::getClangFormatStyle());
     }
 
-    if (pageChanged("Extensions/YAPF Format"))
+    if (pageChanged("Extensions/YAPF Format") && formatter->formatterName() == "YAPF Formatter")
     {
-        formatterYapf->updateBinary(SettingsHelper::getYAPFPath());
-        formatterYapf->updateStyle(SettingsHelper::getYAPFStyle());
-        formatterYapf->updateArguments(SettingsHelper::getYAPFArguments());
+        formatter->setBinary(SettingsHelper::getYAPFPath());
+        formatter->setStyle(SettingsHelper::getYAPFStyle());
+        formatter->setArguments(SettingsHelper::getYAPFArguments());
     }
 
     if (pageChanged("Extensions/CF Tool"))
@@ -719,10 +716,7 @@ void MainWindow::compileAndRun()
 void MainWindow::formatSource()
 {
     LOG_INFO("Requested code format");
-    if (language != "Python") // clang-format can only format C/C++/Java
-        formatterClang->format(editor, filePath, language, true, true);
-    else
-        formatterYapf->format(editor, filePath, true, true);
+    formatter->format(editor, filePath, language);
 }
 
 void MainWindow::setLanguage(const QString &lang)
@@ -748,6 +742,20 @@ void MainWindow::setLanguage(const QString &lang)
     language = lang;
     if (language != "Python" && language != "Java")
         language = "C++";
+
+    if (!formatter->supportedLanguages().contains(language))
+    {
+        Extensions::CodeFormatter *newFormatter;
+        if (formatter->formatterName() == "Clang Formatter")
+            newFormatter = new Extensions::YAPFormatter(SettingsHelper::getYAPFPath(), SettingsHelper::getYAPFStyle(),
+                                                        SettingsHelper::getYAPFArguments(), log, this);
+        else
+            newFormatter = new Extensions::ClangFormatter(SettingsHelper::getClangFormatPath(),
+                                                          SettingsHelper::getClangFormatStyle(), {}, log, this);
+        delete formatter;
+        formatter = newFormatter;
+    }
+
     Util::applySettingsToEditor(editor, language);
     customCompileCommand.clear();
     ui->changeLanguageButton->setText(language);
@@ -946,11 +954,11 @@ bool MainWindow::saveFile(SaveMode mode, const QString &head, bool safe)
 
     if (language != "Python" && ((mode != AutoSave && SettingsHelper::isClangFormatFormatOnManualSave()) ||
                                  (mode == AutoSave && SettingsHelper::isClangFormatFormatOnAutoSave())))
-        formatterClang->format(editor, filePath, language, false, false);
+        formatter->format(editor, filePath, language);
 
     if (language == "Python" && ((mode != AutoSave && SettingsHelper::isYAPFFormatOnManualSave()) ||
                                  (mode == AutoSave && SettingsHelper::isYAPFFormatOnAutoSave())))
-        formatterYapf->format(editor, filePath, false, false);
+        formatter->format(editor, filePath, language);
 
     if (mode == SaveAs || (isUntitled() && mode == AlwaysSave))
     {

@@ -24,71 +24,26 @@
 #ifndef CLANG_FORMATTER_HPP
 #define CLANG_FORMATTER_HPP
 
-#include <QObject>
+#include "Extensions/CodeFormatter.hpp"
 
 class MessageLogger;
 class QCodeEditor;
 
 namespace Extensions
 {
-class ClangFormatter : public QObject
+class ClangFormatter : public CodeFormatter
 {
     Q_OBJECT
-
   public:
-    /**
-     * @brief construct a Formatter
-     * @param clangFormatBinary the path to the Clang Format binary used for formatting
-     * @param clangFormatStyle the Clang Format style used for formatting
-     * @param logger the message logger used for displaying messages
-     * @param parent the parent of the QObject
-     */
-    explicit ClangFormatter(const QString &clangFormatBinary, const QString &clangFormatStyle, MessageLogger *logger,
-                            QObject *parent = nullptr);
+    ClangFormatter(QString binary, QString style, QString binaryArgs, MessageLogger *logger, QObject *parent = nullptr);
 
-    /**
-     * @brief format the codes in the given editor
-     * @param editor the editor to be formatted
-     * @param filePath the file path of the file to be formatted
-     * @param lang the language to be formatted
-     * @param selectionOnly whether to format the selection only if there is one, doesn't matter if there is no
-     *        selection
-     * @param verbose if verbose, "Formatting completed" will be logged even if the code is unchanged after formatting
-     */
-    void format(QCodeEditor *editor, const QString &filePath, const QString &lang, bool selectionOnly, bool verbose);
-
-    /**
-     * @brief check whether the given settings are valid
-     * @param checkBinary the Clang Format binary to be checked
-     * @param checkStyle the Clang Format style to be checked
-     */
-    static bool check(const QString &checkBinary, const QString &checkStyle);
-
-    /**
-     * @brief update the Clang Format binary of a checker
-     * @param newBinary the path to the new Clang Format binary to use
-     */
-    void updateBinary(const QString &newBinary);
-
-    /**
-     * @brief update the Clang Format style of a checker
-     * @param newStyle the new Clang Format style to use
-     */
-    void updateStyle(const QString &newStyle);
+    virtual QStringList supportedLanguages() override;
+    virtual QString formatterName() override;
+    virtual QStringList prepareFormatArguments(QCodeEditor *editor, const QString &filePath, QString language) override;
+    virtual void applyFormatting(QCodeEditor *editor, QString formatStdout) override;
 
   private:
-    /**
-     * @brief get the format result
-     * @param args the command line arguments passed to Clang Format
-     * @return a QPair, the first element is the new cursor position, the second element is the new text
-     *         if the formatting failed, it will return {-1, QString()}
-     */
-    QPair<int, QString> getFormatResult(const QStringList &args);
-
-    QString binary;     // the path to the Clang Format binary
-    QString style;      // the Clang Format style
-    MessageLogger *log; // the message logger to display messages
+    QStringList formatArgs;
 };
-
 } // namespace Extensions
-#endif // FORMATTER_HPP
+#endif

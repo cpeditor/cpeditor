@@ -126,6 +126,8 @@ add_executable(cpeditor
     src/Extensions/CFTool.hpp
     src/Extensions/ClangFormatter.cpp
     src/Extensions/ClangFormatter.hpp
+    src/Extensions/CodeFormatter.cpp
+	src/Extensions/CodeFormatter.hpp
     src/Extensions/CompanionServer.cpp
     src/Extensions/CompanionServer.hpp
     src/Extensions/EditorTheme.cpp

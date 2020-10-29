@@ -21,155 +21,101 @@
 #include "Util/FileUtil.hpp"
 #include "generated/SettingsHelper.hpp"
 #include <QCodeEditor>
+#include <QJsonDocument>
 #include <QProcess>
 #include <QTemporaryDir>
-#include <QTextBlock>
-#include <QTextDocumentFragment>
 
 namespace Extensions
 {
-YAPFormatter::YAPFormatter(const QString &bin, const QString &args, const QString &style, MessageLogger *logger,
-                           QObject *parent)
-    : QObject(parent)
+YAPFormatter::YAPFormatter(QString bin, QString style, QString args, MessageLogger *log, QObject *parent)
+    : CodeFormatter(bin, style, args, log, parent)
 {
-    log = logger;
-    updateBinary(bin);
-    updateArguments(args);
-    updateStyle(style);
 }
 
-void YAPFormatter::updateBinary(const QString &newBinary)
+QStringList YAPFormatter::supportedLanguages()
 {
-    LOG_INFO("Updated yapf format binary to " << newBinary);
-    binary = newBinary;
+    return {"Python"};
 }
 
-void YAPFormatter::updateStyle(const QString &newStyle)
+QString YAPFormatter::formatterName()
 {
-    style = newStyle;
+    return "YAPF Formatter";
 }
 
-void YAPFormatter::updateArguments(const QString &newArgs)
+QStringList YAPFormatter::prepareFormatArguments(QCodeEditor *editor, const QString &filePath, QString language)
 {
-    args = newArgs;
-}
 
-void YAPFormatter::format(QCodeEditor *editor, const QString &filePath, bool selectionOnly, bool verbose)
-{
-    LOG_INFO(BOOL_INFO_OF(editor == nullptr) << INFO_OF(filePath) << BOOL_INFO_OF(selectionOnly));
+    // get the file name
+    QString tmpName = "tmp.py";
+    if (!filePath.isEmpty())
+        tmpName = QFileInfo(filePath).fileName();
+
+    // create a temporary directory
+    if (tempDir)
+        delete tempDir;
+    tempDir = new QTemporaryDir();
+    if (!tempDir->isValid())
+    {
+        logErrorMessage(tr("Failed to create temporary directory"));
+        return QStringList();
+    }
+
+    // save the text to a file
+    if (!Util::saveFile(tempDir->filePath(tmpName), editor->toPlainText(), formatterName(), true, logger()))
+        return QStringList();
+
+    // save the style to .clang-format
+    if (!Util::saveFile(tempDir->filePath(".style.yapf"), style(), tr("Formatter"), true, logger()))
+        return QStringList();
+
+    QStringList arguments = {QProcess::splitCommand(binaryArgs())};
 
     // get the cursor positions
     auto cursor = editor->textCursor();
     int start = cursor.selectionStart();
     int end = cursor.selectionEnd();
 
-    cursor.setPosition(start);
-    int firstLine = cursor.blockNumber();
-    cursor.setPosition(end, QTextCursor::KeepAnchor);
-    int lastLine = cursor.blockNumber();
-
-    // get command line arguments related to cursor position
-    auto argList = QProcess::splitCommand(args);
-
-    if (selectionOnly && cursor.hasSelection())
+    if (cursor.hasSelection())
     {
-        argList.append("-l");
-        argList.append(QString::number(firstLine + 1) + "-" + QString::number(lastLine + 1));
+        cursor.setPosition(start);
+        firstLine = cursor.blockNumber();
+        cursor.setPosition(end, QTextCursor::KeepAnchor);
+        lastLine = cursor.blockNumber();
+
+        arguments.append("-l");
+        arguments.append(QString::number(firstLine) + "-" + QString::number(lastLine - firstLine + 1));
     }
 
-    // get the file name
-    QString tmpName = "tmp.py";
-
-    // create a temporary directory
-    QTemporaryDir tmpDir;
-    if (!tmpDir.isValid())
-    {
-        log->error(tr("Formatter"), tr("Failed to create temporary directory"));
-        return;
-    }
-
-    // save the text to a file
-    if (!Util::saveFile(tmpDir.filePath(tmpName), editor->toPlainText(), tr("Formatter"), true, log))
-        return;
-
-    // save the style to .clang-format
-    if (!Util::saveFile(tmpDir.filePath(".style.yapf"), style, tr("Formatter"), true, log))
-        return;
-
-    // add the file to be formatted in the command line arguments
-    argList.append(tmpDir.filePath(tmpName));
-
-    // get format result with the current cursor
-    auto res = getFormatResult(argList);
-    if (res.isEmpty())
-    {
-        return;
-    }
-
-    if (res == editor->toPlainText())
-    {
-        LOG_INFO("Already formatted");
-        if (verbose)
-            log->info(tr("Formatter"), tr("Formatting completed"));
-        return;
-    }
-
-    // set the formatted text and cursor position
-    cursor.select(QTextCursor::Document);
-    cursor.insertText(res);
-
-    if (start != end)
-    {
-        // if there's a selection, we have to restore the selection.
-        // Since YAPF does not provides --cursor argument, restoring cursor is just selecting the lines [start, end]
-
-        cursor.movePosition(QTextCursor::MoveOperation::Start);
-        cursor.movePosition(QTextCursor::MoveOperation::Down, QTextCursor::MoveMode::MoveAnchor, firstLine);
-        cursor.movePosition(QTextCursor::MoveOperation::Down, QTextCursor::MoveMode::KeepAnchor,
-                            lastLine - firstLine + 1);
-    }
-
-    // apply the cursor changes to the editor
-    editor->setTextCursor(cursor);
-
-    log->info(tr("Formatter"), tr("Formatting completed"));
+    arguments.append(tempDir->filePath(tmpName));
+    return arguments;
 }
 
-QString YAPFormatter::getFormatResult(const QStringList &args)
+void YAPFormatter::applyFormatting(QCodeEditor *editor, QString formatStdout)
 {
-    // run the format porcess
+    if (formatStdout.isEmpty())
+        return;
 
-    QProcess formatProcess;
-    formatProcess.start(binary, args);
-    LOG_INFO("Starting format with args : " << args.join(","));
-
-    bool finished = formatProcess.waitForFinished(2000); // BLOCKS main Thread
-    if (!finished)
+    if (formatStdout == editor->toPlainText())
     {
-        formatProcess.kill();
-        log->warn(tr("Formatter"),
-                  tr("The format process didn't finish in 2 seconds. This is probably because the python binary is not "
-                     "found by CP Editor. You can set the path to python at %1.")
-                      .arg(SettingsHelper::pathOfYAPFPath()));
-        return QString();
+        LOG_INFO("Already formatted");
+        logMessage(tr("Formatting completed"));
+        return;
+    }
+    QTextCursor cursor = editor->textCursor();
+    cursor.select(QTextCursor::Document);
+    cursor.insertText(formatStdout);
+
+    if (cursor.hasSelection())
+    {
+        cursor.movePosition(QTextCursor::MoveOperation::Start);
+        cursor.movePosition(QTextCursor::Down, QTextCursor::MoveAnchor, firstLine - 1);
+        cursor.movePosition(QTextCursor::EndOfBlock, QTextCursor::MoveMode::KeepAnchor);
+        cursor.movePosition(QTextCursor::Down, QTextCursor::KeepAnchor, lastLine - 1);
     }
 
-    if (formatProcess.exitCode() != 0)
-    {
-        // the format process failed, show the error messages and return {-1, QString()}
-        LOG_WARN("Format process returned exit code " << formatProcess.exitCode());
-
-        log->warn(tr("Formatter"), tr("The format command is: %1 %2").arg(binary, args.join(' ')));
-        auto stdOut = formatProcess.readAllStandardOutput();
-        if (!stdOut.isEmpty())
-            log->warn(tr("Formatter[stdout]"), stdOut);
-        auto stdError = formatProcess.readAllStandardError();
-        if (!stdError.isEmpty())
-            log->error(tr("Formatter[stderr]"), stdError);
-        return QString();
-    }
-
-    // get the formatted codes
-    return formatProcess.readAllStandardOutput();
+    editor->setTextCursor(cursor);
+    delete tempDir;
+    tempDir = nullptr;
+    logMessage("Formatting completed");
 }
 } // namespace Extensions
