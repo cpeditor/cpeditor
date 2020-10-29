@@ -64,7 +64,6 @@ class CodeFormatter : public QObject
   protected:
     virtual QPair<int, QString> runFormatProcess(const QStringList &args);
 
-    QTemporaryFile *tempFile = nullptr;
     QTemporaryDir *tempDir = nullptr;
 
   private:
