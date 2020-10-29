@@ -469,6 +469,33 @@ git 提交编号: %3
     </message>
 </context>
 <context>
+    <name>CodeFormatter</name>
+    <message>
+        <source>Cannot format %1 code with this formatter</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Got empty stdout from format process. Did you used -i or inplace formatting argument?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The format process didn&apos;t finished in 2 seconds. This is probably because %1 binary is not found by CP Editor. You can set its path in Extensions -&gt; %1 -&gt; Path.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The format command is: %1 %2</source>
+        <translation type="unfinished">格式化指令为: %1 %2</translation>
+    </message>
+    <message>
+        <source>Formatter[stdout]</source>
+        <translation type="unfinished">格式化工具[stdout]</translation>
+    </message>
+    <message>
+        <source>Formatter[stderr]</source>
+        <translation type="unfinished">格式化工具[stderr]</translation>
+    </message>
+</context>
+<context>
     <name>CodeSnippetsPage</name>
     <message>
         <source>Search...</source>
@@ -721,10 +748,6 @@ Press any key to exit</source>
 <context>
     <name>Extensions::ClangFormatter</name>
     <message>
-        <source>Formatter/check</source>
-        <translation>格式化工具/检查</translation>
-    </message>
-    <message>
         <source>Formatter</source>
         <translation>格式化工具</translation>
     </message>
@@ -735,22 +758,6 @@ Press any key to exit</source>
     <message>
         <source>Formatting completed</source>
         <translation>格式化完毕</translation>
-    </message>
-    <message>
-        <source>The format process didn&apos;t finish in 2 seconds. This is probably because the clang-format binary is not found by CP Editor. You can set the path to clang-format at %1.</source>
-        <translation>格式化进程未能在 2 秒内结束。这可能是因为 CP Editor 未能找到 clang-format 的可执行文件。你可以在 %1 设置 clang-format 可执行文件的路径。</translation>
-    </message>
-    <message>
-        <source>The format command is: %1 %2</source>
-        <translation>格式化指令为: %1 %2</translation>
-    </message>
-    <message>
-        <source>Formatter[stdout]</source>
-        <translation>格式化工具[stdout]</translation>
-    </message>
-    <message>
-        <source>Formatter[stderr]</source>
-        <translation>格式化工具[stderr]</translation>
     </message>
 </context>
 <context>
@@ -830,22 +837,6 @@ Press any key to exit</source>
     <message>
         <source>Formatting completed</source>
         <translation type="unfinished">格式化完毕</translation>
-    </message>
-    <message>
-        <source>The format process didn&apos;t finish in 2 seconds. This is probably because the python binary is not found by CP Editor. You can set the path to python at %1.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>The format command is: %1 %2</source>
-        <translation type="unfinished">格式化指令为: %1 %2</translation>
-    </message>
-    <message>
-        <source>Formatter[stdout]</source>
-        <translation type="unfinished">格式化工具[stdout]</translation>
-    </message>
-    <message>
-        <source>Formatter[stderr]</source>
-        <translation type="unfinished">格式化工具[stderr]</translation>
     </message>
 </context>
 <context>

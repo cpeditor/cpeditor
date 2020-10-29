@@ -469,6 +469,33 @@ Git commit hash: %3
     </message>
 </context>
 <context>
+    <name>CodeFormatter</name>
+    <message>
+        <source>Cannot format %1 code with this formatter</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Got empty stdout from format process. Did you used -i or inplace formatting argument?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The format process didn&apos;t finished in 2 seconds. This is probably because %1 binary is not found by CP Editor. You can set its path in Extensions -&gt; %1 -&gt; Path.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The format command is: %1 %2</source>
+        <translation type="unfinished">Команды форматирования: %1 %2</translation>
+    </message>
+    <message>
+        <source>Formatter[stdout]</source>
+        <translation type="unfinished">Форматирование[stdout]</translation>
+    </message>
+    <message>
+        <source>Formatter[stderr]</source>
+        <translation type="unfinished">Форматирование[stderr]</translation>
+    </message>
+</context>
+<context>
     <name>CodeSnippetsPage</name>
     <message>
         <source>Search...</source>
@@ -721,10 +748,6 @@ Press any key to exit</source>
 <context>
     <name>Extensions::ClangFormatter</name>
     <message>
-        <source>Formatter/check</source>
-        <translation>Форматирование/Проверка</translation>
-    </message>
-    <message>
         <source>Formatter</source>
         <translation>Форматирование</translation>
     </message>
@@ -735,22 +758,6 @@ Press any key to exit</source>
     <message>
         <source>Formatting completed</source>
         <translation>Форматирование завершено</translation>
-    </message>
-    <message>
-        <source>The format process didn&apos;t finish in 2 seconds. This is probably because the clang-format binary is not found by CP Editor. You can set the path to clang-format at %1.</source>
-        <translation>Процесс форматировния не завершился за 2 секунды. Возможно исполняемый файл clang-format не найден CP Editor&apos;ом. Вы можете установить путь к clang-format в %1.</translation>
-    </message>
-    <message>
-        <source>The format command is: %1 %2</source>
-        <translation>Команды форматирования: %1 %2</translation>
-    </message>
-    <message>
-        <source>Formatter[stdout]</source>
-        <translation>Форматирование[stdout]</translation>
-    </message>
-    <message>
-        <source>Formatter[stderr]</source>
-        <translation>Форматирование[stderr]</translation>
     </message>
 </context>
 <context>
@@ -830,22 +837,6 @@ Press any key to exit</source>
     <message>
         <source>Formatting completed</source>
         <translation type="unfinished">Форматирование завершено</translation>
-    </message>
-    <message>
-        <source>The format process didn&apos;t finish in 2 seconds. This is probably because the python binary is not found by CP Editor. You can set the path to python at %1.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>The format command is: %1 %2</source>
-        <translation type="unfinished">Команды форматирования: %1 %2</translation>
-    </message>
-    <message>
-        <source>Formatter[stdout]</source>
-        <translation type="unfinished">Форматирование[stdout]</translation>
-    </message>
-    <message>
-        <source>Formatter[stderr]</source>
-        <translation type="unfinished">Форматирование[stderr]</translation>
     </message>
 </context>
 <context>
