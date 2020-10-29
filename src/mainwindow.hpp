@@ -198,7 +198,7 @@ class MainWindow : public QMainWindow
     QString language;
     bool isLanguageSet = false;
 
-    Extensions::CodeFormatter* formatter = nullptr;
+    Extensions::CodeFormatter *formatter = nullptr;
     Core::Compiler *compiler = nullptr;
     QVector<Core::Runner *> runner;
     Core::Checker *checker = nullptr;

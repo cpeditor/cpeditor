@@ -149,8 +149,8 @@ void ClangFormatter::applyFormatting(QCodeEditor *editor, QString formatStdout)
 
     // apply the cursor changes to the editor
     editor->setTextCursor(cursor);
-	delete tempDir;
-	tempDir = nullptr;
+    delete tempDir;
+    tempDir = nullptr;
     logMessage("Formatting completed");
 }
 } // namespace Extensions
