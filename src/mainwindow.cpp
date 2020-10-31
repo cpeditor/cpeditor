@@ -954,11 +954,11 @@ bool MainWindow::saveFile(SaveMode mode, const QString &head, bool safe)
 
     if (language != "Python" && ((mode != AutoSave && SettingsHelper::isClangFormatFormatOnManualSave()) ||
                                  (mode == AutoSave && SettingsHelper::isClangFormatFormatOnAutoSave())))
-        formatter->format(editor, filePath, language);
+        formatter->format(editor, filePath, language, true); // format complete file even if cursor has selection
 
     if (language == "Python" && ((mode != AutoSave && SettingsHelper::isYAPFFormatOnManualSave()) ||
                                  (mode == AutoSave && SettingsHelper::isYAPFFormatOnAutoSave())))
-        formatter->format(editor, filePath, language);
+        formatter->format(editor, filePath, language, true);
 
     if (mode == SaveAs || (isUntitled() && mode == AlwaysSave))
     {

@@ -39,7 +39,7 @@ class ClangFormatter : public CodeFormatter
 
     virtual QStringList supportedLanguages() override;
     virtual QString formatterName() override;
-    virtual QStringList prepareFormatArguments(QCodeEditor *editor, const QString &filePath, QString language) override;
+    virtual QStringList prepareFormatArguments(QCodeEditor *editor, const QString &filePath, QString language, bool formatCompleteSource) override;
     virtual void applyFormatting(QCodeEditor *editor, QString formatStdout) override;
 
   private:

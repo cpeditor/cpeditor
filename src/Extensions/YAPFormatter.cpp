@@ -42,8 +42,10 @@ QString YAPFormatter::formatterName()
     return "YAPF Formatter";
 }
 
-QStringList YAPFormatter::prepareFormatArguments(QCodeEditor *editor, const QString &filePath, QString language)
+QStringList YAPFormatter::prepareFormatArguments(QCodeEditor *editor, const QString &filePath, QString language,
+                                                 bool formatCompleteSource)
 {
+    wasSelection = false;
 
     // get the file name
     QString tmpName = "tmp.py";
@@ -71,19 +73,19 @@ QStringList YAPFormatter::prepareFormatArguments(QCodeEditor *editor, const QStr
     QStringList arguments = {QProcess::splitCommand(binaryArgs())};
 
     // get the cursor positions
-    auto cursor = editor->textCursor();
+    QTextCursor cursor = editor->textCursor();
     int start = cursor.selectionStart();
     int end = cursor.selectionEnd();
 
-    if (cursor.hasSelection())
+    if (cursor.hasSelection() && !formatCompleteSource)
     {
         cursor.setPosition(start);
         firstLine = cursor.blockNumber();
         cursor.setPosition(end, QTextCursor::KeepAnchor);
         lastLine = cursor.blockNumber();
-
         arguments.append("-l");
-        arguments.append(QString::number(firstLine) + "-" + QString::number(lastLine - firstLine + 1));
+        arguments.append(QString::number(firstLine + 1) + "-" + QString::number(lastLine + 1));
+        wasSelection = true;
     }
 
     arguments.append(tempDir->filePath(tmpName));
@@ -105,12 +107,12 @@ void YAPFormatter::applyFormatting(QCodeEditor *editor, QString formatStdout)
     cursor.select(QTextCursor::Document);
     cursor.insertText(formatStdout);
 
-    if (cursor.hasSelection())
+    if (wasSelection)
     {
         cursor.movePosition(QTextCursor::MoveOperation::Start);
-        cursor.movePosition(QTextCursor::Down, QTextCursor::MoveAnchor, firstLine - 1);
+        cursor.movePosition(QTextCursor::Down, QTextCursor::MoveAnchor, firstLine);
         cursor.movePosition(QTextCursor::EndOfBlock, QTextCursor::MoveMode::KeepAnchor);
-        cursor.movePosition(QTextCursor::Down, QTextCursor::KeepAnchor, lastLine - 1);
+        cursor.movePosition(QTextCursor::Down, QTextCursor::KeepAnchor, lastLine - firstLine);
     }
 
     editor->setTextCursor(cursor);

@@ -42,14 +42,14 @@ class CodeFormatter : public QObject
   public:
     CodeFormatter(QString binary, QString style, QString binaryArgs, MessageLogger *logger, QObject *parent = nullptr);
 
-    void format(QCodeEditor *editor, const QString &filePath, QString language);
+    void format(QCodeEditor *editor, const QString &filePath, QString language, bool formatCompleteSource = false);
     void setBinary(QString const &newBinary);
     void setStyle(QString const &newStyle);
     void setArguments(QString const &newArgs);
 
     virtual QStringList supportedLanguages() = 0;
     virtual QString formatterName() = 0;
-    virtual QStringList prepareFormatArguments(QCodeEditor *editor, const QString &filePath, QString language) = 0;
+    virtual QStringList prepareFormatArguments(QCodeEditor *editor, const QString &filePath, QString language, bool formatCompleteSource = false) = 0;
     virtual void applyFormatting(QCodeEditor *editor, QString formatStdout) = 0;
 
     void logMessage(QString const &message);

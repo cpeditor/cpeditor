@@ -35,7 +35,7 @@ CodeFormatter::CodeFormatter(QString binary, QString style, QString binArgs, Mes
 {
 }
 
-void CodeFormatter::format(QCodeEditor *editor, const QString &filePath, QString language)
+void CodeFormatter::format(QCodeEditor *editor, const QString &filePath, QString language, bool formatCompleteSource)
 {
     // Nothing in code editor, bail out.
     if (editor->toPlainText().isEmpty())
@@ -50,7 +50,7 @@ void CodeFormatter::format(QCodeEditor *editor, const QString &filePath, QString
 
     // get the format arguments, if empty is returned. It means some error occurred in preparing and bail out.
     // Error will be logged and reported by the function iteself.
-    auto formatArgs = prepareFormatArguments(editor, filePath, language);
+    auto formatArgs = prepareFormatArguments(editor, filePath, language, formatCompleteSource);
     if (formatArgs.isEmpty())
         return;
 

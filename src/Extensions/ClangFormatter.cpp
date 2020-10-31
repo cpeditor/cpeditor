@@ -42,7 +42,7 @@ QString ClangFormatter::formatterName()
     return "Clang Formatter";
 }
 
-QStringList ClangFormatter::prepareFormatArguments(QCodeEditor *editor, const QString &filePath, QString language)
+QStringList ClangFormatter::prepareFormatArguments(QCodeEditor *editor, const QString &filePath, QString language, bool formatCompleteSource)
 {
 
     LOG_INFO(BOOL_INFO_OF(editor == nullptr) << INFO_OF(filePath));
@@ -55,7 +55,7 @@ QStringList ClangFormatter::prepareFormatArguments(QCodeEditor *editor, const QS
 
     // get command line arguments related to cursor position
     QStringList args = {"--cursor=" + QString::number(pos), "--style=file"};
-    if (cursor.hasSelection())
+    if (cursor.hasSelection() && !formatCompleteSource)
     {
         args.append("--offset=" + QString::number(start));
         args.append("--length=" + QString::number(end - start));
