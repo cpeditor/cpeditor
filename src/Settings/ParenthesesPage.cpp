@@ -52,7 +52,7 @@ ParenthesisWidget::ParenthesisWidget(const QString &language, QChar leftParenthe
     auto checkBoxesLayout = new QVBoxLayout();
     stretchLayout->addLayout(checkBoxesLayout);
 
-    auto addOption = [this, &checkBoxesLayout](QCheckBox *&checkBox, const QString &name, Qt::CheckState state) {
+    auto addOption = [this, checkBoxesLayout](QCheckBox *&checkBox, const QString &name, Qt::CheckState state) {
         checkBox = new QCheckBox(name);
         checkBox->setTristate(true);
         checkBox->setCheckState(state);
