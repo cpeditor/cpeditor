@@ -13,7 +13,7 @@ CP Editor 是一个基于 Qt 的轻量级跨平台代码编辑器，专为算法
 ---
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-47-orange.svg)](#all-contributors)
+[![All Contributors](https://img.shields.io/badge/all_contributors-48-orange.svg)](#all-contributors)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/ce0f297f31f74485b0d340949d08d605)](https://www.codacy.com/gh/cpeditor/cpeditor)
 [![GitHub All Releases](https://img.shields.io/github/downloads/cpeditor/cpeditor/total?label=downloads%40all)](https://github.com/cpeditor/cpeditor/releases)
@@ -236,6 +236,9 @@ CP Editor 是一个基于 Qt 的轻量级跨平台代码编辑器，专为算法
     </td>
     <td align="center">
       <a href="https://github.com/Gourav-raj"><img src="https://avatars1.githubusercontent.com/u/50336197?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/Gourav-raj"><sub><b>GOURAV RAJ</b></sub></a><br /><a href="#ideas-Gourav-raj" title="Ideas, Planning, & Feedback">🤔</a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/thebrave"><img src="https://avatars0.githubusercontent.com/u/2398126?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/thebrave"><sub><b>Jean Berniolles</b></sub></a><br /><a href="https://github.com/cpeditor/cpeditor/commits?author=thebrave" title="Code">💻</a>
     </td>
   </tr>
 </table>
