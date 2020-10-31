@@ -56,6 +56,7 @@ QStringList YAPFormatter::prepareFormatArguments(QCodeEditor *editor, const QStr
     if (tempDir)
         delete tempDir;
     tempDir = new QTemporaryDir();
+
     if (!tempDir->isValid())
     {
         logErrorMessage(tr("Failed to create temporary directory"));
@@ -103,6 +104,7 @@ void YAPFormatter::applyFormatting(QCodeEditor *editor, QString formatStdout)
         logMessage(tr("Formatting completed"));
         return;
     }
+
     QTextCursor cursor = editor->textCursor();
     cursor.select(QTextCursor::Document);
     cursor.insertText(formatStdout);
@@ -116,8 +118,6 @@ void YAPFormatter::applyFormatting(QCodeEditor *editor, QString formatStdout)
     }
 
     editor->setTextCursor(cursor);
-    delete tempDir;
-    tempDir = nullptr;
     logMessage("Formatting completed");
 }
 } // namespace Extensions

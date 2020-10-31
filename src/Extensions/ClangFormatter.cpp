@@ -45,21 +45,23 @@ QString ClangFormatter::formatterName()
 QStringList ClangFormatter::prepareFormatArguments(QCodeEditor *editor, const QString &filePath, QString language,
                                                    bool formatCompleteSource)
 {
+    wasSelection = false;
 
     LOG_INFO(BOOL_INFO_OF(editor == nullptr) << INFO_OF(filePath));
 
     // get the cursor positions
     auto cursor = editor->textCursor();
-    int start = cursor.selectionStart();
-    int end = cursor.selectionEnd();
-    int pos = cursor.position();
+    unformatterStart = cursor.selectionStart();
+    unformatterEnd = cursor.selectionEnd();
+    unformatterPos = cursor.position();
 
     // get command line arguments related to cursor position
-    QStringList args = {"--cursor=" + QString::number(pos), "--style=file"};
+    QStringList args = {"--cursor=" + QString::number(unformatterPos), "--style=file"};
     if (cursor.hasSelection() && !formatCompleteSource)
     {
-        args.append("--offset=" + QString::number(start));
-        args.append("--length=" + QString::number(end - start));
+        wasSelection = true;
+        args.append("--offset=" + QString::number(unformatterStart));
+        args.append("--length=" + QString::number(unformatterEnd - unformatterStart));
     }
 
     // get the file name
@@ -71,6 +73,7 @@ QStringList ClangFormatter::prepareFormatArguments(QCodeEditor *editor, const QS
     if (tempDir)
         delete tempDir;
     tempDir = new QTemporaryDir();
+
     if (!tempDir->isValid())
     {
         logErrorMessage(tr("Failed to create temporary directory"));
@@ -97,6 +100,7 @@ void ClangFormatter::applyFormatting(QCodeEditor *editor, QString formatStdout)
 
     if (formatStdout.isEmpty())
         return;
+
     auto parseStdout = [](QString formatStdout) -> QPair<int, QString> {
         int firstNewLine = formatStdout.indexOf('\n');
         QString jsonLine = formatStdout.left(firstNewLine);
@@ -124,22 +128,21 @@ void ClangFormatter::applyFormatting(QCodeEditor *editor, QString formatStdout)
     QTextCursor cursor = editor->textCursor();
     cursor.select(QTextCursor::Document);
     cursor.insertText(formatResult.second);
+    qDebug() << "Setting new cursor position at " << formatResult.first;
     cursor.setPosition(formatResult.first);
 
-    int start = cursor.selectionStart();
-    int end = cursor.selectionEnd();
-    int pos = cursor.position();
-
-    if (cursor.hasSelection())
+    if (wasSelection)
     {
+        qDebug() << "There was a selection";
         // if there's a selection, we have to restore not only the cursor, but also the anchor
 
         // get the new position for the anchor
-        if (pos == end)
-            formatArgs[0] = "--cursor=" + QString::number(start);
+        if (unformatterPos == unformatterEnd)
+            formatArgs[0] = "--cursor=" + QString::number(unformatterStart);
         else
-            formatArgs[0] = "--cursor=" + QString::number(end);
+            formatArgs[0] = "--cursor=" + QString::number(unformatterEnd);
         auto res2 = parseStdout(runFormatProcess(formatArgs).second);
+        qDebug() << "Returned " << res2;
         if (res2.first == -1)
             return;
 
@@ -150,8 +153,6 @@ void ClangFormatter::applyFormatting(QCodeEditor *editor, QString formatStdout)
 
     // apply the cursor changes to the editor
     editor->setTextCursor(cursor);
-    delete tempDir;
-    tempDir = nullptr;
     logMessage("Formatting completed");
 }
-} // namespace Extensions
+} // namespace Extension

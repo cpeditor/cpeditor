@@ -45,6 +45,11 @@ class ClangFormatter : public CodeFormatter
 
   private:
     QStringList formatArgs;
+    int unformatterStart;
+    int unformatterEnd;
+    int unformatterPos;
+    
+	bool wasSelection;
 };
 } // namespace Extensions
 #endif
