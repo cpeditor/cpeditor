@@ -155,4 +155,4 @@ void ClangFormatter::applyFormatting(QCodeEditor *editor, QString formatStdout)
     editor->setTextCursor(cursor);
     logMessage("Formatting completed");
 }
-} // namespace Extension
+} // namespace Extensions

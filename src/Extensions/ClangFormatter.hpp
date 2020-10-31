@@ -48,8 +48,8 @@ class ClangFormatter : public CodeFormatter
     int unformatterStart;
     int unformatterEnd;
     int unformatterPos;
-    
-	bool wasSelection;
+
+    bool wasSelection;
 };
 } // namespace Extensions
 #endif
