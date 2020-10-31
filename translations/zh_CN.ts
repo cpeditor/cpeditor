@@ -1266,12 +1266,6 @@ Do you want to reload it?</source>
         <translation>括号对：%1</translation>
     </message>
     <message>
-        <source>Enable %1 for %2 in %3.
-If it&apos;s partially checked, the global setting in Code Edit will be used.</source>
-        <translation>在 %3 中为括号对 %2 启用 %1。
-如果复选框被部分选择，则会使用全局设置。</translation>
-    </message>
-    <message>
         <source>Auto Complete</source>
         <translation>自动补全</translation>
     </message>
@@ -1282,6 +1276,11 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     <message>
         <source>Tab Jump Out</source>
         <translation>按 Tab 键跳出</translation>
+    </message>
+    <message>
+        <source>Enable %1 for %2 in %3.
+If it&apos;s partially checked, the global setting in Code Editing will be used.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

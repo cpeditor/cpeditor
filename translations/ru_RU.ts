@@ -1266,12 +1266,6 @@ Do you want to reload it?</source>
         <translation>Скобки: %1</translation>
     </message>
     <message>
-        <source>Enable %1 for %2 in %3.
-If it&apos;s partially checked, the global setting in Code Edit will be used.</source>
-        <translation>Активировано %1 для %2 в %3.
-Выбрано частично, будут использованы глобальные настройки в Code Edit.</translation>
-    </message>
-    <message>
         <source>Auto Complete</source>
         <translation>Автозавершение</translation>
     </message>
@@ -1282,6 +1276,11 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     <message>
         <source>Tab Jump Out</source>
         <translation>Tab Jump Out</translation>
+    </message>
+    <message>
+        <source>Enable %1 for %2 in %3.
+If it&apos;s partially checked, the global setting in Code Editing will be used.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
