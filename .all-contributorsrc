@@ -463,6 +463,15 @@
       "contributions": [
         "ideas"
       ]
+    },
+    {
+      "login": "thebrave",
+      "name": "Jean Berniolles",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/2398126?v=4",
+      "profile": "https://github.com/thebrave",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 6,
