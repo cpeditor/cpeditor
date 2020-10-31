@@ -1739,7 +1739,7 @@ You can use &quot;${filename}&quot; for the complete file name,
     </message>
     <message>
         <source>The name of the main class of your solution.</source>
-        <translation>你的代码中非 public 主类的名称。</translation>
+        <translation>你的代码中主类的名称。</translation>
     </message>
     <message>
         <source>Automatically delete the whole pair of parentheses when deleting
