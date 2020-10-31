@@ -108,16 +108,16 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
     setWindowTitle(tr("Preferences"));
 
     // setup UI
-    splitter = new QSplitter();
+    auto splitter = new QSplitter();
     splitter->setChildrenCollapsible(false);
     setCentralWidget(splitter);
 
     leftWidget = new QWidget();
     splitter->addWidget(leftWidget);
 
-    leftLayout = new QVBoxLayout(leftWidget);
+    auto leftLayout = new QVBoxLayout(leftWidget);
 
-    searchLayout = new QHBoxLayout();
+    auto searchLayout = new QHBoxLayout();
     leftLayout->addLayout(searchLayout);
 
     searchEdit = new QLineEdit();
