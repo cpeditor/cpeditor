@@ -472,27 +472,27 @@ git 提交编号: %3
     <name>CodeFormatter</name>
     <message>
         <source>Cannot format %1 code with this formatter</source>
-        <translation type="unfinished"></translation>
+        <translation>无法用格式化程序格式化 %1 代码</translation>
     </message>
     <message>
         <source>Got empty stdout from format process. Did you used -i or inplace formatting argument?</source>
-        <translation type="unfinished"></translation>
+        <translation>格式化程序未产生任何输出。你是否使用了 -i 或其他的就地格式化参数？</translation>
     </message>
     <message>
         <source>The format process didn&apos;t finished in 2 seconds. This is probably because %1 binary is not found by CP Editor. You can set its path in Extensions -&gt; %1 -&gt; Path.</source>
-        <translation type="unfinished"></translation>
+        <translation>格式化过程未能在 2 秒内完成，这可能是因为 %1 程序未被 CP Editor 找到。你可以在扩展 -&gt; %1 -&gt; 路径中设置其路径。</translation>
     </message>
     <message>
         <source>The format command is: %1 %2</source>
-        <translation type="unfinished">格式化指令为: %1 %2</translation>
+        <translation>格式化指令为: %1 %2</translation>
     </message>
     <message>
         <source>Formatter[stdout]</source>
-        <translation type="unfinished">格式化工具[stdout]</translation>
+        <translation>格式化工具[stdout]</translation>
     </message>
     <message>
         <source>Formatter[stderr]</source>
-        <translation type="unfinished">格式化工具[stderr]</translation>
+        <translation>格式化工具[stderr]</translation>
     </message>
 </context>
 <context>
@@ -828,15 +828,15 @@ Press any key to exit</source>
     <name>Extensions::YAPFormatter</name>
     <message>
         <source>Formatter</source>
-        <translation type="unfinished">格式化工具</translation>
+        <translation>格式化工具</translation>
     </message>
     <message>
         <source>Failed to create temporary directory</source>
-        <translation type="unfinished">未能成功创建临时目录</translation>
+        <translation>未能成功创建临时目录</translation>
     </message>
     <message>
         <source>Formatting completed</source>
-        <translation type="unfinished">格式化完毕</translation>
+        <translation>格式化完毕</translation>
     </message>
 </context>
 <context>
@@ -1520,7 +1520,7 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     </message>
     <message>
         <source>YAPF Format</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -2539,28 +2539,29 @@ A test case will be elided and read-only if it&apos;s too long.</source>
     </message>
     <message>
         <source>The path of python interpreter.</source>
-        <translation type="unfinished"></translation>
+        <translation>Python 解释器的路径。</translation>
     </message>
     <message>
         <source>Arguments</source>
-        <translation type="unfinished"></translation>
+        <translation>参数</translation>
     </message>
     <message>
         <source>The argument for the interpreter to invoke yapf module.</source>
-        <translation type="unfinished"></translation>
+        <translation>解释器调用 yapf 模块时使用的参数。</translation>
     </message>
     <message>
         <source>The YAPF Format style options, which are often saved in a .style.yapf or setup.conf configuration file. 
 You can check all possible configuration by running `yapf --style-help`</source>
-        <translation type="unfinished"></translation>
+        <translation>YAPF 格式化选项，通常保存在 .style.yapf 或 setup.conf 配置文件中。
+你可以通过 yapf --style-help 命令来获取所有配置选项。</translation>
     </message>
     <message>
         <source>Use YAPF Formatter to format the code when saving it manually.</source>
-        <translation type="unfinished"></translation>
+        <translation>在手动保存时调用 YAPF 格式化工具来格式化代码。</translation>
     </message>
     <message>
         <source>Use YAPF Formatter to format the code when auto-saving it.</source>
-        <translation type="unfinished"></translation>
+        <translation>在自动保存时调用 YAPF 格式化工具来格式化代码。</translation>
     </message>
 </context>
 <context>
