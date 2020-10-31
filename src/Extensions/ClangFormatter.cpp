@@ -42,7 +42,8 @@ QString ClangFormatter::formatterName()
     return "Clang Formatter";
 }
 
-QStringList ClangFormatter::prepareFormatArguments(QCodeEditor *editor, const QString &filePath, QString language, bool formatCompleteSource)
+QStringList ClangFormatter::prepareFormatArguments(QCodeEditor *editor, const QString &filePath, QString language,
+                                                   bool formatCompleteSource)
 {
 
     LOG_INFO(BOOL_INFO_OF(editor == nullptr) << INFO_OF(filePath));
