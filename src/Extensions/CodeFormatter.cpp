@@ -132,7 +132,7 @@ QPair<int, QString> CodeFormatter::runFormatProcess(QStringList const &args)
 
     if (formatProcess.exitCode() != 0)
     {
-        // the format process failed, show the error messages and return {-1, QString()}
+        // the format process failed, show the error messages and return {exitCode(), QString()}
         LOG_WARN("Format process returned exit code " << formatProcess.exitCode());
 
         logWarningMessage(tr("The format command is: %1 %2").arg(binary(), args.join(' ')));

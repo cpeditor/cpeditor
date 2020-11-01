@@ -119,7 +119,7 @@ void ClangFormatter::applyFormatting(QCodeEditor *editor, QString formatStdout)
     auto formatResult = parseStdout(formatStdout);
 
     // get format result with the current cursor
-    if (formatResult.first == -1)
+    if (formatResult.first != 0)
         return;
 
     if (formatResult.second == editor->toPlainText())
@@ -145,7 +145,7 @@ void ClangFormatter::applyFormatting(QCodeEditor *editor, QString formatStdout)
         else
             formatArgs[0] = "--cursor=" + QString::number(unformatterEnd);
         auto res2 = parseStdout(runFormatProcess(formatArgs).second);
-        if (res2.first == -1)
+        if (res2.first != 0)
             return;
 
         // restore the selection
