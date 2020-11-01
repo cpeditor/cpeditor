@@ -30,7 +30,7 @@
 
 namespace Core
 {
-FakeVimCommand::FakeVimCommand(AppWindow *aw) : appwin(aw)
+FakeVimCommand::FakeVimCommand(AppWindow *aw) : appwin(aw), QObject(aw)
 {
 }
 
@@ -245,7 +245,7 @@ QPair<bool, QString> FakeVimCommand::wantVModeChange(FakeVim::Internal::ExComman
         else
         {
             SHOW_STATUS_MESSAGE(
-                tr("%1 is not a valid view mode. It should be one of \"split\", \"edit\"").arg(ex.args));
+                tr("%1 is not a valid view mode. It should be one of \"split\" and \"edit\"").arg(ex.args));
             return {true, ""};
         }
     }

@@ -228,7 +228,7 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
         .dir(TRKEY("Extensions"))
             .page(TRKEY("Clang Format"), new PreferencesPageTemplate({"Clang Format/Path", "Clang Format/Format On Manual Save",
                                          "Clang Format/Format On Auto Save", "Clang Format/Style"}, false))
-	    .dir(TRKEY("Language Server"))
+            .dir(TRKEY("Language Server"))
                 .page("C++ Server", tr("%1 Server").arg(tr("C++")), {"LSP/Use Linting C++", "LSP/Delay C++", "LSP/Path C++", "LSP/Args C++"})
                 .page("Java Server", tr("%1 Server").arg(tr("Java")), {"LSP/Use Linting Java", "LSP/Delay Java", "LSP/Path Java", "LSP/Args Java"})
                 .page("Python Server", tr("%1 Server").arg(tr("Python")), {"LSP/Use Linting Python", "LSP/Delay Python", "LSP/Path Python", "LSP/Args Python"})

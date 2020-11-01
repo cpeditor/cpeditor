@@ -30,7 +30,6 @@
 #include "Util/FileUtil.hpp"
 #include "Util/QCodeEditorUtil.hpp"
 #include "Widgets/TestCases.hpp"
-#include "appwindow.hpp"
 #include <QCodeEditor>
 #include <QFileSystemWatcher>
 #include <QFontDialog>
@@ -49,7 +48,6 @@
 #include <generated/version.hpp>
 
 #include "../ui/ui_mainwindow.h"
-#include "appwindow.hpp"
 
 static const int MAX_NUMBER_OF_RECENT_FILES = 20;
 
