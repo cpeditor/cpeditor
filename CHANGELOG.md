@@ -3,6 +3,7 @@
 ### Added
 
 -   Now you can opt-in non-monospaced fonts when choosing a font in the Preferences. (#217 and #625)
+-   Format python codes by YAPF. (#652)
 
 ### Fixed
 
