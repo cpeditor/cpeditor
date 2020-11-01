@@ -128,12 +128,10 @@ void ClangFormatter::applyFormatting(QCodeEditor *editor, QString formatStdout)
     QTextCursor cursor = editor->textCursor();
     cursor.select(QTextCursor::Document);
     cursor.insertText(formatResult.second);
-    qDebug() << "Setting new cursor position at " << formatResult.first;
     cursor.setPosition(formatResult.first);
 
     if (wasSelection)
     {
-        qDebug() << "There was a selection";
         // if there's a selection, we have to restore not only the cursor, but also the anchor
 
         // get the new position for the anchor
@@ -142,7 +140,6 @@ void ClangFormatter::applyFormatting(QCodeEditor *editor, QString formatStdout)
         else
             formatArgs[0] = "--cursor=" + QString::number(unformatterEnd);
         auto res2 = parseStdout(runFormatProcess(formatArgs).second);
-        qDebug() << "Returned " << res2;
         if (res2.first == -1)
             return;
 
