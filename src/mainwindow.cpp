@@ -700,13 +700,10 @@ void MainWindow::compileAndRun()
 void MainWindow::formatSource(bool selectionOnly, bool logOnNoChange)
 {
     LOG_INFO("Requested code format");
-    Extensions::CodeFormatter *formatter;
     if (language == "Python")
-        formatter = new Extensions::YAPFormatter(editor, language, selectionOnly, logOnNoChange, log, this);
+        Extensions::YAPFormatter(editor, language, selectionOnly, logOnNoChange, log, this).format();
     else
-        formatter = new Extensions::ClangFormatter(editor, language, selectionOnly, logOnNoChange, log, this);
-    formatter->format();
-    delete formatter;
+        Extensions::ClangFormatter(editor, language, selectionOnly, logOnNoChange, log, this).format();
 }
 
 void MainWindow::setLanguage(const QString &lang)
