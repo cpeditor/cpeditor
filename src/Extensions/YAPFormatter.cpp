@@ -42,6 +42,11 @@ QString YAPFormatter::formatterName()
     return "YAPF Formatter";
 }
 
+QString YAPFormatter::formatterSettingPath()
+{
+    return SettingsHelper::pathOfYAPFPath();
+}
+
 QStringList YAPFormatter::prepareFormatArguments(QCodeEditor *editor, const QString &filePath, QString language,
                                                  bool formatCompleteSource)
 {

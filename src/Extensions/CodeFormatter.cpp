@@ -123,9 +123,10 @@ QPair<int, QString> CodeFormatter::runFormatProcess(QStringList const &args)
     if (!finished)
     {
         formatProcess.kill();
-        logWarningMessage(tr("The format process didn't finished in 2 seconds. This is probably because %1 binary is "
-                             "not found by CP Editor. You can set its path in Extensions -> %1 -> Path.")
-                              .arg(formatterName()));
+        logErrorMessage(tr("The format process didn't finished in 2 seconds. This is probably because %1 binary is "
+                           "not found by CP Editor. You can set its path in %2.")
+                            .arg(formatterName())
+                            .arg(formatterSettingPath()));
         return {-1, QString()};
     }
 

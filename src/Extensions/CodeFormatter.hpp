@@ -49,6 +49,8 @@ class CodeFormatter : public QObject
 
     virtual QStringList supportedLanguages() = 0;
     virtual QString formatterName() = 0;
+    virtual QString formatterSettingPath() = 0;
+
     virtual QStringList prepareFormatArguments(QCodeEditor *editor, const QString &filePath, QString language,
                                                bool formatCompleteSource = false) = 0;
     virtual void applyFormatting(QCodeEditor *editor, QString formatStdout) = 0;

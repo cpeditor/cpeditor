@@ -479,10 +479,6 @@ Git commit hash: %3
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>The format process didn&apos;t finished in 2 seconds. This is probably because %1 binary is not found by CP Editor. You can set its path in Extensions -&gt; %1 -&gt; Path.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>The format command is: %1 %2</source>
         <translation type="unfinished">Команды форматирования: %1 %2</translation>
     </message>
@@ -493,6 +489,10 @@ Git commit hash: %3
     <message>
         <source>Formatter[stderr]</source>
         <translation type="unfinished">Форматирование[stderr]</translation>
+    </message>
+    <message>
+        <source>The format process didn&apos;t finished in 2 seconds. This is probably because %1 binary is not found by CP Editor. You can set its path in %2.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

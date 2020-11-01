@@ -479,10 +479,6 @@ git 提交编号: %3
         <translation>格式化程序未产生任何输出。你是否使用了 -i 或其他的就地格式化参数？</translation>
     </message>
     <message>
-        <source>The format process didn&apos;t finished in 2 seconds. This is probably because %1 binary is not found by CP Editor. You can set its path in Extensions -&gt; %1 -&gt; Path.</source>
-        <translation>格式化过程未能在 2 秒内完成，这可能是因为 %1 程序未被 CP Editor 找到。你可以在扩展 -&gt; %1 -&gt; 路径中设置其路径。</translation>
-    </message>
-    <message>
         <source>The format command is: %1 %2</source>
         <translation>格式化指令为: %1 %2</translation>
     </message>
@@ -493,6 +489,10 @@ git 提交编号: %3
     <message>
         <source>Formatter[stderr]</source>
         <translation>格式化工具[stderr]</translation>
+    </message>
+    <message>
+        <source>The format process didn&apos;t finished in 2 seconds. This is probably because %1 binary is not found by CP Editor. You can set its path in %2.</source>
+        <translation>格式化进程没有在 2 秒内结束。这可能是由于 CP Editor 没有找到 %1 的可执行文件。你可以在 %2 设置其路径。</translation>
     </message>
 </context>
 <context>

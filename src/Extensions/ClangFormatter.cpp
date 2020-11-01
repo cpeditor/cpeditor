@@ -42,6 +42,11 @@ QString ClangFormatter::formatterName()
     return "Clang Formatter";
 }
 
+QString ClangFormatter::formatterSettingPath()
+{
+    return SettingsHelper::pathOfClangFormatPath();
+}
+
 QStringList ClangFormatter::prepareFormatArguments(QCodeEditor *editor, const QString &filePath, QString language,
                                                    bool formatCompleteSource)
 {
