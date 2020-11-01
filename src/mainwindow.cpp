@@ -25,11 +25,14 @@
 #include "Extensions/CFTool.hpp"
 #include "Extensions/ClangFormatter.hpp"
 #include "Extensions/CompanionServer.hpp"
+#include "Extensions/YAPFormatter.hpp"
 #include "Settings/DefaultPathManager.hpp"
 #include "Settings/FileProblemBinder.hpp"
 #include "Util/FileUtil.hpp"
 #include "Util/QCodeEditorUtil.hpp"
 #include "Widgets/TestCases.hpp"
+#include "generated/SettingsHelper.hpp"
+#include "generated/version.hpp"
 #include <QCodeEditor>
 #include <QFileSystemWatcher>
 #include <QFontDialog>
@@ -44,8 +47,6 @@
 #include <QTemporaryDir>
 #include <QTextBlock>
 #include <QTimer>
-#include <generated/SettingsHelper.hpp>
-#include <generated/version.hpp>
 
 #include "../ui/ui_mainwindow.h"
 
@@ -97,7 +98,6 @@ MainWindow::~MainWindow()
     delete ui;
     delete autoSaveTimer;
     delete testcases;
-    delete formatter;
     delete fileWatcher;
     delete editor;
     delete log;
@@ -134,8 +134,6 @@ void MainWindow::setupCore()
 {
     log = new MessageLogger();
     log->setContainer(ui->compilerEdit);
-    formatter = new Extensions::ClangFormatter(SettingsHelper::getClangFormatPath(),
-                                               SettingsHelper::getClangFormatStyle(), log);
 }
 
 void MainWindow::compile()
@@ -580,12 +578,6 @@ void MainWindow::applySettings(const QString &pagePath, bool shouldPerformDigoni
 
     auto pageChanged = [pagePath](const QString &page) { return pagePath.isEmpty() || pagePath == page; };
 
-    if (pageChanged("Extensions/Clang Format"))
-    {
-        formatter->updateBinary(SettingsHelper::getClangFormatPath());
-        formatter->updateStyle(SettingsHelper::getClangFormatStyle());
-    }
-
     if (pageChanged("Extensions/CF Tool"))
     {
         cftoolPath = SettingsHelper::getCFPath();
@@ -705,10 +697,16 @@ void MainWindow::compileAndRun()
     compile();
 }
 
-void MainWindow::formatSource()
+void MainWindow::formatSource(bool selectionOnly, bool logOnNoChange)
 {
     LOG_INFO("Requested code format");
-    formatter->format(editor, filePath, language, true, true);
+    Extensions::CodeFormatter *formatter;
+    if (language == "Python")
+        formatter = new Extensions::YAPFormatter(editor, language, selectionOnly, logOnNoChange, log, this);
+    else
+        formatter = new Extensions::ClangFormatter(editor, language, selectionOnly, logOnNoChange, log, this);
+    formatter->format();
+    delete formatter;
 }
 
 void MainWindow::setLanguage(const QString &lang)
@@ -930,9 +928,11 @@ bool MainWindow::saveFile(SaveMode mode, const QString &head, bool safe)
 {
     LOG_INFO(INFO_OF(mode) << INFO_OF(head) << BOOL_INFO_OF(safe));
 
-    if ((mode != AutoSave && SettingsHelper::isClangFormatFormatOnManualSave()) ||
-        (mode == AutoSave && SettingsHelper::isClangFormatFormatOnAutoSave()))
-        formatter->format(editor, filePath, language, false, false);
+    if ((mode != AutoSave && SettingsHelper::isFormatOnManualSave()) ||
+        (mode == AutoSave && SettingsHelper::isFormatOnAutoSave()))
+    {
+        formatSource(false, false);
+    }
 
     if (mode == SaveAs || (isUntitled() && mode == AlwaysSave))
     {
@@ -961,14 +961,11 @@ bool MainWindow::saveFile(SaveMode mode, const QString &head, bool safe)
                 }
             }
             if (defaultPath.isEmpty())
-                defaultPath =
-                    QDir(DefaultPathManager::defaultPathForAction("Save File")).filePath(getTabTitle(false, false));
-            if (language == "C++")
-                defaultPath += ".cpp";
-            else if (language == "Java")
-                defaultPath += ".java";
-            else if (language == "Python")
-                defaultPath += ".py";
+            {
+                defaultPath = Util::fileNameWithSuffix(
+                    QDir(DefaultPathManager::defaultPathForAction("Save File")).filePath(getTabTitle(false, false)),
+                    language);
+            }
         }
 
         // Create the parent directories of the default path if they don't exist,

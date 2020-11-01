@@ -16,214 +16,72 @@
  */
 
 #include "Extensions/ClangFormatter.hpp"
-#include "Core/EventLogger.hpp"
-#include "Core/MessageLogger.hpp"
-#include "Util/FileUtil.hpp"
-#include "generated/SettingsHelper.hpp"
 #include <QCodeEditor>
 #include <QJsonDocument>
-#include <QProcess>
-#include <QTemporaryDir>
+#include <QTextCursor>
 
 namespace Extensions
 {
-ClangFormatter::ClangFormatter(const QString &clangFormatBinary, const QString &clangFormatStyle, MessageLogger *logger,
-                               QObject *parent)
-    : QObject(parent)
+
+ClangFormatter::ClangFormatter(QCodeEditor *editor, const QString &lang, bool selectionOnly, bool logOnNoChange,
+                               MessageLogger *log, QObject *parent)
+    : CodeFormatter(editor, lang, selectionOnly, logOnNoChange, log, parent)
 {
-    log = logger;
-    updateBinary(clangFormatBinary);
-    updateStyle(clangFormatStyle);
 }
 
-bool ClangFormatter::check(const QString &checkBinary, const QString &checkStyle)
+QString ClangFormatter::settingKey() const
 {
-    LOG_INFO(INFO_OF(checkBinary));
-
-    // create a temporary directory for formatting
-    QTemporaryDir tmpDir;
-    if (!tmpDir.isValid())
-    {
-        LOG_WARN("tmpDir is not valid");
-        return false;
-    }
-
-    // save a simple file for testing
-    if (!Util::saveFile(tmpDir.filePath("tmp.cpp"), "int main(){}", tr("Formatter/check")))
-        return false;
-
-    // save the style to .clang-format
-    if (!Util::saveFile(tmpDir.filePath(".clang-format"), checkStyle, tr("Formatter/check")))
-        return false;
-
-    // run Clang Format
-    QProcess program;
-    program.start(checkBinary, {"--cursor=0", "--offset=0", "--length=0", "--style=file", tmpDir.filePath("tmp.cpp")});
-    LOG_INFO(INFO_OF(program.arguments().join(" ")));
-
-    // check whether the process finished in 2 seconds with exit code 0
-    if (!program.waitForFinished(2000))
-    {
-        LOG_WARN("Format process did not finished in 2 sec, it is being killed forcefully");
-        program.kill();
-        return false;
-    }
-    LOG_INFO(INFO_OF(program.exitCode()));
-    return program.exitCode() == 0;
+    return "Clang Format";
 }
 
-void ClangFormatter::updateBinary(const QString &newBinary)
+QStringList ClangFormatter::arguments() const
 {
-    LOG_INFO("Updated clangformat binary to " << newBinary);
-    binary = newBinary;
+    return {"--style=file", QString("--cursor=%1").arg(anchorPos)};
 }
 
-void ClangFormatter::updateStyle(const QString &newStyle)
+QStringList ClangFormatter::rangeArgs() const
 {
-    style = newStyle;
+    return {QString("--offset=%1").arg(qMin(cursorPos, anchorPos)),
+            QString("--length=%1").arg(qAbs(cursorPos - anchorPos))};
 }
 
-void ClangFormatter::format(QCodeEditor *editor, const QString &filePath, const QString &lang, bool selectionOnly,
-                            bool verbose)
+QString ClangFormatter::styleFileName() const
 {
-    LOG_INFO(BOOL_INFO_OF(editor == nullptr) << INFO_OF(filePath) << BOOL_INFO_OF(selectionOnly));
+    return ".clang-format";
+}
 
-    // get the cursor positions
+QString ClangFormatter::newSource(const QString &out) const
+{
+    return out.mid(out.indexOf('\n') + 1);
+}
+
+QTextCursor ClangFormatter::newCursor(const QString &out, const QStringList &args) const
+{
     auto cursor = editor->textCursor();
-    int start = cursor.selectionStart();
-    int end = cursor.selectionEnd();
-    int pos = cursor.position();
+    cursor.setPosition(newCursorPos(out));
 
-    // get command line arguments related to cursor position
-    QStringList args = {"--cursor=" + QString::number(pos), "--style=file"};
-    if (selectionOnly && cursor.hasSelection())
+    if (cursorPos != anchorPos)
     {
-        args.append("--offset=" + QString::number(start));
-        args.append("--length=" + QString::number(end - start));
+        // change the `--cursor` argument and format again to get the position of the other end of the selection
+
+        QStringList newArgs;
+
+        for (const auto &arg : qAsConst(args))
+            if (!arg.startsWith("--cursor"))
+                newArgs.append(arg);
+        newArgs.append(QString("--cursor=%1").arg(cursorPos));
+
+        auto res = runProcess(newArgs);
+        cursor.setPosition(newCursorPos(res), QTextCursor::KeepAnchor);
     }
 
-    // get the file name
-    QString tmpName = "tmp.cpp";
-    if (filePath.isEmpty())
-    {
-        // if the file path is empty, generate one depends on the language
-        if (lang == "Java")
-            tmpName = "tmp.java";
-        else if (lang == "Python")
-            tmpName = "tmp.py";
-    }
-    else
-    {
-        // otherwise, use the actual file name
-        tmpName = QFileInfo(filePath).fileName();
-    }
-
-    // create a temporary directory
-    QTemporaryDir tmpDir;
-    if (!tmpDir.isValid())
-    {
-        log->error(tr("Formatter"), tr("Failed to create temporary directory"));
-        return;
-    }
-
-    // save the text to a file
-    if (!Util::saveFile(tmpDir.filePath(tmpName), editor->toPlainText(), tr("Formatter"), true, log))
-        return;
-
-    // save the style to .clang-format
-    if (!Util::saveFile(tmpDir.filePath(".clang-format"), style, tr("Formatter"), true, log))
-        return;
-
-    // add the file to be formatted in the command line arguments
-    args.append(tmpDir.filePath(tmpName));
-
-    // get format result with the current cursor
-    auto res = getFormatResult(args);
-    if (res.first == -1)
-    {
-        return;
-    }
-
-    if (res.second == editor->toPlainText())
-    {
-        LOG_INFO("Already formatted");
-        if (verbose)
-            log->info(tr("Formatter"), tr("Formatting completed"));
-        return;
-    }
-
-    // set the formatted text and cursor position
-    cursor.select(QTextCursor::Document);
-    cursor.insertText(res.second);
-    cursor.setPosition(res.first);
-
-    if (start != end)
-    {
-        // if there's a selection, we have to restore not only the cursor, but also the anchor
-
-        // get the new position for the anchor
-        if (pos == end)
-            args[0] = "--cursor=" + QString::number(start);
-        else
-            args[0] = "--cursor=" + QString::number(end);
-        auto res2 = getFormatResult(args);
-        if (res2.first == -1)
-            return;
-
-        // restore the selection
-        cursor.setPosition(res2.first, QTextCursor::MoveAnchor);
-        cursor.setPosition(res.first, QTextCursor::KeepAnchor);
-    }
-
-    // apply the cursor changes to the editor
-    editor->setTextCursor(cursor);
-
-    log->info(tr("Formatter"), tr("Formatting completed"));
+    return cursor;
 }
 
-QPair<int, QString> ClangFormatter::getFormatResult(const QStringList &args)
+int ClangFormatter::newCursorPos(const QString &out) const
 {
-    // run the format porcess
-
-    QProcess formatProcess;
-    formatProcess.start(binary, args);
-    LOG_INFO("Starting format with args : " << args.join(","));
-
-    bool finished = formatProcess.waitForFinished(2000); // BLOCKS main Thread
-    if (!finished)
-    {
-        formatProcess.kill();
-        log->warn(
-            tr("Formatter"),
-            tr("The format process didn't finish in 2 seconds. This is probably because the clang-format binary is not "
-               "found by CP Editor. You can set the path to clang-format at %1.")
-                .arg(SettingsHelper::pathOfClangFormatPath()));
-        return QPair<int, QString>(-1, QString());
-    }
-
-    if (formatProcess.exitCode() != 0)
-    {
-        // the format process failed, show the error messages and return {-1, QString()}
-        LOG_WARN("Format process returned exit code " << formatProcess.exitCode());
-
-        log->warn(tr("Formatter"), tr("The format command is: %1 %2").arg(binary, args.join(' ')));
-        auto stdOut = formatProcess.readAllStandardOutput();
-        if (!stdOut.isEmpty())
-            log->warn(tr("Formatter[stdout]"), stdOut);
-        auto stdError = formatProcess.readAllStandardError();
-        if (!stdError.isEmpty())
-            log->error(tr("Formatter[stderr]"), stdError);
-        return QPair<int, QString>(-1, QString());
-    }
-
-    // get the formatted codes and the new cursor position
-    auto result = formatProcess.readAllStandardOutput();
-    int firstNewLine = result.indexOf('\n');
-    QString jsonLine = result.left(firstNewLine);
-    auto formattedCodes = result.mid(firstNewLine + 1);
-    auto json = QJsonDocument::fromJson(jsonLine.toLocal8Bit());
-    int newCursorPos = json["Cursor"].toInt();
-
-    return QPair<int, QString>(newCursorPos, formattedCodes);
+    auto json = QJsonDocument::fromJson(out.left(out.indexOf('\n')).toUtf8());
+    return json["Cursor"].toInt();
 }
+
 } // namespace Extensions

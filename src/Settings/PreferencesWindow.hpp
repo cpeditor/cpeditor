@@ -55,7 +55,11 @@ class AddPageHelper
 
     AddPageHelper &end();
 
+    void ensureAtTop() const;
+
   private:
+    bool atTop() const;
+
     PreferencesWindow *window;
     QTreeWidget *tree;
     QTreeWidgetItem *currentItem;

@@ -731,11 +731,7 @@ Press any key to exit</source>
     </message>
 </context>
 <context>
-    <name>Extensions::ClangFormatter</name>
-    <message>
-        <source>Formatter/check</source>
-        <translation>Форматирование/Проверка</translation>
-    </message>
+    <name>Extensions::CodeFormatter</name>
     <message>
         <source>Formatter</source>
         <translation>Форматирование</translation>
@@ -749,20 +745,24 @@ Press any key to exit</source>
         <translation>Форматирование завершено</translation>
     </message>
     <message>
-        <source>The format process didn&apos;t finish in 2 seconds. This is probably because the clang-format binary is not found by CP Editor. You can set the path to clang-format at %1.</source>
-        <translation>Процесс форматировния не завершился за 2 секунды. Возможно исполняемый файл clang-format не найден CP Editor&apos;ом. Вы можете установить путь к clang-format в %1.</translation>
-    </message>
-    <message>
-        <source>The format command is: %1 %2</source>
-        <translation>Команды форматирования: %1 %2</translation>
-    </message>
-    <message>
         <source>Formatter[stdout]</source>
         <translation>Форматирование[stdout]</translation>
     </message>
     <message>
         <source>Formatter[stderr]</source>
         <translation>Форматирование[stderr]</translation>
+    </message>
+    <message>
+        <source>The format command [%1 %2] finished with exit code %3.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The format process didn&apos;t finish in 2 seconds. This is probably because the %1 program is not found by CP Editor. You can set the path to the program at %2.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The output of the format process is empty. Please ensure there is no in-place modification option in the formatting arguments.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1508,6 +1508,14 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
         <source>Font</source>
         <translation>Шрифт</translation>
     </message>
+    <message>
+        <source>YAPF</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Code Formatting</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SettingsInfo</name>
@@ -1544,11 +1552,7 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
         <translation>Путь до исполняемых файлов Clang Format</translation>
     </message>
     <message>
-        <source>Style</source>
-        <translation>Стиль</translation>
-    </message>
-    <message>
-        <source>The Clang Format style options, which are often saved in a .clang-format configuration file.
+        <source>The Clang Format style options, which are usually saved in a .clang-format configuration file.
 You can learn about it at &lt;https://clang.llvm.org/docs/ClangFormatStyleOptions.html&gt;.</source>
         <translation>Опции Clang Format style, который обычно сохраняются в файле .clang-format.
 Больше информации на &lt;https://clang.llvm.org/docs/ClangFormatStyleOptions.html&gt;.</translation>
@@ -2366,16 +2370,8 @@ It is a list of &lt;default path name&gt;s, separated by commas, and can be empt
         <translation>Может быть перезаписан %1.</translation>
     </message>
     <message>
-        <source>Use Clang Format to format the code when auto-saving it.</source>
-        <translation>Использовать Clang Format для форматирования кода при его автоматическом сохранении.</translation>
-    </message>
-    <message>
         <source>Format code on manual save</source>
         <translation>Форматировать код при ручном сохранении</translation>
-    </message>
-    <message>
-        <source>Use Clang Format to format the code when saving it manually.</source>
-        <translation>Использовать Clang Format для форматирования кода при его ручном сохранении.</translation>
     </message>
     <message>
         <source>Format code on auto-save</source>
@@ -2530,6 +2526,55 @@ The program will be killed if it doesn&apos;t terminate in the time limit.</sour
 A test case will be elided and read-only if it&apos;s too long.</source>
         <translation>Максимальное отображаемое число символов в тесткейсе.
 Если тесткейс будет слишком большой, он будет пропущен и доступен только для чтения.</translation>
+    </message>
+    <message>
+        <source>Clang Format Program</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Clang Format Arguments</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The arguments passed to clang-format. It should NOT contain &quot;-i&quot;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Clang Format Style</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>YAPF Program</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The program of YAPF. It could be `yapf` (which doesn&apos;t need arguments) or `python` (which needs `-m yapf` as the arguments).</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>YAPF Arguments</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The arguments passed to the YAPF program. It should NOT contain &quot;-i&quot;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>YAPF Style</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The YAPF style options, which are usually saved in a .style.yapf or setup.conf configuration file.
+You can learn about it by running `yapf --style-help`.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Format the code when saving it manually.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Format the code when auto-saving it.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
