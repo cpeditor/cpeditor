@@ -636,6 +636,10 @@ void AppWindow::on_actionBuildInfo_triggered()
                            .arg("Windows")
 #elif defined(Q_OS_MACOS)
                            .arg("macOS")
+#elif defined(Q_OS_FREEBSD)
+                           .arg("FreeBSD")
+#elif defined(Q_OS_UNIX)
+                           .arg("UNIX")
 #else
                            .arg("Unknown")
 #endif

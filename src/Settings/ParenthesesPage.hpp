@@ -67,10 +67,7 @@ class ParenthesisWidget : public QWidget
      *   - (stretch)
      */
 
-    QVBoxLayout *mainLayout = nullptr;
     QLabel *nameLabel = nullptr;
-    QHBoxLayout *stretchLayout = nullptr;
-    QVBoxLayout *checkBoxesLayout = nullptr;
     QCheckBox *autoCompleteCheckBox = nullptr;
     QCheckBox *autoRemoveCheckBox = nullptr;
     QCheckBox *tabJumpOutCheckBox = nullptr;
@@ -181,16 +178,10 @@ class ParenthesesPage : public PreferencesPage
 
     QSplitter *splitter = nullptr;
     QWidget *leftWidget = nullptr;
-    QVBoxLayout *leftLayout = nullptr;
     QListWidget *listWidget = nullptr;
-    QHBoxLayout *buttonsLayout = nullptr;
     QPushButton *addButton = nullptr;
     QPushButton *delButton = nullptr;
     QStackedWidget *stackedWidget = nullptr;
-    QWidget *noParenthesisWidget = nullptr;
-    QVBoxLayout *noParenthesisLayout = nullptr;
-    QHBoxLayout *noParenthesisStretchLayout = nullptr;
-    QLabel *noParenthesisLabel;
 
     QString lang;
 };

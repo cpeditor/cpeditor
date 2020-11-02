@@ -616,8 +616,16 @@ git 提交编号: %3
         <translation>测试点 #%2 的 %1 超过 %3 个字符，超出了输出长度限制，因此进程被结束。你可以在 %4 更改限制大小。</translation>
     </message>
     <message>
-        <source>Killed</source>
-        <translation>被终止</translation>
+        <source>The checker is killed</source>
+        <translation>评测器已被终止运行</translation>
+    </message>
+    <message>
+        <source>Started compiling the checker</source>
+        <translation>开始编译评测器</translation>
+    </message>
+    <message>
+        <source>The checker is compiled</source>
+        <translation>评测器编译完成</translation>
     </message>
 </context>
 <context>
@@ -662,6 +670,10 @@ Press any key to exit</source>
     <message>
         <source>Failed to start detached execution. Please check your terminal emulator settings in %1.</source>
         <translation>未能成功在终端中运行。请在 %1 中检查终端模拟器的设置。</translation>
+    </message>
+    <message>
+        <source>Detached execution is not supported on your platform</source>
+        <translation>你的平台上不支持在终端中运行</translation>
     </message>
 </context>
 <context>
@@ -1765,7 +1777,7 @@ You can use &quot;${filename}&quot; for the complete file name,
     </message>
     <message>
         <source>The name of the main class of your solution.</source>
-        <translation>你的代码中非 public 主类的名称。</translation>
+        <translation>你的代码中主类的名称。</translation>
     </message>
     <message>
         <source>Automatically delete the whole pair of parentheses when deleting

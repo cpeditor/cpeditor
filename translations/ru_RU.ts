@@ -616,8 +616,16 @@ Git commit hash: %3
         <translation>%1 из процессов при работе на тесткейсе #%2 содержит более чем %3 символов и превосходит лимит. Процесс убит. Вы можете изменить этот лимит в %4.</translation>
     </message>
     <message>
-        <source>Killed</source>
-        <translation>Убито</translation>
+        <source>The checker is killed</source>
+        <translation>Чекер убит</translation>
+    </message>
+    <message>
+        <source>Started compiling the checker</source>
+        <translation>Начата компиляция чекера</translation>
+    </message>
+    <message>
+        <source>The checker is compiled</source>
+        <translation>Чекер скомпилирован</translation>
     </message>
 </context>
 <context>
@@ -662,6 +670,10 @@ Press any key to exit</source>
     <message>
         <source>Failed to start detached execution. Please check your terminal emulator settings in %1.</source>
         <translation>Не удалось запустить отдельно. Пожалуйста, проверьте настройки вашего эмулятора терминала в %1.</translation>
+    </message>
+    <message>
+        <source>Detached execution is not supported on your platform</source>
+        <translation>Отдельный запуск не поддерживается на вашей системе</translation>
     </message>
 </context>
 <context>

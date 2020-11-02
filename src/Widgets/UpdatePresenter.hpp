@@ -38,11 +38,7 @@ class UpdatePresenter : public QDialog
 
   private:
     QLabel *hint = nullptr;
-    QVBoxLayout *mainLayout = nullptr;
-    QHBoxLayout *subLayout = nullptr;
     QTextEdit *textEdit = nullptr;
-    QPushButton *downloadButton = nullptr;
-    QPushButton *cancelButton = nullptr;
 
     QString downloadUrl;
 };
