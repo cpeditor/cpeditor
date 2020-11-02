@@ -18,8 +18,6 @@
 #ifndef FAKE_VIM_COMMAND
 #define FAKE_VIM_COMMAND
 
-#define STATUS_RESPONSE_TIMEOUT 3000
-
 #include <QObject>
 
 namespace FakeVim
@@ -63,7 +61,6 @@ class FakeVimCommand : public QObject
     /**
      * @brief Same as wantNewFile except that
      * @returns {true, filepath} representing the filepath to open
-     * @note empty filepath means user command provided a path non-existing or missing
      */
     QPair<bool, QString> wantOpenFile(FakeVim::Internal::ExCommand const &ex);
 
@@ -102,6 +99,8 @@ class FakeVimCommand : public QObject
     bool wantMessageLoggerClear(FakeVim::Internal::ExCommand const &ex);
 
     AppWindow *appwin;
+
+    void showError(QString const &message);
 };
 } // namespace Core
 
