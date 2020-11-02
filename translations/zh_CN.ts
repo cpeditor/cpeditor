@@ -860,11 +860,11 @@ Press any key to exit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>%1 is not a valid view mode. It should be one of &quot;split&quot;, &quot;edit&quot;</source>
+        <source>%1 is not a valid language name. It should be one of &quot;cpp&quot;, &quot;java&quot; or &quot;python&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>%1 is not a valid language name. It should be one of &quot;cpp&quot;, &quot;java&quot; or &quot;python&quot;</source>
+        <source>%1 is not a valid view mode. It should be one of &quot;split&quot; and &quot;edit&quot;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -30,7 +30,7 @@
 
 namespace Core
 {
-FakeVimCommand::FakeVimCommand(AppWindow *aw) : appwin(aw), QObject(aw)
+FakeVimCommand::FakeVimCommand(AppWindow *aw) : QObject(aw), appwin(aw)
 {
 }
 

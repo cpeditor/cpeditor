@@ -860,12 +860,12 @@ Press any key to exit</source>
         <translation>Ошибка: невозможно запустить тесткейс %1</translation>
     </message>
     <message>
-        <source>%1 is not a valid view mode. It should be one of &quot;split&quot;, &quot;edit&quot;</source>
-        <translation>%1 не ялвляется правильным типом отображения. Должно быть &quot;split&quot; или &quot;edit&quot;</translation>
-    </message>
-    <message>
         <source>%1 is not a valid language name. It should be one of &quot;cpp&quot;, &quot;java&quot; or &quot;python&quot;</source>
         <translation>%1 не является правильным навзванием языка программирования. Должно быть &quot;cpp&quot;, &quot;java&quot; или &quot;python&quot;</translation>
+    </message>
+    <message>
+        <source>%1 is not a valid view mode. It should be one of &quot;split&quot; and &quot;edit&quot;</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
