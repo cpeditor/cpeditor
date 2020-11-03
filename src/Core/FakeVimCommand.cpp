@@ -104,7 +104,7 @@ bool FakeVimCommand::handleCustomCommand(CommandTypes type, QString const &args,
         if (!lang.isEmpty())
             appwin->openTab("", lang);
         else
-            showError(tr("new requires an empty or one of \"cpp\", \"java\" and \"python\" argument, instead got %1")
+            showError(tr("new requires empty or one of 'cpp', 'java' and 'python' argument, got %1")
                           .arg(args));
         break;
     }
@@ -195,7 +195,7 @@ bool FakeVimCommand::handleCustomCommand(CommandTypes type, QString const &args,
         else if (args == "split")
             appwin->on_actionSplitMode_triggered();
         else
-            showError(tr("%1 is not a valid view mode. It should be one of \"split\" or \"edit\"").arg(args));
+            showError(tr("%1 is not a valid view mode. It should be one of 'split' or 'edit'").arg(args));
         break;
     }
     case CommandTypes::PREFERENCE: {
@@ -216,7 +216,7 @@ bool FakeVimCommand::handleCustomCommand(CommandTypes type, QString const &args,
             appwin->currentWindow()->setLanguage(lang);
         else if (appwin->currentWindow())
             showError(
-                tr("%1 is not a valid language name. It should be one of \"cpp\", \"java\" or \"python\"").arg(args));
+                tr("%1 is not a valid language name. It should be one of 'cpp', 'java' or 'python'").arg(args));
         break;
     }
     case CommandTypes::CLEAR: {

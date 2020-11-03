@@ -832,39 +832,35 @@ Press any key to exit</source>
 <context>
     <name>FakeVimCommand</name>
     <message>
-        <source>Error: %1 requires an empty or one of &quot;cpp&quot;, &quot;java&quot; and &quot;python&quot; argument</source>
-        <translation>Ошибка: %1 требуется один из  &quot;cpp&quot;, &quot;java&quot; или &quot;python&quot; аргументов или его отсутствие</translation>
-    </message>
-    <message>
-        <source>Error: %1 requires a file path</source>
-        <translation>Ошибка: %1 требуется путь к файлу</translation>
-    </message>
-    <message>
-        <source>Error: %1 does not exists</source>
-        <translation>Ошибка: %1 не существует</translation>
-    </message>
-    <message>
-        <source>Error: %1 is not a file</source>
-        <translation>Ошибка: %1 не файл</translation>
-    </message>
-    <message>
-        <source>Error: %1 is not a source file of C/C++, Java or Python</source>
-        <translation>Ошибка: %1 не файл исходного кода C/C++, Java или Python</translation>
-    </message>
-    <message>
         <source>%1 is not a number</source>
         <translation>%1 не является числом</translation>
     </message>
     <message>
-        <source>Error: cannot run testcase %1</source>
-        <translation>Ошибка: невозможно запустить тесткейс %1</translation>
+        <source>open requires a file path</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>%1 is not a valid language name. It should be one of &quot;cpp&quot;, &quot;java&quot; or &quot;python&quot;</source>
-        <translation>%1 не является правильным навзванием языка программирования. Должно быть &quot;cpp&quot;, &quot;java&quot; или &quot;python&quot;</translation>
+        <source>%1 is not c++, python or java source file</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>%1 is not a valid view mode. It should be one of &quot;split&quot; and &quot;edit&quot;</source>
+        <source>%1 does not exists. To open non-existing file use open! instead</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>cannot run testcase %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>new requires empty or one of &apos;cpp&apos;, &apos;java&apos; and &apos;python&apos; argument, got %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 is not a valid view mode. It should be one of &apos;split&apos; or &apos;edit&apos;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 is not a valid language name. It should be one of &apos;cpp&apos;, &apos;java&apos; or &apos;python&apos;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

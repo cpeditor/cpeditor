@@ -40,10 +40,10 @@ class FakeVimCommand : public QObject
   public:
     enum class CommandTypes
     {
-        NEW, 
-        OPEN, 
+        NEW,
+        OPEN,
         COMPILE,
-        COMPILE_RUN, 
+        COMPILE_RUN,
         RUN,
         DETACHED_RUN,
         KILL_PROCESS,
@@ -55,10 +55,10 @@ class FakeVimCommand : public QObject
         CLEAR,
         EXIT,
 
-		UNKNOWN
+        UNKNOWN
     };
-    
-	/**
+
+    /**
      * @brief Constructs a new handler which performs actions using/on the provided appwindow
      */
     explicit FakeVimCommand(AppWindow *window);
