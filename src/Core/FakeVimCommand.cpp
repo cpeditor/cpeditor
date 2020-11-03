@@ -104,8 +104,7 @@ bool FakeVimCommand::handleCustomCommand(CommandTypes type, QString const &args,
         if (!lang.isEmpty())
             appwin->openTab("", lang);
         else
-            showError(tr("new requires empty or one of 'cpp', 'java' and 'python' argument, got %1")
-                          .arg(args));
+            showError(tr("new requires empty or one of 'cpp', 'java' and 'python' argument, got %1").arg(args));
         break;
     }
 
@@ -215,8 +214,7 @@ bool FakeVimCommand::handleCustomCommand(CommandTypes type, QString const &args,
         if (!lang.isEmpty() && appwin->currentWindow())
             appwin->currentWindow()->setLanguage(lang);
         else if (appwin->currentWindow())
-            showError(
-                tr("%1 is not a valid language name. It should be one of 'cpp', 'java' or 'python'").arg(args));
+            showError(tr("%1 is not a valid language name. It should be one of 'cpp', 'java' or 'python'").arg(args));
         break;
     }
     case CommandTypes::CLEAR: {
