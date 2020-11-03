@@ -21,6 +21,8 @@
 #include "fakevimhandler.h"
 #include "generated/SettingsHelper.hpp"
 #include <QApplication>
+#include <QDebug>
+#include <QDir>
 #include <QFileInfo>
 #include <QStatusBar>
 
@@ -108,36 +110,35 @@ bool FakeVimCommand::handleCustomCommand(CommandTypes type, QString const &args,
     }
 
     case CommandTypes::OPEN: {
-        if (args.isEmpty())
+        QString path = args;
+        if (path.isEmpty())
         {
             showError(tr("open requires a file path"));
             break;
         }
 
-        QFileInfo file(args);
-        if (!file.isFile())
-        {
-            showError(tr("%1 is not a file").arg(args));
-            break;
-        }
+        if (path.startsWith('~'))
+            path = QDir::home().absolutePath() + "/" + args.mid(1);
+
+        QFileInfo file(path);
+        if (file.isRelative())
+            file.makeAbsolute();
 
         if (!Util::cppSuffix.contains(file.suffix()) && !Util::javaSuffix.contains(file.suffix()) &&
             !Util::javaSuffix.contains(file.suffix()))
         {
-            showError(tr("%1 is not a c++, python or java source file").arg(args));
+            showError(tr("%1 is not c++, python or java source file").arg(file.absoluteFilePath()));
             break;
         }
 
-        if (!file.exists())
+        if (!file.exists() && !hasbang)
         {
-            if (!hasbang)
-            {
-                showError(tr("%1 does not exists. To open non-existing file use open! instead").arg(args));
-                break;
-            }
+            showError(
+                tr("%1 does not exists. To open non-existing file use open! instead").arg(file.absoluteFilePath()));
+            break;
         }
 
-        appwin->openTab(args);
+        appwin->openTab(file.absoluteFilePath());
         break;
     }
     case CommandTypes::COMPILE: {

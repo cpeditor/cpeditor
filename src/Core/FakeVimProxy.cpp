@@ -144,7 +144,8 @@ void FakeVimProxy::setStatusBar()
 {
     m_mainWindow->statusBar()->addPermanentWidget(m_statusData);
     m_mainWindow->statusBar()->addWidget(m_statusMessage);
-    m_mainWindow->statusBar()->setFont(m_mainWindow->getEditor()->font());
+	// Fixme(Qt Bug): With custom font, showMessage() overlaps with the contents already in the status bar.
+	/* m_mainWindow->statusBar()->setFont(m_mainWindow->getEditor()->font()); */
 }
 
 void FakeVimProxy::handleExCommand(bool *handled, FakeVim::Internal::ExCommand const &cmd)
