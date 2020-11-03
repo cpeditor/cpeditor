@@ -43,6 +43,12 @@ FakeVimCommand::CommandTypes FakeVimCommand::customCommandType(FakeVim::Internal
     if (ex.cmd == "open" || ex.cmd == "opn")
         return CommandTypes::OPEN;
 
+    if (ex.cmd == "next" || ex.cmd == "nxt")
+        return CommandTypes::NEXT_TAB;
+
+    if (ex.cmd == "previous" || ex.cmd == "prv")
+        return CommandTypes::LAST_TAB;
+
     if (ex.cmd == "compile" || ex.cmd == "cmp")
         return CommandTypes::COMPILE;
 
@@ -104,8 +110,24 @@ bool FakeVimCommand::handleCustomCommand(CommandTypes type, QString const &args,
         if (!lang.isEmpty())
             appwin->openTab("", lang);
         else
-            showError(tr("new requires empty or one of 'cpp', 'java' and 'python' argument, got %1")
-                          .arg(args));
+            showError(tr("new requires empty or one of 'cpp', 'java' and 'python' argument, got %1").arg(args));
+        break;
+    }
+
+    case CommandTypes::NEXT_TAB: {
+        auto total = appwin->totalTabs();
+        auto curr = appwin->indexOfWindow(appwin->currentWindow());
+        int next = (curr + 1) % total;
+        if (next != curr)
+            appwin->setTabAt(next);
+        break;
+    }
+    case CommandTypes::LAST_TAB: {
+        auto total = appwin->totalTabs();
+        auto curr = appwin->indexOfWindow(appwin->currentWindow());
+        int last = curr ? curr - 1 : total - 1;
+        if (last != curr)
+            appwin->setTabAt(last);
         break;
     }
 
@@ -215,8 +237,7 @@ bool FakeVimCommand::handleCustomCommand(CommandTypes type, QString const &args,
         if (!lang.isEmpty() && appwin->currentWindow())
             appwin->currentWindow()->setLanguage(lang);
         else if (appwin->currentWindow())
-            showError(
-                tr("%1 is not a valid language name. It should be one of 'cpp', 'java' or 'python'").arg(args));
+            showError(tr("%1 is not a valid language name. It should be one of 'cpp', 'java' or 'python'").arg(args));
         break;
     }
     case CommandTypes::CLEAR: {

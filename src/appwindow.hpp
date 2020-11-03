@@ -250,9 +250,12 @@ class AppWindow : public QMainWindow
     bool quit();
     int getNewUntitledIndex();
     void reAttachLanguageServer(MainWindow *window);
-
+	
+	void setTabAt(int index);
     MainWindow *currentWindow();
     MainWindow *windowAt(int index);
+	int indexOfWindow(MainWindow* window);
+	int totalTabs() const;
 
     friend class Core::SessionManager;
     friend class Core::FakeVimCommand;

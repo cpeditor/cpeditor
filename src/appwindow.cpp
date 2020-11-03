@@ -899,6 +899,8 @@ void AppWindow::onTabChanged(int index)
         connect(tmp->getSplitter(), SIGNAL(splitterMoved(int, int)), this, SLOT(onSplitterMoved(int, int)));
     activeRightSplitterMoveConnection =
         connect(tmp->getRightSplitter(), SIGNAL(splitterMoved(int, int)), this, SLOT(onRightSplitterMoved(int, int)));
+
+	tmp->getEditor()->setFocus();
 }
 
 void AppWindow::onEditorFileChanged()
@@ -1461,6 +1463,11 @@ void AppWindow::onTabContextMenuRequested(const QPoint &pos)
     }
 }
 
+void AppWindow::setTabAt(int index)
+{
+    ui->tabWidget->setCurrentIndex(index);
+}
+
 MainWindow *AppWindow::currentWindow()
 {
     int current = ui->tabWidget->currentIndex();
@@ -1512,6 +1519,18 @@ MainWindow *AppWindow::windowAt(int index)
         return nullptr;
     }
     return qobject_cast<MainWindow *>(ui->tabWidget->widget(index));
+}
+
+int AppWindow::indexOfWindow(MainWindow *window)
+{
+    if (!window)
+        return -1;
+    return ui->tabWidget->indexOf(window);
+}
+
+int AppWindow::totalTabs() const
+{
+    return ui->tabWidget->count();
 }
 
 void AppWindow::on_actionShowLogs_triggered()
