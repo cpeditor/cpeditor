@@ -53,6 +53,7 @@ class FakeVimProxy : public QObject
 
   public:
     FakeVimProxy(QWidget *widget, MainWindow *mw, AppWindow *aw, QObject *parent);
+    ~FakeVimProxy();
     static void initHandler(FakeVim::Internal::FakeVimHandler *handler);
     static void clearUndoRedo(QWidget *);
     static void connectSignals(FakeVim::Internal::FakeVimHandler *handler, QWidget *editor, MainWindow *mainwindow,
@@ -90,7 +91,7 @@ class FakeVimProxy : public QObject
     QWidget *m_widget;
     MainWindow *m_mainWindow;
     AppWindow *m_appWindow;
-    FakeVimCommand m_commandHandler;
+    FakeVimCommand *m_commandHandler;
     QLabel *m_statusMessage = nullptr;
     QLabel *m_statusData = nullptr;
 

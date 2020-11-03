@@ -39,6 +39,7 @@
 #include "generated/SettingsHelper.hpp"
 #include "mainwindow.hpp"
 #include <QApplication>
+#include <QCodeEditor>
 #include <QDebug>
 #include <QLabel>
 #include <QMainWindow>
@@ -56,11 +57,16 @@ namespace Core
 
 using _ = QLatin1String;
 FakeVimProxy::FakeVimProxy(QWidget *widget, MainWindow *mw, AppWindow *aw, QObject *parent)
-    : QObject(parent), m_widget(widget), m_mainWindow(mw), m_commandHandler(aw)
+    : QObject(parent), m_widget(widget), m_mainWindow(mw), m_commandHandler(new FakeVimCommand(aw))
 {
     m_statusData = new QLabel(m_mainWindow);
     m_statusMessage = new QLabel(m_mainWindow);
     setStatusBar();
+}
+
+FakeVimProxy::~FakeVimProxy()
+{
+    delete m_commandHandler;
 }
 
 void FakeVimProxy::changeStatusData(QString const &info)
@@ -138,14 +144,15 @@ void FakeVimProxy::setStatusBar()
 {
     m_mainWindow->statusBar()->addPermanentWidget(m_statusData);
     m_mainWindow->statusBar()->addWidget(m_statusMessage);
+    m_mainWindow->statusBar()->setFont(m_mainWindow->getEditor()->font());
 }
 
 void FakeVimProxy::handleExCommand(bool *handled, FakeVim::Internal::ExCommand const &cmd)
 {
-    bool res = m_commandHandler.handle(cmd);
-    if (res)
+    auto customCommandType = m_commandHandler->customCommandType(cmd);
+    if (customCommandType != FakeVimCommand::CommandTypes::UNKNOWN)
     {
-        *handled = res;
+        *handled = m_commandHandler->handleCustomCommand(customCommandType, cmd.args, cmd.hasBang);
         return;
     }
     else if (wantSaveAndQuit(cmd))
