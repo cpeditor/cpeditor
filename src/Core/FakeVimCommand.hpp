@@ -41,8 +41,8 @@ class FakeVimCommand : public QObject
     enum class CommandTypes
     {
         NEW,
-		NEXT_TAB,
-		LAST_TAB,
+        NEXT_TAB,
+        LAST_TAB,
         OPEN,
         COMPILE,
         COMPILE_RUN,

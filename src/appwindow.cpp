@@ -900,7 +900,7 @@ void AppWindow::onTabChanged(int index)
     activeRightSplitterMoveConnection =
         connect(tmp->getRightSplitter(), SIGNAL(splitterMoved(int, int)), this, SLOT(onRightSplitterMoved(int, int)));
 
-	tmp->getEditor()->setFocus();
+    tmp->getEditor()->setFocus();
 }
 
 void AppWindow::onEditorFileChanged()
