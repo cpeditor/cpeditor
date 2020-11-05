@@ -15,14 +15,12 @@
  *
  */
 #include "Core/FakeVimCommand.hpp"
-#include "Settings/DefaultPathManager.hpp"
 #include "Util/FileUtil.hpp"
 #include "Widgets/TestCases.hpp"
 #include "appwindow.hpp"
 #include "fakevimhandler.h"
 #include "generated/SettingsHelper.hpp"
 #include <QApplication>
-#include <QDebug>
 #include <QDir>
 #include <QFileInfo>
 #include <QStatusBar>

@@ -40,7 +40,6 @@
 #include "mainwindow.hpp"
 #include <QApplication>
 #include <QCodeEditor>
-#include <QDebug>
 #include <QLabel>
 #include <QMainWindow>
 #include <QMessageBox>
@@ -48,9 +47,6 @@
 #include <QStatusBar>
 #include <QTemporaryFile>
 #include <QTextBlock>
-#include <QTextEdit>
-#include <QTextStream>
-#include <QWidget>
 
 namespace Core
 {
