@@ -140,7 +140,7 @@ bool FakeVimCommand::handleCustomCommand(CommandTypes type, QString const &args,
         }
 
         if (path.startsWith('~'))
-            path = QDir::home().absolutePath() + "/" + args.mid(1);
+            path = QDir::home().filePath(args.mid(1));
 
         QFileInfo file(path);
         if (file.isRelative())
@@ -156,7 +156,7 @@ bool FakeVimCommand::handleCustomCommand(CommandTypes type, QString const &args,
         if (!file.exists() && !hasbang)
         {
             showError(
-                tr("%1 does not exists. To open non-existing file use open! instead").arg(file.absoluteFilePath()));
+                tr("[%1] does not exists. To open a tab with a non-existing file, use [open!] instead").arg(path));
             break;
         }
 
