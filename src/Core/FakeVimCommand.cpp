@@ -137,9 +137,7 @@ bool FakeVimCommand::handleCustomCommand(CommandTypes type, QString const &args,
 
         if (path.isEmpty())
         {
-            auto fileNames = DefaultPathManager::getOpenFileNames(
-                "Open File", appwin->currentWindow(), tr("Open Files"), Util::fileNameFilter(true, true, true));
-            appwin->openTabs(fileNames);
+			appwin->on_actionOpen_triggered();
             break;
         }
 
