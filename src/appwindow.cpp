@@ -226,7 +226,7 @@ void AppWindow::dropEvent(QDropEvent *event)
 /******************** PRIVATE METHODS ********************/
 void AppWindow::setConnections()
 {
-    connect(ui->tabWidget, SIGNAL(tabCloseRequested(int)), this, SLOT(onTabCloseRequested(int)));
+    connect(ui->tabWidget, SIGNAL(tabCloseRequested(int)), this, SLOT(closeTab(int)));
     connect(ui->tabWidget, SIGNAL(currentChanged(int)), this, SLOT(onTabChanged(int)));
     ui->tabWidget->tabBar()->setContextMenuPolicy(Qt::CustomContextMenu);
     connect(ui->tabWidget->tabBar(), SIGNAL(customContextMenuRequested(const QPoint &)), this,
@@ -351,10 +351,15 @@ void AppWindow::maybeSetHotkeys()
     }
 }
 
-bool AppWindow::closeTab(int index, bool noConfirmQuit = false)
+bool AppWindow::closeTab(int index, bool noConfirmQuit)
 {
     LOG_INFO(INFO_OF(index));
     auto tmp = windowAt(index);
+    if (tmp == nullptr)
+    {
+        LOG_WARN("tmp is nullptr");
+        return false;
+    }
     if (noConfirmQuit || tmp->closeConfirm())
     {
         ui->tabWidget->removeTab(index);
@@ -363,6 +368,11 @@ bool AppWindow::closeTab(int index, bool noConfirmQuit = false)
         return true;
     }
     return false;
+}
+
+bool AppWindow::closeWindow(MainWindow *window, bool noConfirmQuit)
+{
+    return closeTab(indexOfWindow(window), noConfirmQuit);
 }
 
 void AppWindow::saveSettings()
@@ -376,7 +386,6 @@ void AppWindow::saveSettings()
 void AppWindow::openTab(MainWindow *window)
 {
     connect(window, SIGNAL(confirmTriggered(MainWindow *)), this, SLOT(onConfirmTriggered(MainWindow *)));
-    connect(window, SIGNAL(requestWindowClose(MainWindow *)), this, SLOT(onWindowCloseRequested(MainWindow *)));
     connect(window, SIGNAL(editorFileChanged()), this, SLOT(onEditorFileChanged()));
     connect(window, SIGNAL(requestUpdateLanguageServerFilePath(MainWindow *, const QString &)), this,
             SLOT(updateLanguageServerFilePath(MainWindow *, const QString &)));
@@ -845,11 +854,6 @@ bool AppWindow::forceClose()
 {
     SettingsHelper::setForceClose(true);
     return close();
-}
-
-void AppWindow::onTabCloseRequested(int index)
-{
-    closeTab(index);
 }
 
 void AppWindow::onTabChanged(int index)
@@ -1348,13 +1352,6 @@ void AppWindow::onConfirmTriggered(MainWindow *widget)
         ui->tabWidget->setCurrentIndex(index);
 }
 
-void AppWindow::onWindowCloseRequested(MainWindow *window)
-{
-    int index = ui->tabWidget->indexOf(window);
-    if (index != -1)
-        closeTab(index, true);
-}
-
 void AppWindow::onTabContextMenuRequested(const QPoint &pos)
 {
     int index = ui->tabWidget->tabBar()->tabAt(pos);
@@ -1523,8 +1520,6 @@ MainWindow *AppWindow::windowAt(int index)
 
 int AppWindow::indexOfWindow(MainWindow *window)
 {
-    if (!window)
-        return -1;
     return ui->tabWidget->indexOf(window);
 }
 

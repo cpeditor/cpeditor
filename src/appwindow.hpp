@@ -76,6 +76,10 @@ class AppWindow : public QMainWindow
 
     void showOnTop();
 
+    bool closeTab(int index, bool noConfirmQuit = false);
+
+    bool closeWindow(MainWindow *window, bool noConfirmQuit = false);
+
   private slots:
     // UI Slots
     void on_actionSupportMe_triggered();
@@ -176,8 +180,6 @@ class AppWindow : public QMainWindow
 
     void onConfirmTriggered(MainWindow *widget);
 
-    void onWindowCloseRequested(MainWindow *window);
-
     void onTabContextMenuRequested(const QPoint &pos);
 
     void onEditorTextChanged(MainWindow *window);
@@ -185,8 +187,6 @@ class AppWindow : public QMainWindow
     void updateLanguageServerFilePath(MainWindow *window, const QString &path);
 
     void onEditorLanguageChanged(MainWindow *window);
-
-    void onTabCloseRequested(int);
 
     void onTabChanged(int);
 
@@ -239,7 +239,6 @@ class AppWindow : public QMainWindow
     void saveSettings();
     QVector<QShortcut *> hotkeyObjects;
     void maybeSetHotkeys();
-    bool closeTab(int index, bool noConfirmQuit);
     void openTab(MainWindow *window);
     void openTab(const QString &path, const QString &lang = ""); // if lang is empty, detect lang from file suffix.
     void openTab(const MainWindow::EditorStatus &status, bool duplicate = false);

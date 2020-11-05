@@ -53,7 +53,7 @@ namespace Core
 
 using _ = QLatin1String;
 FakeVimProxy::FakeVimProxy(QWidget *widget, MainWindow *mw, AppWindow *aw, QObject *parent)
-    : QObject(parent), m_widget(widget), m_mainWindow(mw), m_commandHandler(new FakeVimCommand(aw))
+    : QObject(parent), m_widget(widget), m_mainWindow(mw), m_appWindow(aw), m_commandHandler(new FakeVimCommand(aw))
 {
     m_statusData = new QLabel(m_mainWindow);
     m_statusMessage = new QLabel(m_mainWindow);
@@ -395,17 +395,12 @@ bool FakeVimProxy::save()
 
 void FakeVimProxy::cancel()
 {
-    if (hasChanges())
-    {
-        if (m_mainWindow->closeConfirm())
-            m_mainWindow->closeWindow();
-    }
-    else
-        invalidate();
+    m_appWindow->closeWindow(m_mainWindow);
 }
+
 void FakeVimProxy::invalidate()
 {
-    m_mainWindow->closeWindow();
+    m_appWindow->closeWindow(m_mainWindow, true);
 }
 
 bool FakeVimProxy::hasChanges()
