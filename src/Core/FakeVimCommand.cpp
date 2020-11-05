@@ -137,7 +137,7 @@ bool FakeVimCommand::handleCustomCommand(CommandTypes type, QString const &args,
 
         if (path.isEmpty())
         {
-			appwin->on_actionOpen_triggered();
+            appwin->on_actionOpen_triggered();
             break;
         }
 
