@@ -390,11 +390,7 @@ bool FakeVimProxy::wantQuit(const FakeVim::Internal::ExCommand &cmd)
 
 bool FakeVimProxy::save()
 {
-    if (!hasChanges())
-        return true;
     return m_mainWindow->save(true, "Vim Save");
-
-    return false;
 }
 
 void FakeVimProxy::cancel()
