@@ -836,15 +836,7 @@ Press any key to exit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>open requires a file path</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>%1 is not c++, python or java source file</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>%1 does not exists. To open non-existing file use open! instead</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -861,6 +853,14 @@ Press any key to exit</source>
     </message>
     <message>
         <source>%1 is not a valid language name. It should be one of &apos;cpp&apos;, &apos;java&apos; or &apos;python&apos;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open Files</source>
+        <translation type="unfinished">打开文件</translation>
+    </message>
+    <message>
+        <source>[%1] does not exists. To open a tab with a non-existing file, use [open!] instead</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -40,24 +40,24 @@ class FakeVimCommand : public QObject
   public:
     enum class CommandTypes
     {
-        NEW,
-        NEXT_TAB,
-        LAST_TAB,
-        OPEN,
-        COMPILE,
-        COMPILE_RUN,
-        RUN,
-        DETACHED_RUN,
-        KILL_PROCESS,
-        FORMAT_CODE,
-        SNIPPETS,
-        VMODE,
-        PREFERENCE,
-        CHLANG,
-        CLEAR,
-        EXIT,
+        New,
+        NextTab,
+        LastTab,
+        Open,
+        Compile,
+        CompileRun,
+        Run,
+        DetachedRun,
+        KillProcess,
+        FormatCode,
+        Snippets,
+        Vmode,
+        Preference,
+        Chlang,
+        Clear,
+        Exit,
 
-        UNKNOWN
+        Unknown
     };
 
     /**

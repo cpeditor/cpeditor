@@ -151,7 +151,7 @@ void FakeVimProxy::setStatusBar()
 void FakeVimProxy::handleExCommand(bool *handled, FakeVim::Internal::ExCommand const &cmd)
 {
     auto customCommandType = m_commandHandler->customCommandType(cmd);
-    if (customCommandType != FakeVimCommand::CommandTypes::UNKNOWN)
+    if (customCommandType != FakeVimCommand::CommandTypes::Unknown)
     {
         *handled = m_commandHandler->handleCustomCommand(customCommandType, cmd.args, cmd.hasBang);
         return;

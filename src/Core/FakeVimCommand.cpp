@@ -15,6 +15,7 @@
  *
  */
 #include "Core/FakeVimCommand.hpp"
+#include "Settings/DefaultPathManager.hpp"
 #include "Util/FileUtil.hpp"
 #include "Widgets/TestCases.hpp"
 #include "appwindow.hpp"
@@ -38,64 +39,64 @@ FakeVimCommand::FakeVimCommand(AppWindow *aw) : QObject(aw), appwin(aw)
 FakeVimCommand::CommandTypes FakeVimCommand::customCommandType(FakeVim::Internal::ExCommand const &ex)
 {
     if (ex.cmd == "new")
-        return CommandTypes::NEW;
+        return CommandTypes::New;
 
     if (ex.cmd == "open" || ex.cmd == "opn")
-        return CommandTypes::OPEN;
+        return CommandTypes::Open;
 
     if (ex.cmd == "next" || ex.cmd == "nxt")
-        return CommandTypes::NEXT_TAB;
+        return CommandTypes::NextTab;
 
     if (ex.cmd == "previous" || ex.cmd == "prv")
-        return CommandTypes::LAST_TAB;
+        return CommandTypes::LastTab;
 
     if (ex.cmd == "compile" || ex.cmd == "cmp")
-        return CommandTypes::COMPILE;
+        return CommandTypes::Compile;
 
     if (ex.cmd == "crun" || ex.cmd == "crn")
-        return CommandTypes::COMPILE_RUN;
+        return CommandTypes::CompileRun;
 
     if (ex.cmd == "run")
-        return CommandTypes::RUN;
+        return CommandTypes::Run;
 
     if (ex.cmd == "drun" || ex.cmd == "drn")
-        return CommandTypes::DETACHED_RUN;
+        return CommandTypes::DetachedRun;
 
     if (ex.cmd == "killall" || ex.cmd == "kap")
-        return CommandTypes::KILL_PROCESS;
+        return CommandTypes::KillProcess;
 
     if (ex.cmd == "format" || ex.cmd == "fmt")
-        return CommandTypes::FORMAT_CODE;
+        return CommandTypes::FormatCode;
 
     if (ex.cmd == "snippet" || ex.cmd == "snp")
-        return CommandTypes::SNIPPETS;
+        return CommandTypes::Snippets;
 
     if (ex.cmd == "vmode" || ex.cmd == "vmd")
-        return CommandTypes::VMODE;
+        return CommandTypes::Vmode;
 
     if (ex.cmd == "preference" || ex.cmd == "prf")
-        return CommandTypes::PREFERENCE;
+        return CommandTypes::Preference;
 
-    if (ex.cmd == "lang" || ex.cmd == "lng")
-        return CommandTypes::CHLANG;
+    if (ex.cmd == "chlang" || ex.cmd == "chl")
+        return CommandTypes::Chlang;
 
     if (ex.cmd == "clear" || ex.cmd == "clr")
-        return CommandTypes::CLEAR;
+        return CommandTypes::Clear;
 
     if (ex.cmd == "exit" || ex.cmd == "ext")
-        return CommandTypes::EXIT;
+        return CommandTypes::Exit;
 
-    return CommandTypes::UNKNOWN;
+    return CommandTypes::Unknown;
 }
 
 bool FakeVimCommand::handleCustomCommand(CommandTypes type, QString const &args, bool hasbang)
 {
-    if (type == CommandTypes::UNKNOWN)
+    if (type == CommandTypes::Unknown)
         return false;
 
     switch (type)
     {
-    case CommandTypes::NEW: {
+    case CommandTypes::New: {
         QString lang;
 
         if (args == "c++" || args == "cpp")
@@ -114,7 +115,7 @@ bool FakeVimCommand::handleCustomCommand(CommandTypes type, QString const &args,
         break;
     }
 
-    case CommandTypes::NEXT_TAB: {
+    case CommandTypes::NextTab: {
         auto total = appwin->totalTabs();
         auto curr = appwin->indexOfWindow(appwin->currentWindow());
         int next = (curr + 1) % total;
@@ -122,7 +123,7 @@ bool FakeVimCommand::handleCustomCommand(CommandTypes type, QString const &args,
             appwin->setTabAt(next);
         break;
     }
-    case CommandTypes::LAST_TAB: {
+    case CommandTypes::LastTab: {
         auto total = appwin->totalTabs();
         auto curr = appwin->indexOfWindow(appwin->currentWindow());
         int last = curr ? curr - 1 : total - 1;
@@ -131,11 +132,14 @@ bool FakeVimCommand::handleCustomCommand(CommandTypes type, QString const &args,
         break;
     }
 
-    case CommandTypes::OPEN: {
+    case CommandTypes::Open: {
         QString path = args;
+
         if (path.isEmpty())
         {
-            showError(tr("open requires a file path"));
+            auto fileNames = DefaultPathManager::getOpenFileNames(
+                "Open File", appwin->currentWindow(), tr("Open Files"), Util::fileNameFilter(true, true, true));
+            appwin->openTabs(fileNames);
             break;
         }
 
@@ -143,8 +147,6 @@ bool FakeVimCommand::handleCustomCommand(CommandTypes type, QString const &args,
             path = QDir::home().filePath(args.mid(1));
 
         QFileInfo file(path);
-        if (file.isRelative())
-            file.makeAbsolute();
 
         if (!Util::cppSuffix.contains(file.suffix()) && !Util::javaSuffix.contains(file.suffix()) &&
             !Util::javaSuffix.contains(file.suffix()))
@@ -163,55 +165,54 @@ bool FakeVimCommand::handleCustomCommand(CommandTypes type, QString const &args,
         appwin->openTab(file.absoluteFilePath());
         break;
     }
-    case CommandTypes::COMPILE: {
+    case CommandTypes::Compile: {
         appwin->on_actionCompile_triggered();
         break;
     }
-    case CommandTypes::COMPILE_RUN: {
+    case CommandTypes::CompileRun: {
         appwin->on_actionCompileRun_triggered();
         break;
     }
-    case CommandTypes::RUN: {
-        int ans = -1;
+    case CommandTypes::Run: {
+
         if (args.isEmpty())
-            ans = 0;
-        bool ok = false;
-        int caseNum = args.toInt(&ok);
-        if (ok)
-            ans = caseNum;
-        else if (!args.isEmpty())
+            appwin->on_actionRun_triggered();
+        else // args is not empty
         {
-            showError(tr("%1 is not a number").arg(caseNum));
-            break;
+            bool ok = false;
+            int caseNum = args.toInt(&ok);
+
+            if (!ok)
+                showError(tr("%1 is not a number").arg(args));
+            else // args is a number
+            {
+                if (caseNum > 0 && appwin->currentWindow() && appwin->currentWindow()->testcases &&
+                    appwin->currentWindow()->testcases->count() >= caseNum) // args is valid
+                    appwin->currentWindow()->runTestCase(caseNum - 1);
+                else
+                    showError(tr("cannot run testcase %1").arg(args));
+            }
         }
 
-        // Parsed index correctly
-        if (ans == 0)
-            appwin->on_actionRun_triggered();
-        else if (ans > 0 && appwin->currentWindow() && appwin->currentWindow()->testcases &&
-                 appwin->currentWindow()->testcases->count() >= ans)
-            appwin->currentWindow()->runTestCase(ans - 1);
-        else
-            showError(tr("cannot run testcase %1").arg(args));
         break;
     }
-    case CommandTypes::DETACHED_RUN: {
+    case CommandTypes::DetachedRun: {
         appwin->on_actionRunDetached_triggered();
     }
     break;
-    case CommandTypes::KILL_PROCESS: {
+    case CommandTypes::KillProcess: {
         appwin->on_actionKillProcesses_triggered();
         break;
     }
-    case CommandTypes::FORMAT_CODE: {
+    case CommandTypes::FormatCode: {
         appwin->on_actionFormatCode_triggered();
         break;
     }
-    case CommandTypes::SNIPPETS: {
+    case CommandTypes::Snippets: {
         appwin->on_actionUseSnippets_triggered();
         break;
     }
-    case CommandTypes::VMODE: {
+    case CommandTypes::Vmode: {
         if (args == "edit")
             appwin->on_actionEditorMode_triggered();
         else if (args == "split")
@@ -220,11 +221,11 @@ bool FakeVimCommand::handleCustomCommand(CommandTypes type, QString const &args,
             showError(tr("%1 is not a valid view mode. It should be one of 'split' or 'edit'").arg(args));
         break;
     }
-    case CommandTypes::PREFERENCE: {
+    case CommandTypes::Preference: {
         appwin->on_actionSettings_triggered();
         break;
     }
-    case CommandTypes::CHLANG: {
+    case CommandTypes::Chlang: {
         QString lang;
 
         if (args == "cpp" || args == "c++")
@@ -240,15 +241,15 @@ bool FakeVimCommand::handleCustomCommand(CommandTypes type, QString const &args,
             showError(tr("%1 is not a valid language name. It should be one of 'cpp', 'java' or 'python'").arg(args));
         break;
     }
-    case CommandTypes::CLEAR: {
+    case CommandTypes::Clear: {
         appwin->currentWindow()->on_clearMessagesButton_clicked();
         break;
     }
-    case CommandTypes::EXIT: {
+    case CommandTypes::Exit: {
         appwin->on_actionQuit_triggered();
         break;
     }
-    case CommandTypes::UNKNOWN: {
+    case CommandTypes::Unknown: {
         Q_UNREACHABLE();
     }
     };
