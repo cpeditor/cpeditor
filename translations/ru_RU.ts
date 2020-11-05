@@ -856,10 +856,6 @@ Press any key to exit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Open Files</source>
-        <translation type="unfinished">Открыть файлы</translation>
-    </message>
-    <message>
         <source>[%1] does not exists. To open a tab with a non-existing file, use [open!] instead</source>
         <translation type="unfinished"></translation>
     </message>
