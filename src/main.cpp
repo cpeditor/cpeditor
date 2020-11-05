@@ -37,6 +37,10 @@
 #include <iostream>
 #include <singleapplication.h>
 
+#ifdef Q_OS_WIN
+#include <windows.h>
+#endif
+
 #define TOJSON(x) json[#x] = x
 
 int main(int argc, char *argv[])
@@ -46,6 +50,10 @@ int main(int argc, char *argv[])
     SingleApplication::setApplicationVersion(DISPLAY_VERSION);
     QApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
     QApplication::setWindowIcon(QIcon(":/icon.png"));
+
+#ifdef Q_OS_WIN
+    AllowSetForegroundWindow(ASFW_ANY); // #657
+#endif
 
     SignalHandler handler;
     QObject::connect(&handler, &SignalHandler::signalReceived, qApp, [](int signal) {
