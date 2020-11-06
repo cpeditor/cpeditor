@@ -116,8 +116,8 @@ void TestCaseEdit::modifyText(const QString &text, bool keepHistory)
                                                      : SettingsHelper::pathOfDisplayTestCaseLengthLimit();
 
         log->warn(QString("%1[%2]").arg(name).arg(id + 1),
-                  QString("Only the first %1 characters are shown. Now the test case editor is read-only. You can set "
-                          "the length limit at %2.")
+                  tr("Only the first %1 characters are shown. Now the test case editor is read-only. You can set "
+                     "the length limit at %2.")
                       .arg(limit)
                       .arg(setLimitPlace),
                   false);

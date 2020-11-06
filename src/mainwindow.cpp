@@ -276,7 +276,7 @@ void MainWindow::setCFToolUI()
         submitToCodeforces->setEnabled(false);
         log->error(tr("CF Tool"),
                    tr("You need to install CF Tool to submit your code to Codeforces. If already installed, you can "
-                      "put it in the PATH environment variable or check your settings at %1.")
+                      "add it in the PATH environment variable or check your settings at %1.")
                        .arg(SettingsHelper::pathOfCFPath()),
                    false);
     }

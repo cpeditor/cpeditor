@@ -165,7 +165,7 @@ void Compiler::onProcessErrorOccurred(QProcess::ProcessError error)
     if (error == QProcess::FailedToStart)
     {
         emit compilationErrorOccurred(
-            tr("Failed to start compilation. Please check %1 or put your compiler in the PATH environment variable.")
+            tr("Failed to start compilation. Please check %1 or add the compiler in the PATH environment variable.")
                 .arg(SettingsManager::getPathText(lang + "/Compile Command")));
     }
 }
