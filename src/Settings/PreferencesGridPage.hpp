@@ -41,11 +41,9 @@ class PreferencesGridPage : public PreferencesPage
      * @param widget the widget to add
      * @param key the key of the setting
      * @param tip the tool tip of this item
-     * @param help the help (what's this) of this item
      * @param labelText (optional) the label of the row
      */
-    void addRow(ValueWidget *widget, const QString &key, const QString &tip, const QString &help,
-                const QString &labelText = QString());
+    void addRow(ValueWidget *widget, const QString &key, const QString &tip, const QString &labelText = QString());
 
   private:
     QGridLayout *gridLayout = nullptr;

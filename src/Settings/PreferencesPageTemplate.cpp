@@ -70,7 +70,7 @@ PreferencesPageTemplate::PreferencesPageTemplate(QStringList opts, bool alignTop
         }
 
         Q_ASSERT(widget != nullptr);
-        addRow(widget, name, si.tip, si.help, si.desc);
+        addRow(widget, name, si.tip, si.desc);
         widgets.push_back(widget);
 
         if (si.immediatelyApply)
@@ -112,11 +112,15 @@ QStringList PreferencesPageTemplate::content()
     {
         auto si = SettingsInfo::findSetting(opt);
         if (!si.desc.isEmpty())
+        {
             ret += si.desc;
+            ret += si.untrDesc;
+        }
         if (!si.tip.isEmpty())
+        {
             ret += si.tip;
-        if (!si.help.isEmpty())
-            ret += si.help;
+            ret += si.untrTip;
+        }
     }
     return ret;
 }
@@ -125,7 +129,7 @@ void PreferencesPageTemplate::setPath(const QString &path)
 {
     PreferencesPage::setPath(path);
     for (const QString &name : options)
-        SettingsManager::setPath(name, path + "/" + SettingsInfo::findSetting(name).desc);
+        SettingsManager::setPath(name, path + "/" + SettingsInfo::findSetting(name).untrDesc);
 }
 
 bool PreferencesPageTemplate::areSettingsChanged()
