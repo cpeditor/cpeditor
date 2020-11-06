@@ -456,18 +456,6 @@
         ]
     },
     {
-        "name": "Cursor Overwrite",
-        "desc": "Default cursor overwrites",
-        "type": "bool",
-        "tip": "Default cursor is the cursor you see on opening new tabs.\nIf enabled, default cursor will overwrite next character.\nThis behaviour can be toggled for each tab by pressing INS/Insert on your keyboard.",
-        "depends": [
-            {
-                "name": "FakeVim/Enable",
-                "check": "return !var.toBool();"
-            }
-        ]
-    },
-    {
         "name": "Save Tests",
         "desc": "Save Testcases on Save",
         "type": "bool",

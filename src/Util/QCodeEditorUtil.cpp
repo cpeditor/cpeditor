@@ -121,19 +121,6 @@ void applySettingsToEditor(QCodeEditor *editor, const QString &language)
     QFontMetrics metric(editor->font());
     editor->setTabReplaceSize(tabStop);
 
-    if (SettingsHelper::isCursorOverwrite())
-    {
-        editor->setOverwriteMode(true);
-        QFontMetrics fm(editor->font());
-        const int position = editor->textCursor().position();
-        const QChar c = editor->document()->characterAt(position);
-        editor->setCursorWidth(fm.horizontalAdvance(c));
-    }
-    else
-    {
-        editor->setOverwriteMode(false);
-        editor->setCursorWidth(1);
-    }
 }
 
 } // namespace Util

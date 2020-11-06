@@ -30,7 +30,7 @@ class ExCommand;
 
 class QString;
 class AppWindow;
-template <class A, class B> class QPair;
+template <class A, class B> struct QPair;
 
 namespace Core
 {

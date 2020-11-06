@@ -103,10 +103,11 @@ MainWindow::~MainWindow()
     delete fileWatcher;
     delete editor;
 
-    if (fakevimHandler != nullptr)
+    if (fakevimHandler)
     {
         fakevimHandler->disconnectFromEditor();
-        delete fakevimHandler;
+        fakevimHandler->deleteLater();
+        fakevimHandler = nullptr;
     }
 
     delete log;
