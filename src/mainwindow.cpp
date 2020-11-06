@@ -53,14 +53,25 @@ static const int MAX_NUMBER_OF_RECENT_FILES = 20;
 
 // ***************************** RAII  ****************************
 
-MainWindow::MainWindow(int index, QWidget *parent)
+MainWindow::MainWindow(int index, PreferencesWindow *preferences, QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow), untitledIndex(index), fileWatcher(new QFileSystemWatcher(this)),
       reloading(false), killingProcesses(false), autoSaveTimer(new QTimer(this))
 {
     LOG_INFO(INFO_OF(index));
+
     ui->setupUi(this);
-    setupCore();
-    setTestCases();
+
+    log = new MessageLogger(preferences, this);
+    ui->messageLoggerLayout->addWidget(log);
+
+    formatter = new Extensions::ClangFormatter(SettingsHelper::getClangFormatPath(),
+                                               SettingsHelper::getClangFormatStyle(), log);
+
+    testcases = new Widgets::TestCases(log, this);
+    ui->testCasesLayout->addWidget(testcases);
+    connect(testcases, SIGNAL(checkerChanged()), this, SLOT(updateChecker()));
+    connect(testcases, SIGNAL(requestRun(int)), this, SLOT(runTestCase(int)));
+
     setEditor();
     connect(fileWatcher, SIGNAL(fileChanged(const QString &)), this, SLOT(onFileWatcherChanged(const QString &)));
     connect(
@@ -70,7 +81,8 @@ MainWindow::MainWindow(int index, QWidget *parent)
     QTimer::singleShot(0, [this] { setLanguage(language); }); // See issue #187 for more information
 }
 
-MainWindow::MainWindow(const QString &fileOpen, int index, QWidget *parent) : MainWindow(index, parent)
+MainWindow::MainWindow(const QString &fileOpen, int index, PreferencesWindow *preferences, QWidget *parent)
+    : MainWindow(index, preferences, parent)
 {
     LOG_INFO(INFO_OF(fileOpen));
     loadFile(fileOpen);
@@ -78,8 +90,9 @@ MainWindow::MainWindow(const QString &fileOpen, int index, QWidget *parent) : Ma
         testcases->addTestCase();
 }
 
-MainWindow::MainWindow(const EditorStatus &status, bool duplicate, int index, QWidget *parent)
-    : MainWindow(index, parent)
+MainWindow::MainWindow(const EditorStatus &status, bool duplicate, int index, PreferencesWindow *preferences,
+                       QWidget *parent)
+    : MainWindow(index, preferences, parent)
 {
     LOG_INFO(INFO_OF(duplicate));
     loadStatus(status, duplicate);
@@ -103,16 +116,6 @@ MainWindow::~MainWindow()
     delete log;
 }
 
-// ************************* RAII HELPER *****************************
-
-void MainWindow::setTestCases()
-{
-    testcases = new Widgets::TestCases(log, this);
-    ui->testCasesLayout->addWidget(testcases);
-    connect(testcases, SIGNAL(checkerChanged()), this, SLOT(updateChecker()));
-    connect(testcases, SIGNAL(requestRun(int)), this, SLOT(runTestCase(int)));
-}
-
 void MainWindow::setEditor()
 {
     editor = new QCodeEditor();
@@ -128,14 +131,6 @@ void MainWindow::setEditor()
     // a selection (and the cursor is at the begin of the selection)
     connect(editor, SIGNAL(cursorPositionChanged()), this, SLOT(updateCursorInfo()));
     connect(editor, SIGNAL(selectionChanged()), this, SLOT(updateCursorInfo()));
-}
-
-void MainWindow::setupCore()
-{
-    log = new MessageLogger();
-    ui->messageLoggerLayout->addWidget(log);
-    formatter = new Extensions::ClangFormatter(SettingsHelper::getClangFormatPath(),
-                                               SettingsHelper::getClangFormatStyle(), log);
 }
 
 void MainWindow::compile()
@@ -526,7 +521,8 @@ void MainWindow::applyCompanion(const Extensions::CompanionData &data)
             {
                 log->error("Companion",
                            tr("Unknown attribute: [%1]. Please check the head comments setting at %2.")
-                               .arg(path.join('.').arg(SettingsHelper::pathOfCompetitiveCompanionHeadComments())));
+                               .arg(path.join('.').arg(SettingsHelper::pathOfCompetitiveCompanionHeadComments())),
+                           false);
             }
             else if (value.isObject() || value.isArray())
             {
@@ -890,7 +886,8 @@ void MainWindow::loadFile(const QString &loadPath)
                       "open file length limit at %3.")
                        .arg(path)
                        .arg(SettingsHelper::getOpenFileLengthLimit())
-                       .arg(SettingsHelper::pathOfOpenFileLengthLimit()));
+                       .arg(SettingsHelper::pathOfOpenFileLengthLimit()),
+                   false);
         setText("");
         setFilePath("");
         return;
@@ -1378,7 +1375,8 @@ void MainWindow::onCompilationErrorOccurred(const QString &error)
             log->warn(
                 tr("Compile Errors"),
                 tr("Have you set a proper name for the main class in your solution? If not, you can set it at %1.")
-                    .arg(SettingsHelper::pathOfJavaClassName()));
+                    .arg(SettingsHelper::pathOfJavaClassName()),
+                false);
         }
     }
 }
@@ -1438,7 +1436,7 @@ void MainWindow::onRunFinished(int index, const QString &out, const QString &err
 
 void MainWindow::onFailedToStartRun(int index, const QString &error)
 {
-    log->error(getRunnerHead(index), error);
+    log->error(getRunnerHead(index), error, false);
 }
 
 void MainWindow::onRunOutputLimitExceeded(int index, const QString &type)
@@ -1450,7 +1448,8 @@ void MainWindow::onRunOutputLimitExceeded(int index, const QString &type)
             .arg(type)
             .arg(index + 1)
             .arg(SettingsHelper::getOutputLengthLimit())
-            .arg(SettingsHelper::pathOfOutputLengthLimit()));
+            .arg(SettingsHelper::pathOfOutputLengthLimit()),
+        false);
 }
 
 void MainWindow::onRunKilled(int index)

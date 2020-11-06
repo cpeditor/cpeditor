@@ -275,6 +275,29 @@ void PreferencesWindow::display()
     }
 }
 
+void PreferencesWindow::open(const QString &path)
+{
+    for (auto nodes = path.split('/'); !nodes.isEmpty(); nodes.removeLast())
+    {
+        auto page = getPageWidget(nodes.join('/'));
+        if (page != nullptr)
+        {
+            if (isHidden())
+                display();
+            else
+                Util::showWidgetOnTop(this);
+            if (switchToPage(page))
+            {
+                auto widget = SettingsManager::getWidget(SettingsManager::getKeyOfPath(path));
+                if (widget != nullptr)
+                    widget->setFocus(Qt::PopupFocusReason);
+                return;
+            }
+        }
+    }
+    LOG_WARN("Can't find the given path: " << INFO_OF(path));
+}
+
 void PreferencesWindow::updateSearch(const QString &text)
 {
     for (int i = 0; i < menuTree->topLevelItemCount(); ++i)
@@ -283,22 +306,22 @@ void PreferencesWindow::updateSearch(const QString &text)
     }
 }
 
-void PreferencesWindow::switchToPage(QWidget *page, bool force)
+bool PreferencesWindow::switchToPage(QWidget *page, bool force)
 {
     // return if page is nullptr
     if (page == nullptr)
-        return;
+        return false;
 
-    // return if it's no need to switch
+    // return if there's no need to switch
     if (stackedWidget->currentWidget() == page)
-        return;
+        return true;
 
     // ask for saving changes or not if not force
     if (!force)
     {
         auto current = qobject_cast<PreferencesPage *>(stackedWidget->currentWidget());
         if (current != nullptr && !current->aboutToExit())
-            return;
+            return false;
     }
 
     // disable home button when it's already at home
@@ -310,6 +333,7 @@ void PreferencesWindow::switchToPage(QWidget *page, bool force)
     auto preferencesPage = qobject_cast<PreferencesPage *>(page);
     if (preferencesPage != nullptr)
     {
+        pageTreeItem[preferencesPage]->setSelected(true);
         menuTree->setCurrentItem(pageTreeItem[preferencesPage]);
         preferencesPage->loadSettings();
     }
@@ -317,6 +341,8 @@ void PreferencesWindow::switchToPage(QWidget *page, bool force)
     {
         menuTree->clearSelection();
     }
+
+    return true;
 }
 
 void PreferencesWindow::registerName(const QString &key, const QString &trkey)

@@ -17,16 +17,24 @@
 
 #include "Core/MessageLogger.hpp"
 #include "Core/EventLogger.hpp"
+#include "Settings/PreferencesWindow.hpp"
 #include "generated/SettingsHelper.hpp"
 #include <QDateTime>
 
-MessageLogger::MessageLogger(QWidget *parent) : QTextBrowser(parent)
+MessageLogger::MessageLogger(PreferencesWindow *preferences, QWidget *parent)
+    : QTextBrowser(parent), preferencesWindow(preferences)
 {
+    connect(this, SIGNAL(anchorClicked(const QUrl &)), this, SLOT(onAnchorClicked(const QUrl &)));
     setOpenExternalLinks(true);
 }
 
 void MessageLogger::message(const QString &head, const QString &body, const QString &color, bool htmlEscaped)
 {
+    if (htmlEscaped && body.contains("<a href="))
+    {
+        LOG_WARN("The message contains \"<a href=\" but htmlEscaped is enabled. " << INFO_OF(body));
+    }
+
     QString newHead, newBody;
     if (htmlEscaped)
     {
@@ -76,4 +84,12 @@ void MessageLogger::error(const QString &head, const QString &body, bool htmlEsc
 {
     LOG_INFO(INFO_OF(head) << INFO_OF(body));
     message(head, body, "red", htmlEscaped);
+}
+
+void MessageLogger::onAnchorClicked(const QUrl &link)
+{
+    auto url = link.toString();
+    LOG_INFO(INFO_OF(url));
+    if (url.startsWith("#Preferences/"))
+        preferencesWindow->open(url.mid(13));
 }

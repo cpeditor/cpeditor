@@ -24,12 +24,14 @@
 
 #include <QTextBrowser>
 
+class PreferencesWindow;
+
 class MessageLogger : public QTextBrowser
 {
     Q_OBJECT
 
   public:
-    explicit MessageLogger(QWidget *parent = nullptr);
+    explicit MessageLogger(PreferencesWindow *preferences, QWidget *parent = nullptr);
 
     /**
      * @brief show a message
@@ -66,6 +68,12 @@ class MessageLogger : public QTextBrowser
      * @note the message is red
      */
     void error(const QString &head, const QString &body, bool htmlEscaped = true);
+
+  private slots:
+    void onAnchorClicked(const QUrl &link);
+
+  private:
+    PreferencesWindow *preferencesWindow = nullptr;
 };
 
 #endif // MESSAGELOGGER_HPP

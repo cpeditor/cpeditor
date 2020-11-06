@@ -55,6 +55,10 @@ class SettingsManager
      * @param parent get the path to the parent directory instead of the setting itself
      */
     static QString getPathText(const QString &key, bool parent = false);
+    static QString getKeyOfPath(const QString &path);
+
+    static void setWidget(const QString &key, QWidget *widget);
+    static QWidget *getWidget(const QString &key);
 
     static QStringList keyStartsWith(const QString &head);
     static QStringList itemUnder(const QString &head);
@@ -63,6 +67,8 @@ class SettingsManager
     static QVariantMap *cur;
     static QVariantMap *def;
     static QMap<QString, QString> *settingPath;
+    static QMap<QString, QString> *pathSetting;
+    static QMap<QString, QWidget *> *settingWidget;
 };
 
 #endif // SETTINGSMANAGER_HPP

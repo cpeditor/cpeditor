@@ -30,6 +30,8 @@
 QVariantMap *SettingsManager::cur = nullptr;
 QVariantMap *SettingsManager::def = nullptr;
 QMap<QString, QString> *SettingsManager::settingPath = nullptr;
+QMap<QString, QString> *SettingsManager::pathSetting = nullptr;
+QMap<QString, QWidget *> *SettingsManager::settingWidget = nullptr;
 
 const static QStringList configFileLocations = {
 #ifdef PORTABLE_VERSION
@@ -97,10 +99,16 @@ void SettingsManager::init()
         delete def;
     if (settingPath)
         delete settingPath;
+    if (pathSetting)
+        delete pathSetting;
+    if (settingWidget)
+        delete settingWidget;
 
     cur = new QVariantMap();
     def = new QVariantMap();
     settingPath = new QMap<QString, QString>();
+    pathSetting = new QMap<QString, QString>();
+    settingWidget = new QMap<QString, QWidget *>();
 
     generateDefaultSettings();
 
@@ -202,6 +210,7 @@ void SettingsManager::reset()
 void SettingsManager::setPath(const QString &key, const QString &path)
 {
     settingPath->insert(key, path);
+    pathSetting->insert(path, key);
 }
 
 QString SettingsManager::getPathText(const QString &key, bool parent)
@@ -209,9 +218,9 @@ QString SettingsManager::getPathText(const QString &key, bool parent)
     if (!settingPath->contains(key))
     {
 #ifdef QT_DEBUG
-        qDebug() << "SettingsManager: Getting unknown key path: " << key;
+        qDebug() << "SettingsManager: Getting unknown path: " << key;
 #endif
-        LOG_WARN("Getting unknown key path: " << key);
+        LOG_WARN("Getting unknown path: " << INFO_OF(key));
         return "Unknown";
     }
     auto nodes = QStringList(QCoreApplication::translate("PreferencesWindow", "Preferences")) +
@@ -222,7 +231,32 @@ QString SettingsManager::getPathText(const QString &key, bool parent)
         nodes.pop_back();
     else
         nodes.back() = QCoreApplication::translate("SettingsInfo", nodes.back().toStdString().c_str());
-    return nodes.join("->");
+    return QString("<a href='#Preferences/%1'>%2</a>").arg(settingPath->value(key)).arg(nodes.join("->"));
+}
+
+QString SettingsManager::getKeyOfPath(const QString &path)
+{
+    if (!pathSetting->contains(path))
+    {
+        LOG_WARN("Getting unknown key of path: " << INFO_OF(path));
+        return QString();
+    }
+    return pathSetting->value(path);
+}
+
+void SettingsManager::setWidget(const QString &key, QWidget *widget)
+{
+    settingWidget->insert(key, widget);
+}
+
+QWidget *SettingsManager::getWidget(const QString &key)
+{
+    if (!settingWidget->contains(key))
+    {
+        LOG_WARN("Getting unknown widget: " << INFO_OF(key));
+        return nullptr;
+    }
+    return settingWidget->value(key);
 }
 
 QStringList SettingsManager::keyStartsWith(const QString &head)

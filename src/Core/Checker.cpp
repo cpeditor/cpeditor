@@ -217,7 +217,7 @@ void Checker::onRunFinished(int index, const QString &, const QString &err, int 
 
 void Checker::onFailedToStartRun(int index, const QString &error)
 {
-    log->error(head(index), error);
+    log->error(head(index), error, false);
 }
 
 void Checker::onRunOutputLimitExceeded(int index, const QString &type)
@@ -229,7 +229,8 @@ void Checker::onRunOutputLimitExceeded(int index, const QString &type)
             .arg(type)
             .arg(index + 1)
             .arg(SettingsHelper::getOutputLengthLimit())
-            .arg(SettingsHelper::pathOfOutputLengthLimit()));
+            .arg(SettingsHelper::pathOfOutputLengthLimit()),
+        false);
 }
 
 void Checker::onRunKilled(int index)

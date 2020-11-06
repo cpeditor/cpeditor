@@ -80,6 +80,12 @@ class PreferencesWindow : public QMainWindow
      */
     void display();
 
+    /**
+     * @brief switch to a certain path and show up
+     * @param path the path of the setting to be displayed
+     */
+    void open(const QString &path);
+
   signals:
     /**
      * @brief the settings are applied
@@ -104,8 +110,9 @@ class PreferencesWindow : public QMainWindow
      * @param force if force, user won't be asked whether to save changes or not
      * @note If there are unsaved changes in the current page, the user will be asked whether to save/discard
      *       the changes or stay. If the user chooses to stay, the switch operation will fail.
+     * @returns whether the switch operation suceeded or not, i.e. if the current page is *page*
      */
-    void switchToPage(QWidget *page, bool force = false);
+    bool switchToPage(QWidget *page, bool force = false);
 
     /**
      * @brief get the page widget to the page of the given path

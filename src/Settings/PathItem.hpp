@@ -63,6 +63,8 @@ class PathItem : public QWidget
 
     QString title() const;
 
+    void focusInEvent(QFocusEvent *event) override;
+
   private:
     Type fileType;
     QHBoxLayout *layout = nullptr;

@@ -39,9 +39,10 @@ PreferencesGridPage::PreferencesGridPage(bool alignTop, QWidget *parent) : Prefe
     HLayout->addStretch();
 }
 
-void PreferencesGridPage::addRow(ValueWidget *widget, const QString &tip, const QString &help, const QString &labelText)
+void PreferencesGridPage::addRow(ValueWidget *widget, const QString &key, const QString &tip, const QString &help,
+                                 const QString &labelText)
 {
-    registerWidget(widget);
+    registerWidget(key, widget);
     int row = gridLayout->rowCount();
     if (labelText.isEmpty())
     {

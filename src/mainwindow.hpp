@@ -21,6 +21,7 @@
 #include <QMainWindow>
 
 class MessageLogger;
+class PreferencesWindow;
 class QCodeEditor;
 class QFileSystemWatcher;
 class QPushButton;
@@ -74,9 +75,10 @@ class MainWindow : public QMainWindow
         QMap<QString, QVariant> toMap() const;
     };
 
-    explicit MainWindow(int index, QWidget *parent);
-    explicit MainWindow(const QString &fileOpen, int index, QWidget *parent);
-    explicit MainWindow(const EditorStatus &status, bool duplicate, int index, QWidget *parent);
+    explicit MainWindow(int index, PreferencesWindow *preferences, QWidget *parent);
+    explicit MainWindow(const QString &fileOpen, int index, PreferencesWindow *preferences, QWidget *parent);
+    explicit MainWindow(const EditorStatus &status, bool duplicate, int index, PreferencesWindow *preferences,
+                        QWidget *parent);
     ~MainWindow() override;
 
     int getUntitledIndex() const;
@@ -228,9 +230,7 @@ class MainWindow : public QMainWindow
     int customTimeLimit = -1;     // the custom time limit for this tab, -1 represents for the same as settings
     QString customCompileCommand; // the custom compile command for this tab, empty represents for the same as settings
 
-    void setTestCases();
     void setEditor();
-    void setupCore();
     void compile();
     void run();
     void run(int index);

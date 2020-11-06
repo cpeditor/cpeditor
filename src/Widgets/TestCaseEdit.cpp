@@ -115,13 +115,12 @@ void TestCaseEdit::modifyText(const QString &text, bool keepHistory)
         const QString setLimitPlace = role == Output ? SettingsHelper::pathOfOutputDisplayLengthLimit()
                                                      : SettingsHelper::pathOfDisplayTestCaseLengthLimit();
 
-        log->warn(
-            QString("%1[%2]").arg(name).arg(id + 1),
-            QString("<span title='%1'>%2</span>")
-                .arg(
-                    tr("Now the test case editor is read-only. You can set the length limit at %1.").arg(setLimitPlace))
-                .arg(tr("Only the first %1 characters are shown.").arg(limit)),
-            false);
+        log->warn(QString("%1[%2]").arg(name).arg(id + 1),
+                  QString("Only the first %1 characters are shown. Now the test case editor is read-only. You can set "
+                          "the length limit at %2.")
+                      .arg(limit)
+                      .arg(setLimitPlace),
+                  false);
     }
 
     if (keepHistory)
