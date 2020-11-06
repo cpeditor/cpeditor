@@ -214,7 +214,8 @@ QString SettingsManager::getPathText(const QString &key, bool parent)
         LOG_WARN("Getting unknown key path: " << key);
         return "Unknown";
     }
-    auto nodes = settingPath->value(key).split('/');
+    auto nodes = QStringList(QCoreApplication::translate("PreferencesWindow", "Preferences")) +
+                 settingPath->value(key).split('/');
     for (int i = 0; i < nodes.count() - 1; ++i)
         nodes[i] = QCoreApplication::translate("PreferencesWindow", nodes[i].toStdString().c_str());
     if (parent)
