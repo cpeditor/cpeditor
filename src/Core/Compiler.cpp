@@ -17,6 +17,7 @@
 
 #include "Core/Compiler.hpp"
 #include "Core/EventLogger.hpp"
+#include "Settings/SettingsManager.hpp"
 #include "Util/FileUtil.hpp"
 #include "generated/SettingsHelper.hpp"
 #include <QDir>
@@ -104,32 +105,6 @@ void Compiler::start(const QString &tmpFilePath, const QString &sourceFilePath, 
     compileProcess->start(program, args);
 }
 
-bool Compiler::check(const QString &compileCommand)
-{
-    if (compileCommand.isEmpty())
-    {
-        LOG_WARN("The compile command is empty");
-        return false;
-    }
-
-    QProcess checkProcess;
-
-    // check both "--version" and "-version", "-version" is mainly for Java
-
-    checkProcess.start(QProcess::splitCommand(compileCommand)[0], {"--version"});
-    bool finished = checkProcess.waitForFinished(2000);
-    if (finished && checkProcess.exitCode() == 0)
-        return true;
-    checkProcess.kill(); // kill it if it's not finished, no harm if it's finished with non-zero exit code
-
-    checkProcess.start(QProcess::splitCommand(compileCommand)[0], {"-version"});
-    finished = checkProcess.waitForFinished(2000);
-
-    LOG_INFO(BOOL_INFO_OF(finished) << INFO_OF(checkProcess.exitCode()));
-
-    return finished && checkProcess.exitCode() == 0;
-}
-
 QString Compiler::outputPath(const QString &tmpFilePath, const QString &sourceFilePath, const QString &lang,
                              bool createDirectory)
 {
@@ -190,7 +165,8 @@ void Compiler::onProcessErrorOccurred(QProcess::ProcessError error)
     if (error == QProcess::FailedToStart)
     {
         emit compilationErrorOccurred(
-            tr("Failed to start compilation. Please check the compile command in the settings."));
+            tr("Failed to start compilation. Please check %1 or put your compiler in the PATH environment variable.")
+                .arg(SettingsManager::getPathText(lang + "/Compile Command")));
     }
 }
 

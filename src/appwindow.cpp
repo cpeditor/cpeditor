@@ -1022,7 +1022,7 @@ void AppWindow::onSettingsApplied(const QString &pagePath)
 
     for (int i = 0; i < ui->tabWidget->count(); ++i)
     {
-        windowAt(i)->applySettings(pagePath, i == ui->tabWidget->currentIndex());
+        windowAt(i)->applySettings(pagePath);
         onEditorTextChanged(windowAt(i));
     }
 

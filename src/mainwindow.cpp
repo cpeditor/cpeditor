@@ -77,7 +77,7 @@ MainWindow::MainWindow(int index, PreferencesWindow *preferences, QWidget *paren
     connect(
         autoSaveTimer, &QTimer::timeout, autoSaveTimer, [this] { saveFile(AutoSave, tr("Auto Save"), false); },
         Qt::DirectConnection);
-    applySettings("", true);
+    applySettings("");
     QTimer::singleShot(0, [this] { setLanguage(language); }); // See issue #187 for more information
 }
 
@@ -275,8 +275,10 @@ void MainWindow::setCFToolUI()
     {
         submitToCodeforces->setEnabled(false);
         log->error(tr("CF Tool"),
-                   tr("You will not be able to submit code to Codeforces because CF Tool is not installed or is "
-                      "not on SYSTEM PATH. You can set it manually in settings."));
+                   tr("You need to install CF Tool to submit your code to Codeforces. If already installed, you can "
+                      "put it in the PATH environment variable or check your settings at %1.")
+                       .arg(SettingsHelper::pathOfCFPath()),
+                   false);
     }
 }
 
@@ -570,9 +572,9 @@ void MainWindow::applyCompanion(const Extensions::CompanionData &data)
         customTimeLimit = data.timeLimit;
 }
 
-void MainWindow::applySettings(const QString &pagePath, bool shouldPerformDigonistic)
+void MainWindow::applySettings(const QString &pagePath)
 {
-    LOG_INFO(INFO_OF(pagePath) << BOOL_INFO_OF(shouldPerformDigonistic));
+    LOG_INFO(INFO_OF(pagePath));
 
     auto pageChanged = [pagePath](const QString &page) { return pagePath.isEmpty() || pagePath == page; };
 
@@ -601,11 +603,6 @@ void MainWindow::applySettings(const QString &pagePath, bool shouldPerformDigoni
     if (!isLanguageSet && pageChanged("Language/General"))
     {
         setLanguage(SettingsHelper::getDefaultLanguage());
-    }
-
-    if (shouldPerformDigonistic && (pageChanged(QStringLiteral("Language/%1/%1 Commands").arg(language))))
-    {
-        performCompileAndRunDiagonistics();
     }
 
     if (pageChanged("Appearance/General"))
@@ -733,7 +730,6 @@ void MainWindow::setLanguage(const QString &lang)
     Util::applySettingsToEditor(editor, language);
     customCompileCommand.clear();
     ui->changeLanguageButton->setText(language);
-    performCompileAndRunDiagonistics();
     isLanguageSet = true;
     emit editorLanguageChanged(this);
 }
@@ -1279,27 +1275,6 @@ QSplitter *MainWindow::getSplitter()
 QSplitter *MainWindow::getRightSplitter()
 {
     return ui->rightSplitter;
-}
-
-void MainWindow::performCompileAndRunDiagonistics()
-{
-    bool compilerResult = true;
-    bool runResult = true;
-
-    if (language == "C++" || language == "Java")
-        compilerResult =
-            Core::Compiler::check(SettingsManager::get(QString("%1/Compile Command").arg(language)).toString());
-
-    if (language == "Java" || language == "Python")
-        runResult = Core::Compiler::check(SettingsManager::get(QString("%1/Run Command").arg(language)).toString());
-
-    if (!compilerResult)
-        log->error(tr("Compiler"),
-                   tr("The compile command for %1 is invalid. Is the compiler in the system PATH?").arg(language));
-
-    if (!runResult)
-        log->error(tr("Runner"),
-                   tr("The run command for %1 is invalid. Is the runner in the system Path?").arg(language));
 }
 
 QString MainWindow::compileCommand() const

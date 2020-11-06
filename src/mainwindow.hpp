@@ -113,7 +113,7 @@ class MainWindow : public QMainWindow
 
     void setLanguage(const QString &lang);
     QString getLanguage();
-    void applySettings(const QString &pagePath, bool shouldPerformDigonistic);
+    void applySettings(const QString &pagePath);
 
     MessageLogger *getLogger();
     QSplitter *getSplitter();
