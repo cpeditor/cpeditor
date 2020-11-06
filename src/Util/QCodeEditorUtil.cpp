@@ -120,7 +120,6 @@ void applySettingsToEditor(QCodeEditor *editor, const QString &language)
     const int tabStop = SettingsHelper::getTabWidth();
     QFontMetrics metric(editor->font());
     editor->setTabReplaceSize(tabStop);
-
 }
 
 } // namespace Util
