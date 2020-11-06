@@ -2546,16 +2546,6 @@ Not all vim commands are supported, please check https://github.com/cpeditor/Fak
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Default cursor overwrites</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Default cursor is the cursor you see on opening new tabs.
-If enabled, default cursor will overwrite next character.
-This behaviour can be toggled for each tab by pressing INS/Insert on your keyboard.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Highlight Current Line</source>
         <translation type="unfinished"></translation>
     </message>

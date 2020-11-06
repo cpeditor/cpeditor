@@ -2555,18 +2555,6 @@ Not all vim commands are supported, please check https://github.com/cpeditor/Fak
 Не все комманды vim поддерживаются, пожалуйста просетите https://github.com/cpeditor/FakeVim for list of supported commands</translation>
     </message>
     <message>
-        <source>Default cursor overwrites</source>
-        <translation>Перезаписывание стандартным курсором</translation>
-    </message>
-    <message>
-        <source>Default cursor is the cursor you see on opening new tabs.
-If enabled, default cursor will overwrite next character.
-This behaviour can be toggled for each tab by pressing INS/Insert on your keyboard.</source>
-        <translation>Стандратный курсор - это курсор, который Вы видите в при открытии новой вкладки.
-Если влкючено, то стандартный курсор будте перезаписывать следующий символ.
-Поведение может быть переключено для каждой вкладки, нажатием INS/Insert на Вашей клавиатуре.</translation>
-    </message>
-    <message>
         <source>Highlight Current Line</source>
         <translation>Подстветка текущей линии</translation>
     </message>
