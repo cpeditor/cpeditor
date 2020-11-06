@@ -133,7 +133,7 @@ void MainWindow::setEditor()
 void MainWindow::setupCore()
 {
     log = new MessageLogger();
-    log->setContainer(ui->compilerEdit);
+    ui->messageLoggerLayout->addWidget(log);
     formatter = new Extensions::ClangFormatter(SettingsHelper::getClangFormatPath(),
                                                SettingsHelper::getClangFormatStyle(), log);
 }
@@ -629,7 +629,7 @@ void MainWindow::applySettings(const QString &pagePath, bool shouldPerformDigoni
 
     if (pageChanged("Appearance/Font"))
     {
-        ui->compilerEdit->setFont(SettingsHelper::getMessageLoggerFont());
+        log->setFont(SettingsHelper::getMessageLoggerFont());
         testcases->setTestCaseEditFont(SettingsHelper::getTestCasesFont());
     }
 

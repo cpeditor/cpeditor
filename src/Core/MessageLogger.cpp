@@ -17,19 +17,12 @@
 
 #include "Core/MessageLogger.hpp"
 #include "Core/EventLogger.hpp"
+#include "generated/SettingsHelper.hpp"
 #include <QDateTime>
-#include <QTextBrowser>
-#include <generated/SettingsHelper.hpp>
 
-MessageLogger::MessageLogger(QObject *parent) : QObject(parent)
+MessageLogger::MessageLogger(QWidget *parent) : QTextBrowser(parent)
 {
-}
-
-void MessageLogger::setContainer(QTextBrowser *container)
-{
-    box = container;
-    LOG_INFO("MessageLogger container has been initialized");
-    box->setOpenExternalLinks(true);
+    setOpenExternalLinks(true);
 }
 
 void MessageLogger::message(const QString &head, const QString &body, const QString &color, bool htmlEscaped)
@@ -64,29 +57,23 @@ void MessageLogger::message(const QString &head, const QString &body, const QStr
         res += newBody;
     res += "]</span>";
 
-    box->append(res);
+    append(res);
 }
 
 void MessageLogger::info(const QString &head, const QString &body, bool htmlEscaped)
 {
-    LOG_INFO("MessageLogger Information " << INFO_OF(head) << INFO_OF(body));
+    LOG_INFO(INFO_OF(head) << INFO_OF(body));
     message(head, body, "", htmlEscaped);
 }
 
 void MessageLogger::warn(const QString &head, const QString &body, bool htmlEscaped)
 {
-    LOG_INFO("MessageLogger Warning " << INFO_OF(head) << INFO_OF(body));
+    LOG_INFO(INFO_OF(head) << INFO_OF(body));
     message(head, body, "green", htmlEscaped);
 }
 
 void MessageLogger::error(const QString &head, const QString &body, bool htmlEscaped)
 {
-    LOG_INFO("MessageLogger Error " << INFO_OF(head) << INFO_OF(body));
+    LOG_INFO(INFO_OF(head) << INFO_OF(body));
     message(head, body, "red", htmlEscaped);
-}
-
-void MessageLogger::clear()
-{
-    LOG_INFO("MessageLogger box has been cleared");
-    box->clear();
 }

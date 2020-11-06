@@ -22,16 +22,14 @@
 #ifndef MESSAGELOGGER_HPP
 #define MESSAGELOGGER_HPP
 
-#include <QObject>
+#include <QTextBrowser>
 
-class QTextBrowser;
-
-class MessageLogger : public QObject
+class MessageLogger : public QTextBrowser
 {
     Q_OBJECT
 
   public:
-    explicit MessageLogger(QObject *parent = nullptr);
+    explicit MessageLogger(QWidget *parent = nullptr);
 
     /**
      * @brief show a message
@@ -68,20 +66,6 @@ class MessageLogger : public QObject
      * @note the message is red
      */
     void error(const QString &head, const QString &body, bool htmlEscaped = true);
-
-    /**
-     * @brief clear all messages in the message logger
-     */
-    void clear();
-
-    /**
-     * @brief set the container of the message logger
-     * @param container the container of the message logger
-     */
-    void setContainer(QTextBrowser *container);
-
-  private:
-    QTextBrowser *box = nullptr; // the container of the message logger
 };
 
 #endif // MESSAGELOGGER_HPP
