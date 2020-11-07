@@ -4,6 +4,7 @@
 
 -   Now you can opt-in non-monospaced fonts when choosing a font in the Preferences. (#217 and #625)
 -   Format python codes by YAPF. (#652)
+-   Now you can toggle fullscreen mode by pressing F11. (#642 and #660)
 
 ### Fixed
 
