@@ -10,6 +10,7 @@ To compensate for the loss of Control key in Vim Emulation, we provide custom co
 -   Now you can disable current line highlighting in Code Editor (#220 and #581)
 -   Now you can choose a default cursor mode or toggle between Insert and Replace mode by pressing INS Key (#220 and #581)
 -   Now you can opt-in non-monospaced fonts when choosing a font in the Preferences. (#217 and #625)
+-   Now you can toggle fullscreen mode by pressing F11. (#642 and #660)
 
 ### Fixed
 
