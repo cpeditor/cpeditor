@@ -222,7 +222,6 @@ class AppWindow : public QMainWindow
     QSystemTrayIcon *trayIcon = nullptr;
     QMenu *trayIconMenu = nullptr;
     QMenu *tabMenu = nullptr;
-    bool wasMaximized;
 
     Extensions::LanguageServer *cppServer = nullptr;
     Extensions::LanguageServer *javaServer = nullptr;

@@ -350,20 +350,8 @@ void AppWindow::maybeSetHotkeys()
             new QShortcut(SettingsHelper::getHotkeySnippets(), this, SLOT(on_actionUseSnippets_triggered())));
     }
 
-    hotkeyObjects.push_back(new QShortcut(Qt::Key_F11, this, [this] {
-        if (!isFullScreen())
-        {
-            wasMaximized = isMaximized();
-            showFullScreen();
-        }
-        else
-        {
-            if (wasMaximized)
-                showMaximized();
-            else
-                showNormal();
-        }
-    }));
+    hotkeyObjects.push_back(
+        new QShortcut(Qt::Key_F11, this, [this] { setWindowState(windowState() ^ Qt::WindowFullScreen); }));
 }
 
 bool AppWindow::closeTab(int index)
