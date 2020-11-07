@@ -352,9 +352,17 @@ void AppWindow::maybeSetHotkeys()
 
     hotkeyObjects.push_back(new QShortcut(Qt::Key_F11, this, [this] {
         if (!isFullScreen())
+        {
+            wasMaximized = isMaximized();
             showFullScreen();
+        }
         else
-            showNormal();
+        {
+            if (wasMaximized)
+                showMaximized();
+            else
+                showNormal();
+        }
     }));
 }
 
