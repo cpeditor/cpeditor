@@ -639,16 +639,16 @@ git 提交编号: %3
         <translation>源文件 [%1] 不存在</translation>
     </message>
     <message>
-        <source>The compile command for %1 is empty</source>
-        <translation>%1 的编译命令为空</translation>
-    </message>
-    <message>
         <source>Unsupported programming language &quot;%1&quot;</source>
         <translation>编程语言“%1”不受支持</translation>
     </message>
     <message>
         <source>Failed to start the compiler. Please check %1 or add the compiler in the PATH environment variable.</source>
         <translation>未能启动编译器。请检查 %1 或将编译器添加到 PATH 环境变量中。</translation>
+    </message>
+    <message>
+        <source>%1 is empty</source>
+        <translation>%1 为空</translation>
     </message>
 </context>
 <context>

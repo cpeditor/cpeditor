@@ -75,7 +75,7 @@ void Compiler::start(const QString &tmpFilePath, const QString &sourceFilePath, 
 
     if (args.isEmpty())
     {
-        emit compilationFailed(tr("The compile command for %1 is empty").arg(lang));
+        emit compilationFailed(tr("%1 is empty").arg(SettingsManager::getPathText(lang + "/Compile Command")));
         return;
     }
 

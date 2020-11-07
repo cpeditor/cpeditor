@@ -639,15 +639,15 @@ Git commit hash: %3
         <translation>Файл [%1] не существует</translation>
     </message>
     <message>
-        <source>The compile command for %1 is empty</source>
-        <translation>Команады компиляции для %1 пуста</translation>
-    </message>
-    <message>
         <source>Unsupported programming language &quot;%1&quot;</source>
         <translation>Неподдерживаемый язык программирования &quot;%1&quot;</translation>
     </message>
     <message>
         <source>Failed to start the compiler. Please check %1 or add the compiler in the PATH environment variable.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 is empty</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
