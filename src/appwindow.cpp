@@ -352,6 +352,9 @@ void AppWindow::maybeSetHotkeys()
 
     hotkeyObjects.push_back(
         new QShortcut(Qt::Key_F11, this, [this] { setWindowState(windowState() ^ Qt::WindowFullScreen); }));
+
+    hotkeyObjects.push_back(
+        new QShortcut(Qt::Key_Escape, this, [this] { setWindowState(windowState() & ~Qt::WindowFullScreen); }));
 }
 
 bool AppWindow::closeTab(int index)
