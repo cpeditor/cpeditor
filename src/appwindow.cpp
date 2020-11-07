@@ -349,6 +349,12 @@ void AppWindow::maybeSetHotkeys()
         hotkeyObjects.push_back(
             new QShortcut(SettingsHelper::getHotkeySnippets(), this, SLOT(on_actionUseSnippets_triggered())));
     }
+
+    hotkeyObjects.push_back(
+        new QShortcut(Qt::Key_F11, this, [this] { setWindowState(windowState() ^ Qt::WindowFullScreen); }));
+
+    hotkeyObjects.push_back(
+        new QShortcut(Qt::Key_Escape, this, [this] { setWindowState(windowState() & ~Qt::WindowFullScreen); }));
 }
 
 bool AppWindow::closeTab(int index)
