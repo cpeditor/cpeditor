@@ -47,8 +47,9 @@ class SettingsManager
      * @breif set the path of a setting in the preferences window
      * @param key the name of the setting
      * @param path The path to the setting, in the form "X/Y/Z/<desc>". The <desc> shouldn't contain slashes.
+     * @param trPath the translation of the path, in the form "X->Y->Z-><trdesc>"
      */
-    static void setPath(const QString &key, const QString &path);
+    static void setPath(const QString &key, const QString &path, const QString &trPath);
     /**
      * @brief get the path of a setting which can be shown in the UI
      * @param key the name of the setting
@@ -67,6 +68,7 @@ class SettingsManager
     static QVariantMap *cur;
     static QVariantMap *def;
     static QMap<QString, QString> *settingPath;
+    static QMap<QString, QString> *settingTrPath;
     static QMap<QString, QString> *pathSetting;
     static QMap<QString, QWidget *> *settingWidget;
 };

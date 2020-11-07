@@ -54,7 +54,7 @@ AddPageHelper &AddPageHelper::page(const QString &key, const QString &trkey, Pre
     {
         currentItem = new QTreeWidgetItem({trkey});
         tree->addTopLevelItem(currentItem);
-        newpage->setPath(key);
+        newpage->setPath(key, trkey);
         newpage->setTitle(trkey);
         window->addPage(currentItem, newpage, content);
     }
@@ -62,7 +62,7 @@ AddPageHelper &AddPageHelper::page(const QString &key, const QString &trkey, Pre
     {
         QTreeWidgetItem *item = new QTreeWidgetItem({trkey});
         currentItem->addChild(item);
-        newpage->setPath(currentPath.join('/') + '/' + key);
+        newpage->setPath((currentPath + QStringList(key)).join('/'), (currentTrPath + QStringList(trkey)).join('/'));
         if (key == "@")
             newpage->setTitle(currentItem->text(0));
         else
@@ -87,6 +87,7 @@ AddPageHelper &AddPageHelper::dir(const QString &key, const QString &trkey)
         currentItem = item;
     }
     currentPath.push_back(key);
+    currentTrPath.push_back(trkey);
     return *this;
 }
 
@@ -94,6 +95,7 @@ AddPageHelper &AddPageHelper::end()
 {
     currentItem = currentItem->parent();
     currentPath.pop_back();
+    currentTrPath.pop_back();
     return *this;
 }
 

@@ -103,9 +103,15 @@ QString PreferencesPage::path() const
     return m_path;
 }
 
-void PreferencesPage::setPath(const QString &path)
+QString PreferencesPage::trPath() const
+{
+    return m_trPath;
+}
+
+void PreferencesPage::setPath(const QString &path, const QString &trPath)
 {
     m_path = path;
+    m_trPath = trPath;
     emit pathChanged(m_path);
 }
 

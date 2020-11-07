@@ -59,7 +59,7 @@ class AddPageHelper
     PreferencesWindow *window;
     QTreeWidget *tree;
     QTreeWidgetItem *currentItem;
-    QStringList currentPath;
+    QStringList currentPath, currentTrPath;
 };
 
 class PreferencesWindow : public QMainWindow

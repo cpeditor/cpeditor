@@ -125,11 +125,12 @@ QStringList PreferencesPageTemplate::content()
     return ret;
 }
 
-void PreferencesPageTemplate::setPath(const QString &path)
+void PreferencesPageTemplate::setPath(const QString &path, const QString &trPath)
 {
-    PreferencesPage::setPath(path);
+    PreferencesPage::setPath(path, trPath);
     for (const QString &name : options)
-        SettingsManager::setPath(name, path + "/" + SettingsInfo::findSetting(name).untrDesc);
+        SettingsManager::setPath(name, path + "/" + SettingsInfo::findSetting(name).untrDesc,
+                                 trPath + "/" + SettingsInfo::findSetting(name).desc);
 }
 
 bool PreferencesPageTemplate::areSettingsChanged()

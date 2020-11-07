@@ -93,9 +93,14 @@ class PreferencesPage : public QWidget
     QString path() const;
 
     /**
+     * @brief get the translation of the path
+     */
+    QString trPath() const;
+
+    /**
      * @brief set the path to this page in the preferences window
      */
-    virtual void setPath(const QString &path);
+    virtual void setPath(const QString &path, const QString &trPath);
 
     /**
      * @brief set the title of the page
@@ -188,7 +193,8 @@ class PreferencesPage : public QWidget
     QPushButton *resetButton = nullptr;    // The button to set the UI to the saved settings
     QPushButton *applyButton = nullptr;    // The button to save the UI to the settings
 
-    QString m_path; // The path to this page in the preferences window
+    QString m_path;   // The path to this page in the preferences window
+    QString m_trPath; // The translation of the path
 };
 
 #endif // PREFERENCESPAGE_HPP
