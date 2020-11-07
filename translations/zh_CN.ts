@@ -627,6 +627,10 @@ git 提交编号: %3
         <source>The checker is compiled</source>
         <translation>评测器编译完成</translation>
     </message>
+    <message>
+        <source>Failed to compile the checker: %1</source>
+        <translation>未能成功编译评测器：%1</translation>
+    </message>
 </context>
 <context>
     <name>Core::Compiler</name>
@@ -643,8 +647,8 @@ git 提交编号: %3
         <translation>编程语言“%1”不受支持</translation>
     </message>
     <message>
-        <source>Failed to start compilation. Please check %1 or add the compiler in the PATH environment variable.</source>
-        <translation>未能成功编译。请检查 %1 或者将编译器添加到 PATH 环境变量中。</translation>
+        <source>Failed to start the compiler. Please check %1 or add the compiler in the PATH environment variable.</source>
+        <translation>未能启动编译器。请检查 %1 或将编译器添加到 PATH 环境变量中。</translation>
     </message>
 </context>
 <context>
@@ -1178,6 +1182,10 @@ Do you want to reload it?</source>
     <message>
         <source>You need to install CF Tool to submit your code to Codeforces. If already installed, you can add it in the PATH environment variable or check your settings at %1.</source>
         <translation>你需要安装 CF Tool 以将代码提交到 Codeforces。如果你已经安装了，你可以将它添加到 PATH 环境变量中，或者检查 %1 处的设置。</translation>
+    </message>
+    <message>
+        <source>Failed to start compilation: %1</source>
+        <translation>未能开始编译：%1</translation>
     </message>
 </context>
 <context>

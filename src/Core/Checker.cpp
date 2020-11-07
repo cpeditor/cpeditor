@@ -127,6 +127,7 @@ void Checker::prepare(const QString &compileCommand)
         connect(compiler, SIGNAL(compilationFinished(const QString &)), this, SLOT(onCompilationFinished()));
         connect(compiler, SIGNAL(compilationErrorOccurred(const QString &)), this,
                 SLOT(onCompilationErrorOccurred(const QString &)));
+        connect(compiler, SIGNAL(compilationFailed(const QString &)), this, SLOT(onCompilationFailed(const QString &)));
         connect(compiler, SIGNAL(compilationKilled()), this, SLOT(onCompilationKilled()));
         compiler->start(checkerPath, "", compileCommand, "C++");
     }
@@ -167,6 +168,11 @@ void Checker::onCompilationFinished()
 void Checker::onCompilationErrorOccurred(const QString &error)
 {
     log->error(tr("Checker"), tr("Error occurred while compiling the checker:\n%1").arg(error));
+}
+
+void Checker::onCompilationFailed(const QString &reason)
+{
+    log->error(tr("Checker"), tr("Failed to compile the checker: %1").arg(reason), false);
 }
 
 void Checker::onCompilationKilled()

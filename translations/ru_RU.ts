@@ -627,6 +627,10 @@ Git commit hash: %3
         <source>The checker is compiled</source>
         <translation>Чекер скомпилирован</translation>
     </message>
+    <message>
+        <source>Failed to compile the checker: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Core::Compiler</name>
@@ -643,7 +647,7 @@ Git commit hash: %3
         <translation>Неподдерживаемый язык программирования &quot;%1&quot;</translation>
     </message>
     <message>
-        <source>Failed to start compilation. Please check %1 or add the compiler in the PATH environment variable.</source>
+        <source>Failed to start the compiler. Please check %1 or add the compiler in the PATH environment variable.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1177,6 +1181,10 @@ Do you want to reload it?</source>
     </message>
     <message>
         <source>You need to install CF Tool to submit your code to Codeforces. If already installed, you can add it in the PATH environment variable or check your settings at %1.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed to start compilation: %1</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

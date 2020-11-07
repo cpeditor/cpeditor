@@ -96,6 +96,12 @@ class Compiler : public QObject
     void compilationErrorOccurred(const QString &error);
 
     /**
+     * @brief failed to start compilation
+     * @param reason the reason of the failure
+     */
+    void compilationFailed(const QString &reason);
+
+    /**
      * @brief the compilation process has just been killed
      * @note It's only emitted when the process is killed when destructing the Compiler.
      */

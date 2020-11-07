@@ -160,6 +160,7 @@ void MainWindow::compile()
     connect(compiler, SIGNAL(compilationFinished(const QString &)), this, SLOT(onCompilationFinished(const QString &)));
     connect(compiler, SIGNAL(compilationErrorOccurred(const QString &)), this,
             SLOT(onCompilationErrorOccurred(const QString &)));
+    connect(compiler, SIGNAL(compilationFailed(const QString &)), this, SLOT(onCompilationFailed(const QString &)));
     connect(compiler, SIGNAL(compilationKilled()), this, SLOT(onCompilationKilled()));
     compiler->start(path, filePath, compileCommand(), language);
 }
@@ -1354,6 +1355,11 @@ void MainWindow::onCompilationErrorOccurred(const QString &error)
                 false);
         }
     }
+}
+
+void MainWindow::onCompilationFailed(const QString &reason)
+{
+    log->error(tr("Compiler"), tr("Failed to start compilation: %1").arg(reason), false);
 }
 
 void MainWindow::onCompilationKilled()

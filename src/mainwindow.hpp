@@ -143,6 +143,7 @@ class MainWindow : public QMainWindow
     void onCompilationStarted();
     void onCompilationFinished(const QString &warning);
     void onCompilationErrorOccurred(const QString &error);
+    void onCompilationFailed(const QString &reason);
     void onCompilationKilled();
 
     void onRunStarted(int index);

@@ -59,7 +59,7 @@ void Compiler::start(const QString &tmpFilePath, const QString &sourceFilePath, 
     if (!QFile::exists(tmpFilePath))
     {
         // quit with error if the source file is not found
-        emit compilationErrorOccurred(tr("The source file [%1] doesn't exist").arg(tmpFilePath));
+        emit compilationFailed(tr("The source file [%1] doesn't exist").arg(tmpFilePath));
         return;
     }
 
@@ -75,7 +75,7 @@ void Compiler::start(const QString &tmpFilePath, const QString &sourceFilePath, 
 
     if (args.isEmpty())
     {
-        emit compilationErrorOccurred(tr("The compile command for %1 is empty").arg(lang));
+        emit compilationFailed(tr("The compile command for %1 is empty").arg(lang));
         return;
     }
 
@@ -93,7 +93,7 @@ void Compiler::start(const QString &tmpFilePath, const QString &sourceFilePath, 
     }
     else
     {
-        emit compilationErrorOccurred(tr("Unsupported programming language \"%1\"").arg(lang));
+        emit compilationFailed(tr("Unsupported programming language \"%1\"").arg(lang));
         return;
     }
 
@@ -164,8 +164,8 @@ void Compiler::onProcessErrorOccurred(QProcess::ProcessError error)
     LOG_WARN(INFO_OF(error));
     if (error == QProcess::FailedToStart)
     {
-        emit compilationErrorOccurred(
-            tr("Failed to start compilation. Please check %1 or add the compiler in the PATH environment variable.")
+        emit compilationFailed(
+            tr("Failed to start the compiler. Please check %1 or add the compiler in the PATH environment variable.")
                 .arg(SettingsManager::getPathText(lang + "/Compile Command")));
     }
 }
