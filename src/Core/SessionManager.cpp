@@ -98,6 +98,7 @@ void SessionManager::restoreSession(const QString &path)
     }
 
     app->setUpdatesEnabled(true);
+    app->repaint();
     app->resize(oldSize);
 
     if (currentIndex >= 0 && currentIndex < app->ui->tabWidget->count())
