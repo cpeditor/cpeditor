@@ -25,6 +25,7 @@
 
 #include <QWidget>
 
+class PreferencesWindow;
 class QLabel;
 class QPushButton;
 class QVBoxLayout;
@@ -37,7 +38,9 @@ class PreferencesHomePage : public QWidget
     /**
      * @brief construct a PreferencesHomePage
      */
-    explicit PreferencesHomePage(QWidget *parent = nullptr);
+    explicit PreferencesHomePage(PreferencesWindow *parent);
+
+    void init();
 
   signals:
     /**
@@ -54,7 +57,8 @@ class PreferencesHomePage : public QWidget
      */
     void addButton(const QString &pagePath, const QString &text);
 
-    QVBoxLayout *layout = nullptr; // the main layout
+    QVBoxLayout *layout = nullptr;
+    PreferencesWindow *preferencesWindow = nullptr;
 };
 
 #endif // PREFERENCESHOMEPAGE_HPP

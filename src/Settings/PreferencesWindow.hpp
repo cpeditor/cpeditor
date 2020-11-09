@@ -74,6 +74,11 @@ class PreferencesWindow : public QMainWindow
      */
     explicit PreferencesWindow(QWidget *parent);
 
+    /**
+     * @brief check if *pagePath* is a valid settings page path
+     */
+    bool pathExists(const QString &pagePath) const;
+
   public slots:
     /**
      * @brief switch to home and show up
@@ -119,7 +124,7 @@ class PreferencesWindow : public QMainWindow
      * @param pagePath the path to the page
      * @returns returns the widget if it's found, otherwise returns nullptr
      */
-    PreferencesPage *getPageWidget(const QString &pagePath);
+    PreferencesPage *getPageWidget(const QString &pagePath) const;
 
     /**
      * @brief if there are unsaved changes, ask the user to save/discard the changes or cancel the close
@@ -137,13 +142,13 @@ class PreferencesWindow : public QMainWindow
      * @brief get the top level item with the text *text*
      * @returns the top level item or nullptr if not found
      */
-    QTreeWidgetItem *getTopLevelItem(const QString &text);
+    QTreeWidgetItem *getTopLevelItem(const QString &text) const;
 
     /**
      * @brief get the child of *item* with text *text*
      * @returns the child or nullptr if not found
      */
-    QTreeWidgetItem *getChild(QTreeWidgetItem *item, const QString &text);
+    QTreeWidgetItem *getChild(QTreeWidgetItem *item, const QString &text) const;
 
     /**
      * @brief get the index of the next/previous non-hidden page (including the home page)
@@ -152,7 +157,7 @@ class PreferencesWindow : public QMainWindow
      * @param includingSelf when it's true, the result can be the current page
      * @returns the index of the (strictly) next/previous non-hidden page in the stackedWidget
      */
-    int nextNonHiddenPage(int index, int direction = 1, bool includingSelf = false);
+    int nextNonHiddenPage(int index, int direction = 1, bool includingSelf = false) const;
 
     /**
      * The GUI:
