@@ -33,6 +33,8 @@
 #include <QSet>
 #include <QVBoxLayout>
 
+#define VALIDATE_INDEX(x) validateIndex(x, __func__)
+
 namespace Widgets
 {
 const int TestCases::MAX_NUMBER_OF_TESTCASES;
@@ -218,17 +220,20 @@ TestCases::TestCases(MessageLogger *logger, QWidget *parent) : QWidget(parent), 
 
 void TestCases::setInput(int index, const QString &input)
 {
-    testcases[index]->setInput(input);
+    if (VALIDATE_INDEX(index))
+        testcases[index]->setInput(input);
 }
 
 void TestCases::setOutput(int index, const QString &output)
 {
-    testcases[index]->setOutput(output);
+    if (VALIDATE_INDEX(index))
+        testcases[index]->setOutput(output);
 }
 
 void TestCases::setExpected(int index, const QString &expected)
 {
-    testcases[index]->setExpected(expected);
+    if (VALIDATE_INDEX(index))
+        testcases[index]->setExpected(expected);
 }
 
 void TestCases::addTestCase(const QString &input, const QString &expected)
@@ -266,23 +271,23 @@ void TestCases::clear()
 
 QString TestCases::input(int index) const
 {
-    return testcases[index]->input();
+    return VALIDATE_INDEX(index) ? testcases[index]->input() : QString();
 }
 
 QString TestCases::output(int index) const
 {
-    return testcases[index]->output();
+    return VALIDATE_INDEX(index) ? testcases[index]->output() : QString();
 }
 
 QString TestCases::expected(int index) const
 {
-    return testcases[index]->expected();
+    return VALIDATE_INDEX(index) ? testcases[index]->expected() : QString();
 }
 
 void TestCases::loadStatus(const QStringList &inputList, const QStringList &expectedList)
 {
     clear();
-    for (int i = 0; i < inputList.length(); ++i)
+    for (int i = 0; i < inputList.length() && i < expectedList.length(); ++i)
         addTestCase(inputList[i], expectedList[i]);
 }
 
@@ -455,18 +460,22 @@ Core::Checker::CheckerType TestCases::checkerType() const
 
 void TestCases::setShow(int index, bool show)
 {
-    testcases[index]->setShow(show);
+    if (VALIDATE_INDEX(index))
+        testcases[index]->setShow(show);
 }
 
 bool TestCases::isShow(int index) const
 {
-    return testcases[index]->isShow();
+    return VALIDATE_INDEX(index) ? testcases[index]->isShow() : false;
 }
 
 void TestCases::setVerdict(int index, TestCase::Verdict verdict)
 {
-    testcases[index]->setVerdict(verdict);
-    updateVerdicts();
+    if (VALIDATE_INDEX(index))
+    {
+        testcases[index]->setVerdict(verdict);
+        updateVerdicts();
+    }
 }
 
 void TestCases::on_addButton_clicked()
@@ -495,6 +504,17 @@ void TestCases::onChildDeleted(TestCase *widget)
     for (int i = 0; i < count(); ++i)
         testcases[i]->setID(i);
     updateVerdicts();
+}
+
+bool TestCases::validateIndex(int index, const QString &funcName) const
+{
+    if (index >= 0 && index < count())
+        return true;
+    else
+    {
+        Core::Log::log("WARN ", funcName, __LINE__, __FILE__) << INFO_OF(index) << INFO_OF(count()) << Qt::endl;
+        return false;
+    }
 }
 
 void TestCases::updateVerdicts()
