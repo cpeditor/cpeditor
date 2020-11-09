@@ -70,7 +70,7 @@ PreferencesPageTemplate::PreferencesPageTemplate(QStringList opts, bool alignTop
         }
 
         Q_ASSERT(widget != nullptr);
-        addRow(widget, name, si.tip, si.desc);
+        addRow(widget, name, si.tip, si.type == "bool" ? QString() : si.desc);
         widgets.push_back(widget);
 
         if (si.immediatelyApply)
