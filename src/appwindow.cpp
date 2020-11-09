@@ -415,7 +415,7 @@ void AppWindow::openTab(const QString &path)
         }
     }
 
-    auto newWindow = new MainWindow(path, getNewUntitledIndex(), this);
+    auto newWindow = new MainWindow(path, getNewUntitledIndex(), preferencesWindow, this);
 
     QString lang = SettingsHelper::getDefaultLanguage();
 
@@ -435,7 +435,7 @@ void AppWindow::openTab(const QString &path)
 
 void AppWindow::openTab(const MainWindow::EditorStatus &status, bool duplicate)
 {
-    auto newWindow = new MainWindow(status, duplicate, getNewUntitledIndex(), this);
+    auto newWindow = new MainWindow(status, duplicate, getNewUntitledIndex(), preferencesWindow, this);
     openTab(newWindow);
 }
 
@@ -1029,7 +1029,7 @@ void AppWindow::onSettingsApplied(const QString &pagePath)
 
     for (int i = 0; i < ui->tabWidget->count(); ++i)
     {
-        windowAt(i)->applySettings(pagePath, i == ui->tabWidget->currentIndex());
+        windowAt(i)->applySettings(pagePath);
         onEditorTextChanged(windowAt(i));
     }
 

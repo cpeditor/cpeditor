@@ -276,7 +276,8 @@ void TestCase::onToLongForHtml()
               tr("The output/expected contains more than %1 characters, HTML diff viewer is disabled. You can change "
                  "the length limit at %2.")
                   .arg(SettingsHelper::getHTMLDiffViewerLengthLimit())
-                  .arg(SettingsHelper::pathOfHTMLDiffViewerLengthLimit()));
+                  .arg(SettingsHelper::pathOfHTMLDiffViewerLengthLimit()),
+              false);
 }
 
 } // namespace Widgets

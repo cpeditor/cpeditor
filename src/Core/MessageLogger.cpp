@@ -17,23 +17,21 @@
 
 #include "Core/MessageLogger.hpp"
 #include "Core/EventLogger.hpp"
+#include "Settings/PreferencesWindow.hpp"
+#include "generated/SettingsHelper.hpp"
 #include <QDateTime>
-#include <QTextBrowser>
-#include <generated/SettingsHelper.hpp>
 
-MessageLogger::MessageLogger(QObject *parent) : QObject(parent)
+MessageLogger::MessageLogger(PreferencesWindow *preferences, QWidget *parent)
+    : QTextBrowser(parent), preferencesWindow(preferences)
 {
-}
-
-void MessageLogger::setContainer(QTextBrowser *container)
-{
-    box = container;
-    LOG_INFO("MessageLogger container has been initialized");
-    box->setOpenExternalLinks(true);
+    connect(this, SIGNAL(anchorClicked(const QUrl &)), this, SLOT(onAnchorClicked(const QUrl &)));
+    setOpenExternalLinks(true);
 }
 
 void MessageLogger::message(const QString &head, const QString &body, const QString &color, bool htmlEscaped)
 {
+    LOG_WARN_IF(body.contains("<a href"), "The message contains \"<a href\", but htmlEscaped is enabled.");
+
     QString newHead, newBody;
     if (htmlEscaped)
     {
@@ -64,29 +62,31 @@ void MessageLogger::message(const QString &head, const QString &body, const QStr
         res += newBody;
     res += "]</span>";
 
-    box->append(res);
+    append(res);
 }
 
 void MessageLogger::info(const QString &head, const QString &body, bool htmlEscaped)
 {
-    LOG_INFO("MessageLogger Information " << INFO_OF(head) << INFO_OF(body));
+    LOG_INFO(INFO_OF(head) << INFO_OF(body));
     message(head, body, "", htmlEscaped);
 }
 
 void MessageLogger::warn(const QString &head, const QString &body, bool htmlEscaped)
 {
-    LOG_INFO("MessageLogger Warning " << INFO_OF(head) << INFO_OF(body));
+    LOG_INFO(INFO_OF(head) << INFO_OF(body));
     message(head, body, "green", htmlEscaped);
 }
 
 void MessageLogger::error(const QString &head, const QString &body, bool htmlEscaped)
 {
-    LOG_INFO("MessageLogger Error " << INFO_OF(head) << INFO_OF(body));
+    LOG_INFO(INFO_OF(head) << INFO_OF(body));
     message(head, body, "red", htmlEscaped);
 }
 
-void MessageLogger::clear()
+void MessageLogger::onAnchorClicked(const QUrl &link)
 {
-    LOG_INFO("MessageLogger box has been cleared");
-    box->clear();
+    auto url = link.toString();
+    LOG_INFO(INFO_OF(url));
+    if (url.startsWith("#Preferences/"))
+        preferencesWindow->open(url.mid(13));
 }

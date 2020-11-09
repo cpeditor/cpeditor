@@ -117,54 +117,22 @@ class Checker : public QObject
     void checkFinished(int index, Widgets::TestCase::Verdict verdict);
 
   private slots:
-    /**
-     * @brief the compilation of the checker started
-     */
     void onCompilationStarted();
 
-    /**
-     * @brief the checker is compiled successfully
-     */
     void onCompilationFinished();
 
-    /**
-     * @brief failed to compile the checker
-     * @param error the error message provided by Core::Compiler
-     */
     void onCompilationErrorOccurred(const QString &error);
 
-    /**
-     * @brief the compile process is killed
-     */
+    void onCompilationFailed(const QString &reason);
+
     void onCompilationKilled();
 
-    /**
-     * @brief the checker process is finished
-     * @param index the index of the testcase
-     * @param err the stderr of the checker process
-     * @param exitCode the exit code of the checker process
-     * @param tle whether the checker process has exceeded the time limit
-     */
     void onRunFinished(int index, const QString &, const QString &err, int exitCode, int, bool tle);
 
-    /**
-     * @brief the checker failed to start
-     * @param index the index of the testcase
-     * @param error the error message provided by Core::Runner
-     */
     void onFailedToStartRun(int index, const QString &error);
 
-    /**
-     * @brief the stdout/stderr of the checker is too long
-     * @param index the index of the testcase
-     * @param type stdout/stderr
-     */
     void onRunOutputLimitExceeded(int index, const QString &type);
 
-    /**
-     * @brief the checker process is killed
-     * @param index the index of the testcase
-     */
     void onRunKilled(int index);
 
   private:

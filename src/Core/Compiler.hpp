@@ -61,13 +61,6 @@ class Compiler : public QObject
                const QString &lang);
 
     /**
-     * @brief check whether a compile command is valid or not
-     * @param compilaCommand the command to check
-     * @note this only checks whether the program of the command works
-     */
-    static bool check(const QString &compileCommand);
-
-    /**
      * @brief get the output path (executable file path for C++, class path for Java, tmp file path for Python)
      * @param tmpFilePath the path to the temporary file which is compiled
      * @param sourceFilePath the path to the original source file, if it's empty, tmpFilePath will be used instead of it
@@ -101,6 +94,12 @@ class Compiler : public QObject
      * @param error the compile errors and warnings (stderr of the compile process)
      */
     void compilationErrorOccurred(const QString &error);
+
+    /**
+     * @brief failed to start compilation
+     * @param reason the reason of the failure
+     */
+    void compilationFailed(const QString &reason);
 
     /**
      * @brief the compilation process has just been killed

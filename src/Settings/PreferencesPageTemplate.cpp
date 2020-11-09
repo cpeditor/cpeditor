@@ -32,45 +32,46 @@ PreferencesPageTemplate::PreferencesPageTemplate(QStringList opts, bool alignTop
         if (name != si.name)
             qDebug() << "Unknown option" << name;
 #endif
+        ValueWidget *widget = nullptr;
+
         if (si.type == "QString")
         {
             Wrapper<QString> *wrapper = createStringWrapper(si.ui);
             wrapper->init(this, si.param);
-            addRow(wrapper, si.tip, si.help, si.desc);
-            widgets.push_back(wrapper);
+            widget = wrapper;
         }
         else if (si.type == "bool")
         {
             Wrapper<bool> *wrapper = createBoolWrapper(si.ui);
             wrapper->init(si.desc, this, si.param);
-            addRow(wrapper, si.tip, si.help);
-            widgets.push_back(wrapper);
+            widget = wrapper;
         }
         else if (si.type == "int")
         {
             Wrapper<int> *wrapper = createIntWrapper(si.ui);
             wrapper->init(this, si.param);
-            addRow(wrapper, si.tip, si.help, si.desc);
-            widgets.push_back(wrapper);
+            widget = wrapper;
         }
         else if (si.type == "QFont")
         {
             Wrapper<QFont> *wrapper = createFontWrapper(si.ui);
             wrapper->init(this, si.param);
-            addRow(wrapper, si.tip, si.help, si.desc);
-            widgets.push_back(wrapper);
+            widget = wrapper;
         }
         else if (si.type == "QVariantList")
         {
             Wrapper<QVariantList> *wrapper = createStringListsWrapper(si.ui);
             wrapper->init(this, si.param);
-            addRow(wrapper, si.tip, si.help, si.desc);
-            widgets.push_back(wrapper);
+            widget = wrapper;
         }
         else
         {
             Q_UNREACHABLE();
         }
+
+        Q_ASSERT(widget != nullptr);
+        addRow(widget, name, si.tip, si.desc);
+        widgets.push_back(widget);
 
         if (si.immediatelyApply)
         {
@@ -111,20 +112,25 @@ QStringList PreferencesPageTemplate::content()
     {
         auto si = SettingsInfo::findSetting(opt);
         if (!si.desc.isEmpty())
+        {
             ret += si.desc;
+            ret += si.untrDesc;
+        }
         if (!si.tip.isEmpty())
+        {
             ret += si.tip;
-        if (!si.help.isEmpty())
-            ret += si.help;
+            ret += si.untrTip;
+        }
     }
     return ret;
 }
 
-void PreferencesPageTemplate::setPath(const QString &path)
+void PreferencesPageTemplate::setPath(const QString &path, const QString &trPath)
 {
-    PreferencesPage::setPath(path);
+    PreferencesPage::setPath(path, trPath);
     for (const QString &name : options)
-        SettingsManager::setPath(name, path + "/" + SettingsInfo::findSetting(name).desc);
+        SettingsManager::setPath(name, path + "/" + SettingsInfo::findSetting(name).untrDesc,
+                                 trPath + "/" + SettingsInfo::findSetting(name).desc);
 }
 
 bool PreferencesPageTemplate::areSettingsChanged()

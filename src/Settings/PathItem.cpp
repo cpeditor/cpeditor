@@ -21,6 +21,7 @@
 #include <QApplication>
 #include <QCoreApplication>
 #include <QFileDialog>
+#include <QFocusEvent>
 #include <QHBoxLayout>
 #include <QLineEdit>
 #include <QStyle>
@@ -88,4 +89,9 @@ QString PathItem::title() const
     default:
         Q_UNREACHABLE();
     }
+}
+
+void PathItem::focusInEvent(QFocusEvent *event)
+{
+    lineEdit->setFocus(event->reason());
 }
