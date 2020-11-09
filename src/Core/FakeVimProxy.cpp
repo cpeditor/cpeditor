@@ -345,9 +345,73 @@ void FakeVimProxy::indentRegion(int beginBlock, int endBlock, QChar typedChar)
     }
 }
 
+void FakeVimProxy::moveToMatchingParenthesis(bool *moved, bool *forward, QTextCursor *cursor)
+{
+    auto isClosingParenthesis = [this](QChar symbol) {
+        for (auto const &e : parenthesisList)
+            if (symbol == e.second)
+                return true;
+        return false;
+    };
+
+    QChar underCursor = charUnderCursor(cursor, 0);
+    QChar counterSymbol = getCounterParenthesis(underCursor);
+    if (counterSymbol == QChar())
+        return;
+
+    int direction = -1;
+    int position = cursor->position();
+    if (isClosingParenthesis(counterSymbol)) // if counter symbol is closing, search for it in forward direction
+    {
+        direction = 1;
+    }
+
+    int counter = 1;
+    while (counter != 0 && position > 0 && position < (document()->characterCount() - 1))
+    {
+        position += direction;
+        auto character = document()->characterAt(position);
+        if (character == underCursor)
+            ++counter;
+        else if (character == counterSymbol)
+            --counter;
+    }
+
+    // position stopped at matching parenthesis
+    if (!counter)
+    {
+        *moved = true;
+        cursor->setPosition(position);
+    }
+}
+
 void FakeVimProxy::checkForElectricCharacter(bool *result, QChar c)
 {
     *result = c == '{' || c == '}';
+}
+
+QChar FakeVimProxy::charUnderCursor(QTextCursor *cursor, int offset)
+{
+
+    QChar underCursor;
+    auto text = document()->findBlockByNumber(cursor->blockNumber()).text();
+    int index = cursor->positionInBlock();
+    index += offset;
+    if (index < text.size() && index >= 0)
+        underCursor = text[index];
+    return underCursor;
+}
+
+QChar FakeVimProxy::getCounterParenthesis(QChar symbol)
+{
+    for (auto const &e : parenthesisList)
+    {
+        if (symbol == e.first)
+            return e.second;
+        if (symbol == e.second)
+            return e.first;
+    }
+    return QChar();
 }
 
 int FakeVimProxy::firstNonSpace(const QString &text)
@@ -478,6 +542,9 @@ void FakeVimProxy::connectSignals(FakeVim::Internal::FakeVimHandler *handler, QW
     handler->checkForElectricCharacter.connect(
         [proxy](bool *result, QChar c) { proxy->checkForElectricCharacter(result, c); });
 
+    handler->moveToMatchingParenthesis.connect([proxy](bool *moved, bool *forward, QTextCursor *cursor) {
+        proxy->moveToMatchingParenthesis(moved, forward, cursor);
+    });
     QObject::connect(proxy, &FakeVimProxy::handleInput, handler,
                      [handler](const QString &text) { handler->handleInput(text); });
 }

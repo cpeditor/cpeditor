@@ -70,10 +70,13 @@ class FakeVimProxy : public QObject
     void updateBlockSelection();
     void requestHasBlockSelection(bool *);
     void indentRegion(int, int, QChar);
+    void moveToMatchingParenthesis(bool *, bool *, QTextCursor *);
     void checkForElectricCharacter(bool *, QChar);
 
   private:
     static int firstNonSpace(QString const &);
+    QChar charUnderCursor(QTextCursor *, int);
+    QChar getCounterParenthesis(QChar);
     void updateExtraSelections();
     bool wantSaveAndQuit(FakeVim::Internal::ExCommand const &);
     bool wantSave(FakeVim::Internal::ExCommand const &);
@@ -93,6 +96,7 @@ class FakeVimProxy : public QObject
     QLabel *m_statusMessage = nullptr;
     QLabel *m_statusData = nullptr;
 
+    QVector<QPair<QChar, QChar>> parenthesisList = {{'{', '}'}, {'(', ')'}, {'[', ']'}};
     QList<QTextEdit::ExtraSelection> m_searchSelection;
     QList<QTextEdit::ExtraSelection> m_clearSelection;
     QList<QTextEdit::ExtraSelection> m_blockSelection;
