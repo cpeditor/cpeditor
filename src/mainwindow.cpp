@@ -27,10 +27,13 @@
 #include "Extensions/CompanionServer.hpp"
 #include "Settings/DefaultPathManager.hpp"
 #include "Settings/FileProblemBinder.hpp"
+#include "Settings/PreferencesWindow.hpp"
 #include "Util/FileUtil.hpp"
 #include "Util/QCodeEditorUtil.hpp"
 #include "Widgets/TestCases.hpp"
 #include "appwindow.hpp"
+#include "generated/SettingsHelper.hpp"
+#include "generated/version.hpp"
 #include <QCodeEditor>
 #include <QFileSystemWatcher>
 #include <QFontDialog>
@@ -45,8 +48,6 @@
 #include <QTemporaryDir>
 #include <QTextBlock>
 #include <QTimer>
-#include <generated/SettingsHelper.hpp>
-#include <generated/version.hpp>
 
 #include "../ui/ui_mainwindow.h"
 
@@ -54,8 +55,8 @@ static const int MAX_NUMBER_OF_RECENT_FILES = 20;
 
 // ***************************** RAII  ****************************
 
-MainWindow::MainWindow(int index, AppWindow *window, QWidget *parent)
-    : QMainWindow(parent), ui(new Ui::MainWindow), appWindow(window), untitledIndex(index),
+MainWindow::MainWindow(int index, AppWindow *parent)
+    : QMainWindow(parent), ui(new Ui::MainWindow), appWindow(parent), untitledIndex(index),
       fileWatcher(new QFileSystemWatcher(this)), reloading(false), killingProcesses(false),
       autoSaveTimer(new QTimer(this))
 {
@@ -63,7 +64,7 @@ MainWindow::MainWindow(int index, AppWindow *window, QWidget *parent)
 
     ui->setupUi(this);
 
-    log = new MessageLogger(window->getPreferencesWindow(), this);
+    log = new MessageLogger(appWindow->getPreferencesWindow(), this);
     ui->messageLoggerLayout->addWidget(log);
 
     formatter = new Extensions::ClangFormatter(SettingsHelper::getClangFormatPath(),
@@ -83,8 +84,7 @@ MainWindow::MainWindow(int index, AppWindow *window, QWidget *parent)
     QTimer::singleShot(0, [this] { setLanguage(language); }); // See issue #187 for more information
 }
 
-MainWindow::MainWindow(const QString &fileOpen, int index, AppWindow *window, QWidget *parent)
-    : MainWindow(index, window, parent)
+MainWindow::MainWindow(const QString &fileOpen, int index, AppWindow *parent) : MainWindow(index, parent)
 {
     LOG_INFO(INFO_OF(fileOpen));
     loadFile(fileOpen);
@@ -92,8 +92,8 @@ MainWindow::MainWindow(const QString &fileOpen, int index, AppWindow *window, QW
         testcases->addTestCase();
 }
 
-MainWindow::MainWindow(const EditorStatus &status, bool duplicate, int index, AppWindow *window, QWidget *parent)
-    : MainWindow(index, window, parent)
+MainWindow::MainWindow(const EditorStatus &status, bool duplicate, int index, AppWindow *parent)
+    : MainWindow(index, parent)
 {
     LOG_INFO(INFO_OF(duplicate));
     loadStatus(status, duplicate);
@@ -587,7 +587,11 @@ void MainWindow::applySettings(const QString &pagePath)
 {
     LOG_INFO(INFO_OF(pagePath));
 
-    auto pageChanged = [pagePath](const QString &page) { return pagePath.isEmpty() || pagePath == page; };
+    auto pageChanged = [this, pagePath](const QString &page) {
+        if (!appWindow->getPreferencesWindow()->pathExists(page))
+            LOG_DEV("Unknown path: " << page);
+        return pagePath.isEmpty() || pagePath == page;
+    };
 
     if (pageChanged("Extensions/Clang Format"))
     {
@@ -607,10 +611,10 @@ void MainWindow::applySettings(const QString &pagePath)
         }
     }
 
-    if (pagePath.isEmpty() || pagePath == "Code Editing" || pagePath.startsWith("Appearance/") ||
-        pagePath == QString("Language/%1/%1 Parentheses").arg(language))
+    if (pageChanged("Code Editing") || pagePath.startsWith("Appearance/") ||
+        pageChanged("Language/%1/%1 Parentheses").arg(language))
     {
-        if (pagePath == "Code Editing" || pagePath.isEmpty())
+        if (pageChanged("Code Editing"))
         {
             editor->setVimCursor(SettingsHelper::isFakeVimEnable());
 
@@ -662,10 +666,10 @@ void MainWindow::applySettings(const QString &pagePath)
         testcases->setTestCaseEditFont(SettingsHelper::getTestCasesFont());
     }
 
-    if (pagePath.isEmpty() || pagePath == "Language/C++/C++ Commands")
+    if (pageChanged("Language/C++/C++ Commands"))
         updateChecker();
 
-    if (pagePath.isEmpty() || pagePath == "Actions/Auto Save")
+    if (pageChanged("Actions/Auto Save"))
     {
         if (SettingsHelper::isAutoSave())
         {

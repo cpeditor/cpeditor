@@ -16,11 +16,11 @@
  */
 
 #include "Settings/PreferencesPageTemplate.hpp"
+#include "Core/EventLogger.hpp"
 #include "Settings/SettingsInfo.hpp"
 #include "Settings/SettingsManager.hpp"
 #include "Settings/ValueWrapper.hpp"
 #include <QCheckBox>
-#include <QDebug>
 
 PreferencesPageTemplate::PreferencesPageTemplate(QStringList opts, bool alignTop, QWidget *parent)
     : PreferencesGridPage(alignTop, parent), options(opts)
@@ -28,10 +28,10 @@ PreferencesPageTemplate::PreferencesPageTemplate(QStringList opts, bool alignTop
     for (const QString &name : options)
     {
         auto si = SettingsInfo::findSetting(name);
-#ifdef QT_DEBUG
+
         if (name != si.name)
-            qDebug() << "Unknown option" << name;
-#endif
+            LOG_DEV("Unknown option: " << name);
+
         ValueWidget *widget = nullptr;
 
         if (si.type == "QString")
@@ -70,7 +70,7 @@ PreferencesPageTemplate::PreferencesPageTemplate(QStringList opts, bool alignTop
         }
 
         Q_ASSERT(widget != nullptr);
-        addRow(widget, name, si.tip, si.desc);
+        addRow(widget, name, si.tip, si.type == "bool" ? QString() : si.desc);
         widgets.push_back(widget);
 
         if (si.immediatelyApply)
@@ -95,7 +95,7 @@ PreferencesPageTemplate::PreferencesPageTemplate(QStringList opts, bool alignTop
         {
             if (!options.contains(depend.first))
             {
-                qDebug() << name << " depends on unknown option " << depend.first;
+                LOG_DEV(name << " depends on unknown option " << depend.first);
                 continue;
             }
             auto dependWidget = widgets[options.indexOf(depend.first)];

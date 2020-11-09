@@ -16,6 +16,8 @@
  */
 
 #include "Settings/PreferencesHomePage.hpp"
+#include "Core/EventLogger.hpp"
+#include "Settings/PreferencesWindow.hpp"
 #include "generated/version.hpp"
 #include <QLabel>
 #include <QPixmap>
@@ -23,9 +25,12 @@
 #include <QUrl>
 #include <QVBoxLayout>
 
-PreferencesHomePage::PreferencesHomePage(QWidget *parent) : QWidget(parent)
+PreferencesHomePage::PreferencesHomePage(PreferencesWindow *parent) : QWidget(parent), preferencesWindow(parent)
 {
-    // construct the layout
+}
+
+void PreferencesHomePage::init()
+{
     layout = new QVBoxLayout(this);
 
     layout->addSpacing(20);
@@ -77,6 +82,8 @@ PreferencesHomePage::PreferencesHomePage(QWidget *parent) : QWidget(parent)
 
 void PreferencesHomePage::addButton(const QString &page, const QString &text)
 {
+    if (!preferencesWindow->pathExists(page))
+        LOG_DEV("Unknown path: " << page);
     auto button = new QPushButton(text, this);
     connect(button, &QPushButton::clicked, [this, page]() { emit requestPage(page); });
     layout->addWidget(button);

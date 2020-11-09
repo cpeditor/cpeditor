@@ -30,7 +30,8 @@ MessageLogger::MessageLogger(PreferencesWindow *preferences, QWidget *parent)
 
 void MessageLogger::message(const QString &head, const QString &body, const QString &color, bool htmlEscaped)
 {
-    LOG_WARN_IF(body.contains("<a href"), "The message contains \"<a href\", but htmlEscaped is enabled.");
+    LOG_WARN_IF(body.contains("<a href") && htmlEscaped,
+                "The message contains \"<a href\", but htmlEscaped is enabled.");
 
     QString newHead, newBody;
     if (htmlEscaped)

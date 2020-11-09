@@ -20,8 +20,8 @@
 
 #include <QMainWindow>
 
+class AppWindow;
 class MessageLogger;
-class PreferencesWindow;
 class QCodeEditor;
 class QFileSystemWatcher;
 class QPushButton;
@@ -84,9 +84,9 @@ class MainWindow : public QMainWindow
         QMap<QString, QVariant> toMap() const;
     };
 
-    explicit MainWindow(int index, AppWindow *window, QWidget *parent);
-    explicit MainWindow(const QString &fileOpen, int index, AppWindow *window, QWidget *parent);
-    explicit MainWindow(const EditorStatus &status, bool duplicate, int index, AppWindow *window, QWidget *parent);
+    explicit MainWindow(int index, AppWindow *parent);
+    explicit MainWindow(const QString &fileOpen, int index, AppWindow *parent);
+    explicit MainWindow(const EditorStatus &status, bool duplicate, int index, AppWindow *parent);
     ~MainWindow() override;
 
     int getUntitledIndex() const;
@@ -219,7 +219,7 @@ class MainWindow : public QMainWindow
 
     MessageLogger *log = nullptr;
 
-    AppWindow *appWindow;
+    AppWindow *appWindow = nullptr;
 
     int untitledIndex;
     QString problemURL;

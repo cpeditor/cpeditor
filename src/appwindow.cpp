@@ -213,6 +213,11 @@ void AppWindow::dragEnterEvent(QDragEnterEvent *event)
     }
 }
 
+PreferencesWindow *AppWindow::getPreferencesWindow() const
+{
+    return preferencesWindow;
+}
+
 void AppWindow::dropEvent(QDropEvent *event)
 {
     LOG_INFO("Files are being dropped to editor");
@@ -430,7 +435,7 @@ void AppWindow::openTab(const QString &path, const QString &lang)
         }
     }
 
-    auto newWindow = new MainWindow(path, getNewUntitledIndex(), this, nullptr);
+    auto newWindow = new MainWindow(path, getNewUntitledIndex(), this);
 
     QString langFromFile = SettingsHelper::getDefaultLanguage();
 
@@ -453,7 +458,7 @@ void AppWindow::openTab(const QString &path, const QString &lang)
 
 void AppWindow::openTab(const MainWindow::EditorStatus &status, bool duplicate)
 {
-    auto newWindow = new MainWindow(status, duplicate, getNewUntitledIndex(), this, nullptr);
+    auto newWindow = new MainWindow(status, duplicate, getNewUntitledIndex(), this);
     openTab(newWindow);
 }
 
@@ -1048,7 +1053,11 @@ void AppWindow::onSettingsApplied(const QString &pagePath)
         onEditorTextChanged(windowAt(i));
     }
 
-    auto pageChanged = [pagePath](const QString &page) { return pagePath.isEmpty() || pagePath == page; };
+    auto pageChanged = [this, pagePath](const QString &page) {
+        if (!preferencesWindow->pathExists(page))
+            LOG_DEV("Unknown path: " << page);
+        return pagePath.isEmpty() || pagePath == page;
+    };
 
     if (pageChanged("Key Bindings"))
         maybeSetHotkeys();

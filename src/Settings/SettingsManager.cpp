@@ -21,7 +21,6 @@
 #include "Settings/SettingsUpdater.hpp"
 #include "Util/FileUtil.hpp"
 #include "generated/portable.hpp"
-#include <QDebug>
 #include <QFile>
 #include <QFont>
 #include <QRect>
@@ -190,11 +189,8 @@ QVariant SettingsManager::get(QString key, bool alwaysDefault)
         return def->value(key);
     else
     {
-#ifdef QT_DEBUG
         if (!noUnknownKeyWarning.contains(key))
-            qDebug() << "Settings: getting unknown key: " << key;
-#endif
-        LOG_WARN("SettingsManager::getting unknown key: " << key);
+            LOG_DEV("getting unknown key: " << key);
         return QVariant();
     }
 }
@@ -232,10 +228,7 @@ QString SettingsManager::getPathText(const QString &key, bool parent)
 {
     if (!settingPath->contains(key))
     {
-#ifdef QT_DEBUG
-        qDebug() << "SettingsManager: Getting unknown path: " << key;
-#endif
-        LOG_WARN("Getting unknown path: " << INFO_OF(key));
+        LOG_DEV("Getting unknown path: " << key);
         return "Unknown";
     }
     auto path = settingPath->value(key);
