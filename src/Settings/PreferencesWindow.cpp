@@ -147,7 +147,7 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
 
     homePage = new PreferencesHomePage(this);
     connect(homePage, &PreferencesHomePage::requestPage,
-            [this](const QString &path) { switchToPage(getPageWidget(path)); });
+            [this](const QString &path) { switchToPage(getPageWidget(path, false)); });
     stackedWidget->addWidget(homePage);
 
     splitter->setSizes({10000, 30000});
@@ -265,7 +265,7 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
 
 bool PreferencesWindow::pathExists(const QString &pagePath) const
 {
-    return getPageWidget(pagePath) != nullptr;
+    return getPageWidget(pagePath, false) != nullptr;
 }
 
 void PreferencesWindow::display()
@@ -286,25 +286,24 @@ void PreferencesWindow::display()
 
 void PreferencesWindow::open(const QString &path)
 {
-    for (auto nodes = path.split('/'); !nodes.isEmpty(); nodes.removeLast())
+    auto page = getPageWidget(path, true);
+
+    if (page == nullptr)
     {
-        auto page = getPageWidget(nodes.join('/'));
-        if (page != nullptr)
-        {
-            if (isHidden())
-                display();
-            else
-                Util::showWidgetOnTop(this);
-            if (switchToPage(page))
-            {
-                auto widget = SettingsManager::getWidget(SettingsManager::getKeyOfPath(path));
-                if (widget != nullptr)
-                    widget->setFocus(Qt::PopupFocusReason);
-                return;
-            }
-        }
+        LOG_DEV("Can't find the given path: " << INFO_OF(path));
+        return;
     }
-    LOG_WARN("Can't find the given path: " << INFO_OF(path));
+
+    if (isHidden())
+        display();
+    else
+        Util::showWidgetOnTop(this);
+    if (switchToPage(page))
+    {
+        auto widget = SettingsManager::getWidget(SettingsManager::getKeyOfPath(path));
+        if (widget != nullptr)
+            widget->setFocus(Qt::PopupFocusReason);
+    }
 }
 
 void PreferencesWindow::updateSearch(const QString &text)
@@ -369,7 +368,7 @@ void PreferencesWindow::addPage(QTreeWidgetItem *item, PreferencesPage *page, co
     connect(page, SIGNAL(settingsApplied(const QString &)), this, SIGNAL(settingsApplied(const QString &)));
 }
 
-PreferencesPage *PreferencesWindow::getPageWidget(const QString &pagePath) const
+PreferencesPage *PreferencesWindow::getPageWidget(const QString &pagePath, bool allowPrefix) const
 {
     auto parts = pagePath.split('/');
     for (QString &name : parts)
@@ -377,10 +376,6 @@ PreferencesPage *PreferencesWindow::getPageWidget(const QString &pagePath) const
         if (treeEntryTranslation.contains(name))
         {
             name = treeEntryTranslation[name];
-        }
-        else
-        {
-            LOG_DEV("Can't find translation of " << name);
         }
     }
 
@@ -395,8 +390,10 @@ PreferencesPage *PreferencesWindow::getPageWidget(const QString &pagePath) const
         QTreeWidgetItem *nxt = getChild(current, parts[i]);
         if (nxt == nullptr)
         {
-            LOG_DEV("Can't find path: " << pagePath);
-            return nullptr;
+            auto res = allowPrefix ? pageWidget[current] : nullptr;
+            if (res == nullptr)
+                LOG_DEV("Can't find path: " << pagePath);
+            return res;
         }
         current = nxt;
     }
