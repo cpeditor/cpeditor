@@ -31,6 +31,7 @@
 #include "Util/FileUtil.hpp"
 #include "Util/QCodeEditorUtil.hpp"
 #include "Widgets/TestCases.hpp"
+#include "appwindow.hpp"
 #include "generated/SettingsHelper.hpp"
 #include "generated/version.hpp"
 #include <QCodeEditor>
@@ -54,8 +55,8 @@ static const int MAX_NUMBER_OF_RECENT_FILES = 20;
 
 // ***************************** RAII  ****************************
 
-MainWindow::MainWindow(int index, PreferencesWindow *preferences, QWidget *parent)
-    : QMainWindow(parent), ui(new Ui::MainWindow), preferencesWindow(preferences), untitledIndex(index),
+MainWindow::MainWindow(int index, AppWindow *parent)
+    : QMainWindow(parent), ui(new Ui::MainWindow), appWindow(parent), untitledIndex(index),
       fileWatcher(new QFileSystemWatcher(this)), reloading(false), killingProcesses(false),
       autoSaveTimer(new QTimer(this))
 {
@@ -63,7 +64,7 @@ MainWindow::MainWindow(int index, PreferencesWindow *preferences, QWidget *paren
 
     ui->setupUi(this);
 
-    log = new MessageLogger(preferencesWindow, this);
+    log = new MessageLogger(appWindow->getPreferencesWindow(), this);
     ui->messageLoggerLayout->addWidget(log);
 
     formatter = new Extensions::ClangFormatter(SettingsHelper::getClangFormatPath(),
@@ -83,8 +84,7 @@ MainWindow::MainWindow(int index, PreferencesWindow *preferences, QWidget *paren
     QTimer::singleShot(0, [this] { setLanguage(language); }); // See issue #187 for more information
 }
 
-MainWindow::MainWindow(const QString &fileOpen, int index, PreferencesWindow *preferences, QWidget *parent)
-    : MainWindow(index, preferences, parent)
+MainWindow::MainWindow(const QString &fileOpen, int index, AppWindow *parent) : MainWindow(index, parent)
 {
     LOG_INFO(INFO_OF(fileOpen));
     loadFile(fileOpen);
@@ -92,9 +92,8 @@ MainWindow::MainWindow(const QString &fileOpen, int index, PreferencesWindow *pr
         testcases->addTestCase();
 }
 
-MainWindow::MainWindow(const EditorStatus &status, bool duplicate, int index, PreferencesWindow *preferences,
-                       QWidget *parent)
-    : MainWindow(index, preferences, parent)
+MainWindow::MainWindow(const EditorStatus &status, bool duplicate, int index, AppWindow *parent)
+    : MainWindow(index, parent)
 {
     LOG_INFO(INFO_OF(duplicate));
     loadStatus(status, duplicate);
@@ -580,7 +579,7 @@ void MainWindow::applySettings(const QString &pagePath)
     LOG_INFO(INFO_OF(pagePath));
 
     auto pageChanged = [this, pagePath](const QString &page) {
-        if (!preferencesWindow->pathExists(page))
+        if (!appWindow->getPreferencesWindow()->pathExists(page))
             LOG_DEV("Unknown path: " << page);
         return pagePath.isEmpty() || pagePath == page;
     };

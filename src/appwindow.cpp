@@ -213,6 +213,11 @@ void AppWindow::dragEnterEvent(QDragEnterEvent *event)
     }
 }
 
+PreferencesWindow *AppWindow::getPreferencesWindow() const
+{
+    return preferencesWindow;
+}
+
 void AppWindow::dropEvent(QDropEvent *event)
 {
     LOG_INFO("Files are being dropped to editor");
@@ -415,7 +420,7 @@ void AppWindow::openTab(const QString &path)
         }
     }
 
-    auto newWindow = new MainWindow(path, getNewUntitledIndex(), preferencesWindow, this);
+    auto newWindow = new MainWindow(path, getNewUntitledIndex(), this);
 
     QString lang = SettingsHelper::getDefaultLanguage();
 
@@ -435,7 +440,7 @@ void AppWindow::openTab(const QString &path)
 
 void AppWindow::openTab(const MainWindow::EditorStatus &status, bool duplicate)
 {
-    auto newWindow = new MainWindow(status, duplicate, getNewUntitledIndex(), preferencesWindow, this);
+    auto newWindow = new MainWindow(status, duplicate, getNewUntitledIndex(), this);
     openTab(newWindow);
 }
 
