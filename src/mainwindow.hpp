@@ -211,6 +211,8 @@ class MainWindow : public QMainWindow
 
     MessageLogger *log = nullptr;
 
+    PreferencesWindow *preferencesWindow = nullptr;
+
     int untitledIndex;
     QString problemURL;
     QString filePath;

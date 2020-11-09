@@ -27,9 +27,12 @@
 #include "Extensions/CompanionServer.hpp"
 #include "Settings/DefaultPathManager.hpp"
 #include "Settings/FileProblemBinder.hpp"
+#include "Settings/PreferencesWindow.hpp"
 #include "Util/FileUtil.hpp"
 #include "Util/QCodeEditorUtil.hpp"
 #include "Widgets/TestCases.hpp"
+#include "generated/SettingsHelper.hpp"
+#include "generated/version.hpp"
 #include <QCodeEditor>
 #include <QFileSystemWatcher>
 #include <QFontDialog>
@@ -44,8 +47,6 @@
 #include <QTemporaryDir>
 #include <QTextBlock>
 #include <QTimer>
-#include <generated/SettingsHelper.hpp>
-#include <generated/version.hpp>
 
 #include "../ui/ui_mainwindow.h"
 
@@ -54,14 +55,15 @@ static const int MAX_NUMBER_OF_RECENT_FILES = 20;
 // ***************************** RAII  ****************************
 
 MainWindow::MainWindow(int index, PreferencesWindow *preferences, QWidget *parent)
-    : QMainWindow(parent), ui(new Ui::MainWindow), untitledIndex(index), fileWatcher(new QFileSystemWatcher(this)),
-      reloading(false), killingProcesses(false), autoSaveTimer(new QTimer(this))
+    : QMainWindow(parent), ui(new Ui::MainWindow), preferencesWindow(preferences), untitledIndex(index),
+      fileWatcher(new QFileSystemWatcher(this)), reloading(false), killingProcesses(false),
+      autoSaveTimer(new QTimer(this))
 {
     LOG_INFO(INFO_OF(index));
 
     ui->setupUi(this);
 
-    log = new MessageLogger(preferences, this);
+    log = new MessageLogger(preferencesWindow, this);
     ui->messageLoggerLayout->addWidget(log);
 
     formatter = new Extensions::ClangFormatter(SettingsHelper::getClangFormatPath(),
@@ -577,7 +579,11 @@ void MainWindow::applySettings(const QString &pagePath)
 {
     LOG_INFO(INFO_OF(pagePath));
 
-    auto pageChanged = [pagePath](const QString &page) { return pagePath.isEmpty() || pagePath == page; };
+    auto pageChanged = [this, pagePath](const QString &page) {
+        if (!preferencesWindow->pathExists(page))
+            LOG_DEV("Unknown path: " << page);
+        return pagePath.isEmpty() || pagePath == page;
+    };
 
     if (pageChanged("Extensions/Clang Format"))
     {
@@ -597,8 +603,8 @@ void MainWindow::applySettings(const QString &pagePath)
         }
     }
 
-    if (pagePath.isEmpty() || pagePath == "Code Edit" || pagePath.startsWith("Appearance/") ||
-        pagePath == QString("Language/%1/%1 Parentheses").arg(language))
+    if (pageChanged("Code Edit") || pagePath.startsWith("Appearance/") ||
+        pageChanged(QString("Language/%1/%1 Parentheses").arg(language)))
         Util::applySettingsToEditor(editor, language);
 
     if (!isLanguageSet && pageChanged("Language/General"))
@@ -627,10 +633,10 @@ void MainWindow::applySettings(const QString &pagePath)
         testcases->setTestCaseEditFont(SettingsHelper::getTestCasesFont());
     }
 
-    if (pagePath.isEmpty() || pagePath == "Language/C++/C++ Commands")
+    if (pageChanged("Language/C++/C++ Commands"))
         updateChecker();
 
-    if (pagePath.isEmpty() || pagePath == "Actions/Auto Save")
+    if (pageChanged("Actions/Auto Save"))
     {
         if (SettingsHelper::isAutoSave())
         {

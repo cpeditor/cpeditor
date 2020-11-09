@@ -1033,7 +1033,11 @@ void AppWindow::onSettingsApplied(const QString &pagePath)
         onEditorTextChanged(windowAt(i));
     }
 
-    auto pageChanged = [pagePath](const QString &page) { return pagePath.isEmpty() || pagePath == page; };
+    auto pageChanged = [this, pagePath](const QString &page) {
+        if (!preferencesWindow->pathExists(page))
+            LOG_DEV("Unknown path: " << page);
+        return pagePath.isEmpty() || pagePath == page;
+    };
 
     if (pageChanged("Key Bindings"))
         maybeSetHotkeys();
