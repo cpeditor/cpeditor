@@ -27,9 +27,13 @@
 #include "Extensions/CompanionServer.hpp"
 #include "Settings/DefaultPathManager.hpp"
 #include "Settings/FileProblemBinder.hpp"
+#include "Settings/PreferencesWindow.hpp"
 #include "Util/FileUtil.hpp"
 #include "Util/QCodeEditorUtil.hpp"
 #include "Widgets/TestCases.hpp"
+#include "appwindow.hpp"
+#include "generated/SettingsHelper.hpp"
+#include "generated/version.hpp"
 #include <QCodeEditor>
 #include <QFileSystemWatcher>
 #include <QFontDialog>
@@ -44,8 +48,6 @@
 #include <QTemporaryDir>
 #include <QTextBlock>
 #include <QTimer>
-#include <generated/SettingsHelper.hpp>
-#include <generated/version.hpp>
 
 #include "../ui/ui_mainwindow.h"
 
@@ -53,24 +55,36 @@ static const int MAX_NUMBER_OF_RECENT_FILES = 20;
 
 // ***************************** RAII  ****************************
 
-MainWindow::MainWindow(int index, QWidget *parent)
-    : QMainWindow(parent), ui(new Ui::MainWindow), untitledIndex(index), fileWatcher(new QFileSystemWatcher(this)),
-      reloading(false), killingProcesses(false), autoSaveTimer(new QTimer(this))
+MainWindow::MainWindow(int index, AppWindow *parent)
+    : QMainWindow(parent), ui(new Ui::MainWindow), appWindow(parent), untitledIndex(index),
+      fileWatcher(new QFileSystemWatcher(this)), reloading(false), killingProcesses(false),
+      autoSaveTimer(new QTimer(this))
 {
     LOG_INFO(INFO_OF(index));
+
     ui->setupUi(this);
-    setupCore();
-    setTestCases();
+
+    log = new MessageLogger(appWindow->getPreferencesWindow(), this);
+    ui->messageLoggerLayout->addWidget(log);
+
+    formatter = new Extensions::ClangFormatter(SettingsHelper::getClangFormatPath(),
+                                               SettingsHelper::getClangFormatStyle(), log);
+
+    testcases = new Widgets::TestCases(log, this);
+    ui->testCasesLayout->addWidget(testcases);
+    connect(testcases, SIGNAL(checkerChanged()), this, SLOT(updateChecker()));
+    connect(testcases, SIGNAL(requestRun(int)), this, SLOT(runTestCase(int)));
+
     setEditor();
     connect(fileWatcher, SIGNAL(fileChanged(const QString &)), this, SLOT(onFileWatcherChanged(const QString &)));
     connect(
         autoSaveTimer, &QTimer::timeout, autoSaveTimer, [this] { saveFile(AutoSave, tr("Auto Save"), false); },
         Qt::DirectConnection);
-    applySettings("", true);
+    applySettings("");
     QTimer::singleShot(0, [this] { setLanguage(language); }); // See issue #187 for more information
 }
 
-MainWindow::MainWindow(const QString &fileOpen, int index, QWidget *parent) : MainWindow(index, parent)
+MainWindow::MainWindow(const QString &fileOpen, int index, AppWindow *parent) : MainWindow(index, parent)
 {
     LOG_INFO(INFO_OF(fileOpen));
     loadFile(fileOpen);
@@ -78,7 +92,7 @@ MainWindow::MainWindow(const QString &fileOpen, int index, QWidget *parent) : Ma
         testcases->addTestCase();
 }
 
-MainWindow::MainWindow(const EditorStatus &status, bool duplicate, int index, QWidget *parent)
+MainWindow::MainWindow(const EditorStatus &status, bool duplicate, int index, AppWindow *parent)
     : MainWindow(index, parent)
 {
     LOG_INFO(INFO_OF(duplicate));
@@ -103,16 +117,6 @@ MainWindow::~MainWindow()
     delete log;
 }
 
-// ************************* RAII HELPER *****************************
-
-void MainWindow::setTestCases()
-{
-    testcases = new Widgets::TestCases(log, this);
-    ui->testCasesLayout->addWidget(testcases);
-    connect(testcases, SIGNAL(checkerChanged()), this, SLOT(updateChecker()));
-    connect(testcases, SIGNAL(requestRun(int)), this, SLOT(runTestCase(int)));
-}
-
 void MainWindow::setEditor()
 {
     editor = new QCodeEditor();
@@ -128,14 +132,6 @@ void MainWindow::setEditor()
     // a selection (and the cursor is at the begin of the selection)
     connect(editor, SIGNAL(cursorPositionChanged()), this, SLOT(updateCursorInfo()));
     connect(editor, SIGNAL(selectionChanged()), this, SLOT(updateCursorInfo()));
-}
-
-void MainWindow::setupCore()
-{
-    log = new MessageLogger();
-    log->setContainer(ui->compilerEdit);
-    formatter = new Extensions::ClangFormatter(SettingsHelper::getClangFormatPath(),
-                                               SettingsHelper::getClangFormatStyle(), log);
 }
 
 void MainWindow::compile()
@@ -165,6 +161,7 @@ void MainWindow::compile()
     connect(compiler, SIGNAL(compilationFinished(const QString &)), this, SLOT(onCompilationFinished(const QString &)));
     connect(compiler, SIGNAL(compilationErrorOccurred(const QString &)), this,
             SLOT(onCompilationErrorOccurred(const QString &)));
+    connect(compiler, SIGNAL(compilationFailed(const QString &)), this, SLOT(onCompilationFailed(const QString &)));
     connect(compiler, SIGNAL(compilationKilled()), this, SLOT(onCompilationKilled()));
     compiler->start(path, filePath, compileCommand(), language);
 }
@@ -286,8 +283,10 @@ void MainWindow::setCFToolUI()
     {
         submitToCodeforces->setEnabled(false);
         log->error(tr("CF Tool"),
-                   tr("You will not be able to submit code to Codeforces because CF Tool is not installed or is "
-                      "not on SYSTEM PATH. You can set it manually in settings."));
+                   tr("You need to install CF Tool to submit your code to Codeforces. If already installed, you can "
+                      "add it in the PATH environment variable or check your settings at %1.")
+                       .arg(SettingsHelper::pathOfCFPath()),
+                   false);
     }
 }
 
@@ -532,7 +531,8 @@ void MainWindow::applyCompanion(const Extensions::CompanionData &data)
             {
                 log->error("Companion",
                            tr("Unknown attribute: [%1]. Please check the head comments setting at %2.")
-                               .arg(path.join('.').arg(SettingsHelper::pathOfCompetitiveCompanionHeadComments())));
+                               .arg(path.join('.').arg(SettingsHelper::pathOfCompetitiveCompanionHeadComments())),
+                           false);
             }
             else if (value.isObject() || value.isArray())
             {
@@ -580,11 +580,15 @@ void MainWindow::applyCompanion(const Extensions::CompanionData &data)
         customTimeLimit = data.timeLimit;
 }
 
-void MainWindow::applySettings(const QString &pagePath, bool shouldPerformDigonistic)
+void MainWindow::applySettings(const QString &pagePath)
 {
-    LOG_INFO(INFO_OF(pagePath) << BOOL_INFO_OF(shouldPerformDigonistic));
+    LOG_INFO(INFO_OF(pagePath));
 
-    auto pageChanged = [pagePath](const QString &page) { return pagePath.isEmpty() || pagePath == page; };
+    auto pageChanged = [this, pagePath](const QString &page) {
+        if (!appWindow->getPreferencesWindow()->pathExists(page))
+            LOG_DEV("Unknown path: " << page);
+        return pagePath.isEmpty() || pagePath == page;
+    };
 
     if (pageChanged("Extensions/Clang Format"))
     {
@@ -604,18 +608,13 @@ void MainWindow::applySettings(const QString &pagePath, bool shouldPerformDigoni
         }
     }
 
-    if (pagePath.isEmpty() || pagePath == "Code Edit" || pagePath.startsWith("Appearance/") ||
-        pagePath == QString("Language/%1/%1 Parentheses").arg(language))
+    if (pageChanged("Code Edit") || pagePath.startsWith("Appearance/") ||
+        pageChanged(QString("Language/%1/%1 Parentheses").arg(language)))
         Util::applySettingsToEditor(editor, language);
 
     if (!isLanguageSet && pageChanged("Language/General"))
     {
         setLanguage(SettingsHelper::getDefaultLanguage());
-    }
-
-    if (shouldPerformDigonistic && (pageChanged(QStringLiteral("Language/%1/%1 Commands").arg(language))))
-    {
-        performCompileAndRunDiagonistics();
     }
 
     if (pageChanged("Appearance/General"))
@@ -635,14 +634,14 @@ void MainWindow::applySettings(const QString &pagePath, bool shouldPerformDigoni
 
     if (pageChanged("Appearance/Font"))
     {
-        ui->compilerEdit->setFont(SettingsHelper::getMessageLoggerFont());
+        log->setFont(SettingsHelper::getMessageLoggerFont());
         testcases->setTestCaseEditFont(SettingsHelper::getTestCasesFont());
     }
 
-    if (pagePath.isEmpty() || pagePath == "Language/C++/C++ Commands")
+    if (pageChanged("Language/C++/C++ Commands"))
         updateChecker();
 
-    if (pagePath.isEmpty() || pagePath == "Actions/Auto Save")
+    if (pageChanged("Actions/Auto Save"))
     {
         if (SettingsHelper::isAutoSave())
         {
@@ -743,7 +742,6 @@ void MainWindow::setLanguage(const QString &lang)
     Util::applySettingsToEditor(editor, language);
     customCompileCommand.clear();
     ui->changeLanguageButton->setText(language);
-    performCompileAndRunDiagonistics();
     isLanguageSet = true;
     emit editorLanguageChanged(this);
 }
@@ -896,7 +894,8 @@ void MainWindow::loadFile(const QString &loadPath)
                       "open file length limit at %3.")
                        .arg(path)
                        .arg(SettingsHelper::getOpenFileLengthLimit())
-                       .arg(SettingsHelper::pathOfOpenFileLengthLimit()));
+                       .arg(SettingsHelper::pathOfOpenFileLengthLimit()),
+                   false);
         setText("");
         setFilePath("");
         return;
@@ -1290,27 +1289,6 @@ QSplitter *MainWindow::getRightSplitter()
     return ui->rightSplitter;
 }
 
-void MainWindow::performCompileAndRunDiagonistics()
-{
-    bool compilerResult = true;
-    bool runResult = true;
-
-    if (language == "C++" || language == "Java")
-        compilerResult =
-            Core::Compiler::check(SettingsManager::get(QString("%1/Compile Command").arg(language)).toString());
-
-    if (language == "Java" || language == "Python")
-        runResult = Core::Compiler::check(SettingsManager::get(QString("%1/Run Command").arg(language)).toString());
-
-    if (!compilerResult)
-        log->error(tr("Compiler"),
-                   tr("The compile command for %1 is invalid. Is the compiler in the system PATH?").arg(language));
-
-    if (!runResult)
-        log->error(tr("Runner"),
-                   tr("The run command for %1 is invalid. Is the runner in the system Path?").arg(language));
-}
-
 QString MainWindow::compileCommand() const
 {
     if (customCompileCommand.isEmpty())
@@ -1384,9 +1362,15 @@ void MainWindow::onCompilationErrorOccurred(const QString &error)
             log->warn(
                 tr("Compile Errors"),
                 tr("Have you set a proper name for the main class in your solution? If not, you can set it at %1.")
-                    .arg(SettingsHelper::pathOfJavaClassName()));
+                    .arg(SettingsHelper::pathOfJavaClassName()),
+                false);
         }
     }
+}
+
+void MainWindow::onCompilationFailed(const QString &reason)
+{
+    log->error(tr("Compiler"), tr("Failed to start compilation: %1").arg(reason), false);
 }
 
 void MainWindow::onCompilationKilled()
@@ -1444,7 +1428,7 @@ void MainWindow::onRunFinished(int index, const QString &out, const QString &err
 
 void MainWindow::onFailedToStartRun(int index, const QString &error)
 {
-    log->error(getRunnerHead(index), error);
+    log->error(getRunnerHead(index), error, false);
 }
 
 void MainWindow::onRunOutputLimitExceeded(int index, const QString &type)
@@ -1456,7 +1440,8 @@ void MainWindow::onRunOutputLimitExceeded(int index, const QString &type)
             .arg(type)
             .arg(index + 1)
             .arg(SettingsHelper::getOutputLengthLimit())
-            .arg(SettingsHelper::pathOfOutputLengthLimit()));
+            .arg(SettingsHelper::pathOfOutputLengthLimit()),
+        false);
 }
 
 void MainWindow::onRunKilled(int index)

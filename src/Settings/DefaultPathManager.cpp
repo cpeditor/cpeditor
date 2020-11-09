@@ -19,7 +19,6 @@
 #include "Core/EventLogger.hpp"
 #include "Settings/SettingsManager.hpp"
 #include "generated/SettingsHelper.hpp"
-#include <QDebug>
 #include <QFileInfo>
 #include <QRegularExpression>
 
@@ -41,8 +40,7 @@ void DefaultPathManager::setDefaultPathForAction(const QString &action, const QS
 
     if (!SettingsManager::contains(settingsKey, true))
     {
-        qDebug() << "Unknown Action:" << action;
-        LOG_ERR("Unknown Action");
+        LOG_DEV("Unknown Action: " << action);
         return;
     }
 

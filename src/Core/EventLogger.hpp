@@ -23,6 +23,9 @@
 #ifndef EVENTLOGGER_HPP
 #define EVENTLOGGER_HPP
 
+#ifdef QT_DEBUG
+#include <QDebug>
+#endif
 #include <QTextStream>
 
 class QFile;
@@ -63,6 +66,16 @@ class QFile;
     {                                                                                                                  \
         LOG_WTF(stream)                                                                                                \
     }
+
+#ifdef QT_DEBUG
+#define LOG_DEV(stream)                                                                                                \
+    {                                                                                                                  \
+        qDebug() << "File: [" __FILE__ "] Func: [" << __func__ << "] Line: [" << __LINE__ << "] " << stream;           \
+        LOG_WARN(stream);                                                                                              \
+    }
+#else
+#define LOG_DEV LOG_WARN
+#endif
 
 #define INFO_OF(variable) "<" #variable ">: [" << (variable) << "], "
 #define BOOL_INFO_OF(variable) "<" #variable ">: [" << ((variable) ? "true" : "false") << "], "

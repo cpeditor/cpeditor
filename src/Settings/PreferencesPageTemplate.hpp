@@ -29,7 +29,7 @@ class PreferencesPageTemplate : public PreferencesGridPage
 
     virtual QStringList content() override;
 
-    virtual void setPath(const QString &path) override;
+    virtual void setPath(const QString &path, const QString &trPath) override;
 
   private:
     bool areSettingsChanged() override;
