@@ -96,16 +96,7 @@ bool FakeVimCommand::handleCustomCommand(CommandTypes type, QString const &args,
     switch (type)
     {
     case CommandTypes::New: {
-        QString lang;
-
-        if (args == "c++" || args == "cpp")
-            lang = "C++";
-        else if (args == "py" || args == "python")
-            lang = "Python";
-        else if (args == "java")
-            lang = "Java";
-        else if (args.isEmpty())
-            lang = SettingsHelper::getDefaultLanguage();
+        const QString lang = args.isEmpty() ? SettingsHelper::getDefaultLanguage() : language(args);
 
         if (!lang.isEmpty())
             appwin->openTab("", lang);
@@ -223,18 +214,11 @@ bool FakeVimCommand::handleCustomCommand(CommandTypes type, QString const &args,
         break;
     }
     case CommandTypes::Chlang: {
-        QString lang;
-
-        if (args == "cpp" || args == "c++")
-            lang = "C++";
-        else if (args == "java")
-            lang = "Java";
-        else if (args == "py" || args == "python")
-            lang = "Python";
+        const QString lang = language(args);
 
         if (!lang.isEmpty() && appwin->currentWindow())
             appwin->currentWindow()->setLanguage(lang);
-        else if (appwin->currentWindow())
+        else
             showError(tr("%1 is not a valid language name. It should be one of 'cpp', 'java' or 'python'").arg(args));
         break;
     }
@@ -258,4 +242,17 @@ void FakeVimCommand::showError(QString const &message)
     if (appwin->currentWindow())
         appwin->currentWindow()->statusBar()->showMessage(message, STATUS_MESSAGE_TIMEOUT);
 }
+
+QString FakeVimCommand::language(const QString &langCode)
+{
+    const auto code = langCode.toLower().trimmed();
+    if (code == "cpp" || code == "c++")
+        return "C++";
+    else if (code == "java")
+        return "Java";
+    else if (code == "py" || code == "python")
+        return "Python";
+    return QString();
+}
+
 } // namespace Core

@@ -36,6 +36,7 @@ namespace Core
 class FakeVimCommand : public QObject
 {
     Q_OBJECT
+
   public:
     enum class CommandTypes
     {
@@ -79,9 +80,15 @@ class FakeVimCommand : public QObject
     bool handleCustomCommand(CommandTypes type, QString const &commandArgs, bool hasBang = false);
 
   private:
-    AppWindow *appwin;
-
     void showError(QString const &message);
+
+    /**
+     * @brief get the language of a language code
+     */
+    static QString language(const QString &langCode);
+
+  private:
+    AppWindow *appwin;
 };
 } // namespace Core
 
