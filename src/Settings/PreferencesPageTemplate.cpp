@@ -16,11 +16,11 @@
  */
 
 #include "Settings/PreferencesPageTemplate.hpp"
+#include "Core/EventLogger.hpp"
 #include "Settings/SettingsInfo.hpp"
 #include "Settings/SettingsManager.hpp"
 #include "Settings/ValueWrapper.hpp"
 #include <QCheckBox>
-#include <QDebug>
 
 PreferencesPageTemplate::PreferencesPageTemplate(QStringList opts, bool alignTop, QWidget *parent)
     : PreferencesGridPage(alignTop, parent), options(opts)
@@ -28,10 +28,8 @@ PreferencesPageTemplate::PreferencesPageTemplate(QStringList opts, bool alignTop
     for (const QString &name : options)
     {
         auto si = SettingsInfo::findSetting(name);
-#ifdef QT_DEBUG
         if (name != si.name)
-            qDebug() << "Unknown option" << name;
-#endif
+            LOG_DEV("Unknown option: " << name);
         if (si.type == "QString")
         {
             Wrapper<QString> *wrapper = createStringWrapper(si.ui);
@@ -94,7 +92,7 @@ PreferencesPageTemplate::PreferencesPageTemplate(QStringList opts, bool alignTop
         {
             if (!options.contains(depend.first))
             {
-                qDebug() << name << " depends on unknown option " << depend.first;
+                LOG_DEV(name << " depends on unknown option " << depend.first);
                 continue;
             }
             auto dependWidget = widgets[options.indexOf(depend.first)];
