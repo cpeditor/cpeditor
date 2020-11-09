@@ -143,7 +143,7 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
     stackedWidget = new QStackedWidget();
     splitter->addWidget(stackedWidget);
 
-    homePage = new PreferencesHomePage();
+    homePage = new PreferencesHomePage(this);
     connect(homePage, &PreferencesHomePage::requestPage,
             [this](const QString &path) { switchToPage(getPageWidget(path)); });
     stackedWidget->addWidget(homePage);
@@ -257,6 +257,13 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
 #undef TRKEY
 
     // clang-format on
+
+    homePage->init();
+}
+
+bool PreferencesWindow::pathExists(const QString &pagePath) const
+{
+    return getPageWidget(pagePath) != nullptr;
 }
 
 void PreferencesWindow::display()
@@ -334,11 +341,20 @@ void PreferencesWindow::addPage(QTreeWidgetItem *item, PreferencesPage *page, co
     connect(page, SIGNAL(settingsApplied(const QString &)), this, SIGNAL(settingsApplied(const QString &)));
 }
 
-PreferencesPage *PreferencesWindow::getPageWidget(const QString &pagePath)
+PreferencesPage *PreferencesWindow::getPageWidget(const QString &pagePath) const
 {
     auto parts = pagePath.split('/');
     for (QString &name : parts)
-        name = treeEntryTranslation[name];
+    {
+        if (treeEntryTranslation.contains(name))
+        {
+            name = treeEntryTranslation[name];
+        }
+        else
+        {
+            LOG_DEV("Can't find translation of " << name);
+        }
+    }
 
     QTreeWidgetItem *current = getTopLevelItem(parts.front());
 
@@ -350,7 +366,10 @@ PreferencesPage *PreferencesWindow::getPageWidget(const QString &pagePath)
     {
         QTreeWidgetItem *nxt = getChild(current, parts[i]);
         if (nxt == nullptr)
+        {
+            LOG_DEV("Can't find path: " << pagePath);
             return nullptr;
+        }
         current = nxt;
     }
 
@@ -428,7 +447,7 @@ void PreferencesWindow::updateSearch(QTreeWidgetItem *item, const QString &text)
     item->setHidden(shouldHide);
 }
 
-QTreeWidgetItem *PreferencesWindow::getTopLevelItem(const QString &text)
+QTreeWidgetItem *PreferencesWindow::getTopLevelItem(const QString &text) const
 {
     for (int i = 0; i < menuTree->topLevelItemCount(); ++i)
     {
@@ -438,10 +457,11 @@ QTreeWidgetItem *PreferencesWindow::getTopLevelItem(const QString &text)
             return item;
         }
     }
+    LOG_DEV("Can't find top level item: " << text);
     return nullptr;
 }
 
-QTreeWidgetItem *PreferencesWindow::getChild(QTreeWidgetItem *item, const QString &text)
+QTreeWidgetItem *PreferencesWindow::getChild(QTreeWidgetItem *item, const QString &text) const
 {
     for (int i = 0; i < item->childCount(); ++i)
     {
@@ -454,7 +474,7 @@ QTreeWidgetItem *PreferencesWindow::getChild(QTreeWidgetItem *item, const QStrin
     return nullptr;
 }
 
-int PreferencesWindow::nextNonHiddenPage(int index, int direction, bool includingSelf)
+int PreferencesWindow::nextNonHiddenPage(int index, int direction, bool includingSelf) const
 {
     if (index < 0 || index >= stackedWidget->count())
     {
