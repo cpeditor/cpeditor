@@ -223,9 +223,9 @@ void AppWindow::dropEvent(QDropEvent *event)
     openPaths(paths);
 }
 
-PreferencesWindow* AppWindow::getPreferencesWindow()
+PreferencesWindow *AppWindow::getPreferencesWindow()
 {
-	return preferencesWindow;
+    return preferencesWindow;
 }
 
 /******************** PRIVATE METHODS ********************/
