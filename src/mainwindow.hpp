@@ -20,6 +20,7 @@
 
 #include <QMainWindow>
 
+class AppWindow;
 class MessageLogger;
 class QCodeEditor;
 class QFileSystemWatcher;
@@ -73,9 +74,9 @@ class MainWindow : public QMainWindow
         QMap<QString, QVariant> toMap() const;
     };
 
-    explicit MainWindow(int index, QWidget *parent);
-    explicit MainWindow(const QString &fileOpen, int index, QWidget *parent);
-    explicit MainWindow(const EditorStatus &status, bool duplicate, int index, QWidget *parent);
+    explicit MainWindow(int index, AppWindow *parent);
+    explicit MainWindow(const QString &fileOpen, int index, AppWindow *parent);
+    explicit MainWindow(const EditorStatus &status, bool duplicate, int index, AppWindow *parent);
     ~MainWindow() override;
 
     int getUntitledIndex() const;
@@ -110,7 +111,7 @@ class MainWindow : public QMainWindow
 
     void setLanguage(const QString &lang);
     QString getLanguage();
-    void applySettings(const QString &pagePath, bool shouldPerformDigonistic);
+    void applySettings(const QString &pagePath);
 
     MessageLogger *getLogger();
     QSplitter *getSplitter();
@@ -140,6 +141,7 @@ class MainWindow : public QMainWindow
     void onCompilationStarted();
     void onCompilationFinished(const QString &warning);
     void onCompilationErrorOccurred(const QString &error);
+    void onCompilationFailed(const QString &reason);
     void onCompilationKilled();
 
     void onRunStarted(int index);
@@ -206,6 +208,8 @@ class MainWindow : public QMainWindow
 
     MessageLogger *log = nullptr;
 
+    AppWindow *appWindow = nullptr;
+
     int untitledIndex;
     QString problemURL;
     QString filePath;
@@ -226,9 +230,7 @@ class MainWindow : public QMainWindow
     int customTimeLimit = -1;     // the custom time limit for this tab, -1 represents for the same as settings
     QString customCompileCommand; // the custom compile command for this tab, empty represents for the same as settings
 
-    void setTestCases();
     void setEditor();
-    void setupCore();
     void compile();
     void run();
     void run(int index);

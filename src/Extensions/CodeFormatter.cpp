@@ -100,11 +100,12 @@ QString CodeFormatter::runProcess(const QStringList &args) const
     if (!finished)
     {
         formatProcess.kill();
-        log->warn(tr("Formatter"),
-                  tr("The format process didn't finish in 2 seconds. This is probably because the %1 program is not "
-                     "found by CP Editor. You can set the path to the program at %2.")
-                      .arg(settingKey())
-                      .arg(SettingsManager::getPathText(settingKey() + "/Program")));
+        log->error(tr("Formatter"),
+                   tr("The format process didn't finish in 2 seconds. This is probably because the %1 program is not "
+                      "found by CP Editor. You can set the path to the program at %2.")
+                       .arg(settingKey())
+                       .arg(SettingsManager::getPathText(settingKey() + "/Program")),
+                   false);
         return QString();
     }
 

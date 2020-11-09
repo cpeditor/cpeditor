@@ -213,6 +213,11 @@ void AppWindow::dragEnterEvent(QDragEnterEvent *event)
     }
 }
 
+PreferencesWindow *AppWindow::getPreferencesWindow() const
+{
+    return preferencesWindow;
+}
+
 void AppWindow::dropEvent(QDropEvent *event)
 {
     LOG_INFO("Files are being dropped to editor");
@@ -463,6 +468,7 @@ void AppWindow::openTabs(const QStringList &paths)
     }
 
     setUpdatesEnabled(true);
+    repaint();
     resize(oldSize);
 
     progress.setValue(length);
@@ -1019,11 +1025,15 @@ void AppWindow::onSettingsApplied(const QString &pagePath)
 
     for (int i = 0; i < ui->tabWidget->count(); ++i)
     {
-        windowAt(i)->applySettings(pagePath, i == ui->tabWidget->currentIndex());
+        windowAt(i)->applySettings(pagePath);
         onEditorTextChanged(windowAt(i));
     }
 
-    auto pageChanged = [pagePath](const QString &page) { return pagePath.isEmpty() || pagePath == page; };
+    auto pageChanged = [this, pagePath](const QString &page) {
+        if (!preferencesWindow->pathExists(page))
+            LOG_DEV("Unknown path: " << page);
+        return pagePath.isEmpty() || pagePath == page;
+    };
 
     if (pageChanged("Key Bindings"))
         maybeSetHotkeys();

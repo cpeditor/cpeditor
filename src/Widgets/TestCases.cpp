@@ -141,7 +141,8 @@ TestCases::TestCases(MessageLogger *logger, QWidget *parent) : QWidget(parent), 
                           tr("The following files are not loaded because they are not matched:%1. You can set the "
                              "matching rules at %2.")
                               .arg(remainPaths.join(", "))
-                              .arg(SettingsHelper::pathOfTestcasesMatchingRules()));
+                              .arg(SettingsHelper::pathOfTestcasesMatchingRules()),
+                          false);
             }
         }
     });

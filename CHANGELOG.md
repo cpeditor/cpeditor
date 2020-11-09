@@ -4,6 +4,7 @@
 
 -   Now you can opt-in non-monospaced fonts when choosing a font in the Preferences. (#217 and #625)
 -   Format python codes by YAPF. (#652)
+-   Now you can open the corresponding preferences page via a link when asked to check the setting in the message logger. (#659)
 -   Now you can toggle fullscreen mode by pressing F11. (#642 and #660)
 
 ### Fixed
@@ -13,6 +14,7 @@
 ### Changed
 
 -   Font settings are moved to Appearance/Font, everything else remains in Appearance/General. (#625)
+-   You'll no longer receive the warnings about a not-working compiler, etc. at startup. Instead, you'll receive the warning when you try to compile something, etc. (#659)
 
 ### Improved
 
