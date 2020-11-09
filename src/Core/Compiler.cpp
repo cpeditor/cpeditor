@@ -17,6 +17,7 @@
 
 #include "Core/Compiler.hpp"
 #include "Core/EventLogger.hpp"
+#include "Settings/SettingsManager.hpp"
 #include "Util/FileUtil.hpp"
 #include "generated/SettingsHelper.hpp"
 #include <QDir>
@@ -58,7 +59,7 @@ void Compiler::start(const QString &tmpFilePath, const QString &sourceFilePath, 
     if (!QFile::exists(tmpFilePath))
     {
         // quit with error if the source file is not found
-        emit compilationErrorOccurred(tr("The source file [%1] doesn't exist").arg(tmpFilePath));
+        emit compilationFailed(tr("The source file [%1] doesn't exist").arg(tmpFilePath));
         return;
     }
 
@@ -74,7 +75,7 @@ void Compiler::start(const QString &tmpFilePath, const QString &sourceFilePath, 
 
     if (args.isEmpty())
     {
-        emit compilationErrorOccurred(tr("The compile command for %1 is empty").arg(lang));
+        emit compilationFailed(tr("%1 is empty").arg(SettingsManager::getPathText(lang + "/Compile Command")));
         return;
     }
 
@@ -92,7 +93,7 @@ void Compiler::start(const QString &tmpFilePath, const QString &sourceFilePath, 
     }
     else
     {
-        emit compilationErrorOccurred(tr("Unsupported programming language \"%1\"").arg(lang));
+        emit compilationFailed(tr("Unsupported programming language \"%1\"").arg(lang));
         return;
     }
 
@@ -102,32 +103,6 @@ void Compiler::start(const QString &tmpFilePath, const QString &sourceFilePath, 
         QFileInfo(QFile::exists(sourceFilePath) ? sourceFilePath : tmpFilePath).canonicalPath());
 
     compileProcess->start(program, args);
-}
-
-bool Compiler::check(const QString &compileCommand)
-{
-    if (compileCommand.isEmpty())
-    {
-        LOG_WARN("The compile command is empty");
-        return false;
-    }
-
-    QProcess checkProcess;
-
-    // check both "--version" and "-version", "-version" is mainly for Java
-
-    checkProcess.start(QProcess::splitCommand(compileCommand)[0], {"--version"});
-    bool finished = checkProcess.waitForFinished(2000);
-    if (finished && checkProcess.exitCode() == 0)
-        return true;
-    checkProcess.kill(); // kill it if it's not finished, no harm if it's finished with non-zero exit code
-
-    checkProcess.start(QProcess::splitCommand(compileCommand)[0], {"-version"});
-    finished = checkProcess.waitForFinished(2000);
-
-    LOG_INFO(BOOL_INFO_OF(finished) << INFO_OF(checkProcess.exitCode()));
-
-    return finished && checkProcess.exitCode() == 0;
 }
 
 QString Compiler::outputPath(const QString &tmpFilePath, const QString &sourceFilePath, const QString &lang,
@@ -189,8 +164,9 @@ void Compiler::onProcessErrorOccurred(QProcess::ProcessError error)
     LOG_WARN(INFO_OF(error));
     if (error == QProcess::FailedToStart)
     {
-        emit compilationErrorOccurred(
-            tr("Failed to start compilation. Please check the compile command in the settings."));
+        emit compilationFailed(
+            tr("Failed to start the compiler. Please check %1 or add the compiler in the PATH environment variable.")
+                .arg(SettingsManager::getPathText(lang + "/Compile Command")));
     }
 }
 

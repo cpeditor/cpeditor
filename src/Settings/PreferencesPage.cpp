@@ -16,6 +16,7 @@
  */
 
 #include "Settings/PreferencesPage.hpp"
+#include "Settings/SettingsManager.hpp"
 #include "Settings/ValueWrapper.hpp"
 #include <QApplication>
 #include <QFormLayout>
@@ -102,9 +103,15 @@ QString PreferencesPage::path() const
     return m_path;
 }
 
-void PreferencesPage::setPath(const QString &path)
+QString PreferencesPage::trPath() const
+{
+    return m_trPath;
+}
+
+void PreferencesPage::setPath(const QString &path, const QString &trPath)
 {
     m_path = path;
+    m_trPath = trPath;
     emit pathChanged(m_path);
 }
 
@@ -139,10 +146,12 @@ void PreferencesPage::addItem(QLayoutItem *item)
     settingsLayout->addItem(item);
 }
 
-void PreferencesPage::registerWidget(ValueWidget *widget)
+void PreferencesPage::registerWidget(const QString &key, ValueWidget *widget)
 {
     // PreferencesPageTemplate::PreferencesPageTemplate uses Qt::DirectConnection
     QObject::connect(widget, &ValueWidget::valueChanged, this, &PreferencesPage::updateButtons, Qt::QueuedConnection);
+
+    SettingsManager::setWidget(key, widget->coreWidget());
 }
 
 void PreferencesPage::loadDefault()
