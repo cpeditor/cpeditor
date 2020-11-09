@@ -39,11 +39,9 @@
 #include "fakevimhandler.h"
 #include <QObject>
 
-class QStatusBar;
-class MainWindow;
-class QString;
-class QLabel;
 class AppWindow;
+class MainWindow;
+class QLabel;
 
 namespace Core
 {

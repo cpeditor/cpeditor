@@ -28,7 +28,6 @@ class ExCommand;
 }
 } // namespace FakeVim
 
-class QString;
 class AppWindow;
 template <class A, class B> struct QPair;
 

@@ -42,7 +42,6 @@
 #include <QCodeEditor>
 #include <QLabel>
 #include <QMainWindow>
-#include <QMessageBox>
 #include <QPlainTextEdit>
 #include <QStatusBar>
 #include <QTemporaryFile>
