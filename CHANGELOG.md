@@ -10,6 +10,7 @@ To compensate for the loss of Control key in Vim Emulation, we provide custom co
 -   Now you can disable current line highlighting in Code Editor. (#210 and #581)
 -   Now you can toggle between Insert and Overwrite mode by pressing the INSERT Key. (#581)
 -   Now you can opt-in non-monospaced fonts when choosing a font in the Preferences. (#217 and #625)
+-   Now you can open the corresponding preferences page via a link when asked to check the setting in the message logger. (#659)
 -   Now you can toggle fullscreen mode by pressing F11. (#642 and #660)
 
 ### Fixed
@@ -19,6 +20,7 @@ To compensate for the loss of Control key in Vim Emulation, we provide custom co
 ### Changed
 
 -   Font settings are moved to Appearance/Font, everything else remains in Appearance/General. (#625)
+-   You'll no longer receive the warnings about a not-working compiler, etc. at startup. Instead, you'll receive the warning when you try to compile something, etc. (#659)
 
 ### Improved
 

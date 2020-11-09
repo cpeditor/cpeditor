@@ -53,7 +53,6 @@ def writeInfo(f, obj, lst):
         ui = t.get("ui", "")
         tip = t.get("tip", "")
         trtip = t.get("trtip", f"tr({json.dumps(tip)})")
-        hlp = t.get("help", "")
         requireAllDepends = t.get("requireAllDepends", True)
         immediatelyApply = t.get("immediatelyApply", False)
         onApply = f'[](SettingInfo *info, ValueWidget *widget, QWidget *parent){{ {t.get("onApply", "")} }}'
@@ -61,13 +60,11 @@ def writeInfo(f, obj, lst):
         if typename == "Object":
             f.write(f"    QList<SettingInfo> LIST{key};\n")
             writeInfo(f, t["sub"], f"LIST{key}")
-        f.write(f"    {lst}.append(SettingInfo {{{json.dumps(name)}, ")
         if "trdesc" not in t and "notr" not in t:
             for lang in ["C++", "Java", "Python"]:
                 if lang in desc:
                     trdesc = f"tr({json.dumps(desc.replace(lang, '%1'))}).arg(\"{lang}\")"
                     break
-        f.write(trdesc)
         tempname = typename
         if typename == "QMap":
             final = t["final"]
@@ -78,7 +75,7 @@ def writeInfo(f, obj, lst):
         dependsString += "}"
         old = t.get("old", [])
         f.write(
-            f", \"{tempname}\", \"{ui}\", {trtip}, tr({json.dumps(hlp)}), {json.dumps(requireAllDepends)}, {json.dumps(immediatelyApply)}, {onApply}, {dependsString}, {{{json.dumps(old)[1:-1]}}}, ")
+            f"    {lst}.append(SettingInfo {{{json.dumps(name)}, {trdesc}, {json.dumps(desc)}, \"{tempname}\", \"{ui}\", {trtip}, {json.dumps(tip)}, {json.dumps(requireAllDepends)}, {json.dumps(immediatelyApply)}, {onApply}, {dependsString}, {{{json.dumps(old)[1:-1]}}}, ")
         if typename != "Object":
             if "default" in t:
                 if typename == "QString":

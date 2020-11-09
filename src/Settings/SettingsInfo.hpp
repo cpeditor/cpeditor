@@ -31,7 +31,7 @@ class SettingsInfo
   public:
     struct SettingInfo
     {
-        QString name, desc, type, ui, tip, help;
+        QString name, desc, untrDesc, type, ui, tip, untrTip;
         bool requireAllDepends; // false for one of the depends, true for all depends
         bool immediatelyApply;
         std::function<void(SettingInfo *, ValueWidget *, QWidget *)> onApply;

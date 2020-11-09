@@ -69,6 +69,8 @@ class AppWindow : public QMainWindow
     void dropEvent(QDropEvent *event) override;
     void dragEnterEvent(QDragEnterEvent *event) override;
 
+	PreferencesWindow* getPreferencesWindow();
+
   public slots:
     void onReceivedMessage(quint32 instanceId, QByteArray message);
 

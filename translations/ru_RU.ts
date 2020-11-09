@@ -627,6 +627,10 @@ Git commit hash: %3
         <source>The checker is compiled</source>
         <translation>Чекер скомпилирован</translation>
     </message>
+    <message>
+        <source>Failed to compile the checker: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Core::Compiler</name>
@@ -635,16 +639,16 @@ Git commit hash: %3
         <translation>Файл [%1] не существует</translation>
     </message>
     <message>
-        <source>The compile command for %1 is empty</source>
-        <translation>Команады компиляции для %1 пуста</translation>
-    </message>
-    <message>
         <source>Unsupported programming language &quot;%1&quot;</source>
         <translation>Неподдерживаемый язык программирования &quot;%1&quot;</translation>
     </message>
     <message>
-        <source>Failed to start compilation. Please check the compile command in the settings.</source>
-        <translation>Ошибка при старте компиляции. Пожалуйста, проверьте команды компиляции в настройках.</translation>
+        <source>Failed to start the compiler. Please check %1 or add the compiler in the PATH environment variable.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 is empty</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -993,10 +997,6 @@ p, li { white-space: pre-wrap; }
         <translation>Ошибка в сохранении временного файла. Решение не было отправлено.</translation>
     </message>
     <message>
-        <source>You will not be able to submit code to Codeforces because CF Tool is not installed or is not on SYSTEM PATH. You can set it manually in settings.</source>
-        <translation>Вы не можете отправить решение на Codeforces, потому что CF Tool не установлен или не добавлен в переменные окружения. Пожалуйста, установите его вручную в настройках.</translation>
-    </message>
-    <message>
         <source>Untitled-%1</source>
         <translation>Неизвестный-%1</translation>
     </message>
@@ -1081,14 +1081,6 @@ Do you want to reload it?</source>
     <message>
         <source>%1 characters selected</source>
         <translation>Выбрано %1 символов</translation>
-    </message>
-    <message>
-        <source>The compile command for %1 is invalid. Is the compiler in the system PATH?</source>
-        <translation>Команда компиляции %1 неверна. Добавлен ли компилятор в PATH?</translation>
-    </message>
-    <message>
-        <source>The run command for %1 is invalid. Is the runner in the system Path?</source>
-        <translation>Запускающая команда %1 неверна. Находится ли runner в Path?</translation>
     </message>
     <message>
         <source>Compilation has started</source>
@@ -1217,6 +1209,14 @@ Do you want to reload it?</source>
     <message>
         <source>Custom time limit for this tab: (ms)</source>
         <translation>Нестандартный лимит времени для этой вкладки: (в мс)</translation>
+    </message>
+    <message>
+        <source>You need to install CF Tool to submit your code to Codeforces. If already installed, you can add it in the PATH environment variable or check your settings at %1.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed to start compilation: %1</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2846,20 +2846,16 @@ In, vim emulation current line is never highlighed</source>
         <translation>Ожидаемо</translation>
     </message>
     <message>
-        <source>Now the test case editor is read-only. You can set the length limit at %1.</source>
-        <translation>Сейчас тесткейсы доступны только для чтения. Вы можете установить лимит длины в %1.</translation>
-    </message>
-    <message>
-        <source>Only the first %1 characters are shown.</source>
-        <translation>Отображены только первые %1 символов.</translation>
-    </message>
-    <message>
         <source>Save to file</source>
         <translation>Сохранить в файл</translation>
     </message>
     <message>
         <source>Save test case to file</source>
         <translation>Сохранить тесткейс в файл</translation>
+    </message>
+    <message>
+        <source>Only the first %1 characters are shown. Now the test case editor is read-only. You can set the length limit at %2.</source>
+        <translation>Отображены только первые %1 символов. Сейчас тесткейсы доступны только для чтения. Вы можете установить лимит длины в %2.</translation>
     </message>
 </context>
 <context>

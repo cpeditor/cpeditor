@@ -223,6 +223,11 @@ void AppWindow::dropEvent(QDropEvent *event)
     openPaths(paths);
 }
 
+PreferencesWindow* AppWindow::getPreferencesWindow()
+{
+	return preferencesWindow;
+}
+
 /******************** PRIVATE METHODS ********************/
 void AppWindow::setConnections()
 {
@@ -476,6 +481,7 @@ void AppWindow::openTabs(const QStringList &paths)
     }
 
     setUpdatesEnabled(true);
+    repaint();
     resize(oldSize);
 
     progress.setValue(length);
@@ -1038,7 +1044,7 @@ void AppWindow::onSettingsApplied(const QString &pagePath)
 
     for (int i = 0; i < ui->tabWidget->count(); ++i)
     {
-        windowAt(i)->applySettings(pagePath, i == ui->tabWidget->currentIndex());
+        windowAt(i)->applySettings(pagePath);
         onEditorTextChanged(windowAt(i));
     }
 
