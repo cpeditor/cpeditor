@@ -14,6 +14,7 @@
  * Believe Software is "Software" and it isn't immune to bugs.
  *
  */
+
 #include "Core/FakeVimCommand.hpp"
 #include "Util/FileUtil.hpp"
 #include "Widgets/TestCases.hpp"

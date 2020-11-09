@@ -100,4 +100,5 @@ class FakeVimProxy : public QObject
     QList<QTextEdit::ExtraSelection> m_blockSelection;
 };
 } // namespace Core
-#endif
+
+#endif // FAKE_VIM_PROXY_HPP
