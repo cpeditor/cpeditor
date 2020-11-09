@@ -101,7 +101,7 @@ bool FakeVimCommand::handleCustomCommand(CommandTypes type, QString const &args,
         if (!lang.isEmpty())
             appwin->openTab("", lang);
         else
-            showError(tr("new requires empty or one of 'cpp', 'java' and 'python' argument, got %1").arg(args));
+            showError(tr("`new` requires no argument or one of 'cpp', 'java' and 'python', got [%1]").arg(args));
         break;
     }
 
@@ -139,14 +139,13 @@ bool FakeVimCommand::handleCustomCommand(CommandTypes type, QString const &args,
         if (!Util::cppSuffix.contains(file.suffix()) && !Util::javaSuffix.contains(file.suffix()) &&
             !Util::javaSuffix.contains(file.suffix()))
         {
-            showError(tr("%1 is not c++, python or java source file").arg(file.absoluteFilePath()));
+            showError(tr("[%1] is not C++, Python or Java source file").arg(file.absoluteFilePath()));
             break;
         }
 
         if (!file.exists() && !hasbang)
         {
-            showError(
-                tr("[%1] does not exists. To open a tab with a non-existing file, use [open!] instead").arg(path));
+            showError(tr("[%1] does not exist. To open a tab with a non-existing file, use `open!` instead").arg(path));
             break;
         }
 
@@ -171,14 +170,15 @@ bool FakeVimCommand::handleCustomCommand(CommandTypes type, QString const &args,
             int caseNum = args.toInt(&ok);
 
             if (!ok)
-                showError(tr("%1 is not a number").arg(args));
+                showError(tr("[%1] is not a number").arg(args));
             else // args is a number
             {
                 if (caseNum > 0 && appwin->currentWindow() && appwin->currentWindow()->testcases &&
                     appwin->currentWindow()->testcases->count() >= caseNum) // args is valid
                     appwin->currentWindow()->runTestCase(caseNum - 1);
                 else
-                    showError(tr("cannot run testcase %1").arg(args));
+                    showError(
+                        tr("%1 is out of range [1, %2]").arg(args).arg(appwin->currentWindow()->testcases->count()));
             }
         }
 
@@ -206,7 +206,7 @@ bool FakeVimCommand::handleCustomCommand(CommandTypes type, QString const &args,
         else if (args == "split")
             appwin->on_actionSplitMode_triggered();
         else
-            showError(tr("%1 is not a valid view mode. It should be one of 'split' or 'edit'").arg(args));
+            showError(tr("[%1] is not a valid view mode. It should be one of 'split' and 'edit'").arg(args));
         break;
     }
     case CommandTypes::Preference: {
@@ -219,7 +219,7 @@ bool FakeVimCommand::handleCustomCommand(CommandTypes type, QString const &args,
         if (!lang.isEmpty() && appwin->currentWindow())
             appwin->currentWindow()->setLanguage(lang);
         else
-            showError(tr("%1 is not a valid language name. It should be one of 'cpp', 'java' or 'python'").arg(args));
+            showError(tr("%1 is not a valid language name. It should be one of 'cpp', 'java' and 'python'").arg(args));
         break;
     }
     case CommandTypes::Clear: {
