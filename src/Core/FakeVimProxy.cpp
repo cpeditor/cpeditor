@@ -155,7 +155,7 @@ void FakeVimProxy::handleExCommand(bool *handled, FakeVim::Internal::ExCommand c
     {
         // :wq
         if (save())
-            cancel();
+            quit();
     }
     else if (wantSave(cmd))
     {
@@ -164,9 +164,9 @@ void FakeVimProxy::handleExCommand(bool *handled, FakeVim::Internal::ExCommand c
     else if (wantQuit(cmd))
     {
         if (cmd.hasBang)
-            invalidate(); // :q!
+            forceQuit(); // :q!
         else
-            cancel(); // :q
+            quit(); // :q
     }
     else
     {
@@ -392,12 +392,12 @@ bool FakeVimProxy::save()
     return m_mainWindow->save(true, "Vim Save");
 }
 
-void FakeVimProxy::cancel()
+void FakeVimProxy::quit()
 {
     m_appWindow->closeWindow(m_mainWindow);
 }
 
-void FakeVimProxy::invalidate()
+void FakeVimProxy::forceQuit()
 {
     m_appWindow->closeWindow(m_mainWindow, true);
 }

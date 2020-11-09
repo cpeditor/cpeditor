@@ -79,9 +79,9 @@ class FakeVimProxy : public QObject
     bool wantSave(FakeVim::Internal::ExCommand const &);
     bool wantQuit(FakeVim::Internal::ExCommand const &);
     bool save();
-    void cancel();
+    void quit();
+    void forceQuit();
     void setStatusBar();
-    void invalidate();
     bool hasChanges();
     QTextDocument *document() const;
     QString content() const;
