@@ -200,7 +200,7 @@ void MainWindow::run(int index)
 {
     if (index < 0 || index >= testcases->count())
     {
-        LOG_WARN(INFO_OF(index) << INFO_OF(testcases->count()));
+        LOG_DEV(INFO_OF(index) << INFO_OF(testcases->count()));
         return;
     }
 

@@ -513,7 +513,7 @@ bool TestCases::validateIndex(int index, const QString &funcName) const
         return true;
     else
     {
-        Core::Log::log("WARN ", funcName, __LINE__, __FILE__) << INFO_OF(index) << INFO_OF(count()) << Qt::endl;
+        LOG_DEV(INFO_OF(index) << INFO_OF(count()) << INFO_OF(funcName));
         return false;
     }
 }
