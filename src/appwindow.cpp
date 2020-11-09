@@ -228,11 +228,6 @@ void AppWindow::dropEvent(QDropEvent *event)
     openPaths(paths);
 }
 
-PreferencesWindow *AppWindow::getPreferencesWindow()
-{
-    return preferencesWindow;
-}
-
 /******************** PRIVATE METHODS ********************/
 void AppWindow::setConnections()
 {

@@ -612,7 +612,7 @@ void MainWindow::applySettings(const QString &pagePath)
     }
 
     if (pageChanged("Code Editing") || pagePath.startsWith("Appearance/") ||
-        pageChanged("Language/%1/%1 Parentheses").arg(language))
+        pageChanged(QString("Language/%1/%1 Parentheses").arg(language)))
     {
         if (pageChanged("Code Editing"))
         {
