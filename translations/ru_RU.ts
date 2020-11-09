@@ -832,31 +832,31 @@ Press any key to exit</source>
 <context>
     <name>FakeVimCommand</name>
     <message>
-        <source>%1 is not a number</source>
-        <translation>%1 не является числом</translation>
-    </message>
-    <message>
-        <source>%1 is not c++, python or java source file</source>
+        <source>`new` requires no argument or one of &apos;cpp&apos;, &apos;java&apos; and &apos;python&apos;, got [%1]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>cannot run testcase %1</source>
+        <source>[%1] is not C++, Python or Java source file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>new requires empty or one of &apos;cpp&apos;, &apos;java&apos; and &apos;python&apos; argument, got %1</source>
+        <source>[%1] does not exist. To open a tab with a non-existing file, use `open!` instead</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>%1 is not a valid view mode. It should be one of &apos;split&apos; or &apos;edit&apos;</source>
+        <source>[%1] is not a number</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>%1 is not a valid language name. It should be one of &apos;cpp&apos;, &apos;java&apos; or &apos;python&apos;</source>
+        <source>%1 is out of range [1, %2]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>[%1] does not exists. To open a tab with a non-existing file, use [open!] instead</source>
+        <source>[%1] is not a valid view mode. It should be one of &apos;split&apos; and &apos;edit&apos;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 is not a valid language name. It should be one of &apos;cpp&apos;, &apos;java&apos; and &apos;python&apos;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
