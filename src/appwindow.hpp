@@ -52,6 +52,7 @@ namespace Core
 {
 class SessionManager;
 class FakeVimCommand;
+class FakeVimProxy;
 } // namespace Core
 
 class AppWindow : public QMainWindow
@@ -260,6 +261,7 @@ class AppWindow : public QMainWindow
 
     friend class Core::SessionManager;
     friend class Core::FakeVimCommand;
+    friend class Core::FakeVimProxy;
 };
 
 #endif // APPWINDOW_HPP

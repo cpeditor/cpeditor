@@ -545,6 +545,21 @@ void FakeVimProxy::connectSignals(FakeVim::Internal::FakeVimHandler *handler, QW
     handler->moveToMatchingParenthesis.connect([proxy](bool *moved, bool *forward, QTextCursor *cursor) {
         proxy->moveToMatchingParenthesis(moved, forward, cursor);
     });
+
+    handler->tabNextRequested.connect([appWindow, mainWindow] {
+        auto total = appWindow->totalTabs();
+        auto curr = appWindow->indexOfWindow(mainWindow);
+        int next = (curr + 1) % total;
+        if (next != curr)
+            appWindow->setTabAt(next);
+    });
+    handler->tabPreviousRequested.connect([appWindow, mainWindow] {
+        auto total = appWindow->totalTabs();
+        auto curr = appWindow->indexOfWindow(mainWindow);
+        int last = curr ? curr - 1 : total - 1;
+        if (last != curr)
+            appWindow->setTabAt(last);
+    });
     QObject::connect(proxy, &FakeVimProxy::handleInput, handler,
                      [handler](const QString &text) { handler->handleInput(text); });
 }

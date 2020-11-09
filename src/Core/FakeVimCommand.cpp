@@ -43,12 +43,6 @@ FakeVimCommand::CommandTypes FakeVimCommand::customCommandType(FakeVim::Internal
     if (ex.cmd == "open" || ex.cmd == "opn")
         return CommandTypes::Open;
 
-    if (ex.cmd == "next" || ex.cmd == "nxt")
-        return CommandTypes::NextTab;
-
-    if (ex.cmd == "previous" || ex.cmd == "prv")
-        return CommandTypes::LastTab;
-
     if (ex.cmd == "compile" || ex.cmd == "cmp")
         return CommandTypes::Compile;
 
@@ -104,24 +98,6 @@ bool FakeVimCommand::handleCustomCommand(CommandTypes type, QString const &args,
             showError(tr("`new` requires no argument or one of 'cpp', 'java' and 'python', got [%1]").arg(args));
         break;
     }
-
-    case CommandTypes::NextTab: {
-        auto total = appwin->totalTabs();
-        auto curr = appwin->indexOfWindow(appwin->currentWindow());
-        int next = (curr + 1) % total;
-        if (next != curr)
-            appwin->setTabAt(next);
-        break;
-    }
-    case CommandTypes::LastTab: {
-        auto total = appwin->totalTabs();
-        auto curr = appwin->indexOfWindow(appwin->currentWindow());
-        int last = curr ? curr - 1 : total - 1;
-        if (last != curr)
-            appwin->setTabAt(last);
-        break;
-    }
-
     case CommandTypes::Open: {
         QString path = args;
 
