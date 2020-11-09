@@ -198,6 +198,12 @@ void MainWindow::run()
 
 void MainWindow::run(int index)
 {
+    if (index < 0 || index >= testcases->count())
+    {
+        LOG_DEV(INFO_OF(index) << INFO_OF(testcases->count()));
+        return;
+    }
+
     auto tmp = new Core::Runner(index);
     connect(tmp, SIGNAL(runStarted(int)), this, SLOT(onRunStarted(int)));
     connect(tmp, SIGNAL(runFinished(int, const QString &, const QString &, int, int, bool)), this,
