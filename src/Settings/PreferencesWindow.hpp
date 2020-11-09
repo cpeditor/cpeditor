@@ -122,9 +122,10 @@ class PreferencesWindow : public QMainWindow
     /**
      * @brief get the page widget to the page of the given path
      * @param pagePath the path to the page
+     * @param allowPrefix if a prefix of *pagePath* is a page, return it
      * @returns returns the widget if it's found, otherwise returns nullptr
      */
-    PreferencesPage *getPageWidget(const QString &pagePath) const;
+    PreferencesPage *getPageWidget(const QString &pagePath, bool allowPrefix) const;
 
     /**
      * @brief if there are unsaved changes, ask the user to save/discard the changes or cancel the close
