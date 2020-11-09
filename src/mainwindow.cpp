@@ -30,6 +30,7 @@
 #include "Util/FileUtil.hpp"
 #include "Util/QCodeEditorUtil.hpp"
 #include "Widgets/TestCases.hpp"
+#include "appwindow.hpp"
 #include <QCodeEditor>
 #include <QFileSystemWatcher>
 #include <QFontDialog>
