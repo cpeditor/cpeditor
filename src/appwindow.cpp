@@ -463,6 +463,7 @@ void AppWindow::openTabs(const QStringList &paths)
     }
 
     setUpdatesEnabled(true);
+    repaint();
     resize(oldSize);
 
     progress.setValue(length);
