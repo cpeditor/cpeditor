@@ -51,6 +51,7 @@ class Checker : public QObject
         IgnoreTrailingSpaces, // Ignore blank characters at the end of lines and blank lines at the end.
         Strict,               // White space differences matters, except the differences between \n, \r and \r\n
         /* testlib checkers */
+        /* Ncmp should be the first one in the testlib checkers */
         Ncmp,   // ncmp.cpp in testlib, compare ordered sequences of signed int64 numbers
         Rcmp4,  // rcmp4.cpp in testlib, compare two sequences of doubles, max absolute or relative error = 1e-4
         Rcmp6,  // rcmp6.cpp in testlib, compare two sequences of doubles, max absolute or relative error = 1e-6
@@ -102,6 +103,11 @@ class Checker : public QObject
      */
     void reqeustCheck(int index, const QString &input, const QString &output, const QString &expected);
 
+    /**
+     * @brief clear the pending tasks and kill executing tasks
+     */
+    void clearTasks();
+
   signals:
     /**
      * @brief return the check result
@@ -111,49 +117,22 @@ class Checker : public QObject
     void checkFinished(int index, Widgets::TestCase::Verdict verdict);
 
   private slots:
-    /**
-     * @brief the checker is compiled successfully
-     */
+    void onCompilationStarted();
+
     void onCompilationFinished();
 
-    /**
-     * @brief failed to compile the checker
-     * @param error the error message provided by Core::Compiler
-     */
     void onCompilationErrorOccurred(const QString &error);
 
-    /**
-     * @brief the compile process is killed
-     */
+    void onCompilationFailed(const QString &reason);
+
     void onCompilationKilled();
 
-    /**
-     * @brief the checker process is finished
-     * @param index the index of the testcase
-     * @param err the stderr of the checker process
-     * @param exitCode the exit code of the checker process
-     * @param tle whether the checker process has exceeded the time limit
-     */
     void onRunFinished(int index, const QString &, const QString &err, int exitCode, int, bool tle);
 
-    /**
-     * @brief the checker failed to start
-     * @param index the index of the testcase
-     * @param error the error message provided by Core::Runner
-     */
     void onFailedToStartRun(int index, const QString &error);
 
-    /**
-     * @brief the stdout/stderr of the checker is too long
-     * @param index the index of the testcase
-     * @param type stdout/stderr
-     */
     void onRunOutputLimitExceeded(int index, const QString &type);
 
-    /**
-     * @brief the checker process is killed
-     * @param index the index of the testcase
-     */
     void onRunKilled(int index);
 
   private:
@@ -182,6 +161,12 @@ class Checker : public QObject
      */
     void check(int index, const QString &input, const QString &output, const QString &expected);
 
+    /**
+     * @param index the index of the testcase
+     * @returns "Checker[*index*]"
+     */
+    QString head(int index) const;
+
     // a struct with the info of a testcase, or called a check task, used to save check requests
     struct Task
     {
@@ -195,7 +180,7 @@ class Checker : public QObject
                                      // It's not needed by built-in checkers
     MessageLogger *log = nullptr;    // the message logger to show messages to the user
     Compiler *compiler = nullptr;    // the compiler used to compile the checker
-    QVector<Runner *> runner;        // the runners used to run the check processes
+    QVector<Runner *> runners;       // the runners used to run the check processes
     QVector<Task> pendingTasks;      // the unsolved check requests
     bool compiled = false;           // whether the testlib checker is compiled or not
                                      // It should be true for built-in checkers.

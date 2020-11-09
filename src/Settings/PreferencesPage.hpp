@@ -93,9 +93,14 @@ class PreferencesPage : public QWidget
     QString path() const;
 
     /**
+     * @brief get the translation of the path
+     */
+    QString trPath() const;
+
+    /**
      * @brief set the path to this page in the preferences window
      */
-    virtual void setPath(const QString &path);
+    virtual void setPath(const QString &path, const QString &trPath);
 
     /**
      * @brief set the title of the page
@@ -144,7 +149,7 @@ class PreferencesPage : public QWidget
      */
     void addItem(QLayoutItem *item);
 
-    void registerWidget(ValueWidget *widget);
+    void registerWidget(const QString &key, ValueWidget *widget);
 
   protected slots:
     /**
@@ -180,17 +185,16 @@ class PreferencesPage : public QWidget
      *    - applyButton
      */
 
-    QVBoxLayout *mainLayout = nullptr;     // The main layout of the page
     QLabel *titleLabel = nullptr;          // The title of the page
     QScrollArea *scrollArea = nullptr;     // The scroll area to place the settings
     QWidget *scrollAreaWidget = nullptr;   // The widget in the scroll area with settingsLayout as its layout
     QVBoxLayout *settingsLayout = nullptr; // The layout for the settings
-    QHBoxLayout *buttonsLayout = nullptr;  // The layout for the Default, Reset, and Apply buttons
     QPushButton *defaultButton = nullptr;  // The button to set the UI to the default values
     QPushButton *resetButton = nullptr;    // The button to set the UI to the saved settings
     QPushButton *applyButton = nullptr;    // The button to save the UI to the settings
 
-    QString m_path; // The path to this page in the preferences window
+    QString m_path;   // The path to this page in the preferences window
+    QString m_trPath; // The translation of the path
 };
 
 #endif // PREFERENCESPAGE_HPP

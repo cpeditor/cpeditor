@@ -141,7 +141,9 @@
             <property name="orientation">
              <enum>Qt::Vertical</enum>
             </property>
-            <widget class="QTextBrowser" name="compilerEdit"/>
+            <widget class="QWidget" name="messageLoggerWidget">
+             <layout class="QVBoxLayout" name="messageLoggerLayout"/>
+            </widget>
             <widget class="QWidget" name="testCasesWidget">
              <layout class="QVBoxLayout" name="testCasesLayout"/>
             </widget>

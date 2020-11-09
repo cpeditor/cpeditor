@@ -44,7 +44,6 @@ class UpdateProgressDialog : public QDialog
     QPushButton *cancelUpdate = nullptr;
     QLabel *information = nullptr;
     QProgressBar *progressBar = nullptr;
-    QVBoxLayout *mainLayout = nullptr;
 };
 } // namespace Widgets
 

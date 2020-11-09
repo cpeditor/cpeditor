@@ -22,8 +22,8 @@
 
 PreferencesGridPage::PreferencesGridPage(bool alignTop, QWidget *parent) : PreferencesPage(parent)
 {
-    VLayout = new QVBoxLayout();
-    HLayout = new QHBoxLayout();
+    auto VLayout = new QVBoxLayout();
+    auto HLayout = new QHBoxLayout();
     gridLayout = new QGridLayout();
 
     addLayout(VLayout);
@@ -39,24 +39,20 @@ PreferencesGridPage::PreferencesGridPage(bool alignTop, QWidget *parent) : Prefe
     HLayout->addStretch();
 }
 
-void PreferencesGridPage::addRow(ValueWidget *widget, const QString &tip, const QString &help, const QString &labelText)
+void PreferencesGridPage::addRow(ValueWidget *widget, const QString &key, const QString &tip, const QString &labelText)
 {
-    registerWidget(widget);
+    registerWidget(key, widget);
     int row = gridLayout->rowCount();
     if (labelText.isEmpty())
     {
         if (!tip.isEmpty())
             widget->coreWidget()->setToolTip(tr(tip.toUtf8()));
-        if (!help.isEmpty())
-            widget->coreWidget()->setWhatsThis(tr(help.toUtf8()));
     }
     else
     {
         QLabel *label = new QLabel(tr(labelText.toUtf8()), this);
         if (!tip.isEmpty())
             label->setToolTip(tr(tip.toUtf8()));
-        if (!help.isEmpty())
-            label->setWhatsThis(tr(help.toUtf8()));
         gridLayout->addWidget(label, row, 0);
     }
     gridLayout->addWidget(widget->coreWidget(), row, 1);

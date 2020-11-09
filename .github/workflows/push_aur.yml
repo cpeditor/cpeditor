@@ -20,6 +20,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
+          ref: master
           fetch-depth: 0
 
       - name: Install SSH key
@@ -59,5 +60,5 @@ jobs:
           cd cpeditor-git
           git config --global user.email "ashar786khan@gmail.com"
           git config --global user.name "coder3101"
-          git commit -am "Update from CI: ${{ steps.update-files.outputs.VERSION }}"
+          git diff --quiet HEAD || git commit -am "Update from CI: ${{ steps.update-files.outputs.VERSION }}"
           git push -u origin master

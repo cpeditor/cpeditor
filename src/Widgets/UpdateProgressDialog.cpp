@@ -37,7 +37,7 @@ UpdateProgressDialog::UpdateProgressDialog()
     cancelUpdate = new QPushButton(tr("Cancel"), this);
     cancelUpdate->setToolTip(tr("Close this dialog and abort the update check"));
 
-    mainLayout = new QVBoxLayout(this);
+    auto mainLayout = new QVBoxLayout(this);
 
     mainLayout->addWidget(information);
     mainLayout->addWidget(progressBar);
@@ -62,7 +62,7 @@ void UpdateProgressDialog::onUpdateFailed(const QString &error)
 {
     information->setText(
         tr("Error: %1<br /><br />Updater failed to check for update. Please manually check for update at<br /><a "
-           "href=\"https://cpeditor.github.io/download\">https://cpeditor.github.io/download</a> or <a "
+           "href=\"https://cpeditor.org/download\">https://cpeditor.org/download</a> or <a "
            "href=\"https://github.com/cpeditor/cpeditor/releases\">https://github.com/cpeditor/cpeditor/releases</a>.")
             .arg(error));
     progressBar->hide();

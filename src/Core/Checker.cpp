@@ -24,6 +24,7 @@
 #include <QFile>
 #include <QTemporaryDir>
 #include <generated/SettingsHelper.hpp>
+#include <testlib.h>
 
 namespace Core
 {
@@ -45,7 +46,7 @@ Checker::~Checker()
 {
     if (compiler)
         delete compiler;
-    for (auto &t : runner)
+    for (auto &t : runners)
         delete t;
     if (tmpDir)
         delete tmpDir;
@@ -54,13 +55,7 @@ Checker::~Checker()
 
 void Checker::prepare(const QString &compileCommand)
 {
-    // clear everything
-    for (auto &t : runner)
-        delete t;
-    if (compiler)
-        delete compiler;
-    runner.clear();
-    pendingTasks.clear();
+    clearTasks();
 
     if (!compiled)
     {
@@ -125,10 +120,14 @@ void Checker::prepare(const QString &compileCommand)
             return;
 
         // start the compilation of the checker
+        if (compiler)
+            delete compiler;
         compiler = new Compiler();
+        connect(compiler, SIGNAL(compilationStarted()), this, SLOT(onCompilationStarted()));
         connect(compiler, SIGNAL(compilationFinished(const QString &)), this, SLOT(onCompilationFinished()));
         connect(compiler, SIGNAL(compilationErrorOccurred(const QString &)), this,
                 SLOT(onCompilationErrorOccurred(const QString &)));
+        connect(compiler, SIGNAL(compilationFailed(const QString &)), this, SLOT(onCompilationFailed(const QString &)));
         connect(compiler, SIGNAL(compilationKilled()), this, SLOT(onCompilationKilled()));
         compiler->start(checkerPath, "", compileCommand, "C++");
     }
@@ -143,9 +142,24 @@ void Checker::reqeustCheck(int index, const QString &input, const QString &outpu
         pendingTasks.push_back({index, input, output, expected}); // otherwise push it into the pending tasks list
 }
 
+void Checker::onCompilationStarted()
+{
+    log->info(tr("Checker"), tr("Started compiling the checker"));
+}
+
+void Checker::clearTasks()
+{
+    pendingTasks.clear();
+    for (auto &t : runners)
+        delete t;
+    runners.clear();
+}
+
 void Checker::onCompilationFinished()
 {
     compiled = true; // mark that the checker is compiled
+    if (checkerType >= Ncmp)
+        log->info(tr("Checker"), tr("The checker is compiled"));
     for (auto t : pendingTasks)
         check(t.index, t.input, t.output, t.expected); // solve the pending tasks
     pendingTasks.clear();
@@ -154,6 +168,11 @@ void Checker::onCompilationFinished()
 void Checker::onCompilationErrorOccurred(const QString &error)
 {
     log->error(tr("Checker"), tr("Error occurred while compiling the checker:\n%1").arg(error));
+}
+
+void Checker::onCompilationFailed(const QString &reason)
+{
+    log->error(tr("Checker"), tr("Failed to compile the checker: %1").arg(reason), false);
 }
 
 void Checker::onCompilationKilled()
@@ -168,53 +187,61 @@ void Checker::onCompilationKilled()
 void Checker::onRunFinished(int index, const QString &, const QString &err, int exitCode, int, bool tle)
 {
     if (tle)
-        log->warn(tr("Checker[%1]").arg(index + 1), tr("Time Limit Exceeded"));
+        log->warn(head(index), tr("Time Limit Exceeded"));
 
-    if (exitCode == 0)
+    switch (TResult(exitCode))
     {
-        // the check process succeeded
+    case _ok:
         if (!err.isEmpty())
-            log->message(tr("Checker[%1]").arg(index + 1), err, "green");
+            log->message(head(index), err, "green");
         emit checkFinished(index, Widgets::TestCase::AC);
-    }
-    else if (QList<int>({1, 2, 3, 4, 5, 8, 16}).contains(exitCode)) // this list is from testlib.h::TResult
-    {
-        // This exit code is a normal exit code of a testlib checker, means WA or something else
+        return;
+
+    case _wa:
+    case _pe:
+    case _fail:
+    case _dirt:
+    case _points:
+    case _unexpected_eof:
+    case _partially:
         if (err.isEmpty())
-            log->error(tr("Checker[%1]").arg(index + 1), tr("Checker exited with exit code %1").arg(exitCode));
+            log->error(head(index), tr("Checker exited with exit code %1").arg(exitCode));
         else
-            log->error(tr("Checker[%1]").arg(index + 1), err);
+            log->error(head(index), err);
         emit checkFinished(index, Widgets::TestCase::WA);
+        return;
+
+        // use return in each case with no default case and handle other exit codes below
+        // so that if there are unhandled enums there's a compilation warning (-Wswitch)
     }
-    else
-    {
-        // This exit code is not one of the normal exit codes of a testlib checker, maybe the checker crashed
-        log->error(tr("Checker[%1]").arg(index + 1), tr("Checker exited with unknown exit code %1").arg(exitCode));
-        if (!err.isEmpty())
-            log->error(tr("Checker[%1]").arg(index + 1), err);
-    }
+
+    // This exit code is not one of the normal exit codes of a testlib checker, maybe the checker crashed
+    log->error(head(index), tr("Checker exited with unknown exit code %1").arg(exitCode));
+    if (!err.isEmpty())
+        log->error(head(index), err);
 }
 
 void Checker::onFailedToStartRun(int index, const QString &error)
 {
-    log->error(tr("Checker[%1]").arg(index + 1), error);
+    log->error(head(index), error, false);
 }
 
 void Checker::onRunOutputLimitExceeded(int index, const QString &type)
 {
     log->warn(
-        tr("Checker[%1]").arg(index + 1),
+        head(index),
         tr("The %1 of the process running on the testcase #%2 contains more than %3 characters, which is longer "
            "than the output length limit, so the process is killed. You can change the output length limit at %4.")
             .arg(type)
             .arg(index + 1)
             .arg(SettingsHelper::getOutputLengthLimit())
-            .arg(SettingsHelper::pathOfOutputLengthLimit()));
+            .arg(SettingsHelper::pathOfOutputLengthLimit()),
+        false);
 }
 
 void Checker::onRunKilled(int index)
 {
-    log->error(tr("Checker[%1]").arg(index + 1), tr("Killed"));
+    log->error(head(index), tr("The checker is killed"));
 }
 
 bool Checker::checkIgnoreTrailingSpaces(const QString &output, const QString &expected)
@@ -291,7 +318,7 @@ void Checker::check(int index, const QString &input, const QString &output, cons
         {
             // if files are successfully saved, run the checker
             auto tmp = new Runner(index);
-            runner.push_back(tmp); // save the checkers in a list, so we can delete them when destructing the checker
+            runners.push_back(tmp); // save the checkers in a list, so we can delete them when destructing the checker
             connect(tmp, SIGNAL(runFinished(int, const QString &, const QString &, int, int, bool)), this,
                     SLOT(onRunFinished(int, const QString &, const QString &, int, int, bool)));
             connect(tmp, SIGNAL(failedToStartRun(int, const QString &)), this,
@@ -305,6 +332,11 @@ void Checker::check(int index, const QString &input, const QString &output, cons
         }
         break;
     }
+}
+
+QString Checker::head(int index) const
+{
+    return tr("Checker[%1]").arg(index + 1);
 }
 
 } // namespace Core

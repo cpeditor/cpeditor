@@ -454,6 +454,24 @@
       "contributions": [
         "bug"
       ]
+    },
+    {
+      "login": "Gourav-raj",
+      "name": "GOURAV RAJ",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/50336197?v=4",
+      "profile": "https://github.com/Gourav-raj",
+      "contributions": [
+        "ideas"
+      ]
+    },
+    {
+      "login": "thebrave",
+      "name": "Jean Berniolles",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/2398126?v=4",
+      "profile": "https://github.com/thebrave",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 6,

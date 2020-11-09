@@ -211,6 +211,11 @@ void AppWindow::dragEnterEvent(QDragEnterEvent *event)
     }
 }
 
+PreferencesWindow *AppWindow::getPreferencesWindow() const
+{
+    return preferencesWindow;
+}
+
 void AppWindow::dropEvent(QDropEvent *event)
 {
     LOG_INFO("Files are being dropped to editor");
@@ -347,6 +352,12 @@ void AppWindow::maybeSetHotkeys()
         hotkeyObjects.push_back(
             new QShortcut(SettingsHelper::getHotkeySnippets(), this, SLOT(on_actionUseSnippets_triggered())));
     }
+
+    hotkeyObjects.push_back(
+        new QShortcut(Qt::Key_F11, this, [this] { setWindowState(windowState() ^ Qt::WindowFullScreen); }));
+
+    hotkeyObjects.push_back(
+        new QShortcut(Qt::Key_Escape, this, [this] { setWindowState(windowState() & ~Qt::WindowFullScreen); }));
 }
 
 bool AppWindow::closeTab(int index)
@@ -455,6 +466,7 @@ void AppWindow::openTabs(const QStringList &paths)
     }
 
     setUpdatesEnabled(true);
+    repaint();
     resize(oldSize);
 
     progress.setValue(length);
@@ -630,6 +642,10 @@ void AppWindow::on_actionBuildInfo_triggered()
                            .arg("Windows")
 #elif defined(Q_OS_MACOS)
                            .arg("macOS")
+#elif defined(Q_OS_FREEBSD)
+                           .arg("FreeBSD")
+#elif defined(Q_OS_UNIX)
+                           .arg("UNIX")
 #else
                            .arg("Unknown")
 #endif
@@ -1016,11 +1032,15 @@ void AppWindow::onSettingsApplied(const QString &pagePath)
 
     for (int i = 0; i < ui->tabWidget->count(); ++i)
     {
-        windowAt(i)->applySettings(pagePath, i == ui->tabWidget->currentIndex());
+        windowAt(i)->applySettings(pagePath);
         onEditorTextChanged(windowAt(i));
     }
 
-    auto pageChanged = [pagePath](const QString &page) { return pagePath.isEmpty() || pagePath == page; };
+    auto pageChanged = [this, pagePath](const QString &page) {
+        if (!preferencesWindow->pathExists(page))
+            LOG_DEV("Unknown path: " << page);
+        return pagePath.isEmpty() || pagePath == page;
+    };
 
     if (pageChanged("Key Bindings"))
         maybeSetHotkeys();

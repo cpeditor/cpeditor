@@ -601,11 +601,11 @@ git 提交编号: %3
     </message>
     <message>
         <source>Checker exited with exit code %1</source>
-        <translation>评测器退出，返回值: %1</translation>
+        <translation>评测器以返回值 %1 退出</translation>
     </message>
     <message>
         <source>Checker exited with unknown exit code %1</source>
-        <translation>评测器退出，未知返回值: %1</translation>
+        <translation>评测器以未知返回值 %1 退出</translation>
     </message>
     <message>
         <source>Time Limit Exceeded</source>
@@ -616,8 +616,20 @@ git 提交编号: %3
         <translation>测试点 #%2 的 %1 超过 %3 个字符，超出了输出长度限制，因此进程被结束。你可以在 %4 更改限制大小。</translation>
     </message>
     <message>
-        <source>Killed</source>
-        <translation>被终止</translation>
+        <source>The checker is killed</source>
+        <translation>评测器已被终止运行</translation>
+    </message>
+    <message>
+        <source>Started compiling the checker</source>
+        <translation>开始编译评测器</translation>
+    </message>
+    <message>
+        <source>The checker is compiled</source>
+        <translation>评测器编译完成</translation>
+    </message>
+    <message>
+        <source>Failed to compile the checker: %1</source>
+        <translation>未能成功编译评测器：%1</translation>
     </message>
 </context>
 <context>
@@ -627,16 +639,16 @@ git 提交编号: %3
         <translation>源文件 [%1] 不存在</translation>
     </message>
     <message>
-        <source>The compile command for %1 is empty</source>
-        <translation>%1 的编译命令为空</translation>
-    </message>
-    <message>
         <source>Unsupported programming language &quot;%1&quot;</source>
         <translation>编程语言“%1”不受支持</translation>
     </message>
     <message>
-        <source>Failed to start compilation. Please check the compile command in the settings.</source>
-        <translation>未能成功启动编译。请在设置中检查编译命令。</translation>
+        <source>Failed to start the compiler. Please check %1 or add the compiler in the PATH environment variable.</source>
+        <translation>未能启动编译器。请检查 %1 或将编译器添加到 PATH 环境变量中。</translation>
+    </message>
+    <message>
+        <source>%1 is empty</source>
+        <translation>%1 为空</translation>
     </message>
 </context>
 <context>
@@ -662,6 +674,10 @@ Press any key to exit</source>
     <message>
         <source>Failed to start detached execution. Please check your terminal emulator settings in %1.</source>
         <translation>未能成功在终端中运行。请在 %1 中检查终端模拟器的设置。</translation>
+    </message>
+    <message>
+        <source>Detached execution is not supported on your platform</source>
+        <translation>你的平台上不支持在终端中运行</translation>
     </message>
 </context>
 <context>
@@ -950,10 +966,6 @@ p, li { white-space: pre-wrap; }
         <translation>保存临时文件失败，代码未提交。</translation>
     </message>
     <message>
-        <source>You will not be able to submit code to Codeforces because CF Tool is not installed or is not on SYSTEM PATH. You can set it manually in settings.</source>
-        <translation>你无法将代码提交至 Codeforces，因为 CF Tool 没有安装，或是它不在 PATH 环境变量里。你可以在设置中手动设置 CF Tool 的路径。</translation>
-    </message>
-    <message>
         <source>Untitled-%1</source>
         <translation>未命名-%1</translation>
     </message>
@@ -1038,14 +1050,6 @@ Do you want to reload it?</source>
     <message>
         <source>%1 characters selected</source>
         <translation>共有 %1 个字符被选择</translation>
-    </message>
-    <message>
-        <source>The compile command for %1 is invalid. Is the compiler in the system PATH?</source>
-        <translation>语言 %1 的编译命令不可用。编译器是否在环境变量 PATH 中？</translation>
-    </message>
-    <message>
-        <source>The run command for %1 is invalid. Is the runner in the system Path?</source>
-        <translation>语言 %1 的运行命令不可用。解释器是否在环境变量 PATH 中？</translation>
     </message>
     <message>
         <source>Compilation has started</source>
@@ -1174,6 +1178,14 @@ Do you want to reload it?</source>
     <message>
         <source>Custom time limit for this tab: (ms)</source>
         <translation>这个标签页的自定义时间限制：(毫秒)</translation>
+    </message>
+    <message>
+        <source>You need to install CF Tool to submit your code to Codeforces. If already installed, you can add it in the PATH environment variable or check your settings at %1.</source>
+        <translation>你需要安装 CF Tool 以将代码提交到 Codeforces。如果你已经安装了，你可以将它添加到 PATH 环境变量中，或者检查 %1 处的设置。</translation>
+    </message>
+    <message>
+        <source>Failed to start compilation: %1</source>
+        <translation>未能开始编译：%1</translation>
     </message>
 </context>
 <context>
@@ -1715,7 +1727,7 @@ You can use &quot;${filename}&quot; for the complete file name,
     </message>
     <message>
         <source>The name of the main class of your solution.</source>
-        <translation>你的代码中非 public 主类的名称。</translation>
+        <translation>你的代码中主类的名称。</translation>
     </message>
     <message>
         <source>Automatically delete the whole pair of parentheses when deleting
@@ -2768,20 +2780,16 @@ A test case will be elided and read-only if it&apos;s too long.</source>
         <translation>答案</translation>
     </message>
     <message>
-        <source>Now the test case editor is read-only. You can set the length limit at %1.</source>
-        <translation>现在测试用例编辑器是只读的。你可以在 %1 中设置长度限制。</translation>
-    </message>
-    <message>
-        <source>Only the first %1 characters are shown.</source>
-        <translation>只显示了前 %1 个字符。</translation>
-    </message>
-    <message>
         <source>Save to file</source>
         <translation>保存到文件</translation>
     </message>
     <message>
         <source>Save test case to file</source>
         <translation>将测试用例保存到文件</translation>
+    </message>
+    <message>
+        <source>Only the first %1 characters are shown. Now the test case editor is read-only. You can set the length limit at %2.</source>
+        <translation>只显示了前 %1 个字符。现在测试用例编辑器是只读的。你可以在 %2 中设置长度限制。</translation>
     </message>
 </context>
 <context>
@@ -2981,8 +2989,8 @@ A test case will be elided and read-only if it&apos;s too long.</source>
         <translation>获取更新列表中...</translation>
     </message>
     <message>
-        <source>Error: %1&lt;br /&gt;&lt;br /&gt;Updater failed to check for update. Please manually check for update at&lt;br /&gt;&lt;a href=&quot;https://cpeditor.github.io/download&quot;&gt;https://cpeditor.github.io/download&lt;/a&gt; or &lt;a href=&quot;https://github.com/cpeditor/cpeditor/releases&quot;&gt;https://github.com/cpeditor/cpeditor/releases&lt;/a&gt;.</source>
-        <translation>错误：%1&lt;br /&gt;&lt;br /&gt;检查更新失败。请前往 &lt;br /&gt;&lt;a href=&quot;https://cpeditor.github.io/download&quot;&gt;https://cpeditor.github.io/download&lt;/a&gt; 或 &lt;a href=&quot;https://github.com/cpeditor/cpeditor/releases&quot;&gt;https://github.com/cpeditor/cpeditor/releases&lt;/a&gt; 手动检查更新。</translation>
+        <source>Error: %1&lt;br /&gt;&lt;br /&gt;Updater failed to check for update. Please manually check for update at&lt;br /&gt;&lt;a href=&quot;https://cpeditor.org/download&quot;&gt;https://cpeditor.org/download&lt;/a&gt; or &lt;a href=&quot;https://github.com/cpeditor/cpeditor/releases&quot;&gt;https://github.com/cpeditor/cpeditor/releases&lt;/a&gt;.</source>
+        <translation>错误：%1&lt;br /&gt;&lt;br /&gt;检查更新失败。请前往 &lt;br /&gt;&lt;a href=&quot;https://cpeditor.org/zh/download&quot;&gt;https://cpeditor.org/zh/download&lt;/a&gt; 或 &lt;a href=&quot;https://github.com/cpeditor/cpeditor/releases&quot;&gt;https://github.com/cpeditor/cpeditor/releases&lt;/a&gt; 手动检查更新。</translation>
     </message>
     <message>
         <source>Close</source>

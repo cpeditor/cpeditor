@@ -150,27 +150,18 @@ class CodeSnippetsPage : public PreferencesPage
      *         - (stretch)
      */
 
-    QSplitter *splitter = nullptr;
-    QWidget *leftWidget = nullptr;
-    QVBoxLayout *leftLayout = nullptr;
     QLineEdit *searchEdit = nullptr;
     QListWidget *snippetsList = nullptr;
-    QHBoxLayout *buttonsLayout = nullptr;
-    QPushButton *addButton = nullptr;
     QPushButton *deleteButton = nullptr;
-    QPushButton *moreButton = nullptr;
     QMenu *moreMenu = nullptr;
     QAction *renameAction = nullptr;
     QAction *loadSnippetsFromFilesAction = nullptr;
     QAction *extractSnippetsToFilesAction = nullptr;
     QStackedWidget *rightWidget = nullptr;
     QWidget *snippetWidget = nullptr;
-    QVBoxLayout *snippetLayout = nullptr;
     QLabel *snippetNameLabel = nullptr;
     CodeEditor *editor = nullptr;
     QWidget *noSnippetWidget = nullptr;
-    QVBoxLayout *VStretchLayout = nullptr;
-    QHBoxLayout *HStretchLayout = nullptr;
     QLabel *noSnippetLabel = nullptr;
 
     QString lang;

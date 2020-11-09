@@ -32,13 +32,13 @@
 
 CodeSnippetsPage::CodeSnippetsPage(const QString &language, QWidget *parent) : PreferencesPage(parent), lang(language)
 {
-    splitter = new QSplitter();
+    auto splitter = new QSplitter();
     addWidget(splitter);
 
-    leftWidget = new QWidget();
+    auto leftWidget = new QWidget();
     splitter->addWidget(leftWidget);
 
-    leftLayout = new QVBoxLayout(leftWidget);
+    auto leftLayout = new QVBoxLayout(leftWidget);
 
     searchEdit = new QLineEdit();
     searchEdit->setPlaceholderText(tr("Search..."));
@@ -51,10 +51,10 @@ CodeSnippetsPage::CodeSnippetsPage(const QString &language, QWidget *parent) : P
     connect(snippetsList, SIGNAL(itemClicked(QListWidgetItem *)), this, SLOT(switchToSnippet(QListWidgetItem *)));
     leftLayout->addWidget(snippetsList);
 
-    buttonsLayout = new QHBoxLayout();
+    auto buttonsLayout = new QHBoxLayout();
     leftLayout->addLayout(buttonsLayout);
 
-    addButton = new QPushButton(tr("Add"));
+    auto addButton = new QPushButton(tr("Add"));
     addButton->setShortcut({"Ctrl+N"});
     connect(addButton, SIGNAL(clicked()), this, SLOT(addSnippet()));
     buttonsLayout->addWidget(addButton);
@@ -81,7 +81,7 @@ CodeSnippetsPage::CodeSnippetsPage(const QString &language, QWidget *parent) : P
     moreMenu->addAction(loadSnippetsFromFilesAction);
     moreMenu->addAction(extractSnippetsToFilesAction);
 
-    moreButton = new QPushButton(tr("More"));
+    auto moreButton = new QPushButton(tr("More"));
     moreButton->setMenu(moreMenu);
     buttonsLayout->addWidget(moreButton);
 
@@ -91,7 +91,7 @@ CodeSnippetsPage::CodeSnippetsPage(const QString &language, QWidget *parent) : P
     snippetWidget = new QWidget();
     rightWidget->addWidget(snippetWidget);
 
-    snippetLayout = new QVBoxLayout(snippetWidget);
+    auto snippetLayout = new QVBoxLayout(snippetWidget);
 
     snippetNameLabel = new QLabel();
     snippetLayout->addWidget(snippetNameLabel);
@@ -104,10 +104,10 @@ CodeSnippetsPage::CodeSnippetsPage(const QString &language, QWidget *parent) : P
     rightWidget->addWidget(noSnippetWidget);
     rightWidget->setCurrentWidget(noSnippetWidget);
 
-    VStretchLayout = new QVBoxLayout(noSnippetWidget);
+    auto VStretchLayout = new QVBoxLayout(noSnippetWidget);
     VStretchLayout->addStretch();
 
-    HStretchLayout = new QHBoxLayout();
+    auto HStretchLayout = new QHBoxLayout();
     VStretchLayout->addLayout(HStretchLayout);
     HStretchLayout->addStretch();
 
