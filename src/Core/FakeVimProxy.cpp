@@ -50,7 +50,6 @@
 namespace Core
 {
 
-using _ = QLatin1String;
 FakeVimProxy::FakeVimProxy(QWidget *widget, MainWindow *mw, AppWindow *aw, QObject *parent)
     : QObject(parent), m_widget(widget), m_mainWindow(mw), m_appWindow(aw), m_commandHandler(new FakeVimCommand(aw))
 {
