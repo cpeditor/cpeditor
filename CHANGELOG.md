@@ -12,7 +12,7 @@ To compensate for the loss of Control key in Vim Emulation, we provide custom co
 -   Now you can opt-in non-monospaced fonts when choosing a font in the Preferences. (#217 and #625)
 -   Format python codes by YAPF. (#652)
 -   Now you can open the corresponding preferences page via a link when asked to check the setting in the message logger. (#659)
--   Now you can toggle fullscreen mode by pressing F11. (#642 and #660)
+-   Now you can toggle fullscreen mode by pressing F11 or clicking View->Full Screen. (#642, #660 and #670)
 
 ### Fixed
 

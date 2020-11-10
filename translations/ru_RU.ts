@@ -467,6 +467,10 @@ Git commit hash: %3
         <source>https://cpeditor.org/%1/docs</source>
         <translation>https://cpeditor.org/%1/ru/docs</translation>
     </message>
+    <message>
+        <source>Full Screen</source>
+        <translation>Полный экран</translation>
+    </message>
 </context>
 <context>
     <name>CodeSnippetsPage</name>

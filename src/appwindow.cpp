@@ -355,11 +355,7 @@ void AppWindow::maybeSetHotkeys()
             new QShortcut(SettingsHelper::getHotkeySnippets(), this, SLOT(on_actionUseSnippets_triggered())));
     }
 
-    hotkeyObjects.push_back(
-        new QShortcut(Qt::Key_F11, this, [this] { setWindowState(windowState() ^ Qt::WindowFullScreen); }));
-
-    hotkeyObjects.push_back(
-        new QShortcut(Qt::Key_Escape, this, [this] { setWindowState(windowState() & ~Qt::WindowFullScreen); }));
+    hotkeyObjects.push_back(new QShortcut(Qt::Key_Escape, this, [this] { ui->actionFullScreen->setChecked(false); }));
 }
 
 bool AppWindow::closeTab(int index, bool noConfirmQuit)
@@ -1294,6 +1290,14 @@ void AppWindow::on_actionSplitMode_triggered()
         LOG_INFO("Restored splitter state");
         currentWindow()->setViewMode("split");
     }
+}
+
+void AppWindow::on_actionFullScreen_toggled(bool checked)
+{
+    LOG_INFO(INFO_OF(checked));
+    auto state = windowState();
+    state.setFlag(Qt::WindowFullScreen, checked);
+    setWindowState(state);
 }
 
 void AppWindow::on_actionIndent_triggered()

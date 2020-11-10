@@ -467,6 +467,10 @@ git 提交编号: %3
         <source>https://cpeditor.org/%1/docs</source>
         <translation>https://cpeditor.org/%1/zh/docs</translation>
     </message>
+    <message>
+        <source>Full Screen</source>
+        <translation>全屏</translation>
+    </message>
 </context>
 <context>
     <name>CodeSnippetsPage</name>

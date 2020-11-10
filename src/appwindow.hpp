@@ -153,6 +153,8 @@ class AppWindow : public QMainWindow
 
     void on_actionSplitMode_triggered();
 
+    void on_actionFullScreen_toggled(bool checked);
+
     void on_actionIndent_triggered();
 
     void on_actionUnindent_triggered();
