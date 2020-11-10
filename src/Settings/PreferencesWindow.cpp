@@ -50,7 +50,7 @@ AddPageHelper &AddPageHelper::page(const QString &key, const QString &trkey, Pre
                                    const QStringList &content)
 {
     window->registerName(key, trkey);
-    if (currentPath.size() == 0)
+    if (atTop())
     {
         currentItem = new QTreeWidgetItem({trkey});
         tree->addTopLevelItem(currentItem);
@@ -75,7 +75,7 @@ AddPageHelper &AddPageHelper::page(const QString &key, const QString &trkey, Pre
 AddPageHelper &AddPageHelper::dir(const QString &key, const QString &trkey)
 {
     window->registerName(key, trkey);
-    if (currentPath.size() == 0)
+    if (atTop())
     {
         currentItem = new QTreeWidgetItem({trkey});
         tree->addTopLevelItem(currentItem);
@@ -97,6 +97,16 @@ AddPageHelper &AddPageHelper::end()
     currentPath.pop_back();
     currentTrPath.pop_back();
     return *this;
+}
+
+void AddPageHelper::ensureAtTop() const
+{
+    Q_ASSERT(atTop());
+}
+
+bool AddPageHelper::atTop() const
+{
+    return currentPath.isEmpty();
 }
 
 AddPageHelper::AddPageHelper(PreferencesWindow *w) : window(w), tree(window->menuTree)
@@ -228,8 +238,11 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
             .page(TRKEY("Load External File Changes"), {"Auto Load External Changes If No Unsaved Modification", "Ask For Loading External Changes"})
         .end()
         .dir(TRKEY("Extensions"))
-            .page(TRKEY("Clang Format"), new PreferencesPageTemplate({"Clang Format/Path", "Clang Format/Format On Manual Save",
-                                         "Clang Format/Format On Auto Save", "Clang Format/Style"}, false))
+            .dir(TRKEY("Code Formatting"))
+                .page(TRKEY("General"), {"Format On Manual Save", "Format On Auto Save"})
+                .page(TRKEY("Clang Format"), new PreferencesPageTemplate({"Clang Format/Program", "Clang Format/Arguments", "Clang Format/Style"}, false))
+                .page(TRKEY("YAPF"), new PreferencesPageTemplate({"YAPF/Program", "YAPF/Arguments", "YAPF/Style"}, false))
+            .end()
             .dir(TRKEY("Language Server"))
                 .page("C++ Server", tr("%1 Server").arg(tr("C++")), {"LSP/Use Linting C++", "LSP/Delay C++", "LSP/Path C++", "LSP/Args C++"})
                 .page("Java Server", tr("%1 Server").arg(tr("Java")), {"LSP/Use Linting Java", "LSP/Delay Java", "LSP/Path Java", "LSP/Args Java"})
@@ -254,7 +267,8 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
             .page(TRKEY("Limits"), {"Default Time Limit", "Output Length Limit", "Output Display Length Limit", "Message Length Limit",
                                     "HTML Diff Viewer Length Limit", "Open File Length Limit", "Display Test Case Length Limit"})
             .page(TRKEY("Network Proxy"), {"Proxy/Enabled", "Proxy/Type", "Proxy/Host Name", "Proxy/Port", "Proxy/User", "Proxy/Password"})
-        .end();
+        .end()
+    .ensureAtTop();
 
 #undef TRKEY
 

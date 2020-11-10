@@ -33,6 +33,8 @@ const static QString exeSuffix = ".exe";
 const static QString exeSuffix = "";
 #endif
 
+QString fileNameWithSuffix(const QString &name, const QString &lang);
+
 QString fileNameFilter(bool cpp, bool java, bool python);
 
 bool saveFile(const QString &path, const QString &content, const QString &head = "Save File", bool safe = true,

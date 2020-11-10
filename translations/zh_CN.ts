@@ -735,11 +735,7 @@ Press any key to exit</source>
     </message>
 </context>
 <context>
-    <name>Extensions::ClangFormatter</name>
-    <message>
-        <source>Formatter/check</source>
-        <translation>格式化工具/检查</translation>
-    </message>
+    <name>Extensions::CodeFormatter</name>
     <message>
         <source>Formatter</source>
         <translation>格式化工具</translation>
@@ -753,20 +749,24 @@ Press any key to exit</source>
         <translation>格式化完毕</translation>
     </message>
     <message>
-        <source>The format process didn&apos;t finish in 2 seconds. This is probably because the clang-format binary is not found by CP Editor. You can set the path to clang-format at %1.</source>
-        <translation>格式化进程未能在 2 秒内结束。这可能是因为 CP Editor 未能找到 clang-format 的可执行文件。你可以在 %1 设置 clang-format 可执行文件的路径。</translation>
-    </message>
-    <message>
-        <source>The format command is: %1 %2</source>
-        <translation>格式化指令为: %1 %2</translation>
-    </message>
-    <message>
         <source>Formatter[stdout]</source>
         <translation>格式化工具[stdout]</translation>
     </message>
     <message>
         <source>Formatter[stderr]</source>
         <translation>格式化工具[stderr]</translation>
+    </message>
+    <message>
+        <source>The format command [%1 %2] finished with exit code %3.</source>
+        <translation>格式化命令 [%1 %2] 以返回值 %3 结束了。</translation>
+    </message>
+    <message>
+        <source>The format process didn&apos;t finish in 2 seconds. This is probably because the %1 program is not found by CP Editor. You can set the path to the program at %2.</source>
+        <translation>格式化进程未能在 2 秒内结束。这很可能是因为 CP Editor 没有找到 %1 程序。你可以在 %2 设置程序的路径。</translation>
+    </message>
+    <message>
+        <source>The output of the format process is empty. Please ensure there is no in-place modification option in the formatting arguments.</source>
+        <translation>格式化进程的输出为空。请确保格式化命令中没有就地修改选项。</translation>
     </message>
 </context>
 <context>
@@ -1538,6 +1538,14 @@ If it&apos;s partially checked, the global setting in Code Editing will be used.
         <source>Code Editing</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>YAPF</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Code Formatting</source>
+        <translation>代码格式化</translation>
+    </message>
 </context>
 <context>
     <name>SettingsInfo</name>
@@ -1574,11 +1582,7 @@ If it&apos;s partially checked, the global setting in Code Editing will be used.
         <translation>Clang Format 可执行文件的路径</translation>
     </message>
     <message>
-        <source>Style</source>
-        <translation>风格</translation>
-    </message>
-    <message>
-        <source>The Clang Format style options, which are often saved in a .clang-format configuration file.
+        <source>The Clang Format style options, which are usually saved in a .clang-format configuration file.
 You can learn about it at &lt;https://clang.llvm.org/docs/ClangFormatStyleOptions.html&gt;.</source>
         <translation>Clang Format 格式化所用风格，通常存储为 .clang-format。
 你可以在 &lt;https://clang.llvm.org/docs/ClangFormatStyleOptions.html&gt; 上了解更多。</translation>
@@ -2392,16 +2396,8 @@ It is a list of &lt;default path name&gt;s, separated by commas, and can be empt
         <translation>它可以被 %1 覆盖。</translation>
     </message>
     <message>
-        <source>Use Clang Format to format the code when auto-saving it.</source>
-        <translation>自动保存代码时使用 Clang Format 进行格式化。</translation>
-    </message>
-    <message>
         <source>Format code on manual save</source>
         <translation>手动保存时格式化代码</translation>
-    </message>
-    <message>
-        <source>Use Clang Format to format the code when saving it manually.</source>
-        <translation>手动保存代码时使用 Clang Format 进行格式化。</translation>
     </message>
     <message>
         <source>Format code on auto-save</source>
@@ -2578,6 +2574,56 @@ A test case will be elided and read-only if it&apos;s too long.</source>
         <source>Highlight the line where cursor exists.
 In, vim emulation current line is never highlighed</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Clang Format Program</source>
+        <translation>Clang Format 程序</translation>
+    </message>
+    <message>
+        <source>Clang Format Arguments</source>
+        <translation>Clang Format 参数</translation>
+    </message>
+    <message>
+        <source>The arguments passed to clang-format. It should NOT contain &quot;-i&quot;.</source>
+        <translation>传递给 clang-format 的参数。它不应包含 &quot;-i&quot;。</translation>
+    </message>
+    <message>
+        <source>Clang Format Style</source>
+        <translation>Clang Format 风格</translation>
+    </message>
+    <message>
+        <source>YAPF Program</source>
+        <translation>YAPF 程序</translation>
+    </message>
+    <message>
+        <source>The program of YAPF. It could be `yapf` (which doesn&apos;t need arguments) or `python` (which needs `-m yapf` as the arguments).</source>
+        <translation>YAPF 的程序。它可以是 `yapf`（无需额外设置参数）或 `python`（需要 `-m yapf` 作为参数）。</translation>
+    </message>
+    <message>
+        <source>YAPF Arguments</source>
+        <translation>YAPF 参数</translation>
+    </message>
+    <message>
+        <source>The arguments passed to the YAPF program. It should NOT contain &quot;-i&quot;.</source>
+        <translation>传递给 YAPF 程序的参数。它不应包含 &quot;-i&quot;。</translation>
+    </message>
+    <message>
+        <source>YAPF Style</source>
+        <translation>YAPF 风格</translation>
+    </message>
+    <message>
+        <source>The YAPF style options, which are usually saved in a .style.yapf or setup.conf configuration file.
+You can learn about it by running `yapf --style-help`.</source>
+        <translation>YAPF 格式化所用风格，通常存储为 .style.yapf 或 setup.conf。
+你可以运行 `yapf --style-help` 以了解更多。</translation>
+    </message>
+    <message>
+        <source>Format the code when saving it manually.</source>
+        <translation>手动保存时格式化代码。</translation>
+    </message>
+    <message>
+        <source>Format the code when auto-saving it.</source>
+        <translation>自动保存时格式化代码。</translation>
     </message>
 </context>
 <context>

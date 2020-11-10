@@ -54,6 +54,20 @@ QString fileNameFilter(bool cpp, bool java, bool python)
     return QCoreApplication::translate("Util::FileUtil", "%1Source Files (%2)").arg(name, filter.trimmed());
 }
 
+QString fileNameWithSuffix(const QString &name, const QString &lang)
+{
+    QString result = name + ".";
+    if (lang == "C++")
+        result += cppSuffix[0];
+    else if (lang == "Java")
+        result += javaSuffix[0];
+    else if (lang == "Python")
+        result += pythonSuffix[0];
+    else
+        LOG_WTF("Unknown language: " << lang);
+    return result;
+}
+
 bool saveFile(const QString &path, const QString &content, const QString &head, bool safe, MessageLogger *log,
               bool createDirectory)
 {
