@@ -530,16 +530,7 @@ void AppWindow::openContest(Widgets::ContestDialog::ContestData const &data)
     QStringList tabs;
 
     for (int i = 0; i < number; ++i)
-    {
-        QString name('A' + i);
-        if (language == "C++")
-            name += ".cpp";
-        else if (language == "Java")
-            name += ".java";
-        else if (language == "Python")
-            name += ".py";
-        tabs.append(QDir(path).filePath(name));
-    }
+        tabs.append(QDir(path).filePath(Util::fileNameWithSuffix(QChar('A' + i), lang)));
 
     openTabs(tabs);
 }
@@ -1198,7 +1189,7 @@ void AppWindow::on_actionFormatCode_triggered()
 {
     if (currentWindow() != nullptr)
     {
-        currentWindow()->formatSource();
+        currentWindow()->formatSource(true, true);
     }
 }
 

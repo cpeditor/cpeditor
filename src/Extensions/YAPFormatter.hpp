@@ -15,26 +15,20 @@
  *
  */
 
-/*
- * The Formatter is used to format codes.
- * It runs synchronously, so the event loop is blocked while formatting.
- * The time limit for formatting is 2 seconds.
- */
-
-#ifndef FORMATTER_HPP
-#define FORMATTER_HPP
+#ifndef YAPFORMATTER_HPP
+#define YAPFORMATTER_HPP
 
 #include "Extensions/CodeFormatter.hpp"
 
 namespace Extensions
 {
-class ClangFormatter : public CodeFormatter
+class YAPFormatter : public CodeFormatter
 {
     Q_OBJECT
 
   public:
-    explicit ClangFormatter(QCodeEditor *editor, const QString &lang, bool selectionOnly, bool logOnNoChange,
-                            MessageLogger *log, QObject *parent = nullptr);
+    explicit YAPFormatter(QCodeEditor *editor, const QString &lang, bool selectionOnly, bool logOnNoChange,
+                          MessageLogger *log, QObject *parent = nullptr);
 
   protected:
     virtual QString settingKey() const override;
@@ -47,12 +41,9 @@ class ClangFormatter : public CodeFormatter
 
     virtual QString newSource(const QString &out) const override;
 
-    virtual QTextCursor newCursor(const QString &out, const QStringList &args) const override;
-
-  private:
-    int newCursorPos(const QString &out) const;
+    virtual QTextCursor newCursor(const QString &out, const QStringList &) const override;
 };
 
 } // namespace Extensions
 
-#endif // FORMATTER_HPP
+#endif // YAPFORMATTER_HPP
