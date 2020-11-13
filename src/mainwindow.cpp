@@ -622,6 +622,7 @@ void MainWindow::applySettings(const QString &pagePath)
                 fakevimHandler = nullptr;
                 setStatusBar(nullptr);
             }
+            ui->cursorInfo->setVisible(true);
 
             if (SettingsHelper::isFakeVimEnable())
             {
@@ -629,6 +630,8 @@ void MainWindow::applySettings(const QString &pagePath)
 
                 Core::FakeVimProxy::connectSignals(fakevimHandler, editor, this, appWindow);
                 Core::FakeVimProxy::initHandler(fakevimHandler);
+
+                ui->cursorInfo->setVisible(false);
             }
 
             Core::FakeVimProxy::clearUndoRedo(editor);
@@ -1260,38 +1263,41 @@ void MainWindow::onEditorFontChanged(const QFont &newFont)
 
 void MainWindow::updateCursorInfo()
 {
-    auto cursor = editor->textCursor();
-    auto selection = cursor.selectedText();
-    QString info;
-    if (selection.isEmpty())
+    if (!editor->vimCursor())
     {
-        auto line = editor->document()->findBlockByNumber(cursor.blockNumber()).text();
-        int column = cursor.columnNumber();
-        int col = 0;
-        for (int i = 0; i < column; ++i)
+        auto cursor = editor->textCursor();
+        auto selection = cursor.selectedText();
+        QString info;
+        if (selection.isEmpty())
         {
-            if (line[i] != '\t')
-                ++col;
-            else
-                col += SettingsHelper::getTabWidth() - col % SettingsHelper::getTabWidth();
+            auto line = editor->document()->findBlockByNumber(cursor.blockNumber()).text();
+            int column = cursor.columnNumber();
+            int col = 0;
+            for (int i = 0; i < column; ++i)
+            {
+                if (line[i] != '\t')
+                    ++col;
+                else
+                    col += SettingsHelper::getTabWidth() - col % SettingsHelper::getTabWidth();
+            }
+            info = tr("Line %1, Column %2").arg(cursor.blockNumber() + 1).arg(col + 1);
         }
-        info = tr("Line %1, Column %2").arg(cursor.blockNumber() + 1).arg(col + 1);
-    }
-    else
-    {
-        int selectionStart = cursor.selectionStart();
-        int selectionEnd = cursor.selectionEnd();
-        cursor.setPosition(selectionStart);
-        int lineStart = cursor.blockNumber();
-        cursor.setPosition(selectionEnd);
-        int lineEnd = cursor.blockNumber();
-        int selectionLines = lineEnd - lineStart + 1;
-        if (selectionLines > 1)
-            info = tr("%1 lines, %2 characters selected").arg(selectionLines).arg(selection.length());
         else
-            info = tr("%1 characters selected").arg(selection.length());
+        {
+            int selectionStart = cursor.selectionStart();
+            int selectionEnd = cursor.selectionEnd();
+            cursor.setPosition(selectionStart);
+            int lineStart = cursor.blockNumber();
+            cursor.setPosition(selectionEnd);
+            int lineEnd = cursor.blockNumber();
+            int selectionLines = lineEnd - lineStart + 1;
+            if (selectionLines > 1)
+                info = tr("%1 lines, %2 characters selected").arg(selectionLines).arg(selection.length());
+            else
+                info = tr("%1 characters selected").arg(selection.length());
+        }
+        ui->cursorInfo->setText(info);
     }
-    ui->cursorInfo->setText(info);
 }
 
 void MainWindow::updateChecker()
