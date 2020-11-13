@@ -149,8 +149,8 @@ bool FakeVimCommand::handleCustomCommand(CommandTypes type, QString const &args,
                 showError(tr("[%1] is not a number").arg(args));
             else // args is a number
             {
-                if (caseNum > 0 && appwin->currentWindow() && appwin->currentWindow()->testcases &&
-                    appwin->currentWindow()->testcases->count() >= caseNum) // args is valid
+                if (appwin->currentWindow() && caseNum > 0 &&
+                    caseNum <= appwin->currentWindow()->testcases->count()) // args is valid
                     appwin->currentWindow()->runTestCase(caseNum - 1);
                 else
                     showError(
