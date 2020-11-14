@@ -1185,7 +1185,7 @@ Do you want to reload it?</source>
     </message>
     <message>
         <source>You need to install CF Tool to submit your code to Codeforces. If already installed, you can add it in the PATH environment variable or check your settings at %1.</source>
-        <translation>Вам необходимо устанвоить CF Tool для отправки Вашего кода на Codeforeces. Если он уже установлен, вы можете добавить его в переменную среды PATH или проверить Ваши настройки в %1.</translation>
+        <translation>Вам необходимо устанвоить CF Tool для отправки Вашего кода на Codeforces. Если он уже установлен, вы можете добавить его в переменную среды PATH или проверить Ваши настройки в %1.</translation>
     </message>
     <message>
         <source>Failed to start compilation: %1</source>
