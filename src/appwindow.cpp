@@ -526,7 +526,7 @@ void AppWindow::openContest(Widgets::ContestDialog::ContestData const &data)
     QStringList tabs;
 
     for (int i = 0; i < number; ++i)
-        tabs.append(QDir(path).filePath(Util::fileNameWithSuffix(QChar('A' + i), lang)));
+        tabs.append(QDir(path).filePath(Util::fileNameWithSuffix(QChar('A' + i), language)));
 
     openTabs(tabs);
 }
