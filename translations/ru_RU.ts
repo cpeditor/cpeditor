@@ -1514,8 +1514,7 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     </message>
     <message>
         <source>YAPF</source>
-        <translatorcomment>No translation required</translatorcomment>
-        <translation>YAPF</translation>
+        <translation></translation>
     </message>
     <message>
         <source>Code Formatting</source>
