@@ -707,7 +707,7 @@ Press any key to exit</source>
     </message>
     <message>
         <source>The problem code is 0, now use A automatically. If the actual problem code is not A, please set the problem code manually in the right-click menu of the current tab.</source>
-        <translation>Код задачи - 0, поэтому используется код A автоматический. Если код задачи не А, пожалуйста, установите код вручную в подменю (правая кнопка мыши) текущей вкладки.</translation>
+        <translation>Код задачи - 0, поэтому используется код A автоматически. Если код задачи не А, пожалуйста, установите код вручную в подменю (правая кнопка мыши) текущей вкладки.</translation>
     </message>
     <message>
         <source>Failed to get the version of CF Tool. Have you set the correct path to CF Tool in Preferences?</source>
@@ -1185,7 +1185,7 @@ Do you want to reload it?</source>
     </message>
     <message>
         <source>You need to install CF Tool to submit your code to Codeforces. If already installed, you can add it in the PATH environment variable or check your settings at %1.</source>
-        <translation>Вам необходимо устанвоить CF Tool для отправки Вашего кода на Codeforeces. Если он уже установлен, вы можете добавить его в переменную среды PATH или проверить Ваши настройки в %1.</translation>
+        <translation>Вам необходимо устанвоить CF Tool для отправки Вашего кода на Codeforces. Если он уже установлен, вы можете добавить его в переменную среды PATH или проверить Ваши настройки в %1.</translation>
     </message>
     <message>
         <source>Failed to start compilation: %1</source>
@@ -1514,7 +1514,8 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     </message>
     <message>
         <source>YAPF</source>
-        <translation></translation>
+        <translatorcomment>No translation required</translatorcomment>
+        <translation>YAPF</translation>
     </message>
     <message>
         <source>Code Formatting</source>
@@ -2533,7 +2534,7 @@ A test case will be elided and read-only if it&apos;s too long.</source>
     </message>
     <message>
         <source>Clang Format Program</source>
-        <translation>Программа Clan Format</translation>
+        <translation>Программа Clang Format</translation>
     </message>
     <message>
         <source>Clang Format Arguments</source>
@@ -2570,7 +2571,7 @@ A test case will be elided and read-only if it&apos;s too long.</source>
     <message>
         <source>The YAPF style options, which are usually saved in a .style.yapf or setup.conf configuration file.
 You can learn about it by running `yapf --style-help`.</source>
-        <translation>Параметры стиля YAPF, которые обычно сохраняются в конфигурационный файл style.yapf or setup.conf.
+        <translation>Параметры стиля YAPF, которые обычно сохраняются в конфигурационный файл .style.yapf or setup.conf.
 Вы можете узнать больше об этом запустив &quot;yapf --style-help&quot;.</translation>
     </message>
     <message>
@@ -2579,7 +2580,7 @@ You can learn about it by running `yapf --style-help`.</source>
     </message>
     <message>
         <source>Format the code when auto-saving it.</source>
-        <translation>Форматировать код, когда он автоматический сохраняется.</translation>
+        <translation>Форматировать код, когда он автоматически сохраняется.</translation>
     </message>
 </context>
 <context>
