@@ -707,7 +707,7 @@ Press any key to exit</source>
     </message>
     <message>
         <source>The problem code is 0, now use A automatically. If the actual problem code is not A, please set the problem code manually in the right-click menu of the current tab.</source>
-        <translation>Код задачи - 0, поэтому используется код A автоматический. Если код задачи не А, пожалуйста, установите код вручную в подменю (правая кнопка мыши) текущей вкладки.</translation>
+        <translation>Код задачи - 0, поэтому используется код A автоматически. Если код задачи не А, пожалуйста, установите код вручную в подменю (правая кнопка мыши) текущей вкладки.</translation>
     </message>
     <message>
         <source>Failed to get the version of CF Tool. Have you set the correct path to CF Tool in Preferences?</source>
@@ -2580,7 +2580,7 @@ You can learn about it by running `yapf --style-help`.</source>
     </message>
     <message>
         <source>Format the code when auto-saving it.</source>
-        <translation>Форматировать код, когда он автоматический сохраняется.</translation>
+        <translation>Форматировать код, когда он автоматически сохраняется.</translation>
     </message>
 </context>
 <context>
