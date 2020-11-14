@@ -1641,7 +1641,7 @@ You can use &quot;${filename}&quot; for the complete file name,
     </message>
     <message>
         <source>The command to start a Python program. It should NOT include the path to the source file.</source>
-        <translation>Команда для запуска программы на Python. Она не должна включать путь к исходному файлу.</translation>
+        <translation>Команда для запуска программы на Python. Она НЕ должна включать путь к исходному файлу.</translation>
     </message>
     <message>
         <source>Editor Theme</source>
@@ -2541,7 +2541,7 @@ A test case will be elided and read-only if it&apos;s too long.</source>
     </message>
     <message>
         <source>The arguments passed to clang-format. It should NOT contain &quot;-i&quot;.</source>
-        <translation>Аргументы, применяемы для Clang Format. Они не должны содержать &quot;-i&quot;.</translation>
+        <translation>Аргументы, применяемы для Clang Format. Они НЕ должны содержать &quot;-i&quot;.</translation>
     </message>
     <message>
         <source>Clang Format Style</source>
