@@ -2534,7 +2534,7 @@ A test case will be elided and read-only if it&apos;s too long.</source>
     </message>
     <message>
         <source>Clang Format Program</source>
-        <translation>Программа Clan Format</translation>
+        <translation>Программа Clang Format</translation>
     </message>
     <message>
         <source>Clang Format Arguments</source>
