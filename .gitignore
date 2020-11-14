@@ -46,6 +46,7 @@ CMakeLists.txt.user*
 build/
 .idea/
 .clangd/
+.cache/
 
 # Visual Studio
 .vs
