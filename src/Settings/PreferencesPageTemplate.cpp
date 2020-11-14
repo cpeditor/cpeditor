@@ -75,7 +75,6 @@ PreferencesPageTemplate::PreferencesPageTemplate(QStringList opts, bool alignTop
 
         if (si.immediatelyApply)
         {
-            auto widget = widgets.back();
             connect(
                 widget, &ValueWidget::valueChanged, this,
                 [=] {
