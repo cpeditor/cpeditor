@@ -2571,7 +2571,7 @@ A test case will be elided and read-only if it&apos;s too long.</source>
     <message>
         <source>The YAPF style options, which are usually saved in a .style.yapf or setup.conf configuration file.
 You can learn about it by running `yapf --style-help`.</source>
-        <translation>Параметры стиля YAPF, которые обычно сохраняются в конфигурационный файл style.yapf or setup.conf.
+        <translation>Параметры стиля YAPF, которые обычно сохраняются в конфигурационный файл .style.yapf or setup.conf.
 Вы можете узнать больше об этом запустив &quot;yapf --style-help&quot;.</translation>
     </message>
     <message>
