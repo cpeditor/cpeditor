@@ -108,7 +108,7 @@ ParenthesesPage::ParenthesesPage(const QString &language, QWidget *parent) : Pre
 
     addButton = new QPushButton(tr("Add"));
     addButton->setShortcut({"Ctrl+N"});
-    connect(addButton, &QPushButton::clicked, this, [this]{ addParenthesis(); });
+    connect(addButton, &QPushButton::clicked, this, [this] { addParenthesis(); });
     buttonsLayout->addWidget(addButton);
 
     delButton = new QPushButton(tr("Del"));

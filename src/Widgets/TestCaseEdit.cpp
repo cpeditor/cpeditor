@@ -54,8 +54,7 @@ TestCaseEdit::TestCaseEdit(Role role, int id, MessageLogger *logger, const QStri
 
     startAnimation();
     setContextMenuPolicy(Qt::CustomContextMenu);
-    connect(this, &TestCaseEdit::customContextMenuRequested, this,
-            &TestCaseEdit::onCustomContextMenuRequested);
+    connect(this, &TestCaseEdit::customContextMenuRequested, this, &TestCaseEdit::onCustomContextMenuRequested);
 }
 
 void TestCaseEdit::dragEnterEvent(QDragEnterEvent *event)
