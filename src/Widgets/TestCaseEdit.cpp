@@ -43,7 +43,7 @@ TestCaseEdit::TestCaseEdit(Role role, int id, MessageLogger *logger, const QStri
     {
     case Input:
     case Expected:
-        connect(this, SIGNAL(textChanged()), this, SLOT(startAnimation()));
+        connect(this, &TestCaseEdit::textChanged, this, &TestCaseEdit::startAnimation);
         break;
     case Output:
         setReadOnly(true);
@@ -54,8 +54,8 @@ TestCaseEdit::TestCaseEdit(Role role, int id, MessageLogger *logger, const QStri
 
     startAnimation();
     setContextMenuPolicy(Qt::CustomContextMenu);
-    connect(this, SIGNAL(customContextMenuRequested(const QPoint &)), this,
-            SLOT(onCustomContextMenuRequested(const QPoint &)));
+    connect(this, &TestCaseEdit::customContextMenuRequested, this,
+            &TestCaseEdit::onCustomContextMenuRequested);
 }
 
 void TestCaseEdit::dragEnterEvent(QDragEnterEvent *event)

@@ -231,24 +231,21 @@ void AppWindow::dropEvent(QDropEvent *event)
 /******************** PRIVATE METHODS ********************/
 void AppWindow::setConnections()
 {
-    connect(ui->tabWidget, SIGNAL(tabCloseRequested(int)), this, SLOT(onTabCloseRequested(int)));
-    connect(ui->tabWidget, SIGNAL(currentChanged(int)), this, SLOT(onTabChanged(int)));
+    connect(ui->tabWidget, &QTabWidget::tabCloseRequested, this, &AppWindow::onTabCloseRequested);
+    connect(ui->tabWidget, &QTabWidget::currentChanged, this, &AppWindow::onTabChanged);
     ui->tabWidget->tabBar()->setContextMenuPolicy(Qt::CustomContextMenu);
-    connect(ui->tabWidget->tabBar(), SIGNAL(customContextMenuRequested(const QPoint &)), this,
-            SLOT(onTabContextMenuRequested(const QPoint &)));
+    connect(ui->tabWidget->tabBar(), &QTabBar::customContextMenuRequested, this, &AppWindow::onTabContextMenuRequested);
 
-    connect(lspTimerCpp, SIGNAL(timeout()), this, SLOT(onLSPTimerElapsedCpp()));
-    connect(lspTimerJava, SIGNAL(timeout()), this, SLOT(onLSPTimerElapsedJava()));
-    connect(lspTimerPython, SIGNAL(timeout()), this, SLOT(onLSPTimerElapsedPython()));
+    connect(lspTimerCpp, &QTimer::timeout, this, &AppWindow::onLSPTimerElapsedCpp);
+    connect(lspTimerJava, &QTimer::timeout, this, &AppWindow::onLSPTimerElapsedJava);
+    connect(lspTimerPython, &QTimer::timeout, this, &AppWindow::onLSPTimerElapsedPython);
 
-    connect(preferencesWindow, SIGNAL(settingsApplied(const QString &)), this,
-            SLOT(onSettingsApplied(const QString &)));
+    connect(preferencesWindow, &PreferencesWindow::settingsApplied, this, &AppWindow::onSettingsApplied);
 
     connect(server, &Extensions::CompanionServer::onRequestArrived, this, &AppWindow::onIncomingCompanionRequest);
 
-    connect(trayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)), this,
-            SLOT(onTrayIconActivated(QSystemTrayIcon::ActivationReason)));
-    connect(trayIcon, SIGNAL(messageClicked()), this, SLOT(showOnTop()));
+    connect(trayIcon, &QSystemTrayIcon::activated, this, &AppWindow::onTrayIconActivated);
+    connect(trayIcon, &QSystemTrayIcon::messageClicked, this, &AppWindow::showOnTop);
 }
 
 void AppWindow::allocate()
@@ -275,9 +272,9 @@ void AppWindow::allocate()
     lspTimerPython->setInterval(SettingsHelper::getLSPDelayPython());
 
     trayIconMenu = new QMenu();
-    trayIconMenu->addAction(tr("Show Main Window"), this, SLOT(showOnTop()));
-    trayIconMenu->addAction(tr("About"), this, SLOT(on_actionAbout_triggered()));
-    trayIconMenu->addAction(tr("Quit"), this, SLOT(on_actionQuit_triggered()));
+    trayIconMenu->addAction(tr("Show Main Window"), this, &AppWindow::showOnTop);
+    trayIconMenu->addAction(tr("About"), this, &AppWindow::on_actionAbout_triggered);
+    trayIconMenu->addAction(tr("Quit"), this, &AppWindow::on_actionQuit_triggered);
     trayIcon = new QSystemTrayIcon();
     trayIcon->setIcon(QIcon(":/icon.png"));
     trayIcon->setContextMenu(trayIconMenu);
@@ -322,37 +319,38 @@ void AppWindow::maybeSetHotkeys()
 
     if (!SettingsHelper::getHotkeyRun().isEmpty())
     {
-        hotkeyObjects.push_back(new QShortcut(SettingsHelper::getHotkeyRun(), this, SLOT(on_actionRun_triggered())));
+        hotkeyObjects.push_back(
+            new QShortcut(SettingsHelper::getHotkeyRun(), this, [this] { on_actionRun_triggered(); }));
     }
     if (!SettingsHelper::getHotkeyCompile().isEmpty())
     {
         hotkeyObjects.push_back(
-            new QShortcut(SettingsHelper::getHotkeyCompile(), this, SLOT(on_actionCompile_triggered())));
+            new QShortcut(SettingsHelper::getHotkeyCompile(), this, [this] { on_actionCompile_triggered(); }));
     }
     if (!SettingsHelper::getHotkeyCompileRun().isEmpty())
     {
         hotkeyObjects.push_back(
-            new QShortcut(SettingsHelper::getHotkeyCompileRun(), this, SLOT(on_actionCompileRun_triggered())));
+            new QShortcut(SettingsHelper::getHotkeyCompileRun(), this, [this] { on_actionCompileRun_triggered(); }));
     }
     if (!SettingsHelper::getHotkeyFormat().isEmpty())
     {
         hotkeyObjects.push_back(
-            new QShortcut(SettingsHelper::getHotkeyFormat(), this, SLOT(on_actionFormatCode_triggered())));
+            new QShortcut(SettingsHelper::getHotkeyFormat(), this, [this] { on_actionFormatCode_triggered(); }));
     }
     if (!SettingsHelper::getHotkeyKill().isEmpty())
     {
         hotkeyObjects.push_back(
-            new QShortcut(SettingsHelper::getHotkeyKill(), this, SLOT(on_actionKillProcesses_triggered())));
+            new QShortcut(SettingsHelper::getHotkeyKill(), this, [this] { on_actionKillProcesses_triggered(); }));
     }
     if (!SettingsHelper::getHotkeyChangeViewMode().isEmpty())
     {
         hotkeyObjects.push_back(
-            new QShortcut(SettingsHelper::getHotkeyChangeViewMode(), this, SLOT(onViewModeToggle())));
+            new QShortcut(SettingsHelper::getHotkeyChangeViewMode(), this, [this] { onViewModeToggle(); }));
     }
     if (!SettingsHelper::getHotkeySnippets().isEmpty())
     {
         hotkeyObjects.push_back(
-            new QShortcut(SettingsHelper::getHotkeySnippets(), this, SLOT(on_actionUseSnippets_triggered())));
+            new QShortcut(SettingsHelper::getHotkeySnippets(), this, [this] { on_actionUseSnippets_triggered(); }));
     }
 
     hotkeyObjects.push_back(new QShortcut(Qt::Key_Escape, this, [this] { ui->actionFullScreen->setChecked(false); }));
@@ -382,16 +380,15 @@ void AppWindow::saveSettings()
 
 void AppWindow::openTab(MainWindow *window)
 {
-    connect(window, SIGNAL(confirmTriggered(MainWindow *)), this, SLOT(onConfirmTriggered(MainWindow *)));
-    connect(window, SIGNAL(editorFileChanged()), this, SLOT(onEditorFileChanged()));
-    connect(window, SIGNAL(requestUpdateLanguageServerFilePath(MainWindow *, const QString &)), this,
-            SLOT(updateLanguageServerFilePath(MainWindow *, const QString &)));
-    connect(window, SIGNAL(editorLanguageChanged(MainWindow *)), this, SLOT(onEditorLanguageChanged(MainWindow *)));
-    connect(window, SIGNAL(editorTextChanged(MainWindow *)), this, SLOT(onEditorTextChanged(MainWindow *)));
+    connect(window, &MainWindow::confirmTriggered, this, &AppWindow::onConfirmTriggered);
+    connect(window, &MainWindow::editorFileChanged, this, &AppWindow::onEditorFileChanged);
+    connect(window, &MainWindow::requestUpdateLanguageServerFilePath, this, &AppWindow::updateLanguageServerFilePath);
+    connect(window, &MainWindow::editorLanguageChanged, this, &AppWindow::onEditorLanguageChanged);
+    connect(window, &MainWindow::editorTextChanged, this, &AppWindow::onEditorTextChanged);
     connect(window, &MainWindow::editorFontChanged, this, [this] { onSettingsApplied("Appearance/Font"); });
-    connect(window, SIGNAL(requestToastMessage(const QString &, const QString &)), trayIcon,
-            SLOT(showMessage(const QString &, const QString &)));
-    connect(window, SIGNAL(compileOrRunTriggered()), this, SLOT(onCompileOrRunTriggered()));
+    connect(window, &MainWindow::requestToastMessage, trayIcon,
+            [this](QString const &head, QString const &body) { trayIcon->showMessage(head, body); });
+    connect(window, &MainWindow::compileOrRunTriggered, this, &AppWindow::onCompileOrRunTriggered);
 
     ui->tabWidget->setCurrentIndex(ui->tabWidget->addTab(window, window->getTabTitle(false, true)));
 
@@ -891,9 +888,9 @@ void AppWindow::onTabChanged(int index)
     tmp->getRightSplitter()->restoreState(SettingsHelper::getRightSplitterSize());
 
     activeSplitterMoveConnection =
-        connect(tmp->getSplitter(), SIGNAL(splitterMoved(int, int)), this, SLOT(onSplitterMoved(int, int)));
+        connect(tmp->getSplitter(), &QSplitter::splitterMoved, this, &AppWindow::onSplitterMoved);
     activeRightSplitterMoveConnection =
-        connect(tmp->getRightSplitter(), SIGNAL(splitterMoved(int, int)), this, SLOT(onRightSplitterMoved(int, int)));
+        connect(tmp->getRightSplitter(), &QSplitter::splitterMoved, this, &AppWindow::onRightSplitterMoved);
 }
 
 void AppWindow::onEditorFileChanged()

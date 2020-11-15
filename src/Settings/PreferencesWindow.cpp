@@ -134,7 +134,7 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
 
     searchEdit = new QLineEdit();
     searchEdit->setPlaceholderText(tr("Search..."));
-    connect(searchEdit, SIGNAL(textChanged(const QString &)), this, SLOT(updateSearch(const QString &)));
+    connect(searchEdit, &QLineEdit::textChanged, this, [this](QString const &item) { updateSearch(item); });
     searchLayout->addWidget(searchEdit);
 
     homeButton = new QPushButton(tr("Home"));
@@ -163,7 +163,7 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
     splitter->setSizes({10000, 30000});
 
     exitShortcut = new QShortcut(QKeySequence::Cancel, this);
-    connect(exitShortcut, SIGNAL(activated()), this, SLOT(close()));
+    connect(exitShortcut, &QShortcut::activated, this, &PreferencesWindow::close);
 
     travelShortcut = new QShortcut({"Ctrl+Tab"}, this);
     connect(travelShortcut, &QShortcut::activated,
@@ -379,7 +379,7 @@ void PreferencesWindow::addPage(QTreeWidgetItem *item, PreferencesPage *page, co
     pageWidget[item] = page;
     pageTreeItem[page] = item;
     stackedWidget->addWidget(page);
-    connect(page, SIGNAL(settingsApplied(const QString &)), this, SIGNAL(settingsApplied(const QString &)));
+    connect(page, &PreferencesPage::settingsApplied, this, &PreferencesWindow::settingsApplied);
 }
 
 PreferencesPage *PreferencesWindow::getPageWidget(const QString &pagePath, bool allowPrefix) const
