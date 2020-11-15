@@ -494,6 +494,9 @@ QString FakeVimProxy::content() const
 
 void FakeVimProxy::initHandler(FakeVim::Internal::FakeVimHandler *handler)
 {
+    handler->installEventFilter();
+    handler->setupWidget();
+
     QTemporaryFile file;
     if (file.open())
     {
@@ -505,9 +508,6 @@ void FakeVimProxy::initHandler(FakeVim::Internal::FakeVimHandler *handler)
     {
         LOG_ERR("Failed to open a temporary file to source vimrc");
     }
-
-    handler->installEventFilter();
-    handler->setupWidget();
 }
 
 void FakeVimProxy::clearUndoRedo(QWidget *editor)
