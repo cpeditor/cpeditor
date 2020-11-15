@@ -17,6 +17,7 @@ To compensate for the loss of Control key in Vim Emulation, we provide custom co
 ### Fixed
 
 -   Fixed an issue that in some rare cases CP Editor could not get full data from Competitive Companion. (#345 and #624)
+-   Parentheses inside quotes will not be highlighted with those outside the quotes.
 
 ### Changed
 
