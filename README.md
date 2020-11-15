@@ -10,8 +10,6 @@ It makes your competitive coding life easier :grin: by automating many things fo
 
 ![basic-use](assets/basic-use.gif)
 
-![parse-contest](assets/parse-contest.gif)
-
 ---
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
