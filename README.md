@@ -10,12 +10,11 @@ It makes your competitive coding life easier :grin: by automating many things fo
 
 ---
 
+[![Open Collective](https://opencollective.com/cpeditor/tiers/backer.svg?avatarHeight=36)](https://opencollective.com/cpeditor#section-contribute)
+<br>
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-48-orange.svg)](#all-contributors)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
-
-[![Open Collective](https://opencollective.com/cpeditor/tiers/backer.svg?avatarHeight=36)](https://opencollective.com/cpeditor#section-contribute)
-
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/ce0f297f31f74485b0d340949d08d605)](https://www.codacy.com/gh/cpeditor/cpeditor)
 [![GitHub All Releases](https://img.shields.io/github/downloads/cpeditor/cpeditor/total?label=downloads%40all)](https://github.com/cpeditor/cpeditor/releases)
