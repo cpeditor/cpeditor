@@ -300,10 +300,6 @@
         <translation>О программе</translation>
     </message>
     <message>
-        <source>Support me</source>
-        <translation>Поддержи меня</translation>
-    </message>
-    <message>
         <source>Editor Mode</source>
         <translation>Режим настройщика</translation>
     </message>
@@ -470,6 +466,10 @@ Git commit hash: %3
     <message>
         <source>Full Screen</source>
         <translation>Полный экран</translation>
+    </message>
+    <message>
+        <source>Support us</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

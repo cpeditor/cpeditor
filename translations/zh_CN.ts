@@ -300,10 +300,6 @@
         <translation>关于</translation>
     </message>
     <message>
-        <source>Support me</source>
-        <translation>支持作者</translation>
-    </message>
-    <message>
         <source>Editor Mode</source>
         <translation>编辑器模式</translation>
     </message>
@@ -470,6 +466,10 @@ git 提交编号: %3
     <message>
         <source>Full Screen</source>
         <translation>全屏</translation>
+    </message>
+    <message>
+        <source>Support us</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
