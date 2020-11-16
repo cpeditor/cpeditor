@@ -10,7 +10,7 @@ It makes your competitive coding life easier :grin: by automating many things fo
 
 ---
 
-[![Open Collective](https://opencollective.com/cpeditor/tiers/backer.svg?avatarHeight=36)](https://opencollective.com/cpeditor#section-contribute)
+[![Open Collective](https://opencollective.com/cpeditor/tiers/support-us.svg?avatarHeight=60)](https://opencollective.com/cpeditor#section-contribute)
 <br>
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-48-orange.svg)](#all-contributors)
@@ -42,7 +42,7 @@ It makes your competitive coding life easier :grin: by automating many things fo
 - [Contributing Guidelines](CONTRIBUTING.md)
 - [Good first issues](https://github.com/cpeditor/cpeditor/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22)
 - [Help wanted issues](https://github.com/cpeditor/cpeditor/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22)
-- [Become a backer](https://opencollective.com/cpeditor#section-contribute)
+- [Contribute on OpenCollective](https://opencollective.com/cpeditor#section-contribute)
 
 ## Get help
 
