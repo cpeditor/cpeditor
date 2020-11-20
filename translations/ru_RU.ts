@@ -2594,7 +2594,7 @@ You can learn about it by running `yapf --style-help`.</source>
         <translation>Форматировать код, когда он автоматически сохраняется.</translation>
     </message>
     <message>
-        <source>Submit solution</source>
+        <source>Submit Solution</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

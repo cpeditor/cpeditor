@@ -2586,7 +2586,7 @@ You can learn about it by running `yapf --style-help`.</source>
         <translation>自动保存时格式化代码。</translation>
     </message>
     <message>
-        <source>Submit solution</source>
+        <source>Submit Solution</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
