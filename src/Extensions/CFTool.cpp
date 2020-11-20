@@ -57,52 +57,64 @@ void CFTool::submit(const QString &filePath, const QString &url)
 
     LOG_INFO(INFO_OF(filePath) << INFO_OF(url));
 
-    if (parseCfUrl(url, problemContestId, problemCode))
+    auto version = getCFToolVersion();
+    if (version.isEmpty())
     {
-        if (problemCode == "0")
+
+        log->error(
+            tr("CF Tool"),
+            tr("Failed to get the version of CF Tool. Have you set the correct path to CF Tool in Preferences?"));
+        return;
+    }
+
+    lastStatus = "Unknown"; // No tr here. We don't know what we'll get from network. Maybe a array for mapping.
+    CFToolProcess = new QProcess();
+    CFToolProcess->setProgram(CFToolPath);
+
+    if (version.split('.')[0] == "0")
+    {
+        log->warn(tr("CF Tool"),
+                  tr("You are using CF Tool %1. Please update to CF tools 1.0 or above.").append(version));
+        if (parseCfUrl(url, problemContestId, problemCode))
         {
-            problemCode = "A";
-            log->warn(tr("CF Tool"),
-                      tr("The problem code is 0, now use A automatically. If the actual problem code is not A, "
-                         "please set the problem code manually in the right-click menu of the current tab."));
-        }
-        lastStatus = "Unknown"; // No tr here. We don't know what we'll get from network. Maybe a array for mapping.
-        CFToolProcess = new QProcess();
-        CFToolProcess->setProgram(CFToolPath);
-        auto version = getCFToolVersion();
-        if (version.isEmpty())
-        {
-            log->error(
-                tr("CF Tool"),
-                tr("Failed to get the version of CF Tool. Have you set the correct path to CF Tool in Preferences?"));
-            return;
-        }
-        if (version.split('.')[0] == "0")
+
+            if (problemCode == "0")
+            {
+                problemCode = "A";
+                log->warn(tr("CF Tool"),
+                          tr("The problem code is 0, now use A automatically. If the actual problem code is not A, "
+                             "please set the problem code manually in the right-click menu of the current tab."));
+            }
+
             CFToolProcess->setArguments({"submit", problemContestId, problemCode, filePath});
-        else
-            CFToolProcess->setArguments({"submit", "-f", filePath, url});
-
-        LOG_INFO(INFO_OF(CFToolProcess->arguments().join(' ')));
-
-        connect(CFToolProcess, SIGNAL(readyReadStandardOutput()), this, SLOT(onReadReady()));
-        connect(CFToolProcess, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(onFinished(int)));
-        CFToolProcess->start();
-        bool started = CFToolProcess->waitForStarted(2000);
-        if (started)
-        {
-            log->info(tr("CF Tool"), tr("CF Tool has started"));
         }
         else
         {
-            CFToolProcess->kill();
-            log->error(
-                tr("CF Tool"),
-                tr("Failed to start CF Tool in 2 seconds. Have you set the correct path to CF Tool in Preferences?"));
+            log->error(tr("CF Tool"), tr("Failed to parse the URL [%1]").arg(url));
+            return;
         }
     }
     else
     {
-        log->error(tr("CF Tool"), tr("Failed to parse the URL [%1]").arg(url));
+        CFToolProcess->setArguments({"submit", "-f", filePath, url});
+    }
+
+    LOG_INFO(INFO_OF(CFToolProcess->arguments().join(' ')));
+
+    connect(CFToolProcess, SIGNAL(readyReadStandardOutput()), this, SLOT(onReadReady()));
+    connect(CFToolProcess, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(onFinished(int)));
+    CFToolProcess->start();
+    bool started = CFToolProcess->waitForStarted(2000);
+    if (started)
+    {
+        log->info(tr("CF Tool"), tr("CF Tool has started"));
+    }
+    else
+    {
+        CFToolProcess->kill();
+        log->error(
+            tr("CF Tool"),
+            tr("Failed to start CF Tool in 2 seconds. Have you set the correct path to CF Tool in Preferences?"));
     }
 }
 

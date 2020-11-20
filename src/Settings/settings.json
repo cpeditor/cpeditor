@@ -669,6 +669,12 @@
             "hotkey_snippets"
         ]
     },
+	{
+        "name": "Hotkey/Submit",
+        "desc": "Submit Solution",
+        "type": "QString",
+        "ui": "ShortcutItem"
+    },
     {
         "name": "Hot Exit/Enable",
         "desc": "Restore last session at startup",

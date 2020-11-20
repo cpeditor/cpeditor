@@ -471,6 +471,14 @@ git 提交编号: %3
         <source>Full Screen</source>
         <translation>全屏</translation>
     </message>
+    <message>
+        <source>Submit</source>
+        <translation type="unfinished">提交</translation>
+    </message>
+    <message>
+        <source>Ctrl+Alt+S</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>CodeSnippetsPage</name>
@@ -736,6 +744,10 @@ Press any key to exit</source>
     <message>
         <source>Contest %1 Problem %2</source>
         <translation>比赛 %1 题目 %2</translation>
+    </message>
+    <message>
+        <source>You are using CF Tool %1. Please update to CF tools 1.0 or above.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2572,6 +2584,10 @@ You can learn about it by running `yapf --style-help`.</source>
     <message>
         <source>Format the code when auto-saving it.</source>
         <translation>自动保存时格式化代码。</translation>
+    </message>
+    <message>
+        <source>Submit solution</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

@@ -354,6 +354,11 @@ void AppWindow::maybeSetHotkeys()
         hotkeyObjects.push_back(
             new QShortcut(SettingsHelper::getHotkeySnippets(), this, SLOT(on_actionUseSnippets_triggered())));
     }
+    if (!SettingsHelper::getHotkeySubmit().isEmpty())
+    {
+        hotkeyObjects.push_back(
+            new QShortcut(SettingsHelper::getHotkeySubmit(), this, SLOT(on_actionSubmit_triggered())));
+    }
 
     hotkeyObjects.push_back(new QShortcut(Qt::Key_Escape, this, [this] { ui->actionFullScreen->setChecked(false); }));
 }
@@ -894,6 +899,8 @@ void AppWindow::onTabChanged(int index)
         connect(tmp->getSplitter(), SIGNAL(splitterMoved(int, int)), this, SLOT(onSplitterMoved(int, int)));
     activeRightSplitterMoveConnection =
         connect(tmp->getRightSplitter(), SIGNAL(splitterMoved(int, int)), this, SLOT(onRightSplitterMoved(int, int)));
+
+    ui->actionSubmit->setEnabled(tmp->canSubmitSolution());
 }
 
 void AppWindow::onEditorFileChanged()
@@ -1549,4 +1556,10 @@ void AppWindow::onCompileOrRunTriggered()
 {
     if (ui->actionEditorMode->isChecked())
         on_actionSplitMode_triggered();
+}
+
+void AppWindow::on_actionSubmit_triggered()
+{
+    if (currentWindow())
+        currentWindow()->submitSolution();
 }

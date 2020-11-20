@@ -471,6 +471,14 @@ Git commit hash: %3
         <source>Full Screen</source>
         <translation>Полный экран</translation>
     </message>
+    <message>
+        <source>Submit</source>
+        <translation type="unfinished">Отправить</translation>
+    </message>
+    <message>
+        <source>Ctrl+Alt+S</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>CodeSnippetsPage</name>
@@ -736,6 +744,10 @@ Press any key to exit</source>
     <message>
         <source>Contest %1 Problem %2</source>
         <translation>Соревнование %1 Задача %2</translation>
+    </message>
+    <message>
+        <source>You are using CF Tool %1. Please update to CF tools 1.0 or above.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2580,6 +2592,10 @@ You can learn about it by running `yapf --style-help`.</source>
     <message>
         <source>Format the code when auto-saving it.</source>
         <translation>Форматировать код, когда он автоматически сохраняется.</translation>
+    </message>
+    <message>
+        <source>Submit solution</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

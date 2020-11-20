@@ -105,6 +105,8 @@ class MainWindow : public QMainWindow
     void compileOnly();
     void runOnly();
     void compileAndRun();
+    void submitSolution();
+    bool canSubmitSolution() const;
     void formatSource(bool selectionOnly, bool logOnNoChange);
 
     void applyCompanion(const Extensions::CompanionData &data);

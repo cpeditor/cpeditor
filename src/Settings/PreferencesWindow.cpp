@@ -261,7 +261,7 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
             .page(TRKEY("Default Paths"), DefaultPathManager::actionSettingsList() << "Default Path/Names And Paths")
         .end()
         .page(TRKEY("Key Bindings"), {"Hotkey/Compile", "Hotkey/Run", "Hotkey/Compile Run", "Hotkey/Format", "Hotkey/Kill",
-                                   "Hotkey/Change View Mode", "Hotkey/Snippets"})
+                                   "Hotkey/Change View Mode", "Hotkey/Snippets", "Hotkey/Submit"})
         .dir(TRKEY("Advanced"))
             .page(TRKEY("Update"), {"Check Update", "Beta"})
             .page(TRKEY("Limits"), {"Default Time Limit", "Output Length Limit", "Output Display Length Limit", "Message Length Limit",

@@ -701,6 +701,18 @@ void MainWindow::compileAndRun()
     compile();
 }
 
+void MainWindow::submitSolution()
+{
+    LOG_INFO("Requesting submit solution");
+    if (submitToCodeforces)
+        submitToCodeforces->click();
+}
+
+bool MainWindow::canSubmitSolution() const
+{
+    return submitToCodeforces != nullptr;
+}
+
 void MainWindow::formatSource(bool selectionOnly, bool logOnNoChange)
 {
     LOG_INFO("Requested code format");
