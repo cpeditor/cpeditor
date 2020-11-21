@@ -710,10 +710,6 @@ Press any key to exit</source>
         <translation>CF Tool 已被终止</translation>
     </message>
     <message>
-        <source>The problem code is 0, now use A automatically. If the actual problem code is not A, please set the problem code manually in the right-click menu of the current tab.</source>
-        <translation>题目编号为 0，将自动使用 A 作为题目编号。如果题目的实际编号不是 A，请在当前标签页的右键菜单中手动设置。</translation>
-    </message>
-    <message>
         <source>Failed to get the version of CF Tool. Have you set the correct path to CF Tool in Preferences?</source>
         <translation>未能成功获取 CF Tool 版本。你在设置中填写的 CF Tool 路径是否正确？</translation>
     </message>
@@ -743,6 +739,10 @@ Press any key to exit</source>
     </message>
     <message>
         <source>Failed to parse URL %1, updating CF tool to 1.0 or above might fix.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The problem code was 0, It has been changed to A. If the actual problem code is not this, please set the problem code manually in the right-click menu of the current tab.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

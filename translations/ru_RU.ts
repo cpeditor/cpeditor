@@ -710,10 +710,6 @@ Press any key to exit</source>
         <translation>Процесс CF Tool был убит</translation>
     </message>
     <message>
-        <source>The problem code is 0, now use A automatically. If the actual problem code is not A, please set the problem code manually in the right-click menu of the current tab.</source>
-        <translation>Код задачи - 0, поэтому используется код A автоматически. Если код задачи не А, пожалуйста, установите код вручную в подменю (правая кнопка мыши) текущей вкладки.</translation>
-    </message>
-    <message>
         <source>Failed to get the version of CF Tool. Have you set the correct path to CF Tool in Preferences?</source>
         <translation>Ошибки при получении версии CF Tool. Установлен корректный путь к CF Tool в параметрах?</translation>
     </message>
@@ -743,6 +739,10 @@ Press any key to exit</source>
     </message>
     <message>
         <source>Failed to parse URL %1, updating CF tool to 1.0 or above might fix.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The problem code was 0, It has been changed to A. If the actual problem code is not this, please set the problem code manually in the right-click menu of the current tab.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
