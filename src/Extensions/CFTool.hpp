@@ -19,9 +19,9 @@
 #define CFTOOL_HPP
 
 #include <QObject>
+#include <QProcess>
 
 class MessageLogger;
-class QProcess;
 
 namespace Extensions
 {
@@ -42,7 +42,7 @@ class CFTool : public QObject
 
   private slots:
     void onReadReady();
-    void onFinished(int exitCode);
+    void onFinished(int exitCode, QProcess::ExitStatus);
 
   private:
     QString problemContestId, problemCode, lastStatus;

@@ -61,7 +61,7 @@ ParenthesisWidget::ParenthesisWidget(const QString &language, QChar leftParenthe
                 .arg(name.toLower())
                 .arg(parenthesis())
                 .arg(lang));
-        connect(checkBox, SIGNAL(stateChanged(int)), this, SIGNAL(changed()));
+        connect(checkBox, &QCheckBox::stateChanged, this, &ParenthesisWidget::changed);
         checkBoxesLayout->addWidget(checkBox);
     };
 
@@ -98,8 +98,9 @@ ParenthesesPage::ParenthesesPage(const QString &language, QWidget *parent) : Pre
     auto leftLayout = new QVBoxLayout(leftWidget);
 
     listWidget = new QListWidget();
-    connect(listWidget, SIGNAL(itemActivated(QListWidgetItem *)), this, SLOT(switchToParenthesis(QListWidgetItem *)));
-    connect(listWidget, SIGNAL(itemClicked(QListWidgetItem *)), this, SLOT(switchToParenthesis(QListWidgetItem *)));
+    connect(listWidget, &QListWidget::itemActivated, this,
+            [this](QListWidgetItem *item) { switchToParenthesis(item); });
+    connect(listWidget, &QListWidget::itemClicked, this, [this](QListWidgetItem *item) { switchToParenthesis(item); });
     leftLayout->addWidget(listWidget);
 
     auto buttonsLayout = new QHBoxLayout();
@@ -107,13 +108,13 @@ ParenthesesPage::ParenthesesPage(const QString &language, QWidget *parent) : Pre
 
     addButton = new QPushButton(tr("Add"));
     addButton->setShortcut({"Ctrl+N"});
-    connect(addButton, SIGNAL(clicked()), this, SLOT(addParenthesis()));
+    connect(addButton, &QPushButton::clicked, this, [this] { addParenthesis(); });
     buttonsLayout->addWidget(addButton);
 
     delButton = new QPushButton(tr("Del"));
     delButton->setShortcut({"Ctrl+W"});
     delButton->setEnabled(false);
-    connect(delButton, SIGNAL(clicked()), this, SLOT(deleteCurrentParenthesis()));
+    connect(delButton, &QPushButton::clicked, this, [this] { deleteCurrentParenthesis(); });
     buttonsLayout->addWidget(delButton);
 
     stackedWidget = new QStackedWidget();
@@ -204,7 +205,7 @@ void ParenthesesPage::addParenthesis(QChar left, QChar right, Qt::CheckState aut
                                      Qt::CheckState tabJumpOut)
 {
     auto parenthesis = new ParenthesisWidget(lang, left, right, autoComplete, autoRemove, tabJumpOut, this);
-    connect(parenthesis, SIGNAL(changed()), this, SLOT(updateButtons()));
+    connect(parenthesis, &ParenthesisWidget::changed, this, &ParenthesesPage::updateButtons);
     stackedWidget->addWidget(parenthesis);
     listWidget->addItem(parenthesis->parenthesis());
     switchToParenthesis(stackedWidget->count() - 1);

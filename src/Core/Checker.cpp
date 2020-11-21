@@ -123,12 +123,11 @@ void Checker::prepare(const QString &compileCommand)
         if (compiler)
             delete compiler;
         compiler = new Compiler();
-        connect(compiler, SIGNAL(compilationStarted()), this, SLOT(onCompilationStarted()));
-        connect(compiler, SIGNAL(compilationFinished(const QString &)), this, SLOT(onCompilationFinished()));
-        connect(compiler, SIGNAL(compilationErrorOccurred(const QString &)), this,
-                SLOT(onCompilationErrorOccurred(const QString &)));
-        connect(compiler, SIGNAL(compilationFailed(const QString &)), this, SLOT(onCompilationFailed(const QString &)));
-        connect(compiler, SIGNAL(compilationKilled()), this, SLOT(onCompilationKilled()));
+        connect(compiler, &Compiler::compilationStarted, this, &Checker::onCompilationStarted);
+        connect(compiler, &Compiler::compilationFinished, this, &Checker::onCompilationFinished);
+        connect(compiler, &Compiler::compilationErrorOccurred, this, &Checker::onCompilationErrorOccurred);
+        connect(compiler, &Compiler::compilationFailed, this, &Checker::onCompilationFailed);
+        connect(compiler, &Compiler::compilationKilled, this, &Checker::onCompilationKilled);
         compiler->start(checkerPath, "", compileCommand, "C++");
     }
 }
@@ -180,8 +179,7 @@ void Checker::onCompilationKilled()
     // It will be confusing to show "the checker failed" when it's killed,
     // but the user is also unlikely willing to see the message "the checker compilation is killed",
     // so we can simply show nothing when the compilation is killed
-    disconnect(compiler, SIGNAL(compilationErrorOccurred(const QString &)), this,
-               SLOT(onCompilationErrorOccurred(const QString &)));
+    disconnect(compiler, &Compiler::compilationErrorOccurred, this, &Checker::onCompilationErrorOccurred);
 }
 
 void Checker::onRunFinished(int index, const QString &, const QString &err, int exitCode, int, bool tle)
@@ -319,13 +317,10 @@ void Checker::check(int index, const QString &input, const QString &output, cons
             // if files are successfully saved, run the checker
             auto tmp = new Runner(index);
             runners.push_back(tmp); // save the checkers in a list, so we can delete them when destructing the checker
-            connect(tmp, SIGNAL(runFinished(int, const QString &, const QString &, int, int, bool)), this,
-                    SLOT(onRunFinished(int, const QString &, const QString &, int, int, bool)));
-            connect(tmp, SIGNAL(failedToStartRun(int, const QString &)), this,
-                    SLOT(onFailedToStartRun(int, const QString &)));
-            connect(tmp, SIGNAL(runOutputLimitExceeded(int, const QString &)), this,
-                    SLOT(onRunOutputLimitExceeded(int, const QString &)));
-            connect(tmp, SIGNAL(runKilled(int)), this, SLOT(onRunKilled(int)));
+            connect(tmp, &Runner::runFinished, this, &Checker::onRunFinished);
+            connect(tmp, &Runner::failedToStartRun, this, &Checker::onFailedToStartRun);
+            connect(tmp, &Runner::runOutputLimitExceeded, this, &Checker::onRunOutputLimitExceeded);
+            connect(tmp, &Runner::runKilled, this, &Checker::onRunKilled);
             tmp->run(checkerPath, "", "C++", "",
                      "\"" + inputPath + "\" \"" + outputPath + "\" \"" + expectedPath + "\"", "",
                      SettingsHelper::getDefaultTimeLimit());

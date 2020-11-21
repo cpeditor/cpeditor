@@ -29,9 +29,8 @@ namespace Core
 Runner::Runner(int index) : runnerIndex(index)
 {
     runProcess = new QProcess();
-    connect(runProcess, SIGNAL(started()), this, SLOT(onStarted()));
-    connect(runProcess, SIGNAL(errorOccurred(QProcess::ProcessError)), this,
-            SLOT(onErrorOccurred(QProcess::ProcessError)));
+    connect(runProcess, &QProcess::started, this, &Runner::onStarted);
+    connect(runProcess, &QProcess::errorOccurred, this, &Runner::onErrorOccurred);
 }
 
 Runner::~Runner()
@@ -81,14 +80,14 @@ void Runner::run(const QString &tmpFilePath, const QString &sourceFilePath, cons
 
     // connect signals and set timers
 
-    connect(runProcess, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(onFinished(int, QProcess::ExitStatus)));
-    connect(runProcess, SIGNAL(readyReadStandardOutput()), this, SLOT(onReadyReadStandardOutput()));
-    connect(runProcess, SIGNAL(readyReadStandardError()), this, SLOT(onReadyReadStandardError()));
+    connect(runProcess, qOverload<int, QProcess::ExitStatus>(&QProcess::finished), this, &Runner::onFinished);
+    connect(runProcess, &QProcess::readyReadStandardOutput, this, &Runner::onReadyReadStandardOutput);
+    connect(runProcess, &QProcess::readyReadStandardError, this, &Runner::onReadyReadStandardError);
 
     killTimer = new QTimer(runProcess);
     killTimer->setSingleShot(true);
     killTimer->setInterval(timeLimit);
-    connect(killTimer, SIGNAL(timeout()), this, SLOT(onTimeout()));
+    connect(killTimer, &QTimer::timeout, this, &Runner::onTimeout);
 
     runTimer = new QElapsedTimer();
 

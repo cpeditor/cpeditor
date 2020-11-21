@@ -55,14 +55,14 @@ DiffViewer::DiffViewer(QWidget *parent) : QMainWindow(parent)
     rightLayout->addWidget(expectedEdit);
     layout->addLayout(rightLayout);
 
-    connect(expectedEdit->horizontalScrollBar(), SIGNAL(valueChanged(int)), outputEdit->horizontalScrollBar(),
-            SLOT(setValue(int)));
-    connect(outputEdit->horizontalScrollBar(), SIGNAL(valueChanged(int)), expectedEdit->horizontalScrollBar(),
-            SLOT(setValue(int)));
-    connect(expectedEdit->verticalScrollBar(), SIGNAL(valueChanged(int)), outputEdit->verticalScrollBar(),
-            SLOT(setValue(int)));
-    connect(outputEdit->verticalScrollBar(), SIGNAL(valueChanged(int)), expectedEdit->verticalScrollBar(),
-            SLOT(setValue(int)));
+    connect(expectedEdit->horizontalScrollBar(), &QScrollBar::valueChanged, outputEdit->horizontalScrollBar(),
+            &QScrollBar::setValue);
+    connect(outputEdit->horizontalScrollBar(), &QScrollBar::valueChanged, expectedEdit->horizontalScrollBar(),
+            &QScrollBar::setValue);
+    connect(expectedEdit->verticalScrollBar(), &QScrollBar::valueChanged, outputEdit->verticalScrollBar(),
+            &QScrollBar::setValue);
+    connect(outputEdit->verticalScrollBar(), &QScrollBar::valueChanged, expectedEdit->verticalScrollBar(),
+            &QScrollBar::setValue);
 }
 
 void DiffViewer::setText(const QString &output, const QString &expected)

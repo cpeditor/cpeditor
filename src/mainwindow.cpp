@@ -70,11 +70,11 @@ MainWindow::MainWindow(int index, AppWindow *parent)
 
     testcases = new Widgets::TestCases(log, this);
     ui->testCasesLayout->addWidget(testcases);
-    connect(testcases, SIGNAL(checkerChanged()), this, SLOT(updateChecker()));
-    connect(testcases, SIGNAL(requestRun(int)), this, SLOT(runTestCase(int)));
+    connect(testcases, &Widgets::TestCases::checkerChanged, this, &MainWindow::updateChecker);
+    connect(testcases, &Widgets::TestCases::requestRun, this, &MainWindow::runTestCase);
 
     setEditor();
-    connect(fileWatcher, SIGNAL(fileChanged(const QString &)), this, SLOT(onFileWatcherChanged(const QString &)));
+    connect(fileWatcher, &QFileSystemWatcher::fileChanged, this, &MainWindow::onFileWatcherChanged);
     connect(
         autoSaveTimer, &QTimer::timeout, autoSaveTimer, [this] { saveFile(AutoSave, tr("Auto Save"), false); },
         Qt::DirectConnection);
@@ -131,13 +131,12 @@ void MainWindow::setEditor()
 
     ui->editorArea->addWidget(editor);
 
-    connect(editor, SIGNAL(textChanged()), this, SLOT(onTextChanged()));
-    connect(editor, SIGNAL(fontChanged(const QFont &)), this, SLOT(onEditorFontChanged(const QFont &)));
-
+    connect(editor, &QCodeEditor::textChanged, this, &MainWindow::onTextChanged);
+    connect(editor, &QCodeEditor::fontChanged, this, &MainWindow::onEditorFontChanged);
     // cursorPositionChanged() does not imply selectionChanged() if you press Left with
     // a selection (and the cursor is at the begin of the selection)
-    connect(editor, SIGNAL(cursorPositionChanged()), this, SLOT(updateCursorInfo()));
-    connect(editor, SIGNAL(selectionChanged()), this, SLOT(updateCursorInfo()));
+    connect(editor, &QCodeEditor::cursorPositionChanged, this, &MainWindow::updateCursorInfo);
+    connect(editor, &QCodeEditor::selectionChanged, this, &MainWindow::updateCursorInfo);
 }
 
 void MainWindow::compile()
@@ -163,12 +162,11 @@ void MainWindow::compile()
         log->warn(tr("Compiler"), tr("Please set the language"));
         return;
     }
-    connect(compiler, SIGNAL(compilationStarted()), this, SLOT(onCompilationStarted()));
-    connect(compiler, SIGNAL(compilationFinished(const QString &)), this, SLOT(onCompilationFinished(const QString &)));
-    connect(compiler, SIGNAL(compilationErrorOccurred(const QString &)), this,
-            SLOT(onCompilationErrorOccurred(const QString &)));
-    connect(compiler, SIGNAL(compilationFailed(const QString &)), this, SLOT(onCompilationFailed(const QString &)));
-    connect(compiler, SIGNAL(compilationKilled()), this, SLOT(onCompilationKilled()));
+    connect(compiler, &Core::Compiler::compilationStarted, this, &MainWindow::onCompilationStarted);
+    connect(compiler, &Core::Compiler::compilationFinished, this, &MainWindow::onCompilationFinished);
+    connect(compiler, &Core::Compiler::compilationErrorOccurred, this, &MainWindow::onCompilationErrorOccurred);
+    connect(compiler, &Core::Compiler::compilationFailed, this, &MainWindow::onCompilationFailed);
+    connect(compiler, &Core::Compiler::compilationKilled, this, &MainWindow::onCompilationKilled);
     compiler->start(path, filePath, compileCommand(), language);
 }
 
@@ -211,13 +209,11 @@ void MainWindow::run(int index)
     }
 
     auto tmp = new Core::Runner(index);
-    connect(tmp, SIGNAL(runStarted(int)), this, SLOT(onRunStarted(int)));
-    connect(tmp, SIGNAL(runFinished(int, const QString &, const QString &, int, int, bool)), this,
-            SLOT(onRunFinished(int, const QString &, const QString &, int, int, bool)));
-    connect(tmp, SIGNAL(failedToStartRun(int, const QString &)), this, SLOT(onFailedToStartRun(int, const QString &)));
-    connect(tmp, SIGNAL(runOutputLimitExceeded(int, const QString &)), this,
-            SLOT(onRunOutputLimitExceeded(int, const QString &)));
-    connect(tmp, SIGNAL(runKilled(int)), this, SLOT(onRunKilled(int)));
+    connect(tmp, &Core::Runner::runStarted, this, &MainWindow::onRunStarted);
+    connect(tmp, &Core::Runner::runFinished, this, &MainWindow::onRunFinished);
+    connect(tmp, &Core::Runner::failedToStartRun, this, &MainWindow::onFailedToStartRun);
+    connect(tmp, &Core::Runner::runOutputLimitExceeded, this, &MainWindow::onRunOutputLimitExceeded);
+    connect(tmp, &Core::Runner::runKilled, this, &MainWindow::onRunKilled);
     tmp->run(tmpPath(), filePath, language, SettingsManager::get(QString("%1/Run Command").arg(language)).toString(),
              SettingsManager::get(QString("%1/Run Arguments").arg(language)).toString(), testcases->input(index),
              timeLimit());
@@ -258,8 +254,7 @@ void MainWindow::setCFToolUI()
     {
         submitToCodeforces = new QPushButton(tr("Submit"), this);
         cftool = new Extensions::CFTool(cftoolPath, log);
-        connect(cftool, SIGNAL(requestToastMessage(const QString &, const QString &)), this,
-                SIGNAL(requestToastMessage(const QString &, const QString &)));
+        connect(cftool, &Extensions::CFTool::requestToastMessage, this, &MainWindow::requestToastMessage);
         ui->compileAndRunButtons->addWidget(submitToCodeforces);
         connect(submitToCodeforces, &QPushButton::clicked, this, [this] {
             emit confirmTriggered(this);
@@ -1374,10 +1369,9 @@ void MainWindow::onCompilationFinished(const QString &warning)
         }
 
         detachedRunner = new Core::Runner(-1);
-        connect(detachedRunner, SIGNAL(runStarted(int)), this, SLOT(onRunStarted(int)));
-        connect(detachedRunner, SIGNAL(failedToStartRun(int, const QString &)), this,
-                SLOT(onFailedToStartRun(int, const QString &)));
-        connect(detachedRunner, SIGNAL(runKilled(int)), this, SLOT(onRunKilled(int)));
+        connect(detachedRunner, &Core::Runner::runStarted, this, &MainWindow::onRunStarted);
+        connect(detachedRunner, &Core::Runner::failedToStartRun, this, &MainWindow::onFailedToStartRun);
+        connect(detachedRunner, &Core::Runner::runKilled, this, &MainWindow::onRunKilled);
         detachedRunner->runDetached(tmpPath(), filePath, language,
                                     SettingsManager::get(QString("%1/Run Command").arg(language)).toString(),
                                     SettingsManager::get(QString("%1/Run Arguments").arg(language)).toString());

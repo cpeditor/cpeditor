@@ -42,7 +42,7 @@ SessionManager::SessionManager(AppWindow *appwindow) : QObject(appwindow), app(a
     timer = new QTimer(this);
 
     timer->setInterval(10000);
-    connect(timer, SIGNAL(timeout()), this, SLOT(updateSession()), Qt::DirectConnection);
+    connect(timer, &QTimer::timeout, this, &SessionManager::updateSession, Qt::DirectConnection);
 }
 
 void SessionManager::restoreSession(const QString &path)

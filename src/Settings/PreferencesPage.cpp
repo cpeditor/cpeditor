@@ -66,9 +66,9 @@ PreferencesPage::PreferencesPage(QWidget *parent) : QWidget(parent)
     titleLabel->setFont(labelFont);
 
     // connect the signals and slots
-    connect(defaultButton, SIGNAL(clicked()), this, SLOT(loadDefault()));
-    connect(resetButton, SIGNAL(clicked()), this, SLOT(loadSettings()));
-    connect(applyButton, SIGNAL(clicked()), this, SLOT(applySettings()));
+    connect(defaultButton, &QPushButton::clicked, this, &PreferencesPage::loadDefault);
+    connect(resetButton, &QPushButton::clicked, this, &PreferencesPage::loadSettings);
+    connect(applyButton, &QPushButton::clicked, this, &PreferencesPage::applySettings);
 }
 
 bool PreferencesPage::aboutToExit()
