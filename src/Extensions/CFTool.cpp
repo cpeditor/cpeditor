@@ -77,7 +77,7 @@ void CFTool::submit(const QString &filePath, const QString &url)
     if (version.split('.')[0] == "0")
     {
         log->warn(tr("CF Tool"),
-                  tr("You are using CF Tool %1. Please update to CF tools 1.0 or above.").append(version));
+                  tr("You are using CF Tool %1. Please update to CF tools 1.0 or above.").arg(version));
 
         if (parseCfUrl(url, problemContestId, problemCode))
         {

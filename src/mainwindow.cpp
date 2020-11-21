@@ -85,10 +85,6 @@ MainWindow::MainWindow(int index, AppWindow *parent)
 
     applySettings("");
     QTimer::singleShot(0, [this] { setLanguage(language); }); // See issue #187 for more information
-
-    cftool = new Extensions::CFTool(cftoolPath, log);
-    ui->submitButton->setVisible(false);
-    connect(cftool, &Extensions::CFTool::requestToastMessage, this, &MainWindow::requestToastMessage);
 }
 
 MainWindow::MainWindow(const QString &fileOpen, int index, AppWindow *parent) : MainWindow(index, parent)
