@@ -71,6 +71,9 @@ void CFTool::submit(const QString &filePath, const QString &url)
     CFToolProcess = new QProcess();
     CFToolProcess->setProgram(CFToolPath);
 
+    bool wasProblemCodeChanged = false;
+    QString urlCopy = url;
+
     if (version.split('.')[0] == "0")
     {
         log->warn(tr("CF Tool"),
@@ -82,9 +85,7 @@ void CFTool::submit(const QString &filePath, const QString &url)
             if (problemCode == "0")
             {
                 problemCode = "A";
-                log->warn(tr("CF Tool"),
-                          tr("The problem code is 0, now use A automatically. If the actual problem code is not A, "
-                             "please set the problem code manually in the right-click menu of the current tab."));
+                wasProblemCodeChanged = true;
             }
 
             CFToolProcess->setArguments({"submit", problemContestId, problemCode, filePath});
@@ -98,7 +99,19 @@ void CFTool::submit(const QString &filePath, const QString &url)
     }
     else
     {
-        CFToolProcess->setArguments({"submit", "-f", filePath, url});
+        if (url.endsWith("0"))
+        {
+            wasProblemCodeChanged = true;
+            urlCopy = url.mid(0, url.size() - 1) + "A";
+        }
+        CFToolProcess->setArguments({"submit", "-f", filePath, urlCopy});
+    }
+
+    if (wasProblemCodeChanged)
+    {
+        log->warn(tr("CF Tool"),
+                  tr("The problem code was 0, It has been changed to %1. If the actual problem code is not this, "
+                     "please set the problem code manually in the right-click menu of the current tab.").arg(urlCopy));
     }
 
     LOG_INFO(INFO_OF(CFToolProcess->arguments().join(' ')));
