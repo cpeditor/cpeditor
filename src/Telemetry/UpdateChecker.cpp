@@ -38,7 +38,7 @@ UpdateChecker::UpdateChecker()
     progress = new Widgets::UpdateProgressDialog();
     presenter = new Widgets::UpdatePresenter();
     request = new QNetworkRequest(QUrl("https://api.github.com/repos/cpeditor/cpeditor/releases"));
-    connect(progress, SIGNAL(canceled()), this, SLOT(cancelCheckUpdate()));
+    connect(progress, &Widgets::UpdateProgressDialog::canceled, this, &UpdateChecker::cancelCheckUpdate);
 }
 
 UpdateChecker::~UpdateChecker()
@@ -64,7 +64,7 @@ void UpdateChecker::cancelCheckUpdate()
         delete manager;
     manager = new QNetworkAccessManager();
     updateProxy();
-    connect(manager, SIGNAL(finished(QNetworkReply *)), this, SLOT(managerFinished(QNetworkReply *)));
+    connect(manager, &QNetworkAccessManager::finished, this, &UpdateChecker::managerFinished);
 }
 
 UpdateChecker::UpdateMetaInformation UpdateChecker::toMetaInformation(const QJsonDocument &release)

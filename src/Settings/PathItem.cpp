@@ -39,7 +39,7 @@ PathItem::PathItem(Type type, QWidget *parent) : QWidget(parent), fileType(type)
     toolButton = new QToolButton();
     toolButton->setToolTip(tr("Choose a file"));
     toolButton->setIcon(QApplication::style()->standardIcon(QStyle::SP_DialogOpenButton));
-    connect(toolButton, SIGNAL(clicked()), this, SLOT(onButtonClicked()));
+    connect(toolButton, &QToolButton::clicked, this, &PathItem::onButtonClicked);
     layout->addWidget(toolButton);
 }
 
