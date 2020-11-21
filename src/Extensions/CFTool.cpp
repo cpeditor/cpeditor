@@ -72,7 +72,6 @@ void CFTool::submit(const QString &filePath, const QString &url)
     CFToolProcess->setProgram(CFToolPath);
 
     bool wasProblemCodeChanged = false;
-    QString urlCopy = url;
 
     if (version.split('.')[0] == "0")
     {
@@ -98,12 +97,14 @@ void CFTool::submit(const QString &filePath, const QString &url)
     }
     else
     {
+
+        QString convertedUrl = url;
         if (url.endsWith("0"))
         {
             wasProblemCodeChanged = true;
-            urlCopy = url.mid(0, url.size() - 1) + "A";
+            convertedUrl = url.mid(0, url.size() - 1) + "A";
         }
-        CFToolProcess->setArguments({"submit", "-f", filePath, urlCopy});
+        CFToolProcess->setArguments({"submit", "-f", filePath, convertedUrl});
     }
 
     if (wasProblemCodeChanged)
