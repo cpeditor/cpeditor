@@ -112,7 +112,7 @@ class Compiler : public QObject
      * @brief the compilation process has just finished
      * @param the exit code of the compilation process
      */
-    void onProcessFinished(int exitCode);
+    void onProcessFinished(int exitCode, QProcess::ExitStatus e);
 
     void onProcessErrorOccurred(QProcess::ProcessError error);
 

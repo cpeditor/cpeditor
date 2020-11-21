@@ -23,7 +23,7 @@
 FontItem::FontItem(QWidget *parent, const QVariant &param) : QPushButton(parent)
 {
     Q_ASSERT(parent != nullptr);
-    connect(this, SIGNAL(clicked(bool)), this, SLOT(onButtonClicked()));
+    connect(this, &FontItem::clicked, this, &FontItem::onButtonClicked);
 }
 
 void FontItem::setFont(QFont newFont)

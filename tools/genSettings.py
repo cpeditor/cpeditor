@@ -97,7 +97,7 @@ def writeInfo(f, obj, lst):
                 else:
                     f.write(typename + '()')
         else:
-            f.write(f'QVariant()')
+            f.write('QVariant()')
         f.write(f', {t.get("param", "QVariant()")}')
         if typename == "Object":
             f.write(f", LIST{key}")

@@ -31,10 +31,10 @@ Compiler::Compiler()
 {
     // create compiliation process and connect signals
     compileProcess = new QProcess();
-    connect(compileProcess, SIGNAL(started()), this, SIGNAL(compilationStarted()));
-    connect(compileProcess, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(onProcessFinished(int)));
-    connect(compileProcess, SIGNAL(errorOccurred(QProcess::ProcessError)), this,
-            SLOT(onProcessErrorOccurred(QProcess::ProcessError)));
+    connect(compileProcess, &QProcess::started, this, &Compiler::compilationStarted);
+    connect(compileProcess, qOverload<int, QProcess::ExitStatus>(&QProcess::finished), this,
+            &Compiler::onProcessFinished);
+    connect(compileProcess, &QProcess::errorOccurred, this, &Compiler::onProcessErrorOccurred);
 }
 
 Compiler::~Compiler()
@@ -141,7 +141,7 @@ QString Compiler::outputFilePath(const QString &tmpFilePath, const QString &sour
     return path;
 }
 
-void Compiler::onProcessFinished(int exitCode)
+void Compiler::onProcessFinished(int exitCode, QProcess::ExitStatus e)
 {
     QString codecName = "UTF-8";
     if (lang == "C++")

@@ -47,8 +47,8 @@ UpdateProgressDialog::UpdateProgressDialog()
 
     setModal(false);
 
-    connect(cancelUpdate, SIGNAL(clicked()), this, SIGNAL(canceled()));
-    connect(cancelUpdate, SIGNAL(clicked()), this, SLOT(close()));
+    connect(cancelUpdate, &QPushButton::clicked, this, &UpdateProgressDialog::canceled);
+    connect(cancelUpdate, &QPushButton::clicked, this, &UpdateProgressDialog::close);
 }
 
 void UpdateProgressDialog::start()

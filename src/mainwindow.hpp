@@ -45,7 +45,6 @@ class Runner;
 namespace Extensions
 {
 class CFTool;
-class ClangFormatter;
 struct CompanionData;
 } // namespace Extensions
 
@@ -107,7 +106,7 @@ class MainWindow : public QMainWindow
     void compileOnly();
     void runOnly();
     void compileAndRun();
-    void formatSource();
+    void formatSource(bool selectionOnly, bool logOnNoChange);
 
     void applyCompanion(const Extensions::CompanionData &data);
 
@@ -201,7 +200,6 @@ class MainWindow : public QMainWindow
     QString language;
     bool isLanguageSet = false;
 
-    Extensions::ClangFormatter *formatter = nullptr;
     Core::Compiler *compiler = nullptr;
     QVector<Core::Runner *> runner;
     Core::Checker *checker = nullptr;

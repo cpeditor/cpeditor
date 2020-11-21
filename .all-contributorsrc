@@ -472,6 +472,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "jaysampartak",
+      "name": "jaysampartak",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/40232849?v=4",
+      "profile": "https://github.com/jaysampartak",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 6,

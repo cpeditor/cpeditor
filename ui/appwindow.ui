@@ -101,6 +101,8 @@
     <addaction name="actionEditorMode"/>
     <addaction name="actionIOMode"/>
     <addaction name="actionSplitMode"/>
+    <addaction name="separator"/>
+    <addaction name="actionFullScreen"/>
    </widget>
    <widget class="QMenu" name="menuOptions">
     <property name="title">
@@ -466,6 +468,17 @@
    </property>
    <property name="text">
     <string>Split Mode</string>
+   </property>
+  </action>
+  <action name="actionFullScreen">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Full Screen</string>
+   </property>
+   <property name="shortcut">
+    <string notr="true">F11</string>
    </property>
   </action>
   <action name="actionShowLogs">

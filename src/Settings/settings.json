@@ -51,43 +51,72 @@
         "tip": "The default language used when opening new tabs"
     },
     {
-        "name": "Clang Format/Path",
-        "desc": "Path",
+        "name": "Clang Format/Program",
         "type": "QString",
         "default": "clang-format",
         "ui": "PathItem",
         "param": "PathItem::Executable",
         "tip": "The path to the Clang Format executable file",
         "old": [
-            "clang_format_binary"
+            "clang_format_binary",
+            "clang_format/path"
         ]
     },
     {
+        "name": "Clang Format/Arguments",
+        "type": "QString",
+        "tip": "The arguments passed to clang-format. It should NOT contain \"-i\"."
+    },
+    {
         "name": "Clang Format/Style",
-        "desc": "Style",
         "type": "QString",
         "default": "BasedOnStyle: Google",
         "ui": "QPlainTextEdit",
-        "tip": "The Clang Format style options, which are often saved in a .clang-format configuration file.\nYou can learn about it at <https://clang.llvm.org/docs/ClangFormatStyleOptions.html>.",
+        "tip": "The Clang Format style options, which are usually saved in a .clang-format configuration file.\nYou can learn about it at <https://clang.llvm.org/docs/ClangFormatStyleOptions.html>.",
         "old": [
             "clang_format_style"
         ]
     },
     {
-        "name": "Clang Format/Format On Manual Save",
+        "name": "YAPF/Program",
+        "type": "QString",
+        "default": "python",
+        "ui": "PathItem",
+        "param": "PathItem::Executable",
+        "tip": "The program of YAPF. It could be `yapf` (which doesn't need arguments) or `python` (which needs `-m yapf` as the arguments)."
+    },
+    {
+        "name": "YAPF/Arguments",
+        "type": "QString",
+        "default": "-m yapf",
+        "tip": "The arguments passed to the YAPF program. It should NOT contain \"-i\"."
+    },
+    {
+        "name": "YAPF/Style",
+        "type": "QString",
+        "default": "[style]\nbased_on_style = pep8",
+        "ui": "QPlainTextEdit",
+        "tip": "The YAPF style options, which are usually saved in a .style.yapf or setup.conf configuration file.\nYou can learn about it by running `yapf --style-help`."
+    },
+    {
+        "name": "Format On Manual Save",
         "desc": "Format code on manual save",
         "type": "bool",
-        "tip": "Use Clang Format to format the code when saving it manually.",
+        "tip": "Format the code when saving it manually.",
         "old": [
             "format_on_save",
-            "auto_format"
+            "auto_format",
+            "clang_format/format_on_manual_save"
         ]
     },
     {
-        "name": "Clang Format/Format On Auto Save",
+        "name": "Format On Auto Save",
         "desc": "Format code on auto-save",
         "type": "bool",
-        "tip": "Use Clang Format to format the code when auto-saving it."
+        "tip": "Format the code when auto-saving it.",
+        "old": [
+            "clang_format/format_on_auto_save"
+        ]
     },
     {
         "name": "C++/Template Path",

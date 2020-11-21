@@ -42,13 +42,13 @@ CodeSnippetsPage::CodeSnippetsPage(const QString &language, QWidget *parent) : P
 
     searchEdit = new QLineEdit();
     searchEdit->setPlaceholderText(tr("Search..."));
-    connect(searchEdit, SIGNAL(textChanged(const QString &)), this, SLOT(updateSearch(const QString &)));
+    connect(searchEdit, &QLineEdit::textChanged, this, &CodeSnippetsPage::updateSearch);
     leftLayout->addWidget(searchEdit);
 
     snippetsList = new QListWidget();
     snippetsList->setSortingEnabled(true);
-    connect(snippetsList, SIGNAL(itemActivated(QListWidgetItem *)), this, SLOT(switchToSnippet(QListWidgetItem *)));
-    connect(snippetsList, SIGNAL(itemClicked(QListWidgetItem *)), this, SLOT(switchToSnippet(QListWidgetItem *)));
+    connect(snippetsList, &QListWidget::itemActivated, this, [this](QListWidgetItem *item) { switchToSnippet(item); });
+    connect(snippetsList, &QListWidget::itemClicked, this, [this](QListWidgetItem *item) { switchToSnippet(item); });
     leftLayout->addWidget(snippetsList);
 
     auto buttonsLayout = new QHBoxLayout();
@@ -56,23 +56,23 @@ CodeSnippetsPage::CodeSnippetsPage(const QString &language, QWidget *parent) : P
 
     auto addButton = new QPushButton(tr("Add"));
     addButton->setShortcut({"Ctrl+N"});
-    connect(addButton, SIGNAL(clicked()), this, SLOT(addSnippet()));
+    connect(addButton, &QPushButton::clicked, this, [this] { addSnippet(); });
     buttonsLayout->addWidget(addButton);
 
     deleteButton = new QPushButton(tr("Del"));
     deleteButton->setShortcut({"Ctrl+W"});
-    connect(deleteButton, SIGNAL(clicked()), this, SLOT(deleteSnippet()));
+    connect(deleteButton, &QPushButton::clicked, this, [this] { deleteSnippet(); });
     buttonsLayout->addWidget(deleteButton);
 
     renameAction = new QAction(tr("Rename Snippet"));
     renameAction->setShortcut({"F2"});
-    connect(renameAction, SIGNAL(triggered()), this, SLOT(renameSnippet()));
+    connect(renameAction, &QAction::triggered, this, &CodeSnippetsPage::renameSnippet);
 
     loadSnippetsFromFilesAction = new QAction(tr("Load Snippets From Files"));
-    connect(loadSnippetsFromFilesAction, SIGNAL(triggered()), this, SLOT(loadSnippetsFromFiles()));
+    connect(loadSnippetsFromFilesAction, &QAction::triggered, this, &CodeSnippetsPage::loadSnippetsFromFiles);
 
     extractSnippetsToFilesAction = new QAction(tr("Extract Snippets To Files"));
-    connect(extractSnippetsToFilesAction, SIGNAL(triggered()), this, SLOT(extractSnippetsToFiles()));
+    connect(extractSnippetsToFilesAction, &QAction::triggered, this, &CodeSnippetsPage::extractSnippetsToFiles);
 
     updateActions();
 
@@ -97,7 +97,7 @@ CodeSnippetsPage::CodeSnippetsPage(const QString &language, QWidget *parent) : P
     snippetLayout->addWidget(snippetNameLabel);
 
     editor = new CodeEditor();
-    connect(editor, SIGNAL(textChanged()), this, SLOT(updateButtons()));
+    connect(editor, &CodeEditor::textChanged, this, &CodeSnippetsPage::updateButtons);
     snippetLayout->addWidget(editor);
 
     noSnippetWidget = new QWidget();
