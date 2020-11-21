@@ -669,7 +669,7 @@
             "hotkey_snippets"
         ]
     },
-	{
+    {
         "name": "Hotkey/Submit",
         "desc": "Submit Solution",
         "type": "QString",
