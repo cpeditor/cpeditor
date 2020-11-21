@@ -898,7 +898,7 @@ void AppWindow::onTabChanged(int index)
     activeSplitterMoveConnection =
         connect(tmp->getSplitter(), &QSplitter::splitterMoved, this, &AppWindow::onSplitterMoved);
     activeRightSplitterMoveConnection =
-		connect(tmp->getRightSplitter(), &QSplitter::splitterMoved, this, &AppWindow::onRightSplitterMoved);
+        connect(tmp->getRightSplitter(), &QSplitter::splitterMoved, this, &AppWindow::onRightSplitterMoved);
     tmp->getEditor()->setFocus();
 }
 
