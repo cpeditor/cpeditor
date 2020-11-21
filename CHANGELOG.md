@@ -7,10 +7,12 @@
 -   Now you can open the corresponding preferences page via a link when asked to check the setting in the message logger. (#659)
 -   Now you can toggle fullscreen mode by pressing F11 or clicking View->Full Screen. (#642, #660 and #670)
 -   Now you can set shortcut for submitting solution. (#201 and #681)
+-   Added Submit option in Actions menu.(#681)
 
 ### Fixed
 
 -   Fixed an issue that in some rare cases CP Editor could not get full data from Competitive Companion. (#345 and #624) 
+-  	Fixed an issue where some URL was not being parsed by CF Tool. (#679 and #681) 
 
 ### Changed
 
@@ -20,7 +22,6 @@
 ### Improved
 
 -   Now unfinished checks will be cancelled at the new execution. (#635)
--   If you use CF tool 1.0 or above, it will never fail to parse URL for submission. (#681) 
 
 ## v6.7
 
