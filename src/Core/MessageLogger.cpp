@@ -24,7 +24,7 @@
 MessageLogger::MessageLogger(PreferencesWindow *preferences, QWidget *parent)
     : QTextBrowser(parent), preferencesWindow(preferences)
 {
-    connect(this, SIGNAL(anchorClicked(const QUrl &)), this, SLOT(onAnchorClicked(const QUrl &)));
+    connect(this, &MessageLogger::anchorClicked, this, &MessageLogger::onAnchorClicked);
     setOpenExternalLinks(true);
 }
 

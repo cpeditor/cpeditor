@@ -214,9 +214,9 @@ TestCases::TestCases(MessageLogger *logger, QWidget *parent) : QWidget(parent), 
                                tr("nyesno - Compare YES/NOs, case insensitive")});
     checkerComboBox->setCurrentIndex(0);
 
-    connect(checkerComboBox, SIGNAL(currentIndexChanged(int)), this, SIGNAL(checkerChanged()));
-    connect(addButton, SIGNAL(clicked()), this, SLOT(on_addButton_clicked()));
-    connect(addCheckerButton, SIGNAL(clicked()), this, SLOT(on_addCheckerButton_clicked()));
+    connect(checkerComboBox, qOverload<int>(&QComboBox::currentIndexChanged), this, &TestCases::checkerChanged);
+    connect(addButton, &QPushButton::clicked, this, &TestCases::on_addButton_clicked);
+    connect(addCheckerButton, &QPushButton::clicked, this, &TestCases::on_addCheckerButton_clicked);
 }
 
 void TestCases::setInput(int index, const QString &input)
@@ -249,8 +249,8 @@ void TestCases::addTestCase(const QString &input, const QString &expected)
     {
         LOG_INFO("New testcase added");
         auto testcase = new TestCase(count(), log, this, input, expected);
-        connect(testcase, SIGNAL(deleted(TestCase *)), this, SLOT(onChildDeleted(TestCase *)));
-        connect(testcase, SIGNAL(requestRun(int)), this, SIGNAL(requestRun(int)));
+        connect(testcase, &TestCase::deleted, this, &TestCases::onChildDeleted);
+        connect(testcase, &TestCase::requestRun, this, &TestCases::requestRun);
         testcases.push_back(testcase);
         scrollAreaLayout->addWidget(testcase);
         updateVerdicts();

@@ -38,7 +38,7 @@ UpdatePresenter::UpdatePresenter()
     auto downloadButton = new QPushButton(tr("Download"), this);
     auto cancelButton = new QPushButton(tr("Close"), this);
 
-    connect(cancelButton, SIGNAL(clicked()), this, SLOT(close()));
+    connect(cancelButton, &QPushButton::clicked, this, &UpdatePresenter::close);
     connect(downloadButton, &QPushButton::clicked, this,
             [this] { QDesktopServices::openUrl(QUrl(downloadUrl, QUrl::TolerantMode)); });
 
