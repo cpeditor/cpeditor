@@ -1087,6 +1087,11 @@ void AppWindow::onSettingsApplied(const QString &pagePath)
     {
         DefaultPathManager::fromVariantList(SettingsHelper::getDefaultPathNamesAndPaths());
     }
+
+    if (pageChanged("Extensions/CF Tool") && currentWindow())
+    {
+        ui->actionSubmit->setEnabled(currentWindow()->canSubmitSolution());
+    }
 }
 
 void AppWindow::onIncomingCompanionRequest(const Extensions::CompanionData &data)

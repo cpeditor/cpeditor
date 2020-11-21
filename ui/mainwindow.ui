@@ -70,6 +70,13 @@
               </property>
              </widget>
             </item>
+            <item>
+             <widget class="QPushButton" name="submitButton">
+              <property name="text">
+               <string>Submit</string>
+              </property>
+             </widget>
+            </item>
            </layout>
           </item>
          </layout>
