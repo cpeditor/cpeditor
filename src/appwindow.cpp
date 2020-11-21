@@ -231,7 +231,7 @@ void AppWindow::dropEvent(QDropEvent *event)
 /******************** PRIVATE METHODS ********************/
 void AppWindow::setConnections()
 {
-    connect(ui->tabWidget, &QTabWidget::tabCloseRequested, this, &AppWindow::onTabCloseRequested);
+    connect(ui->tabWidget, &QTabWidget::tabCloseRequested, this, &AppWindow::closeTab);
     connect(ui->tabWidget, &QTabWidget::currentChanged, this, &AppWindow::onTabChanged);
     ui->tabWidget->tabBar()->setContextMenuPolicy(Qt::CustomContextMenu);
     connect(ui->tabWidget->tabBar(), &QTabBar::customContextMenuRequested, this, &AppWindow::onTabContextMenuRequested);
@@ -898,7 +898,7 @@ void AppWindow::onTabChanged(int index)
     activeSplitterMoveConnection =
         connect(tmp->getSplitter(), &QSplitter::splitterMoved, this, &AppWindow::onSplitterMoved);
     activeRightSplitterMoveConnection =
-		connect(tmp->getRightSplitter(), &QSplitter::splitterMoved, this, &AppWindow::onRightSplitterMoved);
+        connect(tmp->getRightSplitter(), &QSplitter::splitterMoved, this, &AppWindow::onRightSplitterMoved);
     tmp->getEditor()->setFocus();
 }
 
