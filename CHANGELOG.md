@@ -12,7 +12,7 @@
 ### Fixed
 
 -   Fixed an issue that in some rare cases CP Editor could not get full data from Competitive Companion. (#345 and #624) 
--  	Fixed an issue where some URL was not being parsed by CF Tool. (#679 and #681) 
+-   Fixed an issue where some URL was not being parsed by CF Tool. (#679 and #681) 
 
 ### Changed
 
