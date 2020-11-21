@@ -704,7 +704,7 @@ void MainWindow::compileAndRun()
 void MainWindow::submitSolution()
 {
     LOG_INFO("Requesting submit solution");
-    if (submitToCodeforces)
+    if (canSubmitSolution())
         submitToCodeforces->click();
 }
 
