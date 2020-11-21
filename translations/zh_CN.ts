@@ -475,10 +475,6 @@ git 提交编号: %3
         <source>Submit</source>
         <translation type="unfinished">提交</translation>
     </message>
-    <message>
-        <source>Ctrl+Alt+S</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>CodeSnippetsPage</name>
@@ -730,10 +726,6 @@ Press any key to exit</source>
         <translation>未能成功在两秒内启动 CF Tool。你在设置中填写的 CF Tool 路径是否正确？</translation>
     </message>
     <message>
-        <source>Failed to parse the URL [%1]</source>
-        <translation>未能成功解析链接 [%1]</translation>
-    </message>
-    <message>
         <source>CF Tool failed</source>
         <translation>CF Tool 运行出错</translation>
     </message>
@@ -747,6 +739,10 @@ Press any key to exit</source>
     </message>
     <message>
         <source>You are using CF Tool %1. Please update to CF tools 1.0 or above.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed to parse URL %1, updating CF tool to 1.0 or above might fix.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

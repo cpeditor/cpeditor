@@ -475,10 +475,6 @@ Git commit hash: %3
         <source>Submit</source>
         <translation type="unfinished">Отправить</translation>
     </message>
-    <message>
-        <source>Ctrl+Alt+S</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>CodeSnippetsPage</name>
@@ -730,10 +726,6 @@ Press any key to exit</source>
         <translation>Ошибки при получении версии CF Tool в течении 2-х секунд. Установлен корректный путь к CF Tool в параметрах?</translation>
     </message>
     <message>
-        <source>Failed to parse the URL [%1]</source>
-        <translation>Ошибка в получении URL [%1]</translation>
-    </message>
-    <message>
         <source>CF Tool failed</source>
         <translation>Произошла ошибка в CF Tool</translation>
     </message>
@@ -747,6 +739,10 @@ Press any key to exit</source>
     </message>
     <message>
         <source>You are using CF Tool %1. Please update to CF tools 1.0 or above.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed to parse URL %1, updating CF tool to 1.0 or above might fix.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
