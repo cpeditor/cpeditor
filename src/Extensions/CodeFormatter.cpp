@@ -16,11 +16,11 @@
  */
 
 #include "Extensions/CodeFormatter.hpp"
+#include "CodeEditor/CodeEditor.hpp"
 #include "Core/EventLogger.hpp"
 #include "Core/MessageLogger.hpp"
 #include "Settings/SettingsManager.hpp"
 #include "Util/FileUtil.hpp"
-#include "CodeEditor/CodeEditor.hpp"
 #include <QProcess>
 #include <QTemporaryDir>
 
