@@ -75,6 +75,7 @@ void CFTool::submit(const QString &filePath, const QString &url)
     {
         log->warn(tr("CF Tool"),
                   tr("You are using CF Tool %1. Please update to CF tools 1.0 or above.").append(version));
+
         if (parseCfUrl(url, problemContestId, problemCode))
         {
 
@@ -90,7 +91,8 @@ void CFTool::submit(const QString &filePath, const QString &url)
         }
         else
         {
-            log->error(tr("CF Tool"), tr("Failed to parse the URL [%1]").arg(url));
+            log->error(tr("CF Tool"),
+                       tr("Failed to parse URL %1, updating CF tool to 1.0 or above might fix.").arg(url));
             return;
         }
     }
@@ -101,8 +103,8 @@ void CFTool::submit(const QString &filePath, const QString &url)
 
     LOG_INFO(INFO_OF(CFToolProcess->arguments().join(' ')));
 
-    connect(CFToolProcess, SIGNAL(readyReadStandardOutput()), this, SLOT(onReadReady()));
-    connect(CFToolProcess, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(onFinished(int)));
+    connect(CFToolProcess, &QProcess::readyReadStandardOutput, this, &CFTool::onReadReady);
+    connect(CFToolProcess, qOverload<int, QProcess::ExitStatus>(&QProcess::finished), this, &CFTool::onFinished);
     CFToolProcess->start();
     bool started = CFToolProcess->waitForStarted(2000);
     if (started)
@@ -179,7 +181,7 @@ void CFTool::onReadReady()
         LOG_INFO("Response is empty");
 }
 
-void CFTool::onFinished(int exitCode)
+void CFTool::onFinished(int exitCode, QProcess::ExitStatus e)
 {
     if (exitCode == 0)
     {
