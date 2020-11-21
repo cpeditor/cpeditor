@@ -110,8 +110,8 @@ void CFTool::submit(const QString &filePath, const QString &url)
     if (wasProblemCodeChanged)
     {
         log->warn(tr("CF Tool"),
-                  tr("The problem code was 0, It has been changed to %1. If the actual problem code is not this, "
-                     "please set the problem code manually in the right-click menu of the current tab.").arg(urlCopy));
+                  tr("The problem code was 0, It has been changed to A. If the actual problem code is not this, "
+                     "please set the problem code manually in the right-click menu of the current tab."));
     }
 
     LOG_INFO(INFO_OF(CFToolProcess->arguments().join(' ')));
