@@ -93,11 +93,11 @@ TestCase::TestCase(int index, MessageLogger *logger, QWidget *parent, const QStr
     runButton->setToolTip(tr("Test on a single testcase"));
     diffButton->setToolTip(tr("Open the Diff Viewer"));
 
-    connect(showCheckBox, SIGNAL(toggled(bool)), this, SLOT(onShowCheckBoxToggled(bool)));
-    connect(runButton, SIGNAL(clicked()), this, SLOT(onRunButtonClicked()));
-    connect(diffButton, SIGNAL(clicked()), SLOT(onDiffButtonClicked()));
-    connect(delButton, SIGNAL(clicked()), this, SLOT(onDelButtonClicked()));
-    connect(diffViewer, SIGNAL(toLongForHtml()), this, SLOT(onToLongForHtml()));
+    connect(showCheckBox, &QCheckBox::toggled, this, &TestCase::onShowCheckBoxToggled);
+    connect(runButton, &QPushButton::clicked, this, &TestCase::onRunButtonClicked);
+    connect(diffButton, &QPushButton::clicked, this, &TestCase::onDiffButtonClicked);
+    connect(delButton, &QPushButton::clicked, this, &TestCase::onDelButtonClicked);
+    connect(diffViewer, &DiffViewer::toLongForHtml, this, &TestCase::onToLongForHtml);
 }
 
 void TestCase::setInput(const QString &text)

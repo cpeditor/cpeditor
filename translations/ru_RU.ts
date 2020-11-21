@@ -633,7 +633,7 @@ Git commit hash: %3
     </message>
     <message>
         <source>Failed to compile the checker: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Ошибка компиляции символа: %1</translation>
     </message>
 </context>
 <context>
@@ -648,11 +648,11 @@ Git commit hash: %3
     </message>
     <message>
         <source>Failed to start the compiler. Please check %1 or add the compiler in the PATH environment variable.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ошибка при старте компилятора. Пожалуйста, проверьте %1 или добавьте путь компилятора в переменную среды окружения PATH.</translation>
     </message>
     <message>
         <source>%1 is empty</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 пуст</translation>
     </message>
 </context>
 <context>
@@ -707,7 +707,7 @@ Press any key to exit</source>
     </message>
     <message>
         <source>The problem code is 0, now use A automatically. If the actual problem code is not A, please set the problem code manually in the right-click menu of the current tab.</source>
-        <translation>Код задачи - 0, поэтому используется код A автоматический. Если код задачи не А, пожалуйста, установите код вручную в подменю (правая кнопка мыши) текущей вкладки.</translation>
+        <translation>Код задачи - 0, поэтому используется код A автоматически. Если код задачи не А, пожалуйста, установите код вручную в подменю (правая кнопка мыши) текущей вкладки.</translation>
     </message>
     <message>
         <source>Failed to get the version of CF Tool. Have you set the correct path to CF Tool in Preferences?</source>
@@ -762,15 +762,15 @@ Press any key to exit</source>
     </message>
     <message>
         <source>The format command [%1 %2] finished with exit code %3.</source>
-        <translation type="unfinished"></translation>
+        <translation>Команда форматирования [%1 %2] завершилась с кодом %3.</translation>
     </message>
     <message>
         <source>The format process didn&apos;t finish in 2 seconds. This is probably because the %1 program is not found by CP Editor. You can set the path to the program at %2.</source>
-        <translation type="unfinished"></translation>
+        <translation>Процесс форматирования не завершился в течении 2 секунд. Возможно, что программа %1 не найдена CP Editor-ом. Вы можете установить путь программы в %2.</translation>
     </message>
     <message>
         <source>The output of the format process is empty. Please ensure there is no in-place modification option in the formatting arguments.</source>
-        <translation type="unfinished"></translation>
+        <translation>Выходные данные процесса форматирования пусты. Пожалуйста, убедитесь, что в аргументах форматирования отсутсвует опция самозамены на месте.</translation>
     </message>
 </context>
 <context>
@@ -1185,11 +1185,11 @@ Do you want to reload it?</source>
     </message>
     <message>
         <source>You need to install CF Tool to submit your code to Codeforces. If already installed, you can add it in the PATH environment variable or check your settings at %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Вам необходимо устанвоить CF Tool для отправки Вашего кода на Codeforces. Если он уже установлен, вы можете добавить его в переменную среды PATH или проверить Ваши настройки в %1.</translation>
     </message>
     <message>
         <source>Failed to start compilation: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Ошибка старта компиляции: %1</translation>
     </message>
 </context>
 <context>
@@ -1514,11 +1514,11 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     </message>
     <message>
         <source>YAPF</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Code Formatting</source>
-        <translation type="unfinished"></translation>
+        <translation>Форматирование кода</translation>
     </message>
 </context>
 <context>
@@ -1641,7 +1641,7 @@ You can use &quot;${filename}&quot; for the complete file name,
     </message>
     <message>
         <source>The command to start a Python program. It should NOT include the path to the source file.</source>
-        <translation>Команда для запуска программы на Python. Она не должна включать путь к исходному файлу.</translation>
+        <translation>Команда для запуска программы на Python. Она НЕ должна включать путь к исходному файлу.</translation>
     </message>
     <message>
         <source>Editor Theme</source>
@@ -2533,52 +2533,53 @@ A test case will be elided and read-only if it&apos;s too long.</source>
     </message>
     <message>
         <source>Clang Format Program</source>
-        <translation type="unfinished"></translation>
+        <translation>Программа Clang Format</translation>
     </message>
     <message>
         <source>Clang Format Arguments</source>
-        <translation type="unfinished"></translation>
+        <translation>Аргументы Clang Format</translation>
     </message>
     <message>
         <source>The arguments passed to clang-format. It should NOT contain &quot;-i&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Аргументы, применяемы для Clang Format. Они НЕ должны содержать &quot;-i&quot;.</translation>
     </message>
     <message>
         <source>Clang Format Style</source>
-        <translation type="unfinished"></translation>
+        <translation>Стиль Clang Format</translation>
     </message>
     <message>
         <source>YAPF Program</source>
-        <translation type="unfinished"></translation>
+        <translation>Программа YAPF</translation>
     </message>
     <message>
         <source>The program of YAPF. It could be `yapf` (which doesn&apos;t need arguments) or `python` (which needs `-m yapf` as the arguments).</source>
-        <translation type="unfinished"></translation>
+        <translation>Программа для YAPF. Это может быть &quot;yapf&quot; (который не требует аргументы) или &quot;python&quot; (который требует аргумент &quot;-m yapf&quot;).</translation>
     </message>
     <message>
         <source>YAPF Arguments</source>
-        <translation type="unfinished"></translation>
+        <translation>Аргументы YAPF</translation>
     </message>
     <message>
         <source>The arguments passed to the YAPF program. It should NOT contain &quot;-i&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Аргументы, применяемы для программы YAPF. Они не должны содержать &quot;-i&quot;.</translation>
     </message>
     <message>
         <source>YAPF Style</source>
-        <translation type="unfinished"></translation>
+        <translation>Стиль YAPF</translation>
     </message>
     <message>
         <source>The YAPF style options, which are usually saved in a .style.yapf or setup.conf configuration file.
 You can learn about it by running `yapf --style-help`.</source>
-        <translation type="unfinished"></translation>
+        <translation>Параметры стиля YAPF, которые обычно сохраняются в конфигурационный файл .style.yapf or setup.conf.
+Вы можете узнать больше об этом запустив &quot;yapf --style-help&quot;.</translation>
     </message>
     <message>
         <source>Format the code when saving it manually.</source>
-        <translation type="unfinished"></translation>
+        <translation>Форматировать код, когда он сохраняется вручную.</translation>
     </message>
     <message>
         <source>Format the code when auto-saving it.</source>
-        <translation type="unfinished"></translation>
+        <translation>Форматировать код, когда он автоматически сохраняется.</translation>
     </message>
 </context>
 <context>
