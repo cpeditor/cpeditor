@@ -231,7 +231,7 @@ void AppWindow::dropEvent(QDropEvent *event)
 /******************** PRIVATE METHODS ********************/
 void AppWindow::setConnections()
 {
-    connect(ui->tabWidget, &QTabWidget::tabCloseRequested, this, &AppWindow::closeTab);
+    connect(ui->tabWidget, &QTabWidget::tabCloseRequested, this, [this](int index) { closeTab(index); });
     connect(ui->tabWidget, &QTabWidget::currentChanged, this, &AppWindow::onTabChanged);
     ui->tabWidget->tabBar()->setContextMenuPolicy(Qt::CustomContextMenu);
     connect(ui->tabWidget->tabBar(), &QTabBar::customContextMenuRequested, this, &AppWindow::onTabContextMenuRequested);
