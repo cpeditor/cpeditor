@@ -73,7 +73,8 @@ jobs:
 
       - name: Set environment for KDE syntax-highlighting
         if: startsWith(matrix.config.os, 'windows')
-        run: echo "::set-env name=KF5SyntaxHighlighting_DIR::C:/Program Files (x86)/ECM/lib/cmake/KF5SyntaxHighlighting"
+        shell: bash
+        run: echo "KF5SyntaxHighlighting_DIR=C:/Program Files (x86)/ECM/lib/cmake/KF5SyntaxHighlighting" >> $GITHUB_ENV
 
       - name: Build KDE syntax-highlighting - UNIX
         if: startsWith(matrix.config.os, 'ubuntu') || startsWith(matrix.config.os, 'macos')
