@@ -473,7 +473,7 @@ Git commit hash: %3
     </message>
     <message>
         <source>Submit</source>
-        <translation type="unfinished">Отправить</translation>
+        <translation>Отправить</translation>
     </message>
 </context>
 <context>
@@ -735,15 +735,15 @@ Press any key to exit</source>
     </message>
     <message>
         <source>You are using CF Tool %1. Please update to CF tools 1.0 or above.</source>
-        <translation type="unfinished"></translation>
+        <translation>Вы используете CF Tool %1. Пожалуйста, обновите CF Tool до 0.1 или выше.</translation>
     </message>
     <message>
         <source>Failed to parse URL %1, updating CF tool to 1.0 or above might fix.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ошибка при парсинге URL %1. Обновление CF Tool до 1.0 или выше может решить эту проблему.</translation>
     </message>
     <message>
         <source>The problem code was 0, It has been changed to A. If the actual problem code is not this, please set the problem code manually in the right-click menu of the current tab.</source>
-        <translation type="unfinished"></translation>
+        <translation>Код задачи - 0, но он был изменен на A. Если код текущей задачи иной, пожалуйста утсановите код задачи вручную, при помощи клика правой кнопки мыши по текущей вкладке.</translation>
     </message>
 </context>
 <context>
@@ -2591,7 +2591,7 @@ You can learn about it by running `yapf --style-help`.</source>
     </message>
     <message>
         <source>Submit Solution</source>
-        <translation type="unfinished"></translation>
+        <translation>Отправить решение</translation>
     </message>
 </context>
 <context>
