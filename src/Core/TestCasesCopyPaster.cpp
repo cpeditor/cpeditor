@@ -22,8 +22,16 @@
 void TestCasesCopyPaster::copy(Widgets::TestCases *testcases)
 {
     LOG_INFO("Copy");
-    inputs = testcases->inputs();
-    expecteds = testcases->expecteds();
+    inputs.clear();
+    expecteds.clear();
+    for (int i = 0; i < testcases->count(); ++i)
+    {
+        if (testcases->isChecked(i))
+        {
+            inputs.append(testcases->input(i));
+            expecteds.append(testcases->expected(i));
+        }
+    }
 }
 
 void TestCasesCopyPaster::paste(Widgets::TestCases *testcases) const

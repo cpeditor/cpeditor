@@ -29,8 +29,16 @@ class TestCases;
 class TestCasesCopyPaster : public Util::Singleton<TestCasesCopyPaster>
 {
   public:
+    /**
+     * @brief copy checked test cases in *testcases*
+     * @param testcases the TestCases to be copied from
+     */
     void copy(Widgets::TestCases *testcases);
 
+    /**
+     * @brief append copied test cases to *testcases*
+     * @param testcases the TestCases to be pasted to
+     */
     void paste(Widgets::TestCases *testcases) const;
 
   private:
