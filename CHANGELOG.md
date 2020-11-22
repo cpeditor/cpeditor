@@ -6,6 +6,8 @@
 -   Format python codes by YAPF. (#652)
 -   Now you can open the corresponding preferences page via a link when asked to check the setting in the message logger. (#659)
 -   Now you can toggle fullscreen mode by pressing F11 or clicking View->Full Screen. (#642, #660 and #670)
+-   In test cases, you can copy the output to the expected. (#688)
+-   Copy test cases between different tabs. (#688)
 
 ### Fixed
 
