@@ -2849,6 +2849,10 @@ You can learn about it by running `yapf --style-help`.</source>
         <source>Only the first %1 characters are shown. Now the test case editor is read-only. You can set the length limit at %2.</source>
         <translation>Отображены только первые %1 символов. Сейчас тесткейсы доступны только для чтения. Вы можете установить лимит длины в %2.</translation>
     </message>
+    <message>
+        <source>Copy Output to Expected</source>
+        <translation>Копировать вывод в ожидаемый</translation>
+    </message>
 </context>
 <context>
     <name>Widgets::TestCases</name>
@@ -2901,35 +2905,12 @@ You can learn about it by running `yapf --style-help`.</source>
         <translation>Следующие файлы не загружаются, потому что они не совпадают:%1. Можно установить правила соответствия в %2.</translation>
     </message>
     <message>
-        <source>Remove Empty</source>
-        <translation>Удалить пустые</translation>
-    </message>
-    <message>
-        <source>Remove All</source>
-        <translation>Удалить всё</translation>
-    </message>
-    <message>
-        <source>Clear Testcases</source>
-        <translation>Очистить тесткейсы</translation>
-    </message>
-    <message>
         <source>Are you sure you want to delete all test cases?</source>
         <translation>Вы уверены удалить все тесткейсы?</translation>
     </message>
     <message>
-        <source>Hide AC</source>
-        <translation>Скрыть Полные решения</translation>
-    </message>
-    <message>
-        <source>Show All</source>
-        <translation>Показать всё</translation>
-    </message>
-    <message>
-        <source>Hide All</source>
-        <translation>Скрыть всё</translation>
-    </message>
-    <message>
         <source>Invert</source>
+        <extracomment>This action checks the checkboxes which were not checked, and unchecks the ones which were checked</extracomment>
         <translation>Инвертировать</translation>
     </message>
     <message>
@@ -2999,6 +2980,53 @@ You can learn about it by running `yapf --style-help`.</source>
     <message>
         <source>Unaccepted / Accepted / Total</source>
         <translation>Не принято / Принято / Всего</translation>
+    </message>
+    <message>
+        <source>Check All</source>
+        <extracomment>Here &quot;Check&quot; means to check the checkbox</extracomment>
+        <translation>Отметить все</translation>
+    </message>
+    <message>
+        <source>Uncheck All</source>
+        <translation>Снять все отметки</translation>
+    </message>
+    <message>
+        <source>Uncheck Accepted</source>
+        <translation>Снять отметки с принятых</translation>
+    </message>
+    <message>
+        <source>Delete All</source>
+        <translation>Удалить все</translation>
+    </message>
+    <message>
+        <source>Delete Empty</source>
+        <translation>Удалить пустые</translation>
+    </message>
+    <message>
+        <source>Delete Checked</source>
+        <extracomment>Here &quot;checked&quot; means the checkbox is checked</extracomment>
+        <translation>Удалить отмеченные</translation>
+    </message>
+    <message>
+        <source>Are you sure you want to delete all checked test cases?</source>
+        <translation>Вы действительно хотите удалить все отмеченные тест-кейсы?</translation>
+    </message>
+    <message>
+        <source>Copy Test Cases</source>
+        <translation>Копировать тест-кейсы</translation>
+    </message>
+    <message>
+        <source>Paste Test Cases</source>
+        <translation>Вставить тест-кейсы</translation>
+    </message>
+    <message>
+        <source>Copy Output to Expected</source>
+        <translation>Копировать вывод в ожидаемый</translation>
+    </message>
+    <message>
+        <source>Are you sure you want to copy all checked output to their corresponding expected?</source>
+        <extracomment>Here &quot;checked&quot; means the checkbox is checked</extracomment>
+        <translation>Вы действительно хотите скопировать все отмеченные тест-кейсы в соответсвующие им ожидаемые?</translation>
     </message>
 </context>
 <context>

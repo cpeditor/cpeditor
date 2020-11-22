@@ -181,7 +181,7 @@ void MainWindow::run()
     for (int i = 0; i < testcases->count(); ++i)
     {
         if ((!testcases->input(i).trimmed().isEmpty() || SettingsHelper::isRunOnEmptyTestcase()) &&
-            testcases->isShow(i))
+            testcases->isChecked(i))
         {
             run(i);
         }
@@ -461,7 +461,7 @@ MainWindow::EditorStatus MainWindow::toStatus() const
     status.input = testcases->inputs();
     status.expected = testcases->expecteds();
     for (int i = 0; i < testcases->count(); ++i)
-        status.testcasesIsShow.push_back(testcases->isShow(i));
+        status.testcasesIsShow.push_back(testcases->isChecked(i));
     status.testCaseSplitterStates = testcases->splitterStates();
 
     return status;
@@ -492,7 +492,7 @@ void MainWindow::loadStatus(const EditorStatus &status, bool duplicate)
     customTimeLimit = status.customTimeLimit;
     testcases->loadStatus(status.input, status.expected);
     for (int i = 0; i < status.testcasesIsShow.count() && i < testcases->count(); ++i)
-        testcases->setShow(i, status.testcasesIsShow[i].toBool());
+        testcases->setChecked(i, status.testcasesIsShow[i].toBool());
     testcases->restoreSplitterStates(status.testCaseSplitterStates);
 }
 

@@ -48,7 +48,7 @@ TestCase::TestCase(int index, MessageLogger *logger, QWidget *parent, const QStr
     inputLayout = new QVBoxLayout(inputWidget);
     outputLayout = new QVBoxLayout(outputWidget);
     expectedLayout = new QVBoxLayout(expectedWidget);
-    showCheckBox = new QCheckBox(this);
+    checkBox = new QCheckBox(this);
     inputLabel = new QLabel(tr("Input"), this);
     outputLabel = new QLabel(tr("Output"), this);
     expectedLabel = new QLabel(tr("Expected"), this);
@@ -62,11 +62,11 @@ TestCase::TestCase(int index, MessageLogger *logger, QWidget *parent, const QStr
 
     setID(index);
 
-    showCheckBox->setMinimumWidth(20);
-    showCheckBox->setChecked(true);
-    showCheckBox->setSizePolicy({QSizePolicy::Fixed, QSizePolicy::Fixed});
+    checkBox->setMinimumWidth(20);
+    checkBox->setChecked(true);
+    checkBox->setSizePolicy({QSizePolicy::Fixed, QSizePolicy::Fixed});
 
-    inputUpLayout->addWidget(showCheckBox);
+    inputUpLayout->addWidget(checkBox);
     inputUpLayout->addWidget(inputLabel);
     inputUpLayout->addWidget(runButton);
     outputUpLayout->addWidget(outputLabel);
@@ -93,11 +93,13 @@ TestCase::TestCase(int index, MessageLogger *logger, QWidget *parent, const QStr
     runButton->setToolTip(tr("Test on a single testcase"));
     diffButton->setToolTip(tr("Open the Diff Viewer"));
 
-    connect(showCheckBox, &QCheckBox::toggled, this, &TestCase::onShowCheckBoxToggled);
+    connect(checkBox, &QCheckBox::toggled, this, &TestCase::onCheckBoxToggled);
     connect(runButton, &QPushButton::clicked, this, &TestCase::onRunButtonClicked);
     connect(diffButton, &QPushButton::clicked, this, &TestCase::onDiffButtonClicked);
     connect(delButton, &QPushButton::clicked, this, &TestCase::onDelButtonClicked);
     connect(diffViewer, &DiffViewer::toLongForHtml, this, &TestCase::onToLongForHtml);
+    connect(expectedEdit, &TestCaseEdit::requestCopyOutputToExpected, this,
+            [this] { expectedEdit->modifyText(output()); });
 }
 
 void TestCase::setInput(const QString &text)
@@ -140,6 +142,11 @@ QString TestCase::output() const
 QString TestCase::expected() const
 {
     return expectedEdit->getText();
+}
+
+bool TestCase::isEmpty() const
+{
+    return input().isEmpty() && expected().isEmpty();
 }
 
 void TestCase::setID(int index)
@@ -190,14 +197,14 @@ TestCase::Verdict TestCase::verdict() const
     return currentVerdict;
 }
 
-void TestCase::setShow(bool show)
+void TestCase::setChecked(bool checked)
 {
-    showCheckBox->setChecked(show);
+    checkBox->setChecked(checked);
 }
 
-bool TestCase::isShow() const
+bool TestCase::isChecked() const
 {
-    return showCheckBox->isChecked();
+    return checkBox->isChecked();
 }
 
 void TestCase::setTestCaseEditFont(const QFont &font)
@@ -224,7 +231,7 @@ void TestCase::restoreSplitterSizes(const QList<int> &sizes)
     splitter->setSizes(sizes);
 }
 
-void TestCase::onShowCheckBoxToggled(bool checked)
+void TestCase::onCheckBoxToggled(bool checked)
 {
     if (checked)
     {
@@ -243,7 +250,7 @@ void TestCase::onShowCheckBoxToggled(bool checked)
 void TestCase::onRunButtonClicked()
 {
     LOG_INFO("Run button clicked for " << INFO_OF(id));
-    showCheckBox->setChecked(true);
+    checkBox->setChecked(true);
     emit requestRun(id);
 }
 
@@ -257,7 +264,7 @@ void TestCase::onDiffButtonClicked()
 void TestCase::onDelButtonClicked()
 {
     LOG_INFO("Del button clicked for " << INFO_OF(id));
-    if (input().isEmpty() && expected().isEmpty())
+    if (isEmpty())
     {
         emit deleted(this);
     }

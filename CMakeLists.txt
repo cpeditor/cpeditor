@@ -119,6 +119,8 @@ add_executable(cpeditor
     src/Core/SessionManager.hpp
     src/Core/StyleManager.cpp
     src/Core/StyleManager.hpp
+    src/Core/TestCasesCopyPaster.cpp
+    src/Core/TestCasesCopyPaster.hpp
     src/Core/Translator.cpp
     src/Core/Translator.hpp
 
@@ -177,6 +179,7 @@ add_executable(cpeditor
     src/Util/FileUtil.hpp
     src/Util/QCodeEditorUtil.cpp
     src/Util/QCodeEditorUtil.hpp
+    src/Util/Singleton.hpp
     src/Util/Util.cpp
     src/Util/Util.hpp
 
