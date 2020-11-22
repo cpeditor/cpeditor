@@ -355,7 +355,7 @@ void AppWindow::maybeSetHotkeys()
     if (!SettingsHelper::getHotkeySubmit().isEmpty())
     {
         hotkeyObjects.push_back(
-            new QShortcut(SettingsHelper::getHotkeySubmit(), this, SLOT(on_actionSubmit_triggered())));
+            new QShortcut(SettingsHelper::getHotkeySubmit(), this, [this] { on_actionSubmit_triggered(); }));
     }
 
     hotkeyObjects.push_back(new QShortcut(Qt::Key_Escape, this, [this] { ui->actionFullScreen->setChecked(false); }));
