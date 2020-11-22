@@ -28,7 +28,7 @@
 namespace Extensions
 {
 
-LanguageServer::LanguageServer(QString lang)
+LanguageServer::LanguageServer(const QString &lang)
 {
     LOG_INFO(INFO_OF(lang));
     this->language = lang;
@@ -50,7 +50,7 @@ LanguageServer::~LanguageServer()
     }
 }
 
-void LanguageServer::openDocument(QString path, CodeEditor *editor, MessageLogger *log)
+void LanguageServer::openDocument(const QString &path, CodeEditor *editor, MessageLogger *log)
 {
     if (isDocumentOpen())
     {
@@ -156,7 +156,7 @@ void LanguageServer::updateSettings()
     }
 }
 
-void LanguageServer::updatePath(QString newPath)
+void LanguageServer::updatePath(const QString &newPath)
 {
     if (lsp == nullptr || (openFile == newPath))
         return;
@@ -217,7 +217,7 @@ CodeEditor::SeverityLevel LanguageServer::lspSeverity(int in)
     return CodeEditor::SeverityLevel::Error;
 }
 
-void LanguageServer::initializeLSP(QString filePath)
+void LanguageServer::initializeLSP(const QString &filePath)
 {
     QFileInfo info(filePath);
     std::string uri = "file://" + info.absoluteDir().absolutePath().toStdString();

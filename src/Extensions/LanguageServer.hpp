@@ -32,17 +32,17 @@ class LanguageServer : public QObject
     Q_OBJECT
 
   public:
-    explicit LanguageServer(QString language);
+    explicit LanguageServer(const QString &language);
     ~LanguageServer();
 
-    void openDocument(QString path, CodeEditor *editor, MessageLogger *logger);
+    void openDocument(const QString &path, CodeEditor *editor, MessageLogger *logger);
     void closeDocument();
     void requestLinting();
 
     bool isDocumentOpen() const;
 
     void updateSettings();
-    void updatePath(QString);
+    void updatePath(const QString &);
 
   private slots:
     void onLSPServerNotificationArrived(QString method, QJsonObject param);
@@ -59,7 +59,7 @@ class LanguageServer : public QObject
     bool shouldCreateClient();
 
     CodeEditor::SeverityLevel lspSeverity(int a);
-    void initializeLSP(QString url);
+    void initializeLSP(const QString &url);
 
     CodeEditor *m_editor = nullptr;
     MessageLogger *logger = nullptr;

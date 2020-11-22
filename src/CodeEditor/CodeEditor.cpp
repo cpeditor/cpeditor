@@ -995,7 +995,8 @@ bool CodeEditor::event(QEvent *event)
     return QPlainTextEdit::event(event);
 }
 
-void CodeEditor::squiggle(SeverityLevel level, QPair<int, int> start, QPair<int, int> stop, QString tooltipMessage)
+void CodeEditor::squiggle(SeverityLevel level, const QPair<int, int> &start, const QPair<int, int> &stop,
+                          const QString &tooltipMessage)
 {
     if (stop < start)
         return;

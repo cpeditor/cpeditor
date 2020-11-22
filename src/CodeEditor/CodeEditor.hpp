@@ -98,7 +98,7 @@ class CodeEditor : public QPlainTextEdit
      * @note QPair<int, int>: first -> Line number in 1-based indexing
      *                        second -> Character number in 0-based indexing
      */
-    void squiggle(SeverityLevel level, QPair<int, int>, QPair<int, int>, QString tooltipMessage);
+    void squiggle(SeverityLevel level, const QPair<int, int> &, const QPair<int, int> &, const QString &tooltipMessage);
 
     /**
      * @brief clearSquiggle, Clears complete squiggle from editor
@@ -265,7 +265,7 @@ class CodeEditor : public QPlainTextEdit
     {
         SquiggleInformation() = default;
 
-        SquiggleInformation(QPair<int, int> start, QPair<int, int> stop, QString text)
+        SquiggleInformation(const QPair<int, int> &start, const QPair<int, int> &stop, const QString &text)
             : m_startPos(start), m_stopPos(stop), m_tooltipText(text)
         {
         }
