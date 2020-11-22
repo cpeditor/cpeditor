@@ -469,7 +469,7 @@ Git commit hash: %3
     </message>
     <message>
         <source>Support us</source>
-        <translation type="unfinished"></translation>
+        <translation>Поддержи нас</translation>
     </message>
 </context>
 <context>
