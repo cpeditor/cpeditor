@@ -10,6 +10,8 @@ CP Editor - это легкий кросс-платформенный редак
 
 [Возможности](https://cpeditor.org/ru) | [Документация](https://cpeditor.org/ru/docs/) | [Список изменений](CHANGELOG.md) | [Сотрудничество](CONTRIBUTING_ru-RU.md) | [FAQ](https://cpeditor.org/ru/docs/faq/) | [English](README.md) | [中文](README_zh-CN.md)
 
+![demo](assets/demo.gif)
+
 ---
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->

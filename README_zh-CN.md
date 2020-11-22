@@ -10,6 +10,8 @@ CP Editor 是一个基于 Qt 的轻量级跨平台代码编辑器，专为算法
 
 [特性](https://cpeditor.org/zh) | [文档](https://cpeditor.org/zh/docs/) | [更新日志](CHANGELOG.md) | [贡献指南](CONTRIBUTING_zh-CN.md) | [FAQ](https://cpeditor.org/zh/docs/faq/) | [English](README.md) | [Русский](README_ru-RU.md)
 
+![demo](assets/demo.gif)
+
 ---
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
