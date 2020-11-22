@@ -232,7 +232,7 @@ jobs:
           ../Qt/*/*/bin/windeployqt.exe build/out/cpeditor.exe --no-translations
           cp "C:/Program Files (x86)/ECM/bin/KF5SyntaxHighlighting.dll" build/out
           cd "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Redist/MSVC"
-          echo "VC_REDIST_VERSION=\"$(ls -dr *.* | head -n1)\"" >> $GITHUB_ENV
+          echo "VC_REDIST_VERSION=$(ls -dr *.* | head -n1)" >> $GITHUB_ENV
 
       - name: Pack to installer on Windows
         if: startsWith(matrix.config.os, 'windows') && matrix.config.portable-option == 'Off'
