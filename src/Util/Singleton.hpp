@@ -26,6 +26,7 @@ namespace Util
 template <typename T, typename D = T> class Singleton
 {
     static_assert(std::is_base_of<T, D>::value, "T should be a base type for D");
+    friend D;
 
   public:
     static T &instance()
