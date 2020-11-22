@@ -98,6 +98,8 @@ TestCase::TestCase(int index, MessageLogger *logger, QWidget *parent, const QStr
     connect(diffButton, &QPushButton::clicked, this, &TestCase::onDiffButtonClicked);
     connect(delButton, &QPushButton::clicked, this, &TestCase::onDelButtonClicked);
     connect(diffViewer, &DiffViewer::toLongForHtml, this, &TestCase::onToLongForHtml);
+    connect(expectedEdit, &TestCaseEdit::requestCopyOutputToExpected, this,
+            [this] { expectedEdit->modifyText(output()); });
 }
 
 void TestCase::setInput(const QString &text)

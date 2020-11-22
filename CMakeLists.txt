@@ -12,7 +12,7 @@ set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 if(WIN32)
@@ -119,6 +119,8 @@ add_executable(cpeditor
     src/Core/SessionManager.hpp
     src/Core/StyleManager.cpp
     src/Core/StyleManager.hpp
+    src/Core/TestCasesCopyPaster.cpp
+    src/Core/TestCasesCopyPaster.hpp
     src/Core/Translator.cpp
     src/Core/Translator.hpp
 
@@ -177,6 +179,7 @@ add_executable(cpeditor
     src/Util/FileUtil.hpp
     src/Util/QCodeEditorUtil.cpp
     src/Util/QCodeEditorUtil.hpp
+    src/Util/Singleton.hpp
     src/Util/Util.cpp
     src/Util/Util.hpp
 

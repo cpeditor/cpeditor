@@ -2841,6 +2841,10 @@ You can learn about it by running `yapf --style-help`.</source>
         <source>Only the first %1 characters are shown. Now the test case editor is read-only. You can set the length limit at %2.</source>
         <translation>只显示了前 %1 个字符。现在测试用例编辑器是只读的。你可以在 %2 中设置长度限制。</translation>
     </message>
+    <message>
+        <source>Copy Output to Expected</source>
+        <translation>将输出复制到答案</translation>
+    </message>
 </context>
 <context>
     <name>Widgets::TestCases</name>
@@ -2987,21 +2991,34 @@ You can learn about it by running `yapf --style-help`.</source>
         <translation>全部删除</translation>
     </message>
     <message>
-        <source>Delete Testcases</source>
-        <extracomment>Here &quot;checked&quot; means the checkbox is checked</extracomment>
-        <translation>删除测试点</translation>
-    </message>
-    <message>
         <source>Delete Empty</source>
         <translation>删除空测试点</translation>
     </message>
     <message>
         <source>Delete Checked</source>
+        <extracomment>Here &quot;checked&quot; means the checkbox is checked</extracomment>
         <translation>删除选中的测试点</translation>
     </message>
     <message>
         <source>Are you sure you want to delete all checked test cases?</source>
         <translation>你确定要删除所有选中的测试点吗？</translation>
+    </message>
+    <message>
+        <source>Copy Test Cases</source>
+        <translation>复制测试用例</translation>
+    </message>
+    <message>
+        <source>Paste Test Cases</source>
+        <translation>粘贴测试用例</translation>
+    </message>
+    <message>
+        <source>Copy Output to Expected</source>
+        <translation>将输出复制到答案</translation>
+    </message>
+    <message>
+        <source>Are you sure you want to copy all checked output to their corresponding expected?</source>
+        <extracomment>Here &quot;checked&quot; means the checkbox is checked</extracomment>
+        <translation>你确定要将所有选中的输出复制到与之对应的答案吗？</translation>
     </message>
 </context>
 <context>

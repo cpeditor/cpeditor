@@ -2849,6 +2849,10 @@ You can learn about it by running `yapf --style-help`.</source>
         <source>Only the first %1 characters are shown. Now the test case editor is read-only. You can set the length limit at %2.</source>
         <translation>Отображены только первые %1 символов. Сейчас тесткейсы доступны только для чтения. Вы можете установить лимит длины в %2.</translation>
     </message>
+    <message>
+        <source>Copy Output to Expected</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Widgets::TestCases</name>
@@ -2995,20 +2999,33 @@ You can learn about it by running `yapf --style-help`.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Delete Testcases</source>
-        <extracomment>Here &quot;checked&quot; means the checkbox is checked</extracomment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Delete Empty</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Delete Checked</source>
+        <extracomment>Here &quot;checked&quot; means the checkbox is checked</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Are you sure you want to delete all checked test cases?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copy Test Cases</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Paste Test Cases</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copy Output to Expected</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Are you sure you want to copy all checked output to their corresponding expected?</source>
+        <extracomment>Here &quot;checked&quot; means the checkbox is checked</extracomment>
         <translation type="unfinished"></translation>
     </message>
 </context>
