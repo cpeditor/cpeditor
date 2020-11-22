@@ -469,7 +469,7 @@ git 提交编号: %3
     </message>
     <message>
         <source>Support us</source>
-        <translation type="unfinished"></translation>
+        <translation>支持我们</translation>
     </message>
 </context>
 <context>
