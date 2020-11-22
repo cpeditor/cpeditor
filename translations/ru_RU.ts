@@ -2851,7 +2851,7 @@ You can learn about it by running `yapf --style-help`.</source>
     </message>
     <message>
         <source>Copy Output to Expected</source>
-        <translation type="unfinished"></translation>
+        <translation>Копировать вывод в ожидаемый</translation>
     </message>
 </context>
 <context>
@@ -2984,49 +2984,49 @@ You can learn about it by running `yapf --style-help`.</source>
     <message>
         <source>Check All</source>
         <extracomment>Here &quot;Check&quot; means to check the checkbox</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Отметить все</translation>
     </message>
     <message>
         <source>Uncheck All</source>
-        <translation type="unfinished"></translation>
+        <translation>Снять все отметки</translation>
     </message>
     <message>
         <source>Uncheck Accepted</source>
-        <translation type="unfinished"></translation>
+        <translation>Снять отметки с принятых</translation>
     </message>
     <message>
         <source>Delete All</source>
-        <translation type="unfinished"></translation>
+        <translation>Удалить все</translation>
     </message>
     <message>
         <source>Delete Empty</source>
-        <translation type="unfinished"></translation>
+        <translation>Удалить пустые</translation>
     </message>
     <message>
         <source>Delete Checked</source>
         <extracomment>Here &quot;checked&quot; means the checkbox is checked</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Удалить отмеченные</translation>
     </message>
     <message>
         <source>Are you sure you want to delete all checked test cases?</source>
-        <translation type="unfinished"></translation>
+        <translation>Вы действительно хотите удалить все отмеченные тест-кейсы?</translation>
     </message>
     <message>
         <source>Copy Test Cases</source>
-        <translation type="unfinished"></translation>
+        <translation>Копировать тест-кейсы</translation>
     </message>
     <message>
         <source>Paste Test Cases</source>
-        <translation type="unfinished"></translation>
+        <translation>Вставить тест-кейсы</translation>
     </message>
     <message>
         <source>Copy Output to Expected</source>
-        <translation type="unfinished"></translation>
+        <translation>Копировать вывод в ожидаемый</translation>
     </message>
     <message>
         <source>Are you sure you want to copy all checked output to their corresponding expected?</source>
         <extracomment>Here &quot;checked&quot; means the checkbox is checked</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Вы действительно хотите скопировать все отмеченные тест-кейсы в соответсвующие им ожидаемые?</translation>
     </message>
 </context>
 <context>
