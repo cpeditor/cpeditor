@@ -15,7 +15,6 @@
  *
  */
 
-
 #ifndef SINGLETON_HPP
 #define SINGLETON_HPP
 
@@ -39,7 +38,7 @@ template <typename T, typename D = T> class Singleton
     Singleton() = default;
     ~Singleton() = default;
     Singleton(const Singleton &) = delete;
-    Singleton(Singleton &&) = delete;    
+    Singleton(Singleton &&) = delete;
     Singleton &operator=(const Singleton &) = delete;
     Singleton &operator=(Singleton &&) = delete;
 };
