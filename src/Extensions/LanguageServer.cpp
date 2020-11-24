@@ -19,7 +19,7 @@
 #include "Core/MessageLogger.hpp"
 #include "Settings/SettingsManager.hpp"
 #include "Util/Util.hpp"
-#include <LSPClient.hpp>
+#include "third_party/lsp-cpp/include/LSPClient.hpp"
 #include <QDir>
 #include <QFileInfo>
 #include <QJsonArray>

@@ -19,6 +19,7 @@ if(WIN32)
   set(GUI_TYPE WIN32)
 endif()
 
+find_package(Qt5 COMPONENTS Core REQUIRED)
 find_package(Qt5 COMPONENTS Widgets REQUIRED)
 find_package(Qt5 COMPONENTS Network REQUIRED)
 find_package(Qt5 COMPONENTS LinguistTools REQUIRED)
@@ -36,7 +37,11 @@ add_subdirectory(third_party/lsp-cpp)
 
 add_subdirectory(third_party/qhttp)
 
+add_library(diff_match_patch
+	third_party/diff_match_patch/diff_match_patch.cpp)
+
 option(PORTABLE_VERSION "Build the portable version" Off)
+option(USE_CLANG_TIDY "Lint files with Clang tidy" Off)
 
 if(${PORTABLE_VERSION})
   message(STATUS "Will build the portable version")
@@ -101,6 +106,14 @@ qt5_add_translation(QMFILES ${TSS})
 file(COPY ${CMAKE_SOURCE_DIR}/translations/translations.qrc DESTINATION ${CMAKE_BINARY_DIR}/translations)
 
 set_property(SOURCE ${CMAKE_BINARY_DIR}/generated/SettingsHelper.hpp ${CMAKE_BINARY_DIR}/generated/SettingsInfo.cpp PROPERTY SKIP_AUTOGEN ON)
+
+# Perform clang-tidy checks after we have build all the third_party dependencies.
+if(USE_CLANG_TIDY)
+	message(STATUS "Clang tidy checks will be performed")
+	
+	set(CMAKE_CXX_CLANG_TIDY 
+		"clang-tidy;-header-filter=^(?!.*\\bthird_party\\b).*$;-checks=-*,bugprone-*,cppcoreguidelines-*,modernize-*,performance-*,readability-*,-modernize-use-trailing-return-type,-bugprone-suspicious-include,-cppcoreguidelines-pro-bounds-array-to-pointer-decay,-cppcoreguidelines-avoid-magic-numbers,-readability-magic-numbers,-cppcoreguidelines-owning-memory,-readability-braces-around-statements,-cppcoreguidelines-macro-usage,-cppcoreguidelines-avoid-c-arrays,-modernize-avoid-c-arrays,-readability-implicit-bool-conversion,-readability-implicit-bool-conversion")
+endif()
 
 add_executable(cpeditor
     ${GUI_TYPE}
@@ -208,9 +221,6 @@ add_executable(cpeditor
 
     src/main.cpp
 
-    third_party/diff_match_patch/diff_match_patch.h
-    third_party/diff_match_patch/diff_match_patch.cpp
-
     ui/mainwindow.ui
     ui/appwindow.ui
 
@@ -225,12 +235,6 @@ add_executable(cpeditor
 
 include_directories("generated/")
 include_directories("src/")
-include_directories("third_party/diff_match_patch")
-include_directories("third_party/lsp-cpp/include")
-include_directories("third_party/QCodeEditor/include")
-include_directories("third_party/QtFindReplaceDialog")
-include_directories("third_party/qhttp/src")
-include_directories("third_party/testlib")
 
 target_link_libraries(cpeditor PRIVATE LSPClient)
 target_link_libraries(cpeditor PRIVATE QCodeEditor)
@@ -239,6 +243,8 @@ target_link_libraries(cpeditor PRIVATE Qt5::Widgets)
 target_link_libraries(cpeditor PRIVATE QtFindReplaceDialog)
 target_link_libraries(cpeditor PRIVATE SingleApplication)
 target_link_libraries(cpeditor PRIVATE QHttp)
+target_link_libraries(diff_match_patch PRIVATE Qt5::Core)
+target_link_libraries(cpeditor PRIVATE diff_match_patch)
 
 if(MSVC)
   target_compile_options(cpeditor PUBLIC "/utf-8")
@@ -260,3 +266,5 @@ if(UNIX AND NOT APPLE)
   install(FILES .ci/linux/cpeditor.desktop DESTINATION share/applications)
   install(FILES resources/icon.png DESTINATION share/icons/hicolor/512x512/apps RENAME cpeditor.png)
 endif()
+
+

@@ -18,11 +18,11 @@
 #include "Extensions/CompanionServer.hpp"
 #include "Core/EventLogger.hpp"
 #include "Core/MessageLogger.hpp"
-#include "qhttpfwd.hpp"
-#include "qhttpserver.hpp"
-#include "qhttpserverconnection.hpp"
-#include "qhttpserverrequest.hpp"
-#include "qhttpserverresponse.hpp"
+#include "third_party/qhttp/src/qhttpfwd.hpp"
+#include "third_party/qhttp/src/qhttpserver.hpp"
+#include "third_party/qhttp/src/qhttpserverconnection.hpp"
+#include "third_party/qhttp/src/qhttpserverrequest.hpp"
+#include "third_party/qhttp/src/qhttpserverresponse.hpp"
 #include <QJsonArray>
 #include <QJsonObject>
 

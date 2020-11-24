@@ -18,7 +18,7 @@
 #include "Widgets/DiffViewer.hpp"
 #include "Core/EventLogger.hpp"
 #include "Core/MessageLogger.hpp"
-#include "diff_match_patch.h"
+#include "third_party/diff_match_patch/diff_match_patch.h"
 #include <QHBoxLayout>
 #include <QLabel>
 #include <QScrollBar>
