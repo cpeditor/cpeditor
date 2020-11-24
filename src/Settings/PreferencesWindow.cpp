@@ -506,7 +506,7 @@ QTreeWidgetItem *PreferencesWindow::getChild(QTreeWidgetItem *item, // NOLINT: I
 {
     for (int i = 0; i < item->childCount(); ++i)
     {
-        auto* child = item->child(i);
+        auto *child = item->child(i);
         if (child->text(0) == text)
         {
             return child;
@@ -531,8 +531,8 @@ int PreferencesWindow::nextNonHiddenPage(int index, int direction, bool includin
     {
         if (index == 0)
             return 0;
-        auto* currentWidget = qobject_cast<PreferencesPage *>(stackedWidget->widget(index));
-        auto* currentItem = pageTreeItem[currentWidget];
+        auto *currentWidget = qobject_cast<PreferencesPage *>(stackedWidget->widget(index));
+        auto *currentItem = pageTreeItem[currentWidget];
         if (currentItem == nullptr)
         {
             LOG_WTF("Failed to get the current item");

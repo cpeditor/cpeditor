@@ -113,11 +113,12 @@ class Log
     static QTextStream logStream; // the text stream for logging, writes to logFile
     static QFile logFile;         // the device for logging, a file or stderr
 
-    const static int NUMBER_OF_LOGS_TO_KEEP;     // Number of log files to keep in Temporary directory
-    const static QString LOG_FILE_NAME;          // Base Name of the log file
-    const static QString LOG_DIR_NAME;           // Directory inside Temp where log files will be stored
-    const static int MAXIMUM_FUNCTION_NAME_SIZE; // Maximum size of function name, it is used to determine spacing in log file
-    const static int MAXIMUM_FILE_NAME_SIZE;     // Maximum size of file name, it is used to determine spacing in log file
+    const static int NUMBER_OF_LOGS_TO_KEEP; // Number of log files to keep in Temporary directory
+    const static QString LOG_FILE_NAME;      // Base Name of the log file
+    const static QString LOG_DIR_NAME;       // Directory inside Temp where log files will be stored
+    const static int
+        MAXIMUM_FUNCTION_NAME_SIZE; // Maximum size of function name, it is used to determine spacing in log file
+    const static int MAXIMUM_FILE_NAME_SIZE; // Maximum size of file name, it is used to determine spacing in log file
 };
 
 } // namespace Core

@@ -564,8 +564,8 @@ bool TestCases::validateIndex(int index, const QString &funcName) const
 void TestCases::updateVerdicts()
 {
     int accepted = 0;
-	int unaccepted = 0;
-    for (auto* t : testcases)
+    int unaccepted = 0;
+    for (auto *t : testcases)
     {
         switch (t->verdict())
         {

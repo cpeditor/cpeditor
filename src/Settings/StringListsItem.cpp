@@ -37,7 +37,7 @@ StringListsItem::StringListsItem(const QVariantList &cols, QWidget *parent) : QW
                            QAbstractItemView::AnyKeyPressed);
     for (int i = 0; i < cols.count(); ++i)
     {
-        auto* item = new QTableWidgetItem(cols[i].toStringList().front());
+        auto *item = new QTableWidgetItem(cols[i].toStringList().front());
         item->setToolTip(cols[i].toStringList().back());
         table->setHorizontalHeaderItem(i, item);
     }
@@ -97,7 +97,7 @@ StringListsItem::StringListsItem(const QVariantList &cols, QWidget *parent) : QW
             if (row > 0)
                 for (int i = 0; i < cols; ++i)
                 {
-                    auto* temp = table->takeItem(row - 1, i);
+                    auto *temp = table->takeItem(row - 1, i);
                     table->setItem(row - 1, i, table->takeItem(row, i));
                     table->setItem(row, i, temp);
                 }
@@ -121,7 +121,7 @@ StringListsItem::StringListsItem(const QVariantList &cols, QWidget *parent) : QW
             if (row + 1 < rows)
                 for (int i = 0; i < cols; ++i)
                 {
-                    auto* temp = table->takeItem(row + 1, i);
+                    auto *temp = table->takeItem(row + 1, i);
                     table->setItem(row + 1, i, table->takeItem(row, i));
                     table->setItem(row, i, temp);
                 }

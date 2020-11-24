@@ -26,8 +26,7 @@ QMap<QString, QString> DefaultPathManager::defaultPath;
 
 QString DefaultPathManager::defaultPathForAction(const QString &action)
 {
-    auto result =
-        convertPath(SettingsManager::get(QString("Default Path/Action/%1/Uses").arg(action)).toString());
+    auto result = convertPath(SettingsManager::get(QString("Default Path/Action/%1/Uses").arg(action)).toString());
     LOG_INFO(INFO_OF(action) << INFO_OF(result));
     return result;
 }

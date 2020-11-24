@@ -30,12 +30,12 @@
 PreferencesPage::PreferencesPage(QWidget *parent) : QWidget(parent)
 {
     // construct widgets
-    auto* mainLayout = new QVBoxLayout(this);
+    auto *mainLayout = new QVBoxLayout(this);
     titleLabel = new QLabel();
     scrollArea = new QScrollArea();
     scrollAreaWidget = new QWidget();
     settingsLayout = new QVBoxLayout(scrollAreaWidget);
-    auto* buttonsLayout = new QHBoxLayout();
+    auto *buttonsLayout = new QHBoxLayout();
     defaultButton =
         new QPushButton(QApplication::style()->standardIcon(QStyle::SP_FileDialogDetailedView), tr("Default"));
     defaultButton->setShortcut({"Ctrl+D"});

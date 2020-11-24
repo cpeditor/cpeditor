@@ -22,8 +22,8 @@
 
 PreferencesGridPage::PreferencesGridPage(bool alignTop, QWidget *parent) : PreferencesPage(parent)
 {
-    auto* VLayout = new QVBoxLayout();
-    auto* HLayout = new QHBoxLayout();
+    auto *VLayout = new QVBoxLayout();
+    auto *HLayout = new QHBoxLayout();
     gridLayout = new QGridLayout();
 
     addLayout(VLayout);
