@@ -30,12 +30,12 @@
 PreferencesPage::PreferencesPage(QWidget *parent) : QWidget(parent)
 {
     // construct widgets
-    auto mainLayout = new QVBoxLayout(this);
+    auto* mainLayout = new QVBoxLayout(this);
     titleLabel = new QLabel();
     scrollArea = new QScrollArea();
     scrollAreaWidget = new QWidget();
     settingsLayout = new QVBoxLayout(scrollAreaWidget);
-    auto buttonsLayout = new QHBoxLayout();
+    auto* buttonsLayout = new QHBoxLayout();
     defaultButton =
         new QPushButton(QApplication::style()->standardIcon(QStyle::SP_FileDialogDetailedView), tr("Default"));
     defaultButton->setShortcut({"Ctrl+D"});
@@ -146,7 +146,7 @@ void PreferencesPage::addItem(QLayoutItem *item)
     settingsLayout->addItem(item);
 }
 
-void PreferencesPage::registerWidget(const QString &key, ValueWidget *widget)
+void PreferencesPage::registerWidget(const QString &key, ValueWidget *widget) const
 {
     // PreferencesPageTemplate::PreferencesPageTemplate uses Qt::DirectConnection
     QObject::connect(widget, &ValueWidget::valueChanged, this, &PreferencesPage::updateButtons, Qt::QueuedConnection);

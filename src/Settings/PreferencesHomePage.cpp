@@ -38,7 +38,7 @@ void PreferencesHomePage::init()
     // add stretch so that the contents are vertically centered
     layout->addStretch();
 
-    auto iconLabel = new QLabel();
+    auto* iconLabel = new QLabel();
     iconLabel->setPixmap(QPixmap(":/icon.png").scaledToHeight(128, Qt::SmoothTransformation));
     layout->addWidget(iconLabel);
     layout->setAlignment(iconLabel, Qt::AlignCenter);
@@ -47,7 +47,7 @@ void PreferencesHomePage::init()
     layout->addSpacing(30);
 
     // add welcome label
-    auto welcomeLabel = new QLabel(tr("Welcome to CP Editor! Let's get started."));
+    auto* welcomeLabel = new QLabel(tr("Welcome to CP Editor! Let's get started."));
     layout->addWidget(welcomeLabel);
     layout->setAlignment(welcomeLabel, Qt::AlignCenter);
 
@@ -66,7 +66,7 @@ void PreferencesHomePage::init()
     layout->addSpacing(20);
 
     // add manual label
-    auto manualLabel = new QLabel(
+    auto* manualLabel = new QLabel(
         tr("You can read the <a href=\"%1\">documentation</a> or go "
            "through the settings for more information.")
             .arg(QUrl(tr("https://cpeditor.org/%1/docs").arg(MINOR_VERSION)).url(QUrl::NormalizePathSegments)));
@@ -84,7 +84,7 @@ void PreferencesHomePage::addButton(const QString &page, const QString &text)
 {
     if (!preferencesWindow->pathExists(page))
         LOG_DEV("Unknown path: " << page);
-    auto button = new QPushButton(text, this);
+    auto* button = new QPushButton(text, this);
     connect(button, &QPushButton::clicked, [this, page]() { emit requestPage(page); });
     layout->addWidget(button);
 }

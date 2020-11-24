@@ -26,7 +26,7 @@ QMap<QString, QString> DefaultPathManager::defaultPath;
 
 QString DefaultPathManager::defaultPathForAction(const QString &action)
 {
-    const auto result =
+    auto result =
         convertPath(SettingsManager::get(QString("Default Path/Action/%1/Uses").arg(action)).toString());
     LOG_INFO(INFO_OF(action) << INFO_OF(result));
     return result;
@@ -63,7 +63,7 @@ void DefaultPathManager::setDefaultPathForAction(const QString &action, const QS
 QString DefaultPathManager::getExistingDirectory(const QString &action, QWidget *parent, const QString &caption,
                                                  QFileDialog::Options options)
 {
-    const auto result = QFileDialog::getExistingDirectory(parent, caption, defaultPathForAction(action), options);
+    auto result = QFileDialog::getExistingDirectory(parent, caption, defaultPathForAction(action), options);
     if (!result.isEmpty())
         setDefaultPathForAction(action, result);
     return result;
@@ -73,7 +73,7 @@ QString DefaultPathManager::getOpenFileName(const QString &action, QWidget *pare
                                             const QString &filter, QString *selectedFilter,
                                             QFileDialog::Options options)
 {
-    const auto result =
+    auto result =
         QFileDialog::getOpenFileName(parent, caption, defaultPathForAction(action), filter, selectedFilter, options);
     if (!result.isEmpty())
         setDefaultPathForAction(action, result);
@@ -84,7 +84,7 @@ QStringList DefaultPathManager::getOpenFileNames(const QString &action, QWidget 
                                                  const QString &filter, QString *selectedFilter,
                                                  QFileDialog::Options options)
 {
-    const auto result =
+    auto result =
         QFileDialog::getOpenFileNames(parent, caption, defaultPathForAction(action), filter, selectedFilter, options);
     if (!result.isEmpty())
         setDefaultPathForAction(action, result.front());
@@ -95,7 +95,7 @@ QString DefaultPathManager::getSaveFileName(const QString &action, QWidget *pare
                                             const QString &filter, QString *selectedFilter,
                                             QFileDialog::Options options)
 {
-    const auto result =
+    auto result =
         QFileDialog::getSaveFileName(parent, caption, defaultPathForAction(action), filter, selectedFilter, options);
     if (!result.isEmpty())
         setDefaultPathForAction(action, result);
@@ -135,7 +135,7 @@ QString DefaultPathManager::convertPath(const QString &str)
     QString result = str;
     for (const auto &key : defaultPath.keys())
         result.replace(QString("${%1}").arg(key), defaultPath[key]);
-    const QRegularExpression placeHolderRegex("\\$\\{.*?\\}");
+    const QRegularExpression placeHolderRegex(R"(\$\{.*?\})");
     if (result.contains(placeHolderRegex))
     {
         LOG_WARN("Unknown place holder: " << INFO_OF(str) << INFO_OF(result));

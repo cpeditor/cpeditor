@@ -35,8 +35,7 @@ CFTool::CFTool(const QString &path, MessageLogger *logger) : CFToolPath(path)
 
 CFTool::~CFTool()
 {
-    if (CFToolProcess != nullptr)
-        delete CFToolProcess;
+    delete CFToolProcess;
 }
 
 void CFTool::submit(const QString &filePath, const QString &url)

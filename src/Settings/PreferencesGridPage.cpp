@@ -22,8 +22,8 @@
 
 PreferencesGridPage::PreferencesGridPage(bool alignTop, QWidget *parent) : PreferencesPage(parent)
 {
-    auto VLayout = new QVBoxLayout();
-    auto HLayout = new QHBoxLayout();
+    auto* VLayout = new QVBoxLayout();
+    auto* HLayout = new QHBoxLayout();
     gridLayout = new QGridLayout();
 
     addLayout(VLayout);
@@ -50,7 +50,7 @@ void PreferencesGridPage::addRow(ValueWidget *widget, const QString &key, const 
     }
     else
     {
-        QLabel *label = new QLabel(tr(labelText.toUtf8()), this);
+        auto *label = new QLabel(tr(labelText.toUtf8()), this);
         if (!tip.isEmpty())
             label->setToolTip(tr(tip.toUtf8()));
         gridLayout->addWidget(label, row, 0);

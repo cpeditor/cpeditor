@@ -26,7 +26,7 @@ FontItem::FontItem(QWidget *parent, const QVariant &param) : QPushButton(parent)
     connect(this, &FontItem::clicked, this, &FontItem::onButtonClicked);
 }
 
-void FontItem::setFont(QFont newFont)
+void FontItem::setFont(QFont const& newFont)
 {
     if (newFont != font)
     {
@@ -46,7 +46,7 @@ QFont FontItem::getFont()
 
 void FontItem::onButtonClicked()
 {
-    bool ok;
+    bool ok = false;
     QFont newFont = QFontDialog::getFont(&ok, font, this, QString(),
                                          SettingsHelper::isShowOnlyMonospacedFont() ? QFontDialog::MonospacedFonts
                                                                                     : QFontDialog::FontDialogOption());

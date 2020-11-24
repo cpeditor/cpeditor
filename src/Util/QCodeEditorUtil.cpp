@@ -46,7 +46,7 @@ void applySettingsToEditor(QCodeEditor *editor, const QString &language)
     else
         editor->setWordWrapMode(QTextOption::NoWrap);
 
-    auto style = Extensions::EditorTheme::query(SettingsHelper::getEditorTheme());
+    auto* style = Extensions::EditorTheme::query(SettingsHelper::getEditorTheme());
     if (!style)
         style = Extensions::EditorTheme::query("Light");
     editor->setSyntaxStyle(style);
@@ -76,7 +76,7 @@ void applySettingsToEditor(QCodeEditor *editor, const QString &language)
 
     auto list = SettingsManager::get(language + "/Parentheses").toList();
 
-    for (auto var : list)
+    for (auto const& var : list)
     {
         auto li = var.toList();
         if (li.length() != 5)

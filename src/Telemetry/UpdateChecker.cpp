@@ -60,8 +60,7 @@ void UpdateChecker::checkUpdate(bool silent)
 
 void UpdateChecker::cancelCheckUpdate()
 {
-    if (manager)
-        delete manager;
+    delete manager;
     manager = new QNetworkAccessManager();
     updateProxy();
     connect(manager, &QNetworkAccessManager::finished, this, &UpdateChecker::managerFinished);
@@ -171,7 +170,7 @@ void UpdateChecker::managerFinished(QNetworkReply *reply)
 
         auto last = currentVersion;
         QStringList changelog;
-        for (auto release : releases)
+        for (auto const &release : releases)
         {
             auto version = release.first;
             bool used = false;

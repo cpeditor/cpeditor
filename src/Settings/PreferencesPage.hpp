@@ -149,7 +149,7 @@ class PreferencesPage : public QWidget
      */
     void addItem(QLayoutItem *item);
 
-    void registerWidget(const QString &key, ValueWidget *widget);
+    void registerWidget(const QString &key, ValueWidget *widget) const;
 
   protected slots:
     /**

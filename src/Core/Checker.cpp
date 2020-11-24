@@ -44,12 +44,10 @@ Checker::Checker(const QString &path, MessageLogger *logger, QObject *parent) : 
 
 Checker::~Checker()
 {
-    if (compiler)
-        delete compiler;
+    delete compiler;
     for (auto &t : runners)
         delete t;
-    if (tmpDir)
-        delete tmpDir;
+    delete tmpDir;
     LOG_INFO("Destroyed checker of type " << checkerType);
 }
 
@@ -120,8 +118,7 @@ void Checker::prepare(const QString &compileCommand)
             return;
 
         // start the compilation of the checker
-        if (compiler)
-            delete compiler;
+        delete compiler;
         compiler = new Compiler();
         connect(compiler, &Compiler::compilationStarted, this, &Checker::onCompilationStarted);
         connect(compiler, &Compiler::compilationFinished, this, &Checker::onCompilationFinished);
@@ -159,7 +156,7 @@ void Checker::onCompilationFinished()
     compiled = true; // mark that the checker is compiled
     if (checkerType >= Ncmp)
         log->info(tr("Checker"), tr("The checker is compiled"));
-    for (auto t : pendingTasks)
+    for (auto const &t : pendingTasks)
         check(t.index, t.input, t.output, t.expected); // solve the pending tasks
     pendingTasks.clear();
 }
@@ -182,7 +179,8 @@ void Checker::onCompilationKilled()
     disconnect(compiler, &Compiler::compilationErrorOccurred, this, &Checker::onCompilationErrorOccurred);
 }
 
-void Checker::onRunFinished(int index, const QString &, const QString &err, int exitCode, int, bool tle)
+void Checker::onRunFinished(int index, const QString & /*unused*/, const QString &err, int exitCode, int /*unused*/,
+                            bool tle)
 {
     if (tle)
         log->warn(head(index), tr("Time Limit Exceeded"));
@@ -315,7 +313,7 @@ void Checker::check(int index, const QString &input, const QString &output, cons
             Util::saveFile(expectedPath, expected, tr("Checker"), false, log))
         {
             // if files are successfully saved, run the checker
-            auto tmp = new Runner(index);
+            auto *tmp = new Runner(index);
             runners.push_back(tmp); // save the checkers in a list, so we can delete them when destructing the checker
             connect(tmp, &Runner::runFinished, this, &Checker::onRunFinished);
             connect(tmp, &Runner::failedToStartRun, this, &Checker::onFailedToStartRun);
@@ -329,7 +327,7 @@ void Checker::check(int index, const QString &input, const QString &output, cons
     }
 }
 
-QString Checker::head(int index) const
+QString Checker::head(int index)
 {
     return tr("Checker[%1]").arg(index + 1);
 }

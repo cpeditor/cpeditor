@@ -55,8 +55,7 @@ void CompanionServer::setMessageLogger(MessageLogger *log)
 
 bool CompanionServer::startListeningOn(int port)
 {
-    if (server)
-        delete server;
+    delete server;
     server = new qhttp::server::QHttpServer(this);
     server->listen(QString::number(port), [this](qhttp::server::QHttpRequest *req, qhttp::server::QHttpResponse *res) {
         LOG_INFO("\n--> " << req->methodString() << " : " << qPrintable(req->url().toString().toUtf8()));
@@ -101,8 +100,7 @@ void CompanionServer::updatePort(int port)
     LOG_INFO(INFO_OF(port));
     if (port == 0) // Close the server
     {
-        if (server)
-            delete server;
+        delete server;
         server = nullptr;
         USER_INFO(tr("Server is closed"));
         lastListeningPort = -1;
@@ -126,7 +124,7 @@ void CompanionServer::updatePort(int port)
 
 void CompanionServer::parseAndEmit(QByteArray &data)
 {
-    QJsonParseError error;
+    QJsonParseError error{};
     QJsonDocument doc = QJsonDocument::fromJson(QString(data).toUtf8(), &error);
     if (error.error == QJsonParseError::NoError)
     {
@@ -156,8 +154,7 @@ void CompanionServer::parseAndEmit(QByteArray &data)
 CompanionServer::~CompanionServer()
 {
     USER_INFO(tr("Stopped Server"));
-    if (server)
-        delete server;
+    delete server;
 }
 
 } // namespace Extensions

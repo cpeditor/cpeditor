@@ -24,38 +24,33 @@
 namespace Extensions
 {
 
-static QMap<QString, QString> resources = {{"Dracula", ":/styles/dracula.xml"},
-                                           {"Monokai", ":/styles/monokai.xml"},
-                                           {"Solarized", ":/styles/solarized.xml"},
-                                           {"Solarized Dark", ":/styles/solarizedDark.xml"}};
+static const QMap<QString, QString> resources = {{"Dracula", ":/styles/dracula.xml"},
+                                                 {"Monokai", ":/styles/monokai.xml"},
+                                                 {"Solarized", ":/styles/solarized.xml"},
+                                                 {"Solarized Dark", ":/styles/solarizedDark.xml"}};
 
-QMap<QString, QSyntaxStyle *> EditorTheme::styles;
+QMap<QString, QSyntaxStyle *>
+    EditorTheme::styles; // NOLINT: variable 'styles' is non-const and globally accessible, consider making it const
 
 QSyntaxStyle *EditorTheme::query(const QString &name)
 {
     if (styles.find(name) != styles.end())
         return styles[name];
-    else
-    {
-        if (name == "Light")
-            return styles["Light"] = QSyntaxStyle::defaultStyle();
-        else
-        {
-            if (resources.find(name) == resources.end())
-                return nullptr;
-            auto content = Util::readFile(resources[name], "Read Style");
-            if (content.isNull())
-                return nullptr;
-            auto style = new QSyntaxStyle();
-            style->load(content);
-            return styles[name] = style;
-        }
-    }
+    if (name == "Light")
+        return styles["Light"] = QSyntaxStyle::defaultStyle();
+    if (resources.find(name) == resources.end())
+        return nullptr;
+    auto content = Util::readFile(resources[name], "Read Style");
+    if (content.isNull())
+        return nullptr;
+    auto *style = new QSyntaxStyle();
+    style->load(content);
+    return styles[name] = style;
 }
 
 void EditorTheme::release()
 {
-    for (auto style : styles.values())
+    for (auto *style : styles.values())
         if (style != QSyntaxStyle::defaultStyle())
             delete style;
     styles.clear();

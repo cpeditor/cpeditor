@@ -142,7 +142,7 @@ class Checker : public QObject
      * @param expected the expected output to check the output against
      * @return whether this output is accepted or not
      */
-    bool checkIgnoreTrailingSpaces(const QString &output, const QString &expected);
+    static bool checkIgnoreTrailingSpaces(const QString &output, const QString &expected);
 
     /**
      * @brief check the output against the expected output in Strict mode
@@ -150,7 +150,7 @@ class Checker : public QObject
      * @param expected the expected output to check the output against
      * @return whether this output is accepted or not
      */
-    bool checkStrict(const QString &output, const QString &expected);
+    static bool checkStrict(const QString &output, const QString &expected);
 
     /**
      * @brief check a testcase
@@ -165,7 +165,7 @@ class Checker : public QObject
      * @param index the index of the testcase
      * @returns "Checker[*index*]"
      */
-    QString head(int index) const;
+    static QString head(int index);
 
     // a struct with the info of a testcase, or called a check task, used to save check requests
     struct Task

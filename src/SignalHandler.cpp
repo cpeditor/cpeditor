@@ -20,11 +20,11 @@
  */
 
 #include "SignalHandler.hpp"
-#include <assert.h>
+#include <cassert>
 
 #ifndef _WIN32
 
-#include <signal.h>
+#include <csignal>
 
 #else
 
@@ -34,7 +34,8 @@
 #endif //!_WIN32
 
 // There can be only ONE SignalHandler per process
-SignalHandler *g_handler = nullptr;
+SignalHandler *g_handler = nullptr; // NOLINT: variable 'g_handler' provides global access to a non-const object;
+                                    // consider making the pointed-to data 'const'
 
 #ifdef _WIN32
 
@@ -45,9 +46,9 @@ std::set<int> g_registry;
 
 #else //_WIN32
 
-void POSIX_handleFunc(int);
-int POSIX_physicalToLogical(int);
-int POSIX_logicalToPhysical(int);
+void POSIX_handleFunc(int signal);
+int POSIX_physicalToLogical(int signal);
+int POSIX_logicalToPhysical(int signal);
 
 #endif //_WIN32
 
@@ -69,7 +70,8 @@ SignalHandler::SignalHandler(int mask) : _mask(mask)
             g_registry.insert(logical);
 #else
             int sig = POSIX_logicalToPhysical(logical);
-            bool failed = signal(sig, POSIX_handleFunc) == SIG_ERR;
+            bool failed = signal(sig, POSIX_handleFunc) ==
+                          SIG_ERR; // NOLINT: do not use C-style cast to convert between unrelated types
             assert(!failed);
             (void)failed; // Silence the warning in non _DEBUG; TODO: something better
 
@@ -116,7 +118,7 @@ int POSIX_logicalToPhysical(int signal)
     {
     case SignalHandler::SIG_INT:
         return SIGINT;
-    case SignalHandler::SIG_TERM:
+    case SignalHandler::SIG_TERM: // NOLINT: switch has 2 consecutive identical branches [bugprone-branch-clone]
         return SIGTERM;
     // In case the client asks for a SIG_CLOSE handler, accept and
     // bind it to a SIGTERM. Anyway the signal will never be raised

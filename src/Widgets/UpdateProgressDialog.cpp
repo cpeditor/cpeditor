@@ -37,7 +37,7 @@ UpdateProgressDialog::UpdateProgressDialog()
     cancelUpdate = new QPushButton(tr("Cancel"), this);
     cancelUpdate->setToolTip(tr("Close this dialog and abort the update check"));
 
-    auto mainLayout = new QVBoxLayout(this);
+    auto* mainLayout = new QVBoxLayout(this);
 
     mainLayout->addWidget(information);
     mainLayout->addWidget(progressBar);

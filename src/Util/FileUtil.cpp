@@ -178,7 +178,7 @@ QPair<std::function<void()>, QString> revealInFileManager(const QString &filePat
 
     // Reference: http://lynxline.com/show-in-finder-show-in-explorer/ and https://forum.qt.io/post/296072
 
-    const QPair<std::function<void()>, QString> fallBack = {
+    QPair<std::function<void()>, QString> fallBack = {
         [filePath] { QDesktopServices::openUrl(QUrl::fromLocalFile(QFileInfo(filePath).path())); },
         QCoreApplication::translate("Util::FileUtil", "Open Containing Folder of %1").arg(name)};
 
@@ -186,8 +186,7 @@ QPair<std::function<void()>, QString> revealInFileManager(const QString &filePat
     {
         if (QFile::exists(QFileInfo(filePath).path()))
             return fallBack;
-        else
-            return {[] {}, QString()};
+        return {[] {}, QString()};
     }
 
 #if defined(Q_OS_MACOS)
@@ -248,22 +247,11 @@ QPair<std::function<void()>, QString> revealInFileManager(const QString &filePat
             args << "--select" << nativePath;
         }
         if (program.isEmpty())
-        {
             return fallBack;
-        }
-        else
-        {
-            return {[program, args] {
-                        QProcess openProcess;
-                        openProcess.startDetached(program, args);
-                    },
-                    QCoreApplication::translate("Util::FileUtil", "Reveal %1 in File Manager").arg(name)};
-        }
+        return {[program, args] { QProcess::startDetached(program, args); },
+                QCoreApplication::translate("Util::FileUtil", "Reveal %1 in File Manager").arg(name)};
     }
-    else
-    {
-        return fallBack;
-    }
+    return fallBack;
 #else
     return fallBack;
 #endif

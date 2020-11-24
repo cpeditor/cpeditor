@@ -66,7 +66,7 @@ class TestCase : public QWidget
     void setTestCaseEditFont(const QFont &font);
     void updateHeight();
     QList<int> splitterSizes() const;
-    void restoreSplitterSizes(const QList<int> &state);
+    void restoreSplitterSizes(const QList<int> &sizes);
 
   signals:
     void deleted(TestCase *widget);

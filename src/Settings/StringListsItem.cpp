@@ -37,7 +37,7 @@ StringListsItem::StringListsItem(const QVariantList &cols, QWidget *parent) : QW
                            QAbstractItemView::AnyKeyPressed);
     for (int i = 0; i < cols.count(); ++i)
     {
-        auto item = new QTableWidgetItem(cols[i].toStringList().front());
+        auto* item = new QTableWidgetItem(cols[i].toStringList().front());
         item->setToolTip(cols[i].toStringList().back());
         table->setHorizontalHeaderItem(i, item);
     }
@@ -56,7 +56,7 @@ StringListsItem::StringListsItem(const QVariantList &cols, QWidget *parent) : QW
         int rows = table->rowCount();
         auto items = table->selectedItems();
         int insRow = rows;
-        if (items.size())
+        if (!items.empty())
             insRow = items.front()->row() + 1;
         table->insertRow(insRow);
         for (int i = 0; i < cols; ++i)
@@ -70,7 +70,7 @@ StringListsItem::StringListsItem(const QVariantList &cols, QWidget *parent) : QW
     del->setToolTip(tr("Delete the current row (Ctrl+W)"));
     connect(del, &QPushButton::clicked, [&]() {
         auto items = table->selectedItems();
-        if (items.size())
+        if (!items.empty())
         {
             auto res =
                 QMessageBox::question(this, tr("Remove Item"), tr("Do you really want to delete the current row?"));
@@ -90,14 +90,14 @@ StringListsItem::StringListsItem(const QVariantList &cols, QWidget *parent) : QW
     connect(moveUp, &QPushButton::clicked, [&]() {
         int cols = table->columnCount();
         auto items = table->selectedItems();
-        if (items.size())
+        if (!items.empty())
         {
             items.front()->setSelected(false);
             int row = items.front()->row();
             if (row > 0)
                 for (int i = 0; i < cols; ++i)
                 {
-                    auto temp = table->takeItem(row - 1, i);
+                    auto* temp = table->takeItem(row - 1, i);
                     table->setItem(row - 1, i, table->takeItem(row, i));
                     table->setItem(row, i, temp);
                 }
@@ -114,14 +114,14 @@ StringListsItem::StringListsItem(const QVariantList &cols, QWidget *parent) : QW
         int cols = table->columnCount();
         int rows = table->rowCount();
         auto items = table->selectedItems();
-        if (items.size())
+        if (!items.empty())
         {
             items.front()->setSelected(false);
             int row = items.front()->row();
             if (row + 1 < rows)
                 for (int i = 0; i < cols; ++i)
                 {
-                    auto temp = table->takeItem(row + 1, i);
+                    auto* temp = table->takeItem(row + 1, i);
                     table->setItem(row + 1, i, table->takeItem(row, i));
                     table->setItem(row, i, temp);
                 }

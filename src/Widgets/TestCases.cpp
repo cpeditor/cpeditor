@@ -84,14 +84,14 @@ TestCases::TestCases(MessageLogger *logger, QWidget *parent) : QWidget(parent), 
         {
             QVariantList rules = SettingsHelper::getTestcasesMatchingRules();
             QSet<QString> remain;
-            for (auto path : paths)
+            for (auto const &path : paths)
                 remain.insert(QFileInfo(path).fileName());
             // load pairs
-            for (auto rule : rules)
+            for (auto const &rule : rules)
             {
                 QRegularExpression inputRegex("^" + rule.toStringList().front() + "$");
                 QString answerReplace(rule.toStringList().back());
-                for (auto path : paths)
+                for (auto const &path : paths)
                 {
                     auto inputFile = QFileInfo(path).fileName();
                     if (!remain.contains(inputFile))
@@ -116,10 +116,10 @@ TestCases::TestCases(MessageLogger *logger, QWidget *parent) : QWidget(parent), 
                 }
             }
             // load single input
-            for (auto rule : rules)
+            for (auto const &rule : rules)
             {
                 QRegularExpression inputRegex("^" + rule.toStringList().front() + "$");
-                for (auto path : paths)
+                for (auto const &path : paths)
                 {
                     auto inputFile = QFileInfo(path).fileName();
                     if (!remain.contains(inputFile))
@@ -138,7 +138,7 @@ TestCases::TestCases(MessageLogger *logger, QWidget *parent) : QWidget(parent), 
             if (!remain.isEmpty())
             {
                 QStringList remainPaths;
-                for (auto path : remain)
+                for (auto const &path : remain)
                     remainPaths.push_back(QString("[%1]").arg(path));
                 log->warn(tr("Load Testcases"),
                           tr("The following files are not loaded because they are not matched:%1. You can set the "
@@ -153,19 +153,19 @@ TestCases::TestCases(MessageLogger *logger, QWidget *parent) : QWidget(parent), 
     //: Here "Check" means to check the checkbox
     moreMenu->addAction(tr("Check All"), [this] {
         LOG_INFO("Check All");
-        for (auto t : testcases)
+        for (auto *t : testcases)
             t->setChecked(true);
     });
 
     moreMenu->addAction(tr("Uncheck All"), [this] {
         LOG_INFO("Uncheck All");
-        for (auto t : testcases)
+        for (auto *t : testcases)
             t->setChecked(false);
     });
 
     moreMenu->addAction(tr("Uncheck Accepted"), [this] {
         LOG_INFO("Uncheck Accepted");
-        for (auto t : testcases)
+        for (auto *t : testcases)
             if (t->verdict() == TestCase::AC)
                 t->setChecked(false);
     });
@@ -173,7 +173,7 @@ TestCases::TestCases(MessageLogger *logger, QWidget *parent) : QWidget(parent), 
     //: This action checks the checkboxes which were not checked, and unchecks the ones which were checked
     moreMenu->addAction(tr("Invert"), [this] {
         LOG_INFO("Invert");
-        for (auto t : testcases)
+        for (auto *t : testcases)
             t->setChecked(t->isChecked() ^ 1);
     });
 
@@ -294,7 +294,7 @@ void TestCases::addTestCase(const QString &input, const QString &expected)
     else
     {
         LOG_INFO("New testcase added");
-        auto testcase = new TestCase(count(), log, this, input, expected);
+        auto *testcase = new TestCase(count(), log, this, input, expected);
         connect(testcase, &TestCase::deleted, this, &TestCases::onChildDeleted);
         connect(testcase, &TestCase::requestRun, this, &TestCases::requestRun);
         testcases.push_back(testcase);
@@ -405,20 +405,20 @@ QString TestCases::loadTestCaseFromFile(const QString &path, const QString &head
 
 void TestCases::setTestCaseEditFont(const QFont &font)
 {
-    for (auto t : testcases)
+    for (auto *t : testcases)
         t->setTestCaseEditFont(font);
 }
 
 void TestCases::updateHeights()
 {
-    for (auto t : testcases)
+    for (auto *t : testcases)
         t->updateHeight();
 }
 
 QVariantList TestCases::splitterStates() const
 {
     QVariantList states;
-    for (auto t : testcases)
+    for (auto *t : testcases)
     {
         QVariantList tmp;
         for (auto size : t->splitterSizes())
@@ -433,7 +433,7 @@ void TestCases::restoreSplitterStates(const QVariantList &states)
     for (int i = 0; i < count() && i < states.count(); ++i)
     {
         QList<int> sizes;
-        for (auto var : states[i].toList())
+        for (auto const &var : states[i].toList())
             sizes.push_back(var.toInt());
         testcases[i]->restoreSplitterSizes(sizes);
     }
@@ -505,10 +505,10 @@ Core::Checker::CheckerType TestCases::checkerType() const
     }
 }
 
-void TestCases::setChecked(int index, bool show)
+void TestCases::setChecked(int index, bool checked)
 {
     if (VALIDATE_INDEX(index))
-        testcases[index]->setChecked(show);
+        testcases[index]->setChecked(checked);
 }
 
 bool TestCases::isChecked(int index) const
@@ -557,17 +557,15 @@ bool TestCases::validateIndex(int index, const QString &funcName) const
 {
     if (index >= 0 && index < count())
         return true;
-    else
-    {
-        LOG_DEV(INFO_OF(index) << INFO_OF(count()) << INFO_OF(funcName));
-        return false;
-    }
+    LOG_DEV(INFO_OF(index) << INFO_OF(count()) << INFO_OF(funcName));
+    return false;
 }
 
 void TestCases::updateVerdicts()
 {
-    int accepted = 0, unaccepted = 0;
-    for (auto t : testcases)
+    int accepted = 0;
+	int unaccepted = 0;
+    for (auto* t : testcases)
     {
         switch (t->verdict())
         {
@@ -586,7 +584,7 @@ void TestCases::updateVerdicts()
             break;
         }
     }
-    verdicts->setText(QString("<span style=\"color:red\">%1</span> / <span style=\"color:green\">%2</span> / %3")
+    verdicts->setText(QString(R"(<span style="color:red">%1</span> / <span style="color:green">%2</span> / %3)")
                           .arg(unaccepted)
                           .arg(accepted)
                           .arg(count()));

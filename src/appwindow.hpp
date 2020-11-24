@@ -221,7 +221,7 @@ class AppWindow : public QMainWindow
     QMetaObject::Connection activeRightSplitterMoveConnection;
     Telemetry::UpdateChecker *updateChecker = nullptr;
     PreferencesWindow *preferencesWindow = nullptr;
-    Extensions::CompanionServer *server;
+    Extensions::CompanionServer *server = nullptr;
     FindReplaceDialog *findReplaceDialog = nullptr;
     QSystemTrayIcon *trayIcon = nullptr;
     QMenu *trayIconMenu = nullptr;

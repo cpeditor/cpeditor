@@ -37,8 +37,7 @@ Runner::~Runner()
 {
     // The order of destructions is important, runTimer is used when emitting signals
 
-    if (killTimer != nullptr)
-        delete killTimer;
+    delete killTimer;
 
     if (runProcess != nullptr)
     {
@@ -52,8 +51,7 @@ Runner::~Runner()
         delete runProcess;
     }
 
-    if (runTimer != nullptr)
-        delete runTimer;
+    delete runTimer;
 }
 
 void Runner::run(const QString &tmpFilePath, const QString &sourceFilePath, const QString &lang,
