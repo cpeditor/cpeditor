@@ -30,14 +30,14 @@ namespace Widgets
 {
 DiffViewer::DiffViewer(QWidget *parent) : QMainWindow(parent)
 {
-    auto* widget = new QWidget(this);
-    auto* layout = new QHBoxLayout();
+    auto *widget = new QWidget(this);
+    auto *layout = new QHBoxLayout();
     widget->setLayout(layout);
     setCentralWidget(widget);
     setWindowTitle(tr("Diff Viewer"));
     resize(720, 480);
 
-    auto* leftLayout = new QVBoxLayout();
+    auto *leftLayout = new QVBoxLayout();
     outputLabel = new QLabel(tr("Output"), widget);
     leftLayout->addWidget(outputLabel);
     outputEdit = new QTextEdit(widget);
@@ -46,7 +46,7 @@ DiffViewer::DiffViewer(QWidget *parent) : QMainWindow(parent)
     leftLayout->addWidget(outputEdit);
     layout->addLayout(leftLayout);
 
-    auto* rightLayout = new QVBoxLayout();
+    auto *rightLayout = new QVBoxLayout();
     expectedLabel = new QLabel(tr("Expected"), widget);
     rightLayout->addWidget(expectedLabel);
     expectedEdit = new QTextEdit(widget);
@@ -79,9 +79,9 @@ void DiffViewer::setText(const QString &output, const QString &expected)
         differ.diff_cleanupEfficiency(diffs);
 
         QString outputHTML;
-		QString expectedHTML;
+        QString expectedHTML;
         outputHTML = expectedHTML = "<body style='background-color: white; color: black;'>";
-        for (auto const& diff : diffs)
+        for (auto const &diff : diffs)
         {
             QString text = diff.text.toHtmlEscaped().replace(" ", "&nbsp;");
             if (SettingsHelper::isDisplayEOLNInDiff())

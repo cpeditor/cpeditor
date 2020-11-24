@@ -67,7 +67,7 @@ void SessionManager::restoreSession(const QString &path)
 
     while (app->ui->tabWidget->count() > 0)
     {
-        auto* tmp = app->windowAt(0);
+        auto *tmp = app->windowAt(0);
         app->ui->tabWidget->removeTab(0);
         delete tmp;
     }

@@ -26,7 +26,7 @@ FontItem::FontItem(QWidget *parent, const QVariant &param) : QPushButton(parent)
     connect(this, &FontItem::clicked, this, &FontItem::onButtonClicked);
 }
 
-void FontItem::setFont(QFont const& newFont)
+void FontItem::setFont(QFont const &newFont)
 {
     if (newFont != font)
     {

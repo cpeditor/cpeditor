@@ -32,24 +32,24 @@ class LanguageServer : public QObject
     Q_OBJECT
 
   public:
-    explicit LanguageServer(QString const& lang);
+    explicit LanguageServer(QString const &lang);
     ~LanguageServer();
 
-    void openDocument(QString const& path, QCodeEditor *editor, MessageLogger *logger);
+    void openDocument(QString const &path, QCodeEditor *editor, MessageLogger *logger);
     void closeDocument();
     void requestLinting();
 
     bool isDocumentOpen() const;
 
     void updateSettings();
-    void updatePath(QString const&);
+    void updatePath(QString const &);
 
   private slots:
-    void onLSPServerNotificationArrived(QString const& method, QJsonObject const& param);
-    void onLSPServerResponseArrived(QJsonObject const& method, QJsonObject const& param);
-    void onLSPServerRequestArrived(QString const& method, QJsonObject const& param, QJsonObject const& id);
-    void onLSPServerErrorArrived(QJsonObject const& id, QJsonObject const& error);
-    void onLSPServerProcessError(QProcess::ProcessError const& error);
+    void onLSPServerNotificationArrived(QString const &method, QJsonObject const &param);
+    void onLSPServerResponseArrived(QJsonObject const &method, QJsonObject const &param);
+    void onLSPServerRequestArrived(QString const &method, QJsonObject const &param, QJsonObject const &id);
+    void onLSPServerErrorArrived(QJsonObject const &id, QJsonObject const &error);
+    void onLSPServerProcessError(QProcess::ProcessError const &error);
     void onLSPServerProcessFinished(int exitCode, QProcess::ExitStatus status);
     void onLSPServerNewStderr(const QString &content);
 
@@ -59,7 +59,7 @@ class LanguageServer : public QObject
     bool shouldCreateClient();
 
     static QCodeEditor::SeverityLevel lspSeverity(int in);
-    void initializeLSP(QString const& filePath);
+    void initializeLSP(QString const &filePath);
 
     QCodeEditor *m_editor = nullptr;
     MessageLogger *logger = nullptr;

@@ -433,7 +433,7 @@ void AppWindow::openTab(const QString &path)
 
 void AppWindow::openTab(const MainWindow::EditorStatus &status, bool duplicate)
 {
-    auto* newWindow = new MainWindow(status, duplicate, getNewUntitledIndex(), this);
+    auto *newWindow = new MainWindow(status, duplicate, getNewUntitledIndex(), this);
     openTab(newWindow);
 }
 
@@ -1003,7 +1003,7 @@ void AppWindow::onLSPTimerElapsedJava()
 
 void AppWindow::onLSPTimerElapsedPython()
 {
-    auto* tab = currentWindow();
+    auto *tab = currentWindow();
     if (tab == nullptr)
         return;
 
@@ -1049,9 +1049,9 @@ void AppWindow::onSettingsApplied(const QString &pagePath)
     if (pageChanged("Appearance/Font"))
     {
         if (SettingsHelper::isUseCustomApplicationFont())
-            qApp->setFont(SettingsHelper::getCustomApplicationFont()); 
+            qApp->setFont(SettingsHelper::getCustomApplicationFont());
         else
-            qApp->setFont(QFontDatabase::systemFont(QFontDatabase::GeneralFont)); 
+            qApp->setFont(QFontDatabase::systemFont(QFontDatabase::GeneralFont));
     }
 
     if (pageChanged("Extensions/Language Server/C++ Server"))
