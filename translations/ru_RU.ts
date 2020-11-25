@@ -836,6 +836,10 @@ Press any key to exit</source>
         <source>An unknown error has occurred in LSP Process</source>
         <translation>Произошла неизвестная ошибка в Процессе LSP</translation>
     </message>
+    <message>
+        <source>Language Server [%1]</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>FindReplaceDialog</name>
