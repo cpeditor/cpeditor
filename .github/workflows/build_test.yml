@@ -42,6 +42,18 @@ jobs:
         uses: actions/setup-python@v1
         with:
           python-version: 3.7
+          
+      - name: Install clang-tidy on Linux
+        if: startsWith(matrix.config.os, 'ubuntu')
+        run: |
+          sudo apt-get update
+          sudo apt-get install clang-tidy
+
+      - name: Install clang-tidy on macOS
+        if: startsWith(matrix.config.os, 'macos')
+        run: |
+          brew install llvm
+          ln -s "$(brew --prefix llvm)/bin/clang-tidy" "/usr/local/bin/clang-tidy"
 
       - name: Restore Qt from cache
         id: cache-qt
