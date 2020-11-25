@@ -39,9 +39,9 @@ SignalHandler *g_handler = nullptr; // NOLINT: variable 'g_handler' provides glo
 
 #ifdef _WIN32
 
-BOOL WINAPI WIN32_handleFunc(DWORD);
-int WIN32_physicalToLogical(DWORD);
-DWORD WIN32_logicalToPhysical(int);
+BOOL WINAPI WIN32_handleFunc(DWORD /*signal*/);
+int WIN32_physicalToLogical(DWORD /*signal*/);
+DWORD WIN32_logicalToPhysical(int /*signal*/);
 std::set<int> g_registry;
 
 #else //_WIN32
@@ -173,20 +173,12 @@ BOOL WINAPI WIN32_handleFunc(DWORD signal)
         // The std::set is thread-safe in const reading access and we never
         // write to it after the program has started so we don't need to
         // protect this search by a mutex
-        std::set<int>::const_iterator found = g_registry.find(signo);
+        auto found = g_registry.find(signo);
         if (signo != -1 && found != g_registry.end())
-        {
             return g_handler->handleSignal(signo) ? TRUE : FALSE;
-        }
-        else
-        {
-            return FALSE;
-        }
-    }
-    else
-    {
         return FALSE;
     }
+    return FALSE;
 }
 #else
 void POSIX_handleFunc(int signal)
