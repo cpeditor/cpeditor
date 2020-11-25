@@ -34,8 +34,7 @@
 #endif //!_WIN32
 
 // There can be only ONE SignalHandler per process
-SignalHandler *g_handler = nullptr; // NOLINT: variable 'g_handler' provides global access to a non-const object;
-                                    // consider making the pointed-to data 'const'
+SignalHandler *g_handler = nullptr;
 
 #ifdef _WIN32
 

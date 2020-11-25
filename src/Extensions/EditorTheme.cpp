@@ -29,8 +29,7 @@ static const QMap<QString, QString> resources = {{"Dracula", ":/styles/dracula.x
                                                  {"Solarized", ":/styles/solarized.xml"},
                                                  {"Solarized Dark", ":/styles/solarizedDark.xml"}};
 
-QMap<QString, QSyntaxStyle *>
-    EditorTheme::styles; // NOLINT: variable 'styles' is non-const and globally accessible, consider making it const
+QMap<QString, QSyntaxStyle *> EditorTheme::styles;
 
 QSyntaxStyle *EditorTheme::query(const QString &name)
 {
