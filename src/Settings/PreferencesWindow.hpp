@@ -48,8 +48,8 @@ class AddPageHelper
     explicit AddPageHelper(PreferencesWindow *w);
 
     AddPageHelper &page(const QString &key, const QString &trkey, const QStringList &content);
-    AddPageHelper &page(const QString &key, const QString &trkey, PreferencesPage *page);
-    AddPageHelper &page(const QString &key, const QString &trkey, PreferencesPage *page, const QStringList &content);
+    AddPageHelper &page(const QString &key, const QString &trkey, PreferencesPage *newpage);
+    AddPageHelper &page(const QString &key, const QString &trkey, PreferencesPage *newpage, const QStringList &content);
 
     AddPageHelper &dir(const QString &key, const QString &trkey);
 

@@ -35,7 +35,7 @@ class LanguageServer : public QObject
     explicit LanguageServer(QString const &lang);
     ~LanguageServer();
 
-    void openDocument(QString const &path, QCodeEditor *editor, MessageLogger *logger);
+    void openDocument(QString const &path, QCodeEditor *editor, MessageLogger *log);
     void closeDocument();
     void requestLinting();
 

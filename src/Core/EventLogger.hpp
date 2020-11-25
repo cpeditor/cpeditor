@@ -87,11 +87,11 @@ class Log
   public:
     /**
      * @brief initialize the event logger
-     * @param instanceCount the instance ID provided by SingleApplication, to distinct processes from each other
-     * @param dumpToStderr whether to print the logs into stderr or not
+     * @param instance the instance ID provided by SingleApplication, to distinct processes from each other
+     * @param dumptoStderr whether to print the logs into stderr or not
      * @note this should be called only once before logging anything
      */
-    static void init(int instanceCount, bool dumpToStderr = false);
+    static void init(int instance, bool dumptoStderr = false);
 
     /**
      * @brief clear old logs
@@ -104,7 +104,7 @@ class Log
      */
     static void revealInFileManager();
 
-    static QTextStream &log(const QString &priority, QString funcName, int lineNumber, QString fileName);
+    static QTextStream &log(const QString &priority, QString funcName, int line, QString fileName);
 
   private:
     static QString dateTimeStamp();

@@ -48,8 +48,8 @@ class TestCase : public QWidget
         UNKNOWN
     };
 
-    explicit TestCase(int index, MessageLogger *logger, QWidget *parent = nullptr, const QString &input = QString(),
-                      const QString &expected = QString());
+    explicit TestCase(int index, MessageLogger *logger, QWidget *parent = nullptr, const QString &in = QString(),
+                      const QString &exp = QString());
     void setInput(const QString &text);
     void setOutput(const QString &text);
     void setExpected(const QString &text);
