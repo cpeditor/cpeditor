@@ -112,7 +112,7 @@ if(USE_CLANG_TIDY)
 	message(STATUS "Clang tidy checks will be performed")
 	
 	set(CMAKE_CXX_CLANG_TIDY 
-		"clang-tidy;-header-filter=^(?!.*\\bthird_party\\b).*$;-checks=-*,bugprone-*,cppcoreguidelines-*,modernize-*,performance-*,readability-*,-modernize-use-trailing-return-type,-bugprone-suspicious-include,-cppcoreguidelines-pro-bounds-array-to-pointer-decay,-cppcoreguidelines-avoid-magic-numbers,-readability-magic-numbers,-cppcoreguidelines-owning-memory,-readability-braces-around-statements,-cppcoreguidelines-macro-usage,-cppcoreguidelines-avoid-c-arrays,-modernize-avoid-c-arrays,-readability-implicit-bool-conversion,-readability-implicit-bool-conversion,-cppcoreguidelines-pro-type-static-cast-downcast,-cppcoreguidelines-special-member-functions,-cppcoreguidelines-avoid-non-const-global-variables;-error-on-failure=.*")
+		"clang-tidy;-header-filter=^(?!.*\\bthird_party\\b).*$;-checks=-*,bugprone-*,cppcoreguidelines-*,modernize-*,performance-*,readability-*,-modernize-use-trailing-return-type,-bugprone-suspicious-include,-cppcoreguidelines-pro-bounds-array-to-pointer-decay,-cppcoreguidelines-avoid-magic-numbers,-readability-magic-numbers,-cppcoreguidelines-owning-memory,-readability-braces-around-statements,-cppcoreguidelines-macro-usage,-cppcoreguidelines-avoid-c-arrays,-modernize-avoid-c-arrays,-readability-implicit-bool-conversion,-readability-implicit-bool-conversion,-cppcoreguidelines-pro-type-static-cast-downcast,-cppcoreguidelines-special-member-functions,-cppcoreguidelines-avoid-non-const-global-variables;-warnings-as-errors=*")
 endif()
 
 add_executable(cpeditor

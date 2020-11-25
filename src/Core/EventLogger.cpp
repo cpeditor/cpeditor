@@ -30,9 +30,8 @@
 namespace Core
 {
 
-QFile Log::logFile; 
-QTextStream
-    Log::logStream; 
+QFile Log::logFile;
+QTextStream Log::logStream;
 
 const int Log::NUMBER_OF_LOGS_TO_KEEP = 50;
 const int Log::MAXIMUM_FUNCTION_NAME_SIZE = 30;
