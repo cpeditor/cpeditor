@@ -113,7 +113,7 @@ void Runner::runDetached(const QString &tmpFilePath, const QString &sourceFilePa
     // use apple script on Mac OS
     runProcess->setProgram("osascript");
     runProcess->setArguments({"-l", "AppleScript"});
-    QString script = "tell app \"Terminal\" to do script \"" +
+    QString script = R"(tell app "Terminal" to do script ")" +
                      getCommand(tmpFilePath, sourceFilePath, lang, runCommand, args).replace("\"", "'") + "\"";
     runProcess->start();
     LOG_INFO("Running apple script\n" << script);
