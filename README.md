@@ -8,6 +8,8 @@ It makes your competitive coding life easier :grin: by automating many things fo
 
 [Features](https://cpeditor.org) | [Documentation](https://cpeditor.org/docs) | [Changelog](CHANGELOG.md) | [Contributing](CONTRIBUTING.md) | [FAQ](https://cpeditor.org/docs/faq/) | [中文](README_zh-CN.md) | [Русский](README_ru-RU.md)
 
+![demo](assets/demo.gif)
+
 ---
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->

@@ -18,6 +18,7 @@
 #include "Widgets/TestCases.hpp"
 #include "Core/EventLogger.hpp"
 #include "Core/MessageLogger.hpp"
+#include "Core/TestCasesCopyPaster.hpp"
 #include "Settings/DefaultPathManager.hpp"
 #include "Util/FileUtil.hpp"
 #include "Widgets/TestCase.hpp"
@@ -149,55 +150,100 @@ TestCases::TestCases(MessageLogger *logger, QWidget *parent) : QWidget(parent), 
         }
     });
 
-    moreMenu->addAction(tr("Remove Empty"), [this] {
-        LOG_INFO("Testcases Removing empty");
-        for (int i = 0; i < count(); ++i)
-        {
-            if (input(i).isEmpty() && output(i).isEmpty() && expected(i).isEmpty())
-            {
-                onChildDeleted(testcases[i]);
-                --i;
-            }
-        }
+    //: Here "Check" means to check the checkbox
+    moreMenu->addAction(tr("Check All"), [this] {
+        LOG_INFO("Check All");
+        for (auto t : testcases)
+            t->setChecked(true);
     });
 
-    moreMenu->addAction(tr("Remove All"), [this] {
-        LOG_INFO("Testcases removing all testcases");
-        auto res =
-            QMessageBox::question(this, tr("Clear Testcases"), tr("Are you sure you want to delete all test cases?"));
-        if (res == QMessageBox::Yes)
-        {
-            for (int i = 0; i < count(); ++i)
-            {
-                onChildDeleted(testcases[i]);
-                --i;
-            }
-        }
+    moreMenu->addAction(tr("Uncheck All"), [this] {
+        LOG_INFO("Uncheck All");
+        for (auto t : testcases)
+            t->setChecked(false);
     });
 
-    moreMenu->addAction(tr("Hide AC"), [this] {
-        LOG_INFO("Testcases hiding all Accepted");
+    moreMenu->addAction(tr("Uncheck Accepted"), [this] {
+        LOG_INFO("Uncheck Accepted");
         for (auto t : testcases)
             if (t->verdict() == TestCase::AC)
-                t->setShow(false);
+                t->setChecked(false);
     });
 
-    moreMenu->addAction(tr("Show All"), [this] {
-        LOG_INFO("Testcases making all cases visible");
-        for (auto t : testcases)
-            t->setShow(true);
-    });
-
-    moreMenu->addAction(tr("Hide All"), [this] {
-        LOG_INFO("Testcases Hiding all cases");
-        for (auto t : testcases)
-            t->setShow(false);
-    });
-
+    //: This action checks the checkboxes which were not checked, and unchecks the ones which were checked
     moreMenu->addAction(tr("Invert"), [this] {
-        LOG_INFO("Testcases Inverting all cases");
+        LOG_INFO("Invert");
         for (auto t : testcases)
-            t->setShow(t->isShow() ^ 1);
+            t->setChecked(t->isChecked() ^ 1);
+    });
+
+    moreMenu->addAction(tr("Delete All"), [this] {
+        LOG_INFO("Delete All");
+        auto res = QMessageBox::question(this, tr("Delete All"), tr("Are you sure you want to delete all test cases?"));
+        if (res != QMessageBox::Yes)
+            return;
+
+        for (int i = 0; i < count(); ++i)
+        {
+            onChildDeleted(testcases[i]);
+            --i;
+        }
+    });
+
+    moreMenu->addAction(tr("Delete Empty"), [this] {
+        LOG_INFO("Delete Empty");
+        for (int i = 0; i < count(); ++i)
+        {
+            if (testcases[i]->isEmpty())
+            {
+                onChildDeleted(testcases[i]);
+                --i;
+            }
+        }
+    });
+
+    moreMenu->addAction(tr("Delete Checked"), [this] {
+        LOG_INFO("Delete Checked");
+        //: Here "checked" means the checkbox is checked
+        auto res = QMessageBox::question(this, tr("Delete Checked"),
+                                         tr("Are you sure you want to delete all checked test cases?"));
+        if (res != QMessageBox::Yes)
+            return;
+
+        for (int i = 0; i < count(); ++i)
+        {
+            if (isChecked(i))
+            {
+                onChildDeleted(testcases[i]);
+                --i;
+            }
+        }
+    });
+
+    moreMenu->addAction(tr("Copy Test Cases"), [this] {
+        LOG_INFO("Copy Test Cases");
+        TestCasesCopyPaster::instance().copy(this);
+    });
+
+    moreMenu->addAction(tr("Paste Test Cases"), [this] {
+        LOG_INFO("Paste Test Cases");
+        TestCasesCopyPaster::instance().paste(this);
+    });
+
+    moreMenu->addAction(tr("Copy Output to Expected"), [this] {
+        LOG_INFO("Copy Output to Expected");
+        auto res = QMessageBox::question(
+            this, tr("Copy Output to Expected"),
+            //: Here "checked" means the checkbox is checked
+            tr("Are you sure you want to copy all checked output to their corresponding expected?"));
+        if (res != QMessageBox::Yes)
+            return;
+
+        for (int i = 0; i < count(); ++i)
+        {
+            if (isChecked(i))
+                setExpected(i, output(i));
+        }
     });
 
     moreButton->setMenu(moreMenu);
@@ -459,15 +505,15 @@ Core::Checker::CheckerType TestCases::checkerType() const
     }
 }
 
-void TestCases::setShow(int index, bool show)
+void TestCases::setChecked(int index, bool show)
 {
     if (VALIDATE_INDEX(index))
-        testcases[index]->setShow(show);
+        testcases[index]->setChecked(show);
 }
 
-bool TestCases::isShow(int index) const
+bool TestCases::isChecked(int index) const
 {
-    return VALIDATE_INDEX(index) ? testcases[index]->isShow() : false;
+    return VALIDATE_INDEX(index) ? testcases[index]->isChecked() : false;
 }
 
 void TestCases::setVerdict(int index, TestCase::Verdict verdict)

@@ -51,6 +51,9 @@ class TestCaseEdit : public QPlainTextEdit
   private slots:
     void onCustomContextMenuRequested(const QPoint &);
 
+  signals:
+    void requestCopyOutputToExpected();
+
   private:
     void loadFromFile(const QString &path);
 

@@ -73,7 +73,7 @@ class MainWindow : public QMainWindow
         int editorCursor, editorAnchor, horizontalScrollBarValue, verticalScrollbarValue, untitledIndex, checkerIndex,
             customTimeLimit;
         QStringList input, expected, customCheckers;
-        QVariantList testcasesIsShow;
+        QVariantList testcasesIsShow; // This can't be renamed to "isChecked" because that's not compatible
         QVariantList testCaseSplitterStates;
 
         EditorStatus(){};
