@@ -51,7 +51,8 @@ namespace Core
 {
 
 FakeVimProxy::FakeVimProxy(QWidget *widget, MainWindow *mw, AppWindow *aw, QObject *parent)
-    : QObject(parent), m_widget(widget), m_mainWindow(mw), m_appWindow(aw), m_commandHandler(new FakeVimCommand(aw, parent))
+    : QObject(parent), m_widget(widget), m_mainWindow(mw), m_appWindow(aw),
+      m_commandHandler(new FakeVimCommand(aw, parent))
 {
     m_statusData = new QLabel(m_mainWindow);
     m_statusMessage = new QLabel(m_mainWindow);
