@@ -51,7 +51,7 @@ namespace Core
 {
 
 FakeVimProxy::FakeVimProxy(QWidget *widget, MainWindow *mw, AppWindow *aw, QObject *parent)
-    : QObject(parent), m_widget(widget), m_mainWindow(mw), m_appWindow(aw), m_commandHandler(new FakeVimCommand(aw))
+    : QObject(parent), m_widget(widget), m_mainWindow(mw), m_appWindow(aw), m_commandHandler(new FakeVimCommand(aw, parent))
 {
     m_statusData = new QLabel(m_mainWindow);
     m_statusMessage = new QLabel(m_mainWindow);
@@ -138,8 +138,7 @@ void FakeVimProxy::setStatusBar()
 {
     m_mainWindow->statusBar()->addPermanentWidget(m_statusData);
     m_mainWindow->statusBar()->addWidget(m_statusMessage);
-    // Fixme(Qt Bug): With custom font, showMessage() overlaps with the contents already in the status bar.
-    /* m_mainWindow->statusBar()->setFont(m_mainWindow->getEditor()->font()); */
+    m_mainWindow->statusBar()->setFont(m_mainWindow->getEditor()->font());
 }
 
 void FakeVimProxy::handleExCommand(bool *handled, FakeVim::Internal::ExCommand const &cmd)
@@ -494,9 +493,14 @@ QString FakeVimProxy::content() const
 
 void FakeVimProxy::initHandler(FakeVim::Internal::FakeVimHandler *handler)
 {
+    handler->handleCommand(QLatin1String("set nopasskeys"));
+    handler->handleCommand(QLatin1String("set nopasscontrolkey"));
     handler->installEventFilter();
     handler->setupWidget();
+}
 
+void FakeVimProxy::sourceVimRc(FakeVim::Internal::FakeVimHandler *handler)
+{
     QTemporaryFile file;
     if (file.open())
     {
@@ -506,7 +510,12 @@ void FakeVimProxy::initHandler(FakeVim::Internal::FakeVimHandler *handler)
     }
     else
     {
-        LOG_ERR("Failed to open a temporary file to source vimrc");
+        LOG_WARN("Failed to open a temporary file to source vimrc.");
+        handler->handleCommand(QLatin1String("set noexpandtab"));
+        handler->handleCommand(QLatin1String("set shiftwidth=4"));
+        handler->handleCommand(QLatin1String("set tabstop=4"));
+        handler->handleCommand(QLatin1String("set autoindent"));
+        handler->handleCommand(QLatin1String("set smartindent"));
     }
 }
 

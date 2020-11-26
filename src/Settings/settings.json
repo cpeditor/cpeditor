@@ -392,6 +392,12 @@
         "type": "bool",
         "default": true,
         "tip": "Automatically complete a pair of parentheses when typing the left element of it,\nand move out of it when typing the right element of it.\nThis can be overridden for each parenthesis in each language.",
+        "depends": [
+            {
+                "name": "FakeVim/Enable",
+                "check": "return !var.toBool();"
+            }
+        ],
         "old": [
             "auto_parenthesis"
         ]
@@ -400,7 +406,13 @@
         "name": "Auto Remove Parentheses",
         "type": "bool",
         "default": true,
-        "tip": "Automatically delete the whole pair of parentheses when deleting\nthe left element of it if the two elements are adjacent.\nThis can be overridden for each parenthesis in each language."
+        "tip": "Automatically delete the whole pair of parentheses when deleting\nthe left element of it if the two elements are adjacent.\nThis can be overridden for each parenthesis in each language.",
+        "depends": [
+            {
+                "name": "FakeVim/Enable",
+                "check": "return !var.toBool();"
+            }
+        ]
     },
     {
         "name": "Tab Jump Out Parentheses",
@@ -1245,6 +1257,7 @@
         "name": "FakeVim/RC",
         "desc": "Vim Configuration",
         "type": "QString",
+		"default": "set noexpandtab\nset autoindent\nset smartindent\nset tabstop=4\nset shiftwidth=4",
         "ui": "QPlainTextEdit",
         "tip": "The contents of Vim RC. It is loaded everytime vim emulation starts. \nNot all vim commands are supported, please check https://github.com/cpeditor/FakeVim for list of supported commands",
         "depends": [

@@ -50,8 +50,9 @@ class FakeVimProxy : public QObject
     Q_OBJECT
 
   public:
-    FakeVimProxy(QWidget *widget, MainWindow *mw, AppWindow *aw, QObject *parent);
+    FakeVimProxy(QWidget *widget, MainWindow *mw, AppWindow *aw, QObject *parent = nullptr);
     ~FakeVimProxy();
+    static void sourceVimRc(FakeVim::Internal::FakeVimHandler *handler);
     static void initHandler(FakeVim::Internal::FakeVimHandler *handler);
     static void clearUndoRedo(QWidget *);
     static void connectSignals(FakeVim::Internal::FakeVimHandler *handler, QWidget *editor, MainWindow *mainwindow,

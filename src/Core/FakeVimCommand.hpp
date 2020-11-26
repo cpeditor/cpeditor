@@ -61,7 +61,7 @@ class FakeVimCommand : public QObject
     /**
      * @brief Constructs a new handler which performs actions using/on the provided appwindow
      */
-    explicit FakeVimCommand(AppWindow *window);
+    explicit FakeVimCommand(AppWindow *window, QObject* parent = nullptr);
 
     /**
      * @brief retrieve the type of custom command.

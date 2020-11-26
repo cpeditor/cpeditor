@@ -19,6 +19,7 @@
 #include "Core/EventLogger.hpp"
 #include "Extensions/EditorTheme.hpp"
 #include "Settings/SettingsManager.hpp"
+#include "fakevimactions.h"
 #include "generated/SettingsHelper.hpp"
 #include <QCXXHighlighter>
 #include <QCodeEditor>
@@ -39,6 +40,7 @@ void applySettingsToEditor(QCodeEditor *editor, const QString &language)
         editor->setWordWrapMode(QTextOption::NoWrap);
 
     editor->setHighlightCurrentLine(SettingsHelper::isHighlightCurrentLine());
+
     auto style = Extensions::EditorTheme::query(SettingsHelper::getEditorTheme());
     if (!style)
         style = Extensions::EditorTheme::query("Light");
@@ -64,6 +66,9 @@ void applySettingsToEditor(QCodeEditor *editor, const QString &language)
         editor->setHighlighter(new QCXXHighlighter);
         editor->setCompleter(nullptr);
     }
+
+    if (editor->vimCursor())
+        return;
 
     QVector<QCodeEditor::Parenthesis> parentheses;
 
@@ -103,16 +108,6 @@ void applySettingsToEditor(QCodeEditor *editor, const QString &language)
     }
 
     editor->setParentheses(parentheses);
-
-    if (editor->vimCursor())
-    {
-        LOG_INFO("Some settings are being turned off because editor is in vim mode.");
-        editor->setTabReplace(false);
-        editor->setTabReplaceSize(8); // default value from fakevim
-        editor->setAutoIndentation(false);
-
-        return;
-    }
 
     editor->setTabReplace(SettingsHelper::isReplaceTabs());
     editor->setAutoIndentation(SettingsHelper::isAutoIndent());

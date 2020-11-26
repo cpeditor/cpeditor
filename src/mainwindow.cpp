@@ -609,26 +609,20 @@ void MainWindow::applySettings(const QString &pagePath)
         if (pageChanged("Code Editing"))
         {
             editor->setVimCursor(SettingsHelper::isFakeVimEnable());
+            ui->cursorInfo->setVisible(!SettingsHelper::isFakeVimEnable());
 
-            // reset FakeVim if it was enabled
-            if (fakevimHandler != nullptr)
-            {
-                delete fakevimHandler;
-                fakevimHandler = nullptr;
-                setStatusBar(nullptr);
-            }
-            ui->cursorInfo->setVisible(true);
+            delete fakevimHandler;
+            fakevimHandler = nullptr;
+            setStatusBar(nullptr);
 
             if (SettingsHelper::isFakeVimEnable())
             {
-                fakevimHandler = new FakeVim::Internal::FakeVimHandler(editor);
+                fakevimHandler = new FakeVim::Internal::FakeVimHandler(editor, 0);
 
                 Core::FakeVimProxy::connectSignals(fakevimHandler, editor, this, appWindow);
                 Core::FakeVimProxy::initHandler(fakevimHandler);
-
-                ui->cursorInfo->setVisible(false);
+                Core::FakeVimProxy::sourceVimRc(fakevimHandler);
             }
-
             Core::FakeVimProxy::clearUndoRedo(editor);
         }
 

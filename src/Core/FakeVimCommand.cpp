@@ -29,9 +29,7 @@
 namespace Core
 {
 
-static int const STATUS_MESSAGE_TIMEOUT = 3000;
-
-FakeVimCommand::FakeVimCommand(AppWindow *aw) : QObject(aw), appwin(aw)
+FakeVimCommand::FakeVimCommand(AppWindow *aw, QObject *parent) : QObject(parent), appwin(aw)
 {
 }
 
@@ -215,8 +213,10 @@ bool FakeVimCommand::handleCustomCommand(CommandTypes type, QString const &args,
 
 void FakeVimCommand::showError(QString const &message)
 {
-    if (appwin->currentWindow())
-        appwin->currentWindow()->statusBar()->showMessage(message, STATUS_MESSAGE_TIMEOUT);
+    if (auto *handler = qobject_cast<FakeVim::Internal::FakeVimHandler *>(parent()))
+    {
+        handler->showMessage(FakeVim::Internal::MessageInfo, message);
+    }
 }
 
 QString FakeVimCommand::language(const QString &langCode)
