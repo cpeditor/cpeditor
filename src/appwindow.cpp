@@ -574,9 +574,9 @@ int AppWindow::getNewUntitledIndex()
 
 /***************** ABOUT SECTION ***************************/
 
-void AppWindow::on_actionSupportMe_triggered()
+void AppWindow::on_actionSupportUs_triggered()
 {
-    QDesktopServices::openUrl(QUrl("https://paypal.me/coder3101"));
+    QDesktopServices::openUrl(QUrl("https://opencollective.com/cpeditor#section-contribute"));
 }
 
 void AppWindow::on_actionManual_triggered()
