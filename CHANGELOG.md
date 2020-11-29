@@ -8,6 +8,8 @@
 -   Now you can toggle fullscreen mode by pressing F11 or clicking View->Full Screen. (#642, #660 and #670)
 -   Now you can set shortcut for submitting solution. (#201 and #681)
 -   Added Submit option in Actions menu.(#681)
+-   In test cases, you can copy the output to the expected. (#688)
+-   Copy test cases between different tabs. (#688)
 
 ### Fixed
 

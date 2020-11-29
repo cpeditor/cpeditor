@@ -8,8 +8,11 @@ It makes your competitive coding life easier :grin: by automating many things fo
 
 [Features](https://cpeditor.org) | [Documentation](https://cpeditor.org/docs) | [Changelog](CHANGELOG.md) | [Contributing](CONTRIBUTING.md) | [FAQ](https://cpeditor.org/docs/faq/) | [中文](README_zh-CN.md) | [Русский](README_ru-RU.md)
 
+![demo](assets/demo.gif)
+
 ---
 
+[![Open Collective](https://opencollective.com/cpeditor/tiers/support-us.svg?avatarHeight=60)](https://opencollective.com/cpeditor#section-contribute)
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-49-orange.svg)](#all-contributors)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
@@ -39,6 +42,7 @@ It makes your competitive coding life easier :grin: by automating many things fo
 - [Contributing Guidelines](CONTRIBUTING.md)
 - [Good first issues](https://github.com/cpeditor/cpeditor/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22)
 - [Help wanted issues](https://github.com/cpeditor/cpeditor/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22)
+- [Contribute on Open Collective](https://opencollective.com/cpeditor#section-contribute)
 
 ## Get help
 

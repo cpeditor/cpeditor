@@ -88,9 +88,9 @@ configure_file(cmake/version.hpp.in ${CMAKE_BINARY_DIR}/generated/version.hpp)
 configure_file(cmake/portable.hpp.in ${CMAKE_BINARY_DIR}/generated/portable.hpp)
 
 add_custom_command(OUTPUT ${CMAKE_BINARY_DIR}/generated/SettingsHelper.hpp ${CMAKE_BINARY_DIR}/generated/SettingsInfo.cpp
-                   COMMAND ${Python3_EXECUTABLE} ${PROJECT_SOURCE_DIR}/tools/genSettings.py ${PROJECT_SOURCE_DIR}/src/Settings/settings.json
+                   COMMAND ${Python3_EXECUTABLE} ${PROJECT_SOURCE_DIR}/src/Settings/genSettings.py ${PROJECT_SOURCE_DIR}/src/Settings/settings.json
                    WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
-                   DEPENDS ${PROJECT_SOURCE_DIR}/src/Settings/settings.json ${PROJECT_SOURCE_DIR}/tools/genSettings.py)
+                   DEPENDS ${PROJECT_SOURCE_DIR}/src/Settings/settings.json ${PROJECT_SOURCE_DIR}/src/Settings/genSettings.py)
 
 set(TSS ${CMAKE_SOURCE_DIR}/translations/zh_CN.ts ${CMAKE_SOURCE_DIR}/translations/ru_RU.ts)
 
@@ -119,6 +119,8 @@ add_executable(cpeditor
     src/Core/SessionManager.hpp
     src/Core/StyleManager.cpp
     src/Core/StyleManager.hpp
+    src/Core/TestCasesCopyPaster.cpp
+    src/Core/TestCasesCopyPaster.hpp
     src/Core/Translator.cpp
     src/Core/Translator.hpp
 
@@ -177,6 +179,7 @@ add_executable(cpeditor
     src/Util/FileUtil.hpp
     src/Util/QCodeEditorUtil.cpp
     src/Util/QCodeEditorUtil.hpp
+    src/Util/Singleton.hpp
     src/Util/Util.cpp
     src/Util/Util.hpp
 

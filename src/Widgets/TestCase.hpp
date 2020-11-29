@@ -57,11 +57,12 @@ class TestCase : public QWidget
     QString input() const;
     QString output() const;
     QString expected() const;
+    bool isEmpty() const;
     void setID(int index);
     void setVerdict(Verdict verdict);
     Verdict verdict() const;
-    void setShow(bool show);
-    bool isShow() const;
+    void setChecked(bool checked);
+    bool isChecked() const;
     void setTestCaseEditFont(const QFont &font);
     void updateHeight();
     QList<int> splitterSizes() const;
@@ -72,7 +73,7 @@ class TestCase : public QWidget
     void requestRun(int index);
 
   private slots:
-    void onShowCheckBoxToggled(bool checked);
+    void onCheckBoxToggled(bool checked);
     void onRunButtonClicked();
     void onDiffButtonClicked();
     void onDelButtonClicked();
@@ -83,7 +84,7 @@ class TestCase : public QWidget
     QSplitter *splitter = nullptr;
     QWidget *inputWidget = nullptr, *outputWidget = nullptr, *expectedWidget = nullptr;
     QVBoxLayout *inputLayout = nullptr, *outputLayout = nullptr, *expectedLayout = nullptr;
-    QCheckBox *showCheckBox = nullptr;
+    QCheckBox *checkBox = nullptr;
     QLabel *inputLabel = nullptr, *outputLabel = nullptr, *expectedLabel = nullptr;
     QPushButton *runButton = nullptr, *diffButton = nullptr, *delButton = nullptr;
     TestCaseEdit *inputEdit = nullptr, *outputEdit = nullptr, *expectedEdit = nullptr;

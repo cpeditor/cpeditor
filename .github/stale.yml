@@ -2,6 +2,17 @@
 daysUntilStale: 7
 # Number of days of inactivity before a stale issue is closed
 daysUntilClose: 7
+# specify configuration settings that are specific to just 'pulls'
+pulls:
+  # Number of days of inactivity before an issue becomes stale
+  daysUntilStale: 30
+  # Number of days of inactivity before a stale issue is closed
+  daysUntilClose: 14
+  # Comment to post when marking an issue as stale. Set to `false` to disable
+  markComment: >
+    This pull request has been automatically marked as stale because it has not had
+    recent activity. It will be closed if no further activity occurs. Thank you
+    for your contributions.
 # Issues with these labels will never be considered stale
 exemptLabels:
   - critical_priority
@@ -11,6 +22,8 @@ exemptLabels:
   - work in progress
   - good first issue
   - help wanted
+  - awaiting for translation:RU
+  - awaiting for translation:CN
 # Label to use when marking an issue as stale
 staleLabel: stale
 # Comment to post when marking an issue as stale. Set to `false` to disable
@@ -20,3 +33,5 @@ markComment: >
   for your contributions.
 # Comment to post when closing a stale issue. Set to `false` to disable
 closeComment: false
+# Ignore issues with an assignee
+exemptAssignees: true

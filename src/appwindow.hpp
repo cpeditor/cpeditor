@@ -79,7 +79,7 @@ class AppWindow : public QMainWindow
 
   private slots:
     // UI Slots
-    void on_actionSupportMe_triggered();
+    void on_actionSupportUs_triggered();
 
     void on_actionManual_triggered();
 
