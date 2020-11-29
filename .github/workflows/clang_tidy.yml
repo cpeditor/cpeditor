@@ -52,11 +52,11 @@ jobs:
           cached: ${{ steps.cache-qt.outputs.cache-hit }}
           version: ${{ env.QT_VERSION }}
 
-      - name: Download clang-tidy on Linux
+      - name: Download clang-tidy-11 on Linux
         if: startsWith(matrix.config.os, 'ubuntu')
         run: |
           sudo apt-get update
-          sudo apt-get install clang-tidy
+          sudo apt-get install clang-tidy-11
 
       - name: Download clang-tidy on macOS
         if: startsWith(matrix.config.os, 'macos')
