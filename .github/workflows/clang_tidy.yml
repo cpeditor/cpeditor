@@ -18,7 +18,6 @@ jobs:
               os: windows-latest,
               cc: "cl",
               cxx: "cl",
-              environment_script: "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Auxiliary/Build/vcvars64.bat",
             }
           - { os: ubuntu-latest, 
               cc: "gcc",
@@ -66,10 +65,9 @@ jobs:
           brew install llvm
           ln -s "$(brew --prefix llvm)/bin/clang-tidy" "/usr/local/bin/clang-tidy"
       
-      - name: Setup Windows Environment 
+      - name: Enable Developer Command Prompt
         if: startsWith(matrix.config.os, 'windows')
-        run: |
-          ${{ matrix.config.environment_script }}
+        uses: ilammy/msvc-dev-cmd@v1.4.1
       
       - name: Configure CMake
         run: |
