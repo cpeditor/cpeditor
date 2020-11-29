@@ -55,13 +55,18 @@ jobs:
       - name: Download clang-tidy latest stable on Linux
         if: startsWith(matrix.config.os, 'ubuntu')
         run: |
-          bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)"
+          sudo bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)"
 
       - name: Download clang-tidy latest stable on macOS
         if: startsWith(matrix.config.os, 'macos')
         run: |
           brew install llvm
           ln -s "$(brew --prefix llvm)/bin/clang-tidy" "/usr/local/bin/clang-tidy"
+
+      - name: Download clang-tidy latest stable on windows
+        if: startsWith(matrix.config.os, 'windows')
+        run: |
+          choco install llvm
       
       - name: Enable Developer Command Prompt
         if: startsWith(matrix.config.os, 'windows')
