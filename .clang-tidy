@@ -1,7 +1,7 @@
 ---
 Checks:                 '-*,bugprone-*,cppcoreguidelines-*,modernize-*,performance-*,readability-*,-modernize-use-trailing-return-type,-bugprone-suspicious-include,-cppcoreguidelines-pro-bounds-array-to-pointer-decay,-cppcoreguidelines-avoid-magic-numbers,-readability-magic-numbers,-cppcoreguidelines-owning-memory,-readability-braces-around-statements,-cppcoreguidelines-macro-usage,-cppcoreguidelines-avoid-c-arrays,-modernize-avoid-c-arrays,-readability-implicit-bool-conversion,-readability-implicit-bool-conversion,-cppcoreguidelines-pro-type-static-cast-downcast,-cppcoreguidelines-special-member-functions,-cppcoreguidelines-avoid-non-const-global-variables,-performance-no-automatic-move'
 HeaderFilterRegex:      '^(?!.*\\bthird_party\\b).*$'
-WarningsAsErrors:       '-*,bugprone-*,cppcoreguidelines-*,modernize-*,performance-*,readability-*,-modernize-use-trailing-return-type,-bugprone-suspicious-include,-cppcoreguidelines-pro-bounds-array-to-pointer-decay,-cppcoreguidelines-avoid-magic-numbers,-readability-magic-numbers,-cppcoreguidelines-owning-memory,-readability-braces-around-statements,-cppcoreguidelines-macro-usage,-cppcoreguidelines-avoid-c-arrays,-modernize-avoid-c-arrays,-readability-implicit-bool-conversion,-readability-implicit-bool-conversion,-cppcoreguidelines-pro-type-static-cast-downcast,-cppcoreguidelines-special-member-functions,-cppcoreguidelines-avoid-non-const-global-variables,-performance-no-automatic-move'
+WarningsAsErrors:       '*'
 AnalyzeTemporaryDtors:  false
 FormatStyle:            file
 ...
