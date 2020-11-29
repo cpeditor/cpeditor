@@ -575,7 +575,7 @@ int AppWindow::getNewUntitledIndex()
 
 /***************** ABOUT SECTION ***************************/
 
-void AppWindow::on_actionSupportUs_triggered() 
+void AppWindow::on_actionSupportUs_triggered()
 {
     QDesktopServices::openUrl(QUrl("https://opencollective.com/cpeditor#section-contribute"));
 }
