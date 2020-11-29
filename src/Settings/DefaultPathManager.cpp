@@ -26,7 +26,7 @@ QMap<QString, QString> DefaultPathManager::defaultPath;
 
 QString DefaultPathManager::defaultPathForAction(const QString &action)
 {
-    auto result = convertPath(SettingsManager::get(QString("Default Path/Action/%1/Uses").arg(action)).toString());
+    const auto result = convertPath(SettingsManager::get(QString("Default Path/Action/%1/Uses").arg(action)).toString());
     LOG_INFO(INFO_OF(action) << INFO_OF(result));
     return result;
 }
@@ -62,7 +62,7 @@ void DefaultPathManager::setDefaultPathForAction(const QString &action, const QS
 QString DefaultPathManager::getExistingDirectory(const QString &action, QWidget *parent, const QString &caption,
                                                  QFileDialog::Options options)
 {
-    auto result = QFileDialog::getExistingDirectory(parent, caption, defaultPathForAction(action), options);
+    const auto result = QFileDialog::getExistingDirectory(parent, caption, defaultPathForAction(action), options);
     if (!result.isEmpty())
         setDefaultPathForAction(action, result);
     return result;
@@ -72,7 +72,7 @@ QString DefaultPathManager::getOpenFileName(const QString &action, QWidget *pare
                                             const QString &filter, QString *selectedFilter,
                                             QFileDialog::Options options)
 {
-    auto result =
+    const auto result =
         QFileDialog::getOpenFileName(parent, caption, defaultPathForAction(action), filter, selectedFilter, options);
     if (!result.isEmpty())
         setDefaultPathForAction(action, result);
@@ -83,7 +83,7 @@ QStringList DefaultPathManager::getOpenFileNames(const QString &action, QWidget 
                                                  const QString &filter, QString *selectedFilter,
                                                  QFileDialog::Options options)
 {
-    auto result =
+    const auto result =
         QFileDialog::getOpenFileNames(parent, caption, defaultPathForAction(action), filter, selectedFilter, options);
     if (!result.isEmpty())
         setDefaultPathForAction(action, result.front());

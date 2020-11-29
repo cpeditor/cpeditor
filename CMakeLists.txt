@@ -41,6 +41,7 @@ add_library(diff_match_patch
 	third_party/diff_match_patch/diff_match_patch.cpp)
 
 option(PORTABLE_VERSION "Build the portable version" Off)
+option(USE_CLANG_TIDY "Use clang-tidy to lint the files" Off)
 
 if(${PORTABLE_VERSION})
   message(STATUS "Will build the portable version")
@@ -105,6 +106,11 @@ qt5_add_translation(QMFILES ${TSS})
 file(COPY ${CMAKE_SOURCE_DIR}/translations/translations.qrc DESTINATION ${CMAKE_BINARY_DIR}/translations)
 
 set_property(SOURCE ${CMAKE_BINARY_DIR}/generated/SettingsHelper.hpp ${CMAKE_BINARY_DIR}/generated/SettingsInfo.cpp PROPERTY SKIP_AUTOGEN ON)
+
+if(USE_CLANG_TIDY)
+	set(CMAKE_CXX_CLANG_TIDY "clang-tidy")
+	message(STATUS "Clang-tidy checks will be performed")
+endif()
 
 add_executable(cpeditor
     ${GUI_TYPE}
