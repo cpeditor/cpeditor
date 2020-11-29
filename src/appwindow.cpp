@@ -575,7 +575,7 @@ int AppWindow::getNewUntitledIndex()
 
 /***************** ABOUT SECTION ***************************/
 
-void AppWindow::on_actionSupportUs_triggered()
+void AppWindow::on_actionSupportUs_triggered() // NOLINT: It can be made static
 {
     QDesktopServices::openUrl(QUrl("https://opencollective.com/cpeditor#section-contribute"));
 }
