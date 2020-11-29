@@ -1,0 +1,74 @@
+name: "Clang tidy Check"
+
+on: [pull_request]
+
+env:
+  QT_VERSION: 5.15.1
+  BUILD_TYPE: Release
+
+jobs:
+  build:
+    name: "${{ matrix.config.os }}"
+    runs-on: ${{ matrix.config.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        config:
+          - {
+              os: windows-latest,
+              cc: "cl",
+              cxx: "cl",
+              binary: "cpeditor.exe",
+              environment_script: "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Auxiliary/Build/vcvars64.bat",
+            }
+          - { os: ubuntu-latest, cc: "gcc", cxx: "g++", binary: "cpeditor" }
+          - {
+              os: macos-latest,
+              cc: "clang",
+              cxx: "clang++",
+              binary: "cpeditor.app/Contents/MacOS/cpeditor",
+            }
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: recursive
+          fetch-depth: 0
+
+      - name: Install Python 3.7
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.7
+
+      - name: Restore Qt from cache
+        id: cache-qt
+        uses: actions/cache@v1
+        with:
+          path: ../Qt
+          key: Qt-${{ matrix.config.os }}-${{ env.QT_VERSION }}
+
+      - name: Set up Qt environment
+        uses: jurplel/install-qt-action@v2
+        with:
+          cached: ${{ steps.cache-qt.outputs.cache-hit }}
+          version: ${{ env.QT_VERSION }}
+
+      - name: Download clang-tidy on Linux
+        if: startsWith(matrix.config.os, 'ubuntu')
+        run: |
+          sudo apt-get update
+          sudo apt-get install clang-tidy
+
+      - name: Download clang-tidy on macOS
+        if: startsWith(matrix.config.os, 'macos')
+        run: |
+          brew install llvm
+          ln -s "$(brew --prefix llvm)/bin/clang-tidy" "/usr/local/bin/clang-tidy"
+      
+      - name: Configure CMake
+        run: |
+          cmake -Bbuild -DUSE_CLANG_TIDY=On -DCMAKE_BUILD_TYPE=$ENV{BUILD_TYPE} .
+
+      - name: Build
+        run: |
+          cmake --build build -j8
