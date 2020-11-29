@@ -41,7 +41,6 @@ add_library(diff_match_patch
 	third_party/diff_match_patch/diff_match_patch.cpp)
 
 option(PORTABLE_VERSION "Build the portable version" Off)
-option(USE_CLANG_TIDY "Lint files with Clang tidy" Off)
 
 if(${PORTABLE_VERSION})
   message(STATUS "Will build the portable version")
@@ -106,14 +105,6 @@ qt5_add_translation(QMFILES ${TSS})
 file(COPY ${CMAKE_SOURCE_DIR}/translations/translations.qrc DESTINATION ${CMAKE_BINARY_DIR}/translations)
 
 set_property(SOURCE ${CMAKE_BINARY_DIR}/generated/SettingsHelper.hpp ${CMAKE_BINARY_DIR}/generated/SettingsInfo.cpp PROPERTY SKIP_AUTOGEN ON)
-
-# Perform clang-tidy checks after we have build all the third_party dependencies.
-if(USE_CLANG_TIDY)
-	message(STATUS "Clang tidy checks will be performed")
-	
-	set(CMAKE_CXX_CLANG_TIDY 
-		"clang-tidy;-header-filter=^(?!.*\\bthird_party\\b).*$;-checks=-*,bugprone-*,cppcoreguidelines-*,modernize-*,performance-*,readability-*,-modernize-use-trailing-return-type,-bugprone-suspicious-include,-cppcoreguidelines-pro-bounds-array-to-pointer-decay,-cppcoreguidelines-avoid-magic-numbers,-readability-magic-numbers,-cppcoreguidelines-owning-memory,-readability-braces-around-statements,-cppcoreguidelines-macro-usage,-cppcoreguidelines-avoid-c-arrays,-modernize-avoid-c-arrays,-readability-implicit-bool-conversion,-readability-implicit-bool-conversion,-cppcoreguidelines-pro-type-static-cast-downcast,-cppcoreguidelines-special-member-functions,-cppcoreguidelines-avoid-non-const-global-variables;-warnings-as-errors=*")
-endif()
 
 add_executable(cpeditor
     ${GUI_TYPE}
