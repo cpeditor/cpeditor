@@ -18,15 +18,16 @@ jobs:
               os: windows-latest,
               cc: "cl",
               cxx: "cl",
-              binary: "cpeditor.exe",
               environment_script: "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Auxiliary/Build/vcvars64.bat",
             }
-          - { os: ubuntu-latest, cc: "gcc", cxx: "g++", binary: "cpeditor" }
+          - { os: ubuntu-latest, 
+              cc: "gcc",
+              cxx: "g++" 
+            }
           - {
               os: macos-latest,
               cc: "clang",
               cxx: "clang++",
-              binary: "cpeditor.app/Contents/MacOS/cpeditor",
             }
 
     steps:
@@ -64,6 +65,11 @@ jobs:
         run: |
           brew install llvm
           ln -s "$(brew --prefix llvm)/bin/clang-tidy" "/usr/local/bin/clang-tidy"
+      
+      - name: Setup Windows Environment 
+        if: startsWith(matrix.config.os, 'windows')
+        run: |
+          ./${{ matrix.config.environment_script }}
       
       - name: Configure CMake
         run: |
