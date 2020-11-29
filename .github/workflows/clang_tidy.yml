@@ -52,13 +52,12 @@ jobs:
           cached: ${{ steps.cache-qt.outputs.cache-hit }}
           version: ${{ env.QT_VERSION }}
 
-      - name: Download clang-tidy-11 on Linux
+      - name: Download clang-tidy latest stable on Linux
         if: startsWith(matrix.config.os, 'ubuntu')
         run: |
-          sudo apt-get update
-          sudo apt-get install clang-tidy-11
+          bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)"
 
-      - name: Download clang-tidy on macOS
+      - name: Download clang-tidy latest stable on macOS
         if: startsWith(matrix.config.os, 'macos')
         run: |
           brew install llvm
