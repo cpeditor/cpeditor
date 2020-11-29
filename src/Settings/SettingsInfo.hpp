@@ -29,8 +29,9 @@ class SettingsInfo
     Q_DECLARE_TR_FUNCTIONS(SettingsInfo)
 
   public:
-    struct SettingInfo
+    class SettingInfo
     {
+      public:
         QString name, desc, untrDesc, type, ui, tip, untrTip;
         bool requireAllDepends; // false for one of the depends, true for all depends
         bool immediatelyApply;
@@ -65,7 +66,7 @@ class SettingsInfo
   private:
     static QList<SettingInfo> settings;
 
-    friend struct SettingsUpdater;
+    friend class SettingsUpdater;
 };
 
 #endif // SETTINGSINFO_HPP
