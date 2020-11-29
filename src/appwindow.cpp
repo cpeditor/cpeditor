@@ -575,9 +575,9 @@ int AppWindow::getNewUntitledIndex()
 
 /***************** ABOUT SECTION ***************************/
 
-void AppWindow::on_actionSupportMe_triggered() // NOLINT: method can be made static
+void AppWindow::on_actionSupportUs_triggered() // NOLINT: method can be made static
 {
-    QDesktopServices::openUrl(QUrl("https://paypal.me/coder3101"));
+    QDesktopServices::openUrl(QUrl("https://opencollective.com/cpeditor#section-contribute"));
 }
 
 void AppWindow::on_actionManual_triggered() // NOLINT: method can be made static
