@@ -501,8 +501,7 @@ QTreeWidgetItem *PreferencesWindow::getTopLevelItem(const QString &text) const
     return nullptr;
 }
 
-QTreeWidgetItem *PreferencesWindow::getChild(QTreeWidgetItem *item, // NOLINT: It can be static
-                                             const QString &text) const
+QTreeWidgetItem *PreferencesWindow::getChild(QTreeWidgetItem *item, const QString &text)
 {
     for (int i = 0; i < item->childCount(); ++i)
     {

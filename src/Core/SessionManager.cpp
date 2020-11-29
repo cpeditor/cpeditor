@@ -87,8 +87,7 @@ void SessionManager::restoreSession(const QString &path)
     auto oldSize = app->size();
     app->setUpdatesEnabled(false);
 
-    for (auto const &tab : tabs) // NOLINT: loop variable 'tab' is always a copy because the range of type 'QJsonArray'
-                                 // does not return a reference
+    for (auto const &tab : tabs)
     {
         if (progressDialog.wasCanceled())
             break;

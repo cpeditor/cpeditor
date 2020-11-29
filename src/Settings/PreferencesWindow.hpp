@@ -153,7 +153,7 @@ class PreferencesWindow : public QMainWindow
      * @brief get the child of *item* with text *text*
      * @returns the child or nullptr if not found
      */
-    QTreeWidgetItem *getChild(QTreeWidgetItem *item, const QString &text) const;
+    static QTreeWidgetItem *getChild(QTreeWidgetItem *item, const QString &text);
 
     /**
      * @brief get the index of the next/previous non-hidden page (including the home page)
