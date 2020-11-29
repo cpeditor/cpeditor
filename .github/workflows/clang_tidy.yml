@@ -57,6 +57,7 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install clang-tidy-9
+          sudo ln -s "$(which clang-tidy-9)" "/usr/local/bin/clang-tidy"
 
       - name: Download clang-tidy latest stable on macOS
         if: startsWith(matrix.config.os, 'macos')
