@@ -809,7 +809,7 @@ Press any key to exit</source>
 <context>
     <name>Extensions::LanguageServer</name>
     <message>
-        <source>Langauge Server [%1]</source>
+        <source>Language Server [%1]</source>
         <translation></translation>
     </message>
     <message>
@@ -835,10 +835,6 @@ Press any key to exit</source>
     <message>
         <source>An unknown error has occurred in LSP Process</source>
         <translation>Language server 发生未知错误</translation>
-    </message>
-    <message>
-        <source>Language Server [%1]</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1946,15 +1942,15 @@ A source file won&apos;t be opened if it&apos;s too long.</source>
         <translation>启用 Language Server</translation>
     </message>
     <message>
-        <source>Show Error, Warning, Information and Hints in Code Editor for C++ Langauge</source>
+        <source>Show Error, Warning, Information and Hints in Code Editor for C++ Language</source>
         <translation>在编辑器中为 C++ 显示错误、警告、信息和提示</translation>
     </message>
     <message>
-        <source>Show Error, Warning, Information and Hints in Code Editor for Java Langauge</source>
+        <source>Show Error, Warning, Information and Hints in Code Editor for Java Language</source>
         <translation>在编辑器中为 Java 显示错误、警告、信息和提示</translation>
     </message>
     <message>
-        <source>Show Error, Warning, Information and Hints in Code Editor for Python Langauge</source>
+        <source>Show Error, Warning, Information and Hints in Code Editor for Python Language</source>
         <translation>在编辑器中为 Python 显示错误、警告、信息和提示</translation>
     </message>
     <message>

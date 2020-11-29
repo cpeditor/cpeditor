@@ -290,7 +290,7 @@ void LanguageServer::onLSPServerProcessError(QProcess::ProcessError const &error
     switch (error)
     {
     case QProcess::FailedToStart:
-        logger->error(tr("Langauge Server [%1]").arg(language),
+        logger->error(tr("Language Server [%1]").arg(language),
                       tr("Failed to start LSP Process. Have you set the path to the Language Server program at %1?")
                           .arg(SettingsManager::getPathText("LSP/Path " + language)),
                       false);
@@ -298,16 +298,16 @@ void LanguageServer::onLSPServerProcessError(QProcess::ProcessError const &error
     case QProcess::Crashed:
         break;
     case QProcess::Timedout:
-        logger->error(tr("Langauge Server [%1]").arg(language), tr("LSP Process timed out"));
+        logger->error(tr("Language Server [%1]").arg(language), tr("LSP Process timed out"));
         break;
     case QProcess::ReadError:
-        logger->error(tr("Langauge Server [%1]").arg(language), tr("LSP Process Read Error"));
+        logger->error(tr("Language Server [%1]").arg(language), tr("LSP Process Read Error"));
         break;
     case QProcess::WriteError:
-        logger->error(tr("Langauge Server [%1]").arg(language), tr("LSP Process Write Error"));
+        logger->error(tr("Language Server [%1]").arg(language), tr("LSP Process Write Error"));
         break;
     case QProcess::UnknownError:
-        logger->error(tr("Langauge Server [%1]").arg(language), tr("An unknown error has occurred in LSP Process"));
+        logger->error(tr("Language Server [%1]").arg(language), tr("An unknown error has occurred in LSP Process"));
         break;
     }
 }
