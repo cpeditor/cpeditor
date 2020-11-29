@@ -1136,13 +1136,13 @@ void AppWindow::onViewModeToggle()
     }
 }
 
-void AppWindow::onSplitterMoved(int _, int unused_)
+void AppWindow::onSplitterMoved()
 {
     auto *splitter = currentWindow()->getSplitter();
     SettingsHelper::setSplitterSize(splitter->saveState());
 }
 
-void AppWindow::onRightSplitterMoved(int _, int unused_)
+void AppWindow::onRightSplitterMoved()
 {
     auto *splitter = currentWindow()->getRightSplitter();
     SettingsHelper::setRightSplitterSize(splitter->saveState());

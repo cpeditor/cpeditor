@@ -199,9 +199,9 @@ class AppWindow : public QMainWindow
 
     void onSettingsApplied(const QString &pagePath);
 
-    void onSplitterMoved(int, int);
+    void onSplitterMoved();
 
-    void onRightSplitterMoved(int, int);
+    void onRightSplitterMoved();
 
     void onIncomingCompanionRequest(const Extensions::CompanionData &);
 
