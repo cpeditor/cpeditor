@@ -4,7 +4,6 @@ on: [pull_request]
 
 env:
   QT_VERSION: 5.15.1
-  BUILD_TYPE: Release
 
 jobs:
   build:
@@ -71,7 +70,7 @@ jobs:
       
       - name: Configure CMake
         run: |
-          cmake -Bbuild -DUSE_CLANG_TIDY=On -DCMAKE_BUILD_TYPE=$ENV{BUILD_TYPE} .
+          cmake -Bbuild -DUSE_CLANG_TIDY=On .
 
       - name: Build
         run: |
