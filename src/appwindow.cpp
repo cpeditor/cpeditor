@@ -896,7 +896,6 @@ void AppWindow::onTabChanged(int index)
         connect(tmp->getSplitter(), &QSplitter::splitterMoved, this, &AppWindow::onSplitterMoved);
     activeRightSplitterMoveConnection =
         connect(tmp->getRightSplitter(), &QSplitter::splitterMoved, this, &AppWindow::onRightSplitterMoved);
-    ui->actionSubmit->setEnabled(tmp->canSubmitSolution());
 }
 
 void AppWindow::onEditorFileChanged()
@@ -1086,11 +1085,6 @@ void AppWindow::onSettingsApplied(const QString &pagePath)
     if (pageChanged("File Path/Default Paths"))
     {
         DefaultPathManager::fromVariantList(SettingsHelper::getDefaultPathNamesAndPaths());
-    }
-
-    if (pageChanged("Extensions/CF Tool") && currentWindow())
-    {
-        ui->actionSubmit->setEnabled(currentWindow()->canSubmitSolution());
     }
 }
 

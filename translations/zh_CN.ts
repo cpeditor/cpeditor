@@ -468,12 +468,12 @@ git 提交编号: %3
         <translation>全屏</translation>
     </message>
     <message>
-        <source>Submit</source>
-        <translation type="unfinished">提交</translation>
-    </message>
-    <message>
         <source>Support us</source>
         <translation>支持我们</translation>
+    </message>
+    <message>
+        <source>Submit Solution</source>
+        <translation>提交代码</translation>
     </message>
 </context>
 <context>
@@ -734,16 +734,16 @@ Press any key to exit</source>
         <translation>比赛 %1 题目 %2</translation>
     </message>
     <message>
-        <source>You are using CF Tool %1. Please update to CF tools 1.0 or above.</source>
-        <translation type="unfinished"></translation>
+        <source>You are using CF Tool %1. Please update to CF Tool 1.0 or above.</source>
+        <translation>你在使用 CF Tool %1。请升级到 CF Tool 1.0 或更高版本。</translation>
     </message>
     <message>
-        <source>Failed to parse URL %1, updating CF tool to 1.0 or above might fix.</source>
-        <translation type="unfinished"></translation>
+        <source>Failed to parse URL [%1]. Updating CF Tool to 1.0 or above might fix.</source>
+        <translation>未能成功解析 URL [%1]。更新 CF Tool 至 1.0 或更高版本可能可以解决问题。</translation>
     </message>
     <message>
-        <source>The problem code was 0, It has been changed to A. If the actual problem code is not this, please set the problem code manually in the right-click menu of the current tab.</source>
-        <translation type="unfinished"></translation>
+        <source>The problem code was 0. It has been changed to A. If the actual problem code is not this, please set the problem code manually in the right-click menu of the current tab.</source>
+        <translation>题目代码原本是 0。现在它被修改成了 A。如果实际的题目代码不是 A，请在本标签页的右键菜单中手动修改题目代码。</translation>
     </message>
 </context>
 <context>
@@ -1198,6 +1198,10 @@ Do you want to reload it?</source>
     <message>
         <source>Failed to start compilation: %1</source>
         <translation>未能开始编译：%1</translation>
+    </message>
+    <message>
+        <source>You can&apos;t submit this because the problem URL is not recognized as a Codeforces URL.</source>
+        <translation>你不能提交这份代码，因为题目链接没有被识别为 Codeforces 链接。</translation>
     </message>
 </context>
 <context>
@@ -2583,7 +2587,7 @@ You can learn about it by running `yapf --style-help`.</source>
     </message>
     <message>
         <source>Submit Solution</source>
-        <translation type="unfinished"></translation>
+        <translation>提交代码</translation>
     </message>
 </context>
 <context>

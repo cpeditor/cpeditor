@@ -494,7 +494,7 @@
   </action>
   <action name="actionSubmit">
    <property name="text">
-    <string>Submit</string>
+    <string>Submit Solution</string>
    </property>
    <property name="shortcut">
     <string notr="true">Ctrl+Alt+S</string>

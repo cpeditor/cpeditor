@@ -80,7 +80,7 @@ MainWindow::MainWindow(int index, AppWindow *parent)
         Qt::DirectConnection);
 
     cftool = new Extensions::CFTool(cftoolPath, log);
-    ui->submitButton->setVisible(false);
+    ui->submitButton->hide();
     connect(cftool, &Extensions::CFTool::requestToastMessage, this, &MainWindow::requestToastMessage);
 
     applySettings("");
@@ -245,7 +245,7 @@ void MainWindow::saveTests(bool safe)
 
 void MainWindow::setSubmitButton(bool visible)
 {
-    ui->submitButton->setVisible(visible);
+    ui->submitButton->show();
 
     if (!Extensions::CFTool::check(cftoolPath))
     {
@@ -676,6 +676,13 @@ void MainWindow::compileAndRun()
 
 void MainWindow::submitSolution()
 {
+    if (!canSubmitSolution())
+    {
+        log->warn(tr("Submit"),
+                  tr("You can't submit this because the problem URL is not recognized as a Codeforces URL."));
+        return;
+    }
+
     emit confirmTriggered(this);
     auto response = QMessageBox::warning(
         this, tr("Sure to submit"),
@@ -701,7 +708,7 @@ void MainWindow::submitSolution()
 
 bool MainWindow::canSubmitSolution() const
 {
-    return ui->submitButton->isEnabled();
+    return ui->submitButton->isVisible() && ui->submitButton->isEnabled();
 }
 
 void MainWindow::formatSource(bool selectionOnly, bool logOnNoChange)

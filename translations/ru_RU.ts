@@ -468,12 +468,12 @@ Git commit hash: %3
         <translation>Полный экран</translation>
     </message>
     <message>
-        <source>Submit</source>
-        <translation>Отправить</translation>
-    </message>
-    <message>
         <source>Support us</source>
         <translation>Поддержи нас</translation>
+    </message>
+    <message>
+        <source>Submit Solution</source>
+        <translation>Отправить решение</translation>
     </message>
 </context>
 <context>
@@ -734,15 +734,15 @@ Press any key to exit</source>
         <translation>Соревнование %1 Задача %2</translation>
     </message>
     <message>
-        <source>You are using CF Tool %1. Please update to CF tools 1.0 or above.</source>
-        <translation>Вы используете CF Tool %1. Пожалуйста, обновите CF Tool до 0.1 или выше.</translation>
+        <source>You are using CF Tool %1. Please update to CF Tool 1.0 or above.</source>
+        <translation>Вы используете CF Tool %1. Пожалуйста, обновите CF Tool до 1.0 или выше.</translation>
     </message>
     <message>
-        <source>Failed to parse URL %1, updating CF tool to 1.0 or above might fix.</source>
-        <translation>Ошибка при парсинге URL %1. Обновление CF Tool до 1.0 или выше может решить эту проблему.</translation>
+        <source>Failed to parse URL [%1]. Updating CF Tool to 1.0 or above might fix.</source>
+        <translation>Ошибка при парсинге URL [%1]. Обновление CF Tool до 1.0 или выше может решить эту проблему.</translation>
     </message>
     <message>
-        <source>The problem code was 0, It has been changed to A. If the actual problem code is not this, please set the problem code manually in the right-click menu of the current tab.</source>
+        <source>The problem code was 0. It has been changed to A. If the actual problem code is not this, please set the problem code manually in the right-click menu of the current tab.</source>
         <translation>Код задачи - 0, но он был изменен на A. Если код текущей задачи иной, пожалуйста утсановите код задачи вручную, при помощи клика правой кнопки мыши по текущей вкладке.</translation>
     </message>
 </context>
@@ -1198,6 +1198,10 @@ Do you want to reload it?</source>
     <message>
         <source>Failed to start compilation: %1</source>
         <translation>Ошибка старта компиляции: %1</translation>
+    </message>
+    <message>
+        <source>You can&apos;t submit this because the problem URL is not recognized as a Codeforces URL.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

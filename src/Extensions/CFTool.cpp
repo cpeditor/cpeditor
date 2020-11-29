@@ -75,7 +75,7 @@ void CFTool::submit(const QString &filePath, const QString &url)
 
     if (version.split('.')[0] == "0")
     {
-        log->warn(tr("CF Tool"), tr("You are using CF Tool %1. Please update to CF tools 1.0 or above.").arg(version));
+        log->warn(tr("CF Tool"), tr("You are using CF Tool %1. Please update to CF Tool 1.0 or above.").arg(version));
 
         if (parseCfUrl(url, problemContestId, problemCode))
         {
@@ -91,7 +91,7 @@ void CFTool::submit(const QString &filePath, const QString &url)
         else
         {
             log->error(tr("CF Tool"),
-                       tr("Failed to parse URL %1, updating CF tool to 1.0 or above might fix.").arg(url));
+                       tr("Failed to parse URL [%1]. Updating CF Tool to 1.0 or above might fix.").arg(url));
             return;
         }
     }
@@ -110,7 +110,7 @@ void CFTool::submit(const QString &filePath, const QString &url)
     if (wasProblemCodeChanged)
     {
         log->warn(tr("CF Tool"),
-                  tr("The problem code was 0, It has been changed to A. If the actual problem code is not this, "
+                  tr("The problem code was 0. It has been changed to A. If the actual problem code is not this, "
                      "please set the problem code manually in the right-click menu of the current tab."));
     }
 
