@@ -18,10 +18,10 @@ jobs:
         run: git diff --exit-code HEAD
       - name: Create Pull Request
         if: failure()
-        uses: peter-evans/create-pull-request@v3.4.1
+        uses: peter-evans/create-pull-request@v3.5.1
         with:
-          commit-message: "style: Format codes"
-          title: "Format codes for ${{ github.ref }}"
+          commit-message: "style: format codes"
+          title: "style: format codes for ${{ github.actor }} on ${{ github.ref }}"
           labels: "style"
           assignees: "${{ github.actor }}"
           reviewers: "${{ github.actor }}"
