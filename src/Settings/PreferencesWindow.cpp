@@ -60,7 +60,7 @@ AddPageHelper &AddPageHelper::page(const QString &key, const QString &trkey, Pre
     }
     else
     {
-        QTreeWidgetItem *item = new QTreeWidgetItem({trkey});
+        auto *item = new QTreeWidgetItem({trkey});
         currentItem->addChild(item);
         newpage->setPath((currentPath + QStringList(key)).join('/'), (currentTrPath + QStringList(trkey)).join('/'));
         if (key == "@")
@@ -82,7 +82,7 @@ AddPageHelper &AddPageHelper::dir(const QString &key, const QString &trkey)
     }
     else
     {
-        QTreeWidgetItem *item = new QTreeWidgetItem({trkey});
+        auto *item = new QTreeWidgetItem({trkey});
         currentItem->addChild(item);
         currentItem = item;
     }
@@ -120,16 +120,16 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
     setWindowTitle(tr("Preferences"));
 
     // setup UI
-    auto splitter = new QSplitter();
+    auto *splitter = new QSplitter();
     splitter->setChildrenCollapsible(false);
     setCentralWidget(splitter);
 
     leftWidget = new QWidget();
     splitter->addWidget(leftWidget);
 
-    auto leftLayout = new QVBoxLayout(leftWidget);
+    auto *leftLayout = new QVBoxLayout(leftWidget);
 
-    auto searchLayout = new QHBoxLayout();
+    auto *searchLayout = new QHBoxLayout();
     leftLayout->addLayout(searchLayout);
 
     searchEdit = new QLineEdit();
@@ -300,7 +300,7 @@ void PreferencesWindow::display()
 
 void PreferencesWindow::open(const QString &path)
 {
-    auto page = getPageWidget(path, true);
+    auto *page = getPageWidget(path, true);
 
     if (page == nullptr)
     {
@@ -314,7 +314,7 @@ void PreferencesWindow::open(const QString &path)
         Util::showWidgetOnTop(this);
     if (switchToPage(page))
     {
-        auto widget = SettingsManager::getWidget(SettingsManager::getKeyOfPath(path));
+        auto *widget = SettingsManager::getWidget(SettingsManager::getKeyOfPath(path));
         if (widget != nullptr)
             widget->setFocus(Qt::PopupFocusReason);
     }
@@ -341,7 +341,7 @@ bool PreferencesWindow::switchToPage(QWidget *page, bool force)
     // ask for saving changes or not if not force
     if (!force)
     {
-        auto current = qobject_cast<PreferencesPage *>(stackedWidget->currentWidget());
+        auto *current = qobject_cast<PreferencesPage *>(stackedWidget->currentWidget());
         if (current != nullptr && !current->aboutToExit())
             return false;
     }
@@ -352,7 +352,7 @@ bool PreferencesWindow::switchToPage(QWidget *page, bool force)
     // switch if everything is OK
     stackedWidget->setCurrentWidget(page);
 
-    auto preferencesPage = qobject_cast<PreferencesPage *>(page);
+    auto *preferencesPage = qobject_cast<PreferencesPage *>(page);
     if (preferencesPage != nullptr)
     {
         pageTreeItem[preferencesPage]->setSelected(true);
@@ -404,7 +404,7 @@ PreferencesPage *PreferencesWindow::getPageWidget(const QString &pagePath, bool 
         QTreeWidgetItem *nxt = getChild(current, parts[i]);
         if (nxt == nullptr)
         {
-            auto res = allowPrefix ? pageWidget[current] : nullptr;
+            auto *res = allowPrefix ? pageWidget[current] : nullptr;
             if (res == nullptr)
                 LOG_DEV("Can't find path: " << pagePath);
             return res;
@@ -417,7 +417,7 @@ PreferencesPage *PreferencesWindow::getPageWidget(const QString &pagePath, bool 
 
 void PreferencesWindow::closeEvent(QCloseEvent *event)
 {
-    auto current = qobject_cast<PreferencesPage *>(stackedWidget->currentWidget());
+    auto *current = qobject_cast<PreferencesPage *>(stackedWidget->currentWidget());
     if (!SettingsHelper::isForceClose() && current != nullptr && !current->aboutToExit())
         event->ignore();
     else
@@ -440,7 +440,8 @@ void PreferencesWindow::updateSearch(QTreeWidgetItem *item, const QString &text)
         return;
     }
 
-    bool shouldHide = true, translatedMatched = false;
+    bool shouldHide = true;
+    bool translatedMatched = false;
 
     if (item->text(0).contains(text, Qt::CaseInsensitive))
     {
@@ -459,7 +460,7 @@ void PreferencesWindow::updateSearch(QTreeWidgetItem *item, const QString &text)
         else
         {
             // check whether the content contains *text*
-            for (auto s : content[item])
+            for (auto const &s : content[item])
             {
                 if (s.contains(text, Qt::CaseInsensitive))
                 {
@@ -472,7 +473,7 @@ void PreferencesWindow::updateSearch(QTreeWidgetItem *item, const QString &text)
 
     for (int i = 0; i < item->childCount(); ++i)
     {
-        auto child = item->child(i);
+        auto *child = item->child(i);
 
         // show all children if the translation of the current node contains *text*
         updateSearch(child, translatedMatched ? QString() : text);
@@ -490,7 +491,7 @@ QTreeWidgetItem *PreferencesWindow::getTopLevelItem(const QString &text) const
 {
     for (int i = 0; i < menuTree->topLevelItemCount(); ++i)
     {
-        auto item = menuTree->topLevelItem(i);
+        auto *item = menuTree->topLevelItem(i);
         if (item->text(0) == text)
         {
             return item;
@@ -500,11 +501,11 @@ QTreeWidgetItem *PreferencesWindow::getTopLevelItem(const QString &text) const
     return nullptr;
 }
 
-QTreeWidgetItem *PreferencesWindow::getChild(QTreeWidgetItem *item, const QString &text) const
+QTreeWidgetItem *PreferencesWindow::getChild(QTreeWidgetItem *item, const QString &text)
 {
     for (int i = 0; i < item->childCount(); ++i)
     {
-        auto child = item->child(i);
+        auto *child = item->child(i);
         if (child->text(0) == text)
         {
             return child;
@@ -529,8 +530,8 @@ int PreferencesWindow::nextNonHiddenPage(int index, int direction, bool includin
     {
         if (index == 0)
             return 0;
-        auto currentWidget = qobject_cast<PreferencesPage *>(stackedWidget->widget(index));
-        auto currentItem = pageTreeItem[currentWidget];
+        auto *currentWidget = qobject_cast<PreferencesPage *>(stackedWidget->widget(index));
+        auto *currentItem = pageTreeItem[currentWidget];
         if (currentItem == nullptr)
         {
             LOG_WTF("Failed to get the current item");

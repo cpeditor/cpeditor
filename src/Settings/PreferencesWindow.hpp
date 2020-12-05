@@ -48,8 +48,8 @@ class AddPageHelper
     explicit AddPageHelper(PreferencesWindow *w);
 
     AddPageHelper &page(const QString &key, const QString &trkey, const QStringList &content);
-    AddPageHelper &page(const QString &key, const QString &trkey, PreferencesPage *page);
-    AddPageHelper &page(const QString &key, const QString &trkey, PreferencesPage *page, const QStringList &content);
+    AddPageHelper &page(const QString &key, const QString &trkey, PreferencesPage *newpage);
+    AddPageHelper &page(const QString &key, const QString &trkey, PreferencesPage *newpage, const QStringList &content);
 
     AddPageHelper &dir(const QString &key, const QString &trkey);
 
@@ -62,7 +62,7 @@ class AddPageHelper
 
     PreferencesWindow *window;
     QTreeWidget *tree;
-    QTreeWidgetItem *currentItem;
+    QTreeWidgetItem *currentItem = nullptr;
     QStringList currentPath, currentTrPath;
 };
 
@@ -153,7 +153,7 @@ class PreferencesWindow : public QMainWindow
      * @brief get the child of *item* with text *text*
      * @returns the child or nullptr if not found
      */
-    QTreeWidgetItem *getChild(QTreeWidgetItem *item, const QString &text) const;
+    static QTreeWidgetItem *getChild(QTreeWidgetItem *item, const QString &text);
 
     /**
      * @brief get the index of the next/previous non-hidden page (including the home page)

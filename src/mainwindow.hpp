@@ -243,7 +243,7 @@ class MainWindow : public QMainWindow
     void loadFile(const QString &loadPath);
     bool saveFile(SaveMode mode, const QString &head, bool safe);
     void performCompileAndRunDiagonistics();
-    QString getRunnerHead(int index);
+    static QString getRunnerHead(int index);
     QString compileCommand() const;
     int timeLimit() const;
 };

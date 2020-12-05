@@ -39,22 +39,14 @@
 // QVariantList
 #include "Settings/StringListsItem.hpp"
 
-ValueWidget::ValueWidget() : QObject()
-{
-}
-
-ValueWidget::~ValueWidget()
-{
-}
-
 void ValueWidget::emitSignal()
 {
     emit valueChanged();
 }
 
-void CheckBoxWrapper::init(QString name, QWidget *parent, QVariant)
+void CheckBoxWrapper::init(QString name, QWidget *parent, QVariant /*param*/)
 {
-    QCheckBox *item = new QCheckBox(name, parent);
+    auto *item = new QCheckBox(name, parent);
     connect(item, &QCheckBox::toggled, this, &ValueWidget::emitSignal);
     widget = item;
 }
@@ -69,9 +61,9 @@ void CheckBoxWrapper::set(bool b)
     qobject_cast<QCheckBox *>(widget)->setChecked(b);
 }
 
-void LineEditWrapper::init(QWidget *parent, QVariant)
+void LineEditWrapper::init(QWidget *parent, QVariant /*param*/)
 {
-    QLineEdit *item = new QLineEdit(parent);
+    auto *item = new QLineEdit(parent);
     item->setMinimumWidth(400);
     connect(item, &QLineEdit::textChanged, this, &ValueWidget::emitSignal);
     widget = item;
@@ -87,7 +79,7 @@ void LineEditWrapper::set(QString s)
     qobject_cast<QLineEdit *>(widget)->setText(s);
 }
 
-void PlainTextEditWrapper::init(QWidget *parent, QVariant)
+void PlainTextEditWrapper::init(QWidget *parent, QVariant /*param*/)
 {
     auto *item = new QPlainTextEdit(parent);
     item->setMinimumWidth(400);
@@ -108,7 +100,7 @@ void PlainTextEditWrapper::set(QString s)
 
 void ComboBoxWrapper::init(QWidget *parent, QVariant param)
 {
-    QComboBox *item = new QComboBox(parent);
+    auto *item = new QComboBox(parent);
     item->addItems(param.toStringList());
     connect(item, &QComboBox::currentTextChanged, this, &ValueWidget::emitSignal);
     widget = item;
@@ -126,7 +118,7 @@ void ComboBoxWrapper::set(QString s)
 
 void PathItemWrapper::init(QWidget *parent, QVariant param)
 {
-    PathItem *item = new PathItem(PathItem::Type(param.toInt()), parent);
+    auto *item = new PathItem(PathItem::Type(param.toInt()), parent);
     connect(item->getLineEdit(), &QLineEdit::textChanged, this, &ValueWidget::emitSignal);
     widget = item;
 }
@@ -143,7 +135,7 @@ void PathItemWrapper::set(QString s)
 
 void ShortcutItemWrapper::init(QWidget *parent, QVariant param)
 {
-    ShortcutItem *item = new ShortcutItem(parent);
+    auto *item = new ShortcutItem(parent);
     connect(item, &ShortcutItem::shortcutChanged, this, &ValueWidget::emitSignal);
     widget = item;
 }
@@ -158,10 +150,10 @@ void ShortcutItemWrapper::set(QString s)
     qobject_cast<ShortcutItem *>(widget)->setShortcut(s);
 }
 
-void CodecBoxWrapper::init(QWidget *parent, QVariant)
+void CodecBoxWrapper::init(QWidget *parent, QVariant /*param*/)
 {
     QStringList names;
-    for (auto mib : QTextCodec::availableMibs())
+    for (auto const &mib : QTextCodec::availableMibs())
     {
         names.push_back(QString::fromLocal8Bit(QTextCodec::codecForMib(mib)->name()));
     }
@@ -172,7 +164,7 @@ void CodecBoxWrapper::init(QWidget *parent, QVariant)
 
 void SpinBoxWrapper::init(QWidget *parent, QVariant param)
 {
-    QSpinBox *item = new QSpinBox(parent);
+    auto *item = new QSpinBox(parent);
     if (!param.isNull())
     {
         QVariantList il = param.toList();
@@ -196,7 +188,7 @@ void SpinBoxWrapper::set(int i)
 
 void ScrollBarWrapper::init(QWidget *parent, QVariant param)
 {
-    QScrollBar *item = new QScrollBar(Qt::Horizontal, parent);
+    auto *item = new QScrollBar(Qt::Horizontal, parent);
     if (!param.isNull())
     {
         QVariantList il = param.toList();
@@ -218,7 +210,7 @@ void ScrollBarWrapper::set(int i)
 
 void SliderWrapper::init(QWidget *parent, QVariant param)
 {
-    QSlider *item = new QSlider(Qt::Horizontal, parent);
+    auto *item = new QSlider(Qt::Horizontal, parent);
     if (!param.isNull())
     {
         QVariantList il = param.toList();
@@ -240,7 +232,7 @@ void SliderWrapper::set(int i)
 
 void FontItemWrapper::init(QWidget *parent, QVariant param)
 {
-    FontItem *item = new FontItem(parent, param);
+    auto *item = new FontItem(parent, param);
     connect(item, &FontItem::fontChanged, this, &ValueWidget::emitSignal);
     widget = item;
 }
@@ -255,9 +247,9 @@ void FontItemWrapper::set(QFont f)
     qobject_cast<FontItem *>(widget)->setFont(f);
 }
 
-void StringListsItemWrapper::init(QWidget *parent, QVariant cols)
+void StringListsItemWrapper::init(QWidget *parent, QVariant param)
 {
-    StringListsItem *item = new StringListsItem(cols.toList(), parent);
+    auto *item = new StringListsItem(param.toList(), parent);
     connect(item, &StringListsItem::valueChanged, this, &ValueWidget::emitSignal);
     widget = item;
 }
@@ -287,15 +279,15 @@ Wrapper<QString> *createStringWrapper(QString type)
         type = "QLineEdit";
     if (type == "QLineEdit")
         return new LineEditWrapper();
-    else if (type == "QPlainTextEdit")
+    if (type == "QPlainTextEdit")
         return new PlainTextEditWrapper();
-    else if (type == "QComboBox")
+    if (type == "QComboBox")
         return new ComboBoxWrapper();
-    else if (type == "PathItem")
+    if (type == "PathItem")
         return new PathItemWrapper();
-    else if (type == "ShortcutItem")
+    if (type == "ShortcutItem")
         return new ShortcutItemWrapper();
-    else if (type == "CodecBox")
+    if (type == "CodecBox")
         return new CodecBoxWrapper();
     return nullptr;
 }
@@ -306,9 +298,9 @@ Wrapper<int> *createIntWrapper(QString type)
         type = "QSpinBox";
     if (type == "QSpinBox")
         return new SpinBoxWrapper();
-    else if (type == "QScrollBar")
+    if (type == "QScrollBar")
         return new ScrollBarWrapper();
-    else if (type == "QSlider")
+    if (type == "QSlider")
         return new SliderWrapper();
     return nullptr;
 }

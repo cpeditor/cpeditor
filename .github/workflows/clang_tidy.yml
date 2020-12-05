@@ -1,0 +1,66 @@
+name: "Clang-Tidy Check"
+
+on: [pull_request]
+
+env:
+  QT_VERSION: 5.15.1
+
+jobs:
+  build:
+    name: ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - ubuntu-latest
+          - windows-latest
+          - macos-latest
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: recursive
+
+      - name: Install Python 3.7
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.7
+
+      - name: Restore Qt from cache
+        id: cache-qt
+        uses: actions/cache@v1
+        with:
+          path: ../Qt
+          key: Qt-${{ matrix.os }}-${{ env.QT_VERSION }}
+
+      - name: Set up Qt environment
+        uses: jurplel/install-qt-action@v2
+        with:
+          cached: ${{ steps.cache-qt.outputs.cache-hit }}
+          version: ${{ env.QT_VERSION }}
+
+      - name: Download clang-tidy latest stable on Linux
+        if: startsWith(matrix.os, 'ubuntu')
+        run: |
+          sudo apt-get update
+          sudo apt-get install clang-tidy-9
+          sudo ln -s "$(which clang-tidy-9)" "/usr/local/bin/clang-tidy"
+
+      - name: Download clang-tidy latest stable on macOS
+        if: startsWith(matrix.os, 'macos')
+        run: |
+          brew install llvm
+          ln -s "$(brew --prefix llvm)/bin/clang-tidy" "/usr/local/bin/clang-tidy"
+
+      - name: Enable Developer Command Prompt
+        if: startsWith(matrix.os, 'windows')
+        uses: ilammy/msvc-dev-cmd@v1.4.1
+
+      - name: Configure CMake
+        run: |
+          cmake -Bbuild -DUSE_CLANG_TIDY=On .
+
+      - name: Build
+        run: |
+          cmake --build build -j8

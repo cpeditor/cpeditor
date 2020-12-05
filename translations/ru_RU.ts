@@ -809,12 +809,12 @@ Press any key to exit</source>
 <context>
     <name>Extensions::LanguageServer</name>
     <message>
-        <source>Langauge Server [%1]</source>
-        <translation>Langauge Server [%1]</translation>
+        <source>Language Server [%1]</source>
+        <translation>Language Server [%1]</translation>
     </message>
     <message>
         <source>Language server sent an error. Please check log for details.</source>
-        <translation>Langauge server выдает ошибку. Пожалуйста, проверьте логи.</translation>
+        <translation>Language server выдает ошибку. Пожалуйста, проверьте логи.</translation>
     </message>
     <message>
         <source>Failed to start LSP Process. Have you set the path to the Language Server program at %1?</source>
@@ -1946,15 +1946,15 @@ A source file won&apos;t be opened if it&apos;s too long.</source>
         <translation>Использовать функцию Linting с Language Server</translation>
     </message>
     <message>
-        <source>Show Error, Warning, Information and Hints in Code Editor for C++ Langauge</source>
+        <source>Show Error, Warning, Information and Hints in Code Editor for C++ Language</source>
         <translation>Показывать ошибки, предупреждения, информацию и подсказки в редакторе кода для языка C++</translation>
     </message>
     <message>
-        <source>Show Error, Warning, Information and Hints in Code Editor for Java Langauge</source>
+        <source>Show Error, Warning, Information and Hints in Code Editor for Java Language</source>
         <translation>Показывать ошибки, предупреждения, информацию и подсказки в редакторе кода для языка Java</translation>
     </message>
     <message>
-        <source>Show Error, Warning, Information and Hints in Code Editor for Python Langauge</source>
+        <source>Show Error, Warning, Information and Hints in Code Editor for Python Language</source>
         <translation>Показывать ошибки, предупреждения, информацию и подсказки в редакторе кода для языка Python</translation>
     </message>
     <message>

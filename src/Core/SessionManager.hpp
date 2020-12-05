@@ -36,7 +36,7 @@ class SessionManager : public QObject
 
     void setAutoUpdateSession(bool shouldAutoUpdate);
 
-    void setAutoUpdateDuration(unsigned int duration);
+    void setAutoUpdateDuration(int duration);
 
     QString currentSessionText();
 

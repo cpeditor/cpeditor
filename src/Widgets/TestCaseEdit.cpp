@@ -156,7 +156,7 @@ void TestCaseEdit::startAnimation()
 
 void TestCaseEdit::onCustomContextMenuRequested(const QPoint &pos)
 {
-    auto menu = createStandardContextMenu();
+    auto *menu = createStandardContextMenu();
 
     menu->addSeparator();
 

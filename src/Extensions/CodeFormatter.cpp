@@ -20,7 +20,7 @@
 #include "Core/MessageLogger.hpp"
 #include "Settings/SettingsManager.hpp"
 #include "Util/FileUtil.hpp"
-#include <QCodeEditor>
+#include "third_party/QCodeEditor/include/QCodeEditor"
 #include <QProcess>
 #include <QTemporaryDir>
 

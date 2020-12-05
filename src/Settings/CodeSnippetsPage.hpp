@@ -34,7 +34,7 @@ class CodeSnippetsPage : public PreferencesPage
     Q_OBJECT
 
   public:
-    explicit CodeSnippetsPage(const QString &language, QWidget *parent = nullptr);
+    explicit CodeSnippetsPage(QString language, QWidget *parent = nullptr);
 
   private:
     bool areSettingsChanged() override;
