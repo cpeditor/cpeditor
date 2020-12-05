@@ -19,8 +19,8 @@
 #include "Util/FileUtil.hpp"
 #include "Widgets/TestCases.hpp"
 #include "appwindow.hpp"
-#include "third_party/FakeVim/fakevim/fakevimhandler.h"
 #include "generated/SettingsHelper.hpp"
+#include "third_party/FakeVim/fakevim/fakevimhandler.h"
 #include <QApplication>
 #include <QDir>
 #include <QFileInfo>
