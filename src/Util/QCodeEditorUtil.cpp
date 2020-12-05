@@ -19,8 +19,8 @@
 #include "Core/EventLogger.hpp"
 #include "Extensions/EditorTheme.hpp"
 #include "Settings/SettingsManager.hpp"
-#include "third_party/FakeVim/fakevim/fakevimactions.h"
 #include "generated/SettingsHelper.hpp"
+#include "third_party/FakeVim/fakevim/fakevimactions.h"
 #include <QCXXHighlighter>
 #include <QCodeEditor>
 #include <QJavaHighlighter>
