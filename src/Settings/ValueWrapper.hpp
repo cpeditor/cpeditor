@@ -26,8 +26,8 @@ class ValueWidget : public QObject
     Q_OBJECT
 
   public:
-    ValueWidget();
-    virtual ~ValueWidget();
+    ValueWidget() = default;
+    virtual ~ValueWidget() = default;
     virtual QWidget *coreWidget() = 0;
     virtual QVariant getVariant() = 0;
     virtual void setVariant(QVariant value) = 0;

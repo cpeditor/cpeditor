@@ -55,7 +55,7 @@ QString YAPFormatter::newSource(const QString &out) const
     return out;
 }
 
-QTextCursor YAPFormatter::newCursor(const QString &out, const QStringList &) const
+QTextCursor YAPFormatter::newCursor(const QString &out, const QStringList & /*args*/) const
 {
     auto cursor = editor->textCursor();
 

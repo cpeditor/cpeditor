@@ -19,7 +19,7 @@
 #include "Core/EventLogger.hpp"
 #include "Extensions/EditorTheme.hpp"
 #include "Settings/SettingsManager.hpp"
-#include "fakevimactions.h"
+#include "third_party/FakeVim/fakevim/fakevimactions.h"
 #include "generated/SettingsHelper.hpp"
 #include <QCXXHighlighter>
 #include <QCodeEditor>
@@ -41,7 +41,7 @@ void applySettingsToEditor(QCodeEditor *editor, const QString &language)
 
     editor->setHighlightCurrentLine(SettingsHelper::isHighlightCurrentLine());
 
-    auto style = Extensions::EditorTheme::query(SettingsHelper::getEditorTheme());
+    auto *style = Extensions::EditorTheme::query(SettingsHelper::getEditorTheme());
     if (!style)
         style = Extensions::EditorTheme::query("Light");
     editor->setSyntaxStyle(style);
@@ -74,7 +74,7 @@ void applySettingsToEditor(QCodeEditor *editor, const QString &language)
 
     auto list = SettingsManager::get(language + "/Parentheses").toList();
 
-    for (auto var : list)
+    for (auto const &var : list)
     {
         auto li = var.toList();
         if (li.length() != 5)

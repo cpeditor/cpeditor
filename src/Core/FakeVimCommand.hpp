@@ -68,7 +68,7 @@ class FakeVimCommand : public QObject
      * @returns enum CommandTypes that represents the command type.
      * @note if not a custom command or invalid command, the CommandTypes::UNKNOWN is returned
      */
-    CommandTypes customCommandType(FakeVim::Internal::ExCommand const &ex);
+    static CommandTypes customCommandType(FakeVim::Internal::ExCommand const &ex);
 
     /**
      * @brief Tries to handle passed command type with commandArgs and bang.
@@ -85,7 +85,6 @@ class FakeVimCommand : public QObject
      */
     static QString language(const QString &langCode);
 
-  private:
     AppWindow *appwin;
 };
 } // namespace Core

@@ -30,7 +30,7 @@ class FontItem : public QPushButton
   public:
     explicit FontItem(QWidget *parent, const QVariant &param);
 
-    void setFont(QFont newFont);
+    void setFont(QFont const &newFont);
     QFont getFont();
 
   signals:

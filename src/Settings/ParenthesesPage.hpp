@@ -31,7 +31,7 @@ class ParenthesisWidget : public QWidget
     Q_OBJECT
 
   public:
-    explicit ParenthesisWidget(const QString &language, QChar leftParenthesis, QChar rightParenthesis,
+    explicit ParenthesisWidget(QString language, QChar leftParenthesis, QChar rightParenthesis,
                                Qt::CheckState autoComplete = Qt::PartiallyChecked,
                                Qt::CheckState autoRemove = Qt::PartiallyChecked,
                                Qt::CheckState tabJumpOut = Qt::PartiallyChecked, QWidget *parent = nullptr);

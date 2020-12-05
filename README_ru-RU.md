@@ -14,6 +14,7 @@ CP Editor - это легкий кросс-платформенный редак
 
 ---
 
+[![Open Collective](https://opencollective.com/cpeditor/tiers/support-us.svg?avatarHeight=60)](https://opencollective.com/cpeditor#section-contribute)
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-49-orange.svg)](#all-contributors)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
@@ -43,6 +44,7 @@ CP Editor - это легкий кросс-платформенный редак
 - [Правила внесения вклада](CONTRIBUTING_ru-RU.md)
 - [Good first issues](https://github.com/cpeditor/cpeditor/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22)
 - [Help wanted issues](https://github.com/cpeditor/cpeditor/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22)
+- [Contribute on Open Collective](https://opencollective.com/cpeditor#section-contribute)
 
 ## Получить помощь
 

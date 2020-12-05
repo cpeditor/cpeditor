@@ -300,10 +300,6 @@
         <translation>关于</translation>
     </message>
     <message>
-        <source>Support me</source>
-        <translation>支持作者</translation>
-    </message>
-    <message>
         <source>Editor Mode</source>
         <translation>编辑器模式</translation>
     </message>
@@ -470,6 +466,10 @@ git 提交编号: %3
     <message>
         <source>Full Screen</source>
         <translation>全屏</translation>
+    </message>
+    <message>
+        <source>Support us</source>
+        <translation>支持我们</translation>
     </message>
 </context>
 <context>
@@ -809,7 +809,7 @@ Press any key to exit</source>
 <context>
     <name>Extensions::LanguageServer</name>
     <message>
-        <source>Langauge Server [%1]</source>
+        <source>Language Server [%1]</source>
         <translation></translation>
     </message>
     <message>
@@ -1972,15 +1972,15 @@ A source file won&apos;t be opened if it&apos;s too long.</source>
         <translation>启用 Language Server</translation>
     </message>
     <message>
-        <source>Show Error, Warning, Information and Hints in Code Editor for C++ Langauge</source>
+        <source>Show Error, Warning, Information and Hints in Code Editor for C++ Language</source>
         <translation>在编辑器中为 C++ 显示错误、警告、信息和提示</translation>
     </message>
     <message>
-        <source>Show Error, Warning, Information and Hints in Code Editor for Java Langauge</source>
+        <source>Show Error, Warning, Information and Hints in Code Editor for Java Language</source>
         <translation>在编辑器中为 Java 显示错误、警告、信息和提示</translation>
     </message>
     <message>
-        <source>Show Error, Warning, Information and Hints in Code Editor for Python Langauge</source>
+        <source>Show Error, Warning, Information and Hints in Code Editor for Python Language</source>
         <translation>在编辑器中为 Python 显示错误、警告、信息和提示</translation>
     </message>
     <message>

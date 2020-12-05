@@ -19,7 +19,7 @@
 #include "Util/FileUtil.hpp"
 #include "Widgets/TestCases.hpp"
 #include "appwindow.hpp"
-#include "fakevimhandler.h"
+#include "third_party/FakeVim/fakevim/fakevimhandler.h"
 #include "generated/SettingsHelper.hpp"
 #include <QApplication>
 #include <QDir>
@@ -29,7 +29,7 @@
 namespace Core
 {
 
-FakeVimCommand::FakeVimCommand(AppWindow *aw, QObject *parent) : QObject(parent), appwin(aw)
+FakeVimCommand::FakeVimCommand(AppWindow *window, QObject *parent) : QObject(parent), appwin(window)
 {
 }
 
@@ -224,9 +224,9 @@ QString FakeVimCommand::language(const QString &langCode)
     const auto code = langCode.toLower().trimmed();
     if (code == "cpp" || code == "c++")
         return "C++";
-    else if (code == "java")
+    if (code == "java")
         return "Java";
-    else if (code == "py" || code == "python")
+    if (code == "py" || code == "python")
         return "Python";
     return QString();
 }

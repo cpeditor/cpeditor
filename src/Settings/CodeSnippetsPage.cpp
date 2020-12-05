@@ -31,15 +31,16 @@
 #include <QStackedWidget>
 #include <QVBoxLayout>
 
-CodeSnippetsPage::CodeSnippetsPage(const QString &language, QWidget *parent) : PreferencesPage(parent), lang(language)
+CodeSnippetsPage::CodeSnippetsPage(QString language, QWidget *parent)
+    : PreferencesPage(parent), lang(std::move(language))
 {
-    auto splitter = new QSplitter();
+    auto *splitter = new QSplitter();
     addWidget(splitter);
 
-    auto leftWidget = new QWidget();
+    auto *leftWidget = new QWidget();
     splitter->addWidget(leftWidget);
 
-    auto leftLayout = new QVBoxLayout(leftWidget);
+    auto *leftLayout = new QVBoxLayout(leftWidget);
 
     searchEdit = new QLineEdit();
     searchEdit->setPlaceholderText(tr("Search..."));
@@ -52,10 +53,10 @@ CodeSnippetsPage::CodeSnippetsPage(const QString &language, QWidget *parent) : P
     connect(snippetsList, &QListWidget::itemClicked, this, [this](QListWidgetItem *item) { switchToSnippet(item); });
     leftLayout->addWidget(snippetsList);
 
-    auto buttonsLayout = new QHBoxLayout();
+    auto *buttonsLayout = new QHBoxLayout();
     leftLayout->addLayout(buttonsLayout);
 
-    auto addButton = new QPushButton(tr("Add"));
+    auto *addButton = new QPushButton(tr("Add"));
     addButton->setShortcut({"Ctrl+N"});
     connect(addButton, &QPushButton::clicked, this, [this] { addSnippet(); });
     buttonsLayout->addWidget(addButton);
@@ -82,7 +83,7 @@ CodeSnippetsPage::CodeSnippetsPage(const QString &language, QWidget *parent) : P
     moreMenu->addAction(loadSnippetsFromFilesAction);
     moreMenu->addAction(extractSnippetsToFilesAction);
 
-    auto moreButton = new QPushButton(tr("More"));
+    auto *moreButton = new QPushButton(tr("More"));
     moreButton->setMenu(moreMenu);
     buttonsLayout->addWidget(moreButton);
 
@@ -92,7 +93,7 @@ CodeSnippetsPage::CodeSnippetsPage(const QString &language, QWidget *parent) : P
     snippetWidget = new QWidget();
     rightWidget->addWidget(snippetWidget);
 
-    auto snippetLayout = new QVBoxLayout(snippetWidget);
+    auto *snippetLayout = new QVBoxLayout(snippetWidget);
 
     snippetNameLabel = new QLabel();
     snippetLayout->addWidget(snippetNameLabel);
@@ -105,10 +106,10 @@ CodeSnippetsPage::CodeSnippetsPage(const QString &language, QWidget *parent) : P
     rightWidget->addWidget(noSnippetWidget);
     rightWidget->setCurrentWidget(noSnippetWidget);
 
-    auto VStretchLayout = new QVBoxLayout(noSnippetWidget);
+    auto *VStretchLayout = new QVBoxLayout(noSnippetWidget);
     VStretchLayout->addStretch();
 
-    auto HStretchLayout = new QHBoxLayout();
+    auto *HStretchLayout = new QHBoxLayout();
     VStretchLayout->addLayout(HStretchLayout);
     HStretchLayout->addStretch();
 
@@ -150,7 +151,7 @@ void CodeSnippetsPage::makeUITheSameAsSettings()
 {
     Util::applySettingsToEditor(editor, lang);
     auto settingsKeys = SettingsHelper::getLanguageConfig(lang).getSnippets();
-    for (auto key : settingsKeys)
+    for (auto const &key : settingsKeys)
     {
         if (!snippetItem.contains(key))
         {
@@ -158,7 +159,7 @@ void CodeSnippetsPage::makeUITheSameAsSettings()
         }
     }
     auto UIKeys = snippetItem.keys();
-    for (auto key : UIKeys)
+    for (auto const &key : UIKeys)
     {
         if (!settingsKeys.contains(key))
         {
@@ -176,7 +177,7 @@ void CodeSnippetsPage::makeUITheSameAsSettings()
 void CodeSnippetsPage::makeSettingsTheSameAsUI()
 {
     auto settingsKeys = SettingsHelper::getLanguageConfig(lang).getSnippets();
-    for (auto key : settingsKeys)
+    for (auto const &key : settingsKeys)
     {
         if (!snippetItem.contains(key))
         {
@@ -184,7 +185,7 @@ void CodeSnippetsPage::makeSettingsTheSameAsUI()
         }
     }
     auto UIKeys = snippetItem.keys();
-    for (auto key : UIKeys)
+    for (auto const &key : UIKeys)
     {
         if (!settingsKeys.contains(key))
         {
@@ -202,7 +203,7 @@ void CodeSnippetsPage::updateSearch(const QString &text)
         return;
     for (int i = 0; i < snippetsList->count(); ++i)
     {
-        auto item = snippetsList->item(i);
+        auto *item = snippetsList->item(i);
         if (item->text().startsWith(text, Qt::CaseInsensitive))
         {
             snippetsList->setCurrentItem(item);
@@ -318,7 +319,7 @@ void CodeSnippetsPage::loadSnippetsFromFiles()
         DefaultPathManager::getOpenFileNames("Extract And Load Snippets", this, tr("Load Snippets"),
                                              Util::fileNameFilter(lang == "C++", lang == "Java", lang == "Python"));
 
-    for (auto file : files)
+    for (auto const &file : files)
     {
         auto content = Util::readFile(file, "CodeSnippetsPage::loadSnippetsFromFiles");
         if (content.isNull())
@@ -356,7 +357,7 @@ void CodeSnippetsPage::extractSnippetsToFiles()
     else if (lang == "Python")
         suffix = "." + Util::pythonSuffix.front();
 
-    for (auto name : names)
+    for (auto const &name : names)
     {
         auto filePath = dir.filePath(name + suffix);
         if (QFile::exists(filePath))
@@ -383,7 +384,7 @@ QString CodeSnippetsPage::getNewSnippetName(const QString &oldName, bool avoidCo
     while (name.isEmpty() || snippetItem.contains(name) ||
            (avoidConflictWithSettings && SettingsHelper::getLanguageConfig(lang).getSnippets().contains(name)))
     {
-        bool ok;
+        bool ok = false;
         QString head;
         if (firstTime)
         {
@@ -403,7 +404,7 @@ QString CodeSnippetsPage::getNewSnippetName(const QString &oldName, bool avoidCo
                                                  QMessageBox::Yes | QMessageBox::No);
                 if (res == QMessageBox::Yes)
                 {
-                    auto item = snippetItem[name];
+                    auto *item = snippetItem[name];
                     if (item)
                         deleteSnippet(item);
                     return name;
@@ -421,7 +422,7 @@ QString CodeSnippetsPage::getNewSnippetName(const QString &oldName, bool avoidCo
 
 void CodeSnippetsPage::addSnippet(const QString &name)
 {
-    auto item = new QListWidgetItem(name);
+    auto *item = new QListWidgetItem(name);
     snippetsList->addItem(item);
     snippetItem[name] = item;
 

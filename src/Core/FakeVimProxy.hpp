@@ -36,7 +36,7 @@
 #define FAKE_VIM_PROXY_HPP
 
 #include "Core/FakeVimCommand.hpp"
-#include "fakevimhandler.h"
+#include "third_party/FakeVim/fakevim/fakevimhandler.h"
 #include <QObject>
 
 class AppWindow;
@@ -72,16 +72,16 @@ class FakeVimProxy : public QObject
     void requestHasBlockSelection(bool *);
     void indentRegion(int, int, QChar);
     void moveToMatchingParenthesis(bool *, bool *, QTextCursor *);
-    void checkForElectricCharacter(bool *, QChar);
+    static void checkForElectricCharacter(bool *, QChar);
 
   private:
     static int firstNonSpace(QString const &);
     QChar charUnderCursor(QTextCursor *, int);
     QChar getCounterParenthesis(QChar);
     void updateExtraSelections();
-    bool wantSaveAndQuit(FakeVim::Internal::ExCommand const &);
-    bool wantSave(FakeVim::Internal::ExCommand const &);
-    bool wantQuit(FakeVim::Internal::ExCommand const &);
+    static bool wantSaveAndQuit(FakeVim::Internal::ExCommand const &);
+    static bool wantSave(FakeVim::Internal::ExCommand const &);
+    static bool wantQuit(FakeVim::Internal::ExCommand const &);
     bool save();
     void quit();
     void forceQuit();

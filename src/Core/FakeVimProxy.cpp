@@ -34,10 +34,10 @@
 #include "Core/FakeVimProxy.hpp"
 #include "Core/EventLogger.hpp"
 #include "appwindow.hpp"
-#include "fakevimactions.h"
-#include "fakevimhandler.h"
 #include "generated/SettingsHelper.hpp"
 #include "mainwindow.hpp"
+#include "third_party/FakeVim/fakevim/fakevimactions.h"
+#include "third_party/FakeVim/fakevim/fakevimhandler.h"
 #include <QApplication>
 #include <QCodeEditor>
 #include <QLabel>
@@ -74,8 +74,8 @@ void FakeVimProxy::highlightMatches(QString const &pattern)
     QTextDocument *doc = nullptr;
 
     { // in a block so we don't inadvertently use one of them later
-        QPlainTextEdit *plainEditor = qobject_cast<QPlainTextEdit *>(m_widget);
-        QTextEdit *editor = qobject_cast<QTextEdit *>(m_widget);
+        auto *plainEditor = qobject_cast<QPlainTextEdit *>(m_widget);
+        auto *editor = qobject_cast<QTextEdit *>(m_widget);
         if (editor)
         {
             doc = editor->document();
@@ -144,13 +144,13 @@ void FakeVimProxy::setStatusBar()
 
 void FakeVimProxy::handleExCommand(bool *handled, FakeVim::Internal::ExCommand const &cmd)
 {
-    auto customCommandType = m_commandHandler->customCommandType(cmd);
+    auto customCommandType = FakeVimCommand::customCommandType(cmd);
     if (customCommandType != FakeVimCommand::CommandTypes::Unknown)
     {
         *handled = m_commandHandler->handleCustomCommand(customCommandType, cmd.args, cmd.hasBang);
         return;
     }
-    else if (wantSaveAndQuit(cmd))
+    if (wantSaveAndQuit(cmd))
     {
         // :wq
         if (save())
@@ -178,8 +178,8 @@ void FakeVimProxy::handleExCommand(bool *handled, FakeVim::Internal::ExCommand c
 
 void FakeVimProxy::requestSetBlockSelection(const QTextCursor &tc)
 {
-    QTextEdit *editor = qobject_cast<QTextEdit *>(m_widget);
-    QPlainTextEdit *plainEditor = qobject_cast<QPlainTextEdit *>(m_widget);
+    auto *editor = qobject_cast<QTextEdit *>(m_widget);
+    auto *plainEditor = qobject_cast<QPlainTextEdit *>(m_widget);
     if (!editor && !plainEditor)
     {
         return;
@@ -237,8 +237,8 @@ void FakeVimProxy::requestSetBlockSelection(const QTextCursor &tc)
 
 void FakeVimProxy::requestDisableBlockSelection()
 {
-    QTextEdit *editor = qobject_cast<QTextEdit *>(m_widget);
-    QPlainTextEdit *plainEditor = qobject_cast<QPlainTextEdit *>(m_widget);
+    auto *editor = qobject_cast<QTextEdit *>(m_widget);
+    auto *plainEditor = qobject_cast<QPlainTextEdit *>(m_widget);
     if (!editor && !plainEditor)
     {
         return;
@@ -265,8 +265,8 @@ void FakeVimProxy::requestDisableBlockSelection()
 
 void FakeVimProxy::updateBlockSelection()
 {
-    QTextEdit *editor = qobject_cast<QTextEdit *>(m_widget);
-    QPlainTextEdit *plainEditor = qobject_cast<QPlainTextEdit *>(m_widget);
+    auto *editor = qobject_cast<QTextEdit *>(m_widget);
+    auto *plainEditor = qobject_cast<QPlainTextEdit *>(m_widget);
     if (!editor && !plainEditor)
     {
         return;
@@ -284,8 +284,8 @@ void FakeVimProxy::indentRegion(int beginBlock, int endBlock, QChar typedChar)
 {
     QTextDocument *doc = nullptr;
     { // in a block so we don't inadvertently use one of them later
-        QPlainTextEdit *plainEditor = qobject_cast<QPlainTextEdit *>(m_widget);
-        QTextEdit *editor = qobject_cast<QTextEdit *>(m_widget);
+        auto *plainEditor = qobject_cast<QPlainTextEdit *>(m_widget);
+        auto *editor = qobject_cast<QTextEdit *>(m_widget);
         if (editor)
         {
             doc = editor->document();
@@ -347,10 +347,8 @@ void FakeVimProxy::indentRegion(int beginBlock, int endBlock, QChar typedChar)
 void FakeVimProxy::moveToMatchingParenthesis(bool *moved, bool *forward, QTextCursor *cursor)
 {
     auto isClosingParenthesis = [this](QChar symbol) {
-        for (auto const &e : parenthesisList)
-            if (symbol == e.second)
-                return true;
-        return false;
+        return std::any_of(parenthesisList.begin(), parenthesisList.end(),
+                           [&](auto const &e) { return symbol == e.second; });
     };
 
     QChar underCursor = charUnderCursor(cursor, 0);
@@ -417,7 +415,7 @@ QChar FakeVimProxy::getCounterParenthesis(QChar symbol)
         if (symbol == e.second)
             return e.first;
     }
-    return QChar();
+    return {};
 }
 
 int FakeVimProxy::firstNonSpace(const QString &text)
@@ -430,8 +428,8 @@ int FakeVimProxy::firstNonSpace(const QString &text)
 
 void FakeVimProxy::updateExtraSelections()
 {
-    QTextEdit *editor = qobject_cast<QTextEdit *>(m_widget);
-    QPlainTextEdit *plainEditor = qobject_cast<QPlainTextEdit *>(m_widget);
+    auto *editor = qobject_cast<QTextEdit *>(m_widget);
+    auto *plainEditor = qobject_cast<QPlainTextEdit *>(m_widget);
     if (editor)
     {
         editor->setExtraSelections(m_clearSelection + m_searchSelection + m_blockSelection);
@@ -479,10 +477,10 @@ bool FakeVimProxy::hasChanges()
 
 QTextDocument *FakeVimProxy::document() const
 {
-    QTextDocument *doc = NULL;
-    if (QPlainTextEdit *ed = qobject_cast<QPlainTextEdit *>(m_widget))
+    QTextDocument *doc = nullptr;
+    if (auto *ed = qobject_cast<QPlainTextEdit *>(m_widget))
         doc = ed->document();
-    else if (QTextEdit *ed = qobject_cast<QTextEdit *>(m_widget))
+    else if (auto *ed = qobject_cast<QTextEdit *>(m_widget))
         doc = ed->document();
     return doc;
 }
@@ -522,12 +520,12 @@ void FakeVimProxy::sourceVimRc(FakeVim::Internal::FakeVimHandler *handler)
 
 void FakeVimProxy::clearUndoRedo(QWidget *editor)
 {
-    if (QPlainTextEdit *ed = qobject_cast<QPlainTextEdit *>(editor))
+    if (auto *ed = qobject_cast<QPlainTextEdit *>(editor))
     {
         ed->setUndoRedoEnabled(false);
         ed->setUndoRedoEnabled(true);
     }
-    else if (QTextEdit *ed = qobject_cast<QTextEdit *>(editor))
+    else if (auto *ed = qobject_cast<QTextEdit *>(editor))
     {
         ed->setUndoRedoEnabled(false);
         ed->setUndoRedoEnabled(true);
@@ -537,7 +535,7 @@ void FakeVimProxy::clearUndoRedo(QWidget *editor)
 void FakeVimProxy::connectSignals(FakeVim::Internal::FakeVimHandler *handler, QWidget *editor, MainWindow *mainWindow,
                                   AppWindow *appWindow)
 {
-    FakeVimProxy *proxy = new FakeVimProxy(editor, mainWindow, appWindow, handler);
+    auto *proxy = new FakeVimProxy(editor, mainWindow, appWindow, handler);
 
     handler->commandBufferChanged.connect(
         [proxy](const QString &contents, int cursorPos, int /*anchorPos*/, int /*messageLevel*/) {

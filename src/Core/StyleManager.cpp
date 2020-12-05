@@ -107,7 +107,7 @@ QStringList StyleManager::styleList()
 #ifdef Q_OS_WIN
 bool StyleManager::isWindowsDarkThemeForApps()
 {
-    QSettings settings("HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize",
+    QSettings settings(R"(HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize)",
                        QSettings::NativeFormat);
     return settings.value("AppsUseLightTheme") == 0;
 }

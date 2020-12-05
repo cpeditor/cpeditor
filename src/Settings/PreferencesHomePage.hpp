@@ -55,7 +55,7 @@ class PreferencesHomePage : public QWidget
      * @param page the path to the page to switch to
      * @param text the text for this button
      */
-    void addButton(const QString &pagePath, const QString &text);
+    void addButton(const QString &page, const QString &text);
 
     QVBoxLayout *layout = nullptr;
     PreferencesWindow *preferencesWindow = nullptr;
