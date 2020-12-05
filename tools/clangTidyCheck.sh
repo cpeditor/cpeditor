@@ -10,10 +10,7 @@ else
 fi
 
 # Update compile_commands.json file
-mkdir -p build
-cd build
-cmake .. -DCMAKE_EXPORT_COMPILE_COMMANDS=1
-mv compile_commands.json ..
-cd ..
+cmake -S . -B build -DCMAKE_EXPORT_COMPILE_COMMANDS=1
+mv build/compile_commands.json .
 
 $CLANGTIDY src/*.cpp src/*/*.cpp

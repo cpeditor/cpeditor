@@ -7,32 +7,20 @@ env:
 
 jobs:
   build:
-    name: "${{ matrix.config.os }}"
-    runs-on: ${{ matrix.config.os }}
+    name: ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
       matrix:
-        config:
-          - {
-              os: windows-latest,
-              cc: "cl",
-              cxx: "cl",
-            }
-          - { os: ubuntu-latest, 
-              cc: "gcc",
-              cxx: "g++" 
-            }
-          - {
-              os: macos-latest,
-              cc: "clang",
-              cxx: "clang++",
-            }
+        os:
+          - ubuntu-latest
+          - windows-latest
+          - macos-latest
 
     steps:
       - uses: actions/checkout@v2
         with:
           submodules: recursive
-          fetch-depth: 0
 
       - name: Install Python 3.7
         uses: actions/setup-python@v1
@@ -44,7 +32,7 @@ jobs:
         uses: actions/cache@v1
         with:
           path: ../Qt
-          key: Qt-${{ matrix.config.os }}-${{ env.QT_VERSION }}
+          key: Qt-${{ matrix.os }}-${{ env.QT_VERSION }}
 
       - name: Set up Qt environment
         uses: jurplel/install-qt-action@v2
@@ -53,22 +41,22 @@ jobs:
           version: ${{ env.QT_VERSION }}
 
       - name: Download clang-tidy latest stable on Linux
-        if: startsWith(matrix.config.os, 'ubuntu')
+        if: startsWith(matrix.os, 'ubuntu')
         run: |
           sudo apt-get update
           sudo apt-get install clang-tidy-9
           sudo ln -s "$(which clang-tidy-9)" "/usr/local/bin/clang-tidy"
 
       - name: Download clang-tidy latest stable on macOS
-        if: startsWith(matrix.config.os, 'macos')
+        if: startsWith(matrix.os, 'macos')
         run: |
           brew install llvm
           ln -s "$(brew --prefix llvm)/bin/clang-tidy" "/usr/local/bin/clang-tidy"
 
       - name: Enable Developer Command Prompt
-        if: startsWith(matrix.config.os, 'windows')
+        if: startsWith(matrix.os, 'windows')
         uses: ilammy/msvc-dev-cmd@v1.4.1
-      
+
       - name: Configure CMake
         run: |
           cmake -Bbuild -DUSE_CLANG_TIDY=On .
