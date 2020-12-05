@@ -109,7 +109,7 @@ set_property(SOURCE ${CMAKE_BINARY_DIR}/generated/SettingsHelper.hpp ${CMAKE_BIN
 
 if(USE_CLANG_TIDY)
 	set(CMAKE_CXX_CLANG_TIDY "clang-tidy")
-	message(STATUS "Clang-tidy checks will be performed")
+	message(STATUS "clang-tidy checks will be performed")
 endif()
 
 add_executable(cpeditor

@@ -1,4 +1,4 @@
-name: "Clang tidy Check"
+name: "Clang-Tidy Check"
 
 on: [pull_request]
 
