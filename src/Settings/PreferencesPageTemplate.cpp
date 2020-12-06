@@ -23,7 +23,7 @@
 #include <QCheckBox>
 
 PreferencesPageTemplate::PreferencesPageTemplate(QStringList opts, bool alignTop, QWidget *parent)
-    : PreferencesGridPage(alignTop, parent), options(opts)
+    : PreferencesGridPage(alignTop, parent), options(std::move(opts))
 {
     for (const QString &name : options)
     {
@@ -90,14 +90,14 @@ PreferencesPageTemplate::PreferencesPageTemplate(QStringList opts, bool alignTop
         auto si = SettingsInfo::findSetting(name);
         if (si.depends.isEmpty())
             continue;
-        for (auto depend : si.depends)
+        for (auto const &depend : si.depends)
         {
             if (!options.contains(depend.first))
             {
                 LOG_DEV(name << " depends on unknown option " << depend.first);
                 continue;
             }
-            auto dependWidget = widgets[options.indexOf(depend.first)];
+            auto *dependWidget = widgets[options.indexOf(depend.first)];
             connect(dependWidget, &ValueWidget::valueChanged, [this, name] { onDependencyUpdated(name); });
         }
         onDependencyUpdated(name);
@@ -107,7 +107,7 @@ PreferencesPageTemplate::PreferencesPageTemplate(QStringList opts, bool alignTop
 QStringList PreferencesPageTemplate::content()
 {
     QStringList ret = options;
-    for (auto opt : options)
+    for (auto const &opt : options)
     {
         auto si = SettingsInfo::findSetting(opt);
         if (!si.desc.isEmpty())
@@ -181,10 +181,10 @@ void PreferencesPageTemplate::makeSettingsTheSameAsUI()
 void PreferencesPageTemplate::onDependencyUpdated(const QString &settingName)
 {
     auto si = SettingsInfo::findSetting(settingName);
-    auto currentWidget = widgets[options.indexOf(settingName)]->coreWidget();
-    for (auto depend : si.depends)
+    auto *currentWidget = widgets[options.indexOf(settingName)]->coreWidget();
+    for (auto const &depend : si.depends)
     {
-        auto dependWidget = widgets[options.indexOf(depend.first)];
+        auto *dependWidget = widgets[options.indexOf(depend.first)];
         if (depend.second(dependWidget->getVariant()))
         {
             if (!si.requireAllDepends)

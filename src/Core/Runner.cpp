@@ -37,8 +37,7 @@ Runner::~Runner()
 {
     // The order of destructions is important, runTimer is used when emitting signals
 
-    if (killTimer != nullptr)
-        delete killTimer;
+    delete killTimer;
 
     if (runProcess != nullptr)
     {
@@ -52,8 +51,7 @@ Runner::~Runner()
         delete runProcess;
     }
 
-    if (runTimer != nullptr)
-        delete runTimer;
+    delete runTimer;
 }
 
 void Runner::run(const QString &tmpFilePath, const QString &sourceFilePath, const QString &lang,
@@ -115,7 +113,7 @@ void Runner::runDetached(const QString &tmpFilePath, const QString &sourceFilePa
     // use apple script on Mac OS
     runProcess->setProgram("osascript");
     runProcess->setArguments({"-l", "AppleScript"});
-    QString script = "tell app \"Terminal\" to do script \"" +
+    QString script = R"(tell app "Terminal" to do script ")" +
                      getCommand(tmpFilePath, sourceFilePath, lang, runCommand, args).replace("\"", "'") + "\"";
     runProcess->start();
     LOG_INFO("Running apple script\n" << script);

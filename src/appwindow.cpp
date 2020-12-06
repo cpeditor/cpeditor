@@ -59,8 +59,8 @@ AppWindow::AppWindow(bool noHotExit, QWidget *parent) : QMainWindow(parent), ui(
     allocate();
     setConnections();
 
-    auto separator = ui->menuFile->insertSeparator(ui->actionSave); // used to insert openRecentFilesMenu
-    auto openRecentFilesMenu = new QMenu(tr("Open Recent Files"), ui->menuFile);
+    auto *separator = ui->menuFile->insertSeparator(ui->actionSave); // used to insert openRecentFilesMenu
+    auto *openRecentFilesMenu = new QMenu(tr("Open Recent Files"), ui->menuFile);
     ui->menuFile->insertMenu(separator, openRecentFilesMenu);
     connect(openRecentFilesMenu, &QMenu::aboutToShow, [this, openRecentFilesMenu] {
         openRecentFilesMenu->clear();
@@ -106,7 +106,7 @@ AppWindow::AppWindow(bool noHotExit, QWidget *parent) : QMainWindow(parent), ui(
 
     SettingsHelper::setForceClose(false);
 
-    auto lastSessionPath = sessionManager->lastSessionPath();
+    auto lastSessionPath = Core::SessionManager::lastSessionPath();
 
     if (lastSessionPath.isEmpty())
         return;
@@ -172,7 +172,7 @@ AppWindow::~AppWindow()
     saveSettings();
     while (ui->tabWidget->count())
     {
-        auto tmp = ui->tabWidget->widget(0);
+        auto *tmp = ui->tabWidget->widget(0);
         ui->tabWidget->removeTab(0);
         delete tmp;
     }
@@ -313,7 +313,7 @@ void AppWindow::applySettings()
 
 void AppWindow::maybeSetHotkeys()
 {
-    for (auto e : hotkeyObjects)
+    for (auto *e : hotkeyObjects)
         delete e;
     hotkeyObjects.clear();
 
@@ -364,7 +364,7 @@ void AppWindow::maybeSetHotkeys()
 bool AppWindow::closeTab(int index)
 {
     LOG_INFO(INFO_OF(index));
-    auto tmp = windowAt(index);
+    auto *tmp = windowAt(index);
     if (tmp->closeConfirm())
     {
         ui->tabWidget->removeTab(index);
@@ -418,7 +418,7 @@ void AppWindow::openTab(const QString &path)
         }
     }
 
-    auto newWindow = new MainWindow(path, getNewUntitledIndex(), this);
+    auto *newWindow = new MainWindow(path, getNewUntitledIndex(), this);
 
     QString lang = SettingsHelper::getDefaultLanguage();
 
@@ -438,7 +438,7 @@ void AppWindow::openTab(const QString &path)
 
 void AppWindow::openTab(const MainWindow::EditorStatus &status, bool duplicate)
 {
-    auto newWindow = new MainWindow(status, duplicate, getNewUntitledIndex(), this);
+    auto *newWindow = new MainWindow(status, duplicate, getNewUntitledIndex(), this);
     openTab(newWindow);
 }
 
@@ -477,7 +477,7 @@ void AppWindow::openPaths(const QStringList &paths, bool cpp, bool java, bool py
     LOG_INFO("Open Path with arguments " << BOOL_INFO_OF(cpp) << BOOL_INFO_OF(java) << BOOL_INFO_OF(python)
                                          << INFO_OF(depth) << INFO_OF(paths.join(" ")));
     QStringList res;
-    for (auto &path : paths)
+    for (auto const &path : paths)
     {
         if (QDir(path).exists())
             res.append(openFolder(path, cpp, java, python, depth));
@@ -518,7 +518,8 @@ void AppWindow::openContest(Widgets::ContestDialog::ContestData const &data)
     const QString &lang = data.language;
     int number = data.number;
 
-    QDir dir(path), parent(path);
+    QDir dir(path);
+    QDir parent(path);
     parent.cdUp();
     if (!dir.exists() && parent.exists())
         parent.mkdir(dir.dirName());
@@ -566,7 +567,7 @@ int AppWindow::getNewUntitledIndex()
     QSet<int> vis;
     for (int t = 0; t < ui->tabWidget->count(); ++t)
     {
-        auto tmp = windowAt(t);
+        auto *tmp = windowAt(t);
         if (tmp->isUntitled() && tmp->getProblemURL().isEmpty())
         {
             vis.insert(tmp->getUntitledIndex());
@@ -579,18 +580,18 @@ int AppWindow::getNewUntitledIndex()
 
 /***************** ABOUT SECTION ***************************/
 
-void AppWindow::on_actionSupportUs_triggered()
+void AppWindow::on_actionSupportUs_triggered() // NOLINT: It can be made static
 {
     QDesktopServices::openUrl(QUrl("https://opencollective.com/cpeditor#section-contribute"));
 }
 
-void AppWindow::on_actionManual_triggered()
+void AppWindow::on_actionManual_triggered() // NOLINT: method can be made static
 {
     QDesktopServices::openUrl(
         QUrl(tr("https://cpeditor.org/%1/docs").arg(MINOR_VERSION)).adjusted(QUrl::NormalizePathSegments));
 }
 
-void AppWindow::on_actionReportIssues_triggered()
+void AppWindow::on_actionReportIssues_triggered() // NOLINT: method can be made static
 {
     QDesktopServices::openUrl(QUrl("https://github.com/cpeditor/cpeditor/issues"));
 }
@@ -690,7 +691,7 @@ void AppWindow::on_actionSaveAll_triggered()
 {
     for (int t = 0; t < ui->tabWidget->count(); ++t)
     {
-        auto tmp = windowAt(t);
+        auto *tmp = windowAt(t);
         if (!tmp->save(true, tr("Save All")))
             break;
     }
@@ -802,7 +803,7 @@ void AppWindow::on_actionSettings_triggered()
 
 /************************** SLOTS *********************************/
 
-#define FROMJSON(x) auto x = json[#x]
+#define FROMJSON(x) auto x = json[#x] // NOLINT: macro argument should be enclosed in parentheses
 
 void AppWindow::onReceivedMessage(quint32 instanceId, QByteArray message)
 {
@@ -872,7 +873,7 @@ void AppWindow::onTabChanged(int index)
     disconnect(activeSplitterMoveConnection);
     disconnect(activeRightSplitterMoveConnection);
 
-    auto tmp = windowAt(index);
+    auto *tmp = windowAt(index);
 
     reAttachLanguageServer(tmp);
 
@@ -983,7 +984,7 @@ void AppWindow::onEditorLanguageChanged(MainWindow *window)
 
 void AppWindow::onLSPTimerElapsedCpp()
 {
-    auto tab = currentWindow();
+    auto *tab = currentWindow();
     if (tab == nullptr)
         return;
 
@@ -995,7 +996,7 @@ void AppWindow::onLSPTimerElapsedCpp()
 
 void AppWindow::onLSPTimerElapsedJava()
 {
-    auto tab = currentWindow();
+    auto *tab = currentWindow();
     if (tab == nullptr)
         return;
 
@@ -1007,7 +1008,7 @@ void AppWindow::onLSPTimerElapsedJava()
 
 void AppWindow::onLSPTimerElapsedPython()
 {
-    auto tab = currentWindow();
+    auto *tab = currentWindow();
     if (tab == nullptr)
         return;
 
@@ -1140,15 +1141,15 @@ void AppWindow::onViewModeToggle()
     }
 }
 
-void AppWindow::onSplitterMoved(int _, int __)
+void AppWindow::onSplitterMoved()
 {
-    auto splitter = currentWindow()->getSplitter();
+    auto *splitter = currentWindow()->getSplitter();
     SettingsHelper::setSplitterSize(splitter->saveState());
 }
 
-void AppWindow::onRightSplitterMoved(int _, int __)
+void AppWindow::onRightSplitterMoved()
 {
-    auto splitter = currentWindow()->getRightSplitter();
+    auto *splitter = currentWindow()->getRightSplitter();
     SettingsHelper::setRightSplitterSize(splitter->saveState());
 }
 
@@ -1178,7 +1179,7 @@ void AppWindow::on_actionRun_triggered()
 
 void AppWindow::on_actionFindReplace_triggered()
 {
-    auto tmp = currentWindow();
+    auto *tmp = currentWindow();
     if (tmp != nullptr)
         findReplaceDialog->showDialog(tmp->getEditor()->textCursor().selectedText());
 }
@@ -1210,7 +1211,7 @@ void AppWindow::on_actionKillProcesses_triggered()
 void AppWindow::on_actionUseSnippets_triggered()
 {
     LOG_INFO("Use snippets trigerred");
-    auto current = currentWindow();
+    auto *current = currentWindow();
     if (current != nullptr)
     {
         QString lang = current->getLanguage();
@@ -1223,7 +1224,7 @@ void AppWindow::on_actionUseSnippets_triggered()
         }
         else
         {
-            auto ok = new bool;
+            auto *ok = new bool;
             auto name = QInputDialog::getItem(this, tr("Use Snippets"), tr("Choose a snippet:"), names, 0, true, ok);
             if (*ok)
             {
@@ -1294,56 +1295,56 @@ void AppWindow::on_actionFullScreen_toggled(bool checked)
 
 void AppWindow::on_actionIndent_triggered()
 {
-    auto tmp = currentWindow();
+    auto *tmp = currentWindow();
     if (tmp != nullptr)
         tmp->getEditor()->indent();
 }
 
 void AppWindow::on_actionUnindent_triggered()
 {
-    auto tmp = currentWindow();
+    auto *tmp = currentWindow();
     if (tmp != nullptr)
         tmp->getEditor()->unindent();
 }
 
 void AppWindow::on_actionSwapLineUp_triggered()
 {
-    auto tmp = currentWindow();
+    auto *tmp = currentWindow();
     if (tmp != nullptr)
         tmp->getEditor()->swapLineUp();
 }
 
 void AppWindow::on_actionSwapLineDown_triggered()
 {
-    auto tmp = currentWindow();
+    auto *tmp = currentWindow();
     if (tmp != nullptr)
         tmp->getEditor()->swapLineDown();
 }
 
 void AppWindow::on_actionDuplicateLine_triggered()
 {
-    auto tmp = currentWindow();
+    auto *tmp = currentWindow();
     if (tmp != nullptr)
         tmp->getEditor()->duplicate();
 }
 
 void AppWindow::on_actionDeleteLine_triggered()
 {
-    auto tmp = currentWindow();
+    auto *tmp = currentWindow();
     if (tmp != nullptr)
         tmp->getEditor()->deleteLine();
 }
 
 void AppWindow::on_actionToggleComment_triggered()
 {
-    auto tmp = currentWindow();
+    auto *tmp = currentWindow();
     if (tmp != nullptr)
         tmp->getEditor()->toggleComment();
 }
 
 void AppWindow::on_actionToggleBlockComment_triggered()
 {
-    auto tmp = currentWindow();
+    auto *tmp = currentWindow();
     if (tmp != nullptr)
         tmp->getEditor()->toggleBlockComment();
 }
@@ -1362,10 +1363,9 @@ void AppWindow::onTabContextMenuRequested(const QPoint &pos)
     {
         LOG_INFO(INFO_OF(index));
 
-        auto window = windowAt(index);
+        auto *window = windowAt(index);
 
-        if (tabMenu != nullptr)
-            delete tabMenu;
+        delete tabMenu;
         tabMenu = new QMenu();
 
         tabMenu->addAction(tr("Close"), [index, this] { closeTab(index); });
@@ -1434,7 +1434,8 @@ void AppWindow::onTabContextMenuRequested(const QPoint &pos)
                                [window] { QGuiApplication::clipboard()->setText(window->getProblemURL()); });
         }
         tabMenu->addAction(tr("Set Codeforces URL"), [window, this] {
-            QString contestId, problemCode;
+            QString contestId;
+            QString problemCode;
             Extensions::CFTool::parseCfUrl(window->getProblemURL(), contestId, problemCode);
             bool ok = false;
             contestId = QInputDialog::getText(this, tr("Set CF URL"), tr("Enter the contest ID:"), QLineEdit::Normal,
@@ -1516,7 +1517,7 @@ MainWindow *AppWindow::windowAt(int index)
     return qobject_cast<MainWindow *>(ui->tabWidget->widget(index));
 }
 
-void AppWindow::on_actionShowLogs_triggered()
+void AppWindow::on_actionShowLogs_triggered() // NOLINT: Method can be made static
 {
     Core::Log::revealInFileManager();
 }

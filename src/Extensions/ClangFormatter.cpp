@@ -78,7 +78,7 @@ QTextCursor ClangFormatter::newCursor(const QString &out, const QStringList &arg
     return cursor;
 }
 
-int ClangFormatter::newCursorPos(const QString &out) const
+int ClangFormatter::newCursorPos(const QString &out) const // NOLINT: method 'newCursorPos' can be made static
 {
     auto json = QJsonDocument::fromJson(out.left(out.indexOf('\n')).toUtf8());
     return json["Cursor"].toInt();

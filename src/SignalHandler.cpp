@@ -20,11 +20,11 @@
  */
 
 #include "SignalHandler.hpp"
-#include <assert.h>
+#include <cassert>
 
 #ifndef _WIN32
 
-#include <signal.h>
+#include <csignal>
 
 #else
 
@@ -38,16 +38,16 @@ SignalHandler *g_handler = nullptr;
 
 #ifdef _WIN32
 
-BOOL WINAPI WIN32_handleFunc(DWORD);
-int WIN32_physicalToLogical(DWORD);
-DWORD WIN32_logicalToPhysical(int);
+BOOL WINAPI WIN32_handleFunc(DWORD /*signal*/);
+int WIN32_physicalToLogical(DWORD /*signal*/);
+DWORD WIN32_logicalToPhysical(int /*signal*/);
 std::set<int> g_registry;
 
 #else //_WIN32
 
-void POSIX_handleFunc(int);
-int POSIX_physicalToLogical(int);
-int POSIX_logicalToPhysical(int);
+void POSIX_handleFunc(int signal);
+int POSIX_physicalToLogical(int signal);
+int POSIX_logicalToPhysical(int signal);
 
 #endif //_WIN32
 
@@ -69,7 +69,8 @@ SignalHandler::SignalHandler(int mask) : _mask(mask)
             g_registry.insert(logical);
 #else
             int sig = POSIX_logicalToPhysical(logical);
-            bool failed = signal(sig, POSIX_handleFunc) == SIG_ERR;
+            bool failed = signal(sig, POSIX_handleFunc) ==
+                          SIG_ERR; // NOLINT: do not use C-style cast to convert between unrelated types
             assert(!failed);
             (void)failed; // Silence the warning in non _DEBUG; TODO: something better
 
@@ -116,7 +117,7 @@ int POSIX_logicalToPhysical(int signal)
     {
     case SignalHandler::SIG_INT:
         return SIGINT;
-    case SignalHandler::SIG_TERM:
+    case SignalHandler::SIG_TERM: // NOLINT: switch has 2 consecutive identical branches [bugprone-branch-clone]
         return SIGTERM;
     // In case the client asks for a SIG_CLOSE handler, accept and
     // bind it to a SIGTERM. Anyway the signal will never be raised
@@ -171,20 +172,12 @@ BOOL WINAPI WIN32_handleFunc(DWORD signal)
         // The std::set is thread-safe in const reading access and we never
         // write to it after the program has started so we don't need to
         // protect this search by a mutex
-        std::set<int>::const_iterator found = g_registry.find(signo);
+        auto found = g_registry.find(signo);
         if (signo != -1 && found != g_registry.end())
-        {
             return g_handler->handleSignal(signo) ? TRUE : FALSE;
-        }
-        else
-        {
-            return FALSE;
-        }
-    }
-    else
-    {
         return FALSE;
     }
+    return FALSE;
 }
 #else
 void POSIX_handleFunc(int signal)

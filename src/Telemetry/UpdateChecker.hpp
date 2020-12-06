@@ -69,7 +69,7 @@ class UpdateChecker : public QObject
     };
 
     void updateProxy();
-    UpdateMetaInformation toMetaInformation(const QJsonDocument &release);
+    static UpdateMetaInformation toMetaInformation(const QJsonDocument &release);
 
     Widgets::UpdateProgressDialog *progress = nullptr;
     Widgets::UpdatePresenter *presenter = nullptr;

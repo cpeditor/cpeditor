@@ -41,21 +41,21 @@ ContestDialog::ContestDialog(QWidget *parent) : QDialog(parent)
 {
     setWindowTitle(tr("Create a new contest"));
 
-    auto mainLayout = new QVBoxLayout(this);
+    auto *mainLayout = new QVBoxLayout(this);
 
-    auto groupBox = new QGroupBox(tr("Contest Details"));
+    auto *groupBox = new QGroupBox(tr("Contest Details"));
     mainLayout->addWidget(groupBox);
 
-    auto formLayout = new QFormLayout(groupBox);
+    auto *formLayout = new QFormLayout(groupBox);
 
-    auto mainDirectoryLayout = new QHBoxLayout();
+    auto *mainDirectoryLayout = new QHBoxLayout();
     mainDirectoryLayout->setContentsMargins(0, 0, 0, 0);
     formLayout->addRow(tr("Main Directory"), mainDirectoryLayout);
 
     mainDirectoryEdit = new QLineEdit();
     mainDirectoryLayout->addWidget(mainDirectoryEdit);
 
-    auto pathToolButton = new QToolButton();
+    auto *pathToolButton = new QToolButton();
     connect(pathToolButton, &QToolButton::clicked, this, &ContestDialog::chooseDirectory);
     pathToolButton->setIcon(QApplication::style()->standardIcon(QStyle::SP_DialogOpenButton));
     mainDirectoryLayout->addWidget(pathToolButton);
@@ -79,7 +79,7 @@ ContestDialog::ContestDialog(QWidget *parent) : QDialog(parent)
     problemCountSpinBox->setMaximum(26);
     formLayout->addRow(tr("Number of Problems"), problemCountSpinBox);
 
-    auto buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel | QDialogButtonBox::Reset);
+    auto *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel | QDialogButtonBox::Reset);
     mainLayout->addWidget(buttonBox);
     connect(buttonBox->button(QDialogButtonBox::Ok), &QPushButton::clicked, this, &ContestDialog::submit);
     connect(buttonBox->button(QDialogButtonBox::Cancel), &QPushButton::clicked, this, &QDialog::reject);

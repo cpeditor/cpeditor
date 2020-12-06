@@ -87,11 +87,11 @@ class Log
   public:
     /**
      * @brief initialize the event logger
-     * @param instanceCount the instance ID provided by SingleApplication, to distinct processes from each other
-     * @param dumpToStderr whether to print the logs into stderr or not
+     * @param instance the instance ID provided by SingleApplication, to distinct processes from each other
+     * @param dumptoStderr whether to print the logs into stderr or not
      * @note this should be called only once before logging anything
      */
-    static void init(int instanceCount, bool dumpToStderr = false);
+    static void init(int instance, bool dumptoStderr = false);
 
     /**
      * @brief clear old logs
@@ -104,7 +104,7 @@ class Log
      */
     static void revealInFileManager();
 
-    static QTextStream &log(const QString &priority, QString funcName, int lineNumber, QString fileName);
+    static QTextStream &log(const QString &priority, QString funcName, int line, QString fileName);
 
   private:
     static QString dateTimeStamp();
@@ -113,11 +113,12 @@ class Log
     static QTextStream logStream; // the text stream for logging, writes to logFile
     static QFile logFile;         // the device for logging, a file or stderr
 
-    static int NUMBER_OF_LOGS_TO_KEEP;     // Number of log files to keep in Temporary directory
-    static QString LOG_FILE_NAME;          // Base Name of the log file
-    static QString LOG_DIR_NAME;           // Directory inside Temp where log files will be stored
-    static int MAXIMUM_FUNCTION_NAME_SIZE; // Maximum size of function name, it is used to determine spacing in log file
-    static int MAXIMUM_FILE_NAME_SIZE;     // Maximum size of file name, it is used to determine spacing in log file
+    const static int NUMBER_OF_LOGS_TO_KEEP; // Number of log files to keep in Temporary directory
+    const static QString LOG_FILE_NAME;      // Base Name of the log file
+    const static QString LOG_DIR_NAME;       // Directory inside Temp where log files will be stored
+    const static int
+        MAXIMUM_FUNCTION_NAME_SIZE; // Maximum size of function name, it is used to determine spacing in log file
+    const static int MAXIMUM_FILE_NAME_SIZE; // Maximum size of file name, it is used to determine spacing in log file
 };
 
 } // namespace Core

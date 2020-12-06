@@ -57,7 +57,7 @@ static const int MAX_NUMBER_OF_RECENT_FILES = 20;
 // ***************************** RAII  ****************************
 
 MainWindow::MainWindow(int index, AppWindow *parent)
-    : QMainWindow(parent), ui(new Ui::MainWindow), appWindow(parent), untitledIndex(index),
+    : QMainWindow(parent), ui(new Ui::MainWindow), editor(nullptr), appWindow(parent), untitledIndex(index),
       fileWatcher(new QFileSystemWatcher(this)), reloading(false), killingProcesses(false),
       autoSaveTimer(new QTimer(this))
 {
@@ -107,8 +107,7 @@ MainWindow::~MainWindow()
     killProcesses();
 
     delete cftool;
-    if (tmpDir != nullptr)
-        delete tmpDir;
+    delete tmpDir;
 
     delete ui;
     delete autoSaveTimer;
@@ -152,11 +151,13 @@ void MainWindow::compile()
         onCompilationFinished("");
         return;
     }
-    else if (language != "C++" && language != "Java")
+
+    if (language != "C++" && language != "Java")
     {
         log->warn(tr("Compiler"), tr("Please set the language"));
         return;
     }
+
     connect(compiler, &Core::Compiler::compilationStarted, this, &MainWindow::onCompilationStarted);
     connect(compiler, &Core::Compiler::compilationFinished, this, &MainWindow::onCompilationFinished);
     connect(compiler, &Core::Compiler::compilationErrorOccurred, this, &MainWindow::onCompilationErrorOccurred);
@@ -203,7 +204,7 @@ void MainWindow::run(int index)
         return;
     }
 
-    auto tmp = new Core::Runner(index);
+    auto *tmp = new Core::Runner(index);
     connect(tmp, &Core::Runner::runStarted, this, &MainWindow::onRunStarted);
     connect(tmp, &Core::Runner::runFinished, this, &MainWindow::onRunFinished);
     connect(tmp, &Core::Runner::failedToStartRun, this, &MainWindow::onFailedToStartRun);
@@ -286,10 +287,10 @@ QString MainWindow::getCompleteTitle() const
 {
     if (!isUntitled())
         return filePath;
-    else if (!problemURL.isEmpty())
+    if (!problemURL.isEmpty())
         return problemURL;
-    else
-        return getFileName();
+
+    return getFileName();
 }
 
 QString MainWindow::getTabTitle(bool complete, bool star, int removeLength)
@@ -495,7 +496,7 @@ void MainWindow::applyCompanion(const Extensions::CompanionData &data)
             finalComments += comments.mid(lastEnd, match.capturedStart() - lastEnd);
             auto path = match.captured().mid(7, match.capturedLength() - 8).split(".");
             auto value = QJsonValue::fromVariant(data.doc.toVariant());
-            for (auto attr : path)
+            for (auto const &attr : path)
                 value = value[attr];
             if (value.isUndefined())
             {
@@ -541,8 +542,8 @@ void MainWindow::applyCompanion(const Extensions::CompanionData &data)
 
     testcases->clear();
 
-    for (int i = 0; i < data.testcases.size(); ++i)
-        testcases->addTestCase(data.testcases[i].input, data.testcases[i].output);
+    for (auto const &testcase : data.testcases)
+        testcases->addTestCase(testcase.input, testcase.output);
 
     setProblemURL(data.url);
 
@@ -813,10 +814,7 @@ void MainWindow::killProcesses()
 
     for (auto &t : runner)
     {
-        if (t != nullptr)
-        {
-            delete t;
-        }
+        delete t;
     }
     runner.clear();
 
@@ -958,7 +956,7 @@ bool MainWindow::saveFile(SaveMode mode, const QString &head, bool safe)
             if (!problemURL.isEmpty())
             {
                 auto rules = SettingsHelper::getDefaultFilePathsForProblemURLs();
-                for (auto rule : rules)
+                for (auto const &rule : rules)
                 {
                     if (rule.toStringList().front().isEmpty())
                         continue;
@@ -994,7 +992,7 @@ bool MainWindow::saveFile(SaveMode mode, const QString &head, bool safe)
             QDir().mkpath(QFileInfo(defaultPath).absolutePath());
         }
         auto beforeReturn = [&](bool ret) {
-            for (auto path : madePaths)
+            for (auto const &path : madePaths)
                 if (!QDir().rmdir(path))
                     break;
             return ret;
@@ -1050,8 +1048,7 @@ QString MainWindow::tmpPath()
     bool created = false;
     if (tmpDir == nullptr || !tmpDir->isValid() || !QDir(tmpDir->path()).exists())
     {
-        if (tmpDir)
-            delete tmpDir;
+        delete tmpDir;
         tmpDir = new QTemporaryDir();
         if (!tmpDir->isValid())
         {
@@ -1113,18 +1110,14 @@ bool MainWindow::isTextChanged() const
                                       tr("Read %1 Template").arg(language), log);
         if (content.isNull())
             return !editor->toPlainText().isEmpty();
-        else
-            return editor->toPlainText() != content;
-    }
-    else
-    {
-        auto content = Util::readFile(filePath);
-
-        if (content.isNull())
-            return true;
-
         return editor->toPlainText() != content;
     }
+    auto content = Util::readFile(filePath);
+
+    if (content.isNull())
+        return true;
+
+    return editor->toPlainText() != content;
 }
 
 bool MainWindow::closeConfirm()
@@ -1272,8 +1265,7 @@ void MainWindow::updateCursorInfo()
 
 void MainWindow::updateChecker()
 {
-    if (checker)
-        delete checker;
+    delete checker;
     if (testcases->checkerType() == Core::Checker::Custom)
         checker = new Core::Checker(testcases->checkerText(), log, this);
     else
@@ -1296,16 +1288,14 @@ QString MainWindow::compileCommand() const
 {
     if (customCompileCommand.isEmpty())
         return SettingsManager::get(QString("%1/Compile Command").arg(language)).toString();
-    else
-        return customCompileCommand;
+    return customCompileCommand;
 }
 
 int MainWindow::timeLimit() const
 {
     if (customTimeLimit == -1)
         return SettingsHelper::getDefaultTimeLimit();
-    else
-        return customTimeLimit;
+    return customTimeLimit;
 }
 
 // -------------------- COMPILER SLOTS ---------------------------

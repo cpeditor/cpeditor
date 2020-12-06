@@ -860,19 +860,19 @@
         "name": "LSP/Use Linting C++",
         "desc": "Use Linting with Language Server",
         "type": "bool",
-        "tip": "Show Error, Warning, Information and Hints in Code Editor for C++ Langauge"
+        "tip": "Show Error, Warning, Information and Hints in Code Editor for C++ Language"
     },
     {
         "name": "LSP/Use Linting Java",
         "desc": "Use Linting with Language Server",
         "type": "bool",
-        "tip": "Show Error, Warning, Information and Hints in Code Editor for Java Langauge"
+        "tip": "Show Error, Warning, Information and Hints in Code Editor for Java Language"
     },
     {
         "name": "LSP/Use Linting Python",
         "desc": "Use Linting with Language Server",
         "type": "bool",
-        "tip": "Show Error, Warning, Information and Hints in Code Editor for Python Langauge"
+        "tip": "Show Error, Warning, Information and Hints in Code Editor for Python Language"
     },
     {
         "name": "LSP/Use Autocomplete C++",

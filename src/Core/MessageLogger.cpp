@@ -33,7 +33,8 @@ void MessageLogger::message(const QString &head, const QString &body, const QStr
     LOG_WARN_IF(body.contains("<a href") && htmlEscaped,
                 "The message contains \"<a href\", but htmlEscaped is enabled.");
 
-    QString newHead, newBody;
+    QString newHead;
+    QString newBody;
     if (htmlEscaped)
     {
         // replace spaces by "&nbsp;" to avoid multiple spaces becoming one, important for compilation errors

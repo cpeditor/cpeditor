@@ -93,18 +93,12 @@ void SettingsManager::save(QSettings &setting, const QString &prefix, const QLis
 
 void SettingsManager::init()
 {
-    if (cur)
-        delete cur;
-    if (def)
-        delete def;
-    if (settingPath)
-        delete settingPath;
-    if (settingTrPath)
-        delete settingTrPath;
-    if (pathSetting)
-        delete pathSetting;
-    if (settingWidget)
-        delete settingWidget;
+    delete cur;
+    delete def;
+    delete settingPath;
+    delete settingTrPath;
+    delete pathSetting;
+    delete settingWidget;
 
     cur = new QVariantMap();
     def = new QVariantMap();
@@ -124,18 +118,12 @@ void SettingsManager::deinit()
 {
     saveSettings(Util::configFilePath(configFileLocations[0]));
 
-    if (cur)
-        delete cur;
-    if (def)
-        delete def;
-    if (settingPath)
-        delete settingPath;
-    if (settingTrPath)
-        delete settingTrPath;
-    if (pathSetting)
-        delete pathSetting;
-    if (settingWidget)
-        delete settingWidget;
+    delete cur;
+    delete def;
+    delete settingPath;
+    delete settingTrPath;
+    delete pathSetting;
+    delete settingWidget;
     cur = def = nullptr;
     settingPath = settingTrPath = pathSetting = nullptr;
     settingWidget = nullptr;
@@ -181,18 +169,16 @@ void SettingsManager::saveSettings(const QString &path)
     LOG_INFO("Settings have been saved to " + path);
 }
 
-QVariant SettingsManager::get(QString key, bool alwaysDefault)
+QVariant SettingsManager::get(QString const &key, bool alwaysDefault)
 {
     if (!alwaysDefault && cur->contains(key))
         return cur->value(key);
-    else if (def->contains(key))
+    if (def->contains(key))
         return def->value(key);
-    else
-    {
-        if (!noUnknownKeyWarning.contains(key))
-            LOG_DEV("getting unknown key: " << key);
-        return QVariant();
-    }
+
+    if (!noUnknownKeyWarning.contains(key))
+        LOG_DEV("getting unknown key: " << key);
+    return QVariant();
 }
 
 bool SettingsManager::contains(const QString &key, bool includingDefault)
@@ -200,13 +186,13 @@ bool SettingsManager::contains(const QString &key, bool includingDefault)
     return cur->contains(key) || (includingDefault && def->contains(key));
 }
 
-void SettingsManager::set(const QString &key, QVariant value)
+void SettingsManager::set(const QString &key, QVariant const &value)
 {
     LOG_INFO_IF(!key.startsWith("Language Config/"), INFO_OF(key) << INFO_OF(value.toString()));
     cur->insert(key, value);
 }
 
-void SettingsManager::remove(QStringList keys)
+void SettingsManager::remove(QStringList const &keys)
 {
     for (const QString &key : keys)
         cur->remove(key);
@@ -269,7 +255,8 @@ QWidget *SettingsManager::getWidget(const QString &key)
 QStringList SettingsManager::keyStartsWith(const QString &head)
 {
     QStringList keys = cur->keys();
-    keys.erase(std::remove_if(keys.begin(), keys.end(), [head](QString s) { return !s.startsWith(head); }), keys.end());
+    keys.erase(std::remove_if(keys.begin(), keys.end(), [head](QString const &s) { return !s.startsWith(head); }),
+               keys.end());
     return keys;
 }
 
