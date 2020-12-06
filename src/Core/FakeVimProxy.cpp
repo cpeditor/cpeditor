@@ -139,7 +139,7 @@ void FakeVimProxy::setStatusBar()
 {
     m_mainWindow->statusBar()->addPermanentWidget(m_statusData);
     m_mainWindow->statusBar()->addWidget(m_statusMessage);
-    m_mainWindow->statusBar()->setFont(m_mainWindow->getEditor()->font());
+    m_mainWindow->statusBar()->setFont(SettingsHelper::getEditorFont());
 }
 
 void FakeVimProxy::handleExCommand(bool *handled, FakeVim::Internal::ExCommand const &cmd)
