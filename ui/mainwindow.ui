@@ -40,9 +40,6 @@
            <layout class="QHBoxLayout" name="cursorInfoArea">
             <item>
              <widget class="QLabel" name="cursorInfo">
-              <property name="text">
-               <string>cursor info</string>
-              </property>
              </widget>
             </item>
            </layout>

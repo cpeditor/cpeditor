@@ -1159,10 +1159,6 @@ Do you want to reload it?</source>
         <translation></translation>
     </message>
     <message>
-        <source>cursor info</source>
-        <translation>光标信息</translation>
-    </message>
-    <message>
         <source>Compile</source>
         <translation>编译</translation>
     </message>

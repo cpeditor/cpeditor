@@ -1244,41 +1244,38 @@ void MainWindow::onEditorFontChanged(const QFont &newFont)
 
 void MainWindow::updateCursorInfo()
 {
-    if (!editor->vimCursor())
+    auto cursor = editor->textCursor();
+    auto selection = cursor.selectedText();
+    QString info;
+    if (selection.isEmpty())
     {
-        auto cursor = editor->textCursor();
-        auto selection = cursor.selectedText();
-        QString info;
-        if (selection.isEmpty())
+        auto line = editor->document()->findBlockByNumber(cursor.blockNumber()).text();
+        int column = cursor.columnNumber();
+        int col = 0;
+        for (int i = 0; i < column; ++i)
         {
-            auto line = editor->document()->findBlockByNumber(cursor.blockNumber()).text();
-            int column = cursor.columnNumber();
-            int col = 0;
-            for (int i = 0; i < column; ++i)
-            {
-                if (line[i] != '\t')
-                    ++col;
-                else
-                    col += SettingsHelper::getTabWidth() - col % SettingsHelper::getTabWidth();
-            }
-            info = tr("Line %1, Column %2").arg(cursor.blockNumber() + 1).arg(col + 1);
-        }
-        else
-        {
-            int selectionStart = cursor.selectionStart();
-            int selectionEnd = cursor.selectionEnd();
-            cursor.setPosition(selectionStart);
-            int lineStart = cursor.blockNumber();
-            cursor.setPosition(selectionEnd);
-            int lineEnd = cursor.blockNumber();
-            int selectionLines = lineEnd - lineStart + 1;
-            if (selectionLines > 1)
-                info = tr("%1 lines, %2 characters selected").arg(selectionLines).arg(selection.length());
+            if (line[i] != '\t')
+                ++col;
             else
-                info = tr("%1 characters selected").arg(selection.length());
+                col += SettingsHelper::getTabWidth() - col % SettingsHelper::getTabWidth();
         }
-        ui->cursorInfo->setText(info);
+        info = tr("Line %1, Column %2").arg(cursor.blockNumber() + 1).arg(col + 1);
     }
+    else
+    {
+        int selectionStart = cursor.selectionStart();
+        int selectionEnd = cursor.selectionEnd();
+        cursor.setPosition(selectionStart);
+        int lineStart = cursor.blockNumber();
+        cursor.setPosition(selectionEnd);
+        int lineEnd = cursor.blockNumber();
+        int selectionLines = lineEnd - lineStart + 1;
+        if (selectionLines > 1)
+            info = tr("%1 lines, %2 characters selected").arg(selectionLines).arg(selection.length());
+        else
+            info = tr("%1 characters selected").arg(selection.length());
+    }
+    ui->cursorInfo->setText(info);
 }
 
 void MainWindow::updateChecker()

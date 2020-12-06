@@ -1159,10 +1159,6 @@ Do you want to reload it?</source>
         <translation>CP Editor</translation>
     </message>
     <message>
-        <source>cursor info</source>
-        <translation>информация с курсора</translation>
-    </message>
-    <message>
         <source>Compile</source>
         <translation>Скомпилировать</translation>
     </message>
