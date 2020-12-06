@@ -471,6 +471,19 @@ Git commit hash: %3
         <source>Support us</source>
         <translation>Поддержи нас</translation>
     </message>
+    <message>
+        <source>Like CP Editor?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Hey, there! Would you mind:
+-   [Give us a star on GitHub](https://github.com/cpeditor/cpeditor/stargazers)
+-   [Support us on Open Collective](https://opencollective.com/cpeditor)
+-   Share CP Editor with your friends
+
+Or, [provide some suggestions](https://github.com/cpeditor/cpeditor/issues/new/choose) to help us do better.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>CodeSnippetsPage</name>

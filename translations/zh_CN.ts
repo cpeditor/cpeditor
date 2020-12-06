@@ -471,6 +471,24 @@ git 提交编号: %3
         <source>Support us</source>
         <translation>支持我们</translation>
     </message>
+    <message>
+        <source>Like CP Editor?</source>
+        <translation>喜欢 CP Editor 吗？</translation>
+    </message>
+    <message>
+        <source>Hey, there! Would you mind:
+-   [Give us a star on GitHub](https://github.com/cpeditor/cpeditor/stargazers)
+-   [Support us on Open Collective](https://opencollective.com/cpeditor)
+-   Share CP Editor with your friends
+
+Or, [provide some suggestions](https://github.com/cpeditor/cpeditor/issues/new/choose) to help us do better.</source>
+        <translation>嘿！你是否介意：
+-   [在 GitHub 上给我们一个 star](https://github.com/cpeditor/cpeditor/stargazers)
+-   [在 Open Collective 上支持我们](https://opencollective.com/cpeditor)
+-   与朋友们分享 CP Editor
+
+或者，[提供一些建议](https://github.com/cpeditor/cpeditor/issues/new/choose) 以使我们做得更好。</translation>
+    </message>
 </context>
 <context>
     <name>CodeSnippetsPage</name>
