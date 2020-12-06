@@ -158,12 +158,35 @@ void AppWindow::finishConstruction()
         setWindowOpacity(1);
 #endif
 
-    if (SettingsHelper::isFirstTimeUser())
-    {
-        LOG_INFO("Is first-time user");
-        preferencesWindow->display();
-        SettingsHelper::setFirstTimeUser(false);
-    }
+    // The window needs time to make its geometry stable. We wait it to display the new dialogs in correct positions
+    QTimer::singleShot(200, [this] {
+        if (SettingsHelper::isFirstTimeUser())
+        {
+            LOG_INFO("Is first-time user");
+            preferencesWindow->display();
+            SettingsHelper::setFirstTimeUser(false);
+        }
+        else if (!SettingsHelper::isPromotionDialogShown() && SettingsHelper::getTotalUsageTime() >= 36000)
+        {
+            LOG_INFO("Show promotion dialog");
+            auto *dialog = new QMessageBox(this);
+            dialog->setWindowTitle(tr("Like CP Editor?"));
+            dialog->setTextFormat(Qt::MarkdownText);
+            dialog->setText(tr(R"(Hey, there! Would you mind:
+-   [Give us a star on GitHub](https://github.com/cpeditor/cpeditor/stargazers)
+-   [Support us on Open Collective](https://opencollective.com/cpeditor)
+-   Share CP Editor with your friends
+
+Or, [provide some suggestions](https://github.com/cpeditor/cpeditor/issues/new/choose) to help us do better.)"));
+            dialog->setIconPixmap(windowIcon().pixmap(64, 64));
+            dialog->setModal(true);
+            dialog->setAttribute(Qt::WA_DeleteOnClose);
+            dialog->open();
+            Util::showWidgetOnTop(dialog);
+            dialog->move(geometry().center().x() - dialog->width() / 2, geometry().center().y() - dialog->height() / 2);
+            SettingsHelper::setPromotionDialogShown(true);
+        }
+    });
 }
 
 AppWindow::~AppWindow()

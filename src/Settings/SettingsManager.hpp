@@ -71,6 +71,7 @@ class SettingsManager
     static QMap<QString, QString> *settingTrPath;
     static QMap<QString, QString> *pathSetting;
     static QMap<QString, QWidget *> *settingWidget;
+    static long long startTime;
 };
 
 #endif // SETTINGSMANAGER_HPP

@@ -21,6 +21,7 @@
 #include "Settings/SettingsUpdater.hpp"
 #include "Util/FileUtil.hpp"
 #include "generated/portable.hpp"
+#include <QDateTime>
 #include <QFile>
 #include <QFont>
 #include <QRect>
@@ -32,6 +33,7 @@ QMap<QString, QString> *SettingsManager::settingPath = nullptr;
 QMap<QString, QString> *SettingsManager::settingTrPath = nullptr;
 QMap<QString, QString> *SettingsManager::pathSetting = nullptr;
 QMap<QString, QWidget *> *SettingsManager::settingWidget = nullptr;
+long long SettingsManager::startTime = 0;
 
 const static QStringList configFileLocations = {
 #ifdef PORTABLE_VERSION
@@ -107,6 +109,8 @@ void SettingsManager::init()
     pathSetting = new QMap<QString, QString>();
     settingWidget = new QMap<QString, QWidget *>();
 
+    startTime = QDateTime::currentSecsSinceEpoch();
+
     generateDefaultSettings();
 
     QString path = Util::firstExistingConfigPath(configFileLocations);
@@ -116,6 +120,8 @@ void SettingsManager::init()
 
 void SettingsManager::deinit()
 {
+    set("Total Usage Time", get("Total Usage Time").toInt() + QDateTime::currentSecsSinceEpoch() - startTime);
+
     saveSettings(Util::configFilePath(configFileLocations[0]));
 
     delete cur;
