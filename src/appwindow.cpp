@@ -182,7 +182,6 @@ Or, [provide some suggestions](https://github.com/cpeditor/cpeditor/issues/new/c
             dialog->setModal(true);
             dialog->setAttribute(Qt::WA_DeleteOnClose);
             dialog->open();
-            Util::showWidgetOnTop(dialog);
             dialog->move(geometry().center().x() - dialog->width() / 2, geometry().center().y() - dialog->height() / 2);
             SettingsHelper::setPromotionDialogShown(true);
         }
