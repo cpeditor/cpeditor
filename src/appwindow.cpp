@@ -166,7 +166,8 @@ void AppWindow::finishConstruction()
             preferencesWindow->display();
             SettingsHelper::setFirstTimeUser(false);
         }
-        else if (!SettingsHelper::isPromotionDialogShown() && SettingsHelper::getTotalUsageTime() >= 36000)
+        else if (!SettingsHelper::isPromotionDialogShown() &&
+                 SettingsHelper::getTotalUsageTime() >= 10 * 60 * 60) // 10 hours or above
         {
             LOG_INFO("Show promotion dialog");
             auto *dialog = new QMessageBox(this);
