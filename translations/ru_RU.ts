@@ -1201,7 +1201,7 @@ Do you want to reload it?</source>
     </message>
     <message>
         <source>You can&apos;t submit this because the problem URL is not recognized as a Codeforces URL.</source>
-        <translation type="unfinished"></translation>
+        <translation>Вы не можете отправить это, потому что URL задачи не распознан как URL Codeforces.</translation>
     </message>
 </context>
 <context>
