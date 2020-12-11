@@ -473,7 +473,7 @@ Git commit hash: %3
     </message>
     <message>
         <source>Like CP Editor?</source>
-        <translation type="unfinished"></translation>
+        <translation>Нравится CP Editor?</translation>
     </message>
     <message>
         <source>Hey, there! Would you mind:
@@ -482,7 +482,12 @@ Git commit hash: %3
 -   Share CP Editor with your friends
 
 Or, [provide some suggestions](https://github.com/cpeditor/cpeditor/issues/new/choose) to help us do better.</source>
-        <translation type="unfinished"></translation>
+        <translation>Привет! Не соизволите ли вы:
+-   [Поставить нам звездочку на GitHub](https://github.com/cpeditor/cpeditor/stargazers)
+-   [Поддержать нас на Open Collective](https://opencollective.com/cpeditor)
+-   Поделиться CP Editor&apos;ом со своими друзьями
+
+Или [предложить советы](https://github.com/cpeditor/cpeditor/issues/new/choose), чтобы сделать нас лучше.</translation>
     </message>
 </context>
 <context>
