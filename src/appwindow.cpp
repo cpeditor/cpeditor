@@ -22,6 +22,7 @@
 #include "Core/MessageLogger.hpp"
 #include "Core/SessionManager.hpp"
 #include "Core/StyleManager.hpp"
+#include "Core/Translator.hpp"
 #include "Extensions/CFTool.hpp"
 #include "Extensions/CompanionServer.hpp"
 #include "Extensions/EditorTheme.hpp"
@@ -582,7 +583,8 @@ void AppWindow::on_actionSupportUs_triggered() // NOLINT: It can be made static
     dialog->setAttribute(Qt::WA_DeleteOnClose);
     dialog->setModal(true);
     dialog->setWindowTitle(tr("Support us"));
-    dialog->setText(Util::readFile(":/DONATE.md").replace("resources/", ":/"));
+    dialog->setText(
+        Util::readFile(QString(":/DONATE%1.md").arg(Core::Translator::langSuffix())).replace("resources/", ":/"));
     dialog->show();
 }
 

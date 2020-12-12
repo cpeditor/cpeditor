@@ -17,20 +17,21 @@
 
 #include "Core/Translator.hpp"
 #include "Core/EventLogger.hpp"
-#include "Settings/SettingsInfo.hpp"
+#include "generated/SettingsHelper.hpp"
 #include <QMap>
 #include <QTranslator>
 
 namespace Core
 {
-const static QMap<QString, QString> locales = {{"简体中文", "zh_CN"},
-                                               // {"繁體中文", "zh_TW"},
-                                               {"Русский", "ru_RU"}};
+const static QMap<QString, QString> locales = {{"简体中文", "zh_CN"}, {"Русский", "ru_RU"}};
+
+const static QMap<QString, QString> suffixes = {{"zh_CN", "_zh-CN"}, {"ru_RU", "_ru-RU"}};
 
 QTranslator *Translator::translator = nullptr;
 
-void Translator::setLocale(const QString &language)
+void Translator::setLocale()
 {
+    const auto language = SettingsHelper::getLocale();
     LOG_INFO(INFO_OF(language));
     if (translator)
     {
@@ -57,5 +58,15 @@ void Translator::setLocale(const QString &language)
         LOG_ERR_IF(!qApp->installTranslator(translator), "Failed to load the translator " << translator);
         SettingsInfo::updateSettingInfo();
     }
+}
+
+QString Translator::langSuffix()
+{
+    const auto language = SettingsHelper::getLocale();
+
+    if (language == "system")
+        return suffixes[QLocale::system().name()];
+    else
+        return suffixes[locales[language]];
 }
 } // namespace Core
