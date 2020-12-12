@@ -24,6 +24,10 @@ If there isn't an issue opening for what you are going to work on, please open a
 -   Keep the settings file backward compatible all the time.
 -   Everyone should obey the [Code of Conduct](CODE_OF_CONDUCT.md) in order to build a harassment-free community.
 
+## Documentation
+
+The documentation are hosted at [cpeditor.github.io](https://github.com/cpeditor/cpeditor.github.io). You can read [its contributing guidelines](https://github.com/cpeditor/cpeditor.github.io/blob/hugo/CONTRIBUTING.md) for more information.
+
 ## Translations
 
 The translations are in the [translations](translations) directory. It's recommended to use Qt Linguist to edit them. However, if you only want to fix a typo, you can use whatever text editor you like. When a translation is finished, press <kbd>Ctrl + Enter</kbd> in Qt Linguist to mark it as finished and go to the next unfinished translation. If a text doesn't need translation, for example, "C++", you can leave the translation empty and mark it as finished. You should fix all warnings in Qt Linguist.
