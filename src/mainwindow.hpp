@@ -246,5 +246,6 @@ class MainWindow : public QMainWindow
     static QString getRunnerHead(int index);
     QString compileCommand() const;
     int timeLimit() const;
+    void updateCompileAndRunButtons() const;
 };
 #endif // MAINWINDOW_HPP
