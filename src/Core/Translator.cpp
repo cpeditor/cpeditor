@@ -66,7 +66,6 @@ QString Translator::langSuffix()
 
     if (language == "system")
         return suffixes[QLocale::system().name()];
-    else
-        return suffixes[locales[language]];
+    return suffixes[locales[language]];
 }
 } // namespace Core
