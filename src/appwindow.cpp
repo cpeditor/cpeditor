@@ -577,7 +577,13 @@ int AppWindow::getNewUntitledIndex()
 
 void AppWindow::on_actionSupportUs_triggered() // NOLINT: It can be made static
 {
-    QDesktopServices::openUrl(QUrl("https://opencollective.com/cpeditor#section-contribute"));
+    auto *dialog = new QMessageBox(this);
+    dialog->setTextFormat(Qt::MarkdownText);
+    dialog->setAttribute(Qt::WA_DeleteOnClose);
+    dialog->setModal(true);
+    dialog->setWindowTitle(tr("Support us"));
+    dialog->setText(Util::readFile(":/DONATE.md").replace("resources/", ":/"));
+    dialog->show();
 }
 
 void AppWindow::on_actionManual_triggered() // NOLINT: method can be made static
