@@ -27,9 +27,9 @@ class PreferencesPageTemplate : public PreferencesGridPage
   public:
     explicit PreferencesPageTemplate(QStringList opts, bool alignTop = true, QWidget *parent = nullptr);
 
-    virtual QStringList content() override;
+    QStringList content() override;
 
-    virtual void setPath(const QString &path, const QString &trPath) override;
+    void setPath(const QString &path, const QString &trPath) override;
 
   private:
     bool areSettingsChanged() override;
@@ -40,8 +40,8 @@ class PreferencesPageTemplate : public PreferencesGridPage
     void onDependencyUpdated(const QString &settingName);
 
   protected:
-    QStringList options;
-    QVector<ValueWidget *> widgets;
+    QStringList options;            // NOLINT: as per cppguidlines protected members should not be used
+    QVector<ValueWidget *> widgets; // NOLINT: as per cppguidlines protected members should not be used
 };
 
 #endif // PREFERENCESPAGETEMPLATE_HPP

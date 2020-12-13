@@ -91,11 +91,13 @@ class CodeFormatter : public QObject
     QVariant getSetting(const QString &key) const;
 
   protected:
-    QCodeEditor *editor;
-    QString lang;
-    bool selectionOnly;
-    bool logOnNoChange;
-    int cursorPos, cursorLine, cursorCol, anchorPos, anchorLine, anchorCol;
+    QCodeEditor *editor;                             // NOLINT: cppguidelines do not support use of protected members
+    QString lang;                                    // NOLINT: cppguidelines do not support use of protected members
+    bool selectionOnly;                              // NOLINT: cppguidelines do not support use of protected members
+    bool logOnNoChange;                              // NOLINT: cppguidelines do not support use of protected members
+    int cursorPos, cursorLine, cursorCol, anchorPos, // NOLINT: cppguidelines do not support use of protected members
+        anchorLine,                                  // NOLINT: cppguidelines do not support use of protected members
+        anchorCol;                                   // NOLINT: cppguidelines do not support use of protected members
 
   private:
     MessageLogger *log = nullptr;
