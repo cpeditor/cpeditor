@@ -45,8 +45,8 @@ class QFile;
 
 #define LOG_INFO(stream) Core::Log::log("INFO ", __func__, __LINE__, __FILE__) << stream << Qt::endl; // NOLINT
 #define LOG_WARN(stream) Core::Log::log("WARN ", __func__, __LINE__, __FILE__) << stream << Qt::endl; // NOLINT
-#define LOG_ERR(stream) Core::Log::log("ERROR", __func__, __LINE__, __FILE__) << stream << Qt::endl; // NOLINT
-#define LOG_WTF(stream) Core::Log::log(" WTF ", __func__, __LINE__, __FILE__) << stream << Qt::endl; // NOLINT
+#define LOG_ERR(stream) Core::Log::log("ERROR", __func__, __LINE__, __FILE__) << stream << Qt::endl;  // NOLINT
+#define LOG_WTF(stream) Core::Log::log(" WTF ", __func__, __LINE__, __FILE__) << stream << Qt::endl;  // NOLINT
 
 #define LOG_INFO_IF(cond, stream)                                                                                      \
     if (cond)                                                                                                          \
