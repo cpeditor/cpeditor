@@ -30,7 +30,7 @@ class SignalHandler : public QObject
 
   public:
     explicit SignalHandler(int mask = DEFAULT_SIGNALS);
-     ~SignalHandler() override;
+    ~SignalHandler() override;
 
     enum SIGNALS
     {
