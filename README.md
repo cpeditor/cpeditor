@@ -14,7 +14,7 @@ It makes your competitive coding life easier :grin: by automating many things fo
 
 [![Open Collective](https://opencollective.com/cpeditor/tiers/support-us.svg?avatarHeight=60)](https://opencollective.com/cpeditor#section-contribute)
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-49-orange.svg)](#all-contributors)
+[![All Contributors](https://img.shields.io/badge/all_contributors-50-orange.svg)](#all-contributors)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 [![GitHub All Releases](https://img.shields.io/github/downloads/cpeditor/cpeditor/total?label=downloads%40all)](https://github.com/cpeditor/cpeditor/releases)
 [![Slack Workspace](https://img.shields.io/badge/join-slack-success)](https://join.slack.com/t/cpeditor/shared_invite/zt-ekfy0zb5-SrOi8SIox8oq61oRonBynw)
@@ -237,6 +237,9 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   <tr>
     <td align="center">
       <a href="https://github.com/jaysampartak"><img src="https://avatars2.githubusercontent.com/u/40232849?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/jaysampartak"><sub><b>jaysampartak</b></sub></a><br /><a href="https://github.com/cpeditor/cpeditor/issues?q=author%3Ajaysampartak" title="Bug reports">🐛</a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/andreaemonti"><img src="https://avatars3.githubusercontent.com/u/20700531?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/andreaemonti"><sub><b>Andrea E. Monti</b></sub></a><br /><a href="#ideas-andreaemonti" title="Ideas, Planning, & Feedback">🤔</a>
     </td>
   </tr>
 </table>
