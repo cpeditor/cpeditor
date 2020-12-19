@@ -25,19 +25,19 @@ It makes your competitive coding life easier :grin: by automating many things fo
 
 ## Get Started
 
-- [Releases](https://github.com/cpeditor/cpeditor/releases)
-- [Installation](https://cpeditor.org/docs/installation/)
-- [Get Started](https://cpeditor.org/docs/setup/)
-- [Preferences](https://cpeditor.org/docs/preferences)
-- [Tips](https://cpeditor.org/docs/tips/)
+-   [Releases](https://github.com/cpeditor/cpeditor/releases)
+-   [Installation](https://cpeditor.org/docs/installation/)
+-   [Get Started](https://cpeditor.org/docs/setup/)
+-   [Preferences](https://cpeditor.org/docs/preferences)
+-   [Tips](https://cpeditor.org/docs/tips/)
 
 ## Contributing
 
-- [Open an issue](https://github.com/cpeditor/cpeditor/issues/new/choose)
-- [Contributing Guidelines](CONTRIBUTING.md)
-- [Good first issues](https://github.com/cpeditor/cpeditor/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22)
-- [Help wanted issues](https://github.com/cpeditor/cpeditor/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22)
-- [Contribute on Open Collective](https://opencollective.com/cpeditor#section-contribute)
+-   [Open an issue](https://github.com/cpeditor/cpeditor/issues/new/choose)
+-   [Contributing Guidelines](CONTRIBUTING.md)
+-   [Good first issues](https://github.com/cpeditor/cpeditor/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22)
+-   [Help wanted issues](https://github.com/cpeditor/cpeditor/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22)
+-   [Support us financially](DONATE.md)
 
 ## Get help
 

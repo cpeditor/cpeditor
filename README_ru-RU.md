@@ -31,19 +31,19 @@ CP Editor - это легкий кросс-платформенный редак
 
 ## Начало
 
-- [Релизы](https://github.com/cpeditor/cpeditor/releases)
-- [Установка](https://cpeditor.org/ru/docs/installation/)
-- [Начало](https://cpeditor.org/ru/docs/setup/)
-- [Параметры](https://cpeditor.org/ru/docs/preferences)
-- [подсказки](https://cpeditor.org/ru/docs/tips/)
+-   [Релизы](https://github.com/cpeditor/cpeditor/releases)
+-   [Установка](https://cpeditor.org/ru/docs/installation/)
+-   [Начало](https://cpeditor.org/ru/docs/setup/)
+-   [Параметры](https://cpeditor.org/ru/docs/preferences)
+-   [подсказки](https://cpeditor.org/ru/docs/tips/)
 
 ## Сотрудничество
 
-- [Открыть вопрос](https://github.com/cpeditor/cpeditor/issues/new/choose)
-- [Правила внесения вклада](CONTRIBUTING_ru-RU.md)
-- [Good first issues](https://github.com/cpeditor/cpeditor/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22)
-- [Help wanted issues](https://github.com/cpeditor/cpeditor/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22)
-- [Contribute on Open Collective](https://opencollective.com/cpeditor#section-contribute)
+-   [Открыть вопрос](https://github.com/cpeditor/cpeditor/issues/new/choose)
+-   [Правила внесения вклада](CONTRIBUTING_ru-RU.md)
+-   [Good first issues](https://github.com/cpeditor/cpeditor/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22)
+-   [Help wanted issues](https://github.com/cpeditor/cpeditor/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22)
+-   [Support us financially](DONATE_ru-RU.md)
 
 ## Получить помощь
 

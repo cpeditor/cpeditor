@@ -22,6 +22,7 @@
 #include "Core/MessageLogger.hpp"
 #include "Core/SessionManager.hpp"
 #include "Core/StyleManager.hpp"
+#include "Core/Translator.hpp"
 #include "Extensions/CFTool.hpp"
 #include "Extensions/CompanionServer.hpp"
 #include "Extensions/EditorTheme.hpp"
@@ -577,7 +578,14 @@ int AppWindow::getNewUntitledIndex()
 
 void AppWindow::on_actionSupportUs_triggered() // NOLINT: It can be made static
 {
-    QDesktopServices::openUrl(QUrl("https://opencollective.com/cpeditor#section-contribute"));
+    auto *dialog = new QMessageBox(this);
+    dialog->setTextFormat(Qt::MarkdownText);
+    dialog->setAttribute(Qt::WA_DeleteOnClose);
+    dialog->setModal(true);
+    dialog->setWindowTitle(tr("Support us"));
+    dialog->setText(
+        Util::readFile(QString(":/DONATE%1.md").arg(Core::Translator::langSuffix())).replace("resources/", ":/"));
+    dialog->show();
 }
 
 void AppWindow::on_actionManual_triggered() // NOLINT: method can be made static

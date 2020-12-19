@@ -27,19 +27,19 @@ CP Editor 是一个基于 Qt 的轻量级跨平台代码编辑器，专为算法
 
 ## 开始使用
 
-- [发行版](https://github.com/cpeditor/cpeditor/releases) ([Gitee 镜像](https://gitee.com/ouuan/cpeditor/releases))
-- [安装](https://cpeditor.org/zh/docs/installation/)
-- [开始使用](https://cpeditor.org/zh/docs/setup/)
-- [设置](https://cpeditor.org/zh/docs/preferences)
-- [使用提示](https://cpeditor.org/zh/docs/tips/)
+-   [发行版](https://github.com/cpeditor/cpeditor/releases) ([Gitee 镜像](https://gitee.com/ouuan/cpeditor/releases))
+-   [安装](https://cpeditor.org/zh/docs/installation/)
+-   [开始使用](https://cpeditor.org/zh/docs/setup/)
+-   [设置](https://cpeditor.org/zh/docs/preferences)
+-   [使用提示](https://cpeditor.org/zh/docs/tips/)
 
 ## 做出贡献
 
-- [提 issue](https://github.com/cpeditor/cpeditor/issues/new/choose)
-- [贡献指南](CONTRIBUTING_zh-CN.md)
-- [适合新手解决的 issues](https://github.com/cpeditor/cpeditor/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22)
-- [需要帮助的 issues](https://github.com/cpeditor/cpeditor/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22)
-- [在 Open Collective 捐赠](https://opencollective.com/cpeditor#section-contribute)
+-   [提 issue](https://github.com/cpeditor/cpeditor/issues/new/choose)
+-   [贡献指南](CONTRIBUTING_zh-CN.md)
+-   [适合新手解决的 issues](https://github.com/cpeditor/cpeditor/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22)
+-   [需要帮助的 issues](https://github.com/cpeditor/cpeditor/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22)
+-   [在经济上支持我们](DONATE_zh-CN.md)
 
 ## 获取帮助
 
