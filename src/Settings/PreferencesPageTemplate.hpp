@@ -39,9 +39,9 @@ class PreferencesPageTemplate : public PreferencesGridPage
 
     void onDependencyUpdated(const QString &settingName);
 
-  protected:
-    QStringList options;            // NOLINT: as per cppguidlines protected members should not be used
-    QVector<ValueWidget *> widgets; // NOLINT: as per cppguidlines protected members should not be used
+  private:
+    QStringList options;
+    QVector<ValueWidget *> widgets;
 };
 
 #endif // PREFERENCESPAGETEMPLATE_HPP
